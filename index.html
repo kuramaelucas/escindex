@@ -41,6 +41,20 @@
   --radius-sm:7px; --radius:12px; --radius-lg:18px;
   --shadow-pop:0 12px 32px rgba(17,32,28,.16);
   --maxw:1180px;
+  /* ---------- escala tipográfica ----------
+     Antes cada componente tinha o próprio font-size "a olho" (quase 30
+     valores diferentes no total, vários a menos de 0.02rem um do outro —
+     diferença de sub-pixel, invisível, só ruído). Esta escala junta tudo em
+     11 degraus com uma progressão clara; cada componente abaixo passa a
+     apontar para um destes tokens em vez de escrever o número de novo. */
+  --fs-2xs:.68rem; --fs-xs:.72rem; --fs-sm:.76rem; --fs-base:.8rem;
+  --fs-md:.85rem; --fs-lg:.9rem; --fs-xl:.95rem;
+  --fs-2xl:1.05rem; --fs-3xl:1.2rem; --fs-4xl:1.5rem; --fs-5xl:1.7rem;
+  /* ---------- escala de espaçamento (múltiplos de 4px) ----------
+     Usada no padding das "caixas" (card, card-flat, stat-tile, qcard, modal,
+     hero-card, auth-card, feedback-box), que antes usava 6 valores soltos
+     (1rem, 1.2rem, 1.35rem, 1.6rem, 1.75rem, 2rem) sem relação entre si. */
+  --sp-4:1rem; --sp-5:1.25rem; --sp-6:1.5rem; --sp-7:2rem;
 }
 /* Modo escuro — mesma paleta de papéis (fundo/superfície/texto/tinta de
    marca), só com os valores invertidos para reduzir claridade à noite.
@@ -100,12 +114,12 @@ svg.icon-lg{width:26px;height:26px}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
-.text-sm{font-size:.82rem}
-.text-xs{font-size:.72rem}
+.text-sm{font-size:var(--fs-base)}
+.text-xs{font-size:var(--fs-xs)}
 .nowrap{white-space:nowrap}
 
 /* ---------- botões ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem 1.15rem;border-radius:var(--radius-sm);border:1px solid transparent;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .05s ease;white-space:nowrap;background:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem 1.15rem;border-radius:var(--radius-sm);border:1px solid transparent;font-size:var(--fs-lg);font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .05s ease;white-space:nowrap;background:none}
 .btn:active{transform:scale(.98)}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-primary:hover{background:var(--accent-dark)}
@@ -115,44 +129,53 @@ svg.icon-lg{width:26px;height:26px}
 .btn-ghost:hover{background:var(--surface-2)}
 .btn-danger{background:var(--danger);color:#fff}
 .btn-danger:hover{background:#8f2e24}
-.btn-sm{padding:.4rem .7rem;font-size:.78rem}
+.btn-sm{padding:.4rem .7rem;font-size:var(--fs-base)}
 .btn-block{width:100%}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;transition:border-color .12s ease,transform .08s ease,box-shadow .12s ease}
 .icon-btn:hover{border-color:var(--accent);box-shadow:var(--shadow-xs)}
 .icon-btn:active{transform:scale(.94)}
-.link-btn{background:none;border:none;padding:0;color:var(--accent-dark);font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:underline}
+.link-btn{background:none;border:none;padding:0;color:var(--accent-dark);font-weight:600;font-size:var(--fs-md);cursor:pointer;text-decoration:underline}
 
 /* ---------- formulários ---------- */
 .field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
-.label{font-size:.8rem;font-weight:600;color:var(--ink-2)}
-.hint{font-size:.75rem;color:var(--muted)}
-.input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:.9rem;font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
+.label{font-size:var(--fs-base);font-weight:600;color:var(--ink-2)}
+.hint{font-size:var(--fs-sm);color:var(--muted)}
+.input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:var(--fs-lg);font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
 .input:focus,.select:focus,.textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
 .textarea{min-height:120px;resize:vertical}
-.textarea-mono{font-family:var(--font-mono);font-size:.82rem;line-height:1.6}
-.checkbox-row{display:flex;align-items:center;gap:.5rem;font-size:.85rem}
+.textarea-mono{font-family:var(--font-mono);font-size:var(--fs-base);line-height:1.6}
+.checkbox-row{display:flex;align-items:center;gap:.5rem;font-size:var(--fs-md)}
 
 /* ---------- cartões / superfícies ---------- */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.35rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-5)}
 .card + .card{margin-top:1rem}
-.card-title{font-size:1.02rem;margin-bottom:.2rem}
-.card-flat{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
+/* Dentro de um .grid (cards lado a lado, ex. grid-2/grid-3), a regra acima
+   ("card depois de card leva margem em cima") não devia valer: ali as caixas
+   já são separadas pelo gap do grid, e a margem extra no segundo card em
+   diante fazia ele nascer mais baixo — e, por consequência, mais BAIXO em
+   altura total do que o vizinho, mesmo os dois sendo .card puro. É a causa
+   das "caixas de tamanhos diferentes" lado a lado; a regra abaixo (mesma
+   especificidade, mas depois no arquivo — vence por ordem) zera isso só
+   dentro de grid. */
+.grid > .card{margin-top:0}
+.card-title{font-size:var(--fs-2xl);margin-bottom:.2rem}
+.card-flat{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-4) var(--sp-5)}
 
 /* ---------- badges / pills ---------- */
-.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .6rem;border-radius:100px;font-size:.7rem;font-weight:600;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .6rem;border-radius:100px;font-size:var(--fs-xs);font-weight:600;white-space:nowrap}
 .badge-accent{background:var(--accent-soft);color:var(--accent-dark)}
 .badge-amber{background:var(--amber-soft);color:var(--amber)}
 .badge-danger{background:var(--danger-soft);color:var(--danger)}
 .badge-muted{background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
-.pill{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);font-size:.8rem;font-weight:600;cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease}
+.pill{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);font-size:var(--fs-base);font-weight:600;cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease}
 .pill:hover{border-color:var(--accent)}
 .pill:active{transform:scale(.96)}
 .pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* ---------- tabelas ---------- */
-table{width:100%;border-collapse:collapse;font-size:.86rem}
-th{text-align:left;color:var(--muted);font-weight:600;font-size:.72rem;padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
+table{width:100%;border-collapse:collapse;font-size:var(--fs-md)}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:var(--fs-xs);padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
 td{padding:.65rem .7rem;border-bottom:1px solid var(--border)}
 tr:last-child td{border-bottom:none}
 .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
@@ -161,20 +184,24 @@ tr:last-child td{border-bottom:none}
 /* ---------- estrutura autenticada (shell) ---------- */
 .shell{display:flex;min-height:100vh}
 .sidebar{width:252px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:1.3rem 1rem;position:fixed;top:0;bottom:0;left:0;overflow-y:auto;z-index:40;transition:transform .2s ease}
-.sidebar-brand{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--ink);display:flex;align-items:center;gap:.55rem;margin-bottom:1.4rem;padding:0 .3rem}
-.sidebar-brand .mark{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:1rem}
+.sidebar-brand{font-family:var(--font-display);font-weight:700;font-size:var(--fs-3xl);color:var(--ink);display:flex;align-items:center;gap:.55rem;margin-bottom:1.4rem;padding:0 .3rem}
+.sidebar-brand .mark{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:var(--fs-2xl)}
 .bloco-chip{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius-sm);padding:.6rem .75rem;margin-bottom:1.1rem}
-.bloco-chip-label{font-size:.66rem;color:var(--accent-dark);font-weight:700}
-.bloco-chip-name{font-size:.83rem;font-weight:600;color:var(--ink);margin-top:.15rem;line-height:1.3}
-.nav-section-label{font-size:.68rem;color:var(--muted);font-weight:700;margin:1rem .5rem .4rem;letter-spacing:.07em;text-transform:uppercase}
+.bloco-chip-label{font-size:var(--fs-2xs);color:var(--accent-dark);font-weight:700}
+.bloco-chip-name{font-size:var(--fs-md);font-weight:600;color:var(--ink);margin-top:.15rem;line-height:1.3}
+.nav-section-label{font-size:var(--fs-2xs);color:var(--muted);font-weight:700;margin:1rem .5rem .4rem;letter-spacing:.07em;text-transform:uppercase}
+.secao-revisao-titulo{display:flex;align-items:center;gap:.4rem;font-size:var(--fs-sm);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .6rem}
+.secao-revisao-titulo:first-child{margin-top:0}
+.secao-revisao-titulo svg{width:18px;height:18px}
+.secao-flash .card-title{color:var(--accent-dark)}
 .nav-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.1rem}
-.nav-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .65rem;border-radius:var(--radius-sm);color:var(--ink-2);font-size:.87rem;font-weight:500;cursor:pointer;border:1px solid transparent}
+.nav-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .65rem;border-radius:var(--radius-sm);color:var(--ink-2);font-size:var(--fs-md);font-weight:500;cursor:pointer;border:1px solid transparent}
 .nav-item:hover{background:var(--surface-2)}
 .nav-item.active{background:var(--accent-soft);color:var(--accent-dark);font-weight:700}
 .sidebar-footer{margin-top:auto;padding-top:1rem;border-top:1px solid var(--border)}
 .main{margin-left:252px;flex:1;min-width:0;display:flex;flex-direction:column}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:20}
-.topbar-title{font-size:1.05rem}
+.topbar-title{font-size:var(--fs-2xl)}
 .page{padding:2rem;max-width:var(--maxw);width:100%;animation:page-in .22s ease}
 /* Cada navegação recria o conteúdo do zero (innerHTML), então esta animação
    toca sozinha a cada troca de tela — um sinal sutil de que algo mudou,
@@ -195,21 +222,21 @@ tr:last-child td{border-bottom:none}
 }
 
 /* ---------- estatísticas / progresso ---------- */
-.stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
-.stat-value{font-family:var(--font-display);font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--ink)}
-.stat-label{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+.stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-4) var(--sp-5)}
+.stat-value{font-family:var(--font-display);font-size:var(--fs-5xl);font-variant-numeric:tabular-nums;color:var(--ink)}
+.stat-label{font-size:var(--fs-base);color:var(--muted);margin-top:.15rem}
 .progress-track{height:8px;background:var(--surface-2);border-radius:100px;overflow:hidden}
 .progress-fill{height:100%;background:var(--accent);border-radius:100px}
 .progress-fill.danger{background:var(--danger)}
 .progress-fill.amber{background:var(--amber)}
 
 /* ---------- questão ---------- */
-.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:740px}
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-6);max-width:740px}
 .qcard-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
 .qcard-img-wrap{margin:0 0 1.1rem}
 .qcard-img{max-width:100%;max-height:420px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:var(--surface-2)}
-.qcard-img-legenda{font-size:.75rem;color:var(--muted);margin-top:.35rem}
-.qcard-enunciado{font-family:var(--font-display);font-size:1.14rem;line-height:1.6;color:var(--ink);margin-bottom:1.5rem;white-space:pre-line}
+.qcard-img-legenda{font-size:var(--fs-sm);color:var(--muted);margin-top:.35rem}
+.qcard-enunciado{font-family:var(--font-display);font-size:var(--fs-3xl);line-height:1.6;color:var(--ink);margin-bottom:1.5rem;white-space:pre-line}
 .qcard-alts{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.1rem}
 .qcard-alt{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .12s ease,box-shadow .12s ease;background:var(--surface)}
 .qcard-alt:hover{border-color:var(--accent);transform:translateX(2px);box-shadow:var(--shadow-xs)}
@@ -222,10 +249,10 @@ tr:last-child td{border-bottom:none}
 .qcard-alt.disabled:hover{transform:none;box-shadow:none;border-color:var(--border-strong)}
 .qcard-alt.disabled.selected:hover,.qcard-alt.disabled.correct:hover{border-color:var(--accent)}
 .qcard-alt.disabled.incorrect:hover{border-color:var(--danger)}
-.alt-letter{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;flex-shrink:0;color:var(--ink-2);background:var(--surface)}
+.alt-letter{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:700;flex-shrink:0;color:var(--ink-2);background:var(--surface)}
 .qcard-alt.selected .alt-letter,.qcard-alt.correct .alt-letter{border-color:var(--accent);color:var(--accent-dark)}
 .qcard-alt.incorrect .alt-letter{border-color:var(--danger);color:var(--danger)}
-.alt-text{font-size:.92rem;line-height:1.5;padding-top:.15rem;flex:1}
+.alt-text{font-size:var(--fs-lg);line-height:1.5;padding-top:.15rem;flex:1}
 /* ---------- alternativas eliminadas ("riscar" como se faz na prova) ----------
    Quem risca uma alternativa está dizendo "esta eu já descartei". Ela fica
    apagada e com o texto cortado, mas continua no lugar: o objetivo é reduzir o
@@ -243,16 +270,19 @@ tr:last-child td{border-bottom:none}
 .qcard-alt.eliminada .alt-text{text-decoration:line-through;text-decoration-color:var(--muted)}
 .qcard-alt.eliminada .alt-letter{border-style:dashed}
 .confidence-row{display:flex;gap:.6rem;margin-top:1.1rem}
-.confidence-btn{flex:1;padding:.7rem .5rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:600;font-size:.83rem;cursor:pointer}
+.confidence-btn{flex:1;padding:.7rem .5rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:600;font-size:var(--fs-md);cursor:pointer}
 .confidence-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
-.feedback-box{border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-top:1.1rem;font-size:.88rem;line-height:1.55}
+.confidence-btn.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark)}
+.confidence-row-mini{display:flex;gap:.4rem;margin-top:.7rem}
+.confidence-row-mini .confidence-btn{padding:.4rem .3rem;font-size:var(--fs-xs)}
+.feedback-box{border-radius:var(--radius-sm);padding:var(--sp-4) var(--sp-5);margin-top:1.1rem;font-size:var(--fs-lg);line-height:1.55}
 .feedback-box.ok{background:var(--accent-soft);border:1px solid var(--accent)}
 .feedback-box.no{background:var(--danger-soft);border:1px solid var(--danger)}
 .qcard-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border)}
-.why-tag{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:1rem}
+.why-tag{display:flex;align-items:center;gap:.4rem;font-size:var(--fs-sm);color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:1rem}
 
 /* ---------- legenda e seletor de período dos gráficos de desempenho ---------- */
-.legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--muted);margin-top:.5rem;align-items:center}
+.legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:var(--fs-sm);color:var(--muted);margin-top:.5rem;align-items:center}
 .legenda-barras span{display:flex;align-items:center;gap:.35rem}
 .legenda-barras i{width:11px;height:11px;border-radius:3px;display:inline-block}
 .seletor-periodo{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.2rem}
@@ -265,27 +295,27 @@ tr:last-child td{border-bottom:none}
 .tree-body{padding:0 1.1rem 1rem;display:none}
 .tree-body.open{display:block}
 .tree-esp{margin-top:.6rem}
-.tree-esp-name{font-size:.82rem;font-weight:700;color:var(--ink-2);margin-bottom:.35rem}
-.tree-assunto-row{display:flex;align-items:center;justify-content:space-between;padding:.45rem .6rem;border-radius:var(--radius-sm);font-size:.85rem}
+.tree-esp-name{font-size:var(--fs-base);font-weight:700;color:var(--ink-2);margin-bottom:.35rem}
+.tree-assunto-row{display:flex;align-items:center;justify-content:space-between;padding:.45rem .6rem;border-radius:var(--radius-sm);font-size:var(--fs-md)}
 .tree-assunto-row:hover{background:var(--surface-2);cursor:pointer}
 
 /* ---------- modal / toast ---------- */
 .modal-overlay{position:fixed;inset:0;background:rgba(17,32,28,.45);display:flex;align-items:center;justify-content:center;z-index:80;padding:1.5rem}
-.modal{background:var(--surface);border-radius:var(--radius);max-width:640px;width:100%;max-height:88vh;overflow-y:auto;padding:1.6rem;box-shadow:var(--shadow-pop)}
+.modal{background:var(--surface);border-radius:var(--radius);max-width:640px;width:100%;max-height:88vh;overflow-y:auto;padding:var(--sp-6);box-shadow:var(--shadow-pop)}
 .modal-lg{max-width:820px}
 .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
 .toast-container{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;display:flex;flex-direction:column;gap:.6rem}
-.toast{background:var(--toast-bg);color:#fff;padding:.8rem 1.1rem;border-radius:var(--radius-sm);font-size:.85rem;box-shadow:var(--shadow-pop);max-width:320px;animation:toast-in .18s ease}
+.toast{background:var(--toast-bg);color:#fff;padding:.8rem 1.1rem;border-radius:var(--radius-sm);font-size:var(--fs-md);box-shadow:var(--shadow-pop);max-width:320px;animation:toast-in .18s ease}
 .toast.err{background:var(--danger)}
 @keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* ---------- paginação de listas ---------- */
 .paginacao{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--border)}
-.paginacao-resumo{font-size:.78rem;color:var(--muted)}
+.paginacao-resumo{font-size:var(--fs-base);color:var(--muted)}
 
 /* ---------- abas ---------- */
 .tabs{display:flex;gap:.3rem;border-bottom:1px solid var(--border);margin-bottom:1.4rem;overflow-x:auto}
-.tab{padding:.7rem 1rem;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab{padding:.7rem 1rem;font-size:var(--fs-md);font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
 .tab:hover{color:var(--ink)}
 .tab.active{color:var(--accent-dark);border-color:var(--accent)}
 
@@ -295,19 +325,22 @@ tr:last-child td{border-bottom:none}
 
 /* ---------- páginas públicas (landing / login) ---------- */
 .public-nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 0}
-.brand{font-family:var(--font-display);font-weight:700;font-size:1.3rem;display:flex;align-items:center;gap:.55rem}
+.brand{font-family:var(--font-display);font-weight:700;font-size:var(--fs-3xl);display:flex;align-items:center;gap:.55rem}
 .brand .mark{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:3.5rem 0 4.5rem}
 @media (max-width:900px){.hero{grid-template-columns:1fr;padding:2rem 0}}
 .hero h1{font-size:clamp(2rem,1.55rem + 2vw,2.75rem);letter-spacing:-.01em}
-.hero-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.6rem;box-shadow:var(--shadow-pop);animation:hero-in .5s ease}
+.hero-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--sp-6);box-shadow:var(--shadow-pop);animation:hero-in .5s ease}
 @keyframes hero-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .auth-wrap{max-width:420px;margin:3rem auto;padding:0 1.5rem}
-.auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem}
+.auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--sp-7)}
 .feature-row{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--border)}
 .feature-row:last-child{border-bottom:none}
-.feature-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border);margin-top:2rem}
+/* raio proporcional ao tamanho da caixa (~28% do lado), mesma razão do
+   .mark da barra lateral (28px/8px) e da marca pública (32px/9px) — antes
+   este aqui usava 10px (26%), a única fora da razão comum aos outros dois */
+.feature-icon{width:38px;height:38px;border-radius:11px;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-base);border-top:1px solid var(--border);margin-top:2rem}
 
 /* ---------- enunciado clicável ----------
    Qualquer trecho de questão mostrado numa lista abre a questão inteira ao
@@ -323,7 +356,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 .area-gesto{touch-action:pan-y}
 .area-gesto.arrastando{transition:none}
 .area-gesto.soltando{transition:transform .18s ease}
-.dica-arrastar{display:none;align-items:center;justify-content:center;gap:.45rem;font-size:.74rem;color:var(--muted);margin-top:.6rem}
+.dica-arrastar{display:none;align-items:center;justify-content:center;gap:.45rem;font-size:var(--fs-sm);color:var(--muted);margin-top:.6rem}
 @media (max-width:960px){.dica-arrastar{display:flex}}
 
 /* ---------- flashcards ---------- */
@@ -336,15 +369,16 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
    conteúdo (verso) já vem pronto no HTML, o efeito visual de flip acontece
    sem precisar manter o nó do DOM entre um render e outro. */
 @keyframes flash-flip{0%{transform:scaleX(1)}50%{transform:scaleX(.08)}100%{transform:scaleX(1)}}
-.flash-etiqueta{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.9rem}
-.flash-frente{font-family:var(--font-display);font-size:1.22rem;line-height:1.55;color:var(--ink);white-space:pre-line}
-.flash-verso{font-size:.95rem;line-height:1.6;color:var(--ink);white-space:pre-line}
+.flash-etiqueta{font-size:var(--fs-xs);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.9rem}
+.flash-frente{font-family:var(--font-display);font-size:var(--fs-3xl);line-height:1.55;color:var(--ink);white-space:pre-line}
+.flash-verso{font-size:var(--fs-xl);line-height:1.6;color:var(--ink);white-space:pre-line}
 .flash-verso strong{color:var(--accent-dark)}
-.flash-toque{text-align:center;font-size:.76rem;color:var(--muted);margin-top:1.4rem}
+.flash-toque{text-align:center;font-size:var(--fs-sm);color:var(--muted);margin-top:1.4rem}
+.flash-btn-mostrar{padding:1rem 2.2rem;font-size:var(--fs-2xl);border-radius:var(--radius)}
 .flash-notas{display:flex;gap:.55rem;margin-top:1.1rem;max-width:640px;margin-left:auto;margin-right:auto}
-.flash-nota{flex:1;padding:.85rem .4rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:700;font-size:.82rem;cursor:pointer;line-height:1.3;transition:border-color .12s ease,background .12s ease,transform .08s ease}
+.flash-nota{flex:1;padding:.85rem .4rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:700;font-size:var(--fs-base);cursor:pointer;line-height:1.3;transition:border-color .12s ease,background .12s ease,transform .08s ease}
 .flash-nota:active{transform:scale(.96)}
-.flash-nota small{display:block;font-weight:500;font-size:.68rem;color:var(--muted);margin-top:.2rem}
+.flash-nota small{display:block;font-weight:500;font-size:var(--fs-2xs);color:var(--muted);margin-top:.2rem}
 .flash-nota.ruim:hover{border-color:var(--danger);background:var(--danger-soft)}
 .flash-nota.medio:hover{border-color:var(--amber);background:var(--amber-soft)}
 .flash-nota.bom:hover{border-color:var(--accent);background:var(--accent-soft)}
@@ -1106,8 +1140,8 @@ const SEED_USUARIOS = [
   { id: "u-admin", nome: "Ana Beatriz (Coordenação)", email: "admin@esc.demo", matricula: "ADM001", senha: "admin123", papel: "admin", nivelAdmin: "master", status: "aprovado", criadoEm: "2026-01-10" },
   { id: "u-admin-coord", nome: "Paulo Menezes (Coordenação de Curso)", email: "coordenacao@esc.demo", matricula: "ADM002", senha: "admin123", papel: "admin", nivelAdmin: "coordenacao", status: "aprovado", criadoEm: "2026-01-10" },
   { id: "u-admin-mod", nome: "Larissa Antunes (Moderação)", email: "moderador@esc.demo", matricula: "ADM003", senha: "admin123", papel: "admin", nivelAdmin: "moderador", status: "aprovado", criadoEm: "2026-01-10" },
-  { id: "u-prof", nome: "Dr. Ricardo Nakamura", email: "professor@esc.demo", matricula: "PROF001", senha: "prof123", papel: "professor", status: "aprovado", criadoEm: "2026-01-10" },
-  { id: "u-res", nome: "Dra. Juliana Prado (R2)", email: "residente@esc.demo", matricula: "RES001", senha: "res123", papel: "residente", status: "aprovado", criadoEm: "2026-01-12" },
+  { id: "u-prof", nome: "Dr. Ricardo Nakamura", email: "professor@esc.demo", matricula: "PROF001", senha: "prof123", papel: "professor", status: "aprovado", criadoEm: "2026-01-10", areasAtuacao: ["area-cm"] },
+  { id: "u-res", nome: "Dra. Juliana Prado (R2)", email: "residente@esc.demo", matricula: "RES001", senha: "res123", papel: "residente", status: "aprovado", criadoEm: "2026-01-12", areasAtuacao: ["area-cg"] },
   { id: "u-aluno1", nome: "Marcos Vinícius Silva", email: "aluno@esc.demo", matricula: "2026001234", senha: "aluno123", papel: "aluno", status: "aprovado", blocoAtualId: "bloco-6", metaQuestoesDia: 30, criadoEm: "2026-02-01" },
   { id: "u-aluno2", nome: "Camila Ferreira Torres", email: "camila.torres@esc.demo", matricula: "2026005678", senha: "aluno123", papel: "aluno", status: "pendente", blocoAtualId: "bloco-6", criadoEm: "2026-09-14" },
 ];
@@ -10053,11 +10087,13 @@ function dbPadrao(){
     respostas: [],       // log de respostas dos usuários (retrieval practice)
     favoritos: [],        // {usuarioId, questaoId}
     revisoes: {},          // revisoes[usuarioId][questaoId] = {repeticoes,fator,intervalo,proximaRevisao,ultimaConfianca}
-    simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
+    simulados: copiaProfunda(SEED_SIMULADOS), // simulados, listas de estudo e provas antigas geradas pelas questões reais
     resultadosSimulados: [],
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     feedbacks: [],          // comentários, sugestões e reclamações gerais sobre a plataforma
+    logAtividade: [],       // atividade de quem gere conteúdo (professor/residente/admin): cadastro aprovado, questão editada etc. — ver registrarAtividade()
+    numerosTurma: { "3º ano": 92 }, // número da turma por ano da faculdade (ex.: "turma 92"), editável em Blocos de Estudo
     configGeral: {
       metaMinimaQuestoesDia: CONFIG.metaMinimaQuestoesDia,
       metaRecomendadaQuestoesDia: CONFIG.metaRecomendadaQuestoesDia,
@@ -10091,6 +10127,14 @@ function loadState(){
     // sem precisar reiniciar tudo
     if(!db.feedbacks) db.feedbacks = [];
     if(!db.sessoes) db.sessoes = [];
+    // atividade de quem gere conteúdo (aprovação de cadastro, edição de
+    // questão etc.) e numeração de turma entraram depois: quem já usava a
+    // plataforma recebe as coleções vazias, sem perder nada do que já tinha
+    if(!db.logAtividade) db.logAtividade = [];
+    if(!db.numerosTurma) db.numerosTurma = { "3º ano": 92 };
+    // simulados/listas de estudo salvos antes de existir a categoria nascem
+    // como "simulado" (era o único tipo que existia)
+    (db.simulados||[]).forEach(s=>{ if(!s.categoria) s.categoria = "simulado"; });
     // sessão retomável entrou depois: quem já usava começa sem nenhuma guardada
     if(!db.sessoesEmAndamento) db.sessoesEmAndamento = {};
     /* Blocos deixaram de pertencer ao grupo e passaram a pertencer ao ANO da
@@ -10209,6 +10253,31 @@ function saveState(){
     console.error("Falha ao salvar dados", e);
     toast("Não foi possível salvar os dados neste navegador (armazenamento pode estar cheio ou bloqueado).", "err");
   }
+}
+
+/* ---------------------------------------------------------------------------
+   ATIVIDADE de quem gere conteúdo (professor, residente, admin).
+   O histórico do aluno é feito de questões e cartões respondidos; o de quem
+   gere conteúdo é feito de outra coisa — decisões tomadas (cadastro aprovado,
+   questão editada, sugestão aceita). Por isso os dois não podem compartilhar
+   a mesma tela: ver renderHistorico(). */
+const ROTULOS_ATIVIDADE = {
+  cadastro_aprovado: {icone:"check", label:"Aprovou cadastro"},
+  cadastro_recusado: {icone:"x", label:"Recusou cadastro"},
+  questao_criada: {icone:"plus", label:"Criou questão"},
+  questao_editada: {icone:"edit", label:"Editou questão"},
+  questao_excluida: {icone:"trash", label:"Excluiu questão"},
+  questao_sugerida_aprovada: {icone:"check", label:"Aprovou questão sugerida"},
+  questao_sugerida_recusada: {icone:"x", label:"Recusou questão sugerida"},
+  flashcard_promovido: {icone:"cards", label:"Promoveu cartão para a equipe"},
+  flashcard_recusado: {icone:"x", label:"Recusou sugestão de cartão"},
+  simulado_criado: {icone:"clipboard", label:"Criou simulado/lista de estudo"},
+  papel_alterado: {icone:"users", label:"Alterou papel de usuário"},
+  nivel_alterado: {icone:"settings", label:"Alterou nível de administrador"},
+};
+function registrarAtividade(usuarioId, tipo, descricao, alvoId){
+  if(!db.logAtividade) db.logAtividade = [];
+  db.logAtividade.push({id:uid("ativ"), usuarioId, tipo, descricao, alvoId:alvoId||null, data:hojeISO(), quando:Date.now()});
 }
 
 function confirmarReiniciarDemo(){
@@ -10507,6 +10576,56 @@ function graficoBarrasVerticaisSvg(itens, opts){
       '<span><i style="background:var(--barra-erro)"></i>erros</span>'+
       (mostrarPct?'':'<span class="muted">passe o dedo ou o mouse numa barra para ver o número</span>')+
     '</div>';
+}
+
+/* Gráfico de PIZZA (SVG puro), genérico: recebe fatias já prontas e desenha.
+   fatias: [{label, valor (contagem), cor, sublabel}] */
+function graficoPizzaSvg(fatias){
+  const comValor = (fatias||[]).filter(f=>f.valor>0);
+  const total = comValor.reduce((s,f)=>s+f.valor,0);
+  if(!total) return '<div class="text-xs muted">Sem dados para o gráfico.</div>';
+  const cx=100, cy=100, r=92;
+  let anguloAcum = -Math.PI/2; // começa no topo, sentido horário
+  const fatiasSvg = comValor.map(f=>{
+    const fracao = f.valor/total;
+    const anguloIni = anguloAcum;
+    const anguloFim = anguloAcum + fracao*Math.PI*2;
+    anguloAcum = anguloFim;
+    const titulo = escapeHtml(f.label)+(f.sublabel?" — "+escapeHtml(f.sublabel):"")+" ("+Math.round(fracao*100)+"%)";
+    if(fracao > 0.9999){
+      // uma única fatia cobrindo 100%: um path de "fatia" degenera, então
+      // desenhamos um círculo inteiro
+      return '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+f.cor+'" stroke="var(--surface)" stroke-width="2"><title>'+titulo+'</title></circle>';
+    }
+    const x1 = cx + r*Math.cos(anguloIni), y1 = cy + r*Math.sin(anguloIni);
+    const x2 = cx + r*Math.cos(anguloFim), y2 = cy + r*Math.sin(anguloFim);
+    const grandeArco = (anguloFim-anguloIni) > Math.PI ? 1 : 0;
+    const d = 'M'+cx+','+cy+' L'+x1.toFixed(1)+','+y1.toFixed(1)+' A'+r+','+r+' 0 '+grandeArco+' 1 '+x2.toFixed(1)+','+y2.toFixed(1)+' Z';
+    return '<path d="'+d+'" fill="'+f.cor+'" stroke="var(--surface)" stroke-width="2"><title>'+titulo+'</title></path>';
+  }).join("");
+  const legenda = (fatias||[]).filter(f=>f.valor>=0).map(f=>
+    '<span><i style="background:'+f.cor+'"></i>'+escapeHtml(f.label)+(f.sublabel?' — '+escapeHtml(f.sublabel):'')+'</span>'
+  ).join("");
+  return '<div class="flex items-center gap-2" style="flex-wrap:wrap">'+
+    '<svg viewBox="0 0 200 200" width="150" height="150" style="flex-shrink:0">'+fatiasSvg+'</svg>'+
+    '<div class="legenda-barras" style="flex-direction:column;align-items:flex-start;gap:.35rem;margin-top:0">'+legenda+'</div>'+
+    '</div>';
+}
+/* Fatia por nível de confiança: cada fatia é do tamanho de quantas questões
+   foram respondidas naquele nível, e o rótulo traz a taxa de acerto DENTRO
+   dele — é a leitura de "taxa de acerto de acordo com a confiança" pedida
+   para o fim de todo conjunto de questões, incluindo simulados. Mesma cor
+   usada nos badges de confiança em toda a plataforma (accent/amber/danger). */
+function graficoPizzaConfiancaSvg(porConfianca){
+  const fatias = [
+    {chave:"certeza", label:"Certeza", cor:"var(--accent)"},
+    {chave:"duvida", label:"Na dúvida", cor:"var(--amber)"},
+    {chave:"chute", label:"Chute", cor:"var(--danger)"},
+  ].map(f=>{
+    const c = porConfianca[f.chave] || {n:0, ok:0};
+    return {label:f.label, cor:f.cor, valor:c.n, sublabel: c.n ? pct(c.ok,c.n)+"% de acerto ("+c.n+")" : "sem questões"};
+  });
+  return graficoPizzaSvg(fatias);
 }
 
 // evolução da taxa de acerto ao longo do tempo, agrupada por semana
@@ -11487,7 +11606,7 @@ function gerarNotificacoes(usuario){
     if(hoje < meta) notifs.push({icon:"target", texto:"Faltam "+(meta-hoje)+" questão(ões) para bater sua meta de hoje.", rota:"estudar"});
     const metaCards = metaCartoesDoUsuario(usuario);
     const cardsHoje = cartoesRevisadosHoje(usuario.id);
-    if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" cartão(ões) para bater sua meta de revisão rápida.", rota:"flashcards"});
+    if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" cartão(ões) para bater sua meta de flashcards.", rota:"flashcards"});
     const pendente = sessaoEmAndamentoDe(usuario);
     if(pendente) notifs.push({icon:"refresh", texto:"Você tem uma sessão pela metade ("+(pendente.respostasSessao||[]).length+" de "+pendente.itens.length+") esperando para continuar.", rota:"estudar"});
   }
@@ -11617,10 +11736,12 @@ function checarLembreteMetaDiaria(){
 
 /* ---------- fila de questões "difíceis" para revisão do professor ---------- */
 function questoesDificeis(){
+  const areaRestrita = areaRestritaDoUsuario();
   return questoesAtivas()
     .filter(q=>q.estatisticas.respostas>=CONFIG.minRespostasParaAvaliarDificuldade)
     .filter(q=>(q.estatisticas.acertos/q.estatisticas.respostas) < CONFIG.limiarTaxaAcertoDificil)
     .filter(q=>!q.revisadaProfessor)
+    .filter(q=>!areaRestrita || q.areaId===areaRestrita)
     .sort((a,b)=>(a.estatisticas.acertos/a.estatisticas.respostas)-(b.estatisticas.acertos/b.estatisticas.respostas));
 }
 /* ==========================================================================
@@ -11687,32 +11808,62 @@ function solicitarCadastro(){
     }
     novo.grupoId = grupoId;
   } else {
-    const areasAtuacao = [...document.querySelectorAll(".cadAreaAtuacao:checked")].map(el=>el.value);
-    if(!areasAtuacao.length){ toast("Selecione pelo menos uma grande área de atuação.", "err"); return; }
-    novo.areasAtuacao = areasAtuacao;
+    // professor e residente só atuam numa das 5 grandes áreas — a mesma que
+    // depois restringe o que eles enxergam no banco de questões, criar
+    // simulado etc. (ver areaRestritaDoUsuario). É por isso que aqui é uma
+    // escolha única, diferente do multi-select antigo.
+    const areaAtuacao = document.getElementById("cadAreaAtuacao").value;
+    if(!areaAtuacao){ toast("Selecione a especialidade (grande área) que você atua.", "err"); return; }
+    novo.areasAtuacao = [areaAtuacao];
     novo.assuntosAjuda = [...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value);
   }
   db.usuarios.push(novo); saveState();
   toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
   navigate("login");
 }
-function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado."); render(); }
-function rejeitarUsuario(id){ getUsuario(id).status="rejeitado"; saveState(); toast("Cadastro recusado."); render(); }
+function aprovarUsuario(id){
+  const alvo = getUsuario(id);
+  alvo.status="aprovado"; saveState();
+  registrarAtividade(usuarioAtual().id, "cadastro_aprovado", 'Aprovou o cadastro de '+alvo.nome+' ('+badgePapelTexto(alvo.papel)+')', alvo.id);
+  saveState(); toast("Cadastro aprovado."); render();
+}
+function rejeitarUsuario(id){
+  const alvo = getUsuario(id);
+  alvo.status="rejeitado"; saveState();
+  registrarAtividade(usuarioAtual().id, "cadastro_recusado", 'Recusou o cadastro de '+alvo.nome+' ('+badgePapelTexto(alvo.papel)+')', alvo.id);
+  saveState(); toast("Cadastro recusado."); render();
+}
 function desativarUsuario(id){ getUsuario(id).status="inativo"; saveState(); toast("Usuário desativado."); render(); }
 function reativarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Usuário reativado."); render(); }
 function alterarPapelUsuario(id, papel){
   if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar papéis.", "err"); return; }
   const alvo = getUsuario(id);
+  const papelAntigo = alvo.papel;
   alvo.papel = papel;
   if(papel==="admin" && !alvo.nivelAdmin) alvo.nivelAdmin = "moderador";
+  registrarAtividade(usuarioAtual().id, "papel_alterado", 'Mudou o papel de '+alvo.nome+' de '+badgePapelTexto(papelAntigo)+' para '+badgePapelTexto(papel), alvo.id);
   saveState(); toast("Papel atualizado."); render();
+}
+/* nome do papel sem HTML — badgePapel() já devolve o <span>, e o log de
+   atividade guarda texto puro */
+function badgePapelTexto(papel){
+  return {admin:"Administrador", professor:"Professor", residente:"Residente", aluno:"Aluno"}[papel] || papel;
+}
+/* a grande área em que professor/residente atua, se ele tiver uma só
+   (cadastro novo já garante isso; cadastros antigos com várias áreas, ou
+   sem nenhuma, continuam sem restrição — ver seção 9 do resumo) */
+function areaRestritaDoUsuario(u){
+  u = u || usuarioAtual();
+  if(!u || (u.papel!=="professor" && u.papel!=="residente")) return null;
+  if(state.modoAluno) return null;
+  return (u.areasAtuacao && u.areasAtuacao.length===1) ? u.areasAtuacao[0] : null;
 }
 
 /* ==========================================================================
    6. ROTEADOR
    ========================================================================== */
-const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Revisão Rápida", historico:"Histórico de Atividade",
-  simulados:"Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas Antigas",
+const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Flashcards", historico:"Histórico de Atividade",
+  simulados:"Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Simulados",
   favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil", "meu-grupo":"Meu Grupo",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", "aprovar-cadastros":"Aprovar Cadastros",
   usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
@@ -11748,6 +11899,9 @@ window.addEventListener("keydown", function(e){
     const respondidaAqui = s.indiceAtual < s.respostasSessao.length;
     if(tecla==="a" && s.indiceAtual>0) voltarQuestaoSessao();
     if(tecla==="d" && respondidaAqui) proximaQuestaoSessao();
+  } else if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){
+    if(tecla==="a") voltarFlashcard();
+    if(tecla==="d") avancarFlashcard();
   }
 });
 
@@ -11785,7 +11939,9 @@ function render(){
     case "material-pdf": conteudo = renderMaterialPDF(); break;
     case "simulados": conteudo = renderSimulados(); break;
     case "simulado-ativo": conteudo = renderSimuladoAtivo(); break;
-    case "provas-antigas": conteudo = renderProvasAntigas(); break;
+    // "Provas Antigas" virou uma aba dentro de Simulados; a rota antiga
+    // continua respondendo (link salvo não pode quebrar), só troca de aba
+    case "provas-antigas": state.filtroRota.abaSimulados = "provas"; state.route = "simulados"; conteudo = renderSimulados(); break;
     case "favoritos": conteudo = renderFavoritos(); break;
     case "desempenho": conteudo = renderDesempenho(); break;
     // a tela de metas virou um cartão dentro de Estudar; a rota antiga
@@ -11877,11 +12033,7 @@ function ativarGestoDeArrastar(){
 }
 /* Arrastar para a ESQUERDA = avançar (o conteúdo novo vem da direita). */
 function avancarPorGesto(){
-  if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){
-    const s = state.sessaoFlash;
-    if(!s.virado){ toast("Vire o cartão e diga se lembrava antes de passar."); return; }
-    pularFlashcard(1); return;
-  }
+  if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){ avancarFlashcard(); return; }
   const s = state.sessaoAtual; if(!s) return;
   if(state.route==="simulado-ativo" && !s.finalizado){ irQuestaoSimulado(1); return; }
   if(state.route==="sessao" && !s.finalizada){
@@ -11892,7 +12044,7 @@ function avancarPorGesto(){
 }
 /* Arrastar para a DIREITA = voltar. */
 function voltarPorGesto(){
-  if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){ pularFlashcard(-1); return; }
+  if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){ voltarFlashcard(); return; }
   const s = state.sessaoAtual; if(!s) return;
   if(state.route==="simulado-ativo" && !s.finalizado){ irQuestaoSimulado(-1); return; }
   if(state.route==="sessao" && !s.finalizada && s.indiceAtual>0) voltarQuestaoSessao();
@@ -11918,21 +12070,24 @@ function navItemsParaPapel(papel){
     {id:"desempenho", label:"Meu Desempenho", icon:"chart"},
     {id:"meu-grupo", label:"Meu Grupo", icon:"users"},
     {id:"revisao", label:"Revisão", icon:"refresh"},
-    {id:"flashcards", label:"Revisão Rápida", icon:"cards"},
+    {id:"flashcards", label:"Flashcards", icon:"cards"},
+    // Simulados, provas antigas e listas de estudo viraram abas de uma
+    // tela só (ver renderSimulados) — por isso um item de menu só
     {id:"simulados", label:"Simulados", icon:"clipboard"},
     {id:"historico", label:"Histórico de Atividade", icon:"clock"},
     {id:"favoritos", label:"Favoritos", icon:"star"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
     {id:"importar-questoes", label:"Enviar Questões", icon:"upload"},
   ];
   if(state.modoAluno && papel!=="aluno") return aluno;
+  // Residente, professor e admin não "realizam" simulado/prova antiga — essa
+  // tela é só de aluno. Quem gere conteúdo usa "Criar Simulado" para montar
+  // simulados e listas de estudo, não para respondê-los.
   if(papel==="residente") return [
     {id:"inicio", label:"Início", icon:"home"},
     {id:"fila-duvidas", label:"Fila de Dúvidas", icon:"message"},
     {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
     {id:"importar-questoes", label:"Enviar Provas e Questões", icon:"upload"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
   ];
   const conteudo = [
     {id:"inicio", label:"Início", icon:"home"},
@@ -11942,8 +12097,6 @@ function navItemsParaPapel(papel){
     {id:"criar-simulado", label:"Criar Simulado", icon:"plus"},
     {id:"material-pdf", label:"Material em PDF", icon:"printer"},
     {id:"flashcards", label:"Flashcards", icon:"cards"},
-    {id:"simulados", label:"Realizar Simulados", icon:"clipboard"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"taxonomia", label:"Especialidades e Assuntos", icon:"filter"},
   ];
@@ -12033,7 +12186,7 @@ function renderLanding(){
     ["target","Dificuldade progressiva","As questões acompanham o quanto você já sabe: começam pelo essencial e avançam para o que a banca mais gosta de complicar."],
     ["chart","Transparência total","Todo número tem uma explicação: você sempre sabe por que uma questão apareceu ou foi sugerida para revisão."],
     ["calendar","Alinhado aos seus blocos","As questões seguem o calendário de blocos do curso, misturando o assunto atual com revisão do que já passou e uma prévia do que vem a seguir."],
-    ["cards","Revisão rápida por flashcards","Para o assunto em que você jura que sabe e erra: cartão de conceito, sem alternativa para eliminar, com intervalo próprio de retorno."],
+    ["cards","Flashcards","Para o assunto em que você jura que sabe e erra: cartão de conceito, sem alternativa para eliminar, com intervalo próprio de retorno."],
   ];
   return `
   <div class="container">
@@ -12048,7 +12201,7 @@ function renderLanding(){
     <div class="hero">
       <div>
         <h1>Estude para a residência com o mesmo rigor da prova.</h1>
-        <p class="mt-2" style="font-size:1.05rem;color:var(--ink-2);max-width:46ch;line-height:1.55">Banco de questões, revisão espaçada e blocos de estudo organizados para o processo seletivo da ${CONFIG.bancaFoco} — com dados transparentes sobre onde você está indo bem e onde precisa focar.</p>
+        <p class="mt-2" style="font-size:var(--fs-2xl);color:var(--ink-2);max-width:46ch;line-height:1.55">Banco de questões, revisão espaçada e blocos de estudo organizados para o processo seletivo da ${CONFIG.bancaFoco} — com dados transparentes sobre onde você está indo bem e onde precisa focar.</p>
         <div class="flex gap-1 mt-3">
           <button class="btn btn-primary" onclick="navigate('cadastro')">Solicitar cadastro</button>
           <button class="btn btn-secondary" onclick="navigate('login')">Já tenho conta</button>
@@ -12057,7 +12210,7 @@ function renderLanding(){
       </div>
       <div class="hero-card">
         <div class="qcard-meta"><span class="badge badge-accent">Cardiologia</span><span class="badge badge-muted">${CONFIG.bancaFoco}</span><span class="badge badge-muted">2025</span></div>
-        <div class="qcard-enunciado" style="font-size:1rem">Paciente de 74 anos evolui com hipotensão refratária a volume, lactato de 4,8 mmol/L e necessidade de vasopressor para manter PAM ≥65 mmHg. Qual a classificação e a droga de escolha?</div>
+        <div class="qcard-enunciado" style="font-size:var(--fs-2xl)">Paciente de 74 anos evolui com hipotensão refratária a volume, lactato de 4,8 mmol/L e necessidade de vasopressor para manter PAM ≥65 mmHg. Qual a classificação e a droga de escolha?</div>
         <div class="qcard-alts">
           <div class="qcard-alt disabled"><span class="alt-letter">A</span><span class="alt-text">Sepse; dopamina</span></div>
           <div class="qcard-alt selected disabled"><span class="alt-letter">B</span><span class="alt-text">Choque séptico; noradrenalina</span></div>
@@ -12158,8 +12311,12 @@ function renderCadastro(){
         <div class="hint mt-1">O internato deixou de ser uma opção à parte: quem está no internato marca o ano em que está (5º ou 6º), que é o que a coordenação usa para montar as turmas.</div></div>
       </div>
       <div id="camposEquipe" style="display:none">
-        <div class="field"><label class="label">Grandes áreas de atuação</label>
-          ${db.taxonomia.areas.map(a=>`<label class="checkbox-row mb-1"><input type="checkbox" class="cadAreaAtuacao" value="${a.id}"> ${escapeHtml(a.nome)}</label>`).join("")}
+        <div class="field"><label class="label">Especialidade (grande área) que você atua</label>
+          <select class="select" id="cadAreaAtuacao">
+            <option value="">Selecione...</option>
+            ${db.taxonomia.areas.map(a=>`<option value="${a.id}">${escapeHtml(a.nome)}</option>`).join("")}
+          </select>
+          <div class="hint mt-1">Professores e residentes têm acesso ao conteúdo (banco de questões, criar simulado, questões difíceis...) só desta área — é ela que aparece pré-marcada e travada nesses lugares depois que seu cadastro for aprovado.</div>
         </div>
         <div class="field"><label class="label">Especialidades específicas que você topa ajudar a responder dúvidas (opcional)</label>
           <div class="grid grid-2">
@@ -12279,10 +12436,10 @@ function renderInicioAluno(u){
     <div class="card">
       <div class="card-title">Revisão pendente</div>
       ${revisarHoje.length ? `<p class="text-sm muted mt-1">${revisarHoje.length} assunto(s) já estudado(s) estão no momento certo de revisar, segundo seu histórico.</p>` : '<p class="text-sm muted mt-1">Nada vencido para revisar hoje. Continue estudando o bloco atual.</p>'}
-      ${flashVencidos ? `<p class="text-sm mt-1">${flashVencidos} cartão(ões) de revisão rápida também venceram — dá pra limpar essa fila em poucos minutos.</p>` : ""}
+      ${flashVencidos ? `<p class="text-sm mt-1">${flashVencidos} flashcard(s) também venceram — dá pra limpar essa fila em poucos minutos.</p>` : ""}
       <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
         ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-        <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
+        <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Flashcards</button>
       </div>
     </div>
   </div>`;
@@ -12367,7 +12524,7 @@ function renderEstudar(){
       </div>
       <div class="flex items-center gap-2" style="flex-wrap:wrap">
         <div style="text-align:right">
-          <div class="stat-value" style="font-size:1.5rem">${feitasHoje}/${meta}</div>
+          <div class="stat-value" style="font-size:var(--fs-4xl)">${feitasHoje}/${meta}</div>
           <div class="stat-label">questões hoje${seq?" · "+seq+" dia(s) seguidos":""}</div>
         </div>
         <button class="btn btn-secondary btn-sm" onclick="abrirModalMeta()">${iconeSvg("target")} Ajustar meta</button>
@@ -12538,7 +12695,7 @@ function abrirQuestaoCompleta(qid, opts){
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}
     </div>
     ${renderImagemQuestao(q)}
-    <div class="qcard-enunciado" style="font-size:1.02rem;margin-bottom:1rem">${escapeHtml(q.enunciado)}</div>
+    <div class="qcard-enunciado" style="font-size:var(--fs-2xl);margin-bottom:1rem">${escapeHtml(q.enunciado)}</div>
     <div class="qcard-alts">
       ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text">${escapeHtml(alt.texto)}</span></div>`).join("")}
     </div>
@@ -12837,7 +12994,7 @@ function renderSessaoResumo(){
   const errosEChutes = respostas.filter(r=>!r.correta || r.confianca==="chute").length;
   const linhaConfianca = (chave, rotulo) => {
     const c = porConfianca[chave];
-    return `<div class="stat-tile"><div class="stat-value" style="font-size:1.3rem">${c.n?pct(c.ok,c.n)+"%":"—"}</div><div class="stat-label">acerto quando ${rotulo} (${c.n} questão(ões))</div></div>`;
+    return `<div class="stat-tile"><div class="stat-value" style="font-size:var(--fs-3xl)">${c.n?pct(c.ok,c.n)+"%":"—"}</div><div class="stat-label">acerto quando ${rotulo} (${c.n} questão(ões))</div></div>`;
   };
   return `
   <div class="page-header"><h2>Conjunto de questões concluído</h2><p>${sessao.somenteLeitura?"Revisão do conjunto respondido em "+formatDataBR(sessao.dataOriginal||hojeISO())+".":"Veja abaixo, questão a questão, o que você acertou, errou, chutou ou respondeu na dúvida. Clique em qualquer uma para voltar a ela."}</p></div>
@@ -12850,6 +13007,11 @@ function renderSessaoResumo(){
     ${linhaConfianca("duvida","estava na dúvida")}
     ${linhaConfianca("chute","chutou")}
   </div>
+  ${total ? `<div class="card mb-2">
+    <div class="card-title mb-1">Taxa de acerto por confiança</div>
+    <p class="text-sm muted mb-2">Cada fatia é do tamanho de quantas questões você respondeu naquele nível de confiança; o texto ao lado traz a taxa de acerto dentro dela.</p>
+    ${graficoPizzaConfiancaSvg(porConfianca)}
+  </div>` : ""}
   <div class="card mb-2">
     <div class="card-title mb-1">Questão a questão</div>
     <p class="text-sm muted mb-2">Clique em "voltar à questão" para rever o enunciado, as alternativas e a explicação completa dentro da sessão — sem perder este resumo.</p>
@@ -12965,7 +13127,18 @@ function renderQuestionCard(q, opts){
         ? `${nRiscadas} alternativa(s) eliminada(s) — clique no × de novo para trazer de volta.`
         : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</div>`;
     if(opts.modoSimulado){
-      // no simulado (fora do modo aprendizado): sem confiança e sem feedback imediato — só marca e segue
+      // no simulado (fora do modo aprendizado): sem feedback imediato — só marca e
+      // segue. A confiança aqui é opcional e não trava a navegação (ao contrário
+      // da prática): serve só para o gráfico de pizza por confiança no resultado.
+      if(opts.selecionada){
+        const conf = opts.confiancaSelecionada;
+        html += `<div class="confidence-row-mini">
+          <button class="confidence-btn ${conf==="certeza"?"active":""}" onclick="selecionarConfiancaSimulado('certeza')">Certeza</button>
+          <button class="confidence-btn ${conf==="duvida"?"active":""}" onclick="selecionarConfiancaSimulado('duvida')">Na dúvida</button>
+          <button class="confidence-btn ${conf==="chute"?"active":""}" onclick="selecionarConfiancaSimulado('chute')">Chute</button>
+        </div>
+        <div class="text-xs muted mt-1">Opcional: marcar sua confiança não é obrigatório para seguir, mas alimenta o gráfico de acerto por confiança no resultado.</div>`;
+      }
       html += dicaRiscar;
     } else {
     html += opts.selecionada ? `
@@ -13036,7 +13209,7 @@ function toggleFavoritoUI(qid){ const ficou = toggleFavorito(usuarioAtual().id, 
 function renderComentarios(questaoId){
   const comentarios = db.comentarios.filter(c=>c.questaoId===questaoId).sort((a,b)=>a.data.localeCompare(b.data));
   return `<div class="mt-3" style="border-top:1px solid var(--border);padding-top:1rem">
-    <div style="font-weight:600;font-size:.9rem;margin-bottom:.6rem">${iconeSvg("message")} Comentários e dúvidas (${comentarios.length})</div>
+    <div style="font-weight:600;font-size:var(--fs-lg);margin-bottom:.6rem">${iconeSvg("message")} Comentários e dúvidas (${comentarios.length})</div>
     ${comentarios.map(c=>{
       const autor = getUsuario(c.usuarioId);
       return `<div class="card-flat mb-1" ${c.respostaOficial?'style="border-color:var(--accent)"':""}>
@@ -13115,7 +13288,7 @@ function abrirPromptDuvida(qid){
 /* Um simulado de exemplo já recomendado para o bloco atual (Obstetrícia),
    para a demonstração já nascer com algo para o aluno ver e experimentar. */
 const SEED_SIMULADOS = [
-  { id:"sim-1", titulo:"Simulado de Revisão — Obstetrícia", questoes:["q-019","q-020","q-021"], duracaoMin:20, recomendadoParaBlocos:["bloco-6"], tipo:"simulado_professor", criadoPor:"u-prof", criadoEm:"2026-09-01" },
+  { id:"sim-1", titulo:"Simulado de Revisão — Obstetrícia", questoes:["q-019","q-020","q-021"], duracaoMin:20, recomendadoParaBlocos:["bloco-6"], categoria:"simulado", criadoPor:"u-prof", criadoEm:"2026-09-01" },
 ];
 
 /* ==========================================================================
@@ -13133,7 +13306,8 @@ function renderRevisao(){
   const errosNaDuvida = questoesErroNaDuvida(u.id);
   const falsaSeguranca = assuntosComFalsaSeguranca(u.id);
   return `
-  <div class="page-header"><h2>Revisão</h2><p>Assuntos e questões que, pelo seu histórico, estão no momento certo de voltar.</p></div>
+  <div class="page-header"><h2>Revisão</h2><p>Assuntos, questões e flashcards que, pelo seu histórico, estão no momento certo de voltar — separados abaixo, porque são dois formatos diferentes.</p></div>
+  <div class="secao-revisao-titulo">${iconeSvg("book")}<span>Revisão de questões</span></div>
   <div class="card">
     <div class="card-title">Revisão espaçada de questões (${vencidas.length})</div>
     <p class="text-sm muted">Junta tudo que já venceu pelo seu histórico — não é só o que você errou: ${porDecaimento} volta(m) porque já faz tempo (mesmo tendo acertado antes), e ${porErro} volta(m) por erro ou chute recente.</p>
@@ -13174,21 +13348,22 @@ function renderRevisao(){
     </div>` : ""}
   </div>
   <div class="card mt-2">
-    <div class="card-title">Revisão rápida por flashcards (${resumoFlashcards(u.id).vencidos} vencido(s))</div>
-    <p class="text-sm muted">Cartão de conceito em vez de questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisar cartões</button>
-      ${falsaSeguranca.length ? `<button class="btn btn-secondary" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">Só onde minha confiança engana</button>` : ""}
-      <button class="btn btn-ghost" onclick="navigate('flashcards')">Ver baralho e filtros</button>
-    </div>
-  </div>
-  <div class="card mt-2">
     <div class="card-title">Só erros e chutes pendentes (${erros.length})</div>
     <p class="text-sm muted">Se quiser focar especificamente no que errou ou chutou, sem misturar com revisão por decaimento, use esta lista — ordenada da mais antiga para a mais recente.</p>
     <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${!erros.length?"disabled":""}>Revisar só erros</button>
   </div>
   <div class="card-flat mt-2 text-sm">
     <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute). A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
+  </div>
+  <div class="secao-revisao-titulo">${iconeSvg("cards")}<span>Revisão por flashcards</span></div>
+  <div class="card secao-flash" style="border-color:var(--accent)">
+    <div class="card-title">Flashcards vencidos (${resumoFlashcards(u.id).vencidos})</div>
+    <p class="text-sm muted">Cartão de conceito, não questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisar cartões</button>
+      ${falsaSeguranca.length ? `<button class="btn btn-secondary" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">Só onde minha confiança engana</button>` : ""}
+      <button class="btn btn-ghost" onclick="navigate('flashcards')">Ver baralho e filtros</button>
+    </div>
   </div>`;
 }
 function praticarAssunto(assuntoId){
@@ -13232,7 +13407,7 @@ function renderFlashcardsInicio(u){
   const pagMeus = paginar(meus, "flash-meus", {porPagina:20});
   const pagEquipe = paginar(daEquipe, "flash-equipe", {porPagina:20});
   return `
-  <div class="page-header"><h2>Revisão Rápida</h2><p>Cartões de conceito: você tenta lembrar, vira o cartão e diz honestamente se sabia. Serve para fixar o que a questão longa não fixa — e para atacar o assunto em que você jura que sabe e erra.</p></div>
+  <div class="page-header"><h2>Flashcards</h2><p>Cartões de conceito: você tenta lembrar, vira o cartão e diz honestamente se sabia. Serve para fixar o que a questão longa não fixa — e para atacar o assunto em que você jura que sabe e erra.</p></div>
 
   <div class="card mb-2" ${vistosHoje>=metaCartoes?'style="border-color:var(--accent)"':""}>
     <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
@@ -13244,7 +13419,7 @@ function renderFlashcardsInicio(u){
       </div>
       <div class="flex items-center gap-2" style="flex-wrap:wrap">
         <div style="text-align:right">
-          <div class="stat-value" style="font-size:1.5rem">${vistosHoje}/${metaCartoes}</div>
+          <div class="stat-value" style="font-size:var(--fs-4xl)">${vistosHoje}/${metaCartoes}</div>
           <div class="stat-label">cartões hoje${seqCartoes?" · "+seqCartoes+" dia(s) seguidos":""}</div>
         </div>
         <button class="btn btn-secondary btn-sm" onclick="abrirModalMetaCartoes()">${iconeSvg("target")} Ajustar meta</button>
@@ -13366,9 +13541,21 @@ function iniciarSessaoFlashcards(filtro){
   state.sessaoFlash = { cartoes, indice:0, virado:false, notas:[], finalizada:false };
   navigate("flashcards");
 }
-function virarFlashcard(){
-  const s = state.sessaoFlash; if(!s) return;
-  s.virado = !s.virado; render();
+/* Navegação do cartão por clique, tecla (A/D) ou arrasto: AVANÇAR primeiro
+   mostra a resposta e só then passa para a pergunta do próximo cartão — não
+   dá para "pular" a resposta com um segundo clique apressado. VOLTAR faz o
+   caminho inverso e sempre pousa numa PERGUNTA, nunca reaparece direto numa
+   resposta: se está na resposta, volta é a pergunta do mesmo cartão; se já
+   está na pergunta, volta é a pergunta do cartão anterior. */
+function avancarFlashcard(){
+  const s = state.sessaoFlash; if(!s || s.finalizada) return;
+  if(!s.virado){ s.virado = true; render(); return; }
+  if(s.indice < s.cartoes.length-1){ s.indice++; s.virado = false; render(); }
+}
+function voltarFlashcard(){
+  const s = state.sessaoFlash; if(!s || s.finalizada) return;
+  if(s.virado){ s.virado = false; render(); return; }
+  if(s.indice > 0){ s.indice--; s.virado = false; render(); }
 }
 function responderFlashcard(nota){
   const s = state.sessaoFlash; if(!s) return;
@@ -13378,11 +13565,6 @@ function responderFlashcard(nota){
   if(s.indice < s.cartoes.length-1){ s.indice++; s.virado = false; }
   else s.finalizada = true;
   render(); window.scrollTo(0,0);
-}
-function pularFlashcard(delta){
-  const s = state.sessaoFlash; if(!s) return;
-  s.indice = Math.max(0, Math.min(s.cartoes.length-1, s.indice+delta));
-  s.virado = false; render();
 }
 function sairDaSessaoFlash(){ state.sessaoFlash = null; navigate("flashcards"); }
 function renderFlashcardEmSessao(s){
@@ -13397,24 +13579,24 @@ function renderFlashcardEmSessao(s){
   <div class="progress-track mb-3"><div class="progress-fill" style="width:${pct(s.notas.length, s.cartoes.length)}%"></div></div>
   <div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(assunto)}${cartao.origem==="questao"?" · gerado de uma questão que você errou com certeza ou acertou no chute":""}${rev&&rev.vistas?" · visto "+rev.vistas+"x":""}</span></div>
   <div class="flash-palco">
-    <div class="flashcard ${s.virado?"virado":""} area-gesto" id="areaGestoQuestao" onclick="virarFlashcard()">
+    <div class="flashcard ${s.virado?"virado":""} area-gesto" id="areaGestoQuestao" onclick="avancarFlashcard()">
       <div class="flash-etiqueta">${s.virado?"Resposta":"Pergunta"}</div>
       ${cartao.imagemUrl ? `<div class="qcard-img-wrap"><img class="qcard-img" src="${escapeHtml(cartao.imagemUrl)}" alt="${escapeHtml(cartao.imagemLegenda||"Imagem do cartão")}" loading="lazy">${cartao.imagemLegenda?`<div class="qcard-img-legenda">${escapeHtml(cartao.imagemLegenda)}</div>`:""}</div>` : ""}
       ${s.virado
         ? `<div class="flash-verso">${escapeHtml(cartao.verso)}</div>`
         : `<div class="flash-frente">${escapeHtml(cartao.frente)}</div>`}
-      <div class="flash-toque">${s.virado?"Toque para ver a pergunta de novo":"Toque no cartão para ver a resposta"}</div>
+      <div class="flash-toque">${s.virado?"Toque no cartão, ou D, para o próximo — A volta para a pergunta":"Toque no cartão, ou D, para ver a resposta"}</div>
     </div>
+    ${!s.virado ? `<div class="flex justify-center mt-2"><button class="btn btn-primary flash-btn-mostrar" onclick="avancarFlashcard()">Mostrar resposta</button></div>` : ""}
   </div>
   ${s.virado ? `<div class="flash-notas">
     <button class="flash-nota ruim" onclick="responderFlashcard('naolembrei')">Não lembrei<small>volta amanhã</small></button>
     <button class="flash-nota medio" onclick="responderFlashcard('quase')">Quase<small>volta em poucos dias</small></button>
     <button class="flash-nota bom" onclick="responderFlashcard('sabia')">Sabia<small>vai para longe</small></button>
   </div>
-  <p class="text-xs muted mt-1" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">Responda com honestidade: o intervalo do cartão depende disso, e enganar o algoritmo aqui só faz você revisar na véspera da prova o que devia ter fixado agora.</p>`
-  : `<div class="flex justify-center mt-2"><button class="btn btn-primary" onclick="virarFlashcard()">Mostrar resposta</button></div>`}
+  <p class="text-xs muted mt-1" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">Responda com honestidade: o intervalo do cartão depende disso, e enganar o algoritmo aqui só faz você revisar na véspera da prova o que devia ter fixado agora.</p>` : ""}
   ${cartao.origem==="questao" ? `<div class="flex justify-center mt-2"><button class="btn btn-ghost btn-sm" onclick="abrirQuestaoCompleta('${cartao.questaoId}')">${iconeSvg("search")} Ver a questão inteira</button></div>` : ""}
-  <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para passar de cartão</span></div>`;
+  <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para passar de cartão — ou use as teclas A (voltar) / D (avançar)</span></div>`;
 }
 function renderFlashcardsResumo(s){
   const cont = {naolembrei:0, quase:0, sabia:0};
@@ -13422,7 +13604,7 @@ function renderFlashcardsResumo(s){
   const total = s.notas.length;
   const aRever = s.notas.filter(n=>n.nota!=="sabia");
   return `
-  <div class="page-header"><h2>Fim da revisão rápida</h2><p>${total} cartão(ões) revisado(s). Cada um já tem nova data de retorno.</p></div>
+  <div class="page-header"><h2>Fim dos flashcards</h2><p>${total} cartão(ões) revisado(s). Cada um já tem nova data de retorno.</p></div>
   <div class="grid grid-3">
     <div class="stat-tile"><div class="stat-value">${cont.sabia}</div><div class="stat-label">sabia</div></div>
     <div class="stat-tile"><div class="stat-value">${cont.quase}</div><div class="stat-label">quase — voltam em poucos dias</div></div>
@@ -13589,6 +13771,7 @@ function aprovarFlashcardSugerido(id){
   c.decisaoEm = hojeISO();
   c.aprovadoEm = hojeISO();
   c.aprovadoPor = usuarioAtual().id;
+  registrarAtividade(usuarioAtual().id, "flashcard_promovido", "Promoveu para o baralho da equipe o cartão: "+c.frente.slice(0,90)+"…", c.id);
   saveState();
   toast("Cartão promovido: agora faz parte do baralho da equipe, visível para todos.");
   render();
@@ -13598,6 +13781,7 @@ function recusarFlashcardSugerido(id){
   const c = (db.flashcards||[]).find(x=>x.id===id); if(!c) return;
   c.decisaoEm = hojeISO();
   c.motivoRecusa = motivo;
+  registrarAtividade(usuarioAtual().id, "flashcard_recusado", "Recusou a sugestão de cartão: "+c.frente.slice(0,90)+"…", c.id);
   saveState();
   toast("Sugestão recusada. O cartão continua pessoal do aluno, que pode ajustar e enviar de novo.");
   render();
@@ -13628,19 +13812,66 @@ function arquivarFlashcardConfirmado(id){
 /* ==========================================================================
    13. SIMULADOS (lista, execução cronometrada, resultado)
    ========================================================================== */
+/* Simulados, provas antigas (questões reais organizadas por instituição/ano)
+   e listas de estudo viviam em duas telas separadas que faziam basicamente a
+   mesma coisa: escolher um conjunto de questões e praticar. Agora é uma tela
+   só, com abas para escolher o tipo — ver seção 5 do resumo do projeto. */
 function renderSimulados(){
   const u = usuarioAtual();
-  const bloco = getBlocoAtual();
-  const recomendados = db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id));
-  const outros = db.simulados.filter(s=>!recomendados.includes(s));
+  const aba = state.filtroRota.abaSimulados || "simulados";
   const meusResultados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
   return `
-  <div class="page-header"><h2>Simulados</h2><p>Provas cronometradas recomendadas pelos professores.</p></div>
+  <div class="page-header"><h2>Simulados</h2><p>Provas cronometradas, provas antigas reais e listas de estudo — escolha o tipo que você quer treinar agora.</p></div>
+  <div class="seletor-periodo mb-2">
+    <button class="pill ${aba==="simulados"?"active":""}" onclick="mudarAbaSimulados('simulados')">${iconeSvg("clipboard")} Simulados</button>
+    <button class="pill ${aba==="provas"?"active":""}" onclick="mudarAbaSimulados('provas')">${iconeSvg("archive")} Provas Antigas</button>
+    <button class="pill ${aba==="listas"?"active":""}" onclick="mudarAbaSimulados('listas')">${iconeSvg("book")} Listas de Estudo</button>
+  </div>
+  ${aba==="provas" ? renderAbaProvasAntigas(u) : aba==="listas" ? renderAbaListasEstudo(u) : renderAbaSimuladosProprios(u)}
+  ${meusResultados.length ? `<div class="card mt-3">
+    <div class="card-title mb-1">Seu histórico (todas as abas)</div>
+    <div class="table-wrap"><table><thead><tr><th>Simulado</th><th>Nota</th><th>Data</th><th></th></tr></thead><tbody>${meusResultados.map(r=>`<tr><td>${escapeHtml(r.titulo||"—")}</td><td>${r.nota}%</td><td>${formatDataBR(r.data)}</td><td>${r.itens?`<button class="link-btn" onclick="verDetalheResultadoSimulado('${r.id}')">ver detalhes</button>`:""}</td></tr>`).join("")}</tbody></table></div>
+  </div>` : ""}
+  `;
+}
+function mudarAbaSimulados(aba){ state.filtroRota.abaSimulados = aba; render(); }
+function renderAbaSimuladosProprios(u){
+  const bloco = getBlocoAtual();
+  const todos = db.simulados.filter(s=>s.categoria!=="lista");
+  const recomendados = todos.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id));
+  const outros = todos.filter(s=>!recomendados.includes(s));
+  return `
   ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
   ${outros.length ? `<div class="card-title mt-3 mb-1">Outros simulados disponíveis</div>${outros.map(renderSimuladoCard).join("")}` : ""}
-  ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco.</div>' : ""}
-  ${meusResultados.length ? `<div class="card-title mt-3 mb-1">Seu histórico</div><div class="table-wrap"><table><thead><tr><th>Simulado</th><th>Nota</th><th>Data</th><th></th></tr></thead><tbody>${meusResultados.map(r=>`<tr><td>${escapeHtml(r.titulo||"—")}</td><td>${r.nota}%</td><td>${formatDataBR(r.data)}</td><td>${r.itens?`<button class="link-btn" onclick="verDetalheResultadoSimulado('${r.id}')">ver detalhes</button>`:""}</td></tr>`).join("")}</tbody></table></div>` : ""}
+  ${!todos.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco.</div>' : ""}
   `;
+}
+/* Lista de estudo: mesma estrutura de um simulado (título + questões), mas
+   sem cronômetro e com uma referência de matéria + data — "realizada em"
+   (a turma já estudou aquilo naquele dia) ou "disponibilizada em" (ficou
+   pronta para estudo a partir daquele dia). Ver salvarSimuladoCriado(). */
+function renderAbaListasEstudo(u){
+  const listas = db.simulados.filter(s=>s.categoria==="lista");
+  return `
+  <p class="text-sm muted mb-2">Conjuntos de questões de uma matéria específica, sem cronômetro — marcados como já realizados numa data, ou disponíveis a partir de uma data.</p>
+  ${listas.length ? listas.map(l=>{
+    const materia = l.especialidadeId ? nomeEspecialidade(l.especialidadeId) : "Todas as matérias";
+    const dataTxt = l.dataTipo==="realizada" ? "Realizada em "+formatDataBR(l.dataRef) : l.dataTipo==="disponibilizada" ? "Disponível desde "+formatDataBR(l.dataRef) : "";
+    return `<div class="card mb-1">
+      <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+        <div>
+          <div style="font-weight:700">${escapeHtml(l.titulo)}</div>
+          <div class="text-sm muted">${l.questoes.length} questão(ões) · ${escapeHtml(materia)}${dataTxt?" · "+escapeHtml(dataTxt):""}</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="praticarListaEstudo('${l.id}')">Estudar agora</button>
+      </div>
+    </div>`;
+  }).join("") : '<div class="empty-state">Nenhuma lista de estudo disponível ainda. Professores criam listas em "Criar Simulado", escolhendo o tipo "Lista de estudo".</div>'}
+  `;
+}
+function praticarListaEstudo(id){
+  const l = db.simulados.find(x=>x.id===id); if(!l) return;
+  iniciarSessaoComLista(l.questoes.map(qid=>({questaoId:qid, motivo:"Lista de estudo: "+l.titulo})), "pratica");
 }
 /* histórico do próprio usuário naquele simulado, para ele saber, na hora de
    escolher, se já fez e como foi */
@@ -13680,8 +13911,18 @@ function renderSimuladoCard(s){
 }
 function iniciarSimulado(simuladoId){
   const s = db.simulados.find(x=>x.id===simuladoId); if(!s) return;
-  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId, titulo:s.titulo, itens:s.questoes.map(qid=>({questaoId:qid, motivo:"Simulado: "+s.titulo})), indiceAtual:0, respostasSimulado:{}, duracaoMin:s.duracaoMin, finalizado:false, modoAprendizado:false, inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
+  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId, titulo:s.titulo, itens:s.questoes.map(qid=>({questaoId:qid, motivo:"Simulado: "+s.titulo})), indiceAtual:0, respostasSimulado:{}, confiancaSimulado:{}, duracaoMin:s.duracaoMin, finalizado:false, modoAprendizado:false, inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
   navigate("simulado-ativo");
+}
+/* Marcar confiança no simulado é opcional e não trava a navegação — ao
+   contrário da prática, onde é obrigatório para seguir. É o que permite o
+   gráfico de pizza por confiança no resultado (ver renderResultadoSimulado)
+   sem transformar a prova cronometrada numa sessão de estudo. */
+function selecionarConfiancaSimulado(nivel){
+  const sessao = state.sessaoAtual; if(!sessao) return;
+  if(!sessao.confiancaSimulado) sessao.confiancaSimulado = {};
+  sessao.confiancaSimulado[sessao.itens[sessao.indiceAtual].questaoId] = nivel;
+  render();
 }
 
 /* ---------- cronômetro do simulado e tempo por questão ----------
@@ -13752,10 +13993,13 @@ function finalizarSimulado(){
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
     if(resp===q.gabarito) acertos++;
-    if(resp) registrarResposta(u.id, it.questaoId, resp, "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null);
+    // confiança é opcional no simulado (ver selecionarConfiancaSimulado); quem
+    // não marcou entra como "na dúvida", que é o meio-termo neutro
+    const confianca = (sessao.confiancaSimulado && sessao.confiancaSimulado[it.questaoId]) || "duvida";
+    if(resp) registrarResposta(u.id, it.questaoId, resp, confianca, sessao.tempos ? sessao.tempos[it.questaoId] : null);
   });
   const nota = pct(acertos, sessao.itens.length);
-  db.resultadosSimulados.push({id:uid("res"), usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
+  db.resultadosSimulados.push({id:uid("res"), usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, confiancas:{...(sessao.confiancaSimulado||{})}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
   saveState();
   sessao.finalizado = true;
   pararCronometro();
@@ -13764,7 +14008,7 @@ function finalizarSimulado(){
 function verDetalheResultadoSimulado(resultadoId){
   const r = db.resultadosSimulados.find(x=>x.id===resultadoId);
   if(!r || !r.itens){ toast("Este resultado é de antes desta função existir e não tem detalhe salvo.", "err"); return; }
-  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, tempoTotalSeg:r.tempoTotalSeg||null };
+  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, confiancaSimulado:{...(r.confiancas||{})}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, tempoTotalSeg:r.tempoTotalSeg||null };
   navigate("simulado-ativo");
 }
 function renderSimuladoAtivo(){
@@ -13794,7 +14038,7 @@ function renderSimuladoAtivo(){
     ${sessao.itens.map((it,i)=>`<button class="pill ${i===sessao.indiceAtual?"active":""}" style="min-width:34px;padding:.4rem" onclick="irQuestaoSimuladoIndice(${i})">${sessao.respostasSimulado[it.questaoId]?iconeSvg("check"):(i+1)}</button>`).join("")}
   </div>
   <div class="area-gesto" id="areaGestoQuestao">
-    ${renderQuestionCard(q, emModoAprendizado ? {selecionada:respostaAtual, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
+    ${renderQuestionCard(q, emModoAprendizado ? {selecionada:respostaAtual, modoSimulado:true, respondida:jaRespondeuEssa, confiancaSelecionada:(sessao.confiancaSimulado||{})[q.id]} : {selecionada:respostaAtual, modoSimulado:true, respondida:false, confiancaSelecionada:(sessao.confiancaSimulado||{})[q.id]})}
   </div>
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
   <div class="flex justify-between mt-2">
@@ -13850,6 +14094,16 @@ function renderResultadoSimulado(){
     return {i,q,resp,correta};
   });
   const nota = pct(acertos,total);
+  const confSim = sessao.confiancaSimulado || {};
+  const porConfiancaSim = {certeza:{n:0,ok:0}, duvida:{n:0,ok:0}, chute:{n:0,ok:0}};
+  linhas.forEach(l=>{
+    if(l.resp===undefined) return;
+    const conf = confSim[l.q.id] || "duvida";
+    if(!porConfiancaSim[conf]) return;
+    porConfiancaSim[conf].n++;
+    if(l.correta) porConfiancaSim[conf].ok++;
+  });
+  const respondidasSim = linhas.filter(l=>l.resp!==undefined).length;
   const analiseTempo = analiseTempoSimulado(sessao, linhas);
   const chaveRanking = sessao.simuladoId || sessao.titulo;
   const ranking = estatisticasRankingSimulado(chaveRanking, nota);
@@ -13859,6 +14113,11 @@ function renderResultadoSimulado(){
     <div class="stat-tile mt-2"><div class="stat-value">${nota}%</div><div class="stat-label">${acertos} de ${total} corretas</div></div>
     <button class="btn btn-primary mt-2" onclick="state.sessaoAtual=null;navigate('simulados')">Voltar aos simulados</button>
   </div>
+  ${respondidasSim ? `<div class="card mt-2" style="max-width:520px">
+    <div class="card-title mb-1">Taxa de acerto por confiança</div>
+    <p class="text-sm muted mb-2">Marcar confiança durante o simulado é opcional; quem não marcou entra como "na dúvida".</p>
+    ${graficoPizzaConfiancaSvg(porConfiancaSim)}
+  </div>` : ""}
   ${ranking ? `
   <div class="card mt-2" style="max-width:520px">
     <div class="card-title">Como você se saiu, de forma anônima</div>
@@ -13915,8 +14174,7 @@ function mudarFiltroProvas(campo, valor){
   render();
 }
 function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false}; render(); }
-function renderProvasAntigas(){
-  const u = usuarioAtual();
+function renderAbaProvasAntigas(u){
   const f = filtrosProvas();
   const grupoUsuario = (u.papel==="aluno"||state.modoAluno) ? getGrupoDoUsuario(u).id : true;
   const todas = questoesAtivas(grupoUsuario);
@@ -13937,7 +14195,7 @@ function renderProvasAntigas(){
   state.filtroRota.provasGrupos = grupos;
 
   return `
-  <div class="page-header"><h2>Provas Antigas</h2><p>Questões organizadas por instituição e ano. Use os filtros para achar rapidamente a prova que quer treinar.</p></div>
+  <p class="text-sm muted mb-2">Questões reais organizadas por instituição e ano. Use os filtros para achar rapidamente a prova que quer treinar.</p>
   <div class="card mb-2">
     <div class="grid grid-4">
       <div class="field" style="margin-bottom:0">
@@ -13974,7 +14232,7 @@ function renderProvasAntigas(){
       const previo = desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+g.ano+" (simulado)");
       const respondidas = g.ids.filter(id=>jaFoiRespondida(u.id, id)).length;
       return `<div class="card">
-        <div style="font-family:var(--font-display);font-size:1.6rem">${g.ano}</div>
+        <div style="font-family:var(--font-display);font-size:var(--fs-5xl)">${g.ano}</div>
         <div class="text-sm" style="font-weight:600">${escapeHtml(g.banca)}</div>
         <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
@@ -14214,6 +14472,11 @@ function atividadePorDia(usuarioId, dias){
 }
 function renderHistorico(){
   const u = usuarioAtual();
+  // quem gere conteúdo não estuda como aluno no dia a dia — o histórico dele
+  // é feito de decisões (cadastro aprovado, questão editada), não de
+  // questões respondidas. Em modo aluno, porém, ele está de fato estudando,
+  // então vê o histórico de estudo como qualquer aluno.
+  if(u.papel!=="aluno" && !state.modoAluno) return renderHistoricoAtividade(u);
   const sessoes = (db.sessoes||[]).filter(x=>x.usuarioId===u.id).slice().reverse();
   const simulados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
   const dias = atividadePorDia(u.id, 14);
@@ -14262,6 +14525,39 @@ function renderHistorico(){
       ${pagSimulados.itens.map(r=>`<tr><td class="text-sm">${escapeHtml(r.titulo||"—")}</td><td><span class="badge ${r.nota>=70?"badge-accent":r.nota>=50?"badge-amber":"badge-danger"}">${r.nota}%</span></td><td class="text-sm">${formatDataBR(r.data)}</td><td>${r.itens?`<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${r.id}')">Abrir feedback</button>`:""}</td></tr>`).join("")}
     </tbody></table></div>` : '<p class="text-sm muted mt-1">Nenhum simulado realizado ainda.</p>'}
     ${controlesPaginacao(pagSimulados, "simulado(s)")}
+  </div>`;
+}
+/* Histórico de quem GERE conteúdo (professor, residente, admin): não é feito
+   de questões respondidas, é feito de decisões — cadastro aprovado, questão
+   editada, sugestão aceita ou recusada. Cada papel só vê a própria
+   atividade (usuarioId===u.id), nunca a dos outros — isso fica em Usuários. */
+function renderHistoricoAtividade(u){
+  const registros = (db.logAtividade||[]).filter(x=>x.usuarioId===u.id).slice().reverse();
+  const pag = paginar(registros, "historico-atividade", {porPagina:20});
+  const porTipo = {};
+  registros.forEach(r=>{ porTipo[r.tipo] = (porTipo[r.tipo]||0)+1; });
+  return `
+  <div class="page-header"><h2>Histórico de Atividade</h2><p>Suas decisões mais recentes na plataforma — cadastros aprovados, questões editadas, sugestões aceitas ou recusadas. Não é o histórico de estudo (esse só existe para aluno e modo aluno).</p></div>
+  <div class="grid grid-4 mb-2">
+    <div class="stat-tile"><div class="stat-value">${registros.length}</div><div class="stat-label">ação(ões) registrada(s)</div></div>
+    ${Object.keys(ROTULOS_ATIVIDADE).slice(0,3).map(t=>`<div class="stat-tile"><div class="stat-value">${porTipo[t]||0}</div><div class="stat-label">${escapeHtml(ROTULOS_ATIVIDADE[t].label.toLowerCase())}</div></div>`).join("")}
+  </div>
+  <div class="card">
+    <div class="card-title mb-1">Linha do tempo</div>
+    ${registros.length ? pag.itens.map(r=>{
+      const rot = ROTULOS_ATIVIDADE[r.tipo] || {icone:"clock", label:r.tipo};
+      return `<div class="card-flat mb-1">
+        <div class="flex items-center gap-2">
+          ${iconeSvg(rot.icone)}
+          <div style="flex:1">
+            <div class="text-sm" style="font-weight:600">${escapeHtml(rot.label)}</div>
+            <div class="text-xs muted mt-1">${escapeHtml(r.descricao)}</div>
+          </div>
+          <span class="text-xs muted nowrap">${formatDataBR(r.data)}</span>
+        </div>
+      </div>`;
+    }).join("") : '<div class="empty-state">Nenhuma atividade registrada ainda. Aprovações, edições e decisões de conteúdo aparecem aqui assim que você fizer a primeira.</div>'}
+    ${controlesPaginacao(pag, "registro(s)")}
   </div>`;
 }
 
@@ -14431,7 +14727,7 @@ function renderDesempenho(){
       </div>`).join("")}` : ""}
     <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ver as filas por tipo de erro</button>
-      <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">${iconeSvg("cards")} Revisão rápida desses assuntos</button>
+      <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">${iconeSvg("cards")} Flashcards desses assuntos</button>
     </div>
   </div>` : ""}
   ${ritmo ? `<div class="card mb-2">
@@ -14531,8 +14827,8 @@ function renderMeuGrupo(){
   <div class="page-header"><h2>Meu Grupo</h2><p>Cada grupo/turma tem seu próprio calendário de blocos. Por padrão, todo mundo usa o calendário oficial da coordenação.</p></div>
   <div class="card mb-2">
     <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-accent">Oficial da coordenação</span>' : souDono ? '<span class="badge badge-accent">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>'}</div>
-    <div style="font-weight:700;font-size:1.1rem">${escapeHtml(meuGrupo.nome)}</div>
-    <div class="text-sm muted mt-1">${blocosDoGrupo(meuGrupo, u).length} bloco(s) na sequência de ${escapeHtml(anoDoGrupo(meuGrupo, u))}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
+    <div style="font-weight:700;font-size:var(--fs-2xl)">${escapeHtml(meuGrupo.nome)}</div>
+    <div class="text-sm muted mt-1">${blocosDoGrupo(meuGrupo, u).length} bloco(s) na sequência de ${escapeHtml(rotuloAnoComTurma(anoDoGrupo(meuGrupo, u)))}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
   </div>
   ${solicitacoesPendentes.length ? `<div class="card mb-2" style="border-color:var(--amber)">
     <div class="card-title">Solicitações de acesso pendentes (${solicitacoesPendentes.length})</div>
@@ -14733,17 +15029,22 @@ function renderCardBackup(){
    ========================================================================== */
 function renderCriarSimulado(){
   const ctx = state.filtroRota.criarSimulado || {pool:[], selecionadas:[]};
+  const areaRestrita = areaRestritaDoUsuario();
+  const categoria = state.filtroRota.csCategoria || "simulado";
   return `
-  <div class="page-header"><h2>Criar Simulado</h2><p>Monte uma prova a partir do banco de questões e recomende para um ou mais blocos (inclusive futuros).</p></div>
+  <div class="page-header"><h2>Criar Simulado</h2><p>Monte um conjunto de questões a partir do banco — como simulado cronometrado (recomendado para um ou mais blocos) ou como lista de estudo de uma matéria.</p></div>
+  ${areaRestrita ? `<div class="card-flat mb-2 text-sm">${iconeSvg("filter")} Seu acesso é restrito à área <strong>${escapeHtml(nomeArea(areaRestrita))}</strong> — a busca abaixo já vem travada nela.</div>` : ""}
   <div class="card">
     <div class="card-title">1. Buscar questões candidatas</div>
     <div class="grid grid-3 mt-1">
       <div>
         <div class="flex justify-between items-center mb-1">
           <div class="label">Grande área</div>
-          <div class="flex gap-1"><button class="link-btn text-xs" onclick="marcarTodasCaixas('csArea',true)">todas</button><button class="link-btn text-xs" onclick="marcarTodasCaixas('csArea',false)">limpar</button></div>
+          ${areaRestrita ? "" : `<div class="flex gap-1"><button class="link-btn text-xs" onclick="marcarTodasCaixas('csArea',true)">todas</button><button class="link-btn text-xs" onclick="marcarTodasCaixas('csArea',false)">limpar</button></div>`}
         </div>
-        ${db.taxonomia.areas.map(a=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csArea" value="${a.id}"> ${escapeHtml(a.nome)}</label>`).join("")}
+        ${areaRestrita
+          ? `<label class="checkbox-row mb-1"><input type="checkbox" class="csArea" value="${areaRestrita}" checked disabled> ${escapeHtml(nomeArea(areaRestrita))}</label>`
+          : db.taxonomia.areas.map(a=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csArea" value="${a.id}"> ${escapeHtml(a.nome)}</label>`).join("")}
       </div>
       <div>
         <div class="flex justify-between items-center mb-1">
@@ -14770,16 +15071,37 @@ function renderCriarSimulado(){
     </tbody></table></div>
   </div>
   <div class="card mt-2">
-    <div class="card-title">3. Detalhes do simulado</div>
-    <div class="field"><label class="label">Título</label><input class="input" id="csTitulo" placeholder="Ex.: Simulado de Revisão — Cardiologia"></div>
+    <div class="card-title">3. Detalhes</div>
+    <div class="field"><label class="label">Tipo de conjunto</label>
+      <div class="seletor-periodo">
+        <button class="pill ${categoria==="simulado"?"active":""}" onclick="mudarCategoriaCriarSimulado('simulado')">${iconeSvg("clipboard")} Simulado cronometrado</button>
+        <button class="pill ${categoria==="lista"?"active":""}" onclick="mudarCategoriaCriarSimulado('lista')">${iconeSvg("book")} Lista de estudo</button>
+      </div>
+    </div>
+    <div class="field"><label class="label">Título</label><input class="input" id="csTitulo" placeholder="${categoria==="lista"?"Ex.: Lista de estudo — Cardiologia (bloco 3)":"Ex.: Simulado de Revisão — Cardiologia"}"></div>
+    ${categoria==="simulado" ? `
     <div class="field"><label class="label">Duração (minutos)</label><input class="input" type="number" id="csDuracao" value="${Math.max(10,ctx.selecionadas.length*2)}"></div>
     <div class="field"><label class="label">Recomendar para o(s) bloco(s) do calendário oficial</label>
       ${(() => { const grupoOf = getGrupoOficial(); const atualOf = blocoAtualDoGrupo(grupoOf); return blocosDoGrupo(grupoOf).slice().sort((a,b)=>a.ordem-b.ordem).map(b=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csBloco" value="${b.id}"> ${escapeHtml(b.nome)} ${atualOf&&b.id===atualOf.id?'<span class="badge badge-accent">atual</span>':(atualOf&&b.ordem>atualOf.ordem?'<span class="badge badge-muted">futuro</span>':"")}</label>`).join(""); })()}
+    </div>` : `
+    <div class="field"><label class="label">Matéria (especialidade)</label>
+      <select class="select" id="csEspecialidade">
+        <option value="">Todas as matérias</option>
+        ${db.taxonomia.especialidades.filter(e=>!areaRestrita || e.areaId===areaRestrita).map(e=>`<option value="${e.id}">${escapeHtml(e.nome)}</option>`).join("")}
+      </select>
     </div>
-    <button class="btn btn-primary" onclick="salvarSimuladoCriado()" ${!ctx.selecionadas.length?"disabled":""}>Criar simulado</button>
+    <div class="field"><label class="label">Esta lista foi...</label>
+      <select class="select" id="csDataTipo">
+        <option value="disponibilizada">Disponibilizada em (fica pronta para estudo a partir desta data)</option>
+        <option value="realizada">Realizada em (a turma já estudou nesta data)</option>
+      </select>
+    </div>
+    <div class="field"><label class="label">Data</label><input class="input" type="date" id="csDataRef" value="${hojeISO()}"></div>`}
+    <button class="btn btn-primary" onclick="salvarSimuladoCriado()" ${!ctx.selecionadas.length?"disabled":""}>${categoria==="lista"?"Criar lista de estudo":"Criar simulado"}</button>
   </div>` : ""}
   `;
 }
+function mudarCategoriaCriarSimulado(categoria){ state.filtroRota.csCategoria = categoria; render(); }
 // helpers de seleção rápida usados nos filtros com caixas de marcação
 function marcarTodasCaixas(classe, marcar){ document.querySelectorAll("."+classe).forEach(el=>{ el.checked = !!marcar; }); }
 function marcarUltimos5Caixas(classe){
@@ -14789,7 +15111,10 @@ function marcarUltimos5Caixas(classe){
   toast(anos.length ? "Selecionados os últimos 5 anos: "+anos.join(", ") : "Nenhum ano disponível.");
 }
 function buscarCandidatasSimulado(){
-  const areaIds = [...document.querySelectorAll(".csArea:checked")].map(el=>el.value);
+  const areaRestrita = areaRestritaDoUsuario();
+  // com acesso restrito a uma área, a busca é travada nela mesmo que o
+  // checkbox (desabilitado, mas sempre marcado) não seja lido do DOM
+  const areaIds = areaRestrita ? [areaRestrita] : [...document.querySelectorAll(".csArea:checked")].map(el=>el.value);
   const anos = [...document.querySelectorAll(".csAno:checked")].map(el=>parseInt(el.value));
   const campoBanca = document.getElementById("csBanca");
   const banca = campoBanca ? campoBanca.value : "";
@@ -14806,14 +15131,29 @@ function toggleSelecaoSimulado(qid){
 }
 function salvarSimuladoCriado(){
   const ctx = state.filtroRota.criarSimulado;
-  const titulo = document.getElementById("csTitulo").value.trim() || "Simulado sem título";
-  const duracao = parseInt(document.getElementById("csDuracao").value) || Math.max(10,ctx.selecionadas.length*2);
-  const blocos = [...document.querySelectorAll(".csBloco:checked")].map(el=>el.value);
-  db.simulados.push({id:uid("sim"), titulo, questoes:ctx.selecionadas.slice(), duracaoMin:duracao, recomendadoParaBlocos:blocos, tipo:"simulado_professor", criadoPor:usuarioAtual().id, criadoEm:hojeISO()});
+  const categoria = state.filtroRota.csCategoria || "simulado";
+  const u = usuarioAtual();
+  let novo;
+  if(categoria==="lista"){
+    const titulo = document.getElementById("csTitulo").value.trim() || "Lista de estudo sem título";
+    const especialidadeId = document.getElementById("csEspecialidade").value || null;
+    const dataTipo = document.getElementById("csDataTipo").value;
+    const dataRef = document.getElementById("csDataRef").value || hojeISO();
+    novo = {id:uid("sim"), titulo, questoes:ctx.selecionadas.slice(), categoria:"lista", especialidadeId, dataTipo, dataRef, criadoPor:u.id, criadoEm:hojeISO()};
+  } else {
+    const titulo = document.getElementById("csTitulo").value.trim() || "Simulado sem título";
+    const duracao = parseInt(document.getElementById("csDuracao").value) || Math.max(10,ctx.selecionadas.length*2);
+    const blocos = [...document.querySelectorAll(".csBloco:checked")].map(el=>el.value);
+    novo = {id:uid("sim"), titulo, questoes:ctx.selecionadas.slice(), duracaoMin:duracao, recomendadoParaBlocos:blocos, categoria:"simulado", criadoPor:u.id, criadoEm:hojeISO()};
+  }
+  db.simulados.push(novo);
+  registrarAtividade(u.id, "simulado_criado", (categoria==="lista"?"Criou a lista de estudo: ":"Criou o simulado: ")+novo.titulo, novo.id);
   saveState();
   state.filtroRota.criarSimulado = null;
-  toast("Simulado criado.");
-  navigate("simulados");
+  // quem cria não "realiza" simulado/lista (essa tela é só de aluno — ver
+  // navItemsParaPapel), então volta para o início do próprio formulário
+  toast((categoria==="lista" ? "Lista de estudo criada. " : "Simulado criado. ")+"Já aparece para os alunos em Simulados.");
+  navigate("criar-simulado");
 }
 
 /* ==========================================================================
@@ -15114,6 +15454,7 @@ function renderRevisaoDificeis(){
   const cartoesSugeridos = flashcardsSugeridos();
   return `
   <div class="page-header"><h2>Controle de Qualidade</h2><p>Questões que merecem uma segunda olhada: baixa taxa de acerto, sinalizadas por alunos, ou sugeridas para o banco geral. Professores, residentes e administradores têm acesso — e podem editar a questão direto daqui.</p></div>
+  ${areaRestritaDoUsuario() ? `<div class="card-flat mb-2 text-sm">${iconeSvg("filter")} Seu acesso é restrito à área <strong>${escapeHtml(nomeArea(areaRestritaDoUsuario()))}</strong>.</div>` : ""}
   <div class="tabs">
     <div class="tab ${aba==="dificeis"?"active":""}" onclick="mudarAbaQualidade('dificeis')">Questões Difíceis (${lista.length})</div>
     <div class="tab ${aba==="sinalizadas"?"active":""}" onclick="mudarAbaQualidade('sinalizadas')">Sinalizadas por Alunos (${sinalizadas.length})</div>
@@ -15150,10 +15491,12 @@ function renderListaFlashcardsSugeridos(lista){
 function mudarAbaQualidade(aba){ state.filtroRota.abaQualidade = aba; render(); }
 function podeAprovarQuestoes(){ const u = usuarioAtual(); return u && (u.papel==="admin" || u.papel==="professor"); }
 function questoesSinalizadas(){
-  return db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0).sort((a,b)=>b.sinalizacoes.length-a.sinalizacoes.length);
+  const areaRestrita = areaRestritaDoUsuario();
+  return db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0 && (!areaRestrita || q.areaId===areaRestrita)).sort((a,b)=>b.sinalizacoes.length-a.sinalizacoes.length);
 }
 function questoesSugeridas(){
-  return db.questoes.filter(q=>q.status==="pendente").sort((a,b)=>a.criadoEm.localeCompare(b.criadoEm));
+  const areaRestrita = areaRestritaDoUsuario();
+  return db.questoes.filter(q=>q.status==="pendente" && (!areaRestrita || q.areaId===areaRestrita)).sort((a,b)=>a.criadoEm.localeCompare(b.criadoEm));
 }
 function renderListaDuplicadas(grupos){
   const pag = paginar(grupos, "qualidade-duplicadas", {porPagina:10});
@@ -15216,6 +15559,7 @@ function aprovarQuestaoSugerida(qid){
   const q = getQuestao(qid);
   q.status = "ativa";
   q.aprovadoPor = usuarioAtual().id;
+  registrarAtividade(usuarioAtual().id, "questao_sugerida_aprovada", "Aprovou para o banco geral a questão: "+q.enunciado.slice(0,90)+"…", q.id);
   saveState();
   toast("Questão aprovada e adicionada ao banco geral.");
   render();
@@ -15354,12 +15698,15 @@ function responderDuvida(comentarioId, questaoId){
 }
 function renderRevisaoFormatacao(){
   const termo = (state.filtroRota.buscaFormatacao||"").toLowerCase();
+  const areaRestrita = areaRestritaDoUsuario();
   let lista = questoesAtivas(true);
+  if(areaRestrita) lista = lista.filter(q=>q.areaId===areaRestrita);
   if(termo) lista = lista.filter(q=>q.enunciado.toLowerCase().includes(termo));
   lista = lista.slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
   const pagFormatacao = paginar(lista, "formatacao", {porPagina:15, assinatura:termo});
   return `
   <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico.</p></div>
+  ${areaRestrita ? `<div class="card-flat mb-2 text-sm">${iconeSvg("filter")} Seu acesso é restrito à área <strong>${escapeHtml(nomeArea(areaRestrita))}</strong>.</div>` : ""}
   <div class="flex gap-1 mb-2">
     <input class="input" id="buscaFormatacaoInput" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(state.filtroRota.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
     <button class="btn btn-secondary btn-sm" onclick="buscarFormatacao()">Buscar</button>
@@ -15407,7 +15754,7 @@ function renderUsuarios(){
   ${pagUsuarios.itens.map(u=>`<tr>
     <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}</td>
     <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
-    <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
+    <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.papel==="aluno"?rotuloAnoComTurma(u.anoFaculdade):(u.areasAtuacao&&u.areasAtuacao.length?u.areasAtuacao.map(nomeArea).join(", "):"—"))}</span></td>
     <td>${souMaster
       ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
       : badgePapel(u.papel, u)}</td>
@@ -15431,6 +15778,7 @@ function alterarNivelAdmin(id, nivel){
     render(); return;
   }
   alvo.nivelAdmin = nivel;
+  registrarAtividade(eu.id, "nivel_alterado", 'Mudou o nível de administrador de '+alvo.nome+' para '+rotuloNivelAdmin(nivel), alvo.id);
   saveState();
   toast("Nível de acesso atualizado para "+rotuloNivelAdmin(nivel)+".");
   render();
@@ -15477,11 +15825,16 @@ function limparFiltrosBanco(){ state.filtroRota.banco = {busca:"", banca:"", ano
 function buscarNoBanco(){ filtrosBanco().busca = document.getElementById("buscaBancoInput").value; render(); }
 function renderBancoQuestoes(){
   const f = filtrosBanco();
-  const bancas = [...new Set(db.questoes.map(q=>q.banca))].sort();
-  const anosDisponiveis = [...new Set(db.questoes.map(q=>q.ano))].sort((a,b)=>b-a);
+  const areaRestrita = areaRestritaDoUsuario();
+  // acesso restrito a uma área: a busca trava nela, sem exceção — trocar o
+  // filtro não escapa da restrição (ver salvarQuestaoFormulario/abrirFormularioQuestao)
+  if(areaRestrita) f.areaId = areaRestrita;
+  const bancasBase = areaRestrita ? db.questoes.filter(q=>q.areaId===areaRestrita) : db.questoes;
+  const bancas = [...new Set(bancasBase.map(q=>q.banca))].sort();
+  const anosDisponiveis = [...new Set(bancasBase.map(q=>q.ano))].sort((a,b)=>b-a);
   const anoMaisRecente = anosDisponiveis.length ? anosDisponiveis[0] : new Date().getFullYear();
   const termo = (f.busca||"").toLowerCase();
-  let lista = db.questoes.slice();
+  let lista = areaRestrita ? db.questoes.filter(q=>q.areaId===areaRestrita) : db.questoes.slice();
   if(termo) lista = lista.filter(q=>q.enunciado.toLowerCase().includes(termo) || (q.alternativas||[]).some(a=>a.texto.toLowerCase().includes(termo)));
   if(f.banca) lista = lista.filter(q=>q.banca===f.banca);
   if(f.ano) lista = lista.filter(q=>q.ano===parseInt(f.ano));
@@ -15491,6 +15844,7 @@ function renderBancoQuestoes(){
   lista.sort((a,b)=> b.ano-a.ano || (a.banca||"").localeCompare(b.banca||""));
   return `
   <div class="page-header"><h2>Banco de Questões</h2><p>${db.questoes.length} questão(ões) no total (${questoesAtivas(true).length} ativas, excluindo anuladas/desatualizadas das sessões e estatísticas; inclui questões restritas a grupos de alunos).</p></div>
+  ${areaRestrita ? `<div class="card-flat mb-2 text-sm">${iconeSvg("filter")} Seu acesso é restrito à área <strong>${escapeHtml(nomeArea(areaRestrita))}</strong>.</div>` : ""}
   <div class="card mb-2">
     <div class="grid grid-4">
       <div class="field" style="margin-bottom:0"><label class="label">Instituição</label>
@@ -15506,10 +15860,10 @@ function renderBancoQuestoes(){
         </select>
       </div>
       <div class="field" style="margin-bottom:0"><label class="label">Grande área</label>
-        <select class="select" onchange="mudarFiltroBanco('areaId', this.value)">
+        ${areaRestrita ? `<select class="select" disabled><option>${escapeHtml(nomeArea(areaRestrita))}</option></select>` : `<select class="select" onchange="mudarFiltroBanco('areaId', this.value)">
           <option value="">Todas</option>
           ${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${f.areaId===a.id?"selected":""}>${escapeHtml(a.nome)}</option>`).join("")}
-        </select>
+        </select>`}
       </div>
       <div class="field" style="margin-bottom:0"><label class="label">Status</label>
         <select class="select" onchange="mudarFiltroBanco('status', this.value)">
@@ -15555,6 +15909,8 @@ function renderListaBancoQuestoesHtml(lista, paginaInfo){
 function abrirFormularioQuestao(qid){
   const q = qid ? getQuestao(qid) : null;
   const u = usuarioAtual();
+  const areaRestrita = areaRestritaDoUsuario();
+  if(areaRestrita && q && q.areaId!==areaRestrita){ toast("Esta questão é de outra área — fora do seu acesso.", "err"); return; }
   const criandoComoAluno = !q && u.papel==="aluno";
   const valorAlt = (letra)=> q ? ((q.alternativas.find(a=>a.id===letra)||{}).texto || "") : "";
   abrirModal(`
@@ -15570,7 +15926,9 @@ function abrirFormularioQuestao(qid){
       <div class="field"><label class="label">Ano</label><input class="input" type="number" id="fqAno" value="${q?q.ano:new Date().getFullYear()}"></div>
     </div>
     <div class="grid grid-3">
-      <div class="field"><label class="label">Grande área</label><select class="select" id="fqArea" onchange="atualizarSelectsTaxonomiaForm()">${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${q&&q.areaId===a.id?"selected":""}>${escapeHtml(a.nome)}</option>`).join("")}</select></div>
+      <div class="field"><label class="label">Grande área</label><select class="select" id="fqArea" onchange="atualizarSelectsTaxonomiaForm()" ${areaRestrita?"disabled":""}>${(areaRestrita?db.taxonomia.areas.filter(a=>a.id===areaRestrita):db.taxonomia.areas).map(a=>`<option value="${a.id}" ${(q&&q.areaId===a.id)||areaRestrita===a.id?"selected":""}>${escapeHtml(a.nome)}</option>`).join("")}</select>
+        ${areaRestrita?`<div class="hint mt-1">Seu acesso é restrito a esta área.</div>`:""}
+      </div>
       <div class="field"><label class="label">Especialidade</label><select class="select" id="fqEspecialidade" onchange="atualizarSelectAssuntoForm()"></select></div>
       <div class="field"><label class="label">Assunto</label><select class="select" id="fqAssunto"></select></div>
     </div>
@@ -15612,7 +15970,7 @@ function abrirFormularioQuestao(qid){
   `, "lg");
   state.filtroRota.imagemFormulario = q ? (q.imagemUrl || "") : "";
   setTimeout(()=>{
-    popularSelectEspecialidade(q?q.areaId:db.taxonomia.areas[0].id, q?q.especialidadeId:null);
+    popularSelectEspecialidade(q?q.areaId:(areaRestrita||db.taxonomia.areas[0].id), q?q.especialidadeId:null);
     popularSelectAssunto(q?q.especialidadeId:null, q?q.assuntoId:null);
     atualizarPreviewImagemFormulario();
   }, 0);
@@ -15821,7 +16179,10 @@ function salvarQuestaoFormulario(qid, forcar){
     return;
   }
   const u = usuarioAtual();
-  if(qid){ Object.assign(getQuestao(qid), dados); }
+  if(qid){
+    Object.assign(getQuestao(qid), dados);
+    if(u.papel!=="aluno") registrarAtividade(u.id, "questao_editada", "Editou a questão: "+dados.enunciado.slice(0,90)+"…", qid);
+  }
   else{
     const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, criadoEm:hojeISO() };
     if(campoDestino){
@@ -15829,6 +16190,7 @@ function salvarQuestaoFormulario(qid, forcar){
       else{ nova.status = "pendente"; }
     } else if(!nova.status){ nova.status = "ativa"; }
     db.questoes.push(nova);
+    if(u.papel!=="aluno") registrarAtividade(u.id, "questao_criada", "Criou a questão: "+nova.enunciado.slice(0,90)+"…", nova.id);
   }
   saveState(); fecharModal();
   toast(qid?"Questão atualizada.":"Questão criada.");
@@ -15854,7 +16216,12 @@ function salvarQuestaoPendente(){
 function confirmarExcluirQuestao(qid){
   abrirModal(`<div class="modal-header"><h3>Excluir questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div><p>Esta ação não pode ser desfeita. Considere marcar como "anulada" ou "desatualizada" em vez de excluir, para manter o histórico de quem já respondeu.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
-function excluirQuestaoConfirmado(qid){ db.questoes = db.questoes.filter(q=>q.id!==qid); saveState(); fecharModal(); toast("Questão excluída."); render(); }
+function excluirQuestaoConfirmado(qid){
+  const q = getQuestao(qid);
+  const u = usuarioAtual();
+  if(q && u.papel!=="aluno") registrarAtividade(u.id, "questao_excluida", "Excluiu a questão: "+q.enunciado.slice(0,90)+"…");
+  db.questoes = db.questoes.filter(q=>q.id!==qid); saveState(); fecharModal(); toast("Questão excluída."); render();
+}
 function marcarQuestaoStatus(qid, status){ getQuestao(qid).status = status; saveState(); toast("Status atualizado."); render(); }
 
 /* ==========================================================================
@@ -16556,6 +16923,14 @@ function renderBlocosConfig(){
   </div>
 
   <div class="card mb-2">
+    <div class="card-title">Numeração da turma</div>
+    <p class="text-sm muted mb-2">Identifica a turma pelo número da coorte (ex.: "Turma 92"), independente do ano da faculdade — o ano muda a cada ano letivo, o número da turma acompanha a mesma turma até ela se formar. Deixe em branco se este ano não usa numeração.</p>
+    <div class="field" style="max-width:220px;margin-bottom:0">
+      <input class="input" type="number" id="numeroTurmaInput" placeholder="Ex.: 92" value="${(db.numerosTurma&&db.numerosTurma[anoEscolhido])||""}" onchange="definirNumeroTurma('${escapeHtml(anoEscolhido)}', this.value)">
+    </div>
+  </div>
+
+  <div class="card mb-2">
     <div class="card-title">Sequência de ${escapeHtml(anoEscolhido)} (${sequencia.length} blocos)</div>
     <p class="text-sm muted mb-2">Esta é a ordem pela qual todas as turmas deste ano passam. As datas são as janelas do calendário; o conteúdo dentro delas é o que gira conforme o bloco de início de cada turma.</p>
     <button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco('${escapeHtml(anoEscolhido)}', null)">${iconeSvg("plus")} Adicionar bloco</button>
@@ -16597,6 +16972,24 @@ function renderBlocosConfig(){
   </div>`;
 }
 function mudarAnoBlocos(ano){ state.filtroRota.anoBlocos = ano; render(); }
+/* Número da turma (ex.: "Turma 92"): identifica a coorte, não o ano da
+   faculdade — o ano muda todo ano letivo, o número acompanha a turma até
+   ela se formar. Editável por quem administra blocos (ver renderBlocosConfig). */
+function definirNumeroTurma(ano, valor){
+  if(!db.numerosTurma) db.numerosTurma = {};
+  const n = parseInt(valor);
+  if(n) db.numerosTurma[ano] = n; else delete db.numerosTurma[ano];
+  saveState();
+  toast(n ? "Turma "+n+" definida para "+ano+"." : "Numeração removida para "+ano+".");
+}
+function numeroTurmaDoAno(ano){ return (db.numerosTurma && db.numerosTurma[ano]) || null; }
+/* "3º ano" vira "3º ano · Turma 92" quando o ano tem numeração — usado nos
+   lugares onde ano e turma aparecem juntos (Meu Grupo, Usuários...). */
+function rotuloAnoComTurma(ano){
+  if(!ano) return "—";
+  const n = numeroTurmaDoAno(ano);
+  return n ? ano+" · Turma "+n : ano;
+}
 function mudarDeslocamentoGrupo(grupoId, valor){
   const grupo = getGrupo(grupoId); if(!grupo) return;
   grupo.deslocamento = parseInt(valor) || 0;

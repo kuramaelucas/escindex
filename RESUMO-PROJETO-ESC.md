@@ -1,9 +1,9 @@
 # Esc — plataforma de estudos para residência médica
-## Resumo do projeto (setembro de 2026)
+## Resumo do projeto (setembro de 2026 — revisão de 19/09, atualizada à noite seguinte)
 
-Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo `esc.html`.
+Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo `esc.html` (o arquivo publicado chama-se `index.html`).
 
-> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) — e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
+> **O que mudou na atualização mais recente:** revisão visual do sistema de design (escala tipográfica e de espaçamento unificadas, bug de altura desigual entre cards corrigido) — detalhes na seção 16. Antes dessa, onze pedidos pontuais do usuário, todos implementados — flashcard navegável por clique/tecla A-D com "voltar sempre pousa numa pergunta"; botão "Mostrar resposta" centralizado e maior; **Simulados, Provas Antigas e o novo tipo Lista de Estudo fundidos numa tela só**, com abas; Histórico de Atividade diferente para quem gere conteúdo (decisões, não questões respondidas); aba "Realizar Simulados" removida do menu de residente/professor/admin; Revisão separada visualmente em "de questões" e "por flashcards"; "Revisão Rápida" renomeada para "Flashcards" em toda a interface; professor/residente restritos a **uma** das 5 grandes áreas (escolhida no cadastro), com a restrição valendo de verdade no banco de questões, criar simulado, questões difíceis e revisar formatação; numeração de turma (ex. "Turma 92") por ano da faculdade; e um **gráfico de pizza de taxa de acerto por confiança** ao final de todo conjunto de questões, incluindo simulados (que passaram a coletar confiança de forma opcional). Detalhes na seção 15. A seção 14 documenta a carga das 500 questões reais da UNIFESP-EPM, a seção 13 a atualização anterior da mesma noite de 19/09, e a seção 12 a revisão da manhã do mesmo dia.
 
 ---
 
@@ -11,7 +11,7 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 
 `esc.html` é uma plataforma de estudos para prova de residência médica, escrita como **um único arquivo HTML autossuficiente**: sem instalação, sem servidor, sem build, sem dependência de internet (só as fontes do Google são externas, e são opcionais). Abre com dois cliques no navegador.
 
-- **Tamanho atual:** ~1,7 MB, ~16.770 linhas (a maior parte é o banco de 635 questões e os 501 flashcards, em `SEED_QUESTOES` e `SEED_FLASHCARDS`).
+- **Tamanho atual:** ~1.730 KB, ~16.840 linhas.
 - **Dados:** tudo fica no `localStorage` do navegador, sob a chave `medbloco_db_v1` (o nome antigo foi mantido de propósito, para não apagar os dados de quem já usava quando o app foi renomeado).
 - **Nome:** "Esc" (era "MedBloco"). O nome fica em `CONFIG.nomePlataforma`.
 - **Banca de referência:** UNIFESP-EPM (`CONFIG.bancaFoco`), mas o app é agnóstico — filtra por instituição.
@@ -34,10 +34,10 @@ Há também botões de "ver como…" na tela inicial, que entram sem senha.
 ## 2. Estado do banco de questões e de cartões
 
 - **635 questões** no total:
-  - **500 questões reais da UNIFESP-EPM** (`real: true`), 100 de cada ano de 2022 a 2026 — enunciado, alternativas e gabarito oficial transcritos integralmente (domínio público), com explicação de cada questão **100% autoral**, escrita com base em diretrizes e fontes primárias, nunca copiada de resolução de cursinho (seção 9). Questões anuladas pela banca entram com `status: "anulada"` e `motivoStatus` preenchido, mas mantêm explicação pedagógica.
+  - **500 questões reais da UNIFESP-EPM** (`real: true`), 100 de cada ano de 2022 a 2026 — enunciado, alternativas e gabarito oficial transcritos integralmente (domínio público), com explicação de cada questão **100% autoral**, escrita com base em diretrizes e fontes primárias, nunca copiada de resolução de cursinho (seção 9 e seção 14). Questões anuladas pela banca entram com `status: "anulada"` e `motivoStatus` preenchido, mas mantêm explicação pedagógica.
   - **135 questões didáticas** de demonstração/construção de conhecimento (30 de Técnica Operatória, 30 de Cardiologia, 30 de Infectologia, 15 de Oftalmologia, 30 de demonstração original), com instituição **"Esc — Banco Didático"** e selo **Didática** — dá para isolá-las ou excluí-las por qualquer filtro de instituição.
-- **501 flashcards autorais** de semente (`SEED_FLASHCARDS`), cobrindo os 91 assuntos que existiam antes da carga das provas reais. Além deles, a plataforma **gera cartões automaticamente** a partir das questões que cada aluno errou com certeza ou acertou no chute, e **cada aluno escreve os seus** durante a resolução — e pode **sugerir o próprio cartão para o baralho da equipe**, com aprovação de professor/coordenação.
-- Taxonomia atual: **5 grandes áreas, 39 especialidades, 216 assuntos** — ampliada de 91 para 216 assuntos (e de 24 para 39 especialidades) durante a carga das provas reais, para cobrir temas que a UNIFESP realmente cobra e a taxonomia didática original não previa (por exemplo, Psiquiatria inteira, criada do zero — seção 12). Os 125 assuntos novos ainda não têm flashcard de equipe dedicado (ver seção 8 e seção 10).
+- **501 flashcards autorais** de semente (`SEED_FLASHCARDS`). Além deles, a plataforma **gera cartões automaticamente** a partir das questões que cada aluno errou com certeza ou acertou no chute, e **cada aluno escreve os seus** durante a resolução — e pode **sugerir o próprio cartão para o baralho da equipe**, com aprovação de professor/coordenação (seção 13.6).
+- Taxonomia atual: **5 grandes áreas, 39 especialidades, 216 assuntos** — ampliada de 91 para 216 assuntos (e de 24 para 39 especialidades) durante a carga das provas reais, para cobrir temas que a UNIFESP realmente cobra e a taxonomia didática original não previa (por exemplo, Psiquiatria inteira, criada do zero — seção 14).
 - Nenhuma questão nem cartão da equipe é cópia de prova real ou de material de terceiros; enunciado/gabarito de prova pública são transcritos por serem domínio público, mas toda explicação é autoral (seção 9).
 
 Com 500 questões reais cobrindo 5 anos de uma banca de referência, a repetição espaçada, a dificuldade progressiva e o percentil de simulado já têm massa real para funcionar bem — o próximo salto de volume seria repetir esse processo para as outras 5 bancas de referência (`CONFIG.instituicoesReferencia`), caso o usuário consiga as provas.
@@ -46,11 +46,13 @@ Com 500 questões reais cobrindo 5 anos de uma banca de referência, a repetiç�
 
 ## 3. Papéis e permissões
 
-**Aluno** — estudar (com a meta do dia), revisar, revisão rápida por flashcards, simulados, provas antigas, favoritos, histórico, desempenho, meu grupo, enviar questões.
+**Aluno** — estudar (com a meta do dia), revisar, flashcards, simulados (que agora também reúnem provas antigas e listas de estudo — seção 4), favoritos, histórico de atividade (de estudo), desempenho, meu grupo, enviar questões.
 
-**Residente** — fila de dúvidas, questões difíceis, revisar formatação, enviar provas e questões, provas antigas.
+**Residente** — fila de dúvidas, questões difíceis, revisar formatação, enviar provas e questões. Não tem acesso a "realizar simulados": essa tela é só de aluno (ver seção 15.5).
 
-**Professor** — todo o conteúdo: banco de questões, importar, controle de qualidade, criar simulado, material em PDF, flashcards da equipe, especialidades e assuntos, revisar formatação.
+**Professor** — todo o conteúdo da própria área: banco de questões, importar, controle de qualidade, criar simulado (ou lista de estudo), material em PDF, flashcards da equipe, especialidades e assuntos, revisar formatação. Também não "realiza" simulado — quem cria não é quem responde.
+
+**Restrição por especialidade (professor e residente).** Desde a atualização da seção 15, professor e residente só atuam numa das **5 grandes áreas** (Clínica Médica, Cirurgia Geral, Pediatria, GO, Medicina Preventiva e Social), escolhida no próprio cadastro (campo único, não mais múltiplo). A função `areaRestritaDoUsuario(u)` devolve essa área quando o usuário tem exatamente uma marcada, e o restante do sistema trava nela: banco de questões (lista e formulário), criar simulado (busca de candidatas), questões difíceis/sinalizadas/sugeridas e revisar formatação. Cadastros antigos sem essa marcação (ou com mais de uma área, de antes da mudança) continuam **sem restrição**, de propósito — a migração nunca bloqueia quem já usava a plataforma. Admin não é restrito.
 
 **Administrador, em três níveis** (`CONFIG.niveisAdmin` + `PERMISSOES_ADMIN`):
 
@@ -75,18 +77,20 @@ O menu lateral se monta conforme o nível e as rotas restritas mostram tela de "
 - **No celular, arrastar o cartão para o lado troca de questão.**
 
 ### Fim de cada conjunto de questões
-Página de feedback com: taxa de acerto, acerto por nível de confiança, e lista questão a questão mostrando o que acertou, errou, chutou ou respondeu na dúvida — com alertas de "acerto no chute" e "erro com certeza". Cada linha traz botões de voltar à questão, ver na íntegra, favoritar e **virar flashcard** (destacado nas erradas e chutadas). Tudo fica salvo e pode ser reaberto em **Histórico de Atividade**.
+Página de feedback com: taxa de acerto, acerto por nível de confiança, **gráfico de pizza da taxa de acerto por confiança** (`graficoPizzaConfiancaSvg` — seção 15.9), e lista questão a questão mostrando o que acertou, errou, chutou ou respondeu na dúvida — com alertas de "acerto no chute" e "erro com certeza". Cada linha traz botões de voltar à questão, ver na íntegra, favoritar e **virar flashcard** (destacado nas erradas e chutadas). Tudo fica salvo e pode ser reaberto em **Histórico de Atividade** (para aluno; ver seção 15.4 para os outros papéis). **Simulados têm o mesmo gráfico de pizza** — a confiança neste caso é opcional durante a prova (não trava a navegação) e quem não marca entra como "na dúvida".
 
 ### Revisão
+Tela dividida em duas seções claramente rotuladas — "Revisão de questões" e "Revisão por flashcards" (seção 15.6) — porque são dois formatos diferentes e antes ficavam misturados sem indicação visual.
 - Repetição espaçada (SM-2 adaptado) que traz de volta tanto o que se errou quanto o que se acertou faz tempo.
 - **Filas separadas por tipo de erro**: errou com certeza (prioridade máxima), acertou no chute (conta como não sabido), errou na dúvida.
 - Lista de assuntos em que o aluno responde "com certeza" e erra.
 - É aqui que fica o **detalhe assunto a assunto**, ao lado da ação correspondente.
+- No fim da tela, a seção de flashcards vencidos, com borda de cor diferente para reforçar a separação visual.
 
-### Revisão Rápida (flashcards)
+### Flashcards (antes "Revisão Rápida")
 A tela abre com a **meta diária de cartões** — progresso do dia, quantos faltam e sequência de dias seguidos —, a mesma estrutura da meta de questões, em outra unidade. As duas metas convivem e são independentes: quem prefere estudar por cartão, ou quem só tem dez minutos num dia corrido, mantém ritmo por ali.
 
-Cartão com frente (pergunta curta) e verso (resposta direta), **sem alternativa para eliminar**. O aluno tenta lembrar, vira o cartão e se autoavalia:
+Cartão com frente (pergunta curta) e verso (resposta direta), **sem alternativa para eliminar**. O aluno tenta lembrar, vira o cartão e se autoavalia. **Navegação** (seção 15.1): clicar no cartão, apertar **D** ou arrastar para a esquerda avança — primeiro mostra a resposta, só then passa para a pergunta do próximo cartão; apertar **A**, clicar no botão de voltar (gesto) ou arrastar para a direita sempre pousa numa **pergunta**, nunca reaparece direto numa resposta (`avancarFlashcard`/`voltarFlashcard`). O botão "Mostrar resposta" foi centralizado sob o cartão e aumentado (`.flash-btn-mostrar`).
 
 | Resposta | Efeito no intervalo |
 |---|---|
@@ -104,10 +108,14 @@ O baralho se monta sozinho nesta ordem: cartões vencidos → assuntos de falsa 
 
 A tela separa **"Meus cartões"** (com a questão de origem linkada) de **"Cartões da equipe"**, e só quem gere conteúdo vê a segunda seção.
 
-### Simulados
-- Simulados criados por professores, prova antiga inteira como simulado, ou simulado personalizado a partir dos filtros.
-- **Cronômetro** com encerramento automático no fim do tempo, **tempo gasto por questão**, modo aprendizado (mostra explicação na hora), mapa de questões clicável.
-- Resultado: nota, percentil anônimo entre as tentativas registradas, mapa de acertos/erros, **análise de tempo com "onde você travou"**, revisão questão a questão e prática imediata dos erros.
+### Simulados (fundida com Provas Antigas — seção 15.3)
+Uma tela só, com três abas (`renderSimulados` + `mudarAbaSimulados`), só para aluno (ver seção 15.5):
+
+1. **Simulados** — criados por professores, com cronômetro. **Cronômetro** com encerramento automático no fim do tempo, **tempo gasto por questão**, modo aprendizado (mostra explicação na hora), mapa de questões clicável. Resultado: nota, percentil anônimo entre as tentativas registradas, mapa de acertos/erros, **análise de tempo com "onde você travou"**, gráfico de pizza por confiança, revisão questão a questão e prática imediata dos erros. Confiança é opcional aqui (não trava a navegação — ver seção 15.9).
+2. **Provas Antigas** — questões reais agrupadas por instituição + ano, com os mesmos filtros de antes (banca, ano, área, últimos 5 anos); "fazer como simulado" ou "praticar sem cronômetro".
+3. **Listas de Estudo** (tipo novo — seção 15.3) — conjunto de questões de uma matéria específica, sem cronômetro, marcado como **realizado em** uma data (a turma já estudou aquilo) ou **disponibilizado em** uma data (ficou pronto a partir daquele dia). Criado em "Criar Simulado", escolhendo o tipo.
+
+A rota antiga `provas-antigas` continua respondendo — só troca a aba automaticamente para "Provas Antigas", para não quebrar link salvo.
 
 ### Meu Desempenho
 A tela responde a três perguntas, nesta ordem:
@@ -154,6 +162,8 @@ O aluno usa por padrão o calendário oficial da coordenação, mas pode criar o
 
 O calendário oficial não tem ano fixo: ele serve a todos, e cada aluno enxerga a sequência do **seu** ano.
 
+**Numeração da turma** (seção 15.10). Além do ano da faculdade, cada ano pode ter um número de turma associado (ex.: "Turma 92" para o 3º ano atual) — identifica a coorte, não o ano letivo: o ano muda todo ano, o número acompanha a mesma turma até se formar. Guardado em `db.numerosTurma[anoFaculdade]`, editável em Blocos de Estudo (administrador). Aparece como "3º ano · Turma 92" (`rotuloAnoComTurma`) em Meu Grupo e na coluna Turma/Ano de Usuários.
+
 ---
 
 ## 5. Decisões de interface (e por quê)
@@ -161,9 +171,11 @@ O calendário oficial não tem ano fixo: ele serve a todos, e cada aluno enxerga
 ### Menu ordenado por probabilidade de uso
 Não é alfabético nem temático: é a frequência esperada de uso. Os **quatro primeiros do aluno** — Início, Estudar, Meu Desempenho, Meu Grupo — são os únicos que aparecem no celular sem rolar.
 
-Ordem do aluno: Início · Estudar · Meu Desempenho · Meu Grupo · Revisão · Revisão Rápida · Simulados · Histórico de Atividade · Favoritos · Provas Antigas · Enviar Questões.
+Ordem do aluno (atualizada na seção 15 — "Revisão Rápida" virou "Flashcards", e "Provas Antigas" fundiu com "Simulados"): Início · Estudar · Meu Desempenho · Meu Grupo · Revisão · Flashcards · Simulados · Histórico de Atividade · Favoritos · Enviar Questões.
 
-Ordem do conteúdo: Início · Banco de Questões · Importar Questões · Questões Difíceis · Criar Simulado · Material em PDF · Flashcards · Realizar Simulados · Provas Antigas · Revisar Formatação · Especialidades e Assuntos.
+Ordem do conteúdo (professor/admin — atualizada na seção 15.5, sem mais "Realizar Simulados" nem "Provas Antigas": quem gere conteúdo não "realiza" simulado, só cria): Início · Banco de Questões · Importar Questões · Questões Difíceis · Criar Simulado · Material em PDF · Flashcards · Revisar Formatação · Especialidades e Assuntos.
+
+Residente (também sem "Realizar Simulados"/"Provas Antigas"): Início · Fila de Dúvidas · Questões Difíceis · Enviar Provas e Questões · Revisar Formatação.
 
 ### Metas: de página a cartão
 A meta é um número que se **define uma vez** e se **vê todo dia**. Uma página própria invertia isso: escondia o acompanhamento e dava destaque à configuração. Agora o progresso abre a tela Estudar e o ajuste fica numa janela (`abrirModalMeta`). A rota `metas` continua respondendo e leva a Estudar, para não quebrar link salvo.
@@ -256,9 +268,23 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 | `metaCartoesDoUsuario(u)` / `cartoesRevisadosHoje(id)` / `sequenciaDiasCartoes(id)` | a meta diária de flashcards e sua sequência |
 | `mapaPrevalenciasAssuntos()` | prevalência de todos os assuntos calculada uma vez por gravação (cache por `_geracaoDb`) |
 
+**Funções-chave acrescentadas na segunda rodada de 19/09 (seção 15):**
+
+| Função | O que faz |
+|---|---|
+| `avancarFlashcard()` / `voltarFlashcard()` | navegação de cartão por clique/tecla/gesto, com "voltar sempre pousa numa pergunta" (substituem `virarFlashcard`/`pularFlashcard`, removidas) |
+| `renderAbaSimuladosProprios()` / `renderAbaProvasAntigas()` / `renderAbaListasEstudo()` | as três abas da tela fundida de Simulados (`renderSimulados`) |
+| `mudarAbaSimulados()` / `mudarCategoriaCriarSimulado()` | trocam aba da tela de Simulados / tipo do formulário de Criar Simulado |
+| `praticarListaEstudo()` | inicia uma sessão de prática a partir de uma lista de estudo |
+| `registrarAtividade()` / `renderHistoricoAtividade()` | log e tela de atividade de quem gere conteúdo (`db.logAtividade`, `ROTULOS_ATIVIDADE`) |
+| `areaRestritaDoUsuario()` | a grande área única de professor/residente, quando há uma (senão `null` = sem restrição) |
+| `graficoPizzaSvg()` / `graficoPizzaConfiancaSvg()` | gráfico de pizza genérico e a versão por nível de confiança |
+| `selecionarConfiancaSimulado()` | marca confiança opcional numa questão de simulado |
+| `definirNumeroTurma()` / `numeroTurmaDoAno()` / `rotuloAnoComTurma()` | numeração de turma por ano da faculdade (`db.numerosTurma`) |
+
 **Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado.
 
-**Migrações em `loadState`:** criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
+**Migrações em `loadState`:** criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; a migração dos blocos (abaixo); e, da seção 15, criação de `db.logAtividade` (vazio) e `db.numerosTurma` (semeado com `{"3º ano": 92}`), e normalização de `s.categoria = "simulado"` em qualquer `db.simulados` salvo antes da distinção simulado/lista existir.
 
 **Migração dos blocos para sequências por ano.** `db.sequenciasAno` passa a guardar a ordem de blocos de cada ano, e o grupo guarda só `anoFaculdade` + `deslocamento`. Nada é apagado: o calendário que a coordenação tinha customizado vira a sequência do ano padrão, o calendário próprio de uma turma vira a sequência do ano dela se aquele ano ainda não tiver uma, e o que sobrar fica guardado em `grupo.blocosArquivados` — continua no banco e no backup, para consulta antes de descartar.
 
@@ -267,14 +293,16 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 ## 8. Limitações conhecidas
 
 1. **Dados locais.** Tudo vive no `localStorage` de um navegador. Fila de dúvidas, grupos, percentil de simulado, aprovação de cadastros, relatório de turma e livro de ouro pressupõem várias pessoas, mas dois usuários em dois computadores não compartilham nada. **O usuário sabe disso e decidiu não migrar para backend agora.** Quando for a hora, Supabase ou Firebase resolvem, e o objeto `db` mapeia quase direto para tabelas.
-2. **Banco cobre uma só banca.** As 500 questões reais são todas da UNIFESP-EPM. As outras 5 bancas de referência (`CONFIG.instituicoesReferencia`) ainda não têm nenhuma questão real — só entram se o usuário conseguir os PDFs oficiais, pelo mesmo processo já usado para a UNIFESP (seção 12). *(Em volume puro o banco já foi testado sintético em mais de 6.000 questões e 8.000 respostas, sem travamento perceptível em nenhuma tela — não é mais o gargalo.)*
-3. **Flashcards da equipe cobrem só metade da taxonomia.** Os 501 cartões foram escritos para os 91 assuntos que existiam antes da carga das provas reais; os 125 assuntos novos (Psiquiatria e as demais especialidades abertas na seção 12) ainda não têm cartão de equipe dedicado. Os cartões gerados automaticamente a partir de erros e os escritos pelos próprios alunos cobrem esse buraco por enquanto, mas dependem de uso.
+2. **Banco pequeno.** 135 questões para uma máquina que pressupõe milhares. Em andamento pelo usuário. *(A plataforma já foi testada com banco sintético de mais de 6.000 questões e 8.000 respostas — ver seção 13.7 — sem travamentos perceptíveis em nenhuma tela.)*
+3. **Flashcards da equipe.** Eram 24; agora são 501, cobrindo os 91 assuntos (seção 13.3). Os gerados automaticamente e os escritos pelos alunos suprem o resto, mas dependem de uso — e agora também podem ser promovidos ao baralho da equipe (seção 13.6).
 4. **Autenticação é de demonstração**: senha em texto claro no arquivo. Não serve para uso público real.
 5. **Backup manual e restrito.** Só o administrador máster exporta — se ele não exportar, ninguém exporta. Configurações avisa quando passa de ~3,5 MB e quando o último backup tem mais de 7 dias.
 6. **Cartão pessoal é privado, não é segredo.** O isolamento é por papel na interface e nas funções; qualquer pessoa com acesso ao mesmo navegador e ao console enxerga tudo, como em qualquer dado do `localStorage`.
 7. **Uma sequência de blocos por ano, e só uma.** Duas turmas do mesmo ano não podem ter ordens diferentes de matéria — por decisão de projeto, elas diferem só pelo ponto de entrada. Se um dia for preciso que uma turma tenha uma sequência realmente distinta, será um campo novo (`grupo.sequenciaPropria`) e mais uma migração.
 8. **`somarDias()` usa `toISOString()`** depois de montar a data em horário local: certo para fusos negativos (Brasil), quebraria a data em fusos positivos (UTC+). Sem efeito para o público atual.
 9. **Lembrete de meta diária só funciona com o navegador aberto.** Como o app não tem service worker nem servidor, a Notification API só dispara enquanto alguma aba do Esc está carregada (mesmo minimizada). Não existe aviso de verdade com tudo fechado — isso exigiria backend (ver limitação 1).
+10. **Restrição de área de professor/residente (seção 15.8) não cobre tudo.** Vale para banco de questões, criar simulado, questões difíceis/sinalizadas/sugeridas e revisar formatação — mas não para Especialidades e Assuntos (taxonomia) nem para Importar Questões, que continuam abertos a todas as áreas. Se for preciso travar esses dois também, é o mesmo padrão de `areaRestritaDoUsuario()`.
+11. **Confiança do simulado não é capturada em modo aprendizado** (seção 15.9). No fluxo padrão (sem modo aprendizado) funciona normalmente; em modo aprendizado, a questão vira "respondida" no instante em que a alternativa é marcada, sem janela para escolher confiança antes disso.
 
 ---
 
@@ -290,14 +318,17 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 
 ## 10. Próximos passos sugeridos
 
-Em ordem de prioridade sugerida:
-
-1. **Flashcards para os 125 assuntos novos.** A carga da UNIFESP abriu Psiquiatria e outras especialidades inteiras (seção 12) que ainda não têm nenhum cartão de equipe — hoje só têm cobertura se o próprio aluno errar uma questão daquele assunto e o cartão automático entrar em cena. É o jeito mais rápido de destravar valor do que já foi construído.
-2. **Repetir a carga de provas reais para as outras 5 bancas de referência** (USP-SP/FMUSP, USP-RP/FMRP, Santa Casa de São Paulo, IAMSPE, UNESP), se o usuário conseguir os PDFs oficiais — o pipeline (extração, classificação, validação) já existe e é só repetir o processo descrito na seção 12.
-3. **Checagem humana amostral das 500 explicações autorais.** Foram escritas em lote, com boa fundamentação e revisão de consistência automatizada, mas nunca foram lidas por um segundo médico/residente. Vale um professor ou residente revisar uma amostra (por exemplo, as questões mais avançadas ou as anuladas, onde a explicação é mais interpretativa) antes de tratar o conjunto como validado clinicamente.
-4. **Questões com imagem/figura no enunciado.** Algumas das 500 questões reais mencionam uma imagem original da prova (ultrassom, radiografia, ressonância) que não foi reproduzida — a explicação descreve o achado esperado a partir do texto, mas o aluno não vê a imagem. Vale revisar essas questões pontualmente e anexar a imagem quando possível.
-5. **Relatório individual do aluno em PDF**, para devolutiva um a um (item já sugerido antes e ainda pendente).
-6. **Backend com autenticação de verdade**, quando o uso sair do dispositivo único — é a limitação mais estrutural (seção 8, item 1), mas também a de maior esforço; faz sentido represar até os itens de conteúdo acima estarem resolvidos.
+1. ~~Carga das provas reais dos últimos cinco anos~~ — feito para a UNIFESP-EPM (500 questões, 2022-2026, seção 14). Falta repetir para as outras 5 bancas de referência, se o usuário conseguir os PDFs.
+2. ~~Ampliar o baralho da equipe~~ — feito nesta revisão (501 flashcards, seção 13.3).
+3. Backend com autenticação de verdade, quando o uso sair do dispositivo único.
+4. ~~Notificações/lembretes de meta diária~~ — feito nesta revisão (seção 13.4).
+5. ~~Cartões com imagem~~ — feito nesta revisão (seção 13.5).
+6. ~~Promover cartão pessoal para o baralho da equipe~~ — feito nesta revisão (seção 13.6).
+7. Relatório individual do aluno em PDF, para devolutiva um a um.
+8. ~~Perfilar de novo as telas com banco grande~~ — feito nesta revisão com banco sintético de >6.000 questões; dois gargalos novos encontrados e corrigidos (seção 13.7). Vale repetir o exercício de novo quando o banco real crescer bastante mais, pelo mesmo motivo de sempre: esse tipo de gargalo só aparece com volume.
+9. ~~Estatística de uso das alternativas eliminadas~~ — feito nesta revisão (seção 13.8).
+10. Estender a restrição de área de professor/residente (seção 15.8) para Especialidades e Assuntos e para Importar Questões, se fizer sentido travar esses dois também.
+11. Permitir capturar confiança do simulado também em modo aprendizado (seção 15.9, limitação 11).
 
 ---
 
@@ -314,12 +345,300 @@ Anexe `esc.html` e este resumo, e descreva o que quer em português corrente. Co
 
 ---
 
-## 12. Histórico de revisões
+## 12. O que mudou na revisão de 19/09/2026
 
-Registro resumido de cada rodada de trabalho, da mais antiga à mais recente. Detalhe de implementação (nomes de função, migração, tabela de tempo) que já vale como referência permanente está nas seções 6 e 7, não aqui — esta seção é só o "o que mudou e por quê" de cada rodada.
+### Defeitos corrigidos
 
-**Revisão geral (manhã de 19/09/2026).** Cinco defeitos corrigidos: a repetição espaçada de questões não usava a escada de intervalos configurada (`CONFIG.intervalosBase`); `calcularDificuldade()` recalculava a prevalência de todos os assuntos a cada questão dentro de um `.sort()`, um gargalo que só aparece com banco grande; contraste abaixo do padrão de acessibilidade (WCAG AA) em dois tons do tema claro; afordância de "clicável" sobrava nas alternativas depois de já ter respondido; um comentário `/* */` mal fechado engolia um bloco de documentação. Além disso: polimento visual (sombras, transições, `prefers-reduced-motion`), paginação de todas as listas longas, meta diária de flashcards com sequência de dias, eliminar alternativas durante a resolução da questão, blocos de estudo organizados por ano da faculdade com rodízio real entre turmas, e sessão de estudo retomável (sair e voltar mantém a mesma fila). Verificado com Chromium/Playwright em todos os papéis e rotas.
+1. **A escada de repetição espaçada não era usada.** `CONFIG.intervalosBase` ([1, 3, 7, 16, 35, 75]) estava declarada, comentada e documentada neste resumo, mas `registrarRevisao()` ignorava a lista e usava valores fixos no código (1 dia, depois 6, depois só multiplicava pelo fator). Agora a escada é percorrida de verdade, degrau a degrau, e o fator só entra quando ela acaba. A progressão dos primeiros intervalos ficou mais gradual — que era a intenção original.
+2. **Gargalo de desempenho na dificuldade progressiva.** `calcularDificuldade()` recalculava a prevalência de **todos** os assuntos, varrendo o banco inteiro, **para cada questão** — e era chamada de dentro de um `.sort()`. Com 135 questões passava despercebido; com milhares travaria o navegador. Agora a prevalência é calculada uma vez por gravação (cache invalidado por `_geracaoDb`, que `saveState()` incrementa). Os números de saída são idênticos aos de antes; ordenar 5.000 questões por dificuldade passou a levar ~9 ms.
+3. **Contraste abaixo do mínimo de acessibilidade.** No tema claro, `--muted` (rótulos, dicas, legendas) tinha 3,25:1 e `--amber` (avisos, badges) 3,30:1 sobre o fundo — a WCAG AA pede 4,5:1 para texto pequeno. Os dois foram escurecidos mantendo o mesmo matiz: agora 4,63:1 e 4,67:1. O tema escuro já passava e não foi mexido.
+4. **Afordância enganosa nas alternativas.** Depois de responder, passar o mouse sobre as alternativas ainda dava o destaque de "clicável", embora elas já não respondessem a clique.
+5. **Comentário `/* */` não fechado** logo depois de `SEED_BLOCOS`, que engolia o bloco de documentação seguinte.
 
-**Ajuste de política de conteúdo e expansão de recursos (noite de 19/09/2026).** Esclarecido que enunciado/alternativas/gabarito oficial de prova de instituição pública são domínio público (podem ser transcritos integralmente) e que só a explicação precisa ser sempre autoral — refletido no prompt de importação e no formulário de questão. A partir daí: baralho da equipe ampliado de 24 para 501 flashcards, cobrindo os 91 assuntos que existiam até então; lembrete de meta diária via Notification API do navegador; flashcards ganharam suporte a imagem (mesmo padrão já usado nas questões); fluxo de promoção de cartão pessoal para o baralho da equipe, com aprovação de professor/coordenação; estatística de alternativas eliminadas por quem errou, agregada por questão em Controle de Qualidade. O banco também foi testado sintético em mais de 6.000 questões e 8.000 respostas, o que revelou dois novos gargalos do mesmo tipo do já corrigido pela manhã (uma função revarrendo o banco inteiro a cada chamada, dentro de um laço) — ambos corrigidos com índices cacheados por geração do banco, derrubando o tempo de operações como colar uma prova de 100 questões de 6,8s para 106ms.
+### Polimento visual
 
-**Carga das 500 questões reais da UNIFESP-EPM, 2022-2026 (madrugada seguinte).** O usuário forneceu os PDFs das provas de Acesso Direto/R1 dos últimos cinco anos. Conteúdo de prova pública (enunciado, alternativas, gabarito oficial) extraído por scripts Node.js reutilizáveis (`provas/parse_gabarito.js`, `provas/parse_questoes.js`, a partir de texto gerado com `pdftotext`), com duas armadilhas de parsing corrigidas (caractere de quebra de página inserido pelo PDF; a última questão de cada prova absorvendo a folha de gabarito em branco). Achado relevante: a prova real usa só 4 alternativas (A-D), não 5 — formulário e importador ajustados para tornar a alternativa E opcional. Para cada uma das 500 questões foi escrita uma explicação **100% autoral** (nunca a partir da resolução do cursinho de origem do PDF), com referência citada e dificuldade estimada, combinada ao conteúdo da prova por um script de merge (`provas/merge_year.js`) que também classificou cada questão num assunto da taxonomia. A taxonomia foi ampliada de 91 para 216 assuntos (24 para 39 especialidades) em 5 levas, para dar lugar a especialidades que a prova real cobre e a plataforma didática não tinha — Psiquiatria inteira, criada do zero, entre elas. Validado com checagem de sintaxe, IDs únicos, integridade completa da taxonomia, completude estrutural das 500 questões e testes funcionais via Chromium/Playwright (contagem por ano e por anuladas batendo com o gabarito oficial, resposta correta sendo pontuada como `correta: true`, zero erros de JavaScript). Ficou de fora, de propósito: qualquer leitura da resolução do cursinho de origem como fonte de explicação, e as imagens/figuras que algumas questões referenciam no enunciado (a explicação descreve o achado esperado pelo texto, sem a imagem original anexada).
+Sistema de elevação (`--shadow-xs/sm/md`) aplicado só ao que é de fato clicável; transição suave na troca de tema; entrada de página a cada navegação; efeito de virada no flashcard; `prefers-reduced-motion` respeitado em tudo; título da home com escala fluida (`clamp`); rótulos de seção padronizados em caixa alta com espaçamento entre letras.
+
+### Funcionalidades novas
+
+| O quê | Onde mexer |
+|---|---|
+| **Paginação** de todas as listas longas | `paginar()` / `controlesPaginacao()` |
+| **Meta diária de flashcards** com sequência de dias | `metaCartoesDoUsuario()`, `abrirModalMetaCartoes()`, `db.diasCartoes` |
+| **Eliminar alternativas** durante a questão | `alternarAlternativaEliminada()`, classe CSS `.eliminada` |
+| **Blocos por ano da faculdade** com rodízio entre turmas | `SEED_SEQUENCIAS_ANO`, `blocosDoGrupo()`, tela Blocos de Estudo |
+| **Sessão retomável** (sair e voltar mantém a mesma fila) | `salvarSessaoEmAndamento()`, `db.sessoesEmAndamento` |
+| **Fim do "expandir" redundante** na questão em resolução | `renderAcoesQuestao()`, `renderQuestionCard()` |
+
+### Como isso foi verificado
+
+Além da leitura do código, a plataforma foi aberta num navegador automatizado (Chromium/Playwright) e percorrida inteira: login nos seis papéis, todas as rotas de cada papel, sessão de estudo completa, flashcards, os quatro recortes de Meu Desempenho, os quatro tipos de PDF, CRUD de questão, rodízio de turmas e migração de um banco no formato antigo. Nenhum erro de JavaScript em nenhum desses caminhos.
+
+---
+
+## 13. O que mudou na atualização da noite de 19/09/2026
+
+Esta rodada tratou a lista de "próximos passos sugeridos" da seção 10. Ordem desta seção segue a mesma numeração dos itens 1-9 daquela lista.
+
+### 13.1 — Política de conteúdo: domínio público × explicação autoral
+
+O usuário esclareceu um ponto real: prova de residência de instituição **pública** (USP-SP, USP-RP, UNIFESP, Santa Casa de São Paulo, IAMSPE, UNESP) é ato público — o **enunciado, as alternativas e o gabarito oficial** podem ser usados integralmente, sem parafrasear. O que nunca pode ser copiado é a **explicação/resolução de terceiros** (cursinhos, sites comerciais) — isso sim é propriedade intelectual de quem escreveu, e também a parte mais sujeita a erro quando copiada sem checar.
+
+Mudou:
+- `CONFIG.instituicoesReferencia`: lista das 6 bancas, sugerida (não obrigatória) nos campos de instituição de Importar Questões e do formulário de questão.
+- `gerarPromptImportacao()`: o prompt de IA agora separa claramente duas regras — "REGRA SOBRE O ENUNCIADO (pode copiar)" e "REGRAS SOBRE A EXPLICAÇÃO (isto NÃO pode ser copiado)", nos dois modos (prova inteira e questões avulsas).
+- Comentário acima de `SEED_QUESTOES` reescrito com a política completa.
+- Seção 9 deste resumo, reescrita (ver acima).
+
+### 13.2 — Questões reais das 6 bancas, últimos 5 anos: infraestrutura pronta, conteúdo pendente
+
+**Isto ficou incompleto, e é importante que a próxima conversa saiba o motivo.** O plano era buscar na internet as provas reais e estruturá-las direto no banco. Na prática:
+
+- O `WebSearch` confirmou que as 6 bancas publicam prova+gabarito oficiais em PDF, em endereços oficiais (FUVEST para USP-SP e USP-RP, VUNESP para UNESP, site da Avança-SP/IAMSPE, FCC para a Santa Casa de São Paulo, COREME/FapUnifesp para a UNIFESP).
+- Mas o `WebFetch` e o `curl` direto para baixar esses PDFs retornaram `EGRESS_BLOCKED` / 403 — a política de rede **deste ambiente de execução** (não é uma regra do projeto) bloqueia esses domínios. Não foi feita nenhuma tentativa de contornar isso.
+- Sem conseguir baixar o PDF oficial, não havia como transcrever as questões reais com a precisão que a política de conteúdo exige (seção 13.1) — inventar o texto "de memória" e apresentar como se fosse a prova real seria exatamente o risco que o projeto sempre quis evitar.
+
+**O que ficou pronto** para quando o conteúdo chegar: instituições sugeridas no formulário, prompt de importação já separando enunciado (copiável) de explicação (autoral), campo `real:true/false` e filtro "últimos 5 anos" (já existia antes desta revisão, em Estudar, Provas Antigas e Simulados).
+
+**Como destravar:** numa próxima conversa (ou nesta mesma, se o ambiente permitir acesso à internet), baixe ou cole o texto/PDF da prova real e peça para estruturar via "Admin > Importar Questões" — é exatamente para isso que a tela existe.
+
+### 13.3 — Baralho da equipe: de 24 para 501 flashcards
+
+`SEED_FLASHCARDS` ganhou 477 cartões novos (`fc-025` a `fc-501`), cobrindo os 91 assuntos das 5 grandes áreas — de 5 a 10 cartões por assunto, mais concentrados nos assuntos de maior peso em prova (síndrome coronariana aguda, sepse, HIV, pré-eclâmpsia, apendicite, técnica operatória etc.). Todos com `usuarioId:null` (equipe), `origem:"autoral"`, escritos com o mesmo padrão de pergunta-curta/resposta-direta dos 24 originais. Conteúdo baseado em consensos e diretrizes de conhecimento médico geral, no mesmo espírito das 105 questões didáticas já existentes — não é cópia de nenhum material de terceiros.
+
+### 13.4 — Lembrete de meta diária
+
+A plataforma já tinha um aviso *dentro do app* quando a meta do dia não é batida (`gerarNotificacoes()` já existia). O que faltava era avisar quem não abriu o app. Duas funções novas:
+
+- `ativarLembreteMetaDiaria()` / `desativarLembreteMetaDiaria()`: pedem permissão de notificação do navegador e ligam/desligam o lembrete por usuário (`usuario.lembreteMetaAtivo`, `usuario.lembreteMetaHorario`).
+- `checarLembreteMetaDiaria()`: rodando a cada 60s (`setInterval`, no bloco de INICIALIZAÇÃO), dispara uma `Notification` do navegador no horário configurado (padrão 20h) se a meta de questões OU de cartões ainda não foi batida naquele dia — só uma vez por dia (`usuario.lembreteMetaUltimoEnvio`).
+
+Configurável em **Perfil** (card "Lembrete de meta diária", só para aluno). **Limitação documentada** (seção 8, item 9): só funciona com uma aba do navegador aberta — sem service worker/backend não existe push de verdade com tudo fechado.
+
+### 13.5 — Flashcards com imagem
+
+Mesmo padrão de imagem que já existia nas questões (upload com compressão para JPEG ~1100px, ou link) — reaproveitado nos flashcards:
+
+- Campos novos no cartão: `imagemUrl`, `imagemLegenda`.
+- Formulário (`abrirFormularioFlashcard`): campo de imagem com upload/link/preview/remover, usando um estado à parte (`state.filtroRota.imagemFlashcard`) para não colidir com o formulário de questão.
+- A imagem aparece **na frente do cartão**, antes de virar — pensado para cartões de reconhecimento (identifique o achado no ECG/fundo de olho/lesão antes de ver a resposta).
+- Também entra no PDF do baralho para recortar (`htmlFlashcardsPDF()`).
+- Não foram adicionadas imagens de exemplo no `SEED_FLASHCARDS`: como o ambiente desta conversa não tem acesso à internet para verificar se uma URL externa realmente carrega (seção 13.2), preferiu-se não arriscar um link quebrado no material da equipe. A equipe usa a tela para anexar as imagens reais.
+
+### 13.6 — Promover cartão pessoal para o baralho da equipe
+
+Fluxo novo, com aprovação no meio — os dois mundos (cartão pessoal × baralho oficial) agora se comunicam, mas não automaticamente:
+
+1. Na lista "Meus cartões" (Revisão Rápida), cada cartão pessoal ganhou um botão para **sugerir** o cartão para a equipe (`sugerirFlashcardParaEquipe()`). O cartão continua pessoal e no baralho do aluno normalmente enquanto aguarda.
+2. A sugestão aparece em **Controle de Qualidade > aba "Flashcards Sugeridos"** (nova aba, ao lado de Difíceis/Sinalizadas/Sugeridas/Duplicadas), visível a quem gerencia conteúdo (professor, admin de qualquer nível).
+3. Aprovar (`aprovarFlashcardSugerido()`): o cartão vira `usuarioId:null` (material da equipe), `origem:"promovido"`, mantendo `autorOriginalId` para dar crédito a quem escreveu.
+4. Recusar (`recusarFlashcardSugerido()`): pede um motivo (opcional), o cartão continua pessoal, e o aluno pode ajustar e enviar de novo.
+5. Badges de status (`badgeSugestaoFlashcard()`) mostram "aguardando aprovação", "promovido" ou "recusado" (com o motivo) na lista do próprio aluno.
+
+Testado ponta a ponta com automação de navegador: aluno cria cartão a partir de uma questão → sugere → professor aprova → cartão passa a aparecer no baralho da equipe.
+
+### 13.7 — Novo reperfilamento com banco grande (>1.000 questões) — dois gargalos encontrados e corrigidos
+
+A seção 8 já registrava que o banco tinha sido testado com 2.135 questões depois da correção anterior (dificuldade progressiva). Desta vez o teste foi mais agressivo — **banco sintético de 6.135 questões, 8.000 respostas e 6.501 flashcards**, gerado e medido via Chromium/Playwright automatizado — e apareceram **dois gargalos novos do mesmo tipo do já corrigido**: uma função relida do zero a cada chamada, dentro de um laço sobre o banco inteiro.
+
+1. **`respostasDaQuestao()` varria `db.respostas` inteiro a cada chamada.** Ela é usada por `jaFoiRespondida()` e `ultimaResposta()`, que por sua vez são chamadas **uma vez por questão** dentro de vários filtros: sessão recomendada, filas de confiança (erro com certeza / acerto no chute), montagem do baralho de flashcards. Com poucas respostas isso não se nota; com milhares de respostas e milhares de questões, o custo é (questões × respostas). Corrigido com um índice por usuário (`indiceRespostasDoUsuario()`), montado uma vez e reaproveitado enquanto o banco não muda — mesma técnica de cache por `_geracaoDb` já usada em `mapaPrevalenciasAssuntos()`.
+2. **`questoesDuplicadasDe()` varria o banco inteiro a cada questão colada na importação.** Colar uma prova de 100 questões contra um banco de 6.000 chamava essa função 100 vezes, cada uma revarrendo e renormalizando os 6.000 enunciados existentes — **6,8 segundos** de travamento na pré-visualização da importação. Corrigido com um índice de assinaturas (`indiceAssinaturasQuestoes()`), também cacheado por `_geracaoDb`. `gruposDeDuplicatas()` (aba Duplicadas) passou a reaproveitar o mesmo índice.
+
+**Resultado medido** (banco de 6.135 questões / 8.000 respostas / 6.501 flashcards):
+
+| Operação | Antes | Depois |
+|---|---|---|
+| Colar prova de 100 questões (pré-visualização da importação) | 6.779 ms | 106 ms |
+| Montar sessão recomendada | 689 ms | 8 ms |
+| Montar baralho de flashcards | 941 ms | 19 ms |
+| Abrir a tela Estudar | 820 ms | 13 ms |
+| Abrir Meu Desempenho | 463 ms | 12 ms |
+| Aba Duplicadas (Controle de Qualidade) | 87 ms | 0,2 ms |
+
+Ordenação por dificuldade (o gargalo já corrigido na revisão anterior) continuou rápida (~11-16 ms com 6.135 questões), confirmando que aquela correção segue de pé com um banco ainda maior.
+
+### 13.8 — Estatística de alternativas eliminadas
+
+Novo dado de qualidade de questão: quando um aluno **erra** uma questão, a plataforma agora registra quais alternativas ele já tinha **riscado** (eliminado) antes de responder.
+
+- `registrarResposta()`: se a resposta for incorreta, incrementa `q.estatisticas.eliminacoesAoErrar[altId]` para cada alternativa que estava em `eliminadasDaQuestao(questaoId)` no momento da resposta. Campo lido com `||{}` em todo lugar, então nenhuma questão antiga precisou de migração.
+- Em **Controle de Qualidade > Questões Difíceis**, cada alternativa agora mostra "riscada por N" ao lado da barra de distribuição.
+- Quando o **próprio gabarito** foi a alternativa mais riscada por quem errou, aparece um alerta destacado: é o sinal de que a resposta certa está redigida de um jeito que soa errada, e vale revisar o texto daquela alternativa especificamente.
+
+Essa é a mesma informação que já aparecia individualmente no feedback de fim de questão ("Você tinha eliminado a alternativa X, que era a correta") — agora também **agregada por questão**, para quem gerencia conteúdo decidir se a alternativa precisa ser reescrita.
+
+### Como isso foi verificado
+
+Sintaxe do arquivo inteiro validada a cada edição grande (`node -e "new Function(...)"`, sem erros). Fluxo completo testado com Chromium/Playwright automatizado: login nos seis papéis e navegação por todas as rotas de cada um (nenhum erro de JavaScript); aluno respondendo questão com alternativa certa riscada (confirma `eliminacoesAoErrar` incrementando); aluno criando flashcard a partir de questão, sugerindo para a equipe, e professor aprovando (confirma o fluxo de promoção ponta a ponta); e o banco sintético de >6.000 questões usado para medir os tempos da tabela acima.
+
+---
+
+## 14. Carga das 500 questões reais da UNIFESP-EPM (2022-2026)
+
+O usuário forneceu os PDFs das provas objetivas da UNIFESP-EPM (Acesso Direto/R1) dos últimos cinco anos — material de um cursinho (Medway), mas cujo conteúdo de prova (enunciado, alternativas, gabarito oficial) é ato público, coberto pela política de conteúdo já registrada na seção 9. O pedido foi explícito: usar o conteúdo real, escrever explicação sempre autoral, e ampliar a taxonomia com os assuntos novos que a prova cobrisse e a plataforma ainda não tivesse (o próprio usuário citou Psiquiatria como exemplo).
+
+### 14.1 — Extração do texto das provas
+
+As 5 provas em PDF foram convertidas para texto com `pdftotext` (poppler-utils, instalado via `apt-get` neste ambiente): uma cópia em modo `-layout` (para leitura humana, preservando colunas) e outra em modo linear (mais fácil de processar por regex). Dois scripts Node.js reutilizáveis (`provas/parse_gabarito.js` e `provas/parse_questoes.js`) fazem a extração mecânica:
+
+- `parse_gabarito.js` lê a folha de respostas de cada prova e gera `gabarito_AAAA.json` (`{"1":"A","2":"C",...}`, com `null` nas questões anuladas).
+- `parse_questoes.js` quebra o texto em questões (`QUESTÃO N.`), separa enunciado e alternativas A-D, remove cabeçalhos/rodapés repetidos e casa cada questão com seu gabarito, gerando `questoes_AAAA.json` — um array com `{numero, enunciado, alternativas, gabarito, anulada}` por questão.
+
+Duas armadilhas de parsing precisaram de correção: um caractere de quebra de página (`\f`) inserido pelo `pdftotext` no meio do texto de algumas alternativas (corrigido normalizando cada linha com `.trim()` antes do regex); e a última questão de cada prova (Q100) absorvendo a folha de gabarito em branco por não haver um "QUESTÃO 101" para marcar o fim do bloco (corrigido cortando o texto no cabeçalho "GABARITO" antes de separar as alternativas). Uma checagem automatizada final (`node -e` percorrendo as 500 questões) não encontrou nenhum problema estrutural (enunciado vazio, alternativa vazia, campo com tamanho anômalo).
+
+**Achado relevante para o formulário:** a prova real da UNIFESP-EPM usa só 4 alternativas (A-D), não 5 (A-E) como a plataforma assumia. O formulário de cadastro manual (`salvarQuestaoFormulario`) e o parser de importação em texto (`parseImportText`) foram ajustados para tornar a alternativa E opcional, com uma dica de texto explicando o motivo — sem quebrar nada que já dependia de 5 alternativas.
+
+### 14.2 — Classificação e explicação autoral
+
+Para cada uma das 500 questões, o processo foi: ler o conteúdo completo (enunciado, alternativas, gabarito oficial), decidir o assunto da taxonomia mais adequado (reaproveitando um assunto já existente sempre que fazia sentido, para não pulverizar a taxonomia em categorias quase-duplicadas) e escrever uma explicação de **por que o gabarito está certo e por que as alternativas erradas não se sustentam**, sempre a partir de diretrizes de sociedades médicas brasileiras, protocolos do Ministério da Saúde ou literatura consagrada — nunca a partir da resolução do cursinho de origem do PDF, que não foi lida com esse propósito em nenhum momento do processo. Cada questão também recebeu uma referência citada (`referencias`) e uma dificuldade estimada (fundamental/intermediário/avançado).
+
+Essas anotações (classificação + explicação) foram escritas em arquivos JSON compactos (`provas/anota_AAAA.json`, um objeto por questão: `{n, a: assuntoId, d: dificuldade, exp: explicação, ref: referência}`) e combinadas ao conteúdo mecânico da prova por um script (`provas/merge_year.js`), que:
+
+1. Lê a `SEED_TAXONOMIA` diretamente do `esc.html` (via regex + `eval`) para montar um índice `assuntoId → {especialidadeId, areaId}`.
+2. Junta `questoes_AAAA.json` com `anota_AAAA.json` por número da questão.
+3. Gera o objeto JavaScript completo de cada questão (`id: "q-unifespAAAA-NNN"`, `banca: "UNIFESP-EPM"`, `real: true`, todos os campos do modelo de dados) e avisa se alguma questão ficou **sem anotação** ou com **assunto inválido** (checagem que pegou erros de digitação de `assuntoId` antes da inserção).
+4. Escreve o resultado em `bloco_AAAA.js`, inserido no `SEED_QUESTOES` do `esc.html` logo antes do fechamento do array.
+
+Esse pipeline (ler → anotar → expandir taxonomia quando faltava algo → rodar o script → inserir o bloco → validar) foi repetido ano a ano, o que permitiu reaproveitar assuntos já criados em anos anteriores e ir refinando a taxonomia de forma incremental em vez de tentar prever tudo de uma vez.
+
+### 14.3 — Taxonomia ampliada: de 91 para 216 assuntos
+
+A prova de "Acesso Direto" da UNIFESP cobre a medicina inteira, não só as especialidades que a plataforma já tinha (Cardiologia, Pneumologia, Gastroenterologia, Endocrinologia, Infectologia, Nefrologia, Oftalmologia, Técnica Operatória). Especialidades inteiras foram criadas do zero, entre elas:
+
+- **Psiquiatria** (o exemplo citado pelo usuário): Transtornos do Humor, Psicoses e Esquizofrenia, Transtornos por Uso de Substâncias, Psiquiatria da Infância.
+- Neurologia, Neurocirurgia, Otorrinolaringologia, Ortopedia, Urologia, Reumatologia, Dermatologia, Hematologia, Alergia e Imunologia, Geriatria, Genética Médica, Anestesiologia, Cirurgia Vascular, Cirurgia Torácica, Cirurgia Oncológica, Abdome Agudo/Trauma, Perioperatório, Bioética, Epidemiologia/Bioestatística, SUS/Saúde Coletiva, Saúde da Família, Ginecologia, Obstetrícia, Planejamento Familiar, Onco-ginecologia, Neonatologia, Crescimento e Desenvolvimento, Infectologia Pediátrica, Emergências Pediátricas.
+
+Ao todo, **125 assuntos novos** foram acrescentados em 5 levas (uma grande leva inicial, cobrindo a maior parte das lacunas de uma vez a partir de uma leitura panorâmica das 500 questões, e quatro levas menores, uma por ano, para os assuntos mais específicos que só apareceram ao escrever a explicação detalhada de cada questão) — sempre verificando antes se um assunto equivalente já existia, para não duplicar categorias. Cada leva ficou marcada com um comentário no código (`/* ... assuntos avulsos ... */`) explicando de onde veio.
+
+### 14.4 — Validação
+
+Depois da inserção de cada ano (e uma validação final consolidada com os 5 anos juntos):
+
+- **Sintaxe:** `node -e "new Function(scriptContent)"` sem erros a cada inserção.
+- **IDs únicos:** checagem de duplicidade entre as 500 questões reais (`q-unifespAAAA-NNN`) e as 135 didáticas já existentes — nenhuma duplicata.
+- **Integridade da taxonomia:** todo `assuntoId` usado por uma questão real existe na `SEED_TAXONOMIA`; toda `especialidadeId` de assunto existe; toda `areaId` de especialidade existe — checado nos 216 assuntos, nas 39 especialidades e nas 500 questões reais, sem nenhuma referência quebrada.
+- **Completude estrutural:** nenhuma questão com enunciado vazio, menos de 4 alternativas, alternativa sem texto, status "ativa" sem gabarito, ou explicação vazia/curta demais.
+- **Funcional, com Chromium/Playwright:** contagem de questões por ano batendo com o esperado (100 cada); contagem de anuladas por ano batendo com a folha de gabarito oficial de cada prova (2022: 1, 2023: 4, 2024: 3, 2025: 7, 2026: 3); resposta de uma questão de cada ano com a alternativa do gabarito oficial sendo registrada como `correta: true`; nenhum erro de JavaScript ao carregar a página nem ao navegar pelas rotas principais.
+- **Resumo final do banco** (lido do `db` já carregado no navegador): 635 questões totais, 500 reais da UNIFESP-EPM (100 por ano de 2022 a 2026), 216 assuntos, 39 especialidades, 5 áreas, 501 flashcards — sem nenhum erro de JavaScript.
+
+### O que ficou de fora, de propósito
+
+Nenhuma explicação foi copiada, parafraseada ou consultada a partir da resolução do cursinho presente no PDF original — a resolução do Medway não foi lida como fonte para as explicações em nenhum momento; apenas o enunciado, as alternativas e o gabarito oficial (a parte de domínio público) foram usados. Imagens/figuras eventualmente referenciadas em algumas questões (por exemplo, ultrassonografias, radiografias, ressonâncias mencionadas no enunciado) não foram reproduzidas — a explicação descreve o achado esperado com base no texto do enunciado e no gabarito, mas a plataforma não tem a imagem original anexada a essas questões específicas.
+
+---
+
+## 15. O que mudou na atualização da noite de 19/09/2026 (segunda rodada — pedidos do usuário)
+
+Esta rodada tratou onze pedidos pontuais do usuário, numerados 1 a 11 abaixo (a numeração é só desta seção, não corresponde à ordem em que foram pedidos). Nenhum arquivo novo: tudo dentro do próprio `index.html`.
+
+### 15.1 — Navegação de flashcard por clique/tecla, com "voltar sempre pousa numa pergunta"
+
+Antes, clicar no cartão só alternava pergunta/resposta do mesmo cartão (não avançava), e as teclas A/D não faziam nada em Flashcards. Duas funções novas substituem `virarFlashcard()`/`pularFlashcard()`, que foram removidas:
+
+- `avancarFlashcard()` — se está na pergunta, vira para a resposta; se já está na resposta, avança para a pergunta do próximo cartão.
+- `voltarFlashcard()` — se está na resposta, volta para a pergunta do mesmo cartão; se já está na pergunta, volta para a pergunta do cartão anterior (nunca reaparece direto numa resposta — era exatamente o pedido: "se está na resposta e clicar A, volta na pergunta; mas se está na pergunta e voltar, volta para a pergunta anterior").
+
+Ligado em quatro lugares: `onclick` do cartão (clique = avançar), tecla A/D no `keydown` global (bloco de flashcards adicionado ao lado do bloco que já existia para sessão/simulado), e o gesto de arrastar (`avancarPorGesto`/`voltarPorGesto`, que antes usavam `pularFlashcard` e agora chamam as duas funções novas). Testado via automação de navegador: D-D-A a partir do cartão 1 pousa de volta no cartão 1 (pergunta), não no cartão 2 nem na resposta do cartão 1.
+
+### 15.2 — Botão "Mostrar resposta" centralizado e maior
+
+O botão vivia fora do `.flash-palco` (a faixa de 640px que centraliza o cartão), então tecnicamente já estava com `justify-content:center`, mas centralizado na LARGURA DA PÁGINA, não do cartão — o que descolava visualmente os dois. Ele entrou para dentro do `.flash-palco`, ficando alinhado sob o cartão, e ganhou uma classe própria (`.flash-btn-mostrar`) com mais padding e fonte maior (`1.05rem`).
+
+### 15.3 — Simulados + Provas Antigas + Lista de Estudo fundidos numa tela só
+
+`renderSimulados()` agora é uma tela com três abas (`state.filtroRota.abaSimulados`, controlada por `mudarAbaSimulados()`):
+
+1. **Simulados** (`renderAbaSimuladosProprios`) — o que já existia: recomendados para o bloco atual + outros disponíveis.
+2. **Provas Antigas** (`renderAbaProvasAntigas`, renomeada de `renderProvasAntigas` — mesma lógica de filtro por banca/ano/área, só perdeu o próprio `page-header` porque a tela já tem um).
+3. **Listas de Estudo** (`renderAbaListasEstudo`) — tipo novo de conjunto de questões.
+
+**Tipo novo "lista de estudo".** `db.simulados` ganhou o campo `categoria` ("simulado" ou "lista" — o campo `tipo` antigo, que já existia mas nunca era lido por lógica nenhuma, ficou como estava, sem uso). Uma lista de estudo tem `especialidadeId` (a "matéria" — opcional, "todas" se vazio), `dataTipo` ("realizada" ou "disponibilizada") e `dataRef` (data ISO). Sem cronômetro: "Estudar agora" chama `praticarListaEstudo()`, que é uma sessão de prática comum (`iniciarSessaoComLista`).
+
+**Criar Simulado** (`renderCriarSimulado`) ganhou um seletor "Tipo de conjunto" (`mudarCategoriaCriarSimulado`) que troca os campos da etapa 3: simulado mostra duração + blocos recomendados; lista de estudo mostra matéria + "esta lista foi realizada/disponibilizada em" + data. `salvarSimuladoCriado()` monta o objeto certo conforme a categoria.
+
+A rota antiga `provas-antigas` continua respondendo (não quebra link salvo): o roteador troca a aba para "provas" e redireciona para `simulados`.
+
+### 15.4 — Histórico de Atividade diferente por papel
+
+Antes, `renderHistorico()` mostrava a mesma coisa para todo mundo: sessões de questões respondidas e simulados realizados. Isso fazia sentido para aluno, mas nada para quem gere conteúdo — professor, residente e admin não "estudam" no dia a dia, eles tomam decisões (aprovar cadastro, editar questão, aprovar sugestão).
+
+- **Novo armazenamento:** `db.logAtividade` (array), com `registrarAtividade(usuarioId, tipo, descricao, alvoId)`, e um mapa `ROTULOS_ATIVIDADE` que dá ícone e rótulo a cada `tipo` (cadastro aprovado/recusado, questão criada/editada/excluída, questão sugerida aprovada/recusada, flashcard promovido/recusado, simulado/lista criado, papel alterado, nível de admin alterado).
+- **Instrumentado em:** `aprovarUsuario`/`rejeitarUsuario`, `alterarPapelUsuario`, `alterarNivelAdmin`, `salvarQuestaoFormulario` (criar/editar), `excluirQuestaoConfirmado`, `aprovarQuestaoSugerida`, `aprovarFlashcardSugerido`/`recusarFlashcardSugerido`, `salvarSimuladoCriado`.
+- **Novo render:** `renderHistoricoAtividade(u)` — linha do tempo das próprias ações do usuário (`usuarioId===u.id`, nunca as de outro), com contadores por tipo e paginação. `renderHistorico()` decide qual mostrar: `u.papel!=="aluno" && !state.modoAluno` vai para a atividade; senão, o histórico de estudo de sempre. Em modo aluno, professor/residente/admin veem o histórico de estudo normalmente, porque ali eles estão de fato estudando.
+
+### 15.5 — "Realizar Simulados" saiu do menu de residente, professor e admin
+
+`navItemsParaPapel()`: o item `simulados` (antes rotulado "Realizar Simulados" para quem gere conteúdo) e o item `provas-antigas` separado saíram dos arrays de residente e de conteúdo (professor/admin) — porque os dois viraram a mesma tela fundida (seção 15.3), e essa tela é só de aluno. Quem gere conteúdo usa "Criar Simulado" para montar simulados/listas, não para respondê-los; depois de criar, `salvarSimuladoCriado()` volta para `criar-simulado` (não mais para `simulados`, que nem aparece no menu dele). O menu de aluno também mudou: "Simulados" e "Provas Antigas" eram dois itens e viraram um só (a tela com abas).
+
+### 15.6 — Revisão: questões e flashcards separados visualmente
+
+`renderRevisao()` ganhou dois rótulos de seção (`.secao-revisao-titulo`, CSS novo — caixa alta, letter-spacing, ícone) que dividem a tela em "Revisão de questões" (repetição espaçada, assuntos vencidos, filas por tipo de erro, só erros/chutes pendentes) e "Revisão por flashcards" (que desceu para o fim da tela e ganhou borda de destaque, classe `.secao-flash`). Antes o card de flashcards ficava no meio dos cards de questão, sem nenhuma pista visual do que era o quê.
+
+### 15.7 — "Revisão Rápida" renomeada para "Flashcards"
+
+Trocado em todo texto voltado ao usuário: item de menu (aluno e conteúdo), título de rota (`ROUTE_TITLES`), cabeçalho da própria tela, cabeçalho do resumo de fim de baralho ("Fim dos flashcards"), botões espalhados pela Home e por Meu Desempenho, e a frase da tela de recursos (landing page). Nomes de função e de rota internos (`iniciarSessaoFlashcards`, rota `flashcards` etc.) não mudaram — só o texto visível.
+
+### 15.8 — Professor e residente restritos a uma grande área
+
+Antes, o cadastro de professor/residente pedia "grandes áreas de atuação" em checkboxes (múltiplas), usadas só para filtrar a fila de dúvidas. Agora o campo é um **select único**, obrigatório, rotulado "Especialidade (grande área) que você atua" — e passou a restringir de verdade o que a pessoa vê e edita, não só a fila de dúvidas:
+
+- `areaRestritaDoUsuario(u)` devolve a área quando `u.papel` é professor/residente, não está em modo aluno, e `u.areasAtuacao` tem exatamente um elemento (cadastros antigos com zero ou várias áreas continuam sem restrição — a migração nunca tranca quem já estava usando).
+- **Banco de Questões** (`renderBancoQuestoes`): filtro de área trava na área restrita (select desabilitado, mostrando só o nome); instituições/anos disponíveis nos filtros já vêm calculados só a partir das questões daquela área.
+- **Formulário de questão** (`abrirFormularioQuestao`): abrir uma questão de outra área é bloqueado com aviso; o select de grande área vem travado na área do usuário para questão nova.
+- **Criar Simulado** (`renderCriarSimulado`/`buscarCandidatasSimulado`): checkbox de área vira uma única linha travada, e a busca de candidatas força aquela área independentemente do que estiver marcado no DOM.
+- **Questões Difíceis / Sinalizadas / Sugeridas** (`questoesDificeis`, `questoesSinalizadas`, `questoesSugeridas`) e **Revisar Formatação** (`renderRevisaoFormatacao`): filtradas pela área restrita, com aviso no topo da tela.
+- Contas de demonstração: `professor@esc.demo` ficou com Clínica Médica (`area-cm`), `residente@esc.demo` com Cirurgia Geral (`area-cg`), só para a restrição ser visível ao testar.
+
+### 15.9 — Gráfico de pizza de taxa de acerto por confiança
+
+Duas funções novas de gráfico (`graficoPizzaSvg`, genérica, e `graficoPizzaConfiancaSvg`, que monta as fatias certeza/dúvida/chute com a cor já usada nos badges de confiança em toda a plataforma — accent/amber/danger): cada fatia é do tamanho de quantas questões foram respondidas naquele nível, e o texto ao lado traz a taxa de acerto dentro da fatia.
+
+Aparece em dois lugares:
+- **Fim de sessão de prática/revisão** (`renderSessaoResumo`), ao lado das três `stat-tile` que já existiam.
+- **Resultado de simulado** (`renderResultadoSimulado`) — que **não tinha** captura de confiança nenhuma até agora (o comentário no código dizia explicitamente "sem confiança... só marca e segue"). Para o gráfico fazer sentido aqui também (era pedido explícito do usuário: "incluindo simulados"), simulados passaram a coletar confiança de um jeito **opcional e que não trava a navegação**: depois de marcar uma alternativa, aparecem três botões pequenos (Certeza/Na dúvida/Chute, `selecionarConfiancaSimulado`) — quem não marca nada entra como "na dúvida" ao finalizar (`finalizarSimulado`, que antes gravava sempre `"duvida"` fixo e agora lê `sessao.confiancaSimulado`). O resultado salvo (`db.resultadosSimulados`) ganhou o campo `confiancas`, e reabrir um resultado antigo (`verDetalheResultadoSimulado`) restaura isso — resultados salvos antes desta mudança simplesmente não têm o campo e caem no padrão "na dúvida" para todas as questões. *Limitação conhecida:* em modo aprendizado (explicação aparece assim que responde), não há janela para marcar confiança, porque a resposta já fica "respondida" no instante da escolha — só funciona no fluxo padrão de simulado (sem modo aprendizado).
+
+### 15.10 — Numeração de turma
+
+`db.numerosTurma` (objeto `{anoFaculdade: numero}`), editável em Blocos de Estudo (`definirNumeroTurma`, um campo numérico por ano selecionado) e semeado com `{"3º ano": 92}` — o exemplo dado pelo próprio usuário. `rotuloAnoComTurma(ano)` devolve "3º ano · Turma 92" quando há número, ou só o ano quando não há; usado em Meu Grupo (cabeçalho) e na coluna Turma/Ano da tela Usuários (que também passou a mostrar a área restrita de professor/residente na mesma coluna, já que "Ano" não fazia sentido para eles).
+
+### Como isso foi verificado
+
+Sintaxe validada indiretamente: o arquivo foi servido localmente (script PowerShell fazendo de servidor estático, já que este ambiente não tem Node nem Python utilizáveis) e aberto no navegador — um erro de sintaxe teria impedido a execução de qualquer função, e dezenas foram chamadas com sucesso. Testado via automação de navegador: login como aluno, professor e admin; sessão de flashcards inteira (D-D-A confirmando o pouso sempre em pergunta); as três abas de Simulados; criação de uma lista de estudo como professor (com a busca já travada em Clínica Médica) e sua aparição imediata para o aluno na aba certa; Histórico de Atividade mostrando a criação da lista na linha do tempo do professor; conjunto de questões de prática até o fim, com o gráfico de pizza aparecendo com os três níveis de confiança; simulado completo com confiança marcada opcionalmente e o mesmo gráfico no resultado; tela de cadastro mostrando o select único de especialidade; numeração de turma editável em Blocos de Estudo e refletida em Meu Grupo. Nenhum erro de JavaScript no console em nenhum desses caminhos.
+
+---
+
+## 16. Revisão visual do sistema de design (mesma noite de 19/09, depois da seção 15)
+
+O usuário notou "caixas maiores e menores" em algumas telas e pediu uma revisão visual com base em teoria de design, com aviso antes de qualquer mudança brusca. A resposta foi em duas etapas: primeiro uma auditoria (sem mexer em nada) apresentada ao usuário, depois a correção de tudo que foi encontrado — começando pelo mais estrutural, para as correções pequenas não serem atropeladas pelas grandes.
+
+### 16.1 — Causa raiz do "caixas de tamanhos diferentes": `.card + .card`
+
+A regra `.card + .card{margin-top:1rem}` existe para dar espaço entre cards **empilhados** verticalmente. O problema: esse seletor também valia dentro de um `.grid` (cards lado a lado, ex. `grid-2`), porque ali os cards também são irmãos adjacentes no HTML — então o segundo card de cada linha nascia 16px mais baixo que o primeiro, e por consequência ficava 16px mais baixo de altura total (a régua de altura do CSS Grid conta a partir da margem). Era isto, concretamente, que o usuário via como "uma caixa maior que a outra": em Estudar, por exemplo, "Sessão recomendada" (208px) e "Revisar erros e chutes antigos" (192px) — mesmo os dois sendo `.card` puro com o mesmo conteúdo relativo.
+
+**Correção:** `.grid > .card{margin-top:0}` — mesma especificidade da regra original, mas depois no arquivo, então vence por ordem de declaração e zera a margem só quando o card está dentro de um grid. Fora de grid (cards empilhados normalmente), a margem de 1rem continua funcionando como antes. Nenhuma tela que já estava correta mudou; só as que tinham cards lado a lado desalinhados.
+
+### 16.2 — Escala tipográfica unificada
+
+Levantamento: **58 declarações de `font-size`** espalhadas pelo arquivo (CSS e estilo inline dentro das strings de HTML geradas por JS), somando quase 30 valores diferentes — de `.66rem` a `1.7rem` — sem nenhuma progressão ou lógica entre eles. Vários eram indistinguíveis a olho nu (`.82rem`/`.83rem`/`.85rem`/`.86rem`/`.87rem`/`.88rem`, todos "texto de corpo secundário", mas escritos como 6 números diferentes) — sinal de deriva por copiar-e-colar ao longo de várias sessões de desenvolvimento, não de hierarquia intencional.
+
+**Correção:** 11 tokens novos em `:root` (`--fs-2xs` a `--fs-5xl`, de `.68rem` a `1.7rem`), e as 58 declarações passaram a apontar para o token mais próximo (nenhuma mudou mais que `.03rem` — meio pixel — do valor original; a maioria não mudou nada de fato visível). O efeito: a partir de agora existem só 11 tamanhos de texto possíveis em toda a plataforma, e qualquer ajuste futuro de escala é uma mudança num único lugar (`:root`), não uma caça a números espalhados por 16 mil linhas. As fontes do material impresso (`@media print` e as funções `html*PDF`, que usam `pt` porque são para papel) foram deixadas de fora de propósito — é um sistema de medida diferente, para uma saída diferente.
+
+### 16.3 — Escala de espaçamento para as "caixas"
+
+Mesmo problema, escopo menor: `.card` (1.35rem), `.card-flat`/`.stat-tile` (1rem 1.2rem), `.qcard` (1.75rem), `.modal`/`.hero-card` (1.6rem), `.auth-card` (2rem), `.feedback-box` (1rem 1.1rem) — 6 valores de padding sem relação entre si nos componentes que o usuário chamou de "caixas". Badges, pills, toast e chips pequenos foram deixados de fora de propósito: não eram o alvo da reclamação (caixas de conteúdo, não etiquetas), e mexer neles seria escopo a mais sem necessidade.
+
+**Correção:** 4 tokens novos (`--sp-4` a `--sp-7`, de 1rem a 2rem, múltiplos de 4px) aplicados aos 8 componentes acima. Maior variação: `.qcard` perdeu 4px de padding por lado (1.75rem → 1.5rem); os demais mudaram ainda menos.
+
+### 16.4 — Correções pontuais menores
+
+- **Ícone fora do padrão:** `.secao-revisao-titulo svg` (os ícones de "Revisão de questões"/"Revisão por flashcards", criados na seção 15.6) estava em 15px; o padrão do resto da plataforma é 18px (`svg.icon`). Corrigido para 18px.
+- **Raio de borda do "selo" quadrado com a letra E:** parecia inconsistente à primeira vista (8px na barra lateral, 9px na página pública, 10px no ícone de destaque da Home — mesmo tipo de elemento, três raios). Checado com calma: os três já seguiam a mesma proporção (~28% do lado do quadrado, que cresce de 28px → 32px → 38px nesses três lugares) — ou seja, **não era bug**, era arredondamento proporcional correto. Só o ícone de destaque (10px em vez dos 11px que a proporção pede) foi ajustado, por precisão matemática, não por estar visualmente errado.
+- **Texto perdido do rename anterior:** a notificação de meta diária ainda dizia "meta de revisão rápida" (sobrou da seção 15.7). Corrigido para "meta de flashcards".
+
+### 16.5 — O que foi encontrado mas **não** foi mexido, de propósito
+
+O contraste de borda das caixas passivas (`.card`/`.stat-tile`) é sutil — fundo branco sobre `--bg` quase branco, borda `--border` também clara — e elas não têm sombra nenhuma. Isso parecia, à primeira vista, um jeito de reforçar a separação visual das caixas (mais um pedido do usuário). Só que investigando o CSS existente, essa ausência de sombra é uma **decisão de projeto já documentada** de uma revisão anterior: "sistema de elevação aplicado só ao que é de fato clicável" — ou seja, sombra em `.card`/`.stat-tile` (que não são clicáveis) quebraria essa regra que já existe e que outra pessoa decidiu de propósito. Como isso é gosto/estilo, não um bug objetivo como os outros, e como o usuário pediu para avisar antes de mudança brusca, esse item ficou de fora desta rodada — fica registrado aqui para uma decisão explícita numa próxima conversa, se for o caso.
+
+### Como isso foi verificado
+
+Servidor local + automação de navegador, como nas seções anteriores. Depois de cada bloco de mudança (tokens de tipografia, tokens de espaçamento, correções pontuais), a plataforma foi recarregada e testada: Início, Estudar (grid-2 de cards agora com a mesma altura, confirmado por medição via `getBoundingClientRect()` antes/depois — 208px em ambos, antes eram 208/192), Revisão (ícone do rótulo de seção no tamanho certo), uma questão inteira em sessão de estudo, Flashcards, e o painel do administrador — nos temas claro e escuro. Nenhum erro de JavaScript no console, nenhuma quebra visual encontrada, nenhum `font-size` ou padding literal restante fora do sistema de tokens (checado por busca no arquivo inteiro).
