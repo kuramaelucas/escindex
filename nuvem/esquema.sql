@@ -102,7 +102,13 @@ create trigger ao_criar_usuario
 create or replace function public.travar_campos_de_equipe()
 returns trigger language plpgsql security definer set search_path = public as $$
 begin
-  if not public.e_equipe() then
+  -- auth.uid() nulo = a mudança NÃO veio de alguém logado pelo site: veio do
+  -- SQL Editor do Supabase ou de uma chave de servidor, que por definição já
+  -- têm acesso total. É esse caso que permite o comando de emergência do
+  -- LEIA-ME, o que promove você a administrador máster na instalação. Como
+  -- o papel "anon" não tem permissão de UPDATE nestas tabelas (ver os GRANTs
+  -- no fim deste arquivo), não existe caminho anônimo por aqui.
+  if auth.uid() is not null and not public.e_equipe() then
     new.papel       = old.papel;
     new.nivel_admin = old.nivel_admin;
     new.status      = old.status;
@@ -269,6 +275,28 @@ begin
     execute format(
       'create policy "só as minhas linhas" on public.%I
          for all using (usuario_id = auth.uid()) with check (usuario_id = auth.uid())', t);
+  end loop;
+end $$;
+
+-- ----------------------------------------------- permissão de tabela (GRANT)
+-- O RLS decide QUAIS LINHAS cada pessoa enxerga; o GRANT decide se o papel
+-- tem acesso à tabela. O Supabase costuma já conceder isso por padrão às
+-- tabelas novas de "public", mas declarar aqui evita depender disso — e
+-- tiramos o papel "anon" (visitante sem login) de todas elas, porque nada
+-- nestas tabelas deve ser lido sem uma conta.
+do $$
+declare t text;
+begin
+  if not exists (select 1 from pg_roles where rolname = 'authenticated') then
+    raise notice 'Papéis do Supabase não encontrados — pulei os GRANTs (normal fora do Supabase).';
+    return;
+  end if;
+  foreach t in array array[
+    'perfis','respostas','revisoes','revisoes_flashcards','dias_cartoes','favoritos',
+    'flashcards_pessoais','sessoes','resultados_simulados','sessao_em_andamento'
+  ] loop
+    execute format('grant select, insert, update, delete on public.%I to authenticated', t);
+    execute format('revoke all on public.%I from anon', t);
   end loop;
 end $$;
 

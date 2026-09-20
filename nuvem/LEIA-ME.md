@@ -91,6 +91,10 @@ update public.perfis
    os cadastros da turma aparecem em *Aprovar Cadastros*, com botão de aprovar e
    recusar.
 
+> Esse comando funciona no SQL Editor porque ali não há ninguém logado — e o
+> banco trata isso como acesso administrativo. Pela plataforma, ninguém muda o
+> próprio papel: a trava está no banco, não na tela.
+
 ### 7. Conferir
 
 Entre e abra **Perfil**. O cartão *Conta e sincronização* deve mostrar "Tudo
@@ -128,18 +132,25 @@ confirme que ela aparece lá.
 1. **Só o progresso do aluno está na nuvem.** Grupos/turmas, fila de dúvidas,
    percentil de simulado entre alunos, banco de questões compartilhado e
    relatório de turma continuam locais a cada navegador. É a etapa 2.
-2. **O bloqueio de conta pendente é da aplicação, não do banco.** A tela impede
+2. **A coordenação não enxerga as respostas dos alunos.** Por padrão, cada
+   pessoa só lê as próprias linhas de progresso — inclusive professores e
+   administradores. Quem é da equipe enxerga os *cadastros* (para aprovar), não
+   o estudo. O relatório de desempenho da turma continua funcionando só com o
+   que estiver salvo naquele navegador; levá-lo para a nuvem é decisão da etapa
+   2, e precisa de uma política nova no banco — e de avisar a turma, porque
+   muda o que é privado.
+3. **O bloqueio de conta pendente é da aplicação, não do banco.** A tela impede
    de entrar, e o banco impede de ler dados dos outros — mas uma conta pendente
    ainda consegue gravar as próprias linhas se alguém insistir pelo console. Para
    uma turma fechada é aceitável; se um dia o cadastro for aberto ao público,
    vale acrescentar a checagem de status nas políticas.
-3. **Imagens em cartões e questões continuam embutidas no texto** (base64). Se o
+4. **Imagens em cartões e questões continuam embutidas no texto** (base64). Se o
    uso de imagem crescer, o certo é migrar para o Storage do Supabase.
-4. **O plano gratuito do Supabase hiberna** projetos sem uso por alguns dias (e
+5. **O plano gratuito do Supabase hiberna** projetos sem uso por alguns dias (e
    os limites mudam com o tempo — confira os atuais no site). Ao hibernar, o site
    continua abrindo e estudando; só a sincronização fica esperando o projeto
    voltar.
-5. **Dado pessoal.** A partir do momento em que o desempenho de alunos
+6. **Dado pessoal.** A partir do momento em que o desempenho de alunos
    identificados sai do computador deles, a LGPD se aplica: diga a eles o que é
    guardado, quem administra, e apague os dados de quem pedir (`delete from
    auth.users where email = '…'` apaga a conta e, em cascata, tudo dela).
@@ -163,4 +174,5 @@ religar ou apagar o projeto.
 | "Confirme o e-mail antes de entrar" | Confirmação ligada e link não clicado (veja o passo 5) |
 | "Seu cadastro ainda está aguardando aprovação" | Falta aprovar em *Aprovar Cadastros* (ou o `update` do passo 6) |
 | "Sem permissão para esta operação" | O `esquema.sql` não rodou inteiro; rode de novo e veja se dá erro |
+| O comando do passo 6 diz "UPDATE 1" mas você continua aluno | Versão antiga do `esquema.sql` — rode a atual, que libera a promoção pelo SQL Editor |
 | Ícone de fila que não zera | Sem internet, ou o projeto hibernou — *Perfil → Sincronizar agora* mostra o motivo |
