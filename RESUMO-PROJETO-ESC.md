@@ -3,7 +3,7 @@
 
 Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo `esc.html`.
 
-> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) — e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
+> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade, upload de provas em lotes) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) — e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
 
 ---
 
@@ -48,9 +48,9 @@ Com 500 questões reais cobrindo 5 anos de uma banca de referência, a repetiç�
 
 **Aluno** — estudar (com a meta do dia), revisar, revisão rápida por flashcards, simulados, provas antigas, favoritos, histórico, desempenho, meu grupo, enviar questões.
 
-**Residente** — fila de dúvidas, questões difíceis, revisar formatação, enviar provas e questões, provas antigas.
+**Residente** — fila de dúvidas, questões difíceis, revisar formatação, enviar provas e questões, Central de Provas, provas antigas.
 
-**Professor** — todo o conteúdo: banco de questões, importar, controle de qualidade, criar simulado, material em PDF, flashcards da equipe, especialidades e assuntos, revisar formatação.
+**Professor** — todo o conteúdo: banco de questões, importar, Central de Provas, controle de qualidade, criar simulado, material em PDF, flashcards da equipe, especialidades e assuntos, revisar formatação.
 
 **Administrador, em três níveis** (`CONFIG.niveisAdmin` + `PERMISSOES_ADMIN`):
 
@@ -107,6 +107,7 @@ A tela separa **"Meus cartões"** (com a questão de origem linkada) de **"Cart�
 ### Simulados
 - Simulados criados por professores, prova antiga inteira como simulado, ou simulado personalizado a partir dos filtros.
 - **Cronômetro** com encerramento automático no fim do tempo, **tempo gasto por questão**, modo aprendizado (mostra explicação na hora), mapa de questões clicável.
+- **A barra de números durante a prova diz só uma coisa: respondida ou em branco.** Nunca certa ou errada — o acerto só aparece no resultado, depois de acabar (ver seção 5).
 - Resultado: nota, percentil anônimo entre as tentativas registradas, mapa de acertos/erros, **análise de tempo com "onde você travou"**, revisão questão a questão e prática imediata dos erros.
 
 ### Meu Desempenho
@@ -136,9 +137,22 @@ Quatro tipos, gerados sem biblioteca externa (monta em `#areaImpressao` e chama 
 3. **Baralho de flashcards para recortar** — **só material da equipe**; o caderno pessoal dos alunos nunca entra.
 4. **Relatório de desempenho da turma** — uma linha por aluno.
 
+### Central de Provas (professores, coordenação, moderadores e residentes)
+Sobe uma prova inteira **em pedaços**, pela própria plataforma. Cada prova vira uma "carga" com o total de questões declarado, cortada automaticamente em **lotes** (faixas: 1–25, 26–50…). Cada lote traz:
+
+1. um **modelo de construção pronto** — o prompt já com a instituição, o ano e a faixa daquele lote escritos dentro, para copiar e colar numa conversa de IA;
+2. um espaço para **colar de volta** (ou subir um arquivo `.txt`), **conferir** e guardar — conferir não publica nada;
+3. a **publicação no banco**, lote a lote ou tudo de uma vez.
+
+Como os lotes são independentes, dá para tocar **duas ou mais frentes ao mesmo tempo** — inclusive de provas diferentes: o painel mostra todas as cargas abertas com o que falta em cada uma, e cada lote tem um campo *quem está fazendo* ("conversa 1", "conversa 2", um nome) para separar as frentes.
+
+A conferência é o coração da tela: cada questão traz a linha `NUMERO:` (o número dela na prova original), e com isso o lote é validado contra a faixa pedida — **quantas chegaram, quais faltam, quais vieram repetidas, quais caíram fora da faixa**. Publicada, a questão guarda esse número em `numeroNaProva`, e a carga passa a conferir o que está no banco de verdade ("faltam os números 3, 17–20") em vez de confiar no que a tela achou que mandou.
+
+Depois de publicada, a prova aparece sozinha em **Provas Antigas** (que agrupa por instituição + ano) e pode ser feita como simulado. O texto colado é descartado na publicação, para a prova não ocupar espaço duas vezes no `localStorage`.
+
 ### Conteúdo e qualidade
 - **Banco de questões** com CRUD completo; questões aceitam **imagem** e campo de **referências**.
-- **Importar/Enviar questões**: aberto a aluno, residente, professor e admin, com destino conforme o papel. Dois modos de prompt: prova inteira e questões avulsas.
+- **Importar/Enviar questões**: aberto a aluno, residente, professor e admin, com destino conforme o papel. Dois modos de prompt: prova inteira e questões avulsas. É o caminho certo para questões avulsas e provas pequenas; prova inteira de 60 ou 100 questões vai pela Central de Provas.
 - **Detecção de duplicidade** em três pontos: ao salvar, ao importar (contra o banco e contra o próprio lote) e numa aba "Duplicadas" do Controle de Qualidade.
 - **Controle de Qualidade**: difíceis, sinalizadas, sugeridas, duplicadas.
 - **Especialidades e Assuntos**: árvore editável com verificação de consistência e correção automática.
@@ -163,7 +177,7 @@ Não é alfabético nem temático: é a frequência esperada de uso. Os **quatro
 
 Ordem do aluno: Início · Estudar · Meu Desempenho · Meu Grupo · Revisão · Revisão Rápida · Simulados · Histórico de Atividade · Favoritos · Provas Antigas · Enviar Questões.
 
-Ordem do conteúdo: Início · Banco de Questões · Importar Questões · Questões Difíceis · Criar Simulado · Material em PDF · Flashcards · Realizar Simulados · Provas Antigas · Revisar Formatação · Especialidades e Assuntos.
+Ordem do conteúdo: Início · Banco de Questões · Importar Questões · Central de Provas · Questões Difíceis · Criar Simulado · Material em PDF · Flashcards · Realizar Simulados · Provas Antigas · Revisar Formatação · Especialidades e Assuntos.
 
 ### Metas: de página a cartão
 A meta é um número que se **define uma vez** e se **vê todo dia**. Uma página própria invertia isso: escondia o acompanhamento e dava destaque à configuração. Agora o progresso abre a tela Estudar e o ajuste fica numa janela (`abrirModalMeta`). A rota `metas` continua respondendo e leva a Estudar, para não quebrar link salvo.
@@ -176,6 +190,12 @@ Cartão do aluno e material da equipe são coisas diferentes e não podem se mis
 
 ### Arrastar para o lado no celular
 Vale na sessão, no simulado e nos flashcards. Exige movimento horizontal (o dobro do vertical) e pelo menos 70 px, respeita as travas dos botões (não pula questão não respondida nem cartão não virado), e o toque não conta depois de um arrasto.
+
+### A barra de questões do simulado não conta o resultado
+Durante a prova, o mapa de números responde a uma pergunta só: **já respondi esta ou não**. Verde e vermelho ali dentro mudariam o comportamento de quem está fazendo — a pessoa volta para "consertar" o que já passou, ou desanima e apressa o resto — e a nota deixaria de medir o que a prova de verdade mede. Por isso o número fica **sempre visível** (é por ele que se acha a questão no caderno de rascunho), respondida é o botão cheio com um ponto, em branco é o tracejado, e a questão atual ganha só um anel. As cores de acerto e erro existem num lugar só: o **mapa do resultado**, depois de finalizar.
+
+### Prova inteira se sobe em pedaços, e alguém precisa contar os pedaços
+Uma prova de 100 questões com explicação autoral não sai numa conversa só — sai em quatro, às vezes duas ao mesmo tempo. A partir do momento em que isso é o normal, o problema deixa de ser o formato do texto (que a tela de importação já resolvia) e passa a ser a **contabilidade**: qual faixa já foi feita, qual voltou incompleta, o que falta. A Central de Provas existe para guardar essa contabilidade — e é por isso que o modelo de cada lote já vem com a faixa escrita dentro: quem abre duas conversas não precisa lembrar de nada, o texto copiado já diz o que transcrever.
 
 ### Clicar no enunciado abre a questão — só onde o texto está cortado
 Nas **listas**, onde o enunciado aparece truncado, clicar abre a questão inteira. Na questão em resolução não: ali o enunciado já está todo na tela, e abrir uma janela com o mesmo texto não acrescenta nada. Pelo mesmo motivo, o botão "Expandir questão" saiu das ações embaixo da questão aberta.
@@ -256,9 +276,22 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 | `metaCartoesDoUsuario(u)` / `cartoesRevisadosHoje(id)` / `sequenciaDiasCartoes(id)` | a meta diária de flashcards e sua sequência |
 | `mapaPrevalenciasAssuntos()` | prevalência de todos os assuntos calculada uma vez por gravação (cache por `_geracaoDb`) |
 
+**Funções-chave acrescentadas na revisão de 20/09:**
+
+| Função | O que faz |
+|---|---|
+| `regrasDeConteudoImportacao()` | as duas regras de conteúdo (o que pode e o que não pode ser copiado) numa fonte só, usada por todos os prompts |
+| `importarItensAnalisados(resultado, destino, extras)` | cria no banco as questões já conferidas; usada pela tela de Importar e pela Central de Provas, para as duas não divergirem |
+| `parseImportText(texto, padroes)` | passou a aceitar a linha `NUMERO:` e a receber instituição/ano por fora (a Central de Provas não depende do que está digitado na outra tela) |
+| `montarLotesDaCarga(total, tamanho)` / `resumoCarga(carga)` | corta a prova em faixas e devolve o andamento (publicadas, conferidas, o que falta) |
+| `modeloConstrucaoLote(carga, lote)` | o prompt pronto daquele lote, com a faixa de questões escrita dentro |
+| `resumoDoLote(resultado, lote)` | confere o lote contra a faixa: quantas chegaram, quais faltam, repetidas, fora da faixa |
+| `conferenciaDaProva(carga)` | confere a prova contra o **banco**, pelo `numeroNaProva` das questões publicadas |
+| `resumirNumeros(lista)` | "1, 2, 3, 7" vira "1–3, 7" — buraco de prova precisa ser legível |
+
 **Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado.
 
-**Migrações em `loadState`:** criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
+**Migrações em `loadState`:** criação de `db.cargasProvas` (Central de Provas); criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
 
 **Migração dos blocos para sequências por ano.** `db.sequenciasAno` passa a guardar a ordem de blocos de cada ano, e o grupo guarda só `anoFaculdade` + `deslocamento`. Nada é apagado: o calendário que a coordenação tinha customizado vira a sequência do ano padrão, o calendário próprio de uma turma vira a sequência do ano dela se aquele ano ainda não tiver uma, e o que sobrar fica guardado em `grupo.blocosArquivados` — continua no banco e no backup, para consulta antes de descartar.
 
@@ -293,7 +326,7 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 Em ordem de prioridade sugerida:
 
 1. **Flashcards para os 125 assuntos novos.** A carga da UNIFESP abriu Psiquiatria e outras especialidades inteiras (seção 12) que ainda não têm nenhum cartão de equipe — hoje só têm cobertura se o próprio aluno errar uma questão daquele assunto e o cartão automático entrar em cena. É o jeito mais rápido de destravar valor do que já foi construído.
-2. **Repetir a carga de provas reais para as outras 5 bancas de referência** (USP-SP/FMUSP, USP-RP/FMRP, Santa Casa de São Paulo, IAMSPE, UNESP), se o usuário conseguir os PDFs oficiais — o pipeline (extração, classificação, validação) já existe e é só repetir o processo descrito na seção 12.
+2. **Repetir a carga de provas reais para as outras 5 bancas de referência** (USP-SP/FMUSP, USP-RP/FMRP, Santa Casa de São Paulo, IAMSPE, UNESP), se o usuário conseguir os PDFs oficiais. Agora isso é feito **pela própria plataforma**, sem script nem edição do arquivo: a **Central de Provas** (seção 4) cadastra a prova, corta em lotes, dá o modelo pronto de cada faixa e confere o que chegou — e vários lotes podem andar em paralelo.
 3. **Checagem humana amostral das 500 explicações autorais.** Foram escritas em lote, com boa fundamentação e revisão de consistência automatizada, mas nunca foram lidas por um segundo médico/residente. Vale um professor ou residente revisar uma amostra (por exemplo, as questões mais avançadas ou as anuladas, onde a explicação é mais interpretativa) antes de tratar o conjunto como validado clinicamente.
 4. **Questões com imagem/figura no enunciado.** Algumas das 500 questões reais mencionam uma imagem original da prova (ultrassom, radiografia, ressonância) que não foi reproduzida — a explicação descreve o achado esperado a partir do texto, mas o aluno não vê a imagem. Vale revisar essas questões pontualmente e anexar a imagem quando possível.
 5. **Relatório individual do aluno em PDF**, para devolutiva um a um (item já sugerido antes e ainda pendente).
@@ -321,5 +354,7 @@ Registro resumido de cada rodada de trabalho, da mais antiga à mais recente. De
 **Revisão geral (manhã de 19/09/2026).** Cinco defeitos corrigidos: a repetição espaçada de questões não usava a escada de intervalos configurada (`CONFIG.intervalosBase`); `calcularDificuldade()` recalculava a prevalência de todos os assuntos a cada questão dentro de um `.sort()`, um gargalo que só aparece com banco grande; contraste abaixo do padrão de acessibilidade (WCAG AA) em dois tons do tema claro; afordância de "clicável" sobrava nas alternativas depois de já ter respondido; um comentário `/* */` mal fechado engolia um bloco de documentação. Além disso: polimento visual (sombras, transições, `prefers-reduced-motion`), paginação de todas as listas longas, meta diária de flashcards com sequência de dias, eliminar alternativas durante a resolução da questão, blocos de estudo organizados por ano da faculdade com rodízio real entre turmas, e sessão de estudo retomável (sair e voltar mantém a mesma fila). Verificado com Chromium/Playwright em todos os papéis e rotas.
 
 **Ajuste de política de conteúdo e expansão de recursos (noite de 19/09/2026).** Esclarecido que enunciado/alternativas/gabarito oficial de prova de instituição pública são domínio público (podem ser transcritos integralmente) e que só a explicação precisa ser sempre autoral — refletido no prompt de importação e no formulário de questão. A partir daí: baralho da equipe ampliado de 24 para 501 flashcards, cobrindo os 91 assuntos que existiam até então; lembrete de meta diária via Notification API do navegador; flashcards ganharam suporte a imagem (mesmo padrão já usado nas questões); fluxo de promoção de cartão pessoal para o baralho da equipe, com aprovação de professor/coordenação; estatística de alternativas eliminadas por quem errou, agregada por questão em Controle de Qualidade. O banco também foi testado sintético em mais de 6.000 questões e 8.000 respostas, o que revelou dois novos gargalos do mesmo tipo do já corrigido pela manhã (uma função revarrendo o banco inteiro a cada chamada, dentro de um laço) — ambos corrigidos com índices cacheados por geração do banco, derrubando o tempo de operações como colar uma prova de 100 questões de 6,8s para 106ms.
+
+**Barra de questões do simulado e Central de Provas (20/09/2026).** Duas mudanças pedidas pelo usuário. (1) A barra de números do simulado em andamento passou a mostrar **só se a questão foi respondida ou não** — nunca se está certa ou errada — e o número da questão, que antes sumia atrás de um ✓ quando ela era respondida, ficou sempre visível; o mapa colorido de acertos e erros continua existindo, mas só no resultado (seção 5). (2) Entrou a **Central de Provas**: um modelo de construção pronto para subir prova inteira em lotes separados pela própria plataforma, pensado para tocar duas frentes ao mesmo tempo (seção 4). Para isso, três partes do importador foram extraídas para serem usadas pelas duas telas sem divergir — as regras de conteúdo, o parser (que passou a ler a linha `NUMERO:`) e a criação das questões no banco. Dois defeitos adjacentes corrigidos no caminho: o cronômetro não ligava no "simulado personalizado" nem em "fazer prova antiga como simulado" (faltavam `inicioMs`/`tsQuestao`/`tempos`, então a análise de tempo vinha vazia nesses dois caminhos), e sair da conta não limpava o estado temporário das telas — o texto de uma prova colado e não publicado continuava aparecendo para o próximo que entrasse naquele navegador. Verificado com Chromium/Playwright: mapa neutro com questão certa e errada visualmente idênticas (inclusive em modo aprendizado), conferência de lote acusando faixa incompleta, número repetido e número fora da faixa, publicação lote a lote e em bloco, duas provas em paralelo, acesso negado para aluno, e a tela de importação antiga funcionando como antes.
 
 **Carga das 500 questões reais da UNIFESP-EPM, 2022-2026 (madrugada seguinte).** O usuário forneceu os PDFs das provas de Acesso Direto/R1 dos últimos cinco anos. Conteúdo de prova pública (enunciado, alternativas, gabarito oficial) extraído por scripts Node.js reutilizáveis (`provas/parse_gabarito.js`, `provas/parse_questoes.js`, a partir de texto gerado com `pdftotext`), com duas armadilhas de parsing corrigidas (caractere de quebra de página inserido pelo PDF; a última questão de cada prova absorvendo a folha de gabarito em branco). Achado relevante: a prova real usa só 4 alternativas (A-D), não 5 — formulário e importador ajustados para tornar a alternativa E opcional. Para cada uma das 500 questões foi escrita uma explicação **100% autoral** (nunca a partir da resolução do cursinho de origem do PDF), com referência citada e dificuldade estimada, combinada ao conteúdo da prova por um script de merge (`provas/merge_year.js`) que também classificou cada questão num assunto da taxonomia. A taxonomia foi ampliada de 91 para 216 assuntos (24 para 39 especialidades) em 5 levas, para dar lugar a especialidades que a prova real cobre e a plataforma didática não tinha — Psiquiatria inteira, criada do zero, entre elas. Validado com checagem de sintaxe, IDs únicos, integridade completa da taxonomia, completude estrutural das 500 questões e testes funcionais via Chromium/Playwright (contagem por ano e por anuladas batendo com o gabarito oficial, resposta correta sendo pontuada como `correta: true`, zero erros de JavaScript). Ficou de fora, de propósito: qualquer leitura da resolução do cursinho de origem como fonte de explicação, e as imagens/figuras que algumas questões referenciam no enunciado (a explicação descreve o achado esperado pelo texto, sem a imagem original anexada).
