@@ -203,6 +203,36 @@ tr:last-child td{border-bottom:none}
 .progress-fill.danger{background:var(--danger)}
 .progress-fill.amber{background:var(--amber)}
 
+/* ---------- mapa de progresso da sessão de questões ----------
+   Um quadradinho por questão da fila: o número, e a cor dizendo o que
+   aconteceu. Serve para navegar (clicar volta à questão) e para enxergar o
+   conjunto inteiro sem sair da questão atual. */
+.mapa-sessao{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.55rem}
+.mapa-pill{min-width:32px;height:32px;padding:0 .35rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:.15rem;cursor:pointer;transition:transform .08s ease,border-color .12s ease}
+.mapa-pill:hover:not(:disabled){border-color:var(--accent)}
+.mapa-pill:active:not(:disabled){transform:scale(.94)}
+.mapa-pill:disabled{cursor:default;opacity:.85}
+.mapa-pill.acertou{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.mapa-pill.errou{background:var(--danger-soft);border-color:var(--danger);color:var(--danger)}
+.mapa-pill.agora{border-color:var(--ink-2);color:var(--ink)}
+.mapa-pill.atual{outline:2px solid var(--accent);outline-offset:1px}
+/* o pontinho âmbar marca os dois casos que a plataforma trata como "não
+   sabida": acerto no chute e erro com certeza */
+.mapa-pill .marca{width:5px;height:5px;border-radius:50%;background:var(--amber);flex:none}
+.mapa-legenda{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.55rem;align-items:center}
+.mapa-legenda .amostra{width:11px;height:11px;border-radius:3px;border:1px solid var(--border-strong);display:inline-block;margin-right:.3rem;vertical-align:-1px}
+.mapa-legenda .amostra.acertou{background:var(--accent-soft);border-color:var(--accent)}
+.mapa-legenda .amostra.errou{background:var(--danger-soft);border-color:var(--danger)}
+.mapa-legenda .amostra.marcada{width:7px;height:7px;border-radius:50%;background:var(--amber);border-color:var(--amber)}
+@media (max-width:640px){
+  .mapa-pill{min-width:29px;height:29px;font-size:.73rem}
+  .mapa-legenda{gap:.65rem}
+  .mapa-legenda .so-largo{display:none}
+}
+@media (min-width:641px){
+  .mapa-legenda .so-estreito{display:none}
+}
+
 /* ---------- questão ---------- */
 .qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:740px}
 .qcard-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
@@ -752,6 +782,7 @@ let state = {
   sessaoAtual: null,     // fila de questões em andamento (prática ou simulado)
   sessaoFlash: null,      // baralho de flashcards em andamento (revisão rápida)
   filtroRota: {},         // filtros temporários usados por algumas telas
+  mapaSessaoAberto: true,  // o mapa de progresso da sessão está aberto?
   modoAluno: false,        // permite que admin/professor/residente também usem a plataforma como aluno
 };
 
@@ -4975,6 +5006,87 @@ function revisarErrosDestaSessao(){
   state.sessaoAtual = null;
   iniciarSessaoComLista(errados, "pratica");
 }
+/* ---------------------- mapa de progresso da sessão -----------------------
+   Uma faixa com um quadradinho por questão da fila: o número, e a cor do que
+   aconteceu (verde acertou, vermelho errou, neutro ainda não respondida).
+   Clicar volta a uma questão já respondida — é a navegação que faltava para
+   quem quer conferir "o que foi mesmo que eu marquei na 3?" no meio do
+   conjunto, sem perder o lugar.
+
+   Por que não dá para pular para a frente: a fila e as respostas andam na
+   mesma ordem (respostasSessao[i] é a resposta de itens[i]). Responder fora
+   de ordem embaralharia esse pareamento, então as questões que ainda não
+   chegaram aparecem apagadas e não clicáveis.
+
+   O pontinho âmbar marca os dois casos que a plataforma trata como "não
+   sabida", e que a tela de fim de conjunto já destaca: acerto no chute e
+   erro com certeza. */
+function renderMapaSessao(sessao){
+  const total = sessao.itens.length;
+  const feitas = sessao.respostasSessao.length;
+  const acertos = sessao.respostasSessao.filter(r => r.correta).length;
+  const erros = feitas - acertos;
+  const aberto = state.mapaSessaoAberto !== false;   // nasce aberto
+  const resumo = feitas
+    ? `<strong>${feitas} de ${total}</strong> · ${acertos} ${acertos===1?"acerto":"acertos"} · ${erros} ${erros===1?"erro":"erros"}`
+    : `<strong>0 de ${total}</strong> · o conjunto ainda não começou`;
+  return `<div class="card-flat mb-2" style="padding:.7rem .9rem">
+    <div class="flex justify-between items-center gap-2">
+      <div class="text-xs muted">${resumo}</div>
+      <button class="link-btn text-xs" onclick="alternarMapaSessao()">${aberto ? "ocultar mapa" : "mostrar mapa"}</button>
+    </div>
+    ${aberto ? `
+    <div class="mapa-sessao">
+      ${sessao.itens.map((item, i) => {
+        const r = sessao.respostasSessao[i];
+        const atual = i === sessao.indiceAtual;
+        const daVez = !r && i === feitas;
+        let classe = "mapa-pill";
+        let descricao = "Questão " + (i+1);
+        let marca = "";
+        if(r){
+          classe += r.correta ? " acertou" : " errou";
+          descricao += r.correta ? " — você acertou" : " — você errou";
+          if(r.confianca === "chute") descricao += r.correta ? ", no chute (a plataforma conta como não sabida)" : ", no chute";
+          else if(r.confianca === "certeza") descricao += r.correta ? ", com certeza" : ", com certeza (o erro mais caro)";
+          else descricao += ", na dúvida";
+          const atencao = (r.correta && r.confianca === "chute") || (!r.correta && r.confianca === "certeza");
+          if(atencao) marca = `<span class="marca" aria-hidden="true"></span>`;
+        } else if(daVez){
+          classe += " agora";
+          descricao += " — é a desta vez";
+        } else {
+          descricao += " — ainda não respondida";
+        }
+        if(atual){ classe += " atual"; descricao += " (você está aqui)"; }
+        const podeIr = !!r || daVez;
+        return `<button class="${classe}" ${podeIr ? "" : "disabled"} title="${escapeHtml(descricao)}" aria-label="${escapeHtml(descricao)}" ${podeIr ? `onclick="irParaIndiceDaSessao(${i})"` : ""}>${i+1}${marca}</button>`;
+      }).join("")}
+    </div>
+    ${feitas ? `<div class="mapa-legenda text-xs muted">
+      <span><i class="amostra acertou"></i>acertou</span>
+      <span><i class="amostra errou"></i>errou</span>
+      <span><i class="amostra marcada"></i><span class="so-largo">acerto no chute ou erro com certeza</span><span class="so-estreito">chute ou erro com certeza</span></span>
+      <span class="so-largo"><i class="amostra"></i>ainda não respondida</span>
+    </div>` : `<div class="text-xs muted mt-1">Cada quadradinho é uma questão da fila. Assim que você responder, ele mostra se acertou — e dá para clicar para voltar.</div>`}
+    ` : ""}
+  </div>`;
+}
+function alternarMapaSessao(){
+  state.mapaSessaoAberto = state.mapaSessaoAberto === false;
+  render();
+}
+/* Vai direto a uma questão da fila pelo mapa. Só anda até a questão da vez:
+   ir além embaralharia o pareamento entre a fila e as respostas. */
+function irParaIndiceDaSessao(indice){
+  const s = state.sessaoAtual; if(!s) return;
+  const limite = Math.min(s.respostasSessao.length, s.itens.length - 1);
+  s.indiceAtual = Math.max(0, Math.min(limite, indice));
+  s.uiSelecionada = null; s.uiRespondida = false; s.tsQuestao = Date.now();
+  salvarSessaoEmAndamento();
+  render();
+  window.scrollTo(0, 0);
+}
 function renderSessao(){
   const sessao = state.sessaoAtual;
   if(!sessao || sessao.finalizada) return renderSessaoResumo();
@@ -4991,7 +5103,8 @@ function renderSessao(){
       <button class="btn btn-ghost btn-sm" onclick="sairDaSessao()">Sair</button>
     </div>
   </div>
-  <div class="progress-track mb-3"><div class="progress-fill" style="width:${pct(sessao.respostasSessao.length, sessao.itens.length)}%"></div></div>
+  <div class="progress-track mb-2"><div class="progress-fill" style="width:${pct(sessao.respostasSessao.length, sessao.itens.length)}%"></div></div>
+  ${renderMapaSessao(sessao)}
   <div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(item.motivo)}</span></div>
   <div class="area-gesto" id="areaGestoQuestao">
     ${renderQuestionCard(q, respondidaAqui ? {selecionada:respObj.alternativaEscolhida, respondida:true} : {selecionada:sessao.uiSelecionada, respondida:false})}
