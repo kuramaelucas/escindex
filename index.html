@@ -695,6 +695,7 @@ let state = {
   sessaoFlash: null,      // baralho de flashcards em andamento (revisão rápida)
   filtroRota: {},         // filtros temporários usados por algumas telas
   modoAluno: false,        // permite que admin/professor/residente também usem a plataforma como aluno
+  confirmarEmailUsuarioId: null, // usuário no meio da confirmação de e-mail (cadastro novo ou troca de e-mail no Perfil)
 };
 
 /* ---------------------------- TEMA CLARO/ESCURO ---------------------------
@@ -10211,6 +10212,10 @@ function loadState(){
     // a plataforma passou a se chamar "Esc": atualiza os e-mails das contas
     // de demonstração já salvas, pra continuarem batendo com a tela de entrada
     db.usuarios.forEach(x=>{ if(x.email && x.email.indexOf("@medbloco.demo")>=0) x.email = x.email.replace("@medbloco.demo","@esc.demo"); });
+    // confirmação de e-mail no cadastro entrou depois: quem já tinha conta
+    // (contas de demonstração inclusive) nunca precisa confirmar nada — só
+    // vale para cadastros novos, que já nascem com emailConfirmado:false
+    db.usuarios.forEach(x=>{ if(x.emailConfirmado===undefined) x.emailConfirmado = true; });
   }catch(e){
     console.error("Falha ao carregar dados salvos, reiniciando com dados de demonstração.", e);
     db = dbPadrao();
@@ -11748,13 +11753,24 @@ function questoesDificeis(){
    5. AUTENTICAÇÃO (versão de demonstração local)
    ==========================================================================
    Login/senha e aprovação de cadastro funcionam de verdade dentro deste
-   navegador. Numa versão publicada num site de verdade, a autenticação
-   real (com senha criptografada, recuperação de senha etc.) deve ficar por
-   conta de um back-end — ver observações no resumo enviado no chat. */
+   navegador. A confirmação de e-mail no cadastro (abaixo) também é real no
+   sentido de travar o acesso até ser feita — só que, como o app não tem
+   servidor de e-mail, o "e-mail" é simulado: o código aparece na própria
+   tela em vez de chegar numa caixa de entrada. Numa versão publicada num
+   site de verdade, tanto a senha (hoje em texto claro) quanto o envio do
+   código deveriam ficar por conta de um back-end — ver observações no
+   resumo enviado no chat. */
+function gerarCodigoConfirmacao(){ return String(Math.floor(100000 + Math.random()*900000)); }
 function fazerLogin(identificador, senha){
   const id = (identificador||"").trim().toLowerCase();
   const usuario = db.usuarios.find(u => (u.email.toLowerCase()===id || u.matricula.toLowerCase()===id) && u.senha===senha);
   if(!usuario){ toast("Login ou senha incorretos.", "err"); return; }
+  if(usuario.emailConfirmado===false){
+    toast("Confirme seu e-mail antes de entrar.", "err");
+    state.confirmarEmailUsuarioId = usuario.id;
+    navigate("confirmar-email");
+    return;
+  }
   if(usuario.status==="pendente"){ toast("Seu cadastro ainda está aguardando aprovação de um administrador.", "err"); return; }
   if(usuario.status==="rejeitado"){ toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); return; }
   if(usuario.status==="inativo"){ toast("Sua conta está inativa. Fale com a coordenação.", "err"); return; }
@@ -11790,7 +11806,8 @@ function solicitarCadastro(){
   if(db.usuarios.some(u=>u.email.toLowerCase()===email.toLowerCase())){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
   if(db.usuarios.some(u=>u.matricula===matricula)){ toast("Já existe um cadastro com esta matrícula.", "err"); return; }
   const novoUsuarioId = uid("u");
-  const novo = {id:novoUsuarioId, nome, email, matricula, senha, papel:tipoAcesso, status:"pendente", criadoEm:hojeISO()};
+  const novo = {id:novoUsuarioId, nome, email, matricula, senha, papel:tipoAcesso, status:"pendente", criadoEm:hojeISO(),
+    emailConfirmado:false, codigoConfirmacaoEmail:gerarCodigoConfirmacao()};
   if(tipoAcesso==="aluno"){
     const turmaSelect = document.getElementById("cadTurmaSelect").value;
     const novaTurmaNome = (document.getElementById("cadNovaTurmaNome").value||"").trim();
@@ -11818,8 +11835,56 @@ function solicitarCadastro(){
     novo.assuntosAjuda = [...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value);
   }
   db.usuarios.push(novo); saveState();
-  toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
+  state.confirmarEmailUsuarioId = novoUsuarioId;
+  toast("Cadastro enviado! Falta só confirmar seu e-mail.");
+  navigate("confirmar-email");
+}
+/* Confirmação de e-mail (simulada — ver comentário no topo da seção 5).
+   Usada tanto logo após o cadastro (usuário ainda deslogado, rota pública)
+   quanto se a pessoa fechar a aba antes de confirmar e tentar entrar depois
+   (fazerLogin manda de volta pra cá). */
+function renderConfirmarEmail(){
+  const u = getUsuario(state.confirmarEmailUsuarioId);
+  if(!u){ navigate("login"); return ""; }
+  return `
+  <div class="container"><nav class="public-nav">
+    <div class="brand" style="cursor:pointer" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
+  </nav></div>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h2>Confirme seu e-mail</h2>
+      <p class="text-sm muted mt-1">Enviamos um código de confirmação para <strong>${escapeHtml(u.email)}</strong>.</p>
+      <div class="card-flat mt-2" style="border-color:var(--amber)">
+        <div class="text-xs muted mb-1">${CONFIG.nomePlataforma} não tem servidor de e-mail próprio — numa versão publicada de verdade, este código chegaria na caixa de entrada. Por enquanto, ele aparece aqui mesmo:</div>
+        <div style="font-size:var(--fs-3xl);font-weight:700;letter-spacing:.2em;text-align:center">${escapeHtml(u.codigoConfirmacaoEmail||"")}</div>
+      </div>
+      <div class="field mt-3"><label class="label">Digite o código</label><input class="input" id="codigoConfirmacaoInput" maxlength="6" placeholder="000000" onkeydown="if(event.key==='Enter') confirmarCodigoEmail()"></div>
+      <button class="btn btn-primary btn-block" onclick="confirmarCodigoEmail()">Confirmar e-mail</button>
+      <p class="text-sm mt-2"><a href="javascript:void(0)" onclick="reenviarCodigoConfirmacao()">Gerar um novo código</a></p>
+    </div>
+  </div>`;
+}
+function confirmarCodigoEmail(){
+  const u = getUsuario(state.confirmarEmailUsuarioId);
+  if(!u) { navigate("login"); return; }
+  const digitado = (document.getElementById("codigoConfirmacaoInput").value||"").trim();
+  if(!digitado || digitado !== u.codigoConfirmacaoEmail){ toast("Código incorreto.", "err"); return; }
+  u.emailConfirmado = true;
+  if(u.emailPendente){ u.email = u.emailPendente; delete u.emailPendente; }
+  delete u.codigoConfirmacaoEmail;
+  saveState();
+  state.confirmarEmailUsuarioId = null;
+  if(state.usuarioAtualId===u.id){ toast("E-mail atualizado e confirmado!"); navigate("perfil"); return; }
+  toast(u.status==="pendente" ? "E-mail confirmado! Assim que um administrador aprovar seu cadastro, você poderá entrar." : "E-mail confirmado! Você já pode entrar.");
   navigate("login");
+}
+function reenviarCodigoConfirmacao(){
+  const u = getUsuario(state.confirmarEmailUsuarioId);
+  if(!u) return;
+  u.codigoConfirmacaoEmail = gerarCodigoConfirmacao();
+  saveState();
+  toast("Novo código gerado.");
+  render();
 }
 function aprovarUsuario(id){
   const alvo = getUsuario(id);
@@ -11864,7 +11929,7 @@ function areaRestritaDoUsuario(u){
    ========================================================================== */
 const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Flashcards", historico:"Histórico de Atividade",
   simulados:"Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Simulados",
-  favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil", "meu-grupo":"Meu Grupo",
+  favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil", "meu-grupo":"Meu Grupo", "confirmar-email":"Confirmar E-mail",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", "aprovar-cadastros":"Aprovar Cadastros",
   usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
   blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários" };
@@ -11907,13 +11972,18 @@ window.addEventListener("keydown", function(e){
 
 function render(){
   const app = document.getElementById("app");
-  const rotasPublicas = ["landing","login","cadastro"];
+  const rotasPublicas = ["landing","login","cadastro","confirmar-email"];
+  // confirmar-email também é usada por quem já está logado (troca de e-mail
+  // no Perfil) — só força pra fora das rotas públicas quem NÃO está no meio
+  // dessa confirmação
+  if(usuarioAtual() && state.route==="confirmar-email" && !state.confirmarEmailUsuarioId) state.route = "inicio";
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
-  if(usuarioAtual() && rotasPublicas.includes(state.route)) state.route = "inicio";
+  if(usuarioAtual() && rotasPublicas.includes(state.route) && state.route!=="confirmar-email") state.route = "inicio";
 
   if(state.route==="landing"){ app.innerHTML = renderLanding(); return; }
   if(state.route==="login"){ app.innerHTML = renderLogin(); return; }
   if(state.route==="cadastro"){ app.innerHTML = renderCadastro(); return; }
+  if(state.route==="confirmar-email"){ app.innerHTML = renderConfirmarEmail(); return; }
 
   // um administrador só entra nas rotas permitidas pelo seu nível
   const permissaoNecessaria = PERMISSAO_DA_ROTA[state.route];
@@ -14961,13 +15031,20 @@ function renderQuestoesDoGrupo(grupo){
 function renderPerfil(){
   const u = usuarioAtual();
   const ehMaster = podeAdmin("backup", u);
+  const meusGrupos = u.papel==="aluno" ? db.grupos.filter(g=>g.oficial || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id)) : [];
   return `
   <div class="page-header"><h2>Perfil</h2></div>
   <div class="card" style="max-width:460px">
     <div class="field"><label class="label">Nome</label><div>${escapeHtml(u.nome)}</div></div>
-    <div class="field"><label class="label">E-mail</label><div>${escapeHtml(u.email)}</div></div>
+    <div class="field"><label class="label">E-mail</label><div>${escapeHtml(u.email)} <button class="link-btn" onclick="abrirModalTrocarEmail()">trocar</button></div></div>
+    <div class="field"><label class="label">Senha</label><div>•••••••• <button class="link-btn" onclick="abrirModalTrocarSenha()">trocar</button></div></div>
     <div class="field"><label class="label">Matrícula</label><div>${escapeHtml(u.matricula)}</div></div>
-    ${u.papel==="aluno" ? `<div class="field"><label class="label">Turma / Grupo</label><div>${escapeHtml(getGrupoDoUsuario(u).nome)} <button class="link-btn" onclick="navigate('meu-grupo')">gerenciar</button></div></div>
+    ${u.papel==="aluno" ? `<div class="field"><label class="label">Turma / Grupo</label>
+      ${meusGrupos.length>1 ? `<select class="select" onchange="usarGrupo(this.value)">
+        ${meusGrupos.map(g=>`<option value="${g.id}" ${getGrupoDoUsuario(u).id===g.id?"selected":""}>${escapeHtml(g.nome)}</option>`).join("")}
+      </select>` : `<div>${escapeHtml(getGrupoDoUsuario(u).nome)}</div>`}
+      <div class="hint mt-1"><button class="link-btn" onclick="navigate('meu-grupo')">criar outro grupo ou pedir acesso a um</button></div>
+    </div>
     <div class="field"><label class="label">Ano da faculdade</label>
       <select class="select" id="perfilAno" onchange="salvarAnoFaculdade()">
         ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${u.anoFaculdade===a?"selected":""}>${escapeHtml(a)}</option>`).join("")}
@@ -15004,6 +15081,58 @@ function salvarAnoFaculdade(){
   u.anoFaculdade = document.getElementById("perfilAno").value;
   saveState();
   toast("Ano da faculdade atualizado.");
+}
+/* Trocar e-mail e trocar senha ficam no Perfil, cada um com sua checagem
+   de identidade: pedir a senha atual antes de aceitar um e-mail novo, e
+   pedir a senha atual antes de aceitar uma senha nova. O e-mail novo só
+   passa a valer depois de confirmado pelo mesmo código simulado do
+   cadastro (ver seção 5 — AUTENTICAÇÃO). */
+function abrirModalTrocarEmail(){
+  const u = usuarioAtual();
+  abrirModal(`
+    <div class="modal-header"><h3>Trocar e-mail</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm muted">E-mail atual: ${escapeHtml(u.email)}</p>
+    <div class="field"><label class="label">Novo e-mail</label><input class="input" type="email" id="novoEmailInput" placeholder="voce@email.com"></div>
+    <div class="field"><label class="label">Confirme sua senha atual</label><input class="input" type="password" id="senhaParaTrocarEmail"></div>
+    <button class="btn btn-primary" onclick="iniciarTrocaEmail()">Enviar código de confirmação</button>
+  `);
+}
+function iniciarTrocaEmail(){
+  const u = usuarioAtual();
+  const novoEmail = document.getElementById("novoEmailInput").value.trim();
+  const senha = document.getElementById("senhaParaTrocarEmail").value;
+  if(!novoEmail){ toast("Digite o novo e-mail.", "err"); return; }
+  if(senha !== u.senha){ toast("Senha atual incorreta.", "err"); return; }
+  if(novoEmail.toLowerCase()===u.email.toLowerCase()){ toast("Esse já é o seu e-mail atual.", "err"); return; }
+  if(db.usuarios.some(x=>x.id!==u.id && x.email.toLowerCase()===novoEmail.toLowerCase())){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
+  u.emailPendente = novoEmail;
+  u.codigoConfirmacaoEmail = gerarCodigoConfirmacao();
+  saveState();
+  fecharModal();
+  state.confirmarEmailUsuarioId = u.id;
+  navigate("confirmar-email");
+}
+function abrirModalTrocarSenha(){
+  abrirModal(`
+    <div class="modal-header"><h3>Trocar senha</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <div class="field"><label class="label">Senha atual</label><input class="input" type="password" id="senhaAtualInput"></div>
+    <div class="field"><label class="label">Nova senha</label><input class="input" type="password" id="novaSenhaInput"></div>
+    <div class="field"><label class="label">Confirme a nova senha</label><input class="input" type="password" id="confirmaSenhaInput"></div>
+    <button class="btn btn-primary" onclick="salvarNovaSenha()">Salvar nova senha</button>
+  `);
+}
+function salvarNovaSenha(){
+  const u = usuarioAtual();
+  const atual = document.getElementById("senhaAtualInput").value;
+  const nova = document.getElementById("novaSenhaInput").value;
+  const confirma = document.getElementById("confirmaSenhaInput").value;
+  if(atual !== u.senha){ toast("Senha atual incorreta.", "err"); return; }
+  if(nova.length<4){ toast("Use uma senha com pelo menos 4 caracteres.", "err"); return; }
+  if(nova !== confirma){ toast("As duas senhas novas não são iguais.", "err"); return; }
+  u.senha = nova;
+  saveState();
+  fecharModal();
+  toast("Senha atualizada.");
 }
 /* Caixa de backup — usada no Perfil e em Configurações, sempre só para o
    administrador máster. Exportar/importar JSON é a única rede de segurança
