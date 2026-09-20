@@ -415,6 +415,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="7" width="12.5" height="14" rx="1.5"/><polyline points="7,4.5 18.5,4.5 20.5,6.5 20.5,17.5"/><line x1="6.5" y1="12" x2="12" y2="12"/><line x1="6.5" y1="15.5" x2="10" y2="15.5"/></symbol>
 <symbol id="i-printer" viewBox="0 0 24 24"><polyline points="7,8.5 7,3.5 17,3.5 17,8.5"/><rect x="3.5" y="8.5" width="17" height="8" rx="1.5"/><rect x="7" y="13.5" width="10" height="7"/><line x1="16.8" y1="11.3" x2="17.6" y2="11.3"/></symbol>
 <symbol id="i-swipe" viewBox="0 0 24 24"><polyline points="8,8 4.5,12 8,16"/><polyline points="16,8 19.5,12 16,16"/><line x1="4.5" y1="12" x2="19.5" y2="12" stroke-dasharray="3 2.5"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18 A4 4 0 0 1 7 10 A5 5 0 0 1 16.5 10.2 A3.9 3.9 0 0 1 17 18 Z" fill="none"/></symbol>
 <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol>
 </svg>
 
@@ -646,6 +647,10 @@ const CONFIG = {
   // público e podem ser usados integralmente; ver a nota de política de
   // conteúdo logo acima de SEED_QUESTOES.
   instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (Famema/Botucatu)"],
+
+  // de quantos em quantos minutos a plataforma conversa com a nuvem da turma,
+  // quando a coordenação tiver configurado uma (ver seção 2-B)
+  intervaloSincronizacaoMin: 5,
 };
 
 /* ---------------------------- ESTADO GLOBAL ------------------------------ */
@@ -10058,6 +10063,8 @@ function dbPadrao(){
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     feedbacks: [],          // comentários, sugestões e reclamações gerais sobre a plataforma
+    excluidos: [],          // ids apagados de propósito (a sincronização não os traz de volta — ver 2-B)
+    atualizadoEm: new Date().toISOString(), // quando este banco foi salvo pela última vez
     configGeral: {
       metaMinimaQuestoesDia: CONFIG.metaMinimaQuestoesDia,
       metaRecomendadaQuestoesDia: CONFIG.metaRecomendadaQuestoesDia,
@@ -10091,6 +10098,10 @@ function loadState(){
     // sem precisar reiniciar tudo
     if(!db.feedbacks) db.feedbacks = [];
     if(!db.sessoes) db.sessoes = [];
+    // lista de exclusões e carimbo de gravação entraram com a sincronização
+    // entre aparelhos (seção 2-B); bancos antigos começam vazios
+    if(!db.excluidos) db.excluidos = [];
+    if(!db.atualizadoEm) db.atualizadoEm = new Date().toISOString();
     // sessão retomável entrou depois: quem já usava começa sem nenhuma guardada
     if(!db.sessoesEmAndamento) db.sessoesEmAndamento = {};
     /* Blocos deixaram de pertencer ao grupo e passaram a pertencer ao ANO da
@@ -10203,6 +10214,9 @@ function tamanhoBancoKb(){
 let _geracaoDb = 0; // incrementado a cada saveState(); invalida caches derivados de db (ver mapaPrevalenciasAssuntos)
 function saveState(){
   _geracaoDb++;
+  // carimbo de "salvo pela última vez em": é o que desempata a mesclagem
+  // entre dois aparelhos quando o mesmo registro mudou nos dois (ver 2-B)
+  db.atualizadoEm = new Date().toISOString();
   try{
     localStorage.setItem(CHAVE_STORAGE, JSON.stringify(db));
   }catch(e){
@@ -10263,6 +10277,420 @@ function importarBackupArquivo(inputEl){
     }catch(err){ toast("Não foi possível ler este arquivo como backup.", "err"); }
   };
   leitor.readAsText(arquivo);
+}
+
+/* ==========================================================================
+   2-B. MEMÓRIA ENTRE APARELHOS (sessão lembrada, conta portátil, nuvem)
+   ==========================================================================
+   O problema que esta seção resolve, em uma frase: "eu me cadastrei no
+   computador da faculdade e, quando abri no celular, não tinha nada".
+
+   Isso acontece porque o localStorage é do NAVEGADOR, não da pessoa: o site
+   publicado no GitHub Pages é o mesmo, mas cada aparelho guarda a própria
+   cópia dos dados. Sem servidor, um aparelho não sabe que o outro existe.
+
+   Três camadas, da mais simples para a mais completa — a pessoa usa a que
+   precisar, e nenhuma delas pede sistema de senha mais complicado do que o
+   que já existe:
+
+   1. SESSÃO LEMBRADA (automática). Antes, fechar o navegador deslogava.
+      Agora quem entrou continua entrado no mesmo aparelho, até clicar em
+      Sair. Resolve o "ele esquece de mim" dentro de um aparelho só.
+
+   2. CONTA PORTÁTIL (manual, funciona sempre, inclusive sem internet).
+      No aparelho antigo, a pessoa gera um arquivo (ou um código de texto)
+      com o cadastro dela e tudo o que ela estudou; no aparelho novo, ela
+      envia esse arquivo e entra. Não é sincronização contínua: é uma
+      mudança de casa, feita na hora em que ela quiser.
+
+   3. NUVEM DA TURMA (opcional, ligada uma vez pela coordenação).
+      Com um endereço de sincronização configurado, todos os aparelhos
+      passam a somar os dados entre si sozinhos: cadastro feito no
+      computador aparece no celular, e vice-versa. Continua sem back-end
+      próprio — é só um lugar onde o mesmo pacote de dados fica guardado.
+
+   REGRA DE OURO DA MESCLAGEM: sincronizar SOMA, não substitui. Registro que
+   existe de um lado e não do outro é acrescentado. Quando o mesmo registro
+   existe dos dois lados e está diferente, vale o do banco salvo mais
+   recentemente (cada gravação carimba db.atualizadoEm). Exclusões ficam
+   anotadas em db.excluidos para que a sincronização não ressuscite o que
+   alguém apagou de propósito. */
+
+/* ---------- 1. sessão lembrada neste aparelho ---------- */
+const CHAVE_SESSAO = "esc_sessao_v1";
+function lembrarSessao(usuarioId){
+  try{ localStorage.setItem(CHAVE_SESSAO, usuarioId); }catch(e){}
+}
+function esquecerSessao(){
+  try{ localStorage.removeItem(CHAVE_SESSAO); }catch(e){}
+}
+/* Devolve o usuário que estava logado neste aparelho, se ele ainda existir e
+   ainda puder entrar. Cadastro pendente, recusado ou inativo não volta
+   sozinho — a pessoa passa pela tela de login e recebe o aviso certo. */
+function restaurarSessaoLembrada(){
+  let id = null;
+  try{ id = localStorage.getItem(CHAVE_SESSAO); }catch(e){ return; }
+  if(!id) return;
+  const u = (db.usuarios||[]).find(x=>x.id===id);
+  if(!u || (u.status && u.status!=="aprovado")){ esquecerSessao(); return; }
+  state.usuarioAtualId = u.id;
+}
+
+/* ---------- 2. o que é conteúdo de semente e o que é dado de gente ----------
+   O banco tem 635 questões e 501 flashcards que vêm escritos no próprio
+   arquivo (as "sementes"). Mandar isso para a nuvem a cada sincronização
+   seria empurrar quase dois megabytes que os dois lados já têm. Então o
+   pacote que viaja leva só o que foi PRODUZIDO: cadastros, respostas,
+   questões novas, cartões pessoais — e também qualquer semente que alguém
+   tenha editado, porque aí ela já não é mais igual à do arquivo.
+   Do outro lado, sincronizarConteudoNovo() repõe as sementes que faltarem. */
+let _indiceSementes = null;
+function indiceSementes(){
+  if(_indiceSementes) return _indiceSementes;
+  const porId = (lista)=>{ const m = {}; (lista||[]).forEach(x=>{ if(x && x.id) m[x.id] = JSON.stringify(x); }); return m; };
+  _indiceSementes = {
+    questoes: porId(SEED_QUESTOES),
+    flashcards: porId(SEED_FLASHCARDS),
+    usuarios: porId(SEED_USUARIOS),
+    comentarios: porId(SEED_COMENTARIOS),
+    simulados: porId(SEED_SIMULADOS),
+    livroOuro: porId(SEED_LIVRO_OURO),
+    areas: porId(SEED_TAXONOMIA.areas),
+    especialidades: porId(SEED_TAXONOMIA.especialidades),
+    assuntos: porId(SEED_TAXONOMIA.assuntos),
+  };
+  return _indiceSementes;
+}
+function semAsSementes(lista, mapa){
+  return (lista||[]).filter(x => !x || !x.id || mapa[x.id] !== JSON.stringify(x));
+}
+/* O pacote que vai para a nuvem (ou para o arquivo de backup entre turmas). */
+function bancoParaSincronizar(){
+  const sem = indiceSementes();
+  const copia = copiaProfunda(db);
+  copia.questoes    = semAsSementes(copia.questoes, sem.questoes);
+  copia.flashcards  = semAsSementes(copia.flashcards, sem.flashcards);
+  copia.usuarios    = semAsSementes(copia.usuarios, sem.usuarios);
+  copia.comentarios = semAsSementes(copia.comentarios, sem.comentarios);
+  copia.simulados   = semAsSementes(copia.simulados, sem.simulados);
+  copia.livroOuro   = semAsSementes(copia.livroOuro, sem.livroOuro);
+  if(copia.taxonomia){
+    copia.taxonomia.areas          = semAsSementes(copia.taxonomia.areas, sem.areas);
+    copia.taxonomia.especialidades = semAsSementes(copia.taxonomia.especialidades, sem.especialidades);
+    copia.taxonomia.assuntos       = semAsSementes(copia.taxonomia.assuntos, sem.assuntos);
+  }
+  copia.reduzido = true;
+  return copia;
+}
+
+/* ---------- 3. mesclagem de dois bancos ----------
+   `base` é o que já está neste aparelho; `entrando` é o que chegou (da
+   nuvem ou de um arquivo de conta). O resultado soma os dois. */
+function mesclarBancos(base, entrando){
+  if(!entrando || typeof entrando !== "object") return base;
+  const r = copiaProfunda(base);
+  // quem foi salvo por último decide os empates (registro igual dos dois
+  // lados, com conteúdo diferente)
+  const entrandoMaisNovo = String(entrando.atualizadoEm||"") > String(base.atualizadoEm||"");
+  const excluidos = new Set([...(base.excluidos||[]), ...(entrando.excluidos||[])]);
+  const vivo = x => !x || !x.id || !excluidos.has(x.id);
+
+  /* coleções de registros com id: soma por id, respeitando as exclusões */
+  const unirPorId = (destino, chegando, sobrescrever)=>{
+    const lista = (destino||[]).filter(vivo);
+    const indice = {};
+    lista.forEach((x,i)=>{ if(x && x.id) indice[x.id] = i; });
+    (chegando||[]).filter(vivo).forEach(x=>{
+      if(!x || !x.id){ return; }
+      const i = indice[x.id];
+      if(i === undefined){ indice[x.id] = lista.length; lista.push(x); }
+      else if(sobrescrever && JSON.stringify(lista[i]) !== JSON.stringify(x)) lista[i] = x;
+    });
+    return lista;
+  };
+  /* registros de conteúdo: podem ser editados, então o mais novo vence */
+  ["usuarios","questoes","flashcards","grupos","simulados","comentarios","livroOuro"].forEach(chave=>{
+    r[chave] = unirPorId(r[chave], entrando[chave], entrandoMaisNovo);
+  });
+  /* diários: só crescem, nunca são reescritos — a soma basta */
+  ["respostas","sessoes","resultadosSimulados","feedbacks"].forEach(chave=>{
+    r[chave] = unirPorId(r[chave], entrando[chave], false);
+  });
+  /* taxonomia */
+  if(entrando.taxonomia && r.taxonomia){
+    ["areas","especialidades","assuntos"].forEach(chave=>{
+      r.taxonomia[chave] = unirPorId(r.taxonomia[chave], entrando.taxonomia[chave], entrandoMaisNovo);
+    });
+  }
+  /* favoritos não têm id: a chave é a dupla usuário + questão */
+  const chaveFav = f => f.usuarioId+"|"+f.questaoId;
+  const favs = {};
+  (r.favoritos||[]).forEach(f=>{ favs[chaveFav(f)] = f; });
+  (entrando.favoritos||[]).forEach(f=>{ if(!favs[chaveFav(f)]) favs[chaveFav(f)] = f; });
+  r.favoritos = Object.values(favs);
+  /* repetição espaçada: um mapa por usuário, e dentro dele um registro por
+     questão/cartão. Vale sempre o que foi revisado mais recentemente —
+     jogar fora a revisão mais nova faria a questão voltar cedo demais. */
+  ["revisoes","revisoesFlashcards"].forEach(chave=>{
+    const destino = r[chave] || (r[chave] = {});
+    const chegando = entrando[chave] || {};
+    Object.keys(chegando).forEach(usuarioId=>{
+      if(!destino[usuarioId]){ destino[usuarioId] = chegando[usuarioId]; return; }
+      Object.keys(chegando[usuarioId]).forEach(itemId=>{
+        const atual = destino[usuarioId][itemId];
+        const nova = chegando[usuarioId][itemId];
+        if(!atual || String(nova.ultimaData||"") > String(atual.ultimaData||"")) destino[usuarioId][itemId] = nova;
+      });
+    });
+  });
+  /* diário de dias com flashcard: união das datas, em ordem */
+  const dias = r.diasCartoes || (r.diasCartoes = {});
+  Object.keys(entrando.diasCartoes || {}).forEach(usuarioId=>{
+    dias[usuarioId] = [...new Set([...(dias[usuarioId]||[]), ...(entrando.diasCartoes[usuarioId]||[])])].sort();
+  });
+  /* fila de questões inacabada: quem tem uma, mantém a sua */
+  const emAndamento = r.sessoesEmAndamento || (r.sessoesEmAndamento = {});
+  Object.keys(entrando.sessoesEmAndamento || {}).forEach(usuarioId=>{
+    if(!emAndamento[usuarioId]) emAndamento[usuarioId] = entrando.sessoesEmAndamento[usuarioId];
+  });
+  /* configurações e calendário: são ajustes globais, o mais novo vale */
+  if(entrandoMaisNovo){
+    if(entrando.configGeral) r.configGeral = entrando.configGeral;
+    if(entrando.sequenciasAno) r.sequenciasAno = entrando.sequenciasAno;
+  }
+  r.excluidos = [...excluidos];
+  r.atualizadoEm = (String(entrando.atualizadoEm||"") > String(r.atualizadoEm||"")) ? entrando.atualizadoEm : r.atualizadoEm;
+  return r;
+}
+/* Registra que um id foi apagado de propósito, para a sincronização não
+   trazê-lo de volta do outro aparelho. */
+function anotarExclusao(id){
+  if(!id) return;
+  if(!db.excluidos) db.excluidos = [];
+  if(db.excluidos.indexOf(id) < 0) db.excluidos.push(id);
+}
+
+/* ---------- 4. conta portátil: levar a conta para outro aparelho ----------
+   O pacote é um banco reduzido contendo SÓ o que pertence àquela pessoa, o
+   que permite reaproveitar exatamente a mesma mesclagem da nuvem. */
+function pacoteDaConta(usuarioId){
+  const u = (db.usuarios||[]).find(x=>x.id===usuarioId);
+  if(!u) return null;
+  const sem = indiceSementes();
+  const meuGrupo = (db.grupos||[]).filter(g=>!g.oficial && (g.criadoPor===usuarioId || (g.membrosAprovados||[]).includes(usuarioId)));
+  const soMinhas = lista => (lista||[]).filter(x=>x && x.usuarioId===usuarioId);
+  const soDoUsuario = mapa => (mapa && mapa[usuarioId]) ? {[usuarioId]: copiaProfunda(mapa[usuarioId])} : {};
+  return {
+    tipoPacote: "esc-conta", versaoPacote: 1, geradoEm: new Date().toISOString(),
+    atualizadoEm: db.atualizadoEm || new Date().toISOString(),
+    nomeDaPessoa: u.nome, emailDaPessoa: u.email,
+    usuarios: [copiaProfunda(u)],
+    grupos: copiaProfunda(meuGrupo),
+    // questões e cartões que a própria pessoa criou (semente editada inclusa)
+    questoes: semAsSementes((db.questoes||[]).filter(q=>q.criadoPor===usuarioId), sem.questoes),
+    flashcards: semAsSementes((db.flashcards||[]).filter(c=>c.usuarioId===usuarioId || c.criadoPor===usuarioId), sem.flashcards),
+    comentarios: soMinhas(db.comentarios),
+    respostas: soMinhas(db.respostas),
+    sessoes: soMinhas(db.sessoes),
+    resultadosSimulados: soMinhas(db.resultadosSimulados),
+    feedbacks: soMinhas(db.feedbacks),
+    favoritos: soMinhas(db.favoritos),
+    revisoes: soDoUsuario(db.revisoes),
+    revisoesFlashcards: soDoUsuario(db.revisoesFlashcards),
+    diasCartoes: soDoUsuario(db.diasCartoes),
+    sessoesEmAndamento: soDoUsuario(db.sessoesEmAndamento),
+  };
+}
+function textoDoPacoteDaConta(usuarioId){
+  const pacote = pacoteDaConta(usuarioId);
+  return pacote ? paraBase64(JSON.stringify(pacote)) : "";
+}
+function paraBase64(texto){
+  const bytes = new TextEncoder().encode(texto);
+  let binario = "";
+  // em pedaços, porque String.fromCharCode estoura com arrays muito grandes
+  for(let i=0; i<bytes.length; i+=8192) binario += String.fromCharCode.apply(null, bytes.subarray(i, i+8192));
+  return btoa(binario);
+}
+function deBase64(texto){
+  const binario = atob((texto||"").replace(/\s+/g, ""));
+  const bytes = new Uint8Array(binario.length);
+  for(let i=0; i<binario.length; i++) bytes[i] = binario.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+/* Lê um pacote, seja ele o texto em base64 ou o JSON do arquivo baixado. */
+function lerPacoteDeConta(conteudo){
+  const bruto = (conteudo||"").trim();
+  if(!bruto) throw new Error("Cole o código da conta, ou envie o arquivo.");
+  let objeto = null;
+  try{ objeto = JSON.parse(bruto); }
+  catch(e){
+    try{ objeto = JSON.parse(deBase64(bruto)); }
+    catch(e2){ throw new Error("Este código não foi reconhecido. Confira se ele foi copiado inteiro."); }
+  }
+  if(!objeto || objeto.tipoPacote !== "esc-conta" || !(objeto.usuarios||[]).length){
+    throw new Error("Este arquivo não é um pacote de conta do Esc.");
+  }
+  return objeto;
+}
+/* Recebe a conta neste aparelho: soma os dados e devolve o usuário. */
+function aplicarPacoteDeConta(conteudo){
+  const pacote = lerPacoteDeConta(conteudo);
+  db = mesclarBancos(db, pacote);
+  sincronizarConteudoNovo();
+  saveState();
+  return pacote.usuarios[0];
+}
+
+/* ---------- 5. nuvem da turma (opcional) ----------
+   A configuração fica no localStorage do aparelho, e não no banco, porque
+   ela precisa existir ANTES de haver qualquer dado — é ela que diz de onde
+   os dados vêm. Num aparelho novo, ela chega por um link de convite. */
+const CHAVE_NUVEM = "esc_nuvem_v1";
+const estadoNuvem = { status:"ocioso", mensagem:"", ultimaEm:null, sincronizando:false };
+function configNuvem(){
+  try{
+    const bruto = localStorage.getItem(CHAVE_NUVEM);
+    if(!bruto) return null;
+    const cfg = JSON.parse(bruto);
+    return (cfg && cfg.url) ? cfg : null;
+  }catch(e){ return null; }
+}
+function salvarConfigNuvem(cfg){
+  try{
+    if(!cfg) localStorage.removeItem(CHAVE_NUVEM);
+    else localStorage.setItem(CHAVE_NUVEM, JSON.stringify(cfg));
+  }catch(e){ toast("Não foi possível guardar a configuração de sincronização neste navegador.", "err"); }
+}
+function nuvemLigada(){ const c = configNuvem(); return !!(c && c.ativo); }
+
+/* Link de convite: leva a configuração da nuvem dentro do próprio endereço,
+   para que o aluno só precise abrir o link no aparelho novo. */
+function linkDeConviteNuvem(){
+  const cfg = configNuvem();
+  if(!cfg) return "";
+  const base = location.href.split("#")[0];
+  return base + "#/login?nuvem=" + encodeURIComponent(paraBase64(JSON.stringify(cfg)));
+}
+/* Lê (e apaga do endereço) o convite, se o link trouxer um. */
+function aplicarConviteDaUrl(){
+  const hash = location.hash || "";
+  const m = hash.match(/[?&]nuvem=([^&]+)/);
+  if(!m) return false;
+  let ok = false;
+  try{
+    const cfg = JSON.parse(deBase64(decodeURIComponent(m[1])));
+    if(cfg && cfg.url){ cfg.ativo = true; salvarConfigNuvem(cfg); ok = true; }
+  }catch(e){ ok = false; }
+  // tira o convite do endereço para ele não ficar sendo reaplicado a cada F5
+  const rotaLimpa = hash.replace(/[?&]nuvem=[^&]+/, "").replace(/[?&]$/, "") || "#/login";
+  if(location.replace) location.replace(rotaLimpa); else location.hash = rotaLimpa;
+  return ok;
+}
+
+/* Procura, dentro do que o serviço devolveu, o objeto que é de fato um banco
+   do Esc — cada serviço embrulha a resposta de um jeito ({dados}, {record},
+   {data}), e assim a plataforma aceita todos sem configuração extra. */
+function acharBancoNaResposta(objeto, profundidade){
+  if(!objeto || typeof objeto !== "object" || (profundidade||0) > 4) return null;
+  if(Array.isArray(objeto.usuarios) && Array.isArray(objeto.questoes)) return objeto;
+  if(Array.isArray(objeto)) return acharBancoNaResposta(objeto[0], (profundidade||0)+1);
+  for(const chave of ["dados","record","data","banco","value"]){
+    const achado = acharBancoNaResposta(objeto[chave], (profundidade||0)+1);
+    if(achado) return achado;
+  }
+  return null;
+}
+function cabecalhosNuvem(cfg){
+  const h = {"Content-Type":"application/json"};
+  if(cfg.chave){
+    if(cfg.modo === "supabase"){ h["apikey"] = cfg.chave; h["Authorization"] = "Bearer "+cfg.chave; }
+    else h["Authorization"] = "Bearer "+cfg.chave;
+  }
+  if(cfg.cabecalhoExtraNome && cfg.cabecalhoExtraValor) h[cfg.cabecalhoExtraNome] = cfg.cabecalhoExtraValor;
+  return h;
+}
+function enderecoNuvem(cfg){
+  if(cfg.modo === "supabase"){
+    const base = cfg.url.replace(/\/+$/, "");
+    return base + "/rest/v1/" + (cfg.tabela || "esc_dados");
+  }
+  return cfg.url;
+}
+async function baixarDaNuvem(cfg){
+  const sala = cfg.sala || "turma";
+  const url = cfg.modo === "supabase"
+    ? enderecoNuvem(cfg) + "?sala=eq." + encodeURIComponent(sala) + "&select=dados"
+    : enderecoNuvem(cfg);
+  const resp = await fetch(url, {method:"GET", headers:cabecalhosNuvem(cfg)});
+  if(resp.status === 404) return null;          // ainda não existe nada guardado
+  if(!resp.ok) throw new Error("O serviço respondeu "+resp.status+" ao buscar os dados.");
+  const texto = await resp.text();
+  if(!texto.trim()) return null;
+  return acharBancoNaResposta(JSON.parse(texto));
+}
+async function enviarParaNuvem(cfg, pacote){
+  const sala = cfg.sala || "turma";
+  const agora = new Date().toISOString();
+  let resp;
+  if(cfg.modo === "supabase"){
+    resp = await fetch(enderecoNuvem(cfg), {
+      method: "POST",
+      headers: {...cabecalhosNuvem(cfg), "Prefer":"resolution=merge-duplicates,return=minimal"},
+      body: JSON.stringify([{sala, dados:pacote, atualizado_em:agora}]),
+    });
+  }else{
+    resp = await fetch(enderecoNuvem(cfg), {
+      method: "PUT",
+      headers: cabecalhosNuvem(cfg),
+      body: JSON.stringify({sala, dados:pacote, atualizadoEm:agora}),
+    });
+  }
+  if(!resp.ok) throw new Error("O serviço respondeu "+resp.status+" ao guardar os dados.");
+}
+
+/* A sincronização em si: baixa, soma ao que existe aqui, e devolve o
+   resultado somado. Os dois lados terminam com o mesmo conteúdo. */
+async function sincronizarComNuvem(opcoes){
+  const op = opcoes || {};
+  const cfg = configNuvem();
+  if(!cfg || !cfg.ativo){ if(!op.silencioso) toast("A sincronização na nuvem não está configurada neste aparelho.", "err"); return false; }
+  if(estadoNuvem.sincronizando) return false;
+  estadoNuvem.sincronizando = true;
+  estadoNuvem.status = "sincronizando";
+  if(!op.silencioso) render();
+  try{
+    const remoto = await baixarDaNuvem(cfg);
+    if(remoto){
+      db = mesclarBancos(db, remoto);
+      sincronizarConteudoNovo();
+    }
+    await enviarParaNuvem(cfg, bancoParaSincronizar());
+    estadoNuvem.status = "ok";
+    estadoNuvem.mensagem = "";
+    estadoNuvem.ultimaEm = new Date().toISOString();
+    db.ultimaSincronizacaoEm = estadoNuvem.ultimaEm;
+    saveState();
+    // a sessão pode ter chegado com um cadastro aprovado do outro aparelho
+    if(state.usuarioAtualId && !(db.usuarios||[]).some(u=>u.id===state.usuarioAtualId)) state.usuarioAtualId = null;
+    if(!op.silencioso) toast("Dados sincronizados com a turma.");
+    render();
+    return true;
+  }catch(e){
+    estadoNuvem.status = "erro";
+    estadoNuvem.mensagem = e.message || "falha de rede";
+    if(!op.silencioso) toast("Não foi possível sincronizar: "+estadoNuvem.mensagem, "err");
+    return false;
+  }finally{
+    estadoNuvem.sincronizando = false;
+  }
+}
+/* Sincronização de fundo: não interrompe quem está no meio de uma prova e
+   não enche a tela de aviso quando a internet cai. */
+function sincronizarEmSegundoPlano(){
+  if(!nuvemLigada()) return;
+  if(state.sessaoAtual && !state.sessaoAtual.finalizado && !state.sessaoAtual.finalizada) return;
+  sincronizarComNuvem({silencioso:true});
 }
 
 /* ==========================================================================
@@ -11638,15 +12066,20 @@ function fazerLogin(identificador, senha){
   if(usuario.status==="rejeitado"){ toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); return; }
   if(usuario.status==="inativo"){ toast("Sua conta está inativa. Fale com a coordenação.", "err"); return; }
   state.usuarioAtualId = usuario.id;
+  // a partir daqui este aparelho lembra quem entrou, até clicar em Sair
+  lembrarSessao(usuario.id);
   toast("Bem-vindo(a), "+usuario.nome.split(" ")[0]+"!");
   navigate("inicio");
 }
 function fazerLoginDemo(papel){
   const mapa = {admin:"u-admin", professor:"u-prof", residente:"u-res", aluno:"u-aluno1"};
   state.usuarioAtualId = mapa[papel];
+  // "ver como..." é uma espiada, não um login: o aparelho não guarda isso,
+  // senão quem só quis dar uma olhada voltaria sempre como aluno de teste
+  esquecerSessao();
   navigate("inicio");
 }
-function fazerLogout(){ state.usuarioAtualId = null; navigate("landing"); }
+function fazerLogout(){ state.usuarioAtualId = null; esquecerSessao(); navigate("landing"); }
 function alternarModoAluno(){
   state.modoAluno = !state.modoAluno;
   toast(state.modoAluno ? "Modo aluno ativado — suas respostas aqui contam pro seu próprio progresso." : "Voltando ao seu papel normal.");
@@ -11693,6 +12126,9 @@ function solicitarCadastro(){
     novo.assuntosAjuda = [...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value);
   }
   db.usuarios.push(novo); saveState();
+  // com a nuvem da turma ligada, o cadastro sobe na hora — é o que faz ele
+  // existir também no celular, e não só neste computador
+  if(nuvemLigada()) sincronizarComNuvem({silencioso:true});
   toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
   navigate("login");
 }
@@ -11712,7 +12148,7 @@ function alterarPapelUsuario(id, papel){
    6. ROTEADOR
    ========================================================================== */
 const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Revisão Rápida", historico:"Histórico de Atividade",
-  simulados:"Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas Antigas",
+  simulados:"Simulados e Provas", "simulado-ativo":"Simulado", "provas-antigas":"Simulados e Provas",
   favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil", "meu-grupo":"Meu Grupo",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", "aprovar-cadastros":"Aprovar Cadastros",
   usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
@@ -11727,7 +12163,8 @@ function navigate(route, params){
   fecharMenuMobile();
 }
 window.addEventListener("hashchange", function(){
-  const r = (location.hash||"").replace("#/","") || "landing";
+  if(!db) return; // o link de convite mexe no endereço antes dos dados carregarem
+  const r = ((location.hash||"").replace("#/","").split("?")[0]) || "landing";
   if(r !== state.route){ state.route = r; render(); }
 });
 
@@ -11783,9 +12220,16 @@ function render(){
     case "revisao": conteudo = renderRevisao(); break;
     case "flashcards": conteudo = renderFlashcards(); break;
     case "material-pdf": conteudo = renderMaterialPDF(); break;
-    case "simulados": conteudo = renderSimulados(); break;
+    case "simulados": conteudo = renderSimuladosEProvas(); break;
     case "simulado-ativo": conteudo = renderSimuladoAtivo(); break;
-    case "provas-antigas": conteudo = renderProvasAntigas(); break;
+    // Simulados e Provas Antigas viraram uma tela só, com duas abas. A rota
+    // antiga continua respondendo e abre direto na aba certa, para não
+    // quebrar link salvo por nenhum aluno.
+    case "provas-antigas":
+      state.route = "simulados";
+      state.filtroRota.abaProvas = "provas";
+      conteudo = renderSimuladosEProvas();
+      break;
     case "favoritos": conteudo = renderFavoritos(); break;
     case "desempenho": conteudo = renderDesempenho(); break;
     // a tela de metas virou um cartão dentro de Estudar; a rota antiga
@@ -11919,10 +12363,9 @@ function navItemsParaPapel(papel){
     {id:"meu-grupo", label:"Meu Grupo", icon:"users"},
     {id:"revisao", label:"Revisão", icon:"refresh"},
     {id:"flashcards", label:"Revisão Rápida", icon:"cards"},
-    {id:"simulados", label:"Simulados", icon:"clipboard"},
+    {id:"simulados", label:"Simulados e Provas", icon:"clipboard"},
     {id:"historico", label:"Histórico de Atividade", icon:"clock"},
     {id:"favoritos", label:"Favoritos", icon:"star"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
     {id:"importar-questoes", label:"Enviar Questões", icon:"upload"},
   ];
   if(state.modoAluno && papel!=="aluno") return aluno;
@@ -11932,7 +12375,7 @@ function navItemsParaPapel(papel){
     {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
     {id:"importar-questoes", label:"Enviar Provas e Questões", icon:"upload"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
+    {id:"simulados", label:"Simulados e Provas", icon:"clipboard"},
   ];
   const conteudo = [
     {id:"inicio", label:"Início", icon:"home"},
@@ -11942,8 +12385,7 @@ function navItemsParaPapel(papel){
     {id:"criar-simulado", label:"Criar Simulado", icon:"plus"},
     {id:"material-pdf", label:"Material em PDF", icon:"printer"},
     {id:"flashcards", label:"Flashcards", icon:"cards"},
-    {id:"simulados", label:"Realizar Simulados", icon:"clipboard"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
+    {id:"simulados", label:"Simulados e Provas", icon:"clipboard"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"taxonomia", label:"Especialidades e Assuntos", icon:"filter"},
   ];
@@ -12100,6 +12542,13 @@ function renderLogin(){
       <div class="field"><label class="label">Senha</label><input class="input" type="password" id="loginSenha" placeholder="••••••••" onkeydown="if(event.key==='Enter') tentarLogin()"></div>
       <button class="btn btn-primary btn-block" onclick="tentarLogin()">Entrar</button>
       <p class="text-sm mt-2">Ainda não tem conta? <a href="javascript:void(0)" onclick="navigate('cadastro')">Solicitar cadastro</a></p>
+      ${nuvemLigada()
+        ? `<p class="text-xs muted mt-2">${iconeSvg("cloud")} Este aparelho está conectado à sua turma: entre com o mesmo e-mail e senha que você usa nos outros e seus dados vêm junto.</p>`
+        : `<div class="card-flat mt-3">
+            <div class="text-sm" style="font-weight:600">Já usei o Esc em outro aparelho</div>
+            <p class="text-xs muted mt-1">A plataforma guarda os dados em cada navegador. Se você se cadastrou no computador e está abrindo no celular (ou o contrário), traga sua conta pelo arquivo que você gerou em <em>Perfil › Usar em outro aparelho</em>.</p>
+            <button class="btn btn-secondary btn-sm mt-2" onclick="abrirModalReceberConta()">${iconeSvg("upload")} Trazer minha conta para este aparelho</button>
+          </div>`}
       <div class="card-flat mt-3">
         <div class="text-xs muted mb-1">Acesso rápido de demonstração (não pede senha):</div>
         <div class="flex gap-1" style="flex-wrap:wrap">
@@ -12170,6 +12619,9 @@ function renderCadastro(){
       <div class="field"><label class="label">Senha</label><input class="input" id="cadSenha" type="password" placeholder="Crie uma senha"></div>
       <button class="btn btn-primary btn-block" onclick="solicitarCadastro()">Enviar solicitação</button>
       <p class="text-sm mt-2">Já tem conta aprovada? <a href="javascript:void(0)" onclick="navigate('login')">Entrar</a></p>
+      ${nuvemLigada()
+        ? `<p class="text-xs muted mt-2">${iconeSvg("cloud")} Este aparelho está conectado à sua turma: o cadastro feito aqui vale também no celular e nos outros computadores.</p>`
+        : `<p class="text-xs muted mt-2">${iconeSvg("alert")} O cadastro fica guardado <strong>neste navegador</strong>. Para usar também no celular ou em outro computador, depois de entrar vá em <em>Perfil › Usar em outro aparelho</em> e leve sua conta num arquivo.</p>`}
     </div>
   </div>`;
 }
@@ -13626,19 +14078,49 @@ function arquivarFlashcardConfirmado(id){
 }
 
 /* ==========================================================================
-   13. SIMULADOS (lista, execução cronometrada, resultado)
-   ========================================================================== */
-function renderSimulados(){
+   13. SIMULADOS E PROVAS ANTIGAS (uma tela, duas abas)
+   ==========================================================================
+   Simulado e prova antiga eram duas linhas separadas no menu, mas o aluno
+   chega às duas com a mesma pergunta na cabeça — "quero fazer uma prova
+   inteira agora" —, e no meio do caminho troca de ideia entre "uma que o
+   professor montou" e "a prova de 2024 da UNIFESP". Duas linhas de menu
+   obrigavam a sair de uma tela e procurar a outra. Agora é uma opção só,
+   com duas abas: SIMULADOS (o que a equipe montou) e PROVAS ANTIGAS (o
+   arquivo por instituição e ano). A rota antiga /provas-antigas continua
+   respondendo e abre direto na segunda aba.
+
+   O resto desta seção (execução cronometrada, tempo por questão e
+   resultado) não mudou: as duas abas terminam no mesmo motor de simulado. */
+function abaProvasAtual(){
+  const a = state.filtroRota.abaProvas;
+  return a==="provas" ? "provas" : "simulados";
+}
+function mudarAbaProvas(aba){ state.filtroRota.abaProvas = aba; render(); }
+function renderSimuladosEProvas(){
+  const aba = abaProvasAtual();
+  const u = usuarioAtual();
+  const grupoUsuario = (u.papel==="aluno"||state.modoAluno) ? getGrupoDoUsuario(u).id : true;
+  const totalProvas = new Set(questoesAtivas(grupoUsuario).map(q=>q.banca+" "+q.ano)).size;
+  return `
+  <div class="page-header"><h2>Simulados e Provas</h2>
+  <p>Duas formas de fazer uma prova inteira: as montadas pelos professores e as provas antigas das instituições, ano a ano.</p></div>
+  <div class="tabs">
+    <div class="tab ${aba==="simulados"?"active":""}" onclick="mudarAbaProvas('simulados')">Simulados (${db.simulados.length})</div>
+    <div class="tab ${aba==="provas"?"active":""}" onclick="mudarAbaProvas('provas')">Provas antigas (${totalProvas})</div>
+  </div>
+  ${aba==="simulados" ? renderAbaSimulados() : renderAbaProvasAntigas()}`;
+}
+function renderAbaSimulados(){
   const u = usuarioAtual();
   const bloco = getBlocoAtual();
   const recomendados = db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id));
   const outros = db.simulados.filter(s=>!recomendados.includes(s));
   const meusResultados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
   return `
-  <div class="page-header"><h2>Simulados</h2><p>Provas cronometradas recomendadas pelos professores.</p></div>
+  <p class="text-sm muted mb-2">Provas cronometradas recomendadas pelos professores. Para refazer uma prova oficial inteira, use a aba <button class="link-btn" onclick="mudarAbaProvas('provas')">Provas antigas</button>.</p>
   ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
   ${outros.length ? `<div class="card-title mt-3 mb-1">Outros simulados disponíveis</div>${outros.map(renderSimuladoCard).join("")}` : ""}
-  ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco.</div>' : ""}
+  ${!db.simulados.length ? `<div class="empty-state">Nenhum simulado montado pelos professores ainda.<div class="text-sm mt-2">Enquanto isso, a aba <button class="link-btn" onclick="mudarAbaProvas('provas')">Provas antigas</button> já tem prova oficial inteira para treinar.</div></div>` : ""}
   ${meusResultados.length ? `<div class="card-title mt-3 mb-1">Seu histórico</div><div class="table-wrap"><table><thead><tr><th>Simulado</th><th>Nota</th><th>Data</th><th></th></tr></thead><tbody>${meusResultados.map(r=>`<tr><td>${escapeHtml(r.titulo||"—")}</td><td>${r.nota}%</td><td>${formatDataBR(r.data)}</td><td>${r.itens?`<button class="link-btn" onclick="verDetalheResultadoSimulado('${r.id}')">ver detalhes</button>`:""}</td></tr>`).join("")}</tbody></table></div>` : ""}
   `;
 }
@@ -13902,8 +14384,11 @@ function renderResultadoSimulado(){
 }
 
 /* ==========================================================================
-   14. PROVAS ANTIGAS (organizadas por instituição e ano, com filtros)
-   ========================================================================== */
+   14. PROVAS ANTIGAS — corpo da segunda aba de "Simulados e Provas"
+   ==========================================================================
+   Continua sendo uma tela inteira de filtros e cartões por instituição/ano;
+   o que mudou é que ela agora é desenhada dentro da aba, sem cabeçalho
+   próprio (quem desenha o cabeçalho é renderSimuladosEProvas). */
 function filtrosProvas(){
   if(!state.filtroRota.provas) state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false};
   return state.filtroRota.provas;
@@ -13915,7 +14400,7 @@ function mudarFiltroProvas(campo, valor){
   render();
 }
 function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false}; render(); }
-function renderProvasAntigas(){
+function renderAbaProvasAntigas(){
   const u = usuarioAtual();
   const f = filtrosProvas();
   const grupoUsuario = (u.papel==="aluno"||state.modoAluno) ? getGrupoDoUsuario(u).id : true;
@@ -13937,7 +14422,7 @@ function renderProvasAntigas(){
   state.filtroRota.provasGrupos = grupos;
 
   return `
-  <div class="page-header"><h2>Provas Antigas</h2><p>Questões organizadas por instituição e ano. Use os filtros para achar rapidamente a prova que quer treinar.</p></div>
+  <p class="text-sm muted mb-2">Questões organizadas por instituição e ano. Use os filtros para achar rapidamente a prova que quer treinar — cada cartão pode virar simulado cronometrado ou prática sem relógio.</p>
   <div class="card mb-2">
     <div class="grid grid-4">
       <div class="field" style="margin-bottom:0">
@@ -14698,7 +15183,8 @@ function renderPerfil(){
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
     </div>
   </div>` : ""}
-  ${ehMaster ? renderCardBackup() : `<div class="card mt-2" style="max-width:460px">
+  ${renderCardContaPortatil()}
+  ${ehMaster ? renderCardBackup() : `<div class="card mt-2" style="max-width:560px">
     <div class="card-title">Seus dados</div>
     <p class="text-sm muted">Tudo o que você faz aqui fica salvo neste navegador. A cópia de segurança de toda a plataforma é responsabilidade do administrador máster — se precisar trocar de computador ou recuperar algo, fale com a coordenação antes de limpar os dados do navegador.</p>
   </div>`}`;
@@ -14728,6 +15214,199 @@ function renderCardBackup(){
     <p class="text-xs muted mt-2">Importar substitui os dados atuais pelos do arquivo — inclusive respostas e cadastros de todos os usuários. Reiniciar apaga tudo e volta ao ponto de partida.</p>
   </div>`;
 }
+/* ==========================================================================
+   19-B. CONTA EM OUTRO APARELHO E SINCRONIZAÇÃO DA TURMA
+   ==========================================================================
+   A parte visível da seção 2-B. São três telas pequenas:
+   - no Perfil, cada pessoa leva a própria conta para outro aparelho;
+   - na entrada, quem chegou num aparelho novo recebe a conta;
+   - em Configurações, o administrador máster liga (ou desliga) a nuvem da
+     turma, que faz tudo isso acontecer sozinho. */
+
+/* ---------- levar a conta daqui para outro aparelho ---------- */
+function abrirModalLevarConta(){
+  const u = usuarioAtual(); if(!u) return;
+  const codigo = textoDoPacoteDaConta(u.id);
+  const kb = Math.round(codigo.length/1024);
+  const cabeNaTela = kb < 120; // código gigante não se copia à mão: aí vale o arquivo
+  abrirModal(`
+    <div class="modal-header"><h3>Levar minha conta para outro aparelho</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm">Isto gera uma cópia do <strong>seu</strong> cadastro e de tudo o que você estudou — respostas, revisões, favoritos, seus cartões e seus simulados. Os dados dos outros usuários não vão junto.</p>
+    <p class="text-sm muted mt-1">No outro aparelho, abra a plataforma, clique em <strong>"Já usei em outro aparelho"</strong> na tela de entrada e envie este arquivo (ou cole o código).</p>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" onclick="baixarArquivoDaConta()">${iconeSvg("archive")} Baixar arquivo da conta (${kb} KB)</button>
+      ${cabeNaTela ? `<button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('codigoDaConta').value,'Código copiado. Cole no outro aparelho.')">${iconeSvg("search")} Copiar código</button>` : ""}
+    </div>
+    ${cabeNaTela
+      ? `<div class="field mt-2"><label class="label">Código da conta</label><textarea class="textarea textarea-mono" id="codigoDaConta" style="min-height:110px" readonly>${escapeHtml(codigo)}</textarea></div>`
+      : `<p class="text-sm mt-2" style="color:var(--amber)">${iconeSvg("alert")} Você já tem bastante coisa estudada (${kb} KB), então o código ficou grande demais para copiar e colar. Use o arquivo.</p>`}
+    <p class="text-xs muted mt-2">Este arquivo é a sua conta: quem tiver ele entra como você. Guarde como guardaria uma senha.</p>`, "lg");
+}
+function baixarArquivoDaConta(){
+  const u = usuarioAtual(); if(!u) return;
+  const pacote = pacoteDaConta(u.id); if(!pacote) return;
+  const blob = new Blob([JSON.stringify(pacote)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const apelido = (u.nome||"conta").split(" ")[0].toLowerCase().replace(/[^a-z0-9]/g,"");
+  a.href = url; a.download = "esc-conta-"+apelido+"-"+hojeISO()+".json";
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  toast("Arquivo da conta baixado. Leve-o para o outro aparelho.");
+}
+
+/* ---------- receber a conta neste aparelho ---------- */
+function abrirModalReceberConta(){
+  abrirModal(`
+    <div class="modal-header"><h3>Já usei em outro aparelho</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm">Envie o arquivo da conta (ou cole o código) que você gerou no aparelho onde já estudava. Nada do que existe aqui é apagado: os dois conjuntos são somados.</p>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <label class="btn btn-primary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Enviar arquivo da conta<input type="file" accept=".json,.txt" style="display:none" onchange="receberContaDeArquivo(this)"></label>
+    </div>
+    <div class="field mt-2"><label class="label">Ou cole aqui o código da conta</label>
+      <textarea class="textarea textarea-mono" id="codigoContaRecebida" style="min-height:110px" placeholder="Cole o código gerado no outro aparelho"></textarea></div>
+    <button class="btn btn-secondary btn-sm" onclick="receberContaDoTexto()">Entrar com este código</button>
+    <p class="text-xs muted mt-2">Se a sua turma já usa a sincronização na nuvem, você não precisa disto: basta entrar com e-mail e senha, que os dados vêm sozinhos.</p>`, "lg");
+}
+function receberContaDeArquivo(input){
+  const arq = input.files && input.files[0]; if(!arq) return;
+  const leitor = new FileReader();
+  leitor.onload = e => concluirRecebimentoDeConta(e.target.result);
+  leitor.onerror = () => toast("Não foi possível ler este arquivo.", "err");
+  leitor.readAsText(arq);
+}
+function receberContaDoTexto(){
+  concluirRecebimentoDeConta(document.getElementById("codigoContaRecebida").value);
+}
+function concluirRecebimentoDeConta(conteudo){
+  let usuario;
+  try{ usuario = aplicarPacoteDeConta(conteudo); }
+  catch(e){ toast(e.message, "err"); return; }
+  fecharModal();
+  if(usuario.status && usuario.status !== "aprovado"){
+    toast("Conta recebida, mas o cadastro ainda está "+usuario.status+". Fale com a coordenação.", "err");
+    render();
+    return;
+  }
+  state.usuarioAtualId = usuario.id;
+  lembrarSessao(usuario.id);
+  if(nuvemLigada()) sincronizarComNuvem({silencioso:true});
+  toast("Conta recebida neste aparelho. Bem-vindo(a) de volta, "+usuario.nome.split(" ")[0]+"!");
+  navigate("inicio");
+}
+
+/* ---------- caixa do Perfil (todo mundo vê) ---------- */
+function renderCardContaPortatil(){
+  const ligada = nuvemLigada();
+  return `<div class="card mt-2" style="max-width:560px">
+    <div class="card-title">${iconeSvg("cloud")} Usar em outro aparelho</div>
+    ${ligada
+      ? `<p class="text-sm muted">Sua turma usa a sincronização automática: o que você faz no computador aparece no celular sozinho, e o contrário também. Basta entrar com o mesmo e-mail e senha.</p>
+         <p class="text-sm mt-1">${selosDaNuvem()}</p>
+         <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+           <button class="btn btn-secondary btn-sm" onclick="sincronizarComNuvem()">${iconeSvg("refresh")} Sincronizar agora</button>
+           <button class="btn btn-ghost btn-sm" onclick="abrirModalLevarConta()">Levar a conta num arquivo</button>
+         </div>`
+      : `<p class="text-sm muted">A plataforma guarda seus dados <strong>neste navegador</strong>. Ela não tem servidor próprio, então um cadastro feito aqui não existe sozinho no celular ou no computador da faculdade.</p>
+         <p class="text-sm muted mt-1">Para continuar de onde parou em outro aparelho, leve sua conta num arquivo — é rápido e funciona sem internet.</p>
+         <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+           <button class="btn btn-primary btn-sm" onclick="abrirModalLevarConta()">${iconeSvg("upload")} Levar minha conta para outro aparelho</button>
+           <button class="btn btn-secondary btn-sm" onclick="abrirModalReceberConta()">Receber uma conta aqui</button>
+         </div>
+         <p class="text-xs muted mt-2">Se quiser que isso aconteça sozinho para a turma inteira, a coordenação liga a sincronização em Configurações.</p>`}
+  </div>`;
+}
+function selosDaNuvem(){
+  const cfg = configNuvem();
+  if(!cfg || !cfg.ativo) return '<span class="badge badge-muted">sincronização desligada</span>';
+  if(estadoNuvem.sincronizando) return '<span class="badge badge-muted">sincronizando…</span>';
+  if(estadoNuvem.status === "erro") return '<span class="badge badge-danger" title="'+escapeHtml(estadoNuvem.mensagem||"")+'">sem conexão com a turma</span>';
+  const quando = estadoNuvem.ultimaEm || db.ultimaSincronizacaoEm;
+  return '<span class="badge badge-accent">sincronizado</span>'+(quando ? ' <span class="text-xs muted">última vez às '+escapeHtml(new Date(quando).toLocaleTimeString("pt-BR").slice(0,5))+'</span>' : "");
+}
+
+/* ---------- caixa de Configurações (administrador máster) ----------
+   Liga a nuvem da turma. Dois modos, os dois com fetch puro, sem nenhuma
+   biblioteca nova: um projeto Supabase (a opção recomendada, gratuita para
+   este tamanho de uso) ou qualquer endereço que aceite guardar e devolver
+   um JSON (GET e PUT). */
+function renderCardSincronizacao(){
+  const cfg = configNuvem() || {modo:"supabase", url:"", chave:"", tabela:"esc_dados", sala:"turma", ativo:false};
+  const ligada = !!cfg.ativo;
+  const sql = "create table esc_dados (sala text primary key, dados jsonb, atualizado_em timestamptz);\\nalter table esc_dados enable row level security;\\ncreate policy \\\"acesso da turma\\\" on esc_dados for all using (true) with check (true);";
+  return `<div class="card mt-3" style="max-width:720px${ligada?"":";border-color:var(--amber)"}">
+    <div class="card-title">${iconeSvg("cloud")} Sincronização entre aparelhos (nuvem da turma)</div>
+    <p class="text-sm muted">Sem isto, cada navegador guarda a própria cópia dos dados: quem se cadastra no computador da faculdade não existe no celular. Ligando, todos os aparelhos passam a <strong>somar</strong> o que cada um tem — cadastros, respostas, questões enviadas — a cada ${CONFIG.intervaloSincronizacaoMin} minutos e sempre que a plataforma abre.</p>
+    <p class="text-sm mt-1">Situação: ${selosDaNuvem()}${estadoNuvem.status==="erro" ? ' <span class="text-xs" style="color:var(--danger)">'+escapeHtml(estadoNuvem.mensagem)+'</span>' : ""}</p>
+
+    <div class="grid grid-2 mt-2">
+      <div class="field" style="margin-bottom:0"><label class="label">Onde os dados ficam</label>
+        <select class="select" id="nuvemModo">
+          <option value="supabase" ${cfg.modo!=="endpoint"?"selected":""}>Projeto Supabase (recomendado)</option>
+          <option value="endpoint" ${cfg.modo==="endpoint"?"selected":""}>Outro endereço que aceite GET e PUT de JSON</option>
+        </select>
+      </div>
+      <div class="field" style="margin-bottom:0"><label class="label">Nome da turma (a "sala" dos dados)</label>
+        <input class="input" id="nuvemSala" value="${escapeHtml(cfg.sala||"turma")}" placeholder="turma-2026">
+      </div>
+      <div class="field" style="margin-bottom:0"><label class="label">Endereço do projeto / da API</label>
+        <input class="input" id="nuvemUrl" value="${escapeHtml(cfg.url||"")}" placeholder="https://xxxxxxxx.supabase.co">
+      </div>
+      <div class="field" style="margin-bottom:0"><label class="label">Chave de acesso (anon key)</label>
+        <input class="input" id="nuvemChave" value="${escapeHtml(cfg.chave||"")}" placeholder="cole aqui a chave pública do projeto">
+      </div>
+      <div class="field" style="margin-bottom:0"><label class="label">Nome da tabela (só no Supabase)</label>
+        <input class="input" id="nuvemTabela" value="${escapeHtml(cfg.tabela||"esc_dados")}">
+      </div>
+    </div>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" onclick="salvarConfigNuvemDoFormulario()">${iconeSvg("check")} Salvar e ligar</button>
+      ${ligada ? `<button class="btn btn-secondary btn-sm" onclick="sincronizarComNuvem()">${iconeSvg("refresh")} Sincronizar agora</button>
+      <button class="btn btn-secondary btn-sm" onclick="copiarLinkDeConviteNuvem()">${iconeSvg("upload")} Copiar link de convite</button>
+      <button class="btn btn-danger btn-sm" onclick="desligarNuvem()">Desligar sincronização</button>` : ""}
+    </div>
+    ${ligada ? `<p class="text-sm muted mt-2">O <strong>link de convite</strong> é o que você manda para a turma: quem abrir esse link já entra com o aparelho conectado, sem precisar configurar nada. Cada pessoa continua entrando com o próprio e-mail e senha.</p>` : ""}
+
+    <details class="mt-2"><summary class="text-sm" style="cursor:pointer;font-weight:600">Como preparar um projeto Supabase (uma vez só)</summary>
+      <ol class="text-sm muted" style="padding-left:1.1rem;line-height:1.7;margin-top:.5rem">
+        <li>Crie uma conta gratuita no Supabase e um projeto novo.</li>
+        <li>Em <em>Project Settings › API</em>, copie a <em>Project URL</em> e a chave <em>anon public</em> para os campos acima.</li>
+        <li>Em <em>SQL Editor</em>, rode o comando abaixo para criar a tabela.</li>
+        <li>Volte aqui, clique em "Salvar e ligar" e depois em "Copiar link de convite".</li>
+      </ol>
+      <textarea class="textarea textarea-mono mt-1" style="min-height:90px" readonly>${escapeHtml(sql.replace(/\\\\n/g,"\\n"))}</textarea>
+    </details>
+    <p class="text-xs muted mt-2">${iconeSvg("alert")} Nesta versão a sala é compartilhada e não tem senha própria: quem tiver o link de convite alcança os dados da turma. É o suficiente para uma turma fechada, e é o preço de não ter back-end nem cadastro de verdade — quando o uso crescer, o passo seguinte é autenticação real no Supabase.</p>
+    <p class="text-xs muted mt-1">A sincronização soma registros. Se a mesma questão for editada em dois aparelhos ao mesmo tempo, fica valendo a versão do aparelho que salvou por último.</p>
+  </div>`;
+}
+function salvarConfigNuvemDoFormulario(){
+  if(!podeAdmin("config")){ toast("Só o administrador máster configura a sincronização.", "err"); return; }
+  const cfg = {
+    modo: document.getElementById("nuvemModo").value,
+    url: (document.getElementById("nuvemUrl").value||"").trim(),
+    chave: (document.getElementById("nuvemChave").value||"").trim(),
+    tabela: (document.getElementById("nuvemTabela").value||"esc_dados").trim(),
+    sala: (document.getElementById("nuvemSala").value||"turma").trim(),
+    ativo: true,
+  };
+  if(!/^https?:\/\//i.test(cfg.url)){ toast("O endereço precisa começar com https://", "err"); return; }
+  salvarConfigNuvem(cfg);
+  toast("Sincronização ligada neste aparelho. Testando a conexão…");
+  sincronizarComNuvem();
+}
+function desligarNuvem(){
+  salvarConfigNuvem(null);
+  estadoNuvem.status = "ocioso"; estadoNuvem.mensagem = "";
+  toast("Sincronização desligada neste aparelho. Os dados continuam salvos aqui.");
+  render();
+}
+function copiarLinkDeConviteNuvem(){
+  const link = linkDeConviteNuvem();
+  if(!link){ toast("Configure e ligue a sincronização primeiro.", "err"); return; }
+  copiarTexto(link, "Link de convite copiado. Mande para a turma — quem abrir já entra conectado.");
+}
+
 /* ==========================================================================
    20. PROFESSOR — Criar Simulado
    ========================================================================== */
@@ -15854,7 +16533,7 @@ function salvarQuestaoPendente(){
 function confirmarExcluirQuestao(qid){
   abrirModal(`<div class="modal-header"><h3>Excluir questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div><p>Esta ação não pode ser desfeita. Considere marcar como "anulada" ou "desatualizada" em vez de excluir, para manter o histórico de quem já respondeu.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
-function excluirQuestaoConfirmado(qid){ db.questoes = db.questoes.filter(q=>q.id!==qid); saveState(); fecharModal(); toast("Questão excluída."); render(); }
+function excluirQuestaoConfirmado(qid){ db.questoes = db.questoes.filter(q=>q.id!==qid); anotarExclusao(qid); saveState(); fecharModal(); toast("Questão excluída."); render(); }
 function marcarQuestaoStatus(qid, status){ getQuestao(qid).status = status; saveState(); toast("Status atualizado."); render(); }
 
 /* ==========================================================================
@@ -15978,8 +16657,10 @@ function moverEspecialidade(id, areaId){
 }
 function excluirEspecialidade(id){
   if(contarQuestoesEspecialidade(id)>0){ toast("Esta especialidade ainda tem questões. Mova ou mescle os assuntos antes de excluir.", "err"); return; }
+  db.taxonomia.assuntos.filter(a=>a.especialidadeId===id).forEach(a=>anotarExclusao(a.id));
   db.taxonomia.assuntos = db.taxonomia.assuntos.filter(a=>a.especialidadeId!==id);
   db.taxonomia.especialidades = db.taxonomia.especialidades.filter(e=>e.id!==id);
+  anotarExclusao(id);
   saveState(); toast("Especialidade excluída."); render();
 }
 function criarEspecialidadeNaArea(areaId){
@@ -16032,6 +16713,7 @@ function confirmarMesclarAssunto(origemId){
 function excluirAssunto(id){
   if(contarQuestoesAssunto(id)>0){ toast("Este assunto ainda tem questões. Use 'mesclar' ou mova as questões antes de excluir.", "err"); return; }
   db.taxonomia.assuntos = db.taxonomia.assuntos.filter(a=>a.id!==id);
+  anotarExclusao(id);
   saveState(); toast("Assunto excluído."); render();
 }
 function renderTaxonomia(){
@@ -16175,6 +16857,7 @@ function gerarPromptImportacao(){
     "- Se a questão tiver sido anulada pela banca, acrescente a linha: STATUS: anulada\n"+
     "- Se a prova tiver menos de 5 alternativas por questão, repita a última letra existente e deixe as demais vazias apenas se for inevitável; o ideal é manter exatamente as alternativas originais.\n"+
     "- Se você não tiver certeza do gabarito oficial, escreva GABARITO: ? e explique a dúvida no campo EXPLICACAO, em vez de inventar.\n\n"+
+    "- Responda só com os blocos das questões: esse texto vai ser salvo num documento (.docx ou .txt) e enviado direto para a plataforma, então qualquer comentário seu fora do formato atrapalha a leitura.\n\n"+
     "Aqui está a prova (colo o texto abaixo ou anexo o PDF/imagem):\n[COLE AQUI O TEXTO DA PROVA OU ANEXE O ARQUIVO]";
   }
   return "Você vai me ajudar a transcrever questões avulsas de provas de residência médica para um formato de texto específico.\n\n"+
@@ -16239,7 +16922,7 @@ function renderImportarQuestoes(){
 
   <div class="card mb-2">
     <div class="card-title">Passo 2 — peça a uma IA para formatar</div>
-    <p class="text-sm muted">Copie o prompt abaixo (pode revisar antes), cole numa IA junto com o PDF/texto da prova, e traga o resultado para o Passo 3.</p>
+    <p class="text-sm muted">Copie o prompt abaixo (pode revisar antes), cole numa IA junto com o PDF/texto da prova, e traga o resultado para o Passo 3 — colando o texto ou salvando a resposta num documento do Word (.docx) e enviando o arquivo.</p>
     <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
     <div class="flex gap-1" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">${iconeSvg("search")} Copiar prompt</button>
@@ -16248,8 +16931,8 @@ function renderImportarQuestoes(){
   </div>
 
   <div class="card">
-    <div class="card-title">Passo 3 — cole aqui o texto formatado</div>
-    <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO e ANO: ele é lido uma vez e aplicado a todas as questões.</p>
+    <div class="card-title">Passo 3 — cole o texto ou envie o arquivo da prova</div>
+    <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO e ANO: ele é lido uma vez e aplicado às questões que vierem depois dele. Enviando vários arquivos, cada um pode trazer o próprio cabeçalho.</p>
     <textarea class="textarea textarea-mono" id="textoImportacao" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
 ANO: ${escapeHtml(String(ctx.ano||""))}
 ===
@@ -16260,16 +16943,218 @@ GABARITO: B
 ==="></textarea>
     <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
       <button class="btn btn-primary" onclick="previsualizarImportacao()">Pré-visualizar</button>
-      <label class="btn btn-secondary" style="cursor:pointer">${iconeSvg("upload")} Carregar arquivo .txt<input type="file" accept=".txt,.md,.csv" style="display:none" onchange="carregarArquivoImportacao(this)"></label>
+      <label class="btn btn-secondary" style="cursor:pointer">${iconeSvg("upload")} Enviar arquivo da prova<input type="file" accept=".docx,.txt,.md,.csv" multiple style="display:none" onchange="carregarArquivoImportacao(this)"></label>
+      <button class="btn btn-ghost btn-sm" onclick="baixarModeloImportacao()">${iconeSvg("archive")} Baixar modelo</button>
     </div>
+    <p class="text-xs muted mt-1">Aceita documento do Word (.docx) e texto (.txt, .md, .csv), um ou vários de uma vez — o conteúdo precisa estar no formato do script do Passo 2. Documento .doc antigo: salve como .docx primeiro.</p>
   </div>
   <div id="previewImportacao" class="mt-2"></div>`;
 }
-function carregarArquivoImportacao(input){
-  const arq = input.files && input.files[0]; if(!arq) return;
-  const leitor = new FileReader();
-  leitor.onload = e => { document.getElementById("textoImportacao").value = e.target.result; toast("Arquivo carregado. Confira e clique em Pré-visualizar."); };
-  leitor.readAsText(arq);
+/* ==========================================================================
+   26-B. UPLOAD DE PROVA EM ARQUIVO (.docx do Word, .txt, .md, .csv)
+   ==========================================================================
+   Antes só dava para COLAR o texto formatado, ou carregar um .txt. Mas o
+   caminho real de quem monta prova é outro: a pessoa pede o script para uma
+   IA (ou digita ele mesma), a resposta vai parar num documento do Word, e é
+   esse documento que ela tem na mão. Aqui a plataforma abre esse documento
+   direto.
+
+   O conteúdo do arquivo precisa seguir o SCRIPT do Passo 2 (PERGUNTA:, A:,
+   B:, ..., GABARITO:, EXPLICACAO: ... separados por uma linha com ===). O
+   arquivo é só o transporte; quem manda no formato continua sendo o script.
+
+   Como o .docx é lido sem nenhuma biblioteca externa (regra do projeto:
+   arquivo único, sem dependência):
+   - um .docx é um ZIP comum, e o texto do documento está dentro dele, em
+     word/document.xml;
+   - o ZIP é aberto "na mão", lendo o índice que fica no fim do arquivo
+     (a tabela central), e o conteúdo é descompactado pelo próprio navegador
+     (DecompressionStream, que vem no Chrome, Edge, Firefox e Safari atuais);
+   - do XML do Word interessam três coisas: onde termina cada parágrafo
+     (</w:p> vira quebra de linha), as quebras manuais (<w:br/>) e as
+     tabulações (<w:tab/>). Todo o resto de marcação é descartado.
+
+   Documento .doc antigo (do Word 97-2003) NÃO é ZIP e não pode ser lido
+   assim — nesse caso a plataforma explica que basta salvar como .docx. */
+
+/* Acha um arquivo dentro de um ZIP e devolve o conteúdo dele como texto.
+   Devolve null quando o arquivo não existe dentro do ZIP. */
+async function extrairDoZip(buffer, caminhoProcurado){
+  const bytes = new Uint8Array(buffer);
+  const dv = new DataView(buffer);
+  // o índice do ZIP (EOCD) fica no fim do arquivo; procuramos a assinatura
+  // dele de trás para frente, porque pode haver comentário depois
+  let eocd = -1;
+  const limite = Math.max(0, bytes.length - 66000);
+  for(let i = bytes.length - 22; i >= limite; i--){
+    if(bytes[i]===0x50 && bytes[i+1]===0x4b && bytes[i+2]===0x05 && bytes[i+3]===0x06){ eocd = i; break; }
+  }
+  if(eocd < 0) return null; // não é um ZIP (logo, não é um .docx)
+  const totalEntradas = dv.getUint16(eocd+10, true);
+  let p = dv.getUint32(eocd+16, true); // onde começa a tabela central
+  const decodificador = new TextDecoder("utf-8");
+  for(let n = 0; n < totalEntradas; n++){
+    if(p+46 > bytes.length || dv.getUint32(p, true) !== 0x02014b50) return null;
+    const metodo    = dv.getUint16(p+10, true);
+    const tamComp   = dv.getUint32(p+20, true);
+    const tamNome   = dv.getUint16(p+28, true);
+    const tamExtra  = dv.getUint16(p+30, true);
+    const tamComent = dv.getUint16(p+32, true);
+    const offLocal  = dv.getUint32(p+42, true);
+    const nome = decodificador.decode(bytes.subarray(p+46, p+46+tamNome));
+    if(nome === caminhoProcurado){
+      // o cabeçalho local diz onde exatamente começam os bytes do conteúdo
+      if(dv.getUint32(offLocal, true) !== 0x04034b50) return null;
+      const inicio = offLocal + 30 + dv.getUint16(offLocal+26, true) + dv.getUint16(offLocal+28, true);
+      const comprimido = buffer.slice(inicio, inicio + tamComp);
+      if(metodo === 0) return decodificador.decode(new Uint8Array(comprimido)); // guardado sem compressão
+      if(metodo !== 8) throw new Error("compressao-nao-suportada");
+      if(typeof DecompressionStream !== "function") throw new Error("navegador-antigo");
+      const fluxo = new Blob([comprimido]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+      return await new Response(fluxo).text();
+    }
+    p += 46 + tamNome + tamExtra + tamComent;
+  }
+  return null;
+}
+
+/* Converte o XML do Word em texto corrido, preservando as quebras de linha
+   (que é o que o script de importação usa para separar PERGUNTA, A, B...). */
+function xmlDoWordParaTexto(xml){
+  let t = xml;
+  t = t.replace(/<w:instrText[\s\S]*?<\/w:instrText>/g, "");   // códigos de campo (sumário, links)
+  t = t.replace(/<w:delText[\s\S]*?<\/w:delText>/g, "");        // texto apagado com controle de alterações
+  t = t.replace(/<w:tab\b[^>]*\/?>/g, "\t");
+  t = t.replace(/<w:br\b[^>]*\/?>/g, "\n");
+  t = t.replace(/<\/w:p>/g, "\n");                               // fim de parágrafo = quebra de linha
+  t = t.replace(/<[^>]+>/g, "");                                 // todo o resto da marcação some
+  t = t.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+       .replace(/&#x([0-9a-fA-F]+);/g, (m,h)=>String.fromCodePoint(parseInt(h,16)))
+       .replace(/&#(\d+);/g, (m,d)=>String.fromCodePoint(parseInt(d,10)))
+       .replace(/&amp;/g, "&");                                  // o & vem por último, senão desfaz os de cima
+  return t;
+}
+
+/* Tira do texto as sujeirinhas que o Word costuma deixar e que atrapalham a
+   leitura dos rótulos do script (espaço que não quebra, caractere invisível,
+   linha de "=" com tamanho variado). */
+function normalizarTextoDeProva(texto){
+  return (texto||"")
+    .replace(/\r\n?/g, "\n")
+    .replace(/[   ]/g, " ")   // espaços "especiais" do Word
+    .replace(/[​‌‍⁠﻿­]/g, "") // invisíveis
+    .split("\n").map(l=>l.replace(/[ \t]+$/, "")).join("\n")
+    .replace(/^[ \t]*={3,}[ \t]*$/gm, "===")  // ==== ou == = viram o separador padrão
+    .replace(/\n{3,}/g, "\n\n")   // parágrafo vazio do Word não vira buraco no texto
+    .trim();
+}
+
+/* Lê um arquivo escolhido pelo usuário e devolve o texto dele.
+   .docx passa pelo caminho do ZIP; os demais são lidos como texto puro. */
+async function lerArquivoDeProva(arquivo){
+  const nome = (arquivo.name||"").toLowerCase();
+  if(nome.endsWith(".doc")){
+    throw new Error('O arquivo "'+arquivo.name+'" está no formato antigo .doc (Word 97-2003), que não pode ser aberto aqui. No Word, use "Salvar como" e escolha "Documento do Word (.docx)".');
+  }
+  if(nome.endsWith(".docx")){
+    let xml = null;
+    try{
+      xml = await extrairDoZip(await arquivo.arrayBuffer(), "word/document.xml");
+    }catch(e){
+      if(e && e.message==="navegador-antigo") throw new Error("Este navegador não sabe abrir .docx. Atualize o navegador, ou salve o documento como .txt e envie novamente.");
+      throw new Error('Não foi possível abrir "'+arquivo.name+'". Abra o documento no Word e salve de novo como .docx, ou salve como .txt.');
+    }
+    if(xml === null) throw new Error('"'+arquivo.name+'" não parece ser um documento do Word válido. Abra e salve novamente como .docx, ou salve como .txt.');
+    return normalizarTextoDeProva(xmlDoWordParaTexto(xml));
+  }
+  // .txt, .md, .csv e qualquer outro texto puro
+  const texto = await new Promise((resolve, reject)=>{
+    const leitor = new FileReader();
+    leitor.onload = e => resolve(e.target.result);
+    leitor.onerror = () => reject(new Error('Não foi possível ler "'+arquivo.name+'".'));
+    leitor.readAsText(arquivo);
+  });
+  return normalizarTextoDeProva(texto);
+}
+
+/* Quantas questões no formato do script existem neste texto. Serve para
+   avisar na hora se o arquivo veio fora do formato — é muito mais barato
+   dizer isso agora do que deixar a pessoa clicar em Pré-visualizar e
+   receber uma lista de erros. */
+function contarQuestoesNoTexto(texto){
+  const m = (texto||"").match(/^[ \t]*PERGUNTA[ \t]*:/gmi);
+  return m ? m.length : 0;
+}
+
+/* Botão "Carregar arquivo" do Passo 3. Aceita vários arquivos de uma vez
+   (uma prova por arquivo, por exemplo), na ordem em que foram escolhidos. */
+async function carregarArquivoImportacao(input){
+  const arquivos = [...(input.files||[])];
+  input.value = ""; // permite escolher o mesmo arquivo de novo depois
+  if(!arquivos.length) return;
+  const area = document.getElementById("textoImportacao");
+  const partes = [];
+  const falhas = [];
+  for(const arq of arquivos){
+    try{ partes.push(await lerArquivoDeProva(arq)); }
+    catch(e){ falhas.push(e.message); }
+  }
+  falhas.forEach(msg => toast(msg, "err"));
+  if(!partes.length) return;
+  // vários arquivos entram um atrás do outro, separados pela linha do script
+  const textoNovo = partes.join("\n===\n");
+  const jaTinha = (area.value||"").trim();
+  area.value = jaTinha ? jaTinha + "\n===\n" + textoNovo : textoNovo;
+  const quantas = contarQuestoesNoTexto(textoNovo);
+  if(!quantas){
+    toast("O arquivo foi aberto, mas não tem nenhuma questão no formato do script (falta PERGUNTA:).", "err");
+    document.getElementById("previewImportacao").innerHTML = renderAvisoArquivoForaDoFormato(arquivos.map(a=>a.name));
+    return;
+  }
+  toast(quantas+" questão(ões) encontrada(s) em "+partes.length+" arquivo(s). Confira a pré-visualização abaixo.");
+  previsualizarImportacao();
+}
+function renderAvisoArquivoForaDoFormato(nomes){
+  return `<div class="card" style="border-color:var(--amber)">
+    <div class="card-title">${iconeSvg("alert")} O arquivo abriu, mas não está no formato do script</div>
+    <p class="text-sm">${escapeHtml(nomes.join(", "))} — o texto foi carregado no Passo 3, mas não há nenhuma linha começando com <strong>PERGUNTA:</strong>, que é como cada questão começa no script.</p>
+    <p class="text-sm muted mt-1">O arquivo é só o transporte: o conteúdo dele precisa estar no formato do Passo 2. O caminho normal é copiar o prompt do Passo 2, colar numa IA junto com o PDF da prova, salvar a resposta num documento (.docx ou .txt) e enviar esse documento aqui.</p>
+    <p class="text-sm muted mt-1">Enviar o PDF ou o Word original da prova, do jeito que a banca publicou, não funciona: ali não existe gabarito marcado nem explicação, e a plataforma não inventa nenhum dos dois.</p>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">Copiar o prompt do Passo 2</button>
+      <button class="btn btn-ghost btn-sm" onclick="baixarModeloImportacao()">${iconeSvg("archive")} Baixar modelo preenchido</button>
+    </div>
+  </div>`;
+}
+/* Modelo de arquivo, com uma questão inteira preenchida, para quem prefere
+   escrever a prova à mão no Word em vez de pedir a uma IA. */
+function baixarModeloImportacao(){
+  const ctx = contextoImportacao();
+  const modelo =
+    "INSTITUICAO: "+(ctx.instituicao||CONFIG.bancaFoco)+"\n"+
+    "ANO: "+(ctx.ano||new Date().getFullYear())+"\n"+
+    "===\n"+
+    "PERGUNTA: Homem de 62 anos, hipertenso, chega ao pronto-socorro com dor torácica em aperto há 40 minutos. ECG mostra supradesnivelamento de ST em parede inferior. Qual a conduta imediata?\n"+
+    "A: Angioplastia primária, se disponível em até 120 minutos\n"+
+    "B: Apenas anticoagulação plena e observação\n"+
+    "C: Teste ergométrico antes de qualquer conduta\n"+
+    "D: Alta com sintomático e reavaliação ambulatorial\n"+
+    "GABARITO: A\n"+
+    "EXPLICACAO: Escreva aqui, com suas palavras, por que essa alternativa é a correta e por que as outras não são.\n"+
+    "REFERENCIAS: Diretriz da sociedade de especialidade, com nome e ano.\n"+
+    "AREA: Clínica Médica\n"+
+    "ESPECIALIDADE: Cardiologia\n"+
+    "ASSUNTO: Síndrome coronariana aguda\n"+
+    "DIFICULDADE: intermediario\n"+
+    "===\n"+
+    "PERGUNTA: (repita o bloco acima para cada questão, sempre separado por uma linha com três sinais de igual)\n";
+  const blob = new Blob([modelo], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "modelo-prova-esc.txt";
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  toast("Modelo baixado. Preencha no Word ou no bloco de notas e envie de volta aqui.");
 }
 /* ---------- leitura do texto colado ---------- */
 function parseImportText(texto){
@@ -16287,19 +17172,25 @@ function parseImportText(texto){
     });
     return campos;
   };
-  // 1) cabeçalho da prova: primeiro bloco sem PERGUNTA, só com instituição/ano
-  let cabecalho = {};
-  let inicio = 0;
-  const primeiro = lerCampos(blocos[0]||"");
-  if(!primeiro.PERGUNTA && (primeiro.INSTITUICAO || primeiro.BANCA || primeiro.ANO)){
-    cabecalho = primeiro; inicio = 1;
-  }
-  const instituicaoProva = (cabecalho.INSTITUICAO || cabecalho.BANCA || ctx.instituicao || CONFIG.bancaFoco).trim();
-  const anoProva = parseInt(cabecalho.ANO || ctx.ano) || new Date().getFullYear();
+  /* 1) cabeçalho da prova: bloco sem PERGUNTA, só com instituição/ano.
+     Pode aparecer mais de uma vez no mesmo texto — é o que acontece quando
+     se enviam dois arquivos de uma vez, cada um com a sua prova. Cada
+     cabeçalho vale das questões seguintes até o próximo cabeçalho. */
+  let instituicaoProva = (ctx.instituicao || CONFIG.bancaFoco).trim();
+  let anoProva = parseInt(ctx.ano) || new Date().getFullYear();
 
   const assinaturasDoLote = {};
-  return blocos.slice(inicio).map((bloco, idx)=>{
+  const resultado = [];
+  blocos.forEach(bloco=>{
     const campos = lerCampos(bloco);
+    if(!campos.PERGUNTA){
+      // sem enunciado: ou é cabeçalho de prova, ou é lixo (rodapé, "segue a
+      // prova:", página em branco) — nos dois casos não vira questão
+      if(campos.INSTITUICAO || campos.BANCA) instituicaoProva = (campos.INSTITUICAO || campos.BANCA).trim();
+      if(parseInt(campos.ANO)) anoProva = parseInt(campos.ANO);
+      if(campos.INSTITUICAO || campos.BANCA || campos.ANO || !bloco.trim()) return;
+    }
+    const idx = resultado.length;
     const erros = [];
     if(!campos.PERGUNTA) erros.push("faltando PERGUNTA");
     // E é opcional: várias bancas (ex.: UNIFESP-EPM) usam só 4 alternativas.
@@ -16326,7 +17217,7 @@ function parseImportText(texto){
     if(assinatura && !assinaturasDoLote[assinatura]) assinaturasDoLote[assinatura] = idx+1;
     const duplicada = duplicadasBanco.length>0 || !!duplicadaNoLote;
 
-    return {
+    resultado.push({
       indice: idx+1, campos, erros, avisos, valido: erros.length===0,
       duplicada, duplicadasBanco: duplicadasBanco.map(q=>q.id), duplicadaNoLote,
       importar: !duplicada,
@@ -16337,8 +17228,9 @@ function parseImportText(texto){
       banca: (campos.INSTITUICAO || campos.BANCA || instituicaoProva).trim(),
       ano: parseInt(campos.ANO) || anoProva,
       status: ((campos.STATUS||"").trim().toLowerCase()==="anulada") ? "anulada" : null,
-    };
+    });
   });
+  return resultado;
 }
 function previsualizarImportacao(){
   sincronizarCabecalhoImportacao();
@@ -16729,6 +17621,7 @@ function renderConfigGeral(){
     </div>
   </div>
 
+  ${podeAdmin("config") ? renderCardSincronizacao() : ""}
   ${podeAdmin("backup") ? renderCardBackup() : ""}`;
 }
 function salvarConfigGeral(){
@@ -16753,11 +17646,24 @@ function salvarConfigGeral(){
    ==========================================================================
    Carrega os dados salvos (ou os dados de demonstração, na primeira vez),
    restaura a rota da URL (se houver) e desenha a tela pela primeira vez. */
+/* Um link de convite da turma pode trazer a configuração de sincronização
+   dentro do próprio endereço. Isso é lido ANTES de carregar os dados, porque
+   é ele que diz de onde os dados vêm (ver seção 2-B). */
+const convitePendente = aplicarConviteDaUrl();
 loadState();
 (function inicializar(){
-  const hashInicial = (location.hash||"").replace("#/","");
+  const hashInicial = (location.hash||"").replace("#/","").split("?")[0];
   if(hashInicial) state.route = hashInicial;
+  // quem já tinha entrado neste aparelho continua entrado
+  restaurarSessaoLembrada();
   render();
+  if(convitePendente) toast("Aparelho conectado à turma. Sincronizando os dados…");
+  // nuvem da turma, quando configurada: uma sincronização ao abrir e outra a
+  // cada poucos minutos, sempre em silêncio (ver seção 2-B)
+  if(nuvemLigada()){
+    sincronizarComNuvem({silencioso:true});
+    if(typeof setInterval==="function") setInterval(sincronizarEmSegundoPlano, CONFIG.intervaloSincronizacaoMin*60000);
+  }
   // lembrete de meta diária: checagem leve a cada minuto (ver função para
   // detalhes e limitação — só funciona com o navegador aberto).
   if(typeof setInterval==="function") setInterval(checarLembreteMetaDiaria, 60000);

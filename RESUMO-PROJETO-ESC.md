@@ -3,7 +3,7 @@
 
 Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo `esc.html`.
 
-> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) — e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
+> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade, upload de prova em .docx e memória entre aparelhos) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) — e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
 
 ---
 
@@ -46,7 +46,7 @@ Com 500 questões reais cobrindo 5 anos de uma banca de referência, a repetiç�
 
 ## 3. Papéis e permissões
 
-**Aluno** — estudar (com a meta do dia), revisar, revisão rápida por flashcards, simulados, provas antigas, favoritos, histórico, desempenho, meu grupo, enviar questões.
+**Aluno** — estudar (com a meta do dia), revisar, revisão rápida por flashcards, **Simulados e Provas** (as duas abas), favoritos, histórico, desempenho, meu grupo, enviar questões.
 
 **Residente** — fila de dúvidas, questões difíceis, revisar formatação, enviar provas e questões, provas antigas.
 
@@ -104,8 +104,12 @@ O baralho se monta sozinho nesta ordem: cartões vencidos → assuntos de falsa 
 
 A tela separa **"Meus cartões"** (com a questão de origem linkada) de **"Cartões da equipe"**, e só quem gere conteúdo vê a segunda seção.
 
-### Simulados
-- Simulados criados por professores, prova antiga inteira como simulado, ou simulado personalizado a partir dos filtros.
+### Simulados e Provas (uma opção de menu, duas abas)
+Antes eram duas linhas de menu — "Simulados" e "Provas Antigas". Viraram uma opção só, porque o aluno chega às duas com a mesma pergunta na cabeça ("quero fazer uma prova inteira agora") e trocava de ideia no meio do caminho entre a prova que o professor montou e a prova de 2024 da banca. A rota antiga `/provas-antigas` continua respondendo e abre direto na segunda aba.
+
+- **Aba 1 — Simulados:** os montados por professores, com recomendação por bloco e o histórico das próprias tentativas.
+- **Aba 2 — Provas antigas:** o arquivo por instituição e ano, com os filtros de sempre (instituição, ano, grande área, últimos 5 anos); cada prova vira simulado cronometrado ou prática sem relógio.
+- Simulado personalizado a partir dos filtros continua saindo da tela Estudar.
 - **Cronômetro** com encerramento automático no fim do tempo, **tempo gasto por questão**, modo aprendizado (mostra explicação na hora), mapa de questões clicável.
 - Resultado: nota, percentil anônimo entre as tentativas registradas, mapa de acertos/erros, **análise de tempo com "onde você travou"**, revisão questão a questão e prática imediata dos erros.
 
@@ -128,6 +132,43 @@ A tela responde a três perguntas, nesta ordem:
 
 **O gráfico de barras verticais** (`graficoBarrasVerticaisSvg`) é o mesmo em todos esses lugares: cada barra é 100% das questões daquele dia, mês ou área — a parte de baixo, em **verde claro**, é o acerto; o que sobra em cima, em **cinza claro**, é o erro. 65% de acerto = 65% da barra verde e 35% cinza, com o número escrito quando a barra é larga o bastante e tooltip quando não é. Dia ou mês sem nenhuma questão vira um traço fino na base, não some do gráfico: esconder os buracos mentiria sobre a rotina, que é metade do resultado.
 
+## 4-B. Upload de prova em arquivo (.docx)
+
+Antes só dava para **colar** o texto formatado (ou abrir um `.txt`). Mas o caminho real de quem monta prova é outro: pede-se o script para uma IA, a resposta vai parar num documento do Word, e é esse documento que a pessoa tem na mão. Agora ela envia o documento direto, no Passo 3 da tela Importar/Enviar Questões.
+
+- Aceita `.docx`, `.txt`, `.md` e `.csv`, **um ou vários arquivos de uma vez** (cada arquivo pode trazer o próprio cabeçalho `INSTITUICAO`/`ANO`, e cada cabeçalho vale até o próximo).
+- **O arquivo é só o transporte.** O conteúdo tem de seguir o script do Passo 2 (`PERGUNTA:`, `A:`… `GABARITO:`, `EXPLICACAO:`…, separados por uma linha com `===`). Enviar o PDF ou o Word original da banca não funciona, e a tela diz isso em vez de falhar em silêncio: se o arquivo abrir mas não tiver nenhuma linha `PERGUNTA:`, aparece um aviso explicando o caminho certo, com o prompt do Passo 2 a um clique.
+- Há um botão **Baixar modelo**, que gera um `.txt` com uma questão inteira preenchida, para quem prefere escrever a prova à mão.
+- Depois de ler o arquivo, a pré-visualização abre sozinha.
+- `.doc` antigo (Word 97-2003) **não** é lido — a mensagem pede para salvar como `.docx`.
+
+**Como o `.docx` é lido sem nenhuma biblioteca externa** (a regra do projeto continua valendo: arquivo único, sem dependência): um `.docx` é um ZIP, e o texto está em `word/document.xml`. O ZIP é aberto na mão (`extrairDoZip`), lendo a tabela central que fica no fim do arquivo, e a descompressão é feita pelo próprio navegador, com `DecompressionStream("deflate-raw")` — API nativa de Chrome, Edge, Firefox e Safari atuais. Do XML interessam três coisas: `</w:p>` vira quebra de linha, `<w:br/>` também, `<w:tab/>` vira tabulação; o resto da marcação é descartado (`xmlDoWordParaTexto`). Depois `normalizarTextoDeProva` tira o que o Word costuma deixar no caminho: espaço que não quebra, caracteres invisíveis, linha de `=` de tamanho variado, parágrafo vazio.
+
+## 4-C. Memória entre aparelhos
+
+O problema, na frase do usuário: *"faço cadastro em um lugar, mas ele não fica salvo quando entro por outro dispositivo"*. A causa é a limitação 1 da seção 8: o `localStorage` é do **navegador**, não da pessoa — o site publicado no GitHub Pages é o mesmo, mas cada aparelho guarda a própria cópia. Sem servidor, um aparelho não sabe que o outro existe.
+
+Foram feitas três camadas, da mais simples à mais completa, **sem sistema de senha novo** e sem dependência externa (tudo com `fetch` puro):
+
+**1. Sessão lembrada (automática, já vale).** Antes, fechar o navegador deslogava — `state.usuarioAtualId` só existia em memória. Agora quem entrou continua entrado no mesmo aparelho até clicar em Sair (`esc_sessao_v1`). Os botões de "ver como…" continuam sendo só uma espiada: não deixam sessão gravada. Cadastro pendente, recusado ou inativo não volta sozinho.
+
+**2. Conta portátil (manual, funciona sempre, inclusive sem internet).** Em *Perfil › Usar em outro aparelho*, a pessoa gera um arquivo (ou um código de texto, quando ele é pequeno o bastante para copiar) com **só o que é dela**: cadastro, respostas, revisões, favoritos, seus cartões, seus simulados e o que ela criou. No aparelho novo, a tela de entrada tem "Trazer minha conta para este aparelho", que recebe o arquivo, **soma** aos dados de lá e já entra. Num teste real, um cadastro com duas respostas, um favorito e duas revisões ocupou 2 KB.
+
+**3. Nuvem da turma (opcional, ligada uma vez pela coordenação).** Em *Configurações*, o administrador máster informa um endereço de sincronização e liga. A partir daí todos os aparelhos **somam** os dados entre si sozinhos — ao abrir a plataforma e a cada `CONFIG.intervaloSincronizacaoMin` minutos (5) —, e o cadastro feito no computador da faculdade passa a existir no celular. Dois modos, os dois por REST:
+  - **Supabase** (recomendado, gratuito nesse volume): a tela traz o passo a passo e o SQL da tabela para copiar.
+  - **Endereço genérico** que aceite `GET` e `PUT` de JSON.
+
+  A configuração fica no `localStorage` do aparelho (`esc_nuvem_v1`), e não no banco, porque ela precisa existir **antes** de haver qualquer dado — é ela que diz de onde os dados vêm. Num aparelho novo ela chega pelo **link de convite**, que a coordenação copia com um botão e manda para a turma: quem abre o link já entra conectado, e depois entra normalmente com o próprio e-mail e senha.
+
+**O que viaja pela rede é pequeno.** O banco inteiro tem ~1,2 MB porque carrega as 635 questões e os 501 flashcards que já estão escritos no próprio arquivo. O pacote enviado (`bancoParaSincronizar`) tira tudo o que for **idêntico à semente** e leva só o que foi produzido — medido em teste: **6 KB** contra 1.232 KB. Do outro lado, `sincronizarConteudoNovo()` repõe as sementes que faltarem. Semente que alguém editou deixa de ser idêntica e viaja normalmente.
+
+**Regra de ouro da mesclagem (`mesclarBancos`): sincronizar SOMA, não substitui.**
+  - Registro que existe de um lado e não do outro é acrescentado.
+  - Diários que só crescem (respostas, sessões, resultados de simulado, feedbacks) são unidos por id, nunca reescritos.
+  - Repetição espaçada (questões e cartões) fica com a revisão **mais recente** de cada item — jogar fora a mais nova faria a questão voltar cedo demais.
+  - Quando o mesmo registro de conteúdo existe dos dois lados e está diferente, vale o do banco **salvo por último** (`db.atualizadoEm`, carimbado em todo `saveState`).
+  - Exclusões ficam anotadas em `db.excluidos`, para que a sincronização não ressuscite o que alguém apagou de propósito (questão, especialidade, assunto).
+
 ### Material em PDF (professores, coordenação, moderadores)
 Quatro tipos, gerados sem biblioteca externa (monta em `#areaImpressao` e chama `window.print()`, onde existe "Salvar como PDF"):
 
@@ -138,7 +179,7 @@ Quatro tipos, gerados sem biblioteca externa (monta em `#areaImpressao` e chama 
 
 ### Conteúdo e qualidade
 - **Banco de questões** com CRUD completo; questões aceitam **imagem** e campo de **referências**.
-- **Importar/Enviar questões**: aberto a aluno, residente, professor e admin, com destino conforme o papel. Dois modos de prompt: prova inteira e questões avulsas.
+- **Importar/Enviar questões**: aberto a aluno, residente, professor e admin, com destino conforme o papel. Dois modos de prompt: prova inteira e questões avulsas. O texto formatado pode ser **colado ou enviado como arquivo** — documento do Word (`.docx`), `.txt`, `.md` ou `.csv`, vários de uma vez —, desde que o conteúdo siga o script do Passo 2 (ver seção 4-B).
 - **Detecção de duplicidade** em três pontos: ao salvar, ao importar (contra o banco e contra o próprio lote) e numa aba "Duplicadas" do Controle de Qualidade.
 - **Controle de Qualidade**: difíceis, sinalizadas, sugeridas, duplicadas.
 - **Especialidades e Assuntos**: árvore editável com verificação de consistência e correção automática.
@@ -161,9 +202,11 @@ O calendário oficial não tem ano fixo: ele serve a todos, e cada aluno enxerga
 ### Menu ordenado por probabilidade de uso
 Não é alfabético nem temático: é a frequência esperada de uso. Os **quatro primeiros do aluno** — Início, Estudar, Meu Desempenho, Meu Grupo — são os únicos que aparecem no celular sem rolar.
 
-Ordem do aluno: Início · Estudar · Meu Desempenho · Meu Grupo · Revisão · Revisão Rápida · Simulados · Histórico de Atividade · Favoritos · Provas Antigas · Enviar Questões.
+Ordem do aluno: Início · Estudar · Meu Desempenho · Meu Grupo · Revisão · Revisão Rápida · Simulados e Provas · Histórico de Atividade · Favoritos · Enviar Questões.
 
-Ordem do conteúdo: Início · Banco de Questões · Importar Questões · Questões Difíceis · Criar Simulado · Material em PDF · Flashcards · Realizar Simulados · Provas Antigas · Revisar Formatação · Especialidades e Assuntos.
+Ordem do conteúdo: Início · Banco de Questões · Importar Questões · Questões Difíceis · Criar Simulado · Material em PDF · Flashcards · Simulados e Provas · Revisar Formatação · Especialidades e Assuntos.
+
+**Simulados e Provas Antigas viraram uma linha só.** Eram duas opções que respondiam à mesma intenção ("fazer uma prova inteira agora"), e escolher entre elas obrigava a sair de uma tela e procurar a outra. Agora é uma opção com duas abas — Simulados e Provas antigas —, cada aba com a contagem do que tem dentro, e cada uma com um atalho para a outra nos estados vazios. O menu do aluno encurtou em uma linha, que é exatamente o que ele ganha de espaço no celular.
 
 ### Metas: de página a cartão
 A meta é um número que se **define uma vez** e se **vê todo dia**. Uma página própria invertia isso: escondia o acompanhamento e dava destaque à configuração. Agora o progresso abre a tela Estudar e o ajuste fica numa janela (`abrirModalMeta`). A rota `metas` continua respondendo e leva a Estudar, para não quebrar link salvo.
@@ -222,12 +265,12 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 
 1. `CONFIG`, níveis de admin, anos da faculdade, tema claro/escuro
 2. `SEED_TAXONOMIA`, `SEED_BLOCOS`, `SEED_SEQUENCIAS_ANO`, `SEED_USUARIOS`, `SEED_QUESTOES`, `SEED_LIVRO_OURO`, `SEED_COMENTARIOS`, `SEED_FLASHCARDS`, `SEED_SIMULADOS`
-3. Persistência (`dbPadrao`, `loadState`, `saveState`, migrações, `sincronizarConteudoNovo`)
+3. Persistência (`dbPadrao`, `loadState`, `saveState`, migrações, `sincronizarConteudoNovo`) e **2-B — memória entre aparelhos** (sessão lembrada, conta portátil, mesclagem, nuvem da turma)
 4. Utilidades (datas, **gráficos SVG**, modal, toast)
 5. Motor de estudos (dificuldade, repetição espaçada, mistura, filtros, **desempenho por dia/mês/janela**, calibração, tempo, motor de flashcards)
 6. Autenticação e permissões
 7. Roteador, gesto de arrastar e estrutura visual
-8 em diante. Uma seção por tela — entre elas **12-B (Revisão Rápida)**, **17 (Meu Desempenho)**, **18 (Meta de Estudo)** e **20-B (Material em PDF)**
+8 em diante. Uma seção por tela — entre elas **12-B (Revisão Rápida)**, **13 (Simulados e Provas, com as duas abas)**, **17 (Meu Desempenho)**, **18 (Meta de Estudo)**, **19-B (Conta em outro aparelho e sincronização)**, **20-B (Material em PDF)** e **26-B (upload de prova em .docx)**
 
 **Funções-chave desta rodada:**
 
@@ -256,9 +299,26 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 | `metaCartoesDoUsuario(u)` / `cartoesRevisadosHoje(id)` / `sequenciaDiasCartoes(id)` | a meta diária de flashcards e sua sequência |
 | `mapaPrevalenciasAssuntos()` | prevalência de todos os assuntos calculada uma vez por gravação (cache por `_geracaoDb`) |
 
+**Funções-chave acrescentadas nesta rodada (20/09):**
+
+| Função | O que faz |
+|---|---|
+| `renderSimuladosEProvas()` / `mudarAbaProvas(aba)` | a tela única com as duas abas; `renderAbaSimulados()` e `renderAbaProvasAntigas()` são os corpos de cada uma |
+| `lerArquivoDeProva(arquivo)` | abre `.docx`, `.txt`, `.md` ou `.csv` e devolve o texto pronto para o importador |
+| `extrairDoZip(buffer, caminho)` | lê um arquivo de dentro de um ZIP (é assim que o `.docx` é aberto, sem biblioteca) |
+| `xmlDoWordParaTexto(xml)` / `normalizarTextoDeProva(t)` | tiram do XML do Word o texto com as quebras de linha certas, e limpam as sujeirinhas que ele deixa |
+| `contarQuestoesNoTexto(t)` | quantas questões no formato do script existem ali — é o que dispara o aviso de "arquivo fora do formato" |
+| `lembrarSessao(id)` / `restaurarSessaoLembrada()` / `esquecerSessao()` | a sessão que sobrevive a fechar o navegador |
+| `mesclarBancos(base, entrando)` | a mesclagem que soma dois bancos; serve tanto à conta portátil quanto à nuvem |
+| `anotarExclusao(id)` | marca um id como apagado de propósito, para a sincronização não trazê-lo de volta |
+| `bancoParaSincronizar()` / `indiceSementes()` | montam o pacote pequeno que viaja (tudo menos o que é idêntico à semente) |
+| `pacoteDaConta(id)` / `aplicarPacoteDeConta(texto)` | geram e recebem a conta portátil de uma pessoa |
+| `sincronizarComNuvem({silencioso})` / `sincronizarEmSegundoPlano()` | a conversa com a nuvem da turma (baixa, soma, envia) |
+| `configNuvem()` / `linkDeConviteNuvem()` / `aplicarConviteDaUrl()` | a configuração da nuvem e o link que a leva para outro aparelho |
+
 **Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado.
 
-**Migrações em `loadState`:** criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
+**Migrações em `loadState`:** criação de `db.excluidos` (lista de exclusões) e `db.atualizadoEm` (carimbo de gravação), os dois da sincronização; criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
 
 **Migração dos blocos para sequências por ano.** `db.sequenciasAno` passa a guardar a ordem de blocos de cada ano, e o grupo guarda só `anoFaculdade` + `deslocamento`. Nada é apagado: o calendário que a coordenação tinha customizado vira a sequência do ano padrão, o calendário próprio de uma turma vira a sequência do ano dela se aquele ano ainda não tiver uma, e o que sobrar fica guardado em `grupo.blocosArquivados` — continua no banco e no backup, para consulta antes de descartar.
 
@@ -266,15 +326,21 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 
 ## 8. Limitações conhecidas
 
-1. **Dados locais.** Tudo vive no `localStorage` de um navegador. Fila de dúvidas, grupos, percentil de simulado, aprovação de cadastros, relatório de turma e livro de ouro pressupõem várias pessoas, mas dois usuários em dois computadores não compartilham nada. **O usuário sabe disso e decidiu não migrar para backend agora.** Quando for a hora, Supabase ou Firebase resolvem, e o objeto `db` mapeia quase direto para tabelas.
+1. **Dados locais — agora com três saídas, mas ainda sem back-end.** Tudo continua vivendo no `localStorage` de cada navegador. A seção 4-C resolve o caso prático (cadastro que não segue a pessoa para outro aparelho) com sessão lembrada, conta portátil e nuvem da turma, mas nada disso é um back-end de verdade, e as limitações que sobram são reais:
+   - **A nuvem da turma não tem senha própria.** A sala é compartilhada e quem tiver o link de convite alcança os dados da turma — inclusive os cadastros. É o suficiente para uma turma fechada e é o preço de não ter servidor; o passo seguinte é autenticação real no Supabase (ver seção 10).
+   - **Ela é opcional e precisa ser ligada uma vez** pela coordenação, com um projeto Supabase (ou outro endereço). Sem isso, valem só as duas primeiras camadas.
+   - **A mesclagem soma.** Conflito no mesmo registro é resolvido pela data da última gravação, o que é grosseiro: se a mesma questão for editada em dois aparelhos, a edição do que salvou antes se perde. Exclusões de questão, especialidade e assunto têm rastro (`db.excluidos`) e não voltam; **desfavoritar** não tem, então um favorito retirado num aparelho pode voltar do outro.
+   - **Sem conexão, a plataforma segue funcionando** normalmente e sincroniza na próxima vez que abrir.
 2. **Banco cobre uma só banca.** As 500 questões reais são todas da UNIFESP-EPM. As outras 5 bancas de referência (`CONFIG.instituicoesReferencia`) ainda não têm nenhuma questão real — só entram se o usuário conseguir os PDFs oficiais, pelo mesmo processo já usado para a UNIFESP (seção 12). *(Em volume puro o banco já foi testado sintético em mais de 6.000 questões e 8.000 respostas, sem travamento perceptível em nenhuma tela — não é mais o gargalo.)*
 3. **Flashcards da equipe cobrem só metade da taxonomia.** Os 501 cartões foram escritos para os 91 assuntos que existiam antes da carga das provas reais; os 125 assuntos novos (Psiquiatria e as demais especialidades abertas na seção 12) ainda não têm cartão de equipe dedicado. Os cartões gerados automaticamente a partir de erros e os escritos pelos próprios alunos cobrem esse buraco por enquanto, mas dependem de uso.
-4. **Autenticação é de demonstração**: senha em texto claro no arquivo. Não serve para uso público real.
+4. **Autenticação é de demonstração**: senha em texto claro no arquivo. Não serve para uso público real — e isso não mudou com a sincronização: ela transporta os mesmos cadastros, do mesmo jeito.
 5. **Backup manual e restrito.** Só o administrador máster exporta — se ele não exportar, ninguém exporta. Configurações avisa quando passa de ~3,5 MB e quando o último backup tem mais de 7 dias.
 6. **Cartão pessoal é privado, não é segredo.** O isolamento é por papel na interface e nas funções; qualquer pessoa com acesso ao mesmo navegador e ao console enxerga tudo, como em qualquer dado do `localStorage`.
 7. **Uma sequência de blocos por ano, e só uma.** Duas turmas do mesmo ano não podem ter ordens diferentes de matéria — por decisão de projeto, elas diferem só pelo ponto de entrada. Se um dia for preciso que uma turma tenha uma sequência realmente distinta, será um campo novo (`grupo.sequenciaPropria`) e mais uma migração.
 8. **`somarDias()` usa `toISOString()`** depois de montar a data em horário local: certo para fusos negativos (Brasil), quebraria a data em fusos positivos (UTC+). Sem efeito para o público atual.
-9. **Lembrete de meta diária só funciona com o navegador aberto.** Como o app não tem service worker nem servidor, a Notification API só dispara enquanto alguma aba do Esc está carregada (mesmo minimizada). Não existe aviso de verdade com tudo fechado — isso exigiria backend (ver limitação 1).
+9. **O upload de prova lê o formato, não a prova.** O `.docx` é aberto de verdade, mas o conteúdo dele precisa estar no script do Passo 2. Enviar o PDF ou o Word original da banca não funciona e nem deveria: ali não existe gabarito marcado nem explicação, e a plataforma não inventa nenhum dos dois. Também não são lidos: `.doc` antigo (Word 97-2003), imagens dentro do documento (a questão continua recebendo imagem por URL) e tabelas — o texto de uma tabela sai em linhas soltas.
+
+10. **Lembrete de meta diária só funciona com o navegador aberto.** Como o app não tem service worker nem servidor, a Notification API só dispara enquanto alguma aba do Esc está carregada (mesmo minimizada). Não existe aviso de verdade com tudo fechado — isso exigiria backend (ver limitação 1).
 
 ---
 
@@ -297,7 +363,7 @@ Em ordem de prioridade sugerida:
 3. **Checagem humana amostral das 500 explicações autorais.** Foram escritas em lote, com boa fundamentação e revisão de consistência automatizada, mas nunca foram lidas por um segundo médico/residente. Vale um professor ou residente revisar uma amostra (por exemplo, as questões mais avançadas ou as anuladas, onde a explicação é mais interpretativa) antes de tratar o conjunto como validado clinicamente.
 4. **Questões com imagem/figura no enunciado.** Algumas das 500 questões reais mencionam uma imagem original da prova (ultrassom, radiografia, ressonância) que não foi reproduzida — a explicação descreve o achado esperado a partir do texto, mas o aluno não vê a imagem. Vale revisar essas questões pontualmente e anexar a imagem quando possível.
 5. **Relatório individual do aluno em PDF**, para devolutiva um a um (item já sugerido antes e ainda pendente).
-6. **Backend com autenticação de verdade**, quando o uso sair do dispositivo único — é a limitação mais estrutural (seção 8, item 1), mas também a de maior esforço; faz sentido represar até os itens de conteúdo acima estarem resolvidos.
+6. **Autenticação de verdade no Supabase**, agora que a sincronização já existe (seção 4-C). O caminho ficou mais curto do que era: os dados já sabem viajar e já sabem se mesclar; o que falta é cada pessoa ter login próprio no serviço, em vez de uma sala compartilhada por link, e senha guardada com hash em vez de texto claro. É o passo certo no dia em que a plataforma sair de uma turma fechada.
 
 ---
 
@@ -323,3 +389,13 @@ Registro resumido de cada rodada de trabalho, da mais antiga à mais recente. De
 **Ajuste de política de conteúdo e expansão de recursos (noite de 19/09/2026).** Esclarecido que enunciado/alternativas/gabarito oficial de prova de instituição pública são domínio público (podem ser transcritos integralmente) e que só a explicação precisa ser sempre autoral — refletido no prompt de importação e no formulário de questão. A partir daí: baralho da equipe ampliado de 24 para 501 flashcards, cobrindo os 91 assuntos que existiam até então; lembrete de meta diária via Notification API do navegador; flashcards ganharam suporte a imagem (mesmo padrão já usado nas questões); fluxo de promoção de cartão pessoal para o baralho da equipe, com aprovação de professor/coordenação; estatística de alternativas eliminadas por quem errou, agregada por questão em Controle de Qualidade. O banco também foi testado sintético em mais de 6.000 questões e 8.000 respostas, o que revelou dois novos gargalos do mesmo tipo do já corrigido pela manhã (uma função revarrendo o banco inteiro a cada chamada, dentro de um laço) — ambos corrigidos com índices cacheados por geração do banco, derrubando o tempo de operações como colar uma prova de 100 questões de 6,8s para 106ms.
 
 **Carga das 500 questões reais da UNIFESP-EPM, 2022-2026 (madrugada seguinte).** O usuário forneceu os PDFs das provas de Acesso Direto/R1 dos últimos cinco anos. Conteúdo de prova pública (enunciado, alternativas, gabarito oficial) extraído por scripts Node.js reutilizáveis (`provas/parse_gabarito.js`, `provas/parse_questoes.js`, a partir de texto gerado com `pdftotext`), com duas armadilhas de parsing corrigidas (caractere de quebra de página inserido pelo PDF; a última questão de cada prova absorvendo a folha de gabarito em branco). Achado relevante: a prova real usa só 4 alternativas (A-D), não 5 — formulário e importador ajustados para tornar a alternativa E opcional. Para cada uma das 500 questões foi escrita uma explicação **100% autoral** (nunca a partir da resolução do cursinho de origem do PDF), com referência citada e dificuldade estimada, combinada ao conteúdo da prova por um script de merge (`provas/merge_year.js`) que também classificou cada questão num assunto da taxonomia. A taxonomia foi ampliada de 91 para 216 assuntos (24 para 39 especialidades) em 5 levas, para dar lugar a especialidades que a prova real cobre e a plataforma didática não tinha — Psiquiatria inteira, criada do zero, entre elas. Validado com checagem de sintaxe, IDs únicos, integridade completa da taxonomia, completude estrutural das 500 questões e testes funcionais via Chromium/Playwright (contagem por ano e por anuladas batendo com o gabarito oficial, resposta correta sendo pontuada como `correta: true`, zero erros de JavaScript). Ficou de fora, de propósito: qualquer leitura da resolução do cursinho de origem como fonte de explicação, e as imagens/figuras que algumas questões referenciam no enunciado (a explicação descreve o achado esperado pelo texto, sem a imagem original anexada).
+
+**Upload de prova em arquivo, memória entre aparelhos e fusão de Simulados com Provas Antigas (20/09/2026).** Três pedidos do usuário, em uma rodada.
+
+*Upload de prova (seção 4-B).* O Passo 3 da tela de importação passou a aceitar **arquivo**, e não só texto colado: documento do Word (`.docx`), `.txt`, `.md` e `.csv`, vários de uma vez, com o conteúdo no script do Passo 2. O `.docx` é lido sem nenhuma biblioteca — ZIP aberto na mão mais `DecompressionStream` do próprio navegador —, o que mantém a regra do arquivo único sem dependência. Quem manda um arquivo fora do formato recebe um aviso que explica o caminho certo, em vez de uma lista de erros; e há um modelo para baixar, para quem prefere escrever a prova à mão. De quebra, o leitor do texto passou a aceitar **mais de um cabeçalho** `INSTITUICAO`/`ANO` no mesmo lote, que é o que acontece quando se enviam dois arquivos de uma vez.
+
+*Memória entre aparelhos (seção 4-C).* O relato era "faço cadastro em um lugar e ele não está lá quando entro por outro dispositivo". Duas coisas diferentes estavam juntas nisso, e as duas foram resolvidas: a sessão não sobrevivia nem a fechar o navegador (agora sobrevive, até clicar em Sair), e nada atravessava de um aparelho para o outro (agora atravessa, por conta portátil em arquivo, ou sozinho, pela nuvem da turma que a coordenação liga uma vez e distribui por um link de convite). O pedido era explícito em não querer sistema de senha complicado, e não tem: continua o mesmo e-mail e a mesma senha de antes. O que viaja é um pacote reduzido, sem as sementes — 6 KB medidos, contra 1,2 MB do banco inteiro —, e a mesclagem soma em vez de substituir, com rastro de exclusão para não ressuscitar o que foi apagado.
+
+*Simulados e Provas Antigas (seção 5).* Duas linhas de menu que respondiam à mesma intenção viraram uma, com duas abas e contagem em cada uma. A rota `/provas-antigas` continua respondendo e abre direto na aba certa, pela mesma regra que já valia para `/metas`: link salvo por aluno não pode quebrar.
+
+Verificado com Chromium/Playwright: as 26 rotas nos quatro papéis sem erro de JavaScript; upload de `.docx` comprimido e não comprimido, com acentos, entidades XML e quebra de linha dentro do campo, chegando ao banco como questão de 4 alternativas; conta portátil levando cadastro, respostas, favoritos e revisões para um navegador limpo; e sincronização nos dois modos (Supabase e endereço genérico) contra um servidor de teste, nos dois sentidos, com exclusão respeitada e sementes preservadas.
