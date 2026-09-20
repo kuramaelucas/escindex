@@ -10460,6 +10460,7 @@ function abrirModal(innerHtml, tamanho){
   overlay.onclick = function(e){ if(e.target===overlay) fecharModal(); };
   overlay.innerHTML = '<div class="modal '+(tamanho==="lg"?"modal-lg":"")+'">'+innerHtml+'</div>';
   document.body.appendChild(overlay);
+  rotularCamposParaLeitorDeTela(overlay); // janela não passa pelo render(), precisa da ligação aqui
 }
 function fecharModal(){
   const el = document.getElementById("modalOverlayAtivo");
@@ -11994,15 +11995,15 @@ function render(){
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
   if(usuarioAtual() && rotasPublicas.includes(state.route) && state.route!=="confirmar-email") state.route = "inicio";
 
-  if(state.route==="landing"){ app.innerHTML = renderLanding(); return; }
-  if(state.route==="login"){ app.innerHTML = renderLogin(); return; }
-  if(state.route==="cadastro"){ app.innerHTML = renderCadastro(); return; }
-  if(state.route==="confirmar-email"){ app.innerHTML = renderConfirmarEmail(); return; }
+  if(state.route==="landing"){ desenharNaTela(renderLanding()); return; }
+  if(state.route==="login"){ desenharNaTela(renderLogin()); return; }
+  if(state.route==="cadastro"){ desenharNaTela(renderCadastro()); return; }
+  if(state.route==="confirmar-email"){ desenharNaTela(renderConfirmarEmail()); return; }
 
   // um administrador só entra nas rotas permitidas pelo seu nível
   const permissaoNecessaria = PERMISSAO_DA_ROTA[state.route];
   if(permissaoNecessaria && usuarioAtual().papel==="admin" && !podeAdmin(permissaoNecessaria)){
-    app.innerHTML = renderShell(renderSemPermissao(permissaoNecessaria));
+    desenharNaTela(renderShell(renderSemPermissao(permissaoNecessaria)));
     return;
   }
 
@@ -12047,8 +12048,68 @@ function render(){
     case "feedback-usuarios": conteudo = renderFeedbackUsuarios(); break;
     default: conteudo = renderInicio();
   }
-  app.innerHTML = renderShell(conteudo);
+  desenharNaTela(renderShell(conteudo));
   ativarGestoDeArrastar();
+}
+/* Toda tela passa por aqui — é o único ponto que escreve no #app. Serve para
+   garantir que nada seja desenhado sem a ligação entre rótulos e campos
+   (abaixo), inclusive nas telas públicas, que saem do render() mais cedo. */
+function desenharNaTela(html){
+  document.getElementById("app").innerHTML = html;
+  rotularCamposParaLeitorDeTela();
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE — ligar cada rótulo ao seu campo
+   ==========================================================================
+   Quem enxerga liga a palavra "Senha" à caixinha logo abaixo pela posição na
+   tela. Um leitor de tela — o programa que lê a tela em voz alta para quem
+   não enxerga — só faz essa ligação se ela estiver marcada no HTML; sem isso
+   ele anuncia "caixa de edição" sem dizer de quê, e a pessoa não sabe o que
+   escrever em cada campo.
+
+   Como todo formulário daqui sai do mesmo molde (um rótulo com classe .label
+   seguido do campo), a ligação é feita aqui, de uma vez a cada desenho de
+   tela, em vez de repetida à mão em dezenas de lugares. A vantagem é que
+   isso vale também para telas criadas depois e nunca fica diferente do
+   rótulo que está na tela, porque é dele que o nome sai.
+
+   Campo que não tem rótulo visível nenhum — o seletor no fim de uma linha de
+   tabela, por exemplo — continua precisando de um aria-label escrito no
+   próprio HTML, porque só ali se sabe a que linha ele pertence. */
+let _seqCampoA11y = 0;
+function rotularCamposParaLeitorDeTela(raiz){
+  const escopo = raiz || document;
+  escopo.querySelectorAll("input:not([type=hidden]), select, textarea").forEach(campo=>{
+    // já tem nome (escrito à mão, ou o campo está dentro do próprio rótulo)
+    if(campo.getAttribute("aria-label") || campo.getAttribute("aria-labelledby") || campo.closest("label")) return;
+    if(campo.id && document.querySelector('label[for="'+campo.id+'"]')) return;
+    const rotulo = rotuloVisivelDoCampo(campo);
+    if(!rotulo) return;
+    // um rótulo nomeia um campo só: se o bloco tem dois campos (um select e
+    // um "outro, qual?", por exemplo), o primeiro fica com o rótulo e o
+    // segundo precisa do próprio aria-label escrito no HTML
+    if(rotulo.getAttribute("for") || rotulo.dataset.a11yUsado) return;
+    if(!campo.id) campo.id = "campo-a11y-"+(++_seqCampoA11y);
+    rotulo.dataset.a11yUsado = "1";
+    if(rotulo.tagName==="LABEL"){
+      rotulo.setAttribute("for", campo.id);
+    } else {
+      // rótulo escrito como <div class="label">: não aceita "for", então a
+      // ligação é feita pelo caminho inverso (o campo aponta para o rótulo)
+      if(!rotulo.id) rotulo.id = "rotulo-a11y-"+(++_seqCampoA11y);
+      campo.setAttribute("aria-labelledby", rotulo.id);
+    }
+  });
+}
+/* O rótulo de um campo é o .label logo antes dele ou, dentro de um bloco
+   .field, o primeiro .label do bloco — que é como todos os formulários da
+   plataforma são montados. */
+function rotuloVisivelDoCampo(campo){
+  const anterior = campo.previousElementSibling;
+  if(anterior && anterior.classList && anterior.classList.contains("label")) return anterior;
+  const bloco = campo.closest(".field");
+  return bloco ? bloco.querySelector(".label") : null;
 }
 
 /* --------------------------------------------------------------------------
@@ -12247,7 +12308,7 @@ function renderShell(conteudoHtml){
     <div class="main">
       <div class="topbar">
         <div class="flex items-center gap-2">
-          <button class="icon-btn hamburger" onclick="abrirMenuMobile()">${iconeSvg("menu")}</button>
+          <button class="icon-btn hamburger" aria-label="Abrir menu" onclick="abrirMenuMobile()">${iconeSvg("menu")}</button>
           <div class="topbar-title">${tituloDaRota(state.route)}</div>
         </div>
         <div class="flex items-center gap-2">
@@ -12387,7 +12448,7 @@ function renderCadastro(){
             ${db.grupos.filter(g=>!g.oficial).map(g=>`<option value="${g.id}">${escapeHtml(g.nome)}</option>`).join("")}
             <option value="__nova__">+ Criar nova turma/grupo</option>
           </select>
-          <input class="input mt-1" id="cadNovaTurmaNome" placeholder="Nome da nova turma" style="display:none">
+          <input class="input mt-1" id="cadNovaTurmaNome" aria-label="Nome da nova turma" placeholder="Nome da nova turma" style="display:none">
         </div>
         <div class="field"><label class="label">Ano da faculdade</label><select class="select" id="cadAno">
           ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${a==="5º ano"?"selected":""}>${escapeHtml(a)}</option>`).join("")}
@@ -15860,7 +15921,7 @@ function renderRevisaoFormatacao(){
   <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico.</p></div>
   ${areaRestrita ? `<div class="card-flat mb-2 text-sm">${iconeSvg("filter")} Seu acesso é restrito à área <strong>${escapeHtml(nomeArea(areaRestrita))}</strong>.</div>` : ""}
   <div class="flex gap-1 mb-2">
-    <input class="input" id="buscaFormatacaoInput" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(state.filtroRota.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
+    <input class="input" id="buscaFormatacaoInput" aria-label="Buscar questão por texto" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(state.filtroRota.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
     <button class="btn btn-secondary btn-sm" onclick="buscarFormatacao()">Buscar</button>
   </div>
   ${pagFormatacao.itens.map(q=>`
@@ -15908,11 +15969,11 @@ function renderUsuarios(){
     <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
     <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.papel==="aluno"?rotuloAnoComTurma(u.anoFaculdade):(u.areasAtuacao&&u.areasAtuacao.length?u.areasAtuacao.map(nomeArea).join(", "):"—"))}</span></td>
     <td>${souMaster
-      ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
+      ? `<select class="select" style="padding:.3rem .5rem" aria-label="Papel de ${escapeHtml(u.nome)}" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
       : badgePapel(u.papel, u)}</td>
     <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
       : souMaster
-        ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
+        ? `<select class="select" style="padding:.3rem .5rem" aria-label="Nível de administrador de ${escapeHtml(u.nome)}" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
         : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
     <td>${badgeStatusUsuario(u.status)}</td>
     <td>${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Desativar</button>`}</td>
@@ -16028,7 +16089,7 @@ function renderBancoQuestoes(){
       </div>
     </div>
     <div class="flex gap-1 items-center mt-2" style="flex-wrap:wrap">
-      <input class="input" id="buscaBancoInput" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
+      <input class="input" id="buscaBancoInput" aria-label="Buscar questão por texto do enunciado ou alternativa" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
       <button class="btn btn-secondary btn-sm" onclick="buscarNoBanco()">Buscar</button>
       <label class="checkbox-row"><input type="checkbox" ${f.ultimos5?"checked":""} onchange="mudarFiltroBanco('ultimos5', this.checked)"> Últimos 5 anos</label>
       <button class="link-btn text-xs" onclick="limparFiltrosBanco()">limpar filtros</button>
@@ -16595,7 +16656,7 @@ function renderTaxonomia(){
                 <div class="text-xs muted">${assuntos.length} assunto(s) · ${contarQuestoesEspecialidade(esp.id)} questão(ões)</div></div>
               ${podeEditar ? `<div class="flex gap-1" style="flex-wrap:wrap">
                 <button class="btn btn-ghost btn-sm" onclick="renomearEspecialidade('${esp.id}')">${iconeSvg("edit")} Renomear</button>
-                <select class="select" style="padding:.3rem .5rem;max-width:200px" onchange="moverEspecialidade('${esp.id}', this.value)">
+                <select class="select" style="padding:.3rem .5rem;max-width:200px" aria-label="Mover a especialidade ${escapeHtml(esp.nome)} para outra grande área" onchange="moverEspecialidade('${esp.id}', this.value)">
                   ${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${a.id===esp.areaId?"selected":""}>mover p/ ${escapeHtml(a.nome)}</option>`).join("")}
                 </select>
                 <button class="btn btn-secondary btn-sm" onclick="criarAssuntoNaEspecialidade('${esp.id}')">${iconeSvg("plus")} Assunto</button>
@@ -16610,7 +16671,7 @@ function renderTaxonomia(){
                   <td class="text-sm">${n}</td>
                   <td>${podeEditar ? `<div class="flex gap-1" style="flex-wrap:wrap">
                     <button class="btn btn-ghost btn-sm" onclick="renomearAssunto('${a.id}')">renomear</button>
-                    <select class="select" style="padding:.25rem .4rem;max-width:190px" onchange="moverAssunto('${a.id}', this.value)">
+                    <select class="select" style="padding:.25rem .4rem;max-width:190px" aria-label="Mover o assunto ${escapeHtml(a.nome)} para outra especialidade" onchange="moverAssunto('${a.id}', this.value)">
                       <option value="${esp.id}">mover para…</option>
                       ${db.taxonomia.especialidades.filter(e=>e.id!==esp.id).map(e=>`<option value="${e.id}">${escapeHtml(nomeArea(e.areaId))} › ${escapeHtml(e.nome)}</option>`).join("")}
                     </select>
@@ -16759,7 +16820,7 @@ function renderImportarQuestoes(){
   <div class="card mb-2">
     <div class="card-title">Passo 2 — peça a uma IA para formatar</div>
     <p class="text-sm muted">Copie o prompt abaixo (pode revisar antes), cole numa IA junto com o PDF/texto da prova, e traga o resultado para o Passo 3.</p>
-    <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
+    <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" aria-label="Prompt pronto para copiar" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
     <div class="flex gap-1" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">${iconeSvg("search")} Copiar prompt</button>
       <button class="btn btn-ghost btn-sm" onclick="atualizarPromptImportacao()">${iconeSvg("refresh")} Atualizar prompt com instituição/ano acima</button>
@@ -16769,7 +16830,7 @@ function renderImportarQuestoes(){
   <div class="card">
     <div class="card-title">Passo 3 — cole aqui o texto formatado</div>
     <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO e ANO: ele é lido uma vez e aplicado a todas as questões.</p>
-    <textarea class="textarea textarea-mono" id="textoImportacao" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
+    <textarea class="textarea textarea-mono" id="textoImportacao" aria-label="Cole aqui o resultado da IA ou o texto da prova" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
 ANO: ${escapeHtml(String(ctx.ano||""))}
 ===
 PERGUNTA: ...
@@ -17078,7 +17139,7 @@ function renderBlocosConfig(){
     <div class="card-title">Numeração da turma</div>
     <p class="text-sm muted mb-2">Identifica a turma pelo número da coorte (ex.: "Turma 92"), independente do ano da faculdade — o ano muda a cada ano letivo, o número da turma acompanha a mesma turma até ela se formar. Deixe em branco se este ano não usa numeração.</p>
     <div class="field" style="max-width:220px;margin-bottom:0">
-      <input class="input" type="number" id="numeroTurmaInput" placeholder="Ex.: 92" value="${(db.numerosTurma&&db.numerosTurma[anoEscolhido])||""}" onchange="definirNumeroTurma('${escapeHtml(anoEscolhido)}', this.value)">
+      <input class="input" type="number" id="numeroTurmaInput" aria-label="Número da turma deste ano" placeholder="Ex.: 92" value="${(db.numerosTurma&&db.numerosTurma[anoEscolhido])||""}" onchange="definirNumeroTurma('${escapeHtml(anoEscolhido)}', this.value)">
     </div>
   </div>
 

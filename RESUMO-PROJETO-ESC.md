@@ -705,10 +705,49 @@ A troca de e-mail (seção 17.2) guarda o endereço novo em `emailPendente` até
 
 Tempo de desenho de cada tela com as 635 questões e 501 cartões carregados: a mais lenta é Especialidades e Assuntos, com **65 ms** (são 216 assuntos numa árvore só); montar a sessão recomendada leva 34 ms; todas as demais ficam **abaixo de 15 ms**. O banco ocupa ~1.234 KB no `localStorage`, bem abaixo do limite típico do navegador (5-10 MB) — mas é o número que cresce rápido se as questões ganharem imagens embutidas, e por isso Configurações avisa a partir de 3,5 MB.
 
-### 18.6 — O que foi encontrado mas **não** foi mexido, de propósito
+### 18.6 — O que foi encontrado e deixado para a rodada seguinte
 
-Acessibilidade: os rótulos de formulário (`<label class="label">`) não têm `for` apontando para o campo, e alguns botões só de ícone não têm nome acessível (`aria-label`/`title`). Nada disso quebra o uso no mouse ou no toque, mas significa que um leitor de tela não anuncia o nome de vários campos e botões. A correção é mecânica (ligar cada rótulo ao seu campo e dar nome aos botões de ícone), porém toca dezenas de trechos espalhados pelo arquivo e não era o pedido desta rodada — fica registrado aqui para uma decisão explícita, no mesmo espírito da seção 16.5. O contraste de cores, vale lembrar, já foi corrigido na revisão da seção 12 e está dentro da WCAG AA.
+Acessibilidade: os rótulos de formulário (`<label class="label">`) não tinham `for` apontando para o campo, e alguns botões só de ícone não tinham nome acessível. Nada disso quebrava o uso no mouse ou no toque, mas significava que um leitor de tela não anunciava o nome de vários campos e botões. Ficou registrado aqui para decisão explícita — **e o usuário pediu a correção logo em seguida: está feita, na seção 19.** O contraste de cores, vale lembrar, já tinha sido corrigido na revisão da seção 12 e está dentro da WCAG AA.
 
 ### Como isso foi verificado
 
 Além da varredura de rotas e fluxos descrita acima (repetida depois das correções, sem nenhum erro de JavaScript), cada correção ganhou um teste próprio: recarregamento real na rota de confirmação (cai no login, tela cheia); cadastro tentando repetir matrícula em outra caixa (barrado); e-mail pendente de uma conta bloqueando cadastro e troca de terceiros, sem bloquear o próprio dono; e troca de grupo recusada num grupo alheio, permitida no oficial e no próprio, e permitida no antes-negado depois que o dono aprova o acesso.
+
+---
+
+## 19. Acessibilidade: todo campo e todo botão com nome (20/09/2026)
+
+Quem enxerga liga a palavra "Senha" à caixinha logo abaixo pela posição na tela. Um leitor de tela — o programa que lê a tela em voz alta para quem não enxerga — só faz essa ligação se ela estiver marcada no HTML. Sem isso, a tela de entrada do Esc era anunciada como "caixa de edição… caixa de edição… botão Entrar": a pessoa sabia que havia dois campos, mas não o que escrever em cada um. O mesmo valia para os botões que são só um desenho (o ✕ de eliminar alternativa, a estrela de favoritar), anunciados apenas como "botão".
+
+**Nada mudou visualmente.** O único efeito visível é que clicar no texto do rótulo agora põe o cursor no campo correspondente — que é justamente o sinal de que a ligação existe.
+
+### 19.1 — Uma função em vez de dezenas de remendos
+
+O caminho óbvio seria escrever a ligação à mão em cada formulário, mas eram ~40 campos espalhados pelo arquivo, muitos criados dentro de laços (sem identificador fixo), e qualquer tela nova nasceria com o problema de volta. Como todos os formulários da plataforma saem do mesmo molde (um rótulo com classe `.label` seguido do campo), a ligação passou a ser feita por uma função só, `rotularCamposParaLeitorDeTela()`, chamada a cada desenho de tela e ao abrir cada janela:
+
+- Para cada campo sem nome, ela procura o rótulo correspondente (o `.label` logo antes dele ou o primeiro `.label` do bloco `.field`) e liga os dois — por `for`, quando o rótulo é um `<label>` de verdade, ou por `aria-labelledby`, quando é um `<div class="label">`.
+- **Um rótulo nomeia um campo só.** Essa regra precisou ser explicitada porque a primeira versão tinha um defeito: no cadastro, o bloco "Turma / Grupo" tem dois campos (o seletor de turma e o "Nome da nova turma"), e o segundo roubava o rótulo do primeiro. Agora o segundo campo exige um nome escrito no próprio HTML, que foi acrescentado.
+- Campos que não têm rótulo visível nenhum continuam precisando de nome escrito à mão, porque só o código sabe a que linha eles pertencem — ver 19.2.
+- **Custo medido: 0,7 ms** na tela mais pesada (Especialidades e Assuntos, com 255 seletores). O tempo total de desenho dessa tela não mudou de forma perceptível (mediana de 59 ms, dentro da variação que já existia).
+
+Para garantir que nenhuma tela escape da função, todo desenho passa agora por um ponto único, `desenharNaTela()` — antes, as telas públicas (entrada, cadastro, confirmação de e-mail) saíam do `render()` mais cedo e ficavam de fora.
+
+### 19.2 — Nomes escritos à mão onde não existe rótulo
+
+Alguns campos não têm rótulo nenhum na tela porque o contexto vem da linha em que estão — e é exatamente isso que um leitor de tela não enxerga. Esses ganharam nome no próprio HTML:
+
+| Onde | O que o leitor de tela passou a anunciar |
+|---|---|
+| Especialidades e Assuntos | "Mover a especialidade Cardiologia para outra grande área" / "Mover o assunto X para outra especialidade" |
+| Usuários | "Papel de Ana Beatriz (Coordenação)" / "Nível de administrador de …" |
+| Banco de Questões e Revisar Formatação | "Buscar questão por texto do enunciado ou alternativa" |
+| Enviar / Importar Questões | "Prompt pronto para copiar" / "Cole aqui o resultado da IA ou o texto da prova" |
+| Blocos de Estudo | "Número da turma deste ano" |
+| Cadastro | "Nome da nova turma" |
+| Menu no celular | "Abrir menu" (era o único botão da plataforma sem nome nenhum — os demais já tinham `title`) |
+
+Repare que o texto de ajuda dentro da caixa (o *placeholder*) não serve como nome: ele some assim que a pessoa começa a digitar, e vários leitores de tela o ignoram.
+
+### Como isso foi verificado
+
+Auditoria automatizada varrendo **todas as rotas dos quatro papéis, as três telas públicas e seis janelas** (meta de questões, meta de cartões, feedback, trocar e-mail, trocar senha, contribuir): **zero campos sem nome, zero botões sem nome, zero identificadores repetidos, zero erros de JavaScript**. Confirmado também que clicar no rótulo foca o campo certo (em "Senha" e em "Ano da faculdade"), que o rótulo "Turma / Grupo" ficou com o seletor de turma (e não com o campo de baixo), e que a bateria de testes das seções 17 e 18 continua passando igual. Capturas de tela de Entrar e Perfil confirmam que a aparência não mudou.
