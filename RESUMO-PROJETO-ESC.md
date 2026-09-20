@@ -3,7 +3,7 @@
 
 Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo `esc.html`.
 
-> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) —, **1.035 flashcards** e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
+> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade) com **1.094 questões** — das quais **959 reais de duas bancas**: 500 da UNIFESP-EPM (2022 a 2026) e 459 da USP-SP/FMUSP (2022 a 2025), todas com explicação autoral —, **1.035 flashcards** e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
 
 ---
 
@@ -11,7 +11,7 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 
 `esc.html` é uma plataforma de estudos para prova de residência médica, escrita como **um único arquivo HTML autossuficiente**: sem instalação, sem servidor, sem build, sem dependência de internet (só as fontes do Google são externas, e são opcionais). Abre com dois cliques no navegador.
 
-- **Tamanho atual:** ~1,8 MB, ~17.360 linhas (a maior parte é o banco de 635 questões e os 1.035 flashcards, em `SEED_QUESTOES` e `SEED_FLASHCARDS`).
+- **Tamanho atual:** ~2,8 MB, ~21.920 linhas (a maior parte é o banco de 1.094 questões e os 1.035 flashcards, em `SEED_QUESTOES` e `SEED_FLASHCARDS`), mais a pasta `figuras/` com 206 imagens de questão (~12 MB).
 - **Dados:** tudo fica no `localStorage` do navegador, sob a chave `medbloco_db_v1` (o nome antigo foi mantido de propósito, para não apagar os dados de quem já usava quando o app foi renomeado).
 - **Nome:** "Esc" (era "MedBloco"). O nome fica em `CONFIG.nomePlataforma`.
 - **Banca de referência:** UNIFESP-EPM (`CONFIG.bancaFoco`), mas o app é agnóstico — filtra por instituição.
@@ -194,6 +194,13 @@ Mesma régua, outra unidade: progresso do dia, quanto falta e sequência de dias
 ### Revisar Formatação dividida em blocos de envio
 Revisar formatação é trabalho de remessa: quem acabou de subir uma prova quer conferir **aquela** prova, não caçá-la no meio de 600 questões. A tela abre no bloco mais recente e lista os demais em cartões (data — com hora, quando o lote foi carimbado —, instituição e ano, quem enviou e quantas questões). Questões importadas a partir desta versão saem de `confirmarImportacao` com `loteId` e `importadoEm`, um por confirmação de importação. Para o que entrou antes (as de semente inclusive) o bloco é reconstruído por dia de criação + banca + ano, o que dá o mesmo recorte, já que cada prova foi carregada de uma vez. A busca continua valendo e recalcula os blocos; se o bloco aberto sumir do resultado, a tela cai no mais recente em vez de ficar vazia sem explicação.
 
+### Carga das provas da USP-SP (FMUSP)
+459 questões de Acesso Direto de 2022 a 2025, extraídas dos cadernos em PDF. O que o processo exigiu, além da transcrição:
+- **Gabarito oficial em todas.** 2023 veio do documento de gabaritos retificados da FUVEST/COREME-FM (Prova A), que traz 3 questões anuladas e 1 com duas respostas aceitas; 2022, 2024 e 2025 trouxeram a folha de respostas no próprio caderno. As 6 questões anuladas entraram com `status:"anulada"` e `gabarito:""`, como as da UNIFESP.
+- **Texto extraído com pdfium, não com pypdf.** O pypdf devolvia palavras coladas ("estáindicadoultrassomtr ansfontanela") e marcadores de alternativa quebrados; o pdfium devolve o texto limpo. O parser só aceita um bloco de alternativas quando encontra A, B, C, D em sequência, e marca como suspeita qualquer questão com enunciado curto, alternativa vazia ou marcador solto — o que sobra é conferido na página original.
+- **Casos clínicos compartilhados.** Em 2023, 24 questões (Prova II e alguns pares) só fazem sentido com o caso que as antecede; o texto do caso é recuperado e anexado ao enunciado de cada questão do par, senão o aluno leria "Qual é o modo ventilatório programado para esta paciente?" sem paciente nenhum.
+- **Figuras recortadas da página, não extraídas como bitmap.** Em boa parte das questões as alternativas são imagens e os rótulos (A) (B) (C) (D) são texto do PDF: extrair só o bitmap perderia o rótulo e tornaria a questão irrespondível. O recorte usa a posição real da imagem na página, obtida percorrendo o content stream e mantendo a matriz de transformação corrente (pegar só o último `cm` antes do `Do` dava posição errada), e a altura do cabeçalho da questão vem do pdfium — o `tm[5]` do pypdf chegava a devolver y=1005 numa página de 841 pt, o que embaralhava o vínculo figura-questão.
+
 ### Listas paginadas
 Toda lista longa (banco de questões, controle de qualidade, usuários, favoritos, histórico, formatação, flashcards, questões do grupo) mostra uma página por vez, com o total à vista. Mudar um filtro volta para a página 1 sozinho — senão, filtrar estando na página 7 mostraria uma lista vazia e pareceria um defeito.
 
@@ -272,7 +279,7 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 ## 8. Limitações conhecidas
 
 1. **Dados locais.** Tudo vive no `localStorage` de um navegador. Fila de dúvidas, grupos, percentil de simulado, aprovação de cadastros, relatório de turma e livro de ouro pressupõem várias pessoas, mas dois usuários em dois computadores não compartilham nada. **O usuário sabe disso e decidiu não migrar para backend agora.** Quando for a hora, Supabase ou Firebase resolvem, e o objeto `db` mapeia quase direto para tabelas.
-2. **Banco cobre uma só banca.** As 500 questões reais são todas da UNIFESP-EPM. As outras 5 bancas de referência (`CONFIG.instituicoesReferencia`) ainda não têm nenhuma questão real — só entram se o usuário conseguir os PDFs oficiais, pelo mesmo processo já usado para a UNIFESP (seção 12). *(Em volume puro o banco já foi testado sintético em mais de 6.000 questões e 8.000 respostas, sem travamento perceptível em nenhuma tela — não é mais o gargalo.)*
+2. **Banco cobre duas bancas.** São 959 questões reais: 500 da UNIFESP-EPM (2022-2026) e 459 da USP-SP/FMUSP (2022-2025). As outras 4 bancas de referência (`CONFIG.instituicoesReferencia`) ainda não têm nenhuma questão real — entram pelo mesmo processo já usado nestas duas. *(Em volume puro o banco já foi testado sintético em mais de 6.000 questões e 8.000 respostas, sem travamento perceptível em nenhuma tela — não é mais o gargalo.)*
 3. **Flashcards da equipe agora cobrem toda a taxonomia, mas com profundidade desigual.** Os 1.035 cartões cobrem os 216 assuntos, só que os assuntos abertos pela carga das provas reais têm de 3 a 7 cartões — o suficiente para o conceito central de cada tema, não para esgotá-lo. Os cartões gerados automaticamente a partir de erros e os escritos pelos próprios alunos seguem complementando.
 4. **Autenticação é de demonstração**: senha em texto claro no arquivo. Não serve para uso público real.
 5. **Backup manual e restrito.** Só o administrador máster exporta — se ele não exportar, ninguém exporta. Configurações avisa quando passa de ~3,5 MB e quando o último backup tem mais de 7 dias.
@@ -298,9 +305,9 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 Em ordem de prioridade sugerida:
 
 1. **Aprofundar os flashcards dos assuntos recém-cobertos.** ~~Flashcards para os 125 assuntos novos~~ — feito em 20/09: os 129 assuntos sem cartão receberam de 3 a 7 cada, e a taxonomia inteira passou a ter baralho de equipe. O que resta é ganhar profundidade nos temas de maior peso (cada um tem hoje o conceito central, não o assunto inteiro) e revisar o conjunto com um professor.
-2. **Repetir a carga de provas reais para as outras 5 bancas de referência** (USP-SP/FMUSP, USP-RP/FMRP, Santa Casa de São Paulo, IAMSPE, UNESP), se o usuário conseguir os PDFs oficiais — o pipeline (extração, classificação, validação) já existe e é só repetir o processo descrito na seção 12.
+2. **Repetir a carga de provas reais para as outras 4 bancas de referência** (USP-RP/FMRP, Santa Casa de São Paulo, IAMSPE, UNESP), se o usuário conseguir os PDFs oficiais — o pipeline (extração, classificação, validação, recorte de figuras) já existe e foi repetido com sucesso na carga da USP-SP.
 3. **Checagem humana amostral das 500 explicações autorais.** Foram escritas em lote, com boa fundamentação e revisão de consistência automatizada, mas nunca foram lidas por um segundo médico/residente. Vale um professor ou residente revisar uma amostra (por exemplo, as questões mais avançadas ou as anuladas, onde a explicação é mais interpretativa) antes de tratar o conjunto como validado clinicamente.
-4. **Questões com imagem/figura no enunciado.** Algumas das 500 questões reais mencionam uma imagem original da prova (ultrassom, radiografia, ressonância) que não foi reproduzida — a explicação descreve o achado esperado a partir do texto, mas o aluno não vê a imagem. Vale revisar essas questões pontualmente e anexar a imagem quando possível.
+4. **Questões com imagem/figura no enunciado.** Resolvido para a USP-SP: 206 das 459 questões têm a figura original recortada da página do caderno, em `figuras/usp-sp-<ano>/`, ligada pelo campo `imagemUrl`. Continua pendente para as 500 da UNIFESP-EPM, que ainda descrevem o achado na explicação sem mostrar a imagem.
 5. **Relatório individual do aluno em PDF**, para devolutiva um a um (item já sugerido antes e ainda pendente).
 6. **Backend com autenticação de verdade**, quando o uso sair do dispositivo único — é a limitação mais estrutural (seção 8, item 1), mas também a de maior esforço; faz sentido represar até os itens de conteúdo acima estarem resolvidos.
 
