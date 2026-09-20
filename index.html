@@ -150,6 +150,20 @@ svg.icon-lg{width:26px;height:26px}
 .pill:active{transform:scale(.96)}
 .pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
+/* ---------- blocos de upload (Revisar Formatação) ----------
+   Cada bloco é uma leva de questões que subiu junto. O cartão mostra quando
+   subiu, de onde veio e quantas questões tem, para a revisão ser feita por
+   remessa, e não numa lista corrida de centenas de questões. */
+.lote-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:.6rem}
+.lote-chip{text-align:left;padding:.7rem .85rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease;font-family:inherit}
+.lote-chip:hover{border-color:var(--accent)}
+.lote-chip:active{transform:scale(.985)}
+.lote-chip.active{border-color:var(--accent);background:var(--accent-soft)}
+.lote-chip-data{font-size:.8rem;font-weight:700;color:var(--ink)}
+.lote-chip.active .lote-chip-data{color:var(--accent-dark)}
+.lote-chip-origem{font-size:.73rem;color:var(--muted);margin-top:.15rem;line-height:1.35}
+.lote-chip-qtd{font-size:.7rem;font-weight:600;color:var(--muted);margin-top:.35rem}
+
 /* ---------- tabelas ---------- */
 table{width:100%;border-collapse:collapse;font-size:.86rem}
 th{text-align:left;color:var(--muted);font-weight:600;font-size:.72rem;padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
@@ -585,6 +599,15 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
      Agora todos os 216 assuntos da taxonomia têm cartão de equipe.
      Continuam valendo as duas regras do baralho: pergunta curta na frente,
      resposta direta no verso, e texto autoral.
+   - Grandes áreas de professor/residente: teto de 2 áreas, sendo no máximo
+     UMA clínica — a segunda vaga é de Medicina Preventiva e Social, que é
+     transversal. Regra em CONFIG.maxAreasAtuacao/areaTransversalId e nas
+     funções validarAreasAtuacao/normalizarAreasAtuacao; o formulário de
+     cadastro aplica ao vivo e o loadState normaliza cadastros antigos.
+   - Revisar Formatação passou a ser dividida em BLOCOS DE ENVIO (uma leva de
+     questões por upload). Importações novas saem carimbadas com loteId e
+     importadoEm; o que entrou antes é agrupado por dia + banca + ano. Ver
+     lotesDeUpload e renderRevisaoFormatacao.
    ========================================================================== */
 
 /* ---------------------------- 1. CONFIG ---------------------------------- */
@@ -629,6 +652,18 @@ const CONFIG = {
   limiarTaxaAcertoDificil: 0.45,
 
   papeis: ["admin", "professor", "residente", "aluno"],
+
+  // QUANTAS GRANDES ÁREAS UM PROFESSOR OU RESIDENTE PODE COBRIR
+  // A regra é de qualidade, não de burocracia: quem responde dúvida de aluno
+  // e revisa questão precisa estar em dia com a área, e ninguém está em dia
+  // com as cinco ao mesmo tempo. Daí o teto de duas — com uma exceção
+  // prevista: Medicina Preventiva e Social é transversal (epidemiologia,
+  // bioética e SUS aparecem dentro de prova de qualquer especialidade), então
+  // ela pode ser somada a uma área clínica sem que isso signifique dobrar a
+  // carga. Na prática: no máximo 2 áreas e, se forem 2, uma delas é
+  // obrigatoriamente a Preventiva — nunca duas áreas clínicas.
+  maxAreasAtuacao: 2,
+  areaTransversalId: "area-mps",
 
   // Anos da faculdade oferecidos no cadastro e no perfil do aluno.
   // "Internato" saiu da lista: na prática ele corresponde ao 5º e 6º ano, e
@@ -10754,6 +10789,23 @@ function loadState(){
     sincronizarConteudoNovo();
     // níveis de administrador: bancos antigos não tinham esse campo
     db.usuarios.forEach(x=>{ if(x.papel==="admin" && !x.nivelAdmin) x.nivelAdmin = (x.id==="u-admin" ? "master" : "coordenacao"); });
+    // regra nova das grandes áreas (no máximo uma clínica + a Preventiva):
+    // cadastros feitos antes dela podem ter três, quatro ou as cinco áreas.
+    // A normalização mantém a primeira área clínica e a Preventiva, e poda as
+    // especialidades de ajuda que ficaram órfãs — sem isso, o professor
+    // continuaria recebendo dúvida de área que a regra não cobre mais.
+    let areasNormalizadas = 0;
+    db.usuarios.forEach(x=>{
+      if(x.papel!=="professor" && x.papel!=="residente") return;
+      if(!Array.isArray(x.areasAtuacao) || !x.areasAtuacao.length) return;
+      if(validarAreasAtuacao(x.areasAtuacao).ok) return;
+      x.areasAtuacao = normalizarAreasAtuacao(x.areasAtuacao);
+      if(Array.isArray(x.assuntosAjuda)) x.assuntosAjuda = assuntosAjudaDentroDasAreas(x.assuntosAjuda, x.areasAtuacao);
+      areasNormalizadas++;
+    });
+    // grava agora: sem isso a correção só existiria em memória e o backup
+    // exportado sairia com a seleção antiga
+    if(areasNormalizadas) saveState();
     // a plataforma passou a se chamar "Esc": atualiza os e-mails das contas
     // de demonstração já salvas, pra continuarem batendo com a tela de entrada
     db.usuarios.forEach(x=>{ if(x.email && x.email.indexOf("@medbloco.demo")>=0) x.email = x.email.replace("@medbloco.demo","@esc.demo"); });
@@ -12278,9 +12330,13 @@ function solicitarCadastro(){
     novo.grupoId = grupoId;
   } else {
     const areasAtuacao = [...document.querySelectorAll(".cadAreaAtuacao:checked")].map(el=>el.value);
-    if(!areasAtuacao.length){ toast("Selecione pelo menos uma grande área de atuação.", "err"); return; }
+    const regraAreas = validarAreasAtuacao(areasAtuacao);
+    if(!regraAreas.ok){ toast(regraAreas.msg, "err"); return; }
     novo.areasAtuacao = areasAtuacao;
-    novo.assuntosAjuda = [...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value);
+    // a lista de especialidades só mostra as das áreas marcadas, mas quem
+    // desmarca uma área depois de escolher especialidades dela não pode sair
+    // com o resíduo: filtra de novo na hora de salvar
+    novo.assuntosAjuda = assuntosAjudaDentroDasAreas([...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value), areasAtuacao);
   }
   db.usuarios.push(novo); saveState();
   toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
@@ -12749,11 +12805,14 @@ function renderCadastro(){
       </div>
       <div id="camposEquipe" style="display:none">
         <div class="field"><label class="label">Grandes áreas de atuação</label>
-          ${db.taxonomia.areas.map(a=>`<label class="checkbox-row mb-1"><input type="checkbox" class="cadAreaAtuacao" value="${a.id}"> ${escapeHtml(a.nome)}</label>`).join("")}
+          <div class="hint mb-1">No máximo ${CONFIG.maxAreasAtuacao}: <strong>uma área clínica</strong> e, se quiser, <strong>${escapeHtml(nomeArea(CONFIG.areaTransversalId))}</strong>, que é transversal e pode ser somada a qualquer uma. Cobrir menos área é o que permite responder dúvida com profundidade.</div>
+          ${db.taxonomia.areas.map(a=>`<label class="checkbox-row mb-1" data-area-row="${a.id}"><input type="checkbox" class="cadAreaAtuacao" value="${a.id}" onchange="atualizarAreasAtuacaoCadastro()"> ${escapeHtml(a.nome)}${ehAreaTransversal(a.id)?' <span class="badge badge-muted">transversal</span>':""}</label>`).join("")}
+          <div class="hint mt-1" id="cadAreasAviso"></div>
         </div>
         <div class="field"><label class="label">Especialidades específicas que você topa ajudar a responder dúvidas (opcional)</label>
-          <div class="grid grid-2">
-            ${db.taxonomia.areas.map(area=>`<div><div class="text-xs muted" style="font-weight:700;margin:.3rem 0 .2rem">${escapeHtml(area.nome)}</div>${db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>`<label class="checkbox-row mb-1"><input type="checkbox" class="cadAssuntoAjuda" value="${e.id}"> ${escapeHtml(e.nome)}</label>`).join("")}</div>`).join("")}
+          <div class="hint mb-1" id="cadAjudaAviso">Marque as grandes áreas acima para ver as especialidades.</div>
+          <div class="grid grid-2" id="cadAjudaGrid">
+            ${db.taxonomia.areas.map(area=>`<div data-area-grupo="${area.id}" style="display:none"><div class="text-xs muted" style="font-weight:700;margin:.3rem 0 .2rem">${escapeHtml(area.nome)}</div>${db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>`<label class="checkbox-row mb-1"><input type="checkbox" class="cadAssuntoAjuda" value="${e.id}"> ${escapeHtml(e.nome)}</label>`).join("")}</div>`).join("")}
           </div>
         </div>
       </div>
@@ -12766,6 +12825,38 @@ function renderCadastro(){
 function alternarNovaTurmaInput(){
   const val = document.getElementById("cadTurmaSelect").value;
   document.getElementById("cadNovaTurmaNome").style.display = val==="__nova__" ? "block" : "none";
+}
+/* Aplica a regra das grandes áreas enquanto a pessoa marca as caixas, em vez
+   de só reclamar no envio: escolhida uma área clínica, as outras clínicas
+   ficam desabilitadas (a Preventiva continua disponível), e a lista de
+   especialidades passa a mostrar apenas as das áreas marcadas. A validação
+   de verdade continua em solicitarCadastro() — esta parte é só afordância. */
+function atualizarAreasAtuacaoCadastro(){
+  const caixas = [...document.querySelectorAll(".cadAreaAtuacao")];
+  if(!caixas.length) return;
+  const marcadas = caixas.filter(c=>c.checked).map(c=>c.value);
+  const jaTemClinica = areasClinicas(marcadas).length >= 1;
+  caixas.forEach(c=>{
+    const bloquear = !c.checked && !ehAreaTransversal(c.value) && jaTemClinica;
+    c.disabled = bloquear;
+    const linha = document.querySelector('[data-area-row="'+c.value+'"]');
+    if(linha) linha.style.opacity = bloquear ? ".45" : "1";
+  });
+  const aviso = document.getElementById("cadAreasAviso");
+  if(aviso){
+    aviso.textContent = !marcadas.length ? ""
+      : jaTemClinica && marcadas.some(ehAreaTransversal) ? "Seleção completa: uma área clínica + a transversal."
+      : jaTemClinica ? "Você ainda pode somar " + nomeArea(CONFIG.areaTransversalId) + "."
+      : "Falta escolher a sua área clínica.";
+  }
+  // especialidades: mostra só as das áreas marcadas e desmarca o que sumiu
+  document.querySelectorAll("[data-area-grupo]").forEach(grupo=>{
+    const visivel = marcadas.includes(grupo.getAttribute("data-area-grupo"));
+    grupo.style.display = visivel ? "" : "none";
+    if(!visivel) grupo.querySelectorAll(".cadAssuntoAjuda").forEach(cb=>{ cb.checked = false; });
+  });
+  const avisoAjuda = document.getElementById("cadAjudaAviso");
+  if(avisoAjuda) avisoAjuda.style.display = marcadas.length ? "none" : "";
 }
 /* ==========================================================================
    9. PAINEL INICIAL (muda conforme o papel do usuário)
@@ -13653,6 +13744,41 @@ function enviarComentario(questaoId){
 // (mantém o comportamento das contas de demonstração, que não têm isso)
 function dentroDaAreaDeAtuacao(usuario, areaId){
   return !usuario.areasAtuacao || !usuario.areasAtuacao.length || usuario.areasAtuacao.includes(areaId);
+}
+/* ---------- regra das grandes áreas de professor/residente ----------------
+   Teto de CONFIG.maxAreasAtuacao áreas, sendo no máximo UMA clínica. A
+   Preventiva (CONFIG.areaTransversalId) é a única que pode ser somada, por
+   ser transversal a todas as provas. Ver a nota em CONFIG.maxAreasAtuacao.
+   As três funções abaixo são a fonte única dessa regra: o formulário de
+   cadastro, a validação do envio e a migração de contas antigas usam todas
+   elas — mudar o teto ou a área transversal é mexer só no CONFIG. */
+function ehAreaTransversal(areaId){ return areaId === CONFIG.areaTransversalId; }
+function areasClinicas(areas){ return (areas||[]).filter(a=>!ehAreaTransversal(a)); }
+function validarAreasAtuacao(areas){
+  areas = [...new Set((areas||[]).filter(Boolean))];
+  if(!areas.length) return {ok:false, msg:"Selecione pelo menos uma grande área de atuação."};
+  if(areas.length > CONFIG.maxAreasAtuacao) return {ok:false, msg:"São no máximo "+CONFIG.maxAreasAtuacao+" grandes áreas por pessoa."};
+  if(areasClinicas(areas).length > 1){
+    return {ok:false, msg:"Escolha uma única grande área clínica. A segunda vaga é de "+nomeArea(CONFIG.areaTransversalId)+", que é transversal e pode ser somada a qualquer uma."};
+  }
+  return {ok:true};
+}
+// devolve a seleção já dentro da regra: mantém a primeira área clínica e,
+// se houver, a Preventiva. Usada na migração de cadastros antigos, feitos
+// antes de a regra existir.
+function normalizarAreasAtuacao(areas){
+  areas = [...new Set((areas||[]).filter(Boolean))];
+  const clinica = areasClinicas(areas)[0];
+  const transversal = areas.find(ehAreaTransversal);
+  return [clinica, transversal].filter(Boolean);
+}
+// especialidades que sobram depois de aplicar a regra — um professor não
+// pode se oferecer para responder dúvida de área que ele não cobre
+function assuntosAjudaDentroDasAreas(assuntos, areas){
+  return (assuntos||[]).filter(id=>{
+    const e = getEspecialidade(id);
+    return e && (areas||[]).includes(e.areaId);
+  });
 }
 function duvidasPendentes(usuario){
   // uma dúvida é considerada "pendente" se, entre os comentários daquela questão
@@ -15269,6 +15395,10 @@ function renderPerfil(){
       <div class="hint mt-1">Atualize quando virar o ano letivo. Quem está no internato marca o ano em que está — 5º ou 6º.</div>
     </div>` : ""}
     <div class="field"><label class="label">Papel</label><div>${badgePapel(u.papel, u)}</div></div>
+    ${(u.papel==="professor"||u.papel==="residente") ? `<div class="field"><label class="label">Grandes áreas de atuação</label>
+      <div>${u.areasAtuacao&&u.areasAtuacao.length ? u.areasAtuacao.map(a=>`<span class="badge badge-muted">${escapeHtml(nomeArea(a))}</span>`).join(" ") : '<span class="text-sm muted">Nenhuma definida — você enxerga o conteúdo de todas as áreas.</span>'}</div>
+      <div class="hint mt-1">Cada professor ou residente cobre no máximo ${CONFIG.maxAreasAtuacao} grandes áreas: uma clínica e, opcionalmente, ${escapeHtml(nomeArea(CONFIG.areaTransversalId))}, que é transversal. É o que define quais dúvidas de aluno chegam até você. Para mudar, fale com a coordenação.</div>
+    </div>` : ""}
     ${u.papel==="admin" ? `<div class="field"><label class="label">Nível de administrador</label><div>${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}<div class="hint mt-1">${escapeHtml((CONFIG.niveisAdmin.find(n=>n.id===nivelAdminDe(u))||{}).descricao||"")}</div></div></div>` : ""}
     ${u.papel==="aluno" ? `<div class="field"><label class="label">Bloco atual</label><div>${escapeHtml(getBlocoAtual().nome)}</div></div>` : ""}
   </div>
@@ -15942,28 +16072,109 @@ function responderDuvida(comentarioId, questaoId){
   toast("Resposta enviada.");
   render();
 }
+/* ---------- Revisar Formatação: blocos por upload -------------------------
+   Revisar formatação é trabalho de remessa: quem acabou de subir uma prova
+   quer conferir AQUELA prova, não caçar as questões dela no meio de todas as
+   outras. Por isso a tela é dividida em blocos, um por upload.
+
+   Questões importadas a partir desta versão saem carimbadas com loteId e
+   importadoEm (ver confirmarImportacao). Para tudo que entrou antes — as de
+   semente inclusive — o bloco é reconstruído pelo que dá para saber: dia em
+   que foram criadas + prova de origem (banca e ano). Na prática é o mesmo
+   recorte, porque cada prova foi carregada de uma vez. */
+function chaveLoteUpload(q){
+  if(q.loteId) return q.loteId;
+  return "sem-lote|"+(q.criadoEm||"sem-data")+"|"+(q.banca||"—")+"|"+(q.ano||"—");
+}
+function lotesDeUpload(lista){
+  const mapa = new Map();
+  lista.forEach(q=>{
+    const chave = chaveLoteUpload(q);
+    let lote = mapa.get(chave);
+    if(!lote){ lote = {chave, quando:"", carimbado:!!q.loteId, bancas:new Set(), anos:new Set(), autores:new Set(), questoes:[]}; mapa.set(chave, lote); }
+    lote.questoes.push(q);
+    if(q.banca) lote.bancas.add(q.banca);
+    if(q.ano) lote.anos.add(String(q.ano));
+    if(q.criadoPor) lote.autores.add(q.criadoPor);
+    const quando = q.importadoEm || q.criadoEm || "";
+    if(quando > lote.quando) lote.quando = quando;
+  });
+  return [...mapa.values()].sort((a,b)=>(b.quando||"").localeCompare(a.quando||""));
+}
+// "19/09/2026" para o que só tem data; "19/09/2026 às 14:32" quando o lote
+// foi carimbado com a hora da importação
+function quandoDoLote(iso){
+  if(!iso) return "Sem data de envio";
+  const data = formatDataBR(iso);
+  if(iso.length <= 10) return data;
+  const d = new Date(iso);
+  return isNaN(d.getTime()) ? data : data+" às "+d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+}
+function origemDoLote(lote){
+  const bancas = [...lote.bancas], anos = [...lote.anos].sort();
+  if(!bancas.length) return "sem instituição informada";
+  const nome = bancas.length===1 ? bancas[0] : bancas.length+" instituições";
+  if(!anos.length) return nome;
+  return nome+" · "+(anos.length===1 ? anos[0] : anos[0]+"–"+anos[anos.length-1]);
+}
+function autorDoLote(lote){
+  const ids = [...lote.autores];
+  if(!ids.length) return "—";
+  if(ids.length > 1) return ids.length+" pessoas";
+  if(ids[0]==="seed") return "carga inicial da plataforma";
+  const u = getUsuario(ids[0]);
+  return u ? u.nome : "—";
+}
 function renderRevisaoFormatacao(){
   const termo = (state.filtroRota.buscaFormatacao||"").toLowerCase();
   let lista = questoesAtivas(true);
   if(termo) lista = lista.filter(q=>q.enunciado.toLowerCase().includes(termo));
-  lista = lista.slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
-  const pagFormatacao = paginar(lista, "formatacao", {porPagina:15, assinatura:termo});
+  const lotes = lotesDeUpload(lista);
+  // a busca pode fazer o bloco escolhido deixar de existir; nesse caso cai no
+  // mais recente, em vez de mostrar uma tela vazia sem explicação
+  let selecionado = state.filtroRota.loteFormatacao;
+  if(selecionado !== "__todos__" && !lotes.some(l=>l.chave===selecionado)){
+    selecionado = lotes.length ? lotes[0].chave : "__todos__";
+  }
+  const lote = lotes.find(l=>l.chave===selecionado);
+  const visiveis = (lote ? lote.questoes : lista).slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
+  const pagFormatacao = paginar(visiveis, "formatacao", {porPagina:15, assinatura:termo+"|"+selecionado});
   return `
   <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico.</p></div>
   <div class="flex gap-1 mb-2">
     <input class="input" id="buscaFormatacaoInput" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(state.filtroRota.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
     <button class="btn btn-secondary btn-sm" onclick="buscarFormatacao()">Buscar</button>
+    ${termo ? `<button class="btn btn-ghost btn-sm" onclick="limparBuscaFormatacao()">Limpar busca</button>` : ""}
   </div>
+  <div class="card mb-2">
+    <div class="card-title">Blocos de envio</div>
+    <p class="text-sm muted mb-2">Cada bloco é uma leva de questões que entrou junto na plataforma${termo?" (considerando só o que a busca encontrou)":""}. Revisar por bloco é o jeito de conferir uma prova inteira sem perder o fio.</p>
+    ${lotes.length ? `<div class="lote-grid">
+      <button class="lote-chip ${selecionado==="__todos__"?"active":""}" onclick="selecionarLoteFormatacao('__todos__')">
+        <div class="lote-chip-data">Todas as questões</div>
+        <div class="lote-chip-origem">${lotes.length} bloco(s) de envio</div>
+        <div class="lote-chip-qtd">${lista.length} questão(ões)</div>
+      </button>
+      ${lotes.map(l=>`<button class="lote-chip ${selecionado===l.chave?"active":""}" onclick="selecionarLoteFormatacao('${l.chave}')">
+        <div class="lote-chip-data">${escapeHtml(quandoDoLote(l.quando))}</div>
+        <div class="lote-chip-origem">${escapeHtml(origemDoLote(l))}<br>por ${escapeHtml(autorDoLote(l))}</div>
+        <div class="lote-chip-qtd">${l.questoes.length} questão(ões)</div>
+      </button>`).join("")}
+    </div>` : '<div class="empty-state">Nenhum bloco para mostrar.</div>'}
+  </div>
+  ${lote ? `<div class="card-flat mb-2 text-sm">Revisando o bloco de <strong>${escapeHtml(quandoDoLote(lote.quando))}</strong> — ${escapeHtml(origemDoLote(lote))}, ${lote.questoes.length} questão(ões), enviado por ${escapeHtml(autorDoLote(lote))}.</div>` : ""}
   ${pagFormatacao.itens.map(q=>`
     <div class="card mb-2">
-      <div class="qcard-meta mb-1"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>${badgeStatusQuestao(q.status)}</div>
+      <div class="qcard-meta mb-1"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>${badgeStatusQuestao(q.status)}${selecionado==="__todos__"?`<span class="badge badge-muted">envio: ${escapeHtml(quandoDoLote(q.importadoEm||q.criadoEm))}</span>`:""}</div>
       <div class="text-sm" style="white-space:pre-line">${escapeHtml(q.enunciado)}</div>
       <div class="mt-2">${q.alternativas.map(a=>`<div class="text-sm">${escapeHtml(a.id)}) ${escapeHtml(a.texto)}${a.id===q.gabarito?" ✓":""}</div>`).join("")}</div>
       <button class="btn btn-secondary btn-sm mt-2" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar</button>
     </div>`).join("") || '<div class="empty-state">Nenhuma questão encontrada.</div>'}
-  ${controlesPaginacao(pagFormatacao, "questão(ões), da mais recente para a mais antiga")}`;
+  ${controlesPaginacao(pagFormatacao, "questão(ões) neste recorte, da mais recente para a mais antiga")}`;
 }
+function selecionarLoteFormatacao(chave){ state.filtroRota.loteFormatacao = chave; render(); window.scrollTo(0,0); }
 function buscarFormatacao(){ state.filtroRota.buscaFormatacao = document.getElementById("buscaFormatacaoInput").value; render(); }
+function limparBuscaFormatacao(){ state.filtroRota.buscaFormatacao = ""; render(); }
 /* ==========================================================================
    24. ADMIN — Aprovar Cadastros / Gerenciar Usuários
    ========================================================================== */
@@ -17036,6 +17247,12 @@ function confirmarImportacao(){
   let importadas = 0, novosAssuntos = 0;
   const antesAssuntos = db.taxonomia.assuntos.length;
   const ignoradas = resultado.filter(r=>r.valido && r.importar===false).length;
+  // cada confirmação de importação é UM lote: as questões saem daqui
+  // carimbadas com o mesmo loteId e o mesmo instante. É isso que permite a
+  // Revisar Formatação mostrar "o que subiu junto" em vez de uma lista
+  // corrida de centenas de questões (ver lotesDeUpload).
+  const loteId = uid("lote");
+  const importadoEm = new Date().toISOString();
   resultado.filter(r=>r.valido && r.importar!==false).forEach(r=>{
     const c = r.campos;
     const tax = resolverTaxonomiaImportacao(r);
@@ -17054,6 +17271,7 @@ function confirmarImportacao(){
       status: r.status || (destino==="sugerir" ? "pendente" : "ativa"),
       estatisticas: {respostas:0, acertos:0, distribuicaoAlternativas:{}},
       criadoPor: u.id, criadoEm: hojeISO(),
+      loteId, importadoEm,
     };
     if(destino==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = r.status || "ativa"; }
     db.questoes.push(nova);

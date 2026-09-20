@@ -52,6 +52,8 @@ Com 500 questões reais cobrindo 5 anos de uma banca de referência, a repetiç�
 
 **Professor** — todo o conteúdo: banco de questões, importar, controle de qualidade, criar simulado, material em PDF, flashcards da equipe, especialidades e assuntos, revisar formatação.
 
+**Grandes áreas de professores e residentes (regra nova).** Professor e residente cobrem no **máximo 2 das 5 grandes áreas**, e **no máximo uma delas é clínica**: a segunda vaga é de **Medicina Preventiva e Social**, que é transversal (epidemiologia, bioética e SUS caem dentro de prova de qualquer especialidade) e por isso pode ser somada a qualquer área. Não existe professor de Clínica Médica + Cirurgia. O teto e a área transversal ficam em `CONFIG.maxAreasAtuacao` e `CONFIG.areaTransversalId`; a regra em si está em três funções (`validarAreasAtuacao`, `normalizarAreasAtuacao`, `assuntosAjudaDentroDasAreas`) usadas pelo formulário, pela validação do envio e pela migração. O formulário aplica a regra enquanto a pessoa marca: escolhida a área clínica, as outras clínicas ficam desabilitadas e a lista de especialidades de ajuda passa a mostrar só as áreas marcadas. Cadastros feitos antes da regra são normalizados no `loadState` (fica a primeira área clínica + a Preventiva, e as especialidades órfãs são podadas). É essa seleção que decide quais dúvidas de aluno chegam a cada pessoa (`dentroDaAreaDeAtuacao`).
+
 **Administrador, em três níveis** (`CONFIG.niveisAdmin` + `PERMISSOES_ADMIN`):
 
 | Nível | Pode |
@@ -188,6 +190,9 @@ A sessão de prática é gravada junto com o resto dos dados, por usuário. Sair
 
 ### Meta de cartões ao lado da meta de questões
 Mesma régua, outra unidade: progresso do dia, quanto falta e sequência de dias seguidos, agora também para os flashcards. São independentes porque medem estudos diferentes, e porque num dia corrido só o cartão cabe. A sequência de cartões usa um diário de dias à parte (`db.diasCartoes`): cada cartão guarda só a última data em que foi visto, então rever hoje um cartão de ontem apagaria ontem do mapa e zeraria a sequência de quem estuda todo dia.
+
+### Revisar Formatação dividida em blocos de envio
+Revisar formatação é trabalho de remessa: quem acabou de subir uma prova quer conferir **aquela** prova, não caçá-la no meio de 600 questões. A tela abre no bloco mais recente e lista os demais em cartões (data — com hora, quando o lote foi carimbado —, instituição e ano, quem enviou e quantas questões). Questões importadas a partir desta versão saem de `confirmarImportacao` com `loteId` e `importadoEm`, um por confirmação de importação. Para o que entrou antes (as de semente inclusive) o bloco é reconstruído por dia de criação + banca + ano, o que dá o mesmo recorte, já que cada prova foi carregada de uma vez. A busca continua valendo e recalcula os blocos; se o bloco aberto sumir do resultado, a tela cai no mais recente em vez de ficar vazia sem explicação.
 
 ### Listas paginadas
 Toda lista longa (banco de questões, controle de qualidade, usuários, favoritos, histórico, formatação, flashcards, questões do grupo) mostra uma página por vez, com o total à vista. Mudar um filtro volta para a página 1 sozinho — senão, filtrar estando na página 7 mostraria uma lista vazia e pareceria um defeito.
