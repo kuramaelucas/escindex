@@ -11761,6 +11761,14 @@ function questoesDificeis(){
    código deveriam ficar por conta de um back-end — ver observações no
    resumo enviado no chat. */
 function gerarCodigoConfirmacao(){ return String(Math.floor(100000 + Math.random()*900000)); }
+/* Um e-mail só pode pertencer a uma conta — senão o login fica ambíguo. Conta
+   também o e-mail que outra pessoa já pediu para trocar e ainda não confirmou
+   (emailPendente), que vira e-mail de verdade assim que ela digitar o código. */
+function emailJaEmUso(email, ignorarUsuarioId){
+  const alvo = (email||"").trim().toLowerCase();
+  return db.usuarios.some(u => u.id!==ignorarUsuarioId && (
+    (u.email||"").toLowerCase()===alvo || (u.emailPendente||"").toLowerCase()===alvo));
+}
 function fazerLogin(identificador, senha){
   const id = (identificador||"").trim().toLowerCase();
   const usuario = db.usuarios.find(u => (u.email.toLowerCase()===id || u.matricula.toLowerCase()===id) && u.senha===senha);
@@ -11803,8 +11811,10 @@ function solicitarCadastro(){
   const tipoAcesso = document.getElementById("cadTipoAcesso").value;
   if(!nome || !email || !matricula || !senha){ toast("Preencha todos os campos.", "err"); return; }
   if(senha.length<4){ toast("Use uma senha com pelo menos 4 caracteres.", "err"); return; }
-  if(db.usuarios.some(u=>u.email.toLowerCase()===email.toLowerCase())){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
-  if(db.usuarios.some(u=>u.matricula===matricula)){ toast("Já existe um cadastro com esta matrícula.", "err"); return; }
+  if(emailJaEmUso(email)){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
+  // a comparação ignora maiúsculas/minúsculas porque o login também ignora:
+  // "ABC123" e "abc123" entram na mesma conta, então não podem ser duas
+  if(db.usuarios.some(u=>u.matricula.toLowerCase()===matricula.toLowerCase())){ toast("Já existe um cadastro com esta matrícula.", "err"); return; }
   const novoUsuarioId = uid("u");
   const novo = {id:novoUsuarioId, nome, email, matricula, senha, papel:tipoAcesso, status:"pendente", criadoEm:hojeISO(),
     emailConfirmado:false, codigoConfirmacaoEmail:gerarCodigoConfirmacao()};
@@ -11844,8 +11854,8 @@ function solicitarCadastro(){
    quanto se a pessoa fechar a aba antes de confirmar e tentar entrar depois
    (fazerLogin manda de volta pra cá). */
 function renderConfirmarEmail(){
+  // o roteador já garante que existe um usuário aqui (ver render)
   const u = getUsuario(state.confirmarEmailUsuarioId);
-  if(!u){ navigate("login"); return ""; }
   return `
   <div class="container"><nav class="public-nav">
     <div class="brand" style="cursor:pointer" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
@@ -11973,10 +11983,14 @@ window.addEventListener("keydown", function(e){
 function render(){
   const app = document.getElementById("app");
   const rotasPublicas = ["landing","login","cadastro","confirmar-email"];
-  // confirmar-email também é usada por quem já está logado (troca de e-mail
-  // no Perfil) — só força pra fora das rotas públicas quem NÃO está no meio
-  // dessa confirmação
-  if(usuarioAtual() && state.route==="confirmar-email" && !state.confirmarEmailUsuarioId) state.route = "inicio";
+  // confirmar-email também é usada por quem já está logado (troca de e-mail no
+  // Perfil), então continua valendo com sessão aberta. O que ela exige é um
+  // usuário em memória (state.confirmarEmailUsuarioId), que se perde quando a
+  // página é recarregada: sem ele não há o que confirmar, e a pessoa vai para
+  // o login (ou para o início, se estiver logada) em vez de ficar numa tela
+  // vazia. Quem recarregou no meio do cadastro recupera o código tentando
+  // entrar — fazerLogin() traz de volta para cá.
+  if(state.route==="confirmar-email" && !getUsuario(state.confirmarEmailUsuarioId)) state.route = usuarioAtual() ? "inicio" : "login";
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
   if(usuarioAtual() && rotasPublicas.includes(state.route) && state.route!=="confirmar-email") state.route = "inicio";
 
@@ -14929,7 +14943,7 @@ function renderMeuGrupo(){
   <div class="card">
     <div class="card-title">Usar calendário de outro grupo</div>
     ${outrosGrupos.length ? outrosGrupos.map(g=>{
-      const souMembro = g.oficial || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
+      const souMembro = souMembroDoGrupo(g, u);
       const jaSolicitei = (g.solicitacoesPendentes||[]).includes(u.id);
       return `
       <div class="flex justify-between items-center mb-1 card-flat">
@@ -14961,8 +14975,17 @@ function criarMeuGrupo(){
   toast("Grupo criado! Ele segue a sequência de blocos do seu ano — escolha por qual bloco a turma começa.");
   render();
 }
+/* Grupo oficial é de todos; os outros são de quem criou e de quem teve acesso
+   aprovado pelo dono. A checagem fica aqui, e não só no botão, para valer
+   mesmo quando a troca vem de outro lugar (o seletor do Perfil, por exemplo). */
+function souMembroDoGrupo(g, u){
+  u = u || usuarioAtual();
+  if(!g || !u) return false;
+  return !!(g.oficial || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id));
+}
 function usarGrupo(grupoId){
   const g = getGrupo(grupoId); if(!g) return;
+  if(!souMembroDoGrupo(g)){ toast("Você ainda não tem acesso a este grupo — peça acesso a quem o criou.", "err"); return; }
   usuarioAtual().grupoId = grupoId;
   saveState();
   toast('Agora você está usando o calendário de "'+g.nome+'".');
@@ -15031,7 +15054,7 @@ function renderQuestoesDoGrupo(grupo){
 function renderPerfil(){
   const u = usuarioAtual();
   const ehMaster = podeAdmin("backup", u);
-  const meusGrupos = u.papel==="aluno" ? db.grupos.filter(g=>g.oficial || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id)) : [];
+  const meusGrupos = u.papel==="aluno" ? db.grupos.filter(g=>souMembroDoGrupo(g, u)) : [];
   return `
   <div class="page-header"><h2>Perfil</h2></div>
   <div class="card" style="max-width:460px">
@@ -15104,7 +15127,7 @@ function iniciarTrocaEmail(){
   if(!novoEmail){ toast("Digite o novo e-mail.", "err"); return; }
   if(senha !== u.senha){ toast("Senha atual incorreta.", "err"); return; }
   if(novoEmail.toLowerCase()===u.email.toLowerCase()){ toast("Esse já é o seu e-mail atual.", "err"); return; }
-  if(db.usuarios.some(x=>x.id!==u.id && x.email.toLowerCase()===novoEmail.toLowerCase())){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
+  if(emailJaEmUso(novoEmail, u.id)){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
   u.emailPendente = novoEmail;
   u.codigoConfirmacaoEmail = gerarCodigoConfirmacao();
   saveState();

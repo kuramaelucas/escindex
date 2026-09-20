@@ -3,7 +3,7 @@
 
 Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo `esc.html` (o arquivo publicado chama-se `index.html`).
 
-> **O que mudou na atualização mais recente:** contas de verdade ganharam confirmação de e-mail simulada no cadastro (sem servidor de e-mail — o código aparece na própria tela), e o Perfil passou a permitir trocar e-mail (com o mesmo código de confirmação) e senha, além de trocar rapidamente de turma/grupo direto ali (o ano da faculdade já podia ser trocado). Acesso demo continua idêntico, sem pedir nada disso. Também ficou registrada a causa provável de perda de dados ao publicar pelo GitHub Pages (troca de domínio/CNAME) e a recomendação para evitá-la. Detalhes na seção 17. Antes dessa, a seção 16 traz a revisão visual do sistema de design (escala tipográfica e de espaçamento unificadas, bug de altura desigual entre cards corrigido); a seção 15, onze pedidos pontuais do usuário (flashcard navegável por clique/tecla A-D, Simulados+Provas Antigas+Lista de Estudo fundidos numa tela, Histórico de Atividade por papel, restrição de área para professor/residente, gráfico de pizza por confiança, numeração de turma, entre outros); a seção 14, a carga das 500 questões reais da UNIFESP-EPM; e as seções 12-13, as revisões anteriores da mesma janela de trabalho.
+> **O que mudou na atualização mais recente:** uma rodada de caça a bugs em cima das contas/permissões, com quatro defeitos encontrados e corrigidos — tela em branco ao recarregar a página na confirmação de e-mail, matrícula duplicada passando quando só mudava a caixa das letras, e-mail pendente de troca que não bloqueava outro cadastro, e troca de grupo sem checar se a pessoa é membro. Detalhes na seção 18. Antes disso: contas de verdade ganharam confirmação de e-mail simulada no cadastro (sem servidor de e-mail — o código aparece na própria tela), e o Perfil passou a permitir trocar e-mail (com o mesmo código de confirmação) e senha, além de trocar rapidamente de turma/grupo direto ali (o ano da faculdade já podia ser trocado). Acesso demo continua idêntico, sem pedir nada disso. Também ficou registrada a causa provável de perda de dados ao publicar pelo GitHub Pages (troca de domínio/CNAME) e a recomendação para evitá-la. Detalhes na seção 17. Antes dessa, a seção 16 traz a revisão visual do sistema de design (escala tipográfica e de espaçamento unificadas, bug de altura desigual entre cards corrigido); a seção 15, onze pedidos pontuais do usuário (flashcard navegável por clique/tecla A-D, Simulados+Provas Antigas+Lista de Estudo fundidos numa tela, Histórico de Atividade por papel, restrição de área para professor/residente, gráfico de pizza por confiança, numeração de turma, entre outros); a seção 14, a carga das 500 questões reais da UNIFESP-EPM; e as seções 12-13, as revisões anteriores da mesma janela de trabalho.
 
 ---
 
@@ -676,3 +676,39 @@ Investigando o histórico do repositório, a causa mais provável de "perda de d
 ### Como isso foi verificado
 
 Testado ponta a ponta com automação de navegador (Chromium/Playwright), servindo o arquivo por HTTP local: cadastro de um aluno novo → tela de confirmação mostra o código → login antes de confirmar é bloqueado → confirmação aceita o código certo → login antes da aprovação do admin mostra "aguardando aprovação" (não mais o bloqueio de e-mail) → aprovação pelo admin → login funciona. Na sequência, ainda logado como esse aluno: troca de senha (login antigo passa a falhar, novo funciona), troca de e-mail com o mesmo fluxo de código (volta para o Perfil, não para o login), e login final com e-mail e senha novos. Por fim, confirmado que as contas de demonstração (e-mail/senha e os botões "ver como…") continuam entrando direto, sem nenhuma tela de confirmação. Nenhum erro de JavaScript no console em nenhum desses passos.
+
+---
+
+## 18. Rodada de testes e correção de bugs (20/09/2026, depois da seção 17)
+
+O usuário pediu um reteste da plataforma inteira em busca de bugs e de melhorias. A varredura foi automatizada (Chromium/Playwright) e cobriu: todas as rotas de todos os papéis, os fluxos completos de sessão de prática, flashcards, simulado, criação de lista de estudo, material em PDF, banco de questões com paginação, favoritos, histórico, grupos e o fluxo de sugestão/aprovação de flashcard — além de uma bateria de entradas adversariais (dados propositalmente errados ou no limite). **Nenhum erro de JavaScript apareceu em nenhuma tela ou fluxo.** Quatro defeitos reais foram encontrados por leitura de código e por testes de borda, e todos foram corrigidos.
+
+### 18.1 — Tela em branco ao recarregar na confirmação de e-mail
+
+`renderConfirmarEmail()` chamava `navigate("login")` de dentro de si quando não havia usuário em memória e devolvia `""`. Como quem chama é `app.innerHTML = renderConfirmarEmail()`, o `navigate` desenhava o login e, logo depois, o `innerHTML = ""` apagava tudo: **tela completamente branca**. Isso acontecia num caso banal — a pessoa se cadastra, vê a tela do código e aperta F5 (o `state.confirmarEmailUsuarioId` vive só na memória e some no recarregamento).
+
+**Correção:** o redirecionamento saiu da função de render e virou regra do roteador (`render()`), que decide antes de desenhar: sem usuário para confirmar, quem está logado vai para o Início e quem não está vai para o login. Render não navega mais. Uma varredura no arquivo confirmou que esse era o **único** lugar com esse padrão.
+
+### 18.2 — Matrícula duplicada passava se mudasse só a caixa das letras
+
+O cadastro barrava e-mail repetido ignorando maiúsculas/minúsculas, mas comparava matrícula de forma exata (`u.matricula===matricula`). O login, por outro lado, compara em minúsculas — então "ABC123" e "abc123" podiam virar duas contas que depois disputam o mesmo login, e quem entrasse cairia na primeira encontrada. Agora a checagem do cadastro ignora a caixa, igual à do e-mail e à do login.
+
+### 18.3 — E-mail pendente de troca não bloqueava outro cadastro
+
+A troca de e-mail (seção 17.2) guarda o endereço novo em `emailPendente` até a confirmação. As checagens de duplicidade só olhavam `u.email`, então um endereço já reservado por alguém podia ser cadastrado por outra pessoa no meio do caminho — e as duas contas terminariam com o mesmo e-mail. Uma função só (`emailJaEmUso(email, ignorarUsuarioId)`) passou a valer para os dois lugares (cadastro e troca de e-mail) e considera também os pendentes. Com isso a reserva é garantida no momento do pedido, e não precisa de verificação extra na hora de confirmar.
+
+### 18.4 — Trocar de grupo não checava se a pessoa é membro
+
+`usarGrupo()` trocava o calendário da pessoa para qualquer grupo, confiando apenas em quem desenhava o botão. A tela "Meu Grupo" só oferecia grupos dos quais a pessoa é membro, mas isso é exatamente o que o projeto já decidiu não fazer em outro lugar ("as checagens de permissão ficam nas próprias funções, não só nos botões" — ver `podeMexerNoCartao`, seção 5) — e agora existe um segundo caminho para a mesma função (o seletor de grupo no Perfil, seção 17.3). A regra virou uma função só, `souMembroDoGrupo(g, u)` (oficial, criado por você, ou acesso aprovado pelo dono), usada nos três lugares que repetiam esse teste e **dentro** do `usarGrupo()`, que agora recusa e explica. Continua funcionando normalmente o grupo oficial, o que a pessoa criou e o que ela teve acesso aprovado.
+
+### 18.5 — Desempenho medido com o banco real
+
+Tempo de desenho de cada tela com as 635 questões e 501 cartões carregados: a mais lenta é Especialidades e Assuntos, com **65 ms** (são 216 assuntos numa árvore só); montar a sessão recomendada leva 34 ms; todas as demais ficam **abaixo de 15 ms**. O banco ocupa ~1.234 KB no `localStorage`, bem abaixo do limite típico do navegador (5-10 MB) — mas é o número que cresce rápido se as questões ganharem imagens embutidas, e por isso Configurações avisa a partir de 3,5 MB.
+
+### 18.6 — O que foi encontrado mas **não** foi mexido, de propósito
+
+Acessibilidade: os rótulos de formulário (`<label class="label">`) não têm `for` apontando para o campo, e alguns botões só de ícone não têm nome acessível (`aria-label`/`title`). Nada disso quebra o uso no mouse ou no toque, mas significa que um leitor de tela não anuncia o nome de vários campos e botões. A correção é mecânica (ligar cada rótulo ao seu campo e dar nome aos botões de ícone), porém toca dezenas de trechos espalhados pelo arquivo e não era o pedido desta rodada — fica registrado aqui para uma decisão explícita, no mesmo espírito da seção 16.5. O contraste de cores, vale lembrar, já foi corrigido na revisão da seção 12 e está dentro da WCAG AA.
+
+### Como isso foi verificado
+
+Além da varredura de rotas e fluxos descrita acima (repetida depois das correções, sem nenhum erro de JavaScript), cada correção ganhou um teste próprio: recarregamento real na rota de confirmação (cai no login, tela cheia); cadastro tentando repetir matrícula em outra caixa (barrado); e-mail pendente de uma conta bloqueando cadastro e troca de terceiros, sem bloquear o próprio dono; e troca de grupo recusada num grupo alheio, permitida no oficial e no próprio, e permitida no antes-negado depois que o dono aprova o acesso.
