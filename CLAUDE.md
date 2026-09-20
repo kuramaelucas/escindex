@@ -10,8 +10,9 @@ mexer em qualquer coisa que não seja trivial.
 
 | Arquivo | O que é | ~Tamanho |
 |---|---|---|
-| `index.html` | **Código.** Telas, regras, algoritmos, taxonomia, configuração. | 546 KB |
+| `index.html` | **Código.** Telas, regras, algoritmos, taxonomia, configuração. | ~590 KB |
 | `dados/*.js` | **Conteúdo.** Uma prova por arquivo, mais o banco didático e os flashcards da equipe. Texto de questão, não código. | 1,2 MB |
+| `nuvem/` | **Infraestrutura opcional.** O esquema SQL do Supabase e o guia de instalação. Não é carregado pelo site. | 30 KB |
 
 **Não abra os arquivos de `dados/` quando o pedido for sobre código.** Eles
 existem para ficar fora do caminho: são 1,2 MB de enunciado médico que não
@@ -36,6 +37,22 @@ de conteúdo estão em `dados/LEIA-ME.md`.
 
 Colar questões dentro do `index.html` desfaz a separação e é o único jeito de
 errar isso.
+
+## Nuvem (seção 2-C do `index.html`)
+
+A sincronização entre aparelhos é **opcional**: com `CONFIG.nuvem` vazio, a
+plataforma roda só no navegador, como sempre. Ao mexer nessa parte:
+
+- Tudo que o aluno gera é salvo **primeiro no navegador** e só depois entra na
+  fila (`db.filaNuvem`). Nunca inverta essa ordem: estudar não pode depender
+  de rede.
+- Dado novo do aluno precisa de: coluna no `nuvem/esquema.sql` (com a política
+  de RLS), entrada em `NUVEM_TABELAS` e uma chamada a `nuvemRegistrar(...)` no
+  ponto onde o dado nasce.
+- Conteúdo (questões, taxonomia, cartões da equipe) **não vai para a nuvem** —
+  vem da pasta `dados/`.
+- Nunca coloque a chave `service_role` do Supabase no código. Só a `anon`, que
+  é pública por definição e protegida pelas políticas do banco.
 
 ## Convenções do projeto
 

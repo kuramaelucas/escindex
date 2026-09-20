@@ -727,6 +727,17 @@ const CONFIG = {
   // público e podem ser usados integralmente; ver a nota de política de
   // conteúdo logo acima de SEED_QUESTOES.
   instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (Famema/Botucatu)"],
+
+  // NUVEM — conta de verdade e estudo em vários aparelhos.
+  // Vazio = a plataforma funciona exatamente como sempre funcionou, só com o
+  // navegador deste computador. Para ligar, crie o projeto no Supabase e cole
+  // aqui os dois valores; o passo a passo está em nuvem/LEIA-ME.md.
+  // A chave anônima é pública de propósito: quem protege os dados é a regra
+  // no banco (Row Level Security), não o segredo da chave.
+  nuvem: {
+    url: "",         // ex.: "https://abcdefgh.supabase.co"
+    chaveAnon: "",   // a chave "anon public" do projeto
+  },
 };
 
 /* ---------------------------- ESTADO GLOBAL ------------------------------ */
@@ -1354,6 +1365,9 @@ function dbPadrao(){
       misturaBlocos: {...CONFIG.misturaBlocos},
       rampaRevisaoInicio: [...CONFIG.rampaRevisaoInicio],
     },
+    // nuvem (seção 2-C): a fila do que ainda não subiu e até onde já baixamos
+    filaNuvem: [],
+    nuvem: { contaId:null, ultimaSyncEm:null, marcas:{} },
     versao: 2,
   };
 }
@@ -1456,6 +1470,11 @@ function loadState(){
     // a plataforma passou a se chamar "Esc": atualiza os e-mails das contas
     // de demonstração já salvas, pra continuarem batendo com a tela de entrada
     db.usuarios.forEach(x=>{ if(x.email && x.email.indexOf("@medbloco.demo")>=0) x.email = x.email.replace("@medbloco.demo","@esc.demo"); });
+    // nuvem: a fila de envio e as marcas de "até onde já baixei" nascem
+    // vazias em quem ainda não tinha conta (ver seção 2-C)
+    if(!Array.isArray(db.filaNuvem)) db.filaNuvem = [];
+    if(!db.nuvem) db.nuvem = { contaId:null, ultimaSyncEm:null, marcas:{} };
+    if(!db.nuvem.marcas) db.nuvem.marcas = {};
   }catch(e){
     console.error("Falha ao carregar dados salvos, reiniciando com dados de demonstração.", e);
     db = dbPadrao();
@@ -1498,6 +1517,10 @@ function saveState(){
     console.error("Falha ao salvar dados", e);
     toast("Não foi possível salvar os dados neste navegador (armazenamento pode estar cheio ou bloqueado).", "err");
   }
+  // com a nuvem ligada, o que acabou de ser salvo aqui sobe alguns segundos
+  // depois, em bloco (ver nuvemAgendarSync, na seção 2-C). Sem nuvem, esta
+  // linha não faz nada.
+  if(typeof nuvemAgendarSync === "function") nuvemAgendarSync();
 }
 
 function confirmarReiniciarDemo(){
@@ -1553,6 +1576,828 @@ function importarBackupArquivo(inputEl){
   };
   leitor.readAsText(arquivo);
 }
+
+/* ==========================================================================
+   2-C. NUVEM — conta de verdade e sincronização entre aparelhos
+   ==========================================================================
+   COMO ISTO FUNCIONA, EM LINGUAGEM SIMPLES
+
+   Até aqui, tudo o que o aluno fazia ficava só no navegador daquele
+   computador. Esta seção acrescenta uma segunda cópia, na nuvem, para que a
+   mesma pessoa abra a plataforma no celular e continue de onde parou.
+
+   A regra é "primeiro o navegador, depois a nuvem": o app continua salvando
+   localmente na hora, como sempre fez, e por isso continua funcionando sem
+   internet. Cada coisa que o aluno gera entra também numa FILA DE ENVIO
+   (db.filaNuvem). Quando há conexão, a fila sobe e as novidades dos outros
+   aparelhos descem. Se a internet cair no meio, a fila espera — nada se
+   perde, nada trava.
+
+   O QUE SOBE: só o que é DO ALUNO — respostas, repetição espaçada, cartões
+   pessoais, favoritos, metas, histórico e a fila de questões inacabada.
+   O QUE NÃO SOBE: as questões, a taxonomia e os cartões da equipe. Isso é
+   conteúdo, é igual para todo mundo e continua vindo da pasta "dados/" —
+   não faz sentido guardar uma cópia por aluno no banco.
+
+   CONFLITO (a mesma pessoa em dois aparelhos ao mesmo tempo):
+   - Respostas, sessões e notas de simulado são REGISTROS: nunca se
+     sobrescrevem, apenas se juntam. Responder no celular e no computador
+     resulta nas duas respostas, como tem de ser.
+   - Repetição espaçada, favoritos, metas e cartões pessoais são ESTADO: vale
+     a versão mais recente. No pior caso, uma revisão feita nos mesmos
+     segundos nos dois aparelhos fica com o resultado de um só — e é por
+     isso que o estado é guardado questão a questão, e não num bloco único.
+
+   LIGAR OU NÃO LIGAR: se CONFIG.nuvem estiver vazio (é como o arquivo vem),
+   nada disto roda e a plataforma se comporta exatamente como antes, só com
+   o navegador. O passo a passo para ligar está em nuvem/LEIA-ME.md.
+   ========================================================================== */
+
+const CHAVE_SESSAO_NUVEM = "esc_nuvem_sessao";
+
+/* A sessão da nuvem (quem está logado e os tokens) NÃO fica no db: é do
+   navegador, não da conta, e some quando a pessoa sai. */
+let nuvemSessao = null;
+let nuvemEstado = { sincronizando:false, ultimoErro:null, ultimaSyncEm:null };
+let _nuvemTimer = null;
+let _nuvemDentroDaSync = false;
+
+function nuvemLigada(){ return !!(CONFIG.nuvem && CONFIG.nuvem.url && CONFIG.nuvem.chaveAnon); }
+function nuvemConectado(){ return nuvemLigada() && !!(nuvemSessao && nuvemSessao.usuarioId); }
+function nuvemPendentes(){ return (db && db.filaNuvem) ? db.filaNuvem.length : 0; }
+
+function nuvemCarregarSessaoSalva(){
+  try{ nuvemSessao = JSON.parse(localStorage.getItem(CHAVE_SESSAO_NUVEM) || "null"); }
+  catch(e){ nuvemSessao = null; }
+}
+function nuvemGuardarSessao(sessao){
+  nuvemSessao = sessao;
+  try{
+    if(sessao) localStorage.setItem(CHAVE_SESSAO_NUVEM, JSON.stringify(sessao));
+    else localStorage.removeItem(CHAVE_SESSAO_NUVEM);
+  }catch(e){ /* navegador sem armazenamento: a sessão vale só enquanto a aba estiver aberta */ }
+}
+
+/* ---------------------------- a conversa com o servidor ------------------
+   Uma função só para todas as chamadas: põe a chave pública e o token da
+   pessoa, e, se o token tiver vencido, renova uma vez e tenta de novo. */
+async function nuvemChamar(caminho, opcoes = {}){
+  if(!nuvemLigada()) throw new Error("A nuvem não está configurada neste arquivo.");
+  const cabecalhos = Object.assign({
+    "apikey": CONFIG.nuvem.chaveAnon,
+    "Content-Type": "application/json",
+  }, opcoes.headers || {});
+  if(nuvemSessao && nuvemSessao.token && !opcoes.semToken){
+    cabecalhos["Authorization"] = "Bearer " + nuvemSessao.token;
+  }
+  let resposta;
+  try{
+    resposta = await fetch(CONFIG.nuvem.url.replace(/\/+$/,"") + caminho,
+      { method: opcoes.method || "GET", headers: cabecalhos, body: opcoes.body });
+  }catch(e){
+    const erro = new Error("Sem conexão com o servidor.");
+    erro.semRede = true;
+    throw erro;
+  }
+  if(resposta.status === 401 && nuvemSessao && nuvemSessao.refresh && !opcoes.jaRenovou){
+    const renovou = await nuvemRenovarSessao();
+    if(renovou) return nuvemChamar(caminho, Object.assign({}, opcoes, {jaRenovou:true}));
+  }
+  const texto = await resposta.text();
+  if(!resposta.ok){
+    const erro = new Error(nuvemMensagemDeErro(resposta.status, texto));
+    erro.status = resposta.status;
+    throw erro;
+  }
+  return texto ? JSON.parse(texto) : null;
+}
+
+/* Traduz o erro técnico do servidor para uma frase que a pessoa entenda. */
+function nuvemMensagemDeErro(status, texto){
+  let detalhe = "";
+  try{ const j = JSON.parse(texto); detalhe = j.msg || j.message || j.error_description || j.error || j.hint || ""; }
+  catch(e){ detalhe = (texto||"").slice(0,180); }
+  const d = (detalhe||"").toLowerCase();
+  if(d.includes("invalid login credentials")) return "E-mail ou senha incorretos.";
+  if(d.includes("already registered") || d.includes("already been registered")) return "Já existe uma conta com este e-mail.";
+  if(d.includes("email not confirmed")) return "Confirme o e-mail antes de entrar (veja a caixa de entrada).";
+  if(d.includes("password") && d.includes("6")) return "A senha precisa ter pelo menos 6 caracteres.";
+  if(status === 401 || status === 403) return "Sem permissão para esta operação na nuvem.";
+  if(status === 404) return "Endereço da nuvem não encontrado — confira CONFIG.nuvem.url.";
+  if(status >= 500) return "O servidor da nuvem falhou. Tente de novo em instantes.";
+  return detalhe || ("Falha na nuvem (código " + status + ").");
+}
+
+async function nuvemRenovarSessao(){
+  try{
+    const r = await nuvemChamar("/auth/v1/token?grant_type=refresh_token", {
+      method:"POST", semToken:true,
+      body: JSON.stringify({ refresh_token: nuvemSessao.refresh }),
+    });
+    if(!r || !r.access_token) return false;
+    nuvemGuardarSessao(Object.assign({}, nuvemSessao, {
+      token: r.access_token, refresh: r.refresh_token || nuvemSessao.refresh,
+    }));
+    return true;
+  }catch(e){ return false; }
+}
+
+/* ---------------------------- entrar, cadastrar, sair --------------------- */
+async function nuvemCriarConta(dados){
+  const r = await nuvemChamar("/auth/v1/signup", {
+    method:"POST", semToken:true,
+    body: JSON.stringify({
+      email: dados.email, password: dados.senha,
+      data: { nome: dados.nome, matricula: dados.matricula || "", ano_faculdade: dados.anoFaculdade || "" },
+    }),
+  });
+  // Quando a confirmação de e-mail está desligada, o cadastro já devolve a
+  // sessão e a pessoa entra direto. Quando está ligada, ela precisa clicar
+  // no link do e-mail antes — por isso os dois casos são tratados.
+  return { entrouDireto: !!(r && r.access_token), resposta: r };
+}
+
+async function nuvemEntrar(email, senha){
+  const r = await nuvemChamar("/auth/v1/token?grant_type=password", {
+    method:"POST", semToken:true,
+    body: JSON.stringify({ email: email, password: senha }),
+  });
+  if(!r || !r.access_token) throw new Error("O servidor não devolveu uma sessão válida.");
+  nuvemGuardarSessao({
+    token: r.access_token,
+    refresh: r.refresh_token,
+    usuarioId: r.user && r.user.id,
+    email: (r.user && r.user.email) || email,
+  });
+  return nuvemSessao;
+}
+
+function nuvemSair(){
+  nuvemGuardarSessao(null);
+  nuvemEstado.ultimoErro = null;
+}
+
+/* O perfil é o cadastro da pessoa (nome, papel, status) — mora na nuvem e é
+   espelhado no db local, para o resto do app continuar lendo de db.usuarios
+   como sempre leu. */
+async function nuvemBuscarPerfil(){
+  const linhas = await nuvemChamar("/rest/v1/perfis?id=eq." + nuvemSessao.usuarioId + "&select=*");
+  return (linhas && linhas[0]) || null;
+}
+
+function nuvemAplicarPerfilLocal(p){
+  let u = db.usuarios.find(x => x.id === p.id);
+  if(!u){ u = { id: p.id }; db.usuarios.push(u); }
+  u.nome = p.nome || u.nome || "(sem nome)";
+  u.email = p.email || (nuvemSessao && nuvemSessao.email) || "";
+  u.matricula = p.matricula || "";
+  u.papel = p.papel || "aluno";
+  u.status = p.status || "pendente";
+  u.daNuvem = true;
+  delete u.senha;                       // a senha vive no servidor, com hash — nunca aqui
+  if(p.nivel_admin) u.nivelAdmin = p.nivel_admin; else delete u.nivelAdmin;
+  if(p.ano_faculdade) u.anoFaculdade = p.ano_faculdade;
+  if(p.bloco_atual_id) u.blocoAtualId = p.bloco_atual_id;
+  if(p.grupo_id) u.grupoId = p.grupo_id;
+  if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
+  if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
+  u.lembreteMetaAtivo = !!p.lembrete_meta_ativo;
+  if(p.lembrete_meta_horario) u.lembreteMetaHorario = p.lembrete_meta_horario;
+  if(!u.criadoEm) u.criadoEm = (p.criado_em || "").slice(0,10) || hojeISO();
+  return u;
+}
+
+/* Manda para a nuvem o que mudou no perfil (metas, ano, turma, lembrete).
+   Em vez de chamar isto em cada tela que mexe no cadastro — e esquecer uma —,
+   a sincronização compara o perfil de agora com o último que subiu e só
+   enfileira quando há diferença. Assim, qualquer tela nova já entra junto.
+   Papel e status não entram de propósito: quem promove alguém é a
+   coordenação, e o banco recusa a mudança vinda do aluno (ver esquema.sql). */
+function nuvemConferirPerfil(){
+  if(!nuvemConectado()) return;
+  const usuario = db.usuarios.find(u => u.id === nuvemSessao.usuarioId);
+  if(!usuario) return;
+  const linha = {
+    id: usuario.id,
+    nome: usuario.nome || "",
+    matricula: usuario.matricula || "",
+    ano_faculdade: usuario.anoFaculdade || null,
+    bloco_atual_id: usuario.blocoAtualId || null,
+    grupo_id: usuario.grupoId || null,
+    meta_questoes_dia: usuario.metaQuestoesDia || null,
+    meta_cartoes_dia: usuario.metaCartoesDia || null,
+    lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
+    lembrete_meta_horario: usuario.lembreteMetaHorario || null,
+  };
+  const assinatura = JSON.stringify(linha);
+  if(db.nuvem.perfilEnviado === assinatura) return;
+  nuvemEnfileirar("perfis", linha);
+  db.nuvem.perfilEnviado = assinatura;
+}
+
+/* ---------------------------- o mapa das tabelas -------------------------
+   Para cada tabela da nuvem: como um registro local vira linha do banco,
+   como uma linha do banco volta para o db local, e se ela é REGISTRO (só
+   junta, nunca sobrescreve) ou ESTADO (vale o mais recente). */
+const NUVEM_TABELAS = {
+  perfis: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.id,
+    aplicar: linha => { nuvemAplicarPerfilLocal(linha); },
+  },
+  respostas: {
+    tipo: "registro", tempo: "criado_em",
+    chave: r => r.id,
+    aplicar: linha => {
+      if(db.respostas.some(r => r.id === linha.id)) return;
+      db.respostas.push({
+        id: linha.id, usuarioId: linha.usuario_id, questaoId: linha.questao_id,
+        areaId: linha.area_id, especialidadeId: linha.especialidade_id, assuntoId: linha.assunto_id,
+        alternativaEscolhida: linha.alternativa_escolhida, correta: linha.correta,
+        confianca: linha.confianca, data: linha.data, tempoSeg: linha.tempo_seg,
+        sessaoId: linha.sessao_id,
+      });
+    },
+  },
+  revisoes: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.usuario_id + "|" + r.questao_id,
+    aplicar: linha => {
+      if(!db.revisoes[linha.usuario_id]) db.revisoes[linha.usuario_id] = {};
+      db.revisoes[linha.usuario_id][linha.questao_id] = {
+        repeticoes: linha.repeticoes, fator: linha.fator, intervalo: linha.intervalo,
+        proximaRevisao: linha.proxima_revisao, ultimaData: linha.ultima_data,
+        ultimaCorreta: linha.ultima_correta, ultimaConfianca: linha.ultima_confianca,
+      };
+    },
+  },
+  revisoes_flashcards: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.usuario_id + "|" + r.cartao_id,
+    aplicar: linha => {
+      if(!db.revisoesFlashcards) db.revisoesFlashcards = {};
+      if(!db.revisoesFlashcards[linha.usuario_id]) db.revisoesFlashcards[linha.usuario_id] = {};
+      db.revisoesFlashcards[linha.usuario_id][linha.cartao_id] = {
+        repeticoes: linha.repeticoes, fator: linha.fator, intervalo: linha.intervalo,
+        vistas: linha.vistas, proximaRevisao: linha.proxima_revisao,
+        ultimaData: linha.ultima_data, ultimaNota: linha.ultima_nota,
+      };
+    },
+  },
+  dias_cartoes: {
+    tipo: "registro", tempo: "criado_em",
+    chave: r => r.usuario_id + "|" + r.dia,
+    aplicar: linha => {
+      if(!db.diasCartoes) db.diasCartoes = {};
+      const lista = db.diasCartoes[linha.usuario_id] = db.diasCartoes[linha.usuario_id] || [];
+      if(!lista.includes(linha.dia)){ lista.push(linha.dia); lista.sort(); }
+    },
+  },
+  favoritos: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.usuario_id + "|" + r.questao_id,
+    aplicar: linha => {
+      const i = db.favoritos.findIndex(f => f.usuarioId === linha.usuario_id && f.questaoId === linha.questao_id);
+      if(linha.removido){ if(i >= 0) db.favoritos.splice(i, 1); return; }
+      const fav = { usuarioId: linha.usuario_id, questaoId: linha.questao_id, data: linha.data };
+      if(i >= 0) db.favoritos[i] = fav; else db.favoritos.push(fav);
+    },
+  },
+  flashcards_pessoais: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.id,
+    aplicar: linha => {
+      const i = db.flashcards.findIndex(c => c.id === linha.id);
+      if(linha.removido){ if(i >= 0) db.flashcards.splice(i, 1); return; }
+      const cartao = {
+        id: linha.id, usuarioId: linha.usuario_id, assuntoId: linha.assunto_id,
+        frente: linha.frente, verso: linha.verso,
+        imagemUrl: linha.imagem_url || "", imagemLegenda: linha.imagem_legenda || "",
+        questaoOrigemId: linha.questao_origem_id || null,
+        origem: linha.origem || "aluno", status: linha.status || "ativo",
+        criadoPor: linha.usuario_id, criadoEm: linha.criado_em || hojeISO(),
+      };
+      if(i >= 0) db.flashcards[i] = cartao; else db.flashcards.push(cartao);
+    },
+  },
+  sessoes: {
+    tipo: "registro", tempo: "criado_em",
+    chave: r => r.id,
+    aplicar: linha => {
+      if(db.sessoes.some(s => s.id === linha.id)) return;
+      db.sessoes.push({
+        id: linha.id, usuarioId: linha.usuario_id, tipo: linha.tipo, data: linha.data,
+        total: linha.total, acertos: linha.acertos, itens: linha.itens || [],
+      });
+    },
+  },
+  resultados_simulados: {
+    tipo: "registro", tempo: "criado_em",
+    chave: r => r.id,
+    aplicar: linha => {
+      if(db.resultadosSimulados.some(r => r.id === linha.id)) return;
+      db.resultadosSimulados.push({
+        id: linha.id, usuarioId: linha.usuario_id, simuladoId: linha.simulado_id,
+        titulo: linha.titulo, nota: linha.nota, acertos: linha.acertos, total: linha.total,
+        data: linha.data, itens: linha.itens || [], respostas: linha.respostas || {},
+        tempos: linha.tempos || {}, tempoTotalSeg: linha.tempo_total_seg,
+      });
+    },
+  },
+  sessao_em_andamento: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.usuario_id,
+    aplicar: linha => {
+      if(!db.sessoesEmAndamento) db.sessoesEmAndamento = {};
+      if(linha.dados) db.sessoesEmAndamento[linha.usuario_id] = linha.dados;
+      else delete db.sessoesEmAndamento[linha.usuario_id];
+    },
+  },
+};
+
+/* ---------------------------- a fila de envio ----------------------------
+   Guardada dentro do db (e portanto no localStorage), para sobreviver a
+   fechar o navegador no meio de uma sessão de estudo sem internet. */
+function nuvemEnfileirar(tabela, registro){
+  if(!nuvemConectado()) return;
+  if(!db.filaNuvem) db.filaNuvem = [];
+  const desc = NUVEM_TABELAS[tabela];
+  if(!desc) return;
+  const chave = desc.chave(registro);
+  if(desc.tipo === "estado"){
+    // estado não se acumula: a versão nova substitui a que ainda não subiu
+    const i = db.filaNuvem.findIndex(op => op.tabela === tabela && op.chave === chave);
+    if(i >= 0){ db.filaNuvem[i].registro = registro; return; }
+  } else if(db.filaNuvem.some(op => op.tabela === tabela && op.chave === chave)){
+    return; // registro já enfileirado
+  }
+  db.filaNuvem.push({ tabela, chave, registro });
+}
+
+/* Atalho usado pelas funções do app: monta a linha a partir do que acabou de
+   acontecer e põe na fila. Fica tudo num lugar só para o resto do código não
+   precisar saber os nomes das colunas do banco. */
+function nuvemRegistrar(o){
+  if(!nuvemConectado()) return;
+  const meuId = nuvemSessao.usuarioId;
+  if(o.resposta && o.resposta.usuarioId === meuId){
+    const r = o.resposta;
+    nuvemEnfileirar("respostas", {
+      id: r.id, usuario_id: r.usuarioId, questao_id: r.questaoId,
+      area_id: r.areaId || null, especialidade_id: r.especialidadeId || null,
+      assunto_id: r.assuntoId || null, alternativa_escolhida: r.alternativaEscolhida,
+      correta: !!r.correta, confianca: r.confianca || null, tempo_seg: r.tempoSeg || null,
+      sessao_id: r.sessaoId || null, data: r.data,
+    });
+  }
+  if(o.revisao && o.usuarioId === meuId){
+    const e = o.revisao;
+    nuvemEnfileirar("revisoes", {
+      usuario_id: o.usuarioId, questao_id: o.questaoId,
+      repeticoes: e.repeticoes, fator: e.fator, intervalo: e.intervalo,
+      proxima_revisao: e.proximaRevisao || null, ultima_data: e.ultimaData || null,
+      ultima_correta: typeof e.ultimaCorreta === "boolean" ? e.ultimaCorreta : null,
+      ultima_confianca: e.ultimaConfianca || null,
+    });
+  }
+  if(o.revisaoCartao && o.usuarioId === meuId){
+    const e = o.revisaoCartao;
+    nuvemEnfileirar("revisoes_flashcards", {
+      usuario_id: o.usuarioId, cartao_id: o.cartaoId,
+      repeticoes: e.repeticoes, fator: e.fator, intervalo: e.intervalo, vistas: e.vistas || 0,
+      proxima_revisao: e.proximaRevisao || null, ultima_data: e.ultimaData || null,
+      ultima_nota: e.ultimaNota || null,
+    });
+  }
+  if(o.diaCartao && o.usuarioId === meuId){
+    nuvemEnfileirar("dias_cartoes", { usuario_id: o.usuarioId, dia: o.diaCartao });
+  }
+  if(o.favorito && o.favorito.usuarioId === meuId){
+    nuvemEnfileirar("favoritos", {
+      usuario_id: o.favorito.usuarioId, questao_id: o.favorito.questaoId,
+      data: o.favorito.data || hojeISO(), removido: !!o.favorito.removido,
+    });
+  }
+  if(o.cartaoPessoal && o.cartaoPessoal.usuarioId === meuId){
+    const c = o.cartaoPessoal;
+    nuvemEnfileirar("flashcards_pessoais", {
+      id: c.id, usuario_id: c.usuarioId, assunto_id: c.assuntoId || null,
+      frente: c.frente, verso: c.verso, imagem_url: c.imagemUrl || null,
+      imagem_legenda: c.imagemLegenda || null, questao_origem_id: c.questaoOrigemId || null,
+      origem: c.origem || "aluno", status: c.status || "ativo",
+      removido: !!o.removido, criado_em: c.criadoEm || hojeISO(),
+    });
+  }
+  if(o.sessaoConcluida && o.sessaoConcluida.usuarioId === meuId){
+    const s = o.sessaoConcluida;
+    nuvemEnfileirar("sessoes", {
+      id: s.id, usuario_id: s.usuarioId, tipo: s.tipo, data: s.data,
+      total: s.total, acertos: s.acertos, itens: s.itens || [],
+    });
+  }
+  if(o.resultadoSimulado && o.resultadoSimulado.usuarioId === meuId){
+    const r = o.resultadoSimulado;
+    nuvemEnfileirar("resultados_simulados", {
+      id: r.id, usuario_id: r.usuarioId, simulado_id: r.simuladoId || null,
+      titulo: r.titulo || null, nota: r.nota, acertos: r.acertos, total: r.total,
+      data: r.data, itens: r.itens || [], respostas: r.respostas || {},
+      tempos: r.tempos || {}, tempo_total_seg: r.tempoTotalSeg || null,
+    });
+  }
+  if(o.sessaoEmAndamento && o.usuarioId === meuId){
+    nuvemEnfileirar("sessao_em_andamento", {
+      usuario_id: o.usuarioId,
+      dados: o.sessaoEmAndamento === "apagar" ? null : o.sessaoEmAndamento,
+    });
+  }
+}
+
+/* ---------------------------- sincronizar --------------------------------- */
+async function nuvemSincronizar(opcoes = {}){
+  if(!nuvemConectado() || nuvemEstado.sincronizando) return false;
+  if(typeof navigator !== "undefined" && navigator.onLine === false){
+    nuvemEstado.ultimoErro = "Sem conexão — a fila sobe assim que a internet voltar.";
+    return false;
+  }
+  nuvemEstado.sincronizando = true;
+  _nuvemDentroDaSync = true;
+  const erroAntes = nuvemEstado.ultimoErro;
+  nuvemEstado.ultimoErro = null;
+  try{
+    nuvemConferirPerfil();
+    await nuvemEnviarFila();
+    await nuvemReceberMudancas();
+    nuvemEstado.ultimaSyncEm = new Date().toISOString();
+    db.nuvem.ultimaSyncEm = nuvemEstado.ultimaSyncEm;
+    saveState();
+    return true;
+  }catch(e){
+    nuvemEstado.ultimoErro = e.semRede
+      ? "Sem conexão — a fila sobe assim que a internet voltar."
+      : (e.message || "Falha ao sincronizar.");
+    saveState();
+    if(!opcoes.silencioso && !e.semRede) toast(nuvemEstado.ultimoErro, "err");
+    return false;
+  }finally{
+    nuvemEstado.sincronizando = false;
+    _nuvemDentroDaSync = false;
+    if(!opcoes.semRedesenhar && (opcoes.forcarRedesenho || erroAntes !== nuvemEstado.ultimoErro || nuvemPendentes() === 0)){
+      if(typeof render === "function" && state.usuarioAtualId) render();
+    }
+  }
+}
+
+async function nuvemEnviarFila(){
+  if(!db.filaNuvem || !db.filaNuvem.length) return;
+  // uma chamada por tabela, em lotes, mantendo a ordem em que aconteceram
+  const tabelas = [];
+  db.filaNuvem.forEach(op => { if(!tabelas.includes(op.tabela)) tabelas.push(op.tabela); });
+  for(const tabela of tabelas){
+    const desc = NUVEM_TABELAS[tabela];
+    const ops = db.filaNuvem.filter(op => op.tabela === tabela);
+    const juntar = desc.tipo === "registro" ? "resolution=ignore-duplicates" : "resolution=merge-duplicates";
+    for(let i = 0; i < ops.length; i += 200){
+      const lote = ops.slice(i, i + 200).map(op => op.registro);
+      await nuvemChamar("/rest/v1/" + tabela, {
+        method: "POST",
+        headers: { "Prefer": juntar + ",return=minimal" },
+        body: JSON.stringify(lote),
+      });
+    }
+    // só sai da fila o que o servidor confirmou
+    const enviadas = new Set(ops);
+    db.filaNuvem = db.filaNuvem.filter(op => !enviadas.has(op));
+  }
+}
+
+async function nuvemReceberMudancas(){
+  const meuId = nuvemSessao.usuarioId;
+  if(!db.nuvem.marcas) db.nuvem.marcas = {};
+  for(const [tabela, desc] of Object.entries(NUVEM_TABELAS)){
+    const coluna = tabela === "perfis" ? "id" : "usuario_id";
+    const desde = db.nuvem.marcas[tabela] || "1970-01-01T00:00:00Z";
+    let maior = desde, pagina = 0;
+    while(true){
+      const linhas = await nuvemChamar(
+        "/rest/v1/" + tabela +
+        "?" + coluna + "=eq." + encodeURIComponent(meuId) +
+        "&" + desc.tempo + "=gt." + encodeURIComponent(desde) +
+        "&order=" + desc.tempo + ".asc&limit=500&offset=" + (pagina * 500));
+      if(!linhas || !linhas.length) break;
+      linhas.forEach(linha => {
+        // o que ainda está na fila é mais novo que o servidor: não sobrescreve
+        const chave = desc.chave(linha);
+        if(db.filaNuvem.some(op => op.tabela === tabela && op.chave === chave)) return;
+        try{ desc.aplicar(linha); }
+        catch(e){ console.error("Linha da nuvem ignorada em " + tabela, e); }
+        const t = linha[desc.tempo];
+        if(t && t > maior) maior = t;
+      });
+      if(linhas.length < 500) break;
+      pagina++;
+    }
+    // a marca d'água usa o relógio DO SERVIDOR (o horário que veio na linha),
+    // nunca o do computador — relógio adiantado no celular pularia registros
+    if(maior !== desde) db.nuvem.marcas[tabela] = maior;
+  }
+}
+
+/* Chamada depois de cada gravação: junta as mudanças e sobe em bloco poucos
+   segundos depois, em vez de uma chamada de rede por clique. */
+function nuvemAgendarSync(){
+  if(!nuvemConectado() || _nuvemDentroDaSync) return;
+  if(_nuvemTimer) clearTimeout(_nuvemTimer);
+  _nuvemTimer = setTimeout(() => { nuvemSincronizar({silencioso:true}); }, 2500);
+}
+
+/* ---------------------------- primeira entrada ---------------------------
+   Quem já usava a plataforma neste navegador tem estudo guardado no nome de
+   um usuário local (ex.: "u-aluno1"). Isto passa esse histórico para a conta
+   da nuvem, mantendo os mesmos ids — assim nada vira duplicata depois. */
+function nuvemUsuariosLocaisComDados(){
+  const meuId = nuvemConectado() ? nuvemSessao.usuarioId : null;
+  return db.usuarios
+    .filter(u => u.id !== meuId && !u.daNuvem)
+    .map(u => ({
+      usuario: u,
+      respostas: db.respostas.filter(r => r.usuarioId === u.id).length,
+      cartoes: db.flashcards.filter(c => c.usuarioId === u.id).length,
+    }))
+    .filter(x => x.respostas > 0 || x.cartoes > 0)
+    .sort((a, b) => b.respostas - a.respostas);
+}
+
+function nuvemAdotarDadosLocais(idLocal){
+  if(!nuvemConectado()) return 0;
+  const meuId = nuvemSessao.usuarioId;
+  let movidos = 0;
+
+  db.respostas.forEach(r => { if(r.usuarioId === idLocal){ r.usuarioId = meuId; movidos++; nuvemRegistrar({resposta:r}); } });
+
+  const revs = db.revisoes[idLocal] || {};
+  Object.keys(revs).forEach(qid => {
+    if(!db.revisoes[meuId]) db.revisoes[meuId] = {};
+    if(!db.revisoes[meuId][qid]){ db.revisoes[meuId][qid] = revs[qid]; movidos++; }
+    nuvemRegistrar({usuarioId:meuId, questaoId:qid, revisao:db.revisoes[meuId][qid]});
+  });
+  delete db.revisoes[idLocal];
+
+  const revsC = (db.revisoesFlashcards || {})[idLocal] || {};
+  Object.keys(revsC).forEach(cid => {
+    if(!db.revisoesFlashcards[meuId]) db.revisoesFlashcards[meuId] = {};
+    if(!db.revisoesFlashcards[meuId][cid]){ db.revisoesFlashcards[meuId][cid] = revsC[cid]; movidos++; }
+    nuvemRegistrar({usuarioId:meuId, cartaoId:cid, revisaoCartao:db.revisoesFlashcards[meuId][cid]});
+  });
+  if(db.revisoesFlashcards) delete db.revisoesFlashcards[idLocal];
+
+  const dias = (db.diasCartoes || {})[idLocal] || [];
+  if(dias.length){
+    if(!db.diasCartoes[meuId]) db.diasCartoes[meuId] = [];
+    dias.forEach(d => {
+      if(!db.diasCartoes[meuId].includes(d)){ db.diasCartoes[meuId].push(d); movidos++; }
+      nuvemRegistrar({usuarioId:meuId, diaCartao:d});
+    });
+    db.diasCartoes[meuId].sort();
+    delete db.diasCartoes[idLocal];
+  }
+
+  db.favoritos.forEach(f => { if(f.usuarioId === idLocal){ f.usuarioId = meuId; movidos++; nuvemRegistrar({favorito:f}); } });
+  db.flashcards.forEach(c => { if(c.usuarioId === idLocal){ c.usuarioId = meuId; c.criadoPor = meuId; movidos++; nuvemRegistrar({cartaoPessoal:c}); } });
+  db.sessoes.forEach(s => { if(s.usuarioId === idLocal){ s.usuarioId = meuId; movidos++; nuvemRegistrar({sessaoConcluida:s}); } });
+  db.resultadosSimulados.forEach(r => { if(r.usuarioId === idLocal){ r.usuarioId = meuId; movidos++; nuvemRegistrar({resultadoSimulado:r}); } });
+
+  const fila = (db.sessoesEmAndamento || {})[idLocal];
+  if(fila && !db.sessoesEmAndamento[meuId]){
+    db.sessoesEmAndamento[meuId] = fila;
+    delete db.sessoesEmAndamento[idLocal];
+    nuvemRegistrar({usuarioId:meuId, sessaoEmAndamento:fila});
+    movidos++;
+  }
+
+  saveState();
+  return movidos;
+}
+
+/* ---------------------------- entrada e saída pela tela ------------------- */
+async function nuvemEntrarPelaTela(email, senha){
+  try{
+    await nuvemEntrar(email, senha);
+    const perfil = await nuvemBuscarPerfil();
+    if(!perfil){
+      nuvemSair();
+      toast("Conta sem perfil na nuvem. Peça à coordenação para verificar o cadastro.", "err");
+      return false;
+    }
+    const u = nuvemAplicarPerfilLocal(perfil);
+    if(u.status === "pendente"){ nuvemSair(); toast("Seu cadastro ainda está aguardando aprovação da coordenação.", "err"); saveState(); return false; }
+    if(u.status === "rejeitado"){ nuvemSair(); toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); saveState(); return false; }
+    if(u.status === "inativo"){ nuvemSair(); toast("Sua conta está inativa. Fale com a coordenação.", "err"); saveState(); return false; }
+    state.usuarioAtualId = u.id;
+    db.nuvem.contaId = u.id;
+    saveState();
+    toast("Bem-vindo(a), " + u.nome.split(" ")[0] + "! Sincronizando seu estudo…");
+    navigate("inicio");
+    await nuvemSincronizar({silencioso:true, forcarRedesenho:true});
+    const locais = nuvemUsuariosLocaisComDados();
+    if(locais.length) abrirModalTrazerDadosLocais();
+    return true;
+  }catch(e){
+    toast(e.message || "Não foi possível entrar.", "err");
+    return false;
+  }
+}
+
+async function nuvemCadastrarPelaTela(dados){
+  try{
+    const r = await nuvemCriarConta(dados);
+    if(r.entrouDireto){
+      toast("Conta criada! Ela precisa ser aprovada pela coordenação antes do primeiro acesso.");
+    }else{
+      toast("Conta criada! Confirme o e-mail e aguarde a aprovação da coordenação.");
+    }
+    nuvemSair();
+    navigate("login");
+    return true;
+  }catch(e){
+    toast(e.message || "Não foi possível criar a conta.", "err");
+    return false;
+  }
+}
+
+function nuvemSairDaConta(){
+  const pendentes = nuvemPendentes();
+  const seguir = () => {
+    nuvemSair();
+    state.usuarioAtualId = null;
+    navigate("landing");
+    toast("Você saiu da conta. Este navegador continua com os dados guardados.");
+  };
+  if(pendentes > 0){
+    abrirModal("Sair com envios pendentes", `
+      <p class="text-sm">Ainda há <strong>${pendentes}</strong> ${pendentes===1?"alteração":"alterações"} esperando para subir para a nuvem. Se você sair agora, elas ficam guardadas neste navegador e sobem quando você entrar de novo, deste mesmo aparelho.</p>
+      <div class="flex gap-1 mt-3">
+        <button class="btn btn-primary" onclick="fecharModal(); nuvemSincronizar().then(()=>{ nuvemSair(); state.usuarioAtualId=null; navigate('landing'); })">Sincronizar e sair</button>
+        <button class="btn btn-secondary" onclick="fecharModal(); nuvemSairForcado()">Sair mesmo assim</button>
+      </div>`);
+    return;
+  }
+  seguir();
+}
+function nuvemSairForcado(){
+  nuvemSair();
+  state.usuarioAtualId = null;
+  navigate("landing");
+}
+
+function abrirModalTrazerDadosLocais(){
+  const locais = nuvemUsuariosLocaisComDados();
+  if(!locais.length) return;
+  abrirModal("Trazer para a conta o que já foi estudado aqui", `
+    <p class="text-sm">Este navegador tem estudo guardado fora da conta — de antes de a nuvem existir, ou do acesso de demonstração. Dá para trazer tudo para a sua conta agora: as respostas, a repetição espaçada, os favoritos e os cartões pessoais passam a ser seus e sobem para a nuvem.</p>
+    <p class="text-xs muted mt-1">Isto não apaga nada e não duplica: cada registro mantém o mesmo identificador que já tinha.</p>
+    <div class="mt-2">
+      ${locais.map(x => `
+        <div class="card-flat mb-1 flex justify-between items-center">
+          <div>
+            <div style="font-weight:600">${escapeHtml(x.usuario.nome)}</div>
+            <div class="text-xs muted">${x.respostas} ${x.respostas===1?"resposta":"respostas"} · ${x.cartoes} ${x.cartoes===1?"cartão":"cartões"}</div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="confirmarTrazerDadosLocais('${x.usuario.id}')">Trazer para minha conta</button>
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-secondary mt-2" onclick="fecharModal()">Agora não</button>`, "lg");
+}
+
+function confirmarTrazerDadosLocais(idLocal){
+  const movidos = nuvemAdotarDadosLocais(idLocal);
+  fecharModal();
+  toast(movidos ? (movidos + " registros passaram a ser da sua conta. Subindo para a nuvem…") : "Nada a trazer.");
+  nuvemSincronizar({silencioso:true, forcarRedesenho:true});
+  render();
+}
+
+/* ---------------------------- aprovar cadastros da turma -----------------
+   A regra no banco (ver esquema.sql) deixa professor e administrador lerem e
+   atualizarem qualquer perfil; o aluno, só o próprio. Por isso a mesma tela
+   de sempre — Aprovar Cadastros — consegue trabalhar direto na nuvem, sem
+   ninguém precisar abrir o painel do Supabase para liberar cada aluno. */
+let nuvemCadastrosPendentes = null;   // null = ainda não buscamos
+
+async function nuvemBuscarCadastrosPendentes(){
+  if(!nuvemConectado()) return [];
+  try{
+    nuvemCadastrosPendentes = await nuvemChamar("/rest/v1/perfis?status=eq.pendente&order=criado_em.asc&select=*") || [];
+  }catch(e){
+    nuvemCadastrosPendentes = [];
+    toast(e.message || "Não foi possível buscar os cadastros pendentes.", "err");
+  }
+  render();
+  return nuvemCadastrosPendentes;
+}
+
+async function nuvemDecidirCadastro(idPerfil, status){
+  if(!nuvemConectado()) return;
+  try{
+    await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil), {
+      method: "PATCH",
+      headers: { "Prefer": "return=minimal" },
+      body: JSON.stringify({ status }),
+    });
+    nuvemCadastrosPendentes = (nuvemCadastrosPendentes || []).filter(p => p.id !== idPerfil);
+    toast(status === "aprovado" ? "Cadastro aprovado. A pessoa já pode entrar." : "Cadastro recusado.");
+    render();
+  }catch(e){
+    toast(e.message || "Não foi possível salvar a decisão.", "err");
+  }
+}
+
+function renderCadastrosPendentesDaNuvem(){
+  if(!nuvemConectado()) return "";
+  if(nuvemCadastrosPendentes === null){
+    nuvemBuscarCadastrosPendentes();
+    return `<div class="card mb-2"><p class="text-sm muted">Buscando cadastros na nuvem…</p></div>`;
+  }
+  return `<div class="card mb-2">
+    <div class="card-title">${iconeSvg("database")} Cadastros na nuvem</div>
+    <p class="text-sm muted">Contas criadas pelo site, aguardando liberação. Enquanto o cadastro está pendente, a pessoa não consegue entrar.</p>
+    ${nuvemCadastrosPendentes.length ? `
+      <div class="table-wrap mt-2"><table>
+        <thead><tr><th>Nome</th><th>E-mail</th><th>Matrícula</th><th>Ano</th><th></th></tr></thead>
+        <tbody>${nuvemCadastrosPendentes.map(p => `<tr>
+          <td>${escapeHtml(p.nome || "(sem nome)")}</td>
+          <td>${escapeHtml(p.email || "")}</td>
+          <td>${escapeHtml(p.matricula || "")}</td>
+          <td class="text-sm">${escapeHtml(p.ano_faculdade || "—")}</td>
+          <td class="flex gap-1">
+            <button class="btn btn-primary btn-sm" onclick="nuvemDecidirCadastro('${p.id}','aprovado')">Aprovar</button>
+            <button class="btn btn-danger btn-sm" onclick="nuvemDecidirCadastro('${p.id}','rejeitado')">Recusar</button>
+          </td></tr>`).join("")}</tbody>
+      </table></div>`
+      : `<p class="text-sm mt-2">Nenhum cadastro pendente na nuvem.</p>`}
+    <button class="btn btn-secondary btn-sm mt-2" onclick="nuvemBuscarCadastrosPendentes()">${iconeSvg("refresh")} Atualizar lista</button>
+  </div>`;
+}
+
+/* ---------------------------- o que a pessoa vê --------------------------- */
+function nuvemResumoStatus(){
+  if(!nuvemLigada()) return { rotulo:"Só neste navegador", detalhe:"A nuvem não está configurada.", cor:"muted", icone:"database" };
+  if(!nuvemConectado()) return { rotulo:"Fora da conta", detalhe:"Entre para sincronizar entre aparelhos.", cor:"muted", icone:"database" };
+  if(nuvemEstado.sincronizando) return { rotulo:"Sincronizando…", detalhe:"Enviando e recebendo as novidades.", cor:"accent", icone:"refresh" };
+  if(nuvemEstado.ultimoErro) return { rotulo:"Pendente", detalhe:nuvemEstado.ultimoErro, cor:"amber", icone:"alert" };
+  const p = nuvemPendentes();
+  if(p > 0) return { rotulo: p + (p===1?" item na fila":" itens na fila"), detalhe:"Sobem na próxima sincronização.", cor:"amber", icone:"upload" };
+  const q = db.nuvem && db.nuvem.ultimaSyncEm;
+  return { rotulo:"Tudo sincronizado", detalhe: q ? ("Última vez às " + new Date(q).toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"})) : "Conta ligada.", cor:"accent", icone:"check" };
+}
+
+function renderChipNuvem(){
+  if(!nuvemLigada()) return "";
+  const s = nuvemResumoStatus();
+  const corTexto = s.cor === "amber" ? "var(--amber)" : s.cor === "accent" ? "var(--accent)" : "var(--muted)";
+  return `<button class="icon-btn" title="${escapeHtml(s.rotulo + " — " + s.detalhe)}" style="color:${corTexto}" onclick="navigate('perfil')">${iconeSvg(s.icone)}</button>`;
+}
+
+function renderCardNuvem(){
+  if(!nuvemLigada()){
+    return `<div class="card mt-2" style="max-width:560px">
+      <div class="card-title">${iconeSvg("database")} Estudo em vários aparelhos</div>
+      <p class="text-sm muted">Hoje seus dados ficam só neste navegador. Para abrir no celular e continuar de onde parou, é preciso ligar a nuvem — o passo a passo está no arquivo <code>nuvem/LEIA-ME.md</code>, e leva alguns minutos, uma vez só.</p>
+    </div>`;
+  }
+  const s = nuvemResumoStatus();
+  const corTexto = s.cor === "amber" ? "var(--amber)" : s.cor === "accent" ? "var(--accent)" : "var(--muted)";
+  const locais = nuvemConectado() ? nuvemUsuariosLocaisComDados() : [];
+  return `<div class="card mt-2" style="max-width:560px">
+    <div class="card-title">${iconeSvg("database")} Conta e sincronização</div>
+    ${nuvemConectado() ? `
+      <p class="text-sm muted">Conectado como <strong>${escapeHtml((nuvemSessao && nuvemSessao.email) || "")}</strong>. Seu estudo sobe para a nuvem e desce em qualquer aparelho onde você entrar com esta conta.</p>
+      <p class="text-sm mt-1" style="color:${corTexto};font-weight:600">${escapeHtml(s.rotulo)}</p>
+      <p class="text-xs muted">${escapeHtml(s.detalhe)}</p>
+      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="nuvemSincronizar({forcarRedesenho:true})">${iconeSvg("refresh")} Sincronizar agora</button>
+        ${locais.length ? `<button class="btn btn-secondary btn-sm" onclick="abrirModalTrazerDadosLocais()">${iconeSvg("upload")} Trazer estudo deste navegador</button>` : ""}
+        <button class="btn btn-secondary btn-sm" onclick="nuvemSairDaConta()">${iconeSvg("logout")} Sair da conta</button>
+      </div>
+      <p class="text-xs muted mt-2">Sem internet a plataforma continua funcionando: o que você fizer fica numa fila e sobe sozinho quando a conexão voltar.</p>
+    ` : `
+      <p class="text-sm muted">A nuvem está configurada, mas você entrou sem conta — o estudo fica só neste navegador. Saia e entre com e-mail e senha para sincronizar.</p>
+      <button class="btn btn-secondary btn-sm mt-2" onclick="fazerLogout()">Ir para a tela de entrada</button>
+    `}
+  </div>`;
+}
+
+/* Ligações automáticas: sincroniza ao voltar a internet, ao voltar para a aba
+   e de tempos em tempos, para o celular receber o que foi feito no
+   computador sem a pessoa pedir. */
+function nuvemLigarGatilhos(){
+  if(!nuvemLigada() || typeof window === "undefined") return;
+  window.addEventListener("online", () => nuvemSincronizar({silencioso:true, forcarRedesenho:true}));
+  document.addEventListener("visibilitychange", () => {
+    if(!document.hidden) nuvemSincronizar({silencioso:true});
+  });
+  setInterval(() => nuvemSincronizar({silencioso:true}), 120000);
+}
+
 
 /* ==========================================================================
    3. UTILITÁRIOS GERAIS
@@ -2096,6 +2941,8 @@ function isFavorita(usuarioId, questaoId){ return db.favoritos.some(f=>f.usuario
 function toggleFavorito(usuarioId, questaoId){
   const idx = db.favoritos.findIndex(f=>f.usuarioId===usuarioId && f.questaoId===questaoId);
   if(idx>=0) db.favoritos.splice(idx,1); else db.favoritos.push({usuarioId,questaoId,data:hojeISO()});
+  // desfavoritar também sobe: o outro aparelho precisa saber que saiu
+  nuvemRegistrar({favorito:{usuarioId, questaoId, data:hojeISO(), removido: idx>=0}});
   saveState();
   return idx<0; // retorna true se acabou de favoritar
 }
@@ -2133,6 +2980,7 @@ function registrarRevisao(usuarioId, questaoId, correta, confianca){
   entry.proximaRevisao = somarDias(hojeISO(), entry.intervalo);
   entry.ultimaConfianca = confianca; entry.ultimaCorreta = correta; entry.ultimaData = hojeISO();
   db.revisoes[usuarioId][questaoId] = entry;
+  nuvemRegistrar({usuarioId, questaoId, revisao:entry});
 }
 function revisaoVencida(usuarioId, questaoId){
   const entry = db.revisoes[usuarioId] && db.revisoes[usuarioId][questaoId];
@@ -2230,10 +3078,14 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   entry.ultimaNota = nota; entry.ultimaData = hojeISO();
   entry.vistas = (entry.vistas||0) + 1;
   db.revisoesFlashcards[usuarioId][cartaoId] = entry;
+  nuvemRegistrar({usuarioId, cartaoId, revisaoCartao:entry});
   // diário de dias com cartão revisado, que alimenta a sequência diária
   if(!db.diasCartoes) db.diasCartoes = {};
   if(!db.diasCartoes[usuarioId]) db.diasCartoes[usuarioId] = [];
-  if(!db.diasCartoes[usuarioId].includes(hojeISO())) db.diasCartoes[usuarioId].push(hojeISO());
+  if(!db.diasCartoes[usuarioId].includes(hojeISO())){
+    db.diasCartoes[usuarioId].push(hojeISO());
+    nuvemRegistrar({usuarioId, diaCartao:hojeISO()});
+  }
   saveState();
 }
 /* Monta o baralho da sessão de revisão rápida. `filtro` aceita
@@ -2502,6 +3354,7 @@ function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca
     sessaoId: state.sessaoAtual ? state.sessaoAtual.id : null,
   };
   db.respostas.push(resposta);
+  nuvemRegistrar({resposta});          // entra na fila de envio para a nuvem
   q.estatisticas.respostas += 1;
   if(correta) q.estatisticas.acertos += 1;
   q.estatisticas.distribuicaoAlternativas[alternativaEscolhida] = (q.estatisticas.distribuicaoAlternativas[alternativaEscolhida]||0)+1;
@@ -2935,7 +3788,12 @@ function fazerLoginDemo(papel){
   state.usuarioAtualId = mapa[papel];
   navigate("inicio");
 }
-function fazerLogout(){ state.usuarioAtualId = null; navigate("landing"); }
+function fazerLogout(){
+  // com a nuvem ligada, sair é sair da conta (e a fila pendente é avisada)
+  if(nuvemConectado()){ nuvemSairDaConta(); return; }
+  state.usuarioAtualId = null;
+  navigate("landing");
+}
 function alternarModoAluno(){
   state.modoAluno = !state.modoAluno;
   toast(state.modoAluno ? "Modo aluno ativado — suas respostas aqui contam pro seu próprio progresso." : "Voltando ao seu papel normal.");
@@ -2955,6 +3813,17 @@ function solicitarCadastro(){
   const tipoAcesso = document.getElementById("cadTipoAcesso").value;
   if(!nome || !email || !matricula || !senha){ toast("Preencha todos os campos.", "err"); return; }
   if(senha.length<4){ toast("Use uma senha com pelo menos 4 caracteres.", "err"); return; }
+  // Com a nuvem ligada, a conta nasce no servidor (senha com hash, e-mail
+  // único garantido lá) e fica pendente até a coordenação aprovar.
+  if(nuvemLigada()){
+    if(senha.length < 6){ toast("Com conta na nuvem, a senha precisa ter pelo menos 6 caracteres.", "err"); return; }
+    const anoCampo = document.getElementById("cadAno");
+    nuvemCadastrarPelaTela({
+      email, senha, nome, matricula,
+      anoFaculdade: (tipoAcesso === "aluno" && anoCampo) ? anoCampo.value : "",
+    });
+    return;
+  }
   if(db.usuarios.some(u=>u.email.toLowerCase()===email.toLowerCase())){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
   if(db.usuarios.some(u=>u.matricula===matricula)){ toast("Já existe um cadastro com esta matrícula.", "err"); return; }
   const novoUsuarioId = uid("u");
@@ -3303,6 +4172,7 @@ function renderShell(conteudoHtml){
           <div class="topbar-title">${tituloDaRota(state.route)}</div>
         </div>
         <div class="flex items-center gap-2">
+          ${renderChipNuvem()}
           ${badgePapel(u.papel, u)}
           <span class="text-sm muted nowrap">${escapeHtml(u.nome)}</span>
         </div>
@@ -3384,13 +4254,17 @@ function renderLogin(){
   <div class="auth-wrap">
     <div class="auth-card">
       <h2>Entrar</h2>
-      <p class="text-sm muted mt-1">Use seu e-mail ou matrícula cadastrados.</p>
+      <p class="text-sm muted mt-1">${nuvemLigada()
+        ? "Use o e-mail e a senha da sua conta. O seu estudo acompanha a conta em qualquer aparelho."
+        : "Use seu e-mail ou matrícula cadastrados."}</p>
       <div class="field mt-3"><label class="label">E-mail ou matrícula</label><input class="input" id="loginId" placeholder="voce@email.com ou 2026001234"></div>
       <div class="field"><label class="label">Senha</label><input class="input" type="password" id="loginSenha" placeholder="••••••••" onkeydown="if(event.key==='Enter') tentarLogin()"></div>
       <button class="btn btn-primary btn-block" onclick="tentarLogin()">Entrar</button>
       <p class="text-sm mt-2">Ainda não tem conta? <a href="javascript:void(0)" onclick="navigate('cadastro')">Solicitar cadastro</a></p>
       <div class="card-flat mt-3">
-        <div class="text-xs muted mb-1">Acesso rápido de demonstração (não pede senha):</div>
+        <div class="text-xs muted mb-1">${nuvemLigada()
+          ? "Acesso de demonstração — fica só neste navegador e não sincroniza:"
+          : "Acesso rápido de demonstração (não pede senha):"}</div>
         <div class="flex gap-1" style="flex-wrap:wrap">
           <button class="pill" onclick="fazerLoginDemo('aluno')">Aluno</button>
           <button class="pill" onclick="fazerLoginDemo('professor')">Professor</button>
@@ -3410,7 +4284,21 @@ function renderLogin(){
     </div>
   </div>`;
 }
-function tentarLogin(){ fazerLogin(document.getElementById("loginId").value, document.getElementById("loginSenha").value); }
+function tentarLogin(){
+  const identificador = document.getElementById("loginId").value;
+  const senha = document.getElementById("loginSenha").value;
+  // Com a nuvem ligada, quem confere a senha é o servidor (ela nem existe
+  // neste arquivo). Sem nuvem, continua a conferência local de sempre.
+  if(nuvemLigada() && identificador.includes("@")){
+    const botao = document.querySelector("#loginSenha") && document.querySelector(".auth-card .btn-primary");
+    if(botao){ botao.disabled = true; botao.textContent = "Entrando…"; }
+    nuvemEntrarPelaTela(identificador.trim(), senha).then(ok => {
+      if(!ok && botao){ botao.disabled = false; botao.textContent = "Entrar"; }
+    });
+    return;
+  }
+  fazerLogin(identificador, senha);
+}
 
 function renderCadastro(){
   return `
@@ -3915,6 +4803,7 @@ function salvarSessaoEmAndamento(){
     respostasSessao: s.respostasSessao, eliminadas: s.eliminadas || {},
     uiSelecionada: s.uiSelecionada || null, salvaEm: hojeISO(),
   };
+  nuvemRegistrar({usuarioId:u.id, sessaoEmAndamento: db.sessoesEmAndamento[u.id]});
   saveState();
 }
 function limparSessaoEmAndamento(){
@@ -4055,6 +4944,7 @@ function registrarSessaoNoHistorico(s){
       confianca: s.respostasSessao[i].confianca,
     })),
   });
+  nuvemRegistrar({sessaoConcluida: db.sessoes[db.sessoes.length-1]});
   s.salvaNoHistorico = true;
   saveState();
 }
@@ -4825,6 +5715,7 @@ function salvarFlashcard(id, questaoOrigemId){
     if(c.usuarioId && c.usuarioId!==u.id){ toast("Este cartão é de outro usuário.", "err"); return; }
     if(!c.usuarioId && !podeGerirConteudo()){ toast("Cartões da equipe só podem ser editados por professores e administradores.", "err"); return; }
     Object.assign(c, {frente, verso, assuntoId, imagemUrl, imagemLegenda});
+    if(c.usuarioId) nuvemRegistrar({cartaoPessoal:c});
   } else {
     // sem permissão de conteúdo (ou em modo aluno) o cartão nasce pessoal
     const pessoal = !(podeGerirConteudo() && !state.modoAluno);
@@ -4835,6 +5726,8 @@ function salvarFlashcard(id, questaoOrigemId){
       questaoOrigemId: questaoOrigemId || null,
       status: "ativo", criadoPor: u.id, criadoEm: hojeISO(),
     });
+    const novoCartao = db.flashcards[db.flashcards.length-1];
+    if(novoCartao.usuarioId) nuvemRegistrar({cartaoPessoal:novoCartao});
   }
   state.filtroRota.imagemFlashcard = "";
   saveState(); fecharModal();
@@ -4911,6 +5804,7 @@ function arquivarFlashcardConfirmado(id){
   const c = (db.flashcards||[]).find(x=>x.id===id);
   if(!podeMexerNoCartao(c)){ toast("Você não pode arquivar este cartão.", "err"); return; }
   c.status = "arquivado";
+  if(c.usuarioId) nuvemRegistrar({cartaoPessoal:c});
   saveState(); fecharModal(); toast("Cartão arquivado."); render();
 }
 
@@ -5045,6 +5939,7 @@ function finalizarSimulado(){
   });
   const nota = pct(acertos, sessao.itens.length);
   db.resultadosSimulados.push({id:uid("res"), usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
+  nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
   saveState();
   sessao.finalizado = true;
   pararCronometro();
@@ -5987,9 +6882,12 @@ function renderPerfil(){
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
     </div>
   </div>` : ""}
+  ${renderCardNuvem()}
   ${ehMaster ? renderCardBackup() : `<div class="card mt-2" style="max-width:460px">
     <div class="card-title">Seus dados</div>
-    <p class="text-sm muted">Tudo o que você faz aqui fica salvo neste navegador. A cópia de segurança de toda a plataforma é responsabilidade do administrador máster — se precisar trocar de computador ou recuperar algo, fale com a coordenação antes de limpar os dados do navegador.</p>
+    <p class="text-sm muted">${nuvemConectado()
+      ? "Seu estudo fica salvo neste navegador e também na sua conta, na nuvem — por isso você pode continuar de outro aparelho. A cópia de segurança de toda a plataforma continua sendo responsabilidade do administrador máster."
+      : "Tudo o que você faz aqui fica salvo neste navegador. A cópia de segurança de toda a plataforma é responsabilidade do administrador máster — se precisar trocar de computador ou recuperar algo, fale com a coordenação antes de limpar os dados do navegador."}</p>
   </div>`}`;
 }
 function salvarAnoFaculdade(){
@@ -6670,6 +7568,8 @@ function renderAprovarCadastros(){
   const pendentes = db.usuarios.filter(u=>u.status==="pendente");
   return `
   <div class="page-header"><h2>Aprovar Cadastros</h2><p>Solicitações de acesso aguardando aprovação.</p></div>
+  ${renderCadastrosPendentesDaNuvem()}
+  ${nuvemConectado() && pendentes.length ? '<div class="text-sm muted mb-1">Solicitações antigas, feitas só neste navegador:</div>' : ""}
   ${pendentes.length ? `<div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail</th><th>Matrícula</th><th>Acesso solicitado</th><th>Data</th><th></th></tr></thead><tbody>
     ${pendentes.map(u=>`<tr><td>${escapeHtml(u.nome)}</td><td>${escapeHtml(u.email)}</td><td>${escapeHtml(u.matricula)}</td><td class="text-sm">${badgePapel(u.papel)}${u.areasAtuacao&&u.areasAtuacao.length?"<br><span class=\"text-xs muted\">"+u.areasAtuacao.map(nomeArea).join(", ")+"</span>":""}${u.assuntosAjuda&&u.assuntosAjuda.length?"<br><span class=\"text-xs muted\">ajuda com: "+u.assuntosAjuda.map(nomeEspecialidade).join(", ")+"</span>":""}</td><td>${formatDataBR(u.criadoEm)}</td><td class="flex gap-1"><button class="btn btn-primary btn-sm" onclick="aprovarUsuario('${u.id}')">Aprovar</button><button class="btn btn-danger btn-sm" onclick="rejeitarUsuario('${u.id}')">Recusar</button></td></tr>`).join("")}
   </tbody></table></div>` : '<div class="empty-state">Nenhuma solicitação pendente.</div>'}
@@ -8069,6 +8969,18 @@ loadState();
   // se a pasta "dados/" não veio junto, a tarja explica antes de a pessoa
   // achar que a plataforma quebrou
   avisarSeFaltarConteudo();
+  // nuvem: quem já entrou neste aparelho continua entrado (a sessão fica no
+  // navegador) e o estudo feito em outro aparelho desce em segundo plano
+  nuvemCarregarSessaoSalva();
+  nuvemLigarGatilhos();
+  if(nuvemConectado()){
+    const eu = db.usuarios.find(x => x.id === nuvemSessao.usuarioId);
+    if(eu && eu.status === "aprovado"){
+      state.usuarioAtualId = eu.id;
+      if(!hashInicial || state.route === "landing") state.route = "inicio";
+    }
+    nuvemSincronizar({silencioso:true, forcarRedesenho:true});
+  }
   render();
   // lembrete de meta diária: checagem leve a cada minuto (ver função para
   // detalhes e limitação — só funciona com o navegador aberto).
