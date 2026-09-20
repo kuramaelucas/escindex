@@ -1,7 +1,7 @@
 # Esc — plataforma de estudos para residência médica
 ## Resumo do projeto (setembro de 2026)
 
-Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo `esc.html`.
+Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o `index.html` — **só ele**, que agora é o arquivo de código. O conteúdo (as provas já adaptadas e os flashcards) mora na pasta `dados/`, e só precisa ser anexado quando o pedido for sobre o conteúdo em si (ver seção 1 e seção 11).
 
 > **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) — e taxonomia de **216 assuntos** em **39 especialidades**. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
 
@@ -9,9 +9,18 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 
 ## 1. O que é
 
-`esc.html` é uma plataforma de estudos para prova de residência médica, escrita como **um único arquivo HTML autossuficiente**: sem instalação, sem servidor, sem build, sem dependência de internet (só as fontes do Google são externas, e são opcionais). Abre com dois cliques no navegador.
+`index.html` é uma plataforma de estudos para prova de residência médica, escrita **sem instalação, sem servidor, sem build e sem dependência de internet** (só as fontes do Google são externas, e são opcionais). Abre com dois cliques no navegador.
 
-- **Tamanho atual:** ~1,7 MB, ~16.770 linhas (a maior parte é o banco de 635 questões e os 501 flashcards, em `SEED_QUESTOES` e `SEED_FLASHCARDS`).
+Era um arquivo único; desde 20/09 são **duas coisas ao lado uma da outra**, e essa é a separação mais importante para trabalhar no projeto:
+
+| | O quê | Tamanho |
+|---|---|---|
+| `index.html` | **O código.** Telas, regras, algoritmos, configuração, taxonomia. É o documento que se abre para consertar ou mudar a plataforma — e o único que precisa ser anexado numa conversa sobre código. | ~546 KB, ~8.050 linhas |
+| `dados/` | **O conteúdo já adaptado à plataforma.** Um arquivo `.js` por prova, mais o banco didático e os flashcards da equipe. É texto de questão, não código. | ~1,2 MB em 7 arquivos |
+
+O `index.html` carrega a pasta com sete linhas `<script src="dados/…">` antes do próprio código; no navegador o resultado é idêntico ao de antes. A única regra é manter a pasta `dados/` ao lado do `index.html` e publicá-la junto — se ela faltar, a plataforma abre assim mesmo e mostra uma tarja explicando, em vez de parecer quebrada. Detalhes em `dados/LEIA-ME.md` e na seção 7.
+
+- **Tamanho antes da separação:** ~1,7 MB, ~16.770 linhas em um arquivo só.
 - **Dados:** tudo fica no `localStorage` do navegador, sob a chave `medbloco_db_v1` (o nome antigo foi mantido de propósito, para não apagar os dados de quem já usava quando o app foi renomeado).
 - **Nome:** "Esc" (era "MedBloco"). O nome fica em `CONFIG.nomePlataforma`.
 - **Banca de referência:** UNIFESP-EPM (`CONFIG.bancaFoco`), mas o app é agnóstico — filtra por instituição.
@@ -218,10 +227,41 @@ Os parâmetros de algoritmo são editáveis pela tela Configurações (administr
 
 ## 7. Organização do código
 
-Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
+### Os arquivos do projeto
+
+```
+index.html                      o código inteiro (~546 KB)
+dados/
+  banco-didatico.js             135 questões autorais (demonstração + banco didático)
+  prova-unifesp-2022.js         100 questões reais
+  prova-unifesp-2023.js         100 questões reais
+  prova-unifesp-2024.js         100 questões reais
+  prova-unifesp-2025.js         100 questões reais
+  prova-unifesp-2026.js         100 questões reais
+  flashcards-equipe.js          501 cartões da equipe
+  LEIA-ME.md                    como acrescentar prova, molde de questão, política de conteúdo
+RESUMO-PROJETO-ESC.md           este documento
+```
+
+**Como o conteúdo entra no código.** O `index.html` define, antes do script principal, um objeto `window.EscDados` com duas funções — `registrarQuestoes(nome, lista)` e `registrarFlashcards(nome, lista)` — e em seguida carrega os sete arquivos da pasta. Cada arquivo faz uma chamada só, entregando a sua lista. O código então usa:
+
+```js
+const SEED_QUESTOES   = (window.EscDados && window.EscDados.questoes)   || [];
+const SEED_FLASHCARDS = (window.EscDados && window.EscDados.flashcards) || [];
+```
+
+Daí para a frente nada mudou: `dbPadrao()` e `sincronizarConteudoNovo()` continuam lendo essas duas constantes como liam antes, e o banco se monta na ordem em que os `<script src>` aparecem no HTML.
+
+Por que `.js` com `<script src>` e não `.json` com `fetch`: `fetch` de arquivo local é bloqueado pelo navegador (CORS), o que quebraria o "abre com dois cliques" — que é uma característica central do projeto. Script clássico carrega dos dois jeitos, no site publicado e na pasta do computador.
+
+**Se a pasta faltar:** `avisarSeFaltarConteudo()` roda na inicialização e, quando nenhum arquivo respondeu, insere uma tarja (`.aviso-dados`) no alto da página dizendo o que falta e onde ela deveria estar. A plataforma continua utilizável com o que já estiver salvo no navegador. *Configurações > Arquivos de conteúdo* (`renderCardArquivosConteudo()`) lista, arquivo por arquivo, o que foi carregado e quantos itens vieram — é onde se confere uma publicação ou uma cópia para outro computador.
+
+### As seções dentro do `index.html`
+
+Seções numeradas em caixa alta (use Ctrl+F):
 
 1. `CONFIG`, níveis de admin, anos da faculdade, tema claro/escuro
-2. `SEED_TAXONOMIA`, `SEED_BLOCOS`, `SEED_SEQUENCIAS_ANO`, `SEED_USUARIOS`, `SEED_QUESTOES`, `SEED_LIVRO_OURO`, `SEED_COMENTARIOS`, `SEED_FLASHCARDS`, `SEED_SIMULADOS`
+2. `SEED_TAXONOMIA`, `SEED_BLOCOS`, `SEED_SEQUENCIAS_ANO`, `SEED_USUARIOS`, `SEED_LIVRO_OURO`, `SEED_COMENTARIOS`, `SEED_SIMULADOS` — que continuam no código por serem estrutura, não conteúdo (juntos não chegam a 20 KB). `SEED_QUESTOES` e `SEED_FLASHCARDS` ficaram aqui só como nome: o conteúdo vem da pasta `dados/`
 3. Persistência (`dbPadrao`, `loadState`, `saveState`, migrações, `sincronizarConteudoNovo`)
 4. Utilidades (datas, **gráficos SVG**, modal, toast)
 5. Motor de estudos (dificuldade, repetição espaçada, mistura, filtros, **desempenho por dia/mês/janela**, calibração, tempo, motor de flashcards)
@@ -256,6 +296,15 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 | `metaCartoesDoUsuario(u)` / `cartoesRevisadosHoje(id)` / `sequenciaDiasCartoes(id)` | a meta diária de flashcards e sua sequência |
 | `mapaPrevalenciasAssuntos()` | prevalência de todos os assuntos calculada uma vez por gravação (cache por `_geracaoDb`) |
 
+**Funções-chave acrescentadas na separação de 20/09:**
+
+| Função | O que faz |
+|---|---|
+| `EscDados.registrarQuestoes(nome, lista)` / `registrarFlashcards(nome, lista)` | a porta de entrada de cada arquivo da pasta `dados/`; guarda também o nome do arquivo e quantos itens vieram |
+| `resumoArquivosDeConteudo()` | o que foi carregado nesta abertura da página: arquivos, questões e cartões |
+| `avisarSeFaltarConteudo()` | a tarja de "a pasta `dados/` não veio junto", inserida na inicialização quando nenhum arquivo respondeu |
+| `renderCardArquivosConteudo()` | o cartão *Arquivos de conteúdo*, em Configurações, para conferir uma publicação ou uma cópia |
+
 **Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado.
 
 **Migrações em `loadState`:** criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
@@ -274,7 +323,8 @@ Arquivo único, com seções numeradas em caixa alta (use Ctrl+F):
 6. **Cartão pessoal é privado, não é segredo.** O isolamento é por papel na interface e nas funções; qualquer pessoa com acesso ao mesmo navegador e ao console enxerga tudo, como em qualquer dado do `localStorage`.
 7. **Uma sequência de blocos por ano, e só uma.** Duas turmas do mesmo ano não podem ter ordens diferentes de matéria — por decisão de projeto, elas diferem só pelo ponto de entrada. Se um dia for preciso que uma turma tenha uma sequência realmente distinta, será um campo novo (`grupo.sequenciaPropria`) e mais uma migração.
 8. **`somarDias()` usa `toISOString()`** depois de montar a data em horário local: certo para fusos negativos (Brasil), quebraria a data em fusos positivos (UTC+). Sem efeito para o público atual.
-9. **Lembrete de meta diária só funciona com o navegador aberto.** Como o app não tem service worker nem servidor, a Notification API só dispara enquanto alguma aba do Esc está carregada (mesmo minimizada). Não existe aviso de verdade com tudo fechado — isso exigiria backend (ver limitação 1).
+9. **O `index.html` agora depende da pasta `dados/`.** Mandar só o arquivo HTML por e-mail, ou publicar o site sem a pasta, entrega uma plataforma sem conteúdo — ela abre, avisa na tela e funciona com o que estiver salvo naquele navegador, mas nenhuma questão nova entra. Quem quiser distribuir "um arquivo só" precisa juntar os dois de volta (colar o conteúdo dos arquivos `.js` dentro de `<script>` no lugar das linhas `<script src>` resolve, e dá para automatizar em poucas linhas se isso virar rotina).
+10. **Lembrete de meta diária só funciona com o navegador aberto.** Como o app não tem service worker nem servidor, a Notification API só dispara enquanto alguma aba do Esc está carregada (mesmo minimizada). Não existe aviso de verdade com tudo fechado — isso exigiria backend (ver limitação 1).
 
 ---
 
@@ -303,11 +353,21 @@ Em ordem de prioridade sugerida:
 
 ## 11. Como pedir alterações numa nova conversa
 
-Anexe `esc.html` e este resumo, e descreva o que quer em português corrente. Convenções que o projeto segue e vale manter:
+Anexe este resumo e **só o que o pedido exige** — é para isso que o conteúdo foi separado do código:
+
+| O pedido é sobre… | Anexe |
+|---|---|
+| Telas, regras, algoritmo, correção de defeito, visual | `index.html` (só ele) |
+| Uma prova específica: corrigir explicação, reclassificar assunto, revisar gabarito | `index.html` + o arquivo daquela prova (ex.: `dados/prova-unifesp-2024.js`) |
+| Carregar uma prova nova de outra banca | `index.html` + `dados/LEIA-ME.md` + o PDF ou o texto da prova |
+| Flashcards da equipe | `index.html` + `dados/flashcards-equipe.js` |
+
+Depois descreva o que quer em português corrente. Convenções que o projeto segue e vale manter:
 
 - Tudo em **português do Brasil**, inclusive nomes de funções e variáveis.
 - Comentários no código explicando a **regra em linguagem simples**, pensados para quem não programa.
 - Nenhuma dependência externa nova; nada de framework. (Os gráficos são SVG escrito à mão; o PDF usa a impressão do navegador.)
+- **Conteúdo novo (questões, provas, cartões da equipe) vai para a pasta `dados/`, nunca para dentro do `index.html`** — é o que mantém o arquivo de código legível. Ver `dados/LEIA-ME.md`.
 - Toda alteração no modelo de dados vem acompanhada de migração em `loadState`.
 - Rota que sai do menu continua respondendo, redirecionando para o novo lugar — link salvo por aluno não pode quebrar.
 - A plataforma **explica o que faz**: quando o algoritmo muda uma proporção, esconde um botão ou prioriza uma questão, a tela diz o porquê.
@@ -323,3 +383,5 @@ Registro resumido de cada rodada de trabalho, da mais antiga à mais recente. De
 **Ajuste de política de conteúdo e expansão de recursos (noite de 19/09/2026).** Esclarecido que enunciado/alternativas/gabarito oficial de prova de instituição pública são domínio público (podem ser transcritos integralmente) e que só a explicação precisa ser sempre autoral — refletido no prompt de importação e no formulário de questão. A partir daí: baralho da equipe ampliado de 24 para 501 flashcards, cobrindo os 91 assuntos que existiam até então; lembrete de meta diária via Notification API do navegador; flashcards ganharam suporte a imagem (mesmo padrão já usado nas questões); fluxo de promoção de cartão pessoal para o baralho da equipe, com aprovação de professor/coordenação; estatística de alternativas eliminadas por quem errou, agregada por questão em Controle de Qualidade. O banco também foi testado sintético em mais de 6.000 questões e 8.000 respostas, o que revelou dois novos gargalos do mesmo tipo do já corrigido pela manhã (uma função revarrendo o banco inteiro a cada chamada, dentro de um laço) — ambos corrigidos com índices cacheados por geração do banco, derrubando o tempo de operações como colar uma prova de 100 questões de 6,8s para 106ms.
 
 **Carga das 500 questões reais da UNIFESP-EPM, 2022-2026 (madrugada seguinte).** O usuário forneceu os PDFs das provas de Acesso Direto/R1 dos últimos cinco anos. Conteúdo de prova pública (enunciado, alternativas, gabarito oficial) extraído por scripts Node.js reutilizáveis (`provas/parse_gabarito.js`, `provas/parse_questoes.js`, a partir de texto gerado com `pdftotext`), com duas armadilhas de parsing corrigidas (caractere de quebra de página inserido pelo PDF; a última questão de cada prova absorvendo a folha de gabarito em branco). Achado relevante: a prova real usa só 4 alternativas (A-D), não 5 — formulário e importador ajustados para tornar a alternativa E opcional. Para cada uma das 500 questões foi escrita uma explicação **100% autoral** (nunca a partir da resolução do cursinho de origem do PDF), com referência citada e dificuldade estimada, combinada ao conteúdo da prova por um script de merge (`provas/merge_year.js`) que também classificou cada questão num assunto da taxonomia. A taxonomia foi ampliada de 91 para 216 assuntos (24 para 39 especialidades) em 5 levas, para dar lugar a especialidades que a prova real cobre e a plataforma didática não tinha — Psiquiatria inteira, criada do zero, entre elas. Validado com checagem de sintaxe, IDs únicos, integridade completa da taxonomia, completude estrutural das 500 questões e testes funcionais via Chromium/Playwright (contagem por ano e por anuladas batendo com o gabarito oficial, resposta correta sendo pontuada como `correta: true`, zero erros de JavaScript). Ficou de fora, de propósito: qualquer leitura da resolução do cursinho de origem como fonte de explicação, e as imagens/figuras que algumas questões referenciam no enunciado (a explicação descreve o achado esperado pelo texto, sem a imagem original anexada).
+
+**Separação entre código e conteúdo (20/09/2026).** O `index.html` tinha 1,7 MB e ~16.770 linhas, e 1,2 MB disso era conteúdo: as 635 questões e os 501 flashcards. Na prática, qualquer trabalho no código — de uma pessoa ou de uma IA — começava atravessando centenas de páginas de enunciado médico. As questões e os cartões saíram para a pasta `dados/`, um arquivo por prova (`banco-didatico.js`, `prova-unifesp-2022.js` a `prova-unifesp-2026.js`, `flashcards-equipe.js`), carregados pelo `index.html` com sete linhas `<script src="dados/…">` antes do código. O arquivo de código ficou em ~546 KB e ~8.050 linhas — 69% menor —, e cada prova virou um documento que se abre e se confere sozinho. O que **não** mudou: o site (mesmas telas, mesmo comportamento, mesmo "abre com dois cliques", desde que a pasta esteja junto), o modelo de dados, o `localStorage` e a ordem das questões no banco. Nenhuma migração foi necessária, porque nada no formato dos dados mudou — só o lugar onde o texto fica guardado. Acrescentados: `EscDados` (a ponte que recebe o conteúdo dos arquivos), a tarja de aviso quando a pasta não vem junto, o cartão *Arquivos de conteúdo* em Configurações (mostra arquivo por arquivo o que foi carregado) e `dados/LEIA-ME.md`, com o molde de questão, o passo a passo para acrescentar uma prova nova e a política de conteúdo. Verificado com Chromium/Playwright em quatro cenários: aberto direto da pasta (`file://`), servido por HTTP como o site publicado, sem a pasta `dados/` (abre, avisa, navega sem erro) e com dados antigos já salvos no navegador — nesse último, as 635 questões, os 501 cartões, as respostas e os favoritos sobreviveram sem nenhuma duplicata. As 27 rotas foram percorridas como administrador máster, e o conteúdo dos arquivos novos foi conferido item a item contra o original (as 635 questões e os 501 cartões saíram idênticos).
