@@ -27,14 +27,14 @@ A separação foi feita porque, com as 635 questões e os 501 cartões dentro do
 
 | E-mail | Papel |
 |---|---|
-| admin@esc.demo (admin123) | Administrador **máster** |
-| coordenacao@esc.demo (admin123) | Administrador **coordenação** |
-| moderador@esc.demo (admin123) | Administrador **moderador de conteúdo** |
+| admin@esc.demo (admin123) | Administrador **máster** — a única conta de administrador |
 | professor@esc.demo (prof123) | Professor |
 | residente@esc.demo (res123) | Residente |
 | aluno@esc.demo (aluno123) | Aluno |
 
-Há também botões de "ver como…" na tela inicial, que entram sem senha.
+São quatro, uma por papel, e existem só para conferir como cada um enxerga as telas. As contas extras de administrador (coordenação e moderador) e a segunda aluna de exemplo saíram: nível de administrador se testa mudando o nível da conta que existe, em *Admin > Usuários*, e não guardando três contas com senha à vista.
+
+Na tela inicial e na de entrada, o **único** acesso rápido sem senha é o de **aluno** — é a visão que interessa a quem chega para conhecer a plataforma. Professor, residente e coordenação entram por e-mail e senha; pedir o acesso rápido de outro papel pelo console é recusado, porque a checagem está na própria `fazerLoginDemo()`. Qualquer conta troca a própria senha em *Perfil > Mudar a senha*.
 
 ---
 
@@ -169,11 +169,19 @@ Depois de publicada, a prova aparece sozinha em **Provas Antigas** (que agrupa p
 Doações, colaborações e apoios, mantidos pela coordenação, mais um reconhecimento calculado automaticamente. **Fica no rodapé da tela inicial** e em Configurações — não ocupa linha no menu.
 
 ### Grupos e rodízio de blocos
-O aluno usa por padrão o calendário oficial da coordenação, mas pode criar o próprio grupo/turma ou pedir acesso ao de outro aluno. Cada grupo tem um banco de questões próprio.
+O aluno usa por padrão o calendário oficial da coordenação e escolhe a sua turma depois de entrar, em **Meu Grupo** — pode entrar numa que já existe (com aprovação de quem a criou) ou criar a sua. Cada grupo tem um banco de questões próprio.
 
-**A sequência de blocos pertence ao ano da faculdade, não ao grupo.** Todas as turmas do mesmo ano passam pelos mesmos blocos, na mesma ordem e nas mesmas janelas de data; o que muda de uma para outra é **por qual bloco ela começa** (`grupo.deslocamento`). É o rodízio real: enquanto a turma A está em Pediatria, a turma B está em Clínica Médica, e no bloco seguinte elas trocam. Anos diferentes têm sequências diferentes, porque a matéria é outra — do 3º ano (bases da clínica) ao "Formado(a)" (revisão por grande área).
+**Cada pessoa fica em uma turma só.** Entrar numa turma é sair da anterior (`entrarNoGrupo()`), inclusive na lista de membros: antes dava para aparecer como membro de três ao mesmo tempo e ninguém sabia mais quem estava em qual. Sair de todas devolve o calendário oficial, nunca "nenhum calendário". Enquanto o aluno não escolheu, o painel inicial o lembra disso — no calendário oficial ele vê o bloco do Grupo A, que pode não ser o dele.
 
-O calendário oficial não tem ano fixo: ele serve a todos, e cada aluno enxerga a sequência do **seu** ano.
+**A sequência de blocos pertence ao ano da faculdade, não ao grupo.** Todas as turmas do mesmo ano passam pelos mesmos blocos, na mesma ordem e nas mesmas janelas de data; o que muda de uma para outra é **por qual bloco ela começa** (`grupo.deslocamento`). É o rodízio real: enquanto uma turma está em Pediatria, a outra está em Clínica Médica, e no bloco seguinte elas trocam. Anos diferentes têm sequências diferentes, porque a matéria é outra.
+
+**O rodízio tem nome: Grupo A, B, C ou D.** Ninguém sabe o próprio "deslocamento"; todo mundo sabe que está no grupo B. A ponte entre as duas coisas é o campo `grupoRodizio` do bloco: a letra escrita no bloco de índice *i* da sequência é a da turma que **começa** ali, ou seja, a de deslocamento *i*. É um dado editável, e não uma conta a partir do índice, porque no calendário real do 3º ano as letras não seguem a ordem alfabética (A, D, C, B). Onde a coordenação não preencher nada, vale a ordem alfabética. Toda tela que pede a turma — criar grupo, editar grupo, a tabela de turmas do admin — oferece "Grupo A — começa em TOCE…", em ordem de letra.
+
+**O 3º ano é o calendário real da faculdade**, transcrito do quadro que a coordenação distribui: quatro janelas de data (20/07–21/08, 24/08–02/10, 05/10–06/11, 09/11–04/12 em 2026) e quatro blocos — TOCE & Semiologia da Mulher, Cardiocirculatório, Oftalmo/Infecto/Medicina Baseada em Evidências e Psiquiatria & Vigilância em Saúde — girando entre os grupos A, B, C e D. A tela de Blocos de Estudo reproduz esse quadro linha a linha, para conferir contra o papel.
+
+**O calendário oficial** não tem ano fixo: serve a todos, e cada aluno enxerga a sequência do **seu** ano, começando pelo primeiro bloco (o Grupo A).
+
+**"Formado(a)" não tem calendário.** Quem já se formou não cursa calendário de faculdade nenhum, então esse ano saiu da tela de Blocos de Estudo e não tem sequência própria (`CONFIG.anosSemCalendario`). O que ele **não** perdeu foi o grupo: continua entrando em turmas normalmente e, dentro de uma, acompanha o calendário do ano dela; fora de qualquer turma, a plataforma usa a sequência do ano padrão como referência (`anoDeReferencia()`), e diz isso na tela em vez de fingir que existe uma "sequência de Formado(a)".
 
 ---
 
@@ -248,6 +256,12 @@ O arquivo carrega respostas e cadastros de **todos** os usuários daquele navega
 
 ### Ano da faculdade
 3º e 4º ano entraram; "Internato" saiu (virou 5º/6º ano). Lista em `CONFIG.anosFaculdade`; quem estava como "Internato" foi migrado para 6º ano, e o aluno corrige o próprio ano no Perfil.
+
+### O cadastro pergunta o ano, e só
+A tela de cadastro pedia também a turma, com a opção de criar uma na hora. Era a pergunta errada no momento errado: quem acabou de chegar não tem como saber qual turma é a dele antes de ver a lista, e cada tentativa deixava para trás uma turma solta que ninguém mais usava. Agora o cadastro pergunta **o ano da faculdade**, que a pessoa sabe de cor, e a turma se escolhe depois, em Meu Grupo, com as turmas existentes à vista e o bloco em que cada uma está hoje.
+
+### Virada de ano letivo em um campo
+Em 2027 as datas do calendário não são as de 2026, mas a estrutura é: mesmos blocos, mesma duração, mesmos intervalos entre um e outro. Reescrever oito pares de datas à mão é exatamente onde se erra. *Admin > Blocos de Estudo > Virada de ano letivo* pede só **a data em que o primeiro bloco começa** e desloca a sequência inteira, preservando a duração de cada bloco e o intervalo até o próximo (o fim de semana entre dois blocos, o recesso do meio do ano) — com a tabela "hoje → fica" à vista antes de confirmar. Ajuste fino de um bloco específico continua sendo edição daquele bloco.
 
 ---
 
@@ -344,9 +358,24 @@ O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 | `resumoArquivosDeConteudo()` / `avisarSeFaltarConteudo()` | o que a pasta `dados/` entregou, e a tarja de aviso **dizendo qual arquivo faltou** (com onze arquivos, "não carregou" sozinho não diz onde procurar) |
 | `renderMapaSessao()` / `irParaIndiceDaSessao(i)` | o mapa clicável da sessão de prática (não confundir com o mapa do simulado, que é neutro — seção 5) |
 
+**Funções-chave acrescentadas na revisão de 21/09 (calendário do 3º ano, turmas e senha):**
+
+| Função | O que faz |
+|---|---|
+| `temCalendarioProprio(ano)` / `anosComCalendario()` / `anoDeReferencia(ano)` | quais anos têm sequência de blocos, e para qual ano olha quem não tem ("Formado(a)") |
+| `opcoesRodizio(ano)` / `opcoesRodizioPorLetra(ano)` | as turmas daquele ano — na ordem da sequência e em ordem de letra, que é como a pessoa procura a sua |
+| `rotuloRodizio(ano, d)` / `nomeRodizio(ano, d)` / `deslocamentoDoRotulo(ano, letra)` | as duas traduções entre "Grupo B" e o deslocamento do grupo |
+| `entrarNoGrupo(usuario, grupoId)` | entra numa turma **e sai de todas as outras** — uma turma por pessoa, também nas listas de membros |
+| `sairDoMeuGrupo()` | volta ao calendário oficial, que é a ausência de turma (nunca "sem calendário") |
+| `moverBlocoNaSequencia(ano, blocoId, direcao)` | muda a ordem da sequência trocando as **janelas de data** entre dois blocos; a letra do rodízio fica com a posição, não com o conteúdo |
+| `previaViradaDeAno(ano, novaData)` / `aplicarViradaDeAno(ano)` | desloca o calendário do ano inteiro a partir da data de início do primeiro bloco, preservando durações e intervalos |
+| `renderCardSenha()` / `trocarMinhaSenha()` / `nuvemTrocarSenha(nova)` | troca de senha no Perfil, para todos os papéis: pela nuvem (`PUT /auth/v1/user`, sem senha antiga porque a sessão já prova quem é) ou local (com a senha antiga, que ali é a única prova) |
+
 **Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado.
 
 **Migrações em `loadState`:** criação de `db.filaNuvem` e `db.nuvem` (fila de envio e marcas d'água da nuvem); criação de `db.cargasProvas` (Central de Provas); criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
+
+**Migrações de 21/09 (calendário).** Um ano sem calendário próprio ("Formado(a)") tem a sequência que existia movida para `db.sequenciasArquivadas` — sai de circulação sem ser jogada fora, e continua no banco e no backup. O 3º ano, que nascera com uma sequência de exemplo (ids `b3-1` … `b3-4`), recebe a de verdade no lugar **só se ainda for a de exemplo**: quem já tinha editado o 3º ano fica com o que montou, porque sobrescrever o trabalho da coordenação é pior do que uma sequência desatualizada, que ela conserta na própria tela. E `sincronizarConteudoNovo()` passou a trazer sozinho qualquer ano que ganhe calendário no código e ainda não exista no banco salvo, sem tocar nos anos já editados.
 
 **Migração dos blocos para sequências por ano.** `db.sequenciasAno` passa a guardar a ordem de blocos de cada ano, e o grupo guarda só `anoFaculdade` + `deslocamento`. Nada é apagado: o calendário que a coordenação tinha customizado vira a sequência do ano padrão, o calendário próprio de uma turma vira a sequência do ano dela se aquele ano ainda não tiver uma, e o que sobrar fica guardado em `grupo.blocosArquivados` — continua no banco e no backup, para consulta antes de descartar.
 
@@ -357,7 +386,7 @@ O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 1. **A nuvem cobre o estudo, não a colaboração.** Com a nuvem ligada (seção 4-B), o estudo de cada pessoa viaja entre aparelhos. O que ainda é local a um navegador: fila de dúvidas, comentários nas questões, grupos e calendário, percentil de simulado, relatório de turma, feedbacks e Livro de Ouro — essas telas continuam pressupondo várias pessoas sem que os dados delas se encontrem. São as próximas tabelas naturais, pelo mesmo caminho já aberto.
 2. **Banco cobre uma só banca.** As 500 questões reais são todas da UNIFESP-EPM. As outras 5 bancas de referência (`CONFIG.instituicoesReferencia`) ainda não têm nenhuma questão real — só entram se o usuário conseguir os PDFs oficiais, pelo mesmo processo já usado para a UNIFESP (seção 12). *(Em volume puro o banco já foi testado sintético em mais de 6.000 questões e 8.000 respostas, sem travamento perceptível em nenhuma tela — não é mais o gargalo.)*
 3. **Flashcards da equipe cobrem só metade da taxonomia.** Os 501 cartões foram escritos para os 91 assuntos que existiam antes da carga das provas reais; os 125 assuntos novos (Psiquiatria e as demais especialidades abertas na seção 12) ainda não têm cartão de equipe dedicado. Os cartões gerados automaticamente a partir de erros e os escritos pelos próprios alunos cobrem esse buraco por enquanto, mas dependem de uso.
-4. **As contas de demonstração continuam sendo de demonstração**: com a nuvem desligada, a senha fica em texto claro no `SEED_USUARIOS` e não serve para uso público real. Com a nuvem ligada, a conta de verdade é a do Supabase — senha com hash no servidor, nunca copiada para o `db` local —, mas as contas `@esc.demo` continuam existindo ao lado, para testar sem criar conta.
+4. **As contas de demonstração continuam sendo de demonstração**: com a nuvem desligada, a senha fica em texto claro no `SEED_USUARIOS` e não serve para uso público real. Com a nuvem ligada, a conta de verdade é a do Supabase — senha com hash no servidor, nunca copiada para o `db` local —, mas as quatro contas `@esc.demo` continuam existindo ao lado, para testar sem criar conta. Elas já são o mínimo (uma por papel, uma só de administrador) e só a de aluno tem botão de acesso rápido, mas trocar a senha da conta de administrador antes de publicar continua sendo trabalho de quem publica.
 5. **Backup manual e restrito.** Só o administrador máster exporta — se ele não exportar, ninguém exporta. Configurações avisa quando passa de ~3,5 MB e quando o último backup tem mais de 7 dias.
 6. **Cartão pessoal é privado, não é segredo.** O isolamento é por papel na interface e nas funções; qualquer pessoa com acesso ao mesmo navegador e ao console enxerga tudo, como em qualquer dado do `localStorage`.
 7. **Uma sequência de blocos por ano, e só uma.** Duas turmas do mesmo ano não podem ter ordens diferentes de matéria — por decisão de projeto, elas diferem só pelo ponto de entrada. Se um dia for preciso que uma turma tenha uma sequência realmente distinta, será um campo novo (`grupo.sequenciaPropria`) e mais uma migração.
@@ -438,3 +467,21 @@ A ponte `window.EscDados` ganhou `registrarSimulados`, `registrarTaxonomia`, `re
 **Um defeito encontrado e corrigido no caminho:** `SEED_SEQUENCIAS_ANO` referenciava `SEED_BLOCOS` pelo nome (a sequência do 6º ano *é* o calendário de referência). Movidos para arquivos diferentes, a referência ficaria pendurada e o site quebraria ao abrir. No `calendario.js` a lista ganhou um nome local e é usada nos dois lugares, dentro de um `(function(){…})()` para o nome não escapar. Foi o teste de equivalência que pegou — não a leitura do código.
 
 **Verificado:** os nove blocos de dados saem dos arquivos idênticos ao que estava no `index.html`, item a item (comparação contra a versão anterior, em JSON); as 29 rotas nos 4 papéis sem erro de JavaScript; login de demonstração, bloco atual pelo calendário e o simulado da equipe aparecendo; *Configurações > Arquivos de conteúdo* listando os onze arquivos com a contagem certa; e três modos de falha, bloqueando arquivos de propósito — sem `taxonomia.js`, sem `demonstracao.js` e sem a pasta inteira —, em que a plataforma abre, avisa por nome e não quebra.
+
+**Calendário real do 3º ano, turmas do rodízio e troca de senha (21/09/2026, terceira rodada).** Sete pedidos do usuário, na mesma rodada.
+
+(1) **O 3º ano ganhou o calendário de verdade** — o quadro que a faculdade distribui, transcrito: quatro janelas de data e quatro blocos (TOCE & Semiologia da Mulher, Cardiocirculatório, Oftalmo/Infecto/Medicina Baseada em Evidências, Psiquiatria & Vigilância em Saúde) girando entre os grupos A, B, C e D. A sequência de exemplo que estava ali ("Bases da Clínica…") saiu.
+
+(2) **O rodízio passou a se chamar pelo nome.** Ninguém sabe o próprio deslocamento; todo mundo sabe que está no grupo B. A letra virou um campo do bloco (`grupoRodizio`), porque no calendário real ela não segue a ordem alfabética (A, D, C, B) e uma conta a partir do índice daria a turma errada. Toda tela que pede a turma passou a oferecer "Grupo A — começa em TOCE…", em ordem de letra.
+
+(3) **A coordenação passou a indicar a sequência, e não só editá-la**: setas para mudar a ordem (o conteúdo troca de janela de data e o rodízio inteiro anda junto, com a letra ficando com a posição), a letra de cada turma editável no formulário do bloco, a tabela de turmas com o grupo corrigível pelo admin sem depender de quem criou a turma, e o quadro do rodízio desenhado janela por janela, para conferir contra o papel. Para a **virada de ano**, um campo só: a data em que o primeiro bloco começa, e a sequência inteira se desloca preservando durações e intervalos, com a tabela "hoje → fica" antes de confirmar.
+
+(4) **As contas de teste caíram de sete para quatro** — uma por papel, uma só de administrador —, e o acesso rápido sem senha ficou só no de aluno, com a checagem dentro de `fazerLoginDemo()` e não só no botão.
+
+(5) **Toda conta troca a própria senha**, em *Perfil > Mudar a senha*: faltava para todos, mas incomodava fora do papel de aluno, que recebe a conta pronta de quem cadastrou. São dois caminhos porque são dois lugares onde a senha mora — na nuvem quem guarda é o servidor e a sessão já prova quem é a pessoa (pede-se a nova duas vezes, que é o erro que acontece de fato); numa conta local a senha antiga é a única prova, e é exigida.
+
+(6) **O cadastro parou de perguntar a turma** e pergunta só o ano. A turma se escolhe depois, em Meu Grupo, com as turmas existentes à vista — e cada pessoa fica em **uma só**, inclusive nas listas de membros. Quem ainda não escolheu recebe o lembrete no painel inicial.
+
+(7) **"Formado(a)" perdeu o calendário, não o grupo.** O ano saiu da tela de Blocos de Estudo e não tem mais sequência própria; quem está nele continua entrando em turmas e acompanha o calendário do ano da turma, e fora de qualquer turma vê a sequência do ano padrão — dito na tela, em vez de uma "sequência de Formado(a)" que não existe.
+
+**Verificado com Chromium/Playwright**, sem nenhum erro de JavaScript: o quadro do rodízio do 3º ano conferido célula a célula contra o calendário da faculdade (as quatro janelas × os quatro grupos); criar turma no Grupo B e receber a ordem de blocos certa (Psiquiatria → TOCE → Cardio → Oftalmo); entrar numa turma saindo da anterior; a virada de ano de 2026 para 2027 preservando durações e intervalos; subir e descer um bloco na sequência, com a letra ficando com a posição e o desfazer voltando ao estado inicial; letra repetida recusada e letra em branco voltando ao padrão alfabético; troca de senha local recusando senha atual errada, senhas diferentes entre si e senha curta, e o login novo valendo com a antiga recusada; o cadastro sem o campo de turma; um só botão de acesso rápido, e o de professor recusado quando chamado por fora; as migrações de banco salvo — o 3º ano de exemplo sendo substituído, o 3º ano **customizado** sendo preservado e "Formado(a)" indo para `sequenciasArquivadas`; a exportação do calendário levando as letras do rodízio e sem "Formado(a)"; e as 25 rotas de aluno e de administrador abrindo limpas.

@@ -23,7 +23,7 @@ porque todo o resto aponta para ela):
 | Arquivo | Conteúdo | Itens |
 | --- | --- | --- |
 | `taxonomia.js` | Área > especialidade > assunto | 5 + 39 + 216 |
-| `calendario.js` | Blocos de estudo e a sequência de cada ano | 8 + 5 anos |
+| `calendario.js` | Blocos de estudo e a sequência de cada ano | 8 + 4 anos |
 | `banco-didatico.js` | Questões autorais da equipe, no estilo da prova | 135 |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 (Acesso Direto), prova real | 100 |
@@ -32,7 +32,7 @@ porque todo o resto aponta para ela):
 | `prova-unifesp-2026.js` | UNIFESP-EPM 2026 (Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
-| `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 7 + 5 + 4 |
+| `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
 Total: **635 questões**, **501 cartões**, **216 assuntos** e **1 simulado**.
 
@@ -42,6 +42,14 @@ Esvazie **só** o `demonstracao.js` — deixe as três listas como `[]`. A
 plataforma abre limpa, sem contas de teste, sem comentários inventados e sem
 os agradecimentos de exemplo, e não perde questão, cartão nem calendário. Os
 outros dez arquivos continuam valendo.
+
+As contas de teste já estão no mínimo: **uma** de administrador (a da
+coordenação que mantém a plataforma) mais professor, residente e aluno, que
+existem para conferir como cada papel enxerga as telas. Na tela de entrada, o
+único acesso rápido oferecido a quem chega é o de **aluno** — os outros três
+entram por e-mail e senha. Antes de publicar, troque pelo menos a senha da
+conta de administrador (Perfil > Mudar a senha) ou apague-a e use a conta da
+nuvem, que é a de verdade.
 
 Para conferir o que o navegador carregou de verdade, entre como administrador
 e vá em **Configurações > Arquivos de conteúdo**: a tela lista arquivo por
@@ -58,6 +66,12 @@ Do mais fácil ao mais trabalhoso:
    - **Admin > Central de Provas** — sobe uma prova inteira em lotes (1–25,
      26–50…), com duas ou mais pessoas trabalhando ao mesmo tempo, conferindo
      cada lote antes de publicar.
+   - **Admin > Blocos de Estudo** — edita a sequência de cada ano: adiciona e
+     exclui blocos, muda a ordem pelas setas (o conteúdo troca de janela de
+     data e o rodízio inteiro anda junto), escreve a letra da turma que começa
+     em cada bloco e, em **Virada de ano letivo**, desloca o calendário todo
+     informando só a data de início do primeiro bloco — a duração de cada
+     bloco e os intervalos entre eles são preservados.
    - **Admin > Blocos de Estudo > Exportar calendário** — baixa um
      `calendario.js` pronto, com a sequência de todos os anos como está
      naquele navegador.

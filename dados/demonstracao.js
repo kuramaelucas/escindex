@@ -10,19 +10,26 @@
    de quem abrir o arquivo. Conta de verdade é a da nuvem (ver nuvem/LEIA-ME.md),
    com senha guardada no servidor.
 
+   As contas de teste foram reduzidas ao mínimo: UMA de administrador (a da
+   coordenação que mantém a plataforma) mais professor, residente e aluno,
+   que existem só para conferir como cada papel enxerga as telas. As contas
+   extras de administrador (coordenação e moderador) e a segunda aluna de
+   exemplo saíram. Na tela de entrada, o único acesso rápido oferecido ao
+   público é o de ALUNO — os outros três entram por e-mail e senha.
+
    Este arquivo é CONTEÚDO, não código: ele só entrega dados para a
    plataforma. Quem carrega é a linha <script src="dados/demonstracao.js"></script>
    do index.html, que roda antes do código. Ver dados/LEIA-ME.md.
    ========================================================================== */
 window.EscDados.registrarDemonstracao("demonstracao", {
   usuarios: [
-    { id: "u-admin", nome: "Ana Beatriz (Coordenação)", email: "admin@esc.demo", matricula: "ADM001", senha: "admin123", papel: "admin", nivelAdmin: "master", status: "aprovado", criadoEm: "2026-01-10" },
-    { id: "u-admin-coord", nome: "Paulo Menezes (Coordenação de Curso)", email: "coordenacao@esc.demo", matricula: "ADM002", senha: "admin123", papel: "admin", nivelAdmin: "coordenacao", status: "aprovado", criadoEm: "2026-01-10" },
-    { id: "u-admin-mod", nome: "Larissa Antunes (Moderação)", email: "moderador@esc.demo", matricula: "ADM003", senha: "admin123", papel: "admin", nivelAdmin: "moderador", status: "aprovado", criadoEm: "2026-01-10" },
+    /* A única conta de administrador. É o administrador máster da plataforma —
+       troque nome, e-mail e senha por dados reais antes de publicar, ou entre
+       pela conta da nuvem, que é a de verdade. */
+    { id: "u-admin", nome: "Coordenação do Esc", email: "admin@esc.demo", matricula: "ADM001", senha: "admin123", papel: "admin", nivelAdmin: "master", status: "aprovado", criadoEm: "2026-01-10" },
     { id: "u-prof", nome: "Dr. Ricardo Nakamura", email: "professor@esc.demo", matricula: "PROF001", senha: "prof123", papel: "professor", status: "aprovado", criadoEm: "2026-01-10" },
     { id: "u-res", nome: "Dra. Juliana Prado (R2)", email: "residente@esc.demo", matricula: "RES001", senha: "res123", papel: "residente", status: "aprovado", criadoEm: "2026-01-12" },
     { id: "u-aluno1", nome: "Marcos Vinícius Silva", email: "aluno@esc.demo", matricula: "2026001234", senha: "aluno123", papel: "aluno", status: "aprovado", blocoAtualId: "bloco-6", metaQuestoesDia: 30, criadoEm: "2026-02-01" },
-    { id: "u-aluno2", nome: "Camila Ferreira Torres", email: "camila.torres@esc.demo", matricula: "2026005678", senha: "aluno123", papel: "aluno", status: "pendente", blocoAtualId: "bloco-6", criadoEm: "2026-09-14" },
   ],
   livroOuro: [
     { id:"lo-1", nome:"Turma de Medicina 2025", tipo:"doacao", valor:"R$ 1.200", descricao:"Rifa da turma para custear o domínio e a hospedagem do primeiro ano da plataforma.", mensagem:"Que sirva para quem vem depois da gente.", data:"2026-01-15", destaque:true },
