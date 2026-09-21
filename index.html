@@ -1171,7 +1171,7 @@ function dbPadrao(){
     },
     // nuvem (seção 2-C): a fila do que ainda não subiu e até onde já baixamos
     filaNuvem: [],
-    nuvem: { contaId:null, ultimaSyncEm:null, marcas:{} },
+    nuvem: { contaId:null, ultimaSyncEm:null, marcas:{}, recusados:[] },
     versao: 2,
   };
 }
@@ -1280,8 +1280,9 @@ function loadState(){
     // nuvem: a fila de envio e as marcas de "até onde já baixei" nascem
     // vazias em quem ainda não tinha conta (ver seção 2-C)
     if(!Array.isArray(db.filaNuvem)) db.filaNuvem = [];
-    if(!db.nuvem) db.nuvem = { contaId:null, ultimaSyncEm:null, marcas:{} };
+    if(!db.nuvem) db.nuvem = { contaId:null, ultimaSyncEm:null, marcas:{}, recusados:[] };
     if(!db.nuvem.marcas) db.nuvem.marcas = {};
+    if(!Array.isArray(db.nuvem.recusados)) db.nuvem.recusados = [];
   }catch(e){
     console.error("Falha ao carregar dados salvos, reiniciando com dados de demonstração.", e);
     db = dbPadrao();
@@ -1425,7 +1426,7 @@ const CHAVE_SESSAO_NUVEM = "esc_nuvem_sessao";
 /* A sessão da nuvem (quem está logado e os tokens) NÃO fica no db: é do
    navegador, não da conta, e some quando a pessoa sai. */
 let nuvemSessao = null;
-let nuvemEstado = { sincronizando:false, ultimoErro:null, ultimaSyncEm:null };
+let nuvemEstado = { sincronizando:false, ultimoErro:null, ultimaSyncEm:null, sessaoExpirada:false };
 let _nuvemTimer = null;
 let _nuvemDentroDaSync = false;
 
@@ -1466,9 +1467,24 @@ async function nuvemChamar(caminho, opcoes = {}){
     erro.semRede = true;
     throw erro;
   }
-  if(resposta.status === 401 && nuvemSessao && nuvemSessao.refresh && !opcoes.jaRenovou){
+  // 401 só quer dizer "token vencido" quando a chamada levou um token. As
+  // chamadas sem token (o teste da nuvem, o próprio refresh) recebem 401 de
+  // propósito — o banco está protegido — e não devem derrubar a sessão.
+  if(resposta.status === 401 && !opcoes.semToken && nuvemSessao && nuvemSessao.refresh && !opcoes.jaRenovou){
     const renovou = await nuvemRenovarSessao();
     if(renovou) return nuvemChamar(caminho, Object.assign({}, opcoes, {jaRenovou:true}));
+    // O token venceu e o refresh não valeu mais (acontece depois de muitos
+    // dias fora, ou quando outra aba renovou primeiro). Sem avisar, todas as
+    // chamadas seguintes falhariam com "sem permissão" para sempre e a fila
+    // nunca desceria. A fila fica guardada: basta entrar de novo.
+    nuvemEstado.sessaoExpirada = true;
+    const expirou = new Error("Sua sessão na nuvem expirou. Entre de novo com e-mail e senha — nada do que você fez foi perdido.");
+    expirou.status = 401;
+    expirou.sessaoExpirada = true;
+    throw expirou;
+  }
+  if(resposta.status === 401 && !opcoes.semToken && nuvemSessao && nuvemSessao.token && !nuvemSessao.refresh){
+    nuvemEstado.sessaoExpirada = true;
   }
   const texto = await resposta.text();
   if(!resposta.ok){
@@ -1530,6 +1546,8 @@ async function nuvemEntrar(email, senha){
     body: JSON.stringify({ email: email, password: senha }),
   });
   if(!r || !r.access_token) throw new Error("O servidor não devolveu uma sessão válida.");
+  nuvemEstado.sessaoExpirada = false;
+  nuvemEstado.ultimoErro = null;
   nuvemGuardarSessao({
     token: r.access_token,
     refresh: r.refresh_token,
@@ -1542,6 +1560,7 @@ async function nuvemEntrar(email, senha){
 function nuvemSair(){
   nuvemGuardarSessao(null);
   nuvemEstado.ultimoErro = null;
+  nuvemEstado.sessaoExpirada = false;
 }
 
 /* O perfil é o cadastro da pessoa (nome, papel, status) — mora na nuvem e é
@@ -1822,6 +1841,12 @@ function nuvemRegistrar(o){
 /* ---------------------------- sincronizar --------------------------------- */
 async function nuvemSincronizar(opcoes = {}){
   if(!nuvemConectado() || nuvemEstado.sincronizando) return false;
+  // sessão vencida: insistir só geraria erro atrás de erro. A fila fica
+  // guardada e sobe quando a pessoa entrar de novo.
+  if(nuvemEstado.sessaoExpirada){
+    nuvemEstado.ultimoErro = "Sua sessão expirou. Entre de novo para sincronizar — nada foi perdido.";
+    return false;
+  }
   if(typeof navigator !== "undefined" && navigator.onLine === false){
     nuvemEstado.ultimoErro = "Sem conexão — a fila sobe assim que a internet voltar.";
     return false;
@@ -1832,8 +1857,13 @@ async function nuvemSincronizar(opcoes = {}){
   nuvemEstado.ultimoErro = null;
   try{
     nuvemConferirPerfil();
-    await nuvemEnviarFila();
+    const recusados = await nuvemEnviarFila();
     await nuvemReceberMudancas();
+    if(recusados){
+      nuvemEstado.ultimoErro = recusados + (recusados === 1
+        ? " registro foi recusado pela nuvem (veja o motivo abaixo). O resto subiu."
+        : " registros foram recusados pela nuvem (veja os motivos abaixo). O resto subiu.");
+    }
     nuvemEstado.ultimaSyncEm = new Date().toISOString();
     db.nuvem.ultimaSyncEm = nuvemEstado.ultimaSyncEm;
     saveState();
@@ -1854,27 +1884,81 @@ async function nuvemSincronizar(opcoes = {}){
   }
 }
 
+/* Um erro de rede, de sessão ou do servidor é passageiro: a fila espera e
+   tenta de novo. Um erro de conteúdo (o servidor entendeu e recusou) não
+   melhora com o tempo — insistir nele travaria a fila para sempre. */
+function nuvemErroPassageiro(e){
+  if(e.semRede) return true;                 // sem internet
+  if(e.sessaoExpirada) return true;          // precisa entrar de novo
+  if(e.status === 401 || e.status === 403) return true;  // token ou permissão
+  if(e.status === 429) return true;          // servidor pedindo calma
+  if(e.status >= 500) return true;           // servidor com problema
+  return false;
+}
+
+async function nuvemPostarLote(tabela, desc, registros){
+  const juntar = desc.tipo === "registro" ? "resolution=ignore-duplicates" : "resolution=merge-duplicates";
+  await nuvemChamar("/rest/v1/" + tabela, {
+    method: "POST",
+    headers: { "Prefer": juntar + ",return=minimal" },
+    body: JSON.stringify(registros),
+  });
+}
+
+function nuvemTirarDaFila(ops){
+  const fora = new Set(ops);
+  db.filaNuvem = db.filaNuvem.filter(op => !fora.has(op));
+}
+
+/* Registro que a nuvem recusou de vez. Fica guardado (no máximo 50, os mais
+   recentes) para a pessoa e a coordenação verem o motivo em Perfil, em vez
+   de a fila só ficar parada sem explicação. */
+function nuvemGuardarRecusado(tabela, op, motivo){
+  if(!Array.isArray(db.nuvem.recusados)) db.nuvem.recusados = [];
+  db.nuvem.recusados.unshift({
+    tabela, chave: op.chave, motivo: motivo || "recusado pela nuvem",
+    em: new Date().toISOString(),
+  });
+  db.nuvem.recusados = db.nuvem.recusados.slice(0, 50);
+}
+
+/* Sobe a fila. Devolve quantos registros a nuvem recusou de vez.
+   Um registro ruim (uma coluna que o banco não conhece, um id repetido de
+   outra pessoa) não pode impedir todo o resto de subir nem o download de
+   acontecer: por isso, quando um lote é recusado, ele é tentado de novo um a
+   um e só o registro culpado sai da fila, com o motivo guardado. */
 async function nuvemEnviarFila(){
-  if(!db.filaNuvem || !db.filaNuvem.length) return;
+  if(!db.filaNuvem || !db.filaNuvem.length) return 0;
   // uma chamada por tabela, em lotes, mantendo a ordem em que aconteceram
   const tabelas = [];
   db.filaNuvem.forEach(op => { if(!tabelas.includes(op.tabela)) tabelas.push(op.tabela); });
+  let recusados = 0;
   for(const tabela of tabelas){
     const desc = NUVEM_TABELAS[tabela];
+    if(!desc){ nuvemTirarDaFila(db.filaNuvem.filter(op => op.tabela === tabela)); continue; }
     const ops = db.filaNuvem.filter(op => op.tabela === tabela);
-    const juntar = desc.tipo === "registro" ? "resolution=ignore-duplicates" : "resolution=merge-duplicates";
     for(let i = 0; i < ops.length; i += 200){
-      const lote = ops.slice(i, i + 200).map(op => op.registro);
-      await nuvemChamar("/rest/v1/" + tabela, {
-        method: "POST",
-        headers: { "Prefer": juntar + ",return=minimal" },
-        body: JSON.stringify(lote),
-      });
+      const lote = ops.slice(i, i + 200);
+      try{
+        await nuvemPostarLote(tabela, desc, lote.map(op => op.registro));
+        nuvemTirarDaFila(lote);              // só sai da fila o que o servidor confirmou
+      }catch(e){
+        if(nuvemErroPassageiro(e)) throw e;  // a fila inteira espera a próxima vez
+        for(const op of lote){
+          try{
+            await nuvemPostarLote(tabela, desc, [op.registro]);
+            nuvemTirarDaFila([op]);
+          }catch(e2){
+            if(nuvemErroPassageiro(e2)) throw e2;
+            nuvemGuardarRecusado(tabela, op, e2.message);
+            nuvemTirarDaFila([op]);
+            recusados++;
+          }
+        }
+      }
     }
-    // só sai da fila o que o servidor confirmou
-    const enviadas = new Set(ops);
-    db.filaNuvem = db.filaNuvem.filter(op => !enviadas.has(op));
   }
+  return recusados;
 }
 
 async function nuvemReceberMudancas(){
@@ -2041,7 +2125,7 @@ function nuvemSairDaConta(){
     toast("Você saiu da conta. Este navegador continua com os dados guardados.");
   };
   if(pendentes > 0){
-    abrirModal("Sair com envios pendentes", `
+    abrirModalTitulado("Sair com envios pendentes", `
       <p class="text-sm">Ainda há <strong>${pendentes}</strong> ${pendentes===1?"alteração":"alterações"} esperando para subir para a nuvem. Se você sair agora, elas ficam guardadas neste navegador e sobem quando você entrar de novo, deste mesmo aparelho.</p>
       <div class="flex gap-1 mt-3">
         <button class="btn btn-primary" onclick="fecharModal(); nuvemSincronizar().then(()=>{ nuvemSair(); limparEstadoDasTelas(); state.usuarioAtualId=null; navigate('landing'); })">Sincronizar e sair</button>
@@ -2058,10 +2142,20 @@ function nuvemSairForcado(){
   navigate("landing");
 }
 
+/* Sessão vencida: sai da conta mas deixa a fila intacta e leva direto para a
+   tela de entrada, que é o que a pessoa precisa fazer. */
+function nuvemEntrarDeNovo(){
+  nuvemSair();
+  limparEstadoDasTelas();
+  state.usuarioAtualId = null;
+  navigate("login");
+  toast("Entre de novo com e-mail e senha. O que estava na fila continua guardado.");
+}
+
 function abrirModalTrazerDadosLocais(){
   const locais = nuvemUsuariosLocaisComDados();
   if(!locais.length) return;
-  abrirModal("Trazer para a conta o que já foi estudado aqui", `
+  abrirModalTitulado("Trazer para a conta o que já foi estudado aqui", `
     <p class="text-sm">Este navegador tem estudo guardado fora da conta — de antes de a nuvem existir, ou do acesso de demonstração. Dá para trazer tudo para a sua conta agora: as respostas, a repetição espaçada, os favoritos e os cartões pessoais passam a ser seus e sobem para a nuvem.</p>
     <p class="text-xs muted mt-1">Isto não apaga nada e não duplica: cada registro mantém o mesmo identificador que já tinha.</p>
     <div class="mt-2">
@@ -2148,8 +2242,124 @@ function renderCadastrosPendentesDaNuvem(){
 }
 
 /* ---------------------------- o que a pessoa vê --------------------------- */
+
+/* Os registros que a nuvem recusou de vez. Aparecem com o motivo: sem isso, a
+   fila simplesmente não baixava e ninguém sabia por quê. */
+function nuvemRecusadosHtml(){
+  const lista = (db.nuvem && db.nuvem.recusados) || [];
+  if(!lista.length) return "";
+  return `<div class="card-flat mt-2">
+    <div class="text-sm" style="font-weight:600;color:var(--amber)">${lista.length} ${lista.length===1?"registro recusado":"registros recusados"} pela nuvem</div>
+    <p class="text-xs muted">O resto do seu estudo subiu normalmente. Mostre esta lista à coordenação: quase sempre é o <code>esquema.sql</code> desatualizado no Supabase.</p>
+    ${lista.slice(0,5).map(r => `<div class="text-xs muted mt-1">${escapeHtml(r.tabela)} · ${escapeHtml(r.motivo)}</div>`).join("")}
+    ${lista.length > 5 ? `<div class="text-xs muted mt-1">…e mais ${lista.length-5}.</div>` : ""}
+    <button class="btn btn-secondary btn-sm mt-2" onclick="nuvemLimparRecusados()">Limpar esta lista</button>
+  </div>`;
+}
+
+function nuvemLimparRecusados(){
+  db.nuvem.recusados = [];
+  saveState();
+  toast("Lista limpa.");
+  render();
+}
+
+/* ---------------------------- testar a nuvem -----------------------------
+   "Não consigo sincronizar" tem várias causas bem diferentes — projeto do
+   Supabase pausado por inatividade, esquema.sql não rodado, endereço errado,
+   sessão vencida, internet caída — e todas apareciam como a mesma frase no
+   cartão. Este teste separa uma da outra, na ordem em que elas acontecem, e
+   diz o que fazer em cada caso (é a tabela do nuvem/LEIA-ME.md, aqui dentro
+   da plataforma). */
+async function nuvemDiagnosticar(){
+  if(!nuvemLigada()){
+    abrirModalTitulado("Testar a nuvem", `<p class="text-sm">A nuvem não está configurada neste arquivo: <code>CONFIG.nuvem.url</code> e <code>CONFIG.nuvem.chaveAnon</code> estão vazios. O passo a passo está em <code>nuvem/LEIA-ME.md</code>.</p>
+      <button class="btn btn-secondary mt-2" onclick="fecharModal()">Fechar</button>`);
+    return;
+  }
+  const linhas = [];
+  const anotar = (ok, texto, conselho) => linhas.push({ok, texto, conselho});
+
+  // 1. este aparelho tem internet?
+  const online = !(typeof navigator !== "undefined" && navigator.onLine === false);
+  anotar(online, online ? "Este aparelho está conectado à internet." : "Este aparelho está sem internet.",
+      online ? "" : "A fila sobe sozinha quando a conexão voltar — pode continuar estudando.");
+
+  // 2. o projeto do Supabase responde e as tabelas existem?
+  let projetoOk = false;
+  if(online){
+    try{
+      await nuvemChamar("/rest/v1/perfis?select=id&limit=1", {semToken:true});
+      projetoOk = true;
+      anotar(true, "O projeto da nuvem respondeu e a tabela perfis existe.", "");
+    }catch(e){
+      if(e.status === 401 || e.status === 403){
+        projetoOk = true;
+        anotar(true, "O projeto da nuvem respondeu e as tabelas estão protegidas (é o esperado).", "");
+      }else if(e.status === 404){
+        anotar(false, "O projeto respondeu, mas a tabela perfis não existe.",
+            "Falta rodar o nuvem/esquema.sql no SQL Editor do Supabase (copie o arquivo inteiro).");
+      }else if(e.semRede){
+        anotar(false, "Não houve resposta do endereço da nuvem.",
+            "Projeto do Supabase pausado por inatividade (o plano gratuito pausa depois de uma semana — basta reativar no painel), endereço errado em CONFIG.nuvem.url, ou a internet deste aparelho.");
+      }else{
+        anotar(false, "O projeto respondeu com erro: " + e.message, "");
+      }
+    }
+  }
+
+  // 3. a sessão desta pessoa ainda vale?
+  if(projetoOk){
+    if(!nuvemConectado()){
+      anotar(false, "Você não está em uma conta da nuvem neste navegador.",
+          "Saia e entre com e-mail e senha para o estudo subir.");
+    }else if(nuvemEstado.sessaoExpirada){
+      anotar(false, "Sua sessão expirou.", "Entre de novo com e-mail e senha. A fila continua guardada.");
+    }else{
+      try{
+        const perfil = await nuvemBuscarPerfil();
+        if(perfil && perfil.status === "aprovado"){
+          anotar(true, "Sua conta está aprovada e a nuvem aceita ler e escrever no seu estudo.", "");
+        }else if(perfil){
+          anotar(false, "Seu cadastro está como \"" + perfil.status + "\".",
+              "Só cadastro aprovado sincroniza — peça à coordenação em Aprovar Cadastros.");
+        }else{
+          anotar(false, "Sua conta existe, mas não tem perfil na nuvem.",
+              "O esquema.sql foi rodado depois de a conta ser criada. Rode-o e crie a conta de novo, ou insira o perfil à mão.");
+        }
+      }catch(e){
+        anotar(false, "A nuvem recusou a leitura do seu perfil: " + e.message,
+            e.status === 401 || e.status === 403
+              ? "Sessão vencida ou alguma tabela sem política de RLS — entre de novo e, se persistir, rode o esquema.sql por inteiro."
+              : "");
+      }
+    }
+  }
+
+  // 4. o que está esperando para subir
+  const p = nuvemPendentes();
+  const rec = ((db.nuvem && db.nuvem.recusados) || []).length;
+  anotar(p === 0, p === 0 ? "Não há nada esperando na fila." : p + (p===1 ? " alteração esperando para subir." : " alterações esperando para subir."),
+      p === 0 ? "" : "Clique em Sincronizar agora; se o número não baixar, o motivo é um dos itens acima.");
+  if(rec) anotar(false, rec + (rec===1 ? " registro recusado de vez pela nuvem." : " registros recusados de vez pela nuvem."),
+               "Veja os motivos no cartão de sincronização, aqui no Perfil.");
+
+  abrirModalTitulado("Testar a nuvem", `
+    <p class="text-xs muted">Endereço: <code>${escapeHtml(CONFIG.nuvem.url)}</code></p>
+    <div class="mt-2">
+      ${linhas.map(l => `
+        <div class="card-flat mb-1">
+          <div class="text-sm" style="color:${l.ok ? "var(--accent)" : "var(--amber)"};font-weight:600">${l.ok ? "✓" : "!"} ${escapeHtml(l.texto)}</div>
+          ${l.conselho ? `<div class="text-xs muted mt-1">${escapeHtml(l.conselho)}</div>` : ""}
+        </div>`).join("")}
+    </div>
+    <p class="text-xs muted">A tabela completa de "quando algo não funciona" está em <code>nuvem/LEIA-ME.md</code>.</p>
+    <button class="btn btn-secondary mt-2" onclick="fecharModal()">Fechar</button>`, "lg");
+}
+
 function nuvemResumoStatus(){
   if(!nuvemLigada()) return { rotulo:"Só neste navegador", detalhe:"A nuvem não está configurada.", cor:"muted", icone:"database" };
+  if(nuvemEstado.sessaoExpirada) return { rotulo:"Sessão expirada", detalhe:"Entre de novo com e-mail e senha. A fila está guardada — nada foi perdido.", cor:"amber", icone:"alert" };
   if(!nuvemConectado()) return { rotulo:"Fora da conta", detalhe:"Entre para sincronizar entre aparelhos.", cor:"muted", icone:"database" };
   if(nuvemEstado.sincronizando) return { rotulo:"Sincronizando…", detalhe:"Enviando e recebendo as novidades.", cor:"accent", icone:"refresh" };
   if(nuvemEstado.ultimoErro) return { rotulo:"Pendente", detalhe:nuvemEstado.ultimoErro, cor:"amber", icone:"alert" };
@@ -2182,15 +2392,23 @@ function renderCardNuvem(){
       <p class="text-sm muted">Conectado como <strong>${escapeHtml((nuvemSessao && nuvemSessao.email) || "")}</strong>. Seu estudo sobe para a nuvem e desce em qualquer aparelho onde você entrar com esta conta.</p>
       <p class="text-sm mt-1" style="color:${corTexto};font-weight:600">${escapeHtml(s.rotulo)}</p>
       <p class="text-xs muted">${escapeHtml(s.detalhe)}</p>
+      ${nuvemEstado.sessaoExpirada ? `
+        <button class="btn btn-primary btn-sm mt-2" onclick="nuvemEntrarDeNovo()">${iconeSvg("logout")} Entrar de novo</button>
+      ` : ""}
+      ${nuvemRecusadosHtml()}
       <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
         <button class="btn btn-secondary btn-sm" onclick="nuvemSincronizar({forcarRedesenho:true})">${iconeSvg("refresh")} Sincronizar agora</button>
+        <button class="btn btn-secondary btn-sm" onclick="nuvemDiagnosticar()">${iconeSvg("alert")} Testar a nuvem</button>
         ${locais.length ? `<button class="btn btn-secondary btn-sm" onclick="abrirModalTrazerDadosLocais()">${iconeSvg("upload")} Trazer estudo deste navegador</button>` : ""}
         <button class="btn btn-secondary btn-sm" onclick="nuvemSairDaConta()">${iconeSvg("logout")} Sair da conta</button>
       </div>
       <p class="text-xs muted mt-2">Sem internet a plataforma continua funcionando: o que você fizer fica numa fila e sobe sozinho quando a conexão voltar.</p>
     ` : `
       <p class="text-sm muted">A nuvem está configurada, mas você entrou sem conta — o estudo fica só neste navegador. Saia e entre com e-mail e senha para sincronizar.</p>
-      <button class="btn btn-secondary btn-sm mt-2" onclick="fazerLogout()">Ir para a tela de entrada</button>
+      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="fazerLogout()">Ir para a tela de entrada</button>
+        <button class="btn btn-secondary btn-sm" onclick="nuvemDiagnosticar()">${iconeSvg("alert")} Testar a nuvem</button>
+      </div>
     `}
   </div>`;
 }
@@ -2333,6 +2551,20 @@ function abrirModal(innerHtml, tamanho){
 function fecharModal(){
   const el = document.getElementById("modalOverlayAtivo");
   if(el) el.remove();
+}
+
+/* Janela com cabeçalho padrão. Existe porque abrirModal recebe o HTML
+   inteiro num argumento só: quem chamava abrirModal("Título", corpo) via a
+   janela abrir com o título e NADA do corpo — o segundo argumento ia para o
+   lugar do tamanho e o corpo era descartado. Era o que acontecia ao sair da
+   conta com fila pendente (a janela aparecia sem os botões "Sincronizar e
+   sair" / "Sair mesmo assim") e ao trazer para a conta o estudo guardado
+   neste navegador. */
+function abrirModalTitulado(titulo, corpoHtml, tamanho){
+  abrirModal(
+    '<div class="modal-header"><h3>' + escapeHtml(titulo) + '</h3>' +
+    '<button class="icon-btn" onclick="fecharModal()">' + iconeSvg("x") + '</button></div>' +
+    (corpoHtml || ""), tamanho);
 }
 
 function copiarTexto(texto, mensagem){
@@ -4111,7 +4343,16 @@ function tentarLogin(){
   const senha = document.getElementById("loginSenha").value;
   // Com a nuvem ligada, quem confere a senha é o servidor (ela nem existe
   // neste arquivo). Sem nuvem, continua a conferência local de sempre.
-  if(nuvemLigada() && identificador.includes("@")){
+  // Exceção: as contas de demonstração (admin@esc.demo e companhia) são
+  // locais e continuam servindo para testar sem criar conta — elas têm "@" e
+  // iam para a nuvem, onde não existem, voltando "E-mail ou senha
+  // incorretos." mesmo com a senha certa. A exceção pede e-mail E senha de
+  // uma conta local: assim, quem tem o mesmo e-mail cadastrado aqui e na
+  // nuvem continua entrando pela nuvem, como deve ser.
+  const id = (identificador||"").trim().toLowerCase();
+  const contaLocal = db.usuarios.find(u => !u.daNuvem && u.senha === senha &&
+    ((u.email||"").toLowerCase() === id || (u.matricula||"").toLowerCase() === id));
+  if(nuvemLigada() && identificador.includes("@") && !contaLocal){
     const botao = document.querySelector("#loginSenha") && document.querySelector(".auth-card .btn-primary");
     if(botao){ botao.disabled = true; botao.textContent = "Entrando…"; }
     nuvemEntrarPelaTela(identificador.trim(), senha).then(ok => {
