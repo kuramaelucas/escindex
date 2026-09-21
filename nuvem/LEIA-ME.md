@@ -173,6 +173,27 @@ avisando exatamente isso.
 
 ## Quando algo não funciona
 
+O caminho mais curto é **Perfil > Conta e sincronização > Testar a nuvem**.
+Esse teste percorre, nesta ordem, as causas possíveis — internet deste
+aparelho, projeto do Supabase de pé, tabelas criadas, sessão válida, cadastro
+aprovado, fila — e diz em português o que fazer em cada caso. Ele funciona
+mesmo sem estar em uma conta, e é o primeiro lugar a olhar quando alguém diz
+que não está sincronizando.
+
+Três coisas que o cartão de sincronização mostra e valem uma explicação:
+
+- **Sessão expirada.** Depois de muitos dias sem abrir o site, o token vence e
+  não consegue mais se renovar. Antes, todas as chamadas seguintes falhavam
+  com "sem permissão" e a fila nunca subia; agora o cartão diz *Sessão
+  expirada* e oferece **Entrar de novo**. A fila fica guardada: nada se perde.
+- **Registros recusados.** Se o banco recusa um registro de vez (quase sempre
+  `esquema.sql` desatualizado no Supabase), só aquele registro sai da fila e
+  fica listado com o motivo, no Perfil — o resto do estudo continua subindo e
+  descendo. Um registro ruim não trava mais a sincronização inteira.
+- **Contas de demonstração.** `admin@esc.demo` e companhia continuam sendo
+  locais, mesmo com a nuvem ligada: quem entra com elas não sincroniza nada,
+  e o cartão avisa que o estudo ficou só neste navegador.
+
 | O que aparece | O que costuma ser |
 | --- | --- |
 | "E-mail ou senha incorretos." | Senha errada, ou a conta ainda não existe nesse projeto do Supabase. |
@@ -182,6 +203,8 @@ avisando exatamente isso.
 | "Endereço da nuvem não encontrado" | `CONFIG.nuvem.url` está com erro de digitação. |
 | "Sem permissão para esta operação na nuvem." | Alguma tabela ficou sem política de RLS — rode o `esquema.sql` de novo por inteiro. |
 | "Pendente" e a fila não baixa | Veja o erro no cartão de *Perfil*; quase sempre é internet, ou o projeto do Supabase pausado por inatividade (o plano gratuito pausa depois de uma semana sem uso — basta reativar no painel). |
+| "Sessão expirada" | O token venceu e não renovou. Clique em **Entrar de novo** e entre com e-mail e senha; a fila sobe em seguida. |
+| "N registros recusados pela nuvem" | O banco entendeu e recusou aqueles registros. Rode o `esquema.sql` inteiro de novo (é o caso comum: banco criado por uma versão anterior) e mostre os motivos listados no Perfil à coordenação. |
 
 Um teste rápido, fora da plataforma, para saber se o projeto está de pé e com
 as tabelas criadas (troque a chave se ela mudar):
