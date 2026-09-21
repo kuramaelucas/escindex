@@ -2070,19 +2070,23 @@ function nuvemAdotarDadosLocais(idLocal){
 }
 
 /* ---------------------------- entrada e saída pela tela ------------------- */
-async function nuvemEntrarPelaTela(email, senha){
+/* Devolve {ok:true} quando entrou, ou {ok:false, local:true} quando a nuvem
+   recusou de um jeito que uma conta local ainda pode resolver (credenciais
+   que não existem lá, ou nuvem fora do ar). Com "quieto", esses dois casos
+   não mostram aviso: quem chama tenta a conta local em seguida. */
+async function nuvemEntrarPelaTela(email, senha, opcoes = {}){
   try{
     await nuvemEntrar(email, senha);
     const perfil = await nuvemBuscarPerfil();
     if(!perfil){
       nuvemSair();
       toast("Conta sem perfil na nuvem. Peça à coordenação para verificar o cadastro.", "err");
-      return false;
+      return { ok:false, local:false };
     }
     const u = nuvemAplicarPerfilLocal(perfil);
-    if(u.status === "pendente"){ nuvemSair(); toast("Seu cadastro ainda está aguardando aprovação da coordenação.", "err"); saveState(); return false; }
-    if(u.status === "rejeitado"){ nuvemSair(); toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); saveState(); return false; }
-    if(u.status === "inativo"){ nuvemSair(); toast("Sua conta está inativa. Fale com a coordenação.", "err"); saveState(); return false; }
+    if(u.status === "pendente"){ nuvemSair(); toast("Seu cadastro ainda está aguardando aprovação da coordenação.", "err"); saveState(); return { ok:false, local:false }; }
+    if(u.status === "rejeitado"){ nuvemSair(); toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); saveState(); return { ok:false, local:false }; }
+    if(u.status === "inativo"){ nuvemSair(); toast("Sua conta está inativa. Fale com a coordenação.", "err"); saveState(); return { ok:false, local:false }; }
     state.usuarioAtualId = u.id;
     db.nuvem.contaId = u.id;
     saveState();
@@ -2091,10 +2095,14 @@ async function nuvemEntrarPelaTela(email, senha){
     await nuvemSincronizar({silencioso:true, forcarRedesenho:true});
     const locais = nuvemUsuariosLocaisComDados();
     if(locais.length) abrirModalTrazerDadosLocais();
-    return true;
+    return { ok:true };
   }catch(e){
-    toast(e.message || "Não foi possível entrar.", "err");
-    return false;
+    // "esta conta não existe na nuvem" e "a nuvem não respondeu" são os dois
+    // casos em que uma conta local (demonstração, ou de antes da nuvem) ainda
+    // pode ser a certa.
+    const podeSerLocal = !!e.semRede || /incorretos/i.test(e.message || "");
+    if(!(opcoes.quieto && podeSerLocal)) toast(e.message || "Não foi possível entrar.", "err");
+    return { ok:false, local: podeSerLocal };
   }
 }
 
@@ -2311,8 +2319,11 @@ async function nuvemDiagnosticar(){
   // 3. a sessão desta pessoa ainda vale?
   if(projetoOk){
     if(!nuvemConectado()){
-      anotar(false, "Você não está em uma conta da nuvem neste navegador.",
-          "Saia e entre com e-mail e senha para o estudo subir.");
+      const atual = db.usuarios.find(u => u.id === state.usuarioAtualId);
+      const quem = atual ? ("Você está em \"" + (atual.nome || atual.id) + "\", que é uma conta só deste navegador (demonstração ou de antes da nuvem).")
+                         : "Você não está em nenhuma conta.";
+      anotar(false, quem + " Nada daqui sobe para a nuvem.",
+          "Saia e entre com o e-mail e a senha da sua conta da nuvem — é o único login que sincroniza. Se ainda não tem uma, use Criar conta; o cadastro precisa ser aprovado pela coordenação antes do primeiro acesso.");
     }else if(nuvemEstado.sessaoExpirada){
       anotar(false, "Sua sessão expirou.", "Entre de novo com e-mail e senha. A fila continua guardada.");
     }else{
@@ -3828,6 +3839,9 @@ function fazerLoginDemo(papel){
   const mapa = {admin:"u-admin", professor:"u-prof", residente:"u-res", aluno:"u-aluno1"};
   state.usuarioAtualId = mapa[papel];
   navigate("inicio");
+  // com a nuvem ligada, é fácil entrar por aqui sem perceber e depois
+  // estranhar que nada sincroniza — estes acessos são só deste navegador
+  if(nuvemLigada()) toast("Acesso de demonstração: o que você fizer aqui fica só neste navegador e não sobe para a nuvem.");
 }
 /* Sair limpa também o estado temporário das telas (filtros, páginas, texto
    colado ainda não importado). Sem isso, o rascunho de uma prova que uma
@@ -4343,20 +4357,27 @@ function tentarLogin(){
   const senha = document.getElementById("loginSenha").value;
   // Com a nuvem ligada, quem confere a senha é o servidor (ela nem existe
   // neste arquivo). Sem nuvem, continua a conferência local de sempre.
-  // Exceção: as contas de demonstração (admin@esc.demo e companhia) são
-  // locais e continuam servindo para testar sem criar conta — elas têm "@" e
-  // iam para a nuvem, onde não existem, voltando "E-mail ou senha
-  // incorretos." mesmo com a senha certa. A exceção pede e-mail E senha de
-  // uma conta local: assim, quem tem o mesmo e-mail cadastrado aqui e na
-  // nuvem continua entrando pela nuvem, como deve ser.
+  //
+  // A NUVEM VEM PRIMEIRO. Se a pessoa tem conta lá, é nela que ela precisa
+  // entrar — inclusive quando existe, neste mesmo navegador, uma conta local
+  // antiga com o mesmo e-mail e a mesma senha. Tentar a local antes fazia o
+  // login cair na conta local sem avisar, e a plataforma passava a dizer
+  // "você não está em uma conta da nuvem" com tudo o mais funcionando.
+  //
+  // As contas de demonstração (admin@esc.demo e companhia) e as locais de
+  // antes da nuvem continuam entrando: elas não existem na nuvem, a nuvem
+  // recusa, e a conferência local acontece logo em seguida, sem aviso
+  // intermediário. O mesmo vale se a nuvem não responder.
   const id = (identificador||"").trim().toLowerCase();
   const contaLocal = db.usuarios.find(u => !u.daNuvem && u.senha === senha &&
     ((u.email||"").toLowerCase() === id || (u.matricula||"").toLowerCase() === id));
-  if(nuvemLigada() && identificador.includes("@") && !contaLocal){
+  if(nuvemLigada() && identificador.includes("@")){
     const botao = document.querySelector("#loginSenha") && document.querySelector(".auth-card .btn-primary");
     if(botao){ botao.disabled = true; botao.textContent = "Entrando…"; }
-    nuvemEntrarPelaTela(identificador.trim(), senha).then(ok => {
-      if(!ok && botao){ botao.disabled = false; botao.textContent = "Entrar"; }
+    nuvemEntrarPelaTela(identificador.trim(), senha, {quieto: !!contaLocal}).then(r => {
+      if(r && r.ok) return;
+      if(botao){ botao.disabled = false; botao.textContent = "Entrar"; }
+      if(contaLocal && r && r.local) fazerLogin(identificador, senha);
     });
     return;
   }
