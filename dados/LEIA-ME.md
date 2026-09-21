@@ -52,14 +52,20 @@ arquivo, com a contagem de itens.
 Do mais fácil ao mais trabalhoso:
 
 1. **Pela própria plataforma** (recomendado, e não exige mexer em arquivo
-   nenhum):
+   nenhum, exceto no último passo):
    - **Admin > Importar Questões** — cola um bloco de questões já formatado e
      publica.
    - **Admin > Central de Provas** — sobe uma prova inteira em lotes (1–25,
      26–50…), com duas ou mais pessoas trabalhando ao mesmo tempo, conferindo
      cada lote antes de publicar.
-   O que entra por aí fica salvo **no navegador de quem publicou**. Para virar
-   conteúdo de todo mundo, exporte e traga para esta pasta (caminho 2 ou 3).
+   - **Admin > Blocos de Estudo > Exportar calendário** — baixa um
+     `calendario.js` pronto, com a sequência de todos os anos como está
+     naquele navegador.
+   O que entra por aí fica salvo **no navegador de quem publicou ou editou**.
+   Para virar conteúdo de todo mundo, é preciso trazer para esta pasta: troque
+   o arquivo correspondente (`calendario.js` no caso do botão acima) pelo que
+   foi exportado, ou siga o caminho 2 ou 3 para questões/taxonomia/etc., e
+   publique o site de novo.
 2. **Acrescentar itens a um arquivo que já existe aqui.** Abra o arquivo, copie
    o molde abaixo e acrescente antes do `]);` do fim.
 3. **Criar um arquivo novo** aqui e registrá-lo com mais uma linha
