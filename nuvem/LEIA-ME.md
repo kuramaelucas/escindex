@@ -216,6 +216,35 @@ Três coisas que o cartão de sincronização mostra e valem uma explicação:
 | "Pendente" e a fila não baixa | Veja o erro no cartão de *Perfil*; quase sempre é internet, ou o projeto do Supabase pausado por inatividade (o plano gratuito pausa depois de uma semana sem uso — basta reativar no painel). |
 | "Sessão expirada" | O token venceu e não renovou. Clique em **Entrar de novo** e entre com e-mail e senha; a fila sobe em seguida. |
 | "N registros recusados pela nuvem" | O banco entendeu e recusou aqueles registros. Rode o `esquema.sql` inteiro de novo (é o caso comum: banco criado por uma versão anterior) e mostre os motivos listados no Perfil à coordenação. |
+| "A nuvem não permitiu excluir este cadastro" | A política `perfis_excluir` é nova. Rode o `esquema.sql` inteiro de novo no SQL Editor e tente outra vez. Enquanto isso, **Inativar** já bloqueia a entrada. |
+
+### Onde vejo quem eu aprovei
+
+Em **Admin > Usuários**, no cartão *Cadastros da nuvem*. A tela *Aprovar
+Cadastros* mostra só quem está **pendente** — aprovar alguém tira a pessoa
+dali de propósito, e a partir daí ela aparece em Usuários, junto com o resto
+da turma, com o papel, o nível e o status editáveis. Ali também ficam os
+botões de **Inativar** (tira o acesso, guarda o estudo) e **Excluir** (apaga
+o cadastro; não tem volta).
+
+Ler a lista inteira é permissão de professor e administrador, pela política
+`perfis_ler`. Um aluno logado enxerga só o próprio perfil — é o RLS
+funcionando, não um defeito.
+
+### Excluir de verdade uma pessoa
+
+Excluir pela plataforma apaga a linha de `perfis`, e é isso que corta a
+entrada: sem cadastro, o site recusa o login mesmo com e-mail e senha
+certos. Duas coisas continuam no projeto, porque removê-las exige a chave
+`service_role`, que nunca entra num arquivo publicado:
+
+- a **conta de autenticação** (`auth.users`);
+- as **respostas e o estudo** que a pessoa já tinha sincronizado — essas
+  tabelas se ligam à conta, não ao cadastro.
+
+Para apagar tudo, remova a conta em **Authentication > Users** no painel do
+Supabase: todas as tabelas de estudo apontam para ela com `on delete
+cascade`, então o estudo sai junto.
 
 Um teste rápido, fora da plataforma, para saber se o projeto está de pé e com
 as tabelas criadas (troque a chave se ela mudar):

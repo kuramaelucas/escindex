@@ -2583,10 +2583,104 @@ async function nuvemDecidirCadastro(idPerfil, status){
       body: JSON.stringify({ status }),
     });
     nuvemCadastrosPendentes = (nuvemCadastrosPendentes || []).filter(p => p.id !== idPerfil);
-    toast(status === "aprovado" ? "Cadastro aprovado. A pessoa já pode entrar." : "Cadastro recusado.");
+    // dizer PARA ONDE a pessoa foi: sair desta lista sem reaparecer em lugar
+    // nenhum era exatamente o que parecia exclusão
+    toast(status === "aprovado"
+      ? "Cadastro aprovado — a pessoa já pode entrar e agora aparece em Usuários, junto com o resto da turma."
+      : "Cadastro recusado. Ele continua listado em Usuários, como recusado.");
+    if(nuvemUsuarios !== null) nuvemBuscarUsuarios();
     render();
   }catch(e){
     toast(e.message || "Não foi possível salvar a decisão.", "err");
+  }
+}
+
+/* ---------------------------- a turma inteira, da nuvem -------------------
+   ONDE FOI PARAR QUEM EU APROVEI. Esta é a pergunta que faltava responder.
+   A tela de Aprovar Cadastros só consulta `status=eq.pendente`: aprovar
+   alguém tira a pessoa dali — correto, ela deixou de estar pendente — mas
+   até agora ela não reaparecia em lugar nenhum, porque Admin > Usuários lia
+   `db.usuarios`, que é o banco DESTE navegador. E o único perfil da nuvem
+   espelhado ali é o de quem está logado (o RLS não deixa o aluno ler os
+   outros). Resultado: a coordenação aprovava quatro pessoas e concluía que
+   elas tinham sido excluídas.
+
+   Ninguém era excluído — faltava a tela. A política `perfis_ler` do
+   esquema.sql já permite a professor e administrador ler TODOS os perfis;
+   bastava perguntar. É o que esta função faz. */
+let nuvemUsuarios = null;             // null = ainda não buscamos
+let nuvemUsuariosErro = null;
+
+async function nuvemBuscarUsuarios(){
+  if(!nuvemConectado()) return [];
+  try{
+    nuvemUsuarios = await nuvemChamar("/rest/v1/perfis?select=*&order=criado_em.asc") || [];
+    nuvemUsuariosErro = null;
+  }catch(e){
+    nuvemUsuarios = [];
+    nuvemUsuariosErro = e.message || "Não foi possível buscar os cadastros na nuvem.";
+  }
+  render();
+  return nuvemUsuarios;
+}
+
+/* Muda papel, nível ou status de alguém na nuvem. O banco só aceita de
+   professor/administrador (gatilho proteger_papel_e_status), então uma
+   recusa aqui é informação: quem clicou não tem o nível que pensa ter. */
+async function nuvemAtualizarPerfil(idPerfil, campos, mensagem){
+  if(!nuvemConectado()) return false;
+  try{
+    await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil), {
+      method: "PATCH",
+      headers: { "Prefer": "return=minimal" },
+      body: JSON.stringify(campos),
+    });
+    const linha = (nuvemUsuarios || []).find(p => p.id === idPerfil);
+    if(linha) Object.assign(linha, campos);
+    // se for o próprio perfil, o db local acompanha na hora
+    const local = db.usuarios.find(u => u.id === idPerfil);
+    if(local){
+      if(campos.status) local.status = campos.status;
+      if(campos.papel) local.papel = campos.papel;
+      if(campos.nivel_admin !== undefined){ if(campos.nivel_admin) local.nivelAdmin = campos.nivel_admin; else delete local.nivelAdmin; }
+      saveState();
+    }
+    if(mensagem) toast(mensagem);
+    render();
+    return true;
+  }catch(e){
+    toast(e.message || "Não foi possível salvar a alteração na nuvem.", "err");
+    return false;
+  }
+}
+
+/* Excluir de verdade um cadastro da nuvem. Apagar a linha de `perfis` é o
+   que corta o acesso: sem perfil, nuvemEntrarPelaTela() recusa a entrada
+   mesmo com e-mail e senha certos (a conta de autenticação em si só o painel
+   do Supabase remove, com a chave service_role, que não existe neste site).
+
+   A política de exclusão é nova no esquema.sql: um banco criado antes dela
+   recusa o DELETE, e aí a mensagem diz exatamente o que rodar. */
+async function nuvemExcluirPerfil(idPerfil){
+  if(!nuvemConectado()) return false;
+  try{
+    await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil), {
+      method: "DELETE",
+      headers: { "Prefer": "return=minimal" },
+    });
+    // o servidor pode aceitar a chamada e não apagar nada, quando falta a
+    // política: conferimos em vez de confiar no 200
+    const conferencia = await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil) + "&select=id");
+    if(conferencia && conferencia.length){
+      toast("A nuvem não permitiu excluir este cadastro. Falta a política de exclusão no banco: rode de novo o nuvem/esquema.sql no Supabase (a parte 'perfis_excluir') e tente outra vez. Enquanto isso, 'Inativar' já bloqueia a entrada.", "err");
+      return false;
+    }
+    nuvemUsuarios = (nuvemUsuarios || []).filter(p => p.id !== idPerfil);
+    nuvemCadastrosPendentes = (nuvemCadastrosPendentes || []).filter(p => p.id !== idPerfil);
+    return true;
+  }catch(e){
+    toast(e.message || "Não foi possível excluir este cadastro na nuvem.", "err");
+    return false;
   }
 }
 
@@ -4465,9 +4559,9 @@ function solicitarCadastro(){
   toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
   navigate("login");
 }
-function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado."); render(); }
+function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado — a pessoa sai desta lista e passa a aparecer em Usuários."); render(); }
 function rejeitarUsuario(id){ getUsuario(id).status="rejeitado"; saveState(); toast("Cadastro recusado."); render(); }
-function desativarUsuario(id){ getUsuario(id).status="inativo"; saveState(); toast("Usuário desativado."); render(); }
+function desativarUsuario(id){ getUsuario(id).status="inativo"; saveState(); toast("Conta inativada: a pessoa deixa de conseguir entrar, mas o estudo dela fica guardado."); render(); }
 function reativarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Usuário reativado."); render(); }
 function alterarPapelUsuario(id, papel){
   if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar papéis.", "err"); return; }
@@ -8340,42 +8434,234 @@ function badgeStatusUsuario(status){
 function renderUsuarios(){
   const eu = usuarioAtual();
   const souMaster = podeAdmin("usuarios", eu);
-  const admins = db.usuarios.filter(u=>u.papel==="admin");
-  const pagUsuarios = paginar(db.usuarios, "usuarios", {porPagina:30});
   return `
-  <div class="page-header"><h2>Usuários</h2><p>${db.usuarios.length} cadastro(s) no total · ${admins.length} administrador(es).</p></div>
+  <div class="page-header"><h2>Usuários</h2><p>Quem tem acesso à plataforma. Com a nuvem ligada, a turma de verdade está na nuvem — as contas deste navegador são só as de teste e as de antes da nuvem.</p></div>
   <div class="card mb-2">
     <div class="card-title">Níveis de administrador</div>
     <p class="text-sm muted mb-2">Cada nível enxerga apenas as áreas correspondentes no menu. Só um administrador máster pode alterar papéis e níveis.</p>
     ${CONFIG.niveisAdmin.map(n=>`<div class="card-flat mb-1"><div style="font-weight:600">${escapeHtml(n.nome)}</div><div class="text-sm muted mt-1">${escapeHtml(n.descricao)}</div></div>`).join("")}
   </div>
-  <div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Turma / Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead><tbody>
-  ${pagUsuarios.itens.map(u=>`<tr>
-    <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}</td>
-    <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
-    <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
-    <td>${souMaster
-      ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
-      : badgePapel(u.papel, u)}</td>
-    <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
-      : souMaster
-        ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
-        : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
-    <td>${badgeStatusUsuario(u.status)}</td>
-    <td>${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Desativar</button>`}</td>
-  </tr>`).join("")}
-  </tbody></table></div>
-  ${controlesPaginacao(pagUsuarios, "cadastro(s)")}`;
+  ${renderUsuariosDaNuvem(souMaster)}
+  ${renderUsuariosLocais(souMaster, eu)}`;
 }
+
+/* A turma de verdade: todo mundo que tem conta na nuvem, aprovado ou não.
+   É aqui que reaparece quem foi aprovado em Aprovar Cadastros. */
+function renderUsuariosDaNuvem(souMaster){
+  if(!nuvemLigada()) return "";
+  if(!nuvemConectado()){
+    return `<div class="card mb-2" style="border-color:var(--amber)">
+      <div class="card-title">${iconeSvg("database")} Cadastros da nuvem</div>
+      <p class="text-sm muted">A nuvem está configurada, mas você entrou por uma conta só deste navegador. Saia e entre com o e-mail e a senha da sua conta da nuvem para ver e administrar a turma.</p>
+    </div>`;
+  }
+  if(nuvemUsuarios === null){
+    nuvemBuscarUsuarios();
+    return `<div class="card mb-2"><p class="text-sm muted">Buscando os cadastros na nuvem…</p></div>`;
+  }
+  const porStatus = {aprovado:[], pendente:[], inativo:[], rejeitado:[]};
+  nuvemUsuarios.forEach(p => { (porStatus[p.status] || (porStatus[p.status] = [])).push(p); });
+  const pag = paginar(nuvemUsuarios, "usuarios-nuvem", {porPagina:30});
+  return `<div class="card mb-2">
+    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
+      <div class="card-title" style="margin-bottom:0">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
+      <button class="btn btn-secondary btn-sm" onclick="nuvemBuscarUsuarios()">${iconeSvg("refresh")} Atualizar</button>
+    </div>
+    <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova em "Aprovar Cadastros" aparece aqui</strong> — aquela tela mostra só quem ainda está pendente.</p>
+    ${nuvemUsuariosErro ? `<p class="text-sm mt-1" style="color:var(--amber);font-weight:600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
+    ${nuvemUsuarios.length ? `<div class="table-wrap mt-2"><table>
+      <thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead>
+      <tbody>${pag.itens.map(p => {
+        const souEu = nuvemSessao && p.id === nuvemSessao.usuarioId;
+        return `<tr>
+        <td>${escapeHtml(p.nome || "(sem nome)")}${souEu?' <span class="badge badge-muted">você</span>':""}</td>
+        <td class="text-sm">${escapeHtml(p.email || "")}<br><span class="muted">${escapeHtml(p.matricula || "—")}</span></td>
+        <td class="text-sm">${escapeHtml(p.ano_faculdade || "—")}</td>
+        <td>${souMaster
+          ? `<select class="select" style="padding:.3rem .5rem" onchange="mudarPapelNaNuvem('${p.id}', this.value)">${CONFIG.papeis.map(x=>`<option value="${x}" ${p.papel===x?"selected":""}>${x}</option>`).join("")}</select>`
+          : badgePapel(p.papel)}</td>
+        <td>${p.papel !== "admin" ? '<span class="text-xs muted">—</span>'
+          : souMaster
+            ? `<select class="select" style="padding:.3rem .5rem" onchange="mudarNivelNaNuvem('${p.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${(p.nivel_admin||"coordenacao")===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
+            : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(p.nivel_admin||"coordenacao"))}</span>`}</td>
+        <td>${badgeStatusUsuario(p.status)}</td>
+        <td class="flex gap-1" style="flex-wrap:wrap">
+          ${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : souEu ? '<span class="text-xs muted">sua conta</span>' : `
+            ${p.status !== "aprovado" ? `<button class="btn btn-primary btn-sm" onclick="mudarStatusNaNuvem('${p.id}','aprovado')">Aprovar</button>` : ""}
+            ${p.status === "aprovado" ? `<button class="btn btn-ghost btn-sm" onclick="mudarStatusNaNuvem('${p.id}','inativo')">Inativar</button>` : ""}
+            <button class="btn btn-danger btn-sm" onclick="confirmarExcluirUsuario('${p.id}','nuvem')">${iconeSvg("trash")} Excluir</button>`}
+        </td></tr>`;
+      }).join("")}</tbody>
+    </table></div>
+    ${controlesPaginacao(pag, "cadastro(s) na nuvem")}` : `<p class="text-sm mt-2">Nenhum cadastro na nuvem ainda.</p>`}
+  </div>`;
+}
+
+function renderUsuariosLocais(souMaster, eu){
+  const pagUsuarios = paginar(db.usuarios, "usuarios", {porPagina:30});
+  const admins = db.usuarios.filter(u=>u.papel==="admin");
+  return `<div class="card">
+    <div class="card-title">Contas deste navegador (${db.usuarios.length})</div>
+    <p class="text-sm muted mb-2">${nuvemConectado()
+      ? "As contas de teste e as de antes da nuvem. Elas funcionam só neste computador e não sincronizam — a turma de verdade é a lista acima."
+      : db.usuarios.length + " cadastro(s) no total · " + admins.length + " administrador(es)."}</p>
+    <div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Turma / Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead><tbody>
+    ${pagUsuarios.itens.map(u=>`<tr>
+      <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}${u.daNuvem?' <span class="badge badge-accent">da nuvem</span>':""}</td>
+      <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
+      <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
+      <td>${souMaster
+        ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
+        : badgePapel(u.papel, u)}</td>
+      <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
+        : souMaster
+          ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
+          : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
+      <td>${badgeStatusUsuario(u.status)}</td>
+      <td class="flex gap-1" style="flex-wrap:wrap">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `
+        ${u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Inativar</button>`}
+        ${u.id===eu.id ? "" : `<button class="btn btn-danger btn-sm" onclick="confirmarExcluirUsuario('${u.id}','local')">${iconeSvg("trash")} Excluir</button>`}`}
+      </td>
+    </tr>`).join("")}
+    </tbody></table></div>
+    ${controlesPaginacao(pagUsuarios, "cadastro(s) neste navegador")}
+  </div>`;
+}
+function mudarPapelNaNuvem(id, papel){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar papéis.", "err"); render(); return; }
+  const linhaAtual = (nuvemUsuarios||[]).find(p=>p.id===id);
+  // deixar de ser admin é deixar de ser máster: passa pela mesma trava
+  if(papel !== "admin" && linhaAtual && linhaAtual.papel === "admin" && (linhaAtual.nivel_admin||"") === "master"
+     && !podeDeixarDeSerMaster(id, "coordenacao", "nuvem")){ render(); return; }
+  const campos = { papel };
+  if(papel === "admin"){
+    const linha = (nuvemUsuarios||[]).find(p=>p.id===id);
+    if(linha && !linha.nivel_admin) campos.nivel_admin = "moderador";
+  }
+  nuvemAtualizarPerfil(id, campos, "Papel atualizado na nuvem.");
+}
+function mudarNivelNaNuvem(id, nivel){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar níveis.", "err"); render(); return; }
+  if(!podeDeixarDeSerMaster(id, nivel, "nuvem")) { render(); return; }
+  nuvemAtualizarPerfil(id, { nivel_admin: nivel }, "Nível de acesso atualizado para " + rotuloNivelAdmin(nivel) + ".");
+}
+function mudarStatusNaNuvem(id, status){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar o acesso.", "err"); return; }
+  const rotulos = {aprovado:"Cadastro aprovado — a pessoa já pode entrar.", inativo:"Conta inativada: a pessoa deixa de conseguir entrar, mas o estudo dela fica guardado.", rejeitado:"Cadastro recusado."};
+  nuvemAtualizarPerfil(id, { status }, rotulos[status] || "Status atualizado.");
+}
+/* Não dá para ficar sem administrador máster — e as duas listas NÃO se
+   somam. Uma conta local de demonstração é máster só deste navegador: ela
+   não passa no e_equipe() do banco, então não administra a turma da nuvem.
+   Contá-la deixaria a coordenação se rebaixar achando que havia um suplente,
+   e a partir daí ninguém mais poderia aprovar, promover ou excluir ninguém
+   na nuvem — sem conserto pelo site, só pelo painel do Supabase.
+   Por isso cada lado só conta com os seus. */
+function podeDeixarDeSerMaster(id, novoNivel, ondeMora){
+  if(novoNivel === "master") return true;
+  const suplentes = ondeMora === "nuvem"
+    ? (nuvemUsuarios||[]).filter(p => p.papel==="admin" && (p.nivel_admin||"coordenacao")==="master" && p.id!==id && p.status==="aprovado").length
+    : db.usuarios.filter(u => u.papel==="admin" && nivelAdminDe(u)==="master" && u.id!==id).length;
+  if(suplentes === 0){
+    toast(ondeMora === "nuvem"
+      ? "É preciso manter pelo menos um administrador máster NA NUVEM — é ele que aprova e administra a turma. Promova outra pessoa antes."
+      : "É preciso manter pelo menos um administrador máster neste navegador.", "err");
+    return false;
+  }
+  return true;
+}
+
+/* ---------------------------- excluir um cadastro -------------------------
+   Inativar e excluir respondem a coisas diferentes: inativar é "esta pessoa
+   não entra mais", guardando o estudo dela; excluir é "esta pessoa nunca
+   deveria ter entrado" — um cadastro duplicado, um e-mail errado, alguém de
+   fora da turma. Como excluir não tem volta, a janela diz, antes de
+   confirmar, exatamente o que vai junto e o que fica. */
+function dadosDoUsuario(id){
+  return {
+    respostas: db.respostas.filter(r=>r.usuarioId===id).length,
+    favoritos: db.favoritos.filter(f=>f.usuarioId===id).length,
+    cartoes: db.flashcards.filter(c=>c.usuarioId===id).length,
+    sessoes: db.sessoes.filter(x=>x.usuarioId===id).length,
+    simulados: db.resultadosSimulados.filter(x=>x.usuarioId===id).length,
+    questoes: db.questoes.filter(q=>q.criadoPor===id).length,
+    comentarios: db.comentarios.filter(c=>c.usuarioId===id).length,
+    turmas: db.grupos.filter(g=>!g.oficial && g.criadoPor===id).length,
+  };
+}
+function confirmarExcluirUsuario(id, onde){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode excluir cadastros.", "err"); return; }
+  const local = getUsuario(id);
+  const naNuvem = (nuvemUsuarios||[]).find(p=>p.id===id);
+  const nome = (naNuvem && naNuvem.nome) || (local && local.nome) || "este cadastro";
+  const email = (naNuvem && naNuvem.email) || (local && local.email) || "";
+  if(usuarioAtual() && usuarioAtual().id === id){ toast("Você não pode excluir a própria conta.", "err"); return; }
+  const ehMasterNaNuvem = !!(naNuvem && naNuvem.papel==="admin" && (naNuvem.nivel_admin||"")==="master");
+  const ehMasterLocal = !!(local && local.papel==="admin" && nivelAdminDe(local)==="master");
+  if(onde==="nuvem" && ehMasterNaNuvem && !podeDeixarDeSerMaster(id, "coordenacao", "nuvem")) return;
+  if(onde==="local" && ehMasterLocal && !podeDeixarDeSerMaster(id, "coordenacao", "local")) return;
+  const d = dadosDoUsuario(id);
+  const vaiJunto = [
+    d.respostas ? d.respostas + " resposta(s)" : "",
+    d.favoritos ? d.favoritos + " favorito(s)" : "",
+    d.cartoes ? d.cartoes + " cartão(ões) pessoal(is)" : "",
+    d.sessoes ? d.sessoes + " sessão(ões)" : "",
+    d.simulados ? d.simulados + " nota(s) de simulado" : "",
+  ].filter(Boolean);
+  const fica = [
+    d.questoes ? d.questoes + " questão(ões) que enviou ao banco" : "",
+    d.comentarios ? d.comentarios + " comentário(s) em questões" : "",
+    d.turmas ? d.turmas + " turma(s) que criou" : "",
+  ].filter(Boolean);
+  abrirModal(`
+    <div class="modal-header"><h3>Excluir o cadastro de ${escapeHtml(nome)}?</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm">${escapeHtml(email)}</p>
+    <p class="text-sm mt-2"><strong>Isto não pode ser desfeito.</strong> Se a intenção é só tirar o acesso, use <em>Inativar</em>: a pessoa deixa de entrar e o estudo dela continua guardado.</p>
+    ${vaiJunto.length ? `<div class="card-flat mt-2"><div class="text-sm" style="font-weight:600">Vai junto, deste navegador:</div><div class="text-sm muted mt-1">${vaiJunto.join(" · ")}</div></div>` : '<div class="card-flat mt-2 text-sm muted">Não há estudo desta pessoa guardado neste navegador.</div>'}
+    ${fica.length ? `<div class="card-flat mt-1"><div class="text-sm" style="font-weight:600">Fica na plataforma (é conteúdo da turma, não dado pessoal):</div><div class="text-sm muted mt-1">${fica.join(" · ")}</div></div>` : ""}
+    ${onde==="nuvem" ? `<p class="text-xs muted mt-2">Na nuvem, o que se apaga é o <strong>cadastro</strong> (a linha de <code>perfis</code>) — e é isso que corta a entrada, mesmo com e-mail e senha certos. Duas coisas continuam lá até alguém removê-las pelo painel do Supabase, porque este site não tem a chave que faz isso: a conta de autenticação e as respostas que a pessoa já tinha sincronizado (elas ficam ligadas à conta, não ao cadastro). Removendo a conta pelo painel, o estudo dela sai junto, em cascata.</p>` : ""}
+    <div class="flex gap-1 mt-3">
+      <button class="btn btn-danger" onclick="excluirUsuarioConfirmado('${id}','${onde}')">${iconeSvg("trash")} Excluir mesmo assim</button>
+      <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+    </div>`);
+}
+async function excluirUsuarioConfirmado(id, onde){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode excluir cadastros.", "err"); return; }
+  if(onde === "nuvem"){
+    const ok = await nuvemExcluirPerfil(id);
+    if(!ok){ fecharModal(); render(); return; }
+  }
+  apagarDadosLocaisDoUsuario(id);
+  saveState();
+  fecharModal();
+  toast("Cadastro excluído.");
+  render();
+}
+/* Apaga do banco deste navegador tudo o que é PESSOAL daquele id. Questões,
+   comentários e turmas que a pessoa criou não entram: são conteúdo que a
+   turma usa, e apagá-los tiraria material de quem ficou. */
+function apagarDadosLocaisDoUsuario(id){
+  db.usuarios = db.usuarios.filter(u => u.id !== id);
+  db.respostas = db.respostas.filter(r => r.usuarioId !== id);
+  db.favoritos = db.favoritos.filter(f => f.usuarioId !== id);
+  db.flashcards = db.flashcards.filter(c => c.usuarioId !== id);
+  db.sessoes = db.sessoes.filter(x => x.usuarioId !== id);
+  db.resultadosSimulados = db.resultadosSimulados.filter(x => x.usuarioId !== id);
+  if(db.revisoes) delete db.revisoes[id];
+  if(db.revisoesFlashcards) delete db.revisoesFlashcards[id];
+  if(db.diasCartoes) delete db.diasCartoes[id];
+  if(db.sessoesEmAndamento) delete db.sessoesEmAndamento[id];
+  (db.grupos||[]).forEach(g => {
+    g.membrosAprovados = (g.membrosAprovados||[]).filter(x => x !== id);
+    g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(x => x !== id);
+  });
+}
+
 function alterarNivelAdmin(id, nivel){
   const eu = usuarioAtual();
   if(!podeAdmin("usuarios", eu)){ toast("Só um administrador máster pode alterar níveis de acesso.", "err"); return; }
   const alvo = getUsuario(id);
-  const outrosMasters = db.usuarios.filter(u=>u.papel==="admin" && nivelAdminDe(u)==="master" && u.id!==id).length;
-  if(nivelAdminDe(alvo)==="master" && nivel!=="master" && outrosMasters===0){
-    toast("É preciso manter pelo menos um administrador máster na plataforma.", "err");
-    render(); return;
-  }
+  if(nivelAdminDe(alvo)==="master" && !podeDeixarDeSerMaster(id, nivel, "local")){ render(); return; }
   alvo.nivelAdmin = nivel;
   saveState();
   toast("Nível de acesso atualizado para "+rotuloNivelAdmin(nivel)+".");

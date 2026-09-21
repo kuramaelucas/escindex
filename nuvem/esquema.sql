@@ -388,6 +388,22 @@ create policy perfis_alterar on public.perfis
   using (id = auth.uid() or public.e_equipe())
   with check (id = auth.uid() or public.e_equipe());
 
+-- EXCLUIR UM CADASTRO. Inativar (status = 'inativo') já basta para tirar o
+-- acesso guardando o estudo da pessoa; isto aqui é para o cadastro que nunca
+-- deveria ter existido — duplicado, e-mail errado, alguém de fora da turma.
+-- Só professor/administrador, e ninguém exclui a própria conta (senão um
+-- clique errado tira o último administrador da plataforma).
+--
+-- Apagar a linha de `perfis` é o que corta a entrada: sem perfil, o site
+-- recusa o login mesmo com e-mail e senha certos. A conta de autenticação em
+-- si (auth.users) continua existindo e só o painel do Supabase a remove — é
+-- a única parte que o site não consegue fazer, porque exigiria a chave
+-- service_role, que nunca entra num arquivo publicado.
+drop policy if exists perfis_excluir on public.perfis;
+create policy perfis_excluir on public.perfis
+  for delete to authenticated
+  using (public.e_equipe() and id <> auth.uid());
+
 -- CALENDARIO: todo mundo que está numa conta lê (é o calendário de todos);
 -- só professor e administrador gravam — é quem edita em Admin > Blocos de
 -- Estudo. Sem update aqui um aluno não conseguiria receber a mudança nunca.
