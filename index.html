@@ -1161,6 +1161,9 @@ function avisarSeFaltarConteudo(){
    professores em aparelhos diferentes, esses dados precisam morar num
    banco de dados de verdade (ver observações no resumo enviado no chat). */
 const CHAVE_STORAGE = "medbloco_db_v1";
+/* Onde fica a cópia do banco salvo tal como estava, guardada antes de
+   qualquer caminho que possa substituí-lo (ver guardarCopiaDeResgate). */
+const CHAVE_RESGATE = "medbloco_db_v1_resgate";
 
 function copiaProfunda(obj){ return JSON.parse(JSON.stringify(obj)); }
 
@@ -1205,13 +1208,113 @@ function dbPadrao(){
   };
 }
 
+/* ---------------------------- rede de segurança do banco -----------------
+   CADASTRO NÃO SE PERDE. Tudo o que a turma faz — cadastros, respostas,
+   favoritos, questões enviadas — vive neste banco, e o resto (questões,
+   cartões, calendário) o código sabe recriar sozinho a partir da pasta
+   "dados/". Essas duas coisas têm valor MUITO diferente: recriar o conteúdo
+   custa um F5, recriar os cadastros da turma é impossível.
+
+   Por isso nada aqui volta ao "ponto de partida" por causa de um defeito.
+   Diante de um banco salvo estranho, a regra é sempre consertar o que está
+   quebrado e ficar com o resto — nunca trocar o banco inteiro por um novo.
+
+   `garantirEstruturaDb()` é esse conserto: percorre as coleções que o código
+   espera e devolve ao tipo certo (lista, objeto, texto) só as que estiverem
+   erradas. Uma coleção de conteúdo estragada volta vazia e é repovoada por
+   sincronizarConteudoNovo(); uma de gente é preservada item a item, jogando
+   fora só o que não é um registro com id. */
+function garantirEstruturaDb(alvo){
+  const reparos = [];
+  const lista = (chave, padrao) => {
+    if(Array.isArray(alvo[chave])) return;
+    reparos.push(chave);
+    alvo[chave] = padrao === undefined ? [] : copiaProfunda(padrao);
+  };
+  const objeto = (chave) => {
+    if(alvo[chave] && typeof alvo[chave] === "object" && !Array.isArray(alvo[chave])) return;
+    reparos.push(chave);
+    alvo[chave] = {};
+  };
+  // o que a turma produziu: preservado sempre que for uma lista
+  lista("usuarios"); lista("respostas"); lista("favoritos"); lista("sessoes");
+  lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios");
+  lista("cargasProvas"); lista("filaNuvem"); lista("grupos");
+  // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
+  lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
+  objeto("revisoes"); objeto("revisoesFlashcards"); objeto("diasCartoes");
+  objeto("sessoesEmAndamento"); objeto("sequenciasAno"); objeto("configGeral");
+  if(!alvo.taxonomia || typeof alvo.taxonomia !== "object"){ reparos.push("taxonomia"); alvo.taxonomia = {areas:[],especialidades:[],assuntos:[]}; }
+  ["areas","especialidades","assuntos"].forEach(k=>{
+    if(!Array.isArray(alvo.taxonomia[k])){ reparos.push("taxonomia."+k); alvo.taxonomia[k] = []; }
+  });
+  // um "usuário" sem id não é cadastro de ninguém e quebraria todas as telas
+  const antes = alvo.usuarios.length;
+  alvo.usuarios = alvo.usuarios.filter(u => u && typeof u === "object" && u.id);
+  if(alvo.usuarios.length !== antes) reparos.push("usuarios (" + (antes - alvo.usuarios.length) + " sem id)");
+  // uma entrada nula no meio das turmas derrubava as migrações, que
+  // desreferenciam cada grupo
+  const gruposAntes = alvo.grupos.length;
+  alvo.grupos = alvo.grupos.filter(g => g && typeof g === "object" && g.id);
+  if(alvo.grupos.length !== gruposAntes) reparos.push("grupos (" + (gruposAntes - alvo.grupos.length) + " inválido(s))");
+  // o grupo oficial é o calendário de quem não escolheu turma: sem ele, toda
+  // tela de aluno fica sem bloco atual
+  if(!alvo.grupoOficialId) alvo.grupoOficialId = "grupo-oficial";
+  if(!alvo.grupos.some(g => g && g.id === alvo.grupoOficialId)){
+    reparos.push("grupo oficial");
+    alvo.grupos.push({ id: alvo.grupoOficialId, nome:"Calendário Oficial da Coordenação", criadoPor:"u-admin", oficial:true, publico:true, criadoEm: hojeISO(), anoFaculdade:null, deslocamento:0, blocoAtualIdManual:null });
+  }
+  if(!alvo.nuvem || typeof alvo.nuvem !== "object") alvo.nuvem = { contaId:null, ultimaSyncEm:null, marcas:{}, recusados:[], calendarioPendente:[] };
+  if(!alvo.nuvem.marcas || typeof alvo.nuvem.marcas !== "object") alvo.nuvem.marcas = {};
+  if(!Array.isArray(alvo.nuvem.recusados)) alvo.nuvem.recusados = [];
+  if(!Array.isArray(alvo.nuvem.calendarioPendente)) alvo.nuvem.calendarioPendente = [];
+  /* Os parâmetros do algoritmo têm valor padrão no CONFIG, então um campo
+     torto aqui não precisa quebrar tela nenhuma — e quebrava: um
+     `misturaBlocos` nulo derrubava Configurações Gerais inteira, e daí a
+     coordenação não conseguia nem chegar ao botão de backup. */
+  const cg = alvo.configGeral;
+  const numero = (chave, padrao) => { if(typeof cg[chave] !== "number" || !isFinite(cg[chave])){ reparos.push("configGeral."+chave); cg[chave] = padrao; } };
+  numero("metaMinimaQuestoesDia", CONFIG.metaMinimaQuestoesDia);
+  numero("metaRecomendadaQuestoesDia", CONFIG.metaRecomendadaQuestoesDia);
+  numero("metaCartoesDia", CONFIG.metaCartoesDia);
+  if(!cg.misturaBlocos || typeof cg.misturaBlocos !== "object"){ reparos.push("configGeral.misturaBlocos"); cg.misturaBlocos = {...CONFIG.misturaBlocos}; }
+  ["atual","revisaoPassados","previaFuturos"].forEach(k=>{
+    if(typeof cg.misturaBlocos[k] !== "number") cg.misturaBlocos[k] = CONFIG.misturaBlocos[k];
+  });
+  if(!cg.pesosDificuldade || typeof cg.pesosDificuldade !== "object"){ reparos.push("configGeral.pesosDificuldade"); cg.pesosDificuldade = {...CONFIG.pesosDificuldade}; }
+  ["taxaAcerto","especificidade","prevalencia"].forEach(k=>{
+    if(typeof cg.pesosDificuldade[k] !== "number") cg.pesosDificuldade[k] = CONFIG.pesosDificuldade[k];
+  });
+  if(!Array.isArray(cg.rampaRevisaoInicio) || cg.rampaRevisaoInicio.length < 3){ reparos.push("configGeral.rampaRevisaoInicio"); cg.rampaRevisaoInicio = [...CONFIG.rampaRevisaoInicio]; }
+  return reparos;
+}
+
+/* Guarda o banco salvo como estava, sob outra chave, antes de qualquer
+   caminho que possa substituí-lo. É a última rede: mesmo que tudo o mais
+   falhe, o texto original continua no navegador e dá para recuperar. */
+function guardarCopiaDeResgate(bruto){
+  if(!bruto) return;
+  try{ localStorage.setItem(CHAVE_RESGATE, bruto); }
+  catch(e){ /* sem espaço para a cópia: o banco em si continua intacto */ }
+}
+
 function loadState(){
+  let bruto = null;
   try{
-    const bruto = localStorage.getItem(CHAVE_STORAGE);
+    bruto = localStorage.getItem(CHAVE_STORAGE);
     if(!bruto){ db = dbPadrao(); saveState(); return; }
     const parsed = JSON.parse(bruto);
-    if(!parsed || !parsed.usuarios || !parsed.questoes){ db = dbPadrao(); saveState(); return; }
+    /* Antes, um banco sem `usuarios` ou sem `questoes` era trocado pelo banco
+       de demonstração. Mas "sem questões" é um banco que perdeu CONTEÚDO — o
+       código repõe isso da pasta "dados/" — e trocá-lo levava junto os
+       cadastros, que ninguém repõe. Agora só o que não dá para ler como
+       objeto recomeça do zero, e mesmo assim com cópia de resgate. */
+    if(!parsed || typeof parsed !== "object" || Array.isArray(parsed)){
+      guardarCopiaDeResgate(bruto);
+      db = dbPadrao(); saveState(); return;
+    }
     db = parsed;
+    garantirEstruturaDb(db);
     // migração leve: versões antigas (v1) tinham um único calendário global em
     // db.blocos. Se encontrarmos isso sem a coleção de grupos, embrulhamos
     // automaticamente num "grupo oficial" pra não perder o que já existia.
@@ -1338,10 +1441,115 @@ function loadState(){
     if(!Array.isArray(db.nuvem.recusados)) db.nuvem.recusados = [];
     if(!Array.isArray(db.nuvem.calendarioPendente)) db.nuvem.calendarioPendente = [];
   }catch(e){
-    console.error("Falha ao carregar dados salvos, reiniciando com dados de demonstração.", e);
-    db = dbPadrao();
-    saveState();
+    /* Uma migração que tropeça NÃO é motivo para apagar a turma. Antes, um
+       único campo inesperado no banco salvo trocava tudo pelo banco de
+       demonstração, em silêncio — e cadastros, respostas e questões enviadas
+       iam junto, sem volta. Agora o banco lido é mantido, consertado no que
+       dá e usado assim mesmo; o conteúdo que faltar volta pela pasta
+       "dados/", em sincronizarConteudoNovo(). Só se nem isso for possível é
+       que se recomeça, e sempre com cópia de resgate. */
+    console.error("Falha no meio da leitura dos dados salvos — o que já foi lido está sendo preservado.", e);
+    guardarCopiaDeResgate(bruto);
+    recuperarBanco(bruto, e);
   }
+}
+
+/* A recuperação depois de um tropeço. A regra que organiza tudo aqui é uma
+   só: CADA PASSO PODE FALHAR SOZINHO, e falhar não pode custar as pessoas.
+   Por isso os passos que mexem em conteúdo (taxonomia, reposição a partir da
+   pasta "dados/") rodam cada um no seu próprio try — se um deles estourar, o
+   que se perde é conteúdo, que a pasta repõe na próxima abertura, e não o
+   cadastro de ninguém.
+
+   Recomeçar do zero ficou reservado ao único caso em que não há nada a
+   salvar: nenhum usuário legível no banco. */
+function recuperarBanco(bruto, erroOriginal){
+  if(!db || typeof db !== "object" || Array.isArray(db)){
+    try{ db = JSON.parse(bruto); }catch(e){ db = null; }
+  }
+  if(!db || typeof db !== "object" || Array.isArray(db)){
+    db = dbPadrao();
+    tentar(saveState);
+    avisarSobreBancoIlegivel();
+    return;
+  }
+  const reparos = tentar(()=>garantirEstruturaDb(db)) || [];
+  const pessoas = Array.isArray(db.usuarios) ? db.usuarios.length : 0;
+  if(!pessoas){
+    // nem um cadastro legível: aí sim não há o que preservar
+    db = dbPadrao();
+    tentar(saveState);
+    avisarSobreBancoIlegivel();
+    return;
+  }
+  tentar(corrigirTaxonomiaAutomaticamente);
+  tentar(sincronizarConteudoNovo);
+  tentar(saveState);
+  avisarSobreReparoDoBanco(reparos, erroOriginal);
+}
+/* Roda uma etapa da recuperação sem deixar que ela derrube as outras. */
+function tentar(fn){
+  try{ return fn(); }
+  catch(e){ console.error("Etapa da recuperação falhou (seguindo adiante):", e); return null; }
+}
+
+/* O conserto não pode ser silencioso: quem cuida da plataforma precisa saber
+   que algo veio torto, para conferir e tirar um backup antes de continuar. */
+function avisarSobreReparoDoBanco(reparos, erro){
+  if(typeof window === "undefined") return;
+  setTimeout(()=>{
+    const quantos = (db.usuarios||[]).length;
+    toast("Os dados salvos vieram com um defeito e foram consertados — nenhum cadastro foi apagado ("
+      + quantos + " no banco). Vale exportar um backup. Detalhe técnico no console: " + (erro && erro.message ? erro.message : ""), "err");
+    if(reparos && reparos.length) console.warn("Coleções reparadas:", reparos.join(", "));
+  }, 1200);
+}
+function avisarSobreBancoIlegivel(){
+  if(typeof window === "undefined") return;
+  setTimeout(()=>{
+    toast("Não foi possível ler os dados salvos neste navegador. Uma cópia do arquivo original ficou guardada — chame quem cuida da plataforma antes de cadastrar de novo.", "err");
+  }, 1200);
+}
+
+/* Recuperação manual da cópia de resgate, para quem cuida da plataforma
+   chamar pelo console (ou pelo botão em Configurações). Não roda sozinho:
+   restaurar por conta própria um banco que acabou de dar problema pode
+   sobrescrever algo que ainda estava bom. */
+function bancoDeResgateDisponivel(){
+  try{ return !!localStorage.getItem(CHAVE_RESGATE); }catch(e){ return false; }
+}
+function resumoDoResgate(){
+  try{
+    const d = JSON.parse(localStorage.getItem(CHAVE_RESGATE) || "null");
+    if(!d) return null;
+    return {
+      usuarios: (d.usuarios||[]).length,
+      respostas: (d.respostas||[]).length,
+      questoes: (d.questoes||[]).length,
+    };
+  }catch(e){ return null; }
+}
+function restaurarBancoDeResgate(){
+  if(!podeMexerEmBackup()) return;
+  const bruto = localStorage.getItem(CHAVE_RESGATE);
+  if(!bruto){ toast("Não há cópia de resgate neste navegador.", "err"); return; }
+  const r = resumoDoResgate();
+  abrirModal(`<div class="modal-header"><h3>Restaurar a cópia de resgate</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm">Esta é a cópia do banco como ele estava antes de a plataforma precisar consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s) e ${r.questoes} questão(ões)`:""}. Restaurar substitui os dados atuais deste navegador por ela.</p>
+    <p class="text-sm muted mt-1">Exporte um backup do estado atual antes, se ainda não exportou — a restauração não pode ser desfeita.</p>
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="restaurarResgateConfirmado()">Restaurar a cópia</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function restaurarResgateConfirmado(){
+  const bruto = localStorage.getItem(CHAVE_RESGATE);
+  // sem esta checagem, gravar um "null" por cima do banco bom trocaria os
+  // dados de todo mundo por nada — exatamente o que esta tela existe para
+  // impedir
+  if(!bruto){ toast("Não há cópia de resgate neste navegador.", "err"); return; }
+  try{
+    localStorage.setItem(CHAVE_STORAGE, bruto);
+    fecharModal();
+    location.reload();
+  }catch(e){ toast("Não foi possível restaurar a cópia de resgate.", "err"); }
 }
 
 /* Quando novas áreas, especialidades, assuntos ou questões são acrescentadas
@@ -1381,18 +1589,34 @@ function tamanhoBancoKb(){
   try{ return Math.round(JSON.stringify(db).length/1024); }catch(e){ return 0; }
 }
 let _geracaoDb = 0; // incrementado a cada saveState(); invalida caches derivados de db (ver mapaPrevalenciasAssuntos)
+/* Devolve `true` se gravou mesmo. Quem cria um cadastro PRECISA olhar esse
+   retorno: antes, o armazenamento cheio fazia a tela dizer "cadastro
+   enviado", a pessoa ir embora e o cadastro não existir no recarregamento —
+   um dado perdido que ninguém sabia que tinha perdido. */
 function saveState(){
   _geracaoDb++;
+  let gravou = true;
   try{
     localStorage.setItem(CHAVE_STORAGE, JSON.stringify(db));
   }catch(e){
+    gravou = false;
     console.error("Falha ao salvar dados", e);
-    toast("Não foi possível salvar os dados neste navegador (armazenamento pode estar cheio ou bloqueado).", "err");
+    // um toast some sozinho e some junto com o aviso; isto aqui é perda de
+    // dado, e precisa parar a pessoa
+    if(typeof abrirModal === "function"){
+      abrirModal(`<div class="modal-header"><h3>${iconeSvg("alert")} Não foi possível salvar</h3></div>
+        <p class="text-sm">O armazenamento deste navegador está cheio ou bloqueado, e <strong>o que você acabou de fazer não foi gravado</strong>. Ao recarregar a página, isso se perde.</p>
+        <p class="text-sm muted mt-1">O banco ocupa ${tamanhoBancoKb()} KB. O que mais pesa são imagens embutidas em questões. Caminhos: exportar um backup agora (se você for administrador máster), liberar espaço do navegador, ou abrir a plataforma numa janela normal — janelas anônimas costumam bloquear o armazenamento.</p>
+        <div class="flex gap-1 mt-2">${podeAdmin("backup") ? '<button class="btn btn-primary" onclick="exportarBackup()">Exportar backup agora</button>' : ""}<button class="btn btn-secondary" onclick="fecharModal()">Entendi</button></div>`);
+    }else{
+      toast("Não foi possível salvar os dados neste navegador (armazenamento cheio ou bloqueado).", "err");
+    }
   }
   // com a nuvem ligada, o que acabou de ser salvo aqui sobe alguns segundos
   // depois, em bloco (ver nuvemAgendarSync, na seção 2-C). Sem nuvem, esta
   // linha não faz nada.
   if(typeof nuvemAgendarSync === "function") nuvemAgendarSync();
+  return gravou;
 }
 
 function confirmarReiniciarDemo(){
@@ -2359,10 +2583,104 @@ async function nuvemDecidirCadastro(idPerfil, status){
       body: JSON.stringify({ status }),
     });
     nuvemCadastrosPendentes = (nuvemCadastrosPendentes || []).filter(p => p.id !== idPerfil);
-    toast(status === "aprovado" ? "Cadastro aprovado. A pessoa já pode entrar." : "Cadastro recusado.");
+    // dizer PARA ONDE a pessoa foi: sair desta lista sem reaparecer em lugar
+    // nenhum era exatamente o que parecia exclusão
+    toast(status === "aprovado"
+      ? "Cadastro aprovado — a pessoa já pode entrar e agora aparece em Usuários, junto com o resto da turma."
+      : "Cadastro recusado. Ele continua listado em Usuários, como recusado.");
+    if(nuvemUsuarios !== null) nuvemBuscarUsuarios();
     render();
   }catch(e){
     toast(e.message || "Não foi possível salvar a decisão.", "err");
+  }
+}
+
+/* ---------------------------- a turma inteira, da nuvem -------------------
+   ONDE FOI PARAR QUEM EU APROVEI. Esta é a pergunta que faltava responder.
+   A tela de Aprovar Cadastros só consulta `status=eq.pendente`: aprovar
+   alguém tira a pessoa dali — correto, ela deixou de estar pendente — mas
+   até agora ela não reaparecia em lugar nenhum, porque Admin > Usuários lia
+   `db.usuarios`, que é o banco DESTE navegador. E o único perfil da nuvem
+   espelhado ali é o de quem está logado (o RLS não deixa o aluno ler os
+   outros). Resultado: a coordenação aprovava quatro pessoas e concluía que
+   elas tinham sido excluídas.
+
+   Ninguém era excluído — faltava a tela. A política `perfis_ler` do
+   esquema.sql já permite a professor e administrador ler TODOS os perfis;
+   bastava perguntar. É o que esta função faz. */
+let nuvemUsuarios = null;             // null = ainda não buscamos
+let nuvemUsuariosErro = null;
+
+async function nuvemBuscarUsuarios(){
+  if(!nuvemConectado()) return [];
+  try{
+    nuvemUsuarios = await nuvemChamar("/rest/v1/perfis?select=*&order=criado_em.asc") || [];
+    nuvemUsuariosErro = null;
+  }catch(e){
+    nuvemUsuarios = [];
+    nuvemUsuariosErro = e.message || "Não foi possível buscar os cadastros na nuvem.";
+  }
+  render();
+  return nuvemUsuarios;
+}
+
+/* Muda papel, nível ou status de alguém na nuvem. O banco só aceita de
+   professor/administrador (gatilho proteger_papel_e_status), então uma
+   recusa aqui é informação: quem clicou não tem o nível que pensa ter. */
+async function nuvemAtualizarPerfil(idPerfil, campos, mensagem){
+  if(!nuvemConectado()) return false;
+  try{
+    await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil), {
+      method: "PATCH",
+      headers: { "Prefer": "return=minimal" },
+      body: JSON.stringify(campos),
+    });
+    const linha = (nuvemUsuarios || []).find(p => p.id === idPerfil);
+    if(linha) Object.assign(linha, campos);
+    // se for o próprio perfil, o db local acompanha na hora
+    const local = db.usuarios.find(u => u.id === idPerfil);
+    if(local){
+      if(campos.status) local.status = campos.status;
+      if(campos.papel) local.papel = campos.papel;
+      if(campos.nivel_admin !== undefined){ if(campos.nivel_admin) local.nivelAdmin = campos.nivel_admin; else delete local.nivelAdmin; }
+      saveState();
+    }
+    if(mensagem) toast(mensagem);
+    render();
+    return true;
+  }catch(e){
+    toast(e.message || "Não foi possível salvar a alteração na nuvem.", "err");
+    return false;
+  }
+}
+
+/* Excluir de verdade um cadastro da nuvem. Apagar a linha de `perfis` é o
+   que corta o acesso: sem perfil, nuvemEntrarPelaTela() recusa a entrada
+   mesmo com e-mail e senha certos (a conta de autenticação em si só o painel
+   do Supabase remove, com a chave service_role, que não existe neste site).
+
+   A política de exclusão é nova no esquema.sql: um banco criado antes dela
+   recusa o DELETE, e aí a mensagem diz exatamente o que rodar. */
+async function nuvemExcluirPerfil(idPerfil){
+  if(!nuvemConectado()) return false;
+  try{
+    await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil), {
+      method: "DELETE",
+      headers: { "Prefer": "return=minimal" },
+    });
+    // o servidor pode aceitar a chamada e não apagar nada, quando falta a
+    // política: conferimos em vez de confiar no 200
+    const conferencia = await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil) + "&select=id");
+    if(conferencia && conferencia.length){
+      toast("A nuvem não permitiu excluir este cadastro. Falta a política de exclusão no banco: rode de novo o nuvem/esquema.sql no Supabase (a parte 'perfis_excluir') e tente outra vez. Enquanto isso, 'Inativar' já bloqueia a entrada.", "err");
+      return false;
+    }
+    nuvemUsuarios = (nuvemUsuarios || []).filter(p => p.id !== idPerfil);
+    nuvemCadastrosPendentes = (nuvemCadastrosPendentes || []).filter(p => p.id !== idPerfil);
+    return true;
+  }catch(e){
+    toast(e.message || "Não foi possível excluir este cadastro na nuvem.", "err");
+    return false;
   }
 }
 
@@ -4231,13 +4549,19 @@ function solicitarCadastro(){
     novo.areasAtuacao = areasAtuacao;
     novo.assuntosAjuda = [...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value);
   }
-  db.usuarios.push(novo); saveState();
+  db.usuarios.push(novo);
+  if(!saveState()){
+    // não gravou: desfaz na memória para a tela não mostrar um cadastro que
+    // não existe, e deixa a pessoa na mesma tela com o que digitou
+    db.usuarios = db.usuarios.filter(x => x.id !== novoUsuarioId);
+    return;
+  }
   toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
   navigate("login");
 }
-function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado."); render(); }
+function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado — a pessoa sai desta lista e passa a aparecer em Usuários."); render(); }
 function rejeitarUsuario(id){ getUsuario(id).status="rejeitado"; saveState(); toast("Cadastro recusado."); render(); }
-function desativarUsuario(id){ getUsuario(id).status="inativo"; saveState(); toast("Usuário desativado."); render(); }
+function desativarUsuario(id){ getUsuario(id).status="inativo"; saveState(); toast("Conta inativada: a pessoa deixa de conseguir entrar, mas o estudo dela fica guardado."); render(); }
 function reativarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Usuário reativado."); render(); }
 function alterarPapelUsuario(id, papel){
   if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar papéis.", "err"); return; }
@@ -7435,6 +7759,11 @@ function renderCardBackup(){
       <button class="btn btn-danger btn-sm" onclick="confirmarReiniciarDemo()">${iconeSvg("trash")} Reiniciar dados</button>
     </div>
     <p class="text-xs muted mt-2">Importar substitui os dados atuais pelos do arquivo — inclusive respostas e cadastros de todos os usuários. Reiniciar apaga tudo e volta ao ponto de partida.</p>
+    ${bancoDeResgateDisponivel() ? (() => { const r = resumoDoResgate(); return `<div class="card-flat mt-2" style="border-color:var(--amber)">
+      <div class="text-sm" style="font-weight:600;color:var(--amber)">${iconeSvg("archive")} Existe uma cópia de resgate neste navegador</div>
+      <p class="text-sm muted mt-1">A plataforma encontrou um defeito nos dados salvos em algum momento e guardou o banco como ele estava antes de consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s), ${r.questoes} questão(ões)`:""}. Se algo tiver se perdido, é daqui que se recupera.</p>
+      <button class="btn btn-secondary btn-sm mt-1" onclick="restaurarBancoDeResgate()">Ver e restaurar a cópia de resgate</button>
+    </div>`; })() : ""}
   </div>`;
 }
 /* ==========================================================================
@@ -8105,42 +8434,234 @@ function badgeStatusUsuario(status){
 function renderUsuarios(){
   const eu = usuarioAtual();
   const souMaster = podeAdmin("usuarios", eu);
-  const admins = db.usuarios.filter(u=>u.papel==="admin");
-  const pagUsuarios = paginar(db.usuarios, "usuarios", {porPagina:30});
   return `
-  <div class="page-header"><h2>Usuários</h2><p>${db.usuarios.length} cadastro(s) no total · ${admins.length} administrador(es).</p></div>
+  <div class="page-header"><h2>Usuários</h2><p>Quem tem acesso à plataforma. Com a nuvem ligada, a turma de verdade está na nuvem — as contas deste navegador são só as de teste e as de antes da nuvem.</p></div>
   <div class="card mb-2">
     <div class="card-title">Níveis de administrador</div>
     <p class="text-sm muted mb-2">Cada nível enxerga apenas as áreas correspondentes no menu. Só um administrador máster pode alterar papéis e níveis.</p>
     ${CONFIG.niveisAdmin.map(n=>`<div class="card-flat mb-1"><div style="font-weight:600">${escapeHtml(n.nome)}</div><div class="text-sm muted mt-1">${escapeHtml(n.descricao)}</div></div>`).join("")}
   </div>
-  <div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Turma / Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead><tbody>
-  ${pagUsuarios.itens.map(u=>`<tr>
-    <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}</td>
-    <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
-    <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
-    <td>${souMaster
-      ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
-      : badgePapel(u.papel, u)}</td>
-    <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
-      : souMaster
-        ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
-        : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
-    <td>${badgeStatusUsuario(u.status)}</td>
-    <td>${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Desativar</button>`}</td>
-  </tr>`).join("")}
-  </tbody></table></div>
-  ${controlesPaginacao(pagUsuarios, "cadastro(s)")}`;
+  ${renderUsuariosDaNuvem(souMaster)}
+  ${renderUsuariosLocais(souMaster, eu)}`;
 }
+
+/* A turma de verdade: todo mundo que tem conta na nuvem, aprovado ou não.
+   É aqui que reaparece quem foi aprovado em Aprovar Cadastros. */
+function renderUsuariosDaNuvem(souMaster){
+  if(!nuvemLigada()) return "";
+  if(!nuvemConectado()){
+    return `<div class="card mb-2" style="border-color:var(--amber)">
+      <div class="card-title">${iconeSvg("database")} Cadastros da nuvem</div>
+      <p class="text-sm muted">A nuvem está configurada, mas você entrou por uma conta só deste navegador. Saia e entre com o e-mail e a senha da sua conta da nuvem para ver e administrar a turma.</p>
+    </div>`;
+  }
+  if(nuvemUsuarios === null){
+    nuvemBuscarUsuarios();
+    return `<div class="card mb-2"><p class="text-sm muted">Buscando os cadastros na nuvem…</p></div>`;
+  }
+  const porStatus = {aprovado:[], pendente:[], inativo:[], rejeitado:[]};
+  nuvemUsuarios.forEach(p => { (porStatus[p.status] || (porStatus[p.status] = [])).push(p); });
+  const pag = paginar(nuvemUsuarios, "usuarios-nuvem", {porPagina:30});
+  return `<div class="card mb-2">
+    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
+      <div class="card-title" style="margin-bottom:0">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
+      <button class="btn btn-secondary btn-sm" onclick="nuvemBuscarUsuarios()">${iconeSvg("refresh")} Atualizar</button>
+    </div>
+    <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova em "Aprovar Cadastros" aparece aqui</strong> — aquela tela mostra só quem ainda está pendente.</p>
+    ${nuvemUsuariosErro ? `<p class="text-sm mt-1" style="color:var(--amber);font-weight:600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
+    ${nuvemUsuarios.length ? `<div class="table-wrap mt-2"><table>
+      <thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead>
+      <tbody>${pag.itens.map(p => {
+        const souEu = nuvemSessao && p.id === nuvemSessao.usuarioId;
+        return `<tr>
+        <td>${escapeHtml(p.nome || "(sem nome)")}${souEu?' <span class="badge badge-muted">você</span>':""}</td>
+        <td class="text-sm">${escapeHtml(p.email || "")}<br><span class="muted">${escapeHtml(p.matricula || "—")}</span></td>
+        <td class="text-sm">${escapeHtml(p.ano_faculdade || "—")}</td>
+        <td>${souMaster
+          ? `<select class="select" style="padding:.3rem .5rem" onchange="mudarPapelNaNuvem('${p.id}', this.value)">${CONFIG.papeis.map(x=>`<option value="${x}" ${p.papel===x?"selected":""}>${x}</option>`).join("")}</select>`
+          : badgePapel(p.papel)}</td>
+        <td>${p.papel !== "admin" ? '<span class="text-xs muted">—</span>'
+          : souMaster
+            ? `<select class="select" style="padding:.3rem .5rem" onchange="mudarNivelNaNuvem('${p.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${(p.nivel_admin||"coordenacao")===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
+            : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(p.nivel_admin||"coordenacao"))}</span>`}</td>
+        <td>${badgeStatusUsuario(p.status)}</td>
+        <td class="flex gap-1" style="flex-wrap:wrap">
+          ${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : souEu ? '<span class="text-xs muted">sua conta</span>' : `
+            ${p.status !== "aprovado" ? `<button class="btn btn-primary btn-sm" onclick="mudarStatusNaNuvem('${p.id}','aprovado')">Aprovar</button>` : ""}
+            ${p.status === "aprovado" ? `<button class="btn btn-ghost btn-sm" onclick="mudarStatusNaNuvem('${p.id}','inativo')">Inativar</button>` : ""}
+            <button class="btn btn-danger btn-sm" onclick="confirmarExcluirUsuario('${p.id}','nuvem')">${iconeSvg("trash")} Excluir</button>`}
+        </td></tr>`;
+      }).join("")}</tbody>
+    </table></div>
+    ${controlesPaginacao(pag, "cadastro(s) na nuvem")}` : `<p class="text-sm mt-2">Nenhum cadastro na nuvem ainda.</p>`}
+  </div>`;
+}
+
+function renderUsuariosLocais(souMaster, eu){
+  const pagUsuarios = paginar(db.usuarios, "usuarios", {porPagina:30});
+  const admins = db.usuarios.filter(u=>u.papel==="admin");
+  return `<div class="card">
+    <div class="card-title">Contas deste navegador (${db.usuarios.length})</div>
+    <p class="text-sm muted mb-2">${nuvemConectado()
+      ? "As contas de teste e as de antes da nuvem. Elas funcionam só neste computador e não sincronizam — a turma de verdade é a lista acima."
+      : db.usuarios.length + " cadastro(s) no total · " + admins.length + " administrador(es)."}</p>
+    <div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Turma / Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead><tbody>
+    ${pagUsuarios.itens.map(u=>`<tr>
+      <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}${u.daNuvem?' <span class="badge badge-accent">da nuvem</span>':""}</td>
+      <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
+      <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
+      <td>${souMaster
+        ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
+        : badgePapel(u.papel, u)}</td>
+      <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
+        : souMaster
+          ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
+          : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
+      <td>${badgeStatusUsuario(u.status)}</td>
+      <td class="flex gap-1" style="flex-wrap:wrap">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `
+        ${u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Inativar</button>`}
+        ${u.id===eu.id ? "" : `<button class="btn btn-danger btn-sm" onclick="confirmarExcluirUsuario('${u.id}','local')">${iconeSvg("trash")} Excluir</button>`}`}
+      </td>
+    </tr>`).join("")}
+    </tbody></table></div>
+    ${controlesPaginacao(pagUsuarios, "cadastro(s) neste navegador")}
+  </div>`;
+}
+function mudarPapelNaNuvem(id, papel){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar papéis.", "err"); render(); return; }
+  const linhaAtual = (nuvemUsuarios||[]).find(p=>p.id===id);
+  // deixar de ser admin é deixar de ser máster: passa pela mesma trava
+  if(papel !== "admin" && linhaAtual && linhaAtual.papel === "admin" && (linhaAtual.nivel_admin||"") === "master"
+     && !podeDeixarDeSerMaster(id, "coordenacao", "nuvem")){ render(); return; }
+  const campos = { papel };
+  if(papel === "admin"){
+    const linha = (nuvemUsuarios||[]).find(p=>p.id===id);
+    if(linha && !linha.nivel_admin) campos.nivel_admin = "moderador";
+  }
+  nuvemAtualizarPerfil(id, campos, "Papel atualizado na nuvem.");
+}
+function mudarNivelNaNuvem(id, nivel){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar níveis.", "err"); render(); return; }
+  if(!podeDeixarDeSerMaster(id, nivel, "nuvem")) { render(); return; }
+  nuvemAtualizarPerfil(id, { nivel_admin: nivel }, "Nível de acesso atualizado para " + rotuloNivelAdmin(nivel) + ".");
+}
+function mudarStatusNaNuvem(id, status){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar o acesso.", "err"); return; }
+  const rotulos = {aprovado:"Cadastro aprovado — a pessoa já pode entrar.", inativo:"Conta inativada: a pessoa deixa de conseguir entrar, mas o estudo dela fica guardado.", rejeitado:"Cadastro recusado."};
+  nuvemAtualizarPerfil(id, { status }, rotulos[status] || "Status atualizado.");
+}
+/* Não dá para ficar sem administrador máster — e as duas listas NÃO se
+   somam. Uma conta local de demonstração é máster só deste navegador: ela
+   não passa no e_equipe() do banco, então não administra a turma da nuvem.
+   Contá-la deixaria a coordenação se rebaixar achando que havia um suplente,
+   e a partir daí ninguém mais poderia aprovar, promover ou excluir ninguém
+   na nuvem — sem conserto pelo site, só pelo painel do Supabase.
+   Por isso cada lado só conta com os seus. */
+function podeDeixarDeSerMaster(id, novoNivel, ondeMora){
+  if(novoNivel === "master") return true;
+  const suplentes = ondeMora === "nuvem"
+    ? (nuvemUsuarios||[]).filter(p => p.papel==="admin" && (p.nivel_admin||"coordenacao")==="master" && p.id!==id && p.status==="aprovado").length
+    : db.usuarios.filter(u => u.papel==="admin" && nivelAdminDe(u)==="master" && u.id!==id).length;
+  if(suplentes === 0){
+    toast(ondeMora === "nuvem"
+      ? "É preciso manter pelo menos um administrador máster NA NUVEM — é ele que aprova e administra a turma. Promova outra pessoa antes."
+      : "É preciso manter pelo menos um administrador máster neste navegador.", "err");
+    return false;
+  }
+  return true;
+}
+
+/* ---------------------------- excluir um cadastro -------------------------
+   Inativar e excluir respondem a coisas diferentes: inativar é "esta pessoa
+   não entra mais", guardando o estudo dela; excluir é "esta pessoa nunca
+   deveria ter entrado" — um cadastro duplicado, um e-mail errado, alguém de
+   fora da turma. Como excluir não tem volta, a janela diz, antes de
+   confirmar, exatamente o que vai junto e o que fica. */
+function dadosDoUsuario(id){
+  return {
+    respostas: db.respostas.filter(r=>r.usuarioId===id).length,
+    favoritos: db.favoritos.filter(f=>f.usuarioId===id).length,
+    cartoes: db.flashcards.filter(c=>c.usuarioId===id).length,
+    sessoes: db.sessoes.filter(x=>x.usuarioId===id).length,
+    simulados: db.resultadosSimulados.filter(x=>x.usuarioId===id).length,
+    questoes: db.questoes.filter(q=>q.criadoPor===id).length,
+    comentarios: db.comentarios.filter(c=>c.usuarioId===id).length,
+    turmas: db.grupos.filter(g=>!g.oficial && g.criadoPor===id).length,
+  };
+}
+function confirmarExcluirUsuario(id, onde){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode excluir cadastros.", "err"); return; }
+  const local = getUsuario(id);
+  const naNuvem = (nuvemUsuarios||[]).find(p=>p.id===id);
+  const nome = (naNuvem && naNuvem.nome) || (local && local.nome) || "este cadastro";
+  const email = (naNuvem && naNuvem.email) || (local && local.email) || "";
+  if(usuarioAtual() && usuarioAtual().id === id){ toast("Você não pode excluir a própria conta.", "err"); return; }
+  const ehMasterNaNuvem = !!(naNuvem && naNuvem.papel==="admin" && (naNuvem.nivel_admin||"")==="master");
+  const ehMasterLocal = !!(local && local.papel==="admin" && nivelAdminDe(local)==="master");
+  if(onde==="nuvem" && ehMasterNaNuvem && !podeDeixarDeSerMaster(id, "coordenacao", "nuvem")) return;
+  if(onde==="local" && ehMasterLocal && !podeDeixarDeSerMaster(id, "coordenacao", "local")) return;
+  const d = dadosDoUsuario(id);
+  const vaiJunto = [
+    d.respostas ? d.respostas + " resposta(s)" : "",
+    d.favoritos ? d.favoritos + " favorito(s)" : "",
+    d.cartoes ? d.cartoes + " cartão(ões) pessoal(is)" : "",
+    d.sessoes ? d.sessoes + " sessão(ões)" : "",
+    d.simulados ? d.simulados + " nota(s) de simulado" : "",
+  ].filter(Boolean);
+  const fica = [
+    d.questoes ? d.questoes + " questão(ões) que enviou ao banco" : "",
+    d.comentarios ? d.comentarios + " comentário(s) em questões" : "",
+    d.turmas ? d.turmas + " turma(s) que criou" : "",
+  ].filter(Boolean);
+  abrirModal(`
+    <div class="modal-header"><h3>Excluir o cadastro de ${escapeHtml(nome)}?</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm">${escapeHtml(email)}</p>
+    <p class="text-sm mt-2"><strong>Isto não pode ser desfeito.</strong> Se a intenção é só tirar o acesso, use <em>Inativar</em>: a pessoa deixa de entrar e o estudo dela continua guardado.</p>
+    ${vaiJunto.length ? `<div class="card-flat mt-2"><div class="text-sm" style="font-weight:600">Vai junto, deste navegador:</div><div class="text-sm muted mt-1">${vaiJunto.join(" · ")}</div></div>` : '<div class="card-flat mt-2 text-sm muted">Não há estudo desta pessoa guardado neste navegador.</div>'}
+    ${fica.length ? `<div class="card-flat mt-1"><div class="text-sm" style="font-weight:600">Fica na plataforma (é conteúdo da turma, não dado pessoal):</div><div class="text-sm muted mt-1">${fica.join(" · ")}</div></div>` : ""}
+    ${onde==="nuvem" ? `<p class="text-xs muted mt-2">Na nuvem, o que se apaga é o <strong>cadastro</strong> (a linha de <code>perfis</code>) — e é isso que corta a entrada, mesmo com e-mail e senha certos. Duas coisas continuam lá até alguém removê-las pelo painel do Supabase, porque este site não tem a chave que faz isso: a conta de autenticação e as respostas que a pessoa já tinha sincronizado (elas ficam ligadas à conta, não ao cadastro). Removendo a conta pelo painel, o estudo dela sai junto, em cascata.</p>` : ""}
+    <div class="flex gap-1 mt-3">
+      <button class="btn btn-danger" onclick="excluirUsuarioConfirmado('${id}','${onde}')">${iconeSvg("trash")} Excluir mesmo assim</button>
+      <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+    </div>`);
+}
+async function excluirUsuarioConfirmado(id, onde){
+  if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode excluir cadastros.", "err"); return; }
+  if(onde === "nuvem"){
+    const ok = await nuvemExcluirPerfil(id);
+    if(!ok){ fecharModal(); render(); return; }
+  }
+  apagarDadosLocaisDoUsuario(id);
+  saveState();
+  fecharModal();
+  toast("Cadastro excluído.");
+  render();
+}
+/* Apaga do banco deste navegador tudo o que é PESSOAL daquele id. Questões,
+   comentários e turmas que a pessoa criou não entram: são conteúdo que a
+   turma usa, e apagá-los tiraria material de quem ficou. */
+function apagarDadosLocaisDoUsuario(id){
+  db.usuarios = db.usuarios.filter(u => u.id !== id);
+  db.respostas = db.respostas.filter(r => r.usuarioId !== id);
+  db.favoritos = db.favoritos.filter(f => f.usuarioId !== id);
+  db.flashcards = db.flashcards.filter(c => c.usuarioId !== id);
+  db.sessoes = db.sessoes.filter(x => x.usuarioId !== id);
+  db.resultadosSimulados = db.resultadosSimulados.filter(x => x.usuarioId !== id);
+  if(db.revisoes) delete db.revisoes[id];
+  if(db.revisoesFlashcards) delete db.revisoesFlashcards[id];
+  if(db.diasCartoes) delete db.diasCartoes[id];
+  if(db.sessoesEmAndamento) delete db.sessoesEmAndamento[id];
+  (db.grupos||[]).forEach(g => {
+    g.membrosAprovados = (g.membrosAprovados||[]).filter(x => x !== id);
+    g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(x => x !== id);
+  });
+}
+
 function alterarNivelAdmin(id, nivel){
   const eu = usuarioAtual();
   if(!podeAdmin("usuarios", eu)){ toast("Só um administrador máster pode alterar níveis de acesso.", "err"); return; }
   const alvo = getUsuario(id);
-  const outrosMasters = db.usuarios.filter(u=>u.papel==="admin" && nivelAdminDe(u)==="master" && u.id!==id).length;
-  if(nivelAdminDe(alvo)==="master" && nivel!=="master" && outrosMasters===0){
-    toast("É preciso manter pelo menos um administrador máster na plataforma.", "err");
-    render(); return;
-  }
+  if(nivelAdminDe(alvo)==="master" && !podeDeixarDeSerMaster(id, nivel, "local")){ render(); return; }
   alvo.nivelAdmin = nivel;
   saveState();
   toast("Nível de acesso atualizado para "+rotuloNivelAdmin(nivel)+".");
@@ -8630,13 +9151,23 @@ function trocarAssuntoNasRespostas(origemId, destinoId){
 }
 function corrigirTaxonomiaAutomaticamente(){
   let ajustes = 0;
+  /* Todo conserto daqui para baixo precisa de uma área para onde mandar o
+     que está órfão. Sem nenhuma área, `db.taxonomia.areas[0].id` estourava —
+     e, como esta função roda dentro do carregamento, o estouro derrubava a
+     leitura inteira do banco e levava os cadastros junto. Um banco sem área
+     nenhuma acontece de verdade: basta a pasta "dados/" não ter chegado na
+     primeiríssima abertura, ou alguém apagar as áreas na tela de taxonomia.
+     Aqui não há o que corrigir — sincronizarConteudoNovo() repõe a taxonomia
+     logo em seguida, a partir da pasta. */
+  if(!db.taxonomia || !Array.isArray(db.taxonomia.areas) || !db.taxonomia.areas.length) return 0;
+  const areaPadraoId = db.taxonomia.areas[0].id;
   // especialidades órfãs -> primeira área
   db.taxonomia.especialidades.forEach(e=>{
-    if(!getArea(e.areaId)){ e.areaId = db.taxonomia.areas[0].id; ajustes++; }
+    if(!getArea(e.areaId)){ e.areaId = areaPadraoId; ajustes++; }
   });
   // assuntos órfãos -> especialidade "A classificar" da primeira área
   db.taxonomia.assuntos.forEach(a=>{
-    if(!getEspecialidade(a.especialidadeId)){ a.especialidadeId = especialidadeAClassificar(db.taxonomia.areas[0].id).id; ajustes++; }
+    if(!getEspecialidade(a.especialidadeId)){ a.especialidadeId = especialidadeAClassificar(areaPadraoId).id; ajustes++; }
   });
   // duplicados -> mescla no primeiro
   diagnosticoTaxonomia().duplicados.forEach(({original, copia})=>{
@@ -8648,7 +9179,8 @@ function corrigirTaxonomiaAutomaticamente(){
   // questões sem assunto válido -> "A classificar" da especialidade (ou da área)
   db.questoes.forEach(q=>{
     if(!getAssunto(q.assuntoId)){
-      const esp = getEspecialidade(q.especialidadeId) || especialidadeAClassificar(getArea(q.areaId) ? q.areaId : db.taxonomia.areas[0].id);
+      const esp = getEspecialidade(q.especialidadeId) || especialidadeAClassificar(getArea(q.areaId) ? q.areaId : areaPadraoId);
+      if(!esp) return;   // não há onde classificar: a questão fica como está
       q.assuntoId = assuntoAClassificar(esp.id).id;
       ajustes++;
     }
