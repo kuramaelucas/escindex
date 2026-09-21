@@ -2,10 +2,15 @@
    CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada
    ==========================================================================
    `blocos` é o calendário de referência (o do 6º ano) e `sequenciasAno` é a
-   sequência de cada ano da faculdade, do 3º ao "Formado(a)". A regra do
-   rodízio entre turmas está explicada no index.html, junto de SEED_BLOCOS;
-   aqui ficam só as datas e os nomes. A coordenação também edita isto pela
-   plataforma, em Admin > Blocos de Estudo.
+   sequência de cada ano da faculdade, do 3º ao 6º. A regra do rodízio entre
+   turmas está explicada no index.html, junto de SEED_BLOCOS; aqui ficam só
+   as datas, os nomes e a letra da turma que começa em cada bloco
+   (`grupoRodizio` — ver o 3º ano abaixo). A coordenação também edita isto
+   pela plataforma, em Admin > Blocos de Estudo, inclusive a virada de ano.
+
+   "Formado(a)" não tem sequência própria de propósito: quem já se formou não
+   segue calendário de faculdade nenhum. Continua podendo entrar num grupo, e
+   aí acompanha o calendário do ano daquela turma.
 
    Este arquivo é CONTEÚDO, não código: ele só entrega dados para a
    plataforma. Quem carrega é a linha <script src="dados/calendario.js"></script>
@@ -31,11 +36,29 @@ const BLOCOS_6_ANO = [
 window.EscDados.registrarCalendario("calendario", {
   blocos: BLOCOS_6_ANO,
   sequenciasAno: {
+    /* 3º ANO — calendário real da faculdade (rodízio de quatro turmas).
+       As quatro janelas de data abaixo são as do ano letivo de 2026; cada
+       turma passa pelos mesmos quatro blocos, mudando só por qual deles
+       entra. O campo `grupoRodizio` diz QUAL TURMA COMEÇA naquele bloco —
+       é o que faz a plataforma oferecer "Grupo A/B/C/D" em vez de pedir um
+       número de deslocamento:
+
+         janela            Grupo A            Grupo B      Grupo C      Grupo D
+         20/07 a 21/08     TOCE/Semio Mulher  Psiquiatria  Oftalmo      Cardio
+         24/08 a 02/10     Cardio             TOCE         Psiquiatria  Oftalmo
+         05/10 a 06/11     Oftalmo            Cardio       TOCE         Psiquiatria
+         09/11 a 04/12     Psiquiatria        Oftalmo      Cardio       TOCE
+
+       VIRADA DE ANO: em 2027 as datas não são estas. Não é preciso reescrever
+       o arquivo — a coordenação abre Admin > Blocos de Estudo > "Virada de ano
+       letivo", informa a data de início do primeiro bloco e todas as janelas
+       andam juntas, preservando a duração de cada uma e os intervalos entre
+       elas. Depois, se algum bloco precisar de ajuste fino, basta editá-lo. */
     "3º ano": [
-      { id:"b3-1", ordem:1, nome:"Bases da Clínica: Cardiologia & Pneumologia", dataInicio:"2026-02-02", dataFim:"2026-04-12", especialidadeIds:["esp-cardio","esp-pneumo"] },
-      { id:"b3-2", ordem:2, nome:"Bases da Clínica: Gastroenterologia & Nefrologia", dataInicio:"2026-04-13", dataFim:"2026-06-21", especialidadeIds:["esp-gastro","esp-nefro"] },
-      { id:"b3-3", ordem:3, nome:"Bases da Clínica: Endocrinologia & Infectologia", dataInicio:"2026-06-22", dataFim:"2026-09-06", especialidadeIds:["esp-endocrino","esp-infecto"] },
-      { id:"b3-4", ordem:4, nome:"Saúde Coletiva e Bioética", dataInicio:"2026-09-07", dataFim:"2026-12-20", especialidadeIds:["esp-epidemio","esp-sus","esp-bioetica","esp-saudefamilia"] },
+      { id:"b3-toce",  ordem:1, nome:"TOCE & Semiologia da Mulher", grupoRodizio:"A", dataInicio:"2026-07-20", dataFim:"2026-08-21", especialidadeIds:["esp-toce","esp-ginecologia","esp-obstetricia"] },
+      { id:"b3-cardio", ordem:2, nome:"Cardiocirculatório", grupoRodizio:"D", dataInicio:"2026-08-24", dataFim:"2026-10-02", especialidadeIds:["esp-cardio","esp-cirvascular"] },
+      { id:"b3-oftalmo", ordem:3, nome:"Oftalmologia, Infectologia & Medicina Baseada em Evidências", grupoRodizio:"C", dataInicio:"2026-10-05", dataFim:"2026-11-06", especialidadeIds:["esp-oftalmo","esp-infecto","esp-epidemio"] },
+      { id:"b3-psiq",  ordem:4, nome:"Psiquiatria & Vigilância em Saúde", grupoRodizio:"B", dataInicio:"2026-11-09", dataFim:"2026-12-04", especialidadeIds:["esp-psiquiatria","esp-sus","esp-saudefamilia"] },
     ],
     "4º ano": [
       { id:"b4-1", ordem:1, nome:"Clínica Médica I: Cardiologia, Pneumologia & Nefrologia", dataInicio:"2026-02-02", dataFim:"2026-04-05", especialidadeIds:["esp-cardio","esp-pneumo","esp-nefro"] },
@@ -51,13 +74,6 @@ window.EscDados.registrarCalendario("calendario", {
       { id:"b5-4", ordem:4, nome:"Ginecologia e Obstetrícia", dataInicio:"2026-09-21", dataFim:"2026-12-20", especialidadeIds:["esp-obstetricia","esp-ginecologia","esp-planfamiliar","esp-oncogineco"] },
     ],
     "6º ano": BLOCOS_6_ANO,
-    "Formado(a)": [
-      { id:"bf-1", ordem:1, nome:"Revisão: Clínica Médica", dataInicio:"2026-02-02", dataFim:"2026-04-05", especialidadeIds:["esp-cardio","esp-pneumo","esp-gastro","esp-endocrino","esp-nefro","esp-infecto","esp-oftalmo"] },
-      { id:"bf-2", ordem:2, nome:"Revisão: Cirurgia Geral", dataInicio:"2026-04-06", dataFim:"2026-06-07", especialidadeIds:["esp-abdagudo","esp-trauma","esp-perioperatorio","esp-cirurgiaonco","esp-toce"] },
-      { id:"bf-3", ordem:3, nome:"Revisão: Pediatria", dataInicio:"2026-06-08", dataFim:"2026-08-09", especialidadeIds:["esp-neonato","esp-crescdesenv","esp-infectoped","esp-emergped"] },
-      { id:"bf-4", ordem:4, nome:"Revisão: Ginecologia e Obstetrícia", dataInicio:"2026-08-10", dataFim:"2026-10-11", especialidadeIds:["esp-obstetricia","esp-ginecologia","esp-planfamiliar","esp-oncogineco"] },
-      { id:"bf-5", ordem:5, nome:"Revisão: Medicina Preventiva e Social", dataInicio:"2026-10-12", dataFim:"2026-12-20", especialidadeIds:["esp-epidemio","esp-sus","esp-bioetica","esp-saudefamilia"] },
-    ],
   },
 });
 })();

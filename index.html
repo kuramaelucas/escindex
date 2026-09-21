@@ -465,6 +465,8 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 <symbol id="i-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol>
 <symbol id="i-chevron-r" viewBox="0 0 24 24"><polyline points="9,5 16,12 9,19"/></symbol>
 <symbol id="i-chevron-d" viewBox="0 0 24 24"><polyline points="5,9 12,16 19,9"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="5"/><polyline points="6,11 12,5 18,11"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="19"/><polyline points="6,13 12,19 18,13"/></symbol>
 <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
 <symbol id="i-edit" viewBox="0 0 24 24"><polygon points="4,17 4,20 7,20 17.5,9.5 14.5,6.5"/></symbol>
 <symbol id="i-trash" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><rect x="6" y="7" width="12" height="13" rx="1"/><line x1="9" y1="4" x2="15" y2="4"/></symbol>
@@ -863,6 +865,12 @@ const CONFIG = {
   // ano usado quando o aluno ainda não informou o dele (e para o calendário
   // oficial, que atende todos os anos)
   anoFaculdadePadrao: "6º ano",
+  // Anos que NÃO têm calendário de blocos próprio. "Formado(a)" está aqui
+  // porque quem já se formou não segue calendário de faculdade nenhum: não
+  // aparece na tela de Blocos de Estudo e não ganha sequência própria. Ele
+  // continua podendo entrar num grupo — e aí acompanha o calendário do ano
+  // daquela turma, que é o que faz sentido para quem estuda junto com ela.
+  anosSemCalendario: ["Formado(a)"],
 
   // Níveis de administrador. Um administrador máster pode tudo; os demais
   // recebem apenas as permissões listadas em PERMISSOES_ADMIN (mais abaixo),
@@ -956,13 +964,23 @@ const SEED_TAXONOMIA = (window.EscDados && window.EscDados.taxonomia) || { areas
    DESLOCAMENTO (quantos blocos à frente ele começa). As janelas de data são
    sempre as mesmas — o que gira é o conteúdo dentro delas.
 
-   Anos diferentes têm sequências diferentes, porque a matéria é outra: o 3º
-   ano está começando a clínica, o 6º está no internato e quem já se formou
-   está em revisão para a prova.
+   O DESLOCAMENTO TEM NOME. Ninguém sabe de cor o próprio deslocamento; todo
+   mundo sabe que está "no grupo B". A ponte entre as duas coisas é o campo
+   `grupoRodizio` do bloco: a letra escrita no bloco de índice i da sequência
+   é a da turma que COMEÇA ali — a de deslocamento i. É um dado editável, e
+   não uma conta a partir do índice, porque no calendário real do 3º ano as
+   letras não seguem a ordem alfabética (A, D, C, B). Sem letra preenchida,
+   vale a ordem alfabética. Ver opcoesRodizio() e rotuloRodizio().
 
-   As datas e os nomes moram em dados/calendario.js — a regra do rodízio,
-   que é sistema, fica aqui. SEED_BLOCOS é o calendário de referência e
-   SEED_SEQUENCIAS_ANO é a sequência de cada ano. */
+   Anos diferentes têm sequências diferentes, porque a matéria é outra: o 3º
+   ano está começando a clínica e o 6º está no internato. "Formado(a)" não
+   tem sequência: quem já se formou não cursa calendário de faculdade nenhum
+   (CONFIG.anosSemCalendario). Ele continua entrando em turmas e acompanha o
+   calendário do ano delas — ver anoDeReferencia().
+
+   As datas, os nomes e as letras do rodízio moram em dados/calendario.js —
+   a regra do rodízio, que é sistema, fica aqui. SEED_BLOCOS é o calendário
+   de referência e SEED_SEQUENCIAS_ANO é a sequência de cada ano. */
 const SEED_BLOCOS = (window.EscDados && window.EscDados.blocos) || [];
 /* Nota sobre granularidade dos blocos: um bloco pode juntar quantas
    especialidades você quiser — "Cirurgia Geral" acima junta as 4
@@ -976,16 +994,27 @@ const SEED_BLOCOS = (window.EscDados && window.EscDados.blocos) || [];
    Uma sequência de blocos por ano da faculdade. A do 6º ano é o internato
    completo (SEED_BLOCOS, acima); os outros anos têm menos blocos e mais
    tempo em cada um, que é como a matéria costuma ser distribuída antes do
-   internato. Quem já se formou estuda por grande área, em ciclos curtos.
+   internato. A do 3º ano é o calendário real da faculdade, com quatro blocos
+   girando entre os grupos A, B, C e D.
 
    Cada ano pode ter quantos blocos quiser: o rodízio entre as turmas funciona
    com qualquer quantidade, porque ele só gira a lista contra as mesmas
-   janelas de data. */
+   janelas de data.
+
+   As datas são de um ano letivo específico. Na virada do ano, quem usa a
+   plataforma não reescreve este arquivo: Admin > Blocos de Estudo > "Virada
+   de ano letivo" pede só a data em que o primeiro bloco começa e desloca a
+   sequência inteira, preservando a duração de cada bloco e os intervalos
+   entre eles (ver aplicarViradaDeAno). */
 const SEED_SEQUENCIAS_ANO = (window.EscDados && window.EscDados.sequenciasAno) || {};
 
 /* ---------------------------- SEED_USUARIOS -------------------------------
-   Contas prontas para você testar cada papel. Use estes logins na tela de
-   entrada, ou use os botões de atalho "ver como..." na tela inicial.
+   Quatro contas prontas, uma por papel, para testar como cada um enxerga as
+   telas: uma de administrador (máster), professor, residente e aluno. Use
+   estes logins na tela de entrada; o atalho "ver como...", que entra sem
+   senha, existe só para o de ALUNO — os outros três papéis mexem em conteúdo
+   e em cadastros de gente de verdade e não podem ficar abertos a quem abrir
+   o endereço.
    As contas moram em dados/demonstracao.js, junto do resto do que existe só
    para a tela não nascer vazia — é o arquivo para esvaziar quando a turma
    real entrar.
@@ -1240,6 +1269,30 @@ function loadState(){
       saveState();
     }
     (db.grupos||[]).forEach(g=>{ if(g.deslocamento===undefined) g.deslocamento = 0; });
+    /* Anos sem calendário próprio (hoje "Formado(a)"): a sequência que
+       existia para eles sai de circulação, mas não é jogada fora — fica em
+       db.sequenciasArquivadas, onde continua no banco e no backup, caso a
+       coordenação queira consultar antes de descartar. Quem estava marcado
+       como formado não perde nada: passa a acompanhar o calendário do ano da
+       turma em que estiver (ver anoDeReferencia). */
+    (CONFIG.anosSemCalendario||[]).forEach(ano=>{
+      if(db.sequenciasAno && db.sequenciasAno[ano]){
+        if(!db.sequenciasArquivadas) db.sequenciasArquivadas = {};
+        db.sequenciasArquivadas[ano] = db.sequenciasAno[ano];
+        delete db.sequenciasAno[ano];
+      }
+    });
+    /* O 3º ano nasceu com uma sequência de exemplo (ids b3-1 … b3-4), antes
+       de o calendário real da faculdade existir. Quem já tinha essa sequência
+       de exemplo salva no navegador recebe a de verdade no lugar; quem já
+       tinha editado o 3º ano (qualquer id diferente) fica com o que montou —
+       sobrescrever o trabalho da coordenação seria pior do que uma sequência
+       desatualizada, que ela conserta na própria tela. */
+    if(db.sequenciasAno && Array.isArray(db.sequenciasAno["3º ano"]) && SEED_SEQUENCIAS_ANO["3º ano"]){
+      const atual3 = db.sequenciasAno["3º ano"];
+      const ehExemplo = atual3.length === 4 && atual3.every(b => /^b3-[1-4]$/.test(b.id||""));
+      if(ehExemplo) db.sequenciasAno["3º ano"] = copiaProfunda(SEED_SEQUENCIAS_ANO["3º ano"]);
+    }
     // meta diária de flashcards: quem já usava recebe a recomendação padrão, e
     // o diário de dias com cartão é semeado com o que dá para saber do que já
     // existe (a última data de cada cartão) — a sequência começa a valer daí
@@ -1308,6 +1361,16 @@ function sincronizarConteudoNovo(){
   if(!db.flashcards) db.flashcards = [];
   SEED_FLASHCARDS.forEach(c=>{ if(!db.flashcards.some(x=>x.id===c.id)){ db.flashcards.push(copiaProfunda(c)); novos++; } });
   if(!db.livroOuro) { db.livroOuro = copiaProfunda(SEED_LIVRO_OURO); novos++; }
+  // um ano da faculdade que ganhou calendário no código e ainda não existe no
+  // banco salvo entra aqui — sem tocar nos anos que a coordenação já editou
+  if(db.sequenciasAno){
+    Object.keys(SEED_SEQUENCIAS_ANO||{}).forEach(ano=>{
+      if(!temCalendarioProprio(ano)) return;
+      if(!db.sequenciasAno[ano] || !db.sequenciasAno[ano].length){
+        db.sequenciasAno[ano] = copiaProfunda(SEED_SEQUENCIAS_ANO[ano]); novos++;
+      }
+    });
+  }
   if(novos) saveState();
 }
 
@@ -2493,6 +2556,62 @@ function renderChipNuvem(){
   return `<button class="icon-btn" title="${escapeHtml(s.rotulo + " — " + s.detalhe)}" style="color:${corTexto}" onclick="navigate('perfil')">${iconeSvg(s.icone)}</button>`;
 }
 
+/* ---------------------------- trocar a senha ------------------------------
+   Faltava para todo mundo, mas incomodava principalmente fora do papel de
+   aluno: professor, residente e coordenação recebem a conta pronta de quem
+   cadastrou e ficavam com a senha que lhes foi entregue, sem caminho para
+   trocá-la sem pedir para alguém mexer no arquivo.
+
+   São dois caminhos, porque são dois lugares onde a senha mora:
+   - conta da NUVEM: quem guarda é o servidor, com hash. A sessão em curso já
+     prova quem é a pessoa, então o Supabase não pede a senha antiga; pedimos
+     a nova duas vezes, que é o erro que de fato acontece (digitar torto).
+   - conta LOCAL (as de teste e as de antes da nuvem): a senha está no banco
+     deste navegador, em texto claro. Aí a senha atual É a prova de que é a
+     pessoa, e é exigida. */
+function renderCardSenha(){
+  const u = usuarioAtual();
+  if(!u) return "";
+  const naNuvem = nuvemConectado() && nuvemSessao.usuarioId === u.id;
+  const minimo = naNuvem ? 6 : 4;
+  return `<div class="card mt-2" style="max-width:460px">
+    <div class="card-title">${iconeSvg("user")} Mudar a senha</div>
+    <p class="text-sm muted">${naNuvem
+      ? "Sua senha fica no servidor, com hash — nem este arquivo nem este navegador têm cópia dela. Trocar aqui vale para todos os aparelhos em que você entrar."
+      : "Esta é uma conta deste navegador: a senha nova vale só aqui. Se você também tem conta na nuvem, troque a senha dela entrando com ela."}</p>
+    ${naNuvem ? "" : `<div class="field mt-2"><label class="label">Senha atual</label><input class="input" type="password" id="senhaAtual" placeholder="••••••••"></div>`}
+    <div class="field"><label class="label">Nova senha</label><input class="input" type="password" id="senhaNova" placeholder="pelo menos ${minimo} caracteres"></div>
+    <div class="field"><label class="label">Repita a nova senha</label><input class="input" type="password" id="senhaNova2" placeholder="••••••••" onkeydown="if(event.key==='Enter') trocarMinhaSenha()"></div>
+    <button class="btn btn-primary btn-sm" onclick="trocarMinhaSenha()">Salvar nova senha</button>
+  </div>`;
+}
+function trocarMinhaSenha(){
+  const u = usuarioAtual(); if(!u) return;
+  const naNuvem = nuvemConectado() && nuvemSessao.usuarioId === u.id;
+  const minimo = naNuvem ? 6 : 4;
+  const nova = document.getElementById("senhaNova").value;
+  const nova2 = document.getElementById("senhaNova2").value;
+  if(!nova || nova.length < minimo){ toast("A nova senha precisa ter pelo menos " + minimo + " caracteres.", "err"); return; }
+  if(nova !== nova2){ toast("As duas senhas novas não são iguais.", "err"); return; }
+  if(naNuvem){ nuvemTrocarSenha(nova); return; }
+  const atual = document.getElementById("senhaAtual").value;
+  if(u.senha !== atual){ toast("A senha atual está incorreta.", "err"); return; }
+  if(nova === atual){ toast("A nova senha é igual à atual.", "err"); return; }
+  u.senha = nova;
+  saveState();
+  toast("Senha alterada neste navegador.");
+  render();
+}
+async function nuvemTrocarSenha(nova){
+  try{
+    await nuvemChamar("/auth/v1/user", { method:"PUT", body: JSON.stringify({ password: nova }) });
+    toast("Senha alterada. Use a nova da próxima vez que entrar, em qualquer aparelho.");
+    render();
+  }catch(e){
+    toast(e.message || "Não foi possível alterar a senha agora.", "err");
+  }
+}
+
 function renderCardNuvem(){
   if(!nuvemLigada()){
     return `<div class="card mt-2" style="max-width:560px">
@@ -2896,16 +3015,77 @@ function anoDoGrupo(grupo, usuario){
   usuario = usuario || usuarioAtual();
   return (usuario && usuario.anoFaculdade) || CONFIG.anoFaculdadePadrao;
 }
+/* Anos sem calendário próprio (hoje só "Formado(a)"): quem está neles não
+   tem sequência de blocos para chamar de sua, então empresta a do ano de
+   referência. Isso é o que permite a uma pessoa já formada participar de um
+   grupo normalmente — ela acompanha o calendário do ano da turma — sem que a
+   coordenação precise manter um calendário de formados que ninguém cursa. */
+function temCalendarioProprio(ano){
+  return !!ano && !(CONFIG.anosSemCalendario||[]).includes(ano);
+}
+function anosComCalendario(){
+  return CONFIG.anosFaculdade.filter(temCalendarioProprio);
+}
+function anoDeReferencia(ano){
+  return temCalendarioProprio(ano) ? ano : CONFIG.anoFaculdadePadrao;
+}
 function sequenciaDoAno(ano){
   const seqs = db.sequenciasAno || {};
-  const lista = seqs[ano] || seqs[CONFIG.anoFaculdadePadrao] || Object.values(seqs)[0] || [];
+  const alvo = anoDeReferencia(ano);
+  const lista = seqs[alvo] || seqs[CONFIG.anoFaculdadePadrao] || Object.values(seqs)[0] || [];
   return lista.slice().sort((a,b)=>a.ordem-b.ordem);
+}
+/* ---------- as turmas do rodízio: "Grupo A", "Grupo B"… -------------------
+   Uma turma é identificada pelo bloco em que entra na sequência — é o
+   `deslocamento`. Pedir esse número à pessoa seria pedir que ela traduzisse
+   o calendário impresso da faculdade; ela sabe é que está "no grupo B".
+
+   A ponte entre as duas coisas fica no próprio bloco: `grupoRodizio` na
+   posição i da sequência é a letra da turma que COMEÇA ali, ou seja, a turma
+   de deslocamento i. No 3º ano a ordem das letras não é alfabética
+   (A, D, C, B) porque o calendário real da faculdade é assim — por isso a
+   letra é um dado editável, e não uma conta feita a partir do índice. Onde a
+   coordenação não tiver preenchido nada, vale a ordem alfabética. */
+function letraPadraoRodizio(i){ return String.fromCharCode(65 + (((i%26)+26)%26)); }
+function normalizarDeslocamento(deslocamento, tamanho){
+  const n = tamanho || 1;
+  return (((deslocamento||0) % n) + n) % n;
+}
+// as turmas possíveis daquele ano, na ordem em que entram na sequência
+function opcoesRodizio(ano){
+  return sequenciaDoAno(ano).map((b,i)=>({
+    deslocamento: i,
+    rotulo: b.grupoRodizio || letraPadraoRodizio(i),
+    bloco: b,
+  }));
+}
+/* As mesmas opções em ordem alfabética de letra — que é como o calendário
+   impresso lista as turmas (A, B, C, D) e como a pessoa procura a sua. A
+   ordem de deslocamento (a da sequência) continua valendo onde o que importa
+   é o calendário, não a turma. */
+function opcoesRodizioPorLetra(ano){
+  return opcoesRodizio(ano).slice().sort((a,b)=>a.rotulo.localeCompare(b.rotulo, "pt-BR"));
+}
+function rotuloRodizio(ano, deslocamento){
+  const opcoes = opcoesRodizio(ano);
+  if(!opcoes.length) return letraPadraoRodizio(deslocamento||0);
+  return opcoes[normalizarDeslocamento(deslocamento, opcoes.length)].rotulo;
+}
+// "Grupo A" por extenso — usado nos textos de tela
+function nomeRodizio(ano, deslocamento){ return "Grupo " + rotuloRodizio(ano, deslocamento); }
+function deslocamentoDoRotulo(ano, rotulo){
+  const achado = opcoesRodizio(ano).find(o => o.rotulo === rotulo);
+  return achado ? achado.deslocamento : 0;
+}
+// o rótulo de uma turma existente, já resolvido pelo ano dela
+function rodizioDoGrupo(grupo, usuario){
+  return rotuloRodizio(anoDoGrupo(grupo, usuario), grupo && grupo.deslocamento);
 }
 function blocosDoGrupo(grupo, usuario){
   const seq = sequenciaDoAno(anoDoGrupo(grupo, usuario));
   const n = seq.length;
   if(!n) return [];
-  const deslocamento = (((grupo && grupo.deslocamento) || 0) % n + n) % n;
+  const deslocamento = normalizarDeslocamento(grupo && grupo.deslocamento, n);
   // cada janela de data recebe o conteúdo do bloco que está "deslocamento"
   // posições à frente — é o rodízio: mesma sequência, começos diferentes
   return seq.map((janela, i) => {
@@ -2915,6 +3095,26 @@ function blocosDoGrupo(grupo, usuario){
       ordem: i+1, dataInicio: janela.dataInicio, dataFim: janela.dataFim,
     };
   });
+}
+/* UMA TURMA POR PESSOA. O aluno pertence a um grupo só — é o que a turma da
+   vida real é. Entrar num grupo, portanto, é também SAIR do anterior: sem
+   isso a pessoa ficava listada como membro de três turmas ao mesmo tempo e
+   ninguém sabia mais quem estava em qual. O calendário oficial é a ausência
+   de turma, então não tem lista de membros. */
+function entrarNoGrupo(usuario, grupoId){
+  if(!usuario) return;
+  (db.grupos||[]).forEach(g => {
+    if(g.id === grupoId || g.oficial) return;
+    g.membrosAprovados = (g.membrosAprovados||[]).filter(id => id !== usuario.id);
+    g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id => id !== usuario.id);
+  });
+  const destino = getGrupo(grupoId);
+  if(destino && !destino.oficial){
+    if(!destino.membrosAprovados) destino.membrosAprovados = [];
+    if(!destino.membrosAprovados.includes(usuario.id)) destino.membrosAprovados.push(usuario.id);
+    destino.solicitacoesPendentes = (destino.solicitacoesPendentes||[]).filter(id => id !== usuario.id);
+  }
+  usuario.grupoId = destino ? destino.id : db.grupoOficialId;
 }
 function blocosDoUsuario(usuario){
   usuario = usuario || usuarioAtual();
@@ -3777,10 +3977,17 @@ function calibracaoConfianca(usuarioId){
 function gerarNotificacoes(usuario){
   const notifs = [];
   if(usuario.papel==="aluno"){
+    // a turma passou a ser escolhida DEPOIS do cadastro (o cadastro pergunta
+    // só o ano), então a plataforma precisa lembrar quem ainda não escolheu —
+    // no calendário oficial o aluno vê o bloco do Grupo A, que pode não ser o
+    // dele
+    if(getGrupoDoUsuario(usuario).oficial){
+      notifs.push({icon:"users", texto:"Escolha a sua turma do rodízio (Grupo A, B, C ou D) — até lá você segue o calendário oficial.", rota:"meu-grupo"});
+    }
     const vencidas = questoesRevisaoEspacadaVencidas(usuario.id).length;
     if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" questão(ões) vencida(s) para revisão espaçada.", rota:"revisao"});
     const bloco = getBlocoAtual(usuario);
-    const simsRecomendados = db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id));
+    const simsRecomendados = bloco ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id)) : [];
     if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" simulado(s) novo(s) recomendado(s) para o seu bloco.", rota:"simulados"});
     const meta = metaDoUsuario(usuario);
     const hoje = questoesRespondidasHoje(usuario.id);
@@ -3946,9 +4153,17 @@ function fazerLogin(identificador, senha){
     : ("Bem-vindo(a), " + usuario.nome.split(" ")[0] + "!"));
   navigate("inicio");
 }
+/* Acesso rápido sem senha. Hoje a tela só oferece o de ALUNO — os outros
+   papéis mexem em conteúdo e em cadastros de gente de verdade, e não podem
+   ficar abertos a quem abrir o endereço. O mapa continua com os quatro
+   porque as contas existem (entram por e-mail e senha); o que saiu foi o
+   botão. */
 function fazerLoginDemo(papel){
   const mapa = {admin:"u-admin", professor:"u-prof", residente:"u-res", aluno:"u-aluno1"};
-  state.usuarioAtualId = mapa[papel];
+  if(papel !== "aluno"){ toast("Este papel entra por e-mail e senha — o acesso rápido é só o de aluno.", "err"); return; }
+  const alvo = getUsuario(mapa[papel]);
+  if(!alvo){ toast("A conta de teste de aluno não está mais neste banco.", "err"); return; }
+  state.usuarioAtualId = alvo.id;
   navigate("inicio");
   // com a nuvem ligada, é fácil entrar por aqui sem perceber e depois
   // estranhar que nada sincroniza — estes acessos são só deste navegador
@@ -4004,21 +4219,12 @@ function solicitarCadastro(){
   const novoUsuarioId = uid("u");
   const novo = {id:novoUsuarioId, nome, email, matricula, senha, papel:tipoAcesso, status:"pendente", criadoEm:hojeISO()};
   if(tipoAcesso==="aluno"){
-    const turmaSelect = document.getElementById("cadTurmaSelect").value;
-    const novaTurmaNome = (document.getElementById("cadNovaTurmaNome").value||"").trim();
-    if(turmaSelect==="__nova__" && !novaTurmaNome){ toast("Dê um nome para a nova turma, ou escolha uma existente.", "err"); return; }
+    // O cadastro pergunta só o ano. A turma é escolhida depois, em Meu Grupo
+    // (ver "UMA TURMA POR PESSOA"): quem acabou de chegar não tem como saber
+    // qual grupo é o dele antes de ver a lista, e cada tentativa no cadastro
+    // criava uma turma solta que ninguém mais usava.
     novo.anoFaculdade = document.getElementById("cadAno").value;
-    let grupoId = db.grupoOficialId;
-    if(turmaSelect==="__nova__"){
-      // a turma nova nasce no ano do próprio aluno e sem deslocamento; a
-      // coordenação ajusta o bloco de início depois, em Blocos de Estudo
-      const novoGrupo = {id:uid("grupo"), nome:novaTurmaNome, criadoPor:novoUsuarioId, oficial:false, publico:true, criadoEm:hojeISO(), anoFaculdade:novo.anoFaculdade, deslocamento:0, blocoAtualIdManual:null, membrosAprovados:[novoUsuarioId], solicitacoesPendentes:[]};
-      db.grupos.push(novoGrupo);
-      grupoId = novoGrupo.id;
-    } else if(turmaSelect){
-      grupoId = turmaSelect;
-    }
-    novo.grupoId = grupoId;
+    novo.grupoId = db.grupoOficialId;
   } else {
     const areasAtuacao = [...document.querySelectorAll(".cadAreaAtuacao:checked")].map(el=>el.value);
     if(!areasAtuacao.length){ toast("Selecione pelo menos uma grande área de atuação.", "err"); return; }
@@ -4328,7 +4534,7 @@ function renderShell(conteudoHtml){
   <div class="shell">
     <aside class="sidebar" id="sidebarMenu">
       <div class="sidebar-brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
-      ${(u.papel==="aluno"||state.modoAluno) ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml(getBlocoAtual().nome)}</div></div>` : ""}
+      ${(u.papel==="aluno"||state.modoAluno) ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
       <div class="nav-section-label">${rotuloPapel(u.papel)}</div>
       <ul class="nav-list">
         ${nav.map(item=>{
@@ -4415,10 +4621,8 @@ function renderLanding(){
       <div class="text-sm" style="font-weight:600;margin-bottom:.5rem">Prévia rápida, sem cadastro:</div>
       <div class="flex gap-1" style="flex-wrap:wrap">
         <button class="pill" onclick="fazerLoginDemo('aluno')">${iconeSvg("user")} Ver como aluno</button>
-        <button class="pill" onclick="fazerLoginDemo('professor')">${iconeSvg("user")} Ver como professor</button>
-        <button class="pill" onclick="fazerLoginDemo('residente')">${iconeSvg("user")} Ver como residente</button>
-        <button class="pill" onclick="fazerLoginDemo('admin')">${iconeSvg("user")} Ver como administrador</button>
       </div>
+      <div class="text-xs muted mt-2">Só a visão do aluno fica aberta a quem chega: é a que interessa a quem quer conhecer a plataforma. Professor, residente e coordenação entram com e-mail e senha.</div>
     </div>
     <footer class="site-footer">${CONFIG.nomePlataforma} — ${CONFIG.subtitulo}. Protótipo de demonstração.</footer>
   </div>`;
@@ -4442,23 +4646,12 @@ function renderLogin(){
       <p class="text-sm mt-2">Ainda não tem conta? <a href="javascript:void(0)" onclick="navigate('cadastro')">Solicitar cadastro</a></p>
       <div class="card-flat mt-3">
         <div class="text-xs muted mb-1">${nuvemLigada()
-          ? "Acesso de demonstração — fica só neste navegador e não sincroniza:"
-          : "Acesso rápido de demonstração (não pede senha):"}</div>
+          ? "Conhecer a plataforma sem criar conta — fica só neste navegador e não sincroniza:"
+          : "Conhecer a plataforma sem criar conta (não pede senha):"}</div>
         <div class="flex gap-1" style="flex-wrap:wrap">
-          <button class="pill" onclick="fazerLoginDemo('aluno')">Aluno</button>
-          <button class="pill" onclick="fazerLoginDemo('professor')">Professor</button>
-          <button class="pill" onclick="fazerLoginDemo('residente')">Residente</button>
-          <button class="pill" onclick="fazerLoginDemo('admin')">Administrador</button>
+          <button class="pill" onclick="fazerLoginDemo('aluno')">Entrar como aluno de teste</button>
         </div>
-      </div>
-      <div class="text-xs muted mt-3">
-        Contas de teste (usuário / senha):
-        <ul style="margin:.3rem 0 0;padding-left:1.1rem;line-height:1.7">
-          <li>admin@esc.demo / admin123</li>
-          <li>professor@esc.demo / prof123</li>
-          <li>residente@esc.demo / res123</li>
-          <li>aluno@esc.demo / aluno123</li>
-        </ul>
+        <div class="text-xs muted mt-1">aluno@esc.demo / aluno123 — é a única conta de teste aberta. Professor, residente e coordenação usam as contas de verdade, acima.</div>
       </div>
     </div>
   </div>`;
@@ -4516,18 +4709,11 @@ function renderCadastro(){
         </select>
       </div>
       <div id="camposAluno">
-        <div class="field"><label class="label">Turma / Grupo</label>
-          <select class="select" id="cadTurmaSelect" onchange="alternarNovaTurmaInput()">
-            <option value="">Usar calendário oficial da coordenação</option>
-            ${db.grupos.filter(g=>!g.oficial).map(g=>`<option value="${g.id}">${escapeHtml(g.nome)}</option>`).join("")}
-            <option value="__nova__">+ Criar nova turma/grupo</option>
-          </select>
-          <input class="input mt-1" id="cadNovaTurmaNome" placeholder="Nome da nova turma" style="display:none">
-        </div>
         <div class="field"><label class="label">Ano da faculdade</label><select class="select" id="cadAno">
           ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${a==="5º ano"?"selected":""}>${escapeHtml(a)}</option>`).join("")}
         </select>
-        <div class="hint mt-1">O internato deixou de ser uma opção à parte: quem está no internato marca o ano em que está (5º ou 6º), que é o que a coordenação usa para montar as turmas.</div></div>
+        <div class="hint mt-1">É a única coisa que precisamos saber agora. O internato deixou de ser uma opção à parte: quem está no internato marca o ano em que está (5º ou 6º). Quem já se formou marca "Formado(a)".</div></div>
+        <div class="card-flat text-xs muted" style="margin-bottom:.8rem">A turma (Grupo A, B, C ou D) você escolhe depois de entrar, em <strong>Meu Grupo</strong> — assim dá para conferir quais turmas já existem e em qual bloco cada uma está, em vez de adivinhar no cadastro. Até lá você acompanha o calendário oficial da coordenação.</div>
       </div>
       <div id="camposEquipe" style="display:none">
         <div class="field"><label class="label">Grandes áreas de atuação</label>
@@ -4544,10 +4730,6 @@ function renderCadastro(){
       <p class="text-sm mt-2">Já tem conta aprovada? <a href="javascript:void(0)" onclick="navigate('login')">Entrar</a></p>
     </div>
   </div>`;
-}
-function alternarNovaTurmaInput(){
-  const val = document.getElementById("cadTurmaSelect").value;
-  document.getElementById("cadNovaTurmaNome").style.display = val==="__nova__" ? "block" : "none";
 }
 /* ==========================================================================
    9. PAINEL INICIAL (muda conforme o papel do usuário)
@@ -7005,19 +7187,33 @@ function salvarMetaCartoes(){
 function renderMeuGrupo(){
   const u = usuarioAtual();
   const meuGrupo = getGrupoDoUsuario(u);
-  const souDono = meuGrupo.criadoPor === u.id;
-  const outrosGrupos = db.grupos.filter(g=>g.id!==meuGrupo.id);
+  const souDono = meuGrupo.criadoPor === u.id && !meuGrupo.oficial;
+  const semTurma = !!meuGrupo.oficial;
+  const anoDaMinhaTurma = anoDoGrupo(meuGrupo, u);
+  const anoParaCriar = temCalendarioProprio(u.anoFaculdade) ? u.anoFaculdade : CONFIG.anoFaculdadePadrao;
+  const outrosGrupos = db.grupos.filter(g=>g.id!==meuGrupo.id && !g.oficial);
   const solicitacoesPendentes = souDono ? (meuGrupo.solicitacoesPendentes||[]) : [];
+  const formado = !temCalendarioProprio(u.anoFaculdade);
   return `
-  <div class="page-header"><h2>Meu Grupo</h2><p>Cada grupo/turma tem seu próprio calendário de blocos. Por padrão, todo mundo usa o calendário oficial da coordenação.</p></div>
+  <div class="page-header"><h2>Meu Grupo</h2><p>Todas as turmas do seu ano passam pelos mesmos blocos, na mesma ordem. O que muda de uma para outra é por qual bloco ela começa — é o <strong>Grupo A, B, C ou D</strong> do calendário da faculdade.</p></div>
+
+  ${semTurma ? `<div class="card mb-2" style="border-color:var(--accent)">
+    <div class="card-title">${iconeSvg("users")} Escolha a sua turma</div>
+    <p class="text-sm">Você ainda está no <strong>calendário oficial da coordenação</strong>. Ele funciona, mas segue o Grupo A: se a sua turma é outra, o bloco atual aparece trocado. Escolha abaixo a turma em que você está — ou crie a sua, se ela ainda não existir aqui.</p>
+    <p class="text-xs muted mt-1">Dá para trocar depois quantas vezes precisar. Você fica em uma turma de cada vez.</p>
+  </div>` : ""}
+
   <div class="card mb-2">
-    <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-accent">Oficial da coordenação</span>' : souDono ? '<span class="badge badge-accent">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>'}</div>
+    <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-muted">Calendário oficial — nenhuma turma escolhida</span>' : `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoDaMinhaTurma, meuGrupo.deslocamento))}</span>` + (souDono ? '<span class="badge badge-muted">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>')}</div>
     <div style="font-weight:700;font-size:1.1rem">${escapeHtml(meuGrupo.nome)}</div>
-    <div class="text-sm muted mt-1">${blocosDoGrupo(meuGrupo, u).length} bloco(s) na sequência de ${escapeHtml(anoDoGrupo(meuGrupo, u))}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
+    <div class="text-sm muted mt-1">${blocosDoGrupo(meuGrupo, u).length} bloco(s) na sequência de ${escapeHtml(anoDeReferencia(anoDaMinhaTurma))}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
+    ${formado ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>, e quem já se formou não tem calendário de faculdade próprio. Participando de um grupo, você acompanha o calendário do ano daquela turma; fora dele, a plataforma usa a sequência de ${escapeHtml(CONFIG.anoFaculdadePadrao)} como referência.</div>` : ""}
+    ${!semTurma ? `<button class="btn btn-ghost btn-sm mt-2" onclick="sairDoMeuGrupo()">Sair desta turma e voltar ao calendário oficial</button>` : ""}
   </div>
+
   ${solicitacoesPendentes.length ? `<div class="card mb-2" style="border-color:var(--amber)">
     <div class="card-title">Solicitações de acesso pendentes (${solicitacoesPendentes.length})</div>
-    <p class="text-sm muted">Essas pessoas pediram para usar o calendário do seu grupo. Só entram depois que você aprovar.</p>
+    <p class="text-sm muted">Essas pessoas pediram para entrar na sua turma. Só entram depois que você aprovar.</p>
     ${solicitacoesPendentes.map(uidSolicitante=>{
       const solicitante = getUsuario(uidSolicitante);
       return `<div class="flex justify-between items-center card-flat mb-1">
@@ -7026,61 +7222,91 @@ function renderMeuGrupo(){
       </div>`;
     }).join("")}
   </div>` : ""}
+
   <div class="card mb-2">
-    <div class="card-title">Calendário deste grupo</div>
+    <div class="card-title">Calendário desta turma</div>
     ${renderEditorCalendario(meuGrupo, {podeEditar: souDono, usuario: u, podeEditarSequencia: podeAdmin("blocos")})}
-    ${!souDono ? '<p class="text-xs muted mt-1">Só quem criou este grupo escolhe por qual bloco a turma começa. Crie o seu próprio grupo abaixo se quiser um começo diferente.</p>' : ""}
-    <p class="text-xs muted mt-1">A ordem dos blocos é a do seu ano e é definida pela coordenação — o que a turma escolhe é o ponto de entrada nessa ordem.</p>
+    ${!souDono && !semTurma ? '<p class="text-xs muted mt-1">Só quem criou a turma muda o grupo do rodízio. Se a letra estiver errada, avise o dono da turma ou a coordenação.</p>' : ""}
+    <p class="text-xs muted mt-1">A ordem dos blocos é a do seu ano e é definida pela coordenação — o que a turma escolhe é por qual deles entra.</p>
   </div>
+
   ${!meuGrupo.oficial ? renderQuestoesDoGrupo(meuGrupo) : ""}
+
   <div class="card mb-2">
-    <div class="card-title">Criar meu próprio grupo</div>
-    <p class="text-sm muted">O grupo segue a sequência de blocos do seu ano (a mesma de todas as turmas) e você escolhe por qual bloco ele começa — é assim que duas turmas do mesmo ano estudam matérias diferentes na mesma semana. Quem participar do seu grupo vai precisar da sua aprovação.</p>
+    <div class="card-title">${semTurma ? "Criar a minha turma" : "Criar outra turma"}</div>
+    <p class="text-sm muted">A turma segue a sequência de blocos de ${escapeHtml(anoParaCriar)} (a mesma de todas as turmas do ano) e você escolhe em qual grupo do rodízio ela entra — é assim que duas turmas do mesmo ano estudam matérias diferentes na mesma semana. Quem pedir para entrar precisa da sua aprovação.</p>
+    ${formado ? `<p class="text-xs muted">Como você está como ${escapeHtml(u.anoFaculdade||"Formado(a)")}, a turma nasce seguindo o calendário de ${escapeHtml(anoParaCriar)}.</p>` : ""}
+    <p class="text-xs muted">Criar uma turma faz você sair da atual: cada pessoa fica em uma só.</p>
     <div class="flex gap-1 items-end mt-1" style="flex-wrap:wrap">
-      <div class="field" style="margin-bottom:0;min-width:240px"><label class="label">Nome do grupo/turma</label><input class="input" id="novoGrupoNome" placeholder="Ex.: 6º ano 2026 - Grupo B"></div>
-      <button class="btn btn-primary" onclick="criarMeuGrupo()">Criar grupo</button>
+      <div class="field" style="margin-bottom:0;min-width:240px"><label class="label">Nome da turma</label><input class="input" id="novoGrupoNome" placeholder="Ex.: ${escapeHtml(anoParaCriar)} 2026 — Grupo B"></div>
+      <div class="field" style="margin-bottom:0;min-width:200px"><label class="label">Grupo do rodízio</label>
+        <select class="select" id="novoGrupoRodizio">
+          ${opcoesRodizioPorLetra(anoParaCriar).map(o=>`<option value="${o.deslocamento}">Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="criarMeuGrupo()">Criar turma</button>
     </div>
   </div>
+
   <div class="card">
-    <div class="card-title">Usar calendário de outro grupo</div>
+    <div class="card-title">Entrar em uma turma já existente</div>
     ${outrosGrupos.length ? outrosGrupos.map(g=>{
-      const souMembro = g.oficial || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
+      const souMembro = g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
       const jaSolicitei = (g.solicitacoesPendentes||[]).includes(u.id);
+      const anoG = anoDoGrupo(g, u);
+      const atualG = blocoAtualDoGrupo(g, u);
       return `
-      <div class="flex justify-between items-center mb-1 card-flat">
+      <div class="flex justify-between items-center mb-1 card-flat" style="gap:.5rem;flex-wrap:wrap">
         <div>
-          <div style="font-weight:600">${escapeHtml(g.nome)} ${g.oficial?'<span class="badge badge-accent">oficial</span>':""}</div>
-          <div class="text-xs muted">${escapeHtml(anoDoGrupo(g, u))} · começa no bloco ${((g.deslocamento||0)+1)} · criado por ${escapeHtml(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"—")}</div>
+          <div style="font-weight:600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloRodizio(anoG, g.deslocamento))}</span></div>
+          <div class="text-xs muted">${escapeHtml(anoG)} · hoje em ${escapeHtml(atualG?atualG.nome:"—")} · criada por ${escapeHtml(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"—")}</div>
         </div>
-        ${souMembro ? `<button class="btn btn-secondary btn-sm" onclick="usarGrupo('${g.id}')">Usar este calendário</button>` :
+        ${souMembro ? `<button class="btn btn-secondary btn-sm" onclick="usarGrupo('${g.id}')">Entrar nesta turma</button>` :
           jaSolicitei ? `<button class="btn btn-secondary btn-sm" disabled>Solicitação enviada</button>` :
-          `<button class="btn btn-secondary btn-sm" onclick="solicitarAcessoGrupo('${g.id}')">Solicitar acesso</button>`}
+          `<button class="btn btn-secondary btn-sm" onclick="solicitarAcessoGrupo('${g.id}')">Pedir para entrar</button>`}
       </div>`;
-    }).join("") : '<p class="text-sm muted">Nenhum outro grupo disponível ainda.</p>'}
+    }).join("") : '<p class="text-sm muted">Nenhuma turma criada ainda. Crie a sua acima.</p>'}
   </div>
-  <div class="card-flat mt-2 text-xs muted">Importante: nesta demonstração local, "outros alunos" e seus grupos só aparecem aqui se foram criados neste mesmo navegador (por exemplo, testando o login de mais de um aluno de propósito). Numa versão publicada com banco de dados real, isso valeria para a turma inteira de verdade.</div>
+  <div class="card-flat mt-2 text-xs muted">Com a nuvem ligada, o estudo de cada pessoa viaja entre aparelhos, mas as turmas ainda são deste navegador: um grupo criado aqui só aparece para quem abrir a plataforma neste mesmo computador. Ver <code>nuvem/LEIA-ME.md</code>.</div>
   `;
 }
 function criarMeuGrupo(){
   const nome = document.getElementById("novoGrupoNome").value.trim();
-  if(!nome){ toast("Dê um nome para o grupo.", "err"); return; }
+  if(!nome){ toast("Dê um nome para a turma.", "err"); return; }
   const u = usuarioAtual();
-  // o grupo herda a sequência do ano do aluno; o que ele escolhe é o bloco
-  // de início (deslocamento), que é o que diferencia uma turma da outra
+  // a turma herda a sequência de um ano que tenha calendário (quem está como
+  // "Formado(a)" não tem, e aí vale o ano padrão) e o que ela escolhe é o
+  // grupo do rodízio — o bloco por onde entra na sequência
+  const ano = temCalendarioProprio(u.anoFaculdade) ? u.anoFaculdade : CONFIG.anoFaculdadePadrao;
+  const campoRodizio = document.getElementById("novoGrupoRodizio");
+  const deslocamento = campoRodizio ? (parseInt(campoRodizio.value)||0) : 0;
   const novo = { id:uid("grupo"), nome, criadoPor:u.id, oficial:false, publico:true, criadoEm:hojeISO(),
-                 anoFaculdade: u.anoFaculdade || CONFIG.anoFaculdadePadrao, deslocamento:0,
-                 blocoAtualIdManual:null, membrosAprovados:[u.id], solicitacoesPendentes:[] };
+                 anoFaculdade: ano, deslocamento,
+                 blocoAtualIdManual:null, membrosAprovados:[], solicitacoesPendentes:[] };
   db.grupos.push(novo);
-  u.grupoId = novo.id;
+  entrarNoGrupo(u, novo.id);
   saveState();
-  toast("Grupo criado! Ele segue a sequência de blocos do seu ano — escolha por qual bloco a turma começa.");
+  toast('Turma criada — você está no ' + nomeRodizio(ano, deslocamento) + '.');
   render();
 }
 function usarGrupo(grupoId){
   const g = getGrupo(grupoId); if(!g) return;
-  usuarioAtual().grupoId = grupoId;
+  const u = usuarioAtual();
+  if(!g.oficial && g.criadoPor!==u.id && !(g.membrosAprovados||[]).includes(u.id)){
+    toast("Você ainda não faz parte desta turma — peça para entrar.", "err"); return;
+  }
+  entrarNoGrupo(u, grupoId);
   saveState();
-  toast('Agora você está usando o calendário de "'+g.nome+'".');
+  toast('Agora você está em "'+g.nome+'" ('+nomeRodizio(anoDoGrupo(g,u), g.deslocamento)+').');
+  render();
+}
+/* Sair da turma é voltar ao calendário oficial — nunca ficar sem calendário
+   nenhum, o que deixaria a tela Estudar sem bloco atual. */
+function sairDoMeuGrupo(){
+  const u = usuarioAtual();
+  entrarNoGrupo(u, db.grupoOficialId);
+  saveState();
+  toast("Você voltou ao calendário oficial da coordenação.");
   render();
 }
 function solicitarAcessoGrupo(grupoId){
@@ -7089,16 +7315,14 @@ function solicitarAcessoGrupo(grupoId){
   if(!g.solicitacoesPendentes) g.solicitacoesPendentes = [];
   if(!g.solicitacoesPendentes.includes(u.id)) g.solicitacoesPendentes.push(u.id);
   saveState();
-  toast("Solicitação enviada! Assim que "+(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"o dono do grupo")+" aprovar, você já vai poder usar o calendário.");
+  toast("Pedido enviado! Assim que "+(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"o dono da turma")+" aprovar, você entra nela.");
   render();
 }
 function aprovarAcessoGrupo(grupoId, usuarioId){
   const g = getGrupo(grupoId); if(!g) return;
-  g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
-  if(!g.membrosAprovados) g.membrosAprovados = [];
-  if(!g.membrosAprovados.includes(usuarioId)) g.membrosAprovados.push(usuarioId);
   const solicitante = getUsuario(usuarioId);
-  if(solicitante) solicitante.grupoId = grupoId;
+  if(solicitante) entrarNoGrupo(solicitante, grupoId);
+  else g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
   saveState();
   toast("Acesso aprovado.");
   render();
@@ -7152,16 +7376,16 @@ function renderPerfil(){
     <div class="field"><label class="label">Nome</label><div>${escapeHtml(u.nome)}</div></div>
     <div class="field"><label class="label">E-mail</label><div>${escapeHtml(u.email)}</div></div>
     <div class="field"><label class="label">Matrícula</label><div>${escapeHtml(u.matricula)}</div></div>
-    ${u.papel==="aluno" ? `<div class="field"><label class="label">Turma / Grupo</label><div>${escapeHtml(getGrupoDoUsuario(u).nome)} <button class="link-btn" onclick="navigate('meu-grupo')">gerenciar</button></div></div>
-    <div class="field"><label class="label">Ano da faculdade</label>
+    ${u.papel==="aluno" ? (() => { const g = getGrupoDoUsuario(u); return `<div class="field"><label class="label">Turma / Grupo</label><div>${escapeHtml(g.nome)}${g.oficial ? ' <span class="badge badge-muted">calendário oficial</span>' : ' <span class="badge badge-accent">'+escapeHtml(nomeRodizio(anoDoGrupo(g, u), g.deslocamento))+'</span>'} <button class="link-btn" onclick="navigate('meu-grupo')">gerenciar</button></div>${g.oficial?'<div class="hint mt-1">Você ainda não escolheu a sua turma do rodízio — em Meu Grupo.</div>':""}</div>`; })() : ""}
+    ${u.papel==="aluno" ? `<div class="field"><label class="label">Ano da faculdade</label>
       <select class="select" id="perfilAno" onchange="salvarAnoFaculdade()">
         ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${u.anoFaculdade===a?"selected":""}>${escapeHtml(a)}</option>`).join("")}
       </select>
-      <div class="hint mt-1">Atualize quando virar o ano letivo. Quem está no internato marca o ano em que está — 5º ou 6º.</div>
+      <div class="hint mt-1">Atualize quando virar o ano letivo. Quem está no internato marca o ano em que está — 5º ou 6º. Quem já se formou marca "Formado(a)": não há calendário de formado, e a turma de que você participar é que dá o calendário.</div>
     </div>` : ""}
     <div class="field"><label class="label">Papel</label><div>${badgePapel(u.papel, u)}</div></div>
     ${u.papel==="admin" ? `<div class="field"><label class="label">Nível de administrador</label><div>${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}<div class="hint mt-1">${escapeHtml((CONFIG.niveisAdmin.find(n=>n.id===nivelAdminDe(u))||{}).descricao||"")}</div></div></div>` : ""}
-    ${u.papel==="aluno" ? `<div class="field"><label class="label">Bloco atual</label><div>${escapeHtml(getBlocoAtual().nome)}</div></div>` : ""}
+    ${u.papel==="aluno" ? `<div class="field"><label class="label">Bloco atual</label><div>${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
   </div>
   ${u.papel==="aluno" ? `<div class="card mt-2" style="max-width:460px">
     <div class="card-title">Lembrete de meta diária</div>
@@ -7179,6 +7403,7 @@ function renderPerfil(){
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
     </div>
   </div>` : ""}
+  ${renderCardSenha()}
   ${renderCardNuvem()}
   ${ehMaster ? renderCardBackup() : `<div class="card mt-2" style="max-width:460px">
     <div class="card-title">Seus dados</div>
@@ -9527,26 +9752,30 @@ function renderEditorCalendario(grupo, opts){
   opts = opts || {};
   const podeEditar = opts.podeEditar !== false;
   const usuario = opts.usuario || usuarioAtual();
-  const ano = anoDoGrupo(grupo, usuario);
+  // o ano da turma pode ser um sem calendário próprio ("Formado(a)"); a
+  // sequência mostrada é então a do ano de referência, e é o nome dela que
+  // precisa aparecer — dizer "sequência de Formado(a)" seria mentira
+  const ano = anoDeReferencia(anoDoGrupo(grupo, usuario));
   const atual = blocoAtualDoGrupo(grupo, usuario);
   const sequencia = sequenciaDoAno(ano);
   const blocosOrdenados = blocosDoGrupo(grupo, usuario);
-  const deslocamento = grupo.deslocamento || 0;
-  const blocoDeInicio = sequencia[deslocamento % (sequencia.length||1)];
+  const deslocamento = normalizarDeslocamento(grupo.deslocamento, sequencia.length);
+  const blocoDeInicio = sequencia[deslocamento];
+  const rodizios = opcoesRodizioPorLetra(ano);
   return `
   <div class="card-flat mb-2 text-sm">
     ${iconeSvg("calendar")} <strong>Sequência de ${escapeHtml(ano)}</strong> — ${sequencia.length} bloco(s).
     ${grupo.oficial
-      ? "Este é o calendário oficial: cada aluno vê a sequência do ano dele. As turmas passam pelos mesmos blocos, na mesma ordem, mudando só por onde começam."
-      : `Esta turma começa em <strong>${escapeHtml(blocoDeInicio?blocoDeInicio.nome:"—")}</strong> (bloco ${deslocamento+1} da sequência) e segue daí em diante, voltando ao começo quando chega ao fim.`}
+      ? "Este é o calendário oficial: cada aluno vê a sequência do ano dele, começando pelo primeiro bloco (o " + escapeHtml(nomeRodizio(ano, 0)) + "). Quem está em outra turma do rodízio precisa escolhê-la em Meu Grupo para ver o bloco certo."
+      : `Esta turma é o <strong>${escapeHtml(nomeRodizio(ano, deslocamento))}</strong>: começa em <strong>${escapeHtml(blocoDeInicio?blocoDeInicio.nome:"—")}</strong> e segue daí em diante, voltando ao começo quando chega ao fim.`}
   </div>
 
   ${podeEditar && !grupo.oficial ? `
   <div class="card mb-2">
-    <div class="card-title">Bloco de início desta turma</div>
-    <p class="text-sm muted">O que muda de uma turma para outra é só isto: por qual bloco da sequência ela entra. Todo mundo do mesmo ano passa pelos mesmos blocos, em rodízio.</p>
-    <select class="select" style="max-width:480px" onchange="mudarDeslocamentoGrupo('${grupo.id}', this.value)">
-      ${sequencia.map((b,i)=>`<option value="${i}" ${deslocamento===i?"selected":""}>${i+1}. ${escapeHtml(b.nome)}</option>`).join("")}
+    <div class="card-title">Grupo do rodízio desta turma</div>
+    <p class="text-sm muted">O que muda de uma turma para outra é só isto: por qual bloco da sequência ela entra. Todo mundo do mesmo ano passa pelos mesmos blocos, em rodízio — as letras são as do calendário da faculdade.</p>
+    <select class="select" style="max-width:520px" onchange="mudarDeslocamentoGrupo('${grupo.id}', this.value)">
+      ${rodizios.map(o=>`<option value="${o.deslocamento}" ${deslocamento===o.deslocamento?"selected":""}>Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}
     </select>
   </div>` : ""}
 
@@ -9582,17 +9811,20 @@ function renderEditorCalendario(grupo, opts){
   ${podeEditar && opts.podeEditarSequencia ? `<p class="text-xs muted mt-2">Editar aqui muda a sequência do ano inteiro, para todas as turmas daquele ano <strong>neste navegador</strong> — é isso que garante que todo mundo que abre a plataforma aqui passe pela mesma matéria. Evite datas se sobrepondo: a ordem cronológica das datas de início é o que define o que é bloco passado e bloco futuro. Para o resto da turma, do celular ou de casa, ver os mesmos blocos, é preciso <strong>exportar e publicar</strong> — veja o aviso no topo desta página.</p>` : ""}`;
 }
 function renderBlocosConfig(){
-  const anoEscolhido = state.filtroRota.anoBlocos || CONFIG.anoFaculdadePadrao;
+  const anos = anosComCalendario();
+  const escolhido = state.filtroRota.anoBlocos;
+  const anoEscolhido = anos.includes(escolhido) ? escolhido : (anos.includes(CONFIG.anoFaculdadePadrao) ? CONFIG.anoFaculdadePadrao : anos[0]);
   const sequencia = sequenciaDoAno(anoEscolhido);
+  const porLetra = opcoesRodizioPorLetra(anoEscolhido);
   const turmas = db.grupos.filter(g=>!g.oficial && anoDoGrupo(g)===anoEscolhido);
   return `
-  <div class="page-header"><h2>Blocos de Estudo</h2><p>A sequência de blocos pertence ao <strong>ano da faculdade</strong>: todas as turmas daquele ano passam pelos mesmos blocos, na mesma ordem. O que muda de uma turma para outra é por qual bloco ela começa — o rodízio.</p></div>
+  <div class="page-header"><h2>Blocos de Estudo</h2><p>A sequência de blocos pertence ao <strong>ano da faculdade</strong>: todas as turmas daquele ano passam pelos mesmos blocos, na mesma ordem. O que muda de uma turma para outra é por qual bloco ela começa — o rodízio, os Grupos A, B, C e D.</p></div>
 
   ${nuvemConectado() ? `
   <div class="card mb-2">
     <div class="card-title">${iconeSvg("check")} Sincroniza sozinho pela nuvem</div>
     <p class="text-sm muted">Salvar um bloco aqui envia a sequência do ano para a nuvem em poucos segundos, e qualquer aluno com conta recebe na próxima vez que a plataforma sincronizar (ao abrir, ao voltar a internet, a cada poucos minutos). Não precisa exportar nem publicar o site de novo para isto.</p>
-    <p class="text-xs muted mt-1">Isto vale só para a <strong>sequência de blocos</strong>. Turmas (a que ano cada uma pertence, qual bloco de início) continuam só neste navegador — ver o aviso mais abaixo, junto da tabela de turmas.</p>
+    <p class="text-xs muted mt-1">Isto vale só para a <strong>sequência de blocos</strong>. Turmas (a que ano cada uma pertence, em qual grupo do rodízio está) continuam só neste navegador — ver o aviso mais abaixo, junto da tabela de turmas.</p>
     <button class="btn btn-secondary btn-sm mt-1" onclick="exportarCalendario()">${iconeSvg("archive")} Exportar mesmo assim (baixa um arquivo à parte)</button>
   </div>` : `
   <div class="card mb-2" style="border-color:var(--amber)">
@@ -9606,24 +9838,32 @@ function renderBlocosConfig(){
     <div class="card-title">Ano da faculdade</div>
     <p class="text-sm muted mb-2">Escolha de qual ano você quer editar a sequência. Cada ano tem a sua, porque a matéria é diferente.</p>
     <div class="seletor-periodo">
-      ${CONFIG.anosFaculdade.map(a=>`<button class="pill ${a===anoEscolhido?"active":""}" onclick="mudarAnoBlocos('${escapeHtml(a)}')">${escapeHtml(a)}</button>`).join("")}
+      ${anos.map(a=>`<button class="pill ${a===anoEscolhido?"active":""}" onclick="mudarAnoBlocos('${escapeHtml(a)}')">${escapeHtml(a)}</button>`).join("")}
     </div>
+    ${(CONFIG.anosSemCalendario||[]).length ? `<p class="text-xs muted mt-2">${escapeHtml((CONFIG.anosSemCalendario||[]).join(", "))} não aparece aqui de propósito: quem já se formou não cursa calendário de faculdade. Continua podendo entrar numa turma — e aí acompanha o calendário do ano dela.</p>` : ""}
   </div>
 
   <div class="card mb-2">
-    <div class="card-title">Sequência de ${escapeHtml(anoEscolhido)} (${sequencia.length} blocos)</div>
-    <p class="text-sm muted mb-2">Esta é a ordem pela qual todas as turmas deste ano passam. As datas são as janelas do calendário; o conteúdo dentro delas é o que gira conforme o bloco de início de cada turma.</p>
-    <button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco('${escapeHtml(anoEscolhido)}', null)">${iconeSvg("plus")} Adicionar bloco</button>
+    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
+      <div class="card-title" style="margin-bottom:0">Sequência de ${escapeHtml(anoEscolhido)} (${sequencia.length} blocos)</div>
+      <div class="flex gap-1" style="flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="abrirModalViradaDeAno('${escapeHtml(anoEscolhido)}')">${iconeSvg("calendar")} Virada de ano letivo</button>
+        <button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco('${escapeHtml(anoEscolhido)}', null)">${iconeSvg("plus")} Adicionar bloco</button>
+      </div>
+    </div>
+    <p class="text-sm muted mb-2">Esta é a ordem pela qual todas as turmas deste ano passam, e as datas são as janelas do calendário. As setas mudam a ordem: o conteúdo troca de janela e o rodízio inteiro anda junto. A letra ao lado de cada bloco é a <strong>turma que começa nele</strong>.</p>
     <div class="mt-2">
-    ${sequencia.map(b=>`
+    ${sequencia.map((b,i)=>`
       <div class="card-flat mb-1">
         <div class="flex justify-between items-start gap-2" style="flex-wrap:wrap">
           <div>
-            <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)}</div>
-            <div class="text-sm muted mt-1">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)}</div>
+            <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)} <span class="badge badge-accent">${escapeHtml(nomeRodizio(anoEscolhido, i))} começa aqui</span></div>
+            <div class="text-sm muted mt-1">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)} · ${diasEntre(b.dataInicio, b.dataFim)+1} dias</div>
             <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
           </div>
           <div class="flex gap-1">
+            <button class="icon-btn" title="Subir na sequência" ${i===0?"disabled":""} onclick="moverBlocoNaSequencia('${escapeHtml(anoEscolhido)}','${b.id}',-1)">${iconeSvg("arrow-up")}</button>
+            <button class="icon-btn" title="Descer na sequência" ${i===sequencia.length-1?"disabled":""} onclick="moverBlocoNaSequencia('${escapeHtml(anoEscolhido)}','${b.id}',1)">${iconeSvg("arrow-down")}</button>
             <button class="icon-btn" title="Editar" onclick="abrirFormularioBloco('${escapeHtml(anoEscolhido)}','${b.id}')">${iconeSvg("edit")}</button>
             <button class="icon-btn" title="Excluir" onclick="confirmarExcluirBloco('${escapeHtml(anoEscolhido)}','${b.id}')">${iconeSvg("trash")}</button>
           </div>
@@ -9632,18 +9872,32 @@ function renderBlocosConfig(){
     </div>
   </div>
 
+  ${sequencia.length ? `<div class="card mb-2">
+    <div class="card-title">O rodízio de ${escapeHtml(anoEscolhido)}, janela por janela</div>
+    <p class="text-sm muted mb-2">A mesma tabela que a faculdade distribui no papel: cada coluna é uma turma, cada linha é uma janela de data. É o que a plataforma entrega a cada aluno conforme o grupo dele.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Período</th>${porLetra.map(o=>`<th>Grupo ${escapeHtml(o.rotulo)}</th>`).join("")}</tr></thead>
+      <tbody>
+        ${sequencia.map((janela,i)=>`<tr>
+          <td class="text-sm">${formatDataBR(janela.dataInicio)} – ${formatDataBR(janela.dataFim)}</td>
+          ${porLetra.map(o=>`<td class="text-sm">${escapeHtml(sequencia[(i + o.deslocamento) % sequencia.length].nome)}</td>`).join("")}
+        </tr>`).join("")}
+      </tbody>
+    </table></div>
+  </div>` : ""}
+
   <div class="card">
-    <div class="card-title">Turmas de ${escapeHtml(anoEscolhido)} e onde cada uma começa</div>
-    <p class="text-sm muted mb-2">O rodízio em uma tabela: enquanto uma turma está num bloco, a outra está em outro. Mudar o bloco de início desloca a turma inteira.</p>
-    <p class="text-xs muted mb-2">Diferente da sequência de blocos acima, isto <strong>não sincroniza</strong> — a turma e o bloco de início dela existem só neste navegador. É a mesma ressalva de <code>nuvem/LEIA-ME.md</code> sobre "as turmas".</p>
-    ${turmas.length ? `<div class="table-wrap"><table><thead><tr><th>Turma</th><th>Começa em</th><th>Bloco de hoje</th><th>Membros</th></tr></thead><tbody>
+    <div class="card-title">Turmas de ${escapeHtml(anoEscolhido)} e em qual grupo cada uma está</div>
+    <p class="text-sm muted mb-2">Aqui a coordenação corrige o grupo de uma turma sem depender de quem a criou — é a mesma escolha que o aluno vê em Meu Grupo.</p>
+    <p class="text-xs muted mb-2">Diferente da sequência de blocos acima, isto <strong>não sincroniza</strong> — a turma e o grupo dela existem só neste navegador. É a mesma ressalva de <code>nuvem/LEIA-ME.md</code> sobre "as turmas".</p>
+    ${turmas.length ? `<div class="table-wrap"><table><thead><tr><th>Turma</th><th>Grupo do rodízio</th><th>Bloco de hoje</th><th>Membros</th></tr></thead><tbody>
       ${turmas.map(g=>{
         const atual = blocoAtualDoGrupo(g);
-        const seqLen = sequencia.length || 1;
+        const desloc = normalizarDeslocamento(g.deslocamento, sequencia.length);
         return `<tr>
           <td class="text-sm">${escapeHtml(g.nome)}</td>
           <td><select class="select" style="padding:.3rem .5rem" onchange="mudarDeslocamentoGrupo('${g.id}', this.value)">
-            ${sequencia.map((b,i)=>`<option value="${i}" ${(g.deslocamento||0)%seqLen===i?"selected":""}>${i+1}. ${escapeHtml(b.nome)}</option>`).join("")}
+            ${porLetra.map(o=>`<option value="${o.deslocamento}" ${desloc===o.deslocamento?"selected":""}>Grupo ${escapeHtml(o.rotulo)} — ${escapeHtml(o.bloco.nome)}</option>`).join("")}
           </select></td>
           <td class="text-sm">${escapeHtml(atual?atual.nome:"—")}</td>
           <td class="text-sm">${(g.membrosAprovados||[]).length}</td>
@@ -9690,6 +9944,107 @@ function exportarCalendario(){
   setTimeout(()=>URL.revokeObjectURL(url), 4000);
   toast("Baixado \"calendario.js\". Troque o dados/calendario.js do projeto por ele e publique o site de novo — só assim a mudança chega aos alunos.");
 }
+/* ---------------------------- a ordem da sequência ------------------------
+   "Indicar a sequência do internato" (ou de qualquer ano) é dizer qual
+   matéria vem antes de qual. As janelas de data são do calendário e não se
+   mexem; o que troca de lugar é o CONTEÚDO dentro delas — por isso mover um
+   bloco é trocar as datas entre ele e o vizinho e reordenar por data.
+
+   A letra do rodízio (`grupoRodizio`) fica com a POSIÇÃO, não com o
+   conteúdo: "o Grupo A é quem começa pelo primeiro bloco" continua valendo
+   depois de reordenar, só que agora o primeiro bloco é outro. Por isso ela
+   é trocada de volta junto com as datas. */
+function moverBlocoNaSequencia(ano, blocoId, direcao){
+  const seq = sequenciaDoAno(ano);            // já em ordem de data
+  const i = seq.findIndex(b=>b.id===blocoId);
+  const j = i + (direcao<0 ? -1 : 1);
+  if(i<0 || j<0 || j>=seq.length) return;
+  const a = seq[i], b = seq[j];
+  [a.dataInicio, b.dataInicio] = [b.dataInicio, a.dataInicio];
+  [a.dataFim,    b.dataFim]    = [b.dataFim,    a.dataFim];
+  const rodizioA = a.grupoRodizio, rodizioB = b.grupoRodizio;
+  if(rodizioB===undefined) delete a.grupoRodizio; else a.grupoRodizio = rodizioB;
+  if(rodizioA===undefined) delete b.grupoRodizio; else b.grupoRodizio = rodizioA;
+  renumerarBlocosPorData(ano);
+  nuvemMarcarCalendarioPendente(ano);
+  saveState();
+  toast('"'+a.nome+'" agora é o bloco '+a.ordem+' de '+ano+'.');
+  render();
+}
+
+/* ---------------------------- virada de ano letivo -----------------------
+   Em 2027 as datas não são as de 2026, mas a ESTRUTURA é a mesma: mesmos
+   blocos, mesma duração, mesmos intervalos entre um e outro. Reescrever oito
+   pares de datas à mão para isso é onde se erra. Aqui a coordenação informa
+   só a data em que o primeiro bloco começa e a sequência inteira anda junto,
+   preservando a duração de cada bloco e o intervalo até o próximo (o fim de
+   semana entre dois blocos, o recesso no meio do ano). Depois, se um bloco
+   específico mudou de tamanho, edita-se aquele bloco. */
+function previaViradaDeAno(ano, novaDataInicio){
+  const seq = sequenciaDoAno(ano);
+  if(!seq.length || !novaDataInicio) return [];
+  const delta = diasEntre(seq[0].dataInicio, novaDataInicio);
+  return seq.map(b=>({
+    id: b.id, nome: b.nome,
+    de: b.dataInicio, ate: b.dataFim,
+    novoInicio: somarDias(b.dataInicio, delta),
+    novoFim: somarDias(b.dataFim, delta),
+  }));
+}
+function abrirModalViradaDeAno(ano){
+  const seq = sequenciaDoAno(ano);
+  if(!seq.length){ toast("Este ano ainda não tem blocos para deslocar.", "err"); return; }
+  abrirModal(`
+    <div class="modal-header"><h3>Virada de ano letivo — ${escapeHtml(ano)}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm muted mb-2">Informe quando o <strong>primeiro bloco</strong> começa no ano letivo novo. Todas as janelas andam o mesmo tanto de dias, mantendo a duração de cada bloco e os intervalos entre eles. Nada mais muda: mesmos blocos, mesma ordem, mesmos grupos do rodízio.</p>
+    <div class="field" style="max-width:260px"><label class="label">Nova data de início do bloco 1</label>
+      <input class="input" type="date" id="viradaInicio" value="${seq[0].dataInicio}" oninput="atualizarPreviaVirada('${escapeHtml(ano)}')">
+      <div class="hint mt-1">Hoje o bloco 1 começa em ${formatDataBR(seq[0].dataInicio)}.</div>
+    </div>
+    <div id="viradaPrevia"></div>
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="aplicarViradaDeAno('${escapeHtml(ano)}')">Aplicar as novas datas</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>
+  `, "lg");
+  atualizarPreviaVirada(ano);
+}
+function atualizarPreviaVirada(ano){
+  const caixa = document.getElementById("viradaPrevia"); if(!caixa) return;
+  const nova = document.getElementById("viradaInicio").value;
+  const linhas = previaViradaDeAno(ano, nova);
+  if(!linhas.length){ caixa.innerHTML = '<p class="text-sm muted">Escolha uma data para ver como fica.</p>'; return; }
+  const delta = diasEntre(sequenciaDoAno(ano)[0].dataInicio, nova);
+  caixa.innerHTML = `
+    <p class="text-sm mt-1">${delta===0 ? "Nenhum deslocamento — as datas ficam como estão." : (delta>0 ? "Tudo anda <strong>"+delta+" dia(s) para a frente</strong>." : "Tudo volta <strong>"+Math.abs(delta)+" dia(s)</strong>.")}</p>
+    <div class="table-wrap mt-1"><table>
+      <thead><tr><th>Bloco</th><th>Hoje</th><th>Fica</th></tr></thead>
+      <tbody>${linhas.map(l=>`<tr>
+        <td class="text-sm">${escapeHtml(l.nome)}</td>
+        <td class="text-sm muted">${formatDataBR(l.de)} – ${formatDataBR(l.ate)}</td>
+        <td class="text-sm" style="font-weight:600">${formatDataBR(l.novoInicio)} – ${formatDataBR(l.novoFim)}</td>
+      </tr>`).join("")}</tbody>
+    </table></div>`;
+}
+function aplicarViradaDeAno(ano){
+  const campo = document.getElementById("viradaInicio");
+  const nova = campo ? campo.value : "";
+  if(!nova){ toast("Escolha a data de início do primeiro bloco.", "err"); return; }
+  const linhas = previaViradaDeAno(ano, nova);
+  if(!linhas.length){ toast("Este ano não tem blocos para deslocar.", "err"); return; }
+  const porId = {};
+  linhas.forEach(l=>{ porId[l.id] = l; });
+  (db.sequenciasAno[anoDeReferencia(ano)]||[]).forEach(b=>{
+    const l = porId[b.id];
+    if(l){ b.dataInicio = l.novoInicio; b.dataFim = l.novoFim; }
+  });
+  renumerarBlocosPorData(anoDeReferencia(ano));
+  // turma que estava com um bloco fixado à mão volta à detecção por data:
+  // num ano letivo novo, o bloco fixado é sempre do ano anterior
+  db.grupos.forEach(g=>{ if(anoDoGrupo(g)===ano) g.blocoAtualIdManual = null; });
+  nuvemMarcarCalendarioPendente(anoDeReferencia(ano));
+  saveState();
+  fecharModal();
+  toast("Calendário de "+ano+" deslocado — o primeiro bloco começa em "+formatDataBR(nova)+"."+(nuvemConectado()?" Subindo para a nuvem.":""));
+  render();
+}
 function mudarDeslocamentoGrupo(grupoId, valor){
   const grupo = getGrupo(grupoId); if(!grupo) return;
   grupo.deslocamento = parseInt(valor) || 0;
@@ -9697,7 +10052,7 @@ function mudarDeslocamentoGrupo(grupoId, valor){
   // confuso: ao mudar o rodízio, a detecção volta a ser pela data
   grupo.blocoAtualIdManual = null;
   saveState();
-  toast("Bloco de início da turma atualizado.");
+  toast("Turma movida para o " + nomeRodizio(anoDoGrupo(grupo), grupo.deslocamento) + ".");
   render();
 }
 function fixarBlocoAtual(grupoId, blocoId){
@@ -9708,19 +10063,25 @@ function fixarBlocoAtual(grupoId, blocoId){
   render();
 }
 function renumerarBlocosPorData(ano){
-  const seq = db.sequenciasAno[ano] || [];
+  const seq = db.sequenciasAno[anoDeReferencia(ano)] || [];
   seq.sort((a,b)=>a.dataInicio.localeCompare(b.dataInicio));
   seq.forEach((b,i)=>{ b.ordem = i+1; });
 }
 /* O formulário de bloco agora edita a SEQUÊNCIA DE UM ANO, não o calendário
    de um grupo: mexer aqui vale para todas as turmas daquele ano. */
 function abrirFormularioBloco(ano, blocoId){
+  ano = anoDeReferencia(ano);
   const seq = db.sequenciasAno[ano] || [];
   const b = blocoId ? seq.find(x=>x.id===blocoId) : null;
+  const posicao = b ? sequenciaDoAno(ano).findIndex(x=>x.id===b.id) : seq.length;
   abrirModal(`
     <div class="modal-header"><h3>${b?"Editar bloco":"Adicionar bloco"} — ${escapeHtml(ano)}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
     <p class="text-sm muted mb-2">Este bloco vale para <strong>todas as turmas de ${escapeHtml(ano)}</strong>. Cada turma passa por ele numa janela de data diferente, conforme o bloco em que começou.</p>
     <div class="field"><label class="label">Nome do bloco</label><input class="input" id="fbNome" value="${escapeHtml(b?b.nome:"")}" placeholder="Ex.: Cardiologia &amp; Pneumologia"></div>
+    <div class="field" style="max-width:280px"><label class="label">Turma que começa neste bloco</label>
+      <input class="input" id="fbRodizio" maxlength="4" value="${escapeHtml((b&&b.grupoRodizio)||"")}" placeholder="${escapeHtml(letraPadraoRodizio(posicao<0?0:posicao))}">
+      <div class="hint mt-1">A letra do calendário impresso da faculdade (A, B, C, D…). É o grupo do rodízio que entra por este bloco — no 3º ano as letras não seguem a ordem alfabética, e é por isso que elas se escrevem aqui em vez de serem contadas. Em branco, vale a ordem alfabética (${escapeHtml(letraPadraoRodizio(posicao<0?0:posicao))} nesta posição).</div>
+    </div>
     <div class="grid grid-2">
       <div class="field"><label class="label">Data de início</label><input class="input" type="date" id="fbInicio" value="${b?b.dataInicio:""}"></div>
       <div class="field"><label class="label">Data de fim</label><input class="input" type="date" id="fbFim" value="${b?b.dataFim:""}"></div>
@@ -9738,17 +10099,29 @@ function abrirFormularioBloco(ano, blocoId){
   `, "lg");
 }
 function salvarBlocoFormulario(ano, blocoId){
+  ano = anoDeReferencia(ano);
   if(!db.sequenciasAno[ano]) db.sequenciasAno[ano] = [];
   const seq = db.sequenciasAno[ano];
   const nome = document.getElementById("fbNome").value.trim();
   const dataInicio = document.getElementById("fbInicio").value;
   const dataFim = document.getElementById("fbFim").value;
+  const grupoRodizio = (document.getElementById("fbRodizio").value||"").trim().toUpperCase();
   const especialidadeIds = [...document.querySelectorAll(".fbEsp:checked")].map(el=>el.value);
   if(!nome || !dataInicio || !dataFim){ toast("Preencha nome, data de início e data de fim.", "err"); return; }
   if(dataFim < dataInicio){ toast("A data de fim não pode ser antes da data de início.", "err"); return; }
   if(!especialidadeIds.length){ toast("Selecione ao menos uma especialidade para este bloco.", "err"); return; }
-  if(blocoId){ Object.assign(seq.find(x=>x.id===blocoId), {nome, dataInicio, dataFim, especialidadeIds}); }
-  else{ seq.push({id:uid("bloco"), ordem:seq.length+1, nome, dataInicio, dataFim, especialidadeIds}); }
+  const repetida = seq.find(x=>x.id!==blocoId && x.grupoRodizio && grupoRodizio && x.grupoRodizio===grupoRodizio);
+  if(repetida){ toast('O grupo "'+grupoRodizio+'" já começa em "'+repetida.nome+'". Cada turma entra por um bloco só.', "err"); return; }
+  if(blocoId){
+    const alvo = seq.find(x=>x.id===blocoId);
+    Object.assign(alvo, {nome, dataInicio, dataFim, especialidadeIds});
+    if(grupoRodizio) alvo.grupoRodizio = grupoRodizio; else delete alvo.grupoRodizio;
+  }
+  else{
+    const novoBloco = {id:uid("bloco"), ordem:seq.length+1, nome, dataInicio, dataFim, especialidadeIds};
+    if(grupoRodizio) novoBloco.grupoRodizio = grupoRodizio;
+    seq.push(novoBloco);
+  }
   renumerarBlocosPorData(ano);
   nuvemMarcarCalendarioPendente(ano);
   saveState();
@@ -9759,11 +10132,13 @@ function salvarBlocoFormulario(ano, blocoId){
   render();
 }
 function confirmarExcluirBloco(ano, blocoId){
+  ano = anoDeReferencia(ano);
   const seq = db.sequenciasAno[ano] || [];
   if(seq.length<=1){ toast("A sequência precisa ter pelo menos um bloco.", "err"); return; }
   abrirModal(`<div class="modal-header"><h3>Excluir bloco de ${escapeHtml(ano)}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div><p>Isso remove o bloco da sequência de <strong>${escapeHtml(ano)}</strong>, para todas as turmas desse ano. Simulados já recomendados para ele continuam existindo, só deixam de ter um bloco de referência. Esta ação não pode ser desfeita.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoConfirmado('${escapeHtml(ano)}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
 function excluirBlocoConfirmado(ano, blocoId){
+  ano = anoDeReferencia(ano);
   if(!db.sequenciasAno[ano]) return;
   db.sequenciasAno[ano] = db.sequenciasAno[ano].filter(b=>b.id!==blocoId);
   // turma que estava fixada nesse bloco volta para a detecção por data, e
