@@ -1,0 +1,198 @@
+# A nuvem — conta de verdade e estudo em vários aparelhos
+
+Sem nuvem, a plataforma funciona inteira, mas os dados ficam **só no navegador
+daquele computador**: quem estuda no notebook não continua de onde parou no
+celular, e perder o navegador é perder o histórico.
+
+Com a nuvem ligada, cada pessoa tem uma conta (e-mail e senha) e o estudo dela
+— respostas, repetição espaçada, favoritos, cartões pessoais, sessões e notas
+de simulado — sobe para um banco de dados e desce em qualquer aparelho onde
+ela entrar.
+
+**O conteúdo não vai para a nuvem.** As questões e os flashcards da equipe são
+iguais para todo mundo e continuam na pasta `dados/`, ao lado do `index.html`.
+
+## Como está agora
+
+A nuvem **já está configurada** neste arquivo. Em `index.html`, procure por
+`nuvem:` dentro do bloco `CONFIG`:
+
+```js
+nuvem: {
+  url: "https://jznocvgmcgiovgcwhrvi.supabase.co",
+  chaveAnon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…",
+},
+```
+
+Para **desligar** a nuvem e voltar ao funcionamento só-neste-navegador, deixe
+os dois valores vazios (`url: "", chaveAnon: ""`). Nada mais precisa mudar: a
+plataforma volta a se comportar exatamente como antes.
+
+> **A chave anônima é pública de propósito.** Ela vai no HTML, e qualquer
+> pessoa que abrir o site a enxerga — é assim que o Supabase funciona. Quem
+> protege os dados não é o segredo da chave, é a regra no banco (Row Level
+> Security), que amarra cada linha ao dono dela. Por isso o `esquema.sql`
+> aqui do lado não é opcional: **sem ele, o banco fica aberto.**
+>
+> A outra chave do Supabase, a `service_role`, ignora todas as regras.
+> **Ela nunca entra neste arquivo, nem em nenhum outro do site.**
+
+## Ligar do zero (uns 10 minutos, uma vez só)
+
+### 1. Criar o projeto
+
+1. Entre em [supabase.com](https://supabase.com) e crie uma conta (o plano
+   gratuito dá conta de uma turma inteira).
+2. **New project**. Dê um nome, escolha uma senha de banco (guarde-a) e a
+   região mais próxima — **South America (São Paulo)**, para o site responder
+   rápido no Brasil.
+3. Espere uns dois minutos até o projeto ficar pronto.
+
+### 2. Criar as tabelas e as regras de segurança
+
+1. No menu da esquerda, **SQL Editor** > **New query**.
+2. Abra o arquivo `esquema.sql` (nesta mesma pasta), copie **tudo** e cole lá.
+3. Clique em **Run**. Deve aparecer *Success. No rows returned*.
+
+Esse arquivo cria as dez tabelas, liga o RLS em todas elas, e deixa pronto o
+gatilho que transforma cada cadastro novo num perfil pendente de aprovação.
+Pode ser rodado de novo quando quiser, sem estragar o que já existe.
+
+### 3. Ajustar o login por e-mail
+
+Em **Authentication > Providers > Email**:
+
+- **Confirm email**: se ligado, a pessoa precisa clicar num link no e-mail
+  antes de entrar. A plataforma lida bem com as duas opções — com o
+  *Confirm email* desligado, o cadastro é mais simples, e quem controla
+  quem entra passa a ser só a aprovação da coordenação.
+- **Minimum password length**: 6 é o mínimo aceito pela tela de cadastro.
+
+Em **Authentication > URL Configuration**, ponha o endereço do site em **Site
+URL** (por exemplo `https://esc.netlify.app` ou o seu domínio próprio). É para
+lá que o link de confirmação leva.
+
+### 4. Colar os dois valores no `index.html`
+
+Em **Project Settings > API**, copie:
+
+- **Project URL** → vai em `CONFIG.nuvem.url`
+- **anon public** (a chave `anon`, não a `service_role`) → vai em
+  `CONFIG.nuvem.chaveAnon`
+
+### 5. Criar a sua conta e virar administrador
+
+1. Abra o site, clique em **Criar conta** e cadastre-se.
+2. Volte ao **SQL Editor** do Supabase e rode, trocando o e-mail:
+
+```sql
+update public.perfis
+   set papel = 'admin', nivel_admin = 'master', status = 'aprovado'
+ where email = 'voce@exemplo.com';
+```
+
+Sem esse passo ninguém consegue aprovar o primeiro cadastro — nem o seu.
+
+### 6. Conferir
+
+```sql
+select nome, email, papel, nivel_admin, status from public.perfis;
+```
+
+Entre no site com a sua conta. Em **Perfil** deve aparecer o cartão *Conta e
+sincronização* dizendo **Tudo sincronizado**. Responda uma questão, abra o
+site em outro aparelho, entre com a mesma conta: a resposta tem de estar lá.
+
+## O dia a dia
+
+### Quem entra
+
+Todo cadastro novo nasce **pendente**. A coordenação libera em
+**Aprovar Cadastros** — a tela mostra os pendentes da nuvem no alto, com
+**Aprovar** e **Recusar**, e ninguém precisa abrir o painel do Supabase.
+
+Só professor e administrador enxergam e alteram o perfil dos outros. O aluno
+enxerga e altera apenas o próprio, e **não consegue se promover**: há um
+gatilho no banco que devolve `papel`, `status` e `nivel_admin` ao valor
+antigo se a tentativa não vier de alguém da equipe.
+
+### Sem internet
+
+A plataforma continua funcionando normalmente. O que a pessoa faz entra numa
+**fila** guardada no navegador e sobe sozinho quando a conexão volta — ao
+voltar a internet, ao voltar para a aba, ou alguns segundos depois de cada
+gravação. O cartão em **Perfil** mostra quantos itens estão na fila.
+
+Sair da conta com fila pendente pergunta antes: dá para **sincronizar e sair**
+ou **sair mesmo assim** (a fila fica guardada naquele navegador e sobe quando
+a pessoa entrar de novo, do mesmo aparelho).
+
+### Quem já estudava antes da nuvem
+
+Ao entrar pela primeira vez com uma conta da nuvem, se houver estudo salvo
+naquele navegador sem conta, a plataforma oferece **Trazer estudo deste
+navegador** — as respostas e os cartões passam a ser da conta e sobem. Nada é
+apagado sem a pessoa mandar.
+
+### Dois aparelhos ao mesmo tempo
+
+- **Registros** (respostas, sessões, notas de simulado) nunca se
+  sobrescrevem: responder no celular e no computador resulta nas duas
+  respostas, como tem de ser.
+- **Estado** (repetição espaçada, favoritos, metas, cartões pessoais) vale a
+  versão mais recente, guardada questão a questão — não num bloco único —
+  para que uma divergência afete um item, nunca o histórico inteiro.
+
+## O que a nuvem **não** guarda
+
+Estas coisas continuam vivendo só no navegador de quem as fez:
+
+- **Questões criadas ou importadas pela plataforma** (Admin > Importar
+  Questões e Admin > Central de Provas), inclusive as cargas de prova em
+  andamento. Para virar conteúdo de todo mundo, elas precisam ir para a pasta
+  `dados/` — ver `dados/LEIA-ME.md`.
+- Comentários e dúvidas nas questões, feedbacks, o Livro de Ouro, o calendário
+  de blocos e as turmas.
+- As contas de demonstração (`admin@esc.demo` e companhia), que são locais e
+  continuam servindo para testar sem criar conta nenhuma.
+
+## Publicar o site (Netlify, GitHub Pages ou qualquer um)
+
+O site é estático: não tem servidor, nem build, nem instalação. Publicar é
+subir a pasta inteira — **`index.html` mais a pasta `dados/`**. A pasta
+`nuvem/` é documentação; pode ir junto ou não.
+
+No Netlify, o caminho mais curto é arrastar a pasta para
+[app.netlify.com/drop](https://app.netlify.com/drop), ou ligar o repositório
+com **publish directory** na raiz e **build command** vazio. Depois de
+publicar, volte ao Supabase e ponha o endereço do site em
+**Authentication > URL Configuration > Site URL**.
+
+Se a pasta `dados/` não for junto, o site abre com uma tarja amarela no alto
+avisando exatamente isso.
+
+## Quando algo não funciona
+
+| O que aparece | O que costuma ser |
+| --- | --- |
+| "E-mail ou senha incorretos." | Senha errada, ou a conta ainda não existe nesse projeto do Supabase. |
+| "Confirme o e-mail antes de entrar." | *Confirm email* está ligado em Authentication > Providers > Email. |
+| "Conta sem perfil na nuvem." | O `esquema.sql` não foi rodado (ou foi rodado depois de a conta ser criada). Rode o arquivo e crie a conta de novo, ou insira o perfil à mão. |
+| "Seu cadastro ainda está aguardando aprovação." | Está tudo certo: falta a coordenação aprovar em Aprovar Cadastros. |
+| "Endereço da nuvem não encontrado" | `CONFIG.nuvem.url` está com erro de digitação. |
+| "Sem permissão para esta operação na nuvem." | Alguma tabela ficou sem política de RLS — rode o `esquema.sql` de novo por inteiro. |
+| "Pendente" e a fila não baixa | Veja o erro no cartão de *Perfil*; quase sempre é internet, ou o projeto do Supabase pausado por inatividade (o plano gratuito pausa depois de uma semana sem uso — basta reativar no painel). |
+
+Um teste rápido, fora da plataforma, para saber se o projeto está de pé e com
+as tabelas criadas (troque a chave se ela mudar):
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" \
+  "https://jznocvgmcgiovgcwhrvi.supabase.co/rest/v1/perfis?select=id&limit=1" \
+  -H "apikey: SUA_CHAVE_ANON"
+```
+
+- `401` — o projeto está de pé e a tabela está protegida. **É o esperado**
+  (sem login, ninguém lê nada).
+- `404` — o `esquema.sql` ainda não foi rodado.
+- sem resposta — projeto pausado, endereço errado, ou sem internet.
