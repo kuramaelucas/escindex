@@ -239,14 +239,32 @@ create table if not exists public.sessao_em_andamento (
 create index if not exists sessao_em_andamento_sync_idx on public.sessao_em_andamento (usuario_id, atualizado_em);
 
 -- ---------------------------------------------------------------------------
--- 11. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
+-- 11. CALENDARIO — a sequência de blocos de cada ano (ESTADO, mas GLOBAL)
+-- ---------------------------------------------------------------------------
+-- Diferente das dez tabelas acima, esta não é o estudo de uma pessoa: é o
+-- calendário de blocos que Admin > Blocos de Estudo edita, e vale para toda
+-- a turma de um ano, não para quem editou. Por isso a chave é o ANO, não o
+-- usuário, e a regra de leitura é aberta — todo mundo que está numa conta
+-- lê —, mas só professor/administrador grava. Duas pessoas editando o
+-- mesmo ano ao mesmo tempo: quem salvar por último vence a sequência
+-- inteira daquele ano (não há uma junção fina como nas tabelas de estudo).
+create table if not exists public.calendario (
+  ano            text        primary key,
+  sequencia      jsonb       not null default '[]'::jsonb,
+  atualizado_por uuid        references auth.users(id) on delete set null,
+  atualizado_em  timestamptz not null default now()
+);
+create index if not exists calendario_sync_idx on public.calendario (atualizado_em);
+
+-- ---------------------------------------------------------------------------
+-- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
 do $$
 declare t text;
 begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
-    'flashcards_pessoais', 'sessao_em_andamento'
+    'flashcards_pessoais', 'sessao_em_andamento', 'calendario'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -348,6 +366,7 @@ alter table public.flashcards_pessoais  enable row level security;
 alter table public.sessoes              enable row level security;
 alter table public.resultados_simulados enable row level security;
 alter table public.sessao_em_andamento  enable row level security;
+alter table public.calendario           enable row level security;
 
 -- PERFIS: a pessoa vê e edita o próprio; professor e administrador veem e
 -- editam qualquer um (é assim que a tela Aprovar Cadastros funciona sem
@@ -368,6 +387,26 @@ create policy perfis_alterar on public.perfis
   for update to authenticated
   using (id = auth.uid() or public.e_equipe())
   with check (id = auth.uid() or public.e_equipe());
+
+-- CALENDARIO: todo mundo que está numa conta lê (é o calendário de todos);
+-- só professor e administrador gravam — é quem edita em Admin > Blocos de
+-- Estudo. Sem update aqui um aluno não conseguiria receber a mudança nunca.
+drop policy if exists calendario_ler     on public.calendario;
+drop policy if exists calendario_criar   on public.calendario;
+drop policy if exists calendario_alterar on public.calendario;
+
+create policy calendario_ler on public.calendario
+  for select to authenticated
+  using (true);
+
+create policy calendario_criar on public.calendario
+  for insert to authenticated
+  with check (public.e_equipe());
+
+create policy calendario_alterar on public.calendario
+  for update to authenticated
+  using (public.e_equipe())
+  with check (public.e_equipe());
 
 -- AS DEMAIS TABELAS: são o estudo de uma pessoa só. Ler, criar e alterar
 -- apenas as próprias linhas. Ninguém apaga nada (o app marca "removido" em
@@ -418,7 +457,7 @@ begin
   foreach t in array array[
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
     'favoritos', 'flashcards_pessoais', 'sessoes', 'resultados_simulados',
-    'sessao_em_andamento'
+    'sessao_em_andamento', 'calendario'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;
