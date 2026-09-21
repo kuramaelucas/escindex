@@ -11,8 +11,8 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 
 O Esc é uma plataforma de estudos para prova de residência médica **de arquivo aberto**: sem instalação, sem servidor, sem build. São duas peças que andam juntas:
 
-- **`index.html`** — o CÓDIGO: telas, regras, algoritmos e configuração. ~640 KB, ~9.700 linhas.
-- **pasta `dados/`** — o CONTEÚDO: um arquivo por prova, mais o banco didático e os flashcards da equipe. Sete arquivos, ~1,2 MB no total. Ver `dados/LEIA-ME.md`.
+- **`index.html`** — o CÓDIGO, e só: telas, regras, algoritmos e configuração. ~600 KB, ~9.450 linhas. Nenhuma questão, nenhum cartão, nenhum nome de bloco, nenhuma conta.
+- **pasta `dados/`** — TODO o conteúdo, em onze arquivos (~1,25 MB): taxonomia, calendário, um arquivo por prova, banco didático, flashcards, simulados e os dados de demonstração. Ver `dados/LEIA-ME.md`.
 
 Abrir o `index.html` com dois cliques continua bastando — a única regra é manter a pasta `dados/` ao lado dele (e publicá-la junto, quando o site está no ar). Se ela faltar, a plataforma abre e avisa numa tarja no alto da tela em vez de parecer quebrada.
 
@@ -269,7 +269,13 @@ Os parâmetros de algoritmo são editáveis pela tela Configurações (administr
 
 ## 7. Organização do código
 
-**Dois lugares.** O `index.html` tem o código; a pasta `dados/`, ao lado dele, tem o conteúdo (sete arquivos: `banco-didatico.js`, `prova-unifesp-2022..2026.js` e `flashcards-equipe.js`). Cada arquivo de dados chama `window.EscDados.registrarQuestoes(nome, lista)` ou `registrarFlashcards(nome, lista)`, e o `index.html` os carrega com linhas `<script src="dados/…">` **antes** do código — por isso `SEED_QUESTOES` e `SEED_FLASHCARDS` são só apelidos da lista já montada. A ordem das linhas `<script>` é a ordem em que o conteúdo entra no banco. Acrescentar uma prova nova é criar um arquivo lá e uma linha aqui (`dados/LEIA-ME.md`).
+**Dois lugares, e a divisão é limpa: o `index.html` não tem conteúdo nenhum.** Ele tem o código; a pasta `dados/`, ao lado dele, tem tudo o mais, em onze arquivos carregados nesta ordem: `taxonomia.js`, `calendario.js`, `banco-didatico.js`, `prova-unifesp-2022..2026.js`, `flashcards-equipe.js`, `simulados-equipe.js` e `demonstracao.js`.
+
+Cada arquivo chama uma função da ponte `window.EscDados` — `registrarTaxonomia`, `registrarCalendario`, `registrarQuestoes`, `registrarFlashcards`, `registrarSimulados` ou `registrarDemonstracao` — e o `index.html` os carrega com linhas `<script src="dados/…">` **antes** do código. Por isso **todos os `SEED_*` viraram apelidos**: `const SEED_QUESTOES = window.EscDados.questoes`, e assim por diante para taxonomia, blocos, sequências do ano, usuários, livro de ouro, comentários e simulados. Mexer num `SEED_*` no `index.html` não muda conteúdo nenhum.
+
+As listas **se somam** entre arquivos: dois arquivos chamando `registrarQuestoes` resultam nas questões dos dois. É o que permite acrescentar uma prova (ou mais assuntos na taxonomia) criando um arquivo novo e uma linha `<script>`, sem tocar no que já existe. A ordem das linhas é a ordem em que o conteúdo entra no banco, e a taxonomia vem primeiro porque todo o resto aponta para ela.
+
+`demonstracao.js` é o arquivo a **esvaziar** quando a turma real entrar: contas de teste, comentários de exemplo e o livro de ouro fictício saem de uma vez, sem perder questão, cartão nem calendário.
 
 O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 
@@ -335,7 +341,7 @@ O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 | `nuvemEntrarPelaTela()` / `nuvemCadastrarPelaTela()` / `nuvemSairDaConta()` | entrar, cadastrar e sair, com a checagem de `status` (pendente/rejeitado/inativo) antes de deixar entrar |
 | `nuvemBuscarCadastrosPendentes()` / `nuvemDecidirCadastro(id, status)` | a aprovação da turma feita pela própria plataforma |
 | `nuvemAdotarDadosLocais(idLocal)` | traz para a conta o estudo que já existia naquele navegador sem conta |
-| `resumoArquivosDeConteudo()` / `avisarSeFaltarConteudo()` | o que a pasta `dados/` entregou, e a tarja de aviso quando não entregou nada |
+| `resumoArquivosDeConteudo()` / `avisarSeFaltarConteudo()` | o que a pasta `dados/` entregou, e a tarja de aviso **dizendo qual arquivo faltou** (com onze arquivos, "não carregou" sozinho não diz onde procurar) |
 | `renderMapaSessao()` / `irParaIndiceDaSessao(i)` | o mapa clicável da sessão de prática (não confundir com o mapa do simulado, que é neutro — seção 5) |
 
 **Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado.
@@ -357,7 +363,7 @@ O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 7. **Uma sequência de blocos por ano, e só uma.** Duas turmas do mesmo ano não podem ter ordens diferentes de matéria — por decisão de projeto, elas diferem só pelo ponto de entrada. Se um dia for preciso que uma turma tenha uma sequência realmente distinta, será um campo novo (`grupo.sequenciaPropria`) e mais uma migração.
 8. **`somarDias()` usa `toISOString()`** depois de montar a data em horário local: certo para fusos negativos (Brasil), quebraria a data em fusos positivos (UTC+). Sem efeito para o público atual.
 9. **Conteúdo criado pela plataforma não sobe para a nuvem.** Questão publicada por *Importar Questões* ou pela *Central de Provas* (e a carga em andamento) fica no navegador de quem publicou, mesmo com a nuvem ligada: o conteúdo é igual para todo mundo e mora na pasta `dados/`, versionada junto com o código. Para virar conteúdo de todos, a questão precisa ser levada para lá (`dados/LEIA-ME.md`). É uma decisão de projeto, não um esquecimento — mas é o atrito mais visível de quem usa a Central de Provas em dois aparelhos.
-10. **A pasta `dados/` precisa ser publicada junto.** Publicar só o `index.html` faz o site abrir com a tarja de aviso e sem questão nenhuma. Quem já usava não perde nada (o banco salvo no navegador continua lá), mas conteúdo novo não entra.
+10. **A pasta `dados/` precisa ser publicada junto.** Publicar só o `index.html` faz o site abrir com a tarja de aviso e sem conteúdo nenhum — nem questões, nem taxonomia, nem calendário. Quem já usava não perde nada (o banco salvo no navegador continua lá), mas conteúdo novo não entra. A tarja diz qual arquivo faltou.
 11. **Lembrete de meta diária só funciona com o navegador aberto.** Como o app não tem service worker nem servidor, a Notification API só dispara enquanto alguma aba do Esc está carregada (mesmo minimizada). Não existe aviso de verdade com tudo fechado — isso exigiria backend (ver limitação 1).
 
 ---
@@ -422,3 +428,13 @@ Registro resumido de cada rodada de trabalho, da mais antiga à mais recente. De
 **A mescla.** A versão trazida pelo usuário derivava do commit anterior à Central de Provas, então as duas foram reunidas com merge de três vias: entrou tudo das duas (as 34 funções da Central de Provas e as 41 da nuvem), com dois conflitos resolvidos à mão — `fazerLogout()`, que agora limpa o estado temporário das telas nos dois caminhos de saída (local e nuvem), via `limparEstadoDasTelas()`; e uma colisão de CSS invisível mas real, em que as duas versões haviam criado uma classe `.mapa-legenda` com significados diferentes (no simulado é respondida/em branco; na prática é acertou/errou) e a segunda estragava a primeira — a da prática virou `.mapa-sessao-legenda`.
 
 **Verificado com Chromium/Playwright:** os sete arquivos de dados carregando (635 questões, 501 cartões, contagem por arquivo batendo); as 29 rotas nos 4 papéis sem nenhum erro de JavaScript; a Central de Provas intacta; o mapa do simulado ainda neutro (respondida/em branco, sem cor de acerto) e o mapa da prática com as cores próprias, cada um com a sua legenda; a pasta `dados/` bloqueada de propósito, para ver a tarja aparecer e a plataforma seguir de pé; e o ciclo inteiro da nuvem contra um servidor Supabase simulado — entrar, gravar nas dez tabelas, subir a fila, baixar, aprovar cadastro pendente e cair a internet no meio (a fila fica, com aviso claro, e sobe depois). Cada coluna que o app escreve foi conferida uma a uma contra o `esquema.sql`. **O que não deu para verificar daqui:** o projeto Supabase de verdade — a rede desta máquina bloqueia `supabase.co`, então o `esquema.sql` ainda precisa ser rodado e conferido no painel (o teste de uma linha está no fim de `nuvem/LEIA-ME.md`).
+
+**Separação completa entre conteúdo e código (21/09/2026, segunda rodada).** A rodada anterior tinha tirado do `index.html` as questões e os flashcards; ficaram para trás a taxonomia (26,3 KB), as sequências do ano, os blocos, as contas de demonstração, os comentários de exemplo, o livro de ouro e os simulados. Agora saíram também, em quatro arquivos novos — `dados/taxonomia.js`, `dados/calendario.js`, `dados/simulados-equipe.js` e `dados/demonstracao.js` —, e **o `index.html` não guarda mais conteúdo nenhum**: todos os `SEED_*` viraram apelidos de `window.EscDados`.
+
+O ganho de tamanho é modesto e vale dizer com número: 629 KB → 600 KB, 9.743 → 9.452 linhas (-4,6%). O que resta no arquivo é ~466 KB de código e templates, ~91 KB de comentários explicativos (que são parte da proposta do projeto e ficam), 30 KB de CSS e 6 KB de ícones. O ganho real é outro: a fronteira agora é nítida — quem for mexer em conteúdo nunca abre o `index.html`, e quem for mexer em código nunca esbarra em conteúdo —, e `demonstracao.js` transforma "tirar os dados de teste antes de abrir para a turma" numa edição de um arquivo só.
+
+A ponte `window.EscDados` ganhou `registrarSimulados`, `registrarTaxonomia`, `registrarCalendario` e `registrarDemonstracao`, e passou a **somar** as listas entre arquivos em vez de substituir. A tarja de conteúdo faltando passou a dizer **qual** arquivo faltou: com onze arquivos, "não carregou" sozinho não ajuda.
+
+**Um defeito encontrado e corrigido no caminho:** `SEED_SEQUENCIAS_ANO` referenciava `SEED_BLOCOS` pelo nome (a sequência do 6º ano *é* o calendário de referência). Movidos para arquivos diferentes, a referência ficaria pendurada e o site quebraria ao abrir. No `calendario.js` a lista ganhou um nome local e é usada nos dois lugares, dentro de um `(function(){…})()` para o nome não escapar. Foi o teste de equivalência que pegou — não a leitura do código.
+
+**Verificado:** os nove blocos de dados saem dos arquivos idênticos ao que estava no `index.html`, item a item (comparação contra a versão anterior, em JSON); as 29 rotas nos 4 papéis sem erro de JavaScript; login de demonstração, bloco atual pelo calendário e o simulado da equipe aparecendo; *Configurações > Arquivos de conteúdo* listando os onze arquivos com a contagem certa; e três modos de falha, bloqueando arquivos de propósito — sem `taxonomia.js`, sem `demonstracao.js` e sem a pasta inteira —, em que a plataforma abre, avisa por nome e não quebra.

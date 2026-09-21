@@ -481,16 +481,32 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 <!-- ==========================================================================
      CONTEÚDO: A PASTA "dados/"
      ==========================================================================
-     As questões e os flashcards NÃO ficam dentro deste arquivo. Cada prova
-     já adaptada à plataforma é um arquivo próprio dentro da pasta "dados/",
-     carregado pelas linhas <script src="dados/..."> abaixo, antes do código.
+     NADA de conteúdo fica dentro deste arquivo. Tudo o que alguém escreve,
+     sobe ou edita — a taxonomia, o calendário de blocos, as questões, os
+     flashcards, os simulados e os dados de demonstração — é um arquivo
+     próprio dentro da pasta "dados/", carregado pelas linhas
+     <script src="dados/..."> abaixo, antes do código.
 
      POR QUÊ. Este index.html é o documento de trabalho do CÓDIGO — o que se
      abre para consertar ou mudar a plataforma. Com as 635 questões e os 501
      cartões dentro dele, eram 1,8 MB e ~17.400 linhas: qualquer leitura (de
      uma pessoa ou de uma IA) gastava quase todo o fôlego atravessando
-     conteúdo para chegar ao código. Separados, o código cabe em ~640 KB e
-     cada prova vira um arquivo que se abre e se confere sozinho.
+     conteúdo para chegar ao código. Hoje o que sobra aqui é só sistema:
+     ~600 KB e ~9.450 linhas, e cada prova é um arquivo que se abre e se
+     confere sozinho.
+
+     OS SETE (na ordem em que são carregados)
+       taxonomia.js ......... área > especialidade > assunto. É a base: toda
+                              questão e todo cartão apontam para um assunto
+                              daqui, então este arquivo vem primeiro.
+       calendario.js ........ os blocos de estudo e a sequência de cada ano.
+       banco-didatico.js .... 135 questões autorais.
+       prova-unifesp-20XX.js  100 questões reais por ano, de 2022 a 2026.
+       flashcards-equipe.js . 501 cartões da equipe.
+       simulados-equipe.js .. as provas montadas por professor/coordenação.
+       demonstracao.js ...... contas, comentários e livro de ouro de exemplo.
+                              É o arquivo para esvaziar quando a turma real
+                              entrar; os outros seis continuam valendo.
 
      O SITE NÃO MUDA. Quem abre o index.html — pelo endereço do site ou com
      dois cliques na pasta — recebe tudo junto, exatamente como antes. A
@@ -510,21 +526,69 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
    carregou (Configurações > Arquivos de conteúdo) e avisar quando algo
    ficou pelo caminho. */
 window.EscDados = {
-  questoes: [],     // vira SEED_QUESTOES
-  flashcards: [],   // vira SEED_FLASHCARDS
-  arquivos: [],     // um registro por arquivo que entregou conteúdo
+  taxonomia: null,      // vira SEED_TAXONOMIA   (área > especialidade > assunto)
+  blocos: [],           // vira SEED_BLOCOS      (calendário de referência)
+  sequenciasAno: null,  // vira SEED_SEQUENCIAS_ANO
+  questoes: [],         // vira SEED_QUESTOES
+  flashcards: [],       // vira SEED_FLASHCARDS
+  simulados: [],        // vira SEED_SIMULADOS
+  usuarios: [],         // vira SEED_USUARIOS    (contas de demonstração)
+  livroOuro: [],        // vira SEED_LIVRO_OURO
+  comentarios: [],      // vira SEED_COMENTARIOS
+  arquivos: [],         // um registro por arquivo que entregou conteúdo
+
+  _anotar: function(nomeArquivo, tipo, itens){
+    this.arquivos.push({ nome: nomeArquivo, tipo: tipo, itens: itens });
+  },
+  /* As listas se SOMAM em vez de substituir: é o que permite acrescentar uma
+     prova (ou um segundo baralho, ou mais assuntos) criando um arquivo novo,
+     sem tocar no que já existe. */
+  _juntar: function(destino, lista){
+    if(!Array.isArray(lista)) return 0;
+    lista.forEach(x => destino.push(x));
+    return lista.length;
+  },
+
   registrarQuestoes: function(nomeArquivo, lista){
     if(!Array.isArray(lista)) return;
-    lista.forEach(q => this.questoes.push(q));
-    this.arquivos.push({ nome: nomeArquivo, tipo: "questões", itens: lista.length });
+    this._anotar(nomeArquivo, "questões", this._juntar(this.questoes, lista));
   },
   registrarFlashcards: function(nomeArquivo, lista){
     if(!Array.isArray(lista)) return;
-    lista.forEach(c => this.flashcards.push(c));
-    this.arquivos.push({ nome: nomeArquivo, tipo: "flashcards", itens: lista.length });
+    this._anotar(nomeArquivo, "flashcards", this._juntar(this.flashcards, lista));
+  },
+  registrarSimulados: function(nomeArquivo, lista){
+    if(!Array.isArray(lista)) return;
+    this._anotar(nomeArquivo, "simulados", this._juntar(this.simulados, lista));
+  },
+  registrarTaxonomia: function(nomeArquivo, arvore){
+    if(!arvore) return;
+    if(!this.taxonomia) this.taxonomia = { areas:[], especialidades:[], assuntos:[] };
+    const n = this._juntar(this.taxonomia.areas, arvore.areas)
+            + this._juntar(this.taxonomia.especialidades, arvore.especialidades)
+            + this._juntar(this.taxonomia.assuntos, arvore.assuntos);
+    this._anotar(nomeArquivo, "taxonomia", n);
+  },
+  registrarCalendario: function(nomeArquivo, c){
+    if(!c) return;
+    let n = this._juntar(this.blocos, c.blocos);
+    if(c.sequenciasAno){
+      if(!this.sequenciasAno) this.sequenciasAno = {};
+      Object.keys(c.sequenciasAno).forEach(ano => { this.sequenciasAno[ano] = c.sequenciasAno[ano]; n++; });
+    }
+    this._anotar(nomeArquivo, "calendário", n);
+  },
+  registrarDemonstracao: function(nomeArquivo, d){
+    if(!d) return;
+    const n = this._juntar(this.usuarios, d.usuarios)
+            + this._juntar(this.livroOuro, d.livroOuro)
+            + this._juntar(this.comentarios, d.comentarios);
+    this._anotar(nomeArquivo, "demonstração", n);
   },
 };
 </script>
+<script src="dados/taxonomia.js"></script>
+<script src="dados/calendario.js"></script>
 <script src="dados/banco-didatico.js"></script>
 <script src="dados/prova-unifesp-2022.js"></script>
 <script src="dados/prova-unifesp-2023.js"></script>
@@ -532,6 +596,8 @@ window.EscDados = {
 <script src="dados/prova-unifesp-2025.js"></script>
 <script src="dados/prova-unifesp-2026.js"></script>
 <script src="dados/flashcards-equipe.js"></script>
+<script src="dados/simulados-equipe.js"></script>
+<script src="dados/demonstracao.js"></script>
 
 <script>
 /* ==========================================================================
@@ -557,21 +623,25 @@ window.EscDados = {
         SEED_QUESTOES       -> onde o banco de questões entra no código
                                 (o conteúdo em si fica na pasta "dados/")
 
-   ONDE FICA CADA COISA (mudou: o conteúdo saiu deste arquivo)
+   ONDE FICA CADA COISA (o conteúdo não mora mais aqui)
    ------------------------------------------------------------------------
-   - Este index.html é o documento de CÓDIGO: telas, regras, algoritmos e a
-     configuração da plataforma. ~640 KB, ~9.700 linhas.
-   - A pasta "dados/", ao lado dele, guarda o CONTEÚDO já adaptado à
-     plataforma — um arquivo por prova, mais o banco didático e os
-     flashcards da equipe. É texto de questão, não código.
-   - Os dois continuam ligados: o index.html carrega os arquivos de dados
-     antes do código (procure por CONTEÚDO: A PASTA aqui mesmo), e no site
-     nada muda. O que muda é que dá para abrir, ler, revisar ou mandar para
-     uma IA só o código, ou só uma prova, sem arrastar os 1,8 MB inteiros.
-   - Para acrescentar ou corrigir questões: dados/LEIA-ME.md.
-   - Se a pasta "dados/" faltar, a plataforma abre e avisa numa tarja no
-     alto da tela (avisarSeFaltarConteudo) em vez de parecer quebrada;
-     Configurações > Arquivos de conteúdo mostra o que foi carregado.
+   - Este index.html é o documento de CÓDIGO, e só: telas, regras,
+     algoritmos e a configuração da plataforma. ~600 KB, ~9.450 linhas.
+     Nenhuma questão, nenhum cartão, nenhum nome de bloco, nenhuma conta.
+   - A pasta "dados/", ao lado dele, guarda TODO o conteúdo, em sete
+     arquivos: taxonomia, calendário, questões (uma prova por arquivo),
+     flashcards, simulados e os dados de demonstração.
+   - Os SEED_* deste arquivo são só APELIDOS: `const SEED_QUESTOES =
+     window.EscDados.questoes`. Quem enche o EscDados são os arquivos da
+     pasta, carregados antes do código (procure por CONTEÚDO: A PASTA).
+     Mexer num SEED_* aqui não muda conteúdo nenhum — o conteúdo está lá.
+   - No site nada muda. O que muda é que dá para abrir, ler, revisar ou
+     mandar para uma IA só o código, ou só uma prova, sem arrastar os
+     1,8 MB inteiros.
+   - Para acrescentar ou corrigir conteúdo: dados/LEIA-ME.md.
+   - Se faltar um arquivo, a plataforma abre e avisa numa tarja no alto da
+     tela, DIZENDO QUAL faltou (avisarSeFaltarConteudo), em vez de parecer
+     quebrada; Configurações > Arquivos de conteúdo mostra o que entrou.
 
    NOVIDADES DESTA VERSÃO (o que mudou e onde mexer)
    ------------------------------------------------------------------------
@@ -727,6 +797,14 @@ window.EscDados = {
      vira uma tira de números clicáveis, com acerto e erro à vista. Não
      confundir com o mapa do SIMULADO (.pill-mapa/.mapa-legenda), que durante
      a prova diz só respondida/em branco, nunca certo ou errado.
+   - SEPARAÇÃO COMPLETA (21/09, segunda parte): saíram também a taxonomia,
+     o calendário, os simulados e os dados de demonstração — antes só as
+     questões e os cartões estavam fora. Agora o index.html não tem
+     conteúdo nenhum. Arquivos novos: dados/taxonomia.js, dados/calendario.js,
+     dados/simulados-equipe.js e dados/demonstracao.js (este último é o que
+     se esvazia quando a turma real entra). A ponte window.EscDados ganhou
+     registrarSimulados, registrarTaxonomia, registrarCalendario e
+     registrarDemonstracao, e as listas agora se SOMAM entre arquivos.
    - CENTRAL DE PROVAS (renderCentralProvas e funções de "carga"/"lote"):
      subir uma prova inteira pela plataforma, em lotes, com duas ou mais
      pessoas ao mesmo tempo, conferindo cada lote contra a faixa pedida antes
@@ -850,342 +928,15 @@ function alternarTema(){
 }
 aplicarTemaSalvo();
 /* ---------------------------- SEED_TAXONOMIA ------------------------------
-   As 5 grandes áreas cobradas em provas de residência médica no Brasil,
-   cada uma com especialidades e, dentro delas, assuntos específicos.
-   Para adicionar um assunto novo, basta acrescentar um item em `assuntos`. */
-const SEED_TAXONOMIA = {
-  areas: [
-    { id: "area-cm", nome: "Clínica Médica" },
-    { id: "area-cg", nome: "Cirurgia Geral" },
-    { id: "area-ped", nome: "Pediatria" },
-    { id: "area-go", nome: "Ginecologia e Obstetrícia" },
-    { id: "area-mps", nome: "Medicina Preventiva e Social" },
-  ],
-  especialidades: [
-    { id: "esp-cardio", areaId: "area-cm", nome: "Cardiologia" },
-    { id: "esp-pneumo", areaId: "area-cm", nome: "Pneumologia" },
-    { id: "esp-gastro", areaId: "area-cm", nome: "Gastroenterologia" },
-    { id: "esp-endocrino", areaId: "area-cm", nome: "Endocrinologia" },
-    { id: "esp-infecto", areaId: "area-cm", nome: "Infectologia" },
-    { id: "esp-nefro", areaId: "area-cm", nome: "Nefrologia" },
-    { id: "esp-oftalmo", areaId: "area-cm", nome: "Oftalmologia" },
-    /* especialidades acrescentadas em 19/09 para dar lugar às questões reais
-       da UNIFESP (2022-2026) — a prova real de "Acesso Direto" cobre toda a
-       medicina, não só as especialidades que já estavam aqui. */
-    { id: "esp-neuro", areaId: "area-cm", nome: "Neurologia" },
-    { id: "esp-psiquiatria", areaId: "area-cm", nome: "Psiquiatria" },
-    { id: "esp-dermato", areaId: "area-cm", nome: "Dermatologia" },
-    { id: "esp-reumato", areaId: "area-cm", nome: "Reumatologia" },
-    { id: "esp-hemato", areaId: "area-cm", nome: "Hematologia" },
-    { id: "esp-geriatria", areaId: "area-cm", nome: "Geriatria" },
-    { id: "esp-genetica", areaId: "area-cm", nome: "Genética Médica" },
-    { id: "esp-alergiaimuno", areaId: "area-cm", nome: "Alergia e Imunologia" },
-
-    { id: "esp-abdagudo", areaId: "area-cg", nome: "Abdome Agudo" },
-    { id: "esp-trauma", areaId: "area-cg", nome: "Trauma" },
-    { id: "esp-perioperatorio", areaId: "area-cg", nome: "Pré e Pós-operatório" },
-    { id: "esp-cirurgiaonco", areaId: "area-cg", nome: "Cirurgia Oncológica" },
-    { id: "esp-toce", areaId: "area-cg", nome: "Técnica Operatória e Cirurgia Experimental" },
-    { id: "esp-anestesio", areaId: "area-cg", nome: "Anestesiologia" },
-    { id: "esp-cirvascular", areaId: "area-cg", nome: "Cirurgia Vascular" },
-    { id: "esp-cirtoracica", areaId: "area-cg", nome: "Cirurgia Torácica" },
-    { id: "esp-ortopedia", areaId: "area-cg", nome: "Ortopedia e Traumatologia" },
-    { id: "esp-urologia", areaId: "area-cg", nome: "Urologia" },
-    { id: "esp-neurocirurgia", areaId: "area-cg", nome: "Neurocirurgia" },
-    { id: "esp-orl", areaId: "area-cg", nome: "Otorrinolaringologia" },
-
-    { id: "esp-neonato", areaId: "area-ped", nome: "Neonatologia" },
-    { id: "esp-crescdesenv", areaId: "area-ped", nome: "Crescimento e Desenvolvimento" },
-    { id: "esp-infectoped", areaId: "area-ped", nome: "Infectologia Pediátrica" },
-    { id: "esp-emergped", areaId: "area-ped", nome: "Emergências Pediátricas" },
-
-    { id: "esp-obstetricia", areaId: "area-go", nome: "Obstetrícia" },
-    { id: "esp-ginecologia", areaId: "area-go", nome: "Ginecologia Geral" },
-    { id: "esp-planfamiliar", areaId: "area-go", nome: "Planejamento Familiar" },
-    { id: "esp-oncogineco", areaId: "area-go", nome: "Oncologia Ginecológica" },
-
-    { id: "esp-epidemio", areaId: "area-mps", nome: "Epidemiologia" },
-    { id: "esp-sus", areaId: "area-mps", nome: "SUS e Políticas de Saúde" },
-    { id: "esp-bioetica", areaId: "area-mps", nome: "Bioética" },
-    { id: "esp-saudefamilia", areaId: "area-mps", nome: "Saúde da Família" },
-  ],
-  assuntos: [
-    { id: "ass-sca", especialidadeId: "esp-cardio", nome: "Síndrome Coronariana Aguda" },
-    { id: "ass-ic", especialidadeId: "esp-cardio", nome: "Insuficiência Cardíaca" },
-    { id: "ass-arritmias", especialidadeId: "esp-cardio", nome: "Arritmias Cardíacas" },
-    { id: "ass-has", especialidadeId: "esp-cardio", nome: "Hipertensão Arterial Sistêmica" },
-    { id: "ass-ecgbasico", especialidadeId: "esp-cardio", nome: "Eletrocardiograma Básico" },
-    { id: "ass-valvopatias", especialidadeId: "esp-cardio", nome: "Valvopatias" },
-    { id: "ass-pericardio", especialidadeId: "esp-cardio", nome: "Doenças do Pericárdio" },
-    { id: "ass-pcr", especialidadeId: "esp-cardio", nome: "Parada Cardiorrespiratória e RCP" },
-    { id: "ass-dac-cronica", especialidadeId: "esp-cardio", nome: "Doença Coronariana Crônica" },
-    { id: "ass-dislipidemia", especialidadeId: "esp-cardio", nome: "Dislipidemia e Risco Cardiovascular" },
-
-    { id: "ass-dpoc", especialidadeId: "esp-pneumo", nome: "DPOC" },
-    { id: "ass-asma", especialidadeId: "esp-pneumo", nome: "Asma" },
-    { id: "ass-pneumonia", especialidadeId: "esp-pneumo", nome: "Pneumonia Adquirida na Comunidade" },
-    { id: "ass-tep", especialidadeId: "esp-pneumo", nome: "Tromboembolismo Pulmonar" },
-
-    { id: "ass-drge", especialidadeId: "esp-gastro", nome: "Doença do Refluxo Gastroesofágico" },
-    { id: "ass-doencapeptica", especialidadeId: "esp-gastro", nome: "Doença Péptica" },
-    { id: "ass-hepatites", especialidadeId: "esp-gastro", nome: "Hepatites Virais" },
-    { id: "ass-cirrose", especialidadeId: "esp-gastro", nome: "Cirrose e Complicações" },
-
-    { id: "ass-dm", especialidadeId: "esp-endocrino", nome: "Diabetes Mellitus" },
-    { id: "ass-tireoide", especialidadeId: "esp-endocrino", nome: "Tireoidopatias" },
-    { id: "ass-adrenal", especialidadeId: "esp-endocrino", nome: "Distúrbios Adrenais" },
-
-    { id: "ass-hiv", especialidadeId: "esp-infecto", nome: "HIV/Aids" },
-    { id: "ass-sepse", especialidadeId: "esp-infecto", nome: "Sepse" },
-    { id: "ass-tuberculose", especialidadeId: "esp-infecto", nome: "Tuberculose" },
-    { id: "ass-arboviroses", especialidadeId: "esp-infecto", nome: "Arboviroses" },
-    { id: "ass-atb", especialidadeId: "esp-infecto", nome: "Antibioticoterapia e Resistência" },
-    { id: "ass-itu", especialidadeId: "esp-infecto", nome: "Infecção do Trato Urinário" },
-    { id: "ass-peleparte", especialidadeId: "esp-infecto", nome: "Infecções de Pele e Partes Moles" },
-    { id: "ass-meningites", especialidadeId: "esp-infecto", nome: "Meningites" },
-    { id: "ass-ist", especialidadeId: "esp-infecto", nome: "Infecções Sexualmente Transmissíveis (sífilis e úlceras)" },
-    { id: "ass-leptospirose", especialidadeId: "esp-infecto", nome: "Leptospirose" },
-    { id: "ass-malaria", especialidadeId: "esp-infecto", nome: "Malária" },
-    { id: "ass-endocardite", especialidadeId: "esp-infecto", nome: "Endocardite Infecciosa" },
-    { id: "ass-imunizacao", especialidadeId: "esp-infecto", nome: "Imunização do Adulto" },
-    { id: "ass-iras", especialidadeId: "esp-infecto", nome: "Infecções Relacionadas à Assistência (IRAS)" },
-
-    { id: "ass-ira", especialidadeId: "esp-nefro", nome: "Injúria Renal Aguda" },
-    { id: "ass-drc", especialidadeId: "esp-nefro", nome: "Doença Renal Crônica" },
-    { id: "ass-hidroeletrolitico", especialidadeId: "esp-nefro", nome: "Distúrbios Hidroeletrolíticos" },
-
-    { id: "ass-apendicite", especialidadeId: "esp-abdagudo", nome: "Apendicite Aguda" },
-    { id: "ass-colecistite", especialidadeId: "esp-abdagudo", nome: "Colecistite Aguda" },
-    { id: "ass-obstrucao", especialidadeId: "esp-abdagudo", nome: "Obstrução Intestinal" },
-    { id: "ass-pancreatite", especialidadeId: "esp-abdagudo", nome: "Pancreatite Aguda" },
-
-    { id: "ass-atls", especialidadeId: "esp-trauma", nome: "Atendimento Inicial ao Trauma (ATLS)" },
-    { id: "ass-traumaabd", especialidadeId: "esp-trauma", nome: "Trauma Abdominal" },
-    { id: "ass-queimaduras", especialidadeId: "esp-trauma", nome: "Queimaduras" },
-
-    { id: "ass-cuidadosperi", especialidadeId: "esp-perioperatorio", nome: "Cuidados Perioperatórios" },
-    { id: "ass-complicacoescir", especialidadeId: "esp-perioperatorio", nome: "Complicações Cirúrgicas" },
-
-    { id: "ass-cagastrico", especialidadeId: "esp-cirurgiaonco", nome: "Câncer Gástrico" },
-    { id: "ass-cacolorretal", especialidadeId: "esp-cirurgiaonco", nome: "Câncer Colorretal" },
-
-    { id: "ass-ictericia", especialidadeId: "esp-neonato", nome: "Icterícia Neonatal" },
-    { id: "ass-sepseneonatal", especialidadeId: "esp-neonato", nome: "Sepse Neonatal" },
-    { id: "ass-reanimacao", especialidadeId: "esp-neonato", nome: "Reanimação Neonatal" },
-
-    { id: "ass-puericultura", especialidadeId: "esp-crescdesenv", nome: "Puericultura" },
-    { id: "ass-calendariovacinal", especialidadeId: "esp-crescdesenv", nome: "Calendário Vacinal" },
-
-    { id: "ass-exantematicas", especialidadeId: "esp-infectoped", nome: "Doenças Exantemáticas" },
-    { id: "ass-ivas", especialidadeId: "esp-infectoped", nome: "Infecções de Vias Aéreas Superiores" },
-    { id: "ass-dda", especialidadeId: "esp-infectoped", nome: "Doença Diarreica Aguda" },
-
-    { id: "ass-desidratacao", especialidadeId: "esp-emergped", nome: "Desidratação na Infância" },
-    { id: "ass-convulsaofebril", especialidadeId: "esp-emergped", nome: "Convulsão Febril" },
-
-    { id: "ass-dheg", especialidadeId: "esp-obstetricia", nome: "Síndromes Hipertensivas da Gestação" },
-    { id: "ass-dmg", especialidadeId: "esp-obstetricia", nome: "Diabetes Mellitus Gestacional" },
-    { id: "ass-sangramentos", especialidadeId: "esp-obstetricia", nome: "Sangramentos na Gestação" },
-    { id: "ass-trabalhoparto", especialidadeId: "esp-obstetricia", nome: "Trabalho de Parto" },
-
-    { id: "ass-ciclomenstrual", especialidadeId: "esp-ginecologia", nome: "Ciclo Menstrual e Distúrbios" },
-    { id: "ass-ists", especialidadeId: "esp-ginecologia", nome: "Infecções Sexualmente Transmissíveis" },
-    { id: "ass-climaterio", especialidadeId: "esp-ginecologia", nome: "Climatério" },
-
-    { id: "ass-contracepcao", especialidadeId: "esp-planfamiliar", nome: "Métodos Contraceptivos" },
-
-    { id: "ass-cacolo", especialidadeId: "esp-oncogineco", nome: "Câncer de Colo do Útero" },
-    { id: "ass-camama", especialidadeId: "esp-oncogineco", nome: "Câncer de Mama" },
-
-    { id: "ass-medidasepi", especialidadeId: "esp-epidemio", nome: "Medidas de Frequência e Associação" },
-    { id: "ass-desenhosestudo", especialidadeId: "esp-epidemio", nome: "Desenhos de Estudo Epidemiológico" },
-    { id: "ass-vigilancia", especialidadeId: "esp-epidemio", nome: "Vigilância Epidemiológica" },
-
-    { id: "ass-principiossus", especialidadeId: "esp-sus", nome: "Princípios e Diretrizes do SUS" },
-    { id: "ass-niveisatencao", especialidadeId: "esp-sus", nome: "Níveis de Atenção à Saúde" },
-
-    { id: "ass-principiosbioetica", especialidadeId: "esp-bioetica", nome: "Princípios Bioéticos" },
-
-    { id: "ass-esf", especialidadeId: "esp-saudefamilia", nome: "Estratégia Saúde da Família" },
-
-    /* Técnica Operatória — base de construção de conhecimento cirúrgico */
-    { id: "ass-toce-instrumental", especialidadeId: "esp-toce", nome: "Instrumental Cirúrgico" },
-    { id: "ass-toce-fios", especialidadeId: "esp-toce", nome: "Fios e Suturas" },
-    { id: "ass-toce-antissepsia", especialidadeId: "esp-toce", nome: "Antissepsia, Paramentação e Profilaxia" },
-    { id: "ass-toce-incisoes", especialidadeId: "esp-toce", nome: "Incisões e Vias de Acesso" },
-    { id: "ass-toce-hemostasia", especialidadeId: "esp-toce", nome: "Hemostasia e Eletrocirurgia" },
-    { id: "ass-toce-drenos", especialidadeId: "esp-toce", nome: "Drenos e Curativos" },
-    { id: "ass-toce-cicatrizacao", especialidadeId: "esp-toce", nome: "Cicatrização e Manejo de Feridas" },
-    { id: "ass-toce-video", especialidadeId: "esp-toce", nome: "Princípios de Videolaparoscopia" },
-    { id: "ass-toce-posicionamento", especialidadeId: "esp-toce", nome: "Posicionamento Cirúrgico e Biossegurança" },
-
-    /* Oftalmologia */
-    { id: "ass-oft-olhovermelho", especialidadeId: "esp-oftalmo", nome: "Olho Vermelho e Conjuntivites" },
-    { id: "ass-oft-glaucoma", especialidadeId: "esp-oftalmo", nome: "Glaucoma" },
-    { id: "ass-oft-catarata", especialidadeId: "esp-oftalmo", nome: "Catarata e Leucocoria" },
-    { id: "ass-oft-retina", especialidadeId: "esp-oftalmo", nome: "Retina e Perda Visual" },
-    { id: "ass-oft-trauma", especialidadeId: "esp-oftalmo", nome: "Trauma e Urgências Oculares" },
-    { id: "ass-oft-refracao", especialidadeId: "esp-oftalmo", nome: "Ametropias e Refração" },
-
-    /* Especialidades novas de 19/09 — abertas para receber as questões reais
-       da UNIFESP (2022-2026), cujo "Acesso Direto" cobre toda a medicina. */
-    { id: "ass-neuro-avc", especialidadeId: "esp-neuro", nome: "Acidente Vascular Cerebral" },
-    { id: "ass-neuro-cefaleias", especialidadeId: "esp-neuro", nome: "Cefaleias" },
-    { id: "ass-neuro-epilepsia", especialidadeId: "esp-neuro", nome: "Epilepsia e Crises Convulsivas" },
-    { id: "ass-neuro-neuromuscular", especialidadeId: "esp-neuro", nome: "Doenças Neuromusculares e Desmielinizantes" },
-    { id: "ass-neuro-movimento", especialidadeId: "esp-neuro", nome: "Distúrbios do Movimento" },
-    { id: "ass-neuro-vertigem", especialidadeId: "esp-neuro", nome: "Tontura e Vertigem" },
-
-    { id: "ass-psiq-humor", especialidadeId: "esp-psiquiatria", nome: "Transtornos do Humor" },
-    { id: "ass-psiq-psicoses", especialidadeId: "esp-psiquiatria", nome: "Psicoses e Esquizofrenia" },
-    { id: "ass-psiq-substancias", especialidadeId: "esp-psiquiatria", nome: "Transtornos por Uso de Substâncias" },
-    { id: "ass-psiq-infantil", especialidadeId: "esp-psiquiatria", nome: "Psiquiatria da Infância (TDAH e Transtornos do Neurodesenvolvimento)" },
-
-    { id: "ass-derm-tumores", especialidadeId: "esp-dermato", nome: "Tumores Cutâneos" },
-    { id: "ass-derm-farmacodermias", especialidadeId: "esp-dermato", nome: "Farmacodermias" },
-    { id: "ass-derm-infeccoes", especialidadeId: "esp-dermato", nome: "Infecções e Infestações de Pele" },
-    { id: "ass-derm-autoimunes", especialidadeId: "esp-dermato", nome: "Dermatoses Inflamatórias e Autoimunes" },
-
-    { id: "ass-reumato-artrites", especialidadeId: "esp-reumato", nome: "Artrite Reumatoide e Espondiloartrites" },
-    { id: "ass-reumato-les", especialidadeId: "esp-reumato", nome: "Lúpus Eritematoso Sistêmico" },
-    { id: "ass-reumato-cristais", especialidadeId: "esp-reumato", nome: "Artrites por Cristais (Gota e Pseudogota)" },
-    { id: "ass-reumato-vasculites", especialidadeId: "esp-reumato", nome: "Vasculites e Outras Conectivopatias" },
-
-    { id: "ass-hemato-anemias", especialidadeId: "esp-hemato", nome: "Anemias" },
-    { id: "ass-hemato-neoplasias", especialidadeId: "esp-hemato", nome: "Neoplasias Hematológicas" },
-    { id: "ass-hemato-hemostasia", especialidadeId: "esp-hemato", nome: "Distúrbios da Hemostasia" },
-
-    { id: "ass-geriatria-quedas", especialidadeId: "esp-geriatria", nome: "Quedas e Fragilidade" },
-    { id: "ass-geriatria-demencia", especialidadeId: "esp-geriatria", nome: "Demência e Delirium" },
-    { id: "ass-geriatria-polifarmacia", especialidadeId: "esp-geriatria", nome: "Polifarmácia no Idoso" },
-
-    { id: "ass-genetica-heranca", especialidadeId: "esp-genetica", nome: "Padrões de Herança Genética" },
-    { id: "ass-genetica-sindromes", especialidadeId: "esp-genetica", nome: "Síndromes Genéticas" },
-
-    { id: "ass-anestesio-viaaerea", especialidadeId: "esp-anestesio", nome: "Via Aérea e Indução Anestésica" },
-    { id: "ass-anestesio-complicacoes", especialidadeId: "esp-anestesio", nome: "Complicações Anestésicas" },
-    { id: "ass-anestesio-analgesia", especialidadeId: "esp-anestesio", nome: "Anestesia Regional e Analgesia" },
-
-    { id: "ass-cirvasc-aneurisma", especialidadeId: "esp-cirvascular", nome: "Aneurisma de Aorta" },
-    { id: "ass-cirvasc-arterial", especialidadeId: "esp-cirvascular", nome: "Isquemia Arterial Aguda e Crônica" },
-    { id: "ass-cirvasc-venosa", especialidadeId: "esp-cirvascular", nome: "Doença Venosa (TVP e Varizes)" },
-
-    { id: "ass-cirtorax-pleura", especialidadeId: "esp-cirtoracica", nome: "Pneumotórax e Doenças Pleurais" },
-    { id: "ass-cirtorax-neoplasia", especialidadeId: "esp-cirtoracica", nome: "Neoplasia Pulmonar Cirúrgica" },
-
-    { id: "ass-orto-fraturas", especialidadeId: "esp-ortopedia", nome: "Fraturas e Luxações" },
-    { id: "ass-orto-osteometabolicas", especialidadeId: "esp-ortopedia", nome: "Doenças Osteometabólicas e Displasias" },
-    { id: "ass-orto-pediatrica", especialidadeId: "esp-ortopedia", nome: "Ortopedia Pediátrica" },
-
-    { id: "ass-uro-litiase", especialidadeId: "esp-urologia", nome: "Litíase Urinária" },
-    { id: "ass-uro-prostata", especialidadeId: "esp-urologia", nome: "Próstata (HPB e Câncer)" },
-    { id: "ass-uro-escroto", especialidadeId: "esp-urologia", nome: "Bolsa Escrotal e Genitália Masculina" },
-
-    { id: "ass-neurocir-tce", especialidadeId: "esp-neurocirurgia", nome: "Traumatismo Cranioencefálico" },
-    { id: "ass-neurocir-tumores", especialidadeId: "esp-neurocirurgia", nome: "Tumores do Sistema Nervoso Central" },
-
-    { id: "ass-orl-fratura", especialidadeId: "esp-orl", nome: "Trauma Nasal e Facial" },
-    { id: "ass-orl-vertigem", especialidadeId: "esp-orl", nome: "Vertigem Periférica" },
-    { id: "ass-orl-viasaereas", especialidadeId: "esp-orl", nome: "Vias Aéreas Superiores e Sono" },
-
-    { id: "ass-alergia-anafilaxia", especialidadeId: "esp-alergiaimuno", nome: "Anafilaxia e Reações Alérgicas Graves" },
-
-    /* Assuntos avulsos acrescentados durante a classificação das questões
-       reais da UNIFESP (19/09) — cobrem lacunas pontuais das especialidades
-       já existentes, identificadas questão a questão. */
-    { id: "ass-diverticulite", especialidadeId: "esp-abdagudo", nome: "Doença Diverticular" },
-    { id: "ass-hernias", especialidadeId: "esp-abdagudo", nome: "Hérnias da Parede Abdominal" },
-    { id: "ass-neo-ecn", especialidadeId: "esp-neonato", nome: "Enterocolite Necrosante" },
-    { id: "ass-uro-malformacoes", especialidadeId: "esp-urologia", nome: "Malformações do Trato Urinário" },
-    { id: "ass-pneumo-bronquiectasias", especialidadeId: "esp-pneumo", nome: "Bronquiectasias" },
-    { id: "ass-caovario", especialidadeId: "esp-oncogineco", nome: "Câncer de Ovário" },
-    { id: "ass-uroginecologia", especialidadeId: "esp-ginecologia", nome: "Incontinência Urinária e Prolapso Genital" },
-    { id: "ass-miomatose", especialidadeId: "esp-ginecologia", nome: "Miomatose Uterina" },
-    { id: "ass-prenatal", especialidadeId: "esp-obstetricia", nome: "Assistência Pré-natal" },
-    { id: "ass-abortamento", especialidadeId: "esp-obstetricia", nome: "Abortamento" },
-    { id: "ass-prevencao", especialidadeId: "esp-epidemio", nome: "Níveis e Estratégias de Prevenção" },
-    { id: "ass-bioestatistica", especialidadeId: "esp-epidemio", nome: "Bioestatística e Testes de Hipótese" },
-    { id: "ass-cuidadospaliativos", especialidadeId: "esp-bioetica", nome: "Cuidados Paliativos e Fim de Vida" },
-    { id: "ass-comunicacaoclinica", especialidadeId: "esp-bioetica", nome: "Comunicação e Relação Médico-Paciente" },
-    { id: "ass-orto-infeccoes", especialidadeId: "esp-ortopedia", nome: "Infecções Osteoarticulares" },
-    { id: "ass-reumato-febrereumatica", especialidadeId: "esp-reumato", nome: "Febre Reumática" },
-    { id: "ass-emergped-maustratos", especialidadeId: "esp-emergped", nome: "Suspeita de Maus-tratos Infantis" },
-    { id: "ass-oncopediatrica", especialidadeId: "esp-cirurgiaonco", nome: "Tumores Sólidos da Infância" },
-    { id: "ass-emergped-respiratoria", especialidadeId: "esp-emergped", nome: "Insuficiência Respiratória e PCR em Pediatria" },
-    { id: "ass-gastro-constipacao", especialidadeId: "esp-gastro", nome: "Constipação Intestinal" },
-    { id: "ass-nefro-glomerulopatias", especialidadeId: "esp-nefro", nome: "Síndromes Glomerulares" },
-    { id: "ass-infecto-covid", especialidadeId: "esp-infecto", nome: "Covid-19" },
-
-    /* Segunda leva de assuntos avulsos, identificados classificando a prova
-       de 2023. */
-    { id: "ass-saudepopulacoes", especialidadeId: "esp-saudefamilia", nome: "Saúde de Populações Específicas (indígena, negra, situação de rua)" },
-    { id: "ass-farmacovigilancia", especialidadeId: "esp-sus", nome: "Controle de Medicamentos e Notificação de Receita" },
-    { id: "ass-saudetrabalhador", especialidadeId: "esp-saudefamilia", nome: "Saúde do Trabalhador" },
-    { id: "ass-ginecoinfantil", especialidadeId: "esp-ginecologia", nome: "Ginecologia da Infância e Adolescência" },
-    { id: "ass-caendometrio", especialidadeId: "esp-oncogineco", nome: "Câncer de Endométrio" },
-    { id: "ass-neo-prematuridade", especialidadeId: "esp-neonato", nome: "Complicações da Prematuridade" },
-    { id: "ass-imunodeficiencias", especialidadeId: "esp-alergiaimuno", nome: "Imunodeficiências Primárias" },
-    { id: "ass-uro-oncologia", especialidadeId: "esp-urologia", nome: "Neoplasias Urológicas" },
-    { id: "ass-cironco-melanoma", especialidadeId: "esp-cirurgiaonco", nome: "Melanoma Cutâneo" },
-    { id: "ass-neurocir-hidrocefalia", especialidadeId: "esp-neurocirurgia", nome: "Hidrocefalia" },
-
-    /* Terceira leva de assuntos avulsos, identificados classificando a prova
-       de 2024. */
-    { id: "ass-colangite", especialidadeId: "esp-abdagudo", nome: "Colangite Aguda e Vias Biliares" },
-    { id: "ass-cirbariatrica", especialidadeId: "esp-abdagudo", nome: "Cirurgia Bariátrica e Complicações" },
-    { id: "ass-neurocir-plexobraquial", especialidadeId: "esp-neurocirurgia", nome: "Lesões do Plexo Braquial" },
-    { id: "ass-vigilanciasanitaria", especialidadeId: "esp-epidemio", nome: "Vigilância Sanitária e Notificação Compulsória" },
-    { id: "ass-infertilidade", especialidadeId: "esp-ginecologia", nome: "Infertilidade Conjugal" },
-    { id: "ass-neo-infeccoescongenitas", especialidadeId: "esp-neonato", nome: "Infecções Congênitas (TORCH, Sífilis Congênita)" },
-    { id: "ass-neo-triagemneonatal", especialidadeId: "esp-neonato", nome: "Triagem Neonatal (Teste do Pezinho)" },
-    { id: "ass-neo-descrresp", especialidadeId: "esp-neonato", nome: "Desconforto Respiratório do Recém-Nascido" },
-    { id: "ass-neo-exposicaotb", especialidadeId: "esp-neonato", nome: "Recém-Nascido Exposto à Tuberculose Materna" },
-    { id: "ass-infectoped-pneumonia", especialidadeId: "esp-infectoped", nome: "Pneumonia Bacteriana na Infância" },
-    { id: "ass-uro-disfuncaoeretil", especialidadeId: "esp-urologia", nome: "Disfunção Erétil" },
-    { id: "ass-orto-artrose", especialidadeId: "esp-ortopedia", nome: "Osteoartrite e Artroplastias" },
-    { id: "ass-geriatria-maustratos", especialidadeId: "esp-geriatria", nome: "Violência e Maus-tratos contra o Idoso" },
-    { id: "ass-hepatopatiasautoimunes", especialidadeId: "esp-gastro", nome: "Hepatopatias Colestáticas e Autoimunes (CBP, CEP, Hepatite Autoimune)" },
-    { id: "ass-dii", especialidadeId: "esp-gastro", nome: "Doença Inflamatória Intestinal" },
-    { id: "ass-reumato-conectivopatias", especialidadeId: "esp-reumato", nome: "Esclerose Sistêmica e Outras Conectivopatias" },
-    { id: "ass-tabagismo", especialidadeId: "esp-saudefamilia", nome: "Cessação do Tabagismo" },
-    { id: "ass-oft-tumores", especialidadeId: "esp-oftalmo", nome: "Tumores Intraoculares (Melanoma de Coroide)" },
-    { id: "ass-vm", especialidadeId: "esp-pneumo", nome: "Ventilação Mecânica Invasiva" },
-    { id: "ass-neuro-desmielinizante", especialidadeId: "esp-neuro", nome: "Doenças Desmielinizantes (Esclerose Múltipla, Neurite Óptica)" },
-    { id: "ass-crescimentopuberdade", especialidadeId: "esp-crescdesenv", nome: "Distúrbios do Crescimento e Puberdade" },
-    { id: "ass-hemato-hemoglobinopatias", especialidadeId: "esp-hemato", nome: "Doença Falciforme e Hemoglobinopatias" },
-
-    /* Quarta leva de assuntos avulsos, identificados classificando a prova
-       de 2025. */
-    { id: "ass-cirvasc-disseccao", especialidadeId: "esp-cirvascular", nome: "Dissecção de Aorta" },
-    { id: "ass-neo-malformacoesdigestivas", especialidadeId: "esp-neonato", nome: "Malformações Digestivas Congênitas (Atresias, Má-rotação, VACTERL)" },
-    { id: "ass-cirtorax-viaaerea", especialidadeId: "esp-cirtoracica", nome: "Estenose Traqueal e Vias Aéreas Centrais" },
-    { id: "ass-acessovenoso", especialidadeId: "esp-perioperatorio", nome: "Acesso Vascular Central e Complicações" },
-    { id: "ass-orto-ligamentos", especialidadeId: "esp-ortopedia", nome: "Lesões Ligamentares do Joelho" },
-    { id: "ass-paratireoide", especialidadeId: "esp-endocrino", nome: "Distúrbios do Cálcio e Paratireoide" },
-    { id: "ass-hipofise", especialidadeId: "esp-endocrino", nome: "Doenças da Hipófise (Adenomas, Hipopituitarismo)" },
-    { id: "ass-assistenciasocial", especialidadeId: "esp-saudefamilia", nome: "Benefícios Sociais e Previdenciários (BPC, Auxílio-doença)" },
-    { id: "ass-hanseniase", especialidadeId: "esp-infecto", nome: "Hanseníase e Reações Hansênicas" },
-    { id: "ass-gestaosaude", especialidadeId: "esp-sus", nome: "Modelos de Gestão em Saúde (OSS, Contratos de Gestão)" },
-    { id: "ass-aloimunizacaorh", especialidadeId: "esp-obstetricia", nome: "Aloimunização Rh e Doença Hemolítica Perinatal" },
-    { id: "ass-doencatrofoblastica", especialidadeId: "esp-oncogineco", nome: "Doença Trofoblástica Gestacional" },
-    { id: "ass-gestacaomultipla", especialidadeId: "esp-obstetricia", nome: "Gestação Múltipla" },
-    { id: "ass-alergia-alimentar", especialidadeId: "esp-alergiaimuno", nome: "Alergia Alimentar (APLV e Esofagite Eosinofílica)" },
-
-    /* Quinta leva de assuntos avulsos, identificados classificando a prova
-       de 2026. */
-    { id: "ass-traumatorax", especialidadeId: "esp-trauma", nome: "Trauma Torácico (Lesões de Aorta, Hilo Pulmonar)" },
-    { id: "ass-cirtorax-esofago", especialidadeId: "esp-cirtoracica", nome: "Perfuração Esofágica (Síndrome de Boerhaave)" },
-    { id: "ass-orto-ombro", especialidadeId: "esp-ortopedia", nome: "Patologias do Ombro (Manguito Rotador, Luxações)" },
-    { id: "ass-deficvitaminica", especialidadeId: "esp-gastro", nome: "Deficiências Nutricionais e Vitamínicas" },
-    { id: "ass-endometriose", especialidadeId: "esp-ginecologia", nome: "Endometriose" },
-    { id: "ass-cavulva", especialidadeId: "esp-oncogineco", nome: "Câncer de Vulva" },
-    { id: "ass-diagnosticoprenatal", especialidadeId: "esp-obstetricia", nome: "Diagnóstico Pré-natal Invasivo e Rastreamento de Aneuploidias" },
-    { id: "ass-orto-coluna", especialidadeId: "esp-ortopedia", nome: "Doenças Degenerativas e Infecciosas da Coluna Vertebral" },
-    { id: "ass-transmissaoverticalhiv", especialidadeId: "esp-neonato", nome: "Transmissão Vertical do HIV e Diagnóstico Neonatal" },
-    { id: "ass-bronquiolite", especialidadeId: "esp-infectoped", nome: "Bronquiolite Viral Aguda" },
-    { id: "ass-intolerancialactose", especialidadeId: "esp-gastro", nome: "Intolerância à Lactose" },
-  ],
-};
+   As 5 grandes áreas cobradas em provas de residência médica no Brasil, cada
+   uma com especialidades e, dentro delas, assuntos específicos. A árvore em
+   si mora em dados/taxonomia.js; aqui fica só o apelido que o resto do
+   código usa. Para acrescentar um assunto, o caminho normal é a tela
+   Conteúdo > Especialidades e Assuntos — mexer no arquivo só é preciso para
+   mudanças grandes.
+   O objeto vazio do fim é a rede de proteção: sem o arquivo, a plataforma
+   abre e avisa (avisarSeFaltarConteudo) em vez de quebrar na primeira tela. */
+const SEED_TAXONOMIA = (window.EscDados && window.EscDados.taxonomia) || { areas:[], especialidades:[], assuntos:[] };
 
 /* ---------------------------- SEED_BLOCOS --------------------------------
    O calendário de blocos de estudo. Cada bloco tem uma janela de datas e as
@@ -1207,24 +958,19 @@ const SEED_TAXONOMIA = {
 
    Anos diferentes têm sequências diferentes, porque a matéria é outra: o 3º
    ano está começando a clínica, o 6º está no internato e quem já se formou
-   está em revisão para a prova. */
-const SEED_BLOCOS = [
-  { id: "bloco-1", ordem: 1, nome: "Cardiologia & Pneumologia", dataInicio: "2026-02-02", dataFim: "2026-03-08", especialidadeIds: ["esp-cardio", "esp-pneumo"] },
-  { id: "bloco-2", ordem: 2, nome: "Gastroenterologia & Nefrologia", dataInicio: "2026-03-09", dataFim: "2026-04-12", especialidadeIds: ["esp-gastro", "esp-nefro"] },
-  { id: "bloco-3", ordem: 3, nome: "Endocrinologia & Infectologia", dataInicio: "2026-04-13", dataFim: "2026-05-17", especialidadeIds: ["esp-endocrino", "esp-infecto"] },
-  { id: "bloco-4", ordem: 4, nome: "Cirurgia Geral", dataInicio: "2026-05-18", dataFim: "2026-06-28", especialidadeIds: ["esp-abdagudo", "esp-trauma", "esp-perioperatorio", "esp-cirurgiaonco"] },
-  { id: "bloco-5", ordem: 5, nome: "Pediatria", dataInicio: "2026-06-29", dataFim: "2026-08-09", especialidadeIds: ["esp-neonato", "esp-crescdesenv", "esp-infectoped", "esp-emergped"] },
-  { id: "bloco-6", ordem: 6, nome: "Obstetrícia", dataInicio: "2026-08-10", dataFim: "2026-09-20", especialidadeIds: ["esp-obstetricia"] },
-  { id: "bloco-7", ordem: 7, nome: "Ginecologia, Planejamento Familiar & Oncologia Ginecológica", dataInicio: "2026-09-21", dataFim: "2026-10-25", especialidadeIds: ["esp-ginecologia", "esp-planfamiliar", "esp-oncogineco"] },
-  { id: "bloco-8", ordem: 8, nome: "Medicina Preventiva e Social + Revisão Final", dataInicio: "2026-10-26", dataFim: "2026-12-20", especialidadeIds: ["esp-epidemio", "esp-sus", "esp-bioetica", "esp-saudefamilia"] },
-];
+   está em revisão para a prova.
+
+   As datas e os nomes moram em dados/calendario.js — a regra do rodízio,
+   que é sistema, fica aqui. SEED_BLOCOS é o calendário de referência e
+   SEED_SEQUENCIAS_ANO é a sequência de cada ano. */
+const SEED_BLOCOS = (window.EscDados && window.EscDados.blocos) || [];
 /* Nota sobre granularidade dos blocos: um bloco pode juntar quantas
    especialidades você quiser — "Cirurgia Geral" acima junta as 4
    especialidades cirúrgicas num bloco só, do jeito que costuma ser dividido
    de verdade no internato/graduação. Se quiser blocos ainda mais amplos
    (por exemplo, uma "grande área" inteira num bloco só) ou mais estreitos,
-   é só editar especialidadeIds — tanto aqui quanto pela tela Admin > Blocos
-   de Estudo ou Meu Grupo, sem precisar mexer em mais nada. */
+   é só editar especialidadeIds — tanto em dados/calendario.js quanto pela
+   tela Admin > Blocos de Estudo ou Meu Grupo, sem mexer em mais nada. */
 
 /* ---------------------------- SEED_SEQUENCIAS_ANO ------------------------
    Uma sequência de blocos por ano da faculdade. A do 6º ano é o internato
@@ -1235,51 +981,18 @@ const SEED_BLOCOS = [
    Cada ano pode ter quantos blocos quiser: o rodízio entre as turmas funciona
    com qualquer quantidade, porque ele só gira a lista contra as mesmas
    janelas de data. */
-const SEED_SEQUENCIAS_ANO = {
-  "3º ano": [
-    { id:"b3-1", ordem:1, nome:"Bases da Clínica: Cardiologia & Pneumologia", dataInicio:"2026-02-02", dataFim:"2026-04-12", especialidadeIds:["esp-cardio","esp-pneumo"] },
-    { id:"b3-2", ordem:2, nome:"Bases da Clínica: Gastroenterologia & Nefrologia", dataInicio:"2026-04-13", dataFim:"2026-06-21", especialidadeIds:["esp-gastro","esp-nefro"] },
-    { id:"b3-3", ordem:3, nome:"Bases da Clínica: Endocrinologia & Infectologia", dataInicio:"2026-06-22", dataFim:"2026-09-06", especialidadeIds:["esp-endocrino","esp-infecto"] },
-    { id:"b3-4", ordem:4, nome:"Saúde Coletiva e Bioética", dataInicio:"2026-09-07", dataFim:"2026-12-20", especialidadeIds:["esp-epidemio","esp-sus","esp-bioetica","esp-saudefamilia"] },
-  ],
-  "4º ano": [
-    { id:"b4-1", ordem:1, nome:"Clínica Médica I: Cardiologia, Pneumologia & Nefrologia", dataInicio:"2026-02-02", dataFim:"2026-04-05", especialidadeIds:["esp-cardio","esp-pneumo","esp-nefro"] },
-    { id:"b4-2", ordem:2, nome:"Clínica Médica II: Gastro, Endócrino & Infecto", dataInicio:"2026-04-06", dataFim:"2026-06-07", especialidadeIds:["esp-gastro","esp-endocrino","esp-infecto"] },
-    { id:"b4-3", ordem:3, nome:"Fundamentos de Cirurgia e Técnica Operatória", dataInicio:"2026-06-08", dataFim:"2026-08-09", especialidadeIds:["esp-toce","esp-perioperatorio","esp-abdagudo"] },
-    { id:"b4-4", ordem:4, nome:"Saúde da Mulher", dataInicio:"2026-08-10", dataFim:"2026-10-11", especialidadeIds:["esp-ginecologia","esp-planfamiliar","esp-obstetricia"] },
-    { id:"b4-5", ordem:5, nome:"Medicina Preventiva e Social", dataInicio:"2026-10-12", dataFim:"2026-12-20", especialidadeIds:["esp-epidemio","esp-sus","esp-bioetica","esp-saudefamilia"] },
-  ],
-  "5º ano": [
-    { id:"b5-1", ordem:1, nome:"Clínica Médica", dataInicio:"2026-02-02", dataFim:"2026-04-19", especialidadeIds:["esp-cardio","esp-pneumo","esp-gastro","esp-endocrino","esp-nefro","esp-infecto","esp-oftalmo"] },
-    { id:"b5-2", ordem:2, nome:"Cirurgia Geral e Trauma", dataInicio:"2026-04-20", dataFim:"2026-07-05", especialidadeIds:["esp-abdagudo","esp-trauma","esp-perioperatorio","esp-cirurgiaonco","esp-toce"] },
-    { id:"b5-3", ordem:3, nome:"Pediatria", dataInicio:"2026-07-06", dataFim:"2026-09-20", especialidadeIds:["esp-neonato","esp-crescdesenv","esp-infectoped","esp-emergped"] },
-    { id:"b5-4", ordem:4, nome:"Ginecologia e Obstetrícia", dataInicio:"2026-09-21", dataFim:"2026-12-20", especialidadeIds:["esp-obstetricia","esp-ginecologia","esp-planfamiliar","esp-oncogineco"] },
-  ],
-  "6º ano": SEED_BLOCOS,
-  "Formado(a)": [
-    { id:"bf-1", ordem:1, nome:"Revisão: Clínica Médica", dataInicio:"2026-02-02", dataFim:"2026-04-05", especialidadeIds:["esp-cardio","esp-pneumo","esp-gastro","esp-endocrino","esp-nefro","esp-infecto","esp-oftalmo"] },
-    { id:"bf-2", ordem:2, nome:"Revisão: Cirurgia Geral", dataInicio:"2026-04-06", dataFim:"2026-06-07", especialidadeIds:["esp-abdagudo","esp-trauma","esp-perioperatorio","esp-cirurgiaonco","esp-toce"] },
-    { id:"bf-3", ordem:3, nome:"Revisão: Pediatria", dataInicio:"2026-06-08", dataFim:"2026-08-09", especialidadeIds:["esp-neonato","esp-crescdesenv","esp-infectoped","esp-emergped"] },
-    { id:"bf-4", ordem:4, nome:"Revisão: Ginecologia e Obstetrícia", dataInicio:"2026-08-10", dataFim:"2026-10-11", especialidadeIds:["esp-obstetricia","esp-ginecologia","esp-planfamiliar","esp-oncogineco"] },
-    { id:"bf-5", ordem:5, nome:"Revisão: Medicina Preventiva e Social", dataInicio:"2026-10-12", dataFim:"2026-12-20", especialidadeIds:["esp-epidemio","esp-sus","esp-bioetica","esp-saudefamilia"] },
-  ],
-};
+const SEED_SEQUENCIAS_ANO = (window.EscDados && window.EscDados.sequenciasAno) || {};
 
 /* ---------------------------- SEED_USUARIOS -------------------------------
    Contas prontas para você testar cada papel. Use estes logins na tela de
    entrada, ou use os botões de atalho "ver como..." na tela inicial.
-   ATENÇÃO: login/senha aqui são só para a demonstração local. Numa versão
-   real, publicada num site, a autenticação precisa ser feita por um back-end
-   de verdade (ver observações no final do resumo enviado no chat). */
-const SEED_USUARIOS = [
-  { id: "u-admin", nome: "Ana Beatriz (Coordenação)", email: "admin@esc.demo", matricula: "ADM001", senha: "admin123", papel: "admin", nivelAdmin: "master", status: "aprovado", criadoEm: "2026-01-10" },
-  { id: "u-admin-coord", nome: "Paulo Menezes (Coordenação de Curso)", email: "coordenacao@esc.demo", matricula: "ADM002", senha: "admin123", papel: "admin", nivelAdmin: "coordenacao", status: "aprovado", criadoEm: "2026-01-10" },
-  { id: "u-admin-mod", nome: "Larissa Antunes (Moderação)", email: "moderador@esc.demo", matricula: "ADM003", senha: "admin123", papel: "admin", nivelAdmin: "moderador", status: "aprovado", criadoEm: "2026-01-10" },
-  { id: "u-prof", nome: "Dr. Ricardo Nakamura", email: "professor@esc.demo", matricula: "PROF001", senha: "prof123", papel: "professor", status: "aprovado", criadoEm: "2026-01-10" },
-  { id: "u-res", nome: "Dra. Juliana Prado (R2)", email: "residente@esc.demo", matricula: "RES001", senha: "res123", papel: "residente", status: "aprovado", criadoEm: "2026-01-12" },
-  { id: "u-aluno1", nome: "Marcos Vinícius Silva", email: "aluno@esc.demo", matricula: "2026001234", senha: "aluno123", papel: "aluno", status: "aprovado", blocoAtualId: "bloco-6", metaQuestoesDia: 30, criadoEm: "2026-02-01" },
-  { id: "u-aluno2", nome: "Camila Ferreira Torres", email: "camila.torres@esc.demo", matricula: "2026005678", senha: "aluno123", papel: "aluno", status: "pendente", blocoAtualId: "bloco-6", criadoEm: "2026-09-14" },
-];
+   As contas moram em dados/demonstracao.js, junto do resto do que existe só
+   para a tela não nascer vazia — é o arquivo para esvaziar quando a turma
+   real entrar.
+   ATENÇÃO: login/senha ali são só para a demonstração local, e ficam à vista
+   de quem abrir o arquivo. Conta de verdade é a da nuvem (seção 2-C), com a
+   senha guardada no servidor. */
+const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
 /* ---------------------------- SEED_QUESTOES -------------------------------
    O BANCO DE QUESTÕES NÃO MORA MAIS AQUI. Ele vem dos arquivos da pasta
    "dados/", carregados pelas linhas <script src="dados/..."> que ficam logo
@@ -1325,28 +1038,18 @@ const SEED_QUESTOES = (window.EscDados && window.EscDados.questoes) || [];
 /* ---------------------------- SEED_LIVRO_OURO -----------------------------
    O "Livro de Ouro" registra quem sustenta e quem ajuda a construir a
    plataforma: doações (financeiras ou materiais) e colaborações (questões,
-   revisões, dúvidas respondidas, organização). Os registros abaixo são
-   exemplos de demonstração — apague-os e cadastre os reais pela própria
+   revisões, dúvidas respondidas, organização). Os registros de exemplo estão
+   em dados/demonstracao.js — apague-os de lá e cadastre os reais pela própria
    tela (Livro de Ouro > Registrar agradecimento), com um administrador de
    nível máster ou coordenação. */
-const SEED_LIVRO_OURO = [
-  { id:"lo-1", nome:"Turma de Medicina 2025", tipo:"doacao", valor:"R$ 1.200", descricao:"Rifa da turma para custear o domínio e a hospedagem do primeiro ano da plataforma.", mensagem:"Que sirva para quem vem depois da gente.", data:"2026-01-15", destaque:true },
-  { id:"lo-2", nome:"Dr. Ricardo Nakamura", tipo:"colaboracao", valor:"", descricao:"Revisão clínica das questões de Clínica Médica e Cirurgia e escrita das explicações de gabarito.", mensagem:"", data:"2026-02-02", destaque:true },
-  { id:"lo-3", nome:"Dra. Juliana Prado (R2)", tipo:"colaboracao", valor:"", descricao:"Plantão voluntário na fila de dúvidas dos alunos, com resposta em até 24 horas.", mensagem:"", data:"2026-03-10", destaque:false },
-  { id:"lo-4", nome:"Livraria Acadêmica (apoio local)", tipo:"apoio", valor:"", descricao:"Impressão gratuita dos cadernos de questões usados nos simulados presenciais.", mensagem:"", data:"2026-04-20", destaque:false },
-];
+const SEED_LIVRO_OURO = (window.EscDados && window.EscDados.livroOuro) || [];
 
 /* ---------------------------- SEED_COMENTARIOS -----------------------------
-   Exemplos de dúvidas/comentários em questões. Os com respostaOficial=true
-   simulam uma resposta de residente/professor (a "fila de dúvidas" do papel
-   Residente mostra os que ainda não têm resposta oficial). */
-const SEED_COMENTARIOS = [
-  { id:"com-1", questaoId:"q-001", usuarioId:"u-aluno1", papelAutor:"aluno", texto:"Fiquei em dúvida: não seria necessário confirmar com troponina antes de indicar a reperfusão? Ou isso só vale para angina instável?", data:"2026-09-10", respostaOficial:false },
-  { id:"com-2", questaoId:"q-001", usuarioId:"u-res", papelAutor:"residente", texto:"Boa pergunta! A troponina confirma necrose miocárdica, mas no IAMCSST o ECG já basta para indicar reperfusão de urgência — esperar o resultado só atrasaria o tratamento. Ela é mais usada quando o ECG não é tão claro, por exemplo infra de ST ou ECG normal com dor torácica.", data:"2026-09-10", respostaOficial:true },
-  { id:"com-3", questaoId:"q-011", usuarioId:"u-aluno1", papelAutor:"aluno", texto:"Essa foi difícil! Fiquei confuso sobre quando o pT1 precisa de cirurgia complementar.", data:"2026-09-08", respostaOficial:false },
-  { id:"com-4", questaoId:"q-011", usuarioId:"u-prof", papelAutor:"professor", texto:"É um ponto que realmente confunde. Regra prática: havendo invasão angiolinfática, margem comprometida ou tumor pouco diferenciado, aí sim indica colectomia complementar com linfadenectomia. Sem esses fatores, a polipectomia já resolve.", data:"2026-09-09", respostaOficial:true },
-  { id:"com-5", questaoId:"q-021", usuarioId:"u-aluno1", papelAutor:"aluno", texto:"Não entendi por que ainda não dá pra fechar gestação ectópica com esse valor de beta-hCG.", data:"2026-09-14", respostaOficial:false },
-];
+   Exemplos de dúvidas/comentários em questões, em dados/demonstracao.js. Os
+   com respostaOficial=true simulam uma resposta de residente/professor (a
+   "fila de dúvidas" do papel Residente mostra os que ainda não têm resposta
+   oficial). */
+const SEED_COMENTARIOS = (window.EscDados && window.EscDados.comentarios) || [];
 
 /* ---------------------------- SEED_FLASHCARDS ------------------------------
    Cartões de conceito: frente = pergunta curta, verso = resposta direta.
@@ -1377,22 +1080,45 @@ const SEED_FLASHCARDS = (window.EscDados && window.EscDados.flashcards) || [];
    e é por isso que o aviso não impede o uso — só avisa. */
 function resumoArquivosDeConteudo(){
   const d = window.EscDados || {};
+  const t = d.taxonomia || {};
   return {
     arquivos: d.arquivos || [],
+    taxonomia: (t.assuntos || []).length,
+    blocos: (d.blocos || []).length,
     questoes: (d.questoes || []).length,
     flashcards: (d.flashcards || []).length,
+    simulados: (d.simulados || []).length,
+    usuarios: (d.usuarios || []).length,
   };
 }
+/* A tarja diz QUAL arquivo faltou, não só que algo faltou: com sete arquivos
+   na pasta, "não carregou" sozinho não diz onde procurar. A taxonomia vem
+   primeiro na lista de propósito — sem ela nada se classifica, e é a falta
+   que mais estraga a tela. */
 function avisarSeFaltarConteudo(){
   const r = resumoArquivosDeConteudo();
-  if(r.questoes > 0 || r.flashcards > 0) return;   // veio conteúdo: nada a avisar
+  const faltando = [];
+  if(!r.taxonomia)  faltando.push("a taxonomia (<code>dados/taxonomia.js</code>)");
+  if(!r.blocos)     faltando.push("o calendário de blocos (<code>dados/calendario.js</code>)");
+  if(!r.questoes)   faltando.push("as questões (<code>dados/banco-didatico.js</code> e as provas)");
+  if(!r.flashcards) faltando.push("os flashcards (<code>dados/flashcards-equipe.js</code>)");
+  if(!r.usuarios)   faltando.push("as contas de demonstração (<code>dados/demonstracao.js</code>)");
+  if(!faltando.length) return;                      // veio tudo: nada a avisar
+  const tudo = r.arquivos.length === 0;
   const tarja = document.createElement("div");
   tarja.className = "aviso-dados";
-  tarja.innerHTML = `<strong>Os arquivos de conteúdo não foram carregados.</strong>
-    As questões e os flashcards ficam na pasta <code>dados/</code>, que precisa estar
-    ao lado do arquivo index.html — e ser publicada junto com ele, quando o site está
-    no ar. A plataforma continua funcionando com o que já estiver salvo neste
-    navegador, mas nenhum conteúdo novo entra enquanto a pasta não voltar.`;
+  tarja.innerHTML = tudo
+    ? `<strong>A pasta <code>dados/</code> não foi carregada.</strong>
+       Todo o conteúdo da plataforma — taxonomia, calendário, questões, flashcards e
+       simulados — mora nela, que precisa estar ao lado do arquivo index.html e ser
+       publicada junto com ele, quando o site está no ar. A plataforma continua
+       funcionando com o que já estiver salvo neste navegador, mas nada de novo entra
+       enquanto a pasta não voltar.`
+    : `<strong>Falta parte do conteúdo:</strong> não ${faltando.length===1?"carregou":"carregaram"}
+       ${faltando.join(", ")}. Confira se ${faltando.length===1?"o arquivo está":"os arquivos estão"}
+       na pasta <code>dados/</code> e se não há erro de digitação dentro ${faltando.length===1?"dele":"deles"}
+       — um arquivo com erro de JavaScript deixa de carregar inteiro.
+       Configurações &gt; Arquivos de conteúdo mostra o que entrou.`;
   document.body.insertBefore(tarja, document.body.firstChild);
 }
 /* ==========================================================================
@@ -5472,11 +5198,13 @@ function abrirPromptDuvida(qid){
       <button class="btn btn-secondary" onclick="fecharModal()">Fechar</button>
     </div>`, "lg");
 }
-/* Um simulado de exemplo já recomendado para o bloco atual (Obstetrícia),
-   para a demonstração já nascer com algo para o aluno ver e experimentar. */
-const SEED_SIMULADOS = [
-  { id:"sim-1", titulo:"Simulado de Revisão — Obstetrícia", questoes:["q-019","q-020","q-021"], duracaoMin:20, recomendadoParaBlocos:["bloco-6"], tipo:"simulado_professor", criadoPor:"u-prof", criadoEm:"2026-09-01" },
-];
+/* ---------------------------- SEED_SIMULADOS ------------------------------
+   As provas montadas pela equipe moram em dados/simulados-equipe.js — um
+   simulado é uma lista de ids de questão, um tempo e, se quiser, o bloco do
+   calendário para o qual ele é recomendado.
+   Simulado montado por um professor pela tela Criar Simulado nasce no
+   navegador dele; levar para aquele arquivo é o que o torna de todo mundo. */
+const SEED_SIMULADOS = (window.EscDados && window.EscDados.simulados) || [];
 
 /* ==========================================================================
    12. REVISÃO (visão por assunto + fila de erros/chutes)
@@ -9681,13 +9409,13 @@ function renderCardArquivosConteudo(){
   const r = resumoArquivosDeConteudo();
   return `<div class="card mt-3">
     <div class="card-title">${iconeSvg("database")} Arquivos de conteúdo</div>
-    <p class="text-sm muted">As questões e os flashcards da equipe ficam em arquivos próprios, na pasta <code>dados/</code>, ao lado do arquivo da plataforma — o código de um lado, o conteúdo do outro. Isto é o que o navegador carregou agora.</p>
+    <p class="text-sm muted">Todo o conteúdo da plataforma — taxonomia, calendário, questões, flashcards, simulados e os dados de demonstração — fica em arquivos próprios, na pasta <code>dados/</code>, ao lado do arquivo da plataforma: o código de um lado, o conteúdo do outro. Isto é o que o navegador carregou agora.</p>
     ${r.arquivos.length ? `
       <div class="table-wrap mt-2"><table>
         <thead><tr><th>Arquivo</th><th>Conteúdo</th><th style="text-align:right">Itens</th></tr></thead>
         <tbody>${r.arquivos.map(a=>`<tr><td>dados/${escapeHtml(a.nome)}.js</td><td>${escapeHtml(a.tipo)}</td><td style="text-align:right">${a.itens}</td></tr>`).join("")}</tbody>
       </table></div>
-      <p class="text-xs muted mt-2">Total carregado: ${r.questoes} ${r.questoes===1?"questão":"questões"} e ${r.flashcards} ${r.flashcards===1?"cartão":"cartões"} de semente. Estes números são o conteúdo que vem nos arquivos; o que os alunos criaram (respostas, cartões pessoais, questões enviadas) fica salvo no navegador e não aparece aqui.</p>`
+      <p class="text-xs muted mt-2">Total carregado: ${r.questoes} ${r.questoes===1?"questão":"questões"}, ${r.flashcards} ${r.flashcards===1?"cartão":"cartões"}, ${r.simulados} ${r.simulados===1?"simulado":"simulados"}, ${r.taxonomia} ${r.taxonomia===1?"assunto":"assuntos"} e ${r.blocos} ${r.blocos===1?"bloco":"blocos"} de calendário. Estes números são o conteúdo que vem nos arquivos; o que os alunos criaram (respostas, cartões pessoais, questões enviadas) fica salvo no navegador e não aparece aqui.</p>`
     : `<p class="text-sm mt-2" style="color:var(--amber);font-weight:600">Nenhum arquivo de conteúdo foi carregado. Verifique se a pasta <code>dados/</code> está junto do index.html (e se ela foi publicada, quando o site está no ar).</p>`}
   </div>`;
 }

@@ -1,8 +1,10 @@
 # A pasta `dados/` — o conteúdo da plataforma
 
-Esta pasta guarda **o que os alunos estudam**: as questões e os flashcards que
-já vêm prontos com a plataforma. O `index.html`, ao lado, guarda **o código**:
-as telas, as regras e os algoritmos.
+Esta pasta guarda **todo o conteúdo** da plataforma: a taxonomia, o calendário
+de blocos, as questões, os flashcards, os simulados e os dados de
+demonstração. O `index.html`, ao lado, guarda **só o código**: as telas, as
+regras e os algoritmos — nenhuma questão, nenhum cartão, nenhum nome de bloco,
+nenhuma conta.
 
 A separação é só de arquivo — no site nada muda. Quem abre o `index.html`
 (pelo endereço do site ou com dois cliques na pasta) recebe tudo junto,
@@ -15,8 +17,13 @@ navegador continua lá.
 
 ## O que tem aqui
 
+Na ordem em que são carregados (a ordem importa: a taxonomia vem primeiro
+porque todo o resto aponta para ela):
+
 | Arquivo | Conteúdo | Itens |
 | --- | --- | --- |
+| `taxonomia.js` | Área > especialidade > assunto | 5 + 39 + 216 |
+| `calendario.js` | Blocos de estudo e a sequência de cada ano | 8 + 5 anos |
 | `banco-didatico.js` | Questões autorais da equipe, no estilo da prova | 135 |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 (Acesso Direto), prova real | 100 |
@@ -24,8 +31,17 @@ navegador continua lá.
 | `prova-unifesp-2025.js` | UNIFESP-EPM 2025 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2026.js` | UNIFESP-EPM 2026 (Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
+| `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
+| `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 7 + 5 + 4 |
 
-Total: **635 questões** e **501 cartões**.
+Total: **635 questões**, **501 cartões**, **216 assuntos** e **1 simulado**.
+
+### Para a turma real entrar
+
+Esvazie **só** o `demonstracao.js` — deixe as três listas como `[]`. A
+plataforma abre limpa, sem contas de teste, sem comentários inventados e sem
+os agradecimentos de exemplo, e não perde questão, cartão nem calendário. Os
+outros dez arquivos continuam valendo.
 
 Para conferir o que o navegador carregou de verdade, entre como administrador
 e vá em **Configurações > Arquivos de conteúdo**: a tela lista arquivo por
@@ -65,7 +81,22 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 ]);
 ```
 
-Flashcards usam a outra função:
+São seis funções, uma por tipo de conteúdo:
+
+| Função | Recebe |
+| --- | --- |
+| `registrarQuestoes(nome, lista)` | uma lista de questões |
+| `registrarFlashcards(nome, lista)` | uma lista de cartões |
+| `registrarSimulados(nome, lista)` | uma lista de simulados |
+| `registrarTaxonomia(nome, {areas, especialidades, assuntos})` | a árvore de assuntos |
+| `registrarCalendario(nome, {blocos, sequenciasAno})` | o calendário |
+| `registrarDemonstracao(nome, {usuarios, livroOuro, comentarios})` | os dados de exemplo |
+
+**As listas se somam.** Dois arquivos chamando `registrarQuestoes` resultam
+nas questões dos dois — é isso que permite acrescentar uma prova (ou mais
+assuntos na taxonomia) criando um arquivo novo, sem tocar no que já existe.
+
+Flashcards usam a sua função assim:
 
 ```js
 window.EscDados.registrarFlashcards("flashcards-turma-2027", [
@@ -85,7 +116,7 @@ caderno pessoal de um aluno, e esse não mora em arquivo nenhum: nasce no uso.
   banca:"USP-SP (FMUSP)",          // instituição
   real:true,                       // true = prova real; false = questão autoral
   ano:2026,
-  areaId:"area-cm",                // ver SEED_TAXONOMIA no index.html
+  areaId:"area-cm",                // os três ids vêm de dados/taxonomia.js
   especialidadeId:"esp-cardio",
   assuntoId:"ass-sca",
   numeroNaProva:1,                 // opcional; a Central de Provas preenche
@@ -109,9 +140,10 @@ caderno pessoal de um aluno, e esse não mora em arquivo nenhum: nasce no uso.
 ```
 
 Os `areaId`, `especialidadeId` e `assuntoId` precisam existir em
-`SEED_TAXONOMIA` (no `index.html`). Se o assunto ainda não existir, acrescente
-ele lá primeiro — a plataforma realinha área e especialidade pelo assunto
-sozinha ao carregar.
+`dados/taxonomia.js`. Se o assunto ainda não existir, crie-o primeiro — pela
+tela **Conteúdo > Especialidades e Assuntos**, que é o caminho mais seguro, ou
+acrescentando um item em `assuntos` naquele arquivo. A plataforma realinha
+área e especialidade pelo assunto sozinha ao carregar.
 
 ## Política de conteúdo — leia antes de subir prova de verdade
 
@@ -141,4 +173,12 @@ autoral da equipe mantém `real: false`.
 - Depois de mexer, **abra o `index.html` e confira em Configurações >
   Arquivos de conteúdo** se a contagem bateu. Se um arquivo tiver erro de
   digitação em JavaScript, ele inteiro deixa de carregar — e é essa tela que
-  mostra isso na hora.
+  mostra isso na hora. A plataforma também põe uma tarja no alto dizendo
+  **qual** arquivo faltou.
+- **Um simulado só funciona se as questões dele existirem.** `simulados-equipe.js`
+  guarda ids (`"q-019"`); se a questão sair do banco, o simulado fica menor
+  sem avisar.
+- **A taxonomia é a base.** Apagar um assunto de `taxonomia.js` sem mexer nas
+  questões que apontam para ele deixa essas questões órfãs. A plataforma
+  realinha área e especialidade sozinha ao carregar, mas não inventa um
+  assunto que sumiu — prefira renomear pela tela Especialidades e Assuntos.
