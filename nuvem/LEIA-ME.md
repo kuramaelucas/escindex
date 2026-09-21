@@ -12,6 +12,15 @@ ela entrar.
 **O conteúdo não vai para a nuvem.** As questões e os flashcards da equipe são
 iguais para todo mundo e continuam na pasta `dados/`, ao lado do `index.html`.
 
+**Exceção: o calendário de blocos.** Diferente das questões, a sequência de
+blocos que professor/administrador edita em **Admin > Blocos de Estudo** *sobe
+sozinha* para a nuvem e desce para qualquer aluno com conta, em poucos
+segundos — sem precisar exportar arquivo nem publicar o site de novo. É a
+única coisa de "conteúdo" com esse tratamento, porque muda com frequência
+(datas do semestre) e é a mesma para toda a turma de um ano. As **turmas**
+(quem está em qual, o bloco de início de cada uma) continuam só no navegador
+de quem criou — ver "O que a nuvem não guarda" mais abaixo.
+
 ## Como está agora
 
 A nuvem **já está configurada** neste arquivo. Em `index.html`, procure por
@@ -151,8 +160,10 @@ Estas coisas continuam vivendo só no navegador de quem as fez:
   Questões e Admin > Central de Provas), inclusive as cargas de prova em
   andamento. Para virar conteúdo de todo mundo, elas precisam ir para a pasta
   `dados/` — ver `dados/LEIA-ME.md`.
-- Comentários e dúvidas nas questões, feedbacks, o Livro de Ouro, o calendário
-  de blocos e as turmas.
+- Comentários e dúvidas nas questões, feedbacks, o Livro de Ouro e as turmas
+  (quem está em qual turma, e o bloco em que cada turma começa). A
+  **sequência** de blocos de cada ano é a exceção: ela sobe e desce sozinha —
+  ver a nota no topo deste arquivo.
 - As contas de demonstração (`admin@esc.demo` e companhia), que são locais e
   continuam servindo para testar sem criar conta nenhuma.
 

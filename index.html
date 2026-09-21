@@ -1171,7 +1171,7 @@ function dbPadrao(){
     },
     // nuvem (seção 2-C): a fila do que ainda não subiu e até onde já baixamos
     filaNuvem: [],
-    nuvem: { contaId:null, ultimaSyncEm:null, marcas:{}, recusados:[] },
+    nuvem: { contaId:null, ultimaSyncEm:null, marcas:{}, recusados:[], calendarioPendente:[] },
     versao: 2,
   };
 }
@@ -1280,9 +1280,10 @@ function loadState(){
     // nuvem: a fila de envio e as marcas de "até onde já baixei" nascem
     // vazias em quem ainda não tinha conta (ver seção 2-C)
     if(!Array.isArray(db.filaNuvem)) db.filaNuvem = [];
-    if(!db.nuvem) db.nuvem = { contaId:null, ultimaSyncEm:null, marcas:{}, recusados:[] };
+    if(!db.nuvem) db.nuvem = { contaId:null, ultimaSyncEm:null, marcas:{}, recusados:[], calendarioPendente:[] };
     if(!db.nuvem.marcas) db.nuvem.marcas = {};
     if(!Array.isArray(db.nuvem.recusados)) db.nuvem.recusados = [];
+    if(!Array.isArray(db.nuvem.calendarioPendente)) db.nuvem.calendarioPendente = [];
   }catch(e){
     console.error("Falha ao carregar dados salvos, reiniciando com dados de demonstração.", e);
     db = dbPadrao();
@@ -1432,7 +1433,11 @@ let _nuvemDentroDaSync = false;
 
 function nuvemLigada(){ return !!(CONFIG.nuvem && CONFIG.nuvem.url && CONFIG.nuvem.chaveAnon); }
 function nuvemConectado(){ return nuvemLigada() && !!(nuvemSessao && nuvemSessao.usuarioId); }
-function nuvemPendentes(){ return (db && db.filaNuvem) ? db.filaNuvem.length : 0; }
+function nuvemPendentes(){
+  const fila = (db && db.filaNuvem) ? db.filaNuvem.length : 0;
+  const cal = (db && db.nuvem && db.nuvem.calendarioPendente) ? db.nuvem.calendarioPendente.length : 0;
+  return fila + cal;
+}
 
 function nuvemCarregarSessaoSalva(){
   try{ nuvemSessao = JSON.parse(localStorage.getItem(CHAVE_SESSAO_NUVEM) || "null"); }
@@ -1871,8 +1876,10 @@ async function nuvemSincronizar(opcoes = {}){
   nuvemEstado.ultimoErro = null;
   try{
     nuvemConferirPerfil();
-    const recusados = await nuvemEnviarFila();
+    let recusados = await nuvemEnviarFila();
     await nuvemReceberMudancas();
+    await nuvemBaixarCalendario();
+    recusados += await nuvemEnviarCalendarioPendente();
     if(recusados){
       nuvemEstado.ultimoErro = recusados + (recusados === 1
         ? " registro foi recusado pela nuvem (veja o motivo abaixo). O resto subiu."
@@ -1934,6 +1941,66 @@ function nuvemGuardarRecusado(tabela, op, motivo){
     em: new Date().toISOString(),
   });
   db.nuvem.recusados = db.nuvem.recusados.slice(0, 50);
+}
+
+/* ---------------------------- calendário (compartilhado) -----------------
+   O calendário de blocos não é estudo de uma pessoa: é o mesmo para todo
+   mundo do ano, e só professor/administrador grava (a regra fica no banco,
+   em calendario_alterar). Por isso ele não entra no mapa NUVEM_TABELAS (que
+   é todo pensado em "linhas de um usuário só") — tem sua própria descida e
+   subida, mais simples: a tabela inteira baixa para quem está conectado, e
+   sobe só quando alguém com permissão de editar salva um ano. */
+async function nuvemBaixarCalendario(){
+  if(!db.nuvem.marcas) db.nuvem.marcas = {};
+  if(!db.nuvem.calendarioPendente) db.nuvem.calendarioPendente = [];
+  const desde = db.nuvem.marcas.calendario || "1970-01-01T00:00:00Z";
+  const linhas = await nuvemChamar("/rest/v1/calendario?atualizado_em=gt." +
+    encodeURIComponent(desde) + "&order=atualizado_em.asc&select=*");
+  if(!linhas || !linhas.length) return;
+  if(!db.sequenciasAno) db.sequenciasAno = {};
+  let maior = desde;
+  linhas.forEach(l => {
+    // um ano que está na fila para subir daqui é mais novo que o que
+    // acabou de descer: não sobrescreve o que ainda não foi enviado
+    if(db.nuvem.calendarioPendente.includes(l.ano)) return;
+    db.sequenciasAno[l.ano] = l.sequencia || [];
+    if(l.atualizado_em > maior) maior = l.atualizado_em;
+  });
+  if(maior !== desde) db.nuvem.marcas.calendario = maior;
+}
+
+/* Sobe os anos marcados como pendentes. Devolve quantos foram recusados de
+   vez (ex.: quem salvou não é professor/admin, ou a política do banco ainda
+   não foi criada) — o mesmo padrão de nuvemEnviarFila, reaproveitando
+   nuvemGuardarRecusado para aparecer no mesmo lugar da tela. */
+async function nuvemEnviarCalendarioPendente(){
+  if(!db.nuvem.calendarioPendente || !db.nuvem.calendarioPendente.length) return 0;
+  const pendentes = db.nuvem.calendarioPendente.slice();
+  let recusados = 0;
+  for(const ano of pendentes){
+    try{
+      await nuvemChamar("/rest/v1/calendario", {
+        method: "POST",
+        headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+        body: JSON.stringify([{ ano, sequencia: db.sequenciasAno[ano] || [], atualizado_por: nuvemSessao.usuarioId }]),
+      });
+      db.nuvem.calendarioPendente = db.nuvem.calendarioPendente.filter(a => a !== ano);
+    }catch(e){
+      if(nuvemErroPassageiro(e)) throw e;   // fica pendente, tenta de novo depois
+      nuvemGuardarRecusado("calendario", { chave: ano }, e.message);
+      db.nuvem.calendarioPendente = db.nuvem.calendarioPendente.filter(a => a !== ano);
+      recusados++;
+    }
+  }
+  return recusados;
+}
+
+/* Marca um ano para subir na próxima sincronização — chamado depois de
+   qualquer edição na sequência de blocos daquele ano. */
+function nuvemMarcarCalendarioPendente(ano){
+  if(!nuvemConectado()) return;
+  if(!db.nuvem.calendarioPendente) db.nuvem.calendarioPendente = [];
+  if(!db.nuvem.calendarioPendente.includes(ano)) db.nuvem.calendarioPendente.push(ano);
 }
 
 /* Sobe a fila. Devolve quantos registros a nuvem recusou de vez.
@@ -9521,12 +9588,19 @@ function renderBlocosConfig(){
   return `
   <div class="page-header"><h2>Blocos de Estudo</h2><p>A sequência de blocos pertence ao <strong>ano da faculdade</strong>: todas as turmas daquele ano passam pelos mesmos blocos, na mesma ordem. O que muda de uma turma para outra é por qual bloco ela começa — o rodízio.</p></div>
 
+  ${nuvemConectado() ? `
+  <div class="card mb-2">
+    <div class="card-title">${iconeSvg("check")} Sincroniza sozinho pela nuvem</div>
+    <p class="text-sm muted">Salvar um bloco aqui envia a sequência do ano para a nuvem em poucos segundos, e qualquer aluno com conta recebe na próxima vez que a plataforma sincronizar (ao abrir, ao voltar a internet, a cada poucos minutos). Não precisa exportar nem publicar o site de novo para isto.</p>
+    <p class="text-xs muted mt-1">Isto vale só para a <strong>sequência de blocos</strong>. Turmas (a que ano cada uma pertence, qual bloco de início) continuam só neste navegador — ver o aviso mais abaixo, junto da tabela de turmas.</p>
+    <button class="btn btn-secondary btn-sm mt-1" onclick="exportarCalendario()">${iconeSvg("archive")} Exportar mesmo assim (baixa um arquivo à parte)</button>
+  </div>` : `
   <div class="card mb-2" style="border-color:var(--amber)">
     <div class="card-title">${iconeSvg("alert")} O que você edita aqui vale só neste navegador</div>
-    <p class="text-sm muted">O calendário de blocos é <strong>conteúdo</strong>, igual às questões: mudanças feitas por esta tela ficam guardadas só no navegador de quem editou — a nuvem não guarda isto, e os alunos não recebem a mudança sozinhos. Para toda a turma ver o mesmo calendário, é preciso <strong>exportar</strong> e colocar o arquivo no lugar do <code>dados/calendario.js</code> do site, publicando de novo.</p>
+    <p class="text-sm muted">A nuvem não está ligada, então o calendário de blocos é <strong>conteúdo</strong>, igual às questões: mudanças feitas por esta tela ficam guardadas só no navegador de quem editou — os alunos não recebem a mudança sozinhos. Para toda a turma ver o mesmo calendário, é preciso <strong>exportar</strong> e colocar o arquivo no lugar do <code>dados/calendario.js</code> do site, publicando de novo. (Com a nuvem ligada — ver <code>nuvem/LEIA-ME.md</code> —, isto sobe sozinho, sem precisar exportar nada.)</p>
     <button class="btn btn-primary btn-sm mt-1" onclick="exportarCalendario()">${iconeSvg("archive")} Exportar calendário (dados/calendario.js)</button>
     <p class="text-xs muted mt-2">O arquivo baixado tem tudo o que está neste navegador — todos os anos, com as edições de agora. Troque o <code>dados/calendario.js</code> do projeto por ele e publique; veja <code>dados/LEIA-ME.md</code> para o passo a passo de publicar.</p>
-  </div>
+  </div>`}
 
   <div class="card mb-2">
     <div class="card-title">Ano da faculdade</div>
@@ -9561,6 +9635,7 @@ function renderBlocosConfig(){
   <div class="card">
     <div class="card-title">Turmas de ${escapeHtml(anoEscolhido)} e onde cada uma começa</div>
     <p class="text-sm muted mb-2">O rodízio em uma tabela: enquanto uma turma está num bloco, a outra está em outro. Mudar o bloco de início desloca a turma inteira.</p>
+    <p class="text-xs muted mb-2">Diferente da sequência de blocos acima, isto <strong>não sincroniza</strong> — a turma e o bloco de início dela existem só neste navegador. É a mesma ressalva de <code>nuvem/LEIA-ME.md</code> sobre "as turmas".</p>
     ${turmas.length ? `<div class="table-wrap"><table><thead><tr><th>Turma</th><th>Começa em</th><th>Bloco de hoje</th><th>Membros</th></tr></thead><tbody>
       ${turmas.map(g=>{
         const atual = blocoAtualDoGrupo(g);
@@ -9675,9 +9750,12 @@ function salvarBlocoFormulario(ano, blocoId){
   if(blocoId){ Object.assign(seq.find(x=>x.id===blocoId), {nome, dataInicio, dataFim, especialidadeIds}); }
   else{ seq.push({id:uid("bloco"), ordem:seq.length+1, nome, dataInicio, dataFim, especialidadeIds}); }
   renumerarBlocosPorData(ano);
+  nuvemMarcarCalendarioPendente(ano);
   saveState();
   fecharModal();
-  toast(blocoId?"Bloco atualizado para todas as turmas deste ano.":"Bloco adicionado à sequência deste ano.");
+  toast(blocoId
+    ? "Bloco atualizado" + (nuvemConectado() ? " — subindo para a nuvem." : " para todas as turmas deste ano, neste navegador.")
+    : "Bloco adicionado à sequência" + (nuvemConectado() ? " — subindo para a nuvem." : " deste ano, neste navegador."));
   render();
 }
 function confirmarExcluirBloco(ano, blocoId){
@@ -9696,9 +9774,10 @@ function excluirBlocoConfirmado(ano, blocoId){
     if(anoDoGrupo(g)===ano) g.deslocamento = (g.deslocamento||0) % tamanho;
   });
   renumerarBlocosPorData(ano);
+  nuvemMarcarCalendarioPendente(ano);
   saveState();
   fecharModal();
-  toast("Bloco excluído da sequência.");
+  toast("Bloco excluído da sequência" + (nuvemConectado() ? " — subindo para a nuvem." : ", neste navegador."));
   render();
 }
 function renderConfigGeral(){
