@@ -3832,7 +3832,12 @@ function fazerLogin(identificador, senha){
   if(usuario.status==="rejeitado"){ toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); return; }
   if(usuario.status==="inativo"){ toast("Sua conta está inativa. Fale com a coordenação.", "err"); return; }
   state.usuarioAtualId = usuario.id;
-  toast("Bem-vindo(a), "+usuario.nome.split(" ")[0]+"!");
+  // Com a nuvem ligada, esta é uma conta só deste navegador — e é preciso
+  // dizer isso na hora. Sem o aviso, a pessoa estuda o dia inteiro achando
+  // que está sincronizando e só descobre depois que nada subiu.
+  toast(nuvemLigada()
+    ? ("Você entrou em \"" + usuario.nome + "\", uma conta só deste navegador: nada daqui sobe para a nuvem. Para sincronizar, saia e entre com o e-mail e a senha da sua conta da nuvem.")
+    : ("Bem-vindo(a), " + usuario.nome.split(" ")[0] + "!"));
   navigate("inicio");
 }
 function fazerLoginDemo(papel){
