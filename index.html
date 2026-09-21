@@ -1488,15 +1488,21 @@ async function nuvemChamar(caminho, opcoes = {}){
   }
   const texto = await resposta.text();
   if(!resposta.ok){
-    const erro = new Error(nuvemMensagemDeErro(resposta.status, texto));
+    const erro = new Error(nuvemMensagemDeErro(resposta.status, texto, caminho, opcoes.method || "GET"));
     erro.status = resposta.status;
+    erro.tabela = nuvemNomeDaTabela(caminho);
     throw erro;
   }
   return texto ? JSON.parse(texto) : null;
 }
 
 /* Traduz o erro técnico do servidor para uma frase que a pessoa entenda. */
-function nuvemMensagemDeErro(status, texto){
+function nuvemNomeDaTabela(caminho){
+  const m = /^\/rest\/v1\/([A-Za-z0-9_]+)/.exec(caminho || "");
+  return m ? m[1] : "";
+}
+
+function nuvemMensagemDeErro(status, texto, caminho, metodo){
   let detalhe = "";
   try{ const j = JSON.parse(texto); detalhe = j.msg || j.message || j.error_description || j.error || j.hint || ""; }
   catch(e){ detalhe = (texto||"").slice(0,180); }
@@ -1505,7 +1511,15 @@ function nuvemMensagemDeErro(status, texto){
   if(d.includes("already registered") || d.includes("already been registered")) return "Já existe uma conta com este e-mail.";
   if(d.includes("email not confirmed")) return "Confirme o e-mail antes de entrar (veja a caixa de entrada).";
   if(d.includes("password") && d.includes("6")) return "A senha precisa ter pelo menos 6 caracteres.";
-  if(status === 401 || status === 403) return "Sem permissão para esta operação na nuvem.";
+  if(status === 401 || status === 403){
+    // Dizer só "sem permissão" deixava a pessoa sem saber onde mexer. O que
+    // resolve é saber QUAL tabela recusou: é nela que falta a política de
+    // RLS ou a permissão de tabela que o esquema.sql cria.
+    const tabela = nuvemNomeDaTabela(caminho);
+    const acao = (metodo && metodo !== "GET") ? "gravar em" : "ler";
+    if(tabela) return "Sem permissão para " + acao + " \"" + tabela + "\" na nuvem. Rode o nuvem/esquema.sql inteiro no Supabase — é ele que cria as regras dessa tabela.";
+    return "Sem permissão para esta operação na nuvem.";
+  }
   if(status === 404) return "Endereço da nuvem não encontrado — confira CONFIG.nuvem.url.";
   if(status >= 500) return "O servidor da nuvem falhou. Tente de novo em instantes.";
   return detalhe || ("Falha na nuvem (código " + status + ").");
@@ -2330,7 +2344,7 @@ async function nuvemDiagnosticar(){
       try{
         const perfil = await nuvemBuscarPerfil();
         if(perfil && perfil.status === "aprovado"){
-          anotar(true, "Sua conta está aprovada e a nuvem aceita ler e escrever no seu estudo.", "");
+          anotar(true, "Sua conta está aprovada e a nuvem devolveu o seu perfil.", "");
         }else if(perfil){
           anotar(false, "Seu cadastro está como \"" + perfil.status + "\".",
               "Só cadastro aprovado sincroniza — peça à coordenação em Aprovar Cadastros.");
@@ -2347,7 +2361,32 @@ async function nuvemDiagnosticar(){
     }
   }
 
-  // 4. o que está esperando para subir
+  // 4. quais tabelas recusam — é o que a mensagem "sem permissão" não dizia
+  if(projetoOk && nuvemConectado() && !nuvemEstado.sessaoExpirada){
+    const negadas = [];
+    let testadas = 0;
+    for(const tabela of Object.keys(NUVEM_TABELAS)){
+      const coluna = tabela === "perfis" ? "id" : "usuario_id";
+      try{
+        await nuvemChamar("/rest/v1/" + tabela + "?" + coluna + "=eq." +
+          encodeURIComponent(nuvemSessao.usuarioId) + "&select=" + coluna + "&limit=1");
+        testadas++;
+      }catch(e){
+        if(e.status === 401 || e.status === 403) negadas.push(tabela + " (sem permissão)");
+        else if(e.status === 404) negadas.push(tabela + " (não existe)");
+        else if(e.semRede) break;
+        else negadas.push(tabela + " (" + (e.message || "falhou") + ")");
+      }
+    }
+    if(negadas.length){
+      anotar(false, "Estas tabelas recusam o seu acesso: " + negadas.join(", ") + ".",
+          "É o que causa \"sem permissão\" na sincronização. Rode o nuvem/esquema.sql INTEIRO no SQL Editor do Supabase (ele pode ser rodado de novo sem estragar nada) e teste outra vez.");
+    }else if(testadas){
+      anotar(true, "As " + testadas + " tabelas do seu estudo aceitam leitura.", "");
+    }
+  }
+
+  // 5. o que está esperando para subir
   const p = nuvemPendentes();
   const rec = ((db.nuvem && db.nuvem.recusados) || []).length;
   anotar(p === 0, p === 0 ? "Não há nada esperando na fila." : p + (p===1 ? " alteração esperando para subir." : " alterações esperando para subir."),
@@ -9473,7 +9512,7 @@ function renderEditorCalendario(grupo, opts){
         </div>` : ""}
       </div>
     </div>`).join("")}
-  ${podeEditar && opts.podeEditarSequencia ? `<p class="text-xs muted mt-2">Editar aqui muda a sequência do ano inteiro, para todas as turmas daquele ano — é isso que garante que todo mundo passe pela mesma matéria. Evite datas se sobrepondo: a ordem cronológica das datas de início é o que define o que é bloco passado e bloco futuro.</p>` : ""}`;
+  ${podeEditar && opts.podeEditarSequencia ? `<p class="text-xs muted mt-2">Editar aqui muda a sequência do ano inteiro, para todas as turmas daquele ano <strong>neste navegador</strong> — é isso que garante que todo mundo que abre a plataforma aqui passe pela mesma matéria. Evite datas se sobrepondo: a ordem cronológica das datas de início é o que define o que é bloco passado e bloco futuro. Para o resto da turma, do celular ou de casa, ver os mesmos blocos, é preciso <strong>exportar e publicar</strong> — veja o aviso no topo desta página.</p>` : ""}`;
 }
 function renderBlocosConfig(){
   const anoEscolhido = state.filtroRota.anoBlocos || CONFIG.anoFaculdadePadrao;
@@ -9481,6 +9520,13 @@ function renderBlocosConfig(){
   const turmas = db.grupos.filter(g=>!g.oficial && anoDoGrupo(g)===anoEscolhido);
   return `
   <div class="page-header"><h2>Blocos de Estudo</h2><p>A sequência de blocos pertence ao <strong>ano da faculdade</strong>: todas as turmas daquele ano passam pelos mesmos blocos, na mesma ordem. O que muda de uma turma para outra é por qual bloco ela começa — o rodízio.</p></div>
+
+  <div class="card mb-2" style="border-color:var(--amber)">
+    <div class="card-title">${iconeSvg("alert")} O que você edita aqui vale só neste navegador</div>
+    <p class="text-sm muted">O calendário de blocos é <strong>conteúdo</strong>, igual às questões: mudanças feitas por esta tela ficam guardadas só no navegador de quem editou — a nuvem não guarda isto, e os alunos não recebem a mudança sozinhos. Para toda a turma ver o mesmo calendário, é preciso <strong>exportar</strong> e colocar o arquivo no lugar do <code>dados/calendario.js</code> do site, publicando de novo.</p>
+    <button class="btn btn-primary btn-sm mt-1" onclick="exportarCalendario()">${iconeSvg("archive")} Exportar calendário (dados/calendario.js)</button>
+    <p class="text-xs muted mt-2">O arquivo baixado tem tudo o que está neste navegador — todos os anos, com as edições de agora. Troque o <code>dados/calendario.js</code> do projeto por ele e publique; veja <code>dados/LEIA-ME.md</code> para o passo a passo de publicar.</p>
+  </div>
 
   <div class="card mb-2">
     <div class="card-title">Ano da faculdade</div>
@@ -9532,6 +9578,43 @@ function renderBlocosConfig(){
   </div>`;
 }
 function mudarAnoBlocos(ano){ state.filtroRota.anoBlocos = ano; render(); }
+
+/* ---------------------------- exportar o calendário -----------------------
+   O calendário de blocos é conteúdo, como as questões: o que é editado por
+   esta tela fica só no navegador de quem editou (não vai para a nuvem, não
+   chega aos alunos sozinho — ver nuvem/LEIA-ME.md). Isto gera o arquivo no
+   formato que dados/calendario.js espera, com TUDO que está neste navegador
+   agora — todos os anos, já com as edições —, pronto para substituir o
+   arquivo do projeto e ser publicado. É o mesmo caminho 2 do
+   dados/LEIA-ME.md, só que sem precisar copiar e colar à mão. */
+function textoExportacaoCalendario(){
+  const dados = {
+    blocos: db.sequenciasAno[CONFIG.anoFaculdadePadrao] || [],
+    sequenciasAno: db.sequenciasAno || {},
+  };
+  return `/* ==========================================================================
+   CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada
+   ==========================================================================
+   Gerado por "Exportar calendário" (Admin > Blocos de Estudo) em ${hojeISO()},
+   a partir do que estava editado no navegador de quem exportou. Substitua o
+   dados/calendario.js do projeto por este arquivo (mesmo nome, mesma pasta)
+   e publique o site de novo: é isso que leva a mudança para todo mundo —
+   editar pela tela muda o calendário só naquele navegador. Ver
+   dados/LEIA-ME.md.
+   ========================================================================== */
+window.EscDados.registrarCalendario("calendario", ${JSON.stringify(dados, null, 2)});
+`;
+}
+function exportarCalendario(){
+  const texto = textoExportacaoCalendario();
+  const blob = new Blob([texto], {type:"text/javascript"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "calendario.js";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 4000);
+  toast("Baixado \"calendario.js\". Troque o dados/calendario.js do projeto por ele e publique o site de novo — só assim a mudança chega aos alunos.");
+}
 function mudarDeslocamentoGrupo(grupoId, valor){
   const grupo = getGrupo(grupoId); if(!grupo) return;
   grupo.deslocamento = parseInt(valor) || 0;

@@ -201,7 +201,7 @@ Três coisas que o cartão de sincronização mostra e valem uma explicação:
 | "Conta sem perfil na nuvem." | O `esquema.sql` não foi rodado (ou foi rodado depois de a conta ser criada). Rode o arquivo e crie a conta de novo, ou insira o perfil à mão. |
 | "Seu cadastro ainda está aguardando aprovação." | Está tudo certo: falta a coordenação aprovar em Aprovar Cadastros. |
 | "Endereço da nuvem não encontrado" | `CONFIG.nuvem.url` está com erro de digitação. |
-| "Sem permissão para esta operação na nuvem." | Alguma tabela ficou sem política de RLS — rode o `esquema.sql` de novo por inteiro. |
+| "Sem permissão para ler/gravar em «tabela»" | Aquela tabela ficou sem política de RLS ou sem permissão — rode o `esquema.sql` de novo por inteiro. O **Testar a nuvem** lista todas as tabelas que recusam o acesso de uma vez. |
 | "Pendente" e a fila não baixa | Veja o erro no cartão de *Perfil*; quase sempre é internet, ou o projeto do Supabase pausado por inatividade (o plano gratuito pausa depois de uma semana sem uso — basta reativar no painel). |
 | "Sessão expirada" | O token venceu e não renovou. Clique em **Entrar de novo** e entre com e-mail e senha; a fila sobe em seguida. |
 | "N registros recusados pela nuvem" | O banco entendeu e recusou aqueles registros. Rode o `esquema.sql` inteiro de novo (é o caso comum: banco criado por uma versão anterior) e mostre os motivos listados no Perfil à coordenação. |
