@@ -5,9 +5,9 @@ daquele computador**: quem estuda no notebook não continua de onde parou no
 celular, e perder o navegador é perder o histórico.
 
 Com a nuvem ligada, cada pessoa tem uma conta (e-mail e senha) e o estudo dela
-— respostas, repetição espaçada, favoritos (com a anotação pessoal de cada
-questão salva), cartões pessoais, sessões e notas de simulado — sobe para um
-banco de dados e desce em qualquer aparelho onde ela entrar.
+— respostas, repetição espaçada, favoritos (questões, com a anotação pessoal
+de cada uma, e flashcards), cartões pessoais, sessões e notas de simulado —
+sobe para um banco de dados e desce em qualquer aparelho onde ela entrar.
 
 **O conteúdo não vai para a nuvem.** As questões e os flashcards da equipe são
 iguais para todo mundo e continuam na pasta `dados/`, ao lado do `index.html`.
@@ -68,19 +68,21 @@ gatilho que transforma cada cadastro novo num perfil pendente de aprovação.
 Pode ser rodado de novo quando quiser, sem estragar o que já existe.
 
 > **Se o seu banco já existia antes desta versão, rode o `esquema.sql` de novo.**
-> A anotação pessoal das questões salvas ("não entendi por que não é a C")
-> mora numa coluna nova, `favoritos.nota`, e o `create table if not exists`
-> sozinho não mexe numa tabela que já está lá — por isso o arquivo traz também
-> a linha que acrescenta a coluna a quem já tinha a tabela:
+> Três novidades precisam disso, e o arquivo já traz as linhas que acrescentam
+> cada uma sem mexer no que existe:
 >
-> ```sql
-> alter table public.favoritos add column if not exists nota text not null default '';
-> ```
+> | O que é | O que o arquivo faz |
+> |---|---|
+> | A anotação pessoal da questão salva | `alter table public.favoritos add column if not exists nota text ...` |
+> | Quantos flashcards você fez em cada dia | `alter table public.dias_cartoes add column if not exists quantidade integer ...` |
+> | Os **flashcards favoritados** | cria a tabela `favoritos_cartoes`, com RLS e permissões |
 >
-> Enquanto a coluna não existir, a plataforma continua funcionando e a
-> anotação continua guardada no navegador: ela só não sobe para a nuvem, e os
-> favoritos sincronizam normalmente, sem a anotação. Depois de rodar o SQL,
-> recarregue a página (F5) e a anotação passa a subir junto.
+> Enquanto o SQL não for rodado, **a plataforma continua funcionando e nada se
+> perde**: ela percebe a coluna ou a tabela que falta, reenvia o resto sem
+> ela, segue sincronizando todo o restante e guarda o que sobrou no navegador.
+> Em *Perfil > Conta e sincronização* aparece um aviso dizendo exatamente o
+> que falta. Depois de rodar o SQL, recarregue a página (F5) e tudo passa a
+> subir junto.
 
 ### 3. Ajustar o login por e-mail
 

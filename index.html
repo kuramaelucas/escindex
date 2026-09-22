@@ -426,7 +426,13 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 .flash-frente{font-family:var(--font-display);font-size:1.22rem;line-height:1.55;color:var(--ink);white-space:pre-line}
 .flash-verso{font-size:.95rem;line-height:1.6;color:var(--ink);white-space:pre-line}
 .flash-verso strong{color:var(--accent-dark)}
-.flash-toque{text-align:center;font-size:.76rem;color:var(--muted);margin-top:1.4rem}
+/* O convite para virar: como não há mais botão de "mostrar resposta", é este
+   texto, dentro do próprio cartão, que diz o que fazer. */
+.flash-toque{display:flex;align-items:center;justify-content:center;gap:.35rem;text-align:center;font-size:.76rem;color:var(--muted);margin-top:1.4rem}
+.flash-toque svg{width:14px;height:14px;opacity:.7}
+/* A estrela de favoritar fica no alto do cartão, fora do caminho do texto,
+   e não vira o cartão junto (o clique dela para em si mesmo). */
+.flash-favorito{position:absolute;top:.8rem;right:.9rem}
 .flash-notas{display:flex;gap:.55rem;margin-top:1.1rem;max-width:640px;margin-left:auto;margin-right:auto}
 .flash-nota{flex:1;padding:.85rem .4rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:700;font-size:.82rem;cursor:pointer;line-height:1.3;transition:border-color .12s ease,background .12s ease,transform .08s ease}
 .flash-nota:active{transform:scale(.96)}
@@ -1210,9 +1216,12 @@ function dbPadrao(){
     comentarios: copiaProfunda(SEED_COMENTARIOS),
     flashcards: copiaProfunda(SEED_FLASHCARDS),   // cartões de conceito (frente/verso)
     revisoesFlashcards: {},  // revisoesFlashcards[usuarioId][cartaoId] = {repeticoes,fator,intervalo,proximaRevisao}
+    diasCartoes: {},     // diasCartoes[usuarioId] = [AAAA-MM-DD] — os dias em que houve cartão (sustenta a sequência)
+    cartoesPorDia: {},   // cartoesPorDia[usuarioId][AAAA-MM-DD] = quantos cartões naquele dia
     livroOuro: copiaProfunda(SEED_LIVRO_OURO), // doações e agradecimentos
     respostas: [],       // log de respostas dos usuários (retrieval practice)
     favoritos: [],        // {usuarioId, questaoId, data, nota} — nota é a anotação pessoal da questão salva
+    favoritosCartoes: [], // {usuarioId, cartaoId, data} — os flashcards salvos, do mesmo jeito
     revisoes: {},          // revisoes[usuarioId][questaoId] = {repeticoes,fator,intervalo,proximaRevisao,ultimaConfianca}
     simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
     resultadosSimulados: [],
@@ -1263,12 +1272,12 @@ function garantirEstruturaDb(alvo){
     alvo[chave] = {};
   };
   // o que a turma produziu: preservado sempre que for uma lista
-  lista("usuarios"); lista("respostas"); lista("favoritos"); lista("sessoes");
+  lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("sessoes");
   lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios");
   lista("cargasProvas"); lista("filaNuvem"); lista("grupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
-  objeto("revisoes"); objeto("revisoesFlashcards"); objeto("diasCartoes");
+  objeto("revisoes"); objeto("revisoesFlashcards"); objeto("diasCartoes"); objeto("cartoesPorDia");
   objeto("sessoesEmAndamento"); objeto("sequenciasAno"); objeto("configGeral");
   if(!alvo.taxonomia || typeof alvo.taxonomia !== "object"){ reparos.push("taxonomia"); alvo.taxonomia = {areas:[],especialidades:[],assuntos:[]}; }
   ["areas","especialidades","assuntos"].forEach(k=>{
@@ -1422,6 +1431,16 @@ function loadState(){
       const ehExemplo = atual3.length === 4 && atual3.every(b => /^b3-[1-4]$/.test(b.id||""));
       if(ehExemplo) db.sequenciasAno["3º ano"] = copiaProfunda(SEED_SEQUENCIAS_ANO["3º ano"]);
     }
+    /* Mesma história no 5º ano: ele nasceu com quatro blocos de exemplo
+       (b5-1 … b5-4), e agora existe o quadro real da faculdade — doze
+       estágios, doze turmas e um rodízio que não é um ciclo. Quem tinha o
+       exemplo recebe o de verdade; quem editou o 5º ano fica com o que
+       montou. */
+    if(db.sequenciasAno && Array.isArray(db.sequenciasAno["5º ano"]) && SEED_SEQUENCIAS_ANO["5º ano"]){
+      const atual5 = db.sequenciasAno["5º ano"];
+      const ehExemplo5 = atual5.length === 4 && atual5.every(b => /^b5-[1-4]$/.test(b.id||""));
+      if(ehExemplo5) db.sequenciasAno["5º ano"] = copiaProfunda(SEED_SEQUENCIAS_ANO["5º ano"]);
+    }
     // meta diária de flashcards: quem já usava recebe a recomendação padrão, e
     // o diário de dias com cartão é semeado com o que dá para saber do que já
     // existe (a última data de cada cartão) — a sequência começa a valer daí
@@ -1438,6 +1457,9 @@ function loadState(){
     // sincronizarConteudoNovo(), sem perder nada do que já tinha
     if(!db.flashcards) db.flashcards = [];
     if(!db.revisoesFlashcards) db.revisoesFlashcards = {};
+    // favoritar cartão veio depois de favoritar questão: a coleção nasce vazia
+    if(!Array.isArray(db.favoritosCartoes)) db.favoritosCartoes = [];
+    if(!db.cartoesPorDia) db.cartoesPorDia = {};
     // Cartão agora tem dono: os que têm usuarioId são pessoais (caderno do
     // aluno) e os sem dono são material da equipe. Todo cartão salvo antes
     // desta versão foi escrito por professor ou admin, então continua sem
@@ -1870,7 +1892,14 @@ function nuvemMensagemDeErro(status, texto, caminho, metodo){
     if(tabela) return "Sem permissão para " + acao + " \"" + tabela + "\" na nuvem. Rode o nuvem/esquema.sql inteiro no Supabase — é ele que cria as regras dessa tabela.";
     return "Sem permissão para esta operação na nuvem.";
   }
-  if(status === 404) return "Endereço da nuvem não encontrado — confira CONFIG.nuvem.url.";
+  if(status === 404){
+    // 404 numa tabela é quase sempre uma tabela que o esquema.sql novo cria e
+    // este banco ainda não tem — dizer isso é mais útil do que mandar conferir
+    // um endereço que, se estivesse errado, teria falhado em todas as chamadas
+    const tabela404 = nuvemNomeDaTabela(caminho);
+    if(tabela404) return 'A tabela "' + tabela404 + '" ainda não existe neste banco. Rode o nuvem/esquema.sql inteiro no Supabase — ele cria as tabelas novas sem mexer nas antigas.';
+    return "Endereço da nuvem não encontrado — confira CONFIG.nuvem.url.";
+  }
   if(status >= 500) return "O servidor da nuvem falhou. Tente de novo em instantes.";
   return detalhe || ("Falha na nuvem (código " + status + ").");
 }
@@ -2035,12 +2064,23 @@ const NUVEM_TABELAS = {
     },
   },
   dias_cartoes: {
-    tipo: "registro", tempo: "criado_em",
+    // registro (um dia é um dia) mas ATUALIZÁVEL: a quantidade de cartões
+    // daquele dia cresce ao longo do dia, e o outro aparelho precisa da
+    // contagem nova, não da primeira que subiu
+    tipo: "registro", atualizavel: true, tempo: "criado_em",
     chave: r => r.usuario_id + "|" + r.dia,
     aplicar: linha => {
       if(!db.diasCartoes) db.diasCartoes = {};
       const lista = db.diasCartoes[linha.usuario_id] = db.diasCartoes[linha.usuario_id] || [];
       if(!lista.includes(linha.dia)){ lista.push(linha.dia); lista.sort(); }
+      if(typeof linha.quantidade === "number"){
+        if(!db.cartoesPorDia) db.cartoesPorDia = {};
+        if(!db.cartoesPorDia[linha.usuario_id]) db.cartoesPorDia[linha.usuario_id] = {};
+        const daqui = db.cartoesPorDia[linha.usuario_id][linha.dia] || 0;
+        // dois aparelhos no mesmo dia: vale o maior, porque cada um conta só
+        // o que passou por ele e a soma real nunca é menor que qualquer um
+        db.cartoesPorDia[linha.usuario_id][linha.dia] = Math.max(daqui, linha.quantidade);
+      }
     },
   },
   favoritos: {
@@ -2051,6 +2091,17 @@ const NUVEM_TABELAS = {
       if(linha.removido){ if(i >= 0) db.favoritos.splice(i, 1); return; }
       const fav = { usuarioId: linha.usuario_id, questaoId: linha.questao_id, data: linha.data, nota: linha.nota || "" };
       if(i >= 0) db.favoritos[i] = fav; else db.favoritos.push(fav);
+    },
+  },
+  favoritos_cartoes: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.usuario_id + "|" + r.cartao_id,
+    aplicar: linha => {
+      if(!Array.isArray(db.favoritosCartoes)) db.favoritosCartoes = [];
+      const i = db.favoritosCartoes.findIndex(f => f.usuarioId === linha.usuario_id && f.cartaoId === linha.cartao_id);
+      if(linha.removido){ if(i >= 0) db.favoritosCartoes.splice(i, 1); return; }
+      const fav = { usuarioId: linha.usuario_id, cartaoId: linha.cartao_id, data: linha.data };
+      if(i >= 0) db.favoritosCartoes[i] = fav; else db.favoritosCartoes.push(fav);
     },
   },
   flashcards_pessoais: {
@@ -2165,13 +2216,22 @@ function nuvemRegistrar(o){
     });
   }
   if(o.diaCartao && o.usuarioId === meuId){
-    nuvemEnfileirar("dias_cartoes", { usuario_id: o.usuarioId, dia: o.diaCartao });
+    nuvemEnfileirar("dias_cartoes", {
+      usuario_id: o.usuarioId, dia: o.diaCartao,
+      quantidade: typeof o.quantidadeCartoesDoDia === "number" ? o.quantidadeCartoesDoDia : 0,
+    });
   }
   if(o.favorito && o.favorito.usuarioId === meuId){
     nuvemEnfileirar("favoritos", {
       usuario_id: o.favorito.usuarioId, questao_id: o.favorito.questaoId,
       data: o.favorito.data || hojeISO(), nota: o.favorito.nota || "",
       removido: !!o.favorito.removido,
+    });
+  }
+  if(o.favoritoCartao && o.favoritoCartao.usuarioId === meuId){
+    nuvemEnfileirar("favoritos_cartoes", {
+      usuario_id: o.favoritoCartao.usuarioId, cartao_id: o.favoritoCartao.cartaoId,
+      data: o.favoritoCartao.data || hojeISO(), removido: !!o.favoritoCartao.removido,
     });
   }
   if(o.cartaoPessoal && o.cartaoPessoal.usuarioId === meuId){
@@ -2268,31 +2328,61 @@ function nuvemErroPassageiro(e){
   return false;
 }
 
-/* A anotação das questões salvas (favoritos.nota) é uma coluna nova. Quem
-   criou o banco antes dela ainda não a tem, e o servidor recusaria o lote
-   inteiro — a pessoa perderia a sincronização dos favoritos por causa de um
-   campo que ela nem usa. Então: na primeira recusa por causa da coluna, o
-   envio é refeito sem a anotação e assim segue até a página ser recarregada
-   (depois de rodar o nuvem/esquema.sql, um F5 volta a mandar a anotação).
-   A anotação em si nunca se perde: ela vive no navegador como todo o resto. */
-let _nuvemFavoritosSemNota = false;
+/* Colunas que chegaram depois do primeiro esquema.sql. Quem criou o banco
+   antes delas ainda não as tem, e o servidor recusaria o lote INTEIRO — a
+   pessoa perderia a sincronização daquela tabela por causa de um campo que
+   ela nem usa. Então: na primeira recusa por causa da coluna, o envio é
+   refeito sem ela, e assim segue até a página ser recarregada (depois de
+   rodar o nuvem/esquema.sql, um F5 volta a mandar tudo). O dado em si nunca
+   se perde: ele vive no navegador como todo o resto. */
+const NUVEM_CAMPOS_NOVOS = {
+  favoritos: ["nota"],            // a anotação pessoal da questão salva
+  dias_cartoes: ["quantidade"],   // quantos cartões naquele dia
+};
+const _nuvemCamposAusentes = {};  // tabela -> lista de colunas que este banco não tem
+function nuvemCampoQueFalta(tabela, e){
+  const candidatos = NUVEM_CAMPOS_NOVOS[tabela] || [];
+  const jaSabidos = _nuvemCamposAusentes[tabela] || [];
+  const msg = e && e.message ? e.message : "";
+  return candidatos.find(c => jaSabidos.indexOf(c) < 0 && new RegExp("'?" + c + "'?", "i").test(msg)) || null;
+}
+function nuvemSemOsCamposQueFaltam(tabela, registros){
+  const fora = _nuvemCamposAusentes[tabela];
+  if(!fora || !fora.length) return registros;
+  return registros.map(r => {
+    const copia = Object.assign({}, r);
+    fora.forEach(c => delete copia[c]);
+    return copia;
+  });
+}
+
+/* Tabela nova que o banco de quem já usava a nuvem ainda não tem (enquanto o
+   nuvem/esquema.sql não for rodado de novo). Sem isto, a DESCIDA quebraria
+   inteira no primeiro 404 — uma tabela nova derrubaria a sincronização de
+   todas as outras, que é o oposto do que uma novidade deve fazer. Aqui ela é
+   anotada e pulada até a página ser recarregada; o que é dela fica guardado
+   no navegador, como tudo mais. */
+const _nuvemTabelasAusentes = new Set();
+function nuvemTabelaNaoExiste(e){
+  if(!e) return false;
+  // tabela que falta responde 404 com o nome dela no caminho; coluna que
+  // falta responde 400 e é tratada em NUVEM_CAMPOS_NOVOS, não aqui
+  return e.status === 404 && !!e.tabela;
+}
 async function nuvemPostarLote(tabela, desc, registros){
   const juntar = (desc.tipo === "registro" && !desc.atualizavel) ? "resolution=ignore-duplicates" : "resolution=merge-duplicates";
-  let corpo = registros;
-  if(tabela === "favoritos" && _nuvemFavoritosSemNota){
-    corpo = registros.map(r => { const copia = Object.assign({}, r); delete copia.nota; return copia; });
-  }
   try{
     await nuvemChamar("/rest/v1/" + tabela, {
       method: "POST",
       headers: { "Prefer": juntar + ",return=minimal" },
-      body: JSON.stringify(corpo),
+      body: JSON.stringify(nuvemSemOsCamposQueFaltam(tabela, registros)),
     });
   }catch(e){
-    const semAColuna = tabela === "favoritos" && !_nuvemFavoritosSemNota && /nota/i.test(e.message || "");
-    if(!semAColuna) throw e;
-    _nuvemFavoritosSemNota = true;
-    await nuvemPostarLote(tabela, desc, registros);
+    const campo = nuvemCampoQueFalta(tabela, e);
+    if(!campo) throw e;
+    if(!_nuvemCamposAusentes[tabela]) _nuvemCamposAusentes[tabela] = [];
+    _nuvemCamposAusentes[tabela].push(campo);
+    await nuvemPostarLote(tabela, desc, registros);   // de novo, agora sem a coluna
   }
 }
 
@@ -2387,6 +2477,7 @@ async function nuvemEnviarFila(){
   for(const tabela of tabelas){
     const desc = NUVEM_TABELAS[tabela];
     if(!desc){ nuvemTirarDaFila(db.filaNuvem.filter(op => op.tabela === tabela)); continue; }
+    if(_nuvemTabelasAusentes.has(tabela)) continue;  // sobe quando a tabela existir
     const ops = db.filaNuvem.filter(op => op.tabela === tabela);
     for(let i = 0; i < ops.length; i += 200){
       const lote = ops.slice(i, i + 200);
@@ -2394,6 +2485,12 @@ async function nuvemEnviarFila(){
         await nuvemPostarLote(tabela, desc, lote.map(op => op.registro));
         nuvemTirarDaFila(lote);              // só sai da fila o que o servidor confirmou
       }catch(e){
+        if(nuvemTabelaNaoExiste(e)){
+          // a tabela é nova e este banco ainda não a tem: o que é dela espera
+          // guardado, e as outras tabelas seguem sincronizando normalmente
+          _nuvemTabelasAusentes.add(tabela);
+          break;
+        }
         if(nuvemErroPassageiro(e)) throw e;  // a fila inteira espera a próxima vez
         for(const op of lote){
           try{
@@ -2416,15 +2513,25 @@ async function nuvemReceberMudancas(){
   const meuId = nuvemSessao.usuarioId;
   if(!db.nuvem.marcas) db.nuvem.marcas = {};
   for(const [tabela, desc] of Object.entries(NUVEM_TABELAS)){
+    if(_nuvemTabelasAusentes.has(tabela)) continue;
     const coluna = tabela === "perfis" ? "id" : "usuario_id";
     const desde = db.nuvem.marcas[tabela] || "1970-01-01T00:00:00Z";
     let maior = desde, pagina = 0;
     while(true){
-      const linhas = await nuvemChamar(
-        "/rest/v1/" + tabela +
-        "?" + coluna + "=eq." + encodeURIComponent(meuId) +
-        "&" + desc.tempo + "=gt." + encodeURIComponent(desde) +
-        "&order=" + desc.tempo + ".asc&limit=500&offset=" + (pagina * 500));
+      let linhas;
+      try{
+        linhas = await nuvemChamar(
+          "/rest/v1/" + tabela +
+          "?" + coluna + "=eq." + encodeURIComponent(meuId) +
+          "&" + desc.tempo + "=gt." + encodeURIComponent(desde) +
+          "&order=" + desc.tempo + ".asc&limit=500&offset=" + (pagina * 500));
+      }catch(e){
+        // tabela nova que este banco ainda não tem: pula e segue com o resto,
+        // em vez de derrubar a descida inteira por causa dela
+        if(!nuvemTabelaNaoExiste(e)) throw e;
+        _nuvemTabelasAusentes.add(tabela);
+        break;
+      }
       if(!linhas || !linhas.length) break;
       linhas.forEach(linha => {
         // o que ainda está na fila é mais novo que o servidor: não sobrescreve
@@ -2547,7 +2654,17 @@ function nuvemAdotarDadosLocais(idLocal){
     delete db.diasCartoes[idLocal];
   }
 
+  const porDia = (db.cartoesPorDia || {})[idLocal] || {};
+  Object.keys(porDia).forEach(dia => {
+    if(!db.cartoesPorDia[meuId]) db.cartoesPorDia[meuId] = {};
+    const soma = (db.cartoesPorDia[meuId][dia] || 0) + porDia[dia];
+    db.cartoesPorDia[meuId][dia] = soma;
+    nuvemRegistrar({usuarioId:meuId, diaCartao:dia, quantidadeCartoesDoDia:soma});
+  });
+  if(db.cartoesPorDia) delete db.cartoesPorDia[idLocal];
+
   db.favoritos.forEach(f => { if(f.usuarioId === idLocal){ f.usuarioId = meuId; movidos++; nuvemRegistrar({favorito:f}); } });
+  (db.favoritosCartoes||[]).forEach(f => { if(f.usuarioId === idLocal){ f.usuarioId = meuId; movidos++; nuvemRegistrar({favoritoCartao:f}); } });
   db.flashcards.forEach(c => { if(c.usuarioId === idLocal){ c.usuarioId = meuId; c.criadoPor = meuId; movidos++; nuvemRegistrar({cartaoPessoal:c}); } });
   db.sessoes.forEach(s => { if(s.usuarioId === idLocal){ s.usuarioId = meuId; movidos++; nuvemRegistrar({sessaoConcluida:s}); } });
   db.resultadosSimulados.forEach(r => { if(r.usuarioId === idLocal){ r.usuarioId = meuId; movidos++; nuvemRegistrar({resultadoSimulado:r}); } });
@@ -3086,6 +3203,7 @@ function renderCardNuvem(){
       ${nuvemEstado.sessaoExpirada ? `
         <button class="btn btn-primary btn-sm mt-2" onclick="nuvemEntrarDeNovo()">${iconeSvg("logout")} Entrar de novo</button>
       ` : ""}
+      ${_nuvemTabelasAusentes.size ? `<div class="card-flat mt-2 text-xs"><strong>${iconeSvg("alert")} Falta rodar o nuvem/esquema.sql.</strong> Este banco ainda não tem ${[..._nuvemTabelasAusentes].map(t=>"<code>"+escapeHtml(t)+"</code>").join(", ")}. O resto sincroniza normalmente; o que é dessa(s) tabela(s) fica guardado neste navegador e sobe sozinho depois que o SQL for rodado e a página recarregada.</div>` : ""}
       ${nuvemRecusadosHtml()}
       <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
         <button class="btn btn-secondary btn-sm" onclick="nuvemSincronizar({forcarRedesenho:true})">${iconeSvg("refresh")} Sincronizar agora</button>
@@ -3516,13 +3634,44 @@ function normalizarDeslocamento(deslocamento, tamanho){
   const n = tamanho || 1;
   return (((deslocamento||0) % n) + n) % n;
 }
+
+/* ---------- quando o rodízio NÃO é um ciclo ------------------------------
+   O 3º ano gira em ciclo: quem entra no segundo bloco segue para o terceiro,
+   o quarto, e volta ao primeiro. O 5º ano não — o quadro da faculdade
+   emparelha os estágios dois a dois (quem faz Clínica Cirúrgica 1 na
+   primeira janela faz a 2 na segunda, e vice-versa) e troca as duas metades
+   do ano no meio do caminho. Nenhuma conta a partir do índice reproduz isso.
+
+   Então um bloco pode trazer a LINHA do quadro impresso em `turmasPorJanela`:
+   a turma que está NELE em cada janela de data, na ordem das janelas. Onde
+   essa linha existe, ela manda; onde não existe, vale o ciclo de sempre.
+   As duas formas convivem no mesmo formato de sequência, e nenhuma tela
+   precisa saber qual delas o ano usa — todas passam por aqui. */
+function turmaDoBlocoNaJanela(bloco, i){
+  const linha = bloco && bloco.turmasPorJanela;
+  if(!Array.isArray(linha) || !linha[i]) return null;
+  return String(linha[i]).trim().toUpperCase();
+}
+/* O conteúdo que a turma `rotulo` cursa na janela `i`. */
+function conteudoDaJanela(seq, rotulo, deslocamento, i){
+  const n = seq.length;
+  if(!n) return null;
+  const doQuadro = seq.find(b => turmaDoBlocoNaJanela(b, i) === rotulo);
+  return doQuadro || seq[(i + normalizarDeslocamento(deslocamento, n)) % n];
+}
 // as turmas possíveis daquele ano, na ordem em que entram na sequência
 function opcoesRodizio(ano){
-  return sequenciaDoAno(ano).map((b,i)=>({
-    deslocamento: i,
-    rotulo: b.grupoRodizio || letraPadraoRodizio(i),
-    bloco: b,
-  }));
+  const seq = sequenciaDoAno(ano);
+  return seq.map((b,i)=>{
+    const rotulo = b.grupoRodizio || letraPadraoRodizio(i);
+    return {
+      deslocamento: i,
+      rotulo,
+      // por qual estágio essa turma começa o ano — pelo quadro, quando ele
+      // existe, e não pela posição na lista
+      bloco: conteudoDaJanela(seq, rotulo, i, 0) || b,
+    };
+  });
 }
 /* As mesmas opções em ordem alfabética de letra — que é como o calendário
    impresso lista as turmas (A, B, C, D) e como a pessoa procura a sua. A
@@ -3547,14 +3696,17 @@ function rodizioDoGrupo(grupo, usuario){
   return rotuloRodizio(anoDoGrupo(grupo, usuario), grupo && grupo.deslocamento);
 }
 function blocosDoGrupo(grupo, usuario){
-  const seq = sequenciaDoAno(anoDoGrupo(grupo, usuario));
+  const ano = anoDoGrupo(grupo, usuario);
+  const seq = sequenciaDoAno(ano);
   const n = seq.length;
   if(!n) return [];
   const deslocamento = normalizarDeslocamento(grupo && grupo.deslocamento, n);
-  // cada janela de data recebe o conteúdo do bloco que está "deslocamento"
-  // posições à frente — é o rodízio: mesma sequência, começos diferentes
+  const rotulo = rotuloRodizio(ano, deslocamento);
+  // cada janela de data recebe o conteúdo que o quadro do ano põe nela para
+  // esta turma — ou, onde não há quadro, o bloco que está "deslocamento"
+  // posições à frente: é o rodízio em ciclo, mesma sequência, começos diferentes
   return seq.map((janela, i) => {
-    const conteudo = seq[(i + deslocamento) % n];
+    const conteudo = conteudoDaJanela(seq, rotulo, deslocamento, i);
     return {
       id: conteudo.id, nome: conteudo.nome, especialidadeIds: conteudo.especialidadeIds,
       ordem: i+1, dataInicio: janela.dataInicio, dataFim: janela.dataFim,
@@ -3772,6 +3924,33 @@ function toggleFavorito(usuarioId, questaoId){
   return idx<0; // retorna true se acabou de favoritar
 }
 
+/* ---------- o mesmo para os flashcards ------------------------------------
+   Cartão salvo é outra coisa de questão salva: um é "quero rever este
+   conceito", o outro é "quero rever esta questão". Por isso são duas listas
+   e duas abas em Favoritos, e não uma lista misturada em que o aluno procura
+   a questão e tropeça em cartão. A estrutura é a mesma (dono + item + data),
+   e o desfavoritar também sobe para a nuvem, para sumir nos outros
+   aparelhos. */
+function isFavoritoCartao(usuarioId, cartaoId){
+  return (db.favoritosCartoes||[]).some(f=>f.usuarioId===usuarioId && f.cartaoId===cartaoId);
+}
+function toggleFavoritoCartao(usuarioId, cartaoId){
+  if(!Array.isArray(db.favoritosCartoes)) db.favoritosCartoes = [];
+  const idx = db.favoritosCartoes.findIndex(f=>f.usuarioId===usuarioId && f.cartaoId===cartaoId);
+  if(idx>=0) db.favoritosCartoes.splice(idx,1);
+  else db.favoritosCartoes.push({usuarioId, cartaoId, data:hojeISO()});
+  nuvemRegistrar({favoritoCartao:{usuarioId, cartaoId, data:hojeISO(), removido: idx>=0}});
+  saveState();
+  return idx<0;
+}
+function meusCartoesFavoritos(usuarioId){
+  return (db.favoritosCartoes||[])
+    .filter(f=>f.usuarioId===usuarioId)
+    .map(f=>({reg:f, cartao:getFlashcard(f.cartaoId)}))
+    .filter(x=>x.cartao)
+    .sort((a,b)=>(b.reg.data||"").localeCompare(a.reg.data||""));
+}
+
 /* ---------- a anotação da questão salva ----------------------------------
    Guardar uma questão quase sempre vem com um motivo: "não entendi por que
    não é a C", "conferir a dose", "cai todo ano". Esse motivo sumia — a
@@ -3938,10 +4117,16 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   // diário de dias com cartão revisado, que alimenta a sequência diária
   if(!db.diasCartoes) db.diasCartoes = {};
   if(!db.diasCartoes[usuarioId]) db.diasCartoes[usuarioId] = [];
-  if(!db.diasCartoes[usuarioId].includes(hojeISO())){
-    db.diasCartoes[usuarioId].push(hojeISO());
-    nuvemRegistrar({usuarioId, diaCartao:hojeISO()});
-  }
+  if(!db.diasCartoes[usuarioId].includes(hojeISO())) db.diasCartoes[usuarioId].push(hojeISO());
+  /* Quantos cartões naquele dia. Precisa ser um contador à parte porque cada
+     cartão guarda só a ÚLTIMA data em que foi visto: rever hoje um cartão de
+     ontem apagaria ontem da conta. É esse número que o Histórico de Atividade
+     mostra ao lado das questões do dia. */
+  if(!db.cartoesPorDia) db.cartoesPorDia = {};
+  if(!db.cartoesPorDia[usuarioId]) db.cartoesPorDia[usuarioId] = {};
+  const feitosNoDia = (db.cartoesPorDia[usuarioId][hojeISO()] || 0) + 1;
+  db.cartoesPorDia[usuarioId][hojeISO()] = feitosNoDia;
+  nuvemRegistrar({usuarioId, diaCartao:hojeISO(), quantidadeCartoesDoDia:feitosNoDia});
   saveState();
 }
 /* Monta o baralho da sessão de revisão rápida. `filtro` aceita
@@ -4486,7 +4671,7 @@ function gerarNotificacoes(usuario){
     if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" questão(ões) vencida(s) para revisão espaçada.", rota:"revisao"});
     const bloco = getBlocoAtual(usuario);
     const simsRecomendados = bloco ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id)) : [];
-    if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" simulado(s) novo(s) recomendado(s) para o seu bloco.", rota:"simulados"});
+    if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" simulado(s) novo(s) recomendado(s) para o seu bloco.", rota:"simulados", aba:"simulados"});
     const meta = metaDoUsuario(usuario);
     const hoje = questoesRespondidasHoje(usuario.id);
     if(hoje < meta) notifs.push({icon:"target", texto:"Faltam "+(meta-hoje)+" questão(ões) para bater sua meta de hoje.", rota:"estudar"});
@@ -4521,7 +4706,7 @@ function renderNotificacoesCard(usuario){
   if(!notifs.length) return "";
   return `<div class="card mb-2" style="border-color:var(--accent)">
     <div class="card-title" style="margin-bottom:.5rem">${iconeSvg("alert")} Notificações</div>
-    ${notifs.map(n=>`<div class="flex items-center gap-1 mb-1" ${n.rota?`style="cursor:pointer" onclick="navigate('${n.rota}')"`:""}>${iconeSvg(n.icon)}<span class="text-sm">${escapeHtml(n.texto)}</span></div>`).join("")}
+    ${notifs.map(n=>`<div class="flex items-center gap-1 mb-1" ${n.rota?`style="cursor:pointer" onclick="${n.aba?`mudarAbaProvas('${n.aba}');`:""}navigate('${n.rota}')"`:""}>${iconeSvg(n.icon)}<span class="text-sm">${escapeHtml(n.texto)}</span></div>`).join("")}
   </div>`;
 }
 function sequenciaDiasEstudo(usuarioId){
@@ -4574,6 +4759,18 @@ function resumoCartoesFeitos(usuarioId){
     sequencia: sequenciaDiasCartoes(usuarioId),
     vencidos: entradas.filter(r => r.proximaRevisao && r.proximaRevisao <= hoje).length,
   };
+}
+/* Quantos cartões a pessoa revisou num dia. O contador existe desde a
+   revisão de 22/09; para os dias anteriores a ele sobra o que dá para saber
+   dos próprios cartões (a última data de cada um), que é exato no dia em que
+   se olha e vira um piso para trás — por isso o número de um dia antigo vem
+   marcado como aproximado na tela, em vez de fingir precisão que não há. */
+function cartoesFeitosNoDia(usuarioId, dia){
+  const contados = db.cartoesPorDia && db.cartoesPorDia[usuarioId] && db.cartoesPorDia[usuarioId][dia];
+  if(typeof contados === "number") return { n: contados, exato: true };
+  const revs = (db.revisoesFlashcards && db.revisoesFlashcards[usuarioId]) || {};
+  const n = Object.values(revs).filter(r => r.ultimaData === dia).length;
+  return { n, exato: dia === hojeISO() };
 }
 function metaCartoesDoUsuario(usuario){
   return (usuario && usuario.metaCartoesDia)
@@ -4775,7 +4972,7 @@ function alterarPapelUsuario(id, papel){
    6. ROTEADOR
    ========================================================================== */
 const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Revisão Rápida", historico:"Histórico de Atividade",
-  simulados:"Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas Antigas",
+  simulados:"Provas e Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas e Simulados",
   favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil", "meu-grupo":"Meu Grupo",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", "aprovar-cadastros":"Aprovar Cadastros",
   usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
@@ -5026,10 +5223,9 @@ function navItemsParaPapel(papel){
     {id:"meu-grupo", label:"Meu Grupo", icon:"users"},
     {id:"revisao", label:"Revisão", icon:"refresh"},
     {id:"flashcards", label:"Revisão Rápida", icon:"cards"},
-    {id:"simulados", label:"Simulados", icon:"clipboard"},
+    {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
     {id:"historico", label:"Histórico de Atividade", icon:"clock"},
     {id:"favoritos", label:"Favoritos", icon:"star"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
     {id:"importar-questoes", label:"Enviar Questões", icon:"upload"},
   ];
   if(state.modoAluno && papel!=="aluno") return aluno;
@@ -5040,7 +5236,7 @@ function navItemsParaPapel(papel){
     {id:"importar-questoes", label:"Enviar Provas e Questões", icon:"upload"},
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
+    {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
   ];
   const conteudo = [
     {id:"inicio", label:"Início", icon:"home"},
@@ -5051,8 +5247,7 @@ function navItemsParaPapel(papel){
     {id:"criar-simulado", label:"Criar Simulado", icon:"plus"},
     {id:"material-pdf", label:"Material em PDF", icon:"printer"},
     {id:"flashcards", label:"Flashcards", icon:"cards"},
-    {id:"simulados", label:"Realizar Simulados", icon:"clipboard"},
-    {id:"provas-antigas", label:"Provas Antigas", icon:"archive"},
+    {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"taxonomia", label:"Especialidades e Assuntos", icon:"filter"},
   ];
@@ -5467,6 +5662,7 @@ function renderEstudar(){
   const seq = sequenciaDiasEstudo(u.id);
   const faltam = Math.max(0, meta - feitasHoje);
   const emAndamento = sessaoEmAndamentoDe(u);
+  const deHoje = sessaoDeHoje(u);
   return `
   <div class="page-header"><h2>Estudar</h2><p>Escolha como quer praticar agora.</p></div>
 
@@ -5474,7 +5670,7 @@ function renderEstudar(){
   <div class="card mb-2" style="border-color:var(--accent)">
     <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
       <div style="min-width:220px;flex:1">
-        <div class="card-title" style="margin-bottom:.2rem">${iconeSvg("refresh")} Sessão em andamento</div>
+        <div class="card-title" style="margin-bottom:.2rem">${iconeSvg("refresh")} ${deHoje ? "Sessão de hoje" : "Sessão em andamento"}</div>
         <div class="text-sm muted">${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} questão(ões) respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}. Continuar mantém a mesma fila, na mesma ordem, com as marcações e os riscos como você deixou — você não recomeça do zero.</div>
       </div>
       <div class="flex gap-1" style="flex-wrap:wrap">
@@ -5509,7 +5705,10 @@ function renderEstudar(){
       <div class="card-title">Sessão recomendada</div>
       <p class="text-sm muted">Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
-      <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">Começar sessão recomendada</button>
+      <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
+      <p class="text-xs muted mt-1">${deHoje
+        ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
+        : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."}</p>
     </div>
     <div class="card">
       <div class="card-title">Revisar erros e chutes antigos</div>
@@ -5704,11 +5903,45 @@ function toggleTreeArea(areaId){
 /* ==========================================================================
    11. MOTOR DE SESSÃO — responder questões (prática e revisão)
    ========================================================================== */
+/* ---------- a sessão do dia ----------------------------------------------
+   "Começar a sessão recomendada" não sorteia um conjunto novo a cada clique:
+   o conjunto é DO DIA. Quem entra, responde cinco questões, sai para ver o
+   desempenho e volta encontra as mesmas questões, na mesma ordem, com as
+   cinco já respondidas — e não um conjunto novo em folha que joga fora o que
+   já tinha feito e re-sorteia tudo.
+
+   O conjunto só se renova quando o dia vira (ou quando o anterior termina).
+   Um conjunto inacabado de OUTRO dia não é descartado em silêncio: aí a
+   plataforma pergunta, porque a fila de ontem foi montada com a matéria e os
+   vencimentos de ontem, e pode não ser o que a pessoa quer hoje. */
 function iniciarSessaoRecomendada(){
+  const u = usuarioAtual();
+  const guardada = sessaoEmAndamentoDe(u);
+  if(guardada){
+    if((guardada.salvaEm || hojeISO()) === hojeISO()){ retomarSessaoEmAndamento(); return; }
+    const feitas = respostasFeitas(guardada).length;
+    abrirModalTitulado("Você tem um conjunto de outro dia", `
+      <p class="text-sm">Começado em <strong>${formatDataBR(guardada.salvaEm)}</strong>, com <strong>${feitas}</strong> de ${guardada.itens.length} respondida(s). Continuar mantém aquela fila; começar de hoje monta um conjunto novo com a matéria e as revisões vencidas de agora — e a fila de ${formatDataBR(guardada.salvaEm)} se perde.</p>
+      <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="fecharModal(); retomarSessaoEmAndamento()">Continuar aquele conjunto</button>
+        <button class="btn btn-secondary" onclick="fecharModal(); montarSessaoRecomendadaDeHoje()">Começar um conjunto de hoje</button>
+      </div>`);
+    return;
+  }
+  montarSessaoRecomendadaDeHoje();
+}
+function montarSessaoRecomendadaDeHoje(){
   const u = usuarioAtual();
   const restante = Math.max(5, metaDoUsuario(u) - questoesRespondidasHoje(u.id));
   const tamanho = Math.min(restante, 20);
   iniciarSessaoComLista(montarSessaoRecomendada(u.id, tamanho), "pratica");
+}
+/* A sessão guardada é de hoje? É o que decide se o botão de Estudar diz
+   "continuar" ou "começar". */
+function sessaoDeHoje(usuario){
+  const guardada = sessaoEmAndamentoDe(usuario || usuarioAtual());
+  if(!guardada) return null;
+  return (guardada.salvaEm || hojeISO()) === hojeISO() ? guardada : null;
 }
 function iniciarRevisaoErros(){
   const pares = questoesErroOrdenadasPorAntiguidade(usuarioAtual().id);
@@ -6400,6 +6633,11 @@ function cartoesDaQuestao(usuarioId, questaoId){
   return (db.flashcards||[]).filter(c=>c.status!=="arquivado" && c.usuarioId===usuarioId && c.questaoOrigemId===questaoId);
 }
 function toggleFavoritoUI(qid){ const ficou = toggleFavorito(usuarioAtual().id, qid); toast(ficou?"Adicionado aos favoritos.":"Removido dos favoritos."); render(); }
+function toggleFavoritoCartaoUI(cid){
+  const ficou = toggleFavoritoCartao(usuarioAtual().id, cid);
+  toast(ficou?"Cartão salvo em Favoritos.":"Cartão removido dos favoritos.");
+  render();
+}
 
 /* ---------- anotar uma dúvida na questão salva ---------- */
 function abrirNotaFavorita(qid){
@@ -6807,6 +7045,7 @@ function renderFlashcardEmSessao(s){
   const cartao = s.cartoes[s.indice];
   const assunto = nomeAssunto(cartao.assuntoId);
   const rev = revisaoDoCartao(usuarioAtual().id, cartao.id);
+  const favoritoAqui = isFavoritoCartao(usuarioAtual().id, cartao.id);
   return `
   <div class="flex justify-between items-center mb-2">
     <div class="text-sm muted">Cartão ${s.indice+1} de ${s.cartoes.length}</div>
@@ -6816,12 +7055,13 @@ function renderFlashcardEmSessao(s){
   <div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(assunto)}${cartao.origem==="questao"?" · gerado de uma questão que você errou com certeza ou acertou no chute":""}${rev&&rev.vistas?" · visto "+rev.vistas+"x":""}</span></div>
   <div class="flash-palco">
     <div class="flashcard ${s.virado?"virado":""} area-gesto" id="areaGestoQuestao" onclick="virarFlashcard()">
+      <button class="icon-btn flash-favorito" title="${favoritoAqui?"Tirar dos favoritos":"Salvar este cartão nos favoritos"}" aria-label="${favoritoAqui?"Tirar este cartão dos favoritos":"Salvar este cartão nos favoritos"}" onclick="event.stopPropagation();toggleFavoritoCartaoUI('${cartao.id}')" style="${favoritoAqui?"border-color:var(--amber);color:var(--amber)":""}">${iconeSvg("star")}</button>
       <div class="flash-etiqueta">${s.virado?"Resposta":"Pergunta"}</div>
       ${cartao.imagemUrl ? `<div class="qcard-img-wrap"><img class="qcard-img" src="${escapeHtml(cartao.imagemUrl)}" alt="${escapeHtml(cartao.imagemLegenda||"Imagem do cartão")}" loading="lazy">${cartao.imagemLegenda?`<div class="qcard-img-legenda">${escapeHtml(cartao.imagemLegenda)}</div>`:""}</div>` : ""}
       ${s.virado
         ? `<div class="flash-verso">${escapeHtml(cartao.verso)}</div>`
         : `<div class="flash-frente">${escapeHtml(cartao.frente)}</div>`}
-      <div class="flash-toque">${s.virado?"Toque para ver a pergunta de novo":"Toque no cartão para ver a resposta"}</div>
+      <div class="flash-toque">${iconeSvg("refresh")} ${s.virado?"Clique no cartão para ver a pergunta de novo":"Clique no cartão para ver a resposta"}</div>
     </div>
   </div>
   ${s.virado ? `<div class="flash-notas">
@@ -6830,7 +7070,7 @@ function renderFlashcardEmSessao(s){
     <button class="flash-nota bom" onclick="responderFlashcard('sabia')">Sabia<small>vai para longe</small></button>
   </div>
   <p class="text-xs muted mt-1" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">Responda com honestidade: o intervalo do cartão depende disso, e enganar o algoritmo aqui só faz você revisar na véspera da prova o que devia ter fixado agora.</p>`
-  : `<div class="flex justify-center mt-2"><button class="btn btn-primary" onclick="virarFlashcard()">Mostrar resposta</button></div>`}
+  : `<p class="text-xs muted mt-2" style="text-align:center">Tente lembrar antes de virar — é a tentativa, e não a leitura, que fixa.</p>`}
   ${cartao.origem==="questao" ? `<div class="flex justify-center mt-2"><button class="btn btn-ghost btn-sm" onclick="abrirQuestaoCompleta('${cartao.questaoId}')">${iconeSvg("search")} Ver a questão inteira</button></div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para passar de cartão</span></div>`;
 }
@@ -7050,20 +7290,56 @@ function arquivarFlashcardConfirmado(id){
 /* ==========================================================================
    13. SIMULADOS (lista, execução cronometrada, resultado)
    ========================================================================== */
-function renderSimulados(){
+/* ---------- uma tela só para prova cronometrada -----------------------------
+   Simulados e Provas Antigas eram duas entradas de menu que levavam ao mesmo
+   lugar mental — "fazer uma prova inteira, no relógio" — e a pessoa tinha de
+   lembrar em qual delas estava o que queria. Agora são duas abas de uma tela
+   só, e a diferença continua explícita, porque ela é real:
+
+   - PROVA ANTIGA é a prova de verdade de uma instituição num ano, do jeito
+     que caiu. Serve para medir onde você está contra a banca.
+   - SIMULADO é um recorte montado pela equipe (ou por você), com tempo e
+     tamanho escolhidos. Serve para treinar um bloco ou um assunto.
+
+   O histórico de notas é o mesmo para os dois, então fica embaixo das duas
+   abas em vez de duplicado. */
+function abaProvas(){
+  const f = state.filtroRota;
+  if(f.abaProvas !== "simulados" && f.abaProvas !== "antigas") f.abaProvas = "antigas";
+  return f.abaProvas;
+}
+function mudarAbaProvas(aba){ state.filtroRota.abaProvas = aba; render(); }
+function renderProvasESimulados(){
   const u = usuarioAtual();
+  const aba = abaProvas();
   const bloco = getBlocoAtual();
   const recomendados = db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id));
   const outros = db.simulados.filter(s=>!recomendados.includes(s));
   const meusResultados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
+  const pagResultados = paginar(meusResultados, "provas-resultados", {porPagina:10});
   return `
-  <div class="page-header"><h2>Simulados</h2><p>Provas cronometradas recomendadas pelos professores.</p></div>
-  ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
-  ${outros.length ? `<div class="card-title mt-3 mb-1">Outros simulados disponíveis</div>${outros.map(renderSimuladoCard).join("")}` : ""}
-  ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco.</div>' : ""}
-  ${meusResultados.length ? `<div class="card-title mt-3 mb-1">Seu histórico</div><div class="table-wrap"><table><thead><tr><th>Simulado</th><th>Nota</th><th>Data</th><th></th></tr></thead><tbody>${meusResultados.map(r=>`<tr><td>${escapeHtml(r.titulo||"—")}</td><td>${r.nota}%</td><td>${formatDataBR(r.data)}</td><td>${r.itens?`<button class="link-btn" onclick="verDetalheResultadoSimulado('${r.id}')">ver detalhes</button>`:""}</td></tr>`).join("")}</tbody></table></div>` : ""}
+  <div class="page-header"><h2>Provas e Simulados</h2><p>Prova inteira, no relógio. Na primeira aba, as provas antigas como caíram; na segunda, os simulados montados pela equipe para um bloco ou assunto.</p></div>
+  <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+    <button class="pill ${aba==="antigas"?"active":""}" onclick="mudarAbaProvas('antigas')">${iconeSvg("archive")} Provas antigas</button>
+    <button class="pill ${aba==="simulados"?"active":""}" onclick="mudarAbaProvas('simulados')">${iconeSvg("clipboard")} Simulados da equipe (${db.simulados.length})</button>
+  </div>
+  ${aba==="antigas" ? renderAbaProvasAntigas(u) : `
+    <p class="text-sm muted mb-2">Montados por professores, com tempo e tamanho definidos por eles. Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).</p>
+    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
+    ${outros.length ? `<div class="card-title mt-3 mb-1">Outros simulados disponíveis</div>${outros.map(renderSimuladoCard).join("")}` : ""}
+    ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>' : ""}
+  `}
+  ${meusResultados.length ? `<div class="card mt-3">
+    <div class="card-title mb-1">Suas notas (provas antigas e simulados)</div>
+    <div class="table-wrap"><table><thead><tr><th>Prova</th><th>Nota</th><th>Data</th><th></th></tr></thead><tbody>
+      ${pagResultados.itens.map(r=>`<tr><td class="text-sm">${escapeHtml(r.titulo||"—")}</td><td><span class="badge ${r.nota>=70?"badge-accent":r.nota>=50?"badge-amber":"badge-danger"}">${r.nota}%</span></td><td class="text-sm">${formatDataBR(r.data)}</td><td>${r.itens?`<button class="link-btn" onclick="verDetalheResultadoSimulado('${r.id}')">ver detalhes</button>`:""}</td></tr>`).join("")}
+    </tbody></table></div>
+    ${controlesPaginacao(pagResultados, "resultado(s)")}
+  </div>` : ""}
   `;
 }
+// as duas rotas antigas continuam respondendo e levam à mesma tela
+function renderSimulados(){ return renderProvasESimulados(); }
 /* histórico do próprio usuário naquele simulado, para ele saber, na hora de
    escolher, se já fez e como foi */
 function desempenhoPrevioSimulado(simuladoId, titulo){
@@ -7339,7 +7615,8 @@ function renderResultadoSimulado(){
 }
 
 /* ==========================================================================
-   14. PROVAS ANTIGAS (organizadas por instituição e ano, com filtros)
+   14. PROVAS ANTIGAS — a aba de provas reais da tela "Provas e Simulados"
+   (organizadas por instituição e ano, com filtros)
    ========================================================================== */
 function filtrosProvas(){
   if(!state.filtroRota.provas) state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false};
@@ -7352,8 +7629,8 @@ function mudarFiltroProvas(campo, valor){
   render();
 }
 function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false}; render(); }
-function renderProvasAntigas(){
-  const u = usuarioAtual();
+function renderProvasAntigas(){ return renderProvasESimulados(); }
+function renderAbaProvasAntigas(u){
   const f = filtrosProvas();
   const grupoUsuario = (u.papel==="aluno"||state.modoAluno) ? getGrupoDoUsuario(u).id : true;
   const todas = questoesAtivas(grupoUsuario);
@@ -7374,7 +7651,7 @@ function renderProvasAntigas(){
   state.filtroRota.provasGrupos = grupos;
 
   return `
-  <div class="page-header"><h2>Provas Antigas</h2><p>Questões organizadas por instituição e ano. Use os filtros para achar rapidamente a prova que quer treinar.</p></div>
+  <p class="text-sm muted mb-2">A prova de verdade de cada instituição, do jeito que caiu. Faça inteira no relógio, para medir onde você está contra a banca, ou sem cronômetro, para estudar com calma.</p>
   <div class="card mb-2">
     <div class="grid grid-4">
       <div class="field" style="margin-bottom:0">
@@ -7444,14 +7721,37 @@ function praticarProva(indice){
 /* ==========================================================================
    16. FAVORITOS
    ========================================================================== */
+/* Favoritos guarda duas coisas diferentes — questões e cartões —, e por isso
+   tem duas abas em vez de uma lista misturada: quem vem procurar "aquela
+   questão de choque séptico" não quer tropeçar em cartão de conceito no
+   meio, e vice-versa. A contagem de cada aba fica na própria aba, para a
+   escolha ser feita sem entrar nas duas. */
+function abaFavoritos(){
+  const f = state.filtroRota;
+  if(f.abaFavoritos !== "cartoes" && f.abaFavoritos !== "questoes") f.abaFavoritos = "questoes";
+  return f.abaFavoritos;
+}
+function mudarAbaFavoritos(aba){ state.filtroRota.abaFavoritos = aba; render(); }
 function renderFavoritos(){
   const u = usuarioAtual();
+  const cartoes = meusCartoesFavoritos(u.id);
+  const aba = abaFavoritos();
   const favs = db.favoritos.filter(f=>f.usuarioId===u.id).map(f=>({reg:f, q:getQuestao(f.questaoId)})).filter(x=>x.q)
     .sort((a,b)=>(b.reg.data||"").localeCompare(a.reg.data||""));
   const comNota = favs.filter(x=>(x.reg.nota||"").trim()).length;
   const pag = paginar(favs, "favoritos");
+  const abas = `<div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+    <button class="pill ${aba==="questoes"?"active":""}" onclick="mudarAbaFavoritos('questoes')">${iconeSvg("book")} Questões (${favs.length})</button>
+    <button class="pill ${aba==="cartoes"?"active":""}" onclick="mudarAbaFavoritos('cartoes')">${iconeSvg("cards")} Flashcards (${cartoes.length})</button>
+  </div>`;
+  if(aba === "cartoes") return `
+  <div class="page-header"><h2>Favoritos</h2><p>O que você salvou para rever: questões numa aba, flashcards na outra.</p></div>
+  ${abas}
+  ${renderFavoritosCartoes(u, cartoes)}`;
   return `
-  <div class="page-header"><h2>Favoritos</h2><p>${favs.length} questão(ões) marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p></div>
+  <div class="page-header"><h2>Favoritos</h2><p>O que você salvou para rever: questões numa aba, flashcards na outra.</p></div>
+  ${abas}
+  <p class="text-sm muted mb-2">${favs.length} questão(ões) marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p>
   ${favs.length ? `<div class="flex gap-1 mb-2" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="praticarFavoritas()">${iconeSvg("book")} Praticar todas as favoritas</button></div>` : ""}
   ${favs.length ? pag.itens.map(({reg,q})=>{
     const area = getArea(q.areaId);
@@ -7476,6 +7776,50 @@ function renderFavoritos(){
   }).join("") : '<div class="empty-state">Você ainda não favoritou nenhuma questão. Use o botão "Favoritar" durante uma sessão de estudo.</div>'}
   ${controlesPaginacao(pag, "favorita(s)")}
   `;
+}
+function renderFavoritosCartoes(u, cartoes){
+  const pag = paginar(cartoes, "favoritos-cartoes");
+  return `
+  <p class="text-sm muted mb-2">${cartoes.length} cartão(ões) salvo(s). Salvar não muda a repetição espaçada: o cartão continua voltando na data dele — isto aqui é a sua pilha de "quero rever este conceito".</p>
+  ${cartoes.length ? `<div class="flex gap-1 mb-2" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="revisarCartoesFavoritos()">${iconeSvg("cards")} Revisar os cartões salvos</button></div>` : ""}
+  ${cartoes.length ? pag.itens.map(({reg,cartao})=>{
+    const rev = revisaoDoCartao(u.id, cartao.id);
+    return `<div class="card mb-1">
+      <div class="qcard-meta mb-1">
+        <span class="badge badge-accent">${escapeHtml(nomeAssunto(cartao.assuntoId))}</span>
+        ${cartao.usuarioId ? '<span class="badge badge-muted">meu cartão</span>' : '<span class="badge badge-muted">cartão da equipe</span>'}
+        ${cartao.origem==="questao" ? '<span class="badge badge-amber">gerado de uma questão</span>' : ""}
+        ${rev && rev.proximaRevisao ? `<span class="badge badge-muted">volta em ${formatDataBR(rev.proximaRevisao)}</span>` : '<span class="badge badge-muted">ainda não revisado</span>'}
+      </div>
+      <div class="text-sm" style="font-weight:600">${escapeHtml(cartao.frente)}</div>
+      <div class="text-sm muted mt-1">${escapeHtml(cartao.verso.slice(0,220))}${cartao.verso.length>220?"…":""}</div>
+      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="revisarSoEsteCartao('${cartao.id}')">${iconeSvg("cards")} Revisar só este</button>
+        ${cartao.origem==="questao" && cartao.questaoId ? botaoVerNaIntegra(cartao.questaoId, "Ver a questão de origem") : ""}
+        ${podeMexerNoCartao(cartao) ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioFlashcard('${cartao.id}')">${iconeSvg("edit")} Editar</button>` : ""}
+        <button class="btn btn-ghost btn-sm" onclick="toggleFavoritoCartaoUI('${cartao.id}')">${iconeSvg("star")} Tirar dos favoritos</button>
+      </div>
+      <div class="text-xs muted mt-1">Salvo em ${formatDataBR(reg.data||hojeISO())}</div>
+    </div>`;
+  }).join("") : '<div class="empty-state">Nenhum cartão salvo ainda. Na Revisão Rápida, use a estrela no alto do cartão para guardar o que você quer rever de novo.</div>'}
+  ${controlesPaginacao(pag, "cartão(ões)")}
+  `;
+}
+/* Revisar só o que foi salvo: mesma sessão de sempre, com o baralho trocado.
+   Serve para a véspera da prova, quando a pessoa quer rever a pilha dela e
+   não o que a repetição espaçada escolheria. */
+function revisarCartoesFavoritos(){
+  const u = usuarioAtual();
+  const cartoes = meusCartoesFavoritos(u.id).map(x=>x.cartao);
+  if(!cartoes.length){ toast("Você ainda não salvou nenhum cartão.", "err"); return; }
+  state.sessaoFlash = { cartoes: embaralhar(cartoes.slice()), indice:0, virado:false, notas:[], finalizada:false };
+  navigate("flashcards");
+}
+function revisarSoEsteCartao(cartaoId){
+  const cartao = getFlashcard(cartaoId);
+  if(!cartao){ toast("Cartão não encontrado.", "err"); return; }
+  state.sessaoFlash = { cartoes:[cartao], indice:0, virado:false, notas:[], finalizada:false };
+  navigate("flashcards");
 }
 function praticarFavoritas(){
   const u = usuarioAtual();
@@ -7653,6 +7997,59 @@ function atividadePorDia(usuarioId, dias){
   }
   return out;
 }
+
+/* ---------- o dia como unidade de histórico ------------------------------
+   Um conjunto de questões é uma unidade útil, mas não é a única: boa parte
+   do estudo acontece solta — cinco questões esperando o elevador, uma
+   revisão rápida no intervalo, dez cartões antes de dormir. Nada disso
+   aparecia aqui, porque só conjunto concluído virava linha.
+
+   Então a unidade passa a ser o DIA: tudo o que foi respondido naquele dia
+   (dentro ou fora de um conjunto), a taxa de acerto, os conjuntos que
+   fecharam nele e quantos cartões foram revisados. O dia é clicável como um
+   conjunto — reabre o mesmo feedback questão a questão —, e os conjuntos
+   daquele dia continuam listados dentro dele, para quem quer o recorte. */
+function diasDeAtividade(usuarioId){
+  const porDia = new Map();
+  const garantir = (dia) => {
+    if(!porDia.has(dia)) porDia.set(dia, { data:dia, respostas:[], sessoes:[], simulados:[], cartoes:0, cartoesExatos:true });
+    return porDia.get(dia);
+  };
+  db.respostas.filter(r=>r.usuarioId===usuarioId).forEach(r=>{ if(r.data) garantir(r.data).respostas.push(r); });
+  (db.sessoes||[]).filter(x=>x.usuarioId===usuarioId).forEach(sess=>{ if(sess.data) garantir(sess.data).sessoes.push(sess); });
+  (db.resultadosSimulados||[]).filter(x=>x.usuarioId===usuarioId).forEach(sim=>{ if(sim.data) garantir(sim.data).simulados.push(sim); });
+  // dias em que só houve cartão também são dias de estudo e entram na lista
+  ((db.diasCartoes && db.diasCartoes[usuarioId]) || []).forEach(dia => garantir(dia));
+  Object.keys((db.cartoesPorDia && db.cartoesPorDia[usuarioId]) || {}).forEach(dia => garantir(dia));
+  const dias = [...porDia.values()];
+  dias.forEach(d=>{
+    const c = cartoesFeitosNoDia(usuarioId, d.data);
+    d.cartoes = c.n; d.cartoesExatos = c.exato;
+    d.total = d.respostas.length;
+    d.acertos = d.respostas.filter(r=>r.correta).length;
+    d.chutes = d.respostas.filter(r=>r.confianca==="chute").length;
+    d.duvidas = d.respostas.filter(r=>r.confianca==="duvida").length;
+  });
+  return dias.filter(d=>d.total || d.cartoes || d.sessoes.length || d.simulados.length)
+             .sort((a,b)=>b.data.localeCompare(a.data));
+}
+/* Reabre um dia inteiro no mesmo feedback questão a questão dos conjuntos.
+   É uma sessão de leitura montada na hora a partir das respostas do dia —
+   não existe "conjunto do dia" guardado, e inventar um seria criar histórico
+   que ninguém fez. */
+function abrirDiaDoHistorico(dia){
+  const u = usuarioAtual();
+  const respostas = db.respostas.filter(r=>r.usuarioId===u.id && r.data===dia)
+    .filter(r=>getQuestao(r.questaoId));
+  if(!respostas.length){ toast("Neste dia você revisou cartões, mas não respondeu questões.", "err"); return; }
+  state.sessaoAtual = {
+    id: "dia-"+dia, tipo:"pratica", somenteLeitura:true, salvaNoHistorico:true, dataOriginal: dia,
+    itens: respostas.map(r=>({questaoId:r.questaoId, motivo:"Respondida em "+formatDataBR(dia)})),
+    respostasSessao: respostas.map(r=>({questaoId:r.questaoId, alternativaEscolhida:r.alternativaEscolhida, correta:r.correta, confianca:r.confianca, data:r.data})),
+    indiceAtual:0, marcadas:{}, finalizada:true,
+  };
+  navigate("sessao");
+}
 function renderHistorico(){
   const u = usuarioAtual();
   const sessoes = (db.sessoes||[]).filter(x=>x.usuarioId===u.id).slice().reverse();
@@ -7661,13 +8058,15 @@ function renderHistorico(){
   const totalRespostas = db.respostas.filter(r=>r.usuarioId===u.id).length;
   const totalAcertos = db.respostas.filter(r=>r.usuarioId===u.id && r.correta).length;
   const ultimos7 = db.respostas.filter(r=>r.usuarioId===u.id && diasEntre(r.data, hojeISO())<7);
-  const pagSessoes = paginar(sessoes, "historico-sessoes", {porPagina:15});
+  const diasAtivos = diasDeAtividade(u.id);
+  const pagDias = paginar(diasAtivos, "historico-dias", {porPagina:15});
   const pagSimulados = paginar(simulados, "historico-simulados", {porPagina:15});
+  const cartoesTotal = diasAtivos.reduce((soma,d)=>soma+d.cartoes, 0);
   return `
-  <div class="page-header"><h2>Histórico de Atividade</h2><p>Tudo que você já respondeu, do mais recente para o mais antigo. Clique em um conjunto para reabrir o feedback questão a questão.</p></div>
+  <div class="page-header"><h2>Histórico de Atividade</h2><p>Tudo o que você já estudou, dia a dia, do mais recente para o mais antigo — questões (dentro ou fora de um conjunto), flashcards e simulados.</p></div>
   <div class="grid grid-4 mb-2">
-    <div class="stat-tile"><div class="stat-value">${sessoes.length}</div><div class="stat-label">conjuntos de questões concluídos</div></div>
-    <div class="stat-tile"><div class="stat-value">${totalRespostas}</div><div class="stat-label">questões respondidas no total</div></div>
+    <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">dia(s) com estudo registrado · ${sessoes.length} conjunto(s) fechado(s)</div></div>
+    <div class="stat-tile"><div class="stat-value">${totalRespostas}</div><div class="stat-label">questões respondidas no total${cartoesTotal?" · "+cartoesTotal+" flashcard(s)":""}</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</div><div class="stat-label">taxa de acerto geral</div></div>
     <div class="stat-tile"><div class="stat-value">${ultimos7.length?pct(ultimos7.filter(r=>r.correta).length, ultimos7.length)+"%":"—"}</div><div class="stat-label">taxa de acerto nos últimos 7 dias (${ultimos7.length} questões)</div></div>
   </div>
@@ -7677,25 +8076,41 @@ function renderHistorico(){
     <p class="text-xs muted mt-1">Cada barra é a taxa de acerto do dia; o número entre parênteses é quantas questões você respondeu naquele dia.</p>
   </div>
   <div class="card mb-2">
-    <div class="card-title mb-1">Conjuntos de questões (prática e revisão)</div>
-    ${sessoes.length ? pagSessoes.itens.map(sess=>{
-      const taxa = pct(sess.acertos, sess.total);
-      const chutes = sess.itens.filter(i=>i.confianca==="chute").length;
-      const duvidas = sess.itens.filter(i=>i.confianca==="duvida").length;
+    <div class="card-title mb-1">Dia a dia</div>
+    <p class="text-sm muted mb-2">Cada dia é uma linha, com tudo o que você fez nele — inclusive as questões respondidas fora de um conjunto e os flashcards. Clique no dia para reabrir o feedback questão a questão.</p>
+    ${diasAtivos.length ? pagDias.itens.map(d=>{
+      const taxa = d.total ? pct(d.acertos, d.total) : null;
+      const sessoesDoDia = d.sessoes.length;
       return `<div class="card-flat mb-1">
         <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-          <div>
-            <div style="font-weight:600">${formatDataBR(sess.data)} · ${sess.total} questão(ões)</div>
-            <div class="text-xs muted mt-1">${sess.acertos} acerto(s) · ${chutes} chute(s) · ${duvidas} na dúvida · ${escapeHtml(sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "Sessão de prática")}</div>
+          <div style="min-width:220px;flex:1">
+            <div style="font-weight:600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
+            <div class="text-xs muted mt-1">
+              ${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}
+              ${d.cartoes ? ` · ${d.cartoes} flashcard(s)${d.cartoesExatos?"":" (ao menos)"}` : ""}
+              ${sessoesDoDia ? ` · ${sessoesDoDia} conjunto(s) fechado(s)` : ""}
+              ${d.simulados.length ? ` · ${d.simulados.length} simulado(s)` : ""}
+            </div>
           </div>
-          <div class="flex items-center gap-1">
-            <span class="badge ${taxa>=70?"badge-accent":taxa>=50?"badge-amber":"badge-danger"}">${taxa}% de acerto</span>
-            <button class="btn btn-secondary btn-sm" onclick="abrirSessaoDoHistorico('${sess.id}')">${iconeSvg("chart")} Abrir feedback</button>
+          <div class="flex items-center gap-1" style="flex-wrap:wrap">
+            ${taxa!==null ? `<span class="badge ${taxa>=70?"badge-accent":taxa>=50?"badge-amber":"badge-danger"}">${taxa}% de acerto</span>` : ""}
+            ${d.cartoes ? `<span class="badge badge-muted">${iconeSvg("cards")} ${d.cartoes}</span>` : ""}
+            ${d.total ? `<button class="btn btn-secondary btn-sm" onclick="abrirDiaDoHistorico('${d.data}')">${iconeSvg("chart")} Abrir o dia</button>` : ""}
           </div>
         </div>
+        ${sessoesDoDia ? `<div class="mt-2" style="border-top:1px solid var(--border);padding-top:.6rem">
+          ${d.sessoes.map(sess=>{
+            const t = pct(sess.acertos, sess.total);
+            return `<div class="flex justify-between items-center gap-2 text-xs muted mb-1" style="flex-wrap:wrap">
+              <span>${iconeSvg("book")} conjunto de ${sess.total} questão(ões) — ${escapeHtml(sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática")}</span>
+              <span class="flex items-center gap-1"><span class="badge ${t>=70?"badge-accent":t>=50?"badge-amber":"badge-danger"}">${t}%</span>
+              <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir este conjunto</button></span>
+            </div>`;
+          }).join("")}
+        </div>` : ""}
       </div>`;
-    }).join("") : '<p class="text-sm muted mt-1">Você ainda não concluiu nenhum conjunto de questões. Comece em "Estudar".</p>'}
-    ${controlesPaginacao(pagSessoes, "conjunto(s)")}
+    }).join("") : '<p class="text-sm muted mt-1">Você ainda não estudou nenhum dia por aqui. Comece em "Estudar" ou na "Revisão Rápida".</p>'}
+    ${controlesPaginacao(pagDias, "dia(s)")}
   </div>
   <div class="card">
     <div class="card-title mb-1">Simulados realizados</div>
@@ -7774,7 +8189,7 @@ function renderDesempenho(){
 
   const graficoAreas = graficoBarrasVerticaisSvg(porArea.map(a=>({
     label: abreviarArea(a.nome), taxa: a.taxa, total: a.total, acertos: a.acertos,
-  })), {altura:180, larguraMax:70});
+  })), {altura:140, larguraMax:60});
 
   return `
   <div class="page-header"><h2>Meu Desempenho</h2><p>Primeiro o total de tudo que você já respondeu, depois como está indo no período que você escolher, e por fim onde mexer.</p></div>
@@ -7788,8 +8203,6 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${totalGeral.distintas}</div><div class="stat-label">questões diferentes já respondidas (${totalGeral.cobertura}% do banco)</div></div>
       <div class="stat-tile"><div class="stat-value">${totalGeral.naoRespondidas}</div><div class="stat-label">questões do banco que você ainda não viu</div></div>
     </div>
-    <div class="progress-track mt-2"><div class="progress-fill" style="width:${totalGeral.cobertura}%"></div></div>
-    <p class="text-xs muted mt-1">A barra mostra quanto do banco de questões disponível você já percorreu ao menos uma vez (${totalGeral.distintas} de ${totalGeral.bancoAtivo}).</p>
   </div>
 
   <div class="card mb-2">
@@ -7835,7 +8248,7 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${melhorMes?melhorMes.taxa+"%":"—"}</div><div class="stat-label">melhor mês${melhorMes?" ("+escapeHtml(melhorMes.label)+")":""}</div></div>
     </div>`}
 
-    ${graficoBarrasVerticaisSvg(dados.itens, {altura:180, larguraMax: ehDiario?34:48, rotuloRotacionado: ehDiario && dados.dias>20})}
+    ${graficoBarrasVerticaisSvg(dados.itens, {altura:140, larguraMax: ehDiario?30:42, rotuloRotacionado: ehDiario && dados.dias>20})}
 
     ${ehDiario ? `<p class="text-xs muted mt-1">Traço fino na base = dia sem nenhuma questão. Dia parado aparece de propósito: a constância é metade do resultado, e um gráfico que esconde os buracos mente sobre a rotina.</p>`
       : `<p class="text-xs muted mt-1">Mês sem questão aparece como traço na base. Comparar meses só faz sentido junto do volume: 100% em 3 questões não é melhor do que 72% em 400.</p>`}
@@ -9050,7 +9463,7 @@ function podeDeixarDeSerMaster(id, novoNivel, ondeMora){
 function dadosDoUsuario(id){
   return {
     respostas: db.respostas.filter(r=>r.usuarioId===id).length,
-    favoritos: db.favoritos.filter(f=>f.usuarioId===id).length,
+    favoritos: db.favoritos.filter(f=>f.usuarioId===id).length + (db.favoritosCartoes||[]).filter(f=>f.usuarioId===id).length,
     cartoes: db.flashcards.filter(c=>c.usuarioId===id).length,
     sessoes: db.sessoes.filter(x=>x.usuarioId===id).length,
     simulados: db.resultadosSimulados.filter(x=>x.usuarioId===id).length,
@@ -9114,12 +9527,14 @@ function apagarDadosLocaisDoUsuario(id){
   db.usuarios = db.usuarios.filter(u => u.id !== id);
   db.respostas = db.respostas.filter(r => r.usuarioId !== id);
   db.favoritos = db.favoritos.filter(f => f.usuarioId !== id);
+  db.favoritosCartoes = (db.favoritosCartoes||[]).filter(f => f.usuarioId !== id);
   db.flashcards = db.flashcards.filter(c => c.usuarioId !== id);
   db.sessoes = db.sessoes.filter(x => x.usuarioId !== id);
   db.resultadosSimulados = db.resultadosSimulados.filter(x => x.usuarioId !== id);
   if(db.revisoes) delete db.revisoes[id];
   if(db.revisoesFlashcards) delete db.revisoesFlashcards[id];
   if(db.diasCartoes) delete db.diasCartoes[id];
+  if(db.cartoesPorDia) delete db.cartoesPorDia[id];
   if(db.sessoesEmAndamento) delete db.sessoesEmAndamento[id];
   (db.grupos||[]).forEach(g => {
     g.membrosAprovados = (g.membrosAprovados||[]).filter(x => x !== id);
@@ -10609,7 +11024,7 @@ function renderCentralProvas(){
       <div class="card-flat"><div class="text-xs muted">1</div><div class="text-sm">Cadastre a prova abaixo com o total de questões. Ela é cortada sozinha em lotes.</div></div>
       <div class="card-flat"><div class="text-xs muted">2</div><div class="text-sm">Copie o modelo do lote 1 numa conversa de IA e o do lote 2 em outra. Cada modelo já diz qual faixa transcrever.</div></div>
       <div class="card-flat"><div class="text-xs muted">3</div><div class="text-sm">Conforme cada frente responder, cole aqui e confira. O lote fica guardado, sem publicar nada.</div></div>
-      <div class="card-flat"><div class="text-xs muted">4</div><div class="text-sm">Publique lote a lote (ou tudo de uma vez). A prova aparece sozinha em Provas Antigas.</div></div>
+      <div class="card-flat"><div class="text-xs muted">4</div><div class="text-sm">Publique lote a lote (ou tudo de uma vez). A prova aparece sozinha em Provas e Simulados.</div></div>
     </div>
     <p class="text-xs muted mt-2">Use o campo <em>quem está fazendo</em> de cada lote para não se perder entre as frentes — "conversa 1", "conversa 2", o nome de quem ficou com o pedaço.</p>
   </div>
@@ -10683,7 +11098,7 @@ function renderCargaProva(carga){
     <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
       ${r.conferidos?`<button class="btn btn-primary btn-sm" onclick="confirmarPublicarConferidos('${carga.id}')">${iconeSvg("upload")} Publicar ${r.conferidos===1?"o lote conferido":"os "+r.conferidos+" lotes conferidos"}</button>`:""}
       <button class="btn btn-secondary btn-sm" onclick="copiarRoteiroCarga('${carga.id}')">${iconeSvg("clipboard")} Copiar roteiro da prova</button>
-      ${r.publicadas?`<button class="btn btn-ghost btn-sm" onclick="navigate('provas-antigas')">${iconeSvg("archive")} Ver em Provas Antigas</button>`:""}
+      ${r.publicadas?`<button class="btn btn-ghost btn-sm" onclick="navigate('provas-antigas')">${iconeSvg("archive")} Ver em Provas e Simulados</button>`:""}
       <button class="btn btn-ghost btn-sm" onclick="confirmarExcluirCarga('${carga.id}')">${iconeSvg("trash")} Descartar acompanhamento</button>
     </div>
   </div>
@@ -10767,7 +11182,8 @@ function renderEditorCalendario(grupo, opts){
   const sequencia = sequenciaDoAno(ano);
   const blocosOrdenados = blocosDoGrupo(grupo, usuario);
   const deslocamento = normalizarDeslocamento(grupo.deslocamento, sequencia.length);
-  const blocoDeInicio = sequencia[deslocamento];
+  // por onde esta turma começa o ano: pelo quadro do ano, quando ele existe
+  const blocoDeInicio = conteudoDaJanela(sequencia, rotuloRodizio(ano, deslocamento), deslocamento, 0);
   const rodizios = opcoesRodizioPorLetra(ano);
   return `
   <div class="card-flat mb-2 text-sm">
@@ -10882,12 +11298,13 @@ function renderBlocosConfig(){
   ${sequencia.length ? `<div class="card mb-2">
     <div class="card-title">O rodízio de ${escapeHtml(anoEscolhido)}, janela por janela</div>
     <p class="text-sm muted mb-2">A mesma tabela que a faculdade distribui no papel: cada coluna é uma turma, cada linha é uma janela de data. É o que a plataforma entrega a cada aluno conforme o grupo dele.</p>
+    ${sequencia.some(b=>Array.isArray(b.turmasPorJanela) && b.turmasPorJanela.length) ? `<p class="text-xs muted mb-2">${iconeSvg("alert")} Este ano <strong>não gira em ciclo</strong>: cada estágio traz a linha do quadro da faculdade (quem está nele em cada janela), como no 5º ano. Mudar nome, datas ou especialidades de um estágio é normal por aqui; trocar quem vai para onde exige editar essa linha em <code>dados/calendario.js</code>, para o quadro continuar batendo com o papel. Um estágio acrescentado aqui entra sem linha e volta a girar em ciclo.</p>` : ""}
     <div class="table-wrap"><table>
       <thead><tr><th>Período</th>${porLetra.map(o=>`<th>Grupo ${escapeHtml(o.rotulo)}</th>`).join("")}</tr></thead>
       <tbody>
         ${sequencia.map((janela,i)=>`<tr>
           <td class="text-sm">${formatDataBR(janela.dataInicio)} – ${formatDataBR(janela.dataFim)}</td>
-          ${porLetra.map(o=>`<td class="text-sm">${escapeHtml(sequencia[(i + o.deslocamento) % sequencia.length].nome)}</td>`).join("")}
+          ${porLetra.map(o=>`<td class="text-sm">${escapeHtml((conteudoDaJanela(sequencia, o.rotulo, o.deslocamento, i)||{}).nome||"—")}</td>`).join("")}
         </tr>`).join("")}
       </tbody>
     </table></div>

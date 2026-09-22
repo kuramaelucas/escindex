@@ -145,13 +145,19 @@ create index if not exists revisoes_flashcards_sync_idx on public.revisoes_flash
 -- ---------------------------------------------------------------------------
 -- 5. DIAS_CARTOES — em que dias a pessoa revisou cartões (REGISTRO)
 -- ---------------------------------------------------------------------------
--- É o que sustenta a sequência ("X dias seguidos"). Um dia só entra uma vez.
+-- É o que sustenta a sequência ("X dias seguidos"). Um dia só entra uma vez, e
+-- "quantidade" diz quantos cartões foram revisados naquele dia — é o número
+-- que o Histórico de Atividade mostra ao lado das questões do dia. Ele muda
+-- ao longo do dia, então esta linha é reenviada (merge) quando cresce.
 create table if not exists public.dias_cartoes (
   usuario_id uuid        not null references auth.users(id) on delete cascade,
   dia        date        not null,
+  quantidade integer     not null default 0,
   criado_em  timestamptz not null default now(),
   primary key (usuario_id, dia)
 );
+-- para quem já tinha a tabela antes de a contagem existir:
+alter table public.dias_cartoes add column if not exists quantidade integer not null default 0;
 create index if not exists dias_cartoes_sync_idx on public.dias_cartoes (usuario_id, criado_em);
 
 -- ---------------------------------------------------------------------------
@@ -178,6 +184,24 @@ create table if not exists public.favoritos (
 -- table if not exists" acima não mexe numa tabela que já está lá):
 alter table public.favoritos add column if not exists nota text not null default '';
 create index if not exists favoritos_sync_idx on public.favoritos (usuario_id, atualizado_em);
+
+-- ---------------------------------------------------------------------------
+-- 6-B. FAVORITOS_CARTOES — os flashcards salvos (ESTADO)
+-- ---------------------------------------------------------------------------
+-- Mesma ideia da tabela acima, para os cartões. São duas tabelas e não uma
+-- porque são duas coisas: "quero rever esta questão" e "quero rever este
+-- conceito" — e é assim que a tela de Favoritos as separa, em duas abas.
+-- O cartao_id é texto porque um cartão pode ser da equipe, pessoal ou gerado
+-- na hora a partir de uma questão (id "fc-q-<id da questão>").
+create table if not exists public.favoritos_cartoes (
+  usuario_id    uuid        not null references auth.users(id) on delete cascade,
+  cartao_id     text        not null,
+  data          date,
+  removido      boolean     not null default false,
+  atualizado_em timestamptz not null default now(),
+  primary key (usuario_id, cartao_id)
+);
+create index if not exists favoritos_cartoes_sync_idx on public.favoritos_cartoes (usuario_id, atualizado_em);
 
 -- ---------------------------------------------------------------------------
 -- 7. FLASHCARDS_PESSOAIS — o caderno de cartões de cada aluno (ESTADO)
@@ -273,7 +297,7 @@ declare t text;
 begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
-    'flashcards_pessoais', 'sessao_em_andamento', 'calendario'
+    'favoritos_cartoes', 'flashcards_pessoais', 'sessao_em_andamento', 'calendario'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -371,6 +395,7 @@ alter table public.revisoes             enable row level security;
 alter table public.revisoes_flashcards  enable row level security;
 alter table public.dias_cartoes         enable row level security;
 alter table public.favoritos            enable row level security;
+alter table public.favoritos_cartoes    enable row level security;
 alter table public.flashcards_pessoais  enable row level security;
 alter table public.sessoes              enable row level security;
 alter table public.resultados_simulados enable row level security;
@@ -441,8 +466,8 @@ declare t text;
 begin
   foreach t in array array[
     'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
-    'favoritos', 'flashcards_pessoais', 'sessoes', 'resultados_simulados',
-    'sessao_em_andamento'
+    'favoritos', 'favoritos_cartoes', 'flashcards_pessoais', 'sessoes',
+    'resultados_simulados', 'sessao_em_andamento'
   ] loop
     execute format('drop policy if exists %1$s_ler     on public.%1$I', t);
     execute format('drop policy if exists %1$s_criar   on public.%1$I', t);
@@ -481,8 +506,8 @@ declare t text;
 begin
   foreach t in array array[
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
-    'favoritos', 'flashcards_pessoais', 'sessoes', 'resultados_simulados',
-    'sessao_em_andamento', 'calendario'
+    'favoritos', 'favoritos_cartoes', 'flashcards_pessoais', 'sessoes',
+    'resultados_simulados', 'sessao_em_andamento', 'calendario'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;

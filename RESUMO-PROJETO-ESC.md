@@ -5,7 +5,7 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 
 > **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade, upload de provas em lotes) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) —, taxonomia de **216 assuntos** em **39 especialidades**, **conta de verdade e sincronização entre aparelhos pela nuvem** (Supabase, seção 4-B) e o conteúdo separado do código, na pasta `dados/`. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
 
-> **Pendência aberta (22/09/2026):** rodar de novo o `nuvem/esquema.sql` no painel do Supabase. A anotação pessoal das questões salvas usa a coluna nova `favoritos.nota`, e o arquivo já traz o `alter table` que a acrescenta a quem tem o banco criado. Enquanto não for rodado, a plataforma funciona e não perde nada — só a anotação não sobe para a nuvem (seção 4-B).
+> **Pendência aberta (22/09/2026):** rodar de novo o `nuvem/esquema.sql` no painel do Supabase. Três novidades dependem dele — a anotação pessoal da questão salva (`favoritos.nota`), a contagem de flashcards por dia (`dias_cartoes.quantidade`) e os flashcards favoritados (tabela `favoritos_cartoes`) —, e o arquivo já traz as linhas que acrescentam cada uma sem mexer no que existe. Enquanto não for rodado, a plataforma funciona e não perde nada: ela pula o que falta, sincroniza todo o resto e avisa em *Perfil* o que está faltando (seção 4-B).
 
 ---
 
@@ -76,6 +76,7 @@ O menu lateral se monta conforme o nível e as rotas restritas mostram tela de "
 ## 4. Funcionalidades por área
 
 ### Estudar
+- **A sessão recomendada é a SESSÃO DO DIA**: ela é montada uma vez e vale o dia inteiro. Sair para ver o desempenho e voltar continua o mesmo conjunto, na mesma ordem, com o que já foi respondido — em vez de sortear um conjunto novo e jogar fora o começo. O conjunto só se renova quando o dia vira, ou quando o anterior termina. Um conjunto inacabado de outro dia não é descartado em silêncio: aí a plataforma pergunta se é para continuar aquele ou começar um de hoje.
 - **Sessão em andamento no topo**: se o aluno saiu no meio de uma fila, o primeiro cartão da tela oferece *"Continuar de onde parei"* — mesma fila, mesma ordem, mesmos riscos nas alternativas. Só desaparece quando o conjunto termina ou quando ele escolhe descartar.
 - **Meta do dia**: progresso `feitas/meta`, quantas faltam, sequência de dias seguidos e botão para ajustar o número. A meta não tem mais página própria (ver seção 5).
 - **Sessão recomendada**, que mistura bloco atual, revisão e prévia do próximo bloco.
@@ -99,13 +100,15 @@ Página de feedback com: taxa de acerto, acerto por nível de confiança, quanta
 ### Revisão Rápida (flashcards)
 A tela abre com a **meta diária de cartões** — progresso do dia, quantos faltam e sequência de dias seguidos —, a mesma estrutura da meta de questões, em outra unidade. As duas metas convivem e são independentes: quem prefere estudar por cartão, ou quem só tem dez minutos num dia corrido, mantém ritmo por ali.
 
-Cartão com frente (pergunta curta) e verso (resposta direta), **sem alternativa para eliminar**. O aluno tenta lembrar, vira o cartão e se autoavalia:
+Cartão com frente (pergunta curta) e verso (resposta direta), **sem alternativa para eliminar**. O aluno tenta lembrar, **clica no próprio cartão para virar** (não há botão de "mostrar resposta": o cartão é o botão) e se autoavalia:
 
 | Resposta | Efeito no intervalo |
 |---|---|
 | **Não lembrei** | volta amanhã |
 | **Quase** | intervalo travado em no máximo 3 dias — lembrar com esforço é o sinal clássico de conceito não consolidado |
 | **Sabia** | intervalo cresce normalmente |
+
+Cada cartão tem uma **estrela no alto**: salva o cartão em *Favoritos > Flashcards*, que é a pilha de "quero rever este conceito" — separada da de questões, e revisável de uma vez ("Revisar os cartões salvos"). Salvar não mexe na repetição espaçada: o cartão continua voltando na data dele.
 
 **Três origens de cartão convivem no mesmo baralho:**
 
@@ -117,16 +120,21 @@ O baralho se monta sozinho nesta ordem: cartões vencidos → assuntos de falsa 
 
 A tela separa **"Meus cartões"** (com a questão de origem linkada) de **"Cartões da equipe"**, e só quem gere conteúdo vê a segunda seção.
 
-### Simulados
+### Provas e Simulados (uma tela, duas abas)
+As duas entradas de menu viraram uma, porque levavam ao mesmo lugar mental — "fazer uma prova inteira, no relógio" — e a pessoa tinha de lembrar em qual delas estava o que queria. A diferença continua explícita, em duas abas, porque ela é real: **prova antiga** é a prova de verdade de uma instituição num ano, do jeito que caiu (para medir contra a banca); **simulado** é um recorte montado pela equipe, com tempo e tamanho escolhidos (para treinar um bloco ou assunto). O histórico de notas é o mesmo para os dois e fica embaixo das duas abas, sem duplicar. As rotas antigas (`simulados` e `provas-antigas`) continuam respondendo e abrem a tela na aba certa.
+
 - Simulados criados por professores, prova antiga inteira como simulado, ou simulado personalizado a partir dos filtros.
 - **Cronômetro** com encerramento automático no fim do tempo, **tempo gasto por questão**, modo aprendizado (mostra explicação na hora), mapa de questões clicável.
 - **A barra de números durante a prova diz só uma coisa: respondida ou em branco.** Nunca certa ou errada — o acerto só aparece no resultado, depois de acabar (ver seção 5).
 - Resultado: nota, percentil anônimo entre as tentativas registradas, mapa de acertos/erros, **análise de tempo com "onde você travou"**, revisão questão a questão e prática imediata dos erros.
 
+### Histórico de Atividade
+A unidade é o **dia**, não o conjunto. Boa parte do estudo acontece solta — cinco questões esperando o elevador, dez cartões antes de dormir — e nada disso aparecia antes, porque só conjunto concluído virava linha. Agora cada dia traz tudo o que houve nele: questões respondidas (dentro ou fora de um conjunto), acerto, chutes, dúvidas, **quantos flashcards foram revisados** e quais conjuntos fecharam ali. O dia é clicável como um conjunto — reabre o mesmo feedback questão a questão —, e cada conjunto do dia continua acessível por dentro dele.
+
 ### Meu Desempenho
 A tela responde a três perguntas, nesta ordem:
 
-1. **"Quanto eu já sei?"** — desempenho total de tudo que já foi respondido, cobertura do banco, acerto considerando só a última tentativa de cada questão.
+1. **"Quanto eu já sei?"** — desempenho total de tudo que já foi respondido, quantas questões diferentes já viu (com o % do banco ao lado) e o acerto considerando só a última tentativa de cada questão. A barra de cobertura que repetia esse número saiu: o ladrilho já diz a mesma coisa, e a barra só ocupava altura.
 2. **"Como estou indo agora?"** — um **seletor de período** com quatro recortes:
 
    | Recorte | Granularidade | Para quê |
@@ -142,7 +150,7 @@ A tela responde a três perguntas, nesta ordem:
 
 Há ainda um cartão **só de flashcards**, deliberadamente separado das questões: quantas revisões de cartão no total (contando as repetições), quantos cartões diferentes já passaram pelo baralho, quantos foram hoje e em quantos dias houve cartão. Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão leva minutos — somar as duas coisas num total só daria um número que não significa nada.
 
-**O gráfico de barras verticais** (`graficoBarrasVerticaisSvg`) é o mesmo em todos esses lugares: cada barra é 100% das questões daquele dia, mês ou área — a parte de baixo, em **verde claro**, é o acerto; o que sobra em cima, em **cinza claro**, é o erro. 65% de acerto = 65% da barra verde e 35% cinza, com o número escrito quando a barra é larga o bastante e tooltip quando não é. Dia ou mês sem nenhuma questão vira um traço fino na base, não some do gráfico: esconder os buracos mentiria sobre a rotina, que é metade do resultado.
+**O gráfico de barras verticais** (`graficoBarrasVerticaisSvg`) é o mesmo em todos esses lugares, com 140 px de altura (era 180 — a tela ficou menos alta sem perder leitura): cada barra é 100% das questões daquele dia, mês ou área — a parte de baixo, em **verde claro**, é o acerto; o que sobra em cima, em **cinza claro**, é o erro. 65% de acerto = 65% da barra verde e 35% cinza, com o número escrito quando a barra é larga o bastante e tooltip quando não é. Dia ou mês sem nenhuma questão vira um traço fino na base, não some do gráfico: esconder os buracos mentiria sobre a rotina, que é metade do resultado.
 
 ### Material em PDF (professores, coordenação, moderadores)
 Quatro tipos, gerados sem biblioteca externa (monta em `#areaImpressao` e chama `window.print()`, onde existe "Salvar como PDF"):
@@ -183,9 +191,13 @@ O aluno usa por padrão o calendário oficial da coordenação e escolhe a sua t
 
 **A sequência de blocos pertence ao ano da faculdade, não ao grupo.** Todas as turmas do mesmo ano passam pelos mesmos blocos, na mesma ordem e nas mesmas janelas de data; o que muda de uma para outra é **por qual bloco ela começa** (`grupo.deslocamento`). É o rodízio real: enquanto uma turma está em Pediatria, a outra está em Clínica Médica, e no bloco seguinte elas trocam. Anos diferentes têm sequências diferentes, porque a matéria é outra.
 
-**O rodízio tem nome: Grupo A, B, C ou D.** Ninguém sabe o próprio "deslocamento"; todo mundo sabe que está no grupo B. A ponte entre as duas coisas é o campo `grupoRodizio` do bloco: a letra escrita no bloco de índice *i* da sequência é a da turma que **começa** ali, ou seja, a de deslocamento *i*. É um dado editável, e não uma conta a partir do índice, porque no calendário real do 3º ano as letras não seguem a ordem alfabética (A, D, C, B). Onde a coordenação não preencher nada, vale a ordem alfabética. Toda tela que pede a turma — criar grupo, editar grupo, a tabela de turmas do admin — oferece "Grupo A — começa em TOCE…", em ordem de letra.
+**O rodízio tem nome: Grupo A, B, C, D… até L, no 5º ano.** Ninguém sabe o próprio "deslocamento"; todo mundo sabe que está no grupo B. A ponte entre as duas coisas é o campo `grupoRodizio` do bloco: a letra escrita no bloco de índice *i* da sequência é a da turma que **começa** ali, ou seja, a de deslocamento *i*. É um dado editável, e não uma conta a partir do índice, porque no calendário real do 3º ano as letras não seguem a ordem alfabética (A, D, C, B). Onde a coordenação não preencher nada, vale a ordem alfabética. Toda tela que pede a turma — criar grupo, editar grupo, a tabela de turmas do admin — oferece "Grupo A — começa em TOCE…", em ordem de letra.
 
 **O 3º ano é o calendário real da faculdade**, transcrito do quadro que a coordenação distribui: quatro janelas de data (20/07–21/08, 24/08–02/10, 05/10–06/11, 09/11–04/12 em 2026) e quatro blocos — TOCE & Semiologia da Mulher, Cardiocirculatório, Oftalmo/Infecto/Medicina Baseada em Evidências e Psiquiatria & Vigilância em Saúde — girando entre os grupos A, B, C e D. A tela de Blocos de Estudo reproduz esse quadro linha a linha, para conferir contra o papel.
+
+**O 5º ano também — e ele não gira em ciclo.** Transcrito do quadro "CURSO MÉDICO – 5ª SÉRIE – 2026": **doze janelas de data, doze estágios e doze turmas (A a L)**. No primeiro semestre as turmas A–F estão nos seis primeiros estágios (Atenção Básica, Medicina de Família, Clínica Cirúrgica 1 e 2, Saúde da Criança e do Adolescente, Livre Escolha) e as G–L nos seis últimos (Ginecologia Enfermaria, Gineco/Obstetrícia, Psiquiatria/Oftalmo, Ambulatório Interdisciplinar, Clínica Médica & Medicina Laboratorial, DIPA); no segundo semestre elas trocam de metade.
+
+O rodízio do 5º ano **não é um ciclo**: o quadro emparelha os estágios dois a dois (quem faz Clínica Cirúrgica 1 na primeira janela faz a 2 na segunda, e vice-versa), e nenhuma conta a partir do índice reproduz isso. Por isso cada estágio carrega a **linha do quadro impresso** no campo `turmasPorJanela`: a turma que está nele em cada janela, na ordem das janelas — é literalmente a linha do papel, para conferir célula a célula. Onde esse campo existe, ele manda; onde não existe (3º ano, 4º, 6º), vale o ciclo de sempre. Nenhuma tela precisa saber qual das duas formas o ano usa: todas passam por `conteudoDaJanela()`.
 
 **O calendário oficial** não tem ano fixo: serve a todos, e cada aluno enxerga a sequência do **seu** ano, começando pelo primeiro bloco (o Grupo A).
 
@@ -201,9 +213,11 @@ Até esta versão, tudo vivia no `localStorage` de um navegador só: quem estuda
 
 **Onde mora.** Supabase (PostgreSQL + autenticação + PostgREST). Escolhido por ser o backend que mapeia quase direto para o objeto `db` e por não exigir escrever servidor nenhum: o app conversa por `fetch` com a API REST, sem SDK, sem dependência nova.
 
-**O que sobe** (dez tabelas, ver `NUVEM_TABELAS` no código): perfil, respostas, repetição espaçada de questões e de cartões, dias com cartão revisado, favoritos (**com a anotação pessoal de cada questão salva**), cartões pessoais, sessões concluídas, notas de simulado e a fila em andamento — esta última com as alternativas marcadas e riscadas de cada questão.
+**O que sobe** (onze tabelas, ver `NUVEM_TABELAS` no código): perfil, respostas, repetição espaçada de questões e de cartões, dias com cartão revisado (**e quantos cartões em cada dia**), favoritos de questão (**com a anotação pessoal de cada uma**), **favoritos de flashcard**, cartões pessoais, sessões concluídas, notas de simulado e a fila em andamento — esta última com as alternativas marcadas e riscadas de cada questão.
 
-> **Quem já tinha o banco criado precisa rodar o `nuvem/esquema.sql` de novo.** A anotação da questão salva mora numa coluna nova (`favoritos.nota`), e o arquivo traz o `alter table … add column if not exists` que a acrescenta a quem já tinha a tabela. Enquanto a coluna não existir, a plataforma **não quebra e não perde nada**: percebe a recusa, reenvia os favoritos sem a anotação (que continua guardada no navegador) e volta a mandá-la sozinha depois de o SQL ser rodado e a página recarregada.
+> **Quem já tinha o banco criado precisa rodar o `nuvem/esquema.sql` de novo.** Três novidades dependem dele: a anotação da questão salva (`favoritos.nota`), a contagem de flashcards por dia (`dias_cartoes.quantidade`) e os **flashcards favoritados** (tabela `favoritos_cartoes`). O arquivo traz o `alter table … add column if not exists` de cada coluna e o `create table if not exists` da tabela nova, sem mexer no que já existe.
+>
+> Enquanto o SQL não for rodado, a plataforma **não quebra e não perde nada**. Uma COLUNA que falta é detectada na recusa e o lote é reenviado sem ela (`NUVEM_CAMPOS_NOVOS`); uma TABELA que falta é anotada e pulada na subida e na descida (`_nuvemTabelasAusentes`) — antes, um 404 numa tabela nova derrubaria a descida inteira, que é o oposto do que uma novidade deve fazer. O que ficou de fora segue guardado no navegador e sobe sozinho depois do SQL e de um F5, e *Perfil > Conta e sincronização* diz exatamente o que está faltando.
 
 **O que NÃO sobe:** o conteúdo. Questões e flashcards da equipe são iguais para todo mundo e continuam vindo da pasta `dados/` — não faz sentido guardar uma cópia por aluno. Continuam locais também: comentários nas questões, feedbacks, Livro de Ouro, calendário de blocos, turmas e as cargas da Central de Provas (ver limitação 10).
 
@@ -265,6 +279,21 @@ Uma prova de 100 questões com explicação autoral não sai numa conversa só �
 
 ### Clicar no enunciado abre a questão — só onde o texto está cortado
 Nas **listas**, onde o enunciado aparece truncado, clicar abre a questão inteira. Na questão em resolução não: ali o enunciado já está todo na tela, e abrir uma janela com o mesmo texto não acrescenta nada. Pelo mesmo motivo, o botão "Expandir questão" saiu das ações embaixo da questão aberta.
+
+### O conjunto é do dia, não do clique
+Clicar em "sessão recomendada" sorteava um conjunto novo toda vez. Quem respondia cinco questões, saía para conferir o desempenho e voltava perdia o começo e recomeçava do zero — e a meta diária virava um monte de começos, o mesmo defeito que a sessão retomável tinha resolvido para quem fecha o navegador, mas não para quem só troca de tela. Agora o conjunto pertence ao DIA: continua de onde parou o dia inteiro e só se renova quando o dia vira (ou quando o anterior termina). Um conjunto inacabado de outro dia não é jogado fora em silêncio — a plataforma pergunta, porque a fila de ontem foi montada com a matéria e os vencimentos de ontem.
+
+### O cartão é o botão
+O flashcard tinha um botão "Mostrar resposta" embaixo e, ao mesmo tempo, virava ao ser tocado. Dois caminhos para a mesma coisa, e o botão puxava o olho para fora do cartão justamente no segundo em que a pessoa deveria estar tentando lembrar. Ficou só o cartão, com o convite dentro dele. A estrela no alto (favoritar) é a exceção que não vira o cartão: o clique dela para em si mesma.
+
+### Favoritos tem duas abas porque são duas coisas
+Questão salva é "quero rever esta questão"; cartão salvo é "quero rever este conceito". Quem vem procurar aquela questão de choque séptico não quer tropeçar em cartão no meio do caminho, e vice-versa — então são duas listas, duas abas e duas tabelas na nuvem, com a contagem de cada uma na própria aba. Salvar um cartão não mexe na repetição espaçada dele: a pilha de favoritos é para quando a pessoa quer escolher o que revisar, e não para quando o algoritmo escolhe.
+
+### Uma tela para prova inteira, com a diferença à vista
+Simulados e Provas Antigas eram dois itens de menu para o mesmo gesto — "fazer uma prova no relógio" — e obrigavam a lembrar em qual deles estava o que se queria. Viraram uma tela com duas abas. Juntar não é apagar a diferença: prova antiga é a prova real de uma instituição num ano, e serve para medir contra a banca; simulado é um recorte montado pela equipe, e serve para treinar um bloco. As notas dos dois são a mesma coisa (uma prova feita), então o histórico fica embaixo das duas abas, uma vez só.
+
+### O histórico conta o dia, não só o conjunto
+Só conjunto concluído virava linha no histórico, e com isso sumia metade do estudo: as questões respondidas soltas e os flashcards. A unidade passou a ser o dia — tudo o que houve nele, inclusive quantos cartões —, com os conjuntos daquele dia listados por dentro. O dia é clicável como um conjunto e reabre o mesmo feedback questão a questão, montado na hora a partir das respostas: não existe "conjunto do dia" guardado, e inventar um seria criar histórico que ninguém fez.
 
 ### Pular é permitido; chutar para destravar, não
 A fila andava só para frente depois de responder. Quem empacava numa questão tinha duas saídas ruins: abandonar o conjunto inteiro, ou chutar só para passar — e esse chute entra no histórico como se fosse um chute de verdade, desregulando a repetição espaçada e a calibração da confiança. Agora a fila anda para os dois lados sem exigir resposta: a questão pulada fica **em branco** no mapa (clicável, com o número à vista) e volta quando a pessoa quiser. O que não afrouxou foi a regra que importa: **toda resposta registrada tem a confiança declarada**. Pular não registra nada.
@@ -384,6 +413,19 @@ O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 | `fecharSessaoPratica()` | o fechamento de fato do conjunto; `finalizarSessaoPratica()` passou a perguntar antes quando há questões em branco |
 | `notaDaFavorita(id,qid)` / `salvarNotaFavorita(id,qid,txt)` / `abrirNotaFavorita(qid)` | a anotação pessoal da questão salva (salva a questão junto, se ainda não estava) |
 | `resumoCartoesFeitos(id)` | quantos flashcards a pessoa já fez — o cartão separado em Meu Desempenho |
+
+**Funções-chave acrescentadas na segunda rodada de 22/09:**
+
+| Função | O que faz |
+|---|---|
+| `conteudoDaJanela(seq, letra, desloc, i)` | o estágio que aquela turma cursa na janela *i* — pelo quadro do ano (`turmasPorJanela`) quando ele existe, pelo ciclo quando não |
+| `sessaoDeHoje(u)` / `montarSessaoRecomendadaDeHoje()` | a sessão do dia: continuar a que existe, ou montar a de hoje |
+| `diasDeAtividade(id)` / `abrirDiaDoHistorico(dia)` | o histórico por dia e o feedback do dia inteiro, montado na hora |
+| `cartoesFeitosNoDia(id, dia)` | quantos cartões naquele dia (`{n, exato}`) |
+| `isFavoritoCartao` / `toggleFavoritoCartao` / `meusCartoesFavoritos` | os flashcards salvos |
+| `revisarCartoesFavoritos()` / `revisarSoEsteCartao(id)` | revisar a pilha de cartões salvos, ou um só |
+| `renderProvasESimulados()` / `abaProvas()` | a tela única de prova inteira, com as duas abas |
+| `nuvemTabelaNaoExiste(e)` / `NUVEM_CAMPOS_NOVOS` | tolerância a tabela ou coluna que o banco de quem não rodou o SQL ainda não tem |
 | `mapaPrevalenciasAssuntos()` | prevalência de todos os assuntos calculada uma vez por gravação (cache por `_geracaoDb`) |
 
 **Funções-chave acrescentadas na revisão de 20/09:**
@@ -591,3 +633,23 @@ A ponte `window.EscDados` ganhou `registrarSimulados`, `registrarTaxonomia`, `re
 (8) **O primeiro quadrado de Provas Antigas parou de ficar maior que os outros.** A causa era uma regra de CSS de fora da grade (`.card + .card{margin-top:1rem}`) que se aplicava a todos os cartões **menos ao primeiro**, e por isso destacava justamente o "Esc — Banco Didático 2026". Junto, os cartões de prova passaram a alinhar os botões na base, para o nome de instituição que quebra em duas linhas não desalinhar a grade.
 
 **Verificado neste ambiente, com o código rodando em Node dentro de um navegador de mentira** (o repositório não tem Playwright aqui): as 29 rotas nos 4 papéis desenhando sem erro de JavaScript (116 telas); a fila de questões com buracos — marcar, pular, responder fora de ordem, voltar e encontrar a marca e os riscos onde estavam —, inclusive atravessando o ida-e-volta pelo `localStorage` (o buraco vira `null` no JSON e continua buraco) e com o formato **antigo** de sessão salva abrindo sem perder nada; o histórico registrando só o que foi respondido; a anotação criando o favorito quando não havia, sobrevivendo à gravação, entrando na fila da nuvem e sumindo junto ao desfavoritar; o ritmo da nuvem (2 s, teto, fila grande subindo na hora); e a contagem de flashcards batendo com as revisões feitas. **O que não deu para verificar daqui:** o projeto Supabase de verdade (a rede desta máquina bloqueia `supabase.co`) — a coluna `favoritos.nota` precisa ser criada rodando o `nuvem/esquema.sql` no painel.
+
+**Calendário do 5º ano, sessão do dia e favoritos de flashcard (22/09/2026, segunda rodada).** Oito pedidos do usuário, mais o calendário real do 5º ano, trazido por ele em `.docx`.
+
+(1) **O 5º ano ganhou o calendário de verdade** (seção "Grupos e rodízio de blocos"): doze janelas de data, doze estágios e doze turmas (A a L), transcritos do quadro "CURSO MÉDICO – 5ª SÉRIE – 2026". Os quatro blocos de exemplo que estavam ali saíram. O achado da rodada: **esse rodízio não é um ciclo** — o quadro emparelha os estágios dois a dois e troca as duas metades do ano no meio do caminho, e nenhuma conta a partir do índice reproduz isso. Em vez de forçar, cada estágio passou a poder carregar a linha do quadro impresso (`turmasPorJanela`), e `conteudoDaJanela()` virou o único lugar onde se decide "quem cursa o quê, em qual janela" — o 3º ano continua girando em ciclo, sem uma linha de mudança.
+
+(2) **A sessão recomendada virou a sessão do dia**: sair e voltar continua o mesmo conjunto, com o que já foi respondido; o conjunto só se renova quando o dia vira ou quando o anterior termina, e um conjunto de outro dia não é descartado sem perguntar.
+
+(3) **Meu Desempenho enxugou**: saiu a barra de cobertura do banco (o ladrilho ao lado já dá o número) e os gráficos caíram de 180 para 140 px.
+
+(4) **Provas Antigas e Simulados viraram uma tela com duas abas** — "Provas e Simulados" —, com o histórico de notas embaixo das duas e as rotas antigas ainda respondendo.
+
+(5) **O Histórico de Atividade passou a contar o dia**, não só o conjunto: questões dentro e fora de conjunto, acerto, chutes, dúvidas, quantos flashcards e quais conjuntos fecharam ali — com o dia clicável, reabrindo o feedback questão a questão.
+
+(6) **Flashcard agora se favorita**, com estrela no próprio cartão, e Favoritos passou a ter duas abas (Questões | Flashcards), com "Revisar os cartões salvos" para percorrer a pilha.
+
+(7) **O botão "Mostrar resposta" saiu**: o cartão é o botão, e o convite para virar fica dentro dele.
+
+(8) **A nuvem ficou tolerante a banco desatualizado.** Esta rodada acrescenta uma tabela (`favoritos_cartoes`) e uma coluna (`dias_cartoes.quantidade`), e um 404 numa tabela nova derrubaria a DESCIDA inteira de quem ainda não rodou o `esquema.sql` — uma novidade quebrando o que já funcionava. Agora coluna que falta é reenviada sem ela, tabela que falta é pulada, o resto sincroniza igual e o Perfil diz o que está faltando.
+
+**Verificado com Chromium/Playwright e com o código rodando em Node:** o quadro do 5º ano conferido **célula a célula** contra o `.docx` — as 12 turmas × 12 janelas, cada turma passando pelos 12 estágios sem repetir e cada janela com uma turma por estágio —, com o 3º ano continuando exatamente como era; a sessão do dia sendo retomada em vez de re-sorteada, e perguntando quando o conjunto é de outro dia; o histórico somando conjunto + questão solta + cartões no mesmo dia e abrindo o dia inteiro no feedback; o favorito de cartão sobrevivendo à gravação e entrando na fila da nuvem; a contagem de cartões do dia; as 29 rotas nos 4 papéis sem erro de JavaScript (116 telas); e as telas novas olhadas uma a uma no navegador. **O que continua pendente daqui:** rodar o `nuvem/esquema.sql` no painel do Supabase (a rede desta máquina bloqueia `supabase.co`).
