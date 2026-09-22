@@ -136,6 +136,20 @@ svg.icon-lg{width:26px;height:26px}
 /* ---------- cartões / superfícies ---------- */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.35rem}
 .card + .card{margin-top:1rem}
+/* Dentro de uma grade, o espaço entre os cartões já é o `gap` — a margem de
+   cima aqui sobrava, e pior: ela só não caía no PRIMEIRO cartão (que não tem
+   um .card antes dele). O resultado era o primeiro quadradinho da grade
+   ficando mais alto que os outros, como se destacasse a prova mais recente
+   de propósito. É o caso de Provas Antigas, onde o primeiro cartão é o do
+   banco didático do ano corrente. */
+.grid > .card + .card{margin-top:0}
+/* Cartão de prova antiga: o nome da instituição ocupa uma ou duas linhas
+   conforme o tamanho ("Esc — Banco Didático" quebra, "IAMSPE" não), então os
+   botões são empurrados para a base para todos ficarem na mesma altura. */
+.prova-card{display:flex;flex-direction:column}
+.prova-card .prova-acoes{margin-top:auto;padding-top:.7rem}
+.prova-card .prova-ano{font-family:var(--font-display);font-size:1.6rem;line-height:1.1}
+.prova-card .prova-banca{font-weight:600;min-height:2.4em;display:flex;align-items:flex-start}
 .card-title{font-size:1.02rem;margin-bottom:.2rem}
 .card-flat{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
 
@@ -194,10 +208,13 @@ tr:last-child td{border-bottom:none}
 .main{margin-left:252px;flex:1;min-width:0;display:flex;flex-direction:column}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:20}
 .topbar-title{font-size:1.05rem}
-.page{padding:2rem;max-width:var(--maxw);width:100%;animation:page-in .22s ease}
-/* Cada navegação recria o conteúdo do zero (innerHTML), então esta animação
-   toca sozinha a cada troca de tela — um sinal sutil de que algo mudou,
-   sem esperar o usuário reparar via scroll ou título. */
+.page{padding:2rem;max-width:var(--maxw);width:100%}
+.page.entrando{animation:page-in .22s ease}
+/* A animação de entrada é um sinal sutil de que a TELA mudou, sem esperar o
+   usuário reparar via scroll ou título. Por isso ela vive numa classe à
+   parte, posta só na troca de tela (ver desenharTela): quando o que muda é
+   o conteúdo da mesma tela — marcar uma alternativa, responder uma questão —
+   ela não toca, senão a tela pareceria piscar a cada clique. */
 @keyframes page-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .page-header{margin-bottom:1.6rem}
 .page-header p{color:var(--muted);margin-top:.3rem}
@@ -234,6 +251,9 @@ tr:last-child td{border-bottom:none}
 .mapa-pill.acertou{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
 .mapa-pill.errou{background:var(--danger-soft);border-color:var(--danger);color:var(--danger)}
 .mapa-pill.agora{border-color:var(--ink-2);color:var(--ink)}
+/* marcada mas ainda sem confiança declarada: a questão tem um rascunho
+   esperando, e o âmbar é o mesmo aviso usado no resto da plataforma */
+.mapa-pill.marcada{border-color:var(--amber);color:var(--ink)}
 .mapa-pill.atual{outline:2px solid var(--accent);outline-offset:1px}
 /* o pontinho âmbar marca os dois casos que a plataforma trata como "não
    sabida": acerto no chute e erro com certeza */
@@ -302,6 +322,12 @@ tr:last-child td{border-bottom:none}
 .feedback-box.no{background:var(--danger-soft);border:1px solid var(--danger)}
 .qcard-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border)}
 .why-tag{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:1rem}
+/* A anotação que o aluno escreveu para si mesmo numa questão salva. Fica com
+   a cara de papel de rascunho (a faixa âmbar na lateral) para não se
+   confundir com a explicação da questão, que é material da plataforma. */
+.nota-pessoal{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius-sm);padding:.7rem .9rem}
+.nota-pessoal-titulo{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.nota-pessoal .text-sm{white-space:pre-wrap}
 
 /* ---------- legenda e seletor de período dos gráficos de desempenho ---------- */
 .legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--muted);margin-top:.5rem;align-items:center}
@@ -1186,7 +1212,7 @@ function dbPadrao(){
     revisoesFlashcards: {},  // revisoesFlashcards[usuarioId][cartaoId] = {repeticoes,fator,intervalo,proximaRevisao}
     livroOuro: copiaProfunda(SEED_LIVRO_OURO), // doações e agradecimentos
     respostas: [],       // log de respostas dos usuários (retrieval practice)
-    favoritos: [],        // {usuarioId, questaoId}
+    favoritos: [],        // {usuarioId, questaoId, data, nota} — nota é a anotação pessoal da questão salva
     revisoes: {},          // revisoes[usuarioId][questaoId] = {repeticoes,fator,intervalo,proximaRevisao,ultimaConfianca}
     simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
     resultadosSimulados: [],
@@ -1698,7 +1724,9 @@ function importarBackupArquivo(inputEl){
    CONFLITO (a mesma pessoa em dois aparelhos ao mesmo tempo):
    - Respostas, sessões e notas de simulado são REGISTROS: nunca se
      sobrescrevem, apenas se juntam. Responder no celular e no computador
-     resulta nas duas respostas, como tem de ser.
+     resulta nas duas respostas, como tem de ser. (O conjunto concluído é a
+     exceção: é registro, mas ATUALIZÁVEL, porque a pessoa pode voltar do
+     resumo e responder uma questão que tinha ficado em branco.)
    - Repetição espaçada, favoritos, metas e cartões pessoais são ESTADO: vale
      a versão mais recente. No pior caso, uma revisão feita nos mesmos
      segundos nos dois aparelhos fica com o resultado de um só — e é por
@@ -1717,6 +1745,36 @@ let nuvemSessao = null;
 let nuvemEstado = { sincronizando:false, ultimoErro:null, ultimaSyncEm:null, sessaoExpirada:false };
 let _nuvemTimer = null;
 let _nuvemDentroDaSync = false;
+
+/* ---------------------------- o ritmo da sincronização --------------------
+   Subir uma chamada de rede por clique seria desperdício (e, num celular no
+   corredor do hospital, bateria); subir de minuto em minuto faria a pessoa
+   trocar de aparelho e não encontrar o que acabou de fazer. O acordo é este:
+
+   | quando                          | quando sobe            |
+   |---------------------------------|------------------------|
+   | acabou de mexer em alguma coisa | 2 s depois             |
+   | mexeu várias vezes seguidas     | tudo junto, num envio  |
+   | aba aberta e parada             | a cada 45 s            |
+   | voltou para a aba               | na hora                |
+   | a internet voltou               | na hora                |
+   | entrou na conta                 | na hora                |
+   | saiu da conta                   | na hora                |
+   | a fila ficou grande             | na hora                |
+
+   AGRUPAR é o coração disso: cada gravação adia o envio em 2 s, para que
+   responder três questões seguidas vire UM envio e não três. O teto existe
+   para o caso de quem não para de mexer: passados 5 s da primeira alteração
+   que ainda está esperando, o lote sobe do mesmo jeito — sem ele, uma pessoa
+   mexendo sem parar ficaria indefinidamente com a fila no navegador. */
+const NUVEM_RITMO = {
+  agrupar: 2000,       // espera depois de cada alteração, para juntar as seguintes
+  tetoAgrupar: 5000,   // nunca segura uma alteração mais do que isto
+  ocioso: 45000,       // aba aberta e sem atividade: confere a nuvem de tempos em tempos
+  filaGrande: 25,      // fila deste tamanho não espera: sobe na hora
+};
+let _nuvemTimerOcioso = null;
+let _nuvemEsperandoDesde = 0;  // quando entrou a primeira alteração do lote que está esperando
 
 function nuvemLigada(){ return !!(CONFIG.nuvem && CONFIG.nuvem.url && CONFIG.nuvem.chaveAnon); }
 function nuvemConectado(){ return nuvemLigada() && !!(nuvemSessao && nuvemSessao.usuarioId); }
@@ -1991,7 +2049,7 @@ const NUVEM_TABELAS = {
     aplicar: linha => {
       const i = db.favoritos.findIndex(f => f.usuarioId === linha.usuario_id && f.questaoId === linha.questao_id);
       if(linha.removido){ if(i >= 0) db.favoritos.splice(i, 1); return; }
-      const fav = { usuarioId: linha.usuario_id, questaoId: linha.questao_id, data: linha.data };
+      const fav = { usuarioId: linha.usuario_id, questaoId: linha.questao_id, data: linha.data, nota: linha.nota || "" };
       if(i >= 0) db.favoritos[i] = fav; else db.favoritos.push(fav);
     },
   },
@@ -2013,14 +2071,19 @@ const NUVEM_TABELAS = {
     },
   },
   sessoes: {
-    tipo: "registro", tempo: "criado_em",
+    // é registro (um conjunto concluído nunca vira outro), mas ATUALIZÁVEL:
+    // depois de ver o resumo dá para voltar e responder uma questão que
+    // ficou em branco, e aí a linha daquele conjunto tem de mudar em vez de
+    // conviver com uma cópia velha. A chave é a id do conjunto.
+    tipo: "registro", atualizavel: true, tempo: "criado_em",
     chave: r => r.id,
     aplicar: linha => {
-      if(db.sessoes.some(s => s.id === linha.id)) return;
-      db.sessoes.push({
+      const registro = {
         id: linha.id, usuarioId: linha.usuario_id, tipo: linha.tipo, data: linha.data,
         total: linha.total, acertos: linha.acertos, itens: linha.itens || [],
-      });
+      };
+      const i = db.sessoes.findIndex(s => s.id === linha.id);
+      if(i >= 0) db.sessoes[i] = registro; else db.sessoes.push(registro);
     },
   },
   resultados_simulados: {
@@ -2056,7 +2119,7 @@ function nuvemEnfileirar(tabela, registro){
   const desc = NUVEM_TABELAS[tabela];
   if(!desc) return;
   const chave = desc.chave(registro);
-  if(desc.tipo === "estado"){
+  if(desc.tipo === "estado" || desc.atualizavel){
     // estado não se acumula: a versão nova substitui a que ainda não subiu
     const i = db.filaNuvem.findIndex(op => op.tabela === tabela && op.chave === chave);
     if(i >= 0){ db.filaNuvem[i].registro = registro; return; }
@@ -2107,7 +2170,8 @@ function nuvemRegistrar(o){
   if(o.favorito && o.favorito.usuarioId === meuId){
     nuvemEnfileirar("favoritos", {
       usuario_id: o.favorito.usuarioId, questao_id: o.favorito.questaoId,
-      data: o.favorito.data || hojeISO(), removido: !!o.favorito.removido,
+      data: o.favorito.data || hojeISO(), nota: o.favorito.nota || "",
+      removido: !!o.favorito.removido,
     });
   }
   if(o.cartaoPessoal && o.cartaoPessoal.usuarioId === meuId){
@@ -2204,13 +2268,32 @@ function nuvemErroPassageiro(e){
   return false;
 }
 
+/* A anotação das questões salvas (favoritos.nota) é uma coluna nova. Quem
+   criou o banco antes dela ainda não a tem, e o servidor recusaria o lote
+   inteiro — a pessoa perderia a sincronização dos favoritos por causa de um
+   campo que ela nem usa. Então: na primeira recusa por causa da coluna, o
+   envio é refeito sem a anotação e assim segue até a página ser recarregada
+   (depois de rodar o nuvem/esquema.sql, um F5 volta a mandar a anotação).
+   A anotação em si nunca se perde: ela vive no navegador como todo o resto. */
+let _nuvemFavoritosSemNota = false;
 async function nuvemPostarLote(tabela, desc, registros){
-  const juntar = desc.tipo === "registro" ? "resolution=ignore-duplicates" : "resolution=merge-duplicates";
-  await nuvemChamar("/rest/v1/" + tabela, {
-    method: "POST",
-    headers: { "Prefer": juntar + ",return=minimal" },
-    body: JSON.stringify(registros),
-  });
+  const juntar = (desc.tipo === "registro" && !desc.atualizavel) ? "resolution=ignore-duplicates" : "resolution=merge-duplicates";
+  let corpo = registros;
+  if(tabela === "favoritos" && _nuvemFavoritosSemNota){
+    corpo = registros.map(r => { const copia = Object.assign({}, r); delete copia.nota; return copia; });
+  }
+  try{
+    await nuvemChamar("/rest/v1/" + tabela, {
+      method: "POST",
+      headers: { "Prefer": juntar + ",return=minimal" },
+      body: JSON.stringify(corpo),
+    });
+  }catch(e){
+    const semAColuna = tabela === "favoritos" && !_nuvemFavoritosSemNota && /nota/i.test(e.message || "");
+    if(!semAColuna) throw e;
+    _nuvemFavoritosSemNota = true;
+    await nuvemPostarLote(tabela, desc, registros);
+  }
 }
 
 function nuvemTirarDaFila(ops){
@@ -2362,11 +2445,55 @@ async function nuvemReceberMudancas(){
 }
 
 /* Chamada depois de cada gravação: junta as mudanças e sobe em bloco poucos
-   segundos depois, em vez de uma chamada de rede por clique. */
+   segundos depois, em vez de uma chamada de rede por clique. Ver NUVEM_RITMO,
+   no alto desta seção, para a tabela completa de "quando sobe o quê". */
 function nuvemAgendarSync(){
   if(!nuvemConectado() || _nuvemDentroDaSync) return;
+  // fila grande não espera: quanto mais coisa parada no navegador, mais se
+  // perde se o aparelho for fechado antes do próximo envio
+  if(nuvemPendentes() >= NUVEM_RITMO.filaGrande){ nuvemSincronizarAgora(); return; }
+  const agora = Date.now();
+  if(!_nuvemEsperandoDesde) _nuvemEsperandoDesde = agora;
+  const restaDoTeto = NUVEM_RITMO.tetoAgrupar - (agora - _nuvemEsperandoDesde);
+  const espera = Math.max(0, Math.min(NUVEM_RITMO.agrupar, restaDoTeto));
   if(_nuvemTimer) clearTimeout(_nuvemTimer);
-  _nuvemTimer = setTimeout(() => { nuvemSincronizar({silencioso:true}); }, 2500);
+  _nuvemTimer = setTimeout(() => { _nuvemTimer = null; nuvemSincronizarAgora(); }, espera);
+}
+
+/* Sobe agora, sem esperar o agrupamento: é o caminho de quem voltou para a
+   aba, recuperou a internet, entrou ou saiu da conta, e também o fim da
+   espera acima. Devolve a promessa da sincronização, para quem precisa
+   esperar o fim dela (sair da conta, por exemplo). */
+function nuvemSincronizarAgora(opcoes = {}){
+  if(_nuvemTimer){ clearTimeout(_nuvemTimer); _nuvemTimer = null; }
+  if(_nuvemTimerOcioso){ clearTimeout(_nuvemTimerOcioso); _nuvemTimerOcioso = null; }
+  _nuvemEsperandoDesde = 0;
+  const promessa = nuvemSincronizar(Object.assign({silencioso:true}, opcoes));
+  const depois = (subiu) => {
+    // sobrou fila porque algo entrou nela durante o envio: novo lote, mesma
+    // regra de agrupamento. Se a sincronização falhou, quem tenta de novo é o
+    // ciclo da aba aberta (ou a volta da internet) — insistir aqui viraria um
+    // laço de tentativas a cada dois segundos com a internet caída.
+    if(subiu && nuvemPendentes() > 0){ nuvemAgendarSync(); return; }
+    nuvemCicloOcioso();
+  };
+  promessa.then(depois, () => depois(false));
+  return promessa;
+}
+
+/* Aba aberta e sem ninguém mexendo: de 45 em 45 s a plataforma confere se há
+   novidade vinda de outro aparelho. Com a aba escondida o ciclo para — não
+   adianta gastar rede numa tela que ninguém está vendo, e voltar para a aba
+   já sincroniza na hora (ver nuvemLigarGatilhos). */
+function nuvemCicloOcioso(){
+  if(_nuvemTimerOcioso){ clearTimeout(_nuvemTimerOcioso); _nuvemTimerOcioso = null; }
+  if(!nuvemConectado() || typeof window === "undefined") return;
+  if(typeof document !== "undefined" && document.hidden) return;
+  _nuvemTimerOcioso = setTimeout(() => {
+    _nuvemTimerOcioso = null;
+    if(typeof document !== "undefined" && document.hidden) return;
+    nuvemSincronizarAgora();
+  }, NUVEM_RITMO.ocioso);
 }
 
 /* ---------------------------- primeira entrada ---------------------------
@@ -2460,7 +2587,9 @@ async function nuvemEntrarPelaTela(email, senha, opcoes = {}){
     saveState();
     toast("Bem-vindo(a), " + u.nome.split(" ")[0] + "! Sincronizando seu estudo…");
     navigate("inicio");
-    await nuvemSincronizar({silencioso:true, forcarRedesenho:true});
+    // entrar é um dos momentos "na hora": a fila que ficou deste aparelho sobe
+    // e o que foi feito nos outros desce antes de a pessoa começar a estudar
+    await nuvemSincronizarAgora({forcarRedesenho:true});
     const locais = nuvemUsuariosLocaisComDados();
     if(locais.length) abrirModalTrazerDadosLocais();
     return { ok:true };
@@ -2491,8 +2620,13 @@ async function nuvemCadastrarPelaTela(dados){
   }
 }
 
+/* Sair da conta é o último momento em que este aparelho pode subir o que
+   fez — depois disso a fila fica esperando a próxima entrada. Por isso a
+   saída não pergunta nada quando dá para resolver sozinha: sobe na hora e
+   só então sai. A pergunta volta a existir no único caso em que ela tem
+   resposta possível — o envio não passou (sem internet, servidor fora) e a
+   pessoa precisa decidir se espera ou se sai assim mesmo. */
 function nuvemSairDaConta(){
-  const pendentes = nuvemPendentes();
   const seguir = () => {
     nuvemSair();
     limparEstadoDasTelas();
@@ -2500,16 +2634,19 @@ function nuvemSairDaConta(){
     navigate("landing");
     toast("Você saiu da conta. Este navegador continua com os dados guardados.");
   };
-  if(pendentes > 0){
+  if(nuvemPendentes() === 0){ seguir(); return; }
+  toast("Subindo o que faltava antes de sair…");
+  nuvemSincronizarAgora({semRedesenhar:true}).then(() => {
+    const restaram = nuvemPendentes();
+    if(restaram === 0){ seguir(); return; }
     abrirModalTitulado("Sair com envios pendentes", `
-      <p class="text-sm">Ainda há <strong>${pendentes}</strong> ${pendentes===1?"alteração":"alterações"} esperando para subir para a nuvem. Se você sair agora, elas ficam guardadas neste navegador e sobem quando você entrar de novo, deste mesmo aparelho.</p>
+      <p class="text-sm">Não deu para subir tudo agora: ainda há <strong>${restaram}</strong> ${restaram===1?"alteração":"alterações"} esperando. Se você sair assim mesmo, elas ficam guardadas neste navegador e sobem quando você entrar de novo, deste mesmo aparelho.</p>
+      ${nuvemEstado.ultimoErro ? `<p class="text-xs muted mt-1">${escapeHtml(nuvemEstado.ultimoErro)}</p>` : ""}
       <div class="flex gap-1 mt-3">
-        <button class="btn btn-primary" onclick="fecharModal(); nuvemSincronizar().then(()=>{ nuvemSair(); limparEstadoDasTelas(); state.usuarioAtualId=null; navigate('landing'); })">Sincronizar e sair</button>
+        <button class="btn btn-primary" onclick="fecharModal(); nuvemSairDaConta()">Tentar de novo e sair</button>
         <button class="btn btn-secondary" onclick="fecharModal(); nuvemSairForcado()">Sair mesmo assim</button>
       </div>`);
-    return;
-  }
-  seguir();
+  });
 }
 function nuvemSairForcado(){
   nuvemSair();
@@ -2551,7 +2688,7 @@ function confirmarTrazerDadosLocais(idLocal){
   const movidos = nuvemAdotarDadosLocais(idLocal);
   fecharModal();
   toast(movidos ? (movidos + " registros passaram a ser da sua conta. Subindo para a nuvem…") : "Nada a trazer.");
-  nuvemSincronizar({silencioso:true, forcarRedesenho:true});
+  nuvemSincronizarAgora({forcarRedesenho:true});
   render();
 }
 
@@ -2862,7 +2999,7 @@ function nuvemResumoStatus(){
   if(nuvemEstado.sincronizando) return { rotulo:"Sincronizando…", detalhe:"Enviando e recebendo as novidades.", cor:"accent", icone:"refresh" };
   if(nuvemEstado.ultimoErro) return { rotulo:"Pendente", detalhe:nuvemEstado.ultimoErro, cor:"amber", icone:"alert" };
   const p = nuvemPendentes();
-  if(p > 0) return { rotulo: p + (p===1?" item na fila":" itens na fila"), detalhe:"Sobem na próxima sincronização.", cor:"amber", icone:"upload" };
+  if(p > 0) return { rotulo: p + (p===1?" item na fila":" itens na fila"), detalhe:"Sobem em segundos, sozinhos.", cor:"amber", icone:"upload" };
   const q = db.nuvem && db.nuvem.ultimaSyncEm;
   return { rotulo:"Tudo sincronizado", detalhe: q ? ("Última vez às " + new Date(q).toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"})) : "Conta ligada.", cor:"accent", icone:"check" };
 }
@@ -2956,7 +3093,8 @@ function renderCardNuvem(){
         ${locais.length ? `<button class="btn btn-secondary btn-sm" onclick="abrirModalTrazerDadosLocais()">${iconeSvg("upload")} Trazer estudo deste navegador</button>` : ""}
         <button class="btn btn-secondary btn-sm" onclick="nuvemSairDaConta()">${iconeSvg("logout")} Sair da conta</button>
       </div>
-      <p class="text-xs muted mt-2">Sem internet a plataforma continua funcionando: o que você fizer fica numa fila e sobe sozinho quando a conexão voltar.</p>
+      <p class="text-xs muted mt-2">O que você faz sobe sozinho poucos segundos depois, tudo junto num envio só; com a aba aberta e parada, a plataforma confere a nuvem a cada 45 segundos, e ao voltar para a aba, ao recuperar a internet, ao entrar e ao sair da conta ela sincroniza na hora.</p>
+      <p class="text-xs muted mt-1">Sem internet a plataforma continua funcionando: o que você fizer fica numa fila e sobe sozinho quando a conexão voltar.</p>
     ` : `
       <p class="text-sm muted">A nuvem está configurada, mas você entrou sem conta — o estudo fica só neste navegador. Saia e entre com e-mail e senha para sincronizar.</p>
       <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
@@ -2969,14 +3107,23 @@ function renderCardNuvem(){
 
 /* Ligações automáticas: sincroniza ao voltar a internet, ao voltar para a aba
    e de tempos em tempos, para o celular receber o que foi feito no
-   computador sem a pessoa pedir. */
+   computador sem a pessoa pedir. Os três casos "na hora" da tabela de
+   NUVEM_RITMO moram aqui; os outros dois (entrar e sair da conta) ficam em
+   nuvemEntrarPelaTela e nuvemSairDaConta, junto do resto daquele caminho. */
 function nuvemLigarGatilhos(){
   if(!nuvemLigada() || typeof window === "undefined") return;
-  window.addEventListener("online", () => nuvemSincronizar({silencioso:true, forcarRedesenho:true}));
+  // a internet voltou: sobe na hora o que ficou esperando
+  window.addEventListener("online", () => nuvemSincronizarAgora({forcarRedesenho:true}));
   document.addEventListener("visibilitychange", () => {
-    if(!document.hidden) nuvemSincronizar({silencioso:true});
+    // voltou para a aba: na hora, para a tela já mostrar o que foi feito no
+    // outro aparelho. Saiu da aba: o ciclo de 45 s para até ela voltar.
+    if(document.hidden){
+      if(_nuvemTimerOcioso){ clearTimeout(_nuvemTimerOcioso); _nuvemTimerOcioso = null; }
+    }else{
+      nuvemSincronizarAgora();
+    }
   });
-  setInterval(() => nuvemSincronizar({silencioso:true}), 120000);
+  nuvemCicloOcioso();
 }
 
 
@@ -3614,13 +3761,46 @@ function respostasDaQuestao(usuarioId, questaoId){
 function jaFoiRespondida(usuarioId, questaoId){ return respostasDaQuestao(usuarioId,questaoId).length>0; }
 function ultimaResposta(usuarioId, questaoId){ const rs=respostasDaQuestao(usuarioId,questaoId); return rs.length?rs[rs.length-1]:null; }
 function isFavorita(usuarioId, questaoId){ return db.favoritos.some(f=>f.usuarioId===usuarioId && f.questaoId===questaoId); }
+function favoritoDe(usuarioId, questaoId){ return db.favoritos.find(f=>f.usuarioId===usuarioId && f.questaoId===questaoId) || null; }
 function toggleFavorito(usuarioId, questaoId){
   const idx = db.favoritos.findIndex(f=>f.usuarioId===usuarioId && f.questaoId===questaoId);
-  if(idx>=0) db.favoritos.splice(idx,1); else db.favoritos.push({usuarioId,questaoId,data:hojeISO()});
+  const nota = idx>=0 ? (db.favoritos[idx].nota||"") : "";
+  if(idx>=0) db.favoritos.splice(idx,1); else db.favoritos.push({usuarioId,questaoId,data:hojeISO(),nota:""});
   // desfavoritar também sobe: o outro aparelho precisa saber que saiu
-  nuvemRegistrar({favorito:{usuarioId, questaoId, data:hojeISO(), removido: idx>=0}});
+  nuvemRegistrar({favorito:{usuarioId, questaoId, data:hojeISO(), nota, removido: idx>=0}});
   saveState();
   return idx<0; // retorna true se acabou de favoritar
+}
+
+/* ---------- a anotação da questão salva ----------------------------------
+   Guardar uma questão quase sempre vem com um motivo: "não entendi por que
+   não é a C", "conferir a dose", "cai todo ano". Esse motivo sumia — a
+   pessoa voltava à lista de favoritos semanas depois e via só o enunciado,
+   sem lembrar o que queria tirar a limpo ali.
+
+   A anotação é PESSOAL: fica junto do favorito daquele usuário e não tem
+   nada a ver com os comentários públicos da questão (aqueles são dúvida
+   feita à equipe, na fila de dúvidas, e todo mundo lê). Ela sobe para a
+   nuvem com o resto do favorito, então acompanha a pessoa entre aparelhos.
+
+   Anotar numa questão que ainda não estava salva salva a questão junto: era
+   isso que a pessoa estava querendo fazer de qualquer jeito. */
+function notaDaFavorita(usuarioId, questaoId){
+  const f = favoritoDe(usuarioId, questaoId);
+  return (f && f.nota) || "";
+}
+function salvarNotaFavorita(usuarioId, questaoId, texto){
+  const nota = (texto||"").trim().slice(0, 2000);
+  let f = favoritoDe(usuarioId, questaoId);
+  const novaFavorita = !f;
+  if(!f){
+    f = {usuarioId, questaoId, data:hojeISO(), nota:""};
+    db.favoritos.push(f);
+  }
+  f.nota = nota;
+  nuvemRegistrar({favorito:{usuarioId, questaoId, data:f.data||hojeISO(), nota, removido:false}});
+  saveState();
+  return { novaFavorita, apagou: !nota };
 }
 
 /* ---------- repetição espaçada (baseada no algoritmo SM-2, simplificada) ----------
@@ -4314,7 +4494,7 @@ function gerarNotificacoes(usuario){
     const cardsHoje = cartoesRevisadosHoje(usuario.id);
     if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" cartão(ões) para bater sua meta de revisão rápida.", rota:"flashcards"});
     const pendente = sessaoEmAndamentoDe(usuario);
-    if(pendente) notifs.push({icon:"refresh", texto:"Você tem uma sessão pela metade ("+(pendente.respostasSessao||[]).length+" de "+pendente.itens.length+") esperando para continuar.", rota:"estudar"});
+    if(pendente) notifs.push({icon:"refresh", texto:"Você tem uma sessão pela metade ("+respostasFeitas(pendente).length+" de "+pendente.itens.length+") esperando para continuar.", rota:"estudar"});
   }
   if(usuario.papel==="admin"){
     const pendCad = db.usuarios.filter(x=>x.status==="pendente").length;
@@ -4374,6 +4554,26 @@ function sequenciaDiasCartoes(usuarioId){
   let seq=0, cursor=hojeISO();
   while(dias.has(cursor)){ seq++; cursor = somarDias(cursor,-1); }
   return seq;
+}
+/* Quantos cartões a pessoa já revisou — o número que a tela de desempenho
+   mostra ao lado (e não junto) das questões. São duas unidades diferentes:
+   um cartão leva segundos e não tem acerto nem erro, só autoavaliação, então
+   somá-lo às questões respondidas daria um total que não significa nada.
+   Aqui contam as REVISÕES (cada vez que um cartão foi visto, que é o esforço
+   de fato) e, à parte, quantos cartões diferentes já passaram pelo baralho. */
+function resumoCartoesFeitos(usuarioId){
+  const revs = (db.revisoesFlashcards && db.revisoesFlashcards[usuarioId]) || {};
+  const entradas = Object.values(revs);
+  const revisoes = entradas.reduce((soma, r) => soma + (r.vistas || 1), 0);
+  const hoje = hojeISO();
+  return {
+    revisoes,
+    cartoes: entradas.length,
+    hoje: entradas.filter(r => r.ultimaData === hoje).length,
+    dias: ((db.diasCartoes && db.diasCartoes[usuarioId]) || []).length,
+    sequencia: sequenciaDiasCartoes(usuarioId),
+    vencidos: entradas.filter(r => r.proximaRevisao && r.proximaRevisao <= hoje).length,
+  };
 }
 function metaCartoesDoUsuario(usuario){
   return (usuario && usuario.metaCartoesDia)
@@ -4609,11 +4809,15 @@ window.addEventListener("keydown", function(e){
     if(tecla==="d") irQuestaoSimulado(1);
   } else if(state.route==="sessao" && state.sessaoAtual && !state.sessaoAtual.finalizada){
     const s = state.sessaoAtual;
-    const respondidaAqui = s.indiceAtual < s.respostasSessao.length;
     if(tecla==="a" && s.indiceAtual>0) voltarQuestaoSessao();
-    if(tecla==="d" && respondidaAqui) proximaQuestaoSessao();
+    // passar sem responder é permitido: a questão fica em branco e volta depois
+    if(tecla==="d" && s.indiceAtual < s.itens.length-1) proximaQuestaoSessao();
   }
 });
+
+/* Qual tela está desenhada agora. Serve para o render() saber se precisa
+   montar a estrutura inteira ou só trocar o miolo (ver o fim da função). */
+let _telaDesenhada = null;
 
 function render(){
   const app = document.getElementById("app");
@@ -4621,14 +4825,14 @@ function render(){
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
   if(usuarioAtual() && rotasPublicas.includes(state.route)) state.route = "inicio";
 
-  if(state.route==="landing"){ app.innerHTML = renderLanding(); return; }
-  if(state.route==="login"){ app.innerHTML = renderLogin(); return; }
-  if(state.route==="cadastro"){ app.innerHTML = renderCadastro(); return; }
+  if(state.route==="landing"){ _telaDesenhada = null; app.innerHTML = renderLanding(); return; }
+  if(state.route==="login"){ _telaDesenhada = null; app.innerHTML = renderLogin(); return; }
+  if(state.route==="cadastro"){ _telaDesenhada = null; app.innerHTML = renderCadastro(); return; }
 
   // um administrador só entra nas rotas permitidas pelo seu nível
   const permissaoNecessaria = PERMISSAO_DA_ROTA[state.route];
   if(permissaoNecessaria && usuarioAtual().papel==="admin" && !podeAdmin(permissaoNecessaria)){
-    app.innerHTML = renderShell(renderSemPermissao(permissaoNecessaria));
+    desenharTela(renderSemPermissao(permissaoNecessaria));
     return;
   }
 
@@ -4672,8 +4876,45 @@ function render(){
     case "feedback-usuarios": conteudo = renderFeedbackUsuarios(); break;
     default: conteudo = renderInicio();
   }
-  app.innerHTML = renderShell(conteudo);
+  desenharTela(conteudo);
+}
+
+/* ---------- por que isto não é um `app.innerHTML = ...` e pronto ----------
+   Recriar a página inteira a cada clique fazia a tela PISCAR dentro de um
+   conjunto de questões: marcar uma alternativa, riscar outra ou responder
+   jogava fora todo o HTML e montava outro do zero, com a animação de entrada
+   tocando de novo a cada vez — como se a pessoa tivesse trocado de tela.
+
+   Agora a estrutura (menu e topo) só é montada quando não existe ainda. Na
+   mesma tela, o que muda é o miolo, e o menu e o topo são reescritos no
+   lugar (são pequenos e precisam acompanhar: o selo de cadastros pendentes,
+   o estado da nuvem, o nome do tema). A animação de entrada só toca quando
+   a tela realmente troca — que é o que ela existe para sinalizar. */
+function desenharTela(conteudoHtml){
+  const app = document.getElementById("app");
+  const pagina = document.getElementById("conteudoPagina");
+  const menu = document.getElementById("sidebarMenu");
+  const topo = document.getElementById("topoBarra");
+  const u = usuarioAtual();
+  const chave = (u ? u.id : "") + "|" + (state.modoAluno ? "aluno" : "papel");
+  if(pagina && menu && topo && _telaDesenhada && _telaDesenhada.chave === chave){
+    const trocouDeTela = _telaDesenhada.rota !== state.route;
+    menu.innerHTML = htmlMenuLateral(u);
+    topo.innerHTML = htmlTopo(u);
+    pagina.innerHTML = conteudoHtml;
+    if(trocouDeTela) animarEntradaDaPagina(pagina);
+  }else{
+    app.innerHTML = renderShell(conteudoHtml);
+  }
+  _telaDesenhada = { rota: state.route, chave };
   ativarGestoDeArrastar();
+}
+/* Reinicia a animação de entrada: sem tirar e repor a classe (com um toque no
+   layout no meio), o navegador entende que nada mudou e não toca nada. */
+function animarEntradaDaPagina(el){
+  el.classList.remove("entrando");
+  void el.offsetWidth;
+  el.classList.add("entrando");
 }
 
 /* --------------------------------------------------------------------------
@@ -4688,8 +4929,9 @@ function render(){
      senão é rolagem de página e a gente não interfere;
    - só vale a partir de 70px de deslocamento, para não trocar de questão
      quando o dedo escorrega ao tocar numa alternativa;
-   - as mesmas travas dos botões valem aqui: não dá para pular uma questão
-     ainda não respondida na prática, nem passar do fim do baralho;
+   - as mesmas travas dos botões valem aqui: não dá para passar do fim do
+     baralho, nem passar de um flashcard antes de virá-lo (na prática, pular
+     uma questão sem responder é permitido — ela fica em branco);
    - o cartão acompanha o dedo e volta sozinho se o arrasto não for suficiente,
      para que fique claro que houve ou não houve troca. */
 function ativarGestoDeArrastar(){
@@ -4750,9 +4992,9 @@ function avancarPorGesto(){
   const s = state.sessaoAtual; if(!s) return;
   if(state.route==="simulado-ativo" && !s.finalizado){ irQuestaoSimulado(1); return; }
   if(state.route==="sessao" && !s.finalizada){
-    const respondidaAqui = s.indiceAtual < s.respostasSessao.length;
-    if(!respondidaAqui){ toast("Responda esta questão antes de passar para a próxima."); return; }
-    proximaQuestaoSessao();
+    // sem trava: arrastar para o lado numa questão não respondida a deixa em
+    // branco, igual ao botão "Deixar para depois"
+    if(s.indiceAtual < s.itens.length-1) proximaQuestaoSessao();
   }
 }
 /* Arrastar para a DIREITA = voltar. */
@@ -4849,14 +5091,13 @@ function renderSemPermissao(permissao){
     <button class="btn btn-primary mt-3" onclick="navigate('inicio')">Voltar ao início</button>
   </div>`;
 }
-function renderShell(conteudoHtml){
-  const u = usuarioAtual();
+/* O menu lateral e o topo são montados à parte do conteúdo de propósito:
+   assim o render() consegue trocar SÓ o miolo da página quando a tela é a
+   mesma (ver render()), sem recriar a estrutura inteira a cada clique. */
+function htmlMenuLateral(u){
   const nav = navItemsParaPapel(u.papel);
   const pendCadastros = u.papel==="admin" ? db.usuarios.filter(x=>x.status==="pendente").length : 0;
   return `
-  <div class="backdrop" id="backdropMenu" onclick="fecharMenuMobile()"></div>
-  <div class="shell">
-    <aside class="sidebar" id="sidebarMenu">
       <div class="sidebar-brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
       ${(u.papel==="aluno"||state.modoAluno) ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
       <div class="nav-section-label">${rotuloPapel(u.papel)}</div>
@@ -4872,10 +5113,10 @@ function renderShell(conteudoHtml){
         <div class="nav-item" onclick="alternarTema()">${iconeSvg("theme")}<span>${document.documentElement.getAttribute("data-theme")==="dark"?"Tema claro":"Tema escuro"}</span></div>
         <div class="nav-item" onclick="navigate('perfil')">${iconeSvg("user")}<span>Perfil</span></div>
         <div class="nav-item" onclick="fazerLogout()">${iconeSvg("logout")}<span>Sair</span></div>
-      </div>
-    </aside>
-    <div class="main">
-      <div class="topbar">
+      </div>`;
+}
+function htmlTopo(u){
+  return `
         <div class="flex items-center gap-2">
           <button class="icon-btn hamburger" onclick="abrirMenuMobile()">${iconeSvg("menu")}</button>
           <div class="topbar-title">${tituloDaRota(state.route)}</div>
@@ -4884,9 +5125,17 @@ function renderShell(conteudoHtml){
           ${renderChipNuvem()}
           ${badgePapel(u.papel, u)}
           <span class="text-sm muted nowrap">${escapeHtml(u.nome)}</span>
-        </div>
-      </div>
-      <div class="page">${conteudoHtml}</div>
+        </div>`;
+}
+function renderShell(conteudoHtml){
+  const u = usuarioAtual();
+  return `
+  <div class="backdrop" id="backdropMenu" onclick="fecharMenuMobile()"></div>
+  <div class="shell">
+    <aside class="sidebar" id="sidebarMenu">${htmlMenuLateral(u)}</aside>
+    <div class="main">
+      <div class="topbar" id="topoBarra">${htmlTopo(u)}</div>
+      <div class="page entrando" id="conteudoPagina">${conteudoHtml}</div>
     </div>
   </div>`;
 }
@@ -5226,7 +5475,7 @@ function renderEstudar(){
     <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
       <div style="min-width:220px;flex:1">
         <div class="card-title" style="margin-bottom:.2rem">${iconeSvg("refresh")} Sessão em andamento</div>
-        <div class="text-sm muted">${(emAndamento.respostasSessao||[]).length} de ${emAndamento.itens.length} questão(ões) respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}. Continuar mantém a mesma fila, na mesma ordem — você não recomeça do zero.</div>
+        <div class="text-sm muted">${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} questão(ões) respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}. Continuar mantém a mesma fila, na mesma ordem, com as marcações e os riscos como você deixou — você não recomeça do zero.</div>
       </div>
       <div class="flex gap-1" style="flex-wrap:wrap">
         <button class="btn btn-primary" onclick="retomarSessaoEmAndamento()">Continuar de onde parei</button>
@@ -5408,6 +5657,7 @@ function abrirQuestaoCompleta(qid, opts){
   const esp = getEspecialidade(q.especialidadeId), area = getArea(q.areaId);
   const ultima = u ? ultimaResposta(u.id, q.id) : null;
   const fav = u ? isFavorita(u.id, q.id) : false;
+  const minhaNota = u ? notaDaFavorita(u.id, q.id) : "";
   abrirModal(`
     <div class="modal-header"><h3>Questão na íntegra</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
     <div class="qcard-meta mb-2">
@@ -5427,9 +5677,11 @@ function abrirQuestaoCompleta(qid, opts){
     ${renderReferenciasQuestao(q)}
     ${(q.explicacoesAlternativas && Object.keys(q.explicacoesAlternativas).length) ? `<div class="card-flat mt-2 text-sm">${Object.entries(q.explicacoesAlternativas).map(([letra,texto])=>`<div class="mb-1"><strong>${escapeHtml(letra)}:</strong> ${escapeHtml(texto)}</div>`).join("")}</div>` : ""}
     ${ultima ? `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Sua última resposta: marcou ${escapeHtml(ultima.alternativaEscolhida)} (${ultima.correta?"correta":"incorreta"}, ${escapeHtml(rotuloConfianca(ultima.confianca))}) em ${formatDataBR(ultima.data)}.</div>` : ""}
+    ${minhaNota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(minhaNota)}</div></div>` : ""}
     <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
       ${q.status==="ativa" ? `<button class="btn btn-primary btn-sm" onclick="praticarSoEstaQuestao('${q.id}')">${iconeSvg("book")} Praticar esta questão</button>` : ""}
       ${u ? `<button class="btn btn-secondary btn-sm" onclick="fecharModal();toggleFavoritoUI('${q.id}')">${iconeSvg("star")} ${fav?"Remover dos favoritos":"Favoritar"}</button>` : ""}
+      ${u ? `<button class="btn btn-secondary btn-sm" onclick="fecharModal();abrirNotaFavorita('${q.id}')">${iconeSvg("message")} ${minhaNota?"Editar minha anotação":"Anotar uma dúvida"}</button>` : ""}
       ${u ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioFlashcard(null,{questaoId:'${q.id}'})">${iconeSvg("cards")} Virar flashcard</button>` : ""}
       ${podeEditar ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar questão</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="fecharModal()">Fechar</button>
@@ -5472,9 +5724,25 @@ function iniciarRevisaoEspacada(){
 }
 function iniciarSessaoComLista(itens, tipo){
   if(!itens.length){ toast("Não há questões disponíveis para esta sessão.", "err"); return; }
-  state.sessaoAtual = { id: uid("sessao"), tipo, itens, indiceAtual:0, respostasSessao:[], eliminadas:{}, uiSelecionada:null, uiRespondida:false, finalizada:false, tsQuestao: Date.now() };
+  state.sessaoAtual = { id: uid("sessao"), tipo, itens, indiceAtual:0, respostasSessao:[], eliminadas:{}, marcadas:{}, finalizada:false, tsQuestao: Date.now() };
   salvarSessaoEmAndamento();
   navigate("sessao");
+}
+
+/* ---------- as respostas andam POR POSIÇÃO na fila, e a fila tem buracos ---
+   respostasSessao[i] é a resposta de itens[i]. Desde que se pode pular uma
+   questão e voltar a ela depois, uma posição pode estar vazia — e por isso
+   contar `respostasSessao.length` mentiria: diria "5 feitas" numa fila com 2
+   respondidas e 3 puladas. Quem precisa saber quantas foram feitas usa
+   respostasFeitas(); quem precisa da resposta de uma posição usa
+   respostaDoIndice(), que devolve null quando aquela ficou em branco. */
+function respostaDoIndice(s, i){ return (s && s.respostasSessao && s.respostasSessao[i]) || null; }
+function respostasFeitas(s){ return ((s && s.respostasSessao) || []).filter(Boolean); }
+function indicesEmBranco(s){
+  const fora = [];
+  if(!s || !s.itens) return fora;
+  s.itens.forEach((it, i) => { if(!respostaDoIndice(s, i)) fora.push(i); });
+  return fora;
 }
 function sairDaSessao(){
   const eraHistorico = state.sessaoAtual && state.sessaoAtual.somenteLeitura;
@@ -5505,7 +5773,9 @@ function salvarSessaoEmAndamento(){
   db.sessoesEmAndamento[u.id] = {
     id: s.id, tipo: s.tipo, itens: s.itens, indiceAtual: s.indiceAtual,
     respostasSessao: s.respostasSessao, eliminadas: s.eliminadas || {},
-    uiSelecionada: s.uiSelecionada || null, salvaEm: hojeISO(),
+    // o que está marcado sem confirmar também é rascunho e também volta:
+    // ver "marcar não é responder", logo abaixo
+    marcadas: s.marcadas || {}, salvaEm: hojeISO(),
   };
   nuvemRegistrar({usuarioId:u.id, sessaoEmAndamento: db.sessoesEmAndamento[u.id]});
   saveState();
@@ -5518,10 +5788,19 @@ function sessaoEmAndamentoDe(usuario){
   if(!usuario || !db.sessoesEmAndamento) return null;
   const guardada = db.sessoesEmAndamento[usuario.id];
   if(!guardada || !guardada.itens || !guardada.itens.length) return null;
-  // questão excluída ou desativada desde então some da fila, sem quebrar nada
-  const itens = guardada.itens.filter(i=>getQuestao(i.questaoId));
+  // Questão excluída ou desativada desde então some da fila. As respostas
+  // andam pela POSIÇÃO na fila, então elas precisam sair junto: tirar a
+  // questão 2 e deixar as respostas como estavam faria a resposta da 3
+  // aparecer na 2 daí em diante.
+  const respostas = guardada.respostasSessao || [];
+  const itens = [], mantidas = [];
+  guardada.itens.forEach((item, i) => {
+    if(!getQuestao(item.questaoId)) return;
+    itens.push(item);
+    mantidas[itens.length-1] = respostas[i] || null;
+  });
   if(!itens.length) return null;
-  return {...guardada, itens};
+  return {...guardada, itens, respostasSessao: mantidas};
 }
 /* Põe a sessão guardada de volta em memória. Devolve true se conseguiu.
    Separado da navegação de propósito: o roteador chama esta parte durante o
@@ -5531,12 +5810,20 @@ function carregarSessaoEmAndamento(){
   const guardada = sessaoEmAndamentoDe(usuarioAtual());
   if(!guardada) return false;
   const respostas = (guardada.respostasSessao || []).slice(0, guardada.itens.length);
+  const indice = Math.min(guardada.indiceAtual || 0, guardada.itens.length-1);
+  // sessão gravada antes de as marcações virarem memória por questão: o que
+  // ela guardava era uma marca só, a da questão em que a pessoa parou
+  let marcadas = guardada.marcadas;
+  if(!marcadas){
+    marcadas = {};
+    const item = guardada.itens[indice];
+    if(guardada.uiSelecionada && item) marcadas[item.questaoId] = guardada.uiSelecionada;
+  }
   state.sessaoAtual = {
     id: guardada.id, tipo: guardada.tipo, itens: guardada.itens,
-    indiceAtual: Math.min(guardada.indiceAtual || 0, guardada.itens.length-1),
+    indiceAtual: indice,
     respostasSessao: respostas, eliminadas: guardada.eliminadas || {},
-    uiSelecionada: guardada.uiSelecionada || null,
-    uiRespondida: (guardada.indiceAtual || 0) < respostas.length,
+    marcadas: marcadas,
     finalizada: false, tsQuestao: Date.now(),
   };
   return true;
@@ -5567,7 +5854,7 @@ function alternarAlternativaEliminada(altId){
   const item = s.itens[s.indiceAtual]; if(!item) return;
   // depois de responder o risco vira histórico e não muda mais. No simulado dá
   // para trocar de ideia até encerrar; na prática, a questão fecha ao responder.
-  const fechada = s.tipo==="simulado" ? !!s.finalizado : (s.indiceAtual < s.respostasSessao.length);
+  const fechada = s.tipo==="simulado" ? !!s.finalizado : !!respostaDoIndice(s, s.indiceAtual);
   if(fechada) return;
   if(!s.eliminadas) s.eliminadas = {};
   const lista = (s.eliminadas[item.questaoId] || []).slice();
@@ -5575,7 +5862,7 @@ function alternarAlternativaEliminada(altId){
   if(pos>=0) lista.splice(pos,1); else lista.push(altId);
   s.eliminadas[item.questaoId] = lista;
   salvarSessaoEmAndamento();
-  render();
+  redesenharQuestaoDaSessao();
 }
 /* Marcar uma alternativa que estava riscada desfaz o risco: se a pessoa
    resolveu escolhê-la, ela não está mais descartada. */
@@ -5587,32 +5874,57 @@ function desriscarSeNecessario(altId){
   const pos = lista.indexOf(altId);
   if(pos>=0) lista.splice(pos,1);
 }
+/* ---------- marcar NÃO é responder (e por isso também tem memória) --------
+   Marcar uma alternativa é dizer "acho que é esta"; responder é bater o
+   martelo e declarar a confiança. Entre uma coisa e outra a pessoa pode
+   querer ver a questão seguinte, conferir a anterior ou simplesmente sair —
+   e nada disso deve apagar o que ela já tinha decidido.
+
+   Por isso a marca é guardada POR QUESTÃO (pela id, não pela posição), do
+   mesmo jeito que os riscos, e volta com ela: dentro do conjunto, ao reabrir
+   a fila e em qualquer aparelho, já que a sessão em andamento sobe para a
+   nuvem. O que fica guardado é sempre rascunho — nenhuma resposta é contada
+   sem a pessoa dizer se foi com certeza, na dúvida ou no chute. */
+function marcadaDaQuestao(questaoId){
+  const s = state.sessaoAtual;
+  if(!s || !s.marcadas) return null;
+  return s.marcadas[questaoId] || null;
+}
 function selecionarAlternativa(altId){
-  if(!state.sessaoAtual || state.sessaoAtual.uiRespondida) return;
+  const s = state.sessaoAtual; if(!s || s.somenteLeitura) return;
+  if(respostaDoIndice(s, s.indiceAtual)) return;   // já respondida: não muda mais
+  const item = s.itens[s.indiceAtual]; if(!item) return;
   desriscarSeNecessario(altId);
-  state.sessaoAtual.uiSelecionada = altId;
+  if(!s.marcadas) s.marcadas = {};
+  s.marcadas[item.questaoId] = altId;
   salvarSessaoEmAndamento();
-  render();
+  redesenharQuestaoDaSessao();
 }
 function confirmarResposta(confianca){
-  const sessao = state.sessaoAtual; if(!sessao || !sessao.uiSelecionada) return;
-  const item = sessao.itens[sessao.indiceAtual];
+  const sessao = state.sessaoAtual; if(!sessao || sessao.somenteLeitura) return;
+  const item = sessao.itens[sessao.indiceAtual]; if(!item) return;
+  if(respostaDoIndice(sessao, sessao.indiceAtual)) return;
+  const marcada = marcadaDaQuestao(item.questaoId);
+  if(!marcada) return;
   const tempoSeg = sessao.tsQuestao ? (Date.now()-sessao.tsQuestao)/1000 : null;
-  const resp = registrarResposta(usuarioAtual().id, item.questaoId, sessao.uiSelecionada, confianca, tempoSeg);
-  sessao.uiRespondida = true;
-  sessao.respostasSessao.push(resp);
+  const resp = registrarResposta(usuarioAtual().id, item.questaoId, marcada, confianca, tempoSeg);
+  sessao.respostasSessao[sessao.indiceAtual] = resp;
   salvarSessaoEmAndamento();
   render();
 }
-// navegação livre entre questões já respondidas (revisitar pra trás e voltar
-// pra frente), igual ao simulado — só não deixa "pular" uma questão que
-// ainda não foi respondida, pra manter o retrieval practice em ordem
+/* ---------- navegação livre, inclusive por cima do que ficou em branco ----
+   A fila anda para os dois lados e não exige responder para seguir: travar a
+   passagem numa questão que a pessoa não consegue resolver agora faz ela
+   abandonar o conjunto inteiro (ou chutar só para destravar, o que suja o
+   histórico com um chute que não era chute).
+
+   O que continua valendo é a regra que importa: toda resposta registrada tem
+   a confiança declarada. Pular não é responder, e por isso não conta nada —
+   a questão só some da lista de em branco quando a pessoa marcar uma
+   alternativa e dizer se foi com certeza, na dúvida ou no chute. */
 function irQuestaoSessao(delta){
   const s = state.sessaoAtual; if(!s) return;
-  s.indiceAtual = Math.max(0, Math.min(s.itens.length-1, s.indiceAtual+delta));
-  s.uiSelecionada = null; s.uiRespondida = false; s.tsQuestao = Date.now();
-  salvarSessaoEmAndamento();
-  render();
+  irParaIndiceDaSessao(s.indiceAtual + delta);
 }
 function voltarQuestaoSessao(){ irQuestaoSessao(-1); }
 function proximaQuestaoSessao(){
@@ -5620,7 +5932,27 @@ function proximaQuestaoSessao(){
   if(sessao.indiceAtual < sessao.itens.length-1) irQuestaoSessao(1);
   else finalizarSessaoPratica();
 }
+/* Fim do conjunto. Com questões em branco, pergunta antes: chegar ao fim da
+   fila e ver o resumo sem perceber que cinco questões ficaram para trás é o
+   tipo de coisa que só se descobre depois. Quem quiser fechar assim mesmo
+   fecha — as em branco simplesmente não entram no histórico, porque não
+   houve resposta nenhuma para guardar. */
 function finalizarSessaoPratica(){
+  const s = state.sessaoAtual; if(!s) return;
+  const emBranco = indicesEmBranco(s);
+  if(emBranco.length && !s.somenteLeitura){
+    const feitas = respostasFeitas(s).length;
+    abrirModalTitulado("Terminar com questões em branco?", `
+      <p class="text-sm">Você respondeu <strong>${feitas}</strong> de ${s.itens.length} e deixou <strong>${emBranco.length}</strong> em branco. Questão em branco não conta como erro nem como acerto: ela some do conjunto e não entra no histórico.</p>
+      <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="fecharModal(); irParaIndiceDaSessao(${emBranco[0]})">Ir para a primeira em branco (questão ${emBranco[0]+1})</button>
+        <button class="btn btn-secondary" onclick="fecharModal(); fecharSessaoPratica()">Terminar assim mesmo</button>
+      </div>`);
+    return;
+  }
+  fecharSessaoPratica();
+}
+function fecharSessaoPratica(){
   const s = state.sessaoAtual; if(!s) return;
   s.finalizada = true;
   registrarSessaoNoHistorico(s);
@@ -5632,23 +5964,39 @@ function finalizarSessaoPratica(){
    É esse registro que alimenta a tela "Histórico de Atividade" e permite
    reabrir a página de feedback depois. */
 function registrarSessaoNoHistorico(s){
-  if(s.somenteLeitura || s.salvaNoHistorico) return;
-  if(!s.respostasSessao || !s.respostasSessao.length) return;
+  if(s.somenteLeitura) return;
+  const feitas = respostasFeitas(s);
+  if(!feitas.length) return;
   if(!db.sessoes) db.sessoes = [];
   const u = usuarioAtual();
-  db.sessoes.push({
-    id: s.id, usuarioId: u.id, tipo: s.tipo||"pratica", data: hojeISO(),
-    total: s.respostasSessao.length,
-    acertos: s.respostasSessao.filter(r=>r.correta).length,
-    itens: s.itens.slice(0, s.respostasSessao.length).map((it,i)=>({
+  const anterior = db.sessoes.find(x => x.id === s.id) || null;
+  // as questões deixadas em branco não entram: não houve resposta, e contá-las
+  // como linha do histórico inventaria um erro que não aconteceu
+  const itens = [];
+  s.itens.forEach((it, i) => {
+    const r = respostaDoIndice(s, i);
+    if(!r) return;
+    itens.push({
       questaoId: it.questaoId,
       motivo: it.motivo,
-      alternativaEscolhida: s.respostasSessao[i].alternativaEscolhida,
-      correta: s.respostasSessao[i].correta,
-      confianca: s.respostasSessao[i].confianca,
-    })),
+      alternativaEscolhida: r.alternativaEscolhida,
+      correta: r.correta,
+      confianca: r.confianca,
+    });
   });
-  nuvemRegistrar({sessaoConcluida: db.sessoes[db.sessoes.length-1]});
+  const registro = {
+    id: s.id, usuarioId: u.id, tipo: s.tipo||"pratica",
+    data: (s.salvaNoHistorico && anterior) ? anterior.data : hojeISO(),
+    total: feitas.length,
+    acertos: feitas.filter(r=>r.correta).length,
+    itens: itens,
+  };
+  // reescreve em vez de duplicar: depois do resumo a pessoa pode voltar e
+  // responder uma questão que tinha ficado em branco, e aí este conjunto
+  // passa a ter uma questão a mais — é a mesma sessão, com outro placar
+  if(anterior) db.sessoes[db.sessoes.indexOf(anterior)] = registro;
+  else db.sessoes.push(registro);
+  nuvemRegistrar({sessaoConcluida: registro});
   s.salvaNoHistorico = true;
   saveState();
 }
@@ -5656,10 +6004,17 @@ function registrarSessaoNoHistorico(s){
 function voltarParaQuestaoDaSessao(indice){
   const s = state.sessaoAtual; if(!s) return;
   s.finalizada = false; s.jaFinalizada = true;
-  s.indiceAtual = indice; s.uiSelecionada = null; s.uiRespondida = false;
+  s.indiceAtual = Math.max(0, Math.min(s.itens.length-1, indice));
+  s.tsQuestao = Date.now();
   render(); window.scrollTo(0,0);
 }
-function voltarAoResumoDaSessao(){ const s=state.sessaoAtual; if(!s) return; s.finalizada = true; render(); window.scrollTo(0,0); }
+function voltarAoResumoDaSessao(){
+  const s = state.sessaoAtual; if(!s) return;
+  s.finalizada = true;
+  // se ela voltou e respondeu uma que estava em branco, o histórico acompanha
+  if(s.jaFinalizada) registrarSessaoNoHistorico(s);
+  render(); window.scrollTo(0,0);
+}
 // reabre a página de feedback de um conjunto de questões já concluído
 function abrirSessaoDoHistorico(sessaoId){
   const reg = (db.sessoes||[]).find(x=>x.id===sessaoId);
@@ -5668,13 +6023,13 @@ function abrirSessaoDoHistorico(sessaoId){
     id: reg.id, tipo: reg.tipo, somenteLeitura:true, salvaNoHistorico:true, dataOriginal: reg.data,
     itens: reg.itens.map(i=>({questaoId:i.questaoId, motivo:i.motivo||"Revisão do histórico"})),
     respostasSessao: reg.itens.map(i=>({questaoId:i.questaoId, alternativaEscolhida:i.alternativaEscolhida, correta:i.correta, confianca:i.confianca, data:reg.data})),
-    indiceAtual:0, uiSelecionada:null, uiRespondida:false, finalizada:true,
+    indiceAtual:0, marcadas:{}, finalizada:true,
   };
   navigate("sessao");
 }
 function revisarErrosDestaSessao(){
   const s = state.sessaoAtual; if(!s) return;
-  const errados = s.respostasSessao.filter(r=>!r.correta || r.confianca==="chute").map(r=>({questaoId:r.questaoId, motivo:"Erro ou chute no conjunto anterior"}));
+  const errados = respostasFeitas(s).filter(r=>!r.correta || r.confianca==="chute").map(r=>({questaoId:r.questaoId, motivo:"Erro ou chute no conjunto anterior"}));
   if(!errados.length){ toast("Você não errou nem chutou nenhuma questão deste conjunto."); return; }
   state.sessaoAtual = null;
   iniciarSessaoComLista(errados, "pratica");
@@ -5686,24 +6041,27 @@ function revisarErrosDestaSessao(){
    quem quer conferir "o que foi mesmo que eu marquei na 3?" no meio do
    conjunto, sem perder o lugar.
 
-   Por que não dá para pular para a frente: a fila e as respostas andam na
-   mesma ordem (respostasSessao[i] é a resposta de itens[i]). Responder fora
-   de ordem embaralharia esse pareamento, então as questões que ainda não
-   chegaram aparecem apagadas e não clicáveis.
+   O mapa também é o caminho curto para as questões deixadas em branco: toda
+   posição é clicável, inclusive as que ainda não foram respondidas, porque a
+   fila não exige ordem. A resposta de cada questão é guardada pela POSIÇÃO
+   dela na fila (respostasSessao[i] é a resposta de itens[i]), então pular
+   não embaralha nada: a posição pulada fica simplesmente vazia.
 
    O pontinho âmbar marca os dois casos que a plataforma trata como "não
    sabida", e que a tela de fim de conjunto já destaca: acerto no chute e
    erro com certeza. */
 function renderMapaSessao(sessao){
   const total = sessao.itens.length;
-  const feitas = sessao.respostasSessao.length;
-  const acertos = sessao.respostasSessao.filter(r => r.correta).length;
+  const feitasLista = respostasFeitas(sessao);
+  const feitas = feitasLista.length;
+  const acertos = feitasLista.filter(r => r.correta).length;
   const erros = feitas - acertos;
+  const emBranco = total - feitas;
   const aberto = state.mapaSessaoAberto !== false;   // nasce aberto
   const resumo = feitas
-    ? `<strong>${feitas} de ${total}</strong> · ${acertos} ${acertos===1?"acerto":"acertos"} · ${erros} ${erros===1?"erro":"erros"}`
+    ? `<strong>${feitas} de ${total}</strong> · ${acertos} ${acertos===1?"acerto":"acertos"} · ${erros} ${erros===1?"erro":"erros"}${emBranco?` · ${emBranco} em branco`:""}`
     : `<strong>0 de ${total}</strong> · o conjunto ainda não começou`;
-  return `<div class="card-flat mb-2" style="padding:.7rem .9rem">
+  return `<div class="card-flat mb-2" id="mapaDaSessao" style="padding:.7rem .9rem">
     <div class="flex justify-between items-center gap-2">
       <div class="text-xs muted">${resumo}</div>
       <button class="link-btn text-xs" onclick="alternarMapaSessao()">${aberto ? "ocultar mapa" : "mostrar mapa"}</button>
@@ -5711,9 +6069,9 @@ function renderMapaSessao(sessao){
     ${aberto ? `
     <div class="mapa-sessao">
       ${sessao.itens.map((item, i) => {
-        const r = sessao.respostasSessao[i];
+        const r = respostaDoIndice(sessao, i);
         const atual = i === sessao.indiceAtual;
-        const daVez = !r && i === feitas;
+        const marcadaSemResponder = !r && !!marcadaDaQuestao(item.questaoId);
         let classe = "mapa-pill";
         let descricao = "Questão " + (i+1);
         let marca = "";
@@ -5725,91 +6083,131 @@ function renderMapaSessao(sessao){
           else descricao += ", na dúvida";
           const atencao = (r.correta && r.confianca === "chute") || (!r.correta && r.confianca === "certeza");
           if(atencao) marca = `<span class="marca" aria-hidden="true"></span>`;
-        } else if(daVez){
-          classe += " agora";
-          descricao += " — é a desta vez";
+        } else if(marcadaSemResponder){
+          classe += " marcada";
+          descricao += " — alternativa marcada, falta dizer a confiança";
+          marca = `<span class="marca" aria-hidden="true"></span>`;
         } else {
-          descricao += " — ainda não respondida";
+          classe += " agora";
+          descricao += " — ainda em branco";
         }
         if(atual){ classe += " atual"; descricao += " (você está aqui)"; }
-        const podeIr = !!r || daVez;
-        return `<button class="${classe}" ${podeIr ? "" : "disabled"} title="${escapeHtml(descricao)}" aria-label="${escapeHtml(descricao)}" ${podeIr ? `onclick="irParaIndiceDaSessao(${i})"` : ""}>${i+1}${marca}</button>`;
+        return `<button class="${classe}" title="${escapeHtml(descricao)}" aria-label="${escapeHtml(descricao)}" onclick="irParaIndiceDaSessao(${i})">${i+1}${marca}</button>`;
       }).join("")}
     </div>
     ${feitas ? `<div class="mapa-sessao-legenda text-xs muted">
       <span><i class="amostra acertou"></i>acertou</span>
       <span><i class="amostra errou"></i>errou</span>
       <span><i class="amostra marcada"></i><span class="so-largo">acerto no chute ou erro com certeza</span><span class="so-estreito">chute ou erro com certeza</span></span>
-      <span class="so-largo"><i class="amostra"></i>ainda não respondida</span>
-    </div>` : `<div class="text-xs muted mt-1">Cada quadradinho é uma questão da fila. Assim que você responder, ele mostra se acertou — e dá para clicar para voltar.</div>`}
+      <span class="so-largo"><i class="amostra"></i>em branco</span>
+    </div>` : `<div class="text-xs muted mt-1">Cada quadradinho é uma questão da fila. Clique para ir a qualquer uma, respondida ou não; assim que você responder, ele mostra se acertou.</div>`}
     ` : ""}
   </div>`;
 }
 function alternarMapaSessao(){
   state.mapaSessaoAberto = state.mapaSessaoAberto === false;
+  const mapa = document.getElementById("mapaDaSessao");
+  if(mapa && state.sessaoAtual && !state.sessaoAtual.finalizada){ mapa.outerHTML = renderMapaSessao(state.sessaoAtual); return; }
   render();
 }
-/* Vai direto a uma questão da fila pelo mapa. Só anda até a questão da vez:
-   ir além embaralharia o pareamento entre a fila e as respostas. */
+/* Vai direto a uma questão da fila — qualquer uma, respondida ou em branco.
+   O que a pessoa tinha marcado e riscado em cada questão continua lá, porque
+   esses rascunhos são guardados pela id da questão, e não pela posição. */
 function irParaIndiceDaSessao(indice){
   const s = state.sessaoAtual; if(!s) return;
-  const limite = Math.min(s.respostasSessao.length, s.itens.length - 1);
-  s.indiceAtual = Math.max(0, Math.min(limite, indice));
-  s.uiSelecionada = null; s.uiRespondida = false; s.tsQuestao = Date.now();
+  const destino = Math.max(0, Math.min(s.itens.length - 1, indice));
+  if(destino === s.indiceAtual) return;
+  s.indiceAtual = destino;
+  s.tsQuestao = Date.now();
   salvarSessaoEmAndamento();
   render();
   window.scrollTo(0, 0);
+}
+/* O cartão da questão em si — só ele. Marcar uma alternativa ou riscar outra
+   muda esta parte e mais nada: o mapa, a barra e os botões continuam os
+   mesmos. Redesenhar só isto (em vez de a tela inteira) é o que mantém o
+   conjunto de questões parado enquanto a pessoa pensa, sem o pisca-pisca de
+   antes. Se a tela não estiver montada, cai no render() normal. */
+function htmlCartaoDaSessao(sessao){
+  const item = sessao.itens[sessao.indiceAtual];
+  const q = getQuestao(item.questaoId);
+  const resp = respostaDoIndice(sessao, sessao.indiceAtual);
+  return renderQuestionCard(q, resp
+    ? {selecionada: resp.alternativaEscolhida, respondida:true, somenteLeitura: !!sessao.somenteLeitura}
+    : {selecionada: marcadaDaQuestao(item.questaoId), respondida:false, somenteLeitura: !!sessao.somenteLeitura});
+}
+function redesenharQuestaoDaSessao(){
+  const area = document.getElementById("areaGestoQuestao");
+  const sessao = state.sessaoAtual;
+  if(!area || !sessao || sessao.finalizada || state.route!=="sessao"){ render(); return; }
+  area.innerHTML = htmlCartaoDaSessao(sessao);
+  // o mapa mostra quais questões já têm alternativa marcada: ele acompanha
+  const mapa = document.getElementById("mapaDaSessao");
+  if(mapa) mapa.outerHTML = renderMapaSessao(sessao);
 }
 function renderSessao(){
   const sessao = state.sessaoAtual;
   if(!sessao || sessao.finalizada) return renderSessaoResumo();
   const item = sessao.itens[sessao.indiceAtual];
-  const q = getQuestao(item.questaoId);
-  const respondidaAqui = sessao.indiceAtual < sessao.respostasSessao.length;
-  const respObj = respondidaAqui ? sessao.respostasSessao[sessao.indiceAtual] : null;
+  const respondidaAqui = !!respostaDoIndice(sessao, sessao.indiceAtual);
+  const feitas = respostasFeitas(sessao).length;
+  const emBranco = sessao.itens.length - feitas;
   const naUltima = sessao.indiceAtual === sessao.itens.length-1;
+  const soLeitura = sessao.jaFinalizada || sessao.somenteLeitura;
   return `
   <div class="flex justify-between items-center mb-2">
     <div class="text-sm muted">Questão ${sessao.indiceAtual+1} de ${sessao.itens.length}${sessao.somenteLeitura?' · <span class="badge badge-muted">revisão do histórico</span>':""}</div>
     <div class="flex gap-1">
-      ${(sessao.jaFinalizada||sessao.somenteLeitura) ? `<button class="btn btn-secondary btn-sm" onclick="voltarAoResumoDaSessao()">${iconeSvg("chart")} Voltar ao resumo</button>` : ""}
+      ${soLeitura ? `<button class="btn btn-secondary btn-sm" onclick="voltarAoResumoDaSessao()">${iconeSvg("chart")} Voltar ao resumo</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="sairDaSessao()">Sair</button>
     </div>
   </div>
-  <div class="progress-track mb-2"><div class="progress-fill" style="width:${pct(sessao.respostasSessao.length, sessao.itens.length)}%"></div></div>
+  <div class="progress-track mb-2"><div class="progress-fill" style="width:${pct(feitas, sessao.itens.length)}%"></div></div>
   ${renderMapaSessao(sessao)}
   <div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(item.motivo)}</span></div>
   <div class="area-gesto" id="areaGestoQuestao">
-    ${renderQuestionCard(q, respondidaAqui ? {selecionada:respObj.alternativaEscolhida, respondida:true} : {selecionada:sessao.uiSelecionada, respondida:false})}
+    ${htmlCartaoDaSessao(sessao)}
   </div>
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
-  ${(sessao.indiceAtual>0 || respondidaAqui) ? `
-  <div class="flex justify-between items-center mt-2">
+  <div class="flex justify-between items-center mt-2 gap-1" style="flex-wrap:wrap">
     <button class="btn btn-secondary" onclick="voltarQuestaoSessao()" ${sessao.indiceAtual>0?"":"disabled"}>Anterior</button>
     <div class="text-xs muted">Teclas A (anterior) / D (próxima)</div>
-    ${respondidaAqui ? (naUltima ? `<button class="btn btn-primary" onclick="${(sessao.jaFinalizada||sessao.somenteLeitura)?"voltarAoResumoDaSessao()":"finalizarSessaoPratica()"}">${(sessao.jaFinalizada||sessao.somenteLeitura)?"Ver resumo":"Finalizar sessão"}</button>` : `<button class="btn btn-secondary" onclick="irQuestaoSessao(1)">Próxima</button>`) : "<span></span>"}
-  </div>` : ""}
+    ${naUltima
+      ? `<button class="btn btn-primary" onclick="${soLeitura?"voltarAoResumoDaSessao()":"finalizarSessaoPratica()"}">${soLeitura?"Ver resumo":"Finalizar sessão"}</button>`
+      : `<button class="btn ${respondidaAqui?"btn-secondary":"btn-ghost"}" onclick="irQuestaoSessao(1)">${respondidaAqui?"Próxima":"Deixar para depois"}</button>`}
+  </div>
+  ${(!respondidaAqui && !soLeitura && !naUltima) ? `<div class="text-xs muted mt-1">Dá para seguir sem responder: a questão fica em branco no mapa e você volta a ela quando quiser — o que estiver marcado e riscado continua aqui.</div>` : ""}
+  ${/* só depois que o conjunto começou: no primeiro cartão, "20 em branco" é
+       só o tamanho da fila, e dizer isso ali não informa nada */""
+    }${(soLeitura || !emBranco || !feitas) ? "" : `<div class="text-xs muted mt-1">${emBranco} ${emBranco===1?"questão em branco":"questões em branco"} neste conjunto.</div>`}
   `;
 }
 function renderSessaoResumo(){
   const sessao = state.sessaoAtual;
   if(!sessao) return `<div class="empty-state">Nenhuma sessão ativa.<br><button class="btn btn-primary mt-2" onclick="navigate('estudar')">Ir para Estudar</button></div>`;
-  const respostas = sessao.respostasSessao || [];
+  const respostas = respostasFeitas(sessao);
   const total = respostas.length;
   const acertos = respostas.filter(r=>r.correta).length;
+  const emBranco = (sessao.itens ? sessao.itens.length : total) - total;
   const porConfianca = {certeza:{n:0,ok:0}, duvida:{n:0,ok:0}, chute:{n:0,ok:0}};
   respostas.forEach(r=>{ if(porConfianca[r.confianca]){ porConfianca[r.confianca].n++; if(r.correta) porConfianca[r.confianca].ok++; } });
   const errosEChutes = respostas.filter(r=>!r.correta || r.confianca==="chute").length;
+  const primeiraEmBranco = indicesEmBranco(sessao)[0];
   const linhaConfianca = (chave, rotulo) => {
     const c = porConfianca[chave];
     return `<div class="stat-tile"><div class="stat-value" style="font-size:1.3rem">${c.n?pct(c.ok,c.n)+"%":"—"}</div><div class="stat-label">acerto quando ${rotulo} (${c.n} questão(ões))</div></div>`;
   };
   return `
   <div class="page-header"><h2>Conjunto de questões concluído</h2><p>${sessao.somenteLeitura?"Revisão do conjunto respondido em "+formatDataBR(sessao.dataOriginal||hojeISO())+".":"Veja abaixo, questão a questão, o que você acertou, errou, chutou ou respondeu na dúvida. Clique em qualquer uma para voltar a ela."}</p></div>
-  <div class="grid grid-2 mb-2">
+  <div class="grid ${emBranco?"grid-3":"grid-2"} mb-2">
     <div class="stat-tile"><div class="stat-value">${total?pct(acertos,total):0}%</div><div class="stat-label">de acerto neste conjunto (${acertos}/${total})</div></div>
     <div class="stat-tile"><div class="stat-value">${errosEChutes}</div><div class="stat-label">questão(ões) para revisar (erros e chutes)</div></div>
+    ${emBranco?`<div class="stat-tile"><div class="stat-value">${emBranco}</div><div class="stat-label">deixada(s) em branco — não contam como erro</div></div>`:""}
   </div>
+  ${(emBranco && !sessao.somenteLeitura && primeiraEmBranco!==undefined) ? `<div class="card-flat mb-2 flex justify-between items-center gap-2" style="flex-wrap:wrap">
+    <div class="text-sm">Ainda dá para responder o que ficou em branco: a fila continua guardada com as suas marcações.</div>
+    <button class="btn btn-secondary btn-sm" onclick="voltarParaQuestaoDaSessao(${primeiraEmBranco})">${iconeSvg("refresh")} Ir para a questão ${primeiraEmBranco+1}</button>
+  </div>` : ""}
   <div class="grid grid-3 mb-2">
     ${linhaConfianca("certeza","tinha certeza")}
     ${linhaConfianca("duvida","estava na dúvida")}
@@ -5818,7 +6216,9 @@ function renderSessaoResumo(){
   <div class="card mb-2">
     <div class="card-title mb-1">Questão a questão</div>
     <p class="text-sm muted mb-2">Clique em "voltar à questão" para rever o enunciado, as alternativas e a explicação completa dentro da sessão — sem perder este resumo.</p>
-    ${respostas.map((r,i)=>{
+    ${(sessao.itens||[]).map((item,i)=>{
+      const r = respostaDoIndice(sessao, i);
+      if(!r) return "";
       const q = getQuestao(r.questaoId);
       if(!q) return "";
       const badgeResultado = r.correta ? '<span class="badge badge-accent">Acertou</span>' : '<span class="badge badge-danger">Errou</span>';
@@ -5840,6 +6240,7 @@ function renderSessaoResumo(){
           ${botaoVerNaIntegra(q.id, "Ver na íntegra")}
           <button class="btn ${(!r.correta||r.confianca==="chute")?"btn-secondary":"btn-ghost"} btn-sm" onclick="abrirFormularioFlashcard(null,{questaoId:'${q.id}'})">${iconeSvg("cards")} Virar flashcard</button>
           <button class="btn btn-ghost btn-sm" onclick="toggleFavoritoUI('${q.id}')">${iconeSvg("star")} ${isFavorita(usuarioAtual().id,q.id)?"Desfavoritar":"Favoritar"}</button>
+          <button class="btn btn-ghost btn-sm" onclick="abrirNotaFavorita('${q.id}')">${iconeSvg("message")} ${notaDaFavorita(usuarioAtual().id,q.id)?"Editar anotação":"Anotar dúvida"}</button>
         </div>
         ${cartoesDaQuestao(usuarioAtual().id, q.id).length ? `<div class="text-xs muted mt-1">${iconeSvg("cards")} cartão já criado a partir desta questão</div>` : ""}
       </div>`;
@@ -5983,12 +6384,15 @@ function renderAcoesQuestao(q){
   // sem botão de "expandir": estas ações só aparecem embaixo da questão já
   // aberta por inteiro (enunciado, alternativas, gabarito e explicação), então
   // não há mais nada para expandir.
+  const nota = notaDaFavorita(uidAtual, q.id);
   return `<div class="qcard-actions">
     <button class="btn btn-secondary btn-sm" onclick="toggleFavoritoUI('${q.id}')">${iconeSvg("star")} ${fav?"Remover dos favoritos":"Favoritar"}</button>
+    <button class="btn btn-secondary btn-sm" onclick="abrirNotaFavorita('${q.id}')">${iconeSvg("message")} ${nota?"Editar minha anotação":"Anotar uma dúvida"}</button>
     <button class="btn btn-secondary btn-sm" onclick="abrirFormularioFlashcard(null,{questaoId:'${q.id}'})">${iconeSvg("cards")} Virar flashcard</button>
     <button class="btn btn-secondary btn-sm" onclick="abrirSinalizarDesatualizada('${q.id}')">${iconeSvg("flag")} Sinalizar desatualizada</button>
     <button class="btn btn-secondary btn-sm" onclick="abrirPromptDuvida('${q.id}')">${iconeSvg("message")} Tirar dúvida com IA</button>
   </div>
+  ${nota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(nota)}</div></div>` : ""}
   ${cartoesDaQuestao(uidAtual, q.id).length ? `<div class="text-xs muted mt-1">${iconeSvg("cards")} Você já tem ${cartoesDaQuestao(uidAtual, q.id).length} cartão(ões) escrito(s) a partir desta questão.</div>` : ""}`;
 }
 /* Cartões pessoais que o usuário criou a partir de uma questão específica. */
@@ -5996,6 +6400,43 @@ function cartoesDaQuestao(usuarioId, questaoId){
   return (db.flashcards||[]).filter(c=>c.status!=="arquivado" && c.usuarioId===usuarioId && c.questaoOrigemId===questaoId);
 }
 function toggleFavoritoUI(qid){ const ficou = toggleFavorito(usuarioAtual().id, qid); toast(ficou?"Adicionado aos favoritos.":"Removido dos favoritos."); render(); }
+
+/* ---------- anotar uma dúvida na questão salva ---------- */
+function abrirNotaFavorita(qid){
+  const u = usuarioAtual(); if(!u) return;
+  const q = getQuestao(qid); if(!q) return;
+  const nota = notaDaFavorita(u.id, qid);
+  const jaEra = isFavorita(u.id, qid);
+  abrirModal(`
+    <div class="modal-header"><h3>${iconeSvg("message")} Minha anotação nesta questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm muted">É só sua: ninguém mais vê, nem a coordenação. Serve para guardar a dúvida que ficou — "por que não é a C?", "conferir a dose", "revisar antes da prova". Ela aparece junto da questão em Favoritos e sobe para a nuvem com a sua conta.</p>
+    ${jaEra ? "" : '<p class="text-xs muted mt-1">Esta questão ainda não estava salva. Ao anotar, ela entra nos seus favoritos.</p>'}
+    <div class="text-xs muted mt-2">${escapeHtml(q.enunciado.slice(0,150))}${q.enunciado.length>150?"…":""}</div>
+    <div class="field mt-2">
+      <label class="label">Anotação</label>
+      <textarea class="textarea" id="notaFavoritaTexto" placeholder="Ex.: entendi o gabarito, mas não sei descartar a alternativa C — conferir critério de gravidade.">${escapeHtml(nota)}</textarea>
+    </div>
+    <div class="flex gap-1">
+      <button class="btn btn-primary" onclick="salvarNotaFavoritaUI('${qid}')">Salvar anotação</button>
+      ${nota ? `<button class="btn btn-secondary" onclick="apagarNotaFavoritaUI('${qid}')">Apagar anotação</button>` : ""}
+      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+    </div>
+    ${(!jaEra && !nota) ? "" : '<p class="text-xs muted mt-2">Tirar a questão dos favoritos apaga a anotação junto.</p>'}`);
+}
+function salvarNotaFavoritaUI(qid){
+  const campo = document.getElementById("notaFavoritaTexto");
+  const texto = campo ? campo.value : "";
+  const r = salvarNotaFavorita(usuarioAtual().id, qid, texto);
+  fecharModal();
+  toast(r.apagou ? "Anotação apagada." : (r.novaFavorita ? "Anotação salva — a questão entrou nos seus favoritos." : "Anotação salva."));
+  render();
+}
+function apagarNotaFavoritaUI(qid){
+  salvarNotaFavorita(usuarioAtual().id, qid, "");
+  fecharModal();
+  toast("Anotação apagada. A questão continua nos favoritos.");
+  render();
+}
 
 /* ---------- comentários / dúvidas em cada questão ---------- */
 function renderComentarios(questaoId){
@@ -6064,7 +6505,17 @@ function gerarPromptDuvida(q){
   "Considere também a possibilidade de a questão estar mal formulada, ambígua, desatualizada, ou de o gabarito considerado estar incorreto — isso acontece de verdade em provas de residência e costuma gerar recursos administrativos.\n\n"+
   "--- QUESTÃO ("+q.banca+", "+q.ano+") ---\n"+q.enunciado+"\n\nAlternativas:\n"+alts+"\n\n"+
   "Gabarito considerado correto pela plataforma: "+q.gabarito+"\nExplicação atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+
-  "Responda de forma estruturada:\n1) Você concorda com o gabarito? Justifique clinicamente.\n2) Há alguma ambiguidade, erro ou desatualização na questão ou nas alternativas? Se sim, qual e por quê?\n3) Quais diretrizes/referências (com nome e, se souber, ano) sustentam a resposta correta?\n4) Explique objetivamente por que cada alternativa incorreta está errada.";
+  "Responda de forma estruturada:\n"+
+  "1) Você concorda com o gabarito? Justifique clinicamente.\n"+
+  "2) Há alguma ambiguidade, erro ou desatualização na questão ou nas alternativas? Se sim, qual e por quê?\n"+
+  "3) Quais diretrizes/referências (com nome e, se souber, ano) sustentam a resposta correta?\n"+
+  "4) Percorra TODAS as alternativas incorretas, uma por uma, na ordem (A, B, C...), e explique por que cada uma está errada. "+
+  "Em cada uma, comece pelo que o PRÓPRIO ENUNCIADO diz: cite o dado do caso que a descarta — idade, sexo, tempo de evolução, "+
+  "sinal ou sintoma presente ou ausente, achado de exame físico, resultado de exame, comorbidade, medicação em uso, contexto "+
+  "epidemiológico. Diga o que teria de ser diferente no enunciado para aquela alternativa passar a ser a correta. "+
+  "Quando a alternativa estiver errada por conhecimento que não vem do caso (uma dose errada, uma conduta que não existe, um "+
+  "conceito trocado), diga isso explicitamente, em vez de forçar uma justificativa que o enunciado não sustenta.\n"+
+  "5) Aponte a pegadinha da questão: qual alternativa é a \"quase certa\", o que a torna atraente e qual detalhe do enunciado a derruba.";
 }
 function abrirPromptDuvida(qid){
   const prompt = gerarPromptDuvida(getQuestao(qid));
@@ -6959,12 +7410,12 @@ function renderProvasAntigas(){
     ${grupos.map((g,i)=>{
       const previo = desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+g.ano+" (simulado)");
       const respondidas = g.ids.filter(id=>jaFoiRespondida(u.id, id)).length;
-      return `<div class="card">
-        <div style="font-family:var(--font-display);font-size:1.6rem">${g.ano}</div>
-        <div class="text-sm" style="font-weight:600">${escapeHtml(g.banca)}</div>
+      return `<div class="card prova-card">
+        <div class="prova-ano">${g.ano}</div>
+        <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
         <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
-        <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+        <div class="flex gap-1 prova-acoes" style="flex-wrap:wrap">
           <button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>
           <button class="btn btn-secondary btn-sm" onclick="praticarProva(${i})">Praticar sem cronômetro</button>
         </div>
@@ -6997,9 +7448,10 @@ function renderFavoritos(){
   const u = usuarioAtual();
   const favs = db.favoritos.filter(f=>f.usuarioId===u.id).map(f=>({reg:f, q:getQuestao(f.questaoId)})).filter(x=>x.q)
     .sort((a,b)=>(b.reg.data||"").localeCompare(a.reg.data||""));
+  const comNota = favs.filter(x=>(x.reg.nota||"").trim()).length;
   const pag = paginar(favs, "favoritos");
   return `
-  <div class="page-header"><h2>Favoritos</h2><p>${favs.length} questão(ões) marcada(s). Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p></div>
+  <div class="page-header"><h2>Favoritos</h2><p>${favs.length} questão(ões) marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p></div>
   ${favs.length ? `<div class="flex gap-1 mb-2" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="praticarFavoritas()">${iconeSvg("book")} Praticar todas as favoritas</button></div>` : ""}
   ${favs.length ? pag.itens.map(({reg,q})=>{
     const area = getArea(q.areaId);
@@ -7012,9 +7464,11 @@ function renderFavoritos(){
         ${ult ? `<span class="badge ${ult.correta?"badge-accent":"badge-danger"}">última: ${ult.correta?"acertou":"errou"}</span>` : '<span class="badge badge-muted">ainda não respondida</span>'}
       </div>
       <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,200))}${q.enunciado.length>200?"…":""}</span></div>
+      ${(reg.nota||"").trim() ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(reg.nota)}</div></div>` : ""}
       <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
         ${botaoVerNaIntegra(q.id, "Abrir questão completa")}
         <button class="btn btn-secondary btn-sm" onclick="praticarSoEstaQuestao('${q.id}')">${iconeSvg("book")} Praticar só esta</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirNotaFavorita('${q.id}')">${iconeSvg("message")} ${(reg.nota||"").trim()?"Editar anotação":"Anotar uma dúvida"}</button>
         <button class="btn btn-ghost btn-sm" onclick="toggleFavoritoUI('${q.id}')">${iconeSvg("star")} Remover dos favoritos</button>
       </div>
       <div class="text-xs muted mt-1">Favoritada em ${formatDataBR(reg.data||hojeISO())}</div>
@@ -7306,6 +7760,7 @@ function renderDesempenho(){
   const totalGeral = desempenhoTotal(u.id);
   const falsaSeguranca = assuntosComFalsaSeguranca(u.id);
   const ritmo = analiseDeTempo(u.id);
+  const cartoes = resumoCartoesFeitos(u.id);
 
   const dados = dadosDoPeriodo(u.id, ctx.periodo);
   const rotuloPeriodo = (PERIODOS_DESEMPENHO.find(p=>p.id===ctx.periodo)||PERIODOS_DESEMPENHO[0]).label;
@@ -7335,6 +7790,21 @@ function renderDesempenho(){
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${totalGeral.cobertura}%"></div></div>
     <p class="text-xs muted mt-1">A barra mostra quanto do banco de questões disponível você já percorreu ao menos uma vez (${totalGeral.distintas} de ${totalGeral.bancoAtivo}).</p>
+  </div>
+
+  <div class="card mb-2">
+    <div class="card-title">${iconeSvg("cards")} Flashcards — contagem à parte</div>
+    <p class="text-sm muted">Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão de prova leva minutos. Por isso ele é contado aqui, separado das questões acima: é volume de revisão, não taxa de acerto.</p>
+    <div class="grid grid-4 mt-2">
+      <div class="stat-tile"><div class="stat-value">${cartoes.revisoes}</div><div class="stat-label">cartões revisados no total (contando as repetições)</div></div>
+      <div class="stat-tile"><div class="stat-value">${cartoes.cartoes}</div><div class="stat-label">cartões diferentes que já passaram pelo seu baralho</div></div>
+      <div class="stat-tile"><div class="stat-value">${cartoes.hoje}</div><div class="stat-label">revisados hoje (meta de ${metaCartoesDoUsuario(u)} por dia)</div></div>
+      <div class="stat-tile"><div class="stat-value">${cartoes.dias}</div><div class="stat-label">dias com cartão revisado${cartoes.sequencia?` · ${cartoes.sequencia} seguido(s)`:""}</div></div>
+    </div>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
+      ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
+    </div>
   </div>
 
   <div class="card mb-2">
@@ -9392,7 +9862,12 @@ function regrasDeConteudoImportacao(){
   "- NÃO copie, reescreva ou resuma resoluções de sites de questões, bancos de questões comerciais, cursinhos (Medway, Estratégia MED etc.) ou apostilas. Esse material é propriedade intelectual de terceiros e frequentemente está desatualizado ou errado.\n"+
   "- Baseie a explicação em fontes primárias e oficiais: diretrizes e consensos de sociedades de especialidade, protocolos e PCDT do Ministério da Saúde, manuais de sociedades internacionais reconhecidas, revisões sistemáticas e artigos originais.\n"+
   "- Cite essas fontes no campo REFERENCIAS, com nome e ano. Se não tiver certeza da referência, escreva que não tem certeza em vez de inventar nome, ano ou número de estudo.\n"+
-  "- Se a evidência for conflitante ou o gabarito oficial parecer discutível, diga isso na explicação em vez de forçar uma justificativa.\n\n";
+  "- Se a evidência for conflitante ou o gabarito oficial parecer discutível, diga isso na explicação em vez de forçar uma justificativa.\n\n"+
+  "O QUE A EXPLICAÇÃO PRECISA TER (as duas metades, sempre):\n"+
+  "- Primeiro: por que a alternativa do gabarito está certa.\n"+
+  "- Depois: por que CADA uma das outras está errada, uma por uma, na ordem (A, B, C...), começando pelo que o PRÓPRIO ENUNCIADO diz — o dado do caso que a descarta (idade, sexo, tempo de evolução, sinal ou sintoma presente ou ausente, achado do exame físico, resultado de exame, comorbidade, medicação em uso, contexto epidemiológico). Dizer apenas \"não é a conduta indicada\" não serve: o aluno precisa saber ONDE, no caso, a alternativa morre.\n"+
+  "- Quando uma alternativa estiver errada por conhecimento que não vem do caso (dose errada, conduta inexistente, conceito trocado), diga isso explicitamente em vez de inventar uma pista no enunciado.\n"+
+  "- Escreva isso em texto corrido, numa linha só (o campo EXPLICACAO não aceita quebra de linha).\n\n";
 }
 function gerarPromptImportacao(){
   const ctx = contextoImportacao();
@@ -9401,7 +9876,7 @@ function gerarPromptImportacao(){
     "PERGUNTA: [enunciado completo da questão, incluindo o caso clínico se houver]\n"+
     "A: [texto da alternativa A]\nB: [texto da alternativa B]\nC: [texto da alternativa C]\nD: [texto da alternativa D]\nE: [texto da alternativa E]\n"+
     "GABARITO: [letra correta, de A a E]\n"+
-    "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras, de por que essa é a resposta correta]\n"+
+    "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha]\n"+
     "REFERENCIAS: [as fontes que sustentam a explicação: diretriz/consenso de sociedade de especialidade, protocolo do Ministério da Saúde, PCDT, revisão sistemática ou artigo primário, com nome e ano]\n"+
     "IMAGEM: [endereço (URL) da imagem da questão — ECG, radiografia, fundo de olho, foto de lesão. Deixe em branco se a questão não tiver imagem]\n"+
     "LEGENDA: [legenda curta da imagem, se houver]\n"+
@@ -9938,7 +10413,7 @@ function modeloConstrucaoLote(carga, lote){
   "PERGUNTA: [enunciado completo da questão, incluindo o caso clínico se houver]\n"+
   "A: [texto da alternativa A]\nB: [texto da alternativa B]\nC: [texto da alternativa C]\nD: [texto da alternativa D]\nE: [texto da alternativa E — apague esta linha se a prova tiver só 4 alternativas]\n"+
   "GABARITO: [letra correta]\n"+
-  "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras, de por que essa é a resposta correta]\n"+
+  "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha]\n"+
   "REFERENCIAS: [as fontes que sustentam a explicação: diretriz/consenso de sociedade de especialidade, protocolo do Ministério da Saúde, PCDT, revisão sistemática ou artigo primário, com nome e ano]\n"+
   "IMAGEM: [endereço (URL) da imagem da questão — ECG, radiografia, fundo de olho, foto de lesão. Deixe em branco se não houver]\n"+
   "LEGENDA: [legenda curta da imagem, se houver]\n"+
@@ -10355,7 +10830,7 @@ function renderBlocosConfig(){
   ${nuvemConectado() ? `
   <div class="card mb-2">
     <div class="card-title">${iconeSvg("check")} Sincroniza sozinho pela nuvem</div>
-    <p class="text-sm muted">Salvar um bloco aqui envia a sequência do ano para a nuvem em poucos segundos, e qualquer aluno com conta recebe na próxima vez que a plataforma sincronizar (ao abrir, ao voltar a internet, a cada poucos minutos). Não precisa exportar nem publicar o site de novo para isto.</p>
+    <p class="text-sm muted">Salvar um bloco aqui envia a sequência do ano para a nuvem em poucos segundos, e qualquer aluno com conta recebe na próxima vez que a plataforma sincronizar (ao abrir, ao voltar para a aba, ao voltar a internet e a cada 45 segundos com a aba aberta). Não precisa exportar nem publicar o site de novo para isto.</p>
     <p class="text-xs muted mt-1">Isto vale só para a <strong>sequência de blocos</strong>. Turmas (a que ano cada uma pertence, em qual grupo do rodízio está) continuam só neste navegador — ver o aviso mais abaixo, junto da tabela de turmas.</p>
     <button class="btn btn-secondary btn-sm mt-1" onclick="exportarCalendario()">${iconeSvg("archive")} Exportar mesmo assim (baixa um arquivo à parte)</button>
   </div>` : `
@@ -10794,7 +11269,7 @@ loadState();
       state.usuarioAtualId = eu.id;
       if(!hashInicial || state.route === "landing") state.route = "inicio";
     }
-    nuvemSincronizar({silencioso:true, forcarRedesenho:true});
+    nuvemSincronizarAgora({forcarRedesenho:true});
   }
   render();
   // lembrete de meta diária: checagem leve a cada minuto (ver função para

@@ -5,6 +5,8 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 
 > **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade, upload de provas em lotes) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) —, taxonomia de **216 assuntos** em **39 especialidades**, **conta de verdade e sincronização entre aparelhos pela nuvem** (Supabase, seção 4-B) e o conteúdo separado do código, na pasta `dados/`. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
 
+> **Pendência aberta (22/09/2026):** rodar de novo o `nuvem/esquema.sql` no painel do Supabase. A anotação pessoal das questões salvas usa a coluna nova `favoritos.nota`, e o arquivo já traz o `alter table` que a acrescenta a quem tem o banco criado. Enquanto não for rodado, a plataforma funciona e não perde nada — só a anotação não sobe para a nuvem (seção 4-B).
+
 ---
 
 ## 1. O que é
@@ -78,11 +80,15 @@ O menu lateral se monta conforme o nível e as rotas restritas mostram tela de "
 - **Meta do dia**: progresso `feitas/meta`, quantas faltam, sequência de dias seguidos e botão para ajustar o número. A meta não tem mais página própria (ver seção 5).
 - **Sessão recomendada**, que mistura bloco atual, revisão e prévia do próximo bloco.
 - **Monte sua própria lista**: filtros por grande área (com botão "todas"), especialidade, assunto, instituição, ano (com botão "últimos 5 anos"), e situação (só erros/chutes, só favoritas, não respondidas, incluir questões do meu grupo). Pode gerar como prática ou como simulado.
-- Durante a sessão: escolha da alternativa, **eliminar alternativas** (o × ao lado de cada uma risca o que já foi descartado), **declaração de confiança** (certeza / na dúvida / chute), feedback imediato com explicação, navegação livre entre questões já respondidas, favoritar, sinalizar desatualizada, gerar prompt de segunda opinião para IA e **virar a questão em flashcard**.
+- Durante a sessão: escolha da alternativa, **eliminar alternativas** (o × ao lado de cada uma risca o que já foi descartado), **declaração de confiança** (certeza / na dúvida / chute), feedback imediato com explicação, **navegação livre por toda a fila — inclusive por cima do que ainda não foi respondido**, favoritar, **anotar uma dúvida sua na questão**, sinalizar desatualizada, gerar prompt de segunda opinião para IA e **virar a questão em flashcard**.
+- **Dá para pular e voltar depois.** Nenhuma questão trava a fila: "Deixar para depois" (ou a tecla D, ou o arrasto no celular) passa para a seguinte e a questão fica *em branco* no mapa, clicável a qualquer momento. O que continua exigido é a confiança: **não existe resposta registrada sem certeza / dúvida / chute**.
+- **O que foi marcado e riscado fica guardado por questão.** A alternativa escolhida ainda sem confirmar e as alternativas riscadas voltam junto com a questão — ao andar pelo conjunto, ao sair e voltar, e em outro aparelho (a fila em andamento sobe para a nuvem).
 - **No celular, arrastar o cartão para o lado troca de questão.**
 
 ### Fim de cada conjunto de questões
-Página de feedback com: taxa de acerto, acerto por nível de confiança, e lista questão a questão mostrando o que acertou, errou, chutou ou respondeu na dúvida — com alertas de "acerto no chute" e "erro com certeza". Cada linha traz botões de voltar à questão, ver na íntegra, favoritar e **virar flashcard** (destacado nas erradas e chutadas). Tudo fica salvo e pode ser reaberto em **Histórico de Atividade**.
+Terminar com questões em branco **pergunta antes** ("você respondeu 12 de 20 e deixou 8 em branco"), com atalho para a primeira em branco — chegar ao resumo sem perceber que oito ficaram para trás é o tipo de coisa que só se descobre depois. Quem quiser fechar assim mesmo fecha: questão em branco não é erro nem acerto, não entra no histórico e não conta em lugar nenhum.
+
+Página de feedback com: taxa de acerto, acerto por nível de confiança, quantas ficaram em branco, e lista questão a questão mostrando o que acertou, errou, chutou ou respondeu na dúvida — com alertas de "acerto no chute" e "erro com certeza". Cada linha traz botões de voltar à questão, ver na íntegra, favoritar e **virar flashcard** (destacado nas erradas e chutadas). Tudo fica salvo e pode ser reaberto em **Histórico de Atividade**.
 
 ### Revisão
 - Repetição espaçada (SM-2 adaptado) que traz de volta tanto o que se errou quanto o que se acertou faz tempo.
@@ -133,6 +139,8 @@ A tela responde a três perguntas, nesta ordem:
    Em qualquer recorte diário aparecem: taxa do período, **variação em pontos percentuais contra a janela anterior do mesmo tamanho**, dias em que estudou e questões por dia estudado. No recorte mensal: taxa somada, volume, meses com estudo e melhor mês. Abaixo do gráfico, as **duas janelas curtas lado a lado** (14 e 30 dias) com um alerta quando se afastam 8 p.p. ou mais — é o sinal de que algo mudou recentemente, para melhor ou pior.
 
 3. **"Onde eu preciso mexer?"** — **as 5 grandes áreas** (e só elas), calibração da confiança, "onde sua confiança engana" e ritmo por questão.
+
+Há ainda um cartão **só de flashcards**, deliberadamente separado das questões: quantas revisões de cartão no total (contando as repetições), quantos cartões diferentes já passaram pelo baralho, quantos foram hoje e em quantos dias houve cartão. Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão leva minutos — somar as duas coisas num total só daria um número que não significa nada.
 
 **O gráfico de barras verticais** (`graficoBarrasVerticaisSvg`) é o mesmo em todos esses lugares: cada barra é 100% das questões daquele dia, mês ou área — a parte de baixo, em **verde claro**, é o acerto; o que sobra em cima, em **cinza claro**, é o erro. 65% de acerto = 65% da barra verde e 35% cinza, com o número escrito quando a barra é larga o bastante e tooltip quando não é. Dia ou mês sem nenhuma questão vira um traço fino na base, não some do gráfico: esconder os buracos mentiria sobre a rotina, que é metade do resultado.
 
@@ -193,13 +201,32 @@ Até esta versão, tudo vivia no `localStorage` de um navegador só: quem estuda
 
 **Onde mora.** Supabase (PostgreSQL + autenticação + PostgREST). Escolhido por ser o backend que mapeia quase direto para o objeto `db` e por não exigir escrever servidor nenhum: o app conversa por `fetch` com a API REST, sem SDK, sem dependência nova.
 
-**O que sobe** (dez tabelas, ver `NUVEM_TABELAS` no código): perfil, respostas, repetição espaçada de questões e de cartões, dias com cartão revisado, favoritos, cartões pessoais, sessões concluídas, notas de simulado e a fila em andamento.
+**O que sobe** (dez tabelas, ver `NUVEM_TABELAS` no código): perfil, respostas, repetição espaçada de questões e de cartões, dias com cartão revisado, favoritos (**com a anotação pessoal de cada questão salva**), cartões pessoais, sessões concluídas, notas de simulado e a fila em andamento — esta última com as alternativas marcadas e riscadas de cada questão.
+
+> **Quem já tinha o banco criado precisa rodar o `nuvem/esquema.sql` de novo.** A anotação da questão salva mora numa coluna nova (`favoritos.nota`), e o arquivo traz o `alter table … add column if not exists` que a acrescenta a quem já tinha a tabela. Enquanto a coluna não existir, a plataforma **não quebra e não perde nada**: percebe a recusa, reenvia os favoritos sem a anotação (que continua guardada no navegador) e volta a mandá-la sozinha depois de o SQL ser rodado e a página recarregada.
 
 **O que NÃO sobe:** o conteúdo. Questões e flashcards da equipe são iguais para todo mundo e continuam vindo da pasta `dados/` — não faz sentido guardar uma cópia por aluno. Continuam locais também: comentários nas questões, feedbacks, Livro de Ouro, calendário de blocos, turmas e as cargas da Central de Provas (ver limitação 10).
 
-**Conflito entre dois aparelhos.** Registros (respostas, sessões, notas) nunca se sobrescrevem, só se juntam — responder no celular e no computador resulta nas duas respostas. Estado (repetição espaçada, favoritos, metas, cartões pessoais) vale a versão mais recente, guardado **questão a questão**, e não num bloco único, para que uma divergência afete um item e nunca o histórico inteiro.
+**Conflito entre dois aparelhos.** Registros (respostas, sessões, notas) nunca se sobrescrevem, só se juntam — responder no celular e no computador resulta nas duas respostas. A única exceção é o **conjunto concluído**, que é registro mas **atualizável** (`atualizavel: true`): depois de ver o resumo, a pessoa pode voltar e responder uma questão que tinha ficado em branco, e aí aquela linha muda de placar em vez de ganhar uma cópia velha ao lado. Estado (repetição espaçada, favoritos, metas, cartões pessoais) vale a versão mais recente, guardado **questão a questão**, e não num bloco único, para que uma divergência afete um item e nunca o histórico inteiro.
 
-**Sem internet não para.** Cada gravação entra numa fila (`db.filaNuvem`) guardada no navegador e sobe em bloco poucos segundos depois, ao voltar a conexão ou ao voltar para a aba. O que desce usa uma **marca d'água por tabela** (`db.nuvem.marcas`), com o horário **do servidor** — relógio adiantado num celular pularia registros. Sair da conta com fila pendente pergunta antes: sincronizar e sair, ou sair mesmo assim (a fila fica guardada e sobe no próximo acesso daquele aparelho).
+**Sem internet não para.** Cada gravação entra numa fila (`db.filaNuvem`) guardada no navegador e sobe em bloco. O que desce usa uma **marca d'água por tabela** (`db.nuvem.marcas`), com o horário **do servidor** — relógio adiantado num celular pularia registros.
+
+**O ritmo da sincronização** (`NUVEM_RITMO`, na seção 2-C do código) é este, e está escrito num lugar só:
+
+| Quando | Quando sobe |
+|---|---|
+| Acabou de mexer em alguma coisa | 2 s depois |
+| Mexeu várias vezes seguidas | tudo junto, num envio só (teto de 5 s desde a primeira alteração que está esperando) |
+| Aba aberta e parada | a cada 45 s |
+| Voltou para a aba | na hora |
+| A internet voltou | na hora |
+| Entrou na conta | na hora |
+| Saiu da conta | na hora |
+| A fila passou de 25 itens | na hora |
+
+O agrupamento é o centro disso: responder três questões seguidas vira **um** envio, não três. O teto existe para quem não para de mexer — sem ele, a fila ficaria indefinidamente no navegador. Com a aba escondida o ciclo de 45 s para (não adianta gastar rede numa tela que ninguém vê) e volta a valer quando a aba volta, que já sincroniza na hora.
+
+**Sair da conta sobe primeiro.** É o último momento em que aquele aparelho pode enviar o que fez, então a saída não pergunta nada quando consegue resolver sozinha: sobe e sai. A pergunta só aparece no caso em que ela tem resposta possível — o envio não passou (sem internet, servidor fora) e a pessoa decide entre tentar de novo ou sair assim mesmo, com a fila guardada para o próximo acesso daquele aparelho.
 
 **Quem entra.** Todo cadastro novo nasce `pendente`, e a coordenação libera na tela **Aprovar Cadastros** de sempre, que passou a mostrar os pendentes da nuvem no alto — ninguém precisa abrir o painel do Supabase. A senha vive no servidor, com hash, e **nunca** é copiada para o `db` local.
 
@@ -238,6 +265,20 @@ Uma prova de 100 questões com explicação autoral não sai numa conversa só �
 
 ### Clicar no enunciado abre a questão — só onde o texto está cortado
 Nas **listas**, onde o enunciado aparece truncado, clicar abre a questão inteira. Na questão em resolução não: ali o enunciado já está todo na tela, e abrir uma janela com o mesmo texto não acrescenta nada. Pelo mesmo motivo, o botão "Expandir questão" saiu das ações embaixo da questão aberta.
+
+### Pular é permitido; chutar para destravar, não
+A fila andava só para frente depois de responder. Quem empacava numa questão tinha duas saídas ruins: abandonar o conjunto inteiro, ou chutar só para passar — e esse chute entra no histórico como se fosse um chute de verdade, desregulando a repetição espaçada e a calibração da confiança. Agora a fila anda para os dois lados sem exigir resposta: a questão pulada fica **em branco** no mapa (clicável, com o número à vista) e volta quando a pessoa quiser. O que não afrouxou foi a regra que importa: **toda resposta registrada tem a confiança declarada**. Pular não registra nada.
+
+Tecnicamente, isso só é possível porque a resposta passou a ser guardada pela **posição** na fila (`respostasSessao[i]` é a resposta de `itens[i]`, e a posição pulada fica vazia), e não empilhada na ordem em que as respostas aconteceram. Quem precisa contar quantas foram feitas usa `respostasFeitas()`, nunca `.length` — numa fila com buracos, `.length` diria "5 feitas" onde houve 2.
+
+### Marcar não é responder — e por isso também tem memória
+Marcar uma alternativa é dizer "acho que é esta"; responder é bater o martelo e declarar a confiança. Entre as duas coisas cabe ver a questão seguinte, conferir a anterior ou fechar o navegador, e nada disso pode apagar o que a pessoa já tinha decidido. A marca é guardada **por questão** (`sessao.marcadas[questaoId]`), como os riscos, e volta com ela — dentro do conjunto, ao reabrir a fila e em outro aparelho, já que a sessão em andamento sobe para a nuvem. No mapa, a questão com marca pendente aparece com a borda âmbar: tem rascunho esperando confiança.
+
+### A tela não pisca a cada clique
+A plataforma inteira é redesenhada a cada mudança de estado (`render()`), e isso valia também para marcar uma alternativa dentro de uma questão: o HTML todo era jogado fora e remontado, com a animação de entrada da página tocando de novo — a tela "piscava" a cada clique no meio de um conjunto de questões. Agora, quando a **tela é a mesma**, só o miolo é trocado (`desenharTela`), o menu e o topo são reescritos no lugar e a animação de entrada, que existe para sinalizar *troca de tela*, só toca quando a tela realmente troca. Dentro da sessão vai um passo além: marcar ou riscar uma alternativa redesenha **só o cartão da questão** (`redesenharQuestaoDaSessao`), porque é só ele que muda.
+
+### A anotação da questão salva é particular
+Salvar uma questão quase sempre vem com um motivo — "não entendi por que não é a C", "conferir a dose", "cai todo ano" — e esse motivo sumia: semanas depois a pessoa reencontrava o enunciado sem lembrar o que queria tirar a limpo ali. A anotação fica **junto do favorito daquele usuário** (`favoritos[].nota`), é privada (ninguém mais vê, nem a coordenação) e sobe para a nuvem com a conta. Não se confunde com os **comentários** da questão, que são dúvida feita à equipe, pública, e alimentam a fila de dúvidas. Anotar numa questão que ainda não estava salva salva a questão junto — era isso que a pessoa ia fazer de qualquer jeito —, e tirá-la dos favoritos leva a anotação junto, porque a anotação é sobre a questão guardada, não sobre a questão.
 
 ### Eliminar alternativas é rascunho, não resposta
 O × ao lado de cada alternativa risca o que o aluno já descartou, como se faz no papel. Riscar não marca nada nem conta como resposta; escolher uma alternativa riscada desfaz o risco automaticamente (se ele decidiu marcá-la, ela não está mais descartada). Os riscos ficam guardados **por questão** e seguem a sessão, inclusive se ele sair e voltar. Depois de responder, viram registro: se ele tinha riscado justamente o gabarito, o feedback diz isso, porque descartar a resposta certa é um erro diferente de hesitar entre duas.
@@ -328,6 +369,21 @@ O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 | `salvarSessaoEmAndamento()` / `carregarSessaoEmAndamento()` / `retomarSessaoEmAndamento()` | gravam e devolvem a fila de questões inacabada |
 | `eliminadasDaQuestao(qid)` / `alternarAlternativaEliminada(alt)` | as alternativas riscadas da questão atual |
 | `metaCartoesDoUsuario(u)` / `cartoesRevisadosHoje(id)` / `sequenciaDiasCartoes(id)` | a meta diária de flashcards e sua sequência |
+
+**Funções-chave acrescentadas na rodada de 22/09:**
+
+| Função | O que faz |
+|---|---|
+| `NUVEM_RITMO` | a tabela de "quando sobe o quê" (2 s, teto de 5 s, 45 s, fila de 25), num lugar só |
+| `nuvemSincronizarAgora(opts)` / `nuvemCicloOcioso()` | o envio imediato (aba, internet, entrar, sair, fila grande) e o ciclo da aba aberta e parada |
+| `respostaDoIndice(s,i)` / `respostasFeitas(s)` / `indicesEmBranco(s)` | leem a fila de respostas **com buracos**: a resposta de uma posição, só as feitas, e as que ficaram em branco |
+| `marcadaDaQuestao(qid)` | a alternativa marcada e ainda não confirmada daquela questão |
+| `desenharTela(html)` / `animarEntradaDaPagina(el)` | trocam só o miolo quando a tela é a mesma; a animação de entrada só toca na troca de tela |
+| `htmlMenuLateral(u)` / `htmlTopo(u)` | as duas partes da estrutura, separadas do conteúdo para poderem ser reescritas sozinhas |
+| `htmlCartaoDaSessao(s)` / `redesenharQuestaoDaSessao()` | redesenham só o cartão da questão (marcar, riscar) |
+| `fecharSessaoPratica()` | o fechamento de fato do conjunto; `finalizarSessaoPratica()` passou a perguntar antes quando há questões em branco |
+| `notaDaFavorita(id,qid)` / `salvarNotaFavorita(id,qid,txt)` / `abrirNotaFavorita(qid)` | a anotação pessoal da questão salva (salva a questão junto, se ainda não estava) |
+| `resumoCartoesFeitos(id)` | quantos flashcards a pessoa já fez — o cartão separado em Meu Desempenho |
 | `mapaPrevalenciasAssuntos()` | prevalência de todos os assuntos calculada uma vez por gravação (cache por `_geracaoDb`) |
 
 **Funções-chave acrescentadas na revisão de 20/09:**
@@ -515,3 +571,23 @@ A ponte `window.EscDados` ganhou `registrarSimulados`, `registrarTaxonomia`, `re
 **Cadastros não se perdem mais num defeito de leitura (21/09/2026, quarta rodada).** O usuário relatou que dados prévios de cadastros estavam sendo excluídos. A investigação não achou nenhum código que apague usuários — e achou o contrário: três caminhos em que um defeito *qualquer* custava a turma inteira, todos anteriores a esta semana. O pior deles estava no `catch` do `loadState()`, que trocava o banco salvo pelo de demonstração ao primeiro erro de migração, em silêncio; reproduzido com um único campo de tipo errado, 25 cadastros somem. Os três estão descritos na seção 7-B. **Verificado com Chromium/Playwright:** os 25 cadastros, as respostas e os favoritos sobrevivendo a várias coleções estragadas ao mesmo tempo (lista virando texto, objeto virando nulo, taxonomia sem áreas, o grupo oficial sumindo, usuário sem id, `configGeral` nulo), com o conteúdo repovoado pela pasta `dados/` e a plataforma abrindo usável; o aviso aparecendo na tela e a cópia de resgate ficando disponível quando o `catch` é mesmo acionado; o cadastro sendo recusado, em vez de confirmado, quando o armazenamento não aceita gravar; e a subida da versão anterior para esta sem perder nenhum cadastro nem resposta.
 
 **A turma da nuvem ficou visível, e excluir entrou ao lado de inativar (21/09/2026, quinta rodada).** O usuário relatou que quatro pessoas aprovadas tinham sumido, com um `400` em `/auth/v1/token?grant_type=password` no console — que é um login recusado, não perda de dado. Não houve exclusão: faltava a tela que mostra quem já foi aprovado (seção 7-C). Junto, entrou a exclusão de cadastro pedida, com a política `perfis_excluir` nova no `esquema.sql` e a trava do último administrador máster corrigida para não somar contas locais com as da nuvem. **Verificado com Chromium/Playwright contra um Supabase simulado:** os quatro nomes aparecendo em *Usuários*; aprovar um pendente e vê-lo reaparecer ali; mudar papel e status chegando ao servidor; excluir removendo da nuvem e da tela; e as quatro recusas — excluir a própria conta, excluir num banco sem a política (nada é removido e a mensagem diz o que rodar), rebaixar o último máster da nuvem, e a exclusão local levando só o estudo pessoal, com questões, comentários e cartões da equipe intactos.
+
+**Ritmo da nuvem, fila sem trava e anotação na questão salva (22/09/2026).** Oito pedidos do usuário, na mesma rodada.
+
+(1) **A sincronização ganhou um ritmo escrito** (`NUVEM_RITMO`, seção 4-B): 2 s depois de cada alteração, alterações seguidas agrupadas num envio só (com teto de 5 s para quem não para de mexer), 45 s de ciclo com a aba aberta e parada — antes eram 120 s, e rodando também com a aba escondida —, e envio imediato ao voltar para a aba, ao recuperar a internet, ao entrar, ao sair e quando a fila passa de 25 itens. Sair da conta passou a **subir primeiro e perguntar só se não conseguir**, em vez de perguntar sempre.
+
+(2) **A tela parou de piscar dentro de um conjunto de questões.** A causa era estrutural: cada clique refazia a página inteira e a animação de entrada tocava de novo. Agora, na mesma tela, só o miolo é trocado, e marcar ou riscar uma alternativa redesenha apenas o cartão da questão (seção 5).
+
+(3) **Anotação pessoal na questão salva**: um campo privado, sincronizado, para guardar a dúvida que ficou — com a coluna `favoritos.nota` nova no `esquema.sql` e um reenvio automático sem a anotação enquanto quem já tinha o banco não roda o SQL, para ninguém perder a sincronização dos favoritos por causa dela.
+
+(4) **O prompt de segunda opinião e os dois modelos de importação** passaram a exigir a outra metade da explicação: por que **cada** alternativa errada está errada, começando pelo dado do **enunciado** que a descarta (idade, tempo de evolução, exame, comorbidade), e dizendo explicitamente quando a alternativa cai por conhecimento que não vem do caso, em vez de inventar uma pista no texto.
+
+(5) **Pular questão virou possível** sem afrouxar a declaração de confiança (seção 5): a questão fica em branco no mapa, clicável, e o conjunto só fecha depois de perguntar quando há questões em branco.
+
+(6) **O que foi marcado e riscado ficou com memória de verdade**: a marca sem confirmar passou a ser guardada por questão, como os riscos já eram, e volta ao navegar pelo conjunto, ao reabrir a fila e em outro aparelho.
+
+(7) **Meu Desempenho ganhou a contagem de flashcards**, num cartão à parte: revisões no total, cartões diferentes, revisados hoje e dias com cartão. Separado das questões de propósito — cartão não tem acerto nem erro.
+
+(8) **O primeiro quadrado de Provas Antigas parou de ficar maior que os outros.** A causa era uma regra de CSS de fora da grade (`.card + .card{margin-top:1rem}`) que se aplicava a todos os cartões **menos ao primeiro**, e por isso destacava justamente o "Esc — Banco Didático 2026". Junto, os cartões de prova passaram a alinhar os botões na base, para o nome de instituição que quebra em duas linhas não desalinhar a grade.
+
+**Verificado neste ambiente, com o código rodando em Node dentro de um navegador de mentira** (o repositório não tem Playwright aqui): as 29 rotas nos 4 papéis desenhando sem erro de JavaScript (116 telas); a fila de questões com buracos — marcar, pular, responder fora de ordem, voltar e encontrar a marca e os riscos onde estavam —, inclusive atravessando o ida-e-volta pelo `localStorage` (o buraco vira `null` no JSON e continua buraco) e com o formato **antigo** de sessão salva abrindo sem perder nada; o histórico registrando só o que foi respondido; a anotação criando o favorito quando não havia, sobrevivendo à gravação, entrando na fila da nuvem e sumindo junto ao desfavoritar; o ritmo da nuvem (2 s, teto, fila grande subindo na hora); e a contagem de flashcards batendo com as revisões feitas. **O que não deu para verificar daqui:** o projeto Supabase de verdade (a rede desta máquina bloqueia `supabase.co`) — a coluna `favoritos.nota` precisa ser criada rodando o `nuvem/esquema.sql` no painel.

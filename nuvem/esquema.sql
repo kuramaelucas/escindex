@@ -160,14 +160,23 @@ create index if not exists dias_cartoes_sync_idx on public.dias_cartoes (usuario
 -- Desmarcar não apaga a linha: marca removido = true. Assim o "desmarquei no
 -- celular" também chega ao computador — uma linha apagada não tem como ser
 -- sincronizada.
+--
+-- A coluna "nota" é a anotação PESSOAL da questão salva ("não entendi por que
+-- não é a C", "conferir a dose"). É privada como o resto da tabela: o RLS lá
+-- embaixo amarra cada linha ao dono dela, e ninguém mais lê. Não confundir
+-- com os comentários públicos da questão, que não moram na nuvem.
 create table if not exists public.favoritos (
   usuario_id    uuid        not null references auth.users(id) on delete cascade,
   questao_id    text        not null,
   data          date,
+  nota          text        not null default '',
   removido      boolean     not null default false,
   atualizado_em timestamptz not null default now(),
   primary key (usuario_id, questao_id)
 );
+-- para quem já rodou este arquivo antes de a anotação existir (o "create
+-- table if not exists" acima não mexe numa tabela que já está lá):
+alter table public.favoritos add column if not exists nota text not null default '';
 create index if not exists favoritos_sync_idx on public.favoritos (usuario_id, atualizado_em);
 
 -- ---------------------------------------------------------------------------
