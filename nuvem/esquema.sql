@@ -204,6 +204,24 @@ create table if not exists public.favoritos_cartoes (
 create index if not exists favoritos_cartoes_sync_idx on public.favoritos_cartoes (usuario_id, atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 6-C. QUESTOES_OCULTAS — "não mostrar mais esta questão para mim" (ESTADO)
+-- ---------------------------------------------------------------------------
+-- A questão que a pessoa tirou do próprio estudo: não volta na sessão do dia,
+-- na revisão, nas filas de erro nem nas listas montadas por filtro. Ela não
+-- some do banco nem das estatísticas — é só a fila de UMA pessoa. Voltar a
+-- mostrar marca "removido", como nos favoritos, para a volta também viajar
+-- entre aparelhos.
+create table if not exists public.questoes_ocultas (
+  usuario_id    uuid        not null references auth.users(id) on delete cascade,
+  questao_id    text        not null,
+  data          date,
+  removido      boolean     not null default false,
+  atualizado_em timestamptz not null default now(),
+  primary key (usuario_id, questao_id)
+);
+create index if not exists questoes_ocultas_sync_idx on public.questoes_ocultas (usuario_id, atualizado_em);
+
+-- ---------------------------------------------------------------------------
 -- 7. FLASHCARDS_PESSOAIS — o caderno de cartões de cada aluno (ESTADO)
 -- ---------------------------------------------------------------------------
 -- Só os cartões PESSOAIS. Os 501 cartões da equipe são conteúdo e continuam
@@ -297,7 +315,8 @@ declare t text;
 begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
-    'favoritos_cartoes', 'flashcards_pessoais', 'sessao_em_andamento', 'calendario'
+    'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
+    'sessao_em_andamento', 'calendario'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -396,6 +415,7 @@ alter table public.revisoes_flashcards  enable row level security;
 alter table public.dias_cartoes         enable row level security;
 alter table public.favoritos            enable row level security;
 alter table public.favoritos_cartoes    enable row level security;
+alter table public.questoes_ocultas     enable row level security;
 alter table public.flashcards_pessoais  enable row level security;
 alter table public.sessoes              enable row level security;
 alter table public.resultados_simulados enable row level security;
@@ -466,8 +486,8 @@ declare t text;
 begin
   foreach t in array array[
     'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
-    'favoritos', 'favoritos_cartoes', 'flashcards_pessoais', 'sessoes',
-    'resultados_simulados', 'sessao_em_andamento'
+    'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
+    'sessoes', 'resultados_simulados', 'sessao_em_andamento'
   ] loop
     execute format('drop policy if exists %1$s_ler     on public.%1$I', t);
     execute format('drop policy if exists %1$s_criar   on public.%1$I', t);
@@ -506,8 +526,8 @@ declare t text;
 begin
   foreach t in array array[
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
-    'favoritos', 'favoritos_cartoes', 'flashcards_pessoais', 'sessoes',
-    'resultados_simulados', 'sessao_em_andamento', 'calendario'
+    'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
+    'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;

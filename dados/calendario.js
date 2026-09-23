@@ -60,12 +60,73 @@ window.EscDados.registrarCalendario("calendario", {
       { id:"b3-oftalmo", ordem:3, nome:"Oftalmologia, Infectologia & Medicina Baseada em Evidências", grupoRodizio:"C", dataInicio:"2026-10-05", dataFim:"2026-11-06", especialidadeIds:["esp-oftalmo","esp-infecto","esp-epidemio"] },
       { id:"b3-psiq",  ordem:4, nome:"Psiquiatria & Vigilância em Saúde", grupoRodizio:"B", dataInicio:"2026-11-09", dataFim:"2026-12-04", especialidadeIds:["esp-psiquiatria","esp-sus","esp-saudefamilia"] },
     ],
+    /* 4º ANO — calendário real da faculdade (rodízio de dez turmas).
+       Transcrito do quadro "BLOCO / PERÍODO" do 4º ano: dez blocos, dez
+       janelas e dez turmas (A a J). Aqui o rodízio É um ciclo, como no 3º
+       ano: cada turma desce o quadro um bloco por janela e, no fim da
+       lista, volta ao primeiro. Por isso basta `grupoRodizio` (a turma que
+       começa em cada bloco) — sem `turmasPorJanela`. O quadro, célula a
+       célula:
+
+         bloco        26/01 26/02 27/03 24/04 22/05 19/06 31/08 02/10 06/11 04/12
+         URI/ANEST      A     B     C     D     E     F     G     H     I     J
+         TEG            J     A     B     C     D     E     F     G     H     I
+         RESP           I     J     A     B     C     D     E     F     G     H
+         NERV           H     I     J     A     B     C     D     E     F     G
+         LOCOM          G     H     I     J     A     B     C     D     E     F
+         DIGEST         F     G     H     I     J     A     B     C     D     E
+         ORL CP         E     F     G     H     I     J     A     B     C     D
+         ENDOC/MU       D     E     F     G     H     I     J     A     B     C
+         CM HEMATO      C     D     E     F     G     H     I     J     A     B
+         MULHER CCA     B     C     D     E     F     G     H     I     J     A
+
+       AS DATAS. O quadro traz uma data por coluna, e ela é o FIM da janela:
+       quase todas caem numa sexta-feira e a última (04/12) fecha o ano, como
+       no 3º e no 5º ano. O início de cada janela é o dia útil seguinte ao fim
+       da anterior. Duas pontas o quadro não diz, e ficaram assim até a
+       coordenação confirmar (Admin > Blocos de Estudo edita):
+         - a primeira janela começa em 05/01, junto com o 5º ano;
+         - depois das férias de julho, a sétima janela começa em 20/07, junto
+           com a volta do 3º ano.
+
+       AS ESPECIALIDADES. Cada sigla foi traduzida para a taxonomia da
+       plataforma. Onde a taxonomia não tem a matéria com esse nome (Cirurgia
+       Plástica, Cirurgia de Cabeça e Pescoço, Medicina de Urgência, Clínica
+       Médica geral), entrou a especialidade mais próxima — ver o comentário
+       de cada bloco. */
     "4º ano": [
-      { id:"b4-1", ordem:1, nome:"Clínica Médica I: Cardiologia, Pneumologia & Nefrologia", dataInicio:"2026-02-02", dataFim:"2026-04-05", especialidadeIds:["esp-cardio","esp-pneumo","esp-nefro"] },
-      { id:"b4-2", ordem:2, nome:"Clínica Médica II: Gastro, Endócrino & Infecto", dataInicio:"2026-04-06", dataFim:"2026-06-07", especialidadeIds:["esp-gastro","esp-endocrino","esp-infecto"] },
-      { id:"b4-3", ordem:3, nome:"Fundamentos de Cirurgia e Técnica Operatória", dataInicio:"2026-06-08", dataFim:"2026-08-09", especialidadeIds:["esp-toce","esp-perioperatorio","esp-abdagudo"] },
-      { id:"b4-4", ordem:4, nome:"Saúde da Mulher", dataInicio:"2026-08-10", dataFim:"2026-10-11", especialidadeIds:["esp-ginecologia","esp-planfamiliar","esp-obstetricia"] },
-      { id:"b4-5", ordem:5, nome:"Medicina Preventiva e Social", dataInicio:"2026-10-12", dataFim:"2026-12-20", especialidadeIds:["esp-epidemio","esp-sus","esp-bioetica","esp-saudefamilia"] },
+      { id:"b4-uri", ordem:1, nome:"URI/ANEST — Nefrologia, Urologia & Anestesiologia", grupoRodizio:"A", dataInicio:"2026-01-05", dataFim:"2026-01-26",
+        especialidadeIds:["esp-nefro","esp-urologia","esp-anestesio"] },
+      /* Cirurgia Plástica não é especialidade na taxonomia: queimadura mora
+         em Trauma e cicatrização em TOCE, que já têm bloco próprio no 3º
+         ano. Fica a Dermatologia inteira. */
+      { id:"b4-teg", ordem:2, nome:"TEG — Dermatologia & Cirurgia Plástica", grupoRodizio:"J", dataInicio:"2026-01-27", dataFim:"2026-02-26",
+        especialidadeIds:["esp-dermato"] },
+      { id:"b4-resp", ordem:3, nome:"RESP — Pneumologia & Cirurgia Torácica", grupoRodizio:"I", dataInicio:"2026-02-27", dataFim:"2026-03-27",
+        especialidadeIds:["esp-pneumo","esp-cirtoracica"] },
+      { id:"b4-nerv", ordem:4, nome:"NERV — Neurologia & Neurocirurgia", grupoRodizio:"H", dataInicio:"2026-03-30", dataFim:"2026-04-24",
+        especialidadeIds:["esp-neuro","esp-neurocirurgia"] },
+      { id:"b4-locom", ordem:5, nome:"LOCOM — Reumatologia & Ortopedia", grupoRodizio:"G", dataInicio:"2026-04-27", dataFim:"2026-05-22",
+        especialidadeIds:["esp-reumato","esp-ortopedia"] },
+      /* gastrocirurgia = abdome agudo (vias biliares, hérnias, bariátrica…)
+         + os tumores do aparelho digestivo, que estão em Cirurgia Oncológica */
+      { id:"b4-digest", ordem:6, nome:"DIGEST — Gastroclínica & Gastrocirurgia", grupoRodizio:"F", dataInicio:"2026-05-25", dataFim:"2026-06-19",
+        especialidadeIds:["esp-gastro","esp-abdagudo","esp-cirurgiaonco"] },
+      /* Cirurgia de Cabeça e Pescoço não é especialidade na taxonomia; a
+         Otorrino é a que tem as questões da região */
+      { id:"b4-orl", ordem:7, nome:"ORL CP — Otorrinolaringologia & Cirurgia de Cabeça e Pescoço", grupoRodizio:"E", dataInicio:"2026-07-20", dataFim:"2026-08-31",
+        especialidadeIds:["esp-orl"] },
+      /* Medicina Baseada em Evidências = Epidemiologia (como no 3º ano);
+         Medicina de Urgência não existe na taxonomia, e o que mais se
+         aproxima é Trauma (ATLS, queimados, trauma torácico e abdominal) */
+      { id:"b4-endoc", ordem:8, nome:"ENDOC/MU — Endocrinologia, Medicina Baseada em Evidências & Medicina de Urgência", grupoRodizio:"D", dataInicio:"2026-09-01", dataFim:"2026-10-02",
+        especialidadeIds:["esp-endocrino","esp-epidemio","esp-trauma"] },
+      /* Clínica Médica geral: as grandes frentes clínicas que nenhum outro
+         bloco do 4º ano cobre (Cardio e Infecto), mais a Hematologia */
+      { id:"b4-cmhemato", ordem:9, nome:"CM HEMATO — Clínica Médica & Hematologia", grupoRodizio:"C", dataInicio:"2026-10-05", dataFim:"2026-11-06",
+        especialidadeIds:["esp-hemato","esp-cardio","esp-infecto"] },
+      { id:"b4-mulher", ordem:10, nome:"MULHER CCA — Saúde da Mulher, da Criança & Medicina Preventiva", grupoRodizio:"B", dataInicio:"2026-11-09", dataFim:"2026-12-04",
+        especialidadeIds:["esp-ginecologia","esp-obstetricia","esp-planfamiliar","esp-crescdesenv","esp-neonato","esp-saudefamilia","esp-sus"] },
     ],
     /* 5º ANO — calendário real da faculdade (rodízio de doze turmas).
        Transcrito do quadro "CURSO MÉDICO – 5ª SÉRIE – 2026": doze janelas de
