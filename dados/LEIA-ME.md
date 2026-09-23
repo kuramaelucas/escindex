@@ -23,7 +23,7 @@ porque todo o resto aponta para ela):
 | Arquivo | Conteúdo | Itens |
 | --- | --- | --- |
 | `taxonomia.js` | Área > especialidade > assunto | 5 + 39 + 216 |
-| `calendario.js` | Blocos de estudo e a sequência de cada ano | 8 + 4 anos (o 5º tem 12 estágios e o quadro de turmas) |
+| `calendario.js` | Blocos de estudo e a sequência de cada ano | 8 + 4 anos (o 4º tem 10 blocos e 10 turmas; o 5º, 12 estágios e o quadro de turmas) |
 | `banco-didatico.js` | Questões autorais da equipe, no estilo da prova | 135 |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 (Acesso Direto), prova real | 100 |
@@ -83,10 +83,17 @@ Do mais fácil ao mais trabalhoso:
 2. **Acrescentar itens a um arquivo que já existe aqui.** Abra o arquivo, copie
    o molde abaixo e acrescente antes do `]);` do fim.
 3. **Criar um arquivo novo** aqui e registrá-lo com mais uma linha
-   `<script src="dados/o-nome-do-arquivo.js"></script>` no `index.html` (procure
-   por `CONTEÚDO: A PASTA` lá dentro). É assim que entra uma prova inteira de
-   uma banca nova. **A ordem das linhas `<script>` é a ordem em que o conteúdo
-   entra no banco.**
+   `<script src="dados/o-nome-do-arquivo.js?v=2026-09-23"></script>` no
+   `index.html` (procure por `CONTEÚDO: A PASTA` lá dentro). É assim que entra
+   uma prova inteira de uma banca nova. **A ordem das linhas `<script>` é a
+   ordem em que o conteúdo entra no banco.**
+
+**A cada publicação, mude a versão.** O `?v=…` no fim de cada linha
+`<script src>` e o `window.ESC_VERSAO` logo acima delas são a mesma data, e é
+ela que impede o navegador de continuar usando o arquivo antigo depois de uma
+troca (e que faz a página se atualizar sozinha). Mudou um arquivo daqui —
+inclusive o `calendario.js` exportado da plataforma? Troque a data nas doze
+ocorrências (localizar e substituir resolve) antes de publicar.
 
 ## Como é um arquivo desta pasta
 
