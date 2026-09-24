@@ -1,0 +1,477 @@
+/* ==========================================================================
+   ESC — SISTEMA DE DESIGN
+   Cores, tipografia e componentes usados em toda a plataforma.
+   Se sua equipe quiser trocar as cores da marca, mexa só no bloco :root abaixo.
+   ========================================================================== */
+:root{
+  --bg:#F5F6F3; --surface:#FFFFFF; --surface-2:#EBEFEC;
+  --ink:#11201C; --ink-2:#44534D;
+  /* --muted e --amber foram escurecidos um pouco (mesmo tom, menor luminosidade)
+     para passar de ~3.3:1 para acima de 4.5:1 de contraste sobre fundo claro —
+     o mínimo da WCAG AA para texto pequeno. Antes, texto em cinza-esverdeado
+     claro (rótulos, dicas) e em dourado (avisos, badges) ficava difícil de
+     ler para quem tem baixa visão. */
+  --muted:#64726E; --amber:#885F25;
+  --border:#DEE4E0; --border-strong:#C4CDC7;
+  --accent:#0B6E5C; --accent-dark:#084F42; --accent-soft:#E1EFEB;
+  --amber-soft:#F3E8D6;
+  --danger:#B23A2E; --danger-soft:#F6E5E2;
+  --toast-bg:#1D2A26;
+  --shadow-xs:0 1px 2px rgba(17,32,28,.06);
+  --shadow-sm:0 3px 10px rgba(17,32,28,.08);
+  --shadow-md:0 8px 22px rgba(17,32,28,.12);
+  /* Barras de acerto x erro: o verde claro é a fatia acertada e o cinza
+     claro é o que sobra (erros). Cinza em vez de vermelho de propósito —
+     a barra é um retrato do quanto já foi dominado, não uma punição. */
+  --barra-acerto:#5CB894; --barra-erro:#DCE2DE;
+  --font-display:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --font-body:'IBM Plex Sans','Segoe UI',Roboto,Arial,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --radius-sm:7px; --radius:12px; --radius-lg:18px;
+  --shadow-pop:0 12px 32px rgba(17,32,28,.16);
+  --maxw:1180px;
+}
+/* Modo escuro — mesma paleta de papéis (fundo/superfície/texto/tinta de
+   marca), só com os valores invertidos para reduzir claridade à noite.
+   Ativado trocando o atributo data-theme do <html> (ver alternarTema()). */
+html[data-theme="dark"]{
+  --bg:#121917; --surface:#1A2320; --surface-2:#212C28;
+  --ink:#E8EDE9; --ink-2:#B7C4BE; --muted:#84948D;
+  --border:#2C3733; --border-strong:#3D4A44;
+  --accent:#33B092; --accent-dark:#5FCBB0; --accent-soft:#173029;
+  --amber:#E0AC5E; --amber-soft:#3A2E1B;
+  --danger:#E3776B; --danger-soft:#3A2320;
+  --barra-acerto:#3FA888; --barra-erro:#2F3B36;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.28);
+  --shadow-sm:0 3px 10px rgba(0,0,0,.32);
+  --shadow-md:0 8px 22px rgba(0,0,0,.4);
+  --shadow-pop:0 12px 32px rgba(0,0,0,.45);
+}
+/* Reduz/desliga animações e transições para quem pediu isso ao sistema —
+   inclusive a troca de tema, que passa a ser instantânea como antes. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}
+/* nos botões/badges cheios de cor, o texto continua branco nos dois temas;
+   ajustamos só o hover do botão primário pra clarear em vez de escurecer,
+   já que "mais escuro" já é o padrão no modo noturno */
+html[data-theme="dark"] .btn-primary:hover{background:#2A9A80}
+html[data-theme="dark"] .qcard-alt.selected,html[data-theme="dark"] .qcard-alt.correct{color:var(--ink)}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+/* Troca de tema clara/escura deixa de ser um corte seco: fundo, texto e
+   bordas fazem uma transição curta em vez de piscar. */
+body,.sidebar,.topbar,.card,.card-flat,.qcard,.modal,.input,.select,.textarea,.stat-tile,.flashcard,.qcard-alt{transition:background-color .18s ease,border-color .18s ease,color .18s ease}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.22;margin:0;color:var(--ink)}
+p{margin:0}
+a{color:var(--accent-dark)}
+button{font-family:inherit;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- ícones (ver sprite SVG no body) ---------- */
+svg.icon,svg.nav-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+svg.icon-lg{width:26px;height:26px}
+
+/* ---------- layout base ---------- */
+.container{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
+.hidden{display:none !important}
+.muted{color:var(--muted)}
+.mt-1{margin-top:.5rem}.mt-2{margin-top:1rem}.mt-3{margin-top:1.5rem}.mt-4{margin-top:2rem}
+.mb-1{margin-bottom:.5rem}.mb-2{margin-bottom:1rem}.mb-3{margin-bottom:1.5rem}
+.flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
+.gap-1{gap:.5rem}.gap-2{gap:1rem}.gap-3{gap:1.5rem}
+.grid{display:grid;gap:1rem}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+.text-sm{font-size:.82rem}
+.text-xs{font-size:.72rem}
+.nowrap{white-space:nowrap}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem 1.15rem;border-radius:var(--radius-sm);border:1px solid transparent;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .05s ease;white-space:nowrap;background:none}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-secondary{background:var(--surface);border-color:var(--border-strong);color:var(--ink)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent-dark)}
+.btn-ghost{background:transparent;color:var(--ink-2)}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-danger:hover{background:#8f2e24}
+.btn-sm{padding:.4rem .7rem;font-size:.78rem}
+.btn-block{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;transition:border-color .12s ease,transform .08s ease,box-shadow .12s ease}
+.icon-btn:hover{border-color:var(--accent);box-shadow:var(--shadow-xs)}
+.icon-btn:active{transform:scale(.94)}
+.link-btn{background:none;border:none;padding:0;color:var(--accent-dark);font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:underline}
+
+/* ---------- formulários ---------- */
+.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.label{font-size:.8rem;font-weight:600;color:var(--ink-2)}
+.hint{font-size:.75rem;color:var(--muted)}
+.input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:.9rem;font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
+.input:focus,.select:focus,.textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.textarea{min-height:120px;resize:vertical}
+.textarea-mono{font-family:var(--font-mono);font-size:.82rem;line-height:1.6}
+.checkbox-row{display:flex;align-items:center;gap:.5rem;font-size:.85rem}
+
+/* ---------- cartões / superfícies ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.35rem}
+.card + .card{margin-top:1rem}
+/* Dentro de uma grade, o espaço entre os cartões já é o `gap` — a margem de
+   cima aqui sobrava, e pior: ela só não caía no PRIMEIRO cartão (que não tem
+   um .card antes dele). O resultado era o primeiro quadradinho da grade
+   ficando mais alto que os outros, como se destacasse a prova mais recente
+   de propósito. É o caso de Provas Antigas, onde o primeiro cartão é o do
+   banco didático do ano corrente. */
+.grid > .card + .card{margin-top:0}
+/* Cartão de prova antiga: o nome da instituição ocupa uma ou duas linhas
+   conforme o tamanho ("Esc — Banco Didático" quebra, "IAMSPE" não), então os
+   botões são empurrados para a base para todos ficarem na mesma altura. */
+.prova-card{display:flex;flex-direction:column}
+.prova-card .prova-acoes{margin-top:auto;padding-top:.7rem}
+.prova-card .prova-ano{font-family:var(--font-display);font-size:1.6rem;line-height:1.1}
+.prova-card .prova-banca{font-weight:600;min-height:2.4em;display:flex;align-items:flex-start}
+.card-title{font-size:1.02rem;margin-bottom:.2rem}
+.card-flat{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
+
+/* ---------- badges / pills ---------- */
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .6rem;border-radius:100px;font-size:.7rem;font-weight:600;white-space:nowrap}
+.badge-accent{background:var(--accent-soft);color:var(--accent-dark)}
+.badge-amber{background:var(--amber-soft);color:var(--amber)}
+.badge-danger{background:var(--danger-soft);color:var(--danger)}
+.badge-muted{background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+.pill{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);font-size:.8rem;font-weight:600;cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease}
+.pill:hover{border-color:var(--accent)}
+.pill:active{transform:scale(.96)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ---------- mapa de questões do simulado (durante a prova) ----------
+   Durante o simulado o mapa responde a UMA pergunta: já respondi esta
+   questão ou não. Ele nunca diz se a resposta está certa ou errada — numa
+   prova cronometrada, saber o resultado no meio muda o comportamento (a
+   pessoa volta para "consertar" o que já passou, ou desanima e apressa o
+   resto) e a nota deixa de medir o que a prova de verdade mediria. Por isso
+   as cores aqui são neutras: cheio = respondida, tracejado = em branco.
+   O verde e o vermelho só existem no mapa do RESULTADO, depois de acabar. */
+.mapa-questoes{display:flex;flex-wrap:wrap;gap:.35rem}
+.pill-mapa{min-width:42px;justify-content:center;padding:.4rem .5rem;font-variant-numeric:tabular-nums}
+.pill-mapa.em-branco{background:transparent;border-style:dashed;color:var(--muted)}
+.pill-mapa.respondida{background:var(--surface-2);border-color:var(--border-strong);color:var(--ink)}
+.pill-mapa.atual{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.pill-mapa .ponto-resp{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.mapa-legenda{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+.mapa-legenda .amostra{display:inline-flex;align-items:center;gap:.35rem}
+.mapa-legenda .quadro{width:15px;height:15px;border-radius:5px;border:1px solid var(--border-strong);background:var(--surface-2);display:inline-block}
+.mapa-legenda .quadro.vazio{background:transparent;border-style:dashed}
+
+/* ---------- tabelas ---------- */
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:.72rem;padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
+td{padding:.65rem .7rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
+.table-wrap table{border:none}
+
+/* ---------- estrutura autenticada (shell) ---------- */
+.shell{display:flex;min-height:100vh}
+.sidebar{width:252px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:1.3rem 1rem;position:fixed;top:0;bottom:0;left:0;overflow-y:auto;z-index:40;transition:transform .2s ease}
+.sidebar-brand{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--ink);display:flex;align-items:center;gap:.55rem;margin-bottom:1.4rem;padding:0 .3rem}
+.sidebar-brand .mark{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:1rem}
+.bloco-chip{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius-sm);padding:.6rem .75rem;margin-bottom:1.1rem}
+.bloco-chip-label{font-size:.66rem;color:var(--accent-dark);font-weight:700}
+.bloco-chip-name{font-size:.83rem;font-weight:600;color:var(--ink);margin-top:.15rem;line-height:1.3}
+.nav-section-label{font-size:.68rem;color:var(--muted);font-weight:700;margin:1rem .5rem .4rem;letter-spacing:.07em;text-transform:uppercase}
+.nav-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.1rem}
+.nav-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .65rem;border-radius:var(--radius-sm);color:var(--ink-2);font-size:.87rem;font-weight:500;cursor:pointer;border:1px solid transparent}
+.nav-item:hover{background:var(--surface-2)}
+.nav-item.active{background:var(--accent-soft);color:var(--accent-dark);font-weight:700}
+.sidebar-footer{margin-top:auto;padding-top:1rem;border-top:1px solid var(--border)}
+.main{margin-left:252px;flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:20}
+.topbar-title{font-size:1.05rem}
+.page{padding:2rem;max-width:var(--maxw);width:100%}
+.page.entrando{animation:page-in .22s ease}
+/* A animação de entrada é um sinal sutil de que a TELA mudou, sem esperar o
+   usuário reparar via scroll ou título. Por isso ela vive numa classe à
+   parte, posta só na troca de tela (ver desenharTela): quando o que muda é
+   o conteúdo da mesma tela — marcar uma alternativa, responder uma questão —
+   ela não toca, senão a tela pareceria piscar a cada clique. */
+@keyframes page-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.page-header{margin-bottom:1.6rem}
+.page-header p{color:var(--muted);margin-top:.3rem}
+.hamburger{display:none}
+.backdrop{display:none;position:fixed;inset:0;background:rgba(17,32,28,.35);z-index:35}
+@media (max-width:960px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .page{padding:1.25rem}
+  .topbar{padding:.8rem 1.1rem}
+  .hamburger{display:inline-flex}
+  .backdrop.open{display:block}
+}
+
+/* ---------- estatísticas / progresso ---------- */
+.stat-mini-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem}
+.stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .8rem;display:flex;align-items:baseline;gap:.5rem;min-width:0}
+.stat-mini .stat-value{font-size:1.25rem;line-height:1.1}
+.stat-mini .stat-label{font-size:.76rem;line-height:1.25}
+button.stat-mini{cursor:pointer;text-align:left;font:inherit;color:inherit}
+button.stat-mini:hover{border-color:var(--accent)}
+.stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
+.stat-value{font-family:var(--font-display);font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.stat-label{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+.progress-track{height:8px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:100px}
+.progress-fill.danger{background:var(--danger)}
+.progress-fill.amber{background:var(--amber)}
+
+/* ---------- mapa de progresso da sessão de questões ----------
+   Um quadradinho por questão da fila: o número, e a cor dizendo o que
+   aconteceu. Serve para navegar (clicar volta à questão) e para enxergar o
+   conjunto inteiro sem sair da questão atual. */
+.mapa-sessao{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.55rem}
+.mapa-pill{min-width:32px;height:32px;padding:0 .35rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:.15rem;cursor:pointer;transition:transform .08s ease,border-color .12s ease}
+.mapa-pill:hover:not(:disabled){border-color:var(--accent)}
+.mapa-pill:active:not(:disabled){transform:scale(.94)}
+.mapa-pill:disabled{cursor:default;opacity:.85}
+.mapa-pill.acertou{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.mapa-pill.errou{background:var(--danger-soft);border-color:var(--danger);color:var(--danger)}
+.mapa-pill.agora{border-color:var(--ink-2);color:var(--ink)}
+/* marcada mas ainda sem confiança declarada: a questão tem um rascunho
+   esperando, e o âmbar é o mesmo aviso usado no resto da plataforma */
+.mapa-pill.marcada{border-color:var(--amber);color:var(--ink)}
+.mapa-pill.atual{outline:2px solid var(--accent);outline-offset:1px}
+/* o pontinho âmbar marca os dois casos que a plataforma trata como "não
+   sabida": acerto no chute e erro com certeza */
+.mapa-pill .marca{width:5px;height:5px;border-radius:50%;background:var(--amber);flex:none}
+/* legenda do mapa da SESSÃO (prática), com nome próprio para não colidir
+   com a .mapa-legenda do simulado, que é outra coisa: lá a legenda diz
+   respondida/em branco, aqui diz acertou/errou. */
+.mapa-sessao-legenda{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.55rem;align-items:center}
+.mapa-sessao-legenda .amostra{width:11px;height:11px;border-radius:3px;border:1px solid var(--border-strong);display:inline-block;margin-right:.3rem;vertical-align:-1px}
+.mapa-sessao-legenda .amostra.acertou{background:var(--accent-soft);border-color:var(--accent)}
+.mapa-sessao-legenda .amostra.errou{background:var(--danger-soft);border-color:var(--danger)}
+.mapa-sessao-legenda .amostra.marcada{width:7px;height:7px;border-radius:50%;background:var(--amber);border-color:var(--amber)}
+@media (max-width:640px){
+  .mapa-pill{min-width:29px;height:29px;font-size:.73rem}
+  .mapa-sessao-legenda{gap:.65rem}
+  .mapa-sessao-legenda .so-largo{display:none}
+}
+@media (min-width:641px){
+  .mapa-sessao-legenda .so-estreito{display:none}
+}
+
+/* ---------- questão ---------- */
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:740px}
+.qcard-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
+.qcard-img-wrap{margin:0 0 1.1rem}
+.qcard-img{max-width:100%;max-height:420px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:var(--surface-2)}
+.qcard-img-legenda{font-size:.75rem;color:var(--muted);margin-top:.35rem}
+/* questão que dependia de uma figura da prova que ainda não foi anexada */
+.imagem-pendente{display:flex;gap:.6rem;align-items:flex-start;margin:0 0 1.1rem;padding:.75rem .9rem;border:1px dashed var(--amber);border-radius:var(--radius-sm);background:var(--amber-soft);font-size:.85rem}
+.imagem-pendente svg{flex:none;width:18px;height:18px;margin-top:.1rem}
+.qcard-enunciado{font-family:var(--font-display);font-size:1.14rem;line-height:1.6;color:var(--ink);margin-bottom:1.5rem;white-space:pre-line}
+.qcard-alts{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.1rem}
+.qcard-alt{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .12s ease,box-shadow .12s ease;background:var(--surface)}
+.qcard-alt:hover{border-color:var(--accent);transform:translateX(2px);box-shadow:var(--shadow-xs)}
+.qcard-alt.selected{border-color:var(--accent);background:var(--accent-soft)}
+.qcard-alt.correct{border-color:var(--accent);background:var(--accent-soft)}
+.qcard-alt.incorrect{border-color:var(--danger);background:var(--danger-soft)}
+.qcard-alt.disabled{cursor:default}
+/* depois de responder, as alternativas não respondem mais a clique — o hover
+   não pode continuar sugerindo que dá pra clicar nelas */
+.qcard-alt.disabled:hover{transform:none;box-shadow:none;border-color:var(--border-strong)}
+.qcard-alt.disabled.selected:hover,.qcard-alt.disabled.correct:hover{border-color:var(--accent)}
+.qcard-alt.disabled.incorrect:hover{border-color:var(--danger)}
+.alt-letter{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;flex-shrink:0;color:var(--ink-2);background:var(--surface)}
+.qcard-alt.selected .alt-letter,.qcard-alt.correct .alt-letter{border-color:var(--accent);color:var(--accent-dark)}
+.qcard-alt.incorrect .alt-letter{border-color:var(--danger);color:var(--danger)}
+.alt-text{font-size:.92rem;line-height:1.5;padding-top:.15rem;flex:1}
+/* ---------- alternativas eliminadas ("riscar" como se faz na prova) ----------
+   Quem risca uma alternativa está dizendo "esta eu já descartei". Ela fica
+   apagada e com o texto cortado, mas continua no lugar: o objetivo é reduzir o
+   campo de escolha sem esconder informação, igual ao rascunho no papel. */
+.alt-cortar{opacity:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity .12s ease,border-color .12s ease,color .12s ease}
+.alt-cortar svg{width:13px;height:13px}
+.qcard-alt:hover .alt-cortar,.qcard-alt.eliminada .alt-cortar{opacity:1}
+.alt-cortar:focus-visible{opacity:1}
+/* em tela de toque não existe "passar o mouse": o × fica sempre visível,
+   só que discreto, senão no celular ninguém descobre que dá para riscar */
+@media (hover:none){.alt-cortar{opacity:.55}}
+.alt-cortar:hover{border-color:var(--danger);color:var(--danger)}
+.qcard-alt.eliminada{opacity:.5;background:var(--surface-2);border-style:dashed}
+.qcard-alt.eliminada:hover{transform:none;box-shadow:none}
+.qcard-alt.eliminada .alt-text{text-decoration:line-through;text-decoration-color:var(--muted)}
+.qcard-alt.eliminada .alt-letter{border-style:dashed}
+.confidence-row{display:flex;gap:.6rem;margin-top:1.1rem}
+.confidence-btn{flex:1;padding:.7rem .5rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:600;font-size:.83rem;cursor:pointer}
+.confidence-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.feedback-box{border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-top:1.1rem;font-size:.88rem;line-height:1.55}
+.feedback-box.ok{background:var(--accent-soft);border:1px solid var(--accent)}
+.feedback-box.no{background:var(--danger-soft);border:1px solid var(--danger)}
+.qcard-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border)}
+.why-tag{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:1rem}
+/* A anotação que o aluno escreveu para si mesmo numa questão salva. Fica com
+   a cara de papel de rascunho (a faixa âmbar na lateral) para não se
+   confundir com a explicação da questão, que é material da plataforma. */
+.nota-pessoal{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius-sm);padding:.7rem .9rem}
+.nota-pessoal-titulo{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.nota-pessoal .text-sm{white-space:pre-wrap}
+
+/* ---------- legenda e seletor de período dos gráficos de desempenho ---------- */
+/* No computador, o gráfico das 5 áreas fica ao lado da tabela das mesmas
+   áreas (uma coisa explica a outra); no celular, um embaixo do outro. */
+/* "Se a prova fosse hoje": o número grande ao lado da tabela das áreas */
+.nota-estimada{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+@media (min-width:900px){ .nota-estimada{grid-template-columns:220px minmax(0,1fr)} }
+.nota-estimada-valor{font-family:var(--font-display);font-size:2.6rem;line-height:1.1;color:var(--accent)}
+/* barra de prioridade (O que mais cai × onde você erra) */
+.barra-prioridade{width:90px;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.barra-prioridade i{display:block;height:100%;background:var(--amber)}
+.areas-lado-a-lado{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+@media (min-width:1000px){ .areas-lado-a-lado{grid-template-columns:minmax(260px,380px) minmax(0,1fr)} }
+.legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--muted);margin-top:.5rem;align-items:center}
+.legenda-barras span{display:flex;align-items:center;gap:.35rem}
+.legenda-barras i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.seletor-periodo{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.2rem}
+.seletor-periodo .pill{cursor:pointer}
+
+/* ---------- árvore de taxonomia ---------- */
+.tree-area{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.7rem;overflow:hidden;background:var(--surface)}
+.tree-area-head{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;cursor:pointer;font-weight:600}
+.tree-area-head:hover{background:var(--surface-2)}
+.tree-body{padding:0 1.1rem 1rem;display:none}
+.tree-body.open{display:block}
+.tree-esp{margin-top:.6rem}
+.tree-esp-name{font-size:.82rem;font-weight:700;color:var(--ink-2);margin-bottom:.35rem}
+.tree-assunto-row{display:flex;align-items:center;justify-content:space-between;padding:.45rem .6rem;border-radius:var(--radius-sm);font-size:.85rem}
+.tree-assunto-row:hover{background:var(--surface-2);cursor:pointer}
+
+/* ---------- modal / toast ---------- */
+.modal-overlay{position:fixed;inset:0;background:rgba(17,32,28,.45);display:flex;align-items:center;justify-content:center;z-index:80;padding:1.5rem}
+.modal{background:var(--surface);border-radius:var(--radius);max-width:640px;width:100%;max-height:88vh;overflow-y:auto;padding:1.6rem;box-shadow:var(--shadow-pop)}
+.modal-lg{max-width:820px}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.toast-container{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;display:flex;flex-direction:column;gap:.6rem}
+.toast{background:var(--toast-bg);color:#fff;padding:.8rem 1.1rem;border-radius:var(--radius-sm);font-size:.85rem;box-shadow:var(--shadow-pop);max-width:320px;animation:toast-in .18s ease}
+.toast.err{background:var(--danger)}
+@keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Nome de arquivo ou de pasta escrito no meio de um texto. */
+code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);padding:.1rem .35rem;border-radius:4px}
+
+/* Tarja de "faltou a pasta dados/" — aparece só quando nenhum arquivo de
+   conteúdo foi carregado (ver avisarSeFaltarConteudo, no código). */
+.aviso-dados{background:var(--amber-soft);color:var(--amber);border-bottom:1px solid var(--amber);padding:.85rem 1.2rem;font-size:.85rem;line-height:1.55}
+.aviso-dados code{background:var(--surface);padding:.1rem .35rem;border-radius:4px;font-family:var(--font-mono);font-size:.8rem}
+
+/* ---------- paginação de listas ---------- */
+.paginacao{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--border)}
+.paginacao-resumo{font-size:.78rem;color:var(--muted)}
+
+/* ---------- abas ---------- */
+.tabs{display:flex;gap:.3rem;border-bottom:1px solid var(--border);margin-bottom:1.4rem;overflow-x:auto}
+.tab{padding:.7rem 1rem;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--accent-dark);border-color:var(--accent)}
+
+/* ---------- vazio / empty state ---------- */
+.empty-state{text-align:center;padding:3rem 1.5rem;color:var(--muted)}
+.empty-state svg{margin:0 auto 1rem}
+
+/* ---------- páginas públicas (landing / login) ---------- */
+.public-nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 0}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.3rem;display:flex;align-items:center;gap:.55rem}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:3.5rem 0 4.5rem}
+@media (max-width:900px){.hero{grid-template-columns:1fr;padding:2rem 0}}
+.hero h1{font-size:clamp(2rem,1.55rem + 2vw,2.75rem);letter-spacing:-.01em}
+.hero-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.6rem;box-shadow:var(--shadow-pop);animation:hero-in .5s ease}
+@keyframes hero-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.auth-wrap{max-width:420px;margin:3rem auto;padding:0 1.5rem}
+.auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem}
+.feature-row{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--border)}
+.feature-row:last-child{border-bottom:none}
+.feature-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border);margin-top:2rem}
+
+/* ---------- enunciado clicável ----------
+   Qualquer trecho de questão mostrado numa lista abre a questão inteira ao
+   ser tocado. O tracejado embaixo é a dica visual de que dá pra clicar. */
+.enunciado-clicavel{cursor:pointer;border-bottom:1px dashed var(--border-strong);display:inline-block;transition:color .12s ease,border-color .12s ease}
+.enunciado-clicavel:hover{color:var(--accent-dark);border-color:var(--accent)}
+.qcard-enunciado.enunciado-clicavel{display:block;border-bottom:none}
+.qcard-enunciado.enunciado-clicavel:hover{color:var(--accent-dark)}
+
+/* ---------- gesto de arrastar para o lado (celular) ----------
+   O cartão da questão acompanha o dedo enquanto o usuário arrasta e volta
+   sozinho ao lugar se o movimento não for suficiente para trocar de questão. */
+.area-gesto{touch-action:pan-y}
+.area-gesto.arrastando{transition:none}
+.area-gesto.soltando{transition:transform .18s ease}
+.dica-arrastar{display:none;align-items:center;justify-content:center;gap:.45rem;font-size:.74rem;color:var(--muted);margin-top:.6rem}
+@media (max-width:960px){.dica-arrastar{display:flex}}
+
+/* ---------- flashcards ---------- */
+/* lista de assuntos para escolher no lote de cartões (em colunas no computador) */
+.lote-assuntos{display:grid;grid-template-columns:minmax(0,1fr);gap:.1rem .9rem;max-height:320px;overflow:auto;padding:.4rem;border:1px solid var(--border);border-radius:var(--radius-sm)}
+@media (min-width:900px){ .lote-assuntos{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.flash-palco{max-width:640px;margin:0 auto;perspective:1400px}
+.flashcard{position:relative;min-height:290px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);padding:2rem 1.8rem;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow-md);cursor:pointer;transition:box-shadow .15s ease,transform .1s ease}
+.flashcard:hover{box-shadow:var(--shadow-pop)}
+.flashcard:active{transform:scale(.985)}
+.flashcard.virado{border-color:var(--accent);animation:flash-flip .3s ease}
+/* Truque leve de "virar": espreme o cartão na horizontal e solta — como o
+   conteúdo (verso) já vem pronto no HTML, o efeito visual de flip acontece
+   sem precisar manter o nó do DOM entre um render e outro. */
+@keyframes flash-flip{0%{transform:scaleX(1)}50%{transform:scaleX(.08)}100%{transform:scaleX(1)}}
+.flash-etiqueta{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.9rem}
+.flash-frente{font-family:var(--font-display);font-size:1.22rem;line-height:1.55;color:var(--ink);white-space:pre-line}
+.flash-verso{font-size:.95rem;line-height:1.6;color:var(--ink);white-space:pre-line}
+.flash-verso strong{color:var(--accent-dark)}
+/* O convite para virar: como não há mais botão de "mostrar resposta", é este
+   texto, dentro do próprio cartão, que diz o que fazer. */
+.flash-toque{display:flex;align-items:center;justify-content:center;gap:.35rem;text-align:center;font-size:.76rem;color:var(--muted);margin-top:1.4rem}
+.flash-toque svg{width:14px;height:14px;opacity:.7}
+/* A estrela de favoritar fica no alto do cartão, fora do caminho do texto,
+   e não vira o cartão junto (o clique dela para em si mesmo). */
+.flash-favorito{position:absolute;top:.8rem;right:.9rem}
+.flash-notas{display:flex;gap:.55rem;margin-top:1.1rem;max-width:640px;margin-left:auto;margin-right:auto}
+.flash-nota{flex:1;padding:.85rem .4rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:700;font-size:.82rem;cursor:pointer;line-height:1.3;transition:border-color .12s ease,background .12s ease,transform .08s ease}
+.flash-nota:active{transform:scale(.96)}
+.flash-nota small{display:block;font-weight:500;font-size:.68rem;color:var(--muted);margin-top:.2rem}
+.flash-nota.ruim:hover{border-color:var(--danger);background:var(--danger-soft)}
+.flash-nota.medio:hover{border-color:var(--amber);background:var(--amber-soft)}
+.flash-nota.bom:hover{border-color:var(--accent);background:var(--accent-soft)}
+
+/* ---------- impressão / PDF ----------
+   Para gerar PDF sem depender de nenhuma biblioteca externa, a plataforma
+   monta o material dentro de #areaImpressao e chama a impressão do próprio
+   navegador — onde "Salvar como PDF" já existe em todos os sistemas. */
+#areaImpressao{display:none}
+@media print{
+  body>#app,body>#toastContainer,.modal-overlay{display:none !important}
+  #areaImpressao{display:block !important;padding:0;color:#000;background:#fff;font-family:Georgia,'Times New Roman',serif}
+  @page{margin:18mm 16mm}
+  .pdf-cabecalho{border-bottom:2px solid #000;padding-bottom:.5rem;margin-bottom:1.2rem}
+  .pdf-cabecalho h1{font-size:17pt;margin:0}
+  .pdf-cabecalho .pdf-sub{font-size:9.5pt;color:#333;margin-top:.2rem}
+  .pdf-questao{margin-bottom:1.1rem;page-break-inside:avoid;font-size:10.5pt;line-height:1.45}
+  .pdf-questao .pdf-num{font-weight:700}
+  .pdf-questao .pdf-alt{margin-left:1.1rem}
+  .pdf-questao .pdf-meta{font-size:8.5pt;color:#444;margin-top:.15rem}
+  .pdf-gabarito{page-break-before:always}
+  .pdf-tabela{width:100%;border-collapse:collapse;font-size:9.5pt}
+  .pdf-tabela th,.pdf-tabela td{border:1px solid #999;padding:.28rem .4rem;text-align:left}
+  .pdf-flash{border:1px solid #666;padding:.55rem .7rem;margin-bottom:.5rem;page-break-inside:avoid;font-size:10pt}
+  .pdf-corte{border-top:1px dashed #999;margin:.8rem 0}
+}

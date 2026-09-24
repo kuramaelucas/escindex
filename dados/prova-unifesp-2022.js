@@ -16,7 +16,7 @@
    fontes primárias — nenhuma resolução de cursinho foi copiada. ---- */
 window.EscDados.registrarQuestoes("prova-unifesp-2022", [
 {
-  id:"q-unifesp2022-001", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-001", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:1,
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-complicacoes",
   enunciado:"Mulher, 40 anos de idade, hígida, submeteu-se à rinoplastia eletiva. Na indução anestésica, administrou-se midazolam, fentanil, propofol e atracúrio. Anestesia mantida com isoflurano. Após duas horas, a paciente evolui com hipercarbia (65 mmHg), taquicardia (130 bpm), hipoxemia (86%), instabilidade hemodinâmica (PA 90 x 50 mmHg), hipertermia (42 ºC) e contratura muscular generalizada. Com esse quadro, a cirurgia e o isoflurano foram suspensos, a FiO2 foi aumentada para 100%, iniciado dantrolene, noradrenalina e resfriamento corporal. Exames: K = 6,0 mEq/L, creatinofosfoquinase = 4 000 U/L (valor normal até 200 U/L) e acidose metabólica e respiratória. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Expansão com soro fisiológico, bicarbonato de sódio, solução de insulina e glicose, furosemida."},{id:"B",texto:"Succinilcolina, expansão com ringer lactato, dopamina, aminofilina."},{id:"C",texto:"Bicarbonato de sódio, betabloqueador, ácido acetilsalicílico e expansão com soro glicosado."},{id:"D",texto:"Solução de insulina e dextrose, inibidor da ciclo-oxigenase 2, expansão com coloide e sulfato de magnésio."}],
@@ -29,7 +29,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-002", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-002", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:2,
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-complicacoes",
   enunciado:"Homem, 55 anos de idade, ASA I, está no 2o PO de hernioplastia inguinal bilateral, realizada sob raquianestesia em punção lombar, com bupivacaína e morfina. Apresenta náuseas, prurido no abdômen e membros inferiores, intensa cefaleia occipital e temporal, irradiando para a região cervical, com piora na posição sentada ou ortostática. Sinais vitais: PA 130 x 90 mmHg e FC = 100 bpm. Qual é a conduta inicial mais adequada?",
   alternativas:[{id:"A",texto:"Tampão sanguíneo peridural e opioide."},{id:"B",texto:"Corticoide e dipirona."},{id:"C",texto:"Hidratação e dipirona."},{id:"D",texto:"Metoclopramida e opioide."}],
@@ -42,7 +42,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-003", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-003", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:3,
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-viaaerea",
   enunciado:"Homem, 75 anos de idade, é admitido no PS com insuficiência respiratória por covid-19. Apresenta antecedente de coronariopatia e está em uso de betabloqueador. Exame físico = PA 100 x 45 mmHg, FC = 45 bpm e SatO2 = 85%. Em relação à indução para a intubação traqueal, é correto afirmar que:",
   alternativas:[{id:"A",texto:"deve ser utilizado succinilcolina ou rocurônio como bloqueador neuromuscular."},{id:"B",texto:"o alfentanil é a melhor opção de opioide."},{id:"C",texto:"o propofol deve ser administrado de forma rápida para hipnose adequada."},{id:"D",texto:"não é necessário o uso de opioides devido ao uso crônico de betabloqueador."}],
@@ -55,7 +55,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-004", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-004", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:4,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-litiase",
   enunciado:"Mulher, 35 anos de idade, chega ao PS, com história de dor lombar à esquerda com início súbito e de forte intensidade (9-10). Ao exame físico: afebril, hidratada, sinal de Giordano presente à esquerda. Exames laboratoriais: leucograma normal, PCR normal, função renal normal e exame de urina sem leucocitose, mas com hematúria (> 1 milhão de hemácias). Tomografia computadorizada: cálculo de 4 mm na junção ureterovesical, com hidronefrose leve. Após analgesia, a paciente refere melhora da dor, mas mantém quadro de hematúria leve. Qual é a melhor conduta?",
   alternativas:[{id:"A",texto:"Uretrocistoscopia."},{id:"B",texto:"Terapia medicamentosa."},{id:"C",texto:"Ressonância magnética."},{id:"D",texto:"Nefrostomia."}],
@@ -68,7 +68,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-005", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-005", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
   enunciado:"Mulher, 64 anos de idade, hipertensa e diabética, apresenta angina estável há 3 anos, em tratamento medicamentoso irregular, não otimizado. Ecocardiograma: função biventricular preservada, sem alteração valvar. Coronariografia: lesão triarterial com 40% de obstrução nas artérias descendente anterior, circunflexa e coronária direita distal. Qual é o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Intervenção coronária percutânea com stent farmacológico."},{id:"B",texto:"Tratamento conservador."},{id:"C",texto:"Cirurgia de revascularização miocárdica."},{id:"D",texto:"Intervenção coronária percutânea com stent de primeira geração."}],
@@ -81,7 +81,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-006", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-006", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:6,
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-complicacoes",
   enunciado:"Mulher, 39 anos de idade, com insuficiência renal crônica dialítica, com fração de ejeção do ventrículo esquerdo de 55%, foi submetida à troca valvar mitral por endocardite bacteriana subaguda, sem intercorrências. No pós-operatório imediato, apresenta-se hipotensa e com baixo débito pelo dreno torácico, pressão venosa central e pressão capilar pulmonar normais, índice cardíaco aumentado. Qual é o diagnóstico mais provável e a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Tamponamento cardíaco; re-exploração cirúrgica."},{id:"B",texto:"Hipovolemia pós-operatória; reposição volêmica."},{id:"C",texto:"Disfunção ventricular; dobutamina."},{id:"D",texto:"Vasoplegia pós-circulação extracorpórea; noradrenalina."}],
@@ -94,7 +94,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-007", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-007", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:7,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-diverticulite",
   enunciado:"Homem, 55 anos de idade, apresenta dor abdominal no hipogástrio há 3 dias associado à febre, distensão abdominal e constipação. Exame físico: ruídos hidroaéreos diminuídos, dor na fossa ilíaca direita e hipogástrio com descompressão brusca positiva. Qual é o diagnóstico mais provável e o exame mais adequado para sua confirmação?",
   alternativas:[{id:"A",texto:"Volvo de sigmoide; radiografia de abdome em 3 posições."},{id:"B",texto:"Ureterolitíase; ultrassonografia de rins e vias urinárias."},{id:"C",texto:"Prostatite; ultrassonografia de pelve."},{id:"D",texto:"Diverticulite aguda; tomografia de abdome com contraste."}],
@@ -107,7 +107,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-008", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-008", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:8,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
   enunciado:"Homem, 45 anos de idade, vítima de ferimento por projétil de arma de fogo com orifício de entrada no glúteo esquerdo, sem orifício de saída. Toque retal: presença de sangue e espículas ósseas no reto, com laceração de mais de 50% da parede posterior do reto, a 6 cm da borda anal. Tomografia com contraste e fase excretora: fratura do sacro e ísquio direito, sem lesão vascular ou do trato urinário. A conduta mais adequada na urgência é:",
   alternativas:[{id:"A",texto:"abordagem transanal, com rafia dos orifícios de entrada e saída e manter paciente em parenteral."},{id:"B",texto:"laparotomia exploradora, retossigmoidectomia e anastomose primária com colostomia derivativa."},{id:"C",texto:"laparotomia exploradora, sigmoidostomia derivativa, drenagem do espaço pré-sacral e lavagem do reto distal."},{id:"D",texto:"abordagem transanal com posicionamento de prótese endoscópica para oclusão da laceração retal."}],
@@ -120,7 +120,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-009", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-009", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:9,
   areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-fratura",
   enunciado:"Homem, 40 anos de idade, vítima de acidente de automóvel, apresenta desvio da pirâmide nasal, edema facial e epistaxe. Foi submetido a exame radiológico que confirmou fratura nasal. Qual é o melhor momento, após o trauma, para o tratamento cirúrgico?",
   alternativas:[{id:"A",texto:"Trinta dias."},{id:"B",texto:"Vinte e um dias."},{id:"C",texto:"Dois dias."},{id:"D",texto:"Dez dias."}],
@@ -133,7 +133,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-010", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-010", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:10,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
   enunciado:"Homem, 21 anos de idade, é admitido no PS, vítima de ferimento penetrante por arma branca no tórax. Exame físico: consciente, FC = 130 bpm, PA = 80 x 50 mmHg, FR 28 irpm, ausência de estase jugular, lesão cortocontusa de 3 cm no hemitórax esquerdo, no 4o espaço intercostal. A conduta inicial mais adequada é:",
   alternativas:[{id:"A",texto:"focused Assessment with Sonography in trauma."},{id:"B",texto:"angiografia com subtração digital."},{id:"C",texto:"angiotomografia de tórax."},{id:"D",texto:"ultrassonografia point-of-care expandido."}],
@@ -146,7 +146,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-011", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-011", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:11,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-ecn",
   enunciado:"Recém-nascido, 2 dias de vida, sexo masculino, prematuro de 30 semanas, pesando 1 500 gramas, internado na UTI Neonatal, apresenta taquicardia, distensão abdominal e evacuação de fezes sanguinolentas após a introdução de dieta com leite materno exclusivo. Exame físico: abdômen distendido, com pele brilhante, hiperemia periumbilical e doloroso à palpação. O diagnóstico mais provável e o tratamento mais adequado são, respectivamente:",
   alternativas:[{id:"A",texto:"enterocolite necrotizante; jejum, sonda nasogástrica aberta e antibioticoterapia."},{id:"B",texto:"alergia à proteína do leite; introdução de dieta isenta de lactose."},{id:"C",texto:"alergia à proteína do leite; monitorização da pressão intra-abdominal."},{id:"D",texto:"enterocolite necrotizante; cirurgia precoce: estomias e drenagem abdominal."}],
@@ -159,7 +159,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-012", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-012", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:12,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-malformacoes",
   enunciado:"Lactente, sexo feminino, 6 meses de idade, é admitida no PS com história de 3 episódios de infecções urinárias febris. Ultrassonografia de rins e vias urinárias: dilatação pielocalicinal em polo superior direito, com ureter dilatado em todo seu trajeto; polo inferior sem alterações. O diagnóstico mais provável e a conduta mais adequada são, respectivamente:",
   alternativas:[{id:"A",texto:"megaureter obstrutivo primário; a cirurgia preconizada é a pieloplastia eletiva."},{id:"B",texto:"estenose de junção pieloureteral; a pieloplastia deve ser indicada caso haja função renal diminuída na cintilografia renal estática."},{id:"C",texto:"refluxo vesicoureteral primário; antibioticoterapia profilática, tratamento da constipação e das disfunções miccionais."},{id:"D",texto:"duplicidade pieloureteral; o tratamento dependerá da função renal do polo superior obtida pela cintilografia renal estática."}],
@@ -172,7 +172,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-013", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-013", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:13,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   enunciado:"Criança, 9 meses de idade, sexo masculino, previamente saudável, é admitido no PS em bom estado geral, com história de choro intenso com períodos de acalmia sugestivos de dor abdominal em cólica e vômitos. Após algumas horas, apresentou distensão abdominal e evacuação com muco sanguinolento. Assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Solicitar colonoscopia de urgência devido ao sangramento intestinal."},{id:"B",texto:"A causa mais frequente é o divertículo de Meckel com mucosa gástrica ectópica."},{id:"C",texto:"A ultrassonografia pode ser usada para o diagnóstico e tratamento."},{id:"D",texto:"Há indicação cirúrgica após exames pré-operatórios e estabilização clínica."}],
@@ -185,7 +185,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-014", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-014", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:14,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-pleura",
   enunciado:"Mulher, 50 anos de idade, apresenta derrames pleurais de repetição secundários à neoplasia de mama. Radiografia de tórax demonstra derrame pleural moderado à esquerda. A biópsia da pleura com agulha de COPE revelou a presença de implante neoplásico de tumor mamário. A conduta mais adequada é:",
   alternativas:[{id:"A",texto:"videotoracoscopia com biópsia pleural para realização de imunohistoquímica."},{id:"B",texto:"drenagem pleural seguida de pleurodese à esquerda."},{id:"C",texto:"videotoracoscopia e análise do líquido pleural com pesquisa de células neoplásicas."},{id:"D",texto:"drenagem pleural e pesquisa de células neoplásicas em líquido pleural."}],
@@ -198,7 +198,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-015", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-015", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:15,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-neoplasia",
   enunciado:"Mulher, 58 anos de idade, submeteu-se à ressecção de lesão cerebral que se revelou tratar de metástase de neoplasia pulmonar. Tomografia de tórax: massa em lobo superior direito, espiculada, com dimensões de 4 x 3 cm. A biópsia da lesão revela um adenocarcinoma primário. O estadiamento do tumor não evidencia comprometimento dos linfonodos mediastinais e nem outros sítios de metástase. Qual é a melhor conduta?",
   alternativas:[{id:"A",texto:"Não tem indicação cirúrgica; tratamento com quimioterapia e radioterapia."},{id:"B",texto:"Lobectomia superior direita com esvaziamento mediastinal; tratamento adjuvante."},{id:"C",texto:"Segmentectomia com esvaziamento mediastinal; tratamento adjuvante."},{id:"D",texto:"Não tem indicação cirúrgica; tratamento com quimioterapia exclusiva."}],
@@ -211,7 +211,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-016", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-016", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:16,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-bronquiectasias",
   enunciado:"Homem, 35 anos de idade, é admitido no PS com tosse e hemoptise de, aproximadamente, 50 mL ao dia, há 3 dias. Nega febre ou perda de peso. Refere infecções pulmonares de repetição, à esquerda, há alguns anos. Broncoscopia: sangramento no lobo superior esquerdo. O diagnóstico mais provável é",
   alternativas:[{id:"A",texto:"bronquiectasias."},{id:"B",texto:"doença pulmonar obstrutiva crônica."},{id:"C",texto:"neoplasia pulmonar."},{id:"D",texto:"corpo estranho de via aérea."}],
@@ -224,7 +224,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-017", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-017", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:17,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-osteometabolicas",
   enunciado:"No tratamento conservador das fraturas na osteogênese imperfeita, a imobilização por tempo prolongado pode causar",
   alternativas:[{id:"A",texto:"formação de calo ósseo mais exuberante."},{id:"B",texto:"diminuição na frequência das fraturas."},{id:"C",texto:"menor desvio angular dos ossos longos."},{id:"D",texto:"osteopenia pelo desuso."}],
@@ -237,7 +237,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-018", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-018", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:18,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-arterial",
   enunciado:"Homem, 65 anos de idade, previamente assintomático, é admitido no PS referindo dor súbita na perna direita associada a perda de força e esfriamento há 8 dias. Refere ter procurado serviço médico que receitou analgésico e o liberou para casa no início do quadro. Exame físico: ausência de pulso distal à artéria poplítea no membro inferior direito; demais pulsos normais; rigidez articular importante com cianose fixa do pé, esfriamento e livedo reticular até o joelho direito. Exames subsidiários: ECG com fibrilação atrial; CK = 20 000 U/L; C = 4,1 mg/mL. Qual é o diagnóstico mais provável e a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Embolia arterial; heparinização plena e analgesia."},{id:"B",texto:"Trombose arterial; fibrinolítico intratrombo."},{id:"C",texto:"Embolia arterial; amputação primária do membro."},{id:"D",texto:"Trombose arterial; heparinização plena e analgesia."}],
@@ -250,7 +250,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-019", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-019", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:19,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-venosa",
   enunciado:"Mulher, 37 anos de idade, refere muita dor nas pernas com sensação de peso ao final do dia, há 2 anos. Relata inchaço importante nas pernas, que melhora com o repouso. AP: nega trombose venosa ou trauma. Exame físico: varizes tronculares calibrosas nas pernas e coxas bilateralmente, edema 2+/ 4+, sem alterações da pele. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"varizes idiopáticas, C3."},{id:"B",texto:"varizes idiopáticas, C4."},{id:"C",texto:"varizes secundárias, C4."},{id:"D",texto:"varizes secundárias, C3."}],
@@ -263,7 +263,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-020", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-020", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:20,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
   enunciado:"Homem, 78 anos de idade, apresenta quadro súbito de hemiparesia direita e dificuldade para falar há duas horas da admissão no PS. Após a realização de exame neurológico rápido, qual das seguintes condutas é a mais adequada?",
   alternativas:[{id:"A",texto:"Avaliação de eletrólitos e realização de ressonância magnética de crânio com perfusão cerebral imediata."},{id:"B",texto:"Avaliação de glicemia capilar e realização de eletroencefalograma na urgência."},{id:"C",texto:"Avaliação de glicemia capilar e avaliação com tomografia de crânio e angiotomografia."},{id:"D",texto:"Avaliação de eletrólitos e coleta de líquido cefalorraquiano."}],
@@ -276,7 +276,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-021", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-021", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:21,
   areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-heranca",
   enunciado:"Casal jovem, não consanguíneo, tem um filho com acondroplasia, sem outros casos na família. No pré-natal da gestação seguinte, a ultrassonografia identifica feto com encurtamento de ossos longos e macrocrania. Qual é o modo de herança da acondroplasia e, nesse caso, qual é a causa da recorrência?",
   alternativas:[{id:"A",texto:"Ligada ao X; acometimento de dois filhos do sexo masculino."},{id:"B",texto:"Autossômica dominante; mosaicismo gonadal."},{id:"C",texto:"Autossômica recessiva; risco de 25% atribuído ao padrão da herança."},{id:"D",texto:"Autossômica dominante; salto de gerações."}],
@@ -289,7 +289,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-022", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-022", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:22,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
   enunciado:"Mulher, 21 anos de idade, nuligesta, refere menstruações irregulares, sem cólica, com intervalos bimestrais e com duração de 5 dias desde a menarca. Também refere acne e obesidade há 6 anos e não iniciou atividade sexual. Procurou a UBS e foi solicitada uma ultrassonografia que mostrou útero sem alterações e ovários com cisto simples à direita medindo 18 mm e ovário esquerdo normal. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Síndrome dos ovários policísticos fenótipo A."},{id:"B",texto:"Síndrome do folículo luteinizado não roto."},{id:"C",texto:"Síndrome de Mayer-Rokitansky-Kuster-Hause."},{id:"D",texto:"Síndrome dos ovários policísticos fenótipo B."}],
@@ -302,7 +302,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-023", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-023", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:23,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-climaterio",
   enunciado:"Mulher, 68 anos de idade, com câncer de mama receptor hormonal positivo, tratado há 3 anos, em uso regular de tamoxifeno, apresenta episódios de sangramento vaginal indolor, pequeno volume, com duração de 2 dias, há 6 meses. Realizou ultrassonografia que revelou: útero retrovertido 41 x 24 x 40 mm – vol. 65 cm3, eco endometrial de 9 mm, ovários não visualizados. O diagnóstico mais provável e a conduta mais adequada são, respectivamente:",
   alternativas:[{id:"A",texto:"sangramento da pós-menopausa; biópsia endometrial por histeroscopia."},{id:"B",texto:"sangramento uterino anormal; prescrição de progestagênio cíclico."},{id:"C",texto:"sangramento da pós-menopausa; seguimento clínico semestral."},{id:"D",texto:"sangramento uterino anormal; histerectomia total abdominal."}],
@@ -315,7 +315,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-024", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-024", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:24,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-caovario",
   enunciado:"Mulher, 59 anos de idade, em tratamento de síndrome dispéptica há 5 meses, refere aumento do volume abdominal, constipação, náusea e vômitos pós-alimentares há 15 dias, com perda de 15 kg nos últimos 6 meses. Exame físico: abdômen globoso, sinal de piparote presente, semicírculo de Skoda presente. Exames laboratoriais: CA 125: 120 UI/ mL (normal 35-40); Antígeno carcinoembrionário: 1,2 ng/mL (normal até 5). A tomografia computadorizada revela os seguintes achados ginecológicos: espessamento omental, formações expansivas heterogêneas anexiais, útero com dimensões aumentadas. Endoscopia digestiva alta: gastrite erosiva leve de antro. Colonoscopia: progressão do aparelho até flexura esplênica, sem alterações. O diagnóstico e a conduta mais adequada são, respectivamente:",
   alternativas:[{id:"A",texto:"neoplasia maligna de foco primário desconhecido; PET-Scan."},{id:"B",texto:"neoplasia maligna de ovário; cirurgia citorredutora completa."},{id:"C",texto:"neoplasia maligna de ovário; quimioterapia sistêmica."},{id:"D",texto:"neoplasia maligna de foco primário desconhecido; biópsia da lesão por radiointervenção."}],
@@ -328,7 +328,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-025", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-025", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:25,
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Mulher, 40 anos de idade, nuligesta, iniciou vida sexual recentemente e gostaria de método contraceptivo. Refere enxaqueca sem aura e convulsões há 5 anos e faz uso de topiramato diariamente. Qual dos métodos contraceptivos indicados é considerado categoria 3, para a paciente em questão, segundo a Classificação da OMS?",
   alternativas:[{id:"A",texto:"Desogestrel via oral."},{id:"B",texto:"Etonogestrel subcutâneo."},{id:"C",texto:"Medroxiprogesterona intramuscular."},{id:"D",texto:"Levonorgestrel intrauterino."}],
@@ -341,7 +341,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-026", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-026", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:26,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
   enunciado:"Mulher, 35 anos de idade, IIG II Partos normais, refere perda urinária durante atividade física, ao praticar polichinelos. Exame físico: perda urinária à manobra de tosse em posição ortostática, classificação POP-Q = IIba e ponto Ba = 0. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Correção cirúrgica com sling de polipropileno retropúbico."},{id:"B",texto:"Correção cirúrgica com sling de polipropileno transobturador."},{id:"C",texto:"Fisioterapia do assoalho pélvico com exercícios perineais."},{id:"D",texto:"Uso de pessário vaginal modelo donut durante o exercício."}],
@@ -354,7 +354,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-027", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-027", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:27,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
   enunciado:"Mulher, 52 anos de idade, realizou mamografia de rotina que identificou grupo de microcalcificações pleomórficas, com extensão de 0,7 cm, localizadas em quadrante superolateral de mama direita. Qual é a melhor estratégia para o diagnóstico histopatológico?",
   alternativas:[{id:"A",texto:"Biópsia por agulha grossa (core biopsy) guiada por mamografia."},{id:"B",texto:"Biópsia assistida a vácuo (mamotomia) guiada por ultrassonografia."},{id:"C",texto:"Biópsia por agulha grossa (core biopsy) guiada por ultrassonografia."},{id:"D",texto:"Biópsia assistida a vácuo (mamotomia) guiada por mamografia."}],
@@ -367,7 +367,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-028", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-028", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:28,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
   enunciado:"Mulher, 24 anos de idade, refere ciclos menstruais irregulares, com fluxo intenso com coágulos há 1 ano, e aumento da frequência urinária. Exame físico: abdome com massa de superfície bocelada, palpável 3 cm acima da sínfise púbica; toque vaginal: útero móvel, aumentado de volume, com superfície bocelada e anexos livres; especular sem alterações. Ressonância magnética: útero com volume 300 cc, presença de 2 nódulos uterinos (FIGO 1 em parede posterior, de 2,0 cm e FIGO 2-5 em parede anterior de 6 cm). A mais adequada conduta é",
   alternativas:[{id:"A",texto:"histerectomia total abdominal."},{id:"B",texto:"miomectomia histeroscópica e laparoscópica."},{id:"C",texto:"histerectomia subtotal laparoscópica."},{id:"D",texto:"prescrição de contraceptivos hormonal."}],
@@ -380,7 +380,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-029", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-029", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:29,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
   enunciado:"Mulher, 60 anos de idade, com espessamento endometrial de 12 mm, realiza histeroscopia diagnóstica ambulatorial. Durante o procedimento, houve perfuração uterina. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Observação ambulatorial após tamponamento vaginal, prescrição de analgésicos e antibioticoterapia. Alta na ausência de alterações, com orientações sobre os sinais de alarme."},{id:"B",texto:"Internação hospitalar para realização de laparoscopia para revisão da cavidade com aspiração do conteúdo hemático, cauterização ou sutura da lesão."},{id:"C",texto:"Observação ambulatorial por 2 horas com controle hemodinâmico, sangramento genital e dor. Alta na ausência de alterações, com orientações sobre os sinais de alarme."},{id:"D",texto:"Internação hospitalar para realização de laparotomia exploradora e verificação da necessidade de histerectomia, na dependência do local da perfuração."}],
@@ -393,7 +393,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-030", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-030", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:30,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
   enunciado:"Mulher, 48 anos de idade, foi admitida no PS com diagnóstico de tromboembolismo pulmonar agudo. Apresenta oligúria e sangramento vaginal em moderada quantidade. Exame físico: presença de massa no colo do útero, medindo 6 cm, friável, necrótica, sangrante, com forte odor pútrido, ocupando fórnices vaginais. Exames laboratoriais: Hb 5,4 g/dL; Ht 12,2%; Ureia 245 mg/dL; Creatinina 7,5 mg/dL. US de rins e vias urinárias: dilatação ureteral bilateral acentuada. Qual é a conduta mais adequada, após a compensação clínica?",
   alternativas:[{id:"A",texto:"Derivação urinária com duplo J ou nefrostomia; cirurgia de Wertheim Meigs."},{id:"B",texto:"Derivação urinária com duplo J ou nefrostomia, radio e quimioterapia."},{id:"C",texto:"Histerectomia total abdominal com salpingectomia bilateral."},{id:"D",texto:"Encaminhamento para ambulatório de cuidados paliativos."}],
@@ -406,7 +406,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-031", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-031", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:31,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
   enunciado:"Primípara, 34 anos de idade, pós-parto vaginal imediato, induzido com 38 semanas por préeclâmpsia, apresenta sangramento vaginal em moderada intensidade. Exame físico: corada, PA 100 x 60 mmHg, FC 110 bpm, sangramento vaginal moderado, útero amolecido na altura da cicatriz umbilical. Foi iniciada a administração de volume por via intravenosa em acesso calibroso, administrada ocitocina e realizada massagem uterina. As próximas medidas, para o melhor cuidado da paciente, incluem:",
   alternativas:[{id:"A",texto:"misoprostol e inserção de balão intrauterino."},{id:"B",texto:"ergotamina e tamponamento uterino com compressas."},{id:"C",texto:"misoprostol e histerectomia."},{id:"D",texto:"ergotamina e realização de sutura de B-Lynch."}],
@@ -419,7 +419,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-032", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-032", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:32,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Primigesta de 41 semanas, 28 anos de idade, relata diminuição da movimentação fetal. Prénatal sem complicações, feto com crescimento e desenvolvimento normais. Exame físico: bom estado geral, sinais vitais normais, altura uterina 34 cm, BCF 140 bpm, dinâmica uterina ausente. Toque: apresentação cefálica, plano –2, colo pérvio para 2 cm, 40% de esvaecimento e bolsa íntegra. Perfil biofísico fetal de 8 com a seguinte cardiotocografia: Qual é a interpretação da cardiotocografia e a conduta?",
   alternativas:[{id:"A",texto:"Tranquilizador; retorno para reavaliação em 3 dias."},{id:"B",texto:"Não tranquilizador; realizar cesárea."},{id:"C",texto:"Reativo; iniciar indução com ocitocina."},{id:"D",texto:"Não reativo; prolongar o traçado; iniciar preparo de colo com misoprostol."}],
@@ -432,7 +432,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-033", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-033", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:33,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   enunciado:"Primigesta de 36 semanas, 37 anos de idade, diabética gestacional, controlada com dieta e atividade física até a 26a semana, quando necessitou de insulina regular nas doses de 20 UI no café da manhã, 18 UI no almoço, 18 UI no jantar e 14 UI de insulina NPH às 21 horas. Teve bom controle glicêmico até a 35a semana, quando apresentou vários episódios de hipoglicemia. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Insuficiência placentária."},{id:"B",texto:"Hipoinsulinismo fetal."},{id:"C",texto:"Resistência periférica à insulina."},{id:"D",texto:"Elevação de lactogênio placentário."}],
@@ -445,7 +445,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-034", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-034", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:34,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Primigesta de termo encontra-se no período expulsivo há uma hora, a variedade de posição é OEA, no plano +3 de DeLee, quando é detectado líquido meconial +++/4. Cardiotocografia: desacelerações tardias em mais de 50% das contrações. Qual é a melhor conduta?",
   alternativas:[{id:"A",texto:"Aumentar o fluxo de ocitocina e estimular puxos prolongados."},{id:"B",texto:"Aguardar o delivramento espontâneo, mantendo a vigilância do bem-estar fetal."},{id:"C",texto:"Cesárea imediata."},{id:"D",texto:"Uso imediato do vacuoextrator ou fórcipe."}],
@@ -458,7 +458,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-035", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-035", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:35,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Primigesta de 32 semanas procura a maternidade com queixa de dor no baixo ventre há 8 horas, sem queixas urinárias. Exame físico: AU = 30 cm, apresentação cefálica, foco 144 bpm, DU de 1 contração de 20” em 20 minutos; toque: colo uterino grosso, posterior e impérvio, com apresentação alta e móvel. Qual é a mais adequada conduta?",
   alternativas:[{id:"A",texto:"Coletar cultura de estreptococo do grupo B, prescrever corticoide e nifedipina."},{id:"B",texto:"Coletar cultura de estreptococo do grupo B, prescrever antibiótico, corticoide e atosiban."},{id:"C",texto:"Ampliar o período de observação, monitorar a evolução da dinâmica uterina e das condições cervicais."},{id:"D",texto:"Liberar a gestante e prescrever progesterona natural micronizada e antiespasmódico."}],
@@ -471,7 +471,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-036", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-036", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:36,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
   enunciado:"Gestante, 42 anos de idade, 2G 1 parto normal há 20 anos, em seguimento pré-natal, traz a seguinte sorologia para sífilis: ■ Teste rápido para sífilis: reagente ■ Método Eletroquimioluminométrico com antígeno treponêmico (EQL): reagente ■ VDRL: não reagente Nega diagnóstico e tratamento prévios para sífilis. Está assintomática. A hipótese diagnóstica e a conduta são, respectivamente:",
   alternativas:[{id:"A",texto:"sífilis latente precoce; tratar com penicilina benzatina 2 400 000 UI via intramuscular."},{id:"B",texto:"sífilis latente tardia; tratar com penicilina benzatina 7 200 000 UI via intramuscular."},{id:"C",texto:"cicatriz sorológica por tratamento prévio não documentado; não tratar e solicitar controle com VDRL em 30 dias."},{id:"D",texto:"sífilis secundária; tratar com penicilina benzatina 2 400 000 UI via intramuscular."}],
@@ -484,7 +484,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-037", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-037", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:37,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Gestante, 39 anos de idade, 2G 1P normal anterior (nativivo de termo, 3 950 gr), veio para consulta pré-natal de rotina. Os dados de seguimento estão a seguir. DUM: 03/01/2021 Peso inicial: 70 kg Est: 1,61 m IMC inicial: 27 kg/m2 Exames: 08/03/2021 Hb = 10,1, Ht = 31, Leucograma = 10 200, Plaquetas: 221 100, Glicemia de jejum: 94 mg/dL, Sorologias: VDRL não reagente/ Teste rápido não reagente, HIV: não reagente, HBsAg: não reagente, Hepatite C: não reagente, Toxoplasmose: IgG reagente; IgM não reagente, Rubéola: IgG reagente; IgM não reagente. A alternativa que descreve os exames que devem ser solicitados na consulta de 20 de julho é:",
   alternativas:[{id:"A",texto:"teste oral de tolerância à glicose, sorologias para HIV e sífilis."},{id:"B",texto:"hemograma, sorologias para HIV e sífilis."},{id:"C",texto:"teste oral de tolerância à glicose, hemograma, sorologias para HIV, sífilis e toxoplasmose."},{id:"D",texto:"hemograma, sorologias para HIV e sífilis, pesquisa de estreptococo."}],
@@ -497,7 +497,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-038", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-038", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:38,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   enunciado:"Gestante, de 28 semanas, apresenta TTOG com sobrecarga de 75 g de glicose realizada com 26 semanas: 92-182-152 mg/dL. Recebe orientação quanto à dieta, atividade física e controle glicêmico. Retorna 7 dias depois dessa consulta, relatando ter seguido todas as orientações, perdeu 2 kg de peso. Com esse perfil glicêmico, a conduta correta será a seguinte:",
   alternativas:[{id:"A",texto:"deve-se prescrever insulina regular às 22h para melhorar o nível glicêmico da manhã."},{id:"B",texto:"deve-se reforçar dieta e atividade física por mais 15 dias, antes de propor medicação."},{id:"C",texto:"os controles estão dentro do razoável, manter orientação de dieta e atividade física."},{id:"D",texto:"deve-se prescrever insulina, pois tem muitos controles inadequados."}],
@@ -510,7 +510,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-039", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-039", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:39,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-abortamento",
   enunciado:"Primigesta, 10 semanas de gestação, refere sangramento vaginal. Relata náuseas e mamas aumentadas e doloridas há 5 semanas. Exame físico: bom estado geral, normotensa, útero amolecido e aumentado 2 vezes, colo impérvio, com sangramento em pequena quantidade. Ultrassonografia: concepto com comprimento cabeça-nádegas (CCN) compatível com a idade gestacional menstrual, vitalidade preservada, BCF 114 bpm, área de descolamento ovular com 2 cm. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Repouso relativo e uso de analgésicos se tiver cólica."},{id:"B",texto:"Progesterona intravaginal e analgésicos."},{id:"C",texto:"Antiespasmódicos intravenosos por 2 dias."},{id:"D",texto:"Terbutalina ou nifedipina via oral por 2 dias."}],
@@ -523,7 +523,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-040", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-040", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:40,
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-glaucoma",
   enunciado:"Qual dos pacientes a seguir possui maior risco para desenvolver glaucoma primário de ângulo aberto?",
   alternativas:[{id:"A",texto:"50 anos de idade e hipermetrope."},{id:"B",texto:"25 anos de idade e astigmatismo."},{id:"C",texto:"60 anos de idade e míope."},{id:"D",texto:"70 anos de idade e hipermetrope."}],
@@ -536,7 +536,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-041", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-041", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:41,
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Mulher, 29 anos de idade, relata que seu ciclo menstrual nos últimos 12 meses variou de 29 a 32 dias. Pelo método de Ogino Knaus, qual o período fértil dessa mulher?",
   alternativas:[{id:"A",texto:"Do 12º ao 24º dia do ciclo."},{id:"B",texto:"Do 15º ao 18º dia do ciclo."},{id:"C",texto:"Do 11º ao 21º dia do ciclo."},{id:"D",texto:"Do 10º ao 20º dia do ciclo."}],
@@ -549,7 +549,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-042", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-042", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:42,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Durante a pandemia de Covid-19, uma pesquisa online com adolescentes visou, através do uso de questionários de autorrelato, detectar uma associação entre sintomas de depressão, ansiedade, consumo abusivo de álcool e tempo gasto em frente às telas. Tratou-se de um estudo com coleta única de dados no tempo. Assinale a alternativa que representa um possível achado desse estudo.",
   alternativas:[{id:"A",texto:"A densidade de incidência de depressão foi duas vezes maior que a densidade de incidência de ansiedade, independentemente do sexo."},{id:"B",texto:"O risco relativo de consumo de álcool foi três vezes maior no sexo masculino do que no feminino (RR = 3,00)."},{id:"C",texto:"O abuso de álcool durante a pandemia foi causa dos sintomas de depressão desses jovens."},{id:"D",texto:"A prevalência de sintomas autorrelatados de ansiedade nessa amostra foi de 40%, e a razão de prevalência entre os sexos foi de 2,50."}],
@@ -562,7 +562,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-043", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-043", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:43,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Em epidemiologia, taxas de mortalidade ajustadas por idade podem ser utilizadas para:",
   alternativas:[{id:"A",texto:"determinar o número de mortes em um dado grupo etário das populações comparadas."},{id:"B",texto:"eliminar o efeito das diferenças etárias das populações na comparação de suas mortalidades."},{id:"C",texto:"estimar as idades de óbito quando faltam tais informações nas taxas brutas de mortalidade."},{id:"D",texto:"corrigir as taxas brutas de mortalidade, estimando os erros de registro das idades."}],
@@ -575,7 +575,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-044", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-044", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:44,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"Em relação à notificação compulsória de doenças, agravos e eventos de saúde pública nos serviços de saúde públicos e privados em todo o território nacional, definida pela Portaria de Consolidação no 4 de 28 de setembro de 2017, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A notificação compulsória imediata deve ser realizada pelo profissional de saúde ou responsável pelo serviço assistencial que prestar o primeiro atendimento ao paciente, em até 48 horas desse atendimento."},{id:"B",texto:"A comunicação de doença, agravo ou evento de saúde pública de notificação compulsória pode ser realizada à autoridade de saúde por qualquer cidadão que deles tenha conhecimento."},{id:"C",texto:"Tentativa de suicídio, óbito infantil e óbito de membro de povo ou comunidade tradicional são agravos de notificação compulsória em todo o território nacional."},{id:"D",texto:"O município deve incluir, em sua lista de notificação, doenças, agravos ou evento de saúde pública de notificação compulsória constantes da lista de sua respectiva região de saúde."}],
@@ -588,7 +588,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-045", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-045", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:45,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Um estudo caso-controle detectou 56 expostos em 100 casos e 40 expostos em 100 controles. Sabendo-se que a detecção de casos e de controles foi 100% acurada e que o questionário utilizado para detecção de exposição pregressa tinha sensibilidade de 80% e especificidade de 100%, qual seria o valor da odds ratio corrigida considerando a acurácia do questionário?",
   alternativas:[{id:"A",texto:"1,9."},{id:"B",texto:"2,3."},{id:"C",texto:"1,7."},{id:"D",texto:"2,1."}],
@@ -601,7 +601,8 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-046", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-046", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:46,
+  imagemUrl:"dados/imagens/q-unifesp2022-046.png", imagemPendente:"Tabela 2×2 com os dados observados do estudo de coorte (exposição × doença em 5 anos), com as caselas a, b, c e d e os totais.",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"A tabela do tipo 2 x 2 mostra os dados observados em um estudo de coortes que investigou a associação entre uma exposição e a incidência de uma doença em 5 anos. Os valores esperados para as caselas (a) e (c), respectivamente, em caso de não associação ou completa independência entre a exposição e a doença são:",
   alternativas:[{id:"A",texto:"20 e 110."},{id:"B",texto:"0 e 130."},{id:"C",texto:"26 e 104."},{id:"D",texto:"65 e 65."}],
@@ -614,7 +615,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-047", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-047", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:47,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
   enunciado:"Quanto ao Projeto Terapêutico Singular, é correto afirmar:",
   alternativas:[{id:"A",texto:"é uma ferramenta para o estudo minucioso de todas as etapas da evolução da doença do indivíduo."},{id:"B",texto:"tem como principal objetivo facilitar o estudo de casos complexos em situações de ensinoaprendizagem."},{id:"C",texto:"é um importante dispositivo utilizado pelo médico para cuidar de casos complexos na atenção básica."},{id:"D",texto:"é uma das ferramentas das equipes de saúde que auxilia na tomada de decisões acerca de um caso individual ou coletivo."}],
@@ -627,7 +628,8 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-048", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-048", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:48,
+  imagemUrl:"dados/imagens/q-unifesp2022-048.png", imagemPendente:"Tabela 2×2 do ensaio clínico (tratamento × controle, doença × sem doença), da qual se calcula o NNT.",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"A tabela do tipo 2 x 2 refere-se a ensaio clínico aleatorizado para tratamento de uma doença comparando dois grupos: tratamento e controle. Qual o valor do NNT e sua interpretação correta?",
   alternativas:[{id:"A",texto:"50; 1 caso de doença a menos para cada grupo de 50 tratados."},{id:"B",texto:"20; 1 caso de doença evitado para 19 casos de doença ocorridos."},{id:"C",texto:"20; 1 caso de doença a menos para cada grupo de 20 tratados."},{id:"D",texto:"50; 1 caso de doença evitado para 49 casos de doença ocorridos."}],
@@ -640,7 +642,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-049", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-049", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:49,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"O bairro do Jardim Peri na zona Norte de São Paulo foi fortemente acometido por enchentes em 19 de março de 2021. Uma comunidade que vive às margens de um córrego foi diretamente atingida por seu alagamento. Nessa situação, é função da Vigilância em Saúde Ambiental.",
   alternativas:[{id:"A",texto:"prestar assistência à saúde humana e animal dos afetados, caracterizando os riscos de adoecimento devido à exposição ao alagamento."},{id:"B",texto:"informar aos serviços locais de assistência à saúde a possível chegada de casos de leptospirose ou outros agravos associados ao alagamento."},{id:"C",texto:"realizar, após a resolução da enchente, a análise ambiental do solo e subsolo locais, procurando por uma possível contaminação."},{id:"D",texto:"realizar a análise da água da enchente a fim de encontrar possíveis contaminantes, como metais pesados ou organoclorados."}],
@@ -653,7 +655,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-050", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-050", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:50,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"Qual das alternativas aponta ações de vigilância em saúde no Brasil recomendadas pelo Sistema de Vigilância Alimentar e Nutricional?",
   alternativas:[{id:"A",texto:"Utilização do recordatório de consumo alimentar referente ao último mês, obtenção das medidas de peso, estatura e circunferência da cintura nas consultas de rotina nas unidades básicas de saúde."},{id:"B",texto:"Execução bienal de mutirões de avaliação do estado nutricional com base no peso e estatura da população residente e dos estudantes das escolas públicas da área de abrangência das unidades básicas de saúde."},{id:"C",texto:"Avaliação da oferta proporcional de alimentos ultraprocessados e dos macronutrientes da dieta nos domicílios e nas escolas públicas da área de abrangência das unidades básicas de saúde."},{id:"D",texto:"Aplicação do formulário de marcador de consumo alimentar referente ao dia anterior e obtenção das medidas de peso e estatura nas consultas de rotina nas unidades básicas de saúde."}],
@@ -666,7 +668,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-051", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-051", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:51,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
   enunciado:"Assinale a alternativa que aponta, respectivamente, o tipo e uma vantagem da estratégia de prevenção “distanciamento social”, adotada durante a pandemia de covid-19.",
   alternativas:[{id:"A",texto:"Populacional; temporária e paliativa."},{id:"B",texto:"De alto risco; motivacional para os profissionais de saúde."},{id:"C",texto:"Populacional; busca a raiz do problema."},{id:"D",texto:"De alto risco; apropriada ao comportamento."}],
@@ -679,7 +681,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-052", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-052", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:52,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Em um ensaio clínico randomizado de um novo tratamento para o infarto agudo do miocárdio, a mortalidade no grupo tratado foi a metade daquela observada no grupo placebo; entretanto, a diferença não se mostrou significativa do ponto de vista estatístico. Dessa forma, conclui-se que",
   alternativas:[{id:"A",texto:"não faz sentido continuar a desenvolver o tratamento."},{id:"B",texto:"a redução da mortalidade é tão grande que se deve adotar o tratamento."},{id:"C",texto:"se deve adicionar pacientes a esse ensaio clínico."},{id:"D",texto:"se deve planejar um novo ensaio clínico com tamanho amostral maior."}],
@@ -693,7 +695,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-053", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-053", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:53,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"O volume máximo de oxigênio inalado (VO2 max) é usado como medida do condicionamento físico. Cem homens saudáveis participaram de uma pesquisa que objetivava verificar se o VO2 max, em mililitros por quilograma de peso por minuto, diminui quando se aumenta o tempo, em minutos, de realização de atividade física. Qual teste estatístico poderia ser utilizado para verificar se o VO2 max está relacionado com o tempo de atividade física?",
   alternativas:[{id:"A",texto:"Teste de correlação de Pearson."},{id:"B",texto:"Teste qui-quadrado de independência."},{id:"C",texto:"Teste T para duas amostras dependentes."},{id:"D",texto:"Análise de variância (ANOVA)."}],
@@ -706,7 +708,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-054", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-054", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:54,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Em um estudo sobre amamentação e inteligência, de acordo com a escolha da mãe, 165 crianças que eram muito pequenas ao nascer receberam leite materno, enquanto 145 receberam fórmula infantil. Na idade de 8 anos, o quociente de inteligência (QI) dessas crianças foi medido. O QI médio do grupo fórmula infantil foi de 92,8, enquanto o do grupo leite materno foi de 103,0. Por meio de um teste de comparação de médias, verificou-se diferença significante entre essas duas médias (p < 0,001). Com base nessas informações, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Se o tipo de leite ofertado não estiver relacionado ao QI subsequente, a probabilidade de se obter uma diferença no QI médio igual ou maior que a observada é menor do que 0,001."},{id:"B",texto:"Há evidências causais de que a alimentação com fórmula para bebês muito pequenos reduz o QI aos 8 anos."},{id:"C",texto:"O tipo de leite ofertado à criança não tem relação com o QI subsequente."},{id:"D",texto:"A probabilidade de que o tipo de leite ofertado afete o QI subsequente é inferior a 0,001."}],
@@ -719,7 +721,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-055", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-055", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:55,
   areaId:"area-mps", especialidadeId:"esp-bioetica", assuntoId:"ass-cuidadospaliativos",
   enunciado:"Diante de um paciente ambulatorial com doença crônica, evolutiva e progressiva, com prognóstico de vida encurtado a meses ou ano, candidato, portanto, a cuidados paliativos, qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Informar aos familiares sobre a situação e reforçar as esperanças do paciente."},{id:"B",texto:"Chamar a equipe de apoio psicológico para comunicar a impossibilidade de tratamento."},{id:"C",texto:"Fornecer respostas empáticas e providenciar conforto para o paciente e familiares."},{id:"D",texto:"Dar alta do ambulatório e orientá-lo a procurar serviço de cuidados paliativos."}],
@@ -732,7 +734,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-056", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-056", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:56,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Em uma UBS, uma criança com 7 dias de vida é atendida e em seu relatório de alta da maternidade consta o seguinte: Mãe com VDRL na ocasião do parto com título de 1/8 e teste treponêmico reagente, tratada adequadamente para sífilis 45 dias antes do parto. O recémnascido, assintomático, tem título de VDRL 1/4, líquor sem alterações, hemograma normal e radiografia de ossos longos normal. Assinale a alternativa que contém ações de vigilância epidemiológica corretas para esse caso.",
   alternativas:[{id:"A",texto:"Notificar o caso de sífilis congênita em até 24 horas; realizar seguimento com testes não treponêmicos quantitativos com 1, 3, 6, 12 e 18 meses de idade."},{id:"B",texto:"Considerar como criança exposta à sífilis; realizar seguimento com testes não treponêmicos quantitativos com 1,3, 6, 12 e 18 meses de idade."},{id:"C",texto:"Notificar o caso de sífilis congênita em até uma semana; realizar seguimento com testes treponêmicos com 1, 3, 6, 12 e 18 meses de idade."},{id:"D",texto:"Considerar como criança exposta à sífilis; realizar seguimento com testes treponêmicos com 1, 3, 6, 12 e 18 meses de idade."}],
@@ -745,7 +747,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-057", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-057", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:57,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-principiossus",
   enunciado:"Mulher, 64 anos de idade, com câncer de mama, é acompanhada por oncologista em consultório particular. Os procedimentos diagnósticos foram efetuados por meio de seu convênio médico, com indicação de quimioterapia, de acordo com as Diretrizes Diagnósticas e Terapêuticas do Carcinoma de Mama. O plano de saúde da paciente não disponibiliza serviço de quimioterapia na região onde mora e ela foi encaminhada para o Centro de Alta Complexidade em Oncologia (CACON) de um hospital público da região que atende exclusivamente pelo SUS. Nesse caso, a paciente",
   alternativas:[{id:"A",texto:"tem direito a receber quimioterapia no CACON porque esse procedimento é realizado mediante Autorização de Procedimento Ambulatorial de Alto Custo, que permite à Agência Nacional de Saúde Suplementar ressarcir os gastos para SUS."},{id:"B",texto:"não tem direito a receber quimioterapia no CACON porque procedimentos contidos no rol da Agência Nacional de Saúde Suplementar devem ser realizados na rede assistencial própria ou contratada pela operadora."},{id:"C",texto:"tem direito a receber quimioterapia no SUS, desde que acompanhada por UBS ou serviço ambulatorial especializado do SUS, e que seja solicitado o seu encaminhamento ao CACON por meio da Central de Regulação."},{id:"D",texto:"não tem direito a receber quimioterapia no CACON porque a operadora está obrigada a fornecer o procedimento em caráter ambulatorial, uma vez que o convênio foi celebrado após a vigência da Lei no 9.656/98, que regulamenta a saúde suplementar."}],
@@ -758,7 +760,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-058", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-058", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:58,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
   enunciado:"Qual das ações faz parte da política de redução de danos em relação ao uso de drogas lícitas e ilícitas?",
   alternativas:[{id:"A",texto:"Orientar práticas e distribuir insumos para reduzir consequências adversas do uso de drogas."},{id:"B",texto:"Elaborar estratégias de redução do uso de drogas até atingir e manter o estado de abstinência."},{id:"C",texto:"Aconselhar para a imediata abstinência do uso de drogas com o suporte de familiares."},{id:"D",texto:"Informar crianças e adolescentes sobre riscos individuais e coletivos do uso de drogas."}],
@@ -771,7 +773,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-059", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-059", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:59,
   areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-viasaereas",
   enunciado:"Lactente, 3 meses de idade, sexo feminino, nascida a termo, Apgar 9/10, apresenta estridor desde o nascimento. O diagnóstico mais provável é",
   alternativas:[{id:"A",texto:"estenose subglótica."},{id:"B",texto:"paralisia bilateral de pregas vocais."},{id:"C",texto:"hemangioma subglótico."},{id:"D",texto:"laringomalácia."}],
@@ -784,7 +786,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-060", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-060", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:60,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"Qual esquema antirretroviral profilático deve ser recomendado para um recém-nascido de 28 semanas, cuja mãe foi diagnosticada com HIV no momento do parto?",
   alternativas:[{id:"A",texto:"Zidovudina + Lamivudina por 28 dias + Nevirapina por 14 dias."},{id:"B",texto:"Zidovudina por 28 dias."},{id:"C",texto:"Zidovudina + Lamivudina + Raltegravir por 28 dias."},{id:"D",texto:"Zidovudina por 28 dias + 3 doses de Nevirapina."}],
@@ -797,7 +799,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-061", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-061", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:61,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-infeccoes",
   enunciado:"Menino, 25 dias de idade, previamente hígido, há 2 dias apresenta febre intermitente de 38 a 39ºC e dor à movimentação da perna direita nas trocas de fraldas. Exame físico: dor e limitação à rotação interna do quadril direito. Você indica a punção articular. Além do S. aureus, os agentes etiológicos que seriam mais frequentes na cultura do líquido sinovial nesse caso são:",
   alternativas:[{id:"A",texto:"Estreptococos do grupo B e os bacilos Gram-negativos."},{id:"B",texto:"Estreptococos e Haemophilus influenzae."},{id:"C",texto:"Streptococcus pneumoniae e Estreptococos do grupo A."},{id:"D",texto:"Estreptococos do grupo A e Neisseria gonorrhoea."}],
@@ -810,7 +812,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-062", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-062", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:62,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-febrereumatica",
   enunciado:"Menino, 7 anos de idade, iniciou com artrite em joelho esquerdo há 5 dias, artrite em joelho direito há 2 dias e artrite em tornozelo direito há 1 dia. Exame físico: artrite em joelho e tornozelo direitos, com dor à mobilização dessas articulações. Exames laboratoriais: VHS = 50 mm/h, PCR = 15 mg/dL. O achado que corrobora o diagnóstico de febre reumática é",
   alternativas:[{id:"A",texto:"fotossensibilidade."},{id:"B",texto:"exantema."},{id:"C",texto:"adenomegalia."},{id:"D",texto:"sopro sistólico em foco mitral."}],
@@ -823,7 +825,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-063", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-063", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:63,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-maustratos",
   enunciado:"Menina, 1 ano de idade, foi trazida ao PS por profissionais da creche preocupados com possível violência física contra a menor. Na avaliação, lactente está irritada e apresenta hematomas em região de nádegas, com restante do exame físico normal. Pais chegam mais tarde, relatando que os hematomas eram devidos a queda da própria altura há 2 dias. Mostravam-se ansiosos e querendo levar sua filha embora. Qual a medida mais adequada?",
   alternativas:[{id:"A",texto:"Alta hospitalar com os pais e envio de relatório para o Conselho Tutelar de referência."},{id:"B",texto:"Solicitar a presença da segurança do hospital para evitar a evasão."},{id:"C",texto:"Solicitar avaliação do profissional do serviço social para ele decidir a melhor conduta."},{id:"D",texto:"Buscar evidências de lesões específicas de violência física antes da conclusão do caso."}],
@@ -836,7 +838,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-064", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-064", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:64,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-oncopediatrica",
   enunciado:"Menino, 18 meses de idade, chega sem queixas em consulta regular de puericultura. Exame físico: massa endurecida em hipocôndrio esquerdo, imóvel com a respiração, hipospádia e membro inferior direito maior que o esquerdo, sem outras alterações. Com base no exame físico, qual a primeira hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Carcinoma adrenal."},{id:"B",texto:"Neuroblastoma."},{id:"C",texto:"Tumor de Wilms."},{id:"D",texto:"Linfoma não Hodgkin"}],
@@ -849,7 +851,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-065", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-065", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:65,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
   enunciado:"Menino, 10 meses de idade, com peso de 10 kg, dá entrada no PS com quadro de insuficiência respiratória aguda. Na avaliação inicial, apresenta sonolência, FC = 65 bpm, FR = 14 irpm e SpO2 = 89% em ar ambiente. A conduta recomendada de acordo com o PALS (Pediatric Advanced Life Support) é",
   alternativas:[{id:"A",texto:"ventilação com bolsa-máscara."},{id:"B",texto:"oxigenoterapia com máscara não reinalante."},{id:"C",texto:"ventilação não invasiva."},{id:"D",texto:"cateter nasal de alto fluxo."}],
@@ -862,7 +864,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-066", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-066", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:66,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"De acordo com a Organização Mundial da Saúde e o Ministério da Saúde do Brasil, além da terapia de reidratação, qual dos seguintes medicamentos deve ser prescrito para criança com idade inferior a 5 anos e quadro de diarreia aguda ou diarreia persistente?",
   alternativas:[{id:"A",texto:"Nitazoxanida."},{id:"B",texto:"Racecadotrila."},{id:"C",texto:"Zinco."},{id:"D",texto:"Probiótico Saccharomyces boulardii."}],
@@ -875,7 +877,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-067", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-067", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:67,
   areaId:"area-mps", especialidadeId:"esp-bioetica", assuntoId:"ass-comunicacaoclinica",
   enunciado:"O pediatra, ao conversar com a mãe de Pedro sobre a doença de seu filho, percebe que ela reage expressando raiva e proferindo palavras ofensivas de forma agressiva. A reação do pediatra adequada diante dessa situação é",
   alternativas:[{id:"A",texto:"interromper a conversa."},{id:"B",texto:"legitimar e validar a emoção da mãe."},{id:"C",texto:"pedir que se acalme e relaxe, caso haja risco de agressão física."},{id:"D",texto:"conduzir um processo de reflexão com a mãe."}],
@@ -888,7 +890,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-068", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-068", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:68,
   areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-heranca",
   enunciado:"Em um banco de dados de variantes genéticas descritas no gene CFTR, encontram-se os seguintes exemplos: - Variante A: c.1521_1523delCTT – patogênica. - Variante B: c.1687T>G – patogênica. - Variante C: c.601G>A – significado incerto. - Variante D: c.224G>A – benigna. O diagnóstico molecular de fibrose cística é confirmado quando um indivíduo apresenta a(s) variante(s)",
   alternativas:[{id:"A",texto:"D em homozigose."},{id:"B",texto:"B e C em cis."},{id:"C",texto:"A e B em cis."},{id:"D",texto:"A e B em trans."}],
@@ -901,7 +903,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-069", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-069", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:69,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Menino, 5 anos de idade, faz acompanhamento por asma em uma UBS há 6 meses. Na última consulta, há 3 meses, foi prescrito beclometasona, 100 mcg/dia, spray oral para uso contínuo e salbutamol, 400 mcg/dose, spray oral, para os sintomas e agudizações. Neste retorno, a mãe refere que, nos últimos 30 dias, o filho apresentou um episódio de despertar noturno por tosse e um episódio semanal de chiado e tosse ao jogar bola. Durante a consulta, constatou-se boa adesão ao tratamento, uso adequado dos dispositivos inalatórios e ausência de outras morbidades no período interconsulta. A conduta a ser tomada para essa criança, em relação à medicação de manutenção, é prescrever",
   alternativas:[{id:"A",texto:"beclometasona 400 mcg/dia spray oral, associado a antileucotrieno 5 mg/dia."},{id:"B",texto:"beclometasona 200 mcg/dia spray oral."},{id:"C",texto:"a associação formoterol 6 mcg/ budesonida 200 mcg, pó para aspiração de 12/12 horas."},{id:"D",texto:"a associação salmeterol 25 mcg/ fluticasona 125 mcg, spray oral de 12/12 horas."}],
@@ -914,7 +916,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-070", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-070", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:70,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Recém-nascido a termo, peso de nascimento de 3 250 g, adequado para a idade gestacional, nascido de parto cesáreo, chega à primeira consulta com dez dias de vida. A mãe é primípara e hígida. Atualmente, a criança está recebendo leite materno em pequena quantidade e fórmula láctea a cada três horas, iniciada há um dia. Ao exame, observa-se fissuras em ambos os mamilos; à tentativa de amamentar, a criança abocanha o mamilo e a mãe apresenta dor intensa. Assinale as medidas que poderiam ter sido adotadas para evitar a situação atual.",
   alternativas:[{id:"A",texto:"Observação com correção do posicionamento e da pega desde as primeiras mamadas e continuidade da orientação após a alta."},{id:"B",texto:"Suplementação com fórmula apropriada em bico ortodôntico, orientada antes da alta hospitalar e uso de conchas para amamentação."},{id:"C",texto:"Aumento do intervalo entre as mamadas, estímulo à sucção com uso de chupeta e uso de sutiã apropriado para lactantes."},{id:"D",texto:"Uso de hidratante na região da aréola durante a gestação e introduzir o dedo indicador na boca da criança para interromper a sucção se for necessário."}],
@@ -927,7 +929,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-071", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-071", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:71,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Menino, 1 ano e 2 meses de idade, é acompanhado em puericultura na UBS desde o nascimento, apresentando crescimento e desenvolvimento adequados. Na consulta de hoje, a mãe mostrou-se preocupada, pois o filho fala pouco e ainda não anda sozinho, diferentemente da outra filha que nessa idade falava bastante e andava pela casa sozinha. Ao avaliar os marcos do desenvolvimento, o médico observou que o menino fica de pé com apoio e troca passos, faz movimento de pinça ao pegar uma “bolinha de papel”, aponta com o indicador quando quer um objeto e fala “papá, mamá, qué, dá, não”. Qual é o diagnóstico mais provável do desenvolvimento?",
   alternativas:[{id:"A",texto:"Atraso no desenvolvimento motor grosseiro; desenvolvimento motor fino e de linguagem dentro do esperado."},{id:"B",texto:"Atraso do desenvolvimento motor fino; desenvolvimento motor grosseiro e de linguagem dentro do esperado."},{id:"C",texto:"Atraso do desenvolvimento da linguagem; desenvolvimento motor grosseiro e motor fino dentro do esperado."},{id:"D",texto:"Desenvolvimento motor grosseiro, motor fino e de linguagem dentro do esperado."}],
@@ -940,7 +942,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-072", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-072", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:72,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
   enunciado:"Na pneumonia na infância, quais características semiológicas sugerem etiologia por Mycoplasma pneumoniae?",
   alternativas:[{id:"A",texto:"Ausência de febre, taquidispneia leve, derrame pleural."},{id:"B",texto:"Idade pré-escolar, insuficiência respiratória, curso agudo."},{id:"C",texto:"Crises de tosse seca, bom estado geral, faringite."},{id:"D",texto:"Respiração soprosa, estertores crepitantes, toxemia."}],
@@ -953,7 +955,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-073", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-073", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:73,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Menino, 4 anos e 4 meses, apresenta escore Z de estatura para idade (E/I) de + 0,86 e de Índice de Massa Corporal de + 2,78. Com esses dados, o diagnóstico nutricional é de",
   alternativas:[{id:"A",texto:"risco de sobrepeso."},{id:"B",texto:"sobrepeso."},{id:"C",texto:"eutrofia."},{id:"D",texto:"obesidade"}],
@@ -966,7 +968,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-074", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-074", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:74,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-reanimacao",
   enunciado:"Você está diante de um recém-nascido a termo que acabou de nascer de parto vaginal sem intercorrências. Esse bebê apresenta choro vigoroso e, com cerca de 2 minutos, o obstetra realiza o clampeamento do cordão umbilical. Assinale a alternativa com a melhor descrição das alterações cardiorrespiratórias que estão ocorrendo nesse momento.",
   alternativas:[{id:"A",texto:"O clampeamento do cordão aumenta o shunt direito esquerdo pelo canal arterial e forame oval."},{id:"B",texto:"O clampeamento do cordão aumenta o retorno venoso para as câmaras esquerdas."},{id:"C",texto:"O choro vigoroso auxilia na reabsorção do líquido pulmonar e faz com que a resistência vascular pulmonar diminua."},{id:"D",texto:"O choro vigoroso mantém o forame oval aberto para garantir o débito do ventrículo esquerdo."}],
@@ -979,7 +981,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-075", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-075", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:75,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tumores",
   enunciado:"Menina, 5 anos de idade, é levada ao PS após uma primeira crise convulsiva generalizada. Na anamnese, mãe refere que a criança apresenta cefaleia matinal e vômitos há 4 meses. O plantonista solicitou tomografia de crânio que diagnosticou um tumor. Considerando o diagnóstico dessa criança, é correto afirmar:",
   alternativas:[{id:"A",texto:"a localização mais comum desse tumor é na fossa posterior."},{id:"B",texto:"crises convulsivas são a manifestação clínica mais frequente."},{id:"C",texto:"na radiografia de crânio, foram encontradas lesões líticas na calota craniana."},{id:"D",texto:"as metástases ocorrem principalmente para o pulmão."}],
@@ -992,7 +994,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-076", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-076", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:76,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-drc",
   enunciado:"Menino, 8 anos de idade, com diagnóstico de obesidade e antecedente de hipodisplasia renal bilateral, apresenta clearance de creatinina de 85 ml/min/1,73 m2 (estável nas últimas 3 consultas) e microalbuminúria de 24 horas de 550 mg. Nas últimas 3 consultas, vem mantendo níveis tensionais acima do percentil 95 + 12 mmHg. Realizou fundo de olho e ecocardiograma, sem alterações. Qual seria a classe de anti-hipertensivos mais indicada para esse paciente?",
   alternativas:[{id:"A",texto:"Betabloqueador."},{id:"B",texto:"Bloqueador de canal de cálcio."},{id:"C",texto:"Diurético tiazídico."},{id:"D",texto:"Inibidor da enzima conversora de angiotensina."}],
@@ -1005,7 +1007,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-077", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-077", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:77,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-constipacao",
   enunciado:"Menino, 8 anos de idade, com história de perder fezes nas roupas há 1 ano. Evacua 2 vezes na semana, fezes que entopem o vaso sanitário. Ao exame físico, apresenta-se eutrófico, presença de massa abdominal palpável em hipogástrio e toque retal com grande quantidade de fezes endurecidas na ampola retal que se encontra ampla. A conduta inicial considerando o diagnóstico clínico é",
   alternativas:[{id:"A",texto:"prescrever desimpactação, considerando o diagnóstico de impactação fecal secundária à constipação intestinal funcional."},{id:"B",texto:"prescrever laxativo oral em dose de manutenção, considerando o diagnóstico de constipação intestinal funcional."},{id:"C",texto:"solicitar ultrassonografia abdominal, considerando que a impactação fecal indica constipação intestinal orgânica."},{id:"D",texto:"encaminhar para cirurgião pediátrico, considerando a gravidade do caso e provável diagnóstico de doença de Hirschsprung."}],
@@ -1018,7 +1020,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-078", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-078", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:78,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Homem, 25 anos de idade, apresenta lesões lineares salientes e eritematosas no pé direito há 2 semanas. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Tungíase."},{id:"B",texto:"Cercariose."},{id:"C",texto:"Ancilostomose."},{id:"D",texto:"Miíase."}],
@@ -1031,7 +1033,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-079", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-079", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:79,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-cirrose",
   enunciado:"Homem, 34 anos de idade, apresenta níveis de fosfatase alcalina persistentemente elevados. Retocolite ulcerativa diagnosticada há 3 anos. Exame físico e demais exames laboratoriais sem alterações. Qual é o diagnóstico que melhor explica a alteração apresentada?",
   alternativas:[{id:"A",texto:"Calculose biliar."},{id:"B",texto:"Colangite esclerosante primária."},{id:"C",texto:"Hepatite medicamentosa."},{id:"D",texto:"Hepatite autoimune."}],
@@ -1044,7 +1046,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-080", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-080", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:80,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Paciente com infarto agudo do miocárdio é atendido em PS de hospital que não dispõe de serviço de hemodinâmica. A conduta imediata mais adequada é",
   alternativas:[{id:"A",texto:"trombólise farmacológica e transferência para hospital com serviço de hemodinâmica se não houver sinais de reperfusão."},{id:"B",texto:"remoção para hospital com serviço de hemodinâmica desde que seja possível chegar ao local em até 120 minutos."},{id:"C",texto:"trombólise farmacológica e transferência programada para realização de cateterismo após 48 horas."},{id:"D",texto:"remoção para hospital com serviço de hemodinâmica com início de trombólise farmacológica durante o transporte."}],
@@ -1057,7 +1059,8 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-081", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-081", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:81,
+  imagemUrl:"dados/imagens/q-unifesp2022-081.png", imagemPendente:"ECG de 12 derivações da admissão.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Mulher, 28 anos de idade, sem antecedentes patológicos, procurou PS com queixa de palpitações de início súbito, sem outros sintomas associados, há 1 hora. Ao exame físico, PA = 110 x 70 mmHg, FC = 170 bpm, SpO2 = 99%. ECG de admissão a seguir. Qual é o tratamento indicado?",
   alternativas:[{id:"A",texto:"Amiodarona intravenosa."},{id:"B",texto:"Betabloqueador intravenoso."},{id:"C",texto:"Cardioversão elétrica."},{id:"D",texto:"Adenosina intravenosa."}],
@@ -1070,7 +1073,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-082", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-082", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:82,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-cristais",
   enunciado:"Homem, 60 anos de idade, comparece ao PS com monoartrite de joelho direito e febre de 38 °C há dois dias. Nos últimos dois anos, apresentou episódios recorrentes de artrite de primeira metatarsofalangiana, com duração de 3 a 7 dias. É etilista (três latas de cerveja ao dia) e hipertenso. Está em uso irregular de enalapril 10 mg, hidroclorotiazida 25 mg e alopurinol 300 mg. A melhor conduta nesse caso é",
   alternativas:[{id:"A",texto:"prescrever cefuroxima, manter uso diário do alopurinol e colchicina em caso de dor."},{id:"B",texto:"dar orientações de uso do alopurinol diariamente e controle do ácido úrico."},{id:"C",texto:"fazer artrocentese e enviar o líquido sinovial para análise por suspeita de artrite infecciosa."},{id:"D",texto:"prescrever colchicina, anti-inflamatório não hormonal e reavaliar em 48 horas."}],
@@ -1083,7 +1086,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-083", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-083", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:83,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-osteometabolicas",
   enunciado:"Além da densidade mineral óssea, avaliada pela densitometria, a osteoporose pode ser diagnosticada por",
   alternativas:[{id:"A",texto:"presença de fratura por fragilidade."},{id:"B",texto:"trabecular bone score (TBS)."},{id:"C",texto:"ultrassom de calcâneo."},{id:"D",texto:"tomografia computadorizada quantitativa de alta resolução."}],
@@ -1096,7 +1099,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-084", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-084", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:84,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
   enunciado:"Mulher, 32 anos de idade, apresenta amenorreia há 6 meses e as seguintes dosagens hormonais: prolactina = 76 ng/mL (VR até 30 ng/mL), FSH = 2 U/L (VR 2,5 a 10 U/L na fase folicular). A alternativa que contém as hipóteses diagnósticas mais prováveis é:",
   alternativas:[{id:"A",texto:"adenoma hipofisário não secretor; menopausa precoce."},{id:"B",texto:"prolactinoma; uso crônico de losartana."},{id:"C",texto:"adenoma hipofisário não secretor; uso crônico de glicazida."},{id:"D",texto:"prolactinoma; hipotireoidismo primário."}],
@@ -1109,7 +1112,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-085", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-085", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:85,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
   enunciado:"Mulher, 75 anos de idade, procurou o PS com petéquias e equimoses pelo corpo, gengivorragia e epistaxe. Refere vacinação para influenza há 15 dias. O hemograma mostrou plaquetas de 5.000/mm³ (VR 150.000-450.000) sem anemia ou leucocitose/leucopenia. O mielograma evidenciou medula normal com aumento da série megacariocítica. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Púrpura trombocitopênica trombótica."},{id:"B",texto:"Púrpura de Henoch-Schönlein."},{id:"C",texto:"Púrpura trombocitopênica imune."},{id:"D",texto:"Coagulação intravascular disseminada."}],
@@ -1122,7 +1125,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-086", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-086", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:86,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Mulher, 22 anos de idade, com asma desde a infância, está em uso regular e adequado de budesonida 200 mcg duas vezes ao dia. Nega exacerbação da doença no último ano, mas nas últimas 4 semanas, refere falta de ar ao caminhar, acordando pelo menos uma vez à noite com peito apertado. Tem usado broncodilatador de resgate 2-3 vezes por semana conforme orientado na última consulta. O escore do Teste de Controle da Asma (ACT) foi 18. A mais adequada conduta farmacológica é",
   alternativas:[{id:"A",texto:"associar prednisona oral 40 mg ao dia, por 5 dias."},{id:"B",texto:"aumentar a dose de budesonida para 400 mcg, 2 vezes ao dia."},{id:"C",texto:"associar formoterol 12 mcg e aumentar budesonida para 400 mcg, 2 vezes ao dia."},{id:"D",texto:"manter a dose de budesonida de 200 mcg, 2 vezes ao dia."}],
@@ -1135,7 +1138,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-087", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-087", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:87,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-movimento",
   enunciado:"Mulher, 75 anos de idade, independente funcional e com autonomia, refere que, recentemente, vem apresentando marcha muito instável, com muitos tropeços e tendência a quedas. Antecedente de etilismo. No exame físico, observa-se que, ao ficar em pé, seus pés ficam afastados e há importante desequilíbrio dinâmico. Teste de Romberg: negativo. Qual é a hipótese mais provável?",
   alternativas:[{id:"A",texto:"Desequilíbrio relacionado a marcha ceifante que é típica do paciente com Doença de Parkinson."},{id:"B",texto:"Desequilíbrio relacionado à propriocepção, pois é uma paciente etilista com provável lesão nervosa dos músculos envolvidos no levantamento dianteiro do pé."},{id:"C",texto:"Marcha escarvante devida à diminuição da flexão e extensão dos membros inferiores, resultando em abdução exagerada do membro durante a marcha."},{id:"D",texto:"Marcha atáxica que deve ter relação com lesão cerebelar, que muitas vezes está presente em pacientes etilistas."}],
@@ -1148,7 +1151,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-088", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-088", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:88,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
   enunciado:"Mulher, 30 anos de idade, G6P5A1, apresenta queda de cabelos, unhas quebradiças e intensa fraqueza. O hemograma evidenciou: Hb = 3,5 g/dL e plaquetas = 750.000/mm³, além de saturação da transferrina de 6%. O diagnóstico mais provável é",
   alternativas:[{id:"A",texto:"talassemia major."},{id:"B",texto:"anemia ferropriva."},{id:"C",texto:"anemia ferropriva com trombocitemia essencial concomitante."},{id:"D",texto:"anemia ferropriva com síndrome mieloproliferativa crônica."}],
@@ -1161,7 +1164,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-089", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-089", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:89,
   areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-polifarmacia",
   enunciado:"Diversos medicamentos usados na prática clínica em doses habituais podem provocar delirium em idosos. Assinale a alternativa que, segundo os critérios de Beers, apresenta fármacos a serem evitados em idosos pelo potencial risco de confusão mental.",
   alternativas:[{id:"A",texto:"Benzodiazepínicos e inibidores de bomba protônica."},{id:"B",texto:"Anti-histamínicos de primeira geração e inibidores da acetilcolinesterase."},{id:"C",texto:"Antidepressivos tricíclicos e relaxantes musculares."},{id:"D",texto:"Antipsicóticos e inibidores seletivos da recaptação de serotonina."}],
@@ -1174,7 +1177,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-090", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-090", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:90,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Mulher, 25 anos de idade, é atendida no PS com PA = 180/100 mmHg após ter utilizado cocaína. Nega comorbidades e não apresenta disfunções orgânicas. Qual é a droga de escolha para tratar essa urgência hipertensiva?",
   alternativas:[{id:"A",texto:"Captopril."},{id:"B",texto:"Nitroprussiato de sódio."},{id:"C",texto:"Propranolol."},{id:"D",texto:"Diazepam."}],
@@ -1187,7 +1190,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-091", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-091", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:91,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
   enunciado:"Homem, 34 anos de idade, apresenta há 3 dias tosse com expectoração amarela, sem sangue, dor torácica posterior direita que piora com a tosse ou respiração profunda, e sem falta de ar. Previamente saudável, refere alergia na infância com uso de sulfa, amoxacilina e anti-inflamatórios não hormonais. Exame físico: febril (38,9 °C), PA = 110 / 80 mmHg, FC = 88 bpm, FR = 16 irpm, SpO2 97% em ar ambiente, presença de estertores finos na base pulmonar direita, sem outras alterações. Radiografia de tórax: consolidação em lobo inferior direito. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Quinolona respiratória por via oral."},{id:"B",texto:"Macrolídeo ou betalactâmico por via oral."},{id:"C",texto:"Ceftriaxone e claritromicina por via intravenosa."},{id:"D",texto:"Piperacilina-tazobactam por via intravenosa."}],
@@ -1200,7 +1203,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-092", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-092", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:92,
   areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-anafilaxia",
   enunciado:"Das medidas terapêuticas a seguir, aquela que tem maior impacto na redução da mortalidade por choque anafilático é",
   alternativas:[{id:"A",texto:"expansão volêmica."},{id:"B",texto:"precocidade na administração de adrenalina."},{id:"C",texto:"associação de bloqueador H1 e bloqueador H2."},{id:"D",texto:"precocidade na administração de corticosteroide."}],
@@ -1213,7 +1216,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-093", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-093", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:93,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-nefro-glomerulopatias",
   enunciado:"Homem, 28 anos de idade, previamente hígido, há 3 dias apresenta urina escura e edema de membros inferiores, iniciados 1 dia após quadro de odinofagia. Ao exame físico: afebril, PA = 150/100 mmHg, FC = 89 bpm, FR = 17 irpm, SpO2 = 98%. Exames laboratoriais: creatinina sérica = 1,4 mg/dL; exame de urina I com 1,2 g/L de proteína, hemácias = 296.000/campo (normal até 10/campo), dismorfismo eritrocitário presente e leucócitos = 08/campo (normal até 10/campo). RT-PCR para SARS-CoV-2 negativo; níveis de complemento sérico C3 = 120 mg/dL (VR: 90-180 mg/dL), C4 = 37 (VR: 15-53 mg/dL) e CH50 = 125 U/CAE (VR: 60-165 U/CAE). Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Nefropatia por imunoglobulina A."},{id:"B",texto:"Nefrite por lúpus eritematoso sistêmico."},{id:"C",texto:"Glomerulonefrite da crioglobulinemia."},{id:"D",texto:"Glomerulonefrite pós-estreptocócica."}],
@@ -1226,7 +1229,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-094", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-094", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:94,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-ira",
   enunciado:"Homem, 69 anos de idade, procura o PS com queixa de diarreia líquida iniciada há 4 dias e redução do volume urinário nas últimas 24 horas. Faz acompanhamento clínico para tratamento de insuficiência cardíaca em uso de carvedilol, enalapril e furosemida. Exames laboratoriais: creatinina = 1,5 mg/dL (VR: 0,8-1,2 mg/dL); ureia = 90 mg/dL (VR: 20-45 mg/dL); potássio = 4,9 mEq/L (VR: 3.5-5.0 mEq/L). Urina I: densidade 1.035 (VR: 1.005-1.030), presença de grande quantidade de cilindros hialinos, sem outras alterações. Fração de excreção urinária de sódio de 3% e fração de ureia: 28%. O diagnóstico mais provável é",
   alternativas:[{id:"A",texto:"necrose tubular aguda tóxica."},{id:"B",texto:"necrose tubular aguda isquêmica."},{id:"C",texto:"lesão pré-renal por hipoperfusão."},{id:"D",texto:"nefrite intersticial aguda."}],
@@ -1239,7 +1242,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-095", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-095", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:95,
   areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-demencia",
   enunciado:"Mulher, 75 anos de idade, chega ao PS acompanhada por familiar devido a alteração de comportamento iniciado há dois dias. Já está em seguimento com o geriatra há 3 anos por dificuldade de realizar as atividades domésticas, confundindo o nome de pessoas, com discurso repetitivo e bastante esquecida. Exame físico: inquieta, desatenta durante a consulta e sem déficits motores. O diagnóstico mais provável do quadro de base e do quadro agudo são, respectivamente:",
   alternativas:[{id:"A",texto:"depressão crônica e quadro infeccioso sem foco aparente."},{id:"B",texto:"comprometimento cognitivo leve e acidente vascular cerebral."},{id:"C",texto:"doença de Alzheimer e primeiro episódio psicótico."},{id:"D",texto:"síndrome demencial e delirium."}],
@@ -1252,7 +1255,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-096", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-096", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:96,
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-glaucoma",
   enunciado:"Mulher, 75 anos de idade, queixa-se de dor ocular de forte intensidade à direita, associada a náuseas e piora da acuidade visual no mesmo olho há um dia, que não melhorou com analgésicos. Não apresenta nenhum antecedente clínico, cirúrgico e oftalmológico, exceto por uso de óculos desde a infância. Exame físico: olho direito com hiperemia de vasos conjuntivais; olho esquerdo sem alterações. Qual é o diagnóstico mais provável e a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Úlcera de córnea; tampão com cicatrizante."},{id:"B",texto:"Conjuntivite viral; investigação de covid-19."},{id:"C",texto:"Esclerite; colírio com corticoide."},{id:"D",texto:"Glaucoma agudo; iridotomia a LASER em ambos os olhos."}],
@@ -1265,7 +1268,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-097", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-097", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:97,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
   enunciado:"Mulher, 68 anos de idade, está internada na UTI por covid-19 no 9º dia de início de sintomas, sob ventilação mecânica. RT-PCR positivo para doença no 4º dia de sintomas. A recomendação adequada quanto a duração do isolamento respiratório é",
   alternativas:[{id:"A",texto:"isolamento por 20 dias desde o início dos sintomas e há pelo menos 24 horas sem febre."},{id:"B",texto:"isolamento por 14 dias como recomendado a todos pacientes com covid-19."},{id:"C",texto:"isolamento por 10 dias após a data do primeiro teste RT-PCR positivo."},{id:"D",texto:"isolamento até a negativação do RT-PCR coletado a cada 3 dias."}],
@@ -1278,7 +1281,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-098", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-098", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:98,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
   enunciado:"Mulher, 25 anos de idade, refere disúria e polaciúria há 6 dias, evoluindo com dor lombar e febre, com necessidade de internação. Sem doenças prévias. Ao exame físico, apresenta-se torporosa, com temperatura de 38 °C, PA = 80/60 mmHg, FC = 110 bpm, FR = 24 irpm. Após expansão volêmica e coleta de hemocultura e urocultura, qual é a estratégia de tratamento antimicrobiano mais adequada?",
   alternativas:[{id:"A",texto:"Combinação de antibióticos para cobertura de bactérias gram-negativas multirresistentes."},{id:"B",texto:"Por se tratar de paciente jovem e sem comorbidades, pode-se aguardar os resultados das culturas para o início da terapia antimicrobiana."},{id:"C",texto:"Antibiótico de amplo espectro na primeira hora de evolução, considerando cobertura para bactérias gram-negativas."},{id:"D",texto:"Cobertura para agentes multirresistentes por conta da gravidade, seguida de escalonamento com os resultados da hemocultura e/ou urocultura."}],
@@ -1291,7 +1294,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-099", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-099", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:99,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-psicoses",
   enunciado:"Homem, 20 anos de idade, é levado ao PS por episódio de agressividade há 1 dia. A mãe refere que ele passou a ficar mais calado e isolado, há 8 meses. Ele abandonou o emprego, pois se sentia desconfortável com os colegas, alegando que comentavam sobre ele e queriam lhe prejudicar frente ao chefe. Passou a escutar vozes, que o xingavam em alguns momentos, falava coisas sem sentido e tinha crises de choro. Chegou a relatar a sua mãe que pensava em se jogar na frente do trem para acabar com seu sofrimento. Vem progressivamente piorando. Faz uso regular de maconha há 1 ano, sendo o último consumo há 2 meses. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Episódio depressivo grave, com sintomas psicóticos."},{id:"B",texto:"Transtorno psicótico induzido por drogas (cannabis)."},{id:"C",texto:"Esquizofrenia paranoide."},{id:"D",texto:"Transtorno delirante persistente."}],
@@ -1304,7 +1307,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
   criadoPor:"seed", criadoEm:"2026-09-19"
 },
 {
-  id:"q-unifesp2022-100", banca:"UNIFESP-EPM", real:true, ano:2022,
+  id:"q-unifesp2022-100", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:100,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-substancias",
   enunciado:"Homem, 42 anos de idade, é trazido pelo SAMU ao PS, restrito à maca, por estar agitado e falando sozinho na rua. Trata-se de um morador de rua, com trajes sujos e higiene pessoal precária. Está muito agitado, confuso, desorientado no tempo e no espaço, assustado, fala de uma perseguição e refere ver bichos e vultos. Exame físico: desidratado 2+/4+, descorado 2+/ 4+, temperatura 37,8 ºC, FC = 108 bpm, sudorese profusa e tremores grosseiros das mãos; roncos e estertores na base do hemitórax esquerdo. Qual é a conduta imediata mais adequada?",
   alternativas:[{id:"A",texto:"Manter a contenção física, glicose hipertônica IV, haloperidol IM."},{id:"B",texto:"Manter a contenção física, hidratação IV, tiamina IV, diazepam IV."},{id:"C",texto:"Retirar a contenção física, exames laboratoriais e de imagem, antibioticoterapia."},{id:"D",texto:"Retirar a contenção física, prometazina IM, hidratação IV."}],

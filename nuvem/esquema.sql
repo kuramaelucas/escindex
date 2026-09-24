@@ -21,6 +21,13 @@
 -- no index.html (procure por "NUVEM_TABELAS"). Se mudar um, mude o outro.
 -- ===========================================================================
 
+-- Num banco NOVO, as funções-ajudantes abaixo (e_equipe, e_revisor) são
+-- criadas antes da tabela "perfis" que elas consultam. Sem esta linha o
+-- PostgreSQL confere o corpo delas na hora e recusa ("relation perfis does
+-- not exist") — o arquivo só rodava num banco que já tinha as tabelas.
+-- É a mesma linha que o próprio pg_dump põe no começo dos backups.
+set check_function_bodies = false;
+
 -- ---------------------------------------------------------------------------
 -- 0. AJUDANTES
 -- ---------------------------------------------------------------------------
@@ -363,6 +370,33 @@ create table if not exists public.formatacao_aprovada (
 create index if not exists formatacao_aprovada_sync_idx on public.formatacao_aprovada (atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 11-D. COMENTARIOS — comentários e dúvidas nas questões (GLOBAL)
+-- ---------------------------------------------------------------------------
+-- O que alguém escreve embaixo de uma questão ("não entendi por que não é a
+-- C") e a resposta de professor/residente. É o que alimenta a Fila de
+-- Dúvidas: antes, cada comentário ficava no navegador de quem escreveu, e o
+-- residente nunca via a dúvida do aluno. Todo mundo que está numa conta lê;
+-- cada um grava o próprio comentário; só quem revisa (professor, residente,
+-- administrador) grava uma "resposta oficial". O nome do autor vai junto na
+-- linha (autor_nome) porque o aluno não enxerga o perfil dos outros.
+-- Remover marca `removido`, para a remoção também chegar aos outros.
+create table if not exists public.comentarios (
+  id               text        primary key,
+  questao_id       text        not null,
+  usuario_id       uuid        references auth.users(id) on delete set null,
+  autor_nome       text        not null default '',
+  papel_autor      text,
+  texto            text        not null default '',
+  data             date,
+  resposta_oficial boolean     not null default false,
+  removido         boolean     not null default false,
+  atualizado_por   uuid        references auth.users(id) on delete set null,
+  atualizado_em    timestamptz not null default now()
+);
+create index if not exists comentarios_sync_idx on public.comentarios (atualizado_em);
+create index if not exists comentarios_questao_idx on public.comentarios (questao_id);
+
+-- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
 do $$
@@ -371,7 +405,8 @@ begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
-    'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada'
+    'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
+    'comentarios'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -478,6 +513,7 @@ alter table public.sessao_em_andamento  enable row level security;
 alter table public.calendario           enable row level security;
 alter table public.livro_ouro           enable row level security;
 alter table public.formatacao_aprovada  enable row level security;
+alter table public.comentarios          enable row level security;
 
 -- PERFIS: a pessoa vê e edita o próprio; professor e administrador veem e
 -- editam qualquer um (é assim que a tela Aprovar Cadastros funciona sem
@@ -559,6 +595,24 @@ create policy formatacao_aprovada_alterar on public.formatacao_aprovada
   for update to authenticated
   using (public.e_revisor()) with check (public.e_revisor());
 
+-- COMENTARIOS: todos leem; cada um escreve e edita o próprio; a equipe
+-- (professor/administrador) edita qualquer um — é quem modera. Marcar como
+-- "resposta oficial" exige ser revisor (professor, residente, administrador):
+-- sem essa trava, um aluno montaria a chamada à mão e se passaria por
+-- professor na Fila de Dúvidas.
+drop policy if exists comentarios_ler     on public.comentarios;
+drop policy if exists comentarios_criar   on public.comentarios;
+drop policy if exists comentarios_alterar on public.comentarios;
+create policy comentarios_ler on public.comentarios
+  for select to authenticated using (true);
+create policy comentarios_criar on public.comentarios
+  for insert to authenticated
+  with check (usuario_id = auth.uid() and (resposta_oficial = false or public.e_revisor()));
+create policy comentarios_alterar on public.comentarios
+  for update to authenticated
+  using (usuario_id = auth.uid() or public.e_equipe())
+  with check ((usuario_id = auth.uid() or public.e_equipe()) and (resposta_oficial = false or public.e_revisor()));
+
 -- AS DEMAIS TABELAS: são o estudo de uma pessoa só. Ler, criar e alterar
 -- apenas as próprias linhas. Ninguém apaga nada (o app marca "removido" em
 -- vez de apagar, para a remoção também conseguir viajar entre aparelhos).
@@ -609,12 +663,152 @@ begin
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
-    'livro_ouro', 'formatacao_aprovada'
+    'livro_ouro', 'formatacao_aprovada', 'comentarios'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;
 end;
 $$;
+
+-- ---------------------------------------------------------------------------
+-- 15-B. PERCENTIL DE SIMULADO — as notas da turma, sem ninguém nelas
+-- ---------------------------------------------------------------------------
+-- O resultado de um simulado compara a nota da pessoa com as outras
+-- tentativas do mesmo simulado. As notas dos outros estão em
+-- resultados_simulados, que o RLS fecha para cada um enxergar só as suas —
+-- por isso o percentil antigo só contava as tentativas daquele navegador.
+-- Esta função devolve SÓ o identificador aleatório da tentativa e a nota:
+-- nem quem fez, nem quando, nem as respostas. A "chave" é a mesma do site:
+-- o id do simulado, ou o título quando é uma prova antiga feita como
+-- simulado. SECURITY DEFINER é o que a deixa ler por cima do RLS — e por
+-- isso ela devolve tão pouco.
+create or replace function public.notas_do_simulado(p_chave text)
+returns table (id text, nota real)
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select r.id, r.nota
+    from public.resultados_simulados r
+   where auth.uid() is not null
+     and r.nota is not null
+     and coalesce(nullif(r.simulado_id, ''), r.titulo) = p_chave;
+$$;
+revoke all on function public.notas_do_simulado(text) from public, anon;
+grant execute on function public.notas_do_simulado(text) to authenticated;
+
+-- ---------------------------------------------------------------------------
+-- 15-C. PAINEL DA TURMA — como cada aluno está indo e usando a plataforma
+-- ---------------------------------------------------------------------------
+-- Só para professor e administrador (e_equipe()): para qualquer outra pessoa
+-- as duas funções devolvem zero linhas. Elas somam no próprio banco — uma
+-- linha por aluno, não as milhares de respostas —, e só números: nenhuma
+-- resposta, anotação ou cartão pessoal sai daqui.
+--
+-- "Hoje" é o dia de Brasília; as datas de resposta já são o dia local de
+-- quem respondeu (o site grava assim).
+create or replace function public.painel_turma()
+returns table (
+  usuario_id        uuid,
+  nome              text,
+  email             text,
+  ano_faculdade     text,
+  grupo_id          text,
+  status            text,
+  criado_em         timestamptz,
+  respostas         bigint,
+  acertos           bigint,
+  respostas_7d      bigint,
+  acertos_7d        bigint,
+  respostas_30d     bigint,
+  acertos_30d       bigint,
+  respostas_30a60d  bigint,
+  acertos_30a60d    bigint,
+  dias_ativos_30d   bigint,
+  ultima_resposta   date,
+  cartoes_total     bigint,
+  cartoes_30d       bigint,
+  ultimo_cartao     date,
+  simulados         bigint,
+  media_simulados   real,
+  por_area          jsonb
+)
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  with hoje as (select (now() at time zone 'America/Sao_Paulo')::date as d)
+  select
+    p.id, p.nome, p.email, p.ano_faculdade, p.grupo_id, p.status, p.criado_em,
+    coalesce(r.total, 0), coalesce(r.acertos, 0),
+    coalesce(r.total_7d, 0), coalesce(r.acertos_7d, 0),
+    coalesce(r.total_30d, 0), coalesce(r.acertos_30d, 0),
+    coalesce(r.total_30a60d, 0), coalesce(r.acertos_30a60d, 0),
+    coalesce(r.dias_30d, 0), r.ultima,
+    coalesce(c.total, 0), coalesce(c.total_30d, 0), c.ultimo,
+    coalesce(s.n, 0), s.media,
+    coalesce(a.por_area, '{}'::jsonb)
+  from public.perfis p
+  cross join hoje
+  left join lateral (
+    select count(*) as total,
+           count(*) filter (where x.correta) as acertos,
+           count(*) filter (where x.data > hoje.d - 7) as total_7d,
+           count(*) filter (where x.data > hoje.d - 7 and x.correta) as acertos_7d,
+           count(*) filter (where x.data > hoje.d - 30) as total_30d,
+           count(*) filter (where x.data > hoje.d - 30 and x.correta) as acertos_30d,
+           count(*) filter (where x.data <= hoje.d - 30 and x.data > hoje.d - 60) as total_30a60d,
+           count(*) filter (where x.data <= hoje.d - 30 and x.data > hoje.d - 60 and x.correta) as acertos_30a60d,
+           count(distinct x.data) filter (where x.data > hoje.d - 30) as dias_30d,
+           max(x.data) as ultima
+      from public.respostas x where x.usuario_id = p.id
+  ) r on true
+  left join lateral (
+    select sum(d.quantidade) as total,
+           sum(d.quantidade) filter (where d.dia > hoje.d - 30) as total_30d,
+           max(d.dia) as ultimo
+      from public.dias_cartoes d where d.usuario_id = p.id
+  ) c on true
+  left join lateral (
+    select count(*) as n, avg(rs.nota)::real as media
+      from public.resultados_simulados rs where rs.usuario_id = p.id
+  ) s on true
+  left join lateral (
+    select jsonb_object_agg(z.area_id, jsonb_build_array(z.t, z.a)) as por_area
+      from (select coalesce(x.area_id, '?') as area_id, count(*) as t, count(*) filter (where x.correta) as a
+              from public.respostas x where x.usuario_id = p.id group by 1) z
+  ) a on true
+  where public.e_equipe()
+    and p.papel = 'aluno';
+$$;
+revoke all on function public.painel_turma() from public, anon;
+grant execute on function public.painel_turma() to authenticated;
+
+-- Semana a semana, por ano da faculdade: quantos alunos estudaram, quantas
+-- questões e com que acerto. É o gráfico de "a turma está usando?".
+create or replace function public.atividade_por_semana(p_semanas integer default 12)
+returns table (ano_faculdade text, semana date, alunos_ativos bigint, respostas bigint, acertos bigint)
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select coalesce(p.ano_faculdade, '(sem ano)'),
+         date_trunc('week', x.data)::date,
+         count(distinct x.usuario_id),
+         count(*),
+         count(*) filter (where x.correta)
+    from public.respostas x
+    join public.perfis p on p.id = x.usuario_id and p.papel = 'aluno'
+   where public.e_equipe()
+     and x.data > (now() at time zone 'America/Sao_Paulo')::date - (7 * greatest(1, least(p_semanas, 104)))
+   group by 1, 2
+   order by 1, 2;
+$$;
+revoke all on function public.atividade_por_semana(integer) from public, anon;
+grant execute on function public.atividade_por_semana(integer) to authenticated;
 
 -- ---------------------------------------------------------------------------
 -- 16. DEPOIS DE RODAR: promova a si mesmo a administrador

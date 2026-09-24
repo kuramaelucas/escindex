@@ -3,7 +3,11 @@
    ==========================================================================
    Questões escritas pela equipe no estilo, formato e nível da prova objetiva
    da UNIFESP-EPM. Não são cópias de prova real: servem para construir
-   conhecimento e para demonstrar a plataforma. Todas marcam `real: false`.
+   conhecimento e para demonstrar a plataforma. Todas marcam `real: false`
+   e têm como instituição "Esc — Banco Didático" — nunca o nome de uma banca
+   de verdade: uma questão autoral rotulada "UNIFESP-EPM 2024" entrava na
+   prova de 2024 em Provas Antigas, misturada às 100 reais (até 24/09 eram
+   30 assim, a q-001 … q-030).
 
    Este arquivo é CONTEÚDO, não código: ele só entrega uma lista para a
    plataforma. Quem carrega é a linha <script src="dados/banco-didatico.js"></script>
@@ -13,7 +17,7 @@
 window.EscDados.registrarQuestoes("banco-didatico", [
 // ---------- CLÍNICA MÉDICA ----------
 {
-  id:"q-001", banca:"UNIFESP-EPM", real:false, ano:2021,
+  id:"q-001", banca:"Esc — Banco Didático", real:false, ano:2021,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Paciente de 62 anos, hipertenso e tabagista, chega ao pronto-socorro com dor precordial em aperto há 40 minutos, irradiando para o membro superior esquerdo, associada a sudorese fria. ECG mostra supradesnivelamento do segmento ST de 3mm em derivações V2-V4. Troponina ainda não disponível. Qual a conduta mais apropriada?",
   alternativas:[
@@ -30,7 +34,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-002", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-002", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem de 68 anos, ex-tabagista (40 anos-maço), com diagnóstico prévio de DPOC, procura atendimento por piora da dispneia habitual, aumento do volume de expectoração e mudança da coloração do escarro para amarelo-esverdeado nos últimos 2 dias, sem febre. Ausculta com sibilos difusos, sem estertores. Saturação de O2 92% em ar ambiente. Qual o diagnóstico mais provável e a conduta inicial?",
   alternativas:[
@@ -47,7 +51,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-003", banca:"UNIFESP-EPM", real:false, ano:2023,
+  id:"q-003", banca:"Esc — Banco Didático", real:false, ano:2023,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Mulher de 34 anos relata pirose retroesternal e regurgitação ácida há 8 meses, predominantemente após refeições copiosas e ao deitar-se, sem sinais de alarme (sem disfagia, emagrecimento, sangramento digestivo ou anemia). Qual a conduta inicial mais adequada?",
   alternativas:[
@@ -64,7 +68,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-004", banca:"UNIFESP-EPM", real:false, ano:2024,
+  id:"q-004", banca:"Esc — Banco Didático", real:false, ano:2024,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
   enunciado:"Paciente de 55 anos, obeso (IMC 33), assintomático, apresenta em exames de rotina glicemia de jejum de 118 mg/dL em duas ocasiões distintas. Hemoglobina glicada (HbA1c) de 6,0%. Qual a classificação mais adequada e a conduta inicial?",
   alternativas:[
@@ -81,7 +85,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-005", banca:"UNIFESP-EPM", real:false, ano:2025,
+  id:"q-005", banca:"Esc — Banco Didático", real:false, ano:2025,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
   enunciado:"Paciente de 74 anos, admitido por pielonefrite obstrutiva, evolui em 6 horas com pressão arterial de 78x50 mmHg refratária a 30 mL/kg de cristaloide, lactato de 4,8 mmol/L e necessidade de vasopressor para manter pressão arterial média ≥65 mmHg. Qual a classificação mais adequada segundo o Sepsis-3 e a droga vasopressora de primeira escolha?",
   alternativas:[
@@ -98,7 +102,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-006", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-006", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-drc",
   enunciado:"Paciente de 60 anos, diabético e hipertenso de longa data, apresenta taxa de filtração glomerular estimada (TFGe) de 38 mL/min/1,73m² em duas medidas com intervalo de 3 meses, associada a albuminúria de 250 mg/g de creatinina. Qual o estágio de doença renal crônica (KDIGO) e a principal medida para retardar a progressão?",
   alternativas:[
@@ -116,7 +120,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 // ---------- CIRURGIA GERAL ----------
 {
-  id:"q-007", banca:"UNIFESP-EPM", real:false, ano:2021,
+  id:"q-007", banca:"Esc — Banco Didático", real:false, ano:2021,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
   enunciado:"Paciente de 22 anos inicia quadro de dor abdominal periumbilical há 18 horas, que migrou para a fossa ilíaca direita, associada a náuseas, anorexia e febre baixa (37,8°C). Ao exame, dor à palpação em ponto de McBurney com sinal de Blumberg positivo. Leucograma com 13.500 leucócitos e desvio à esquerda. Qual a hipótese diagnóstica mais provável e a conduta?",
   alternativas:[
@@ -133,7 +137,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-008", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-008", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
   enunciado:"Segundo o protocolo de atendimento inicial ao politraumatizado (ATLS), qual é a sequência correta da avaliação primária?",
   alternativas:[
@@ -151,7 +155,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-009", banca:"UNIFESP-EPM", real:false, ano:2023,
+  id:"q-009", banca:"Esc — Banco Didático", real:false, ano:2023,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
   enunciado:"Mulher de 45 anos, obesa, com dor em hipocôndrio direito há 2 dias, associada a febre (38,3°C), náuseas e sinal de Murphy positivo à ultrassonografia. A USG mostra espessamento da parede vesicular (5mm), líquido perivesicular e cálculo impactado no infundíbulo. Qual a conduta preferencial?",
   alternativas:[
@@ -168,7 +172,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-010", banca:"UNIFESP-EPM", real:false, ano:2024,
+  id:"q-010", banca:"Esc — Banco Didático", real:false, ano:2024,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
   enunciado:"Paciente de 50 anos, etilista, apresenta dor abdominal intensa em faixa há 12 horas, irradiando para o dorso, com náuseas e vômitos. Lipase de 850 U/L (valor de referência até 160). Qual exame de imagem e em qual momento está mais indicado para avaliar necrose pancreática, caso a evolução clínica seja desfavorável?",
   alternativas:[
@@ -185,7 +189,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-011", banca:"UNIFESP-EPM", real:false, ano:2025,
+  id:"q-011", banca:"Esc — Banco Didático", real:false, ano:2025,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
   enunciado:"Paciente de 68 anos, assintomático, realiza colonoscopia de rastreamento que identifica lesão polipoide de 1,5 cm em cólon sigmoide. A biópsia confirma adenocarcinoma restrito à submucosa (pT1), sem invasão angiolinfática, com margens livres após polipectomia completa. Qual a conduta mais adequada?",
   alternativas:[
@@ -202,7 +206,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-012", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-012", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-cuidadosperi",
   enunciado:"Paciente de 45 anos, hígido, será submetido a colecistectomia videolaparoscópica eletiva. Qual a orientação mais adequada quanto ao jejum pré-operatório, segundo os protocolos atuais de recuperação acelerada (ERAS)?",
   alternativas:[
@@ -220,7 +224,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 // ---------- PEDIATRIA ----------
 {
-  id:"q-013", banca:"UNIFESP-EPM", real:false, ano:2021,
+  id:"q-013", banca:"Esc — Banco Didático", real:false, ano:2021,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
   enunciado:"Recém-nascido a termo, com 36 horas de vida, em aleitamento materno exclusivo, apresenta icterícia até região torácica (zona 2 de Kramer). Bilirrubina total de 14 mg/dL (predomínio indireto), sem outros sinais de alerta, Coombs direto negativo, sem incompatibilidade sanguínea. Qual a conduta mais adequada?",
   alternativas:[
@@ -237,7 +241,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-014", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-014", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-reanimacao",
   enunciado:"Recém-nascido a termo, líquido amniótico claro, nasce e após os passos iniciais (aquecer, posicionar via aérea, secar, estimular) apresenta frequência cardíaca de 90 bpm e respiração irregular aos 30 segundos de vida. Qual a próxima conduta na sequência de reanimação neonatal?",
   alternativas:[
@@ -254,7 +258,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-015", banca:"UNIFESP-EPM", real:false, ano:2023,
+  id:"q-015", banca:"Esc — Banco Didático", real:false, ano:2023,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
   enunciado:"Lactente de 4 meses comparece à consulta de puericultura para atualização vacinal, já tendo recebido o esquema do 2º mês em dia. Segundo o calendário nacional de vacinação (PNI), qual vacina faz parte do esquema de rotina dos 4 meses?",
   alternativas:[
@@ -271,7 +275,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-016", banca:"UNIFESP-EPM", real:false, ano:2024,
+  id:"q-016", banca:"Esc — Banco Didático", real:false, ano:2024,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
   enunciado:"Criança de 3 anos, hígida, apresenta coriza, tosse leve e febre baixa há 2 dias, sem sinais de gravidade. Qual a conduta recomendada quanto ao uso de descongestionantes e antitussígenos de venda livre neste caso?",
   alternativas:[
@@ -289,7 +293,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-017", banca:"UNIFESP-EPM", real:false, ano:2025,
+  id:"q-017", banca:"Esc — Banco Didático", real:false, ano:2025,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-convulsaofebril",
   enunciado:"Criança de 18 meses apresenta episódio único de crise convulsiva tônico-clônica generalizada, com duração de 3 minutos, durante quadro febril (39,2°C) por infecção viral de vias aéreas superiores. Exame neurológico pós-ictal normal, sem sinais de infecção do sistema nervoso central. É o primeiro episódio. Qual a conduta mais adequada?",
   alternativas:[
@@ -306,7 +310,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-018", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-018", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Criança de 2 anos apresenta diarreia aquosa há 2 dias, sem sangue, com 6-8 evacuações/dia. Ao exame: alerta, olhos não fundos, mucosas úmidas, sinal da prega cutânea normal, bebendo líquidos normalmente. Qual a classificação de hidratação e a conduta, segundo os planos de tratamento da diarreia (OMS/Ministério da Saúde)?",
   alternativas:[
@@ -324,7 +328,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 // ---------- GINECOLOGIA E OBSTETRÍCIA ----------
 {
-  id:"q-019", banca:"UNIFESP-EPM", real:false, ano:2021,
+  id:"q-019", banca:"Esc — Banco Didático", real:false, ano:2021,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dheg",
   enunciado:"Gestante de 32 semanas, primigesta, comparece à consulta de pré-natal com pressão arterial de 152x98 mmHg (confirmada após repouso), sem hipertensão prévia conhecida. Proteinúria de fita 2+. Refere cefaleia leve, sem escotomas, dor epigástrica ou hiperreflexia. Qual o diagnóstico mais provável e a conduta inicial?",
   alternativas:[
@@ -341,7 +345,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-020", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-020", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   enunciado:"Gestante de 26 semanas realiza teste oral de tolerância à glicose (TOTG) com 75g, com os seguintes valores: jejum = 96 mg/dL, 1 hora = 185 mg/dL, 2 horas = 156 mg/dL. Qual a interpretação e conduta?",
   alternativas:[
@@ -358,7 +362,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-021", banca:"UNIFESP-EPM", real:false, ano:2023,
+  id:"q-021", banca:"Esc — Banco Didático", real:false, ano:2023,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
   enunciado:"Gestante de 8 semanas por data da última menstruação apresenta sangramento vaginal discreto e dor pélvica leve. Beta-hCG sérico = 2.100 mUI/mL. A ultrassonografia transvaginal não evidencia saco gestacional intrauterino nem massa anexial claramente definida, e não há líquido livre significativo na cavidade pélvica. Qual a conduta mais apropriada neste momento?",
   alternativas:[
@@ -375,7 +379,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-022", banca:"UNIFESP-EPM", real:false, ano:2024,
+  id:"q-022", banca:"Esc — Banco Didático", real:false, ano:2024,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-climaterio",
   enunciado:"Mulher de 52 anos, com último período menstrual há 14 meses, relata fogachos frequentes e ressecamento vaginal, impactando a qualidade de vida, sem contraindicações conhecidas à terapia hormonal (não tabagista, sem história de câncer de mama, sem trombose prévia). Qual a conduta mais apropriada para os sintomas vasomotores?",
   alternativas:[
@@ -392,7 +396,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-023", banca:"UNIFESP-EPM", real:false, ano:2025,
+  id:"q-023", banca:"Esc — Banco Didático", real:false, ano:2025,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
   enunciado:"Mulher de 35 anos realiza citologia oncótica (Papanicolaou) de rastreamento que evidencia lesão intraepitelial escamosa de alto grau (HSIL). Qual a conduta mais adequada?",
   alternativas:[
@@ -409,7 +413,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-024", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-024", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Mulher de 28 anos, tabagista (15 cigarros/dia), solicita orientação sobre método contraceptivo. Segundo os critérios de elegibilidade da OMS, qual método deve ser evitado ou usado com cautela devido ao tabagismo, especialmente se associado à idade acima de 35 anos?",
   alternativas:[
@@ -427,7 +431,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 // ---------- MEDICINA PREVENTIVA E SOCIAL ----------
 {
-  id:"q-025", banca:"UNIFESP-EPM", real:false, ano:2021,
+  id:"q-025", banca:"Esc — Banco Didático", real:false, ano:2021,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Em um município com população de 100.000 habitantes, foram notificados 40 casos novos de tuberculose em um ano, havendo 250 casos totais (novos e antigos) da doença na população no mesmo período. Qual medida epidemiológica corresponde a \"40 casos novos por 100.000 habitantes no ano\"?",
   alternativas:[
@@ -444,7 +448,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-026", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-026", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-principiossus",
   enunciado:"Qual das alternativas descreve corretamente um dos princípios doutrinários do Sistema Único de Saúde (SUS), segundo a Lei 8.080/1990?",
   alternativas:[
@@ -461,7 +465,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-027", banca:"UNIFESP-EPM", real:false, ano:2023,
+  id:"q-027", banca:"Esc — Banco Didático", real:false, ano:2023,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Pesquisadores desejam investigar a associação entre exposição a um determinado agrotóxico e o desenvolvimento de uma doença rara (prevalência estimada de 1 em 50.000). Qual desenho de estudo é mais adequado e eficiente para essa investigação?",
   alternativas:[
@@ -478,7 +482,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-028", banca:"UNIFESP-EPM", real:false, ano:2024,
+  id:"q-028", banca:"Esc — Banco Didático", real:false, ano:2024,
   areaId:"area-mps", especialidadeId:"esp-bioetica", assuntoId:"ass-principiosbioetica",
   enunciado:"Paciente adulto, lúcido e orientado, com capacidade de decisão preservada, recusa uma transfusão sanguínea recomendada pela equipe médica por convicção religiosa, mesmo após ser plenamente informado dos riscos de não realizá-la. Qual princípio bioético fundamenta o respeito a essa decisão, mesmo que a equipe discorde clinicamente?",
   alternativas:[
@@ -495,7 +499,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-029", banca:"UNIFESP-EPM", real:false, ano:2025,
+  id:"q-029", banca:"Esc — Banco Didático", real:false, ano:2025,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
   enunciado:"Qual das alternativas melhor descreve uma característica central da Estratégia Saúde da Família (ESF) como modelo de organização da atenção primária no Brasil?",
   alternativas:[
@@ -512,7 +516,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
   criadoPor:"seed", criadoEm:"2026-01-05"
 },
 {
-  id:"q-030", banca:"UNIFESP-EPM", real:false, ano:2022,
+  id:"q-030", banca:"Esc — Banco Didático", real:false, ano:2022,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"Um hospital identifica um caso suspeito de sarampo em paciente adulto não vacinado, com quadro clínico compatível (febre, exantema, tosse, coriza, conjuntivite). Qual a conduta correta quanto à notificação, considerando que o sarampo é doença de notificação compulsória imediata?",
   alternativas:[
