@@ -88,3 +88,33 @@ test("o que mais cai e a nota estimada saem das provas reais", async () => {
   assert.ok(r.prio0.questoesNaProva >= 1);
   await contexto.close();
 });
+
+test("cartões em lote: o modelo leva os assuntos e a conferência separa o bom do ruim", async () => {
+  const semNuvem = await subirServidor({ semNuvem: true });
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(semNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    fazerLogin("professor@esc.demo", "prof123");
+    const st = estadoLoteCartoes();
+    st.selecionados = ["ass-neuro-cefaleias", "ass-uro-escroto"];
+    const modelo = modeloLoteCartoes();
+    const antes = flashcardsDaEquipe().length;
+    const texto = [
+      "ASSUNTO: ass-neuro-cefaleias\nFRENTE: Qual sinal de alarme numa cefaleia pede imagem?\nVERSO: Cefaleia súbita e explosiva, a pior da vida.\nFONTE: a conferir\n---",
+      "**ASSUNTO:** ass-uro-escroto\n**FRENTE:** Qual a conduta na torção testicular?\n**VERSO:** Exploração cirúrgica imediata,\nsem esperar exame.\n---",
+      "ASSUNTO: ass-que-nao-existe\nFRENTE: x?\nVERSO: y\n---",
+      "ASSUNTO: ass-neuro-cefaleias\nFRENTE: Qual sinal de alarme numa cefaleia pede imagem?\nVERSO: repetido\n---",
+    ].join("\n");
+    const analise = analisarTextoLoteCartoes(texto);
+    st.analise = analise;
+    publicarLoteCartoes();
+    return { modelo, validos: analise.validos, problemas: analise.problemas.length, depois: flashcardsDaEquipe().length - antes };
+  });
+  assert.match(r.modelo, /ass-neuro-cefaleias = Cefaleias/);
+  assert.match(r.modelo, /ass-uro-escroto/);
+  assert.equal(r.validos.length, 2);
+  assert.equal(r.validos[1].verso, "Exploração cirúrgica imediata, sem esperar exame.");
+  assert.equal(r.problemas, 2);
+  assert.equal(r.depois, 2);
+  await contexto.close(); await semNuvem.fechar();
+});

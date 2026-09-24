@@ -422,6 +422,9 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 @media (max-width:960px){.dica-arrastar{display:flex}}
 
 /* ---------- flashcards ---------- */
+/* lista de assuntos para escolher no lote de cartões (em colunas no computador) */
+.lote-assuntos{display:grid;grid-template-columns:minmax(0,1fr);gap:.1rem .9rem;max-height:320px;overflow:auto;padding:.4rem;border:1px solid var(--border);border-radius:var(--radius-sm)}
+@media (min-width:900px){ .lote-assuntos{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .flash-palco{max-width:640px;margin:0 auto;perspective:1400px}
 .flashcard{position:relative;min-height:290px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);padding:2rem 1.8rem;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow-md);cursor:pointer;transition:box-shadow .15s ease,transform .1s ease}
 .flashcard:hover{box-shadow:var(--shadow-pop)}
