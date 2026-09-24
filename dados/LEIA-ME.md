@@ -83,7 +83,7 @@ Do mais fácil ao mais trabalhoso:
 2. **Acrescentar itens a um arquivo que já existe aqui.** Abra o arquivo, copie
    o molde abaixo e acrescente antes do `]);` do fim.
 3. **Criar um arquivo novo** aqui e registrá-lo com mais uma linha
-   `<script src="dados/o-nome-do-arquivo.js?v=2026-09-23"></script>` no
+   `<script src="dados/o-nome-do-arquivo.js?v=2026-09-24"></script>` no
    `index.html` (procure por `CONTEÚDO: A PASTA` lá dentro). É assim que entra
    uma prova inteira de uma banca nova. **A ordem das linhas `<script>` é a
    ordem em que o conteúdo entra no banco.**

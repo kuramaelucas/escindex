@@ -68,7 +68,7 @@ gatilho que transforma cada cadastro novo num perfil pendente de aprovação.
 Pode ser rodado de novo quando quiser, sem estragar o que já existe.
 
 > **Se o seu banco já existia antes desta versão, rode o `esquema.sql` de novo.**
-> Quatro novidades precisam disso, e o arquivo já traz as linhas que acrescentam
+> Sete novidades precisam disso, e o arquivo já traz as linhas que acrescentam
 > cada uma sem mexer no que existe:
 >
 > | O que é | O que o arquivo faz |
@@ -77,6 +77,9 @@ Pode ser rodado de novo quando quiser, sem estragar o que já existe.
 > | Quantos flashcards você fez em cada dia | `alter table public.dias_cartoes add column if not exists quantidade integer ...` |
 > | Os **flashcards favoritados** | cria a tabela `favoritos_cartoes`, com RLS e permissões |
 > | As **questões escondidas** ("não mostrar mais") | cria a tabela `questoes_ocultas`, com RLS e permissões |
+> | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |
+> | A **formatação aprovada** em Revisar Formatação | cria a tabela `formatacao_aprovada` e a função `e_revisor()` (grava equipe e residentes) |
+> | A tela de **primeiro acesso** não reaparecer em outro aparelho | `alter table public.perfis add column if not exists boas_vindas_em date` |
 >
 > Enquanto o SQL não for rodado, **a plataforma continua funcionando e nada se
 > perde**: ela percebe a coluna ou a tabela que falta, reenvia o resto sem
