@@ -25,3 +25,33 @@ jobs:
         run: npm run conferir
       - name: Teste de fumaça
         run: npm test
+
+  # O nuvem/esquema.sql num PostgreSQL de verdade: roda num banco NOVO, roda
+  # de novo por cima (tem de poder ser repetido) e as regras de segurança
+  # (quem lê e grava o quê) se comportam como o arquivo promete.
+  esquema-da-nuvem:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: teste
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: teste
+      PGDATABASE: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - name: Supabase de mentira (papéis e auth)
+        run: psql -v ON_ERROR_STOP=1 -q -f testes/sql/supabase-de-mentira.sql
+      - name: esquema.sql num banco novo
+        run: psql -v ON_ERROR_STOP=1 -q -f nuvem/esquema.sql
+      - name: esquema.sql de novo, por cima
+        run: psql -v ON_ERROR_STOP=1 -q -f nuvem/esquema.sql
+      - name: Regras de segurança
+        run: psql -q -f testes/sql/regras.sql

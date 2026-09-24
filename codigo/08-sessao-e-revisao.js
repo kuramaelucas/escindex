@@ -837,17 +837,43 @@ function apagarNotaFavoritaUI(qid){
   render();
 }
 
-/* ---------- comentários / dúvidas em cada questão ---------- */
+/* ---------- comentários / dúvidas em cada questão ----------
+   Com a nuvem ligada, o comentário sobe para a tabela `comentarios` e chega
+   a todo mundo — é o que faz a dúvida do aluno aparecer na Fila de Dúvidas
+   do residente, que antes só existia no navegador de quem escreveu. O nome
+   de quem escreveu vai junto (autorNome), porque ninguém enxerga o perfil
+   dos outros. Remover não apaga: marca `removido`, para a remoção também
+   viajar. */
+function comentariosAtivos(){ return (db.comentarios || []).filter(c => !c.removido); }
+function nomeAutorComentario(c){ const a = getUsuario(c.usuarioId); return (a && a.nome) || c.autorNome || "Usuário"; }
+function registrarComentario(questaoId, texto, oficial){
+  const u = usuarioAtual();
+  const c = { id: uid("com"), questaoId, usuarioId: u.id, autorNome: u.nome || "", papelAutor: u.papel, texto, data: hojeISO(), respostaOficial: !!oficial };
+  db.comentarios.push(c);
+  nuvemMarcarGlobalPendente("comentarios", c.id);
+  saveState();
+  return c;
+}
+function podeRemoverComentario(c){
+  const u = usuarioAtual();
+  return !!u && (c.usuarioId === u.id || u.papel === "professor" || u.papel === "admin");
+}
+function removerComentario(id){
+  const c = (db.comentarios || []).find(x => x.id === id); if(!c || !podeRemoverComentario(c)) return;
+  if(!confirm("Remover este comentário? Ele some para todo mundo.")) return;
+  c.removido = true;
+  nuvemMarcarGlobalPendente("comentarios", c.id);
+  saveState(); toast("Comentário removido."); render();
+}
 function renderComentarios(questaoId){
-  const comentarios = db.comentarios.filter(c=>c.questaoId===questaoId).sort((a,b)=>a.data.localeCompare(b.data));
+  const comentarios = comentariosAtivos().filter(c=>c.questaoId===questaoId).sort((a,b)=>a.data.localeCompare(b.data));
   return `<div class="mt-3" style="border-top:1px solid var(--border);padding-top:1rem">
     <div style="font-weight:600;font-size:.9rem;margin-bottom:.6rem">${iconeSvg("message")} Comentários e dúvidas (${comentarios.length})</div>
     ${comentarios.map(c=>{
-      const autor = getUsuario(c.usuarioId);
       return `<div class="card-flat mb-1" ${c.respostaOficial?'style="border-color:var(--accent)"':""}>
-        <div class="flex items-center gap-1"><span class="text-sm" style="font-weight:600">${escapeHtml(autor?autor.nome:"Usuário")}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}</div>
+        <div class="flex items-center gap-1"><span class="text-sm" style="font-weight:600">${escapeHtml(nomeAutorComentario(c))}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}</div>
         <div class="text-sm mt-1">${escapeHtml(c.texto)}</div>
-        <div class="text-xs muted mt-1">${formatDataBR(c.data)}</div>
+        <div class="text-xs muted mt-1">${formatDataBR(c.data)}${podeRemoverComentario(c) ? ` · <button class="link-btn text-xs" onclick="removerComentario('${c.id}')">remover</button>` : ""}</div>
       </div>`;
     }).join("") || '<div class="text-sm muted">Nenhum comentário ainda. Seja o primeiro a comentar.</div>'}
     <div class="mt-2">
@@ -860,8 +886,8 @@ function enviarComentario(questaoId){
   const el = document.getElementById("novoComentario-"+questaoId);
   const texto = el.value.trim(); if(!texto) return;
   const u = usuarioAtual();
-  db.comentarios.push({id:uid("com"), questaoId, usuarioId:u.id, papelAutor:u.papel, texto, data:hojeISO(), respostaOficial:(u.papel==="professor"||u.papel==="residente"||u.papel==="admin")});
-  saveState(); toast("Comentário enviado."); render();
+  registrarComentario(questaoId, texto, (u.papel==="professor"||u.papel==="residente"||u.papel==="admin") && !state.modoAluno);
+  toast(nuvemConectado() ? "Comentário enviado — ele chega à turma e à fila de dúvidas." : "Comentário enviado."); render();
 }
 // se o usuário (professor/residente) tiver áreas de atuação definidas,
 // restringe o que ele vê a essas áreas; sem áreas definidas, vê tudo
@@ -872,9 +898,10 @@ function dentroDaAreaDeAtuacao(usuario, areaId){
 function duvidasPendentes(usuario){
   // uma dúvida é considerada "pendente" se, entre os comentários daquela questão
   // feitos por um aluno, nenhum comentário oficial posterior a ela responde
-  const deAlunos = db.comentarios.filter(c=>!c.respostaOficial);
+  const todos = comentariosAtivos();
+  const deAlunos = todos.filter(c=>!c.respostaOficial);
   let pendentes = deAlunos.filter(c=>{
-    return !db.comentarios.some(r=>r.questaoId===c.questaoId && r.respostaOficial && r.data>=c.data);
+    return !todos.some(r=>r.questaoId===c.questaoId && r.respostaOficial && r.data>=c.data);
   });
   if(usuario) pendentes = pendentes.filter(c=>{ const q=getQuestao(c.questaoId); return q && dentroDaAreaDeAtuacao(usuario, q.areaId); });
   return pendentes;

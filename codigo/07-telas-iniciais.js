@@ -191,7 +191,7 @@ function renderLogin(){
       <div class="field"><label class="label">Senha</label><input class="input" type="password" id="loginSenha" placeholder="••••••••" onkeydown="if(event.key==='Enter') tentarLogin()"></div>
       <button class="btn btn-primary btn-block" onclick="tentarLogin()">Entrar</button>
       <p class="text-sm mt-2">Ainda não tem conta? <a href="javascript:void(0)" onclick="navigate('cadastro')">Solicitar cadastro</a></p>
-      <p class="text-sm mt-1"><a href="javascript:void(0)" onclick="abrirAjudaAcesso()">Problemas para entrar?</a></p>
+      <p class="text-sm mt-1">${nuvemLigada() ? `<a href="javascript:void(0)" onclick="abrirEsqueciSenha()">Esqueci a senha</a> · ` : ""}<a href="javascript:void(0)" onclick="abrirAjudaAcesso()">Problemas para entrar?</a></p>
       <div class="card-flat mt-3">
         <div class="text-xs muted mb-1">${nuvemLigada()
           ? "Conhecer a plataforma sem criar conta — fica só neste navegador e não sincroniza:"
@@ -203,6 +203,92 @@ function renderLogin(){
       </div>
     </div>
   </div>`;
+}
+/* ---------- a volta do e-mail (ver nuvemTratarRetornoDoEmail, seção 2-C) ----
+   Uma tela pública só, com quatro casos: o link de confirmação acabou de ser
+   enviado; o e-mail foi confirmado (e a aprovação da coordenação ainda
+   falta); o link é de troca de senha; ou o link expirou/já foi usado. */
+function renderRetornoEmail(){
+  const r = state.retornoEmail || { tipo: "erro", expirou: false };
+  const moldura = (corpo) => `
+  <div class="container"><nav class="public-nav">
+    <div class="brand" style="cursor:pointer" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
+    <button class="btn btn-ghost" onclick="navigate('login')">Entrar</button>
+  </nav></div>
+  <div class="auth-wrap"><div class="auth-card">${corpo}</div></div>`;
+  const campoEmail = (id, valor) => `<div class="field mt-2"><label class="label">E-mail</label><input class="input" id="${id}" type="email" value="${escapeHtml(valor||"")}" placeholder="voce@email.com"></div>`;
+  if(r.tipo === "enviado") return moldura(`
+    <h2>${iconeSvg("check")} Confira o seu e-mail</h2>
+    <p class="text-sm mt-2">Enviamos um link de confirmação para <strong>${escapeHtml(r.email||"o seu e-mail")}</strong>. Abra o e-mail e toque no link — ele confirma o endereço e traz você de volta para cá.</p>
+    <p class="text-sm muted mt-1">Depois disso, a coordenação aprova o seu acesso. Não chegou em alguns minutos? Veja a caixa de spam ou peça outro:</p>
+    ${campoEmail("reenvioEmail", r.email)}
+    <button class="btn btn-secondary btn-block" onclick="reenviarConfirmacaoDaTela('reenvioEmail')">Reenviar o e-mail de confirmação</button>`);
+  if(r.tipo === "confirmado"){
+    if(r.carregando) return moldura(`<h2>Confirmando o e-mail…</h2><p class="text-sm muted mt-2">Só um instante.</p>`);
+    const msg = {
+      pendente: "Agora falta a coordenação aprovar o seu cadastro. Assim que ela aprovar, é só entrar com o seu e-mail e a sua senha.",
+      rejeitado: "O e-mail foi confirmado, mas o cadastro foi recusado pela coordenação. Fale com ela se achar que é um engano.",
+      inativo: "O e-mail foi confirmado, mas a conta está inativa. Fale com a coordenação.",
+    }[r.status] || "Agora falta a coordenação aprovar o seu cadastro.";
+    return moldura(`<h2>${iconeSvg("check")} E-mail confirmado</h2><p class="text-sm mt-2">${msg}</p>
+      <button class="btn btn-primary btn-block mt-3" onclick="navigate('login')">Ir para a entrada</button>`);
+  }
+  if(r.tipo === "recovery") return moldura(`
+    <h2>Escolha uma senha nova</h2>
+    <p class="text-sm muted mt-1">${r.email ? "Para a conta <strong>"+escapeHtml(r.email)+"</strong>. " : ""}Pelo menos 6 caracteres.</p>
+    <div class="field mt-2"><label class="label">Senha nova</label><input class="input" type="password" id="novaSenha1" autocomplete="new-password"></div>
+    <div class="field"><label class="label">Repita a senha nova</label><input class="input" type="password" id="novaSenha2" autocomplete="new-password" onkeydown="if(event.key==='Enter') salvarNovaSenhaDoEmail()"></div>
+    <button class="btn btn-primary btn-block" onclick="salvarNovaSenhaDoEmail()">Salvar a senha nova</button>`);
+  return moldura(`
+    <h2>Este link não vale mais</h2>
+    <p class="text-sm mt-2">${r.expirou ? "O link do e-mail expirou ou já foi usado — cada link vale uma vez só, por tempo limitado." : "Não foi possível concluir pelo link do e-mail."} Peça outro:</p>
+    ${campoEmail("reenvioEmail", "")}
+    <div class="flex gap-1" style="flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="reenviarConfirmacaoDaTela('reenvioEmail')">Reenviar a confirmação do cadastro</button>
+      <button class="btn btn-secondary" onclick="pedirNovaSenhaDaTela('reenvioEmail')">Mandar um link para trocar a senha</button>
+    </div>
+    ${r.detalhe ? `<p class="text-xs muted mt-2">Detalhe do servidor: ${escapeHtml(r.detalhe)}</p>` : ""}`);
+}
+function lerEmailDoCampo(id){
+  const el = document.getElementById(id); const email = el ? el.value.trim() : "";
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ toast("Escreva o seu e-mail.", "err"); return ""; }
+  return email;
+}
+function reenviarConfirmacaoDaTela(idCampo){
+  const email = lerEmailDoCampo(idCampo); if(!email) return;
+  nuvemReenviarConfirmacao(email).then(() => toast("Enviamos um link novo para " + email + ". Ele traz você de volta para cá."))
+    .catch(e => toast(e.message || "Não foi possível reenviar agora.", "err"));
+}
+function pedirNovaSenhaDaTela(idCampo){
+  const email = lerEmailDoCampo(idCampo); if(!email) return;
+  // a resposta é a mesma exista a conta ou não — é de propósito (do Supabase):
+  // assim ninguém descobre quais e-mails têm conta aqui
+  nuvemPedirNovaSenha(email).then(() => { fecharModal(); toast("Se houver uma conta com " + email + ", chega nele um link para trocar a senha."); })
+    .catch(e => toast(e.message || "Não foi possível enviar agora.", "err"));
+}
+function abrirEsqueciSenha(){
+  const digitado = (document.getElementById("loginId") || {}).value || "";
+  abrirModalTitulado("Esqueci a senha", `
+    <p class="text-sm">Mandamos um link para o seu e-mail. Ele traz você de volta para cá, numa tela para escolher a senha nova.</p>
+    <div class="field mt-2"><label class="label">E-mail da conta</label><input class="input" id="esqueciEmail" type="email" value="${escapeHtml(digitado.includes("@") ? digitado : "")}"></div>
+    <div class="flex gap-1"><button class="btn btn-primary" onclick="pedirNovaSenhaDaTela('esqueciEmail')">Enviar o link</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function abrirReenviarConfirmacao(email){
+  abrirModalTitulado("Falta confirmar o e-mail", `
+    <p class="text-sm">Antes do primeiro acesso, é preciso tocar no link que enviamos para <strong>${escapeHtml(email)}</strong> quando você se cadastrou. Não achou? Veja o spam ou peça outro:</p>
+    <div class="field mt-2"><label class="label">E-mail</label><input class="input" id="reenvioModalEmail" type="email" value="${escapeHtml(email)}"></div>
+    <div class="flex gap-1"><button class="btn btn-primary" onclick="reenviarConfirmacaoDaTela('reenvioModalEmail'); fecharModal()">Reenviar o link</button><button class="btn btn-secondary" onclick="fecharModal()">Fechar</button></div>`);
+}
+function salvarNovaSenhaDoEmail(){
+  const r = state.retornoEmail || {};
+  const s1 = (document.getElementById("novaSenha1") || {}).value || "", s2 = (document.getElementById("novaSenha2") || {}).value || "";
+  if(s1.length < 6){ toast("A senha precisa ter pelo menos 6 caracteres.", "err"); return; }
+  if(s1 !== s2){ toast("As duas senhas não são iguais.", "err"); return; }
+  nuvemDefinirNovaSenha(r.token, s1).then(() => {
+    state.retornoEmail = null;
+    toast("Senha trocada. Entre com a senha nova.");
+    navigate("login");
+  }).catch(e => toast(/expired|expirou|401|403/i.test(String(e.status)+" "+(e.message||"")) ? "O link expirou. Peça outro em \"Esqueci a senha\"." : (e.message || "Não foi possível trocar a senha."), "err"));
 }
 function tentarLogin(){
   const identificador = document.getElementById("loginId").value;
@@ -395,7 +481,7 @@ function renderInicioResidente(u){
   ${renderNotificacoesCard(u)}
   <div class="grid grid-2">
     <div class="stat-tile"><div class="stat-value">${duvidasPendentes(u).length}</div><div class="stat-label">dúvida(s) aguardando resposta${u.areasAtuacao&&u.areasAtuacao.length?" na sua área":""}</div></div>
-    <div class="stat-tile"><div class="stat-value">${db.comentarios.filter(c=>c.respostaOficial && c.usuarioId===u.id).length}</div><div class="stat-label">respostas que você já deu</div></div>
+    <div class="stat-tile"><div class="stat-value">${comentariosAtivos().filter(c=>c.respostaOficial && c.usuarioId===u.id).length}</div><div class="stat-label">respostas que você já deu</div></div>
   </div>
   <div class="card mt-2"><div class="card-title">Fila de dúvidas</div><p class="text-sm muted">Veja as perguntas dos alunos que ainda não têm resposta oficial — agora com a questão completa à vista.</p><button class="btn btn-primary mt-2" onclick="navigate('fila-duvidas')">Abrir fila de dúvidas</button></div>
   <div class="grid grid-2 mt-2">
@@ -411,7 +497,7 @@ function renderInicioStaff(u){
   const dificeis = questoesDificeis().length;
   const ativas = questoesAtivas(true);
   const totalAlunos = db.usuarios.filter(x=>x.papel==="aluno" && x.status==="aprovado").length;
-  const duvidas = db.comentarios.filter(c=>!c.respostaOficial).length;
+  const duvidas = comentariosAtivos().filter(c=>!c.respostaOficial).length;
   const aRevisar = ativas.filter(q=>!formatacaoAprovadaDe(q.id)).length;
   const ficha = (valor, rotulo, rota) => rota
     ? `<button class="stat-mini" onclick="navigate('${rota}')"><span class="stat-value">${valor}</span><span class="stat-label">${rotulo}</span></button>`

@@ -687,7 +687,11 @@ function pedirLembreteComAppFechado(){
    restaura a rota da URL (se houver) e desenha a tela pela primeira vez. */
 loadState();
 (function inicializar(){
-  const hashInicial = (location.hash||"").replace("#/","");
+  // volta de um link de e-mail (confirmar cadastro, trocar senha): o
+  // endereço traz o resultado depois do # e precisa ser lido antes do
+  // roteador — ver nuvemTratarRetornoDoEmail, seção 2-C
+  const voltouDoEmail = nuvemTratarRetornoDoEmail();
+  const hashInicial = voltouDoEmail ? "" : (location.hash||"").replace("#/","");
   if(hashInicial) state.route = hashInicial;
   // se a pasta "dados/" não veio junto, a tarja explica antes de a pessoa
   // achar que a plataforma quebrou
@@ -696,7 +700,7 @@ loadState();
   // navegador) e o estudo feito em outro aparelho desce em segundo plano
   nuvemCarregarSessaoSalva();
   nuvemLigarGatilhos();
-  if(nuvemConectado()){
+  if(nuvemConectado() && !voltouDoEmail){
     const eu = db.usuarios.find(x => x.id === nuvemSessao.usuarioId);
     if(eu && eu.status === "aprovado"){
       state.usuarioAtualId = eu.id;

@@ -296,7 +296,7 @@ const CONFIG = {
   // entregar o controle total da plataforma.
   niveisAdmin: [
     { id:"master",      nome:"Administrador máster",     descricao:"Acesso total: usuários, papéis, configurações, calendário, conteúdo e livro de ouro." },
-    { id:"coordenacao", nome:"Coordenação",              descricao:"Conteúdo, aprovação de cadastros, calendário de blocos e livro de ouro. Não altera papéis nem configurações do algoritmo." },
+    { id:"coordenacao", nome:"Coordenação",              descricao:"Conteúdo, aprovação de cadastros, Painel da Turma, calendário de blocos e livro de ouro. Não altera papéis nem configurações do algoritmo." },
     { id:"moderador",   nome:"Moderador de conteúdo",    descricao:"Somente banco de questões, importação, controle de qualidade e simulados." },
   ],
 
@@ -325,6 +325,11 @@ const CONFIG = {
   contasDemoDaEquipeComNuvem: false,
 
   nuvem: {
+    /* Endereço público do site, para onde os links dos e-mails (confirmar
+       o cadastro, trocar a senha) devolvem a pessoa. Vazio = o endereço
+       desta própria página, que é o certo quase sempre. Preencha só se o
+       site tiver mais de um endereço e os e-mails devam levar a um só. */
+    enderecoDoSite: "",
     url: "https://jznocvgmcgiovgcwhrvi.supabase.co",
     chaveAnon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6bm9jdmdtY2dpb3ZnY3docnZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MzQ4OTksImV4cCI6MjEwNTUxMDg5OX0.CyZ-46-2j3IO5JIUmwTqTuHyCDc6fkGE6Lbvpq22bbU",
   },

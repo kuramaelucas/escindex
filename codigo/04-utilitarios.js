@@ -330,9 +330,19 @@ function graficoHistogramaSvg(buckets, bucketAtual, labels){
 // ranking anônimo: compara a nota do usuário com todas as tentativas já
 // registradas do MESMO simulado (por id, ou por título quando é uma "prova
 // antiga" avulsa), sem expor quem são as outras pessoas — só a posição.
+//
+// Com a nuvem ligada, as tentativas são as da TURMA INTEIRA (notas anônimas
+// vindas de notas_do_simulado, no esquema.sql), somadas às deste navegador
+// que ainda não subiram — por id, para a mesma tentativa não contar duas
+// vezes. `origem` diz de onde veio, e a tela conta isso à pessoa.
 function estatisticasRankingSimulado(chave, notaAtual){
-  const todos = db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave);
-  const notas = todos.map(r=>r.nota).sort((a,b)=>a-b);
+  const locais = db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).map(r => ({ id: r.id, nota: r.nota }));
+  const daTurma = (typeof notasDaTurmaDoSimulado === "function") ? notasDaTurmaDoSimulado(chave) : null;
+  const porId = new Map();
+  (daTurma || []).forEach(r => porId.set(r.id, r.nota));
+  locais.forEach(r => { if(!porId.has(r.id)) porId.set(r.id, r.nota); });
+  const notas = [...porId.values()].sort((a,b)=>a-b);
+  const origem = daTurma ? "turma" : "navegador";
   const n = notas.length;
   if(n < 3) return null; // amostra pequena demais pra um percentil fazer sentido
   const abaixoOuIgual = notas.filter(x=>x<=notaAtual).length;
@@ -341,7 +351,7 @@ function estatisticasRankingSimulado(chave, notaAtual){
   const buckets = [0,0,0,0,0];
   notas.forEach(nt=>{ buckets[Math.min(4, Math.floor(nt/20))]++; });
   const bucketAtual = Math.min(4, Math.floor(notaAtual/20));
-  return {n, percentil, mediana, buckets, bucketAtual};
+  return {n, percentil, mediana, buckets, bucketAtual, origem};
 }
 
 /* ---------------------------- consultas rápidas --------------------------- */
@@ -557,15 +567,15 @@ function nomeArea(id){ const a=getArea(id); return a ? a.nome : "—"; }
    Cada nível de administrador enxerga e altera apenas o que lhe cabe. Para
    mudar o que um nível pode fazer, basta acrescentar ou remover chaves aqui. */
 const PERMISSOES_ADMIN = {
-  master:      ["conteudo","cadastros","usuarios","blocos","config","livro-ouro","backup","taxonomia"],
-  coordenacao: ["conteudo","cadastros","blocos","livro-ouro","taxonomia"],
+  master:      ["conteudo","cadastros","usuarios","blocos","config","livro-ouro","backup","taxonomia","turma"],
+  coordenacao: ["conteudo","cadastros","blocos","livro-ouro","taxonomia","turma"],
   moderador:   ["conteudo","taxonomia"],
 };
 // rotas que exigem uma permissão específica de administrador
 const PERMISSAO_DA_ROTA = {
   "usuarios":"usuarios", "config-geral":"config", "blocos":"blocos",
   "aprovar-cadastros":"cadastros", "feedback-usuarios":"cadastros", "taxonomia":"taxonomia",
-  "material-pdf":"conteudo", "central-provas":"conteudo",
+  "material-pdf":"conteudo", "central-provas":"conteudo", "painel-turma":"turma",
 };
 function nivelAdminDe(usuario){
   if(!usuario || usuario.papel!=="admin") return null;

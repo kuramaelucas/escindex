@@ -1,0 +1,96 @@
+# ============================================================================
+# BACKUP AUTOMÁTICO DA NUVEM (Supabase) — uma vez por dia, criptografado
+# ============================================================================
+# Copia o banco inteiro da turma (tabelas do esquema public: cadastros,
+# respostas, revisões, favoritos, cartões pessoais, sessões, simulados,
+# comentários, calendário, livro de ouro) e a lista de contas (e-mail e data
+# de criação — nunca senha), CRIPTOGRAFA com uma senha que só a coordenação
+# sabe e guarda no GitHub como "artefato" por 30 dias.
+#
+# Enquanto os dois segredos abaixo não forem cadastrados, este fluxo roda e
+# só avisa que está desligado — não falha nem expõe nada.
+#
+# PARA LIGAR (passo a passo com imagens em nuvem/LEIA-ME.md, "Backup automático"):
+#   GitHub > Settings > Secrets and variables > Actions > New repository secret
+#     SUPABASE_DB_URL  a "Connection string" do Supabase (Project Settings >
+#                      Database > Connection string > URI, modo "Session
+#                      pooler"), já com a senha do banco no lugar de [YOUR-PASSWORD]
+#     BACKUP_SENHA     uma senha longa, guardada fora do GitHub. Sem ela, o
+#                      backup não abre — nem para quem baixar o arquivo.
+#
+# PARA ABRIR UM BACKUP: baixe o artefato em Actions > Backup da nuvem > (dia)
+# e rode, num computador com openssl:
+#   openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in backup.tar.gz.enc -out backup.tar.gz
+#   tar xzf backup.tar.gz
+# Para RESTAURAR (nuvem/LEIA-ME.md explica os dois casos): contas-auth.sql
+# primeiro, banco-public.sql depois.
+# ============================================================================
+name: Backup da nuvem
+
+on:
+  schedule:
+    - cron: "0 6 * * *"      # todo dia às 06:00 UTC (03:00 em Brasília)
+  workflow_dispatch:          # e quando alguém clicar em "Run workflow"
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Conferir se o backup está ligado
+        id: ligado
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          BACKUP_SENHA: ${{ secrets.BACKUP_SENHA }}
+        run: |
+          if [ -z "$SUPABASE_DB_URL" ] || [ -z "$BACKUP_SENHA" ]; then
+            echo "::notice::Backup da nuvem desligado: cadastre os segredos SUPABASE_DB_URL e BACKUP_SENHA (ver nuvem/LEIA-ME.md)."
+            echo "sim=nao" >> "$GITHUB_OUTPUT"
+          else
+            echo "sim=sim" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Copiar o banco
+        if: steps.ligado.outputs.sim == 'sim'
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          set -euo pipefail
+          DIA=$(date -u +%Y-%m-%d)
+          mkdir -p "backup-$DIA"
+          # pg_dump do PostgreSQL 17 lê bancos de versões anteriores também
+          # banco-public.sql  tabelas, funções, regras (RLS) e dados do Esc
+          # contas-auth.sql   as contas de login (auth.users/identities, com a
+          #                   senha só em hash) — sem elas, restaurar num
+          #                   projeto NOVO quebraria o vínculo de cada linha
+          #                   com o seu dono
+          # contas.csv        a lista legível: e-mail e datas, nunca senha
+          docker run --rm -e URL="$SUPABASE_DB_URL" -v "$PWD/backup-$DIA:/saida" postgres:17 bash -c '
+            pg_dump "$URL" --schema=public --no-owner --no-privileges --file=/saida/banco-public.sql &&
+            pg_dump "$URL" --data-only --table=auth.users --table=auth.identities --no-owner --no-privileges --file=/saida/contas-auth.sql &&
+            psql "$URL" -v ON_ERROR_STOP=1 -c "\copy (select id, email, created_at, email_confirmed_at, last_sign_in_at from auth.users order by created_at) to /saida/contas.csv csv header"'
+          ls -la "backup-$DIA"
+          tar czf backup.tar.gz "backup-$DIA"
+          echo "DIA=$DIA" >> "$GITHUB_ENV"
+
+      - name: Criptografar
+        if: steps.ligado.outputs.sim == 'sim'
+        env:
+          BACKUP_SENHA: ${{ secrets.BACKUP_SENHA }}
+        run: |
+          set -euo pipefail
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in backup.tar.gz -out backup.tar.gz.enc -pass env:BACKUP_SENHA
+          rm -rf backup.tar.gz backup-*/
+          sha256sum backup.tar.gz.enc
+
+      - name: Guardar no GitHub (30 dias)
+        if: steps.ligado.outputs.sim == 'sim'
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-nuvem-${{ env.DIA }}
+          path: backup.tar.gz.enc
+          retention-days: 30
+          if-no-files-found: error

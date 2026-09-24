@@ -135,7 +135,7 @@ function contribuicoesAutomaticas(){
     if(q.criadoPor==="seed") return;
     const reg = garantir(q.criadoPor); if(reg && q.status!=="pendente") reg.questoes++;
   });
-  db.comentarios.filter(c=>c.respostaOficial).forEach(c=>{ const reg = garantir(c.usuarioId); if(reg) reg.respostas++; });
+  comentariosAtivos().filter(c=>c.respostaOficial).forEach(c=>{ const reg = garantir(c.usuarioId); if(reg) reg.respostas++; });
   db.questoes.forEach(q=>(q.sinalizacoes||[]).forEach(sig=>{ const reg = garantir(sig.usuarioId); if(reg) reg.sinalizacoes++; }));
   return Object.values(porUsuario)
     .map(r=>({...r, total: r.questoes + r.respostas + r.sinalizacoes, usuario: getUsuario(r.usuarioId)}))
@@ -1012,7 +1012,45 @@ function renderPerfil(){
     <p class="text-sm muted">${nuvemConectado()
       ? "Seu estudo fica salvo neste navegador e também na sua conta, na nuvem — por isso você pode continuar de outro aparelho. A cópia de segurança de toda a plataforma continua sendo responsabilidade do administrador máster."
       : "Tudo o que você faz aqui fica salvo neste navegador. A cópia de segurança de toda a plataforma é responsabilidade do administrador máster — se precisar trocar de computador ou recuperar algo, fale com a coordenação antes de limpar os dados do navegador."}</p>
+    <button class="btn btn-secondary btn-sm mt-1" onclick="baixarMeusDados()">${iconeSvg("download")} Baixar uma cópia do meu estudo</button>
+    <p class="text-xs muted mt-1">Um arquivo com tudo o que é seu: respostas, revisões, favoritos e anotações, cartões pessoais, conjuntos e simulados. Nada de outras pessoas.</p>
   </div>`}`;
+}
+/* "Baixar uma cópia do meu estudo": tudo o que é DA PESSOA, e só dela — o
+   backup completo da plataforma é outra coisa (administrador máster, e o
+   automático da nuvem, ver .github/workflows/backup-nuvem.yml). É o direito
+   de cada um de ter o próprio estudo num arquivo, e o jeito de levá-lo
+   quando a nuvem está desligada. */
+function dadosDoUsuario(id){
+  const u = getUsuario(id) || {};
+  const perfil = Object.assign({}, u); delete perfil.senha;
+  const doUsuario = (colecao) => (colecao || []).filter(x => x.usuarioId === id);
+  const porUsuario = (mapa) => (mapa && mapa[id]) || {};
+  return {
+    formato: "esc-meus-dados-1", geradoEm: new Date().toISOString(), plataforma: CONFIG.nomePlataforma,
+    perfil,
+    respostas: doUsuario(db.respostas),
+    revisoesQuestoes: porUsuario(db.revisoes),
+    revisoesCartoes: porUsuario(db.revisoesFlashcards),
+    cartoesPorDia: porUsuario(db.cartoesPorDia),
+    diasComCartao: (db.diasCartoes && db.diasCartoes[id]) || [],
+    favoritos: doUsuario(db.favoritos),
+    cartoesFavoritos: doUsuario(db.favoritosCartoes),
+    questoesEscondidas: doUsuario(db.questoesOcultas),
+    cartoesPessoais: (db.flashcards || []).filter(c => c.usuarioId === id),
+    sessoes: doUsuario(db.sessoes),
+    simulados: doUsuario(db.resultadosSimulados),
+    comentarios: comentariosAtivos().filter(c => c.usuarioId === id),
+  };
+}
+function baixarMeusDados(){
+  const u = usuarioAtual(); if(!u) return;
+  const blob = new Blob([JSON.stringify(dadosDoUsuario(u.id), null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "meu-estudo-" + (u.nome || "esc").split(" ")[0].toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "") + "-" + hojeISO() + ".json";
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  toast("Cópia do seu estudo baixada.");
 }
 function salvarAnoFaculdade(){
   const u = usuarioAtual();
@@ -1029,10 +1067,12 @@ function renderCardBackup(){
   return `<div class="card mt-2" style="max-width:560px${backupAntigo?";border-color:var(--amber)":""}">
     <div class="card-title">${iconeSvg("archive")} Backup dos dados da plataforma</div>
     <p class="text-sm muted">Todos os dados vivem no localStorage deste navegador. Limpar o histórico do navegador apaga tudo. Recomendação: exportar pelo menos uma vez por semana e guardar o arquivo fora deste computador.</p>
+    ${nuvemLigada() ? `<div class="card-flat mt-1 text-sm">${iconeSvg("archive")} <strong>Com a nuvem ligada</strong>, este backup tem só o que está NESTE navegador — não o estudo da turma. A cópia da turma inteira é o <strong>backup automático da nuvem</strong>: uma vez por dia, criptografado, pelo GitHub (passo a passo em <code>nuvem/LEIA-ME.md</code>, "Backup automático").</div>` : ""}
     <p class="text-sm ${kb>3500?"":"muted"}" ${kb>3500?'style="color:var(--amber);font-weight:600"':""}>Espaço ocupado: ${kb} KB${kb>3500?" — perto do limite do navegador. Imagens embutidas são o que mais pesa; prefira recortá-las antes de enviar ou usar links.":""}</p>
     <p class="text-sm ${backupAntigo?"":"muted"}" ${backupAntigo?'style="color:var(--amber);font-weight:600"':""}>Último backup: ${db.ultimoBackupEm ? formatDataBR(db.ultimoBackupEm) : "nunca feito"}</p>
     <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="exportarBackup()">${iconeSvg("archive")} Exportar backup</button>
+      <button class="btn btn-secondary btn-sm" onclick="baixarMeusDados()">${iconeSvg("download")} Só o meu estudo</button>
       <label class="btn btn-secondary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Importar backup<input type="file" accept=".json" style="display:none" onchange="importarBackupArquivo(this)"></label>
       <button class="btn btn-danger btn-sm" onclick="confirmarReiniciarDemo()">${iconeSvg("trash")} Reiniciar dados</button>
     </div>

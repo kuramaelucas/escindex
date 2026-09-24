@@ -149,7 +149,8 @@ const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de e
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", "aprovar-cadastros":"Aprovar Cadastros",
   usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
   "central-provas":"Central de Provas",
-  blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários" };
+  blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários",
+  "painel-turma":"Painel da Turma" };
 function tituloDaRota(r){ return ROUTE_TITLES[r] || CONFIG.nomePlataforma; }
 
 function navigate(route, params){
@@ -190,13 +191,14 @@ let _telaDesenhada = null;
 
 function render(){
   const app = document.getElementById("app");
-  const rotasPublicas = ["landing","login","cadastro"];
+  const rotasPublicas = ["landing","login","cadastro","retorno-email"];
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
   if(usuarioAtual() && rotasPublicas.includes(state.route)) state.route = "inicio";
 
   if(state.route==="landing"){ _telaDesenhada = null; app.innerHTML = renderLanding(); return; }
   if(state.route==="login"){ _telaDesenhada = null; app.innerHTML = renderLogin(); return; }
   if(state.route==="cadastro"){ _telaDesenhada = null; app.innerHTML = renderCadastro(); return; }
+  if(state.route==="retorno-email"){ _telaDesenhada = null; app.innerHTML = renderRetornoEmail(); return; }
   // primeiro acesso: quem acabou de entrar pela primeira vez vê as boas-vindas
   // antes do painel — só no caminho para o início, para nunca prender ninguém
   if(state.route==="boas-vindas" || (state.route==="inicio" && precisaDasBoasVindas(usuarioAtual()))){
@@ -248,6 +250,7 @@ function render(){
     case "blocos": conteudo = renderBlocosConfig(); break;
     case "config-geral": conteudo = renderConfigGeral(); break;
     case "feedback-usuarios": conteudo = renderFeedbackUsuarios(); break;
+    case "painel-turma": conteudo = renderPainelTurma(); break;
     default: conteudo = renderInicio();
   }
   desenharTela(conteudo);
@@ -428,10 +431,11 @@ function navItemsParaPapel(papel){
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"taxonomia", label:"Especialidades e Assuntos", icon:"filter"},
   ];
-  if(papel==="professor") return conteudo;
+  const painel = {id:"painel-turma", label:"Painel da Turma", icon:"chart"};
+  if(papel==="professor") return [conteudo[0], painel, ...conteudo.slice(1)];
   if(papel==="admin"){
     const u = usuarioAtual();
-    const itens = [...conteudo,
+    const itens = [conteudo[0], Object.assign({permissao:"turma"}, painel), ...conteudo.slice(1),
       {id:"aprovar-cadastros", label:"Aprovar Cadastros", icon:"check", permissao:"cadastros"},
       {id:"usuarios", label:"Usuários", icon:"users", permissao:"usuarios"},
       {id:"blocos", label:"Blocos de Estudo", icon:"calendar", permissao:"blocos"},

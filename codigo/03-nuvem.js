@@ -203,8 +203,94 @@ async function nuvemRenovarSessao(){
 }
 
 /* ---------------------------- entrar, cadastrar, sair --------------------- */
+/* ---------- a volta do e-mail para o próprio site -------------------------
+   O Supabase manda dois tipos de e-mail com link: CONFIRMAR O E-MAIL (no
+   cadastro) e TROCAR A SENHA ("esqueci a senha"). O link passa pelo
+   Supabase e depois devolve a pessoa a um endereço — e esse endereço tem de
+   ser o do Esc, senão ela cai numa página do Supabase (ou no localhost de
+   exemplo) e não sabe o que fazer. Cada pedido leva redirect_to com o
+   endereço desta página; o painel do Supabase precisa aceitá-lo em
+   Authentication > URL Configuration (passo a passo: nuvem/LEIA-ME.md).
+
+   Na volta, o Supabase escreve no endereço (depois do #) o resultado:
+   access_token + type=signup (confirmou), type=recovery (vai trocar a
+   senha) ou error_code (o link expirou ou já foi usado). nuvemTratarRetornoDoEmail
+   lê isso ANTES do roteador, apaga do endereço na hora (um token não pode
+   ficar no histórico nem aparecer num print) e mostra a tela certa. */
+function nuvemEnderecoDeRetorno(){
+  if(CONFIG.nuvem.enderecoDoSite) return CONFIG.nuvem.enderecoDoSite;
+  if(/^https?:$/.test(location.protocol)) return location.origin + location.pathname;
+  return "";   // aberto com dois cliques: vale o "Site URL" do painel do Supabase
+}
+function nuvemComRetorno(caminho){
+  const r = nuvemEnderecoDeRetorno();
+  return r ? caminho + (caminho.includes("?") ? "&" : "?") + "redirect_to=" + encodeURIComponent(r) : caminho;
+}
+async function nuvemReenviarConfirmacao(email){
+  await nuvemChamar(nuvemComRetorno("/auth/v1/resend"), { method: "POST", semToken: true,
+    body: JSON.stringify({ type: "signup", email }) });
+}
+async function nuvemPedirNovaSenha(email){
+  await nuvemChamar(nuvemComRetorno("/auth/v1/recover"), { method: "POST", semToken: true,
+    body: JSON.stringify({ email }) });
+}
+/* O que vai dentro do token (quem é a pessoa), sem biblioteca: é um JSON em
+   base64 no meio das três partes do JWT. */
+function nuvemLerToken(token){
+  try{
+    const meio = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(decodeURIComponent(escape(atob(meio + "===".slice((meio.length + 3) % 4)))));
+  }catch(e){ return {}; }
+}
+function nuvemTratarRetornoDoEmail(){
+  const hash = location.hash || "";
+  if(!/access_token=|error_code=|error_description=/.test(hash)) return false;
+  const p = new URLSearchParams(hash.replace(/^#\/?/, ""));
+  try{ history.replaceState(null, "", location.pathname + "#/retorno-email"); }catch(e){ location.hash = "#/retorno-email"; }
+  state.route = "retorno-email";
+  if(p.get("error") || p.get("error_code")){
+    const texto = (p.get("error_code") || "") + " " + (p.get("error_description") || "");
+    state.retornoEmail = { tipo: "erro", expirou: /expired|invalid|otp/i.test(texto), detalhe: p.get("error_description") || "" };
+    return true;
+  }
+  const tipo = p.get("type") || "signup";
+  const token = p.get("access_token"), refresh = p.get("refresh_token");
+  if(!nuvemLigada() || !token){ state.retornoEmail = { tipo: "erro", expirou: false, detalhe: "" }; return true; }
+  if(tipo === "recovery"){ state.retornoEmail = { tipo: "recovery", token, email: nuvemLerToken(token).email || "" }; return true; }
+  state.retornoEmail = { tipo: "confirmado", carregando: true };
+  nuvemConcluirConfirmacao(token, refresh);
+  return true;
+}
+/* E-mail confirmado. Se a coordenação já aprovou o cadastro, a pessoa entra
+   direto; senão, a tela diz que falta a aprovação — que é o normal. */
+async function nuvemConcluirConfirmacao(token, refresh){
+  const dados = nuvemLerToken(token);
+  try{
+    nuvemGuardarSessao({ token, refresh, usuarioId: dados.sub, email: dados.email || "" });
+    const perfil = await nuvemBuscarPerfil();
+    if(perfil && perfil.status === "aprovado"){
+      const u = nuvemAplicarPerfilLocal(perfil);
+      state.usuarioAtualId = u.id; db.nuvem.contaId = u.id; saveState();
+      toast("E-mail confirmado. Bem-vindo(a), " + (u.nome || "").split(" ")[0] + "!");
+      navigate("inicio");
+      nuvemSincronizarAgora({ forcarRedesenho: true });
+      return;
+    }
+    nuvemSair();
+    state.retornoEmail = { tipo: "confirmado", status: perfil ? perfil.status : "pendente", email: dados.email || "" };
+  }catch(e){
+    nuvemSair();
+    state.retornoEmail = { tipo: "confirmado", status: "pendente", email: dados.email || "" };
+  }
+  if(state.route === "retorno-email") render();
+}
+async function nuvemDefinirNovaSenha(token, senha){
+  await nuvemChamar("/auth/v1/user", { method: "PUT", semToken: true,
+    headers: { "Authorization": "Bearer " + token }, body: JSON.stringify({ password: senha }) });
+}
+
 async function nuvemCriarConta(dados){
-  const r = await nuvemChamar("/auth/v1/signup", {
+  const r = await nuvemChamar(nuvemComRetorno("/auth/v1/signup"), {
     method:"POST", semToken:true,
     body: JSON.stringify({
       email: dados.email, password: dados.senha,
@@ -823,6 +909,35 @@ const NUVEM_GLOBAIS = {
     },
   },
 };
+/* COMENTÁRIOS E DÚVIDAS nas questões. São de todos (a dúvida do aluno
+   precisa chegar ao residente), mas cada linha tem dono: o banco só aceita
+   o comentário de quem está escrevendo, e "resposta oficial" só de quem
+   revisa (ver comentarios no esquema.sql). Remover um comentário marca
+   `removido` — assim a remoção também desce para os outros aparelhos. */
+NUVEM_GLOBAIS.comentarios = {
+  chave: l => l.id,
+  podeGravar: () => true,
+  aplicar: l => {
+    if(!Array.isArray(db.comentarios)) db.comentarios = [];
+    const i = db.comentarios.findIndex(x => x.id === l.id);
+    const reg = {
+      id: l.id, questaoId: l.questao_id, usuarioId: l.usuario_id, autorNome: l.autor_nome || "",
+      papelAutor: l.papel_autor || "aluno", texto: l.texto || "", data: l.data || (l.atualizado_em || "").slice(0,10),
+      respostaOficial: !!l.resposta_oficial, removido: !!l.removido,
+    };
+    if(i >= 0) db.comentarios[i] = Object.assign(db.comentarios[i], reg); else db.comentarios.push(reg);
+  },
+  linha: id => {
+    const c = (db.comentarios || []).find(x => x.id === id);
+    if(!c) return null;
+    return {
+      id: c.id, questao_id: c.questaoId, usuario_id: c.usuarioId, autor_nome: c.autorNome || "",
+      papel_autor: c.papelAutor || null, texto: c.texto || "", data: c.data || null,
+      resposta_oficial: !!c.respostaOficial, removido: !!c.removido,
+    };
+  },
+};
+
 function nuvemMarcarGlobalPendente(tabela, chave){
   if(!nuvemConectado() || !NUVEM_GLOBAIS[tabela] || !NUVEM_GLOBAIS[tabela].podeGravar()) return;
   if(!Array.isArray(db.nuvem.globaisPendentes)) db.nuvem.globaisPendentes = [];
@@ -864,11 +979,13 @@ async function nuvemEnviarGlobaisPendentes(){
     const tirar = () => { db.nuvem.globaisPendentes = db.nuvem.globaisPendentes.filter(x => !(x.tabela === p.tabela && x.chave === p.chave)); };
     if(!desc){ tirar(); continue; }
     if(_nuvemTabelasAusentes.has(p.tabela)) continue;   // sobe quando a tabela existir
+    const linha = desc.linha(p.chave);
+    if(!linha){ tirar(); continue; }                     // o registro não existe mais aqui: nada a subir
     try{
       await nuvemChamar("/rest/v1/" + p.tabela, {
         method: "POST",
         headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
-        body: JSON.stringify([Object.assign(desc.linha(p.chave), { atualizado_por: nuvemSessao.usuarioId })]),
+        body: JSON.stringify([Object.assign(linha, { atualizado_por: nuvemSessao.usuarioId })]),
       });
       tirar();
     }catch(e){
@@ -1143,6 +1260,7 @@ async function nuvemEntrarPelaTela(email, senha, opcoes = {}){
     // casos em que uma conta local (demonstração, ou de antes da nuvem) ainda
     // pode ser a certa.
     const podeSerLocal = !!e.semRede || /incorretos/i.test(e.message || "");
+    if(/confirme o e-mail/i.test(e.message || "")){ abrirReenviarConfirmacao(email); return { ok:false, local:false }; }
     if(!(opcoes.quieto && podeSerLocal)) toast(e.message || "Não foi possível entrar.", "err");
     return { ok:false, local: podeSerLocal };
   }
@@ -1151,13 +1269,16 @@ async function nuvemEntrarPelaTela(email, senha, opcoes = {}){
 async function nuvemCadastrarPelaTela(dados){
   try{
     const r = await nuvemCriarConta(dados);
+    nuvemSair();
     if(r.entrouDireto){
       toast("Conta criada! Ela precisa ser aprovada pela coordenação antes do primeiro acesso.");
+      navigate("login");
     }else{
-      toast("Conta criada! Confirme o e-mail e aguarde a aprovação da coordenação.");
+      // a confirmação de e-mail está ligada: a tela diz o que fazer agora,
+      // em vez de um aviso que some em cinco segundos
+      state.retornoEmail = { tipo: "enviado", email: dados.email };
+      navigate("retorno-email");
     }
-    nuvemSair();
-    navigate("login");
     return true;
   }catch(e){
     toast(e.message || "Não foi possível criar a conta.", "err");
@@ -1235,6 +1356,42 @@ function confirmarTrazerDadosLocais(idLocal){
   toast(movidos ? (movidos + " registros passaram a ser da sua conta. Subindo para a nuvem…") : "Nada a trazer.");
   nuvemSincronizarAgora({forcarRedesenho:true});
   render();
+}
+
+/* ---------------------------- percentil de simulado ----------------------
+   As notas da turma inteira num simulado, sem ninguém nelas (a função
+   notas_do_simulado do esquema.sql devolve só o id aleatório da tentativa e
+   a nota). Vêm uma vez por simulado a cada 5 minutos; quando chegam, a tela
+   de resultado se redesenha com o percentil da turma no lugar do percentil
+   "deste navegador". */
+const _notasDaTurma = {};
+function notasDaTurmaDoSimulado(chave){
+  if(!nuvemConectado() || !chave || _nuvemTabelasAusentes.has("rpc_notas_do_simulado")) return null;
+  const c = _notasDaTurma[chave];
+  if(c && (c.carregando || Date.now() - c.em < 5*60*1000)) return c.notas || null;
+  _notasDaTurma[chave] = { carregando: true, notas: c ? c.notas : null, em: Date.now() };
+  nuvemChamar("/rest/v1/rpc/notas_do_simulado", { method: "POST", body: JSON.stringify({ p_chave: chave }) })
+    .then(linhas => {
+      _notasDaTurma[chave] = { notas: (linhas || []).map(l => ({ id: l.id, nota: Number(l.nota) })), em: Date.now() };
+      if(state.route === "simulado-ativo" || state.route === "simulados") render();
+    })
+    .catch(e => {
+      if(e && e.status === 404) _nuvemTabelasAusentes.add("rpc_notas_do_simulado");   // o banco ainda não tem a função
+      _notasDaTurma[chave] = { notas: null, em: Date.now() };
+    });
+  return c ? c.notas : null;
+}
+
+/* ---------------------------- painel da turma -----------------------------
+   Números de cada aluno, somados no próprio banco (painel_turma e
+   atividade_por_semana, no esquema.sql). Só professor e administrador
+   recebem linhas — para qualquer outra pessoa o banco devolve nada. */
+async function nuvemPainelTurma(){
+  const [alunos, semanas] = await Promise.all([
+    nuvemChamar("/rest/v1/rpc/painel_turma", { method: "POST", body: "{}" }),
+    nuvemChamar("/rest/v1/rpc/atividade_por_semana", { method: "POST", body: JSON.stringify({ p_semanas: 12 }) }),
+  ]);
+  return { alunos: alunos || [], semanas: semanas || [] };
 }
 
 /* ---------------------------- aprovar cadastros da turma -----------------

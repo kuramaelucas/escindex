@@ -726,13 +726,15 @@ function renderResultadoSimulado(){
   ${ranking ? `
   <div class="card mt-2" style="max-width:520px">
     <div class="card-title">Como você se saiu, de forma anônima</div>
-    <p class="text-sm muted">Comparado às outras ${ranking.n} tentativas registradas deste simulado (sem identificar ninguém).</p>
+    <p class="text-sm muted">${ranking.origem==="turma"
+      ? `Comparado às ${ranking.n} tentativas deste simulado feitas pela turma, em qualquer aparelho (sem identificar ninguém).`
+      : `Comparado às ${ranking.n} tentativas deste simulado registradas neste navegador (sem identificar ninguém).${nuvemLigada() && !nuvemConectado() ? " Entrando com a sua conta da nuvem, a comparação passa a ser com a turma inteira." : ""}`}</p>
     <div class="grid grid-2 mt-2">
       <div class="stat-tile"><div class="stat-value">Percentil ${ranking.percentil}</div><div class="stat-label">você superou ${ranking.percentil}% das tentativas</div></div>
       <div class="stat-tile"><div class="stat-value">${ranking.mediana}%</div><div class="stat-label">nota mediana (percentil 50)</div></div>
     </div>
     <div class="mt-2">${graficoHistogramaSvg(ranking.buckets, ranking.bucketAtual, ["0-20","21-40","41-60","61-80","81-100"])}</div>
-  </div>` : `<div class="card-flat mt-2 text-sm muted" style="max-width:520px">Ainda não há tentativas suficientes deste simulado nesta plataforma pra calcular um percentil (é preciso pelo menos 3).</div>`}
+  </div>` : `<div class="card-flat mt-2 text-sm muted" style="max-width:520px">Ainda não há tentativas suficientes deste simulado ${nuvemConectado() ? "na turma" : "neste navegador"} para calcular um percentil (é preciso pelo menos 3).</div>`}
   ${analiseTempo ? `<div class="card mt-2" style="max-width:620px">
     <div class="card-title">Tempo</div>
     <div class="grid grid-3 mt-2">
