@@ -237,6 +237,12 @@ tr:last-child td{border-bottom:none}
 }
 
 /* ---------- estatísticas / progresso ---------- */
+.stat-mini-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem}
+.stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .8rem;display:flex;align-items:baseline;gap:.5rem;min-width:0}
+.stat-mini .stat-value{font-size:1.25rem;line-height:1.1}
+.stat-mini .stat-label{font-size:.76rem;line-height:1.25}
+button.stat-mini{cursor:pointer;text-align:left;font:inherit;color:inherit}
+button.stat-mini:hover{border-color:var(--accent)}
 .stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
 .stat-value{font-family:var(--font-display);font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--ink)}
 .stat-label{font-size:.78rem;color:var(--muted);margin-top:.15rem}
@@ -576,7 +582,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
    AO PUBLICAR: troque a data aqui E nas onze linhas <script src> logo
    abaixo — localizar e substituir a data antiga pela nova troca as doze
    de uma vez. Esquecer não quebra nada: só não força a atualização. */
-window.ESC_VERSAO = "2026-09-23";
+window.ESC_VERSAO = "2026-09-24";
 /* A ponte entre os arquivos de conteúdo e o código: cada arquivo da pasta
    "dados/" chama uma destas duas funções e entrega a sua lista. Guardamos
    também o nome de quem respondeu, para a plataforma conseguir dizer o que
@@ -644,17 +650,17 @@ window.EscDados = {
   },
 };
 </script>
-<script src="dados/taxonomia.js?v=2026-09-23"></script>
-<script src="dados/calendario.js?v=2026-09-23"></script>
-<script src="dados/banco-didatico.js?v=2026-09-23"></script>
-<script src="dados/prova-unifesp-2022.js?v=2026-09-23"></script>
-<script src="dados/prova-unifesp-2023.js?v=2026-09-23"></script>
-<script src="dados/prova-unifesp-2024.js?v=2026-09-23"></script>
-<script src="dados/prova-unifesp-2025.js?v=2026-09-23"></script>
-<script src="dados/prova-unifesp-2026.js?v=2026-09-23"></script>
-<script src="dados/flashcards-equipe.js?v=2026-09-23"></script>
-<script src="dados/simulados-equipe.js?v=2026-09-23"></script>
-<script src="dados/demonstracao.js?v=2026-09-23"></script>
+<script src="dados/taxonomia.js?v=2026-09-24"></script>
+<script src="dados/calendario.js?v=2026-09-24"></script>
+<script src="dados/banco-didatico.js?v=2026-09-24"></script>
+<script src="dados/prova-unifesp-2022.js?v=2026-09-24"></script>
+<script src="dados/prova-unifesp-2023.js?v=2026-09-24"></script>
+<script src="dados/prova-unifesp-2024.js?v=2026-09-24"></script>
+<script src="dados/prova-unifesp-2025.js?v=2026-09-24"></script>
+<script src="dados/prova-unifesp-2026.js?v=2026-09-24"></script>
+<script src="dados/flashcards-equipe.js?v=2026-09-24"></script>
+<script src="dados/simulados-equipe.js?v=2026-09-24"></script>
+<script src="dados/demonstracao.js?v=2026-09-24"></script>
 
 <script>
 /* ==========================================================================
@@ -1327,6 +1333,8 @@ function garantirEstruturaDb(alvo){
   if(!alvo.nuvem.marcas || typeof alvo.nuvem.marcas !== "object") alvo.nuvem.marcas = {};
   if(!Array.isArray(alvo.nuvem.recusados)) alvo.nuvem.recusados = [];
   if(!Array.isArray(alvo.nuvem.calendarioPendente)) alvo.nuvem.calendarioPendente = [];
+  if(!Array.isArray(alvo.nuvem.globaisPendentes)) alvo.nuvem.globaisPendentes = [];
+  if(!alvo.formatacaoAprovada || typeof alvo.formatacaoAprovada !== "object" || Array.isArray(alvo.formatacaoAprovada)) alvo.formatacaoAprovada = {};
   /* Os parâmetros do algoritmo têm valor padrão no CONFIG, então um campo
      torto aqui não precisa quebrar tela nenhuma — e quebrava: um
      `misturaBlocos` nulo derrubava Configurações Gerais inteira, e daí a
@@ -1531,6 +1539,9 @@ function loadState(){
     if(!db.nuvem.marcas) db.nuvem.marcas = {};
     if(!Array.isArray(db.nuvem.recusados)) db.nuvem.recusados = [];
     if(!Array.isArray(db.nuvem.calendarioPendente)) db.nuvem.calendarioPendente = [];
+    // Livro de Ouro e formatação aprovada passaram a subir (seção 2-C)
+    if(!Array.isArray(db.nuvem.globaisPendentes)) db.nuvem.globaisPendentes = [];
+    if(!db.formatacaoAprovada || typeof db.formatacaoAprovada !== "object") db.formatacaoAprovada = {};
   }catch(e){
     /* Uma migração que tropeça NÃO é motivo para apagar a turma. Antes, um
        único campo inesperado no banco salvo trocava tudo pelo banco de
@@ -1846,7 +1857,8 @@ function nuvemConectado(){ return nuvemLigada() && !!(nuvemSessao && nuvemSessao
 function nuvemPendentes(){
   const fila = (db && db.filaNuvem) ? db.filaNuvem.length : 0;
   const cal = (db && db.nuvem && db.nuvem.calendarioPendente) ? db.nuvem.calendarioPendente.length : 0;
-  return fila + cal;
+  const glob = (db && db.nuvem && db.nuvem.globaisPendentes) ? db.nuvem.globaisPendentes.length : 0;
+  return fila + cal + glob;
 }
 
 function nuvemCarregarSessaoSalva(){
@@ -2023,6 +2035,7 @@ function nuvemAplicarPerfilLocal(p){
   if(p.grupo_id) u.grupoId = p.grupo_id;
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
+  if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
   u.lembreteMetaAtivo = !!p.lembrete_meta_ativo;
   if(p.lembrete_meta_horario) u.lembreteMetaHorario = p.lembrete_meta_horario;
   if(!u.criadoEm) u.criadoEm = (p.criado_em || "").slice(0,10) || hojeISO();
@@ -2050,6 +2063,7 @@ function nuvemConferirPerfil(){
     meta_cartoes_dia: usuario.metaCartoesDia || null,
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
     lembrete_meta_horario: usuario.lembreteMetaHorario || null,
+    boas_vindas_em: usuario.boasVindasEm || null,
   };
   const assinatura = JSON.stringify(linha);
   if(db.nuvem.perfilEnviado === assinatura) return;
@@ -2351,6 +2365,8 @@ async function nuvemSincronizar(opcoes = {}){
     await nuvemReceberMudancas();
     await nuvemBaixarCalendario();
     recusados += await nuvemEnviarCalendarioPendente();
+    recusados += await nuvemEnviarGlobaisPendentes();
+    await nuvemBaixarGlobais();
     if(recusados){
       nuvemEstado.ultimoErro = recusados + (recusados === 1
         ? " registro foi recusado pela nuvem (veja o motivo abaixo). O resto subiu."
@@ -2396,6 +2412,7 @@ function nuvemErroPassageiro(e){
    rodar o nuvem/esquema.sql, um F5 volta a mandar tudo). O dado em si nunca
    se perde: ele vive no navegador como todo o resto. */
 const NUVEM_CAMPOS_NOVOS = {
+  perfis: ["boas_vindas_em"],     // quando a pessoa passou pela tela de primeiro acesso
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],   // quantos cartões naquele dia
 };
@@ -2524,6 +2541,116 @@ async function nuvemEnviarCalendarioPendente(){
 function podeEditarCalendarioNaNuvem(){
   const eu = nuvemSessao && db.usuarios.find(x => x.id === nuvemSessao.usuarioId);
   return !!(eu && eu.status === "aprovado" && (eu.papel === "professor" || eu.papel === "admin"));
+}
+
+/* Quem entra em Revisar Formatação: a equipe e os residentes — a mesma
+   regra de e_revisor(), em nuvem/esquema.sql. */
+function podeRevisarNaNuvem(){
+  const eu = nuvemSessao && db.usuarios.find(x => x.id === nuvemSessao.usuarioId);
+  return !!(eu && eu.status === "aprovado" && ["professor","admin","residente"].includes(eu.papel));
+}
+
+/* ---------------------------- outras tabelas compartilhadas --------------
+   Como o calendário, estas são de TODO MUNDO, não de uma pessoa: o Livro de
+   Ouro (os agradecimentos que aparecem na tela inicial) e as questões cuja
+   formatação já foi aprovada em Revisar Formatação (para a questão sair da
+   fila dos outros revisores). Todos leem; grava quem tem o papel certo, e
+   quem salvar por último vence aquele registro.
+
+   Cada tabela diz como transformar a linha da nuvem em dado local
+   (aplicar) e como montar a linha a partir do dado local (linha). A fila é
+   de CHAVES, não de linhas: a linha é montada na hora de subir, então duas
+   edições seguidas do mesmo registro sobem uma vez, já com a última
+   versão — e uma remoção sobe como remoção. */
+const NUVEM_GLOBAIS = {
+  livro_ouro: {
+    chave: l => l.id,
+    podeGravar: () => podeEditarCalendarioNaNuvem(),
+    aplicar: l => {
+      if(!Array.isArray(db.livroOuro)) db.livroOuro = [];
+      const i = db.livroOuro.findIndex(x => x.id === l.id);
+      if(l.removido){ if(i >= 0) db.livroOuro.splice(i, 1); return; }
+      const reg = Object.assign({}, l.dados || {}, { id: l.id });
+      if(i >= 0) db.livroOuro[i] = reg; else db.livroOuro.push(reg);
+    },
+    linha: id => {
+      const r = (db.livroOuro || []).find(x => x.id === id);
+      if(!r) return { id, dados: {}, removido: true };
+      const dados = Object.assign({}, r); delete dados.id;
+      return { id, dados, removido: false };
+    },
+  },
+  formatacao_aprovada: {
+    chave: l => l.questao_id,
+    podeGravar: () => podeRevisarNaNuvem(),
+    aplicar: l => {
+      if(!db.formatacaoAprovada) db.formatacaoAprovada = {};
+      if(l.aprovada) db.formatacaoAprovada[l.questao_id] = { porNome: l.por_nome || "", em: (l.atualizado_em || "").slice(0,10) || hojeISO() };
+      else delete db.formatacaoAprovada[l.questao_id];
+    },
+    linha: qid => {
+      const a = (db.formatacaoAprovada || {})[qid];
+      return { questao_id: qid, aprovada: !!a, por_nome: a ? (a.porNome || "") : "" };
+    },
+  },
+};
+function nuvemMarcarGlobalPendente(tabela, chave){
+  if(!nuvemConectado() || !NUVEM_GLOBAIS[tabela] || !NUVEM_GLOBAIS[tabela].podeGravar()) return;
+  if(!Array.isArray(db.nuvem.globaisPendentes)) db.nuvem.globaisPendentes = [];
+  if(!db.nuvem.globaisPendentes.some(p => p.tabela === tabela && p.chave === chave)) db.nuvem.globaisPendentes.push({ tabela, chave });
+}
+async function nuvemBaixarGlobais(){
+  if(!db.nuvem.marcas) db.nuvem.marcas = {};
+  const pendentes = db.nuvem.globaisPendentes || [];
+  for(const [tabela, desc] of Object.entries(NUVEM_GLOBAIS)){
+    if(_nuvemTabelasAusentes.has(tabela)) continue;
+    const desde = db.nuvem.marcas[tabela] || "1970-01-01T00:00:00Z";
+    let linhas;
+    try{
+      linhas = await nuvemChamar("/rest/v1/" + tabela + "?atualizado_em=gt." +
+        encodeURIComponent(desde) + "&order=atualizado_em.asc&limit=1000&select=*");
+    }catch(e){
+      // tabela que o esquema.sql desta versão cria e o banco ainda não tem
+      if(!nuvemTabelaNaoExiste(e)) throw e;
+      _nuvemTabelasAusentes.add(tabela);
+      continue;
+    }
+    let maior = desde;
+    (linhas || []).forEach(l => {
+      const chave = desc.chave(l);
+      // o que ainda vai subir daqui é mais novo que o que desceu
+      if(!pendentes.some(p => p.tabela === tabela && p.chave === chave)){
+        try{ desc.aplicar(l); }catch(e){ console.error("Linha da nuvem ignorada em " + tabela, e); }
+      }
+      if(l.atualizado_em > maior) maior = l.atualizado_em;
+    });
+    if(maior !== desde) db.nuvem.marcas[tabela] = maior;
+  }
+}
+async function nuvemEnviarGlobaisPendentes(){
+  const fila = (db.nuvem.globaisPendentes || []).slice();
+  let recusados = 0;
+  for(const p of fila){
+    const desc = NUVEM_GLOBAIS[p.tabela];
+    const tirar = () => { db.nuvem.globaisPendentes = db.nuvem.globaisPendentes.filter(x => !(x.tabela === p.tabela && x.chave === p.chave)); };
+    if(!desc){ tirar(); continue; }
+    if(_nuvemTabelasAusentes.has(p.tabela)) continue;   // sobe quando a tabela existir
+    try{
+      await nuvemChamar("/rest/v1/" + p.tabela, {
+        method: "POST",
+        headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+        body: JSON.stringify([Object.assign(desc.linha(p.chave), { atualizado_por: nuvemSessao.usuarioId })]),
+      });
+      tirar();
+    }catch(e){
+      if(nuvemTabelaNaoExiste(e)){ _nuvemTabelasAusentes.add(p.tabela); continue; }
+      if(nuvemErroPassageiro(e)) throw e;
+      nuvemGuardarRecusado(p.tabela, { chave: p.chave }, e.message);
+      tirar();
+      recusados++;
+    }
+  }
+  return recusados;
 }
 
 /* Marca um ano para subir na próxima sincronização — chamado depois de
@@ -3656,8 +3783,41 @@ function getGrupoOficial(){ return getGrupo(db.grupoOficialId); }
 // cada aluno pertence a um grupo/turma (calendário de blocos próprio ou
 // compartilhado); quem não tiver grupoId definido usa o calendário oficial
 function getGrupoDoUsuario(usuario){
-  if(usuario && usuario.grupoId){ const g = getGrupo(usuario.grupoId); if(g) return g; }
+  if(usuario && usuario.grupoId){
+    const g = getGrupo(usuario.grupoId) || recriarTurmaDoRodizio(usuario.grupoId);
+    if(g) return g;
+  }
   return getGrupoOficial();
+}
+/* TURMAS DO RODÍZIO. Uma por ano e por letra ("4º ano — Grupo C"), abertas:
+   entra quem quiser, sem pedir a ninguém — ao contrário das turmas criadas
+   por alunos, que têm dono e aprovação. É o que a tela de primeiro acesso
+   oferece, porque quem acabou de chegar sabe a própria letra, mas não sabe
+   se algum colega já criou a turma dela neste navegador.
+
+   O id diz o ano e o grupo (rodizio-<índice do ano>-<deslocamento>). As
+   turmas ainda não sobem para a nuvem, mas o grupo_id da pessoa sobe: em
+   outro aparelho, a turma que falta é recriada a partir do id, e a pessoa
+   continua no mesmo grupo. */
+function idTurmaDoRodizio(ano, deslocamento){
+  return "rodizio-" + CONFIG.anosFaculdade.indexOf(ano) + "-" + (parseInt(deslocamento)||0);
+}
+function turmaDoRodizio(ano, deslocamento){
+  const id = idTurmaDoRodizio(ano, deslocamento);
+  return getGrupo(id) || recriarTurmaDoRodizio(id);
+}
+function recriarTurmaDoRodizio(id){
+  const m = /^rodizio-(\d+)-(\d+)$/.exec(id || "");
+  if(!m) return null;
+  const ano = CONFIG.anosFaculdade[parseInt(m[1])];
+  const deslocamento = parseInt(m[2]);
+  if(!ano || !temCalendarioProprio(ano) || deslocamento >= sequenciaDoAno(ano).length) return null;
+  const turma = { id, nome: ano + " — " + nomeRodizio(ano, deslocamento), criadoPor:null, oficial:false, doRodizio:true,
+                  publico:true, criadoEm:hojeISO(), anoFaculdade:ano, deslocamento,
+                  blocoAtualIdManual:null, membrosAprovados:[], solicitacoesPendentes:[] };
+  if(!db.grupos) db.grupos = [];
+  db.grupos.push(turma);
+  return turma;
 }
 /* ---------- sequência de blocos do ano + rodízio das turmas ----------------
    A sequência pertence ao ANO DA FACULDADE; o grupo escolhe só onde começa.
@@ -5163,6 +5323,11 @@ function render(){
   if(state.route==="landing"){ _telaDesenhada = null; app.innerHTML = renderLanding(); return; }
   if(state.route==="login"){ _telaDesenhada = null; app.innerHTML = renderLogin(); return; }
   if(state.route==="cadastro"){ _telaDesenhada = null; app.innerHTML = renderCadastro(); return; }
+  // primeiro acesso: quem acabou de entrar pela primeira vez vê as boas-vindas
+  // antes do painel — só no caminho para o início, para nunca prender ninguém
+  if(state.route==="boas-vindas" || (state.route==="inicio" && precisaDasBoasVindas(usuarioAtual()))){
+    state.route = "boas-vindas"; _telaDesenhada = null; app.innerHTML = renderBoasVindas(); return;
+  }
 
   // um administrador só entra nas rotas permitidas pelo seu nível
   const permissaoNecessaria = PERMISSAO_DA_ROTA[state.route];
@@ -5477,13 +5642,25 @@ function fecharMenuMobile(){ const s=document.getElementById("sidebarMenu"), b=d
 /* ==========================================================================
    8. TELAS PÚBLICAS — landing / login / cadastro
    ========================================================================== */
+/* A página de quem chega. Ela diz primeiro o que o Esc É — um projeto sem
+   fins lucrativos, de alunos e ex-alunos da Escola Paulista de Medicina,
+   para os alunos de lá — e só depois o que ele faz. Os números do resumo
+   vêm do conteúdo carregado, não de texto fixo: acrescentar uma prova muda
+   a página sozinho. */
 function renderLanding(){
-  const features = [
-    ["refresh","Revisão no momento certo","Cada questão volta na hora certa, calculada a partir do seu histórico — nunca por acaso."],
-    ["target","Dificuldade progressiva","As questões acompanham o quanto você já sabe: começam pelo essencial e avançam para o que a banca mais gosta de complicar."],
-    ["chart","Transparência total","Todo número tem uma explicação: você sempre sabe por que uma questão apareceu ou foi sugerida para revisão."],
-    ["calendar","Alinhado aos seus blocos","As questões seguem o calendário de blocos do curso, misturando o assunto atual com revisão do que já passou e uma prévia do que vem a seguir."],
-    ["cards","Revisão rápida por flashcards","Para o assunto em que você jura que sabe e erra: cartão de conceito, sem alternativa para eliminar, com intervalo próprio de retorno."],
+  const ativas = questoesAtivas(true);
+  const reais = ativas.filter(q=>q.real).length;
+  const anosReais = [...new Set(ativas.filter(q=>q.real).map(q=>q.ano))].sort();
+  const cartoes = (db.flashcards||[]).filter(c=>!c.usuarioId && c.status!=="arquivado").length;
+  const especialidades = (db.taxonomia.especialidades||[]).length;
+  const numero = n => n.toLocaleString("pt-BR");
+  const capacidades = [
+    ["book", numero(ativas.length)+" questões", reais ? numero(reais)+" delas das provas reais da "+CONFIG.bancaFoco+(anosReais.length?" ("+anosReais[0]+"–"+anosReais[anosReais.length-1]+")":"")+", com explicação escrita pela equipe." : "Organizadas por área, especialidade e assunto."],
+    ["calendar","No ritmo dos seus blocos","A sessão do dia segue o calendário da sua turma, do 3º ao 6º ano: o bloco atual, revisão do que já passou e uma prévia do próximo."],
+    ["refresh","Revisão no momento certo","Cada questão volta quando você está para esquecê-la — e as que você errou voltam antes."],
+    ["cards", numero(cartoes)+" flashcards","Para fixar conceito em poucos segundos, com intervalo próprio de revisão."],
+    ["clipboard","Provas e simulados","Provas antigas inteiras e simulados cronometrados, com a nota guardada para comparar."],
+    ["chart","Seu desempenho, sem mistério","Acerto por área e por "+numero(especialidades)+" especialidades, onde a sua confiança engana e o que revisar hoje."],
   ];
   return `
   <div class="container">
@@ -5497,41 +5674,140 @@ function renderLanding(){
     </nav>
     <div class="hero">
       <div>
-        <h1>Estude para a residência com o mesmo rigor da prova.</h1>
-        <p class="mt-2" style="font-size:1.05rem;color:var(--ink-2);max-width:46ch;line-height:1.55">Banco de questões, revisão espaçada e blocos de estudo organizados para o processo seletivo da ${CONFIG.bancaFoco} — com dados transparentes sobre onde você está indo bem e onde precisa focar.</p>
-        <div class="flex gap-1 mt-3">
+        <span class="badge badge-accent">Projeto sem fins lucrativos</span>
+        <h1 class="mt-2">Feito por quem passou pela EPM, para quem está passando.</h1>
+        <p class="mt-2" style="font-size:1.05rem;color:var(--ink-2);max-width:48ch;line-height:1.55">O ${CONFIG.nomePlataforma} é uma plataforma de estudos gratuita para os alunos de medicina da Escola Paulista de Medicina (UNIFESP), administrada por alunos e ex-alunos — do primeiro bloco do curso até a prova de residência.</p>
+        <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
           <button class="btn btn-primary" onclick="navigate('cadastro')">Solicitar cadastro</button>
           <button class="btn btn-secondary" onclick="navigate('login')">Já tenho conta</button>
         </div>
-        <p class="text-xs muted mt-2">Acesso liberado após aprovação de um administrador da coordenação.</p>
+        <p class="text-xs muted mt-2">O acesso é liberado depois que alguém da equipe confere o cadastro.</p>
       </div>
       <div class="hero-card">
-        <div class="qcard-meta"><span class="badge badge-accent">Cardiologia</span><span class="badge badge-muted">${CONFIG.bancaFoco}</span><span class="badge badge-muted">2025</span></div>
-        <div class="qcard-enunciado" style="font-size:1rem">Paciente de 74 anos evolui com hipotensão refratária a volume, lactato de 4,8 mmol/L e necessidade de vasopressor para manter PAM ≥65 mmHg. Qual a classificação e a droga de escolha?</div>
-        <div class="qcard-alts">
-          <div class="qcard-alt disabled"><span class="alt-letter">A</span><span class="alt-text">Sepse; dopamina</span></div>
-          <div class="qcard-alt selected disabled"><span class="alt-letter">B</span><span class="alt-text">Choque séptico; noradrenalina</span></div>
-          <div class="qcard-alt disabled"><span class="alt-letter">C</span><span class="alt-text">Sepse; apenas volume</span></div>
-        </div>
-        <div class="text-xs muted">Pré-visualização — dentro da plataforma você responde, vê a explicação completa e o histórico do assunto.</div>
+        <div class="card-title" style="margin-bottom:.6rem">Seja bem-vindo(a)</div>
+        <p class="text-sm" style="line-height:1.65">Montamos o ${CONFIG.nomePlataforma} com o material que gostaríamos de ter tido: as provas da nossa escola, organizadas no ritmo dos nossos blocos, com explicação de verdade. <strong>Espero que isso os ajude.</strong></p>
+        <p class="text-sm mt-2" style="line-height:1.65">Isto aqui é uma <strong>comunidade</strong>, não um produto. Ninguém é pago e nada é vendido — e a sobrevivência do ${CONFIG.nomePlataforma} depende da ajuda de quem usa: enviar uma questão, corrigir um erro, responder a dúvida de um colega, contribuir com os custos do site.</p>
+        <p class="text-xs muted mt-2">— Alunos e ex-alunos da EPM que mantêm o ${CONFIG.nomePlataforma}</p>
       </div>
     </div>
-    <div class="mt-2">
-      ${features.map(([icon,titulo,desc])=>`
-        <div class="feature-row">
-          <div class="feature-icon">${iconeSvg(icon,"icon-lg")}</div>
-          <div><div style="font-weight:700">${titulo}</div><div class="text-sm muted mt-1">${desc}</div></div>
+    <div class="card-title">O que você encontra aqui</div>
+    <div class="grid grid-3 mt-1">
+      ${capacidades.map(([icon,titulo,desc])=>`
+        <div class="card-flat">
+          <div class="flex items-center gap-1" style="font-weight:700">${iconeSvg(icon)} ${escapeHtml(titulo)}</div>
+          <div class="text-sm muted mt-1">${escapeHtml(desc)}</div>
         </div>`).join("")}
     </div>
+    <div class="card mt-3">
+      <div class="card-title">${iconeSvg("users")} Como ajudar a comunidade</div>
+      <div class="grid grid-2 mt-1 text-sm">
+        <div>${iconeSvg("upload")} <strong>Envie questões</strong> — de prova, de aula, de lista. Dentro da plataforma, em "Enviar Questões".</div>
+        <div>${iconeSvg("flag")} <strong>Sinalize o que está errado</strong> — um gabarito desatualizado ou um erro de digitação, na própria questão.</div>
+        <div>${iconeSvg("message")} <strong>Responda dúvidas</strong> — residentes e alunos dos anos acima respondem a fila de dúvidas dos mais novos.</div>
+        <div>${iconeSvg("star")} <strong>Apoie os custos</strong> — quem contribui entra no Livro de Ouro, na tela inicial de todo mundo.</div>
+      </div>
+    </div>
     <div class="card-flat mt-3">
-      <div class="text-sm" style="font-weight:600;margin-bottom:.5rem">Prévia rápida, sem cadastro:</div>
+      <div class="text-sm" style="font-weight:600;margin-bottom:.5rem">Quer ver antes de se cadastrar?</div>
       <div class="flex gap-1" style="flex-wrap:wrap">
         <button class="pill" onclick="fazerLoginDemo('aluno')">${iconeSvg("user")} Ver como aluno</button>
       </div>
-      <div class="text-xs muted mt-2">Só a visão do aluno fica aberta a quem chega: é a que interessa a quem quer conhecer a plataforma. Professor, residente e coordenação entram com e-mail e senha.</div>
+      <div class="text-xs muted mt-2">Uma conta de demonstração, só neste navegador: nada do que você fizer nela vale para a sua conta de verdade.</div>
     </div>
-    <footer class="site-footer">${CONFIG.nomePlataforma} — ${CONFIG.subtitulo}. Protótipo de demonstração.</footer>
+    <footer class="site-footer">${CONFIG.nomePlataforma} — projeto sem fins lucrativos, mantido por alunos e ex-alunos da Escola Paulista de Medicina (UNIFESP).</footer>
   </div>`;
+}
+
+/* ==========================================================================
+   PRIMEIRO ACESSO — boas-vindas, grupo e meta
+   ==========================================================================
+   Aparece uma vez, para o ALUNO que entra pela primeira vez: antes dela, o
+   recém-chegado caía num painel que supunha que ele já tinha turma e meta.
+   Aqui ele confirma o ano, diz qual é o seu grupo do rodízio e quantas
+   questões quer fazer por dia — as três coisas que mudam a sessão do dia.
+   "Pular" também conta como visto: a tela não volta a aparecer, e tudo se
+   ajusta depois em Meu Grupo e em Estudar. A data sobe no perfil da nuvem
+   (boas_vindas_em), para a tela não reaparecer em outro aparelho. */
+function precisaDasBoasVindas(u){
+  if(!u || u.papel !== "aluno" || state.modoAluno || u.boasVindasEm) return false;
+  // contas de demonstração não passam por aqui: quem quer só olhar, olha
+  if(SEED_USUARIOS.some(x => x.id === u.id)) return false;
+  // quem já estudou ou já escolheu turma não é um recém-chegado — acontece
+  // com quem usava a plataforma antes desta tela existir
+  if(!getGrupoDoUsuario(u).oficial) return false;
+  return !(db.respostas || []).some(r => r.usuarioId === u.id);
+}
+function renderBoasVindas(){
+  const u = usuarioAtual();
+  const anoEscolhido = state.filtroRota.boasVindasAno || u.anoFaculdade || CONFIG.anoFaculdadePadrao;
+  const comCalendario = temCalendarioProprio(anoEscolhido);
+  const minima = (db.configGeral && db.configGeral.metaMinimaQuestoesDia) || 10;
+  const ideal = (db.configGeral && db.configGeral.metaRecomendadaQuestoesDia) || CONFIG.metaRecomendadaQuestoesDia;
+  const meta = state.filtroRota.boasVindasMeta || metaDoUsuario(u);
+  return `
+  <div class="container"><nav class="public-nav">
+    <div class="brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
+    <button class="btn btn-ghost" onclick="concluirBoasVindas(true)">Pular por agora</button>
+  </nav></div>
+  <div class="auth-wrap">
+    <div class="auth-card" style="max-width:560px">
+      <h2>Bem-vindo(a), ${escapeHtml((u.nome||"").split(" ")[0])}!</h2>
+      <p class="text-sm mt-2" style="line-height:1.6">O ${CONFIG.nomePlataforma} é um projeto sem fins lucrativos, feito por alunos e ex-alunos da Escola Paulista de Medicina para quem está no curso. Esperamos que ele te ajude — e, quando puder, ajude de volta: uma questão enviada, um erro sinalizado ou uma dúvida respondida mantêm a comunidade viva.</p>
+      <p class="text-sm muted mt-2">Três perguntas rápidas, para a sua sessão do dia já nascer certa:</p>
+
+      <div class="field mt-2"><label class="label">1. Em que ano do curso você está?</label>
+        <select class="select" id="bvAno" onchange="state.filtroRota.boasVindasAno=this.value;state.filtroRota.boasVindasMeta=document.getElementById('bvMeta').value;render()">
+          ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${a===anoEscolhido?"selected":""}>${escapeHtml(a)}</option>`).join("")}
+        </select>
+      </div>
+
+      <div class="field"><label class="label">2. Qual é o seu grupo do rodízio?</label>
+        ${comCalendario ? `<select class="select" id="bvGrupo">
+          <option value="">Ainda não sei — escolho depois</option>
+          ${opcoesRodizioPorLetra(anoEscolhido).map(o=>`<option value="${o.deslocamento}">Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}
+        </select>
+        <div class="hint mt-1">É a letra do calendário impresso da faculdade. Ela decide qual bloco é o seu agora — e, portanto, a matéria da sua sessão do dia.</div>`
+        : `<div class="hint">Quem já se formou não segue calendário de faculdade. Se quiser acompanhar uma turma, entre nela depois em Meu Grupo.</div>`}
+      </div>
+
+      <div class="field"><label class="label">3. Quantas questões você quer fazer por dia?</label>
+        <input class="input" type="number" id="bvMeta" value="${meta}" min="1" max="300" style="max-width:140px">
+        <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+          <button class="pill" onclick="document.getElementById('bvMeta').value=${minima}">dia corrido (${minima})</button>
+          <button class="pill" onclick="document.getElementById('bvMeta').value=${ideal}">recomendada (${ideal})</button>
+          <button class="pill" onclick="document.getElementById('bvMeta').value=${ideal*2}">reta final (${ideal*2})</button>
+        </div>
+        <div class="hint mt-1">Dá para mudar quando quiser, em Estudar. Constância vale mais que volume.</div>
+      </div>
+
+      <button class="btn btn-primary btn-block mt-2" onclick="concluirBoasVindas(false)">Começar a estudar</button>
+    </div>
+  </div>`;
+}
+function concluirBoasVindas(pulou){
+  const u = usuarioAtual(); if(!u) return;
+  if(!pulou){
+    const ano = (document.getElementById("bvAno")||{}).value;
+    const grupo = (document.getElementById("bvGrupo")||{}).value;
+    const meta = parseInt((document.getElementById("bvMeta")||{}).value);
+    if(!meta || meta < 1){ toast("Informe quantas questões por dia (pelo menos 1).", "err"); return; }
+    if(ano) u.anoFaculdade = ano;
+    u.metaQuestoesDia = meta;
+    if(grupo !== "" && grupo !== undefined && temCalendarioProprio(u.anoFaculdade)){
+      const turma = turmaDoRodizio(u.anoFaculdade, grupo);
+      if(turma) entrarNoGrupo(u, turma.id);
+    }
+  }
+  u.boasVindasEm = hojeISO();
+  delete state.filtroRota.boasVindasAno; delete state.filtroRota.boasVindasMeta;
+  saveState();
+  if(!pulou){
+    const g = getGrupoDoUsuario(u);
+    toast(g.oficial
+      ? "Tudo pronto! Meta de "+u.metaQuestoesDia+" questões por dia. Quando souber o seu grupo, escolha em Meu Grupo."
+      : "Tudo pronto: "+g.nome+", meta de "+u.metaQuestoesDia+" questões por dia. Bons estudos!");
+  }
+  navigate("inicio");
 }
 
 function renderLogin(){
@@ -5762,24 +6038,34 @@ function renderInicioResidente(u){
     <div class="card"><div class="card-title">Enviar provas e questões</div><p class="text-sm muted">Cole uma prova inteira (com instituição e ano definidos uma vez só) ou questões avulsas para o banco.</p><button class="btn btn-secondary mt-2" onclick="navigate('importar-questoes')">Enviar questões</button></div>
   </div>`;
 }
+/* Painel da equipe. Os números eram quatro caixas grandes, uma por linha
+   no celular; viraram fichas pequenas lado a lado, que cabem numa linha só
+   e levam à tela correspondente. As ações ficam numa fileira de botões. */
 function renderInicioStaff(u){
   const pendCadastros = db.usuarios.filter(x=>x.status==="pendente").length;
   const dificeis = questoesDificeis().length;
-  const totalAtivas = questoesAtivas().length;
+  const ativas = questoesAtivas(true);
   const totalAlunos = db.usuarios.filter(x=>x.papel==="aluno" && x.status==="aprovado").length;
+  const duvidas = db.comentarios.filter(c=>!c.respostaOficial).length;
+  const aRevisar = ativas.filter(q=>!formatacaoAprovadaDe(q.id)).length;
+  const ficha = (valor, rotulo, rota) => rota
+    ? `<button class="stat-mini" onclick="navigate('${rota}')"><span class="stat-value">${valor}</span><span class="stat-label">${rotulo}</span></button>`
+    : `<div class="stat-mini"><span class="stat-value">${valor}</span><span class="stat-label">${rotulo}</span></div>`;
+  const temRota = r => navItemsParaPapel(u.papel).some(i=>i.id===r);
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${rotuloPapel(u.papel)}</p></div>
   ${renderNotificacoesCard(u)}
-  <div class="grid grid-4">
-    <div class="stat-tile"><div class="stat-value">${totalAtivas}</div><div class="stat-label">questões ativas (${db.questoes.length} no total)</div></div>
-    <div class="stat-tile"><div class="stat-value">${totalAlunos}</div><div class="stat-label">alunos aprovados</div></div>
-    <div class="stat-tile"><div class="stat-value">${dificeis}</div><div class="stat-label">questões na fila de "difíceis"</div></div>
-    <div class="stat-tile"><div class="stat-value">${db.comentarios.filter(c=>!c.respostaOficial).length}</div><div class="stat-label">dúvida(s) registradas por alunos</div></div>
+  <div class="stat-mini-row">
+    ${ficha(ativas.length, "questões ativas", temRota("banco-questoes") ? "banco-questoes" : null)}
+    ${ficha(totalAlunos, "alunos aprovados", temRota("usuarios") ? "usuarios" : null)}
+    ${ficha(dificeis, "na fila de difíceis", "revisao-dificeis")}
+    ${ficha(duvidas, "dúvidas de alunos", temRota("fila-duvidas") ? "fila-duvidas" : null)}
+    ${ficha(aRevisar, "formatação a revisar", "revisao-formatacao")}
+    ${u.papel==="admin" && temRota("aprovar-cadastros") ? ficha(pendCadastros, pendCadastros===1?"cadastro pendente":"cadastros pendentes", "aprovar-cadastros") : ""}
   </div>
-  ${u.papel==="admin" ? `<div class="card mt-2" style="${pendCadastros?"border-color:var(--amber)":""}"><div class="flex justify-between items-center"><div><div class="card-title">Cadastros pendentes</div><div class="text-sm muted">${pendCadastros} solicitação(ões) aguardando aprovação.</div></div><button class="btn btn-primary" onclick="navigate('aprovar-cadastros')">Revisar</button></div></div>` : ""}
-  <div class="grid grid-2 mt-2">
-    <div class="card"><div class="card-title">Criar simulado</div><p class="text-sm muted">Monte uma prova e recomende para um bloco (atual ou futuro).</p><button class="btn btn-secondary mt-2" onclick="navigate('criar-simulado')">Criar</button></div>
-    <div class="card"><div class="card-title">Importar questões</div><p class="text-sm muted">Cole questões formatadas por uma IA para adicionar ao banco.</p><button class="btn btn-secondary mt-2" onclick="navigate('importar-questoes')">Importar</button></div>
+  <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <button class="btn btn-secondary btn-sm" onclick="navigate('criar-simulado')">${iconeSvg("plus")} Criar simulado</button>
+    <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Importar questões</button>
   </div>`;
 }
 
@@ -5858,7 +6144,7 @@ function renderEstudar(){
   <div class="card mt-2">
     <div class="card-title">Monte sua própria lista</div>
     <p class="text-sm muted mb-2">Filtre por grande área, especialidade, assunto, instituição, ano ou situação (erros, favoritas, ainda não respondidas). Deixar um filtro em branco significa "todos".</p>
-    <div class="grid grid-3">
+    <div class="grid grid-3" onchange="atualizarContagemFiltro()">
       <div>
         <div class="flex justify-between items-center mb-1">
           <div class="label">Grandes áreas</div>
@@ -5909,18 +6195,50 @@ function renderEstudar(){
       <button class="btn btn-primary" onclick="gerarListaPersonalizada()">Gerar lista</button>
       <button class="btn btn-secondary" onclick="gerarListaPersonalizada(true)">Fazer como simulado</button>
     </div>
+    <div class="text-sm mt-2" id="contagemFiltro" aria-live="polite">${textoContagemFiltro(buscarQuestoesPorFiltro(u.id, {}).length)}</div>
   </div>`;
+}
+/* Os filtros da lista personalizada, lidos da tela. Uma função só, para a
+   contagem ao vivo e o "Gerar lista" nunca discordarem do que está marcado. */
+function lerFiltrosPersonalizados(){
+  const u = usuarioAtual();
+  const valor = id => { const el = document.getElementById(id); return el ? el.value : ""; };
+  const marcado = id => { const el = document.getElementById(id); return !!(el && el.checked); };
+  const escolhidos = id => { const el = document.getElementById(id); return el ? [...(el.selectedOptions||[])].map(o=>o.value) : []; };
+  const banca = valor("filtroBanca");
+  return {
+    areaIds: [...document.querySelectorAll(".filtroArea:checked")].map(el=>el.value),
+    anos: [...document.querySelectorAll(".filtroAno:checked")].map(el=>parseInt(el.value)),
+    especialidadeIds: escolhidos("filtroEspecialidade"),
+    assuntoIds: escolhidos("filtroAssunto"),
+    bancas: banca ? [banca] : [],
+    apenasErros: marcado("filtroApenasErros"),
+    apenasFavoritas: marcado("filtroApenasFavoritas"),
+    apenasNaoRespondidas: marcado("filtroApenasNaoRespondidas"),
+    incluirGrupoId: marcado("filtroIncluirGrupo") ? getGrupoDoUsuario(u).id : undefined,
+  };
+}
+function textoContagemFiltro(n){
+  return n
+    ? `${iconeSvg("database")} <strong>${n.toLocaleString("pt-BR")}</strong> ${n===1?"questão":"questões"} no banco com esses filtros.`
+    : `${iconeSvg("alert")} <strong>Nenhuma questão</strong> no banco com esses filtros — tire algum para ampliar.`;
+}
+// quantas questões os filtros marcados agora dão, antes de gerar a lista
+function atualizarContagemFiltro(){
+  const alvo = document.getElementById("contagemFiltro"); if(!alvo) return;
+  alvo.innerHTML = textoContagemFiltro(buscarQuestoesPorFiltro(usuarioAtual().id, lerFiltrosPersonalizados()).length);
 }
 function marcarTodasAreas(marcar){
   document.querySelectorAll(".filtroArea").forEach(el=>{ el.checked = !!marcar; });
   atualizarEspecialidadesFiltro();
 }
-function marcarTodosAnos(marcar){ document.querySelectorAll(".filtroAno").forEach(el=>{ el.checked = !!marcar; }); }
+function marcarTodosAnos(marcar){ document.querySelectorAll(".filtroAno").forEach(el=>{ el.checked = !!marcar; }); atualizarContagemFiltro(); }
 function marcarUltimos5Anos(){
   const caixas = [...document.querySelectorAll(".filtroAno")];
   const anos = caixas.map(el=>parseInt(el.value)).sort((a,b)=>b-a);
   const ultimos = anos.slice(0,5);
   caixas.forEach(el=>{ el.checked = ultimos.includes(parseInt(el.value)); });
+  atualizarContagemFiltro();
   toast(ultimos.length ? "Selecionados os últimos 5 anos disponíveis: "+ultimos.join(", ") : "Nenhum ano disponível.");
 }
 // quando o usuário marca grandes áreas, a lista de especialidades passa a
@@ -5944,21 +6262,12 @@ function atualizarAssuntosFiltro(){
     assuntos = assuntos.filter(a=>espDasAreas.includes(a.especialidadeId));
   }
   sel.innerHTML = assuntos.map(a=>`<option value="${a.id}">${escapeHtml(a.nome)}</option>`).join("");
+  atualizarContagemFiltro();   // trocar as opções desmarca os assuntos
 }
 function gerarListaPersonalizada(comoSimulado){
   const u = usuarioAtual();
-  const areaIds = [...document.querySelectorAll(".filtroArea:checked")].map(el=>el.value);
-  const anos = [...document.querySelectorAll(".filtroAno:checked")].map(el=>parseInt(el.value));
-  const especialidadeIds = [...(document.getElementById("filtroEspecialidade").selectedOptions||[])].map(o=>o.value);
-  const assuntoIds = [...(document.getElementById("filtroAssunto").selectedOptions||[])].map(o=>o.value);
-  const banca = document.getElementById("filtroBanca").value;
-  const apenasErros = document.getElementById("filtroApenasErros").checked;
-  const apenasFavoritas = document.getElementById("filtroApenasFavoritas").checked;
-  const apenasNaoRespondidas = document.getElementById("filtroApenasNaoRespondidas").checked;
-  const campoGrupo = document.getElementById("filtroIncluirGrupo");
-  const incluirGrupoId = (campoGrupo && campoGrupo.checked) ? getGrupoDoUsuario(u).id : undefined;
   const tamanho = parseInt(document.getElementById("filtroTamanho").value)||15;
-  const pool = buscarQuestoesPorFiltro(u.id, {areaIds, especialidadeIds, assuntoIds, anos, bancas: banca?[banca]:[], apenasErros, apenasFavoritas, apenasNaoRespondidas, incluirGrupoId});
+  const pool = buscarQuestoesPorFiltro(u.id, lerFiltrosPersonalizados());
   if(!pool.length){ toast("Nenhuma questão encontrada com esses filtros.", "err"); return; }
   const escolhidas = embaralhar(pool).slice(0,tamanho);
   if(comoSimulado===true){
@@ -8211,9 +8520,11 @@ function salvarRegistroLivroOuro(id){
   };
   if(!dados.nome){ toast("Informe ao menos o nome de quem está sendo agradecido.", "err"); return; }
   if(!db.livroOuro) db.livroOuro = [];
+  let idSalvo = id;
   if(id){ Object.assign(db.livroOuro.find(x=>x.id===id), dados); }
-  else { db.livroOuro.push({id:uid("lo"), ...dados, registradoPor:usuarioAtual().id}); }
-  saveState(); fecharModal(); toast("Registro salvo no Livro de Ouro."); render();
+  else { idSalvo = uid("lo"); db.livroOuro.push({id:idSalvo, ...dados, registradoPor:usuarioAtual().id}); }
+  nuvemMarcarGlobalPendente("livro_ouro", idSalvo);
+  saveState(); fecharModal(); toast("Registro salvo no Livro de Ouro."+(nuvemConectado()?" Subindo para a nuvem.":"")); render();
 }
 function removerRegistroLivroOuro(id){
   if(!podeAdmin("livro-ouro")){ toast("Seu nível de acesso não permite editar o Livro de Ouro.", "err"); return; }
@@ -8223,7 +8534,18 @@ function removerRegistroLivroOuro(id){
 }
 function removerRegistroLivroOuroConfirmado(id){
   db.livroOuro = (db.livroOuro||[]).filter(x=>x.id!==id);
+  nuvemMarcarGlobalPendente("livro_ouro", id);   // a remoção também sobe
   saveState(); fecharModal(); toast("Registro removido."); render();
+}
+/* Registros feitos antes de o Livro de Ouro subir para a nuvem ficaram só
+   no navegador de quem os fez: este botão manda todos de uma vez. */
+function enviarLivroOuroParaNuvem(){
+  if(!podeAdmin("livro-ouro")) return;
+  if(!nuvemConectado()){ toast("Entre na sua conta da nuvem para enviar.", "err"); return; }
+  (db.livroOuro||[]).forEach(r => nuvemMarcarGlobalPendente("livro_ouro", r.id));
+  saveState();
+  nuvemSincronizarAgora({forcarRedesenho:true});
+  toast((db.livroOuro||[]).length + " registro(s) do Livro de Ouro a caminho da nuvem.");
 }
 
 /* ==========================================================================
@@ -8650,11 +8972,17 @@ function renderMeuGrupo(){
   ${semTurma ? `<div class="card mb-2" style="border-color:var(--accent)">
     <div class="card-title">${iconeSvg("users")} Escolha a sua turma</div>
     <p class="text-sm">Você ainda está no <strong>calendário oficial da coordenação</strong>. Ele funciona, mas segue o Grupo A: se a sua turma é outra, o bloco atual aparece trocado. Escolha abaixo a turma em que você está — ou crie a sua, se ela ainda não existir aqui.</p>
+    ${temCalendarioProprio(u.anoFaculdade) ? `<div class="flex gap-1 items-end mt-2" style="flex-wrap:wrap">
+      <div class="field" style="margin-bottom:0;min-width:240px"><label class="label">O jeito rápido: qual é o seu grupo?</label>
+        <select class="select" id="rodizioRapido">${opcoesRodizioPorLetra(u.anoFaculdade).map(o=>`<option value="${o.deslocamento}">Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}</select>
+      </div>
+      <button class="btn btn-primary" onclick="entrarNaTurmaDoRodizio(document.getElementById('rodizioRapido').value)">Entrar no meu grupo</button>
+    </div>` : ""}
     <p class="text-xs muted mt-1">Dá para trocar depois quantas vezes precisar. Você fica em uma turma de cada vez.</p>
   </div>` : ""}
 
   <div class="card mb-2">
-    <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-muted">Calendário oficial — nenhuma turma escolhida</span>' : `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoDaMinhaTurma, meuGrupo.deslocamento))}</span>` + (souDono ? '<span class="badge badge-muted">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>')}</div>
+    <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-muted">Calendário oficial — nenhuma turma escolhida</span>' : `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoDaMinhaTurma, meuGrupo.deslocamento))}</span>` + (meuGrupo.doRodizio ? '<span class="badge badge-muted">Turma do rodízio, aberta</span>' : souDono ? '<span class="badge badge-muted">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>')}</div>
     <div style="font-weight:700;font-size:1.1rem">${escapeHtml(meuGrupo.nome)}</div>
     <div class="text-sm muted mt-1">${blocosDoGrupo(meuGrupo, u).length} bloco(s) na sequência de ${escapeHtml(anoDeReferencia(anoDaMinhaTurma))}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
     ${formado ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>, e quem já se formou não tem calendário de faculdade próprio. Participando de um grupo, você acompanha o calendário do ano daquela turma; fora dele, a plataforma usa a sequência de ${escapeHtml(CONFIG.anoFaculdadePadrao)} como referência.</div>` : ""}
@@ -8701,7 +9029,7 @@ function renderMeuGrupo(){
   <div class="card">
     <div class="card-title">Entrar em uma turma já existente</div>
     ${outrosGrupos.length ? outrosGrupos.map(g=>{
-      const souMembro = g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
+      const souMembro = g.doRodizio || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
       const jaSolicitei = (g.solicitacoesPendentes||[]).includes(u.id);
       const anoG = anoDoGrupo(g, u);
       const atualG = blocoAtualDoGrupo(g, u);
@@ -8709,7 +9037,7 @@ function renderMeuGrupo(){
       <div class="flex justify-between items-center mb-1 card-flat" style="gap:.5rem;flex-wrap:wrap">
         <div>
           <div style="font-weight:600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloRodizio(anoG, g.deslocamento))}</span></div>
-          <div class="text-xs muted">${escapeHtml(anoG)} · hoje em ${escapeHtml(atualG?atualG.nome:"—")} · criada por ${escapeHtml(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"—")}</div>
+          <div class="text-xs muted">${escapeHtml(anoG)} · hoje em ${escapeHtml(atualG?atualG.nome:"—")} · ${g.doRodizio ? "turma do rodízio, aberta a todos" : "criada por "+escapeHtml(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"—")}</div>
         </div>
         ${souMembro ? `<button class="btn btn-secondary btn-sm" onclick="usarGrupo('${g.id}')">Entrar nesta turma</button>` :
           jaSolicitei ? `<button class="btn btn-secondary btn-sm" disabled>Solicitação enviada</button>` :
@@ -8742,12 +9070,22 @@ function criarMeuGrupo(){
 function usarGrupo(grupoId){
   const g = getGrupo(grupoId); if(!g) return;
   const u = usuarioAtual();
-  if(!g.oficial && g.criadoPor!==u.id && !(g.membrosAprovados||[]).includes(u.id)){
+  if(!g.oficial && !g.doRodizio && g.criadoPor!==u.id && !(g.membrosAprovados||[]).includes(u.id)){
     toast("Você ainda não faz parte desta turma — peça para entrar.", "err"); return;
   }
   entrarNoGrupo(u, grupoId);
   saveState();
   toast('Agora você está em "'+g.nome+'" ('+nomeRodizio(anoDoGrupo(g,u), g.deslocamento)+').');
+  render();
+}
+function entrarNaTurmaDoRodizio(deslocamento){
+  const u = usuarioAtual();
+  const ano = temCalendarioProprio(u.anoFaculdade) ? u.anoFaculdade : CONFIG.anoFaculdadePadrao;
+  const turma = turmaDoRodizio(ano, deslocamento);
+  if(!turma){ toast("Não encontrei esse grupo no calendário de "+ano+".", "err"); return; }
+  entrarNoGrupo(u, turma.id);
+  saveState();
+  toast("Agora você está no " + nomeRodizio(ano, turma.deslocamento) + " de " + ano + ".");
   render();
 }
 /* Sair da turma é voltar ao calendário oficial — nunca ficar sem calendário
@@ -9516,26 +9854,64 @@ function responderDuvida(comentarioId, questaoId){
   toast("Resposta enviada.");
   render();
 }
+/* Revisar Formatação é trabalho dividido entre várias pessoas. Sem marcar
+   o que já foi conferido, cada revisor relia do começo as mesmas questões.
+   "Aprovar formatação" tira a questão da fila de TODOS os revisores (sobe
+   para a nuvem, tabela formatacao_aprovada); ela continua no banco, igual,
+   e volta para a fila com "Devolver à fila". Aprovar não é aprovar o
+   conteúdo clínico — é só "a forma está boa, não precisa reler". */
+function formatacaoAprovadaDe(qid){ return (db.formatacaoAprovada||{})[qid] || null; }
 function renderRevisaoFormatacao(){
-  const termo = (state.filtroRota.buscaFormatacao||"").toLowerCase();
-  let lista = questoesAtivas(true);
+  const f = state.filtroRota;
+  const termo = (f.buscaFormatacao||"").toLowerCase();
+  const verAprovadas = !!f.formatacaoVerAprovadas;
+  const todas = questoesAtivas(true);
+  const nAprovadas = todas.filter(q=>formatacaoAprovadaDe(q.id)).length;
+  let lista = todas.filter(q=>verAprovadas ? !!formatacaoAprovadaDe(q.id) : !formatacaoAprovadaDe(q.id));
   if(termo) lista = lista.filter(q=>q.enunciado.toLowerCase().includes(termo));
   lista = lista.slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
-  const pagFormatacao = paginar(lista, "formatacao", {porPagina:15, assinatura:termo});
+  const pagFormatacao = paginar(lista, "formatacao", {porPagina:15, assinatura:termo+"|"+verAprovadas+"|"+lista.length});
   return `
-  <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico.</p></div>
+  <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico. Quando a questão estiver boa, <strong>"Aprovar formatação"</strong> a tira da fila de todos os revisores, para ninguém reler o que já foi conferido.</p></div>
+  <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+    <button class="pill ${!verAprovadas?"active":""}" onclick="verFormatacaoAprovadas(false)">A revisar (${todas.length - nAprovadas})</button>
+    <button class="pill ${verAprovadas?"active":""}" onclick="verFormatacaoAprovadas(true)">${iconeSvg("check")} Já aprovadas (${nAprovadas})</button>
+  </div>
   <div class="flex gap-1 mb-2">
-    <input class="input" id="buscaFormatacaoInput" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(state.filtroRota.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
+    <input class="input" id="buscaFormatacaoInput" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(f.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
     <button class="btn btn-secondary btn-sm" onclick="buscarFormatacao()">Buscar</button>
   </div>
-  ${pagFormatacao.itens.map(q=>`
+  ${nuvemLigada() && !nuvemConectado() ? `<p class="text-xs muted mb-2">Você está numa conta só deste navegador: a aprovação vale aqui, mas não chega aos outros revisores. Entre com a conta da nuvem para dividir a fila.</p>` : ""}
+  ${pagFormatacao.itens.map(q=>{
+    const ap = formatacaoAprovadaDe(q.id);
+    return `
     <div class="card mb-2">
-      <div class="qcard-meta mb-1"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>${badgeStatusQuestao(q.status)}</div>
+      <div class="qcard-meta mb-1"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>${badgeStatusQuestao(q.status)}${ap ? `<span class="badge badge-accent">formatação aprovada${ap.porNome?" por "+escapeHtml(ap.porNome):""} em ${formatDataBR(ap.em)}</span>` : ""}</div>
       <div class="text-sm" style="white-space:pre-line">${escapeHtml(q.enunciado)}</div>
       <div class="mt-2">${q.alternativas.map(a=>`<div class="text-sm">${escapeHtml(a.id)}) ${escapeHtml(a.texto)}${a.id===q.gabarito?" ✓":""}</div>`).join("")}</div>
-      <button class="btn btn-secondary btn-sm mt-2" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar</button>
-    </div>`).join("") || '<div class="empty-state">Nenhuma questão encontrada.</div>'}
+      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+        ${ap
+          ? `<button class="btn btn-ghost btn-sm" onclick="alternarFormatacaoAprovada('${q.id}')">${iconeSvg("refresh")} Devolver à fila</button>`
+          : `<button class="btn btn-primary btn-sm" onclick="alternarFormatacaoAprovada('${q.id}')">${iconeSvg("check")} Aprovar formatação</button>`}
+        <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar</button>
+      </div>
+    </div>`;
+  }).join("") || `<div class="empty-state">${verAprovadas ? "Nenhuma questão aprovada ainda." : (termo ? "Nenhuma questão encontrada." : "Nenhuma questão esperando revisão — todas já foram aprovadas.")}</div>`}
   ${controlesPaginacao(pagFormatacao, "questão(ões), da mais recente para a mais antiga")}`;
+}
+function verFormatacaoAprovadas(sim){ state.filtroRota.formatacaoVerAprovadas = !!sim; render(); }
+function alternarFormatacaoAprovada(qid){
+  if(!db.formatacaoAprovada) db.formatacaoAprovada = {};
+  const u = usuarioAtual();
+  const aprovou = !db.formatacaoAprovada[qid];
+  if(aprovou) db.formatacaoAprovada[qid] = { porNome: (u && u.nome) || "", em: hojeISO() };
+  else delete db.formatacaoAprovada[qid];
+  nuvemMarcarGlobalPendente("formatacao_aprovada", qid);
+  saveState();
+  toast(aprovou
+    ? "Formatação aprovada: a questão saiu da fila"+(nuvemConectado()?" de todos os revisores.":" (neste navegador).")
+    : "A questão voltou para a fila de revisão.");
+  render();
 }
 function buscarFormatacao(){ state.filtroRota.buscaFormatacao = document.getElementById("buscaFormatacaoInput").value; render(); }
 /* ==========================================================================
@@ -11866,7 +12242,9 @@ function renderConfigGeral(){
     <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="navigate('livro-ouro')">Abrir o Livro de Ouro</button>
       ${podeAdmin("livro-ouro") ? `<button class="btn btn-primary btn-sm" onclick="abrirFormularioLivroOuro(null)">${iconeSvg("plus")} Registrar agradecimento</button>` : ""}
+      ${podeAdmin("livro-ouro") && nuvemConectado() ? `<button class="btn btn-ghost btn-sm" onclick="enviarLivroOuroParaNuvem()">${iconeSvg("upload")} Enviar todos para a nuvem</button>` : ""}
     </div>
+    ${nuvemLigada() ? `<p class="text-xs muted mt-1">Com a nuvem ligada, cada registro salvo ou removido sobe sozinho e aparece para toda a turma. "Enviar todos" serve para os registros feitos antes disso, que ficaram só neste navegador.</p>` : ""}
   </div>
 
   ${renderCardArquivosConteudo()}

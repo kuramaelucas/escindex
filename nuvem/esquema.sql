@@ -57,6 +57,23 @@ as $$
   );
 $$;
 
+-- "Revisa conteúdo?" — a equipe mais os residentes, que também entram em
+-- Revisar Formatação. Mesma construção de e_equipe().
+create or replace function public.e_revisor()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select exists (
+    select 1 from public.perfis p
+    where p.id = auth.uid()
+      and p.papel in ('professor', 'admin', 'residente')
+      and p.status = 'aprovado'
+  );
+$$;
+
 -- ---------------------------------------------------------------------------
 -- 1. PERFIS — o cadastro de cada pessoa
 -- ---------------------------------------------------------------------------
@@ -85,6 +102,10 @@ create table if not exists public.perfis (
   atualizado_em         timestamptz not null default now()
 );
 create index if not exists perfis_status_idx on public.perfis (status, criado_em);
+-- quando a pessoa passou pela tela de primeiro acesso (boas-vindas, grupo e
+-- meta) — para a tela não reaparecer em outro aparelho. Para quem já rodou
+-- este arquivo antes desta coluna existir:
+alter table public.perfis add column if not exists boas_vindas_em date;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)
@@ -308,6 +329,40 @@ create table if not exists public.calendario (
 create index if not exists calendario_sync_idx on public.calendario (atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 11-B. LIVRO_OURO — os agradecimentos (GLOBAL, como o calendário)
+-- ---------------------------------------------------------------------------
+-- Um registro por agradecimento, o mesmo para todo mundo. Todo mundo que
+-- está numa conta lê; só professor/administrador grava. O registro inteiro
+-- vai em `dados` (nome, tipo, valor, descrição, mensagem, data, destaque),
+-- para um campo novo no formulário não exigir coluna nova aqui. Remover
+-- marca `removido`, para a remoção também chegar aos outros aparelhos.
+create table if not exists public.livro_ouro (
+  id             text        primary key,
+  dados          jsonb       not null default '{}'::jsonb,
+  removido       boolean     not null default false,
+  atualizado_por uuid        references auth.users(id) on delete set null,
+  atualizado_em  timestamptz not null default now()
+);
+create index if not exists livro_ouro_sync_idx on public.livro_ouro (atualizado_em);
+
+-- ---------------------------------------------------------------------------
+-- 11-C. FORMATACAO_APROVADA — questões já conferidas em Revisar Formatação
+-- ---------------------------------------------------------------------------
+-- Quem revisa a formatação aprova a questão, e ela sai da fila de revisão
+-- de TODOS os revisores — é para isso que existe: duas pessoas não gastarem
+-- tempo relendo a mesma questão. Uma linha por questão; `aprovada = false`
+-- devolve a questão à fila. Todo mundo que está numa conta lê; grava quem
+-- revisa (professor, administrador e residente — ver e_revisor()).
+create table if not exists public.formatacao_aprovada (
+  questao_id     text        primary key,
+  aprovada       boolean     not null default true,
+  por_nome       text        not null default '',
+  atualizado_por uuid        references auth.users(id) on delete set null,
+  atualizado_em  timestamptz not null default now()
+);
+create index if not exists formatacao_aprovada_sync_idx on public.formatacao_aprovada (atualizado_em);
+
+-- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
 do $$
@@ -316,7 +371,7 @@ begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
-    'sessao_em_andamento', 'calendario'
+    'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -421,6 +476,8 @@ alter table public.sessoes              enable row level security;
 alter table public.resultados_simulados enable row level security;
 alter table public.sessao_em_andamento  enable row level security;
 alter table public.calendario           enable row level security;
+alter table public.livro_ouro           enable row level security;
+alter table public.formatacao_aprovada  enable row level security;
 
 -- PERFIS: a pessoa vê e edita o próprio; professor e administrador veem e
 -- editam qualquer um (é assim que a tela Aprovar Cadastros funciona sem
@@ -478,6 +535,30 @@ create policy calendario_alterar on public.calendario
   using (public.e_equipe())
   with check (public.e_equipe());
 
+-- LIVRO_OURO: mesma regra do calendário — todos leem, a equipe grava.
+drop policy if exists livro_ouro_ler     on public.livro_ouro;
+drop policy if exists livro_ouro_criar   on public.livro_ouro;
+drop policy if exists livro_ouro_alterar on public.livro_ouro;
+create policy livro_ouro_ler on public.livro_ouro
+  for select to authenticated using (true);
+create policy livro_ouro_criar on public.livro_ouro
+  for insert to authenticated with check (public.e_equipe());
+create policy livro_ouro_alterar on public.livro_ouro
+  for update to authenticated
+  using (public.e_equipe()) with check (public.e_equipe());
+
+-- FORMATACAO_APROVADA: todos leem; grava quem revisa formatação.
+drop policy if exists formatacao_aprovada_ler     on public.formatacao_aprovada;
+drop policy if exists formatacao_aprovada_criar   on public.formatacao_aprovada;
+drop policy if exists formatacao_aprovada_alterar on public.formatacao_aprovada;
+create policy formatacao_aprovada_ler on public.formatacao_aprovada
+  for select to authenticated using (true);
+create policy formatacao_aprovada_criar on public.formatacao_aprovada
+  for insert to authenticated with check (public.e_revisor());
+create policy formatacao_aprovada_alterar on public.formatacao_aprovada
+  for update to authenticated
+  using (public.e_revisor()) with check (public.e_revisor());
+
 -- AS DEMAIS TABELAS: são o estudo de uma pessoa só. Ler, criar e alterar
 -- apenas as próprias linhas. Ninguém apaga nada (o app marca "removido" em
 -- vez de apagar, para a remoção também conseguir viajar entre aparelhos).
@@ -527,7 +608,8 @@ begin
   foreach t in array array[
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
-    'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario'
+    'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
+    'livro_ouro', 'formatacao_aprovada'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;
