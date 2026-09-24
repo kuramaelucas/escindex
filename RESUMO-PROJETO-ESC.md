@@ -1,11 +1,15 @@
 # Esc — plataforma de estudos para residência médica
 ## Resumo do projeto (setembro de 2026)
 
-Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o `index.html` (o código) e, se a conversa for sobre conteúdo, com o arquivo da pasta `dados/` que interessa.
+Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o arquivo da pasta `codigo/` que tem a tela ou a regra em questão (cada um diz o que tem dentro; ver seção 7) e, se a conversa for sobre conteúdo, com o arquivo da pasta `dados/` que interessa.
 
-> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, PDF, controle de qualidade, upload de provas em lotes) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) —, taxonomia de **216 assuntos** em **39 especialidades**, **conta de verdade e sincronização entre aparelhos pela nuvem** (Supabase, seção 4-B) e o conteúdo separado do código, na pasta `dados/`. O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
+> **Estado atual, em uma frase:** plataforma completa (estudo, revisão espaçada, flashcards, simulados, desempenho, "o que mais cai" e nota estimada, PDF, controle de qualidade, upload de provas em lotes, Painel da Turma) com **635 questões** — das quais **500 reais da UNIFESP-EPM** (2022 a 2026, com explicação autoral) —, **877 cartões** cobrindo os **216 assuntos** em **39 especialidades**, **conta de verdade e sincronização entre aparelhos pela nuvem** (Supabase, seção 4-B), **aplicativo instalável que abre sem internet**, código em `codigo/`, conteúdo em `dados/` e **testes automáticos** a cada envio (`testes/`). O histórico de como se chegou até aqui está na seção 12; o que falta fazer está na seção 10.
 
-> **Pendência aberta (24/09/2026):** rodar de novo o `nuvem/esquema.sql` no painel do Supabase. Sete novidades dependem dele — a anotação pessoal da questão salva (`favoritos.nota`), a contagem de flashcards por dia (`dias_cartoes.quantidade`), os flashcards favoritados (tabela `favoritos_cartoes`), as questões escondidas (tabela `questoes_ocultas`), o **Livro de Ouro** (tabela `livro_ouro`), a **formatação aprovada** (tabela `formatacao_aprovada`) e o **primeiro acesso** (`perfis.boas_vindas_em`) —, e o arquivo já traz as linhas que acrescentam cada uma sem mexer no que existe. Enquanto não for rodado, a plataforma funciona e não perde nada: ela pula o que falta, sincroniza todo o resto e avisa em *Perfil* o que está faltando (seção 4-B).
+> **Pendências abertas (24/09/2026) — três coisas só a coordenação pode fazer, no painel do Supabase e no GitHub** (a rede de onde o código é escrito não alcança o Supabase):
+>
+> 1. **Rodar de novo o `nuvem/esquema.sql`** (SQL Editor > colar tudo > Run). Dez novidades dependem dele — a anotação da questão salva (`favoritos.nota`), a contagem de flashcards por dia (`dias_cartoes.quantidade`), os flashcards favoritados (`favoritos_cartoes`), as questões escondidas (`questoes_ocultas`), o Livro de Ouro (`livro_ouro`), a formatação aprovada (`formatacao_aprovada`), o primeiro acesso (`perfis.boas_vindas_em`) e, desta rodada, os **comentários e dúvidas** (`comentarios`), o **percentil da turma** (`notas_do_simulado()`) e o **Painel da Turma** (`painel_turma()`, `atividade_por_semana()`). O arquivo acrescenta cada uma sem mexer no que existe, e agora roda também num projeto novo. Enquanto não for rodado, a plataforma funciona e não perde nada: pula o que falta, sincroniza o resto e avisa em *Perfil*.
+> 2. **Authentication > URL Configuration**: pôr o endereço do site em *Site URL* e em *Redirect URLs* (com `**` no fim). É o que faz o link de confirmação de e-mail e o de "esqueci a senha" voltarem para o Esc (seção 4-B; passo a passo em `nuvem/LEIA-ME.md`, passo 3).
+> 3. **Backup automático**: cadastrar no GitHub os segredos `SUPABASE_DB_URL` e `BACKUP_SENHA` (`nuvem/LEIA-ME.md`, "Backup automático"). Até lá, o fluxo roda e só avisa que está desligado.
 
 ---
 
@@ -13,16 +17,19 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 
 O Esc é uma plataforma de estudos para prova de residência médica **de arquivo aberto**: sem instalação, sem servidor, sem build. São duas peças que andam juntas:
 
-- **`index.html`** — o CÓDIGO, e só: telas, regras, algoritmos e configuração. ~600 KB, ~9.450 linhas. Nenhuma questão, nenhum cartão, nenhum nome de bloco, nenhuma conta.
-- **pasta `dados/`** — TODO o conteúdo, em onze arquivos (~1,25 MB): taxonomia, calendário, um arquivo por prova, banco didático, flashcards, simulados e os dados de demonstração. Ver `dados/LEIA-ME.md`.
+- **`index.html`** — só a MOLDURA (~12 KB): cabeçalho, ícones, a versão (`ESC_VERSAO`) e a lista `ESC_ARQUIVOS` dos arquivos a carregar, na ordem.
+- **pasta `codigo/`** — o CÓDIGO, e só: telas, regras, algoritmos e configuração, em treze arquivos numerados na ordem das seções de sempre, mais o visual em `estilo.css` (seção 7).
+- **pasta `dados/`** — TODO o conteúdo, em doze arquivos (~1,4 MB): taxonomia, calendário, um arquivo por prova, banco didático, flashcards, simulados e os dados de demonstração, mais `imagens/` para as figuras das provas. Ver `dados/LEIA-ME.md`.
+- **`sw.js`, `manifest.webmanifest` e `icones/`** — o que faz o site virar aplicativo instalável (seção 4, "Aplicativo instalável").
+- **pasta `testes/`** e **`.github/workflows/`** — os testes automáticos e o backup da nuvem. Não fazem falta no ar.
 
-Abrir o `index.html` com dois cliques continua bastando — a única regra é manter a pasta `dados/` ao lado dele (e publicá-la junto, quando o site está no ar). Se ela faltar, a plataforma abre e avisa numa tarja no alto da tela em vez de parecer quebrada.
+Abrir o `index.html` com dois cliques continua bastando — a única regra é manter as pastas `codigo/` e `dados/` ao lado dele (e publicá-las junto, quando o site está no ar). Se `dados/` faltar, a plataforma abre e avisa numa tarja no alto da tela; se `codigo/` faltar, a página diz qual arquivo não chegou em vez de ficar em branco.
 
-A separação foi feita porque, com as 635 questões e os 501 cartões dentro do HTML, eram 1,8 MB e ~17.400 linhas: qualquer leitura — de uma pessoa ou de uma IA — gastava quase todo o fôlego atravessando conteúdo para chegar ao código.
+A separação foi feita porque, com as 635 questões e os 501 cartões dentro do HTML, eram 1,8 MB e ~17.400 linhas: qualquer leitura — de uma pessoa ou de uma IA — gastava quase todo o fôlego atravessando conteúdo para chegar ao código. Pelo mesmo motivo, em 24/09 o próprio código (então ~800 KB e 12.400 linhas num arquivo só) foi dividido em `codigo/`.
 
 - **Dados:** por padrão tudo fica no `localStorage` do navegador, sob a chave `medbloco_db_v1` (o nome antigo foi mantido de propósito, para não apagar os dados de quem já usava quando o app foi renomeado). Com a **nuvem ligada** (seção 4-B), o estudo de cada pessoa também sobe para o Supabase e desce em qualquer aparelho.
 - **Pasta `nuvem/`** — o esquema do banco (`esquema.sql`) e o passo a passo para ligar ou desligar a nuvem (`LEIA-ME.md`). É documentação: não faz falta no ar.
-- **Nome:** "Esc" (era "MedBloco"). O nome fica em `CONFIG.nomePlataforma`.
+- **Nome:** "Esc" (era "MedBloco"). O nome fica em `CONFIG.nomePlataforma` (`codigo/01-config.js`).
 - **Banca de referência:** UNIFESP-EPM (`CONFIG.bancaFoco`), mas o app é agnóstico — filtra por instituição.
 
 ### Contas de demonstração (senha entre parênteses)
@@ -36,7 +43,7 @@ A separação foi feita porque, com as 635 questões e os 501 cartões dentro do
 
 São quatro, uma por papel, e existem só para conferir como cada um enxerga as telas. As contas extras de administrador (coordenação e moderador) e a segunda aluna de exemplo saíram: nível de administrador se testa mudando o nível da conta que existe, em *Admin > Usuários*, e não guardando três contas com senha à vista.
 
-Na tela inicial e na de entrada, o **único** acesso rápido sem senha é o de **aluno** — é a visão que interessa a quem chega para conhecer a plataforma. Professor, residente e coordenação entram por e-mail e senha; pedir o acesso rápido de outro papel pelo console é recusado, porque a checagem está na própria `fazerLoginDemo()`. Qualquer conta troca a própria senha em *Perfil > Mudar a senha*.
+Na tela inicial e na de entrada, o **único** acesso rápido sem senha é o de **aluno** — é a visão que interessa a quem chega para conhecer a plataforma. Professor, residente e coordenação entram por e-mail e senha; pedir o acesso rápido de outro papel pelo console é recusado, porque a checagem está na própria `fazerLoginDemo()`. **Com a nuvem ligada, as contas de demonstração de professor, residente e administrador ficam desligadas** (`CONFIG.contasDemoDaEquipeComNuvem: false`): a senha delas está escrita aqui, e num computador compartilhado abririam as telas de administração daquele navegador. Qualquer conta troca a própria senha em *Perfil > Mudar a senha*.
 
 ---
 
@@ -44,9 +51,10 @@ Na tela inicial e na de entrada, o **único** acesso rápido sem senha é o de *
 
 - **635 questões** no total:
   - **500 questões reais da UNIFESP-EPM** (`real: true`), 100 de cada ano de 2022 a 2026 — enunciado, alternativas e gabarito oficial transcritos integralmente (domínio público), com explicação de cada questão **100% autoral**, escrita com base em diretrizes e fontes primárias, nunca copiada de resolução de cursinho (seção 9). Questões anuladas pela banca entram com `status: "anulada"` e `motivoStatus` preenchido, mas mantêm explicação pedagógica.
-  - **135 questões didáticas** de demonstração/construção de conhecimento (30 de Técnica Operatória, 30 de Cardiologia, 30 de Infectologia, 15 de Oftalmologia, 30 de demonstração original), com instituição **"Esc — Banco Didático"** e selo **Didática** — dá para isolá-las ou excluí-las por qualquer filtro de instituição.
-- **501 flashcards autorais** de semente (`SEED_FLASHCARDS`), cobrindo os 91 assuntos que existiam antes da carga das provas reais. Além deles, a plataforma **gera cartões automaticamente** a partir das questões que cada aluno errou com certeza ou acertou no chute, e **cada aluno escreve os seus** durante a resolução — e pode **sugerir o próprio cartão para o baralho da equipe**, com aprovação de professor/coordenação.
-- Taxonomia atual: **5 grandes áreas, 39 especialidades, 216 assuntos** — ampliada de 91 para 216 assuntos (e de 24 para 39 especialidades) durante a carga das provas reais, para cobrir temas que a UNIFESP realmente cobra e a taxonomia didática original não previa (por exemplo, Psiquiatria inteira, criada do zero — seção 12). Os 125 assuntos novos ainda não têm flashcard de equipe dedicado (ver seção 8 e seção 10).
+  - **135 questões didáticas** de demonstração/construção de conhecimento (30 de Técnica Operatória, 30 de Cardiologia, 30 de Infectologia, 15 de Oftalmologia, 30 de demonstração original), com instituição **"Esc — Banco Didático"** e selo **Didática** — dá para isolá-las ou excluí-las por qualquer filtro de instituição. (As 30 de demonstração original diziam "UNIFESP-EPM" até 24/09 e entravam nas provas reais em Provas Antigas — seção 12.)
+  - Toda questão real traz **`numeroNaProva`** (o número dela na prova original, que aparece no cartão da questão e ordena a prova em Provas Antigas). **13** dependem de uma figura da prova (ECG, tabela 2×2, radiografia...) que ainda não foi anexada: elas mostram um aviso com a descrição do que a prova tinha e apontam para o arquivo que deve ser salvo em `dados/imagens/` (lista em `dados/imagens/LEIA-ME.md`).
+- **877 flashcards autorais** de semente (`SEED_FLASHCARDS`): 501 cobrindo os 91 assuntos que existiam antes da carga das provas reais, e **376** (`dados/flashcards-assuntos-novos.js`, 24/09) cobrindo os 125 assuntos que tinham ficado sem nenhum — três por assunto, com `fonte` e `revisao: "pendente"` até um professor conferir. Além deles, a plataforma **gera cartões automaticamente** a partir das questões que cada aluno errou com certeza ou acertou no chute, e **cada aluno escreve os seus** durante a resolução — e pode **sugerir o próprio cartão para o baralho da equipe**, com aprovação de professor/coordenação.
+- Taxonomia atual: **5 grandes áreas, 39 especialidades, 216 assuntos** — ampliada de 91 para 216 assuntos (e de 24 para 39 especialidades) durante a carga das provas reais, para cobrir temas que a UNIFESP realmente cobra e a taxonomia didática original não previa (por exemplo, Psiquiatria inteira, criada do zero — seção 12). Desde 24/09, todo assunto tem pelo menos três cartões da equipe.
 - Nenhuma questão nem cartão da equipe é cópia de prova real ou de material de terceiros; enunciado/gabarito de prova pública são transcritos por serem domínio público, mas toda explicação é autoral (seção 9).
 
 Com 500 questões reais cobrindo 5 anos de uma banca de referência, a repetição espaçada, a dificuldade progressiva e o percentil de simulado já têm massa real para funcionar bem — o próximo salto de volume seria repetir esse processo para as outras 5 bancas de referência (`CONFIG.instituicoesReferencia`), caso o usuário consiga as provas.
@@ -59,14 +67,14 @@ Com 500 questões reais cobrindo 5 anos de uma banca de referência, a repetiç�
 
 **Residente** — fila de dúvidas, questões difíceis, revisar formatação, enviar provas e questões, Central de Provas, provas antigas.
 
-**Professor** — todo o conteúdo: banco de questões, importar, Central de Provas, controle de qualidade, criar simulado, material em PDF, flashcards da equipe, especialidades e assuntos, revisar formatação.
+**Professor** — todo o conteúdo: banco de questões, importar, Central de Provas, controle de qualidade, criar simulado, material em PDF, flashcards da equipe (inclusive em lote), especialidades e assuntos, revisar formatação — e o **Painel da Turma**.
 
 **Administrador, em três níveis** (`CONFIG.niveisAdmin` + `PERMISSOES_ADMIN`):
 
 | Nível | Pode |
 |---|---|
-| **Máster** | Tudo: papéis, níveis, configurações do algoritmo, calendário, **backup/reset**, livro de ouro, conteúdo |
-| **Coordenação** | Conteúdo, aprovação de cadastros, calendário de blocos, livro de ouro, taxonomia |
+| **Máster** | Tudo: papéis, níveis, configurações do algoritmo, calendário, **backup/reset**, livro de ouro, conteúdo, Painel da Turma |
+| **Coordenação** | Conteúdo, aprovação de cadastros, **Painel da Turma**, calendário de blocos, livro de ouro, taxonomia |
 | **Moderador** | Só conteúdo: banco, importação, qualidade, simulados, taxonomia, material em PDF |
 
 O menu lateral se monta conforme o nível e as rotas restritas mostram tela de "acesso restrito". Não é possível rebaixar o último administrador máster. Qualquer não-aluno pode entrar no "modo aluno" e usar a plataforma como estudante — inclusive criando cartões pessoais.
@@ -86,6 +94,14 @@ O menu lateral se monta conforme o nível e as rotas restritas mostram tela de "
 - **O que foi marcado e riscado fica guardado por questão.** A alternativa escolhida ainda sem confirmar e as alternativas riscadas voltam junto com a questão — ao andar pelo conjunto, ao sair e voltar, e em outro aparelho (a fila em andamento sobe para a nuvem).
 - **No celular, arrastar o cartão para o lado troca de questão.**
 
+### O que mais cai na prova, e a nota de hoje
+As 500 questões reais dizem, assunto por assunto, o que a banca cobra e quanto (`incidenciaNaBanca`, seção 4 do código). Cruzado com o acerto de cada pessoa, isso vira uma **prioridade**: *fatia da prova que o assunto ocupa × quanto a pessoa ainda erra nele* (`prioridadesDeEstudo`). O acerto de assunto com poucas respostas é "puxado" para o acerto geral da pessoa (como se houvesse 4 respostas a mais), para 1 erro em 1 questão não virar "prioridade máxima"; assunto nunca respondido entra com o acerto geral. Onde aparece:
+- **Meu Desempenho > O que mais cai na prova × onde você erra** — os 10 assuntos de maior prioridade, com quantas vezes caíram (e em quantos anos), o acerto da pessoa, uma barra de prioridade, "Praticar" e "Praticar as 5 maiores prioridades".
+- **Estudar** — um cartão com as três maiores e o atalho para praticá-las.
+- **A sessão recomendada** — dentro do bloco atual, os assuntos de maior prioridade tendem a vir primeiro (sorteio ponderado, peso até 4×, `CONFIG.incidencia.pesoNaSessao`; 0 desliga), e a questão diz no motivo "prioridade: cai muito na UNIFESP-EPM". Nada sai do bloco atual — muda só a ordem.
+
+**Se a prova fosse hoje** (Meu Desempenho, a partir de 30 respostas): a nota estimada é a proporção de cada grande área nas provas reais aplicada ao acerto da pessoa naquela área, com uma **faixa** (erro-padrão da conta) que é larga no começo e estreita com o uso — a tela diz isso, em vez de fingir precisão. A tabela ao lado mostra peso de cada área na prova, acerto e pontos de 100.
+
 ### Fim de cada conjunto de questões
 Terminar com questões em branco **pergunta antes** ("você respondeu 12 de 20 e deixou 8 em branco"), com atalho para a primeira em branco — chegar ao resumo sem perceber que oito ficaram para trás é o tipo de coisa que só se descobre depois. Quem quiser fechar assim mesmo fecha: questão em branco não é erro nem acerto, não entra no histórico e não conta em lugar nenhum.
 
@@ -100,6 +116,8 @@ Página de feedback com: taxa de acerto, acerto por nível de confiança, quanta
 - **Não mostrar mais**: a pessoa esconde uma questão (no feedback, nas ações da questão ou na lista de erradas) e ela sai do estudo **dela** — sessão do dia, revisão espaçada, filas de erro, listas por filtro, práticas por assunto e o "refazer os erros" do conjunto. Continua no banco, nas provas antigas, nos favoritos e nas estatísticas. **Questões escondidas**, logo abaixo, traz de volta uma a uma ou todas. Sobe para a nuvem (tabela `questoes_ocultas`).
 
 ### Revisão Rápida (flashcards)
+**Cartões em lote** (para quem gere conteúdo, no fim da tela): "Cobrir os assuntos sem cartão — em lote" lista os assuntos com menos de três cartões da equipe, os que mais caem na prova primeiro; a pessoa marca alguns, copia um prompt pronto (com os cartões que já existem, para não repetir, e as regras de conteúdo), cola a resposta, **confere** (assunto existe? frente e verso? repetido?) e publica. "Exportar para a pasta dados/" baixa um arquivo já no formato de `dados/` — o caminho de volta que faltava. O verso do cartão mostra a `fonte`, e quem gere conteúdo vê o selo "revisão pendente" nos que ainda não foram conferidos.
+
 A tela abre com a **meta diária de cartões** — progresso do dia, quantos faltam e sequência de dias seguidos —, a mesma estrutura da meta de questões, em outra unidade. As duas metas convivem e são independentes: quem prefere estudar por cartão, ou quem só tem dez minutos num dia corrido, mantém ritmo por ali.
 
 Cartão com frente (pergunta curta) e verso (resposta direta), **sem alternativa para eliminar**. O aluno tenta lembrar, **clica no próprio cartão para virar** (não há botão de "mostrar resposta": o cartão é o botão) e se autoavalia:
@@ -123,6 +141,8 @@ O baralho se monta sozinho nesta ordem: cartões vencidos → assuntos de falsa 
 A tela separa **"Meus cartões"** (com a questão de origem linkada) de **"Cartões da equipe"**, e só quem gere conteúdo vê a segunda seção.
 
 ### Provas e Simulados (uma tela, duas abas)
+**Só questão real forma prova antiga** (desde 24/09): a prova de 2024 da UNIFESP aparecia com 101 questões — 97 reais e 4 autorais rotuladas "UNIFESP-EPM" —, e existia uma "prova de 2021" com 5 questões que nunca existiu. Hoje a prova vem na ordem original (`numeroNaProva`) e o cartão lista à parte as **anuladas pela banca** ("+ 3 anuladas, fora da nota: nº 47, 68, 100"), cada uma clicável: elas não têm gabarito, por isso não entram na prova feita aqui, mas não somem sem explicação. O **percentil** do resultado passou a ser o da turma inteira quando a pessoa está numa conta da nuvem (seção 4-B).
+
 As duas entradas de menu viraram uma, porque levavam ao mesmo lugar mental — "fazer uma prova inteira, no relógio" — e a pessoa tinha de lembrar em qual delas estava o que queria. A diferença continua explícita, em duas abas, porque ela é real: **prova antiga** é a prova de verdade de uma instituição num ano, do jeito que caiu (para medir contra a banca); **simulado** é um recorte montado pela equipe, com tempo e tamanho escolhidos (para treinar um bloco ou assunto). O histórico de notas é o mesmo para os dois e fica embaixo das duas abas, sem duplicar. As rotas antigas (`simulados` e `provas-antigas`) continuam respondendo e abrem a tela na aba certa.
 
 - Simulados criados por professores, prova antiga inteira como simulado, ou simulado personalizado a partir dos filtros.
@@ -154,6 +174,9 @@ Há ainda um cartão **só de flashcards**, deliberadamente separado das questõ
 
 **O gráfico de barras verticais** (`graficoBarrasVerticaisSvg`) é o mesmo em todos esses lugares, com 140 px de altura (era 180 — a tela ficou menos alta sem perder leitura): cada barra é 100% das questões daquele dia, mês ou área — a parte de baixo, em **verde claro**, é o acerto; o que sobra em cima, em **cinza claro**, é o erro. 65% de acerto = 65% da barra verde e 35% cinza, com o número escrito quando a barra é larga o bastante e tooltip quando não é. Dia ou mês sem nenhuma questão vira um traço fino na base, não some do gráfico: esconder os buracos mentiria sobre a rotina, que é metade do resultado.
 
+### Painel da Turma (professores e coordenação)
+Como os alunos estão indo e usando a plataforma, **separado por ano da faculdade** (abas "Todos os anos", "3º ano", "4º ano"…). Mostra: alunos e quantos estudaram nos últimos 7 dias; questões por aluno e acerto nos últimos 30 dias; a comparação **ano a ano**; o acerto **semana a semana** (12 semanas) com quantos alunos estudaram em cada; as **5 grandes áreas**; e a lista de alunos com última atividade, dias ativos, questões e acerto em 30 dias (com seta de tendência contra os 30 anteriores), acerto geral, cartões, simulados e os **alertas** — *parado há N dias* (7 ou mais sem questão nem cartão), *nunca estudou* e *acerto caiu N p.p.* (10 ou mais, com pelo menos 20 questões em cada mês). Ordena por "quem precisa de atenção primeiro", busca por nome e baixa planilha (CSV com `;` e acento certo para o Excel). Com a nuvem, os números vêm do banco (`painel_turma()`, `atividade_por_semana()` — somados lá dentro, uma linha por aluno, e só professor/administrador recebem algo); sem nuvem, das contas daquele navegador, e a tela diz de onde veio. Aluno e residente não têm o item no menu, e a rota responde "acesso restrito".
+
 ### Material em PDF (professores, coordenação, moderadores)
 Quatro tipos, gerados sem biblioteca externa (monta em `#areaImpressao` e chama `window.print()`, onde existe "Salvar como PDF"):
 
@@ -182,6 +205,15 @@ Depois de publicada, a prova aparece sozinha em **Provas Antigas** (que agrupa p
 - **Controle de Qualidade**: difíceis, sinalizadas, sugeridas, duplicadas.
 - **Especialidades e Assuntos**: árvore editável com verificação de consistência e correção automática.
 - **Fila de dúvidas** (residente/professor).
+
+### Comentários e dúvidas nas questões
+Com a nuvem ligada, o que alguém escreve embaixo de uma questão sobe para a tabela `comentarios` e chega a todos — é o que faz a dúvida do aluno aparecer na **Fila de Dúvidas** do residente, que antes só existia no navegador de quem escreveu. O nome de quem escreveu vai junto (ninguém enxerga o perfil dos outros). Quem escreveu, professor e administrador podem **remover** (o comentário some para todos). O banco não aceita comentário em nome de outra pessoa, nem "resposta oficial" de quem não é revisor.
+
+### Aplicativo instalável
+O site virou **PWA**: `manifest.webmanifest`, ícones e `sw.js`. Instalado (Perfil > "Instalar como aplicativo", ou o menu do navegador; no iPhone, Compartilhar > Adicionar à Tela de Início), ele abre numa janela própria e **funciona sem internet** com a última versão aberta. O service worker busca tudo **na rede primeiro** e só usa a cópia guardada sem internet — com internet, nunca se vê versão velha. O **lembrete da meta** passou a sair pelo service worker (no Android, `new Notification()` não funciona) e, com o app instalado no Chrome/Edge, avisa **mesmo com o app fechado** (periodic background sync, lendo um recado que a página deixa no Cache Storage; o horário é aproximado, o navegador escolhe quando acorda).
+
+### Seus dados
+*Perfil > Seus dados > Baixar uma cópia do meu estudo*: um JSON com tudo o que é da pessoa (respostas, revisões, favoritos e anotações, cartões pessoais, conjuntos, simulados, comentários), e nada de ninguém mais. O administrador máster tem o mesmo botão ao lado do backup completo.
 
 ### Livro de Ouro
 Doações, colaborações e apoios, mantidos pela coordenação, mais um reconhecimento calculado automaticamente. **Fica no rodapé da tela inicial** e em Configurações — não ocupa linha no menu.
@@ -217,7 +249,7 @@ Até esta versão, tudo vivia no `localStorage` de um navegador só: quem estuda
 
 **Onde mora.** Supabase (PostgreSQL + autenticação + PostgREST). Escolhido por ser o backend que mapeia quase direto para o objeto `db` e por não exigir escrever servidor nenhum: o app conversa por `fetch` com a API REST, sem SDK, sem dependência nova.
 
-**O que é de todo mundo** (ver `NUVEM_GLOBAIS` e o calendário): o calendário de blocos, o **Livro de Ouro** e as questões com **formatação aprovada**. Todos leem; grava quem tem o papel (equipe; na formatação, também residentes). A fila dessas tabelas é de chaves, e a linha é montada na hora de subir — duas edições seguidas sobem uma vez, e remover sobe como `removido`.
+**O que é de todo mundo** (ver `NUVEM_GLOBAIS` e o calendário): o calendário de blocos, o **Livro de Ouro**, as questões com **formatação aprovada** e os **comentários e dúvidas** nas questões (desde 24/09). Todos leem; grava quem tem o papel (equipe; na formatação, também residentes). A fila dessas tabelas é de chaves, e a linha é montada na hora de subir — duas edições seguidas sobem uma vez, e remover sobe como `removido`.
 
 **O que sobe** (doze tabelas, ver `NUVEM_TABELAS` no código): perfil, respostas, repetição espaçada de questões e de cartões, dias com cartão revisado (**e quantos cartões em cada dia**), favoritos de questão (**com a anotação pessoal de cada uma**), **favoritos de flashcard**, **questões escondidas**, cartões pessoais, sessões concluídas, notas de simulado e a fila em andamento — esta última com as alternativas marcadas e riscadas de cada questão.
 
@@ -225,7 +257,13 @@ Até esta versão, tudo vivia no `localStorage` de um navegador só: quem estuda
 >
 > Enquanto o SQL não for rodado, a plataforma **não quebra e não perde nada**. Uma COLUNA que falta é detectada na recusa e o lote é reenviado sem ela (`NUVEM_CAMPOS_NOVOS`); uma TABELA que falta é anotada e pulada na subida e na descida (`_nuvemTabelasAusentes`) — antes, um 404 numa tabela nova derrubaria a descida inteira, que é o oposto do que uma novidade deve fazer. O que ficou de fora segue guardado no navegador e sobe sozinho depois do SQL e de um F5, e *Perfil > Conta e sincronização* diz exatamente o que está faltando.
 
-**O que NÃO sobe:** o conteúdo. Questões e flashcards da equipe são iguais para todo mundo e continuam vindo da pasta `dados/` — não faz sentido guardar uma cópia por aluno. Continuam locais também: comentários nas questões, feedbacks, Livro de Ouro, calendário de blocos, turmas e as cargas da Central de Provas (ver limitação 10).
+**O que NÃO sobe:** o conteúdo. Questões e flashcards da equipe são iguais para todo mundo e continuam vindo da pasta `dados/` — não faz sentido guardar uma cópia por aluno. Continuam locais também: feedbacks, turmas e as cargas da Central de Provas (ver seção 8).
+
+**Contas da turma, calculadas no banco.** Duas coisas precisam enxergar mais de uma pessoa e, por isso, são **funções** no banco (SECURITY DEFINER) que devolvem o mínimo: `notas_do_simulado(chave)` — só o id aleatório de cada tentativa e a nota, para o percentil — e `painel_turma()`/`atividade_por_semana()` — números somados por aluno, e só para professor e administrador (`e_equipe()`), para o Painel da Turma. Nenhuma resposta, anotação ou cartão pessoal sai delas.
+
+**Confirmação de e-mail e "esqueci a senha" voltam para o site.** Cadastro, reenvio da confirmação e pedido de nova senha mandam `redirect_to` com o endereço da própria página (`nuvemEnderecoDeRetorno()`; ou `CONFIG.nuvem.enderecoDoSite`, se preenchido). Na volta, `nuvemTratarRetornoDoEmail()` lê o resultado depois do `#` **antes do roteador**, apaga o token do endereço na hora e mostra a tela `retorno-email`: "e-mail confirmado — falta a coordenação aprovar" (ou entra direto, se já aprovada), a troca de senha, ou "este link não vale mais" com os botões para pedir outro. Tentar entrar sem ter confirmado abre a janela de reenviar o link. O painel do Supabase precisa aceitar o endereço em *URL Configuration* (pendência 2, no topo).
+
+**Backup.** O backup de *Configurações* copia o que está naquele navegador. A cópia da turma inteira é o **backup automático** (`.github/workflows/backup-nuvem.yml`): todo dia, `pg_dump` das tabelas do Esc e das contas, criptografado com uma senha da coordenação e guardado 30 dias no GitHub. A restauração num banco novo foi testada (contas primeiro, tabelas depois). Precisa dos dois segredos (pendência 3).
 
 **Conflito entre dois aparelhos.** Registros (respostas, sessões, notas) nunca se sobrescrevem, só se juntam — responder no celular e no computador resulta nas duas respostas. A única exceção é o **conjunto concluído**, que é registro mas **atualizável** (`atualizavel: true`): depois de ver o resumo, a pessoa pode voltar e responder uma questão que tinha ficado em branco, e aí aquela linha muda de placar em vez de ganhar uma cópia velha ao lado. Estado (repetição espaçada, favoritos, metas, cartões pessoais) vale a versão mais recente, guardado **questão a questão**, e não num bloco único, para que uma divergência afete um item e nunca o histórico inteiro.
 
@@ -345,6 +383,21 @@ Quase todo "não consigo entrar" depois de uma atualização era o navegador rea
 ### Virada de ano letivo em um campo
 Em 2027 as datas do calendário não são as de 2026, mas a estrutura é: mesmos blocos, mesma duração, mesmos intervalos entre um e outro. Reescrever oito pares de datas à mão é exatamente onde se erra. *Admin > Blocos de Estudo > Virada de ano letivo* pede só **a data em que o primeiro bloco começa** e desloca a sequência inteira, preservando a duração de cada bloco e o intervalo até o próximo (o fim de semana entre dois blocos, o recesso do meio do ano) — com a tabela "hoje → fica" à vista antes de confirmar. Ajuste fino de um bloco específico continua sendo edição daquele bloco.
 
+### Prioridade é incidência vezes erro, e não um dos dois
+"O que mais cai" sozinho mandaria todo mundo estudar Bioestatística para sempre, inclusive quem já acerta; "onde você erra" sozinho empurraria assuntos que caíram uma vez em cinco anos. O produto dos dois é o que interessa: o quanto a pessoa ganharia na prova se acertasse aquele assunto. E a conta se explica na tela, porque um número de prioridade sem a conta à vista é só mais uma ordem arbitrária.
+
+### A nota estimada vem com a faixa
+Uma nota sem margem, calculada com 40 respostas, seria lida como profecia. Mostrar "66%, provavelmente entre 61% e 70%" — e dizer que a faixa estreita com o uso — é o mesmo número, dito com honestidade.
+
+### Prova antiga é só questão real
+Questão autoral no estilo da banca é ótima para estudar e péssima para medir contra a banca. Na tela que existe para medir ("a prova de verdade, do jeito que caiu"), ela contaminava a nota e inventava uma prova de 2021. As anuladas, ao contrário, **são** da prova — ficam fora da nota porque não têm gabarito, mas aparecem, para ninguém achar que a prova está incompleta.
+
+### Figura que falta é dita, não escondida
+Uma questão que pergunta "qual o tratamento do ECG a seguir" sem o ECG não é uma questão mais difícil: é uma questão quebrada. Em vez de uma imagem quebrada ou de nada, ela diz o que a prova mostrava e que a figura ainda não foi anexada — e basta salvar o arquivo com o nome certo para ela aparecer.
+
+### O painel da turma é para agir, não para vigiar
+Por isso ele ordena por "quem precisa de atenção primeiro" (parado, nunca começou, caindo) e não por ranking de acerto, e por isso os números saem somados do banco, sem nenhuma resposta individual.
+
 ---
 
 ## 6. Algoritmos e parâmetros (bloco `CONFIG`)
@@ -357,6 +410,7 @@ Em 2027 as datas do calendário não são as de 2026, mas a estrutura é: mesmos
 - **Questão "difícil":** taxa abaixo de 45% com pelo menos 8 respostas.
 - **Metas:** 15 questões/dia (mínimo) e 30 (ideal); **40 cartões/dia** para a revisão rápida (`CONFIG.metaCartoesDia`) — número maior de propósito, porque um cartão leva segundos e uma questão de prova leva minutos.
 - **Anos da faculdade:** `CONFIG.anosFaculdade`.
+- **O que mais cai e nota estimada** (`CONFIG.incidencia`): acerto de assunto com poucas respostas puxado para o acerto geral com peso de **4 respostas** (`respostasDePeso`); **0,6** de acerto presumido para quem ainda não respondeu nada; peso de até **4×** na ordem dos assuntos da sessão recomendada (`pesoNaSessao: 3`; 0 desliga); os **15** assuntos de maior prioridade ganham o motivo "cai muito"; nota estimada a partir de **30** respostas.
 - **Cores das barras:** `--barra-acerto` e `--barra-erro`, definidas nos dois temas.
 
 Os parâmetros de algoritmo são editáveis pela tela Configurações (administrador máster), sem tocar no código.
@@ -365,15 +419,39 @@ Os parâmetros de algoritmo são editáveis pela tela Configurações (administr
 
 ## 7. Organização do código
 
-**Dois lugares, e a divisão é limpa: o `index.html` não tem conteúdo nenhum.** Ele tem o código; a pasta `dados/`, ao lado dele, tem tudo o mais, em onze arquivos carregados nesta ordem: `taxonomia.js`, `calendario.js`, `banco-didatico.js`, `prova-unifesp-2022..2026.js`, `flashcards-equipe.js`, `simulados-equipe.js` e `demonstracao.js`.
+**Três lugares, e a divisão é limpa.** O `index.html` é a moldura; a pasta `codigo/` tem o código; a pasta `dados/` tem o conteúdo, em doze arquivos carregados nesta ordem: `taxonomia.js`, `calendario.js`, `banco-didatico.js`, `prova-unifesp-2022..2026.js`, `flashcards-equipe.js`, `flashcards-assuntos-novos.js`, `simulados-equipe.js` e `demonstracao.js`.
 
-Cada arquivo chama uma função da ponte `window.EscDados` — `registrarTaxonomia`, `registrarCalendario`, `registrarQuestoes`, `registrarFlashcards`, `registrarSimulados` ou `registrarDemonstracao` — e o `index.html` os carrega com linhas `<script src="dados/…">` **antes** do código. Por isso **todos os `SEED_*` viraram apelidos**: `const SEED_QUESTOES = window.EscDados.questoes`, e assim por diante para taxonomia, blocos, sequências do ano, usuários, livro de ouro, comentários e simulados. Mexer num `SEED_*` no `index.html` não muda conteúdo nenhum.
+**O carregador.** A lista `window.ESC_ARQUIVOS = { dados: [...], codigo: [...] }`, no fim do `index.html`, diz o que carregar e em que ordem; um trecho curto escreve, durante a leitura da página, uma linha `<script src="pasta/nome.js?v=VERSÃO">` por arquivo — elas rodam uma depois da outra, exatamente como linhas escritas à mão, e funcionam com o arquivo aberto com dois cliques. A versão (`ESC_VERSAO`) fica **num lugar só**, no alto do `index.html`, e vai no endereço de todos os arquivos (antes eram doze datas para trocar). O visual (`codigo/estilo.css`) vem do mesmo jeito. Se um arquivo de `codigo/` não chega, a página diz qual.
+
+**A pasta `codigo/`** segue as seções numeradas de sempre, então "a seção 17" continua sendo a mesma coisa — agora dentro de um arquivo:
+
+| Arquivo | Seções | O que tem |
+|---|---|---|
+| `01-config.js` | 1 | guia de manutenção, `CONFIG`, estado global, tema |
+| `02-persistencia.js` | SEED_*, 2 | apelidos do conteúdo, conferência dos arquivos, `loadState`/`saveState`, migrações, rede de segurança do banco |
+| `03-nuvem.js` | 2-C | nuvem inteira: entrar, cadastrar, e-mail de volta, mapa das tabelas, fila, sincronização, percentil, painel |
+| `04-utilitarios.js` | 3 | datas, paginação, gráficos SVG, janelas, rodízio, permissões de admin |
+| `05-motor-de-estudos.js` | 4 | dificuldade, repetição espaçada, flashcards, sessões, desempenho, **o que mais cai e nota estimada** |
+| `06-entrada-e-estrutura.js` | 5–7 | autenticação local, roteador, menu e topo |
+| `07-telas-iniciais.js` | 8–10-B | telas públicas, retorno do e-mail, primeiro acesso, painel inicial, Estudar, questão na íntegra |
+| `08-sessao-e-revisao.js` | 11–12 | motor de sessão, cartão da questão (e a figura que falta), comentários, Revisão |
+| `09-flashcards-e-provas.js` | 12-B–14, 12-C | Revisão Rápida, simulados, Provas Antigas, **cartões em lote** |
+| `10-telas-do-aluno.js` | 16–19 | Favoritos, Livro de Ouro, Histórico, Meu Desempenho, Meta, Meu Grupo, Perfil, "meus dados" |
+| `11-telas-da-equipe.js` | 20–25-B, 24-C | criar simulado, PDF, difíceis, dúvidas, cadastros, banco, taxonomia, **Painel da Turma** |
+| `12-importacao-e-central.js` | 26–26-B | importar questões, Central de Provas |
+| `13-admin-e-inicializacao.js` | 27–28 | Blocos, Configurações, versão nova, **aplicativo instalável** e a INICIALIZAÇÃO (sempre o último) |
+
+Os arquivos dividem o mesmo espaço (são scripts comuns, sem `import`): uma função escrita num é usada nos outros. A única regra é que código que **roda na hora da carga** só pode usar o que veio antes — e a divisão foi conferida com um analisador (nenhum trecho de carga usa algo de um arquivo posterior) e com o teste de fumaça.
+
+**Os testes** (`testes/`, `npm test`; rodam no GitHub a cada envio, `.github/workflows/testes.yml`): o **conferidor da pasta `dados/`** (ids, gabaritos, taxonomia, provas completas de 1 à última, figuras que faltam — `npm run conferir` imprime o relatório); o **teste de fumaça** (Chromium de verdade, cada papel passando por todas as telas do menu, responder uma questão, celular sem rolagem lateral, arquivo aberto com dois cliques, falhando em qualquer erro de JavaScript); **regras** que já quebraram uma vez (o dia vira à meia-noite de Brasília, conta de demonstração com nuvem, prova antiga só com questão real, cartões em lote); a **nuvem simulada** (as chamadas ao Supabase respondidas por um servidor de mentira: e-mail de volta, esqueci a senha, comentário subindo, percentil, Painel da Turma); o **aplicativo** (manifesto e abrir sem internet); e o **`esquema.sql` num PostgreSQL de verdade** (banco novo, rodar duas vezes, e as regras de segurança com contas de mentira — `testes/sql/`).
+
+Cada arquivo de `dados/` chama uma função da ponte `window.EscDados` — `registrarTaxonomia`, `registrarCalendario`, `registrarQuestoes`, `registrarFlashcards`, `registrarSimulados` ou `registrarDemonstracao` — **antes** do código. Por isso **todos os `SEED_*` viraram apelidos**: `const SEED_QUESTOES = window.EscDados.questoes`, e assim por diante para taxonomia, blocos, sequências do ano, usuários, livro de ouro, comentários e simulados. Mexer num `SEED_*` no `index.html` não muda conteúdo nenhum.
 
 As listas **se somam** entre arquivos: dois arquivos chamando `registrarQuestoes` resultam nas questões dos dois. É o que permite acrescentar uma prova (ou mais assuntos na taxonomia) criando um arquivo novo e uma linha `<script>`, sem tocar no que já existe. A ordem das linhas é a ordem em que o conteúdo entra no banco, e a taxonomia vem primeiro porque todo o resto aponta para ela.
 
 `demonstracao.js` é o arquivo a **esvaziar** quando a turma real entrar: contas de teste, comentários de exemplo e o livro de ouro fictício saem de uma vez, sem perder questão, cartão nem calendário.
 
-O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
+As seções numeradas em caixa alta continuam as mesmas (use Ctrl+F no arquivo da tabela acima):
 
 1. `CONFIG` (inclui `CONFIG.nuvem`), níveis de admin, anos da faculdade, tema claro/escuro
 2. `SEED_TAXONOMIA`, `SEED_BLOCOS`, `SEED_SEQUENCIAS_ANO`, `SEED_USUARIOS`, `SEED_QUESTOES`, `SEED_LIVRO_OURO`, `SEED_COMENTARIOS`, `SEED_FLASHCARDS`, `SEED_SIMULADOS`
@@ -481,7 +559,24 @@ O `index.html` segue com seções numeradas em caixa alta (use Ctrl+F):
 | `previaViradaDeAno(ano, novaData)` / `aplicarViradaDeAno(ano)` | desloca o calendário do ano inteiro a partir da data de início do primeiro bloco, preservando durações e intervalos |
 | `renderCardSenha()` / `trocarMinhaSenha()` / `nuvemTrocarSenha(nova)` | troca de senha no Perfil, para todos os papéis: pela nuvem (`PUT /auth/v1/user`, sem senha antiga porque a sessão já prova quem é) ou local (com a senha antiga, que ali é a única prova) |
 
-**Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado.
+**Funções-chave acrescentadas em 24/09:**
+
+| Função | O que faz |
+|---|---|
+| `dataLocalISO(d)` / `hojeISO()` | a data "AAAA-MM-DD" no relógio local (o dia não vira mais às 21h) |
+| `incidenciaNaBanca(banca)` / `prioridadesDeEstudo(id)` / `estimativaDeNota(id)` | o que mais cai, a prioridade de cada assunto e a nota estimada com faixa (cache por `_geracaoDb`) |
+| `pesosDeIncidencia(id)` / `selecionarComInterleaving(pool, n, pesos)` | a sessão recomendada visitando primeiro, dentro do bloco, os assuntos de maior prioridade |
+| `renderImagemQuestao(q)` / `imagemDaQuestaoFalhou(img, qid)` | figura da questão; tenta .png/.jpg/.jpeg/.webp e, sem arquivo, mostra o aviso de `imagemPendente` |
+| `registrarComentario(qid, texto, oficial)` / `comentariosAtivos()` / `removerComentario(id)` | comentários e dúvidas, que sobem para `comentarios` (`NUVEM_GLOBAIS.comentarios`) |
+| `notasDaTurmaDoSimulado(chave)` / `estatisticasRankingSimulado(chave, nota)` | percentil com as notas da turma (função `notas_do_simulado`), somadas às locais por id |
+| `renderPainelTurma()` / `painelTurmaLocal()` / `nuvemPainelTurma()` / `alertasDoAluno(a)` | o Painel da Turma, da nuvem ou do navegador, com os alertas |
+| `nuvemTratarRetornoDoEmail()` / `nuvemComRetorno(caminho)` / `renderRetornoEmail()` | a volta dos links de e-mail (confirmar, trocar senha, link vencido) |
+| `registrarServiceWorker()` / `mostrarNotificacao()` / `atualizarRecadoLembrete()` | o aplicativo instalável e o lembrete pelo service worker |
+| `renderCartoesEmLote()` / `modeloLoteCartoes()` / `analisarTextoLoteCartoes(t)` / `exportarCartoesParaDados()` | cartões em lote: prompt, conferência, publicação e exportação para `dados/` |
+| `baixarMeusDados()` / `dadosDoUsuario(id)` | a cópia do estudo de uma pessoa |
+| `contaDemoDaEquipeBloqueada(u)` | desliga as contas de demonstração da equipe com a nuvem ligada |
+
+**Manutenção:** `sincronizarConteudoNovo()` acrescenta ao banco salvo qualquer área, especialidade, assunto, questão, flashcard, usuário-semente ou livro de ouro que exista no código e ainda não exista nos dados, comparando por `id`. Nada é sobrescrito nem apagado — com duas exceções estreitas, de 24/09: campos que o conteúdo ganhou depois (`numeroNaProva`, `imagemUrl`, `imagemLegenda`, `imagemPendente`, `referencias`) são **preenchidos só onde estão vazios** (`CAMPOS_QUE_O_CONTEUDO_COMPLETA`), e a instituição das questões-semente **autorais** segue o arquivo (foi o que tirou as 30 "UNIFESP-EPM" das provas reais).
 
 **Migrações em `loadState`:** criação de `db.filaNuvem` e `db.nuvem` (fila de envio e marcas d'água da nuvem); criação de `db.cargasProvas` (Central de Provas); criação de `db.flashcards` e `db.revisoesFlashcards`; normalização de `usuarioId` nos cartões antigos (todos viram "da equipe", que é o correto — foram escritos por professores); conversão de `anoFaculdade: "Internato"` para `"6º ano"`; criação de `db.sessoesEmAndamento`, `db.diasCartoes` e `db.configGeral.metaCartoesDia`; e a migração dos blocos (abaixo).
 
@@ -519,17 +614,19 @@ A política de exclusão (`perfis_excluir`) é **nova no `esquema.sql`**: um pro
 
 ## 8. Limitações conhecidas
 
-1. **A nuvem cobre o estudo e os cadastros, não o resto da colaboração.** Com a nuvem ligada (seção 4-B), o estudo de cada pessoa viaja entre aparelhos, e *Admin > Usuários* lista e administra a turma inteira a partir da nuvem. O que ainda é local a um navegador: fila de dúvidas, comentários nas questões, grupos e turmas, percentil de simulado, relatório de turma, feedbacks e Livro de Ouro — essas telas continuam pressupondo várias pessoas sem que os dados delas se encontrem. São as próximas tabelas naturais, pelo mesmo caminho já aberto.
+1. **A nuvem cobre o estudo, os cadastros e agora a colaboração principal** — comentários e Fila de Dúvidas, percentil de simulado, Painel da Turma, Livro de Ouro, calendário e formatação aprovada. O que ainda é local a um navegador: **grupos e turmas** (quem está em qual), **feedbacks** e o **relatório de turma em PDF** (que lê as contas do navegador; o Painel da Turma é o substituto com a nuvem).
 2. **Banco cobre uma só banca.** As 500 questões reais são todas da UNIFESP-EPM. As outras 5 bancas de referência (`CONFIG.instituicoesReferencia`) ainda não têm nenhuma questão real — só entram se o usuário conseguir os PDFs oficiais, pelo mesmo processo já usado para a UNIFESP (seção 12). *(Em volume puro o banco já foi testado sintético em mais de 6.000 questões e 8.000 respostas, sem travamento perceptível em nenhuma tela — não é mais o gargalo.)*
-3. **Flashcards da equipe cobrem só metade da taxonomia.** Os 501 cartões foram escritos para os 91 assuntos que existiam antes da carga das provas reais; os 125 assuntos novos (Psiquiatria e as demais especialidades abertas na seção 12) ainda não têm cartão de equipe dedicado. Os cartões gerados automaticamente a partir de erros e os escritos pelos próprios alunos cobrem esse buraco por enquanto, mas dependem de uso.
+3. **Os 376 cartões dos assuntos novos ainda não foram lidos por um professor.** Cobrem os 125 assuntos que não tinham nenhum, com a fonte de cada um, mas estão marcados `revisao: "pendente"` — o mesmo cuidado pedido para as explicações (seção 10).
 4. **As contas de demonstração continuam sendo de demonstração**: com a nuvem desligada, a senha fica em texto claro no `SEED_USUARIOS` e não serve para uso público real. Com a nuvem ligada, a conta de verdade é a do Supabase — senha com hash no servidor, nunca copiada para o `db` local —, mas as quatro contas `@esc.demo` continuam existindo ao lado, para testar sem criar conta. Elas já são o mínimo (uma por papel, uma só de administrador) e só a de aluno tem botão de acesso rápido, mas trocar a senha da conta de administrador antes de publicar continua sendo trabalho de quem publica.
-5. **Backup manual e restrito.** Só o administrador máster exporta — se ele não exportar, ninguém exporta. Configurações avisa quando passa de ~3,5 MB e quando o último backup tem mais de 7 dias.
+5. **O backup automático da nuvem depende de dois segredos no GitHub** (pendência 3, no topo). Até lá, o único backup é o manual do administrador máster, que copia só aquele navegador. Cada pessoa já pode baixar o próprio estudo em *Perfil*.
 6. **Cartão pessoal é privado, não é segredo.** O isolamento é por papel na interface e nas funções; qualquer pessoa com acesso ao mesmo navegador e ao console enxerga tudo, como em qualquer dado do `localStorage`.
 7. **Uma sequência de blocos por ano, e só uma.** Duas turmas do mesmo ano não podem ter ordens diferentes de matéria — por decisão de projeto, elas diferem só pelo ponto de entrada. Se um dia for preciso que uma turma tenha uma sequência realmente distinta, será um campo novo (`grupo.sequenciaPropria`) e mais uma migração.
-8. **`somarDias()` usa `toISOString()`** depois de montar a data em horário local: certo para fusos negativos (Brasil), quebraria a data em fusos positivos (UTC+). Sem efeito para o público atual.
+8. ~~`somarDias()` usava `toISOString()`~~ — **corrigido em 24/09**, junto com um defeito maior que ele escondia: `hojeISO()` também usava UTC, então **no Brasil o "hoje" da plataforma virava às 21h** (a meta do dia zerava, a sequência de dias pulava, a sessão do dia se renovava antes da meia-noite). As duas passaram a usar a data local (`dataLocalISO`), e um teste com o relógio em Brasília às 22h30 garante que não volta.
 9. **Conteúdo criado pela plataforma não sobe para a nuvem.** Questão publicada por *Importar Questões* ou pela *Central de Provas* (e a carga em andamento) fica no navegador de quem publicou, mesmo com a nuvem ligada: o conteúdo é igual para todo mundo e mora na pasta `dados/`, versionada junto com o código. Para virar conteúdo de todos, a questão precisa ser levada para lá (`dados/LEIA-ME.md`). É uma decisão de projeto, não um esquecimento — mas é o atrito mais visível de quem usa a Central de Provas em dois aparelhos.
 10. **A pasta `dados/` precisa ser publicada junto.** Publicar só o `index.html` faz o site abrir com a tarja de aviso e sem conteúdo nenhum — nem questões, nem taxonomia, nem calendário. Quem já usava não perde nada (o banco salvo no navegador continua lá), mas conteúdo novo não entra. A tarja diz qual arquivo faltou.
-11. **Lembrete de meta diária só funciona com o navegador aberto.** Como o app não tem service worker nem servidor, a Notification API só dispara enquanto alguma aba do Esc está carregada (mesmo minimizada). Não existe aviso de verdade com tudo fechado — isso exigiria backend (ver limitação 1).
+11. **Lembrete de meta com o app fechado só no Chrome/Edge com o app instalado**, e em horário aproximado (o navegador decide quando acordar o service worker). Nos outros navegadores (inclusive Safari/iPhone), só com o Esc aberto em alguma aba. Aviso exato com tudo fechado exigiria push de servidor.
+12. **Figuras das provas.** 13 questões reais dependem de uma figura que ainda não foi anexada (lista em `dados/imagens/LEIA-ME.md`). Elas avisam na tela, mas só ficam completas com o recorte do PDF oficial.
+13. **Rotas de equipe abertas pela URL.** Um aluno que digite `#/usuarios` no endereço ainda vê telas de equipe com os dados **daquele navegador** (a nuvem é protegida pelo banco). O Painel da Turma já confere o papel; as outras telas antigas não.
 
 ---
 
@@ -547,25 +644,28 @@ A política de exclusão (`perfis_excluir`) é **nova no `esquema.sql`**: um pro
 
 Em ordem de prioridade sugerida:
 
-1. **Flashcards para os 125 assuntos novos.** A carga da UNIFESP abriu Psiquiatria e outras especialidades inteiras (seção 12) que ainda não têm nenhum cartão de equipe — hoje só têm cobertura se o próprio aluno errar uma questão daquele assunto e o cartão automático entrar em cena. É o jeito mais rápido de destravar valor do que já foi construído.
-2. **Repetir a carga de provas reais para as outras 5 bancas de referência** (USP-SP/FMUSP, USP-RP/FMRP, Santa Casa de São Paulo, IAMSPE, UNESP), se o usuário conseguir os PDFs oficiais. Agora isso é feito **pela própria plataforma**, sem script nem edição do arquivo: a **Central de Provas** (seção 4) cadastra a prova, corta em lotes, dá o modelo pronto de cada faixa e confere o que chegou — e vários lotes podem andar em paralelo.
-3. **Checagem humana amostral das 500 explicações autorais.** Foram escritas em lote, com boa fundamentação e revisão de consistência automatizada, mas nunca foram lidas por um segundo médico/residente. Vale um professor ou residente revisar uma amostra (por exemplo, as questões mais avançadas ou as anuladas, onde a explicação é mais interpretativa) antes de tratar o conjunto como validado clinicamente.
-4. **Questões com imagem/figura no enunciado.** Algumas das 500 questões reais mencionam uma imagem original da prova (ultrassom, radiografia, ressonância) que não foi reproduzida — a explicação descreve o achado esperado a partir do texto, mas o aluno não vê a imagem. Vale revisar essas questões pontualmente e anexar a imagem quando possível.
-5. **Relatório individual do aluno em PDF**, para devolutiva um a um (item já sugerido antes e ainda pendente).
-6. **Levar para a nuvem o que ainda é local**: fila de dúvidas e comentários nas questões primeiro (são os que mais dependem de duas pessoas se encontrarem), depois grupos/calendário, percentil de simulado e Livro de Ouro. O caminho já está aberto — cada um é mais uma entrada em `NUVEM_TABELAS` e mais uma tabela com RLS no `nuvem/esquema.sql`, no mesmo padrão registro/estado.
-7. **Sincronizar o conteúdo publicado pela plataforma** (seção 8, item 9), ou pelo menos um botão que exporte as questões novas já no formato de um arquivo de `dados/`, para o caminho de volta não ser copiar e colar à mão.
+1. **As três pendências do topo** (rodar o `esquema.sql`, URL Configuration, segredos do backup). Sem a primeira, comentários, percentil da turma e Painel da Turma não funcionam na nuvem.
+2. **Anexar as 13 figuras das provas** (`dados/imagens/LEIA-ME.md`): recortar do PDF oficial e salvar com o nome indicado — nada mais precisa mudar.
+3. **Revisão humana dos 376 cartões novos** (`revisao: "pendente"`) e, com a ferramenta de lotes, levar os assuntos que mais caem a 5 ou mais cartões.
+4. **Repetir a carga de provas reais para as outras 5 bancas de referência** (USP-SP/FMUSP, USP-RP/FMRP, Santa Casa de São Paulo, IAMSPE, UNESP), se o usuário conseguir os PDFs oficiais. Agora isso é feito **pela própria plataforma**, sem script nem edição do arquivo: a **Central de Provas** (seção 4) cadastra a prova, corta em lotes, dá o modelo pronto de cada faixa e confere o que chegou — e vários lotes podem andar em paralelo.
+5. **Checagem humana amostral das 500 explicações autorais.** Foram escritas em lote, com boa fundamentação e revisão de consistência automatizada, mas nunca foram lidas por um segundo médico/residente. Vale um professor ou residente revisar uma amostra (por exemplo, as questões mais avançadas ou as anuladas, onde a explicação é mais interpretativa) antes de tratar o conjunto como validado clinicamente.
+6. **Relatório individual do aluno em PDF**, para devolutiva um a um — agora com os números do Painel da Turma à mão.
+7. **Levar as turmas para a nuvem** (quem está em qual grupo), o que ainda falta da colaboração.
+8. **Exportar questões publicadas pela plataforma para `dados/`**, como os cartões em lote já fazem.
+9. **Fechar as rotas de equipe para quem não é da equipe** (seção 8, item 13), com uma checagem de papel no roteador.
 
 ---
 
 ## 11. Como pedir alterações numa nova conversa
 
-Anexe o `index.html` e este resumo, e descreva o que quer em português corrente. Se o pedido for sobre conteúdo (uma prova, os flashcards), anexe também o arquivo da pasta `dados/` que interessa — não o resto. Convenções que o projeto segue e vale manter:
+Anexe este resumo e o arquivo de `codigo/` da tela ou regra em questão (tabela da seção 7), e descreva o que quer em português corrente. Se o pedido for sobre conteúdo (uma prova, os flashcards), anexe também o arquivo da pasta `dados/` que interessa — não o resto. Numa conversa com acesso ao repositório inteiro, peça para rodar `npm test` antes de enviar. Convenções que o projeto segue e vale manter:
 
 - Tudo em **português do Brasil**, inclusive nomes de funções e variáveis.
 - Comentários no código explicando a **regra em linguagem simples**, pensados para quem não programa.
 - Nenhuma dependência externa nova; nada de framework. (Os gráficos são SVG escrito à mão; o PDF usa a impressão do navegador.)
 - Toda alteração no modelo de dados vem acompanhada de migração em `loadState` — e, se o dado for sincronizado, de mais uma entrada em `NUVEM_TABELAS` e da tabela correspondente em `nuvem/esquema.sql`, com RLS.
-- **Código no `index.html`, conteúdo na pasta `dados/`.** Questão nova não volta para dentro do HTML.
+- **Código em `codigo/`, conteúdo em `dados/`, moldura no `index.html`.** Questão nova não volta para dentro do código; arquivo novo entra na lista `ESC_ARQUIVOS`.
+- **Mudou algo?** `npm test` antes de enviar (e o GitHub roda de novo). Tela nova entra sozinha no teste de fumaça se estiver no menu; regra nova merece um caso em `testes/regras.test.mjs`.
 - Rota que sai do menu continua respondendo, redirecionando para o novo lugar — link salvo por aluno não pode quebrar.
 - A plataforma **explica o que faz**: quando o algoritmo muda uma proporção, esconde um botão ou prioriza uma questão, a tela diz o porquê.
 
@@ -693,3 +793,25 @@ A ponte `window.EscDados` ganhou `registrarSimulados`, `registrarTaxonomia`, `re
 (6) **Primeiro acesso**: o aluno que entra pela primeira vez (sem turma e sem nenhuma resposta) vê as boas-vindas antes do painel — confirma o ano, escolhe o grupo do rodízio e a meta de questões por dia. "Pular" também conta como visto; a data sobe no perfil (`perfis.boas_vindas_em`). Para o grupo, nasceram as **turmas do rodízio**: uma por ano e letra, abertas (sem aprovação), com id que diz ano e grupo (`rodizio-<ano>-<deslocamento>`) — em outro aparelho, onde a turma ainda não existe, ela é recriada a partir do `grupo_id` da pessoa. Meu Grupo também ganhou o atalho "qual é o seu grupo?".
 
 **Verificado com Chromium/Playwright:** aprovar tira da fila e aparece em "Já aprovadas", devolver sobe como `aprovada=false`, a linha da nuvem aplica e o aluno não enfileira; o Livro de Ouro salvando, removendo e recebendo da nuvem; um ciclo de sincronização contra um servidor falso (sobe o pendente, desce o novo, avança a marca d'água e pula a tabela que falta sem erro); a contagem mudando com os filtros; o painel com as fichas; as boas-vindas para um aluno novo, salvando meta, grupo e data, não reaparecendo, não aparecendo para a conta de demonstração e "pular" contando como visto; a turma do rodízio recriada a partir do id; e as 26 rotas em 5 contas sem erro de JavaScript.
+
+**Sugestões da conversa de 24/09: divisão do código, testes, provas reais sem mistura, o que mais cai, nota estimada, app instalável, nuvem para a turma e cartões dos assuntos novos (24/09/2026, à tarde).** O usuário pediu sugestões para a plataforma e, em seguida, que fossem feitas quase todas, mais três pedidos novos (confirmação de e-mail com volta ao site, dados dos estudantes por ano para professores e coordenação, gráficos menores no computador).
+
+(1) **O código saiu do `index.html`** para `codigo/` (treze arquivos na ordem das seções, e `estilo.css`), com um carregador que monta os `?v=` a partir de uma versão só. Antes de dividir, um **teste de fumaça** foi escrito e rodado contra a versão antiga, e um analisador conferiu que nenhum trecho executado na carga usa algo de um arquivo posterior; o mesmo teste passou depois da divisão.
+
+(2) **Testes automáticos** (`testes/`, 27 casos no navegador e no Node, mais o `esquema.sql` num PostgreSQL, rodando no GitHub): conferidor de `dados/`, fumaça em todos os papéis e no celular, regras, nuvem simulada, aplicativo e o `esquema.sql` num PostgreSQL de verdade.
+
+(3) **Provas reais sem mistura.** O conferidor achou que 30 questões autorais diziam "UNIFESP-EPM" e entravam nas provas de Provas Antigas (a de 2024 com 101 questões; uma "prova de 2021" inexistente) — viraram do Banco Didático, e Provas Antigas passou a mostrar só questão real, na ordem original, com as anuladas listadas à parte. As 500 reais ganharam `numeroNaProva`; 13 que dependem de figura da prova avisam e apontam para `dados/imagens/`.
+
+(4) **O que mais cai × onde você erra**, **Se a prova fosse hoje** e a sessão recomendada ponderada pela prioridade (seção 4).
+
+(5) **Correções rápidas:** zoom liberado no celular; contas de demonstração da equipe desligadas com a nuvem; e a data local — `hojeISO()` virava o dia às 21h no Brasil.
+
+(6) **Gráficos de Meu Desempenho** não crescem mais que ~15% do tamanho desenhado (o das 5 áreas chegava a ~600 px de altura num monitor largo) e o das áreas fica ao lado da tabela.
+
+(7) **Aplicativo instalável** (PWA), abrindo sem internet, com o lembrete da meta pelo service worker.
+
+(8) **Nuvem para a turma:** comentários e Fila de Dúvidas, percentil da turma, **Painel da Turma** por ano da faculdade, confirmação de e-mail e "esqueci a senha" voltando ao site, "meus dados" e o backup automático criptografado. No caminho, o banco local achou um defeito antigo: **num projeto Supabase novo, o `esquema.sql` parava na linha 58** (função criada antes da tabela que ela lê) — corrigido com `set check_function_bodies = false`, como faz o `pg_dump`.
+
+(9) **376 cartões** para os 125 assuntos que não tinham nenhum, e a ferramenta de **cartões em lote**.
+
+**Verificado:** os 27 testes passando (Chromium/Playwright) e o teste do banco (PostgreSQL 16); o `esquema.sql` num banco novo e rodado duas vezes; as regras de segurança com contas de mentira (aluno não comenta em nome de outro, não se dá resposta oficial, não vê o painel; residente não vê o painel; visitante sem login não lê nada); a restauração completa do backup num banco novo (contas primeiro, tabelas depois: 17 vínculos e 49 regras de segurança de volta); e capturas de tela de Meu Desempenho, Estudar, Provas Antigas, Painel da Turma e dos cartões em lote. **O que não deu para verificar daqui:** o projeto Supabase de verdade (a rede desta máquina bloqueia `supabase.co`) — daí as três pendências do topo — e as figuras das provas, que dependem dos PDFs oficiais.

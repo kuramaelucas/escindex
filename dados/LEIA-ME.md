@@ -2,18 +2,23 @@
 
 Esta pasta guarda **todo o conteúdo** da plataforma: a taxonomia, o calendário
 de blocos, as questões, os flashcards, os simulados e os dados de
-demonstração. O `index.html`, ao lado, guarda **só o código**: as telas, as
-regras e os algoritmos — nenhuma questão, nenhum cartão, nenhum nome de bloco,
-nenhuma conta.
+demonstração. O código fica na pasta `codigo/`, e o `index.html` é só a
+moldura que carrega as duas — nenhuma questão, nenhum cartão, nenhum nome de
+bloco, nenhuma conta fica fora daqui.
 
 A separação é só de arquivo — no site nada muda. Quem abre o `index.html`
-(pelo endereço do site ou com dois cliques na pasta) recebe tudo junto,
-exatamente como antes. **A única regra é manter esta pasta ao lado do
-`index.html`**, inclusive na hora de publicar o site.
+(pelo endereço do site ou com dois cliques na pasta) recebe tudo junto.
+**A única regra é manter esta pasta ao lado do `index.html`** (junto com
+`codigo/`), inclusive na hora de publicar o site.
 
 Se a pasta faltar, a plataforma não quebra: ela abre e mostra uma tarja no
 alto da tela dizendo o que falta. O que cada pessoa já tinha salvo no
 navegador continua lá.
+
+**Para conferir tudo de uma vez** (ids repetidos, gabarito fora das
+alternativas, assunto que não existe, prova com questão faltando, figura que
+falta), rode `npm run conferir` — ou `node testes/conferir-dados.mjs`. Ele roda
+sozinho no GitHub a cada envio.
 
 ## O que tem aqui
 
@@ -31,10 +36,15 @@ porque todo o resto aponta para ela):
 | `prova-unifesp-2025.js` | UNIFESP-EPM 2025 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2026.js` | UNIFESP-EPM 2026 (Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
+| `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **635 questões**, **501 cartões**, **216 assuntos** e **1 simulado**.
+Total: **635 questões**, **877 cartões**, **216 assuntos** (todos com pelo
+menos 3 cartões da equipe) e **1 simulado**.
+
+A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
+ver `imagens/LEIA-ME.md`, que lista as 13 que ainda faltam.
 
 ### Para a turma real entrar
 
@@ -82,18 +92,19 @@ Do mais fácil ao mais trabalhoso:
    publique o site de novo.
 2. **Acrescentar itens a um arquivo que já existe aqui.** Abra o arquivo, copie
    o molde abaixo e acrescente antes do `]);` do fim.
-3. **Criar um arquivo novo** aqui e registrá-lo com mais uma linha
-   `<script src="dados/o-nome-do-arquivo.js?v=2026-09-24"></script>` no
-   `index.html` (procure por `CONTEÚDO: A PASTA` lá dentro). É assim que entra
-   uma prova inteira de uma banca nova. **A ordem das linhas `<script>` é a
-   ordem em que o conteúdo entra no banco.**
+3. **Criar um arquivo novo** aqui e escrever o nome dele (sem o `.js`) na
+   lista `ESC_ARQUIVOS.dados` do `index.html` — é uma lista curta, logo no
+   fim do arquivo. É assim que entra uma prova inteira de uma banca nova.
+   **A ordem da lista é a ordem em que o conteúdo entra no banco** (a
+   taxonomia vem primeiro, porque todo o resto aponta para ela).
 
-**A cada publicação, mude a versão.** O `?v=…` no fim de cada linha
-`<script src>` e o `window.ESC_VERSAO` logo acima delas são a mesma data, e é
-ela que impede o navegador de continuar usando o arquivo antigo depois de uma
-troca (e que faz a página se atualizar sozinha). Mudou um arquivo daqui —
-inclusive o `calendario.js` exportado da plataforma? Troque a data nas doze
-ocorrências (localizar e substituir resolve) antes de publicar.
+**A cada publicação, mude a versão — num lugar só.** O `window.ESC_VERSAO`,
+no alto do `index.html`, é a data que vai no endereço de cada arquivo
+(`?v=…`) e é ela que impede o navegador de continuar usando o arquivo antigo
+depois de uma troca (e que faz a página se atualizar sozinha). Mudou um
+arquivo daqui — inclusive o `calendario.js` exportado da plataforma? Troque
+essa data antes de publicar. (Até setembro de 2026 eram doze lugares para
+trocar; o carregador passou a montar todos os endereços a partir dela.)
 
 ## Como é um arquivo desta pasta
 
@@ -127,13 +138,23 @@ Flashcards usam a sua função assim:
 
 ```js
 window.EscDados.registrarFlashcards("flashcards-turma-2027", [
-  { id:"fc-t27-001", assuntoId:"ass-sca", frente:"…", verso:"…" },
-].map(c=>({...c, origem:"autoral", usuarioId:null, status:"ativo", criadoPor:"seed", criadoEm:"2026-09-21"})));
+  { id:"fc-t27-001", assuntoId:"ass-sca", frente:"…", verso:"…",
+    fonte:"Diretriz X, 2025", revisao:"pendente", criadoPor:"seed", criadoEm:"2026-09-21" },
+]);
 ```
 
-O `.map(...)` do fim é o que marca o cartão como **material da equipe**
-(`usuarioId: null`), visível para todos. Cartão com `usuarioId` preenchido é
-caderno pessoal de um aluno, e esse não mora em arquivo nenhum: nasce no uso.
+Cartão de arquivo é sempre **material da equipe**, visível para todos (cartão
+com `usuarioId` é caderno pessoal de um aluno, e esse não mora em arquivo
+nenhum: nasce no uso). `fonte` aparece no verso do cartão. `revisao:"pendente"`
+marca o que ainda não foi lido por um professor — quem gere conteúdo vê o
+selo "revisão pendente" no verso; troque para `"ok"` ao conferir.
+
+**O jeito mais rápido de escrever muitos cartões** é pela própria
+plataforma: *Revisão Rápida > Cobrir os assuntos sem cartão — em lote*
+escolhe os assuntos com menos cartões (os que mais caem na prova primeiro),
+dá o prompt pronto para uma conversa de IA, confere o que voltou e tem o
+botão **Exportar cartões publicados para a pasta dados/**, que baixa um
+arquivo já neste formato.
 
 ## O molde de uma questão
 
@@ -146,7 +167,9 @@ caderno pessoal de um aluno, e esse não mora em arquivo nenhum: nasce no uso.
   areaId:"area-cm",                // os três ids vêm de dados/taxonomia.js
   especialidadeId:"esp-cardio",
   assuntoId:"ass-sca",
-  numeroNaProva:1,                 // opcional; a Central de Provas preenche
+  numeroNaProva:1,                 // obrigatório em questão real: o número dela na prova
+  imagemUrl:"dados/imagens/q-usp2026-001.png",  // opcional: figura da prova (ver imagens/LEIA-ME.md)
+  imagemPendente:"ECG de admissão",  // opcional: a figura que a prova tinha e ainda falta
   enunciado:"Texto da pergunta…",
   alternativas:[
     {id:"A",texto:"…"},
@@ -187,8 +210,14 @@ mais sujeita a erro e desatualização quando copiada sem checar. A explicação
 de cada questão real tem de ser **escrita pela equipe**, a partir de fontes
 primárias e oficiais (diretrizes, PCDT, artigos).
 
-Questão real marca `real: true`, com instituição e ano corretos. Questão
-autoral da equipe mantém `real: false`.
+Questão real marca `real: true`, com instituição, ano e `numeroNaProva`
+corretos. Questão autoral da equipe mantém `real: false` **e nunca leva o
+nome de uma banca de verdade** em `banca` — use `"Esc — Banco Didático"`.
+Até setembro de 2026, trinta questões autorais diziam "UNIFESP-EPM" e
+entravam em *Provas Antigas* misturadas às provas reais (a de 2024 aparecia
+com 101 questões, e havia uma "prova de 2021" que nunca existiu). Hoje
+*Provas Antigas* só mostra questão real, e lista à parte as anuladas pela
+banca — que não têm gabarito e por isso ficam fora da nota.
 
 ## Cuidados práticos
 

@@ -1366,7 +1366,7 @@ function confirmarTrazerDadosLocais(idLocal){
    "deste navegador". */
 const _notasDaTurma = {};
 function notasDaTurmaDoSimulado(chave){
-  if(!nuvemConectado() || !chave || _nuvemTabelasAusentes.has("rpc_notas_do_simulado")) return null;
+  if(!nuvemConectado() || !chave || _nuvemTabelasAusentes.has("notas_do_simulado()")) return null;
   const c = _notasDaTurma[chave];
   if(c && (c.carregando || Date.now() - c.em < 5*60*1000)) return c.notas || null;
   _notasDaTurma[chave] = { carregando: true, notas: c ? c.notas : null, em: Date.now() };
@@ -1376,7 +1376,7 @@ function notasDaTurmaDoSimulado(chave){
       if(state.route === "simulado-ativo" || state.route === "simulados") render();
     })
     .catch(e => {
-      if(e && e.status === 404) _nuvemTabelasAusentes.add("rpc_notas_do_simulado");   // o banco ainda não tem a função
+      if(e && e.status === 404) _nuvemTabelasAusentes.add("notas_do_simulado()");   // o banco ainda não tem a função
       _notasDaTurma[chave] = { notas: null, em: Date.now() };
     });
   return c ? c.notas : null;

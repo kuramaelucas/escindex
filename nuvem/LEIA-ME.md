@@ -23,7 +23,7 @@ de quem criou — ver "O que a nuvem não guarda" mais abaixo.
 
 ## Como está agora
 
-A nuvem **já está configurada** neste arquivo. Em `index.html`, procure por
+A nuvem **já está configurada**. Em `codigo/01-config.js`, procure por
 `nuvem:` dentro do bloco `CONFIG`:
 
 ```js
@@ -63,16 +63,22 @@ plataforma volta a se comportar exatamente como antes.
 2. Abra o arquivo `esquema.sql` (nesta mesma pasta), copie **tudo** e cole lá.
 3. Clique em **Run**. Deve aparecer *Success. No rows returned*.
 
-Esse arquivo cria as dez tabelas, liga o RLS em todas elas, e deixa pronto o
-gatilho que transforma cada cadastro novo num perfil pendente de aprovação.
-Pode ser rodado de novo quando quiser, sem estragar o que já existe.
+Esse arquivo cria as tabelas, liga o RLS em todas elas, cria as funções da
+turma (percentil e Painel da Turma) e deixa pronto o gatilho que transforma cada cadastro novo num perfil pendente de aprovação.
+Pode ser rodado de novo quando quiser, sem estragar o que já existe — e roda
+também num projeto novo, do zero (até esta versão, num banco vazio ele parava
+na linha 58; isso foi corrigido e agora é testado automaticamente a cada
+envio, num PostgreSQL de verdade, junto com as regras de segurança).
 
 > **Se o seu banco já existia antes desta versão, rode o `esquema.sql` de novo.**
-> Sete novidades precisam disso, e o arquivo já traz as linhas que acrescentam
+> Dez novidades precisam disso, e o arquivo já traz as linhas que acrescentam
 > cada uma sem mexer no que existe:
 >
 > | O que é | O que o arquivo faz |
 > |---|---|
+> | **Comentários e dúvidas** nas questões chegando à turma e à Fila de Dúvidas | cria a tabela `comentarios` (todos leem; cada um grava o seu; só revisor dá resposta oficial) |
+> | **Percentil de simulado** com as notas da turma inteira | cria a função `notas_do_simulado()` (devolve só id aleatório e nota) |
+> | **Painel da Turma** (professor e coordenação) | cria as funções `painel_turma()` e `atividade_por_semana()` (só a equipe recebe linhas) |
 > | A anotação pessoal da questão salva | `alter table public.favoritos add column if not exists nota text ...` |
 > | Quantos flashcards você fez em cada dia | `alter table public.dias_cartoes add column if not exists quantidade integer ...` |
 > | Os **flashcards favoritados** | cria a tabela `favoritos_cartoes`, com RLS e permissões |
@@ -88,21 +94,46 @@ Pode ser rodado de novo quando quiser, sem estragar o que já existe.
 > que falta. Depois de rodar o SQL, recarregue a página (F5) e tudo passa a
 > subir junto.
 
-### 3. Ajustar o login por e-mail
+### 3. Ajustar o login por e-mail (confirmação que volta para o site)
 
-Em **Authentication > Providers > Email**:
+Em **Authentication > Providers > Email** (em alguns painéis, *Sign In /
+Providers*):
 
-- **Confirm email**: se ligado, a pessoa precisa clicar num link no e-mail
-  antes de entrar. A plataforma lida bem com as duas opções — com o
-  *Confirm email* desligado, o cadastro é mais simples, e quem controla
-  quem entra passa a ser só a aprovação da coordenação.
+- **Confirm email**: ligado, a pessoa precisa tocar num link no e-mail antes
+  do primeiro acesso. **Recomendado**: garante que o e-mail existe e é de
+  quem se cadastrou (é para ele que vai o "esqueci a senha").
 - **Minimum password length**: 6 é o mínimo aceito pela tela de cadastro.
 
-Em **Authentication > URL Configuration**, ponha o endereço do site em **Site
-URL** (por exemplo `https://esc.netlify.app` ou o seu domínio próprio). É para
-lá que o link de confirmação leva.
+Em **Authentication > URL Configuration** — é isto que faz o link do e-mail
+**voltar para o Esc**, e não para uma página do Supabase:
 
-### 4. Colar os dois valores no `index.html`
+- **Site URL**: o endereço do site, exatamente como os alunos abrem
+  (por exemplo `https://esc.exemplo.com.br/`).
+- **Redirect URLs**: acrescente o mesmo endereço com `**` no fim, para
+  aceitar a página com qualquer detalhe depois
+  (por exemplo `https://esc.exemplo.com.br/**`). Se o site tiver
+  mais de um endereço (domínio próprio, Netlify), acrescente cada um.
+
+Como funciona: ao cadastrar, reenviar a confirmação ou pedir "esqueci a
+senha", o site manda junto o endereço da própria página (`redirect_to`). O
+Supabase só aceita esse endereço se ele estiver na lista acima — se não
+estiver, o link cai no *Site URL*. Na volta, o Esc lê o resultado do
+endereço, apaga o token dele na hora e mostra a tela certa:
+
+| O link era de… | O que a pessoa vê |
+|---|---|
+| confirmação do cadastro | "E-mail confirmado — agora falta a coordenação aprovar" (ou entra direto, se já aprovada) |
+| "esqueci a senha" | a tela para escolher a senha nova |
+| um link vencido ou já usado | "Este link não vale mais", com os botões para pedir outro |
+
+Se o site tiver um endereço fixo diferente da página onde a pessoa se
+cadastra, preencha `CONFIG.nuvem.enderecoDoSite` em `codigo/01-config.js`.
+
+Os textos dos e-mails ficam em **Authentication > Emails > Templates**. Vale
+traduzir o de *Confirm signup* e o de *Reset password* (mantendo o
+`{{ .ConfirmationURL }}`, que é o link).
+
+### 4. Colar os dois valores em `codigo/01-config.js`
 
 Em **Project Settings > API**, copie:
 
@@ -173,26 +204,98 @@ apagado sem a pessoa mandar.
   versão mais recente, guardada questão a questão — não num bloco único —
   para que uma divergência afete um item, nunca o histórico inteiro.
 
+### O que é de todos (e não de uma pessoa)
+
+Além do estudo de cada um, sobem e descem para a turma inteira:
+
+- a **sequência de blocos** de cada ano (Admin > Blocos de Estudo);
+- o **Livro de Ouro**;
+- a **formatação aprovada** em Revisar Formatação;
+- os **comentários e dúvidas** nas questões — o aluno escreve, a dúvida
+  aparece na **Fila de Dúvidas** de residentes e professores em qualquer
+  aparelho, e a resposta oficial volta para a questão. O nome de quem
+  escreveu vai junto. Quem escreveu, professor e administrador podem
+  remover um comentário (ele some para todos).
+
+E, sem sair do banco, dois cálculos da turma:
+
+- o **percentil de simulado** compara a nota com as tentativas da turma
+  inteira (a função devolve só números, sem ninguém nelas);
+- o **Painel da Turma** (menu de professor e da coordenação) mostra, por ano
+  da faculdade, quem está estudando, quanto, com que acerto, semana a semana
+  e por grande área, e quem parou ou caiu — somado dentro do banco, uma
+  linha por aluno. Residente e aluno não recebem nada dessas funções.
+
 ## O que a nuvem **não** guarda
 
 Estas coisas continuam vivendo só no navegador de quem as fez:
 
 - **Questões criadas ou importadas pela plataforma** (Admin > Importar
   Questões e Admin > Central de Provas), inclusive as cargas de prova em
-  andamento. Para virar conteúdo de todo mundo, elas precisam ir para a pasta
-  `dados/` — ver `dados/LEIA-ME.md`.
-- Comentários e dúvidas nas questões, feedbacks, o Livro de Ouro e as turmas
-  (quem está em qual turma, e o bloco em que cada turma começa). A
-  **sequência** de blocos de cada ano é a exceção: ela sobe e desce sozinha —
-  ver a nota no topo deste arquivo.
-- As contas de demonstração (`admin@esc.demo` e companhia), que são locais e
-  continuam servindo para testar sem criar conta nenhuma.
+  andamento, e **cartões da equipe** criados pela plataforma. Para virar
+  conteúdo de todo mundo, eles precisam ir para a pasta `dados/` — ver
+  `dados/LEIA-ME.md` (os cartões têm botão de exportar pronto).
+- Feedbacks e as turmas (quem está em qual turma, e o bloco em que cada
+  turma começa). A **sequência** de blocos de cada ano é a exceção: ela sobe
+  e desce sozinha — ver a nota no topo deste arquivo.
+- A conta de demonstração de aluno, que é local e continua servindo para
+  conhecer a plataforma sem criar conta.
+
+## Backup automático da nuvem (uma vez por dia, criptografado)
+
+O backup em *Configurações* copia o que está **naquele navegador** — com a
+nuvem ligada, isso não é o estudo da turma. A cópia da turma inteira é feita
+pelo GitHub, pelo arquivo `.github/workflows/backup-nuvem.yml`, todo dia às
+3h (Brasília):
+
+- `banco-public.sql` — todas as tabelas do Esc, com as regras de segurança;
+- `contas-auth.sql` — as contas de login (senha só em hash);
+- `contas.csv` — a lista legível: e-mail e datas, nunca senha.
+
+Os três vão num arquivo **criptografado com uma senha que só a coordenação
+sabe** e ficam guardados 30 dias em *Actions > Backup da nuvem*. Sem a senha,
+o arquivo não abre — nem para quem o baixar.
+
+**Para ligar** (uma vez), no GitHub: *Settings > Secrets and variables >
+Actions > New repository secret*, cadastre dois segredos:
+
+| Nome | Valor |
+|---|---|
+| `SUPABASE_DB_URL` | No Supabase: *Project Settings > Database > Connection string > URI*, modo **Session pooler**, com a senha do banco no lugar de `[YOUR-PASSWORD]`. |
+| `BACKUP_SENHA` | Uma senha longa, **guardada fora do GitHub** (num cofre de senhas). Perdeu a senha, perdeu os backups. |
+
+Enquanto os dois não existirem, o fluxo roda e só avisa que está desligado.
+Para testar na hora: *Actions > Backup da nuvem > Run workflow*.
+
+**Para abrir um backup**, baixe o arquivo em *Actions > Backup da nuvem >
+(o dia)* e, num computador com `openssl`:
+
+```bash
+openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in backup.tar.gz.enc -out backup.tar.gz
+tar xzf backup.tar.gz
+```
+
+**Para restaurar:**
+
+- *No mesmo projeto* (o caso comum — alguém apagou o que não devia): rode no
+  SQL Editor só o trecho de `banco-public.sql` da tabela que precisa voltar.
+- *Num projeto novo*: com `psql`, rode `contas-auth.sql` **primeiro** e
+  `banco-public.sql` **depois** (as tabelas apontam para as contas); o aviso
+  `schema "public" already exists` é esperado. Por fim, rode o `esquema.sql`,
+  que recria o gatilho de cadastro novo em `auth.users`. Esse caminho foi
+  testado num PostgreSQL com a mesma estrutura: todas as tabelas, vínculos e
+  regras voltam.
+
+Cada pessoa também pode baixar **o próprio estudo** em *Perfil > Seus dados >
+Baixar uma cópia do meu estudo*.
 
 ## Publicar o site (Netlify, GitHub Pages ou qualquer um)
 
 O site é estático: não tem servidor, nem build, nem instalação. Publicar é
-subir a pasta inteira — **`index.html` mais a pasta `dados/`**. A pasta
-`nuvem/` é documentação; pode ir junto ou não.
+subir a pasta inteira — **`index.html` mais as pastas `codigo/`, `dados/` e
+`icones/`, e os arquivos `sw.js` e `manifest.webmanifest`** (estes dois fazem
+o site virar aplicativo instalável). As pastas `nuvem/` e `testes/` são
+documentação e teste; podem ir junto ou não.
 
 No Netlify, o caminho mais curto é arrastar a pasta para
 [app.netlify.com/drop](https://app.netlify.com/drop), ou ligar o repositório
@@ -201,7 +304,8 @@ publicar, volte ao Supabase e ponha o endereço do site em
 **Authentication > URL Configuration > Site URL**.
 
 Se a pasta `dados/` não for junto, o site abre com uma tarja amarela no alto
-avisando exatamente isso.
+avisando exatamente isso; se a `codigo/` não for, a página diz qual arquivo
+faltou em vez de abrir em branco.
 
 ## Quando algo não funciona
 
@@ -222,14 +326,21 @@ Três coisas que o cartão de sincronização mostra e valem uma explicação:
   `esquema.sql` desatualizado no Supabase), só aquele registro sai da fila e
   fica listado com o motivo, no Perfil — o resto do estudo continua subindo e
   descendo. Um registro ruim não trava mais a sincronização inteira.
-- **Contas de demonstração.** `admin@esc.demo` e companhia continuam sendo
-  locais, mesmo com a nuvem ligada: quem entra com elas não sincroniza nada,
-  e o cartão avisa que o estudo ficou só neste navegador.
+- **Contas de demonstração.** Com a nuvem ligada, as de **professor,
+  residente e administrador** (`admin@esc.demo` e companhia) ficam
+  desligadas: a senha delas está escrita na documentação, e num computador
+  compartilhado abririam as telas de administração daquele navegador. A de
+  **aluno** continua (acesso rápido), só local: não sincroniza nada, e o
+  cartão avisa isso. Para religar as outras num teste, mude
+  `CONFIG.contasDemoDaEquipeComNuvem` para `true`.
 
 | O que aparece | O que costuma ser |
 | --- | --- |
 | "E-mail ou senha incorretos." | Senha errada, ou a conta ainda não existe nesse projeto do Supabase. |
-| "Confirme o e-mail antes de entrar." | *Confirm email* está ligado em Authentication > Providers > Email. |
+| "Falta confirmar o e-mail" | *Confirm email* está ligado e a pessoa ainda não tocou no link. A própria janela oferece **Reenviar o link**. |
+| O link do e-mail abre uma página do Supabase ou `localhost` | O endereço do site não está em *Authentication > URL Configuration* (Site URL e Redirect URLs). Ver o passo 3. |
+| "Este link não vale mais" | O link expirou ou já foi usado. A tela tem os botões para pedir outro. |
+| Painel da Turma: "o banco ainda não tem as funções do painel" | Rode o `esquema.sql` de novo (ele cria `painel_turma()` e `atividade_por_semana()`). |
 | "Conta sem perfil na nuvem." | O `esquema.sql` não foi rodado (ou foi rodado depois de a conta ser criada). Rode o arquivo e crie a conta de novo, ou insira o perfil à mão. |
 | "Seu cadastro ainda está aguardando aprovação." | Está tudo certo: falta a coordenação aprovar em Aprovar Cadastros. |
 | "Endereço da nuvem não encontrado" | `CONFIG.nuvem.url` está com erro de digitação. |
