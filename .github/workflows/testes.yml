@@ -1,0 +1,27 @@
+# Roda os testes automáticos a cada envio e a cada pull request:
+#   - o conferidor da pasta dados/ (ids, gabaritos, taxonomia, provas completas);
+#   - o teste de fumaça, que abre a plataforma num Chromium de verdade, entra
+#     com cada papel e passa por todas as telas, falhando em qualquer erro.
+# Nada aqui publica o site nem fala com a nuvem.
+name: Testes
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Conferir a pasta dados/
+        run: npm run conferir
+      - name: Teste de fumaça
+        run: npm test
