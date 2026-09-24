@@ -499,14 +499,20 @@ function assuntosParaRevisarHoje(usuarioId){
 }
 
 /* ---------- montagem de sessões de estudo ---------- */
-function selecionarComInterleaving(pool, quantidade){
+function selecionarComInterleaving(pool, quantidade, pesos){
   // agrupa por assunto, ordena cada grupo do mais fácil ao mais difícil, e
   // intercala entre os grupos (em vez de esgotar um assunto antes de ir pro
   // próximo) — isso é o princípio de "interleaving" citado na recomendação
   // científica: misturar assuntos ajuda a discriminar diagnósticos parecidos.
+  // Com `pesos` (assuntoId -> peso), a ordem dos assuntos continua sorteada,
+  // mas o sorteio favorece os de peso maior (o que mais cai e a pessoa erra):
+  // cada grupo recebe a chave aleatório^(1/peso) e a lista vai da maior
+  // chave para a menor — peso 4 tende a vir antes de peso 1, sem garantia.
   const porAssunto = {};
   pool.forEach(q=>{ (porAssunto[q.assuntoId] = porAssunto[q.assuntoId]||[]).push(q); });
-  const grupos = embaralhar(Object.values(porAssunto));
+  const grupos = pesos
+    ? Object.values(porAssunto).map(g=>({g, chave: Math.pow(Math.random(), 1/(pesos[g[0].assuntoId]||1))})).sort((a,b)=>b.chave-a.chave).map(x=>x.g)
+    : embaralhar(Object.values(porAssunto));
   grupos.forEach(lista=> lista.sort((a,b)=>calcularDificuldade(a)-calcularDificuldade(b)));
   const resultado = [];
   let i=0, tentativas=0;
@@ -591,7 +597,10 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const nPrevia = Math.max(0, tamanho - nAtual - nRevisao);
 
   const poolAtual = questoesParaEstudo(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId));
-  const itensAtual = selecionarComInterleaving(poolAtual, nAtual).map(q=>({questaoId:q.id, motivo:"Bloco atual — "+blocoAtual.nome}));
+  const pesos = pesosDeIncidencia(usuarioId);
+  const destaque = assuntosQueMaisCaem(usuarioId);
+  const itensAtual = selecionarComInterleaving(poolAtual, nAtual, pesos).map(q=>({questaoId:q.id,
+    motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "")}));
 
   let poolRevisaoVencida = questoesParaEstudo(usuarioId).filter(q=>assuntosPassados.includes(q.assuntoId) && jaFoiRespondida(usuarioId,q.id) && revisaoVencida(usuarioId,q.id));
   poolRevisaoVencida.sort((a,b)=>{
@@ -1123,4 +1132,120 @@ function questoesDificeis(){
     .filter(q=>(q.estatisticas.acertos/q.estatisticas.respostas) < CONFIG.limiarTaxaAcertoDificil)
     .filter(q=>!q.revisadaProfessor)
     .sort((a,b)=>(a.estatisticas.acertos/a.estatisticas.respostas)-(b.estatisticas.acertos/b.estatisticas.respostas));
+}
+
+/* ---------- O QUE MAIS CAI NA PROVA (incidência na banca) -----------------
+   As provas reais que estão no banco dizem, assunto por assunto, o que a
+   banca cobra — e quanto. Cruzado com o acerto de cada pessoa, isso vira a
+   pergunta que interessa na reta final: "o que cai muito E eu ainda erro?".
+
+   incidenciaNaBanca(banca) conta as questões REAIS daquela banca (anuladas
+   incluídas: a banca cobrou o tema, só errou a questão) por assunto e por
+   grande área, e em quantos anos diferentes cada assunto apareceu.
+
+   prioridadesDeEstudo(usuarioId, banca) dá uma nota de prioridade a cada
+   assunto cobrado:
+       prioridade = (fatia da prova que o assunto ocupa) × (1 − acerto estimado)
+   O acerto estimado é "puxado" para o acerto geral da pessoa quando há
+   poucas respostas no assunto (média com CONFIG.incidencia.respostasDePeso
+   respostas imaginárias no acerto geral): 1 erro em 1 questão não pode
+   virar "0% de acerto, prioridade máxima". Assunto nunca respondido entra
+   com o acerto geral — a pessoa não sabe se sabe, e a prova cobra. */
+let _cacheIncidencia = null;
+function bancaDeReferencia(){ return (db.configGeral && db.configGeral.bancaFoco) || CONFIG.bancaFoco; }
+function bancasComProvaReal(){
+  const m = {};
+  db.questoes.forEach(q=>{ if(q.real && q.banca){ (m[q.banca] = m[q.banca] || new Set()).add(q.ano); } });
+  return Object.keys(m).sort().map(b=>({ banca:b, anos:[...m[b]].sort() }));
+}
+function incidenciaNaBanca(banca){
+  banca = banca || bancaDeReferencia();
+  if(_cacheIncidencia && _cacheIncidencia.geracao===_geracaoDb && _cacheIncidencia.banca===banca) return _cacheIncidencia.r;
+  const reais = db.questoes.filter(q=>q.real && q.banca===banca && q.status!=="desatualizada");
+  const porAssunto = {}, porArea = {}, anos = new Set();
+  reais.forEach(q=>{
+    anos.add(q.ano);
+    const a = porAssunto[q.assuntoId] = porAssunto[q.assuntoId] || { assuntoId:q.assuntoId, areaId:q.areaId, n:0, anos:new Set() };
+    a.n++; a.anos.add(q.ano);
+    porArea[q.areaId] = (porArea[q.areaId]||0) + 1;
+  });
+  const r = { banca, total: reais.length, anos: [...anos].sort(), porAssunto, porArea };
+  _cacheIncidencia = { geracao:_geracaoDb, banca, r };
+  return r;
+}
+function acertoGeralDoUsuario(usuarioId){
+  const rs = db.respostas.filter(r=>r.usuarioId===usuarioId);
+  return { total: rs.length, acertos: rs.filter(r=>r.correta).length,
+           taxa: rs.length ? rs.filter(r=>r.correta).length/rs.length : CONFIG.incidencia.acertoPresumido };
+}
+function prioridadesDeEstudo(usuarioId, banca){
+  const inc = incidenciaNaBanca(banca);
+  if(!inc.total) return [];
+  const geral = acertoGeralDoUsuario(usuarioId);
+  const k = CONFIG.incidencia.respostasDePeso;
+  const minhas = {};
+  db.respostas.forEach(r=>{
+    if(r.usuarioId!==usuarioId) return;
+    const m = minhas[r.assuntoId] = minhas[r.assuntoId] || { total:0, acertos:0 };
+    m.total++; if(r.correta) m.acertos++;
+  });
+  const lista = Object.values(inc.porAssunto).map(a=>{
+    const m = minhas[a.assuntoId] || { total:0, acertos:0 };
+    const acertoEstimado = (m.acertos + k*geral.taxa) / (m.total + k);
+    const fatia = a.n / inc.total;
+    return {
+      assuntoId: a.assuntoId, areaId: a.areaId, questoesNaProva: a.n, anosQueCaiu: a.anos.size,
+      fatia, respondidas: m.total, acertos: m.acertos, taxa: m.total ? pct(m.acertos, m.total) : null,
+      acertoEstimado, prioridade: fatia * (1 - acertoEstimado),
+    };
+  });
+  const max = Math.max(...lista.map(x=>x.prioridade), 1e-9);
+  lista.forEach(x=>{ x.prioridadeRelativa = x.prioridade/max; });
+  return lista.sort((a,b)=>b.prioridade-a.prioridade);
+}
+/* Peso de cada assunto na montagem da sessão recomendada: 1 para quem não
+   cai na prova, até 1 + CONFIG.incidencia.pesoNaSessao para o assunto de
+   maior prioridade. Não tira nada do bloco atual — só muda a ORDEM em que os
+   assuntos do bloco são visitados, então o que cai muito e a pessoa erra
+   aparece primeiro. */
+function pesosDeIncidencia(usuarioId){
+  const extra = CONFIG.incidencia.pesoNaSessao;
+  const mapa = {};
+  if(!extra) return mapa;
+  prioridadesDeEstudo(usuarioId).forEach(p=>{ mapa[p.assuntoId] = 1 + extra*p.prioridadeRelativa; });
+  return mapa;
+}
+function assuntosQueMaisCaem(usuarioId){
+  return new Set(prioridadesDeEstudo(usuarioId).slice(0, CONFIG.incidencia.topParaDestacar).map(p=>p.assuntoId));
+}
+
+/* ---------- SE A PROVA FOSSE HOJE (estimativa de nota) --------------------
+   A prova da banca tem uma proporção de questões por grande área (a média
+   das provas reais do banco). A nota esperada é essa proporção aplicada ao
+   acerto da pessoa em cada área:
+       nota = Σ (fatia da área na prova) × (acerto estimado na área)
+   com o mesmo "puxão" para o acerto geral quando a área tem poucas
+   respostas. A faixa (mais ou menos) é o erro-padrão dessa conta: com
+   poucas respostas ela é larga, e a tela diz isso em vez de fingir precisão.
+   Só aparece a partir de CONFIG.incidencia.minRespostasParaNota respostas. */
+function estimativaDeNota(usuarioId, banca){
+  const inc = incidenciaNaBanca(banca);
+  const geral = acertoGeralDoUsuario(usuarioId);
+  if(!inc.total || geral.total < CONFIG.incidencia.minRespostasParaNota) return null;
+  const k = CONFIG.incidencia.respostasDePeso;
+  let nota = 0, variancia = 0;
+  const areas = db.taxonomia.areas.map(area=>{
+    const rs = db.respostas.filter(r=>r.usuarioId===usuarioId && r.areaId===area.id);
+    const acertos = rs.filter(r=>r.correta).length;
+    const p = (acertos + k*geral.taxa) / (rs.length + k);
+    const fatia = (inc.porArea[area.id]||0) / inc.total;
+    nota += fatia * p;
+    variancia += fatia*fatia * p*(1-p) / (rs.length + k);
+    return { areaId: area.id, nome: area.nome, fatia, respondidas: rs.length, taxa: rs.length ? pct(acertos, rs.length) : null, acertoEstimado: p,
+             pontos: fatia * p * 100 };
+  });
+  const ep = Math.sqrt(variancia);
+  return { banca: inc.banca, anos: inc.anos, nota: Math.round(nota*100),
+           minimo: Math.max(0, Math.round((nota - 1.96*ep)*100)), maximo: Math.min(100, Math.round((nota + 1.96*ep)*100)),
+           respostas: geral.total, areas };
 }

@@ -437,6 +437,20 @@ function renderInicioStaff(u){
 /* ==========================================================================
    10. TELA "ESTUDAR" — ponto de partida para praticar
    ========================================================================== */
+/* As três maiores prioridades pela prova (O QUE MAIS CAI NA PROVA, seção 4),
+   com o atalho para praticá-las. O quadro completo fica em Meu Desempenho. */
+function htmlCardPrioridadesEstudar(u){
+  const top = prioridadesDeEstudo(u.id).slice(0,3);
+  if(!top.length) return "";
+  return `<div class="card mt-2">
+    <div class="card-title">${iconeSvg("star")} O que mais cai na ${escapeHtml(bancaDeReferencia())} e você ainda erra</div>
+    <p class="text-sm muted">${top.map(p=>`<strong>${escapeHtml(nomeAssunto(p.assuntoId))}</strong> (${p.questoesNaProva} questões nas provas${p.taxa!==null?", você acerta "+p.taxa+"%":", nunca respondeu"})`).join(" · ")}</p>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="praticarPrioridadesDaProva()">${iconeSvg("play")} Praticar as prioridades</button>
+      <button class="btn btn-ghost" onclick="navigate('desempenho')">Ver o quadro completo</button>
+    </div>
+  </div>`;
+}
 function renderEstudar(){
   const u = usuarioAtual();
   const bloco = getBlocoAtual();
@@ -493,7 +507,7 @@ function renderEstudar(){
   <div class="grid grid-2">
     <div class="card">
       <div class="card-title">Sessão recomendada</div>
-      <p class="text-sm muted">Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.</p>
+      <p class="text-sm muted">Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Dentro do bloco atual, os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
       <p class="text-xs muted mt-1">${deHoje
@@ -506,6 +520,7 @@ function renderEstudar(){
       <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${errosPendentes===0?"disabled":""}>Revisar agora</button>
     </div>
   </div>
+  ${htmlCardPrioridadesEstudar(u)}
   <div class="card mt-2">
     <div class="card-title">Monte sua própria lista</div>
     <p class="text-sm muted mb-2">Filtre por grande área, especialidade, assunto, instituição, ano ou situação (erros, favoritas, ainda não respondidas). Deixar um filtro em branco significa "todos".</p>

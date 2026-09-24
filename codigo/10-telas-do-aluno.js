@@ -467,6 +467,78 @@ function abreviarArea(nome){
   };
   return mapa[nome] || (nome.length>12 ? nome.slice(0,11)+"." : nome);
 }
+/* ---------- "Se a prova fosse hoje" e "O que mais cai" ---------------------
+   As duas contas moram no motor (seção 4, O QUE MAIS CAI NA PROVA); aqui só
+   se mostra. Os dois cartões dizem de onde vem o número — quais provas, quantas
+   respostas — porque uma nota estimada sem a origem à vista vira profecia. */
+function htmlCardNotaEstimada(u){
+  const inc = incidenciaNaBanca();
+  if(!inc.total) return "";
+  const est = estimativaDeNota(u.id);
+  const faixaAnos = inc.anos.length ? inc.anos[0]+"–"+inc.anos[inc.anos.length-1] : "";
+  if(!est){
+    const faltam = CONFIG.incidencia.minRespostasParaNota - acertoGeralDoUsuario(u.id).total;
+    return `<div class="card mb-2">
+      <div class="card-title">${iconeSvg("target")} Se a prova fosse hoje</div>
+      <p class="text-sm muted">Com mais ${faltam} resposta(s), a plataforma estima a sua nota na prova da ${escapeHtml(inc.banca)}, área por área, pelo peso que cada grande área teve nas provas de ${faixaAnos}.</p>
+    </div>`;
+  }
+  const larga = est.maximo - est.minimo > 16;
+  return `<div class="card mb-2">
+    <div class="card-title">${iconeSvg("target")} Se a prova fosse hoje</div>
+    <p class="text-sm muted">Estimativa da sua nota na prova da ${escapeHtml(est.banca)}: o seu acerto em cada grande área, pesado pelo tanto que cada área caiu nas provas de ${faixaAnos} (${inc.total} questões). Não é previsão de aprovação — é o retrato de hoje.</p>
+    <div class="nota-estimada mt-2">
+      <div><div class="nota-estimada-valor">${est.nota}%</div>
+        <div class="text-xs muted">provavelmente entre ${est.minimo}% e ${est.maximo}%${larga ? " — faixa larga porque ainda há poucas respostas; ela estreita com o uso" : ""}</div></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Grande área</th><th>Peso na prova</th><th>Seu acerto</th><th>Pontos de 100</th></tr></thead>
+        <tbody>${est.areas.map(a=>`<tr>
+          <td class="text-sm">${escapeHtml(a.nome)}</td>
+          <td class="text-sm">${Math.round(a.fatia*100)}%</td>
+          <td class="text-sm">${a.taxa!==null ? a.taxa+"%" : '<span class="muted">sem respostas</span>'}${a.respondidas && a.respondidas<10 ? ' <span class="text-xs muted">('+a.respondidas+' resp.)</span>' : ""}</td>
+          <td class="text-sm">${a.pontos.toFixed(1).replace(".", ",")} <span class="muted">de ${Math.round(a.fatia*100)}</span></td>
+        </tr>`).join("")}</tbody>
+      </table></div>
+    </div>
+  </div>`;
+}
+function htmlCardOQueMaisCai(u, limite){
+  const inc = incidenciaNaBanca();
+  if(!inc.total) return "";
+  const lista = prioridadesDeEstudo(u.id).slice(0, limite);
+  const faixaAnos = inc.anos.length ? inc.anos[0]+"–"+inc.anos[inc.anos.length-1] : "";
+  return `<div class="card mb-2">
+    <div class="card-title">${iconeSvg("star")} O que mais cai na prova × onde você erra</div>
+    <p class="text-sm muted">Os assuntos que mais caíram nas provas da ${escapeHtml(inc.banca)} (${faixaAnos}), em ordem de <strong>prioridade</strong>: quanto da prova o assunto ocupa, multiplicado pelo quanto você ainda erra nele. Assunto que você nunca respondeu entra com o seu acerto geral. É esta mesma conta que faz a sessão recomendada trazer primeiro esses assuntos, dentro do bloco atual.</p>
+    <div class="table-wrap mt-2"><table>
+      <thead><tr><th>Assunto</th><th>Caiu na prova</th><th>Seu acerto</th><th>Prioridade</th><th></th></tr></thead>
+      <tbody>${lista.map(p=>`<tr>
+        <td class="text-sm"><strong>${escapeHtml(nomeAssunto(p.assuntoId))}</strong> <span class="text-xs muted">${escapeHtml((getArea(p.areaId)||{}).nome||"")}</span></td>
+        <td class="text-sm">${p.questoesNaProva} questão(ões) <span class="text-xs muted">em ${p.anosQueCaiu} de ${inc.anos.length} anos</span></td>
+        <td class="text-sm">${p.taxa!==null ? `<span class="badge ${p.taxa<50?"badge-danger":p.taxa<70?"badge-amber":"badge-accent"}">${p.taxa}%</span> <span class="text-xs muted">em ${p.respondidas}</span>` : '<span class="text-xs muted">nunca respondeu</span>'}</td>
+        <td><div class="barra-prioridade" title="prioridade relativa"><i style="width:${Math.max(4, Math.round(p.prioridadeRelativa*100))}%"></i></div></td>
+        <td><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${p.assuntoId}')">Praticar</button></td>
+      </tr>`).join("")}</tbody>
+    </table></div>
+    <button class="btn btn-primary btn-sm mt-2" onclick="praticarPrioridadesDaProva()">${iconeSvg("play")} Praticar as 5 maiores prioridades</button>
+  </div>`;
+}
+/* Um conjunto com as questões dos 5 assuntos de maior prioridade — primeiro
+   as que a pessoa nunca viu ou errou, intercaladas por assunto. */
+function praticarPrioridadesDaProva(){
+  const u = usuarioAtual();
+  const top = prioridadesDeEstudo(u.id).slice(0,5).map(p=>p.assuntoId);
+  if(!top.length){ toast("Ainda não há prova real no banco para calcular as prioridades.", "err"); return; }
+  const pool = questoesParaEstudo(u.id).filter(q=>top.includes(q.assuntoId)).filter(q=>{
+    const ult = ultimaResposta(u.id, q.id);
+    return !ult || !ult.correta || ult.confianca==="chute";
+  });
+  const itens = selecionarComInterleaving(pool.length ? pool : questoesParaEstudo(u.id).filter(q=>top.includes(q.assuntoId)), 15)
+    .map(q=>({questaoId:q.id, motivo:"Prioridade pela prova — "+nomeAssunto(q.assuntoId)}));
+  if(!itens.length){ toast("Não há questões desses assuntos disponíveis para você agora.", "err"); return; }
+  iniciarSessaoComLista(itens, "pratica");
+}
+
 function renderDesempenho(){
   const u = usuarioAtual();
   const ctx = ctxDesempenho();
@@ -504,6 +576,8 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${totalGeral.naoRespondidas}</div><div class="stat-label">questões do banco que você ainda não viu</div></div>
     </div>
   </div>
+
+  ${htmlCardNotaEstimada(u)}
 
   <div class="card mb-2">
     <div class="card-title">${iconeSvg("cards")} Flashcards — contagem à parte</div>
@@ -566,8 +640,9 @@ function renderDesempenho(){
   <div class="card mb-2">
     <div class="card-title">Comparação entre as 5 grandes áreas</div>
     <p class="text-sm muted">Todas as suas respostas somadas, agrupadas nas cinco áreas cobradas na prova. É neste nível que se decide onde colocar as próximas horas de estudo.</p>
-    <div class="mt-2">${graficoAreas}</div>
-    <div class="table-wrap mt-2"><table>
+    <div class="areas-lado-a-lado mt-2">
+    <div class="areas-grafico">${graficoAreas}</div>
+    <div class="table-wrap"><table>
       <thead><tr><th>Grande área</th><th>Acertos</th><th>Erros</th><th>Taxa</th><th>Assunto mais fraco</th><th></th></tr></thead>
       <tbody>
         ${porArea.map(a=>{
@@ -583,8 +658,11 @@ function renderDesempenho(){
         }).join("")}
       </tbody>
     </table></div>
+    </div>
     <p class="text-xs muted mt-1">O detalhe assunto a assunto fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>, ao lado da fila que diz o que fazer com cada um.</p>
   </div>
+
+  ${htmlCardOQueMaisCai(u, 10)}
 
   <div class="grid grid-3 mb-2">
     <div class="stat-tile"><div class="stat-value">${calibracao.certeza.n?calibracao.certeza.taxa+"%":"—"}</div><div class="stat-label">acerto quando você disse "certeza" (${calibracao.certeza.n})</div></div>

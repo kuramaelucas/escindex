@@ -226,6 +226,16 @@ const CONFIG = {
   nomePlataforma: "Esc",
   subtitulo: "Preparação para Residência Médica",
   bancaFoco: "UNIFESP-EPM",
+  /* "O que mais cai" e "Se a prova fosse hoje" (seção 4, O QUE MAIS CAI NA
+     PROVA). Tudo calculado a partir das provas reais da bancaFoco que
+     estão no banco. */
+  incidencia: {
+    respostasDePeso: 4,        // o acerto de um assunto com poucas respostas é puxado para o acerto geral, como se houvesse 4 respostas a mais nele
+    acertoPresumido: 0.6,      // acerto usado para quem ainda não respondeu nada
+    pesoNaSessao: 3,           // na sessão recomendada, o assunto de maior prioridade vem até 4× mais cedo (0 desliga)
+    topParaDestacar: 15,       // os 15 assuntos de maior prioridade ganham o selo "cai muito" no motivo da questão
+    minRespostasParaNota: 30,  // a estimativa de nota só aparece a partir de 30 respostas
+  },
   hoje: () => new Date(), // usado no lugar de "new Date()" direto, fácil de simular outra data no futuro
 
   // metas de estudo
@@ -304,6 +314,16 @@ const CONFIG = {
   // aqui os dois valores; o passo a passo está em nuvem/LEIA-ME.md.
   // A chave anônima é pública de propósito: quem protege os dados é a regra
   // no banco (Row Level Security), não o segredo da chave.
+  /* CONTAS DE DEMONSTRAÇÃO DA EQUIPE COM A NUVEM LIGADA. As contas
+     admin@esc.demo, professor@esc.demo e residente@esc.demo têm senha
+     escrita na documentação — servem para conhecer a plataforma, não para
+     um site no ar. Com a nuvem ligada (site de verdade, turma de verdade),
+     elas ficam DESLIGADAS: num computador compartilhado, qualquer um que
+     soubesse a senha abriria as telas de administração e o backup daquele
+     navegador. A de aluno continua (acesso rápido), porque não mexe em nada
+     de ninguém. Mude para true só se precisar testar a equipe no site. */
+  contasDemoDaEquipeComNuvem: false,
+
   nuvem: {
     url: "https://jznocvgmcgiovgcwhrvi.supabase.co",
     chaveAnon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6bm9jdmdtY2dpb3ZnY3docnZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MzQ4OTksImV4cCI6MjEwNTUxMDg5OX0.CyZ-46-2j3IO5JIUmwTqTuHyCDc6fkGE6Lbvpq22bbU",

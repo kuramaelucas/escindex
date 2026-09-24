@@ -328,6 +328,17 @@ button.stat-mini:hover{border-color:var(--accent)}
 .nota-pessoal .text-sm{white-space:pre-wrap}
 
 /* ---------- legenda e seletor de período dos gráficos de desempenho ---------- */
+/* No computador, o gráfico das 5 áreas fica ao lado da tabela das mesmas
+   áreas (uma coisa explica a outra); no celular, um embaixo do outro. */
+/* "Se a prova fosse hoje": o número grande ao lado da tabela das áreas */
+.nota-estimada{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+@media (min-width:900px){ .nota-estimada{grid-template-columns:220px minmax(0,1fr)} }
+.nota-estimada-valor{font-family:var(--font-display);font-size:2.6rem;line-height:1.1;color:var(--accent)}
+/* barra de prioridade (O que mais cai × onde você erra) */
+.barra-prioridade{width:90px;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.barra-prioridade i{display:block;height:100%;background:var(--amber)}
+.areas-lado-a-lado{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+@media (min-width:1000px){ .areas-lado-a-lado{grid-template-columns:minmax(260px,380px) minmax(0,1fr)} }
 .legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--muted);margin-top:.5rem;align-items:center}
 .legenda-barras span{display:flex;align-items:center;gap:.35rem}
 .legenda-barras i{width:11px;height:11px;border-radius:3px;display:inline-block}

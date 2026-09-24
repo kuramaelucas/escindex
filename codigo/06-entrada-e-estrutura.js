@@ -15,6 +15,10 @@ function fazerLogin(identificador, senha){
   const id = (identificador||"").trim().toLowerCase();
   const usuario = db.usuarios.find(u => (u.email.toLowerCase()===id || u.matricula.toLowerCase()===id) && u.senha===senha);
   if(!usuario){ toast("Login ou senha incorretos.", "err"); return; }
+  if(contaDemoDaEquipeBloqueada(usuario)){
+    toast("As contas de demonstração da equipe ficam desligadas quando a plataforma está na nuvem — a senha delas é pública. Entre com a sua conta da nuvem.", "err");
+    return;
+  }
   if(usuario.status==="pendente"){ toast("Seu cadastro ainda está aguardando aprovação de um administrador.", "err"); return; }
   if(usuario.status==="rejeitado"){ toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); return; }
   if(usuario.status==="inativo"){ toast("Sua conta está inativa. Fale com a coordenação.", "err"); return; }
@@ -26,6 +30,15 @@ function fazerLogin(identificador, senha){
     ? ("Você entrou em \"" + usuario.nome + "\", uma conta só deste navegador: nada daqui sobe para a nuvem. Para sincronizar, saia e entre com o e-mail e a senha da sua conta da nuvem.")
     : ("Bem-vindo(a), " + usuario.nome.split(" ")[0] + "!"));
   navigate("inicio");
+}
+/* Uma conta de demonstração de professor, residente ou administrador, com a
+   nuvem ligada? Fica de fora (ver CONFIG.contasDemoDaEquipeComNuvem). É
+   demonstração quem veio do arquivo dados/demonstracao.js — a conta local
+   que alguém criou neste navegador não é tocada. */
+function contaDemoDaEquipeBloqueada(usuario){
+  if(!usuario || usuario.papel === "aluno") return false;
+  if(!nuvemLigada() || CONFIG.contasDemoDaEquipeComNuvem) return false;
+  return SEED_USUARIOS.some(x => x.id === usuario.id) || /@esc\.demo$/i.test(usuario.email || "");
 }
 /* Acesso rápido sem senha. Hoje a tela só oferece o de ALUNO — os outros
    papéis mexem em conteúdo e em cadastros de gente de verdade, e não podem

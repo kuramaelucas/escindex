@@ -77,7 +77,16 @@ function controlesPaginacao(p, rotulo){
   </div>`;
 }
 
-function hojeISO(){ return CONFIG.hoje().toISOString().slice(0,10); }
+/* A data "AAAA-MM-DD" do DIA DE QUEM ESTÁ USANDO, no relógio local.
+   toISOString() dá a data em UTC — no Brasil (UTC−3), a partir das 21h ela
+   já é a de amanhã: a meta do dia zerava às nove da noite, a sequência de
+   dias pulava e a "sessão do dia" virava antes da meia-noite. Toda data de
+   calendário da plataforma passa por aqui. */
+function dataLocalISO(d){
+  const p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth()+1) + "-" + p(d.getDate());
+}
+function hojeISO(){ return dataLocalISO(CONFIG.hoje()); }
 
 function formatDataBR(iso){
   if(!iso) return "—";
@@ -94,7 +103,7 @@ function diasEntre(isoInicio, isoFim){
 function somarDias(iso, dias){
   const d = new Date(iso+"T00:00:00");
   d.setDate(d.getDate()+dias);
-  return d.toISOString().slice(0,10);
+  return dataLocalISO(d);
 }
 
 function formatarDuracao(segundos){
@@ -253,8 +262,11 @@ function graficoBarrasVerticaisSvg(itens, opts){
   }).join("");
 
   // sem altura fixa: o viewBox governa a proporção, para o gráfico encolher
-  // junto com a tela em vez de deixar um vão embaixo no celular
-  return '<div style="overflow-x:auto"><svg viewBox="0 0 '+w+' '+h+'" width="100%" style="height:auto;display:block;min-width:'+Math.min(w,300)+'px">'+grade+barras+'</svg></div>'+
+  // junto com a tela em vez de deixar um vão embaixo no celular. Mas ele
+  // ENCOLHE e não CRESCE além de ~15% do tamanho desenhado: com width 100%
+  // e nada mais, num monitor largo o gráfico das 5 áreas esticava até quase
+  // 600 px de altura, com letras de título. O teto é max-width.
+  return '<div style="overflow-x:auto"><svg class="grafico-barras" viewBox="0 0 '+w+' '+h+'" width="100%" style="height:auto;display:block;max-width:'+Math.round(w*(opts.escalaMax||1.15))+'px;min-width:'+Math.min(w,300)+'px">'+grade+barras+'</svg></div>'+
     '<div class="legenda-barras">'+
       '<span><i style="background:var(--barra-acerto)"></i>acertos</span>'+
       '<span><i style="background:var(--barra-erro)"></i>erros</span>'+
@@ -272,7 +284,7 @@ function progressaoAoLongoDoTempo(usuarioId){
     const diaSemana = d.getDay();
     const offsetSegunda = diaSemana===0 ? -6 : 1-diaSemana;
     const inicio = new Date(d); inicio.setDate(d.getDate()+offsetSegunda);
-    const chave = inicio.toISOString().slice(0,10);
+    const chave = dataLocalISO(inicio);
     if(!porSemana[chave]) porSemana[chave] = {total:0, acertos:0};
     porSemana[chave].total++;
     if(r.correta) porSemana[chave].acertos++;
