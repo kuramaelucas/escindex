@@ -990,7 +990,7 @@ function renderPerfil(){
   </div>
   ${u.papel==="aluno" ? `<div class="card mt-2" style="max-width:460px">
     <div class="card-title">Lembrete de meta diária</div>
-    <p class="text-sm muted">Um aviso do navegador às ${escapeHtml(u.lembreteMetaHorario||"20:00")}, se a meta de questões ou de cartões do dia ainda não tiver sido batida. Só funciona enquanto o navegador está aberto com o Esc carregado em alguma aba — este app não tem servidor, então não existe aviso com tudo fechado.</p>
+    <p class="text-sm muted">Um aviso do navegador às ${escapeHtml(u.lembreteMetaHorario||"20:00")}, se a meta de questões ou de cartões do dia ainda não tiver sido batida. Funciona com o Esc aberto em alguma aba, em qualquer navegador. Com o Esc <strong>instalado como aplicativo</strong> no Chrome ou no Edge (Android e computador), avisa também com o app fechado, num horário aproximado — o navegador é quem escolhe quando acordar o app.</p>
     ${u.lembreteMetaAtivo ? `
       <div class="field mt-1" style="max-width:160px"><label class="label">Horário do lembrete</label><input class="input" type="time" value="${escapeHtml(u.lembreteMetaHorario||"20:00")}" onchange="salvarHorarioLembreteMeta(this.value)"></div>
       <button class="btn btn-secondary btn-sm mt-1" onclick="desativarLembreteMetaDiaria()">Desativar lembrete</button>
@@ -1004,6 +1004,7 @@ function renderPerfil(){
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
     </div>
   </div>` : ""}
+  ${renderCardInstalarApp()}
   ${renderCardSenha()}
   ${renderCardNuvem()}
   ${ehMaster ? renderCardBackup() : `<div class="card mt-2" style="max-width:460px">

@@ -592,6 +592,95 @@ function esquecerAcessoSalvo(){
 }
 
 /* ==========================================================================
+   27-C. APLICATIVO INSTALÁVEL (PWA) — service worker, avisos e instalação
+   ==========================================================================
+   O sw.js, na raiz do site, faz três coisas (o comentário dele explica cada
+   uma): abre a plataforma sem internet, avisa a meta com o app fechado onde
+   o navegador deixa, e abre o Esc ao tocar no aviso. Só roda em site de
+   verdade (http/https): aberto com dois cliques, não há service worker, e
+   nada muda.
+
+   Instalar: o Chrome/Edge oferecem o botão "Instalar" (guardamos o convite
+   em _conviteInstalar para oferecê-lo também no Perfil); no iPhone, é
+   Compartilhar > Adicionar à Tela de Início, e o Perfil diz isso. */
+let _conviteInstalar = null;
+function podeTerServiceWorker(){ return /^https?:$/.test(location.protocol) && "serviceWorker" in navigator; }
+function registrarServiceWorker(){
+  if(!podeTerServiceWorker()) return;
+  navigator.serviceWorker.register("sw.js?v=" + encodeURIComponent(window.ESC_VERSAO || "")).catch(()=>{ /* sem service worker a plataforma funciona igual, só não abre offline */ });
+}
+function appEstaInstalado(){
+  return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+}
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); _conviteInstalar = e; });
+window.addEventListener("appinstalled", () => { _conviteInstalar = null; toast("Esc instalado. Ele aparece junto com os seus outros aplicativos."); });
+function instalarApp(){
+  if(!_conviteInstalar){ abrirComoInstalar(); return; }
+  _conviteInstalar.prompt();
+  _conviteInstalar.userChoice.finally(() => { _conviteInstalar = null; render(); });
+}
+function abrirComoInstalar(){
+  abrirModalTitulado("Instalar o Esc como aplicativo", `
+    <p class="text-sm">Instalado, o Esc abre sozinho numa janela própria, com ícone na tela inicial, funciona sem internet com a última versão aberta e pode avisar a meta do dia com o app fechado.</p>
+    <div class="card-flat mt-2 text-sm"><strong>Android (Chrome):</strong> menu ⋮ &gt; <em>Instalar app</em> (ou <em>Adicionar à tela inicial</em>).</div>
+    <div class="card-flat mt-1 text-sm"><strong>iPhone e iPad (Safari):</strong> botão Compartilhar &gt; <em>Adicionar à Tela de Início</em>.</div>
+    <div class="card-flat mt-1 text-sm"><strong>Computador (Chrome ou Edge):</strong> o ícone de instalar na barra de endereço, à direita.</div>
+    <p class="text-xs muted mt-2">O seu estudo não muda de lugar: ele continua salvo neste navegador (e na nuvem, se você entrou com a sua conta).</p>`);
+}
+function renderCardInstalarApp(){
+  if(appEstaInstalado() || !/^https?:$/.test(location.protocol)) return "";
+  return `<div class="card mt-2" style="max-width:460px">
+    <div class="card-title">${iconeSvg("download")} Instalar como aplicativo</div>
+    <p class="text-sm muted">Ícone na tela inicial, abre sem internet e avisa a meta do dia mesmo com o app fechado (Chrome e Edge).</p>
+    <button class="btn btn-secondary btn-sm mt-1" onclick="instalarApp()">${_conviteInstalar ? "Instalar agora" : "Como instalar"}</button>
+  </div>`;
+}
+/* Aviso do sistema. No Android, `new Notification()` não existe fora do
+   service worker — o aviso tem de sair por ele. Onde não há service worker
+   (arquivo aberto com dois cliques), vai pelo jeito antigo. */
+function mostrarNotificacao(titulo, corpo, rota){
+  const opcoes = { body: corpo, icon: "icones/icone-192.png", tag: "meta-do-dia", data: { rota: rota || "inicio" } };
+  if(podeTerServiceWorker() && navigator.serviceWorker.controller){
+    navigator.serviceWorker.ready.then(reg => reg.showNotification(titulo, opcoes)).catch(()=>{});
+    return;
+  }
+  try{ new Notification(titulo, opcoes); }catch(e){ /* sem permissão ou sem suporte: fica o aviso dentro do app */ }
+}
+/* O recado que o service worker lê para decidir se avisa com o app fechado.
+   Vai para o Cache Storage (o service worker não enxerga o localStorage). */
+function atualizarRecadoLembrete(){
+  if(!podeTerServiceWorker() || typeof caches === "undefined") return;
+  const u = usuarioAtual();
+  const ativo = !!(u && u.papel==="aluno" && u.lembreteMetaAtivo);
+  let recado = { ativo: false };
+  if(ativo){
+    const faltamQ = Math.max(metaDoUsuario(u) - questoesRespondidasHoje(u.id), 0);
+    const faltamC = Math.max(metaCartoesDoUsuario(u) - cartoesRevisadosHoje(u.id), 0);
+    const partes = [];
+    if(faltamQ>0) partes.push(faltamQ+" questão(ões)");
+    if(faltamC>0) partes.push(faltamC+" cartão(ões)");
+    recado = { ativo: true, nome: CONFIG.nomePlataforma, horario: u.lembreteMetaHorario || "20:00", dia: hojeISO(),
+      metaBatida: !partes.length, faltam: partes.join(" e "), meta: metaDoUsuario(u)+" questões",
+      ultimoAviso: u.lembreteMetaUltimoEnvio || null };
+  }
+  caches.open("esc-lembrete").then(c => c.put("./recado-lembrete.json",
+    new Response(JSON.stringify(recado), { headers: { "Content-Type": "application/json" } }))).catch(()=>{});
+}
+/* Pede ao navegador para acordar o app de tempos em tempos (só existe no
+   Chrome/Edge, e só com o app instalado). Onde não existe, nada acontece. */
+function pedirLembreteComAppFechado(){
+  if(!podeTerServiceWorker()) return;
+  navigator.serviceWorker.ready.then(async reg => {
+    if(!reg.periodicSync) return;
+    try{
+      const perm = await navigator.permissions.query({ name: "periodic-background-sync" });
+      if(perm.state !== "granted") return;
+      await reg.periodicSync.register("lembrete-meta", { minInterval: 60*60*1000 });
+    }catch(e){ /* navegador sem o recurso */ }
+  }).catch(()=>{});
+}
+
+/* ==========================================================================
    28. INICIALIZAÇÃO
    ==========================================================================
    Carrega os dados salvos (ou os dados de demonstração, na primeira vez),
@@ -621,5 +710,12 @@ loadState();
   if(typeof setInterval==="function") setInterval(checarLembreteMetaDiaria, 60000);
   // cópia antiga da página: confere agora e sempre que a aba voltar a ser vista
   verificarVersaoNova(true);
-  document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) verificarVersaoNova(false); });
+  document.addEventListener("visibilitychange", ()=>{
+    if(!document.hidden) verificarVersaoNova(false);
+    else atualizarRecadoLembrete();     // saiu do app: o recado do lembrete fica com o andamento de agora
+  });
+  // aplicativo instalável: abre sem internet e avisa a meta com o app fechado
+  registrarServiceWorker();
+  atualizarRecadoLembrete();
+  { const eu = usuarioAtual(); if(eu && eu.lembreteMetaAtivo) pedirLembreteComAppFechado(); }
 })();

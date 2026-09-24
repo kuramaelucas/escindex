@@ -1071,11 +1071,13 @@ function metaCartoesDoUsuario(usuario){
    (ver gerarNotificacoes, acima) — mas isso só ajuda quem já abriu o app.
    Este lembrete usa a Notification API do navegador para avisar mesmo que
    a pessoa só tenha a aba aberta em outra janela/minimizada.
-   LIMITAÇÃO HONESTA: como este é um arquivo HTML único, sem service worker
-   nem servidor, o aviso só dispara enquanto o navegador está aberto com a
-   aba do Esc carregada (ver checarLembreteMetaDiaria, chamado a cada
-   minuto). Não existe push de verdade com o app/navegador fechado — isso
-   exigiria um back-end (ver limitações no resumo do projeto). */
+   ONDE FUNCIONA: com o Esc aberto em alguma aba (checarLembreteMetaDiaria,
+   a cada minuto), em qualquer navegador. Com o app FECHADO, só onde o
+   navegador acorda o service worker de tempos em tempos (Chrome e Edge,
+   com o Esc instalado como aplicativo): a página deixa um recado com o
+   horário e o andamento da meta (atualizarRecadoLembrete, seção 27-C) e o
+   sw.js decide se avisa. O horário ali é aproximado — o navegador escolhe
+   quando acorda, em geral uma vez a cada uma ou duas horas. */
 function notificacaoDisponivel(){ return typeof Notification !== "undefined"; }
 function ativarLembreteMetaDiaria(){
   if(!notificacaoDisponivel()){ toast("Este navegador não suporta notificações.", "err"); return; }
@@ -1086,6 +1088,8 @@ function ativarLembreteMetaDiaria(){
       if(!u.lembreteMetaHorario) u.lembreteMetaHorario = "20:00";
       saveState();
       toast("Lembrete ativado. Você será avisado às "+u.lembreteMetaHorario+" se ainda não tiver batido a meta do dia.");
+      atualizarRecadoLembrete();
+      pedirLembreteComAppFechado();
     } else {
       toast("Permissão de notificação negada pelo navegador.", "err");
     }
@@ -1096,12 +1100,14 @@ function desativarLembreteMetaDiaria(){
   const u = usuarioAtual();
   u.lembreteMetaAtivo = false;
   saveState();
+  atualizarRecadoLembrete();
   render();
 }
 function salvarHorarioLembreteMeta(valor){
   const u = usuarioAtual();
   u.lembreteMetaHorario = valor || "20:00";
   saveState();
+  atualizarRecadoLembrete();
 }
 /* Chamada a cada minuto (ver INICIALIZAÇÃO, fim do arquivo). Só considera o
    usuário logado nesta aba — cada aluno usa seu próprio navegador. */
@@ -1122,7 +1128,8 @@ function checarLembreteMetaDiaria(){
   const partes = [];
   if(faltamQ>0) partes.push(faltamQ+" questão(ões)");
   if(faltamC>0) partes.push(faltamC+" cartão(ões)");
-  try{ new Notification(CONFIG.nomePlataforma+" — meta do dia", { body:"Faltam "+partes.join(" e ")+" para bater sua meta de hoje." }); }catch(e){ /* alguns navegadores exigem contexto seguro (https); ignora silenciosamente */ }
+  mostrarNotificacao(CONFIG.nomePlataforma+" — meta do dia", "Faltam "+partes.join(" e ")+" para bater sua meta de hoje.", "estudar");
+  atualizarRecadoLembrete();
 }
 
 /* ---------- fila de questões "difíceis" para revisão do professor ---------- */
