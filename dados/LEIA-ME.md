@@ -35,23 +35,28 @@ porque todo o resto aponta para ela):
 | `prova-unifesp-2024.js` | UNIFESP-EPM 2024 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2025.js` | UNIFESP-EPM 2025 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2026.js` | UNIFESP-EPM 2026 (Acesso Direto), prova real | 100 |
+| `prova-santacasa-2021.js` | Santa Casa de São Paulo (FCMSCSP) 2021 (R1 Acesso Direto), prova real | 100 |
+| `prova-santacasa-2022.js` | Santa Casa de São Paulo (FCMSCSP) 2022 (R1 Acesso Direto), prova real | 100 |
+| `prova-santacasa-2023.js` | Santa Casa de São Paulo (FCMSCSP) 2023 (R1 Acesso Direto), prova real | 100 |
+| `prova-santacasa-2025.js` | Santa Casa de São Paulo (FCMSCSP) 2025 (R1 Acesso Direto), prova real | 100 |
+| `prova-santacasa-2026.js` | Santa Casa de São Paulo (FCMSCSP) 2026 (R1 Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **635 questões**, **877 cartões**, **216 assuntos** (todos com pelo
+Total: **1.135 questões** (1.000 reais, de 10 provas), **877 cartões**, **216 assuntos** (todos com pelo
 menos 3 cartões da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
-ver `imagens/LEIA-ME.md`, que lista as 13 que ainda faltam.
+ver `imagens/LEIA-ME.md`, que lista as 45 que ainda faltam.
 
 ### Para a turma real entrar
 
 Esvazie **só** o `demonstracao.js` — deixe as três listas como `[]`. A
 plataforma abre limpa, sem contas de teste, sem comentários inventados e sem
 os agradecimentos de exemplo, e não perde questão, cartão nem calendário. Os
-outros dez arquivos continuam valendo.
+outros quinze arquivos continuam valendo.
 
 As contas de teste já estão no mínimo: **uma** de administrador (a da
 coordenação que mantém a plataforma) mais professor, residente e aluno, que

@@ -105,8 +105,13 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
      dados/prova-unifesp-2024.js   100 questões reais da UNIFESP-EPM
      dados/prova-unifesp-2025.js   100 questões reais da UNIFESP-EPM
      dados/prova-unifesp-2026.js   100 questões reais da UNIFESP-EPM
+     dados/prova-santacasa-2021.js 100 questões reais da Santa Casa-SP
+     dados/prova-santacasa-2022.js 100 questões reais da Santa Casa-SP
+     dados/prova-santacasa-2023.js 100 questões reais da Santa Casa-SP
+     dados/prova-santacasa-2025.js 100 questões reais da Santa Casa-SP
+     dados/prova-santacasa-2026.js 100 questões reais da Santa Casa-SP
                                    ---
-                                   635 questões
+                                  1135 questões
 
    PARA ACRESCENTAR QUESTÕES há três caminhos, do mais fácil ao mais
    trabalhoso: (1) a tela "Importar Questões" dentro do app, que não exige
