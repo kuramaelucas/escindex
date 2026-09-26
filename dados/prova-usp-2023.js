@@ -10,9 +10,10 @@
    (3 nesta prova) ficam com gabarito vazio e status "anulada".
 
    As figuras da prova (exames de imagem, traçados, tabelas e as alternativas
-   que eram só imagem) ainda não foram anexadas: cada questão que depende de
-   uma figura aponta para dados/imagens/q-usp2023-NNN.png e descreve em
-   `imagemPendente` o que a prova mostrava. Ver dados/imagens/LEIA-ME.md.
+   que eram só imagem) estão em dados/imagens/, recortadas do caderno de
+   questões. 29 ainda faltam: essas questões apontam para
+   dados/imagens/q-usp2023-NNN.png e descrevem em `imagemPendente` o que a
+   prova mostrava. Ver dados/imagens/LEIA-ME.md.
 
    Este arquivo é CONTEÚDO, não código: ele só entrega uma lista para a
    plataforma. O molde de uma questão e o passo a passo para acrescentar
@@ -21,7 +22,7 @@
 window.EscDados.registrarQuestoes("prova-usp-2023", [
 {
   id:"q-usp2023-001", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:1,
-  imagemUrl:"dados/imagens/q-usp2023-001.png", imagemPendente:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2023-001.png", imagemLegenda:"Tomografia de abdome",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-diverticulite",
   enunciado:"Homem, 72 anos de idade, procura o Serviço de Urgência devido à dor no flanco e na fossa ilíaca esquerdos há 2 dias. Fez uso de analgésico sem melhora. Refere ser constipado e está sem evacuar há três dias. Nega febre e relata perda de apetite. Tem diabete melito e hipertensão arterial controlados. Ao exame clínico, encontra-se em bom estado geral; IMC 30,2 kg/m2; FC 80 bpm; PA 130x80 mmHg; sem alterações da ausculta torácica; abdome globoso, flácido, doloroso à palpação do flanco e da fossa ilíaca esquerdos, com sinal de irritação peritoneal neste local; ruídos hidroaéreos presentes; e toque retal com fezes na ampola. Exames laboratoriais: Hb 13,1 g/dL; Ht 38%; Leucócitos 15.693/mm3; PCR 138 mg/L. Tomografia apresentada: Qual é a melhor conduta neste momento?",
   alternativas:[{id:"A",texto:"Laparoscopia diagnóstica."},{id:"B",texto:"Drenagem percutânea da coleção."},{id:"C",texto:"Tratamento clínico."},{id:"D",texto:"Colectomia esquerda com anastomose."}],
@@ -48,12 +49,12 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-003", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:3,
-  imagemUrl:"dados/imagens/q-usp2023-003.png", imagemPendente:"As quatro alternativas são cortes de tomografia de abdome (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2023-003.jpg", imagemLegenda:"As quatro alternativas são cortes de tomografia de abdome (A, B, C e D)",
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
   enunciado:"Mulher, 63 anos de idade, refere dor abdominal de forte intensidade, difusa e de início súbito há 2 horas. Nega vômitos. Última evacuação há 1 dia. Tem artrite reumatoide. Faz uso de um imunossupressor e corticoide. Na última semana, tomou cetoprofeno devido à dor nas mãos. Ao exame clínico, encontra-se em regular estado geral; FC 110 bpm; PA 100x60 mmHg; abdome plano, doloroso à palpação; e sinal de irritação peritoneal difusa. Exames laboratoriais: Hb 11,9 g/dL; Ht 32%; leucócitos 18.318/mm3; PCR 84 mg/L; amilase 251 U/L; lipase 101 U/L. Foi realizada tomografia de abdome. Assinale a alternativa que contém imagens que correspondem à principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Imagens A (ver figura)."},{id:"B",texto:"Imagens B (ver figura)."},{id:"C",texto:"Imagens C (ver figura)."},{id:"D",texto:"Imagens D (ver figura)."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: dor abdominal súbita e intensa com peritonite difusa, em paciente com artrite reumatoide em uso de corticoide e imunossupressor que tomou anti-inflamatório não esteroide na última semana, é a apresentação da úlcera péptica perfurada (a leve elevação de amilase e lipase é comum na perfuração e não indica pancreatite). O achado tomográfico que confirma a hipótese é o pneumoperitônio — ar livre na cavidade, anterior ao fígado e ao estômago —, eventualmente com líquido livre e espessamento da parede duodenal/gástrica; são as imagens da alternativa A. As demais alternativas mostram achados que não correspondem à perfuração de víscera oca. Vale lembrar que o corticoide pode mascarar os sinais peritoneais, o que torna a tomografia ainda mais importante nesses pacientes. (Descrição das imagens a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa A está correta: dor abdominal súbita e intensa com peritonite difusa, em paciente com artrite reumatoide em uso de corticoide e imunossupressor que tomou anti-inflamatório não esteroide na última semana, é a apresentação da úlcera péptica perfurada (a leve elevação de amilase e lipase é comum na perfuração e não indica pancreatite). As imagens A (corte axial e coronal, em janela que realça o ar) mostram pneumoperitônio volumoso — grande quantidade de ar livre sob a parede abdominal anterior, sobre o fígado e contornando as alças —, o achado que confirma a perfuração de víscera oca. B está errada porque mostra densificação da gordura e alterações inflamatórias em alças na metade inferior do abdome, sem ar livre — padrão de processo inflamatório localizado, não de perfuração com peritonite difusa. C está errada porque mostra alças de delgado distendidas, com conteúdo líquido — obstrução intestinal. D está errada porque mostra vesícula biliar distendida e estômago cheio de líquido, sem pneumoperitônio. Vale lembrar que o corticoide pode mascarar os sinais peritoneais, o que torna a tomografia ainda mais importante nesses pacientes.",
   explicacoesAlternativas:{},
   referencias:"Tarasconi A et al. Perforated and bleeding peptic ulcer: WSES guidelines. World J Emerg Surg, 2020.",
   dificuldadeManual:"avancado", status:"ativa",
@@ -62,7 +63,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-004", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:4,
-  imagemUrl:"dados/imagens/q-usp2023-004.png", imagemPendente:"Fotografia da região perianal e cortes de tomografia de pelve",
+  imagemUrl:"dados/imagens/q-usp2023-004.jpg", imagemLegenda:"Fotografia da região perianal e cortes de tomografia de pelve",
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
   enunciado:"Homem, 23 anos de idade, refere dor na região perianal há 3 dias com piora progressiva e exacerbação ao sentar e evacuar. Relata febre há 12 horas. Teve a última evacuação há 2 dias e tem hábito intestinal diário normal. Sem queixas urinárias. Nega comorbidades. Tem vida sexual ativa com relação anal, sem parceiro fixo. Ao exame clínico, encontra-se em bom estado geral; abdome sem alterações. Inspeção anal com abaulamento em posição equivalente a “3 horas”, dor à palpação local e saída de secreção purulenta em pequena quantidade, em posição equivalente a “7 horas”, em orifício fistuloso (imagem a seguir). Toque retal muito doloroso, sem sangue ou lesão tumoral. Exames laboratorias Hb de 13,5 g/ dL; Leucograma 16.274 mm3; PCR 129 mg/L. Realizada tomografia de pelve (imagens a seguir) Qual é a etiologia mais comum desta doença?",
   alternativas:[{id:"A",texto:"Doença de Crohn."},{id:"B",texto:"Inflamação das glândulas do canal anal."},{id:"C",texto:"Retocolite ulcerativa."},{id:"D",texto:"Infecção sexualmente transmissível."}],
@@ -76,7 +77,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-005", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:5,
-  imagemUrl:"dados/imagens/q-usp2023-005.png", imagemPendente:"Fotografia dos achados operatórios",
+  imagemUrl:"dados/imagens/q-usp2023-005.jpg", imagemLegenda:"Fotografia dos achados operatórios",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
   enunciado:"Homem, 19 anos de idade, procurou o Serviço de Emergência devido à dor abdominal há 1 dia. Não apresenta comorbidades. O paciente foi submetido a tratamento operatório com os achados apresentados. O procedimento evoluiu sem intercorrências. Qual deve ser a dieta no primeiro pós-operatório e quando deve receber alta hospitalar?",
   alternativas:[{id:"A",texto:"dieta leve; terceiro pós-operatório."},{id:"B",texto:"dieta leve; primeiro pós-operatório."},{id:"C",texto:"jejum; primeiro pós-operatório."},{id:"D",texto:"jejum; terceiro pós-operatório."}],
@@ -90,7 +91,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-006", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:6,
-  imagemUrl:"dados/imagens/q-usp2023-006.png", imagemPendente:"Fotografia do abdome (incisão com secreção purulenta)",
+  imagemUrl:"dados/imagens/q-usp2023-006.jpg", imagemLegenda:"Fotografia do abdome (incisão com secreção purulenta)",
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
   enunciado:"Mulher, 54 anos de idade, está no 6o pós-operatório de correção de hérnia incisional de laparotomia mediana com colocação de tela de polipropileno sobre a aponeurose (técnica onlay). Foi colocado dreno no subcutâneo. Evoluiu com dor na incisão e com saída de secreção espessa e purulenta. Ao exame clínico, encontra- se em bom estado geral, afebril, abdome (imagem a seguir) flácido e pouco doloroso à palpação. Qual deve ser a conduta neste momento?",
   alternativas:[{id:"A",texto:"Troca da tela e curativo com carvão ativado."},{id:"B",texto:"Cefazolina com abertura da incisão, se não houver melhora."},{id:"C",texto:"Retirada da tela e curativo com pressão negativa."},{id:"D",texto:"Retirada de pontos, desbridamento e curativo diário."}],
@@ -104,7 +105,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-007", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:7,
-  imagemUrl:"dados/imagens/q-usp2023-007.png", imagemPendente:"Ultrassonografia da parede abdominal",
+  imagemUrl:"dados/imagens/q-usp2023-007.png", imagemLegenda:"Ultrassonografia da parede abdominal",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
   enunciado:"Mulher, 63 anos de idade, foi submetida à correção de hérnia incisional de laparotomia mediana. Foi feita a correção da hérnia com colocação de tela pré- aponeurótica (onlay) e drenagem fechada do subcutâneo. Recebeu alta hospitalar no 4º pós-operatório após a retirada do dreno. A paciente retorna em consulta ambulatorial, 7 dias após a alta, com queixa de abaulamento na incisão. Ao exame clínico, encontra-se em bom estado geral; abdome flácido, indolor à palpação, presença de coleção líquida no subcutâneo, sem sinais inflamatórios. Ultrassom de parede abdominal apresentado. Qual deve ser a conduta neste momento?",
   alternativas:[{id:"A",texto:"Iniciar antibioticoterapia."},{id:"B",texto:"Recolocar o dreno subcutâneo."},{id:"C",texto:"Usar cinta abdominal."},{id:"D",texto:"Abrir parcialmente a incisão."}],
@@ -118,7 +119,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-008", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:8,
-  imagemUrl:"dados/imagens/q-usp2023-008.png", imagemPendente:"Fotografia intraoperatória da tela sobre a aponeurose",
+  imagemUrl:"dados/imagens/q-usp2023-008.jpg", imagemLegenda:"Fotografia intraoperatória da tela sobre a aponeurose",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
   enunciado:"Homem, 57 anos de idade, foi submetido à correção de hérnia incisional de laparotomia mediana com colocação de tela sobre a aponeurose (imagem a seguir). Qual é o princípio de funcionamento do dreno indicado para esta situação?",
   alternativas:[{id:"A",texto:"Gradiente de pressão, passivo."},{id:"B",texto:"Gradiente de pressão, ativo."},{id:"C",texto:"Capilaridade, ativo."},{id:"D",texto:"Capilaridade, passivo."}],
@@ -132,11 +133,12 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-009", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:9,
+  imagemUrl:"dados/imagens/q-usp2023-009.jpg", imagemLegenda:"Tomografia de tórax",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
   enunciado:"Homem, 33 anos, vítima de acidente de motocicleta em alta velocidade. Foi intubado na cena devido à inconsciência. Condições na admissão no Serviço de Emergência: I – entubado, saturação de O2 85%, colar cervical; II – escoriação no tórax direito, ausculta diminuída à direita, sem enfisema de subcutâneo; III – PA 140x80 mmHg, FC 100 bpm, FAST negativo. IV – escala de Coma de Glasgow de 3T, sedado; V – fratura exposta de perna direita. Qual deve ser a conduta com relação ao trauma de tórax?",
   alternativas:[{id:"A",texto:"Ventilação mecânica."},{id:"B",texto:"Drenagem torácica."},{id:"C",texto:"Tração do tubo traqueal."},{id:"D",texto:"Videotoracoscopia."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta de acordo com o gabarito oficial: o paciente chegou intubado, está hemodinamicamente estável (PA 140×80 mmHg, FC 100 bpm), sem enfisema subcutâneo e sem sinais de pneumotórax hipertensivo, com escoriação no hemitórax direito e murmúrio diminuído desse lado — quadro compatível com contusão pulmonar. A hipoxemia deve ser tratada otimizando a ventilação mecânica (FiO2, PEEP, recrutamento), enquanto se confirma a posição do tubo e se completa a avaliação com radiografia de tórax/eFAST. B está errada porque, num paciente estável, a drenagem torácica é indicada diante de pneumotórax ou hemotórax demonstrado, e não apenas pela ausculta diminuída. C está errada porque a intubação seletiva, quase sempre no brônquio principal direito, reduz o murmúrio à esquerda — e aqui a diminuição é à direita. D está errada porque a videotoracoscopia não tem lugar na abordagem inicial; é usada depois, por exemplo, para hemotórax retido.",
+  explicacaoGeral:"A alternativa A está correta de acordo com o gabarito oficial: o paciente chegou intubado, está hemodinamicamente estável (PA 140×80 mmHg, FC 100 bpm), sem enfisema subcutâneo e sem sinais de pneumotórax hipertensivo, com escoriação no hemitórax direito e murmúrio diminuído desse lado. A tomografia de tórax mostra opacidades alveolares no pulmão direito (e em regiões posteriores), sem pneumotórax nem derrame volumoso — contusão pulmonar. A hipoxemia da contusão se trata otimizando a ventilação mecânica (FiO2, PEEP, ventilação protetora). B está errada porque, sem pneumotórax ou hemotórax, não há o que drenar. C está errada porque a intubação seletiva, quase sempre no brônquio principal direito, reduz o murmúrio à esquerda — e aqui a diminuição é à direita, explicada pela contusão. D está errada porque a videotoracoscopia não tem lugar na abordagem inicial; é usada depois, por exemplo, para hemotórax retido.",
   explicacoesAlternativas:{},
   referencias:"American College of Surgeons. Advanced Trauma Life Support (ATLS) Student Course Manual, 10ª ed., 2018 — Thoracic trauma.",
   dificuldadeManual:"fundamental", status:"ativa",
@@ -158,7 +160,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-011", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:11,
-  imagemUrl:"dados/imagens/q-usp2023-011.png", imagemPendente:"Imagem da endoscopia digestiva alta (lesão no corpo gástrico)",
+  imagemUrl:"dados/imagens/q-usp2023-011.jpg", imagemLegenda:"Imagem da endoscopia digestiva alta (lesão no corpo gástrico)",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
   enunciado:"Mulher, 59 anos de idade, foi admitida no Serviço de Emergência devido à melena há 6 dias. Nega alteração do hábito intestinal. Sem comorbidades. Relata ingestão de bebida alcóolica nos finais de semana (1 lata de cerveja). Fez uso de anti-inflamatório há 1 mês. Ao exame clínico, encontra-se em bom estado geral; descorada; abdome flácido; sem massas palpáveis; e ausência de ascite. Exames laboratoriais: Hb 8,7 g/dL; Ht 26%; Plaquetas 231 mil/mm3; INR 1,1. Foi realizada a endoscopia digestiva alta que mostrou a seguinte lesão no corpo gástrico: Considerando o quadro clínico e o achado endoscópico, qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Tumor estromal gastrointestinal (GIST)."},{id:"B",texto:"Adenocarcinoma gástrico."},{id:"C",texto:"Varizes gástricas."},{id:"D",texto:"Úlcera gástrica Forrest III."}],
@@ -172,7 +174,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-012", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:12,
-  imagemUrl:"dados/imagens/q-usp2023-012.png", imagemPendente:"Radiografia de tórax",
+  imagemUrl:"dados/imagens/q-usp2023-012.jpg", imagemLegenda:"Radiografia de tórax",
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-neoplasia",
   enunciado:"Lactente de 2 anos de idade, oligossintomático, é trazido à consulta ambulatorial por apresentar a seguinte imagem radiográfica: Qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Malformação adenomatoide cística."},{id:"B",texto:"Cisto pulmonar congênito."},{id:"C",texto:"Cisto broncogênico."},{id:"D",texto:"Teratoma."}],
@@ -186,12 +188,12 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-013", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:13,
-  imagemUrl:"dados/imagens/q-usp2023-013.png", imagemPendente:"As quatro alternativas são fotografias de regiões da cavidade oral (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2023-013.jpg", imagemLegenda:"As quatro alternativas são fotografias de regiões da cavidade oral (A, B, C e D)",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cabecapescoco",
   enunciado:"O exame da cavidade oral tem por objetivo o diagnóstico precoce de tumores malignos. Considerando-se o tipo histológico mais comum, assinale o local mais frequentemente acometido.",
   alternativas:[{id:"A",texto:"Região A (ver figura)."},{id:"B",texto:"Região B (ver figura)."},{id:"C",texto:"Região C (ver figura)."},{id:"D",texto:"Região D (ver figura)."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: o carcinoma espinocelular (epidermoide) responde por mais de 90% dos tumores malignos da cavidade oral, e o sítio mais acometido é a língua oral — sobretudo a borda lateral e a face ventral —, seguida pelo assoalho da boca; a imagem A mostra essa região. Por isso o exame da boca, sobretudo em tabagistas e etilistas, deve incluir a tração da língua para inspeção e palpação das bordas laterais e do assoalho. As demais alternativas mostram sítios menos frequentes. (Descrição das figuras a completar pela equipe quando as imagens originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa A está correta: o carcinoma espinocelular (epidermoide) responde por mais de 90% dos tumores malignos da cavidade oral, e o sítio mais acometido é a língua oral — sobretudo a borda lateral e a face ventral —, seguida pelo assoalho da boca. A foto A mostra justamente a língua tracionada para o lado, expondo a borda lateral. Por isso o exame da boca, sobretudo em tabagistas e etilistas, deve incluir a tração da língua para inspeção e palpação das bordas laterais e do assoalho. B está errada porque mostra o palato duro, sítio pouco frequente do carcinoma espinocelular (mais comum ali são os tumores de glândulas salivares menores). C está errada porque mostra a mucosa do lábio inferior e a gengiva, menos acometidas. D está errada porque mostra a mucosa jugal, sítio mais frequente em populações que mascam tabaco e bétel, mas não na nossa.",
   explicacoesAlternativas:{},
   referencias:"Brasil. Instituto Nacional de Câncer (INCA). Estimativa 2023 — Incidência de câncer no Brasil — Câncer da cavidade oral; NCCN Clinical Practice Guidelines in Oncology — Head and Neck Cancers, 2022.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -213,7 +215,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-015", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:15,
-  imagemUrl:"dados/imagens/q-usp2023-015.png", imagemPendente:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2023-015.png", imagemLegenda:"Tomografia de abdome",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-cirbariatrica",
   enunciado:"Mulher, 27 anos, há 1 ano foi submetida à derivação gástrica em Y de Roux para tratamento de obesidade. Refere perda de 40 kg neste período. Procura o Serviço de Emergência devido à dor abdominal intensa, em cólica difusa, com início há 4 horas. Relata náuseas, porém sem vômitos. Nega melhora com analgésicos. Ao exame clínico, encontra-se em posição antálgica, FC 122 bpm, abdome pouco distendido, doloroso em hipocôndrio esquerdo, sem sinais de irritação peritoneal e com ruídos hidroaéreos aumentados em frequência. Exames laboratoriais: Hb 11,2 g/dL; Ht 38%; Leucograma 17.223/mm3; PCR 17 mg/L; Ureia 90 mg/dL; Creatinina 1,7 mg/dL. Tomografia de abdome apresentada abaixo. Qual deve ser a conduta, além de hidratação e analgesia?",
   alternativas:[{id:"A",texto:"Trombólise."},{id:"B",texto:"Sonda gástrica e observação."},{id:"C",texto:"Dilatação endoscópica da anastomose."},{id:"D",texto:"Tratamento operatório."}],
@@ -227,7 +229,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-016", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:16,
-  imagemUrl:"dados/imagens/q-usp2023-016.png", imagemPendente:"Fotografias do exame proctológico e da anuscopia (figuras 1 a 3)",
+  imagemUrl:"dados/imagens/q-usp2023-016.jpg", imagemLegenda:"Fotografias do exame proctológico e da anuscopia (figuras 1 a 3)",
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
   enunciado:"Homem, 61 anos, refere sangramento intermitente nas evacuações e sangue vivo no final da evacuação e no papel higiênico. As fezes têm cor e consistência normais. Evacua a cada 3 dias e refere fezes ressecadas. Fez colonoscopia há 2 anos, que evidenciou doença diverticular difusa. Exames clínico e laboratoriais sem alterações. Toque retal normal e exame proctológico conforme as imagens a seguir (figuras 2 e 3 representam anuscopia; seta ilustra a linha pectínea). Qual é a melhor conduta?",
   alternativas:[{id:"A",texto:"Drenagem do trombo hemorroidário."},{id:"B",texto:"Orientação de dieta e higiene anal."},{id:"C",texto:"Retossigmoidoscopia."},{id:"D",texto:"Hemorroidectomia."}],
@@ -241,7 +243,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-017", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:17,
-  imagemUrl:"dados/imagens/q-usp2023-017.png", imagemPendente:"Fotografia da lesão no pé",
+  imagemUrl:"dados/imagens/q-usp2023-017.jpg", imagemLegenda:"Fotografia da lesão no pé",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
   enunciado:"Homem, 65 anos, com diagnóstico de diabetes mellittus há 10 anos, procura serviço médico com história de surgimento de lesão em face medial e dorso do pé direito há 10 dias, após caminhada com um sapato novo. Nega claudicação prévia. Ao exame clínico, além da lesão da foto a seguir, apresenta pulsos poplíteo e tibiais presentes. Qual é a conduta?",
   alternativas:[{id:"A",texto:"Amputação transtibial primária."},{id:"B",texto:"Arteriografia e revascularização."},{id:"C",texto:"Desbridamento e antibioticoterapia."},{id:"D",texto:"Aguardar delimitação da necrose."}],
@@ -255,7 +257,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-018", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:18,
-  imagemUrl:"dados/imagens/q-usp2023-018.png", imagemPendente:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2023-018.png", imagemLegenda:"Tomografia de abdome",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
   enunciado:"Homem, 19 anos, foi vítima de queda de bicicleta em alta velocidade. Na admissão no serviço de Emergência, encontrava-se consciente, com PA de 120x70 mmHg e FC de 105 bpm; abdome doloroso à palpação em hipocôndrio e flanco esquerdo. Após a passagem de sonda vesical, foi evidenciada hematúria. Exames laboratoriais com uma hora após trauma: Hb 9,6 g/dL; Ht 28%; Ureia = 54 mg/dL; Creatinina 1,1 mg/dL; pH 7,37; BE 1; Lactato 10 mg/dL. A tomografia de abdome é apresentada. Qual é o tratamento para a lesão abdominal neste momento?",
   alternativas:[{id:"A",texto:"Observação com monitorização hemodinâmica."},{id:"B",texto:"Passagem de cateter duplo J."},{id:"C",texto:"Laparotomia com nefrectomia."},{id:"D",texto:"Nefrostomia."}],
@@ -269,7 +271,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-019", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:19,
-  imagemUrl:"dados/imagens/q-usp2023-019.png", imagemPendente:"Radiografia do quadril",
+  imagemUrl:"dados/imagens/q-usp2023-019.png", imagemLegenda:"Radiografia do quadril",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
   enunciado:"Homem, 75 anos, foi trazido ao Serviço de Emergência pelos familiares após encontrá-lo caído ao lado de sua cama. Tem hipertensão arterial sistêmica e obesidade. Lúcido, o paciente refere que caiu sobre o quadril direito após tropeçar no tapete ao lado da cama; desde então não consegue deambular. Nega trauma encefálico. Previamente deambulador social, conseguia realizar apenas atividades básicas diárias sozinho. Atendimento inicial já realizado e solicitada a radiografia abaixo. Qual é o achado clínico compatível com a história e com o achado radiológico apresentados?",
   alternativas:[{id:"A",texto:"Membro inferior encurtado com rotação interna."},{id:"B",texto:"Membro inferior encurtado com rotação externa."},{id:"C",texto:"Membros inferiores simétricos com rotação interna do direito."},{id:"D",texto:"Membros inferiores simétricos com rotação externa do direito."}],
@@ -283,7 +285,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-020", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:20,
-  imagemUrl:"dados/imagens/q-usp2023-020.png", imagemPendente:"Radiografia do joelho",
+  imagemUrl:"dados/imagens/q-usp2023-020.png", imagemLegenda:"Radiografia do joelho",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-oncopediatrica",
   enunciado:"Homem, 17 anos, refere contusão do joelho há 1 mês, durante prática esportiva. Relata que, desde então, a dor no joelho persiste, sem melhoras com aplicação de gelo e com uso de anti-inflamatórios. A radiografia é apresentada. Considerando a hipótese diagnóstica, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Corpo estranho."},{id:"B",texto:"Abscesso."},{id:"C",texto:"Hematoma."},{id:"D",texto:"Neoplasia."}],
@@ -297,7 +299,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-021", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:21,
-  imagemUrl:"dados/imagens/q-usp2023-021.png", imagemPendente:"Ultrassonografia da mama e fotografia do líquido aspirado",
+  imagemUrl:"dados/imagens/q-usp2023-021.jpg", imagemLegenda:"Ultrassonografia da mama e fotografia do líquido aspirado",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-mamabenigna",
   enunciado:"Paciente, 27 anos, refere nodulação palpável em mama direita que se acentuou no período pré-menstrual. Nega antecedentes clínicos, refere um parto vaginal há 5 anos, em uso de preservativo como contracepção; última menstruação há 10 dias. Nega uso de outros medicamentos e antecedentes familiares significativos. Ao exame clínico das mamas, identifica-se nodulação com cerca de 3 cm, regular, dolorosa e móvel em quadrante súpero- externo de mama direita, recoberta com pele de aspecto normal. A ultrassonografia da região acometida é apresentada. Realiza-se punção aspirativa com saída de 10 mL de líquido (imagem abaixo) seroso acastanhado, com melhora significativa da dor. Não mais se percebe o achado palpatório e ultrassonográfico. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Biópsia excisional."},{id:"B",texto:"Seguimento clínico."},{id:"C",texto:"Biópsia agulha grossa."},{id:"D",texto:"Tomossíntese mamária."}],
@@ -469,7 +471,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-034", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:34,
-  imagemUrl:"dados/imagens/q-usp2023-034.png", imagemPendente:"Imagens da ultrassonografia de 12 semanas",
+  imagemUrl:"dados/imagens/q-usp2023-034.jpg", imagemLegenda:"Imagens da ultrassonografia de 12 semanas",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-diagnosticoprenatal",
   enunciado:"Paciente de 41 anos retorna em consulta de pré-natal trazendo o exame realizado com 12 semanas de gestação: translucência nucal: 2,5 mm e imagens apresentadas. Quando comparado à população dessa mesma idade, qual é o significado desse resultado?",
   alternativas:[{id:"A",texto:"Mantido o risco basal de cardiopatia fetal."},{id:"B",texto:"Maior risco de meningomielocele."},{id:"C",texto:"Maior risco de trissomia."},{id:"D",texto:"Maior risco de espinha bífida."}],
@@ -483,7 +485,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-035", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:35,
-  imagemUrl:"dados/imagens/q-usp2023-035.png", imagemPendente:"Fotografia do achado no canal vaginal e imagem da ultrassonografia transvaginal",
+  imagemUrl:"dados/imagens/q-usp2023-035.jpg", imagemLegenda:"Fotografia do achado no canal vaginal e imagem da ultrassonografia transvaginal",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-abortamento",
   enunciado:"Paciente, 34 anos, chega ao Pronto-Socorro de Obstetrícia, referindo estar gestante de 7 semanas e com sangramento vaginal. Antecedente de 3 gestações com 1 parto vaginal e 1 aborto. Exame clínico: bom estado geral, descorada +/4, hidratada, pressão arterial de 120x74 mmHg, FC 72 bpm. Exame especular com sangramento moderado e presença do achado apresentado em canal vaginal. A paciente foi então encaminhada para exame de ultrassonografia transvaginal, cuja imagem é apresentada. Endométrio: 23 mm. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Expectante."},{id:"B",texto:"AMIU expectante."},{id:"C",texto:"Curetagem puerperal."},{id:"D",texto:"Histeroscopia cirúrgica."}],
@@ -498,7 +500,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-036", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:36,
-  imagemUrl:"dados/imagens/q-usp2023-036.png", imagemPendente:"Fotografia da lesão gengival",
+  imagemUrl:"dados/imagens/q-usp2023-036.jpg", imagemLegenda:"Fotografia da lesão gengival",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Paciente de 24 semanas de gestação, em consulta de pré-natal refere problema na gengiva com presença de uma bola vermelha e dolorida. Relata frequente sangramento gengival ao escovar os dentes. Ao exame clínico, observa-se a seguinte imagem: Qual é a melhor conduta?",
   alternativas:[{id:"A",texto:"Orientar higiene bucal."},{id:"B",texto:"Solicitar biópsia."},{id:"C",texto:"Encaminhar para exérese."},{id:"D",texto:"Realizar cauterização."}],
@@ -512,7 +514,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-037", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:37,
-  imagemUrl:"dados/imagens/q-usp2023-037.png", imagemPendente:"Traçado de cardiotocografia",
+  imagemUrl:"dados/imagens/q-usp2023-037.jpg", imagemLegenda:"Traçado de cardiotocografia",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Gestante de 25 anos, 3G:2PN, chega ao pronto-socorro referindo dor em hipogástrio há 3 horas. Hoje com 33 semanas e 2 dias de gestação. Ao exame clínico: PA 113x76 mmHg, FC 74 bpm, presença de duas contrações uterinas por 10 minutos de fraca intensidade. Toque vaginal com colo grosso, posterior, pérvio para 3 cm, apresentação cefálica alta e móvel. Após analgesia, refere melhora das dores. Foi feita uma reavaliação do exame obstétrico que não demonstrou evolução do colo uterino, permanecendo com a mesma dilatação. Realiza a cardiotocografia apresentada. Qual é a conclusão desta cardiotocografia?",
   alternativas:[{id:"A",texto:"Reatividade fetal após estímulo."},{id:"B",texto:"Ausência de movimentação fetal."},{id:"C",texto:"Atividade uterina excessiva."},{id:"D",texto:"Bem-estar fetal."}],
@@ -526,7 +528,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-038", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:38,
-  imagemUrl:"dados/imagens/q-usp2023-038.png", imagemPendente:"Traçado de cardiotocografia",
+  imagemUrl:"dados/imagens/q-usp2023-038.jpg", imagemLegenda:"Traçado de cardiotocografia",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Gestante de 25 anos, 3G:2PN, chega ao pronto-socorro referindo dor em hipogástrio há 3 horas. Hoje com 33 semanas e 2 dias de gestação. Ao exame clínico: PA 113x76 mmHg, FC 74 bpm, presença de duas contrações uterinas por 10 minutos de fraca intensidade. Toque vaginal com colo grosso, posterior, pérvio para 3 cm, apresentação cefálica alta e móvel. Após analgesia, refere melhora das dores. Foi feita uma reavaliação do exame obstétrico que não demonstrou evolução do colo uterino, permanecendo com a mesma dilatação. Realiza a cardiotocografia apresentada. Com relação ao caso apresentado acima, qual é a conduta clínica nesse momento?",
   alternativas:[{id:"A",texto:"internar a paciente para inibir trabalho de parto prematuro."},{id:"B",texto:"manter vigilância no Pronto-Socorro por mais 6 horas."},{id:"C",texto:"liberar a paciente para casa com orientação de sinais de alarme."},{id:"D",texto:"solicitar nova vitalidade em 48 horas."}],
@@ -540,7 +542,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-039", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:39,
-  imagemUrl:"dados/imagens/q-usp2023-039.png", imagemPendente:"Figura da variedade de posição percebida ao toque",
+  imagemUrl:"dados/imagens/q-usp2023-039.jpg", imagemLegenda:"Figura da variedade de posição percebida ao toque",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Gestante de 29 anos, 4G:3PN:0A, chega ao Pronto-Socorro Obstétrico trazida pelo SAMU em franco trabalho de parto. Não trouxe a carteira de pré-natal, refere data da última menstruação de 18/02/2022. Ao exame clínico, PA 123x82 mmHg, FC 84 bpm, altura uterina de 35 cm, batimento cardíaco fetal presente e rítmico. Ao toque vaginal, dilatação total, apresentação cefálica e alta, sendo percebida a variedade de posição representada na figura. Qual é a referência percebida ao toque que sinaliza dificuldade do parto vaginal?",
   alternativas:[{id:"A",texto:"Raiz do nariz."},{id:"B",texto:"Occipício."},{id:"C",texto:"Bregma."},{id:"D",texto:"Mento."}],
@@ -554,7 +556,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-040", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-usp2023-040.png", imagemPendente:"Gráfico de dispersão da taxa de mortalidade materna segundo a taxa de cesárea (193 países)",
+  imagemUrl:"dados/imagens/q-usp2023-040.jpg", imagemLegenda:"Gráfico de dispersão da taxa de mortalidade materna segundo a taxa de cesárea (193 países)",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Volpe (2011) publicou estudo da correlação das \"taxas de cesariana\" com as \"taxas de mortalidade materna e infantil\" através da avaliação de dados oficiais de 193 países. Com base nesse estudo, o gráfico abaixo apresenta a correlação entre a taxa de mortalidade materna e a taxa de cesárea de cada um desses países. De acordo com o gráfico, qual é a conclusão sobre a relação entre a taxa de mortalidade materna e a taxa de cesárea?",
   alternativas:[{id:"A",texto:"quanto maior a taxa de cesárea, maior a mortalidade materna."},{id:"B",texto:"quanto maior a taxa de cesárea, menor a mortalidade materna."},{id:"C",texto:"quanto menor a taxa de cesárea, maior a mortalidade materna."},{id:"D",texto:"não há relação entre a taxa de cesárea e a mortalidade materna."}],
@@ -594,12 +596,12 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-043", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:43,
-  imagemUrl:"dados/imagens/q-usp2023-043.png", imagemPendente:"As quatro alternativas são fotografias de olhos (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2023-043.jpg", imagemLegenda:"As quatro alternativas são fotografias de olhos (A, B, C e D)",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-trauma",
   enunciado:"Qual foto indica situação médica com necessidade de avaliação oftalmológica de urgência?",
   alternativas:[{id:"A",texto:"Foto A (ver figura)."},{id:"B",texto:"Foto B (ver figura)."},{id:"C",texto:"Foto C (ver figura)."},{id:"D",texto:"Foto D (ver figura)."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: a foto A mostra corpo estranho na córnea, que exige avaliação oftalmológica de urgência — remoção sob lâmpada de fenda, avaliação de perfuração e de anel de ferrugem, profilaxia de infecção. As demais fotos mostram condições que podem ser encaminhadas eletivamente ou acompanhadas pelo generalista, como alterações crônicas da superfície ocular ou hemorragia subconjuntival isolada, que é autolimitada quando não há trauma importante. Sinais que sempre pedem avaliação oftalmológica urgente: trauma com suspeita de perfuração, queimadura química, corpo estranho corneano, dor ocular intensa com baixa de visão, olho vermelho com fotofobia e pupila alterada. (Descrição das fotos a completar pela equipe quando as imagens originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa A está correta: a foto A mostra um pequeno corpo estranho escuro (típico de partícula metálica) sobre a córnea, na frente da íris — situação de urgência oftalmológica: remoção sob lâmpada de fenda, avaliação de perfuração e do anel de ferrugem, profilaxia de infecção. B está errada porque mostra pterígio — prega fibrovascular da conjuntiva nasal avançando sobre a córnea —, condição crônica, de encaminhamento eletivo (cirurgia se ameaçar o eixo visual). C está errada porque mostra arco corneano (arco senil), anel esbranquiçado na periferia da córnea, benigno, que em jovens sugere dislipidemia. D está errada porque mostra hemorragia subconjuntival, mancha vermelha bem delimitada, autolimitada quando não há trauma importante nem alteração da visão. Sinais que sempre pedem avaliação oftalmológica urgente: trauma com suspeita de perfuração, queimadura química, corpo estranho corneano, dor ocular intensa com baixa de visão, olho vermelho com fotofobia e pupila alterada.",
   explicacoesAlternativas:{},
   referencias:"American Academy of Ophthalmology. Basic and Clinical Science Course — External Disease and Cornea, 2022; Kanski JJ, Bowling B. Oftalmologia Clínica, 9ª ed., 2021.",
   dificuldadeManual:"fundamental", status:"ativa",
@@ -608,7 +610,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-044", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:44,
-  imagemUrl:"dados/imagens/q-usp2023-044.png", imagemPendente:"Fotografia das lesões de face e orelhas",
+  imagemUrl:"dados/imagens/q-usp2023-044.jpg", imagemLegenda:"Fotografia das lesões de face e orelhas",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
   enunciado:"Homem, 44 anos, há 9 anos apresenta lesões na pele. No exame clínico, observa-se infiltração difusa da face e orelhas, além de madarose. Há várias pápulas e nódulos infiltrados, de cor eritêmato-acastanhados (imagem). O exame histopatológico de lesão cutânea evidenciou presença de macrófagos espumosos ao redor de filete nervoso. Quais os achados clínico- laboratoriais encontrados na principal hipótese diagnóstica para o caso?",
   alternativas:[{id:"A",texto:"O exame histopatológico mostra depósitos hialinos e hemorragia na derme, evidenciados pela coloração vermelho-congo."},{id:"B",texto:"O exame histopatológico mostra epidermotropismo com linfócitos atípicos."},{id:"C",texto:"Baciloscopia de lesão cutânea positiva."},{id:"D",texto:"O exame histopatológico mostra granuloma tuberculoide com necrose caseosa."}],
@@ -622,7 +624,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-045", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:45,
-  imagemUrl:"dados/imagens/q-usp2023-045.png", imagemPendente:"Fotografia das pernas",
+  imagemUrl:"dados/imagens/q-usp2023-045.jpg", imagemLegenda:"Fotografia das pernas",
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-venosa",
   enunciado:"Mulher, 59 anos, apresenta há 4 anos lesões em membros inferiores (imagem). No exame clínico, são observadas varizes de grosso calibre. Há eritema, edema, exsudação e crostas nos terços inferiores de pernas. Também são encontradas hipercromia e induração nos 2/3 inferiores das pernas, bilateralmente. Quais são as principais hipóteses diagnósticas?",
   alternativas:[{id:"A",texto:"Erisipela, amiloidose maculosa e linfedema."},{id:"B",texto:"Tinha do corpo, púrpura pigmentosa crônica e esclerodermia cutânea."},{id:"C",texto:"Neurodermatite circunscrita, melanodermia tóxica e líquen escleroso."},{id:"D",texto:"Eczema de estase, dermatite ocre e dermatoesclerose."}],
@@ -649,7 +651,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-047", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:47,
-  imagemUrl:"dados/imagens/q-usp2023-047.png", imagemPendente:"Radiografia de tórax e imagem da ultrassonografia cardíaca à beira do leito",
+  imagemUrl:"dados/imagens/q-usp2023-047.jpg", imagemLegenda:"Radiografia de tórax e imagem da ultrassonografia cardíaca à beira do leito",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
   enunciado:"Homem, 62 anos, procura o serviço de emergência com quadro de dispneia e dor torácica, que se iniciaram há 2 meses e vêm evoluindo com piora progressiva. Ao exame clínico, o paciente apresentava diminuição do murmúrio vesicular bilateralmente e estase jugular a 45°. Exame radiológico apresentado. A punção pleural demonstrou líquido exsudativo com predomínio de outras células, provavelmente células neoplásicas. Durante atendimento, o paciente apresentou piora da dispneia e PA 80x40 mmHg. A ultrassonografia cardíaca à beira do leito apresentada. Qual é a conduta imediata?",
   alternativas:[{id:"A",texto:"Trombólise."},{id:"B",texto:"Drenagem torácica."},{id:"C",texto:"Cineangiocoronariografia."},{id:"D",texto:"Pericardiocentese."}],
@@ -689,7 +691,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-050", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:50,
-  imagemUrl:"dados/imagens/q-usp2023-050.png", imagemPendente:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-usp2023-050.png", imagemLegenda:"Eletrocardiograma de 12 derivações",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Homem, 78 anos, procura a unidade básica de saúde com queixa de palpitações há 4 meses. Nega dispneia, dor torácica ou síncope. Descobriu ser hipertenso há 5 anos, quando teve um quadro de acidente vascular cerebral isquêmico, que não resultou em sequelas no longo prazo. Está em uso de hidroclorotiazida e losartana em doses máximas, associado à aspirina 200 mg/dia. Nega outros antecedentes mórbidos relevantes. Ao exame clínico, pressão arterial 128x82 mmHg. ECG é apresentado. Qual é o plano de cuidado deste paciente?",
   alternativas:[{id:"A",texto:"Introdução de anticoagulantes orais em dose plena."},{id:"B",texto:"Aumento da dose de aspirina para 300 mg/dia."},{id:"C",texto:"Prescrição de amiodarona 200 mg/dia."},{id:"D",texto:"Adição de betabloqueadores cardiosseletivos na dose máxima tolerada."}],
@@ -703,7 +705,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-051", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:51,
-  imagemUrl:"dados/imagens/q-usp2023-051.png", imagemPendente:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usp2023-051.png", imagemLegenda:"Eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Homem, 50 anos, hipertenso, em uso de propranolol 120 mg/dia, procura a unidade de pronto atendimento por palpitação há uma semana. O exame clínico é normal, com frequência cardíaca de 56 bpm. O ECG realizado na unidade de saúde está mostrado a seguir. Qual o ritmo cardíaco mostrado no eletrocardiograma?",
   alternativas:[{id:"A",texto:"BAV de segundo grau Mobitz I."},{id:"B",texto:"Bradicardia sinusal."},{id:"C",texto:"BAV de primeiro grau."},{id:"D",texto:"BAV de segundo grau Mobitz II."}],
@@ -756,7 +758,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-055", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-usp2023-055.png", imagemPendente:"Tomografia de tórax",
+  imagemUrl:"dados/imagens/q-usp2023-055.png", imagemLegenda:"Tomografia de tórax",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
   enunciado:"Homem de 50 anos, portador de melanoma metastático para pulmão, fígado e linfonodos, procura atendimento por quadro de 1 semana de dispneia progressiva e tosse; sem febre. Relata estar em uso de imunoterapia com anticorpo monoclonal anti-PDL-1 há cerca de 3 meses, tendo feito a última aplicação há 2 semanas. Ao exame clínico, o paciente apresenta- se taquidispneico, com frequência cardíaca 117 bpm, pressão arterial 110x60 mmHg, frequência respiratória de 32 irpm, saturação de oxigênio em ar ambiente de 85%. Tomografia computadorizada de tórax apresentada. Além da oferta de oxigênio suplementar, qual é a conduta para o caso?",
   alternativas:[{id:"A",texto:"Internação em unidade de terapia intensiva; pesquisa de vírus respiratórios; corticoterapia em alta dose; antibioticoterapia."},{id:"B",texto:"Internação em enfermaria; avaliação da oncologia para radioterapia; antibioticoterapia."},{id:"C",texto:"Internação em unidade de terapia intensiva; avaliação da oncologia para radioterapia; corticoterapia em baixa dose."},{id:"D",texto:"Internação em enfermaria; pesquisa de vírus respiratórios; corticoterapia em baixa dose e antibioticoterapia."}],
