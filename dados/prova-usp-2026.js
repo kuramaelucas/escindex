@@ -10,9 +10,10 @@
    (2 nesta prova) ficam com gabarito vazio e status "anulada".
 
    As figuras da prova (exames de imagem, traçados, tabelas e as alternativas
-   que eram só imagem) ainda não foram anexadas: cada questão que depende de
-   uma figura aponta para dados/imagens/q-usp2026-NNN.png e descreve em
-   `imagemPendente` o que a prova mostrava. Ver dados/imagens/LEIA-ME.md.
+   que eram só imagem) estão em dados/imagens/, recortadas do caderno de
+   questões. 1 ainda faltam: essas questões apontam para
+   dados/imagens/q-usp2026-NNN.png e descrevem em `imagemPendente` o que a
+   prova mostrava. Ver dados/imagens/LEIA-ME.md.
 
    Este arquivo é CONTEÚDO, não código: ele só entrega uma lista para a
    plataforma. O molde de uma questão e o passo a passo para acrescentar
@@ -21,7 +22,7 @@
 window.EscDados.registrarQuestoes("prova-usp-2026", [
 {
   id:"q-usp2026-001", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:1,
-  imagemUrl:"dados/imagens/q-usp2026-001.png", imagemPendente:"Imagens da ultrassonografia à beira do leito",
+  imagemUrl:"dados/imagens/q-usp2026-001.jpg", imagemLegenda:"Imagens da ultrassonografia à beira do leito",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   enunciado:"Homem, 52 anos de idade, mecânico, tem hipertensão arterial sistêmica, diabetes melito tipo 2 e asma. Procura atendimento ambulatorial por falta de ar. Notou dispneia progressiva ao longo das duas últimas semanas durante o trabalho. Chegou a passar em pronto-socorro, foi medicado com salbutamol inalatório e acha que teve melhora discreta. Percebe edema frequente perimaleolar, ronco alto noturno e sonolência diurna. Nega angina, ortopneia, dispneia paroxística noturna, viagem ou imobilização recentes. Sinais vitais com temperatura de 36,2 °C, FC de 90 bpm, PA de 120×82 mmHg, FR de 16 irpm, SpO2 de 95%. Apresenta IMC de 32,3 kg/m². Murmúrios vesiculares universalmente reduzidos, sibilos expiratórios ocasionais. Bulhas hipofonéticas, sem sopros, veias do pescoço não visíveis, edema bilateral leve dos tornozelos. Foi realizada uma avaliação complementar com ultrassonografia à beira do leito e foram obtidas as imagens apresentadas a seguir: Assinale a alternativa que apresenta a conduta medicamentosa mais adequada neste momento.",
   alternativas:[{id:"A",texto:"Furosemida."},{id:"B",texto:"Azitromicina."},{id:"C",texto:"Rivaroxabana."},{id:"D",texto:"Formoterol/budesonida."}],
@@ -87,7 +88,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-006", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:6,
-  imagemUrl:"dados/imagens/q-usp2026-006.png", imagemPendente:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-usp2026-006.png", imagemLegenda:"Eletrocardiograma de 12 derivações",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem, 53 anos de idade, possui antecedente de hipertensão e diabetes melito tipo 2. Faz uso de hidroclorotiazida, metformina e gliclazida. Comparece ao departamento de emergência com queixa de dor torácica há cerca de uma hora. Ao exame físico, apresenta PA de 90×60 mmHg, FC de 60 bpm, FR de 25 irpm. Regular estado geral, sudoreico. Auscultas cardíaca e pulmonar sem alterações. Abdome e extremidades sem alterações. Foi realizado o eletrocardiograma apresentado a seguir: Com base no caso clínico apresentado, assinale a alternativa indica a terapia intravenosa imediata pertinente.",
   alternativas:[{id:"A",texto:"Dobutamina."},{id:"B",texto:"Nitroglicerina."},{id:"C",texto:"Noradrenalina."},{id:"D",texto:"Cloreto de sódio 0,9%."}],
@@ -101,7 +102,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-007", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:7,
-  imagemUrl:"dados/imagens/q-usp2026-007.png", imagemPendente:"Eletroforese de proteínas séricas (pico monoclonal)",
+  imagemUrl:"dados/imagens/q-usp2026-007.png", imagemLegenda:"Eletroforese de proteínas séricas (pico monoclonal)",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-neoplasias",
   enunciado:"Homem, 68 anos de idade, passa em consulta ambulatorial. Ele tem fadiga crônica e o exame clínico é normal. Durante investigação, detectou-se uma anormalidade na eletroforese de proteínas, conforme imagem apresentada a seguir: Foram realizados exames de hemograma completo, creatinina, cálcio e radiografias ósseas que estavam normais. Com base nessas informações, assinale a alternativa que apresenta a conduta indicada neste momento.",
   alternativas:[{id:"A",texto:"Imunofixação e pesquisa de cadeias leves livres no sangue."},{id:"B",texto:"Biópsia de medula óssea e pesquisa por citogenética/FISH."},{id:"C",texto:"Eletroforese de proteínas séricas a cada 6 meses."},{id:"D",texto:"Cintilografia óssea ou tomografia de corpo inteiro."}],
@@ -154,12 +155,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-011", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:11,
-  imagemUrl:"dados/imagens/q-usp2026-011.png", imagemPendente:"As quatro alternativas são imagens de ressonância magnética de crânio (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-011.png", imagemLegenda:"As quatro alternativas são imagens de ressonância magnética de crânio (A, B, C e D)",
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
   enunciado:"Mulher, 74 anos de idade, tabagista, tem hipertensão e diabetes. Foi encontrada confusa em casa pela filha, que há 2 dias atrás havia a visto bem. Na admissão no pronto-socorro, encontrava-se afebril, eupneica, com PA de 170×110 mmHg, FC de 102 bpm, glicemia capilar de 145 mg/dL. Ao exame neurológico, apresentou-se vigil, alerta, irritada, afirmando \"estou bem, quero ir para casa\". Tinha o olhar desviado para a direita quando distraída, mas conseguia olhar para a esquerda quando instruída pelo examinador. A paciente percebia o dedo do examinador em todos os quadrantes no exame de campos visuais por confrontação. Quando solicitada a ler um texto, começava a partir do meio da página e lia apenas o lado direito das frases repetidamente. Não apresentava fraqueza muscular. Assinale a alternativa que apresenta uma imagem de ressonância magnética compatível com o quadro da paciente descrita.",
   alternativas:[{id:"A",texto:"Imagem A (ver figura)."},{id:"B",texto:"Imagem B (ver figura)."},{id:"C",texto:"Imagem C (ver figura)."},{id:"D",texto:"Imagem D (ver figura)."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: a paciente apresenta heminegligência esquerda — desvio do olhar para a direita que ela consegue vencer sob comando, leitura apenas do lado direito das frases, com campos visuais normais na confrontação (não é hemianopsia) — e anosognosia (nega estar doente, 'estou bem, quero ir para casa'), sem déficit motor. Esse conjunto localiza a lesão no lobo parietal direito (hemisfério não dominante), num provável AVC isquêmico no território da divisão inferior/posterior da artéria cerebral média direita. A ressonância compatível é a que mostra lesão isquêmica (restrição à difusão) no córtex parietal direito — imagem A. As demais imagens mostram lesões em outros territórios (hemisfério esquerdo, que daria afasia; occipital, que daria hemianopsia; ou tronco). (Descrição das imagens a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa A está correta: a paciente apresenta heminegligência esquerda — desvio do olhar para a direita que ela consegue vencer sob comando, leitura apenas do lado direito das frases, com campos visuais normais na confrontação (não é hemianopsia) — e anosognosia (nega estar doente), sem déficit motor. Esse conjunto localiza a lesão no lobo parietal direito (hemisfério não dominante), num provável AVC isquêmico no território da divisão inferior da artéria cerebral média direita. As imagens são cortes axiais de ressonância (FLAIR), na convenção radiológica (o lado direito da paciente aparece à esquerda da imagem). A imagem A mostra hipersinal cortical e subcortical no lobo parietal direito, ao lado do átrio do ventrículo lateral — a lesão compatível. B está errada porque a lesão está mais baixa, no lobo temporal/occipital medial direito (território da cerebral posterior), que daria hemianopsia, alteração que a paciente não tem. C e D estão erradas porque não mostram lesão parietal direita; os cortes baixos, na altura do mesencéfalo e da base dos lobos temporais, não explicam negligência com anosognosia.",
   explicacoesAlternativas:{},
   referencias:"Powers WJ et al. Guidelines for the Early Management of Patients With Acute Ischemic Stroke: 2019 Update (AHA/ASA). Stroke, 2019; Campbell WW. DeJong's The Neurologic Examination, 8ª ed., 2019.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -168,7 +169,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-012", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:12,
-  imagemUrl:"dados/imagens/q-usp2026-012.png", imagemPendente:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usp2026-012.jpg", imagemLegenda:"Eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
   enunciado:"Mulher, 22 anos de idade, procura o pronto-socorro por indisposição. Descreve ter polifagia, poliúria e polidipsia progressivas no último mês, com piora na última semana. Nos últimos dois dias, teve náuseas, alguns vômitos e passou a maior parte do dia sentada por indisposição. Ao exame clínico, apresentou PA de 110×62 mmHg, FC de 106 bpm, FR de 28 irpm, temperatura 36,2 °C, SpO2 de 98%, mucosas secas, vigil, sem sinais de desconforto respiratório, força grau IV nos membros inferiores, sem outras anormalidades. • Exames laboratoriais: Glicemia: 482 mg/dL pH: 7,27 HCO3: 12 mEq/L pCO2: 26 mmHg Cetonas detectadas no sangue. Um eletrocardiograma foi realizado e pode ser observado na imagem a seguir: Assinale a alternativa que contém o item mais apropriado à prescrição imediata da paciente.",
   alternativas:[{id:"A",texto:"Bicarbonato de sódio."},{id:"B",texto:"Insulina em bomba de infusão."},{id:"C",texto:"Adenosina em bólus."},{id:"D",texto:"Cloreto de potássio."}],
@@ -182,12 +183,11 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-013", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:13,
-  imagemUrl:"dados/imagens/q-usp2026-013.png", imagemPendente:"Tabela com os achados clínicos e suas razões de verossimilhança; as quatro alternativas são linhas da tabela (A, B, C e D)",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   enunciado:"Homem, 58 anos de idade, procura atendimento por dispneia. A médica residente, que realizou o atendimento, observou a presença de um achado clínico que favoreceu, significativamente, a possibilidade de se tratar de um caso de insuficiência cardíaca. A partir da análise da tabela, assinale a alternativa que contém o achado clínico observado.",
-  alternativas:[{id:"A",texto:"Achado A (ver tabela)."},{id:"B",texto:"Achado B (ver tabela)."},{id:"C",texto:"Achado C (ver tabela)."},{id:"D",texto:"Achado D (ver tabela)."}],
+  alternativas:[{id:"A",texto:"Hepatomegalia — sensibilidade 3,2%; especificidade 97%; RV+ 1,07; RV− 1,00."},{id:"B",texto:"Terceira bulha — sensibilidade 10%; especificidade 85%; RV+ 0,67; RV− 1,06."},{id:"C",texto:"Estertores — sensibilidade 29%; especificidade 77%; RV+ 1,26; RV− 0,92."},{id:"D",texto:"Refluxo abdominojugular — sensibilidade 33%; especificidade 94%; RV+ 5,50; RV− 0,71."}],
   gabarito:"D",
-  explicacaoGeral:"A alternativa D está correta: a pergunta é qual achado aumenta significativamente a probabilidade de insuficiência cardíaca num paciente com dispneia — o que se lê pela razão de verossimilhança positiva (RV+) da tabela: quanto maior a RV+ (em geral acima de 5 a 10), mais o achado presente eleva a probabilidade pós-teste. O achado D é o de maior RV+ (achados como a terceira bulha, a turgência jugular ou o refluxo hepatojugular têm RV+ altas para insuficiência cardíaca, enquanto sintomas como dispneia ao esforço ou edema têm RV+ próximas de 1, pouco úteis para confirmar). As demais alternativas trazem achados com RV+ baixas ou próximas de 1. (Descrição da tabela a completar pela equipe quando a imagem original for acrescentada.)",
+  explicacaoGeral:"A alternativa D está correta: a pergunta é qual achado aumenta significativamente a probabilidade do diagnóstico — o que se lê pela razão de verossimilhança positiva (RV+): quanto maior, mais o achado presente eleva a probabilidade pós-teste; valores próximos de 1 não mudam nada, e acima de 5 a 10 já mudam de forma relevante. O refluxo abdominojugular tem RV+ de 5,50 (especificidade de 94%), a única que modifica de fato a probabilidade. A está errada porque a hepatomegalia, apesar da especificidade alta (97%), tem sensibilidade tão baixa que a RV+ fica em 1,07 — praticamente neutra. B está errada porque, nesta tabela, a terceira bulha tem RV+ de 0,67, abaixo de 1 — sua presença nem sequer aumenta a probabilidade. C está errada porque os estertores têm RV+ de 1,26, pouco útil para confirmar o diagnóstico.",
   explicacoesAlternativas:{},
   referencias:"Wang CS et al. Does this dyspneic patient in the emergency department have congestive heart failure? JAMA, 2005; McGee S. Evidence-Based Physical Diagnosis, 5ª ed., 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -196,12 +196,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-014", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:14,
-  imagemUrl:"dados/imagens/q-usp2026-014.png", imagemPendente:"As quatro alternativas são radiografias de tórax (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-014.png", imagemLegenda:"As quatro alternativas são radiografias de tórax (A, B, C e D)",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
   enunciado:"Mulher, 53 anos de idade, antecedentes desconhecidos. Trazida à sala de emergência com relato de tosse produtiva, febre e prostração nos últimos 3 dias. Durante atendimento, evoluiu com franco desconforto respiratório, foi submetida à intubação orotraqueal e foram realizados procedimentos para estabilização. Ao exame físico, após os procedimentos, apresentou PA de 102×74 mmHg, FC de 112 bpm, SpO2 de 92%, temperatura de 37,9 °C. Regular estado geral, corada, hidratada. Murmúrios vesiculares presentes à direita e globalmente reduzidos à esquerda. Ausculta cardíaca e exame abdominal sem alterações. Extremidades com perfusão periférica adequada. Assinale a alternativa que apresenta uma imagem de radiografia compatível com o quadro da paciente.",
   alternativas:[{id:"A",texto:"Radiografia A (ver figura)."},{id:"B",texto:"Radiografia B (ver figura)."},{id:"C",texto:"Radiografia C (ver figura)."},{id:"D",texto:"Radiografia D (ver figura)."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta de acordo com o gabarito oficial: a paciente com quadro infeccioso respiratório (tosse produtiva, febre) foi intubada e, após a estabilização, tem o murmúrio vesicular globalmente reduzido à esquerda com o lado direito preservado. A radiografia compatível é a que mostra o comprometimento extenso do hemitórax esquerdo que explica essa ausculta — opacificação por consolidação/atelectasia (com o mediastino desviado para o lado da lesão, se houver perda de volume) ou derrame pleural volumoso (com desvio para o lado oposto) —, e é importante conferir a posição do tubo, porque a intubação seletiva no brônquio principal direito também abole o murmúrio à esquerda. As demais radiografias mostram achados que não explicam a assimetria da ausculta. (Descrição das radiografias a completar pela equipe quando as imagens originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa B está correta de acordo com o gabarito oficial: a paciente com quadro infeccioso respiratório foi intubada e, após a estabilização, tem o murmúrio vesicular globalmente reduzido à esquerda com o lado direito preservado. A radiografia B mostra opacificação praticamente completa do hemitórax esquerdo (o 'pulmão branco'), com o pulmão direito aerado — achado que explica a ausculta; o sentido do desvio do mediastino ajuda a diferenciar atelectasia/consolidação extensa (desvio para o lado opaco) de derrame volumoso (desvio para o lado oposto), e é obrigatório conferir a posição da cânula, porque a intubação seletiva no brônquio principal direito também produz atelectasia e abolição do murmúrio à esquerda. A está errada porque mostra pulmões aerados, sem opacidade que explique a assimetria. C está errada porque mostra alterações discretas nas bases e o hemitórax esquerdo ventilado, sem o comprometimento global da ausculta. D está errada porque mostra opacidades bilaterais difusas (padrão de SDRA/edema), que reduziriam o murmúrio dos dois lados, não só à esquerda.",
   explicacoesAlternativas:{},
   referencias:"American College of Radiology. ACR Appropriateness Criteria — Intensive Care Unit Patients, 2020; Corrêa RA et al. Recomendações para o manejo da pneumonia adquirida na comunidade 2018 (SBPT).",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -249,7 +249,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-018", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:18,
-  imagemUrl:"dados/imagens/q-usp2026-018.png", imagemPendente:"Tabela de prevalência das trombofilias hereditárias e risco de tromboembolismo com contraceptivo oral",
+  imagemUrl:"dados/imagens/q-usp2026-018.png", imagemLegenda:"Tabela de prevalência das trombofilias hereditárias e risco de tromboembolismo com contraceptivo oral",
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Mulher, 28 anos de idade, saudável, com gestação prévia sem intercorrências, procura atendimento ginecológico para iniciar o uso de contracepção hormonal combinada. Ela não possui história pessoal ou familiar de trombose venosa profunda, tromboembolia pulmonar ou complicações gestacionais. Soube por amigos do risco de trombose relacionado ao uso desse tipo de contraceptivo e solicita a realização de exames para pesquisa de trombofilias hereditárias antes de iniciar o método. A tabela de prevalência de trombofilias hereditárias é apresentada a seguir: Prevalência de Trombofilias Hereditárias e Risco de Trombembolismo Associado ao Uso de Contraceptivo Oral",
   alternativas:[{id:"A",texto:"Solicitar a pesquisa das trombofilias mais prevalentes na população."},{id:"B",texto:"Solicitar as pesquisas das trombofilias com maior risco relativo de TEV."},{id:"C",texto:"Realizar triagem laboratorial para as trombofilias hereditárias disponíveis."},{id:"D",texto:"Não há necessidade de investigar trombofilias hereditárias."}],
@@ -289,7 +289,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-021", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:21,
-  imagemUrl:"dados/imagens/q-usp2026-021.png", imagemPendente:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usp2026-021.png", imagemLegenda:"Eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
   enunciado:"Mulher, 23 anos de idade, possui antecedente de lúpus eritematoso sistêmico com atividade prévia mucocutânea e articular em uso de hidroxicloroquina e prednisona, além de constipação crônica. Perdeu seguimento ambulatorial por 2 anos. Procura o departamento de emergência por cansaço inespecífico. Ao exame físico, apresentou PA de 152×88 mmHg, FC de 90 bpm, FR de 23 irpm, SpO2 de 94% em ar ambiente, ausculta cardiopulmonar sem alterações, hiperemia malar e em tronco. • Exames laboratoriais: Hb: 8,9 mg/dL Leucócitos: 3.600l/mm³ Plaquetas: 123 mil/mm³ Cr: 3,7 mg/dL Ur: 127 mg/dL K+: 5,8 mEq/mL Na+: 135 mEq/ mL Foi realizado o eletrocardiograma apresentado a seguir: Com base no caso clínico descrito, assinale a alternativa que apresenta a conduta imediata pertinente.",
   alternativas:[{id:"A",texto:"Gluconato de cálcio."},{id:"B",texto:"Furosemida."},{id:"C",texto:"Desmopressina."},{id:"D",texto:"Poliestireno sulfonato de sódio."}],
@@ -342,7 +342,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-025", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:25,
-  imagemUrl:"dados/imagens/q-usp2026-025.png", imagemPendente:"Fotografia da lesão anal",
+  imagemUrl:"dados/imagens/q-usp2026-025.jpg", imagemLegenda:"Fotografia da lesão anal",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
   enunciado:"Homem, 30 anos de idade, queixa-se de abaulamento anal associado a dor intensa, contínua e sangramento vivo. A sintomatologia piora em todas as suas evacuações e ficou ainda mais intensa há duas semanas. O hábito evacuatório era de uma evacuação ao dia, fezes endurecidas, e passou a ser de uma vez por semana devido a piora da dor Relata ter uma \"hemorroida/verruga\" (sic), na borda anal, que parece ter aumentado com o tempo. Informa relações sexuais com parceiros do mesmo sexo, sem maiores detalhes. Ao exame físico, observou-se a seguinte lesão: Com base no relato do paciente e no exame físico apresentado, assinale a alternativa que indica o diagnóstico mais provável.",
   alternativas:[{id:"A",texto:"Adenocarcinoma."},{id:"B",texto:"Carcinoma espinocelular."},{id:"C",texto:"Condiloma acuminado."},{id:"D",texto:"Hemorroida interna grau IV."}],
@@ -356,7 +356,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-026", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:26,
-  imagemUrl:"dados/imagens/q-usp2026-026.png", imagemPendente:"Cortes da tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2026-026.png", imagemLegenda:"Cortes da tomografia de abdome",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   enunciado:"Mulher, 72 anos de idade, encontra-se no sexto pós-operatório de troca de valva mitral. Desde a operação não evacuou, e há dois dias não elimina gases. Nas últimas 24 horas, evoluiu com distensão e dor abdominal. Tem diabetes melito controlado e antecedente de apendicectomia por incisão de McBurney. Ao exame físico, encontra-se em regular estado geral, descorada, eupneica em ar ambiente; exame torácico com incisão de esternotomia sem sinais de complicação e dreno de mediastino com baixo débito; abdome: distendido, com ruídos diminuídos, timpânico, pouco doloroso à palpação difusa sem sinais de irritação peritoneal. • Exames laboratoriais: Hb: 8,9 g/dL Leucócitos: 10.461/mm³ Cr: 2,5 mg/dL Ur: 72 mg/dL PCR: 79 mg/L (anterior de dois dias atrás de 101 mg/L) K+: 3,1 mEq/L Na+: 134 mEq/L Foi realizada tomografia, conforme imagens a seguir: Assinale a alternativa que apresenta o diagnóstico mais provável",
   alternativas:[{id:"A",texto:"Gastroparesia."},{id:"B",texto:"Pseudo-obstrução cólica."},{id:"C",texto:"Obstrução por bridas."},{id:"D",texto:"Isquemia mesentérica."}],
@@ -370,7 +370,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-027", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:27,
-  imagemUrl:"dados/imagens/q-usp2026-027.png", imagemPendente:"Corte da tomografia de abdome com os achados relevantes",
+  imagemUrl:"dados/imagens/q-usp2026-027.png", imagemLegenda:"Corte da tomografia de abdome com os achados relevantes",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
   enunciado:"Homem, 23 anos de idade, foi vítima de queda da motocicleta há 1 hora. No atendimento pré- hospitalar estava inconsciente, com PA de 110×80 mmHg e FC de 90 bpm. Foi realizada intubação orotraqueal e encaminhamento para centro de trauma. Na admissão, encontrava- se: A: SpO2 de 97%; B: Expansibilidade preservada e ausculta sem alterações; C: PA de120×80 mmHg; FC de 94bpm; FAST positivo no espaço hepatorrenal e esplenorrenal; D: Escala de Coma de Glasgow: 3T (sedado); E: Deformidade na perna direita, sem sangramento. Realizada sondagem vesical com diurese clara. Após o atendimento inicial, foi realizada tomografia de corpo inteiro. Na imagem a seguir, é possível observar a região do abdome com os achados relevantes. Diante da condição clínica do paciente e dos achados no exame de imagem, assinale a alternativa com a provável lesão e a melhor conduta.",
   alternativas:[{id:"A",texto:"Mesentério e laparotomia."},{id:"B",texto:"Mesentério e tratamento não operatório."},{id:"C",texto:"Fígado e laparotomia."},{id:"D",texto:"Fígado e tratamento não operatório."}],
@@ -410,7 +410,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-030", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:30,
-  imagemUrl:"dados/imagens/q-usp2026-030.png", imagemPendente:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2026-030.png", imagemLegenda:"Tomografia de abdome",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
   enunciado:"Homem, 73 anos de idade, refere alteração do hábito intestinal há 4 meses, com constipação e necessidade progressiva de laxativos. Realizou colonoscopia que evidenciou lesão ulcerada no sigmoide intransponível ao aparelho. Procura o serviço de emergência devido a dor abdominal em cólica, distensão e parada de evacuação há 5 dias. Ao exame físico, encontra- se em regular estado geral, desidratado, abdome pouco distendido, fígado palpável até 4 cm abaixo do rebordo costal direito, doloroso à palpação profunda, sem irritação peritoneal. • Exames laboratoriais: Hb: 10,8 g/dL Ht: 30% Ur: 43 mg/dL Cr: 1,4 mgdL Albumina: 3,3 mg/dL Foi realizada a tomografia, com o resultado apresentado na imagem a seguir: Diante da condição clínica do paciente e dos achados no exame de imagem, assinale a alternativa que apresenta a melhor conduta neste momento.",
   alternativas:[{id:"A",texto:"Retossigmoidectomia com linfadenectomia com anastomose."},{id:"B",texto:"Retossigmoidectomia com linfadenectomia sem anastomose."},{id:"C",texto:"Laparotomia exploradora com colostomia em alça."},{id:"D",texto:"Laparotomia exploradora com ileostomia em alça."}],
@@ -450,12 +450,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-033", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:33,
-  imagemUrl:"dados/imagens/q-usp2026-033.png", imagemPendente:"As quatro alternativas são imagens de tomografia de abdome (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-033.png", imagemLegenda:"As quatro alternativas são imagens de tomografia de abdome (A, B, C e D)",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   enunciado:"Mulher, 64 anos de idade, procura o serviço de emergência com distensão e dor abdominal em cólica há 24 horas, acompanhada de vômitos em grande quantidade. Nega alteração do hábito intestinal antes do quadro agudo. Tem antecedente de retossigmoidectomia por diverticulite aguda complicada com peritonite. Ao exame físico, encontra-se em bom estado geral, ausculta torácica sem alterações, abdome com ruídos hidroaéreos aumentados, distendido, doloroso à palpação profunda e sem sinais de irritação peritoneal. Assinale a alternativa que apresenta a tomografia esperada para esta paciente.",
   alternativas:[{id:"A",texto:"Tomografia A (ver figura)."},{id:"B",texto:"Tomografia B (ver figura)."},{id:"C",texto:"Tomografia C (ver figura)."},{id:"D",texto:"Tomografia D (ver figura)."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: a paciente tem antecedente de laparotomia (retossigmoidectomia por diverticulite com peritonite) e agora dor em cólica, distensão, vômitos em grande quantidade e ruídos aumentados, sem alteração prévia do hábito intestinal — obstrução do intestino delgado por bridas (aderências), a causa mais comum de obstrução em operados. A tomografia esperada mostra alças de delgado dilatadas (acima de 2,5–3 cm) com níveis líquidos, ponto de transição e alças distais e cólon colabados — imagem A. As demais imagens mostram outros padrões (obstrução de cólon, volvo, pneumoperitônio ou íleo difuso). (Descrição das imagens a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa A está correta: a paciente tem antecedente de laparotomia (retossigmoidectomia por diverticulite com peritonite) e agora dor em cólica, distensão, vômitos em grande quantidade e ruídos aumentados, sem alteração prévia do hábito intestinal — obstrução do intestino delgado por bridas (aderências), a causa mais comum de obstrução em operados. A tomografia A mostra exatamente isso: múltiplas alças de delgado dilatadas e cheias de líquido, com pregas coniventes, ocupando todo o abdome, e o cólon pouco distendido. B está errada porque mostra grande distensão com nível hidroaéreo no andar superior e o cólon cheio de gás — padrão de obstrução/distensão colônica, mais esperado com alteração do hábito intestinal. C está errada porque mostra ascite volumosa com as alças agrupadas no centro do abdome, sem dilatação obstrutiva. D está errada porque mostra coleções/estruturas císticas de paredes espessas no andar superior, que não correspondem a obstrução por bridas.",
   explicacoesAlternativas:{},
   referencias:"Ten Broek RPG et al. Bologna guidelines for diagnosis and management of adhesive small bowel obstruction (ASBO): 2017 update of the WSES evidence-based guidelines. World J Emerg Surg, 2018.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -516,7 +516,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-038", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:38,
-  imagemUrl:"dados/imagens/q-usp2026-038.png", imagemPendente:"Fotografia da lesão no membro inferior",
+  imagemUrl:"dados/imagens/q-usp2026-038.jpg", imagemLegenda:"Fotografia da lesão no membro inferior",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
   enunciado:"Homem, 28 anos de idade, vítima de atropelamento com trauma do membro inferior esquerdo. Após 7 dias de internação, observa-se lesão no membro acometido, sem solução de continuidade com meio externo. Ao exame físico, a escara cutânea está descolada da profundidade e apresenta grande hematoma subcutâneo, sem perfusão cutânea adequada, conforme imagem a seguir: Assinale a alternativa que apresenta o provável diagnóstico e a conduta cirúrgica mais adequada.",
   alternativas:[{id:"A",texto:"Fasceite necrotizante; Punção diagnóstica para colheita de material para cultura, curativo oclusivo simples."},{id:"B",texto:"Fasceite necrotizante; Incisão, drenagem de hematoma, colheita de material para cultura e instalação de curativo por pressão negativa."},{id:"C",texto:"Ferimento descolante oculto; Ressecção da pele desvitalizada, limpeza cirúrgica e realização de curativo por pressão negativa."},{id:"D",texto:"Ferimento descolante oculto; Ressecção e enxertamento da pele descolada, enxertia da pele emagrecida sobre o leito cruento."}],
@@ -543,12 +543,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-040", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-usp2026-040.png", imagemPendente:"Imagens da tomografia de abdome; as quatro alternativas são fotografias de achados operatórios (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-040.jpg", imagemLegenda:"Imagens da tomografia de abdome; as quatro alternativas são fotografias de achados operatórios (A, B, C e D)",
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
   enunciado:"Mulher, 66 anos de idade, apresentou dor abdominal de início súbito e forte intensidade há 4 horas. Tem diabetes melito e tabagismo de 1 maço de cigarro por dia. Ao exame físico, encontra-se em regular estado geral, com FC de 100 bpm e PA de 100×70 mmHg, abdome tenso, doloroso difusamente à palpação, inclusive à percussão. • Exames laboratoriais: Hb: 14,9 g/dL Ht: 41% Leucócitos: 16.126/mm³ PCR: 12 mg/L Amilase: 281 U/L Lipase: 100 U/L Foi realizada a tomografia apresentada nas imagens a seguir: Assinale a alternativa que representa o achado operatório esperado nesta paciente:",
   alternativas:[{id:"A",texto:"Achado A (ver figura)."},{id:"B",texto:"Achado B (ver figura)."},{id:"C",texto:"Achado C (ver figura)."},{id:"D",texto:"Achado D (ver figura)."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta de acordo com o gabarito oficial: a paciente tabagista tem dor abdominal de início súbito e forte intensidade há 4 horas, com abdome tenso e dor à percussão (peritonite difusa), leucocitose e amilase apenas levemente elevada — quadro de abdome agudo perfurativo, e a tomografia mostra o diagnóstico (como pneumoperitônio e líquido livre na perfuração de úlcera péptica). O achado operatório esperado é o correspondente à lesão demonstrada na tomografia, representado na alternativa B. As demais fotografias mostram achados de outras causas de abdome agudo (necrose intestinal por isquemia, apendicite, diverticulite perfurada) que não correspondem às imagens. (Descrição das imagens a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa B está correta de acordo com o gabarito oficial: a paciente tabagista tem dor abdominal de início súbito e forte intensidade há 4 horas, com abdome tenso e dor à percussão (peritonite difusa), leucocitose e amilase apenas levemente elevada — quadro de abdome agudo perfurativo. A tomografia mostra pequenas bolhas de gás livre (pneumoperitônio) junto ao fígado e ao estômago, espessamento da região antropilórica e líquido livre — perfuração de úlcera péptica. A foto B mostra o achado operatório correspondente: orifício puntiforme na parede anterior do estômago/duodeno, com fibrina ao redor, tratado com rafia e epiploplastia. A está errada porque mostra vesícula biliar enegrecida — colecistite gangrenosa, que dá dor no hipocôndrio direito e não pneumoperitônio. C está errada porque mostra apêndice necrosado e perfurado, de evolução mais arrastada e dor na fossa ilíaca direita. D está errada porque mostra segmento de delgado escurecido por isquemia mesentérica — que também causa dor súbita, mas com exame inicialmente pobre e sem gás livre precoce.",
   explicacoesAlternativas:{},
   referencias:"Tarasconi A et al. Perforated and bleeding peptic ulcer: WSES guidelines. World J Emerg Surg, 2020.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -557,12 +557,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-041", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:41,
-  imagemUrl:"dados/imagens/q-usp2026-041.png", imagemPendente:"Fotografia do campo operatório com estruturas numeradas de 1 a 4",
+  imagemUrl:"dados/imagens/q-usp2026-041.jpg", imagemLegenda:"Fotografia do campo operatório com estruturas numeradas de 1 a 4",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
   enunciado:"Durante colecistectomia pós pancreatite aguda leve, foi optado pela realização de colangiografia intraoperatória. A imagem do campo operatório pode ser observada a seguir: Em qual das estruturas, destacadas pelas setas e numeradas de 1 a 4, deve ser introduzido o cateter da colangiografia?",
   alternativas:[{id:"A",texto:"1."},{id:"B",texto:"2."},{id:"C",texto:"3."},{id:"D",texto:"4."}],
   gabarito:"C",
-  explicacaoGeral:"A alternativa C está correta: na colangiografia intraoperatória, o cateter é introduzido no ducto cístico, por uma pequena incisão feita após clipar o cístico junto à vesícula, depois de obtida a 'visão crítica de segurança' (triângulo hepatocístico dissecado, apenas duas estruturas — ducto e artéria císticos — entrando na vesícula). Na imagem, a estrutura 3 é o ducto cístico. As demais estruturas numeradas correspondem a outras estruturas do campo (artéria cística, vesícula/infundíbulo ou via biliar principal), e canular o colédoco ou a artéria seria erro técnico grave. (Descrição da figura a completar pela equipe quando a imagem original for acrescentada.)",
+  explicacaoGeral:"A alternativa C está correta: na colangiografia intraoperatória, o cateter é introduzido no ducto cístico, por uma pequena incisão feita depois de clipá-lo junto à vesícula, e só depois de obtida a 'visão crítica de segurança' (triângulo hepatocístico dissecado, com apenas duas estruturas — ducto e artéria císticos — entrando na vesícula). Na imagem laparoscópica, a seta 3 aponta o ducto cístico, estrutura tubular que sai do infundíbulo em direção à via biliar. A está errada porque a seta 1 indica a artéria cística, mais fina e superior, que será clipada e seccionada — não se canula artéria. B está errada porque a seta 2 aponta a região da via biliar principal/ligamento hepatoduodenal, que não deve ser aberta; canular o colédoco transforma um exame em lesão de via biliar. D está errada porque a seta 4 indica o linfonodo cístico (de Mascagni/Calot), referência anatômica da artéria cística, não um ducto.",
   explicacoesAlternativas:{},
   referencias:"Brunt LM et al. Safe Cholecystectomy Multi-society Practice Guideline (SAGES). Surg Endosc, 2020; Townsend CM et al. Sabiston Textbook of Surgery, 21ª ed., 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -597,7 +597,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-044", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:44,
-  imagemUrl:"dados/imagens/q-usp2026-044.png", imagemPendente:"Radiografia de tórax",
+  imagemUrl:"dados/imagens/q-usp2026-044.png", imagemLegenda:"Radiografia de tórax",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
   enunciado:"Mulher, 25 anos de idade, foi vítima de ferimento por arma branca em 2º espaço intercostal à direita há 5 dias. Na ocasião, foi submetida a drenagem de hemopneumotórax com dreno tubular multiperfurado 28 Fr. Evoluiu bem com débito seroso de 40 mL/dia e sem borbulhar à inspiração profunda. A imagem obtida na radiografia de tórax pode ser observada a seguir: Assinale a alternativa que apresenta a conduta correta neste momento.",
   alternativas:[{id:"A",texto:"Manter o dreno em aspiração contínua."},{id:"B",texto:"Manter o dreno e fisioterapia respiratória."},{id:"C",texto:"Retirar o dreno com manobra de Valsalva."},{id:"D",texto:"Retirar o dreno durante a inspiração."}],
@@ -611,7 +611,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-045", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:45,
-  imagemUrl:"dados/imagens/q-usp2026-045.png", imagemPendente:"Imagem do FAST",
+  imagemUrl:"dados/imagens/q-usp2026-045.jpg", imagemLegenda:"Imagem do FAST",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
   enunciado:"Mulher, 65 anos de idade, foi vítima de colisão de carro em alta velocidade contra anteparo fixo. Estava no banco traseiro do veículo com cinto de segurança. Na admissão no serviço de emergência encontrava-se: A: Intubada em ventilação mecânica; B: Murmúrios vesiculares simétricos; C: PA de 140×90 mmHg e FC de 120 bpm; D: Escala de coma de Glasgow 3T; E: Marca do cinto de segurança em parede abdominal. Diurese clara. Realizado o FAST, apresentado na imagem a seguir: Com base no caso descrito e no achado observado no FAST, assinale a alternativa que apresenta a lesão mais frequentemente associada a esse mecanismo de trauma.",
   alternativas:[{id:"A",texto:"Lesão intestinal."},{id:"B",texto:"Lesão pancreática."},{id:"C",texto:"Fratura de bacia."},{id:"D",texto:"Rotura da parede abdominal."}],
@@ -625,7 +625,6 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-046", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:46,
-  imagemUrl:"dados/imagens/q-usp2026-046.png", imagemPendente:"Imagem do exame contrastado do esôfago (hérnia hiatal tipo III)",
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Mulher, 65 anos de idade, refere empachamento pós-prandial eventual. Nega epigastralgia, pirose, regurgitação, disfagia, dor torácica ou náuseas. Ao exame físico, encontra-se em bom estado geral, com IMC de 32 kg/m²; abdome flácido e indolor. Foi submetida a endoscopia digestiva alta que identificou hérnia hiatal volumosa, com mucosa esofágica sem alterações e pangastrite enantematosa leve. Na sequência, realizou exame de radiografia contrastado do esôfago que confirmou hérnia hiatal tipo III. Foi iniciado tratamento com omeprazol e domperidona, com resolução do sintoma. Assinale a alternativa que apresenta a melhor conduta para esta paciente.",
   alternativas:[{id:"A",texto:"Manometria e pH-metria esofágica para definição do diagnóstico e tratamento."},{id:"B",texto:"Cirurgia para correção da hérnia de hiato com hiatoplastia e fundoplicatura."},{id:"C",texto:"Cirurgia com correção da hérnia de hiato com hiatoplastia e bypass gástrico."},{id:"D",texto:"Seguimento ambulatorial sem indicação de cirurgia no momento."}],
@@ -652,7 +651,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-048", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:48,
-  imagemUrl:"dados/imagens/q-usp2026-048.png", imagemPendente:"Radiografia do fêmur esquerdo",
+  imagemUrl:"dados/imagens/q-usp2026-048.png", imagemLegenda:"Radiografia do fêmur esquerdo",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
   enunciado:"Homem, 28 anos de idade, foi vítima de queda de motocicleta. Na admissão intra-hospitalar, está consciente e estável hemodinamicamente. Ao exame físico, tem deformidade da coxa esquerda, com ausência de pulso distal, diminuição da temperatura e palidez. Relata intensa dor no membro inferior esquerdo. O exame radiológico pode ser observado na imagem a seguir: Assinale a alternativa que apresenta a melhor sequência de tratamento.",
   alternativas:[{id:"A",texto:"Revascularização do membro seguida de fixação cirúrgica da fratura."},{id:"B",texto:"Redução da fratura com tala seguida de revascularização do membro."},{id:"C",texto:"Embolectomia com cateter de Fogarty seguida de fixação cirúrgica da fratura."},{id:"D",texto:"Fixação cirúrgica da fratura seguida de revascularização do membro."}],
@@ -666,12 +665,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-049", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:49,
-  imagemUrl:"dados/imagens/q-usp2026-049.png", imagemPendente:"As quatro alternativas são imagens de dispositivos de suporte respiratório (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-049.jpg", imagemLegenda:"As quatro alternativas são imagens de dispositivos de suporte respiratório (A, B, C e D)",
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
   enunciado:"Criança, sexo masculino, 1 mês de vida, previamente hígida, é trazida à unidade de emergência após cair do trocador, há cerca de 30 minutos. Segundo a mãe, ela havia tirado a mão dele por alguns segundos para jogar a fralda no lixo e ele teria rolado e caído do trocador. Na admissão, o paciente estava inconsciente, sendo levado à sala de emergência. A seguir, os dados da avaliação sistematizada: A: pérvia B: murmúrio vesicular e expansibilidade diminuídos, FR de 8 irpm, SpO2 de 89% em ar ambiente; C: tempo de enchimento capilar < 1 segundo, pulsos presentes e simétricos, ausculta com 2BRNF sem sopros, PA de 108×70 mmHg; D: escala de coma de Glasgow 7, pupilas isofotorreagentes; E: hematoma subgaleal em região temporal direita. Assinale a alternativa que ilustra, corretamente, o suporte respiratório que deve ser prontamente instituído.",
   alternativas:[{id:"A",texto:"Imagem A (ver figura)."},{id:"B",texto:"Imagem B (ver figura)."},{id:"C",texto:"Imagem C (ver figura)."},{id:"D",texto:"Imagem D (ver figura)."}],
   gabarito:"D",
-  explicacaoGeral:"A alternativa D está correta: o lactente com traumatismo craniano está com Glasgow 7, bradipneia (FR 8 irpm), expansibilidade diminuída e saturação de 89% — hipoventilação por depressão do sistema nervoso central. A via aérea está pérvia, mas o esforço respiratório é insuficiente, e oxigênio sozinho (cateter, máscara) não resolve: é preciso ventilar com pressão positiva, com bolsa-válvula-máscara de tamanho adequado (cobrindo boca e nariz sem pressionar os olhos), com oxigênio, em frequência de cerca de 30 ventilações por minuto para a idade, preparando a intubação orotraqueal (Glasgow ≤8). A imagem D mostra esse suporte; as demais mostram dispositivos de oferta de oxigênio sem ventilação ou técnica inadequada. (Descrição das imagens a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa D está correta: o lactente com traumatismo craniano está com Glasgow 7, bradipneia (FR 8 irpm), expansibilidade diminuída e saturação de 89% — hipoventilação por depressão do sistema nervoso central. A via aérea está pérvia, mas o esforço respiratório é insuficiente, e oferecer oxigênio sem ventilar não resolve: é preciso ventilar com pressão positiva, com bolsa-válvula-máscara de tamanho adequado e oxigênio — o que mostra a imagem D —, a cerca de 20 a 30 ventilações por minuto, preparando a intubação orotraqueal (Glasgow ≤8). A está errada porque o cateter nasal de alto fluxo depende de o paciente respirar por conta própria; não substitui a ventilação num lactente em bradipneia. B está errada porque o cateter nasal de baixo fluxo só aumenta a FiO2, sem corrigir a hipoventilação (e a hipercapnia agrava a hipertensão intracraniana). C está errada porque a máscara com reservatório, apenas apoiada no rosto, também só oferece oxigênio, sem pressão positiva.",
   explicacoesAlternativas:{},
   referencias:"Topjian AA et al. Pediatric Basic and Advanced Life Support: 2020 AHA Guidelines. Circulation, 2020; Kochanek PM et al. Guidelines for the Management of Pediatric Severe Traumatic Brain Injury, 3ª ed. Pediatr Crit Care Med, 2019.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -680,7 +679,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-050", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:50,
-  imagemUrl:"dados/imagens/q-usp2026-050.png", imagemPendente:"Tomografia de crânio",
+  imagemUrl:"dados/imagens/q-usp2026-050.png", imagemLegenda:"Tomografia de crânio",
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-maustratos",
   enunciado:"Criança, sexo masculino, 1 mês de vida, previamente hígida, é trazida à unidade de emergência após cair do trocador, há cerca de 30 minutos. Segundo a mãe, ela havia tirado a mão dele por alguns segundos para jogar a fralda no lixo e ele teria rolado e caído do trocador. Na admissão, o paciente estava inconsciente, sendo levado à sala de emergência. A seguir, os dados da avaliação sistematizada: A: pérvia B: murmúrio vesicular e expansibilidade diminuídos, FR de 8 irpm, SpO2 de 89% em ar ambiente; C: tempo de enchimento capilar < 1 segundo, pulsos presentes e simétricos, ausculta com 2BRNF sem sopros, PA de 108×70 mmHg; D: escala de coma de Glasgow 7, pupilas isofotorreagentes; E: hematoma subgaleal em região temporal direita. Foi realizada tomografia de crânio, conforme imagem demonstrada a seguir: Após medidas de estabilização, o caso foi notificado ao serviço social. Com relação a essa decisão da equipe médica, pode-se afirmar:",
   alternativas:[{id:"A",texto:"Foi indicada porque a tomografia não é compatível com o trauma reportado."},{id:"B",texto:"Foi motivada pela presença de hematoma em localização incomum nos traumas pediátricos."},{id:"C",texto:"É justificada porque o mecanismo de trauma é incompatível com a faixa etária."},{id:"D",texto:"Não havia indicação, pois não há incongruências nas circunstâncias do trauma."}],
@@ -707,7 +706,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-052", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:52,
-  imagemUrl:"dados/imagens/q-usp2026-052.png", imagemPendente:"Gráficos de crescimento da caderneta da criança",
+  imagemUrl:"dados/imagens/q-usp2026-052.jpg", imagemLegenda:"Gráficos de crescimento da caderneta da criança",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Prematura com idade gestacional ao nascer de 32 semanas, sexo feminino, peso ao nascer de 1.300 g, adequado para idade gestacional, Z-score-1 (Intergrowth-21). Passou em consulta de retorno com a idade cronológica de 56 dias de vida, com peso de 2.800 g, em aleitamento materno exclusivo. Os gráficos a seguir são disponibilizados na caderneta da criança pelo Ministério da Saúde. Os pais estão curiosos em saber se o ganho de peso de sua filha está dentro do esperado. Com base nas informações apresentadas, pode-se afirmar que o ganho de peso",
   alternativas:[{id:"A",texto:"é insuficiente, devendo-se iniciar complemento com fórmula láctea e coletar perfil de ferro."},{id:"B",texto:"é insuficiente, devendo-se iniciar complemento com fórmula láctea após o seio e reavaliar em 1 semana."},{id:"C",texto:"está adequado, devendo-se manter o aleitamento exclusivo e realizar seguimento pediátrico mensal."},{id:"D",texto:"está adequado, mas abaixo do esperado para idade, devendo-se complementar para acelerar a recuperação nutricional."}],
@@ -734,7 +733,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-054", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:54,
-  imagemUrl:"dados/imagens/q-usp2026-054.png", imagemPendente:"As quatro alternativas são traçados eletrocardiográficos (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-054.jpg", imagemLegenda:"As quatro alternativas são traçados eletrocardiográficos (A, B, C e D)",
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
   enunciado:"Criança, sexo masculino, 4 anos de idade, foi admitido no pronto-socorro devido a quadro de diarreia e vômitos há 3 dias, em grande quantidade. Na admissão, apresentava sinais de instabilidade hemodinâmica, sendo iniciada expansão volêmica. O resultado da gasometria venosa coletada na admissão foi o seguinte: pH: 7,29 HCO3: 15 mmol/L Na+: 128 mEq/L K+: 3,9 mEq/L Ca2+: 4,92 mg/dL Frente aos dados clínicos e laboratoriais apresentados, qual é o traçado eletrocardiográfico esperado?",
   alternativas:[{id:"A",texto:"Traçado A (ver figura)."},{id:"B",texto:"Traçado B (ver figura)."},{id:"C",texto:"Traçado C (ver figura)."},{id:"D",texto:"Traçado D (ver figura)."}],
@@ -749,7 +748,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-055", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-usp2026-055.png", imagemPendente:"Tabela com o antibiograma do Staphylococcus aureus",
+  imagemUrl:"dados/imagens/q-usp2026-055.png", imagemLegenda:"Tabela com o antibiograma do Staphylococcus aureus",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-iras",
   enunciado:"Criança, sexo masculino, 4 anos de idade, com antecedente de insuficiência renal crônica dialítica, portador de cateter de longa permanência, apresentou quadro de febre e tremores durante sessão de hemodiálise há 48 horas. Após estabilização inicial, foi internado em enfermaria de pediatria com prescrição de antibiótico parenteral. Ele está afebril há 24 horas, sem queixas, com sinais vitais dentro da normalidade. Ao exame físico, encontra-se em bom estado geral, descorado +/4+, hidratado, anictérico, afebril e eupneico. Ausculta pulmonar e cardíaca sem alterações, exame físico abdominal indolor, sem visceromegalias. A hemocultura central resultou positiva para Staphylococcus aureus, conforme tabela a seguir: Não foi coletada hemocultura periférica na admissão por dificuldade de acesso. Foi realizado ecocardiograma, sem achados de vegetação, e retirado cateter de longa permanência. Qual a melhor conduta para esse paciente?",
   alternativas:[{id:"A",texto:"Manter vancomicina parenteral."},{id:"B",texto:"Alta hospitalar com sulfametoxazol trimetropina."},{id:"C",texto:"Suspender antibioticoterapia e considerar contaminação."},{id:"D",texto:"Descalonar para clindamicina oral, mantendo internação."}],
@@ -763,7 +762,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-056", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:56,
-  imagemUrl:"dados/imagens/q-usp2026-056.png", imagemPendente:"Fotografias da carteira de vacinação da criança e da caderneta da gestante/parto",
+  imagemUrl:"dados/imagens/q-usp2026-056.jpg", imagemLegenda:"Fotografias da carteira de vacinação da criança e da caderneta da gestante/parto",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
   enunciado:"Criança, sexo feminino, 5 meses e duas semanas de vida, compareceu no pronto-socorro, com relato de tosse há cerca de 1 semana. A mãe nega contactantes sintomáticos e não observou coriza ou obstrução nasal. Refere que a criança tem crises de tosse e chegou a ficar com coloração arroxeada, cerca de duas vezes no dia, nos últimos quatro dias. Ao exame físico, está em BEG, corada, hidratada, anictérica, acianótica. Ausculta cardíaca e pulmonar sem alterações. Apresenta FR de 36 irpm, FC de 120 bpm. Oroscopia com leve hiperemia de orofaringe. Restante do exame clínico sem alterações. Carteira de vacinação e de parto conforme imagens a seguir: Considerando o principal agente etiológico envolvido, o quadro atual poderia ter sido prevenido com a vacina",
   alternativas:[{id:"A",texto:"DTPa para a mãe, às 20 semanas de gestação."},{id:"B",texto:"VSR para a mãe, às 20 semanas de gestação."},{id:"C",texto:"VPC10 aos 4 meses para a paciente (2ª dose)."},{id:"D",texto:"INF3 aos 5 meses para a paciente (1ª dose)."}],
@@ -803,7 +802,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-059", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:59,
-  imagemUrl:"dados/imagens/q-usp2026-059.png", imagemPendente:"Tabelas de IMC por idade da OMS (meninos)",
+  imagemUrl:"dados/imagens/q-usp2026-059.jpg", imagemLegenda:"Tabelas de IMC por idade da OMS (meninos)",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Você é responsável pela organização de uma pesquisa sobre obesidade infantil. O objetivo é buscar pacientes do sexo masculino, de 0 a 15 anos de idade, com diagnóstico de obesidade, conforme padronização da Organização Mundial de Saúde (OMS) apresentadas nas tabelas a seguir, a fim de conhecer os hábitos alimentares destas crianças. Considerando as referências da OMS e o objetivo da pesquisa, assinale a alternativa que apresenta o paciente mais adequado para o estudo.",
   alternativas:[{id:"A",texto:"1 ano e 10 meses, IMC de 20 kg/m²"},{id:"B",texto:"3 anos e 2 meses, IMC de 17,5 kg/m²"},{id:"C",texto:"8 anos e 3 meses, IMC de 21 kg/m²"},{id:"D",texto:"12 anos e 6 meses, IMC de 22,5 kg/m²"}],
@@ -817,7 +816,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-060", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-usp2026-060.png", imagemPendente:"Resultado do teste de Snellen (acuidade visual de cada olho)",
+  imagemUrl:"dados/imagens/q-usp2026-060.png", imagemLegenda:"Resultado do teste de Snellen (acuidade visual de cada olho)",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-refracao",
   enunciado:"Criança, sexo masculino, 7 anos de idade é portadora de miopia e usa lentes corretivas. Em mutirão executado por agentes comunitários de saúde treinados previamente, foi submetida ao teste de Snellen em sua escola, usando seus óculos. A mãe da criança procura a unidade básica de saúde solicitando encaminhamento ao oftalmologista após a aplicação do teste, com resultado mostrado na imagem a seguir: Assinale a alternativa que justifica, corretamente, o encaminhamento ao especialista.",
   alternativas:[{id:"A",texto:"O resultado obtido no olho direito está alterado."},{id:"B",texto:"O resultado obtido foi diferente nos dois olhos."},{id:"C",texto:"O teste foi realizado com uso das lentes corretivas."},{id:"D",texto:"O teste foi realizado por profissional não habilitado."}],
@@ -844,7 +843,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-062", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:62,
-  imagemUrl:"dados/imagens/q-usp2026-062.png", imagemPendente:"Fotografias da região perineal do bebê e da mama da mãe",
+  imagemUrl:"dados/imagens/q-usp2026-062.jpg", imagemLegenda:"Fotografias da região perineal do bebê e da mama da mãe",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Criança, 4 meses de vida, comparece à consulta em unidade básica de saúde acompanhada da mãe com queixa de assadura há 5 dias, após mudar a marca da fralda. Refere também dor durante a amamentação há uma semana. Mãe nega febre, diarreia, vômitos ou prostração. Ao exame físico, a criança apresenta bom estado geral, ganho pondero-estatural adequado, exame abdominal e ausculta cardiopulmonar sem alterações. A região perineal é apresentada na imagem a seguir: Ao avaliar a mamada, a mãe refere dor no momento da pega e durante a sucção. O aspecto da mama pode ser visualizado na imagem a seguir: Assinale a alternativa que apresenta a conduta mais adequada nesse momento.",
   alternativas:[{id:"A",texto:"Retirar leite e derivados da dieta materna."},{id:"B",texto:"Antifúngico tópico no períneo e na mama da mãe."},{id:"C",texto:"Retornar à marca da fralda anterior e orientar pega adequada."},{id:"D",texto:"Pomada de barreira em períneo e lanolina na mama da mãe."}],
@@ -858,7 +857,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-063", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:63,
-  imagemUrl:"dados/imagens/q-usp2026-063.png", imagemPendente:"Imagem da técnica de uso do inalador",
+  imagemUrl:"dados/imagens/q-usp2026-063.png", imagemPendente:"Fotografia do exame físico (a imagem foi removida da edição consultada do caderno, em respeito ao Estatuto da Criança e do Adolescente)",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Criança, sexo feminino, 8 anos de idade, portadora de asma, comparece à consulta na unidade básica de saúde referindo que, nas últimas 4 semanas, apresenta tosse e cansaço pelo menos uma vez por semana. Despertou à noite por cansaço apenas uma vez. Tem utilizado medicação de resgate para realizar aula de educação física (3 vezes por semana), conseguindo fazer a aula junto aos seus colegas, sem problemas. Faz uso diário de beclometasona HFA partícula padrão 50 µg, 2 jatos por via inalatória de 12/12horas, com técnica de aplicação repetida por duas vezes, conforme imagem a seguir: Qual a conduta na consulta de hoje, conforme recomendações do GINA 2025?",
   alternativas:[{id:"A",texto:"Associar salbutamol 100 µg 4 jatos de 12/12 horas."},{id:"B",texto:"Ajustar beclometasona para 200 µg 1 jato de 12/12horas."},{id:"C",texto:"Corrigir técnica de administração, sem alterar medicações."},{id:"D",texto:"Referenciar paciente ao serviço de pneumologia pediátrica."}],
@@ -872,7 +871,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-064", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:64,
-  imagemUrl:"dados/imagens/q-usp2026-064.png", imagemPendente:"Fotografia da região umbilical da recém-nascida",
+  imagemUrl:"dados/imagens/q-usp2026-064.jpg", imagemLegenda:"Fotografia da região umbilical da recém-nascida",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
   enunciado:"Mãe demonstra preocupação na maternidade com relação à aparência umbilical observada em sua primeira filha, com 3 dias de vida, conforme a imagem a seguir: Assinale a alternativa que indica a melhor conduta.",
   alternativas:[{id:"A",texto:"Encaminhar para o cirurgião pediátrico para avaliação ambulatorial."},{id:"B",texto:"Correção cirúrgica antes da alta, devido ao risco de encarceramento."},{id:"C",texto:"Manter internação hospitalar e iniciar antibioticoterapia."},{id:"D",texto:"Conduta expectante, orientar limpeza e não aplicar técnicas compressivas."}],
@@ -899,12 +898,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-066", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:66,
-  imagemUrl:"dados/imagens/q-usp2026-066.png", imagemPendente:"Imagem da ultrassonografia renal/vias urinárias; as quatro alternativas são imagens de exames (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-066.jpg", imagemLegenda:"Imagem da ultrassonografia renal/vias urinárias; as quatro alternativas são imagens de exames (A, B, C e D)",
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-malformacoes",
   enunciado:"Criança, sexo masculino, 3 anos e 7 meses de vida, comparece à consulta com a pediatra após infecção urinária, adequadamente diagnosticada no pronto-socorro com exame de urina. Na ocasião, referia febre, dor abdominal e náusea; foi prescrita antibioticoterapia, com melhora dos sintomas em menos de 48 horas. Nega infecções urinárias prévias. A paciente realizou ultrassonografia e compareceu à consulta devido à infecção e à ultrassonografia apresentada a seguir: Assinale a alternativa com a imagem que representa o exame ou monitorização a ser solicitado na consulta, neste momento.",
   alternativas:[{id:"A",texto:"Exame A (ver figura)."},{id:"B",texto:"Exame B (ver figura)."},{id:"C",texto:"Exame C (ver figura)."},{id:"D",texto:"Exame D (ver figura)."}],
   gabarito:"C",
-  explicacaoGeral:"A alternativa C está correta de acordo com o gabarito oficial: a criança teve o primeiro episódio de infecção urinária febril (pielonefrite) e a ultrassonografia de rins e vias urinárias mostrou alteração (como hidronefrose/dilatação do sistema coletor ou do ureter). Pelas diretrizes, a uretrocistografia miccional — exame contrastado que demonstra o refluxo vesicoureteral e o grau dele — é indicada após a primeira ITU febril quando a ultrassonografia está alterada (ou após ITU febril recorrente). A imagem C mostra esse exame. As demais alternativas mostram exames ou monitorizações que não respondem à dúvida (como cintilografia com DMSA, que avalia cicatriz renal, ou exames sem indicação nesse momento). (Descrição das imagens a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa C está correta de acordo com o gabarito oficial: a criança teve infecção urinária febril (pielonefrite), e a ultrassonografia mostra rim com dilatação importante da pelve e dos cálices (hidronefrose). Pelas diretrizes, a uretrocistografia miccional — exame contrastado que demonstra o refluxo vesicoureteral e seu grau — é indicada após a primeira ITU febril quando a ultrassonografia está alterada (ou após ITU febril recorrente). A imagem C mostra esse exame: contraste na bexiga refluindo pelo ureter até o sistema coletor renal. A está errada porque o diário miccional é ferramenta para disfunção do trato urinário inferior (urgência, perdas, manobras de contenção), que pode vir depois, mas não esclarece a hidronefrose. B está errada porque o estudo urodinâmico avalia a função vesical e não é exame inicial após ITU febril com hidronefrose. D está errada porque a tomografia expõe a criança a radiação e contraste sem responder à pergunta principal (há refluxo?).",
   explicacoesAlternativas:{},
   referencias:"Roberts KB et al. Urinary Tract Infection: Clinical Practice Guideline for the Diagnosis and Management of the Initial UTI in Febrile Infants and Children 2 to 24 Months (AAP), 2011 (reafirmado 2016); Sociedade Brasileira de Pediatria. Infecção do trato urinário na infância, 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -939,12 +938,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-069", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:69,
-  imagemUrl:"dados/imagens/q-usp2026-069.png", imagemPendente:"As quatro alternativas são ilustrações da via aérea e de curvas fluxo-volume (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-069.jpg", imagemLegenda:"As quatro alternativas são ilustrações da via aérea e de curvas fluxo-volume (A, B, C e D)",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
   enunciado:"Criança, sexo masculino, 2 anos de idade, previamente hígida, iniciou quadro de coriza e febre de até 38 °C há três dias, com evolução para tosse seca, intensa e estridente há um dia. Paciente foi levado de madrugada à unidade de emergência devido à dificuldade para respirar há cerca de 30 minutos. Ao exame, foi notada tiragem subdiafragmática e de fúrcula, com dificuldade e ruído inspiratório, audível em repouso. Considerando a principal hipótese diagnóstica, assinale a alternativa cuja a imagem ilustra, corretamente, a posição anatômica da complicação apresentada pelo paciente e a representação fisiológica do acometimento respiratório.",
   alternativas:[{id:"A",texto:"Ilustração A (ver figura)."},{id:"B",texto:"Ilustração B (ver figura)."},{id:"C",texto:"Ilustração C (ver figura)."},{id:"D",texto:"Ilustração D (ver figura)."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta: criança de 2 anos com pródromo viral (coriza e febre), tosse ladrante e estridor inspiratório em repouso com tiragens, piorando de madrugada — laringotraqueobronquite viral (crupe), geralmente por parainfluenza. O edema localiza-se na região subglótica (laringe abaixo das cordas vocais, a parte mais estreita da via aérea da criança), ou seja, é uma obstrução extratorácica e variável: na inspiração, a pressão negativa intraluminal colapsa ainda mais a via aérea, e a curva fluxo-volume mostra achatamento da alça inspiratória. A ilustração B mostra essa localização e esse padrão fisiológico. As demais mostram obstrução intratorácica (achatamento da alça expiratória, como na asma/traqueomalácia), obstrução fixa ou localização supraglótica (epiglotite). (Descrição das ilustrações a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa B está correta: criança de 2 anos com pródromo viral (coriza e febre), tosse ladrante e estridor inspiratório em repouso com tiragens, piorando de madrugada — laringotraqueobronquite viral (crupe), geralmente por parainfluenza. O edema se localiza na região subglótica (logo abaixo das cordas vocais, a parte mais estreita da via aérea da criança), como destaca a ilustração B — obstrução extratorácica, que piora na inspiração (daí o estridor inspiratório). A está errada porque destaca bronquíolos e alvéolos, sede da bronquiolite viral e da pneumonia, que dão sibilos e crepitações, não estridor. C está errada porque mostra brônquio com parede espessada e luz estreitada, a inflamação da asma, que dá sibilância expiratória. D está errada porque mostra corpo estranho na traqueia/carina, de início súbito com engasgo, sem pródromo viral nem tosse ladrante.",
   explicacoesAlternativas:{},
   referencias:"Bjornson CL, Johnson DW. Croup in children. CMAJ, 2013; Sociedade Brasileira de Pediatria. Laringites agudas na infância.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -953,12 +952,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-070", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:70,
-  imagemUrl:"dados/imagens/q-usp2026-070.png", imagemPendente:"Dados de monitorização (prévio e atual); as quatro alternativas são ilustrações de procedimentos (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-070.jpg", imagemLegenda:"Dados de monitorização (prévio e atual); as quatro alternativas são ilustrações de procedimentos (A, B, C e D)",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Criança, sexo masculino, 6 anos de idade, portadora de asma não controlada, foi admitida na unidade de emergência em insuficiência respiratória devido à exacerbação asmática. O paciente recebeu corticosteroide sistêmico, salbutamol inalatório a cada 20 minutos por três vezes e sulfato de magnésio. Teve melhora, apenas discreta, e agora está recebendo ẞ2- agonista endovenoso contínuo. Na evolução, o monitor do paciente começou a sinalizar alteração dos sinais vitais. As imagens a seguir apresentam os dados de monitorização dos últimos cinco minutos (prévio) e o do momento atual. Assinale a alternativa que ilustra, corretamente, o procedimento de urgência a ser realizado no paciente descrito.",
   alternativas:[{id:"A",texto:"Procedimento A (ver figura)."},{id:"B",texto:"Procedimento B (ver figura)."},{id:"C",texto:"Procedimento C (ver figura)."},{id:"D",texto:"Procedimento D (ver figura)."}],
   gabarito:"D",
-  explicacaoGeral:"A alternativa D está correta de acordo com o gabarito oficial: a criança em crise de asma grave, refratária (já recebeu corticoide, salbutamol, sulfato de magnésio e está em beta-2 agonista endovenoso), apresenta mudança súbita dos sinais vitais na monitorização. Nessa fase, as complicações que exigem procedimento imediato são as ligadas à hiperinsuflação e ao barotrauma (pneumotórax, que se trata com punção descompressiva e drenagem) e as arritmias pelos beta-agonistas; a deterioração para insuficiência respiratória com fadiga exige intubação com técnica adequada à asma. O procedimento correto para a alteração mostrada no monitor é o representado na ilustração D. (Descrição da monitorização e das ilustrações a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa D está correta de acordo com o gabarito oficial: a criança em crise grave de asma, sob beta-2 agonista endovenoso contínuo, passou de frequência cardíaca de 144 bpm com PA 88/49 mmHg para taquicardia regular de QRS estreito a 198 bpm, sem onda P visível, com hipotensão (77/38 mmHg) e curva de oximetria achatada, sem leitura — sinal de má perfusão. Taquicardia com instabilidade hemodinâmica exige cardioversão elétrica sincronizada (0,5 a 1 J/kg, podendo subir para 2 J/kg), o procedimento com as pás sobre o tórax mostrado em D; os beta-agonistas em dose alta favorecem as taquiarritmias. A está errada porque a manobra vagal (soprar a seringa) é a primeira medida na taquicardia supraventricular estável, e não deve atrasar a cardioversão no paciente instável. B está errada porque a intubação não trata a arritmia — e, na asma, é procedimento de alto risco, reservado à falência respiratória. C está errada porque a punção torácica descompressiva trata o pneumotórax hipertensivo, que daria hipoxemia, murmúrio abolido e desvio de traqueia, não uma taquicardia regular a 198 bpm.",
   explicacoesAlternativas:{},
   referencias:"Global Initiative for Asthma (GINA), 2025; Topjian AA et al. Pediatric Basic and Advanced Life Support: 2020 AHA Guidelines. Circulation, 2020.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -967,7 +966,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-071", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:71,
-  imagemUrl:"dados/imagens/q-usp2026-071.png", imagemPendente:"Gráfico da icterícia (zona de Kramer) e da evolução do peso",
+  imagemUrl:"dados/imagens/q-usp2026-071.png", imagemLegenda:"Gráfico da icterícia (zona de Kramer) e da evolução do peso",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
   enunciado:"Recém-nascido (RN) a termo, parto cesáreo eletivo, com 40 semanas de idade gestacional, com peso de 3.300 g, é encaminhado ao alojamento conjunto. O pré-natal transcorreu sem intercorrências. Com 48 horas de vida, recebe aleitamento materno por livre demanda e apresenta icterícia e evolução de peso, conforme demonstrado no gráfico a seguir: Além de estimular, orientar e corrigir o aleitamento materno, qual conduta deverá ser realizada após RN completar 48 horas de vida?",
   alternativas:[{id:"A",texto:"Manter RN internado em alojamento conjunto, iniciar a fototerapia e coletar bilirrubinas totais e frações."},{id:"B",texto:"Manter RN internado em alojamento conjunto, reavaliar icterícia, peso e diurese em 6 horas."},{id:"C",texto:"Dar a alta hospitalar, uma vez que a icterícia é fisiológica e a perda de peso está dentro do esperado, com orientações sobre icterícia."},{id:"D",texto:"Dar a alta hospitalar, uma vez que a icterícia é fisiológica, orientar banho de sol, iniciar complemento após o seio e agendar reavaliação em 48 horas."}],
@@ -981,12 +980,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-072", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:72,
-  imagemUrl:"dados/imagens/q-usp2026-072.png", imagemPendente:"As quatro alternativas são imagens de dispositivos de via aérea (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2026-072.jpg", imagemLegenda:"As quatro alternativas são imagens de dispositivos de via aérea (A, B, C e D)",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-reanimacao",
   enunciado:"Durante o atendimento em sala de parto, um recém-nascido apresentou-se hipotônico e sem choro ao nascer. Foi realizado o clampeamento imediato do cordão umbilical, seguido da aplicação dos passos iniciais de reanimação neonatal. A seguir, a avaliação da FC revelou 30 bpm, associada à ausência de movimentos respiratórios. Iniciada ventilação com pressão positiva com máscara, o paciente foi monitorizado e não apresentou melhora após correção da técnica. Assinale a alternativa que apresenta os dispositivos que podem ser usados para a realização da ventilação, como próximo passo da reanimação neonatal.",
-  alternativas:[{id:"A",texto:"Dispositivos A (ver figura)."},{id:"B",texto:"Dispositivos B (ver figura)."},{id:"C",texto:"Dispositivos C (ver figura)."},{id:"D",texto:"Dispositivos D (ver figura)."}],
+  alternativas:[{id:"A",texto:"Máscara laríngea; laringoscópio com lâmina reta; cânula traqueal sem balonete (ver figura)."},{id:"B",texto:"Máscara laríngea; laringoscópio com lâmina curva; cânula traqueal com balonete (ver figura)."},{id:"C",texto:"Cânula orofaríngea (Guedel); laringoscópio com lâmina reta; cânula traqueal sem balonete (ver figura)."},{id:"D",texto:"Cânula orofaríngea (Guedel); laringoscópio com lâmina curva; cânula traqueal com balonete (ver figura)."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: o recém-nascido continua com frequência cardíaca de 30 bpm e sem respiração apesar da ventilação com máscara com técnica corrigida. Pelo Programa de Reanimação Neonatal, quando a ventilação com máscara não é efetiva, indica-se uma via aérea avançada — cânula traqueal (intubação) ou, em recém-nascidos com peso ≥2.000 g/≥34 semanas, a máscara laríngea como alternativa —, por meio da qual a ventilação continua, antes de iniciar as compressões torácicas (FC abaixo de 60 bpm após 30 segundos de ventilação efetiva). A imagem A mostra esses dispositivos. As demais mostram dispositivos que não garantem ventilação efetiva (cânula nasal, máscara facial simples, cânula de Guedel isolada). (Descrição das imagens a completar pela equipe quando as figuras originais forem acrescentadas.)",
+  explicacaoGeral:"A alternativa A está correta: o recém-nascido continua com frequência cardíaca de 30 bpm e sem respiração apesar da ventilação com máscara com técnica corrigida. Pelo Programa de Reanimação Neonatal, quando a ventilação com máscara não é efetiva, indica-se via aérea avançada — cânula traqueal ou, como alternativa em recém-nascidos com 34 semanas ou mais/peso ≥2.000 g, a máscara laríngea — antes e durante as compressões torácicas. O material neonatal é o do conjunto A: máscara laríngea, laringoscópio com lâmina reta (a epiglote do recém-nascido é longa e mole e precisa ser levantada diretamente) e cânula traqueal sem balonete. B e D estão erradas porque a lâmina curva é a do adulto e da criança maior, e a cânula com balonete não é o padrão da reanimação neonatal. C e D estão erradas porque a cânula orofaríngea (Guedel) não é via aérea avançada nem garante ventilação — tem indicação restrita (por exemplo, obstrução por malformação), não serve para ventilar o recém-nascido.",
   explicacoesAlternativas:{},
   referencias:"Sociedade Brasileira de Pediatria. Reanimação do recém-nascido ≥34 semanas em sala de parto: diretrizes 2022.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -995,7 +994,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-073", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:73,
-  imagemUrl:"dados/imagens/q-usp2026-073.png", imagemPendente:"Tabela com os óbitos, a população e as taxas das populações 1 e 2",
+  imagemUrl:"dados/imagens/q-usp2026-073.png", imagemLegenda:"Tabela com os óbitos, a população e as taxas das populações 1 e 2",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Com base nos dados fornecidos na tabela apresentada, qual população tem maior risco de morte?",
   alternativas:[{id:"A",texto:"População 1, pois apresenta a maior mortalidade proporcional."},{id:"B",texto:"População 1, pois apresenta maior número de óbitos."},{id:"C",texto:"População 2, pois apresenta a maior taxa de mortalidade."},{id:"D",texto:"Não é possível comparar, pois as populações são diferentes."}],
@@ -1035,7 +1034,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-076", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:76,
-  imagemUrl:"dados/imagens/q-usp2026-076.png", imagemPendente:"Gráfico da mortalidade por COVID-19 ajustada por idade, segundo raça e sexo (São Paulo, 2020)",
+  imagemUrl:"dados/imagens/q-usp2026-076.png", imagemLegenda:"Gráfico da mortalidade por COVID-19 ajustada por idade, segundo raça e sexo (São Paulo, 2020)",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"O gráfico a seguir mostra a mortalidade ajustada por idade por COVID-19 no município de São Paulo, tomando como população padrão o total de habitantes na cidade no período de março a dezembro de 2020, identificando as diferenças segundo raça e sexo. Neste estudo, qual o principal motivo para padronizar as taxas de mortalidade por idade?",
   alternativas:[{id:"A",texto:"Homens têm menor expectativa de vida, e a padronização considera a expectativa de vida das populações em seu cálculo."},{id:"B",texto:"Mulheres têm menor taxa de mortalidade, e a padronização permite um cálculo mais acurado do risco de morte em cada faixa etária."},{id:"C",texto:"População branca tem maior proporção de idosos, e a padronização permite a comparação de populações com diferentes distribuições etárias."},{id:"D",texto:"População negra tem piores condições de vida e saúde, e a padronização pondera a influência das desigualdades socioeconômicas em seu cálculo."}],
@@ -1101,12 +1100,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-081", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:81,
-  imagemUrl:"dados/imagens/q-usp2026-081.png", imagemPendente:"Tabela de casos e controles por nível de exposição solar (participantes de pele mais escura)",
+  imagemUrl:"dados/imagens/q-usp2026-081.png", imagemLegenda:"Tabela de casos e controles por nível de exposição solar (participantes de pele mais escura)",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Há evidências crescentes, embora controversas, de que a exposição solar crônica está associada ao risco de câncer de mama. Estudos anteriores foram realizados em regiões com variação sazonal na Radiação Ultravioleta (UV) e entre participantes predominantemente de ascendência europeia. Um estudo de caso-controle foi conduzido em Porto Rico, onde não há flutuação sazonal significativa e há exposição contínua à radiação UV muito alta. O estudo incluiu 307 casos de câncer de mama e 328 controles. A análise foi estratificada por cor da pele. A tabela a seguir mostra a distribuição dos participantes com tom de pele mais escuro. Com base na tabela e considerando a categoria exposição solar “baixa” como referência, qual a provável conclusão em relação à exposição solar e ao câncer de mama neste estudo?",
   alternativas:[{id:"A",texto:"A exposição solar moderada não tem efeito sobre o câncer de mama."},{id:"B",texto:"A alta exposição solar é um fator protetor contra o câncer de mama."},{id:"C",texto:"A alta exposição solar é um fator de risco para o câncer de mama."},{id:"D",texto:"A alta exposição solar não tem efeito sobre o câncer de mama."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta de acordo com a tabela: num estudo caso-controle, a medida de associação é a razão de chances (odds ratio), calculada em cada categoria de exposição em relação à categoria de referência (exposição 'baixa'). Entre as mulheres de pele mais escura, a razão de chances para a exposição solar alta é menor que 1 — há proporcionalmente menos casos de câncer de mama entre as mais expostas —, o que indica associação protetora (hipótese compatível com o papel da vitamina D). A e D estão erradas porque atribuem ausência de efeito a categorias em que a tabela mostra associação (ou que não sustentam essa conclusão). C está errada porque a alta exposição se associou a menor, e não a maior, chance de câncer. Lembre-se: em estudo observacional, fala-se em associação, sujeita a confundimento. (Valores da tabela a completar pela equipe quando a imagem original for acrescentada.)",
+  explicacaoGeral:"A alternativa B está correta: num estudo caso-controle, a medida de associação é a razão de chances (odds ratio), calculada em cada categoria de exposição em relação à de referência (exposição baixa: 53 casos e 54 controles). Exposição alta: 24 casos e 54 controles → OR = (24/54)/(53/54) ≈ 0,45; exposição moderada: 26 casos e 56 controles → OR ≈ 0,47. As duas ficam bem abaixo de 1: há proporcionalmente menos casos de câncer de mama entre as mais expostas ao sol, associação protetora (hipótese compatível com o papel da vitamina D em peles mais escuras). A está errada porque a exposição moderada também se associou a menor chance (OR ≈ 0,47). C está errada porque a alta exposição se associou a menor, e não a maior, chance de câncer. D está errada porque a OR de 0,45 indica associação, e não ausência de efeito. Lembre-se: em estudo observacional, fala-se em associação, sujeita a confundimento e a viés de memória (típico do caso-controle).",
   explicacoesAlternativas:{},
   referencias:"Fletcher GS. Epidemiologia Clínica: elementos essenciais, 6ª ed., 2021; Rothman KJ, Greenland S, Lash TL. Modern Epidemiology, 4ª ed., 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -1115,12 +1114,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-082", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:82,
-  imagemUrl:"dados/imagens/q-usp2026-082.png", imagemPendente:"Tabela com os óbitos nos grupos sotatercept e placebo",
+  imagemUrl:"dados/imagens/q-usp2026-082.png", imagemLegenda:"Tabela com os óbitos nos grupos sotatercept e placebo",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Um ensaio clínico randomizado estudou a associação entre o uso de sotatercept e morte em pacientes com hipertensão arterial pulmonar classes II e III. Os pacientes foram randomizados em dois grupos: 84 pacientes receberam sotatercept e 86 placebo, a cada três semanas, durante 11 meses. Os resultados do estudo encontram-se a seguir: Considerando os dados da tabela, é necessário tratar:",
   alternativas:[{id:"A",texto:"15 pacientes com sotatercept para evitar a morte em um paciente."},{id:"B",texto:"53 pacientes com sotatercept para evitar a morte em um paciente."},{id:"C",texto:"84 pacientes com sotatercept para evitar mortes em 15% dos pacientes."},{id:"D",texto:"84 pacientes com sotatercept para evitar a morte em 53% dos pacientes."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: o número necessário para tratar (NNT) é o inverso da redução absoluta do risco (diferença entre o risco de morte no grupo placebo e no grupo sotatercept). Com os dados da tabela, a redução absoluta do risco de morte é de cerca de 6,6 pontos percentuais (0,066), e o NNT = 1/0,066 ≈ 15: é preciso tratar 15 pacientes com sotatercept, durante o período do estudo, para evitar uma morte. B está errada porque 53 não corresponde ao inverso da redução absoluta (corresponderia a confundir com a redução relativa ou outra medida). C e D estão erradas porque o NNT não se expressa como 'tratar 84 pacientes (o tamanho do grupo) para evitar mortes em uma porcentagem', o que mistura o tamanho da amostra com a redução do risco. (Valores exatos da tabela a completar pela equipe quando a imagem original for acrescentada.)",
+  explicacaoGeral:"A alternativa A está correta: o número necessário para tratar (NNT) é o inverso da redução absoluta do risco. Pela tabela, morreram 7 de 84 pacientes com sotatercept (8,3%) e 13 de 86 com placebo (15,1%): redução absoluta de cerca de 6,8 pontos percentuais (0,068), e NNT = 1/0,068 ≈ 15 — é preciso tratar 15 pacientes com sotatercept, durante o período do estudo, para evitar uma morte. B está errada porque 53 não corresponde ao inverso da redução absoluta (confunde com outra medida, como a redução relativa do risco, de cerca de 45%). C e D estão erradas porque o NNT não se expressa como 'tratar 84 pacientes (o tamanho do grupo) para evitar mortes em uma porcentagem', o que mistura o tamanho da amostra com a medida de efeito.",
   explicacoesAlternativas:{},
   referencias:"Hoeper MM et al. Phase 3 Trial of Sotatercept for Treatment of Pulmonary Arterial Hypertension (STELLAR). N Engl J Med, 2023; Fletcher GS. Epidemiologia Clínica, 6ª ed., 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -1181,12 +1180,12 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-087", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:87,
-  imagemUrl:"dados/imagens/q-usp2026-087.png", imagemPendente:"Tabela/gráfico com o risco relativo de leptospirose por faixa de residências atingidas pelas inundações",
+  imagemUrl:"dados/imagens/q-usp2026-087.png", imagemLegenda:"Tabela/gráfico com o risco relativo de leptospirose por faixa de residências atingidas pelas inundações",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Em abril de 2024, o Rio Grande do Sul experimentou alta precipitação, que resultou em inundações generalizadas. Um estudo avaliou a incidência de leptospirose entre maio e julho de 2024 no estado do Rio Grande do Sul. Considerando como referência os locais com porcentagem de residências atingidas pelas inundações entre 0 e 0,1%, o risco de leptospirose na população é:",
   alternativas:[{id:"A",texto:"Nos locais em que a porcentagem de residências afetadas pelas inundações foi de 0,2 a 0,6 é 3,2 vezes menor."},{id:"B",texto:"Nos locais em que a porcentagem de residências afetadas pelas inundações foi de 0,7 a 1,2 é 6,6 vezes maior."},{id:"C",texto:"Nos locais em que a porcentagem de residências afetadas pelas inundações foi de 1,3 a 11,0 é 14,6% menor."},{id:"D",texto:"Nos locais em que a porcentagem de residências afetadas pelas inundações foi de 11,1 a 27,9 é 24% maior."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta de acordo com os resultados apresentados: tomando como referência os locais com 0 a 0,1% de residências atingidas, o risco relativo de leptospirose nos locais com 0,7 a 1,2% de residências afetadas foi de cerca de 6,6 — ou seja, o risco foi 6,6 vezes maior. As demais alternativas leem as medidas de forma errada: um risco relativo acima de 1 indica aumento (não redução) do risco, e um RR de 1,24 corresponde a um risco 24% maior, enquanto um RR de 6,6 corresponde a '6,6 vezes'. Lembre-se da leitura: RR = 1 → sem diferença; RR = 3,2 → 3,2 vezes maior; RR = 0,85 → 15% menor. A leptospirose é doença de notificação compulsória, e enchentes são o principal fator de risco para surtos. (Valores a completar pela equipe quando a figura original for acrescentada.)",
+  explicacaoGeral:"A alternativa B está correta: a tabela traz a incidência de leptospirose por 100.000 habitantes segundo a porcentagem de residências atingidas pelas inundações: 0,5 (0–0,1%), 1,6 (0,2–0,6%), 3,3 (0,7–1,2%), 7,3 (1,3–11,0%) e 21,7 (11,1–27,9%). Tomando a menor faixa como referência, o risco relativo é a razão entre as incidências: 1,6/0,5 = 3,2; 3,3/0,5 = 6,6; 7,3/0,5 = 14,6; 21,7/0,5 = 43,4. Nos locais com 0,7 a 1,2% de residências afetadas, o risco foi 6,6 vezes maior — alternativa B. A está errada porque RR de 3,2 significa risco 3,2 vezes maior, não menor. C está errada porque RR de 14,6 é risco 14,6 vezes maior, não 14,6% menor. D está errada porque o risco na faixa mais atingida é 43,4 vezes maior, não 24% maior. O gradiente dose-resposta reforça o papel das enchentes nos surtos de leptospirose.",
   explicacoesAlternativas:{},
   referencias:"Brasil. Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2023 — Leptospirose; Fletcher GS. Epidemiologia Clínica, 6ª ed., 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -1351,7 +1350,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-100", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:100,
-  imagemUrl:"dados/imagens/q-usp2026-100.png", imagemPendente:"Fotografia/ilustração da avaliação abdominal da parturiente",
+  imagemUrl:"dados/imagens/q-usp2026-100.jpg", imagemLegenda:"Fotografia/ilustração da avaliação abdominal da parturiente",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Primigesta, 39 anos de idade, é admitida com 40 semanas de gravidez para indução de parto. Apresenta antecedente de hipertensão arterial crônica, controlada atualmente com metildopa 1,5 g por dia e diabetes gestacional em uso de insulina NPH 12 unidades antes do café da manhã, 6 unidades na hora do almoço e 6 unidades às 22 horas (12-6-0-6) e insulina regular 4 unidades no café da manhã, 4 unidades no almoço e 2 no jantar (4-4-2-0). Ao exame inicial, apresenta bom estado geral, corada, normotensa e normocárdica, altura uterina de 38 cm, cefálico, BCF presente de 148 bpm, colo médio, medianizado, com 4 cm. Após 6 horas de trabalho de parto, a paciente apresentava dilatação total e apresentação cefálica no plano 0 de De Lee, occipito transversa direita e avaliação abdominal conforme a imagem a seguir: Qual é o diagnóstico e a conduta?",
   alternativas:[{id:"A",texto:"Distocia funcional - ocitocina."},{id:"B",texto:"Retenção urinária - sondagem de alívio."},{id:"C",texto:"Iminência de rotura - parto cesárea."},{id:"D",texto:"Hipertonia uterina - terbutalina."}],
@@ -1404,7 +1403,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-104", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:104,
-  imagemUrl:"dados/imagens/q-usp2026-104.png", imagemPendente:"Achados da avaliação fetal (Doppler/perfil biofísico/cardiotocografia)",
+  imagemUrl:"dados/imagens/q-usp2026-104.jpg", imagemLegenda:"Achados da avaliação fetal (Doppler/perfil biofísico/cardiotocografia)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dheg",
   enunciado:"Secundigesta com uma cesárea prévia, sem doenças, comparece ao pré-natal com 34 semanas e 3 dias de gravidez, queixa-se de edema importante na última semana. Boa movimentação, sem perdas vaginais. Ao exame físico, apresenta bom estado geral, corada, PA de 148×90 mmHg, abdome gravídico, altura uterina de 29 cm, útero normotônico, BCF presente rítmico de 128 bpm. Edema mãos e face 2+/4+, edema membros inferiores 3+/4+, simétrico e sem sinais de TVP. Avaliação fetal realizada com os seguintes achados: A conduta obstétrica é:",
   alternativas:[{id:"A",texto:"Parto cesárea."},{id:"B",texto:"Indução de parto."},{id:"C",texto:"Iniciar metildopa e reavaliar."},{id:"D",texto:"Sulfato de magnésio endovenoso."}],
@@ -1445,7 +1444,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 {
   id:"q-usp2026-107", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:107,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ginecoinfantil",
-  enunciado:"Adolescente, sexo feminino, 15 anos de idade, sem desenvolvimento mamário ou menarca. Altura está no z-score -2. Avaliação hormonal revela LH de 0,2 mUl/mL, FSH de 1,1 mUl/mL e estradiol indetectável. Qual a hipótese mais provável?",
+  enunciado:"Adolescente, sexo feminino, 15 anos de idade, sem desenvolvimento mamário ou menarca. Altura está no z-score -2. Avaliação hormonal revela LH de 0,2 mUl/mL, FSH de 1,1 mUl/mL e estradiol indetectável. Qual a hipótese mais provável? Note e adote: valor de referência para pré-púberes — LH < 0,3 mUI/mL; FSH < 4,0 mUI/mL.",
   alternativas:[{id:"A",texto:"Hiperprolactinemia."},{id:"B",texto:"Disgenesia gonadal."},{id:"C",texto:"Hiperplasia adrenal congênita."},{id:"D",texto:"Síndrome de insensibilidade androgênica."}],
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta: a adolescente de 15 anos tem atraso puberal (sem desenvolvimento mamário nem menarca) com LH e FSH baixos e estradiol indetectável — hipogonadismo hipogonadotrófico (falha no eixo hipotálamo-hipófise) —, além de baixa estatura. Entre as alternativas, a única causa de hipogonadismo hipogonadotrófico é a hiperprolactinemia (a prolactina elevada inibe o GnRH), que pode vir de um prolactinoma ou de outra lesão hipotálamo-hipofisária — o que também justifica a investigação com prolactina e ressonância da sela. B está errada porque a disgenesia gonadal (como na síndrome de Turner) causa hipogonadismo hipergonadotrófico, com FSH e LH elevados. C está errada porque a hiperplasia adrenal congênita causa virilização e puberdade precoce, não ausência de puberdade com gonadotrofinas baixas. D está errada porque na insensibilidade androgênica há desenvolvimento mamário (pela aromatização da testosterona) e o LH é elevado.",
@@ -1496,7 +1495,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-111", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:111,
-  imagemUrl:"dados/imagens/q-usp2026-111.png", imagemPendente:"Imagens da avaliação do colo uterino por via transvaginal",
+  imagemUrl:"dados/imagens/q-usp2026-111.jpg", imagemLegenda:"Imagens da avaliação do colo uterino por via transvaginal",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Mulher, 26 anos de idade, secundigesta com um parto vaginal anterior com recém-nascido de 1.800 g, retorna em consulta pré-natal com 20 semanas de gravidez. Está bem, sem queixas. Traz ultrassonografia morfológica realizada hoje, com feto único, sem malformações diagnosticadas, placenta fúndica. Avaliação do colo via transvaginal apresentada nas imagens a seguir: Assinale a alternativa que apresenta a conduta a ser adotada.",
   alternativas:[{id:"A",texto:"Medida do colo seriada."},{id:"B",texto:"Repouso absoluto."},{id:"C",texto:"Inserção de pessário."},{id:"D",texto:"Cerclagem de emergência."}],

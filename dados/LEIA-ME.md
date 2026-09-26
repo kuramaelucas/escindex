@@ -55,7 +55,7 @@ Total: **1.715 questões** (1.580 reais, de 15 provas), **934 cartões**, **235 
 menos 3 cartões da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
-ver `imagens/LEIA-ME.md`, que lista as 298 que ainda faltam.
+ver `imagens/LEIA-ME.md`, que lista as 106 que ainda faltam.
 
 ### Para a turma real entrar
 
