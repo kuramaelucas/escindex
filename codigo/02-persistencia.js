@@ -110,8 +110,13 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
      dados/prova-santacasa-2023.js 100 questões reais da Santa Casa-SP
      dados/prova-santacasa-2025.js 100 questões reais da Santa Casa-SP
      dados/prova-santacasa-2026.js 100 questões reais da Santa Casa-SP
+     dados/prova-usp-2022.js       100 questões reais da USP-SP (FMUSP)
+     dados/prova-usp-2023.js       120 questões reais da USP-SP (FMUSP)
+     dados/prova-usp-2024.js       120 questões reais da USP-SP (FMUSP)
+     dados/prova-usp-2025.js       120 questões reais da USP-SP (FMUSP)
+     dados/prova-usp-2026.js       120 questões reais da USP-SP (FMUSP)
                                    ---
-                                  1135 questões
+                                  1715 questões
 
    PARA ACRESCENTAR QUESTÕES há três caminhos, do mais fácil ao mais
    trabalhoso: (1) a tela "Importar Questões" dentro do app, que não exige

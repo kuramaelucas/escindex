@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TAXONOMIA — as 5 grandes áreas, 39 especialidades e 216 assuntos
+   TAXONOMIA — as 5 grandes áreas, 41 especialidades e 235 assuntos
    ==========================================================================
    A árvore que classifica tudo na plataforma: área > especialidade > assunto.
    Toda questão e todo flashcard apontam para um `assuntoId` daqui, então este
@@ -66,6 +66,10 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "esp-sus", areaId: "area-mps", nome: "SUS e Políticas de Saúde" },
     { id: "esp-bioetica", areaId: "area-mps", nome: "Bioética" },
     { id: "esp-saudefamilia", areaId: "area-mps", nome: "Saúde da Família" },
+    /* especialidades acrescentadas em 26/09 para classificar as provas da
+       USP-SP (FMUSP) 2022-2026. */
+    { id: "esp-emergencia", areaId: "area-cm", nome: "Medicina de Emergência" },
+    { id: "esp-coloprocto", areaId: "area-cg", nome: "Coloproctologia" },
   ],
   assuntos: [
     { id: "ass-sca", especialidadeId: "esp-cardio", nome: "Síndrome Coronariana Aguda" },
@@ -342,5 +346,26 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-transmissaoverticalhiv", especialidadeId: "esp-neonato", nome: "Transmissão Vertical do HIV e Diagnóstico Neonatal" },
     { id: "ass-bronquiolite", especialidadeId: "esp-infectoped", nome: "Bronquiolite Viral Aguda" },
     { id: "ass-intolerancialactose", especialidadeId: "esp-gastro", nome: "Intolerância à Lactose" },
+    /* Sexta leva, identificada classificando as provas da USP-SP (FMUSP)
+       2022-2026. */
+    { id: "ass-psiq-ansiedade", especialidadeId: "esp-psiquiatria", nome: "Transtornos de Ansiedade (Pânico, Agorafobia, Ansiedade Generalizada)" },
+    { id: "ass-parasitoses", especialidadeId: "esp-infecto", nome: "Parasitoses Intestinais e Esquistossomose" },
+    { id: "ass-neo-exame", especialidadeId: "esp-neonato", nome: "Exame Físico do Recém-Nascido e Tocotraumatismos" },
+    { id: "ass-gastro-esofago", especialidadeId: "esp-gastro", nome: "Acalasia e Distúrbios Motores do Esôfago" },
+    { id: "ass-gastro-malabsorcao", especialidadeId: "esp-gastro", nome: "Doença Celíaca e Síndromes de Má Absorção" },
+    { id: "ass-hepato-nodulos", especialidadeId: "esp-gastro", nome: "Nódulos Hepáticos (Adenoma, Hiperplasia Nodular Focal, Hepatocarcinoma)" },
+    { id: "ass-pneumo-intersticiais", especialidadeId: "esp-pneumo", nome: "Doenças Pulmonares Intersticiais e Pneumonites" },
+    { id: "ass-emerg-intoxicacoes", especialidadeId: "esp-emergencia", nome: "Intoxicações Exógenas e Síndromes Toxicológicas" },
+    { id: "ass-emerg-choque", especialidadeId: "esp-emergencia", nome: "Choque e Ultrassom à Beira do Leito" },
+    { id: "ass-neuro-coma", especialidadeId: "esp-neuro", nome: "Coma, Reflexos de Tronco e Morte Encefálica" },
+    { id: "ass-coloprocto-orificiais", especialidadeId: "esp-coloprocto", nome: "Doenças Orificiais (Hemorroidas, Abscessos, Fístulas e Doença Pilonidal)" },
+    { id: "ass-cabecapescoco", especialidadeId: "esp-cirurgiaonco", nome: "Tumores de Cabeça e Pescoço" },
+    { id: "ass-cironco-sarcomas", especialidadeId: "esp-cirurgiaonco", nome: "Sarcomas de Partes Moles" },
+    { id: "ass-emergped-corpoestranho", especialidadeId: "esp-emergped", nome: "Corpo Estranho em Vias Aéreas e Digestivas" },
+    { id: "ass-puerperio", especialidadeId: "esp-obstetricia", nome: "Puerpério e suas Complicações (Infecção, Transtornos Mentais)" },
+    { id: "ass-mamabenigna", especialidadeId: "esp-ginecologia", nome: "Doenças Benignas da Mama (Mastalgia, Cistos, Fibroadenoma)" },
+    { id: "ass-violenciasexual", especialidadeId: "esp-ginecologia", nome: "Violência Sexual e Aborto Legal" },
+    { id: "ass-financiamento", especialidadeId: "esp-sus", nome: "Financiamento do SUS e Saúde Suplementar" },
+    { id: "ass-incorporacao", especialidadeId: "esp-sus", nome: "Incorporação de Tecnologias no SUS (CONITEC)" },
   ],
 });
