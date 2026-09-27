@@ -127,13 +127,20 @@ export function conferir(){
       avisos.push(`${onde}: o enunciado fala de imagem/tabela, mas a questão não tem imagem nem "imagemPendente"`);
     }
   }
-  // provas com buraco na numeração
+  // provas com buraco na numeração. Uma lacuna só é aceita quando está
+  // listada aqui, com o motivo — o material de origem não trazia a questão e
+  // ela não pode ser inventada; sai daqui quando for transcrita do caderno
+  const LACUNAS_CONHECIDAS = {
+    // a edição usada na carga (27/09/2026) pula da 6 para a 8
+    "USP-RP (FMRP) 2021": [7],
+  };
   for(const [chave, qs] of provas){
     const nums = qs.map(q => q.numeroNaProva).filter(Number.isInteger);
     const repetidosNum = nums.filter((n, i) => nums.indexOf(n) !== i);
     if(repetidosNum.length) erros.push(`${chave}: número na prova repetido: ${resumirNumeros(repetidosNum)}`);
     const maior = Math.max(...nums, 0), falta = [];
-    for(let n = 1; n <= maior; n++) if(!nums.includes(n)) falta.push(n);
+    const aceitas = LACUNAS_CONHECIDAS[chave] || [];
+    for(let n = 1; n <= maior; n++) if(!nums.includes(n) && !aceitas.includes(n)) falta.push(n);
     if(falta.length) avisos.push(`${chave}: faltam as questões ${resumirNumeros(falta)} (a prova vai até a ${maior})`);
   }
 
