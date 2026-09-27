@@ -115,12 +115,14 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
      dados/prova-usp-2024.js       120 questões reais da USP-SP (FMUSP)
      dados/prova-usp-2025.js       120 questões reais da USP-SP (FMUSP)
      dados/prova-usp-2026.js       120 questões reais da USP-SP (FMUSP)
+     dados/prova-usprp-2021.js     118 questões reais da USP-RP (FMRP)
+     dados/prova-usprp-2022.js     100 questões reais da USP-RP (FMRP)
      dados/prova-usprp-2023.js     100 questões reais da USP-RP (FMRP)
      dados/prova-usprp-2024.js     100 questões reais da USP-RP (FMRP)
      dados/prova-usprp-2025.js     100 questões reais da USP-RP (FMRP)
      dados/prova-usprp-2026.js     100 questões reais da USP-RP (FMRP)
                                    ---
-                                  2115 questões
+                                  2333 questões
 
    PARA ACRESCENTAR QUESTÕES há três caminhos, do mais fácil ao mais
    trabalhoso: (1) a tela "Importar Questões" dentro do app, que não exige
@@ -437,6 +439,9 @@ function loadState(){
     }
     db = parsed;
     garantirEstruturaDb(db);
+    // o banco salvo guarda o conteúdo-semente só como diferença (ver
+    // compactarParaArmazenar); aqui cada item volta a ser inteiro
+    expandirDoArmazenamento(db);
     // migração leve: versões antigas (v1) tinham um único calendário global em
     // db.blocos. Se encontrarmos isso sem a coleção de grupos, embrulhamos
     // automaticamente num "grupo oficial" pra não perder o que já existia.
@@ -725,11 +730,78 @@ function sincronizarConteudoNovo(){
   if(novos) saveState();
 }
 
+/* O banco salvo no navegador não repete o texto do conteúdo-semente. Com
+   2.333 questões e 943 cartões, só o texto delas passa de 5 MB — o limite
+   que o navegador dá ao localStorage de um site —, e o salvamento começou a
+   falhar. Esse texto já chega da pasta "dados/" a cada abertura; o que é
+   deste banco é outra coisa: as estatísticas, o status, uma edição que a
+   equipe fez. Então, de cada questão ou cartão que tem semente com o mesmo
+   id, o navegador guarda só o id, a marca `_semente` e os campos que diferem
+   dela (e, em `_semCampos`, os que a equipe apagou). Ao abrir, loadState()
+   remonta o item inteiro sobre a semente. Item sem semente — criado,
+   importado ou enviado aqui — é gravado inteiro, como sempre foi; e um banco
+   salvo antes desta versão, sem a marca, é lido como está.
+   Efeito colateral bom: uma correção feita na pasta "dados/" (um erro de
+   digitação, uma explicação revista) chega a quem já usava a plataforma, a
+   não ser no campo que a equipe tenha editado neste navegador. */
+const COLECOES_COM_SEMENTE = [["questoes", () => SEED_QUESTOES], ["flashcards", () => SEED_FLASHCARDS]];
+const _sementesPorId = {};
+function sementesPorId(colecao, sementes){
+  if(!_sementesPorId[colecao]) _sementesPorId[colecao] = new Map((sementes() || []).map(x => [x.id, x]));
+  return _sementesPorId[colecao];
+}
+function compactarParaArmazenar(banco){
+  const saida = { ...banco };
+  COLECOES_COM_SEMENTE.forEach(([colecao, sementes]) => {
+    if(!Array.isArray(banco[colecao])) return;
+    const porId = sementesPorId(colecao, sementes);
+    saida[colecao] = banco[colecao].map(item => {
+      const semente = item && porId.get(item.id);
+      if(!semente) return item;
+      const dif = { id: item.id, _semente: 1 };
+      Object.keys(item).forEach(k => {
+        if(k !== "id" && JSON.stringify(item[k]) !== JSON.stringify(semente[k])) dif[k] = item[k];
+      });
+      const apagados = Object.keys(semente).filter(k => !(k in item));
+      if(apagados.length) dif._semCampos = apagados;
+      return dif;
+    }).concat((banco._orfaosDeSemente && banco._orfaosDeSemente[colecao]) || []);
+  });
+  delete saida._orfaosDeSemente;
+  return saida;
+}
+function expandirDoArmazenamento(banco){
+  const orfaos = banco._orfaosDeSemente || {};
+  delete banco._orfaosDeSemente;
+  COLECOES_COM_SEMENTE.forEach(([colecao, sementes]) => {
+    if(!Array.isArray(banco[colecao])) return;
+    const porId = sementesPorId(colecao, sementes), semSemente = [];
+    banco[colecao] = banco[colecao].concat(orfaos[colecao] || []).filter(item => {
+      // um item guardado só como diferença cuja semente não está carregada
+      // (um arquivo de "dados/" que não chegou, ou um item que saiu dele)
+      // não tem de onde tirar o texto: fica fora das telas, mas continua
+      // sendo gravado como estava, e volta se a semente voltar
+      if(item && item._semente && !porId.has(item.id)){ semSemente.push(item); return false; }
+      return true;
+    }).map(item => {
+      if(!item || !item._semente) return item;
+      const inteiro = { ...copiaProfunda(porId.get(item.id)), ...item };
+      (item._semCampos || []).forEach(k => { delete inteiro[k]; });
+      delete inteiro._semente; delete inteiro._semCampos;
+      return inteiro;
+    });
+    if(semSemente.length){
+      console.warn(semSemente.length + " item(ns) de " + colecao + " sem semente carregada; guardados à parte.");
+      (banco._orfaosDeSemente = banco._orfaosDeSemente || {})[colecao] = semSemente;
+    }
+  });
+}
+
 /* Tamanho aproximado do banco no navegador. Passou a importar de verdade
    quando as questões ganharam imagens embutidas: o limite do localStorage
    costuma ficar entre 5 e 10 MB. */
 function tamanhoBancoKb(){
-  try{ return Math.round(JSON.stringify(db).length/1024); }catch(e){ return 0; }
+  try{ return Math.round(JSON.stringify(compactarParaArmazenar(db)).length/1024); }catch(e){ return 0; }
 }
 let _geracaoDb = 0; // incrementado a cada saveState(); invalida caches derivados de db (ver mapaPrevalenciasAssuntos)
 /* Devolve `true` se gravou mesmo. Quem cria um cadastro PRECISA olhar esse
@@ -740,7 +812,7 @@ function saveState(){
   _geracaoDb++;
   let gravou = true;
   try{
-    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(db));
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(compactarParaArmazenar(db)));
   }catch(e){
     gravou = false;
     console.error("Falha ao salvar dados", e);
