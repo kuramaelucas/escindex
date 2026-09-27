@@ -1,18 +1,27 @@
 # `dados/imagens/` — as figuras das provas
 
 Algumas questões reais dependem de uma figura da prova original — um ECG, uma
-tabela 2×2, uma radiografia, um antibiograma. Enquanto a figura não está aqui,
-a questão mostra um aviso ("esta questão tinha uma imagem na prova original,
-que ainda não foi anexada") com a descrição do que a prova mostrava, em vez de
-uma imagem quebrada.
+tabela 2×2, uma radiografia, um antibiograma. Essas questões trazem o campo
+`imagemPendente` (a descrição do que a prova mostrava) e, enquanto ele existir,
+**não aparecem para os alunos**: ficam fora do estudo, da revisão, das provas
+antigas e dos simulados. Continuam no banco, separadas para a equipe em
+*Banco de Questões > Status > Aguardando imagem*.
 
 ## Como anexar
 
 1. Recorte a figura do PDF oficial da prova (um print da região basta).
 2. Salve aqui com o **nome da questão**: `q-unifesp2026-036.png`.
    `.jpg`, `.jpeg` e `.webp` também servem — a plataforma tenta as quatro.
-3. Publique o site de novo (com a pasta `dados/` junto). Nada mais precisa mudar:
-   a questão já aponta para esse arquivo.
+3. Apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`
+   (e, se quiser, acrescente `imagemLegenda`). É isso que a devolve aos alunos.
+   `npm run conferir` avisa toda questão cuja figura já está aqui mas que
+   continua marcada como pendente.
+4. Publique o site de novo (com a pasta `dados/` junto).
+
+Sem mexer em arquivo: na tela da questão (Banco de Questões > editar), enviar
+a imagem ali mesmo, ou marcar "a imagem já foi salva em dados/imagens/", também
+libera a questão — mas só naquele navegador (e na nuvem, se ligada), como tudo o
+que a equipe edita pela plataforma.
 
 Prefira imagens com até ~1600 px de largura e até ~400 KB: elas descem para o
 celular de cada aluno.

@@ -36,12 +36,87 @@ test("o dia vira à meia-noite de Brasília, não às 21h (UTC)", async () => {
   await contexto.close();
 });
 
-test("questão que espera figura da prova avisa em vez de mostrar imagem quebrada", async () => {
+test("questão que espera figura da prova fica fora do que o aluno faz, mas continua no banco", async () => {
   const { pagina, contexto } = await abrir();
   await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
-  await pagina.evaluate(() => { fazerLoginDemo("aluno"); iniciarSessaoComLista([{questaoId:"q-unifesp2026-036", motivo:"teste"}], "pratica"); });
+  const r = await pagina.evaluate(() => {
+    fazerLoginDemo("aluno");
+    const u = usuarioAtual();
+    const esperando = db.questoes.filter(q => q.imagemPendente).map(q => q.id);
+    const fora = new Set(esperando);
+    // nenhuma entra nas listas de estudo, revisão ou provas antigas
+    const ativas = questoesAtivas(true).filter(q => fora.has(q.id)).length;
+    const estudo = questoesParaEstudo(u.id).filter(q => fora.has(q.id)).length;
+    navigate("provas-antigas");
+    const naProva = state.filtroRota.provasGrupos.some(g => g.ids.some(id => fora.has(id)));
+    // montada à mão, a lista também as tira (e, só com ela, não abre sessão)
+    iniciarSessaoComLista([{questaoId:"q-unifesp2026-036", motivo:"teste"}], "pratica");
+    return { total: esperando.length, noBanco: esperando.every(id => getQuestao(id)), ativas, estudo, naProva,
+             sessao: state.sessaoAtual ? state.sessaoAtual.itens.length : 0, tem036: fora.has("q-unifesp2026-036") };
+  });
+  assert.ok(r.total > 0 && r.noBanco && r.tem036);
+  assert.equal(r.ativas, 0); assert.equal(r.estudo, 0); assert.equal(r.naProva, false); assert.equal(r.sessao, 0);
+  await contexto.close();
+});
+
+test("a equipe vê a questão à espera da figura com o aviso, e liberá-la a devolve aos alunos", async () => {
+  const semNuvem = await subirServidor({ semNuvem: true });
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(semNuvem.url + "index.html"); await pronto(pagina);
+  await pagina.evaluate(() => { fazerLogin("professor@esc.demo", "prof123"); fecharModal(); abrirQuestaoCompleta("q-unifesp2026-036"); });
   await pagina.waitForSelector(".imagem-pendente", { timeout: 5000 });
   assert.equal(await pagina.locator(".qcard-img").count(), 0);
+  const r = await pagina.evaluate(() => {
+    fecharModal();
+    filtrosBanco().status = "aguarda-imagem"; navigate("banco-questoes");
+    const listadas = document.querySelectorAll("#conteudoPagina tbody tr").length;
+    abrirFormularioQuestao("q-unifesp2026-036");
+    document.getElementById("fqImagemChegou").checked = true;
+    salvarQuestaoFormulario("q-unifesp2026-036", true);
+    const q = getQuestao("q-unifesp2026-036");
+    return { listadas, liberada: !q.imagemPendente, ativa: questoesAtivas(true).some(x => x.id === q.id) };
+  });
+  assert.ok(r.listadas > 0);
+  assert.ok(r.liberada && r.ativa);
+  // recarregar não traz o aviso de volta da semente
+  await pagina.reload(); await pronto(pagina);
+  assert.equal(await pagina.evaluate(() => !!getQuestao("q-unifesp2026-036").imagemPendente), false);
+  await contexto.close(); await semNuvem.fechar();
+});
+
+test("tutorial rápido: passos, guia completo e o pedido de não mostrar ao entrar", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    fazerLoginDemo("aluno");
+    // em navegador de automação o tour não abre sozinho; aqui ele é forçado
+    const abriu = mostrarTutorialAoEntrar({ mesmoComAutomacao: true });
+    const passos = TUTORIAL_RAPIDO.aluno.length;
+    for(let i = 1; i < passos; i++) passoTutorial(1);
+    const ultimo = document.querySelector(".tutorial-passo").dataset.passo;
+    const temGuia = !!Array.from(document.querySelectorAll(".modal button")).find(b => /guia completo/i.test(b.textContent));
+    // uma vez por sessão: não abre de novo
+    fecharTutorial();
+    const deNovo = mostrarTutorialAoEntrar({ mesmoComAutomacao: true });
+    abrirGuiaCompleto();
+    const secoes = document.querySelectorAll(".guia-secao").length;
+    fecharModal();
+    definirTutorialAoEntrar(false);
+    return { abriu, passos, ultimo: Number(ultimo), temGuia, deNovo, secoes, oculto: usuarioAtual().tutorialOcultoAoEntrar };
+  });
+  assert.equal(r.abriu, true);
+  assert.equal(r.ultimo, r.passos - 1);
+  assert.ok(r.temGuia);
+  assert.equal(r.deNovo, false);
+  assert.ok(r.secoes >= 5);
+  assert.equal(r.oculto, true);
+  // numa sessão nova do navegador, quem pediu para não ver não vê
+  await pagina.evaluate(() => sessionStorage.clear());
+  await pagina.reload(); await pronto(pagina);
+  assert.equal(await pagina.evaluate(() => { fazerLoginDemo("aluno"); return mostrarTutorialAoEntrar({ mesmoComAutomacao: true }); }), false);
+  // o Perfil traz as duas entradas e desfaz a escolha
+  const perfil = await pagina.evaluate(() => { navigate("perfil"); return document.getElementById("conteudoPagina").textContent; });
+  assert.match(perfil, /Tutorial rápido/); assert.match(perfil, /Guia completo/);
   await contexto.close();
 });
 
@@ -50,12 +125,13 @@ test("prova antiga tem só questões reais e mostra as anuladas", async () => {
   await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
   const provas = await pagina.evaluate(() => {
     fazerLoginDemo("aluno"); navigate("provas-antigas");
-    return state.filtroRota.provasGrupos.map(g => ({ nome: g.banca + " " + g.ano, n: g.ids.length, anuladas: g.anuladas.length,
+    return state.filtroRota.provasGrupos.map(g => ({ nome: g.banca + " " + g.ano, n: g.ids.length, anuladas: g.anuladas.length, semImagem: g.semImagem,
       todasReais: g.ids.every(id => getQuestao(id).real) }));
   });
   assert.ok(provas.every(p => p.todasReais), JSON.stringify(provas));
   const p2024 = provas.find(p => p.nome === "UNIFESP-EPM 2024");
-  assert.equal(p2024.n + p2024.anuladas, 100);
+  // as que esperam a figura ficam fora, mas o cartão as conta
+  assert.equal(p2024.n + p2024.anuladas + p2024.semImagem, 100);
   await contexto.close();
 });
 

@@ -1,4 +1,4 @@
-/* Esc — codigo/07-telas-iniciais.js  (parte 7 de 13)
+/* Esc — codigo/07-telas-iniciais.js  (parte 7 de 14)
    Telas públicas (landing, entrar, cadastro), primeiro acesso, painel inicial, tela Estudar e a questão na íntegra.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num

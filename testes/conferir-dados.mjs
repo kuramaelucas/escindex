@@ -120,6 +120,9 @@ export function conferir(){
         if(q.imagemPendente) pendenciasImagem.push({ id: q.id, falta: q.imagemPendente, arquivo: q.imagemUrl });
         else erros.push(`${onde}: a imagem ${q.imagemUrl} não existe`);
       }
+      // a figura chegou, mas a questão continua marcada como à espera dela —
+      // e por isso fora do estudo dos alunos (ver aguardaImagem no app)
+      else if(q.imagemPendente) avisos.push(`${onde}: a imagem ${q.imagemUrl} já existe — apague "imagemPendente" da questão para ela voltar a aparecer para os alunos`);
     } else if(q.imagemPendente && !q.imagemUrl){
       pendenciasImagem.push({ id: q.id, falta: q.imagemPendente, arquivo: null });
     }

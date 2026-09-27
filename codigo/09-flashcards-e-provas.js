@@ -1,4 +1,4 @@
-/* Esc — codigo/09-flashcards-e-provas.js  (parte 9 de 13)
+/* Esc — codigo/09-flashcards-e-provas.js  (parte 9 de 14)
    Revisão Rápida (flashcards), simulados e provas antigas.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -530,7 +530,11 @@ function renderSimuladoCard(s){
 }
 function iniciarSimulado(simuladoId){
   const s = db.simulados.find(x=>x.id===simuladoId); if(!s) return;
-  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId, titulo:s.titulo, itens:s.questoes.map(qid=>({questaoId:qid, motivo:"Simulado: "+s.titulo})), indiceAtual:0, respostasSimulado:{}, duracaoMin:s.duracaoMin, finalizado:false, modoAprendizado:false, inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
+  // simulado montado antes de a questão ficar à espera da figura (ou
+  // questão que saiu do banco) não entra — ver aguardaImagem()
+  const qids = s.questoes.filter(qid=>{ const q = getQuestao(qid); return q && !aguardaImagem(q); });
+  if(!qids.length){ toast("Este simulado não tem questões disponíveis no momento.", "err"); return; }
+  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId, titulo:s.titulo, itens:qids.map(qid=>({questaoId:qid, motivo:"Simulado: "+s.titulo})), indiceAtual:0, respostasSimulado:{}, duracaoMin:s.duracaoMin, finalizado:false, modoAprendizado:false, inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
   navigate("simulado-ativo");
 }
 
@@ -804,7 +808,7 @@ function renderAbaProvasAntigas(u){
   // agrupa por instituição + ano (uma "prova" é a combinação das duas coisas),
   // na ordem da prova original quando a questão sabe o próprio número
   const mapa = {};
-  pool.forEach(q=>{ const chave = q.banca+" ||| "+q.ano; (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, ids:[], anuladas:[]}).ids.push(q.id); });
+  pool.forEach(q=>{ const chave = q.banca+" ||| "+q.ano; (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
   const ordemNaProva = id => { const q = getQuestao(id); return (q && q.numeroNaProva) || 9999; };
   Object.values(mapa).forEach(g => g.ids.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)));
   /* AS ANULADAS NÃO SOMEM EM SILÊNCIO. Questão anulada não tem gabarito, então
@@ -818,6 +822,14 @@ function renderAbaProvasAntigas(u){
     g.anuladas.push(q.id);
   });
   Object.values(mapa).forEach(g => g.anuladas.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)));
+  // as que esperam a figura da prova também ficam de fora, e o cartão diz
+  // quantas (ver aguardaImagem)
+  db.questoes.forEach(q=>{
+    if(!aguardaImagem(q) || !q.real || q.status!=="ativa") return;
+    const g = mapa[q.banca+" ||| "+q.ano]; if(!g) return;
+    if(f.areaId && q.areaId!==f.areaId) return;
+    g.semImagem++;
+  });
   const grupos = Object.values(mapa).sort((a,b)=> b.ano-a.ano || a.banca.localeCompare(b.banca));
   state.filtroRota.provasGrupos = grupos;
 
@@ -863,6 +875,7 @@ function renderAbaProvasAntigas(u){
         <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
         <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
         ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
+        ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
         <div class="flex gap-1 prova-acoes" style="flex-wrap:wrap">
           <button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>

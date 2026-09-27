@@ -1,4 +1,4 @@
-/* Esc — codigo/02-persistencia.js  (parte 2 de 13)
+/* Esc — codigo/02-persistencia.js  (parte 2 de 14)
    Os apelidos SEED_* do conteúdo da pasta dados/, a conferência dos arquivos de conteúdo e a persistência (localStorage, migrações, rede de segurança do banco).
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -714,6 +714,9 @@ function sincronizarConteudoNovo(){
   SEED_QUESTOES.forEach(q=>{
     const salva = porId.get(q.id); if(!salva) return;
     CAMPOS_QUE_O_CONTEUDO_COMPLETA.forEach(c=>{
+      // a equipe liberou a questão depois que a figura chegou: o aviso de
+      // imagem pendente não volta da semente (ver aguardaImagem)
+      if(c==="imagemPendente" && salva.imagemLiberada) return;
       if(q[c] !== undefined && q[c] !== "" && (salva[c] === undefined || salva[c] === null || salva[c] === "")){ salva[c] = copiaProfunda(q[c]); novos++; }
     });
   });

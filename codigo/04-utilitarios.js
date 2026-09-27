@@ -1,4 +1,4 @@
-/* Esc — codigo/04-utilitarios.js  (parte 4 de 13)
+/* Esc — codigo/04-utilitarios.js  (parte 4 de 14)
    Utilidades gerais: datas, paginação, gráficos SVG, janelas, avisos, sequência de blocos e rodízio, permissões de administrador.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num

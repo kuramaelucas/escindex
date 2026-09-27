@@ -1,4 +1,4 @@
-/* Esc — codigo/08-sessao-e-revisao.js  (parte 8 de 13)
+/* Esc — codigo/08-sessao-e-revisao.js  (parte 8 de 14)
    O motor de sessão (responder questões, mapa, cartão da questão, comentários) e a tela de Revisão.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -60,6 +60,9 @@ function iniciarRevisaoEspacada(){
   iniciarSessaoComLista(itens, "pratica");
 }
 function iniciarSessaoComLista(itens, tipo){
+  // listas montadas à mão (favoritas, uma prova antiga) também não levam
+  // questão à espera da figura — ver aguardaImagem()
+  itens = itens.filter(it => !aguardaImagem(getQuestao(it.questaoId)));
   if(!itens.length){ toast("Não há questões disponíveis para esta sessão.", "err"); return; }
   state.sessaoAtual = { id: uid("sessao"), tipo, itens, indiceAtual:0, respostasSessao:[], eliminadas:{}, marcadas:{}, finalizada:false, tsQuestao: Date.now() };
   salvarSessaoEmAndamento();
@@ -132,7 +135,8 @@ function sessaoEmAndamentoDe(usuario){
   const respostas = guardada.respostasSessao || [];
   const itens = [], mantidas = [];
   guardada.itens.forEach((item, i) => {
-    if(!getQuestao(item.questaoId)) return;
+    const q = getQuestao(item.questaoId);
+    if(!q || aguardaImagem(q)) return;
     itens.push(item);
     mantidas[itens.length-1] = respostas[i] || null;
   });

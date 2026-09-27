@@ -475,3 +475,20 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
   .pdf-flash{border:1px solid #666;padding:.55rem .7rem;margin-bottom:.5rem;page-break-inside:avoid;font-size:10pt}
   .pdf-corte{border-top:1px dashed #999;margin:.8rem 0}
 }
+
+/* ---------- tutorial rápido e guia completo (codigo/14-tutorial.js) ---------- */
+.tutorial-passo{text-align:center;padding:.4rem .2rem 0}
+.tutorial-icone{width:3.2rem;height:3.2rem;margin:0 auto .7rem;border-radius:50%;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center}
+.tutorial-icone .icon{width:1.5rem;height:1.5rem}
+.tutorial-contador{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted, #6b7a76);margin-bottom:.3rem}
+.tutorial-titulo{margin:0 0 .5rem}
+.tutorial-texto{line-height:1.6;margin:0 auto;max-width:34rem}
+.tutorial-pontos{display:flex;gap:.35rem;justify-content:center;margin-top:1rem}
+.tutorial-pontos span{width:.5rem;height:.5rem;border-radius:50%;background:var(--border, #cfd8d5)}
+.tutorial-pontos span.ativo{background:var(--accent);width:1.2rem;border-radius:.3rem}
+.tutorial-acoes{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.guia-secoes{display:flex;flex-direction:column;gap:.5rem}
+.guia-secao{border:1px solid var(--border, #cfd8d5);border-radius:var(--radius-sm);padding:.2rem .9rem}
+.guia-secao summary{cursor:pointer;font-weight:600;padding:.55rem 0}
+.guia-secao ul{margin:.1rem 0 .7rem;padding-left:1.2rem;line-height:1.6}
+.guia-secao li{margin-bottom:.35rem}
