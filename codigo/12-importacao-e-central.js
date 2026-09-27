@@ -1,4 +1,4 @@
-/* Esc — codigo/12-importacao-e-central.js  (parte 12 de 13)
+/* Esc — codigo/12-importacao-e-central.js  (parte 12 de 14)
    Importar/enviar questões e a Central de Provas.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num

@@ -1,4 +1,4 @@
-/* Esc — codigo/01-config.js  (parte 1 de 13)
+/* Esc — codigo/01-config.js  (parte 1 de 14)
    Guia de manutenção, CONFIG (metas, algoritmos, nuvem), estado global e tema claro/escuro.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -10,7 +10,7 @@
    GUIA RÁPIDO DE MANUTENÇÃO (para quem não é programador)
    ------------------------------------------------------------------------
    Esta é uma plataforma de arquivo aberto: o index.html (a moldura) mais
-   duas pastas ao lado dele — "codigo/" (todo o código, em treze arquivos)
+   duas pastas ao lado dele — "codigo/" (todo o código, em catorze arquivos)
    e "dados/" (todo o conteúdo). Não precisa de instalação, servidor,
    "build" ou internet para funcionar (exceto para carregar as fontes, que
    são opcionais, e para a nuvem) — basta manter os três juntos: abrir o
@@ -29,7 +29,8 @@
                                 (o conteúdo em si fica na pasta "dados/")
         NUVEM               -> 03-nuvem
         MEU DESEMPENHO      -> 10-telas-do-aluno
-        INICIALIZAÇÃO       -> 13-admin-e-inicializacao (sempre o último)
+        TUTORIAL            -> 13-tutorial (tour rápido e guia completo)
+        INICIALIZAÇÃO       -> 14-admin-e-inicializacao (sempre o último)
 
    ONDE FICA CADA COISA
    ------------------------------------------------------------------------

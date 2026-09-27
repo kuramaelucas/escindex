@@ -1,4 +1,4 @@
-/* Esc — codigo/11-telas-da-equipe.js  (parte 11 de 13)
+/* Esc — codigo/11-telas-da-equipe.js  (parte 11 de 14)
    Criar simulado, Material em PDF, questões difíceis, fila de dúvidas, cadastros e usuários, banco de questões e taxonomia.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -994,10 +994,11 @@ function renderBancoQuestoes(){
   if(f.ano) lista = lista.filter(q=>q.ano===parseInt(f.ano));
   if(f.ultimos5) lista = lista.filter(q=>q.ano > anoMaisRecente-5);
   if(f.areaId) lista = lista.filter(q=>q.areaId===f.areaId);
-  if(f.status) lista = lista.filter(q=>q.status===f.status);
+  if(f.status==="aguarda-imagem") lista = lista.filter(q=>aguardaImagem(q));
+  else if(f.status) lista = lista.filter(q=>q.status===f.status);
   lista.sort((a,b)=> b.ano-a.ano || (a.banca||"").localeCompare(b.banca||""));
   return `
-  <div class="page-header"><h2>Banco de Questões</h2><p>${db.questoes.length} questão(ões) no total (${questoesAtivas(true).length} ativas, excluindo anuladas/desatualizadas das sessões e estatísticas; inclui questões restritas a grupos de alunos).</p></div>
+  <div class="page-header"><h2>Banco de Questões</h2><p>${db.questoes.length} questão(ões) no total (${questoesAtivas(true).length} ativas, excluindo anuladas/desatualizadas das sessões e estatísticas; inclui questões restritas a grupos de alunos). ${db.questoes.filter(aguardaImagem).length} aguardam a figura da prova e não aparecem para os alunos — filtre por Status &gt; Aguardando imagem.</p></div>
   <div class="card mb-2">
     <div class="grid grid-4">
       <div class="field" style="margin-bottom:0"><label class="label">Instituição</label>
@@ -1025,6 +1026,7 @@ function renderBancoQuestoes(){
           <option value="pendente" ${f.status==="pendente"?"selected":""}>Pendente de aprovação</option>
           <option value="anulada" ${f.status==="anulada"?"selected":""}>Anulada</option>
           <option value="desatualizada" ${f.status==="desatualizada"?"selected":""}>Desatualizada</option>
+          <option value="aguarda-imagem" ${f.status==="aguarda-imagem"?"selected":""}>Aguardando imagem</option>
         </select>
       </div>
     </div>
@@ -1049,7 +1051,7 @@ function renderListaBancoQuestoesHtml(lista, paginaInfo){
       <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span> ${q.grupoId?`<span class="badge badge-muted" title="Restrita ao grupo">${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"grupo")}</span>`:""}</td>
       <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${q.ano}</span></td>
       <td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td>
-      <td>${badgeStatusQuestao(q.status)}</td>
+      <td>${badgeStatusQuestao(q.status)}${aguardaImagem(q) ? ` <span class="badge badge-amber" title="${escapeHtml(q.imagemPendente)}">Aguardando imagem</span>` : ""}</td>
       <td class="flex gap-1">
         <button class="icon-btn" title="Ver na íntegra" onclick="abrirQuestaoCompleta('${q.id}')">${iconeSvg("search")}</button>
         <button class="icon-btn" title="Editar" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")}</button>
@@ -1113,6 +1115,9 @@ function abrirFormularioQuestao(qid){
       <div id="fqImagemPreview" class="mt-1"></div>
       <input class="input mt-1" id="fqImagemLegenda" placeholder="Legenda (ex.: ECG de 12 derivações na admissão)" value="${escapeHtml(q?(q.imagemLegenda||""):"")}">
       <div class="hint">Imagens enviadas são reduzidas e comprimidas antes de serem guardadas. ECG, radiografia, fundo de olho e fotos de lesão são o motivo de este campo existir.</div>
+      ${q && aguardaImagem(q) ? `<div class="imagem-pendente mt-1">${iconeSvg("alert")}<div><strong>Aguardando imagem — esta questão não aparece para os alunos.</strong>
+        <div class="text-xs mt-1">Na prova: ${escapeHtml(q.imagemPendente)} Arquivo esperado: <code>${escapeHtml(q.imagemUrl||"")}</code>. Enviar a imagem aqui já libera a questão.</div>
+        <label class="checkbox-row mt-1"><input type="checkbox" id="fqImagemChegou"> A imagem já foi salva em dados/imagens/ — liberar a questão para os alunos</label></div></div>` : ""}
     </div>
     ${(q && (u.papel==="admin"||u.papel==="professor")) ? `<div class="text-xs muted mb-1">Criada por ${escapeHtml(getUsuario(q.criadoPor)?getUsuario(q.criadoPor).nome:"—")} em ${formatDataBR(q.criadoEm)}${q.aprovadoPor?" · aprovada por "+escapeHtml(getUsuario(q.aprovadoPor)?getUsuario(q.aprovadoPor).nome:"—"):""}${q.grupoId?" · restrita ao grupo "+escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—"):""}</div>` : ""}
     <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarQuestaoFormulario('${qid||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>
@@ -1328,7 +1333,17 @@ function salvarQuestaoFormulario(qid, forcar){
     return;
   }
   const u = usuarioAtual();
-  if(qid){ Object.assign(getQuestao(qid), dados); }
+  if(qid){
+    const atual = getQuestao(qid);
+    // a figura chegou (anexada aqui, ou marcada como já presente na pasta
+    // dados/imagens/): a questão deixa de esperar e volta para os alunos
+    const liberar = document.getElementById("fqImagemChegou");
+    if(atual.imagemPendente && ((dados.imagemUrl && dados.imagemUrl !== atual.imagemUrl) || (liberar && liberar.checked))){
+      delete atual.imagemPendente;
+      atual.imagemLiberada = true;
+    }
+    Object.assign(atual, dados);
+  }
   else{
     const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, criadoEm:hojeISO() };
     if(campoDestino){

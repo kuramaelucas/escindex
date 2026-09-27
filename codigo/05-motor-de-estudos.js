@@ -1,4 +1,4 @@
-/* Esc — codigo/05-motor-de-estudos.js  (parte 5 de 13)
+/* Esc — codigo/05-motor-de-estudos.js  (parte 5 de 14)
    O motor de estudos: dificuldade, repetição espaçada, flashcards, montagem de sessões, desempenho, calibração e lembretes.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -20,6 +20,17 @@ function embaralhar(array){
   return a;
 }
 
+/* QUESTÃO À ESPERA DA FIGURA. Uma questão que depende de uma imagem da prova
+   (ECG, radiografia, tabela) que ainda não foi anexada traz `imagemPendente`
+   — a descrição do que a prova mostrava. Sem a figura ela não se resolve
+   direito, então fica FORA de tudo o que monta fila para o aluno (estudo,
+   revisão, provas antigas, simulados, estatísticas): continua no banco,
+   separada para a equipe (Banco de Questões > Status > "Aguardando imagem").
+   Ela volta sozinha quando a figura chega: apagando `imagemPendente` no
+   arquivo de dados/, ou pela própria tela de edição da questão (anexar a
+   imagem ou marcar "a imagem já chegou"). */
+function aguardaImagem(q){ return !!(q && q.imagemPendente); }
+
 function questoesAtivas(incluirGrupoId){
   // "ativa" exclui questões anuladas ou desatualizadas de sessões e estatísticas,
   // conforme pedido: nunca usar questão anulada/desatualizada para calcular dificuldade.
@@ -28,6 +39,7 @@ function questoesAtivas(incluirGrupoId){
   // explicitamente esse grupo (incluirGrupoId = id do grupo) ou tudo (true).
   return db.questoes.filter(q=>{
     if(q.status!=="ativa") return false;
+    if(aguardaImagem(q)) return false;
     if(q.grupoId && incluirGrupoId!==true && q.grupoId!==incluirGrupoId) return false;
     return true;
   });
@@ -212,7 +224,7 @@ function questoesErradasPeloUsuario(usuarioId, opts){
     if(!erros) return;
     if(!!opts.ocultas !== ocultas.has(questaoId)) return;
     const q = getQuestao(questaoId);
-    if(!q || q.status!=="ativa") return;
+    if(!q || q.status!=="ativa" || aguardaImagem(q)) return;
     const ultimoErro = rs.filter(r=>!r.correta).pop();
     lista.push({ questao:q, erros, tentativas: rs.length, ultima: rs[rs.length-1], ultimoErro });
   });

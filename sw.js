@@ -26,7 +26,7 @@
    internet.
 
    A versão vem no endereço (sw.js?v=AAAA-MM-DD, ver registrarServiceWorker
-   em codigo/13-admin-e-inicializacao.js): versão nova é um service worker
+   em codigo/14-admin-e-inicializacao.js): versão nova é um service worker
    novo, que apaga as cópias da versão anterior ao assumir.
    ========================================================================== */
 const VERSAO = new URL(self.location.href).searchParams.get("v") || "sem-versao";

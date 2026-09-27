@@ -1,4 +1,4 @@
-/* Esc — codigo/06-entrada-e-estrutura.js  (parte 6 de 13)
+/* Esc — codigo/06-entrada-e-estrutura.js  (parte 6 de 14)
    Autenticação local, roteador e a estrutura visual (menu lateral e topo).
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -254,6 +254,9 @@ function render(){
     default: conteudo = renderInicio();
   }
   desenharTela(conteudo);
+  // quem acabou de entrar e chegou ao Início vê o tutorial rápido (uma vez
+  // por sessão, até pedir para não ver mais — codigo/13-tutorial.js)
+  if(state.route === "inicio") agendarTutorialAoEntrar();
 }
 
 /* ---------- por que isto não é um `app.innerHTML = ...` e pronto ----------
@@ -487,6 +490,7 @@ function htmlMenuLateral(u){
       <div class="sidebar-footer">
         ${u.papel!=="aluno" ? `<div class="nav-item" onclick="alternarModoAluno()">${iconeSvg("book")}<span>${state.modoAluno?"Sair do modo aluno":"Entrar no modo aluno"}</span></div>` : ""}
         <div class="nav-item" onclick="alternarTema()">${iconeSvg("theme")}<span>${document.documentElement.getAttribute("data-theme")==="dark"?"Tema claro":"Tema escuro"}</span></div>
+        <div class="nav-item" onclick="fecharMenuMobile();abrirTutorialRapido()">${iconeSvg("play")}<span>Tutorial</span></div>
         <div class="nav-item" onclick="navigate('perfil')">${iconeSvg("user")}<span>Perfil</span></div>
         <div class="nav-item" onclick="fazerLogout()">${iconeSvg("logout")}<span>Sair</span></div>
       </div>`;

@@ -1,4 +1,4 @@
-/* Esc — codigo/10-telas-do-aluno.js  (parte 10 de 13)
+/* Esc — codigo/10-telas-do-aluno.js  (parte 10 de 14)
    Favoritos, Livro de Ouro, Histórico de Atividade, Meu Desempenho, Meta, Meu Grupo e Perfil.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
@@ -1004,6 +1004,7 @@ function renderPerfil(){
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
     </div>
   </div>` : ""}
+  ${renderCardAjuda()}
   ${renderCardInstalarApp()}
   ${renderCardSenha()}
   ${renderCardNuvem()}

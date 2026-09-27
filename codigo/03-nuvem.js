@@ -1,4 +1,4 @@
-/* Esc — codigo/03-nuvem.js  (parte 3 de 13)
+/* Esc — codigo/03-nuvem.js  (parte 3 de 14)
    A nuvem (Supabase): entrar, cadastrar, sair, o mapa das tabelas, a fila de envio e a sincronização.
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num

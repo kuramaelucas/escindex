@@ -88,7 +88,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 ## 4. Figuras para anexar (233)
 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
-Nada mais precisa mudar.
+Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
 O nome exato de cada arquivo e a descrição do que a prova mostrava estão em `dados/imagens/LEIA-ME.md`.
 As provas da AMRIGS (2022 a 2025) e a USP-RP 2026 já têm todas as figuras.
 

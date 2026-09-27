@@ -1,4 +1,4 @@
-/* Esc — codigo/13-admin-e-inicializacao.js  (parte 13 de 13)
+/* Esc — codigo/14-admin-e-inicializacao.js  (parte 14 de 14)
    Blocos de Estudo, Configurações, versão nova/cache antigo e a INICIALIZAÇÃO da plataforma (sempre o último arquivo).
    Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
    ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
