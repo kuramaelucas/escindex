@@ -344,6 +344,14 @@ As provas da Santa Casa de 2022 a 2026 chegaram sem as figuras (o arquivo de
 origem só tinha o texto); as 7 figuras da prova de 2021 já estão aqui
 (`q-scmsp2021-*`), recortadas do caderno de questões.
 
+### AMRIGS 2022–2023 — nenhuma pendente
+
+As duas provas vieram no caderno oficial, e as 14 figuras (5 de 2022 e 9 de
+2023) já estão nesta pasta (`q-amrigs*`), recortadas do caderno e conferidas a
+olho: `.jpg` para fotos, radiografia, ECG e ilustrações; `.png` para gráficos,
+esquemas e tabelas. Na 2023-54, as quatro alternativas são as próprias
+ilustrações (A a D), reunidas numa figura só.
+
 ## Questão nova com imagem
 
 No arquivo da prova, acrescente à questão:

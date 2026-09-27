@@ -306,7 +306,7 @@ const CONFIG = {
   // ou não. Enunciado e gabarito oficiais de provas públicas são domínio
   // público e podem ser usados integralmente; ver a nota de política de
   // conteúdo logo acima de SEED_QUESTOES.
-  instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (Famema/Botucatu)"],
+  instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (Famema/Botucatu)", "AMRIGS"],
 
   // NUVEM — conta de verdade e estudo em vários aparelhos.
   // Vazio = a plataforma funciona exatamente como sempre funcionou, só com o
