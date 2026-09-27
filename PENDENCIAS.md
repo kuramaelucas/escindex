@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 27/09/2026: 2.533 questões, das quais 2.398 reais, de 23 provas.
+Situação em 27/09/2026: 2.733 questões, das quais 2.598 reais, de 25 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -49,7 +49,7 @@ Nas questões abaixo, a explicação já avisa que o gabarito é discutível:
 | 2025-40 | O DIU de cobre é categoria 1 da OMS; o gabarito prefere a pílula de progestágeno |
 | 2025-50 | A OMS recomenda cálcio a partir de 20 semanas; o gabarito diz que nenhuma profilaxia deve ser prescrita |
 
-### AMRIGS 2022 e 2023: gabarito definitivo oficial, mas discutível pela literatura
+### AMRIGS 2022 a 2025: gabarito definitivo oficial, mas discutível pela literatura
 
 O gabarito é o da banca e fica como está. A explicação diz onde ele diverge das fontes:
 
@@ -70,6 +70,14 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | 2023-37 | O T por tamanho vale para o GIST; no adenocarcinoma de delgado, o T é pela profundidade |
 | 2023-67 | Idade gestacional abaixo de 38 semanas (alternativa C) também é fator de risco |
 | 2023-71 | Aos 2 meses, estreptococo do grupo B e pneumococo também são prováveis |
+| 2024-25 | Estenose pilórica no adulto: a banca dá úlcera, mas hoje a neoplasia responde por boa parte dos casos |
+| 2024-27 | Pólipo de vesícula: o gabarito usa 8 mm; o limiar mais aceito para cirurgia é 10 mm |
+| 2024-36 | A alternativa B (reparo das hérnias paraesofágicas decidido pelos sintomas) também é defensável |
+| 2025-6 | "Apenas enterobactérias reduzem nitrato" é excessivo; foi a alternativa escolhida por exclusão |
+| 2025-16 | A dupla antiagregação após AVC menor também é eficaz, o que relativiza o "único" da alternativa B |
+| 2025-29 | Diverticulite com ar pericólico: as diretrizes indicam antibiótico, e a alternativa D não o menciona |
+| 2025-51 | Chamar 10 horas de trabalho de parto com 4 cm de "fase latente prolongada" é impreciso |
+| 2025-65 | Refluxo vesicoureteral grau II com ITU febril de repetição: há diretrizes que manteriam a profilaxia |
 
 ### Outras bancas
 
@@ -82,7 +90,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
 Nada mais precisa mudar.
 O nome exato de cada arquivo e a descrição do que a prova mostrava estão em `dados/imagens/LEIA-ME.md`.
-As provas da AMRIGS e a USP-RP 2026 já têm todas as figuras.
+As provas da AMRIGS (2022 a 2025) e a USP-RP 2026 já têm todas as figuras.
 
 | Prova | Qtd | Questões |
 | --- | --- | --- |
