@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TAXONOMIA — as 5 grandes áreas, 41 especialidades e 235 assuntos
+   TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos
    ==========================================================================
    A árvore que classifica tudo na plataforma: área > especialidade > assunto.
    Toda questão e todo flashcard apontam para um `assuntoId` daqui, então este
@@ -367,5 +367,8 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-violenciasexual", especialidadeId: "esp-ginecologia", nome: "Violência Sexual e Aborto Legal" },
     { id: "ass-financiamento", especialidadeId: "esp-sus", nome: "Financiamento do SUS e Saúde Suplementar" },
     { id: "ass-incorporacao", especialidadeId: "esp-sus", nome: "Incorporação de Tecnologias no SUS (CONITEC)" },
+    { id: "ass-cardiopatiascongenitas", especialidadeId: "esp-cardio", nome: "Cardiopatias Congênitas (Shunts, Fallot, Coarctação, Eisenmenger)" },
+    { id: "ass-capancreas", especialidadeId: "esp-cirurgiaonco", nome: "Câncer de Pâncreas e Tumores Periampulares" },
+    { id: "ass-febremaculosa", especialidadeId: "esp-infecto", nome: "Febre Maculosa e Outras Riquetsioses" },
   ],
 });

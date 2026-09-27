@@ -21,8 +21,8 @@ celular de cada aluno.
 
 A lista sempre atualizada sai do conferidor: `npm run conferir` (ou
 `node testes/conferir-dados.mjs`) lista cada questão que ainda espera figura e
-o nome exato do arquivo. Em 26/09/2026 eram 75 — 13 da UNIFESP, 32 da Santa Casa e 30 da USP-SP
-(estas listadas numa tabela à parte, mais abaixo):
+o nome exato do arquivo. Em 27/09/2026 eram 157 — 13 da UNIFESP, 32 da Santa Casa, 30 da USP-SP
+e 82 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
@@ -128,6 +128,125 @@ acrescentada)". Ao anexar a figura, vale relê-la e completar a explicação.
 | `q-usp2023-117.png` | As quatro alternativas são fotografias de dispositivos de nutrição (A, B, C e D) |
 | `q-usp2023-119.png` | As quatro alternativas são imagens de FAST (A, B, C e D) |
 | `q-usp2023-120.png` | Figura da lesão hepática; as quatro alternativas são ilustrações de condutas operatórias (A, B, C e D) |
+
+</details>
+
+### USP-RP (FMRP) 2023–2026 — 82 figuras
+
+A prova de **2026** veio no caderno oficial em PDF, e as 35 figuras dela já
+estão nesta pasta (`q-usprp2026-*`), recortadas do caderno e conferidas a olho:
+`.png` para tabelas (exames, espirometria, monitorização glicêmica) e `.jpg`
+para fotos, exames de imagem, gráficos e traçados.
+
+As provas de **2023, 2024 e 2025** vieram numa edição comentada só em texto
+(sem nenhuma figura; dos comentários, nada foi aproveitado). As 82 questões
+que dependiam de figura apontam para `q-usprp20AA-NNN.png` e descrevem em
+`imagemPendente` o que a prova mostrava; as explicações já descrevem o achado
+esperado pelo texto e pelo gabarito, e valem ser relidas quando a figura
+chegar. Algumas têm alternativas que só fazem sentido com a figura (2023-65,
+esquema do néfron; 2024-42, fonogramas; 2025-60, figuras 1 a 4; 2025-61,
+imagens A a D). Os cadernos oficiais de 2023 a 2025 resolvem tudo de uma vez.
+
+<details><summary>USP-RP 2023 — 32 figuras</summary>
+
+| Arquivo | O que a prova mostrava |
+| --- | --- |
+| `q-usprp2023-005.png` | Foto das lesões cutâneas em membros inferiores e nádegas |
+| `q-usprp2023-006.png` | Radiografia de controle após a passagem da sonda nasogástrica |
+| `q-usprp2023-007.png` | Foto da genitália do recém-nascido |
+| `q-usprp2023-012.png` | Radiografia após a ingestão do objeto |
+| `q-usprp2023-014.png` | Quadro do cartão vacinal da criança |
+| `q-usprp2023-021.png` | Inspeção vulvar com as lesões genitais |
+| `q-usprp2023-026.png` | Cardiotocografia (com marcação dos movimentos fetais) |
+| `q-usprp2023-027.png` | Partograma da evolução do trabalho de parto |
+| `q-usprp2023-032.png` | Inspeção vulvar (foto da lesão) |
+| `q-usprp2023-037.png` | Grade do POP-Q com as medidas da paciente |
+| `q-usprp2023-042.png` | Registro do teste de sensibilidade com estesiômetro (monofilamentos) nos pés |
+| `q-usprp2023-043.png` | Cartão vacinal da criança de 5 meses |
+| `q-usprp2023-050.png` | Gráfico de riscos relativos ajustados (com intervalos de confiança) por meio de transporte |
+| `q-usprp2023-053.png` | Curva ROC do teste diagnóstico |
+| `q-usprp2023-058.png` | Fotos das lesões no tronco e no antebraço |
+| `q-usprp2023-059.png` | Gráfico de crescimento do paciente (com a altura-alvo) |
+| `q-usprp2023-060.png` | Foto da lesão no braço |
+| `q-usprp2023-061.png` | Eletrocardiograma de 12 derivações |
+| `q-usprp2023-062.png` | Foto da unha do primeiro quirodáctilo esquerdo |
+| `q-usprp2023-065.png` | Esquema do néfron com os segmentos marcados de A a D |
+| `q-usprp2023-070.png` | Foto do olho com o arco esbranquiçado na periferia da córnea |
+| `q-usprp2023-071.png` | Esfregaço de sangue periférico |
+| `q-usprp2023-073.png` | Radiografias de tórax da admissão (A) e após 20 dias (B) |
+| `q-usprp2023-077.png` | Eletrocardiograma do terceiro dia de internação |
+| `q-usprp2023-079.png` | Foto dos pés |
+| `q-usprp2023-080.png` | Mãos após o teste de contato com gelo |
+| `q-usprp2023-082.png` | Exames de imagem da aorta dos pacientes 1 e 2 |
+| `q-usprp2023-084.png` | Fotos dos cálculos numerados de 1 a 4, retirados na cirurgia |
+| `q-usprp2023-086.png` | Tomografia de crânio sem contraste (A) e com contraste (B) |
+| `q-usprp2023-087.png` | Ultrassonografia transfontanelar |
+| `q-usprp2023-095.png` | Ressonância magnética da coluna lombar |
+| `q-usprp2023-100.png` | Tomografia de abdome |
+
+</details>
+
+<details><summary>USP-RP 2024 — 25 figuras</summary>
+
+| Arquivo | O que a prova mostrava |
+| --- | --- |
+| `q-usprp2024-002.png` | Resultado da série vermelha do hemograma |
+| `q-usprp2024-004.png` | Laudo da citologia oncótica |
+| `q-usprp2024-010.png` | Gráfico da associação entre concentração de PM10/PM2,5 e mortalidade, com os limites das agências |
+| `q-usprp2024-011.png` | Gráfico do risco relativo de óbito conforme a temperatura média em algumas cidades (Bangcoc, Madri, Taipei, Chicago) |
+| `q-usprp2024-019.png` | Gráfico da participação (%) da receita própria aplicada em saúde pelos três municípios e pelo estado |
+| `q-usprp2024-021.png` | Ressonância magnética do encéfalo |
+| `q-usprp2024-022.png` | Foto da lesão pré-auricular com linfonodos cervicais |
+| `q-usprp2024-024.png` | Resultado da gasometria arterial do paciente em ventilação mecânica |
+| `q-usprp2024-031.png` | Foto da lesão ulcerada no pavilhão auricular |
+| `q-usprp2024-034.png` | Imagem da ultrassonografia à beira do leito |
+| `q-usprp2024-035.png` | Tomografia de abdome realizada no pronto-socorro |
+| `q-usprp2024-038.png` | Tomografia de crânio |
+| `q-usprp2024-041.png` | Eletrocardiograma de 12 derivações |
+| `q-usprp2024-042.png` | Fonogramas (diagramas 1 a 4) da ausculta cardíaca |
+| `q-usprp2024-044.png` | Foto das lesões de pele |
+| `q-usprp2024-063.png` | Gráfico com os níveis de bilirrubina para indicação de fototerapia conforme a idade em horas |
+| `q-usprp2024-068.png` | Registro do desenvolvimento na Caderneta da Criança |
+| `q-usprp2024-076.png` | Traçado eletrocardiográfico |
+| `q-usprp2024-078.png` | Curva ponderal do paciente |
+| `q-usprp2024-080.png` | Foto da genitália e tabela dos exames hormonais |
+| `q-usprp2024-082.png` | Ultrassonografia transvaginal |
+| `q-usprp2024-083.png` | Traçado do estudo urodinâmico |
+| `q-usprp2024-089.png` | Mamografia — incidências craniocaudal e mediolateral oblíqua |
+| `q-usprp2024-093.png` | Cardiotocografia do dia |
+| `q-usprp2024-096.png` | Resultado do teste de gravidez na urina |
+
+</details>
+
+<details><summary>USP-RP 2025 — 25 figuras</summary>
+
+| Arquivo | O que a prova mostrava |
+| --- | --- |
+| `q-usprp2025-005.png` | Radiografia de tórax |
+| `q-usprp2025-008.png` | Foto das lesões cutâneas do lactente |
+| `q-usprp2025-012.png` | Tabela com os exames da primeira avaliação e os atuais (perfil lipídico e outros) |
+| `q-usprp2025-019.png` | Curva de crescimento com os pesos do lactente nos primeiros 6 meses |
+| `q-usprp2025-023.png` | Genograma da família |
+| `q-usprp2025-035.png` | Figura 1 do estudo — curvas de incidência do desfecho primário por presença ou ausência de micro e nanoplásticos |
+| `q-usprp2025-036.png` | Figura do risco relativo de insuficiência renal aguda conforme a temperatura média diária |
+| `q-usprp2025-037.png` | Mapa do SEEG com as emissões de gases de efeito estufa por município e setor |
+| `q-usprp2025-038.png` | Figura do impacto acumulado do Programa Expandido de Imunizações por vacina |
+| `q-usprp2025-043.png` | Quadro do escore MEOWS (sinais vitais em negrito) |
+| `q-usprp2025-044.png` | Quadro do perfil glicêmico da última semana |
+| `q-usprp2025-045.png` | Cardiotocografias antes (Figura 1) e após as medidas de reanimação intrauterina (Figura 2) |
+| `q-usprp2025-047.png` | Partograma da evolução do trabalho de parto |
+| `q-usprp2025-053.png` | Foto da mama (inspeção estática) |
+| `q-usprp2025-054.png` | Exame físico e estudo urodinâmico |
+| `q-usprp2025-056.png` | Ultrassonografia transvaginal |
+| `q-usprp2025-060.png` | Figuras 1 a 4 com opções de orientação contraceptiva |
+| `q-usprp2025-061.png` | Imagens A a D (achados de exame físico) |
+| `q-usprp2025-062.png` | Eletrocardiograma |
+| `q-usprp2025-064.png` | Foto das lesões do abdome |
+| `q-usprp2025-072.png` | Fotos das lesões de pele |
+| `q-usprp2025-074.png` | Resultado da monitorização ambulatorial da pressão arterial (MAPA) |
+| `q-usprp2025-079.png` | Foto dos joelhos |
+| `q-usprp2025-080.png` | Foto da pele do paciente |
+| `q-usprp2025-097.png` | Foto do nódulo cervical em nível II |
 
 </details>
 

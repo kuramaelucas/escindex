@@ -27,7 +27,7 @@ porque todo o resto aponta para ela):
 
 | Arquivo | Conteúdo | Itens |
 | --- | --- | --- |
-| `taxonomia.js` | Área > especialidade > assunto | 5 + 41 + 235 |
+| `taxonomia.js` | Área > especialidade > assunto | 5 + 41 + 238 |
 | `calendario.js` | Blocos de estudo e a sequência de cada ano | 8 + 4 anos (o 4º tem 10 blocos e 10 turmas; o 5º, 12 estágios e o quadro de turmas) |
 | `banco-didatico.js` | Questões autorais da equipe, no estilo da prova | 135 |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 (Acesso Direto), prova real | 100 |
@@ -45,24 +45,29 @@ porque todo o resto aponta para ela):
 | `prova-usp-2024.js` | USP-SP (FMUSP) 2024 (R1 Acesso Direto), prova real | 120 |
 | `prova-usp-2025.js` | USP-SP (FMUSP) 2025 (R1 Acesso Direto), prova real | 120 |
 | `prova-usp-2026.js` | USP-SP (FMUSP) 2026 (R1 Acesso Direto), prova real | 120 |
+| `prova-usprp-2023.js` | USP-RP (FMRP) 2023 (R1 Acesso Direto), prova real | 100 |
+| `prova-usprp-2024.js` | USP-RP (FMRP) 2024 (R1 Acesso Direto), prova real | 100 |
+| `prova-usprp-2025.js` | USP-RP (FMRP) 2025 (R1 Acesso Direto), prova real | 100 |
+| `prova-usprp-2026.js` | USP-RP (FMRP) 2026 (R1 Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
+| `flashcards-assuntos-usprp.js` | Cartões dos 3 assuntos abertos pelas provas da USP-RP (revisão pendente) | 9 |
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **1.715 questões** (1.580 reais, de 15 provas), **934 cartões**, **235 assuntos** (todos com pelo
+Total: **2.115 questões** (1.980 reais, de 19 provas), **943 cartões**, **238 assuntos** (todos com pelo
 menos 3 cartões da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
-ver `imagens/LEIA-ME.md`, que lista as 75 que ainda faltam.
+ver `imagens/LEIA-ME.md`, que lista as 157 que ainda faltam.
 
 ### Para a turma real entrar
 
 Esvazie **só** o `demonstracao.js` — deixe as três listas como `[]`. A
 plataforma abre limpa, sem contas de teste, sem comentários inventados e sem
 os agradecimentos de exemplo, e não perde questão, cartão nem calendário. Os
-outros vinte e um arquivos continuam valendo.
+outros vinte e sete arquivos continuam valendo.
 
 As contas de teste já estão no mínimo: **uma** de administrador (a da
 coordenação que mantém a plataforma) mais professor, residente e aluno, que

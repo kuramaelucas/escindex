@@ -115,8 +115,12 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
      dados/prova-usp-2024.js       120 questões reais da USP-SP (FMUSP)
      dados/prova-usp-2025.js       120 questões reais da USP-SP (FMUSP)
      dados/prova-usp-2026.js       120 questões reais da USP-SP (FMUSP)
+     dados/prova-usprp-2023.js     100 questões reais da USP-RP (FMRP)
+     dados/prova-usprp-2024.js     100 questões reais da USP-RP (FMRP)
+     dados/prova-usprp-2025.js     100 questões reais da USP-RP (FMRP)
+     dados/prova-usprp-2026.js     100 questões reais da USP-RP (FMRP)
                                    ---
-                                  1715 questões
+                                  2115 questões
 
    PARA ACRESCENTAR QUESTÕES há três caminhos, do mais fácil ao mais
    trabalhoso: (1) a tela "Importar Questões" dentro do app, que não exige
