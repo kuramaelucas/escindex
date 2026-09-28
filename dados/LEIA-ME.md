@@ -66,7 +66,7 @@ Total: **2.733 questões** (2.598 reais, de 25 provas), **943 cartões**, **238 
 menos 3 cartões da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
-ver `imagens/LEIA-ME.md`, que lista as 233 que ainda faltam. O resumo de tudo o que falta no banco de questões
+ver `imagens/LEIA-ME.md`, que lista as 220 que ainda faltam. O resumo de tudo o que falta no banco de questões
 (provas incompletas, textos cortados, gabaritos a conferir) está em
 `../PENDENCIAS.md`.
 

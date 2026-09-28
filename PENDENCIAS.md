@@ -85,13 +85,13 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | --- | --- |
 | USP-SP 2025-114 | A alternativa D também seria defensável pelos dados da tabela |
 
-## 4. Figuras para anexar (233)
+## 4. Figuras para anexar (220)
 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
 Pela plataforma: **Questões para Atualizar › Enviar a figura** libera a questão na hora (com a nuvem, para toda a turma), e **Baixar as atualizações** + `npm run atualizar-dados -- arquivo.json` traz as figuras e os consertos para cá.
 O nome exato de cada arquivo e a descrição do que a prova mostrava estão em `dados/imagens/LEIA-ME.md`.
-As provas da AMRIGS (2022 a 2025) e a USP-RP 2026 já têm todas as figuras.
+As provas da UNIFESP (2022 a 2026), da AMRIGS (2022 a 2025) e a USP-RP 2026 já têm todas as figuras.
 
 | Prova | Qtd | Questões |
 | --- | --- | --- |
@@ -106,11 +106,6 @@ As provas da AMRIGS (2022 a 2025) e a USP-RP 2026 já têm todas as figuras.
 | Santa Casa 2023 | 9 | 10, 15, 17–19, 45, 49, 75, 76 |
 | Santa Casa 2025 | 5 | 38, 40, 44, 63, 64 |
 | Santa Casa 2026 | 12 | 10, 17, 21, 23, 29, 33–36, 39, 40, 42 |
-| UNIFESP 2022 | 3 | 46, 48, 81 |
-| UNIFESP 2023 | 1 | 23 |
-| UNIFESP 2024 | 2 | 45, 47 |
-| UNIFESP 2025 | 1 | 53 |
-| UNIFESP 2026 | 6 | 33, 36, 40, 60, 61, 74 |
 
 Quando a figura chegar, vale reler a explicação.
 Ela foi escrita a partir do texto e do gabarito, sem ver a imagem.
@@ -128,5 +123,4 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
   Resolvem 158 figuras, os textos incompletos, a questão 7 de 2021, a 2025-99 e a conferência dos gabaritos.
 - **USP-SP 2023**: 29 figuras.
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
-- **UNIFESP 2022 a 2026**: 13 figuras.
 - **AMRIGS 2021**: a prova inteira.

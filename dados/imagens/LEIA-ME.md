@@ -10,7 +10,7 @@ antigas e dos simulados. Continuam no banco, separadas para a equipe em
 ## Como anexar
 
 1. Recorte a figura do PDF oficial da prova (um print da região basta).
-2. Salve aqui com o **nome da questão**: `q-unifesp2026-036.png`.
+2. Salve aqui com o **nome da questão**: `q-scmsp2026-010.png`.
    `.jpg`, `.jpeg` e `.webp` também servem — a plataforma tenta as quatro.
 3. Apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`
    (e, se quiser, acrescente `imagemLegenda`). É isso que a devolve aos alunos.
@@ -37,24 +37,11 @@ celular de cada aluno.
 
 A lista sempre atualizada sai do conferidor: `npm run conferir` (ou
 `node testes/conferir-dados.mjs`) lista cada questão que ainda espera figura e
-o nome exato do arquivo. Em 27/09/2026 eram 233 — 13 da UNIFESP, 32 da Santa Casa, 30 da USP-SP
+o nome exato do arquivo. Em 28/09/2026 eram 220 — 32 da Santa Casa, 30 da USP-SP
 e 158 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
-| `q-unifesp2022-046.png` | Tabela 2×2 do estudo de coorte (exposição × doença em 5 anos) |
-| `q-unifesp2022-048.png` | Tabela 2×2 do ensaio clínico (para o cálculo do NNT) |
-| `q-unifesp2022-081.png` | ECG de 12 derivações da admissão |
-| `q-unifesp2023-023.png` | Gráfico da projeção do orçamento federal para ASPS |
-| `q-unifesp2024-045.png` | Exame de imagem da pelve (achado tubário) |
-| `q-unifesp2024-047.png` | Mamografia, complemento e ultrassonografia (questão anulada) |
-| `q-unifesp2025-053.png` | Curva ROC com os pontos I a IV |
-| `q-unifesp2026-033.png` | Resultado da cultura com antibiograma |
-| `q-unifesp2026-036.png` | Radiografia de tórax |
-| `q-unifesp2026-040.png` | Tabela da espirometria |
-| `q-unifesp2026-060.png` | Ultrassonografia abdominal (vesícula, com setas) |
-| `q-unifesp2026-061.png` | Imagens do exame da coluna lombar |
-| `q-unifesp2026-074.png` | Quadro do estudo de fratura de fêmur por sexo e idade |
 | `q-scmsp2022-011.png` | Cortes axiais de TC de crânio sem contraste |
 | `q-scmsp2022-013.png` | Diagrama corporal das áreas queimadas (anulada) |
 | `q-scmsp2022-023.png` | Curva de IMC para idade (meninas, OMS) |
@@ -367,6 +354,17 @@ As quatro provas vieram no caderno oficial, e as 23 figuras (5 de 2022, 9 de
 olho: `.jpg` para fotos, radiografia, ECG e ilustrações; `.png` para gráficos,
 esquemas e tabelas. Na 2023-54, na 2024-46 e na 2024-60, as quatro
 alternativas são as próprias ilustrações (A a D), reunidas numa figura só.
+
+### UNIFESP 2022–2026 — nenhuma pendente
+
+As 13 figuras que faltavam (28/09) foram recortadas de uma edição da Medway só
+com as questões que têm imagem, na resolução em que o PDF as trazia, sobre
+fundo branco; `.jpg` para exames de imagem e traçados, `.png` para tabelas e
+gráficos. Na 2026-61 os dois cortes da ressonância (sagital e axial) ficaram
+numa figura só. Do mesmo PDF saíram também as figuras de cinco questões que já
+estavam no estudo com o dado da figura só no texto ou sem ele — 2022-32
+(cardiotocografia), 2022-37 (quadro do pré-natal), 2022-38 (perfil
+glicêmico), 2025-4 (ECG) e 2026-18 (angiotomografia).
 
 ## Questão nova com imagem
 

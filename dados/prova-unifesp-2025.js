@@ -56,11 +56,12 @@ window.EscDados.registrarQuestoes("prova-unifesp-2025", [
 },
 {
   id:"q-unifesp2025-004", banca:"UNIFESP-EPM", real:true, ano:2025, numeroNaProva:4,
+  imagemUrl:"dados/imagens/q-unifesp2025-004.jpg", imagemLegenda:"Eletrocardiograma da admissão",
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
   enunciado:"Homem, 48 anos de idade, previamente assintomático, comparece ao PS com dor torácica de forte intensidade, em aperto, com início súbito e irradiação para dorso e região interescapular, há 2 horas. Exame físico: sudoreico, FC 100 bpm, PA 190 x 100 mm Hg nos quatro membros, pulsos rítmicos e presença de sopro diastólico suave, 4+/6+, no foco aórtico. Após análise do eletrocardiograma, qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Cirurgia de emergência"},{id:"B",texto:"Angioplastia primária da artéria culpada"},{id:"C",texto:"Passagem de balão intra-aórtico"},{id:"D",texto:"Trombólise com alteplase"}],
   gabarito:"A",
-  explicacaoGeral:"Dor torácica súbita e intensa com irradiação para o dorso/região interescapular, hipertensão importante, sopro diastólico de insuficiência aórtica (indicando comprometimento da valva aórtica pela dissecção proximal) configuram o quadro clássico de dissecção aguda de aorta tipo A (Stanford), que envolve a aorta ascendente — uma emergência cirúrgica absoluta, já que o risco de ruptura, tamponamento cardíaco ou insuficiência aórtica aguda grave é iminente, sendo a cirurgia de emergência (troca do segmento acometido) a conduta correta, diferente do infarto (tratado com trombólise/angioplastia).",
+  explicacaoGeral:"Dor torácica súbita, lancinante, irradiada para o dorso/região interescapular, com hipertensão importante e sopro diastólico aórtico novo (insuficiência aórtica) é o quadro clássico de dissecção aguda da aorta tipo A (Stanford), que acomete a aorta ascendente. O ECG mostra supradesnivelamento do ST em parede inferior (DII, DIII e aVF), com alteração recíproca do ST em aVL: é a armadilha da questão — a dissecção pode estender-se ao óstio da coronária direita e simular um infarto inferior. Trombólise ou anticoagulação/antiagregação para angioplastia podem ser fatais nesse contexto; a conduta é a cirurgia de emergência (troca da aorta ascendente), já que o risco de ruptura, tamponamento e insuficiência aórtica grave é iminente.",
   explicacoesAlternativas:{},
   referencias:"Sociedade Brasileira de Cardiologia, diretriz de Doenças da Aorta; Classificação de Stanford para Dissecção Aórtica.",
   dificuldadeManual:"avancado", status:"ativa",
@@ -698,7 +699,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2025", [
 },
 {
   id:"q-unifesp2025-053", banca:"UNIFESP-EPM", real:true, ano:2025, numeroNaProva:53,
-  imagemUrl:"dados/imagens/q-unifesp2025-053.png", imagemPendente:"Gráfico da curva ROC com os pontos I, II, III e IV marcados.",
+  imagemUrl:"dados/imagens/q-unifesp2025-053.png", imagemLegenda:"Curva ROC com os pontos I a IV",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Você quer diagnosticar hipertensão arterial (PAx140/90 mmHg) e está usando um esfigmomanômetro que, por um defeito, sempre marca 140/90 mmHg ou mais, indicando corretamente as pressões acima destas. Indique o ponto da curva ROC (imagem a seguir) que representa a sensibilidade e a especificidade desse instrumento.",
   alternativas:[{id:"A",texto:"I"},{id:"B",texto:"IV"},{id:"C",texto:"III"},{id:"D",texto:"II"}],
