@@ -1,8 +1,5 @@
-/* Esc — codigo/02-persistencia.js  (parte 2 de 14)
-   Os apelidos SEED_* do conteúdo da pasta dados/, a conferência dos arquivos de conteúdo e a persistência (localStorage, migrações, rede de segurança do banco).
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/02-persistencia.js — apelidos SEED_* do conteúdo de dados/, conferência dos arquivos de conteúdo, loadState/saveState, migrações, compactação sobre a semente e rede de segurança do banco (seção 2).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ---------------------------- SEED_TAXONOMIA ------------------------------
    As 5 grandes áreas cobradas em provas de residência médica no Brasil, cada
@@ -51,13 +48,8 @@ const SEED_TAXONOMIA = (window.EscDados && window.EscDados.taxonomia) || { areas
    a regra do rodízio, que é sistema, fica aqui. SEED_BLOCOS é o calendário
    de referência e SEED_SEQUENCIAS_ANO é a sequência de cada ano. */
 const SEED_BLOCOS = (window.EscDados && window.EscDados.blocos) || [];
-/* Nota sobre granularidade dos blocos: um bloco pode juntar quantas
-   especialidades você quiser — "Cirurgia Geral" acima junta as 4
-   especialidades cirúrgicas num bloco só, do jeito que costuma ser dividido
-   de verdade no internato/graduação. Se quiser blocos ainda mais amplos
-   (por exemplo, uma "grande área" inteira num bloco só) ou mais estreitos,
-   é só editar especialidadeIds — tanto em dados/calendario.js quanto pela
-   tela Admin > Blocos de Estudo ou Meu Grupo, sem mexer em mais nada. */
+// um bloco junta quantas especialidades quiser (especialidadeIds), em
+// dados/calendario.js ou pela tela Admin > Blocos de Estudo
 
 /* ---------------------------- SEED_SEQUENCIAS_ANO ------------------------
    Uma sequência de blocos por ano da faculdade. A do 6º ano é o internato
@@ -92,65 +84,18 @@ const SEED_SEQUENCIAS_ANO = (window.EscDados && window.EscDados.sequenciasAno) |
    senha guardada no servidor. */
 const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
 /* ---------------------------- SEED_QUESTOES -------------------------------
-   O BANCO DE QUESTÕES NÃO MORA MAIS AQUI. Ele vem dos arquivos da pasta
-   "dados/", carregados pelas linhas <script src="dados/..."> que ficam logo
-   antes deste código (procure por CONTEÚDO: A PASTA neste arquivo).
-   SEED_QUESTOES é só o apelido que o resto do código usa para a lista já
-   montada, na ordem em que os arquivos entraram:
+   As questões vêm dos arquivos da pasta dados/ (lista e ordem de carga em
+   ESC_ARQUIVOS.dados, no index.html); SEED_QUESTOES é só o apelido da lista
+   já montada. Para acrescentar: a tela Importar Questões (ou a Central de
+   Provas) ou um arquivo novo em dados/ — molde e passo a passo em
+   dados/LEIA-ME.md.
 
-     dados/banco-didatico.js       135 questões autorais de demonstração e
-                                       de construção de conhecimento
-     dados/prova-unifesp-2022.js   100 questões reais da UNIFESP-EPM
-     dados/prova-unifesp-2023.js   100 questões reais da UNIFESP-EPM
-     dados/prova-unifesp-2024.js   100 questões reais da UNIFESP-EPM
-     dados/prova-unifesp-2025.js   100 questões reais da UNIFESP-EPM
-     dados/prova-unifesp-2026.js   100 questões reais da UNIFESP-EPM
-     dados/prova-santacasa-2021.js 100 questões reais da Santa Casa-SP
-     dados/prova-santacasa-2022.js 100 questões reais da Santa Casa-SP
-     dados/prova-santacasa-2023.js 100 questões reais da Santa Casa-SP
-     dados/prova-santacasa-2025.js 100 questões reais da Santa Casa-SP
-     dados/prova-santacasa-2026.js 100 questões reais da Santa Casa-SP
-     dados/prova-usp-2022.js       100 questões reais da USP-SP (FMUSP)
-     dados/prova-usp-2023.js       120 questões reais da USP-SP (FMUSP)
-     dados/prova-usp-2024.js       120 questões reais da USP-SP (FMUSP)
-     dados/prova-usp-2025.js       120 questões reais da USP-SP (FMUSP)
-     dados/prova-usp-2026.js       120 questões reais da USP-SP (FMUSP)
-     dados/prova-usprp-2021.js     118 questões reais da USP-RP (FMRP)
-     dados/prova-usprp-2022.js     100 questões reais da USP-RP (FMRP)
-     dados/prova-usprp-2023.js     100 questões reais da USP-RP (FMRP)
-     dados/prova-usprp-2024.js     100 questões reais da USP-RP (FMRP)
-     dados/prova-usprp-2025.js     100 questões reais da USP-RP (FMRP)
-     dados/prova-usprp-2026.js     100 questões reais da USP-RP (FMRP)
-     dados/prova-amrigs-2022.js    100 questões reais da AMRIGS
-     dados/prova-amrigs-2023.js    100 questões reais da AMRIGS
-     dados/prova-amrigs-2024.js    100 questões reais da AMRIGS
-     dados/prova-amrigs-2025.js    100 questões reais da AMRIGS
-                                   ---
-                                  2733 questões
-
-   PARA ACRESCENTAR QUESTÕES há três caminhos, do mais fácil ao mais
-   trabalhoso: (1) a tela "Importar Questões" dentro do app, que não exige
-   mexer em arquivo nenhum; (2) acrescentar itens a um arquivo que já existe
-   na pasta "dados/"; (3) criar um arquivo novo lá e registrá-lo com mais
-   uma linha <script src="..."> no index.html — é assim que entra uma prova
-   inteira de uma banca nova. O molde de uma questão e o passo a passo estão
-   em dados/LEIA-ME.md.
-
-   POLÍTICA SOBRE QUESTÕES REAIS (leia antes de carregar provas de verdade):
-   Prova de residência médica pública (USP-SP/FMUSP, USP-RP/FMRP, UNIFESP-EPM,
-   Santa Casa de São Paulo, IAMSPE, UNESP etc.) é ato de instituição pública:
-   o ENUNCIADO, as ALTERNATIVAS e o GABARITO OFICIAL divulgados pela própria
-   banca são de DOMÍNIO PÚBLICO e podem ser transcritos e usados integralmente,
-   sem restrição — não é preciso reescrever a pergunta com outras palavras.
-   O que NUNCA pode ser copiado, resumido ou parafraseado é a RESOLUÇÃO/
-   COMENTÁRIO de terceiros (cursinhos como Medway, Estratégia MED, sites de
-   questões comerciais etc.): esse texto é propriedade intelectual deles, e é
-   também a parte mais sujeita a erro e desatualização quando copiada sem
-   checar. A explicação de cada questão real tem de ser ESCRITA PELA EQUIPE,
-   com base em fontes primárias e oficiais (diretrizes, PCDT, artigos), do
-   mesmo jeito que já é feito para as questões autorais.
-   Questão real marca `real: true` e instituição/ano corretos; questão
-   autoral de demonstração mantém `real: false`. */
+   POLÍTICA DE CONTEÚDO (valer para qualquer questão nova): de prova PÚBLICA,
+   enunciado, alternativas e gabarito oficial são domínio público e se
+   transcrevem inteiros. A EXPLICAÇÃO é sempre da equipe, escrita a partir de
+   fontes primárias (diretriz, PCDT, artigo) — nunca copiada, resumida ou
+   parafraseada de cursinho ou site de questões. Questão real: `real: true`,
+   banca, ano e numeroNaProva; autoral de demonstração: `real: false`. */
 const SEED_QUESTOES = (window.EscDados && window.EscDados.questoes) || [];
 
 /* ---------------------------- SEED_LIVRO_OURO -----------------------------
@@ -182,11 +127,9 @@ const SEED_COMENTARIOS = (window.EscDados && window.EscDados.comentarios) || [];
    questões já respondidas (frente = enunciado, verso = gabarito comentado),
    priorizando as que o aluno errou com certeza ou acertou no chute.
 
-   Os 501 cartões da equipe também saíram deste arquivo, pelo mesmo motivo
-   das questões: estão em dados/flashcards-equipe.js, e todos são autorais,
-   escritos para esta plataforma. SEED_FLASHCARDS é o apelido da lista que
-   aquele arquivo entrega. Os cartões PESSOAIS de cada aluno não ficam em
-   arquivo nenhum: nascem no uso e vivem no navegador de quem os escreveu. */
+   Os cartões da equipe (todos autorais) vêm de dados/flashcards-*.js;
+   SEED_FLASHCARDS é o apelido da lista. Os cartões PESSOAIS não ficam em
+   arquivo: nascem no uso e vivem com a conta de quem os escreveu. */
 const SEED_FLASHCARDS = (window.EscDados && window.EscDados.flashcards) || [];
 
 /* ------------------- CONFERÊNCIA DOS ARQUIVOS DE CONTEÚDO -----------------
@@ -667,7 +610,7 @@ function restaurarBancoDeResgate(){
   const bruto = localStorage.getItem(CHAVE_RESGATE);
   if(!bruto){ toast("Não há cópia de resgate neste navegador.", "err"); return; }
   const r = resumoDoResgate();
-  abrirModal(`<div class="modal-header"><h3>Restaurar a cópia de resgate</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+  abrirModal(`${cabecalhoJanela("Restaurar a cópia de resgate")}
     <p class="text-sm">Esta é a cópia do banco como ele estava antes de a plataforma precisar consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s) e ${r.questoes} questão(ões)`:""}. Restaurar substitui os dados atuais deste navegador por ela.</p>
     <p class="text-sm muted mt-1">Exporte um backup do estado atual antes, se ainda não exportou — a restauração não pode ser desfeita.</p>
     <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="restaurarResgateConfirmado()">Restaurar a cópia</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
@@ -757,6 +700,23 @@ function sementesPorId(colecao, sementes){
   if(!_sementesPorId[colecao]) _sementesPorId[colecao] = new Map((sementes() || []).map(x => [x.id, x]));
   return _sementesPorId[colecao];
 }
+/* O JSON de cada campo-objeto da semente, calculado uma vez: a semente não
+   muda enquanto a página está aberta, e compactar roda a cada saveState()
+   (cada resposta, cada clique que grava). Serializar os dois lados de cada
+   campo de 2.700 questões a cada gravação era mais da metade do tempo dela. */
+const _jsonDaSemente = new WeakMap();
+function jsonDoCampoDaSemente(semente, k){
+  let cache = _jsonDaSemente.get(semente);
+  if(!cache){ cache = {}; _jsonDaSemente.set(semente, cache); }
+  if(!(k in cache)) cache[k] = JSON.stringify(semente[k]);
+  return cache[k];
+}
+function campoIgualASemente(valor, semente, k){
+  const s = semente[k];
+  if(valor === s) return true;                                   // mesmo primitivo (ou o mesmo objeto)
+  if(valor === null || s === null || typeof valor !== "object" || typeof s !== "object") return false;
+  return JSON.stringify(valor) === jsonDoCampoDaSemente(semente, k);
+}
 function compactarParaArmazenar(banco){
   const saida = { ...banco };
   COLECOES_COM_SEMENTE.forEach(([colecao, sementes]) => {
@@ -767,7 +727,7 @@ function compactarParaArmazenar(banco){
       if(!semente) return item;
       const dif = { id: item.id, _semente: 1 };
       Object.keys(item).forEach(k => {
-        if(k !== "id" && JSON.stringify(item[k]) !== JSON.stringify(semente[k])) dif[k] = item[k];
+        if(k !== "id" && !campoIgualASemente(item[k], semente, k)) dif[k] = item[k];
       });
       const apagados = Object.keys(semente).filter(k => !(k in item));
       if(apagados.length) dif._semCampos = apagados;
@@ -844,7 +804,7 @@ function saveState(){
 function confirmarReiniciarDemo(){
   if(!podeMexerEmBackup()) return;
   abrirModal(`
-    <div class="modal-header"><h3>Reiniciar dados de demonstração</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg('x')}</button></div>
+    ${cabecalhoJanela("Reiniciar dados de demonstração")}
     <p>Isso vai apagar tudo o que foi feito neste navegador (respostas, cadastros, favoritos, questões adicionadas) e voltar ao ponto de partida da demonstração. Essa ação não pode ser desfeita.</p>
     <div class="flex gap-1 mt-3">
       <button class="btn btn-danger" onclick="reiniciarDemoConfirmado()">Sim, reiniciar tudo</button>
@@ -868,12 +828,7 @@ function podeMexerEmBackup(){
 function exportarBackup(){
   if(!podeMexerEmBackup()) return;
   db.ultimoBackupEm = hojeISO();
-  const blob = new Blob([JSON.stringify(db, null, 2)], {type:"application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = "esc-backup-"+hojeISO()+".json";
-  document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
+  baixarArquivo("esc-backup-"+hojeISO()+".json", JSON.stringify(db, null, 2), "application/json");
   saveState();
   toast("Backup baixado.");
 }

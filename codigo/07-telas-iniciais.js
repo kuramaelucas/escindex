@@ -1,8 +1,5 @@
-/* Esc — codigo/07-telas-iniciais.js  (parte 7 de 14)
-   Telas públicas (landing, entrar, cadastro), primeiro acesso, painel inicial, tela Estudar e a questão na íntegra.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/07-telas-iniciais.js — telas públicas (landing, entrar, cadastro, volta do e-mail), primeiro acesso, painel inicial, Estudar e a questão na íntegra (seções 8–10-B).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    8. TELAS PÚBLICAS — landing / login / cadastro
@@ -408,8 +405,10 @@ function renderCardFeedbackGeral(){
 }
 function abrirModalFeedback(){
   abrirModal(`
-    <div class="modal-header"><h3>Comentário, sugestão ou reclamação</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
-    <p class="text-sm muted">Isso vai direto pra coordenação. Pode ser sobre qualquer coisa da plataforma.</p>
+    ${cabecalhoJanela("Comentário, sugestão ou reclamação")}
+    <p class="text-sm muted">${nuvemConectado()
+      ? "Sobe para a nuvem e chega aos administradores, em qualquer aparelho em que eles entrarem. Pode ser sobre qualquer coisa da plataforma."
+      : "Pode ser sobre qualquer coisa da plataforma. Você não está numa conta da nuvem: a mensagem fica neste navegador, e a coordenação só a vê entrando aqui."}</p>
     <div class="field"><label class="label">Tipo</label><select class="select" id="fbTipo"><option value="comentario">Comentário</option><option value="sugestao">Sugestão</option><option value="reclamacao">Reclamação</option></select></div>
     <div class="field"><label class="label">Mensagem</label><textarea class="textarea" id="fbTexto" style="min-height:110px" placeholder="Escreva à vontade..."></textarea></div>
     <button class="btn btn-primary" onclick="enviarFeedbackGeral()">Enviar</button>
@@ -420,10 +419,12 @@ function enviarFeedbackGeral(){
   const texto = document.getElementById("fbTexto").value.trim();
   if(!texto){ toast("Escreva algo antes de enviar.", "err"); return; }
   const u = usuarioAtual();
-  db.feedbacks.push({id:uid("fb"), usuarioId:u.id, papel:u.papel, tipo, texto, data:hojeISO(), lido:false});
+  const fb = {id:uid("fb"), usuarioId:u.id, autorNome:u.nome, papel:u.papel, tipo, texto, data:hojeISO(), lido:false};
+  db.feedbacks.push(fb);
+  const naNuvem = nuvemMarcarFeedback(fb.id);
   saveState();
   fecharModal();
-  toast("Enviado! Obrigado pelo retorno.");
+  toast(naNuvem ? "Enviado! A mensagem sobe para a nuvem e chega aos administradores. Obrigado pelo retorno." : "Guardado neste navegador — sem conta na nuvem, ele não chega a outros aparelhos. Obrigado pelo retorno.");
 }
 function renderInicioAluno(u){
   const bloco = getBlocoAtual();
@@ -783,7 +784,7 @@ function abrirQuestaoCompleta(qid, opts){
   const fav = u ? isFavorita(u.id, q.id) : false;
   const minhaNota = u ? notaDaFavorita(u.id, q.id) : "";
   abrirModal(`
-    <div class="modal-header"><h3>Questão na íntegra</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Questão na íntegra")}
     <div class="qcard-meta mb-2">
       <span class="badge badge-accent">${escapeHtml(area?area.nome:"—")}</span>
       <span class="badge badge-muted">${escapeHtml(esp?esp.nome:"—")}</span>

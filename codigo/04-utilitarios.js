@@ -1,8 +1,5 @@
-/* Esc — codigo/04-utilitarios.js  (parte 4 de 14)
-   Utilidades gerais: datas, paginação, gráficos SVG, janelas, avisos, sequência de blocos e rodízio, permissões de administrador.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/04-utilitarios.js — utilidades (seção 3): datas, paginação, janelas (abrirModal, cabecalhoJanela), baixarArquivo, gráficos SVG, rodízio de blocos, consultas por id e permissões de administrador.
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    3. UTILITÁRIOS GERAIS
@@ -148,10 +145,12 @@ function fecharModal(){
    sair" / "Sair mesmo assim") e ao trazer para a conta o estudo guardado
    neste navegador. */
 function abrirModalTitulado(titulo, corpoHtml, tamanho){
-  abrirModal(
-    '<div class="modal-header"><h3>' + escapeHtml(titulo) + '</h3>' +
-    '<button class="icon-btn" onclick="fecharModal()">' + iconeSvg("x") + '</button></div>' +
-    (corpoHtml || ""), tamanho);
+  abrirModal(cabecalhoJanela(escapeHtml(titulo)) + (corpoHtml || ""), tamanho);
+}
+/* O cabeçalho padrão de toda janela: título (já em HTML — pode ter ícone)
+   e o X de fechar. */
+function cabecalhoJanela(tituloHtml){
+  return '<div class="modal-header"><h3>' + tituloHtml + '</h3><button class="icon-btn" onclick="fecharModal()">' + iconeSvg("x") + '</button></div>';
 }
 
 function copiarTexto(texto, mensagem){
@@ -165,24 +164,16 @@ function copiarTexto(texto, mensagem){
   }
 }
 
-// pequeno gráfico de linha (sparkline) em SVG puro, sem bibliotecas externas
-function sparklineSvg(valores, opts){
-  opts = opts || {};
-  const w = opts.width || 220, h = opts.height || 56, pad = 6;
-  if(!valores || valores.length < 2){
-    return '<div class="text-xs muted">Ainda não há histórico suficiente para exibir a evolução.</div>';
-  }
-  const min = 0, max = 100;
-  const stepX = (w-2*pad)/(valores.length-1);
-  const pontos = valores.map((v,i)=>{
-    const x = pad + i*stepX;
-    const y = h-pad - ((v-min)/(max-min))*(h-2*pad);
-    return x.toFixed(1)+","+y.toFixed(1);
-  }).join(" ");
-  const corLinha = (valores[valores.length-1] >= valores[0]) ? "var(--accent)" : "var(--danger)";
-  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'" preserveAspectRatio="none">'+
-    '<polyline points="'+pontos+'" fill="none" stroke="'+corLinha+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
-    '</svg>';
+/* Entrega um arquivo para a pessoa salvar (backup, exportações, planilha).
+   O endereço temporário só é liberado alguns segundos depois: liberar na
+   hora cancela o download em alguns navegadores. */
+function baixarArquivo(nome, conteudo, tipo){
+  const blob = conteudo instanceof Blob ? conteudo : new Blob([conteudo], { type: tipo || "application/octet-stream" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = nome;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
 
 // gráfico de barras horizontal (SVG puro) — usado para comparar taxas de
@@ -274,42 +265,6 @@ function graficoBarrasVerticaisSvg(itens, opts){
     '</div>';
 }
 
-// evolução da taxa de acerto ao longo do tempo, agrupada por semana
-function progressaoAoLongoDoTempo(usuarioId){
-  const respostas = db.respostas.filter(r=>r.usuarioId===usuarioId).sort((a,b)=>a.data.localeCompare(b.data));
-  if(!respostas.length) return [];
-  const porSemana = {};
-  respostas.forEach(r=>{
-    const d = new Date(r.data+"T00:00:00");
-    const diaSemana = d.getDay();
-    const offsetSegunda = diaSemana===0 ? -6 : 1-diaSemana;
-    const inicio = new Date(d); inicio.setDate(d.getDate()+offsetSegunda);
-    const chave = dataLocalISO(inicio);
-    if(!porSemana[chave]) porSemana[chave] = {total:0, acertos:0};
-    porSemana[chave].total++;
-    if(r.correta) porSemana[chave].acertos++;
-  });
-  return Object.keys(porSemana).sort().map(s=>({semana:s, taxa:pct(porSemana[s].acertos,porSemana[s].total), n:porSemana[s].total}));
-}
-function graficoLinhaComEixoSvg(pontos){
-  if(pontos.length<2) return '<div class="text-xs muted">Ainda não há histórico suficiente — responda questões em pelo menos duas semanas diferentes para ver a evolução.</div>';
-  const w=640, h=180, padEsq=42, padDir=20, padTopo=16, padBaixo=28;
-  const larguraUtil=w-padEsq-padDir, alturaUtil=h-padTopo-padBaixo;
-  const passo = larguraUtil/(pontos.length-1);
-  const coords = pontos.map((p,i)=>({x:padEsq+i*passo, y:padTopo+alturaUtil-(p.taxa/100)*alturaUtil}));
-  const linha = coords.map(c=>c.x.toFixed(1)+","+c.y.toFixed(1)).join(" ");
-  const pontosSvg = coords.map(c=>'<circle cx="'+c.x+'" cy="'+c.y+'" r="3.5" fill="var(--accent)"/>').join("");
-  const grade = [0,50,100].map(v=>{
-    const y = padTopo+alturaUtil-(v/100)*alturaUtil;
-    return '<line x1="'+padEsq+'" y1="'+y+'" x2="'+(w-padDir)+'" y2="'+y+'" stroke="var(--border)" stroke-width="1"/><text x="'+(padEsq-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="10" fill="var(--muted)">'+v+'%</text>';
-  }).join("");
-  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'">'+grade+
-    '<polyline points="'+linha+'" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'+pontosSvg+
-    '<text x="'+padEsq+'" y="'+(h-6)+'" font-size="10" fill="var(--muted)">'+formatDataBR(pontos[0].semana)+'</text>'+
-    '<text x="'+(w-padDir)+'" y="'+(h-6)+'" text-anchor="end" font-size="10" fill="var(--muted)">'+formatDataBR(pontos[pontos.length-1].semana)+'</text>'+
-    '</svg>';
-}
-
 // histograma simples (curva de notas) — usado no ranking anônimo de simulados
 function graficoHistogramaSvg(buckets, bucketAtual, labels){
   const w=480, h=170, padBaixo=28, padTopo=22, gap=14;
@@ -354,12 +309,35 @@ function estatisticasRankingSimulado(chave, notaAtual){
   return {n, percentil, mediana, buckets, bucketAtual, origem};
 }
 
-/* ---------------------------- consultas rápidas --------------------------- */
+/* ---------------------------- consultas rápidas ---------------------------
+   getQuestao() é chamada dentro de laços por quase toda tela (histórico,
+   revisão, desempenho, listas da equipe) e varria as 2.700 questões a cada
+   chamada. Agora um índice id -> posição responde na hora. Ele não precisa
+   ser avisado de nada: a cada consulta confere se a lista é a mesma, do
+   mesmo tamanho, e se a posição ainda guarda aquele id — qualquer mudança
+   (push, splice, troca da lista, reordenação) só faz o índice ser refeito. */
+const _indicesPorId = {};
+function buscarPorId(nome, lista, id){
+  if(!Array.isArray(lista)) return undefined;
+  const c = _indicesPorId[nome];
+  if(c && c.lista === lista && c.n === lista.length){
+    const i = c.mapa.get(id);
+    if(i !== undefined && lista[i] && lista[i].id === id) return lista[i];
+    // não está no índice: confere na lista (um splice seguido de push deixa
+    // o tamanho igual) e só refaz o índice se o item existir de fato
+    if(i === undefined && !lista.some(x => x && x.id === id)) return undefined;
+  }
+  const mapa = new Map();
+  lista.forEach((x, i) => { if(x && !mapa.has(x.id)) mapa.set(x.id, i); });
+  _indicesPorId[nome] = { lista, n: lista.length, mapa };
+  const i = mapa.get(id);
+  return i === undefined ? undefined : lista[i];
+}
 function getUsuario(id){ return db.usuarios.find(u=>u.id===id); }
 function getArea(id){ return db.taxonomia.areas.find(a=>a.id===id); }
-function getEspecialidade(id){ return db.taxonomia.especialidades.find(e=>e.id===id); }
-function getAssunto(id){ return db.taxonomia.assuntos.find(a=>a.id===id); }
-function getQuestao(id){ return db.questoes.find(q=>q.id===id); }
+function getEspecialidade(id){ return buscarPorId("especialidades", db.taxonomia.especialidades, id); }
+function getAssunto(id){ return buscarPorId("assuntos", db.taxonomia.assuntos, id); }
+function getQuestao(id){ return buscarPorId("questoes", db.questoes, id); }
 function getGrupo(id){ return db.grupos.find(g=>g.id===id); }
 function getGrupoOficial(){ return getGrupo(db.grupoOficialId); }
 // cada aluno pertence a um grupo/turma (calendário de blocos próprio ou
@@ -501,14 +479,6 @@ function rotuloRodizio(ano, deslocamento){
 }
 // "Grupo A" por extenso — usado nos textos de tela
 function nomeRodizio(ano, deslocamento){ return "Grupo " + rotuloRodizio(ano, deslocamento); }
-function deslocamentoDoRotulo(ano, rotulo){
-  const achado = opcoesRodizio(ano).find(o => o.rotulo === rotulo);
-  return achado ? achado.deslocamento : 0;
-}
-// o rótulo de uma turma existente, já resolvido pelo ano dela
-function rodizioDoGrupo(grupo, usuario){
-  return rotuloRodizio(anoDoGrupo(grupo, usuario), grupo && grupo.deslocamento);
-}
 function blocosDoGrupo(grupo, usuario){
   const ano = anoDoGrupo(grupo, usuario);
   const seq = sequenciaDoAno(ano);
@@ -547,17 +517,6 @@ function entrarNoGrupo(usuario, grupoId){
   }
   usuario.grupoId = destino ? destino.id : db.grupoOficialId;
 }
-function blocosDoUsuario(usuario){
-  usuario = usuario || usuarioAtual();
-  return blocosDoGrupo(getGrupoDoUsuario(usuario), usuario);
-}
-function getBloco(id){
-  for(const ano of Object.keys(db.sequenciasAno || {})){
-    const b = (db.sequenciasAno[ano] || []).find(x=>x.id===id);
-    if(b) return b;
-  }
-  return null;
-}
 function especialidadeDeAssunto(assuntoId){ const a=getAssunto(assuntoId); return a ? getEspecialidade(a.especialidadeId) : null; }
 function areaDeAssunto(assuntoId){ const e=especialidadeDeAssunto(assuntoId); return e ? getArea(e.areaId) : null; }
 function nomeAssunto(id){ const a=getAssunto(id); return a ? a.nome : "—"; }
@@ -576,6 +535,7 @@ const PERMISSAO_DA_ROTA = {
   "usuarios":"usuarios", "config-geral":"config", "blocos":"blocos",
   "aprovar-cadastros":"cadastros", "feedback-usuarios":"cadastros", "taxonomia":"taxonomia",
   "material-pdf":"conteudo", "central-provas":"conteudo", "painel-turma":"turma",
+  "atualizar-questoes":"conteudo",
 };
 function nivelAdminDe(usuario){
   if(!usuario || usuario.papel!=="admin") return null;
@@ -599,9 +559,3 @@ function podeGerirConteudo(usuario){
   return podeAdmin("conteudo", usuario);
 }
 function usuarioAtual(){ return state.usuarioAtualId ? getUsuario(state.usuarioAtualId) : null; }
-function blocoDoAssunto(assuntoId, grupo){
-  const esp = especialidadeDeAssunto(assuntoId);
-  if(!esp) return null;
-  const blocos = blocosDoGrupo(grupo || getGrupoOficial());
-  return blocos.find(b => b.especialidadeIds.includes(esp.id)) || null;
-}

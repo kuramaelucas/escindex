@@ -1,8 +1,5 @@
-/* Esc — codigo/10-telas-do-aluno.js  (parte 10 de 14)
-   Favoritos, Livro de Ouro, Histórico de Atividade, Meu Desempenho, Meta, Meu Grupo e Perfil.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/10a-favoritos-historico-desempenho.js — Favoritos (16), Livro de Ouro (16-A), Histórico de Atividade (16-B) e Meu Desempenho (17).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    16. FAVORITOS
@@ -202,7 +199,7 @@ function renderLivroOuro(){
 }
 function abrirModalContribuir(){
   abrirModal(`
-    <div class="modal-header"><h3>Quero contribuir</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Quero contribuir")}
     <p class="text-sm muted">Conte como você pode ajudar — doação, revisão de questões, respostas a dúvidas, aulas, organização. A mensagem vai direto para a coordenação, que entra em contato e registra o agradecimento no Livro de Ouro.</p>
     <div class="field mt-2"><label class="label">Como você quer ajudar</label>
       <select class="select" id="contribTipo">
@@ -218,7 +215,9 @@ function enviarContribuicao(){
   const texto = (document.getElementById("contribTexto").value||"").trim();
   if(!texto){ toast("Escreva uma mensagem antes de enviar.", "err"); return; }
   const u = usuarioAtual();
-  db.feedbacks.push({id:uid("fb"), usuarioId:u.id, papel:u.papel, tipo:"contribuicao ("+tipo+")", texto, data:hojeISO(), lido:false});
+  const fb = {id:uid("fb"), usuarioId:u.id, autorNome:u.nome, papel:u.papel, tipo:"contribuicao ("+tipo+")", texto, data:hojeISO(), lido:false};
+  db.feedbacks.push(fb);
+  nuvemMarcarFeedback(fb.id);
   saveState(); fecharModal();
   toast("Recebido! A coordenação vai entrar em contato. Obrigado de verdade.");
 }
@@ -227,7 +226,7 @@ function abrirFormularioLivroOuro(id){
   const r = id ? (db.livroOuro||[]).find(x=>x.id===id) : null;
   const tipos = tiposLivroOuro();
   abrirModal(`
-    <div class="modal-header"><h3>${r?"Editar registro":"Registrar agradecimento"}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela(r?"Editar registro":"Registrar agradecimento")}
     <div class="field"><label class="label">Nome (pessoa, turma, instituição)</label><input class="input" id="loNome" value="${escapeHtml(r?r.nome:"")}"></div>
     <div class="grid grid-2">
       <div class="field"><label class="label">Tipo</label><select class="select" id="loTipo">
@@ -263,7 +262,7 @@ function salvarRegistroLivroOuro(id){
 }
 function removerRegistroLivroOuro(id){
   if(!podeAdmin("livro-ouro")){ toast("Seu nível de acesso não permite editar o Livro de Ouro.", "err"); return; }
-  abrirModal(`<div class="modal-header"><h3>Remover registro</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+  abrirModal(`${cabecalhoJanela("Remover registro")}
     <p>Tem certeza? O agradecimento deixará de aparecer para todos.</p>
     <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="removerRegistroLivroOuroConfirmado('${id}')">Remover</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
@@ -700,388 +699,4 @@ function renderDesempenho(){
     </div>` : ""}
   </div>` : ""}
   `;
-}
-
-/* ==========================================================================
-   18. META DE ESTUDO
-   ==========================================================================
-   A meta deixou de ser uma página no menu. Motivo: é um número que se define
-   uma vez e se ajusta de vez em quando, mas que precisa ser VISTO todo dia —
-   uma página própria invertia isso, escondendo o acompanhamento e dando
-   destaque à configuração. Agora o progresso do dia abre a tela Estudar, e o
-   ajuste do número fica a um clique, nesta janela.
-
-   A rota "metas" continua existindo e leva para Estudar, para não quebrar
-   link antigo, favorito do navegador ou hash salvo por alguém. */
-function abrirModalMeta(){
-  const u = usuarioAtual();
-  const meta = metaDoUsuario(u);
-  const feitasHoje = questoesRespondidasHoje(u.id);
-  abrirModal(`
-    <div class="modal-header"><h3>Meta diária de questões</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
-    <p class="text-sm muted">Quantas questões você quer responder por dia. Vale mais uma meta modesta que você cumpre todo dia do que uma ambiciosa que você abandona na terceira semana.</p>
-    <div class="field mt-2"><label class="label">Questões por dia</label><input class="input" type="number" id="metaInput" value="${meta}" min="1" max="500"></div>
-    <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
-      <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaMinimaQuestoesDia}">mínimo (${db.configGeral.metaMinimaQuestoesDia})</button>
-      <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaRecomendadaQuestoesDia}">ideal (${db.configGeral.metaRecomendadaQuestoesDia})</button>
-    </div>
-    <p class="text-xs muted">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia}/dia, ideal de ${db.configGeral.metaRecomendadaQuestoesDia}/dia. Hoje você já respondeu ${feitasHoje}.</p>
-    <div class="flex gap-1 mt-3"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
-}
-function salvarMeta(){
-  const valor = parseInt(document.getElementById("metaInput").value);
-  if(!valor || valor<1){ toast("Informe um número válido.", "err"); return; }
-  usuarioAtual().metaQuestoesDia = valor;
-  saveState();
-  fecharModal();
-  toast(valor < db.configGeral.metaMinimaQuestoesDia ? "Meta salva. Está abaixo da recomendação mínima da coordenação." : "Meta salva.");
-  render();
-}
-/* Meta diária de cartões: mesma janela, mesma lógica, outra unidade. */
-function abrirModalMetaCartoes(){
-  const u = usuarioAtual();
-  const meta = metaCartoesDoUsuario(u);
-  const feitosHoje = cartoesRevisadosHoje(u.id);
-  const recomendada = (db.configGeral && db.configGeral.metaCartoesDia) || CONFIG.metaCartoesDia;
-  abrirModal(`
-    <div class="modal-header"><h3>Meta diária de cartões</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
-    <p class="text-sm muted">Quantos flashcards você quer revisar por dia. Um cartão leva segundos, então a meta de cartões costuma ser bem maior que a de questões — e serve para segurar a rotina nos dias em que não dá para sentar e resolver prova.</p>
-    <div class="field mt-2"><label class="label">Cartões por dia</label><input class="input" type="number" id="metaCartoesInput" value="${meta}" min="1" max="500"></div>
-    <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
-      <button class="pill" onclick="document.getElementById('metaCartoesInput').value=10">dia corrido (10)</button>
-      <button class="pill" onclick="document.getElementById('metaCartoesInput').value=${recomendada}">recomendada (${recomendada})</button>
-    </div>
-    <p class="text-xs muted">Hoje você já revisou ${feitosHoje} cartão(ões). A meta de cartões não substitui a de questões: elas convivem, e bater qualquer uma das duas já mantém sua sequência daquele tipo de estudo.</p>
-    <div class="flex gap-1 mt-3"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
-}
-function salvarMetaCartoes(){
-  const valor = parseInt(document.getElementById("metaCartoesInput").value);
-  if(!valor || valor<1){ toast("Informe um número válido.", "err"); return; }
-  usuarioAtual().metaCartoesDia = valor;
-  saveState();
-  fecharModal();
-  toast("Meta de cartões salva.");
-  render();
-}
-
-/* ==========================================================================
-   18-B. MEU GRUPO — cada aluno usa, por padrão, o calendário oficial da
-   coordenação, mas pode criar seu próprio grupo/turma com calendário
-   customizado, ou adotar o calendário que outro aluno já montou.
-   ========================================================================== */
-function renderMeuGrupo(){
-  const u = usuarioAtual();
-  const meuGrupo = getGrupoDoUsuario(u);
-  const souDono = meuGrupo.criadoPor === u.id && !meuGrupo.oficial;
-  const semTurma = !!meuGrupo.oficial;
-  const anoDaMinhaTurma = anoDoGrupo(meuGrupo, u);
-  const anoParaCriar = temCalendarioProprio(u.anoFaculdade) ? u.anoFaculdade : CONFIG.anoFaculdadePadrao;
-  const outrosGrupos = db.grupos.filter(g=>g.id!==meuGrupo.id && !g.oficial);
-  const solicitacoesPendentes = souDono ? (meuGrupo.solicitacoesPendentes||[]) : [];
-  const formado = !temCalendarioProprio(u.anoFaculdade);
-  return `
-  <div class="page-header"><h2>Meu Grupo</h2><p>Todas as turmas do seu ano passam pelos mesmos blocos, na mesma ordem. O que muda de uma para outra é por qual bloco ela começa — é o <strong>Grupo A, B, C ou D</strong> do calendário da faculdade.</p></div>
-
-  ${semTurma ? `<div class="card mb-2" style="border-color:var(--accent)">
-    <div class="card-title">${iconeSvg("users")} Escolha a sua turma</div>
-    <p class="text-sm">Você ainda está no <strong>calendário oficial da coordenação</strong>. Ele funciona, mas segue o Grupo A: se a sua turma é outra, o bloco atual aparece trocado. Escolha abaixo a turma em que você está — ou crie a sua, se ela ainda não existir aqui.</p>
-    ${temCalendarioProprio(u.anoFaculdade) ? `<div class="flex gap-1 items-end mt-2" style="flex-wrap:wrap">
-      <div class="field" style="margin-bottom:0;min-width:240px"><label class="label">O jeito rápido: qual é o seu grupo?</label>
-        <select class="select" id="rodizioRapido">${opcoesRodizioPorLetra(u.anoFaculdade).map(o=>`<option value="${o.deslocamento}">Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}</select>
-      </div>
-      <button class="btn btn-primary" onclick="entrarNaTurmaDoRodizio(document.getElementById('rodizioRapido').value)">Entrar no meu grupo</button>
-    </div>` : ""}
-    <p class="text-xs muted mt-1">Dá para trocar depois quantas vezes precisar. Você fica em uma turma de cada vez.</p>
-  </div>` : ""}
-
-  <div class="card mb-2">
-    <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-muted">Calendário oficial — nenhuma turma escolhida</span>' : `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoDaMinhaTurma, meuGrupo.deslocamento))}</span>` + (meuGrupo.doRodizio ? '<span class="badge badge-muted">Turma do rodízio, aberta</span>' : souDono ? '<span class="badge badge-muted">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>')}</div>
-    <div style="font-weight:700;font-size:1.1rem">${escapeHtml(meuGrupo.nome)}</div>
-    <div class="text-sm muted mt-1">${blocosDoGrupo(meuGrupo, u).length} bloco(s) na sequência de ${escapeHtml(anoDeReferencia(anoDaMinhaTurma))}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
-    ${formado ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>, e quem já se formou não tem calendário de faculdade próprio. Participando de um grupo, você acompanha o calendário do ano daquela turma; fora dele, a plataforma usa a sequência de ${escapeHtml(CONFIG.anoFaculdadePadrao)} como referência.</div>` : ""}
-    ${!semTurma ? `<button class="btn btn-ghost btn-sm mt-2" onclick="sairDoMeuGrupo()">Sair desta turma e voltar ao calendário oficial</button>` : ""}
-  </div>
-
-  ${solicitacoesPendentes.length ? `<div class="card mb-2" style="border-color:var(--amber)">
-    <div class="card-title">Solicitações de acesso pendentes (${solicitacoesPendentes.length})</div>
-    <p class="text-sm muted">Essas pessoas pediram para entrar na sua turma. Só entram depois que você aprovar.</p>
-    ${solicitacoesPendentes.map(uidSolicitante=>{
-      const solicitante = getUsuario(uidSolicitante);
-      return `<div class="flex justify-between items-center card-flat mb-1">
-        <span class="text-sm">${escapeHtml(solicitante?solicitante.nome:"—")}</span>
-        <div class="flex gap-1"><button class="btn btn-primary btn-sm" onclick="aprovarAcessoGrupo('${meuGrupo.id}','${uidSolicitante}')">Aprovar</button><button class="btn btn-ghost btn-sm" onclick="rejeitarAcessoGrupo('${meuGrupo.id}','${uidSolicitante}')">Rejeitar</button></div>
-      </div>`;
-    }).join("")}
-  </div>` : ""}
-
-  <div class="card mb-2">
-    <div class="card-title">Calendário desta turma</div>
-    ${renderEditorCalendario(meuGrupo, {podeEditar: souDono, usuario: u, podeEditarSequencia: podeAdmin("blocos")})}
-    ${!souDono && !semTurma ? '<p class="text-xs muted mt-1">Só quem criou a turma muda o grupo do rodízio. Se a letra estiver errada, avise o dono da turma ou a coordenação.</p>' : ""}
-    <p class="text-xs muted mt-1">A ordem dos blocos é a do seu ano e é definida pela coordenação — o que a turma escolhe é por qual deles entra.</p>
-  </div>
-
-  ${!meuGrupo.oficial ? renderQuestoesDoGrupo(meuGrupo) : ""}
-
-  <div class="card mb-2">
-    <div class="card-title">${semTurma ? "Criar a minha turma" : "Criar outra turma"}</div>
-    <p class="text-sm muted">A turma segue a sequência de blocos de ${escapeHtml(anoParaCriar)} (a mesma de todas as turmas do ano) e você escolhe em qual grupo do rodízio ela entra — é assim que duas turmas do mesmo ano estudam matérias diferentes na mesma semana. Quem pedir para entrar precisa da sua aprovação.</p>
-    ${formado ? `<p class="text-xs muted">Como você está como ${escapeHtml(u.anoFaculdade||"Formado(a)")}, a turma nasce seguindo o calendário de ${escapeHtml(anoParaCriar)}.</p>` : ""}
-    <p class="text-xs muted">Criar uma turma faz você sair da atual: cada pessoa fica em uma só.</p>
-    <div class="flex gap-1 items-end mt-1" style="flex-wrap:wrap">
-      <div class="field" style="margin-bottom:0;min-width:240px"><label class="label">Nome da turma</label><input class="input" id="novoGrupoNome" placeholder="Ex.: ${escapeHtml(anoParaCriar)} 2026 — Grupo B"></div>
-      <div class="field" style="margin-bottom:0;min-width:200px"><label class="label">Grupo do rodízio</label>
-        <select class="select" id="novoGrupoRodizio">
-          ${opcoesRodizioPorLetra(anoParaCriar).map(o=>`<option value="${o.deslocamento}">Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}
-        </select>
-      </div>
-      <button class="btn btn-primary" onclick="criarMeuGrupo()">Criar turma</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Entrar em uma turma já existente</div>
-    ${outrosGrupos.length ? outrosGrupos.map(g=>{
-      const souMembro = g.doRodizio || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
-      const jaSolicitei = (g.solicitacoesPendentes||[]).includes(u.id);
-      const anoG = anoDoGrupo(g, u);
-      const atualG = blocoAtualDoGrupo(g, u);
-      return `
-      <div class="flex justify-between items-center mb-1 card-flat" style="gap:.5rem;flex-wrap:wrap">
-        <div>
-          <div style="font-weight:600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloRodizio(anoG, g.deslocamento))}</span></div>
-          <div class="text-xs muted">${escapeHtml(anoG)} · hoje em ${escapeHtml(atualG?atualG.nome:"—")} · ${g.doRodizio ? "turma do rodízio, aberta a todos" : "criada por "+escapeHtml(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"—")}</div>
-        </div>
-        ${souMembro ? `<button class="btn btn-secondary btn-sm" onclick="usarGrupo('${g.id}')">Entrar nesta turma</button>` :
-          jaSolicitei ? `<button class="btn btn-secondary btn-sm" disabled>Solicitação enviada</button>` :
-          `<button class="btn btn-secondary btn-sm" onclick="solicitarAcessoGrupo('${g.id}')">Pedir para entrar</button>`}
-      </div>`;
-    }).join("") : '<p class="text-sm muted">Nenhuma turma criada ainda. Crie a sua acima.</p>'}
-  </div>
-  <div class="card-flat mt-2 text-xs muted">Com a nuvem ligada, o estudo de cada pessoa viaja entre aparelhos, mas as turmas ainda são deste navegador: um grupo criado aqui só aparece para quem abrir a plataforma neste mesmo computador. Ver <code>nuvem/LEIA-ME.md</code>.</div>
-  `;
-}
-function criarMeuGrupo(){
-  const nome = document.getElementById("novoGrupoNome").value.trim();
-  if(!nome){ toast("Dê um nome para a turma.", "err"); return; }
-  const u = usuarioAtual();
-  // a turma herda a sequência de um ano que tenha calendário (quem está como
-  // "Formado(a)" não tem, e aí vale o ano padrão) e o que ela escolhe é o
-  // grupo do rodízio — o bloco por onde entra na sequência
-  const ano = temCalendarioProprio(u.anoFaculdade) ? u.anoFaculdade : CONFIG.anoFaculdadePadrao;
-  const campoRodizio = document.getElementById("novoGrupoRodizio");
-  const deslocamento = campoRodizio ? (parseInt(campoRodizio.value)||0) : 0;
-  const novo = { id:uid("grupo"), nome, criadoPor:u.id, oficial:false, publico:true, criadoEm:hojeISO(),
-                 anoFaculdade: ano, deslocamento,
-                 blocoAtualIdManual:null, membrosAprovados:[], solicitacoesPendentes:[] };
-  db.grupos.push(novo);
-  entrarNoGrupo(u, novo.id);
-  saveState();
-  toast('Turma criada — você está no ' + nomeRodizio(ano, deslocamento) + '.');
-  render();
-}
-function usarGrupo(grupoId){
-  const g = getGrupo(grupoId); if(!g) return;
-  const u = usuarioAtual();
-  if(!g.oficial && !g.doRodizio && g.criadoPor!==u.id && !(g.membrosAprovados||[]).includes(u.id)){
-    toast("Você ainda não faz parte desta turma — peça para entrar.", "err"); return;
-  }
-  entrarNoGrupo(u, grupoId);
-  saveState();
-  toast('Agora você está em "'+g.nome+'" ('+nomeRodizio(anoDoGrupo(g,u), g.deslocamento)+').');
-  render();
-}
-function entrarNaTurmaDoRodizio(deslocamento){
-  const u = usuarioAtual();
-  const ano = temCalendarioProprio(u.anoFaculdade) ? u.anoFaculdade : CONFIG.anoFaculdadePadrao;
-  const turma = turmaDoRodizio(ano, deslocamento);
-  if(!turma){ toast("Não encontrei esse grupo no calendário de "+ano+".", "err"); return; }
-  entrarNoGrupo(u, turma.id);
-  saveState();
-  toast("Agora você está no " + nomeRodizio(ano, turma.deslocamento) + " de " + ano + ".");
-  render();
-}
-/* Sair da turma é voltar ao calendário oficial — nunca ficar sem calendário
-   nenhum, o que deixaria a tela Estudar sem bloco atual. */
-function sairDoMeuGrupo(){
-  const u = usuarioAtual();
-  entrarNoGrupo(u, db.grupoOficialId);
-  saveState();
-  toast("Você voltou ao calendário oficial da coordenação.");
-  render();
-}
-function solicitarAcessoGrupo(grupoId){
-  const g = getGrupo(grupoId); if(!g) return;
-  const u = usuarioAtual();
-  if(!g.solicitacoesPendentes) g.solicitacoesPendentes = [];
-  if(!g.solicitacoesPendentes.includes(u.id)) g.solicitacoesPendentes.push(u.id);
-  saveState();
-  toast("Pedido enviado! Assim que "+(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"o dono da turma")+" aprovar, você entra nela.");
-  render();
-}
-function aprovarAcessoGrupo(grupoId, usuarioId){
-  const g = getGrupo(grupoId); if(!g) return;
-  const solicitante = getUsuario(usuarioId);
-  if(solicitante) entrarNoGrupo(solicitante, grupoId);
-  else g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
-  saveState();
-  toast("Acesso aprovado.");
-  render();
-}
-function rejeitarAcessoGrupo(grupoId, usuarioId){
-  const g = getGrupo(grupoId); if(!g) return;
-  g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
-  saveState();
-  toast("Solicitação recusada.");
-  render();
-}
-function renderQuestoesDoGrupo(grupo){
-  const questoes = db.questoes.filter(q=>q.grupoId===grupo.id);
-  const pagGrupo = paginar(questoes, "questoes-grupo", {porPagina:20});
-  return `<div class="card mb-2">
-    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
-      <div class="card-title" style="margin-bottom:0">Questões deste grupo (${questoes.length})</div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
-        <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Colar prova inteira / importar em lote</button>
-        <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar questão</button>
-      </div>
-    </div>
-    <p class="text-sm muted">Qualquer pessoa do grupo pode contribuir. Essas questões ficam disponíveis só pra quem está neste grupo — em "Estudar &gt; Monte sua lista", marque "incluir questões do meu grupo" pra praticá-las.</p>
-    <div class="card-flat mt-2 text-sm">
-      <strong>Prova inteira de uma vez:</strong> em "Enviar Questões" você informa a instituição e o ano uma única vez, copia o prompt pronto, cola numa IA junto com o PDF da prova e traz o resultado de volta. Escolha o destino <em>"Questões do meu grupo"</em> para elas caírem direto aqui.
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
-        <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("search")} Abrir tela com o prompt pronto</button>
-        <button class="btn btn-ghost btn-sm" onclick="copiarTexto(gerarPromptImportacao(),'Prompt copiado! Cole numa IA junto com a prova.')">Copiar prompt agora</button>
-      </div>
-    </div>
-    ${questoes.length ? `<div class="table-wrap mt-2"><table><thead><tr><th>Questão</th><th>Assunto</th><th></th></tr></thead><tbody>
-      ${pagGrupo.itens.map(q=>`<tr><td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span></td><td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td><td class="flex gap-1"><button class="icon-btn" title="Ver na íntegra" onclick="abrirQuestaoCompleta('${q.id}')">${iconeSvg("search")}</button><button class="icon-btn" title="Editar" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")}</button></td></tr>`).join("")}
-    </tbody></table></div>
-    ${controlesPaginacao(pagGrupo, "questão(ões) do grupo")}` : '<p class="text-sm muted mt-1">Nenhuma questão adicionada ainda.</p>'}
-  </div>`;
-}
-
-/* ==========================================================================
-   19. PERFIL
-   ==========================================================================
-   O backup saiu daqui para todo mundo: exportar o arquivo significa levar
-   junto as respostas, os cadastros e os dados de TODOS os usuários deste
-   navegador, não só os de quem clicou. Por isso a caixa de backup agora só
-   aparece para o administrador máster — em Perfil e em Configurações. */
-function renderPerfil(){
-  const u = usuarioAtual();
-  const ehMaster = podeAdmin("backup", u);
-  return `
-  <div class="page-header"><h2>Perfil</h2></div>
-  <div class="card" style="max-width:460px">
-    <div class="field"><label class="label">Nome</label><div>${escapeHtml(u.nome)}</div></div>
-    <div class="field"><label class="label">E-mail</label><div>${escapeHtml(u.email)}</div></div>
-    <div class="field"><label class="label">Matrícula</label><div>${escapeHtml(u.matricula)}</div></div>
-    ${u.papel==="aluno" ? (() => { const g = getGrupoDoUsuario(u); return `<div class="field"><label class="label">Turma / Grupo</label><div>${escapeHtml(g.nome)}${g.oficial ? ' <span class="badge badge-muted">calendário oficial</span>' : ' <span class="badge badge-accent">'+escapeHtml(nomeRodizio(anoDoGrupo(g, u), g.deslocamento))+'</span>'} <button class="link-btn" onclick="navigate('meu-grupo')">gerenciar</button></div>${g.oficial?'<div class="hint mt-1">Você ainda não escolheu a sua turma do rodízio — em Meu Grupo.</div>':""}</div>`; })() : ""}
-    ${u.papel==="aluno" ? `<div class="field"><label class="label">Ano da faculdade</label>
-      <select class="select" id="perfilAno" onchange="salvarAnoFaculdade()">
-        ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${u.anoFaculdade===a?"selected":""}>${escapeHtml(a)}</option>`).join("")}
-      </select>
-      <div class="hint mt-1">Atualize quando virar o ano letivo. Quem está no internato marca o ano em que está — 5º ou 6º. Quem já se formou marca "Formado(a)": não há calendário de formado, e a turma de que você participar é que dá o calendário.</div>
-    </div>` : ""}
-    <div class="field"><label class="label">Papel</label><div>${badgePapel(u.papel, u)}</div></div>
-    ${u.papel==="admin" ? `<div class="field"><label class="label">Nível de administrador</label><div>${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}<div class="hint mt-1">${escapeHtml((CONFIG.niveisAdmin.find(n=>n.id===nivelAdminDe(u))||{}).descricao||"")}</div></div></div>` : ""}
-    ${u.papel==="aluno" ? `<div class="field"><label class="label">Bloco atual</label><div>${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
-  </div>
-  ${u.papel==="aluno" ? `<div class="card mt-2" style="max-width:460px">
-    <div class="card-title">Lembrete de meta diária</div>
-    <p class="text-sm muted">Um aviso do navegador às ${escapeHtml(u.lembreteMetaHorario||"20:00")}, se a meta de questões ou de cartões do dia ainda não tiver sido batida. Funciona com o Esc aberto em alguma aba, em qualquer navegador. Com o Esc <strong>instalado como aplicativo</strong> no Chrome ou no Edge (Android e computador), avisa também com o app fechado, num horário aproximado — o navegador é quem escolhe quando acordar o app.</p>
-    ${u.lembreteMetaAtivo ? `
-      <div class="field mt-1" style="max-width:160px"><label class="label">Horário do lembrete</label><input class="input" type="time" value="${escapeHtml(u.lembreteMetaHorario||"20:00")}" onchange="salvarHorarioLembreteMeta(this.value)"></div>
-      <button class="btn btn-secondary btn-sm mt-1" onclick="desativarLembreteMetaDiaria()">Desativar lembrete</button>
-    ` : `<button class="btn btn-primary btn-sm mt-1" onclick="ativarLembreteMetaDiaria()">${iconeSvg("alert")} Ativar lembrete diário</button>`}
-  </div>
-  <div class="card mt-2" style="max-width:460px">
-    <div class="card-title">Contribuir com questões</div>
-    <p class="text-sm muted">Adicione questões uma a uma ou cole uma prova inteira (instituição e ano são informados uma vez só). Você escolhe se elas ficam apenas no seu grupo ou se vão como sugestão para o banco geral.</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
-      <button class="btn btn-primary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Enviar prova ou questões</button>
-      <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
-    </div>
-  </div>` : ""}
-  ${renderCardAjuda()}
-  ${renderCardInstalarApp()}
-  ${renderCardSenha()}
-  ${renderCardNuvem()}
-  ${ehMaster ? renderCardBackup() : `<div class="card mt-2" style="max-width:460px">
-    <div class="card-title">Seus dados</div>
-    <p class="text-sm muted">${nuvemConectado()
-      ? "Seu estudo fica salvo neste navegador e também na sua conta, na nuvem — por isso você pode continuar de outro aparelho. A cópia de segurança de toda a plataforma continua sendo responsabilidade do administrador máster."
-      : "Tudo o que você faz aqui fica salvo neste navegador. A cópia de segurança de toda a plataforma é responsabilidade do administrador máster — se precisar trocar de computador ou recuperar algo, fale com a coordenação antes de limpar os dados do navegador."}</p>
-    <button class="btn btn-secondary btn-sm mt-1" onclick="baixarMeusDados()">${iconeSvg("download")} Baixar uma cópia do meu estudo</button>
-    <p class="text-xs muted mt-1">Um arquivo com tudo o que é seu: respostas, revisões, favoritos e anotações, cartões pessoais, conjuntos e simulados. Nada de outras pessoas.</p>
-  </div>`}`;
-}
-/* "Baixar uma cópia do meu estudo": tudo o que é DA PESSOA, e só dela — o
-   backup completo da plataforma é outra coisa (administrador máster, e o
-   automático da nuvem, ver .github/workflows/backup-nuvem.yml). É o direito
-   de cada um de ter o próprio estudo num arquivo, e o jeito de levá-lo
-   quando a nuvem está desligada. */
-function dadosDoUsuario(id){
-  const u = getUsuario(id) || {};
-  const perfil = Object.assign({}, u); delete perfil.senha;
-  const doUsuario = (colecao) => (colecao || []).filter(x => x.usuarioId === id);
-  const porUsuario = (mapa) => (mapa && mapa[id]) || {};
-  return {
-    formato: "esc-meus-dados-1", geradoEm: new Date().toISOString(), plataforma: CONFIG.nomePlataforma,
-    perfil,
-    respostas: doUsuario(db.respostas),
-    revisoesQuestoes: porUsuario(db.revisoes),
-    revisoesCartoes: porUsuario(db.revisoesFlashcards),
-    cartoesPorDia: porUsuario(db.cartoesPorDia),
-    diasComCartao: (db.diasCartoes && db.diasCartoes[id]) || [],
-    favoritos: doUsuario(db.favoritos),
-    cartoesFavoritos: doUsuario(db.favoritosCartoes),
-    questoesEscondidas: doUsuario(db.questoesOcultas),
-    cartoesPessoais: (db.flashcards || []).filter(c => c.usuarioId === id),
-    sessoes: doUsuario(db.sessoes),
-    simulados: doUsuario(db.resultadosSimulados),
-    comentarios: comentariosAtivos().filter(c => c.usuarioId === id),
-  };
-}
-function baixarMeusDados(){
-  const u = usuarioAtual(); if(!u) return;
-  const blob = new Blob([JSON.stringify(dadosDoUsuario(u.id), null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = "meu-estudo-" + (u.nome || "esc").split(" ")[0].toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "") + "-" + hojeISO() + ".json";
-  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-  toast("Cópia do seu estudo baixada.");
-}
-function salvarAnoFaculdade(){
-  const u = usuarioAtual();
-  u.anoFaculdade = document.getElementById("perfilAno").value;
-  saveState();
-  toast("Ano da faculdade atualizado.");
-}
-/* Caixa de backup — usada no Perfil e em Configurações, sempre só para o
-   administrador máster. Exportar/importar JSON é a única rede de segurança
-   enquanto os dados vivem no navegador. */
-function renderCardBackup(){
-  const kb = tamanhoBancoKb();
-  const backupAntigo = !(db.ultimoBackupEm && diasEntre(db.ultimoBackupEm, hojeISO()) < 7);
-  return `<div class="card mt-2" style="max-width:560px${backupAntigo?";border-color:var(--amber)":""}">
-    <div class="card-title">${iconeSvg("archive")} Backup dos dados da plataforma</div>
-    <p class="text-sm muted">Todos os dados vivem no localStorage deste navegador. Limpar o histórico do navegador apaga tudo. Recomendação: exportar pelo menos uma vez por semana e guardar o arquivo fora deste computador.</p>
-    ${nuvemLigada() ? `<div class="card-flat mt-1 text-sm">${iconeSvg("archive")} <strong>Com a nuvem ligada</strong>, este backup tem só o que está NESTE navegador — não o estudo da turma. A cópia da turma inteira é o <strong>backup automático da nuvem</strong>: uma vez por dia, criptografado, pelo GitHub (passo a passo em <code>nuvem/LEIA-ME.md</code>, "Backup automático").</div>` : ""}
-    <p class="text-sm ${kb>3500?"":"muted"}" ${kb>3500?'style="color:var(--amber);font-weight:600"':""}>Espaço ocupado: ${kb} KB${kb>3500?" — perto do limite do navegador. Imagens embutidas são o que mais pesa; prefira recortá-las antes de enviar ou usar links.":""}</p>
-    <p class="text-sm ${backupAntigo?"":"muted"}" ${backupAntigo?'style="color:var(--amber);font-weight:600"':""}>Último backup: ${db.ultimoBackupEm ? formatDataBR(db.ultimoBackupEm) : "nunca feito"}</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
-      <button class="btn btn-secondary btn-sm" onclick="exportarBackup()">${iconeSvg("archive")} Exportar backup</button>
-      <button class="btn btn-secondary btn-sm" onclick="baixarMeusDados()">${iconeSvg("download")} Só o meu estudo</button>
-      <label class="btn btn-secondary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Importar backup<input type="file" accept=".json" style="display:none" onchange="importarBackupArquivo(this)"></label>
-      <button class="btn btn-danger btn-sm" onclick="confirmarReiniciarDemo()">${iconeSvg("trash")} Reiniciar dados</button>
-    </div>
-    <p class="text-xs muted mt-2">Importar substitui os dados atuais pelos do arquivo — inclusive respostas e cadastros de todos os usuários. Reiniciar apaga tudo e volta ao ponto de partida.</p>
-    ${bancoDeResgateDisponivel() ? (() => { const r = resumoDoResgate(); return `<div class="card-flat mt-2" style="border-color:var(--amber)">
-      <div class="text-sm" style="font-weight:600;color:var(--amber)">${iconeSvg("archive")} Existe uma cópia de resgate neste navegador</div>
-      <p class="text-sm muted mt-1">A plataforma encontrou um defeito nos dados salvos em algum momento e guardou o banco como ele estava antes de consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s), ${r.questoes} questão(ões)`:""}. Se algo tiver se perdido, é daqui que se recupera.</p>
-      <button class="btn btn-secondary btn-sm mt-1" onclick="restaurarBancoDeResgate()">Ver e restaurar a cópia de resgate</button>
-    </div>`; })() : ""}
-  </div>`;
 }

@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "test": "node --test --test-concurrency=1 testes/*.test.mjs",
-    "conferir": "node testes/conferir-dados.mjs"
+    "conferir": "node testes/conferir-dados.mjs",
+    "atualizar-dados": "node ferramentas/aplicar-atualizacoes.mjs",
+    "mapa": "node ferramentas/mapa-do-codigo.mjs",
+    "testar-sql": "bash testes/sql/rodar-local.sh"
   },
   "devDependencies": {
     "playwright": "1.56.1"

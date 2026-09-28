@@ -1,8 +1,5 @@
-/* Esc — codigo/06-entrada-e-estrutura.js  (parte 6 de 14)
-   Autenticação local, roteador e a estrutura visual (menu lateral e topo).
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/06-entrada-e-estrutura.js — autenticação local, roteador (render, desenharTela), gesto de arrastar, menu lateral e topo (seções 5–7).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    5. AUTENTICAÇÃO (versão de demonstração local)
@@ -145,10 +142,10 @@ function alterarPapelUsuario(id, papel){
    ========================================================================== */
 const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Revisão Rápida", historico:"Histórico de Atividade",
   simulados:"Provas e Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas e Simulados",
-  favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil", "meu-grupo":"Meu Grupo",
+  favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil e configurações", "meu-grupo":"Meu Grupo",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", "aprovar-cadastros":"Aprovar Cadastros",
   usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
-  "central-provas":"Central de Provas",
+  "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar",
   blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários",
   "painel-turma":"Painel da Turma" };
 function tituloDaRota(r){ return ROUTE_TITLES[r] || CONFIG.nomePlataforma; }
@@ -247,6 +244,7 @@ function render(){
     case "banco-questoes": conteudo = renderBancoQuestoes(); break;
     case "importar-questoes": conteudo = renderImportarQuestoes(); break;
     case "central-provas": conteudo = renderCentralProvas(); break;
+    case "atualizar-questoes": conteudo = renderAtualizarQuestoes(); break;
     case "blocos": conteudo = renderBlocosConfig(); break;
     case "config-geral": conteudo = renderConfigGeral(); break;
     case "feedback-usuarios": conteudo = renderFeedbackUsuarios(); break;
@@ -288,6 +286,8 @@ function desenharTela(conteudoHtml){
   }
   _telaDesenhada = { rota: state.route, chave };
   ativarGestoDeArrastar();
+  // a barra fina de questões (sessão e simulado) mostra a questão atual no meio
+  centralizarBarraDeQuestoes();
 }
 /* Reinicia a animação de entrada: sem tirar e repor a classe (com um toque no
    layout no meio), o navegador entende que nada mudou e não toca nada. */
@@ -418,6 +418,7 @@ function navItemsParaPapel(papel){
     {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
     {id:"importar-questoes", label:"Enviar Provas e Questões", icon:"upload"},
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
+    {id:"atualizar-questoes", label:"Questões para Atualizar", icon:"refresh"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
   ];
@@ -426,6 +427,7 @@ function navItemsParaPapel(papel){
     {id:"banco-questoes", label:"Banco de Questões", icon:"database"},
     {id:"importar-questoes", label:"Importar Questões", icon:"upload"},
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
+    {id:"atualizar-questoes", label:"Questões para Atualizar", icon:"refresh"},
     {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
     {id:"criar-simulado", label:"Criar Simulado", icon:"plus"},
     {id:"material-pdf", label:"Material em PDF", icon:"printer"},
@@ -485,14 +487,14 @@ function htmlMenuLateral(u){
         ${nav.map(item=>{
           let badge = "";
           if(item.id==="aprovar-cadastros" && pendCadastros>0) badge = ' <span class="badge badge-amber">'+pendCadastros+'</span>';
+          if(item.id==="feedback-usuarios"){ const n = feedbacksNaoLidos(); if(n>0) badge = ' <span class="badge badge-amber">'+n+'</span>'; }
           return `<li class="nav-item ${state.route===item.id?"active":""}" onclick="navigate('${item.id}')">${iconeSvg(item.icon)}<span>${item.label}</span>${badge}</li>`;
         }).join("")}
       </ul>
       <div class="sidebar-footer">
         ${u.papel!=="aluno" ? `<div class="nav-item" onclick="alternarModoAluno()">${iconeSvg("book")}<span>${state.modoAluno?"Sair do modo aluno":"Entrar no modo aluno"}</span></div>` : ""}
         <div class="nav-item" onclick="alternarTema()">${iconeSvg("theme")}<span>${document.documentElement.getAttribute("data-theme")==="dark"?"Tema claro":"Tema escuro"}</span></div>
-        <div class="nav-item" onclick="fecharMenuMobile();abrirTutorialRapido()">${iconeSvg("play")}<span>Tutorial</span></div>
-        <div class="nav-item" onclick="navigate('perfil')">${iconeSvg("user")}<span>Perfil</span></div>
+        <div class="nav-item ${state.route==="perfil"?"active":""}" onclick="navigate('perfil')">${iconeSvg("user")}<span>Perfil e configurações</span></div>
         <div class="nav-item" onclick="fazerLogout()">${iconeSvg("logout")}<span>Sair</span></div>
       </div>`;
 }

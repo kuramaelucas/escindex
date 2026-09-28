@@ -1,8 +1,5 @@
-/* Esc — codigo/08-sessao-e-revisao.js  (parte 8 de 14)
-   O motor de sessão (responder questões, mapa, cartão da questão, comentários) e a tela de Revisão.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/08-sessao-e-revisao.js — motor de sessão (seção 11: sessão do dia, barra de questões, cartão da questão, comentários, IA) e a tela de Revisão (seção 12).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    11. MOTOR DE SESSÃO — responder questões (prática e revisão)
@@ -393,7 +390,13 @@ function revisarErrosDestaSessao(){
 
    O pontinho âmbar marca os dois casos que a plataforma trata como "não
    sabida", e que a tela de fim de conjunto já destaca: acerto no chute e
-   erro com certeza. */
+   erro com certeza.
+
+   O mapa é uma BARRA FINA, de uma linha: "feitas/total", os números num
+   trilho que rola de lado com a questão atual centralizada, e um botão que
+   expande para o conjunto inteiro (várias linhas, placar e legenda). A
+   escolha fica em state.mapaSessaoExpandido e vale para o simulado também
+   (ver htmlBarraDeQuestoes). */
 function renderMapaSessao(sessao){
   const total = sessao.itens.length;
   const feitasLista = respostasFeitas(sessao);
@@ -401,57 +404,78 @@ function renderMapaSessao(sessao){
   const acertos = feitasLista.filter(r => r.correta).length;
   const erros = feitas - acertos;
   const emBranco = total - feitas;
-  const aberto = state.mapaSessaoAberto !== false;   // nasce aberto
   const resumo = feitas
     ? `<strong>${feitas} de ${total}</strong> · ${acertos} ${acertos===1?"acerto":"acertos"} · ${erros} ${erros===1?"erro":"erros"}${emBranco?` · ${emBranco} em branco`:""}`
     : `<strong>0 de ${total}</strong> · o conjunto ainda não começou`;
-  return `<div class="card-flat mb-2" id="mapaDaSessao" style="padding:.7rem .9rem">
-    <div class="flex justify-between items-center gap-2">
-      <div class="text-xs muted">${resumo}</div>
-      <button class="link-btn text-xs" onclick="alternarMapaSessao()">${aberto ? "ocultar mapa" : "mostrar mapa"}</button>
-    </div>
-    ${aberto ? `
-    <div class="mapa-sessao">
-      ${sessao.itens.map((item, i) => {
-        const r = respostaDoIndice(sessao, i);
-        const atual = i === sessao.indiceAtual;
-        const marcadaSemResponder = !r && !!marcadaDaQuestao(item.questaoId);
-        let classe = "mapa-pill";
-        let descricao = "Questão " + (i+1);
-        let marca = "";
-        if(r){
-          classe += r.correta ? " acertou" : " errou";
-          descricao += r.correta ? " — você acertou" : " — você errou";
-          if(r.confianca === "chute") descricao += r.correta ? ", no chute (a plataforma conta como não sabida)" : ", no chute";
-          else if(r.confianca === "certeza") descricao += r.correta ? ", com certeza" : ", com certeza (o erro mais caro)";
-          else descricao += ", na dúvida";
-          const atencao = (r.correta && r.confianca === "chute") || (!r.correta && r.confianca === "certeza");
-          if(atencao) marca = `<span class="marca" aria-hidden="true"></span>`;
-        } else if(marcadaSemResponder){
-          classe += " marcada";
-          descricao += " — alternativa marcada, falta dizer a confiança";
-          marca = `<span class="marca" aria-hidden="true"></span>`;
-        } else {
-          classe += " agora";
-          descricao += " — ainda em branco";
-        }
-        if(atual){ classe += " atual"; descricao += " (você está aqui)"; }
-        return `<button class="${classe}" title="${escapeHtml(descricao)}" aria-label="${escapeHtml(descricao)}" onclick="irParaIndiceDaSessao(${i})">${i+1}${marca}</button>`;
-      }).join("")}
-    </div>
+  const pills = sessao.itens.map((item, i) => {
+    const r = respostaDoIndice(sessao, i);
+    const atual = i === sessao.indiceAtual;
+    const marcadaSemResponder = !r && !!marcadaDaQuestao(item.questaoId);
+    let classe = "mapa-pill";
+    let descricao = "Questão " + (i+1);
+    let marca = "";
+    if(r){
+      classe += r.correta ? " acertou" : " errou";
+      descricao += r.correta ? " — você acertou" : " — você errou";
+      if(r.confianca === "chute") descricao += r.correta ? ", no chute (a plataforma conta como não sabida)" : ", no chute";
+      else if(r.confianca === "certeza") descricao += r.correta ? ", com certeza" : ", com certeza (o erro mais caro)";
+      else descricao += ", na dúvida";
+      const atencao = (r.correta && r.confianca === "chute") || (!r.correta && r.confianca === "certeza");
+      if(atencao) marca = `<span class="marca" aria-hidden="true"></span>`;
+    } else if(marcadaSemResponder){
+      classe += " marcada";
+      descricao += " — alternativa marcada, falta dizer a confiança";
+      marca = `<span class="marca" aria-hidden="true"></span>`;
+    } else {
+      classe += " agora";
+      descricao += " — ainda em branco";
+    }
+    if(atual){ classe += " atual"; descricao += " (você está aqui)"; }
+    return `<button class="${classe}" title="${escapeHtml(descricao)}" aria-label="${escapeHtml(descricao)}"${atual?' aria-current="true"':""} onclick="irParaIndiceDaSessao(${i})">${i+1}${marca}</button>`;
+  }).join("");
+  const detalhe = `<div class="text-xs muted">${resumo}</div>
     ${feitas ? `<div class="mapa-sessao-legenda text-xs muted">
       <span><i class="amostra acertou"></i>acertou</span>
       <span><i class="amostra errou"></i>errou</span>
       <span><i class="amostra marcada"></i><span class="so-largo">acerto no chute ou erro com certeza</span><span class="so-estreito">chute ou erro com certeza</span></span>
       <span class="so-largo"><i class="amostra"></i>em branco</span>
-    </div>` : `<div class="text-xs muted mt-1">Cada quadradinho é uma questão da fila. Clique para ir a qualquer uma, respondida ou não; assim que você responder, ele mostra se acertou.</div>`}
-    ` : ""}
+    </div>` : `<div class="text-xs muted mt-1">Cada quadradinho é uma questão da fila. Clique para ir a qualquer uma, respondida ou não; assim que você responder, ele mostra se acertou.</div>`}`;
+  return htmlBarraDeQuestoes({ id: "mapaDaSessao", feitas, total, pills, detalhe,
+    titulo: `${feitas} de ${total} respondidas · ${acertos} acerto(s) · ${erros} erro(s)${emBranco ? " · " + emBranco + " em branco" : ""}` });
+}
+/* A barra fina, comum à prática e ao simulado. Quem chama entrega os botões
+   (pills) e o que aparece só com a barra expandida (detalhe). */
+function htmlBarraDeQuestoes(o){
+  const expandida = !!state.mapaSessaoExpandido;
+  return `<div class="barra-questoes${expandida ? " expandida" : ""}" id="${o.id}">
+    <div class="barra-questoes-linha">
+      <span class="barra-questoes-resumo" title="${escapeHtml(o.titulo || "")}">${o.feitas}/${o.total}</span>
+      <div class="barra-questoes-trilho" role="navigation" aria-label="Questões do conjunto">${o.pills}</div>
+      <button class="barra-questoes-expandir" onclick="alternarMapaSessao()" aria-expanded="${expandida}" title="${expandida ? "Recolher a barra" : "Expandir: ver todas as questões"}">${iconeSvg("chevron-d")}</button>
+    </div>
+    ${expandida ? `<div class="barra-questoes-detalhe">${o.detalhe || ""}</div>` : ""}
   </div>`;
 }
+/* No trilho de uma linha, a questão atual fica à vista, no meio. Rola só o
+   trilho (scrollLeft), nunca a página. */
+function centralizarBarraDeQuestoes(){
+  document.querySelectorAll(".barra-questoes:not(.expandida) .barra-questoes-trilho").forEach(trilho => {
+    const atual = trilho.querySelector(".atual");
+    if(!atual) return;
+    const alvo = atual.offsetLeft - (trilho.clientWidth - atual.offsetWidth) / 2;
+    const anterior = trilho.style.scrollBehavior;
+    trilho.style.scrollBehavior = "auto";          // sem animação ao redesenhar
+    trilho.scrollLeft = Math.max(0, alvo);
+    trilho.style.scrollBehavior = anterior;
+  });
+}
 function alternarMapaSessao(){
-  state.mapaSessaoAberto = state.mapaSessaoAberto === false;
+  state.mapaSessaoExpandido = !state.mapaSessaoExpandido;
+  const s = state.sessaoAtual;
   const mapa = document.getElementById("mapaDaSessao");
-  if(mapa && state.sessaoAtual && !state.sessaoAtual.finalizada){ mapa.outerHTML = renderMapaSessao(state.sessaoAtual); return; }
+  if(mapa && s && s.tipo !== "simulado" && !s.finalizada && state.route === "sessao"){
+    mapa.outerHTML = renderMapaSessao(s); centralizarBarraDeQuestoes(); return;
+  }
   render();
 }
 /* Vai direto a uma questão da fila — qualquer uma, respondida ou em branco.
@@ -487,7 +511,7 @@ function redesenharQuestaoDaSessao(){
   area.innerHTML = htmlCartaoDaSessao(sessao);
   // o mapa mostra quais questões já têm alternativa marcada: ele acompanha
   const mapa = document.getElementById("mapaDaSessao");
-  if(mapa) mapa.outerHTML = renderMapaSessao(sessao);
+  if(mapa){ mapa.outerHTML = renderMapaSessao(sessao); centralizarBarraDeQuestoes(); }
 }
 function renderSessao(){
   const sessao = state.sessaoAtual;
@@ -506,7 +530,6 @@ function renderSessao(){
       <button class="btn btn-ghost btn-sm" onclick="sairDaSessao()">Sair</button>
     </div>
   </div>
-  <div class="progress-track mb-2"><div class="progress-fill" style="width:${pct(feitas, sessao.itens.length)}%"></div></div>
   ${renderMapaSessao(sessao)}
   <div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(item.motivo)}</span></div>
   <div class="area-gesto" id="areaGestoQuestao">
@@ -642,7 +665,7 @@ function imagemDaQuestaoFalhou(img, qid){
 }
 function ampliarImagemQuestao(qid, src){
   const q = getQuestao(qid); if(!q || !q.imagemUrl) return;
-  abrirModal(`<div class="modal-header"><h3>${escapeHtml(q.imagemLegenda||"Imagem da questão")}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+  abrirModal(`${cabecalhoJanela(escapeHtml(q.imagemLegenda||"Imagem da questão"))}
     <img src="${escapeHtml(src || q.imagemUrl)}" style="width:100%;border-radius:var(--radius-sm)" alt="">`, "lg");
 }
 function renderReferenciasQuestao(q){
@@ -812,7 +835,7 @@ function abrirNotaFavorita(qid){
   const nota = notaDaFavorita(u.id, qid);
   const jaEra = isFavorita(u.id, qid);
   abrirModal(`
-    <div class="modal-header"><h3>${iconeSvg("message")} Minha anotação nesta questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela(`${iconeSvg("message")} Minha anotação nesta questão`)}
     <p class="text-sm muted">É só sua: ninguém mais vê, nem a coordenação. Serve para guardar a dúvida que ficou — "por que não é a C?", "conferir a dose", "revisar antes da prova". Ela aparece junto da questão em Favoritos e sobe para a nuvem com a sua conta.</p>
     ${jaEra ? "" : '<p class="text-xs muted mt-1">Esta questão ainda não estava salva. Ao anotar, ela entra nos seus favoritos.</p>'}
     <div class="text-xs muted mt-2">${escapeHtml(q.enunciado.slice(0,150))}${q.enunciado.length>150?"…":""}</div>
@@ -915,7 +938,7 @@ function duvidasPendentes(usuario){
 /* ---------- sinalizar questão desatualizada ---------- */
 function abrirSinalizarDesatualizada(qid){
   abrirModal(`
-    <div class="modal-header"><h3>Sinalizar questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Sinalizar questão")}
     <p class="text-sm muted">Isso avisa a coordenação para revisar a questão. Ela continua disponível normalmente até que um professor ou administrador confirme a alteração.</p>
     <div class="field mt-2"><label class="label">O que parece desatualizado ou incorreto? (opcional)</label><textarea class="textarea" id="motivoSinalizacao" placeholder="Ex.: a diretriz citada mudou em 2025..."></textarea></div>
     <div class="flex gap-1"><button class="btn btn-primary" onclick="confirmarSinalizacao('${qid}')">Enviar sinalização</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
@@ -951,7 +974,7 @@ function gerarPromptDuvida(q){
 function abrirPromptDuvida(qid){
   const prompt = gerarPromptDuvida(getQuestao(qid));
   abrirModal(`
-    <div class="modal-header"><h3>Prompt para tirar dúvida com uma IA</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Prompt para tirar dúvida com uma IA")}
     <p class="text-sm muted mb-2">Copie o texto abaixo e cole em qualquer assistente de IA (Claude, ChatGPT, Gemini...) para obter uma segunda opinião, com evidências, sobre esta questão.</p>
     <textarea class="textarea textarea-mono" style="min-height:280px" readonly id="promptDuvidaTexto">${escapeHtml(prompt)}</textarea>
     <div class="flex gap-1 mt-2">

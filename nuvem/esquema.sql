@@ -83,6 +83,23 @@ as $$
   );
 $$;
 
+-- "É administrador?" — só o papel admin (qualquer nível). É quem lê o
+-- feedback da plataforma (Feedback dos Usuários, seção 11-G).
+create or replace function public.e_admin()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select exists (
+    select 1 from public.perfis p
+    where p.id = auth.uid()
+      and p.papel = 'admin'
+      and p.status = 'aprovado'
+  );
+$$;
+
 -- "Está liberado?" — qualquer conta aprovada pela coordenação, de qualquer
 -- papel. É quem pode enviar questão e imagem para a turma.
 create or replace function public.e_aprovado()
@@ -473,6 +490,56 @@ create policy questoes_imagens_enviar on storage.objects
   );
 
 -- ---------------------------------------------------------------------------
+-- 11-G. FEEDBACKS — comentários, sugestões e reclamações sobre a plataforma
+-- ---------------------------------------------------------------------------
+-- O "Enviar feedback" do Início e o "Quero contribuir" do Livro de Ouro.
+-- Antes a mensagem ficava no navegador de quem escreveu, e a coordenação —
+-- que lê em Feedback dos Usuários, em outro navegador — nunca a recebia.
+-- Quem escreveu vê as suas; os ADMINISTRADORES veem todas e marcam como
+-- lidas (e_admin()). O nome vai na linha (autor_nome) porque o
+-- administrador não tem o cadastro de todo mundo no navegador dele.
+create table if not exists public.feedbacks (
+  id              text        primary key,
+  usuario_id      uuid        references auth.users(id) on delete set null,
+  autor_nome      text        not null default '',
+  papel           text,
+  tipo            text        not null default 'comentario',
+  texto           text        not null default '',
+  data            date,
+  lido            boolean     not null default false,
+  lido_por_nome   text        not null default '',
+  atualizado_por  uuid        references auth.users(id) on delete set null,
+  atualizado_em   timestamptz not null default now()
+);
+create index if not exists feedbacks_sync_idx on public.feedbacks (atualizado_em);
+
+-- ---------------------------------------------------------------------------
+-- 11-H. CORRECOES_QUESTOES — consertos nas questões da pasta dados/ (GLOBAL)
+-- ---------------------------------------------------------------------------
+-- As questões das provas vêm da pasta dados/ e não moram aqui. Mas uma delas
+-- pode precisar de conserto — a figura que faltava, um texto cortado, um
+-- gabarito revisto —, feito em Questões para Atualizar. O conserto sobe
+-- como UMA LINHA POR QUESTÃO com a diferença em relação à pasta: `campos`
+-- (os valores novos: enunciado, alternativas, gabarito, explicação, figura,
+-- status...) e `remover` (os campos a apagar — o caso típico é
+-- imagemPendente, quando a figura chega). A figura em si vai para o
+-- Storage (seção 11-F) e `campos` guarda só o endereço.
+-- Todo mundo que está numa conta lê — é assim que a questão consertada
+-- volta ao estudo da turma —; grava quem revisa (professor, administrador e
+-- residente). Depois de a correção entrar na pasta dados/, ela é
+-- encerrada: `removido = true`.
+create table if not exists public.correcoes_questoes (
+  questao_id      text        primary key,
+  campos          jsonb       not null default '{}'::jsonb,
+  remover         jsonb       not null default '[]'::jsonb,
+  removido        boolean     not null default false,
+  autor_nome      text        not null default '',
+  atualizado_por  uuid        references auth.users(id) on delete set null,
+  atualizado_em   timestamptz not null default now()
+);
+create index if not exists correcoes_questoes_sync_idx on public.correcoes_questoes (atualizado_em);
+
+-- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
 do $$
@@ -482,7 +549,7 @@ begin
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
     'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
-    'comentarios', 'questoes_enviadas'
+    'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -591,6 +658,8 @@ alter table public.livro_ouro           enable row level security;
 alter table public.formatacao_aprovada  enable row level security;
 alter table public.comentarios          enable row level security;
 alter table public.questoes_enviadas    enable row level security;
+alter table public.feedbacks            enable row level security;
+alter table public.correcoes_questoes   enable row level security;
 
 -- PERFIS: a pessoa vê e edita o próprio; professor e administrador veem e
 -- editam qualquer um (é assim que a tela Aprovar Cadastros funciona sem
@@ -722,6 +791,36 @@ create policy questoes_enviadas_alterar on public.questoes_enviadas
         and (status = 'pendente' or (status = 'aprovada' and public.e_revisor())))
   );
 
+-- FEEDBACKS: quem escreveu vê as suas; os administradores veem todas.
+-- Escrever: só em nome próprio, e nunca já "lido". Alterar: o administrador
+-- (marcar como lido); quem escreveu só enquanto ninguém leu — é o reenvio
+-- de uma mensagem cuja confirmação se perdeu no caminho.
+drop policy if exists feedbacks_ler     on public.feedbacks;
+drop policy if exists feedbacks_criar   on public.feedbacks;
+drop policy if exists feedbacks_alterar on public.feedbacks;
+create policy feedbacks_ler on public.feedbacks
+  for select to authenticated
+  using (usuario_id = auth.uid() or public.e_admin());
+create policy feedbacks_criar on public.feedbacks
+  for insert to authenticated
+  with check (usuario_id = auth.uid() and lido = false);
+create policy feedbacks_alterar on public.feedbacks
+  for update to authenticated
+  using (public.e_admin() or (usuario_id = auth.uid() and lido = false))
+  with check (public.e_admin() or (usuario_id = auth.uid() and lido = false));
+
+-- CORRECOES_QUESTOES: todos leem; grava quem revisa (e_revisor()).
+drop policy if exists correcoes_questoes_ler     on public.correcoes_questoes;
+drop policy if exists correcoes_questoes_criar   on public.correcoes_questoes;
+drop policy if exists correcoes_questoes_alterar on public.correcoes_questoes;
+create policy correcoes_questoes_ler on public.correcoes_questoes
+  for select to authenticated using (true);
+create policy correcoes_questoes_criar on public.correcoes_questoes
+  for insert to authenticated with check (public.e_revisor());
+create policy correcoes_questoes_alterar on public.correcoes_questoes
+  for update to authenticated
+  using (public.e_revisor()) with check (public.e_revisor());
+
 -- AS DEMAIS TABELAS: são o estudo de uma pessoa só. Ler, criar e alterar
 -- apenas as próprias linhas. Ninguém apaga nada (o app marca "removido" em
 -- vez de apagar, para a remoção também conseguir viajar entre aparelhos).
@@ -772,7 +871,8 @@ begin
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
-    'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas'
+    'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
+    'feedbacks', 'correcoes_questoes'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;

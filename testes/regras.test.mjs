@@ -120,6 +120,27 @@ test("tutorial rápido: passos, guia completo e o pedido de não mostrar ao entr
   await contexto.close();
 });
 
+test("\"Baixar uma cópia do meu estudo\" traz o estudo inteiro, não só contagens", async () => {
+  // duas funções com o mesmo nome (a do download e a contagem da janela de
+  // excluir cadastro): a carregada depois substituía a outra em silêncio
+  const semNuvem = await subirServidor({ semNuvem: true });
+  const { pagina, contexto } = await abrir({ acceptDownloads: true });
+  try{
+    await pagina.goto(semNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); navigate("perfil");
+      const u = usuarioAtual(), q = questoesParaEstudo(u.id)[0];
+      db.respostas.push({ id: "r-teste", usuarioId: u.id, questaoId: q.id, areaId: q.areaId, alternativaEscolhida: "A", correta: false, confianca: "chute", data: hojeISO() });
+      saveState();
+    });
+    const [download] = await Promise.all([pagina.waitForEvent("download"), pagina.evaluate(() => baixarMeusDados())]);
+    const conteudo = JSON.parse(await (await import("node:fs")).promises.readFile(await download.path(), "utf8"));
+    assert.equal(conteudo.formato, "esc-meus-dados-1");
+    assert.ok(Array.isArray(conteudo.respostas) && conteudo.respostas.some(r => r.id === "r-teste"), "as respostas vão inteiras");
+    assert.equal(conteudo.perfil.senha, undefined, "a senha não vai no arquivo");
+  }finally{ await contexto.close(); await semNuvem.fechar(); }
+});
+
 test("prova antiga tem só questões reais e mostra as anuladas", async () => {
   const { pagina, contexto } = await abrir();
   await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);

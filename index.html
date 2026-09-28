@@ -37,7 +37,7 @@
         cópia guardada quando não há internet.
    AO PUBLICAR: troque a data abaixo. Como os ?v= são montados a partir
    dela, não há mais doze lugares para lembrar — é um só. */
-window.ESC_VERSAO = "2026-09-28-questoes-na-nuvem";
+window.ESC_VERSAO = "2026-09-28-codigo-por-assunto";
 /* O visual vem de codigo/estilo.css, pedido com a versão no endereço pelo
    mesmo motivo. */
 document.write('<link rel="stylesheet" href="codigo/estilo.css?v=' + encodeURIComponent(window.ESC_VERSAO) + '">');
@@ -101,8 +101,9 @@ document.write('<link rel="stylesheet" href="codigo/estilo.css?v=' + encodeURICo
      precisam estar ao lado dele (e ser publicadas junto):
 
        codigo/  o CÓDIGO — telas, regras, algoritmos, CONFIG e o visual
-                (estilo.css). Treze arquivos numerados na ordem em que
-                carregam; cada um começa dizendo o que tem dentro.
+                (estilo.css). Arquivos numerados na ordem em que carregam
+                (03a, 03b… são partes de um mesmo assunto); cada um começa
+                dizendo o que tem dentro. Mapa completo: CLAUDE.md.
        dados/   o CONTEÚDO — taxonomia, calendário, questões (uma prova por
                 arquivo), flashcards, simulados e os dados de demonstração.
                 Ver dados/LEIA-ME.md.
@@ -110,7 +111,8 @@ document.write('<link rel="stylesheet" href="codigo/estilo.css?v=' + encodeURICo
      POR QUÊ. Com tudo num arquivo só eram mais de 12.000 linhas, e qualquer
      leitura (de uma pessoa ou de uma IA) gastava o fôlego atravessando o que
      não interessava. Agora cada pedaço se abre e se confere sozinho — pedir
-     "mude a tela de Meu Desempenho" é abrir codigo/10-telas-do-aluno.js.
+     "mude a tela de Meu Desempenho" é abrir
+     codigo/10a-favoritos-historico-desempenho.js.
 
      O SITE NÃO MUDA. Abrir o index.html com dois cliques continua bastando.
      Se a pasta dados/ faltar, a plataforma avisa numa tarja; se a pasta
@@ -210,11 +212,13 @@ window.ESC_ARQUIVOS = {
   ],
   codigo: [
     "01-config", "02-persistencia",
-    "03-nuvem", "04-utilitarios",
-    "05-motor-de-estudos", "06-entrada-e-estrutura",
-    "07-telas-iniciais", "08-sessao-e-revisao",
-    "09-flashcards-e-provas", "10-telas-do-aluno",
-    "11-telas-da-equipe", "12-importacao-e-central",
+    "03a-nuvem-conexao", "03b-nuvem-sincronizacao", "03c-nuvem-compartilhadas", "03d-nuvem-telas",
+    "04-utilitarios", "05a-motor-de-estudos", "05b-desempenho-e-metas",
+    "06-entrada-e-estrutura", "07-telas-iniciais", "08-sessao-e-revisao",
+    "09a-revisao-rapida", "09b-simulados-e-provas", "09c-cartoes-em-lote",
+    "10a-favoritos-historico-desempenho", "10b-meta-grupo-perfil",
+    "11a-simulado-e-pdf", "11b-qualidade-e-cadastros", "11c-banco-e-taxonomia", "11d-painel-da-turma",
+    "12a-importacao", "12b-central-de-provas", "12c-questoes-para-atualizar",
     "13-tutorial", "14-admin-e-inicializacao",
   ],
 };
