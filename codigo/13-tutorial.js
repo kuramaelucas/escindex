@@ -15,7 +15,9 @@
      papel da pessoa (aluno, residente, professor, administrador). Abre
      sozinho quando ela entra e chega ao Início — uma vez por sessão do
      navegador —, até ela marcar "não mostrar de novo". Dá para rever a
-     qualquer hora pelo menu (Tutorial) ou em Perfil > Ajuda e tutorial.
+     qualquer hora em Perfil e configurações > Ajuda e tutorial — e só lá:
+     o item "Tutorial" saiu do menu lateral (28/09), que é para o que se usa
+     todo dia.
 
    - GUIA COMPLETO: todas as funções, organizadas por tela, em seções que
      abrem e fecham. Abre pelo último passo do tour ou pelo Perfil.
@@ -36,7 +38,7 @@ function papelDoTutorial(u){
 /* ---------- o tour rápido, passo a passo, por papel ---------- */
 const PASSOS_COMUNS_FIM = [
   { icone:"settings", titulo:"Ajuda sempre à mão",
-    texto:"Este tour e um guia completo, função por função, ficam em <strong>Perfil › Ajuda e tutorial</strong> e no item <strong>Tutorial</strong> do menu. Lá você também escolhe se quer ver este tour quando entrar." },
+    texto:"Este tour e um guia completo, função por função, ficam em <strong>Perfil e configurações › Ajuda e tutorial</strong>, no fim do menu. Lá você também escolhe se quer ver este tour quando entrar." },
 ];
 const TUTORIAL_RAPIDO = {
   aluno: [
@@ -136,7 +138,7 @@ const GUIA_ALUNO = [
     "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso. Com a conta na nuvem, a questão sobe com a imagem e vai para a equipe aprovar; em <strong>Suas questões enviadas</strong> você acompanha se foi aprovada ou recusada (com o motivo).",
   ]},
   { titulo:"Perfil, aplicativo e dados", itens:[
-    "Em <strong>Perfil</strong>: ano da faculdade, lembrete diário de meta, senha, instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
+    "Em <strong>Perfil e configurações</strong> (no fim do menu): ano da faculdade, lembrete diário de meta, este tutorial e o guia, senha (a troca pede a senha atual), instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
     "Com a nuvem ligada, o estudo sincroniza entre aparelhos. Sem ela, tudo fica salvo neste navegador.",
   ]},
 ];
@@ -145,6 +147,12 @@ const GUIA_EQUIPE = [
     "Filtros por instituição, ano, área, status e busca por texto. Cada questão abre na íntegra, pode ser editada ou excluída.",
     "<strong>Status › Aguardando imagem</strong>: questões que dependem de uma figura da prova ainda não anexada. Elas <strong>não aparecem para os alunos</strong> — nem no estudo, nem na revisão, nem nas provas antigas ou nos simulados.",
     "Para liberar: salve a figura em <code>dados/imagens/</code> com o nome indicado e apague a linha <code>imagemPendente</code> da questão no arquivo de dados — ou, na tela de edição, envie a imagem ou marque que ela já foi salva.",
+  ]},
+  { titulo:"Questões para Atualizar", itens:[
+    "Uma lista só com o que precisa de conserto: <strong>figura que falta</strong>, <strong>texto cortado</strong> no material de origem, <strong>rascunho</strong>, <strong>desatualizada</strong> e <strong>sinalizada por aluno</strong>. Filtre por tipo e instituição.",
+    "<strong>Consertar</strong> abre o formulário da questão; <strong>Enviar a figura</strong> anexa a imagem direto da lista. Vale na hora — e, com a nuvem, o conserto sobe (a figura vai junto) e chega a toda a turma: a questão volta ao estudo dos alunos.",
+    "<strong>Baixar as atualizações</strong> gera um arquivo com <em>só</em> as questões consertadas. Na pasta do projeto, <code>npm run atualizar-dados -- arquivo.json</code> grava cada conserto no arquivo da prova e as figuras em <code>dados/imagens/</code>.",
+    "<strong>Desfazer</strong> devolve a questão ao que a pasta <code>dados/</code> diz, em todos os aparelhos.",
   ]},
   { titulo:"Importar, Central de Provas e Revisar Formatação", itens:[
     "<strong>Importar Questões</strong>: uma questão por vez, em lote, ou uma prova inteira colada de uma vez (tipo de prova, instituição e ano informados uma vez só). O tipo é <strong>residência</strong> por padrão; prova da faculdade e Teste de Progresso são <strong>graduação</strong>.",
@@ -174,7 +182,7 @@ const GUIA_ADMIN = [
     "<strong>Aprovar Cadastros</strong> e <strong>Usuários</strong>: liberar acessos, mudar papel, nível de administrador e situação das contas. Quando alguém pede acesso, o Esc avisa na tela e mostra o número no menu; em Aprovar Cadastros dá para receber também como notificação do sistema.",
     "<strong>Blocos de Estudo</strong>: o calendário de cada ano da faculdade e das turmas do rodízio, que decide o bloco atual dos alunos.",
     "<strong>Configurações</strong>: metas mínima e recomendada, mistura da sessão, pesos da dificuldade, banca de referência e outras regras do algoritmo.",
-    "<strong>Feedback dos Usuários</strong>: comentários, sugestões e reclamações enviados pela plataforma.",
+    "<strong>Feedback dos Usuários</strong>: comentários, sugestões e reclamações enviados pela plataforma. Com a nuvem, chegam de qualquer aparelho, com o número de não lidos no menu; marcar como lido vale para os outros administradores.",
     "O administrador máster exporta e restaura o backup (Perfil › Backup). Faça cópias com frequência — cadastros não se recriam sozinhos.",
   ]},
 ];
@@ -183,12 +191,13 @@ const GUIA_RESIDENTE = [
     "<strong>Fila de Dúvidas</strong>: responda às dúvidas da turma com as suas palavras e uma fonte.",
     "<strong>Questões Difíceis</strong>: confira gabarito e explicação das questões que a turma mais erra.",
     "<strong>Enviar Provas e Questões</strong>, <strong>Central de Provas</strong> e <strong>Revisar Formatação</strong>: ajude a trazer provas novas e a deixá-las prontas.",
+    "<strong>Questões para Atualizar</strong>: envie a figura que falta, complete o texto cortado, reveja o gabarito — o conserto chega a toda a turma pela nuvem.",
     "<strong>Provas e Simulados</strong>: as mesmas provas antigas e simulados que os alunos veem.",
   ]},
 ];
 function secoesDoGuia(papel){
   if(papel === "aluno") return GUIA_ALUNO;
-  if(papel === "residente") return [...GUIA_RESIDENTE, ...GUIA_EQUIPE.filter(s => /Importar|Qualidade/.test(s.titulo))];
+  if(papel === "residente") return [...GUIA_RESIDENTE, ...GUIA_EQUIPE.filter(s => /Importar|Qualidade|Atualizar/.test(s.titulo))];
   if(papel === "admin") return [...GUIA_ADMIN, ...GUIA_EQUIPE, ...GUIA_ALUNO];
   return [...GUIA_EQUIPE, ...GUIA_ALUNO];
 }
@@ -240,7 +249,7 @@ function definirTutorialAoEntrar(mostrar){
   if(mostrar) delete u.tutorialOcultoAoEntrar;
   else u.tutorialOcultoAoEntrar = true;
   saveState();
-  toast(mostrar ? "O tutorial rápido vai aparecer quando você entrar." : "Pronto: o tutorial não vai mais aparecer quando você entrar. Ele continua em Perfil › Ajuda e tutorial.");
+  toast(mostrar ? "O tutorial rápido vai aparecer quando você entrar." : "Pronto: o tutorial não vai mais aparecer quando você entrar. Ele continua em Perfil e configurações › Ajuda e tutorial.");
 }
 
 /* ---------- o guia completo ---------- */

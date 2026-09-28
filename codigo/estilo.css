@@ -172,6 +172,33 @@ svg.icon-lg{width:26px;height:26px}
 .mapa-legenda .quadro{width:15px;height:15px;border-radius:5px;border:1px solid var(--border-strong);background:var(--surface-2);display:inline-block}
 .mapa-legenda .quadro.vazio{background:transparent;border-style:dashed}
 
+/* ---------- barra de navegação do conjunto de questões ----------
+   A mesma barra na sessão de prática e no simulado: FINA, numa linha só —
+   o número de feitas, os números das questões num trilho que rola de lado
+   (a questão atual fica sempre à vista, centralizada) e um botão que
+   EXPANDE a barra para ver o conjunto inteiro de uma vez, em várias linhas,
+   com a legenda. Numa prova de 100 questões, o mapa aberto ocupava metade
+   da tela antes de a pessoa ver o enunciado. */
+.barra-questoes{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);padding:.3rem .4rem;margin-bottom:.75rem}
+.barra-questoes-linha{display:flex;align-items:center;gap:.45rem;min-width:0}
+.barra-questoes-resumo{flex:none;font-size:.74rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 .2rem;white-space:nowrap}
+.barra-questoes-trilho{flex:1;min-width:0;display:flex;gap:.25rem;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;padding:3px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%)}
+.barra-questoes-trilho::-webkit-scrollbar{display:none}
+.barra-questoes-expandir{flex:none;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--ink-2);cursor:pointer}
+.barra-questoes-expandir:hover{border-color:var(--accent);color:var(--accent)}
+.barra-questoes-expandir .icon{transition:transform .15s ease}
+.barra-questoes.expandida .barra-questoes-expandir .icon{transform:rotate(180deg)}
+.barra-questoes.expandida .barra-questoes-trilho{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none;max-height:none}
+.barra-questoes-detalhe{margin-top:.4rem;padding:0 .2rem .15rem}
+/* na barra, os quadradinhos ficam menores — é isso que cabe numa linha fina */
+.barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:26px;height:24px;padding:0 .3rem;font-size:.7rem;border-radius:6px;gap:.12rem}
+.barra-questoes .pill-mapa{border-radius:6px}
+.barra-questoes .pill-mapa .ponto-resp{width:4px;height:4px}
+.barra-questoes .mapa-pill .marca{width:4px;height:4px}
+.barra-questoes .mapa-pill.atual{outline-offset:0}
+.barra-questoes.expandida .mapa-pill,.barra-questoes.expandida .pill-mapa{min-width:30px;height:28px;font-size:.74rem}
+
 /* ---------- tabelas ---------- */
 table{width:100%;border-collapse:collapse;font-size:.86rem}
 th{text-align:left;color:var(--muted);font-weight:600;font-size:.72rem;padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
@@ -226,6 +253,10 @@ tr:last-child td{border-bottom:none}
 .stat-mini .stat-label{font-size:.76rem;line-height:1.25}
 button.stat-mini{cursor:pointer;text-align:left;font:inherit;color:inherit}
 button.stat-mini:hover{border-color:var(--accent)}
+button.stat-mini.ativo{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+/* passo a passo curto dentro de um cartão (Questões para Atualizar) */
+ol.lista-passos{margin:.2rem 0 0;padding-left:1.2rem}
+ol.lista-passos li{margin:.25rem 0}
 .stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
 .stat-value{font-family:var(--font-display);font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--ink)}
 .stat-label{font-size:.78rem;color:var(--muted);margin-top:.15rem}
@@ -237,8 +268,8 @@ button.stat-mini:hover{border-color:var(--accent)}
 /* ---------- mapa de progresso da sessão de questões ----------
    Um quadradinho por questão da fila: o número, e a cor dizendo o que
    aconteceu. Serve para navegar (clicar volta à questão) e para enxergar o
-   conjunto inteiro sem sair da questão atual. */
-.mapa-sessao{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.55rem}
+   conjunto inteiro sem sair da questão atual. Mora na barra fina
+   (.barra-questoes, mais acima). */
 .mapa-pill{min-width:32px;height:32px;padding:0 .35rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:.15rem;cursor:pointer;transition:transform .08s ease,border-color .12s ease}
 .mapa-pill:hover:not(:disabled){border-color:var(--accent)}
 .mapa-pill:active:not(:disabled){transform:scale(.94)}
@@ -263,6 +294,7 @@ button.stat-mini:hover{border-color:var(--accent)}
 .mapa-sessao-legenda .amostra.marcada{width:7px;height:7px;border-radius:50%;background:var(--amber);border-color:var(--amber)}
 @media (max-width:640px){
   .mapa-pill{min-width:29px;height:29px;font-size:.73rem}
+  .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{min-width:26px;height:24px;font-size:.7rem}
   .mapa-sessao-legenda{gap:.65rem}
   .mapa-sessao-legenda .so-largo{display:none}
 }

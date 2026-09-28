@@ -218,7 +218,9 @@ function enviarContribuicao(){
   const texto = (document.getElementById("contribTexto").value||"").trim();
   if(!texto){ toast("Escreva uma mensagem antes de enviar.", "err"); return; }
   const u = usuarioAtual();
-  db.feedbacks.push({id:uid("fb"), usuarioId:u.id, papel:u.papel, tipo:"contribuicao ("+tipo+")", texto, data:hojeISO(), lido:false});
+  const fb = {id:uid("fb"), usuarioId:u.id, autorNome:u.nome, papel:u.papel, tipo:"contribuicao ("+tipo+")", texto, data:hojeISO(), lido:false};
+  db.feedbacks.push(fb);
+  nuvemMarcarFeedback(fb.id);
   saveState(); fecharModal();
   toast("Recebido! A coordenação vai entrar em contato. Obrigado de verdade.");
 }
@@ -972,7 +974,7 @@ function renderPerfil(){
   const u = usuarioAtual();
   const ehMaster = podeAdmin("backup", u);
   return `
-  <div class="page-header"><h2>Perfil</h2></div>
+  <div class="page-header"><h2>Perfil e configurações</h2><p>Seus dados, a ajuda e o tutorial, a senha, o aplicativo e a conta na nuvem.</p></div>
   <div class="card" style="max-width:460px">
     <div class="field"><label class="label">Nome</label><div>${escapeHtml(u.nome)}</div></div>
     <div class="field"><label class="label">E-mail</label><div>${escapeHtml(u.email)}</div></div>

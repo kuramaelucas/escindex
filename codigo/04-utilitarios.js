@@ -354,12 +354,35 @@ function estatisticasRankingSimulado(chave, notaAtual){
   return {n, percentil, mediana, buckets, bucketAtual, origem};
 }
 
-/* ---------------------------- consultas rápidas --------------------------- */
+/* ---------------------------- consultas rápidas ---------------------------
+   getQuestao() é chamada dentro de laços por quase toda tela (histórico,
+   revisão, desempenho, listas da equipe) e varria as 2.700 questões a cada
+   chamada. Agora um índice id -> posição responde na hora. Ele não precisa
+   ser avisado de nada: a cada consulta confere se a lista é a mesma, do
+   mesmo tamanho, e se a posição ainda guarda aquele id — qualquer mudança
+   (push, splice, troca da lista, reordenação) só faz o índice ser refeito. */
+const _indicesPorId = {};
+function buscarPorId(nome, lista, id){
+  if(!Array.isArray(lista)) return undefined;
+  const c = _indicesPorId[nome];
+  if(c && c.lista === lista && c.n === lista.length){
+    const i = c.mapa.get(id);
+    if(i !== undefined && lista[i] && lista[i].id === id) return lista[i];
+    // não está no índice: confere na lista (um splice seguido de push deixa
+    // o tamanho igual) e só refaz o índice se o item existir de fato
+    if(i === undefined && !lista.some(x => x && x.id === id)) return undefined;
+  }
+  const mapa = new Map();
+  lista.forEach((x, i) => { if(x && !mapa.has(x.id)) mapa.set(x.id, i); });
+  _indicesPorId[nome] = { lista, n: lista.length, mapa };
+  const i = mapa.get(id);
+  return i === undefined ? undefined : lista[i];
+}
 function getUsuario(id){ return db.usuarios.find(u=>u.id===id); }
 function getArea(id){ return db.taxonomia.areas.find(a=>a.id===id); }
-function getEspecialidade(id){ return db.taxonomia.especialidades.find(e=>e.id===id); }
-function getAssunto(id){ return db.taxonomia.assuntos.find(a=>a.id===id); }
-function getQuestao(id){ return db.questoes.find(q=>q.id===id); }
+function getEspecialidade(id){ return buscarPorId("especialidades", db.taxonomia.especialidades, id); }
+function getAssunto(id){ return buscarPorId("assuntos", db.taxonomia.assuntos, id); }
+function getQuestao(id){ return buscarPorId("questoes", db.questoes, id); }
 function getGrupo(id){ return db.grupos.find(g=>g.id===id); }
 function getGrupoOficial(){ return getGrupo(db.grupoOficialId); }
 // cada aluno pertence a um grupo/turma (calendário de blocos próprio ou
@@ -576,6 +599,7 @@ const PERMISSAO_DA_ROTA = {
   "usuarios":"usuarios", "config-geral":"config", "blocos":"blocos",
   "aprovar-cadastros":"cadastros", "feedback-usuarios":"cadastros", "taxonomia":"taxonomia",
   "material-pdf":"conteudo", "central-provas":"conteudo", "painel-turma":"turma",
+  "atualizar-questoes":"conteudo",
 };
 function nivelAdminDe(usuario){
   if(!usuario || usuario.papel!=="admin") return null;

@@ -89,6 +89,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
+Pela plataforma: **Questões para Atualizar › Enviar a figura** libera a questão na hora (com a nuvem, para toda a turma), e **Baixar as atualizações** + `npm run atualizar-dados -- arquivo.json` traz as figuras e os consertos para cá.
 O nome exato de cada arquivo e a descrição do que a prova mostrava estão em `dados/imagens/LEIA-ME.md`.
 As provas da AMRIGS (2022 a 2025) e a USP-RP 2026 já têm todas as figuras.
 

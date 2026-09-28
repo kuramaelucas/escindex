@@ -18,10 +18,17 @@ antigas e dos simulados. Continuam no banco, separadas para a equipe em
    continua marcada como pendente.
 4. Publique o site de novo (com a pasta `dados/` junto).
 
-Sem mexer em arquivo: na tela da questão (Banco de Questões > editar), enviar
-a imagem ali mesmo, ou marcar "a imagem já foi salva em dados/imagens/", também
-libera a questão — mas só naquele navegador (e na nuvem, se ligada), como tudo o
-que a equipe edita pela plataforma.
+Sem mexer em arquivo: em **Questões para Atualizar** (ou Banco de Questões >
+editar), enviar a imagem ali mesmo — ou marcar "a imagem já foi salva em
+dados/imagens/" — libera a questão na hora. Com a nuvem ligada, o conserto sobe
+(a figura vai para o Storage) e chega a toda a turma. Para trazer de vez para
+esta pasta: **Baixar as atualizações** na mesma tela e, na pasta do projeto,
+
+    npm run atualizar-dados -- atualizacoes-questoes-AAAA-MM-DD.json
+
+que salva cada figura aqui com o nome da questão, apaga a linha
+`imagemPendente` e grava o resto do conserto no arquivo da prova (só as
+questões consertadas, só os campos que mudaram).
 
 Prefira imagens com até ~1600 px de largura e até ~400 KB: elas descem para o
 celular de cada aluno.

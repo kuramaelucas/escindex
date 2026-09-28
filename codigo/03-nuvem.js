@@ -917,6 +917,8 @@ const NUVEM_GLOBAIS = {
    `removido` — assim a remoção também desce para os outros aparelhos. */
 NUVEM_GLOBAIS.comentarios = {
   chave: l => l.id,
+  colunaChave: "id",
+  alheia: l => !!nuvemSessao && l.usuario_id !== nuvemSessao.usuarioId,
   podeGravar: () => true,
   aplicar: l => {
     if(!Array.isArray(db.comentarios)) db.comentarios = [];
@@ -938,6 +940,52 @@ NUVEM_GLOBAIS.comentarios = {
     };
   },
 };
+
+/* FEEDBACK DA PLATAFORMA (tabela feedbacks, seção 11-G do esquema.sql):
+   "Enviar feedback" e "Quero contribuir". Até aqui a mensagem ficava em
+   db.feedbacks do navegador de quem escreveu — e a coordenação, que a lê em
+   Feedback dos Usuários, estava em outro navegador: nada chegava. Agora
+   sobe; quem escreveu vê as suas, os administradores veem todas e marcam
+   como lidas (a marca também viaja). O nome vai na linha porque o
+   administrador não tem, no navegador dele, o cadastro de todo mundo. */
+NUVEM_GLOBAIS.feedbacks = {
+  chave: l => l.id,
+  colunaChave: "id",
+  alheia: l => !!nuvemSessao && l.usuario_id !== nuvemSessao.usuarioId,
+  podeGravar: () => true,
+  aplicar: l => {
+    if(!Array.isArray(db.feedbacks)) db.feedbacks = [];
+    const i = db.feedbacks.findIndex(x => x.id === l.id);
+    const reg = {
+      id: l.id, usuarioId: l.usuario_id, autorNome: l.autor_nome || "", papel: l.papel || "aluno",
+      tipo: l.tipo || "comentario", texto: l.texto || "", data: l.data || (l.atualizado_em || "").slice(0, 10),
+      lido: !!l.lido, lidoPorNome: l.lido_por_nome || "", naNuvem: true,
+    };
+    if(i >= 0) db.feedbacks[i] = Object.assign(db.feedbacks[i], reg); else db.feedbacks.push(reg);
+  },
+  linha: id => {
+    const f = (db.feedbacks || []).find(x => x.id === id);
+    if(!f) return null;
+    const autor = getUsuario(f.usuarioId);
+    return {
+      id: f.id, usuario_id: ehUuid(f.usuarioId) ? f.usuarioId : nuvemSessao.usuarioId,
+      autor_nome: f.autorNome || (autor && autor.nome) || "", papel: f.papel || null, tipo: f.tipo || "comentario",
+      texto: f.texto || "", data: f.data || null, lido: !!f.lido, lido_por_nome: f.lidoPorNome || "",
+    };
+  },
+};
+/* Chamado ao escrever um feedback (e ao marcá-lo como lido). Sem conta na
+   nuvem, fica só neste navegador — e a tela diz isso a quem enviou. */
+function nuvemMarcarFeedback(id){
+  if(!nuvemConectado()) return false;
+  // só sobe o que veio da nuvem ou o que é da própria conta conectada: uma
+  // conta local deste navegador não pode escrever em nome de outra
+  const f = (db.feedbacks || []).find(x => x.id === id);
+  if(!f || (!f.naNuvem && f.usuarioId !== nuvemSessao.usuarioId)) return false;
+  nuvemMarcarGlobalPendente("feedbacks", id);
+  nuvemAgendarSync();
+  return true;
+}
 
 /* QUESTÕES ENVIADAS PELA PLATAFORMA (tabela questoes_enviadas, seção 11-E
    do esquema.sql). Até aqui, a questão enviada por Enviar/Importar
@@ -1014,18 +1062,22 @@ function linhaDaQuestaoNaNuvem(q){
    questão passa a apontar para o endereço público dela — aqui também, para
    uma nova tentativa não mandar a mesma imagem de novo. */
 async function nuvemEnviarImagemDaQuestao(q){
-  const [cabecalho, base64] = String(q.imagemUrl).split(",");
+  q.imagemUrl = await nuvemSubirImagem(q.imagemUrl, q.id);
+  saveState();
+}
+/* Sobe uma imagem data:image/... para o balde e devolve o endereço público. */
+async function nuvemSubirImagem(dataUrl, nomeBase){
+  const [cabecalho, base64] = String(dataUrl).split(",");
   const tipo = (/^data:([^;,]+)/.exec(cabecalho) || [])[1] || "image/jpeg";
   const binario = atob(base64 || "");
   const bytes = new Uint8Array(binario.length);
   for(let i = 0; i < binario.length; i++) bytes[i] = binario.charCodeAt(i);
   const ext = { "image/png": "png", "image/webp": "webp", "image/gif": "gif" }[tipo] || "jpg";
-  const caminho = nuvemSessao.usuarioId + "/" + encodeURIComponent(q.id) + "-" + Date.now().toString(36) + "." + ext;
+  const caminho = nuvemSessao.usuarioId + "/" + encodeURIComponent(nomeBase) + "-" + Date.now().toString(36) + "." + ext;
   await nuvemChamar("/storage/v1/object/" + BALDE_IMAGENS_QUESTOES + "/" + caminho, {
     method: "POST", headers: { "Content-Type": tipo, "x-upsert": "false" }, body: new Blob([bytes], { type: tipo }),
   });
-  q.imagemUrl = CONFIG.nuvem.url.replace(/\/+$/, "") + "/storage/v1/object/public/" + BALDE_IMAGENS_QUESTOES + "/" + caminho;
-  saveState();
+  return CONFIG.nuvem.url.replace(/\/+$/, "") + "/storage/v1/object/public/" + BALDE_IMAGENS_QUESTOES + "/" + caminho;
 }
 // a recusa do banco (RLS) é definitiva: não é "sem permissão por enquanto"
 function nuvemRecusaDePolitica(e){ return e && e.status === 403 && /row-level security|42501/i.test(e.textoDoServidor || ""); }
@@ -1072,6 +1124,82 @@ NUVEM_GLOBAIS.questoes_enviadas = {
     }
   },
 };
+/* CORREÇÕES DAS QUESTÕES DA PASTA dados/ (tabela correcoes_questoes, seção
+   11-H do esquema.sql). As questões das provas não sobem — são iguais para
+   todos e vêm da pasta dados/. Mas uma delas pode precisar de conserto: a
+   figura que faltava, um texto cortado, um gabarito revisto. Antes, o
+   conserto feito em Questões para Atualizar ficava no navegador de quem
+   consertou. Agora sobe como UMA LINHA POR QUESTÃO com a diferença em
+   relação à pasta dados/ (campos novos e campos a apagar — ver
+   correcaoDaQuestao, seção 26-D), a imagem vai antes para o Storage, e a
+   correção desce para todo mundo: a questão consertada volta ao estudo da
+   turma na hora. Depois, "Baixar as atualizações" leva só essas questões
+   para a pasta dados/ (ferramentas/aplicar-atualizacoes.mjs), e a linha
+   pode ser encerrada. */
+NUVEM_GLOBAIS.correcoes_questoes = {
+  chave: l => l.questao_id,
+  podeGravar: () => podeRevisarNaNuvem(),
+  aplicar: l => aplicarCorrecaoDaNuvem(l),
+  linha: qid => linhaDaCorrecao(qid),
+  enviar: async qid => {
+    const q = getQuestao(qid);
+    try{
+      if(q && /^data:image\//.test(q.imagemUrl || "")){
+        try{
+          q.imagemUrl = await nuvemSubirImagem(q.imagemUrl, qid);
+          saveState();
+        }catch(e){
+          if(e.semRede || e.sessaoExpirada || e.status === 401 || e.status === 429 || e.status >= 500) throw e;
+          db.nuvem.avisoImagens = "A imagem de uma questão consertada não subiu: " + (e.message || "o espaço de imagens recusou o arquivo") +
+            " Rode de novo o nuvem/esquema.sql no Supabase (ele cria o espaço de imagens \"questoes\"); a correção sobe sozinha depois.";
+          return false;
+        }
+      }
+      await nuvemChamar("/rest/v1/correcoes_questoes", {
+        method: "POST", headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+        body: JSON.stringify([Object.assign(linhaDaCorrecao(qid), { atualizado_por: nuvemSessao.usuarioId })]),
+      });
+      const meta = (db.correcoes || {})[qid];
+      if(meta) meta.naNuvem = true;
+      delete db.nuvem.avisoImagens;
+      return true;
+    }catch(e){
+      if(nuvemRecusaDePolitica(e)){ const def = new Error(e.message); def.status = 400; throw def; }
+      throw e;
+    }
+  },
+};
+function nuvemMarcarCorrecao(qid){
+  if(!nuvemConectado()) return false;
+  nuvemMarcarGlobalPendente("correcoes_questoes", qid);
+  nuvemAgendarSync();
+  return true;
+}
+function linhaDaCorrecao(qid){
+  const q = getQuestao(qid);
+  const c = q ? correcaoDaQuestao(q) : null;
+  const meta = (db.correcoes || {})[qid] || {};
+  return { questao_id: qid, campos: c ? c.campos : {}, remover: c ? c.remover : [], removido: !c,
+    autor_nome: meta.porNome || (euNaNuvem() || {}).nome || "" };
+}
+/* A linha que desce é a diferença inteira em relação à pasta dados/: a
+   questão volta primeiro ao que a pasta diz e recebe a correção por cima.
+   Assim uma correção que deixou de mexer num campo também o devolve, e uma
+   correção encerrada (removido) devolve a questão à pasta. */
+function aplicarCorrecaoDaNuvem(l){
+  const qid = l && l.questao_id; if(!qid) return;
+  if(!db.correcoes) db.correcoes = {};
+  const q = getQuestao(qid), s = sementeDaQuestao(qid);
+  if(q && s) voltarQuestaoASemente(q, s);
+  if(l.removido){ delete db.correcoes[qid]; return; }
+  db.correcoes[qid] = { porNome: l.autor_nome || "", em: (l.atualizado_em || "").slice(0, 10) || hojeISO(), naNuvem: true };
+  if(!q) return;
+  const campos = l.campos || {};
+  Object.keys(campos).forEach(c => { if(CAMPOS_CORRIGIVEIS.includes(c)) q[c] = copiaProfunda(campos[c]); });
+  (Array.isArray(l.remover) ? l.remover : []).forEach(c => { if(CAMPOS_CORRIGIVEIS.includes(c)) delete q[c]; });
+  if(!q.imagemPendente && s && s.imagemPendente) q.imagemLiberada = true;
+}
+
 /* O que desce: a aprovada entra no banco de todos; a pendente, no de quem
    enviou e no da equipe (é a fila de Sugeridas); a recusada e a removida
    saem. Quem enviou guarda o andamento dos próprios envios (meusEnvios),
@@ -1207,11 +1335,22 @@ async function nuvemEnviarGlobaisPendentes(){
       }
       const linha = desc.linha(p.chave);
       if(!linha){ tirar(); continue; }                   // o registro não existe mais aqui: nada a subir
-      await nuvemChamar("/rest/v1/" + p.tabela, {
-        method: "POST",
-        headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
-        body: JSON.stringify([Object.assign(linha, { atualizado_por: nuvemSessao.usuarioId })]),
-      });
+      Object.assign(linha, { atualizado_por: nuvemSessao.usuarioId });
+      if(desc.alheia && desc.alheia(linha)){
+        // a linha é de OUTRA pessoa (moderar um comentário, marcar um
+        // feedback como lido): vai como alteração da linha que já existe.
+        // O upsert passaria pela regra de INSERÇÃO do banco, que só aceita
+        // linha em nome próprio — e a moderação seria recusada.
+        await nuvemChamar("/rest/v1/" + p.tabela + "?" + desc.colunaChave + "=eq." + encodeURIComponent(p.chave), {
+          method: "PATCH", headers: { "Prefer": "return=minimal" }, body: JSON.stringify(linha),
+        });
+      }else{
+        await nuvemChamar("/rest/v1/" + p.tabela, {
+          method: "POST",
+          headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+          body: JSON.stringify([linha]),
+        });
+      }
       tirar();
     }catch(e){
       if(nuvemTabelaNaoExiste(e)){ _nuvemTabelasAusentes.add(p.tabela); continue; }
@@ -2039,13 +2178,16 @@ function renderChipNuvem(){
    cadastrou e ficavam com a senha que lhes foi entregue, sem caminho para
    trocá-la sem pedir para alguém mexer no arquivo.
 
-   São dois caminhos, porque são dois lugares onde a senha mora:
-   - conta da NUVEM: quem guarda é o servidor, com hash. A sessão em curso já
-     prova quem é a pessoa, então o Supabase não pede a senha antiga; pedimos
-     a nova duas vezes, que é o erro que de fato acontece (digitar torto).
+   São dois caminhos, porque são dois lugares onde a senha mora — e nos dois
+   a SENHA ATUAL é exigida. Uma sessão aberta num computador compartilhado
+   (ou um celular desbloqueado na mão de outra pessoa) não pode bastar para
+   tomar a conta trocando a senha:
+   - conta da NUVEM: quem guarda é o servidor, com hash. O Supabase aceitaria
+     a troca só com a sessão, então a senha atual é conferida antes, entrando
+     de novo com ela (nuvemConferirSenhaAtual); errada, nada muda.
    - conta LOCAL (as de teste e as de antes da nuvem): a senha está no banco
-     deste navegador, em texto claro. Aí a senha atual É a prova de que é a
-     pessoa, e é exigida. */
+     deste navegador, em texto claro, e é comparada ali mesmo.
+   O "esqueci a senha" continua sendo o caminho de quem não lembra a atual. */
 function renderCardSenha(){
   const u = usuarioAtual();
   if(!u) return "";
@@ -2056,31 +2198,52 @@ function renderCardSenha(){
     <p class="text-sm muted">${naNuvem
       ? "Sua senha fica no servidor, com hash — nem este arquivo nem este navegador têm cópia dela. Trocar aqui vale para todos os aparelhos em que você entrar."
       : "Esta é uma conta deste navegador: a senha nova vale só aqui. Se você também tem conta na nuvem, troque a senha dela entrando com ela."}</p>
-    ${naNuvem ? "" : `<div class="field mt-2"><label class="label">Senha atual</label><input class="input" type="password" id="senhaAtual" placeholder="••••••••"></div>`}
-    <div class="field"><label class="label">Nova senha</label><input class="input" type="password" id="senhaNova" placeholder="pelo menos ${minimo} caracteres"></div>
-    <div class="field"><label class="label">Repita a nova senha</label><input class="input" type="password" id="senhaNova2" placeholder="••••••••" onkeydown="if(event.key==='Enter') trocarMinhaSenha()"></div>
+    <div class="field mt-2"><label class="label">Senha atual</label><input class="input" type="password" id="senhaAtual" placeholder="••••••••" autocomplete="current-password"></div>
+    <div class="field"><label class="label">Nova senha</label><input class="input" type="password" id="senhaNova" placeholder="pelo menos ${minimo} caracteres" autocomplete="new-password"></div>
+    <div class="field"><label class="label">Repita a nova senha</label><input class="input" type="password" id="senhaNova2" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter') trocarMinhaSenha()"></div>
     <button class="btn btn-primary btn-sm" onclick="trocarMinhaSenha()">Salvar nova senha</button>
+    ${naNuvem ? `<div class="hint mt-1">Não lembra a senha atual? Saia e use "Esqueci a senha" na tela de entrada.</div>` : ""}
   </div>`;
 }
 function trocarMinhaSenha(){
   const u = usuarioAtual(); if(!u) return;
   const naNuvem = nuvemConectado() && nuvemSessao.usuarioId === u.id;
   const minimo = naNuvem ? 6 : 4;
+  const atual = (document.getElementById("senhaAtual") || {}).value || "";
   const nova = document.getElementById("senhaNova").value;
   const nova2 = document.getElementById("senhaNova2").value;
+  if(!atual){ toast("Digite a sua senha atual.", "err"); return; }
   if(!nova || nova.length < minimo){ toast("A nova senha precisa ter pelo menos " + minimo + " caracteres.", "err"); return; }
   if(nova !== nova2){ toast("As duas senhas novas não são iguais.", "err"); return; }
-  if(naNuvem){ nuvemTrocarSenha(nova); return; }
-  const atual = document.getElementById("senhaAtual").value;
-  if(u.senha !== atual){ toast("A senha atual está incorreta.", "err"); return; }
   if(nova === atual){ toast("A nova senha é igual à atual.", "err"); return; }
+  if(naNuvem){ nuvemTrocarSenha(atual, nova); return; }
+  if(u.senha !== atual){ toast("A senha atual está incorreta.", "err"); return; }
   u.senha = nova;
   saveState();
   toast("Senha alterada neste navegador.");
   render();
 }
-async function nuvemTrocarSenha(nova){
+/* Confere a senha atual entrando de novo com ela (grant_type=password). A
+   sessão que volta é da mesma pessoa e já é a mais nova, então passa a ser a
+   deste aparelho — é com ela que a troca é feita. */
+async function nuvemConferirSenhaAtual(senha){
+  const email = (nuvemSessao && nuvemSessao.email) || (euNaNuvem() || {}).email || "";
+  if(!email) throw new Error("Não foi possível identificar o e-mail desta conta. Saia e entre de novo.");
+  let r;
   try{
+    r = await nuvemChamar("/auth/v1/token?grant_type=password", {
+      method: "POST", semToken: true, body: JSON.stringify({ email, password: senha }),
+    });
+  }catch(e){
+    if(e.status === 400 || /incorretos/i.test(e.message || "")){ const err = new Error("A senha atual está incorreta."); err.senhaErrada = true; throw err; }
+    throw e;
+  }
+  if(!r || !r.access_token || (r.user && r.user.id && r.user.id !== nuvemSessao.usuarioId)) throw new Error("A senha atual está incorreta.");
+  nuvemGuardarSessao(Object.assign({}, nuvemSessao, { token: r.access_token, refresh: r.refresh_token || nuvemSessao.refresh }));
+}
+async function nuvemTrocarSenha(atual, nova){
+  try{
+    await nuvemConferirSenhaAtual(atual);
     await nuvemChamar("/auth/v1/user", { method:"PUT", body: JSON.stringify({ password: nova }) });
     toast("Senha alterada. Use a nova da próxima vez que entrar, em qualquer aparelho.");
     render();

@@ -757,6 +757,23 @@ function sementesPorId(colecao, sementes){
   if(!_sementesPorId[colecao]) _sementesPorId[colecao] = new Map((sementes() || []).map(x => [x.id, x]));
   return _sementesPorId[colecao];
 }
+/* O JSON de cada campo-objeto da semente, calculado uma vez: a semente não
+   muda enquanto a página está aberta, e compactar roda a cada saveState()
+   (cada resposta, cada clique que grava). Serializar os dois lados de cada
+   campo de 2.700 questões a cada gravação era mais da metade do tempo dela. */
+const _jsonDaSemente = new WeakMap();
+function jsonDoCampoDaSemente(semente, k){
+  let cache = _jsonDaSemente.get(semente);
+  if(!cache){ cache = {}; _jsonDaSemente.set(semente, cache); }
+  if(!(k in cache)) cache[k] = JSON.stringify(semente[k]);
+  return cache[k];
+}
+function campoIgualASemente(valor, semente, k){
+  const s = semente[k];
+  if(valor === s) return true;                                   // mesmo primitivo (ou o mesmo objeto)
+  if(valor === null || s === null || typeof valor !== "object" || typeof s !== "object") return false;
+  return JSON.stringify(valor) === jsonDoCampoDaSemente(semente, k);
+}
 function compactarParaArmazenar(banco){
   const saida = { ...banco };
   COLECOES_COM_SEMENTE.forEach(([colecao, sementes]) => {
@@ -767,7 +784,7 @@ function compactarParaArmazenar(banco){
       if(!semente) return item;
       const dif = { id: item.id, _semente: 1 };
       Object.keys(item).forEach(k => {
-        if(k !== "id" && JSON.stringify(item[k]) !== JSON.stringify(semente[k])) dif[k] = item[k];
+        if(k !== "id" && !campoIgualASemente(item[k], semente, k)) dif[k] = item[k];
       });
       const apagados = Object.keys(semente).filter(k => !(k in item));
       if(apagados.length) dif._semCampos = apagados;

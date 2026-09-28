@@ -207,7 +207,9 @@
    - MAPA DA SESSÃO (renderMapaSessao): durante a prática, a fila de questões
      vira uma tira de números clicáveis, com acerto e erro à vista. Não
      confundir com o mapa do SIMULADO (.pill-mapa/.mapa-legenda), que durante
-     a prova diz só respondida/em branco, nunca certo ou errado.
+     a prova diz só respondida/em branco, nunca certo ou errado. Os dois
+     moram na mesma BARRA FINA de uma linha (htmlBarraDeQuestoes), que
+     expande para o conjunto inteiro (state.mapaSessaoExpandido).
    - SEPARAÇÃO COMPLETA (21/09, segunda parte): saíram também a taxonomia,
      o calendário, os simulados e os dados de demonstração — antes só as
      questões e os cartões estavam fora. Agora o index.html não tem
@@ -370,7 +372,7 @@ let state = {
   sessaoAtual: null,     // fila de questões em andamento (prática ou simulado)
   sessaoFlash: null,      // baralho de flashcards em andamento (revisão rápida)
   filtroRota: {},         // filtros temporários usados por algumas telas
-  mapaSessaoAberto: true,  // o mapa de progresso da sessão está aberto?
+  mapaSessaoExpandido: false, // a barra de questões (sessão e simulado) está expandida? nasce fina, numa linha
   modoAluno: false,        // permite que admin/professor/residente também usem a plataforma como aluno
 };
 

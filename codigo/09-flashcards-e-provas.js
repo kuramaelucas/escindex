@@ -648,20 +648,20 @@ function renderSimuladoAtivo(){
       <button class="btn btn-ghost btn-sm" onclick="confirmarSairSimulado()">Sair sem salvar</button>
     </div>
   </div>
-  <div class="text-xs muted mb-1">Mapa de questões — clique num número pra ir direto, ou use as teclas A (anterior) / D (próxima). Ele mostra só o que já foi respondido; se a resposta está certa ou errada você fica sabendo no resultado, quando o simulado acabar.</div>
-  <div class="mapa-questoes mb-1">
-    ${sessao.itens.map((it,i)=>{
+  ${htmlBarraDeQuestoes({ id: "mapaDoSimulado", feitas: respondidasCount, total: sessao.itens.length,
+    titulo: respondidasCount + " respondida(s) · " + emBranco + " em branco",
+    pills: sessao.itens.map((it,i)=>{
       // o número da questão fica sempre visível: é por ele que a pessoa se
       // localiza na prova e no caderno de rascunho
       const respondida = sessao.respostasSimulado[it.questaoId] !== undefined;
       const atual = i===sessao.indiceAtual;
       return `<button class="pill pill-mapa ${respondida?"respondida":"em-branco"}${atual?" atual":""}" onclick="irQuestaoSimuladoIndice(${i})" title="Questão ${i+1} — ${respondida?"respondida":"em branco"}${atual?" (você está nesta)":""}" aria-label="Questão ${i+1}, ${respondida?"respondida":"em branco"}"${atual?' aria-current="true"':""}>${respondida?'<span class="ponto-resp"></span>':""}${i+1}</button>`;
-    }).join("")}
-  </div>
-  <div class="mapa-legenda text-xs muted mb-2">
-    <span class="amostra"><span class="quadro"></span>respondida (${respondidasCount})</span>
-    <span class="amostra"><span class="quadro vazio"></span>em branco (${emBranco})</span>
-  </div>
+    }).join(""),
+    detalhe: `<div class="mapa-legenda text-xs muted">
+      <span class="amostra"><span class="quadro"></span>respondida (${respondidasCount})</span>
+      <span class="amostra"><span class="quadro vazio"></span>em branco (${emBranco})</span>
+    </div>
+    <div class="text-xs muted mt-1">Clique num número para ir direto, ou use as teclas A (anterior) / D (próxima). A barra mostra só o que já foi respondido; se a resposta está certa ou errada você fica sabendo no resultado, quando o simulado acabar.</div>` })}
   <div class="area-gesto" id="areaGestoQuestao">
     ${renderQuestionCard(q, emModoAprendizado ? {selecionada:respostaAtual, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
   </div>

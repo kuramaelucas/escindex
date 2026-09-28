@@ -970,25 +970,42 @@ function alterarNivelAdmin(id, nivel){
   toast("Nível de acesso atualizado para "+rotuloNivelAdmin(nivel)+".");
   render();
 }
+/* Com a nuvem, a lista é a de TODA a plataforma (tabela feedbacks): o que
+   qualquer pessoa enviou de qualquer aparelho chega aqui na sincronização,
+   e "marcar como lido" também sobe, para os outros administradores. */
 function renderFeedbackUsuarios(){
-  const lista = db.feedbacks.slice().sort((a,b)=>b.data.localeCompare(a.data));
-  const rotulos = {comentario:["badge-muted","Comentário"], sugestao:["badge-accent","Sugestão"], reclamacao:["badge-danger","Reclamação"]};
+  const lista = (db.feedbacks||[]).slice().sort((a,b)=>(b.data||"").localeCompare(a.data||""));
+  const naoLidos = lista.filter(f=>!f.lido).length;
+  const rotulos = {comentario:["badge-muted","Comentário"], sugestao:["badge-accent","Sugestão"], reclamacao:["badge-danger","Reclamação"], contribuicao:["badge-amber","Quer contribuir"]};
+  const pag = paginar(lista, "feedbacks", { porPagina: 20 });
   return `
-  <div class="page-header"><h2>Feedback dos Usuários</h2><p>Comentários, sugestões e reclamações enviados por qualquer pessoa da plataforma.</p></div>
-  ${lista.length ? lista.map(f=>{
+  <div class="page-header"><h2>Feedback dos Usuários</h2><p>Comentários, sugestões e reclamações enviados por qualquer pessoa da plataforma${naoLidos ? ` — <strong>${naoLidos} não lido(s)</strong>` : ""}.</p></div>
+  <div class="card-flat mb-2 text-sm">${nuvemConectado()
+    ? `${iconeSvg("database")} Vindos da nuvem: aqui aparece o que qualquer pessoa enviou, de qualquer aparelho. <button class="link-btn" onclick="nuvemSincronizar({forcarRedesenho:true})">buscar agora</button>`
+    : `${iconeSvg("alert")} Sem conta na nuvem, esta lista mostra só o que foi enviado <strong>neste navegador</strong>. Entre com a sua conta da nuvem para receber o feedback de toda a turma.`}</div>
+  ${lista.length ? pag.itens.map(f=>{
     const autor = getUsuario(f.usuarioId);
-    const [cls,label] = rotulos[f.tipo]||rotulos.comentario;
+    const [cls,label] = rotulos[String(f.tipo||"").split(" ")[0]]||rotulos.comentario;
     return `<div class="card mb-1" style="${f.lido?"opacity:.6":""}">
       <div class="flex justify-between items-center"><span class="badge ${cls}">${label}</span><span class="text-xs muted">${formatDataBR(f.data)}</span></div>
-      <div class="text-sm mt-1">${escapeHtml(f.texto)}</div>
+      <div class="text-sm mt-1" style="white-space:pre-wrap">${escapeHtml(f.texto)}</div>
       <div class="flex justify-between items-center mt-1">
-        <span class="text-xs muted">${escapeHtml(autor?autor.nome:"—")} (${badgePapel(f.papel)})</span>
-        ${!f.lido ? `<button class="link-btn" onclick="marcarFeedbackLido('${f.id}')">marcar como lido</button>` : '<span class="text-xs muted">lido</span>'}
+        <span class="text-xs muted">${escapeHtml(f.autorNome || (autor?autor.nome:"—"))} (${badgePapel(f.papel)})</span>
+        ${!f.lido ? `<button class="link-btn" onclick="marcarFeedbackLido('${f.id}')">marcar como lido</button>` : `<span class="text-xs muted">lido${f.lidoPorNome ? " por " + escapeHtml(f.lidoPorNome) : ""}</span>`}
       </div>
     </div>`;
-  }).join("") : '<div class="empty-state">Nenhum feedback recebido ainda.</div>'}`;
+  }).join("") + controlesPaginacao(pag, "mensagem(ns)") : '<div class="empty-state">Nenhum feedback recebido ainda.</div>'}`;
 }
-function marcarFeedbackLido(id){ const f=db.feedbacks.find(x=>x.id===id); if(f) f.lido=true; saveState(); render(); }
+function marcarFeedbackLido(id){
+  const f = (db.feedbacks||[]).find(x=>x.id===id); if(!f) return;
+  f.lido = true;
+  f.lidoPorNome = (usuarioAtual()||{}).nome || "";
+  // só o que veio da nuvem sobe de volta: um feedback deste navegador, de
+  // uma conta local, não tem dono na nuvem
+  if(f.naNuvem) nuvemMarcarFeedback(f.id);
+  saveState(); render();
+}
+function feedbacksNaoLidos(){ return (db.feedbacks||[]).filter(f=>!f.lido).length; }
 
 /* ==========================================================================
    25. ADMIN/PROFESSOR — Banco de Questões (CRUD completo)
@@ -1150,7 +1167,7 @@ function abrirFormularioQuestao(qid){
     <div class="hint mb-2">Deixe a alternativa E em branco se a prova original tiver só 4 alternativas (A-D) — é o caso, por exemplo, da UNIFESP-EPM.</div>
     <div class="grid grid-4">
       <div class="field"><label class="label">Tipo de prova</label><select class="select" id="fqTipoProva">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${(q?tipoProvaDe(q):CONFIG.tipoProvaPadrao)===t.id?"selected":""} title="${escapeHtml(t.descricao)}">${escapeHtml(t.nome)}</option>`).join("")}</select></div>
-      <div class="field"><label class="label">Gabarito</label><select class="select" id="fqGabarito">${["A","B","C","D","E"].map(l=>`<option value="${l}" ${q&&q.gabarito===l?"selected":""}>${l}</option>`).join("")}</select></div>
+      <div class="field"><label class="label">Gabarito</label><select class="select" id="fqGabarito">${q&&!q.gabarito?`<option value="" selected>— (sem gabarito: anulada)</option>`:""}${["A","B","C","D","E"].map(l=>`<option value="${l}" ${q&&q.gabarito===l?"selected":""}>${l}</option>`).join("")}</select></div>
       <div class="field"><label class="label">Banca</label><input class="input" id="fqBanca" list="listaBancasForm" value="${escapeHtml(q?q.banca:CONFIG.bancaFoco)}">
         <datalist id="listaBancasForm">${[...new Set([...CONFIG.instituicoesReferencia, ...CONFIG.instituicoesGraduacao, ...db.questoes.map(x=>x.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
       </div>
@@ -1179,6 +1196,7 @@ function abrirFormularioQuestao(qid){
         <option value="ativa" ${!q||q.status==="ativa"?"selected":""}>Ativa</option>
         <option value="anulada" ${q&&q.status==="anulada"?"selected":""}>Anulada</option>
         <option value="desatualizada" ${q&&q.status==="desatualizada"?"selected":""}>Desatualizada</option>
+        ${q&&q.status==="rascunho" ? `<option value="rascunho" selected>Rascunho (fora do estudo)</option>` : ""}
       </select></div>`}
     </div>
     <div class="field"><label class="label">Explicação (resposta correta)</label><textarea class="textarea" id="fqExplicacao" style="min-height:90px">${escapeHtml(q?q.explicacaoGeral:"")}</textarea>
@@ -1400,6 +1418,9 @@ function salvarQuestaoFormulario(qid, forcar){
       atual.imagemLiberada = true;
     }
     Object.assign(atual, dados);
+    // questão da pasta dados/: o conserto vira correção, sobe e desce para
+    // todos (Questões para Atualizar, seção 26-D); as outras sobem inteiras
+    registrarCorrecaoDaQuestao(atual.id);
     nuvemMarcarQuestao(atual.id);
   }
   else{
@@ -1421,7 +1442,7 @@ function salvarQuestaoPendente(){
   const pend = state.filtroRota.questaoPendente;
   if(!pend){ fecharModal(); return; }
   const u = usuarioAtual();
-  if(pend.qid){ Object.assign(getQuestao(pend.qid), pend.dados); nuvemMarcarQuestao(pend.qid); }
+  if(pend.qid){ Object.assign(getQuestao(pend.qid), pend.dados); registrarCorrecaoDaQuestao(pend.qid); nuvemMarcarQuestao(pend.qid); }
   else{
     const nova = { id:uid("q"), ...pend.dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, criadoEm:hojeISO() };
     if(pend.destino==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = "ativa"; }
@@ -1443,7 +1464,7 @@ function excluirQuestaoConfirmado(qid){
   if(q) nuvemMarcarQuestaoFora(q, q.status==="pendente" ? "recusada" : "removida", q.status==="pendente" ? "Excluída pela equipe." : "");
   db.questoes = db.questoes.filter(q=>q.id!==qid); saveState(); fecharModal(); toast("Questão excluída."); render();
 }
-function marcarQuestaoStatus(qid, status){ getQuestao(qid).status = status; nuvemMarcarQuestao(qid); saveState(); toast("Status atualizado."); render(); }
+function marcarQuestaoStatus(qid, status){ getQuestao(qid).status = status; registrarCorrecaoDaQuestao(qid); nuvemMarcarQuestao(qid); saveState(); toast("Status atualizado."); render(); }
 
 /* ==========================================================================
    25-B. ESPECIALIDADES E ASSUNTOS (taxonomia)

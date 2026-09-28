@@ -71,11 +71,13 @@ na linha 58; isso foi corrigido e agora é testado automaticamente a cada
 envio, num PostgreSQL de verdade, junto com as regras de segurança).
 
 > **Se o seu banco já existia antes desta versão, rode o `esquema.sql` de novo.**
-> Onze novidades precisam disso, e o arquivo já traz as linhas que acrescentam
+> Treze novidades precisam disso, e o arquivo já traz as linhas que acrescentam
 > cada uma sem mexer no que existe:
 >
 > | O que é | O que o arquivo faz |
 > |---|---|
+> | **Feedback da plataforma** ("Enviar feedback", "Quero contribuir") chegando aos administradores | cria a tabela `feedbacks` e a função `e_admin()` (quem escreve vê o seu; administradores veem todos e marcam como lido) |
+> | **Consertos das questões da pasta `dados/`** (Questões para Atualizar: a figura que faltava, texto cortado, gabarito revisto) chegando à turma inteira | cria a tabela `correcoes_questoes` (todos leem; grava equipe e residentes); a figura usa o espaço de imagens `questoes` |
 > | **Questões enviadas pela plataforma** (com as imagens) chegando à equipe para aprovar e, aprovadas, à turma inteira | cria a tabela `questoes_enviadas`, a função `e_aprovado()` e o espaço de imagens `questoes` no Storage, com as regras de quem envia e quem aprova |
 > | **Comentários e dúvidas** nas questões chegando à turma e à Fila de Dúvidas | cria a tabela `comentarios` (todos leem; cada um grava o seu; só revisor dá resposta oficial) |
 > | **Percentil de simulado** com as notas da turma inteira | cria a função `notas_do_simulado()` (devolve só id aleatório e nota) |
@@ -268,8 +270,8 @@ Estas coisas continuam vivendo só no navegador de quem as fez:
   cartões precisam ir para a pasta `dados/` — ver `dados/LEIA-ME.md` (há
   botão de exportar pronto).
 - As **questões de um grupo de estudo** (restritas à turma que as criou).
-- Feedbacks e as turmas (quem está em qual turma, e o bloco em que cada
-  turma começa). A **sequência** de blocos de cada ano é a exceção: ela sobe
+- As turmas (quem está em qual turma, e o bloco em que cada turma começa).
+  O feedback da plataforma sobe desde 28/09 (tabela `feedbacks`). A **sequência** de blocos de cada ano é a exceção: ela sobe
   e desce sozinha — ver a nota no topo deste arquivo.
 - A conta de demonstração de aluno, que é local e continua servindo para
   conhecer a plataforma sem criar conta.
