@@ -31,6 +31,38 @@ function embaralhar(array){
    imagem ou marcar "a imagem já chegou"). */
 function aguardaImagem(q){ return !!(q && q.imagemPendente); }
 
+/* TIPO DE PROVA: residência ou graduação (CONFIG.tiposProva). A questão diz
+   o seu em `tipoProva`; sem o campo, vale o padrão (residência) — exceto o
+   Teste de Progresso, que é da graduação pelo próprio nome, para ninguém
+   precisar lembrar de marcar. */
+function tipoProvaValido(id){ return CONFIG.tiposProva.some(t=>t.id===id); }
+function tipoProvaDe(q){
+  if(q && tipoProvaValido(q.tipoProva)) return q.tipoProva;
+  return q && /progresso/i.test(q.banca||"") ? "graduacao" : CONFIG.tipoProvaPadrao;
+}
+function infoTipoProva(id){ return CONFIG.tiposProva.find(t=>t.id===id) || CONFIG.tiposProva.find(t=>t.id===CONFIG.tipoProvaPadrao); }
+/* "Graduação", "graduacao", "Teste de Progresso" → "graduacao". Devolve null
+   quando o texto não diz nada reconhecível (quem chamou decide o padrão). */
+function normalizarTipoProva(texto){
+  const t = String(texto||"").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  if(!t) return null;
+  if(t.startsWith("grad") || t.includes("progresso") || t.includes("faculdade")) return "graduacao";
+  if(t.startsWith("resid") || t.startsWith("r1")) return "residencia";
+  return null;
+}
+/* 3º e 4º ano estudam primeiro pela prova da graduação (CONFIG.anosQuePriorizamGraduacao). */
+function priorizaGraduacao(usuario){
+  return !!(usuario && (CONFIG.anosQuePriorizamGraduacao||[]).includes(usuario.anoFaculdade));
+}
+function tipoProvaPreferido(usuario){ return priorizaGraduacao(usuario) ? "graduacao" : null; }
+// põe na frente as questões do tipo preferido, sem mudar a ordem dentro de cada metade
+function primeiroDoTipo(lista, tipo){
+  if(!tipo) return lista;
+  const antes = [], depois = [];
+  lista.forEach(q=>(tipoProvaDe(q)===tipo ? antes : depois).push(q));
+  return antes.concat(depois);
+}
+
 function questoesAtivas(incluirGrupoId){
   // "ativa" exclui questões anuladas ou desatualizadas de sessões e estatísticas,
   // conforme pedido: nunca usar questão anulada/desatualizada para calcular dificuldade.
@@ -511,7 +543,7 @@ function assuntosParaRevisarHoje(usuarioId){
 }
 
 /* ---------- montagem de sessões de estudo ---------- */
-function selecionarComInterleaving(pool, quantidade, pesos){
+function selecionarComInterleaving(pool, quantidade, pesos, tipoPreferido){
   // agrupa por assunto, ordena cada grupo do mais fácil ao mais difícil, e
   // intercala entre os grupos (em vez de esgotar um assunto antes de ir pro
   // próximo) — isso é o princípio de "interleaving" citado na recomendação
@@ -520,12 +552,15 @@ function selecionarComInterleaving(pool, quantidade, pesos){
   // mas o sorteio favorece os de peso maior (o que mais cai e a pessoa erra):
   // cada grupo recebe a chave aleatório^(1/peso) e a lista vai da maior
   // chave para a menor — peso 4 tende a vir antes de peso 1, sem garantia.
+  // Com `tipoPreferido` ("graduacao" no 3º e 4º ano), dentro de cada assunto
+  // as questões daquele tipo de prova vêm antes das outras.
   const porAssunto = {};
   pool.forEach(q=>{ (porAssunto[q.assuntoId] = porAssunto[q.assuntoId]||[]).push(q); });
   const grupos = pesos
     ? Object.values(porAssunto).map(g=>({g, chave: Math.pow(Math.random(), 1/(pesos[g[0].assuntoId]||1))})).sort((a,b)=>b.chave-a.chave).map(x=>x.g)
     : embaralhar(Object.values(porAssunto));
-  grupos.forEach(lista=> lista.sort((a,b)=>calcularDificuldade(a)-calcularDificuldade(b)));
+  const foraDoTipo = q => tipoPreferido && tipoProvaDe(q)!==tipoPreferido ? 1 : 0;
+  grupos.forEach(lista=> lista.sort((a,b)=>foraDoTipo(a)-foraDoTipo(b) || calcularDificuldade(a)-calcularDificuldade(b)));
   const resultado = [];
   let i=0, tentativas=0;
   while(resultado.length<quantidade && grupos.some(g=>g.length>0) && tentativas < quantidade*20){
@@ -611,8 +646,11 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const poolAtual = questoesParaEstudo(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId));
   const pesos = pesosDeIncidencia(usuarioId);
   const destaque = assuntosQueMaisCaem(usuarioId);
-  const itensAtual = selecionarComInterleaving(poolAtual, nAtual, pesos).map(q=>({questaoId:q.id,
-    motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "")}));
+  // 3º e 4º ano: a prova da graduação na frente (CONFIG.anosQuePriorizamGraduacao)
+  const tipoPref = tipoProvaPreferido(usuario);
+  const doTipo = q => tipoPref && tipoProvaDe(q)===tipoPref ? " · "+infoTipoProva(tipoPref).nomeLongo.toLowerCase()+" (prioridade do "+usuario.anoFaculdade+")" : "";
+  const itensAtual = selecionarComInterleaving(poolAtual, nAtual, pesos, tipoPref).map(q=>({questaoId:q.id,
+    motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "") + doTipo(q)}));
 
   let poolRevisaoVencida = questoesParaEstudo(usuarioId).filter(q=>assuntosPassados.includes(q.assuntoId) && jaFoiRespondida(usuarioId,q.id) && revisaoVencida(usuarioId,q.id));
   poolRevisaoVencida.sort((a,b)=>{
@@ -626,18 +664,18 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   if(itensRevisao.length < nRevisao){
     const faltam = nRevisao - itensRevisao.length;
     const poolNaoVistas = questoesParaEstudo(usuarioId).filter(q=>assuntosPassados.includes(q.assuntoId) && !jaFoiRespondida(usuarioId,q.id) && !itensRevisao.some(it=>it.questaoId===q.id));
-    embaralhar(poolNaoVistas).slice(0,faltam).forEach(q=>itensRevisao.push({questaoId:q.id, motivo:"Assunto de bloco anterior ainda não estudado"}));
+    primeiroDoTipo(embaralhar(poolNaoVistas), tipoPref).slice(0,faltam).forEach(q=>itensRevisao.push({questaoId:q.id, motivo:"Assunto de bloco anterior ainda não estudado"+doTipo(q)}));
   }
 
   const poolPrevia = questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental");
-  const itensPrevia = embaralhar(poolPrevia).slice(0,nPrevia).map(q=>({questaoId:q.id, motivo: proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia"}));
+  const itensPrevia = primeiroDoTipo(embaralhar(poolPrevia), tipoPref).slice(0,nPrevia).map(q=>({questaoId:q.id, motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+doTipo(q)}));
 
   let todos = [...itensAtual, ...itensRevisao, ...itensPrevia];
   // se o banco de demonstração não tiver questões suficientes para preencher a
   // meta, completamos com quaisquer questões ativas ainda não usadas nesta sessão
   if(todos.length < tamanho){
     const usados = new Set(todos.map(t=>t.questaoId));
-    const extras = embaralhar(questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id))).slice(0,tamanho-todos.length)
+    const extras = primeiroDoTipo(embaralhar(questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id))), tipoPref).slice(0,tamanho-todos.length)
       .map(q=>({questaoId:q.id, motivo:"Complemento — banco de demonstração ainda é pequeno"}));
     todos = [...todos, ...extras];
   }
@@ -652,6 +690,7 @@ function buscarQuestoesPorFiltro(usuarioId, filtros){
   if(filtros.especialidadeIds && filtros.especialidadeIds.length) pool = pool.filter(q=>filtros.especialidadeIds.includes(q.especialidadeId));
   if(filtros.assuntoIds && filtros.assuntoIds.length) pool = pool.filter(q=>filtros.assuntoIds.includes(q.assuntoId));
   if(filtros.bancas && filtros.bancas.length) pool = pool.filter(q=>filtros.bancas.includes(q.banca));
+  if(filtros.tiposProva && filtros.tiposProva.length) pool = pool.filter(q=>filtros.tiposProva.includes(tipoProvaDe(q)));
   if(filtros.anos && filtros.anos.length) pool = pool.filter(q=>filtros.anos.includes(q.ano));
   if(filtros.apenasErros) pool = pool.filter(q=>{ const u=ultimaResposta(usuarioId,q.id); return u && (!u.correta || u.confianca==="chute"); });
   if(filtros.apenasFavoritas) pool = pool.filter(q=>isFavorita(usuarioId,q.id));
@@ -981,9 +1020,16 @@ function gerarNotificacoes(usuario){
     const pendente = sessaoEmAndamentoDe(usuario);
     if(pendente) notifs.push({icon:"refresh", texto:"Você tem uma sessão pela metade ("+respostasFeitas(pendente).length+" de "+pendente.itens.length+") esperando para continuar.", rota:"estudar"});
   }
+  // quem pediu para entrar na turma de que a pessoa é dona (Meu Grupo mostra e aprova)
+  const minhaTurma = getGrupoDoUsuario(usuario);
+  const pedidosTurma = minhaTurma && !minhaTurma.oficial && minhaTurma.criadoPor===usuario.id ? (minhaTurma.solicitacoesPendentes||[]).length : 0;
+  if(pedidosTurma) notifs.push({icon:"users", texto:pedidosTurma+(pedidosTurma===1?" pessoa pediu":" pessoas pediram")+" para entrar na sua turma.", rota:"meu-grupo"});
+  // pedidos de acesso à plataforma: deste navegador e da nuvem (vigiarPedidosDeAcesso)
+  if(podeAprovarCadastros(usuario)){
+    const pendCad = quantosPedidosDeAcesso();
+    if(pendCad) notifs.push({icon:"check", texto:pendCad+(pendCad===1?" pedido de acesso aguardando":" pedidos de acesso aguardando")+" aprovação.", rota:"aprovar-cadastros"});
+  }
   if(usuario.papel==="admin"){
-    const pendCad = db.usuarios.filter(x=>x.status==="pendente").length;
-    if(pendCad) notifs.push({icon:"check", texto:pendCad+" cadastro(s) aguardando aprovação.", rota:"aprovar-cadastros"});
     const diasSemBackup = db.ultimoBackupEm ? diasEntre(db.ultimoBackupEm, hojeISO()) : 999;
     if(diasSemBackup>=7) notifs.push({icon:"archive", texto: db.ultimoBackupEm ? "Já se passaram "+diasSemBackup+" dias desde o último backup. Exporte um novo." : "Você ainda não fez nenhum backup dos dados. Exporte um agora.", rota:"perfil"});
     const feedbacksNaoLidos = db.feedbacks.filter(f=>!f.lido).length;

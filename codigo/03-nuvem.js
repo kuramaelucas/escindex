@@ -1434,6 +1434,101 @@ async function nuvemDecidirCadastro(idPerfil, status){
   }
 }
 
+/* ---------------------------- aviso de pedido de acesso -------------------
+   Todo cadastro novo nasce pendente e só entra depois que a coordenação
+   aprova — mas ninguém ficava sabendo que havia alguém esperando: só quem
+   abrisse Aprovar Cadastros por acaso, e a pessoa ficava dias sem conseguir
+   entrar. Agora, para quem pode aprovar (permissão "cadastros"), a
+   plataforma olha a fila a cada dois minutos e, quando chega um pedido que
+   essa pessoa ainda não viu, avisa: um aviso na tela, o número no menu e no
+   Início e, se ela tiver deixado (Aprovar Cadastros > Avisos), uma
+   notificação do sistema quando o Esc está aberto em outra aba ou janela.
+
+   "Já avisado" é guardado por pessoa (u.cadastrosAvisados, os ids ainda
+   pendentes), para o mesmo pedido não tocar de novo a cada F5. Sem nuvem,
+   vale o mesmo para os cadastros feitos neste navegador. */
+const PEDIDOS_DE_ACESSO_INTERVALO_MS = 2 * 60 * 1000;
+let _pedidosDeAcesso = { usuarioId: null, em: 0 };
+
+function podeAprovarCadastros(u){ return podeAdmin("cadastros", u); }
+// os da nuvem (quando já buscados) e os deste navegador, sem repetir ninguém
+function pedidosDeAcessoPendentes(){
+  const vistos = new Set();
+  const daNuvem = (nuvemCadastrosPendentes || []).map(p => ({ id: p.id, nome: p.nome || "(sem nome)", ano: p.ano_faculdade || "" }));
+  const locais = db.usuarios.filter(x => x.status === "pendente").map(x => ({ id: x.id, nome: x.nome || "(sem nome)", ano: x.anoFaculdade || "" }));
+  return [...daNuvem, ...locais].filter(p => !vistos.has(p.id) && vistos.add(p.id));
+}
+function quantosPedidosDeAcesso(){ return pedidosDeAcessoPendentes().length; }
+
+async function checarPedidosDeAcesso(){
+  const u = usuarioAtual();
+  if(!u || !podeAprovarCadastros(u)) return;
+  if(nuvemConectado()){
+    try{
+      nuvemCadastrosPendentes = await nuvemChamar("/rest/v1/perfis?status=eq.pendente&order=criado_em.asc&select=*") || [];
+    }catch(e){ return; }                 // sem internet: tenta no próximo ciclo, sem incomodar
+  }
+  if(usuarioAtual() !== u) return;       // trocou de conta enquanto a resposta vinha
+  const pendentes = pedidosDeAcessoPendentes();
+  const jaAvisados = new Set(u.cadastrosAvisados || []);
+  const novos = pendentes.filter(p => !jaAvisados.has(p.id));
+  // guarda só quem ainda está pendente: a lista não cresce para sempre
+  const agora = pendentes.map(p => p.id);
+  if(JSON.stringify(agora) !== JSON.stringify(u.cadastrosAvisados || [])){ u.cadastrosAvisados = agora; saveState(); }
+  atualizarMenuLateral();
+  if(!novos.length) return;
+  if(state.route === "aprovar-cadastros" || state.route === "inicio") render();
+  const texto = novos.length === 1
+    ? "Novo pedido de acesso: " + novos[0].nome + (novos[0].ano ? " (" + novos[0].ano + ")" : "") + "."
+    : novos.length + " novos pedidos de acesso aguardando aprovação.";
+  toast(texto + " Veja em Aprovar Cadastros.");
+  if(document.hidden && !u.avisoCadastrosDesligado && notificacaoDisponivel() && Notification.permission === "granted"){
+    mostrarNotificacao(CONFIG.nomePlataforma + " — pedido de acesso", texto, "aprovar-cadastros", "pedido-de-acesso");
+  }
+}
+/* Chamada a cada 20 s e quando a aba volta: checa na hora quando a conta
+   mudou (acabou de entrar) e, fora isso, a cada PEDIDOS_DE_ACESSO_INTERVALO_MS. */
+function vigiarPedidosDeAcesso(){
+  const u = usuarioAtual();
+  if(!u || !podeAprovarCadastros(u)){ _pedidosDeAcesso = { usuarioId: null, em: 0 }; return; }
+  const agora = Date.now();
+  if(_pedidosDeAcesso.usuarioId === u.id && agora - _pedidosDeAcesso.em < PEDIDOS_DE_ACESSO_INTERVALO_MS) return;
+  _pedidosDeAcesso = { usuarioId: u.id, em: agora };
+  checarPedidosDeAcesso();
+}
+function ativarNotificacaoPedidosDeAcesso(){
+  if(!notificacaoDisponivel()){ toast("Este navegador não mostra notificações do sistema. O aviso continua na tela e no menu.", "err"); return; }
+  Notification.requestPermission().then(perm => {
+    const u = usuarioAtual();
+    if(perm === "granted"){
+      delete u.avisoCadastrosDesligado; saveState();
+      toast("Pronto: com o Esc aberto em outra aba ou janela, um pedido de acesso novo também aparece como notificação.");
+    }else{
+      toast("O navegador não deu permissão para notificações. O aviso continua na tela e no menu.", "err");
+    }
+    render();
+  });
+}
+function desativarNotificacaoPedidosDeAcesso(){
+  const u = usuarioAtual();
+  u.avisoCadastrosDesligado = true; saveState();
+  toast("Notificação do sistema desligada. O aviso na tela e o número no menu continuam.");
+  render();
+}
+function renderCardAvisoPedidosDeAcesso(){
+  const u = usuarioAtual();
+  const permitido = notificacaoDisponivel() && Notification.permission === "granted";
+  const ligado = permitido && !u.avisoCadastrosDesligado;
+  return `<div class="card mb-2">
+    <div class="card-title">${iconeSvg("alert")} Avisos de novos pedidos</div>
+    <p class="text-sm muted">Sempre que alguém pede acesso, o Esc avisa na tela e mostra o número no menu, ao lado de Aprovar Cadastros — a fila é conferida a cada dois minutos enquanto o Esc está aberto.</p>
+    ${!notificacaoDisponivel() ? `<p class="text-xs muted mt-1">Este navegador não mostra notificações do sistema.</p>`
+      : ligado ? `<p class="text-sm mt-1">${iconeSvg("check")} Notificação do sistema <strong>ligada</strong>: com o Esc aberto em outra aba ou janela, o pedido novo também aparece como notificação.</p>
+        <button class="btn btn-ghost btn-sm mt-1" onclick="desativarNotificacaoPedidosDeAcesso()">Desligar a notificação do sistema</button>`
+      : `<button class="btn btn-secondary btn-sm mt-1" onclick="ativarNotificacaoPedidosDeAcesso()">${iconeSvg("alert")} Receber também como notificação do sistema</button>`}
+  </div>`;
+}
+
 /* ---------------------------- a turma inteira, da nuvem -------------------
    ONDE FOI PARAR QUEM EU APROVEI. Esta é a pergunta que faltava responder.
    A tela de Aprovar Cadastros só consulta `status=eq.pendente`: aprovar

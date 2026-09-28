@@ -691,7 +691,7 @@ function restaurarResgateConfirmado(){
    que não conhece esse conteúdo. Esta função acrescenta ao banco salvo apenas
    o que falta, comparando pelo id — sem apagar nem sobrescrever nada do que o
    usuário já produziu (respostas, favoritos, questões próprias, edições). */
-const CAMPOS_QUE_O_CONTEUDO_COMPLETA = ["numeroNaProva", "imagemUrl", "imagemLegenda", "imagemPendente", "referencias"];
+const CAMPOS_QUE_O_CONTEUDO_COMPLETA = ["numeroNaProva", "imagemUrl", "imagemLegenda", "imagemPendente", "referencias", "tipoProva"];
 function sincronizarConteudoNovo(){
   let novos = 0;
   if(!db.taxonomia) return;

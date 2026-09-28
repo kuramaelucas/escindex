@@ -279,6 +279,10 @@ button.stat-mini:hover{border-color:var(--accent)}
 /* questão que dependia de uma figura da prova que ainda não foi anexada */
 .imagem-pendente{display:flex;gap:.6rem;align-items:flex-start;margin:0 0 1.1rem;padding:.75rem .9rem;border:1px dashed var(--amber);border-radius:var(--radius-sm);background:var(--amber-soft);font-size:.85rem}
 .imagem-pendente svg{flex:none;width:18px;height:18px;margin-top:.1rem}
+/* a figura de cada questão no envio em lote (pré-visualização) */
+.imp-imagem{padding:.7rem .8rem;border:1px dashed var(--border-strong);border-radius:var(--radius-sm);background:var(--surface-2)}
+.imp-imagem-falta{border-color:var(--amber);background:var(--amber-soft)}
+.imp-imagem-previa{display:block;max-width:100%;max-height:220px;object-fit:contain;margin-top:.4rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface)}
 .qcard-enunciado{font-family:var(--font-display);font-size:1.14rem;line-height:1.6;color:var(--ink);margin-bottom:1.5rem;white-space:pre-line}
 .qcard-alts{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.1rem}
 .qcard-alt{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .12s ease,box-shadow .12s ease;background:var(--surface)}

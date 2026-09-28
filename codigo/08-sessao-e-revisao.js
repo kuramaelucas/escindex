@@ -665,6 +665,7 @@ function renderQuestionCard(q, opts){
       <span class="badge badge-muted">${escapeHtml(esp?esp.nome:"")}</span>
       <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
       <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
+      ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-amber" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}
       <span class="badge ${corDificuldade}">${rotuloDificuldade(dificuldade)}</span>
       ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}
       ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}

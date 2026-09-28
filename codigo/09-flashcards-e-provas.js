@@ -777,16 +777,18 @@ function renderResultadoSimulado(){
    (organizadas por instituição e ano, com filtros)
    ========================================================================== */
 function filtrosProvas(){
-  if(!state.filtroRota.provas) state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false};
+  if(!state.filtroRota.provas) state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false, tipo:""};
   return state.filtroRota.provas;
 }
 function mudarFiltroProvas(campo, valor){
   const f = filtrosProvas();
   if(campo==="ultimos5"){ f.ultimos5 = !!valor; if(f.ultimos5) f.ano = ""; }
   else f[campo] = valor;
+  // a instituição escolhida pode não ter prova do tipo novo
+  if(campo==="tipo") f.banca = "";
   render();
 }
-function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false}; render(); }
+function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false, tipo:""}; render(); }
 function renderProvasAntigas(){ return renderProvasESimulados(); }
 function renderAbaProvasAntigas(u){
   const f = filtrosProvas();
@@ -794,7 +796,16 @@ function renderAbaProvasAntigas(u){
   /* Só questão REAL forma prova: a prova antiga é "a prova de verdade, do
      jeito que caiu". As questões autorais (banco didático, demonstração)
      continuam em Estudar > Monte sua própria lista. */
-  const todas = questoesAtivas(grupoUsuario).filter(q=>q.real);
+  const todasDosTipos = questoesAtivas(grupoUsuario).filter(q=>q.real);
+  /* RESIDÊNCIA E GRADUAÇÃO SEPARADAS. A prova da faculdade (e o Teste de
+     Progresso) e a de residência não se comparam: uma confere o que ficou
+     do ano, a outra seleciona para o R1. Cada uma tem a sua seção, e no 3º
+     e 4º ano a da graduação vem primeiro (CONFIG.anosQuePriorizamGraduacao). */
+  const tipoPref = tipoProvaPreferido(u);
+  const ordemTipos = CONFIG.tiposProva.map(t=>t.id).sort((a,b)=>(b===tipoPref)-(a===tipoPref));
+  const qtdPorTipo = {};
+  todasDosTipos.forEach(q=>{ const t = tipoProvaDe(q); qtdPorTipo[t] = (qtdPorTipo[t]||0)+1; });
+  const todas = f.tipo ? todasDosTipos.filter(q=>tipoProvaDe(q)===f.tipo) : todasDosTipos;
   const bancas = [...new Set(todas.map(q=>q.banca))].sort();
   const anosDisponiveis = [...new Set(todas.map(q=>q.ano))].sort((a,b)=>b-a);
   const anoMaisRecente = anosDisponiveis.length ? anosDisponiveis[0] : new Date().getFullYear();
@@ -805,10 +816,11 @@ function renderAbaProvasAntigas(u){
   if(f.areaId) pool = pool.filter(q=>q.areaId===f.areaId);
   if(f.ultimos5) pool = pool.filter(q=>q.ano > anoMaisRecente-5);
 
-  // agrupa por instituição + ano (uma "prova" é a combinação das duas coisas),
-  // na ordem da prova original quando a questão sabe o próprio número
+  // agrupa por instituição + ano + tipo (uma "prova" é a combinação das três
+  // coisas), na ordem da prova original quando a questão sabe o próprio número
   const mapa = {};
-  pool.forEach(q=>{ const chave = q.banca+" ||| "+q.ano; (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
+  const chaveDaProva = q => q.banca+" ||| "+q.ano+" ||| "+tipoProvaDe(q);
+  pool.forEach(q=>{ const chave = chaveDaProva(q); (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, tipo:tipoProvaDe(q), ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
   const ordemNaProva = id => { const q = getQuestao(id); return (q && q.numeroNaProva) || 9999; };
   Object.values(mapa).forEach(g => g.ids.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)));
   /* AS ANULADAS NÃO SOMEM EM SILÊNCIO. Questão anulada não tem gabarito, então
@@ -817,7 +829,7 @@ function renderAbaProvasAntigas(u){
      incompleta. O cartão diz quantas são, quais são, e deixa abrir cada uma. */
   db.questoes.forEach(q=>{
     if(q.status!=="anulada" || !q.real) return;
-    const g = mapa[q.banca+" ||| "+q.ano]; if(!g) return;
+    const g = mapa[chaveDaProva(q)]; if(!g) return;
     if(f.areaId && q.areaId!==f.areaId) return;
     g.anuladas.push(q.id);
   });
@@ -826,15 +838,53 @@ function renderAbaProvasAntigas(u){
   // quantas (ver aguardaImagem)
   db.questoes.forEach(q=>{
     if(!aguardaImagem(q) || !q.real || q.status!=="ativa") return;
-    const g = mapa[q.banca+" ||| "+q.ano]; if(!g) return;
+    const g = mapa[chaveDaProva(q)]; if(!g) return;
     if(f.areaId && q.areaId!==f.areaId) return;
     g.semImagem++;
   });
-  const grupos = Object.values(mapa).sort((a,b)=> b.ano-a.ano || a.banca.localeCompare(b.banca));
+  const grupos = Object.values(mapa).sort((a,b)=> ordemTipos.indexOf(a.tipo)-ordemTipos.indexOf(b.tipo) || b.ano-a.ano || a.banca.localeCompare(b.banca));
   state.filtroRota.provasGrupos = grupos;
+  const cartaoDaProva = (g, i) => {
+      const previo = desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+g.ano+" (simulado)");
+      const respondidas = g.ids.filter(id=>jaFoiRespondida(u.id, id)).length;
+      return `<div class="card prova-card">
+        <div class="prova-ano">${g.ano}</div>
+        <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
+        <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span></div>
+        <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
+        ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
+        ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
+        ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
+        <div class="flex gap-1 prova-acoes" style="flex-wrap:wrap">
+          <button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>
+          <button class="btn btn-secondary btn-sm" onclick="praticarProva(${i})">Praticar sem cronômetro</button>
+        </div>
+      </div>`;
+  };
+  // uma seção por tipo de prova, na ordem de prioridade de quem está vendo
+  const secoes = (f.tipo ? [f.tipo] : ordemTipos).map(tipo=>{
+    const info = infoTipoProva(tipo);
+    const daSecao = grupos.map((g,i)=>({g,i})).filter(x=>x.g.tipo===tipo);
+    const prioritaria = tipo===tipoPref;
+    if(!daSecao.length){
+      // seção vazia só aparece para quem ela é prioridade (ou quando filtrada)
+      if(!prioritaria && !f.tipo) return "";
+      return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)}</div>
+        <div class="empty-state mb-2">${qtdPorTipo[tipo]
+          ? "Nenhuma prova deste tipo com os filtros atuais."
+          : `Ainda não há ${escapeHtml(info.nomeLongo.toLowerCase())} no banco (${escapeHtml(info.descricao)}). Quem tiver uma pode <button class="link-btn" onclick="navigate('importar-questoes')">enviar pela plataforma</button>, escolhendo o tipo de prova ${escapeHtml(info.nome)}.`}</div>`;
+    }
+    return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)} <span class="text-sm muted" style="font-weight:400">· ${escapeHtml(info.descricao)} · ${daSecao.length} prova(s)</span></div>
+      ${prioritaria ? `<p class="text-xs muted mb-1">${iconeSvg("star")} No ${escapeHtml(u.anoFaculdade)}, estas vêm primeiro: são as que consolidam o conhecimento do ano. As de residência continuam logo abaixo.</p>` : ""}
+      <div class="grid grid-3 mb-2">${daSecao.map(x=>cartaoDaProva(x.g, x.i)).join("")}</div>`;
+  }).join("");
 
   return `
   <p class="text-sm muted mb-2">A prova de verdade de cada instituição, do jeito que caiu. Faça inteira no relógio, para medir onde você está contra a banca, ou sem cronômetro, para estudar com calma.</p>
+  <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+    <button class="pill ${!f.tipo?"active":""}" onclick="mudarFiltroProvas('tipo','')">Todas (${todasDosTipos.length})</button>
+    ${ordemTipos.map(t=>`<button class="pill ${f.tipo===t?"active":""}" onclick="mudarFiltroProvas('tipo','${t}')">${escapeHtml(infoTipoProva(t).nomeLongo)} (${qtdPorTipo[t]||0})</button>`).join("")}
+  </div>
   <div class="card mb-2">
     <div class="grid grid-4">
       <div class="field" style="margin-bottom:0">
@@ -866,24 +916,7 @@ function renderAbaProvasAntigas(u){
     </div>
   </div>
   <p class="text-sm muted mb-2">${grupos.length} prova(s) encontrada(s) · ${pool.length} questão(ões) no total com os filtros atuais.</p>
-  <div class="grid grid-3">
-    ${grupos.map((g,i)=>{
-      const previo = desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+g.ano+" (simulado)");
-      const respondidas = g.ids.filter(id=>jaFoiRespondida(u.id, id)).length;
-      return `<div class="card prova-card">
-        <div class="prova-ano">${g.ano}</div>
-        <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
-        <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
-        ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
-        ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
-        ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
-        <div class="flex gap-1 prova-acoes" style="flex-wrap:wrap">
-          <button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>
-          <button class="btn btn-secondary btn-sm" onclick="praticarProva(${i})">Praticar sem cronômetro</button>
-        </div>
-      </div>`;
-    }).join("") || '<div class="empty-state">Nenhuma prova encontrada com esses filtros.</div>'}
-  </div>`;
+  ${secoes || '<div class="empty-state">Nenhuma prova encontrada com esses filtros.</div>'}`;
 }
 function grupoDeProva(indice){
   const grupos = state.filtroRota.provasGrupos || [];

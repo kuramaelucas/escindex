@@ -101,11 +101,12 @@ const TUTORIAL_RAPIDO = {
 const GUIA_ALUNO = [
   { titulo:"Início e sessão do dia", itens:[
     "A <strong>sessão recomendada</strong> junta questões do seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo. O tamanho segue a sua meta diária.",
+    "No <strong>3º e no 4º ano</strong>, as questões das <strong>provas da graduação</strong> (provas da faculdade e Teste de Progresso) vêm primeiro: é a fase de consolidar o conhecimento. As de residência completam o conjunto.",
     "A <strong>meta de hoje</strong> mostra quantas questões e cartões faltam.",
     "Se você sair no meio de uma sessão, ela fica guardada: o Início oferece <strong>Continuar</strong> de onde parou.",
   ]},
   { titulo:"Estudar: escolher o que fazer", itens:[
-    "<strong>Monte sua própria lista</strong> filtra por área, especialidade, assunto, instituição, ano, só erros, só favoritas ou só as que você nunca respondeu.",
+    "<strong>Monte sua própria lista</strong> filtra por área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano, só erros, só favoritas ou só as que você nunca respondeu.",
     "A meta diária é ajustada em Estudar; o ano da faculdade e a turma, em Perfil e em Meu Grupo.",
   ]},
   { titulo:"Respondendo uma questão", itens:[
@@ -119,7 +120,7 @@ const GUIA_ALUNO = [
     "<strong>Revisão Rápida</strong> são os flashcards: os cartões da equipe, os seus e os gerados das questões que você errou com certeza ou acertou no chute. Você também pode sugerir um cartão seu para o baralho da equipe.",
   ]},
   { titulo:"Provas e Simulados", itens:[
-    "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, filtráveis por instituição, ano e área. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>.",
+    "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, separadas em <strong>provas de residência</strong> e <strong>provas da graduação</strong> (o Teste de Progresso é graduação) e filtráveis por instituição, ano e área. No 3º e 4º ano, as da graduação aparecem primeiro. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>.",
     "O cartão de cada prova diz quantas questões foram anuladas pela banca e quantas esperam a figura da prova — essas ficam de fora por enquanto.",
     "Os <strong>simulados da equipe</strong> aparecem na mesma tela, com o resultado da última vez que você fez.",
   ]},
@@ -132,7 +133,7 @@ const GUIA_ALUNO = [
     "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual) ou crie um grupo de estudo com colegas.",
     "<strong>Favoritos</strong> guarda as questões e os cartões salvos, com as suas anotações.",
     "<strong>Histórico de Atividade</strong> lista as sessões e os simulados que você fez.",
-    "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral.",
+    "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso.",
   ]},
   { titulo:"Perfil, aplicativo e dados", itens:[
     "Em <strong>Perfil</strong>: ano da faculdade, lembrete diário de meta, senha, instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
@@ -146,8 +147,9 @@ const GUIA_EQUIPE = [
     "Para liberar: salve a figura em <code>dados/imagens/</code> com o nome indicado e apague a linha <code>imagemPendente</code> da questão no arquivo de dados — ou, na tela de edição, envie a imagem ou marque que ela já foi salva.",
   ]},
   { titulo:"Importar, Central de Provas e Revisar Formatação", itens:[
-    "<strong>Importar Questões</strong>: uma questão por vez, em lote, ou uma prova inteira colada de uma vez (instituição e ano informados uma vez só).",
-    "<strong>Central de Provas</strong>: acompanha cada prova em lotes até a publicação; a conferência aponta gabarito faltando, questão repetida e assunto inexistente.",
+    "<strong>Importar Questões</strong>: uma questão por vez, em lote, ou uma prova inteira colada de uma vez (tipo de prova, instituição e ano informados uma vez só). O tipo é <strong>residência</strong> por padrão; prova da faculdade e Teste de Progresso são <strong>graduação</strong>.",
+    "A figura de cada questão (ECG, radiografia, foto) se anexa na pré-visualização. Se a transcrição disser que há imagem e ela não for anexada, a questão entra como <strong>Aguardando imagem</strong>.",
+    "<strong>Central de Provas</strong>: acompanha cada prova em lotes até a publicação; a conferência aponta gabarito faltando, questão repetida e assunto inexistente. As figuras anexadas num lote ficam guardadas com ele até a publicação.",
     "<strong>Revisar Formatação</strong>: corrige o texto de questões importadas antes de chegarem aos alunos.",
     "A explicação de toda questão é escrita pela equipe, a partir de fontes primárias — nunca copiada de cursinho ou site de questões.",
   ]},
@@ -168,7 +170,7 @@ const GUIA_EQUIPE = [
 ];
 const GUIA_ADMIN = [
   { titulo:"Administração", itens:[
-    "<strong>Aprovar Cadastros</strong> e <strong>Usuários</strong>: liberar acessos, mudar papel, nível de administrador e situação das contas.",
+    "<strong>Aprovar Cadastros</strong> e <strong>Usuários</strong>: liberar acessos, mudar papel, nível de administrador e situação das contas. Quando alguém pede acesso, o Esc avisa na tela e mostra o número no menu; em Aprovar Cadastros dá para receber também como notificação do sistema.",
     "<strong>Blocos de Estudo</strong>: o calendário de cada ano da faculdade e das turmas do rodízio, que decide o bloco atual dos alunos.",
     "<strong>Configurações</strong>: metas mínima e recomendada, mistura da sessão, pesos da dificuldade, banca de referência e outras regras do algoritmo.",
     "<strong>Feedback dos Usuários</strong>: comentários, sugestões e reclamações enviados pela plataforma.",

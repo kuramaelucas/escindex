@@ -638,8 +638,8 @@ function renderCardInstalarApp(){
 /* Aviso do sistema. No Android, `new Notification()` não existe fora do
    service worker — o aviso tem de sair por ele. Onde não há service worker
    (arquivo aberto com dois cliques), vai pelo jeito antigo. */
-function mostrarNotificacao(titulo, corpo, rota){
-  const opcoes = { body: corpo, icon: "icones/icone-192.png", tag: "meta-do-dia", data: { rota: rota || "inicio" } };
+function mostrarNotificacao(titulo, corpo, rota, tag){
+  const opcoes = { body: corpo, icon: "icones/icone-192.png", tag: tag || "meta-do-dia", data: { rota: rota || "inicio" } };
   if(podeTerServiceWorker() && navigator.serviceWorker.controller){
     navigator.serviceWorker.ready.then(reg => reg.showNotification(titulo, opcoes)).catch(()=>{});
     return;
@@ -712,10 +712,14 @@ loadState();
   // lembrete de meta diária: checagem leve a cada minuto (ver função para
   // detalhes e limitação — só funciona com o navegador aberto).
   if(typeof setInterval==="function") setInterval(checarLembreteMetaDiaria, 60000);
+  // pedidos de acesso novos, para quem aprova cadastros (seção 2-C): confere
+  // logo que a pessoa entra e depois a cada dois minutos
+  if(typeof setInterval==="function") setInterval(vigiarPedidosDeAcesso, 20000);
+  vigiarPedidosDeAcesso();
   // cópia antiga da página: confere agora e sempre que a aba voltar a ser vista
   verificarVersaoNova(true);
   document.addEventListener("visibilitychange", ()=>{
-    if(!document.hidden) verificarVersaoNova(false);
+    if(!document.hidden){ verificarVersaoNova(false); vigiarPedidosDeAcesso(); }
     else atualizarRecadoLembrete();     // saiu do app: o recado do lembrete fica com o andamento de agora
   });
   // aplicativo instalável: abre sem internet e avisa a meta com o app fechado
