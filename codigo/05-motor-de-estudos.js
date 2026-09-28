@@ -1036,6 +1036,9 @@ function gerarNotificacoes(usuario){
     if(feedbacksNaoLidos) notifs.push({icon:"message", texto:feedbacksNaoLidos+" feedback(s) novo(s) de usuários.", rota:"feedback-usuarios"});
   }
   if(usuario.papel==="admin" || usuario.papel==="professor"){
+    // questões que a turma enviou (de qualquer aparelho, com a nuvem) esperando aprovação
+    const sugeridas = questoesSugeridas().length;
+    if(sugeridas) notifs.push({icon:"upload", texto:sugeridas+(sugeridas===1?" questão enviada aguardando":" questões enviadas aguardando")+" aprovação.", rota:"revisao-dificeis", abaQualidade:"sugeridas"});
     const dif = questoesDificeis().length;
     if(dif) notifs.push({icon:"alert", texto:dif+" questão(ões) na fila de difíceis.", rota:"revisao-dificeis"});
     const sinalizadas = db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0).length;
@@ -1052,7 +1055,7 @@ function renderNotificacoesCard(usuario){
   if(!notifs.length) return "";
   return `<div class="card mb-2" style="border-color:var(--accent)">
     <div class="card-title" style="margin-bottom:.5rem">${iconeSvg("alert")} Notificações</div>
-    ${notifs.map(n=>`<div class="flex items-center gap-1 mb-1" ${n.rota?`style="cursor:pointer" onclick="${n.aba?`mudarAbaProvas('${n.aba}');`:""}navigate('${n.rota}')"`:""}>${iconeSvg(n.icon)}<span class="text-sm">${escapeHtml(n.texto)}</span></div>`).join("")}
+    ${notifs.map(n=>`<div class="flex items-center gap-1 mb-1" ${n.rota?`style="cursor:pointer" onclick="${n.aba?`mudarAbaProvas('${n.aba}');`:""}${n.abaQualidade?`state.filtroRota.abaQualidade='${n.abaQualidade}';`:""}navigate('${n.rota}')"`:""}>${iconeSvg(n.icon)}<span class="text-sm">${escapeHtml(n.texto)}</span></div>`).join("")}
   </div>`;
 }
 function sequenciaDiasEstudo(usuarioId){

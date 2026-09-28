@@ -133,7 +133,7 @@ const GUIA_ALUNO = [
     "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual) ou crie um grupo de estudo com colegas.",
     "<strong>Favoritos</strong> guarda as questões e os cartões salvos, com as suas anotações.",
     "<strong>Histórico de Atividade</strong> lista as sessões e os simulados que você fez.",
-    "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso.",
+    "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso. Com a conta na nuvem, a questão sobe com a imagem e vai para a equipe aprovar; em <strong>Suas questões enviadas</strong> você acompanha se foi aprovada ou recusada (com o motivo).",
   ]},
   { titulo:"Perfil, aplicativo e dados", itens:[
     "Em <strong>Perfil</strong>: ano da faculdade, lembrete diário de meta, senha, instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
@@ -150,6 +150,7 @@ const GUIA_EQUIPE = [
     "<strong>Importar Questões</strong>: uma questão por vez, em lote, ou uma prova inteira colada de uma vez (tipo de prova, instituição e ano informados uma vez só). O tipo é <strong>residência</strong> por padrão; prova da faculdade e Teste de Progresso são <strong>graduação</strong>.",
     "A figura de cada questão (ECG, radiografia, foto) se anexa na pré-visualização. Se a transcrição disser que há imagem e ela não for anexada, a questão entra como <strong>Aguardando imagem</strong>.",
     "<strong>Central de Provas</strong>: acompanha cada prova em lotes até a publicação; a conferência aponta gabarito faltando, questão repetida e assunto inexistente. As figuras anexadas num lote ficam guardadas com ele até a publicação.",
+    "Com a nuvem, toda questão enviada pela plataforma sobe com a imagem. As da turma chegam a <strong>Controle de Qualidade › Enviadas pela Turma</strong>: aprove (ela entra no banco de todos) ou recuse com um motivo, que volta para quem enviou. Para guardar de vez na pasta <code>dados/</code>, use <strong>Banco de Questões › Exportar para a pasta dados/</strong>.",
     "<strong>Revisar Formatação</strong>: corrige o texto de questões importadas antes de chegarem aos alunos.",
     "A explicação de toda questão é escrita pela equipe, a partir de fontes primárias — nunca copiada de cursinho ou site de questões.",
   ]},

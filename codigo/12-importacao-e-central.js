@@ -168,6 +168,7 @@ function renderImportarQuestoes(){
   return `
   <div class="page-header"><h2>${u.papel==="aluno"||u.papel==="residente"?"Enviar Provas e Questões":"Importar Questões"}</h2>
   <p>Cole uma prova inteira ou questões avulsas — por exemplo, já formatadas por uma IA a partir do PDF da prova — para adicionar ao banco em lote.</p></div>
+  ${renderCardMeusEnvios()}
 ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
     ${iconeSvg("archive")} <strong>Vai subir uma prova inteira, de 60 ou 100 questões?</strong> A <button class="link-btn" onclick="navigate('central-provas')">Central de Provas</button> corta a prova em lotes, dá um modelo pronto para cada faixa de questões e guarda o que já chegou — é o caminho para fazer a prova em pedaços, em mais de uma conversa ao mesmo tempo, sem perder a conta.
     <div class="text-xs muted mt-1">Esta tela aqui continua sendo a certa para questões avulsas e para uma prova pequena que sai de uma vez só.</div>
@@ -574,6 +575,8 @@ function importarItensAnalisados(resultado, destino, extras){
     }
     db.questoes.push(nova);
     idsCriados.push(nova.id);
+    // com a nuvem, a questão (e a figura) sobe e chega à equipe — ver questoes_enviadas, seção 2-C
+    nuvemMarcarQuestao(nova.id);
   });
   novosAssuntos = db.taxonomia.assuntos.length - antesAssuntos;
   saveState();
@@ -588,7 +591,9 @@ function confirmarImportacao(){
   state.filtroRota.previewImportacao = null;
   toast(r.importadas+" questão(ões) importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s) criado(s)":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
-    (destino==="sugerir" ? " — aguardando aprovação de um professor." : destino==="grupo" ? " — disponíveis para o seu grupo." : "."));
+    (destino==="grupo" ? " — disponíveis para o seu grupo."
+      : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")
+      : destino==="sugerir" ? " — aguardando aprovação de um professor." : "."));
   navigate(destino==="grupo" ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");
 }
 

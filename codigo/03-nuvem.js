@@ -147,6 +147,7 @@ async function nuvemChamar(caminho, opcoes = {}){
     const erro = new Error(nuvemMensagemDeErro(resposta.status, texto, caminho, opcoes.method || "GET"));
     erro.status = resposta.status;
     erro.tabela = nuvemNomeDaTabela(caminho);
+    erro.textoDoServidor = texto;
     throw erro;
   }
   return texto ? JSON.parse(texto) : null;
@@ -938,6 +939,225 @@ NUVEM_GLOBAIS.comentarios = {
   },
 };
 
+/* QUESTÕES ENVIADAS PELA PLATAFORMA (tabela questoes_enviadas, seção 11-E
+   do esquema.sql). Até aqui, a questão enviada por Enviar/Importar
+   Questões, pela Central de Provas ou por "Nova questão" ficava só no
+   navegador de quem enviou: a coordenação nunca a via, e a questão que ela
+   própria publicava não chegava aos alunos. Agora:
+
+   - quem envia sobe a questão (aluno: pendente; residente e equipe podem
+     publicar já aprovada) e a IMAGEM vai antes, para o Storage do Supabase
+     (balde "questoes"): a linha guarda só o endereço dela, porque uma
+     imagem em texto dentro de cada questão encheria o navegador de todos;
+   - a equipe recebe as pendentes na fila de sempre (Controle de Qualidade ›
+     Sugeridas), confere, corrige e aprova — e a aprovada desce para todos;
+   - recusar manda o motivo de volta a quem enviou; excluir uma aprovada a
+     marca "removida", e ela sai dos outros aparelhos também.
+
+   A fila é a mesma das outras tabelas compartilhadas (chaves, linha montada
+   na hora de subir); a diferença é o envio próprio (`enviar`), que sobe a
+   imagem primeiro. Recusa e remoção ficam em db.nuvem.questoesDecididas até
+   subirem, porque a questão em si já saiu do banco local. */
+const BALDE_IMAGENS_QUESTOES = "questoes";
+const CAMPOS_DA_QUESTAO_NA_NUVEM = ["banca", "ano", "tipoProva", "areaId", "especialidadeId", "assuntoId", "enunciado", "alternativas",
+  "gabarito", "explicacaoGeral", "explicacoesAlternativas", "referencias", "imagemUrl", "imagemLegenda", "imagemPendente",
+  "dificuldadeManual", "numeroNaProva", "faseProva", "motivoStatus", "criadoEm"];
+let _idsDaSemente = null;
+function questaoDaSemente(id){
+  if(!_idsDaSemente || _idsDaSemente.n !== SEED_QUESTOES.length) _idsDaSemente = { n: SEED_QUESTOES.length, ids: new Set(SEED_QUESTOES.map(q => q.id)) };
+  return _idsDaSemente.ids.has(id);
+}
+// a questão da pasta dados/ já é de todos, e a do grupo é só do grupo: nenhuma das duas sobe
+function questaoSobeParaNuvem(q){ return !!q && !q.grupoId && !questaoDaSemente(q.id); }
+function euNaNuvem(){ return nuvemSessao ? db.usuarios.find(x => x.id === nuvemSessao.usuarioId) || null : null; }
+function podeEnviarQuestoesNaNuvem(){ const eu = euNaNuvem(); return !!(eu && eu.status === "aprovado"); }
+function ehUuid(t){ return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(t || "")); }
+
+// chamada por toda tela que cria ou muda uma questão
+function nuvemMarcarQuestao(qid){
+  if(!nuvemConectado() || !questaoSobeParaNuvem(getQuestao(qid))) return;
+  if(db.nuvem.questoesDecididas) delete db.nuvem.questoesDecididas[qid];
+  nuvemMarcarGlobalPendente("questoes_enviadas", qid);
+  nuvemAgendarSync();
+}
+/* Recusa ou remoção: a questão sai daqui, e a decisão fica guardada até subir. */
+function nuvemMarcarQuestaoFora(q, status, motivo){
+  if(!nuvemConectado() || !q || !questaoSobeParaNuvem(q)) return;
+  const eu = euNaNuvem() || {};
+  if(!db.nuvem.questoesDecididas) db.nuvem.questoesDecididas = {};
+  db.nuvem.questoesDecididas[q.id] = { status, motivo: motivo || "", porNome: eu.nome || "" };
+  nuvemMarcarGlobalPendente("questoes_enviadas", q.id);
+  nuvemAgendarSync();
+}
+function linhaDaQuestaoNaNuvem(q){
+  const eu = euNaNuvem() || {};
+  const dados = {};
+  CAMPOS_DA_QUESTAO_NA_NUVEM.forEach(c => { if(q[c] !== undefined && q[c] !== null && q[c] !== "") dados[c] = copiaProfunda(q[c]); });
+  dados.situacao = q.status === "pendente" ? "ativa" : q.status;      // ativa, anulada ou desatualizada, depois de aprovada
+  // especialidade e assunto criados na hora do envio não existem nos outros navegadores: vão junto
+  const esp = db.taxonomia.especialidades.find(e => e.id === q.especialidadeId);
+  const ass = db.taxonomia.assuntos.find(a => a.id === q.assuntoId);
+  const nova = {};
+  if(esp && !(SEED_TAXONOMIA.especialidades || []).some(e => e.id === esp.id)) nova.especialidade = { id: esp.id, areaId: esp.areaId, nome: esp.nome };
+  if(ass && !(SEED_TAXONOMIA.assuntos || []).some(a => a.id === ass.id)) nova.assunto = { id: ass.id, especialidadeId: ass.especialidadeId, nome: ass.nome };
+  if(nova.especialidade || nova.assunto) dados.taxonomiaNova = nova;
+  const autorId = ehUuid(q.criadoPor) ? q.criadoPor : nuvemSessao.usuarioId;
+  // aluno só envia para aprovação, qualquer que seja o status dela aqui (o banco recusaria)
+  const aprovada = q.status !== "pendente" && ["professor", "admin", "residente"].includes(eu.papel);
+  return {
+    id: q.id, autor_id: autorId, autor_nome: q.autorNome || (autorId === eu.id ? eu.nome : "") || "",
+    status: aprovada ? "aprovada" : "pendente", dados,
+    decidido_por_nome: aprovada ? (q.aprovadoPorNome || eu.nome || "") : "",
+  };
+}
+/* A imagem anexada (data:image/...) sobe como arquivo para o Storage, e a
+   questão passa a apontar para o endereço público dela — aqui também, para
+   uma nova tentativa não mandar a mesma imagem de novo. */
+async function nuvemEnviarImagemDaQuestao(q){
+  const [cabecalho, base64] = String(q.imagemUrl).split(",");
+  const tipo = (/^data:([^;,]+)/.exec(cabecalho) || [])[1] || "image/jpeg";
+  const binario = atob(base64 || "");
+  const bytes = new Uint8Array(binario.length);
+  for(let i = 0; i < binario.length; i++) bytes[i] = binario.charCodeAt(i);
+  const ext = { "image/png": "png", "image/webp": "webp", "image/gif": "gif" }[tipo] || "jpg";
+  const caminho = nuvemSessao.usuarioId + "/" + encodeURIComponent(q.id) + "-" + Date.now().toString(36) + "." + ext;
+  await nuvemChamar("/storage/v1/object/" + BALDE_IMAGENS_QUESTOES + "/" + caminho, {
+    method: "POST", headers: { "Content-Type": tipo, "x-upsert": "false" }, body: new Blob([bytes], { type: tipo }),
+  });
+  q.imagemUrl = CONFIG.nuvem.url.replace(/\/+$/, "") + "/storage/v1/object/public/" + BALDE_IMAGENS_QUESTOES + "/" + caminho;
+  saveState();
+}
+// a recusa do banco (RLS) é definitiva: não é "sem permissão por enquanto"
+function nuvemRecusaDePolitica(e){ return e && e.status === 403 && /row-level security|42501/i.test(e.textoDoServidor || ""); }
+
+NUVEM_GLOBAIS.questoes_enviadas = {
+  chave: l => l.id,
+  podeGravar: () => podeEnviarQuestoesNaNuvem(),
+  aplicar: l => aplicarQuestaoDaNuvem(l),
+  linha: id => { const q = getQuestao(id); return q && questaoSobeParaNuvem(q) ? linhaDaQuestaoNaNuvem(q) : null; },
+  enviar: async id => {
+    const decisao = (db.nuvem.questoesDecididas || {})[id];
+    try{
+      if(decisao){
+        await nuvemChamar("/rest/v1/questoes_enviadas?id=eq." + encodeURIComponent(id), {
+          method: "PATCH", headers: { "Prefer": "return=minimal" },
+          body: JSON.stringify({ status: decisao.status, motivo: decisao.motivo, decidido_por_nome: decisao.porNome, atualizado_por: nuvemSessao.usuarioId }),
+        });
+        delete db.nuvem.questoesDecididas[id];
+        return true;
+      }
+      const q = getQuestao(id);
+      if(!q || !questaoSobeParaNuvem(q)) return true;
+      if(/^data:image\//.test(q.imagemUrl || "")){
+        try{ await nuvemEnviarImagemDaQuestao(q); }
+        catch(e){
+          if(e.semRede || e.sessaoExpirada || e.status === 401 || e.status === 429 || e.status >= 500) throw e;
+          // balde que não existe ou regra que falta: o esquema.sql desta versão
+          // ainda não rodou. A questão espera na fila, sem travar o resto.
+          db.nuvem.avisoImagens = "A imagem de uma questão não subiu: " + (e.message || "o espaço de imagens recusou o arquivo") +
+            " Rode de novo o nuvem/esquema.sql no Supabase (ele cria o espaço de imagens \"questoes\"); a questão sobe sozinha depois.";
+          return false;
+        }
+      }
+      await nuvemChamar("/rest/v1/questoes_enviadas", {
+        method: "POST", headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+        body: JSON.stringify([Object.assign(linhaDaQuestaoNaNuvem(q), { atualizado_por: nuvemSessao.usuarioId })]),
+      });
+      q.naNuvem = true;
+      delete db.nuvem.avisoImagens;
+      return true;
+    }catch(e){
+      if(nuvemRecusaDePolitica(e)){ const def = new Error(e.message); def.status = 400; throw def; }
+      throw e;
+    }
+  },
+};
+/* O que desce: a aprovada entra no banco de todos; a pendente, no de quem
+   enviou e no da equipe (é a fila de Sugeridas); a recusada e a removida
+   saem. Quem enviou guarda o andamento dos próprios envios (meusEnvios),
+   inclusive o motivo da recusa. */
+function aplicarQuestaoDaNuvem(l){
+  if(!l || !l.id || questaoDaSemente(l.id)) return;
+  const d = l.dados || {};
+  if(nuvemSessao && l.autor_id === nuvemSessao.usuarioId){
+    if(!db.nuvem.meusEnvios) db.nuvem.meusEnvios = {};
+    db.nuvem.meusEnvios[l.id] = { autorId: l.autor_id, status: l.status, motivo: l.motivo || "", decididoPor: l.decidido_por_nome || "",
+      em: (l.atualizado_em || "").slice(0, 10), banca: d.banca || "", ano: d.ano || "", resumo: String(d.enunciado || "").slice(0, 140), numero: d.numeroNaProva || null };
+  }
+  const i = db.questoes.findIndex(x => x.id === l.id);
+  if(l.status === "recusada" || l.status === "removida"){
+    if(i >= 0) db.questoes.splice(i, 1);
+    return;
+  }
+  const nova = d.taxonomiaNova || {};
+  if(nova.especialidade && !db.taxonomia.especialidades.some(e => e.id === nova.especialidade.id)) db.taxonomia.especialidades.push(Object.assign({}, nova.especialidade));
+  if(nova.assunto && !db.taxonomia.assuntos.some(a => a.id === nova.assunto.id)) db.taxonomia.assuntos.push(Object.assign({}, nova.assunto));
+  const antiga = i >= 0 ? db.questoes[i] : null;
+  const q = { id: l.id, real: true };
+  CAMPOS_DA_QUESTAO_NA_NUVEM.forEach(c => { if(d[c] !== undefined) q[c] = copiaProfunda(d[c]); });
+  Object.assign(q, {
+    status: l.status === "pendente" ? "pendente" : (d.situacao || "ativa"),
+    criadoPor: l.autor_id || (antiga && antiga.criadoPor) || "", autorNome: l.autor_nome || "",
+    criadoEm: d.criadoEm || (l.criado_em || "").slice(0, 10) || hojeISO(),
+    aprovadoPorNome: l.decidido_por_nome || "", naNuvem: true,
+    explicacoesAlternativas: q.explicacoesAlternativas || {},
+    dificuldadeManual: q.dificuldadeManual || "intermediario",
+    alternativas: q.alternativas || [],
+    // o que é deste aparelho (estatísticas, sinalizações) fica
+    estatisticas: (antiga && antiga.estatisticas) || { respostas: 0, acertos: 0, distribuicaoAlternativas: {} },
+  });
+  if(antiga && antiga.sinalizacoes) q.sinalizacoes = antiga.sinalizacoes;
+  if(i >= 0) db.questoes[i] = q; else db.questoes.push(q);
+}
+/* Questões criadas neste navegador antes de a nuvem as receber (ou sem
+   conta): quem enviou — ou a equipe, para as que publicou — manda de uma vez. */
+function questoesSoNesteNavegador(){
+  const eu = euNaNuvem(); if(!eu) return [];
+  const daEquipe = podeGerirConteudo(eu);
+  return db.questoes.filter(q => questaoSobeParaNuvem(q) && !q.naNuvem && (daEquipe || q.criadoPor === eu.id || !ehUuid(q.criadoPor)));
+}
+/* O que a pessoa enviou e em que pé está: pendente, aprovada, recusada (com
+   o motivo). Aparece em Enviar/Importar Questões. */
+function renderCardMeusEnvios(){
+  if(!nuvemConectado()) return "";
+  const eu = euNaNuvem(); if(!eu) return "";
+  const envios = Object.entries((db.nuvem && db.nuvem.meusEnvios) || {}).filter(([, e]) => e.autorId === eu.id)
+    .map(([id, e]) => Object.assign({ id }, e)).sort((a, b) => (b.em || "").localeCompare(a.em || ""));
+  const soAqui = questoesSoNesteNavegador();
+  const naFila = ((db.nuvem && db.nuvem.globaisPendentes) || []).filter(p => p.tabela === "questoes_enviadas").length;
+  if(!envios.length && !soAqui.length && !naFila) return "";
+  const conta = st => envios.filter(e => e.status === st).length;
+  const rotulo = { pendente: ["badge-amber", "aguardando a equipe"], aprovada: ["badge-accent", "aprovada — no banco de todos"], recusada: ["badge-danger", "recusada"], removida: ["badge-muted", "removida do banco"] };
+  const pag = paginar(envios, "meus-envios", { porPagina: 8 });
+  return `<div class="card mb-2">
+    <div class="card-title">${iconeSvg("upload")} Suas questões enviadas</div>
+    <p class="text-sm muted">Com a nuvem ligada, o que você envia sobe junto com as imagens e chega à equipe, que confere e aprova. Aprovada, a questão entra no banco de toda a turma.</p>
+    ${naFila ? `<p class="text-sm mt-1">${iconeSvg("refresh")} ${naFila} questão(ões) subindo agora…</p>` : ""}
+    ${db.nuvem.avisoImagens ? `<p class="text-xs mt-1" style="color:var(--amber)">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoImagens)}</p>` : ""}
+    ${soAqui.length ? `<div class="card-flat mt-2 text-sm">${iconeSvg("alert")} <strong>${soAqui.length} questão(ões) estão só neste navegador</strong> — foram criadas antes de subirem para a nuvem.
+      <button class="btn btn-secondary btn-sm mt-1" onclick="nuvemEnviarQuestoesDesteNavegador()">${iconeSvg("upload")} Enviar para a nuvem</button></div>` : ""}
+    ${envios.length ? `<div class="qcard-meta mt-2">
+        <span class="badge badge-amber">${conta("pendente")} aguardando</span><span class="badge badge-accent">${conta("aprovada")} aprovada(s)</span>
+        ${conta("recusada") ? `<span class="badge badge-danger">${conta("recusada")} recusada(s)</span>` : ""}</div>
+      ${pag.itens.map(e => `<div class="card-flat mt-1">
+        <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.4rem"><span class="text-sm" style="font-weight:600">${escapeHtml(e.banca)} ${escapeHtml(String(e.ano||""))}${e.numero ? " · nº " + e.numero : ""}</span>
+          <span class="badge ${(rotulo[e.status] || rotulo.pendente)[0]}">${(rotulo[e.status] || rotulo.pendente)[1]}</span></div>
+        <div class="text-xs muted mt-1">${escapeHtml(e.resumo)}${e.resumo && e.resumo.length >= 140 ? "…" : ""}</div>
+        ${e.status === "recusada" ? `<div class="text-xs mt-1">${e.motivo ? "<strong>Motivo:</strong> " + escapeHtml(e.motivo) : "Sem motivo informado."}${e.decididoPor ? " — " + escapeHtml(e.decididoPor) : ""}</div>` : ""}
+        ${e.status === "aprovada" && e.decididoPor ? `<div class="text-xs muted mt-1">aprovada por ${escapeHtml(e.decididoPor)}${e.em ? " em " + formatDataBR(e.em) : ""}</div>` : ""}
+      </div>`).join("")}
+      ${controlesPaginacao(pag, "envio(s)")}` : ""}
+  </div>`;
+}
+function nuvemEnviarQuestoesDesteNavegador(){
+  const lista = questoesSoNesteNavegador();
+  if(!lista.length){ toast("Não há questão deste navegador esperando para subir."); return; }
+  lista.forEach(q => nuvemMarcarGlobalPendente("questoes_enviadas", q.id));
+  saveState();
+  nuvemSincronizarAgora({ forcarRedesenho: true });
+  toast(lista.length + " questão(ões) a caminho da nuvem" + (lista.some(q => /^data:image\//.test(q.imagemUrl || "")) ? ", com as imagens" : "") + ".");
+}
+
 function nuvemMarcarGlobalPendente(tabela, chave){
   if(!nuvemConectado() || !NUVEM_GLOBAIS[tabela] || !NUVEM_GLOBAIS[tabela].podeGravar()) return;
   if(!Array.isArray(db.nuvem.globaisPendentes)) db.nuvem.globaisPendentes = [];
@@ -979,9 +1199,14 @@ async function nuvemEnviarGlobaisPendentes(){
     const tirar = () => { db.nuvem.globaisPendentes = db.nuvem.globaisPendentes.filter(x => !(x.tabela === p.tabela && x.chave === p.chave)); };
     if(!desc){ tirar(); continue; }
     if(_nuvemTabelasAusentes.has(p.tabela)) continue;   // sobe quando a tabela existir
-    const linha = desc.linha(p.chave);
-    if(!linha){ tirar(); continue; }                     // o registro não existe mais aqui: nada a subir
     try{
+      // tabela com envio próprio (as questões: imagem primeiro, depois a linha)
+      if(desc.enviar){
+        if(await desc.enviar(p.chave) !== false) tirar();  // false = fica na fila, tenta de novo depois
+        continue;
+      }
+      const linha = desc.linha(p.chave);
+      if(!linha){ tirar(); continue; }                   // o registro não existe mais aqui: nada a subir
       await nuvemChamar("/rest/v1/" + p.tabela, {
         method: "POST",
         headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
@@ -1883,6 +2108,7 @@ function renderCardNuvem(){
       ${nuvemEstado.sessaoExpirada ? `
         <button class="btn btn-primary btn-sm mt-2" onclick="nuvemEntrarDeNovo()">${iconeSvg("logout")} Entrar de novo</button>
       ` : ""}
+      ${db.nuvem && db.nuvem.avisoImagens ? `<div class="card-flat mt-2 text-xs"><strong>${iconeSvg("alert")} Imagens de questões.</strong> ${escapeHtml(db.nuvem.avisoImagens)}</div>` : ""}
       ${_nuvemTabelasAusentes.size ? `<div class="card-flat mt-2 text-xs"><strong>${iconeSvg("alert")} Falta rodar o nuvem/esquema.sql.</strong> Este banco ainda não tem ${[..._nuvemTabelasAusentes].map(t=>"<code>"+escapeHtml(t)+"</code>").join(", ")}. O resto sincroniza normalmente; o que é dessa(s) tabela(s) fica guardado neste navegador e sobe sozinho depois que o SQL for rodado e a página recarregada.</div>` : ""}
       ${nuvemRecusadosHtml()}
       <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
