@@ -187,6 +187,7 @@ arquivo já neste formato.
   id:"q-usp2026-001",              // único em toda a plataforma
   banca:"USP-SP (FMUSP)",          // instituição
   real:true,                       // true = prova real; false = questão autoral
+  tipoProva:"residencia",          // opcional: "residencia" (padrão) ou "graduacao" (prova da faculdade, Teste de Progresso)
   ano:2026,
   areaId:"area-cm",                // os três ids vêm de dados/taxonomia.js
   especialidadeId:"esp-cardio",
@@ -235,7 +236,10 @@ de cada questão real tem de ser **escrita pela equipe**, a partir de fontes
 primárias e oficiais (diretrizes, PCDT, artigos).
 
 Questão real marca `real: true`, com instituição, ano e `numeroNaProva`
-corretos. Questão autoral da equipe mantém `real: false` **e nunca leva o
+corretos. Prova **da graduação** (prova da faculdade, Teste de Progresso)
+marca também `tipoProva: "graduacao"`; sem o campo, a questão é de
+residência — o padrão, e o que o banco inteiro é hoje. A instituição
+"Teste de Progresso" já é reconhecida como graduação mesmo sem o campo. Questão autoral da equipe mantém `real: false` **e nunca leva o
 nome de uma banca de verdade** em `banca` — use `"Esc — Banco Didático"`.
 Até setembro de 2026, trinta questões autorais diziam "UNIFESP-EPM" e
 entravam em *Provas Antigas* misturadas às provas reais (a de 2024 aparecia

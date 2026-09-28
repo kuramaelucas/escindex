@@ -493,7 +493,7 @@ function renderInicioResidente(u){
    no celular; viraram fichas pequenas lado a lado, que cabem numa linha só
    e levam à tela correspondente. As ações ficam numa fileira de botões. */
 function renderInicioStaff(u){
-  const pendCadastros = db.usuarios.filter(x=>x.status==="pendente").length;
+  const pendCadastros = quantosPedidosDeAcesso();
   const dificeis = questoesDificeis().length;
   const ativas = questoesAtivas(true);
   const totalAlunos = db.usuarios.filter(x=>x.papel==="aluno" && x.status==="aprovado").length;
@@ -512,7 +512,7 @@ function renderInicioStaff(u){
     ${ficha(dificeis, "na fila de difíceis", "revisao-dificeis")}
     ${ficha(duvidas, "dúvidas de alunos", temRota("fila-duvidas") ? "fila-duvidas" : null)}
     ${ficha(aRevisar, "formatação a revisar", "revisao-formatacao")}
-    ${u.papel==="admin" && temRota("aprovar-cadastros") ? ficha(pendCadastros, pendCadastros===1?"cadastro pendente":"cadastros pendentes", "aprovar-cadastros") : ""}
+    ${podeAprovarCadastros(u) && temRota("aprovar-cadastros") ? ficha(pendCadastros, pendCadastros===1?"cadastro pendente":"cadastros pendentes", "aprovar-cadastros") : ""}
   </div>
   <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
     <button class="btn btn-secondary btn-sm" onclick="navigate('criar-simulado')">${iconeSvg("plus")} Criar simulado</button>
@@ -547,6 +547,7 @@ function renderEstudar(){
   const todas = questoesAtivas(meuGrupo.id);
   const anos = [...new Set(todas.map(q=>q.ano))].sort((a,b)=>b-a);
   const bancas = [...new Set(todas.map(q=>q.banca))].sort();
+  const qtdGraduacao = todas.filter(q=>tipoProvaDe(q)==="graduacao").length;
   const meta = metaDoUsuario(u);
   const feitasHoje = questoesRespondidasHoje(u.id);
   const seq = sequenciaDiasEstudo(u.id);
@@ -595,6 +596,9 @@ function renderEstudar(){
       <div class="card-title">Sessão recomendada</div>
       <p class="text-sm muted">Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Dentro do bloco atual, os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
+      ${priorizaGraduacao(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${qtdGraduacao
+        ? `No ${escapeHtml(u.anoFaculdade)}, as questões das <strong>provas da graduação</strong> (provas da faculdade e Teste de Progresso) vêm primeiro dentro de cada assunto: é a fase de consolidar o conhecimento. As de residência completam o conjunto.`
+        : `No ${escapeHtml(u.anoFaculdade)}, as questões das <strong>provas da graduação</strong> (provas da faculdade e Teste de Progresso) vêm primeiro — assim que houver alguma no banco. Por enquanto, o conjunto sai das provas de residência.`}</div>` : ""}
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
       <p class="text-xs muted mt-1">${deHoje
         ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
@@ -609,7 +613,7 @@ function renderEstudar(){
   ${htmlCardPrioridadesEstudar(u)}
   <div class="card mt-2">
     <div class="card-title">Monte sua própria lista</div>
-    <p class="text-sm muted mb-2">Filtre por grande área, especialidade, assunto, instituição, ano ou situação (erros, favoritas, ainda não respondidas). Deixar um filtro em branco significa "todos".</p>
+    <p class="text-sm muted mb-2">Filtre por grande área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano ou situação (erros, favoritas, ainda não respondidas). Deixar um filtro em branco significa "todos".</p>
     <div class="grid grid-3" onchange="atualizarContagemFiltro()">
       <div>
         <div class="flex justify-between items-center mb-1">
@@ -634,6 +638,11 @@ function renderEstudar(){
         <div class="text-xs muted mt-1">Segure Ctrl (ou Cmd) para escolher mais de um.</div>
       </div>
       <div>
+        <div class="label mb-1">Tipo de prova</div>
+        <select class="select mb-2" id="filtroTipoProva">
+          <option value="">Residência e graduação</option>
+          ${CONFIG.tiposProva.map(t=>`<option value="${t.id}">${escapeHtml(t.nomeLongo)}</option>`).join("")}
+        </select>
         <div class="label mb-1">Instituição</div>
         <select class="select" id="filtroBanca">
           <option value="">Todas as instituições</option>
@@ -672,12 +681,14 @@ function lerFiltrosPersonalizados(){
   const marcado = id => { const el = document.getElementById(id); return !!(el && el.checked); };
   const escolhidos = id => { const el = document.getElementById(id); return el ? [...(el.selectedOptions||[])].map(o=>o.value) : []; };
   const banca = valor("filtroBanca");
+  const tipo = valor("filtroTipoProva");
   return {
     areaIds: [...document.querySelectorAll(".filtroArea:checked")].map(el=>el.value),
     anos: [...document.querySelectorAll(".filtroAno:checked")].map(el=>parseInt(el.value)),
     especialidadeIds: escolhidos("filtroEspecialidade"),
     assuntoIds: escolhidos("filtroAssunto"),
     bancas: banca ? [banca] : [],
+    tiposProva: tipo ? [tipo] : [],
     apenasErros: marcado("filtroApenasErros"),
     apenasFavoritas: marcado("filtroApenasFavoritas"),
     apenasNaoRespondidas: marcado("filtroApenasNaoRespondidas"),

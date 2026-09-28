@@ -393,7 +393,7 @@ function renderRevisaoDificeis(){
   <div class="tabs">
     <div class="tab ${aba==="dificeis"?"active":""}" onclick="mudarAbaQualidade('dificeis')">Questões Difíceis (${lista.length})</div>
     <div class="tab ${aba==="sinalizadas"?"active":""}" onclick="mudarAbaQualidade('sinalizadas')">Sinalizadas por Alunos (${sinalizadas.length})</div>
-    <div class="tab ${aba==="sugeridas"?"active":""}" onclick="mudarAbaQualidade('sugeridas')">Sugeridas por Alunos (${sugeridas.length})</div>
+    <div class="tab ${aba==="sugeridas"?"active":""}" onclick="mudarAbaQualidade('sugeridas')">Enviadas pela Turma (${sugeridas.length})</div>
     <div class="tab ${aba==="duplicadas"?"active":""}" onclick="mudarAbaQualidade('duplicadas')">Duplicadas (${duplicadas.length})</div>
     <div class="tab ${aba==="flashcards"?"active":""}" onclick="mudarAbaQualidade('flashcards')">Flashcards Sugeridos (${cartoesSugeridos.length})</div>
   </div>
@@ -464,6 +464,7 @@ function manterApenasUmaDuplicata(indiceGrupo){
 }
 function confirmarManterApenasUma(manterId, idsExcluir){
   const ids = (idsExcluir||"").split(",").filter(Boolean);
+  ids.forEach(id=>{ const q = getQuestao(id); if(q) nuvemMarcarQuestaoFora(q, q.status==="pendente" ? "recusada" : "removida", "Cópia duplicada de outra questão do banco."); });
   db.questoes = db.questoes.filter(q=>!ids.includes(q.id));
   saveState(); fecharModal();
   toast(ids.length+" cópia(s) excluída(s).");
@@ -471,18 +472,22 @@ function confirmarManterApenasUma(manterId, idsExcluir){
 }
 function renderListaSugeridas(lista){
   const pag = paginar(lista, "qualidade-sugeridas", {porPagina:10});
-  return `<p class="text-sm muted mb-2">Questões que alunos sugeriram para o banco geral (não restritas a nenhum grupo). Só ficam disponíveis pra todo mundo depois de aprovadas — e a plataforma guarda quem enviou e quem aprovou.</p>
+  return `<p class="text-sm muted mb-2">Questões que a turma enviou para o banco geral (não restritas a nenhum grupo). Só ficam disponíveis para todo mundo depois de aprovadas — e a plataforma guarda quem enviou e quem aprovou.${nuvemConectado() ? " <strong>Com a nuvem ligada, chegam aqui as enviadas de qualquer aparelho</strong>, com a imagem; aprovar coloca a questão no banco de todos, e recusar devolve o motivo a quem enviou." : ""}</p>
   ${lista.length ? pag.itens.map(q=>{
     const autor = getUsuario(q.criadoPor);
     return `<div class="card mb-2">
-      <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${q.ano}</span></div>
+      <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca||"")} ${q.ano}${q.numeroNaProva?" · nº "+q.numeroNaProva:""}</span>
+        <span class="badge ${tipoProvaDe(q)==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>
+        ${q.imagemUrl ? '<span class="badge badge-accent">com imagem</span>' : aguardaImagem(q) ? '<span class="badge badge-amber">falta a imagem</span>' : ""}
+        ${q.naNuvem ? '<span class="badge badge-muted">na nuvem</span>' : ""}</div>
       <div class="text-sm mt-1" style="font-weight:600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
-      <div class="text-xs muted mt-1">Enviada por ${escapeHtml(autor?autor.nome:"—")} em ${formatDataBR(q.criadoEm)}</div>
+      ${q.imagemUrl ? `<img class="imp-imagem-previa" src="${escapeHtml(q.imagemUrl)}" alt="${escapeHtml(q.imagemLegenda||"Imagem da questão")}" loading="lazy">` : ""}
+      <div class="text-xs muted mt-1">Enviada por ${escapeHtml(autor?autor.nome:(q.autorNome||"—"))} em ${formatDataBR(q.criadoEm)}</div>
       <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
         ${botaoVerNaIntegra(q.id, "Ver questão completa")}
         <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Ver/editar antes de aprovar</button>
         ${podeAprovarQuestoes() ? `<button class="btn btn-primary btn-sm" onclick="aprovarQuestaoSugerida('${q.id}')">Aprovar para o banco geral</button>
-        <button class="btn btn-danger btn-sm" onclick="confirmarExcluirQuestao('${q.id}')">Rejeitar</button>` : '<span class="text-xs muted">A aprovação final para o banco geral é feita por um professor ou administrador — mas suas correções de formatação já ficam salvas.</span>'}
+        <button class="btn btn-danger btn-sm" onclick="abrirRecusaQuestaoSugerida('${q.id}')">Recusar</button>` : '<span class="text-xs muted">A aprovação final para o banco geral é feita por um professor ou administrador — mas suas correções de formatação já ficam salvas.</span>'}
       </div>
     </div>`;
   }).join("") : '<div class="empty-state">Nenhuma sugestão pendente no momento.</div>'}
@@ -492,8 +497,30 @@ function aprovarQuestaoSugerida(qid){
   const q = getQuestao(qid);
   q.status = "ativa";
   q.aprovadoPor = usuarioAtual().id;
+  q.aprovadoPorNome = usuarioAtual().nome;
+  nuvemMarcarQuestao(qid);
   saveState();
-  toast("Questão aprovada e adicionada ao banco geral.");
+  toast(nuvemConectado() && questaoSobeParaNuvem(q)
+    ? "Questão aprovada: ela entra no banco geral e desce para toda a turma na próxima sincronização."
+    : "Questão aprovada e adicionada ao banco geral.");
+  render();
+}
+/* Recusar é diferente de excluir: quem enviou fica sabendo, com o motivo
+   (Enviar Questões › Suas questões enviadas). */
+function abrirRecusaQuestaoSugerida(qid){
+  abrirModal(`<div class="modal-header"><h3>Recusar a questão enviada</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    <p class="text-sm">A questão sai da fila e não entra no banco. Quem enviou vê que ela foi recusada${nuvemConectado() ? ", com o motivo que você escrever aqui" : ""}.</p>
+    <div class="field mt-1"><label class="label">Motivo (opcional)</label>
+      <textarea class="textarea" id="motivoRecusaQuestao" placeholder="ex.: já existe no banco; gabarito diferente do oficial; falta a imagem da prova"></textarea></div>
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="recusarQuestaoSugerida('${qid}')">Recusar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function recusarQuestaoSugerida(qid){
+  const q = getQuestao(qid); if(!q) return;
+  const campo = document.getElementById("motivoRecusaQuestao");
+  nuvemMarcarQuestaoFora(q, "recusada", campo ? campo.value.trim() : "");
+  db.questoes = db.questoes.filter(x=>x.id!==qid);
+  saveState(); fecharModal();
+  toast("Questão recusada.");
   render();
 }
 function renderListaDificeis(lista){
@@ -692,6 +719,7 @@ function renderAprovarCadastros(){
   return `
   <div class="page-header"><h2>Aprovar Cadastros</h2><p>Solicitações de acesso aguardando aprovação.</p></div>
   ${renderCadastrosPendentesDaNuvem()}
+  ${renderCardAvisoPedidosDeAcesso()}
   ${nuvemConectado() && pendentes.length ? '<div class="text-sm muted mb-1">Solicitações antigas, feitas só neste navegador:</div>' : ""}
   ${pendentes.length ? `<div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail</th><th>Matrícula</th><th>Acesso solicitado</th><th>Data</th><th></th></tr></thead><tbody>
     ${pendentes.map(u=>`<tr><td>${escapeHtml(u.nome)}</td><td>${escapeHtml(u.email)}</td><td>${escapeHtml(u.matricula)}</td><td class="text-sm">${badgePapel(u.papel)}${u.areasAtuacao&&u.areasAtuacao.length?"<br><span class=\"text-xs muted\">"+u.areasAtuacao.map(nomeArea).join(", ")+"</span>":""}${u.assuntosAjuda&&u.assuntosAjuda.length?"<br><span class=\"text-xs muted\">ajuda com: "+u.assuntosAjuda.map(nomeEspecialidade).join(", ")+"</span>":""}</td><td>${formatDataBR(u.criadoEm)}</td><td class="flex gap-1"><button class="btn btn-primary btn-sm" onclick="aprovarUsuario('${u.id}')">Aprovar</button><button class="btn btn-danger btn-sm" onclick="rejeitarUsuario('${u.id}')">Recusar</button></td></tr>`).join("")}
@@ -971,7 +999,7 @@ function badgeStatusQuestao(status){
   return `<span class="badge ${cls}">${label}</span>`;
 }
 function filtrosBanco(){
-  if(!state.filtroRota.banco) state.filtroRota.banco = {busca:"", banca:"", ano:"", areaId:"", status:"", ultimos5:false};
+  if(!state.filtroRota.banco) state.filtroRota.banco = {busca:"", banca:"", ano:"", areaId:"", status:"", ultimos5:false, tipo:""};
   return state.filtroRota.banco;
 }
 function mudarFiltroBanco(campo, valor){
@@ -980,7 +1008,7 @@ function mudarFiltroBanco(campo, valor){
   else f[campo] = valor;
   render();
 }
-function limparFiltrosBanco(){ state.filtroRota.banco = {busca:"", banca:"", ano:"", areaId:"", status:"", ultimos5:false}; render(); }
+function limparFiltrosBanco(){ state.filtroRota.banco = {busca:"", banca:"", ano:"", areaId:"", status:"", ultimos5:false, tipo:""}; render(); }
 function buscarNoBanco(){ filtrosBanco().busca = document.getElementById("buscaBancoInput").value; render(); }
 function renderBancoQuestoes(){
   const f = filtrosBanco();
@@ -991,6 +1019,7 @@ function renderBancoQuestoes(){
   let lista = db.questoes.slice();
   if(termo) lista = lista.filter(q=>q.enunciado.toLowerCase().includes(termo) || (q.alternativas||[]).some(a=>a.texto.toLowerCase().includes(termo)));
   if(f.banca) lista = lista.filter(q=>q.banca===f.banca);
+  if(f.tipo) lista = lista.filter(q=>tipoProvaDe(q)===f.tipo);
   if(f.ano) lista = lista.filter(q=>q.ano===parseInt(f.ano));
   if(f.ultimos5) lista = lista.filter(q=>q.ano > anoMaisRecente-5);
   if(f.areaId) lista = lista.filter(q=>q.areaId===f.areaId);
@@ -1033,6 +1062,10 @@ function renderBancoQuestoes(){
     <div class="flex gap-1 items-center mt-2" style="flex-wrap:wrap">
       <input class="input" id="buscaBancoInput" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
       <button class="btn btn-secondary btn-sm" onclick="buscarNoBanco()">Buscar</button>
+      <select class="select" style="max-width:220px" onchange="mudarFiltroBanco('tipo', this.value)" aria-label="Tipo de prova">
+        <option value="">Residência e graduação</option>
+        ${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${f.tipo===t.id?"selected":""}>${escapeHtml(t.nomeLongo)}</option>`).join("")}
+      </select>
       <label class="checkbox-row"><input type="checkbox" ${f.ultimos5?"checked":""} onchange="mudarFiltroBanco('ultimos5', this.checked)"> Últimos 5 anos</label>
       <button class="link-btn text-xs" onclick="limparFiltrosBanco()">limpar filtros</button>
     </div>
@@ -1040,16 +1073,60 @@ function renderBancoQuestoes(){
   <div class="flex gap-1 items-center mb-2" style="flex-wrap:wrap">
     <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Nova questão manual</button>
     <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Importar em lote</button>
+    ${questoesParaExportar().length ? `<button class="btn btn-ghost btn-sm" onclick="exportarQuestoesParaDados()" title="As questões aprovadas que entraram pela plataforma, num arquivo pronto para a pasta dados/">${iconeSvg("archive")} Exportar ${questoesParaExportar().length} enviada(s) para a pasta dados/</button>` : ""}
     <span class="text-sm muted">${lista.length} resultado(s)</span>
   </div>
   ${renderListaBancoQuestoesHtml(lista, paginar(lista, "banco", {assinatura: JSON.stringify(f)}))}`;
+}
+/* ANEXAR DE VEZ AO BANCO. A questão aprovada pela plataforma já chega a toda
+   a turma pela nuvem; este arquivo é o passo seguinte, o de guardá-la na
+   pasta dados/ junto com as provas — onde ela passa a valer mesmo sem
+   nuvem, entra no conferidor e no backup do repositório. As imagens que
+   subiram para a nuvem vão pelo endereço delas. */
+function questoesParaExportar(){
+  return db.questoes.filter(q => q.real && !q.grupoId && q.status!=="pendente" && !questaoDaSemente(q.id));
+}
+function exportarQuestoesParaDados(){
+  const lista = questoesParaExportar();
+  if(!lista.length){ toast("Não há questão aprovada pela plataforma para exportar.", "err"); return; }
+  const nome = "questoes-enviadas-" + hojeISO();
+  const campos = ["banca","real","tipoProva","ano","numeroNaProva","areaId","especialidadeId","assuntoId","enunciado","alternativas","gabarito",
+    "explicacaoGeral","explicacoesAlternativas","referencias","imagemUrl","imagemLegenda","imagemPendente","dificuldadeManual","status","motivoStatus","faseProva"];
+  const linhas = lista.map(q => {
+    const o = { id: q.id };
+    campos.forEach(c => { if(q[c] !== undefined && q[c] !== "" && q[c] !== null) o[c] = q[c]; });
+    o.tipoProva = tipoProvaDe(q);
+    o.estatisticas = { respostas:0, acertos:0, distribuicaoAlternativas:{} };
+    o.criadoPor = "seed"; o.criadoEm = q.criadoEm || hojeISO();
+    return JSON.stringify(o) + ",";
+  });
+  const semNumero = lista.filter(q => !Number.isInteger(q.numeroNaProva)).length;
+  // assunto ou especialidade criados pela plataforma também precisam ir para dados/taxonomia.js
+  const espNovas = [...new Set(lista.map(q=>q.especialidadeId))].filter(id => !(SEED_TAXONOMIA.especialidades||[]).some(e=>e.id===id));
+  const assNovos = [...new Set(lista.map(q=>q.assuntoId))].filter(id => !(SEED_TAXONOMIA.assuntos||[]).some(a=>a.id===id));
+  const avisoTax = (espNovas.length || assNovos.length)
+    ? "\n   ATENÇÃO: estas questões usam especialidade/assunto criados pela plataforma, que\n   precisam entrar em dados/taxonomia.js antes deste arquivo:\n" +
+      espNovas.map(id => { const e = db.taxonomia.especialidades.find(x=>x.id===id) || {}; return "     especialidade " + JSON.stringify({ id, areaId: e.areaId, nome: e.nome }); }).join("\n") + (espNovas.length ? "\n" : "") +
+      assNovos.map(id => { const a = db.taxonomia.assuntos.find(x=>x.id===id) || {}; return "     assunto " + JSON.stringify({ id, especialidadeId: a.especialidadeId, nome: a.nome }); }).join("\n")
+    : "";
+  const arquivo = "/* Questões enviadas pela plataforma e aprovadas pela equipe, exportadas em " + formatDataBR(hojeISO()) + " (" + lista.length + ").\n" +
+    "   Para entrarem de vez no banco: salve este arquivo na pasta dados/, acrescente\n" +
+    "   \"" + nome + "\" à lista ESC_ARQUIVOS.dados do index.html e rode npm run conferir." +
+    (semNumero ? "\n   " + semNumero + " questão(ões) não têm numeroNaProva (o número na prova original): o conferidor\n   exige esse campo em questão real — preencha antes de publicar." : "") + avisoTax + " */\n" +
+    "window.EscDados.registrarQuestoes(\"" + nome + "\", [\n" + linhas.join("\n") + "\n]);\n";
+  const blob = new Blob([arquivo], { type: "text/javascript" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = nome + ".js";
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  toast(lista.length + " questão(ões) exportada(s)" + (semNumero ? " — " + semNumero + " sem o número na prova: preencha antes de publicar (o arquivo explica)." : ". Salve o arquivo na pasta dados/."));
 }
 function renderListaBancoQuestoesHtml(lista, paginaInfo){
   if(!lista.length) return '<div class="empty-state">Nenhuma questão encontrada com esses filtros.</div>';
   return `<div class="table-wrap"><table><thead><tr><th>Questão</th><th>Instituição / Ano</th><th>Assunto</th><th>Status</th><th></th></tr></thead><tbody>
     ${(paginaInfo ? paginaInfo.itens : lista).map(q=>`<tr>
       <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span> ${q.grupoId?`<span class="badge badge-muted" title="Restrita ao grupo">${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"grupo")}</span>`:""}</td>
-      <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${q.ano}</span></td>
+      <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${q.ano}</span>${tipoProvaDe(q)!==CONFIG.tipoProvaPadrao ? ` <span class="badge badge-amber">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>` : ""}</td>
       <td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td>
       <td>${badgeStatusQuestao(q.status)}${aguardaImagem(q) ? ` <span class="badge badge-amber" title="${escapeHtml(q.imagemPendente)}">Aguardando imagem</span>` : ""}</td>
       <td class="flex gap-1">
@@ -1071,10 +1148,11 @@ function abrirFormularioQuestao(qid){
     <div class="field"><label class="label">Enunciado</label><textarea class="textarea" id="fqEnunciado" style="min-height:100px">${escapeHtml(q?q.enunciado:"")}</textarea></div>
     <div class="grid grid-2">${["A","B","C","D","E"].map(letra=>`<div class="field"><label class="label">Alternativa ${letra}${letra==="E"?" (opcional)":""}</label><input class="input" id="fqAlt${letra}" value="${escapeHtml(valorAlt(letra))}"></div>`).join("")}</div>
     <div class="hint mb-2">Deixe a alternativa E em branco se a prova original tiver só 4 alternativas (A-D) — é o caso, por exemplo, da UNIFESP-EPM.</div>
-    <div class="grid grid-3">
+    <div class="grid grid-4">
+      <div class="field"><label class="label">Tipo de prova</label><select class="select" id="fqTipoProva">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${(q?tipoProvaDe(q):CONFIG.tipoProvaPadrao)===t.id?"selected":""} title="${escapeHtml(t.descricao)}">${escapeHtml(t.nome)}</option>`).join("")}</select></div>
       <div class="field"><label class="label">Gabarito</label><select class="select" id="fqGabarito">${["A","B","C","D","E"].map(l=>`<option value="${l}" ${q&&q.gabarito===l?"selected":""}>${l}</option>`).join("")}</select></div>
       <div class="field"><label class="label">Banca</label><input class="input" id="fqBanca" list="listaBancasForm" value="${escapeHtml(q?q.banca:CONFIG.bancaFoco)}">
-        <datalist id="listaBancasForm">${[...new Set([...CONFIG.instituicoesReferencia, ...db.questoes.map(x=>x.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
+        <datalist id="listaBancasForm">${[...new Set([...CONFIG.instituicoesReferencia, ...CONFIG.instituicoesGraduacao, ...db.questoes.map(x=>x.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
       </div>
       <div class="field"><label class="label">Ano</label><input class="input" type="number" id="fqAno" value="${q?q.ano:new Date().getFullYear()}"></div>
     </div>
@@ -1194,7 +1272,11 @@ function definirImagemFlashcardPorUrl(){
   definirImagemFlashcard(url);
   toast("Link da imagem definido. Lembre-se: se o site sair do ar, a imagem some — enviar o arquivo é mais seguro.");
 }
-function carregarImagemFlashcard(input){
+/* Lê o arquivo de imagem escolhido, reduz o lado maior para 1100px e
+   comprime em JPEG: um ECG fica com poucas dezenas de KB, o que o
+   armazenamento do navegador aguenta. Uma função só para os três lugares que
+   recebem imagem — questão, flashcard e as questões do envio em lote. */
+function comprimirImagemDoArquivo(input, aoTerminar){
   const arq = input.files && input.files[0]; if(!arq) return;
   if(!/^image\//.test(arq.type||"")){ toast("Selecione um arquivo de imagem.", "err"); return; }
   const leitor = new FileReader();
@@ -1211,7 +1293,7 @@ function carregarImagemFlashcard(input){
       try{ dataUrl = canvas.toDataURL("image/jpeg", 0.72); }
       catch(err){ toast("Não foi possível processar esta imagem.", "err"); return; }
       const kb = Math.round(dataUrl.length*0.75/1024);
-      definirImagemFlashcard(dataUrl);
+      aoTerminar(dataUrl);
       toast("Imagem anexada ("+kb+" KB depois da compressão).");
       if(kb > 400) toast("Imagem grande: prefira recortar só a parte que importa, para não encher o armazenamento.", "err");
     };
@@ -1220,34 +1302,8 @@ function carregarImagemFlashcard(input){
   };
   leitor.readAsDataURL(arq);
 }
-function carregarImagemQuestao(input){
-  const arq = input.files && input.files[0]; if(!arq) return;
-  if(!/^image\//.test(arq.type||"")){ toast("Selecione um arquivo de imagem.", "err"); return; }
-  const leitor = new FileReader();
-  leitor.onload = e=>{
-    const img = new Image();
-    img.onload = ()=>{
-      // reduz o lado maior para 1100px e comprime em JPEG: um ECG fica com
-      // poucas dezenas de KB, o que o armazenamento do navegador aguenta
-      const maxLado = 1100;
-      const escala = Math.min(1, maxLado/Math.max(img.width, img.height));
-      const canvas = document.createElement("canvas");
-      canvas.width = Math.round(img.width*escala);
-      canvas.height = Math.round(img.height*escala);
-      canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
-      let dataUrl;
-      try{ dataUrl = canvas.toDataURL("image/jpeg", 0.72); }
-      catch(err){ toast("Não foi possível processar esta imagem.", "err"); return; }
-      const kb = Math.round(dataUrl.length*0.75/1024);
-      definirImagemFormulario(dataUrl);
-      toast("Imagem anexada ("+kb+" KB depois da compressão).");
-      if(kb > 400) toast("Imagem grande: prefira recortar só a parte que importa, para não encher o armazenamento.", "err");
-    };
-    img.onerror = ()=>toast("Arquivo de imagem inválido.", "err");
-    img.src = e.target.result;
-  };
-  leitor.readAsDataURL(arq);
-}
+function carregarImagemFlashcard(input){ comprimirImagemDoArquivo(input, definirImagemFlashcard); }
+function carregarImagemQuestao(input){ comprimirImagemDoArquivo(input, definirImagemFormulario); }
 
 /* ---------- detecção de questões duplicadas ----------
    Compara o enunciado normalizado (sem acento, pontuação ou espaço extra).
@@ -1305,6 +1361,7 @@ function salvarQuestaoFormulario(qid, forcar){
     alternativas: ["A","B","C","D","E"].map(l=>({id:l, texto:document.getElementById("fqAlt"+l).value.trim()})).filter(a=>a.texto),
     gabarito: document.getElementById("fqGabarito").value,
     banca: document.getElementById("fqBanca").value.trim(),
+    tipoProva: document.getElementById("fqTipoProva").value || CONFIG.tipoProvaPadrao,
     ano: parseInt(document.getElementById("fqAno").value) || new Date().getFullYear(),
     areaId: document.getElementById("fqArea").value,
     especialidadeId: document.getElementById("fqEspecialidade").value,
@@ -1343,6 +1400,7 @@ function salvarQuestaoFormulario(qid, forcar){
       atual.imagemLiberada = true;
     }
     Object.assign(atual, dados);
+    nuvemMarcarQuestao(atual.id);
   }
   else{
     const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, criadoEm:hojeISO() };
@@ -1351,9 +1409,10 @@ function salvarQuestaoFormulario(qid, forcar){
       else{ nova.status = "pendente"; }
     } else if(!nova.status){ nova.status = "ativa"; }
     db.questoes.push(nova);
+    nuvemMarcarQuestao(nova.id);
   }
   saveState(); fecharModal();
-  toast(qid?"Questão atualizada.":"Questão criada.");
+  toast(qid?"Questão atualizada.":"Questão criada."+(nuvemConectado() && campoDestino && campoDestino.value!=="grupo" ? " Ela sobe para a nuvem e espera a aprovação da equipe." : ""));
   render();
 }
 /* salva a questão que ficou pendente no aviso de duplicidade (os campos do
@@ -1362,13 +1421,14 @@ function salvarQuestaoPendente(){
   const pend = state.filtroRota.questaoPendente;
   if(!pend){ fecharModal(); return; }
   const u = usuarioAtual();
-  if(pend.qid){ Object.assign(getQuestao(pend.qid), pend.dados); }
+  if(pend.qid){ Object.assign(getQuestao(pend.qid), pend.dados); nuvemMarcarQuestao(pend.qid); }
   else{
     const nova = { id:uid("q"), ...pend.dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, criadoEm:hojeISO() };
     if(pend.destino==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = "ativa"; }
     else if(pend.destino){ nova.status = "pendente"; }
     else if(!nova.status){ nova.status = "ativa"; }
     db.questoes.push(nova);
+    nuvemMarcarQuestao(nova.id);
   }
   state.filtroRota.questaoPendente = null;
   saveState(); fecharModal(); toast("Questão salva."); render();
@@ -1376,8 +1436,14 @@ function salvarQuestaoPendente(){
 function confirmarExcluirQuestao(qid){
   abrirModal(`<div class="modal-header"><h3>Excluir questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div><p>Esta ação não pode ser desfeita. Considere marcar como "anulada" ou "desatualizada" em vez de excluir, para manter o histórico de quem já respondeu.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
-function excluirQuestaoConfirmado(qid){ db.questoes = db.questoes.filter(q=>q.id!==qid); saveState(); fecharModal(); toast("Questão excluída."); render(); }
-function marcarQuestaoStatus(qid, status){ getQuestao(qid).status = status; saveState(); toast("Status atualizado."); render(); }
+function excluirQuestaoConfirmado(qid){
+  const q = getQuestao(qid);
+  // enviada pela plataforma: a exclusão também sai dos outros aparelhos
+  // (uma pendente vira "recusada" para quem enviou; uma aprovada, "removida")
+  if(q) nuvemMarcarQuestaoFora(q, q.status==="pendente" ? "recusada" : "removida", q.status==="pendente" ? "Excluída pela equipe." : "");
+  db.questoes = db.questoes.filter(q=>q.id!==qid); saveState(); fecharModal(); toast("Questão excluída."); render();
+}
+function marcarQuestaoStatus(qid, status){ getQuestao(qid).status = status; nuvemMarcarQuestao(qid); saveState(); toast("Status atualizado."); render(); }
 
 /* ==========================================================================
    25-B. ESPECIALIDADES E ASSUNTOS (taxonomia)

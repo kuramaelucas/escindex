@@ -9,7 +9,9 @@
 -- favoritos, cartões pessoais, sessões, notas de simulado e o cadastro
 -- (perfil). O CONTEÚDO (questões e flashcards da equipe) NÃO mora aqui: ele
 -- é igual para todo mundo e continua vindo da pasta "dados/", ao lado do
--- index.html. Não faz sentido guardar uma cópia por aluno no banco.
+-- index.html. Não faz sentido guardar uma cópia por aluno no banco. A
+-- exceção são as questões ENVIADAS pela plataforma (seção 11-E), que
+-- esperam aqui a aprovação da equipe e daqui descem para a turma.
 --
 -- A REGRA DE OURO DA SEGURANÇA: a chave anônima que fica no index.html é
 -- pública de propósito — qualquer pessoa que abrir o site a enxerga. Quem
@@ -77,6 +79,22 @@ as $$
     select 1 from public.perfis p
     where p.id = auth.uid()
       and p.papel in ('professor', 'admin', 'residente')
+      and p.status = 'aprovado'
+  );
+$$;
+
+-- "Está liberado?" — qualquer conta aprovada pela coordenação, de qualquer
+-- papel. É quem pode enviar questão e imagem para a turma.
+create or replace function public.e_aprovado()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select exists (
+    select 1 from public.perfis p
+    where p.id = auth.uid()
       and p.status = 'aprovado'
   );
 $$;
@@ -397,6 +415,64 @@ create index if not exists comentarios_sync_idx on public.comentarios (atualizad
 create index if not exists comentarios_questao_idx on public.comentarios (questao_id);
 
 -- ---------------------------------------------------------------------------
+-- 11-E. QUESTOES_ENVIADAS — questões enviadas pela plataforma (GLOBAL)
+-- ---------------------------------------------------------------------------
+-- A exceção à regra do topo ("o conteúdo não mora aqui"): a questão que
+-- alguém envia pela plataforma (Enviar/Importar Questões, Central de Provas,
+-- Nova questão) ficava só no navegador de quem enviou, e a coordenação nunca
+-- a via. Agora ela sobe para cá:
+--   - aluno envia como `pendente`; só ele e a equipe enxergam;
+--   - a equipe (professor/administrador) confere, corrige e aprova — e a
+--     questão `aprovada` desce para todo mundo que está numa conta;
+--   - residente e equipe podem publicar já `aprovada`;
+--   - `recusada` volta para quem enviou com o motivo; `removida` tira de
+--     circulação uma que já tinha sido aprovada (por isso todos a leem).
+-- A questão inteira vai em `dados` (enunciado, alternativas, gabarito,
+-- explicação, classificação, tipo de prova...). A IMAGEM não vai aqui: ela
+-- sobe para o Storage (seção 11-F) e `dados` guarda só o endereço dela — um
+-- ECG em texto dentro de cada linha encheria o navegador de todos os alunos.
+create table if not exists public.questoes_enviadas (
+  id                text        primary key,
+  autor_id          uuid        references auth.users(id) on delete set null,
+  autor_nome        text        not null default '',
+  status            text        not null default 'pendente'
+                                check (status in ('pendente', 'aprovada', 'recusada', 'removida')),
+  dados             jsonb       not null default '{}'::jsonb,
+  motivo            text        not null default '',
+  decidido_por_nome text        not null default '',
+  criado_em         timestamptz not null default now(),
+  atualizado_por    uuid        references auth.users(id) on delete set null,
+  atualizado_em     timestamptz not null default now()
+);
+create index if not exists questoes_enviadas_sync_idx on public.questoes_enviadas (atualizado_em);
+create index if not exists questoes_enviadas_status_idx on public.questoes_enviadas (status);
+
+-- ---------------------------------------------------------------------------
+-- 11-F. AS IMAGENS DAS QUESTÕES (Storage do Supabase)
+-- ---------------------------------------------------------------------------
+-- Um "balde" público chamado `questoes`: qualquer um abre a imagem pelo
+-- endereço (é assim que ela aparece no cartão da questão, como as de
+-- dados/imagens/), mas só quem tem conta aprovada envia, e só para a pasta
+-- com o próprio id (questoes/<id da pessoa>/<arquivo>). Até 2 MB por
+-- arquivo, só imagem — o site já reduz e comprime antes de enviar.
+-- Ninguém sobrescreve nem apaga pelo site: cada envio é um arquivo novo.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('questoes', 'questoes', true, 2097152, array['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
+on conflict (id) do update
+  set public = excluded.public,
+      file_size_limit = excluded.file_size_limit,
+      allowed_mime_types = excluded.allowed_mime_types;
+
+drop policy if exists questoes_imagens_enviar on storage.objects;
+create policy questoes_imagens_enviar on storage.objects
+  for insert to authenticated
+  with check (
+    bucket_id = 'questoes'
+    and (storage.foldername(name))[1] = auth.uid()::text
+    and public.e_aprovado()
+  );
+
+-- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
 do $$
@@ -406,7 +482,7 @@ begin
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
     'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
-    'comentarios'
+    'comentarios', 'questoes_enviadas'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -514,6 +590,7 @@ alter table public.calendario           enable row level security;
 alter table public.livro_ouro           enable row level security;
 alter table public.formatacao_aprovada  enable row level security;
 alter table public.comentarios          enable row level security;
+alter table public.questoes_enviadas    enable row level security;
 
 -- PERFIS: a pessoa vê e edita o próprio; professor e administrador veem e
 -- editam qualquer um (é assim que a tela Aprovar Cadastros funciona sem
@@ -613,6 +690,38 @@ create policy comentarios_alterar on public.comentarios
   using (usuario_id = auth.uid() or public.e_equipe())
   with check ((usuario_id = auth.uid() or public.e_equipe()) and (resposta_oficial = false or public.e_revisor()));
 
+-- QUESTOES_ENVIADAS: quem enviou vê as suas; a equipe vê todas; as aprovadas
+-- (e as removidas, para a remoção chegar a todos) todo mundo aprovado vê.
+-- Enviar: a própria questão, como pendente — ou já aprovada, se for revisor
+-- (residente publica direto no banco geral, como já fazia no navegador). A
+-- equipe grava qualquer uma: é ela que aprova, corrige, recusa e remove.
+-- Quem enviou só mexe na sua enquanto ela está pendente.
+drop policy if exists questoes_enviadas_ler     on public.questoes_enviadas;
+drop policy if exists questoes_enviadas_criar   on public.questoes_enviadas;
+drop policy if exists questoes_enviadas_alterar on public.questoes_enviadas;
+create policy questoes_enviadas_ler on public.questoes_enviadas
+  for select to authenticated
+  using (
+    (status in ('aprovada', 'removida') and public.e_aprovado())
+    or autor_id = auth.uid()
+    or public.e_equipe()
+  );
+create policy questoes_enviadas_criar on public.questoes_enviadas
+  for insert to authenticated
+  with check (
+    public.e_equipe()
+    or (autor_id = auth.uid() and public.e_aprovado()
+        and (status = 'pendente' or (status = 'aprovada' and public.e_revisor())))
+  );
+create policy questoes_enviadas_alterar on public.questoes_enviadas
+  for update to authenticated
+  using (public.e_equipe() or (autor_id = auth.uid() and (status = 'pendente' or public.e_revisor())))
+  with check (
+    public.e_equipe()
+    or (autor_id = auth.uid() and public.e_aprovado()
+        and (status = 'pendente' or (status = 'aprovada' and public.e_revisor())))
+  );
+
 -- AS DEMAIS TABELAS: são o estudo de uma pessoa só. Ler, criar e alterar
 -- apenas as próprias linhas. Ninguém apaga nada (o app marca "removido" em
 -- vez de apagar, para a remoção também conseguir viajar entre aparelhos).
@@ -663,7 +772,7 @@ begin
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
-    'livro_ouro', 'formatacao_aprovada', 'comentarios'
+    'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;

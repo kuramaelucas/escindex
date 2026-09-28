@@ -308,6 +308,28 @@ const CONFIG = {
   // público e podem ser usados integralmente; ver a nota de política de
   // conteúdo logo acima de SEED_QUESTOES.
   instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (Famema/Botucatu)", "AMRIGS"],
+  // o mesmo, para as provas da graduação
+  instituicoesGraduacao: ["Teste de Progresso"],
+
+  /* TIPO DE PROVA. Prova de residência (o acesso ao R1) e prova da
+     graduação (as provas da faculdade e o Teste de Progresso) medem coisas
+     diferentes: a primeira seleciona para a especialização, a segunda
+     confere se o conhecimento do ano ficou. Toda questão real é de um dos
+     dois tipos (campo `tipoProva`); sem o campo, vale o padrão — residência,
+     que é o que o banco tem desde o começo —, exceto quando a instituição
+     é o Teste de Progresso (ver tipoProvaDe, seção 4). */
+  tiposProva: [
+    { id:"residencia", nome:"Residência", nomeLongo:"Provas de residência", descricao:"Acesso direto ao R1 (USP, UNIFESP, Santa Casa, AMRIGS...)" },
+    { id:"graduacao",  nome:"Graduação",  nomeLongo:"Provas da graduação",  descricao:"Provas da faculdade e Teste de Progresso" },
+  ],
+  tipoProvaPadrao: "residencia",
+  /* 3º e 4º ano: a prova da graduação vem primeiro. É a fase de consolidar
+     a base do ciclo clínico — a prova de residência cobra o mesmo
+     conhecimento num recorte de seleção, que faz mais sentido depois.
+     Nesses anos, a sessão recomendada põe as questões da graduação na
+     frente dentro de cada assunto, e Provas Antigas abre por elas. Nada
+     sai do estudo: muda só a ordem. Lista vazia desliga. */
+  anosQuePriorizamGraduacao: ["3º ano", "4º ano"],
 
   // NUVEM — conta de verdade e estudo em vários aparelhos.
   // Vazio = a plataforma funciona exatamente como sempre funcionou, só com o

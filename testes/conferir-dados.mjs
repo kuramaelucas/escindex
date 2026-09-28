@@ -11,6 +11,7 @@
        - assunto, especialidade ou área que não existe na taxonomia, ou
          assunto pendurado na especialidade errada;
        - questão real (real: true) sem banca, ano ou número na prova;
+       - tipo de prova (tipoProva) diferente de "residencia" e "graduacao";
        - imagem apontando para um arquivo de dados/imagens/ que não existe;
        - simulado com questão que não existe; bloco com especialidade que
          não existe; cartão sem frente ou sem verso.
@@ -108,6 +109,7 @@ export function conferir(){
     if(new Set(alts).size !== alts.length) erros.push(`${onde}: alternativa repetida`);
     if(q.status !== "anulada" && !alts.includes(q.gabarito)) erros.push(`${onde}: gabarito "${q.gabarito}" não é uma das alternativas (${alts.join(", ")})`);
     if(!String(q.enunciado || "").trim()) erros.push(`${onde}: enunciado vazio`);
+    if(q.tipoProva !== undefined && !["residencia", "graduacao"].includes(q.tipoProva)) erros.push(`${onde}: tipoProva "${q.tipoProva}" não existe (use "residencia" ou "graduacao")`);
     if(q.real){
       if(!q.banca || !q.ano) erros.push(`${onde}: questão real sem banca ou ano`);
       if(!Number.isInteger(q.numeroNaProva)) erros.push(`${onde}: questão real sem numeroNaProva`);

@@ -15,8 +15,9 @@
    - "Questões avulsas": cada questão traz a própria instituição e ano. */
 function contextoImportacao(){
   if(!state.filtroRota.importacao){
-    state.filtroRota.importacao = { modo:"prova", instituicao:CONFIG.bancaFoco, ano:String(new Date().getFullYear()) };
+    state.filtroRota.importacao = { modo:"prova", instituicao:CONFIG.bancaFoco, ano:String(new Date().getFullYear()), tipoProva:CONFIG.tipoProvaPadrao };
   }
+  if(!tipoProvaValido(state.filtroRota.importacao.tipoProva)) state.filtroRota.importacao.tipoProva = CONFIG.tipoProvaPadrao;
   return state.filtroRota.importacao;
 }
 function mudarModoImportacao(modo){ contextoImportacao().modo = modo; sincronizarCabecalhoImportacao(); render(); }
@@ -24,8 +25,47 @@ function sincronizarCabecalhoImportacao(){
   const ctx = contextoImportacao();
   const inst = document.getElementById("impInstituicao");
   const ano = document.getElementById("impAno");
+  const tipo = document.getElementById("impTipoProva");
   if(inst) ctx.instituicao = inst.value.trim() || CONFIG.bancaFoco;
   if(ano) ctx.ano = (ano.value||"").trim();
+  if(tipo && tipoProvaValido(tipo.value)) ctx.tipoProva = tipo.value;
+}
+/* Trocar o tipo de prova troca também a instituição sugerida, quando ela
+   ainda é a sugestão do outro tipo: quem escolhe "Graduação" quase nunca
+   está subindo uma prova da UNIFESP-EPM. */
+function mudarTipoProvaImportacao(tipo){
+  if(!tipoProvaValido(tipo)) return;
+  const ctx = contextoImportacao();
+  const anterior = ctx.tipoProva;
+  sincronizarCabecalhoImportacao();
+  ctx.tipoProva = tipo;
+  // troca no lugar, sem redesenhar a tela: o texto colado e a pré-visualização
+  // (com as figuras já anexadas) continuam onde estavam
+  const sugestao = t => t==="graduacao" ? CONFIG.instituicoesGraduacao[0] : CONFIG.bancaFoco;
+  const campoInst = document.getElementById("impInstituicao");
+  if(campoInst && (!ctx.instituicao || ctx.instituicao===sugestao(anterior))){ ctx.instituicao = sugestao(tipo); campoInst.value = ctx.instituicao; }
+  const lista = document.getElementById("listaBancasImport");
+  if(lista) lista.innerHTML = htmlSugestoesDeInstituicao(tipo);
+  const dica = document.getElementById("impTipoProvaDica");
+  if(dica) dica.textContent = infoTipoProva(tipo).descricao+".";
+  atualizarPromptImportacao();
+  // na pré-visualização, muda o tipo das questões cujo texto não dizia o seu
+  const previa = state.filtroRota.previewImportacao;
+  if(previa && document.getElementById("previewImportacao")){
+    previa.forEach(r=>{ if(!r.tipoDoTexto) r.tipoProva = tipo; });
+    redesenharPreviewImportacao();
+  }
+}
+// as instituições sugeridas no campo: as de referência daquele tipo e as que já têm prova dele no banco
+function htmlSugestoesDeInstituicao(tipo){
+  const base = tipo==="graduacao" ? CONFIG.instituicoesGraduacao : CONFIG.instituicoesReferencia;
+  return [...new Set([...base, ...db.questoes.filter(q=>tipoProvaDe(q)===tipo).map(q=>q.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("");
+}
+// "de residência médica" / "da graduação em Medicina (...)": o prompt diz à IA que prova ela tem na frente
+function descricaoProvaNoPrompt(tipo){
+  return tipo==="graduacao"
+    ? "da GRADUAÇÃO em Medicina (prova da faculdade ou Teste de Progresso)"
+    : "de residência médica";
 }
 function atualizarPromptImportacao(){
   sincronizarCabecalhoImportacao();
@@ -52,6 +92,13 @@ function regrasDeConteudoImportacao(){
   "- Quando uma alternativa estiver errada por conhecimento que não vem do caso (dose errada, conduta inexistente, conceito trocado), diga isso explicitamente em vez de inventar uma pista no enunciado.\n"+
   "- Escreva isso em texto corrido, numa linha só (o campo EXPLICACAO não aceita quebra de linha).\n\n";
 }
+/* A imagem da questão (ECG, radiografia, foto de lesão) quase nunca tem um
+   endereço na internet: ela está no PDF. Por isso a IA só marca que ela
+   existe — IMAGEM: sim — e quem está enviando anexa o arquivo na
+   pré-visualização, questão por questão (carregarImagemImportacao). */
+function linhaImagemDoPrompt(){
+  return "IMAGEM: [escreva sim se a questão tiver imagem (ECG, radiografia, tomografia, fundo de olho, foto de lesão, gráfico ou tabela em figura) — o arquivo é anexado depois, na plataforma. Se houver um endereço (URL) público da imagem, pode escrever o endereço no lugar. Deixe em branco se a questão não tiver imagem]\n";
+}
 function gerarPromptImportacao(){
   const ctx = contextoImportacao();
   const areas = db.taxonomia.areas.map(a=>a.nome).join(" / ");
@@ -61,7 +108,7 @@ function gerarPromptImportacao(){
     "GABARITO: [letra correta, de A a E]\n"+
     "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha]\n"+
     "REFERENCIAS: [as fontes que sustentam a explicação: diretriz/consenso de sociedade de especialidade, protocolo do Ministério da Saúde, PCDT, revisão sistemática ou artigo primário, com nome e ano]\n"+
-    "IMAGEM: [endereço (URL) da imagem da questão — ECG, radiografia, fundo de olho, foto de lesão. Deixe em branco se a questão não tiver imagem]\n"+
+    linhaImagemDoPrompt()+
     "LEGENDA: [legenda curta da imagem, se houver]\n"+
     "AREA: [uma destas opções, exatamente: "+areas+"]\n"+
     "ESPECIALIDADE: [ex.: Cardiologia, Pneumologia...]\n"+
@@ -69,11 +116,12 @@ function gerarPromptImportacao(){
     "DIFICULDADE: [fundamental, intermediario ou avancado]\n";
 
   if(ctx.modo === "prova"){
-    return "Você vai transcrever uma PROVA INTEIRA de residência médica para um formato de texto específico.\n\n"+
+    return "Você vai transcrever uma PROVA INTEIRA "+descricaoProvaNoPrompt(ctx.tipoProva)+" para um formato de texto específico.\n\n"+
     "IMPORTANTE: a prova inteira é da MESMA instituição e do MESMO ano. Portanto, informe a instituição e o ano UMA ÚNICA VEZ, num cabeçalho no começo da resposta, e NÃO repita esses dados em cada questão.\n\n"+
     "Comece a resposta exatamente assim (sem nada antes):\n\n"+
     "INSTITUICAO: "+(ctx.instituicao||CONFIG.bancaFoco)+"\n"+
     "ANO: "+(ctx.ano||new Date().getFullYear())+"\n"+
+    "TIPO: "+infoTipoProva(ctx.tipoProva).nome+"\n"+
     "===\n\n"+
     "Em seguida, para CADA questão da prova, na ordem em que aparecem, gere um bloco EXATAMENTE neste formato, sem markdown, sem numeração extra, sem comentários seus:\n\n"+
     "NUMERO: [número da questão na prova]\n"+
@@ -88,10 +136,11 @@ function gerarPromptImportacao(){
     "- Se você não tiver certeza do gabarito oficial, escreva GABARITO: ? e explique a dúvida no campo EXPLICACAO, em vez de inventar.\n\n"+
     "Aqui está a prova (colo o texto abaixo ou anexo o PDF/imagem):\n[COLE AQUI O TEXTO DA PROVA OU ANEXE O ARQUIVO]";
   }
-  return "Você vai me ajudar a transcrever questões avulsas de provas de residência médica para um formato de texto específico.\n\n"+
+  return "Você vai me ajudar a transcrever questões avulsas de provas "+descricaoProvaNoPrompt(ctx.tipoProva)+" para um formato de texto específico.\n\n"+
   "Para CADA questão que eu enviar (vou colar o texto, ou anexar um PDF/imagem), gere um bloco EXATAMENTE neste formato, sem nenhum texto antes ou depois, sem markdown, sem numeração extra:\n\n"+
   formatoQuestao+
-  "INSTITUICAO: [nome da instituição da prova, ex.: "+CONFIG.bancaFoco+"]\nANO: [ano da prova]\n\n"+
+  "INSTITUICAO: [nome da instituição da prova, ex.: "+(ctx.tipoProva==="graduacao" ? CONFIG.instituicoesGraduacao[0] : CONFIG.bancaFoco)+"]\nANO: [ano da prova]\n"+
+  "TIPO: [Residência ou Graduação — prova da faculdade e Teste de Progresso são Graduação; na dúvida, "+infoTipoProva(ctx.tipoProva).nome+"]\n\n"+
   regrasDeConteudoImportacao()+
   "Separe cada questão com uma linha contendo apenas: ===\n\n"+
   "Aqui está(ão) a(s) questão(ões) para transcrever:\n[COLE AQUI O TEXTO OU DESCREVA O ARQUIVO ANEXADO]";
@@ -119,6 +168,7 @@ function renderImportarQuestoes(){
   return `
   <div class="page-header"><h2>${u.papel==="aluno"||u.papel==="residente"?"Enviar Provas e Questões":"Importar Questões"}</h2>
   <p>Cole uma prova inteira ou questões avulsas — por exemplo, já formatadas por uma IA a partir do PDF da prova — para adicionar ao banco em lote.</p></div>
+  ${renderCardMeusEnvios()}
 ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
     ${iconeSvg("archive")} <strong>Vai subir uma prova inteira, de 60 ou 100 questões?</strong> A <button class="link-btn" onclick="navigate('central-provas')">Central de Provas</button> corta a prova em lotes, dá um modelo pronto para cada faixa de questões e guarda o que já chegou — é o caminho para fazer a prova em pedaços, em mais de uma conversa ao mesmo tempo, sem perder a conta.
     <div class="text-xs muted mt-1">Esta tela aqui continua sendo a certa para questões avulsas e para uma prova pequena que sai de uma vez só.</div>
@@ -126,15 +176,19 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
 
   <div class="card mb-2">
     <div class="card-title">Passo 1 — identifique a prova</div>
-    <p class="text-sm muted">No modo "prova inteira", a instituição e o ano valem para todas as questões e são informados só aqui — não é preciso repetir questão a questão.</p>
+    <p class="text-sm muted">No modo "prova inteira", o tipo de prova, a instituição e o ano valem para todas as questões e são informados só aqui — não é preciso repetir questão a questão.</p>
     <div class="tabs mt-2" style="margin-bottom:1rem">
       <div class="tab ${ctx.modo==="prova"?"active":""}" onclick="mudarModoImportacao('prova')">Prova inteira (mesma instituição e ano)</div>
       <div class="tab ${ctx.modo==="avulsas"?"active":""}" onclick="mudarModoImportacao('avulsas')">Questões avulsas</div>
     </div>
-    <div class="grid grid-3">
+    <div class="grid grid-4">
+      <div class="field" style="margin-bottom:0"><label class="label">Tipo de prova</label>
+        <select class="select" id="impTipoProva" onchange="mudarTipoProvaImportacao(this.value)">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${ctx.tipoProva===t.id?"selected":""}>${escapeHtml(t.nome)}${t.id===CONFIG.tipoProvaPadrao?" (padrão)":""}</option>`).join("")}</select>
+        <div class="hint mt-1" id="impTipoProvaDica">${escapeHtml(infoTipoProva(ctx.tipoProva).descricao)}.</div>
+      </div>
       <div class="field" style="margin-bottom:0"><label class="label">Instituição da prova</label>
         <input class="input" id="impInstituicao" list="listaBancasImport" value="${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}" onchange="atualizarPromptImportacao()" ${ctx.modo==="avulsas"?'placeholder="usada só quando a questão não trouxer a própria"':""}>
-        <datalist id="listaBancasImport">${[...new Set([...CONFIG.instituicoesReferencia, ...db.questoes.map(q=>q.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
+        <datalist id="listaBancasImport">${htmlSugestoesDeInstituicao(ctx.tipoProva)}</datalist>
       </div>
       <div class="field" style="margin-bottom:0"><label class="label">Ano da prova</label>
         <input class="input" type="number" id="impAno" value="${escapeHtml(String(ctx.ano||new Date().getFullYear()))}" onchange="atualizarPromptImportacao()">
@@ -152,15 +206,16 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
     <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
     <div class="flex gap-1" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">${iconeSvg("search")} Copiar prompt</button>
-      <button class="btn btn-ghost btn-sm" onclick="atualizarPromptImportacao()">${iconeSvg("refresh")} Atualizar prompt com instituição/ano acima</button>
+      <button class="btn btn-ghost btn-sm" onclick="atualizarPromptImportacao()">${iconeSvg("refresh")} Atualizar prompt com tipo/instituição/ano acima</button>
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Passo 3 — cole aqui o texto formatado</div>
-    <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO e ANO: ele é lido uma vez e aplicado a todas as questões.</p>
+    <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO, ANO e TIPO: ele é lido uma vez e aplicado a todas as questões. <strong>Questão com imagem?</strong> Na pré-visualização, cada questão tem o seu lugar para anexar a figura.</p>
     <textarea class="textarea textarea-mono" id="textoImportacao" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
 ANO: ${escapeHtml(String(ctx.ano||""))}
+TIPO: ${escapeHtml(infoTipoProva(ctx.tipoProva).nome)}
 ===
 PERGUNTA: ...
 A: ...
@@ -185,7 +240,7 @@ function carregarArquivoImportacao(input){
    Central de Provas, por exemplo) passa a instituição e o ano da prova em vez
    de depender do que está digitado naquela tela. */
 function parseImportText(texto, padroes){
-  const rotulos = ["NUMERO","PERGUNTA","A","B","C","D","E","GABARITO","EXPLICACAO","REFERENCIAS","IMAGEM","LEGENDA","AREA","ESPECIALIDADE","ASSUNTO","BANCA","INSTITUICAO","ANO","DIFICULDADE","STATUS"];
+  const rotulos = ["NUMERO","PERGUNTA","A","B","C","D","E","GABARITO","EXPLICACAO","REFERENCIAS","IMAGEM","LEGENDA","AREA","ESPECIALIDADE","ASSUNTO","BANCA","INSTITUICAO","ANO","TIPO","DIFICULDADE","STATUS"];
   const ctx = padroes || contextoImportacao();
   const blocosBrutos = texto.split(/\n\s*===\s*\n?/).map(b=>b.trim()).filter(Boolean);
   const blocos = blocosBrutos.length ? blocosBrutos : [texto.trim()];
@@ -203,11 +258,16 @@ function parseImportText(texto, padroes){
   let cabecalho = {};
   let inicio = 0;
   const primeiro = lerCampos(blocos[0]||"");
-  if(!primeiro.PERGUNTA && (primeiro.INSTITUICAO || primeiro.BANCA || primeiro.ANO)){
+  if(!primeiro.PERGUNTA && (primeiro.INSTITUICAO || primeiro.BANCA || primeiro.ANO || primeiro.TIPO)){
     cabecalho = primeiro; inicio = 1;
   }
   const instituicaoProva = (cabecalho.INSTITUICAO || cabecalho.BANCA || ctx.instituicao || CONFIG.bancaFoco).trim();
   const anoProva = parseInt(cabecalho.ANO || ctx.ano) || new Date().getFullYear();
+  // o tipo de prova: o que o texto disser (na questão ou no cabeçalho), senão
+  // o que a instituição diz (Teste de Progresso é graduação), senão o
+  // escolhido na tela, senão o padrão
+  const tipoDoCabecalho = normalizarTipoProva(cabecalho.TIPO);
+  const tipoDaTela = tipoProvaValido(ctx.tipoProva) ? ctx.tipoProva : CONFIG.tipoProvaPadrao;
 
   const assinaturasDoLote = {};
   return blocos.slice(inicio).map((bloco, idx)=>{
@@ -238,22 +298,43 @@ function parseImportText(texto, padroes){
     if(assinatura && !assinaturasDoLote[assinatura]) assinaturasDoLote[assinatura] = idx+1;
     const duplicada = duplicadasBanco.length>0 || !!duplicadaNoLote;
 
+    const banca = (campos.INSTITUICAO || campos.BANCA || instituicaoProva).trim();
+    const imagem = lerCampoImagem(campos.IMAGEM);
     return {
       indice: idx+1, campos, erros, avisos, valido: erros.length===0,
+      // a linha IMAGEM disse que tem figura / o enunciado fala de uma figura
+      imagemIndicada: imagem.tem, imagemDescricao: imagem.descricao,
+      pareceTerImagem: imagem.tem || enunciadoPedeImagem(campos.PERGUNTA),
       // número da questão na prova original, quando a linha NUMERO vier
       // preenchida: é o que permite conferir se um lote chegou completo
       numero: parseInt(campos.NUMERO) || null,
       duplicada, duplicadasBanco: duplicadasBanco.map(q=>q.id), duplicadaNoLote,
       importar: !duplicada,
       referencias: (campos.REFERENCIAS||"").trim(),
-      imagemUrl: (campos.IMAGEM||"").trim(),
+      imagemUrl: imagem.url,
       imagemLegenda: (campos.LEGENDA||"").trim(),
       areaId, especialidadeId: espId, assuntoId: assId,
-      banca: (campos.INSTITUICAO || campos.BANCA || instituicaoProva).trim(),
+      banca,
+      tipoProva: normalizarTipoProva(campos.TIPO) || tipoDoCabecalho || (/progresso/i.test(banca) ? "graduacao" : tipoDaTela),
+      tipoDoTexto: !!(normalizarTipoProva(campos.TIPO) || tipoDoCabecalho || /progresso/i.test(banca)),
       ano: parseInt(campos.ANO) || anoProva,
       status: ((campos.STATUS||"").trim().toLowerCase()==="anulada") ? "anulada" : null,
     };
   });
+}
+/* A linha IMAGEM pode trazer um endereço (vira a imagem da questão) ou só
+   dizer que a questão tem figura ("sim", ou uma descrição): aí a figura é
+   anexada na pré-visualização. */
+function lerCampoImagem(valor){
+  const v = String(valor||"").trim();
+  if(!v || /^(n[aã]o|nenhuma|-+|—)\.?$/i.test(v)) return {url:"", tem:false, descricao:""};
+  if(/^(https?:\/\/|data:image\/|dados\/)/i.test(v)) return {url:v, tem:true, descricao:""};
+  // "sim — ECG com supra de ST": o que vem depois do sim é a descrição
+  return {url:"", tem:true, descricao: v.replace(/^sim\b[\s.,:;—–-]*/i, "").trim()};
+}
+// o enunciado fala de uma figura que não veio junto ("a imagem abaixo", "ECG a seguir")
+function enunciadoPedeImagem(texto){
+  return /\b(imagem|imagens|figura|foto|fotografia|radiografia|tomografia|resson[aâ]ncia|ultrassonografia|ecg|eletrocardiograma|gr[aá]fico|tra[cç]ado)\b[^.]{0,50}\b(abaixo|a seguir|anexa|anexo|anexada|seguinte|ao lado|acima)\b|\((imagem|figura)\)/i.test(String(texto||""));
 }
 function previsualizarImportacao(){
   sincronizarCabecalhoImportacao();
@@ -263,6 +344,14 @@ function previsualizarImportacao(){
   state.filtroRota.previewImportacao = resultado;
   state.filtroRota.destinoImportacao = document.getElementById("impDestino").value;
   document.getElementById("previewImportacao").innerHTML = renderPreviewImportacaoHtml(resultado);
+}
+/* Redesenha a pré-visualização no lugar, com o mesmo botão final de antes:
+   na Central de Provas ele publica o lote, e não pode virar o "Importar" da
+   outra tela só porque a pessoa desmarcou uma questão ou anexou uma figura. */
+function redesenharPreviewImportacao(){
+  const alvo = document.getElementById("previewImportacao");
+  const resultado = state.filtroRota.previewImportacao;
+  if(alvo && resultado) alvo.innerHTML = renderPreviewImportacaoHtml(resultado, state.filtroRota.previewImportacaoOpts);
 }
 /* ---------- selects de taxonomia da pré-visualização ----------
    Quando a IA manda uma especialidade/assunto que não existe (ou não manda
@@ -296,10 +385,81 @@ function impMudarEsp(i){
   r.assuntoId = selAss.value;
 }
 function impMudarAssunto(i){ state.filtroRota.previewImportacao[i].assuntoId = document.getElementById("impAss-"+i).value; }
+function impMudarTipo(i, valor){
+  const r = state.filtroRota.previewImportacao[i];
+  if(tipoProvaValido(valor)) r.tipoProva = valor;
+  redesenharPreviewImportacao();
+}
 function alternarImportacaoItem(i){
   const r = state.filtroRota.previewImportacao[i];
   r.importar = !r.importar;
-  document.getElementById("previewImportacao").innerHTML = renderPreviewImportacaoHtml(state.filtroRota.previewImportacao);
+  redesenharPreviewImportacao();
+}
+
+/* ---------- a figura de cada questão, anexada por quem está enviando ----------
+   ECG, radiografia, foto de lesão: a IA não tem como devolver a figura no
+   texto, então cada questão da pré-visualização tem o seu lugar para anexar
+   o arquivo (reduzido e comprimido como no formulário de questão). Na
+   Central de Provas a figura fica guardada com o lote até ele ser publicado —
+   fechar o lote e voltar depois não a perde. */
+function chaveImagemImportacao(r){ return r.numero ? "n"+r.numero : "i"+r.indice; }
+function loteAbertoNaCentral(){
+  if(state.route!=="central-provas") return null;
+  const ctx = ctxCentralProvas();
+  const carga = ctx.cargaAberta ? getCargaProva(ctx.cargaAberta) : null;
+  return carga && ctx.loteAberto ? loteDaCarga(carga, ctx.loteAberto) : null;
+}
+function definirImagemImportacao(i, url){
+  const r = state.filtroRota.previewImportacao && state.filtroRota.previewImportacao[i]; if(!r) return;
+  r.imagemUrl = url || "";
+  const lote = loteAbertoNaCentral();
+  if(lote){
+    lote.imagens = lote.imagens || {};
+    if(r.imagemUrl) lote.imagens[chaveImagemImportacao(r)] = {url:r.imagemUrl, legenda:r.imagemLegenda||""};
+    else delete lote.imagens[chaveImagemImportacao(r)];
+    saveState();
+  }
+  redesenharPreviewImportacao();
+}
+function carregarImagemImportacao(i, input){ comprimirImagemDoArquivo(input, url=>definirImagemImportacao(i, url)); }
+function definirImagemImportacaoPorUrl(i){
+  const r = state.filtroRota.previewImportacao[i];
+  const url = (window.prompt("Cole o endereço (URL) da imagem:", r.imagemUrl && !/^data:/.test(r.imagemUrl) ? r.imagemUrl : "")||"").trim();
+  if(!url) return;
+  definirImagemImportacao(i, url);
+  toast("Link da imagem definido. Se o site dela sair do ar, a imagem some — enviar o arquivo é mais seguro.");
+}
+function removerImagemImportacao(i){ definirImagemImportacao(i, ""); toast("Imagem removida da questão."); }
+function mudarLegendaImportacao(i, valor){
+  const r = state.filtroRota.previewImportacao[i]; if(!r) return;
+  r.imagemLegenda = String(valor||"").trim();
+  const lote = loteAbertoNaCentral();
+  if(lote && lote.imagens && lote.imagens[chaveImagemImportacao(r)]){ lote.imagens[chaveImagemImportacao(r)].legenda = r.imagemLegenda; saveState(); }
+}
+// devolve às questões relidas do texto do lote as figuras que já tinham sido anexadas
+function aplicarImagensDoLote(resultado, lote){
+  const imagens = (lote && lote.imagens) || {};
+  resultado.forEach(r=>{
+    const img = imagens[chaveImagemImportacao(r)];
+    if(img && img.url){ r.imagemUrl = img.url; if(img.legenda) r.imagemLegenda = img.legenda; }
+  });
+  return resultado;
+}
+function htmlImagemDaImportacao(r, i){
+  const falta = r.pareceTerImagem && !r.imagemUrl;
+  return `<div class="imp-imagem mt-2 ${falta?"imp-imagem-falta":""}">
+    <div class="label">${iconeSvg("upload")} Imagem da questão ${falta ? "— <strong>esta questão parece ter figura</strong>" : r.imagemUrl ? "" : "(opcional)"}</div>
+    ${falta ? `<div class="text-xs mb-1">${r.imagemIndicada
+      ? "A transcrição diz que há uma imagem"+(r.imagemDescricao?" ("+escapeHtml(r.imagemDescricao)+")":"")+". Anexe o recorte da prova. Se importar sem ela, a questão entra como <em>aguardando imagem</em> e fica fora do estudo até a figura chegar."
+      : "O enunciado fala de uma figura. Se ela existir, anexe o recorte da prova — sem ela a questão não se resolve."}</div>` : ""}
+    ${r.imagemUrl ? `<img class="imp-imagem-previa" src="${escapeHtml(r.imagemUrl)}" alt="${escapeHtml(r.imagemLegenda||"Imagem da questão")}">` : ""}
+    <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+      <label class="btn ${falta?"btn-primary":"btn-secondary"} btn-sm" style="cursor:pointer">${iconeSvg("upload")} ${r.imagemUrl?"Trocar imagem":"Enviar imagem"}<input type="file" accept="image/*" style="display:none" onchange="carregarImagemImportacao(${i}, this)"></label>
+      <button class="btn btn-ghost btn-sm" onclick="definirImagemImportacaoPorUrl(${i})">Usar link</button>
+      ${r.imagemUrl ? `<button class="btn btn-ghost btn-sm" onclick="removerImagemImportacao(${i})">${iconeSvg("trash")} Remover</button>` : ""}
+    </div>
+    ${r.imagemUrl || r.pareceTerImagem ? `<input class="input mt-1" id="impLegenda-${i}" placeholder="Legenda (ex.: ECG de 12 derivações na admissão)" value="${escapeHtml(r.imagemLegenda||"")}" onchange="mudarLegendaImportacao(${i}, this.value)">` : ""}
+  </div>`;
 }
 /* `opts.aoConfirmar` e `opts.rotulo` trocam só o botão do final: a tela de
    Importar Questões manda para o banco, a Central de Provas publica o lote e
@@ -307,19 +467,23 @@ function alternarImportacaoItem(i){
    é exatamente o mesmo nos dois lugares. */
 function renderPreviewImportacaoHtml(resultado, opts){
   opts = opts || {};
+  state.filtroRota.previewImportacaoOpts = opts;
   const validas = resultado.filter(r=>r.valido && r.importar!==false).length;
   const duplicadas = resultado.filter(r=>r.duplicada).length;
+  const semFigura = resultado.filter(r=>r.valido && r.importar!==false && r.pareceTerImagem && !r.imagemUrl).length;
   return `<div class="card">
     <div class="card-title">Pré-visualização: ${validas} de ${resultado.length} questão(ões) marcadas para importar</div>
     <p class="text-sm muted mb-2">Confira a classificação de cada questão. Onde a IA não acertou a especialidade ou o assunto, escolha um equivalente da lista ou crie um novo com o nome sugerido.</p>
     ${duplicadas ? `<div class="card-flat mb-2 text-sm" style="border-color:var(--amber)">${iconeSvg("alert")} <strong>${duplicadas} questão(ões) já existem</strong> no banco ou se repetem dentro deste mesmo lote. Elas vêm desmarcadas — marque manualmente se quiser importar assim mesmo.</div>` : ""}
+    ${semFigura ? `<div class="card-flat mb-2 text-sm" style="border-color:var(--amber)">${iconeSvg("alert")} <strong>${semFigura} questão(ões) parecem ter figura</strong> e ainda estão sem imagem. Anexe cada uma no campo "Imagem da questão", logo abaixo da classificação.</div>` : ""}
     ${resultado.map((r,i)=>`<div class="card-flat mb-1" ${r.valido?"":'style="border-color:var(--danger)"'}>
       <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.4rem">
         <span style="font-weight:600">Questão ${r.indice} · ${escapeHtml(r.banca)} ${r.ano}${r.status==="anulada"?" · anulada":""}</span>
+          <span class="badge ${r.tipoProva==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(r.tipoProva).nome)}</span>
         <span class="flex items-center gap-1">
           ${r.numero?`<span class="badge badge-muted">nº ${r.numero} na prova</span>`:""}
           ${r.duplicada?`<span class="badge badge-amber" title="${r.duplicadaNoLote?"repetida dentro do texto colado":"já existe no banco"}">duplicada${r.duplicadaNoLote?" (igual à nº "+r.duplicadaNoLote+")":""}</span>`:""}
-          ${r.imagemUrl?'<span class="badge badge-muted">com imagem</span>':""}
+          ${r.imagemUrl?'<span class="badge badge-accent">com imagem</span>':r.pareceTerImagem?'<span class="badge badge-amber">falta a imagem</span>':""}
           ${r.referencias?'<span class="badge badge-accent" title="'+escapeHtml(r.referencias)+'">com referência</span>':""}
           <span class="badge ${r.valido?"badge-accent":"badge-danger"}">${r.valido?"Pronta":"Com problema"}</span>
         </span>
@@ -337,6 +501,11 @@ function renderPreviewImportacaoHtml(resultado, opts){
         <div class="field" style="margin-bottom:0"><label class="label">Assunto</label>
           <select class="select" id="impAss-${i}" onchange="impMudarAssunto(${i})">${htmlOpcoesAssunto(r.especialidadeId, r.assuntoId, r.campos.ASSUNTO)}</select></div>
       </div>
+      <div class="grid grid-3 mt-2">
+        <div class="field" style="margin-bottom:0"><label class="label">Tipo de prova</label>
+          <select class="select" onchange="impMudarTipo(${i}, this.value)">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${r.tipoProva===t.id?"selected":""}>${escapeHtml(t.nome)}</option>`).join("")}</select></div>
+      </div>
+      ${htmlImagemDaImportacao(r, i)}
     </div>`).join("")}
     <button class="btn btn-primary mt-2" onclick="${opts.aoConfirmar||"confirmarImportacao()"}" ${validas===0?"disabled":""}>${escapeHtml(opts.rotulo||"Importar")} ${validas} questão(ões)</button>
   </div>`;
@@ -386,6 +555,7 @@ function importarItensAnalisados(resultado, destino, extras){
       referencias: r.referencias || "",
       imagemUrl: r.imagemUrl || "",
       imagemLegenda: r.imagemLegenda || "",
+      tipoProva: tipoProvaValido(r.tipoProva) ? r.tipoProva : CONFIG.tipoProvaPadrao,
       explicacoesAlternativas: {},
       dificuldadeManual: ["fundamental","intermediario","avancado"].includes((c.DIFICULDADE||"").trim().toLowerCase()) ? c.DIFICULDADE.trim().toLowerCase() : "intermediario",
       status: r.status || (destino==="sugerir" ? "pendente" : "ativa"),
@@ -397,12 +567,21 @@ function importarItensAnalisados(resultado, destino, extras){
     // que permite depois conferir se a prova entrou inteira ou ficou buraco
     if(r.numero) nova.numeroNaProva = r.numero;
     if(extras.faseProva) nova.faseProva = extras.faseProva;
+    // disseram que tem figura e ela não veio: a questão espera por ela fora do
+    // estudo, como as das provas da pasta dados/ (ver aguardaImagem), e a
+    // equipe a encontra em Banco de Questões > Status > Aguardando imagem
+    if(!nova.imagemUrl && r.imagemIndicada){
+      nova.imagemPendente = (r.imagemDescricao ? r.imagemDescricao.replace(/\.?$/, ".") : "uma figura que não foi anexada no envio.");
+    }
     db.questoes.push(nova);
     idsCriados.push(nova.id);
+    // com a nuvem, a questão (e a figura) sobe e chega à equipe — ver questoes_enviadas, seção 2-C
+    nuvemMarcarQuestao(nova.id);
   });
   novosAssuntos = db.taxonomia.assuntos.length - antesAssuntos;
   saveState();
-  return {importadas: idsCriados.length, ignoradas, novosAssuntos, ids: idsCriados};
+  const aguardandoImagem = idsCriados.filter(id=>aguardaImagem(getQuestao(id))).length;
+  return {importadas: idsCriados.length, ignoradas, novosAssuntos, aguardandoImagem, ids: idsCriados};
 }
 function confirmarImportacao(){
   const resultado = state.filtroRota.previewImportacao || [];
@@ -411,7 +590,10 @@ function confirmarImportacao(){
   const r = importarItensAnalisados(resultado, destino);
   state.filtroRota.previewImportacao = null;
   toast(r.importadas+" questão(ões) importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s) criado(s)":"")+
-    (destino==="sugerir" ? " — aguardando aprovação de um professor." : destino==="grupo" ? " — disponíveis para o seu grupo." : "."));
+    (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
+    (destino==="grupo" ? " — disponíveis para o seu grupo."
+      : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")
+      : destino==="sugerir" ? " — aguardando aprovação de um professor." : "."));
   navigate(destino==="grupo" ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");
 }
 
@@ -462,7 +644,11 @@ function podeUsarCentralProvas(u){
   u = u || usuarioAtual();
   return !!u && (u.papel==="residente" || podeGerirConteudo(u));
 }
-function nomeDaCarga(c){ return c.instituicao+" "+c.ano+(c.fase?" · "+c.fase:""); }
+function nomeDaCarga(c){ return c.instituicao+" "+c.ano+(c.fase?" · "+c.fase:"")+(tipoDaCarga(c)!==CONFIG.tipoProvaPadrao?" · "+infoTipoProva(tipoDaCarga(c)).nome:""); }
+// cargas criadas antes do tipo de prova existir são de residência (o padrão)
+function tipoDaCarga(c){ return tipoProvaValido(c && c.tipoProva) ? c.tipoProva : (/progresso/i.test((c&&c.instituicao)||"") ? "graduacao" : CONFIG.tipoProvaPadrao); }
+// o que parseImportText precisa saber da prova, venha o texto de onde vier
+function padroesDaCarga(c){ return {instituicao:c.instituicao, ano:c.ano, tipoProva:tipoDaCarga(c)}; }
 
 /* A prova é cortada em faixas fechadas de questões: 1–25, 26–50, 51–75... A
    última faixa pode ser menor, e é isso mesmo — é o resto da prova. */
@@ -537,13 +723,14 @@ function criarCargaProva(){
   const total = Math.max(1, Math.min(500, parseInt(valor("cpTotal")) || 100));
   const tamanho = Math.max(1, Math.min(total, parseInt(valor("cpTamanhoLote")) || 25));
   const destino = valor("cpDestino") || "ativa";
+  const tipoProva = tipoProvaValido(valor("cpTipoProva")) ? valor("cpTipoProva") : CONFIG.tipoProvaPadrao;
   const igual = cargasProvas().find(c=>c.instituicao.toLowerCase()===instituicao.toLowerCase() && c.ano===ano && (c.fase||"").toLowerCase()===fase.toLowerCase());
   if(igual){
     toast("Já existe uma prova aberta para "+nomeDaCarga(igual)+" — abri ela para você, em vez de criar outra igual.", "err");
     ctxCentralProvas().cargaAberta = igual.id; ctxCentralProvas().loteAberto = null; render(); return;
   }
   const carga = {
-    id: uid("carga"), instituicao, ano, fase, totalQuestoes: total, tamanhoLote: tamanho, destino,
+    id: uid("carga"), instituicao, ano, fase, tipoProva, totalQuestoes: total, tamanhoLote: tamanho, destino,
     criadoPor: usuarioAtual().id, criadoEm: hojeISO(), lotes: montarLotesDaCarga(total, tamanho),
   };
   cargasProvas().push(carga);
@@ -583,13 +770,14 @@ function modeloConstrucaoLote(carga, lote){
   const areas = db.taxonomia.areas.map(a=>a.nome).join(" / ");
   const quantas = lote.fim - lote.inicio + 1;
   const faixa = lote.inicio===lote.fim ? ("a questão "+lote.inicio) : ("as questões "+lote.inicio+" a "+lote.fim);
-  return "Você vai transcrever UM PEDAÇO de uma prova pública de residência médica para um formato de texto que a plataforma Esc lê automaticamente.\n\n"+
+  return "Você vai transcrever UM PEDAÇO de uma prova pública "+descricaoProvaNoPrompt(tipoDaCarga(carga))+" para um formato de texto que a plataforma Esc lê automaticamente.\n\n"+
   "PROVA: "+carga.instituicao+" · "+carga.ano+(carga.fase?" · "+carga.fase:"")+"\n"+
   "PEDAÇO DESTE LOTE: "+faixa+" ("+quantas+" questão(ões), nem mais nem menos)\n\n"+
   "Transcreva SOMENTE "+faixa+". Não adiante questões de outros trechos, não volte às anteriores e não invente questão nenhuma para fechar a conta: se a prova terminar antes do número "+lote.fim+", escreva isso numa linha depois do último bloco, em vez de completar.\n\n"+
   "Comece a resposta exatamente assim, sem nada antes:\n\n"+
   "INSTITUICAO: "+carga.instituicao+"\n"+
   "ANO: "+carga.ano+"\n"+
+  "TIPO: "+infoTipoProva(tipoDaCarga(carga)).nome+"\n"+
   "===\n\n"+
   "Depois, para CADA questão, na ordem da prova, um bloco exatamente neste formato — sem markdown, sem numeração extra, sem comentários seus:\n\n"+
   "NUMERO: [número da questão na prova, de "+lote.inicio+" a "+lote.fim+"]\n"+
@@ -598,7 +786,7 @@ function modeloConstrucaoLote(carga, lote){
   "GABARITO: [letra correta]\n"+
   "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha]\n"+
   "REFERENCIAS: [as fontes que sustentam a explicação: diretriz/consenso de sociedade de especialidade, protocolo do Ministério da Saúde, PCDT, revisão sistemática ou artigo primário, com nome e ano]\n"+
-  "IMAGEM: [endereço (URL) da imagem da questão — ECG, radiografia, fundo de olho, foto de lesão. Deixe em branco se não houver]\n"+
+  linhaImagemDoPrompt()+
   "LEGENDA: [legenda curta da imagem, se houver]\n"+
   "AREA: [uma destas opções, exatamente: "+areas+"]\n"+
   "ESPECIALIDADE: [ex.: Cardiologia, Pneumologia...]\n"+
@@ -647,7 +835,7 @@ function abrirLoteProva(cargaId, loteId){
   // lote já conferido e ainda não publicado: remonta a pré-visualização a
   // partir do texto guardado, para a pessoa poder ajustar a classificação
   if(ctx.loteAberto && lote && lote.status==="conferido" && lote.textoBruto){
-    state.filtroRota.previewImportacao = parseImportText(lote.textoBruto, {instituicao:carga.instituicao, ano:carga.ano});
+    state.filtroRota.previewImportacao = aplicarImagensDoLote(parseImportText(lote.textoBruto, padroesDaCarga(carga)), lote);
     state.filtroRota.destinoImportacao = carga.destino;
   }
   render();
@@ -696,7 +884,7 @@ function conferirLoteProva(cargaId, loteId){
   const campo = document.getElementById("textoLote-"+loteId);
   const texto = campo ? campo.value : "";
   if(!texto.trim()){ toast("Cole (ou carregue) o texto deste lote antes de conferir.", "err"); return; }
-  const resultado = parseImportText(texto, {instituicao:carga.instituicao, ano:carga.ano});
+  const resultado = aplicarImagensDoLote(parseImportText(texto, padroesDaCarga(carga)), lote);
   lote.textoBruto = texto;
   lote.resumo = resumoDoLote(resultado, lote);
   lote.status = "conferido";
@@ -712,7 +900,7 @@ function conferirLoteProva(cargaId, loteId){
 function limparLoteProva(cargaId, loteId){
   const carga = getCargaProva(cargaId); const lote = loteDaCarga(carga, loteId);
   if(!lote || lote.status==="publicado") return;
-  lote.textoBruto = ""; lote.resumo = null; lote.status = "pendente"; lote.recebidoEm = null;
+  lote.textoBruto = ""; lote.resumo = null; lote.status = "pendente"; lote.recebidoEm = null; delete lote.imagens;
   state.filtroRota.previewImportacao = null;
   saveState();
   toast("Lote esvaziado. O modelo continua o mesmo — é só refazer esse pedaço.");
@@ -728,20 +916,22 @@ function publicarLoteProva(cargaId, loteId, silencioso){
   // senão, relê o texto guardado
   const resultado = (ctx.loteAberto===loteId && state.filtroRota.previewImportacao)
     ? state.filtroRota.previewImportacao
-    : parseImportText(lote.textoBruto||"", {instituicao:carga.instituicao, ano:carga.ano});
+    : aplicarImagensDoLote(parseImportText(lote.textoBruto||"", padroesDaCarga(carga)), lote);
   const r = importarItensAnalisados(resultado, carga.destino, {faseProva: carga.fase||""});
   if(!r.importadas){ if(!silencioso) toast("Nenhuma questão deste lote está marcada para publicar.", "err"); return null; }
   lote.status = "publicado";
   lote.publicadoEm = hojeISO();
   lote.questaoIds = r.ids;
   lote.resumo = Object.assign({}, lote.resumo||{}, {publicadas:r.importadas, ignoradas:r.ignoradas});
-  // o rascunho já virou questão no banco: guardar o texto de novo só ocuparia
-  // espaço do navegador duas vezes
+  // o rascunho já virou questão no banco: guardar o texto (e as figuras) de
+  // novo só ocuparia espaço do navegador duas vezes
   lote.textoBruto = "";
+  delete lote.imagens;
   if(ctx.loteAberto===loteId){ ctx.loteAberto = null; state.filtroRota.previewImportacao = null; }
   saveState();
   if(!silencioso){
     toast(r.importadas+" questão(ões) publicada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s)":"")+
+      (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
       (carga.destino==="sugerir"?" — aguardando aprovação.":"."));
     render();
   }
@@ -800,10 +990,12 @@ function renderCentralProvas(){
   <div class="card mb-2">
     <div class="card-title">Nova prova</div>
     <p class="text-sm muted">O total de questões é o da prova oficial. O tamanho do lote é quanto cabe, com folga, numa conversa só — 25 costuma ser um bom corte para questões com explicação autoral.</p>
-    <div class="grid grid-3 mt-2">
+    <div class="grid grid-4 mt-2">
+      <div class="field" style="margin-bottom:0"><label class="label">Tipo de prova</label>
+        <select class="select" id="cpTipoProva">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${t.id===CONFIG.tipoProvaPadrao?"selected":""} title="${escapeHtml(t.descricao)}">${escapeHtml(t.nome)}${t.id===CONFIG.tipoProvaPadrao?" (padrão)":""}</option>`).join("")}</select></div>
       <div class="field" style="margin-bottom:0"><label class="label">Instituição</label>
         <input class="input" id="cpInstituicao" list="listaBancasCarga" value="${escapeHtml(CONFIG.bancaFoco)}">
-        <datalist id="listaBancasCarga">${[...new Set([...CONFIG.instituicoesReferencia, ...db.questoes.map(q=>q.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
+        <datalist id="listaBancasCarga">${[...new Set([...CONFIG.instituicoesReferencia, ...CONFIG.instituicoesGraduacao, ...db.questoes.map(q=>q.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
       </div>
       <div class="field" style="margin-bottom:0"><label class="label">Ano da prova</label>
         <input class="input" type="number" id="cpAno" value="${new Date().getFullYear()}"></div>
@@ -852,7 +1044,7 @@ function renderCargaProva(carga){
   <div class="page-header">
     <button class="link-btn" onclick="voltarAoPainelProvas()">← todas as provas</button>
     <h2>${escapeHtml(nomeDaCarga(carga))}</h2>
-    <p>${carga.totalQuestoes} questões declaradas, divididas em ${(carga.lotes||[]).length} lote(s) de até ${carga.tamanhoLote}. Destino ao publicar: ${escapeHtml(rotuloDestino)}.</p>
+    <p>Tipo de prova: ${escapeHtml(infoTipoProva(tipoDaCarga(carga)).nome)} · ${carga.totalQuestoes} questões declaradas, divididas em ${(carga.lotes||[]).length} lote(s) de até ${carga.tamanhoLote}. Destino ao publicar: ${escapeHtml(rotuloDestino)}.</p>
   </div>
 
   <div class="card mb-2">

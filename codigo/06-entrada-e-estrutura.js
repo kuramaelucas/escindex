@@ -475,7 +475,8 @@ function renderSemPermissao(permissao){
    mesma (ver render()), sem recriar a estrutura inteira a cada clique. */
 function htmlMenuLateral(u){
   const nav = navItemsParaPapel(u.papel);
-  const pendCadastros = u.papel==="admin" ? db.usuarios.filter(x=>x.status==="pendente").length : 0;
+  // os pedidos da nuvem entram na conta (ver vigiarPedidosDeAcesso, seção 2-C)
+  const pendCadastros = podeAprovarCadastros(u) ? quantosPedidosDeAcesso() : 0;
   return `
       <div class="sidebar-brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
       ${(u.papel==="aluno"||state.modoAluno) ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
@@ -518,6 +519,11 @@ function renderShell(conteudoHtml){
       <div class="page entrando" id="conteudoPagina">${conteudoHtml}</div>
     </div>
   </div>`;
+}
+// só o menu, no lugar: o número de pedidos de acesso muda sem a pessoa trocar de tela
+function atualizarMenuLateral(){
+  const menu = document.getElementById("sidebarMenu"); const u = usuarioAtual();
+  if(menu && u) menu.innerHTML = htmlMenuLateral(u);
 }
 function abrirMenuMobile(){ document.getElementById("sidebarMenu").classList.add("open"); document.getElementById("backdropMenu").classList.add("open"); }
 function fecharMenuMobile(){ const s=document.getElementById("sidebarMenu"), b=document.getElementById("backdropMenu"); if(s)s.classList.remove("open"); if(b)b.classList.remove("open"); }

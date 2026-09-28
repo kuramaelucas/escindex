@@ -9,8 +9,10 @@ insert into auth.users(id,email,raw_user_meta_data) values
 update perfis set status='aprovado';
 update perfis set papel='professor' where email='prof@x';
 update perfis set papel='residente' where email='res@x';
+-- a data de Brasília, como painel_turma() conta: com current_date (UTC), o
+-- teste falhava entre 0h e 3h UTC, quando os dois calendários divergem
 insert into respostas(id,usuario_id,questao_id,area_id,correta,data)
-  select 'ra'||g,'00000000-0000-0000-0000-00000000000a','q'||g,'area-cm',g%3<>0,current_date-g from generate_series(1,40) g;
+  select 'ra'||g,'00000000-0000-0000-0000-00000000000a','q'||g,'area-cm',g%3<>0,(now() at time zone 'America/Sao_Paulo')::date-g from generate_series(1,40) g;
 insert into resultados_simulados(id,usuario_id,simulado_id,titulo,nota) values
   ('s1','00000000-0000-0000-0000-00000000000a',null,'Prova X',60),
   ('s2','00000000-0000-0000-0000-00000000000b','','Prova X',80);
@@ -48,7 +50,44 @@ update comentarios set removido=true where id='c1';
 select pg_temp.igual((select count(*) from comentarios where removido), 1, 'professor modera comentário');
 reset role;
 
+-- QUESTÕES ENVIADAS E AS IMAGENS DELAS
+insert into auth.users(id,email,raw_user_meta_data) values
+ ('00000000-0000-0000-0000-00000000000e','pendente@x','{"nome":"Pendente E"}');   -- perfil nasce pendente
+select pg_temp.igual((select count(*) from storage.buckets where id='questoes' and public), 1, 'o balde das imagens existe e é público');
+set role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+insert into questoes_enviadas(id,autor_id,autor_nome,status,dados) values ('qe1','00000000-0000-0000-0000-00000000000a','Aluna A','pendente','{"enunciado":"x"}');
+update questoes_enviadas set dados='{"enunciado":"y"}' where id='qe1';
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status) values ('qe2','00000000-0000-0000-0000-00000000000a','aprovada')$$, 'aluno publicando questão já aprovada');
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status) values ('qe3','00000000-0000-0000-0000-00000000000b','pendente')$$, 'questão em nome de outra pessoa');
+select pg_temp.tem_de_falhar($$update questoes_enviadas set status='aprovada' where id='qe1'$$, 'aluno aprovando a própria questão');
+insert into storage.objects(bucket_id,name) values ('questoes','00000000-0000-0000-0000-00000000000a/qe1.jpg');
+select pg_temp.tem_de_falhar($$insert into storage.objects(bucket_id,name) values ('questoes','00000000-0000-0000-0000-00000000000b/qe1.jpg')$$, 'imagem na pasta de outra pessoa');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from questoes_enviadas), 0, 'aluno não vê a questão pendente de outro');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000e',false);
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status) values ('qe4','00000000-0000-0000-0000-00000000000e','pendente')$$, 'conta pendente enviando questão');
+select pg_temp.tem_de_falhar($$insert into storage.objects(bucket_id,name) values ('questoes','00000000-0000-0000-0000-00000000000e/x.jpg')$$, 'conta pendente enviando imagem');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);
+insert into questoes_enviadas(id,autor_id,status) values ('qe5','00000000-0000-0000-0000-00000000000d','aprovada');   -- residente publica direto
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+select pg_temp.igual((select count(*) from questoes_enviadas), 2, 'professor vê as enviadas, inclusive a pendente');
+insert into questoes_enviadas(id,autor_id,autor_nome,status,dados,decidido_por_nome) values ('qe1','00000000-0000-0000-0000-00000000000a','Aluna A','aprovada','{"enunciado":"y"}','Prof C')
+  on conflict (id) do update set status=excluded.status, dados=excluded.dados, decidido_por_nome=excluded.decidido_por_nome;   -- aprovar = o mesmo upsert do site
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qe1' and status='aprovada'), 1, 'a aprovada chega à turma');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+with x as (update questoes_enviadas set dados='{}' where id='qe1' returning 1) select pg_temp.igual(count(*), 0, 'aluno não mexe na questão depois de aprovada') from x;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+update questoes_enviadas set status='recusada', motivo='repetida' where id='qe5';
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qe5'), 0, 'a recusada não chega à turma');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qe5' and motivo='repetida'), 1, 'quem enviou vê o motivo da recusa');
+reset role;
+
 set role anon;
+select pg_temp.tem_de_falhar($$select count(*) from questoes_enviadas$$, 'visitante sem login lendo questões enviadas');
 select pg_temp.tem_de_falhar($$select count(*) from comentarios$$, 'visitante sem login lendo comentários');
 select pg_temp.tem_de_falhar($$select * from notas_do_simulado('Prova X')$$, 'visitante sem login lendo notas');
 reset role;

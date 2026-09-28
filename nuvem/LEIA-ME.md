@@ -71,11 +71,12 @@ na linha 58; isso foi corrigido e agora é testado automaticamente a cada
 envio, num PostgreSQL de verdade, junto com as regras de segurança).
 
 > **Se o seu banco já existia antes desta versão, rode o `esquema.sql` de novo.**
-> Dez novidades precisam disso, e o arquivo já traz as linhas que acrescentam
+> Onze novidades precisam disso, e o arquivo já traz as linhas que acrescentam
 > cada uma sem mexer no que existe:
 >
 > | O que é | O que o arquivo faz |
 > |---|---|
+> | **Questões enviadas pela plataforma** (com as imagens) chegando à equipe para aprovar e, aprovadas, à turma inteira | cria a tabela `questoes_enviadas`, a função `e_aprovado()` e o espaço de imagens `questoes` no Storage, com as regras de quem envia e quem aprova |
 > | **Comentários e dúvidas** nas questões chegando à turma e à Fila de Dúvidas | cria a tabela `comentarios` (todos leem; cada um grava o seu; só revisor dá resposta oficial) |
 > | **Percentil de simulado** com as notas da turma inteira | cria a função `notas_do_simulado()` (devolve só id aleatório e nota) |
 > | **Painel da Turma** (professor e coordenação) | cria as funções `painel_turma()` e `atividade_por_semana()` (só a equipe recebe linhas) |
@@ -215,7 +216,38 @@ Além do estudo de cada um, sobem e descem para a turma inteira:
   aparece na **Fila de Dúvidas** de residentes e professores em qualquer
   aparelho, e a resposta oficial volta para a questão. O nome de quem
   escreveu vai junto. Quem escreveu, professor e administrador podem
-  remover um comentário (ele some para todos).
+  remover um comentário (ele some para todos);
+- as **questões enviadas pela plataforma** (Enviar/Importar Questões,
+  Central de Provas, Nova questão), com a **imagem** de cada uma. Ver
+  "Questões enviadas e as imagens delas", logo abaixo.
+
+### Questões enviadas e as imagens delas
+
+1. **Quem envia** (qualquer conta aprovada) sobe a questão para a tabela
+   `questoes_enviadas`. A imagem anexada vai antes, como arquivo, para o
+   **Storage** do Supabase (balde `questoes`, na pasta com o id da pessoa);
+   a questão guarda só o endereço dela. Aluno envia sempre como
+   **pendente**; residente e equipe podem publicar já **aprovada**.
+2. **A equipe** (professor e administrador) recebe as pendentes, de
+   qualquer aparelho, em *Controle de Qualidade › Enviadas pela Turma* — e
+   um aviso no Início. Confere, corrige se precisar e **aprova**: a questão
+   entra no banco de todos na sincronização seguinte. **Recusar** pede um
+   motivo, que volta para quem enviou (*Enviar Questões › Suas questões
+   enviadas*). **Excluir** uma já aprovada a tira dos aparelhos de todos.
+3. **Para anexar de vez ao banco da pasta `dados/`**: *Banco de Questões ›
+   Exportar … para a pasta dados/* baixa um arquivo pronto
+   (`questoes-enviadas-AAAA-MM-DD.js`); ponha-o na pasta, acrescente o nome
+   à lista `ESC_ARQUIVOS.dados` do `index.html` e rode `npm run conferir`.
+   A partir daí a questão vale também sem nuvem e entra no conferidor.
+
+Quem já tinha questões criadas só no navegador (antes desta versão) vê em
+*Enviar Questões* o botão **Enviar para a nuvem**, que sobe todas de uma vez.
+
+Se o espaço de imagens ainda não existir (o `esquema.sql` desta versão não
+foi rodado), a questão com imagem espera na fila, sem travar o resto, e
+*Perfil › Conta e sincronização* avisa. As imagens ficam no Storage, e não
+nas tabelas: o **backup automático diário não as inclui** — o arquivo
+exportado para `dados/` guarda o endereço de cada uma.
 
 E, sem sair do banco, dois cálculos da turma:
 
@@ -230,11 +262,12 @@ E, sem sair do banco, dois cálculos da turma:
 
 Estas coisas continuam vivendo só no navegador de quem as fez:
 
-- **Questões criadas ou importadas pela plataforma** (Admin > Importar
-  Questões e Admin > Central de Provas), inclusive as cargas de prova em
-  andamento, e **cartões da equipe** criados pela plataforma. Para virar
-  conteúdo de todo mundo, eles precisam ir para a pasta `dados/` — ver
-  `dados/LEIA-ME.md` (os cartões têm botão de exportar pronto).
+- As **cargas de prova em andamento** da Central de Provas (a contabilidade
+  dos lotes — as questões publicadas, essas sobem) e os **cartões da
+  equipe** criados pela plataforma. Para virarem conteúdo de todo mundo, os
+  cartões precisam ir para a pasta `dados/` — ver `dados/LEIA-ME.md` (há
+  botão de exportar pronto).
+- As **questões de um grupo de estudo** (restritas à turma que as criou).
 - Feedbacks e as turmas (quem está em qual turma, e o bloco em que cada
   turma começa). A **sequência** de blocos de cada ano é a exceção: ela sobe
   e desce sozinha — ver a nota no topo deste arquivo.
