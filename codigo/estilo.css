@@ -69,21 +69,19 @@ a{color:var(--accent-dark)}
 button{font-family:inherit;color:inherit}
 img{max-width:100%;display:block}
 ::selection{background:var(--accent-soft)}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* ---------- ícones (ver sprite SVG no body) ---------- */
-svg.icon,svg.nav-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-svg.icon-lg{width:26px;height:26px}
+svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 
 /* ---------- layout base ---------- */
 .container{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
 .hidden{display:none !important}
 .muted{color:var(--muted)}
-.mt-1{margin-top:.5rem}.mt-2{margin-top:1rem}.mt-3{margin-top:1.5rem}.mt-4{margin-top:2rem}
+.mt-1{margin-top:.5rem}.mt-2{margin-top:1rem}.mt-3{margin-top:1.5rem}
 .mb-1{margin-bottom:.5rem}.mb-2{margin-bottom:1rem}.mb-3{margin-bottom:1.5rem}
 .flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
-.gap-1{gap:.5rem}.gap-2{gap:1rem}.gap-3{gap:1.5rem}
+.gap-1{gap:.5rem}.gap-2{gap:1rem}
 .grid{display:grid;gap:1rem}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -161,7 +159,6 @@ svg.icon-lg{width:26px;height:26px}
    resto) e a nota deixa de medir o que a prova de verdade mediria. Por isso
    as cores aqui são neutras: cheio = respondida, tracejado = em branco.
    O verde e o vermelho só existem no mapa do RESULTADO, depois de acabar. */
-.mapa-questoes{display:flex;flex-wrap:wrap;gap:.35rem}
 .pill-mapa{min-width:42px;justify-content:center;padding:.4rem .5rem;font-variant-numeric:tabular-nums}
 .pill-mapa.em-branco{background:transparent;border-style:dashed;color:var(--muted)}
 .pill-mapa.respondida{background:var(--surface-2);border-color:var(--border-strong);color:var(--ink)}
@@ -262,7 +259,6 @@ ol.lista-passos li{margin:.25rem 0}
 .stat-label{font-size:.78rem;color:var(--muted);margin-top:.15rem}
 .progress-track{height:8px;background:var(--surface-2);border-radius:100px;overflow:hidden}
 .progress-fill{height:100%;background:var(--accent);border-radius:100px}
-.progress-fill.danger{background:var(--danger)}
 .progress-fill.amber{background:var(--amber)}
 
 /* ---------- mapa de progresso da sessão de questões ----------
@@ -387,10 +383,6 @@ ol.lista-passos li{margin:.25rem 0}
 .tree-area-head:hover{background:var(--surface-2)}
 .tree-body{padding:0 1.1rem 1rem;display:none}
 .tree-body.open{display:block}
-.tree-esp{margin-top:.6rem}
-.tree-esp-name{font-size:.82rem;font-weight:700;color:var(--ink-2);margin-bottom:.35rem}
-.tree-assunto-row{display:flex;align-items:center;justify-content:space-between;padding:.45rem .6rem;border-radius:var(--radius-sm);font-size:.85rem}
-.tree-assunto-row:hover{background:var(--surface-2);cursor:pointer}
 
 /* ---------- modal / toast ---------- */
 .modal-overlay{position:fixed;inset:0;background:rgba(17,32,28,.45);display:flex;align-items:center;justify-content:center;z-index:80;padding:1.5rem}
@@ -435,9 +427,6 @@ code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);pa
 @keyframes hero-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .auth-wrap{max-width:420px;margin:3rem auto;padding:0 1.5rem}
 .auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem}
-.feature-row{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--border)}
-.feature-row:last-child{border-bottom:none}
-.feature-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border);margin-top:2rem}
 
 /* ---------- enunciado clicável ----------

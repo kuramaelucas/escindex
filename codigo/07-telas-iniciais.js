@@ -1,8 +1,5 @@
-/* Esc — codigo/07-telas-iniciais.js  (parte 7 de 14)
-   Telas públicas (landing, entrar, cadastro), primeiro acesso, painel inicial, tela Estudar e a questão na íntegra.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/07-telas-iniciais.js — telas públicas (landing, entrar, cadastro, volta do e-mail), primeiro acesso, painel inicial, Estudar e a questão na íntegra (seções 8–10-B).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    8. TELAS PÚBLICAS — landing / login / cadastro
@@ -408,7 +405,7 @@ function renderCardFeedbackGeral(){
 }
 function abrirModalFeedback(){
   abrirModal(`
-    <div class="modal-header"><h3>Comentário, sugestão ou reclamação</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Comentário, sugestão ou reclamação")}
     <p class="text-sm muted">${nuvemConectado()
       ? "Sobe para a nuvem e chega aos administradores, em qualquer aparelho em que eles entrarem. Pode ser sobre qualquer coisa da plataforma."
       : "Pode ser sobre qualquer coisa da plataforma. Você não está numa conta da nuvem: a mensagem fica neste navegador, e a coordenação só a vê entrando aqui."}</p>
@@ -787,7 +784,7 @@ function abrirQuestaoCompleta(qid, opts){
   const fav = u ? isFavorita(u.id, q.id) : false;
   const minhaNota = u ? notaDaFavorita(u.id, q.id) : "";
   abrirModal(`
-    <div class="modal-header"><h3>Questão na íntegra</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Questão na íntegra")}
     <div class="qcard-meta mb-2">
       <span class="badge badge-accent">${escapeHtml(area?area.nome:"—")}</span>
       <span class="badge badge-muted">${escapeHtml(esp?esp.nome:"—")}</span>

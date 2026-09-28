@@ -1,227 +1,24 @@
-/* Esc — codigo/01-config.js  (parte 1 de 14)
-   Guia de manutenção, CONFIG (metas, algoritmos, nuvem), estado global e tema claro/escuro.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/01-config.js — CONFIG (metas, algoritmos, nuvem, tipos de prova), estado global e tema claro/escuro (seção 1).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    ESC — PLATAFORMA DE ESTUDOS PARA RESIDÊNCIA MÉDICA
    ==========================================================================
-   GUIA RÁPIDO DE MANUTENÇÃO (para quem não é programador)
-   ------------------------------------------------------------------------
-   Esta é uma plataforma de arquivo aberto: o index.html (a moldura) mais
-   duas pastas ao lado dele — "codigo/" (todo o código, em catorze arquivos)
-   e "dados/" (todo o conteúdo). Não precisa de instalação, servidor,
-   "build" ou internet para funcionar (exceto para carregar as fontes, que
-   são opcionais, e para a nuvem) — basta manter os três juntos: abrir o
-   index.html com dois cliques continua bastando.
-   Para editar qualquer coisa:
+   Arquivo aberto: o index.html (a moldura) e, ao lado dele, codigo/ (todo o
+   código) e dados/ (todo o conteúdo). Sem instalação, servidor ou build —
+   abrir o index.html com dois cliques basta; publicar é subir os três.
 
-   1. Abra o arquivo da pasta codigo/ que tem a tela ou a regra (cada um
-      começa dizendo o que tem dentro) com o bloco de notas, VS Code, ou
-      mande-o para uma IA (ChatGPT/Claude) pedindo para "editar a seção X".
-   2. Use Ctrl+F para achar as seções pelos títulos em CAIXA ALTA:
-        CONFIG              -> (este arquivo) nome da plataforma, metas
-                                padrão, pesos de dificuldade, intervalos de
-                                revisão, endereço da nuvem
-        SEED_TAXONOMIA      -> (02-persistencia) onde a taxonomia entra
-        SEED_QUESTOES       -> (02-persistencia) onde as questões entram
-                                (o conteúdo em si fica na pasta "dados/")
-        NUVEM               -> 03-nuvem
-        MEU DESEMPENHO      -> 10-telas-do-aluno
-        TUTORIAL            -> 13-tutorial (tour rápido e guia completo)
-        INICIALIZAÇÃO       -> 14-admin-e-inicializacao (sempre o último)
-
-   ONDE FICA CADA COISA
-   ------------------------------------------------------------------------
-   - index.html: só a moldura — cabeçalho, ícones, a VERSÃO e a lista
-     ESC_ARQUIVOS com os arquivos a carregar, na ordem.
-   - codigo/: o CÓDIGO, e só: telas, regras, algoritmos, configuração e o
-     visual (estilo.css). Nenhuma questão, nenhum cartão, nenhuma conta.
-     A divisão segue as seções numeradas de sempre (1 a 28), então o que
-     estava na seção 17 continua sendo "a seção 17", agora dentro de
-     10-telas-do-aluno.js.
-   - dados/: TODO o conteúdo — taxonomia, calendário, questões (uma prova
-     por arquivo), flashcards, simulados e os dados de demonstração.
-   - Os SEED_* são só APELIDOS: `const SEED_QUESTOES =
-     window.EscDados.questoes`. Quem enche o EscDados são os arquivos de
-     dados/, carregados antes do código. Mexer num SEED_* não muda
-     conteúdo nenhum — o conteúdo está lá.
-   - Para acrescentar ou corrigir conteúdo: dados/LEIA-ME.md.
-   - Para conferir se nada quebrou: testes/ (npm test) — roda sozinho no
-     GitHub a cada envio.
-   - Se faltar um arquivo, a plataforma abre e avisa numa tarja no alto da
-     tela, DIZENDO QUAL faltou (avisarSeFaltarConteudo), em vez de parecer
-     quebrada; Configurações > Arquivos de conteúdo mostra o que entrou.
-
-   NOVIDADES DESTA VERSÃO (o que mudou e onde mexer)
-   ------------------------------------------------------------------------
-   - A plataforma passou a se chamar "Esc" (mude em CONFIG.nomePlataforma).
-   - A aba "Assuntos" saiu do menu: a navegação por especialidade e assunto
-     agora fica em Estudar > Monte sua própria lista, junto com filtros de
-     instituição, ano, "últimos 5 anos" e "todas as grandes áreas".
-   - "Histórico de Atividade" (menu do aluno) guarda cada conjunto de
-     questões concluído e permite reabrir a página de feedback.
-   - "Enviar / Importar Questões" está aberta para aluno e residente, com
-     prompt de prova inteira (instituição e ano informados uma vez só).
-   - Qualquer lista de questões tem "ver na íntegra", que abre o enunciado
-     completo, alternativas, gabarito e explicação numa janela.
-   - A área de Aulas foi removida da plataforma (telas, menus e dados).
-   - Questões aceitam IMAGEM (ECG, radiografia, fundo de olho, foto de lesão),
-     por link ou arquivo enviado — o arquivo é reduzido e comprimido antes de
-     ser guardado, e o Perfil mostra quanto espaço o banco já ocupa.
-   - Detecção de questões duplicadas: ao salvar uma questão nova, ao importar
-     um lote (contra o banco e contra o próprio lote) e numa aba "Duplicadas"
-     dentro do Controle de Qualidade.
-   - Simulado com cronômetro, encerramento automático no fim do tempo e
-     registro do tempo gasto em cada questão — o resultado mostra onde a
-     pessoa travou, e Meu Desempenho mostra o ritmo geral.
-   - A calibração da confiança virou ação: filas separadas por tipo de erro
-     (errou com certeza, acertou no chute, errou na dúvida) e lista de
-     assuntos em que a pessoa responde com certeza e erra.
-   - O prompt de importação exige explicação autoral, com REFERENCIAS de
-     diretrizes/protocolos/artigos, e proíbe copiar resolução de sites de
-     questões ou de cursinhos.
-   - Administradores agora têm NÍVEIS (CONFIG.niveisAdmin + PERMISSOES_ADMIN):
-     máster, coordenação e moderador de conteúdo. O menu e as rotas se ajustam
-     sozinhos ao nível de cada um; só o máster altera papéis e níveis.
-   - "Livro de Ouro": página aberta a todos com doações, colaborações e apoios,
-     mantida pela coordenação (SEED_LIVRO_OURO traz exemplos para apagar), mais
-     um reconhecimento calculado automaticamente pelo que cada pessoa fez aqui.
-   - "Especialidades e Assuntos" (menu de conteúdo): renomear, mover, mesclar e
-     excluir especialidades/assuntos, com verificação de consistência e correção
-     automática — inclusive das questões classificadas de forma incoerente.
-   - Revisão no começo do ano: se houver matéria de anos anteriores, ela alimenta
-     a revisão desde o 1º bloco; se não houver, a carga entra devagar
-     (0%, 10% e 20% nos três primeiros blocos — ajustável em Configurações,
-     campo CONFIG.rampaRevisaoInicio).
-   - Foram acrescentadas 105 questões autorais de construção de conhecimento,
-     de nível fácil a moderado, marcadas com a instituição
-     "Esc — Banco Didático" (use esse filtro para estudar só elas):
-       30 de Técnica Operatória (nova especialidade dentro de Cirurgia Geral),
-       30 de Cardiologia, 30 de Infectologia e 15 de Oftalmologia (nova
-       especialidade dentro de Clínica Médica).
-     Quem já usava a plataforma recebe esse conteúdo automaticamente: a
-     função sincronizarConteudoNovo() acrescenta ao banco salvo no navegador
-     apenas o que falta, sem apagar respostas, favoritos ou questões próprias.
-
-   O QUE MUDOU NESTA VERSÃO
-   ------------------------------------------------------------------------
-   - MEU DESEMPENHO ganhou um SELETOR DE PERÍODO com quatro recortes: últimos
-     14 dias, últimos 30 dias, últimos 12 meses e o ano corrente mês a mês.
-     Funções: desempenhoPorDia(), desempenhoPorMes() e resumoJanela() no motor
-     de estudos; dadosDoPeriodo() e PERIODOS_DESEMPENHO na própria tela.
-   - GRÁFICO DE BARRAS VERTICAIS (graficoBarrasVerticaisSvg): cada barra é
-     100% das questões do dia/mês/área — verde claro embaixo é o acerto,
-     cinza claro em cima é o erro. As cores estão em --barra-acerto e
-     --barra-erro, nos dois temas. Dia sem estudo vira um traço na base, de
-     propósito, para a rotina real aparecer.
-   - DESEMPENHO POR ÁREA agora para nas 5 GRANDES ÁREAS: a antiga árvore
-     assunto a assunto saiu da tela (virava lista que ninguém lia até o fim).
-     A tabela mostra acertos, erros, taxa e o assunto mais fraco de cada área,
-     com botão de praticar; o detalhe fino ficou na tela de Revisão.
-   - METAS DE ESTUDO saiu do menu e virou o primeiro cartão de ESTUDAR, com o
-     progresso do dia à vista e o ajuste do número numa janela
-     (abrirModalMeta). A rota "metas" continua respondendo e leva a Estudar.
-   - ALUNO CRIA FLASHCARD durante as questões: botão "Virar flashcard" nas
-     ações da questão, no modal de questão na íntegra e na lista do fim da
-     sessão. O assunto já vem marcado com o da questão, e há atalho para
-     jogar o gabarito comentado no verso.
-     Cartão agora tem DONO: `usuarioId` preenchido = cartão pessoal, que só
-     o autor enxerga (flashcardsAtivos(usuarioId)); `usuarioId: null` =
-     material da equipe, visível a todos (flashcardsDaEquipe()). O PDF e a
-     tela de manutenção usam só o material da equipe.
-   - REVISÃO RÁPIDA (FLASHCARDS): cartão de conceito com frente e verso, sem
-     alternativa para eliminar. O baralho se monta sozinho, priorizando os
-     assuntos de falsa segurança, e inclui cartões gerados a partir das
-     questões que o aluno errou com certeza ou acertou no chute. Cada cartão
-     tem repetição espaçada própria, separada da das questões.
-     Onde mexer: SEED_FLASHCARDS (cartões de exemplo), seção "12-B" (telas) e
-     "montarBaralhoFlashcards" no motor de estudos. Professores cadastram
-     cartões novos pela própria tela, sem tocar no código.
-   - MATERIAL EM PDF (professores, coordenação e moderadores): prova para
-     aplicar com cartão-resposta, lista de exercícios comentada, baralho de
-     flashcards para recortar e relatório de desempenho da turma. Não usa
-     nenhuma biblioteca: monta o material na div #areaImpressao e chama a
-     impressão do navegador, onde existe "Salvar como PDF". Seção "20-B".
-   - MENU REORDENADO por probabilidade de uso. Os quatro primeiros itens do
-     aluno são Início, Estudar, Meu Desempenho e Meu Grupo — no celular, os
-     únicos que aparecem sem rolar. Ver navItemsParaPapel().
-   - LIVRO DE OURO saiu do menu lateral: agora fica no rodapé da tela inicial
-     (renderCardLivroOuroInicio) e em Configurações. A página continua no ar,
-     só não ocupa mais uma linha do menu de quem vai estudar.
-   - BACKUP restrito ao administrador máster (exportar, importar e reiniciar).
-     A checagem está em podeMexerEmBackup(), na própria função, não só no
-     botão. A caixa aparece em Perfil e em Configurações: renderCardBackup().
-   - ARRASTAR PARA O LADO no celular troca de questão, de cartão e de questão
-     do simulado. Ver ativarGestoDeArrastar(), chamada ao fim de cada render.
-   - CLICAR NO ENUNCIADO abre a questão na íntegra em qualquer lista, e também
-     na questão já respondida. A classe CSS é .enunciado-clicavel.
-   - ANO DA FACULDADE: entraram 3º e 4º ano; "Internato" saiu (virou 5º/6º
-     ano, que é o que a coordenação usa para montar turmas). Lista central em
-     CONFIG.anosFaculdade; quem estava como "Internato" foi migrado para 6º
-     ano automaticamente, e o aluno pode corrigir o próprio ano no Perfil.
-   3. Prefira sempre usar as telas do próprio app (Admin > Banco de Questões,
-      Admin > Importar Questões, Admin > Blocos) em vez de editar o código.
-      Este arquivo só precisa ser editado para mudanças estruturais.
-   4. Os dados dos usuários reais (respostas, cadastros etc.) ficam salvos no
-      navegador (localStorage), não neste arquivo. Use "Configurações >
-      Exportar backup" para não perder nada.
-
-   ATUALIZAÇÃO DA NOITE DE 19/09 (resumo — detalhe completo na seção 13 do
-   resumo enviado no chat):
-   - Política de conteúdo: enunciado/gabarito de prova PÚBLICA pode ser usado
-     integralmente (domínio público); só a explicação é sempre autoral —
-     nunca copiada de cursinho. Ver comentário acima de SEED_QUESTOES.
-   - SEED_FLASHCARDS: de 24 para 501 cartões, cobrindo os 91 assuntos.
-   - Lembrete de meta diária via Notification do navegador (ativarLembreteMetaDiaria,
-     checarLembreteMetaDiaria) — configurável no Perfil do aluno.
-   - Flashcards ganharam imagem (imagemUrl/imagemLegenda), igual às questões.
-   - Cartão pessoal pode ser sugerido para o baralho da equipe, com aprovação
-     em Controle de Qualidade > aba "Flashcards Sugeridos" (sugerirFlashcardParaEquipe,
-     aprovarFlashcardSugerido, recusarFlashcardSugerido).
-   - Dois gargalos de desempenho corrigidos (banco testado com >6.000
-     questões via automação de navegador): respostasDaQuestao() e
-     questoesDuplicadasDe() varriam o banco inteiro a cada chamada; agora
-     usam índices cacheados por _geracaoDb (indiceRespostasDoUsuario,
-     indiceAssinaturasQuestoes).
-   - Nova estatística de qualidade: q.estatisticas.eliminacoesAoErrar conta,
-     por alternativa, quantas vezes ela estava riscada quando o aluno errou —
-     visível em Controle de Qualidade > Questões Difíceis.
-
-   ATUALIZAÇÃO DE 21/09 — O CONTEÚDO SAIU DO CÓDIGO E A NUVEM ENTROU
-   ------------------------------------------------------------------------
-   - PASTA "dados/": as 635 questões e os 501 cartões saíram deste arquivo e
-     viraram sete arquivos ao lado dele (ver CONTEÚDO: A PASTA, mais acima).
-     No site nada muda; o que muda é que dá para ler, revisar ou mandar para
-     uma IA só o código, ou só uma prova. Passo a passo: dados/LEIA-ME.md.
-   - NUVEM (seção 2-C, funções "nuvem*"): conta de verdade com e-mail e
-     senha e estudo sincronizado entre aparelhos, por cima do Supabase.
-     Ligada por CONFIG.nuvem; vazia, a plataforma funciona como sempre
-     funcionou, só com este navegador. O banco, as regras de segurança e o
-     passo a passo estão em nuvem/esquema.sql e nuvem/LEIA-ME.md.
-     O CONTEÚDO não sobe: questões e cartões da equipe são iguais para todos
-     e continuam vindo da pasta "dados/". Questão criada pela Central de
-     Provas ou por Importar Questões continua só no navegador de quem a
-     publicou até alguém levá-la para "dados/".
-   - MAPA DA SESSÃO (renderMapaSessao): durante a prática, a fila de questões
-     vira uma tira de números clicáveis, com acerto e erro à vista. Não
-     confundir com o mapa do SIMULADO (.pill-mapa/.mapa-legenda), que durante
-     a prova diz só respondida/em branco, nunca certo ou errado. Os dois
-     moram na mesma BARRA FINA de uma linha (htmlBarraDeQuestoes), que
-     expande para o conjunto inteiro (state.mapaSessaoExpandido).
-   - SEPARAÇÃO COMPLETA (21/09, segunda parte): saíram também a taxonomia,
-     o calendário, os simulados e os dados de demonstração — antes só as
-     questões e os cartões estavam fora. Agora o index.html não tem
-     conteúdo nenhum. Arquivos novos: dados/taxonomia.js, dados/calendario.js,
-     dados/simulados-equipe.js e dados/demonstracao.js (este último é o que
-     se esvazia quando a turma real entra). A ponte window.EscDados ganhou
-     registrarSimulados, registrarTaxonomia, registrarCalendario e
-     registrarDemonstracao, e as listas agora se SOMAM entre arquivos.
-   - CENTRAL DE PROVAS (renderCentralProvas e funções de "carga"/"lote"):
-     subir uma prova inteira pela plataforma, em lotes, com duas ou mais
-     pessoas ao mesmo tempo, conferindo cada lote contra a faixa pedida antes
-     de publicar. Fica em Admin > Central de Provas.
+   Onde mexer:
+   - uma tela ou regra: o arquivo de codigo/ que a tem (mapa no CLAUDE.md;
+     `npm run mapa` lista seções e funções com a linha de cada uma);
+   - metas, pesos do algoritmo, endereço da nuvem: CONFIG, logo abaixo —
+     a maior parte também se ajusta pela tela Configurações, sem código;
+   - conteúdo (questões, cartões, calendário): dados/LEIA-ME.md;
+   - o porquê de cada decisão: RESUMO-PROJETO-ESC.md; a história de cada
+     mudança: docs/HISTORICO.md.
+   O estudo e os cadastros vivem no navegador (e na nuvem, se ligada), não
+   em arquivo: o backup é em Configurações. Conferir se nada quebrou:
+   npm test (roda sozinho no GitHub a cada envio).
    ========================================================================== */
 
 /* ---------------------------- 1. CONFIG ---------------------------------- */

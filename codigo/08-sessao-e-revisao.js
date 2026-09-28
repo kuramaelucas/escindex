@@ -1,8 +1,5 @@
-/* Esc — codigo/08-sessao-e-revisao.js  (parte 8 de 14)
-   O motor de sessão (responder questões, mapa, cartão da questão, comentários) e a tela de Revisão.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/08-sessao-e-revisao.js — motor de sessão (seção 11: sessão do dia, barra de questões, cartão da questão, comentários, IA) e a tela de Revisão (seção 12).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    11. MOTOR DE SESSÃO — responder questões (prática e revisão)
@@ -668,7 +665,7 @@ function imagemDaQuestaoFalhou(img, qid){
 }
 function ampliarImagemQuestao(qid, src){
   const q = getQuestao(qid); if(!q || !q.imagemUrl) return;
-  abrirModal(`<div class="modal-header"><h3>${escapeHtml(q.imagemLegenda||"Imagem da questão")}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+  abrirModal(`${cabecalhoJanela(escapeHtml(q.imagemLegenda||"Imagem da questão"))}
     <img src="${escapeHtml(src || q.imagemUrl)}" style="width:100%;border-radius:var(--radius-sm)" alt="">`, "lg");
 }
 function renderReferenciasQuestao(q){
@@ -838,7 +835,7 @@ function abrirNotaFavorita(qid){
   const nota = notaDaFavorita(u.id, qid);
   const jaEra = isFavorita(u.id, qid);
   abrirModal(`
-    <div class="modal-header"><h3>${iconeSvg("message")} Minha anotação nesta questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela(`${iconeSvg("message")} Minha anotação nesta questão`)}
     <p class="text-sm muted">É só sua: ninguém mais vê, nem a coordenação. Serve para guardar a dúvida que ficou — "por que não é a C?", "conferir a dose", "revisar antes da prova". Ela aparece junto da questão em Favoritos e sobe para a nuvem com a sua conta.</p>
     ${jaEra ? "" : '<p class="text-xs muted mt-1">Esta questão ainda não estava salva. Ao anotar, ela entra nos seus favoritos.</p>'}
     <div class="text-xs muted mt-2">${escapeHtml(q.enunciado.slice(0,150))}${q.enunciado.length>150?"…":""}</div>
@@ -941,7 +938,7 @@ function duvidasPendentes(usuario){
 /* ---------- sinalizar questão desatualizada ---------- */
 function abrirSinalizarDesatualizada(qid){
   abrirModal(`
-    <div class="modal-header"><h3>Sinalizar questão</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Sinalizar questão")}
     <p class="text-sm muted">Isso avisa a coordenação para revisar a questão. Ela continua disponível normalmente até que um professor ou administrador confirme a alteração.</p>
     <div class="field mt-2"><label class="label">O que parece desatualizado ou incorreto? (opcional)</label><textarea class="textarea" id="motivoSinalizacao" placeholder="Ex.: a diretriz citada mudou em 2025..."></textarea></div>
     <div class="flex gap-1"><button class="btn btn-primary" onclick="confirmarSinalizacao('${qid}')">Enviar sinalização</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
@@ -977,7 +974,7 @@ function gerarPromptDuvida(q){
 function abrirPromptDuvida(qid){
   const prompt = gerarPromptDuvida(getQuestao(qid));
   abrirModal(`
-    <div class="modal-header"><h3>Prompt para tirar dúvida com uma IA</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela("Prompt para tirar dúvida com uma IA")}
     <p class="text-sm muted mb-2">Copie o texto abaixo e cole em qualquer assistente de IA (Claude, ChatGPT, Gemini...) para obter uma segunda opinião, com evidências, sobre esta questão.</p>
     <textarea class="textarea textarea-mono" style="min-height:280px" readonly id="promptDuvidaTexto">${escapeHtml(prompt)}</textarea>
     <div class="flex gap-1 mt-2">

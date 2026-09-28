@@ -1,8 +1,5 @@
-/* Esc — codigo/14-admin-e-inicializacao.js  (parte 14 de 14)
-   Blocos de Estudo, Configurações, versão nova/cache antigo e a INICIALIZAÇÃO da plataforma (sempre o último arquivo).
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/14-admin-e-inicializacao.js — Blocos de Estudo e Configurações (27), versão nova (27-B), aplicativo instalável (27-C) e a INICIALIZAÇÃO (28) — sempre o último arquivo.
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    27. ADMIN — Blocos de Estudo (calendário oficial) / Configurações Gerais
@@ -199,12 +196,7 @@ window.EscDados.registrarCalendario("calendario", ${JSON.stringify(dados, null, 
 }
 function exportarCalendario(){
   const texto = textoExportacaoCalendario();
-  const blob = new Blob([texto], {type:"text/javascript"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = "calendario.js";
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url), 4000);
+  baixarArquivo("calendario.js", texto, "text/javascript");
   toast("Baixado \"calendario.js\". Troque o dados/calendario.js do projeto por ele e publique o site de novo — só assim a mudança chega aos alunos.");
 }
 /* ---------------------------- a ordem da sequência ------------------------
@@ -258,7 +250,7 @@ function abrirModalViradaDeAno(ano){
   const seq = sequenciaDoAno(ano);
   if(!seq.length){ toast("Este ano ainda não tem blocos para deslocar.", "err"); return; }
   abrirModal(`
-    <div class="modal-header"><h3>Virada de ano letivo — ${escapeHtml(ano)}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela(`Virada de ano letivo — ${escapeHtml(ano)}`)}
     <p class="text-sm muted mb-2">Informe quando o <strong>primeiro bloco</strong> começa no ano letivo novo. Todas as janelas andam o mesmo tanto de dias, mantendo a duração de cada bloco e os intervalos entre eles. Nada mais muda: mesmos blocos, mesma ordem, mesmos grupos do rodízio.</p>
     <div class="field" style="max-width:260px"><label class="label">Nova data de início do bloco 1</label>
       <input class="input" type="date" id="viradaInicio" value="${seq[0].dataInicio}" oninput="atualizarPreviaVirada('${escapeHtml(ano)}')">
@@ -338,7 +330,7 @@ function abrirFormularioBloco(ano, blocoId){
   const b = blocoId ? seq.find(x=>x.id===blocoId) : null;
   const posicao = b ? sequenciaDoAno(ano).findIndex(x=>x.id===b.id) : seq.length;
   abrirModal(`
-    <div class="modal-header"><h3>${b?"Editar bloco":"Adicionar bloco"} — ${escapeHtml(ano)}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div>
+    ${cabecalhoJanela(`${b?"Editar bloco":"Adicionar bloco"} — ${escapeHtml(ano)}`)}
     <p class="text-sm muted mb-2">Este bloco vale para <strong>todas as turmas de ${escapeHtml(ano)}</strong>. Cada turma passa por ele numa janela de data diferente, conforme o bloco em que começou.</p>
     <div class="field"><label class="label">Nome do bloco</label><input class="input" id="fbNome" value="${escapeHtml(b?b.nome:"")}" placeholder="Ex.: Cardiologia &amp; Pneumologia"></div>
     <div class="field" style="max-width:280px"><label class="label">Turma que começa neste bloco</label>
@@ -398,7 +390,7 @@ function confirmarExcluirBloco(ano, blocoId){
   ano = anoDeReferencia(ano);
   const seq = db.sequenciasAno[ano] || [];
   if(seq.length<=1){ toast("A sequência precisa ter pelo menos um bloco.", "err"); return; }
-  abrirModal(`<div class="modal-header"><h3>Excluir bloco de ${escapeHtml(ano)}</h3><button class="icon-btn" onclick="fecharModal()">${iconeSvg("x")}</button></div><p>Isso remove o bloco da sequência de <strong>${escapeHtml(ano)}</strong>, para todas as turmas desse ano. Simulados já recomendados para ele continuam existindo, só deixam de ter um bloco de referência. Esta ação não pode ser desfeita.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoConfirmado('${escapeHtml(ano)}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela(`Excluir bloco de ${escapeHtml(ano)}`)}<p>Isso remove o bloco da sequência de <strong>${escapeHtml(ano)}</strong>, para todas as turmas desse ano. Simulados já recomendados para ele continuam existindo, só deixam de ter um bloco de referência. Esta ação não pode ser desfeita.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoConfirmado('${escapeHtml(ano)}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
 function excluirBlocoConfirmado(ano, blocoId){
   ano = anoDeReferencia(ano);

@@ -1,9 +1,5 @@
-/* Esc — codigo/13-tutorial.js  (parte 13 de 14)
-   O tutorial de uso: um tour rápido que abre ao entrar e um guia completo,
-   os dois também em Perfil > Ajuda e tutorial.
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/13-tutorial.js — tutorial rápido e guia completo, por papel (seção 26-C); ficam em Perfil e configurações › Ajuda e tutorial.
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    26-C. TUTORIAL DE USO

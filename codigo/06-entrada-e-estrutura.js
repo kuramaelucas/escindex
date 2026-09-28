@@ -1,8 +1,5 @@
-/* Esc — codigo/06-entrada-e-estrutura.js  (parte 6 de 14)
-   Autenticação local, roteador e a estrutura visual (menu lateral e topo).
-   Os arquivos de codigo/ são carregados em ordem pelo index.html (lista
-   ESC_ARQUIVOS.codigo) e dividem o mesmo espaço: uma função escrita num
-   arquivo é usada nos outros sem import. */
+/* codigo/06-entrada-e-estrutura.js — autenticação local, roteador (render, desenharTela), gesto de arrastar, menu lateral e topo (seções 5–7).
+   Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
    5. AUTENTICAÇÃO (versão de demonstração local)
