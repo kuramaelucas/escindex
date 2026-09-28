@@ -21,7 +21,7 @@ celular de cada aluno.
 
 A lista sempre atualizada sai do conferidor: `npm run conferir` (ou
 `node testes/conferir-dados.mjs`) lista cada questão que ainda espera figura e
-o nome exato do arquivo. Em 26/09/2026 eram 75 — 13 da UNIFESP, 32 da Santa Casa e 30 da USP-SP
+o nome exato do arquivo. Em 26/09/2026 eram 71 — 13 da UNIFESP, 32 da Santa Casa e 26 da USP-SP
 (estas listadas numa tabela à parte, mais abaixo):
 
 | Arquivo | O que a prova mostrava |
@@ -72,10 +72,10 @@ o nome exato do arquivo. Em 26/09/2026 eram 75 — 13 da UNIFESP, 32 da Santa Ca
 | `q-scmsp2026-040.png` | Tomografia de abdome (via biliar) |
 | `q-scmsp2026-042.png` | Gráfico da mortalidade infantil 2006–2023 |
 
-### USP-SP (FMUSP) 2022–2026 — 30 figuras
+### USP-SP (FMUSP) 2022–2026 — 26 figuras
 
 O arquivo de origem das provas da USP-SP trouxe só o texto. As figuras de
-**2022, 2024, 2025 e 2026** e as das questões 1 a 55 de **2023** foram recortadas depois dos cadernos de questões
+**2022, 2024, 2025 e 2026** e as das questões 1 a 76 de **2023** foram recortadas depois dos cadernos de questões
 em PDF (edições da Medway só com a prova, sem comentários) e já estão nesta
 pasta, em `.png` (tabelas, traçados, esquemas) ou `.jpg` (fotos e exames de
 imagem). Quando a figura era só texto — tabela de prescrições, quadro de
@@ -84,8 +84,8 @@ alternativas e a questão ficou sem imagem.
 
 Ainda faltam:
 
-- **29 figuras de 2023** — a questão 30 e as da 56 em diante, que não estavam
-  na parte 1 do caderno recebida — na tabela abaixo;
+- **25 figuras de 2023**, das questões 77 a 120 (a segunda metade do caderno
+  ainda não chegou) — na tabela abaixo;
 - **`q-usp2026-063.png`** — fotografia do exame físico de uma criança, que a
   edição consultada substituiu pelo aviso "imagem removida nos termos do
   Estatuto da Criança e do Adolescente". Só o caderno oficial a tem.
@@ -95,14 +95,10 @@ aparecem como "Alternativa A (ver figura)" e a explicação termina com o
 lembrete "(Descrição ... a completar pela equipe quando a figura original for
 acrescentada)". Ao anexar a figura, vale relê-la e completar a explicação.
 
-<details><summary>USP-SP 2023 — 29 figuras</summary>
+<details><summary>USP-SP 2023 — 25 figuras</summary>
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
-| `q-usp2023-030.png` | Tabela de exames laboratoriais |
-| `q-usp2023-056.png` | Fotografia do joelho direito |
-| `q-usp2023-061.png` | Figura com a cascata de cuidado contínuo do HIV por faixa etária (Relatório de Monitoramento Clínico do HIV 2021) |
-| `q-usp2023-073.png` | Gráfico da incidência e da mortalidade por câncer de tireoide ao longo do tempo |
 | `q-usp2023-077.png` | Tabela com as associações entre as variantes genéticas e o câncer de mama (OR e IC 95%) |
 | `q-usp2023-078.png` | Tabela com os desfechos do ensaio clínico (ivermectina versus controle) |
 | `q-usp2023-079.png` | Tabela da associação entre tipos de bullying e transtorno alimentar (OR e IC 95%) |
