@@ -8,15 +8,17 @@ import path from "node:path";
 import { aplicarNoTexto, questoesDoTexto, RAIZ } from "../ferramentas/aplicar-atualizacoes.mjs";
 
 const ARQ = path.join(RAIZ, "dados", "prova-unifesp-2023.js");
+// uma questão que ainda espera figura (as da UNIFESP já têm todas)
+const ARQ_PENDENTE = path.join(RAIZ, "dados", "prova-santacasa-2026.js");
 
 test("a figura chega: imagemPendente sai, a legenda entra, o resto do arquivo fica igual", () => {
-  const txt = fs.readFileSync(ARQ, "utf8");
-  const novo = aplicarNoTexto(txt, "q-unifesp2023-023", { imagemUrl: "dados/imagens/q-unifesp2023-023.jpg", imagemLegenda: "Gráfico" }, ["imagemPendente"]);
+  const txt = fs.readFileSync(ARQ_PENDENTE, "utf8");
+  const novo = aplicarNoTexto(txt, "q-scmsp2026-010", { imagemUrl: "dados/imagens/q-scmsp2026-010.jpg", imagemLegenda: "Eletrocardiograma" }, ["imagemPendente"]);
   const antes = questoesDoTexto(txt, "a"), depois = questoesDoTexto(novo, "b");
   assert.equal(depois.length, antes.length);
-  const q = depois.find(x => x.id === "q-unifesp2023-023");
-  assert.equal(q.imagemUrl, "dados/imagens/q-unifesp2023-023.jpg");
-  assert.equal(q.imagemLegenda, "Gráfico");
+  const q = depois.find(x => x.id === "q-scmsp2026-010");
+  assert.equal(q.imagemUrl, "dados/imagens/q-scmsp2026-010.jpg");
+  assert.equal(q.imagemLegenda, "Eletrocardiograma");
   assert.equal(q.imagemPendente, undefined);
   // nenhuma outra questão mudou
   antes.filter(x => x.id !== q.id).forEach(x => assert.deepEqual(depois.find(y => y.id === x.id), x));

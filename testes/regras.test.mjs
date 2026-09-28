@@ -50,11 +50,11 @@ test("questão que espera figura da prova fica fora do que o aluno faz, mas cont
     navigate("provas-antigas");
     const naProva = state.filtroRota.provasGrupos.some(g => g.ids.some(id => fora.has(id)));
     // montada à mão, a lista também as tira (e, só com ela, não abre sessão)
-    iniciarSessaoComLista([{questaoId:"q-unifesp2026-036", motivo:"teste"}], "pratica");
+    iniciarSessaoComLista([{questaoId:"q-scmsp2026-010", motivo:"teste"}], "pratica");
     return { total: esperando.length, noBanco: esperando.every(id => getQuestao(id)), ativas, estudo, naProva,
-             sessao: state.sessaoAtual ? state.sessaoAtual.itens.length : 0, tem036: fora.has("q-unifesp2026-036") };
+             sessao: state.sessaoAtual ? state.sessaoAtual.itens.length : 0, tem010: fora.has("q-scmsp2026-010") };
   });
-  assert.ok(r.total > 0 && r.noBanco && r.tem036);
+  assert.ok(r.total > 0 && r.noBanco && r.tem010);
   assert.equal(r.ativas, 0); assert.equal(r.estudo, 0); assert.equal(r.naProva, false); assert.equal(r.sessao, 0);
   await contexto.close();
 });
@@ -62,26 +62,28 @@ test("questão que espera figura da prova fica fora do que o aluno faz, mas cont
 test("a equipe vê a questão à espera da figura com o aviso, e liberá-la a devolve aos alunos", async () => {
   const semNuvem = await subirServidor({ semNuvem: true });
   const { pagina, contexto } = await abrir();
+  // try/finally: sem ele, uma falha deixava o servidor aberto e travava o node --test
+  try{
   await pagina.goto(semNuvem.url + "index.html"); await pronto(pagina);
-  await pagina.evaluate(() => { fazerLogin("professor@esc.demo", "prof123"); fecharModal(); abrirQuestaoCompleta("q-unifesp2026-036"); });
+  await pagina.evaluate(() => { fazerLogin("professor@esc.demo", "prof123"); fecharModal(); abrirQuestaoCompleta("q-scmsp2026-010"); });
   await pagina.waitForSelector(".imagem-pendente", { timeout: 5000 });
   assert.equal(await pagina.locator(".qcard-img").count(), 0);
   const r = await pagina.evaluate(() => {
     fecharModal();
     filtrosBanco().status = "aguarda-imagem"; navigate("banco-questoes");
     const listadas = document.querySelectorAll("#conteudoPagina tbody tr").length;
-    abrirFormularioQuestao("q-unifesp2026-036");
+    abrirFormularioQuestao("q-scmsp2026-010");
     document.getElementById("fqImagemChegou").checked = true;
-    salvarQuestaoFormulario("q-unifesp2026-036", true);
-    const q = getQuestao("q-unifesp2026-036");
+    salvarQuestaoFormulario("q-scmsp2026-010", true);
+    const q = getQuestao("q-scmsp2026-010");
     return { listadas, liberada: !q.imagemPendente, ativa: questoesAtivas(true).some(x => x.id === q.id) };
   });
   assert.ok(r.listadas > 0);
   assert.ok(r.liberada && r.ativa);
   // recarregar não traz o aviso de volta da semente
   await pagina.reload(); await pronto(pagina);
-  assert.equal(await pagina.evaluate(() => !!getQuestao("q-unifesp2026-036").imagemPendente), false);
-  await contexto.close(); await semNuvem.fechar();
+  assert.equal(await pagina.evaluate(() => !!getQuestao("q-scmsp2026-010").imagemPendente), false);
+  } finally { await contexto.close(); await semNuvem.fechar(); }
 });
 
 test("tutorial rápido: passos, guia completo e o pedido de não mostrar ao entrar", async () => {
