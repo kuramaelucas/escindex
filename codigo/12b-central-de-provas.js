@@ -183,7 +183,7 @@ function modeloConstrucaoLote(carga, lote){
   "ANO: "+carga.ano+"\n"+
   "TIPO: "+infoTipoProva(tipoDaCarga(carga)).nome+"\n"+
   "===\n\n"+
-  "Depois, para CADA questão, na ordem da prova, um bloco exatamente neste formato — sem markdown, sem numeração extra, sem comentários seus:\n\n"+
+  "Depois, para CADA questão, na ordem da prova, um bloco exatamente neste formato — sem markdown (a única marcação permitida são os ** em volta de parâmetros objetivos dentro de EXPLICACAO), sem numeração extra, sem comentários seus:\n\n"+
   "NUMERO: [número da questão na prova, de "+lote.inicio+" a "+lote.fim+"]\n"+
   "PERGUNTA: [enunciado completo da questão, incluindo o caso clínico se houver]\n"+
   "A: [texto da alternativa A]\nB: [texto da alternativa B]\nC: [texto da alternativa C]\nD: [texto da alternativa D]\nE: [texto da alternativa E — apague esta linha se a prova tiver só 4 alternativas]\n"+

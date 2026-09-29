@@ -548,7 +548,6 @@ function renderEstudar(){
   const todas = questoesAtivas(meuGrupo.id);
   const anos = [...new Set(todas.map(q=>q.ano))].sort((a,b)=>b-a);
   const bancas = [...new Set(todas.map(q=>q.banca))].sort();
-  const qtdGraduacao = todas.filter(q=>tipoProvaDe(q)==="graduacao").length;
   const meta = metaDoUsuario(u);
   const feitasHoje = questoesRespondidasHoje(u.id);
   const seq = sequenciaDiasEstudo(u.id);
@@ -597,9 +596,7 @@ function renderEstudar(){
       <div class="card-title">Sessão recomendada</div>
       <p class="text-sm muted">Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Dentro do bloco atual, os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
-      ${priorizaGraduacao(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${qtdGraduacao
-        ? `No ${escapeHtml(u.anoFaculdade)}, as questões das <strong>provas da graduação</strong> (provas da faculdade e Teste de Progresso) vêm primeiro dentro de cada assunto: é a fase de consolidar o conhecimento. As de residência completam o conjunto.`
-        : `No ${escapeHtml(u.anoFaculdade)}, as questões das <strong>provas da graduação</strong> (provas da faculdade e Teste de Progresso) vêm primeiro — assim que houver alguma no banco. Por enquanto, o conjunto sai das provas de residência.`}</div>` : ""}
+      <div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${escapeHtml(explicacaoProgressao(u))}</div>
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
       <p class="text-xs muted mt-1">${deHoje
         ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
@@ -794,13 +791,13 @@ function abrirQuestaoCompleta(qid, opts){
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}
     </div>
     ${renderImagemQuestao(q)}
-    <div class="qcard-enunciado" style="font-size:1.02rem;margin-bottom:1rem">${escapeHtml(q.enunciado)}</div>
+    <div class="qcard-enunciado" style="font-size:1.02rem;margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
     <div class="qcard-alts">
-      ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text">${escapeHtml(alt.texto)}</span></div>`).join("")}
+      ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span></div>`).join("")}
     </div>
-    <div class="feedback-box ok mt-2"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${q.explicacaoGeral?"<br>"+escapeHtml(q.explicacaoGeral):" (sem explicação cadastrada ainda)"}</div>
+    <div class="feedback-box ok mt-2"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${q.explicacaoGeral?`<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`:" (sem explicação cadastrada ainda)"}</div>
     ${renderReferenciasQuestao(q)}
-    ${(q.explicacoesAlternativas && Object.keys(q.explicacoesAlternativas).length) ? `<div class="card-flat mt-2 text-sm">${Object.entries(q.explicacoesAlternativas).map(([letra,texto])=>`<div class="mb-1"><strong>${escapeHtml(letra)}:</strong> ${escapeHtml(texto)}</div>`).join("")}</div>` : ""}
+    ${(q.explicacoesAlternativas && Object.keys(q.explicacoesAlternativas).length) ? `<div class="card-flat mt-2 text-sm">${Object.entries(q.explicacoesAlternativas).map(([letra,texto])=>`<div class="mb-1"><strong>${escapeHtml(letra)}:</strong> ${htmlComDestaques(texto, null, true)}</div>`).join("")}</div>` : ""}
     ${ultima ? `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Sua última resposta: marcou ${escapeHtml(ultima.alternativaEscolhida)} (${ultima.correta?"correta":"incorreta"}, ${escapeHtml(rotuloConfianca(ultima.confianca))}) em ${formatDataBR(ultima.data)}.</div>` : ""}
     ${minhaNota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(minhaNota)}</div></div>` : ""}
     <div class="flex gap-1 mt-3" style="flex-wrap:wrap">

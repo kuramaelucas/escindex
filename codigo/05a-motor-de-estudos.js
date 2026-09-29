@@ -47,17 +47,51 @@ function normalizarTipoProva(texto){
   if(t.startsWith("resid") || t.startsWith("r1")) return "residencia";
   return null;
 }
-/* 3º e 4º ano estudam primeiro pela prova da graduação (CONFIG.anosQuePriorizamGraduacao). */
-function priorizaGraduacao(usuario){
-  return !!(usuario && (CONFIG.anosQuePriorizamGraduacao||[]).includes(usuario.anoFaculdade));
+/* PROGRESSÃO CONSOLIDAÇÃO → RESIDÊNCIA (CONFIG.progressaoConsolidacao).
+   "Consolidação" é tudo o que não é prova real de residência: as questões
+   autorais (banco didático, demonstração) e as provas da graduação. */
+function ehConsolidacao(q){ return !q.real || tipoProvaDe(q)==="graduacao"; }
+function fracaoConsolidacao(usuario){
+  const mapa = (db.configGeral && db.configGeral.progressaoConsolidacao) || CONFIG.progressaoConsolidacao || {};
+  const f = mapa[(usuario && usuario.anoFaculdade) || CONFIG.anoFaculdadePadrao];
+  return typeof f==="number" ? Math.min(1, Math.max(0, f)) : 0;
 }
+/* "3º ano: 70% consolidação, 30% residência" — o texto que a tela mostra. */
+function textoProgressao(usuario){
+  const c = Math.round(fracaoConsolidacao(usuario)*100);
+  return c+"% consolidação de conhecimento e "+(100-c)+"% provas reais de residência";
+}
+/* Na graduação (3º e 4º ano) a consolidação é maioria: Provas Antigas abre
+   pela prova da graduação, que é a que consolida. */
+function priorizaGraduacao(usuario){ return fracaoConsolidacao(usuario) >= 0.5; }
 function tipoProvaPreferido(usuario){ return priorizaGraduacao(usuario) ? "graduacao" : null; }
-// põe na frente as questões do tipo preferido, sem mudar a ordem dentro de cada metade
-function primeiroDoTipo(lista, tipo){
-  if(!tipo) return lista;
-  const antes = [], depois = [];
-  lista.forEach(q=>(tipoProvaDe(q)===tipo ? antes : depois).push(q));
-  return antes.concat(depois);
+/* Escolhe `n` questões do pool na proporção do ano do aluno. `selecionar
+   (pool, k)` é o critério de cada trecho da sessão (interleaving, sorteio…).
+   Se um dos lados não tem questão suficiente naquele trecho, o outro cobre a
+   falta — a sessão não pode ficar curta —, e `faltou` conta quantas vieram
+   do lado errado para a tela poder avisar. */
+function selecionarComProgressao(pool, n, usuario, selecionar){
+  const fc = fracaoConsolidacao(usuario);
+  const cons = pool.filter(ehConsolidacao), res = pool.filter(q=>!ehConsolidacao(q));
+  let nCons = Math.round(n*fc), nRes = n - nCons;
+  if(cons.length < nCons){ nRes += nCons - cons.length; nCons = cons.length; }
+  if(res.length < nRes){ nCons = Math.min(cons.length, nCons + nRes - res.length); nRes = res.length; }
+  return selecionar(cons, nCons).concat(selecionar(res, nRes));
+}
+/* O que a tela diz sobre a proporção: a regra do ano, o que conta como
+   consolidação e a exceção (falta de questão de um dos lados). */
+function explicacaoProgressao(usuario){
+  const ano = (usuario && usuario.anoFaculdade) || CONFIG.anoFaculdadePadrao;
+  if(!CONFIG.anosFaculdade.includes(ano)) return "";
+  if(!fracaoConsolidacao(usuario)) return "No "+ano+" a sessão recomendada é 100% de provas reais de residência: é a reta final, treino com a prova de verdade. As questões didáticas continuam disponíveis em Estudar.";
+  const prog = CONFIG.progressaoConsolidacao;
+  const roteiro = Object.keys(prog).map(a=>a+" "+Math.round(prog[a]*100)+"/"+(100-Math.round(prog[a]*100))).join(" · ");
+  return "No "+ano+" a matéria nova da sessão recomendada é "+textoProgressao(usuario)+". Consolidação são as questões didáticas do Esc e as provas da graduação, que firmam a base; a proporção vai virando prova real de residência a cada ano ("+roteiro+", em consolidação/residência). Se faltar questão de um dos lados naquele assunto, o outro completa.";
+}
+// "· consolidação" / "· prova de residência" no motivo de cada questão da sessão
+function rotuloProgressao(q, usuario){
+  if(!usuario || !CONFIG.anosFaculdade.includes(usuario.anoFaculdade)) return "";
+  return ehConsolidacao(q) ? " · consolidação" : " · prova de residência";
 }
 
 function questoesAtivas(incluirGrupoId){
@@ -223,6 +257,13 @@ function questoesParaEstudo(usuarioId, incluirGrupoId){
   const ativas = questoesAtivas(incluirGrupoId);
   return ocultas.size ? ativas.filter(q=>!ocultas.has(q.id)) : ativas;
 }
+/* Esconder só depois do segundo erro (CONFIG.errosParaEsconderQuestao): a
+   primeira vez que se erra uma questão é justamente quando ela mais ensina.
+   Quem já escondeu antes disso (ou sincronizou de outro aparelho) sempre
+   pode voltar a mostrar. */
+function podeEsconderQuestao(usuarioId, questaoId){
+  return questaoOculta(usuarioId, questaoId) || errosNaQuestao(usuarioId, questaoId) >= CONFIG.errosParaEsconderQuestao;
+}
 function alternarQuestaoOculta(usuarioId, questaoId){
   if(!Array.isArray(db.questoesOcultas)) db.questoesOcultas = [];
   const idx = db.questoesOcultas.findIndex(o=>o.usuarioId===usuarioId && o.questaoId===questaoId);
@@ -364,7 +405,7 @@ function cartaoDeQuestao(q){
     status: "ativo",
     frente: q.enunciado,
     verso: (alternativaCerta ? q.gabarito+") "+alternativaCerta.texto : "Gabarito: "+q.gabarito)
-           + (q.explicacaoGeral ? "\n\n"+q.explicacaoGeral : ""),
+           + (q.explicacaoGeral ? "\n\n"+textoSemEnfase(q.explicacaoGeral) : ""),
   };
 }
 /* Cartões que um usuário enxerga.
@@ -536,7 +577,7 @@ function assuntosParaRevisarHoje(usuarioId){
 }
 
 /* ---------- montagem de sessões de estudo ---------- */
-function selecionarComInterleaving(pool, quantidade, pesos, tipoPreferido){
+function selecionarComInterleaving(pool, quantidade, pesos){
   // agrupa por assunto, ordena cada grupo do mais fácil ao mais difícil, e
   // intercala entre os grupos (em vez de esgotar um assunto antes de ir pro
   // próximo) — isso é o princípio de "interleaving" citado na recomendação
@@ -545,15 +586,12 @@ function selecionarComInterleaving(pool, quantidade, pesos, tipoPreferido){
   // mas o sorteio favorece os de peso maior (o que mais cai e a pessoa erra):
   // cada grupo recebe a chave aleatório^(1/peso) e a lista vai da maior
   // chave para a menor — peso 4 tende a vir antes de peso 1, sem garantia.
-  // Com `tipoPreferido` ("graduacao" no 3º e 4º ano), dentro de cada assunto
-  // as questões daquele tipo de prova vêm antes das outras.
   const porAssunto = {};
   pool.forEach(q=>{ (porAssunto[q.assuntoId] = porAssunto[q.assuntoId]||[]).push(q); });
   const grupos = pesos
     ? Object.values(porAssunto).map(g=>({g, chave: Math.pow(Math.random(), 1/(pesos[g[0].assuntoId]||1))})).sort((a,b)=>b.chave-a.chave).map(x=>x.g)
     : embaralhar(Object.values(porAssunto));
-  const foraDoTipo = q => tipoPreferido && tipoProvaDe(q)!==tipoPreferido ? 1 : 0;
-  grupos.forEach(lista=> lista.sort((a,b)=>foraDoTipo(a)-foraDoTipo(b) || calcularDificuldade(a)-calcularDificuldade(b)));
+  grupos.forEach(lista=> lista.sort((a,b)=>calcularDificuldade(a)-calcularDificuldade(b)));
   const resultado = [];
   let i=0, tentativas=0;
   while(resultado.length<quantidade && grupos.some(g=>g.length>0) && tentativas < quantidade*20){
@@ -639,11 +677,14 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const poolAtual = questoesParaEstudo(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId));
   const pesos = pesosDeIncidencia(usuarioId);
   const destaque = assuntosQueMaisCaem(usuarioId);
-  // 3º e 4º ano: a prova da graduação na frente (CONFIG.anosQuePriorizamGraduacao)
-  const tipoPref = tipoProvaPreferido(usuario);
-  const doTipo = q => tipoPref && tipoProvaDe(q)===tipoPref ? " · "+infoTipoProva(tipoPref).nomeLongo.toLowerCase()+" (prioridade do "+usuario.anoFaculdade+")" : "";
-  const itensAtual = selecionarComInterleaving(poolAtual, nAtual, pesos, tipoPref).map(q=>({questaoId:q.id,
-    motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "") + doTipo(q)}));
+  /* A proporção consolidação/residência do ano do aluno (CONFIG.progressaoConsolidacao)
+     vale para o que é matéria NOVA da sessão: bloco atual, assunto de bloco
+     anterior ainda não visto, prévia e complemento. A revisão espaçada
+     vencida não entra na conta — é questão que a pessoa já fez, e o prazo
+     dela não muda porque o ano mudou. */
+  const rotulo = q => rotuloProgressao(q, usuario);
+  const itensAtual = selecionarComProgressao(poolAtual, nAtual, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos)).map(q=>({questaoId:q.id,
+    motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "") + rotulo(q)}));
 
   let poolRevisaoVencida = questoesParaEstudo(usuarioId).filter(q=>assuntosPassados.includes(q.assuntoId) && jaFoiRespondida(usuarioId,q.id) && revisaoVencida(usuarioId,q.id));
   poolRevisaoVencida.sort((a,b)=>{
@@ -657,19 +698,19 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   if(itensRevisao.length < nRevisao){
     const faltam = nRevisao - itensRevisao.length;
     const poolNaoVistas = questoesParaEstudo(usuarioId).filter(q=>assuntosPassados.includes(q.assuntoId) && !jaFoiRespondida(usuarioId,q.id) && !itensRevisao.some(it=>it.questaoId===q.id));
-    primeiroDoTipo(embaralhar(poolNaoVistas), tipoPref).slice(0,faltam).forEach(q=>itensRevisao.push({questaoId:q.id, motivo:"Assunto de bloco anterior ainda não estudado"+doTipo(q)}));
+    selecionarComProgressao(poolNaoVistas, faltam, usuario, (p,k)=>embaralhar(p).slice(0,k)).forEach(q=>itensRevisao.push({questaoId:q.id, motivo:"Assunto de bloco anterior ainda não estudado"+rotulo(q)}));
   }
 
   const poolPrevia = questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental");
-  const itensPrevia = primeiroDoTipo(embaralhar(poolPrevia), tipoPref).slice(0,nPrevia).map(q=>({questaoId:q.id, motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+doTipo(q)}));
+  const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
 
   let todos = [...itensAtual, ...itensRevisao, ...itensPrevia];
   // se o banco de demonstração não tiver questões suficientes para preencher a
   // meta, completamos com quaisquer questões ativas ainda não usadas nesta sessão
   if(todos.length < tamanho){
     const usados = new Set(todos.map(t=>t.questaoId));
-    const extras = primeiroDoTipo(embaralhar(questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id))), tipoPref).slice(0,tamanho-todos.length)
-      .map(q=>({questaoId:q.id, motivo:"Complemento — banco de demonstração ainda é pequeno"}));
+    const extras = selecionarComProgressao(questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id)), tamanho-todos.length, usuario, (p,k)=>embaralhar(p).slice(0,k))
+      .map(q=>({questaoId:q.id, motivo:"Complemento — banco de demonstração ainda é pequeno"+rotulo(q)}));
     todos = [...todos, ...extras];
   }
   return embaralhar(todos);

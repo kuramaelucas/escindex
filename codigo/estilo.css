@@ -15,6 +15,7 @@
   --border:#DEE4E0; --border-strong:#C4CDC7;
   --accent:#0B6E5C; --accent-dark:#084F42; --accent-soft:#E1EFEB;
   --amber-soft:#F3E8D6;
+  --destaque:rgba(250,204,21,.5);
   --danger:#B23A2E; --danger-soft:#F6E5E2;
   --toast-bg:#1D2A26;
   --shadow-xs:0 1px 2px rgba(17,32,28,.06);
@@ -39,7 +40,7 @@ html[data-theme="dark"]{
   --ink:#E8EDE9; --ink-2:#B7C4BE; --muted:#84948D;
   --border:#2C3733; --border-strong:#3D4A44;
   --accent:#33B092; --accent-dark:#5FCBB0; --accent-soft:#173029;
-  --amber:#E0AC5E; --amber-soft:#3A2E1B;
+  --amber:#E0AC5E; --amber-soft:#3A2E1B; --destaque:rgba(250,204,21,.32);
   --danger:#E3776B; --danger-soft:#3A2320;
   --barra-acerto:#3FA888; --barra-erro:#2F3B36;
   --shadow-xs:0 1px 2px rgba(0,0,0,.28);
@@ -301,9 +302,9 @@ ol.lista-passos li{margin:.25rem 0}
 /* ---------- questão ---------- */
 .qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:740px}
 .qcard-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
-.qcard-img-wrap{margin:0 0 1.1rem}
+.qcard-img-wrap{margin:0 0 1.1rem;display:flex;flex-direction:column;align-items:center;text-align:center}
 .qcard-img{max-width:100%;max-height:420px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:var(--surface-2)}
-.qcard-img-legenda{font-size:.75rem;color:var(--muted);margin-top:.35rem}
+.qcard-img-legenda{font-size:.75rem;color:var(--muted);margin-top:.35rem;text-align:center}
 /* questão que dependia de uma figura da prova que ainda não foi anexada */
 .imagem-pendente{display:flex;gap:.6rem;align-items:flex-start;margin:0 0 1.1rem;padding:.75rem .9rem;border:1px dashed var(--amber);border-radius:var(--radius-sm);background:var(--amber-soft);font-size:.85rem}
 .imagem-pendente svg{flex:none;width:18px;height:18px;margin-top:.1rem}
@@ -517,3 +518,10 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 .guia-secao summary{cursor:pointer;font-weight:600;padding:.55rem 0}
 .guia-secao ul{margin:.1rem 0 .7rem;padding-left:1.2rem;line-height:1.6}
 .guia-secao li{margin-bottom:.35rem}
+
+/* Destaque de texto (seção 11-B): o trecho marcado e a barrinha que aparece ao selecionar */
+mark.destaque{background:var(--destaque);color:inherit;border-radius:3px;padding:0 .08em;cursor:pointer}
+.barra-destaque{position:absolute;z-index:60;padding:.3rem;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:var(--shadow-pop)}
+.barra-destaque[hidden]{display:none}
+/* Parâmetro objetivo que define a conduta, marcado com ** pelo autor da explicação (seção 11-B) */
+strong.parametro{font-weight:700;color:var(--accent-dark);background:var(--accent-soft);padding:0 .28em;border-radius:3px}

@@ -154,15 +154,18 @@ test("percentil do simulado usa as notas da turma inteira", async () => {
   await contexto.close();
 });
 
-test("Painel da Turma lê as funções do banco e separa por ano", async () => {
+test("Painel da Turma lê as funções do banco, separa por ano, mostra a equipe e não mostra acerto de ninguém", async () => {
   const sessao = { token: TOKEN, refresh: "r1", usuarioId: ID, email: "prof@turma.br" };
   const hoje = new Date().toISOString().slice(0, 10);
-  const aluno = (id, nome, ano, r30, a30, ultima) => ({ usuario_id: id, nome, email: id + "@t.br", ano_faculdade: ano, status: "aprovado",
-    respostas: r30, acertos: a30, respostas_7d: r30 ? 5 : 0, acertos_7d: 3, respostas_30d: r30, acertos_30d: a30, respostas_30a60d: 0, acertos_30a60d: 0,
-    dias_ativos_30d: r30 ? 4 : 0, ultima_resposta: ultima, cartoes_total: 0, cartoes_30d: 0, ultimo_cartao: null, simulados: 0, media_simulados: null, por_area: { "area-cm": [r30, a30] } });
+  const pessoa = (id, nome, ano, r30, ultima, papel = "aluno") => ({ usuario_id: id, nome, email: id + "@t.br", papel, ano_faculdade: ano, status: "aprovado", grupo_id: "rodizio-1-0",
+    respostas: r30, respostas_7d: r30 ? 5 : 0, respostas_30d: r30, dias_ativos_30d: r30 ? 4 : 0, ultima_resposta: ultima,
+    cartoes_total: 0, cartoes_30d: 0, ultimo_cartao: null, simulados: 0 });
   const { pagina, contexto, erros } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado", "professor"), sessao, rpc: {
-    painel_turma: [aluno("a1", "Ana", "3º ano", 40, 30, hoje), aluno("a2", "Beto", "4º ano", 0, 0, null), aluno("a3", "Caio", "4º ano", 20, 8, hoje)],
-    atividade_por_semana: [{ ano_faculdade: "3º ano", semana: hoje, alunos_ativos: 1, respostas: 40, acertos: 30 }],
+    painel_turma: [pessoa("a1", "Ana", "3º ano", 40, hoje), pessoa("a2", "Beto", "4º ano", 0, null), pessoa("a3", "Caio", "4º ano", 20, hoje),
+      pessoa("p1", "Doutora Admin", "6º ano", 12, hoje, "admin")],
+    // só o 4º ano tem alunos suficientes para ter média; o 3º ano (1 aluno) não vem do banco
+    acerto_por_turma: [{ ano_faculdade: "4º ano", grupo_id: null, alunos: 3, respostas: 100, acertos: 62, respostas_30d: 40, acertos_30d: 20, por_area: { "area-cm": [100, 62] } }],
+    atividade_por_semana: [{ ano_faculdade: "3º ano", semana: hoje, alunos_ativos: 1, respostas: 40, acertos: null }],
   }});
   await pagina.evaluate(() => {
     const u = nuvemAplicarPerfilLocal({ id: "11111111-2222-3333-4444-555555555555", nome: "Prof", papel: "professor", status: "aprovado" });
@@ -174,10 +177,24 @@ test("Painel da Turma lê as funções do banco e separa por ano", async () => {
   assert.match(texto, /Dados da nuvem/);
   assert.match(texto, /3º ano \(1\)/);
   assert.match(texto, /4º ano \(2\)/);
+  assert.match(texto, /Equipe \(1\)/);
   assert.match(texto, /nunca estudou/);
+  assert.doesNotMatch(texto, /Doutora Admin/, "a equipe fica na própria aba");
+  // o acerto de cada pessoa não aparece: só a média do ano, e onde há alunos suficientes
+  assert.doesNotMatch(texto, /Acerto geral|Menor acerto|acerto caiu/);
+  const cabecalhos = await pagina.$$eval("#app table thead th", ths => ths.map(t => t.innerText));
+  assert.ok(!cabecalhos.some(c => /^Acerto \((30 dias)\)$|^Acerto geral$/.test(c)), "nenhuma coluna de acerto por pessoa: " + cabecalhos.join("|"));
   await pagina.evaluate(() => mudarFiltroPainelTurma("ano", "4º ano"));
   const doQuarto = await pagina.innerText("#app");
   assert.doesNotMatch(doQuarto, /Ana/);
+  assert.match(doQuarto, /50%/, "média do 4º ano (20 de 40 nos 30 dias)");
+  await pagina.evaluate(() => mudarFiltroPainelTurma("ano", "3º ano"));
+  assert.match(await pagina.innerText("#app"), /menos de 3 alunos com resposta/);
+  await pagina.evaluate(() => mudarFiltroPainelTurma("ano", "equipe"));
+  const daEquipe = await pagina.innerText("#app");
+  assert.match(daEquipe, /Doutora Admin/);
+  assert.match(daEquipe, /Administrador/);
+  assert.doesNotMatch(daEquipe, /Ana|Beto/);
   assert.deepEqual(erros, []);
   await contexto.close();
 });
@@ -187,5 +204,38 @@ test("aluno não abre o Painel da Turma", async () => {
   await pagina.evaluate(() => { fazerLoginDemo("aluno"); navigate("painel-turma"); });
   assert.match(await pagina.innerText("#app"), /Acesso restrito/);
   assert.equal(await pagina.evaluate(() => navItemsParaPapel("aluno").some(i => i.id === "painel-turma")), false);
+  await contexto.close();
+});
+
+test("destaque de texto sobe para a nuvem, e desmarcar sobe como removido", async () => {
+  const sessao = { token: TOKEN, refresh: "r1", usuarioId: ID, email: "nova@turma.br" };
+  const { pagina, contexto, pedidos, erros } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado"), sessao });
+  await pagina.evaluate(async () => {
+    const u = nuvemAplicarPerfilLocal({ id: "11111111-2222-3333-4444-555555555555", nome: "Nova Aluna", papel: "aluno", status: "aprovado" });
+    state.usuarioAtualId = u.id;
+    const d = { id: "d-teste-1", usuarioId: u.id, alvo: "q:q-unifesp2024-001:enunciado", inicio: 4, fim: 12, trecho: "um trecho", data: hojeISO() };
+    db.destaques.push(d);
+    nuvemRegistrar({ destaque: d });
+    saveState();
+    while(nuvemEstado.sincronizando) await new Promise(ok => setTimeout(ok, 50));
+    await nuvemSincronizarAgora();
+    removerDestaque("d-teste-1");
+    while(nuvemEstado.sincronizando) await new Promise(ok => setTimeout(ok, 50));
+    await nuvemSincronizarAgora();
+  });
+  const envios = pedidos.filter(p => p.caminho === "/rest/v1/destaques" && p.metodo === "POST").map(p => JSON.parse(p.corpo)[0]);
+  assert.ok(envios.length >= 2, "marcar e desmarcar deveriam subir");
+  assert.equal(envios[0].usuario_id, ID);
+  assert.equal(envios[0].alvo, "q:q-unifesp2024-001:enunciado");
+  assert.equal(envios[0].trecho, "um trecho");
+  assert.equal(envios[0].removido, false);
+  assert.equal(envios[envios.length - 1].removido, true);
+  // e o que vem da nuvem (outro aparelho) entra no banco local
+  const veio = await pagina.evaluate(() => {
+    NUVEM_TABELAS.destaques.aplicar({ id: "d-de-fora", usuario_id: usuarioAtual().id, alvo: "c:cartao-1:verso", inicio: 0, fim: 3, trecho: "abc", data: "2026-09-01", removido: false });
+    return db.destaques.map(d => d.id);
+  });
+  assert.deepEqual(veio, ["d-de-fora"]);
+  assert.deepEqual(erros, []);
   await contexto.close();
 });

@@ -81,11 +81,13 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | **Questões enviadas pela plataforma** (com as imagens) chegando à equipe para aprovar e, aprovadas, à turma inteira | cria a tabela `questoes_enviadas`, a função `e_aprovado()` e o espaço de imagens `questoes` no Storage, com as regras de quem envia e quem aprova |
 > | **Comentários e dúvidas** nas questões chegando à turma e à Fila de Dúvidas | cria a tabela `comentarios` (todos leem; cada um grava o seu; só revisor dá resposta oficial) |
 > | **Percentil de simulado** com as notas da turma inteira | cria a função `notas_do_simulado()` (devolve só id aleatório e nota) |
-> | **Painel da Turma** (professor e coordenação) | cria as funções `painel_turma()` e `atividade_por_semana()` (só a equipe recebe linhas) |
+> | **Painel da Turma** (professor e coordenação) — só uso por pessoa, a equipe incluída, e o acerto só somado por ano e turma (mínimo de 3 alunos) | recria `painel_turma()` (sem acerto individual), cria `acerto_por_turma()` e atualiza `atividade_por_semana()` (só a equipe recebe linhas) |
 > | A anotação pessoal da questão salva | `alter table public.favoritos add column if not exists nota text ...` |
 > | Quantos flashcards você fez em cada dia | `alter table public.dias_cartoes add column if not exists quantidade integer ...` |
 > | Os **flashcards favoritados** | cria a tabela `favoritos_cartoes`, com RLS e permissões |
 > | As **questões escondidas** ("não mostrar mais") | cria a tabela `questoes_ocultas`, com RLS e permissões |
+> | Os **destaques de texto** em questões e flashcards | cria a tabela `destaques`, com RLS e permissões (cada pessoa lê e grava os seus) |
+> | A **ordem própria dos estágios do 6º ano** (Meu Grupo > Meus estágios) | `alter table public.perfis add column if not exists ordem_estagios jsonb ...` |
 > | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |
 > | A **formatação aprovada** em Revisar Formatação | cria a tabela `formatacao_aprovada` e a função `e_revisor()` (grava equipe e residentes) |
 > | A tela de **primeiro acesso** não reaparecer em outro aparelho | `alter table public.perfis add column if not exists boas_vindas_em date` |
@@ -256,9 +258,11 @@ E, sem sair do banco, dois cálculos da turma:
 - o **percentil de simulado** compara a nota com as tentativas da turma
   inteira (a função devolve só números, sem ninguém nelas);
 - o **Painel da Turma** (menu de professor e da coordenação) mostra, por ano
-  da faculdade, quem está estudando, quanto, com que acerto, semana a semana
-  e por grande área, e quem parou ou caiu — somado dentro do banco, uma
-  linha por aluno. Residente e aluno não recebem nada dessas funções.
+  da faculdade e por turma, quem está usando a plataforma e quanto (a equipe
+  também), semana a semana, e quem parou — somado dentro do banco, uma linha
+  por pessoa. **O acerto de ninguém sai do banco**: só a média de cada ano e
+  turma, e só com 3 alunos ou mais (`acerto_por_turma()`). Residente e aluno
+  não recebem nada dessas funções.
 
 ## O que a nuvem **não** guarda
 
@@ -375,7 +379,7 @@ Três coisas que o cartão de sincronização mostra e valem uma explicação:
 | "Falta confirmar o e-mail" | *Confirm email* está ligado e a pessoa ainda não tocou no link. A própria janela oferece **Reenviar o link**. |
 | O link do e-mail abre uma página do Supabase ou `localhost` | O endereço do site não está em *Authentication > URL Configuration* (Site URL e Redirect URLs). Ver o passo 3. |
 | "Este link não vale mais" | O link expirou ou já foi usado. A tela tem os botões para pedir outro. |
-| Painel da Turma: "o banco ainda não tem as funções do painel" | Rode o `esquema.sql` de novo (ele cria `painel_turma()` e `atividade_por_semana()`). |
+| Painel da Turma: "o banco ainda não tem as funções do painel" | Rode o `esquema.sql` de novo (ele cria `painel_turma()`, `acerto_por_turma()` e `atividade_por_semana()`). |
 | "Conta sem perfil na nuvem." | O `esquema.sql` não foi rodado (ou foi rodado depois de a conta ser criada). Rode o arquivo e crie a conta de novo, ou insira o perfil à mão. |
 | "Seu cadastro ainda está aguardando aprovação." | Está tudo certo: falta a coordenação aprovar em Aprovar Cadastros. |
 | "Endereço da nuvem não encontrado" | `CONFIG.nuvem.url` está com erro de digitação. |

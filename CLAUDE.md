@@ -48,6 +48,7 @@ Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem insta
 | `06-entrada-e-estrutura.js` | 5–7 | login local, roteador, gesto de arrastar, menu e topo |
 | `07-telas-iniciais.js` | 8–10-B | telas públicas, volta do e-mail, boas-vindas, Início, Estudar, questão na íntegra |
 | `08-sessao-e-revisao.js` | 11–12 | sessão de questões, barra de questões, cartão da questão, comentários, Revisão |
+| `08b-destaques-de-texto.js` | 11-B | selecionar um trecho da questão ou do cartão e destacá-lo (`htmlComDestaques`, `atributoDestacavel`), por pessoa |
 | `09a-revisao-rapida.js` | 12-B | flashcards |
 | `09b-simulados-e-provas.js` | 13–14 | simulados e provas antigas |
 | `09c-cartoes-em-lote.js` | 12-C | cartões em lote |

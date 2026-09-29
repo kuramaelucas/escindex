@@ -5,7 +5,9 @@ insert into auth.users(id,email,raw_user_meta_data) values
  ('00000000-0000-0000-0000-00000000000a','aluna@x','{"nome":"Aluna A","ano_faculdade":"3º ano"}'),
  ('00000000-0000-0000-0000-00000000000b','aluno@x','{"nome":"Aluno B","ano_faculdade":"4º ano"}'),
  ('00000000-0000-0000-0000-00000000000c','prof@x','{"nome":"Prof C"}'),
- ('00000000-0000-0000-0000-00000000000d','res@x','{"nome":"Res D"}');
+ ('00000000-0000-0000-0000-00000000000d','res@x','{"nome":"Res D"}'),
+ ('00000000-0000-0000-0000-0000000000a1','aluna2@x','{"nome":"Aluna F","ano_faculdade":"3º ano"}'),
+ ('00000000-0000-0000-0000-0000000000a2','aluno2@x','{"nome":"Aluno G","ano_faculdade":"3º ano"}');
 update perfis set status='aprovado';
 update perfis set papel='professor' where email='prof@x';
 update perfis set papel='residente' where email='res@x';
@@ -13,6 +15,11 @@ update perfis set papel='residente' where email='res@x';
 -- teste falhava entre 0h e 3h UTC, quando os dois calendários divergem
 insert into respostas(id,usuario_id,questao_id,area_id,correta,data)
   select 'ra'||g,'00000000-0000-0000-0000-00000000000a','q'||g,'area-cm',g%3<>0,(now() at time zone 'America/Sao_Paulo')::date-g from generate_series(1,40) g;
+-- mais dois alunos do 3º ano com resposta: com a Aluna A são 3, o mínimo para o acerto da turma aparecer
+insert into respostas(id,usuario_id,questao_id,area_id,correta,data)
+  select 'rf'||g,'00000000-0000-0000-0000-0000000000a1','q'||g,'area-cm',true,(now() at time zone 'America/Sao_Paulo')::date-g from generate_series(1,10) g;
+insert into respostas(id,usuario_id,questao_id,area_id,correta,data)
+  select 'rg'||g,'00000000-0000-0000-0000-0000000000a2','q'||g,'area-cm',false,(now() at time zone 'America/Sao_Paulo')::date-g from generate_series(1,10) g;
 insert into resultados_simulados(id,usuario_id,simulado_id,titulo,nota) values
   ('s1','00000000-0000-0000-0000-00000000000a',null,'Prova X',60),
   ('s2','00000000-0000-0000-0000-00000000000b','','Prova X',80);
@@ -30,6 +37,7 @@ set role authenticated;
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
 select pg_temp.igual((select count(*) from painel_turma()), 0, 'aluno não vê o painel da turma');
 select pg_temp.igual((select count(*) from atividade_por_semana(12)), 0, 'aluno não vê a atividade por semana');
+select pg_temp.igual((select count(*) from acerto_por_turma()), 0, 'aluno não vê o acerto da turma');
 select pg_temp.igual((select count(*) from notas_do_simulado('Prova X')), 2, 'percentil enxerga as notas da turma');
 select pg_temp.igual((select count(*) from respostas where usuario_id='00000000-0000-0000-0000-00000000000b'), 0, 'aluno não lê respostas dos outros');
 insert into comentarios(id,questao_id,usuario_id,autor_nome,texto) values ('c1','q1','00000000-0000-0000-0000-00000000000a','Aluna A','dúvida');
@@ -38,13 +46,29 @@ select pg_temp.tem_de_falhar($$insert into comentarios(id,questao_id,usuario_id,
 select pg_temp.tem_de_falhar($$update comentarios set resposta_oficial=true where id='c1'$$, 'aluno virando o próprio comentário em oficial');
 select pg_temp.tem_de_falhar($$update perfis set papel='admin' where id='00000000-0000-0000-0000-00000000000a' returning case when papel='admin' then 1/0 end$$, 'aluno se promovendo');
 
+-- destaques: cada pessoa marca e lê só os seus
+insert into destaques(id,usuario_id,alvo,inicio,fim,trecho) values ('d1','00000000-0000-0000-0000-00000000000a','q:q1:enunciado',3,9,'trecho');
+select pg_temp.tem_de_falhar($$insert into destaques(id,usuario_id,alvo,inicio,fim,trecho) values ('d2','00000000-0000-0000-0000-00000000000b','q:q1:enunciado',0,4,'x')$$, 'destaque em nome de outra pessoa');
+update destaques set removido=true where id='d1';
+select pg_temp.igual((select count(*) from destaques where removido), 1, 'a pessoa desmarca o próprio destaque');
+
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);
+select pg_temp.igual((select count(*) from destaques), 0, 'ninguém lê o destaque de outra pessoa');
 insert into comentarios(id,questao_id,usuario_id,autor_nome,texto,resposta_oficial) values ('c4','q1','00000000-0000-0000-0000-00000000000d','Res D','resposta',true);
 select pg_temp.igual((select count(*) from painel_turma()), 0, 'residente não vê o painel da turma');
+select pg_temp.igual((select count(*) from acerto_por_turma()), 0, 'residente não vê o acerto da turma');
 
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
-select pg_temp.igual((select count(*) from painel_turma()), 2, 'professor vê os dois alunos');
+select pg_temp.igual((select count(*) from painel_turma()), 6, 'professor vê os alunos e a equipe (o uso da equipe também interessa)');
+select pg_temp.igual((select count(*) from painel_turma() where papel<>'aluno'), 2, 'a equipe aparece no painel, com o papel');
+-- a taxa de acerto de cada pessoa não sai do banco, nem para a equipe
+select pg_temp.igual((select count(*) from painel_turma() t, jsonb_object_keys(to_jsonb(t)) k where k ~ 'acerto' or k in ('por_area','media_simulados')), 0, 'painel_turma não devolve acerto de ninguém');
+-- o acerto da turma só existe somado, e só com 3 alunos ou mais
+select pg_temp.igual((select count(*) from acerto_por_turma() where ano_faculdade='3º ano' and grupo_id is null), 1, 'acerto do 3º ano aparece com 3 alunos');
+select pg_temp.igual((select acertos from acerto_por_turma() where ano_faculdade='3º ano' and grupo_id is null), 37, 'acerto do 3º ano é a soma dos três (27 da Aluna A + 10 da F + 0 do G)');
+select pg_temp.igual((select count(*) from acerto_por_turma() where ano_faculdade='4º ano'), 0, 'o 4º ano tem um aluno sem resposta: sem média');
 select pg_temp.igual((select respostas from painel_turma() where nome='Aluna A'), 40, 'painel soma as respostas');
+select pg_temp.igual((select respostas from acerto_por_turma() where ano_faculdade='3º ano' and grupo_id is null), 60, 'o acerto agregado soma as respostas dos três');
 select pg_temp.igual((select respostas_7d from painel_turma() where nome='Aluna A'), 6, 'painel conta os últimos 7 dias');
 update comentarios set removido=true where id='c1';
 select pg_temp.igual((select count(*) from comentarios where removido), 1, 'professor modera comentário');

@@ -456,6 +456,22 @@ function conteudoDaJanela(seq, rotulo, deslocamento, i){
 function subdivisoesDoBloco(bloco){
   return Array.isArray(bloco && bloco.subdivisoes) ? bloco.subdivisoes.filter(Boolean) : [];
 }
+/* ORDEM DOS ESTÁGIOS, POR PESSOA. No 6º ano cada período tem estágios
+   (Emergências Pediátricas, Enfermaria, Neonatal…) e a ordem em que cada
+   aluno os cumpre varia dentro da turma. Em vez de criar uma turma nova por
+   combinação, a pessoa reordena os SEUS estágios em Meu Grupo, sem sair do
+   grupo do rodízio: `usuario.ordemEstagios[idDoBloco] = [nomes na ordem
+   dela]`. Estágio que a coordenação renomeou ou tirou depois some da lista
+   guardada, e o que ela acrescentou entra no fim — a lista da pessoa nunca
+   fica desencontrada do calendário. Só a ordem (e, com ela, as datas de cada
+   estágio) é pessoal: o período e as especialidades continuam os da turma. */
+function ordemDosEstagios(bloco, usuario){
+  const base = subdivisoesDoBloco(bloco);
+  const salva = usuario && usuario.ordemEstagios && usuario.ordemEstagios[bloco.id];
+  if(!Array.isArray(salva) || !salva.length) return base;
+  const validos = salva.filter((nome, i) => base.includes(nome) && salva.indexOf(nome) === i);
+  return validos.concat(base.filter(nome => !validos.includes(nome)));
+}
 /* O tempo do período é repartido em partes iguais entre as subdivisões, em
    dias corridos: o cronograma da faculdade só traz a data do período, e
    dividir igualmente é a regra combinada. Quando a conta não fecha, os dias
@@ -542,7 +558,7 @@ function blocosDoGrupo(grupo, usuario){
     const conteudo = conteudoDaJanela(seq, rotulo, deslocamento, i);
     return {
       id: conteudo.id, nome: conteudo.nome, especialidadeIds: conteudo.especialidadeIds,
-      subdivisoes: conteudo.subdivisoes || [],
+      subdivisoes: ordemDosEstagios(conteudo, usuario || usuarioAtual()),
       ordem: i+1, dataInicio: janela.dataInicio, dataFim: janela.dataFim,
     };
   });

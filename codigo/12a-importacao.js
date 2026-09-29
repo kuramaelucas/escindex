@@ -87,7 +87,8 @@ function regrasDeConteudoImportacao(){
   "- Primeiro: por que a alternativa do gabarito está certa.\n"+
   "- Depois: por que CADA uma das outras está errada, uma por uma, na ordem (A, B, C...), começando pelo que o PRÓPRIO ENUNCIADO diz — o dado do caso que a descarta (idade, sexo, tempo de evolução, sinal ou sintoma presente ou ausente, achado do exame físico, resultado de exame, comorbidade, medicação em uso, contexto epidemiológico). Dizer apenas \"não é a conduta indicada\" não serve: o aluno precisa saber ONDE, no caso, a alternativa morre.\n"+
   "- Quando uma alternativa estiver errada por conhecimento que não vem do caso (dose errada, conduta inexistente, conceito trocado), diga isso explicitamente em vez de inventar uma pista no enunciado.\n"+
-  "- Escreva isso em texto corrido, numa linha só (o campo EXPLICACAO não aceita quebra de linha).\n\n";
+  "- Escreva isso em texto corrido, numa linha só (o campo EXPLICACAO não aceita quebra de linha).\n\n"+
+  regraDeParametrosObjetivos()+"\n";
 }
 /* A imagem da questão (ECG, radiografia, foto de lesão) quase nunca tem um
    endereço na internet: ela está no PDF. Por isso a IA só marca que ela
@@ -103,7 +104,7 @@ function gerarPromptImportacao(){
     "PERGUNTA: [enunciado completo da questão, incluindo o caso clínico se houver]\n"+
     "A: [texto da alternativa A]\nB: [texto da alternativa B]\nC: [texto da alternativa C]\nD: [texto da alternativa D]\nE: [texto da alternativa E]\n"+
     "GABARITO: [letra correta, de A a E]\n"+
-    "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha]\n"+
+    "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha. Quando a conduta depender de um parâmetro objetivo (valor de exame, sinal vital, escore), destaque-o entre ** ** e diga o valor normal e o ponto de corte, como nas regras abaixo]\n"+
     "REFERENCIAS: [as fontes que sustentam a explicação: diretriz/consenso de sociedade de especialidade, protocolo do Ministério da Saúde, PCDT, revisão sistemática ou artigo primário, com nome e ano]\n"+
     linhaImagemDoPrompt()+
     "LEGENDA: [legenda curta da imagem, se houver]\n"+
@@ -120,7 +121,7 @@ function gerarPromptImportacao(){
     "ANO: "+(ctx.ano||new Date().getFullYear())+"\n"+
     "TIPO: "+infoTipoProva(ctx.tipoProva).nome+"\n"+
     "===\n\n"+
-    "Em seguida, para CADA questão da prova, na ordem em que aparecem, gere um bloco EXATAMENTE neste formato, sem markdown, sem numeração extra, sem comentários seus:\n\n"+
+    "Em seguida, para CADA questão da prova, na ordem em que aparecem, gere um bloco EXATAMENTE neste formato, sem markdown (a única marcação permitida são os ** em volta de parâmetros objetivos dentro de EXPLICACAO), sem numeração extra, sem comentários seus:\n\n"+
     "NUMERO: [número da questão na prova]\n"+
     formatoQuestao+
     "\n"+regrasDeConteudoImportacao()+
@@ -134,7 +135,7 @@ function gerarPromptImportacao(){
     "Aqui está a prova (colo o texto abaixo ou anexo o PDF/imagem):\n[COLE AQUI O TEXTO DA PROVA OU ANEXE O ARQUIVO]";
   }
   return "Você vai me ajudar a transcrever questões avulsas de provas "+descricaoProvaNoPrompt(ctx.tipoProva)+" para um formato de texto específico.\n\n"+
-  "Para CADA questão que eu enviar (vou colar o texto, ou anexar um PDF/imagem), gere um bloco EXATAMENTE neste formato, sem nenhum texto antes ou depois, sem markdown, sem numeração extra:\n\n"+
+  "Para CADA questão que eu enviar (vou colar o texto, ou anexar um PDF/imagem), gere um bloco EXATAMENTE neste formato, sem nenhum texto antes ou depois, sem markdown (a única marcação permitida são os ** em volta de parâmetros objetivos dentro de EXPLICACAO), sem numeração extra:\n\n"+
   formatoQuestao+
   "INSTITUICAO: [nome da instituição da prova, ex.: "+(ctx.tipoProva==="graduacao" ? CONFIG.instituicoesGraduacao[0] : CONFIG.bancaFoco)+"]\nANO: [ano da prova]\n"+
   "TIPO: [Residência ou Graduação — prova da faculdade e Teste de Progresso são Graduação; na dúvida, "+infoTipoProva(ctx.tipoProva).nome+"]\n\n"+

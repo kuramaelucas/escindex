@@ -223,6 +223,7 @@ function dbPadrao(){
     favoritos: [],        // {usuarioId, questaoId, data, nota} — nota é a anotação pessoal da questão salva
     favoritosCartoes: [], // {usuarioId, cartaoId, data} — os flashcards salvos, do mesmo jeito
     questoesOcultas: [],  // {usuarioId, questaoId, data} — "não mostrar mais esta questão para mim"
+    destaques: [],        // {id, usuarioId, alvo, inicio, fim, trecho, data} — trechos marcados pela pessoa (seção 11-B)
     revisoes: {},          // revisoes[usuarioId][questaoId] = {repeticoes,fator,intervalo,proximaRevisao,ultimaConfianca}
     simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
     resultadosSimulados: [],
@@ -273,7 +274,7 @@ function garantirEstruturaDb(alvo){
     alvo[chave] = {};
   };
   // o que a turma produziu: preservado sempre que for uma lista
-  lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("sessoes");
+  lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("destaques"); lista("sessoes");
   lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios");
   lista("cargasProvas"); lista("filaNuvem"); lista("grupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
@@ -487,6 +488,8 @@ function loadState(){
     if(!Array.isArray(db.favoritosCartoes)) db.favoritosCartoes = [];
     // esconder questão veio depois: ninguém tem nenhuma escondida ainda
     if(!Array.isArray(db.questoesOcultas)) db.questoesOcultas = [];
+    // destacar texto veio depois: ninguém tem nenhum destaque ainda
+    if(!Array.isArray(db.destaques)) db.destaques = [];
     if(!db.cartoesPorDia) db.cartoesPorDia = {};
     // Cartão agora tem dono: os que têm usuarioId são pessoais (caderno do
     // aluno) e os sem dono são material da equipe. Todo cartão salvo antes

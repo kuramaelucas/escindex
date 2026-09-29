@@ -314,7 +314,7 @@ function htmlListaComentadaPDF(){
     html += `<div class="pdf-questao">
       <span class="pdf-num">${i+1}.</span> ${escapeHtml(q.enunciado)}
       ${q.alternativas.map(a=>`<div class="pdf-alt">${a.id===q.gabarito?"<strong>":""}${escapeHtml(a.id)}) ${escapeHtml(a.texto)}${a.id===q.gabarito?"</strong>":""}</div>`).join("")}
-      <div style="margin-top:.35rem"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${ctx.comExplicacao&&q.explicacaoGeral?" "+escapeHtml(q.explicacaoGeral):""}</div>
+      <div style="margin-top:.35rem"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${ctx.comExplicacao&&q.explicacaoGeral?" "+htmlComDestaques(q.explicacaoGeral, null, true):""}</div>
       ${ctx.comReferencias && q.referencias ? `<div class="pdf-meta">Referências: ${escapeHtml(q.referencias)}</div>` : ""}
       <div class="pdf-meta">${escapeHtml(q.banca)} · ${q.ano} · ${escapeHtml(nomeAssunto(q.assuntoId))}</div>
     </div>`;

@@ -64,6 +64,7 @@ function nuvemAdotarDadosLocais(idLocal){
   db.favoritos.forEach(f => { if(f.usuarioId === idLocal){ f.usuarioId = meuId; movidos++; nuvemRegistrar({favorito:f}); } });
   (db.favoritosCartoes||[]).forEach(f => { if(f.usuarioId === idLocal){ f.usuarioId = meuId; movidos++; nuvemRegistrar({favoritoCartao:f}); } });
   (db.questoesOcultas||[]).forEach(o => { if(o.usuarioId === idLocal){ o.usuarioId = meuId; movidos++; nuvemRegistrar({questaoOculta:o}); } });
+  (db.destaques||[]).forEach(d => { if(d.usuarioId === idLocal){ d.usuarioId = meuId; movidos++; nuvemRegistrar({destaque:d}); } });
   db.flashcards.forEach(c => { if(c.usuarioId === idLocal){ c.usuarioId = meuId; c.criadoPor = meuId; movidos++; nuvemRegistrar({cartaoPessoal:c}); } });
   db.sessoes.forEach(s => { if(s.usuarioId === idLocal){ s.usuarioId = meuId; movidos++; nuvemRegistrar({sessaoConcluida:s}); } });
   db.resultadosSimulados.forEach(r => { if(r.usuarioId === idLocal){ r.usuarioId = meuId; movidos++; nuvemRegistrar({resultadoSimulado:r}); } });
@@ -237,15 +238,21 @@ function notasDaTurmaDoSimulado(chave){
 }
 
 /* ---------------------------- painel da turma -----------------------------
-   Números de cada aluno, somados no próprio banco (painel_turma e
+   Números somados no próprio banco (painel_turma, acerto_por_turma e
    atividade_por_semana, no esquema.sql). Só professor e administrador
-   recebem linhas — para qualquer outra pessoa o banco devolve nada. */
+   recebem linhas — para qualquer outra pessoa o banco devolve nada. O acerto
+   só chega somado por ano e por turma: o de cada pessoa não sai do banco.
+   Banco que ainda não tem acerto_por_turma (esquema.sql antigo) não derruba
+   o painel: as médias somem e a tela diz que faltam. */
 async function nuvemPainelTurma(){
-  const [alunos, semanas] = await Promise.all([
+  const medias = nuvemChamar("/rest/v1/rpc/acerto_por_turma", { method: "POST", body: "{}" })
+    .catch(e => { if(e && e.status === 404) return null; throw e; });
+  const [pessoas, semanas, mediasLinhas] = await Promise.all([
     nuvemChamar("/rest/v1/rpc/painel_turma", { method: "POST", body: "{}" }),
     nuvemChamar("/rest/v1/rpc/atividade_por_semana", { method: "POST", body: JSON.stringify({ p_semanas: 12 }) }),
+    medias,
   ]);
-  return { alunos: alunos || [], semanas: semanas || [] };
+  return { alunos: pessoas || [], semanas: semanas || [], medias: mediasLinhas === null ? null : (mediasLinhas || []) };
 }
 
 /* ---------------------------- aprovar cadastros da turma -----------------

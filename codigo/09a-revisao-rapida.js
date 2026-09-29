@@ -172,6 +172,7 @@ function iniciarSessaoFlashcards(filtro){
   navigate("flashcards");
 }
 function virarFlashcard(){
+  if(haTextoSelecionado()) return;   // quem arrastou para destacar não quis virar o cartão
   const s = state.sessaoFlash; if(!s) return;
   s.virado = !s.virado; render();
 }
@@ -208,8 +209,8 @@ function renderFlashcardEmSessao(s){
       <div class="flash-etiqueta">${s.virado?"Resposta":"Pergunta"}</div>
       ${cartao.imagemUrl ? `<div class="qcard-img-wrap"><img class="qcard-img" src="${escapeHtml(cartao.imagemUrl)}" alt="${escapeHtml(cartao.imagemLegenda||"Imagem do cartão")}" loading="lazy">${cartao.imagemLegenda?`<div class="qcard-img-legenda">${escapeHtml(cartao.imagemLegenda)}</div>`:""}</div>` : ""}
       ${s.virado
-        ? `<div class="flash-verso">${escapeHtml(cartao.verso)}</div>${cartao.fonte ? `<div class="text-xs muted mt-1">Fonte: ${escapeHtml(cartao.fonte)}${cartao.revisao==="pendente" && podeGerirConteudo() ? ' · <span class="badge badge-amber">revisão pendente</span>' : ""}</div>` : ""}`
-        : `<div class="flash-frente">${escapeHtml(cartao.frente)}</div>`}
+        ? `<div class="flash-verso" ${atributoDestacavel(alvoDeCartao(cartao.id,"verso"))}>${htmlComDestaques(cartao.verso, alvoDeCartao(cartao.id,"verso"))}</div>${cartao.fonte ? `<div class="text-xs muted mt-1">Fonte: ${escapeHtml(cartao.fonte)}${cartao.revisao==="pendente" && podeGerirConteudo() ? ' · <span class="badge badge-amber">revisão pendente</span>' : ""}</div>` : ""}`
+        : `<div class="flash-frente" ${atributoDestacavel(alvoDeCartao(cartao.id,"frente"))}>${htmlComDestaques(cartao.frente, alvoDeCartao(cartao.id,"frente"))}</div>`}
       <div class="flash-toque">${iconeSvg("refresh")} ${s.virado?"Clique no cartão para ver a pergunta de novo":"Clique no cartão para ver a resposta"}</div>
     </div>
   </div>
@@ -324,7 +325,7 @@ function abrirFormularioFlashcard(id, opts){
 function preencherCartaoComGabarito(qid){
   const q = getQuestao(qid); if(!q) return;
   const alt = (q.alternativas||[]).find(a=>a.id===q.gabarito);
-  const texto = (alt ? q.gabarito+") "+alt.texto : "Gabarito: "+q.gabarito) + (q.explicacaoGeral ? "\n\n"+q.explicacaoGeral : "");
+  const texto = (alt ? q.gabarito+") "+alt.texto : "Gabarito: "+q.gabarito) + (q.explicacaoGeral ? "\n\n"+textoSemEnfase(q.explicacaoGeral) : "");
   const campo = document.getElementById("fcVerso");
   if(campo){ campo.value = texto; campo.focus(); }
 }
