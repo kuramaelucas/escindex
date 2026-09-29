@@ -384,11 +384,10 @@ function registrarRevisao(usuarioId, questaoId, correta, confianca){
   const escada = (db.configGeral && db.configGeral.intervalosBase) || CONFIG.intervalosBase;
   if(q < 3){ entry.repeticoes = 0; entry.intervalo = escada[0]; }
   else{
-    const repeticoesAntes = entry.repeticoes;
     entry.repeticoes += 1;
     if(confianca === "chute"){
-      // acertou no chute: volta logo, no máximo em 2 dias — ver a regra abaixo
-      entry.intervalo = Math.min(repeticoesAntes < escada.length ? escada[repeticoesAntes] : Math.round(entry.intervalo * entry.fator), 2);
+      // acertou no chute: volta no prazo mínimo — ver a regra abaixo
+      entry.intervalo = CONFIG.intervaloMinimoRevisao;
     }else{
       // acerto com segurança: o intervalo mínimo é de um mês (ver
       // CONFIG.intervalosAposAcerto). A resposta de agora já está em
@@ -403,21 +402,24 @@ function registrarRevisao(usuarioId, questaoId, correta, confianca){
     }
   }
   entry.fator = Math.max(1.3, entry.fator + (0.1 - (5-q)*(0.08+(5-q)*0.02)));
-  // regra especial pedida: acertou no chute continua "voltando" logo, não deixamos
-  // a questão "se aposentar" da revisão só porque o chute deu certo
-  if(confianca==="chute"){ entry.intervalo = Math.min(entry.intervalo, 2); entry.repeticoes = Math.min(entry.repeticoes,1); }
+  // acertou no chute: volta no prazo mínimo, e não deixamos a questão "se
+  // aposentar" da revisão só porque o chute deu certo
+  if(confianca==="chute"){ entry.intervalo = CONFIG.intervaloMinimoRevisao; entry.repeticoes = Math.min(entry.repeticoes,1); }
+  // a escada configurável (db.configGeral) pode trazer degraus curtos: o piso vale sempre
+  entry.intervalo = Math.max(entry.intervalo, CONFIG.intervaloMinimoRevisao);
   entry.proximaRevisao = somarDias(hojeISO(), entry.intervalo);
   entry.ultimaConfianca = confianca; entry.ultimaCorreta = correta; entry.ultimaData = hojeISO();
   db.revisoes[usuarioId][questaoId] = entry;
   nuvemRegistrar({usuarioId, questaoId, revisao:entry});
 }
-/* Quando a questão volta de fato. Revisões guardadas antes da regra do mês
-   mínimo podem trazer prazo curto depois de um acerto firme; o piso vale
-   para elas também, sem precisar reescrever o que já está guardado. */
+/* Quando a questão volta de fato. Revisões guardadas antes dos pisos (um mês
+   depois de acerto firme, uma semana nos demais casos) podem trazer prazo
+   curto; o piso vale para elas também, sem reescrever o que já está guardado. */
 function proximaRevisaoEfetiva(entry){
   if(!entry || !entry.proximaRevisao) return null;
-  if(entry.ultimaCorreta && entry.ultimaConfianca !== "chute" && entry.ultimaData){
-    const piso = somarDias(entry.ultimaData, CONFIG.intervalosAposAcerto[0]);
+  if(entry.ultimaData){
+    const acertoFirme = entry.ultimaCorreta && entry.ultimaConfianca !== "chute";
+    const piso = somarDias(entry.ultimaData, acertoFirme ? CONFIG.intervalosAposAcerto[0] : CONFIG.intervaloMinimoRevisao);
     if(piso > entry.proximaRevisao) return piso;
   }
   return entry.proximaRevisao;
@@ -616,7 +618,7 @@ function proximaRevisaoAssunto(usuarioId, assuntoId){
   const ultimas = respostas.slice(-10);
   const taxa = ultimas.filter(r=>r.correta).length/ultimas.length;
   const ultimaData = respostas[respostas.length-1].data;
-  const intervalo = taxa>=0.8 ? 21 : taxa>=0.6 ? 14 : taxa>=0.4 ? 7 : 3;
+  const intervalo = taxa>=0.8 ? 21 : taxa>=0.6 ? 14 : taxa>=0.4 ? 7 : CONFIG.intervaloMinimoRevisao;
   return { proxima: somarDias(ultimaData, intervalo), taxa, ultimaData, intervaloAplicado:intervalo };
 }
 function assuntosParaRevisarHoje(usuarioId){
@@ -817,7 +819,7 @@ function buscarQuestoesPorFiltro(usuarioId, filtros){
 function questoesErroOrdenadasPorAntiguidade(usuarioId){
   const pool = questoesParaEstudo(usuarioId).filter(q=>{
     const u = ultimaResposta(usuarioId,q.id);
-    return u && (!u.correta || u.confianca==="chute");
+    return u && (!u.correta || u.confianca==="chute") && diasEntre(u.data, hojeISO()) >= CONFIG.intervaloMinimoRevisao;
   });
   return pool.map(q=>({questao:q, ultima:ultimaResposta(usuarioId,q.id)}))
     .sort((a,b)=>a.ultima.data.localeCompare(b.ultima.data)); // mais antigas primeiro

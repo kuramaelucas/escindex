@@ -66,9 +66,13 @@ const CONFIG = {
   // prevalencia: assuntos mais cobrados nas provas aparecem antes (são tratados como "mais fáceis/prioritários")
   pesosDificuldade: { taxaAcerto: 0.5, especificidade: 0.25, prevalencia: 0.25 },
 
+  /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
+     acerto: voltar em 1 ou 2 dias é reler, não recuperar da memória. Vale
+     também para o prazo de assunto e para a lista "Revisar erros". */
+  intervaloMinimoRevisao: 7,
   // escada de intervalos (dias) usada como ponto de partida da repetição
   // espaçada: o primeiro degrau é a volta depois de um erro
-  intervalosBase: [1, 3, 7, 16, 35, 75],
+  intervalosBase: [7, 14, 21, 35, 75, 120],
   /* Depois de um ACERTO com segurança (certeza ou dúvida, não chute) a questão
      só volta bem mais tarde: 1º acerto seguido, 30 dias; 2º, 60. No 3º ela
      está dominada e sai da revisão espaçada (acertosParaDominarQuestao). Errar

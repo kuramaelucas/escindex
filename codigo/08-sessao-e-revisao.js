@@ -1059,7 +1059,7 @@ function renderRevisao(){
   <div class="card">
     <div class="card-title">Revisão espaçada de questões (${totalEspacada})</div>
     <p class="text-sm muted">Vem nesta ordem: primeiro as questões dos assuntos que você já estudou e <strong>ainda não viu</strong> (${naoVistas}); depois as que você <strong>errou ou acertou no chute</strong> (${porErro}); por último as que você acertou e já passou o prazo (${porDecaimento}).</p>
-    <p class="text-xs muted mt-1">Questão que você acertou com segurança só volta depois de <strong>1 mês</strong> — e de 2 meses no segundo acerto seguido; em assunto em que você vai bem, o prazo cresce ainda mais. Depois de <strong>3 acertos seguidos</strong> ela sai da revisão espaçada. Errar zera a conta e a questão volta logo.</p>
+    <p class="text-xs muted mt-1">Questão que você acertou com segurança só volta depois de <strong>1 mês</strong> — e de 2 meses no segundo acerto seguido; em assunto em que você vai bem, o prazo cresce ainda mais. Depois de <strong>3 acertos seguidos</strong> ela sai da revisão espaçada. Errar (ou acertar no chute) zera a conta e a questão volta em <strong>1 semana</strong> — nenhuma questão reaparece antes disso.</p>
     <button class="btn btn-primary mt-2" onclick="iniciarRevisaoEspacada()" ${!totalEspacada?"disabled":""}>Revisar agora</button>
   </div>
   <div class="card mt-2">
@@ -1112,7 +1112,7 @@ function renderRevisao(){
     <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${!erros.length?"disabled":""}>Revisar só erros</button>
   </div>
   <div class="card-flat mt-2 text-sm">
-    <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute). A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo, mas sem repetir o que você já domina: acerto seguro espera um mês e, depois de três, a questão sai da fila. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
+    <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute), mas nunca abaixo de 1 semana. A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo, mas sem repetir o que você já domina: acerto seguro espera um mês e, depois de três, a questão sai da fila. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
   </div>`;
 }
 /* As questões que a pessoa já errou, com quantas vezes cada uma — a

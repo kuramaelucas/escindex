@@ -132,15 +132,15 @@ test("revisão espaçada: não vistas, depois erros, depois acertos vencidos —
     });
     assert.equal(r.primeiro.intervalo, 30, "primeiro acerto seguro: um mês");
     assert.equal(r.primeiro.prox, "2026-03-31");
-    assert.equal(r.primeiro.intervaloErro, 1, "errar volta no dia seguinte");
+    assert.equal(r.primeiro.intervaloErro, 7, "errar volta em uma semana, nunca antes");
     assert.equal(r.venceEm29, false);
     assert.equal(r.venceEm30, true);
     assert.ok(r.ordenada, "não vistas antes de erros, erros antes de acertos vencidos");
     assert.ok(r.posicoes.nova >= 0 && r.posicoes.nova < r.posicoes.erro && r.posicoes.erro < r.posicoes.certa, JSON.stringify(r.posicoes));
     assert.equal(r.segundo, 60);
     assert.deepEqual(r.dominada, { dominada: true, vencida: false, naLista: false, naFila: false });
-    assert.deepEqual(r.aposErro, { dominada: false, intervalo: 1 });
-    assert.equal(r.chute.intervalo <= 2, true);
+    assert.deepEqual(r.aposErro, { dominada: false, intervalo: 7 });
+    assert.equal(r.chute.intervalo, 7, "acerto no chute também espera a semana mínima");
     assert.equal(r.chute.firmes, 0);
     assert.match(r.tela, /ainda não viu/);
     assert.match(r.tela, /3 acertos seguidos/);
