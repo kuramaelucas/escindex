@@ -55,6 +55,12 @@ porque todo o resto aponta para ela):
 | `prova-amrigs-2023.js` | AMRIGS 2023 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
 | `prova-amrigs-2024.js` | AMRIGS 2024 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
 | `prova-amrigs-2025.js` | AMRIGS 2025 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
+| `prova-iamspe-2021.js` | IAMSPE 2021 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
+| `prova-iamspe-2022.js` | IAMSPE 2022 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
+| `prova-iamspe-2023.js` | IAMSPE 2023 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
+| `prova-iamspe-2025.js` | IAMSPE 2025 (Avança SP, Acesso Direto), prova real | 100 |
+| `prova-iamspe-2026.js` | IAMSPE 2026 (Avança SP, Acesso Direto), prova real | 100 |
+| `prova-unesp-2023.js` | UNESP (FMB) 2023 (R1 Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
@@ -62,7 +68,7 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **2.733 questões** (2.598 reais, de 25 provas), **943 cartões**, **238 assuntos** (todos com pelo
+Total: **3.273 questões** (3.138 reais, de 31 provas), **943 cartões**, **238 assuntos** (todos com pelo
 menos 3 cartões da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
@@ -75,7 +81,7 @@ ver `imagens/LEIA-ME.md`, que lista as 233 que ainda faltam. O resumo de tudo o 
 Esvazie **só** o `demonstracao.js` — deixe as três listas como `[]`. A
 plataforma abre limpa, sem contas de teste, sem comentários inventados e sem
 os agradecimentos de exemplo, e não perde questão, cartão nem calendário. Os
-outros trinta e três arquivos continuam valendo.
+outros trinta e seis arquivos continuam valendo.
 
 As contas de teste já estão no mínimo: **uma** de administrador (a da
 coordenação que mantém a plataforma) mais professor, residente e aluno, que

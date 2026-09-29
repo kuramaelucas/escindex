@@ -106,7 +106,7 @@ const CONFIG = {
   // ou não. Enunciado e gabarito oficiais de provas públicas são domínio
   // público e podem ser usados integralmente; ver a nota de política de
   // conteúdo logo acima de SEED_QUESTOES.
-  instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (Famema/Botucatu)", "AMRIGS"],
+  instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (FMB)", "AMRIGS"],
   // o mesmo, para as provas da graduação
   instituicoesGraduacao: ["Teste de Progresso"],
 

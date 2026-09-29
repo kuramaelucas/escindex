@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 27/09/2026: 2.733 questões, das quais 2.598 reais, de 25 provas.
+Situação em 29/09/2026: 3.273 questões, das quais 3.138 reais, de 31 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -33,6 +33,11 @@ O caderno oficial de cada ano resolve.
 Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto no material de origem]".
 
 ## 3. Gabaritos para conferir
+
+### UNESP 2023: gabarito da edição usada, não da folha oficial
+
+Conferir as 100 questões contra o gabarito definitivo da banca e marcar as anuladas (a edição não informa nenhuma).
+A explicação já avisa onde a alternativa dada como certa tem imprecisão: 2023-8 (a adrenalina intramuscular é a de 1:1.000, não 1:10.000) e 2023-59 (tratamento do HIV "na fase de contágio").
 
 ### USP-RP 2021 a 2025: gabarito vindo do PDF comentado, não da folha oficial
 
@@ -84,6 +89,21 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | Questão | Ponto de dúvida |
 | --- | --- |
 | USP-SP 2025-114 | A alternativa D também seria defensável pelos dados da tabela |
+| IAMSPE 2021-8 | Os valores da gasometria não fecham entre si (pH, pCO2, bicarbonato e BE) |
+| IAMSPE 2021-29 | O preparo intestinal com antibiótico oral (E) é hoje recomendado na cirurgia colorretal eletiva |
+| IAMSPE 2021-31 | O item "jejum oral" foi dado como certo; as diretrizes atuais preferem a dieta oral precoce |
+| IAMSPE 2021-78 | Estudo ecológico: "conclusões generalizáveis com maior facilidade" é a resposta da banca, mas é discutível |
+| IAMSPE 2022-25 | Marcadores: a banca deu fígado–CEA/alfafetoproteína (D); estômago–CEA/CA 19-9 (A) também é verdadeira |
+| IAMSPE 2022-32 | Pela recomendação atual, a semaglutida também seria suspensa (seriam três medicações, não duas) |
+| IAMSPE 2023-18 | Fratura do enforcado: a banca deu "bom prognóstico" (B), mas "fratura do áxis" (A) também é verdadeira |
+| IAMSPE 2025-11 | Resistência do pneumococo às quinolonas: a banca começa por gyrA; para a levofloxacina, a literatura aponta parC |
+| IAMSPE 2025-61 | Moro: a banca deu a ausência bilateral (E); a assimetria (B) também é anormal |
+| IAMSPE 2025-64 | Rotavírus: A e C estão ambas corretas |
+| IAMSPE 2025-71 | Marcos até 6 meses: a banca deu E; D (controle cefálico) também é marco do período |
+| IAMSPE 2025-77 | Tuberculose na criança: a banca deu D; A também é incorreta (sem etambutol abaixo de 10 anos) |
+| IAMSPE 2025-89 | Hanseníase: a banca aceitou a especificidade de 95% da A; a B descreve achado real da forma indeterminada |
+| IAMSPE 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
+| IAMSPE 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
 
 ## 4. Figuras para anexar (233)
 
@@ -91,7 +111,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
 Pela plataforma: **Questões para Atualizar › Enviar a figura** libera a questão na hora (com a nuvem, para toda a turma), e **Baixar as atualizações** + `npm run atualizar-dados -- arquivo.json` traz as figuras e os consertos para cá.
 O nome exato de cada arquivo e a descrição do que a prova mostrava estão em `dados/imagens/LEIA-ME.md`.
-As provas da AMRIGS (2022 a 2025) e a USP-RP 2026 já têm todas as figuras.
+As provas da AMRIGS (2022 a 2025), a USP-RP 2026, as do IAMSPE (2021 a 2026) e a UNESP 2023 já têm todas as figuras.
 
 | Prova | Qtd | Questões |
 | --- | --- | --- |
@@ -130,3 +150,4 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
 - **UNIFESP 2022 a 2026**: 13 figuras.
 - **AMRIGS 2021**: a prova inteira.
+- **UNESP 2023**: o gabarito definitivo oficial.
