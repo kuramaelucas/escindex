@@ -1,0 +1,791 @@
+﻿id;prova;especialidade;assunto;prioridade;escores;parametros_no_enunciado
+q-amrigs2022-038;AMRIGS 2022 #38;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;
+q-amrigs2022-040;AMRIGS 2022 #40;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;
+q-amrigs2022-042;AMRIGS 2022 #42;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;percentil;
+q-amrigs2022-054;AMRIGS 2022 #54;Ginecologia Geral;Climatério;1-falta valor de referência;birads;
+q-amrigs2023-022;AMRIGS 2023 #22;Abdome Agudo;Pancreatite Aguda;1-falta valor de referência;ranson;
+q-amrigs2023-033;AMRIGS 2023 #33;Infectologia;Antibioticoterapia e Resistência;1-falta valor de referência;child-pugh;
+q-amrigs2023-068;AMRIGS 2023 #68;Neonatologia;Exame Físico do Recém-Nascido e Tocotraumatismos;1-falta valor de referência;percentil;
+q-amrigs2023-071;AMRIGS 2023 #71;Infectologia;Meningites;1-falta valor de referência;;280 mg/dl, 26 mg/dl, 284 mg/dl
+q-amrigs2024-077;AMRIGS 2024 #77;Neurologia;Coma, Reflexos de Tronco e Morte Encefálica;1-falta valor de referência;glasgow;
+q-amrigs2025-033;AMRIGS 2025 #33;Trauma;Trauma Abdominal;1-falta valor de referência;;130 bpm, 50 mmhg, 4,8 mmol/l, 34,2 °c, fc 1, pa 8
+q-amrigs2025-034;AMRIGS 2025 #34;Abdome Agudo;Obstrução Intestinal;1-falta valor de referência;;110 bpm, 70 mmhg, 37,7 °c, fc 1, pa 1
+q-amrigs2025-037;AMRIGS 2025 #37;Abdome Agudo;Cirurgia Bariátrica e Complicações;1-falta valor de referência;;92 bpm, 67 mmhg, 36,8 °c, 122 mg/dl, pa de 1, glicemia de 1
+q-amrigs2025-056;AMRIGS 2025 #56;Obstetrícia;Trabalho de Parto;1-falta valor de referência;bishop;
+q-amrigs2025-099;AMRIGS 2025 #99;Psiquiatria;Transtornos do Humor;1-falta valor de referência;;70 mmhg, 85 mmhg, pa de 1
+q-iamspe2021-001;IAMSPE 2021 #1;Endocrinologia;Distúrbios Adrenais;1-falta valor de referência;;50 mmhg, 118 bpm, 52 mg/dl, 60 mmhg, 125 meq/l, 6,7 meq/l
+q-iamspe2021-002;IAMSPE 2021 #2;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;100 mmhg, imc de 2, pa de 1, pa de 2
+q-iamspe2021-016;IAMSPE 2021 #16;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;77 bpm, 70 mmhg, fc de 7, pa de 1
+q-iamspe2021-024;IAMSPE 2021 #24;Abdome Agudo;Pancreatite Aguda;1-falta valor de referência;;11 mg/dl, hemoglobina de 1, leucócitos de 1, glicemia de 1
+q-iamspe2021-038;IAMSPE 2021 #38;Infectologia;Infecção do Trato Urinário;1-falta valor de referência;;90 rpm, 50 mmhg, fc de 9, fr de 1, pa de 8
+q-iamspe2022-003;IAMSPE 2022 #3;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;fr de 3, pa de 9, fc de 9
+q-iamspe2022-015;IAMSPE 2022 #15;Nefrologia;Doença Renal Crônica;1-falta valor de referência;;165 mg/dl, 55 mg/dl, 1,3 mg/dl, glicemia de 1, ureia de 5, creatinina de 1
+q-iamspe2022-027;IAMSPE 2022 #27;Abdome Agudo;Apendicite Aguda;1-falta valor de referência;alvarado;9 mil/mm, leucócitos de 9
+q-iamspe2022-042;IAMSPE 2022 #42;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;percentil;427 mg/dl, 215 mg/dl, glicemia de 4, glicemia 2
+q-iamspe2022-058;IAMSPE 2022 #58;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;148 bpm, 130 bpm, 40 mmhg
+q-iamspe2022-063;IAMSPE 2022 #63;Obstetrícia;Trabalho de Parto;1-falta valor de referência;bishop;
+q-iamspe2023-008;IAMSPE 2023 #8;Nefrologia;Doença Renal Crônica;1-falta valor de referência;ckd-epi;
+q-iamspe2023-012;IAMSPE 2023 #12;Gastroenterologia;Cirrose e Complicações;1-falta valor de referência;child-pugh;
+q-iamspe2025-021;IAMSPE 2025 #21;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;12,3 g/dl, 1,3 mg/dl, 0,94 mg/dl, 215 u/l, 748 u/l, 97 u/l
+q-iamspe2025-027;IAMSPE 2025 #27;Abdome Agudo;Obstrução Intestinal;1-falta valor de referência;;10,7 g/dl, 1,9 mg/dl, 64 mg/dl, 134 meq/l, 3,7 meq/l, 28 u/l
+q-iamspe2025-029;IAMSPE 2025 #29;Abdome Agudo;Apendicite Aguda;1-falta valor de referência;;12,6 g/dl, 1,01 mg/dl, 21,8 mg/dl, 23,9 mg/l, hemoglobina: 1, leucócitos: 1
+q-iamspe2025-030;IAMSPE 2025 #30;Cirurgia Torácica;Perfuração Esofágica (Síndrome de Boerhaave);1-falta valor de referência;;11,1 g/dl, 1,23 mg/l, 0,65 mg/dl, 24 mg/dl, 139 meq/l, 4,0 meq/l
+q-iamspe2025-031;IAMSPE 2025 #31;Abdome Agudo;Doença Diverticular;1-falta valor de referência;;14,8 g/dl, 16g/dl, 9 mg/l, 5 mg/l, hemoglobina 1, leucócitos 8
+q-iamspe2025-032;IAMSPE 2025 #32;Cirurgia Vascular;Doença Venosa (TVP e Varizes);1-falta valor de referência;wells;80 mmhg, 82 bpm, pa 1
+q-iamspe2025-037;IAMSPE 2025 #37;Trauma;Trauma Torácico (Lesões de Aorta, Hilo Pulmonar);1-falta valor de referência;;90 mmhg, 82 bpm, pa 1
+q-iamspe2025-039;IAMSPE 2025 #39;Urologia;Litíase Urinária;1-falta valor de referência;;14,3 g/dl, 1,2 g/dl, hb 1, leucócitos 9, leucócitos 1
+q-iamspe2025-040;IAMSPE 2025 #40;Abdome Agudo;Doença Diverticular;1-falta valor de referência;;12,6 g/dl, 1,2 mg/dl, 21,8 mg/dl, 23,9 mg/l, 1,0 mg/l, hemoglobina: 1
+q-iamspe2025-079;IAMSPE 2025 #79;Neonatologia;Reanimação Neonatal;1-falta valor de referência;apgar;
+q-iamspe2026-001;IAMSPE 2026 #1;Cardiologia;Arritmias Cardíacas;1-falta valor de referência;cha2ds2-vasc;80 mmhg, 110 bpm
+q-iamspe2026-008;IAMSPE 2026 #8;Pneumologia;Pneumonia Adquirida na Comunidade;1-falta valor de referência;curb-65;
+q-iamspe2026-010;IAMSPE 2026 #10;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;framingham;
+q-iamspe2026-017;IAMSPE 2026 #17;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;framingham;
+q-iamspe2026-026;IAMSPE 2026 #26;Abdome Agudo;Obstrução Intestinal;1-falta valor de referência;;80 mmhg, 92 bpm, 123 mg/dl
+q-iamspe2026-028;IAMSPE 2026 #28;Trauma;Trauma Abdominal;1-falta valor de referência;glasgow, nexus, canadian;96 bpm, 70 mmhg, 12,9 g/dl, saturação de 9
+q-iamspe2026-029;IAMSPE 2026 #29;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;38,6 °c, 106 bpm, 87 mmhg, 2.000/mm3, 11g/dl, 28mg/dl
+q-iamspe2026-030;IAMSPE 2026 #30;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;70 mmhg, 85 bpm, saturação de 9
+q-iamspe2026-032;IAMSPE 2026 #32;Trauma;Queimaduras;1-falta valor de referência;glasgow;90 mmhg, 110 bpm
+q-iamspe2026-040;IAMSPE 2026 #40;Abdome Agudo;Doença Diverticular;1-falta valor de referência;;60 mmhg, 110 bpm, pa 9, fc 1
+q-iamspe2026-054;IAMSPE 2026 #54;Obstetrícia;Puerpério e suas Complicações (Infecção, Transtornos Mentais);1-falta valor de referência;apgar;60 mmhg, 100 bpm, pa de 9
+q-iamspe2026-099;IAMSPE 2026 #99;Pneumologia;Tromboembolismo Pulmonar;1-falta valor de referência;;28 irpm, 110 bpm, 60 mmhg, fr=2, fc=1, pa=1
+q-inf-01;Esc — Banco Didático 2026;Infectologia;Sepse;1-falta valor de referência;sofa;
+q-scmsp2021-001;Santa Casa de São Paulo (FCMSCSP) 2021 #1;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;109 mg/dl, 0.9 mg/dl, 31mg/dl, creatinina 0, ureia 3
+q-scmsp2021-003;Santa Casa de São Paulo (FCMSCSP) 2021 #3;Nefrologia;Injúria Renal Aguda;1-falta valor de referência;;48 mg/dl, 0,7 mg/dl, ureia 4, creatinina 0
+q-scmsp2021-032;Santa Casa de São Paulo (FCMSCSP) 2021 #32;Ortopedia e Traumatologia;Fraturas e Luxações;1-falta valor de referência;glasgow;120 bpm
+q-scmsp2021-038;Santa Casa de São Paulo (FCMSCSP) 2021 #38;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;
+q-scmsp2021-039;Santa Casa de São Paulo (FCMSCSP) 2021 #39;Abdome Agudo;Apendicite Aguda;1-falta valor de referência;alvarado;
+q-scmsp2021-049;Santa Casa de São Paulo (FCMSCSP) 2021 #49;Emergências Pediátricas;Insuficiência Respiratória e PCR em Pediatria;1-falta valor de referência;;170 bpm, 40 mmhg, fr de 3, fc de 1, pa de 7
+q-scmsp2021-052;Santa Casa de São Paulo (FCMSCSP) 2021 #52;Hematologia;Doença Falciforme e Hemoglobinopatias;1-falta valor de referência;;38,8 °c, 142 bpm, 50 mmhg, 6 g/dl, fr de 3, fc de 1
+q-scmsp2021-053;Santa Casa de São Paulo (FCMSCSP) 2021 #53;Neonatologia;Triagem Neonatal (Teste do Pezinho);1-falta valor de referência;;130 meq/l, 6,3 meq/l, 99 meq/l, 30 mmhg, glicemia 3, ph 7
+q-scmsp2021-055;Santa Casa de São Paulo (FCMSCSP) 2021 #55;Infectologia;Meningites;1-falta valor de referência;;38 °c, 38,2 °c, 123 bpm, 45 mmhg, fr de 2, fc de 1
+q-scmsp2021-078;Santa Casa de São Paulo (FCMSCSP) 2021 #78;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;glasgow;121 mmhg, 96 bpm, 92 bpm, 5 bpm, pa de 1
+q-scmsp2021-097;Santa Casa de São Paulo (FCMSCSP) 2021 #97;Saúde da Família;Benefícios Sociais e Previdenciários (BPC, Auxílio-doença);1-falta valor de referência;;82 mmhg, 70 bpm, pa de 1, fc de 7
+q-scmsp2022-001;Santa Casa de São Paulo (FCMSCSP) 2022 #1;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;24 irpm, 110 bpm, 70 mmhg, fr de 2, fc de 1, pa de 1
+q-scmsp2022-002;Santa Casa de São Paulo (FCMSCSP) 2022 #2;Trauma;Trauma Torácico (Lesões de Aorta, Hilo Pulmonar);1-falta valor de referência;glasgow;24 irpm, 120 bpm, 50 mmhg, fr de 2, fc de 1, pa de 9
+q-scmsp2022-003;Santa Casa de São Paulo (FCMSCSP) 2022 #3;Trauma;Trauma Torácico (Lesões de Aorta, Hilo Pulmonar);1-falta valor de referência;;28 irpm, 110 bpm, 55 mmhg, fr de 2, fc de 1
+q-scmsp2022-004;Santa Casa de São Paulo (FCMSCSP) 2022 #4;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;14,4 g/dl, 16 g/dl, 2 mg/l, 1.3 mg/l, 1.8 mg/dl, 2 mg/dl
+q-scmsp2022-007;Santa Casa de São Paulo (FCMSCSP) 2022 #7;Trauma;Trauma Abdominal;1-falta valor de referência;;120 bpm, 60 mmhg, fc de 1, pa de 8
+q-scmsp2022-011;Santa Casa de São Paulo (FCMSCSP) 2022 #11;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;
+q-scmsp2022-021;Santa Casa de São Paulo (FCMSCSP) 2022 #21;Pneumologia;Asma;1-falta valor de referência;;155 bpm, fr de 4, fc de 1
+q-scmsp2022-025;Santa Casa de São Paulo (FCMSCSP) 2022 #25;Emergências Pediátricas;Insuficiência Respiratória e PCR em Pediatria;1-falta valor de referência;;140 bpm, 45 mmhg, 180 bpm, 30 mmhg, fc de 1, fr de 5
+q-scmsp2022-034;Santa Casa de São Paulo (FCMSCSP) 2022 #34;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;1,6 g/dl, 1 mg/dl, 70 mg/dl, creatinina de 1, ureia de 7
+q-scmsp2022-038;Santa Casa de São Paulo (FCMSCSP) 2022 #38;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;450 mg/dl, 9 meq/l, 4,6 meq/l, ph de 7, bicarbonato de 9
+q-scmsp2022-039;Santa Casa de São Paulo (FCMSCSP) 2022 #39;Infectologia Pediátrica;Doenças Exantemáticas;1-falta valor de referência;;6 mg/dl, 78 mm/h, 9,5 g/dl, 16.700/mm3, 200.000/mm3, 3 g/dl
+q-scmsp2022-054;Santa Casa de São Paulo (FCMSCSP) 2022 #54;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;50 mmhg, 101 bpm, pa de 9, fc de 1
+q-scmsp2022-069;Santa Casa de São Paulo (FCMSCSP) 2022 #69;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;
+q-scmsp2023-004;Santa Casa de São Paulo (FCMSCSP) 2023 #4;Pneumologia;Tromboembolismo Pulmonar;1-falta valor de referência;pesi;18 ml/min, creatinina de 1
+q-scmsp2023-012;Santa Casa de São Paulo (FCMSCSP) 2023 #12;Psiquiatria;Transtornos por Uso de Substâncias;1-falta valor de referência;;40 bpm, 100 mmhg, 55 mmhg, 120 bpm, saturação de 9, fc de 1
+q-scmsp2023-013;Santa Casa de São Paulo (FCMSCSP) 2023 #13;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;glasgow;120 bpm, 100 mmhg, 55 mmhg, 22 mmhg, 40 mg/dl, fc de 1
+q-scmsp2023-014;Santa Casa de São Paulo (FCMSCSP) 2023 #14;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;glasgow;120 bpm, 100 mmhg, 55 mmhg, 22 mmhg, 40 mg/dl, fc de 1
+q-scmsp2023-015;Santa Casa de São Paulo (FCMSCSP) 2023 #15;Pneumologia;Ventilação Mecânica Invasiva;1-falta valor de referência;glasgow;120 bpm, 100 mmhg, 55 mmhg, 22 mmhg, 40 mg/dl, fc de 1
+q-scmsp2023-017;Santa Casa de São Paulo (FCMSCSP) 2023 #17;Cardiologia;Doenças do Pericárdio;1-falta valor de referência;;70 mmhg, 40 mmhg, 130 bpm
+q-scmsp2023-019;Santa Casa de São Paulo (FCMSCSP) 2023 #19;Cirurgia Vascular;Dissecção de Aorta;1-falta valor de referência;;85 bpm, 160 mmhg, 80 mmhg
+q-scmsp2023-020;Santa Casa de São Paulo (FCMSCSP) 2023 #20;Nefrologia;Injúria Renal Aguda;1-falta valor de referência;;70 bpm, 130 mmhg, 80 mmhg, 26 mmol/l, 28 mmol/l, 4,1 meq/l
+q-scmsp2023-027;Santa Casa de São Paulo (FCMSCSP) 2023 #27;Cirurgia Oncológica;Câncer Colorretal;1-falta valor de referência;ecog, karnofsky;
+q-scmsp2023-031;Santa Casa de São Paulo (FCMSCSP) 2023 #31;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow, nexus;88 bpm
+q-scmsp2023-032;Santa Casa de São Paulo (FCMSCSP) 2023 #32;Trauma;Trauma Torácico (Lesões de Aorta, Hilo Pulmonar);1-falta valor de referência;glasgow;100 bpm
+q-scmsp2023-033;Santa Casa de São Paulo (FCMSCSP) 2023 #33;Trauma;Trauma Abdominal;1-falta valor de referência;glasgow;92 bpm
+q-scmsp2023-038;Santa Casa de São Paulo (FCMSCSP) 2023 #38;Cirurgia Oncológica;Câncer Gástrico;1-falta valor de referência;;120 bpm, 80 mmhg, 60 mmhg
+q-scmsp2023-040;Santa Casa de São Paulo (FCMSCSP) 2023 #40;Abdome Agudo;Obstrução Intestinal;1-falta valor de referência;;100 bpm, 120 mmhg, 70 mmhg
+q-scmsp2023-046;Santa Casa de São Paulo (FCMSCSP) 2023 #46;Emergências Pediátricas;Suspeita de Maus-tratos Infantis;1-falta valor de referência;glasgow;
+q-scmsp2023-048;Santa Casa de São Paulo (FCMSCSP) 2023 #48;Hematologia;Doença Falciforme e Hemoglobinopatias;1-falta valor de referência;;130 bpm, 5,5 g/dl, 8,5 g/dl, 6.500/mm3, 0,5 mg/dl, hb = 5
+q-scmsp2023-056;Santa Casa de São Paulo (FCMSCSP) 2023 #56;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;50 bpm, 36,4 °c, 150 mmhg, 100 mmhg
+q-scmsp2023-057;Santa Casa de São Paulo (FCMSCSP) 2023 #57;Alergia e Imunologia;Anafilaxia e Reações Alérgicas Graves;1-falta valor de referência;;120 bpm, 70 mmhg, 40 mmhg
+q-scmsp2023-058;Santa Casa de São Paulo (FCMSCSP) 2023 #58;Alergia e Imunologia;Anafilaxia e Reações Alérgicas Graves;1-falta valor de referência;;120 bpm, 70 mmhg, 40 mmhg
+q-scmsp2023-062;Santa Casa de São Paulo (FCMSCSP) 2023 #62;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;30 ng/ml, 20 ng/ml, 3,2 ui/l, 10,0 ui/l, 21 ng/dl, 23,3 ng/dl
+q-scmsp2025-002;Santa Casa de São Paulo (FCMSCSP) 2025 #2;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;94 mmhg, 22 mmhg, 20 meq/l, ph: 7, bicarbonato: 2
+q-scmsp2025-007;Santa Casa de São Paulo (FCMSCSP) 2025 #7;Hematologia;Neoplasias Hematológicas;1-falta valor de referência;;7,5 g/dl, 2,1 mg/dl, hemoglobina: 7
+q-scmsp2025-008;Santa Casa de São Paulo (FCMSCSP) 2025 #8;Nefrologia;Doença Renal Crônica;1-falta valor de referência;;110 mmhg, 110 mg/dl, 4,8 mg/dl, 7,9 g/dl, pa: 1, ureia: 1
+q-scmsp2025-009;Santa Casa de São Paulo (FCMSCSP) 2025 #9;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;70 mmhg, 0,8 mg/dl, 1,9 g/dl, pa: 1
+q-scmsp2025-030;Santa Casa de São Paulo (FCMSCSP) 2025 #30;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;
+q-scmsp2025-036;Santa Casa de São Paulo (FCMSCSP) 2025 #36;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;110 mmhg, 8 g/dl, hemoglobina de 8, plaquetas de 8
+q-scmsp2025-038;Santa Casa de São Paulo (FCMSCSP) 2025 #38;Abdome Agudo;Doença Diverticular;1-falta valor de referência;;7,4 g/dl, 303mg/l, hb: 7, pcr: 3
+q-scmsp2025-040;Santa Casa de São Paulo (FCMSCSP) 2025 #40;Abdome Agudo;Pancreatite Aguda;1-falta valor de referência;apache;
+q-scmsp2025-061;Santa Casa de São Paulo (FCMSCSP) 2025 #61;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;60 mmhg, 98 bpm, pa: 1
+q-scmsp2025-062;Santa Casa de São Paulo (FCMSCSP) 2025 #62;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;60 mmhg, pa: 9, imc: 2
+q-scmsp2025-067;Santa Casa de São Paulo (FCMSCSP) 2025 #67;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;80 mmhg, pa: 1, imc: 3
+q-scmsp2025-092;Santa Casa de São Paulo (FCMSCSP) 2025 #92;Infectologia;Arboviroses;1-falta valor de referência;;38 °c, 80 mmhg, pa: 1
+q-scmsp2026-014;Santa Casa de São Paulo (FCMSCSP) 2026 #14;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;80 mmhg, 1,2 mg/dl, pa: 1
+q-scmsp2026-031;Santa Casa de São Paulo (FCMSCSP) 2026 #31;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;
+q-scmsp2026-036;Santa Casa de São Paulo (FCMSCSP) 2026 #36;Infectologia;Infecções de Pele e Partes Moles;1-falta valor de referência;;leucócitos: 2, creatinina: 3, sódio: 1, potássio: 5
+q-scmsp2026-039;Santa Casa de São Paulo (FCMSCSP) 2026 #39;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;apache;
+q-scmsp2026-060;Santa Casa de São Paulo (FCMSCSP) 2026 #60;Crescimento e Desenvolvimento;Puericultura;1-falta valor de referência;percentil;
+q-scmsp2026-062;Santa Casa de São Paulo (FCMSCSP) 2026 #62;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;85 mmhg, 94 bpm, pa: 1, fc: 9
+q-scmsp2026-086;Santa Casa de São Paulo (FCMSCSP) 2026 #86;Oncologia Ginecológica;Câncer de Mama;1-falta valor de referência;bi-rads;
+q-scmsp2026-089;Santa Casa de São Paulo (FCMSCSP) 2026 #89;Saúde da Família;Estratégia Saúde da Família;1-falta valor de referência;apgar;
+q-unesp2023-001;UNESP (FMB) 2023 #1;Neonatologia;Sepse Neonatal;1-falta valor de referência;;170 bpm, 37,5 ºc, fr 8, fc 1
+q-unesp2023-003;UNESP (FMB) 2023 #3;Neonatologia;Infecções Congênitas (TORCH, Sífilis Congênita);1-falta valor de referência;;12 g/dl, 4,0 mg/dl, 1,5 mg/dl, hb 1
+q-unesp2023-012;UNESP (FMB) 2023 #12;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;44 u/l, 25 u/l, 1,3 mg/dl, 100 u/l, 67 u/l, 55 u/l
+q-unesp2023-023;UNESP (FMB) 2023 #23;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;110 mmhg, 140 bpm, pa 1
+q-unesp2023-026;UNESP (FMB) 2023 #26;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;100mmhg, 96bpm, 164 bpm, fc 9
+q-unesp2023-030;UNESP (FMB) 2023 #30;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;percentil;
+q-unesp2023-035;UNESP (FMB) 2023 #35;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;85 mmhg, imc 2, pa 1
+q-unesp2023-044;UNESP (FMB) 2023 #44;Ortopedia e Traumatologia;Infecções Osteoarticulares;1-falta valor de referência;;39 ºc, 30 mg/dl, pcr 3, vhs 6
+q-unesp2023-046;UNESP (FMB) 2023 #46;Gastroenterologia;Cirrose e Complicações;1-falta valor de referência;;128 bpm, 50 mmhg, fc 1, pa 7
+q-unesp2023-048;UNESP (FMB) 2023 #48;Pneumologia;DPOC;1-falta valor de referência;gold;
+q-unesp2023-049;UNESP (FMB) 2023 #49;Hematologia;Anemias;1-falta valor de referência;;110 bpm, 60mmhg, 5,7 g/dl, 4,5 mg/dl, 3,8 mg/dl, 0,6 mg/dl
+q-unesp2023-052;UNESP (FMB) 2023 #52;Infectologia;Sepse;1-falta valor de referência;glasgow, sofa, qsofa;50 mmhg, 135 bpm, pa 7, fc 1, fr 2
+q-unesp2023-053;UNESP (FMB) 2023 #53;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;glasgow;66 mmhg, 128 bpm, 16 g/dl, 153 meq/l, 5,0 meq/l, 660 mg/dl
+q-unesp2023-056;UNESP (FMB) 2023 #56;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;nyha;
+q-unesp2023-067;UNESP (FMB) 2023 #67;Cirurgia Oncológica;Câncer de Pâncreas e Tumores Periampulares;1-falta valor de referência;;13,4 g/dl, 121 u/l, 96 u/l, 388 u/l, 678 u/l, 12 mg/dl
+q-unesp2023-073;UNESP (FMB) 2023 #73;Neurologia;Acidente Vascular Cerebral;1-falta valor de referência;glasgow;100 mmhg, 80 bpm, 18 irpm, pa 1, fc 8, fr 1
+q-unifesp2022-001;UNIFESP-EPM 2022 #1;Anestesiologia;Complicações Anestésicas;1-falta valor de referência;;65 mmhg, 130 bpm, 50 mmhg, 42 ºc, 6,0 meq/l, 000 u/l
+q-unifesp2022-002;UNIFESP-EPM 2022 #2;Anestesiologia;Complicações Anestésicas;1-falta valor de referência;;90 mmhg, 100 bpm, pa 1, fc = 1
+q-unifesp2022-003;UNIFESP-EPM 2022 #3;Anestesiologia;Via Aérea e Indução Anestésica;1-falta valor de referência;;45 mmhg, 45 bpm, pa 1, fc = 4
+q-unifesp2022-010;UNIFESP-EPM 2022 #10;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;;130 bpm, 50 mmhg, 28 irpm, fc = 1, pa = 8, fr 2
+q-unifesp2022-030;UNIFESP-EPM 2022 #30;Oncologia Ginecológica;Câncer de Colo do Útero;1-falta valor de referência;;5,4 g/dl, 245 mg/dl, 7,5 mg/dl, hb 5, ureia 2, creatinina 7
+q-unifesp2022-031;UNIFESP-EPM 2022 #31;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;60 mmhg, 110 bpm, pa 1, fc 1
+q-unifesp2022-037;UNIFESP-EPM 2022 #37;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;27 kg/m2, 94 mg/dl, hb = 1, plaquetas: 2
+q-unifesp2022-059;UNIFESP-EPM 2022 #59;Otorrinolaringologia;Vias Aéreas Superiores e Sono;1-falta valor de referência;apgar;
+q-unifesp2022-062;UNIFESP-EPM 2022 #62;Reumatologia;Febre Reumática;1-falta valor de referência;;50 mm/h, 15 mg/dl, vhs = 5, pcr = 1
+q-unifesp2022-065;UNIFESP-EPM 2022 #65;Emergências Pediátricas;Insuficiência Respiratória e PCR em Pediatria;1-falta valor de referência;;65 bpm, 14 irpm, fc = 6, fr = 1
+q-unifesp2022-076;UNIFESP-EPM 2022 #76;Nefrologia;Doença Renal Crônica;1-falta valor de referência;percentil;85 ml/min, 12 mmhg, creatinina de 8
+q-unifesp2022-081;UNIFESP-EPM 2022 #81;Cardiologia;Arritmias Cardíacas;1-falta valor de referência;;70 mmhg, 170 bpm, pa = 1, fc = 1
+q-unifesp2022-084;UNIFESP-EPM 2022 #84;Endocrinologia;Tireoidopatias;1-falta valor de referência;;76 ng/ml, 30 ng/ml, 2 u/l, 10 u/l
+q-unifesp2022-088;UNIFESP-EPM 2022 #88;Hematologia;Anemias;1-falta valor de referência;;3,5 g/dl, hb = 3, plaquetas = 7
+q-unifesp2022-091;UNIFESP-EPM 2022 #91;Pneumologia;Pneumonia Adquirida na Comunidade;1-falta valor de referência;;38,9 °c, 80 mmhg, 88 bpm, 16 irpm, pa = 1, fc = 8
+q-unifesp2022-093;UNIFESP-EPM 2022 #93;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;100 mmhg, 89 bpm, 17 irpm, 1,4 mg/dl, 1,2 g/l, 120 mg/dl
+q-unifesp2022-098;UNIFESP-EPM 2022 #98;Infectologia;Sepse;1-falta valor de referência;;38 °c, 60 mmhg, 110 bpm, 24 irpm, pa = 8, fc = 1
+q-unifesp2022-100;UNIFESP-EPM 2022 #100;Psiquiatria;Transtornos por Uso de Substâncias;1-falta valor de referência;;37,8 ºc, 108 bpm, fc = 1
+q-unifesp2023-001;UNIFESP-EPM 2023 #1;Cardiologia;Arritmias Cardíacas;1-falta valor de referência;;70 mmhg, 148 bpm, pa = 1, fc = 1
+q-unifesp2023-003;UNIFESP-EPM 2023 #3;Endocrinologia;Tireoidopatias;1-falta valor de referência;;29,5 kg/m2, 6,5 mui/l, imc = 2, tsh = 6
+q-unifesp2023-005;UNIFESP-EPM 2023 #5;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;96 mmhg, 90 mmhg, 70 bpm, 23 kg/m2, 0,7 mg/dl, 3,0 meq/l
+q-unifesp2023-008;UNIFESP-EPM 2023 #8;Infectologia;Sepse;1-falta valor de referência;;120 bpm, 40 mmhg, 38 ºc, 2,7mg/dl, 36mg/dl, fc = 1
+q-unifesp2023-011;UNIFESP-EPM 2023 #11;Hematologia;Distúrbios da Hemostasia;1-falta valor de referência;;2,9 mg/dl, 9,4 g/dl, 158.000/mm3, 3,4 mg/dl, creatinina = 2, hb = 9
+q-unifesp2023-012;UNIFESP-EPM 2023 #12;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;90 mmhg, 98 mmhg, 82 bpm, 0,82 mg/dl, 4,2 meq/l, pa = 1
+q-unifesp2023-013;UNIFESP-EPM 2023 #13;Cirurgia Torácica;Pneumotórax e Doenças Pleurais;1-falta valor de referência;glasgow;30 irpm, 40 mmhg, 133 bpm, fr = 3, pa= 8, fc = 1
+q-unifesp2023-014;UNIFESP-EPM 2023 #14;Pneumologia;DPOC;1-falta valor de referência;gold;15,0 g/dl, hemoglobina = 1
+q-unifesp2023-015;UNIFESP-EPM 2023 #15;Infectologia;Sepse;1-falta valor de referência;glasgow, sofa;120 bpm, 40mmhg, 30 irpm, fc = 1, pa = 7, fr = 3
+q-unifesp2023-016;UNIFESP-EPM 2023 #16;Reumatologia;Vasculites e Outras Conectivopatias;1-falta valor de referência;;10,2 g/dl, hemoglobina: 1, vhs = 1, pcr = 7
+q-unifesp2023-017;UNIFESP-EPM 2023 #17;Nefrologia;Injúria Renal Aguda;1-falta valor de referência;;180 mmhg, 140 mmhg, 4,8 mg/dl, 94 meq/l, 5,8 meq/l, 13 meq/l
+q-unifesp2023-019;UNIFESP-EPM 2023 #19;Infectologia;Sepse;1-falta valor de referência;sofa, qsofa;
+q-unifesp2023-020;UNIFESP-EPM 2023 #20;Pneumologia;Tromboembolismo Pulmonar;1-falta valor de referência;;60 mmhg, 110 bpm, 32 irpm, 45, pao2, 66 mmhg, 31 mmhg
+q-unifesp2023-043;UNIFESP-EPM 2023 #43;Oncologia Ginecológica;Câncer de Colo do Útero;1-falta valor de referência;;60mg/dl, 7 mg/dl, ureia 6, creatinina de 7
+q-unifesp2023-046;UNIFESP-EPM 2023 #46;Oncologia Ginecológica;Câncer de Mama;1-falta valor de referência;bi-rads;
+q-unifesp2023-054;UNIFESP-EPM 2023 #54;Infectologia;Infecção do Trato Urinário;1-falta valor de referência;;39°c, 110 bpm, 55 mmhg, 168 bpm, pa 9
+q-unifesp2023-059;UNIFESP-EPM 2023 #59;Obstetrícia;Trabalho de Parto;1-falta valor de referência;percentil;hb 1, pcr 4
+q-unifesp2023-062;UNIFESP-EPM 2023 #62;Hematologia;Distúrbios da Hemostasia;1-falta valor de referência;;300.000/mm3, 13,5 g/dl, 33 g/dl, 7000/mm3, 4000/mm3, hemoglobina = 1
+q-unifesp2023-064;UNIFESP-EPM 2023 #64;Nefrologia;Doença Renal Crônica;1-falta valor de referência;percentil;1,4 mg/dl, 68 mg/dl, 138 mmol/l, 24 mmol/l, 12 g/dl, 35 ng/ml
+q-unifesp2023-097;UNIFESP-EPM 2023 #97;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;
+q-unifesp2024-003;UNIFESP-EPM 2024 #3;Anestesiologia;Via Aérea e Indução Anestésica;1-falta valor de referência;;55 mmhg, 58 bpm, pa = 1, fc = 5
+q-unifesp2024-008;UNIFESP-EPM 2024 #8;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;50 mmhg, 115 bpm, 25 irpm
+q-unifesp2024-011;UNIFESP-EPM 2024 #11;Abdome Agudo;Cirurgia Bariátrica e Complicações;1-falta valor de referência;;46 kg/m2, 110 bpm, 60 mm hg, 22 irpm, imc 4, fc: 1
+q-unifesp2024-012;UNIFESP-EPM 2024 #12;Cirurgia Oncológica;Câncer Colorretal;1-falta valor de referência;;35 kg/m2, imc = 3, hb = 6, ferritina = 2
+q-unifesp2024-019;UNIFESP-EPM 2024 #19;Neonatologia;Enterocolite Necrosante;1-falta valor de referência;apgar;
+q-unifesp2024-030;UNIFESP-EPM 2024 #30;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;70 mmhg, 84 bpm, 1,0 mg/dl, 4,8 meq/l, pa = 1, fc = 8
+q-unifesp2024-033;UNIFESP-EPM 2024 #33;Hematologia;Anemias;1-falta valor de referência;;8g/dl, 700/mm3, 49.000/mm3, hb = 8, leucócitos = 7, plaquetas = 4
+q-unifesp2024-035;UNIFESP-EPM 2024 #35;Urologia;Litíase Urinária;1-falta valor de referência;;78 mmhg, 0,8 mg/dl, 4,8 meq/l, 12,4 mg/dl, 2,4 mg/dl, pa = 1
+q-unifesp2024-036;UNIFESP-EPM 2024 #36;Endocrinologia;Tireoidopatias;1-falta valor de referência;;48 bpm, 88 mmhg, 22 kg/m2, fc = 4, pa = 1, imc = 2
+q-unifesp2024-040;UNIFESP-EPM 2024 #40;Reumatologia;Artrites por Cristais (Gota e Pseudogota);1-falta valor de referência;;1,6 mg/dl, 1,1 mg/dl, 10 mg/dl, creatinina = 1
+q-unifesp2024-053;UNIFESP-EPM 2024 #53;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;95 mmhg, 148 bpm, 11,6 g/dl, 224.000/mm3, 12 u/l, 0,6 mg/dl
+q-unifesp2024-056;UNIFESP-EPM 2024 #56;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;120 bpm, 70 mmhg, pa 9
+q-unifesp2024-087;UNIFESP-EPM 2024 #87;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;1-falta valor de referência;;130 bpm, fr = 4, fc = 1
+q-unifesp2024-088;UNIFESP-EPM 2024 #88;Neonatologia;Triagem Neonatal (Teste do Pezinho);1-falta valor de referência;apgar;
+q-unifesp2024-089;UNIFESP-EPM 2024 #89;Hematologia;Anemias;1-falta valor de referência;;9,8 g/dl, 325.000/mm3, 50 mcg/dl, 34 mcg/dl, hb = 9, plaquetas = 3
+q-unifesp2024-091;UNIFESP-EPM 2024 #91;Neonatologia;Desconforto Respiratório do Recém-Nascido;1-falta valor de referência;apgar, silverman;70 irpm, fr = 7
+q-unifesp2025-002;UNIFESP-EPM 2025 #2;Abdome Agudo;Obstrução Intestinal;1-falta valor de referência;;90 bpm, 95 mm hg, 37,5 °c, fc 9, pa 1
+q-unifesp2025-004;UNIFESP-EPM 2025 #4;Cirurgia Vascular;Dissecção de Aorta;1-falta valor de referência;;100 bpm, 100 mm hg, fc 1, pa 1
+q-unifesp2025-005;UNIFESP-EPM 2025 #5;Abdome Agudo;Pancreatite Aguda;1-falta valor de referência;;32 mcg/dl, 1.340 mcg/dl, pcr 3
+q-unifesp2025-015;UNIFESP-EPM 2025 #15;Urologia;Neoplasias Urológicas;1-falta valor de referência;;80 bpm, 80 mm hg, 36,5 °c, 144 meq/l, 4,0 meq/l, 30 mg/dl
+q-unifesp2025-019;UNIFESP-EPM 2025 #19;Otorrinolaringologia;Vertigem Periférica;1-falta valor de referência;;60 mmhg, 98 bpm, 113 mg/dl, fc 9
+q-unifesp2025-024;UNIFESP-EPM 2025 #24;Endocrinologia;Doenças da Hipófise (Adenomas, Hipopituitarismo);1-falta valor de referência;;1,97 mui/ml, 4,5 mui/ml, 0,3 ng/dl, 1,8 ng/dl, 4,0 mui/ml, 16,6 mui/ml
+q-unifesp2025-028;UNIFESP-EPM 2025 #28;Nefrologia;Injúria Renal Aguda;1-falta valor de referência;;52 mmhg, 1,9 mg/dl, 96 mg/dl, 50 mg/dl, 6,1 meq/l, 5,1 meq/l
+q-unifesp2025-031;UNIFESP-EPM 2025 #31;Nefrologia;Doença Renal Crônica;1-falta valor de referência;;96 mmhg, 28 ml/min, pa = 1
+q-unifesp2025-032;UNIFESP-EPM 2025 #32;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;60 mmhg, 110 bpm, 25 irpm, pa = 9, fc = 1, fr = 2
+q-unifesp2025-033;UNIFESP-EPM 2025 #33;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;38,4 °c, 46 mmhg, 108 bpm, 10 irpm, 1,4 mg/dl, 145 meq/l
+q-unifesp2025-036;UNIFESP-EPM 2025 #36;Pneumologia;Tromboembolismo Pulmonar;1-falta valor de referência;;37,1°c, 50 mmhg, 110 bpm, 22 irpm, pa = 9, fc = 1
+q-unifesp2025-037;UNIFESP-EPM 2025 #37;Infectologia;Sepse;1-falta valor de referência;;40 mmhg, 130 bpm, 28 irpm, 23, paco2, 30 mmhg, 55 mmhg
+q-unifesp2025-068;UNIFESP-EPM 2025 #68;Oncologia Ginecológica;Câncer de Mama;1-falta valor de referência;bi-rads;
+q-unifesp2025-072;UNIFESP-EPM 2025 #72;Obstetrícia;Diabetes Mellitus Gestacional;1-falta valor de referência;;80 mmhg, 144 bpm, 90 mg/dl, pa 1
+q-unifesp2025-075;UNIFESP-EPM 2025 #75;Oncologia Ginecológica;Doença Trofoblástica Gestacional;1-falta valor de referência;;250.000 ui/l, 50.000 ui/l, 70.000 ui/l, 85.000ui/l
+q-unifesp2025-076;UNIFESP-EPM 2025 #76;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;10,9 g/dl, 10 ng/ml, hemoglobina de 1, ferritina 1
+q-unifesp2025-079;UNIFESP-EPM 2025 #79;Obstetrícia;Gestação Múltipla;1-falta valor de referência;percentil;
+q-unifesp2025-096;UNIFESP-EPM 2025 #96;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;percentil;
+q-unifesp2026-001;UNIFESP-EPM 2026 #1;Pré e Pós-operatório;Cuidados Perioperatórios;1-falta valor de referência;gold;
+q-unifesp2026-002;UNIFESP-EPM 2026 #2;Neonatologia;Malformações Digestivas Congênitas (Atresias, Má-rotação, VACTERL);1-falta valor de referência;apgar;
+q-unifesp2026-012;UNIFESP-EPM 2026 #12;Urologia;Próstata (HPB e Câncer);1-falta valor de referência;;1,4ng/dl, 80 mg/dl, 1,8 mg/dl, ureia 8, creatinina 1
+q-unifesp2026-016;UNIFESP-EPM 2026 #16;Cirurgia Torácica;Perfuração Esofágica (Síndrome de Boerhaave);1-falta valor de referência;;110 bpm, 40 mm hg, 33 irpm, 37 °c, fc 1, pa 8
+q-unifesp2026-018;UNIFESP-EPM 2026 #18;Cirurgia Vascular;Dissecção de Aorta;1-falta valor de referência;;100 mmhg, 120 bpm, pa 1, fc 1
+q-unifesp2026-024;UNIFESP-EPM 2026 #24;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;45 mmhg, 110 bpm, pa = 7, fc = 1
+q-unifesp2026-025;UNIFESP-EPM 2026 #25;Endocrinologia;Distúrbios do Cálcio e Paratireoide;1-falta valor de referência;;15,1 mg/dl, 10,6 mg/dl, 3,4 mg/dl, 0,95 mg/dl, 1,10 mg/dl, 10 pg/ml
+q-unifesp2026-027;UNIFESP-EPM 2026 #27;Pneumologia;Ventilação Mecânica Invasiva;1-falta valor de referência;glasgow;120 bpm, 80 mmhg, 25 irpm, fc = 1, pa = 1, fr = 2
+q-unifesp2026-028;UNIFESP-EPM 2026 #28;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;120 mmhg, 155 bpm, 35 irpm, pa= 1, fc = 1, fr = 3
+q-unifesp2026-029;UNIFESP-EPM 2026 #29;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;9 ml/min, 60 mmhg, 48 bpm, 8,6 mg/dl, 2,2 mg/dl, pa = 9
+q-unifesp2026-034;UNIFESP-EPM 2026 #34;Nefrologia;Doença Renal Crônica;1-falta valor de referência;ckd-epi;82 mmhg, 1,50 mg/dl, 42 mg/dl, 138 meq/l, 102 mg/dl, 1,67 mg/dl
+q-unifesp2026-037;UNIFESP-EPM 2026 #37;Reumatologia;Vasculites e Outras Conectivopatias;1-falta valor de referência;;9,6 g/dl, 63 mg/l, hb = 9, vhs = 7, pcr = 6
+q-unifesp2026-038;UNIFESP-EPM 2026 #38;Pneumologia;Pneumonia Adquirida na Comunidade;1-falta valor de referência;;17 kg/m2, 78 mmhg, 92 bpm, 18 irpm, 9,7 g/dl, 17,2 g/dl
+q-unifesp2026-040;UNIFESP-EPM 2026 #40;Pneumologia;DPOC;1-falta valor de referência;gold;14 irpm, fr = 1
+q-unifesp2026-050;UNIFESP-EPM 2026 #50;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;60 mmhg, 120bpm, pa 1, fc 1
+q-unifesp2026-057;UNIFESP-EPM 2026 #57;Obstetrícia;Diabetes Mellitus Gestacional;1-falta valor de referência;percentil;
+q-unifesp2026-064;UNIFESP-EPM 2026 #64;Psiquiatria;Transtornos por Uso de Substâncias;1-falta valor de referência;;130 bpm, 100 mmhg, fc = 1, pa = 1
+q-unifesp2026-087;UNIFESP-EPM 2026 #87;Hematologia;Anemias;1-falta valor de referência;;8,2 g/dl, hb = 8, leucócitos = 1, plaquetas = 9
+q-unifesp2026-091;UNIFESP-EPM 2026 #91;Urologia;Litíase Urinária;1-falta valor de referência;;39,2°c, ph = 7, leucócitos = 3
+q-usp2022-003;USP-SP (FMUSP) 2022 #3;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;60 mmhg, 120 bpm, 440 mg/dl, 13 meq/l, 120 meq/l, 2,8 meq/l
+q-usp2022-004;USP-SP (FMUSP) 2022 #4;Neurologia;Acidente Vascular Cerebral;1-falta valor de referência;nihss;100 mmhg, 88 bpm, 220 mg/dl
+q-usp2022-006;USP-SP (FMUSP) 2022 #6;Bioética;Cuidados Paliativos e Fim de Vida;1-falta valor de referência;;30 irpm, 130 bpm, 40 mmhg, fr 3, fc 1, pa 7
+q-usp2022-012;USP-SP (FMUSP) 2022 #12;Anestesiologia;Via Aérea e Indução Anestésica;1-falta valor de referência;;40 irpm, 120bpm, 30 mmhg
+q-usp2022-013;USP-SP (FMUSP) 2022 #13;Anestesiologia;Via Aérea e Indução Anestésica;1-falta valor de referência;;40 irpm, 120bpm, 30 mmhg
+q-usp2022-017;USP-SP (FMUSP) 2022 #17;Otorrinolaringologia;Vias Aéreas Superiores e Sono;1-falta valor de referência;;38°c, 100 bpm, fc 1
+q-usp2022-018;USP-SP (FMUSP) 2022 #18;Cardiologia;Doenças do Pericárdio;1-falta valor de referência;;115 bpm, 80 mmhg, 18 irpm
+q-usp2022-039;USP-SP (FMUSP) 2022 #39;Infectologia;Arboviroses;1-falta valor de referência;;38,5ºc, 78 mmhg, 90 bpm
+q-usp2022-041;USP-SP (FMUSP) 2022 #41;Infectologia;Infecção do Trato Urinário;1-falta valor de referência;;85.000/mm3, 15.000/mm3, ph 5, leucócitos 8
+q-usp2022-047;USP-SP (FMUSP) 2022 #47;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;65 bpm, 45 irpm, 90 mmhg, fc: 6, fr: 4, pa: 1
+q-usp2022-053;USP-SP (FMUSP) 2022 #53;Infectologia;Sepse;1-falta valor de referência;;39ºc, 180 bpm, 50 irpm, 40 mmhg, 8,2 g/dl, 150/mm3
+q-usp2022-059;USP-SP (FMUSP) 2022 #59;Neonatologia;Exame Físico do Recém-Nascido e Tocotraumatismos;1-falta valor de referência;apgar;
+q-usp2022-060;USP-SP (FMUSP) 2022 #60;Neonatologia;Exame Físico do Recém-Nascido e Tocotraumatismos;1-falta valor de referência;apgar;
+q-usp2022-062;USP-SP (FMUSP) 2022 #62;Abdome Agudo;Obstrução Intestinal;1-falta valor de referência;;10,9 g/dl, 2,9 mg/dl, 110 mg/dl, hb: 1, creatinina: 2, ureia: 1
+q-usp2022-063;USP-SP (FMUSP) 2022 #63;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;apache;90bpm, 60 mmhg, 11,5g/dl, 2,7 mg/dl, 170 mg/dl, 125u/l
+q-usp2022-065;USP-SP (FMUSP) 2022 #65;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;14.373/mm3, 45 mg/l, pcr de 4
+q-usp2022-068;USP-SP (FMUSP) 2022 #68;Trauma;Trauma Abdominal;1-falta valor de referência;glasgow;80 mmhg, 90 bpm, pa: 1, fc: 9
+q-usp2022-069;USP-SP (FMUSP) 2022 #69;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;40 mmhg, 140bpm, pa: 7, fc: 1
+q-usp2022-070;USP-SP (FMUSP) 2022 #70;Anestesiologia;Via Aérea e Indução Anestésica;1-falta valor de referência;;9,7 g/dl, 2,9 meq/l, 140 meq/l, 1,9 mg/dl, 90 mg/dl, hb: 9
+q-usp2022-074;USP-SP (FMUSP) 2022 #74;Cirurgia Torácica;Pneumotórax e Doenças Pleurais;1-falta valor de referência;karnofsky;
+q-usp2022-078;USP-SP (FMUSP) 2022 #78;Gastroenterologia;Nódulos Hepáticos (Adenoma, Hiperplasia Nodular Focal, Hepatocarcinoma);1-falta valor de referência;child-pugh;
+q-usp2022-081;USP-SP (FMUSP) 2022 #81;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;80 mmhg, 12 irpm, fc 8, pa 1, fr 1
+q-usp2022-091;USP-SP (FMUSP) 2022 #91;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;62 mmhg, 124 bpm, 11,4 g/dl, 8,2 mcg/dl, 19u/l, 28u/l
+q-usp2022-092;USP-SP (FMUSP) 2022 #92;Endocrinologia;Tireoidopatias;1-falta valor de referência;;62 mmhg, 124 bpm, 11,4 g/dl, 19u/l, 28u/l, 0,51 mg/dl
+q-usp2022-093;USP-SP (FMUSP) 2022 #93;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;90 mmhg, 118 bpm, 102 bpm, pa 1, fc 1
+q-usp2022-094;USP-SP (FMUSP) 2022 #94;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;90 mmhg, 118 bpm, 102 bpm, pa 1, fc 1
+q-usp2022-095;USP-SP (FMUSP) 2022 #95;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;51 mmhg, 110 bpm, 23 rpm, 9,1g/dl, 1820 mui/ml, pa 9
+q-usp2022-096;USP-SP (FMUSP) 2022 #96;Obstetrícia;Trabalho de Parto;1-falta valor de referência;percentil;
+q-usp2022-097;USP-SP (FMUSP) 2022 #97;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;122 bpm, 37,9°c, fc= 1, saturação 8
+q-usp2022-099;USP-SP (FMUSP) 2022 #99;Obstetrícia;Trabalho de Parto;1-falta valor de referência;;75 mmhg, 78 bpm, pa 1, fc 7
+q-usp2023-002;USP-SP (FMUSP) 2023 #2;Pré e Pós-operatório;Complicações Cirúrgicas;1-falta valor de referência;;100 bpm, 70 mmhg, fc de 1, pa de 1
+q-usp2023-003;USP-SP (FMUSP) 2023 #3;Gastroenterologia;Doença Péptica;1-falta valor de referência;;110 bpm, 60 mmhg, 11,9 g/dl, 18.318/mm3, 84 mg/l, 251 u/l
+q-usp2023-004;USP-SP (FMUSP) 2023 #4;Coloproctologia;Doenças Orificiais (Hemorroidas, Abscessos, Fístulas e Doença Pilonidal);1-falta valor de referência;;129 mg/l, hb de 1, pcr 1
+q-usp2023-009;USP-SP (FMUSP) 2023 #9;Trauma;Trauma Torácico (Lesões de Aorta, Hilo Pulmonar);1-falta valor de referência;glasgow;80 mmhg, 100 bpm, pa 1, fc 1
+q-usp2023-011;USP-SP (FMUSP) 2023 #11;Cirurgia Oncológica;Câncer Gástrico;1-falta valor de referência;;8,7 g/dl, hb 8, plaquetas 2, inr 1
+q-usp2023-018;USP-SP (FMUSP) 2023 #18;Trauma;Trauma Abdominal;1-falta valor de referência;;70 mmhg, 105 bpm, 9,6 g/dl, 54 mg/dl, 1,1 mg/dl, 10 mg/dl
+q-usp2023-031;USP-SP (FMUSP) 2023 #31;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;115 mmhg, 82 bpm, 150 bpm, 98 bpm, pa de 1, fc 8
+q-usp2023-033;USP-SP (FMUSP) 2023 #33;Obstetrícia;Gestação Múltipla;1-falta valor de referência;;74 mmhg, 82 bpm, pa 1, fc 8
+q-usp2023-037;USP-SP (FMUSP) 2023 #37;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;76 mmhg, 74 bpm, pa 1, fc 7
+q-usp2023-038;USP-SP (FMUSP) 2023 #38;Obstetrícia;Trabalho de Parto;1-falta valor de referência;;76 mmhg, 74 bpm, pa 1, fc 7
+q-usp2023-042;USP-SP (FMUSP) 2023 #42;Bioética;Comunicação e Relação Médico-Paciente;1-falta valor de referência;ecog;
+q-usp2023-050;USP-SP (FMUSP) 2023 #50;Cardiologia;Arritmias Cardíacas;1-falta valor de referência;cha2ds2-vasc;82 mmhg
+q-usp2023-052;USP-SP (FMUSP) 2023 #52;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;98 mmhg, 96 mmhg, 84 bpm, 94 mmhg, 26 kg/m2, 0,9 mg/dl
+q-usp2023-055;USP-SP (FMUSP) 2023 #55;Pneumologia;Doenças Pulmonares Intersticiais e Pneumonites;1-falta valor de referência;;117 bpm, 60 mmhg, 32 irpm
+q-usp2023-057;USP-SP (FMUSP) 2023 #57;Infectologia;Meningites;1-falta valor de referência;glasgow;38°c
+q-usp2023-060;USP-SP (FMUSP) 2023 #60;Neurologia;Doenças Neuromusculares e Desmielinizantes;1-falta valor de referência;;70 mmhg, 96 bpm, 38,3°c, 18irpm, 68 mmhg, 55 mmhg
+q-usp2023-081;USP-SP (FMUSP) 2023 #81;Alergia e Imunologia;Anafilaxia e Reações Alérgicas Graves;1-falta valor de referência;;145 bpm, 34 irpm, 30 mmhg, fc: 1, fr: 3, pa: 8
+q-usp2023-084;USP-SP (FMUSP) 2023 #84;Crescimento e Desenvolvimento;Calendário Vacinal;1-falta valor de referência;;150 bpm, 36 irpm, 40 mmhg, fc: 1, fr 3, pa 7
+q-usp2023-086;USP-SP (FMUSP) 2023 #86;Hematologia;Neoplasias Hematológicas;1-falta valor de referência;;50 mg/kg, 165 bpm, 40 irpm, 50 mmhg, fc 1, fr 4
+q-usp2023-087;USP-SP (FMUSP) 2023 #87;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;108 bpm, 23 irpm, 94 mmhg, fc 1, fr 2, pa 1
+q-usp2023-088;USP-SP (FMUSP) 2023 #88;Gastroenterologia;Cirrose e Complicações;1-falta valor de referência;;130 bpm, 48 irpm, 56 mmhg, fc 1, fr 4, pa 8
+q-usp2023-089;USP-SP (FMUSP) 2023 #89;Neonatologia;Triagem Neonatal (Teste do Pezinho);1-falta valor de referência;apgar;
+q-usp2023-099;USP-SP (FMUSP) 2023 #99;Hematologia;Doença Falciforme e Hemoglobinopatias;1-falta valor de referência;;90 bpm, 32 irpm, 50 mmhg, saturação 9, saturação de 9, fc: 9
+q-usp2023-103;USP-SP (FMUSP) 2023 #103;Pneumologia;Tromboembolismo Pulmonar;1-falta valor de referência;;24 irpm, 70 mmhg, 95 bpm, 130 bpm, fr 2, pa 1
+q-usp2023-104;USP-SP (FMUSP) 2023 #104;Pneumologia;Ventilação Mecânica Invasiva;1-falta valor de referência;;24 irpm, 70 mmhg, 95 bpm, 130 bpm, fr 2, pa 1
+q-usp2023-105;USP-SP (FMUSP) 2023 #105;Ginecologia Geral;Infecções Sexualmente Transmissíveis;1-falta valor de referência;;37,6 °c, 96 bpm, 12 irpm, 70 mmhg, fc 9, fr 1
+q-usp2023-106;USP-SP (FMUSP) 2023 #106;Ginecologia Geral;Infertilidade Conjugal;1-falta valor de referência;;37,6 °c, 96 bpm, 12 irpm, 70 mmhg, fc 9, fr 1
+q-usp2023-107;USP-SP (FMUSP) 2023 #107;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;percentil;
+q-usp2023-108;USP-SP (FMUSP) 2023 #108;Obstetrícia;Trabalho de Parto;1-falta valor de referência;percentil, bishop;82 mmhg, 82 bpm, pa 1, fc 8
+q-usp2023-113;USP-SP (FMUSP) 2023 #113;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;145 bpm, 44 irpm, 50 mmhg, fc 1, fr 4, pa 9
+q-usp2023-114;USP-SP (FMUSP) 2023 #114;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;145 bpm, 44 irpm, 50 mmhg, 62 bpm, 92 mmhg, 18 irpm
+q-usp2023-115;USP-SP (FMUSP) 2023 #115;Pneumologia;Asma;1-falta valor de referência;;152 bpm, 46 mmhg, 42 irpm, fc: 1, pa: 8, fr: 4
+q-usp2023-116;USP-SP (FMUSP) 2023 #116;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;1-falta valor de referência;;152 bpm, 46 mmhg, 42 irpm, fc: 1, pa: 8, fr: 4
+q-usp2023-117;USP-SP (FMUSP) 2023 #117;Cirurgia Oncológica;Câncer Gástrico;1-falta valor de referência;;9,6 g/dl, 3,1 mg/dl, imc: 2, hb 9
+q-usp2023-118;USP-SP (FMUSP) 2023 #118;Pré e Pós-operatório;Cuidados Perioperatórios;1-falta valor de referência;;9,6 g/dl, 3,1 mg/dl, imc: 2, hb 9
+q-usp2023-119;USP-SP (FMUSP) 2023 #119;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;120 bpm, 100 mmhg, 130 bpm, 50 mmhg, fc de 1, pas de 1
+q-usp2023-120;USP-SP (FMUSP) 2023 #120;Trauma;Trauma Abdominal;1-falta valor de referência;glasgow;120 bpm, 100 mmhg, 130 bpm, 50 mmhg, fc de 1, pas de 1
+q-usp2024-003;USP-SP (FMUSP) 2024 #3;Pneumologia;Asma;1-falta valor de referência;;140 bpm, fr: 4, fc: 1
+q-usp2024-009;USP-SP (FMUSP) 2024 #9;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;;140 bpm, 80 mmhg, fr: 2, fc: 1, pa: 1
+q-usp2024-010;USP-SP (FMUSP) 2024 #10;Neurocirurgia;Hidrocefalia;1-falta valor de referência;;85 bpm, 70 mmhg, fc: 8, fr: 2, pa: 1
+q-usp2024-011;USP-SP (FMUSP) 2024 #11;Reumatologia;Vasculites e Outras Conectivopatias;1-falta valor de referência;;92 bpm, 50 mmhg, fc: 9, fr: 2, pa: 8
+q-usp2024-014;USP-SP (FMUSP) 2024 #14;Neonatologia;Complicações da Prematuridade;1-falta valor de referência;apgar;50 mg/dl
+q-usp2024-015;USP-SP (FMUSP) 2024 #15;Neonatologia;Infecções Congênitas (TORCH, Sífilis Congênita);1-falta valor de referência;;15 g/dl, 12.000/mm3, 200.000/mm3, 17/mm3, 100/mm3, 125 mg/dl
+q-usp2024-016;USP-SP (FMUSP) 2024 #16;Emergências Pediátricas;Desidratação na Infância;1-falta valor de referência;;12 mmol/l, 5,0 mmol/l, 160 meq/l, 3.3 meq/l, 150 bpm, 42 mmhg
+q-usp2024-019;USP-SP (FMUSP) 2024 #19;Infectologia;Sepse;1-falta valor de referência;;39.8 °c, 73 mg/dl, fr 4
+q-usp2024-022;USP-SP (FMUSP) 2024 #22;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;z-score;
+q-usp2024-025;USP-SP (FMUSP) 2024 #25;Cirurgia Oncológica;Câncer Colorretal;1-falta valor de referência;;22kg/m2, 10,3 g/dl, imc: 2, hb de 1
+q-usp2024-026;USP-SP (FMUSP) 2024 #26;Abdome Agudo;Obstrução Intestinal;1-falta valor de referência;;80 bpm, 80 mmhg, 11,7 g/dl, 9.419/mm3, 17 mg/l, 1,1 mg/dl
+q-usp2024-027;USP-SP (FMUSP) 2024 #27;Abdome Agudo;Colangite Aguda e Vias Biliares;1-falta valor de referência;;70 bpm, 70 mmhg, 12,1 g/dl, 12 mg/dl, 10,9 mg/dl, 327 u/l
+q-usp2024-030;USP-SP (FMUSP) 2024 #30;Trauma;Trauma Abdominal;1-falta valor de referência;;45 mmhg, 140 bpm, pa 8, fc de 1
+q-usp2024-031;USP-SP (FMUSP) 2024 #31;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;70 mmhg, 105 bpm, pa: 1, fc: 1
+q-usp2024-033;USP-SP (FMUSP) 2024 #33;Ortopedia e Traumatologia;Fraturas e Luxações;1-falta valor de referência;glasgow;70 mmhg, 90 bpm, pa: 1, fc: 9
+q-usp2024-034;USP-SP (FMUSP) 2024 #34;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;70 mmhg, 90 bpm, pa: 1, fc: 9
+q-usp2024-037;USP-SP (FMUSP) 2024 #37;Infectologia;Infecções Relacionadas à Assistência (IRAS);1-falta valor de referência;;80 bpm, 80 mmhg, 10,2 g/dl, 11.330/mm3, 20 mg/l, fc: 8
+q-usp2024-038;USP-SP (FMUSP) 2024 #38;Cirurgia Vascular;Isquemia Arterial Aguda e Crônica;1-falta valor de referência;;70 mmhg, 9,8 g/dl, 272 mg/l, 30 mg/l, 1,7 mg/dl, 60 mg/dl
+q-usp2024-040;USP-SP (FMUSP) 2024 #40;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;17.000/mm3, 210 mg/l, 120 u/l, 160 u/l, 74 u/l, 151 u/l
+q-usp2024-050;USP-SP (FMUSP) 2024 #50;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;88 mmhg, 29 kg/m2, 80 bpm, 1,2 mg/dl, 4,2 meq/l, 40 mg/dl
+q-usp2024-051;USP-SP (FMUSP) 2024 #51;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;76 mmhg, 68 bpm, pa: 1, fc: 6
+q-usp2024-052;USP-SP (FMUSP) 2024 #52;Gastroenterologia;Doença Péptica;1-falta valor de referência;;30 g/dl, 7.000/mm3, 40 mg/dl, 0,8 mg/dl, 90 mg/dl, hb: 1
+q-usp2024-056;USP-SP (FMUSP) 2024 #56;Gastroenterologia;Cirrose e Complicações;1-falta valor de referência;;11,7 g/dl, 5.670/mm3, 120.000/mm3, 72 mg/dl, 1,5 mg/dl, 110 mg/dl
+q-usp2024-057;USP-SP (FMUSP) 2024 #57;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;94 mmhg, 88 mmhg, 92 bpm, 12,7 mg/dl, 5.670/mm3, 235.000/mm3
+q-usp2024-064;USP-SP (FMUSP) 2024 #64;Infectologia;Sepse;1-falta valor de referência;;42 mmhg, 55 mmhg, pa 8
+q-usp2024-065;USP-SP (FMUSP) 2024 #65;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;glasgow;68 mmhg, 102 bpm, 101 meq/l, 35 mg/dl, 0,7 mg/dl, 89 mg/dl
+q-usp2024-091;USP-SP (FMUSP) 2024 #91;Planejamento Familiar;Métodos Contraceptivos;1-falta valor de referência;percentil, z-score;65 mmhg, pa 1, imc: 1
+q-usp2024-092;USP-SP (FMUSP) 2024 #92;Epidemiologia;Níveis e Estratégias de Prevenção;1-falta valor de referência;;92 mmhg, 28 kg/m2, imc: 2
+q-usp2024-107;USP-SP (FMUSP) 2024 #107;Ginecologia Geral;Incontinência Urinária e Prolapso Genital;1-falta valor de referência;;80 bpm, 60 mm hg, 23 kg/m2, fc: 8, fr: 1, pa: 1
+q-usp2024-108;USP-SP (FMUSP) 2024 #108;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;80 mmhg, 144 bpm, pa: 1
+q-usp2024-109;USP-SP (FMUSP) 2024 #109;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;34 kg/m2, 80 mmhg, 148 bpm, imc: 3, pa: 1
+q-usp2024-112;USP-SP (FMUSP) 2024 #112;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;108 bpm, 70 mmhg, 160 bpm, fr: 2, fc: 1, pa: 1
+q-usp2024-120;USP-SP (FMUSP) 2024 #120;Obstetrícia;Trabalho de Parto;1-falta valor de referência;;11,8 g/dl, 15.000/mm3, hb: 1, leucócitos: 1, pcr: 2
+q-usp2025-001;USP-SP (FMUSP) 2025 #1;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;80 mmhg, 88 mg/dl, 1,2 mui/l, 16,9 u/l, 2,8 ui/l, 33 μg/l
+q-usp2025-003;USP-SP (FMUSP) 2025 #3;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;80 mmhg, 88 mg/dl, 1,2 mui/l, 16,9 u/l, 2,8 ui/l, 33 μg/l
+q-usp2025-004;USP-SP (FMUSP) 2025 #4;Ginecologia Geral;Endometriose;1-falta valor de referência;ecog;
+q-usp2025-010;USP-SP (FMUSP) 2025 #10;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;40 mmhg, 120 bpm, pa de 8, fc de 1
+q-usp2025-014;USP-SP (FMUSP) 2025 #14;Obstetrícia;Aloimunização Rh e Doença Hemolítica Perinatal;1-falta valor de referência;;11,4 mg/dl, 84 mg/dl, hb: 1, glicemia: 8
+q-usp2025-017;USP-SP (FMUSP) 2025 #17;Cardiologia;Valvopatias;1-falta valor de referência;;118 bpm, 90 mmhg, fr de 1, fc de 1, pa de 1
+q-usp2025-019;USP-SP (FMUSP) 2025 #19;Obstetrícia;Trabalho de Parto;1-falta valor de referência;bishop;
+q-usp2025-021;USP-SP (FMUSP) 2025 #21;Obstetrícia;Puerpério e suas Complicações (Infecção, Transtornos Mentais);1-falta valor de referência;;38,1 °c, 100 bpm, 60 mmhg, fc de 1, pa de 9
+q-usp2025-022;USP-SP (FMUSP) 2025 #22;Ginecologia Geral;Ginecologia da Infância e Adolescência;1-falta valor de referência;percentil;
+q-usp2025-025;USP-SP (FMUSP) 2025 #25;Abdome Agudo;Colangite Aguda e Vias Biliares;1-falta valor de referência;;38,1 °c, 110 bpm, 60 mmhg, 13,9 g/dl, 1,5 mg/dl, 60 mg/dl
+q-usp2025-026;USP-SP (FMUSP) 2025 #26;Trauma;Trauma Torácico (Lesões de Aorta, Hilo Pulmonar);1-falta valor de referência;glasgow;90 mmhg, 110 bpm, 80 mmhg, pa de 1, fc de 1
+q-usp2025-027;USP-SP (FMUSP) 2025 #27;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow, canadian;
+q-usp2025-028;USP-SP (FMUSP) 2025 #28;Abdome Agudo;Hérnias da Parede Abdominal;1-falta valor de referência;;17,1 g/dl, 1,9 mg/dl, hb: 1, creatinina: 1, ureia: 9
+q-usp2025-030;USP-SP (FMUSP) 2025 #30;Pré e Pós-operatório;Complicações Cirúrgicas;1-falta valor de referência;;80 bpm, 80 mmhg, 10,1 g/dl, 0,9 mg/dl, 54 mg/dl, 41 mg/l
+q-usp2025-032;USP-SP (FMUSP) 2025 #32;Abdome Agudo;Apendicite Aguda;1-falta valor de referência;;110 bpm, 60 mmhg, 11,2g/dl, 2,1 mg/dl, 70 mg/dl, 39 mg/dl
+q-usp2025-033;USP-SP (FMUSP) 2025 #33;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;84 u/l, 90 u/l, 34 u/l, 32 u/l
+q-usp2025-035;USP-SP (FMUSP) 2025 #35;Gastroenterologia;Cirrose e Complicações;1-falta valor de referência;;12 mg/dl, 3 mg/dl, 124 u/l, 96 u/l
+q-usp2025-036;USP-SP (FMUSP) 2025 #36;Abdome Agudo;Pancreatite Aguda;1-falta valor de referência;;11,3 g/dl, 71 mg/l, 1,1 mg/dl, 45 mg/dl, 110 u/l, 41 u/l
+q-usp2025-037;USP-SP (FMUSP) 2025 #37;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;60 mmhg, 110 bpm, 120 bpm, pa de 9, fc de 1
+q-usp2025-038;USP-SP (FMUSP) 2025 #38;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;60 mmhg, 110 bpm, 120 bpm, pa de 9, fc de 1
+q-usp2025-041;USP-SP (FMUSP) 2025 #41;Cirurgia Oncológica;Câncer Colorretal;1-falta valor de referência;;12,1 g/dl, 15 mg/l, 1,7 mg/dl, 71 mg/dl, hb: 1, pcr: 1
+q-usp2025-042;USP-SP (FMUSP) 2025 #42;Cirurgia Oncológica;Tumores Sólidos da Infância;1-falta valor de referência;;60 mmhg, 92 bpm, 8,4 g/dl, 0,44 mg/dl, 0,28 mg/dl, pa de 1
+q-usp2025-046;USP-SP (FMUSP) 2025 #46;Hematologia;Distúrbios da Hemostasia;1-falta valor de referência;;6,3 g/dl, 135 mil/mm, 5,1 ttpa, hb: 6, plaquetas: 1, inr de 5
+q-usp2025-050;USP-SP (FMUSP) 2025 #50;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;39 °c, 75 mg/dl, fr 5, saturação 9
+q-usp2025-053;USP-SP (FMUSP) 2025 #53;Crescimento e Desenvolvimento;Puericultura;1-falta valor de referência;apgar;
+q-usp2025-054;USP-SP (FMUSP) 2025 #54;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;119 bpm, 60 mmhg, fc de 1, fr de 4, pa de 1
+q-usp2025-055;USP-SP (FMUSP) 2025 #55;Hematologia;Distúrbios da Hemostasia;1-falta valor de referência;apgar;
+q-usp2025-056;USP-SP (FMUSP) 2025 #56;Emergências Pediátricas;Desidratação na Infância;1-falta valor de referência;;100 mmhg, 35 mmhg, 21,0 meq/l, 2,9 meq/l, 132 meq/l, ph: 7
+q-usp2025-059;USP-SP (FMUSP) 2025 #59;Emergências Pediátricas;Insuficiência Respiratória e PCR em Pediatria;1-falta valor de referência;;138 bpm, 68 mmhg, pa de 8
+q-usp2025-063;USP-SP (FMUSP) 2025 #63;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;13,7g/dl, 409 mil/mm, 125 meq/l, 4,5 meq/l, 1,7 mg/dl, 0,9 mg/dl
+q-usp2025-065;USP-SP (FMUSP) 2025 #65;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;17 meq/l, 96 mg/dl, 135 meq/l, 3.8 meq/l, 112 meq/l, 0,5 mg/dl
+q-usp2025-066;USP-SP (FMUSP) 2025 #66;Neonatologia;Icterícia Neonatal;1-falta valor de referência;;7 mg/dl, 6,8 mg/dl, 0,2 mg/dl
+q-usp2025-072;USP-SP (FMUSP) 2025 #72;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;1-falta valor de referência;;39,5 °c, 172 bpm, 40 mmhg, 36,9 °c, fc de 1, fr de 8
+q-usp2025-073;USP-SP (FMUSP) 2025 #73;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;12,1 g/dl, 321 mil/mm, 1,1 mg/dl, 126 meq/l, 129 mg/dl, 255 mosm
+q-usp2025-074;USP-SP (FMUSP) 2025 #74;Infectologia;Tuberculose;1-falta valor de referência;;80 mmhg, 108 bpm, 38,5 °c, pa de 1, fc de 1, fr de 2
+q-usp2025-076;USP-SP (FMUSP) 2025 #76;Neurologia;Acidente Vascular Cerebral;1-falta valor de referência;;94 mmhg, 105 bpm, 36,8 °c, pa de 1, fc de 1, fr de 1
+q-usp2025-077;USP-SP (FMUSP) 2025 #77;Hematologia;Doença Falciforme e Hemoglobinopatias;1-falta valor de referência;;7 g/dl, 68 mmhg, 112 bpm, 36,8 °c, 5,2 g/dl, 123 mil/mm
+q-usp2025-083;USP-SP (FMUSP) 2025 #83;Cardiologia;Arritmias Cardíacas;1-falta valor de referência;;100 µg/dia, 64 mmhg, 58 bpm, pa de 1, fc de 5, fr de 1
+q-usp2025-084;USP-SP (FMUSP) 2025 #84;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;nyha;64 mmhg, 52 bpm, 1,57 mg/dl, 53 ml/min, 4,9 meq/l, pa de 9
+q-usp2025-085;USP-SP (FMUSP) 2025 #85;Alergia e Imunologia;Imunodeficiências Primárias;1-falta valor de referência;;70 mmhg, 88 bpm, 37,9 °c, pa de 1, fc de 8, fr de 2
+q-usp2025-086;USP-SP (FMUSP) 2025 #86;Cirurgia Vascular;Dissecção de Aorta;1-falta valor de referência;;104 mmhg, 114 bpm, pa de 1, fc de 1, fr de 2
+q-usp2025-087;USP-SP (FMUSP) 2025 #87;Pneumologia;Pneumonia Adquirida na Comunidade;1-falta valor de referência;;38,6 °c, 84 mmhg, 98 bpm, pa de 1, fc de 9, fr de 2
+q-usp2025-088;USP-SP (FMUSP) 2025 #88;Pneumologia;Pneumonia Adquirida na Comunidade;1-falta valor de referência;;38,6 °c, 84 mmhg, 98 bpm, 64 mmhg, 121 bpm, pa de 1
+q-usp2025-090;USP-SP (FMUSP) 2025 #90;Dermatologia;Farmacodermias;1-falta valor de referência;;37,9 °c, 13,1 g/dl, 143 u/l, 158 u/l, 1,7 mg/dl, hb: 1
+q-usp2025-091;USP-SP (FMUSP) 2025 #91;Cardiologia;Eletrocardiograma Básico;1-falta valor de referência;;70 mmhg, 115 bpm, 37,6 °c, pa de 1, fc de 1, fr de 1
+q-usp2025-092;USP-SP (FMUSP) 2025 #92;Hematologia;Neoplasias Hematológicas;1-falta valor de referência;;100 bpm, 50 mmhg, 38 °c, 6,2 g/dl, fc de 1, pa de 1
+q-usp2025-094;USP-SP (FMUSP) 2025 #94;Pneumologia;DPOC;1-falta valor de referência;;37,9 °c, 102 bpm, 78 mmhg, 27 meq/l, 61 mmhg, 59,8 mmhg
+q-usp2026-001;USP-SP (FMUSP) 2026 #1;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;36,2 °c, 90 bpm, 82 mmhg, 16 irpm, fc de 9, pa de 1
+q-usp2026-002;USP-SP (FMUSP) 2026 #2;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;68 mmhg, 94 bpm, 18 irpm, 37,1 °c, 13,7 g/dl, 384 mil/mm
+q-usp2026-006;USP-SP (FMUSP) 2026 #6;Cardiologia;Síndrome Coronariana Aguda;1-falta valor de referência;;60 mmhg, 60 bpm, 25 irpm, pa de 9, fc de 6, fr de 2
+q-usp2026-009;USP-SP (FMUSP) 2026 #9;Gastroenterologia;Doença Celíaca e Síndromes de Má Absorção;1-falta valor de referência;;225 µg/dia, 10,1 g/dl, hb: 1, leucócitos: 6, plaquetas: 4
+q-usp2026-011;USP-SP (FMUSP) 2026 #11;Neurologia;Acidente Vascular Cerebral;1-falta valor de referência;;110 mmhg, 102 bpm, 145 mg/dl, pa de 1, fc de 1
+q-usp2026-014;USP-SP (FMUSP) 2026 #14;Pneumologia;Pneumonia Adquirida na Comunidade;1-falta valor de referência;;74 mmhg, 112 bpm, 37,9 °c, pa de 1, fc de 1
+q-usp2026-016;USP-SP (FMUSP) 2026 #16;Hematologia;Neoplasias Hematológicas;1-falta valor de referência;;66 mmhg, 112 bpm, 37,1 °c, 18 irpm, pa de 1, fc de 1
+q-usp2026-019;USP-SP (FMUSP) 2026 #19;Infectologia;Infecções Relacionadas à Assistência (IRAS);1-falta valor de referência;;184 mil/mm, 0,9 mg/dl, hb: 1, plaquetas: 1
+q-usp2026-021;USP-SP (FMUSP) 2026 #21;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;88 mmhg, 90 bpm, 23 irpm, 8,9 mg/dl, 123 mil/mm, 3,7 mg/dl
+q-usp2026-023;USP-SP (FMUSP) 2026 #23;Endocrinologia;Distúrbios do Cálcio e Paratireoide;1-falta valor de referência;;78 mmhg, 112 bpm, 14 irpm, pa de 1, fc de 1, fr de 1
+q-usp2026-027;USP-SP (FMUSP) 2026 #27;Trauma;Trauma Abdominal;1-falta valor de referência;glasgow;80 mmhg, 90 bpm, 94bpm, pa de 1, fc de 9
+q-usp2026-028;USP-SP (FMUSP) 2026 #28;Abdome Agudo;Cirurgia Bariátrica e Complicações;1-falta valor de referência;;130 bpm, 80 mmhg, 23 irpm, fc de 1, pa de 1, fr de 2
+q-usp2026-029;USP-SP (FMUSP) 2026 #29;Pré e Pós-operatório;Complicações Cirúrgicas;1-falta valor de referência;;190 bpm, 40 mmhg, fc de 1, pa de 7
+q-usp2026-030;USP-SP (FMUSP) 2026 #30;Cirurgia Oncológica;Câncer Colorretal;1-falta valor de referência;;10,8 g/dl, 43 mg/dl, 3,3 mg/dl, hb: 1
+q-usp2026-040;USP-SP (FMUSP) 2026 #40;Gastroenterologia;Doença Péptica;1-falta valor de referência;;100 bpm, 70 mmhg, 14,9 g/dl, 12 mg/l, 281 u/l, 100 u/l
+q-usp2026-042;USP-SP (FMUSP) 2026 #42;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;95 bpm, 70 mmhg, 12 g/dl, 90 mg/l, 91 u/l, 110 u/l
+q-usp2026-043;USP-SP (FMUSP) 2026 #43;Abdome Agudo;Colangite Aguda e Vias Biliares;1-falta valor de referência;;11,5 g/dl, 230 u/l, 310 u/l, 352 u/l, 110 u/l, 72 u/l
+q-usp2026-045;USP-SP (FMUSP) 2026 #45;Trauma;Trauma Abdominal;1-falta valor de referência;glasgow;90 mmhg, 120 bpm, pa de 1, fc de 1
+q-usp2026-050;USP-SP (FMUSP) 2026 #50;Emergências Pediátricas;Suspeita de Maus-tratos Infantis;1-falta valor de referência;glasgow;8 irpm, 70 mmhg, fr de 8, pa de 1
+q-usp2026-051;USP-SP (FMUSP) 2026 #51;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;8 irpm, 70 mmhg, fr de 8, pa de 1
+q-usp2026-053;USP-SP (FMUSP) 2026 #53;Infectologia;Sepse;1-falta valor de referência;glasgow;38,8 °c, 140 bpm, 26 irpm, 40 mmhg, 37,2 °c, fc de 1
+q-usp2026-056;USP-SP (FMUSP) 2026 #56;Crescimento e Desenvolvimento;Calendário Vacinal;1-falta valor de referência;;36 irpm, 120 bpm, fr de 3, fc de 1
+q-usp2026-057;USP-SP (FMUSP) 2026 #57;Alergia e Imunologia;Alergia Alimentar (APLV e Esofagite Eosinofílica);1-falta valor de referência;;102 bpm, 54 mmhg, 24 irpm, fc de 1, pa de 8, fr de 2
+q-usp2026-065;USP-SP (FMUSP) 2026 #65;Hematologia;Doença Falciforme e Hemoglobinopatias;1-falta valor de referência;;8,5 g/dl, 38,5 °c, 152 bpm, 23 irpm, 48 mmhg, 4,5 g/dl
+q-usp2026-067;USP-SP (FMUSP) 2026 #67;Psiquiatria;Transtornos do Humor;1-falta valor de referência;;8,8 g/dl, 400/mm3, 8,6 g/dl, 600/mm3, 137 meq/l, 4,3 meq/l
+q-usp2026-074;USP-SP (FMUSP) 2026 #74;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;60 mmhg, pa de 1, imc de 2
+q-usp2026-091;USP-SP (FMUSP) 2026 #91;Psiquiatria;Transtornos de Ansiedade (Pânico, Agorafobia, Ansiedade Generalizada);1-falta valor de referência;;95 mmhg, 74 bpm, pa de 1, fc de 7
+q-usp2026-097;USP-SP (FMUSP) 2026 #97;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;70 mmhg, 108 bpm, 146 bpm, pa de 1, fc de 1, imc de 3
+q-usp2026-102;USP-SP (FMUSP) 2026 #102;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;60 mmhg, 104 bpm, 58 u/l, 65 u/l, 0,9 mg/dl, 215.000 mui/ml
+q-usp2026-104;USP-SP (FMUSP) 2026 #104;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;90 mmhg, 128 bpm, pa de 1
+q-usp2026-107;USP-SP (FMUSP) 2026 #107;Ginecologia Geral;Ginecologia da Infância e Adolescência;1-falta valor de referência;z-score;0,3 mui/ml, 4,0 mui/ml
+q-usp2026-108;USP-SP (FMUSP) 2026 #108;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;z-score;
+q-usprp2021-006;USP-RP (FMRP) 2021 #6;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;180 mmhg, 120 mmhg, 72bpm, 122 mmhg, 0,95 mg/dl, 1,3 mg/dl
+q-usprp2021-011;USP-RP (FMRP) 2021 #11;Gastroenterologia;Constipação Intestinal;1-falta valor de referência;percentil;
+q-usprp2021-025;USP-RP (FMRP) 2021 #25;Hematologia;Anemias;1-falta valor de referência;;6,8 g/dl, 17.000/ul, 750.000/ul, 52 mg/dl, 1,2 mg/dl, 10 mg/dl
+q-usprp2021-026;USP-RP (FMRP) 2021 #26;Neonatologia;Triagem Neonatal (Teste do Pezinho);1-falta valor de referência;;380 u/l, 31u/l, 690 u/l, 30u/l, 200 u/l, 50u/l
+q-usprp2021-027;USP-RP (FMRP) 2021 #27;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;1-falta valor de referência;;38,5ºc, 37,8ºc, 9,9 g/dl, 27.000/ul, 12 mg/dl, 0,5 mg/dl
+q-usprp2021-030;USP-RP (FMRP) 2021 #30;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;160 bpm, 40 mmhg
+q-usprp2021-032;USP-RP (FMRP) 2021 #32;Pneumologia;Asma;1-falta valor de referência;;36,7°c, 38 rpm, 118 bpm
+q-usprp2021-041;USP-RP (FMRP) 2021 #41;Neurocirurgia;Tumores do Sistema Nervoso Central;1-falta valor de referência;glasgow, percentil;56 bpm, 82 mmhg
+q-usprp2021-042;USP-RP (FMRP) 2021 #42;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;70 bpm, 80 mmhg, 60 mg/dl, 1,0 mg/dl, 10 g/dl, 12.000/ul
+q-usprp2021-046;USP-RP (FMRP) 2021 #46;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;;5,6 mui/ml, 16 mui/ml, 35 mui/ml, tsh = 5
+q-usprp2021-049;USP-RP (FMRP) 2021 #49;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;;39 kg/m2, 38ºc, 90 mmhg, 110 bpm, 35 irpm, 146 bpm
+q-usprp2021-057;USP-RP (FMRP) 2021 #57;Obstetrícia;Assistência Pré-natal;1-falta valor de referência;percentil;17 kg/m2
+q-usprp2021-062;USP-RP (FMRP) 2021 #62;Oncologia Ginecológica;Câncer de Mama;1-falta valor de referência;bi-rads;
+q-usprp2021-069;USP-RP (FMRP) 2021 #69;Oncologia Ginecológica;Câncer de Mama;1-falta valor de referência;bi-rads;
+q-usprp2021-070;USP-RP (FMRP) 2021 #70;Ginecologia Geral;Infertilidade Conjugal;1-falta valor de referência;;22 kg/m2, 12,0 ng/dl, 25ng/dl
+q-usprp2021-071;USP-RP (FMRP) 2021 #71;Ginecologia Geral;Ginecologia da Infância e Adolescência;1-falta valor de referência;percentil;70 mmhg, 21 kg/m2
+q-usprp2021-077;USP-RP (FMRP) 2021 #77;Neurocirurgia;Traumatismo Cranioencefálico;1-falta valor de referência;glasgow;
+q-usprp2021-083;USP-RP (FMRP) 2021 #83;Abdome Agudo;Pancreatite Aguda;1-falta valor de referência;;40 mg/dl, 1,2 mg/dl, 6,4 mg/dl, 1,0 mg/dl, 4,4 mg/dl
+q-usprp2021-094;USP-RP (FMRP) 2021 #94;Infectologia;Infecção do Trato Urinário;1-falta valor de referência;;0,8 mg/dl, 2,5 mg/l, creatinina de 0
+q-usprp2021-106;USP-RP (FMRP) 2021 #106;Endocrinologia;Tireoidopatias;1-falta valor de referência;;80 mmhg, 110 bpm, pa = 1, fc = 1
+q-usprp2021-107;USP-RP (FMRP) 2021 #107;Endocrinologia;Distúrbios Adrenais;1-falta valor de referência;;33 kg/m2, 100 mmhg, 92 bpm, pa = 1, fc = 9
+q-usprp2021-110;USP-RP (FMRP) 2021 #110;Gastroenterologia;Deficiências Nutricionais e Vitamínicas;1-falta valor de referência;;12 g/dl, 160.000/mm3, 1,2 mg/dl, hb: 1, plaquetas: 1
+q-usprp2021-115;USP-RP (FMRP) 2021 #115;Hematologia;Distúrbios da Hemostasia;1-falta valor de referência;;7,0 g/dl, 8.000/ul, 9.000/ul, 140.000/ul, 1,1 mg/dl, 36 mg/dl
+q-usprp2021-116;USP-RP (FMRP) 2021 #116;Infectologia;Parasitoses Intestinais e Esquistossomose;1-falta valor de referência;;38°c, 9,6 g/dl, 3.000/ul, 100.000/ul, hb: 9, leucócitos: 3
+q-usprp2021-117;USP-RP (FMRP) 2021 #117;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;90 mmhg, 2,3mg/dl, 68 mg/dl, 3,1 g/dl, 150 mg/dl, pa = 1
+q-usprp2021-118;USP-RP (FMRP) 2021 #118;Nefrologia;Doença Renal Crônica;1-falta valor de referência;;0,6 mg/dl, 141 ml/min, creatinina 0
+q-usprp2021-119;USP-RP (FMRP) 2021 #119;Cardiologia;Síndrome Coronariana Aguda;1-falta valor de referência;;53 bpm, 74 mmhg, 24 irpm, fc = 5, pa = 9, fr = 2
+q-usprp2022-013;USP-RP (FMRP) 2022 #13;Endocrinologia;Tireoidopatias;1-falta valor de referência;;114 bpm, 70 mmhg, fc: 1, pa: 1, fr 1
+q-usprp2022-014;USP-RP (FMRP) 2022 #14;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;90 mmhg, 88 mg/dl, 270 mg/dl, 94 mg/dl, 197 mg/dl, 142 meq/l
+q-usprp2022-032;USP-RP (FMRP) 2022 #32;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;
+q-usprp2022-034;USP-RP (FMRP) 2022 #34;Neurologia;Coma, Reflexos de Tronco e Morte Encefálica;1-falta valor de referência;glasgow;52 mmhg, 37°c
+q-usprp2022-043;USP-RP (FMRP) 2022 #43;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;110 mmhg, 150 bpm, 0,7 mg/dl, 13,2 g/dl, 0,6 mg/dl, 26 u/l
+q-usprp2022-059;USP-RP (FMRP) 2022 #59;Ginecologia Geral;Doenças Benignas da Mama (Mastalgia, Cistos, Fibroadenoma);1-falta valor de referência;birads, bi-rads;
+q-usprp2022-061;USP-RP (FMRP) 2022 #61;Cardiologia;Valvopatias;1-falta valor de referência;;85bpm, 80 mmhg, fc = 8, pa = 1
+q-usprp2022-063;USP-RP (FMRP) 2022 #63;Endocrinologia;Distúrbios Adrenais;1-falta valor de referência;;60 mmhg, 50 mmhg, pa = 1
+q-usprp2022-065;USP-RP (FMRP) 2022 #65;Geriatria;Demência e Delirium;1-falta valor de referência;;68mmhg, 92 bpm, 1 irpm, pa: 1, fc 9, fr: 1
+q-usprp2022-066;USP-RP (FMRP) 2022 #66;Hematologia;Anemias;1-falta valor de referência;;8,8 g/dl, 3.200/ul, 124.000/ul, 23.000/ul, 105.000/ul, 118 ng/ml
+q-usprp2022-070;USP-RP (FMRP) 2022 #70;Cardiologia;Doenças do Pericárdio;1-falta valor de referência;nyha;85bpm, 70 mmhg, 18 irpm, fc = 8, pa = 1, fr = 1
+q-usprp2022-072;USP-RP (FMRP) 2022 #72;Gastroenterologia;Cirrose e Complicações;1-falta valor de referência;maddrey;16 mg/dl, 48 u/l, 280 u/l, inr: 1
+q-usprp2022-074;USP-RP (FMRP) 2022 #74;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;70 mmhg, 0,7 mg/dl, 30 mg/dl, 131 mmol/l, 4,2 mmol/l, 2,1 g/dl
+q-usprp2022-075;USP-RP (FMRP) 2022 #75;Pneumologia;DPOC;1-falta valor de referência;;110 bpm, 72 mmhg, 50 mmhg, 54 mmhg, 28 meq/l, fr: 3
+q-usprp2022-083;USP-RP (FMRP) 2022 #83;Gastroenterologia;Doença Celíaca e Síndromes de Má Absorção;1-falta valor de referência;;9,0 g/dl, 4,8 g/dl, hemoglobina = 9
+q-usprp2022-084;USP-RP (FMRP) 2022 #84;Nefrologia;Injúria Renal Aguda;1-falta valor de referência;;6,0 g/dl, 2,5 mg/dl, fr 4, hb 6, plaquetas 7, ureia 7
+q-usprp2022-087;USP-RP (FMRP) 2022 #87;Neonatologia;Icterícia Neonatal;1-falta valor de referência;apgar;58 mg/dl, 138,2 mmol/l, 8 mg/dl, 0,24 mg/dl, 17,0 g/dl, sódio 1
+q-usprp2022-088;USP-RP (FMRP) 2022 #88;Alergia e Imunologia;Imunodeficiências Primárias;1-falta valor de referência;;39ºc, 140 bpm, fc 1, fr 5, hb 1, plaquetas 3
+q-usprp2022-090;USP-RP (FMRP) 2022 #90;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;percentil;64 mmhg, pa: 1
+q-usprp2022-091;USP-RP (FMRP) 2022 #91;Gastroenterologia;Doença Celíaca e Síndromes de Má Absorção;1-falta valor de referência;;2,0 g/dl, 4,8 g/dl, 10,0 g/dl, 0,3 g/dl, hb = 1
+q-usprp2022-092;USP-RP (FMRP) 2022 #92;Cardiologia;Cardiopatias Congênitas (Shunts, Fallot, Coarctação, Eisenmenger);1-falta valor de referência;;20 irpm, 90 bpm, fr: 2, fc:9
+q-usprp2022-094;USP-RP (FMRP) 2022 #94;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;percentil;97 mg/dl, 233 mg/dl, 38 mg/dl, 206 mg/dl, glicemia = 9, hdl = 3
+q-usprp2022-095;USP-RP (FMRP) 2022 #95;Infectologia;Infecção do Trato Urinário;1-falta valor de referência;;50 mg/l, ph 5, leucócitos 2
+q-usprp2022-098;USP-RP (FMRP) 2022 #98;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;percentil;
+q-usprp2023-001;USP-RP (FMRP) 2023 #1;Hematologia;Neoplasias Hematológicas;1-falta valor de referência;;10 g/dl, 7 mg/dl, 0,5 mg/dl, hb: 1, plaquetas: 2, vhs 5
+q-usprp2023-002;USP-RP (FMRP) 2023 #2;Infectologia Pediátrica;Doença Diarreica Aguda;1-falta valor de referência;alvarado;130 bpm, 50 mmhg, 135 meq/l, 2,9 meq/l, 2 mg/dl, fc: 1
+q-usprp2023-005;USP-RP (FMRP) 2023 #5;Reumatologia;Vasculites e Outras Conectivopatias;1-falta valor de referência;;14 g/dl, 3 mg/dl, 0,5 mg/dl, hb: 1, plaquetas: 4, vhs 4
+q-usprp2023-008;USP-RP (FMRP) 2023 #8;Hematologia;Distúrbios da Hemostasia;1-falta valor de referência;;12,5 g/dl, 7.600/ul, 245.000/ul, hb: 1, plaquetas: 2, inr: 2
+q-usprp2023-011;USP-RP (FMRP) 2023 #11;Hematologia;Doença Falciforme e Hemoglobinopatias;1-falta valor de referência;;8 g/dl, 180 bpm, 50 mmhg, 2,9 g/dl, 2 mg/dl, 0,4 mg/dl
+q-usprp2023-015;USP-RP (FMRP) 2023 #15;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;80 bpm, 80 mmhg, 71 mg/dl, 0,7 mg/dl, pa 1, leucócitos 6
+q-usprp2023-016;USP-RP (FMRP) 2023 #16;Neonatologia;Icterícia Neonatal;1-falta valor de referência;;7,3 mg/dl, 5,1 mg/dl, 245 u/l, 295 u/l, 400 u/l, 3,0 g/dl
+q-usprp2023-019;USP-RP (FMRP) 2023 #19;Neonatologia;Infecções Congênitas (TORCH, Sífilis Congênita);1-falta valor de referência;percentil;87.000/ul, 92 u/l, 32 u/l, plaquetas 8
+q-usprp2023-020;USP-RP (FMRP) 2023 #20;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;;110 bpm, 10 irpm, 55 mmhg
+q-usprp2023-022;USP-RP (FMRP) 2023 #22;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;120 mmhg, 24 irpm, 150 bpm
+q-usprp2023-024;USP-RP (FMRP) 2023 #24;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;72 mmhg, 142 bpm, pa: 1
+q-usprp2023-033;USP-RP (FMRP) 2023 #33;Ginecologia Geral;Doenças Benignas da Mama (Mastalgia, Cistos, Fibroadenoma);1-falta valor de referência;bi-rads;
+q-usprp2023-035;USP-RP (FMRP) 2023 #35;Endocrinologia;Doenças da Hipófise (Adenomas, Hipopituitarismo);1-falta valor de referência;;60 mmhg, 112 ng/ml, 25 ng/ml, pa = 9, imc = 1, tsh = 2
+q-usprp2023-036;USP-RP (FMRP) 2023 #36;Obstetrícia;Sangramentos na Gestação;1-falta valor de referência;;70 mmhg, 84 bpm, 12,3 g/dl, 5,2 ng/ml, 90 ng/ml, pa: 1
+q-usprp2023-042;USP-RP (FMRP) 2023 #42;Infectologia;Hanseníase e Reações Hansênicas;1-falta valor de referência;;28 kg/m2, 78 mmhg, 68 bpm, imc 2, pa 1, fc 6
+q-usprp2023-046;USP-RP (FMRP) 2023 #46;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;92 mmhg, 109 mg/dl, 207 mg/dl, 58 mg/dl, 190 mg/dl, 1,1 mg/dl
+q-usprp2023-047;USP-RP (FMRP) 2023 #47;Urologia;Disfunção Erétil;1-falta valor de referência;;74 mmhg, 95 mg/dl, 100 mg/dl, 270 mg/dl, 200 mg/dl, 58 mg/dl
+q-usprp2023-061;USP-RP (FMRP) 2023 #61;Cardiologia;Síndrome Coronariana Aguda;1-falta valor de referência;;70 bpm, 60 mmhg, fc = 7, pa = 1
+q-usprp2023-066;USP-RP (FMRP) 2023 #66;Endocrinologia;Doenças da Hipófise (Adenomas, Hipopituitarismo);1-falta valor de referência;;80 mg/dl, 146 meq/l, 75 mosm, 304 mosm, 5,6 mui/l, 1.1 ng/dl
+q-usprp2023-067;USP-RP (FMRP) 2023 #67;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;112 bpm, 80 mmhg, 46mg/dl, fc: 1, pa: 1
+q-usprp2023-071;USP-RP (FMRP) 2023 #71;Hematologia;Neoplasias Hematológicas;1-falta valor de referência;;3.236 u/l, 13 mg/dl, hb: 8, leucócitos: 1, plaquetas: 5
+q-usprp2023-074;USP-RP (FMRP) 2023 #74;Nefrologia;Síndromes Glomerulares;1-falta valor de referência;;90 mmhg, 100 bpm, 3,0 mg/dl, 100mg/dl, 140 meq/l, 4,0 meq/l
+q-usprp2023-076;USP-RP (FMRP) 2023 #76;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;75 mmhg, 121 bpm, pa 1, fc: 1
+q-usprp2023-077;USP-RP (FMRP) 2023 #77;Pneumologia;Tromboembolismo Pulmonar;1-falta valor de referência;;128 bpm, 30 mmhg, fr: 3, fc: 1, pa: 6
+q-usprp2023-078;USP-RP (FMRP) 2023 #78;Reumatologia;Esclerose Sistêmica e Outras Conectivopatias;1-falta valor de referência;;98 bpm, 60 mmhg, fr: 2, sat 0, fc: 9, pa: 1
+q-usprp2023-084;USP-RP (FMRP) 2023 #84;Abdome Agudo;Pancreatite Aguda;1-falta valor de referência;;37 °c, 125 u/l, 3,2 mg/dl, 0,30 mg/dl
+q-usprp2023-085;USP-RP (FMRP) 2023 #85;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;glasgow;140 bpm, 60 mmhg, fc= 1, pa = 8
+q-usprp2023-086;USP-RP (FMRP) 2023 #86;Neurocirurgia;Tumores do Sistema Nervoso Central;1-falta valor de referência;glasgow;
+q-usprp2023-088;USP-RP (FMRP) 2023 #88;Neurologia;Acidente Vascular Cerebral;1-falta valor de referência;glasgow;
+q-usprp2023-090;USP-RP (FMRP) 2023 #90;Trauma;Trauma Abdominal;1-falta valor de referência;glasgow;130 bpm, 60 mmhg, 105 bpm, 70 mmhg, fc = 1, pa = 9
+q-usprp2023-094;USP-RP (FMRP) 2023 #94;Trauma;Queimaduras;1-falta valor de referência;glasgow;86 bpm, 70 mmhg
+q-usprp2024-001;USP-RP (FMRP) 2024 #1;Infectologia;Infecção do Trato Urinário;1-falta valor de referência;;38,1 °c, 112 bpm, fr: 4, fc: 1, hb: 1, plaquetas: 1
+q-usprp2024-003;USP-RP (FMRP) 2024 #3;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;29 kg/m2, 78 mmhg, imc: 2
+q-usprp2024-005;USP-RP (FMRP) 2024 #5;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;80 ml/min, 220mg/dl, 300mg/dl
+q-usprp2024-006;USP-RP (FMRP) 2024 #6;Crescimento e Desenvolvimento;Puericultura;1-falta valor de referência;percentil;
+q-usprp2024-007;USP-RP (FMRP) 2024 #7;Cardiologia;Hipertensão Arterial Sistêmica;1-falta valor de referência;;28 kg/m2, 100 mmhg, 90 mmhg, 82 bpm, imc de 2
+q-usprp2024-034;USP-RP (FMRP) 2024 #34;Medicina de Emergência;Choque e Ultrassom à Beira do Leito;1-falta valor de referência;;30 mmhg, 137 bpm, 132 mg/dl, pa: 5, fc: 1, fr: 2
+q-usprp2024-035;USP-RP (FMRP) 2024 #35;Cirurgia Vascular;Aneurisma de Aorta;1-falta valor de referência;;60 mmhg, 90 bpm, 9,5 g/dl, 130 meq/l, 5,8 meq/l, 2,5 mg/dl
+q-usprp2024-036;USP-RP (FMRP) 2024 #36;Cirurgia Vascular;Doença Venosa (TVP e Varizes);1-falta valor de referência;;1,2 mg/dl, 110 mg/dl, hb: 9
+q-usprp2024-037;USP-RP (FMRP) 2024 #37;Trauma;Trauma Abdominal;1-falta valor de referência;;0 mmhg, 145 bpm, pa: 4, fc: 1, fr: 2
+q-usprp2024-041;USP-RP (FMRP) 2024 #41;Cardiologia;Doenças do Pericárdio;1-falta valor de referência;;85 mmhg, fc:7, pa:1, fr:2
+q-usprp2024-042;USP-RP (FMRP) 2024 #42;Cardiologia;Valvopatias;1-falta valor de referência;nyha;94 bpm, 60 mmhg, fc: 9, fr: 2, pa:1
+q-usprp2024-045;USP-RP (FMRP) 2024 #45;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;106 bpm, 22 irpm, 68 mmhg, 145 mg/dl, 12 mmol/l, 145 mmol/l
+q-usprp2024-048;USP-RP (FMRP) 2024 #48;Nefrologia;Doença Renal Crônica;1-falta valor de referência;;70 bpm, 76 mmhg, 55 mg/dl, 13,5 g/dl, 1,6 mg/dl, 138 meq/l
+q-usprp2024-049;USP-RP (FMRP) 2024 #49;Hematologia;Anemias;1-falta valor de referência;;7,1 g/dl, 9.000/ul, 89.000/ul, 424.000/ul, 4,0 mg/dl, 0,29 mg/dl
+q-usprp2024-050;USP-RP (FMRP) 2024 #50;Hematologia;Anemias;1-falta valor de referência;;7,6 g/dl, 5.300/ul, 742.000/ul, hb: 7, plaquetas: 7
+q-usprp2024-051;USP-RP (FMRP) 2024 #51;Infectologia;HIV/Aids;1-falta valor de referência;;12,2 g/dl, 3000/ul, 233.000 /ul, 71 mmhg, 38 mmhg, 26 mmol/l
+q-usprp2024-052;USP-RP (FMRP) 2024 #52;Nefrologia;Injúria Renal Aguda;1-falta valor de referência;;100 mmhg, 10,4 mmol/l, 22 mmhg, 54 mmhg, 9,2 mg/dl, 420 mg/dl
+q-usprp2024-055;USP-RP (FMRP) 2024 #55;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;76 bpm, 100 mmhg, fc: 7, pa: 1, fr: 2
+q-usprp2024-060;USP-RP (FMRP) 2024 #60;Endocrinologia;Doenças da Hipófise (Adenomas, Hipopituitarismo);1-falta valor de referência;;0,45 ng/dl, 1,8 ng/dl, 90,34 ng/dl, 900 ng/dl, 11,7 g/dl, imc: 2
+q-usprp2024-064;USP-RP (FMRP) 2024 #64;Alergia e Imunologia;Imunodeficiências Primárias;1-falta valor de referência;;11,8g/dl, 190.000/mm3, 388 mg/dl, 61 mg/dl, 20 mg/dl, 10 mg/dl
+q-usprp2024-065;USP-RP (FMRP) 2024 #65;Pneumologia;Asma;1-falta valor de referência;;28 irpm, 115 bpm, 125 bpm, fr: 2, fc: 1, fr: 3
+q-usprp2024-071;USP-RP (FMRP) 2024 #71;Infectologia;Arboviroses;1-falta valor de referência;;39°c, 14g/dl, 3200/mm3, 89.000/mm3, 3,2 g/dl, 110 u/l
+q-usprp2024-072;USP-RP (FMRP) 2024 #72;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;;166 bpm, 80 mmhg, 364 mg/dl, fr: 4, pa: 1
+q-usprp2024-075;USP-RP (FMRP) 2024 #75;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;glasgow;100 bpm, 70 mmhg, 100 mmhg, 22 mmhg, 14 meq/l, 140 meq/l
+q-usprp2024-077;USP-RP (FMRP) 2024 #77;Hematologia;Distúrbios da Hemostasia;1-falta valor de referência;;12,1 g/dl, 7.500/mm3, 3750/mm3, 225/mm3, 3520/mm3, 38.000/mm3
+q-usprp2024-078;USP-RP (FMRP) 2024 #78;Genética Médica;Síndromes Genéticas;1-falta valor de referência;percentil;
+q-usprp2024-081;USP-RP (FMRP) 2024 #81;Ginecologia Geral;Endometriose;1-falta valor de referência;;75mcg/dia, 80mmhg, 76bpm, 13,2g/dl, pa: 1, fc: 7
+q-usprp2024-082;USP-RP (FMRP) 2024 #82;Ginecologia Geral;Miomatose Uterina;1-falta valor de referência;;60mmhg, 92bpm, 10,3g/dl, 2,2mui/ml, 25mui/ml, pa: 1
+q-usprp2024-085;USP-RP (FMRP) 2024 #85;Ginecologia Geral;Ginecologia da Infância e Adolescência;1-falta valor de referência;;70 mmhg, 18 kg/m2, pa: 1, imc: 1
+q-usprp2024-086;USP-RP (FMRP) 2024 #86;Ginecologia Geral;Climatério;1-falta valor de referência;;26 kg/m2, 70 mmhg, imc: 2, pa: 1
+q-usprp2024-089;USP-RP (FMRP) 2024 #89;Oncologia Ginecológica;Câncer de Mama;1-falta valor de referência;birads, bi-rads;
+q-usprp2024-090;USP-RP (FMRP) 2024 #90;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;110mmhg, 136 bpm, pa: 1
+q-usprp2024-098;USP-RP (FMRP) 2024 #98;Obstetrícia;Puerpério e suas Complicações (Infecção, Transtornos Mentais);1-falta valor de referência;apgar;45 mmhg, 123 bpm
+q-usprp2024-099;USP-RP (FMRP) 2024 #99;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;percentil;160mmhg, 105mmhg, 100mmhg, 82bpm, pas de 1, pad de 1
+q-usprp2025-003;USP-RP (FMRP) 2025 #3;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;;80 bpm, 170 bpm, 105 mmhg, 40 irpm
+q-usprp2025-010;USP-RP (FMRP) 2025 #10;Gastroenterologia;Doença Celíaca e Síndromes de Má Absorção;1-falta valor de referência;;10g/dl, 2,5 g/dl, hb= 1
+q-usprp2025-011;USP-RP (FMRP) 2025 #11;Infectologia;Sepse;1-falta valor de referência;;160 bpm, 20 mmhg, fr: 5, fc: 1
+q-usprp2025-015;USP-RP (FMRP) 2025 #15;Neurologia;Epilepsia e Crises Convulsivas;1-falta valor de referência;;80 mg/dl, 140 bpm, 38,3°c, fc de 1, fr de 2
+q-usprp2025-017;USP-RP (FMRP) 2025 #17;Trauma;Atendimento Inicial ao Trauma (ATLS);1-falta valor de referência;;150 bpm, 40 mmhg, 30 rpm, 20ml/kg
+q-usprp2025-018;USP-RP (FMRP) 2025 #18;Neonatologia;Sepse Neonatal;1-falta valor de referência;apgar;
+q-usprp2025-026;USP-RP (FMRP) 2025 #26;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;percentil;
+q-usprp2025-044;USP-RP (FMRP) 2025 #44;Obstetrícia;Diabetes Mellitus Gestacional;1-falta valor de referência;percentil;
+q-usprp2025-045;USP-RP (FMRP) 2025 #45;Obstetrícia;Trabalho de Parto;1-falta valor de referência;bishop;
+q-usprp2025-056;USP-RP (FMRP) 2025 #56;Ginecologia Geral;Endometriose;1-falta valor de referência;;70mmhg, 78bpm, 11,2g/dl, pa: 1, fc: 7, hb: 1
+q-usprp2025-057;USP-RP (FMRP) 2025 #57;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;60 mmhg, 12ng/dl, 25mg/dl, pa: 9, imc: 1, tsh 2
+q-usprp2025-060;USP-RP (FMRP) 2025 #60;Planejamento Familiar;Métodos Contraceptivos;1-falta valor de referência;;65 mmhg, 30 mg/dl, 40 mg/dl, imc: 3, pa: 1, hdl: 3
+q-usprp2025-061;USP-RP (FMRP) 2025 #61;Infectologia;Endocardite Infecciosa;1-falta valor de referência;;38,3°c, 80 mmhg, 112 bpm, pa: 1
+q-usprp2025-062;USP-RP (FMRP) 2025 #62;Cardiologia;Arritmias Cardíacas;1-falta valor de referência;;142 bpm, 70 mmhg, fc = 1, pa = 1
+q-usprp2025-065;USP-RP (FMRP) 2025 #65;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;;60 bpm, 60 mmhg, 25 irpm, fc= 6, pa= 9, fr= 2
+q-usprp2025-071;USP-RP (FMRP) 2025 #71;Hematologia;Anemias;1-falta valor de referência;;9,6 g/dl, 5.300/ul, 425.000/ul, 3,6 ng/ml, 654 pg/ml, 1,5 ng/ml
+q-usprp2025-073;USP-RP (FMRP) 2025 #73;Infectologia;Febre Maculosa e Outras Riquetsioses;1-falta valor de referência;;38,5°c, 60 mmhg, 120 bpm, 24 rpm, 150.000/ul, 240 u/l
+q-usprp2025-075;USP-RP (FMRP) 2025 #75;Gastroenterologia;Deficiências Nutricionais e Vitamínicas;1-falta valor de referência;;2,9 g/dl, 12,0 g/dl, 1,1 mg/dl, 0,8 mg/dl, 105 mg/dl, hemoglobina: 1
+q-usprp2025-078;USP-RP (FMRP) 2025 #78;Pneumologia;DPOC;1-falta valor de referência;;98 bpm, 80 mmhg, fc: 9, pa: 1
+q-usprp2025-081;USP-RP (FMRP) 2025 #81;Pré e Pós-operatório;Complicações Cirúrgicas;1-falta valor de referência;;37,6°c, 36,7°c, 37,8°c, 37°c
+q-usprp2025-090;USP-RP (FMRP) 2025 #90;Infectologia;Covid-19;1-falta valor de referência;;2,5 mg/dl, 755 ng/dl, 500 ng/dl, plaquetas: 2, sódio: 1, potássio: 4
+q-usprp2025-091;USP-RP (FMRP) 2025 #91;Infectologia;Infecções de Pele e Partes Moles;1-falta valor de referência;;450 mg/dl, 90 mmhg, pa 1
+q-usprp2025-100;USP-RP (FMRP) 2025 #100;Abdome Agudo;Cirurgia Bariátrica e Complicações;1-falta valor de referência;glasgow;
+q-usprp2026-007;USP-RP (FMRP) 2026 #7;Trauma;Trauma Abdominal;1-falta valor de referência;;70 mmhg, 98 bpm, pa 1, fc 9
+q-usprp2026-008;USP-RP (FMRP) 2026 #8;Abdome Agudo;Apendicite Aguda;1-falta valor de referência;;38,5ºc, 60 mmhg, 95 bpm, 15,5 g/dl, 0,5 mg/dl, pa 1
+q-usprp2026-011;USP-RP (FMRP) 2026 #11;Cardiologia;Insuficiência Cardíaca;1-falta valor de referência;;55 mmhg, 4 mmol/l, ph = 7, lactato = 4
+q-usprp2026-014;USP-RP (FMRP) 2026 #14;Endocrinologia;Distúrbios do Cálcio e Paratireoide;1-falta valor de referência;;10.9 mg/dl, 5.3 mg/dl, 3.7 g/dl, 780 pg/ml
+q-usprp2026-015;USP-RP (FMRP) 2026 #15;Abdome Agudo;Colecistite Aguda;1-falta valor de referência;;38,5°c, 115 bpm, 60 mmhg, fc:1, pa 1
+q-usprp2026-016;USP-RP (FMRP) 2026 #16;Cirurgia Vascular;Isquemia Arterial Aguda e Crônica;1-falta valor de referência;;70 mmhg, 110 bpm, pa: 1, fc: 1
+q-usprp2026-023;USP-RP (FMRP) 2026 #23;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;1-falta valor de referência;percentil;
+q-usprp2026-027;USP-RP (FMRP) 2026 #27;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;;139 bpm, fr: 2, fc: 1
+q-usprp2026-028;USP-RP (FMRP) 2026 #28;Neurologia;Tontura e Vertigem;1-falta valor de referência;glasgow;
+q-usprp2026-029;USP-RP (FMRP) 2026 #29;Oncologia Ginecológica;Câncer de Mama;1-falta valor de referência;birads, bi-rads;
+q-usprp2026-031;USP-RP (FMRP) 2026 #31;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;70 mmhg, 24 kg/m2, pa: 1, imc:2
+q-usprp2026-051;USP-RP (FMRP) 2026 #51;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;1-falta valor de referência;;140 meq/l, 4,0 meq/l, 103 meq/l, 0,9 mmol/l, 36 mg/dl, 0,8 mg/dl
+q-usprp2026-054;USP-RP (FMRP) 2026 #54;Endocrinologia;Tireoidopatias;1-falta valor de referência;;138bpm, 62 mmhg, fc: 1, pa: 1
+q-usprp2026-058;USP-RP (FMRP) 2026 #58;Neonatologia;Infecções Congênitas (TORCH, Sífilis Congênita);1-falta valor de referência;apgar;
+q-usprp2026-061;USP-RP (FMRP) 2026 #61;Oncologia Ginecológica;Câncer de Endométrio;1-falta valor de referência;;80 mmhg, 34 kg/m2, pa: 1, imc: 3
+q-usprp2026-063;USP-RP (FMRP) 2026 #63;Ginecologia Geral;Infertilidade Conjugal;1-falta valor de referência;;20,3 kg/m2, 70 mmhg, imc: 2, pa:1
+q-usprp2026-068;USP-RP (FMRP) 2026 #68;Oncologia Ginecológica;Câncer de Endométrio;1-falta valor de referência;;34 kg/m2, 12,6 g/dl, imc: 3, hemoglobina: 1
+q-usprp2026-070;USP-RP (FMRP) 2026 #70;Ginecologia Geral;Ciclo Menstrual e Distúrbios;1-falta valor de referência;;75 mcg/dia, 85 mmhg, 112mg/dl, 150 mg/dl, imc: 2, glicemia 2
+q-usprp2026-076;USP-RP (FMRP) 2026 #76;Obstetrícia;Síndromes Hipertensivas da Gestação;1-falta valor de referência;;93 mmhg, 10,8 g/dl, 95.000/mm3, 86 u/l, 0,9 mg/dl, 730 u/l
+q-usprp2026-082;USP-RP (FMRP) 2026 #82;Nefrologia;Distúrbios Hidroeletrolíticos;1-falta valor de referência;;21 mmhg, 55 mmhg, 8 mmol/l, ph: 7
+q-usprp2026-083;USP-RP (FMRP) 2026 #83;Hematologia;Neoplasias Hematológicas;1-falta valor de referência;;11,5 g/dl, 17,7 g/dl, hb: 1, plaquetas: 7
+q-usprp2026-086;USP-RP (FMRP) 2026 #86;Endocrinologia;Tireoidopatias;1-falta valor de referência;;128 bpm, 80 mmhg, 37,6°c, 13,4 g/dl, 52 mg/dl, 1,1mg/dl
+q-usprp2026-087;USP-RP (FMRP) 2026 #87;Cardiologia;Valvopatias;1-falta valor de referência;;92 bpm, 76 mmhg, fc: 9, pa: 1
+q-usprp2026-089;USP-RP (FMRP) 2026 #89;Endocrinologia;Diabetes Mellitus;1-falta valor de referência;;86 mmhg, 84 bpm, 270 mg/dl, 1,0 mg/dl, imc: 2, pa: 1
+q-usprp2026-093;USP-RP (FMRP) 2026 #93;Hematologia;Doença Falciforme e Hemoglobinopatias;1-falta valor de referência;;15,7 g/dl, 17,7 g/dl, hb: 1, plaquetas: 2
+q-usprp2026-095;USP-RP (FMRP) 2026 #95;Hematologia;Anemias;1-falta valor de referência;;9,2 g/dl, 8,1 mg/dl, 0,8 mg/dl, hb: 9, leucócitos: 1, plaquetas: 5
+q-005;Esc — Banco Didático 2025;Infectologia;Sepse;2-só destacar/completar;;50 mmhg, 30 ml/kg, 4,8 mmol/l, 65 mmhg, lactato de 4
+q-020;Esc — Banco Didático 2022;Obstetrícia;Diabetes Mellitus Gestacional;2-só destacar/completar;;96 mg/dl, 185 mg/dl, 156 mg/dl
+q-amrigs2022-006;AMRIGS 2022 #6;Abdome Agudo;Pancreatite Aguda;2-só destacar/completar;;850 u/l, 100 u/l, 126 u/l, 40 u/l, 82 u/l, 2400 u/l
+q-amrigs2022-029;AMRIGS 2022 #29;Gastroenterologia;Cirrose e Complicações;2-só destacar/completar;child-pugh;
+q-amrigs2022-051;AMRIGS 2022 #51;Ginecologia Geral;Infertilidade Conjugal;2-só destacar/completar;;5,7 mui/ml, 1,4 mui/ml, 30 pg/ml
+q-amrigs2022-058;AMRIGS 2022 #58;Bioética;Comunicação e Relação Médico-Paciente;2-só destacar/completar;;39ºc, pcr=1
+q-amrigs2022-066;AMRIGS 2022 #66;Emergências Pediátricas;Desidratação na Infância;2-só destacar/completar;glasgow;
+q-amrigs2022-093;AMRIGS 2022 #93;Epidemiologia;Níveis e Estratégias de Prevenção;2-só destacar/completar;framingham;
+q-amrigs2023-052;AMRIGS 2023 #52;Obstetrícia;Síndromes Hipertensivas da Gestação;2-só destacar/completar;;140 mmhg, 90 mmhg, 1,1 mg/dl
+q-amrigs2023-061;AMRIGS 2023 #61;Infectologia;Meningites;2-só destacar/completar;;1.100/μl, 15 mg/dl, 90 mg/dl, 200 mg/dl
+q-amrigs2024-007;AMRIGS 2024 #7;Cirurgia Vascular;Doença Venosa (TVP e Varizes);2-só destacar/completar;wells;
+q-amrigs2024-010;AMRIGS 2024 #10;Endocrinologia;Tireoidopatias;2-só destacar/completar;;2 μg/kg, 1,5 μg/kg
+q-amrigs2024-013;AMRIGS 2024 #13;Infectologia;Sepse;2-só destacar/completar;sofa;
+q-amrigs2024-016;AMRIGS 2024 #16;Pneumologia;DPOC;2-só destacar/completar;gold;
+q-amrigs2024-042;AMRIGS 2024 #42;Ginecologia Geral;Ciclo Menstrual e Distúrbios;2-só destacar/completar;;4 ng/ml, 20 ng/ml
+q-amrigs2024-043;AMRIGS 2024 #43;Oncologia Ginecológica;Câncer de Mama;2-só destacar/completar;bi-rads;
+q-amrigs2025-020;AMRIGS 2025 #20;Psiquiatria;Transtornos por Uso de Substâncias;2-só destacar/completar;;110 mmhg, pa 1
+q-amrigs2025-027;AMRIGS 2025 #27;Abdome Agudo;Apendicite Aguda;2-só destacar/completar;;118 bpm, 70 mmhg, 37,3 °c, fc 1, pa 1, leucócitos 1
+q-amrigs2025-036;AMRIGS 2025 #36;Abdome Agudo;Pancreatite Aguda;2-só destacar/completar;;76 mmhg, 88 bpm, 130 u/l, 125 u/l, 68 u/l, 60 u/l
+q-amrigs2025-040;AMRIGS 2025 #40;Trauma;Trauma Abdominal;2-só destacar/completar;;15 ml/h, 65 mmhg, 115 bpm, 28, paco2, 48 mmhg, 18 meq/l
+q-amrigs2025-041;AMRIGS 2025 #41;Ginecologia Geral;Doenças Benignas da Mama (Mastalgia, Cistos, Fibroadenoma);2-só destacar/completar;bi-rads;
+q-amrigs2025-071;AMRIGS 2025 #71;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;2-só destacar/completar;glasgow;
+q-amrigs2025-078;AMRIGS 2025 #78;Neonatologia;Infecções Congênitas (TORCH, Sífilis Congênita);2-só destacar/completar;;69 mg/dl, 60 mg/dl
+q-iamspe2021-008;IAMSPE 2021 #8;Pneumologia;DPOC;2-só destacar/completar;;60 mmhg, 50 mmhg, 38 meq/l, 58 mg/dl, 1,4 mg/dl, 135 meq/l
+q-iamspe2021-027;IAMSPE 2021 #27;Trauma;Trauma Torácico (Lesões de Aorta, Hilo Pulmonar);2-só destacar/completar;;120 bpm, 90 mmhg
+q-iamspe2021-031;IAMSPE 2021 #31;Abdome Agudo;Pancreatite Aguda;2-só destacar/completar;;1.250 u/l, 120 mg/dl, 1,8 mg/dl, leucócitos 1, ureia 1, creatinina 1
+q-iamspe2022-005;IAMSPE 2022 #5;Infectologia;Endocardite Infecciosa;2-só destacar/completar;;fc de 1, pa de 1
+q-iamspe2022-043;IAMSPE 2022 #43;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;2-só destacar/completar;;68 irpm, fr de 6
+q-iamspe2022-044;IAMSPE 2022 #44;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;2-só destacar/completar;;68 irpm, fr de 6
+q-iamspe2023-005;IAMSPE 2023 #5;Cardiologia;Síndrome Coronariana Aguda;2-só destacar/completar;;120 mmhg, 80 mmhg
+q-iamspe2023-033;IAMSPE 2023 #33;Endocrinologia;Tireoidopatias;2-só destacar/completar;;4,5 mui/l, 1,7 ng/dl, 92 mg/dl, tsh = 7, glicemia = 9
+q-iamspe2023-048;IAMSPE 2023 #48;Nefrologia;Síndromes Glomerulares;2-só destacar/completar;;80 mmhg, 40mmhg, 2,0 g/dl
+q-iamspe2023-051;IAMSPE 2023 #51;Oncologia Ginecológica;Câncer de Mama;2-só destacar/completar;bi-rads;
+q-iamspe2025-011;IAMSPE 2025 #11;Infectologia;Antibioticoterapia e Resistência;2-só destacar/completar;;2μg/ml, 4μg/ml
+q-iamspe2025-024;IAMSPE 2025 #24;Abdome Agudo;Colangite Aguda e Vias Biliares;2-só destacar/completar;;64 bpm, 15,1 g/dl, 225 u/l, 61 u/l, 252 u/l, 147 u/l
+q-iamspe2025-026;IAMSPE 2025 #26;Abdome Agudo;Pancreatite Aguda;2-só destacar/completar;;121 mmhg, 78 bpm, 19,4 g/dl, 2,81 mg/dl, 92 mg/dl, 1,45 mg/dl
+q-iamspe2025-035;IAMSPE 2025 #35;Abdome Agudo;Colecistite Aguda;2-só destacar/completar;;40mg/dl, 1,8 mg/dl, plaquetas 9, creatinina 1
+q-iamspe2026-002;IAMSPE 2026 #2;Cardiologia;Arritmias Cardíacas;2-só destacar/completar;;75 bpm, 35 bpm
+q-iamspe2026-004;IAMSPE 2026 #4;Cardiologia;Síndrome Coronariana Aguda;2-só destacar/completar;;90 mmhg, 95 bpm
+q-iamspe2026-007;IAMSPE 2026 #7;Abdome Agudo;Pancreatite Aguda;2-só destacar/completar;ranson;
+q-iamspe2026-025;IAMSPE 2026 #25;Gastroenterologia;Doença Péptica;2-só destacar/completar;;70 mmhg, 106 bpm
+q-iamspe2026-036;IAMSPE 2026 #36;Abdome Agudo;Pancreatite Aguda;2-só destacar/completar;;1189 u/l, 100 u/l
+q-iamspe2026-065;IAMSPE 2026 #65;Neonatologia;Icterícia Neonatal;2-só destacar/completar;;11,8 mg/dl, 0,4 mg/dl
+q-iamspe2026-078;IAMSPE 2026 #78;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;2-só destacar/completar;percentil;
+q-iamspe2026-096;IAMSPE 2026 #96;Cardiologia;Hipertensão Arterial Sistêmica;2-só destacar/completar;;130 mmhg, pa de 2
+q-iamspe2026-098;IAMSPE 2026 #98;Cardiologia;Síndrome Coronariana Aguda;2-só destacar/completar;canadian, percentil;0,8 ng/ml, 0,04 ng/ml, 1,5 ng/ml, troponina 3
+q-iamspe2026-100;IAMSPE 2026 #100;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;;450 mg/dl, 1100 mg/dl, glicemia de 4, ph 7, glicemia de 1
+q-scmsp2021-007;Santa Casa de São Paulo (FCMSCSP) 2021 #7;Pneumologia;DPOC;2-só destacar/completar;gold;55 mmhg, 60 mmhg
+q-scmsp2021-010;Santa Casa de São Paulo (FCMSCSP) 2021 #10;Pneumologia;Ventilação Mecânica Invasiva;2-só destacar/completar;;60 mmhg, 12 ml/kg
+q-scmsp2021-076;Santa Casa de São Paulo (FCMSCSP) 2021 #76;Obstetrícia;Sangramentos na Gestação;2-só destacar/completar;percentil;
+q-scmsp2021-096;Santa Casa de São Paulo (FCMSCSP) 2021 #96;Epidemiologia;Níveis e Estratégias de Prevenção;2-só destacar/completar;;74 mmhg, 76 bpm, pa de 1, fc de 7
+q-scmsp2022-005;Santa Casa de São Paulo (FCMSCSP) 2022 #5;Trauma;Trauma Abdominal;2-só destacar/completar;;90 bpm, 60 mmhg
+q-scmsp2022-008;Santa Casa de São Paulo (FCMSCSP) 2022 #8;Trauma;Atendimento Inicial ao Trauma (ATLS);2-só destacar/completar;;140 bpm, 50 mmhg
+q-scmsp2022-026;Santa Casa de São Paulo (FCMSCSP) 2022 #26;Emergências Pediátricas;Convulsão Febril;2-só destacar/completar;;110 bpm, fc de 1, fr de 3, saturação de 9
+q-scmsp2022-037;Santa Casa de São Paulo (FCMSCSP) 2022 #37;Neurocirurgia;Traumatismo Cranioencefálico;2-só destacar/completar;glasgow;
+q-scmsp2022-052;Santa Casa de São Paulo (FCMSCSP) 2022 #52;Obstetrícia;Sangramentos na Gestação;2-só destacar/completar;;132 bpm, 40 mmhg
+q-scmsp2022-067;Santa Casa de São Paulo (FCMSCSP) 2022 #67;Endocrinologia;Tireoidopatias;2-só destacar/completar;maddrey, grace, pesi;
+q-scmsp2022-068;Santa Casa de São Paulo (FCMSCSP) 2022 #68;Bioética;Cuidados Paliativos e Fim de Vida;2-só destacar/completar;;50 mmhg, saturação de 7
+q-scmsp2023-009;Santa Casa de São Paulo (FCMSCSP) 2023 #9;Hematologia;Neoplasias Hematológicas;2-só destacar/completar;bishop;
+q-scmsp2023-018;Santa Casa de São Paulo (FCMSCSP) 2023 #18;Gastroenterologia;Deficiências Nutricionais e Vitamínicas;2-só destacar/completar;;25 mg/dl, glicemia de 2
+q-scmsp2023-036;Santa Casa de São Paulo (FCMSCSP) 2023 #36;Abdome Agudo;Colecistite Aguda;2-só destacar/completar;;250 ui/l, 125 ui/l
+q-scmsp2023-039;Santa Casa de São Paulo (FCMSCSP) 2023 #39;Abdome Agudo;Apendicite Aguda;2-só destacar/completar;alvarado;
+q-scmsp2023-043;Santa Casa de São Paulo (FCMSCSP) 2023 #43;Hematologia;Anemias;2-só destacar/completar;apgar;
+q-scmsp2023-049;Santa Casa de São Paulo (FCMSCSP) 2023 #49;Neonatologia;Icterícia Neonatal;2-só destacar/completar;apgar, percentil;16 mg/dl
+q-scmsp2023-050;Santa Casa de São Paulo (FCMSCSP) 2023 #50;Infectologia;Meningites;2-só destacar/completar;;55 mg/dl, 60 mg/dl
+q-scmsp2023-065;Santa Casa de São Paulo (FCMSCSP) 2023 #65;Oncologia Ginecológica;Câncer de Mama;2-só destacar/completar;bi-rads;
+q-scmsp2023-077;Santa Casa de São Paulo (FCMSCSP) 2023 #77;Obstetrícia;Síndromes Hipertensivas da Gestação;2-só destacar/completar;;170 mmhg, 120 mmhg, 140 bpm
+q-scmsp2025-003;Santa Casa de São Paulo (FCMSCSP) 2025 #3;Endocrinologia;Distúrbios Adrenais;2-só destacar/completar;;76 mmhg, 62 mmhg
+q-scmsp2025-006;Santa Casa de São Paulo (FCMSCSP) 2025 #6;Hematologia;Anemias;2-só destacar/completar;;7,5 g/dl, hb: 7
+q-scmsp2025-016;Santa Casa de São Paulo (FCMSCSP) 2025 #16;Cardiologia;Arritmias Cardíacas;2-só destacar/completar;;68 mmhg, pa: 9
+q-scmsp2025-021;Santa Casa de São Paulo (FCMSCSP) 2025 #21;Abdome Agudo;Apendicite Aguda;2-só destacar/completar;alvarado;
+q-scmsp2025-045;Santa Casa de São Paulo (FCMSCSP) 2025 #45;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;2-só destacar/completar;percentil;
+q-scmsp2025-065;Santa Casa de São Paulo (FCMSCSP) 2025 #65;Obstetrícia;Síndromes Hipertensivas da Gestação;2-só destacar/completar;;11,8 g/dl, 0,5 mg/dl, 183 u/l, 42 u/l, 70 mmhg, hemoglobina: 1
+q-scmsp2025-087;Santa Casa de São Paulo (FCMSCSP) 2025 #87;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;ckd-epi;130 mg/dl, 58 ml/min, 210 mg/dl, 150 mg/dl, 35 mg/dl, 145 mg/dl
+q-scmsp2026-012;Santa Casa de São Paulo (FCMSCSP) 2026 #12;Reumatologia;Artrite Reumatoide e Espondiloartrites;2-só destacar/completar;;9,4 g/dl, hb: 9
+q-scmsp2026-016;Santa Casa de São Paulo (FCMSCSP) 2026 #16;Cardiologia;Doenças do Pericárdio;2-só destacar/completar;;70 mmhg, pa: 8
+q-scmsp2026-030;Santa Casa de São Paulo (FCMSCSP) 2026 #30;Obstetrícia;Sangramentos na Gestação;2-só destacar/completar;;9,1 g/dl, hb: 9
+q-scmsp2026-032;Santa Casa de São Paulo (FCMSCSP) 2026 #32;Trauma;Atendimento Inicial ao Trauma (ATLS);2-só destacar/completar;glasgow;
+q-scmsp2026-041;Santa Casa de São Paulo (FCMSCSP) 2026 #41;Neonatologia;Icterícia Neonatal;2-só destacar/completar;percentil;9,8 mg/dl
+q-scmsp2026-057;Santa Casa de São Paulo (FCMSCSP) 2026 #57;Emergências Pediátricas;Insuficiência Respiratória e PCR em Pediatria;2-só destacar/completar;;280 bpm, fc: 2
+q-scmsp2026-092;Santa Casa de São Paulo (FCMSCSP) 2026 #92;Cardiologia;Dislipidemia e Risco Cardiovascular;2-só destacar/completar;;84 mmhg, 118 mg/dl, 1,0 mg/dl, pa: 1, imc: 3, ldl: 1
+q-unesp2023-005;UNESP (FMB) 2023 #5;Neonatologia;Icterícia Neonatal;2-só destacar/completar;percentil;
+q-unesp2023-021;UNESP (FMB) 2023 #21;Obstetrícia;Diabetes Mellitus Gestacional;2-só destacar/completar;;88 mg/dl, imc 3
+q-unesp2023-022;UNESP (FMB) 2023 #22;Obstetrícia;Sangramentos na Gestação;2-só destacar/completar;;110 bpm, 60 mmhg, fc 1, pa 1
+q-unesp2023-045;UNESP (FMB) 2023 #45;Gastroenterologia;Cirrose e Complicações;2-só destacar/completar;;135 meq/l, 4,2 meq/l, 40 mmol
+q-unesp2023-064;UNESP (FMB) 2023 #64;Cirurgia Torácica;Pneumotórax e Doenças Pleurais;2-só destacar/completar;;120 mg/dl, 875 ui/l, 6,7 g/dl, 30 mg/dl, 1895 ui/l, 4,2 g/dl
+q-unifesp2022-069;UNIFESP-EPM 2022 #69;Pneumologia;Asma;2-só destacar/completar;;100 mcg/dia, 400 mcg/dose
+q-unifesp2022-090;UNIFESP-EPM 2022 #90;Cardiologia;Hipertensão Arterial Sistêmica;2-só destacar/completar;;100 mmhg, pa = 1
+q-unifesp2022-094;UNIFESP-EPM 2022 #94;Nefrologia;Injúria Renal Aguda;2-só destacar/completar;;1,5 mg/dl, 1,2 mg/dl, 90 mg/dl, 45 mg/dl, 4,9 meq/l, 5.0 meq/l
+q-unifesp2023-007;UNIFESP-EPM 2023 #7;Hematologia;Neoplasias Hematológicas;2-só destacar/completar;;11,2 g/dl, hb de 1
+q-unifesp2023-050;UNIFESP-EPM 2023 #50;Ginecologia Geral;Ciclo Menstrual e Distúrbios;2-só destacar/completar;;27 kg/m2, imc = 2
+q-unifesp2024-007;UNIFESP-EPM 2024 #7;Abdome Agudo;Colangite Aguda e Vias Biliares;2-só destacar/completar;;95 bpm, 80 mm hg, 39 ºc, 100 mg/dl, 18.300 /mm3, fc = 9
+q-unifesp2024-014;UNIFESP-EPM 2024 #14;Cirurgia Torácica;Neoplasia Pulmonar Cirúrgica;2-só destacar/completar;;70 mmhg, pa = 1
+q-unifesp2024-027;UNIFESP-EPM 2024 #27;Gastroenterologia;Doença do Refluxo Gastroesofágico;2-só destacar/completar;;28 kg/m2, imc 2
+q-unifesp2024-029;UNIFESP-EPM 2024 #29;Cardiologia;Hipertensão Arterial Sistêmica;2-só destacar/completar;;95 mmhg, 90 mmhg, 75 mmhg, pa = 1
+q-unifesp2024-031;UNIFESP-EPM 2024 #31;Nefrologia;Doença Renal Crônica;2-só destacar/completar;ckd-epi;1,8 mg/dl, creatinina = 1
+q-unifesp2024-039;UNIFESP-EPM 2024 #39;Pneumologia;Ventilação Mecânica Invasiva;2-só destacar/completar;;38 irpm, fr = 3
+q-unifesp2024-049;UNIFESP-EPM 2024 #49;Ginecologia Geral;Climatério;2-só destacar/completar;;21kg/m2, imc 2
+q-unifesp2024-092;UNIFESP-EPM 2024 #92;Neonatologia;Triagem Neonatal (Teste do Pezinho);2-só destacar/completar;;12 mg/dl, 9mg/dl
+q-unifesp2024-099;UNIFESP-EPM 2024 #99;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;2-só destacar/completar;;70 irpm, fr = 7
+q-unifesp2025-016;UNIFESP-EPM 2025 #16;Urologia;Próstata (HPB e Câncer);2-só destacar/completar;;1,3 mg/dl, 60 mg/dl
+q-unifesp2025-022;UNIFESP-EPM 2025 #22;Endocrinologia;Distúrbios do Cálcio e Paratireoide;2-só destacar/completar;;1,1 mg/dl, 3,0 mui/l, 5,4 mui/l, 15 pg/ml, 10,7 mg/dl, 10,3 mg/dl
+q-unifesp2025-023;UNIFESP-EPM 2025 #23;Cardiologia;Parada Cardiorrespiratória e RCP;2-só destacar/completar;;8 mmhg, 15 mmhg
+q-unifesp2025-038;UNIFESP-EPM 2025 #38;Pneumologia;Pneumonia Adquirida na Comunidade;2-só destacar/completar;curb-65;38 °c, 70 mmhg, 110 bpm, 32 irpm, 420 mg/dl, 70 mg/dl
+q-unifesp2025-055;UNIFESP-EPM 2025 #55;Nefrologia;Doença Renal Crônica;2-só destacar/completar;;78 mmhg, pa = 1
+q-unifesp2025-071;UNIFESP-EPM 2025 #71;Ginecologia Geral;Climatério;2-só destacar/completar;;2 pg/ml, 4 pg/ml
+q-unifesp2026-085;UNIFESP-EPM 2026 #85;Neonatologia;Desconforto Respiratório do Recém-Nascido;2-só destacar/completar;;80 bpm, fc = 8
+q-unifesp2026-098;UNIFESP-EPM 2026 #98;Neonatologia;Sepse Neonatal;2-só destacar/completar;;38,3°c, 38,5°c, 168 bpm, fc = 1
+q-usp2022-048;USP-SP (FMUSP) 2022 #48;Neonatologia;Icterícia Neonatal;2-só destacar/completar;apgar;11 mg/dl
+q-usp2022-098;USP-SP (FMUSP) 2022 #98;Obstetrícia;Trabalho de Parto;2-só destacar/completar;;72 mmhg, 88 bpm, 144 bpm, pa 1, fc 8
+q-usp2023-001;USP-SP (FMUSP) 2023 #1;Abdome Agudo;Doença Diverticular;2-só destacar/completar;;30,2 kg/m2, 80 bpm, 80 mmhg, 13,1 g/dl, 15.693/mm3, 138 mg/l
+q-usp2023-015;USP-SP (FMUSP) 2023 #15;Abdome Agudo;Cirurgia Bariátrica e Complicações;2-só destacar/completar;;122 bpm, 11,2 g/dl, 17.223/mm3, 17 mg/l, 90 mg/dl, 1,7 mg/dl
+q-usp2023-039;USP-SP (FMUSP) 2023 #39;Obstetrícia;Trabalho de Parto;2-só destacar/completar;;82 mmhg, 84 bpm, pa 1, fc 8
+q-usp2023-041;USP-SP (FMUSP) 2023 #41;Otorrinolaringologia;Vias Aéreas Superiores e Sono;2-só destacar/completar;;34 kg/m2, imc = 3
+q-usp2023-046;USP-SP (FMUSP) 2023 #46;Pneumologia;Tromboembolismo Pulmonar;2-só destacar/completar;;110 bpm, 32 irpm, 86 mmhg, fc 1, fr 3, pa 1
+q-usp2023-047;USP-SP (FMUSP) 2023 #47;Cardiologia;Doenças do Pericárdio;2-só destacar/completar;;40 mmhg, pa 8
+q-usp2023-053;USP-SP (FMUSP) 2023 #53;Hematologia;Anemias;2-só destacar/completar;;10,1 g/dl, hemoglobina de 1
+q-usp2023-054;USP-SP (FMUSP) 2023 #54;Cardiologia;Insuficiência Cardíaca;2-só destacar/completar;;90 bpm, 76 mmhg
+q-usp2023-097;USP-SP (FMUSP) 2023 #97;Infectologia Pediátrica;Pneumonia Bacteriana na Infância;2-só destacar/completar;;38,2°c, 148 bpm
+q-usp2023-101;USP-SP (FMUSP) 2023 #101;Ortopedia e Traumatologia;Osteoartrite e Artroplastias;2-só destacar/completar;;32 kg/m2, 8 mg/l
+q-usp2023-102;USP-SP (FMUSP) 2023 #102;Infectologia;Sepse;2-só destacar/completar;glasgow;32 kg/m2, 8 mg/l, 42 mmhg, 120 bpm, 50 mmhg, 108 bpm
+q-usp2024-001;USP-SP (FMUSP) 2024 #1;Infectologia Pediátrica;Bronquiolite Viral Aguda;2-só destacar/completar;;168 bpm, fr: 7, fc: 1
+q-usp2024-002;USP-SP (FMUSP) 2024 #2;Infectologia Pediátrica;Bronquiolite Viral Aguda;2-só destacar/completar;;168 bpm, fr: 7, fc: 1
+q-usp2024-004;USP-SP (FMUSP) 2024 #4;Pneumologia;Asma;2-só destacar/completar;;140 bpm, fr: 4, fc: 1
+q-usp2024-007;USP-SP (FMUSP) 2024 #7;Hematologia;Anemias;2-só destacar/completar;;770.000/mm3, 9,8 g/dl, 34 g/dl, 9.230/mm3, 283.000/mm3, hemoglobina: 9
+q-usp2024-017;USP-SP (FMUSP) 2024 #17;Emergências Pediátricas;Desidratação na Infância;2-só destacar/completar;;12 mmol/l, 5,0 mmol/l, 160 meq/l, 3.3 meq/l, ph: 7, sódio: 1
+q-usp2024-023;USP-SP (FMUSP) 2024 #23;Crescimento e Desenvolvimento;Distúrbios do Crescimento e Puberdade;2-só destacar/completar;z-score;
+q-usp2024-024;USP-SP (FMUSP) 2024 #24;Crescimento e Desenvolvimento;Calendário Vacinal;2-só destacar/completar;z-score;
+q-usp2024-028;USP-SP (FMUSP) 2024 #28;Abdome Agudo;Hérnias da Parede Abdominal;2-só destacar/completar;;28 kg/m2, imc: 2
+q-usp2024-067;USP-SP (FMUSP) 2024 #67;Pneumologia;Ventilação Mecânica Invasiva;2-só destacar/completar;glasgow;88 mmhg, 43 bpm, pa: 1, fc: 4, fr: 9
+q-usp2024-072;USP-SP (FMUSP) 2024 #72;Geriatria;Demência e Delirium;2-só destacar/completar;ecog;
+q-usp2025-002;USP-SP (FMUSP) 2025 #2;Ginecologia Geral;Ciclo Menstrual e Distúrbios;2-só destacar/completar;;80 mmhg, 88 mg/dl, 1,2 mui/l, 16,9 u/l, 2,8 ui/l, 33 μg/l
+q-usp2025-016;USP-SP (FMUSP) 2025 #16;Cardiologia;Valvopatias;2-só destacar/completar;;118 bpm, 90 mmhg, fr de 1, fc de 1, pa de 1
+q-usp2025-018;USP-SP (FMUSP) 2025 #18;Obstetrícia;Assistência Pré-natal;2-só destacar/completar;percentil;
+q-usp2025-039;USP-SP (FMUSP) 2025 #39;Abdome Agudo;Cirurgia Bariátrica e Complicações;2-só destacar/completar;;113 bpm, 60 mmhg, imc de 4, fc de 1, pa de 1, fr de 2
+q-usp2025-045;USP-SP (FMUSP) 2025 #45;Gastroenterologia;Nódulos Hepáticos (Adenoma, Hiperplasia Nodular Focal, Hepatocarcinoma);2-só destacar/completar;meld;
+q-usp2025-048;USP-SP (FMUSP) 2025 #48;Abdome Agudo;Apendicite Aguda;2-só destacar/completar;;13,4 g/dl, 29 mg/l, hb: 1, pcr: 2
+q-usp2025-062;USP-SP (FMUSP) 2025 #62;Emergências Pediátricas;Insuficiência Respiratória e PCR em Pediatria;2-só destacar/completar;;45 bpm, fr de 1, fc de 4
+q-usp2025-067;USP-SP (FMUSP) 2025 #67;Infectologia;Arboviroses;2-só destacar/completar;;60 mmhg, pa de 8
+q-usp2025-069;USP-SP (FMUSP) 2025 #69;Neonatologia;Triagem Neonatal (Teste do Pezinho);2-só destacar/completar;apgar;
+q-usp2025-070;USP-SP (FMUSP) 2025 #70;Neonatologia;Triagem Neonatal (Teste do Pezinho);2-só destacar/completar;apgar;
+q-usp2025-075;USP-SP (FMUSP) 2025 #75;Infectologia;Tuberculose;2-só destacar/completar;;3,1 g/dl, 2,3 g/dl, 11,1 g/dl, 156 mil/mm, 1,53 mg/dl, 3,3 g/dl
+q-usp2025-078;USP-SP (FMUSP) 2025 #78;Neurologia;Doenças Neuromusculares e Desmielinizantes;2-só destacar/completar;;150 mg/dl, 70 mg/dl
+q-usp2025-079;USP-SP (FMUSP) 2025 #79;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;;203 mg/dl, 133 mg/dl
+q-usp2025-093;USP-SP (FMUSP) 2025 #93;Pneumologia;DPOC;2-só destacar/completar;gold;
+q-usp2026-003;USP-SP (FMUSP) 2026 #3;Infectologia;Parasitoses Intestinais e Esquistossomose;2-só destacar/completar;;86 mmhg, 89 bpm, 16 irpm, 12,9 g/dl, 98 mil/mm, 37 u/l
+q-usp2026-004;USP-SP (FMUSP) 2026 #4;Cardiologia;Insuficiência Cardíaca;2-só destacar/completar;;10,8 g/dl, 164 mil/mm, 48 u/l, 36 u/l, 3,6 g/dl, 1,0 ttpa
+q-usp2026-012;USP-SP (FMUSP) 2026 #12;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;;62 mmhg, 106 bpm, 28 irpm, 36,2 °c, 482 mg/dl, 12 meq/l
+q-usp2026-026;USP-SP (FMUSP) 2026 #26;Abdome Agudo;Obstrução Intestinal;2-só destacar/completar;;8,9 g/dl, 2,5 mg/dl, 72 mg/dl, 79 mg/l, 101 mg/l, 3,1 meq/l
+q-usp2026-037;USP-SP (FMUSP) 2026 #37;Abdome Agudo;Doença Diverticular;2-só destacar/completar;;80 bpm, 80 mmhg, 180 mg/l, fc de 8, pa de 1, pcr de 1
+q-usp2026-049;USP-SP (FMUSP) 2026 #49;Emergências Pediátricas;Insuficiência Respiratória e PCR em Pediatria;2-só destacar/completar;glasgow;8 irpm, 70 mmhg, fr de 8, pa de 1
+q-usp2026-052;USP-SP (FMUSP) 2026 #52;Neonatologia;Complicações da Prematuridade;2-só destacar/completar;z-score;
+q-usp2026-061;USP-SP (FMUSP) 2026 #61;Neonatologia;Triagem Neonatal (Teste do Pezinho);2-só destacar/completar;;126 meq/l, 6,8 meq/l
+q-usp2026-086;USP-SP (FMUSP) 2026 #86;Infectologia;Parasitoses Intestinais e Esquistossomose;2-só destacar/completar;;0,8 mg/dl, creatinina 0
+q-usp2026-105;USP-SP (FMUSP) 2026 #105;Obstetrícia;Sangramentos na Gestação;2-só destacar/completar;apgar;54 mmhg, 120 bpm, pa de 7, fc de 1
+q-usp2026-112;USP-SP (FMUSP) 2026 #112;Obstetrícia;Trabalho de Parto;2-só destacar/completar;;84 mmhg, 92 bpm, 156 bpm, pa de 1, fc de 9
+q-usprp2021-037;USP-RP (FMRP) 2021 #37;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;;102 bpm, 62 mmhg, 15 g/dl, 13.000/ul, 250.000/ul, 136 mmol/l
+q-usprp2021-051;USP-RP (FMRP) 2021 #51;Obstetrícia;Síndromes Hipertensivas da Gestação;2-só destacar/completar;;100 mmhg, 144 bpm, 0,56 mg/dl, 37 u/l, 12,5 g/dl, 180.000/mm3
+q-usprp2021-053;USP-RP (FMRP) 2021 #53;Obstetrícia;Diabetes Mellitus Gestacional;2-só destacar/completar;percentil;70 mmhg, 82 bpm, 16 irpm, 130 bpm
+q-usprp2021-055;USP-RP (FMRP) 2021 #55;Obstetrícia;Abortamento;2-só destacar/completar;;50 mmhg, 100 bpm
+q-usprp2021-068;USP-RP (FMRP) 2021 #68;Obstetrícia;Abortamento;2-só destacar/completar;;50 mmhg, 90 bpm
+q-usprp2021-080;USP-RP (FMRP) 2021 #80;Cirurgia Vascular;Isquemia Arterial Aguda e Crônica;2-só destacar/completar;;100 bpm, 80 mmhg, fc: 1, pa: 1
+q-usprp2021-088;USP-RP (FMRP) 2021 #88;Endocrinologia;Doenças da Hipófise (Adenomas, Hipopituitarismo);2-só destacar/completar;;32,4 kg/m2, 70 mmhg, 72 bpm, 85,77 mg/dl, 78 ng/ml, 3,49 mui/ml
+q-usprp2021-090;USP-RP (FMRP) 2021 #90;Neurologia;Acidente Vascular Cerebral;2-só destacar/completar;;160 mmhg, 100 bpm
+q-usprp2021-104;USP-RP (FMRP) 2021 #104;Gastroenterologia;Cirrose e Complicações;2-só destacar/completar;;1,1 mg/dl, 136 meq/l, 4,8 meq/l, 3,1 g/dl, 4,5 mg/dl, 1,2 mg/dl
+q-usprp2022-002;USP-RP (FMRP) 2022 #2;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;;82 mmhg, 198 mg/dl, 49 mg/dl, 270 mg/dl, 0,8 mg/l, 28 mg/dl
+q-usprp2022-024;USP-RP (FMRP) 2022 #24;Trauma;Queimaduras;2-só destacar/completar;;98 bpm, 60 mmhg
+q-usprp2022-037;USP-RP (FMRP) 2022 #37;Cirurgia Vascular;Aneurisma de Aorta;2-só destacar/completar;;90 mmhg, 92 bpm, fc de 9
+q-usprp2022-046;USP-RP (FMRP) 2022 #46;Obstetrícia;Assistência Pré-natal;2-só destacar/completar;;12,6 g/dl, hemoglobina: 1
+q-usprp2022-060;USP-RP (FMRP) 2022 #60;Ginecologia Geral;Incontinência Urinária e Prolapso Genital;2-só destacar/completar;;32,2 kg/m2, imc: 3
+q-usprp2022-078;USP-RP (FMRP) 2022 #78;Nefrologia;Doença Renal Crônica;2-só destacar/completar;;100 mmhg, pa = 1
+q-usprp2022-086;USP-RP (FMRP) 2022 #86;Medicina de Emergência;Intoxicações Exógenas e Síndromes Toxicológicas;2-só destacar/completar;;150 bpm, 50 mmhg
+q-usprp2022-096;USP-RP (FMRP) 2022 #96;Hematologia;Doença Falciforme e Hemoglobinopatias;2-só destacar/completar;;10,40 g/dl, 13,1 g/dl, 32,39 g/dl, 34,0 g/dl, hemoglobina 1
+q-usprp2022-099;USP-RP (FMRP) 2022 #99;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;percentil;138 mg/dl, 142 mg/dl, glicemia = 1
+q-usprp2023-009;USP-RP (FMRP) 2023 #9;Nefrologia;Distúrbios Hidroeletrolíticos;2-só destacar/completar;;160 bpm, 20 mmhg, 100mmhg, 30 mmhg, 15 meq/l, 140 meq/l
+q-usprp2023-028;USP-RP (FMRP) 2023 #28;Obstetrícia;Trabalho de Parto;2-só destacar/completar;;38,0°c, plaquetas 1
+q-usprp2023-044;USP-RP (FMRP) 2023 #44;Geriatria;Demência e Delirium;2-só destacar/completar;;80 mmhg, 71 bpm, 110 mg/dl, 980 pg/ml, pa: 1, fc: 7
+q-usprp2023-065;USP-RP (FMRP) 2023 #65;Gastroenterologia;Cirrose e Complicações;2-só destacar/completar;;1,0 mg/dl, 3,8 meq/l
+q-usprp2023-073;USP-RP (FMRP) 2023 #73;Cirurgia Torácica;Pneumotórax e Doenças Pleurais;2-só destacar/completar;;4,29 g/dl, 54,1 mg/dl, 143 mg/dl, leucócitos: 4, ph: 7
+q-usprp2023-075;USP-RP (FMRP) 2023 #75;Nefrologia;Síndromes Glomerulares;2-só destacar/completar;;70 mmhg, 65 bpm, 1,5 mg/dl, 45 ml/min, 85 mg/dl, 5.0 mg/dl
+q-usprp2023-082;USP-RP (FMRP) 2023 #82;Cirurgia Vascular;Dissecção de Aorta;2-só destacar/completar;;80 mmhg, 56 bpm
+q-usprp2024-011;USP-RP (FMRP) 2024 #11;Epidemiologia;Desenhos de Estudo Epidemiológico;2-só destacar/completar;percentil;
+q-usprp2024-015;USP-RP (FMRP) 2024 #15;Cardiologia;Dislipidemia e Risco Cardiovascular;2-só destacar/completar;;32,5 kg/m2, 76 mmhg, 198 mg/dl, 45 mg/dl, 105 mg/dl, 94 mg/dl
+q-usprp2024-026;USP-RP (FMRP) 2024 #26;Medicina de Emergência;Choque e Ultrassom à Beira do Leito;2-só destacar/completar;;35 mmhg, 55 mmhg
+q-usprp2024-038;USP-RP (FMRP) 2024 #38;Neurologia;Acidente Vascular Cerebral;2-só destacar/completar;glasgow;
+q-usprp2024-057;USP-RP (FMRP) 2024 #57;Reumatologia;Artrite Reumatoide e Espondiloartrites;2-só destacar/completar;;3,8 mg/dl, 15 u/l, 12 u/l, 82 mg/dl, 0,9 mg/dl, tsh: 1
+q-usprp2024-058;USP-RP (FMRP) 2024 #58;Ortopedia e Traumatologia;Osteoartrite e Artroplastias;2-só destacar/completar;;31 kg/m2, imc: 3
+q-usprp2024-063;USP-RP (FMRP) 2024 #63;Neonatologia;Icterícia Neonatal;2-só destacar/completar;apgar;13,1 mg/dl, 16,7 mg/dl, 16.0 mg/dl
+q-usprp2024-079;USP-RP (FMRP) 2024 #79;Neurocirurgia;Tumores do Sistema Nervoso Central;2-só destacar/completar;;92 bpm, 60 mmhg
+q-usprp2024-084;USP-RP (FMRP) 2024 #84;Ginecologia Geral;Ciclo Menstrual e Distúrbios;2-só destacar/completar;;80mmhg, 31,3kg/m2, 88mg/dl, 136mg/dl, pa=1, imc=3
+q-usprp2024-087;USP-RP (FMRP) 2024 #87;Planejamento Familiar;Métodos Contraceptivos;2-só destacar/completar;;21 kg/m2, 65 mmhg, imc: 2, pa: 1
+q-usprp2024-093;USP-RP (FMRP) 2024 #93;Obstetrícia;Assistência Pré-natal;2-só destacar/completar;percentil;
+q-usprp2024-097;USP-RP (FMRP) 2024 #97;Obstetrícia;Diabetes Mellitus Gestacional;2-só destacar/completar;;12,0g/dl, 93 mg/dl, hb 1
+q-usprp2025-012;USP-RP (FMRP) 2025 #12;Cardiologia;Dislipidemia e Risco Cardiovascular;2-só destacar/completar;percentil;
+q-usprp2025-032;USP-RP (FMRP) 2025 #32;Pneumologia;Asma;2-só destacar/completar;;22 kg/m2, imc 2
+q-usprp2025-034;USP-RP (FMRP) 2025 #34;Infectologia;Arboviroses;2-só destacar/completar;;79 mmhg, 96 bpm, pa 1, fc 9, fr 1
+q-usprp2025-051;USP-RP (FMRP) 2025 #51;Oncologia Ginecológica;Câncer de Mama;2-só destacar/completar;bi-rads;
+q-usprp2025-066;USP-RP (FMRP) 2025 #66;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;;50 mmhg, 120 bpm, 28 irpm, 480 mg/dl, 10 meq/l, 142 meq/l
+q-usprp2025-068;USP-RP (FMRP) 2025 #68;Gastroenterologia;Hepatites Virais;2-só destacar/completar;;18 u/l, 57 u/l
+q-usprp2026-003;USP-RP (FMRP) 2026 #3;Pneumologia;Tromboembolismo Pulmonar;2-só destacar/completar;;110 bpm, imc 3, fc: 1
+q-usprp2026-006;USP-RP (FMRP) 2026 #6;Trauma;Atendimento Inicial ao Trauma (ATLS);2-só destacar/completar;;70 mmhg, 90 bpm
+q-usprp2026-025;USP-RP (FMRP) 2026 #25;Endocrinologia;Diabetes Mellitus;2-só destacar/completar;;1,15 mg/dl, 53,9 ml/min, 90 ml/min, 222 mg/dl, 99 mg/dl, creatinina: 1
+q-usprp2026-026;USP-RP (FMRP) 2026 #26;Psiquiatria;Transtornos de Ansiedade (Pânico, Agorafobia, Ansiedade Generalizada);2-só destacar/completar;;24,2 kg/m2, imc 2
+q-usprp2026-041;USP-RP (FMRP) 2026 #41;Cardiologia;Cardiopatias Congênitas (Shunts, Fallot, Coarctação, Eisenmenger);2-só destacar/completar;;130 bpm, 150 bpm
+q-usprp2026-047;USP-RP (FMRP) 2026 #47;Cardiologia;Hipertensão Arterial Sistêmica;2-só destacar/completar;glasgow;98 bpm, 105 mmhg, fc: 9, fr: 1, pa: 1
+q-usprp2026-057;USP-RP (FMRP) 2026 #57;Neonatologia;Triagem Neonatal (Teste do Pezinho);2-só destacar/completar;apgar;21,5 mg/dl, 1,3 mg/dl
+q-usprp2026-066;USP-RP (FMRP) 2026 #66;Ginecologia Geral;Incontinência Urinária e Prolapso Genital;2-só destacar/completar;;4 kg/m2, imc: 4
+q-usprp2026-073;USP-RP (FMRP) 2026 #73;Obstetrícia;Abortamento;2-só destacar/completar;;24 kg/m2, 88 mg/dl, 2,1 mui/l, imc: 2, tsh: 2
+q-usprp2026-077;USP-RP (FMRP) 2026 #77;Obstetrícia;Puerpério e suas Complicações (Infecção, Transtornos Mentais);2-só destacar/completar;;40 mmhg, 110 bpm
+q-usprp2026-100;USP-RP (FMRP) 2026 #100;Infectologia;Antibioticoterapia e Resistência;2-só destacar/completar;;38°c, 8,7 g/dl, hb 8, leucócitos 1, plaquetas 5
+q-004;Esc — Banco Didático 2024;Endocrinologia;Diabetes Mellitus;3-baixa;;118 mg/dl, imc 3
+q-amrigs2022-046;AMRIGS 2022 #46;Obstetrícia;Síndromes Hipertensivas da Gestação;3-baixa;;12 meq/l, 1 mg/dl
+q-amrigs2025-044;AMRIGS 2025 #44;Ginecologia Geral;Infertilidade Conjugal;3-baixa;;10 ng/ml, 3 ng/ml
+q-iamspe2026-048;IAMSPE 2026 #48;Ginecologia Geral;Infecções Sexualmente Transmissíveis;3-baixa;;38,5 °c, 100 bpm
+q-scmsp2026-011;Santa Casa de São Paulo (FCMSCSP) 2026 #11;Hematologia;Doença Falciforme e Hemoglobinopatias;3-baixa;;10 g/dl, hb: 1
+q-scmsp2026-037;Santa Casa de São Paulo (FCMSCSP) 2026 #37;Técnica Operatória e Cirurgia Experimental;Princípios de Videolaparoscopia;3-baixa;;14 mmhg, imc: 3
+q-unifesp2024-055;UNIFESP-EPM 2024 #55;Obstetrícia;Sangramentos na Gestação;3-baixa;;110 bpm, 55mmhg
+q-unifesp2024-065;UNIFESP-EPM 2024 #65;Geriatria;Polifarmácia no Idoso;3-baixa;;84 mg/dl, tsh = 5
+q-unifesp2026-049;UNIFESP-EPM 2026 #49;Obstetrícia;Abortamento;3-baixa;;750 mui/ml, 937 mui/ml
+q-unifesp2026-095;UNIFESP-EPM 2026 #95;Pneumologia;Asma;3-baixa;;42 irpm, fr = 4
+q-usp2022-025;USP-SP (FMUSP) 2022 #25;Cardiologia;Hipertensão Arterial Sistêmica;3-baixa;;100 mmhg, 80 mmhg
+q-usp2024-044;USP-SP (FMUSP) 2024 #44;Abdome Agudo;Pancreatite Aguda;3-baixa;;19 kg/m2, imc: 1
+q-usp2025-013;USP-SP (FMUSP) 2025 #13;Obstetrícia;Diabetes Mellitus Gestacional;3-baixa;;98 mg/dl, imc: 3
+q-usprp2023-083;USP-RP (FMRP) 2023 #83;Cardiologia;Doença Coronariana Crônica;3-baixa;;1,4 mg/dl, creatinina de 1
+q-usprp2025-074;USP-RP (FMRP) 2025 #74;Cardiologia;Hipertensão Arterial Sistêmica;3-baixa;;90 mmhg, pa 1
