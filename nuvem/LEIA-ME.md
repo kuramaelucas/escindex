@@ -71,7 +71,7 @@ na linha 58; isso foi corrigido e agora é testado automaticamente a cada
 envio, num PostgreSQL de verdade, junto com as regras de segurança).
 
 > **Se o seu banco já existia antes desta versão, rode o `esquema.sql` de novo.**
-> Treze novidades precisam disso, e o arquivo já traz as linhas que acrescentam
+> Dezessete novidades precisam disso, e o arquivo já traz as linhas que acrescentam
 > cada uma sem mexer no que existe:
 >
 > | O que é | O que o arquivo faz |
@@ -87,6 +87,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | Os **flashcards favoritados** | cria a tabela `favoritos_cartoes`, com RLS e permissões |
 > | As **questões escondidas** ("não mostrar mais") | cria a tabela `questoes_ocultas`, com RLS e permissões |
 > | Os **destaques de texto** em questões e flashcards | cria a tabela `destaques`, com RLS e permissões (cada pessoa lê e grava os seus) |
+> | Os **avisos da coordenação** (Enviar Avisos) chegando a todos os aparelhos | cria a tabela `avisos` (toda conta aprovada lê; só o administrador grava) e `alter table public.perfis add column if not exists avisos_lidos jsonb ...` (o que a pessoa já dispensou) |
 > | A **ordem própria dos estágios do 6º ano** (Meu Grupo > Meus estágios) | `alter table public.perfis add column if not exists ordem_estagios jsonb ...` |
 > | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |
 > | A **formatação aprovada** em Revisar Formatação | cria a tabela `formatacao_aprovada` e a função `e_revisor()` (grava equipe e residentes) |

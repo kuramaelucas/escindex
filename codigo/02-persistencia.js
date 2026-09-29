@@ -230,6 +230,7 @@ function dbPadrao(){
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     feedbacks: [],          // comentários, sugestões e reclamações gerais sobre a plataforma
+    avisos: [],             // recados da coordenação aos usuários (seção 24-D): {id, titulo, texto, rota, papeis, anos, data, expiraEm, autorNome, removido}
     cargasProvas: [],       // provas sendo transcritas em lotes (ver Central de Provas)
     configGeral: {
       metaMinimaQuestoesDia: CONFIG.metaMinimaQuestoesDia,
@@ -275,7 +276,7 @@ function garantirEstruturaDb(alvo){
   };
   // o que a turma produziu: preservado sempre que for uma lista
   lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("destaques"); lista("sessoes");
-  lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios");
+  lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios"); lista("avisos");
   lista("cargasProvas"); lista("filaNuvem"); lista("grupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
@@ -407,6 +408,7 @@ function loadState(){
     // preenche campos novos que dados salvos mais antigos podem não ter,
     // sem precisar reiniciar tudo
     if(!db.feedbacks) db.feedbacks = [];
+    if(!db.avisos) db.avisos = [];
     if(!db.sessoes) db.sessoes = [];
     // Central de Provas entrou depois: quem já usava começa sem prova nenhuma
     // em andamento (as questões que já importou continuam no banco, intactas)

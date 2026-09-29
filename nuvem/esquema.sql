@@ -152,6 +152,9 @@ alter table public.perfis add column if not exists boas_vindas_em date;
 -- (Meu Grupo > Meus estágios): {"b6-pediatria": ["Enfermaria de Pediatria", ...]}.
 -- Só muda a ordem para ela; o grupo do rodízio continua o mesmo.
 alter table public.perfis add column if not exists ordem_estagios jsonb not null default '{}'::jsonb;
+-- os avisos da coordenação (seção 11-I) que a pessoa já leu, para o aviso não
+-- voltar a aparecer em outro aparelho: lista de ids.
+alter table public.perfis add column if not exists avisos_lidos jsonb not null default '[]'::jsonb;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)
@@ -567,6 +570,33 @@ create table if not exists public.correcoes_questoes (
 create index if not exists correcoes_questoes_sync_idx on public.correcoes_questoes (atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 11-I. AVISOS — recados da coordenação para os usuários (GLOBAL)
+-- ---------------------------------------------------------------------------
+-- O painel Enviar Avisos (administração) escreve aqui; toda conta aprovada
+-- lê e vê, na tela inicial, os que são para ela. `papeis` e `anos` dizem para
+-- quem: lista vazia = todos. O filtro é feito pelo site — um aviso não é
+-- segredo —, por isso a leitura é aberta a qualquer conta aprovada. Quem
+-- grava é o administrador (e_admin()). O aviso apagado não some: fica com
+-- `removido = true`, para a remoção também descer para os outros aparelhos.
+-- `rota` é a tela para onde o aviso leva (opcional); `expira_em`, o último dia
+-- em que ele aparece (opcional).
+create table if not exists public.avisos (
+  id              text        primary key,
+  titulo          text        not null default '',
+  texto           text        not null default '',
+  rota            text,
+  papeis          jsonb       not null default '[]'::jsonb,
+  anos            jsonb       not null default '[]'::jsonb,
+  data            date,
+  expira_em       date,
+  autor_nome      text        not null default '',
+  removido        boolean     not null default false,
+  atualizado_por  uuid        references auth.users(id) on delete set null,
+  atualizado_em   timestamptz not null default now()
+);
+create index if not exists avisos_sync_idx on public.avisos (atualizado_em);
+
+-- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
 do $$
@@ -576,7 +606,7 @@ begin
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
-    'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes'
+    'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -688,6 +718,7 @@ alter table public.comentarios          enable row level security;
 alter table public.questoes_enviadas    enable row level security;
 alter table public.feedbacks            enable row level security;
 alter table public.correcoes_questoes   enable row level security;
+alter table public.avisos               enable row level security;
 
 -- PERFIS: a pessoa vê e edita o próprio; professor e administrador veem e
 -- editam qualquer um (é assim que a tela Aprovar Cadastros funciona sem
@@ -849,6 +880,18 @@ create policy correcoes_questoes_alterar on public.correcoes_questoes
   for update to authenticated
   using (public.e_revisor()) with check (public.e_revisor());
 
+-- AVISOS: toda conta aprovada lê; só o administrador cria e altera.
+drop policy if exists avisos_ler     on public.avisos;
+drop policy if exists avisos_criar   on public.avisos;
+drop policy if exists avisos_alterar on public.avisos;
+create policy avisos_ler on public.avisos
+  for select to authenticated using (public.e_aprovado());
+create policy avisos_criar on public.avisos
+  for insert to authenticated with check (public.e_admin());
+create policy avisos_alterar on public.avisos
+  for update to authenticated
+  using (public.e_admin()) with check (public.e_admin());
+
 -- AS DEMAIS TABELAS: são o estudo de uma pessoa só. Ler, criar e alterar
 -- apenas as próprias linhas. Ninguém apaga nada (o app marca "removido" em
 -- vez de apagar, para a remoção também conseguir viajar entre aparelhos).
@@ -900,7 +943,7 @@ begin
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
     'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
-    'feedbacks', 'correcoes_questoes'
+    'feedbacks', 'correcoes_questoes', 'avisos'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;

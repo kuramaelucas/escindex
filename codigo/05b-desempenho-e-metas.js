@@ -250,8 +250,8 @@ function gerarNotificacoes(usuario){
     // só o ano), então a plataforma precisa lembrar quem ainda não escolheu —
     // no calendário oficial o aluno vê o bloco do Grupo A, que pode não ser o
     // dele
-    if(getGrupoDoUsuario(usuario).oficial){
-      notifs.push({icon:"users", texto:"Escolha a sua turma do rodízio (Grupo A, B, C ou D) — até lá você segue o calendário oficial.", rota:"meu-grupo"});
+    if(getGrupoDoUsuario(usuario).oficial && temCalendarioProprio(usuario.anoFaculdade)){
+      notifs.push({icon:"users", texto:"Escolha a sua turma do rodízio em Meu Grupo — até lá você segue o calendário oficial.", rota:"meu-grupo"});
     }
     const vencidas = questoesRevisaoEspacadaVencidas(usuario.id).length;
     if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" questão(ões) vencida(s) para revisão espaçada.", rota:"revisao"});

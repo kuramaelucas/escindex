@@ -1,4 +1,4 @@
-/* codigo/03c-nuvem-compartilhadas.js — Nuvem (seção 2-C), parte 3: NUVEM_GLOBAIS, as tabelas de todos — Livro de Ouro, formatação aprovada, comentários, feedback, questões enviadas (imagens no Storage) e correções das questões de dados/.
+/* codigo/03c-nuvem-compartilhadas.js — Nuvem (seção 2-C), parte 3: NUVEM_GLOBAIS, as tabelas de todos — Livro de Ouro, formatação aprovada, comentários, feedback, avisos da coordenação, questões enviadas (imagens no Storage) e correções das questões de dados/.
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* Quem entra em Revisar Formatação: a equipe e os residentes — a mesma
@@ -125,6 +125,42 @@ function nuvemMarcarFeedback(id){
   const f = (db.feedbacks || []).find(x => x.id === id);
   if(!f || (!f.naNuvem && f.usuarioId !== nuvemSessao.usuarioId)) return false;
   nuvemMarcarGlobalPendente("feedbacks", id);
+  nuvemAgendarSync();
+  return true;
+}
+
+/* AVISOS DA COORDENAÇÃO (tabela avisos, seção 11-I do esquema.sql): o painel
+   Enviar Avisos. Todo mundo lê — o filtro por papel e por ano é feito na
+   tela, um aviso não é segredo —; grava o administrador. Retirar um aviso
+   marca `removido`, para a retirada também descer para os outros aparelhos. */
+NUVEM_GLOBAIS.avisos = {
+  chave: l => l.id,
+  podeGravar: () => podeEnviarAvisos(),
+  aplicar: l => {
+    if(!Array.isArray(db.avisos)) db.avisos = [];
+    const i = db.avisos.findIndex(x => x.id === l.id);
+    const reg = {
+      id: l.id, titulo: l.titulo || "", texto: l.texto || "", rota: l.rota || "",
+      papeis: Array.isArray(l.papeis) ? l.papeis : [], anos: Array.isArray(l.anos) ? l.anos : [],
+      data: l.data || (l.atualizado_em || "").slice(0, 10), expiraEm: l.expira_em || "",
+      autorNome: l.autor_nome || "", removido: !!l.removido, naNuvem: true,
+    };
+    if(i >= 0) db.avisos[i] = Object.assign(db.avisos[i], reg);
+    else{ db.avisos.push(reg); avisarNoNavegador(reg); }
+  },
+  linha: id => {
+    const a = (db.avisos || []).find(x => x.id === id);
+    if(!a) return null;
+    return {
+      id: a.id, titulo: a.titulo || "", texto: a.texto || "", rota: a.rota || null,
+      papeis: a.papeis || [], anos: a.anos || [], data: a.data || null, expira_em: a.expiraEm || null,
+      autor_nome: a.autorNome || "", removido: !!a.removido,
+    };
+  },
+};
+function nuvemMarcarAviso(id){
+  if(!nuvemConectado()) return false;
+  nuvemMarcarGlobalPendente("avisos", id);
   nuvemAgendarSync();
   return true;
 }

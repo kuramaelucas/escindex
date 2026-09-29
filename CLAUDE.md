@@ -58,6 +58,7 @@ Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem insta
 | `11b-qualidade-e-cadastros.js` | 21, 23, 24 | Questões Difíceis/qualidade, Fila de Dúvidas, cadastros, usuários, Feedback dos Usuários |
 | `11c-banco-e-taxonomia.js` | 25, 25-B | Banco de Questões, formulário de questão, Especialidades e Assuntos |
 | `11d-painel-da-turma.js` | 24-C | Painel da Turma |
+| `11e-avisos.js` | 24-D | Enviar Avisos (painel do administrador) e o card de avisos no Início |
 | `12a-importacao.js` | 26 | Importar/Enviar questões |
 | `12b-central-de-provas.js` | 26-B | Central de Provas |
 | `12c-questoes-para-atualizar.js` | 26-D | Questões para Atualizar (correções, arquivo de atualizações) |

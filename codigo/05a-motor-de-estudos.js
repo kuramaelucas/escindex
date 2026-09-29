@@ -237,7 +237,7 @@ function toggleFavoritoCartao(usuarioId, cartaoId){
    do dia, a revisão espaçada, as filas de erro, as listas por filtro e as
    práticas por assunto — e só dela: não some do banco, das provas antigas
    (a prova inteira continua inteira), dos favoritos nem das estatísticas.
-   Voltar a mostrar é um clique, em Revisão > Questões escondidas. */
+   Voltar a mostrar é um clique, em Favoritos > Retiradas da revisão. */
 let _cacheOcultas = null;
 function idsOcultosDo(usuarioId){
   if(!_cacheOcultas || _cacheOcultas.geracao !== _geracaoDb) _cacheOcultas = { geracao:_geracaoDb, porUsuario:{} };
@@ -350,18 +350,57 @@ function qualidadeSM2(correta, confianca){
   if(!correta && confianca==="duvida") return 1;
   return 0; // errou tendo certeza — pior cenário, indica lacuna real de conhecimento
 }
+/* ACERTO COM SEGURANÇA. Acertar no chute não prova que a pessoa sabe, então
+   não conta: só vale o acerto marcado com certeza ou na dúvida. */
+function acertoFirme(r){ return !!r.correta && r.confianca !== "chute"; }
+/* Quantos acertos firmes SEGUIDOS a questão tem no fim do histórico — um erro
+   (ou um acerto no chute) zera a conta. `respostas` em ordem cronológica. */
+function acertosFirmesSeguidos(respostas){
+  let n = 0;
+  for(let i = respostas.length - 1; i >= 0 && acertoFirme(respostas[i]); i--) n++;
+  return n;
+}
+/* Questão DOMINADA: acertou com segurança mais de duas vezes seguidas. Sai da
+   revisão espaçada — repetir o que a pessoa já sabe é tirar tempo do que ela
+   ainda erra. Vem do histórico de respostas (que sincroniza), não de um campo
+   da revisão, para valer igual em todos os aparelhos e para o histórico antigo. */
+function questaoDominada(usuarioId, questaoId){
+  return acertosFirmesSeguidos(respostasDaQuestao(usuarioId, questaoId)) >= CONFIG.acertosParaDominarQuestao;
+}
+/* Quanto o intervalo cresce por o assunto estar bem: taxa das últimas 10
+   respostas naquele assunto, com um mínimo de respostas para não premiar
+   sorte. 1 = sem bônus. */
+function fatorDoAssuntoForte(usuarioId, assuntoId){
+  const ultimas = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId===assuntoId).slice(-10);
+  if(ultimas.length < CONFIG.minRespostasAssuntoForte) return 1;
+  const taxa = ultimas.filter(r=>r.correta).length / ultimas.length;
+  const faixa = CONFIG.bonusAssuntoForte.find(b => taxa >= b.taxa);
+  return faixa ? faixa.fator : 1;
+}
 function registrarRevisao(usuarioId, questaoId, correta, confianca){
   if(!db.revisoes[usuarioId]) db.revisoes[usuarioId] = {};
   const entry = db.revisoes[usuarioId][questaoId] || {repeticoes:0, fator:2.5, intervalo:0};
   const q = qualidadeSM2(correta, confianca);
-  // escada de intervalos: os primeiros acertos seguidos sobem os degraus de
-  // CONFIG.intervalosBase (1, 3, 7, 16, 35, 75 dias); depois de esgotar a
-  // escada, o intervalo passa a crescer pelo fator, como no SM-2 clássico.
   const escada = (db.configGeral && db.configGeral.intervalosBase) || CONFIG.intervalosBase;
   if(q < 3){ entry.repeticoes = 0; entry.intervalo = escada[0]; }
   else{
-    entry.intervalo = entry.repeticoes < escada.length ? escada[entry.repeticoes] : Math.round(entry.intervalo * entry.fator);
+    const repeticoesAntes = entry.repeticoes;
     entry.repeticoes += 1;
+    if(confianca === "chute"){
+      // acertou no chute: volta logo, no máximo em 2 dias — ver a regra abaixo
+      entry.intervalo = Math.min(repeticoesAntes < escada.length ? escada[repeticoesAntes] : Math.round(entry.intervalo * entry.fator), 2);
+    }else{
+      // acerto com segurança: o intervalo mínimo é de um mês (ver
+      // CONFIG.intervalosAposAcerto). A resposta de agora já está em
+      // db.respostas, mas o índice por questão só se renova no saveState —
+      // por isso a conta é feita direto na lista.
+      const historico = db.respostas.filter(r=>r.usuarioId===usuarioId && r.questaoId===questaoId);
+      const seguidos = Math.max(1, acertosFirmesSeguidos(historico));
+      const degraus = CONFIG.intervalosAposAcerto;
+      const base = degraus[Math.min(seguidos, degraus.length) - 1];
+      const assuntoId = (getQuestao(questaoId) || {}).assuntoId;
+      entry.intervalo = Math.round(base * fatorDoAssuntoForte(usuarioId, assuntoId));
+    }
   }
   entry.fator = Math.max(1.3, entry.fator + (0.1 - (5-q)*(0.08+(5-q)*0.02)));
   // regra especial pedida: acertou no chute continua "voltando" logo, não deixamos
@@ -372,9 +411,21 @@ function registrarRevisao(usuarioId, questaoId, correta, confianca){
   db.revisoes[usuarioId][questaoId] = entry;
   nuvemRegistrar({usuarioId, questaoId, revisao:entry});
 }
+/* Quando a questão volta de fato. Revisões guardadas antes da regra do mês
+   mínimo podem trazer prazo curto depois de um acerto firme; o piso vale
+   para elas também, sem precisar reescrever o que já está guardado. */
+function proximaRevisaoEfetiva(entry){
+  if(!entry || !entry.proximaRevisao) return null;
+  if(entry.ultimaCorreta && entry.ultimaConfianca !== "chute" && entry.ultimaData){
+    const piso = somarDias(entry.ultimaData, CONFIG.intervalosAposAcerto[0]);
+    if(piso > entry.proximaRevisao) return piso;
+  }
+  return entry.proximaRevisao;
+}
 function revisaoVencida(usuarioId, questaoId){
   const entry = db.revisoes[usuarioId] && db.revisoes[usuarioId][questaoId];
-  return !!entry && entry.proximaRevisao <= hojeISO();
+  const proxima = proximaRevisaoEfetiva(entry);
+  return !!proxima && proxima <= hojeISO() && !questaoDominada(usuarioId, questaoId);
 }
 
 /* ---------- FLASHCARDS: revisão rápida ------------------------------------
@@ -634,6 +685,13 @@ function misturaEfetiva(usuario){
   const anteriores = assuntosDeAnosAnteriores(usuario.id);
   const indice = blocoAtual ? Math.max(0, blocoAtual.ordem-1) : 0;
 
+  // sem calendário (formado sem grupo, ou grupo só para dividir questões) não
+  // há "bloco atual": a sessão é revisão e matéria ainda não vista, ver
+  // montarSessaoSemCalendario
+  if(!blocoAtual){
+    return {atual:0, revisaoPassados:CONFIG.revisaoSemCalendario, previaFuturos:0, ajustada:false, temAnteriores:false, indiceBloco:0, semCalendario:true,
+      explicacao:"Você não segue um calendário de blocos: a sessão mistura revisão (o que você errou e o que já venceu) com questões que você ainda não viu, começando pelos assuntos que mais caem e em que você mais erra. Para ter bloco atual, entre num grupo com calendário em Meu Grupo."};
+  }
   if(anteriores.length){
     return {...base, ajustada:false, temAnteriores:true, indiceBloco:indice,
       explicacao:"A revisão está na proporção cheia desde o primeiro bloco porque há matéria de anos anteriores disponível ("+anteriores.length+" assunto(s) já estudado(s) antes deste ano) para alimentar a revisão espaçada."};
@@ -655,19 +713,45 @@ function misturaEfetiva(usuario){
   };
 }
 
+/* SESSÃO SEM CALENDÁRIO. Quem não segue bloco nenhum (o formado sem grupo, ou
+   quem está num grupo que existe só para dividir questões) não tem "matéria
+   do momento": a sessão é 40% revisão espaçada (o que errou e o que já
+   venceu, sem repetir o que domina) e o resto é questão que a pessoa ainda
+   não viu, com os assuntos de maior prioridade (o que mais cai e ela mais
+   erra) vindo antes. */
+function montarSessaoSemCalendario(usuario, tamanho){
+  const usuarioId = usuario.id;
+  const rotulo = q => rotuloProgressao(q, usuario);
+  const pesos = pesosDeIncidencia(usuarioId);
+  const partes = partesDaRevisaoEspacada(usuarioId);
+  const nRevisao = Math.round(tamanho * CONFIG.revisaoSemCalendario);
+  const itens = [...partes.erros, ...partes.decaimentos].slice(0, nRevisao).map(v=>({questaoId:v.questao.id,
+    motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto"}));
+  const usados = new Set(itens.map(it=>it.questaoId));
+  const naoVistas = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id));
+  selecionarComProgressao(naoVistas, tamanho - itens.length, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
+    .forEach(q=>{ itens.push({questaoId:q.id, motivo:"Questão que você ainda não viu"+rotulo(q)}); usados.add(q.id); });
+  if(itens.length < tamanho){
+    // banco quase todo respondido: completa com o que já venceu e, por fim, com qualquer questão
+    const sobra = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id));
+    embaralhar(sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, motivo:"Complemento — você já respondeu quase tudo do banco"}));
+  }
+  return embaralhar(itens);
+}
+
 function montarSessaoRecomendada(usuarioId, tamanho){
   const usuario = getUsuario(usuarioId);
   const grupo = getGrupoDoUsuario(usuario);
   const blocoAtual = getBlocoAtual(usuario);
+  if(!blocoAtual) return montarSessaoSemCalendario(usuario, tamanho);
   const blocosGrupo = blocosDoGrupo(grupo);
-  const passados = getBlocosPassados(blocoAtual, blocosGrupo);
   const proximo = getProximoBloco(blocoAtual, blocosGrupo);
   const mistura = misturaEfetiva(usuario);
 
   const assuntosAtual = assuntoIdsDoBloco(blocoAtual);
   // a revisão considera os blocos já vencidos DESTE ano e também o que o aluno
   // estudou em anos anteriores (essencial no começo do ano letivo)
-  const assuntosPassados = [...new Set([...passados.flatMap(assuntoIdsDoBloco), ...assuntosDeAnosAnteriores(usuarioId)])];
+  const assuntosPassados = assuntosParaRevisao(usuario);
   const assuntosFuturos = proximo ? assuntoIdsDoBloco(proximo) : [];
 
   const nAtual = Math.round(tamanho*mistura.atual);
@@ -686,20 +770,18 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const itensAtual = selecionarComProgressao(poolAtual, nAtual, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos)).map(q=>({questaoId:q.id,
     motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "") + rotulo(q)}));
 
-  let poolRevisaoVencida = questoesParaEstudo(usuarioId).filter(q=>assuntosPassados.includes(q.assuntoId) && jaFoiRespondida(usuarioId,q.id) && revisaoVencida(usuarioId,q.id));
-  poolRevisaoVencida.sort((a,b)=>{
-    const ea = db.revisoes[usuarioId][a.id], eb = db.revisoes[usuarioId][b.id];
-    return ea.proximaRevisao.localeCompare(eb.proximaRevisao); // mais atrasada (data mais antiga) primeiro
+  /* Ordem da revisão: primeiro o que a pessoa AINDA NÃO VIU, depois o que
+     ela ERROU (ou acertou no chute), e só por último o que acertou e já
+     passou o prazo — ver partesDaRevisaoEspacada. */
+  const partesRevisao = partesDaRevisaoEspacada(usuarioId, assuntosPassados);
+  const itensRevisao = selecionarComProgressao(partesRevisao.novas, nRevisao, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
+    .map(q=>({questaoId:q.id, motivo:"Revisão — assunto de bloco anterior que você ainda não viu"+rotulo(q)}));
+  const atrasoDe = v => diasEntre(proximaRevisaoEfetiva(v.entry), hojeISO());
+  [...partesRevisao.erros, ...partesRevisao.decaimentos].slice(0, Math.max(0, nRevisao - itensRevisao.length)).forEach(v=>{
+    const atraso = atrasoDe(v);
+    const porErro = partesRevisao.erros.includes(v);
+    itensRevisao.push({questaoId:v.questao.id, motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" dia(s)" : ", no prazo")});
   });
-  let itensRevisao = poolRevisaoVencida.slice(0,nRevisao).map(q=>{
-    const atraso = diasEntre(db.revisoes[usuarioId][q.id].proximaRevisao, hojeISO());
-    return {questaoId:q.id, motivo: atraso>0 ? "Revisão espaçada — vencida há "+atraso+" dia(s)" : "Revisão espaçada — no prazo"};
-  });
-  if(itensRevisao.length < nRevisao){
-    const faltam = nRevisao - itensRevisao.length;
-    const poolNaoVistas = questoesParaEstudo(usuarioId).filter(q=>assuntosPassados.includes(q.assuntoId) && !jaFoiRespondida(usuarioId,q.id) && !itensRevisao.some(it=>it.questaoId===q.id));
-    selecionarComProgressao(poolNaoVistas, faltam, usuario, (p,k)=>embaralhar(p).slice(0,k)).forEach(q=>itensRevisao.push({questaoId:q.id, motivo:"Assunto de bloco anterior ainda não estudado"+rotulo(q)}));
-  }
 
   const poolPrevia = questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental");
   const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
@@ -742,10 +824,11 @@ function questoesErroOrdenadasPorAntiguidade(usuarioId){
 }
 
 /* A revisão não pode se basear só em erro: mesmo quem acertou com certeza
-   esquece com o tempo. Esta função junta TODAS as questões já respondidas
-   cujo prazo de revisão espaçada (SM-2) já venceu — acertos e erros — e
-   mostra, pra transparência, se cada uma volta por erro/chute recente ou
-   por decaimento natural (fazia tempo que não via, mesmo tendo acertado). */
+   esquece com o tempo. Esta função junta as questões já respondidas cujo
+   prazo de revisão espaçada já venceu — acertos e erros — e mostra, pra
+   transparência, se cada uma volta por erro/chute recente ou por decaimento
+   natural (fazia tempo que não via, mesmo tendo acertado). Questão dominada
+   (mais de dois acertos firmes seguidos) já não vence — ver questaoDominada. */
 function questoesRevisaoEspacadaVencidas(usuarioId){
   const revisoesDoUsuario = db.revisoes[usuarioId] || {};
   const pool = questoesParaEstudo(usuarioId).filter(q => revisaoVencida(usuarioId, q.id));
@@ -753,7 +836,34 @@ function questoesRevisaoEspacadaVencidas(usuarioId){
     const entry = revisoesDoUsuario[q.id];
     const motivo = (!entry.ultimaCorreta || entry.ultimaConfianca==="chute") ? "erro" : "decaimento";
     return {questao:q, entry, motivo};
-  }).sort((a,b)=>a.entry.proximaRevisao.localeCompare(b.entry.proximaRevisao)); // mais atrasada primeiro
+  }).sort((a,b)=>proximaRevisaoEfetiva(a.entry).localeCompare(proximaRevisaoEfetiva(b.entry))); // mais atrasada primeiro
+}
+/* Os assuntos de que a revisão espaçada pode trazer questão que a pessoa
+   nunca viu: os dos blocos já passados e os de anos anteriores. Sem bloco
+   nenhum (quem não segue calendário, como o formado sem grupo), valem os
+   assuntos em que ela já respondeu alguma coisa — não há "passado" no
+   calendário para olhar. */
+function assuntosParaRevisao(usuario){
+  const blocoAtual = getBlocoAtual(usuario);
+  const passados = blocoAtual ? getBlocosPassados(blocoAtual, blocosDoGrupo(getGrupoDoUsuario(usuario), usuario)) : [];
+  const conjunto = new Set([...passados.flatMap(assuntoIdsDoBloco), ...assuntosDeAnosAnteriores(usuario.id)]);
+  if(!blocoAtual) db.respostas.forEach(r=>{ if(r.usuarioId===usuario.id && r.assuntoId) conjunto.add(r.assuntoId); });
+  return [...conjunto];
+}
+/* REVISÃO ESPAÇADA EM TRÊS PARTES, na ordem de prioridade: 1) as questões que
+   a pessoa ainda NÃO VIU nos assuntos já estudados — o que nunca foi
+   testado é a maior lacuna possível; 2) as que ela ERROU ou acertou no
+   chute, que já provaram ser lacuna; 3) as que acertou e já passou o prazo
+   (um mês ou mais). `assuntos`, se vier, restringe as três a esses assuntos. */
+function partesDaRevisaoEspacada(usuarioId, assuntos){
+  const usuario = getUsuario(usuarioId);
+  const dosAssuntos = new Set(assuntos || assuntosParaRevisao(usuario));
+  const vencidas = questoesRevisaoEspacadaVencidas(usuarioId).filter(v => !assuntos || dosAssuntos.has(v.questao.assuntoId));
+  return {
+    novas: questoesParaEstudo(usuarioId).filter(q => dosAssuntos.has(q.assuntoId) && !jaFoiRespondida(usuarioId, q.id)),
+    erros: vencidas.filter(v => v.motivo === "erro"),
+    decaimentos: vencidas.filter(v => v.motivo === "decaimento"),
+  };
 }
 
 /* ---------- registrar uma resposta (retrieval practice) ---------- */

@@ -49,6 +49,8 @@ const CONFIG = {
   // como uma sessão "recomendada" mistura o bloco atual, blocos passados
   // (revisão) e blocos futuros (pré-estudo). A soma deve dar 1.0
   misturaBlocos: { atual: 0.60, revisaoPassados: 0.25, previaFuturos: 0.15 },
+  // quem não segue calendário nenhum (formado sem grupo): fatia da sessão que é revisão; o resto é questão ainda não vista
+  revisaoSemCalendario: 0.4,
 
   // Começo de ano: nos primeiros blocos ainda não há matéria do ano corrente
   // para revisar. Se o aluno tiver conteúdo de anos anteriores (blocos de
@@ -64,8 +66,18 @@ const CONFIG = {
   // prevalencia: assuntos mais cobrados nas provas aparecem antes (são tratados como "mais fáceis/prioritários")
   pesosDificuldade: { taxaAcerto: 0.5, especificidade: 0.25, prevalencia: 0.25 },
 
-  // escada de intervalos (dias) usada como ponto de partida da repetição espaçada
+  // escada de intervalos (dias) usada como ponto de partida da repetição
+  // espaçada: o primeiro degrau é a volta depois de um erro
   intervalosBase: [1, 3, 7, 16, 35, 75],
+  /* Depois de um ACERTO com segurança (certeza ou dúvida, não chute) a questão
+     só volta bem mais tarde: 1º acerto seguido, 30 dias; 2º, 60. No 3º ela
+     está dominada e sai da revisão espaçada (acertosParaDominarQuestao). Errar
+     zera a contagem. Num assunto em que a pessoa vai bem (taxa das últimas
+     respostas), o intervalo cresce ainda mais — bonusAssuntoForte. */
+  intervalosAposAcerto: [30, 60],
+  acertosParaDominarQuestao: 3,
+  bonusAssuntoForte: [{ taxa: 0.85, fator: 2 }, { taxa: 0.7, fator: 1.5 }],
+  minRespostasAssuntoForte: 8,
 
   // a partir de quantas respostas uma questão passa a ser candidata à fila
   // de "questões difíceis" (evita marcar como difícil algo com poucos dados)

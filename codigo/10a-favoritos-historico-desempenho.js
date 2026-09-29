@@ -8,11 +8,23 @@
    tem duas abas em vez de uma lista misturada: quem vem procurar "aquela
    questão de choque séptico" não quer tropeçar em cartão de conceito no
    meio, e vice-versa. A contagem de cada aba fica na própria aba, para a
-   escolha ser feita sem entrar nas duas. */
+   escolha ser feita sem entrar nas duas.
+
+   A terceira aba guarda o contrário do favorito: as questões que a pessoa
+   RETIROU da revisão ("não mostrar mais"). Ficam aqui, do lado de quem se
+   quer rever, porque são as duas listas manuais da pessoa — o que ela pediu
+   para ver de novo e o que ela pediu para nunca mais ver — e é o lugar
+   onde se procura para desfazer a escolha. */
 function abaFavoritos(){
   const f = state.filtroRota;
-  if(f.abaFavoritos !== "cartoes" && f.abaFavoritos !== "questoes") f.abaFavoritos = "questoes";
+  if(!["cartoes","questoes","retiradas"].includes(f.abaFavoritos)) f.abaFavoritos = "questoes";
   return f.abaFavoritos;
+}
+/* As questões que a pessoa escondeu, da mais recente para a mais antiga. */
+function questoesRetiradasDaRevisao(usuarioId){
+  return (db.questoesOcultas||[]).filter(o=>o.usuarioId===usuarioId)
+    .map(o=>({reg:o, q:getQuestao(o.questaoId)})).filter(x=>x.q)
+    .sort((a,b)=>(b.reg.data||"").localeCompare(a.reg.data||""));
 }
 function mudarAbaFavoritos(aba){ state.filtroRota.abaFavoritos = aba; render(); }
 function renderFavoritos(){
@@ -23,16 +35,23 @@ function renderFavoritos(){
     .sort((a,b)=>(b.reg.data||"").localeCompare(a.reg.data||""));
   const comNota = favs.filter(x=>(x.reg.nota||"").trim()).length;
   const pag = paginar(favs, "favoritos");
+  const retiradas = questoesRetiradasDaRevisao(u.id);
   const abas = `<div class="flex gap-1 mb-2" style="flex-wrap:wrap">
     <button class="pill ${aba==="questoes"?"active":""}" onclick="mudarAbaFavoritos('questoes')">${iconeSvg("book")} Questões (${favs.length})</button>
     <button class="pill ${aba==="cartoes"?"active":""}" onclick="mudarAbaFavoritos('cartoes')">${iconeSvg("cards")} Flashcards (${cartoes.length})</button>
+    <button class="pill ${aba==="retiradas"?"active":""}" onclick="mudarAbaFavoritos('retiradas')">${iconeSvg("eye-off")} Retiradas da revisão (${retiradas.length})</button>
   </div>`;
+  const cabecalho = `<div class="page-header"><h2>Favoritos</h2><p>O que você salvou para rever — questões e flashcards — e, na terceira aba, o que você tirou da revisão.</p></div>`;
   if(aba === "cartoes") return `
-  <div class="page-header"><h2>Favoritos</h2><p>O que você salvou para rever: questões numa aba, flashcards na outra.</p></div>
+  ${cabecalho}
   ${abas}
   ${renderFavoritosCartoes(u, cartoes)}`;
+  if(aba === "retiradas") return `
+  ${cabecalho}
+  ${abas}
+  ${renderQuestoesRetiradas(u, retiradas)}`;
   return `
-  <div class="page-header"><h2>Favoritos</h2><p>O que você salvou para rever: questões numa aba, flashcards na outra.</p></div>
+  ${cabecalho}
   ${abas}
   <p class="text-sm muted mb-2">${favs.length} questão(ões) marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p>
   ${favs.length ? `<div class="flex gap-1 mb-2" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="praticarFavoritas()">${iconeSvg("book")} Praticar todas as favoritas</button></div>` : ""}
@@ -59,6 +78,30 @@ function renderFavoritos(){
     </div>`;
   }).join("") : '<div class="empty-state">Você ainda não favoritou nenhuma questão. Use o botão "Favoritar" durante uma sessão de estudo.</div>'}
   ${controlesPaginacao(pag, "favorita(s)")}
+  `;
+}
+function renderQuestoesRetiradas(u, retiradas){
+  const pag = paginar(retiradas, "favoritos-retiradas", {porPagina:10});
+  return `
+  <p class="text-sm muted mb-2">${retiradas.length} questão(ões) que você pediu para não ver mais. Elas continuam no banco, nas provas antigas e nos seus números — só não voltam nas suas sessões, revisões e listas.</p>
+  ${retiradas.length>1 ? `<div class="flex gap-1 mb-2"><button class="btn btn-secondary btn-sm" onclick="mostrarTodasAsEscondidas()">${iconeSvg("eye")} Voltar a mostrar todas</button></div>` : ""}
+  ${retiradas.length ? pag.itens.map(({reg,q})=>{
+    const n = errosNaQuestao(u.id, q.id);
+    return `<div class="card mb-1">
+      <div class="qcard-meta mb-1">
+        <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
+        <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>
+        ${n ? `<span class="badge badge-danger">errada ${rotuloVezes(n)}</span>` : ""}
+      </div>
+      <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,200))}${q.enunciado.length>200?"…":""}</span></div>
+      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+        ${botaoVerNaIntegra(q.id, "Abrir questão completa")}
+        <button class="btn btn-secondary btn-sm" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg("eye")} Voltar a mostrar</button>
+      </div>
+      <div class="text-xs muted mt-1">Retirada em ${formatDataBR(reg.data||hojeISO())}</div>
+    </div>`;
+  }).join("") : '<div class="empty-state">Nenhuma questão retirada. Depois de errar uma questão pela segunda vez, o botão "Não mostrar mais" permite tirá-la da sua revisão.</div>'}
+  ${controlesPaginacao(pag, "questão(ões) retirada(s)")}
   `;
 }
 function renderFavoritosCartoes(u, cartoes){

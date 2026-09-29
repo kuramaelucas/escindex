@@ -512,6 +512,9 @@ function opcoesRodizio(ano){
      inventar letras para os outros períodos criaria turmas que não existem.
      Sem nenhuma letra declarada, vale a ordem alfabética, bloco a bloco. */
   const algumDeclara = seq.some(b => b.grupoRodizio);
+  // o quadro da faculdade (turmasPorJanela) também é o calendário impresso: as
+  // letras dele são de verdade, mesmo sem grupoRodizio escrito no bloco
+  const quadroImpresso = seq.some(b => Array.isArray(b.turmasPorJanela) && b.turmasPorJanela.length);
   const opcoes = [];
   seq.forEach((b,i)=>{
     if(algumDeclara && !b.grupoRodizio) return;
@@ -519,6 +522,9 @@ function opcoesRodizio(ano){
     opcoes.push({
       deslocamento: i,
       rotulo,
+      // a letra vem escrita no bloco (calendário impresso) ou foi só contada?
+      // Letra contada não é nome de grupo nenhum — ver tituloOpcaoRodizio
+      nomeado: !!b.grupoRodizio || quadroImpresso,
       // por qual estágio essa turma começa o ano — pelo quadro, quando ele
       // existe, e não pela posição na lista
       bloco: conteudoDaJanela(seq, rotulo, i, 0) || b,
@@ -533,7 +539,7 @@ function turmaDoDeslocamento(ano, deslocamento){
   const seq = sequenciaDoAno(ano);
   const d = normalizarDeslocamento(deslocamento, seq.length);
   const opcoes = opcoesRodizio(ano);
-  return opcoes.find(o=>o.deslocamento===d) || opcoes[0] || { deslocamento: d, rotulo: letraPadraoRodizio(d) };
+  return opcoes.find(o=>o.deslocamento===d) || opcoes[0] || { deslocamento: d, rotulo: letraPadraoRodizio(d), nomeado: false };
 }
 /* As mesmas opções em ordem alfabética de letra — que é como o calendário
    impresso lista as turmas (A, B, C, D) e como a pessoa procura a sua. A
@@ -543,10 +549,35 @@ function opcoesRodizioPorLetra(ano){
   return opcoesRodizio(ano).slice().sort((a,b)=>a.rotulo.localeCompare(b.rotulo, "pt-BR"));
 }
 function rotuloRodizio(ano, deslocamento){ return turmaDoDeslocamento(ano, deslocamento).rotulo; }
-// "Grupo A" por extenso — usado nos textos de tela
-function nomeRodizio(ano, deslocamento){ return "Grupo " + rotuloRodizio(ano, deslocamento); }
+/* GRUPO SEM NOME. Só há "Grupo A, B, C…" onde o calendário da faculdade traz
+   essas letras (grupoRodizio no bloco). Onde não traz, a letra é só a ordem
+   dos blocos, contada pela plataforma — chamar a turma de "Grupo C" seria
+   inventar um nome que ninguém usa. Nesses anos o grupo é identificado pelo
+   que de fato o distingue: o BLOCO EM QUE COMEÇA. */
+function tituloOpcaoRodizio(o){
+  const inicio = o.bloco ? o.bloco.nome : "";
+  if(o.nomeado) return "Grupo " + o.rotulo + (inicio ? " — começa em " + inicio : "");
+  return inicio ? "Começa em " + inicio : "Grupo " + o.rotulo;
+}
+// o nome do grupo do rodízio nos textos de tela: "Grupo A" ou "Começa em Cardiologia"
+function nomeRodizio(ano, deslocamento){
+  const t = turmaDoDeslocamento(ano, deslocamento);
+  return t.nomeado || !t.bloco ? "Grupo " + t.rotulo : "Começa em " + t.bloco.nome;
+}
+/* CALENDÁRIO PRÓPRIO DO GRUPO. Além de seguir o rodízio de um ano, um grupo
+   pode ter blocos só dele (`blocosProprios`: nome, datas e especialidades,
+   montados por quem o criou). Lista vazia vale: é o grupo que existe só para
+   dividir questões, sem calendário. */
+function grupoComCalendarioProprio(grupo){ return !!grupo && Array.isArray(grupo.blocosProprios); }
 function blocosDoGrupo(grupo, usuario){
+  if(grupoComCalendarioProprio(grupo)){
+    return grupo.blocosProprios.slice().sort((a,b)=>a.dataInicio.localeCompare(b.dataInicio))
+      .map((b,i)=>({ id:b.id, nome:b.nome, especialidadeIds:b.especialidadeIds||[], subdivisoes:[], ordem:i+1, dataInicio:b.dataInicio, dataFim:b.dataFim }));
+  }
   const ano = anoDoGrupo(grupo, usuario);
+  // quem já se formou não tem calendário de faculdade: sem turma de um ano e
+  // sem grupo com calendário próprio, não há bloco nenhum para seguir
+  if(!temCalendarioProprio(ano)) return [];
   const seq = sequenciaDoAno(ano);
   const n = seq.length;
   if(!n) return [];
@@ -592,8 +623,8 @@ function nomeArea(id){ const a=getArea(id); return a ? a.nome : "—"; }
    Cada nível de administrador enxerga e altera apenas o que lhe cabe. Para
    mudar o que um nível pode fazer, basta acrescentar ou remover chaves aqui. */
 const PERMISSOES_ADMIN = {
-  master:      ["conteudo","cadastros","usuarios","blocos","config","livro-ouro","backup","taxonomia","turma"],
-  coordenacao: ["conteudo","cadastros","blocos","livro-ouro","taxonomia","turma"],
+  master:      ["conteudo","cadastros","usuarios","blocos","config","livro-ouro","backup","taxonomia","turma","avisos"],
+  coordenacao: ["conteudo","cadastros","blocos","livro-ouro","taxonomia","turma","avisos"],
   moderador:   ["conteudo","taxonomia"],
 };
 // rotas que exigem uma permissão específica de administrador
@@ -601,7 +632,7 @@ const PERMISSAO_DA_ROTA = {
   "usuarios":"usuarios", "config-geral":"config", "blocos":"blocos",
   "aprovar-cadastros":"cadastros", "feedback-usuarios":"cadastros", "taxonomia":"taxonomia",
   "material-pdf":"conteudo", "central-provas":"conteudo", "painel-turma":"turma",
-  "atualizar-questoes":"conteudo",
+  "atualizar-questoes":"conteudo", "enviar-avisos":"avisos",
 };
 function nivelAdminDe(usuario){
   if(!usuario || usuario.papel!=="admin") return null;

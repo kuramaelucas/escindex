@@ -110,12 +110,13 @@ const GUIA_ALUNO = [
   { titulo:"Respondendo uma questão", itens:[
     "Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>. A confiança entra na revisão espaçada: chute e erro voltam antes.",
     "O <strong>×</strong> ao lado de cada alternativa risca o que você já descartou (clique de novo para trazer de volta).",
+    "Assunto, especialidade e dificuldade só aparecem <strong>depois de responder</strong>, para não entregar o diagnóstico. Se a questão tem imagem, ela vem logo abaixo do enunciado, antes das alternativas.",
     "Depois de responder, aparecem o gabarito, a explicação e as referências. No computador, as teclas <strong>A</strong> e <strong>D</strong> passam para a questão anterior e a próxima; no celular, arraste para o lado.",
     "<strong>Destaque o que importa</strong>: selecione um trecho do enunciado, de uma alternativa, da explicação ou de um flashcard e toque em <strong>Destacar</strong>. O trecho fica marcado sempre que a questão voltar (e nos seus outros aparelhos); clique nele para remover. Os destaques são só seus.",
     "Na questão: <strong>Favoritar</strong> (com uma anotação sua), <strong>Virar flashcard</strong>, <strong>Não mostrar mais</strong> (só aparece depois de você errar a mesma questão pela segunda vez), <strong>Sinalizar desatualizada</strong> e <strong>Tirar dúvida com IA</strong>.",
   ]},
   { titulo:"Revisão e Revisão Rápida", itens:[
-    "<strong>Revisão</strong> traz as questões cujo prazo de revisão venceu, com o motivo de cada uma (erro recente ou tempo sem ver).",
+    "<strong>Revisão</strong> traz as questões da revisão espaçada, nesta ordem: primeiro as dos assuntos já estudados que você <strong>ainda não viu</strong>, depois as que você <strong>errou</strong> (ou acertou no chute) e, por último, as que acertou e já passou o prazo. Acerto seguro só volta depois de 1 mês (2 no segundo acerto seguido, e mais ainda em assunto em que você vai bem); com <strong>3 acertos seguidos</strong> a questão sai da revisão.",
     "<strong>Revisão Rápida</strong> são os flashcards: os cartões da equipe, os seus e os gerados das questões que você errou com certeza ou acertou no chute. Você também pode sugerir um cartão seu para o baralho da equipe.",
   ]},
   { titulo:"Provas e Simulados", itens:[
@@ -129,8 +130,9 @@ const GUIA_ALUNO = [
     "<strong>Nota estimada</strong>: uma projeção da sua nota na prova, com a faixa de incerteza.",
   ]},
   { titulo:"Turma, favoritos e histórico", itens:[
-    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual) ou crie um grupo de estudo com colegas. No 6º ano, <strong>Meus estágios</strong> deixa você reordenar os estágios de cada período do seu jeito, sem sair do grupo.",
-    "<strong>Favoritos</strong> guarda as questões e os cartões salvos, com as suas anotações.",
+    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual; onde o calendário não dá nome às turmas, o grupo é identificado pelo bloco em que começa) ou crie um grupo com colegas — seguindo o rodízio do ano, com <strong>calendário próprio</strong> (você monta os blocos) ou só para <strong>dividir questões</strong>. O dono pode mudar o nome do grupo e dividir as questões do grupo entre os membros (cada um pratica a sua parte). Quem já se formou não tem calendário de faculdade: entra ou cria um grupo. No 6º ano, <strong>Meus estágios</strong> deixa você reordenar os estágios de cada período do seu jeito, sem sair do grupo.",
+    "<strong>Favoritos</strong> guarda as questões e os cartões salvos, com as suas anotações, e — na aba <strong>Retiradas da revisão</strong> — as questões que você pediu para não ver mais, com o botão para trazê-las de volta.",
+    "Os <strong>avisos da coordenação</strong> aparecem no Início; dispense o que já leu.",
     "<strong>Histórico de Atividade</strong> lista as sessões e os simulados que você fez.",
     "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso. Com a conta na nuvem, a questão sobe com a imagem e vai para a equipe aprovar; em <strong>Suas questões enviadas</strong> você acompanha se foi aprovada ou recusada (com o motivo).",
   ]},
@@ -179,6 +181,7 @@ const GUIA_ADMIN = [
     "<strong>Aprovar Cadastros</strong> e <strong>Usuários</strong>: liberar acessos, mudar papel, nível de administrador e situação das contas. Quando alguém pede acesso, o Esc avisa na tela e mostra o número no menu; em Aprovar Cadastros dá para receber também como notificação do sistema.",
     "<strong>Blocos de Estudo</strong>: o calendário de cada ano da faculdade e das turmas do rodízio, que decide o bloco atual dos alunos.",
     "<strong>Configurações</strong>: metas mínima e recomendada, mistura da sessão, pesos da dificuldade, banca de referência e outras regras do algoritmo.",
+    "<strong>Enviar Avisos</strong>: escreva um recado e escolha os papéis e os anos da faculdade que o recebem (em branco, todos). Ele aparece no Início de cada pessoa até ela dispensar; com a nuvem, chega a todos os aparelhos. Dá para levar a pessoa a uma tela e definir até quando o aviso vale.",
     "<strong>Feedback dos Usuários</strong>: comentários, sugestões e reclamações enviados pela plataforma. Com a nuvem, chegam de qualquer aparelho, com o número de não lidos no menu; marcar como lido vale para os outros administradores.",
     "O administrador máster exporta e restaura o backup (Perfil › Backup). Faça cópias com frequência — cadastros não se recriam sozinhos.",
   ]},

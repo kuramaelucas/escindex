@@ -150,10 +150,28 @@ select pg_temp.igual((select count(*) from correcoes_questoes where campos->>'ga
 with x as (update correcoes_questoes set removido=true returning 1) select pg_temp.igual(count(*), 0, 'aluno não encerra correção') from x;
 reset role;
 
+-- AVISOS DA COORDENAÇÃO: toda conta aprovada lê, só o administrador grava
+set role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.tem_de_falhar($$insert into avisos(id,titulo,texto) values ('av0','oi','aluno mandando aviso')$$, 'aluno enviando aviso');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+select pg_temp.tem_de_falhar($$insert into avisos(id,titulo,texto) values ('av0','oi','professor mandando aviso')$$, 'professor enviando aviso');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000f',false);
+insert into avisos(id,titulo,texto,papeis,anos,autor_nome) values ('av1','Manutenção','Sábado de manhã','["aluno"]','["6º ano"]','Admin F')
+  on conflict (id) do update set texto=excluded.texto;   -- o mesmo upsert do site
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+select pg_temp.igual((select count(*) from avisos where id='av1'), 1, 'o aviso chega ao aluno');
+with x as (update avisos set removido=true where id='av1' returning 1) select pg_temp.igual(count(*), 0, 'aluno não apaga aviso') from x;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000f',false);
+update avisos set removido=true where id='av1';
+select pg_temp.igual((select count(*) from avisos where id='av1' and removido), 1, 'o administrador retira o aviso (removido, sem apagar a linha)');
+reset role;
+
 set role anon;
 select pg_temp.tem_de_falhar($$select count(*) from questoes_enviadas$$, 'visitante sem login lendo questões enviadas');
 select pg_temp.tem_de_falhar($$select count(*) from comentarios$$, 'visitante sem login lendo comentários');
 select pg_temp.tem_de_falhar($$select count(*) from feedbacks$$, 'visitante sem login lendo feedback');
+select pg_temp.tem_de_falhar($$select count(*) from avisos$$, 'visitante sem login lendo avisos');
 select pg_temp.tem_de_falhar($$select count(*) from correcoes_questoes$$, 'visitante sem login lendo correções');
 select pg_temp.tem_de_falhar($$select * from notas_do_simulado('Prova X')$$, 'visitante sem login lendo notas');
 reset role;
