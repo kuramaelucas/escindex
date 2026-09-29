@@ -92,9 +92,11 @@ Reescrever em lotes por prova ou por especialidade, com conferência da diretriz
 | Santa Casa de SP 2021 / 2022 / 2023 | 14 / 19 / 24 | 2021 #39; 2022 #69; 2023 #15, #27, #39, #46 (pouco número decisivo) |
 | Santa Casa de SP 2025 / 2026 | 15 / 15 | 2025 #21, #30, #45, #62; 2026 #86, #89 |
 | IAMSPE 2021 / 2022 / 2023 / 2025 | 8 / 7 / 4 / 14 | — (bancas com explicações já corretas; o trabalho foi pôr o parâmetro em destaque e o valor de referência) |
+| AMRIGS 2022 / 2023 / 2024 / 2025 | 11 / 6 / 7 / 13 | — (explicações já corretas; entraram o parâmetro em destaque, o valor de referência e os cortes) |
+| UNESP (FMB) 2023 | 21 | — (única prova da UNESP na plataforma) |
 | IAMSPE 2026 (prioridades 1 a 3) | 23 | #8, #10, #17 receberam só os pontos de corte (CURB-65, Framingham, BNP) |
 
-**A UNIFESP está concluída** (2022 a 2026: 107 explicações reescritas). **Santa Casa e IAMSPE também** (2021 a 2026). Faltam as outras bancas: USP-SP, USP-RP, AMRIGS e UNESP.
+**A UNIFESP está concluída** (2022 a 2026: 107 explicações reescritas). **Santa Casa, IAMSPE, AMRIGS e UNESP também.** Faltam USP-SP e USP-RP.
 
 **Achado no caminho (UNIFESP 2024 #88):** a explicação atribui a discordância do teste do pezinho à coleta com 24 horas de vida, mas o gabarito é a alternativa C (hiperfenilalaninemia materna). Um dos dois está errado ou incompleto; conferir com o gabarito oficial da banca antes de mexer.
 
@@ -109,3 +111,7 @@ Reescrever em lotes por prova ou por especialidade, com conferência da diretriz
 - IAMSPE 2026 #48 — a alternativa A chama de "grau III" o abscesso roto (na classificação de Monif seria grau IV); a conduta descrita é a correta e o gabarito foi mantido.
 
 **Valores escritos de memória:** os limiares e valores de referência colocados em destaque (escores, pontos de corte, faixas de normalidade) vêm de diretrizes primárias, mas foram escritos sem consulta ao texto e precisam de conferência por um clínico antes de a plataforma ir a mais gente.
+- AMRIGS 2022 #6 — a explicação dizia que ALT acima de 3 vezes o limite equivale a "cerca de 150 U/L"; com o limite de 40 U/L do enunciado o corte é 120 U/L (a ALT do paciente, 126, o ultrapassa). Corrigido.
+- UNESP 2023 #22 — a explicação dizia que 1,83 seria PAS ÷ FC; na verdade 1,83 é FC ÷ pressão diastólica (110 ÷ 60). Corrigido.
+- UNESP 2023 #5 — a explicação dizia que bilirrubina abaixo do percentil 75 no nomograma de Bhutani é baixo risco; a zona de menor risco é abaixo do percentil 40. Corrigido.
+- AMRIGS 2023 #22 — os cortes do Ranson na forma biliar (idade 70, leucócitos 18.000, glicemia 220, LDH 400, AST 250; cálcio, déficit de bases e sequestro às 48 horas) foram escritos de memória e merecem conferência; a PaO2 abaixo de 60 mmHg pertence ao Ranson da forma não biliar, e o gabarito da banca a trata como critério de 48 horas.
