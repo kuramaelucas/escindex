@@ -58,6 +58,7 @@ porque todo o resto aponta para ela):
 | `prova-iamspe-2021.js` | IAMSPE 2021 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
 | `prova-iamspe-2022.js` | IAMSPE 2022 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
 | `prova-iamspe-2023.js` | IAMSPE 2023 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
+| `prova-iamspe-2026.js` | IAMSPE 2026 (Avança SP, Acesso Direto), prova real — gabarito preliminar | 100 |
 | `prova-unesp-2023.js` | UNESP (FMB) 2023 (R1 Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
