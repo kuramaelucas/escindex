@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 29/09/2026: 2.993 questões, das quais 2.858 reais, de 28 provas.
+Situação em 29/09/2026: 3.273 questões, das quais 3.138 reais, de 31 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -13,7 +13,6 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 | Prova | O que falta | Como resolver |
 | --- | --- | --- |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
-| **IAMSPE 2023** | A prova inteira. Veio só o gabarito definitivo (Edital 001/2022, 28/12/2022), junto com o caderno de 2022 | Enviar o caderno do processo seletivo 2023 (aplicado no fim de 2022). Gabarito já em mãos, questões 1 a 80: `DCBEDACBDB EECXDXEBAD AAXBXADAEC EDDCEEDABB ACXDCABDDB BAECBDACAD BEBECDEDCA CXDCDEADBA` (X = anulada: 14, 16, 23, 25, 43 e 72; a 32 foi alterada para D) |
 | **USP-RP 2021, questão 7** | A questão inteira. O PDF usado pula da 6 para a 8 | Transcrever do caderno oficial de 2021. Ao incluí-la, tirar a linha `"USP-RP (FMRP) 2021": [7]` de `LACUNAS_CONHECIDAS`, em `testes/conferir-dados.mjs` |
 
 ## 2. Texto incompleto
@@ -35,24 +34,40 @@ Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto 
 
 ## 3. Gabaritos para conferir
 
-### IAMSPE 2022: gabarito da equipe, falta a folha oficial
+### IAMSPE 2025: gabarito da equipe, falta a folha oficial
 
-O gabarito enviado com o caderno era o do ano seguinte e não bate com a prova (ver `docs/HISTORICO.md`, 29/09).
-As 80 questões de `dados/prova-iamspe-2022.js` estão com o gabarito resolvido pela equipe, e cada explicação termina avisando isso.
-Nenhuma está marcada como anulada. Com o gabarito definitivo oficial de 2022 (Quadrix, Edital 001/2021) em mãos:
+O caderno do Edital 02/2024 (Avança SP, prova de 15/12/2024) veio sem gabarito, e o site da banca não abre da rede onde o conteúdo é preparado.
+As 100 questões de `dados/prova-iamspe-2025.js` estão com o gabarito resolvido pela equipe, e cada explicação termina avisando isso.
+Nenhuma está marcada como anulada. Com o gabarito definitivo oficial em mãos (Avança SP ou PCI Concursos):
 corrigir as letras que divergirem (e a explicação delas), marcar as anuladas e apagar o aviso do fim de cada explicação.
 Nestas, a própria equipe viu mais de uma alternativa defensável:
 
 | Questão | Ponto de dúvida |
 | --- | --- |
-| 2022-3 | Cateterismo (E) pela suspeita de insuficiência cardíaca isquêmica; o ultrassom pulmonar (C) confirma a congestão |
-| 2022-8 | A mamografia aos 67 anos (A) também está na faixa de rastreamento do Ministério da Saúde |
-| 2022-18 | Tumor periampular pelo sinal do duplo ducto (A); a afirmação sobre o CA 19-9 (E) também é verdadeira |
-| 2022-20 | Colangiografia intraoperatória: avaliar obstrução (A) ou prevenir lesão da via biliar (C) |
-| 2022-32 | Quantas medicações suspender depende do AAS e da semaglutida (três, na resposta da equipe) |
-| 2022-36 | Aleitamento exclusivo até 6 meses (A) e contato pele a pele (E) |
-| 2022-54 | Fatores de risco de câncer de endométrio: B, mas C traz fatores de associação fraca |
-| 2022-68 | Atestado para esportes: D, mas B (exames complementares) é discutível |
+| 2025-11 | Resistência do pneumococo às quinolonas: C por exclusão; as outras têm erros, mas a C também é discutível |
+| 2025-28 | Fios cirúrgicos: nenhuma alternativa traz a combinação habitual; a equipe escolheu E |
+| 2025-32 | Suspeita de TVP: Doppler (A) ou anticoagulação empírica (C) |
+| 2025-45 | Sangramento pós-menopausa: histeroscopia com biópsia (B) ou ultrassom transvaginal primeiro (A/E) |
+| 2025-61 | Moro assimétrico (B); a ausência bilateral (E) e a resposta exagerada (D) também são anormais |
+| 2025-64 | Rotavírus: C e A estão ambas corretas — candidata a anulação |
+| 2025-68 | Escabiose em menores de 6 meses: enxofre (D); a permetrina (A) é liberada a partir de 2 meses |
+| 2025-71 | Marcos até 6 meses: D, mas A e E também são marcos do período |
+| 2025-77 | Tuberculose na criança: A (sem etambutol abaixo de 10 anos), mas D também é imprecisa |
+| 2025-85 | Modelo de Crenças em Saúde: suscetibilidade (D) ou gravidade (A) percebidas |
+| 2025-89 | Hanseníase indeterminada: D, mas a B descreve um achado real da forma indeterminada |
+| 2025-96 | Autores da Saúde Coletiva: A, mas a segunda lacuna também caberia a Almeida Filho |
+
+### IAMSPE 2026: gabarito preliminar, falta o definitivo
+
+As 100 questões de `dados/prova-iamspe-2026.js` (Edital 01/2025, Avança SP) estão com o gabarito **preliminar** da banca.
+Com o gabarito definitivo: trocar as letras alteradas (e a explicação delas) e marcar as anuladas (gabarito vazio e `status:"anulada"`).
+A explicação já avisa onde a resposta preliminar é discutível — são as candidatas a mudar:
+
+| Questão | Ponto de dúvida |
+| --- | --- |
+| 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
+| 2026-76 | Vacinas dos 12 meses: a B mistura o reforço da meningocócica com vacinas dos 15 meses |
+| 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
 
 ### UNESP 2023: gabarito da edição usada, não da folha oficial
 
@@ -113,6 +128,9 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | IAMSPE 2021-29 | O preparo intestinal com antibiótico oral (E) é hoje recomendado na cirurgia colorretal eletiva |
 | IAMSPE 2021-31 | O item "jejum oral" foi dado como certo; as diretrizes atuais preferem a dieta oral precoce |
 | IAMSPE 2021-78 | Estudo ecológico: "conclusões generalizáveis com maior facilidade" é a resposta da banca, mas é discutível |
+| IAMSPE 2022-25 | Marcadores: a banca deu fígado–CEA/alfafetoproteína (D); estômago–CEA/CA 19-9 (A) também é verdadeira |
+| IAMSPE 2022-32 | Pela recomendação atual, a semaglutida também seria suspensa (seriam três medicações, não duas) |
+| IAMSPE 2023-18 | Fratura do enforcado: a banca deu "bom prognóstico" (B), mas "fratura do áxis" (A) também é verdadeira |
 
 ## 4. Figuras para anexar (233)
 
@@ -120,7 +138,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
 Pela plataforma: **Questões para Atualizar › Enviar a figura** libera a questão na hora (com a nuvem, para toda a turma), e **Baixar as atualizações** + `npm run atualizar-dados -- arquivo.json` traz as figuras e os consertos para cá.
 O nome exato de cada arquivo e a descrição do que a prova mostrava estão em `dados/imagens/LEIA-ME.md`.
-As provas da AMRIGS (2022 a 2025), a USP-RP 2026, as do IAMSPE (2021 e 2022) e a UNESP 2023 já têm todas as figuras.
+As provas da AMRIGS (2022 a 2025), a USP-RP 2026, as do IAMSPE (2021 a 2026) e a UNESP 2023 já têm todas as figuras.
 
 | Prova | Qtd | Questões |
 | --- | --- | --- |
@@ -159,6 +177,6 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
 - **UNIFESP 2022 a 2026**: 13 figuras.
 - **AMRIGS 2021**: a prova inteira.
-- **IAMSPE 2022**: o gabarito definitivo oficial (Edital 001/2021).
-- **IAMSPE 2023**: o caderno (o gabarito já está aqui).
+- **IAMSPE 2025**: o gabarito definitivo oficial (Edital 02/2024).
+- **IAMSPE 2026**: o gabarito definitivo oficial (Edital 01/2025).
 - **UNESP 2023**: o gabarito definitivo oficial.

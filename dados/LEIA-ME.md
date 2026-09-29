@@ -58,6 +58,7 @@ porque todo o resto aponta para ela):
 | `prova-iamspe-2021.js` | IAMSPE 2021 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
 | `prova-iamspe-2022.js` | IAMSPE 2022 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
 | `prova-iamspe-2023.js` | IAMSPE 2023 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
+| `prova-iamspe-2025.js` | IAMSPE 2025 (Avança SP, Acesso Direto), prova real — gabarito da equipe, a conferir | 100 |
 | `prova-iamspe-2026.js` | IAMSPE 2026 (Avança SP, Acesso Direto), prova real — gabarito preliminar | 100 |
 | `prova-unesp-2023.js` | UNESP (FMB) 2023 (R1 Acesso Direto), prova real | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
@@ -67,7 +68,7 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **2.993 questões** (2.858 reais, de 28 provas), **943 cartões**, **238 assuntos** (todos com pelo
+Total: **3.273 questões** (3.138 reais, de 31 provas), **943 cartões**, **238 assuntos** (todos com pelo
 menos 3 cartões da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
