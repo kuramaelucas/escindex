@@ -34,41 +34,6 @@ Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto 
 
 ## 3. Gabaritos para conferir
 
-### IAMSPE 2025: gabarito da equipe, falta a folha oficial
-
-O caderno do Edital 02/2024 (Avança SP, prova de 15/12/2024) veio sem gabarito, e o site da banca não abre da rede onde o conteúdo é preparado.
-As 100 questões de `dados/prova-iamspe-2025.js` estão com o gabarito resolvido pela equipe, e cada explicação termina avisando isso.
-Nenhuma está marcada como anulada. Com o gabarito definitivo oficial em mãos (Avança SP ou PCI Concursos):
-corrigir as letras que divergirem (e a explicação delas), marcar as anuladas e apagar o aviso do fim de cada explicação.
-Nestas, a própria equipe viu mais de uma alternativa defensável:
-
-| Questão | Ponto de dúvida |
-| --- | --- |
-| 2025-11 | Resistência do pneumococo às quinolonas: C por exclusão; as outras têm erros, mas a C também é discutível |
-| 2025-28 | Fios cirúrgicos: nenhuma alternativa traz a combinação habitual; a equipe escolheu E |
-| 2025-32 | Suspeita de TVP: Doppler (A) ou anticoagulação empírica (C) |
-| 2025-45 | Sangramento pós-menopausa: histeroscopia com biópsia (B) ou ultrassom transvaginal primeiro (A/E) |
-| 2025-61 | Moro assimétrico (B); a ausência bilateral (E) e a resposta exagerada (D) também são anormais |
-| 2025-64 | Rotavírus: C e A estão ambas corretas — candidata a anulação |
-| 2025-68 | Escabiose em menores de 6 meses: enxofre (D); a permetrina (A) é liberada a partir de 2 meses |
-| 2025-71 | Marcos até 6 meses: D, mas A e E também são marcos do período |
-| 2025-77 | Tuberculose na criança: A (sem etambutol abaixo de 10 anos), mas D também é imprecisa |
-| 2025-85 | Modelo de Crenças em Saúde: suscetibilidade (D) ou gravidade (A) percebidas |
-| 2025-89 | Hanseníase indeterminada: D, mas a B descreve um achado real da forma indeterminada |
-| 2025-96 | Autores da Saúde Coletiva: A, mas a segunda lacuna também caberia a Almeida Filho |
-
-### IAMSPE 2026: gabarito preliminar, falta o definitivo
-
-As 100 questões de `dados/prova-iamspe-2026.js` (Edital 01/2025, Avança SP) estão com o gabarito **preliminar** da banca.
-Com o gabarito definitivo: trocar as letras alteradas (e a explicação delas) e marcar as anuladas (gabarito vazio e `status:"anulada"`).
-A explicação já avisa onde a resposta preliminar é discutível — são as candidatas a mudar:
-
-| Questão | Ponto de dúvida |
-| --- | --- |
-| 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
-| 2026-76 | Vacinas dos 12 meses: a B mistura o reforço da meningocócica com vacinas dos 15 meses |
-| 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
-
 ### UNESP 2023: gabarito da edição usada, não da folha oficial
 
 Conferir as 100 questões contra o gabarito definitivo da banca e marcar as anuladas (a edição não informa nenhuma).
@@ -131,6 +96,14 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | IAMSPE 2022-25 | Marcadores: a banca deu fígado–CEA/alfafetoproteína (D); estômago–CEA/CA 19-9 (A) também é verdadeira |
 | IAMSPE 2022-32 | Pela recomendação atual, a semaglutida também seria suspensa (seriam três medicações, não duas) |
 | IAMSPE 2023-18 | Fratura do enforcado: a banca deu "bom prognóstico" (B), mas "fratura do áxis" (A) também é verdadeira |
+| IAMSPE 2025-11 | Resistência do pneumococo às quinolonas: a banca começa por gyrA; para a levofloxacina, a literatura aponta parC |
+| IAMSPE 2025-61 | Moro: a banca deu a ausência bilateral (E); a assimetria (B) também é anormal |
+| IAMSPE 2025-64 | Rotavírus: A e C estão ambas corretas |
+| IAMSPE 2025-71 | Marcos até 6 meses: a banca deu E; D (controle cefálico) também é marco do período |
+| IAMSPE 2025-77 | Tuberculose na criança: a banca deu D; A também é incorreta (sem etambutol abaixo de 10 anos) |
+| IAMSPE 2025-89 | Hanseníase: a banca aceitou a especificidade de 95% da A; a B descreve achado real da forma indeterminada |
+| IAMSPE 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
+| IAMSPE 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
 
 ## 4. Figuras para anexar (233)
 
@@ -177,6 +150,4 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
 - **UNIFESP 2022 a 2026**: 13 figuras.
 - **AMRIGS 2021**: a prova inteira.
-- **IAMSPE 2025**: o gabarito definitivo oficial (Edital 02/2024).
-- **IAMSPE 2026**: o gabarito definitivo oficial (Edital 01/2025).
 - **UNESP 2023**: o gabarito definitivo oficial.
