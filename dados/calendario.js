@@ -1,7 +1,7 @@
 /* ==========================================================================
    CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada
    ==========================================================================
-   `blocos` é o calendário de referência (o do 6º ano) e `sequenciasAno` é a
+   `blocos` é o calendário de referência (o do 6º ano, Grupo E) e `sequenciasAno` é a
    sequência de cada ano da faculdade, do 3º ao 6º. A regra do rodízio entre
    turmas está explicada no index.html, junto de SEED_BLOCOS; aqui ficam só
    as datas, os nomes e a letra da turma que começa em cada bloco
@@ -23,14 +23,30 @@
    da plataforma; pode ignorá-lo ao editar as datas. */
 (function(){
 const BLOCOS_6_ANO = [
-    { id: "bloco-1", ordem: 1, nome: "Cardiologia & Pneumologia", dataInicio: "2026-02-02", dataFim: "2026-03-08", especialidadeIds: ["esp-cardio", "esp-pneumo"] },
-    { id: "bloco-2", ordem: 2, nome: "Gastroenterologia & Nefrologia", dataInicio: "2026-03-09", dataFim: "2026-04-12", especialidadeIds: ["esp-gastro", "esp-nefro"] },
-    { id: "bloco-3", ordem: 3, nome: "Endocrinologia & Infectologia", dataInicio: "2026-04-13", dataFim: "2026-05-17", especialidadeIds: ["esp-endocrino", "esp-infecto"] },
-    { id: "bloco-4", ordem: 4, nome: "Cirurgia Geral", dataInicio: "2026-05-18", dataFim: "2026-06-28", especialidadeIds: ["esp-abdagudo", "esp-trauma", "esp-perioperatorio", "esp-cirurgiaonco"] },
-    { id: "bloco-5", ordem: 5, nome: "Pediatria", dataInicio: "2026-06-29", dataFim: "2026-08-09", especialidadeIds: ["esp-neonato", "esp-crescdesenv", "esp-infectoped", "esp-emergped"] },
-    { id: "bloco-6", ordem: 6, nome: "Obstetrícia", dataInicio: "2026-08-10", dataFim: "2026-09-20", especialidadeIds: ["esp-obstetricia"] },
-    { id: "bloco-7", ordem: 7, nome: "Ginecologia, Planejamento Familiar & Oncologia Ginecológica", dataInicio: "2026-09-21", dataFim: "2026-10-25", especialidadeIds: ["esp-ginecologia", "esp-planfamiliar", "esp-oncogineco"] },
-    { id: "bloco-8", ordem: 8, nome: "Medicina Preventiva e Social + Revisão Final", dataInicio: "2026-10-26", dataFim: "2026-12-20", especialidadeIds: ["esp-epidemio", "esp-sus", "esp-bioetica", "esp-saudefamilia"] },
+    /* 6º ANO — Cronograma 2026 do Grupo E. Diferente dos outros anos, aqui
+       cada período tem SUBDIVISÕES (`subdivisoes`): os estágios que a turma
+       cumpre dentro dele. A subdivisão não tem data escrita — o tempo do
+       período é repartido igualmente entre elas (subdivisoesComDatas), então
+       mudar as datas do período move as subdivisões junto. As especialidades do período são a soma do que as
+       subdivisões pedem (estágio de livre escolha não puxa matéria nenhuma).
+       Só o Grupo E está transcrito, por isso só o primeiro período traz
+       `grupoRodizio`: a plataforma oferece apenas o "Grupo E" no 6º ano até
+       a coordenação lançar o cronograma dos outros grupos. */
+    { id: "b6-pediatria", ordem: 1, nome: "Pediatria", grupoRodizio: "E", dataInicio: "2026-01-05", dataFim: "2026-03-04",
+      subdivisoes: ["Emergências Pediátricas", "Enfermaria de Pediatria", "Pediatria Neonatal"],
+      especialidadeIds: ["esp-emergped", "esp-crescdesenv", "esp-infectoped", "esp-neonato"] },
+    { id: "b6-obstetricia", ordem: 2, nome: "Obstetrícia", dataInicio: "2026-03-05", dataFim: "2026-05-05",
+      subdivisoes: ["Obstetrícia", "Estágio de Livre Escolha"],
+      especialidadeIds: ["esp-obstetricia"] },
+    { id: "b6-geriatria-emerg-clinicas", ordem: 3, nome: "Geriatria e Emergências Clínicas", dataInicio: "2026-05-06", dataFim: "2026-07-05",
+      subdivisoes: ["Atenção Integral ao Idoso — Geriatria e Cuidados Paliativos", "Emergências Clínicas"],
+      especialidadeIds: ["esp-geriatria", "esp-emergencia", "esp-cardio", "esp-pneumo", "esp-nefro", "esp-endocrino", "esp-infecto"] },
+    { id: "b6-anestesio-emerg-cirurgicas", ordem: 4, nome: "Anestesiologia e Emergências Cirúrgicas", dataInicio: "2026-07-06", dataFim: "2026-08-30",
+      subdivisoes: ["Anestesiologia, Dor e Medicina Intensiva", "Emergências Cirúrgicas e Atendimento Pré-Hospitalar"],
+      especialidadeIds: ["esp-anestesio", "esp-trauma", "esp-abdagudo", "esp-perioperatorio"] },
+    { id: "b6-emergencias", ordem: 5, nome: "Emergências", dataInicio: "2026-08-31", dataFim: "2026-10-30",
+      subdivisoes: ["Emergências Cardiovasculares", "Emergências Ortopédicas", "Neurocirurgia", "PS Neurologia"],
+      especialidadeIds: ["esp-emergencia", "esp-cardio", "esp-ortopedia", "esp-neurocirurgia", "esp-neuro"] },
 ];
 
 window.EscDados.registrarCalendario("calendario", {

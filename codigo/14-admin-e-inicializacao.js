@@ -116,8 +116,9 @@ function renderBlocosConfig(){
       <div class="card-flat mb-1">
         <div class="flex justify-between items-start gap-2" style="flex-wrap:wrap">
           <div>
-            <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)} <span class="badge badge-accent">${escapeHtml(nomeRodizio(anoEscolhido, i))} começa aqui</span></div>
+            <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)} ${b.grupoRodizio || !sequencia.some(x=>x.grupoRodizio) ? `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoEscolhido, i))} começa aqui</span>` : ""}</div>
             <div class="text-sm muted mt-1">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)} · ${diasEntre(b.dataInicio, b.dataFim)+1} dias</div>
+            ${subdivisoesDoBloco(b).length ? `<div class="text-sm mt-1">${subdivisoesEmLinha(b, "<br>")}</div>` : ""}
             <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
           </div>
           <div class="flex gap-1">
@@ -337,6 +338,10 @@ function abrirFormularioBloco(ano, blocoId){
       <input class="input" id="fbRodizio" maxlength="4" value="${escapeHtml((b&&b.grupoRodizio)||"")}" placeholder="${escapeHtml(letraPadraoRodizio(posicao<0?0:posicao))}">
       <div class="hint mt-1">A letra do calendário impresso da faculdade (A, B, C, D…). É o grupo do rodízio que entra por este bloco — no 3º ano as letras não seguem a ordem alfabética, e é por isso que elas se escrevem aqui em vez de serem contadas. Em branco, vale a ordem alfabética (${escapeHtml(letraPadraoRodizio(posicao<0?0:posicao))} nesta posição).</div>
     </div>
+    <div class="field"><label class="label">Subdivisões do período (opcional)</label>
+      <textarea class="input" id="fbSubdivisoes" rows="3" placeholder="Uma por linha. Ex.: Enfermaria de Pediatria">${escapeHtml(subdivisoesDoBloco(b).join("\n"))}</textarea>
+      <div class="hint mt-1">Os estágios que a turma cumpre dentro do período. Não têm data própria: o tempo do período é dividido igualmente entre elas (dias que sobram vão para as primeiras). Deixe em branco nos blocos que não se dividem.</div>
+    </div>
     <div class="grid grid-2">
       <div class="field"><label class="label">Data de início</label><input class="input" type="date" id="fbInicio" value="${b?b.dataInicio:""}"></div>
       <div class="field"><label class="label">Data de fim</label><input class="input" type="date" id="fbFim" value="${b?b.dataFim:""}"></div>
@@ -362,6 +367,7 @@ function salvarBlocoFormulario(ano, blocoId){
   const dataFim = document.getElementById("fbFim").value;
   const grupoRodizio = (document.getElementById("fbRodizio").value||"").trim().toUpperCase();
   const especialidadeIds = [...document.querySelectorAll(".fbEsp:checked")].map(el=>el.value);
+  const subdivisoes = (document.getElementById("fbSubdivisoes").value||"").split("\n").map(t=>t.trim()).filter(Boolean);
   if(!nome || !dataInicio || !dataFim){ toast("Preencha nome, data de início e data de fim.", "err"); return; }
   if(dataFim < dataInicio){ toast("A data de fim não pode ser antes da data de início.", "err"); return; }
   if(!especialidadeIds.length){ toast("Selecione ao menos uma especialidade para este bloco.", "err"); return; }
@@ -370,11 +376,13 @@ function salvarBlocoFormulario(ano, blocoId){
   if(blocoId){
     const alvo = seq.find(x=>x.id===blocoId);
     Object.assign(alvo, {nome, dataInicio, dataFim, especialidadeIds});
+    if(subdivisoes.length) alvo.subdivisoes = subdivisoes; else delete alvo.subdivisoes;
     if(grupoRodizio) alvo.grupoRodizio = grupoRodizio; else delete alvo.grupoRodizio;
   }
   else{
     const novoBloco = {id:uid("bloco"), ordem:seq.length+1, nome, dataInicio, dataFim, especialidadeIds};
     if(grupoRodizio) novoBloco.grupoRodizio = grupoRodizio;
+    if(subdivisoes.length) novoBloco.subdivisoes = subdivisoes;
     seq.push(novoBloco);
   }
   renumerarBlocosPorData(ano);

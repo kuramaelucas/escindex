@@ -543,3 +543,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
      de publicar. Fica em Admin > Central de Provas.
    ========================================================================== */
 ```
+
+**6º ano vira o cronograma do Grupo E (29/09/2026).** O calendário de referência deixou de ser o internato em oito blocos e passou a ser o Cronograma 2026 do Grupo E: cinco períodos, cada um com subdivisões (`subdivisoes`, só nomes). O tempo do período é repartido igualmente entre elas, em dias corridos, com a sobra indo para as primeiras (`subdivisoesComDatas`). Como só o Grupo E foi transcrito, `opcoesRodizio` passou a oferecer só os blocos que declaram `grupoRodizio` quando algum declara, e turmas antigas caem no Grupo E (`turmaDoDeslocamento`). A sequência de exemplo antiga (`bloco-1`…`bloco-8`) é trocada pela nova na abertura.

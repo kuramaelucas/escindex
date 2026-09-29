@@ -28,7 +28,7 @@ porque todo o resto aponta para ela):
 | Arquivo | Conteúdo | Itens |
 | --- | --- | --- |
 | `taxonomia.js` | Área > especialidade > assunto | 5 + 41 + 238 |
-| `calendario.js` | Blocos de estudo e a sequência de cada ano | 8 + 4 anos (o 4º tem 10 blocos e 10 turmas; o 5º, 12 estágios e o quadro de turmas) |
+| `calendario.js` | Blocos de estudo e a sequência de cada ano | 4 anos (o 6º tem 5 períodos do Grupo E, com subdivisões; o 4º tem 10 blocos e 10 turmas; o 5º, 12 estágios e o quadro de turmas) |
 | `banco-didatico.js` | Questões autorais da equipe, no estilo da prova | 135 |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 (Acesso Direto), prova real | 100 |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 (Acesso Direto), prova real | 100 |

@@ -438,7 +438,7 @@ function renderInicioAluno(u){
   const calibracao = calibracaoConfianca(u.id);
   const flashVencidos = resumoFlashcards(u.id).vencidos;
   return `
-  <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})</p></div>
+  <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})${subdivisoesDoBloco(bloco).length ? `<br><span class="text-sm muted">${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · " : ""}Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</span>` : ""}</p></div>
   ${renderNotificacoesCard(u)}
   <div class="grid grid-4">
     <div class="stat-tile"><div class="stat-value">${respondidasHoje}/${meta}</div><div class="stat-label">questões hoje</div><div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div></div>
