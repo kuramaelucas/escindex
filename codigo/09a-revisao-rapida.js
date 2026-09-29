@@ -150,7 +150,7 @@ function renderFlashcardsInicio(u){
   ${renderCartoesEmLote()}` : ""}
 
   <div class="card-flat mt-2 text-sm">
-    <strong>Como funciona:</strong> cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; "quase" trava o intervalo em no máximo 3 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão para o dia seguinte. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.
+    <strong>Como funciona:</strong> cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; nenhum cartão volta antes de 1 semana; "quase" fica sempre no prazo mínimo de 7 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão em 7 dias. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.
   </div>`;
 }
 function atualizarFiltroFlash(){
@@ -215,8 +215,8 @@ function renderFlashcardEmSessao(s){
     </div>
   </div>
   ${s.virado ? `<div class="flash-notas">
-    <button class="flash-nota ruim" onclick="responderFlashcard('naolembrei')">Não lembrei<small>volta amanhã</small></button>
-    <button class="flash-nota medio" onclick="responderFlashcard('quase')">Quase<small>volta em poucos dias</small></button>
+    <button class="flash-nota ruim" onclick="responderFlashcard('naolembrei')">Não lembrei<small>volta em 1 semana</small></button>
+    <button class="flash-nota medio" onclick="responderFlashcard('quase')">Quase<small>volta em 1 semana</small></button>
     <button class="flash-nota bom" onclick="responderFlashcard('sabia')">Sabia<small>vai para longe</small></button>
   </div>
   <p class="text-xs muted mt-1" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">Responda com honestidade: o intervalo do cartão depende disso, e enganar o algoritmo aqui só faz você revisar na véspera da prova o que devia ter fixado agora.</p>`
@@ -234,7 +234,7 @@ function renderFlashcardsResumo(s){
   <div class="grid grid-3">
     <div class="stat-tile"><div class="stat-value">${cont.sabia}</div><div class="stat-label">sabia</div></div>
     <div class="stat-tile"><div class="stat-value">${cont.quase}</div><div class="stat-label">quase — voltam em poucos dias</div></div>
-    <div class="stat-tile"><div class="stat-value">${cont.naolembrei}</div><div class="stat-label">não lembrei — voltam amanhã</div></div>
+    <div class="stat-tile"><div class="stat-value">${cont.naolembrei}</div><div class="stat-label">não lembrei — voltam em 1 semana</div></div>
   </div>
   ${aRever.length ? `<div class="card mt-2">
     <div class="card-title">O que ficou pendente</div>

@@ -353,7 +353,7 @@ function resumoCartoesFeitos(usuarioId){
     hoje: entradas.filter(r => r.ultimaData === hoje).length,
     dias: ((db.diasCartoes && db.diasCartoes[usuarioId]) || []).length,
     sequencia: sequenciaDiasCartoes(usuarioId),
-    vencidos: entradas.filter(r => r.proximaRevisao && r.proximaRevisao <= hoje).length,
+    vencidos: entradas.filter(r => r.proximaRevisao && proximaRevisaoCartao(r) <= hoje).length,
   };
 }
 /* Quantos cartões a pessoa revisou num dia. O contador existe desde a

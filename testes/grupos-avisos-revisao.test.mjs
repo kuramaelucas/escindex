@@ -421,3 +421,30 @@ test("avisos com nuvem: o administrador envia, a aluna recebe em outro aparelho,
     assert.deepEqual([...admin.erros, ...aluna.erros], []);
   } finally { await admin.contexto.close(); await aluna.contexto.close(); }
 });
+
+test("flashcards: nenhum cartão volta antes de 7 dias, e o cartão antigo ganha o piso", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      CONFIG.hoje = () => new Date("2026-06-01T12:00:00");
+      const intervalo = id => db.revisoesFlashcards[u.id][id].intervalo;
+      registrarRevisaoFlashcard(u.id, "c1", "naolembrei");
+      registrarRevisaoFlashcard(u.id, "c2", "quase");
+      registrarRevisaoFlashcard(u.id, "c3", "sabia");
+      const primeiro = [intervalo("c1"), intervalo("c2"), intervalo("c3")];
+      registrarRevisaoFlashcard(u.id, "c3", "sabia");
+      const segundo = intervalo("c3");
+      db.revisoesFlashcards[u.id].c4 = { repeticoes: 0, fator: 2.5, intervalo: 1, proximaRevisao: "2026-06-02", ultimaData: "2026-06-01", vistas: 1 };
+      CONFIG.hoje = () => new Date("2026-06-05T12:00:00");
+      const antigoAos4 = cartaoVencido(u.id, "c4");
+      CONFIG.hoje = () => new Date("2026-06-08T12:00:00");
+      return { primeiro, segundo, antigoAos4, antigoAos7: cartaoVencido(u.id, "c4") };
+    });
+    assert.deepEqual(r.primeiro, [7, 7, 7]);
+    assert.equal(r.segundo, 14);
+    assert.equal(r.antigoAos4, false);
+    assert.equal(r.antigoAos7, true);
+  } finally { await contexto.close(); }
+});

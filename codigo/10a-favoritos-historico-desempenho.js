@@ -116,7 +116,7 @@ function renderFavoritosCartoes(u, cartoes){
         <span class="badge badge-accent">${escapeHtml(nomeAssunto(cartao.assuntoId))}</span>
         ${cartao.usuarioId ? '<span class="badge badge-muted">meu cartão</span>' : '<span class="badge badge-muted">cartão da equipe</span>'}
         ${cartao.origem==="questao" ? '<span class="badge badge-amber">gerado de uma questão</span>' : ""}
-        ${rev && rev.proximaRevisao ? `<span class="badge badge-muted">volta em ${formatDataBR(rev.proximaRevisao)}</span>` : '<span class="badge badge-muted">ainda não revisado</span>'}
+        ${rev && rev.proximaRevisao ? `<span class="badge badge-muted">volta em ${formatDataBR(proximaRevisaoCartao(rev))}</span>` : '<span class="badge badge-muted">ainda não revisado</span>'}
       </div>
       <div class="text-sm" style="font-weight:600">${escapeHtml(cartao.frente)}</div>
       <div class="text-sm muted mt-1">${escapeHtml(cartao.verso.slice(0,220))}${cartao.verso.length>220?"…":""}</div>

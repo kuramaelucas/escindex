@@ -496,9 +496,18 @@ function getFlashcard(id){
 function revisaoDoCartao(usuarioId, cartaoId){
   return (db.revisoesFlashcards[usuarioId]||{})[cartaoId] || null;
 }
+/* Quando o cartão volta de fato: cartões guardados antes do piso de uma
+   semana (CONFIG.intervaloMinimoRevisao) ganham o piso sem reescrever o que
+   já está guardado. */
+function proximaRevisaoCartao(entry){
+  if(!entry || !entry.proximaRevisao) return null;
+  if(!entry.ultimaData) return entry.proximaRevisao;
+  const piso = somarDias(entry.ultimaData, CONFIG.intervaloMinimoRevisao);
+  return piso > entry.proximaRevisao ? piso : entry.proximaRevisao;
+}
 function cartaoVencido(usuarioId, cartaoId){
-  const e = revisaoDoCartao(usuarioId, cartaoId);
-  return !!e && e.proximaRevisao <= hojeISO();
+  const proxima = proximaRevisaoCartao(revisaoDoCartao(usuarioId, cartaoId));
+  return !!proxima && proxima <= hojeISO();
 }
 /* Mesma lógica SM-2 das questões, com a autoavaliação no lugar da confiança:
    "não lembrei" = 0, "quase" = 3, "sabia" = 5. */
@@ -507,16 +516,18 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   if(!db.revisoesFlashcards[usuarioId]) db.revisoesFlashcards[usuarioId] = {};
   const entry = db.revisoesFlashcards[usuarioId][cartaoId] || {repeticoes:0, fator:2.5, intervalo:0, vistas:0};
   const q = nota==="sabia" ? 5 : nota==="quase" ? 3 : 0;
-  if(q < 3){ entry.repeticoes = 0; entry.intervalo = 1; }
+  const minimo = CONFIG.intervaloMinimoRevisao;
+  if(q < 3){ entry.repeticoes = 0; entry.intervalo = minimo; }
   else{
-    if(entry.repeticoes===0) entry.intervalo = 1;
-    else if(entry.repeticoes===1) entry.intervalo = 4;
+    if(entry.repeticoes===0) entry.intervalo = minimo;
+    else if(entry.repeticoes===1) entry.intervalo = minimo * 2;
     else entry.intervalo = Math.round(entry.intervalo * entry.fator);
     entry.repeticoes += 1;
   }
   entry.fator = Math.max(1.3, entry.fator + (0.1 - (5-q)*(0.08+(5-q)*0.02)));
   // "quase" nunca deixa o cartão dormir muito: é o sinal clássico de falsa segurança
-  if(nota==="quase") entry.intervalo = Math.min(entry.intervalo, 3);
+  if(nota==="quase") entry.intervalo = minimo;
+  entry.intervalo = Math.max(entry.intervalo, minimo);
   entry.proximaRevisao = somarDias(hojeISO(), entry.intervalo);
   entry.ultimaNota = nota; entry.ultimaData = hojeISO();
   entry.vistas = (entry.vistas||0) + 1;
@@ -583,7 +594,7 @@ function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
 
   const prioridade = (c)=>{
     const rev = revisaoDoCartao(usuarioId, c.id);
-    if(rev && rev.proximaRevisao <= hoje) return 0;                    // vencido
+    if(rev && proximaRevisaoCartao(rev) <= hoje) return 0;                    // vencido
     if(assuntosFalsos.includes(c.assuntoId)) return 1;                 // falsa segurança
     if(c.origem==="questao") return 2;                                 // erro caro recente
     if(!rev) return assuntosDoBloco.includes(c.assuntoId) ? 3 : 4;     // novo (bloco atual primeiro)
