@@ -147,6 +147,7 @@ function garantirCronometro(){
   intervaloCronometro = setInterval(atualizarCronometro, 1000);
 }
 function selecionarAlternativaSimulado(altId){
+  if(haTextoSelecionado()) return;   // quem arrastou para destacar não escolheu a alternativa
   const sessao = state.sessaoAtual; if(!sessao) return;
   desriscarSeNecessario(altId);
   sessao.respostasSimulado[sessao.itens[sessao.indiceAtual].questaoId] = altId;
@@ -362,7 +363,7 @@ function renderAbaProvasAntigas(u){
   /* RESIDÊNCIA E GRADUAÇÃO SEPARADAS. A prova da faculdade (e o Teste de
      Progresso) e a de residência não se comparam: uma confere o que ficou
      do ano, a outra seleciona para o R1. Cada uma tem a sua seção, e no 3º
-     e 4º ano a da graduação vem primeiro (CONFIG.anosQuePriorizamGraduacao). */
+     e 4º ano, onde a consolidação é maioria (CONFIG.progressaoConsolidacao), a da graduação vem primeiro. */
   const tipoPref = tipoProvaPreferido(u);
   const ordemTipos = CONFIG.tiposProva.map(t=>t.id).sort((a,b)=>(b===tipoPref)-(a===tipoPref));
   const qtdPorTipo = {};

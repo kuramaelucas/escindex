@@ -724,6 +724,7 @@ loadState();
   });
   // aplicativo instalável: abre sem internet e avisa a meta com o app fechado
   registrarServiceWorker();
+  ativarDestaquesDeTexto();
   atualizarRecadoLembrete();
   { const eu = usuarioAtual(); if(eu && eu.lembreteMetaAtivo) pedirLembreteComAppFechado(); }
 })();

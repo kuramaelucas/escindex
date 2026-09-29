@@ -120,6 +120,8 @@ function renderMeuGrupo(){
     <p class="text-xs muted mt-1">A ordem dos blocos é a do seu ano e é definida pela coordenação — o que a turma escolhe é por qual deles entra.</p>
   </div>
 
+  ${renderMeusEstagios(u, meuGrupo)}
+
   ${!meuGrupo.oficial ? renderQuestoesDoGrupo(meuGrupo) : ""}
 
   <div class="card mb-2">
@@ -188,6 +190,62 @@ function usarGrupo(grupoId){
   entrarNoGrupo(u, grupoId);
   saveState();
   toast('Agora você está em "'+g.nome+'" ('+nomeRodizio(anoDoGrupo(g,u), g.deslocamento)+').');
+  render();
+}
+/* MEUS ESTÁGIOS. Nos períodos que se dividem em estágios (6º ano), a ordem
+   dentro do período é da pessoa: ela reordena aqui sem sair do grupo do
+   rodízio (ver ordemDosEstagios, seção 3). As datas de cada estágio andam
+   junto, porque o tempo do período é repartido igualmente na ordem em que
+   eles estão. */
+function renderMeusEstagios(u, grupo){
+  const blocos = blocosDoGrupo(grupo, u).filter(b => subdivisoesDoBloco(b).length > 1);
+  if(!blocos.length) return "";
+  return `<div class="card mb-2">
+    <div class="card-title">${iconeSvg("calendar")} Meus estágios</div>
+    <p class="text-sm muted">Dentro de cada período, você cumpre os estágios na ordem que for a sua. Reordene aqui e o resto da plataforma passa a mostrar o seu estágio de hoje. <strong>Você continua no mesmo grupo</strong>: a mudança é só sua e não altera a turma nem os colegas.</p>
+    ${blocos.map(b => {
+      const partes = subdivisoesComDatas(b);
+      const proprio = !!(u.ordemEstagios && u.ordemEstagios[b.id]);
+      const ref = JSON.stringify(b.id).replace(/"/g, "&quot;");
+      return `<div class="card-flat mt-2">
+        <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
+          <div style="font-weight:700">${escapeHtml(b.nome)} <span class="text-sm muted" style="font-weight:400">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)}</span></div>
+          ${proprio ? `<button class="btn btn-ghost btn-sm" onclick="restaurarOrdemDosEstagios(${ref})">Voltar à ordem da turma</button>` : '<span class="badge badge-muted">ordem da turma</span>'}
+        </div>
+        ${partes.map((pt, i) => `<div class="flex justify-between items-center mt-1 gap-1">
+          <span class="text-sm">${i+1}. ${escapeHtml(pt.nome)}${pt.dataInicio ? ` <span class="muted">(${formatDataBR(pt.dataInicio)} – ${formatDataBR(pt.dataFim)})</span>` : ""}</span>
+          <span class="flex gap-1">
+            <button class="icon-btn" title="Fazer este estágio antes" ${i===0?"disabled":""} onclick="moverEstagioPessoal(${ref}, ${i}, -1)">${iconeSvg("arrow-up")}</button>
+            <button class="icon-btn" title="Fazer este estágio depois" ${i===partes.length-1?"disabled":""} onclick="moverEstagioPessoal(${ref}, ${i}, 1)">${iconeSvg("arrow-down")}</button>
+          </span>
+        </div>`).join("")}
+      </div>`;
+    }).join("")}
+  </div>`;
+}
+function moverEstagioPessoal(blocoId, indice, delta){
+  const u = usuarioAtual(); if(!u) return;
+  const bloco = blocosDoGrupo(getGrupoDoUsuario(u), u).find(b => b.id === blocoId); if(!bloco) return;
+  const nomes = subdivisoesDoBloco(bloco).slice();
+  const destino = indice + delta;
+  if(destino < 0 || destino >= nomes.length) return;
+  [nomes[indice], nomes[destino]] = [nomes[destino], nomes[indice]];
+  guardarOrdemDosEstagios(u, blocoId, nomes);
+}
+function restaurarOrdemDosEstagios(blocoId){
+  const u = usuarioAtual(); if(!u) return;
+  guardarOrdemDosEstagios(u, blocoId, null);
+  toast("Os estágios voltaram à ordem da turma.");
+}
+/* Guardar a mesma ordem da coordenação é o mesmo que não ter ordem própria:
+   a chave sai, para o perfil não carregar (e a nuvem não sincronizar) nada
+   que não muda coisa alguma. */
+function guardarOrdemDosEstagios(u, blocoId, nomes){
+  const original = (sequenciaDoAno(anoDeReferencia(anoDoGrupo(getGrupoDoUsuario(u), u))).find(b => b.id === blocoId) || {}).subdivisoes || [];
+  if(!u.ordemEstagios) u.ordemEstagios = {};
+  if(!nomes || JSON.stringify(nomes) === JSON.stringify(original)) delete u.ordemEstagios[blocoId];
+  else u.ordemEstagios[blocoId] = nomes;
+  saveState();
   render();
 }
 function entrarNaTurmaDoRodizio(deslocamento){
@@ -337,6 +395,7 @@ function dadosDoUsuario(id){
     favoritos: doUsuario(db.favoritos),
     cartoesFavoritos: doUsuario(db.favoritosCartoes),
     questoesEscondidas: doUsuario(db.questoesOcultas),
+    destaques: doUsuario(db.destaques),
     cartoesPessoais: (db.flashcards || []).filter(c => c.usuarioId === id),
     sessoes: doUsuario(db.sessoes),
     simulados: doUsuario(db.resultadosSimulados),

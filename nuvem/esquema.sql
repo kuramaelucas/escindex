@@ -148,6 +148,10 @@ create index if not exists perfis_status_idx on public.perfis (status, criado_em
 -- meta) — para a tela não reaparecer em outro aparelho. Para quem já rodou
 -- este arquivo antes desta coluna existir:
 alter table public.perfis add column if not exists boas_vindas_em date;
+-- a ordem que a própria pessoa deu aos estágios de cada período do 6º ano
+-- (Meu Grupo > Meus estágios): {"b6-pediatria": ["Enfermaria de Pediatria", ...]}.
+-- Só muda a ordem para ela; o grupo do rodízio continua o mesmo.
+alter table public.perfis add column if not exists ordem_estagios jsonb not null default '{}'::jsonb;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)
@@ -283,6 +287,29 @@ create table if not exists public.questoes_ocultas (
   primary key (usuario_id, questao_id)
 );
 create index if not exists questoes_ocultas_sync_idx on public.questoes_ocultas (usuario_id, atualizado_em);
+
+-- ---------------------------------------------------------------------------
+-- 6-D. DESTAQUES — os trechos que a pessoa marcou em questões e cartões (ESTADO)
+-- ---------------------------------------------------------------------------
+-- Selecionar um trecho do enunciado, de uma alternativa, da explicação ou de
+-- um cartão e marcá-lo. `alvo` diz onde ("q:<id da questão>:enunciado",
+-- "q:<id>:alt-B", "q:<id>:explicacao", "c:<id do cartão>:verso") e
+-- inicio/fim são posições no texto; `trecho` guarda o que foi marcado, para o
+-- site achar o lugar de novo se o texto da questão mudar. Desmarcar marca
+-- "removido", como nos favoritos. É de cada pessoa: ninguém vê o destaque de
+-- ninguém.
+create table if not exists public.destaques (
+  id            text        primary key,
+  usuario_id    uuid        not null references auth.users(id) on delete cascade,
+  alvo          text        not null,
+  inicio        integer     not null,
+  fim           integer     not null,
+  trecho        text        not null,
+  data          date,
+  removido      boolean     not null default false,
+  atualizado_em timestamptz not null default now()
+);
+create index if not exists destaques_sync_idx on public.destaques (usuario_id, atualizado_em);
 
 -- ---------------------------------------------------------------------------
 -- 7. FLASHCARDS_PESSOAIS — o caderno de cartões de cada aluno (ESTADO)
@@ -547,7 +574,7 @@ declare t text;
 begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
-    'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
+    'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
     'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes'
   ] loop
@@ -649,6 +676,7 @@ alter table public.dias_cartoes         enable row level security;
 alter table public.favoritos            enable row level security;
 alter table public.favoritos_cartoes    enable row level security;
 alter table public.questoes_ocultas     enable row level security;
+alter table public.destaques            enable row level security;
 alter table public.flashcards_pessoais  enable row level security;
 alter table public.sessoes              enable row level security;
 alter table public.resultados_simulados enable row level security;
@@ -829,7 +857,7 @@ declare t text;
 begin
   foreach t in array array[
     'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
-    'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
+    'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento'
   ] loop
     execute format('drop policy if exists %1$s_ler     on public.%1$I', t);
@@ -869,7 +897,7 @@ declare t text;
 begin
   foreach t in array array[
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
-    'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'flashcards_pessoais',
+    'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
     'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
     'feedbacks', 'correcoes_questoes'
@@ -908,40 +936,46 @@ revoke all on function public.notas_do_simulado(text) from public, anon;
 grant execute on function public.notas_do_simulado(text) to authenticated;
 
 -- ---------------------------------------------------------------------------
--- 15-C. PAINEL DA TURMA — como cada aluno está indo e usando a plataforma
+-- 15-C. PAINEL DA TURMA — como a turma está indo e usando a plataforma
 -- ---------------------------------------------------------------------------
 -- Só para professor e administrador (e_equipe()): para qualquer outra pessoa
--- as duas funções devolvem zero linhas. Elas somam no próprio banco — uma
--- linha por aluno, não as milhares de respostas —, e só números: nenhuma
--- resposta, anotação ou cartão pessoal sai daqui.
+-- as funções devolvem zero linhas. Elas somam no próprio banco, e só números:
+-- nenhuma resposta, anotação ou cartão pessoal sai daqui.
+--
+-- TAXA DE ACERTO NÃO É DE NINGUÉM. O acerto de uma pessoa é dela: nenhuma
+-- destas funções o devolve. painel_turma() traz, por pessoa, só USO (quantas
+-- questões, quantos dias, quantos cartões, quando foi a última vez);
+-- acerto_por_turma() traz o acerto SOMADO por ano e por turma, e só quando há
+-- pelo menos 3 alunos com resposta no grupo — média de um ou dois alunos é o
+-- acerto deles. A equipe (professores, residentes e administradores) também
+-- aparece em painel_turma(), com o papel, porque o uso dela interessa à
+-- coordenação; o acerto agregado é só dos alunos.
 --
 -- "Hoje" é o dia de Brasília; as datas de resposta já são o dia local de
 -- quem respondeu (o site grava assim).
-create or replace function public.painel_turma()
+--
+-- As versões anteriores devolviam o acerto de cada aluno: como o tipo do
+-- retorno mudou, elas precisam ser apagadas antes de recriar.
+drop function if exists public.painel_turma();
+create function public.painel_turma()
 returns table (
   usuario_id        uuid,
   nome              text,
   email             text,
+  papel             text,
   ano_faculdade     text,
   grupo_id          text,
   status            text,
   criado_em         timestamptz,
   respostas         bigint,
-  acertos           bigint,
   respostas_7d      bigint,
-  acertos_7d        bigint,
   respostas_30d     bigint,
-  acertos_30d       bigint,
-  respostas_30a60d  bigint,
-  acertos_30a60d    bigint,
   dias_ativos_30d   bigint,
   ultima_resposta   date,
   cartoes_total     bigint,
   cartoes_30d       bigint,
   ultimo_cartao     date,
-  simulados         bigint,
-  media_simulados   real,
-  por_area          jsonb
+  simulados         bigint
 )
 language sql
 stable
@@ -950,26 +984,19 @@ set search_path = public, pg_temp
 as $$
   with hoje as (select (now() at time zone 'America/Sao_Paulo')::date as d)
   select
-    p.id, p.nome, p.email, p.ano_faculdade, p.grupo_id, p.status, p.criado_em,
-    coalesce(r.total, 0), coalesce(r.acertos, 0),
-    coalesce(r.total_7d, 0), coalesce(r.acertos_7d, 0),
-    coalesce(r.total_30d, 0), coalesce(r.acertos_30d, 0),
-    coalesce(r.total_30a60d, 0), coalesce(r.acertos_30a60d, 0),
+    p.id, p.nome, p.email, p.papel, p.ano_faculdade, p.grupo_id, p.status, p.criado_em,
+    coalesce(r.total, 0),
+    coalesce(r.total_7d, 0),
+    coalesce(r.total_30d, 0),
     coalesce(r.dias_30d, 0), r.ultima,
     coalesce(c.total, 0), coalesce(c.total_30d, 0), c.ultimo,
-    coalesce(s.n, 0), s.media,
-    coalesce(a.por_area, '{}'::jsonb)
+    coalesce(s.n, 0)
   from public.perfis p
   cross join hoje
   left join lateral (
     select count(*) as total,
-           count(*) filter (where x.correta) as acertos,
            count(*) filter (where x.data > hoje.d - 7) as total_7d,
-           count(*) filter (where x.data > hoje.d - 7 and x.correta) as acertos_7d,
            count(*) filter (where x.data > hoje.d - 30) as total_30d,
-           count(*) filter (where x.data > hoje.d - 30 and x.correta) as acertos_30d,
-           count(*) filter (where x.data <= hoje.d - 30 and x.data > hoje.d - 60) as total_30a60d,
-           count(*) filter (where x.data <= hoje.d - 30 and x.data > hoje.d - 60 and x.correta) as acertos_30a60d,
            count(distinct x.data) filter (where x.data > hoje.d - 30) as dias_30d,
            max(x.data) as ultima
       from public.respostas x where x.usuario_id = p.id
@@ -981,22 +1008,74 @@ as $$
       from public.dias_cartoes d where d.usuario_id = p.id
   ) c on true
   left join lateral (
-    select count(*) as n, avg(rs.nota)::real as media
+    select count(*) as n
       from public.resultados_simulados rs where rs.usuario_id = p.id
   ) s on true
-  left join lateral (
-    select jsonb_object_agg(z.area_id, jsonb_build_array(z.t, z.a)) as por_area
-      from (select coalesce(x.area_id, '?') as area_id, count(*) as t, count(*) filter (where x.correta) as a
-              from public.respostas x where x.usuario_id = p.id group by 1) z
-  ) a on true
-  where public.e_equipe()
-    and p.papel = 'aluno';
+  where public.e_equipe();
 $$;
 revoke all on function public.painel_turma() from public, anon;
 grant execute on function public.painel_turma() to authenticated;
 
+-- O acerto da turma: uma linha por ano (grupo_id nulo), por turma dentro do
+-- ano (grupo_id '' = alunos sem turma) e uma para todos os anos (ano nulo),
+-- cada uma só se tiver 3 alunos com resposta ou mais. Só alunos aprovados.
+-- por_area = {"area-cm": [respostas, acertos], ...} do mesmo grupo.
+drop function if exists public.acerto_por_turma();
+create function public.acerto_por_turma()
+returns table (
+  ano_faculdade text,
+  grupo_id      text,
+  alunos        bigint,
+  respostas     bigint,
+  acertos       bigint,
+  respostas_30d bigint,
+  acertos_30d   bigint,
+  por_area      jsonb
+)
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  with hoje as (select (now() at time zone 'America/Sao_Paulo')::date as d),
+  r as (
+    select coalesce(p.ano_faculdade, '(sem ano)') as ano,
+           coalesce(p.grupo_id, '') as grupo,
+           p.id as aluno,
+           coalesce(x.area_id, '?') as area,
+           x.correta, x.data
+      from public.perfis p
+      join public.respostas x on x.usuario_id = p.id
+     where public.e_equipe() and p.papel = 'aluno' and p.status = 'aprovado'
+  ),
+  tot as (
+    select ano, grupo,
+           count(distinct aluno) as alunos,
+           count(*) as respostas,
+           count(*) filter (where correta) as acertos,
+           count(*) filter (where data > hoje.d - 30) as respostas_30d,
+           count(*) filter (where data > hoje.d - 30 and correta) as acertos_30d
+      from r cross join hoje
+     group by grouping sets ((ano, grupo), (ano), ())
+  ),
+  areas as (
+    select ano, grupo, area, count(*) as t, count(*) filter (where correta) as a
+      from r
+     group by grouping sets ((ano, grupo, area), (ano, area), (area))
+  )
+  select tot.ano, tot.grupo, tot.alunos, tot.respostas, tot.acertos, tot.respostas_30d, tot.acertos_30d,
+         coalesce((select jsonb_object_agg(ar.area, jsonb_build_array(ar.t, ar.a))
+                     from areas ar
+                    where ar.ano is not distinct from tot.ano and ar.grupo is not distinct from tot.grupo), '{}'::jsonb)
+    from tot
+   where tot.alunos >= 3;
+$$;
+revoke all on function public.acerto_por_turma() from public, anon;
+grant execute on function public.acerto_por_turma() to authenticated;
+
 -- Semana a semana, por ano da faculdade: quantos alunos estudaram, quantas
--- questões e com que acerto. É o gráfico de "a turma está usando?".
+-- questões e com que acerto. É o gráfico de "a turma está usando?". Semana
+-- com menos de 3 alunos ativos devolve o acerto vazio (seria o de uma pessoa).
 create or replace function public.atividade_por_semana(p_semanas integer default 12)
 returns table (ano_faculdade text, semana date, alunos_ativos bigint, respostas bigint, acertos bigint)
 language sql
@@ -1008,7 +1087,7 @@ as $$
          date_trunc('week', x.data)::date,
          count(distinct x.usuario_id),
          count(*),
-         count(*) filter (where x.correta)
+         case when count(distinct x.usuario_id) >= 3 then count(*) filter (where x.correta) end
     from public.respostas x
     join public.perfis p on p.id = x.usuario_id and p.papel = 'aluno'
    where public.e_equipe()

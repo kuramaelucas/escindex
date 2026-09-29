@@ -349,6 +349,8 @@ function nuvemAplicarPerfilLocal(p){
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
+  // {} (reordenei de volta ao padrão) vale: é assim que "voltar à ordem da turma" chega ao outro aparelho
+  if(p.ordem_estagios && typeof p.ordem_estagios === "object") u.ordemEstagios = p.ordem_estagios;
   u.lembreteMetaAtivo = !!p.lembrete_meta_ativo;
   if(p.lembrete_meta_horario) u.lembreteMetaHorario = p.lembrete_meta_horario;
   if(!u.criadoEm) u.criadoEm = (p.criado_em || "").slice(0,10) || hojeISO();
@@ -377,6 +379,7 @@ function nuvemConferirPerfil(){
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
     lembrete_meta_horario: usuario.lembreteMetaHorario || null,
     boas_vindas_em: usuario.boasVindasEm || null,
+    ordem_estagios: usuario.ordemEstagios || {},
   };
   const assinatura = JSON.stringify(linha);
   if(db.nuvem.perfilEnviado === assinatura) return;

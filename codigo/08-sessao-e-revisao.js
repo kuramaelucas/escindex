@@ -229,6 +229,7 @@ function marcadaDaQuestao(questaoId){
   return s.marcadas[questaoId] || null;
 }
 function selecionarAlternativa(altId){
+  if(haTextoSelecionado()) return;   // quem arrastou para destacar não escolheu a alternativa
   const s = state.sessaoAtual; if(!s || s.somenteLeitura) return;
   if(respostaDoIndice(s, s.indiceAtual)) return;   // já respondida: não muda mais
   const item = s.itens[s.indiceAtual]; if(!item) return;
@@ -701,7 +702,7 @@ function renderQuestionCard(q, opts){
          "ver na íntegra": abrir uma janela com o mesmo texto não acrescenta
          nada. O enunciado clicável continua valendo nas LISTAS, onde o texto
          aparece cortado. -->
-    <div class="qcard-enunciado">${escapeHtml(q.enunciado)}</div>
+    <div class="qcard-enunciado" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
     <div class="qcard-alts">
       ${(()=>{
         const eliminadas = eliminadasDaQuestao(q.id);
@@ -725,7 +726,7 @@ function renderQuestionCard(q, opts){
           const botaoRiscar = podeRiscar
             ? `<button class="alt-cortar" title="${riscada?"Trazer a alternativa de volta":"Eliminar esta alternativa"}" aria-label="${riscada?"Trazer a alternativa "+alt.id+" de volta":"Eliminar a alternativa "+alt.id}" onclick="event.stopPropagation();alternarAlternativaEliminada('${alt.id}')">${iconeSvg("x")}</button>`
             : "";
-          return `<div class="${classe}"${onclickAttr}><span class="alt-letter">${alt.id}</span><span class="alt-text">${escapeHtml(alt.texto)}</span>${botaoRiscar}</div>`;
+          return `<div class="${classe}"${onclickAttr}><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span>${botaoRiscar}</div>`;
         }).join("");
       })()}
     </div>`;
@@ -757,9 +758,9 @@ function renderQuestionCard(q, opts){
 }
 function renderFeedbackQuestao(q, opts){
   const correta = opts.selecionada === q.gabarito;
-  let html = `<div class="feedback-box ${correta?"ok":"no"}"><strong>${correta?"Resposta correta.":"Resposta incorreta."}</strong> Gabarito: ${q.gabarito}.<br>${escapeHtml(q.explicacaoGeral)}`;
+  let html = `<div class="feedback-box ${correta?"ok":"no"}"><strong>${correta?"Resposta correta.":"Resposta incorreta."}</strong> Gabarito: ${q.gabarito}.<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`;
   if(q.explicacoesAlternativas && q.explicacoesAlternativas[opts.selecionada] && opts.selecionada!==q.gabarito){
-    html += `<br><br><em>Sobre a alternativa que você marcou:</em> ${escapeHtml(q.explicacoesAlternativas[opts.selecionada])}`;
+    html += `<br><br><em>Sobre a alternativa que você marcou:</em> <span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao-alt"))}>${htmlComDestaques(q.explicacoesAlternativas[opts.selecionada], alvoDeQuestao(q.id,"explicacao-alt"), true)}</span>`;
   }
   html += `</div>`;
   // Riscar a alternativa certa é um erro diferente de escolher a errada: a
@@ -774,12 +775,14 @@ function renderFeedbackQuestao(q, opts){
   const totalErros = historicoDaQuestao.filter(r=>!r.correta).length;
   if(totalErros){
     // o número de erros é o que importa aqui: a mesma questão errada três
-    // vezes é lacuna, não distração. E é o momento certo de oferecer tirá-la
-    // da frente, para quem já entendeu e não quer mais revê-la.
+    // vezes é lacuna, não distração. Tirá-la da frente só é oferecido a
+    // partir do segundo erro (podeEsconderQuestao): no primeiro, ela ainda
+    // está ensinando.
     const oculta = questaoOculta(usuarioAtual().id, q.id);
+    const podeEsconder = podeEsconderQuestao(usuarioAtual().id, q.id);
     html += `<div class="card-flat mt-2 text-xs" style="border-color:var(--danger)">
-      <div>${iconeSvg("alert")} Você já errou esta questão <strong>${rotuloVezes(totalErros)}</strong>${historicoDaQuestao.length>1 ? ` em ${historicoDaQuestao.length} tentativas` : ""}.${oculta ? " Ela está escondida: não volta mais nas suas sessões." : ""}</div>
-      <button class="btn btn-ghost btn-sm mt-1" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg(oculta?"eye":"eye-off")} ${oculta ? "Voltar a mostrar esta questão" : "Não mostrar mais esta questão para mim"}</button>
+      <div>${iconeSvg("alert")} Você já errou esta questão <strong>${rotuloVezes(totalErros)}</strong>${historicoDaQuestao.length>1 ? ` em ${historicoDaQuestao.length} tentativas` : ""}.${oculta ? " Ela está escondida: não volta mais nas suas sessões." : ""}${podeEsconder ? "" : " Ela volta na revisão espaçada; se você errar de novo, poderá pedir para não vê-la mais."}</div>
+      ${podeEsconder ? `<button class="btn btn-ghost btn-sm mt-1" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg(oculta?"eye":"eye-off")} ${oculta ? "Voltar a mostrar esta questão" : "Não mostrar mais esta questão para mim"}</button>` : ""}
     </div>`;
   }else if(historicoDaQuestao.length>1){
     html += `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Histórico nesta questão: ${historicoDaQuestao.length} tentativas, nenhum erro.</div>`;
@@ -803,7 +806,7 @@ function renderAcoesQuestao(q){
     <button class="btn btn-secondary btn-sm" onclick="toggleFavoritoUI('${q.id}')">${iconeSvg("star")} ${fav?"Remover dos favoritos":"Favoritar"}</button>
     <button class="btn btn-secondary btn-sm" onclick="abrirNotaFavorita('${q.id}')">${iconeSvg("message")} ${nota?"Editar minha anotação":"Anotar uma dúvida"}</button>
     <button class="btn btn-secondary btn-sm" onclick="abrirFormularioFlashcard(null,{questaoId:'${q.id}'})">${iconeSvg("cards")} Virar flashcard</button>
-    <button class="btn btn-secondary btn-sm" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg(questaoOculta(uidAtual, q.id)?"eye":"eye-off")} ${questaoOculta(uidAtual, q.id)?"Voltar a mostrar":"Não mostrar mais"}</button>
+    ${podeEsconderQuestao(uidAtual, q.id) ? `<button class="btn btn-secondary btn-sm" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg(questaoOculta(uidAtual, q.id)?"eye":"eye-off")} ${questaoOculta(uidAtual, q.id)?"Voltar a mostrar":"Não mostrar mais"}</button>` : ""}
     <button class="btn btn-secondary btn-sm" onclick="abrirSinalizarDesatualizada('${q.id}')">${iconeSvg("flag")} Sinalizar desatualizada</button>
     <button class="btn btn-secondary btn-sm" onclick="abrirPromptDuvida('${q.id}')">${iconeSvg("message")} Tirar dúvida com IA</button>
   </div>
@@ -815,6 +818,10 @@ function cartoesDaQuestao(usuarioId, questaoId){
   return (db.flashcards||[]).filter(c=>c.status!=="arquivado" && c.usuarioId===usuarioId && c.questaoOrigemId===questaoId);
 }
 function alternarQuestaoOcultaUI(qid){
+  if(!podeEsconderQuestao(usuarioAtual().id, qid)){
+    toast("Você só pode pedir para não ver mais uma questão depois de errá-la "+CONFIG.errosParaEsconderQuestao+" vezes.", "err");
+    return;
+  }
   const escondeu = alternarQuestaoOculta(usuarioAtual().id, qid);
   toast(escondeu
     ? "Questão escondida: ela não volta nas suas sessões, revisões e listas. Para trazê-la de volta, vá em Revisão > Questões escondidas."
@@ -951,6 +958,25 @@ function confirmarSinalizacao(qid){
   toast("Sinalização enviada. Obrigado — isso ajuda a manter o banco de questões confiável.");
 }
 
+/* ---------- o padrão de justificativa: parâmetro objetivo em destaque ----------
+   Quando o que decide o diagnóstico ou a conduta é um número (sinal vital,
+   exame, medida de imagem, tempo, dose, idade-limite, escore), a explicação
+   tem de mostrar o número, o valor normal ou esperado e o ponto de corte que
+   muda a conduta — não só dizer "está alterado". Esta é a ÚNICA definição
+   dessa regra: o prompt de importação/transcrição (12a, 12b) e o de tirar
+   dúvida com IA (abaixo) usam este mesmo texto, para uma IA responder a
+   questão do mesmo jeito em qualquer caminho. Na tela, os "**" viram o
+   realce do parâmetro (separarEnfase, seção 11-B). */
+function regraDeParametrosObjetivos(){
+  return "QUANDO A CONDUTA OU O DIAGNÓSTICO DEPENDE DE UM PARÂMETRO OBJETIVO (sinal vital, exame laboratorial, medida de imagem, tempo, dose, idade-limite ou escore):\n"+
+  "- Destaque o parâmetro entre dois asteriscos, já com o valor do caso: **PAS 82 mmHg**, **Glasgow 8**, **CURB-65 = 3**, **TSH 12 mUI/L**.\n"+
+  "- Ao lado, diga o valor normal ou esperado (ou o alvo terapêutico), com a unidade: \"(normal: 90–120 mmHg)\".\n"+
+  "- Diga o ponto de corte que muda a conduta e o que ele muda: \"< 90 mmHg define choque → expansão volêmica\".\n"+
+  "- Se houver escore validado (Glasgow, APGAR, CURB-65, qSOFA, Wells, CHA2DS2-VASc, HAS-BLED, Child-Pugh, MELD, Alvarado, Ranson, Bishop, Framingham etc.), calcule-o para o caso apresentado, mostre a soma item a item e a faixa de risco ou a conduta que ele indica.\n"+
+  "- Os valores de referência e os pontos de corte são os da diretriz citada em REFERENCIAS; se o valor muda com idade, sexo, gestação ou método do laboratório, diga para qual população vale. Se você não tiver certeza do número, diga que não tem, em vez de inventar.\n"+
+  "- Use os asteriscos só nesses parâmetros (poucos por explicação; nunca em títulos nem em palavras comuns). Se a questão não depende de nenhum parâmetro objetivo, explique normalmente, sem asteriscos.\n";
+}
+
 /* ---------- prompt pronto para tirar dúvida com uma IA ---------- */
 function gerarPromptDuvida(q){
   const alts = q.alternativas.map(a=>a.id+") "+a.texto).join("\n");
@@ -969,7 +995,9 @@ function gerarPromptDuvida(q){
   "epidemiológico. Diga o que teria de ser diferente no enunciado para aquela alternativa passar a ser a correta. "+
   "Quando a alternativa estiver errada por conhecimento que não vem do caso (uma dose errada, uma conduta que não existe, um "+
   "conceito trocado), diga isso explicitamente, em vez de forçar uma justificativa que o enunciado não sustenta.\n"+
-  "5) Aponte a pegadinha da questão: qual alternativa é a \"quase certa\", o que a torna atraente e qual detalhe do enunciado a derruba.";
+  "5) Aponte a pegadinha da questão: qual alternativa é a \"quase certa\", o que a torna atraente e qual detalhe do enunciado a derruba.\n"+
+  "6) Parâmetros objetivos: se a conduta ou o diagnóstico depende de um número, siga o padrão abaixo (é o mesmo das explicações da plataforma).\n\n"+
+  regraDeParametrosObjetivos();
 }
 function abrirPromptDuvida(qid){
   const prompt = gerarPromptDuvida(getQuestao(qid));
@@ -1085,7 +1113,7 @@ function renderCartaoQuestoesErradas(u){
       <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${x.questao.id}')">${escapeHtml(x.questao.enunciado.slice(0,160))}${x.questao.enunciado.length>160?"…":""}</span></div>
       <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
         <button class="btn btn-secondary btn-sm" onclick="praticarSoEstaQuestao('${x.questao.id}')">${iconeSvg("book")} Refazer</button>
-        <button class="btn btn-ghost btn-sm" onclick="alternarQuestaoOcultaUI('${x.questao.id}')">${iconeSvg("eye-off")} Não mostrar mais</button>
+        ${podeEsconderQuestao(u.id, x.questao.id) ? `<button class="btn btn-ghost btn-sm" onclick="alternarQuestaoOcultaUI('${x.questao.id}')">${iconeSvg("eye-off")} Não mostrar mais</button>` : ""}
       </div>
     </div>`;
   return `
@@ -1110,7 +1138,7 @@ function renderCartaoQuestoesErradas(u){
             <span class="text-xs muted"> — ${n ? "errada "+rotuloVezes(n)+", " : ""}escondida em ${formatDataBR(reg.data||hojeISO())}</span></span>
           <button class="btn btn-ghost btn-sm" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg("eye")} Voltar a mostrar</button>
         </div>`;
-      }).join("")}` : '<p class="text-sm muted mt-1">Nenhuma. Use "Não mostrar mais" numa questão para escondê-la.</p>'}
+      }).join("")}` : '<p class="text-sm muted mt-1">Nenhuma. Depois de errar uma questão pela segunda vez, o botão "Não mostrar mais" permite escondê-la.</p>'}
   </div>`;
 }
 function praticarQuestoesMaisErradas(){

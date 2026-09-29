@@ -99,7 +99,7 @@ const TUTORIAL_RAPIDO = {
 const GUIA_ALUNO = [
   { titulo:"Início e sessão do dia", itens:[
     "A <strong>sessão recomendada</strong> junta questões do seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo. O tamanho segue a sua meta diária.",
-    "No <strong>3º e no 4º ano</strong>, as questões das <strong>provas da graduação</strong> (provas da faculdade e Teste de Progresso) vêm primeiro: é a fase de consolidar o conhecimento. As de residência completam o conjunto.",
+    "A sessão recomendada muda com o seu ano, do <strong>consolidar</strong> ao <strong>treinar a prova</strong>: <strong>3º ano 70% consolidação e 30% provas de residência; 4º ano 60/40; 5º ano 25/75; 6º ano 100% provas reais de residência</strong>. Consolidação são as questões didáticas do Esc e as provas da graduação. Cada questão da sessão diz de qual tipo é, e a tela Estudar explica a regra do seu ano.",
     "A <strong>meta de hoje</strong> mostra quantas questões e cartões faltam.",
     "Se você sair no meio de uma sessão, ela fica guardada: o Início oferece <strong>Continuar</strong> de onde parou.",
   ]},
@@ -111,7 +111,8 @@ const GUIA_ALUNO = [
     "Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>. A confiança entra na revisão espaçada: chute e erro voltam antes.",
     "O <strong>×</strong> ao lado de cada alternativa risca o que você já descartou (clique de novo para trazer de volta).",
     "Depois de responder, aparecem o gabarito, a explicação e as referências. No computador, as teclas <strong>A</strong> e <strong>D</strong> passam para a questão anterior e a próxima; no celular, arraste para o lado.",
-    "Na questão: <strong>Favoritar</strong> (com uma anotação sua), <strong>Virar flashcard</strong>, <strong>Não mostrar mais</strong>, <strong>Sinalizar desatualizada</strong> e <strong>Tirar dúvida com IA</strong>.",
+    "<strong>Destaque o que importa</strong>: selecione um trecho do enunciado, de uma alternativa, da explicação ou de um flashcard e toque em <strong>Destacar</strong>. O trecho fica marcado sempre que a questão voltar (e nos seus outros aparelhos); clique nele para remover. Os destaques são só seus.",
+    "Na questão: <strong>Favoritar</strong> (com uma anotação sua), <strong>Virar flashcard</strong>, <strong>Não mostrar mais</strong> (só aparece depois de você errar a mesma questão pela segunda vez), <strong>Sinalizar desatualizada</strong> e <strong>Tirar dúvida com IA</strong>.",
   ]},
   { titulo:"Revisão e Revisão Rápida", itens:[
     "<strong>Revisão</strong> traz as questões cujo prazo de revisão venceu, com o motivo de cada uma (erro recente ou tempo sem ver).",
@@ -128,7 +129,7 @@ const GUIA_ALUNO = [
     "<strong>Nota estimada</strong>: uma projeção da sua nota na prova, com a faixa de incerteza.",
   ]},
   { titulo:"Turma, favoritos e histórico", itens:[
-    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual) ou crie um grupo de estudo com colegas.",
+    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual) ou crie um grupo de estudo com colegas. No 6º ano, <strong>Meus estágios</strong> deixa você reordenar os estágios de cada período do seu jeito, sem sair do grupo.",
     "<strong>Favoritos</strong> guarda as questões e os cartões salvos, com as suas anotações.",
     "<strong>Histórico de Atividade</strong> lista as sessões e os simulados que você fez.",
     "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso. Com a conta na nuvem, a questão sobe com a imagem e vai para a equipe aprovar; em <strong>Suas questões enviadas</strong> você acompanha se foi aprovada ou recusada (com o motivo).",

@@ -572,6 +572,7 @@ function apagarDadosLocaisDoUsuario(id){
   db.favoritos = db.favoritos.filter(f => f.usuarioId !== id);
   db.favoritosCartoes = (db.favoritosCartoes||[]).filter(f => f.usuarioId !== id);
   db.questoesOcultas = (db.questoesOcultas||[]).filter(o => o.usuarioId !== id);
+  db.destaques = (db.destaques||[]).filter(d => d.usuarioId !== id);
   db.flashcards = db.flashcards.filter(c => c.usuarioId !== id);
   db.sessoes = db.sessoes.filter(x => x.usuarioId !== id);
   db.resultadosSimulados = db.resultadosSimulados.filter(x => x.usuarioId !== id);

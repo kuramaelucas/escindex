@@ -102,6 +102,19 @@ const NUVEM_TABELAS = {
       if(i >= 0) db.questoesOcultas[i] = reg; else db.questoesOcultas.push(reg);
     },
   },
+  destaques: {
+    // um trecho marcado em questão ou cartão; apagar marca "removido" para a
+    // remoção também chegar ao outro aparelho
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.id,
+    aplicar: linha => {
+      if(!Array.isArray(db.destaques)) db.destaques = [];
+      const i = db.destaques.findIndex(d => d.id === linha.id);
+      if(linha.removido){ if(i >= 0) db.destaques.splice(i, 1); return; }
+      const reg = { id: linha.id, usuarioId: linha.usuario_id, alvo: linha.alvo, inicio: +linha.inicio, fim: +linha.fim, trecho: linha.trecho, data: linha.data };
+      if(i >= 0) db.destaques[i] = reg; else db.destaques.push(reg);
+    },
+  },
   flashcards_pessoais: {
     tipo: "estado", tempo: "atualizado_em",
     chave: r => r.id,
@@ -238,6 +251,13 @@ function nuvemRegistrar(o){
       data: o.questaoOculta.data || hojeISO(), removido: !!o.questaoOculta.removido,
     });
   }
+  if(o.destaque && o.destaque.usuarioId === meuId){
+    const d = o.destaque;
+    nuvemEnfileirar("destaques", {
+      id: d.id, usuario_id: d.usuarioId, alvo: d.alvo, inicio: d.inicio, fim: d.fim, trecho: d.trecho,
+      data: d.data || hojeISO(), removido: !!d.removido,
+    });
+  }
   if(o.cartaoPessoal && o.cartaoPessoal.usuarioId === meuId){
     const c = o.cartaoPessoal;
     nuvemEnfileirar("flashcards_pessoais", {
@@ -342,7 +362,7 @@ function nuvemErroPassageiro(e){
    rodar o nuvem/esquema.sql, um F5 volta a mandar tudo). O dado em si nunca
    se perde: ele vive no navegador como todo o resto. */
 const NUVEM_CAMPOS_NOVOS = {
-  perfis: ["boas_vindas_em"],     // quando a pessoa passou pela tela de primeiro acesso
+  perfis: ["boas_vindas_em", "ordem_estagios"],  // primeiro acesso; ordem própria dos estágios do 6º ano
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],   // quantos cartões naquele dia
 };

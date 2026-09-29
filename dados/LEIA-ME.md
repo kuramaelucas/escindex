@@ -226,6 +226,39 @@ tela **Conteúdo > Especialidades e Assuntos**, que é o caminho mais seguro, ou
 acrescentando um item em `assuntos` naquele arquivo. A plataforma realinha
 área e especialidade pelo assunto sozinha ao carregar.
 
+## Como escrever a explicação (o padrão de justificativa)
+
+Além de dizer por que a correta é correta e por que cada uma das outras está
+errada, a explicação segue uma regra para os casos em que **um número decide
+o diagnóstico ou a conduta** — sinal vital, exame laboratorial, medida de
+imagem, tempo, dose, idade-limite ou escore:
+
+1. **Destaque o parâmetro** entre dois asteriscos, já com o valor do caso:
+   `**PAS 82 mmHg**`, `**Glasgow 8**`, `**CURB-65 = 3**`. Na tela ele aparece
+   com realce próprio (é diferente do destaque amarelo que o aluno faz).
+2. **Diga o valor normal ou esperado** (ou o alvo terapêutico), com unidade:
+   `(normal: 90–120 mmHg)`.
+3. **Diga o ponto de corte que muda a conduta** e o que ele muda:
+   `< 90 mmHg define choque → expansão volêmica`.
+4. **Escore validado** (Glasgow, APGAR, CURB-65, qSOFA, Wells, CHA2DS2-VASc,
+   Child-Pugh, MELD, Alvarado…): calcule-o para o caso, mostre a soma item a
+   item e a faixa de risco/conduta correspondente.
+5. Valores e pontos de corte são os da diretriz citada em `referencias`; se
+   mudam com idade, sexo, gestação ou método, diga para quem valem. Sem
+   certeza do número, escreva isso — não invente.
+6. Asteriscos só nos parâmetros (poucos por explicação, nunca em título nem
+   em palavra comum). Questão que não depende de número não leva asterisco.
+
+Exemplo: `"… o paciente está em choque: **PAS 82 mmHg** (normal: 90–120 mmHg;
+< 90 mmHg = choque) com **FC 128 bpm** (normal: 60–100). A conduta é expansão
+volêmica antes de qualquer investigação…"`.
+
+Esse é o texto que a plataforma põe nos prompts de transcrição (Importar,
+Enviar Questões e Central de Provas) e no de *Tirar dúvida com IA*
+(`regraDeParametrosObjetivos`, em `codigo/08-sessao-e-revisao.js`): a IA
+responde do mesmo jeito em qualquer caminho. Explicações antigas continuam
+valendo como estão; para melhorá-las, use *Questões para Atualizar*.
+
 ## Política de conteúdo — leia antes de subir prova de verdade
 
 Prova de residência médica pública (USP-SP/FMUSP, USP-RP/FMRP, UNIFESP-EPM,

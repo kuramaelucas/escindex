@@ -320,7 +320,7 @@ function ativarGestoDeArrastar(){
   let x0 = 0, y0 = 0, dx = 0, arrastando = false, decidido = false;
 
   area.addEventListener("touchstart", function(e){
-    if(e.touches.length !== 1) return;
+    if(e.touches.length !== 1 || haTextoSelecionado()) return;   // selecionando para destacar: não é arrasto
     x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
     dx = 0; arrastando = true; decidido = false;
     area.classList.remove("soltando");

@@ -70,6 +70,15 @@ const CONFIG = {
   // a partir de quantas respostas uma questão passa a ser candidata à fila
   // de "questões difíceis" (evita marcar como difícil algo com poucos dados)
   minRespostasParaAvaliarDificuldade: 8,
+  // Acerto médio de um ano ou de uma turma (Painel da Turma) só aparece com
+  // pelo menos este número de alunos respondendo: média de um ou dois alunos
+  // é o acerto deles, e a taxa de acerto de uma pessoa é só dela. O banco
+  // aplica a mesma regra (acerto_por_turma no esquema.sql, "tot.alunos >= 3").
+  minAlunosParaMedia: 3,
+  // "Não mostrar mais esta questão" só é oferecido depois deste número de
+  // erros NA MESMA questão: errar uma vez é o começo da lição, não motivo
+  // para tirar a questão da frente
+  errosParaEsconderQuestao: 2,
   limiarTaxaAcertoDificil: 0.45,
 
   papeis: ["admin", "professor", "residente", "aluno"],
@@ -122,13 +131,19 @@ const CONFIG = {
     { id:"graduacao",  nome:"Graduação",  nomeLongo:"Provas da graduação",  descricao:"Provas da faculdade e Teste de Progresso" },
   ],
   tipoProvaPadrao: "residencia",
-  /* 3º e 4º ano: a prova da graduação vem primeiro. É a fase de consolidar
-     a base do ciclo clínico — a prova de residência cobra o mesmo
-     conhecimento num recorte de seleção, que faz mais sentido depois.
-     Nesses anos, a sessão recomendada põe as questões da graduação na
-     frente dentro de cada assunto, e Provas Antigas abre por elas. Nada
-     sai do estudo: muda só a ordem. Lista vazia desliga. */
-  anosQuePriorizamGraduacao: ["3º ano", "4º ano"],
+  /* PROGRESSÃO DO ESTUDO ATÉ A PROVA DE RESIDÊNCIA. Quanto mais longe da
+     prova, mais a sessão recomendada pede CONSOLIDAÇÃO de conhecimento (as
+     questões didáticas do Esc e as provas da graduação, que conferem o que
+     ficou do ano); quanto mais perto, mais ela vira prova real de
+     residência. Cada número é a fração da sessão que é consolidação; o
+     resto são questões reais de provas de residência (ver ehConsolidacao e
+     selecionarComProgressao, seção 4):
+       3º ano 70/30 · 4º ano 60/40 · 5º ano 25/75 · 6º ano 0/100.
+     Ano fora da lista (Formado(a)) é 0: só prova de residência. Nada sai do
+     estudo — Estudar, filtros e Provas Antigas continuam mostrando tudo;
+     a proporção vale para a sessão recomendada. (db.configGeral.
+     progressaoConsolidacao, se existir, vale no lugar desta lista.) */
+  progressaoConsolidacao: { "3º ano": 0.70, "4º ano": 0.60, "5º ano": 0.25, "6º ano": 0 },
 
   // NUVEM — conta de verdade e estudo em vários aparelhos.
   // Vazio = a plataforma funciona exatamente como sempre funcionou, só com o

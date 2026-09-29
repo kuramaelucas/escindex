@@ -170,7 +170,7 @@ test("central de provas: tipo da carga, figura guardada com o lote e o botão de
   await contexto.close();
 });
 
-test("3º e 4º ano: a prova da graduação vem primeiro em Provas Antigas e na seleção de questões", async () => {
+test("3º e 4º ano: a prova da graduação vem primeiro em Provas Antigas", async () => {
   const { pagina, contexto } = await abrir();
   const r = await pagina.evaluate((texto) => {
     fazerLogin("professor@esc.demo", "prof123"); fecharModal();
@@ -183,20 +183,16 @@ test("3º e 4º ano: a prova da graduação vem primeiro em Provas Antigas e na 
       return state.filtroRota.provasGrupos[0].tipo;
     };
     const ordem3 = ordem("3º ano"), ordem4 = ordem("4º ano"), ordem6 = ordem("6º ano");
-    // mesma questão de assunto, uma de cada tipo: com prioridade, a da graduação sai primeiro
     const grad = db.questoes.find(q => q.banca === "Teste de Progresso" && q.numeroNaProva === 1);
-    const resid = { ...grad, id: "q-teste-resid", banca: "UNIFESP-EPM", tipoProva: "residencia" };
-    const escolhida = tipo => selecionarComInterleaving([resid, grad], 1, null, tipo)[0].id;
     u.anoFaculdade = "3º ano"; navigate("provas-antigas");
     const secoes = [...document.querySelectorAll("#conteudoPagina .card-title")].map(e => e.textContent).filter(t => /^Provas d/.test(t.trim()));
-    return { ordem3, ordem4, ordem6, gradId: grad.id, comPrioridade: escolhida("graduacao"), aviso: !!document.body.textContent.match(/estas vêm primeiro/),
+    return { ordem3, ordem4, ordem6, gradId: grad.id, aviso: !!document.body.textContent.match(/estas vêm primeiro/),
       prefere3: tipoProvaPreferido({ anoFaculdade: "3º ano" }), prefere5: tipoProvaPreferido({ anoFaculdade: "5º ano" }),
       primeiraSecao: (secoes[0] || "").trim().slice(0, 19) };
   }, PROVA_GRADUACAO);
   assert.equal(r.ordem3, "graduacao");
   assert.equal(r.ordem4, "graduacao");
   assert.equal(r.ordem6, "residencia");
-  assert.equal(r.comPrioridade, r.gradId);
   assert.ok(r.aviso);
   assert.equal(r.prefere3, "graduacao");
   assert.equal(r.prefere5, null);
