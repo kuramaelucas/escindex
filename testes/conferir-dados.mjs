@@ -109,6 +109,10 @@ export function conferir(){
     if(new Set(alts).size !== alts.length) erros.push(`${onde}: alternativa repetida`);
     if(q.status !== "anulada" && !alts.includes(q.gabarito)) erros.push(`${onde}: gabarito "${q.gabarito}" não é uma das alternativas (${alts.join(", ")})`);
     if(!String(q.enunciado || "").trim()) erros.push(`${onde}: enunciado vazio`);
+    // ênfase do autor nas explicações: "**" vem em pares, senão o último fica solto na tela
+    [q.explicacaoGeral, ...Object.values(q.explicacoesAlternativas || {})].forEach(t => {
+      if(t && (String(t).match(/\*\*/g) || []).length % 2) erros.push(`${onde}: "**" sem par na explicação (o destaque de parâmetro abre e fecha com **)`);
+    });
     if(q.tipoProva !== undefined && !["residencia", "graduacao"].includes(q.tipoProva)) erros.push(`${onde}: tipoProva "${q.tipoProva}" não existe (use "residencia" ou "graduacao")`);
     if(q.real){
       if(!q.banca || !q.ano) erros.push(`${onde}: questão real sem banca ou ano`);

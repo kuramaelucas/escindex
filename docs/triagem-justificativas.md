@@ -87,8 +87,15 @@ Reescrever em lotes por prova ou por especialidade, com conferência da diretriz
 | UNIFESP-EPM 2022 (prioridades 1 e 2) | 19 | 2 (#2 cefaleia pós-punção, #59 laringomalácia) |
 | UNIFESP-EPM 2023 (prioridades 1 e 2) | 22 | 0 |
 | UNIFESP-EPM 2025 (prioridades 1 e 2) | 21 | 3 (#2 íleo biliar, #15 hematúria e tumor de bexiga, #96 falha de crescimento) |
+| UNIFESP-EPM 2026 (prioridades 1 a 3) | 22 | 1 (#2 conduto onfalomesentérico) |
 | UNIFESP-EPM 2024 (prioridades 1 a 3) | 23 | 4 (#14 síndrome da veia cava superior, #19 vômitos biliosos no RN, #27 tosse e refluxo, #88 triagem da fenilcetonúria) |
 
-Restam, na UNIFESP: 2026 (23 questões).
+**A UNIFESP está concluída** (2022 a 2026: 107 explicações reescritas). Faltam as outras bancas: USP-SP, USP-RP, Santa Casa, IAMSPE, AMRIGS e UNESP.
 
 **Achado no caminho (UNIFESP 2024 #88):** a explicação atribui a discordância do teste do pezinho à coleta com 24 horas de vida, mas o gabarito é a alternativa C (hiperfenilalaninemia materna). Um dos dois está errado ou incompleto; conferir com o gabarito oficial da banca antes de mexer.
+
+**Para conferir com o gabarito oficial (achados no caminho):**
+
+- UNIFESP 2024 #88 — a explicação atribui a discordância do teste do pezinho à coleta com 24 horas de vida, mas o gabarito é C (hiperfenilalaninemia materna).
+- UNIFESP 2026 #95 — asma em criança de 4 anos com FR 42 irpm, fala em frases curtas e SpO2 95%: a explicação anterior concluía crise moderada e o gabarito é A (crise grave). A nova explicação segue o gabarito e diz que a classificação da banca se apoia na fala e na taquipneia; vale confirmar com o gabarito definitivo.
+- UNIFESP 2026 #57 — o gabarito (indução imediata) só se sustenta com o polidrâmnio (maior bolsão de 9,0 cm; normal: 2 a 8 cm) e a queda da necessidade de insulina; a explicação anterior chamava o líquido de normal e defendia parto com 39 semanas.
