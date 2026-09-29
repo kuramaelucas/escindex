@@ -79,3 +79,11 @@ Sobre as 3198 questões ativas, desconsiderando anuladas e rascunhos. Uma quest�
 ## Como aplicar
 
 Reescrever em lotes por prova ou por especialidade, com conferência da diretriz de cada valor (política de conteúdo: explicação sempre autoral, de fonte primária), e entrar pela fila de *Questões para Atualizar* ou direto em `dados/prova-*.js`.
+
+## Andamento
+
+| Lote | Reescritas | Sem parâmetro decisivo (falso positivo da triagem) |
+|---|---|---|
+| UNIFESP-EPM 2022 (prioridades 1 e 2) | 19 | 2 (#2 cefaleia pós-punção, #59 laringomalácia) |
+
+Restam, na UNIFESP: 2023 (22 questões), 2024 (27), 2025 (24) e 2026 (23).
