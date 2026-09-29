@@ -215,3 +215,33 @@ test("cartões em lote: o modelo leva os assuntos e a conferência separa o bom 
   assert.equal(r.depois, 2);
   await contexto.close(); await semNuvem.fechar();
 });
+
+test("6º ano (Grupo E): períodos com subdivisões repartem o tempo igualmente e só há o Grupo E", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.clock.setFixedTime(new Date("2026-01-20T15:00:00Z"));
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    const seq = sequenciaDoAno("6º ano");
+    const ped = seq[0];
+    const partes = subdivisoesComDatas(ped);
+    const grupo = { deslocamento: 3 };   // turma antiga, de quando o ano tinha outras letras
+    const blocos = blocosDoGrupo(grupo, { anoFaculdade: "6º ano" });
+    return {
+      n: seq.length, opcoes: opcoesRodizio("6º ano").map(o => o.rotulo),
+      partes: partes.map(p => [p.nome, p.dataInicio, p.dataFim]),
+      cobre: partes[0].dataInicio === ped.dataInicio && partes[2].dataFim === ped.dataFim,
+      primeiro: blocos[0].nome, subs: blocos[0].subdivisoes.length,
+      obst: subdivisoesComDatas(seq[1]).map(p => [p.dataInicio, p.dataFim]),
+    };
+  });
+  assert.equal(r.n, 5);
+  assert.deepEqual(r.opcoes, ["E"]);
+  // 05/01 a 04/03 = 59 dias em 3 partes: 20 + 20 + 19
+  assert.deepEqual(r.partes, [["Emergências Pediátricas", "2026-01-05", "2026-01-24"], ["Enfermaria de Pediatria", "2026-01-25", "2026-02-13"], ["Pediatria Neonatal", "2026-02-14", "2026-03-04"]]);
+  assert.ok(r.cobre);
+  assert.equal(r.primeiro, "Pediatria");
+  assert.equal(r.subs, 3);
+  // 05/03 a 05/05 = 62 dias em 2 partes de 31
+  assert.deepEqual(r.obst, [["2026-03-05", "2026-04-04"], ["2026-04-05", "2026-05-05"]]);
+  await contexto.close();
+});

@@ -382,7 +382,7 @@ function recriarTurmaDoRodizio(id){
 /* ---------- sequência de blocos do ano + rodízio das turmas ----------------
    A sequência pertence ao ANO DA FACULDADE; o grupo escolhe só onde começa.
    blocosDoGrupo() devolve a lista já girada, no mesmo formato de antes
-   ({id, ordem, nome, dataInicio, dataFim, especialidadeIds}), então todo o
+   ({id, ordem, nome, dataInicio, dataFim, especialidadeIds, subdivisoes}), então todo o
    resto da plataforma continua funcionando sem saber do rodízio. */
 function anoDoGrupo(grupo, usuario){
   // o calendário oficial serve a todos os anos: nele, o ano é o de quem olha
@@ -451,19 +451,73 @@ function conteudoDaJanela(seq, rotulo, deslocamento, i){
   const doQuadro = seq.find(b => turmaDoBlocoNaJanela(b, i) === rotulo);
   return doQuadro || seq[(i + normalizarDeslocamento(deslocamento, n)) % n];
 }
+/* Os estágios de dentro de um período (6º ano, Grupo E). Vazio nos anos cujos
+   blocos não se subdividem — quem chama só mostra o que vier. */
+function subdivisoesDoBloco(bloco){
+  return Array.isArray(bloco && bloco.subdivisoes) ? bloco.subdivisoes.filter(Boolean) : [];
+}
+/* O tempo do período é repartido em partes iguais entre as subdivisões, em
+   dias corridos: o cronograma da faculdade só traz a data do período, e
+   dividir igualmente é a regra combinada. Quando a conta não fecha, os dias
+   que sobram vão um a um para as primeiras subdivisões, de modo que a soma
+   sempre cobre o período inteiro, sem buraco nem sobreposição. As datas saem
+   do bloco que se recebe (e não do cadastro), porque no rodízio o conteúdo
+   muda de janela. */
+function subdivisoesComDatas(bloco){
+  const nomes = subdivisoesDoBloco(bloco);
+  if(!nomes.length || !bloco.dataInicio || !bloco.dataFim) return nomes.map(nome=>({ nome }));
+  const total = diasEntre(bloco.dataInicio, bloco.dataFim) + 1;
+  const base = Math.floor(total / nomes.length), sobra = total % nomes.length;
+  let inicio = bloco.dataInicio;
+  return nomes.map((nome, i) => {
+    const dias = base + (i < sobra ? 1 : 0);
+    const fim = somarDias(inicio, Math.max(dias, 1) - 1);
+    const parte = { nome, dataInicio: inicio, dataFim: fim };
+    inicio = somarDias(fim, 1);
+    return parte;
+  });
+}
+// a subdivisão em que hoje cai (ou a última/primeira, fora do período)
+function subdivisaoAtualDoBloco(bloco){
+  const partes = subdivisoesComDatas(bloco).filter(p=>p.dataInicio);
+  if(!partes.length) return null;
+  const hoje = hojeISO();
+  return partes.find(p=>hoje>=p.dataInicio && hoje<=p.dataFim) || null;
+}
+// "Nome (dd/mm – dd/mm)" — uma linha por subdivisão, já escapada
+function subdivisoesEmLinha(bloco, sep){
+  return subdivisoesComDatas(bloco).map(p => escapeHtml(p.nome) + (p.dataInicio ? ` <span class="muted">(${formatDataBR(p.dataInicio)} – ${formatDataBR(p.dataFim)})</span>` : "")).join(sep);
+}
 // as turmas possíveis daquele ano, na ordem em que entram na sequência
 function opcoesRodizio(ano){
   const seq = sequenciaDoAno(ano);
-  return seq.map((b,i)=>{
+  /* Se algum bloco declara a sua turma, só os que declaram são ponto de
+     partida: é o ano em que só um grupo foi transcrito (6º ano, Grupo E) e
+     inventar letras para os outros períodos criaria turmas que não existem.
+     Sem nenhuma letra declarada, vale a ordem alfabética, bloco a bloco. */
+  const algumDeclara = seq.some(b => b.grupoRodizio);
+  const opcoes = [];
+  seq.forEach((b,i)=>{
+    if(algumDeclara && !b.grupoRodizio) return;
     const rotulo = b.grupoRodizio || letraPadraoRodizio(i);
-    return {
+    opcoes.push({
       deslocamento: i,
       rotulo,
       // por qual estágio essa turma começa o ano — pelo quadro, quando ele
       // existe, e não pela posição na lista
       bloco: conteudoDaJanela(seq, rotulo, i, 0) || b,
-    };
+    });
   });
+  return opcoes;
+}
+/* A turma de um deslocamento guardado. Se o deslocamento não é mais ponto de
+   partida de ninguém (turma criada quando o ano tinha outras letras), ela cai
+   na primeira turma do ano em vez de ficar sem calendário. */
+function turmaDoDeslocamento(ano, deslocamento){
+  const seq = sequenciaDoAno(ano);
+  const d = normalizarDeslocamento(deslocamento, seq.length);
+  const opcoes = opcoesRodizio(ano);
+  return opcoes.find(o=>o.deslocamento===d) || opcoes[0] || { deslocamento: d, rotulo: letraPadraoRodizio(d) };
 }
 /* As mesmas opções em ordem alfabética de letra — que é como o calendário
    impresso lista as turmas (A, B, C, D) e como a pessoa procura a sua. A
@@ -472,11 +526,7 @@ function opcoesRodizio(ano){
 function opcoesRodizioPorLetra(ano){
   return opcoesRodizio(ano).slice().sort((a,b)=>a.rotulo.localeCompare(b.rotulo, "pt-BR"));
 }
-function rotuloRodizio(ano, deslocamento){
-  const opcoes = opcoesRodizio(ano);
-  if(!opcoes.length) return letraPadraoRodizio(deslocamento||0);
-  return opcoes[normalizarDeslocamento(deslocamento, opcoes.length)].rotulo;
-}
+function rotuloRodizio(ano, deslocamento){ return turmaDoDeslocamento(ano, deslocamento).rotulo; }
 // "Grupo A" por extenso — usado nos textos de tela
 function nomeRodizio(ano, deslocamento){ return "Grupo " + rotuloRodizio(ano, deslocamento); }
 function blocosDoGrupo(grupo, usuario){
@@ -484,8 +534,7 @@ function blocosDoGrupo(grupo, usuario){
   const seq = sequenciaDoAno(ano);
   const n = seq.length;
   if(!n) return [];
-  const deslocamento = normalizarDeslocamento(grupo && grupo.deslocamento, n);
-  const rotulo = rotuloRodizio(ano, deslocamento);
+  const { deslocamento, rotulo } = turmaDoDeslocamento(ano, grupo && grupo.deslocamento);
   // cada janela de data recebe o conteúdo que o quadro do ano põe nela para
   // esta turma — ou, onde não há quadro, o bloco que está "deslocamento"
   // posições à frente: é o rodízio em ciclo, mesma sequência, começos diferentes
@@ -493,6 +542,7 @@ function blocosDoGrupo(grupo, usuario){
     const conteudo = conteudoDaJanela(seq, rotulo, deslocamento, i);
     return {
       id: conteudo.id, nome: conteudo.nome, especialidadeIds: conteudo.especialidadeIds,
+      subdivisoes: conteudo.subdivisoes || [],
       ordem: i+1, dataInicio: janela.dataInicio, dataFim: janela.dataFim,
     };
   });

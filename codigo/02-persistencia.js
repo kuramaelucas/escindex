@@ -343,11 +343,14 @@ function guardarCopiaDeResgate(bruto){
    blocos, e a sequência é tratada como trabalho de alguém.
      3º ano: b3-1 … b3-4 (virou o quadro de quatro turmas)
      4º ano: b4-1 … b4-5 (virou o quadro de dez turmas, A a J)
-     5º ano: b5-1 … b5-4 (virou o quadro de doze estágios) */
+     5º ano: b5-1 … b5-4 (virou o quadro de doze estágios)
+     6º ano: bloco-1 … bloco-8 (virou o cronograma do Grupo E, em cinco
+             períodos com subdivisões) */
 const SEQUENCIAS_DE_EXEMPLO = {
   "3º ano": { blocos: 4, id: /^b3-[1-4]$/ },
   "4º ano": { blocos: 5, id: /^b4-[1-5]$/ },
   "5º ano": { blocos: 4, id: /^b5-[1-4]$/ },
+  "6º ano": { blocos: 8, id: /^bloco-[1-8]$/ },
 };
 function ehSequenciaDeExemplo(ano, seq){
   const ex = SEQUENCIAS_DE_EXEMPLO[ano];
