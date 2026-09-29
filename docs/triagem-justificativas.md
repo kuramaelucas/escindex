@@ -85,5 +85,6 @@ Reescrever em lotes por prova ou por especialidade, com conferência da diretriz
 | Lote | Reescritas | Sem parâmetro decisivo (falso positivo da triagem) |
 |---|---|---|
 | UNIFESP-EPM 2022 (prioridades 1 e 2) | 19 | 2 (#2 cefaleia pós-punção, #59 laringomalácia) |
+| UNIFESP-EPM 2023 (prioridades 1 e 2) | 22 | 0 |
 
-Restam, na UNIFESP: 2023 (22 questões), 2024 (27), 2025 (24) e 2026 (23).
+Restam, na UNIFESP: 2024 (27 questões), 2025 (24) e 2026 (23).
