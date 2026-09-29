@@ -25,8 +25,8 @@ function renderEditorCalendario(grupo, opts){
   <div class="card-flat mb-2 text-sm">
     ${iconeSvg("calendar")} <strong>Sequência de ${escapeHtml(ano)}</strong> — ${sequencia.length} bloco(s).
     ${grupo.oficial
-      ? "Este é o calendário oficial: cada aluno vê a sequência do ano dele, começando pelo primeiro bloco (o " + escapeHtml(nomeRodizio(ano, 0)) + "). Quem está em outra turma do rodízio precisa escolhê-la em Meu Grupo para ver o bloco certo."
-      : `Esta turma é o <strong>${escapeHtml(nomeRodizio(ano, deslocamento))}</strong>: começa em <strong>${escapeHtml(blocoDeInicio?blocoDeInicio.nome:"—")}</strong> e segue daí em diante, voltando ao começo quando chega ao fim.`}
+      ? "Este é o calendário oficial: cada aluno vê a sequência do ano dele, começando pelo primeiro bloco" + (turmaDoDeslocamento(ano, 0).nomeado ? " (o " + escapeHtml(nomeRodizio(ano, 0)) + ")" : "") + ". Quem está em outra turma do rodízio precisa escolhê-la em Meu Grupo para ver o bloco certo."
+      : `Esta turma ${turmaDoDeslocamento(ano, deslocamento).nomeado ? `é o <strong>${escapeHtml(nomeRodizio(ano, deslocamento))}</strong>: começa` : "começa"} em <strong>${escapeHtml(blocoDeInicio?blocoDeInicio.nome:"—")}</strong> e segue daí em diante, voltando ao começo quando chega ao fim.`}
   </div>
 
   ${podeEditar && !grupo.oficial ? `
@@ -34,7 +34,7 @@ function renderEditorCalendario(grupo, opts){
     <div class="card-title">Grupo do rodízio desta turma</div>
     <p class="text-sm muted">O que muda de uma turma para outra é só isto: por qual bloco da sequência ela entra. Todo mundo do mesmo ano passa pelos mesmos blocos, em rodízio — as letras são as do calendário da faculdade.</p>
     <select class="select" style="max-width:520px" onchange="mudarDeslocamentoGrupo('${grupo.id}', this.value)">
-      ${rodizios.map(o=>`<option value="${o.deslocamento}" ${deslocamento===o.deslocamento?"selected":""}>Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}
+      ${rodizios.map(o=>`<option value="${o.deslocamento}" ${deslocamento===o.deslocamento?"selected":""}>${escapeHtml(tituloOpcaoRodizio(o))}</option>`).join("")}
     </select>
   </div>` : ""}
 
@@ -75,7 +75,7 @@ function renderBlocosConfig(){
   const anoEscolhido = anos.includes(escolhido) ? escolhido : (anos.includes(CONFIG.anoFaculdadePadrao) ? CONFIG.anoFaculdadePadrao : anos[0]);
   const sequencia = sequenciaDoAno(anoEscolhido);
   const porLetra = opcoesRodizioPorLetra(anoEscolhido);
-  const turmas = db.grupos.filter(g=>!g.oficial && anoDoGrupo(g)===anoEscolhido);
+  const turmas = db.grupos.filter(g=>!g.oficial && !grupoComCalendarioProprio(g) && anoDoGrupo(g)===anoEscolhido);
   return `
   <div class="page-header"><h2>Blocos de Estudo</h2><p>A sequência de blocos pertence ao <strong>ano da faculdade</strong>: todas as turmas daquele ano passam pelos mesmos blocos, na mesma ordem. O que muda de uma turma para outra é por qual bloco ela começa — o rodízio, os Grupos A, B, C e D.</p></div>
 
@@ -116,7 +116,7 @@ function renderBlocosConfig(){
       <div class="card-flat mb-1">
         <div class="flex justify-between items-start gap-2" style="flex-wrap:wrap">
           <div>
-            <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)} ${b.grupoRodizio || !sequencia.some(x=>x.grupoRodizio) ? `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoEscolhido, i))} começa aqui</span>` : ""}</div>
+            <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)} ${b.grupoRodizio ? `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoEscolhido, i))} começa aqui</span>` : ""}</div>
             <div class="text-sm muted mt-1">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)} · ${diasEntre(b.dataInicio, b.dataFim)+1} dias</div>
             ${subdivisoesDoBloco(b).length ? `<div class="text-sm mt-1">${subdivisoesEmLinha(b, "<br>")}</div>` : ""}
             <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
@@ -137,7 +137,7 @@ function renderBlocosConfig(){
     <p class="text-sm muted mb-2">A mesma tabela que a faculdade distribui no papel: cada coluna é uma turma, cada linha é uma janela de data. É o que a plataforma entrega a cada aluno conforme o grupo dele.</p>
     ${sequencia.some(b=>Array.isArray(b.turmasPorJanela) && b.turmasPorJanela.length) ? `<p class="text-xs muted mb-2">${iconeSvg("alert")} Este ano <strong>não gira em ciclo</strong>: cada estágio traz a linha do quadro da faculdade (quem está nele em cada janela), como no 5º ano. Mudar nome, datas ou especialidades de um estágio é normal por aqui; trocar quem vai para onde exige editar essa linha em <code>dados/calendario.js</code>, para o quadro continuar batendo com o papel. Um estágio acrescentado aqui entra sem linha e volta a girar em ciclo.</p>` : ""}
     <div class="table-wrap"><table>
-      <thead><tr><th>Período</th>${porLetra.map(o=>`<th>Grupo ${escapeHtml(o.rotulo)}</th>`).join("")}</tr></thead>
+      <thead><tr><th>Período</th>${porLetra.map(o=>`<th>${escapeHtml(o.nomeado ? "Grupo "+o.rotulo : "Começa em "+o.bloco.nome)}</th>`).join("")}</tr></thead>
       <tbody>
         ${sequencia.map((janela,i)=>`<tr>
           <td class="text-sm">${formatDataBR(janela.dataInicio)} – ${formatDataBR(janela.dataFim)}</td>
@@ -156,9 +156,9 @@ function renderBlocosConfig(){
         const atual = blocoAtualDoGrupo(g);
         const desloc = normalizarDeslocamento(g.deslocamento, sequencia.length);
         return `<tr>
-          <td class="text-sm">${escapeHtml(g.nome)}</td>
+          <td class="text-sm">${escapeHtml(g.nome)}${podeRenomearGrupo(g, usuarioAtual()) ? ` <button class="icon-btn" title="Mudar o nome do grupo" onclick="abrirRenomearGrupo('${g.id}')">${iconeSvg("edit")}</button>` : ""}</td>
           <td><select class="select" style="padding:.3rem .5rem" onchange="mudarDeslocamentoGrupo('${g.id}', this.value)">
-            ${porLetra.map(o=>`<option value="${o.deslocamento}" ${desloc===o.deslocamento?"selected":""}>Grupo ${escapeHtml(o.rotulo)} — ${escapeHtml(o.bloco.nome)}</option>`).join("")}
+            ${porLetra.map(o=>`<option value="${o.deslocamento}" ${desloc===o.deslocamento?"selected":""}>${escapeHtml(tituloOpcaoRodizio(o))}</option>`).join("")}
           </select></td>
           <td class="text-sm">${escapeHtml(atual?atual.nome:"—")}</td>
           <td class="text-sm">${(g.membrosAprovados||[]).length}</td>
@@ -294,7 +294,7 @@ function aplicarViradaDeAno(ano){
   renumerarBlocosPorData(anoDeReferencia(ano));
   // turma que estava com um bloco fixado à mão volta à detecção por data:
   // num ano letivo novo, o bloco fixado é sempre do ano anterior
-  db.grupos.forEach(g=>{ if(anoDoGrupo(g)===ano) g.blocoAtualIdManual = null; });
+  db.grupos.forEach(g=>{ if(!grupoComCalendarioProprio(g) && anoDoGrupo(g)===ano) g.blocoAtualIdManual = null; });
   nuvemMarcarCalendarioPendente(anoDeReferencia(ano));
   saveState();
   fecharModal();
@@ -308,7 +308,7 @@ function mudarDeslocamentoGrupo(grupoId, valor){
   // confuso: ao mudar o rodízio, a detecção volta a ser pela data
   grupo.blocoAtualIdManual = null;
   saveState();
-  toast("Turma movida para o " + nomeRodizio(anoDoGrupo(grupo), grupo.deslocamento) + ".");
+  toast("Turma movida: " + nomeRodizio(anoDoGrupo(grupo), grupo.deslocamento) + ".");
   render();
 }
 function fixarBlocoAtual(grupoId, blocoId){
@@ -322,6 +322,18 @@ function renumerarBlocosPorData(ano){
   const seq = db.sequenciasAno[anoDeReferencia(ano)] || [];
   seq.sort((a,b)=>a.dataInicio.localeCompare(b.dataInicio));
   seq.forEach((b,i)=>{ b.ordem = i+1; });
+}
+/* As caixas de escolha de especialidades, por área — as de um bloco da
+   sequência do ano e as de um bloco de grupo com calendário próprio. Quem
+   lê o resultado busca as marcadas por `.${classe}:checked`. */
+function htmlEscolhaEspecialidades(selecionadas, classe){
+  return `<div class="grid grid-2">
+    ${db.taxonomia.areas.map(area=>`
+      <div>
+        <div class="text-xs muted" style="font-weight:700;margin:.4rem 0 .2rem">${escapeHtml(area.nome)}</div>
+        ${db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>`<label class="checkbox-row mb-1"><input type="checkbox" class="${classe}" value="${e.id}" ${(selecionadas||[]).includes(e.id)?"checked":""}> ${escapeHtml(e.nome)}</label>`).join("")}
+      </div>`).join("")}
+  </div>`;
 }
 /* O formulário de bloco agora edita a SEQUÊNCIA DE UM ANO, não o calendário
    de um grupo: mexer aqui vale para todas as turmas daquele ano. */
@@ -347,13 +359,7 @@ function abrirFormularioBloco(ano, blocoId){
       <div class="field"><label class="label">Data de fim</label><input class="input" type="date" id="fbFim" value="${b?b.dataFim:""}"></div>
     </div>
     <div class="field"><label class="label">Especialidades trabalhadas neste bloco</label>
-      <div class="grid grid-2">
-        ${db.taxonomia.areas.map(area=>`
-          <div>
-            <div class="text-xs muted" style="font-weight:700;margin:.4rem 0 .2rem">${escapeHtml(area.nome)}</div>
-            ${db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>`<label class="checkbox-row mb-1"><input type="checkbox" class="fbEsp" value="${e.id}" ${b&&b.especialidadeIds.includes(e.id)?"checked":""}> ${escapeHtml(e.nome)}</label>`).join("")}
-          </div>`).join("")}
-      </div>
+      ${htmlEscolhaEspecialidades(b?b.especialidadeIds:[], "fbEsp")}
     </div>
     <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarBlocoFormulario('${escapeHtml(ano)}','${blocoId||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>
   `, "lg");
@@ -409,7 +415,7 @@ function excluirBlocoConfirmado(ano, blocoId){
   const tamanho = db.sequenciasAno[ano].length || 1;
   db.grupos.forEach(g=>{
     if(g.blocoAtualIdManual===blocoId) g.blocoAtualIdManual = null;
-    if(anoDoGrupo(g)===ano) g.deslocamento = (g.deslocamento||0) % tamanho;
+    if(!grupoComCalendarioProprio(g) && anoDoGrupo(g)===ano) g.deslocamento = (g.deslocamento||0) % tamanho;
   });
   renumerarBlocosPorData(ano);
   nuvemMarcarCalendarioPendente(ano);

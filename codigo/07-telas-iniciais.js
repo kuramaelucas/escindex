@@ -126,10 +126,10 @@ function renderBoasVindas(){
       <div class="field"><label class="label">2. Qual é o seu grupo do rodízio?</label>
         ${comCalendario ? `<select class="select" id="bvGrupo">
           <option value="">Ainda não sei — escolho depois</option>
-          ${opcoesRodizioPorLetra(anoEscolhido).map(o=>`<option value="${o.deslocamento}">Grupo ${escapeHtml(o.rotulo)} — começa em ${escapeHtml(o.bloco.nome)}</option>`).join("")}
+          ${opcoesRodizioPorLetra(anoEscolhido).map(o=>`<option value="${o.deslocamento}">${escapeHtml(tituloOpcaoRodizio(o))}</option>`).join("")}
         </select>
-        <div class="hint mt-1">É a letra do calendário impresso da faculdade. Ela decide qual bloco é o seu agora — e, portanto, a matéria da sua sessão do dia.</div>`
-        : `<div class="hint">Quem já se formou não segue calendário de faculdade. Se quiser acompanhar uma turma, entre nela depois em Meu Grupo.</div>`}
+        <div class="hint mt-1">${opcoesRodizio(anoEscolhido).some(o=>o.nomeado) ? "É a letra do calendário impresso da faculdade." : "Neste ano o grupo é identificado pelo bloco em que ele começa."} Isso decide qual bloco é o seu agora — e, portanto, a matéria da sua sessão do dia.</div>`
+        : `<div class="hint">Quem já se formou não segue calendário de faculdade. Depois, em Meu Grupo, você pode entrar num grupo de colegas ou criar o seu — para dividir questões ou montar um calendário próprio.</div>`}
       </div>
 
       <div class="field"><label class="label">3. Quantas questões você quer fazer por dia?</label>
@@ -438,7 +438,8 @@ function renderInicioAluno(u){
   const calibracao = calibracaoConfianca(u.id);
   const flashVencidos = resumoFlashcards(u.id).vencidos;
   return `
-  <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})${subdivisoesDoBloco(bloco).length ? `<br><span class="text-sm muted">${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · " : ""}Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</span>` : ""}</p></div>
+  <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})${subdivisoesDoBloco(bloco).length ? `<br><span class="text-sm muted">${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · " : ""}Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</span>` : ""}` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p></div>
+  ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
   <div class="grid grid-4">
     <div class="stat-tile"><div class="stat-value">${respondidasHoje}/${meta}</div><div class="stat-label">questões hoje</div><div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div></div>
@@ -448,7 +449,7 @@ function renderInicioAluno(u){
   </div>
   <div class="card mt-2">
     <div class="flex justify-between items-center">
-      <div><div class="card-title">Pronto para estudar?</div><div class="text-sm muted">Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco.</div></div>
+      <div><div class="card-title">Pronto para estudar?</div><div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div></div>
       <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
     </div>
   </div>
@@ -479,6 +480,7 @@ function renderInicioAluno(u){
 function renderInicioResidente(u){
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>Obrigado por ajudar a tirar dúvidas dos alunos.</p></div>
+  ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
   <div class="grid grid-2">
     <div class="stat-tile"><div class="stat-value">${duvidasPendentes(u).length}</div><div class="stat-label">dúvida(s) aguardando resposta${u.areasAtuacao&&u.areasAtuacao.length?" na sua área":""}</div></div>
@@ -506,6 +508,7 @@ function renderInicioStaff(u){
   const temRota = r => navItemsParaPapel(u.papel).some(i=>i.id===r);
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${rotuloPapel(u.papel)}</p></div>
+  ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
   <div class="stat-mini-row">
     ${ficha(ativas.length, "questões ativas", temRota("banco-questoes") ? "banco-questoes" : null)}
@@ -594,7 +597,9 @@ function renderEstudar(){
   <div class="grid grid-2">
     <div class="card">
       <div class="card-title">Sessão recomendada</div>
-      <p class="text-sm muted">Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Dentro do bloco atual, os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}</p>
+      <p class="text-sm muted">${bloco
+        ? `Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Dentro do bloco atual, os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`
+        : `Mistura automática, sem calendário de blocos: ${Math.round(mistura.revisaoPassados*100)}% revisão espaçada e o resto de questões que você ainda não viu.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
       <div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${escapeHtml(explicacaoProgressao(u))}</div>
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
@@ -790,8 +795,8 @@ function abrirQuestaoCompleta(qid, opts){
       ${badgeStatusQuestao(q.status)}
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}
     </div>
-    ${renderImagemQuestao(q)}
     <div class="qcard-enunciado" style="font-size:1.02rem;margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
+    ${renderImagemQuestao(q)}
     <div class="qcard-alts">
       ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span></div>`).join("")}
     </div>

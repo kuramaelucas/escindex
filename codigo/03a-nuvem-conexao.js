@@ -351,6 +351,8 @@ function nuvemAplicarPerfilLocal(p){
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
   // {} (reordenei de volta ao padrão) vale: é assim que "voltar à ordem da turma" chega ao outro aparelho
   if(p.ordem_estagios && typeof p.ordem_estagios === "object") u.ordemEstagios = p.ordem_estagios;
+  // avisos já lidos: a união dos dois lados, porque ler num aparelho nunca desfaz a leitura no outro
+  if(Array.isArray(p.avisos_lidos)) u.avisosLidos = [...new Set([...(u.avisosLidos || []), ...p.avisos_lidos])];
   u.lembreteMetaAtivo = !!p.lembrete_meta_ativo;
   if(p.lembrete_meta_horario) u.lembreteMetaHorario = p.lembrete_meta_horario;
   if(!u.criadoEm) u.criadoEm = (p.criado_em || "").slice(0,10) || hojeISO();
@@ -380,6 +382,7 @@ function nuvemConferirPerfil(){
     lembrete_meta_horario: usuario.lembreteMetaHorario || null,
     boas_vindas_em: usuario.boasVindasEm || null,
     ordem_estagios: usuario.ordemEstagios || {},
+    avisos_lidos: usuario.avisosLidos || [],
   };
   const assinatura = JSON.stringify(linha);
   if(db.nuvem.perfilEnviado === assinatura) return;

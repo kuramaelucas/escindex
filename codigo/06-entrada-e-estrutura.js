@@ -147,7 +147,7 @@ const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de e
   usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
   "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar",
   blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários",
-  "painel-turma":"Painel da Turma" };
+  "enviar-avisos":"Enviar Avisos", "painel-turma":"Painel da Turma" };
 function tituloDaRota(r){ return ROUTE_TITLES[r] || CONFIG.nomePlataforma; }
 
 function navigate(route, params){
@@ -248,6 +248,7 @@ function render(){
     case "blocos": conteudo = renderBlocosConfig(); break;
     case "config-geral": conteudo = renderConfigGeral(); break;
     case "feedback-usuarios": conteudo = renderFeedbackUsuarios(); break;
+    case "enviar-avisos": conteudo = renderEnviarAvisos(); break;
     case "painel-turma": conteudo = renderPainelTurma(); break;
     default: conteudo = renderInicio();
   }
@@ -445,6 +446,7 @@ function navItemsParaPapel(papel){
       {id:"usuarios", label:"Usuários", icon:"users", permissao:"usuarios"},
       {id:"blocos", label:"Blocos de Estudo", icon:"calendar", permissao:"blocos"},
       {id:"feedback-usuarios", label:"Feedback dos Usuários", icon:"message", permissao:"cadastros"},
+      {id:"enviar-avisos", label:"Enviar Avisos", icon:"bell", permissao:"avisos"},
       {id:"config-geral", label:"Configurações", icon:"settings", permissao:"config"},
     ];
     return itens.filter(item=>!item.permissao || podeAdmin(item.permissao, u));

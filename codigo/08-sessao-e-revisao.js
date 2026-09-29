@@ -50,10 +50,20 @@ function iniciarRevisaoErros(){
   const itens = pares.slice(0,20).map(p=>({questaoId:p.questao.id, motivo:"Erro/chute anterior — respondido em "+formatDataBR(p.ultima.data)}));
   iniciarSessaoComLista(itens, "pratica");
 }
+/* A fila da revisão espaçada, na ordem de prioridade: o que a pessoa ainda não
+   viu nos assuntos já estudados, depois o que errou (ou acertou no chute) e,
+   por último, o que acertou e já passou o prazo. Cada item diz por que veio. */
+function itensDaRevisaoEspacada(usuarioId, limite){
+  const partes = partesDaRevisaoEspacada(usuarioId);
+  const novas = selecionarComInterleaving(partes.novas, limite, pesosDeIncidencia(usuarioId))
+    .map(q=>({questaoId:q.id, motivo:"Revisão espaçada — você ainda não viu esta questão"}));
+  const erros = partes.erros.map(v=>({questaoId:v.questao.id, motivo:"Revisão espaçada — erro/chute anterior"}));
+  const decaimentos = partes.decaimentos.map(v=>({questaoId:v.questao.id, motivo:"Revisão espaçada — já faz tempo desde o último acerto"}));
+  return [...novas, ...erros, ...decaimentos].slice(0, limite);
+}
 function iniciarRevisaoEspacada(){
-  const vencidas = questoesRevisaoEspacadaVencidas(usuarioAtual().id);
-  if(!vencidas.length){ toast("Nenhuma questão vencida pela repetição espaçada no momento."); return; }
-  const itens = vencidas.slice(0,20).map(v=>({questaoId:v.questao.id, motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — hora de revisar de novo, mesmo tendo acertado antes"}));
+  const itens = itensDaRevisaoEspacada(usuarioAtual().id, 20);
+  if(!itens.length){ toast("Nada para a revisão espaçada no momento: nenhuma questão nova nos assuntos já estudados e nenhuma vencida."); return; }
   iniciarSessaoComLista(itens, "pratica");
 }
 function iniciarSessaoComLista(itens, tipo){
@@ -683,26 +693,35 @@ function renderQuestionCard(q, opts){
   const eu = usuarioAtual();
   const errosAqui = (eu && !opts.modoSimulado) ? errosNaQuestao(eu.id, q.id) : 0;
   const escondida = !!(eu && !opts.modoSimulado && questaoOculta(eu.id, q.id));
-  let html = `<div class="qcard">
-    <div class="qcard-meta">
+  /* AS TAGS SÓ DEPOIS DE RESPONDER. Área, especialidade e assunto entregam o
+     diagnóstico ("Pancreatite aguda" logo acima do enunciado), a dificuldade
+     e o número de erros anteriores dão pista da alternativa. Enquanto a
+     questão está em aberto ficam só as tags de ORIGEM (banca, ano, tipo da
+     prova), que dizem de onde a questão veio e não o que ela cobra. */
+  const classificacao = opts.respondida ? `
       <span class="badge badge-accent">${escapeHtml(area?area.nome:"")}</span>
       <span class="badge badge-muted">${escapeHtml(esp?esp.nome:"")}</span>
-      <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
-      <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
-      ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-amber" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}
+      <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>` : "";
+  const dicas = opts.respondida ? `
       <span class="badge ${corDificuldade}">${rotuloDificuldade(dificuldade)}</span>
       ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}
-      ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}
+      ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}` : "";
+  let html = `<div class="qcard">
+    <div class="qcard-meta">${classificacao}
+      <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
+      ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-amber" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
       ${(q.banca||"").indexOf("Didático")>=0
         ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'
         : (!q.real ? '<span class="badge badge-muted" title="Questão original escrita para esta demonstração, no estilo e nível da banca">Demonstração</span>' : "")}
     </div>
-    ${renderImagemQuestao(q)}
     <!-- aqui o enunciado já aparece inteiro, então ele não vira link para
          "ver na íntegra": abrir uma janela com o mesmo texto não acrescenta
          nada. O enunciado clicável continua valendo nas LISTAS, onde o texto
-         aparece cortado. -->
+         aparece cortado. A imagem vem DEPOIS do enunciado: é ele que diz o
+         que olhar nela (o ECG, a radiografia), e a figura logo no topo
+         chegava antes da pergunta. -->
     <div class="qcard-enunciado" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
+    ${renderImagemQuestao(q)}
     <div class="qcard-alts">
       ${(()=>{
         const eliminadas = eliminadasDaQuestao(q.id);
@@ -733,7 +752,8 @@ function renderQuestionCard(q, opts){
   if(!opts.respondida){
     const nRiscadas = eliminadasDaQuestao(q.id).length;
     const dicaRiscar = opts.somenteLeitura ? "" :
-      `<div class="text-xs muted mt-2">${iconeSvg("x")} ${nRiscadas
+      `<div class="text-xs muted mt-2">${iconeSvg("eye-off")} Assunto, especialidade e dificuldade aparecem depois que você responder — para não entregar o diagnóstico.</div>
+      <div class="text-xs muted mt-1">${iconeSvg("x")} ${nRiscadas
         ? `${nRiscadas} alternativa(s) eliminada(s) — clique no × de novo para trazer de volta.`
         : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</div>`;
     if(opts.modoSimulado){
@@ -824,7 +844,7 @@ function alternarQuestaoOcultaUI(qid){
   }
   const escondeu = alternarQuestaoOculta(usuarioAtual().id, qid);
   toast(escondeu
-    ? "Questão escondida: ela não volta nas suas sessões, revisões e listas. Para trazê-la de volta, vá em Revisão > Questões escondidas."
+    ? "Questão escondida: ela não volta nas suas sessões, revisões e listas. Para trazê-la de volta, vá em Favoritos > Retiradas da revisão."
     : "A questão voltou a aparecer no seu estudo.");
   render();
 }
@@ -1025,9 +1045,11 @@ function renderRevisao(){
   const u = usuarioAtual();
   const assuntos = assuntosParaRevisarHoje(u.id);
   const erros = questoesErroOrdenadasPorAntiguidade(u.id);
-  const vencidas = questoesRevisaoEspacadaVencidas(u.id);
-  const porDecaimento = vencidas.filter(v=>v.motivo==="decaimento").length;
-  const porErro = vencidas.filter(v=>v.motivo==="erro").length;
+  const partesEspacada = partesDaRevisaoEspacada(u.id);
+  const naoVistas = partesEspacada.novas.length;
+  const porDecaimento = partesEspacada.decaimentos.length;
+  const porErro = partesEspacada.erros.length;
+  const totalEspacada = naoVistas + porErro + porDecaimento;
   const errosComCerteza = questoesErroComCerteza(u.id);
   const acertosNoChute = questoesAcertoNoChute(u.id);
   const errosNaDuvida = questoesErroNaDuvida(u.id);
@@ -1035,9 +1057,10 @@ function renderRevisao(){
   return `
   <div class="page-header"><h2>Revisão</h2><p>Assuntos e questões que, pelo seu histórico, estão no momento certo de voltar.</p></div>
   <div class="card">
-    <div class="card-title">Revisão espaçada de questões (${vencidas.length})</div>
-    <p class="text-sm muted">Junta tudo que já venceu pelo seu histórico — não é só o que você errou: ${porDecaimento} volta(m) porque já faz tempo (mesmo tendo acertado antes), e ${porErro} volta(m) por erro ou chute recente.</p>
-    <button class="btn btn-primary mt-2" onclick="iniciarRevisaoEspacada()" ${!vencidas.length?"disabled":""}>Revisar agora</button>
+    <div class="card-title">Revisão espaçada de questões (${totalEspacada})</div>
+    <p class="text-sm muted">Vem nesta ordem: primeiro as questões dos assuntos que você já estudou e <strong>ainda não viu</strong> (${naoVistas}); depois as que você <strong>errou ou acertou no chute</strong> (${porErro}); por último as que você acertou e já passou o prazo (${porDecaimento}).</p>
+    <p class="text-xs muted mt-1">Questão que você acertou com segurança só volta depois de <strong>1 mês</strong> — e de 2 meses no segundo acerto seguido; em assunto em que você vai bem, o prazo cresce ainda mais. Depois de <strong>3 acertos seguidos</strong> ela sai da revisão espaçada. Errar (ou acertar no chute) zera a conta e a questão volta em <strong>1 semana</strong> — nenhuma questão reaparece antes disso.</p>
+    <button class="btn btn-primary mt-2" onclick="iniciarRevisaoEspacada()" ${!totalEspacada?"disabled":""}>Revisar agora</button>
   </div>
   <div class="card mt-2">
     <div class="card-title">Assuntos vencidos (${assuntos.length})</div>
@@ -1089,18 +1112,16 @@ function renderRevisao(){
     <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${!erros.length?"disabled":""}>Revisar só erros</button>
   </div>
   <div class="card-flat mt-2 text-sm">
-    <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute). A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
+    <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute), mas nunca abaixo de 1 semana. A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo, mas sem repetir o que você já domina: acerto seguro espera um mês e, depois de três, a questão sai da fila. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
   </div>`;
 }
 /* As questões que a pessoa já errou, com quantas vezes cada uma — a
-   mais errada primeiro — e, logo abaixo, as que ela escondeu. É aqui que
-   se esconde em lote ("já entendi essas, não quero mais") e que se traz de
-   volta o que foi escondido. */
+   mais errada primeiro. É aqui que se esconde em lote ("já entendi essas,
+   não quero mais"); o que foi escondido volta em Favoritos > Retiradas da
+   revisão. */
 function renderCartaoQuestoesErradas(u){
   const erradas = questoesErradasPeloUsuario(u.id);
-  const escondidas = (db.questoesOcultas||[]).filter(o=>o.usuarioId===u.id)
-    .map(o=>({reg:o, q:getQuestao(o.questaoId)})).filter(x=>x.q)
-    .sort((a,b)=>(b.reg.data||"").localeCompare(a.reg.data||""));
+  const escondidas = questoesRetiradasDaRevisao(u.id);
   const pag = paginar(erradas, "revisao-erradas", {porPagina:10});
   const repetidas = erradas.filter(x=>x.erros>1).length;
   const linha = (x)=>`<div class="card-flat mb-1">
@@ -1126,20 +1147,7 @@ function renderCartaoQuestoesErradas(u){
     ${pag.itens.map(linha).join("")}
     ${controlesPaginacao(pag, "questão(ões) errada(s)")}` : '<p class="text-sm muted mt-1">Nenhuma questão errada fora das escondidas.</p>'}
   </div>
-  <div class="card mt-2">
-    <div class="card-title">${iconeSvg("eye-off")} Questões escondidas (${escondidas.length})</div>
-    <p class="text-sm muted">As que você pediu para não ver mais. Elas continuam no banco, nas provas antigas e nos seus números — só não voltam no seu estudo.</p>
-    ${escondidas.length ? `
-      ${escondidas.length>1 ? `<div class="flex gap-1 mt-2 mb-1"><button class="btn btn-secondary btn-sm" onclick="mostrarTodasAsEscondidas()">${iconeSvg("eye")} Voltar a mostrar todas</button></div>` : ""}
-      ${escondidas.map(({reg,q})=>{
-        const n = errosNaQuestao(u.id, q.id);
-        return `<div class="flex justify-between items-center card-flat mb-1 gap-1" style="flex-wrap:wrap">
-          <span class="text-sm" style="flex:1;min-width:200px"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,110))}${q.enunciado.length>110?"…":""}</span>
-            <span class="text-xs muted"> — ${n ? "errada "+rotuloVezes(n)+", " : ""}escondida em ${formatDataBR(reg.data||hojeISO())}</span></span>
-          <button class="btn btn-ghost btn-sm" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg("eye")} Voltar a mostrar</button>
-        </div>`;
-      }).join("")}` : '<p class="text-sm muted mt-1">Nenhuma. Depois de errar uma questão pela segunda vez, o botão "Não mostrar mais" permite escondê-la.</p>'}
-  </div>`;
+  <div class="card-flat mt-2 text-sm">${iconeSvg("eye-off")} As questões que você pediu para não ver mais (${escondidas.length}) ficam em <button class="link-btn" onclick="state.filtroRota.abaFavoritos='retiradas';navigate('favoritos')">Favoritos &gt; Retiradas da revisão</button>, junto do que você salvou para rever.</div>`;
 }
 function praticarQuestoesMaisErradas(){
   const u = usuarioAtual();

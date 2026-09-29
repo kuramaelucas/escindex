@@ -27,7 +27,7 @@ function renderProvasESimulados(){
   const u = usuarioAtual();
   const aba = abaProvas();
   const bloco = getBlocoAtual();
-  const recomendados = db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id));
+  const recomendados = bloco ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id)) : [];
   const outros = db.simulados.filter(s=>!recomendados.includes(s));
   const meusResultados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
   const pagResultados = paginar(meusResultados, "provas-resultados", {porPagina:10});
@@ -38,7 +38,7 @@ function renderProvasESimulados(){
     <button class="pill ${aba==="simulados"?"active":""}" onclick="mudarAbaProvas('simulados')">${iconeSvg("clipboard")} Simulados da equipe (${db.simulados.length})</button>
   </div>
   ${aba==="antigas" ? renderAbaProvasAntigas(u) : `
-    <p class="text-sm muted mb-2">Montados por professores, com tempo e tamanho definidos por eles. Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).</p>
+    <p class="text-sm muted mb-2">Montados por professores, com tempo e tamanho definidos por eles. ${bloco ? `Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).` : "Sem calendário de blocos, não há simulado recomendado para o seu bloco: todos aparecem juntos."}</p>
     ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
     ${outros.length ? `<div class="card-title mt-3 mb-1">Outros simulados disponíveis</div>${outros.map(renderSimuladoCard).join("")}` : ""}
     ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>' : ""}
