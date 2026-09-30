@@ -381,6 +381,12 @@ function renderMeusEstagios(u, grupo){
           <div style="font-weight:700">${escapeHtml(b.nome)} <span class="text-sm muted" style="font-weight:400">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)}</span></div>
           ${proprio ? `<button class="btn btn-ghost btn-sm" onclick="restaurarOrdemDosEstagios(${ref})">Voltar à ordem da turma</button>` : '<span class="badge badge-muted">ordem da turma</span>'}
         </div>
+        <div class="flex items-center gap-1 mt-1" style="flex-wrap:wrap">
+          <label class="text-sm" for="comecar-${escapeHtml(b.id)}">Começar por:</label>
+          <select class="select" id="comecar-${escapeHtml(b.id)}" style="max-width:340px" onchange="comecarEstagioPor(${ref}, this.value)">
+            ${partes.map((pt, i) => `<option value="${escapeHtml(pt.nome)}" ${i===0?"selected":""}>${escapeHtml(pt.nome)}</option>`).join("")}
+          </select>
+        </div>
         ${partes.map((pt, i) => `<div class="flex justify-between items-center mt-1 gap-1">
           <span class="text-sm">${i+1}. ${escapeHtml(pt.nome)}${pt.dataInicio ? ` <span class="muted">(${formatDataBR(pt.dataInicio)} – ${formatDataBR(pt.dataFim)})</span>` : ""}</span>
           <span class="flex gap-1">
@@ -400,6 +406,18 @@ function moverEstagioPessoal(blocoId, indice, delta){
   if(destino < 0 || destino >= nomes.length) return;
   [nomes[indice], nomes[destino]] = [nomes[destino], nomes[indice]];
   guardarOrdemDosEstagios(u, blocoId, nomes);
+}
+/* "Começar por" gira a lista: o estágio escolhido vai para o primeiro lugar e
+   os outros seguem na ordem em que estavam, dando a volta (Neonatal primeiro:
+   Neonatal, Emergências, Enfermaria). É o caso de quem só quer trocar por onde
+   entra, sem reordenar um a um com as setas. */
+function comecarEstagioPor(blocoId, nome){
+  const u = usuarioAtual(); if(!u) return;
+  const bloco = blocosDoGrupo(getGrupoDoUsuario(u), u).find(b => b.id === blocoId); if(!bloco) return;
+  const nomes = subdivisoesDoBloco(bloco);
+  const i = nomes.indexOf(nome);
+  if(i < 0) return;
+  if(i > 0) guardarOrdemDosEstagios(u, blocoId, nomes.slice(i).concat(nomes.slice(0, i)));
 }
 function restaurarOrdemDosEstagios(blocoId){
   const u = usuarioAtual(); if(!u) return;
@@ -569,6 +587,7 @@ function renderPerfil(){
   const ehMaster = podeAdmin("backup", u);
   return `
   <div class="page-header"><h2>Perfil e configurações</h2><p>Seus dados, a ajuda e o tutorial, a senha, o aplicativo e a conta na nuvem.</p></div>
+  <div class="cartoes-colunas">
   <div class="card" style="max-width:460px">
     <div class="field"><label class="label">Nome</label><div>${escapeHtml(u.nome)}</div></div>
     <div class="field"><label class="label">E-mail</label><div>${escapeHtml(u.email)}</div></div>
@@ -611,7 +630,8 @@ function renderPerfil(){
       : "Tudo o que você faz aqui fica salvo neste navegador. A cópia de segurança de toda a plataforma é responsabilidade do administrador máster — se precisar trocar de computador ou recuperar algo, fale com a coordenação antes de limpar os dados do navegador."}</p>
     <button class="btn btn-secondary btn-sm mt-1" onclick="baixarMeusDados()">${iconeSvg("download")} Baixar uma cópia do meu estudo</button>
     <p class="text-xs muted mt-1">Um arquivo com tudo o que é seu: respostas, revisões, favoritos e anotações, cartões pessoais, conjuntos e simulados. Nada de outras pessoas.</p>
-  </div>`}`;
+  </div>`}
+  </div>`;
 }
 /* "Baixar uma cópia do meu estudo": tudo o que é DA PESSOA, e só dela — o
    backup completo da plataforma é outra coisa (administrador máster, e o

@@ -509,7 +509,7 @@ function htmlTopo(u){
         <div class="flex items-center gap-2">
           ${renderChipNuvem()}
           ${badgePapel(u.papel, u)}
-          <span class="text-sm muted nowrap">${escapeHtml(u.nome)}</span>
+          <span class="text-sm muted nowrap nome-no-topo">${escapeHtml(u.nome)}</span>
         </div>`;
 }
 function renderShell(conteudoHtml){

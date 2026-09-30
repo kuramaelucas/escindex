@@ -170,6 +170,8 @@ test("Painel da Turma lê as funções do banco, separa por ano, mostra a equipe
   await pagina.evaluate(() => {
     const u = nuvemAplicarPerfilLocal({ id: "11111111-2222-3333-4444-555555555555", nome: "Prof", papel: "professor", status: "aprovado" });
     state.usuarioAtualId = u.id;
+    // "Por turma" e a lista de pessoas ficam fechadas até serem abertas
+    guardarSecaoPainel("turmas", true); guardarSecaoPainel("pessoas", true);
     navigate("painel-turma");
   });
   await pagina.waitForFunction(() => document.getElementById("app").innerText.includes("Beto"));
