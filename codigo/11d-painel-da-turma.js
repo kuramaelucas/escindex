@@ -42,6 +42,15 @@ function filtrosPainelTurma(){
   return state.filtroRota.painel;
 }
 function mudarFiltroPainelTurma(campo, valor){ filtrosPainelTurma()[campo] = valor; render(); }
+/* "Por turma" e a lista de pessoas abrem e fecham: o painel é longo e quase
+   sempre se quer só os números do topo. Ficam fechadas até a pessoa abrir; o
+   estado vai no filtro (e não no HTML) para sobreviver a cada redesenho, como
+   o da página da lista. */
+function secaoAbertaPainel(chave){ return !!(filtrosPainelTurma().secoes || {})[chave]; }
+function guardarSecaoPainel(chave, aberta){
+  const f = filtrosPainelTurma();
+  f.secoes = Object.assign({}, f.secoes, { [chave]: !!aberta });
+}
 const ANO_EQUIPE_PAINEL = "equipe"; // valor do filtro da aba "Equipe" (nenhum ano da faculdade se chama assim)
 
 /* Os dados de todas as pessoas, do mesmo jeito venham da nuvem ou daqui.
@@ -220,7 +229,7 @@ function renderPainelTurma(){
   const grafSemanas = graficoBarrasVerticaisSvg(semanasOrdenadas.map(k => ({
     label: formatDataBR(k).slice(0,5), taxa: semanasMapa[k].respostas && !semanasMapa[k].semAcerto ? pct(semanasMapa[k].acertos, semanasMapa[k].respostas) : null,
     total: semanasMapa[k].respostas, acertos: semanasMapa[k].acertos,
-  })), { altura: 120, larguraMax: 34 });
+  })), { altura: 110, larguraMax: 26 });
 
   // pessoas
   const busca = (f.busca || "").trim().toLowerCase();
@@ -247,7 +256,7 @@ function renderPainelTurma(){
     <div class="tab ${naEquipe?"active":""}" onclick="mudarFiltroPainelTurma('ano', '${ANO_EQUIPE_PAINEL}')">Equipe (${equipe.length})</div>
   </div>
 
-  <div class="grid grid-4 mb-2">
+  <div class="grid grid-4 compacto mb-2">
     <div class="stat-tile"><div class="stat-value">${aprovados.length}</div><div class="stat-label">${quem}${recorte.length!==aprovados.length?` (+${recorte.length-aprovados.length} inativo/recusado)`:""}</div></div>
     <div class="stat-tile"><div class="stat-value">${ativos7}</div><div class="stat-label">usaram nos últimos 7 dias${aprovados.length?` (${pct(ativos7, aprovados.length)}%)`:""}</div></div>
     <div class="stat-tile"><div class="stat-value">${aprovados.length ? Math.round(soma(aprovados,"r30")/aprovados.length) : 0}</div><div class="stat-label">questões por pessoa nos últimos 30 dias (${soma(aprovados,"r30")} no total)</div></div>
@@ -270,8 +279,9 @@ function renderPainelTurma(){
     </table></div>
   </div>` : ""}
 
-  ${!naEquipe && linhasTurmas.length ? `<div class="card mb-2">
-    <div class="card-title">Por turma</div>
+  ${!naEquipe && linhasTurmas.length ? `<details class="secao-expansivel" ${secaoAbertaPainel("turmas")?"open":""} ontoggle="guardarSecaoPainel('turmas', this.open)">
+    <summary><span class="card-title" style="margin:0">Por turma</span><span class="text-xs muted">${linhasTurmas.length} turma(s)</span></summary>
+    <div class="secao-corpo">
     <p class="text-xs muted">Cada turma do rodízio ("Grupo A", "Grupo B"…) e quem ainda não escolheu turma. O acerto médio só aparece com ${CONFIG.minAlunosParaMedia} alunos ou mais respondendo: com menos, seria o acerto de uma pessoa.</p>
     <div class="table-wrap mt-1"><table>
       <thead><tr><th>Turma</th><th>Alunos</th><th>Ativos (7 dias)</th><th>Questões/aluno (30 dias)</th><th>Acerto médio (30 dias)</th><th>Cartões (30 dias)</th></tr></thead>
@@ -283,7 +293,8 @@ function renderPainelTurma(){
         <td>${l.media ? badgeTaxa(l.media.a30, l.media.r30) : '<span class="text-xs muted">—</span>'}</td>
         <td class="text-sm">${l.cartoes30}</td></tr>`).join("")}</tbody>
     </table></div>
-  </div>` : ""}
+    </div>
+  </details>` : ""}
 
   ${naEquipe ? "" : `<div class="grid grid-2 mb-2">
     <div class="card">
@@ -302,9 +313,10 @@ function renderPainelTurma(){
     </div>
   </div>`}
 
-  <div class="card">
+  <details class="secao-expansivel" ${secaoAbertaPainel("pessoas")?"open":""} ontoggle="guardarSecaoPainel('pessoas', this.open)">
+    <summary><span class="card-title" style="margin:0">${naEquipe ? "Equipe" : "Alunos "+(f.ano==="todos"?"":"do "+escapeHtml(f.ano))}</span><span class="text-xs muted">${lista.length} ${naEquipe ? "pessoa(s)" : "aluno(s)"}${parados?` · ${parados} parado(s)`:""}</span></summary>
+    <div class="secao-corpo">
     <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
-      <div class="card-title" style="margin:0">${naEquipe ? "Equipe" : "Alunos "+(f.ano==="todos"?"":"do "+escapeHtml(f.ano))}</div>
       <div class="flex gap-1 items-center" style="flex-wrap:wrap">
         <input class="input" style="max-width:220px" placeholder="Buscar por nome ou e-mail" value="${escapeHtml(f.busca||"")}" onchange="mudarFiltroPainelTurma('busca', this.value)">
         <select class="select" style="max-width:220px" onchange="mudarFiltroPainelTurma('ordem', this.value)">
@@ -334,7 +346,8 @@ function renderPainelTurma(){
     </table></div>
     ${controlesPaginacao(p, naEquipe ? "pessoa(s)" : "aluno(s)")}
     <p class="text-xs muted mt-2">"Parado" = 7 dias ou mais sem responder questão nem revisar cartão. ${naEquipe ? "A equipe não tem alerta: o painel só mostra o quanto usa." : ""} O painel mostra uso; a taxa de acerto de cada pessoa é só dela, em Meu Desempenho.</p>
-  </div>`;
+    </div>
+  </details>`;
 }
 function exportarPainelTurmaCsv(){
   const pd = state.filtroRota.painelDados; if(!pd || !pd.dados) return;

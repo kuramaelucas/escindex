@@ -479,6 +479,39 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 .flash-nota.medio:hover{border-color:var(--amber);background:var(--amber-soft)}
 .flash-nota.bom:hover{border-color:var(--accent);background:var(--accent-soft)}
 
+/* ---------- aproveitar a largura do computador ----------
+   Telas de cartões soltos (Perfil, Configurações) desperdiçavam metade da
+   tela: cada cartão numa linha só. Em colunas, o navegador reparte os
+   cartões conforme a altura de cada um; no celular vira uma coluna. */
+.cartoes-colunas{columns:2 380px;column-gap:1rem}
+.cartoes-colunas > *{break-inside:avoid;margin:0 0 1rem !important;max-width:none !important}
+/* dois cartões lado a lado só onde cabe; abaixo disso, um embaixo do outro */
+.par-de-cartoes{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start;margin-bottom:1rem}
+.par-de-cartoes > .card{margin:0}
+@media (min-width:1100px){ .par-de-cartoes{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* campos de formulário que se ajeitam à largura do cartão */
+.grid-campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem}
+/* números-resumo menores: várias métricas por linha em vez de quadrados altos */
+.grid.compacto{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem}
+.par-de-cartoes .grid.compacto{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.compacto .stat-tile{padding:.55rem .8rem}
+.grid.compacto .stat-value{font-size:1.25rem;line-height:1.15}
+.grid.compacto .stat-label{font-size:.72rem;margin-top:.1rem}
+/* seção que abre e fecha (Painel da Turma) */
+details.secao-expansivel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1rem}
+details.secao-expansivel > summary{cursor:pointer;list-style:none;padding:.85rem 1.2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+details.secao-expansivel > summary::-webkit-details-marker{display:none}
+details.secao-expansivel > summary::before{content:"▸";color:var(--muted);transition:transform .12s ease}
+details.secao-expansivel[open] > summary::before{transform:rotate(90deg)}
+details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
+/* celular: nada de rolagem para o lado. O topo do administrador (nuvem +
+   papel + nome) era mais largo que a tela; o corte de segurança em .main
+   guarda o que ainda escapar, sem esconder tabelas (elas rolam sozinhas) */
+.topbar > div{min-width:0}
+.topbar-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.main{overflow-x:clip}
+@media (max-width:640px){ .topbar .nome-no-topo{display:none} .topbar{gap:.5rem} }
+
 /* ---------- impressão / PDF ----------
    Para gerar PDF sem depender de nenhuma biblioteca externa, a plataforma
    monta o material dentro de #areaImpressao e chama a impressão do próprio

@@ -406,7 +406,7 @@ function renderHistorico(){
   const cartoesTotal = diasAtivos.reduce((soma,d)=>soma+d.cartoes, 0);
   return `
   <div class="page-header"><h2>Histórico de Atividade</h2><p>Tudo o que você já estudou, dia a dia, do mais recente para o mais antigo — questões (dentro ou fora de um conjunto), flashcards e simulados.</p></div>
-  <div class="grid grid-4 mb-2">
+  <div class="grid grid-4 compacto mb-2">
     <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">dia(s) com estudo registrado · ${sessoes.length} conjunto(s) fechado(s)</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas}</div><div class="stat-label">questões respondidas no total${cartoesTotal?" · "+cartoesTotal+" flashcard(s)":""}</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</div><div class="stat-label">taxa de acerto geral</div></div>
@@ -414,7 +414,7 @@ function renderHistorico(){
   </div>
   <div class="card mb-2">
     <div class="card-title">Últimos 14 dias</div>
-    <div class="mt-2">${graficoBarrasSvg(dias.map(d=>({label:formatDataBR(d.data).slice(0,5), valor: d.total?pct(d.acertos,d.total):null, n:d.total})))}</div>
+    <div class="mt-2">${graficoBarrasSvg(dias.map(d=>({label:formatDataBR(d.data).slice(0,5), valor: d.total?pct(d.acertos,d.total):null, n:d.total})), {fino:true})}</div>
     <p class="text-xs muted mt-1">Cada barra é a taxa de acerto do dia; o número entre parênteses é quantas questões você respondeu naquele dia.</p>
   </div>
   <div class="card mb-2">
@@ -608,10 +608,11 @@ function renderDesempenho(){
   return `
   <div class="page-header"><h2>Meu Desempenho</h2><p>Primeiro o total de tudo que você já respondeu, depois como está indo no período que você escolher, e por fim onde mexer.</p></div>
 
-  <div class="card mb-2">
+  <div class="par-de-cartoes">
+  <div class="card">
     <div class="card-title">Desempenho total — todas as questões</div>
     <p class="text-sm muted">Soma de tudo que você já respondeu na plataforma, sem separar por área, assunto ou tipo de sessão.</p>
-    <div class="grid grid-4 mt-2">
+    <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${totalGeral.taxa!==null?totalGeral.taxa+"%":"—"}</div><div class="stat-label">acerto em todas as respostas (${totalGeral.acertos}/${totalGeral.total})</div></div>
       <div class="stat-tile"><div class="stat-value">${totalGeral.taxaUltimaTentativa!==null?totalGeral.taxaUltimaTentativa+"%":"—"}</div><div class="stat-label">acerto considerando só a última tentativa de cada questão</div></div>
       <div class="stat-tile"><div class="stat-value">${totalGeral.distintas}</div><div class="stat-label">questões diferentes já respondidas (${totalGeral.cobertura}% do banco)</div></div>
@@ -619,12 +620,10 @@ function renderDesempenho(){
     </div>
   </div>
 
-  ${htmlCardNotaEstimada(u)}
-
-  <div class="card mb-2">
+  <div class="card">
     <div class="card-title">${iconeSvg("cards")} Flashcards — contagem à parte</div>
     <p class="text-sm muted">Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão de prova leva minutos. Por isso ele é contado aqui, separado das questões acima: é volume de revisão, não taxa de acerto.</p>
-    <div class="grid grid-4 mt-2">
+    <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${cartoes.revisoes}</div><div class="stat-label">cartões revisados no total (contando as repetições)</div></div>
       <div class="stat-tile"><div class="stat-value">${cartoes.cartoes}</div><div class="stat-label">cartões diferentes que já passaram pelo seu baralho</div></div>
       <div class="stat-tile"><div class="stat-value">${cartoes.hoje}</div><div class="stat-label">revisados hoje (meta de ${metaCartoesDoUsuario(u)} por dia)</div></div>
@@ -635,6 +634,9 @@ function renderDesempenho(){
       ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
     </div>
   </div>
+  </div>
+
+  ${htmlCardNotaEstimada(u)}
 
   <div class="card mb-2">
     <div class="flex justify-between items-center gap-2 mb-2" style="flex-wrap:wrap">
@@ -648,7 +650,7 @@ function renderDesempenho(){
     </div>
 
     ${ehDiario ? `
-    <div class="grid grid-4 mb-2">
+    <div class="grid grid-4 compacto mb-2">
       <div class="stat-tile"><div class="stat-value">${resumoAtual.taxa!==null?resumoAtual.taxa+"%":"—"}</div><div class="stat-label">acerto nos últimos ${resumoAtual.dias} dias (${resumoAtual.acertos}/${resumoAtual.total})</div></div>
       <div class="stat-tile">
         <div class="stat-value" ${resumoAtual.variacao!==null&&resumoAtual.variacao<0?'style="color:var(--danger)"':(resumoAtual.variacao!==null&&resumoAtual.variacao>0?'style="color:var(--accent)"':"")}>${resumoAtual.variacao!==null?(resumoAtual.variacao>0?"+":"")+resumoAtual.variacao+" p.p.":"—"}</div>
@@ -657,14 +659,14 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${resumoAtual.diasComEstudo}/${resumoAtual.dias}</div><div class="stat-label">dias em que você estudou</div></div>
       <div class="stat-tile"><div class="stat-value">${resumoAtual.mediaPorDiaEstudado}</div><div class="stat-label">questões por dia estudado</div></div>
     </div>` : `
-    <div class="grid grid-4 mb-2">
+    <div class="grid grid-4 compacto mb-2">
       <div class="stat-tile"><div class="stat-value">${somaMeses.total?pct(somaMeses.acertos,somaMeses.total)+"%":"—"}</div><div class="stat-label">acerto no período (${somaMeses.acertos}/${somaMeses.total})</div></div>
       <div class="stat-tile"><div class="stat-value">${somaMeses.total}</div><div class="stat-label">questões respondidas no período</div></div>
       <div class="stat-tile"><div class="stat-value">${mesesComEstudo.length}</div><div class="stat-label">meses com pelo menos uma questão</div></div>
       <div class="stat-tile"><div class="stat-value">${melhorMes?melhorMes.taxa+"%":"—"}</div><div class="stat-label">melhor mês${melhorMes?" ("+escapeHtml(melhorMes.label)+")":""}</div></div>
     </div>`}
 
-    ${graficoBarrasVerticaisSvg(dados.itens, {altura:140, larguraMax: ehDiario?30:42, rotuloRotacionado: ehDiario && dados.dias>20})}
+    ${graficoBarrasVerticaisSvg(dados.itens, {altura:110, larguraMax: ehDiario?22:36, rotuloRotacionado: ehDiario && dados.dias>20})}
 
     ${ehDiario ? `<p class="text-xs muted mt-1">Traço fino na base = dia sem nenhuma questão. Dia parado aparece de propósito: a constância é metade do resultado, e um gráfico que esconde os buracos mente sobre a rotina.</p>`
       : `<p class="text-xs muted mt-1">Mês sem questão aparece como traço na base. Comparar meses só faz sentido junto do volume: 100% em 3 questões não é melhor do que 72% em 400.</p>`}
@@ -706,7 +708,7 @@ function renderDesempenho(){
 
   ${htmlCardOQueMaisCai(u, 10)}
 
-  <div class="grid grid-3 mb-2">
+  <div class="grid grid-3 compacto mb-2">
     <div class="stat-tile"><div class="stat-value">${calibracao.certeza.n?calibracao.certeza.taxa+"%":"—"}</div><div class="stat-label">acerto quando você disse "certeza" (${calibracao.certeza.n})</div></div>
     <div class="stat-tile"><div class="stat-value">${calibracao.duvida.n?calibracao.duvida.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "na dúvida" (${calibracao.duvida.n})</div></div>
     <div class="stat-tile"><div class="stat-value">${calibracao.chute.n?calibracao.chute.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "chute" (${calibracao.chute.n})</div></div>
@@ -727,7 +729,7 @@ function renderDesempenho(){
   ${ritmo ? `<div class="card mb-2">
     <div class="card-title">Ritmo — quanto tempo você leva por questão</div>
     <p class="text-xs muted">Baseado em ${ritmo.n} questão(ões) cronometradas (prática e simulados).</p>
-    <div class="grid grid-4 mt-2">
+    <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(ritmo.mediana)}</div><div class="stat-label">tempo mediano por questão</div></div>
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(ritmo.media)}</div><div class="stat-label">tempo médio</div></div>
       <div class="stat-tile"><div class="stat-value">${ritmo.mediaAcertos!==null?formatarDuracao(ritmo.mediaAcertos):"—"}</div><div class="stat-label">média quando acerta</div></div>

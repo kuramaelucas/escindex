@@ -297,12 +297,24 @@ function gerarNotificacoes(usuario){
   }
   return notifs;
 }
+/* Recolhida por padrão: a maior parte é lembrete que muda o dia todo (meta de
+   hoje, cartões, revisão vencida) e não precisa ocupar o Início inteiro. O
+   cabeçalho já diz quantas são; abrir mostra a lista. A escolha fica
+   guardada enquanto a página está aberta. */
+function alternarNotificacoes(){
+  state.notificacoesAbertas = !state.notificacoesAbertas;
+  render();
+}
 function renderNotificacoesCard(usuario){
   const notifs = gerarNotificacoes(usuario);
   if(!notifs.length) return "";
+  const aberta = !!state.notificacoesAbertas;
   return `<div class="card mb-2" style="border-color:var(--accent)">
-    <div class="card-title" style="margin-bottom:.5rem">${iconeSvg("alert")} Notificações</div>
-    ${notifs.map(n=>`<div class="flex items-center gap-1 mb-1" ${n.rota?`style="cursor:pointer" onclick="${n.aba?`mudarAbaProvas('${n.aba}');`:""}${n.abaQualidade?`state.filtroRota.abaQualidade='${n.abaQualidade}';`:""}navigate('${n.rota}')"`:""}>${iconeSvg(n.icon)}<span class="text-sm">${escapeHtml(n.texto)}</span></div>`).join("")}
+    <div class="flex justify-between items-center" style="cursor:pointer" role="button" tabindex="0" aria-expanded="${aberta}" onclick="alternarNotificacoes()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alternarNotificacoes()}">
+      <div class="card-title" style="margin:0">${iconeSvg("alert")} Notificações <span class="badge badge-accent">${notifs.length}</span></div>
+      <span class="text-xs muted">${aberta ? "recolher" : "ver"} ${iconeSvg(aberta ? "arrow-up" : "arrow-down")}</span>
+    </div>
+    ${aberta ? `<div class="mt-2">${notifs.map(n=>`<div class="flex items-center gap-1 mb-1" ${n.rota?`style="cursor:pointer" onclick="${n.aba?`mudarAbaProvas('${n.aba}');`:""}${n.abaQualidade?`state.filtroRota.abaQualidade='${n.abaQualidade}';`:""}navigate('${n.rota}')"`:""}>${iconeSvg(n.icon)}<span class="text-sm">${escapeHtml(n.texto)}</span></div>`).join("")}</div>` : ""}
   </div>`;
 }
 function sequenciaDiasEstudo(usuarioId){

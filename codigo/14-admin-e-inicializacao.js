@@ -430,38 +430,41 @@ function renderConfigGeral(){
   const rampa = cg.rampaRevisaoInicio || CONFIG.rampaRevisaoInicio;
   return `
   <div class="page-header"><h2>Configurações Gerais</h2><p>Ajuste os parâmetros que orientam o algoritmo de estudo para todos os alunos.</p></div>
-  <div class="card mb-2"><div class="card-title">Metas de estudo</div>
-    <div class="grid grid-3">
+  <div class="cartoes-colunas">
+  <div class="card"><div class="card-title">Metas de estudo</div>
+    <div class="grid-campos">
       <div class="field"><label class="label">Meta mínima recomendada (questões/dia)</label><input class="input" id="cfgMetaMinima" type="number" value="${cg.metaMinimaQuestoesDia}"></div>
       <div class="field"><label class="label">Meta ideal recomendada (questões/dia)</label><input class="input" id="cfgMetaIdeal" type="number" value="${cg.metaRecomendadaQuestoesDia}"></div>
       <div class="field"><label class="label">Meta recomendada de cartões/dia</label><input class="input" id="cfgMetaCartoes" type="number" value="${cg.metaCartoesDia || CONFIG.metaCartoesDia}"><div class="hint">Vale para quem estuda por flashcard; cada aluno pode ajustar a sua.</div></div>
     </div>
   </div>
-  <div class="card mb-2"><div class="card-title">Mistura da sessão recomendada</div><p class="text-xs muted">Os três valores são normalizados para somar 100% ao salvar.</p>
-    <div class="grid grid-3">
+  <div class="card"><div class="card-title">Mistura da sessão recomendada</div><p class="text-xs muted">Os três valores são normalizados para somar 100% ao salvar.</p>
+    <div class="grid-campos">
       <div class="field"><label class="label">Bloco atual (%)</label><input class="input" id="cfgMisturaAtual" type="number" value="${Math.round(cg.misturaBlocos.atual*100)}"></div>
       <div class="field"><label class="label">Revisão de passados (%)</label><input class="input" id="cfgMisturaRevisao" type="number" value="${Math.round(cg.misturaBlocos.revisaoPassados*100)}"></div>
       <div class="field"><label class="label">Prévia de futuros (%)</label><input class="input" id="cfgMisturaPrevia" type="number" value="${Math.round(cg.misturaBlocos.previaFuturos*100)}"></div>
     </div>
   </div>
-  <div class="card mb-2"><div class="card-title">Revisão no começo do ano</div>
+  <div class="card"><div class="card-title">Revisão no começo do ano</div>
     <p class="text-xs muted">Quando o aluno tem matéria de anos anteriores (blocos de calendários passados ou questões respondidas em outro ano), a revisão roda na proporção cheia desde o primeiro bloco, usando esse material. Quando não há nada anterior, estes são os tetos de revisão dos três primeiros blocos — o que sobra vai para o bloco atual.</p>
-    <div class="grid grid-3">
+    <div class="grid-campos">
       <div class="field"><label class="label">1º bloco/mês (%)</label><input class="input" id="cfgRampa1" type="number" min="0" max="100" value="${Math.round((rampa[0]||0)*100)}"></div>
       <div class="field"><label class="label">2º bloco/mês (%)</label><input class="input" id="cfgRampa2" type="number" min="0" max="100" value="${Math.round((rampa[1]||0)*100)}"></div>
       <div class="field"><label class="label">3º bloco/mês (%)</label><input class="input" id="cfgRampa3" type="number" min="0" max="100" value="${Math.round((rampa[2]||0)*100)}"></div>
     </div>
   </div>
-  <div class="card mb-2"><div class="card-title">Peso de cada fator na dificuldade progressiva</div><p class="text-xs muted">Também normalizados para somar 100%. Padrão: mais peso para a taxa de acerto real dos alunos.</p>
-    <div class="grid grid-3">
+  <div class="card"><div class="card-title">Peso de cada fator na dificuldade progressiva</div><p class="text-xs muted">Também normalizados para somar 100%. Padrão: mais peso para a taxa de acerto real dos alunos.</p>
+    <div class="grid-campos">
       <div class="field"><label class="label">Taxa de acerto (%)</label><input class="input" id="cfgPesoTaxa" type="number" value="${Math.round(pesos.taxaAcerto*100)}"></div>
       <div class="field"><label class="label">Especificidade (%)</label><input class="input" id="cfgPesoEspecificidade" type="number" value="${Math.round(pesos.especificidade*100)}"></div>
       <div class="field"><label class="label">Prevalência (%)</label><input class="input" id="cfgPesoPrevalencia" type="number" value="${Math.round(pesos.prevalencia*100)}"></div>
     </div>
   </div>
+  </div>
   <button class="btn btn-primary" onclick="salvarConfigGeral()">Salvar configurações</button>
 
-  <div class="card mt-3">
+  <div class="cartoes-colunas mt-3">
+  <div class="card">
     <div class="card-title">${iconeSvg("star")} Livro de Ouro</div>
     <p class="text-sm muted">Doações, colaborações e apoios que sustentam a plataforma. Saiu do menu lateral — agora aparece no rodapé da tela inicial, que é onde é lido de fato, e é administrado aqui.</p>
     <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
@@ -474,7 +477,8 @@ function renderConfigGeral(){
 
   ${renderCardArquivosConteudo()}
 
-  ${podeAdmin("backup") ? renderCardBackup() : ""}`;
+  ${podeAdmin("backup") ? renderCardBackup() : ""}
+  </div>`;
 }
 /* Mostra o que veio da pasta "dados/" nesta abertura da página. Serve para
    conferir, depois de publicar o site ou de copiar a pasta para outro

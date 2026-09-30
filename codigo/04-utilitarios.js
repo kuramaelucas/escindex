@@ -59,12 +59,19 @@ function irParaPagina(chave, numero){
   if(!guardado) return;
   guardado.pagina = numero;
   render();
-  window.scrollTo(0,0);
+  /* Só a lista muda de página: subir a tela toda (como era) jogava a pessoa
+     para longe dos filtros e dos números do painel. Vai-se ao começo do
+     cartão da lista — e só se o começo dele ficou para cima da tela. */
+  const barra = document.querySelector('[data-pag="'+chave+'"]');
+  const bloco = barra && (barra.closest(".card, details") || barra);
+  if(!bloco){ window.scrollTo(0,0); return; }
+  const topo = bloco.getBoundingClientRect().top;
+  if(topo < 70) window.scrollTo({top: Math.max(0, window.scrollY + topo - 70)});
 }
 /* Uma página só não precisa de controle nenhum: a barra some sozinha. */
 function controlesPaginacao(p, rotulo){
   if(p.paginas<=1) return p.total ? `<div class="paginacao-resumo">${p.total} ${rotulo||"item(ns)"}</div>` : "";
-  return `<div class="paginacao">
+  return `<div class="paginacao" data-pag="${p.chave}">
     <div class="paginacao-resumo">Mostrando ${p.primeiro}–${p.ultimo} de ${p.total} ${rotulo||"item(ns)"}</div>
     <div class="flex gap-1 items-center">
       <button class="btn btn-secondary btn-sm" onclick="irParaPagina('${p.chave}',${p.pagina-1})" ${p.pagina<=1?"disabled":""}>Anterior</button>
@@ -178,9 +185,12 @@ function baixarArquivo(nome, conteudo, tipo){
 
 // gráfico de barras horizontal (SVG puro) — usado para comparar taxas de
 // acerto entre categorias, por exemplo as 5 grandes áreas
-function graficoBarrasSvg(itens){
+function graficoBarrasSvg(itens, opts){
   // itens: [{label, valor (0-100 ou null se sem dados), n}]
-  const w = 640, alturaBarra = 26, gap = 12, padEsq = 230, padDir = 90;
+  // opts.fino: barras baixas para listas longas (os 14 dias do Histórico)
+  const fino = !!(opts && opts.fino);
+  const w = fino ? 560 : 640, alturaBarra = fino ? 12 : 26, gap = fino ? 6 : 12, padEsq = fino ? 60 : 230, padDir = fino ? 80 : 90;
+  const tamTexto = fino ? 11 : 13;
   const larguraUtil = w - padEsq - padDir;
   const h = itens.length*(alturaBarra+gap) + gap;
   const barras = itens.map((it,i)=>{
@@ -189,10 +199,10 @@ function graficoBarrasSvg(itens){
     const largura = Math.max(2, (valor/100)*larguraUtil);
     const cor = it.valor==null ? "var(--border-strong)" : (valor<50 ? "var(--danger)" : valor<70 ? "var(--amber)" : "var(--accent)");
     const rotulo = it.valor==null ? "sem dados" : it.valor+"% ("+it.n+")";
-    return '<text x="'+(padEsq-12)+'" y="'+(y+alturaBarra/2+4)+'" text-anchor="end" font-size="13" fill="var(--ink-2)">'+escapeHtml(it.label)+'</text>'+
+    return '<text x="'+(padEsq-12)+'" y="'+(y+alturaBarra/2+4)+'" text-anchor="end" font-size="'+tamTexto+'" fill="var(--ink-2)">'+escapeHtml(it.label)+'</text>'+
       '<rect x="'+padEsq+'" y="'+y+'" width="'+larguraUtil+'" height="'+alturaBarra+'" rx="5" fill="var(--surface-2)"/>'+
       '<rect x="'+padEsq+'" y="'+y+'" width="'+largura+'" height="'+alturaBarra+'" rx="5" fill="'+cor+'"/>'+
-      '<text x="'+(padEsq+larguraUtil+10)+'" y="'+(y+alturaBarra/2+4)+'" font-size="12" fill="var(--ink-2)">'+rotulo+'</text>';
+      '<text x="'+(padEsq+larguraUtil+10)+'" y="'+(y+alturaBarra/2+4)+'" font-size="'+(fino?11:12)+'" fill="var(--ink-2)">'+rotulo+'</text>';
   }).join("");
   return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'">'+barras+'</svg>';
 }
