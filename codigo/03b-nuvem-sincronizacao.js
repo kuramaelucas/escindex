@@ -9,7 +9,13 @@ const NUVEM_TABELAS = {
   perfis: {
     tipo: "estado", tempo: "atualizado_em",
     chave: r => r.id,
-    aplicar: linha => { nuvemAplicarPerfilLocal(linha); },
+    aplicar: linha => {
+      const u = nuvemAplicarPerfilLocal(linha);
+      // meta nula na nuvem = "voltei ao padrão da coordenação" (Restaurar padrão em Meta diária):
+      // sem isto o outro aparelho, ainda com o número antigo, o devolveria ao servidor
+      if(!linha.meta_questoes_dia) delete u.metaQuestoesDia;
+      if(!linha.meta_cartoes_dia) delete u.metaCartoesDia;
+    },
   },
   respostas: {
     tipo: "registro", tempo: "criado_em",

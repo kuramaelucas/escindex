@@ -649,8 +649,15 @@ function renderDesempenho(){
       </div>
     </div>
 
+    <div class="grafico-com-lateral">
+    <div class="grafico-principal">
+    ${graficoBarrasVerticaisSvg(dados.itens, {altura:130, larguraMax: ehDiario?22:36, rotuloRotacionado: ehDiario && dados.dias>20})}
+    ${ehDiario ? `<p class="text-xs muted mt-1">Traço fino na base = dia sem nenhuma questão. Dia parado aparece de propósito: a constância é metade do resultado, e um gráfico que esconde os buracos mente sobre a rotina.</p>`
+      : `<p class="text-xs muted mt-1">Mês sem questão aparece como traço na base. Comparar meses só faz sentido junto do volume: 100% em 3 questões não é melhor do que 72% em 400.</p>`}
+    </div>
+    <div class="grafico-lateral">
     ${ehDiario ? `
-    <div class="grid grid-4 compacto mb-2">
+    <div class="grid compacto">
       <div class="stat-tile"><div class="stat-value">${resumoAtual.taxa!==null?resumoAtual.taxa+"%":"—"}</div><div class="stat-label">acerto nos últimos ${resumoAtual.dias} dias (${resumoAtual.acertos}/${resumoAtual.total})</div></div>
       <div class="stat-tile">
         <div class="stat-value" ${resumoAtual.variacao!==null&&resumoAtual.variacao<0?'style="color:var(--danger)"':(resumoAtual.variacao!==null&&resumoAtual.variacao>0?'style="color:var(--accent)"':"")}>${resumoAtual.variacao!==null?(resumoAtual.variacao>0?"+":"")+resumoAtual.variacao+" p.p.":"—"}</div>
@@ -659,25 +666,22 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${resumoAtual.diasComEstudo}/${resumoAtual.dias}</div><div class="stat-label">dias em que você estudou</div></div>
       <div class="stat-tile"><div class="stat-value">${resumoAtual.mediaPorDiaEstudado}</div><div class="stat-label">questões por dia estudado</div></div>
     </div>` : `
-    <div class="grid grid-4 compacto mb-2">
+    <div class="grid compacto">
       <div class="stat-tile"><div class="stat-value">${somaMeses.total?pct(somaMeses.acertos,somaMeses.total)+"%":"—"}</div><div class="stat-label">acerto no período (${somaMeses.acertos}/${somaMeses.total})</div></div>
       <div class="stat-tile"><div class="stat-value">${somaMeses.total}</div><div class="stat-label">questões respondidas no período</div></div>
       <div class="stat-tile"><div class="stat-value">${mesesComEstudo.length}</div><div class="stat-label">meses com pelo menos uma questão</div></div>
       <div class="stat-tile"><div class="stat-value">${melhorMes?melhorMes.taxa+"%":"—"}</div><div class="stat-label">melhor mês${melhorMes?" ("+escapeHtml(melhorMes.label)+")":""}</div></div>
     </div>`}
 
-    ${graficoBarrasVerticaisSvg(dados.itens, {altura:110, larguraMax: ehDiario?22:36, rotuloRotacionado: ehDiario && dados.dias>20})}
-
-    ${ehDiario ? `<p class="text-xs muted mt-1">Traço fino na base = dia sem nenhuma questão. Dia parado aparece de propósito: a constância é metade do resultado, e um gráfico que esconde os buracos mente sobre a rotina.</p>`
-      : `<p class="text-xs muted mt-1">Mês sem questão aparece como traço na base. Comparar meses só faz sentido junto do volume: 100% em 3 questões não é melhor do que 72% em 400.</p>`}
-
-    <div class="card-flat mt-2">
+    <div class="card-flat">
       <div class="text-sm" style="font-weight:600">As duas janelas curtas, lado a lado</div>
-      <div class="grid grid-2 mt-1">
+      <div class="grid grid-2 janelas-curtas mt-1">
         <div class="text-sm">Últimos 14 dias: <strong>${resumo14.taxa!==null?resumo14.taxa+"%":"—"}</strong> <span class="muted">(${resumo14.total} questões, ${resumo14.diasComEstudo} dias com estudo)</span></div>
         <div class="text-sm">Últimos 30 dias: <strong>${resumo30.taxa!==null?resumo30.taxa+"%":"—"}</strong> <span class="muted">(${resumo30.total} questões, ${resumo30.diasComEstudo} dias com estudo)</span></div>
       </div>
       ${(resumo14.taxa!==null && resumo30.taxa!==null && Math.abs(resumo14.taxa-resumo30.taxa)>=8) ? `<p class="text-xs mt-1" style="color:var(--amber);font-weight:600">As duas janelas estão distantes (${Math.abs(resumo14.taxa-resumo30.taxa)} p.p.): ${resumo14.taxa>resumo30.taxa?"as duas últimas semanas foram melhores que o mês inteiro — algo que você mudou está funcionando.":"as duas últimas semanas caíram em relação ao mês. Vale ver se mudou o assunto, o tipo de questão ou o ritmo."}</p>` : ""}
+    </div>
+    </div>
     </div>
   </div>
 

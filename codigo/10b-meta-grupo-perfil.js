@@ -1,4 +1,4 @@
-/* codigo/10b-meta-grupo-perfil.js — Meta de estudo (18), Meu Grupo (18-B) e Perfil e configurações, com "Seus dados" (19).
+/* codigo/10b-meta-grupo-perfil.js — Meta de estudo (18), Meu Grupo (18-B), integrantes e grupos de estudo (18-C) e Perfil e configurações, com "Seus dados" (19).
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
@@ -25,7 +25,18 @@ function abrirModalMeta(){
       <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaRecomendadaQuestoesDia}">ideal (${db.configGeral.metaRecomendadaQuestoesDia})</button>
     </div>
     <p class="text-xs muted">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia}/dia, ideal de ${db.configGeral.metaRecomendadaQuestoesDia}/dia. Hoje você já respondeu ${feitasHoje}.</p>
-    <div class="flex gap-1 mt-3"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-3" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaQuestoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('questoes')" title="Volta para a meta recomendada pela coordenação">Restaurar padrão (${db.configGeral.metaRecomendadaQuestoesDia})</button>`:""}</div>`);
+}
+/* "Resetar" a meta é APAGAR a escolha pessoal, e não gravar o número padrão:
+   assim a meta volta a acompanhar a recomendação da coordenação, inclusive
+   quando ela mudar. */
+function restaurarMetaPadrao(qual){
+  const u = usuarioAtual();
+  if(qual === "cartoes") delete u.metaCartoesDia; else delete u.metaQuestoesDia;
+  saveState();
+  fecharModal();
+  toast(qual === "cartoes" ? "Meta de cartões restaurada para o padrão." : "Meta de questões restaurada para o padrão.");
+  render();
 }
 function salvarMeta(){
   const valor = parseInt(document.getElementById("metaInput").value);
@@ -51,7 +62,7 @@ function abrirModalMetaCartoes(){
       <button class="pill" onclick="document.getElementById('metaCartoesInput').value=${recomendada}">recomendada (${recomendada})</button>
     </div>
     <p class="text-xs muted">Hoje você já revisou ${feitosHoje} cartão(ões). A meta de cartões não substitui a de questões: elas convivem, e bater qualquer uma das duas já mantém sua sequência daquele tipo de estudo.</p>
-    <div class="flex gap-1 mt-3"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-3" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaCartoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('cartoes')" title="Volta para a meta recomendada">Restaurar padrão (${recomendada})</button>`:""}</div>`);
 }
 function salvarMetaCartoes(){
   const valor = parseInt(document.getElementById("metaCartoesInput").value);
@@ -149,7 +160,11 @@ function renderMeuGrupo(){
 
   ${renderMeusEstagios(u, meuGrupo)}
 
+  ${!meuGrupo.oficial ? renderIntegrantesDoGrupo(meuGrupo) : ""}
+
   ${!meuGrupo.oficial ? renderQuestoesDoGrupo(meuGrupo) : ""}
+
+  ${!meuGrupo.oficial ? renderSubgruposDoGrupo(meuGrupo) : ""}
 
   <div class="card mb-2">
     <div class="card-title">${semTurma ? "Criar o meu grupo" : "Criar outro grupo"}</div>
@@ -501,6 +516,15 @@ function minhaParteDoGrupo(grupo, usuarioId){
 function podeDividirQuestoesDoGrupo(grupo, u){
   return !!u && !grupo.oficial && (grupo.criadoPor===u.id || grupo.doRodizio || podeAdmin("blocos", u));
 }
+/* Ordenadas por assunto e distribuídas em rodízio: cada pessoa recebe uma
+   amostra de todos os assuntos, e não um assunto inteiro só para ela. Serve à
+   turma inteira e aos grupos de estudo (18-C). Devolve id da questão → id de quem fica com ela. */
+function dividirEntreMembros(questoes, membros){
+  const divisao = {};
+  questoes.slice().sort((a,b)=>(a.assuntoId||"").localeCompare(b.assuntoId||"") || a.id.localeCompare(b.id))
+    .forEach((q,i)=>{ divisao[q.id] = membros[i % membros.length].id; });
+  return divisao;
+}
 function dividirQuestoesDoGrupo(grupoId){
   const g = getGrupo(grupoId);
   if(!g || !podeDividirQuestoesDoGrupo(g, usuarioAtual())) return;
@@ -508,11 +532,7 @@ function dividirQuestoesDoGrupo(grupoId){
   const questoes = questoesDoGrupo(g);
   if(membros.length < 2){ toast("Precisa de pelo menos dois membros para dividir as questões.", "err"); return; }
   if(!questoes.length){ toast("O grupo ainda não tem questões para dividir.", "err"); return; }
-  // ordenadas por assunto e distribuídas em rodízio: cada pessoa recebe uma
-  // amostra de todos os assuntos, e não um assunto inteiro só para ela
-  const ordenadas = questoes.slice().sort((a,b)=>(a.assuntoId||"").localeCompare(b.assuntoId||"") || a.id.localeCompare(b.id));
-  g.divisao = {};
-  ordenadas.forEach((q,i)=>{ g.divisao[q.id] = membros[i % membros.length].id; });
+  g.divisao = dividirEntreMembros(questoes, membros);
   saveState();
   toast(questoes.length+" questão(ões) divididas entre "+membros.length+" membros.");
   render();
@@ -573,6 +593,164 @@ function renderQuestoesDoGrupo(grupo){
     </tbody></table></div>
     ${controlesPaginacao(pagGrupo, "questão(ões) do grupo")}` : '<p class="text-sm muted mt-1">Nenhuma questão adicionada ainda.</p>'}
   </div>`;
+}
+
+/* ==========================================================================
+   18-C. INTEGRANTES E GRUPOS DE ESTUDO (subgrupos)
+   ==========================================================================
+   O grupo (turma) é um só por pessoa e decide o calendário. Mas dividir um
+   conjunto de questões nem sempre é com a turma inteira: dois colegas
+   fazendo a lista que subiram, um trio para o simulado de sábado. Por isso,
+   dentro do grupo, qualquer integrante cria GRUPOS DE ESTUDO: escolhe quem
+   participa (só quem já é do grupo), quais questões do grupo entram — por
+   prova (instituição e ano), já que é assim que elas chegam no envio em lote
+   — e a plataforma divide entre os participantes, como na turma inteira.
+
+   Um grupo de estudo não muda calendário nem tira ninguém da turma: é uma
+   etiqueta sobre questões que já existem. Fica no navegador, como os grupos
+   (ver o aviso no fim de Meu Grupo). Guardado em db.subgrupos:
+   { id, grupoId, nome, criadoPor, membros, questaoIds, divisao }. */
+function rotuloPapelNoGrupo(grupo, usuario){
+  if(grupo.criadoPor === usuario.id) return "criou o grupo";
+  return ({ professor: "Professor", admin: "Administrador", residente: "Residente" })[usuario.papel] || "";
+}
+function renderIntegrantesDoGrupo(grupo){
+  const u = usuarioAtual();
+  const membros = membrosDoGrupo(grupo);
+  return `<div class="card mb-2">
+    <div class="card-title">${iconeSvg("users")} Integrantes do grupo (${membros.length})</div>
+    <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+      ${membros.map(m=>`<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}" title="${escapeHtml(rotuloPapelNoGrupo(grupo, m))}">${escapeHtml(m.id===u.id ? m.nome+" (você)" : m.nome)}${grupo.criadoPor===m.id?" ★":""}</span>`).join("") || '<span class="text-sm muted">Ninguém ainda.</span>'}
+    </div>
+    <p class="text-xs muted mt-1">★ = quem criou o grupo. ${membros.length<2 ? "Convide os colegas: eles pedem para entrar em \"Entrar em um grupo já existente\" e o dono aprova." : "Com os integrantes à vista, dá para montar um grupo de estudo menor logo abaixo."}</p>
+  </div>`;
+}
+function subgruposDoGrupo(grupo){ return (db.subgrupos||[]).filter(s=>s.grupoId===grupo.id); }
+function getSubgrupo(id){ return (db.subgrupos||[]).find(s=>s.id===id) || null; }
+// só conta quem ainda é da turma: quem saiu dela sai do grupo de estudo sem ninguém precisar editar
+function membrosDoSubgrupo(sg){
+  const pai = getGrupo(sg.grupoId);
+  const daTurma = new Set(pai ? membrosDoGrupo(pai).map(m=>m.id) : []);
+  return (sg.membros||[]).filter(id=>daTurma.has(id)).map(getUsuario).filter(Boolean).sort((a,b)=>a.nome.localeCompare(b.nome, "pt-BR"));
+}
+function questoesDoSubgrupo(sg){ const ids = new Set(sg.questaoIds||[]); return db.questoes.filter(q=>ids.has(q.id)); }
+function minhaParteDoSubgrupo(sg, usuarioId){
+  const sou = membrosDoSubgrupo(sg).some(m=>m.id===usuarioId);
+  return sou ? questoesDoSubgrupo(sg).filter(q=>q.status==="ativa" && sg.divisao && sg.divisao[q.id]===usuarioId) : [];
+}
+function podeGerirSubgrupo(sg, u){ return !!u && (sg.criadoPor===u.id || podeAdmin("blocos", u)); }
+/* As questões do grupo, agrupadas pela prova de onde vieram (instituição e
+   ano): cada grupo de questões é uma opção marcável ao criar o grupo de estudo. */
+function conjuntosDeQuestoesDoGrupo(grupo){
+  const mapa = {};
+  questoesDoGrupo(grupo).forEach(q=>{
+    const chave = q.banca ? q.banca+" "+(q.ano||"") : "Questões avulsas";
+    (mapa[chave] = mapa[chave] || {chave, ids:[]}).ids.push(q.id);
+  });
+  return Object.values(mapa).sort((a,b)=>a.chave.localeCompare(b.chave, "pt-BR"));
+}
+function renderSubgruposDoGrupo(grupo){
+  const u = usuarioAtual();
+  const lista = subgruposDoGrupo(grupo);
+  return `<div class="card mb-2">
+    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
+      <div class="card-title" style="margin-bottom:0">${iconeSvg("users")} Grupos de estudo dentro deste grupo (${lista.length})</div>
+      <button class="btn btn-primary btn-sm" onclick="abrirFormularioSubgrupo(null)">${iconeSvg("plus")} Criar grupo de estudo</button>
+    </div>
+    <p class="text-sm muted">Para dividir questões com só parte da turma — por exemplo, a lista que você enviou ou uma prova inteira. Você escolhe quem participa e quais questões entram, e cada pessoa pratica a sua parte. Não muda o seu calendário nem tira ninguém do grupo.</p>
+    ${lista.map(sg=>{
+      const membros = membrosDoSubgrupo(sg);
+      const questoes = questoesDoSubgrupo(sg);
+      const minhas = minhaParteDoSubgrupo(sg, u.id);
+      const gerente = podeGerirSubgrupo(sg, u);
+      const souMembro = membros.some(m=>m.id===u.id);
+      const dividido = !!sg.divisao && Object.keys(sg.divisao).length > 0;
+      return `<div class="card-flat mt-2">
+        <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
+          <div><div style="font-weight:700">${escapeHtml(sg.nome)}</div>
+            <div class="text-xs muted">${questoes.length} questão(ões) · criado por ${escapeHtml(getUsuario(sg.criadoPor)?getUsuario(sg.criadoPor).nome:"—")}</div></div>
+          <div class="flex gap-1" style="flex-wrap:wrap">
+            ${minhas.length ? `<button class="btn btn-primary btn-sm" onclick="praticarMinhaParteDoSubgrupo('${sg.id}')">${iconeSvg("book")} Praticar minha parte (${minhas.length})</button>` : ""}
+            ${gerente ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioSubgrupo('${sg.id}')">${iconeSvg("edit")} Editar</button>` : ""}
+            ${souMembro && !gerente ? `<button class="btn btn-ghost btn-sm" onclick="sairDoSubgrupo('${sg.id}')">Sair</button>` : ""}
+            ${gerente ? `<button class="btn btn-ghost btn-sm" onclick="excluirSubgrupo('${sg.id}')">${iconeSvg("trash")}</button>` : ""}
+          </div>
+        </div>
+        <div class="flex gap-1 mt-1" style="flex-wrap:wrap">${membros.map(m=>{
+          const n = dividido ? questoes.filter(q=>sg.divisao[q.id]===m.id).length : 0;
+          return `<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}">${escapeHtml(m.id===u.id?"Você":m.nome)}${dividido?" · "+n:""}</span>`;
+        }).join("")}</div>
+        ${!souMembro ? `<div class="text-xs muted mt-1">Você não participa deste grupo de estudo.</div>` : dividido && !minhas.length ? `<div class="text-xs muted mt-1">Você não ficou com nenhuma questão nesta divisão.</div>` : ""}
+      </div>`;
+    }).join("") || '<p class="text-sm muted mt-2">Nenhum grupo de estudo ainda.</p>'}
+  </div>`;
+}
+function abrirFormularioSubgrupo(id){
+  const u = usuarioAtual();
+  const grupo = getGrupoDoUsuario(u);
+  const sg = id ? getSubgrupo(id) : null;
+  if(sg && !podeGerirSubgrupo(sg, u)){ toast("Só quem criou o grupo de estudo pode editá-lo.", "err"); return; }
+  const membros = membrosDoGrupo(grupo);
+  const conjuntos = conjuntosDeQuestoesDoGrupo(grupo);
+  const marcadosM = new Set(sg ? sg.membros : [u.id]);
+  const marcadosQ = new Set(sg ? sg.questaoIds : []);
+  abrirModal(`
+    ${cabecalhoJanela(sg ? "Editar grupo de estudo" : "Criar grupo de estudo")}
+    <div class="field"><label class="label">Nome</label><input class="input" id="sgNome" value="${escapeHtml(sg?sg.nome:"")}" placeholder="Ex.: Lista de cardiologia — dupla A"></div>
+    <div class="label mb-1">Quem participa <span class="muted">(da sua turma)</span></div>
+    <div style="max-height:150px;overflow-y:auto">${membros.map(m=>`<label class="checkbox-row mb-1"><input type="checkbox" class="sgMembro" value="${m.id}" ${marcadosM.has(m.id)?"checked":""}> ${escapeHtml(m.nome)}${m.id===u.id?" (você)":""}</label>`).join("")}</div>
+    <div class="label mb-1 mt-2">Quais questões entram <span class="muted">(do grupo, por prova)</span></div>
+    ${conjuntos.length ? `<div style="max-height:170px;overflow-y:auto">${conjuntos.map(c=>`<label class="checkbox-row mb-1"><input type="checkbox" class="sgConjunto" value="${escapeHtml(c.chave)}" ${c.ids.every(i=>marcadosQ.has(i))?"checked":""}> ${escapeHtml(c.chave)} <span class="text-xs muted">(${c.ids.length})</span></label>`).join("")}</div>`
+      : `<p class="text-sm muted">O grupo ainda não tem questões. Envie uma prova ou lista em <button class="link-btn" onclick="fecharModal(); navigate('importar-questoes')">Enviar Questões</button> (destino "Questões do meu grupo") e volte aqui.</p>`}
+    <p class="text-xs muted mt-1">As questões são divididas entre quem participa, na mesma quantidade e misturando os assuntos. Ao salvar, a divisão é refeita.</p>
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarSubgrupo('${id||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function salvarSubgrupo(id){
+  const u = usuarioAtual();
+  const grupo = getGrupoDoUsuario(u);
+  const nome = (document.getElementById("sgNome").value||"").trim();
+  const membrosIds = [...document.querySelectorAll(".sgMembro:checked")].map(el=>el.value);
+  const chaves = new Set([...document.querySelectorAll(".sgConjunto:checked")].map(el=>el.value));
+  const questaoIds = conjuntosDeQuestoesDoGrupo(grupo).filter(c=>chaves.has(c.chave)).flatMap(c=>c.ids);
+  if(!nome){ toast("Dê um nome ao grupo de estudo.", "err"); return; }
+  if(!membrosIds.length){ toast("Escolha quem participa.", "err"); return; }
+  if(!questaoIds.length){ toast("Escolha ao menos uma prova do grupo.", "err"); return; }
+  let sg = id ? getSubgrupo(id) : null;
+  if(id && !sg) return;
+  if(sg && !podeGerirSubgrupo(sg, u)) return;
+  if(!sg){
+    sg = { id: uid("sg"), grupoId: grupo.id, criadoPor: u.id, criadoEm: hojeISO() };
+    db.subgrupos.push(sg);
+  }
+  Object.assign(sg, { nome, membros: membrosIds, questaoIds });
+  const participantes = membrosDoSubgrupo(sg);
+  sg.divisao = participantes.length ? dividirEntreMembros(questoesDoSubgrupo(sg).filter(q=>q.status==="ativa"), participantes) : {};
+  saveState();
+  fecharModal();
+  toast(participantes.length>1 ? "Grupo de estudo salvo: "+questaoIds.length+" questão(ões) divididas entre "+participantes.length+"." : "Grupo de estudo salvo. Com uma pessoa só não há o que dividir — fique com todas as questões.");
+  render();
+}
+function sairDoSubgrupo(id){
+  const sg = getSubgrupo(id), u = usuarioAtual(); if(!sg) return;
+  sg.membros = (sg.membros||[]).filter(x=>x!==u.id);
+  if(sg.divisao) Object.keys(sg.divisao).forEach(q=>{ if(sg.divisao[q]===u.id) delete sg.divisao[q]; });
+  saveState();
+  toast("Você saiu do grupo de estudo. As questões que eram suas ficam sem responsável até o criador refazer a divisão.");
+  render();
+}
+function excluirSubgrupo(id){
+  const sg = getSubgrupo(id); if(!sg || !podeGerirSubgrupo(sg, usuarioAtual())) return;
+  if(!confirm("Excluir o grupo de estudo \""+sg.nome+"\"? As questões continuam no grupo; só some a divisão.")) return;
+  db.subgrupos = db.subgrupos.filter(s=>s.id!==id);
+  saveState();
+  toast("Grupo de estudo excluído.");
+  render();
+}
+function praticarMinhaParteDoSubgrupo(id){
+  const sg = getSubgrupo(id); if(!sg) return;
+  const minhas = minhaParteDoSubgrupo(sg, usuarioAtual().id);
+  if(!minhas.length){ toast("Você não tem questões nesta divisão.", "err"); return; }
+  iniciarSessaoComLista(minhas.map(q=>({questaoId:q.id, motivo:"Minha parte — "+sg.nome})), "pratica");
 }
 
 /* ==========================================================================

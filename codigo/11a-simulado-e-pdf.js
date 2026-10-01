@@ -26,11 +26,11 @@ function renderCriarSimulado(){
         <div style="max-height:150px;overflow-y:auto">${[...new Set(db.questoes.map(q=>q.ano))].sort((a,b)=>b-a).map(ano=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csAno" value="${ano}"> ${ano}</label>`).join("")}</div>
       </div>
       <div>
-        <div class="label mb-1">Instituição</div>
-        <select class="select" id="csBanca">
-          <option value="">Todas as instituições</option>
-          ${[...new Set(db.questoes.map(q=>q.banca))].sort().map(b=>`<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join("")}
-        </select>
+        <div class="flex justify-between items-center mb-1">
+          <div class="label">Instituição (uma ou mais)</div>
+          <div class="flex gap-1"><button class="link-btn text-xs" onclick="marcarTodasCaixas('csBanca',false)">limpar</button></div>
+        </div>
+        <div style="max-height:150px;overflow-y:auto">${[...new Set(db.questoes.map(q=>q.banca))].sort().map(b=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csBanca" value="${escapeHtml(b)}"> ${escapeHtml(b)}</label>`).join("")}</div>
         <button class="btn btn-secondary mt-2" onclick="buscarCandidatasSimulado()">Buscar questões</button>
       </div>
     </div>
@@ -64,9 +64,8 @@ function marcarUltimos5Caixas(classe){
 function buscarCandidatasSimulado(){
   const areaIds = [...document.querySelectorAll(".csArea:checked")].map(el=>el.value);
   const anos = [...document.querySelectorAll(".csAno:checked")].map(el=>parseInt(el.value));
-  const campoBanca = document.getElementById("csBanca");
-  const banca = campoBanca ? campoBanca.value : "";
-  const pool = buscarQuestoesPorFiltro(usuarioAtual().id, {areaIds, anos, bancas: banca?[banca]:[], incluirInativas:true}).map(q=>q.id);
+  const bancas = [...document.querySelectorAll(".csBanca:checked")].map(el=>el.value);
+  const pool = buscarQuestoesPorFiltro(usuarioAtual().id, {areaIds, anos, bancas, incluirInativas:true}).map(q=>q.id);
   if(!state.filtroRota) state.filtroRota = {};
   state.filtroRota.criarSimulado = {pool, selecionadas:[]};
   render();

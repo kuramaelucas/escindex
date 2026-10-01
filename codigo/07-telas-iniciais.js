@@ -616,7 +616,7 @@ function renderEstudar(){
   ${htmlCardPrioridadesEstudar(u)}
   <div class="card mt-2">
     <div class="card-title">Monte sua própria lista</div>
-    <p class="text-sm muted mb-2">Filtre por grande área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano ou situação (erros, favoritas, ainda não respondidas). Deixar um filtro em branco significa "todos".</p>
+    <p class="text-sm muted mb-2">Filtre por grande área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano ou situação (erros, favoritas, ainda não respondidas). Dá para marcar mais de uma instituição e mais de um tipo de prova no mesmo conjunto. Deixar um filtro em branco significa "todos".</p>
     <div class="grid grid-3" onchange="atualizarContagemFiltro()">
       <div>
         <div class="flex justify-between items-center mb-1">
@@ -642,15 +642,16 @@ function renderEstudar(){
       </div>
       <div>
         <div class="label mb-1">Tipo de prova</div>
-        <select class="select mb-2" id="filtroTipoProva">
-          <option value="">Residência e graduação</option>
-          ${CONFIG.tiposProva.map(t=>`<option value="${t.id}">${escapeHtml(t.nomeLongo)}</option>`).join("")}
-        </select>
-        <div class="label mb-1">Instituição</div>
-        <select class="select" id="filtroBanca">
-          <option value="">Todas as instituições</option>
-          ${bancas.map(b=>`<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join("")}
-        </select>
+        ${CONFIG.tiposProva.map(t=>`<label class="checkbox-row mb-1" title="${escapeHtml(t.descricao)}"><input type="checkbox" class="filtroTipoProva" value="${t.id}"> ${escapeHtml(t.nomeLongo)}</label>`).join("")}
+        <div class="flex justify-between items-center mb-1 mt-2">
+          <div class="label">Instituição</div>
+          <div class="flex gap-1">
+            <button class="link-btn text-xs" onclick="marcarTodasCaixas('filtroBanca',false); atualizarContagemFiltro()">limpar</button>
+          </div>
+        </div>
+        <div style="max-height:120px;overflow-y:auto">
+          ${bancas.map(b=>`<label class="checkbox-row mb-1"><input type="checkbox" class="filtroBanca" value="${escapeHtml(b)}"> ${escapeHtml(b)}</label>`).join("")}
+        </div>
         <div class="flex justify-between items-center mb-1 mt-2">
           <div class="label">Ano da prova</div>
           <div class="flex gap-1">
@@ -683,15 +684,14 @@ function lerFiltrosPersonalizados(){
   const valor = id => { const el = document.getElementById(id); return el ? el.value : ""; };
   const marcado = id => { const el = document.getElementById(id); return !!(el && el.checked); };
   const escolhidos = id => { const el = document.getElementById(id); return el ? [...(el.selectedOptions||[])].map(o=>o.value) : []; };
-  const banca = valor("filtroBanca");
-  const tipo = valor("filtroTipoProva");
   return {
     areaIds: [...document.querySelectorAll(".filtroArea:checked")].map(el=>el.value),
     anos: [...document.querySelectorAll(".filtroAno:checked")].map(el=>parseInt(el.value)),
     especialidadeIds: escolhidos("filtroEspecialidade"),
     assuntoIds: escolhidos("filtroAssunto"),
-    bancas: banca ? [banca] : [],
-    tiposProva: tipo ? [tipo] : [],
+    // mais de uma instituição ou tipo de prova no mesmo conjunto; nenhuma marcada = todas
+    bancas: [...document.querySelectorAll(".filtroBanca:checked")].map(el=>el.value),
+    tiposProva: [...document.querySelectorAll(".filtroTipoProva:checked")].map(el=>el.value),
     apenasErros: marcado("filtroApenasErros"),
     apenasFavoritas: marcado("filtroApenasFavoritas"),
     apenasNaoRespondidas: marcado("filtroApenasNaoRespondidas"),

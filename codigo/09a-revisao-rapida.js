@@ -109,6 +109,7 @@ function renderFlashcardsInicio(u){
         <div class="card-title">Meus cartões (${meus.length})</div>
         <div class="text-sm muted">Os que você escreveu enquanto resolvia questões. São seus: ninguém mais vê, e entram no baralho junto com os da equipe.</div>
       </div>
+      <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
     </div>
     <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
       ${pagMeus.itens.map(c=>`<tr>
@@ -124,7 +125,10 @@ function renderFlashcardsInicio(u){
     </tbody></table></div>
     ${controlesPaginacao(pagMeus, "cartão(ões) seu(s)")}
   </div>` : `<div class="card-flat mt-2 text-sm">
-    <strong>Escreva seus próprios cartões.</strong> Ao responder uma questão, o botão “${"Virar flashcard"}” monta um cartão já no assunto daquela questão — é o melhor momento para isso, porque o conceito que faltou ainda está fresco. Esses cartões são só seus.
+    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+      <div style="min-width:220px;flex:1"><strong>Escreva seus próprios cartões.</strong> Ao responder uma questão, o botão “${"Virar flashcard"}” monta um cartão já no assunto daquela questão — é o melhor momento para isso, porque o conceito que faltou ainda está fresco. Esses cartões são só seus.</div>
+      <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
+    </div>
   </div>`}
 
   ${podeEditar ? `<div class="card mt-2">
@@ -268,6 +272,15 @@ function praticarQuestoesDoBaralho(){
 
    Quem não gere conteúdo só cria cartão PESSOAL: entra no baralho dele e não
    aparece para mais ninguém. É caderno de estudo, não material publicado. */
+/* <option>s de todos os assuntos, agrupados por grande área, para os <select>
+   de cartão (um só e baralho inteiro): "Especialidade › Assunto". */
+function opcoesDeAssuntoAgrupadas(selecionado){
+  return db.taxonomia.areas.map(area=>`<optgroup label="${escapeHtml(area.nome)}">${
+    db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>
+      db.taxonomia.assuntos.filter(a=>a.especialidadeId===e.id).map(a=>
+        `<option value="${a.id}" ${selecionado===a.id?"selected":""}>${escapeHtml(e.nome)} › ${escapeHtml(a.nome)}</option>`).join("")).join("")
+  }</optgroup>`).join("");
+}
 function abrirFormularioFlashcard(id, opts){
   opts = opts || {};
   const u = usuarioAtual();
@@ -293,11 +306,7 @@ function abrirFormularioFlashcard(id, opts){
     ${!daEquipe ? `<div class="card-flat mt-2 text-xs">${iconeSvg("user")} Este cartão fica <strong>só no seu baralho</strong>. Ninguém mais vê, e ele entra nas suas revisões junto com os cartões da equipe.</div>` : ""}
     <div class="field mt-2"><label class="label">Assunto</label>
       <select class="select" id="fcAssunto">
-        ${db.taxonomia.areas.map(area=>`<optgroup label="${escapeHtml(area.nome)}">${
-          db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>
-            db.taxonomia.assuntos.filter(a=>a.especialidadeId===e.id).map(a=>
-              `<option value="${a.id}" ${assuntoEscolhido===a.id?"selected":""}>${escapeHtml(e.nome)} › ${escapeHtml(a.nome)}</option>`).join("")).join("")
-        }</optgroup>`).join("")}
+        ${opcoesDeAssuntoAgrupadas(assuntoEscolhido)}
       </select>
       ${questao ? `<div class="hint mt-1">Já veio marcado com o assunto da questão (${escapeHtml(nomeAssunto(questao.assuntoId))}). Troque se o seu cartão for sobre outra coisa.</div>` : ""}
     </div>

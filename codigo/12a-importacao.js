@@ -589,7 +589,7 @@ function confirmarImportacao(){
   state.filtroRota.previewImportacao = null;
   toast(r.importadas+" questão(ões) importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s) criado(s)":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
-    (destino==="grupo" ? " — disponíveis para o seu grupo."
+    (destino==="grupo" ? " — disponíveis para o seu grupo. Em Meu Grupo, dá para dividir o conjunto entre quem quiser."
       : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")
       : destino==="sugerir" ? " — aguardando aprovação de um professor." : "."));
   navigate(destino==="grupo" ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");

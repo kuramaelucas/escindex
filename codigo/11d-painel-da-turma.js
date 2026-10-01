@@ -30,15 +30,17 @@
      - nuvem desligada: das contas deste navegador (demonstração), com a
        mesma conta — a tela é a mesma, e diz de onde veio.
 
-   Os ALERTAS são o motivo de a tela existir: quem parou de estudar (7 dias
-   ou mais sem questão nem cartão) e quem nunca começou. */
+   Os ALERTAS continuam na coluna "Atenção": quem parou de estudar (7 dias
+   ou mais sem questão nem cartão) e quem nunca começou. A lista não é mais
+   ordenada por eles: a coordenação pediu o ÚLTIMO USO como critério, que é
+   um fato e não um julgamento de quem "precisa de atenção". */
 function podeVerPainelTurma(u){
   u = u || usuarioAtual();
   if(!u || state.modoAluno) return false;
   return u.papel === "professor" || podeAdmin("turma", u);
 }
 function filtrosPainelTurma(){
-  if(!state.filtroRota.painel) state.filtroRota.painel = { ano: "todos", ordem: "alerta", busca: "" };
+  if(!state.filtroRota.painel) state.filtroRota.painel = { ano: "todos", ordem: "ultimo", busca: "" };
   return state.filtroRota.painel;
 }
 function mudarFiltroPainelTurma(campo, valor){ filtrosPainelTurma()[campo] = valor; render(); }
@@ -235,12 +237,15 @@ function renderPainelTurma(){
   const busca = (f.busca || "").trim().toLowerCase();
   let lista = recorte.map(a => Object.assign({}, a, { _al: alertasDoAluno(a) }));
   if(busca) lista = lista.filter(a => (a.nome + " " + a.email).toLowerCase().includes(busca));
+  // "nunca usou" (ultima nula) fica sempre no fim, nas duas direções do último uso
+  const ultimoUso = a => a._al.ultima || "";
   const ordens = {
-    alerta: (x, y) => y._al.peso - x._al.peso || x.nome.localeCompare(y.nome),
+    ultimo: (x, y) => !!ultimoUso(y) - !!ultimoUso(x) || ultimoUso(y).localeCompare(ultimoUso(x)) || x.nome.localeCompare(y.nome),
+    parado: (x, y) => !!ultimoUso(y) - !!ultimoUso(x) || ultimoUso(x).localeCompare(ultimoUso(y)) || x.nome.localeCompare(y.nome),
     nome: (x, y) => x.nome.localeCompare(y.nome),
     ativos: (x, y) => y.r30 - x.r30 || x.nome.localeCompare(y.nome),
   };
-  lista.sort(ordens[f.ordem] || (naEquipe ? ordens.ativos : ordens.alerta));
+  lista.sort(ordens[f.ordem] || ordens.ultimo);
   const p = paginar(lista, "painel-turma", { assinatura: JSON.stringify(f) });
 
   const origem = pd.origem === "nuvem"
@@ -320,15 +325,16 @@ function renderPainelTurma(){
       <div class="flex gap-1 items-center" style="flex-wrap:wrap">
         <input class="input" style="max-width:220px" placeholder="Buscar por nome ou e-mail" value="${escapeHtml(f.busca||"")}" onchange="mudarFiltroPainelTurma('busca', this.value)">
         <select class="select" style="max-width:220px" onchange="mudarFiltroPainelTurma('ordem', this.value)">
-          ${naEquipe ? "" : `<option value="alerta" ${f.ordem==="alerta"?"selected":""}>Quem precisa de atenção primeiro</option>`}
-          <option value="ativos" ${f.ordem==="ativos"||(naEquipe&&f.ordem==="alerta")?"selected":""}>Mais ativos (30 dias)</option>
+          <option value="ultimo" ${!ordens[f.ordem]||f.ordem==="ultimo"?"selected":""}>Último uso: mais recente primeiro</option>
+          <option value="parado" ${f.ordem==="parado"?"selected":""}>Último uso: mais antigo primeiro</option>
+          <option value="ativos" ${f.ordem==="ativos"?"selected":""}>Mais ativos (30 dias)</option>
           <option value="nome" ${f.ordem==="nome"?"selected":""}>Nome</option>
         </select>
         <button class="btn btn-secondary btn-sm" onclick="exportarPainelTurmaCsv()">${iconeSvg("download")} Baixar planilha (CSV)</button>
       </div>
     </div>
     <div class="table-wrap mt-2"><table>
-      <thead><tr><th>${naEquipe ? "Pessoa" : "Aluno"}</th><th>${naEquipe ? "Papel" : "Ano / turma"}</th><th>Última atividade</th><th>Dias ativos (30)</th><th>Questões (30 dias)</th><th>Questões (total)</th><th>Cartões (30 dias)</th><th>Simulados</th>${naEquipe ? "" : "<th>Atenção</th>"}</tr></thead>
+      <thead><tr><th>${naEquipe ? "Pessoa" : "Aluno"}</th><th>${naEquipe ? "Papel" : "Ano / turma"}</th><th>Último uso</th><th>Dias ativos (30)</th><th>Questões (30 dias)</th><th>Questões (total)</th><th>Cartões (30 dias)</th><th>Simulados</th>${naEquipe ? "" : "<th>Atenção</th>"}</tr></thead>
       <tbody>${p.itens.map(a => {
         const al = a._al;
         return `<tr>

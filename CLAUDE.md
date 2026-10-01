@@ -51,9 +51,9 @@ Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem insta
 | `08b-destaques-de-texto.js` | 11-B | selecionar um trecho da questão ou do cartão e destacá-lo (`htmlComDestaques`, `atributoDestacavel`), por pessoa |
 | `09a-revisao-rapida.js` | 12-B | flashcards |
 | `09b-simulados-e-provas.js` | 13–14 | simulados e provas antigas |
-| `09c-cartoes-em-lote.js` | 12-C | cartões em lote |
+| `09c-cartoes-em-lote.js` | 12-C, 12-D | cartões em lote; Adicionar baralho (trazer baralho inteiro de uma IA) |
 | `10a-favoritos-historico-desempenho.js` | 16–17 | Favoritos, Livro de Ouro, Histórico, Meu Desempenho |
-| `10b-meta-grupo-perfil.js` | 18–19 | Meta, Meu Grupo, Perfil e configurações, "Seus dados" |
+| `10b-meta-grupo-perfil.js` | 18–19 (+18-C) | Meta, Meu Grupo, Perfil e configurações, "Seus dados" |
 | `11a-simulado-e-pdf.js` | 20, 20-B | Criar Simulado, Material em PDF |
 | `11b-qualidade-e-cadastros.js` | 21, 23, 24 | Questões Difíceis/qualidade, Fila de Dúvidas, cadastros, usuários, Feedback dos Usuários |
 | `11c-banco-e-taxonomia.js` | 25, 25-B | Banco de Questões, formulário de questão, Especialidades e Assuntos |

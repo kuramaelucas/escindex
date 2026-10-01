@@ -231,6 +231,7 @@ function dbPadrao(){
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     feedbacks: [],          // comentários, sugestões e reclamações gerais sobre a plataforma
     avisos: [],             // recados da coordenação aos usuários (seção 24-D): {id, titulo, texto, rota, papeis, anos, data, expiraEm, autorNome, removido}
+    subgrupos: [],          // grupos de estudo dentro de uma turma, para dividir questões (seção 18-C): {id, grupoId, nome, criadoPor, membros, questaoIds, divisao}
     cargasProvas: [],       // provas sendo transcritas em lotes (ver Central de Provas)
     configGeral: {
       metaMinimaQuestoesDia: CONFIG.metaMinimaQuestoesDia,
@@ -277,7 +278,7 @@ function garantirEstruturaDb(alvo){
   // o que a turma produziu: preservado sempre que for uma lista
   lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("destaques"); lista("sessoes");
   lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios"); lista("avisos");
-  lista("cargasProvas"); lista("filaNuvem"); lista("grupos");
+  lista("cargasProvas"); lista("filaNuvem"); lista("grupos"); lista("subgrupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
   objeto("revisoes"); objeto("revisoesFlashcards"); objeto("diasCartoes"); objeto("cartoesPorDia");
@@ -409,6 +410,7 @@ function loadState(){
     // sem precisar reiniciar tudo
     if(!db.feedbacks) db.feedbacks = [];
     if(!db.avisos) db.avisos = [];
+    if(!db.subgrupos) db.subgrupos = [];
     if(!db.sessoes) db.sessoes = [];
     // Central de Provas entrou depois: quem já usava começa sem prova nenhuma
     // em andamento (as questões que já importou continuam no banco, intactas)
