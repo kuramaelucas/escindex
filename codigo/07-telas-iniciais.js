@@ -546,9 +546,9 @@ function renderEstudar(){
   const bloco = getBlocoAtual();
   const mistura = misturaEfetiva(u);
   const errosPendentes = questoesErroOrdenadasPorAntiguidade(u.id).length;
-  const meuGrupo = getGrupoDoUsuario(u);
-  const qtdQuestoesGrupo = db.questoes.filter(q=>q.grupoId===meuGrupo.id && q.status==="ativa").length;
-  const todas = questoesAtivas(meuGrupo.id);
+  const idsMeusGrupos = idsDosGruposDoUsuario(u);
+  const qtdQuestoesGrupo = db.questoes.filter(q=>idsMeusGrupos.includes(q.grupoId) && q.status==="ativa").length;
+  const todas = questoesAtivas(idsMeusGrupos);
   const anos = [...new Set(todas.map(q=>q.ano))].sort((a,b)=>b-a);
   const bancas = [...new Set(todas.map(q=>q.banca))].sort();
   const meta = metaDoUsuario(u);
@@ -674,7 +674,7 @@ function renderEstudar(){
         <label class="checkbox-row mb-1"><input type="checkbox" id="filtroApenasErros"> Só erros/chutes</label>
         <label class="checkbox-row mb-1"><input type="checkbox" id="filtroApenasFavoritas"> Só favoritas</label>
         <label class="checkbox-row mb-1"><input type="checkbox" id="filtroApenasNaoRespondidas"> Ainda não respondidas</label>
-        ${!meuGrupo.oficial ? `<label class="checkbox-row mb-1"><input type="checkbox" id="filtroIncluirGrupo"> Incluir questões do meu grupo (${qtdQuestoesGrupo})</label>` : ""}
+        ${idsMeusGrupos.length ? `<label class="checkbox-row mb-1"><input type="checkbox" id="filtroIncluirGrupo"> Incluir questões ${idsMeusGrupos.length>1?"dos meus grupos":"do meu grupo"} (${qtdQuestoesGrupo})</label>` : ""}
       </div>
     </div>
     <div class="flex items-end gap-2 mt-2" style="flex-wrap:wrap">
@@ -720,7 +720,7 @@ function lerFiltrosPersonalizados(){
     apenasErros: marcado("filtroApenasErros"),
     apenasFavoritas: marcado("filtroApenasFavoritas"),
     apenasNaoRespondidas: marcado("filtroApenasNaoRespondidas"),
-    incluirGrupoId: marcado("filtroIncluirGrupo") ? getGrupoDoUsuario(u).id : undefined,
+    incluirGrupoId: marcado("filtroIncluirGrupo") ? idsDosGruposDoUsuario(u) : undefined,
   };
 }
 function textoContagemFiltro(n){
@@ -804,7 +804,7 @@ function abrirQuestaoCompleta(qid, opts){
   if(!q){ toast("Questão não encontrada.", "err"); return; }
   const u = usuarioAtual();
   const ehStaff = u && (u.papel==="admin" || u.papel==="professor" || u.papel==="residente");
-  const ehDoMeuGrupo = u && u.papel==="aluno" && q.grupoId && getGrupoDoUsuario(u).id===q.grupoId;
+  const ehDoMeuGrupo = u && u.papel==="aluno" && q.grupoId && idsDosGruposDoUsuario(u).includes(q.grupoId);
   const podeEditar = opts.permitirEdicao !== false && (ehStaff || ehDoMeuGrupo);
   const esp = getEspecialidade(q.especialidadeId), area = getArea(q.areaId);
   const ultima = u ? ultimaResposta(u.id, q.id) : null;

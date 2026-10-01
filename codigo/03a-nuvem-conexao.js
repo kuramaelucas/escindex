@@ -346,6 +346,8 @@ function nuvemAplicarPerfilLocal(p){
   if(p.ano_faculdade) u.anoFaculdade = p.ano_faculdade;
   if(p.bloco_atual_id) u.blocoAtualId = p.bloco_atual_id;
   if(p.grupo_id) u.grupoId = p.grupo_id;
+  // null vale (saí do grupo de questões em outro aparelho); ausente é banco sem a coluna ainda
+  if(p.grupo_questoes_id) u.grupoQuestoesId = p.grupo_questoes_id; else if(p.grupo_questoes_id === null) delete u.grupoQuestoesId;
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
@@ -376,6 +378,7 @@ function nuvemConferirPerfil(){
     ano_faculdade: usuario.anoFaculdade || null,
     bloco_atual_id: usuario.blocoAtualId || null,
     grupo_id: usuario.grupoId || null,
+    grupo_questoes_id: usuario.grupoQuestoesId || null,
     meta_questoes_dia: usuario.metaQuestoesDia || null,
     meta_cartoes_dia: usuario.metaCartoesDia || null,
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,

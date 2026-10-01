@@ -116,7 +116,7 @@ function conferenciaDaProva(carga){
 function opcoesDestinoCarga(){
   // uma prova real nunca vai para o banco de um grupo: ela é conteúdo da
   // plataforma inteira, então esse destino não aparece aqui
-  return opcoesDestinoImportacao().filter(([v])=>v!=="grupo");
+  return opcoesDestinoImportacao().filter(([v])=>!destinoEhGrupo(v));
 }
 function criarCargaProva(){
   if(!podeUsarCentralProvas()){ toast("Sua conta não tem acesso à Central de Provas.", "err"); return; }

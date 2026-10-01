@@ -184,6 +184,9 @@ alter table public.perfis add column if not exists ordem_estagios jsonb not null
 -- os avisos da coordenação (seção 11-I) que a pessoa já leu, para o aviso não
 -- voltar a aparecer em outro aparelho: lista de ids.
 alter table public.perfis add column if not exists avisos_lidos jsonb not null default '[]'::jsonb;
+-- o segundo grupo da pessoa, só para compartilhar questões (Meu Grupo): o
+-- grupo do calendário continua em grupo_id.
+alter table public.perfis add column if not exists grupo_questoes_id text;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)

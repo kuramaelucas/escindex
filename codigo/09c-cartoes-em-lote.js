@@ -257,7 +257,7 @@ function desenharAdicionarBaralho(){
     <div class="field mt-2"><label class="label">Resposta da IA</label>
       <textarea class="textarea textarea-mono" id="baralhoTexto" style="min-height:130px" placeholder="FRENTE: ...&#10;VERSO: ...&#10;---">${escapeHtml(st.texto)}</textarea></div>
     ${podeEquipe ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoPessoal" ${st.pessoal?"checked":""} onchange="guardarCamposBaralhoIA(); desenharAdicionarBaralho()"> Só para mim (desmarque para publicar no baralho da equipe)</label>` : ""}
-    ${(!podeEquipe || st.pessoal) && !getGrupoDoUsuario(usuarioAtual()).oficial ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoGrupo" ${st.compartilhar?"checked":""} onchange="guardarCamposBaralhoIA()"> Compartilhar com o meu grupo (${escapeHtml(getGrupoDoUsuario(usuarioAtual()).nome)}) — os colegas recebem estes cartões no baralho deles</label>` : ""}
+    ${(!podeEquipe || st.pessoal) && !grupoPrincipalDeQuestoes(usuarioAtual()).oficial ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoGrupo" ${st.compartilhar?"checked":""} onchange="guardarCamposBaralhoIA()"> Compartilhar com o meu grupo (${escapeHtml(grupoPrincipalDeQuestoes(usuarioAtual()).nome)}) — os colegas recebem estes cartões no baralho deles</label>` : ""}
     <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="conferirBaralhoIA()">Conferir</button>
       ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="adicionarBaralhoIA()">Adicionar ${a.validos.length} cartão(ões)</button>` : ""}
@@ -338,7 +338,7 @@ function adicionarBaralhoIA(){
       status: "ativo", criadoPor: u.id, criadoEm: hojeISO(),
     };
     if(equipe) cartao.revisao = "pendente";
-    else if(st.compartilhar && !getGrupoDoUsuario(u).oficial) cartao.grupoId = getGrupoDoUsuario(u).id;
+    else if(st.compartilhar && !grupoPrincipalDeQuestoes(u).oficial) cartao.grupoId = grupoPrincipalDeQuestoes(u).id;
     db.flashcards.push(cartao);
     if(cartao.usuarioId) nuvemRegistrar({cartaoPessoal: cartao});
   });

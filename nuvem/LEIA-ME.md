@@ -88,6 +88,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | As **questões escondidas** ("não mostrar mais") | cria a tabela `questoes_ocultas`, com RLS e permissões |
 > | Os **destaques de texto** em questões e flashcards | cria a tabela `destaques`, com RLS e permissões (cada pessoa lê e grava os seus) |
 > | Os **avisos da coordenação** (Enviar Avisos) chegando a todos os aparelhos | cria a tabela `avisos` (toda conta aprovada lê; só o administrador grava) e `alter table public.perfis add column if not exists avisos_lidos jsonb ...` (o que a pessoa já dispensou) |
+> | O **segundo grupo da pessoa, só de questões** (Meu Grupo > Só questões) | `alter table public.perfis add column if not exists grupo_questoes_id text;` |
 > | A **ordem própria dos estágios do 6º ano** (Meu Grupo > Meus estágios) | `alter table public.perfis add column if not exists ordem_estagios jsonb ...` |
 > | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |
 > | A **formatação aprovada** em Revisar Formatação | cria a tabela `formatacao_aprovada` e a função `e_revisor()` (grava equipe e residentes) |

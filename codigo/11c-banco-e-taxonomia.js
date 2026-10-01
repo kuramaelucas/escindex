@@ -180,7 +180,7 @@ function abrirFormularioQuestao(qid){
         <option value="avancado" ${q&&q.dificuldadeManual==="avancado"?"selected":""}>Avançado</option>
       </select></div>
       ${criandoComoAluno ? `<div class="field"><label class="label">Destino</label><select class="select" id="fqDestino">
-        <option value="grupo">Só para o meu grupo (fica disponível na hora)</option>
+        ${opcoesDeDestinoDeGrupo(u, "Só para o meu grupo (fica disponível na hora)", g=>"Só para o grupo "+g.nome+" (fica disponível na hora)").map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join("")}
         <option value="geral">Sugerir para o banco geral (passa por revisão do admin)</option>
       </select></div>` : `<div class="field"><label class="label">Status</label><select class="select" id="fqStatus">
         <option value="ativa" ${!q||q.status==="ativa"?"selected":""}>Ativa</option>
@@ -416,14 +416,14 @@ function salvarQuestaoFormulario(qid, forcar){
   else{
     const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO() };
     if(campoDestino){
-      if(campoDestino.value==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = "ativa"; }
+      if(destinoEhGrupo(campoDestino.value)){ nova.grupoId = grupoDoDestino(u, campoDestino.value).id; nova.status = "ativa"; }
       else{ nova.status = "pendente"; }
     } else if(!nova.status){ nova.status = "ativa"; }
     db.questoes.push(nova);
     nuvemMarcarQuestao(nova.id);
   }
   saveState(); fecharModal();
-  toast(qid?"Questão atualizada.":"Questão criada."+(nuvemConectado() && campoDestino && campoDestino.value!=="grupo" ? " Ela sobe para a nuvem e espera a aprovação da equipe." : ""));
+  toast(qid?"Questão atualizada.":"Questão criada."+(nuvemConectado() && campoDestino && !destinoEhGrupo(campoDestino.value) ? " Ela sobe para a nuvem e espera a aprovação da equipe." : ""));
   render();
 }
 /* salva a questão que ficou pendente no aviso de duplicidade (os campos do
@@ -435,7 +435,7 @@ function salvarQuestaoPendente(){
   if(pend.qid){ Object.assign(getQuestao(pend.qid), pend.dados); registrarCorrecaoDaQuestao(pend.qid); nuvemMarcarQuestao(pend.qid); }
   else{
     const nova = { id:uid("q"), ...pend.dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO() };
-    if(pend.destino==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = "ativa"; }
+    if(destinoEhGrupo(pend.destino)){ nova.grupoId = grupoDoDestino(u, pend.destino).id; nova.status = "ativa"; }
     else if(pend.destino){ nova.status = "pendente"; }
     else if(!nova.status){ nova.status = "ativa"; }
     db.questoes.push(nova);
