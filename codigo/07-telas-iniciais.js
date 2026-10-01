@@ -512,11 +512,11 @@ function renderInicioStaff(u){
   ${renderNotificacoesCard(u)}
   <div class="stat-mini-row">
     ${ficha(ativas.length, "questões ativas", temRota("banco-questoes") ? "banco-questoes" : null)}
-    ${ficha(totalAlunos, "alunos aprovados", temRota("usuarios") ? "usuarios" : null)}
+    ${ficha(totalAlunos, "alunos aprovados", temRota("painel-turma") ? "painel-turma" : null)}
     ${ficha(dificeis, "na fila de difíceis", "revisao-dificeis")}
     ${ficha(duvidas, "dúvidas de alunos", temRota("fila-duvidas") ? "fila-duvidas" : null)}
     ${ficha(aRevisar, "formatação a revisar", "revisao-formatacao")}
-    ${podeAprovarCadastros(u) && temRota("aprovar-cadastros") ? ficha(pendCadastros, pendCadastros===1?"cadastro pendente":"cadastros pendentes", "aprovar-cadastros") : ""}
+    ${podeAprovarCadastros(u) && temRota("painel-turma") ? ficha(pendCadastros, pendCadastros===1?"cadastro pendente":"cadastros pendentes", "aprovar-cadastros") : ""}
   </div>
   <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
     <button class="btn btn-secondary btn-sm" onclick="navigate('criar-simulado')">${iconeSvg("plus")} Criar simulado</button>
@@ -557,6 +557,7 @@ function renderEstudar(){
   const faltam = Math.max(0, meta - feitasHoje);
   const emAndamento = sessaoEmAndamentoDe(u);
   const deHoje = sessaoDeHoje(u);
+  const listaAberta = !!state.filtroRota.listaAberta;
   return `
   <div class="page-header"><h2>Estudar</h2><p>Escolha como quer praticar agora.</p></div>
 
@@ -615,8 +616,15 @@ function renderEstudar(){
   </div>
   ${htmlCardPrioridadesEstudar(u)}
   <div class="card mt-2">
-    <div class="card-title">Monte sua própria lista</div>
-    <p class="text-sm muted mb-2">Filtre por grande área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano ou situação (erros, favoritas, ainda não respondidas). Dá para marcar mais de uma instituição e mais de um tipo de prova no mesmo conjunto. Deixar um filtro em branco significa "todos".</p>
+    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+      <div style="min-width:220px;flex:1">
+        <div class="card-title" style="margin-bottom:.2rem">Monte sua própria lista</div>
+        <p class="text-sm muted">Um conjunto só seu, do jeito que você escolher: por área, especialidade, assunto, tipo de prova, instituição, ano ou situação (erros, favoritas, ainda não respondidas).</p>
+      </div>
+      <button class="btn ${listaAberta?"btn-secondary":"btn-primary"}" id="botaoMontarLista" aria-expanded="${listaAberta}" aria-controls="montagemLista" onclick="alternarMontagemLista()">${listaAberta ? "Fechar a montagem" : iconeSvg("plus")+" Criar minha lista"}</button>
+    </div>
+    <div id="montagemLista" ${listaAberta?"":"hidden"}>
+    <p class="text-sm muted mt-2 mb-2">Dá para marcar mais de uma instituição e mais de um tipo de prova no mesmo conjunto. Deixar um filtro em branco significa "todos".</p>
     <div class="grid grid-3" onchange="atualizarContagemFiltro()">
       <div>
         <div class="flex justify-between items-center mb-1">
@@ -675,7 +683,24 @@ function renderEstudar(){
       <button class="btn btn-secondary" onclick="gerarListaPersonalizada(true)">Fazer como simulado</button>
     </div>
     <div class="text-sm mt-2" id="contagemFiltro" aria-live="polite">${textoContagemFiltro(buscarQuestoesPorFiltro(u.id, {}).length)}</div>
+    </div>
   </div>`;
+}
+/* A montagem da lista fica recolhida até a pessoa pedir: são onze filtros, e
+   quem só quer a sessão recomendada não precisa atravessá-los. Abrir e fechar
+   não redesenha a tela — o que já estava marcado continua marcado. */
+function alternarMontagemLista(){
+  const painel = document.getElementById("montagemLista"); if(!painel) return;
+  const abrir = painel.hidden;
+  painel.hidden = !abrir;
+  state.filtroRota.listaAberta = abrir;
+  const botao = document.getElementById("botaoMontarLista");
+  if(botao){
+    botao.className = "btn " + (abrir ? "btn-secondary" : "btn-primary");
+    botao.setAttribute("aria-expanded", String(abrir));
+    botao.innerHTML = abrir ? "Fechar a montagem" : iconeSvg("plus") + " Criar minha lista";
+  }
+  if(abrir) painel.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 /* Os filtros da lista personalizada, lidos da tela. Uma função só, para a
    contagem ao vivo e o "Gerar lista" nunca discordarem do que está marcado. */
@@ -793,6 +818,7 @@ function abrirQuestaoCompleta(qid, opts){
       <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
       <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>
       ${badgeStatusQuestao(q.status)}
+      ${badgeAutoriaQuestao(q)}
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}
     </div>
     <div class="qcard-enunciado" style="font-size:1.02rem;margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>

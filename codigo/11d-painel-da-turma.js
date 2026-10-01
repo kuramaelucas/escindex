@@ -5,7 +5,8 @@
    24-C. PAINEL DA TURMA — como a turma está usando a plataforma
    ==========================================================================
    Só professor e administrador (coordenação e máster — ver a permissão
-   "turma" em PERMISSOES_ADMIN). Separado por ano da faculdade, porque é
+   "turma" em PERMISSOES_ADMIN). É a aba "Painel de uso" da tela Turma, que
+   também reúne os pedidos de acesso e os usuários (11b, seção 24). Separado por ano da faculdade, porque é
    assim que a coordenação pensa: o 3º ano está usando? o 5º está caindo?
 
    A TAXA DE ACERTO NÃO É DE NINGUÉM. O acerto de uma pessoa é dela (Meu
@@ -30,10 +31,11 @@
      - nuvem desligada: das contas deste navegador (demonstração), com a
        mesma conta — a tela é a mesma, e diz de onde veio.
 
-   Os ALERTAS continuam na coluna "Atenção": quem parou de estudar (7 dias
-   ou mais sem questão nem cartão) e quem nunca começou. A lista não é mais
-   ordenada por eles: a coordenação pediu o ÚLTIMO USO como critério, que é
-   um fato e não um julgamento de quem "precisa de atenção". */
+   A coluna se chama "Condição", não "Atenção": ela descreve a situação de
+   cada aluno — em dia, parado (7 dias ou mais sem questão nem cartão) ou sem
+   nunca ter começado — em vez de apontar quem "precisa de atenção", que é um
+   julgamento. Todo aluno tem uma condição; a lista não é ordenada por ela: o
+   critério é o ÚLTIMO USO, que é um fato. */
 function podeVerPainelTurma(u){
   u = u || usuarioAtual();
   if(!u || state.modoAluno) return false;
@@ -144,15 +146,21 @@ function carregarPainelTurma(forcar){
   });
 }
 function diasDesde(iso){ return iso ? diasEntre(iso, hojeISO()) : null; }
-/* Só de uso: parou de estudar ou nunca começou. Acerto não vira alerta —
-   ver o comentário do topo. */
+/* Só de uso: em dia, parou de estudar ou nunca começou. Acerto não vira
+   condição — ver o comentário do topo. `lista` guarda só o que foge do "em
+   dia" (é o que conta os parados); `condicao` é o que a coluna mostra. */
 function alertasDoAluno(a){
   const ultima = [a.ultimaResposta, a.ultimoCartao].filter(Boolean).sort().pop() || null;
   const parado = diasDesde(ultima);
   const lista = [];
   if(ultima === null) lista.push({ tipo: "nunca", texto: "nunca estudou", peso: 2 });
   else if(parado >= 7) lista.push({ tipo: "parado", texto: `parado há ${parado} dias`, peso: 3 + Math.min(parado, 60)/60 });
-  return { lista, ultima, parado, peso: lista.reduce((s, x) => Math.max(s, x.peso), 0) };
+  const condicao = lista.length ? lista[0] : { tipo: "em-dia", texto: "em dia" };
+  return { lista, condicao, ultima, parado, peso: lista.reduce((s, x) => Math.max(s, x.peso), 0) };
+}
+function badgeCondicao(c){
+  const classe = c.tipo === "em-dia" ? "badge-accent" : c.tipo === "nunca" ? "badge-muted" : "badge-amber";
+  return `<span class="badge ${classe}">${escapeHtml(c.texto)}</span>`;
 }
 function badgeTaxa(t, n){
   if(!n) return '<span class="text-xs muted">—</span>';
@@ -166,15 +174,42 @@ function mediaDoPainel(medias, ano, grupoId){
   return (medias || []).find(m => m.ano === ano && m.grupoId === grupoId) || null;
 }
 
+/* A TELA "TURMA": duas abas sobre as mesmas pessoas. "Painel" é o uso da
+   turma (professor e administrador); "Cadastros e usuários" reúne os pedidos
+   de acesso e a lista de contas (11b, seção 24) e só aparece para quem
+   aprova cadastros ou administra usuários. Quem só tem uma das duas vê a
+   tela sem abas. O número de pedidos aguardando aparece na aba e, no Painel,
+   numa faixa com o atalho — é o que espera decisão. */
+function abasDaTurma(u){
+  const abas = [];
+  if(podeVerPainelTurma(u)) abas.push("painel");
+  if(u && u.papel === "admin" && (podeAprovarCadastros(u) || podeAdmin("usuarios", u))) abas.push("pessoas");
+  return abas;
+}
+function mudarAbaTurma(aba){ filtrosPainelTurma().aba = aba; render(); }
 function renderPainelTurma(){
   const u = usuarioAtual();
-  if(!podeVerPainelTurma(u)) return renderSemPermissao("turma");
+  const abas = abasDaTurma(u);
+  if(!abas.length) return renderSemPermissao("turma");
+  const f = filtrosPainelTurma();
+  if(!abas.includes(f.aba)) f.aba = abas[0];
+  const pedidos = podeAprovarCadastros(u) ? quantosPedidosDeAcesso() : 0;
+  const rotulos = { painel: "Painel de uso", pessoas: "Cadastros e usuários" + (pedidos ? ` <span class="badge badge-amber">${pedidos}</span>` : "") };
+  const aba = f.aba;
+  return `<div class="page-header"><h2>Turma</h2><p>${aba === "pessoas"
+    ? "Quem pediu acesso e quem já tem conta: aprovar, mudar papel e nível, inativar ou excluir. Com a nuvem ligada, a turma de verdade está na nuvem — as contas deste navegador são só as de teste e as de antes dela."
+    : "Como a turma está usando a plataforma, separado por ano da faculdade — e a equipe, à parte. A taxa de acerto de cada pessoa não aparece: só a média de cada ano e de cada turma."}</p></div>
+  ${abas.length > 1 ? `<div class="tabs">${abas.map(a=>`<div class="tab ${aba===a?"active":""}" onclick="mudarAbaTurma('${a}')">${rotulos[a]}</div>`).join("")}</div>` : ""}
+  ${aba === "pessoas" ? renderTurmaPessoas(u) : `${pedidos && abas.includes("pessoas") ? `<div class="card-flat mb-2 flex justify-between items-center gap-2" style="flex-wrap:wrap;border-color:var(--amber)">
+    <span class="text-sm">${iconeSvg("check")} <strong>${pedidos}</strong> ${pedidos===1?"pedido de acesso aguardando":"pedidos de acesso aguardando"} aprovação.</span>
+    <button class="btn btn-primary btn-sm" onclick="mudarAbaTurma('pessoas')">Ver pedidos</button></div>` : ""}${renderPainelDaTurma()}`}`;
+}
+function renderPainelDaTurma(){
   carregarPainelTurma(false);
   const f = filtrosPainelTurma();
   const pd = state.filtroRota.painelDados || {};
-  const cabecalho = `<div class="page-header"><h2>Painel da Turma</h2><p>Como a turma está usando a plataforma, separado por ano da faculdade — e a equipe, à parte. Visível só para professores e para a coordenação. A taxa de acerto de cada pessoa não aparece: só a média de cada ano e de cada turma.</p></div>`;
-  if(pd.erro) return cabecalho + `<div class="card" style="border-color:var(--danger)"><div class="card-title">${iconeSvg("alert")} Não deu para carregar</div><p class="text-sm">${escapeHtml(pd.erro)}</p><button class="btn btn-secondary btn-sm mt-2" onclick="carregarPainelTurma(true); render()">Tentar de novo</button></div>`;
-  if(!pd.dados) return cabecalho + `<div class="card"><p class="text-sm muted">Carregando os números da turma…</p></div>`;
+  if(pd.erro) return `<div class="card" style="border-color:var(--danger)"><div class="card-title">${iconeSvg("alert")} Não deu para carregar</div><p class="text-sm">${escapeHtml(pd.erro)}</p><button class="btn btn-secondary btn-sm mt-2" onclick="carregarPainelTurma(true); render()">Tentar de novo</button></div>`;
+  if(!pd.dados) return `<div class="card"><p class="text-sm muted">Carregando os números da turma…</p></div>`;
 
   const dados = pd.dados;
   const semFuncaoMedias = dados.medias === null;
@@ -253,7 +288,7 @@ function renderPainelTurma(){
     : (nuvemLigada() ? "Você não está numa conta da nuvem: estes são só as pessoas com conta NESTE navegador. Entre com a sua conta da nuvem para ver a turma inteira."
                      : "Nuvem desligada: estas são as pessoas com conta neste navegador.");
 
-  return cabecalho + `
+  return `
   <p class="text-xs muted mb-2">${origem}</p>
   <div class="tabs">
     <div class="tab ${f.ano==="todos"?"active":""}" onclick="mudarFiltroPainelTurma('ano','todos')">Todos os anos (${todos.length})</div>
@@ -267,7 +302,7 @@ function renderPainelTurma(){
     <div class="stat-tile"><div class="stat-value">${aprovados.length ? Math.round(soma(aprovados,"r30")/aprovados.length) : 0}</div><div class="stat-label">questões por pessoa nos últimos 30 dias (${soma(aprovados,"r30")} no total)</div></div>
     ${naEquipe
       ? `<div class="stat-tile"><div class="stat-value">${soma(aprovados,"cartoes30")}</div><div class="stat-label">cartões revisados nos últimos 30 dias</div></div>`
-      : `<div class="stat-tile"><div class="stat-value">${mediaDoRecorte && mediaDoRecorte.r30 ? pct(mediaDoRecorte.a30, mediaDoRecorte.r30)+"%" : "—"}</div><div class="stat-label">${mediaDoRecorte ? "acerto médio da turma nos últimos 30 dias" : "acerto médio da turma: "+escapeHtml(motivoSemMedia)}${parados?` · <strong style="color:var(--danger)">${parados} parado(s)</strong>`:""}</div></div>`}
+      : `<div class="stat-tile"><div class="stat-value">${mediaDoRecorte && mediaDoRecorte.r30 ? pct(mediaDoRecorte.a30, mediaDoRecorte.r30)+"%" : "—"}</div><div class="stat-label">${mediaDoRecorte ? "acerto médio da turma nos últimos 30 dias" : "acerto médio da turma: "+escapeHtml(motivoSemMedia)}${parados?` · <strong>${parados} parado(s)</strong>`:""}</div></div>`}
   </div>
 
   ${f.ano==="todos" && linhasAnos.length > 1 ? `<div class="card mb-2">
@@ -334,7 +369,7 @@ function renderPainelTurma(){
       </div>
     </div>
     <div class="table-wrap mt-2"><table>
-      <thead><tr><th>${naEquipe ? "Pessoa" : "Aluno"}</th><th>${naEquipe ? "Papel" : "Ano / turma"}</th><th>Último uso</th><th>Dias ativos (30)</th><th>Questões (30 dias)</th><th>Questões (total)</th><th>Cartões (30 dias)</th><th>Simulados</th>${naEquipe ? "" : "<th>Atenção</th>"}</tr></thead>
+      <thead><tr><th>${naEquipe ? "Pessoa" : "Aluno"}</th><th>${naEquipe ? "Papel" : "Ano / turma"}</th><th>Último uso</th><th>Dias ativos (30)</th><th>Questões (30 dias)</th><th>Questões (total)</th><th>Cartões (30 dias)</th><th>Simulados</th>${naEquipe ? "" : "<th>Condição</th>"}</tr></thead>
       <tbody>${p.itens.map(a => {
         const al = a._al;
         return `<tr>
@@ -346,12 +381,12 @@ function renderPainelTurma(){
           <td class="text-sm">${a.respostas}</td>
           <td class="text-sm">${a.cartoes30}</td>
           <td class="text-sm">${a.simulados || "—"}</td>
-          ${naEquipe ? "" : `<td>${al.lista.map(x=>`<span class="badge badge-danger">${escapeHtml(x.texto)}</span>`).join(" ")}</td>`}
+          ${naEquipe ? "" : `<td>${badgeCondicao(al.condicao)}</td>`}
         </tr>`;
       }).join("") || `<tr><td colspan="9" class="text-sm muted">${naEquipe ? "Ninguém da equipe neste navegador." : "Nenhum aluno neste recorte."}</td></tr>`}</tbody>
     </table></div>
     ${controlesPaginacao(p, naEquipe ? "pessoa(s)" : "aluno(s)")}
-    <p class="text-xs muted mt-2">"Parado" = 7 dias ou mais sem responder questão nem revisar cartão. ${naEquipe ? "A equipe não tem alerta: o painel só mostra o quanto usa." : ""} O painel mostra uso; a taxa de acerto de cada pessoa é só dela, em Meu Desempenho.</p>
+    <p class="text-xs muted mt-2">"Condição": <em>em dia</em> (usou nos últimos 7 dias), <em>parado</em> (7 dias ou mais sem responder questão nem revisar cartão) ou <em>nunca estudou</em>. ${naEquipe ? "A equipe não tem condição: o painel só mostra o quanto usa." : ""} O painel mostra uso; a taxa de acerto de cada pessoa é só dela, em Meu Desempenho.</p>
     </div>
   </details>`;
 }
@@ -362,10 +397,10 @@ function exportarPainelTurmaCsv(){
   const lista = pd.dados.pessoas.filter(a => naEquipe ? a.papel !== "aluno" : (a.papel === "aluno" && (f.ano === "todos" || a.ano === f.ano)));
   const campo = v => { const t = v === null || v === undefined ? "" : String(v); return /[";\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
   // só uso: o acerto de cada pessoa não sai nem na planilha
-  const cab = ["nome","email","papel","ano","turma","status","ultima_atividade","dias_ativos_30d","questoes_30d","questoes_total","cartoes_30d","simulados","alertas"];
-  const linhas = lista.map(a => { const al = a.papel === "aluno" ? alertasDoAluno(a) : { ultima: [a.ultimaResposta, a.ultimoCartao].filter(Boolean).sort().pop() || "", lista: [] };
+  const cab = ["nome","email","papel","ano","turma","status","ultima_atividade","dias_ativos_30d","questoes_30d","questoes_total","cartoes_30d","simulados","condicao"];
+  const linhas = lista.map(a => { const al = a.papel === "aluno" ? alertasDoAluno(a) : { ultima: [a.ultimaResposta, a.ultimoCartao].filter(Boolean).sort().pop() || "", condicao: null };
     return [a.nome, a.email, a.papel, a.ano, nomeDoGrupoPainel(a.grupoId), a.status, al.ultima || "", a.dias30, a.r30, a.respostas, a.cartoes30, a.simulados,
-      al.lista.map(x=>x.texto).join(" / ")].map(campo).join(";"); });
+      al.condicao ? al.condicao.texto : ""].map(campo).join(";"); });
   // ";" e BOM: é o que o Excel em português abre sem assistente de importação
   baixarArquivo("painel-turma-" + (f.ano === "todos" ? "todos" : f.ano.replace(/[^0-9a-z]+/gi, "-")) + "-" + hojeISO() + ".csv",
     "﻿" + cab.join(";") + "\n" + linhas.join("\n"), "text/csv;charset=utf-8");

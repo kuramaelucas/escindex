@@ -200,7 +200,7 @@ function renderSimuladoAtivo(){
   const emModoAprendizado = !!sessao.modoAprendizado;
   const jaRespondeuEssa = respostaAtual !== undefined;
   garantirCronometro();
-  return `
+  return `<div class="coluna-questao">
   <div class="flex justify-between items-center mb-2" style="flex-wrap:wrap;gap:.5rem">
     <div class="text-sm muted flex items-center gap-1" style="flex-wrap:wrap">
       <span>Questão ${sessao.indiceAtual+1} de ${sessao.itens.length} · ${respondidasCount} respondida(s) · ${emBranco} em branco</span>
@@ -232,6 +232,7 @@ function renderSimuladoAtivo(){
   <div class="flex justify-between mt-2">
     <button class="btn btn-secondary" onclick="irQuestaoSimulado(-1)" ${sessao.indiceAtual===0?"disabled":""}>Anterior</button>
     ${sessao.indiceAtual < sessao.itens.length-1 ? `<button class="btn btn-secondary" onclick="irQuestaoSimulado(1)">Próxima</button>` : `<button class="btn btn-primary" onclick="finalizarSimulado()">Finalizar simulado</button>`}
+  </div>
   </div>`;
 }
 /* Quanto tempo cada questão consumiu e onde o aluno travou. "Travar" aqui é

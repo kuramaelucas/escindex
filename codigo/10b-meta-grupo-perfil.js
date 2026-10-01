@@ -103,7 +103,10 @@ function renderMeuGrupo(){
   const formado = !temCalendarioProprio(u.anoFaculdade);
   const anoParaCriar = formado ? CONFIG.anoFaculdadePadrao : u.anoFaculdade;
   const outrosGrupos = db.grupos.filter(g=>g.id!==meuGrupo.id && !g.oficial);
-  const solicitacoesPendentes = souDono ? (meuGrupo.solicitacoesPendentes||[]) : [];
+  // os pedidos de TODOS os grupos que a pessoa criou — ela pode estar em outro
+  // (criar um grupo tira a pessoa do atual, mas o antigo continua dela)
+  const gruposComPedido = gruposQueCriei(u).filter(g=>(g.solicitacoesPendentes||[]).length);
+  const totalPedidos = gruposComPedido.reduce((n,g)=>n+g.solicitacoesPendentes.length, 0);
   const nBlocos = blocosDoGrupo(meuGrupo, u).length;
   const detalheCalendario = semTurma ? ""
     : proprio ? `${nBlocos ? nBlocos+" bloco(s) no calendário próprio" : "Sem calendário: o grupo serve para dividir questões"}`
@@ -136,16 +139,15 @@ function renderMeuGrupo(){
     ${!semTurma ? `<button class="btn btn-ghost btn-sm mt-2" onclick="sairDoMeuGrupo()">Sair deste grupo${formado ? "" : " e voltar ao calendário oficial"}</button>` : ""}
   </div>
 
-  ${solicitacoesPendentes.length ? `<div class="card mb-2" style="border-color:var(--amber)">
-    <div class="card-title">Solicitações de acesso pendentes (${solicitacoesPendentes.length})</div>
-    <p class="text-sm muted">Essas pessoas pediram para entrar na sua turma. Só entram depois que você aprovar.</p>
-    ${solicitacoesPendentes.map(uidSolicitante=>{
-      return `<div class="flex justify-between items-center card-flat mb-1">
-        <span class="text-sm">${escapeHtml(nomeDoMembro(meuGrupo, uidSolicitante))}</span>
-        <div class="flex gap-1"><button class="btn btn-primary btn-sm" onclick="aprovarAcessoGrupo('${meuGrupo.id}','${uidSolicitante}')">Aprovar</button><button class="btn btn-ghost btn-sm" onclick="rejeitarAcessoGrupo('${meuGrupo.id}','${uidSolicitante}')">Rejeitar</button></div>
-      </div>`;
-    }).join("")}
+  ${gruposComPedido.length ? `<div class="card mb-2" style="border-color:var(--amber)">
+    <div class="card-title">${iconeSvg("users")} Pedidos para entrar no grupo (${totalPedidos})</div>
+    <p class="text-sm muted">Essas pessoas pediram para entrar ${gruposComPedido.length>1?"nos seus grupos":"no seu grupo"}. Só entram depois que você aprovar.</p>
+    ${gruposComPedido.map(g=>`${gruposComPedido.length>1 ? `<div class="text-xs muted mt-1 mb-1">${escapeHtml(g.nome)}</div>` : ""}${g.solicitacoesPendentes.map(uidSolicitante=>`<div class="flex justify-between items-center card-flat mb-1">
+        <span class="text-sm">${escapeHtml(nomeDoMembro(g, uidSolicitante))}</span>
+        <div class="flex gap-1"><button class="btn btn-primary btn-sm" onclick="aprovarAcessoGrupo('${g.id}','${uidSolicitante}')">Aprovar</button><button class="btn btn-ghost btn-sm" onclick="rejeitarAcessoGrupo('${g.id}','${uidSolicitante}')">Rejeitar</button></div>
+      </div>`).join("")}`).join("")}
   </div>` : ""}
+  ${gruposQueCriei(u).length ? renderCardAvisoPedidosDeGrupo() : ""}
 
   ${proprio ? `<div class="card mb-2">
     <div class="card-title">Calendário deste grupo</div>
@@ -498,6 +500,64 @@ function rejeitarAcessoGrupo(grupoId, usuarioId){
   toast("Solicitação recusada.");
   render();
 }
+/* AVISO DE PEDIDO PARA ENTRAR NO GRUPO. O pedido existia, mas só aparecia
+   para quem abrisse Meu Grupo por acaso — e o colega ficava esperando. Agora
+   quem criou o grupo é avisado como a coordenação é avisada dos cadastros
+   (seção 2-C): um aviso na tela, o número ao lado de Meu Grupo no menu, a
+   notificação no Início e, se a pessoa deixar, a notificação do sistema com
+   o Esc aberto em outra aba. Com a nuvem, o pedido chega junto com a
+   sincronização; aqui só se confere o que já está no navegador.
+   "Já avisado" fica por pessoa (u.pedidosGrupoAvisados, só os pedidos ainda
+   abertos), para o mesmo pedido não avisar de novo a cada F5. */
+function pedidosDeEntradaNoGrupo(u){
+  return gruposQueCriei(u).flatMap(g=>(g.solicitacoesPendentes||[]).map(id=>({
+    chave: g.id+"|"+id, grupoId: g.id, grupoNome: g.nome, usuarioId: id, nome: nomeDoMembro(g, id) })));
+}
+function quantosPedidosDeEntradaNoGrupo(u){ return u ? pedidosDeEntradaNoGrupo(u).length : 0; }
+function checarPedidosDeEntradaNoGrupo(){
+  const u = usuarioAtual(); if(!u) return;
+  const pedidos = pedidosDeEntradaNoGrupo(u);
+  const avisados = new Set(u.pedidosGrupoAvisados || []);
+  const novos = pedidos.filter(p=>!avisados.has(p.chave));
+  const agora = pedidos.map(p=>p.chave);
+  if(JSON.stringify(agora) !== JSON.stringify(u.pedidosGrupoAvisados || [])){ u.pedidosGrupoAvisados = agora; saveState(); }
+  atualizarMenuLateral();
+  if(!novos.length) return;
+  // não redesenha por cima de quem está digitando (o nome de um grupo novo, por exemplo)
+  const tag = (document.activeElement||{}).tagName;
+  if((state.route==="meu-grupo" || state.route==="inicio") && !["INPUT","TEXTAREA","SELECT"].includes(tag)) render();
+  const texto = novos.length===1
+    ? novos[0].nome+" pediu para entrar no grupo \""+novos[0].grupoNome+"\"."
+    : novos.length+" pessoas pediram para entrar nos seus grupos.";
+  toast(texto+" Veja em Meu Grupo.");
+  if(document.hidden && !u.avisoPedidosGrupoDesligado && notificacaoDisponivel() && Notification.permission==="granted"){
+    mostrarNotificacao(CONFIG.nomePlataforma+" — pedido para entrar no grupo", texto, "meu-grupo", "pedido-de-grupo");
+  }
+}
+function ativarNotificacaoPedidosDeGrupo(){
+  if(!notificacaoDisponivel()){ toast("Este navegador não mostra notificações do sistema. O aviso continua na tela e no menu.", "err"); return; }
+  Notification.requestPermission().then(perm=>{
+    const u = usuarioAtual();
+    if(perm==="granted"){ delete u.avisoPedidosGrupoDesligado; saveState(); toast("Pronto: com o Esc aberto em outra aba ou janela, um pedido para entrar no grupo também aparece como notificação."); }
+    else toast("O navegador não deu permissão para notificações. O aviso continua na tela e no menu.", "err");
+    render();
+  });
+}
+function desativarNotificacaoPedidosDeGrupo(){
+  const u = usuarioAtual(); u.avisoPedidosGrupoDesligado = true; saveState();
+  toast("Notificação do sistema desligada. O aviso na tela e o número no menu continuam.");
+  render();
+}
+function renderCardAvisoPedidosDeGrupo(){
+  const u = usuarioAtual();
+  const ligado = notificacaoDisponivel() && Notification.permission==="granted" && !u.avisoPedidosGrupoDesligado;
+  return `<div class="card-flat mb-2 text-sm">
+    ${iconeSvg("alert")} Quando alguém pedir para entrar no seu grupo, o Esc avisa na tela e mostra o número ao lado de <strong>Meu Grupo</strong> no menu.
+    ${!notificacaoDisponivel() ? "" : ligado
+      ? `<div class="mt-1">${iconeSvg("check")} Notificação do sistema <strong>ligada</strong>. <button class="link-btn" onclick="desativarNotificacaoPedidosDeGrupo()">Desligar</button></div>`
+      : `<div class="mt-1"><button class="btn btn-secondary btn-sm" onclick="ativarNotificacaoPedidosDeGrupo()">Receber também como notificação do sistema</button></div>`}
+  </div>`;
+}
 /* DIVIDIR AS QUESTÕES DO GRUPO. Um grupo estuda junto, mas ninguém precisa
    fazer tudo: o dono divide as questões entre os membros — a mesma
    quantidade para cada um, misturando os assuntos — e cada pessoa pratica só
@@ -624,16 +684,50 @@ function rotuloPapelNoGrupo(grupo, usuario){
   if(grupo.criadoPor === usuario.id) return "criou o grupo";
   return ({ professor: "Professor", admin: "Administrador", residente: "Residente" })[usuario.papel] || "";
 }
+function podeGerirGrupo(g, u){ return !!g && !!u && !g.oficial && (g.criadoPor===u.id || podeAdmin("blocos", u)); }
+function gruposQueCriei(u){ return (db.grupos||[]).filter(g=>!g.oficial && g.criadoPor===u.id); }
 function renderIntegrantesDoGrupo(grupo){
   const u = usuarioAtual();
   const membros = membrosDoGrupo(grupo);
+  const gerente = podeGerirGrupo(grupo, u);
   return `<div class="card mb-2">
     <div class="card-title">${iconeSvg("users")} Integrantes do grupo (${membros.length})</div>
     <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
-      ${membros.map(m=>`<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}" title="${escapeHtml(rotuloPapelNoGrupo(grupo, m))}">${escapeHtml(m.id===u.id ? m.nome+" (você)" : m.nome)}${grupo.criadoPor===m.id?" ★":""}</span>`).join("") || '<span class="text-sm muted">Ninguém ainda.</span>'}
+      ${membros.map(m=>`<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}" title="${escapeHtml(rotuloPapelNoGrupo(grupo, m))}">${escapeHtml(m.id===u.id ? m.nome+" (você)" : m.nome)}${grupo.criadoPor===m.id?" ★":""}${gerente && m.id!==u.id && m.id!==grupo.criadoPor ? ` <button class="link-btn" style="font-size:1em;line-height:1" title="Retirar ${escapeHtml(m.nome)} do grupo" aria-label="Retirar ${escapeHtml(m.nome)} do grupo" onclick="retirarDoGrupo('${grupo.id}','${m.id}')">×</button>` : ""}</span>`).join("") || '<span class="text-sm muted">Ninguém ainda.</span>'}
     </div>
-    <p class="text-xs muted mt-1">★ = quem criou o grupo. ${membros.length<2 ? "Convide os colegas: eles pedem para entrar em \"Entrar em um grupo já existente\" e o dono aprova." : "Com os integrantes à vista, dá para montar um grupo de estudo menor logo abaixo."}</p>
+    <p class="text-xs muted mt-1">★ = quem criou o grupo. ${gerente ? "Quem criou o grupo pode retirar um integrante no <strong>×</strong>: a pessoa volta ao calendário oficial e, para voltar, precisa pedir de novo. " : ""}${membros.length<2 ? "Convide os colegas: eles pedem para entrar em \"Entrar em um grupo já existente\" e o dono aprova." : "Com os integrantes à vista, dá para montar um grupo de estudo menor logo abaixo."}</p>
   </div>`;
+}
+/* RETIRAR ALGUÉM DO GRUPO. Só quem criou o grupo (ou a coordenação, que já
+   administra os grupos); nunca o próprio dono. A pessoa volta ao calendário
+   oficial, sai dos grupos de estudo daqui e as questões que eram dela nas
+   divisões passam, em rodízio, para quem ficou — sem mexer na parte dos
+   outros. Com a nuvem, a saída sobe como a recusa de um pedido
+   (nuvemConferirGrupos) e o aparelho da pessoa se ajusta ao descer. */
+function repassarQuestoesDe(divisao, usuarioId, restantes){
+  if(!divisao) return;
+  Object.keys(divisao).filter(q=>divisao[q]===usuarioId).forEach((q,i)=>{
+    if(restantes.length) divisao[q] = restantes[i % restantes.length].id; else delete divisao[q];
+  });
+}
+function retirarDoGrupo(grupoId, usuarioId){
+  const g = getGrupo(grupoId), u = usuarioAtual();
+  if(!podeGerirGrupo(g, u) || usuarioId===g.criadoPor || usuarioId===u.id) return;
+  const nome = nomeDoMembro(g, usuarioId);
+  if(!confirm("Retirar "+nome+" do grupo \""+g.nome+"\"? A pessoa volta ao calendário oficial e perde o acesso às questões e aos cartões do grupo; para voltar, precisa pedir de novo.")) return;
+  g.membrosAprovados = (g.membrosAprovados||[]).filter(id=>id!==usuarioId);
+  g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
+  const restantes = membrosDoGrupo(g);
+  repassarQuestoesDe(g.divisao, usuarioId, restantes);
+  subgruposDoGrupo(g).forEach(sg=>{
+    sg.membros = (sg.membros||[]).filter(id=>id!==usuarioId);
+    repassarQuestoesDe(sg.divisao, usuarioId, membrosDoSubgrupo(sg));
+  });
+  const local = getUsuario(usuarioId);
+  if(local && local.grupoId===g.id) entrarNoGrupo(local, db.grupoOficialId);
+  saveState();
+  toast(nome+" foi retirado(a) do grupo.");
+  render();
 }
 function subgruposDoGrupo(grupo){ return (db.subgrupos||[]).filter(s=>s.grupoId===grupo.id); }
 function getSubgrupo(id){ return (db.subgrupos||[]).find(s=>s.id===id) || null; }
@@ -688,8 +782,10 @@ function renderSubgruposDoGrupo(grupo){
         </div>
         <div class="flex gap-1 mt-1" style="flex-wrap:wrap">${membros.map(m=>{
           const n = dividido ? questoes.filter(q=>sg.divisao[q.id]===m.id).length : 0;
-          return `<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}">${escapeHtml(m.id===u.id?"Você":m.nome)}${dividido?" · "+n:""}</span>`;
+          const retirar = gerente && m.id!==u.id ? ` <button class="link-btn" style="font-size:1em;line-height:1" title="Retirar ${escapeHtml(m.nome)} deste grupo de estudo" aria-label="Retirar ${escapeHtml(m.nome)} deste grupo de estudo" onclick="retirarDoSubgrupo('${sg.id}','${m.id}')">×</button>` : "";
+          return `<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}">${escapeHtml(m.id===u.id?"Você":m.nome)}${dividido?" · "+n:""}${retirar}</span>`;
         }).join("")}</div>
+        ${gerente && membros.length>1 ? `<div class="text-xs muted mt-1">Para tirar alguém deste grupo de estudo, use o <strong>×</strong> ao lado do nome — ela continua na turma.</div>` : ""}
         ${!souMembro ? `<div class="text-xs muted mt-1">Você não participa deste grupo de estudo.</div>` : dividido && !minhas.length ? `<div class="text-xs muted mt-1">Você não ficou com nenhuma questão nesta divisão.</div>` : ""}
       </div>`;
     }).join("") || '<p class="text-sm muted mt-2">Nenhum grupo de estudo ainda.</p>'}
@@ -746,6 +842,21 @@ function sairDoSubgrupo(id){
   if(sg.divisao) Object.keys(sg.divisao).forEach(q=>{ if(sg.divisao[q]===u.id) delete sg.divisao[q]; });
   saveState();
   toast("Você saiu do grupo de estudo. As questões que eram suas ficam sem responsável até o criador refazer a divisão.");
+  render();
+}
+/* O criador tira um participante do grupo de estudo (ele continua na turma).
+   As questões que eram da pessoa passam, em rodízio, para quem ficou — a
+   parte dos outros não muda; refazer tudo é o "Editar". */
+function retirarDoSubgrupo(id, usuarioId){
+  const sg = getSubgrupo(id), u = usuarioAtual();
+  if(!sg || !podeGerirSubgrupo(sg, u) || usuarioId===u.id) return;
+  const grupo = getGrupo(sg.grupoId);
+  const nome = nomeDoMembro(grupo, usuarioId);
+  if(!confirm("Retirar "+nome+" do grupo de estudo \""+sg.nome+"\"? Ela continua na turma; as questões dela passam para quem ficou.")) return;
+  sg.membros = (sg.membros||[]).filter(x=>x!==usuarioId);
+  repassarQuestoesDe(sg.divisao, usuarioId, membrosDoSubgrupo(sg));
+  saveState();
+  toast(nome+" foi retirado(a) do grupo de estudo.");
   render();
 }
 function excluirSubgrupo(id){

@@ -267,10 +267,9 @@ function gerarNotificacoes(usuario){
     const pendente = sessaoEmAndamentoDe(usuario);
     if(pendente) notifs.push({icon:"refresh", texto:"Você tem uma sessão pela metade ("+respostasFeitas(pendente).length+" de "+pendente.itens.length+") esperando para continuar.", rota:"estudar"});
   }
-  // quem pediu para entrar na turma de que a pessoa é dona (Meu Grupo mostra e aprova)
-  const minhaTurma = getGrupoDoUsuario(usuario);
-  const pedidosTurma = minhaTurma && !minhaTurma.oficial && minhaTurma.criadoPor===usuario.id ? (minhaTurma.solicitacoesPendentes||[]).length : 0;
-  if(pedidosTurma) notifs.push({icon:"users", texto:pedidosTurma+(pedidosTurma===1?" pessoa pediu":" pessoas pediram")+" para entrar na sua turma.", rota:"meu-grupo"});
+  // quem pediu para entrar em algum grupo que a pessoa criou (Meu Grupo mostra e aprova)
+  const pedidosTurma = quantosPedidosDeEntradaNoGrupo(usuario);
+  if(pedidosTurma) notifs.push({icon:"users", texto:pedidosTurma+(pedidosTurma===1?" pessoa pediu":" pessoas pediram")+" para entrar no seu grupo.", rota:"meu-grupo"});
   // pedidos de acesso à plataforma: deste navegador e da nuvem (vigiarPedidosDeAcesso)
   if(podeAprovarCadastros(usuario)){
     const pendCad = quantosPedidosDeAcesso();

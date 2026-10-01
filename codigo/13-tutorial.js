@@ -41,7 +41,7 @@ const TUTORIAL_RAPIDO = {
     { icone:"home", titulo:"Bem-vindo(a) ao Esc",
       texto:"Um tour de um minuto pelo essencial. O Esc organiza o seu estudo pelo calendário da sua turma e decide, a cada dia, o que vale a pena você fazer." },
     { icone:"play", titulo:"Comece pelo Início",
-      texto:"A <strong>sessão recomendada</strong> do dia mistura o seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo, no tamanho da sua meta. Quer escolher o assunto? Use <strong>Estudar › Monte sua própria lista</strong>." },
+      texto:"A <strong>sessão recomendada</strong> do dia mistura o seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo, no tamanho da sua meta. Quer escolher o assunto? Use <strong>Estudar › Monte sua própria lista</strong> (botão <strong>Criar minha lista</strong>)." },
     { icone:"target", titulo:"Responda dizendo quanto sabe",
       texto:"Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>: é isso que decide quando a questão volta para você. O <strong>×</strong> ao lado de cada alternativa risca o que você já descartou." },
     { icone:"refresh", titulo:"Revise na hora certa",
@@ -76,7 +76,7 @@ const TUTORIAL_RAPIDO = {
       texto:"Traga questões em lote ou uma prova inteira. A Central acompanha cada prova até a publicação, e a conferência aponta gabarito faltando, questão repetida e assunto inexistente." },
     { icone:"plus", titulo:"Simulados e material",
       texto:"<strong>Criar Simulado</strong> monta uma prova para a turma; <strong>Material em PDF</strong> gera listas para imprimir; <strong>Flashcards</strong> cuida do baralho da equipe." },
-    { icone:"chart", titulo:"Painel da Turma",
+    { icone:"chart", titulo:"Turma",
       texto:"Como a turma está indo: acerto por área, quem está parado e os assuntos mais errados. <strong>Questões Difíceis</strong> mostra onde a turma trava." },
     { icone:"user", titulo:"Veja pelo olhar do aluno",
       texto:"O <strong>modo aluno</strong> mostra a plataforma como o aluno a vê — e as respostas dadas nele contam para o seu próprio progresso." },
@@ -86,7 +86,7 @@ const TUTORIAL_RAPIDO = {
     { icone:"home", titulo:"Bem-vindo(a), administrador(a)",
       texto:"Um tour de um minuto pelo que só a administração faz, além das ferramentas de conteúdo da equipe. O que aparece no seu menu depende do seu nível de acesso." },
     { icone:"check", titulo:"Cadastros e usuários",
-      texto:"<strong>Aprovar Cadastros</strong> libera quem pediu acesso; <strong>Usuários</strong> muda papel, nível de administrador e situação de cada conta." },
+      texto:"Em <strong>Turma › Cadastros e usuários</strong>: aprovar quem pediu acesso, mudar papel, nível de administrador e situação de cada conta — tudo na mesma tela do painel de uso." },
     { icone:"calendar", titulo:"Blocos de Estudo",
       texto:"O calendário de cada ano da faculdade e das turmas do rodízio. É ele que decide o bloco atual e, portanto, a sessão do dia dos alunos." },
     { icone:"database", titulo:"Conteúdo",
@@ -106,7 +106,7 @@ const GUIA_ALUNO = [
     "Se você sair no meio de uma sessão, ela fica guardada: o Início oferece <strong>Continuar</strong> de onde parou.",
   ]},
   { titulo:"Estudar: escolher o que fazer", itens:[
-    "<strong>Monte sua própria lista</strong> filtra por área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano, só erros, só favoritas ou só as que você nunca respondeu. Dá para marcar <strong>mais de uma instituição</strong> e <strong>mais de um tipo de prova</strong> no mesmo conjunto.",
+    "<strong>Monte sua própria lista</strong> (clique em <strong>Criar minha lista</strong> para abrir as opções) filtra por área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano, só erros, só favoritas ou só as que você nunca respondeu. Dá para marcar <strong>mais de uma instituição</strong> e <strong>mais de um tipo de prova</strong> no mesmo conjunto.",
     "A meta diária é ajustada em Estudar (e, em <strong>Ajustar meta</strong>, o botão <strong>Restaurar padrão</strong> devolve a recomendação da coordenação); o ano da faculdade e a turma, em Perfil e em Meu Grupo.",
   ]},
   { titulo:"Respondendo uma questão", itens:[
@@ -119,7 +119,7 @@ const GUIA_ALUNO = [
   ]},
   { titulo:"Revisão e Revisão Rápida", itens:[
     "<strong>Revisão</strong> traz as questões da revisão espaçada, nesta ordem: primeiro as dos assuntos já estudados que você <strong>ainda não viu</strong>, depois as que você <strong>errou</strong> (ou acertou no chute) e, por último, as que acertou e já passou o prazo. Acerto seguro só volta depois de 1 mês (2 no segundo acerto seguido, e mais ainda em assunto em que você vai bem); com <strong>3 acertos seguidos</strong> a questão sai da revisão.",
-    "<strong>Revisão Rápida</strong> são os flashcards: os cartões da equipe, os seus e os gerados das questões que você errou com certeza ou acertou no chute. Você também pode sugerir um cartão seu para o baralho da equipe.",
+    "<strong>Revisão Rápida</strong> são os flashcards: os cartões da equipe, os seus e os gerados das questões que você errou com certeza ou acertou no chute. Você também pode sugerir um cartão seu para o baralho da equipe. O botão <strong>Criar meu baralho</strong> abre as opções de montagem: área, especialidade ou assunto, só os vencidos, só os que você ainda não viu ou só os seus, e quantos cartões.",
     "<strong>Adicionar baralho</strong> (em Revisão Rápida) tem duas saídas: escrever um cartão ou <strong>trazer um baralho inteiro de uma IA</strong>. Você escolhe o assunto e a quantidade, copia o pedido pronto, cola numa IA (se tiver resumo ou PDF seu, anexe na conversa), traz a resposta de volta e <strong>confere</strong> antes de adicionar. Os cartões ficam só no seu baralho.",
   ]},
   { titulo:"Provas e Simulados", itens:[
@@ -133,7 +133,7 @@ const GUIA_ALUNO = [
     "<strong>Nota estimada</strong>: uma projeção da sua nota na prova, com a faixa de incerteza.",
   ]},
   { titulo:"Turma, favoritos e histórico", itens:[
-    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual; onde o calendário não dá nome às turmas, o grupo é identificado pelo bloco em que começa) ou crie um grupo com colegas — seguindo o rodízio do ano, com <strong>calendário próprio</strong> (você monta os blocos) ou só para <strong>dividir questões</strong>. Você vê quem são os <strong>integrantes</strong> do grupo. O dono pode mudar o nome do grupo e dividir as questões do grupo entre os membros (cada um pratica a sua parte). Qualquer integrante pode criar um <strong>grupo de estudo</strong> dentro do grupo: escolhe quem participa e quais provas do grupo entram, e só essas pessoas dividem aquele conjunto — sem mudar calendário nem sair da turma. Quem já se formou não tem calendário de faculdade: entra ou cria um grupo. No 6º ano, <strong>Meus estágios</strong> deixa você reordenar os estágios de cada período do seu jeito, sem sair do grupo.",
+    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual; onde o calendário não dá nome às turmas, o grupo é identificado pelo bloco em que começa) ou crie um grupo com colegas — seguindo o rodízio do ano, com <strong>calendário próprio</strong> (você monta os blocos) ou só para <strong>dividir questões</strong>. Você vê quem são os <strong>integrantes</strong> do grupo — quem criou o grupo pode retirar alguém no <strong>×</strong> — e, quando alguém pede para entrar, o Esc avisa na tela, com o número ao lado de Meu Grupo no menu. O dono pode mudar o nome do grupo e dividir as questões do grupo entre os membros (cada um pratica a sua parte). Qualquer integrante pode criar um <strong>grupo de estudo</strong> dentro do grupo: escolhe quem participa e quais provas do grupo entram, e só essas pessoas dividem aquele conjunto — sem mudar calendário nem sair da turma; quem criou o grupo de estudo pode tirar um participante no <strong>×</strong>. Quem já se formou não tem calendário de faculdade: entra ou cria um grupo. No 6º ano, <strong>Meus estágios</strong> deixa você reordenar os estágios de cada período do seu jeito, sem sair do grupo.",
     "<strong>Favoritos</strong> guarda as questões e os cartões salvos, com as suas anotações, e — na aba <strong>Retiradas da revisão</strong> — as questões que você pediu para não ver mais, com o botão para trazê-las de volta.",
     "Os <strong>avisos da coordenação</strong> aparecem no Início; dispense o que já leu.",
     "<strong>Histórico de Atividade</strong> lista as sessões e os simulados que você fez.",
@@ -174,14 +174,14 @@ const GUIA_EQUIPE = [
     "<strong>Material em PDF</strong> gera listas de questões e de cartões para imprimir.",
     "<strong>Flashcards</strong>: o baralho da equipe, os cartões sugeridos por alunos para aprovar e os cartões em lote.",
   ]},
-  { titulo:"Painel da Turma e modo aluno", itens:[
-    "<strong>Painel da Turma</strong>: engajamento, acerto por área e assuntos mais errados da turma (precisa da nuvem ligada). A lista de pessoas mostra o <strong>último uso</strong> de cada uma e ordena por ele (mais recente ou mais antigo primeiro).",
+  { titulo:"Turma e modo aluno", itens:[
+    "<strong>Turma › Painel de uso</strong>: engajamento, acerto por área e assuntos mais errados da turma (precisa da nuvem ligada). A lista de pessoas mostra o <strong>último uso</strong> de cada uma e ordena por ele (mais recente ou mais antigo primeiro), e a coluna <strong>Condição</strong> diz se cada aluno está em dia, parado (7 dias ou mais sem estudar) ou nunca estudou.",
     "O <strong>modo aluno</strong> mostra a plataforma como o aluno a vê; as respostas dadas nele contam para o seu próprio progresso.",
   ]},
 ];
 const GUIA_ADMIN = [
   { titulo:"Administração", itens:[
-    "<strong>Aprovar Cadastros</strong> e <strong>Usuários</strong>: liberar acessos, mudar papel, nível de administrador e situação das contas. Quando alguém pede acesso, o Esc avisa na tela e mostra o número no menu; em Aprovar Cadastros dá para receber também como notificação do sistema.",
+    "<strong>Turma</strong> tem duas abas: o <strong>Painel de uso</strong> e <strong>Cadastros e usuários</strong> (liberar acessos, mudar papel, nível de administrador e situação das contas). Quando alguém pede acesso, o Esc avisa na tela e mostra o número ao lado de Turma no menu; na aba Cadastros e usuários dá para receber também como notificação do sistema.",
     "<strong>Blocos de Estudo</strong>: o calendário de cada ano da faculdade e das turmas do rodízio, que decide o bloco atual dos alunos.",
     "<strong>Configurações</strong>: metas mínima e recomendada, mistura da sessão, pesos da dificuldade, banca de referência e outras regras do algoritmo.",
     "<strong>Enviar Avisos</strong>: escreva um recado e escolha os papéis e os anos da faculdade que o recebem (em branco, todos). Ele aparece no Início de cada pessoa até ela dispensar; com a nuvem, chega a todos os aparelhos. Dá para levar a pessoa a uma tela e definir até quando o aviso vale.",

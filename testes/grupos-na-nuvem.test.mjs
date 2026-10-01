@@ -198,6 +198,48 @@ test("grupo na nuvem: criar, pedir para entrar, aprovar, questão do grupo, grup
   } finally { await ana.contexto.close(); await bia.contexto.close(); await carla.contexto.close(); }
 });
 
+test("pedido de entrada avisa a dona em outro aparelho, e retirar alguém do grupo chega ao aparelho dele", async () => {
+  const banco = nuvemQueGuarda();
+  const ana = await abrir(banco, { id: ANA, nome: "Ana Aluna" });
+  const bia = await abrir(banco, { id: BIA, nome: "Bia Aluna" });
+  try{
+    const gid = await ana.pagina.evaluate(() => {
+      navigate("meu-grupo");
+      document.getElementById("novoGrupoTipo").value = "proprio";
+      document.getElementById("novoGrupoNome").value = "Grupo da Ana";
+      criarMeuGrupo();
+      return usuarioAtual().grupoId;
+    });
+    await sincronizar(ana.pagina);
+    await sincronizar(bia.pagina);
+    await bia.pagina.evaluate(id => solicitarAcessoGrupo(id), gid);
+    await sincronizar(bia.pagina);
+    // o pedido desce para a Ana, que é avisada (uma vez) e vê o número no menu
+    await sincronizar(ana.pagina);
+    const aviso = await ana.pagina.evaluate(() => {
+      checarPedidosDeEntradaNoGrupo(); checarPedidosDeEntradaNoGrupo();
+      const toasts = [...document.querySelectorAll("#toastContainer .toast")].map(t => t.textContent).filter(t => /pediu para entrar/.test(t));
+      return { toasts, menu: document.getElementById("sidebarMenu").innerText };
+    });
+    assert.equal(aviso.toasts.length, 1);
+    assert.match(aviso.toasts[0], /Bia Aluna pediu para entrar no grupo "Grupo da Ana"/);
+    assert.match(aviso.menu, /Meu Grupo\s*1/);
+    // aprova; a Bia entra
+    await ana.pagina.evaluate(([id, bia]) => aprovarAcessoGrupo(id, bia), [gid, BIA]);
+    await sincronizar(ana.pagina); await sincronizar(bia.pagina);
+    assert.equal(await bia.pagina.evaluate(() => usuarioAtual().grupoId), gid);
+    // a Ana retira a Bia: sobe como recusa (PATCH na linha dela) e a Bia volta ao calendário oficial
+    await ana.pagina.evaluate(([id, bia]) => { window.confirm = () => true; retirarDoGrupo(id, bia); }, [gid, BIA]);
+    await sincronizar(ana.pagina);
+    assert.equal(banco.tabela("grupo_membros").get(gid + "|" + BIA).status, "recusado");
+    await sincronizar(bia.pagina);
+    const naBia = await bia.pagina.evaluate(id => ({ grupo: usuarioAtual().grupoId, oficial: db.grupoOficialId, membro: getGrupo(id).membrosAprovados.includes(usuarioAtual().id) }), gid);
+    assert.equal(naBia.grupo, naBia.oficial, "o aparelho dela volta ao calendário oficial");
+    assert.equal(naBia.membro, false);
+    for(const t of [ana, bia]) assert.deepEqual(t.erros, []);
+  } finally { await ana.contexto.close(); await bia.contexto.close(); }
+});
+
 test("cartões: compartilhado com o grupo chega aos colegas; sugerido à equipe chega ao professor, que aprova para todos", async () => {
   const banco = nuvemQueGuarda();
   const ana = await abrir(banco, { id: ANA, nome: "Ana Aluna" });

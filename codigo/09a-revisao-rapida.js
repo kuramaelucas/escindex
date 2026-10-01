@@ -82,7 +82,14 @@ function renderFlashcardsInicio(u){
   </div>` : ""}
 
   <div class="card mt-2">
-    <div class="card-title">Escolher um recorte</div>
+    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+      <div style="min-width:220px;flex:1">
+        <div class="card-title" style="margin-bottom:.2rem">Monte o seu baralho</div>
+        <div class="text-sm muted">Um baralho do tamanho e do assunto que você escolher — por área, especialidade ou assunto, só os vencidos, só os que você ainda não viu ou só os que você escreveu.</div>
+      </div>
+      <button class="btn ${filtro.montagemAberta?"btn-secondary":"btn-primary"}" onclick="alternarMontagemBaralho()" aria-expanded="${!!filtro.montagemAberta}">${filtro.montagemAberta ? "Fechar a montagem" : iconeSvg("plus")+" Criar meu baralho"}</button>
+    </div>
+    ${filtro.montagemAberta ? `<div class="mt-2">
     <div class="grid grid-3">
       <div class="field"><label class="label">Grande área</label>
         <select class="select" id="flashArea" onchange="atualizarFiltroFlash()">
@@ -100,7 +107,17 @@ function renderFlashcardsInicio(u){
           ${db.taxonomia.assuntos.filter(a=>!filtro.especialidadeId || a.especialidadeId===filtro.especialidadeId).map(a=>`<option value="${a.id}" ${filtro.assuntoId===a.id?"selected":""}>${escapeHtml(a.nome)}</option>`).join("")}
         </select></div>
     </div>
-    <button class="btn btn-secondary" onclick="iniciarSessaoFlashcards(state.filtroRota.flashcards||{})">Começar com esse recorte</button>
+    <div class="grid grid-3">
+      <div class="field"><label class="label">Quais cartões</label>
+        <select class="select" id="flashSituacao" onchange="atualizarOpcoesBaralho()">
+          ${[["","Todos (a plataforma ordena)"],["vencidos","Só os vencidos"],["novos","Só os que ainda não vi"],["meus","Só os que eu escrevi"]].map(([v,r])=>`<option value="${v}" ${(filtro.situacao||"")===v?"selected":""}>${r}</option>`).join("")}
+        </select></div>
+      <div class="field"><label class="label">Nº de cartões</label>
+        <input class="input" id="flashTamanho" type="number" min="1" max="100" value="${filtro.tamanho||20}" onchange="atualizarOpcoesBaralho()"></div>
+    </div>
+    <div class="text-sm muted mb-2" id="contagemBaralho">${textoContagemBaralho(u.id, filtro)}</div>
+    <button class="btn btn-primary" onclick="iniciarSessaoFlashcards(state.filtroRota.flashcards||{})">${iconeSvg("cards")} Começar com este baralho</button>
+    </div>` : ""}
   </div>
 
   ${meus.length ? `<div class="card mt-2">
@@ -171,9 +188,30 @@ function atualizarFiltroFlash(){
   else f.assuntoId = ass||null;
   render();
 }
+/* O botão "Criar meu baralho" abre as opções de montagem; a escolha (área,
+   situação, tamanho) fica em state.filtroRota.flashcards e sobrevive aos
+   redesenhos da tela. */
+function alternarMontagemBaralho(){
+  const f = state.filtroRota.flashcards = state.filtroRota.flashcards || {};
+  f.montagemAberta = !f.montagemAberta;
+  render();
+}
+function atualizarOpcoesBaralho(){
+  const f = state.filtroRota.flashcards = state.filtroRota.flashcards || {};
+  f.situacao = document.getElementById("flashSituacao").value || null;
+  f.tamanho = Math.max(1, Math.min(100, parseInt(document.getElementById("flashTamanho").value) || 20));
+  const c = document.getElementById("contagemBaralho");
+  if(c) c.textContent = textoContagemBaralho(usuarioAtual().id, f);
+}
+// quantos cartões o recorte tem de verdade, antes de começar: evita a sessão vazia
+function textoContagemBaralho(usuarioId, filtro){
+  const n = montarBaralhoFlashcards(usuarioId, 1000, filtro || {}).length;
+  const tam = Math.min(n, (filtro && filtro.tamanho) || 20);
+  return n ? n + " cartão(ões) neste recorte — o baralho terá " + tam + "." : "Nenhum cartão neste recorte. Tente um filtro mais amplo.";
+}
 function iniciarSessaoFlashcards(filtro){
   const u = usuarioAtual();
-  const cartoes = montarBaralhoFlashcards(u.id, 20, filtro||{});
+  const cartoes = montarBaralhoFlashcards(u.id, (filtro && filtro.tamanho) || 20, filtro||{});
   if(!cartoes.length){ toast("Não há cartões para este recorte ainda. Tente um filtro mais amplo, ou peça à equipe para cadastrar cartões desse assunto.", "err"); return; }
   state.sessaoFlash = { cartoes, indice:0, virado:false, notas:[], finalizada:false };
   navigate("flashcards");

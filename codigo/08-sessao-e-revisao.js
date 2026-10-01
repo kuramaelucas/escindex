@@ -533,7 +533,7 @@ function renderSessao(){
   const emBranco = sessao.itens.length - feitas;
   const naUltima = sessao.indiceAtual === sessao.itens.length-1;
   const soLeitura = sessao.jaFinalizada || sessao.somenteLeitura;
-  return `
+  return `<div class="coluna-questao">
   <div class="flex justify-between items-center mb-2">
     <div class="text-sm muted">Questão ${sessao.indiceAtual+1} de ${sessao.itens.length}${sessao.somenteLeitura?' · <span class="badge badge-muted">revisão do histórico</span>':""}</div>
     <div class="flex gap-1">
@@ -558,7 +558,7 @@ function renderSessao(){
   ${/* só depois que o conjunto começou: no primeiro cartão, "20 em branco" é
        só o tamanho da fila, e dizer isso ali não informa nada */""
     }${(soLeitura || !emBranco || !feitas) ? "" : `<div class="text-xs muted mt-1">${emBranco} ${emBranco===1?"questão em branco":"questões em branco"} neste conjunto.</div>`}
-  `;
+  </div>`;
 }
 function renderSessaoResumo(){
   const sessao = state.sessaoAtual;
@@ -683,6 +683,24 @@ function renderReferenciasQuestao(q){
   if(!q.referencias) return "";
   return `<div class="card-flat mt-2 text-xs"><strong>Referências consultadas:</strong> ${escapeHtml(q.referencias)}</div>`;
 }
+/* AUTORIA. A questão que um ALUNO enviou diz quem a enviou: quem estuda por
+   ela sabe de quem é o trabalho (e a quem agradecer ou perguntar), e o aluno
+   ganha o crédito. A de equipe, a da pasta dados/ e a didática não levam
+   nome — são do material oficial. O papel de quem enviou vai junto com a
+   questão (autorPapel), porque, com a nuvem, o navegador de cada pessoa só
+   conhece o próprio cadastro; sem ele a questão de antes dessa regra, vinda
+   de outro aparelho, não tem como dizer se o autor era aluno e fica sem nome. */
+function autoriaDaQuestao(q){
+  if(!q || !q.criadoPor || q.criadoPor === "seed" || questaoDaSemente(q.id)) return null;
+  const autor = getUsuario(q.criadoPor);
+  const papel = (autor && autor.papel) || q.autorPapel;
+  const nome = (autor && autor.nome) || q.autorNome;
+  return papel === "aluno" && nome ? nome : null;
+}
+function badgeAutoriaQuestao(q){
+  const nome = autoriaDaQuestao(q);
+  return nome ? `<span class="badge badge-muted" title="Questão enviada por um aluno">Enviada por ${escapeHtml(nome)}</span>` : "";
+}
 function renderQuestionCard(q, opts){
   opts = opts || {};
   const esp = getEspecialidade(q.especialidadeId), area = getArea(q.areaId);
@@ -709,6 +727,7 @@ function renderQuestionCard(q, opts){
   let html = `<div class="qcard">
     <div class="qcard-meta">${classificacao}
       <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
+      ${badgeAutoriaQuestao(q)}
       ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-amber" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
       ${(q.banca||"").indexOf("Didático")>=0
         ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'

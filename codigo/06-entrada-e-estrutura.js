@@ -125,7 +125,7 @@ function solicitarCadastro(){
   toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
   navigate("login");
 }
-function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado — a pessoa sai desta lista e passa a aparecer em Usuários."); render(); }
+function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado — a pessoa sai dos pedidos e passa a aparecer na lista de usuários."); render(); }
 function rejeitarUsuario(id){ getUsuario(id).status="rejeitado"; saveState(); toast("Cadastro recusado."); render(); }
 function desativarUsuario(id){ getUsuario(id).status="inativo"; saveState(); toast("Conta inativada: a pessoa deixa de conseguir entrar, mas o estudo dela fica guardado."); render(); }
 function reativarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Usuário reativado."); render(); }
@@ -143,11 +143,11 @@ function alterarPapelUsuario(id, papel){
 const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Revisão Rápida", historico:"Histórico de Atividade",
   simulados:"Provas e Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas e Simulados",
   favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil e configurações", "meu-grupo":"Meu Grupo",
-  "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", "aprovar-cadastros":"Aprovar Cadastros",
-  usuarios:"Usuários", taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
+  "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", 
+  taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
   "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar",
   blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários",
-  "enviar-avisos":"Enviar Avisos", "painel-turma":"Painel da Turma" };
+  "enviar-avisos":"Enviar Avisos", "painel-turma":"Turma" };
 function tituloDaRota(r){ return ROUTE_TITLES[r] || CONFIG.nomePlataforma; }
 
 function navigate(route, params){
@@ -238,8 +238,14 @@ function render(){
     case "revisao-dificeis": conteudo = renderRevisaoDificeis(); break;
     case "fila-duvidas": conteudo = renderFilaDuvidas(); break;
     case "revisao-formatacao": conteudo = renderRevisaoFormatacao(); break;
-    case "aprovar-cadastros": conteudo = renderAprovarCadastros(); break;
-    case "usuarios": conteudo = renderUsuarios(); break;
+    // Aprovar Cadastros e Usuários viraram a aba "Cadastros e usuários" da
+    // tela Turma; as rotas antigas continuam respondendo (link salvo não quebra)
+    case "aprovar-cadastros": case "usuarios":
+      filtrosPainelTurma().aba = "pessoas";
+      state.route = "painel-turma";
+      try{ history.replaceState(null, "", "#/painel-turma"); }catch(e){ /* abrir por arquivo pode recusar: o endereço fica como estava */ }
+      conteudo = renderPainelTurma();
+      break;
     case "taxonomia": conteudo = renderTaxonomia(); break;
     case "banco-questoes": conteudo = renderBancoQuestoes(); break;
     case "importar-questoes": conteudo = renderImportarQuestoes(); break;
@@ -437,13 +443,11 @@ function navItemsParaPapel(papel){
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"taxonomia", label:"Especialidades e Assuntos", icon:"filter"},
   ];
-  const painel = {id:"painel-turma", label:"Painel da Turma", icon:"chart"};
+  const painel = {id:"painel-turma", label:"Turma", icon:"users"};
   if(papel==="professor") return [conteudo[0], painel, ...conteudo.slice(1)];
   if(papel==="admin"){
     const u = usuarioAtual();
     const itens = [conteudo[0], Object.assign({permissao:"turma"}, painel), ...conteudo.slice(1),
-      {id:"aprovar-cadastros", label:"Aprovar Cadastros", icon:"check", permissao:"cadastros"},
-      {id:"usuarios", label:"Usuários", icon:"users", permissao:"usuarios"},
       {id:"blocos", label:"Blocos de Estudo", icon:"calendar", permissao:"blocos"},
       {id:"feedback-usuarios", label:"Feedback dos Usuários", icon:"message", permissao:"cadastros"},
       {id:"enviar-avisos", label:"Enviar Avisos", icon:"bell", permissao:"avisos"},
@@ -470,7 +474,7 @@ function renderSemPermissao(permissao){
   return `<div class="empty-state">
     <h3>Acesso restrito</h3>
     <p class="mt-2">Seu nível de acesso (${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}) não inclui esta área${permissao?" (permissão: "+escapeHtml(permissao)+")":""}.</p>
-    <p class="text-sm mt-1">Peça a um administrador máster que altere seu nível em Usuários, se precisar desse acesso.</p>
+    <p class="text-sm mt-1">Peça a um administrador máster que altere seu nível em Turma › Cadastros e usuários, se precisar desse acesso.</p>
     <button class="btn btn-primary mt-3" onclick="navigate('inicio')">Voltar ao início</button>
   </div>`;
 }
@@ -488,7 +492,8 @@ function htmlMenuLateral(u){
       <ul class="nav-list">
         ${nav.map(item=>{
           let badge = "";
-          if(item.id==="aprovar-cadastros" && pendCadastros>0) badge = ' <span class="badge badge-amber">'+pendCadastros+'</span>';
+          if(item.id==="painel-turma" && pendCadastros>0) badge = ' <span class="badge badge-amber">'+pendCadastros+'</span>';
+          if(item.id==="meu-grupo"){ const n = quantosPedidosDeEntradaNoGrupo(u); if(n>0) badge = ' <span class="badge badge-amber" title="Pedidos para entrar no seu grupo">'+n+'</span>'; }
           if(item.id==="feedback-usuarios"){ const n = feedbacksNaoLidos(); if(n>0) badge = ' <span class="badge badge-amber">'+n+'</span>'; }
           return `<li class="nav-item ${state.route===item.id?"active":""}" onclick="navigate('${item.id}')">${iconeSvg(item.icon)}<span>${item.label}</span>${badge}</li>`;
         }).join("")}

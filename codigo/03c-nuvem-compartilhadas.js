@@ -187,7 +187,7 @@ function nuvemMarcarAviso(id){
 const BALDE_IMAGENS_QUESTOES = "questoes";
 const CAMPOS_DA_QUESTAO_NA_NUVEM = ["banca", "ano", "tipoProva", "areaId", "especialidadeId", "assuntoId", "enunciado", "alternativas",
   "gabarito", "explicacaoGeral", "explicacoesAlternativas", "referencias", "imagemUrl", "imagemLegenda", "imagemPendente",
-  "dificuldadeManual", "numeroNaProva", "faseProva", "motivoStatus", "criadoEm"];
+  "dificuldadeManual", "numeroNaProva", "faseProva", "motivoStatus", "autorPapel", "criadoEm"];
 let _idsDaSemente = null;
 function questaoDaSemente(id){
   if(!_idsDaSemente || _idsDaSemente.n !== SEED_QUESTOES.length) _idsDaSemente = { n: SEED_QUESTOES.length, ids: new Set(SEED_QUESTOES.map(q => q.id)) };

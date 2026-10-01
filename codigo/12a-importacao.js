@@ -558,7 +558,7 @@ function importarItensAnalisados(resultado, destino, extras){
       dificuldadeManual: ["fundamental","intermediario","avancado"].includes((c.DIFICULDADE||"").trim().toLowerCase()) ? c.DIFICULDADE.trim().toLowerCase() : "intermediario",
       status: r.status || (destino==="sugerir" ? "pendente" : "ativa"),
       estatisticas: {respostas:0, acertos:0, distribuicaoAlternativas:{}},
-      criadoPor: u.id, criadoEm: hojeISO(),
+      criadoPor: u.id, autorPapel: u.papel, criadoEm: hojeISO(),
     };
     if(destino==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = r.status || "ativa"; }
     // rastro da prova de origem: o número da questão no caderno original é o

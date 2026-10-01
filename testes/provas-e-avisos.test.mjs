@@ -222,7 +222,7 @@ test("pedido de acesso novo avisa quem aprova cadastros, uma vez só, e aparece 
   assert.equal(r.primeiro.length, 1);
   assert.match(r.primeiro[0], /Fulana de Teste \(3º ano\)/);
   assert.equal(r.segundo, 1, "o mesmo pedido não avisa duas vezes");
-  assert.match(r.menu, /Aprovar Cadastros\s*1/);
+  assert.match(r.menu, /Turma\s*1/);
   assert.ok(r.notifs.some(t => /1 pedido de acesso aguardando/.test(t)));
   assert.ok(r.avisados.includes("u-pedido-teste"));
   assert.ok(r.cartao);
