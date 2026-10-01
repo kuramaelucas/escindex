@@ -37,8 +37,8 @@ celular de cada aluno.
 
 A lista sempre atualizada sai do conferidor: `npm run conferir` (ou
 `node testes/conferir-dados.mjs`) lista cada questão que ainda espera figura e
-o nome exato do arquivo. Em 01/10/2026 eram 208 — 13 da UNIFESP, 32 da Santa Casa, 30 da USP-SP
-e 133 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
+o nome exato do arquivo. Em 03/10/2026 eram 103 — 13 da UNIFESP, 32 da Santa Casa, 30 da USP-SP
+e 28 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
@@ -147,147 +147,22 @@ acrescentada)". Ao anexar a figura, vale relê-la e completar a explicação.
 
 </details>
 
-### USP-RP (FMRP) 2021–2026 — 133 figuras
+### USP-RP (FMRP) 2021–2026 — 28 figuras
 
-As provas de **2025** e **2026** vieram em caderno em PDF, e as figuras delas (27 e 35) já
-estão nesta pasta (`q-usprp2025-*`, `q-usprp2026-*`), recortadas do caderno e conferidas a olho:
+As provas de **2021, 2022, 2023, 2025** e **2026** vieram em caderno em PDF, e as figuras delas (46, 31, 31, 27 e 35) já
+estão nesta pasta (`q-usprp2021-*` a `q-usprp2026-*`), recortadas do caderno e conferidas a olho:
 `.png` para tabelas (exames, espirometria, monitorização glicêmica) e `.jpg`
 para fotos, exames de imagem, gráficos e traçados.
 
-As provas de **2021 a 2024** vieram numa edição comentada só em texto
-(sem nenhuma figura; dos comentários, nada foi aproveitado). As 133 questões
-que dependiam de figura apontam para `q-usprp20AA-NNN.png` e descrevem em
-`imagemPendente` o que a prova mostrava; as explicações já descrevem o achado
-esperado pelo texto e pelo gabarito, e valem ser relidas quando a figura
-chegar. Algumas têm alternativas que só fazem sentido com a figura (2023-65,
-esquema do néfron; 2024-42, fonogramas). Os cadernos oficiais de 2021 a 2024 resolvem tudo de uma vez.
+Só a de **2024** ainda veio numa edição comentada em texto (sem figuras; dos comentários, nada foi aproveitado): as 25 questões dela que dependem de figura descrevem em `imagemPendente` o que a prova mostrava, e o caderno oficial de 2024 resolve tudo de uma vez. Na de 2022, as questões 19, 21 e 23 vieram sem a imagem também no caderno.
 
-<details><summary>USP-RP 2021 — 44 figuras</summary>
+<details><summary>USP-RP 2022 — 3 figuras</summary>
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
-| `q-usprp2021-015.png` | Tabela com a sorologia (IgG) contra o Zika vírus nas crianças com e sem microcefalia |
-| `q-usprp2021-016.png` | Gráfico do tétano acidental no Brasil — casos/incidência e cobertura vacinal ao longo dos anos |
-| `q-usprp2021-017.png` | Foto da manobra realizada no exame do joelho |
-| `q-usprp2021-019.png` | Foto do olho direito |
-| `q-usprp2021-024.png` | Figura do iceberg — casos notificados e confirmados de Covid-19 em relação às infecções estimadas pelo inquérito |
-| `q-usprp2021-027.png` | Radiografia de tórax |
-| `q-usprp2021-031.png` | Foto dos sinais do polegar e do punho |
-| `q-usprp2021-038.png` | Foto das lesões de pele |
-| `q-usprp2021-043.png` | Traçado do monitor cardíaco |
-| `q-usprp2021-046.png` | Curva de crescimento da paciente |
-| `q-usprp2021-047.png` | Tabela do esquema de insulina e gráfico do perfil glicêmico da última semana |
-| `q-usprp2021-053.png` | Quadro do perfil glicêmico da última semana |
-| `q-usprp2021-055.png` | Resultado do teste imunológico de gravidez |
-| `q-usprp2021-056.png` | Partograma (Figura 1) e cardiotocografia intraparto das 20h (Figura 2) |
-| `q-usprp2021-059.png` | Exame das mamas — hiperemia e fissuras no complexo areolomamilar |
-| `q-usprp2021-062.png` | Mamografias no tempo zero, com 6 e com 12 meses |
-| `q-usprp2021-063.png` | Exame especular e ultrassonografia transvaginal |
-| `q-usprp2021-065.png` | Imagem da lesão vulvar |
-| `q-usprp2021-066.png` | Ultrassonografia transvaginal |
-| `q-usprp2021-067.png` | Grade do POP-Q com as medidas da paciente |
-| `q-usprp2021-068.png` | Ultrassonografias transvaginais (imagens 1 e 2) |
-| `q-usprp2021-076.png` | Radiografia de tórax |
-| `q-usprp2021-077.png` | Tomografia computadorizada de crânio |
-| `q-usprp2021-079.png` | Foto do pé direito |
-| `q-usprp2021-082.png` | Ultrassonografia abdominal e foto da peça cirúrgica |
-| `q-usprp2021-083.png` | Tomografia de abdome |
-| `q-usprp2021-084.png` | Foto da ferida operatória |
-| `q-usprp2021-085.png` | Foto do paciente (queimaduras na face) |
-| `q-usprp2021-086.png` | Foto do tumor no punho |
-| `q-usprp2021-088.png` | Ressonância magnética da sela túrcica (cortes sagital e coronal) |
-| `q-usprp2021-089.png` | Foto da fralda com fezes com muco e sangue |
-| `q-usprp2021-092.png` | Radiografia simples (prego ingerido) |
-| `q-usprp2021-095.png` | Radiografia simples do abdome |
-| `q-usprp2021-097.png` | Fonogramas (figuras a, b, c e d) |
-| `q-usprp2021-099.png` | Radiografias de tórax (figuras A a D) |
-| `q-usprp2021-100.png` | Foto das lesões de pele |
-| `q-usprp2021-101.png` | Foto das lesões cutâneas |
-| `q-usprp2021-102.png` | Foto das lesões no membro superior |
-| `q-usprp2021-106.png` | Fotos da paciente (bócio e olhos) |
-| `q-usprp2021-108.png` | Tomografia de crânio sem contraste |
-| `q-usprp2021-109.png` | Foto do dispositivo de oxigênio (máscara com reservatório) |
-| `q-usprp2021-115.png` | Esfregaço do sangue periférico |
-| `q-usprp2021-116.png` | Mielograma (macrófago com pequenas estruturas ovaladas) |
-| `q-usprp2021-119.png` | Eletrocardiograma e ventriculografia |
-
-</details>
-
-<details><summary>USP-RP 2022 — 32 figuras</summary>
-
-| Arquivo | O que a prova mostrava |
-| --- | --- |
-| `q-usprp2022-004.png` | Gráfico da temperatura média da superfície terrestre nos últimos 170 anos |
-| `q-usprp2022-005.png` | Gráfico 1 — cobertura por planos de assistência médica e odontológica nos estados do Sudeste em três períodos |
-| `q-usprp2022-007.png` | Figura dos 5 momentos para higienização das mãos (OMS) |
-| `q-usprp2022-010.png` | Figura do artigo sobre a efetividade da CoronaVac no Chile |
-| `q-usprp2022-017.png` | Fotos da orofaringe e do tronco do paciente |
 | `q-usprp2022-019.png` | Foto da região da fralda (a descrição da lesão está incompleta no material de origem) |
 | `q-usprp2022-021.png` | Radiografia após a drenagem (figura A) e tomografias de tórax (figuras B e C) |
 | `q-usprp2022-023.png` | Ressonância magnética da coluna lombar |
-| `q-usprp2022-025.png` | Foto da ferida esternal após três ciclos de terapia por pressão negativa |
-| `q-usprp2022-026.png` | Tomografia de crânio sem contraste |
-| `q-usprp2022-030.png` | Foto do ferimento da orelha |
-| `q-usprp2022-033.png` | Foto da lesão no nariz |
-| `q-usprp2022-038.png` | Exames laboratoriais do 4º pós-operatório |
-| `q-usprp2022-040.png` | Radiografias do quadril |
-| `q-usprp2022-047.png` | Figura 1 — lesões vulvares |
-| `q-usprp2022-050.png` | Monitorização intraparto (figura 1) e partograma até às 14h (figura 2) |
-| `q-usprp2022-051.png` | Gráfico do desenvolvimento pondero-estatural |
-| `q-usprp2022-056.png` | Curva de evolução do hCG após o esvaziamento |
-| `q-usprp2022-060.png` | Exame ginecológico (prolapso genital) |
-| `q-usprp2022-062.png` | Foto da lesão na língua |
-| `q-usprp2022-066.png` | Figura 1 (língua) e figura 2 (esfregaço de sangue periférico) |
-| `q-usprp2022-069.png` | Foto da urina do paciente (urina escura, cor de "coca-cola") |
-| `q-usprp2022-070.png` | Radiografia de tórax (PA) e eletrocardiograma |
-| `q-usprp2022-071.png` | Lesão pruriginosa no antebraço |
-| `q-usprp2022-073.png` | Foto da oroscopia (úlcera em palato) |
-| `q-usprp2022-077.png` | Foto da mão esquerda com nódulos (tofos) |
-| `q-usprp2022-080.png` | Eletrocardiograma |
-| `q-usprp2022-089.png` | Foto da pele da criança (lesões eritematosas) |
-| `q-usprp2022-090.png` | Tabela de percentis de pressão arterial para meninos, segundo idade e percentil de estatura |
-| `q-usprp2022-093.png` | Radiografia do cotovelo esquerdo |
-| `q-usprp2022-094.png` | Curvas de estatura e peso do paciente |
-| `q-usprp2022-098.png` | Curva de crescimento com estaturas anteriores do paciente |
-
-</details>
-
-<details><summary>USP-RP 2023 — 32 figuras</summary>
-
-| Arquivo | O que a prova mostrava |
-| --- | --- |
-| `q-usprp2023-005.png` | Foto das lesões cutâneas em membros inferiores e nádegas |
-| `q-usprp2023-006.png` | Radiografia de controle após a passagem da sonda nasogástrica |
-| `q-usprp2023-007.png` | Foto da genitália do recém-nascido |
-| `q-usprp2023-012.png` | Radiografia após a ingestão do objeto |
-| `q-usprp2023-014.png` | Quadro do cartão vacinal da criança |
-| `q-usprp2023-021.png` | Inspeção vulvar com as lesões genitais |
-| `q-usprp2023-026.png` | Cardiotocografia (com marcação dos movimentos fetais) |
-| `q-usprp2023-027.png` | Partograma da evolução do trabalho de parto |
-| `q-usprp2023-032.png` | Inspeção vulvar (foto da lesão) |
-| `q-usprp2023-037.png` | Grade do POP-Q com as medidas da paciente |
-| `q-usprp2023-042.png` | Registro do teste de sensibilidade com estesiômetro (monofilamentos) nos pés |
-| `q-usprp2023-043.png` | Cartão vacinal da criança de 5 meses |
-| `q-usprp2023-050.png` | Gráfico de riscos relativos ajustados (com intervalos de confiança) por meio de transporte |
-| `q-usprp2023-053.png` | Curva ROC do teste diagnóstico |
-| `q-usprp2023-058.png` | Fotos das lesões no tronco e no antebraço |
-| `q-usprp2023-059.png` | Gráfico de crescimento do paciente (com a altura-alvo) |
-| `q-usprp2023-060.png` | Foto da lesão no braço |
-| `q-usprp2023-061.png` | Eletrocardiograma de 12 derivações |
-| `q-usprp2023-062.png` | Foto da unha do primeiro quirodáctilo esquerdo |
-| `q-usprp2023-065.png` | Esquema do néfron com os segmentos marcados de A a D |
-| `q-usprp2023-070.png` | Foto do olho com o arco esbranquiçado na periferia da córnea |
-| `q-usprp2023-071.png` | Esfregaço de sangue periférico |
-| `q-usprp2023-073.png` | Radiografias de tórax da admissão (A) e após 20 dias (B) |
-| `q-usprp2023-077.png` | Eletrocardiograma do terceiro dia de internação |
-| `q-usprp2023-079.png` | Foto dos pés |
-| `q-usprp2023-080.png` | Mãos após o teste de contato com gelo |
-| `q-usprp2023-082.png` | Exames de imagem da aorta dos pacientes 1 e 2 |
-| `q-usprp2023-084.png` | Fotos dos cálculos numerados de 1 a 4, retirados na cirurgia |
-| `q-usprp2023-086.png` | Tomografia de crânio sem contraste (A) e com contraste (B) |
-| `q-usprp2023-087.png` | Ultrassonografia transfontanelar |
-| `q-usprp2023-095.png` | Ressonância magnética da coluna lombar |
-| `q-usprp2023-100.png` | Tomografia de abdome |
 
 </details>
 

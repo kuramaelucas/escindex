@@ -139,10 +139,7 @@ export function conferir(){
   // provas com buraco na numeração. Uma lacuna só é aceita quando está
   // listada aqui, com o motivo — o material de origem não trazia a questão e
   // ela não pode ser inventada; sai daqui quando for transcrita do caderno
-  const LACUNAS_CONHECIDAS = {
-    // a edição usada na carga (27/09/2026) pula da 6 para a 8
-    "USP-RP (FMRP) 2021": [7],
-  };
+  const LACUNAS_CONHECIDAS = {};
   for(const [chave, qs] of provas){
     const nums = qs.map(q => q.numeroNaProva).filter(Number.isInteger);
     const repetidosNum = nums.filter((n, i) => nums.indexOf(n) !== i);

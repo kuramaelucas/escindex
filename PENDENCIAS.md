@@ -13,7 +13,6 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 | Prova | O que falta | Como resolver |
 | --- | --- | --- |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
-| **USP-RP 2021, questão 7** | A questão inteira. O PDF usado pula da 6 para a 8 | Transcrever do caderno oficial de 2021. Ao incluí-la, tirar a linha `"USP-RP (FMRP) 2021": [7]` de `LACUNAS_CONHECIDAS`, em `testes/conferir-dados.mjs` |
 
 ## 2. Texto incompleto
 
@@ -22,12 +21,9 @@ O caderno oficial de cada ano resolve.
 
 | Prova | Questão | O que falta |
 | --- | --- | --- |
-| USP-RP 2021 | 74 | Final da alternativa D ("Passagem de dreno pleural tipo…") |
-| USP-RP 2021 | 78 | Final das alternativas A e B ("…cânula plástica com…") |
-| USP-RP 2021 | 93 | Final da alternativa C ("Indicar o uso de calçado tipo…") |
-| USP-RP 2022 | 19 | Descrição da lesão da região da fralda, cortada no meio do enunciado |
-| USP-RP 2022 | 75 | Trecho do exame físico ("consciente, … difusos") |
-| USP-RP 2022 | 8 e 23 | A pergunta final não veio no PDF e foi completada pela equipe. Conferir no caderno |
+| USP-RP 2022 | 19 | Descrição da lesão da região da fralda. O caderno oficial também veio sem esse trecho (e sem a foto): precisa do original |
+| USP-RP 2022 | 75 | Trecho do exame físico ("consciente, … difusos"). O caderno oficial também veio sem ele |
+| USP-RP 2022 | 8 e 23 | A pergunta final não consta nem no caderno oficial; foi completada pela equipe. Conferir no original |
 
 Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto no material de origem]".
 
@@ -39,6 +35,8 @@ Conferir as 100 questões contra o gabarito definitivo da banca e marcar as anul
 A explicação já avisa onde a alternativa dada como certa tem imprecisão: 2023-8 (a adrenalina intramuscular é a de 1:1.000, não 1:10.000) e 2023-59 (tratamento do HIV "na fase de contágio").
 
 ### USP-RP 2021 a 2025: gabarito vindo do PDF comentado, não da folha oficial
+
+Em 03/10/2026 os cadernos de 2021, 2022 e 2023 foram comparados com o banco: em **2021** os 118 gabaritos batem com o do caderno (comparando pelo conteúdo, porque a numeração das versões é outra); em **2022** só diverge a 100 (banco B, caderno D); em **2023** o caderno traz a folha em branco nas questões 31–34 e 37–40 e diverge em 36 (banco C, caderno D), 59 (banco anulada, caderno C) e 95 (banco B, caderno C). Nada foi mudado: as explicações atuais sustentam o gabarito do banco e não há como saber, sem a folha oficial da banca, qual das duas fontes está certa. Falta só a folha oficial para decidir 2022-100 e 2023-36, 59 e 95; 2024 e 2025 seguem sem conferência.
 
 Vale conferir **todos** os gabaritos desses cinco anos contra a folha oficial.
 Nas questões abaixo, a explicação já avisa que o gabarito é discutível:
@@ -104,7 +102,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | IAMSPE 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
 | IAMSPE 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
 
-## 4. Figuras para anexar (208)
+## 4. Figuras para anexar (103)
 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
@@ -114,9 +112,7 @@ As provas da AMRIGS (2022 a 2025), a USP-RP 2026, as do IAMSPE (2021 a 2026) e a
 
 | Prova | Qtd | Questões |
 | --- | --- | --- |
-| USP-RP 2021 | 44 | 15–17, 19, 24, 27, 31, 38, 43, 46, 47, 53, 55, 56, 59, 62, 63, 65–68, 76, 77, 79, 82–86, 88, 89, 92, 95, 97, 99–102, 106, 108, 109, 115, 116, 119 |
-| USP-RP 2022 | 32 | 4, 5, 7, 10, 17, 19, 21, 23, 25, 26, 30, 33, 38, 40, 47, 50, 51, 56, 60, 62, 66, 69–71, 73, 77, 80, 89, 90, 93, 94, 98 |
-| USP-RP 2023 | 32 | 5–7, 12, 14, 21, 26, 27, 32, 37, 42, 43, 50, 53, 58–62, 65, 70, 71, 73, 77, 79, 80, 82, 84, 86, 87, 95, 100 |
+| USP-RP 2022 | 3 | 19, 21, 23 (o caderno veio sem as imagens destas) |
 | USP-RP 2024 | 25 | 2, 4, 10, 11, 19, 21, 22, 24, 31, 34, 35, 38, 41, 42, 44, 63, 68, 76, 78, 80, 82, 83, 89, 93, 96 |
 | USP-SP 2023 | 29 | 30, 56, 61, 73, 77–79, 81–83, 85–88, 95, 97, 98, 102, 104–106, 112–117, 119, 120 |
 | USP-SP 2026 | 1 | 63 |
@@ -140,8 +136,7 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 
 ### Os cadernos que resolvem quase tudo de uma vez
 
-- **USP-RP 2021, 2022, 2023 e 2024**, cadernos oficiais com a folha de gabarito.
-  Resolvem 133 figuras, os textos incompletos, a questão 7 de 2021 e a conferência dos gabaritos. (O caderno de 2025 já foi aplicado em 01/10/2026: as 27 figuras e a 2025-99 saíram daqui, mas a folha de gabarito veio em branco, então o gabarito de 2025 ainda precisa da folha oficial.)
+- **USP-RP 2024**, caderno com a folha de gabarito. Resolve 25 figuras e a conferência do gabarito. (Os cadernos de 2021 a 2023 foram aplicados em 03/10/2026; o de 2025 já foi aplicado em 01/10/2026: as 27 figuras e a 2025-99 saíram daqui, mas a folha de gabarito veio em branco, então o gabarito de 2025 ainda precisa da folha oficial.)
 - **USP-SP 2023**: 29 figuras.
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
 - **UNIFESP 2022 a 2026**: 13 figuras.
