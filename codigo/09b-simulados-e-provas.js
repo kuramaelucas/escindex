@@ -356,7 +356,7 @@ function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", are
 function renderProvasAntigas(){ return renderProvasESimulados(); }
 function renderAbaProvasAntigas(u){
   const f = filtrosProvas();
-  const grupoUsuario = (u.papel==="aluno"||state.modoAluno) ? getGrupoDoUsuario(u).id : true;
+  const grupoUsuario = (u.papel==="aluno"||state.modoAluno) ? idsDosGruposDoUsuario(u) : true;
   /* Só questão REAL forma prova: a prova antiga é "a prova de verdade, do
      jeito que caiu". As questões autorais (banco didático, demonstração)
      continuam em Estudar > Monte sua própria lista. */

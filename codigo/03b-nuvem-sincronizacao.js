@@ -373,7 +373,7 @@ function nuvemErroPassageiro(e){
    rodar o nuvem/esquema.sql, um F5 volta a mandar tudo). O dado em si nunca
    se perde: ele vive no navegador como todo o resto. */
 const NUVEM_CAMPOS_NOVOS = {
-  perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos
+  perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões)
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],   // quantos cartões naquele dia
 };

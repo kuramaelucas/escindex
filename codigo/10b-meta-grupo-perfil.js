@@ -96,6 +96,7 @@ function podeEditarCalendarioDoGrupo(g, u){
 function renderMeuGrupo(){
   const u = usuarioAtual();
   const meuGrupo = getGrupoDoUsuario(u);
+  const grupoQ = getGrupoQuestoesDoUsuario(u);
   const souDono = meuGrupo.criadoPor === u.id && !meuGrupo.oficial;
   const semTurma = !!meuGrupo.oficial;
   const proprio = grupoComCalendarioProprio(meuGrupo);
@@ -112,7 +113,7 @@ function renderMeuGrupo(){
     : proprio ? `${nBlocos ? nBlocos+" bloco(s) no calendário próprio" : "Sem calendário: o grupo serve para dividir questões"}`
     : `${nBlocos} bloco(s) na sequência de ${escapeHtml(anoDeReferencia(anoDaMinhaTurma))}`;
   return `
-  <div class="page-header"><h2>Meu Grupo</h2><p>Um grupo é uma turma de colegas. Ele pode seguir o <strong>rodízio do seu ano</strong> — todas as turmas passam pelos mesmos blocos, e o que muda é por qual bloco cada uma começa —, ter um <strong>calendário próprio</strong>, montado pelo grupo, ou existir só para <strong>dividir questões</strong> entre os membros.</p></div>
+  <div class="page-header"><h2>Meu Grupo</h2><p>Um grupo é uma turma de colegas. Ele pode seguir o <strong>rodízio do seu ano</strong> — todas as turmas passam pelos mesmos blocos, e o que muda é por qual bloco cada uma começa —, ter um <strong>calendário próprio</strong>, montado pelo grupo, ou existir só para <strong>dividir questões</strong> entre os membros. Além do grupo do calendário, você pode estar num <strong>segundo grupo, só para compartilhar questões</strong> (ele não muda o seu calendário).</p></div>
 
   ${semTurma ? `<div class="card mb-2" style="border-color:var(--accent)">
     <div class="card-title">${iconeSvg("users")} ${formado ? "Entre num grupo ou crie o seu" : "Escolha a sua turma"}</div>
@@ -125,7 +126,7 @@ function renderMeuGrupo(){
       </div>
       <button class="btn btn-primary" onclick="entrarNaTurmaDoRodizio(document.getElementById('rodizioRapido').value)">Entrar no meu grupo</button>
     </div>`}
-    <p class="text-xs muted mt-1">Dá para trocar depois quantas vezes precisar. Você fica em um grupo de cada vez.</p>
+    <p class="text-xs muted mt-1">Dá para trocar depois quantas vezes precisar. O grupo do calendário é um só; um segundo grupo, só de questões, você escolhe mais abaixo.</p>
   </div>` : ""}
 
   <div class="card mb-2">
@@ -136,8 +137,20 @@ function renderMeuGrupo(){
     </div>
     <div class="text-sm muted mt-1">${detalheCalendario}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
     ${formado && !proprio ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>: ${meuGrupo.oficial ? "não há calendário de formado, então não existe bloco atual para você." : "o calendário que você acompanha é o do ano desta turma."}</div>` : ""}
-    ${!semTurma ? `<button class="btn btn-ghost btn-sm mt-2" onclick="sairDoMeuGrupo()">Sair deste grupo${formado ? "" : " e voltar ao calendário oficial"}</button>` : ""}
+    ${!semTurma ? `<div class="flex gap-1 mt-2" style="flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="sairDoMeuGrupo()">Sair deste grupo${formado ? "" : " e voltar ao calendário oficial"}</button>
+      ${podeExcluirGrupo(meuGrupo, u) ? `<button class="btn btn-ghost btn-sm" onclick="excluirGrupo('${meuGrupo.id}')">${iconeSvg("trash")} Excluir grupo</button>` : ""}</div>` : ""}
   </div>
+
+  ${grupoQ ? `<div class="card mb-2" style="border-color:var(--accent)">
+    <div class="qcard-meta mb-1"><span class="badge badge-accent">Grupo só de questões</span>${grupoQ.criadoPor===u.id ? '<span class="badge badge-muted">Criado por você</span>' : ""}</div>
+    <div style="font-weight:700;font-size:1.1rem">${escapeHtml(grupoQ.nome)}</div>
+    <div class="text-sm muted mt-1">Este grupo só compartilha questões, divisão de questões e grupos de estudo: o seu calendário continua sendo o de <strong>${escapeHtml(meuGrupo.oficial ? "coordenação" : meuGrupo.nome)}</strong> · ${(grupoQ.membrosAprovados||[]).length} membro(s).</div>
+    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      ${podeRenomearGrupo(grupoQ, u) ? `<button class="btn btn-secondary btn-sm" onclick="abrirRenomearGrupo('${grupoQ.id}')">${iconeSvg("edit")} Mudar o nome</button>` : ""}
+      <button class="btn btn-ghost btn-sm" onclick="sairDoGrupoDeQuestoesPelaTela()">Sair deste grupo</button>
+      ${podeExcluirGrupo(grupoQ, u) ? `<button class="btn btn-ghost btn-sm" onclick="excluirGrupo('${grupoQ.id}')">${iconeSvg("trash")} Excluir grupo</button>` : ""}
+    </div>
+  </div>` : ""}
 
   ${gruposComPedido.length ? `<div class="card mb-2" style="border-color:var(--amber)">
     <div class="card-title">${iconeSvg("users")} Pedidos para entrar no grupo (${totalPedidos})</div>
@@ -161,19 +174,19 @@ function renderMeuGrupo(){
 
   ${renderMeusEstagios(u, meuGrupo)}
 
-  ${!meuGrupo.oficial ? renderIntegrantesDoGrupo(meuGrupo) : ""}
-
-  ${!meuGrupo.oficial ? renderQuestoesDoGrupo(meuGrupo) : ""}
-
-  ${!meuGrupo.oficial ? renderSubgruposDoGrupo(meuGrupo) : ""}
+  ${gruposDoUsuario(u).map(g=>`${gruposDoUsuario(u).length>1 ? `<h3 class="mt-2 mb-1">${escapeHtml(g.nome)} <span class="text-xs muted">${g.id===meuGrupo.id ? "grupo do calendário" : "grupo só de questões"}</span></h3>` : ""}
+    ${renderIntegrantesDoGrupo(g)}
+    ${renderQuestoesDoGrupo(g)}
+    ${renderSubgruposDoGrupo(g)}`).join("")}
 
   <div class="card mb-2">
     <div class="card-title">${semTurma ? "Criar o meu grupo" : "Criar outro grupo"}</div>
-    <p class="text-sm muted">Escolha como o grupo funciona. Quem pedir para entrar precisa da sua aprovação, e criar um grupo faz você sair do atual: cada pessoa fica em um só.</p>
+    <p class="text-sm muted">Escolha como o grupo funciona. Quem pedir para entrar precisa da sua aprovação, e criar um grupo do calendário faz você sair do atual; um grupo só de questões não mexe no seu calendário.</p>
     <div class="field mt-1" style="max-width:520px"><label class="label">Tipo de grupo</label>
       <select class="select" id="novoGrupoTipo" onchange="alternarTipoNovoGrupo()">
         ${formado ? "" : `<option value="rodizio">Segue o rodízio de ${escapeHtml(anoParaCriar)} — entra por um bloco da sequência</option>`}
         <option value="proprio">Calendário próprio — eu monto os blocos (ou deixo sem, só para dividir questões)</option>
+        ${semTurma && formado ? "" : `<option value="questoes">Só para compartilhar questões — não muda o meu calendário</option>`}
       </select>
     </div>
     <div class="flex gap-1 items-end mt-1" style="flex-wrap:wrap">
@@ -192,6 +205,8 @@ function renderMeuGrupo(){
     <div class="card-title">Entrar em um grupo já existente</div>
     ${outrosGrupos.length ? outrosGrupos.map(g=>{
       const souMembro = g.doRodizio || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
+      const ehMeuQuestoes = !!grupoQ && grupoQ.id===g.id;
+      const aceitaSoQuestoes = !g.doRodizio && !ehMeuQuestoes;
       const jaSolicitei = (g.solicitacoesPendentes||[]).includes(u.id);
       const proprioG = grupoComCalendarioProprio(g);
       const anoG = anoDoGrupo(g, u);
@@ -206,9 +221,12 @@ function renderMeuGrupo(){
           <div style="font-weight:600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloDoGrupo(g, u))}</span></div>
           <div class="text-xs muted">${proprioG ? "calendário próprio · "+g.blocosProprios.length+" bloco(s)" : escapeHtml(anoG)+(inicio ? " · começa em "+escapeHtml(inicio.nome) : "")} · hoje em ${escapeHtml(atualG?atualG.nome:"—")} · ${criador}</div>
         </div>
-        ${souMembro ? `<button class="btn btn-secondary btn-sm" onclick="usarGrupo('${g.id}')">Entrar neste grupo</button>` :
+        <div class="flex gap-1" style="flex-wrap:wrap">
+        ${souMembro ? `<button class="btn btn-secondary btn-sm" onclick="usarGrupo('${g.id}')" title="Calendário e questões do grupo">Entrar neste grupo</button>${aceitaSoQuestoes ? `<button class="btn btn-ghost btn-sm" onclick="usarGrupo('${g.id}', true)" title="Só compartilha questões; seu calendário não muda">Só questões</button>` : ""}` :
           jaSolicitei ? `<button class="btn btn-secondary btn-sm" disabled>Solicitação enviada</button>` :
-          `<button class="btn btn-secondary btn-sm" onclick="solicitarAcessoGrupo('${g.id}')">Pedir para entrar</button>`}
+          `<button class="btn btn-secondary btn-sm" onclick="solicitarAcessoGrupo('${g.id}')">Pedir para entrar</button><button class="btn btn-ghost btn-sm" onclick="solicitarAcessoGrupo('${g.id}', true)" title="Só compartilha questões; seu calendário não muda">Só questões</button>`}
+        ${podeExcluirGrupo(g, u) ? `<button class="icon-btn" title="Excluir grupo" aria-label="Excluir grupo ${escapeHtml(g.nome)}" onclick="excluirGrupo('${g.id}')">${iconeSvg("trash")}</button>` : ""}
+        </div>
       </div>`;
     }).join("") : '<p class="text-sm muted">Nenhum grupo criado ainda. Crie o seu acima.</p>'}
   </div>
@@ -219,7 +237,7 @@ function renderMeuGrupo(){
    segue o rodízio; o nome é opcional só nele (o grupo sem nome é identificado
    pelo bloco de início, e o de calendário próprio não tem bloco de início). */
 function alternarTipoNovoGrupo(){
-  const proprio = document.getElementById("novoGrupoTipo").value === "proprio";
+  const proprio = document.getElementById("novoGrupoTipo").value !== "rodizio";
   const campo = document.getElementById("novoGrupoRodizioCampo");
   if(campo) campo.style.display = proprio ? "none" : "";
   const rotulo = document.getElementById("novoGrupoNomeRotulo");
@@ -234,7 +252,8 @@ function criarMeuGrupo(){
   const u = usuarioAtual();
   const formado = !temCalendarioProprio(u.anoFaculdade);
   const campoTipo = document.getElementById("novoGrupoTipo");
-  const proprio = formado || (campoTipo && campoTipo.value === "proprio");
+  const soQuestoes = !!campoTipo && campoTipo.value === "questoes";
+  const proprio = soQuestoes || formado || (campoTipo && campoTipo.value === "proprio");
   const nomeDigitado = document.getElementById("novoGrupoNome").value.trim();
   if(proprio && !nomeDigitado){ toast("Dê um nome para o grupo.", "err"); return; }
   const base = { id:uid("grupo"), criadoPor:u.id, criadoPorNome:u.nome, oficial:false, publico:true, criadoEm:hojeISO(),
@@ -254,7 +273,7 @@ function criarMeuGrupo(){
              anoFaculdade: ano, deslocamento };
   }
   db.grupos.push(novo);
-  entrarNoGrupo(u, novo.id);
+  entrarNoGrupo(u, novo.id, { soQuestoes });
   saveState();
   toast('Grupo criado — ' + rotuloDoGrupo(novo, u) + '.');
   render();
@@ -286,15 +305,15 @@ function salvarNomeDoGrupo(grupoId){
   toast('O grupo agora se chama "'+g.nome+'".');
   render();
 }
-function usarGrupo(grupoId){
+function usarGrupo(grupoId, soQuestoes){
   const g = getGrupo(grupoId); if(!g) return;
   const u = usuarioAtual();
   if(!g.oficial && !g.doRodizio && g.criadoPor!==u.id && !(g.membrosAprovados||[]).includes(u.id)){
     toast("Você ainda não faz parte deste grupo — peça para entrar.", "err"); return;
   }
-  entrarNoGrupo(u, grupoId);
+  entrarNoGrupo(u, grupoId, { soQuestoes });
   saveState();
-  toast('Agora você está em "'+g.nome+'" ('+rotuloDoGrupo(g, u)+').');
+  toast(soQuestoes ? 'Você entrou em "'+g.nome+'" só para compartilhar questões — o calendário não mudou.' : 'Agora você está em "'+g.nome+'" ('+rotuloDoGrupo(g, u)+').');
   render();
 }
 /* ---------- calendário próprio do grupo ------------------------------------
@@ -465,14 +484,67 @@ function entrarNaTurmaDoRodizio(deslocamento){
    nenhum, o que deixaria a tela Estudar sem bloco atual. */
 function sairDoMeuGrupo(){
   const u = usuarioAtual();
+  const atual = getGrupoDoUsuario(u);
+  if(podeExcluirGrupo(atual, u) && atual.criadoPor===u.id){ excluirGrupo(atual.id, true); return; }
   entrarNoGrupo(u, db.grupoOficialId);
   saveState();
   toast("Você voltou ao calendário oficial da coordenação.");
   render();
 }
-function solicitarAcessoGrupo(grupoId){
+function sairDoGrupoDeQuestoesPelaTela(){
+  const u = usuarioAtual();
+  const g = getGrupoQuestoesDoUsuario(u); if(!g) return;
+  if(podeExcluirGrupo(g, u) && g.criadoPor===u.id){ excluirGrupo(g.id, true); return; }
+  sairDoGrupoDeQuestoes(u);
+  saveState();
+  toast('Você saiu de "'+g.nome+'". O seu calendário não mudou.');
+  render();
+}
+/* EXCLUIR UM GRUPO. Quem criou o grupo (ou a coordenação) pode apagá-lo; e
+   quem criou NÃO consegue só "sair" dele: o grupo ficaria sem dono, com
+   gente dentro que ninguém aprova nem retira. Sair, para o dono, é excluir —
+   com o aviso de quantas pessoas ficam sem o grupo. A turma do rodízio não se
+   exclui (ela é recriada pelo id em qualquer aparelho). Com a nuvem, a
+   exclusão sobe como `removido` (nuvemConferirGrupos) e o grupo some dos
+   outros aparelhos; as questões enviadas para ele continuam guardadas, mas
+   deixam de aparecer para quem estudava com elas. */
+function podeExcluirGrupo(g, u){ return podeGerirGrupo(g, u) && !g.doRodizio; }
+function excluirGrupo(grupoId, aoSair){
+  const g = getGrupo(grupoId), u = usuarioAtual();
+  if(!podeExcluirGrupo(g, u)){ toast("Só quem criou o grupo (ou a coordenação) pode excluí-lo.", "err"); return; }
+  const outros = membrosDoGrupo(g).filter(m=>m.id!==u.id).length;
+  const nQ = questoesDoGrupo(g).length;
+  if(!confirm((aoSair ? "Você criou o grupo \""+g.nome+"\", então sair dele é excluí-lo. " : "")+"Excluir o grupo \""+g.nome+"\"?"
+    + (outros ? " "+outros+" "+(outros>1?"pessoas perdem":"pessoa perde")+" o acesso" : " Ninguém mais está nele")
+    + (nQ ? ", e as "+nQ+" questão(ões) enviadas para ele deixam de aparecer" : "")
+    + ". Isso não pode ser desfeito.")) return;
+  if(grupoDeNuvem(g) && nuvemConectado()){
+    if(!db.nuvem.gruposRemovidos) db.nuvem.gruposRemovidos = {};
+    db.nuvem.gruposRemovidos[g.id] = { n: g.nome || "", c: g.criadoPor, cn: g.criadoPorNome || "" };
+    nuvemMarcarNoInicio("grupos", g.id);
+    nuvemAgendarSync();
+  }
+  removerGrupoDoNavegador(g.id);
+  saveState();
+  toast('Grupo "'+g.nome+'" excluído.');
+  render();
+}
+/* Tira o grupo do navegador e solta quem estava nele (calendário oficial,
+   sem grupo de questões). Serve tanto para quem exclui quanto para quem
+   recebe a exclusão pela nuvem. */
+function removerGrupoDoNavegador(grupoId){
+  db.grupos = db.grupos.filter(x => x.id !== grupoId);
+  db.subgrupos = (db.subgrupos || []).filter(s => s.grupoId !== grupoId);
+  db.usuarios.forEach(x => {
+    if(x.grupoId === grupoId) x.grupoId = db.grupoOficialId;
+    if(x.grupoQuestoesId === grupoId) delete x.grupoQuestoesId;
+  });
+}
+function solicitarAcessoGrupo(grupoId, soQuestoes){
   const g = getGrupo(grupoId); if(!g) return;
   const u = usuarioAtual();
+  if(!u.pedidoSoQuestoes) u.pedidoSoQuestoes = {};
+  if(soQuestoes) u.pedidoSoQuestoes[grupoId] = true; else delete u.pedidoSoQuestoes[grupoId];
   if(!g.solicitacoesPendentes) g.solicitacoesPendentes = [];
   if(!g.solicitacoesPendentes.includes(u.id)) g.solicitacoesPendentes.push(u.id);
   saveState();
@@ -482,7 +554,11 @@ function solicitarAcessoGrupo(grupoId){
 function aprovarAcessoGrupo(grupoId, usuarioId){
   const g = getGrupo(grupoId); if(!g) return;
   const solicitante = getUsuario(usuarioId);
-  if(solicitante) entrarNoGrupo(solicitante, grupoId);
+  if(solicitante){
+    const soQuestoes = !!(solicitante.pedidoSoQuestoes && solicitante.pedidoSoQuestoes[grupoId]);
+    if(solicitante.pedidoSoQuestoes) delete solicitante.pedidoSoQuestoes[grupoId];
+    entrarNoGrupo(solicitante, grupoId, { soQuestoes });
+  }
   else{
     // com a nuvem, quem pediu é de outro navegador: entra na lista do grupo, e a nuvem avisa a pessoa
     g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
@@ -725,6 +801,7 @@ function retirarDoGrupo(grupoId, usuarioId){
   });
   const local = getUsuario(usuarioId);
   if(local && local.grupoId===g.id) entrarNoGrupo(local, db.grupoOficialId);
+  if(local && local.grupoQuestoesId===g.id) delete local.grupoQuestoesId;
   saveState();
   toast(nome+" foi retirado(a) do grupo.");
   render();
@@ -759,7 +836,7 @@ function renderSubgruposDoGrupo(grupo){
   return `<div class="card mb-2">
     <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
       <div class="card-title" style="margin-bottom:0">${iconeSvg("users")} Grupos de estudo dentro deste grupo (${lista.length})</div>
-      <button class="btn btn-primary btn-sm" onclick="abrirFormularioSubgrupo(null)">${iconeSvg("plus")} Criar grupo de estudo</button>
+      <button class="btn btn-primary btn-sm" onclick="abrirFormularioSubgrupo(null, '${grupo.id}')">${iconeSvg("plus")} Criar grupo de estudo</button>
     </div>
     <p class="text-sm muted">Para dividir questões com só parte da turma — por exemplo, a lista que você enviou ou uma prova inteira. Você escolhe quem participa e quais questões entram, e cada pessoa pratica a sua parte. Não muda o seu calendário nem tira ninguém do grupo.</p>
     ${lista.map(sg=>{
@@ -775,7 +852,7 @@ function renderSubgruposDoGrupo(grupo){
             <div class="text-xs muted">${questoes.length} questão(ões) · criado por ${escapeHtml(nomeDoMembro(grupo, sg.criadoPor))}</div></div>
           <div class="flex gap-1" style="flex-wrap:wrap">
             ${minhas.length ? `<button class="btn btn-primary btn-sm" onclick="praticarMinhaParteDoSubgrupo('${sg.id}')">${iconeSvg("book")} Praticar minha parte (${minhas.length})</button>` : ""}
-            ${gerente ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioSubgrupo('${sg.id}')">${iconeSvg("edit")} Editar</button>` : ""}
+            ${gerente ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioSubgrupo('${sg.id}', '${grupo.id}')">${iconeSvg("edit")} Editar</button>` : ""}
             ${souMembro && !gerente ? `<button class="btn btn-ghost btn-sm" onclick="sairDoSubgrupo('${sg.id}')">Sair</button>` : ""}
             ${gerente ? `<button class="btn btn-ghost btn-sm" onclick="excluirSubgrupo('${sg.id}')">${iconeSvg("trash")}</button>` : ""}
           </div>
@@ -791,10 +868,10 @@ function renderSubgruposDoGrupo(grupo){
     }).join("") || '<p class="text-sm muted mt-2">Nenhum grupo de estudo ainda.</p>'}
   </div>`;
 }
-function abrirFormularioSubgrupo(id){
+function abrirFormularioSubgrupo(id, grupoId){
   const u = usuarioAtual();
-  const grupo = getGrupoDoUsuario(u);
   const sg = id ? getSubgrupo(id) : null;
+  const grupo = getGrupo(sg ? sg.grupoId : grupoId) || getGrupoDoUsuario(u);
   if(sg && !podeGerirSubgrupo(sg, u)){ toast("Só quem criou o grupo de estudo pode editá-lo.", "err"); return; }
   const membros = membrosDoGrupo(grupo);
   const conjuntos = conjuntosDeQuestoesDoGrupo(grupo);
@@ -809,11 +886,11 @@ function abrirFormularioSubgrupo(id){
     ${conjuntos.length ? `<div style="max-height:170px;overflow-y:auto">${conjuntos.map(c=>`<label class="checkbox-row mb-1"><input type="checkbox" class="sgConjunto" value="${escapeHtml(c.chave)}" ${c.ids.every(i=>marcadosQ.has(i))?"checked":""}> ${escapeHtml(c.chave)} <span class="text-xs muted">(${c.ids.length})</span></label>`).join("")}</div>`
       : `<p class="text-sm muted">O grupo ainda não tem questões. Envie uma prova ou lista em <button class="link-btn" onclick="fecharModal(); navigate('importar-questoes')">Enviar Questões</button> (destino "Questões do meu grupo") e volte aqui.</p>`}
     <p class="text-xs muted mt-1">As questões são divididas entre quem participa, na mesma quantidade e misturando os assuntos. Ao salvar, a divisão é refeita.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarSubgrupo('${id||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarSubgrupo('${id||""}', '${grupo.id}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
-function salvarSubgrupo(id){
+function salvarSubgrupo(id, grupoId){
   const u = usuarioAtual();
-  const grupo = getGrupoDoUsuario(u);
+  const grupo = getGrupo(grupoId) || getGrupoDoUsuario(u);
   const nome = (document.getElementById("sgNome").value||"").trim();
   const membrosIds = [...document.querySelectorAll(".sgMembro:checked")].map(el=>el.value);
   const chaves = new Set([...document.querySelectorAll(".sgConjunto:checked")].map(el=>el.value));

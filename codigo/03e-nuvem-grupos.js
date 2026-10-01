@@ -99,6 +99,8 @@ function nuvemConferirGrupos(){
       if(id !== eu.id && !aEsteGrupo.includes(id) && env[k] !== "recusado" && env[k] !== "saiu") subir("grupo_membros", g.id + "|" + id, "recusado");
     });
   });
+  // grupo excluído aqui: sobe a marca `removido` (a exclusão só vale para os outros aparelhos depois disto)
+  Object.keys(db.nuvem.gruposRemovidos || {}).forEach(id => subir("grupos", id, "removido"));
   (db.subgrupos || []).forEach(sg => {
     if(!meus.has(sg.grupoId) || !ehUuid(sg.criadoPor)) return;
     subir("subgrupos", sg.id, JSON.stringify(linhaDoSubgrupo(sg)));
@@ -146,6 +148,14 @@ NUVEM_GLOBAIS.grupos = {
   aplicar: l => aplicarGrupoDaNuvem(l),
   linha: id => { const g = getGrupo(id); return grupoDeNuvem(g) ? linhaDoGrupo(g) : null; },
   enviar: async id => {
+    const apagado = (db.nuvem.gruposRemovidos || {})[id];
+    if(apagado && !getGrupo(id)){
+      // a pessoa que excluiu manda a marca; sem conteúdo, só o nome para a equipe reconhecer
+      const linhaRemovida = { id, nome: apagado.n, criado_por: apagado.c, criado_por_nome: apagado.cn || "", dados: {}, removido: true };
+      await nuvemTentarGravar(() => nuvemLembrarEnviado("grupos|" + id, "removido"),
+        () => nuvemGravarCompartilhada("grupos", "id=eq." + _enc(id), linhaRemovida, apagado.c === nuvemSessao.usuarioId));
+      return true;
+    }
     const g = getGrupo(id); if(!grupoDeNuvem(g)) return true;
     const linha = linhaDoGrupo(g);
     await nuvemTentarGravar(() => nuvemLembrarEnviado("grupos|" + id, JSON.stringify(linha)),
@@ -193,10 +203,8 @@ function aplicarGrupoDaNuvem(l){
   const d = l.dados || {};
   let g = getGrupo(l.id) || (/^rodizio-/.test(l.id) ? recriarTurmaDoRodizio(l.id) : null);
   if(l.removido){
-    if(g){
-      db.grupos = db.grupos.filter(x => x.id !== l.id);
-      db.usuarios.forEach(u => { if(u.grupoId === l.id) u.grupoId = db.grupoOficialId; });
-    }
+    if(g) removerGrupoDoNavegador(l.id);
+    nuvemLembrarEnviado("grupos|" + l.id, "removido");
     return;
   }
   if(!g){
@@ -230,11 +238,17 @@ function aplicarMembroDaNuvem(l){
   if(id === nuvemSessao.usuarioId && l.status === "recusado"){
     const eu = euNaNuvem();
     if(eu && eu.grupoId === g.id) entrarNoGrupo(eu, db.grupoOficialId);
+    if(eu && eu.grupoQuestoesId === g.id) delete eu.grupoQuestoesId;
   }
   // o dono aprovou o meu pedido: agora eu estou nesta turma (e saio da anterior)
   if(id === nuvemSessao.usuarioId && l.status === "aprovado" && estavaPendente){
     const eu = euNaNuvem();
-    if(eu) entrarNoGrupo(eu, g.id);
+    if(eu){
+      // o pedido foi "só questões"? então o calendário continua como estava
+      const soQuestoes = !!(eu.pedidoSoQuestoes && eu.pedidoSoQuestoes[g.id]);
+      if(eu.pedidoSoQuestoes) delete eu.pedidoSoQuestoes[g.id];
+      entrarNoGrupo(eu, g.id, { soQuestoes });
+    }
   }
 }
 function aplicarSubgrupoDaNuvem(l){

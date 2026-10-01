@@ -433,7 +433,7 @@ function badgeSugestaoFlashcard(c){
    baralho. Compartilhar e sugerir à equipe são caminhos separados — o
    cartão só segue um deles por vez, porque na nuvem cada um é uma linha
    com um destino (03e). */
-function grupoAtualDoCartao(u){ return getGrupoDoUsuario(u); }
+function grupoAtualDoCartao(u){ return grupoPrincipalDeQuestoes(u); }
 function compartilharCartaoComGrupo(id){
   const u = usuarioAtual();
   const c = (db.flashcards||[]).find(x=>x.id===id);

@@ -99,11 +99,12 @@ function questoesAtivas(incluirGrupoId){
   // conforme pedido: nunca usar questão anulada/desatualizada para calcular dificuldade.
   // Questões marcadas com um grupoId (upload de aluno pro próprio grupo) ficam
   // escondidas do banco geral por padrão — só entram se o chamador pedir
-  // explicitamente esse grupo (incluirGrupoId = id do grupo) ou tudo (true).
+  // explicitamente esse grupo (incluirGrupoId = id do grupo, ou a lista dos
+  // grupos da pessoa) ou tudo (true).
   return db.questoes.filter(q=>{
     if(q.status!=="ativa") return false;
     if(aguardaImagem(q)) return false;
-    if(q.grupoId && incluirGrupoId!==true && q.grupoId!==incluirGrupoId) return false;
+    if(q.grupoId && incluirGrupoId!==true && q.grupoId!==incluirGrupoId && !(Array.isArray(incluirGrupoId) && incluirGrupoId.includes(q.grupoId))) return false;
     return true;
   });
 }
@@ -474,11 +475,11 @@ function cartaoDeQuestao(q){
 function flashcardsAtivos(usuarioId){
   const uid = usuarioId!==undefined ? usuarioId : (usuarioAtual() ? usuarioAtual().id : null);
   const dono = uid ? getUsuario(uid) : null;
-  const grupoDele = dono && dono.grupoId && dono.grupoId !== db.grupoOficialId ? dono.grupoId : null;
+  const gruposDele = dono ? idsDosGruposDoUsuario(dono) : [];
   return (db.flashcards||[]).filter(c=>{
     if(c.status==="arquivado") return false;
     if(!c.usuarioId) return true;        // cartão da equipe: visível a todos
-    if(c.grupoId && c.grupoId === grupoDele) return true;   // compartilhado com o grupo da pessoa
+    if(c.grupoId && gruposDele.includes(c.grupoId)) return true;   // compartilhado com um grupo da pessoa
     return c.usuarioId === uid;           // cartão pessoal: só para o dono
   });
 }

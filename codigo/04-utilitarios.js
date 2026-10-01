@@ -604,25 +604,72 @@ function blocosDoGrupo(grupo, usuario){
     };
   });
 }
-/* UMA TURMA POR PESSOA. O aluno pertence a um grupo só — é o que a turma da
-   vida real é. Entrar num grupo, portanto, é também SAIR do anterior: sem
-   isso a pessoa ficava listada como membro de três turmas ao mesmo tempo e
-   ninguém sabia mais quem estava em qual. O calendário oficial é a ausência
-   de turma, então não tem lista de membros. */
-function entrarNoGrupo(usuario, grupoId){
-  if(!usuario) return;
+/* DOIS LUGARES POR PESSOA. O grupo do CALENDÁRIO (usuario.grupoId: rodízio ou
+   calendário próprio) é um só — é o que a turma da vida real é, e entrar
+   num grupo é também SAIR do anterior, senão a pessoa ficava listada em três
+   turmas ao mesmo tempo. Além dele, a pessoa pode estar em UM grupo só de
+   QUESTÕES (usuario.grupoQuestoesId): esse não mexe no calendário, serve só
+   para compartilhar e dividir questões e cartões. O calendário oficial é a
+   ausência de turma, então não tem lista de membros. */
+function getGrupoQuestoesDoUsuario(usuario){
+  if(!usuario || !usuario.grupoQuestoesId || usuario.grupoQuestoesId === usuario.grupoId) return null;
+  const g = getGrupo(usuario.grupoQuestoesId);
+  if(!g || g.oficial) return null;
+  return g.criadoPor === usuario.id || (g.membrosAprovados||[]).includes(usuario.id) ? g : null;
+}
+// os grupos de verdade da pessoa (sem o calendário oficial): o do calendário e o de questões
+function gruposDoUsuario(usuario){
+  const principal = getGrupoDoUsuario(usuario);
+  return [principal.oficial ? null : principal, getGrupoQuestoesDoUsuario(usuario)].filter(Boolean);
+}
+/* Onde caem as questões e os cartões "do meu grupo" quando só há um destino:
+   o grupo do calendário, ou — quem não tem um — o de questões. */
+function grupoPrincipalDeQuestoes(usuario){ return gruposDoUsuario(usuario)[0] || getGrupoOficial(); }
+/* Destino "do meu grupo" ao enviar questões: "grupo" é o principal e "grupo2"
+   o segundo, para quem está em dois. Cada opção diz o nome do grupo, porque
+   é a pessoa quem escolhe para qual dos dois a questão vai. */
+function destinoEhGrupo(destino){ return destino === "grupo" || destino === "grupo2"; }
+function grupoDoDestino(usuario, destino){
+  const gs = gruposDoUsuario(usuario);
+  return (destino === "grupo2" ? gs[1] : gs[0]) || getGrupoOficial();
+}
+function opcoesDeDestinoDeGrupo(usuario, textoUnico, textoDoGrupo){
+  const gs = gruposDoUsuario(usuario);
+  if(gs.length < 2) return [["grupo", textoUnico]];
+  return gs.map((g, i) => [i ? "grupo2" : "grupo", textoDoGrupo(g)]);
+}
+function idsDosGruposDoUsuario(usuario){ return gruposDoUsuario(usuario).map(g => g.id); }
+function tirarDosGrupos(usuario, manter){
   (db.grupos||[]).forEach(g => {
-    if(g.id === grupoId || g.oficial) return;
+    if(g.oficial || manter.includes(g.id)) return;
     g.membrosAprovados = (g.membrosAprovados||[]).filter(id => id !== usuario.id);
     g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id => id !== usuario.id);
   });
+}
+/* `opcoes.soQuestoes`: entra como grupo de questões, sem tocar no calendário
+   (e sai do grupo de questões anterior). Sem ela, é o grupo do calendário, e
+   o de questões só se mantém se for outro grupo. */
+function entrarNoGrupo(usuario, grupoId, opcoes){
+  if(!usuario) return;
   const destino = getGrupo(grupoId);
+  const soQuestoes = !!(opcoes && opcoes.soQuestoes) && !!destino && !destino.oficial;
+  const extra = soQuestoes ? null : getGrupoQuestoesDoUsuario(usuario);
+  const manter = soQuestoes ? [usuario.grupoId, grupoId] : [grupoId, extra && extra.id !== grupoId ? extra.id : null];
+  tirarDosGrupos(usuario, manter);
   if(destino && !destino.oficial){
     if(!destino.membrosAprovados) destino.membrosAprovados = [];
     if(!destino.membrosAprovados.includes(usuario.id)) destino.membrosAprovados.push(usuario.id);
     destino.solicitacoesPendentes = (destino.solicitacoesPendentes||[]).filter(id => id !== usuario.id);
   }
+  if(soQuestoes){ usuario.grupoQuestoesId = destino.id; return; }
   usuario.grupoId = destino ? destino.id : db.grupoOficialId;
+  if(usuario.grupoQuestoesId === usuario.grupoId || !extra) delete usuario.grupoQuestoesId;
+}
+function sairDoGrupoDeQuestoes(usuario){
+  const g = getGrupoQuestoesDoUsuario(usuario);
+  delete usuario.grupoQuestoesId;
+  tirarDosGrupos(usuario, [usuario.grupoId]);
+  return g;
 }
 function especialidadeDeAssunto(assuntoId){ const a=getAssunto(assuntoId); return a ? getEspecialidade(a.especialidadeId) : null; }
 function areaDeAssunto(assuntoId){ const e=especialidadeDeAssunto(assuntoId); return e ? getArea(e.areaId) : null; }

@@ -240,6 +240,39 @@ test("pedido de entrada avisa a dona em outro aparelho, e retirar alguém do gru
   } finally { await ana.contexto.close(); await bia.contexto.close(); }
 });
 
+test("excluir o grupo sobe como removido e some do aparelho da colega, que volta ao calendário oficial; grupo só de questões não mexe no calendário", async () => {
+  const banco = nuvemQueGuarda();
+  const ana = await abrir(banco, { id: ANA, nome: "Ana Aluna" });
+  const bia = await abrir(banco, { id: BIA, nome: "Bia Aluna" });
+  try{
+    const gid = await ana.pagina.evaluate(() => {
+      navigate("meu-grupo");
+      document.getElementById("novoGrupoTipo").value = "proprio";
+      document.getElementById("novoGrupoNome").value = "Grupo A";
+      criarMeuGrupo();
+      return usuarioAtual().grupoId;
+    });
+    await sincronizar(ana.pagina); await sincronizar(bia.pagina);
+    // a Bia pede só para questões: o calendário dela não muda
+    const calendarioDela = await bia.pagina.evaluate(id => { const antes = usuarioAtual().grupoId; solicitarAcessoGrupo(id, true); return antes; }, gid);
+    await sincronizar(bia.pagina); await sincronizar(ana.pagina);
+    await ana.pagina.evaluate(([id, bia]) => aprovarAcessoGrupo(id, bia), [gid, BIA]);
+    await sincronizar(ana.pagina); await sincronizar(bia.pagina);
+    const naBia = await bia.pagina.evaluate(() => ({ calendario: usuarioAtual().grupoId, questoes: usuarioAtual().grupoQuestoesId }));
+    assert.equal(naBia.calendario, calendarioDela);
+    assert.equal(naBia.questoes, gid);
+    // a Ana (dona) sai do grupo: é excluir
+    await ana.pagina.evaluate(() => { window.confirm = () => true; sairDoMeuGrupo(); });
+    await sincronizar(ana.pagina);
+    assert.equal(banco.tabela("grupos").get(gid).removido, true);
+    assert.equal(await ana.pagina.evaluate(id => !getGrupo(id), gid), true);
+    await sincronizar(bia.pagina);
+    const depois = await bia.pagina.evaluate(id => ({ existe: !!getGrupo(id), questoes: usuarioAtual().grupoQuestoesId || null, calendario: usuarioAtual().grupoId }), gid);
+    assert.deepEqual(depois, { existe: false, questoes: null, calendario: calendarioDela });
+    for(const t of [ana, bia]) assert.deepEqual(t.erros, []);
+  } finally { await ana.contexto.close(); await bia.contexto.close(); }
+});
+
 test("cartões: compartilhado com o grupo chega aos colegas; sugerido à equipe chega ao professor, que aprova para todos", async () => {
   const banco = nuvemQueGuarda();
   const ana = await abrir(banco, { id: ANA, nome: "Ana Aluna" });

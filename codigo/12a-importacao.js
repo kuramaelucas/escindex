@@ -146,7 +146,7 @@ function gerarPromptImportacao(){
 function opcoesDestinoImportacao(){
   const u = usuarioAtual();
   if(u.papel==="aluno") return [
-    ["grupo","Questões do meu grupo (ficam disponíveis na hora, só para o grupo)"],
+    ...opcoesDeDestinoDeGrupo(u, "Questões do meu grupo (ficam disponíveis na hora, só para o grupo)", g=>"Questões do grupo "+g.nome+" (ficam disponíveis na hora, só para ele)"),
     ["sugerir","Sugerir para o banco geral (passa por aprovação de um professor)"],
   ];
   if(u.papel==="residente") return [
@@ -162,7 +162,7 @@ function renderImportarQuestoes(){
   const u = usuarioAtual();
   const ctx = contextoImportacao();
   const destinos = opcoesDestinoImportacao();
-  const meuGrupo = u.papel==="aluno" ? getGrupoDoUsuario(u) : null;
+  const meusGrupos = u.papel==="aluno" ? gruposDoUsuario(u) : [];
   return `
   <div class="page-header"><h2>${u.papel==="aluno"||u.papel==="residente"?"Enviar Provas e Questões":"Importar Questões"}</h2>
   <p>Cole uma prova inteira ou questões avulsas — por exemplo, já formatadas por uma IA a partir do PDF da prova — para adicionar ao banco em lote.</p></div>
@@ -193,7 +193,7 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
       </div>
       <div class="field" style="margin-bottom:0"><label class="label">Destino das questões</label>
         <select class="select" id="impDestino">${destinos.map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join("")}</select>
-        ${meuGrupo ? `<div class="hint mt-1">Seu grupo atual: ${escapeHtml(meuGrupo.nome)}</div>` : ""}
+        ${meusGrupos.length ? `<div class="hint mt-1">${meusGrupos.length>1?"Seus grupos":"Seu grupo atual"}: ${meusGrupos.map(g=>escapeHtml(g.nome)).join(" e ")}</div>` : ""}
       </div>
     </div>
   </div>
@@ -560,7 +560,7 @@ function importarItensAnalisados(resultado, destino, extras){
       estatisticas: {respostas:0, acertos:0, distribuicaoAlternativas:{}},
       criadoPor: u.id, autorPapel: u.papel, criadoEm: hojeISO(),
     };
-    if(destino==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = r.status || "ativa"; }
+    if(destinoEhGrupo(destino)){ nova.grupoId = grupoDoDestino(u, destino).id; nova.status = r.status || "ativa"; }
     // rastro da prova de origem: o número da questão no caderno original é o
     // que permite depois conferir se a prova entrou inteira ou ficou buraco
     if(r.numero) nova.numeroNaProva = r.numero;
@@ -589,8 +589,8 @@ function confirmarImportacao(){
   state.filtroRota.previewImportacao = null;
   toast(r.importadas+" questão(ões) importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s) criado(s)":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
-    (destino==="grupo" ? " — disponíveis para o seu grupo. Em Meu Grupo, dá para dividir o conjunto entre quem quiser."
+    (destinoEhGrupo(destino) ? " — disponíveis para o seu grupo. Em Meu Grupo, dá para dividir o conjunto entre quem quiser."
       : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")
       : destino==="sugerir" ? " — aguardando aprovação de um professor." : "."));
-  navigate(destino==="grupo" ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");
+  navigate(destinoEhGrupo(destino) ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");
 }
