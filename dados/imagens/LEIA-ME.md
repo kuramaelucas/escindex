@@ -37,24 +37,11 @@ celular de cada aluno.
 
 A lista sempre atualizada sai do conferidor: `npm run conferir` (ou
 `node testes/conferir-dados.mjs`) lista cada questão que ainda espera figura e
-o nome exato do arquivo. Em 03/10/2026 eram 103 — 13 da UNIFESP, 32 da Santa Casa, 30 da USP-SP
+o nome exato do arquivo. Em 03/10/2026 eram 90 — 32 da Santa Casa, 30 da USP-SP
 e 28 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
-| `q-unifesp2022-046.png` | Tabela 2×2 do estudo de coorte (exposição × doença em 5 anos) |
-| `q-unifesp2022-048.png` | Tabela 2×2 do ensaio clínico (para o cálculo do NNT) |
-| `q-unifesp2022-081.png` | ECG de 12 derivações da admissão |
-| `q-unifesp2023-023.png` | Gráfico da projeção do orçamento federal para ASPS |
-| `q-unifesp2024-045.png` | Exame de imagem da pelve (achado tubário) |
-| `q-unifesp2024-047.png` | Mamografia, complemento e ultrassonografia (questão anulada) |
-| `q-unifesp2025-053.png` | Curva ROC com os pontos I a IV |
-| `q-unifesp2026-033.png` | Resultado da cultura com antibiograma |
-| `q-unifesp2026-036.png` | Radiografia de tórax |
-| `q-unifesp2026-040.png` | Tabela da espirometria |
-| `q-unifesp2026-060.png` | Ultrassonografia abdominal (vesícula, com setas) |
-| `q-unifesp2026-061.png` | Imagens do exame da coluna lombar |
-| `q-unifesp2026-074.png` | Quadro do estudo de fratura de fêmur por sexo e idade |
 | `q-scmsp2022-011.png` | Cortes axiais de TC de crânio sem contraste |
 | `q-scmsp2022-013.png` | Diagrama corporal das áreas queimadas (anulada) |
 | `q-scmsp2022-023.png` | Curva de IMC para idade (meninas, OMS) |

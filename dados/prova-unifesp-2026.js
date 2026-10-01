@@ -433,7 +433,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-033", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:33,
-  imagemUrl:"dados/imagens/q-unifesp2026-033.png", imagemPendente:"Resultado da cultura da coleção, com a espécie isolada e o antibiograma.",
+  imagemUrl:"dados/imagens/q-unifesp2026-033.png", imagemLegenda:"Resultado da cultura da coleção, com a espécie isolada e o antibiograma.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-atb",
   enunciado:"Homem, 56 anos de idade, foi admitido há 10 dias por abdome agudo causado por colecistite complicada, com sinais de perfuração intestinal e peritonite na propedeutica admissional. Foi iniciado ceftriaxona e metronidazol e o paciente foi submetido a cirurgia com laparotomia exploradora e colecistectomia, com dreno de Penrose posicionado em hipocôndrio direito desde então. A drenagem de secreção reduziu-se desde a admissão, com última mensuração em 24 horas de 50-60 mL de conteúdo hemático escurecido. Há 1 dia, vem apresentando febre, taquicardia, calafrios e dor à manipulação do dreno. Foi realizada TC de abdome com contraste que evidenciou coleção subfrênica de conteúdo denso, heterogêneo e trabeculado. Foi submetido a drenagem por radiointervenção com retirada de 50 mL de líquido hemático denso, enviado para cultura. O resultado da cultura está disponível (figura). Qual é a alternativa correta?",
   alternativas:[{id:"A",texto:"Pela espécie envolvida e padrão fenotípico, trata-se de infecção domiciliar, não tendo relação com infecção relacionada à assistência à saúde."},{id:"B",texto:"Pela espécie envolvida e padrão fenotípico, é possível afirmar que o agente isolado é produtor de beta-lactamase de espectro ampliado (ESBL)."},{id:"C",texto:"A hipótese atual é de infecção de sítio cirúrgico e tanto piperacilina-tazobactam como meropenem podem ser iniciados, devendo-se priorizar doses máximas e infusão prolongada."},{id:"D",texto:"O antibiograma requer que seja iniciado tratamento com ceftazidima-avibactam, uma vez que o agente isolado é multirresistente."}],
@@ -473,7 +473,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-036", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:36,
-  imagemUrl:"dados/imagens/q-unifesp2026-036.png", imagemPendente:"Radiografia de tórax da paciente.",
+  imagemUrl:"dados/imagens/q-unifesp2026-036.jpg", imagemLegenda:"Radiografia de tórax da paciente.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
   enunciado:"Mulher, 56 anos de idade, possui diagnóstico de artrite reumatoide há 10 anos, já tendo realizado diversos tipos de tratamento e, diante da refratariedade dos sintomas, irá iniciar uso de adalimumabe (anti-TNFα). Foi encaminhada para avaliação de profilaxia para tuberculose e não apresenta sintomas respiratórios. Radiografia de tórax representada na imagem. Qual é a conduta mais adequada neste caso?",
   alternativas:[{id:"A",texto:"Iniciar imediatamente tratamento preventivo para tuberculose com prescrição de 3HP."},{id:"B",texto:"Liberar para o uso de adalimumabe, pois não é necessária a realização de tratamento preventivo para tuberculose."},{id:"C",texto:"Solicitar tomografia de tórax para descartar tuberculose ativa."},{id:"D",texto:"Solicitar realização de prova tuberculínica ou IGRA, para posterior avaliação de indicação de tratamento preventivo para tuberculose."}],
@@ -526,7 +526,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-040", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-unifesp2026-040.png", imagemPendente:"Tabela com o resultado da espirometria.",
+  imagemUrl:"dados/imagens/q-unifesp2026-040.png", imagemLegenda:"Tabela com o resultado da espirometria.",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem, 68 anos de idade, fumante atual (45 anos-maço), tem diagnóstico de DPОС. Começou a apresentar dispneia progressiva aos esforços, piora da tosse e aumento do volume de escarro. Iniciou uso de formoterol 12 mcg associado a budesonida 400 mcg a cada 12 horas via inalatória, sem melhora do quadro após 3 meses. Exame físico: corado e hidratado, FR = 14 irpm, SpO2 92% em repouso; ausculta pulmonar com sons pulmonares reduzidos e sem ruídos adventícios; sem outras alterações. Solicitada espirometria, cujo resultado está representado na tabela. Qual é a conduta farmacológica mais adequada? (LABA = agonistas beta2-adrenérgicos de longa duração; LAMA = broncodilatadores antagonistas muscarínicos de longa duração)",
   alternativas:[{id:"A",texto:"Trocar os medicamentos inalatórios para uma associação LAMA/LABA e associar salbutamol de alívio."},{id:"B",texto:"Manter os medicamentos inalatórios com formoterol/budesonida e associar salbutamol de alívio."},{id:"C",texto:"Trocar os medicamentos para uma associação de terapia tripla inalatória (LAMA/LABA/ corticoide) e associar oxigenoterapia domiciliar."},{id:"D",texto:"Trocar os medicamentos inalatórios para uma associação LAMA/LABA e associar oxigenoterapia domiciliar."}],
@@ -789,7 +789,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-060", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-unifesp2026-060.png", imagemPendente:"Ultrassonografia abdominal com setas apontando o achado na vesícula biliar.",
+  imagemUrl:"dados/imagens/q-unifesp2026-060.jpg", imagemLegenda:"Ultrassonografia abdominal com setas apontando o achado na vesícula biliar.",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
   enunciado:"Homem, 44 anos de idade, com dor abdominal aguda, realiza 0 exame de ultrassonografia abdominal anexo. Sobre os achados de imagem, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"As setas indicam um cálculo na vesícula biliar, o qual se apresenta como imagem hiperecogênica com sombra acústica posterior."},{id:"B",texto:"As setas indicam um pólipo na vesícula biliar, o qual se apresenta como imagem hiperecogênica com sombra acústica posterior."},{id:"C",texto:"As setas indicam um cálculo na vesícula biliar, o qual se apresenta como imagem hipoecogenica com reforço acústico posterior."},{id:"D",texto:"As setas indicam um pólipo na vesícula biliar, o qual se apresenta como imagem hipoecogênica com reforço acústico posterior."}],
@@ -803,7 +803,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-061", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-unifesp2026-061.png", imagemPendente:"Imagens do exame da coluna lombar do paciente.",
+  imagemUrl:"dados/imagens/q-unifesp2026-061.jpg", imagemLegenda:"Imagens do exame da coluna lombar do paciente.",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-coluna",
   enunciado:"Homem, 30 anos de idade, com lombalgia, disponibiliza na consulta as imagens do exame abaixo. Assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Trata-se de uma ressonância magnética com diagnóstico de espondilite anquilosante."},{id:"B",texto:"Trata-se de uma tomografia computadorizada com diagnóstico de doença degenerativa discal e de hérnia discal extrusa."},{id:"C",texto:"Trata-se de uma ressonância magnética com diagnóstico de doença degenerativa discal e de hérnia discal extrusa."},{id:"D",texto:"Trata-se de uma tomografia computadorizada com diagnóstico de espondilodiscite infecciosa."}],
@@ -973,7 +973,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-074", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:74,
-  imagemUrl:"dados/imagens/q-unifesp2026-074.png", imagemPendente:"Quadro com os resultados do estudo de fratura de fêmur por sexo, separado por faixa de idade.",
+  imagemUrl:"dados/imagens/q-unifesp2026-074.png", imagemLegenda:"Quadro com os resultados do estudo de fratura de fêmur por sexo, separado por faixa de idade.",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"O quadro abaixo resume os resultados de um estudo epidemiológico sobre fratura de fêmur, considerando sexo e idade. Em relação à associação entre sexo e fratura de fêmur, a idade, com base nesses dados, é considerada uma variável:",
   alternativas:[{id:"A",texto:"modificadora de efeito."},{id:"B",texto:"de confusão."},{id:"C",texto:"indutora de viés de aferição."},{id:"D",texto:"de indução estatística"}],

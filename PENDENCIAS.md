@@ -102,13 +102,13 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | IAMSPE 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
 | IAMSPE 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
 
-## 4. Figuras para anexar (103)
+## 4. Figuras para anexar (90)
 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
 Pela plataforma: **Questões para Atualizar › Enviar a figura** libera a questão na hora (com a nuvem, para toda a turma), e **Baixar as atualizações** + `npm run atualizar-dados -- arquivo.json` traz as figuras e os consertos para cá.
 O nome exato de cada arquivo e a descrição do que a prova mostrava estão em `dados/imagens/LEIA-ME.md`.
-As provas da AMRIGS (2022 a 2025), a USP-RP 2026, as do IAMSPE (2021 a 2026) e a UNESP 2023 já têm todas as figuras.
+As provas da AMRIGS (2022 a 2025), a USP-RP 2025 e 2026, a UNIFESP (2022 a 2026), as do IAMSPE (2021 a 2026) e a UNESP 2023 já têm todas as figuras.
 
 | Prova | Qtd | Questões |
 | --- | --- | --- |
@@ -120,11 +120,6 @@ As provas da AMRIGS (2022 a 2025), a USP-RP 2026, as do IAMSPE (2021 a 2026) e a
 | Santa Casa 2023 | 9 | 10, 15, 17–19, 45, 49, 75, 76 |
 | Santa Casa 2025 | 5 | 38, 40, 44, 63, 64 |
 | Santa Casa 2026 | 12 | 10, 17, 21, 23, 29, 33–36, 39, 40, 42 |
-| UNIFESP 2022 | 3 | 46, 48, 81 |
-| UNIFESP 2023 | 1 | 23 |
-| UNIFESP 2024 | 2 | 45, 47 |
-| UNIFESP 2025 | 1 | 53 |
-| UNIFESP 2026 | 6 | 33, 36, 40, 60, 61, 74 |
 
 Quando a figura chegar, vale reler a explicação.
 Ela foi escrita a partir do texto e do gabarito, sem ver a imagem.
@@ -139,6 +134,5 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 - **USP-RP 2024**, caderno com a folha de gabarito. Resolve 25 figuras e a conferência do gabarito. (Os cadernos de 2021 a 2023 foram aplicados em 03/10/2026; o de 2025 já foi aplicado em 01/10/2026: as 27 figuras e a 2025-99 saíram daqui, mas a folha de gabarito veio em branco, então o gabarito de 2025 ainda precisa da folha oficial.)
 - **USP-SP 2023**: 29 figuras.
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
-- **UNIFESP 2022 a 2026**: 13 figuras.
 - **AMRIGS 2021**: a prova inteira.
 - **UNESP 2023**: o gabarito definitivo oficial.
