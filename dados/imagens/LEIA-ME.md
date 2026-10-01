@@ -37,8 +37,8 @@ celular de cada aluno.
 
 A lista sempre atualizada sai do conferidor: `npm run conferir` (ou
 `node testes/conferir-dados.mjs`) lista cada questão que ainda espera figura e
-o nome exato do arquivo. Em 27/09/2026 eram 233 — 13 da UNIFESP, 32 da Santa Casa, 30 da USP-SP
-e 158 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
+o nome exato do arquivo. Em 01/10/2026 eram 208 — 13 da UNIFESP, 32 da Santa Casa, 30 da USP-SP
+e 133 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
@@ -147,21 +147,20 @@ acrescentada)". Ao anexar a figura, vale relê-la e completar a explicação.
 
 </details>
 
-### USP-RP (FMRP) 2021–2026 — 158 figuras
+### USP-RP (FMRP) 2021–2026 — 133 figuras
 
-A prova de **2026** veio no caderno oficial em PDF, e as 35 figuras dela já
-estão nesta pasta (`q-usprp2026-*`), recortadas do caderno e conferidas a olho:
+As provas de **2025** e **2026** vieram em caderno em PDF, e as figuras delas (27 e 35) já
+estão nesta pasta (`q-usprp2025-*`, `q-usprp2026-*`), recortadas do caderno e conferidas a olho:
 `.png` para tabelas (exames, espirometria, monitorização glicêmica) e `.jpg`
 para fotos, exames de imagem, gráficos e traçados.
 
-As provas de **2021 a 2025** vieram numa edição comentada só em texto
-(sem nenhuma figura; dos comentários, nada foi aproveitado). As 158 questões
+As provas de **2021 a 2024** vieram numa edição comentada só em texto
+(sem nenhuma figura; dos comentários, nada foi aproveitado). As 133 questões
 que dependiam de figura apontam para `q-usprp20AA-NNN.png` e descrevem em
 `imagemPendente` o que a prova mostrava; as explicações já descrevem o achado
 esperado pelo texto e pelo gabarito, e valem ser relidas quando a figura
 chegar. Algumas têm alternativas que só fazem sentido com a figura (2023-65,
-esquema do néfron; 2024-42, fonogramas; 2025-60, figuras 1 a 4; 2025-61,
-imagens A a D). Os cadernos oficiais de 2021 a 2025 resolvem tudo de uma vez.
+esquema do néfron; 2024-42, fonogramas). Os cadernos oficiais de 2021 a 2024 resolvem tudo de uma vez.
 
 <details><summary>USP-RP 2021 — 44 figuras</summary>
 
@@ -321,38 +320,6 @@ imagens A a D). Os cadernos oficiais de 2021 a 2025 resolvem tudo de uma vez.
 | `q-usprp2024-089.png` | Mamografia — incidências craniocaudal e mediolateral oblíqua |
 | `q-usprp2024-093.png` | Cardiotocografia do dia |
 | `q-usprp2024-096.png` | Resultado do teste de gravidez na urina |
-
-</details>
-
-<details><summary>USP-RP 2025 — 25 figuras</summary>
-
-| Arquivo | O que a prova mostrava |
-| --- | --- |
-| `q-usprp2025-005.png` | Radiografia de tórax |
-| `q-usprp2025-008.png` | Foto das lesões cutâneas do lactente |
-| `q-usprp2025-012.png` | Tabela com os exames da primeira avaliação e os atuais (perfil lipídico e outros) |
-| `q-usprp2025-019.png` | Curva de crescimento com os pesos do lactente nos primeiros 6 meses |
-| `q-usprp2025-023.png` | Genograma da família |
-| `q-usprp2025-035.png` | Figura 1 do estudo — curvas de incidência do desfecho primário por presença ou ausência de micro e nanoplásticos |
-| `q-usprp2025-036.png` | Figura do risco relativo de insuficiência renal aguda conforme a temperatura média diária |
-| `q-usprp2025-037.png` | Mapa do SEEG com as emissões de gases de efeito estufa por município e setor |
-| `q-usprp2025-038.png` | Figura do impacto acumulado do Programa Expandido de Imunizações por vacina |
-| `q-usprp2025-043.png` | Quadro do escore MEOWS (sinais vitais em negrito) |
-| `q-usprp2025-044.png` | Quadro do perfil glicêmico da última semana |
-| `q-usprp2025-045.png` | Cardiotocografias antes (Figura 1) e após as medidas de reanimação intrauterina (Figura 2) |
-| `q-usprp2025-047.png` | Partograma da evolução do trabalho de parto |
-| `q-usprp2025-053.png` | Foto da mama (inspeção estática) |
-| `q-usprp2025-054.png` | Exame físico e estudo urodinâmico |
-| `q-usprp2025-056.png` | Ultrassonografia transvaginal |
-| `q-usprp2025-060.png` | Figuras 1 a 4 com opções de orientação contraceptiva |
-| `q-usprp2025-061.png` | Imagens A a D (achados de exame físico) |
-| `q-usprp2025-062.png` | Eletrocardiograma |
-| `q-usprp2025-064.png` | Foto das lesões do abdome |
-| `q-usprp2025-072.png` | Fotos das lesões de pele |
-| `q-usprp2025-074.png` | Resultado da monitorização ambulatorial da pressão arterial (MAPA) |
-| `q-usprp2025-079.png` | Foto dos joelhos |
-| `q-usprp2025-080.png` | Foto da pele do paciente |
-| `q-usprp2025-097.png` | Foto do nódulo cervical em nível II |
 
 </details>
 
