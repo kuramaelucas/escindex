@@ -138,6 +138,7 @@ function renderMeuGrupo(){
     <div class="text-sm muted mt-1">${detalheCalendario}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
     ${formado && !proprio ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>: ${meuGrupo.oficial ? "não há calendário de formado, então não existe bloco atual para você." : "o calendário que você acompanha é o do ano desta turma."}</div>` : ""}
     ${!semTurma ? `<div class="flex gap-1 mt-2" style="flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="sairDoMeuGrupo()">Sair deste grupo${formado ? "" : " e voltar ao calendário oficial"}</button>
+      ${!meuGrupo.doRodizio ? `<button class="btn btn-ghost btn-sm" onclick="passarGrupoParaSoQuestoes()" title="Libera o calendário para você escolher a turma do rodízio e continua neste grupo só para questões">Passar este grupo para só questões</button>` : ""}
       ${podeExcluirGrupo(meuGrupo, u) ? `<button class="btn btn-ghost btn-sm" onclick="excluirGrupo('${meuGrupo.id}')">${iconeSvg("trash")} Excluir grupo</button>` : ""}</div>` : ""}
   </div>
 
@@ -273,7 +274,7 @@ function criarMeuGrupo(){
              anoFaculdade: ano, deslocamento };
   }
   db.grupos.push(novo);
-  entrarNoGrupo(u, novo.id, { soQuestoes });
+  entrarNoGrupo(u, novo.id, { soQuestoes, manterAtual: !soQuestoes && oferecerManterGrupoAtualComoDeQuestoes(u, novo.id) });
   saveState();
   toast('Grupo criado — ' + rotuloDoGrupo(novo, u) + '.');
   render();
@@ -311,7 +312,7 @@ function usarGrupo(grupoId, soQuestoes){
   if(!g.oficial && !g.doRodizio && g.criadoPor!==u.id && !(g.membrosAprovados||[]).includes(u.id)){
     toast("Você ainda não faz parte deste grupo — peça para entrar.", "err"); return;
   }
-  entrarNoGrupo(u, grupoId, { soQuestoes });
+  entrarNoGrupo(u, grupoId, { soQuestoes, manterAtual: !soQuestoes && oferecerManterGrupoAtualComoDeQuestoes(u, grupoId) });
   saveState();
   toast(soQuestoes ? 'Você entrou em "'+g.nome+'" só para compartilhar questões — o calendário não mudou.' : 'Agora você está em "'+g.nome+'" ('+rotuloDoGrupo(g, u)+').');
   render();
@@ -470,12 +471,35 @@ function guardarOrdemDosEstagios(u, blocoId, nomes){
   saveState();
   render();
 }
+/* TROCAR DE CALENDÁRIO SEM PERDER O GRUPO. O grupo do calendário ocupa a única
+   vaga de calendário; ao escolher outro (a turma do rodízio, por exemplo), o
+   anterior saía. Se ele não é uma turma do rodízio e a pessoa ainda não tem
+   grupo de questões, pergunta se quer ficar nele só para questões — é assim
+   que se participa de dois grupos: um com calendário e outro de questões. */
+function oferecerManterGrupoAtualComoDeQuestoes(u, destinoId){
+  const atual = getGrupoDoUsuario(u);
+  if(atual.oficial || atual.doRodizio || atual.id === destinoId || getGrupoQuestoesDoUsuario(u)) return false;
+  return confirm('Você está em "'+atual.nome+'". Quer continuar nele só para compartilhar questões? (OK = continuar como grupo de questões; Cancelar = sair dele.)');
+}
+function passarGrupoParaSoQuestoes(){
+  const u = usuarioAtual();
+  const g = getGrupoDoUsuario(u);
+  if(g.oficial || g.doRodizio) return;
+  const antigo = getGrupoQuestoesDoUsuario(u);
+  if(antigo && !confirm('Seu grupo só de questões atual é "'+antigo.nome+'" e você sairia dele. Continuar?')) return;
+  if(antigo) sairDoGrupoDeQuestoes(u);
+  u.grupoQuestoesId = g.id;
+  u.grupoId = db.grupoOficialId;
+  saveState();
+  toast('"'+g.nome+'" agora é o seu grupo só de questões. Escolha o grupo do calendário abaixo.');
+  render();
+}
 function entrarNaTurmaDoRodizio(deslocamento){
   const u = usuarioAtual();
   const ano = temCalendarioProprio(u.anoFaculdade) ? u.anoFaculdade : CONFIG.anoFaculdadePadrao;
   const turma = turmaDoRodizio(ano, deslocamento);
   if(!turma){ toast("Não encontrei esse grupo no calendário de "+ano+".", "err"); return; }
-  entrarNoGrupo(u, turma.id);
+  entrarNoGrupo(u, turma.id, { manterAtual: oferecerManterGrupoAtualComoDeQuestoes(u, turma.id) });
   saveState();
   toast("Agora você está em: " + nomeRodizio(ano, turma.deslocamento) + " (" + ano + ").");
   render();

@@ -120,3 +120,36 @@ test("o dono que 'sai' do grupo do calendário o exclui; quem só é membro apen
     assert.deepEqual(r.membro, { existe: true, saiu: true });
   } finally { await contexto.close(); }
 });
+
+test("quem está num grupo e escolhe a turma do rodízio pode ficar no grupo antigo só para questões", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      u.anoFaculdade = "4º ano";
+      navigate("meu-grupo");
+      document.getElementById("novoGrupoTipo").value = "proprio";
+      document.getElementById("novoGrupoNome").value = "Grupo A";
+      criarMeuGrupo();
+      const grupoA = u.grupoId;
+      // recusar: comportamento de sempre, o grupo antigo sai
+      window.confirm = () => false;
+      entrarNaTurmaDoRodizio(1);
+      const recusou = { questoes: u.grupoQuestoesId || null, turma: u.grupoId !== grupoA };
+      // aceitar: os dois valem
+      u.grupoId = grupoA; delete u.grupoQuestoesId;
+      window.confirm = () => true;
+      entrarNaTurmaDoRodizio(1);
+      const aceitou = { questoes: u.grupoQuestoesId, turma: u.grupoId !== grupoA && /^rodizio-/.test(u.grupoId), grupos: gruposDoUsuario(u).length };
+      // o botão "passar para só questões" faz o mesmo no sentido contrário
+      u.grupoId = grupoA; delete u.grupoQuestoesId;
+      passarGrupoParaSoQuestoes();
+      const passou = { questoes: u.grupoQuestoesId, calendario: u.grupoId === db.grupoOficialId };
+      return { recusou, aceitou, passou, grupoA };
+    });
+    assert.deepEqual(r.recusou, { questoes: null, turma: true });
+    assert.deepEqual(r.aceitou, { questoes: r.grupoA, turma: true, grupos: 2 });
+    assert.deepEqual(r.passou, { questoes: r.grupoA, calendario: true });
+  } finally { await contexto.close(); }
+});

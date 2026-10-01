@@ -653,7 +653,11 @@ function entrarNoGrupo(usuario, grupoId, opcoes){
   if(!usuario) return;
   const destino = getGrupo(grupoId);
   const soQuestoes = !!(opcoes && opcoes.soQuestoes) && !!destino && !destino.oficial;
-  const extra = soQuestoes ? null : getGrupoQuestoesDoUsuario(usuario);
+  // `manterAtual`: o grupo do calendário de agora passa a ser o de questões (ver 10b, oferecerManterGrupoAtualComoDeQuestoes)
+  const atual = getGrupo(usuario.grupoId);
+  const extra = soQuestoes ? null
+    : (opcoes && opcoes.manterAtual && atual && !atual.oficial && !atual.doRodizio && atual.id !== grupoId) ? atual
+    : getGrupoQuestoesDoUsuario(usuario);
   const manter = soQuestoes ? [usuario.grupoId, grupoId] : [grupoId, extra && extra.id !== grupoId ? extra.id : null];
   tirarDosGrupos(usuario, manter);
   if(destino && !destino.oficial){
@@ -663,7 +667,7 @@ function entrarNoGrupo(usuario, grupoId, opcoes){
   }
   if(soQuestoes){ usuario.grupoQuestoesId = destino.id; return; }
   usuario.grupoId = destino ? destino.id : db.grupoOficialId;
-  if(usuario.grupoQuestoesId === usuario.grupoId || !extra) delete usuario.grupoQuestoesId;
+  if(extra && extra.id !== usuario.grupoId) usuario.grupoQuestoesId = extra.id; else delete usuario.grupoQuestoesId;
 }
 function sairDoGrupoDeQuestoes(usuario){
   const g = getGrupoQuestoesDoUsuario(usuario);

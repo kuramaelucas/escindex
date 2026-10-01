@@ -273,6 +273,33 @@ test("excluir o grupo sobe como removido e some do aparelho da colega, que volta
   } finally { await ana.contexto.close(); await bia.contexto.close(); }
 });
 
+test("turma do rodízio com calendário + grupo só de questões de outra pessoa: os dois valem depois de sincronizar", async () => {
+  const banco = nuvemQueGuarda();
+  const ana = await abrir(banco, { id: ANA, nome: "Ana Aluna" });
+  const bia = await abrir(banco, { id: BIA, nome: "Bia Aluna" });
+  try{
+    const gid = await ana.pagina.evaluate(() => {
+      navigate("meu-grupo");
+      document.getElementById("novoGrupoTipo").value = "proprio";
+      document.getElementById("novoGrupoNome").value = "Lista da Ana";
+      criarMeuGrupo();
+      return usuarioAtual().grupoId;
+    });
+    const turma = await bia.pagina.evaluate(() => { entrarNaTurmaDoRodizio(1); return usuarioAtual().grupoId; });
+    await sincronizar(ana.pagina); await sincronizar(bia.pagina);
+    await bia.pagina.evaluate(id => solicitarAcessoGrupo(id, true), gid);
+    await sincronizar(bia.pagina); await sincronizar(ana.pagina);
+    await ana.pagina.evaluate(([id, bia]) => aprovarAcessoGrupo(id, bia), [gid, BIA]);
+    await sincronizar(ana.pagina); await sincronizar(bia.pagina); await sincronizar(bia.pagina);
+    const naBia = await bia.pagina.evaluate(() => ({ calendario: usuarioAtual().grupoId, questoes: usuarioAtual().grupoQuestoesId, grupos: gruposDoUsuario(usuarioAtual()).map(g => g.id) }));
+    assert.equal(naBia.calendario, turma, "o calendário continua o da turma do rodízio");
+    assert.equal(naBia.questoes, gid);
+    assert.equal(naBia.grupos.length, 2);
+    // o perfil dela subiu com os dois grupos
+    for(const t of [ana, bia]) assert.deepEqual(t.erros, []);
+  } finally { await ana.contexto.close(); await bia.contexto.close(); }
+});
+
 test("cartões: compartilhado com o grupo chega aos colegas; sugerido à equipe chega ao professor, que aprova para todos", async () => {
   const banco = nuvemQueGuarda();
   const ana = await abrir(banco, { id: ANA, nome: "Ana Aluna" });
