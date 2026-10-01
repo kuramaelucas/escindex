@@ -27,7 +27,7 @@ Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem insta
 ## Nuvem (03a–03d + `nuvem/esquema.sql`)
 
 - Ligada por `CONFIG.nuvem` (url + chave anônima, pública de propósito: quem protege é o RLS; a chave `service_role` nunca entra em arquivo). Vazia, nenhum código de nuvem roda. Toda chamada passa por `nuvemChamar(caminho, opcoes)`.
-- Estudo de cada pessoa: `NUVEM_TABELAS` (03b) + `nuvemRegistrar({...})`. Tabelas de todos: `NUVEM_GLOBAIS` (03c), cada uma com `chave`, `podeGravar`, `aplicar`, `linha` (e `enviar` quando sobe imagem antes); marcar para subir: `nuvemMarcarGlobalPendente(tabela, chave)` + `nuvemAgendarSync()`.
+- Estudo de cada pessoa: `NUVEM_TABELAS` (03b) + `nuvemRegistrar({...})`. Tabelas de todos: `NUVEM_GLOBAIS` (03c, e 03e para grupos e cartões), cada uma com `chave`, `podeGravar`, `aplicar`, `linha` (e `enviar` quando sobe imagem antes); marcar para subir: `nuvemMarcarGlobalPendente(tabela, chave)` + `nuvemAgendarSync()`.
 - **Armadilha do RLS:** o upsert do site (`Prefer: resolution=merge-duplicates`) passa pela regra de **inserção** mesmo quando só atualiza — gravar linha de **outra pessoa** (moderar comentário, marcar feedback como lido) tem de ir por `PATCH`: descritor com `alheia` + `colunaChave`. Mudou regra? `npm run testar-sql`.
 - Tabela nova: no `esquema.sql`, `create table if not exists` com `atualizado_em` + índice, entrar na lista do carimbo, `enable row level security`, políticas, e na lista do `revoke … from anon`; testes em `testes/sql/regras.sql` e um teste de ponta a ponta com nuvem de mentira (modelo: `testes/atualizacoes-e-feedback.test.mjs`). Tabela/coluna que o banco ainda não tem é tolerada (`_nuvemTabelasAusentes`, `NUVEM_CAMPOS_NOVOS`) — e a pessoa precisa rodar o `esquema.sql` de novo: diga isso a ela e atualize a pendência no topo do `RESUMO-PROJETO-ESC.md` e a tabela do `nuvem/LEIA-ME.md`.
 - Conteúdo da pasta `dados/` não sobe; conserto numa questão dela vira correção (`registrarCorrecaoDaQuestao`, tabela `correcoes_questoes`). Questão enviada pela plataforma sobe inteira (`questoes_enviadas`, imagem no Storage).
@@ -42,6 +42,7 @@ Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem insta
 | `03b-nuvem-sincronizacao.js` | 2-C | `NUVEM_TABELAS`, fila, sincronização, calendário compartilhado |
 | `03c-nuvem-compartilhadas.js` | 2-C | `NUVEM_GLOBAIS`: livro de ouro, formatação, comentários, feedback, questões enviadas, correções |
 | `03d-nuvem-telas.js` | 2-C | trazer estudo local, entrar/sair pela tela, percentil, painel, cadastros, usuários, diagnóstico, senha, cartão da nuvem, gatilhos |
+| `03e-nuvem-grupos.js` | 2-C | grupos, membros e grupos de estudo na nuvem (`nuvemConferirGrupos`); cartões enviados à equipe ou ao grupo (`flashcards_enviados`) |
 | `04-utilitarios.js` | 3 | datas, paginação, janelas, download, gráficos SVG, rodízio, consultas por id, permissões |
 | `05a-motor-de-estudos.js` | 4 | bloco atual, dificuldade, respostas, ocultas, repetição espaçada, flashcards, sessões |
 | `05b-desempenho-e-metas.js` | 4 | desempenho, calibração, metas, lembrete, o que mais cai, nota estimada |

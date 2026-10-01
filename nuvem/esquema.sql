@@ -116,6 +116,35 @@ as $$
   );
 $$;
 
+-- "É do grupo?" — a pessoa tem linha aprovada em grupo_membros, ou é a dona
+-- do grupo. Mesma construção das outras (SECURITY DEFINER para ler as tabelas
+-- por dentro das próprias políticas sem recursão).
+create or replace function public.e_do_grupo(gid text)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select exists (
+           select 1 from public.grupo_membros m
+            where m.grupo_id = gid and m.usuario_id = auth.uid() and m.status = 'aprovado')
+      or exists (
+           select 1 from public.grupos g
+            where g.id = gid and g.criado_por = auth.uid());
+$$;
+
+-- "É a dona do grupo?" — quem aprova os pedidos de entrada.
+create or replace function public.e_dono_do_grupo(gid text)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select exists (select 1 from public.grupos g where g.id = gid and g.criado_por = auth.uid());
+$$;
+
 -- ---------------------------------------------------------------------------
 -- 1. PERFIS — o cadastro de cada pessoa
 -- ---------------------------------------------------------------------------
@@ -597,6 +626,94 @@ create table if not exists public.avisos (
 create index if not exists avisos_sync_idx on public.avisos (atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 11-J. GRUPOS, MEMBROS, GRUPOS DE ESTUDO, QUESTÕES E CARTÕES DE GRUPO
+-- ---------------------------------------------------------------------------
+-- Até aqui os grupos (turmas) viviam só no navegador de quem os criou: um
+-- colega em outro aparelho nunca via o grupo, os pedidos de entrada não
+-- chegavam ao dono e as questões enviadas "para o meu grupo" não saíam do
+-- computador de quem as enviou. Agora:
+--   GRUPOS         a definição do grupo (nome, dono, calendário próprio, a
+--                  divisão das questões). Toda conta aprovada lê a lista —
+--                  é o que permite "pedir para entrar". Quem cria é o dono;
+--                  as turmas do rodízio ('rodizio-<ano>-<n>') não têm dono e
+--                  só ganham linha quando alguém divide as questões.
+--   GRUPO_MEMBROS  quem está em cada grupo: pendente (pediu para entrar),
+--                  aprovado, recusado ou saiu. A pessoa pede e sai por conta
+--                  própria; quem aprova é o dono. Turma do rodízio é aberta:
+--                  entra direto. Só os membros (e a equipe) leem a lista.
+--   SUBGRUPOS      os grupos de estudo dentro de um grupo (quem participa,
+--                  quais questões, quem fica com quais). Só os membros do
+--                  grupo leem e mexem.
+--   QUESTOES_ENVIADAS.GRUPO_ID  a questão enviada "para o meu grupo": sobe já
+--                  aprovada, só os membros do grupo (e a equipe) a enxergam.
+--   FLASHCARDS_ENVIADOS  os cartões que o aluno sugere à equipe (pendente,
+--                  até um professor aprovar), os que a equipe publica, e os
+--                  que alguém compartilha com o grupo (grupo_id).
+-- Ninguém apaga linha pelo site: remover é marcar `removido` (ou o status),
+-- para a remoção também chegar aos outros aparelhos.
+create table if not exists public.grupos (
+  id              text        primary key,
+  nome            text        not null default '',
+  criado_por      uuid        references auth.users(id) on delete set null,
+  criado_por_nome text        not null default '',
+  dados           jsonb       not null default '{}'::jsonb,
+  removido        boolean     not null default false,
+  criado_em       timestamptz not null default now(),
+  atualizado_por  uuid        references auth.users(id) on delete set null,
+  atualizado_em   timestamptz not null default now()
+);
+create index if not exists grupos_sync_idx on public.grupos (atualizado_em);
+
+create table if not exists public.grupo_membros (
+  grupo_id       text        not null,
+  usuario_id     uuid        not null references auth.users(id) on delete cascade,
+  usuario_nome   text        not null default '',
+  status         text        not null default 'pendente'
+                             check (status in ('pendente', 'aprovado', 'recusado', 'saiu')),
+  criado_em      timestamptz not null default now(),
+  atualizado_por uuid        references auth.users(id) on delete set null,
+  atualizado_em  timestamptz not null default now(),
+  primary key (grupo_id, usuario_id)
+);
+create index if not exists grupo_membros_sync_idx on public.grupo_membros (atualizado_em);
+create index if not exists grupo_membros_usuario_idx on public.grupo_membros (usuario_id);
+
+create table if not exists public.subgrupos (
+  id             text        primary key,
+  grupo_id       text        not null,
+  nome           text        not null default '',
+  criado_por     uuid        references auth.users(id) on delete set null,
+  dados          jsonb       not null default '{}'::jsonb,
+  removido       boolean     not null default false,
+  criado_em      timestamptz not null default now(),
+  atualizado_por uuid        references auth.users(id) on delete set null,
+  atualizado_em  timestamptz not null default now()
+);
+create index if not exists subgrupos_sync_idx on public.subgrupos (atualizado_em);
+
+-- a questão enviada para um grupo: o id do grupo. Para quem já rodou este
+-- arquivo antes desta coluna existir:
+alter table public.questoes_enviadas add column if not exists grupo_id text;
+create index if not exists questoes_enviadas_grupo_idx on public.questoes_enviadas (grupo_id);
+
+create table if not exists public.flashcards_enviados (
+  id                text        primary key,
+  autor_id          uuid        references auth.users(id) on delete set null,
+  autor_nome        text        not null default '',
+  grupo_id          text,
+  status            text        not null default 'pendente'
+                                check (status in ('pendente', 'aprovado', 'recusado', 'removido')),
+  dados             jsonb       not null default '{}'::jsonb,
+  motivo            text        not null default '',
+  decidido_por_nome text        not null default '',
+  criado_em         timestamptz not null default now(),
+  atualizado_por    uuid        references auth.users(id) on delete set null,
+  atualizado_em     timestamptz not null default now()
+);
+create index if not exists flashcards_enviados_sync_idx on public.flashcards_enviados (atualizado_em);
+create index if not exists flashcards_enviados_grupo_idx on public.flashcards_enviados (grupo_id);
+
+-- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
 do $$
@@ -606,7 +723,8 @@ begin
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
-    'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos'
+    'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos',
+    'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
     execute format(
@@ -719,6 +837,10 @@ alter table public.questoes_enviadas    enable row level security;
 alter table public.feedbacks            enable row level security;
 alter table public.correcoes_questoes   enable row level security;
 alter table public.avisos               enable row level security;
+alter table public.grupos               enable row level security;
+alter table public.grupo_membros        enable row level security;
+alter table public.subgrupos            enable row level security;
+alter table public.flashcards_enviados  enable row level security;
 
 -- PERFIS: a pessoa vê e edita o próprio; professor e administrador veem e
 -- editam qualquer um (é assim que a tela Aprovar Cadastros funciona sem
@@ -830,7 +952,8 @@ drop policy if exists questoes_enviadas_alterar on public.questoes_enviadas;
 create policy questoes_enviadas_ler on public.questoes_enviadas
   for select to authenticated
   using (
-    (status in ('aprovada', 'removida') and public.e_aprovado())
+    (grupo_id is null and status in ('aprovada', 'removida') and public.e_aprovado())
+    or (grupo_id is not null and public.e_do_grupo(grupo_id))
     or autor_id = auth.uid()
     or public.e_equipe()
   );
@@ -839,15 +962,131 @@ create policy questoes_enviadas_criar on public.questoes_enviadas
   with check (
     public.e_equipe()
     or (autor_id = auth.uid() and public.e_aprovado()
-        and (status = 'pendente' or (status = 'aprovada' and public.e_revisor())))
+        and (status = 'pendente' or (status = 'aprovada' and (public.e_revisor() or (grupo_id is not null and public.e_do_grupo(grupo_id))))))
   );
+-- a questão de um grupo qualquer membro do grupo corrige (é trabalho em
+-- conjunto); a do banco geral, só quem enviou enquanto pendente, e a equipe.
 create policy questoes_enviadas_alterar on public.questoes_enviadas
   for update to authenticated
-  using (public.e_equipe() or (autor_id = auth.uid() and (status = 'pendente' or public.e_revisor())))
+  using (
+    public.e_equipe()
+    or (grupo_id is not null and public.e_do_grupo(grupo_id))
+    or (autor_id = auth.uid() and (status = 'pendente' or public.e_revisor()))
+  )
+  with check (
+    public.e_equipe()
+    or (grupo_id is not null and public.e_aprovado() and public.e_do_grupo(grupo_id) and status in ('aprovada', 'removida'))
+    or (autor_id = auth.uid() and public.e_aprovado()
+        and (status = 'pendente' or (status = 'aprovada' and public.e_revisor())))
+  );
+
+-- GRUPOS: toda conta aprovada lê (é a lista de "pedir para entrar"). Cria quem
+-- vai ser a dona; a turma do rodízio (id 'rodizio-…') não tem dona e qualquer
+-- conta aprovada pode criar a linha dela, que só guarda a divisão das
+-- questões. Altera: a dona, a equipe e, na turma do rodízio, os membros.
+drop policy if exists grupos_ler     on public.grupos;
+drop policy if exists grupos_criar   on public.grupos;
+drop policy if exists grupos_alterar on public.grupos;
+create policy grupos_ler on public.grupos
+  for select to authenticated using (public.e_aprovado());
+create policy grupos_criar on public.grupos
+  for insert to authenticated
+  with check (
+    public.e_equipe()
+    or (public.e_aprovado()
+        and ((criado_por = auth.uid() and id not like 'rodizio-%')
+             or (criado_por is null and id like 'rodizio-%')))
+  );
+create policy grupos_alterar on public.grupos
+  for update to authenticated
+  using (public.e_equipe() or criado_por = auth.uid() or (id like 'rodizio-%' and public.e_do_grupo(id)))
+  with check (
+    public.e_equipe()
+    or criado_por = auth.uid()
+    or (id like 'rodizio-%' and criado_por is null and public.e_do_grupo(id))
+  );
+
+-- GRUPO_MEMBROS: a pessoa vê as próprias linhas; os membros (e a dona) veem as
+-- do grupo; a equipe vê todas. Pedir para entrar ou sair: só em nome próprio.
+-- Entrar direto como aprovada: só na turma do rodízio (aberta) ou quando a
+-- dona está colocando a si mesma. Aprovar ou recusar o pedido de outra pessoa:
+-- só a dona do grupo (e a equipe).
+drop policy if exists grupo_membros_ler     on public.grupo_membros;
+drop policy if exists grupo_membros_criar   on public.grupo_membros;
+drop policy if exists grupo_membros_alterar on public.grupo_membros;
+create policy grupo_membros_ler on public.grupo_membros
+  for select to authenticated
+  using (usuario_id = auth.uid() or public.e_do_grupo(grupo_id) or public.e_equipe());
+create policy grupo_membros_criar on public.grupo_membros
+  for insert to authenticated
+  with check (
+    public.e_equipe()
+    or (usuario_id = auth.uid() and public.e_aprovado()
+        and (status in ('pendente', 'saiu')
+             or (status = 'aprovado' and (grupo_id like 'rodizio-%' or public.e_dono_do_grupo(grupo_id)))))
+  );
+create policy grupo_membros_alterar on public.grupo_membros
+  for update to authenticated
+  using (public.e_equipe() or usuario_id = auth.uid() or public.e_dono_do_grupo(grupo_id))
+  with check (
+    public.e_equipe()
+    or public.e_dono_do_grupo(grupo_id)
+    or (usuario_id = auth.uid() and public.e_aprovado()
+        and (status in ('pendente', 'saiu') or (status = 'aprovado' and grupo_id like 'rodizio-%')))
+  );
+
+-- SUBGRUPOS: só os membros do grupo (e a equipe) leem e mexem; criar, só em
+-- nome próprio. Qualquer membro altera (sair do grupo de estudo é editar a
+-- lista de participantes, e o grupo é de gente que confia uma na outra).
+drop policy if exists subgrupos_ler     on public.subgrupos;
+drop policy if exists subgrupos_criar   on public.subgrupos;
+drop policy if exists subgrupos_alterar on public.subgrupos;
+create policy subgrupos_ler on public.subgrupos
+  for select to authenticated using (public.e_do_grupo(grupo_id) or public.e_equipe());
+create policy subgrupos_criar on public.subgrupos
+  for insert to authenticated
+  with check (public.e_equipe() or (criado_por = auth.uid() and public.e_aprovado() and public.e_do_grupo(grupo_id)));
+create policy subgrupos_alterar on public.subgrupos
+  for update to authenticated
+  using (public.e_equipe() or public.e_do_grupo(grupo_id))
+  with check (public.e_equipe() or (public.e_aprovado() and public.e_do_grupo(grupo_id)));
+
+-- FLASHCARDS_ENVIADOS: o aprovado do banco geral (e o removido, para a
+-- remoção chegar a todos) toda conta aprovada lê; o de grupo, só os membros;
+-- a própria pessoa lê o que enviou; a equipe lê tudo. Enviar: o aluno manda
+-- como pendente (a equipe decide) ou, para o grupo, já aprovado — e a equipe e
+-- os residentes publicam direto. A equipe grava qualquer um (aprovar, recusar,
+-- remover); quem enviou só mexe no seu enquanto está pendente ou recusado.
+drop policy if exists flashcards_enviados_ler     on public.flashcards_enviados;
+drop policy if exists flashcards_enviados_criar   on public.flashcards_enviados;
+drop policy if exists flashcards_enviados_alterar on public.flashcards_enviados;
+create policy flashcards_enviados_ler on public.flashcards_enviados
+  for select to authenticated
+  using (
+    (grupo_id is null and status in ('aprovado', 'removido') and public.e_aprovado())
+    or (grupo_id is not null and public.e_do_grupo(grupo_id))
+    or autor_id = auth.uid()
+    or public.e_equipe()
+  );
+create policy flashcards_enviados_criar on public.flashcards_enviados
+  for insert to authenticated
   with check (
     public.e_equipe()
     or (autor_id = auth.uid() and public.e_aprovado()
-        and (status = 'pendente' or (status = 'aprovada' and public.e_revisor())))
+        and ((grupo_id is null and (status = 'pendente' or (status = 'aprovado' and public.e_revisor())))
+             or (grupo_id is not null and public.e_do_grupo(grupo_id) and status = 'aprovado')))
+  );
+create policy flashcards_enviados_alterar on public.flashcards_enviados
+  for update to authenticated
+  using (
+    public.e_equipe()
+    or (autor_id = auth.uid() and (grupo_id is not null or status in ('pendente', 'recusado') or public.e_revisor()))
+  )
+  with check (
+    public.e_equipe()
+    or (autor_id = auth.uid() and public.e_aprovado()
+        and ((grupo_id is null and (status = 'pendente' or (status in ('aprovado', 'removido') and public.e_revisor())))
+             or (grupo_id is not null and public.e_do_grupo(grupo_id) and status in ('aprovado', 'removido'))))
   );
 
 -- FEEDBACKS: quem escreveu vê as suas; os administradores veem todas.
@@ -943,7 +1182,8 @@ begin
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
     'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
-    'feedbacks', 'correcoes_questoes', 'avisos'
+    'feedbacks', 'correcoes_questoes', 'avisos',
+    'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;

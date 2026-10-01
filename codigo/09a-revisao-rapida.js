@@ -113,12 +113,13 @@ function renderFlashcardsInicio(u){
     </div>
     <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
       ${pagMeus.itens.map(c=>`<tr>
-        <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}</td>
+        <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
         <td class="text-sm">${escapeHtml(nomeAssunto(c.assuntoId))}</td>
         <td class="text-xs muted">${c.criadoEm?formatDataBR(c.criadoEm):"—"}</td>
         <td class="flex gap-1">
           ${c.questaoOrigemId?`<button class="icon-btn" title="Ver a questão que originou o cartão" onclick="abrirQuestaoCompleta('${c.questaoOrigemId}')">${iconeSvg("search")}</button>`:""}
           <button class="icon-btn" title="Editar" onclick="abrirFormularioFlashcard('${c.id}')">${iconeSvg("edit")}</button>
+          ${(c.grupoId || !grupoAtualDoCartao(u).oficial) ? `<button class="icon-btn" title="${c.grupoId ? "Tirar do grupo (volta a ser só seu)" : "Compartilhar com o meu grupo"}" onclick="compartilharCartaoComGrupo('${c.id}')">${iconeSvg("users")}</button>` : ""}
           ${!c.sugeridoParaEquipe || c.decisaoEm ? `<button class="icon-btn" title="Sugerir para o baralho da equipe" onclick="sugerirFlashcardParaEquipe('${c.id}')">${iconeSvg("upload")}</button>` : ""}
           <button class="icon-btn" title="Arquivar" onclick="arquivarFlashcard('${c.id}')">${iconeSvg("trash")}</button>
         </td></tr>`).join("")}
@@ -130,6 +131,8 @@ function renderFlashcardsInicio(u){
       <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
     </div>
   </div>`}
+
+  ${renderCartoesDoGrupo(u)}
 
   ${podeEditar ? `<div class="card mt-2">
     <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
@@ -387,10 +390,52 @@ function badgeSugestaoFlashcard(c){
     : ` <span class="badge badge-danger" title="${escapeHtml(c.motivoRecusa||"")}">recusado</span>`;
   return ` <span class="badge badge-amber">aguardando aprovação</span>`;
 }
+/* COMPARTILHAR COM O GRUPO. O cartão continua sendo de quem o escreveu (só
+   essa pessoa edita e arquiva), mas os colegas do grupo o recebem no
+   baralho. Compartilhar e sugerir à equipe são caminhos separados — o
+   cartão só segue um deles por vez, porque na nuvem cada um é uma linha
+   com um destino (03e). */
+function grupoAtualDoCartao(u){ return getGrupoDoUsuario(u); }
+function compartilharCartaoComGrupo(id){
+  const u = usuarioAtual();
+  const c = (db.flashcards||[]).find(x=>x.id===id);
+  if(!c || c.usuarioId!==u.id){ toast("Cartão não encontrado.", "err"); return; }
+  if(c.grupoId){
+    c.grupoAntigoId = c.grupoId;      // a nuvem precisa saber de qual grupo retirar
+    delete c.grupoId;
+    toast("O cartão voltou a ser só seu.");
+  }else{
+    const g = grupoAtualDoCartao(u);
+    if(g.oficial){ toast("Entre num grupo em Meu Grupo para compartilhar cartões com os colegas.", "err"); return; }
+    if(c.sugeridoParaEquipe && !c.decisaoEm){ toast("Este cartão está esperando a decisão da equipe. Depois dela, você pode compartilhá-lo.", "err"); return; }
+    c.grupoId = g.id; delete c.grupoAntigoId;
+    toast("Cartão compartilhado com o grupo "+g.nome+".");
+  }
+  if(c.usuarioId) nuvemRegistrar({cartaoPessoal:c});
+  saveState(); render();
+}
+/* Os cartões que os colegas do grupo compartilharam: entram no baralho de
+   todos e ficam à vista aqui, para ninguém estranhar cartão que não escreveu. */
+function renderCartoesDoGrupo(u){
+  const g = grupoAtualDoCartao(u);
+  if(g.oficial) return "";
+  const dosColegas = (db.flashcards||[]).filter(c=>c.grupoId===g.id && c.usuarioId && c.usuarioId!==u.id && c.status!=="arquivado");
+  if(!dosColegas.length) return `<div class="card-flat mt-2 text-sm">${iconeSvg("users")} Os cartões que os colegas do seu grupo compartilharem aparecem aqui e entram no seu baralho. Para compartilhar os seus, use o ícone de grupo em <strong>Meus cartões</strong> ou marque a opção em <strong>Adicionar baralho</strong>.</div>`;
+  const pag = paginar(dosColegas, "flash-grupo", {porPagina:10});
+  return `<div class="card mt-2">
+    <div class="card-title">${iconeSvg("users")} Cartões do grupo (${dosColegas.length})</div>
+    <div class="text-sm muted">Compartilhados pelos colegas de ${escapeHtml(g.nome)}. Entram no seu baralho junto com os da equipe; só quem escreveu edita.</div>
+    <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th>Colega</th></tr></thead><tbody>
+      ${pag.itens.map(c=>`<tr><td class="text-sm">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</td><td class="text-sm">${escapeHtml(nomeAssunto(c.assuntoId))}</td><td class="text-sm">${escapeHtml(nomeDoMembro(g, c.usuarioId))}</td></tr>`).join("")}
+    </tbody></table></div>
+    ${controlesPaginacao(pag, "cartão(ões) do grupo")}
+  </div>`;
+}
 function sugerirFlashcardParaEquipe(id){
   const u = usuarioAtual();
   const c = (db.flashcards||[]).find(x=>x.id===id);
   if(!c || c.usuarioId!==u.id){ toast("Cartão não encontrado.", "err"); return; }
+  if(c.grupoId){ c.grupoAntigoId = c.grupoId; delete c.grupoId; }   // um destino por vez
   c.sugeridoParaEquipe = true;
   c.sugeridoEm = hojeISO();
   delete c.decisaoEm; delete c.aprovadoEm; delete c.aprovadoPor; delete c.motivoRecusa;
@@ -409,6 +454,7 @@ function aprovarFlashcardSugerido(id){
   c.decisaoEm = hojeISO();
   c.aprovadoEm = hojeISO();
   c.aprovadoPor = usuarioAtual().id;
+  c.aprovadoPorNome = usuarioAtual().nome;
   saveState();
   toast("Cartão promovido: agora faz parte do baralho da equipe, visível para todos.");
   render();

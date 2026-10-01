@@ -211,6 +211,7 @@ function guardarCamposBaralhoIA(){
   if(campo("baralhoTema")) st.tema = campo("baralhoTema").value;
   if(campo("baralhoTexto")) st.texto = campo("baralhoTexto").value;
   if(campo("baralhoPessoal")) st.pessoal = campo("baralhoPessoal").checked;
+  if(campo("baralhoGrupo")) st.compartilhar = campo("baralhoGrupo").checked;
   return st;
 }
 function mudarPassoBaralhoIA(passo){ guardarCamposBaralhoIA().passo = passo; desenharAdicionarBaralho(); }
@@ -255,7 +256,8 @@ function desenharAdicionarBaralho(){
       <textarea class="textarea textarea-mono mt-1" readonly style="min-height:140px">${escapeHtml(promptBaralhoIA())}</textarea></details>
     <div class="field mt-2"><label class="label">Resposta da IA</label>
       <textarea class="textarea textarea-mono" id="baralhoTexto" style="min-height:130px" placeholder="FRENTE: ...&#10;VERSO: ...&#10;---">${escapeHtml(st.texto)}</textarea></div>
-    ${podeEquipe ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoPessoal" ${st.pessoal?"checked":""} onchange="guardarCamposBaralhoIA()"> Só para mim (desmarque para publicar no baralho da equipe)</label>` : ""}
+    ${podeEquipe ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoPessoal" ${st.pessoal?"checked":""} onchange="guardarCamposBaralhoIA(); desenharAdicionarBaralho()"> Só para mim (desmarque para publicar no baralho da equipe)</label>` : ""}
+    ${(!podeEquipe || st.pessoal) && !getGrupoDoUsuario(usuarioAtual()).oficial ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoGrupo" ${st.compartilhar?"checked":""} onchange="guardarCamposBaralhoIA()"> Compartilhar com o meu grupo (${escapeHtml(getGrupoDoUsuario(usuarioAtual()).nome)}) — os colegas recebem estes cartões no baralho deles</label>` : ""}
     <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="conferirBaralhoIA()">Conferir</button>
       ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="adicionarBaralhoIA()">Adicionar ${a.validos.length} cartão(ões)</button>` : ""}
@@ -336,12 +338,13 @@ function adicionarBaralhoIA(){
       status: "ativo", criadoPor: u.id, criadoEm: hojeISO(),
     };
     if(equipe) cartao.revisao = "pendente";
+    else if(st.compartilhar && !getGrupoDoUsuario(u).oficial) cartao.grupoId = getGrupoDoUsuario(u).id;
     db.flashcards.push(cartao);
     if(cartao.usuarioId) nuvemRegistrar({cartaoPessoal: cartao});
   });
   saveState();
   state.filtroRota.baralhoIA = null;
   fecharModal();
-  toast(a.validos.length + " cartão(ões) adicionados" + (equipe ? " ao baralho da equipe." : " ao seu baralho. Entram na sua próxima revisão rápida."));
+  toast(a.validos.length + " cartão(ões) adicionados" + (equipe ? " ao baralho da equipe." : st.compartilhar ? " ao seu baralho e ao do seu grupo." : " ao seu baralho. Entram na sua próxima revisão rápida."));
   render();
 }

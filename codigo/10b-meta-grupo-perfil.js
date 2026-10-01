@@ -140,9 +140,8 @@ function renderMeuGrupo(){
     <div class="card-title">Solicitações de acesso pendentes (${solicitacoesPendentes.length})</div>
     <p class="text-sm muted">Essas pessoas pediram para entrar na sua turma. Só entram depois que você aprovar.</p>
     ${solicitacoesPendentes.map(uidSolicitante=>{
-      const solicitante = getUsuario(uidSolicitante);
       return `<div class="flex justify-between items-center card-flat mb-1">
-        <span class="text-sm">${escapeHtml(solicitante?solicitante.nome:"—")}</span>
+        <span class="text-sm">${escapeHtml(nomeDoMembro(meuGrupo, uidSolicitante))}</span>
         <div class="flex gap-1"><button class="btn btn-primary btn-sm" onclick="aprovarAcessoGrupo('${meuGrupo.id}','${uidSolicitante}')">Aprovar</button><button class="btn btn-ghost btn-sm" onclick="rejeitarAcessoGrupo('${meuGrupo.id}','${uidSolicitante}')">Rejeitar</button></div>
       </div>`;
     }).join("")}
@@ -195,7 +194,7 @@ function renderMeuGrupo(){
       const proprioG = grupoComCalendarioProprio(g);
       const anoG = anoDoGrupo(g, u);
       const atualG = blocoAtualDoGrupo(g, u);
-      const criador = g.doRodizio ? "turma do rodízio, aberta a todos" : "criada por "+escapeHtml(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"—");
+      const criador = g.doRodizio ? "turma do rodízio, aberta a todos" : "criada por "+escapeHtml(nomeDoMembro(g, g.criadoPor));
       // o bloco por onde o grupo do rodízio começa: é o que o identifica
       // quando o nome é só a letra (ou nem letra tem)
       const inicio = proprioG ? null : blocosDoGrupo(g, u)[0];
@@ -211,7 +210,7 @@ function renderMeuGrupo(){
       </div>`;
     }).join("") : '<p class="text-sm muted">Nenhum grupo criado ainda. Crie o seu acima.</p>'}
   </div>
-  <div class="card-flat mt-2 text-xs muted">Com a nuvem ligada, o estudo de cada pessoa viaja entre aparelhos, mas os grupos ainda são deste navegador: um grupo criado aqui só aparece para quem abrir a plataforma neste mesmo computador. Ver <code>nuvem/LEIA-ME.md</code>.</div>
+  <div class="card-flat mt-2 text-xs muted">${nuvemConectado() ? "Com a sua conta na nuvem, o grupo, os pedidos de entrada, os grupos de estudo, as questões e os cartões compartilhados chegam aos colegas em qualquer aparelho." : "Sem conta na nuvem, os grupos ficam só neste navegador: um grupo criado aqui só aparece para quem abrir a plataforma neste mesmo computador. Entre com a sua conta (Perfil e configurações) para compartilhar com os colegas."}</div>
   `;
 }
 /* No formulário de criação, o campo do rodízio só faz sentido para o grupo que
@@ -236,7 +235,7 @@ function criarMeuGrupo(){
   const proprio = formado || (campoTipo && campoTipo.value === "proprio");
   const nomeDigitado = document.getElementById("novoGrupoNome").value.trim();
   if(proprio && !nomeDigitado){ toast("Dê um nome para o grupo.", "err"); return; }
-  const base = { id:uid("grupo"), criadoPor:u.id, oficial:false, publico:true, criadoEm:hojeISO(),
+  const base = { id:uid("grupo"), criadoPor:u.id, criadoPorNome:u.nome, oficial:false, publico:true, criadoEm:hojeISO(),
                  blocoAtualIdManual:null, membrosAprovados:[], solicitacoesPendentes:[] };
   let novo;
   if(proprio){
@@ -475,14 +474,19 @@ function solicitarAcessoGrupo(grupoId){
   if(!g.solicitacoesPendentes) g.solicitacoesPendentes = [];
   if(!g.solicitacoesPendentes.includes(u.id)) g.solicitacoesPendentes.push(u.id);
   saveState();
-  toast("Pedido enviado! Assim que "+(getUsuario(g.criadoPor)?getUsuario(g.criadoPor).nome:"o dono da turma")+" aprovar, você entra nela.");
+  toast("Pedido enviado! Assim que "+(g.criadoPor ? nomeDoMembro(g, g.criadoPor) : "o dono da turma")+" aprovar, você entra nela.");
   render();
 }
 function aprovarAcessoGrupo(grupoId, usuarioId){
   const g = getGrupo(grupoId); if(!g) return;
   const solicitante = getUsuario(usuarioId);
   if(solicitante) entrarNoGrupo(solicitante, grupoId);
-  else g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
+  else{
+    // com a nuvem, quem pediu é de outro navegador: entra na lista do grupo, e a nuvem avisa a pessoa
+    g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id=>id!==usuarioId);
+    if(!g.membrosAprovados) g.membrosAprovados = [];
+    if(!g.membrosAprovados.includes(usuarioId)) g.membrosAprovados.push(usuarioId);
+  }
   saveState();
   toast("Acesso aprovado.");
   render();
@@ -500,9 +504,15 @@ function rejeitarAcessoGrupo(grupoId, usuarioId){
    a sua parte ("Minha parte"). Guardado no próprio grupo (`divisao`: id da
    questão → id de quem fica com ela). Questão que entra depois fica sem
    responsável até uma nova divisão. */
+/* Com a nuvem, o navegador de cada pessoa só conhece o próprio cadastro: o
+   nome dos colegas vem na linha de membro e fica em g.nomesMembros. */
+function nomeDoMembro(grupo, id){
+  const u = getUsuario(id);
+  return (u && u.nome) || (grupo && grupo.nomesMembros && grupo.nomesMembros[id]) || (grupo && grupo.criadoPor === id && grupo.criadoPorNome) || "Colega";
+}
 function membrosDoGrupo(grupo){
   const ids = [...new Set([grupo.criadoPor, ...(grupo.membrosAprovados||[])].filter(Boolean))];
-  return ids.map(getUsuario).filter(Boolean).sort((a,b)=>a.nome.localeCompare(b.nome, "pt-BR"));
+  return ids.map(id => getUsuario(id) || { id, nome: nomeDoMembro(grupo, id), papel: "aluno" }).sort((a,b)=>a.nome.localeCompare(b.nome, "pt-BR"));
 }
 // o responsável só vale enquanto ainda é membro: quem saiu deixa a questão sem dono
 function responsavelDaQuestao(grupo, questaoId){
@@ -630,8 +640,8 @@ function getSubgrupo(id){ return (db.subgrupos||[]).find(s=>s.id===id) || null; 
 // só conta quem ainda é da turma: quem saiu dela sai do grupo de estudo sem ninguém precisar editar
 function membrosDoSubgrupo(sg){
   const pai = getGrupo(sg.grupoId);
-  const daTurma = new Set(pai ? membrosDoGrupo(pai).map(m=>m.id) : []);
-  return (sg.membros||[]).filter(id=>daTurma.has(id)).map(getUsuario).filter(Boolean).sort((a,b)=>a.nome.localeCompare(b.nome, "pt-BR"));
+  const daTurma = new Map((pai ? membrosDoGrupo(pai) : []).map(m=>[m.id, m]));
+  return (sg.membros||[]).filter(id=>daTurma.has(id)).map(id=>daTurma.get(id)).sort((a,b)=>a.nome.localeCompare(b.nome, "pt-BR"));
 }
 function questoesDoSubgrupo(sg){ const ids = new Set(sg.questaoIds||[]); return db.questoes.filter(q=>ids.has(q.id)); }
 function minhaParteDoSubgrupo(sg, usuarioId){
@@ -668,7 +678,7 @@ function renderSubgruposDoGrupo(grupo){
       return `<div class="card-flat mt-2">
         <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
           <div><div style="font-weight:700">${escapeHtml(sg.nome)}</div>
-            <div class="text-xs muted">${questoes.length} questão(ões) · criado por ${escapeHtml(getUsuario(sg.criadoPor)?getUsuario(sg.criadoPor).nome:"—")}</div></div>
+            <div class="text-xs muted">${questoes.length} questão(ões) · criado por ${escapeHtml(nomeDoMembro(grupo, sg.criadoPor))}</div></div>
           <div class="flex gap-1" style="flex-wrap:wrap">
             ${minhas.length ? `<button class="btn btn-primary btn-sm" onclick="praticarMinhaParteDoSubgrupo('${sg.id}')">${iconeSvg("book")} Praticar minha parte (${minhas.length})</button>` : ""}
             ${gerente ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioSubgrupo('${sg.id}')">${iconeSvg("edit")} Editar</button>` : ""}
