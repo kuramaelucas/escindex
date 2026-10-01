@@ -71,7 +71,7 @@ na linha 58; isso foi corrigido e agora é testado automaticamente a cada
 envio, num PostgreSQL de verdade, junto com as regras de segurança).
 
 > **Se o seu banco já existia antes desta versão, rode o `esquema.sql` de novo.**
-> Dezessete novidades precisam disso, e o arquivo já traz as linhas que acrescentam
+> Dezoito novidades precisam disso, e o arquivo já traz as linhas que acrescentam
 > cada uma sem mexer no que existe:
 >
 > | O que é | O que o arquivo faz |
@@ -92,6 +92,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |
 > | A **formatação aprovada** em Revisar Formatação | cria a tabela `formatacao_aprovada` e a função `e_revisor()` (grava equipe e residentes) |
 > | A tela de **primeiro acesso** não reaparecer em outro aparelho | `alter table public.perfis add column if not exists boas_vindas_em date` |
+> | **Grupos na nuvem** (01/10/2026): o grupo, o pedido de entrada e a aprovação pelo dono, os integrantes, os grupos de estudo, as **questões enviadas para o grupo** (só os membros veem) e os **cartões**: sugeridos à equipe (o professor aprova) ou compartilhados com o grupo | cria as tabelas `grupos`, `grupo_membros`, `subgrupos` e `flashcards_enviados`, as funções `e_do_grupo()` e `e_dono_do_grupo()` e `alter table public.questoes_enviadas add column if not exists grupo_id text`, com RLS e permissões. Sem rodar, os grupos e os cartões continuam só no navegador (e as questões de grupo esperam na fila) — nada se perde |
 >
 > Enquanto o SQL não for rodado, **a plataforma continua funcionando e nada se
 > perde**: ela percebe a coluna ou a tabela que falta, reenvia o resto sem

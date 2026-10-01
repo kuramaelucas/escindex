@@ -167,12 +167,89 @@ update avisos set removido=true where id='av1';
 select pg_temp.igual((select count(*) from avisos where id='av1' and removido), 1, 'o administrador retira o aviso (removido, sem apagar a linha)');
 reset role;
 
+-- GRUPOS, MEMBROS, GRUPOS DE ESTUDO, E AS QUESTÕES E CARTÕES DE GRUPO
+-- (A = dona do grupo g1; B = pede para entrar; F (a1) = de fora; C = professor)
+set role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+insert into grupos(id,nome,criado_por,criado_por_nome,dados) values ('g1','Turma da A','00000000-0000-0000-0000-00000000000a','Aluna A','{"anoFaculdade":"3º ano"}');
+select pg_temp.tem_de_falhar($$insert into grupos(id,nome,criado_por) values ('g2','Em nome de outra','00000000-0000-0000-0000-00000000000b')$$, 'grupo em nome de outra pessoa');
+select pg_temp.tem_de_falhar($$insert into grupos(id,nome,criado_por) values ('rodizio-1-1','Sem dona',null),('g3','Sem dona',null)$$, 'grupo comum sem dona');
+insert into grupo_membros(grupo_id,usuario_id,usuario_nome,status) values ('g1','00000000-0000-0000-0000-00000000000a','Aluna A','aprovado');   -- a dona entra no próprio grupo
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from grupos where id='g1'), 1, 'toda conta aprovada vê a lista de grupos (para pedir para entrar)');
+select pg_temp.tem_de_falhar($$insert into grupo_membros(grupo_id,usuario_id,status) values ('g1','00000000-0000-0000-0000-00000000000b','aprovado')$$, 'entrar direto num grupo com dona');
+insert into grupo_membros(grupo_id,usuario_id,usuario_nome,status) values ('g1','00000000-0000-0000-0000-00000000000b','Aluno B','pendente');
+select pg_temp.tem_de_falhar($$update grupo_membros set status='aprovado' where grupo_id='g1' and usuario_id='00000000-0000-0000-0000-00000000000b'$$, 'aprovar a si mesmo');
+select pg_temp.igual((select count(*) from questoes_enviadas where grupo_id='g1'), 0, 'quem ainda não é do grupo não lê as questões dele');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+select pg_temp.igual((select count(*) from grupo_membros where grupo_id='g1' and status='pendente'), 1, 'a dona vê o pedido de entrada');
+update grupo_membros set status='aprovado', usuario_nome='Aluno B' where grupo_id='g1' and usuario_id='00000000-0000-0000-0000-00000000000b';   -- aprovar = PATCH na linha de outra pessoa
+select pg_temp.tem_de_falhar($$insert into grupo_membros(grupo_id,usuario_id,status) values ('g1','00000000-0000-0000-0000-0000000000a1','aprovado')$$, 'dona inserindo a linha de outra pessoa pelo upsert (o site usa PATCH)');
+-- a questão do grupo: o aluno envia já aprovada, e só os membros leem
+insert into questoes_enviadas(id,autor_id,autor_nome,status,grupo_id,dados) values ('qg1','00000000-0000-0000-0000-00000000000a','Aluna A','aprovada','g1','{"enunciado":"do grupo"}');
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status) values ('qg2','00000000-0000-0000-0000-00000000000a','aprovada')$$, 'aluno publicando no banco geral sem ser grupo');
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status,grupo_id) values ('qg3','00000000-0000-0000-0000-00000000000a','aprovada','g-que-nao-e-dela')$$, 'questão para um grupo de que não faz parte');
+insert into subgrupos(id,grupo_id,nome,criado_por,dados) values ('sg1','g1','Dupla','00000000-0000-0000-0000-00000000000a','{"membros":[]}');
+insert into flashcards_enviados(id,autor_id,autor_nome,grupo_id,status,dados) values ('fg1','00000000-0000-0000-0000-00000000000a','Aluna A','g1','aprovado','{"frente":"f","verso":"v"}');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qg1'), 1, 'o membro lê a questão do grupo');
+update questoes_enviadas set dados='{"enunciado":"corrigida por B"}' where id='qg1';   -- trabalho em conjunto: qualquer membro corrige (PATCH)
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qg1' and dados->>'enunciado'='corrigida por B'), 1, 'o membro corrige a questão do grupo');
+select pg_temp.igual((select count(*) from subgrupos where id='sg1'), 1, 'o membro lê os grupos de estudo');
+update subgrupos set dados='{"membros":["b"]}' where id='sg1';
+select pg_temp.igual((select count(*) from subgrupos where dados->>'membros'='["b"]'), 1, 'o membro mexe no grupo de estudo (sair é editar a lista)');
+select pg_temp.igual((select count(*) from flashcards_enviados where id='fg1'), 1, 'o membro lê o cartão do grupo');
+insert into flashcards_enviados(id,autor_id,autor_nome,grupo_id,status,dados) values ('fg2','00000000-0000-0000-0000-00000000000b','Aluno B','g1','aprovado','{}');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a1',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where grupo_id='g1'), 0, 'quem é de fora não lê a questão do grupo');
+select pg_temp.igual((select count(*) from subgrupos), 0, 'quem é de fora não lê os grupos de estudo');
+select pg_temp.igual((select count(*) from flashcards_enviados where grupo_id='g1'), 0, 'quem é de fora não lê os cartões do grupo');
+select pg_temp.igual((select count(*) from grupo_membros where grupo_id='g1'), 0, 'quem é de fora não lê a lista de membros');
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status,grupo_id) values ('qg4','00000000-0000-0000-0000-0000000000a1','aprovada','g1')$$, 'questão para um grupo em que não está');
+select pg_temp.tem_de_falhar($$insert into flashcards_enviados(id,autor_id,status,grupo_id) values ('fg3','00000000-0000-0000-0000-0000000000a1','aprovado','g1')$$, 'cartão para um grupo em que não está');
+with x as (update questoes_enviadas set dados='{}' where id='qg1' returning 1) select pg_temp.igual(count(*), 0, 'quem é de fora não mexe na questão do grupo') from x;
+select pg_temp.tem_de_falhar($$insert into subgrupos(id,grupo_id,nome,criado_por) values ('sg2','g1','x','00000000-0000-0000-0000-0000000000a1')$$, 'grupo de estudo em grupo alheio');
+insert into grupo_membros(grupo_id,usuario_id,usuario_nome,status) values ('g1','00000000-0000-0000-0000-0000000000a1','Aluna F','pendente');   -- pede para entrar
+-- a turma do rodízio é aberta, e a lista de membros só vale para quem está nela
+insert into grupo_membros(grupo_id,usuario_id,usuario_nome,status) values ('rodizio-0-0','00000000-0000-0000-0000-0000000000a1','Aluna F','aprovado');
+insert into grupos(id,nome,criado_por,dados) values ('rodizio-0-0','3º ano — Grupo A',null,'{"doRodizio":true}');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a2',false);
+insert into grupo_membros(grupo_id,usuario_id,usuario_nome,status) values ('rodizio-0-0','00000000-0000-0000-0000-0000000000a2','Aluno G','aprovado');
+select pg_temp.igual((select count(*) from grupo_membros where grupo_id='rodizio-0-0'), 2, 'os colegas da turma do rodízio se veem');
+update grupos set dados='{"doRodizio":true,"divisao":{"q1":"x"}}' where id='rodizio-0-0';
+select pg_temp.igual((select count(*) from grupos where id='rodizio-0-0' and dados ? 'divisao'), 1, 'membro da turma do rodízio guarda a divisão das questões');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from grupo_membros where grupo_id='rodizio-0-0'), 0, 'quem não é da turma do rodízio não vê os colegas dela');
+with x as (update grupos set dados='{}' where id='rodizio-0-0' returning 1) select pg_temp.igual(count(*), 0, 'quem não é da turma do rodízio não mexe nela') from x;
+-- cartões enviados à equipe
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+insert into flashcards_enviados(id,autor_id,autor_nome,status,dados) values ('fe1','00000000-0000-0000-0000-00000000000b','Aluno B','pendente','{"frente":"f","verso":"v"}');
+select pg_temp.tem_de_falhar($$insert into flashcards_enviados(id,autor_id,status) values ('fe2','00000000-0000-0000-0000-00000000000b','aprovado')$$, 'aluno publicando cartão já aprovado');
+select pg_temp.tem_de_falhar($$update flashcards_enviados set status='aprovado' where id='fe1'$$, 'aluno aprovando o próprio cartão');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a1',false);
+select pg_temp.igual((select count(*) from flashcards_enviados where id='fe1'), 0, 'o cartão pendente não chega aos colegas');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+select pg_temp.igual((select count(*) from flashcards_enviados where id='fe1'), 1, 'a equipe vê o cartão sugerido');
+update flashcards_enviados set status='aprovado', decidido_por_nome='Prof C' where id='fe1';   -- aprovar = PATCH na linha do aluno
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a1',false);
+select pg_temp.igual((select count(*) from flashcards_enviados where id='fe1' and status='aprovado'), 1, 'o aprovado chega a toda a turma');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+with x as (update flashcards_enviados set status='removido' where id='fe1' returning 1) select pg_temp.igual(count(*), 0, 'quem sugeriu não tira da turma o cartão já aprovado') from x;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+insert into flashcards_enviados(id,autor_id,autor_nome,status,dados) values ('fe3','00000000-0000-0000-0000-00000000000c','Prof C','aprovado','{"frente":"da equipe"}');   -- a equipe publica direto
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a1',false);
+select pg_temp.igual((select count(*) from flashcards_enviados where id='fe3'), 1, 'o cartão da equipe chega à turma');
+reset role;
+
 set role anon;
 select pg_temp.tem_de_falhar($$select count(*) from questoes_enviadas$$, 'visitante sem login lendo questões enviadas');
 select pg_temp.tem_de_falhar($$select count(*) from comentarios$$, 'visitante sem login lendo comentários');
 select pg_temp.tem_de_falhar($$select count(*) from feedbacks$$, 'visitante sem login lendo feedback');
 select pg_temp.tem_de_falhar($$select count(*) from avisos$$, 'visitante sem login lendo avisos');
 select pg_temp.tem_de_falhar($$select count(*) from correcoes_questoes$$, 'visitante sem login lendo correções');
+select pg_temp.tem_de_falhar($$select count(*) from grupos$$, 'visitante sem login lendo grupos');
+select pg_temp.tem_de_falhar($$select count(*) from grupo_membros$$, 'visitante sem login lendo membros de grupo');
+select pg_temp.tem_de_falhar($$select count(*) from flashcards_enviados$$, 'visitante sem login lendo cartões enviados');
 select pg_temp.tem_de_falhar($$select * from notas_do_simulado('Prova X')$$, 'visitante sem login lendo notas');
 reset role;
 \echo 'Regras de segurança: tudo como esperado.'

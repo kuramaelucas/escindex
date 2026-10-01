@@ -375,6 +375,13 @@ ol.lista-passos li{margin:.25rem 0}
 .legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--muted);margin-top:.5rem;align-items:center}
 .legenda-barras span{display:flex;align-items:center;gap:.35rem}
 .legenda-barras i{width:11px;height:11px;border-radius:3px;display:inline-block}
+/* "Como você está indo": o gráfico não precisa da largura toda (as barras têm
+   teto), então os números ficam ao lado dele em vez de empilhados em cima. */
+.grafico-com-lateral{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+@media (min-width:1000px){ .grafico-com-lateral{grid-template-columns:minmax(0,1.35fr) minmax(280px,1fr)} }
+.grafico-lateral{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+.grafico-lateral .grid.compacto{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grafico-lateral .janelas-curtas{grid-template-columns:1fr;gap:.3rem}
 .seletor-periodo{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.2rem}
 .seletor-periodo .pill{cursor:pointer}
 

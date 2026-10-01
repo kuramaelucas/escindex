@@ -193,8 +193,10 @@ function questaoDaSemente(id){
   if(!_idsDaSemente || _idsDaSemente.n !== SEED_QUESTOES.length) _idsDaSemente = { n: SEED_QUESTOES.length, ids: new Set(SEED_QUESTOES.map(q => q.id)) };
   return _idsDaSemente.ids.has(id);
 }
-// a questão da pasta dados/ já é de todos, e a do grupo é só do grupo: nenhuma das duas sobe
-function questaoSobeParaNuvem(q){ return !!q && !q.grupoId && !questaoDaSemente(q.id); }
+// a questão da pasta dados/ já é de todos e não sobe. A de grupo sobe com o id do
+// grupo (só os membros a recebem) — se o grupo existe na nuvem (grupoDeNuvem, 03e):
+// o calendário oficial não é grupo de ninguém.
+function questaoSobeParaNuvem(q){ return !!q && !questaoDaSemente(q.id) && (!q.grupoId || grupoDeNuvem(getGrupo(q.grupoId))); }
 function euNaNuvem(){ return nuvemSessao ? db.usuarios.find(x => x.id === nuvemSessao.usuarioId) || null : null; }
 function podeEnviarQuestoesNaNuvem(){ const eu = euNaNuvem(); return !!(eu && eu.status === "aprovado"); }
 function ehUuid(t){ return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(t || "")); }
@@ -228,13 +230,18 @@ function linhaDaQuestaoNaNuvem(q){
   if(ass && !(SEED_TAXONOMIA.assuntos || []).some(a => a.id === ass.id)) nova.assunto = { id: ass.id, especialidadeId: ass.especialidadeId, nome: ass.nome };
   if(nova.especialidade || nova.assunto) dados.taxonomiaNova = nova;
   const autorId = ehUuid(q.criadoPor) ? q.criadoPor : nuvemSessao.usuarioId;
-  // aluno só envia para aprovação, qualquer que seja o status dela aqui (o banco recusaria)
-  const aprovada = q.status !== "pendente" && ["professor", "admin", "residente"].includes(eu.papel);
-  return {
+  // aluno só envia para aprovação, qualquer que seja o status dela aqui (o banco recusaria);
+  // a questão de grupo não passa pela equipe: já nasce aprovada, e só o grupo a enxerga
+  const aprovada = q.status !== "pendente" && (!!q.grupoId || ["professor", "admin", "residente"].includes(eu.papel));
+  const linha = {
     id: q.id, autor_id: autorId, autor_nome: q.autorNome || (autorId === eu.id ? eu.nome : "") || "",
     status: aprovada ? "aprovada" : "pendente", dados,
     decidido_por_nome: aprovada ? (q.aprovadoPorNome || eu.nome || "") : "",
   };
+  // só a questão de grupo leva a coluna: um banco que ainda não rodou o esquema.sql desta
+  // versão continua recebendo as outras
+  if(q.grupoId) linha.grupo_id = q.grupoId;
+  return linha;
 }
 /* A imagem anexada (data:image/...) sobe como arquivo para o Storage, e a
    questão passa a apontar para o endereço público dela — aqui também, para
@@ -289,10 +296,18 @@ NUVEM_GLOBAIS.questoes_enviadas = {
           return false;
         }
       }
-      await nuvemChamar("/rest/v1/questoes_enviadas", {
-        method: "POST", headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
-        body: JSON.stringify([Object.assign(linhaDaQuestaoNaNuvem(q), { atualizado_por: nuvemSessao.usuarioId })]),
-      });
+      const linha = linhaDaQuestaoNaNuvem(q);
+      try{
+        // a questão de grupo escrita por um colega (corrigida por mim) vai como alteração da linha dele
+        await nuvemGravarCompartilhada("questoes_enviadas", "id=eq." + encodeURIComponent(id), linha, !q.grupoId || linha.autor_id === nuvemSessao.usuarioId);
+      }catch(e){
+        if(q.grupoId && e.status === 400 && /grupo_id/i.test(e.message || "")){
+          db.nuvem.avisoGrupos = "Para as questões do grupo subirem, rode de novo o nuvem/esquema.sql no Supabase; elas sobem sozinhas depois.";
+          return false;   // fica na fila
+        }
+        throw e;
+      }
+      delete db.nuvem.avisoGrupos;
       q.naNuvem = true;
       delete db.nuvem.avisoImagens;
       return true;
@@ -388,7 +403,7 @@ function aplicarQuestaoDaNuvem(l){
   if(nuvemSessao && l.autor_id === nuvemSessao.usuarioId){
     if(!db.nuvem.meusEnvios) db.nuvem.meusEnvios = {};
     db.nuvem.meusEnvios[l.id] = { autorId: l.autor_id, status: l.status, motivo: l.motivo || "", decididoPor: l.decidido_por_nome || "",
-      em: (l.atualizado_em || "").slice(0, 10), banca: d.banca || "", ano: d.ano || "", resumo: String(d.enunciado || "").slice(0, 140), numero: d.numeroNaProva || null };
+      em: (l.atualizado_em || "").slice(0, 10), grupo: l.grupo_id || "", banca: d.banca || "", ano: d.ano || "", resumo: String(d.enunciado || "").slice(0, 140), numero: d.numeroNaProva || null };
   }
   const i = db.questoes.findIndex(x => x.id === l.id);
   if(l.status === "recusada" || l.status === "removida"){
@@ -401,6 +416,7 @@ function aplicarQuestaoDaNuvem(l){
   const antiga = i >= 0 ? db.questoes[i] : null;
   const q = { id: l.id, real: true };
   CAMPOS_DA_QUESTAO_NA_NUVEM.forEach(c => { if(d[c] !== undefined) q[c] = copiaProfunda(d[c]); });
+  if(l.grupo_id) q.grupoId = l.grupo_id;
   Object.assign(q, {
     status: l.status === "pendente" ? "pendente" : (d.situacao || "ativa"),
     criadoPor: l.autor_id || (antiga && antiga.criadoPor) || "", autorNome: l.autor_nome || "",
@@ -440,6 +456,7 @@ function renderCardMeusEnvios(){
     <p class="text-sm muted">Com a nuvem ligada, o que você envia sobe junto com as imagens e chega à equipe, que confere e aprova. Aprovada, a questão entra no banco de toda a turma.</p>
     ${naFila ? `<p class="text-sm mt-1">${iconeSvg("refresh")} ${naFila} questão(ões) subindo agora…</p>` : ""}
     ${db.nuvem.avisoImagens ? `<p class="text-xs mt-1" style="color:var(--amber)">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoImagens)}</p>` : ""}
+    ${db.nuvem.avisoGrupos ? `<p class="text-xs mt-1" style="color:var(--amber)">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoGrupos)}</p>` : ""}
     ${soAqui.length ? `<div class="card-flat mt-2 text-sm">${iconeSvg("alert")} <strong>${soAqui.length} questão(ões) estão só neste navegador</strong> — foram criadas antes de subirem para a nuvem.
       <button class="btn btn-secondary btn-sm mt-1" onclick="nuvemEnviarQuestoesDesteNavegador()">${iconeSvg("upload")} Enviar para a nuvem</button></div>` : ""}
     ${envios.length ? `<div class="qcard-meta mt-2">
@@ -447,7 +464,7 @@ function renderCardMeusEnvios(){
         ${conta("recusada") ? `<span class="badge badge-danger">${conta("recusada")} recusada(s)</span>` : ""}</div>
       ${pag.itens.map(e => `<div class="card-flat mt-1">
         <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.4rem"><span class="text-sm" style="font-weight:600">${escapeHtml(e.banca)} ${escapeHtml(String(e.ano||""))}${e.numero ? " · nº " + e.numero : ""}</span>
-          <span class="badge ${(rotulo[e.status] || rotulo.pendente)[0]}">${(rotulo[e.status] || rotulo.pendente)[1]}</span></div>
+          <span class="badge ${(rotulo[e.status] || rotulo.pendente)[0]}">${e.grupo && e.status === "aprovada" ? "no seu grupo — só os colegas veem" : (rotulo[e.status] || rotulo.pendente)[1]}</span></div>
         <div class="text-xs muted mt-1">${escapeHtml(e.resumo)}${e.resumo && e.resumo.length >= 140 ? "…" : ""}</div>
         ${e.status === "recusada" ? `<div class="text-xs mt-1">${e.motivo ? "<strong>Motivo:</strong> " + escapeHtml(e.motivo) : "Sem motivo informado."}${e.decididoPor ? " — " + escapeHtml(e.decididoPor) : ""}</div>` : ""}
         ${e.status === "aprovada" && e.decididoPor ? `<div class="text-xs muted mt-1">aprovada por ${escapeHtml(e.decididoPor)}${e.em ? " em " + formatDataBR(e.em) : ""}</div>` : ""}

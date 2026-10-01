@@ -48,6 +48,8 @@ const TUTORIAL_RAPIDO = {
       texto:"<strong>Revisão</strong> traz de volta as questões no momento de não esquecer — os erros e os chutes primeiro. <strong>Revisão Rápida</strong> são os flashcards: os da equipe e os que você cria a partir de uma questão." },
     { icone:"clipboard", titulo:"Treine como na prova",
       texto:"Em <strong>Provas e Simulados</strong> estão as provas antigas de verdade, inteiras, para fazer no cronômetro ou sem pressa, e os simulados montados pela equipe." },
+    { icone:"upload", titulo:"Envie questões e compartilhe com o grupo",
+      texto:"Tem uma lista de exercícios ou uma prova em PDF? Em <strong>Enviar Questões</strong>: 1) diga a instituição e o ano; 2) copie o pedido pronto e cole numa IA junto com o PDF; 3) cole a resposta de volta, confira e envie para <strong>Questões do meu grupo</strong>. <strong>Dica:</strong> suba as listas que você recebe e compartilhe com os colegas — cada um ganha mais questões, e em <strong>Meu Grupo</strong> vocês ainda dividem o conjunto entre quem quiser." },
     { icone:"chart", titulo:"Acompanhe a sua evolução",
       texto:"<strong>Meu Desempenho</strong> mostra o acerto por área e assunto, o que mais cai na prova e a sua nota estimada. Em cada questão você pode favoritar com uma anotação, virar flashcard, sinalizar um erro ou pedir para não vê-la mais." },
     ...PASSOS_COMUNS_FIM,
@@ -104,8 +106,8 @@ const GUIA_ALUNO = [
     "Se você sair no meio de uma sessão, ela fica guardada: o Início oferece <strong>Continuar</strong> de onde parou.",
   ]},
   { titulo:"Estudar: escolher o que fazer", itens:[
-    "<strong>Monte sua própria lista</strong> filtra por área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano, só erros, só favoritas ou só as que você nunca respondeu.",
-    "A meta diária é ajustada em Estudar; o ano da faculdade e a turma, em Perfil e em Meu Grupo.",
+    "<strong>Monte sua própria lista</strong> filtra por área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano, só erros, só favoritas ou só as que você nunca respondeu. Dá para marcar <strong>mais de uma instituição</strong> e <strong>mais de um tipo de prova</strong> no mesmo conjunto.",
+    "A meta diária é ajustada em Estudar (e, em <strong>Ajustar meta</strong>, o botão <strong>Restaurar padrão</strong> devolve a recomendação da coordenação); o ano da faculdade e a turma, em Perfil e em Meu Grupo.",
   ]},
   { titulo:"Respondendo uma questão", itens:[
     "Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>. A confiança entra na revisão espaçada: chute e erro voltam antes.",
@@ -118,6 +120,7 @@ const GUIA_ALUNO = [
   { titulo:"Revisão e Revisão Rápida", itens:[
     "<strong>Revisão</strong> traz as questões da revisão espaçada, nesta ordem: primeiro as dos assuntos já estudados que você <strong>ainda não viu</strong>, depois as que você <strong>errou</strong> (ou acertou no chute) e, por último, as que acertou e já passou o prazo. Acerto seguro só volta depois de 1 mês (2 no segundo acerto seguido, e mais ainda em assunto em que você vai bem); com <strong>3 acertos seguidos</strong> a questão sai da revisão.",
     "<strong>Revisão Rápida</strong> são os flashcards: os cartões da equipe, os seus e os gerados das questões que você errou com certeza ou acertou no chute. Você também pode sugerir um cartão seu para o baralho da equipe.",
+    "<strong>Adicionar baralho</strong> (em Revisão Rápida) tem duas saídas: escrever um cartão ou <strong>trazer um baralho inteiro de uma IA</strong>. Você escolhe o assunto e a quantidade, copia o pedido pronto, cola numa IA (se tiver resumo ou PDF seu, anexe na conversa), traz a resposta de volta e <strong>confere</strong> antes de adicionar. Os cartões ficam só no seu baralho.",
   ]},
   { titulo:"Provas e Simulados", itens:[
     "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, separadas em <strong>provas de residência</strong> e <strong>provas da graduação</strong> (o Teste de Progresso é graduação) e filtráveis por instituição, ano e área. No 3º e 4º ano, as da graduação aparecem primeiro. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>.",
@@ -130,11 +133,11 @@ const GUIA_ALUNO = [
     "<strong>Nota estimada</strong>: uma projeção da sua nota na prova, com a faixa de incerteza.",
   ]},
   { titulo:"Turma, favoritos e histórico", itens:[
-    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual; onde o calendário não dá nome às turmas, o grupo é identificado pelo bloco em que começa) ou crie um grupo com colegas — seguindo o rodízio do ano, com <strong>calendário próprio</strong> (você monta os blocos) ou só para <strong>dividir questões</strong>. O dono pode mudar o nome do grupo e dividir as questões do grupo entre os membros (cada um pratica a sua parte). Quem já se formou não tem calendário de faculdade: entra ou cria um grupo. No 6º ano, <strong>Meus estágios</strong> deixa você reordenar os estágios de cada período do seu jeito, sem sair do grupo.",
+    "<strong>Meu Grupo</strong>: escolha a sua turma do rodízio (é ela que decide o bloco atual; onde o calendário não dá nome às turmas, o grupo é identificado pelo bloco em que começa) ou crie um grupo com colegas — seguindo o rodízio do ano, com <strong>calendário próprio</strong> (você monta os blocos) ou só para <strong>dividir questões</strong>. Você vê quem são os <strong>integrantes</strong> do grupo. O dono pode mudar o nome do grupo e dividir as questões do grupo entre os membros (cada um pratica a sua parte). Qualquer integrante pode criar um <strong>grupo de estudo</strong> dentro do grupo: escolhe quem participa e quais provas do grupo entram, e só essas pessoas dividem aquele conjunto — sem mudar calendário nem sair da turma. Quem já se formou não tem calendário de faculdade: entra ou cria um grupo. No 6º ano, <strong>Meus estágios</strong> deixa você reordenar os estágios de cada período do seu jeito, sem sair do grupo.",
     "<strong>Favoritos</strong> guarda as questões e os cartões salvos, com as suas anotações, e — na aba <strong>Retiradas da revisão</strong> — as questões que você pediu para não ver mais, com o botão para trazê-las de volta.",
     "Os <strong>avisos da coordenação</strong> aparecem no Início; dispense o que já leu.",
     "<strong>Histórico de Atividade</strong> lista as sessões e os simulados que você fez.",
-    "<strong>Enviar Questões</strong>: mande uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso. Com a conta na nuvem, a questão sobe com a imagem e vai para a equipe aprovar; em <strong>Suas questões enviadas</strong> você acompanha se foi aprovada ou recusada (com o motivo).",
+    "<strong>Enviar Questões — passo a passo</strong>: (1) identifique a prova (tipo, instituição e ano); (2) copie o pedido pronto e cole numa IA junto com o PDF ou o texto; (3) cole a resposta no campo, clique em <strong>Pré-visualizar</strong>, confira e confirme. <strong>Sugestão:</strong> envie também as <strong>listas de exercícios</strong> que você recebe e compartilhe com o grupo: elas ficam disponíveis para todos (em Estudar, marque \"incluir questões do meu grupo\") e dá para dividir o conjunto em Meu Grupo. Você pode mandar uma questão ou uma prova inteira, só para o seu grupo ou como sugestão para o banco geral. Escolha o tipo de prova (residência, o padrão, ou graduação) e, se a questão tiver imagem, anexe a figura na pré-visualização — cada questão tem o seu lugar para isso. Com a conta na nuvem, a questão sobe com a imagem e vai para a equipe aprovar; em <strong>Suas questões enviadas</strong> você acompanha se foi aprovada ou recusada (com o motivo).",
   ]},
   { titulo:"Perfil, aplicativo e dados", itens:[
     "Em <strong>Perfil e configurações</strong> (no fim do menu): ano da faculdade, lembrete diário de meta, este tutorial e o guia, senha (a troca pede a senha atual), instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
@@ -172,7 +175,7 @@ const GUIA_EQUIPE = [
     "<strong>Flashcards</strong>: o baralho da equipe, os cartões sugeridos por alunos para aprovar e os cartões em lote.",
   ]},
   { titulo:"Painel da Turma e modo aluno", itens:[
-    "<strong>Painel da Turma</strong>: engajamento, acerto por área e assuntos mais errados da turma (precisa da nuvem ligada).",
+    "<strong>Painel da Turma</strong>: engajamento, acerto por área e assuntos mais errados da turma (precisa da nuvem ligada). A lista de pessoas mostra o <strong>último uso</strong> de cada uma e ordena por ele (mais recente ou mais antigo primeiro).",
     "O <strong>modo aluno</strong> mostra a plataforma como o aluno a vê; as respostas dadas nele contam para o seu próprio progresso.",
   ]},
 ];

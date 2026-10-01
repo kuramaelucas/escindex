@@ -9,7 +9,13 @@ const NUVEM_TABELAS = {
   perfis: {
     tipo: "estado", tempo: "atualizado_em",
     chave: r => r.id,
-    aplicar: linha => { nuvemAplicarPerfilLocal(linha); },
+    aplicar: linha => {
+      const u = nuvemAplicarPerfilLocal(linha);
+      // meta nula na nuvem = "voltei ao padrão da coordenação" (Restaurar padrão em Meta diária):
+      // sem isto o outro aparelho, ainda com o número antigo, o devolveria ao servidor
+      if(!linha.meta_questoes_dia) delete u.metaQuestoesDia;
+      if(!linha.meta_cartoes_dia) delete u.metaCartoesDia;
+    },
   },
   respostas: {
     tipo: "registro", tempo: "criado_em",
@@ -129,7 +135,10 @@ const NUVEM_TABELAS = {
         origem: linha.origem || "aluno", status: linha.status || "ativo",
         criadoPor: linha.usuario_id, criadoEm: linha.criado_em || hojeISO(),
       };
-      if(i >= 0) db.flashcards[i] = cartao; else db.flashcards.push(cartao);
+      // o que é do navegador (compartilhado com o grupo, sugerido à equipe) fica; e o cartão já
+      // promovido a cartão da equipe (sem dono) não volta a ser pessoal por esta linha
+      if(i >= 0){ if(db.flashcards[i].usuarioId) Object.assign(db.flashcards[i], cartao); }
+      else db.flashcards.push(cartao);
     },
   },
   sessoes: {
@@ -311,6 +320,8 @@ async function nuvemSincronizar(opcoes = {}){
   nuvemEstado.ultimoErro = null;
   try{
     nuvemConferirPerfil();
+    nuvemConferirGrupos();      // seção 2-C, parte 5 (03e): grupos, membros e grupos de estudo
+    nuvemConferirCartoes();     // cartões sugeridos à equipe ou compartilhados com o grupo
     let recusados = await nuvemEnviarFila();
     await nuvemReceberMudancas();
     await nuvemBaixarCalendario();

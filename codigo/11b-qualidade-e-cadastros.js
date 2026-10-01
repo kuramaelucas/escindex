@@ -585,6 +585,7 @@ function apagarDadosLocaisDoUsuario(id){
     g.membrosAprovados = (g.membrosAprovados||[]).filter(x => x !== id);
     g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(x => x !== id);
   });
+  (db.subgrupos||[]).forEach(sg => { sg.membros = (sg.membros||[]).filter(x => x !== id); if(sg.divisao) Object.keys(sg.divisao).forEach(q => { if(sg.divisao[q] === id) delete sg.divisao[q]; }); });
 }
 
 function alterarNivelAdmin(id, nivel){

@@ -473,9 +473,12 @@ function cartaoDeQuestao(q){
    Chamar sem argumento devolve os cartões do usuário logado. */
 function flashcardsAtivos(usuarioId){
   const uid = usuarioId!==undefined ? usuarioId : (usuarioAtual() ? usuarioAtual().id : null);
+  const dono = uid ? getUsuario(uid) : null;
+  const grupoDele = dono && dono.grupoId && dono.grupoId !== db.grupoOficialId ? dono.grupoId : null;
   return (db.flashcards||[]).filter(c=>{
     if(c.status==="arquivado") return false;
     if(!c.usuarioId) return true;        // cartão da equipe: visível a todos
+    if(c.grupoId && c.grupoId === grupoDele) return true;   // compartilhado com o grupo da pessoa
     return c.usuarioId === uid;           // cartão pessoal: só para o dono
   });
 }
