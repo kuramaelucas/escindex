@@ -226,6 +226,11 @@ function aplicarMembroDaNuvem(l){
   if(!g.nomesMembros) g.nomesMembros = {};
   if(l.usuario_nome) g.nomesMembros[id] = l.usuario_nome;
   nuvemLembrarEnviado("grupo_membros|" + l.grupo_id + "|" + id, l.status);
+  // o dono me retirou do grupo (ou recusou o pedido): se eu ainda o tinha como turma, volto ao calendário oficial
+  if(id === nuvemSessao.usuarioId && l.status === "recusado"){
+    const eu = euNaNuvem();
+    if(eu && eu.grupoId === g.id) entrarNoGrupo(eu, db.grupoOficialId);
+  }
   // o dono aprovou o meu pedido: agora eu estou nesta turma (e saio da anterior)
   if(id === nuvemSessao.usuarioId && l.status === "aprovado" && estavaPendente){
     const eu = euNaNuvem();

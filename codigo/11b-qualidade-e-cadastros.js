@@ -335,18 +335,41 @@ function alternarFormatacaoAprovada(qid){
 }
 function buscarFormatacao(){ state.filtroRota.buscaFormatacao = document.getElementById("buscaFormatacaoInput").value; render(); }
 /* ==========================================================================
-   24. ADMIN — Aprovar Cadastros / Gerenciar Usuários
-   ========================================================================== */
-function renderAprovarCadastros(){
+   24. ADMIN — pedidos de acesso e usuários (aba "Cadastros e usuários" da
+   tela Turma, seção 24-C)
+   ==========================================================================
+   Painel da Turma, Aprovar Cadastros e Usuários eram três telas sobre as
+   mesmas pessoas: aprovar alguém o tirava de uma lista e o punha em outra, e
+   quem olhava o uso da turma tinha de ir a outro menu para liberar o aluno
+   que acabou de pedir. Agora é uma tela só (Turma), com duas abas: o painel
+   de uso e esta, que reúne os pedidos de acesso (no alto, porque são o que
+   espera decisão) e a lista de todos. As rotas antigas, "aprovar-cadastros"
+   e "usuarios", continuam respondendo: abrem esta aba. */
+function renderTurmaPessoas(u){
+  const souMaster = podeAdmin("usuarios", u);
+  return `
+  ${podeAprovarCadastros(u) ? renderPedidosDeAcesso() : ""}
+  ${souMaster ? `<details class="secao-expansivel">
+    <summary><span class="card-title" style="margin:0">Níveis de administrador</span><span class="text-xs muted">o que cada nível enxerga</span></summary>
+    <div class="secao-corpo">
+      <p class="text-sm muted mb-2">Cada nível enxerga apenas as áreas correspondentes no menu. Só um administrador máster pode alterar papéis e níveis.</p>
+      ${CONFIG.niveisAdmin.map(n=>`<div class="card-flat mb-1"><div style="font-weight:600">${escapeHtml(n.nome)}</div><div class="text-sm muted mt-1">${escapeHtml(n.descricao)}</div></div>`).join("")}
+    </div>
+  </details>
+  ${renderUsuariosDaNuvem(souMaster)}
+  ${renderUsuariosLocais(souMaster, u)}` : `<p class="text-xs muted mt-2">Papéis, níveis e exclusão de cadastros são do administrador máster.</p>`}`;
+}
+function renderPedidosDeAcesso(){
   const pendentes = db.usuarios.filter(u=>u.status==="pendente");
   return `
-  <div class="page-header"><h2>Aprovar Cadastros</h2><p>Solicitações de acesso aguardando aprovação.</p></div>
+  <div class="card-title mb-1">Pedidos de acesso</div>
+  <p class="text-sm muted mb-2">Solicitações aguardando aprovação. Quem é aprovado aparece na lista de usuários, logo abaixo.</p>
   ${renderCadastrosPendentesDaNuvem()}
   ${renderCardAvisoPedidosDeAcesso()}
   ${nuvemConectado() && pendentes.length ? '<div class="text-sm muted mb-1">Solicitações antigas, feitas só neste navegador:</div>' : ""}
-  ${pendentes.length ? `<div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail</th><th>Matrícula</th><th>Acesso solicitado</th><th>Data</th><th></th></tr></thead><tbody>
+  ${pendentes.length ? `<div class="table-wrap mb-2"><table><thead><tr><th>Nome</th><th>E-mail</th><th>Matrícula</th><th>Acesso solicitado</th><th>Data</th><th></th></tr></thead><tbody>
     ${pendentes.map(u=>`<tr><td>${escapeHtml(u.nome)}</td><td>${escapeHtml(u.email)}</td><td>${escapeHtml(u.matricula)}</td><td class="text-sm">${badgePapel(u.papel)}${u.areasAtuacao&&u.areasAtuacao.length?"<br><span class=\"text-xs muted\">"+u.areasAtuacao.map(nomeArea).join(", ")+"</span>":""}${u.assuntosAjuda&&u.assuntosAjuda.length?"<br><span class=\"text-xs muted\">ajuda com: "+u.assuntosAjuda.map(nomeEspecialidade).join(", ")+"</span>":""}</td><td>${formatDataBR(u.criadoEm)}</td><td class="flex gap-1"><button class="btn btn-primary btn-sm" onclick="aprovarUsuario('${u.id}')">Aprovar</button><button class="btn btn-danger btn-sm" onclick="rejeitarUsuario('${u.id}')">Recusar</button></td></tr>`).join("")}
-  </tbody></table></div>` : '<div class="empty-state">Nenhuma solicitação pendente.</div>'}
+  </tbody></table></div>` : (nuvemConectado() ? "" : '<div class="empty-state mb-2">Nenhuma solicitação pendente.</div>')}
   `;
 }
 function badgeStatusUsuario(status){
@@ -354,20 +377,6 @@ function badgeStatusUsuario(status){
   const [cls,label] = map[status] || ["badge-muted", status];
   return `<span class="badge ${cls}">${label}</span>`;
 }
-function renderUsuarios(){
-  const eu = usuarioAtual();
-  const souMaster = podeAdmin("usuarios", eu);
-  return `
-  <div class="page-header"><h2>Usuários</h2><p>Quem tem acesso à plataforma. Com a nuvem ligada, a turma de verdade está na nuvem — as contas deste navegador são só as de teste e as de antes da nuvem.</p></div>
-  <div class="card mb-2">
-    <div class="card-title">Níveis de administrador</div>
-    <p class="text-sm muted mb-2">Cada nível enxerga apenas as áreas correspondentes no menu. Só um administrador máster pode alterar papéis e níveis.</p>
-    ${CONFIG.niveisAdmin.map(n=>`<div class="card-flat mb-1"><div style="font-weight:600">${escapeHtml(n.nome)}</div><div class="text-sm muted mt-1">${escapeHtml(n.descricao)}</div></div>`).join("")}
-  </div>
-  ${renderUsuariosDaNuvem(souMaster)}
-  ${renderUsuariosLocais(souMaster, eu)}`;
-}
-
 /* A turma de verdade: todo mundo que tem conta na nuvem, aprovado ou não.
    É aqui que reaparece quem foi aprovado em Aprovar Cadastros. */
 function renderUsuariosDaNuvem(souMaster){
@@ -390,7 +399,7 @@ function renderUsuariosDaNuvem(souMaster){
       <div class="card-title" style="margin-bottom:0">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
       <button class="btn btn-secondary btn-sm" onclick="nuvemBuscarUsuarios()">${iconeSvg("refresh")} Atualizar</button>
     </div>
-    <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova em "Aprovar Cadastros" aparece aqui</strong> — aquela tela mostra só quem ainda está pendente.</p>
+    <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova nos pedidos de acesso aparece aqui</strong> — a lista de pedidos mostra só quem ainda está pendente.</p>
     ${nuvemUsuariosErro ? `<p class="text-sm mt-1" style="color:var(--amber);font-weight:600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
     ${nuvemUsuarios.length ? `<div class="table-wrap mt-2"><table>
       <thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead>

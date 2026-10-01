@@ -552,7 +552,8 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   saveState();
 }
 /* Monta o baralho da sessão de revisão rápida. `filtro` aceita
-   {assuntoId, especialidadeId, areaId, somenteFalsaSeguranca} */
+   {assuntoId, especialidadeId, areaId, somenteFalsaSeguranca,
+    situacao: "vencidos" | "novos" | "meus"} */
 function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
   filtro = filtro || {};
   tamanho = tamanho || 20;
@@ -590,6 +591,14 @@ function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
     if(c) candidatos.push(c);
   });
 
+  // situação pedida em "Monte o seu baralho"
+  if(filtro.situacao){
+    const revs = db.revisoesFlashcards[usuarioId] || {};
+    const meus = new Set(meusFlashcards(usuarioId).map(c=>c.id));
+    candidatos = candidatos.filter(c => filtro.situacao==="vencidos" ? cartaoVencido(usuarioId, c.id)
+      : filtro.situacao==="novos" ? !revs[c.id]
+      : filtro.situacao==="meus" ? meus.has(c.id) : true);
+  }
   if(!candidatos.length) return [];
 
   const blocoAtual = getBlocoAtual();

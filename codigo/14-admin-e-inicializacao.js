@@ -726,10 +726,13 @@ loadState();
   // logo que a pessoa entra e depois a cada dois minutos
   if(typeof setInterval==="function") setInterval(vigiarPedidosDeAcesso, 20000);
   vigiarPedidosDeAcesso();
+  // pedidos para entrar num grupo que a pessoa criou: só olha o que já está no navegador
+  if(typeof setInterval==="function") setInterval(checarPedidosDeEntradaNoGrupo, 20000);
+  checarPedidosDeEntradaNoGrupo();
   // cópia antiga da página: confere agora e sempre que a aba voltar a ser vista
   verificarVersaoNova(true);
   document.addEventListener("visibilitychange", ()=>{
-    if(!document.hidden){ verificarVersaoNova(false); vigiarPedidosDeAcesso(); }
+    if(!document.hidden){ verificarVersaoNova(false); vigiarPedidosDeAcesso(); checarPedidosDeEntradaNoGrupo(); }
     else atualizarRecadoLembrete();     // saiu do app: o recado do lembrete fica com o andamento de agora
   });
   // aplicativo instalável: abre sem internet e avisa a meta com o app fechado

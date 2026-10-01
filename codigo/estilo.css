@@ -300,7 +300,15 @@ ol.lista-passos li{margin:.25rem 0}
 }
 
 /* ---------- questão ---------- */
-.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:740px}
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:740px;margin-left:auto;margin-right:auto}
+/* A questão em andamento (sessão e simulado) fica numa coluna centralizada:
+   num monitor largo, uma coluna de leitura colada na esquerda deixa metade da
+   tela vazia. A barra de questões, o motivo e os botões entram na mesma
+   coluna, para tudo ficar alinhado com o cartão. O .page que a contém também
+   se centraliza (a página é mais larga que a coluna e nasce encostada ao menu). */
+.coluna-questao{max-width:740px;margin-left:auto;margin-right:auto}
+.coluna-questao .qcard{max-width:none}
+.page:has(.coluna-questao){margin-left:auto;margin-right:auto}
 .qcard-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
 .qcard-img-wrap{margin:0 0 1.1rem;display:flex;flex-direction:column;align-items:center;text-align:center}
 .qcard-img{max-width:100%;max-height:420px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:var(--surface-2)}

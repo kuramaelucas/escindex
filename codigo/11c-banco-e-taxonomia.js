@@ -414,7 +414,7 @@ function salvarQuestaoFormulario(qid, forcar){
     nuvemMarcarQuestao(atual.id);
   }
   else{
-    const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, criadoEm:hojeISO() };
+    const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO() };
     if(campoDestino){
       if(campoDestino.value==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = "ativa"; }
       else{ nova.status = "pendente"; }
@@ -434,7 +434,7 @@ function salvarQuestaoPendente(){
   const u = usuarioAtual();
   if(pend.qid){ Object.assign(getQuestao(pend.qid), pend.dados); registrarCorrecaoDaQuestao(pend.qid); nuvemMarcarQuestao(pend.qid); }
   else{
-    const nova = { id:uid("q"), ...pend.dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, criadoEm:hojeISO() };
+    const nova = { id:uid("q"), ...pend.dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO() };
     if(pend.destino==="grupo"){ nova.grupoId = getGrupoDoUsuario(u).id; nova.status = "ativa"; }
     else if(pend.destino){ nova.status = "pendente"; }
     else if(!nova.status){ nova.status = "ativa"; }

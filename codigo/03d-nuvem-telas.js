@@ -258,7 +258,7 @@ async function nuvemPainelTurma(){
 /* ---------------------------- aprovar cadastros da turma -----------------
    A regra no banco (ver esquema.sql) deixa professor e administrador lerem e
    atualizarem qualquer perfil; o aluno, só o próprio. Por isso a mesma tela
-   de sempre — Aprovar Cadastros — consegue trabalhar direto na nuvem, sem
+   de sempre — os pedidos de acesso, na tela Turma — consegue trabalhar direto na nuvem, sem
    ninguém precisar abrir o painel do Supabase para liberar cada aluno. */
 let nuvemCadastrosPendentes = null;   // null = ainda não buscamos
 
@@ -286,8 +286,8 @@ async function nuvemDecidirCadastro(idPerfil, status){
     // dizer PARA ONDE a pessoa foi: sair desta lista sem reaparecer em lugar
     // nenhum era exatamente o que parecia exclusão
     toast(status === "aprovado"
-      ? "Cadastro aprovado — a pessoa já pode entrar e agora aparece em Usuários, junto com o resto da turma."
-      : "Cadastro recusado. Ele continua listado em Usuários, como recusado.");
+      ? "Cadastro aprovado — a pessoa já pode entrar e agora aparece na lista de usuários, logo abaixo."
+      : "Cadastro recusado. Ele continua na lista de usuários, como recusado.");
     if(nuvemUsuarios !== null) nuvemBuscarUsuarios();
     render();
   }catch(e){
@@ -298,11 +298,11 @@ async function nuvemDecidirCadastro(idPerfil, status){
 /* ---------------------------- aviso de pedido de acesso -------------------
    Todo cadastro novo nasce pendente e só entra depois que a coordenação
    aprova — mas ninguém ficava sabendo que havia alguém esperando: só quem
-   abrisse Aprovar Cadastros por acaso, e a pessoa ficava dias sem conseguir
+   abrisse a lista de pedidos por acaso, e a pessoa ficava dias sem conseguir
    entrar. Agora, para quem pode aprovar (permissão "cadastros"), a
    plataforma olha a fila a cada dois minutos e, quando chega um pedido que
    essa pessoa ainda não viu, avisa: um aviso na tela, o número no menu e no
-   Início e, se ela tiver deixado (Aprovar Cadastros > Avisos), uma
+   Início e, se ela tiver deixado (Turma > Cadastros e usuários), uma
    notificação do sistema quando o Esc está aberto em outra aba ou janela.
 
    "Já avisado" é guardado por pessoa (u.cadastrosAvisados, os ids ainda
@@ -338,13 +338,13 @@ async function checarPedidosDeAcesso(){
   if(JSON.stringify(agora) !== JSON.stringify(u.cadastrosAvisados || [])){ u.cadastrosAvisados = agora; saveState(); }
   atualizarMenuLateral();
   if(!novos.length) return;
-  if(state.route === "aprovar-cadastros" || state.route === "inicio") render();
+  if(state.route === "painel-turma" || state.route === "inicio") render();
   const texto = novos.length === 1
     ? "Novo pedido de acesso: " + novos[0].nome + (novos[0].ano ? " (" + novos[0].ano + ")" : "") + "."
     : novos.length + " novos pedidos de acesso aguardando aprovação.";
-  toast(texto + " Veja em Aprovar Cadastros.");
+  toast(texto + " Veja em Turma.");
   if(document.hidden && !u.avisoCadastrosDesligado && notificacaoDisponivel() && Notification.permission === "granted"){
-    mostrarNotificacao(CONFIG.nomePlataforma + " — pedido de acesso", texto, "aprovar-cadastros", "pedido-de-acesso");
+    mostrarNotificacao(CONFIG.nomePlataforma + " — pedido de acesso", texto, "painel-turma", "pedido-de-acesso");
   }
 }
 /* Chamada a cada 20 s e quando a aba volta: checa na hora quando a conta
@@ -382,7 +382,7 @@ function renderCardAvisoPedidosDeAcesso(){
   const ligado = permitido && !u.avisoCadastrosDesligado;
   return `<div class="card mb-2">
     <div class="card-title">${iconeSvg("alert")} Avisos de novos pedidos</div>
-    <p class="text-sm muted">Sempre que alguém pede acesso, o Esc avisa na tela e mostra o número no menu, ao lado de Aprovar Cadastros — a fila é conferida a cada dois minutos enquanto o Esc está aberto.</p>
+    <p class="text-sm muted">Sempre que alguém pede acesso, o Esc avisa na tela e mostra o número no menu, ao lado de Turma — a fila é conferida a cada dois minutos enquanto o Esc está aberto.</p>
     ${!notificacaoDisponivel() ? `<p class="text-xs muted mt-1">Este navegador não mostra notificações do sistema.</p>`
       : ligado ? `<p class="text-sm mt-1">${iconeSvg("check")} Notificação do sistema <strong>ligada</strong>: com o Esc aberto em outra aba ou janela, o pedido novo também aparece como notificação.</p>
         <button class="btn btn-ghost btn-sm mt-1" onclick="desativarNotificacaoPedidosDeAcesso()">Desligar a notificação do sistema</button>`
@@ -392,9 +392,9 @@ function renderCardAvisoPedidosDeAcesso(){
 
 /* ---------------------------- a turma inteira, da nuvem -------------------
    ONDE FOI PARAR QUEM EU APROVEI. Esta é a pergunta que faltava responder.
-   A tela de Aprovar Cadastros só consulta `status=eq.pendente`: aprovar
+   A lista de pedidos só consulta `status=eq.pendente`: aprovar
    alguém tira a pessoa dali — correto, ela deixou de estar pendente — mas
-   até agora ela não reaparecia em lugar nenhum, porque Admin > Usuários lia
+   até agora ela não reaparecia em lugar nenhum, porque a lista de usuários lia
    `db.usuarios`, que é o banco DESTE navegador. E o único perfil da nuvem
    espelhado ali é o de quem está logado (o RLS não deixa o aluno ler os
    outros). Resultado: a coordenação aprovava quatro pessoas e concluía que
@@ -590,7 +590,7 @@ async function nuvemDiagnosticar(){
           anotar(true, "Sua conta está aprovada e a nuvem devolveu o seu perfil.", "");
         }else if(perfil){
           anotar(false, "Seu cadastro está como \"" + perfil.status + "\".",
-              "Só cadastro aprovado sincroniza — peça à coordenação em Aprovar Cadastros.");
+              "Só cadastro aprovado sincroniza — peça à coordenação (Turma › Cadastros e usuários).");
         }else{
           anotar(false, "Sua conta existe, mas não tem perfil na nuvem.",
               "O esquema.sql foi rodado depois de a conta ser criada. Rode-o e crie a conta de novo, ou insira o perfil à mão.");
