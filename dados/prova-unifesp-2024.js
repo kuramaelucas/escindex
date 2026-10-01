@@ -589,7 +589,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-045", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:45,
-  imagemUrl:"dados/imagens/q-unifesp2024-045.png", imagemPendente:"Imagem do exame da pelve anexada à questão (achado tubário).",
+  imagemUrl:"dados/imagens/q-unifesp2024-045.jpg", imagemLegenda:"Imagem do exame da pelve anexada à questão (achado tubário).",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-infertilidade",
   enunciado:"Mulher, 33 anos de idade, casada há 5 anos, com infertilidade conjugal há 3 anos. O marido é saudável e tem 36 anos de idade. A paciente tem ciclos eumenorreicos e nega dismenorreia. Refere 1 abortamento aos 17 anos de idade. Baseado na imagem anexa, qual é a provável etiologia da infertilidade?",
   alternativas:[{id:"A",texto:"Fator uterino por sequela de aborto infectado."},{id:"B",texto:"Fator uterino por mioma uterino submucoso."},{id:"C",texto:"Fator tubário por endometriose peritoneal."},{id:"D",texto:"Fator tubário por doença inflamatória pélvica."}],
@@ -616,7 +616,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-047", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:47,
-  imagemUrl:"dados/imagens/q-unifesp2024-047.png", imagemPendente:"Figura com os principais achados da mamografia, do complemento mamográfico e da ultrassonografia.",
+  imagemUrl:"dados/imagens/q-unifesp2024-047.jpg", imagemLegenda:"Figura com os principais achados da mamografia, do complemento mamográfico e da ultrassonografia.",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
   enunciado:"Mulher, 42 anos de idade, assintomática e sem antecedentes familiares ou pessoais, sem alterações no exame mamário realizou mamografia de rastreamento, complemento mamográfico e estudo ultrassonográfico. Os principais achados estão apresentados na figura anexa. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Biópsia de nódulo com agulha grossa."},{id:"B",texto:"Controle anual com mamografia."},{id:"C",texto:"Controle de ultrassom em 6 meses."},{id:"D",texto:"Solicitar ressonância magnética."}],

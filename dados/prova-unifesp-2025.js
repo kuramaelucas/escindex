@@ -698,7 +698,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2025", [
 },
 {
   id:"q-unifesp2025-053", banca:"UNIFESP-EPM", real:true, ano:2025, numeroNaProva:53,
-  imagemUrl:"dados/imagens/q-unifesp2025-053.png", imagemPendente:"Gráfico da curva ROC com os pontos I, II, III e IV marcados.",
+  imagemUrl:"dados/imagens/q-unifesp2025-053.png", imagemLegenda:"Gráfico da curva ROC com os pontos I, II, III e IV marcados.",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Você quer diagnosticar hipertensão arterial (PAx140/90 mmHg) e está usando um esfigmomanômetro que, por um defeito, sempre marca 140/90 mmHg ou mais, indicando corretamente as pressões acima destas. Indique o ponto da curva ROC (imagem a seguir) que representa a sensibilidade e a especificidade desse instrumento.",
   alternativas:[{id:"A",texto:"I"},{id:"B",texto:"IV"},{id:"C",texto:"III"},{id:"D",texto:"II"}],

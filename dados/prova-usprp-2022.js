@@ -11,10 +11,7 @@
    parafraseado. Todas as questões marcam `real: true`; as anuladas pela banca
    (0 nesta prova) ficam com gabarito vazio e status "anulada".
 
-   32 questões dependem de uma figura da prova (foto, exame de imagem,
-   traçado, tabela) que ainda não foi anexada: elas apontam para
-   dados/imagens/q-usprp2022-NNN.png e descrevem em `imagemPendente` o que a
-   prova mostrava. Ver dados/imagens/LEIA-ME.md.
+   As 31 figuras que o caderno oficial traz estão em dados/imagens/. Três (19, 21 e 23) vieram sem a imagem no caderno e seguem em `imagemPendente`. Texto conferido contra o caderno em 03/10/2026.
 
    Este arquivo é CONTEÚDO, não código: ele só entrega uma lista para a
    plataforma. O molde de uma questão e o passo a passo para acrescentar
@@ -62,7 +59,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-004", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:4,
-  imagemUrl:"dados/imagens/q-usprp2022-004.png", imagemPendente:"Gráfico da temperatura média da superfície terrestre nos últimos 170 anos",
+  imagemUrl:"dados/imagens/q-usprp2022-004.png", imagemLegenda:"Gráfico da temperatura média da superfície terrestre nos últimos 170 anos",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"O gráfico abaixo, extraído de um artigo científico (N Engl J Med 2019; 380:263-73), ilustra a elevação da temperatura média da superfície terrestre nos últimos 170 anos, segundo diferentes medições. Para a Organização Mundial da Saúde, esse fenômeno é a maior ameaça atual à saúde pública global. Considerando que o Brasil é atualmente o 6° maior emissor de gases de efeito estufa, qual seria a medida mais efetiva a ser tomada pelo país visando minimizar sua contribuição para o aquecimento global?",
   alternativas:[{id:"A",texto:"Reduzir o uso de gasolina, aumentando a produção de etanol a partir da cana de açúcar."},{id:"B",texto:"Reduzir a queima de carvão mineral, investindo na produção de energia eólica."},{id:"C",texto:"Reduzir as queimadas na Floresta Amazônica, que constitui grande reserva de carbono."},{id:"D",texto:"Reduzir o uso de óleo diesel, aumentando a eficiência do transporte de cargas."}],
@@ -76,7 +73,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-005", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:5,
-  imagemUrl:"dados/imagens/q-usprp2022-005.png", imagemPendente:"Gráfico 1 — cobertura por planos de assistência médica e odontológica nos estados do Sudeste em três períodos",
+  imagemUrl:"dados/imagens/q-usprp2022-005.png", imagemLegenda:"Gráfico 1 — cobertura por planos de assistência médica e odontológica nos estados do Sudeste em três períodos",
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-financiamento",
   enunciado:"Na reunião do Conselho Nacional de Secretários Estaduais de Saúde (CONASEMS), uma das pautas foi a importância de se analisar a tendência de cobertura da população por planos de saúde (beneficiários dos planos de saúde). O gestor estadual, que representou a região sudeste do Brasil, apresentou alguns dados sobre a cobertura de assistência médico e odontológica para os quatro estados da região, em três períodos distintos (Gráfico 1). A importância desta discussão para os gestores do Sistema Único de Saúde (SUS) está relacionada:",
   alternativas:[{id:"A",texto:"À analise da abrangência e do impacto do SUS no atendimento das necessidades de saúde da população."},{id:"B",texto:"Ao aumento da oferta de serviços médicos e odontológicos para atender às necessidades de saúde da população."},{id:"C",texto:"À desobrigação de atendimento das necessidades de saúde da população coberta pelos planos de saúde (beneficiários)."},{id:"D",texto:"À diminuição do ressarcimento ao SUS dos serviços prestados aos beneficiários dos planos de saúde."}],
@@ -103,7 +100,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-007", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:7,
-  imagemUrl:"dados/imagens/q-usprp2022-007.png", imagemPendente:"Figura dos 5 momentos para higienização das mãos (OMS)",
+  imagemUrl:"dados/imagens/q-usprp2022-007.png", imagemLegenda:"Figura dos 5 momentos para higienização das mãos (OMS)",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-iras",
   enunciado:"A figura abaixo ilustra as indicações principais para higienização das mãos pelos profissionais da saúde segundo a Organização Mundial da Saúde (OMS). Com base na figura e nas recomendações da OMS sobre higienização de mãos, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A indicação 5 pode ser dispensada no caso de o paciente estar em isolamento de contato e o profissional tiver usado luvas de procedimento."},{id:"B",texto:"Na indicação 4, o profissional deve preferencialmente lavar as mãos com água e sabonete líquido, ao invés de aplicar formulação alcóolica."},{id:"C",texto:"A indicação 1 pode ser dispensada no caso de o paciente estar em isolamento de contato e o profissional for calçar luvas de procedimento."},{id:"D",texto:"Na indicação 2, o profissional deve realizar a higienização das mãos, mesmo que já a tenha feito antes do primeiro contato com o paciente."}],
@@ -143,7 +140,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-010", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:10,
-  imagemUrl:"dados/imagens/q-usprp2022-010.png", imagemPendente:"Figura do artigo sobre a efetividade da CoronaVac no Chile",
+  imagemUrl:"dados/imagens/q-usprp2022-010.png", imagemLegenda:"Figura do artigo sobre a efetividade da CoronaVac no Chile",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"A figura foi extraída de um artigo cientifico que aborda a efetividade da aplicação em massa da vacina CoronaVac para a prevenção de Covid-19, no Chile. Considerando a efetividade da aplicação de duas doses da vacina estimada pela análise estratificada em 63,7%, isso significa que:",
   alternativas:[{id:"A",texto:"63,7% das pessoas vacinadas foram efetivamente protegidas e não desenvolveram Covid-19."},{id:"B",texto:"63,7% das pessoas vacinadas produziram anticorpos (soro converteram) contra Covid-19."},{id:"C",texto:"A prevalência de Covid-19 foi 63,7% menor nas pessoas vacinadas que nas não vacinadas."},{id:"D",texto:"A incidência de Covid-19 foi 63,7% menor nas pessoas vacinadas que nas não vacinadas."}],
@@ -235,7 +232,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-017", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:17,
-  imagemUrl:"dados/imagens/q-usprp2022-017.png", imagemPendente:"Fotos da orofaringe e do tronco do paciente",
+  imagemUrl:"dados/imagens/q-usprp2022-017.png", imagemLegenda:"Fotos da orofaringe e do tronco do paciente",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
   enunciado:"Você trabalha como médico em uma Unidade de Saúde de Família e atende um jovem de 16 anos, previamente hígido, que procura atendimento queixando-se de odinofagia e febre há 5 dias. Há 3 dias, procurou o serviço de pronto-atendimento, onde foi atendimento por um médico que lhe prescreveu amoxicilina + clavulanato (500/125 mg) 1 cp 8/8h por 1 semana e dipirona, se necessário. Desde então, o rapaz notou piora dos sintomas e o aparecimento de lesões avermelhadas no tronco. Foto de sua orofaringe e tronco no dia da consulta estão ilustradas abaixo. Diante desse quadro clínico, assinale a alternativa que contém o diagnóstico mais provável e a conduta mais apropriada para o caso.",
   alternativas:[{id:"A",texto:"Abcesso periamigdaliano. Manter amoxicilina + clavulanato e encaminhar o paciente para drenagem cirúrgica imediata."},{id:"B",texto:"Herpangina, farmacodermia à amoxicilina + clavulanato. Troca amoxicilina + clavulanato por clindamcina 600 mg (vo) 8/8h."},{id:"C",texto:"Amigdalite bacteriana, falha no tratamento antimicrobiano. Troca amoxicilina + clavulanato por ceftriaxona 2g (EV) ou (IM) 1 vez ao dia."},{id:"D",texto:"Mononucleose infecciosa. Suspender amoxicilina + clavulanato e intensificar analgesia com nimesulide 100 mg (vo) 12/12h."}],
@@ -343,7 +340,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-025", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:25,
-  imagemUrl:"dados/imagens/q-usprp2022-025.png", imagemPendente:"Foto da ferida esternal após três ciclos de terapia por pressão negativa",
+  imagemUrl:"dados/imagens/q-usprp2022-025.png", imagemLegenda:"Foto da ferida esternal após três ciclos de terapia por pressão negativa",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
   enunciado:"Homem de 64 anos foi submetido a revascularização do miocárdio, cujo acesso foi por meio de esternotomia mediana. Após 25 dias de cirurgia, iniciou drenagem purulenta e deiscência da ferida operatória. O tratamento inicial foi feito com desbridamento dos tecidos desvitalizados e terapia por pressão negativa. Após três ciclos de terapia, a ferida cirúrgica encontra-se como mostrado na figura: Qual o melhor tratamento subsequente?",
   alternativas:[{id:"A",texto:"Cicatrização por segunda intenção."},{id:"B",texto:"Enxerto de pele total."},{id:"C",texto:"Rotação de retalho miocutâneo."},{id:"D",texto:"Fechamento primário da pele."}],
@@ -357,7 +354,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-026", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:26,
-  imagemUrl:"dados/imagens/q-usprp2022-026.png", imagemPendente:"Tomografia de crânio sem contraste",
+  imagemUrl:"dados/imagens/q-usprp2022-026.png", imagemLegenda:"Tomografia de crânio sem contraste",
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
   enunciado:"Homem de 50 anos, previamente higido, com quadro de cefaleia súbita associada a vômitos e perda da consciência transitória durante realização de atividade física. Acompanhante relata não ter havido traumatismo craniano. Deu entrada no Pronto Atendimento consciente e lúcido, sem déficits sensitivo-motores, com rigidez de nuca e presença do sinal de Brudzinski. Seu exame de tomografia computadorizada inical sem contraste encontra-se em anexo. Qual a etiologia mais provável?",
   alternativas:[{id:"A",texto:"Ruptura de malformação artério-venosa intracraniana."},{id:"B",texto:"Hipertensão arterial (pico hipertensivo)."},{id:"C",texto:"Ruptura de aneurisma intracraniano."},{id:"D",texto:"Vasculite do sistema nervoso central."}],
@@ -410,7 +407,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-030", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:30,
-  imagemUrl:"dados/imagens/q-usprp2022-030.png", imagemPendente:"Foto do ferimento da orelha",
+  imagemUrl:"dados/imagens/q-usprp2022-030.png", imagemLegenda:"Foto do ferimento da orelha",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
   enunciado:"Mulher 45 anos, do lar, vem para atendimento em uma unidade de pronto atendimento, com ferimento em orelha esquerda causada por mordedura de cão há cerca de 48 horas. Relata que não compareceu antes por estar sem acessibilidade a um serviço de saúde. Na figura em anexo nota-se secreção e exposição de cartilagem no leito da lesão. Qual a melhor conduta?",
   alternativas:[{id:"A",texto:"Curativos diários, antibioticoterapia e fechamento primário retardado."},{id:"B",texto:"Curativos diários, antibioticoterapia e cicatrização por segunda intenção."},{id:"C",texto:"Debridamento, sutura das bordas e antibioticoterapia."},{id:"D",texto:"Referenciar o paciente para atendimento especializado hospitalar."}],
@@ -450,7 +447,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-033", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:33,
-  imagemUrl:"dados/imagens/q-usprp2022-033.png", imagemPendente:"Foto da lesão no nariz",
+  imagemUrl:"dados/imagens/q-usprp2022-033.png", imagemLegenda:"Foto da lesão no nariz",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
   enunciado:"Mulher de 62 anos, trabalhadora rural, procurou unidade básica de saúde queixando-se de lesão cutânea em nariz (figura), com crescimento progressivo nos últimos 6 meses. Baseado na principal hipótese diagnóstica, qual o tratamento mais indicado?",
   alternativas:[{id:"A",texto:"Terapia fotodinâmica."},{id:"B",texto:"Curetagem e eletrocoagulação."},{id:"C",texto:"Radioterapia superficial."},{id:"D",texto:"Exérese com margens de segurança."}],
@@ -490,6 +487,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-036", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:36,
+  imagemUrl:"dados/imagens/q-usprp2022-036.png", imagemLegenda:"Tomografia de tórax com contraste",
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-neoplasia",
   enunciado:"Mulher, 73 anos, tabagista 55 anos/maço, procura pneumologista com queixa de tosse e hemoptoicos há 4 semanas. Tomografia de tórax mostra lesão espiculada periférica de 4,0 cm no lobo superior direito. PET-TC (tomografia por emissão de pósitrons) apresenta lesão pulmonar com captação aumentada (SUV = 4). A avaliação funcional pulmonar mostrou espirometria com VEF1 = 2,3L compativel com ressecção até bilobectomia. Qual o próximo passo mais adequado no manejo deste paciente?",
   alternativas:[{id:"A",texto:"Pneumonectomia direita e broncoplastia (margem de segurança)."},{id:"B",texto:"Preparo para cirurgia com intensão curativa com programação de segmentectomia apical direita e esvaziamento mediastinal."},{id:"C",texto:"Realizar amostragem dos linfonodos mediastinais e hilares por EBUS (endobronchial ultrasound - Ultrassonografia endobrônquica)."},{id:"D",texto:"Encaminhar para avaliação oncológica clínica para protocolo de neoadjuvância."}],
@@ -516,7 +514,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-038", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:38,
-  imagemUrl:"dados/imagens/q-usprp2022-038.png", imagemPendente:"Exames laboratoriais do 4º pós-operatório",
+  imagemUrl:"dados/imagens/q-usprp2022-038.png", imagemLegenda:"Exames laboratoriais do 4º pós-operatório",
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-aneurisma",
   enunciado:"Homem de 65 anos dá entrada com quadro de rotura de aneurisma de aorta abdominal e é operado na emergência por correção aberta. Durante o período intra operatório apresentou sangramento de grande volume, necessitando de transfusão de hemoderivados e permanecendo hipotenso a maior parte do tempo. A correção cirúrgica foi realizada com clampagem infra-renal utilizando-se prótese de poliéster do tipo bifurcada com anastomose proximal em aorta abdominal infra-renal e anastomoses distais nas artérias femorais. Paciente saiu estável do procedimento com aminas vasoativas em dose baixa. Foi extubado no segundo pós-operatório na unidade de terapia intensiva e apresentava boa evolução clinica pelo porte da cirurgia. No quarto pós-operatório iniciou queixa de dor abdominal, principalmente no andar inferior, com piora dos parâmetros hemodinâmicos. Ao exame físico, o abdome encontrava-se distendido, com dor difusa à palpação e descompressão brusca positiva inespecífica e ainda sem ruídos hidro aéreos. Os exames laboratoriais seguem em anexo (figura): Qual o provável diagnóstico?",
   alternativas:[{id:"A",texto:"Colecistite alitiásica."},{id:"B",texto:"Sepse de origem abdominal."},{id:"C",texto:"Hemorragia."},{id:"D",texto:"Colite isquêmica."}],
@@ -543,7 +541,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-040", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-usprp2022-040.png", imagemPendente:"Radiografias do quadril",
+  imagemUrl:"dados/imagens/q-usprp2022-040.png", imagemLegenda:"Radiografias do quadril",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-pediatrica",
   enunciado:"Menino de 5 anos apresenta dor moderada no quadril direito há 2 meses. A família notou diminuição progressiva da atividade da criança e piora dos sintomas neste período. Relata piora da dor aos movimentos e alivio ao repouso. Ao exame fisico apresenta claudicação antálgica e limitação moderada dos movimentos do quadril direito pela dor. Não foram identificadas outras regiões dolorosas ou deformidades. Radiograficas em anexo. Qual o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Artrite séptica do quadril com osteomielite associada."},{id:"B",texto:"Artrite reumatoide juvenil."},{id:"C",texto:"Necrose idiopática da cabeça do fêmur (doença de Legg-Calvé-Perthes)."},{id:"D",texto:"Displasia epifisária múltipla."}],
@@ -635,7 +633,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-047", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:47,
-  imagemUrl:"dados/imagens/q-usprp2022-047.png", imagemPendente:"Figura 1 — lesões vulvares",
+  imagemUrl:"dados/imagens/q-usprp2022-047.png", imagemLegenda:"Figura 1 — lesões vulvares",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
   enunciado:"Primigesta, 16 anos, 21 semanas, refere lesões na vulva há 30 dias. Na consulta na Unidade Básica de Saúde, a avaliação da genitália evidencia as lesões mostradas na figura 1. Qual a melhor conduta para esse caso?",
   alternativas:[{id:"A",texto:"Ácido tricloacético 80%."},{id:"B",texto:"Podofilotoxina."},{id:"C",texto:"Expectante."},{id:"D",texto:"Imiguimode."}],
@@ -675,7 +673,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-050", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:50,
-  imagemUrl:"dados/imagens/q-usprp2022-050.png", imagemPendente:"Monitorização intraparto (figura 1) e partograma até às 14h (figura 2)",
+  imagemUrl:"dados/imagens/q-usprp2022-050.jpg", imagemLegenda:"Monitorização intraparto (figura 1) e partograma até às 14h (figura 2)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Secundigesta (G2P1C1A0), 32 anos, com 39 semanas de gestação, interna na fase do trabalho de parto espontâneo. Relata cesparia prévia, há 3 anos, por \"parada de dilatação\", cujo recém-nascido pesou 3750 gramas. Exame físico geral normal, altura uterina 34 cm. A monitorização intraparto está demonstrada abaixo (figura 1), assim como a evolução do trabalho de parto, até às 14h (figura 2). De acordo com o Programa de Humanização do Parto do Ministério da Saúde do Brasil, qual seria a conduta para essa parturiente?",
   alternativas:[{id:"A",texto:"Evitar uso de analgesia farmacológica de parto."},{id:"B",texto:"Indicar resolução da gestação por parto cesária."},{id:"C",texto:"Prescrever infusão endovenosa de ocitocina."},{id:"D",texto:"Manter assistência obstétrica habitual."}],
@@ -689,7 +687,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-051", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:51,
-  imagemUrl:"dados/imagens/q-usprp2022-051.png", imagemPendente:"Gráfico do desenvolvimento pondero-estatural",
+  imagemUrl:"dados/imagens/q-usprp2022-051.jpg", imagemLegenda:"Gráfico do desenvolvimento pondero-estatural",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
   enunciado:"Mãe traz filha de 2 anos à consulta referindo ter observado crescimento de ambas as mamas há 3 meses. Nega desenvolvimento de pelos ou odor axilar. Antecedentes pessoas: nasceu de parto normal a termo e peso adequado. Nega antecedentes de doenças. Antecedentes familiares: irmãs de 4 e 7 anos com ausência de desenvolvimento puberal. Exame físico: Tanner M2 P1, genitália externa feminina e pré-púbere. Desenvolvimento pondero estatural no gráfico abaixo. Qual a melhor conduta para esta paciente?",
   alternativas:[{id:"A",texto:"Solicitar ultrassonografia das mamas."},{id:"B",texto:"Bloquear o eixo hipotálamo-hipofisário com agonista do GnRh."},{id:"C",texto:"Reavaliar estatura e desenvolvimento puberal em 3 meses."},{id:"D",texto:"Bloquear a produção de estradiol com inibidor da aromatase."}],
@@ -755,7 +753,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-056", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:56,
-  imagemUrl:"dados/imagens/q-usprp2022-056.png", imagemPendente:"Curva de evolução do hCG após o esvaziamento",
+  imagemUrl:"dados/imagens/q-usprp2022-056.png", imagemLegenda:"Curva de evolução do hCG após o esvaziamento",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-doencatrofoblastica",
   enunciado:"Mulher, 21 anos, G1P0A1, submetida a vácuo-aspiração com diagnóstico histopatológico de mola hidatiforme completa. Recebeu implante de etonogestrel logo após a aspiração. O exame ginecológico não evidencia alterações. A curva de evolução do hCG está apresentada na imagem abaixo. Qual a melhor conduta?",
   alternativas:[{id:"A",texto:"Iniciar metotrexato."},{id:"B",texto:"Refazer a vácuo aspiração."},{id:"C",texto:"Indicar histerectomia."},{id:"D",texto:"Manter a observação clínica."}],
@@ -808,7 +806,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-060", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-usprp2022-060.png", imagemPendente:"Exame ginecológico (prolapso genital)",
+  imagemUrl:"dados/imagens/q-usprp2022-060.png", imagemLegenda:"Exame ginecológico (prolapso genital)",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
   enunciado:"Mulher, 84 anos, G4P4A0 (4PN), DUM: há 37 anos. Paciente refere que há 12 anos inicia com frouxidão vaginal e que há 6 meses tem notado abaulamamento em região perineal que tem incomodado e atrapalha sua vida cotidiana e sexual. Tem HAS, diabetes e dislipidemia sem controle adequado com medicação. Antecedente pessoal de infarto agudo do miocárdio há anos. Exame físico: regular estado geral, IMC: 32,2 Kg/m2, exame ginecológico abaixo. Qual a melhor conduta neste momento?",
   alternativas:[{id:"A",texto:"Colporrafia anterior e posterior."},{id:"B",texto:"Uso de pessario vaginal."},{id:"C",texto:"Histerectomia total vaginal."},{id:"D",texto:"Colpocleise a LeFort."}],
@@ -835,7 +833,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-062", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:62,
-  imagemUrl:"dados/imagens/q-usprp2022-062.png", imagemPendente:"Foto da lesão na língua",
+  imagemUrl:"dados/imagens/q-usprp2022-062.png", imagemLegenda:"Foto da lesão na língua",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Homem, 61 anos, relata lesão na língua há 3 anos (figura), com dificuldade de alimentação e perda de peso. Etilista de 6 garrafas de cerveja por semana e nega tabagismo. Ao exame: BEG, corado. Linfonodo submandibular à esquerda de 0,5 cm, móvel e indolor. Cicatriz de aspecto apergaminhado no dorso do pé direito. Anatomopatológico da lesão da língua: epitélio com hiperplasia pseudoepiteliomatosa; infiltrado na submucosa denso e misto, risco em plasmócitos, com esboço de formação de granulomas. Não foram visualizados parasitas nas colorações especiais (GMS, Giemsa e Ziehl-Neelsen) e as culturas da lesão foram negativas. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Carcinoma espinocelular."},{id:"B",texto:"Paracoccidioidomicose."},{id:"C",texto:"Doença de Behçet."},{id:"D",texto:"Leishmaniose mucosa."}],
@@ -888,7 +886,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-066", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:66,
-  imagemUrl:"dados/imagens/q-usprp2022-066.png", imagemPendente:"Figura 1 (língua) e figura 2 (esfregaço de sangue periférico)",
+  imagemUrl:"dados/imagens/q-usprp2022-066.png", imagemLegenda:"Figura 1 (língua) e figura 2 (esfregaço de sangue periférico)",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
   enunciado:"Homem, 76 anos, refere \"pele amarelada\", parestesia progressiva em membros inferiores e ardência na língua (Figura 1). Faz uso de metformina, para diabetes mellitus tipo 2, e omeprazol para gastrite. Nega alteração do hábito intestinal e mantém ingesta alimentar sem restrições. Exames laboratoriais: hemograma: Hb: 8,8 g/dL, Ht: 26%, VCM: 112 fL (VN: 80-95 fL), leucócitos: 3.200/uL, plaquetas: 124.000/uL (esfregaço na Figura 2); Contagem absoluta de reticulócitos: 23.000/uL (VN: 25.000-105.000/uL); ferro sérico: 96 ug/dL (VN: 40-160 ug/dL); TIBC: 320 ug/dL (VN: 300-360 ug/dL); saturação da transferrina: 30%; ferritina: 118 ng/mL (VN: 6-159 ng/mL); LDH: 5.460 U/L (VN < 460 U/L); bilirrubinas totais: 1,8 mg/dL (VN < 1,0 mg/dL); Coombs direto: negativo; TSH: 4,0 mU/L (VN: 0,5 -5,0 mU/L). Qual é a etiologia mais provável das alterações clínico-laboratoriais?",
   alternativas:[{id:"A",texto:"Deficiência de vitamina B12."},{id:"B",texto:"Deficiência de ferro."},{id:"C",texto:"Doença autoimune."},{id:"D",texto:"Hipotireoidismo."}],
@@ -915,6 +913,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-068", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:68,
+  imagemUrl:"dados/imagens/q-usprp2022-068.png", imagemLegenda:"Radiografia de tórax",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
   enunciado:"Homem, 72 anos, tabagista. Refere dispnela progressiva (atualmente a mínimos esforços) e tosse seca esporádica há 2 anos. Exame físico: BEG, corado, cianótico, com baqueteamento digital. FR: 28 ipm. Sat O2: 87% em ar ambiente. Qual ruído adventício mais provável na ausculta respiratória?",
   alternativas:[{id:"A",texto:"Estertor em velcro."},{id:"B",texto:"Grasnido."},{id:"C",texto:"Estertor grosso."},{id:"D",texto:"Ronco."}],
@@ -928,7 +927,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-069", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:69,
-  imagemUrl:"dados/imagens/q-usprp2022-069.png", imagemPendente:"Foto da urina do paciente (urina escura, cor de \"coca-cola\")",
+  imagemUrl:"dados/imagens/q-usprp2022-069.png", imagemLegenda:"Foto da urina do paciente (urina escura, cor de \"coca-cola\")",
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-intoxicacoes",
   enunciado:"Homem, 20 anos, trabalhador rural, sofreu acidente no tornozelo esquerdo, por animal não visualizado. Queixa-se de pouca dor no tornozelo esquerda, mialgia difusa e dificuldade para deglutir. Apresenta alteração da coloração urina (foto). Qual é a alteração clínica/laboratorial esperada?",
   alternativas:[{id:"A",texto:"Troponina elevada."},{id:"B",texto:"Rinorreia."},{id:"C",texto:"Hipercalcemia."},{id:"D",texto:"Diplopia."}],
@@ -942,7 +941,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-070", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:70,
-  imagemUrl:"dados/imagens/q-usprp2022-070.png", imagemPendente:"Radiografia de tórax (PA) e eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usprp2022-070.png", imagemLegenda:"Radiografia de tórax (PA) e eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
   enunciado:"Mulher, 25 anos, sem comorbidades, relata dispneia progressiva, atualmente classe funcional III da NYHA, associada a palpitações taquicárdicas aos esforços. Exame físico: FC = 85bpm, PA = 112 x 70 mmHg, FR = 18 irpm, elevação do pulso venoso jugular na inspiração, hepatomegalia com ascite moderada e edema 1+/4+ de membros inferiores. Radiograma de tórax (PA) e eletrocardiograma abaixo. Qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Endomiocardiofibrose."},{id:"B",texto:"Pericardite constritiva."},{id:"C",texto:"Tamponamento cardíaco."},{id:"D",texto:"Amiloidose cardíaca."}],
@@ -956,7 +955,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-071", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:71,
-  imagemUrl:"dados/imagens/q-usprp2022-071.png", imagemPendente:"Lesão pruriginosa no antebraço",
+  imagemUrl:"dados/imagens/q-usprp2022-071.png", imagemLegenda:"Lesão pruriginosa no antebraço",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Homem, 44 anos, portador de diabetes mellitus tipo 2 há 5 anos, em insulinoterapia, sem outras comorbidades. Há 2 meses, relata aparecimento da lesão no antebraço com prurido associado (figura). Baseado na principal hipótese diagnóstica, realizou-se um exame complementar. Qual é o achado mais provável?",
   alternativas:[{id:"A",texto:"Dermatite psoriasiforme."},{id:"B",texto:"Elevação da imunoglobulina E."},{id:"C",texto:"Hifas septadas ramificadas."},{id:"D",texto:"Epidermotropismo de linfócitos."}],
@@ -983,7 +982,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-073", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:73,
-  imagemUrl:"dados/imagens/q-usprp2022-073.png", imagemPendente:"Foto da oroscopia (úlcera em palato)",
+  imagemUrl:"dados/imagens/q-usprp2022-073.png", imagemLegenda:"Foto da oroscopia (úlcera em palato)",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mulher, 20 anos, queixa-se de fadiga e queda de cabelos, iniciadas há dois meses. Refere dor em articulações das mãos e nos punhos. Exame físico: BEG, corada, eupneica, edema, calor e dor à palpação de punhos e segunda a quarta metacarpofalangeanas de ambas as mãos; lesões numulares com bordas hipercrômicas e centro eritematoso e atrófico na fronte. Foto da oroscopia abaixo. Qual alteração mais provável no hemograma da paciente?",
   alternativas:[{id:"A",texto:"Monocitose."},{id:"B",texto:"Plaquetose."},{id:"C",texto:"Linfopenia."},{id:"D",texto:"Hipocromia."}],
@@ -1036,7 +1035,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-077", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:77,
-  imagemUrl:"dados/imagens/q-usprp2022-077.png", imagemPendente:"Foto da mão esquerda com nódulos (tofos)",
+  imagemUrl:"dados/imagens/q-usprp2022-077.png", imagemLegenda:"Foto da mão esquerda com nódulos (tofos)",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-cristais",
   enunciado:"Homem, 48 anos, tabagista e etilista, há 20 anos apresenta dor articular. O quadro teve início nos membros inferiores e ocorria como surto-remissão. Após alguns anos, os membros superiores foram acometidos, quando passou a ter sintomas articulares persistentes. Exame físico: BEG, corado. Edema, calor, dor e limitação de movimentos em tornozelos, joelhos, punhos e metacarpofalangeanas. Foto de sua mão esquerda é mostrada abaixo. De qual alteração fisiopatológica resultam as lesões?",
   alternativas:[{id:"A",texto:"Calcificações de tecidos moles."},{id:"B",texto:"Necrose caseosa da derme."},{id:"C",texto:"Coleções de pus na derme."},{id:"D",texto:"Depósito subcutâneo."}],
@@ -1076,7 +1075,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-080", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:80,
-  imagemUrl:"dados/imagens/q-usprp2022-080.png", imagemPendente:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usprp2022-080.png", imagemLegenda:"Eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem, 67 anos, hipertenso, diabético tipo 2, dislipidêmico, obeso e tabagista ativo. Previamente assintomático, procura atendimento médico devido a quadro de dor torácica, em queimação, de intensidade 5/10, sem irradiação ou outros sintomas associados e que se inicia após a realização de moderados esforços. Refere início da dor há 2 semanas, sendo que há 1 semana tem sido mais frequente e de maior intensidade. Exame físico: sem alterações significativas. Eletrocardiograma abaixo. Qual é o método de avaliação mais indicado para investigação do quadro clínico?",
   alternativas:[{id:"A",texto:"Angiotomografia de coronária."},{id:"B",texto:"Cintilografia miocárdica com dipiridamol."},{id:"C",texto:"Cateterismo cardíaco."},{id:"D",texto:"Teste ergométrico."}],
@@ -1194,7 +1193,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-089", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:89,
-  imagemUrl:"dados/imagens/q-usprp2022-089.png", imagemPendente:"Foto da pele da criança (lesões eritematosas)",
+  imagemUrl:"dados/imagens/q-usprp2022-089.png", imagemLegenda:"Foto da pele da criança (lesões eritematosas)",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
   enunciado:"Mãe refere que seu filho de 8 anos está apresentando quedas frequentes ao solo há 3 semanas. Refere dificuldades em subir escadas e de se levantar da posição sentada, necessitando de ajuda Criança está deprimida e irritada, Ao exame físico você nota sua pele avermelhada (foto abaixo), dificuldade de manter os braços elevados e de subir a escada para sentar-se na maca. Qual a hipótese diagnóstica principal?",
   alternativas:[{id:"A",texto:"Dermatomiosite juvenil."},{id:"B",texto:"Síndrome de Guillain-Barré."},{id:"C",texto:"Lupus eritematoso sistêmico juvenil."},{id:"D",texto:"Miosite viral."}],
@@ -1208,7 +1207,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-090", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:90,
-  imagemUrl:"dados/imagens/q-usprp2022-090.png", imagemPendente:"Tabela de percentis de pressão arterial para meninos, segundo idade e percentil de estatura",
+  imagemUrl:"dados/imagens/q-usprp2022-090.png", imagemLegenda:"Tabela de percentis de pressão arterial para meninos, segundo idade e percentil de estatura",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Menino de 5 anos é trazido à consulta de puericultura sem queixas. Peso: 19kg (P50), altura: 109 cm, PA: 106x64 mmHg (repetida e confirmada), restante do exame físico sem alterações. Consultando a tabela abaixo, como se classifica a pressão aferida nesta consulta?",
   alternativas:[{id:"A",texto:"Pressão arterial elevada."},{id:"B",texto:"Hipertensão estágio 2."},{id:"C",texto:"Hipertensão estágio 1."},{id:"D",texto:"Pressão arterial normal."}],
@@ -1248,7 +1247,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-093", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:93,
-  imagemUrl:"dados/imagens/q-usprp2022-093.png", imagemPendente:"Radiografia do cotovelo esquerdo",
+  imagemUrl:"dados/imagens/q-usprp2022-093.png", imagemLegenda:"Radiografia do cotovelo esquerdo",
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-analgesia",
   enunciado:"Menino de 6 anos de, idade apresentou queda da própria altura sobre o membro superior esquerdo, evoluindo com dor e edema no cotovelo. Realizada radiografia ilustrada na figura abaixo que evidenciou luxação do cotovelo esquerdo. Mãe refere que criança tem asma mas que está controlada com uso de beclometasona via inalatória. Nega internações prévias e última refeição foi há 8 horas. Neste caso qual é a opção medicamentosa mais adequada para preparar a criança para o procedimento?",
   alternativas:[{id:"A",texto:"Midazolam."},{id:"B",texto:"Clonidina."},{id:"C",texto:"Propofol."},{id:"D",texto:"Cetamina."}],
@@ -1262,7 +1261,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-094", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:94,
-  imagemUrl:"dados/imagens/q-usprp2022-094.png", imagemPendente:"Curvas de estatura e peso do paciente",
+  imagemUrl:"dados/imagens/q-usprp2022-094.png", imagemLegenda:"Curvas de estatura e peso do paciente",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
   enunciado:"Os pais de um paciente de 10 anos de idade estão preocupados com a estatura e ganho de peso nos últimos 2 a 3 anos (ver dados nas curvas abaixo) e com o escurecimento da pele do pescoço e axilas, que no exame físico é confirmado ser acantose nigricans. No último ano ele já recebeu orientação da dieta hipocalórica, porém ainda ingere sucos industrializados, doces e guloseimas diariamente, Há cerca de três anos os pais se separaram e houve necessidade de mudança de escola e do círculo de amigos do paciente em função de mudança de cidade. Mãe acha que o paciente se sente triste e isolado na escola, não participando das brincadeiras. Não pratica atividade física regular, pois está referindo ficar muito cansado. Passa a maior parte do tempo fora da escola dentro do apartamento e gosta muito de jogos eletrônicos. Mãe refere que ela também ganhou peso excessivamente nos últimos anos. Para a consulta atual traz exames recentes que evidenciaram: glicemia = 97 mg/dL, HBA1c 6,2%; colesterol total = 233 mg/dL; colesterol HDL = 38 mg/dL; triglicérides = 206 mg/dL. Considerando os dados apresentados, qual a conduta mais indicada para este paciente?",
   alternativas:[{id:"A",texto:"Orientar dieta equilibrada normocalórica e realização de 60 minutos diários de atividade física leve."},{id:"B",texto:"Realizar investigação bioquímica adicional buscando a causa do ganho de peso, antes de qualquer medida terapêutica."},{id:"C",texto:"Orientar dieta equilibrada normocalórica e realização de 60 minutos diários de atividade física moderada a intensa."},{id:"D",texto:"Orientar dieta equilibrada com leve restrição calórica, realização de 60 minutos diários de atividade física moderada a intenso e iniciar tratamento com metformina."}],
@@ -1315,7 +1314,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-098", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:98,
-  imagemUrl:"dados/imagens/q-usprp2022-098.png", imagemPendente:"Curva de crescimento com estaturas anteriores do paciente",
+  imagemUrl:"dados/imagens/q-usprp2022-098.png", imagemLegenda:"Curva de crescimento com estaturas anteriores do paciente",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
   enunciado:"Um paciente com 13 anos é avaliado por apresentar problemas no crescimento. Nasceu a termo, peso adequado para a idade gestacional, DNPM adequado, não tem histórico de doenças prolongadas, cirurgias ou uso prolongado de medicações. É o único filho. Seu pai mede 167 cm; sua mãe mede 145 cm e teve menarca aos 12 anos. Atualmente o paciente mede 140 cm (ver curva abaixo, onde estaturas anteriores são apresentadas), seu IMC está no percentil 25, sua envergadura é 134 cm, seu segmento inferior (púbis-pé) mede 66 cm, sua estatura sentado é de 84 cm e a relação estatura total pela estatura sentada é de 0,6. Encontra-se impúbere (G1P1). Sua idade óssea é de 12 anos. De acordo com os dados clínicos apresentados, a causa mais provável da baixa estatura deste paciente é?",
   alternativas:[{id:"A",texto:"Deficiência isolada de hormônio do crescimento."},{id:"B",texto:"Hipopituitarismo."},{id:"C",texto:"Displasia esquelética."},{id:"D",texto:"Variante da normalidade: baixa estatura constitucional."}],

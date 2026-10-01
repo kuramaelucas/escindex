@@ -99,7 +99,7 @@ const sincronizar = p => p.evaluate(async () => {
 
 test("conserto de questão da pasta dados/: a figura sobe, a correção chega à turma e o arquivo leva só ela", async () => {
   const banco = nuvemQueGuarda();
-  const QID = "q-unifesp2026-036";
+  const QID = "q-scmsp2022-011";
   const prof = await abrir(banco, { id: PROF, papel: "professor", nome: "Paula Prof" });
   const tela = await prof.pagina.evaluate(qid => {
     navigate("atualizar-questoes");
