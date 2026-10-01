@@ -20,7 +20,7 @@ const b64 = o => Buffer.from(JSON.stringify(o)).toString("base64url");
 const token = id => b64({ alg: "HS256" }) + "." + b64({ sub: id, exp: 9999999999 }) + ".assinatura";
 const CHAVES = {
   grupos: l => l.id, grupo_membros: l => l.grupo_id + "|" + l.usuario_id, subgrupos: l => l.id,
-  questoes_enviadas: l => l.id, flashcards_enviados: l => l.id,
+  questoes_enviadas: l => l.id, flashcards_enviados: l => l.id, flashcards_pessoais: l => l.id,
 };
 
 function nuvemQueGuarda(){
@@ -55,7 +55,7 @@ async function abrir(banco, { id, papel = "aluno", nome, semTabelas = false }){
         const ignorar = /ignore-duplicates/.test(req.headers()["prefer"] || "");
         for(const l of linhas){
           // o RLS de inserção: só em nome próprio (a equipe grava qualquer uma)
-          const dono = { grupos: l.criado_por, grupo_membros: l.usuario_id, subgrupos: l.criado_por, questoes_enviadas: l.autor_id, flashcards_enviados: l.autor_id }[tabela];
+          const dono = { flashcards_pessoais: l.usuario_id, grupos: l.criado_por, grupo_membros: l.usuario_id, subgrupos: l.criado_por, questoes_enviadas: l.autor_id, flashcards_enviados: l.autor_id }[tabela];
           const rodizio = tabela === "grupos" && /^rodizio-/.test(l.id) && !l.criado_por;
           if(!equipe && dono !== id && !rodizio) return rota.fulfill({ status: 403, contentType: "application/json", body: JSON.stringify({ code: "42501", message: "new row violates row-level security policy" }) });
           if(tabela === "grupo_membros" && l.status === "aprovado" && !equipe && !/^rodizio-/.test(l.grupo_id) && (banco.tabela("grupos").get(l.grupo_id) || {}).criado_por !== id)
@@ -79,6 +79,7 @@ async function abrir(banco, { id, papel = "aluno", nome, semTabelas = false }){
         if(tabela === "grupo_membros") return l.usuario_id === id || banco.doGrupo(l.grupo_id, id);
         if(tabela === "subgrupos") return banco.doGrupo(l.grupo_id, id);
         if(tabela === "questoes_enviadas") return l.grupo_id ? banco.doGrupo(l.grupo_id, id) : (l.status === "aprovada" || l.autor_id === id);
+        if(tabela === "flashcards_pessoais") return l.usuario_id === id;
         if(tabela === "flashcards_enviados") return l.grupo_id ? banco.doGrupo(l.grupo_id, id) : (l.status === "aprovado" || l.status === "removido" || l.autor_id === id);
         return false;
       };
@@ -281,4 +282,30 @@ test("banco que ainda não rodou o esquema.sql desta versão: os grupos esperam 
     assert.equal(banco.tabela("grupos").size, 0);
     assert.deepEqual(ana.erros, []);
   } finally { await ana.contexto.close(); }
+});
+
+test("cartão que o aluno cria só para si aparece nos outros aparelhos dele, e não nos dos colegas", async () => {
+  const banco = nuvemQueGuarda();
+  const celular = await abrir(banco, { id: BIA, nome: "Bia Aluna" });
+  const notebook = await abrir(banco, { id: BIA, nome: "Bia Aluna" });
+  const colega = await abrir(banco, { id: ANA, nome: "Ana Aluna" });
+  try{
+    // pelo formulário, como a pessoa faria (inclui editar e arquivar)
+    await celular.pagina.evaluate(() => {
+      abrirFormularioFlashcard(null);
+      document.getElementById("fcFrente").value = "Cartão só meu";
+      document.getElementById("fcVerso").value = "Resposta";
+      salvarFlashcard("", "");
+    });
+    await sincronizar(celular.pagina);
+    assert.equal(banco.tabela("flashcards_pessoais").size, 1);
+    await sincronizar(notebook.pagina); await sincronizar(colega.pagina);
+    assert.deepEqual(await notebook.pagina.evaluate(() => meusFlashcards(usuarioAtual().id).map(c => c.frente)), ["Cartão só meu"], "o cartão chega ao outro aparelho da mesma pessoa");
+    assert.equal(await colega.pagina.evaluate(() => (db.flashcards || []).some(c => c.frente === "Cartão só meu")), false, "e não aparece para os colegas");
+    // arquivar no celular some no notebook
+    await celular.pagina.evaluate(() => arquivarFlashcardConfirmado(meusFlashcards(usuarioAtual().id)[0].id));
+    await sincronizar(celular.pagina); await sincronizar(notebook.pagina);
+    assert.equal(await notebook.pagina.evaluate(() => meusFlashcards(usuarioAtual().id).length), 0, "arquivar chega ao outro aparelho");
+    for(const t of [celular, notebook, colega]) assert.deepEqual(t.erros, []);
+  } finally { for(const t of [celular, notebook, colega]) await t.contexto.close(); }
 });
