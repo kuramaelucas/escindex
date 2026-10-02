@@ -61,6 +61,9 @@ porque todo o resto aponta para ela):
 | `prova-iamspe-2025.js` | IAMSPE 2025 (Avança SP, Acesso Direto), prova real | 100 |
 | `prova-iamspe-2026.js` | IAMSPE 2026 (Avança SP, Acesso Direto), prova real | 100 |
 | `prova-unesp-2023.js` | UNESP (FMB) 2023 (R1 Acesso Direto), prova real | 100 |
+| `prova-famema-2022.js` | FAMEMA 2022 (Acesso Direto e Áreas Básicas), prova real, gabarito oficial | 100 |
+| `prova-famema-2023.js` | FAMEMA 2023 (R1), prova real, gabarito da edição usada | 100 |
+| `prova-famema-2025.js` | FAMEMA 2025 (Áreas Básicas e Acesso Direto), prova real, gabarito preliminar + 15 resolvidas pela equipe | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
@@ -68,8 +71,8 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **3.273 questões** (3.138 reais, de 31 provas), **943 cartões**, **238 assuntos** (todos com pelo
-menos 3 cartões da equipe) e **1 simulado**.
+Total: **3.575 questões** (3.440 reais, de 34 provas), **943 cartões**, **258 assuntos** (20 deles, abertos pelas
+provas da FAMEMA, ainda sem cartão da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
 ver `imagens/LEIA-ME.md`, que lista as 233 que ainda faltam. O resumo de tudo o que falta no banco de questões
