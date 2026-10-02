@@ -228,6 +228,18 @@ async function nuvemReenviarConfirmacao(email){
   await nuvemChamar(nuvemComRetorno("/auth/v1/resend"), { method: "POST", semToken: true,
     body: JSON.stringify({ type: "signup", email }) });
 }
+/* O e-mail do cadastro sai na APROVAÇÃO, não no pedido: antes de a
+   coordenação decidir, a pessoa não tem nada a fazer com um e-mail, e o link
+   de confirmação chegava para quem ainda não podia entrar. Com "Confirm
+   email" desligado no Supabase, o cadastro não manda nada; quando a
+   coordenação aprova, este link de acesso (o modelo "Magic Link" do
+   Supabase) funciona ao mesmo tempo como aviso de aprovação e como
+   confirmação do e-mail — tocar nele prova que o endereço é da pessoa e já
+   a traz para dentro. `create_user:false` impede de criar conta por aqui. */
+async function nuvemAvisarAprovacao(email){
+  await nuvemChamar(nuvemComRetorno("/auth/v1/otp"), { method: "POST", semToken: true,
+    body: JSON.stringify({ email, create_user: false }) });
+}
 async function nuvemPedirNovaSenha(email){
   await nuvemChamar(nuvemComRetorno("/auth/v1/recover"), { method: "POST", semToken: true,
     body: JSON.stringify({ email }) });
@@ -295,9 +307,11 @@ async function nuvemCriarConta(dados){
       data: { nome: dados.nome, matricula: dados.matricula || "", ano_faculdade: dados.anoFaculdade || "" },
     }),
   });
-  // Quando a confirmação de e-mail está desligada, o cadastro já devolve a
-  // sessão e a pessoa entra direto. Quando está ligada, ela precisa clicar
-  // no link do e-mail antes — por isso os dois casos são tratados.
+  // Com a confirmação de e-mail desligada (o recomendado: o e-mail só sai
+  // quando a coordenação aprova — ver nuvemAvisarAprovacao), o cadastro já
+  // devolve a sessão. Se o painel ainda a tiver ligada, o e-mail de
+  // confirmação sai agora e a pessoa precisa tocar nele — os dois casos
+  // continuam tratados.
   return { entrouDireto: !!(r && r.access_token), resposta: r };
 }
 

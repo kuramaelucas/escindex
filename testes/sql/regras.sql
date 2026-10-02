@@ -239,6 +239,12 @@ select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c'
 insert into flashcards_enviados(id,autor_id,autor_nome,status,dados) values ('fe3','00000000-0000-0000-0000-00000000000c','Prof C','aprovado','{"frente":"da equipe"}');   -- a equipe publica direto
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a1',false);
 select pg_temp.igual((select count(*) from flashcards_enviados where id='fe3'), 1, 'o cartão da equipe chega à turma');
+-- inscrições de push: cada pessoa só mexe nas suas
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+insert into push_inscricoes(usuario_id,endpoint,p256dh,auth) values ('00000000-0000-0000-0000-00000000000a','https://push/a','k','a');
+select pg_temp.tem_de_falhar($$insert into push_inscricoes(usuario_id,endpoint,p256dh,auth) values ('00000000-0000-0000-0000-00000000000b','https://push/b','k','a')$$, 'inscrição de push em nome de outra pessoa');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from push_inscricoes), 0, 'ninguém lê a inscrição de push de outra pessoa');
 reset role;
 
 set role anon;
@@ -250,6 +256,7 @@ select pg_temp.tem_de_falhar($$select count(*) from correcoes_questoes$$, 'visit
 select pg_temp.tem_de_falhar($$select count(*) from grupos$$, 'visitante sem login lendo grupos');
 select pg_temp.tem_de_falhar($$select count(*) from grupo_membros$$, 'visitante sem login lendo membros de grupo');
 select pg_temp.tem_de_falhar($$select count(*) from flashcards_enviados$$, 'visitante sem login lendo cartões enviados');
+select pg_temp.tem_de_falhar($$select count(*) from push_inscricoes$$, 'visitante sem login lendo inscrições de push');
 select pg_temp.tem_de_falhar($$select * from notas_do_simulado('Prova X')$$, 'visitante sem login lendo notas');
 reset role;
 \echo 'Regras de segurança: tudo como esperado.'

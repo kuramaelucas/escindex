@@ -127,6 +127,17 @@ self.addEventListener("periodicsync", evento => {
   if(evento.tag === "lembrete-meta") evento.waitUntil(talvezLembrar());
 });
 
+/* Push do servidor (hoje: pedido de acesso novo, para quem aprova cadastros).
+   O corpo é {titulo, corpo, rota, tag}; sem corpo legível, vale um texto neutro. */
+self.addEventListener("push", evento => {
+  let d = {};
+  try{ d = evento.data ? evento.data.json() : {}; }catch(e){ d = {}; }
+  evento.waitUntil(self.registration.showNotification(d.titulo || "Esc", {
+    body: d.corpo || "Há novidades na plataforma.", icon: "icones/icone-192.png", badge: "icones/icone-192.png",
+    tag: d.tag || "aviso", data: { rota: d.rota || "inicio" },
+  }));
+});
+
 self.addEventListener("notificationclick", evento => {
   evento.notification.close();
   const rota = (evento.notification.data && evento.notification.data.rota) || "inicio";
