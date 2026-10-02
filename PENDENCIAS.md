@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 03/10/2026: 3.575 questões, das quais 3.440 reais, de 34 provas.
+Situação em 05/10/2026: 3.775 questões, das quais 3.640 reais, de 36 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -13,6 +13,10 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 | Prova | O que falta | Como resolver |
 | --- | --- | --- |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
+
+### SES-SP 2022: gabarito resolvido pela equipe, não oficial
+
+O caderno entrou sem o gabarito oficial. O gabarito que veio junto (SES-SP, seleção 2023, divulgado em 01/02/2023) **não é desta prova**: confere em cerca de 1 de cada 4 questões, o acaso (a questão 5, contraindicação à trombólise, ali aparece anulada). As 100 letras foram resolvidas pela equipe e cada explicação avisa disso. Enviar o **gabarito definitivo da seleção 2022** (Quadrix, divulgado em 28/01/2022) para conferir tudo e marcar as anuladas; a 33 (hemorroidas), a 79 (mecanismo de parto) e a 89 (redução de danos) são as mais duvidosas. A questão 97 tem duas alternativas corretas pelo gráfico e foi marcada como anulada pela equipe. Se vier também o caderno da seleção 2023 (aplicação em 2022/2023, 100 questões), o gabarito recebido serve para ele.
 
 ## 2. Texto incompleto
 
@@ -34,11 +38,13 @@ Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto 
 Conferir as 100 questões contra o gabarito definitivo da banca e marcar as anuladas (a edição não informa nenhuma).
 A explicação já avisa onde a alternativa dada como certa tem imprecisão: 2023-8 (a adrenalina intramuscular é a de 1:1.000, não 1:10.000) e 2023-59 (tratamento do HIV "na fase de contágio").
 
-### FAMEMA 2022, 2023 e 2025
+### FAMEMA 2021, 2022, 2023 e 2025
+
+- **2021**: gabarito da folha oficial definitiva (95 anulada). A 51 (laqueadura) está marcada como desatualizada, porque a Lei 14.443/2022 mudou a regra, e a 17 (hérnia femoral) tem enunciado discutível.
 
 - **2022**: gabarito da folha oficial. A explicação avisa onde ele é discutível: 18 (coorte), 65 (classificação laparoscópica de Gomes), 68 (espaço do Rives-Stoppa) e 69 (sutura de Halsted).
 - **2023**: gabarito da edição em texto usada (como na UNESP), não da folha oficial; a edição não informa anuladas. Conferir com o definitivo, em especial 22, 25, 39, 45, 62 e 77, onde a explicação já avisa que o gabarito parece discutível.
-- **2025**: o caderno veio sem a folha de respostas. As letras de 1–17, 21–37, 41–57, 61–77 e 81–97 são as do gabarito preliminar da banca (conferidas pela equipe, que concordou em todas); as de **18, 19, 20, 38, 39, 40, 58, 59, 60, 78, 79, 80, 98, 99 e 100 foram resolvidas pela equipe**. A 39 (diarreia) tem duas alternativas defensáveis, a A (zinco) e a D (ciprofloxacina na disenteria). Falta o gabarito definitivo (14/01/2025) para fechar essas 15 e marcar as anuladas.
+- **2025**: as 100 letras são as do gabarito divulgado pela banca no dia da prova (as 15 que antes eram só da equipe coincidem com ele). A 39 (diarreia) tem duas alternativas defensáveis, a A (zinco) e a D (ciprofloxacina na disenteria). Falta o gabarito definitivo (14/01/2025) para marcar as anuladas.
 - **IAMSPE 2024** (Avança SP): o gabarito definitivo chegou (60 questões por especialidade, "X" marca anulada), mas **sem o caderno de questões**; falta enviar a prova para entrar no banco.
 
 ### USP-RP 2021 a 2025: gabarito vindo do PDF comentado, não da folha oficial

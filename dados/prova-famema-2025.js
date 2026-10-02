@@ -9,14 +9,12 @@
    fontes primárias, e apontam também as dicas do enunciado que levam à
    resposta. Todas as questões marcam `real: true`.
 
-   GABARITO: o caderno recebido não trazia a folha de respostas. As letras
-   das questões 1–17, 21–37, 41–57, 61–77 e 81–97 são as do gabarito
-   preliminar divulgado pela banca (conferidas, uma a uma, com a resolução
-   da equipe); as outras 15 (18, 19, 20, 38, 39, 40, 58, 59, 60, 78, 79, 80,
-   98, 99 e 100) foram resolvidas pela equipe. Conferir tudo com o gabarito
-   definitivo (14/01/2025) e anular o que a banca anulou (ver
-   ../PENDENCIAS.md). As explicações dessas questões dizem "adotada pela
-   equipe" ou "segundo a equipe".
+   GABARITO: as 100 letras são as do gabarito da prova divulgado pela banca
+   (Vunesp, caderno FMMA2403, 08/12/2024), conferidas uma a uma com a
+   resolução da equipe; as 15 que antes eram só da equipe (18, 19, 20, 38,
+   39, 40, 58, 59, 60, 78, 79, 80, 98, 99 e 100) coincidem com ele. Ainda
+   falta conferir com o gabarito definitivo (14/01/2025) e anular o que a
+   banca anulou (ver ../PENDENCIAS.md).
 
    Duas figuras (tomografia da questão 25 e cardiotocografia da 58) estão
    em dados/imagens/.
@@ -266,7 +264,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Rapaz de 27 anos relata ter sentido uma dor súbita em região inguinal esquerda e aumento de volume local ao levantar peso na academia há 1 dia e, diferentemente de outras ocasiões, não conseguiu reduzir o abaulamento, mesmo ao se deitar. Ao procurar ajuda médica, o cirur- gião constatou eritema da pele na região inguinal esquer- da e indicou cirurgia. A respeito dos princípios do tratamento cirúrgico, é cor- reto afirmar que",
   alternativas:[{id:"A",texto:"a correção de uma hérnia inguinal se beneficia de uma reconstrução que mantenha os tecidos sob ten- são, de forma que o reparo fique mais resistente."},{id:"B",texto:"na hérnia inguinal direta, o assoalho inguinal cos- tuma ser resistente, e um reparo primário usando os próprios tecidos do paciente corrige satisfatoria- mente o defeito."},{id:"C",texto:"na maioria das hérnias em adultos, quando é encon- trada uma hérnia direta, não é mandatório explorar o cordão em busca de uma possível hérnia indireta."},{id:"D",texto:"um reparo durável exige que qualquer fator agravan- te corrigível (tosse crônica, obstrução prostática, tu- mor colônico, ascite etc.) seja identificado e tratado e que o defeito seja reconstruído sem tensão."}],
   gabarito:"D",
-  explicacaoGeral:"A alternativa D está correta, segundo a equipe. Dicas do enunciado: hérnia inguinal **encarcerada** em adulto jovem após esforço (dor súbita, abaulamento irredutível, eritema): cirurgia de urgência. O reparo durável exige tratar fatores agravantes (tosse crônica, obstrução prostática, tumor colônico, ascite) e reconstruir o defeito **sem tensão** (geralmente com tela). A está errada: a tensão favorece recidiva. B está errada: no defeito direto o assoalho é fraco e o reparo primário tem mais recidiva. C está errada por afirmação duvidosa: a exploração do anel interno faz parte da boa técnica.",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: hérnia inguinal **encarcerada** em adulto jovem após esforço (dor súbita, abaulamento irredutível, eritema): cirurgia de urgência. O reparo durável exige tratar fatores agravantes (tosse crônica, obstrução prostática, tumor colônico, ascite) e reconstruir o defeito **sem tensão** (geralmente com tela). A está errada: a tensão favorece recidiva. B está errada: no defeito direto o assoalho é fraco e o reparo primário tem mais recidiva. C está errada por afirmação duvidosa: a exploração do anel interno faz parte da boa técnica.",
   explicacoesAlternativas:{},
   referencias:"HerniaSurge Group. International Guidelines for Groin Hernia Management, Hernia 2018.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -279,7 +277,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Um paciente idoso, acometido de pneumonia, evolui com piotórax parapneumônico e sepse. O empiema tem evo- lução maior que 4 semanas, sendo refratário à drenagem torácica prolongada. O tratamento mais recomendado nesta situação é:",
   alternativas:[{id:"A",texto:"toracotomia com retirada de longo segmento de um arco costal (8-10 cm) e pneumectomia segmentar."},{id:"B",texto:"drenagem aberta com remoção de segmentos curtos (3-6 cm) de uma, duas ou três costelas (procedimen- to de Eloesser)."},{id:"C",texto:"toracocentese com aspiração de líquido purulento e lavagem com enzimas fibrinolíticas."},{id:"D",texto:"antibioticoterapia endovenosa prolongada, sensível a pseudomonas, em acesso venoso central."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta, segundo a equipe. Dicas do enunciado: empiema com **mais de 4 semanas** (fase crônica, organizada), **refratário à drenagem** e paciente idoso com sepse: indica-se drenagem aberta com ressecção de segmentos curtos de costelas (**procedimento de Eloesser**), uma pleurostomia com janela. A está errada: ressecção costal longa e pneumectomia segmentar é excessiva. C está errada: toracocentese e fibrinolítico servem às fases iniciais. D está errada: antibiótico isolado não resolve coleção organizada.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: empiema com **mais de 4 semanas** (fase crônica, organizada), **refratário à drenagem** e paciente idoso com sepse: indica-se drenagem aberta com ressecção de segmentos curtos de costelas (**procedimento de Eloesser**), uma pleurostomia com janela. A está errada: ressecção costal longa e pneumectomia segmentar é excessiva. C está errada: toracocentese e fibrinolítico servem às fases iniciais. D está errada: antibiótico isolado não resolve coleção organizada.",
   explicacoesAlternativas:{},
   referencias:"Sociedade Brasileira de Pneumologia. Diretrizes de derrame pleural parapneumônico e empiema; Sabiston. Tratado de Cirurgia.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -775,7 +773,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Analise a cardiotocografia a seguir. (Imagem pessoal; arquivo utilizado com autorização) A interpretação correta é:",
   alternativas:[{id:"A",texto:"cardiotocografia tipo 1."},{id:"B",texto:"há desaceleração do tipo DIP 1."},{id:"C",texto:"a variabilidade está dentro da normalidade."},{id:"D",texto:"cardiotocografia tipo 2."}],
   gabarito:"D",
-  explicacaoGeral:"A alternativa D foi adotada pela equipe (a prova não traz gabarito oficial nesta transcrição). Dica do enunciado: o traçado de cardiotocografia mostra linha de base normal (cerca de 140 bpm) com **desacelerações que começam depois do pico da contração** (tardias), de pequena amplitude, o que a classifica no tipo **2** (suspeita), e não no tipo 1 (normal). A está errada: o tipo 1 não tem desacelerações repetidas. B está errada: o DIP I (precoce) é simultâneo à contração. C está errada: a variabilidade está reduzida.",
+  explicacaoGeral:"A alternativa D está correta. Dica do enunciado: o traçado de cardiotocografia mostra linha de base normal (cerca de 140 bpm) com **desacelerações que começam depois do pico da contração** (tardias), de pequena amplitude, o que a classifica no tipo **2** (suspeita), e não no tipo 1 (normal). A está errada: o tipo 1 não tem desacelerações repetidas. B está errada: o DIP I (precoce) é simultâneo à contração. C está errada: a variabilidade está reduzida.",
   explicacoesAlternativas:{},
   referencias:"FEBRASGO. Avaliação da vitalidade fetal; Ministério da Saúde. Diretrizes de Assistência ao Parto.",
   dificuldadeManual:"avancado", status:"ativa",
@@ -788,7 +786,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Quanto ao diagnóstico da restrição de crescimento fetal,",
   alternativas:[{id:"A",texto:"a circunferência abdominal fetal é a medida de maior sensibilidade para sua detecção."},{id:"B",texto:"a dopplervelocimetria não tem boa acurácia para a insuficiência placentária."},{id:"C",texto:"a artéria umbilical pode apresentar redução do índice de pulsatilidade em casos de RCF por insuficiência placentária."},{id:"D",texto:"em casos de restrição precoce, a hipótese mais pro- vável é a síndrome antifosfolípide."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta, segundo a equipe. Dicas: o diagnóstico de restrição de crescimento é feito por peso fetal estimado ou **circunferência abdominal abaixo do percentil 10**; a circunferência abdominal é a medida biométrica de maior sensibilidade. B está errada: a dopplervelocimetria tem boa acurácia para insuficiência placentária. C está errada: a insuficiência placentária **aumenta** o índice de pulsatilidade da artéria umbilical (diástole zero ou reversa nos casos graves). D está errada: a causa mais comum é insuficiência placentária, e a síndrome antifosfolípide é só uma das causas.",
+  explicacaoGeral:"A alternativa A está correta. Dicas: o diagnóstico de restrição de crescimento é feito por peso fetal estimado ou **circunferência abdominal abaixo do percentil 10**; a circunferência abdominal é a medida biométrica de maior sensibilidade. B está errada: a dopplervelocimetria tem boa acurácia para insuficiência placentária. C está errada: a insuficiência placentária **aumenta** o índice de pulsatilidade da artéria umbilical (diástole zero ou reversa nos casos graves). D está errada: a causa mais comum é insuficiência placentária, e a síndrome antifosfolípide é só uma das causas.",
   explicacoesAlternativas:{},
   referencias:"FEBRASGO. Restrição de crescimento fetal; ISUOG Practice Guidelines: SGA, 2020.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -801,7 +799,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Durante a segunda metade da gestação, uma queixa frequente que leva à procura pelo pronto-socorro são as contrações uterinas relatadas como “endurecimento da barriga”. Se a gestante tem menos de 36 semanas, a hi- pótese de trabalho de parto prematuro deve ser sempre afastada e medidas cabíveis devem ser tomadas. Como o médico deve proceder frente ao quadro?",
   alternativas:[{id:"A",texto:"Se tem contrações ritmadas e dilatação cervical de 1 cm com esvaecimento cervical, pode-se classificar como TPP e internar para inibição."},{id:"B",texto:"Se apresenta contrações ritmadas e dilatação de 5 cm, deve-se realizar a corticoterapia e sulfato de magnésio para neuroproteção."},{id:"C",texto:"Se ao toque há dilatação de 3 cm e saída de líquido amniótico, introduz-se antibioticoprofilaxia e cesaria- na de urgência."},{id:"D",texto:"Se o colo é impérvio, classifica-se como útero irritá- vel e indica-se a inibina via oral."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A foi adotada pela equipe (sem gabarito oficial na transcrição). Dicas do enunciado: gestante com **menos de 36 semanas** e contrações ritmadas: o diagnóstico de trabalho de parto prematuro exige contrações regulares com modificação cervical (dilatação ≥ 1 cm ou esvaecimento significativo), e nesse caso interna-se para tocólise e uso de corticoide. B está errada: com 5 cm de dilatação a tocólise não é usada, mas a alternativa omite a conduta correta de parto. C está errada: rotura de membranas com dilatação não exige cesariana de urgência por si só. D está errada: o colo impérvio com contrações define falso trabalho, e não se usa \"inibina\".",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: gestante com **menos de 36 semanas** e contrações ritmadas: o diagnóstico de trabalho de parto prematuro exige contrações regulares com modificação cervical (dilatação ≥ 1 cm ou esvaecimento significativo), e nesse caso interna-se para tocólise e uso de corticoide. B está errada: com 5 cm de dilatação a tocólise não é usada, mas a alternativa omite a conduta correta de parto. C está errada: rotura de membranas com dilatação não exige cesariana de urgência por si só. D está errada: o colo impérvio com contrações define falso trabalho, e não se usa \"inibina\".",
   explicacoesAlternativas:{},
   referencias:"FEBRASGO. Trabalho de parto prematuro; ACOG Practice Bulletin 171.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -1035,7 +1033,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"As Infecções Sexualmente Transmissíveis (IST) são cau- sadas por vírus, bactérias ou outros microrganismos. Elas são transmitidas, principalmente, por meio do con- tato sexual (oral, vaginal, anal) sem o uso de camisinha masculina ou feminina, com uma pessoa que esteja in- fectada. A vacina seria um recurso importante para pre- venir essas infecções. Existe vacina contra a seguinte IST:",
   alternativas:[{id:"A",texto:"tricomoníase."},{id:"B",texto:"sífilis."},{id:"C",texto:"HIV."},{id:"D",texto:"hepatite B."}],
   gabarito:"D",
-  explicacaoGeral:"A alternativa D está correta, segundo a equipe. A hepatite B é IST com vacina eficaz (e disponível no SUS), assim como a hepatite A e o HPV. Tricomoníase, sífilis e HIV não têm vacina disponível.",
+  explicacaoGeral:"A alternativa D está correta. A hepatite B é IST com vacina eficaz (e disponível no SUS), assim como a hepatite A e o HPV. Tricomoníase, sífilis e HIV não têm vacina disponível.",
   explicacoesAlternativas:{},
   referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação; PCDT para Atenção Integral às Pessoas com IST, 2022.",
   dificuldadeManual:"fundamental", status:"ativa",
@@ -1048,7 +1046,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"O principal critério a ser considerado na avaliação com classificação de risco nos serviços de saúde é",
   alternativas:[{id:"A",texto:"necessidade do usuário."},{id:"B",texto:"idade."},{id:"C",texto:"hora de chegada."},{id:"D",texto:"diagnóstico."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta, segundo a equipe: o acolhimento com classificação de risco prioriza o atendimento pela **necessidade** (gravidade e risco) do usuário. A ordem de chegada (C), a idade (B, exceto prioridades legais) e o diagnóstico (D) não são o critério principal.",
+  explicacaoGeral:"A alternativa A está correta: o acolhimento com classificação de risco prioriza o atendimento pela **necessidade** (gravidade e risco) do usuário. A ordem de chegada (C), a idade (B, exceto prioridades legais) e o diagnóstico (D) não são o critério principal.",
   explicacoesAlternativas:{},
   referencias:"Brasil. Ministério da Saúde. Política Nacional de Humanização: Acolhimento com Classificação de Risco.",
   dificuldadeManual:"fundamental", status:"ativa",
@@ -1061,7 +1059,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Geo-helmintíases são doenças causadas por vermes que se desenvolvem no intestino humano e completam parte do seu ciclo de vida no solo. Com base nesse contexto, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Insetos são os principais vetores, pois carregam ovos dos geo-helmintos presentes nas fezes huma- nas que contaminam alimentos expostos."},{id:"B",texto:"A “lombriga” e o “verme chicote” podem ser contraí- dos após a ingestão dos ovos desses parasitas, mas o principal modo de transmissão é a penetração das larvas pela pele."},{id:"C",texto:"O “amarelão” é contraído mais frequentemente pela penetração das larvas dos vermes na pele de quem anda descalço em solo contaminado."},{id:"D",texto:"A “lombriga” e o “amarelão” são doenças cuja trans- missão se dá por penetração de larvas pela pele. S M aúde ental"}],
   gabarito:"C",
-  explicacaoGeral:"A alternativa C está correta, segundo a equipe: o \"amarelão\" (ancilostomíase) é contraído principalmente pela **penetração das larvas pela pele** de quem anda descalço em solo contaminado. A está errada: insetos não são os principais vetores. B está errada: a \"lombriga\" (*Ascaris*) e o \"verme chicote\" (*Trichuris*) são adquiridos por ingestão de ovos, e não por penetração de larvas. D está errada porque a lombriga não penetra pela pele.",
+  explicacaoGeral:"A alternativa C está correta: o \"amarelão\" (ancilostomíase) é contraído principalmente pela **penetração das larvas pela pele** de quem anda descalço em solo contaminado. A está errada: insetos não são os principais vetores. B está errada: a \"lombriga\" (*Ascaris*) e o \"verme chicote\" (*Trichuris*) são adquiridos por ingestão de ovos, e não por penetração de larvas. D está errada porque a lombriga não penetra pela pele.",
   explicacoesAlternativas:{},
   referencias:"Brasil. Ministério da Saúde. Plano de Ação para Controle das Geo-helmintíases, 2012.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -1295,7 +1293,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"É possível realizar o desmame da ventilação mecânica uma vez que o paciente tenha tido resolução do motivo que o levou à intubação, apresente tosse e drive respira- tório adequados e",
   alternativas:[{id:"A",texto:"estabilidade hemodinâmica, com FC < 140 bpm sem vasopressor."},{id:"B",texto:"pontuação na escala de Glasgow > 12."},{id:"C",texto:"PEEP ≤ 5-9 mmHg."},{id:"D",texto:"relação PO /FIO ≥ 140. 2 2"}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A foi adotada pela equipe (sem gabarito oficial na transcrição). Dicas do enunciado: critérios de desmame: resolução da causa, **tosse e drive respiratório adequados** e estabilidade hemodinâmica (**FC < 140 bpm**, sem vasopressor ou em dose baixa). Os outros valores são ligeiramente diferentes dos critérios: Glasgow ≥ 13, PEEP ≤ 5 a 8 cmH₂O (a unidade correta é cmH₂O) e relação PaO₂/FiO₂ ≥ 150 a 200.",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: critérios de desmame: resolução da causa, **tosse e drive respiratório adequados** e estabilidade hemodinâmica (**FC < 140 bpm**, sem vasopressor ou em dose baixa). Os outros valores são ligeiramente diferentes dos critérios: Glasgow ≥ 13, PEEP ≤ 5 a 8 cmH₂O (a unidade correta é cmH₂O) e relação PaO₂/FiO₂ ≥ 150 a 200.",
   explicacoesAlternativas:{},
   referencias:"Associação de Medicina Intensiva Brasileira. Diretrizes Brasileiras de Ventilação Mecânica, 2013.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -1308,7 +1306,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Jardineiro de 30 anos é atacado por enxame de abelhas. Chega à unidade de emergência com hipotensão, taqui- cardia, além de vômitos e dor abdominal. No momento, está indicado o uso de adrenalina",
   alternativas:[{id:"A",texto:"EV 0,1 mg."},{id:"B",texto:"EV 1 mg."},{id:"C",texto:"IM 0,5 mg."},{id:"D",texto:"SC 0,5 mg."}],
   gabarito:"C",
-  explicacaoGeral:"A alternativa C está correta, segundo a equipe. Dicas do enunciado: **picada múltipla de abelhas**, **hipotensão, taquicardia, vômitos e dor abdominal** (envolvimento de múltiplos sistemas): anafilaxia. A adrenalina é a primeira droga, por via **intramuscular** na face anterolateral da coxa, na dose de **0,5 mg** em adultos (0,01 mg/kg). A (EV 0,1 mg) é para parada ou refratária em infusão controlada. B (EV 1 mg) é dose de parada cardíaca. D (subcutânea) tem absorção pior.",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **picada múltipla de abelhas**, **hipotensão, taquicardia, vômitos e dor abdominal** (envolvimento de múltiplos sistemas): anafilaxia. A adrenalina é a primeira droga, por via **intramuscular** na face anterolateral da coxa, na dose de **0,5 mg** em adultos (0,01 mg/kg). A (EV 0,1 mg) é para parada ou refratária em infusão controlada. B (EV 1 mg) é dose de parada cardíaca. D (subcutânea) tem absorção pior.",
   explicacoesAlternativas:{},
   referencias:"WAO. Anaphylaxis Guidance, 2020; Associação Brasileira de Alergia e Imunologia. Guia prático de anafilaxia.",
   dificuldadeManual:"fundamental", status:"ativa",
@@ -1321,7 +1319,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   enunciado:"Paciente de 15 anos sofre um afogamento. Com relação ao tratamento da hipotermia, que geral- mente acompanha esse quadro, é correto afirmar que, no grau",
   alternativas:[{id:"A",texto:"1, o tratamento preferencial é passivo, com ambiente aquecido, cobertores e retirada da roupa molhada."},{id:"B",texto:"2, o tratamento preferencial é passivo, com ambiente aquecido, cobertores e fluidos parenterais aquecidos."},{id:"C",texto:"3, o tratamento preferencial é feito com ECMO."},{id:"D",texto:"4, o tratamento preferencial é feito com toracotomia para aquecimento inicial da caixa torácica."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta, segundo a equipe. Pela classificação suíça de hipotermia, o **grau 1** (consciente, com tremores, temperatura de 35 a 32 ºC) é tratado com aquecimento **passivo** (ambiente aquecido, cobertores e retirada da roupa molhada). B está errada: no grau 2 (32 a 28 ºC, sem tremores, consciência alterada) o tratamento é ativo externo e fluidos aquecidos. C está errada: o grau 3 (inconsciente, < 28 ºC) demanda cuidados avançados, e o ECMO é reservado aos graus 3 e 4 com instabilidade. D está errada: toracotomia não é a primeira opção no grau 4 (parada).",
+  explicacaoGeral:"A alternativa A está correta. Pela classificação suíça de hipotermia, o **grau 1** (consciente, com tremores, temperatura de 35 a 32 ºC) é tratado com aquecimento **passivo** (ambiente aquecido, cobertores e retirada da roupa molhada). B está errada: no grau 2 (32 a 28 ºC, sem tremores, consciência alterada) o tratamento é ativo externo e fluidos aquecidos. C está errada: o grau 3 (inconsciente, < 28 ºC) demanda cuidados avançados, e o ECMO é reservado aos graus 3 e 4 com instabilidade. D está errada: toracotomia não é a primeira opção no grau 4 (parada).",
   explicacoesAlternativas:{},
   referencias:"Brown DJA et al. Accidental Hypothermia, N Engl J Med 2012; Swiss Staging of Hypothermia.",
   dificuldadeManual:"avancado", status:"ativa",
