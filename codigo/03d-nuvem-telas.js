@@ -126,7 +126,7 @@ async function nuvemCadastrarPelaTela(dados){
     const r = await nuvemCriarConta(dados);
     nuvemSair();
     if(r.entrouDireto){
-      toast("Conta criada! Ela precisa ser aprovada pela coordenação antes do primeiro acesso.");
+      toast("Cadastro enviado! Quando a coordenação aprovar, você recebe um e-mail com o link para entrar.");
       navigate("login");
     }else{
       // a confirmação de e-mail está ligada: a tela diz o que fazer agora,
@@ -282,12 +282,21 @@ async function nuvemDecidirCadastro(idPerfil, status){
       headers: { "Prefer": "return=minimal" },
       body: JSON.stringify({ status }),
     });
+    const perfil = (nuvemCadastrosPendentes || []).find(p => p.id === idPerfil);
     nuvemCadastrosPendentes = (nuvemCadastrosPendentes || []).filter(p => p.id !== idPerfil);
+    // a aprovação é decidida e gravada primeiro; o e-mail é só o aviso — se
+    // falhar (limite de envios, sem e-mail no perfil), a pessoa já está
+    // liberada e a coordenação é avisada de que precisa dizer a ela
+    let emailEnviado = false;
+    if(status === "aprovado" && perfil && perfil.email){
+      try{ await nuvemAvisarAprovacao(perfil.email); emailEnviado = true; }catch(e){ /* tratado no aviso abaixo */ }
+    }
     // dizer PARA ONDE a pessoa foi: sair desta lista sem reaparecer em lugar
     // nenhum era exatamente o que parecia exclusão
     toast(status === "aprovado"
       ? "Cadastro aprovado — a pessoa já pode entrar e agora aparece na lista de usuários, logo abaixo."
-      : "Cadastro recusado. Ele continua na lista de usuários, como recusado.");
+        + (emailEnviado ? " Enviamos um e-mail com o link de acesso." : " Não foi possível mandar o e-mail de aprovação: avise a pessoa de que já pode entrar.")
+      : "Cadastro recusado. Ele continua na lista de usuários, como recusado.", status === "aprovado" && !emailEnviado ? "err" : undefined);
     if(nuvemUsuarios !== null) nuvemBuscarUsuarios();
     render();
   }catch(e){
@@ -310,6 +319,7 @@ async function nuvemDecidirCadastro(idPerfil, status){
    vale o mesmo para os cadastros feitos neste navegador. */
 const PEDIDOS_DE_ACESSO_INTERVALO_MS = 2 * 60 * 1000;
 let _pedidosDeAcesso = { usuarioId: null, em: 0 };
+let _pushRenovadoPara = null;
 
 function podeAprovarCadastros(u){ return podeAdmin("cadastros", u); }
 // os da nuvem (quando já buscados) e os deste navegador, sem repetir ninguém
@@ -337,6 +347,10 @@ async function checarPedidosDeAcesso(){
   const agora = pendentes.map(p => p.id);
   if(JSON.stringify(agora) !== JSON.stringify(u.cadastrosAvisados || [])){ u.cadastrosAvisados = agora; saveState(); }
   atualizarMenuLateral();
+  // a inscrição de push muda de endereço de vez em quando: renova uma vez por sessão
+  if(!u.avisoCadastrosDesligado && _pushRenovadoPara !== u.id && notificacaoDisponivel() && Notification.permission === "granted"){
+    _pushRenovadoPara = u.id; nuvemAssinarPush();
+  }
   if(!novos.length) return;
   if(state.route === "painel-turma" || state.route === "inicio") render();
   const texto = novos.length === 1
@@ -357,13 +371,57 @@ function vigiarPedidosDeAcesso(){
   _pedidosDeAcesso = { usuarioId: u.id, em: agora };
   checarPedidosDeAcesso();
 }
+/* AVISO COM O APP FECHADO. A fila conferida a cada dois minutos só existe com
+   o Esc aberto; para o pedido chegar "na hora" no celular com o app
+   instalado, o navegador precisa de uma inscrição de push guardada na nuvem
+   (tabela push_inscricoes) e de um servidor que a use — a função
+   `avisar-pedido` do Supabase, disparada quando nasce um perfil pendente
+   (nuvem/LEIA-ME.md). Sem a chave pública (CONFIG.nuvem.vapidPublica) ou sem
+   suporte do navegador, nada disto roda e fica o aviso de antes. */
+function pushDisponivel(){
+  return !!(CONFIG.nuvem && CONFIG.nuvem.vapidPublica) && nuvemConectado() && podeTerServiceWorker()
+    && "PushManager" in window && notificacaoDisponivel();
+}
+function _chaveVapidEmBytes(b64){
+  const bruto = atob((b64 + "=".repeat((4 - b64.length % 4) % 4)).replace(/-/g, "+").replace(/_/g, "/"));
+  return Uint8Array.from(bruto, c => c.charCodeAt(0));
+}
+async function nuvemAssinarPush(){
+  if(!pushDisponivel() || Notification.permission !== "granted") return false;
+  try{
+    const reg = await navigator.serviceWorker.ready;
+    const sub = (await reg.pushManager.getSubscription())
+      || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: _chaveVapidEmBytes(CONFIG.nuvem.vapidPublica) });
+    const j = sub.toJSON();
+    await nuvemChamar("/rest/v1/push_inscricoes?on_conflict=usuario_id,endpoint", {
+      method: "POST",
+      headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+      body: JSON.stringify({ usuario_id: nuvemSessao.usuarioId, endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth }),
+    });
+    return true;
+  }catch(e){ return false; }             // tabela ainda não criada, sem rede ou push recusado: fica o aviso comum
+}
+async function nuvemCancelarPush(){
+  if(!pushDisponivel()) return;
+  try{
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.getSubscription();
+    if(!sub) return;
+    await nuvemChamar("/rest/v1/push_inscricoes?usuario_id=eq." + encodeURIComponent(nuvemSessao.usuarioId)
+      + "&endpoint=eq." + encodeURIComponent(sub.endpoint), { method: "DELETE", headers: { "Prefer": "return=minimal" } });
+    await sub.unsubscribe();
+  }catch(e){ /* sem rede: a inscrição inútil é limpa pela função quando o navegador a recusar */ }
+}
 function ativarNotificacaoPedidosDeAcesso(){
   if(!notificacaoDisponivel()){ toast("Este navegador não mostra notificações do sistema. O aviso continua na tela e no menu.", "err"); return; }
-  Notification.requestPermission().then(perm => {
+  Notification.requestPermission().then(async perm => {
     const u = usuarioAtual();
     if(perm === "granted"){
       delete u.avisoCadastrosDesligado; saveState();
-      toast("Pronto: com o Esc aberto em outra aba ou janela, um pedido de acesso novo também aparece como notificação.");
+      const comPush = await nuvemAssinarPush();
+      toast(comPush
+        ? "Pronto: um pedido de acesso novo chega como notificação no aparelho, mesmo com o app fechado."
+        : "Pronto: com o Esc aberto em outra aba ou janela, um pedido de acesso novo também aparece como notificação.");
     }else{
       toast("O navegador não deu permissão para notificações. O aviso continua na tela e no menu.", "err");
     }
@@ -373,6 +431,7 @@ function ativarNotificacaoPedidosDeAcesso(){
 function desativarNotificacaoPedidosDeAcesso(){
   const u = usuarioAtual();
   u.avisoCadastrosDesligado = true; saveState();
+  nuvemCancelarPush();
   toast("Notificação do sistema desligada. O aviso na tela e o número no menu continuam.");
   render();
 }
@@ -382,7 +441,7 @@ function renderCardAvisoPedidosDeAcesso(){
   const ligado = permitido && !u.avisoCadastrosDesligado;
   return `<div class="card mb-2">
     <div class="card-title">${iconeSvg("alert")} Avisos de novos pedidos</div>
-    <p class="text-sm muted">Sempre que alguém pede acesso, o Esc avisa na tela e mostra o número no menu, ao lado de Turma — a fila é conferida a cada dois minutos enquanto o Esc está aberto.</p>
+    <p class="text-sm muted">Sempre que alguém pede acesso, o Esc avisa na tela e mostra o número no menu, ao lado de Turma — a fila é conferida a cada dois minutos enquanto o Esc está aberto. Com o app instalado e a notificação ligada, o aviso chega no aparelho assim que o pedido é feito, mesmo com o app fechado.</p>
     ${!notificacaoDisponivel() ? `<p class="text-xs muted mt-1">Este navegador não mostra notificações do sistema.</p>`
       : ligado ? `<p class="text-sm mt-1">${iconeSvg("check")} Notificação do sistema <strong>ligada</strong>: com o Esc aberto em outra aba ou janela, o pedido novo também aparece como notificação.</p>
         <button class="btn btn-ghost btn-sm mt-1" onclick="desativarNotificacaoPedidosDeAcesso()">Desligar a notificação do sistema</button>`

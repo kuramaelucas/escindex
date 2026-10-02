@@ -1164,6 +1164,36 @@ end;
 $$;
 
 -- ---------------------------------------------------------------------------
+-- 14-B. INSCRIÇÕES DE PUSH — avisar quem aprova cadastros, com o app fechado
+-- ---------------------------------------------------------------------------
+-- Cada aparelho que liga a notificação de "novo pedido de acesso" guarda aqui
+-- o endereço que o navegador deu para receber push. Cada pessoa grava, lê e
+-- apaga só as suas; quem LÊ todas é a função `avisar-pedido` (nuvem/LEIA-ME.md),
+-- que roda com a chave service_role fora do site.
+create table if not exists public.push_inscricoes (
+  usuario_id    uuid        not null references auth.users(id) on delete cascade,
+  endpoint      text        not null,
+  p256dh        text        not null,
+  auth          text        not null,
+  atualizado_em timestamptz not null default now(),
+  primary key (usuario_id, endpoint)
+);
+create index if not exists push_inscricoes_sync_idx on public.push_inscricoes (atualizado_em);
+alter table public.push_inscricoes enable row level security;
+drop policy if exists push_inscricoes_ler     on public.push_inscricoes;
+drop policy if exists push_inscricoes_criar   on public.push_inscricoes;
+drop policy if exists push_inscricoes_alterar on public.push_inscricoes;
+drop policy if exists push_inscricoes_excluir on public.push_inscricoes;
+create policy push_inscricoes_ler on public.push_inscricoes
+  for select to authenticated using (usuario_id = auth.uid());
+create policy push_inscricoes_criar on public.push_inscricoes
+  for insert to authenticated with check (usuario_id = auth.uid());
+create policy push_inscricoes_alterar on public.push_inscricoes
+  for update to authenticated using (usuario_id = auth.uid()) with check (usuario_id = auth.uid());
+create policy push_inscricoes_excluir on public.push_inscricoes
+  for delete to authenticated using (usuario_id = auth.uid());
+
+-- ---------------------------------------------------------------------------
 -- 15. PERMISSÕES DE TABELA
 -- ---------------------------------------------------------------------------
 -- O RLS filtra linha a linha; o GRANT diz quem pode sequer tentar. Quem está
@@ -1172,6 +1202,7 @@ $$;
 -- depois do login.
 grant usage on schema public to authenticated;
 grant select, insert, update on all tables in schema public to authenticated;
+grant delete on public.push_inscricoes to authenticated;
 
 -- Visitante sem login (anon) não fala com estas tabelas de jeito nenhum. As
 -- políticas acima já só valem para "authenticated", mas o Supabase costuma
@@ -1186,7 +1217,7 @@ begin
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
     'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
     'feedbacks', 'correcoes_questoes', 'avisos',
-    'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados'
+    'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados', 'push_inscricoes'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);
   end loop;

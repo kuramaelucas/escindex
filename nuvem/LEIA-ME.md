@@ -107,9 +107,14 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 Em **Authentication > Providers > Email** (em alguns painéis, *Sign In /
 Providers*):
 
-- **Confirm email**: ligado, a pessoa precisa tocar num link no e-mail antes
-  do primeiro acesso. **Recomendado**: garante que o e-mail existe e é de
-  quem se cadastrou (é para ele que vai o "esqueci a senha").
+- **Confirm email**: **desligado** (recomendado). O cadastro não manda
+  e-mail nenhum: a pessoa fica pendente e só recebe e-mail quando a
+  coordenação **aprova** — um link de acesso (modelo **Magic Link**, em
+  *Authentication > Emails > Templates*; vale reescrevê-lo como "Seu cadastro
+  foi aprovado", mantendo o `{{ .ConfirmationURL }}`) que serve de aviso de
+  aprovação e, ao ser tocado, confirma o endereço e já entra no Esc. Com
+  *Confirm email* ligado o comportamento antigo continua: o e-mail de
+  confirmação sai no pedido, antes da aprovação.
 - **Minimum password length**: 6 é o mínimo aceito pela tela de cadastro.
 
 Em **Authentication > URL Configuration** — é isto que faz o link do e-mail
@@ -130,7 +135,7 @@ endereço, apaga o token dele na hora e mostra a tela certa:
 
 | O link era de… | O que a pessoa vê |
 |---|---|
-| confirmação do cadastro | "E-mail confirmado — agora falta a coordenação aprovar" (ou entra direto, se já aprovada) |
+| link de acesso enviado na aprovação (ou confirmação do cadastro, se *Confirm email* estiver ligado) | entra direto se o cadastro está aprovado; senão, "E-mail confirmado — agora falta a coordenação aprovar" |
 | "esqueci a senha" | a tela para escolher a senha nova |
 | um link vencido ou já usado | "Este link não vale mais", com os botões para pedir outro |
 
@@ -140,6 +145,27 @@ cadastra, preencha `CONFIG.nuvem.enderecoDoSite` em `codigo/01-config.js`.
 Os textos dos e-mails ficam em **Authentication > Emails > Templates**. Vale
 traduzir o de *Confirm signup* e o de *Reset password* (mantendo o
 `{{ .ConfirmationURL }}`, que é o link).
+
+### 3-B. Avisar a coordenação por push quando chega um pedido (opcional)
+
+Sem isto, quem aprova cadastros é avisado enquanto o Esc está aberto (a fila é
+conferida a cada dois minutos). Com isto, o aviso chega **na hora**, como
+notificação no aparelho com o app instalado, mesmo com ele fechado:
+
+1. Gere o par de chaves (uma vez): `npx web-push generate-vapid-keys`.
+2. Cole a **pública** em `CONFIG.nuvem.vapidPublica` (`codigo/01-config.js`).
+3. No Supabase, instale a função `nuvem/funcoes/avisar-pedido`
+   (`supabase functions deploy avisar-pedido --no-verify-jwt`) e cadastre os
+   segredos: `VAPID_PUBLICA`, `VAPID_PRIVADA` (a privada fica só aqui, nunca em
+   arquivo do site), `VAPID_ASSUNTO` (`mailto:seu@email`) e `AVISO_SEGREDO`
+   (qualquer texto longo).
+4. Em **Database > Webhooks**, crie um webhook na tabela `perfis`, evento
+   **Insert**, tipo *Supabase Edge Functions* → `avisar-pedido`, com o
+   cabeçalho `x-esc-segredo` igual a `AVISO_SEGREDO`.
+5. Cada administrador (máster ou coordenação) abre o Esc instalado, vai em
+   Turma > Cadastros e usuários e toca em **Receber também como notificação do
+   sistema** — uma vez por aparelho. Rode o `esquema.sql` de novo (cria
+   `push_inscricoes`).
 
 ### 4. Colar os dois valores em `codigo/01-config.js`
 

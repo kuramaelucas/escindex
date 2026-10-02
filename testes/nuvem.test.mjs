@@ -241,3 +241,20 @@ test("destaque de texto sobe para a nuvem, e desmarcar sobe como removido", asyn
   assert.deepEqual(erros, []);
   await contexto.close();
 });
+
+test("aprovar um cadastro manda o e-mail de acesso à pessoa, e recusar não manda", async () => {
+  const sessao = { token: TOKEN, refresh: "r1", usuarioId: ID, email: "adm@turma.br" };
+  const { pagina, contexto, pedidos, erros } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado", "admin"), sessao });
+  await pagina.evaluate(async () => {
+    const p = id => ({ id, nome: "Quem Pediu", email: id + "@turma.br", status: "pendente" });
+    nuvemCadastrosPendentes = [p("aprovada"), p("recusada")];
+    await nuvemDecidirCadastro("aprovada", "aprovado");
+    await nuvemDecidirCadastro("recusada", "rejeitado");
+  });
+  const emails = pedidos.filter(p => p.caminho === "/auth/v1/otp");
+  assert.equal(emails.length, 1, "só a aprovação manda e-mail");
+  assert.deepEqual(JSON.parse(emails[0].corpo), { email: "aprovada@turma.br", create_user: false });
+  assert.equal(new URLSearchParams(emails[0].busca).get("redirect_to"), srv.url + "index.html");
+  assert.deepEqual(erros, []);
+  await contexto.close();
+});
