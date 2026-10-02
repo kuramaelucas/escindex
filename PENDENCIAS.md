@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 29/09/2026: 3.273 questões, das quais 3.138 reais, de 31 provas.
+Situação em 03/10/2026: 3.575 questões, das quais 3.440 reais, de 34 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -33,6 +33,13 @@ Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto 
 
 Conferir as 100 questões contra o gabarito definitivo da banca e marcar as anuladas (a edição não informa nenhuma).
 A explicação já avisa onde a alternativa dada como certa tem imprecisão: 2023-8 (a adrenalina intramuscular é a de 1:1.000, não 1:10.000) e 2023-59 (tratamento do HIV "na fase de contágio").
+
+### FAMEMA 2022, 2023 e 2025
+
+- **2022**: gabarito da folha oficial. A explicação avisa onde ele é discutível: 18 (coorte), 65 (classificação laparoscópica de Gomes), 68 (espaço do Rives-Stoppa) e 69 (sutura de Halsted).
+- **2023**: gabarito da edição em texto usada (como na UNESP), não da folha oficial; a edição não informa anuladas. Conferir com o definitivo, em especial 22, 25, 39, 45, 62 e 77, onde a explicação já avisa que o gabarito parece discutível.
+- **2025**: o caderno veio sem a folha de respostas. As letras de 1–17, 21–37, 41–57, 61–77 e 81–97 são as do gabarito preliminar da banca (conferidas pela equipe, que concordou em todas); as de **18, 19, 20, 38, 39, 40, 58, 59, 60, 78, 79, 80, 98, 99 e 100 foram resolvidas pela equipe**. A 39 (diarreia) tem duas alternativas defensáveis, a A (zinco) e a D (ciprofloxacina na disenteria). Falta o gabarito definitivo (14/01/2025) para fechar essas 15 e marcar as anuladas.
+- **IAMSPE 2024** (Avança SP): o gabarito definitivo chegou (60 questões por especialidade, "X" marca anulada), mas **sem o caderno de questões**; falta enviar a prova para entrar no banco.
 
 ### USP-RP 2021 a 2025: gabarito vindo do PDF comentado, não da folha oficial
 
