@@ -188,6 +188,9 @@ let _telaDesenhada = null;
 
 function render(){
   const app = document.getElementById("app");
+  // o modo foco só existe dentro da sessão: qualquer outra tela o desliga
+  if(state.modoFoco && state.route!=="sessao") state.modoFoco = false;
+  if(!state.modoFoco) document.body.classList.remove("modo-foco");
   const rotasPublicas = ["landing","login","cadastro","retorno-email"];
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
   if(usuarioAtual() && rotasPublicas.includes(state.route)) state.route = "inicio";
@@ -292,6 +295,7 @@ function desenharTela(conteudoHtml){
     app.innerHTML = renderShell(conteudoHtml);
   }
   _telaDesenhada = { rota: state.route, chave };
+  document.body.classList.toggle("modo-foco", !!state.modoFoco && state.route==="sessao");
   ativarGestoDeArrastar();
   // a barra fina de questões (sessão e simulado) mostra a questão atual no meio
   centralizarBarraDeQuestoes();

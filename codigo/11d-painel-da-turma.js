@@ -208,7 +208,7 @@ function renderPainelDaTurma(){
   carregarPainelTurma(false);
   const f = filtrosPainelTurma();
   const pd = state.filtroRota.painelDados || {};
-  if(pd.erro) return `<div class="card" style="border-color:var(--danger)"><div class="card-title">${iconeSvg("alert")} Não deu para carregar</div><p class="text-sm">${escapeHtml(pd.erro)}</p><button class="btn btn-secondary btn-sm mt-2" onclick="carregarPainelTurma(true); render()">Tentar de novo</button></div>`;
+  if(pd.erro) return `<div class="card borda-perigo"><div class="card-title">${iconeSvg("alert")} Não deu para carregar</div><p class="text-sm">${escapeHtml(pd.erro)}</p><button class="btn btn-secondary btn-sm mt-2" onclick="carregarPainelTurma(true); render()">Tentar de novo</button></div>`;
   if(!pd.dados) return `<div class="card"><p class="text-sm muted">Carregando os números da turma…</p></div>`;
 
   const dados = pd.dados;
@@ -309,8 +309,8 @@ function renderPainelDaTurma(){
     <div class="card-title">Ano a ano</div>
     <div class="table-wrap"><table>
       <thead><tr><th>Ano</th><th>Alunos</th><th>Ativos (7 dias)</th><th>Questões/aluno (30 dias)</th><th>Acerto médio (30 dias)</th><th>Acerto médio geral</th><th>Cartões (30 dias)</th><th>Simulados feitos</th></tr></thead>
-      <tbody>${linhasAnos.map(l => `<tr style="cursor:pointer" onclick="mudarFiltroPainelTurma('ano', ${escapeHtml(JSON.stringify(l.ano))})">
-        <td class="text-sm" style="font-weight:600">${escapeHtml(l.ano)}</td><td class="text-sm">${l.n}</td>
+      <tbody>${linhasAnos.map(l => `<tr class="clicavel" onclick="mudarFiltroPainelTurma('ano', ${escapeHtml(JSON.stringify(l.ano))})">
+        <td class="text-sm peso-600">${escapeHtml(l.ano)}</td><td class="text-sm">${l.n}</td>
         <td class="text-sm">${l.ativos} <span class="text-xs muted">${l.n?pct(l.ativos,l.n)+"%":""}</span></td>
         <td class="text-sm">${l.n?Math.round(l.r30/l.n):0}</td>
         <td>${l.media ? badgeTaxa(l.media.a30, l.media.r30) : '<span class="text-xs muted" title="'+escapeHtml(motivoSemMedia)+'">—</span>'}</td>
@@ -320,7 +320,7 @@ function renderPainelDaTurma(){
   </div>` : ""}
 
   ${!naEquipe && linhasTurmas.length ? `<details class="secao-expansivel" ${secaoAbertaPainel("turmas")?"open":""} ontoggle="guardarSecaoPainel('turmas', this.open)">
-    <summary><span class="card-title" style="margin:0">Por turma</span><span class="text-xs muted">${linhasTurmas.length} turma(s)</span></summary>
+    <summary><span class="card-title sem-m">Por turma</span><span class="text-xs muted">${linhasTurmas.length} turma(s)</span></summary>
     <div class="secao-corpo">
     <p class="text-xs muted">Cada turma do rodízio ("Grupo A", "Grupo B"…) e quem ainda não escolheu turma. O acerto médio só aparece com ${CONFIG.minAlunosParaMedia} alunos ou mais respondendo: com menos, seria o acerto de uma pessoa.</p>
     <div class="table-wrap mt-1"><table>
@@ -354,10 +354,10 @@ function renderPainelDaTurma(){
   </div>`}
 
   <details class="secao-expansivel" ${secaoAbertaPainel("pessoas")?"open":""} ontoggle="guardarSecaoPainel('pessoas', this.open)">
-    <summary><span class="card-title" style="margin:0">${naEquipe ? "Equipe" : "Alunos "+(f.ano==="todos"?"":"do "+escapeHtml(f.ano))}</span><span class="text-xs muted">${lista.length} ${naEquipe ? "pessoa(s)" : "aluno(s)"}${parados?` · ${parados} parado(s)`:""}</span></summary>
+    <summary><span class="card-title sem-m">${naEquipe ? "Equipe" : "Alunos "+(f.ano==="todos"?"":"do "+escapeHtml(f.ano))}</span><span class="text-xs muted">${lista.length} ${naEquipe ? "pessoa(s)" : "aluno(s)"}${parados?` · ${parados} parado(s)`:""}</span></summary>
     <div class="secao-corpo">
-    <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
-      <div class="flex gap-1 items-center" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center quebra-gap">
+      <div class="flex gap-1 items-center quebra">
         <input class="input" style="max-width:220px" placeholder="Buscar por nome ou e-mail" value="${escapeHtml(f.busca||"")}" onchange="mudarFiltroPainelTurma('busca', this.value)">
         <select class="select" style="max-width:220px" onchange="mudarFiltroPainelTurma('ordem', this.value)">
           <option value="ultimo" ${!ordens[f.ordem]||f.ordem==="ultimo"?"selected":""}>Último uso: mais recente primeiro</option>

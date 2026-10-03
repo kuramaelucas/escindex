@@ -23,7 +23,7 @@ function iniciarSessaoRecomendada(){
     const feitas = respostasFeitas(guardada).length;
     abrirModalTitulado("Você tem um conjunto de outro dia", `
       <p class="text-sm">Começado em <strong>${formatDataBR(guardada.salvaEm)}</strong>, com <strong>${feitas}</strong> de ${guardada.itens.length} respondida(s). Continuar mantém aquela fila; começar de hoje monta um conjunto novo com a matéria e as revisões vencidas de agora — e a fila de ${formatDataBR(guardada.salvaEm)} se perde.</p>
-      <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-3 quebra">
         <button class="btn btn-primary" onclick="fecharModal(); retomarSessaoEmAndamento()">Continuar aquele conjunto</button>
         <button class="btn btn-secondary" onclick="fecharModal(); montarSessaoRecomendadaDeHoje()">Começar um conjunto de hoje</button>
       </div>`);
@@ -90,6 +90,12 @@ function indicesEmBranco(s){
   if(!s || !s.itens) return fora;
   s.itens.forEach((it, i) => { if(!respostaDoIndice(s, i)) fora.push(i); });
   return fora;
+}
+/* Modo foco: esconde menu e topo enquanto a pessoa resolve questões (ver
+   desenharTela). É escolha dela e vale só para a sessão em andamento. */
+function alternarModoFoco(){
+  state.modoFoco = !state.modoFoco;
+  render();
 }
 function sairDaSessao(){
   const eraHistorico = state.sessaoAtual && state.sessaoAtual.somenteLeitura;
@@ -293,7 +299,7 @@ function finalizarSessaoPratica(){
     const feitas = respostasFeitas(s).length;
     abrirModalTitulado("Terminar com questões em branco?", `
       <p class="text-sm">Você respondeu <strong>${feitas}</strong> de ${s.itens.length} e deixou <strong>${emBranco.length}</strong> em branco. Questão em branco não conta como erro nem como acerto: ela some do conjunto e não entra no histórico.</p>
-      <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-3 quebra">
         <button class="btn btn-primary" onclick="fecharModal(); irParaIndiceDaSessao(${emBranco[0]})">Ir para a primeira em branco (questão ${emBranco[0]+1})</button>
         <button class="btn btn-secondary" onclick="fecharModal(); fecharSessaoPratica()">Terminar assim mesmo</button>
       </div>`);
@@ -533,11 +539,18 @@ function renderSessao(){
   const emBranco = sessao.itens.length - feitas;
   const naUltima = sessao.indiceAtual === sessao.itens.length-1;
   const soLeitura = sessao.jaFinalizada || sessao.somenteLeitura;
+  // uma linha só, em vez de dois avisos soltos; o "em branco" só depois que o
+  // conjunto começou (no primeiro cartão é só o tamanho da fila)
+  const avisoRodape = [
+    (!respondidaAqui && !soLeitura && !naUltima) ? "Dá para seguir sem responder: a questão fica em branco no mapa e você volta a ela quando quiser — o que estiver marcado e riscado continua aqui." : "",
+    (!soLeitura && emBranco && feitas) ? `${emBranco} ${emBranco===1?"questão em branco":"questões em branco"} neste conjunto.` : "",
+  ].filter(Boolean).join(" ");
   return `<div class="coluna-questao">
   <div class="flex justify-between items-center mb-2">
     <div class="text-sm muted">Questão ${sessao.indiceAtual+1} de ${sessao.itens.length}${sessao.somenteLeitura?' · <span class="badge badge-muted">revisão do histórico</span>':""}</div>
     <div class="flex gap-1">
       ${soLeitura ? `<button class="btn btn-secondary btn-sm" onclick="voltarAoResumoDaSessao()">${iconeSvg("chart")} Voltar ao resumo</button>` : ""}
+      <button class="btn btn-ghost btn-sm" onclick="alternarModoFoco()" title="Esconde o menu e o topo para estudar sem distração">${state.modoFoco ? "Sair do foco" : "Modo foco"}</button>
       <button class="btn btn-ghost btn-sm" onclick="sairDaSessao()">Sair</button>
     </div>
   </div>
@@ -547,17 +560,14 @@ function renderSessao(){
     ${htmlCartaoDaSessao(sessao)}
   </div>
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
-  <div class="flex justify-between items-center mt-2 gap-1" style="flex-wrap:wrap">
+  <div class="flex justify-between items-center mt-2 gap-1 quebra">
     <button class="btn btn-secondary" onclick="voltarQuestaoSessao()" ${sessao.indiceAtual>0?"":"disabled"}>Anterior</button>
-    <div class="text-xs muted">Teclas A (anterior) / D (próxima)</div>
+    <div class="text-xs muted dica-teclas">Teclas A (anterior) / D (próxima)</div>
     ${naUltima
       ? `<button class="btn btn-primary" onclick="${soLeitura?"voltarAoResumoDaSessao()":"finalizarSessaoPratica()"}">${soLeitura?"Ver resumo":"Finalizar sessão"}</button>`
       : `<button class="btn ${respondidaAqui?"btn-secondary":"btn-ghost"}" onclick="irQuestaoSessao(1)">${respondidaAqui?"Próxima":"Deixar para depois"}</button>`}
   </div>
-  ${(!respondidaAqui && !soLeitura && !naUltima) ? `<div class="text-xs muted mt-1">Dá para seguir sem responder: a questão fica em branco no mapa e você volta a ela quando quiser — o que estiver marcado e riscado continua aqui.</div>` : ""}
-  ${/* só depois que o conjunto começou: no primeiro cartão, "20 em branco" é
-       só o tamanho da fila, e dizer isso ali não informa nada */""
-    }${(soLeitura || !emBranco || !feitas) ? "" : `<div class="text-xs muted mt-1">${emBranco} ${emBranco===1?"questão em branco":"questões em branco"} neste conjunto.</div>`}
+  ${avisoRodape ? `<div class="text-xs muted mt-1">${avisoRodape}</div>` : ""}
   </div>`;
 }
 function renderSessaoResumo(){
@@ -582,7 +592,7 @@ function renderSessaoResumo(){
     <div class="stat-tile"><div class="stat-value">${errosEChutes}</div><div class="stat-label">questão(ões) para revisar (erros e chutes)</div></div>
     ${emBranco?`<div class="stat-tile"><div class="stat-value">${emBranco}</div><div class="stat-label">deixada(s) em branco — não contam como erro</div></div>`:""}
   </div>
-  ${(emBranco && !sessao.somenteLeitura && primeiraEmBranco!==undefined) ? `<div class="card-flat mb-2 flex justify-between items-center gap-2" style="flex-wrap:wrap">
+  ${(emBranco && !sessao.somenteLeitura && primeiraEmBranco!==undefined) ? `<div class="card-flat mb-2 flex justify-between items-center gap-2 quebra">
     <div class="text-sm">Ainda dá para responder o que ficou em branco: a fila continua guardada com as suas marcações.</div>
     <button class="btn btn-secondary btn-sm" onclick="voltarParaQuestaoDaSessao(${primeiraEmBranco})">${iconeSvg("refresh")} Ir para a questão ${primeiraEmBranco+1}</button>
   </div>` : ""}
@@ -613,7 +623,7 @@ function renderSessaoResumo(){
         </div>
         <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}${q.enunciado.length>180?"…":""}</span></div>
         <div class="text-xs muted mt-1">Você marcou ${escapeHtml(r.alternativaEscolhida)} · gabarito ${escapeHtml(q.gabarito)}</div>
-        <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+        <div class="flex gap-1 mt-2 quebra">
           <button class="btn btn-secondary btn-sm" onclick="voltarParaQuestaoDaSessao(${i})">${iconeSvg("refresh")} Voltar à questão</button>
           ${botaoVerNaIntegra(q.id, "Ver na íntegra")}
           <button class="btn ${(!r.correta||r.confianca==="chute")?"btn-secondary":"btn-ghost"} btn-sm" onclick="abrirFormularioFlashcard(null,{questaoId:'${q.id}'})">${iconeSvg("cards")} Virar flashcard</button>
@@ -624,7 +634,7 @@ function renderSessaoResumo(){
       </div>`;
     }).join("")}
   </div>
-  <div class="flex gap-1" style="flex-wrap:wrap">
+  <div class="flex gap-1 quebra">
     ${!sessao.somenteLeitura && errosEChutes ? `<button class="btn btn-primary" onclick="revisarErrosDestaSessao()">${iconeSvg("refresh")} Revisar agora os erros e chutes (${errosEChutes})</button>` : ""}
     <button class="btn btn-secondary" onclick="state.sessaoAtual=null;navigate('estudar')">Nova sessão</button>
     <button class="btn btn-secondary" onclick="state.sessaoAtual=null;navigate('historico')">Ver histórico de atividade</button>
@@ -718,15 +728,14 @@ function renderQuestionCard(q, opts){
      prova), que dizem de onde a questão veio e não o que ela cobra. */
   const classificacao = opts.respondida ? `
       <span class="badge badge-accent">${escapeHtml(area?area.nome:"")}</span>
-      <span class="badge badge-muted">${escapeHtml(esp?esp.nome:"")}</span>
-      <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>` : "";
+      <span class="qcard-trilha">${escapeHtml(esp?esp.nome:"")} › ${escapeHtml(nomeAssunto(q.assuntoId))}</span>` : "";
   const dicas = opts.respondida ? `
       <span class="badge ${corDificuldade}">${rotuloDificuldade(dificuldade)}</span>
       ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}
       ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}` : "";
   let html = `<div class="qcard">
     <div class="qcard-meta">${classificacao}
-      <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
+      <span class="qcard-trilha">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
       ${badgeAutoriaQuestao(q)}
       ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-amber" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
       ${(q.banca||"").indexOf("Didático")>=0
@@ -770,14 +779,14 @@ function renderQuestionCard(q, opts){
     </div>`;
   if(!opts.respondida){
     const nRiscadas = eliminadasDaQuestao(q.id).length;
-    const dicaRiscar = opts.somenteLeitura ? "" :
-      `<div class="text-xs muted mt-2">${iconeSvg("eye-off")} Assunto, especialidade e dificuldade aparecem depois que você responder — para não entregar o diagnóstico.</div>
-      <div class="text-xs muted mt-1">${iconeSvg("x")} ${nRiscadas
+    // uma linha só: o que falta fazer, o que o × faz e por que as tags esperam
+    const dicaRiscar = comeco => opts.somenteLeitura ? "" :
+      `<div class="text-xs muted mt-2">${comeco}${iconeSvg("eye-off")} Assunto, especialidade e dificuldade aparecem depois que você responder, para não entregar o diagnóstico. ${nRiscadas
         ? `${nRiscadas} alternativa(s) eliminada(s) — clique no × de novo para trazer de volta.`
         : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</div>`;
     if(opts.modoSimulado){
       // no simulado (fora do modo aprendizado): sem confiança e sem feedback imediato — só marca e segue
-      html += dicaRiscar;
+      html += dicaRiscar("");
     } else {
     html += opts.selecionada ? `
       <div class="confidence-row">
@@ -785,9 +794,8 @@ function renderQuestionCard(q, opts){
         <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida</button>
         <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute</button>
       </div>
-      <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão.</div>` :
-      `<div class="text-xs muted mt-2">Selecione uma alternativa para continuar.</div>`;
-    html += dicaRiscar;
+      <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão.</div>` : "";
+    html += dicaRiscar(opts.selecionada ? "" : "Selecione uma alternativa para continuar. ");
     }
   } else {
     html += renderFeedbackQuestao(q, opts);
@@ -807,7 +815,7 @@ function renderFeedbackQuestao(q, opts){
   const riscadas = eliminadasDaQuestao(q.id);
   if(riscadas.length){
     html += riscadas.includes(q.gabarito)
-      ? `<div class="card-flat mt-2 text-xs" style="border-color:var(--amber)">${iconeSvg("alert")} Você tinha <strong>eliminado a alternativa ${escapeHtml(q.gabarito)}</strong>, que era a correta. Vale reler a explicação olhando para o motivo que fez você descartá-la — é ali que está a lacuna.</div>`
+      ? `<div class="card-flat mt-2 text-xs borda-alerta">${iconeSvg("alert")} Você tinha <strong>eliminado a alternativa ${escapeHtml(q.gabarito)}</strong>, que era a correta. Vale reler a explicação olhando para o motivo que fez você descartá-la — é ali que está a lacuna.</div>`
       : `<div class="card-flat mt-2 text-xs muted">${iconeSvg("check")} Você eliminou ${riscadas.length} alternativa(s) e nenhuma delas era a correta.</div>`;
   }
   const historicoDaQuestao = respostasDaQuestao(usuarioAtual().id, q.id);
@@ -819,7 +827,7 @@ function renderFeedbackQuestao(q, opts){
     // está ensinando.
     const oculta = questaoOculta(usuarioAtual().id, q.id);
     const podeEsconder = podeEsconderQuestao(usuarioAtual().id, q.id);
-    html += `<div class="card-flat mt-2 text-xs" style="border-color:var(--danger)">
+    html += `<div class="card-flat mt-2 text-xs borda-perigo">
       <div>${iconeSvg("alert")} Você já errou esta questão <strong>${rotuloVezes(totalErros)}</strong>${historicoDaQuestao.length>1 ? ` em ${historicoDaQuestao.length} tentativas` : ""}.${oculta ? " Ela está escondida: não volta mais nas suas sessões." : ""}${podeEsconder ? "" : " Ela volta na revisão espaçada; se você errar de novo, poderá pedir para não vê-la mais."}</div>
       ${podeEsconder ? `<button class="btn btn-ghost btn-sm mt-1" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg(oculta?"eye":"eye-off")} ${oculta ? "Voltar a mostrar esta questão" : "Não mostrar mais esta questão para mim"}</button>` : ""}
     </div>`;
@@ -945,7 +953,7 @@ function renderComentarios(questaoId){
     <div style="font-weight:600;font-size:.9rem;margin-bottom:.6rem">${iconeSvg("message")} Comentários e dúvidas (${comentarios.length})</div>
     ${comentarios.map(c=>{
       return `<div class="card-flat mb-1" ${c.respostaOficial?'style="border-color:var(--accent)"':""}>
-        <div class="flex items-center gap-1"><span class="text-sm" style="font-weight:600">${escapeHtml(nomeAutorComentario(c))}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}</div>
+        <div class="flex items-center gap-1"><span class="text-sm peso-600">${escapeHtml(nomeAutorComentario(c))}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}</div>
         <div class="text-sm mt-1">${escapeHtml(c.texto)}</div>
         <div class="text-xs muted mt-1">${formatDataBR(c.data)}${podeRemoverComentario(c) ? ` · <button class="link-btn text-xs" onclick="removerComentario('${c.id}')">remover</button>` : ""}</div>
       </div>`;
@@ -1092,23 +1100,23 @@ function renderRevisao(){
     <p class="text-sm muted mb-2">Nem todo erro é igual. Errar achando que sabia é o mais caro, porque você não voltaria a esse assunto por conta própria. Acertar no chute é o oposto do que parece: conta como não sabido.</p>
     <div class="grid grid-3">
       <div class="card-flat">
-        <div style="font-weight:600">Errou com certeza <span class="badge badge-danger">${errosComCerteza.length}</span></div>
+        <div class="peso-600">Errou com certeza <span class="badge badge-danger">${errosComCerteza.length}</span></div>
         <p class="text-xs muted mt-1">Conceito consolidado de forma errada. Prioridade máxima.</p>
         <button class="btn btn-primary btn-sm mt-2" onclick="praticarFilaDeConfianca('certeza')" ${!errosComCerteza.length?"disabled":""}>Praticar</button>
       </div>
       <div class="card-flat">
-        <div style="font-weight:600">Acertou no chute <span class="badge badge-amber">${acertosNoChute.length}</span></div>
+        <div class="peso-600">Acertou no chute <span class="badge badge-amber">${acertosNoChute.length}</span></div>
         <p class="text-xs muted mt-1">A estatística diz acerto, mas você não sabia. Volta como se tivesse errado.</p>
         <button class="btn btn-secondary btn-sm mt-2" onclick="praticarFilaDeConfianca('chute')" ${!acertosNoChute.length?"disabled":""}>Praticar</button>
       </div>
       <div class="card-flat">
-        <div style="font-weight:600">Errou na dúvida <span class="badge badge-muted">${errosNaDuvida.length}</span></div>
+        <div class="peso-600">Errou na dúvida <span class="badge badge-muted">${errosNaDuvida.length}</span></div>
         <p class="text-xs muted mt-1">Você já sabia que não sabia — aqui falta conteúdo, não calibração.</p>
         <button class="btn btn-secondary btn-sm mt-2" onclick="praticarFilaDeConfianca('duvida')" ${!errosNaDuvida.length?"disabled":""}>Praticar</button>
       </div>
     </div>
     ${falsaSeguranca.length ? `<div class="mt-2">
-      <div class="text-sm" style="font-weight:600">Assuntos em que sua confiança não bate com o acerto</div>
+      <div class="text-sm peso-600">Assuntos em que sua confiança não bate com o acerto</div>
       ${falsaSeguranca.slice(0,5).map(f=>`<div class="flex justify-between items-center card-flat mb-1">
         <span class="text-sm">${escapeHtml(nomeAssunto(f.assuntoId))} <span class="text-xs muted">— ${f.n} resposta(s) marcadas como "certeza"</span></span>
         <span class="flex items-center gap-1"><span class="badge badge-danger">${f.taxa}% de acerto</span><button class="btn btn-secondary btn-sm" onclick="praticarAssuntoFalsaSeguranca('${f.assuntoId}')">Praticar</button></span>
@@ -1118,7 +1126,7 @@ function renderRevisao(){
   <div class="card mt-2">
     <div class="card-title">Revisão rápida por flashcards (${resumoFlashcards(u.id).vencidos} vencido(s))</div>
     <p class="text-sm muted">Cartão de conceito em vez de questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisar cartões</button>
       ${falsaSeguranca.length ? `<button class="btn btn-secondary" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">Só onde minha confiança engana</button>` : ""}
       <button class="btn btn-ghost" onclick="navigate('flashcards')">Ver baralho e filtros</button>
@@ -1151,7 +1159,7 @@ function renderCartaoQuestoesErradas(u){
         <span class="badge badge-muted">${escapeHtml(nomeAssunto(x.questao.assuntoId))}</span>
       </div>
       <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${x.questao.id}')">${escapeHtml(x.questao.enunciado.slice(0,160))}${x.questao.enunciado.length>160?"…":""}</span></div>
-      <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="praticarSoEstaQuestao('${x.questao.id}')">${iconeSvg("book")} Refazer</button>
         ${podeEsconderQuestao(u.id, x.questao.id) ? `<button class="btn btn-ghost btn-sm" onclick="alternarQuestaoOcultaUI('${x.questao.id}')">${iconeSvg("eye-off")} Não mostrar mais</button>` : ""}
       </div>
@@ -1160,7 +1168,7 @@ function renderCartaoQuestoesErradas(u){
   <div class="card mt-2">
     <div class="card-title">Questões que você errou (${erradas.length})</div>
     <p class="text-sm muted">Cada uma com quantas vezes você já errou${repetidas ? ` — ${repetidas} você errou mais de uma vez` : ""}. A mais errada vem primeiro. Se já entendeu uma e não quer mais vê-la, "Não mostrar mais" a tira das suas sessões, revisões e listas (só das suas).</p>
-    ${erradas.length ? `<div class="flex gap-1 mt-2 mb-2" style="flex-wrap:wrap">
+    ${erradas.length ? `<div class="flex gap-1 mt-2 mb-2 quebra">
       <button class="btn btn-primary btn-sm" onclick="praticarQuestoesMaisErradas()">${iconeSvg("book")} Refazer as mais erradas</button>
     </div>
     ${pag.itens.map(linha).join("")}

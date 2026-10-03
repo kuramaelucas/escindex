@@ -160,13 +160,13 @@ function renderAtualizarQuestoes(){
   <div class="card mb-2">
     <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.6rem">
       <div>
-        <div class="card-title" style="margin-bottom:.2rem">${iconeSvg("download")} Atualizações para a pasta dados/</div>
+        <div class="card-title mb-02">${iconeSvg("download")} Atualizações para a pasta dados/</div>
         <div class="text-sm muted">${corrigidas.length
           ? `<strong>${corrigidas.length}</strong> questão(ões) consertada(s) ainda diferente(s) da pasta dados/${naFila ? ` · ${naFila} subindo agora…` : ""}.`
           : "Nenhuma questão consertada esperando para ir à pasta dados/."}</div>
-        ${db.nuvem && db.nuvem.avisoImagens ? `<div class="text-xs mt-1" style="color:var(--amber)">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoImagens)}</div>` : ""}
+        ${db.nuvem && db.nuvem.avisoImagens ? `<div class="text-xs mt-1 texto-alerta">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoImagens)}</div>` : ""}
       </div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         ${nuvem ? `<button class="btn btn-secondary btn-sm" onclick="nuvemSincronizar({forcarRedesenho:true})">${iconeSvg("refresh")} Buscar da nuvem</button>` : ""}
         <button class="btn btn-primary btn-sm" onclick="baixarAtualizacoesParaDados()" ${corrigidas.length ? "" : "disabled"}>${iconeSvg("download")} Baixar as atualizações</button>
       </div>
@@ -183,7 +183,7 @@ function renderAtualizarQuestoes(){
       <button class="btn btn-ghost btn-sm" onclick="encerrarCorrecoesIncorporadas()">Encerrar na nuvem</button></div>` : ""}
   </div>
   <div class="card mb-2">
-    <div class="flex gap-1 items-center" style="flex-wrap:wrap">
+    <div class="flex gap-1 items-center quebra">
       <select class="select" style="max-width:220px" onchange="mudarFiltroAtualizar('tipo', this.value)" aria-label="O que falta">
         <option value="">Tudo o que falta (${todas.length})</option>
         ${TIPOS_DE_ATUALIZACAO.map(t => `<option value="${t.id}" ${f.tipo === t.id ? "selected" : ""}>${escapeHtml(t.nome)} (${conta(t.id)})</option>`).join("")}
@@ -196,16 +196,16 @@ function renderAtualizarQuestoes(){
     </div>
   </div>
   ${lista.length ? pag.itens.map(({ q, motivos }) => `<div class="card mb-1">
-    <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.4rem">
-      <span class="text-sm" style="font-weight:600">${escapeHtml(q.banca)} ${q.ano}${q.numeroNaProva ? " · nº " + q.numeroNaProva : ""}</span>
-      <span class="qcard-meta" style="margin:0">${motivos.map(m => `<span class="badge ${m.tipo === "imagem" || m.tipo === "rascunho" ? "badge-amber" : m.tipo === "sinalizada" ? "badge-danger" : "badge-muted"}">${escapeHtml(m.rotulo)}</span>`).join("")}</span>
+    <div class="flex justify-between items-center quebra-gap-p">
+      <span class="text-sm peso-600">${escapeHtml(q.banca)} ${q.ano}${q.numeroNaProva ? " · nº " + q.numeroNaProva : ""}</span>
+      <span class="qcard-meta sem-m">${motivos.map(m => `<span class="badge ${m.tipo === "imagem" || m.tipo === "rascunho" ? "badge-amber" : m.tipo === "sinalizada" ? "badge-danger" : "badge-muted"}">${escapeHtml(m.rotulo)}</span>`).join("")}</span>
     </div>
     <div class="text-sm mt-1"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml((q.enunciado || "").slice(0, 160))}${(q.enunciado || "").length > 160 ? "…" : ""}</span></div>
     ${motivos.map(m => `<div class="text-xs muted mt-1"><strong>${escapeHtml(m.rotulo)}:</strong> ${escapeHtml(m.texto)}</div>`).join("")}
     ${motivos.some(m => m.tipo === "imagem") && q.imagemUrl ? `<div class="text-xs muted mt-1">Arquivo esperado: <code>${escapeHtml(q.imagemUrl)}</code></div>` : ""}
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Consertar</button>
-      ${motivos.some(m => m.tipo === "imagem") ? `<label class="btn btn-secondary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Enviar a figura<input type="file" accept="image/*" style="display:none" onchange="enviarFiguraDaQuestao('${q.id}', this)"></label>` : ""}
+      ${motivos.some(m => m.tipo === "imagem") ? `<label class="btn btn-secondary btn-sm clicavel">${iconeSvg("upload")} Enviar a figura<input type="file" accept="image/*" style="display:none" onchange="enviarFiguraDaQuestao('${q.id}', this)"></label>` : ""}
       ${motivos.some(m => m.tipo === "sinalizada") ? `<button class="btn btn-ghost btn-sm" onclick="descartarSinalizacoes('${q.id}')">Descartar sinalizações</button>` : ""}
     </div>
   </div>`).join("") + controlesPaginacao(pag, "questão(ões)") : `<div class="empty-state">${todas.length ? "Nada com esses filtros." : "Nenhuma questão precisa de atualização. ✓"}</div>`}`;

@@ -39,7 +39,7 @@ function renderLanding(){
         <span class="badge badge-accent">Projeto sem fins lucrativos</span>
         <h1 class="mt-2">Feito por quem passou pela EPM, para quem está passando.</h1>
         <p class="mt-2" style="font-size:1.05rem;color:var(--ink-2);max-width:48ch;line-height:1.55">O ${CONFIG.nomePlataforma} é uma plataforma de estudos gratuita para os alunos de medicina da Escola Paulista de Medicina (UNIFESP), administrada por alunos e ex-alunos — do primeiro bloco do curso até a prova de residência.</p>
-        <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
+        <div class="flex gap-1 mt-3 quebra">
           <button class="btn btn-primary" onclick="navigate('cadastro')">Solicitar cadastro</button>
           <button class="btn btn-secondary" onclick="navigate('login')">Já tenho conta</button>
         </div>
@@ -56,7 +56,7 @@ function renderLanding(){
     <div class="grid grid-3 mt-1">
       ${capacidades.map(([icon,titulo,desc])=>`
         <div class="card-flat">
-          <div class="flex items-center gap-1" style="font-weight:700">${iconeSvg(icon)} ${escapeHtml(titulo)}</div>
+          <div class="flex items-center gap-1 peso-700">${iconeSvg(icon)} ${escapeHtml(titulo)}</div>
           <div class="text-sm muted mt-1">${escapeHtml(desc)}</div>
         </div>`).join("")}
     </div>
@@ -71,7 +71,7 @@ function renderLanding(){
     </div>
     <div class="card-flat mt-3">
       <div class="text-sm" style="font-weight:600;margin-bottom:.5rem">Quer ver antes de se cadastrar?</div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         <button class="pill" onclick="fazerLoginDemo('aluno')">${iconeSvg("user")} Ver como aluno</button>
       </div>
       <div class="text-xs muted mt-2">Uma conta de demonstração, só neste navegador: nada do que você fizer nela vale para a sua conta de verdade.</div>
@@ -134,7 +134,7 @@ function renderBoasVindas(){
 
       <div class="field"><label class="label">3. Quantas questões você quer fazer por dia?</label>
         <input class="input" type="number" id="bvMeta" value="${meta}" min="1" max="300" style="max-width:140px">
-        <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+        <div class="flex gap-1 mt-1 quebra">
           <button class="pill" onclick="document.getElementById('bvMeta').value=${minima}">dia corrido (${minima})</button>
           <button class="pill" onclick="document.getElementById('bvMeta').value=${ideal}">recomendada (${ideal})</button>
           <button class="pill" onclick="document.getElementById('bvMeta').value=${ideal*2}">reta final (${ideal*2})</button>
@@ -175,7 +175,7 @@ function concluirBoasVindas(pulou){
 function renderLogin(){
   return `
   <div class="container"><nav class="public-nav">
-    <div class="brand" style="cursor:pointer" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
+    <div class="brand clicavel" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
     <button class="btn btn-ghost" onclick="navigate('cadastro')">Solicitar cadastro</button>
   </nav></div>
   <div class="auth-wrap">
@@ -193,7 +193,7 @@ function renderLogin(){
         <div class="text-xs muted mb-1">${nuvemLigada()
           ? "Conhecer a plataforma sem criar conta — fica só neste navegador e não sincroniza:"
           : "Conhecer a plataforma sem criar conta (não pede senha):"}</div>
-        <div class="flex gap-1" style="flex-wrap:wrap">
+        <div class="flex gap-1 quebra">
           <button class="pill" onclick="fazerLoginDemo('aluno')">Entrar como aluno de teste</button>
         </div>
         <div class="text-xs muted mt-1">aluno@esc.demo / aluno123 — é a única conta de teste aberta. Professor, residente e coordenação usam as contas de verdade, acima.</div>
@@ -209,7 +209,7 @@ function renderRetornoEmail(){
   const r = state.retornoEmail || { tipo: "erro", expirou: false };
   const moldura = (corpo) => `
   <div class="container"><nav class="public-nav">
-    <div class="brand" style="cursor:pointer" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
+    <div class="brand clicavel" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
     <button class="btn btn-ghost" onclick="navigate('login')">Entrar</button>
   </nav></div>
   <div class="auth-wrap"><div class="auth-card">${corpo}</div></div>`;
@@ -240,7 +240,7 @@ function renderRetornoEmail(){
     <h2>Este link não vale mais</h2>
     <p class="text-sm mt-2">${r.expirou ? "O link do e-mail expirou ou já foi usado — cada link vale uma vez só, por tempo limitado." : "Não foi possível concluir pelo link do e-mail."} Peça outro:</p>
     ${campoEmail("reenvioEmail", "")}
-    <div class="flex gap-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 quebra">
       <button class="btn btn-secondary" onclick="reenviarConfirmacaoDaTela('reenvioEmail')">Reenviar a confirmação do cadastro</button>
       <button class="btn btn-secondary" onclick="pedirNovaSenhaDaTela('reenvioEmail')">Mandar um link para trocar a senha</button>
     </div>
@@ -322,7 +322,7 @@ function tentarLogin(){
 function renderCadastro(){
   return `
   <div class="container"><nav class="public-nav">
-    <div class="brand" style="cursor:pointer" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
+    <div class="brand clicavel" onclick="navigate('landing')"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
     <button class="btn btn-ghost" onclick="navigate('login')">Já tenho conta</button>
   </nav></div>
   <div class="auth-wrap">
@@ -383,13 +383,13 @@ function renderCardLivroOuroInicio(){
   const destaque = registros[0];
   const podeEditar = podeAdmin("livro-ouro");
   return `<div class="card-flat mt-2">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:240px;flex:1">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-240">
         <div class="card-title">${iconeSvg("star")} Livro de Ouro</div>
         <p class="text-sm muted">${registros.length} pessoa(s), turma(s) e instituição(ões) que doaram dinheiro, tempo ou conhecimento para esta plataforma existir.</p>
         ${destaque ? `<p class="text-sm mt-1"><strong>${escapeHtml(destaque.nome)}</strong> — ${escapeHtml((destaque.descricao||"").slice(0,120))}${(destaque.descricao||"").length>120?"…":""}</p>` : ""}
       </div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="navigate('livro-ouro')">Abrir</button>
         <button class="btn btn-ghost btn-sm" onclick="abrirModalContribuir()">${iconeSvg("message")} Quero contribuir</button>
         ${podeEditar ? `<button class="btn btn-primary btn-sm" onclick="abrirFormularioLivroOuro(null)">${iconeSvg("plus")} Registrar</button>` : ""}
@@ -398,7 +398,7 @@ function renderCardLivroOuroInicio(){
   </div>`;
 }
 function renderCardFeedbackGeral(){
-  return `<div class="card-flat mt-2 flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
+  return `<div class="card-flat mt-2 flex justify-between items-center quebra-gap">
     <span class="text-sm">Tem um comentário, sugestão ou reclamação sobre a plataforma?</span>
     <button class="btn btn-secondary btn-sm" onclick="abrirModalFeedback()">${iconeSvg("message")} Enviar feedback</button>
   </div>`;
@@ -443,8 +443,8 @@ function renderInicioAluno(u){
   ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
   <div class="card mt-2">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:240px;flex:1">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-240">
         <div class="card-title">Pronto para estudar?</div>
         <div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>
         <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
@@ -458,9 +458,9 @@ function renderInicioAluno(u){
     <div class="stat-mini"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral (${totalRespostas} questões)</span></div>
     <div class="stat-mini"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">assunto(s) para revisar hoje</span></div>
   </div>
-  ${calibracao.alertaExcessoConfianca ? `<div class="card mt-2" style="border-color:var(--amber)">
+  ${calibracao.alertaExcessoConfianca ? `<div class="card mt-2 borda-alerta">
     <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button>
       <button class="btn btn-secondary btn-sm" onclick="navigate('desempenho')">Ver onde a confiança engana</button>
     </div>
@@ -475,7 +475,7 @@ function renderInicioAluno(u){
       <div class="card-title">Revisão pendente</div>
       ${revisarHoje.length ? `<p class="text-sm muted mt-1">${revisarHoje.length} assunto(s) já estudado(s) estão no momento certo de revisar, segundo seu histórico.</p>` : '<p class="text-sm muted mt-1">Nada vencido para revisar hoje. Continue estudando o bloco atual.</p>'}
       ${flashVencidos ? `<p class="text-sm mt-1">${flashVencidos} cartão(ões) de revisão rápida também venceram — dá pra limpar essa fila em poucos minutos.</p>` : ""}
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
         <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
       </div>
@@ -523,7 +523,7 @@ function renderInicioStaff(u){
     ${ficha(aRevisar, "formatação a revisar", "revisao-formatacao")}
     ${podeAprovarCadastros(u) && temRota("painel-turma") ? ficha(pendCadastros, pendCadastros===1?"cadastro pendente":"cadastros pendentes", "aprovar-cadastros") : ""}
   </div>
-  <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+  <div class="flex gap-1 mt-2 quebra">
     <button class="btn btn-secondary btn-sm" onclick="navigate('criar-simulado')">${iconeSvg("plus")} Criar simulado</button>
     <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Importar questões</button>
   </div>`;
@@ -540,7 +540,7 @@ function htmlCardPrioridadesEstudar(u){
   return `<div class="card mt-2">
     <div class="card-title">${iconeSvg("star")} O que mais cai na ${escapeHtml(bancaDeReferencia())} e você ainda erra</div>
     <p class="text-sm muted">${top.map(p=>`<strong>${escapeHtml(nomeAssunto(p.assuntoId))}</strong> (${p.questoesNaProva} questões nas provas${p.taxa!==null?", você acerta "+p.taxa+"%":", nunca respondeu"})`).join(" · ")}</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary" onclick="praticarPrioridadesDaProva()">${iconeSvg("play")} Praticar as prioridades</button>
       <button class="btn btn-ghost" onclick="navigate('desempenho')">Ver o quadro completo</button>
     </div>
@@ -567,13 +567,13 @@ function renderEstudar(){
   <div class="page-header"><h2>Estudar</h2><p>Escolha como quer praticar agora.</p></div>
 
   ${emAndamento ? `
-  <div class="card mb-2" style="border-color:var(--accent)">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1">
-        <div class="card-title" style="margin-bottom:.2rem">${iconeSvg("refresh")} ${deHoje ? "Sessão de hoje" : "Sessão em andamento"}</div>
+  <div class="card mb-2 borda-destaque">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="card-title mb-02">${iconeSvg("refresh")} ${deHoje ? "Sessão de hoje" : "Sessão em andamento"}</div>
         <div class="text-sm muted">${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} questão(ões) respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}. Continuar mantém a mesma fila, na mesma ordem, com as marcações e os riscos como você deixou — você não recomeça do zero.</div>
       </div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         <button class="btn btn-primary" onclick="retomarSessaoEmAndamento()">Continuar de onde parei</button>
         <button class="btn btn-ghost btn-sm" onclick="descartarSessaoEmAndamento()">Descartar</button>
       </div>
@@ -581,15 +581,15 @@ function renderEstudar(){
   </div>` : ""}
 
   <div class="card mb-2" ${feitasHoje>=meta?'style="border-color:var(--accent)"':""}>
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1">
-        <div class="card-title" style="margin-bottom:.2rem">Meta de hoje</div>
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="card-title mb-02">Meta de hoje</div>
         <div class="text-sm muted">${feitasHoje>=meta
           ? "Meta batida. O que vier agora é lucro — e se estiver cansado, parar aqui também é uma decisão boa."
           : `Faltam <strong>${faltam}</strong> questão(ões) para fechar o dia.`}</div>
       </div>
-      <div class="flex items-center gap-2" style="flex-wrap:wrap">
-        <div style="text-align:right">
+      <div class="flex items-center gap-2 quebra">
+        <div class="texto-dir">
           <div class="stat-value" style="font-size:1.5rem">${feitasHoje}/${meta}</div>
           <div class="stat-label">questões hoje${seq?" · "+seq+" dia(s) seguidos":""}</div>
         </div>
@@ -621,9 +621,9 @@ function renderEstudar(){
   </div>
   ${htmlCardPrioridadesEstudar(u)}
   <div class="card mt-2">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1">
-        <div class="card-title" style="margin-bottom:.2rem">Monte sua própria lista</div>
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="card-title mb-02">Monte sua própria lista</div>
         <p class="text-sm muted">Um conjunto só seu, do jeito que você escolher: por área, especialidade, assunto, tipo de prova, instituição, ano ou situação (erros, favoritas, ainda não respondidas).</p>
       </div>
       <button class="btn ${listaAberta?"btn-secondary":"btn-primary"}" id="botaoMontarLista" aria-expanded="${listaAberta}" aria-controls="montagemLista" onclick="alternarMontagemLista()">${listaAberta ? "Fechar a montagem" : iconeSvg("plus")+" Criar minha lista"}</button>
@@ -682,7 +682,7 @@ function renderEstudar(){
         ${idsMeusGrupos.length ? `<label class="checkbox-row mb-1"><input type="checkbox" id="filtroIncluirGrupo"> Incluir questões ${idsMeusGrupos.length>1?"dos meus grupos":"do meu grupo"} (${qtdQuestoesGrupo})</label>` : ""}
       </div>
     </div>
-    <div class="flex items-end gap-2 mt-2" style="flex-wrap:wrap">
+    <div class="flex items-end gap-2 mt-2 quebra">
       <div class="field" style="margin-bottom:0;max-width:140px"><label class="label">Nº de questões</label><input class="input" id="filtroTamanho" type="number" value="15" min="1" max="100"></div>
       <button class="btn btn-primary" onclick="gerarListaPersonalizada()">Gerar lista</button>
       <button class="btn btn-secondary" onclick="gerarListaPersonalizada(true)">Fazer como simulado</button>
@@ -836,7 +836,7 @@ function abrirQuestaoCompleta(qid, opts){
     ${(q.explicacoesAlternativas && Object.keys(q.explicacoesAlternativas).length) ? `<div class="card-flat mt-2 text-sm">${Object.entries(q.explicacoesAlternativas).map(([letra,texto])=>`<div class="mb-1"><strong>${escapeHtml(letra)}:</strong> ${htmlComDestaques(texto, null, true)}</div>`).join("")}</div>` : ""}
     ${ultima ? `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Sua última resposta: marcou ${escapeHtml(ultima.alternativaEscolhida)} (${ultima.correta?"correta":"incorreta"}, ${escapeHtml(rotuloConfianca(ultima.confianca))}) em ${formatDataBR(ultima.data)}.</div>` : ""}
     ${minhaNota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(minhaNota)}</div></div>` : ""}
-    <div class="flex gap-1 mt-3" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-3 quebra">
       ${q.status==="ativa" ? `<button class="btn btn-primary btn-sm" onclick="praticarSoEstaQuestao('${q.id}')">${iconeSvg("book")} Praticar esta questão</button>` : ""}
       ${u ? `<button class="btn btn-secondary btn-sm" onclick="fecharModal();toggleFavoritoUI('${q.id}')">${iconeSvg("star")} ${fav?"Remover dos favoritos":"Favoritar"}</button>` : ""}
       ${u ? `<button class="btn btn-secondary btn-sm" onclick="fecharModal();abrirNotaFavorita('${q.id}')">${iconeSvg("message")} ${minhaNota?"Editar minha anotação":"Anotar uma dúvida"}</button>` : ""}

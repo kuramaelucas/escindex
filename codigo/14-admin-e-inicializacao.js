@@ -49,7 +49,7 @@ function renderEditorCalendario(grupo, opts){
   </div>` : ""}
 
   <div class="flex justify-between items-center mb-1">
-    <div class="card-title" style="margin-bottom:0">Calendário desta turma${grupo.oficial?"":" (sequência já girada)"}</div>
+    <div class="card-title sem-mb">Calendário desta turma${grupo.oficial?"":" (sequência já girada)"}</div>
     ${podeEditar && opts.podeEditarSequencia ? `<button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco('${escapeHtml(ano)}', null)">${iconeSvg("plus")} Adicionar bloco à sequência</button>` : ""}
   </div>
   ${blocosOrdenados.map(b=>`
@@ -57,7 +57,7 @@ function renderEditorCalendario(grupo, opts){
       <div class="flex justify-between items-start">
         <div>
           ${atual&&b.id===atual.id?'<span class="badge badge-accent mb-1">Bloco atual</span>':""}
-          <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)}</div>
+          <div class="peso-700">${b.ordem}. ${escapeHtml(b.nome)}</div>
           <div class="text-sm muted mt-1">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)}</div>
           <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
         </div>
@@ -86,7 +86,7 @@ function renderBlocosConfig(){
     <p class="text-xs muted mt-1">Isto vale só para a <strong>sequência de blocos</strong>. Turmas (a que ano cada uma pertence, em qual grupo do rodízio está) continuam só neste navegador — ver o aviso mais abaixo, junto da tabela de turmas.</p>
     <button class="btn btn-secondary btn-sm mt-1" onclick="exportarCalendario()">${iconeSvg("archive")} Exportar mesmo assim (baixa um arquivo à parte)</button>
   </div>` : `
-  <div class="card mb-2" style="border-color:var(--amber)">
+  <div class="card mb-2 borda-alerta">
     <div class="card-title">${iconeSvg("alert")} O que você edita aqui vale só neste navegador</div>
     <p class="text-sm muted">A nuvem não está ligada, então o calendário de blocos é <strong>conteúdo</strong>, igual às questões: mudanças feitas por esta tela ficam guardadas só no navegador de quem editou — os alunos não recebem a mudança sozinhos. Para toda a turma ver o mesmo calendário, é preciso <strong>exportar</strong> e colocar o arquivo no lugar do <code>dados/calendario.js</code> do site, publicando de novo. (Com a nuvem ligada — ver <code>nuvem/LEIA-ME.md</code> —, isto sobe sozinho, sem precisar exportar nada.)</p>
     <button class="btn btn-primary btn-sm mt-1" onclick="exportarCalendario()">${iconeSvg("archive")} Exportar calendário (dados/calendario.js)</button>
@@ -103,9 +103,9 @@ function renderBlocosConfig(){
   </div>
 
   <div class="card mb-2">
-    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
-      <div class="card-title" style="margin-bottom:0">Sequência de ${escapeHtml(anoEscolhido)} (${sequencia.length} blocos)</div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center mb-1 quebra-gap">
+      <div class="card-title sem-mb">Sequência de ${escapeHtml(anoEscolhido)} (${sequencia.length} blocos)</div>
+      <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirModalViradaDeAno('${escapeHtml(anoEscolhido)}')">${iconeSvg("calendar")} Virada de ano letivo</button>
         <button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco('${escapeHtml(anoEscolhido)}', null)">${iconeSvg("plus")} Adicionar bloco</button>
       </div>
@@ -114,9 +114,9 @@ function renderBlocosConfig(){
     <div class="mt-2">
     ${sequencia.map((b,i)=>`
       <div class="card-flat mb-1">
-        <div class="flex justify-between items-start gap-2" style="flex-wrap:wrap">
+        <div class="flex justify-between items-start gap-2 quebra">
           <div>
-            <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)} ${b.grupoRodizio ? `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoEscolhido, i))} começa aqui</span>` : ""}</div>
+            <div class="peso-700">${b.ordem}. ${escapeHtml(b.nome)} ${b.grupoRodizio ? `<span class="badge badge-accent">${escapeHtml(nomeRodizio(anoEscolhido, i))} começa aqui</span>` : ""}</div>
             <div class="text-sm muted mt-1">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)} · ${diasEntre(b.dataInicio, b.dataFim)+1} dias</div>
             ${subdivisoesDoBloco(b).length ? `<div class="text-sm mt-1">${subdivisoesEmLinha(b, "<br>")}</div>` : ""}
             <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
@@ -275,7 +275,7 @@ function atualizarPreviaVirada(ano){
       <tbody>${linhas.map(l=>`<tr>
         <td class="text-sm">${escapeHtml(l.nome)}</td>
         <td class="text-sm muted">${formatDataBR(l.de)} – ${formatDataBR(l.ate)}</td>
-        <td class="text-sm" style="font-weight:600">${formatDataBR(l.novoInicio)} – ${formatDataBR(l.novoFim)}</td>
+        <td class="text-sm peso-600">${formatDataBR(l.novoInicio)} – ${formatDataBR(l.novoFim)}</td>
       </tr>`).join("")}</tbody>
     </table></div>`;
 }
@@ -467,7 +467,7 @@ function renderConfigGeral(){
   <div class="card">
     <div class="card-title">${iconeSvg("star")} Livro de Ouro</div>
     <p class="text-sm muted">Doações, colaborações e apoios que sustentam a plataforma. Saiu do menu lateral — agora aparece no rodapé da tela inicial, que é onde é lido de fato, e é administrado aqui.</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="navigate('livro-ouro')">Abrir o Livro de Ouro</button>
       ${podeAdmin("livro-ouro") ? `<button class="btn btn-primary btn-sm" onclick="abrirFormularioLivroOuro(null)">${iconeSvg("plus")} Registrar agradecimento</button>` : ""}
       ${podeAdmin("livro-ouro") && nuvemConectado() ? `<button class="btn btn-ghost btn-sm" onclick="enviarLivroOuroParaNuvem()">${iconeSvg("upload")} Enviar todos para a nuvem</button>` : ""}
@@ -491,11 +491,11 @@ function renderCardArquivosConteudo(){
     <p class="text-sm muted">Todo o conteúdo da plataforma — taxonomia, calendário, questões, flashcards, simulados e os dados de demonstração — fica em arquivos próprios, na pasta <code>dados/</code>, ao lado do arquivo da plataforma: o código de um lado, o conteúdo do outro. Isto é o que o navegador carregou agora.</p>
     ${r.arquivos.length ? `
       <div class="table-wrap mt-2"><table>
-        <thead><tr><th>Arquivo</th><th>Conteúdo</th><th style="text-align:right">Itens</th></tr></thead>
-        <tbody>${r.arquivos.map(a=>`<tr><td>dados/${escapeHtml(a.nome)}.js</td><td>${escapeHtml(a.tipo)}</td><td style="text-align:right">${a.itens}</td></tr>`).join("")}</tbody>
+        <thead><tr><th>Arquivo</th><th>Conteúdo</th><th class="texto-dir">Itens</th></tr></thead>
+        <tbody>${r.arquivos.map(a=>`<tr><td>dados/${escapeHtml(a.nome)}.js</td><td>${escapeHtml(a.tipo)}</td><td class="texto-dir">${a.itens}</td></tr>`).join("")}</tbody>
       </table></div>
       <p class="text-xs muted mt-2">Total carregado: ${r.questoes} ${r.questoes===1?"questão":"questões"}, ${r.flashcards} ${r.flashcards===1?"cartão":"cartões"}, ${r.simulados} ${r.simulados===1?"simulado":"simulados"}, ${r.taxonomia} ${r.taxonomia===1?"assunto":"assuntos"} e ${r.blocos} ${r.blocos===1?"bloco":"blocos"} de calendário. Estes números são o conteúdo que vem nos arquivos; o que os alunos criaram (respostas, cartões pessoais, questões enviadas) fica salvo no navegador e não aparece aqui.</p>`
-    : `<p class="text-sm mt-2" style="color:var(--amber);font-weight:600">Nenhum arquivo de conteúdo foi carregado. Verifique se a pasta <code>dados/</code> está junto do index.html (e se ela foi publicada, quando o site está no ar).</p>`}
+    : `<p class="text-sm mt-2 texto-alerta peso-600">Nenhum arquivo de conteúdo foi carregado. Verifique se a pasta <code>dados/</code> está junto do index.html (e se ela foi publicada, quando o site está no ar).</p>`}
   </div>`;
 }
 function salvarConfigGeral(){
@@ -581,12 +581,12 @@ function abrirAjudaAcesso(){
   abrirModalTitulado("Problemas para entrar?", `
     <p class="text-sm">Quase sempre é o navegador usando o que guardou de uma visita anterior. Tente na ordem:</p>
     <div class="card-flat mt-2">
-      <div style="font-weight:600">1. Carregar a versão mais nova</div>
+      <div class="peso-600">1. Carregar a versão mais nova</div>
       <p class="text-xs muted mt-1">Busca a plataforma de novo no servidor, ignorando a cópia guardada. Esta aba está na versão ${escapeHtml(window.ESC_VERSAO||"?")}.</p>
       <button class="btn btn-primary btn-sm mt-1" onclick="recarregarVersaoNova()">${iconeSvg("refresh")} Carregar a versão mais nova</button>
     </div>
     <div class="card-flat mt-2">
-      <div style="font-weight:600">2. Esquecer o acesso salvo neste navegador</div>
+      <div class="peso-600">2. Esquecer o acesso salvo neste navegador</div>
       <p class="text-xs muted mt-1">Descarta o login guardado (que pode ter vencido ou ser de outra conta) e volta para a tela de entrada. O seu estudo neste navegador fica onde está, inclusive o que ainda não subiu para a nuvem — ele sobe quando você entrar de novo.</p>
       <button class="btn btn-secondary btn-sm mt-1" onclick="esquecerAcessoSalvo()">${iconeSvg("logout")} Esquecer o acesso salvo</button>
     </div>

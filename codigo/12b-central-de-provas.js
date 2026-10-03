@@ -395,23 +395,23 @@ function renderCentralProvas(){
     <div class="card-title">Nova prova</div>
     <p class="text-sm muted">O total de questões é o da prova oficial. O tamanho do lote é quanto cabe, com folga, numa conversa só — 25 costuma ser um bom corte para questões com explicação autoral.</p>
     <div class="grid grid-4 mt-2">
-      <div class="field" style="margin-bottom:0"><label class="label">Tipo de prova</label>
+      <div class="field sem-mb"><label class="label">Tipo de prova</label>
         <select class="select" id="cpTipoProva">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${t.id===CONFIG.tipoProvaPadrao?"selected":""} title="${escapeHtml(t.descricao)}">${escapeHtml(t.nome)}${t.id===CONFIG.tipoProvaPadrao?" (padrão)":""}</option>`).join("")}</select></div>
-      <div class="field" style="margin-bottom:0"><label class="label">Instituição</label>
+      <div class="field sem-mb"><label class="label">Instituição</label>
         <input class="input" id="cpInstituicao" list="listaBancasCarga" value="${escapeHtml(CONFIG.bancaFoco)}">
         <datalist id="listaBancasCarga">${[...new Set([...CONFIG.instituicoesReferencia, ...CONFIG.instituicoesGraduacao, ...db.questoes.map(q=>q.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
       </div>
-      <div class="field" style="margin-bottom:0"><label class="label">Ano da prova</label>
+      <div class="field sem-mb"><label class="label">Ano da prova</label>
         <input class="input" type="number" id="cpAno" value="${new Date().getFullYear()}"></div>
-      <div class="field" style="margin-bottom:0"><label class="label">Fase / caderno (opcional)</label>
+      <div class="field sem-mb"><label class="label">Fase / caderno (opcional)</label>
         <input class="input" id="cpFase" placeholder="ex.: Acesso Direto (R1)"></div>
     </div>
     <div class="grid grid-3 mt-2">
-      <div class="field" style="margin-bottom:0"><label class="label">Total de questões da prova</label>
+      <div class="field sem-mb"><label class="label">Total de questões da prova</label>
         <input class="input" type="number" id="cpTotal" value="100" min="1" max="500"></div>
-      <div class="field" style="margin-bottom:0"><label class="label">Questões por lote</label>
+      <div class="field sem-mb"><label class="label">Questões por lote</label>
         <input class="input" type="number" id="cpTamanhoLote" value="25" min="1" max="100"></div>
-      <div class="field" style="margin-bottom:0"><label class="label">Destino ao publicar</label>
+      <div class="field sem-mb"><label class="label">Destino ao publicar</label>
         <select class="select" id="cpDestino">${opcoesDestinoCarga().map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join("")}</select></div>
     </div>
     <button class="btn btn-primary mt-2" onclick="criarCargaProva()">${iconeSvg("plus")} Criar prova e dividir em lotes</button>
@@ -425,8 +425,8 @@ function renderCentralProvas(){
 function cardCargaProva(c){
   const r = resumoCarga(c);
   return `<div class="card">
-    <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.4rem">
-      <div style="font-weight:700">${escapeHtml(nomeDaCarga(c))}</div>
+    <div class="flex justify-between items-center quebra-gap-p">
+      <div class="peso-700">${escapeHtml(nomeDaCarga(c))}</div>
       <span class="badge ${r.concluida?"badge-accent":r.publicadas?"badge-amber":"badge-muted"}">${r.concluida?"concluída":r.publicadas?"em andamento":"não começada"}</span>
     </div>
     <div class="text-sm muted mt-1">${r.publicadas} de ${r.total} questão(ões) no banco${r.prontas?" · "+r.prontas+" conferida(s) esperando publicação":""}</div>
@@ -459,7 +459,7 @@ function renderCargaProva(carga){
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${r.pctPublicado}%"></div></div>
     <p class="text-xs muted mt-1">${r.pctPublicado}% publicado · ${r.pctFeito}% já transcrito (publicado + conferido).</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       ${r.conferidos?`<button class="btn btn-primary btn-sm" onclick="confirmarPublicarConferidos('${carga.id}')">${iconeSvg("upload")} Publicar ${r.conferidos===1?"o lote conferido":"os "+r.conferidos+" lotes conferidos"}</button>`:""}
       <button class="btn btn-secondary btn-sm" onclick="copiarRoteiroCarga('${carga.id}')">${iconeSvg("clipboard")} Copiar roteiro da prova</button>
       ${r.publicadas?`<button class="btn btn-ghost btn-sm" onclick="navigate('provas-antigas')">${iconeSvg("archive")} Ver em Provas e Simulados</button>`:""}
@@ -469,7 +469,7 @@ function renderCargaProva(carga){
 
   <div class="card-flat mb-2 text-sm">
     <strong>Conferência contra o banco:</strong> ${conf.noBanco} questão(ões) de ${escapeHtml(carga.instituicao)} ${carga.ano} existem hoje no banco${conf.comNumero?" ("+conf.comNumero+" com o número da prova registrado)":""}.
-    ${conf.faltando.length ? `<div class="mt-1" style="color:var(--amber)">${iconeSvg("alert")} Faltam os números: ${resumirNumeros(conf.faltando)}</div>`
+    ${conf.faltando.length ? `<div class="mt-1 texto-alerta">${iconeSvg("alert")} Faltam os números: ${resumirNumeros(conf.faltando)}</div>`
       : `<div class="mt-1" style="color:var(--accent-dark)">${iconeSvg("check")} Todos os ${carga.totalQuestoes} números da prova já estão no banco.</div>`}
     <div class="text-xs muted mt-1">A conferência olha o campo "número na prova" das questões publicadas. Questão importada antes desta tela existir não tem esse número e por isso não aparece aqui — o que não quer dizer que esteja faltando no banco.</div>
   </div>
@@ -482,12 +482,12 @@ function renderLoteProva(carga, lote, aberto){
   const res = lote.resumo || null;
   const preview = aberto && lote.status==="conferido" && state.filtroRota.previewImportacao;
   return `<div class="card mb-1">
-    <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
+    <div class="flex justify-between items-center quebra-gap">
       <div>
-        <div style="font-weight:700">Questões ${lote.inicio} a ${lote.fim} <span class="badge ${badge[0]}">${badge[1]}</span></div>
+        <div class="peso-700">Questões ${lote.inicio} a ${lote.fim} <span class="badge ${badge[0]}">${badge[1]}</span></div>
         <div class="text-xs muted mt-1">${lote.fim-lote.inicio+1} questão(ões) esperadas${lote.recebidoEm?" · conferido em "+formatDataBR(lote.recebidoEm):""}${lote.publicadoEm?" · publicado em "+formatDataBR(lote.publicadoEm):""}</div>
       </div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="copiarModeloLote('${carga.id}','${lote.id}')">${iconeSvg("search")} Copiar modelo</button>
         <button class="btn btn-ghost btn-sm" onclick="verModeloLote('${carga.id}','${lote.id}')">ver modelo</button>
         ${lote.status!=="publicado" ? `<button class="btn ${aberto?"btn-ghost":"btn-primary"} btn-sm" onclick="abrirLoteProva('${carga.id}','${lote.id}')">${aberto?"fechar":(lote.status==="conferido"?"revisar e publicar":"colar resultado")}</button>` : ""}
@@ -519,9 +519,9 @@ A: ...
 B: ...
 GABARITO: B
 ===">${escapeHtml(lote.textoBruto||"")}</textarea>
-      <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-1 quebra">
         <button class="btn btn-primary btn-sm" onclick="conferirLoteProva('${carga.id}','${lote.id}')">${iconeSvg("check")} Conferir lote</button>
-        <label class="btn btn-secondary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Carregar arquivo .txt<input type="file" accept=".txt,.md,.csv" style="display:none" onchange="carregarArquivoLote(this,'${lote.id}')"></label>
+        <label class="btn btn-secondary btn-sm clicavel">${iconeSvg("upload")} Carregar arquivo .txt<input type="file" accept=".txt,.md,.csv" style="display:none" onchange="carregarArquivoLote(this,'${lote.id}')"></label>
         ${lote.status==="conferido"?`<button class="btn btn-ghost btn-sm" onclick="limparLoteProva('${carga.id}','${lote.id}')">${iconeSvg("trash")} Esvaziar lote</button>`:""}
       </div>
     </div>

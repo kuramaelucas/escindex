@@ -33,11 +33,11 @@ function renderListaFlashcardsSugeridos(lista){
     const autor = getUsuario(c.criadoPor);
     return `<div class="card mb-2">
       <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssunto(c.assuntoId))}</span></div>
-      <div class="text-sm mt-1" style="font-weight:600">${escapeHtml(c.frente)}</div>
+      <div class="text-sm mt-1 peso-600">${escapeHtml(c.frente)}</div>
       <div class="text-sm mt-1 muted">${escapeHtml(c.verso)}</div>
       ${c.imagemUrl ? `<div class="text-xs muted mt-1">Inclui imagem${c.imagemLegenda?": "+escapeHtml(c.imagemLegenda):""}</div>` : ""}
       <div class="text-xs muted mt-1">Sugerido por ${escapeHtml(autor?autor.nome:"—")} em ${formatDataBR(c.sugeridoEm)}</div>
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirFormularioFlashcard('${c.id}')">${iconeSvg("edit")} Ver/editar antes de aprovar</button>
         ${podeGerirConteudo() ? `<button class="btn btn-primary btn-sm" onclick="aprovarFlashcardSugerido('${c.id}')">Aprovar para o baralho da equipe</button>
         <button class="btn btn-danger btn-sm" onclick="recusarFlashcardSugerido('${c.id}')">Recusar</button>` : ""}
@@ -59,7 +59,7 @@ function renderListaDuplicadas(grupos){
   return `<p class="text-sm muted mb-2">Questões com enunciado praticamente idêntico — normalmente a mesma prova importada duas vezes, ou uma questão que a banca repetiu. Manter duplicatas estraga as estatísticas (a mesma questão conta duas vezes) e faz o aluno responder o mesmo caso sem perceber.</p>
   ${grupos.length ? pag.itens.map((g,gi)=>`<div class="card mb-2">
     <div class="qcard-meta mb-1"><span class="badge badge-amber">${g.length} cópias</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(g[0].assuntoId))}</span></div>
-    <div class="text-sm" style="font-weight:600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${g[0].id}')">${escapeHtml(g[0].enunciado.slice(0,180))}…</span></div>
+    <div class="text-sm peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${g[0].id}')">${escapeHtml(g[0].enunciado.slice(0,180))}…</span></div>
     <div class="table-wrap mt-2"><table><thead><tr><th>Instituição / Ano</th><th>Status</th><th>Respostas</th><th></th></tr></thead><tbody>
       ${g.map((q,i)=>`<tr>
         <td class="text-sm">${escapeHtml(q.banca)} · ${q.ano}${i===0?' <span class="badge badge-accent">mais antiga</span>':""}</td>
@@ -103,10 +103,10 @@ function renderListaSugeridas(lista){
         <span class="badge ${tipoProvaDe(q)==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>
         ${q.imagemUrl ? '<span class="badge badge-accent">com imagem</span>' : aguardaImagem(q) ? '<span class="badge badge-amber">falta a imagem</span>' : ""}
         ${q.naNuvem ? '<span class="badge badge-muted">na nuvem</span>' : ""}</div>
-      <div class="text-sm mt-1" style="font-weight:600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
+      <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
       ${q.imagemUrl ? `<img class="imp-imagem-previa" src="${escapeHtml(q.imagemUrl)}" alt="${escapeHtml(q.imagemLegenda||"Imagem da questão")}" loading="lazy">` : ""}
       <div class="text-xs muted mt-1">Enviada por ${escapeHtml(autor?autor.nome:(q.autorNome||"—"))} em ${formatDataBR(q.criadoEm)}</div>
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(q.id, "Ver questão completa")}
         <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Ver/editar antes de aprovar</button>
         ${podeAprovarQuestoes() ? `<button class="btn btn-primary btn-sm" onclick="aprovarQuestaoSugerida('${q.id}')">Aprovar para o banco geral</button>
@@ -158,7 +158,7 @@ function renderListaDificeis(lista){
     const gabaritoEliminado = elim[q.gabarito] || 0;
     return `<div class="card mb-2">
       <div class="qcard-meta"><span class="badge badge-danger">${taxa}% de acerto</span><span class="badge badge-muted">${q.estatisticas.respostas} respostas</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${q.ano}</span></div>
-      <div class="text-sm mt-1" style="font-weight:600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
+      <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
       <div class="mt-2">
         ${q.alternativas.map(alt=>{
           const n = dist[alt.id]||0, largura = pct(n,maxDist);
@@ -166,8 +166,8 @@ function renderListaDificeis(lista){
           return `<div class="flex items-center gap-1 mb-1"><span class="text-xs" style="width:34px">${alt.id}${alt.id===q.gabarito?" ✓":""}</span><div class="progress-track" style="flex:1"><div class="progress-fill ${alt.id===q.gabarito?"":"amber"}" style="width:${largura}%"></div></div><span class="text-xs muted" style="width:26px;text-align:right">${n}</span>${nElim?`<span class="text-xs muted" style="width:120px;text-align:right" title="Vezes que quem errou já tinha riscado esta alternativa">riscada por ${nElim}${alt.id===q.gabarito?" ⚠":""}</span>`:""}</div>`;
         }).join("")}
       </div>
-      ${gabaritoEliminado>0 ? `<div class="card-flat mt-2 text-xs" style="border-color:var(--amber)">${iconeSvg("alert")} <strong>${gabaritoEliminado} de ${totalErros}</strong> aluno(s) que erraram esta questão tinham riscado justamente a alternativa correta (${escapeHtml(q.gabarito)}) antes de responder — sinal de que o gabarito está redigido de um jeito que soa errado. Vale revisar a redação da alternativa ${escapeHtml(q.gabarito)}.</div>` : ""}
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      ${gabaritoEliminado>0 ? `<div class="card-flat mt-2 text-xs borda-alerta">${iconeSvg("alert")} <strong>${gabaritoEliminado} de ${totalErros}</strong> aluno(s) que erraram esta questão tinham riscado justamente a alternativa correta (${escapeHtml(q.gabarito)}) antes de responder — sinal de que o gabarito está redigido de um jeito que soa errado. Vale revisar a redação da alternativa ${escapeHtml(q.gabarito)}.</div>` : ""}
+      <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(q.id, "Ver questão completa")}
         <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar esta questão agora</button>
         <button class="btn btn-secondary btn-sm" onclick="marcarRevisadaProfessor('${q.id}')">Manter (é difícil mesmo)</button>
@@ -183,11 +183,11 @@ function renderListaSinalizadas(lista){
   ${lista.length ? pag.itens.map(q=>`
     <div class="card mb-2">
       <div class="qcard-meta"><span class="badge badge-danger">${q.sinalizacoes.length} sinalização${q.sinalizacoes.length===1?"":"ões"}</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${q.ano}</span>${badgeStatusQuestao(q.status)}</div>
-      <div class="text-sm mt-1" style="font-weight:600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
+      <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
       <div class="mt-2">
         ${q.sinalizacoes.map(s=>`<div class="card-flat mb-1 text-sm"><span class="muted">${formatDataBR(s.data)}:</span> ${escapeHtml(s.comentario || "(sem comentário adicional)")}</div>`).join("")}
       </div>
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(q.id, "Ver questão completa")}
         <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar esta questão agora</button>
         <button class="btn btn-secondary btn-sm" onclick="marcarQuestaoStatus('${q.id}','desatualizada')">Marcar desatualizada</button>
@@ -227,14 +227,14 @@ function renderCardDuvida(c, respondida){
       ${badgeStatusQuestao(q.status)}
     </div>
     <div class="text-sm mt-2" style="font-weight:600;white-space:pre-line"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,320))}${q.enunciado.length>320?"…":""}</span></div>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       ${botaoVerNaIntegra(q.id, "Abrir questão na íntegra (enunciado, alternativas, gabarito e explicação)")}
       <button class="btn btn-secondary btn-sm" onclick="abrirPromptDuvida('${q.id}')">${iconeSvg("message")} Prompt de segunda opinião (IA)</button>
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar questão</button>
     </div>
-    <div class="card-flat mt-2"><span style="font-weight:600">${escapeHtml(nomeAutorComentario(c))}</span> <span class="text-xs muted">em ${formatDataBR(c.data)}</span><div class="text-sm mt-1">${escapeHtml(c.texto)}</div></div>
+    <div class="card-flat mt-2"><span class="peso-600">${escapeHtml(nomeAutorComentario(c))}</span> <span class="text-xs muted">em ${formatDataBR(c.data)}</span><div class="text-sm mt-1">${escapeHtml(c.texto)}</div></div>
     ${respostas.length ? respostas.map(r=>{
-      return `<div class="card-flat mt-1" style="border-color:var(--accent)"><span style="font-weight:600">${escapeHtml(nomeAutorComentario(r))}</span> <span class="badge badge-accent">resposta oficial</span><div class="text-sm mt-1">${escapeHtml(r.texto)}</div><div class="text-xs muted mt-1">${formatDataBR(r.data)}</div></div>`;
+      return `<div class="card-flat mt-1 borda-destaque"><span class="peso-600">${escapeHtml(nomeAutorComentario(r))}</span> <span class="badge badge-accent">resposta oficial</span><div class="text-sm mt-1">${escapeHtml(r.texto)}</div><div class="text-xs muted mt-1">${formatDataBR(r.data)}</div></div>`;
     }).join("") : ""}
     ${!respondida ? `<textarea class="textarea mt-2" id="respostaDuvida-${c.id}" placeholder="Escreva a resposta oficial..." style="min-height:80px"></textarea>
     <button class="btn btn-primary btn-sm mt-1" onclick="responderDuvida('${c.id}','${q.id}')">Enviar resposta</button>` : `<div class="mt-2"><button class="link-btn" onclick="responderDuvidaExtra('${c.id}','${q.id}')">Acrescentar outra resposta oficial</button></div>`}
@@ -293,7 +293,7 @@ function renderRevisaoFormatacao(){
   const pagFormatacao = paginar(lista, "formatacao", {porPagina:15, assinatura:termo+"|"+verAprovadas+"|"+lista.length});
   return `
   <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico. Quando a questão estiver boa, <strong>"Aprovar formatação"</strong> a tira da fila de todos os revisores, para ninguém reler o que já foi conferido.</p></div>
-  <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+  <div class="flex gap-1 mb-2 quebra">
     <button class="pill ${!verAprovadas?"active":""}" onclick="verFormatacaoAprovadas(false)">A revisar (${todas.length - nAprovadas})</button>
     <button class="pill ${verAprovadas?"active":""}" onclick="verFormatacaoAprovadas(true)">${iconeSvg("check")} Já aprovadas (${nAprovadas})</button>
   </div>
@@ -309,7 +309,7 @@ function renderRevisaoFormatacao(){
       <div class="qcard-meta mb-1"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>${badgeStatusQuestao(q.status)}${ap ? `<span class="badge badge-accent">formatação aprovada${ap.porNome?" por "+escapeHtml(ap.porNome):""} em ${formatDataBR(ap.em)}</span>` : ""}</div>
       <div class="text-sm" style="white-space:pre-line">${escapeHtml(q.enunciado)}</div>
       <div class="mt-2">${q.alternativas.map(a=>`<div class="text-sm">${escapeHtml(a.id)}) ${escapeHtml(a.texto)}${a.id===q.gabarito?" ✓":""}</div>`).join("")}</div>
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         ${ap
           ? `<button class="btn btn-ghost btn-sm" onclick="alternarFormatacaoAprovada('${q.id}')">${iconeSvg("refresh")} Devolver à fila</button>`
           : `<button class="btn btn-primary btn-sm" onclick="alternarFormatacaoAprovada('${q.id}')">${iconeSvg("check")} Aprovar formatação</button>`}
@@ -350,10 +350,10 @@ function renderTurmaPessoas(u){
   return `
   ${podeAprovarCadastros(u) ? renderPedidosDeAcesso() : ""}
   ${souMaster ? `<details class="secao-expansivel">
-    <summary><span class="card-title" style="margin:0">Níveis de administrador</span><span class="text-xs muted">o que cada nível enxerga</span></summary>
+    <summary><span class="card-title sem-m">Níveis de administrador</span><span class="text-xs muted">o que cada nível enxerga</span></summary>
     <div class="secao-corpo">
       <p class="text-sm muted mb-2">Cada nível enxerga apenas as áreas correspondentes no menu. Só um administrador máster pode alterar papéis e níveis.</p>
-      ${CONFIG.niveisAdmin.map(n=>`<div class="card-flat mb-1"><div style="font-weight:600">${escapeHtml(n.nome)}</div><div class="text-sm muted mt-1">${escapeHtml(n.descricao)}</div></div>`).join("")}
+      ${CONFIG.niveisAdmin.map(n=>`<div class="card-flat mb-1"><div class="peso-600">${escapeHtml(n.nome)}</div><div class="text-sm muted mt-1">${escapeHtml(n.descricao)}</div></div>`).join("")}
     </div>
   </details>
   ${renderUsuariosDaNuvem(souMaster)}
@@ -382,7 +382,7 @@ function badgeStatusUsuario(status){
 function renderUsuariosDaNuvem(souMaster){
   if(!nuvemLigada()) return "";
   if(!nuvemConectado()){
-    return `<div class="card mb-2" style="border-color:var(--amber)">
+    return `<div class="card mb-2 borda-alerta">
       <div class="card-title">${iconeSvg("database")} Cadastros da nuvem</div>
       <p class="text-sm muted">A nuvem está configurada, mas você entrou por uma conta só deste navegador. Saia e entre com o e-mail e a senha da sua conta da nuvem para ver e administrar a turma.</p>
     </div>`;
@@ -395,12 +395,12 @@ function renderUsuariosDaNuvem(souMaster){
   nuvemUsuarios.forEach(p => { (porStatus[p.status] || (porStatus[p.status] = [])).push(p); });
   const pag = paginar(nuvemUsuarios, "usuarios-nuvem", {porPagina:30});
   return `<div class="card mb-2">
-    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
-      <div class="card-title" style="margin-bottom:0">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
+    <div class="flex justify-between items-center mb-1 quebra-gap">
+      <div class="card-title sem-mb">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
       <button class="btn btn-secondary btn-sm" onclick="nuvemBuscarUsuarios()">${iconeSvg("refresh")} Atualizar</button>
     </div>
     <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova nos pedidos de acesso aparece aqui</strong> — a lista de pedidos mostra só quem ainda está pendente.</p>
-    ${nuvemUsuariosErro ? `<p class="text-sm mt-1" style="color:var(--amber);font-weight:600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
+    ${nuvemUsuariosErro ? `<p class="text-sm mt-1 texto-alerta peso-600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
     ${nuvemUsuarios.length ? `<div class="table-wrap mt-2"><table>
       <thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead>
       <tbody>${pag.itens.map(p => {
@@ -417,7 +417,7 @@ function renderUsuariosDaNuvem(souMaster){
             ? `<select class="select" style="padding:.3rem .5rem" onchange="mudarNivelNaNuvem('${p.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${(p.nivel_admin||"coordenacao")===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
             : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(p.nivel_admin||"coordenacao"))}</span>`}</td>
         <td>${badgeStatusUsuario(p.status)}</td>
-        <td class="flex gap-1" style="flex-wrap:wrap">
+        <td class="flex gap-1 quebra">
           ${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : souEu ? '<span class="text-xs muted">sua conta</span>' : `
             ${p.status !== "aprovado" ? `<button class="btn btn-primary btn-sm" onclick="mudarStatusNaNuvem('${p.id}','aprovado')">Aprovar</button>` : ""}
             ${p.status === "aprovado" ? `<button class="btn btn-ghost btn-sm" onclick="mudarStatusNaNuvem('${p.id}','inativo')">Inativar</button>` : ""}
@@ -450,7 +450,7 @@ function renderUsuariosLocais(souMaster, eu){
           ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
           : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
       <td>${badgeStatusUsuario(u.status)}</td>
-      <td class="flex gap-1" style="flex-wrap:wrap">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `
+      <td class="flex gap-1 quebra">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `
         ${u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Inativar</button>`}
         ${u.id===eu.id ? "" : `<button class="btn btn-danger btn-sm" onclick="confirmarExcluirUsuario('${u.id}','local')">${iconeSvg("trash")} Excluir</button>`}`}
       </td>
@@ -552,8 +552,8 @@ function confirmarExcluirUsuario(id, onde){
     ${cabecalhoJanela(`Excluir o cadastro de ${escapeHtml(nome)}?`)}
     <p class="text-sm">${escapeHtml(email)}</p>
     <p class="text-sm mt-2"><strong>Isto não pode ser desfeito.</strong> Se a intenção é só tirar o acesso, use <em>Inativar</em>: a pessoa deixa de entrar e o estudo dela continua guardado.</p>
-    ${vaiJunto.length ? `<div class="card-flat mt-2"><div class="text-sm" style="font-weight:600">Vai junto, deste navegador:</div><div class="text-sm muted mt-1">${vaiJunto.join(" · ")}</div></div>` : '<div class="card-flat mt-2 text-sm muted">Não há estudo desta pessoa guardado neste navegador.</div>'}
-    ${fica.length ? `<div class="card-flat mt-1"><div class="text-sm" style="font-weight:600">Fica na plataforma (é conteúdo da turma, não dado pessoal):</div><div class="text-sm muted mt-1">${fica.join(" · ")}</div></div>` : ""}
+    ${vaiJunto.length ? `<div class="card-flat mt-2"><div class="text-sm peso-600">Vai junto, deste navegador:</div><div class="text-sm muted mt-1">${vaiJunto.join(" · ")}</div></div>` : '<div class="card-flat mt-2 text-sm muted">Não há estudo desta pessoa guardado neste navegador.</div>'}
+    ${fica.length ? `<div class="card-flat mt-1"><div class="text-sm peso-600">Fica na plataforma (é conteúdo da turma, não dado pessoal):</div><div class="text-sm muted mt-1">${fica.join(" · ")}</div></div>` : ""}
     ${onde==="nuvem" ? `<p class="text-xs muted mt-2">Na nuvem, o que se apaga é o <strong>cadastro</strong> (a linha de <code>perfis</code>) — e é isso que corta a entrada, mesmo com e-mail e senha certos. Duas coisas continuam lá até alguém removê-las pelo painel do Supabase, porque este site não tem a chave que faz isso: a conta de autenticação e as respostas que a pessoa já tinha sincronizado (elas ficam ligadas à conta, não ao cadastro). Removendo a conta pelo painel, o estudo dela sai junto, em cascata.</p>` : ""}
     <div class="flex gap-1 mt-3">
       <button class="btn btn-danger" onclick="excluirUsuarioConfirmado('${id}','${onde}')">${iconeSvg("trash")} Excluir mesmo assim</button>
@@ -625,7 +625,7 @@ function renderFeedbackUsuarios(){
     const [cls,label] = rotulos[String(f.tipo||"").split(" ")[0]]||rotulos.comentario;
     return `<div class="card mb-1" style="${f.lido?"opacity:.6":""}">
       <div class="flex justify-between items-center"><span class="badge ${cls}">${label}</span><span class="text-xs muted">${formatDataBR(f.data)}</span></div>
-      <div class="text-sm mt-1" style="white-space:pre-wrap">${escapeHtml(f.texto)}</div>
+      <div class="text-sm mt-1 quebra-linhas">${escapeHtml(f.texto)}</div>
       <div class="flex justify-between items-center mt-1">
         <span class="text-xs muted">${escapeHtml(f.autorNome || (autor?autor.nome:"—"))} (${badgePapel(f.papel)})</span>
         ${!f.lido ? `<button class="link-btn" onclick="marcarFeedbackLido('${f.id}')">marcar como lido</button>` : `<span class="text-xs muted">lido${f.lidoPorNome ? " por " + escapeHtml(f.lidoPorNome) : ""}</span>`}

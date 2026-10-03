@@ -33,7 +33,7 @@ function renderProvasESimulados(){
   const pagResultados = paginar(meusResultados, "provas-resultados", {porPagina:10});
   return `
   <div class="page-header"><h2>Provas e Simulados</h2><p>Prova inteira, no relógio. Na primeira aba, as provas antigas como caíram; na segunda, os simulados montados pela equipe para um bloco ou assunto.</p></div>
-  <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+  <div class="flex gap-1 mb-2 quebra">
     <button class="pill ${aba==="antigas"?"active":""}" onclick="mudarAbaProvas('antigas')">${iconeSvg("archive")} Provas antigas</button>
     <button class="pill ${aba==="simulados"?"active":""}" onclick="mudarAbaProvas('simulados')">${iconeSvg("clipboard")} Simulados da equipe (${db.simulados.length})</button>
   </div>
@@ -72,9 +72,9 @@ function desempenhoPrevioSimulado(simuladoId, titulo){
 function renderSimuladoCard(s){
   const previo = desempenhoPrevioSimulado(s.id, s.titulo);
   return `<div class="card mb-1">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center gap-2 quebra">
       <div>
-        <div style="font-weight:700">${escapeHtml(s.titulo)}</div>
+        <div class="peso-700">${escapeHtml(s.titulo)}</div>
         <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min</div>
         ${previo ? `<div class="qcard-meta mt-1">
             <span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já feito · última nota ${previo.ultima.nota}%</span>
@@ -83,7 +83,7 @@ function renderSimuladoCard(s){
             ${previo.variacao!==null ? `<span class="badge ${previo.variacao>=0?"badge-accent":"badge-danger"}">${previo.variacao>=0?"+":""}${previo.variacao} pts vs. anterior</span>` : ""}
           </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
       </div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
         <button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>
       </div>
@@ -201,8 +201,8 @@ function renderSimuladoAtivo(){
   const jaRespondeuEssa = respostaAtual !== undefined;
   garantirCronometro();
   return `<div class="coluna-questao">
-  <div class="flex justify-between items-center mb-2" style="flex-wrap:wrap;gap:.5rem">
-    <div class="text-sm muted flex items-center gap-1" style="flex-wrap:wrap">
+  <div class="flex justify-between items-center mb-2 quebra-gap">
+    <div class="text-sm muted flex items-center gap-1 quebra">
       <span>Questão ${sessao.indiceAtual+1} de ${sessao.itens.length} · ${respondidasCount} respondida(s) · ${emBranco} em branco</span>
       ${iconeSvg("clock")}<span class="badge badge-muted" id="cronometroSimulado">${sessao.duracaoMin?formatarDuracao(Math.max(0,sessao.duracaoMin*60 - tempoDecorridoSimulado()))+" restantes":formatarDuracao(tempoDecorridoSimulado())+" decorridos"}</span>
     </div>
@@ -312,7 +312,7 @@ function renderResultadoSimulado(){
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(analiseTempo.mediana)}</div><div class="stat-label">tempo mediano por questão</div></div>
     </div>
     ${analiseTempo.lentas.length ? `<div class="mt-2">
-      <div class="text-sm" style="font-weight:600">Onde você travou</div>
+      <div class="text-sm peso-600">Onde você travou</div>
       <p class="text-xs muted mb-1">Questões que consumiram bem mais tempo que a sua mediana. Travar numa questão que você acertou também conta: numa prova cronometrada, esse tempo sai de outra questão.</p>
       ${analiseTempo.lentas.map(l=>`<div class="flex justify-between items-center card-flat mb-1">
         <span class="text-sm">Questão ${l.i+1} · ${escapeHtml(nomeAssunto(getQuestao(l.qid).assuntoId))} <span class="badge ${l.correta?"badge-accent":"badge-danger"}">${l.correta?"acertou":"errou"}</span></span>
@@ -323,10 +323,10 @@ function renderResultadoSimulado(){
   <div class="card mt-2">
     <div class="card-title mb-1">Mapa de acertos e erros</div>
     <p class="text-sm muted mb-2">Verde = acertou, vermelho = errou, cinza = deixou em branco. Clique num número para pular direto para a revisão daquela questão.</p>
-    <div class="flex gap-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 quebra">
       ${linhas.map(l=>`<button class="pill" style="min-width:38px;justify-content:center;${l.resp===undefined?"":l.correta?"background:var(--accent);border-color:var(--accent);color:#fff":"background:var(--danger);border-color:var(--danger);color:#fff"}" onclick="irParaRevisaoQuestaoSimulado(${l.i})" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}">${l.i+1}</button>`).join("")}
     </div>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="revisarErrosDoSimulado()">${iconeSvg("refresh")} Praticar agora só as que errei</button>
       <button class="btn btn-ghost btn-sm" onclick="state.sessaoAtual=null;navigate('historico')">Ver histórico de atividade</button>
     </div>
@@ -419,7 +419,7 @@ function renderAbaProvasAntigas(u){
         ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
         ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
-        <div class="flex gap-1 prova-acoes" style="flex-wrap:wrap">
+        <div class="flex gap-1 prova-acoes quebra">
           <button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>
           <button class="btn btn-secondary btn-sm" onclick="praticarProva(${i})">Praticar sem cronômetro</button>
         </div>
@@ -438,41 +438,41 @@ function renderAbaProvasAntigas(u){
           ? "Nenhuma prova deste tipo com os filtros atuais."
           : `Ainda não há ${escapeHtml(info.nomeLongo.toLowerCase())} no banco (${escapeHtml(info.descricao)}). Quem tiver uma pode <button class="link-btn" onclick="navigate('importar-questoes')">enviar pela plataforma</button>, escolhendo o tipo de prova ${escapeHtml(info.nome)}.`}</div>`;
     }
-    return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)} <span class="text-sm muted" style="font-weight:400">· ${escapeHtml(info.descricao)} · ${daSecao.length} prova(s)</span></div>
+    return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)} <span class="text-sm muted peso-400">· ${escapeHtml(info.descricao)} · ${daSecao.length} prova(s)</span></div>
       ${prioritaria ? `<p class="text-xs muted mb-1">${iconeSvg("star")} No ${escapeHtml(u.anoFaculdade)}, estas vêm primeiro: são as que consolidam o conhecimento do ano. As de residência continuam logo abaixo.</p>` : ""}
       <div class="grid grid-3 mb-2">${daSecao.map(x=>cartaoDaProva(x.g, x.i)).join("")}</div>`;
   }).join("");
 
   return `
   <p class="text-sm muted mb-2">A prova de verdade de cada instituição, do jeito que caiu. Faça inteira no relógio, para medir onde você está contra a banca, ou sem cronômetro, para estudar com calma.</p>
-  <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+  <div class="flex gap-1 mb-2 quebra">
     <button class="pill ${!f.tipo?"active":""}" onclick="mudarFiltroProvas('tipo','')">Todas (${todasDosTipos.length})</button>
     ${ordemTipos.map(t=>`<button class="pill ${f.tipo===t?"active":""}" onclick="mudarFiltroProvas('tipo','${t}')">${escapeHtml(infoTipoProva(t).nomeLongo)} (${qtdPorTipo[t]||0})</button>`).join("")}
   </div>
   <div class="card mb-2">
     <div class="grid grid-4">
-      <div class="field" style="margin-bottom:0">
+      <div class="field sem-mb">
         <label class="label">Instituição</label>
         <select class="select" onchange="mudarFiltroProvas('banca', this.value)">
           <option value="">Todas (${bancas.length})</option>
           ${bancas.map(b=>`<option value="${escapeHtml(b)}" ${f.banca===b?"selected":""}>${escapeHtml(b)}</option>`).join("")}
         </select>
       </div>
-      <div class="field" style="margin-bottom:0">
+      <div class="field sem-mb">
         <label class="label">Ano</label>
         <select class="select" onchange="mudarFiltroProvas('ano', this.value)" ${f.ultimos5?"disabled":""}>
           <option value="">Todos os anos</option>
           ${anosDisponiveis.map(a=>`<option value="${a}" ${String(f.ano)===String(a)?"selected":""}>${a}</option>`).join("")}
         </select>
       </div>
-      <div class="field" style="margin-bottom:0">
+      <div class="field sem-mb">
         <label class="label">Grande área</label>
         <select class="select" onchange="mudarFiltroProvas('areaId', this.value)">
           <option value="">Todas as áreas</option>
           ${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${f.areaId===a.id?"selected":""}>${escapeHtml(a.nome)}</option>`).join("")}
         </select>
       </div>
-      <div class="field" style="margin-bottom:0">
+      <div class="field sem-mb">
         <label class="label">Atalhos</label>
         <label class="checkbox-row mb-1"><input type="checkbox" ${f.ultimos5?"checked":""} onchange="mudarFiltroProvas('ultimos5', this.checked)"> Só os últimos 5 anos (${Math.max(anoMaisRecente-4,0)}–${anoMaisRecente})</label>
         <button class="link-btn text-xs" onclick="limparFiltrosProvas()">limpar filtros</button>

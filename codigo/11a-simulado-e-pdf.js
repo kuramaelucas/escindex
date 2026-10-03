@@ -249,7 +249,7 @@ function renderMaterialPDF(){
   </div>` : ""}
 
   <div class="card">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center gap-2 quebra">
       <div><div class="card-title">Pronto para gerar</div>
       <div class="text-sm muted">${total} ${rotuloTotal} ${total?"no material":"— ajuste os filtros acima"}.</div></div>
       <button class="btn btn-primary" onclick="gerarMaterialPDF()" ${total?"":"disabled"}>${iconeSvg("printer")} Gerar PDF</button>

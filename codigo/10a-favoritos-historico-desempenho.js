@@ -36,7 +36,7 @@ function renderFavoritos(){
   const comNota = favs.filter(x=>(x.reg.nota||"").trim()).length;
   const pag = paginar(favs, "favoritos");
   const retiradas = questoesRetiradasDaRevisao(u.id);
-  const abas = `<div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+  const abas = `<div class="flex gap-1 mb-2 quebra">
     <button class="pill ${aba==="questoes"?"active":""}" onclick="mudarAbaFavoritos('questoes')">${iconeSvg("book")} Questões (${favs.length})</button>
     <button class="pill ${aba==="cartoes"?"active":""}" onclick="mudarAbaFavoritos('cartoes')">${iconeSvg("cards")} Flashcards (${cartoes.length})</button>
     <button class="pill ${aba==="retiradas"?"active":""}" onclick="mudarAbaFavoritos('retiradas')">${iconeSvg("eye-off")} Retiradas da revisão (${retiradas.length})</button>
@@ -54,7 +54,7 @@ function renderFavoritos(){
   ${cabecalho}
   ${abas}
   <p class="text-sm muted mb-2">${favs.length} questão(ões) marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p>
-  ${favs.length ? `<div class="flex gap-1 mb-2" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="praticarFavoritas()">${iconeSvg("book")} Praticar todas as favoritas</button></div>` : ""}
+  ${favs.length ? `<div class="flex gap-1 mb-2 quebra"><button class="btn btn-primary" onclick="praticarFavoritas()">${iconeSvg("book")} Praticar todas as favoritas</button></div>` : ""}
   ${favs.length ? pag.itens.map(({reg,q})=>{
     const area = getArea(q.areaId);
     const ult = ultimaResposta(u.id, q.id);
@@ -68,7 +68,7 @@ function renderFavoritos(){
       </div>
       <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,200))}${q.enunciado.length>200?"…":""}</span></div>
       ${(reg.nota||"").trim() ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(reg.nota)}</div></div>` : ""}
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(q.id, "Abrir questão completa")}
         <button class="btn btn-secondary btn-sm" onclick="praticarSoEstaQuestao('${q.id}')">${iconeSvg("book")} Praticar só esta</button>
         <button class="btn btn-secondary btn-sm" onclick="abrirNotaFavorita('${q.id}')">${iconeSvg("message")} ${(reg.nota||"").trim()?"Editar anotação":"Anotar uma dúvida"}</button>
@@ -94,7 +94,7 @@ function renderQuestoesRetiradas(u, retiradas){
         ${n ? `<span class="badge badge-danger">errada ${rotuloVezes(n)}</span>` : ""}
       </div>
       <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,200))}${q.enunciado.length>200?"…":""}</span></div>
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(q.id, "Abrir questão completa")}
         <button class="btn btn-secondary btn-sm" onclick="alternarQuestaoOcultaUI('${q.id}')">${iconeSvg("eye")} Voltar a mostrar</button>
       </div>
@@ -108,7 +108,7 @@ function renderFavoritosCartoes(u, cartoes){
   const pag = paginar(cartoes, "favoritos-cartoes");
   return `
   <p class="text-sm muted mb-2">${cartoes.length} cartão(ões) salvo(s). Salvar não muda a repetição espaçada: o cartão continua voltando na data dele — isto aqui é a sua pilha de "quero rever este conceito".</p>
-  ${cartoes.length ? `<div class="flex gap-1 mb-2" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="revisarCartoesFavoritos()">${iconeSvg("cards")} Revisar os cartões salvos</button></div>` : ""}
+  ${cartoes.length ? `<div class="flex gap-1 mb-2 quebra"><button class="btn btn-primary" onclick="revisarCartoesFavoritos()">${iconeSvg("cards")} Revisar os cartões salvos</button></div>` : ""}
   ${cartoes.length ? pag.itens.map(({reg,cartao})=>{
     const rev = revisaoDoCartao(u.id, cartao.id);
     return `<div class="card mb-1">
@@ -118,9 +118,9 @@ function renderFavoritosCartoes(u, cartoes){
         ${cartao.origem==="questao" ? '<span class="badge badge-amber">gerado de uma questão</span>' : ""}
         ${rev && rev.proximaRevisao ? `<span class="badge badge-muted">volta em ${formatDataBR(proximaRevisaoCartao(rev))}</span>` : '<span class="badge badge-muted">ainda não revisado</span>'}
       </div>
-      <div class="text-sm" style="font-weight:600">${escapeHtml(cartao.frente)}</div>
+      <div class="text-sm peso-600">${escapeHtml(cartao.frente)}</div>
       <div class="text-sm muted mt-1">${escapeHtml(cartao.verso.slice(0,220))}${cartao.verso.length>220?"…":""}</div>
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary btn-sm" onclick="revisarSoEsteCartao('${cartao.id}')">${iconeSvg("cards")} Revisar só este</button>
         ${cartao.origem==="questao" && cartao.questaoId ? botaoVerNaIntegra(cartao.questaoId, "Ver a questão de origem") : ""}
         ${podeMexerNoCartao(cartao) ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioFlashcard('${cartao.id}')">${iconeSvg("edit")} Editar</button>` : ""}
@@ -195,9 +195,9 @@ function renderLivroOuro(){
       <div class="card-title">${titulo}</div>
       <p class="text-sm muted mb-2">${subtitulo}</p>
       ${lista.map(r=>`<div class="card-flat mb-1">
-        <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+        <div class="flex justify-between items-center gap-2 quebra">
           <div>
-            <div style="font-weight:700">${escapeHtml(r.nome)} ${r.destaque?'<span class="badge badge-amber">destaque</span>':""}</div>
+            <div class="peso-700">${escapeHtml(r.nome)} ${r.destaque?'<span class="badge badge-amber">destaque</span>':""}</div>
             <div class="text-sm muted mt-1">${escapeHtml(r.descricao||"")}</div>
             ${r.mensagem?`<div class="text-sm mt-1" style="font-family:var(--font-display);font-style:italic">“${escapeHtml(r.mensagem)}”</div>`:""}
             <div class="text-xs muted mt-1">${r.data?formatDataBR(r.data):""}${r.valor?" · "+escapeHtml(r.valor):""}</div>
@@ -212,13 +212,13 @@ function renderLivroOuro(){
   };
   return `
   <div class="page-header"><h2>Livro de Ouro</h2><p>Esta plataforma é mantida por gente que doou dinheiro, tempo ou conhecimento. Aqui ficam registrados, com nome, quem tornou isso possível.</p></div>
-  <div class="card mb-2" style="border-color:var(--amber)">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+  <div class="card mb-2 borda-alerta">
+    <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="card-title">Obrigado</div>
         <p class="text-sm muted">${registros.length} registro(s) de doação, colaboração e apoio. Se você contribuiu e não está aqui, avise a coordenação — a lista é mantida à mão, e esquecer alguém é o único erro que não queremos cometer.</p>
       </div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirModalContribuir()">${iconeSvg("message")} Quero contribuir</button>
         ${podeEditar?`<button class="btn btn-primary btn-sm" onclick="abrirFormularioLivroOuro(null)">${iconeSvg("plus")} Registrar agradecimento</button>`:""}
       </div>
@@ -424,9 +424,9 @@ function renderHistorico(){
       const taxa = d.total ? pct(d.acertos, d.total) : null;
       const sessoesDoDia = d.sessoes.length;
       return `<div class="card-flat mb-1">
-        <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-          <div style="min-width:220px;flex:1">
-            <div style="font-weight:600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
+        <div class="flex justify-between items-center gap-2 quebra">
+          <div class="cresce-220">
+            <div class="peso-600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
             <div class="text-xs muted mt-1">
               ${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}
               ${d.cartoes ? ` · ${d.cartoes} flashcard(s)${d.cartoesExatos?"":" (ao menos)"}` : ""}
@@ -434,7 +434,7 @@ function renderHistorico(){
               ${d.simulados.length ? ` · ${d.simulados.length} simulado(s)` : ""}
             </div>
           </div>
-          <div class="flex items-center gap-1" style="flex-wrap:wrap">
+          <div class="flex items-center gap-1 quebra">
             ${taxa!==null ? `<span class="badge ${taxa>=70?"badge-accent":taxa>=50?"badge-amber":"badge-danger"}">${taxa}% de acerto</span>` : ""}
             ${d.cartoes ? `<span class="badge badge-muted">${iconeSvg("cards")} ${d.cartoes}</span>` : ""}
             ${d.total ? `<button class="btn btn-secondary btn-sm" onclick="abrirDiaDoHistorico('${d.data}')">${iconeSvg("chart")} Abrir o dia</button>` : ""}
@@ -443,7 +443,7 @@ function renderHistorico(){
         ${sessoesDoDia ? `<div class="mt-2" style="border-top:1px solid var(--border);padding-top:.6rem">
           ${d.sessoes.map(sess=>{
             const t = pct(sess.acertos, sess.total);
-            return `<div class="flex justify-between items-center gap-2 text-xs muted mb-1" style="flex-wrap:wrap">
+            return `<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
               <span>${iconeSvg("book")} conjunto de ${sess.total} questão(ões) — ${escapeHtml(sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática")}</span>
               <span class="flex items-center gap-1"><span class="badge ${t>=70?"badge-accent":t>=50?"badge-amber":"badge-danger"}">${t}%</span>
               <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir este conjunto</button></span>
@@ -629,7 +629,7 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${cartoes.hoje}</div><div class="stat-label">revisados hoje (meta de ${metaCartoesDoUsuario(u)} por dia)</div></div>
       <div class="stat-tile"><div class="stat-value">${cartoes.dias}</div><div class="stat-label">dias com cartão revisado${cartoes.sequencia?` · ${cartoes.sequencia} seguido(s)`:""}</div></div>
     </div>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
       ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
     </div>
@@ -639,9 +639,9 @@ function renderDesempenho(){
   ${htmlCardNotaEstimada(u)}
 
   <div class="card mb-2">
-    <div class="flex justify-between items-center gap-2 mb-2" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center gap-2 mb-2 quebra">
       <div style="min-width:320px;flex:1">
-        <div class="card-title" style="margin-bottom:.2rem">Como você está indo — ${escapeHtml(rotuloPeriodo.toLowerCase())}</div>
+        <div class="card-title mb-02">Como você está indo — ${escapeHtml(rotuloPeriodo.toLowerCase())}</div>
         <div class="text-sm muted">Cada barra é 100% das questões daquele ${ehDiario?"dia":"mês"}: a parte verde é o que você acertou, o cinza é o que errou.</div>
       </div>
       <div class="seletor-periodo">
@@ -674,12 +674,12 @@ function renderDesempenho(){
     </div>`}
 
     <div class="card-flat">
-      <div class="text-sm" style="font-weight:600">As duas janelas curtas, lado a lado</div>
+      <div class="text-sm peso-600">As duas janelas curtas, lado a lado</div>
       <div class="grid grid-2 janelas-curtas mt-1">
         <div class="text-sm">Últimos 14 dias: <strong>${resumo14.taxa!==null?resumo14.taxa+"%":"—"}</strong> <span class="muted">(${resumo14.total} questões, ${resumo14.diasComEstudo} dias com estudo)</span></div>
         <div class="text-sm">Últimos 30 dias: <strong>${resumo30.taxa!==null?resumo30.taxa+"%":"—"}</strong> <span class="muted">(${resumo30.total} questões, ${resumo30.diasComEstudo} dias com estudo)</span></div>
       </div>
-      ${(resumo14.taxa!==null && resumo30.taxa!==null && Math.abs(resumo14.taxa-resumo30.taxa)>=8) ? `<p class="text-xs mt-1" style="color:var(--amber);font-weight:600">As duas janelas estão distantes (${Math.abs(resumo14.taxa-resumo30.taxa)} p.p.): ${resumo14.taxa>resumo30.taxa?"as duas últimas semanas foram melhores que o mês inteiro — algo que você mudou está funcionando.":"as duas últimas semanas caíram em relação ao mês. Vale ver se mudou o assunto, o tipo de questão ou o ritmo."}</p>` : ""}
+      ${(resumo14.taxa!==null && resumo30.taxa!==null && Math.abs(resumo14.taxa-resumo30.taxa)>=8) ? `<p class="text-xs mt-1 texto-alerta peso-600">As duas janelas estão distantes (${Math.abs(resumo14.taxa-resumo30.taxa)} p.p.): ${resumo14.taxa>resumo30.taxa?"as duas últimas semanas foram melhores que o mês inteiro — algo que você mudou está funcionando.":"as duas últimas semanas caíram em relação ao mês. Vale ver se mudou o assunto, o tipo de questão ou o ritmo."}</p>` : ""}
     </div>
     </div>
     </div>
@@ -696,7 +696,7 @@ function renderDesempenho(){
         ${porArea.map(a=>{
           const pior = a.assuntos.filter(x=>x.total>=3)[0] || a.assuntos[0] || null;
           return `<tr>
-            <td class="text-sm" style="font-weight:600">${escapeHtml(a.nome)}</td>
+            <td class="text-sm peso-600">${escapeHtml(a.nome)}</td>
             <td class="text-sm">${a.acertos}</td>
             <td class="text-sm">${a.total-a.acertos}</td>
             <td>${a.taxa!==null?`<span class="badge ${a.taxa<50?"badge-danger":a.taxa<70?"badge-amber":"badge-accent"}">${a.taxa}%</span>`:'<span class="text-xs muted">sem dados</span>'}</td>
@@ -717,7 +717,7 @@ function renderDesempenho(){
     <div class="stat-tile"><div class="stat-value">${calibracao.duvida.n?calibracao.duvida.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "na dúvida" (${calibracao.duvida.n})</div></div>
     <div class="stat-tile"><div class="stat-value">${calibracao.chute.n?calibracao.chute.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "chute" (${calibracao.chute.n})</div></div>
   </div>
-  ${(calibracao.alertaExcessoConfianca || falsaSeguranca.length) ? `<div class="card mb-2" style="border-color:var(--amber)">
+  ${(calibracao.alertaExcessoConfianca || falsaSeguranca.length) ? `<div class="card mb-2 borda-alerta">
     <div class="card-title">Onde sua confiança engana</div>
     ${calibracao.alertaExcessoConfianca ? `<p class="text-sm">Nas questões em que você marcou "certeza", a taxa de acerto é de ${calibracao.certeza.taxa}%. Quando alguém tem certeza de verdade, esse número fica perto de 90%: a diferença é o tamanho do ponto cego.</p>` : ""}
     ${falsaSeguranca.length ? `<p class="text-sm muted mt-1">Assuntos em que você respondeu com certeza e errou mesmo assim — é para cá que vale direcionar o estudo antes de qualquer outra coisa:</p>
@@ -725,7 +725,7 @@ function renderDesempenho(){
         <span class="text-sm">${escapeHtml(nomeAssunto(f.assuntoId))} <span class="text-xs muted">(${f.n} respostas com "certeza")</span></span>
         <span class="flex items-center gap-1"><span class="badge badge-danger">${f.taxa}%</span><button class="btn btn-secondary btn-sm" onclick="praticarAssuntoFalsaSeguranca('${f.assuntoId}')">Praticar</button></span>
       </div>`).join("")}` : ""}
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ver as filas por tipo de erro</button>
       <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">${iconeSvg("cards")} Revisão rápida desses assuntos</button>
     </div>
@@ -740,7 +740,7 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${ritmo.mediaErros!==null?formatarDuracao(ritmo.mediaErros):"—"}</div><div class="stat-label">média quando erra</div></div>
     </div>
     ${ritmo.assuntosLentos.length ? `<div class="mt-2">
-      <div class="text-sm" style="font-weight:600">Assuntos em que você mais trava</div>
+      <div class="text-sm peso-600">Assuntos em que você mais trava</div>
       ${ritmo.assuntosLentos.map(a=>`<div class="flex justify-between items-center card-flat mb-1">
         <span class="text-sm">${escapeHtml(nomeAssunto(a.assuntoId))} <span class="text-xs muted">(${a.n} questões)</span></span>
         <span class="badge ${a.media>ritmo.mediana*1.5?"badge-amber":"badge-muted"}">${formatarDuracao(a.media)} por questão</span>
