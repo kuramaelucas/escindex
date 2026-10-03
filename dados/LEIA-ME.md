@@ -70,6 +70,9 @@ porque todo o resto aponta para ela):
 | `prova-sessp-2024.js` | SES-SP 2024 (Quadrix, aplicada em 16/12/2023, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
 | `prova-sessp-2025.js` | SES-SP 2025 (Quadrix, aplicada em 14/12/2024, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
 | `prova-sessp-2026.js` | SES-SP 2026 (Acesso Direto), prova real, **gabarito da cópia do caderno, ainda sem conferência com o definitivo** | 100 |
+| `prova-tp-2020-2.js` | Teste de Progresso Interinstitucional, novembro de 2020 (graduação), prova real, comentário oficial aprimorado (91 e 105 anuladas; 81 e 90 desatualizadas) | 120 |
+| `prova-tp-2021-2.js` | Teste de Progresso, novembro de 2021 (prova digital, graduação), prova real, comentário oficial aprimorado (19 e 35 desatualizadas) | 120 |
+| `prova-tp-2022-2.js` | Teste de Progresso NIEPAEM, outubro de 2022 (graduação), prova real, **sem comentário oficial** (explicação inteira da equipe); alternativas embaralhadas (28, 70 e 117 desatualizadas) | 120 |
 | `prova-tp-2023-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2023 (graduação), prova real, comentário oficial aprimorado; alternativas embaralhadas | 120 |
 | `prova-tp-2023-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2023 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `prova-tp-2024-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2024 (graduação), prova real, comentário oficial aprimorado | 120 |
@@ -82,7 +85,7 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Vazio de propósito (sem contas nem exemplos); o fixture dos testes está em `testes/fixtures/` | 0 |
 
-Total: **4.775 questões** (4.640 reais, de 45 provas), **943 cartões**, **270 assuntos** (32 deles, abertos pelas
+Total: **5.135 questões** (5.000 reais, de 48 provas), **943 cartões**, **270 assuntos** (32 deles, abertos pelas
 provas da FAMEMA e pelo Teste de Progresso, ainda sem cartão da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
@@ -305,7 +308,34 @@ o motivo de cada alternativa errada) e as referências oficiais vão em
 `referencias`. Onde o gabarito da banca é discutível (a explicação diz), o
 texto avisa. A instituição leva o semestre no nome (`Teste de Progresso NIEPAEM
 2º semestre`), porque Provas Antigas agrupa por instituição, ano e tipo e duas
-aplicações no mesmo ano se misturariam.
+aplicações no mesmo ano se misturariam. Quando a banca **não** divulga o
+comentário (o caderno de 2022 chegou só com a alternativa certa marcada, sempre
+em A), a explicação é inteira da equipe, escrita de fontes primárias, as
+alternativas são embaralhadas para o estudo não virar "marque sempre A", e a
+questão cuja marcação contradiz o próprio enunciado segue o conteúdo e leva o
+motivo em `motivoStatus` (2022 nº 117).
+
+### Padrão de justificativa de prova nova (conferido sozinho)
+
+Toda questão **real** de uma prova nova — de qualquer banca, com ou sem
+comentário oficial — tem de trazer a justificativa completa, e quem confere é
+`npm run conferir` (e o teste `conteudo.test.mjs`), que **falha** se faltar algo:
+
+1. corpo suficiente (300 caracteres ou mais);
+2. os dados objetivos e as dicas que levam à resposta **em destaque** entre
+   `** **` (sinal vital, exame com o valor, ponto de corte, escore, achado da imagem);
+3. o rótulo **"Dicas do enunciado:"** (ou "Dicas da imagem:", "da figura:"…), que
+   mostra ONDE no caso está a resposta;
+4. **cada alternativa errada** com o seu motivo (cada letra errada aparece no
+   texto). Questão anulada só fica dispensada deste item.
+
+Abertura recomendada: `A alternativa C está correta. Dicas do enunciado: **…**: diagnóstico…`.
+As provas anteriores a essa regra (lista `PROVAS_ANTERIORES_AO_PADRAO`, em
+`testes/conferir-dados.mjs`) não falham; as do Teste de Progresso anteriores
+aparecem como **aviso**, com o número de explicações a melhorar. Prova nova
+**não** se acrescenta a essa lista: ela tem de cumprir a regra. O mesmo texto
+está nos prompts de importação (`regrasDeConteudoImportacao`), para a IA já
+entregar a explicação no padrão.
 
 ## Cuidados práticos
 

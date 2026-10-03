@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 07/10/2026: 4.775 questões, das quais 4.640 reais, de 45 provas.
+Situação em 03/10/2026: 5.135 questões, das quais 5.000 reais, de 48 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -22,6 +22,14 @@ O gabarito é o oficial do NIEPAEM. As explicações já avisam onde a letra da 
 ### Teste de Progresso 2023/1 e 2023/2: revisão pelas diretrizes
 
 O gabarito é o oficial (comentado). O caderno de 2023/1 ("versão gabaritada") marca a letra A em todas as questões, em ordem de redação da banca, e na 42 a marcação não bate com o comentário (a correta é a do cristaloide); por isso as alternativas de 2023/1 foram embaralhadas e a resposta de cada uma conferida pelo texto do comentário. Duas questões ficaram **desatualizadas** por divergirem da diretriz atual: 2023/1 nº 87 (insuficiência istmocervical com 29 semanas: a diretriz indica corticoide antenatal e não repouso absoluto) e 2023/2 nº 95 (ASC-US: o rastreamento brasileiro passou ao teste de DNA-HPV em 18/08/2025). Também marcada como desatualizada a 2026/1 nº 30 (citologia inflamatória tratada como atípica). Ficam com aviso, sem mudar a letra: 2023/1 nº 3 e 63 e 71 (conduta de via aérea, antibiótico precoce na fratura exposta), 2023/2 nº 36 (complicação da displasia do quadril), 85 (convulsão em diabética: glicemia capilar), 88 (corticoide na rotura pré-termo), 98, 107 e 114.
+
+### Teste de Progresso 2020, 2021 e 2022: letras a conferir e comentário que falta
+
+**2022 (04/10/2022):** o caderno veio sem comentário oficial e com a alternativa certa sempre em A; a explicação é toda da equipe e as alternativas foram embaralhadas. Quando a banca divulgar o gabarito comentado, enviar para conferir as 120 letras. Três questões estão como *desatualizadas*, com o motivo na questão: **28** (líquor com glicose de 26 mg/dL e o gabarito "enterovírus"), **70** (estágio IV, gabarito "quimioterapia neoadjuvante") e **117** (a marcação do caderno, "afastar dengue", contradiz a sensibilidade do teste: o gabarito aqui é "manter sob suspeita"). Também vale conferir a **7** (a peça da figura 1 foi lida como aneurisma, segundo a marcação do caderno: túnica média) e a **112** (a alternativa D, vulnerabilidades individual e social de ambas, também é defensável). **2020:** 91 e 105 foram anuladas pela banca; 81 e 90 estão *desatualizadas*. **2021:** 19 e 35 estão *desatualizadas*; a 120 não tem comentário oficial, só as referências.
+
+### Provas anteriores ao padrão de justificativa
+
+O conferidor lista como aviso as explicações das provas do Teste de Progresso de 2023 a 2026 que ainda não cumprem o padrão (dicas do enunciado, dados em destaque e o motivo de cada errada): 2023/1 (13), 2023/2 (6), 2024/1 (7), 2025/2 (5) e 2026/1 (10). A lista exata sai de `npm run conferir`; ao melhorar cada uma, o aviso some sozinho.
 
 ### SES-SP 2026: gabarito da cópia do caderno, não o definitivo
 
