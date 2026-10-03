@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 05/10/2026: 4.075 questões, das quais 3.940 reais, de 39 provas.
+Situação em 05/10/2026: 4.175 questões, das quais 4.040 reais, de 40 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -13,6 +13,10 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 | Prova | O que falta | Como resolver |
 | --- | --- | --- |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
+
+### SES-SP 2026: gabarito da cópia do caderno, não o definitivo
+
+As 100 letras vêm da lista de respostas da cópia do caderno; nenhuma questão está marcada como anulada. Enviar o **gabarito definitivo da seleção 2026** para conferir e marcar as anuladas. As explicações que dizem "foi a indicada no gabarito usado" apontam as letras mais duvidosas (por exemplo 12, 27, 44, 48, 70 e 92). A questão 48 (profilaxia da tuberculose em criança) segue o esquema de 270 doses, anterior ao protocolo atual do Ministério da Saúde (isoniazida por 6 meses).
 
 ## 2. Texto incompleto
 
