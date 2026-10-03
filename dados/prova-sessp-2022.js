@@ -12,12 +12,12 @@
    apontam também as dicas do enunciado que levam à resposta. Todas as
    questões marcam `real: true`.
 
-   GABARITO: o gabarito oficial desta prova NÃO estava disponível. O único
-   gabarito recebido (SES-SP, seleção 2023, divulgado em 01/02/2023) é de
-   outra prova: não confere com este caderno (por exemplo, a questão 5,
-   contraindicação à trombólise, ali aparece anulada, e a 9, antídoto do
-   opioide, também). Por isso as letras foram resolvidas pela equipe e cada
-   explicação avisa disso. Conferir com o gabarito definitivo desta seleção
+   GABARITO: o gabarito oficial desta prova NÃO estava disponível. O gabarito
+   que chegou junto (seleção 2023, divulgado em 01/02/2023) é o da prova de
+   2023, que entrou em prova-sessp-2023.js; não confere com este caderno
+   (por exemplo, a questão 5, contraindicação à trombólise, ali aparece
+   anulada, e a 9, antídoto do opioide, também). Por isso as letras foram
+   resolvidas pela equipe e cada explicação avisa disso. Conferir com o gabarito definitivo desta seleção
    e marcar as anuladas (ver ../PENDENCIAS.md). A 97 tem duas alternativas
    corretas pelo gráfico e está marcada como anulada pela equipe; a 33, a
    79 e a 89 são as mais discutíveis.

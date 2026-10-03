@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 05/10/2026: 3.775 questões, das quais 3.640 reais, de 36 provas.
+Situação em 05/10/2026: 4.075 questões, das quais 3.940 reais, de 39 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -16,7 +16,7 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 
 ### SES-SP 2022: gabarito resolvido pela equipe, não oficial
 
-O caderno entrou sem o gabarito oficial. O gabarito que veio junto (SES-SP, seleção 2023, divulgado em 01/02/2023) **não é desta prova**: confere em cerca de 1 de cada 4 questões, o acaso (a questão 5, contraindicação à trombólise, ali aparece anulada). As 100 letras foram resolvidas pela equipe e cada explicação avisa disso. Enviar o **gabarito definitivo da seleção 2022** (Quadrix, divulgado em 28/01/2022) para conferir tudo e marcar as anuladas; a 33 (hemorroidas), a 79 (mecanismo de parto) e a 89 (redução de danos) são as mais duvidosas. A questão 97 tem duas alternativas corretas pelo gráfico e foi marcada como anulada pela equipe. Se vier também o caderno da seleção 2023 (aplicação em 2022/2023, 100 questões), o gabarito recebido serve para ele.
+O caderno entrou sem o gabarito oficial: o gabarito que veio junto (divulgado em 01/02/2023) é o da SES-SP 2023, que já entrou em `prova-sessp-2023.js`. As 100 letras de 2022 foram resolvidas pela equipe e cada explicação avisa disso. Enviar o **gabarito definitivo da seleção 2022** (Quadrix, divulgado em 28/01/2022) para conferir tudo e marcar as anuladas; a 33 (hemorroidas), a 79 (mecanismo de parto) e a 89 (redução de danos) são as mais duvidosas. A questão 97 tem duas alternativas corretas pelo gráfico e foi marcada como anulada pela equipe. SES-SP 2023, 2024 e 2025 têm gabarito definitivo da banca.
 
 ## 2. Texto incompleto
 

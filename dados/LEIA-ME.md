@@ -66,6 +66,9 @@ porque todo o resto aponta para ela):
 | `prova-famema-2023.js` | FAMEMA 2023 (R1), prova real, gabarito da edição usada | 100 |
 | `prova-famema-2025.js` | FAMEMA 2025 (Áreas Básicas e Acesso Direto), prova real, gabarito divulgado pela banca (preliminar) | 100 |
 | `prova-sessp-2022.js` | SES-SP 2022 (Quadrix, Programas de Acesso Direto), prova real, **gabarito resolvido pela equipe** (o oficial não veio) | 100 |
+| `prova-sessp-2023.js` | SES-SP 2023 (Quadrix, Programas de Acesso Direto), prova real, gabarito definitivo da banca | 100 |
+| `prova-sessp-2024.js` | SES-SP 2024 (Quadrix, aplicada em 16/12/2023, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
+| `prova-sessp-2025.js` | SES-SP 2025 (Quadrix, aplicada em 14/12/2024, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
@@ -73,7 +76,7 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **3.775 questões** (3.640 reais, de 36 provas), **943 cartões**, **258 assuntos** (20 deles, abertos pelas
+Total: **4.075 questões** (3.940 reais, de 39 provas), **943 cartões**, **258 assuntos** (20 deles, abertos pelas
 provas da FAMEMA, ainda sem cartão da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
