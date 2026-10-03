@@ -37,7 +37,7 @@ celular de cada aluno.
 
 A lista sempre atualizada sai do conferidor: `npm run conferir` (ou
 `node testes/conferir-dados.mjs`) lista cada questão que ainda espera figura e
-o nome exato do arquivo. Em 03/10/2026 eram 90 — 32 da Santa Casa, 30 da USP-SP
+o nome exato do arquivo. Em 03/10/2026 eram 86 — 32 da Santa Casa, 26 da USP-SP
 e 28 da USP-RP (estas duas últimas listadas em tabelas à parte, mais abaixo):
 
 | Arquivo | O que a prova mostrava |
@@ -102,10 +102,6 @@ acrescentada)". Ao anexar a figura, vale relê-la e completar a explicação.
 
 | Arquivo | O que a prova mostrava |
 | --- | --- |
-| `q-usp2023-030.png` | Tabela de exames laboratoriais |
-| `q-usp2023-056.png` | Fotografia do joelho direito |
-| `q-usp2023-061.png` | Figura com a cascata de cuidado contínuo do HIV por faixa etária (Relatório de Monitoramento Clínico do HIV 2021) |
-| `q-usp2023-073.png` | Gráfico da incidência e da mortalidade por câncer de tireoide ao longo do tempo |
 | `q-usp2023-077.png` | Tabela com as associações entre as variantes genéticas e o câncer de mama (OR e IC 95%) |
 | `q-usp2023-078.png` | Tabela com os desfechos do ensaio clínico (ivermectina versus controle) |
 | `q-usp2023-079.png` | Tabela da associação entre tipos de bullying e transtorno alimentar (OR e IC 95%) |

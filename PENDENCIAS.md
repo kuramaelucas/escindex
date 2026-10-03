@@ -128,7 +128,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | IAMSPE 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
 | IAMSPE 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
 
-## 4. Figuras para anexar (90)
+## 4. Figuras para anexar (86)
 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
@@ -140,7 +140,7 @@ As provas da AMRIGS (2022 a 2025), a USP-RP 2025 e 2026, a UNIFESP (2022 a 2026)
 | --- | --- | --- |
 | USP-RP 2022 | 3 | 19, 21, 23 (o caderno veio sem as imagens destas) |
 | USP-RP 2024 | 25 | 2, 4, 10, 11, 19, 21, 22, 24, 31, 34, 35, 38, 41, 42, 44, 63, 68, 76, 78, 80, 82, 83, 89, 93, 96 |
-| USP-SP 2023 | 29 | 30, 56, 61, 73, 77–79, 81–83, 85–88, 95, 97, 98, 102, 104–106, 112–117, 119, 120 |
+| USP-SP 2023 | 25 | 77–79, 81–83, 85–88, 95, 97, 98, 102, 104–106, 112–117, 119, 120 |
 | USP-SP 2026 | 1 | 63 |
 | Santa Casa 2022 | 6 | 11, 13, 23, 25, 54, 56 |
 | Santa Casa 2023 | 9 | 10, 15, 17–19, 45, 49, 75, 76 |
@@ -158,7 +158,7 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 ### Os cadernos que resolvem quase tudo de uma vez
 
 - **USP-RP 2024**, caderno com a folha de gabarito. Resolve 25 figuras e a conferência do gabarito. (Os cadernos de 2021 a 2023 foram aplicados em 03/10/2026; o de 2025 já foi aplicado em 01/10/2026: as 27 figuras e a 2025-99 saíram daqui, mas a folha de gabarito veio em branco, então o gabarito de 2025 ainda precisa da folha oficial.)
-- **USP-SP 2023**: 29 figuras.
+- **USP-SP 2023**: 25 figuras.
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
 - **AMRIGS 2021**: a prova inteira.
 - **UNESP 2023**: o gabarito definitivo oficial.

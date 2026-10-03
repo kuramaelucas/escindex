@@ -11,7 +11,7 @@
 
    As figuras da prova (exames de imagem, traçados, tabelas e as alternativas
    que eram só imagem) estão em dados/imagens/, recortadas do caderno de
-   questões. 29 ainda faltam: essas questões apontam para
+   questões. 25 ainda faltam: essas questões apontam para
    dados/imagens/q-usp2023-NNN.png e descrevem em `imagemPendente` o que a
    prova mostrava. Ver dados/imagens/LEIA-ME.md.
 
@@ -418,12 +418,12 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-030", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:30,
-  imagemUrl:"dados/imagens/q-usp2023-030.png", imagemPendente:"Tabela de exames laboratoriais",
+  imagemUrl:"dados/imagens/q-usp2023-030.jpg", imagemLegenda:"Tabela de exames laboratoriais",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
   enunciado:"Paciente, 16 anos, previamente hígida, menarca aos 12 anos e ciclos irregulares desde então. Procura ginecologista por sangramento menstrual excessivo há 5 dias. Ao exame clínico, apresenta Tanner 3 mamário e genital; hímen íntegro e perfurado. Exame clínico geral normal e petéquias esparsas. Exames laboratoriais apresentados. Considerando a principal hipótese diagnóstica, qual é a conduta adequada?",
   alternativas:[{id:"A",texto:"Corticosteroide."},{id:"B",texto:"Desmopressina."},{id:"C",texto:"Progesterona."},{id:"D",texto:"Estradiol."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta: adolescente com sangramento menstrual intenso e petéquias esparsas, com exames que mostram plaquetopenia isolada (hemoglobina e leucócitos preservados, coagulograma normal), tem como principal hipótese púrpura trombocitopênica imune. Com sangramento ativo e plaquetas baixas, o tratamento de primeira linha é o corticosteroide (prednisona ou dexametasona), podendo-se associar imunoglobulina endovenosa e antifibrinolítico conforme a gravidade. B está errada porque a desmopressina libera fator de von Willebrand e fator VIII do endotélio — útil na doença de von Willebrand tipo 1 e na hemofilia A leve —, mas não aumenta a contagem de plaquetas. C e D estão erradas porque os hormônios podem ajudar a controlar o fluxo menstrual, mas não tratam a causa hematológica do sangramento, que é a prioridade.",
+  explicacaoGeral:"A alternativa A está correta: adolescente com sangramento menstrual intenso e petéquias esparsas, com exames que mostram plaquetopenia isolada — 80.000/mm³, com hemoglobina (13,6 g/dL), leucócitos e diferencial normais, sem atipias, e TP e TTPa normais —, tem como principal hipótese púrpura trombocitopênica imune. Com sangramento ativo e plaquetas baixas, o tratamento de primeira linha é o corticosteroide (prednisona ou dexametasona), podendo-se associar imunoglobulina endovenosa e antifibrinolítico conforme a gravidade. B está errada porque a desmopressina libera fator de von Willebrand e fator VIII do endotélio — útil na doença de von Willebrand tipo 1 e na hemofilia A leve —, mas não aumenta a contagem de plaquetas (e o coagulograma normal não sugere essas doenças). C e D estão erradas porque os hormônios podem ajudar a controlar o fluxo menstrual, mas não tratam a causa hematológica do sangramento, que é a prioridade.",
   explicacoesAlternativas:{},
   referencias:"Neunert C et al. American Society of Hematology 2019 guidelines for immune thrombocytopenia. Blood Adv, 2019; American College of Obstetricians and Gynecologists. Committee Opinion nº 785 — Screening and Management of Bleeding Disorders in Adolescents With Heavy Menstrual Bleeding, 2019.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -772,7 +772,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-056", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:56,
-  imagemUrl:"dados/imagens/q-usp2023-056.png", imagemPendente:"Fotografia do joelho direito",
+  imagemUrl:"dados/imagens/q-usp2023-056.png", imagemLegenda:"Fotografia do joelho direito",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-artrites",
   enunciado:"Mulher de 62 anos trabalha cuidando da casa e de dois netos. Há 12 horas notou aumento de volume em região anterior de joelho direito, com dor e calor. Relata febre baixa não aferida. Nega dor em outras articulações ou dificuldade para deambular, mas relata dificuldade para fletir o joelho. Fez atividade doméstica mais intensa nos últimos dias. Nega uso de qualquer tipo de medicamentos ou comorbidades prévias relevantes. Foto do exame clínico articular apresentada. Qual a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Fratura patelar."},{id:"B",texto:"Subluxação patelar."},{id:"C",texto:"Artrite."},{id:"D",texto:"Bursite pré-patelar."}],
@@ -838,12 +838,12 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-061", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-usp2023-061.png", imagemPendente:"Figura com a cascata de cuidado contínuo do HIV por faixa etária (Relatório de Monitoramento Clínico do HIV 2021)",
+  imagemUrl:"dados/imagens/q-usp2023-061.jpg", imagemLegenda:"Figura com a cascata de cuidado contínuo do HIV por faixa etária (Relatório de Monitoramento Clínico do HIV 2021)",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"Analise os dados da figura a seguir. Legenda: Carga Viral suprimida: pessoas que tiveram uma dispensa de ARV nos últimos 100 dias do ano e que tiveram resultado do exame de CV, após pelo menos 6 meses do início do tratamento, com valor inferior a 50 cópias/ml registrado no sistema nacional de informação de exames laboratoriais (SISCEL). Em TARV: pessoas com pelos menos uma dispensa de TARV registrada no sistema nacional de informação de medicamentos antirretrovirais (SICLOM), nos últimos 100 dias do ano. Retidos: pessoas vinculadas, que tiveram pelo menos dois exames de carga viral ou CD4 ou duas dispensas de antirretroviral no ano. Vinculados: pessoas que tiveram no ano algum exame de CD4 ou de Carga Viral registrados ao SISCEL ou tiveram dispensa de TARV registrada no SICLOM. Fonte: Relatório de Monitoramento Clínico do HIV 2021. Brasília-DF, 2021: www.aids.gov.br Qual é a afirmação correta?",
   alternativas:[{id:"A",texto:"Entre as pessoas com HIV da faixa etária de 18-24 anos que tiveram uma dispensa de ARV nos últimos 100 dias do ano e tiveram um exame de carga viral após 6 meses de tratamento, 15% não alcançaram supressão viral."},{id:"B",texto:"Entre as pessoas com HIV da faixa etária de 18-24 anos que tiveram algum exame de CD4 ou Carga Viral ou tiveram uma dispensa de ARV no ano, 15% não iniciaram ou não se mantiveram no tratamento ARV."},{id:"C",texto:"Entre as pessoas com 18 ou mais anos, a proporção de diagnóstico de HIV cresce com o aumento da idade."},{id:"D",texto:"Entre as pessoas com 50 ou mais anos infectadas com HIV, a proporção de supressão viral é de 82%."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta de acordo com os percentuais do relatório reproduzido na questão: entre jovens de 18 a 24 anos em TARV com exame de carga viral elegível, a fração que não alcançou supressão é de cerca de 15%. B está errada porque usa a mesma porcentagem para um denominador diferente da cascata; C está errada porque o diagnóstico não cresce linearmente com a idade; D está errada porque a proporção de supressão entre pessoas com 50 anos ou mais não é o valor descrito.",
+  explicacaoGeral:"A alternativa A está correta: no gráfico, as três barras de cada faixa etária são porcentagens das pessoas vinculadas (retidas, em TARV e em TARV com carga viral abaixo de 50 cópias/mL). Na faixa de 18 a 24 anos, 81% dos vinculados estão em TARV e 69% estão em TARV com carga viral suprimida; entre os que estão em tratamento, portanto, 69/81 ≈ 85% alcançaram supressão — e cerca de 15% não. B está errada porque, entre os vinculados de 18 a 24 anos, os que não estão em TARV são 100 − 81 = 19%, não 15%. C está errada porque o gráfico não mostra proporção de diagnóstico de HIV: os números nas barras (44, 78, 391, 239) são pessoas vinculadas por 1.000, por faixa etária, que dependem do tamanho de cada faixa (e a de 30 a 49 anos é maior que a de 50 ou mais). D está errada porque os 82% de supressão da faixa de 50 anos ou mais se referem às pessoas vinculadas ao serviço, não a todas as pessoas infectadas (que incluem as não diagnosticadas e as não vinculadas).",
   explicacoesAlternativas:{},
   referencias:"Ministério da Saúde, Relatório de Monitoramento Clínico do HIV 2021.",
   dificuldadeManual:"fundamental", status:"ativa",
@@ -995,7 +995,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-073", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:73,
-  imagemUrl:"dados/imagens/q-usp2023-073.png", imagemPendente:"Gráfico da incidência e da mortalidade por câncer de tireoide ao longo do tempo",
+  imagemUrl:"dados/imagens/q-usp2023-073.png", imagemLegenda:"Gráfico da incidência e da mortalidade por câncer de tireoide ao longo do tempo",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
   enunciado:"O gráfico a seguir apresenta a tendência de diagnósticos e a de mortalidade por câncer de tireoide. Qual o conceito e sua respectiva definição que explicam a relação entre as curvas de mortalidade e a do diagnóstico do câncer de tireoide apresentadas no gráfico?",
   alternativas:[{id:"A",texto:"Sobrediagnóstico; refere-se ao rastreamento com resultado positivo, mas cujo diagnóstico não é confirmado por exames complementares."},{id:"B",texto:"Sobrediagnóstico; refere-se a uma condição corretamente diagnosticada, mas que não causaria sintomas ou morte."},{id:"C",texto:"Falso positivo; refere-se a uma condição corretamente diagnosticada, mas que não causaria sintomas ou morte."},{id:"D",texto:"Falso positivo; refere-se ao rastreamento com resultado positivo, mas cujo diagnóstico não é confirmado por exames complementares."}],

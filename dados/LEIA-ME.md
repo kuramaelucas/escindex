@@ -86,7 +86,7 @@ Total: **4.775 questões** (4.640 reais, de 45 provas), **943 cartões**, **270 
 provas da FAMEMA e pelo Teste de Progresso, ainda sem cartão da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
-ver `imagens/LEIA-ME.md`, que lista as 233 que ainda faltam. O resumo de tudo o que falta no banco de questões
+ver `imagens/LEIA-ME.md`, que lista as 229 que ainda faltam. O resumo de tudo o que falta no banco de questões
 (provas incompletas, textos cortados, gabaritos a conferir) está em
 `../PENDENCIAS.md`.
 
