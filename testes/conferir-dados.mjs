@@ -100,7 +100,7 @@ export const PROVAS_ANTERIORES_AO_PADRAO = new Set([
   "prova-usprp-2021", "prova-usprp-2022", "prova-usprp-2023", "prova-usprp-2024", "prova-usprp-2025", "prova-usprp-2026",
   "prova-amrigs-2022", "prova-amrigs-2023", "prova-amrigs-2024", "prova-amrigs-2025",
   "prova-iamspe-2021", "prova-iamspe-2022", "prova-iamspe-2023", "prova-iamspe-2025", "prova-iamspe-2026",
-  "prova-unesp-2023", "prova-famema-2021", "prova-famema-2022", "prova-famema-2023", "prova-famema-2025",
+  "prova-unesp-2023",
   "prova-sessp-2022", "prova-sessp-2023", "prova-sessp-2024", "prova-sessp-2025",
 ]);
 const DICAS_DO_ENUNCIADO = /Dicas d[oa]s? (enunciado|imagem|figura|tabela|gráfico|lâmina|exame|ECG|eletrocardiograma|radiografia|tomografia|ressonância|foto|fotos|partograma|caso|ecomapa|espirometria|ultrassonografia|hemograma|gasometria|curva|esfregaço)/i;
