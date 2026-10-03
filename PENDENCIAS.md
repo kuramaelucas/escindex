@@ -47,6 +47,10 @@ Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto 
 Conferir as 100 questões contra o gabarito definitivo da banca e marcar as anuladas (a edição não informa nenhuma).
 A explicação já avisa onde a alternativa dada como certa tem imprecisão: 2023-8 (a adrenalina intramuscular é a de 1:1.000, não 1:10.000) e 2023-59 (tratamento do HIV "na fase de contágio").
 
+### UNIFESP 2023 nº 30: gabarito que não combina com o enunciado
+
+O banco marca a letra A (teste t para duas populações independentes), mas o enunciado relaciona a mortalidade a quatro variáveis contínuas (leitos de UTI, Gini, IDH e analfabetismo), o que pede regressão múltipla ou, entre as opções, a correlação de Pearson (B). Conferir a letra com a folha oficial da banca; a explicação já avisa.
+
 ### FAMEMA 2021, 2022, 2023 e 2025
 
 - **2021**: gabarito da folha oficial definitiva (95 anulada). A 51 (laqueadura) está marcada como desatualizada, porque a Lei 14.443/2022 mudou a regra, e a 17 (hérnia femoral) tem enunciado discutível.
