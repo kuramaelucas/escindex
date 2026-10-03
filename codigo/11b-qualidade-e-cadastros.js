@@ -478,7 +478,7 @@ function renderUsuariosDaNuvem(souMaster){
   return `<div class="card mb-2">
     <div class="flex justify-between items-center mb-1 quebra-gap">
       <div class="card-title sem-mb">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
-      <button class="btn btn-secondary btn-sm" onclick="nuvemBuscarUsuarios()">${iconeSvg("refresh")} Atualizar</button>
+      <div class="flex gap-1 quebra">${souMaster ? `<button class="btn btn-primary btn-sm" onclick="nuvemLembrarQuemNaoEntrou()">Lembrar quem ainda não entrou</button>` : ""}<button class="btn btn-secondary btn-sm" onclick="nuvemBuscarUsuarios()">${iconeSvg("refresh")} Atualizar</button></div>
     </div>
     <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova nos pedidos de acesso aparece aqui</strong> — a lista de pedidos mostra só quem ainda está pendente.</p>
     ${nuvemUsuariosErro ? `<p class="text-sm mt-1 texto-alerta peso-600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
@@ -635,7 +635,7 @@ function confirmarExcluirUsuario(id, onde){
     <p class="text-sm mt-2"><strong>Isto não pode ser desfeito.</strong> Se a intenção é só tirar o acesso, use <em>Inativar</em>: a pessoa deixa de entrar e o estudo dela continua guardado.</p>
     ${vaiJunto.length ? `<div class="card-flat mt-2"><div class="text-sm peso-600">Vai junto, deste navegador:</div><div class="text-sm muted mt-1">${vaiJunto.join(" · ")}</div></div>` : '<div class="card-flat mt-2 text-sm muted">Não há estudo desta pessoa guardado neste navegador.</div>'}
     ${fica.length ? `<div class="card-flat mt-1"><div class="text-sm peso-600">Fica na plataforma (é conteúdo da turma, não dado pessoal):</div><div class="text-sm muted mt-1">${fica.join(" · ")}</div></div>` : ""}
-    ${onde==="nuvem" ? `<p class="text-xs muted mt-2">Na nuvem, o que se apaga é o <strong>cadastro</strong> (a linha de <code>perfis</code>) — e é isso que corta a entrada, mesmo com e-mail e senha certos. Duas coisas continuam lá até alguém removê-las pelo painel do Supabase, porque este site não tem a chave que faz isso: a conta de autenticação e as respostas que a pessoa já tinha sincronizado (elas ficam ligadas à conta, não ao cadastro). Removendo a conta pelo painel, o estudo dela sai junto, em cascata.</p>` : ""}
+    ${onde==="nuvem" ? `<p class="text-xs muted mt-2">Na nuvem, a <strong>conta inteira</strong> é apagada — cadastro, login e o estudo que a pessoa já tinha sincronizado — e o e-mail fica livre para um novo cadastro. (Se o banco ainda não tem a função <code>excluir_conta</code>, só o cadastro sai; rode de novo o <code>nuvem/esquema.sql</code> no Supabase.)</p>` : ""}
     <div class="flex gap-1 mt-3">
       <button class="btn btn-danger" onclick="excluirUsuarioConfirmado('${id}','${onde}')">${iconeSvg("trash")} Excluir mesmo assim</button>
       <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>

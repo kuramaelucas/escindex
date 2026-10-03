@@ -258,5 +258,20 @@ select pg_temp.tem_de_falhar($$select count(*) from grupo_membros$$, 'visitante 
 select pg_temp.tem_de_falhar($$select count(*) from flashcards_enviados$$, 'visitante sem login lendo cartões enviados');
 select pg_temp.tem_de_falhar($$select count(*) from push_inscricoes$$, 'visitante sem login lendo inscrições de push');
 select pg_temp.tem_de_falhar($$select * from notas_do_simulado('Prova X')$$, 'visitante sem login lendo notas');
+-- excluir conta: só a equipe, nunca a própria; libera o e-mail e leva o perfil
+set role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from contas_sem_primeiro_acesso()), 0, 'aluno não vê quem nunca entrou');
+select pg_temp.igual((select case when excluir_conta('00000000-0000-0000-0000-0000000000a1') then 1 else 0 end), 0, 'aluno não exclui conta');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+select pg_temp.igual((select count(*) from contas_sem_primeiro_acesso() where email='aluna2@x'), 1, 'equipe vê quem nunca entrou');
+select pg_temp.igual((select case when excluir_conta('00000000-0000-0000-0000-00000000000c') then 1 else 0 end), 0, 'ninguém exclui a própria conta');
+select pg_temp.igual((select case when excluir_conta('00000000-0000-0000-0000-0000000000a1') then 1 else 0 end), 1, 'equipe exclui conta');
+reset role;
+select pg_temp.igual((select count(*) from auth.users where email='aluna2@x'), 0, 'e-mail liberado em auth.users');
+select pg_temp.igual((select count(*) from perfis where id='00000000-0000-0000-0000-0000000000a1'), 0, 'perfil saiu junto');
+set role anon;
+select pg_temp.tem_de_falhar($$select * from contas_sem_primeiro_acesso()$$, 'visitante listando contas');
+select pg_temp.tem_de_falhar($$select excluir_conta('00000000-0000-0000-0000-00000000000b')$$, 'visitante excluindo conta');
 reset role;
 \echo 'Regras de segurança: tudo como esperado.'

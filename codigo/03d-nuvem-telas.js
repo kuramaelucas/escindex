@@ -518,6 +518,17 @@ async function nuvemAtualizarPerfil(idPerfil, campos, mensagem){
 async function nuvemExcluirPerfil(idPerfil){
   if(!nuvemConectado()) return false;
   try{
+    // caminho completo: apaga a CONTA (auth.users), o que libera o e-mail para
+    // um novo cadastro; o perfil e o estudo saem em cascata. Banco sem a
+    // função (esquema.sql antigo) cai no apagar-só-o-perfil abaixo.
+    try{
+      const apagou = await nuvemChamar("/rest/v1/rpc/excluir_conta", { method: "POST", body: JSON.stringify({ p_id: idPerfil }) });
+      if(apagou === true){
+        nuvemUsuarios = (nuvemUsuarios || []).filter(p => p.id !== idPerfil);
+        nuvemCadastrosPendentes = (nuvemCadastrosPendentes || []).filter(p => p.id !== idPerfil);
+        return true;
+      }
+    }catch(e){ /* função ausente: segue para o caminho antigo */ }
     await nuvemChamar("/rest/v1/perfis?id=eq." + encodeURIComponent(idPerfil), {
       method: "DELETE",
       headers: { "Prefer": "return=minimal" },
@@ -536,6 +547,37 @@ async function nuvemExcluirPerfil(idPerfil){
     toast(e.message || "Não foi possível excluir este cadastro na nuvem.", "err");
     return false;
   }
+}
+
+/* Quem nunca entrou: o banco lista as contas sem primeiro login (função
+   contas_sem_primeiro_acesso) e o site reenvia o e-mail certo para cada uma —
+   confirmação do cadastro para quem não confirmou, link de nova senha para
+   quem confirmou e nunca entrou. Só pessoas APROVADAS recebem: pendente ainda
+   não pode entrar, e o e-mail dela seria confuso. Pausa entre envios porque o
+   e-mail embutido do Supabase tem limite baixo por hora. */
+async function nuvemLembrarQuemNaoEntrou(){
+  if(!nuvemConectado()) return;
+  let contas;
+  try{
+    contas = await nuvemChamar("/rest/v1/rpc/contas_sem_primeiro_acesso", { method: "POST", body: "{}" });
+  }catch(e){
+    toast("Falta atualizar o banco: rode de novo o nuvem/esquema.sql no Supabase (parte 'contas_sem_primeiro_acesso').", "err");
+    return;
+  }
+  const aprovados = new Set((nuvemUsuarios||[]).filter(p => p.status === "aprovado").map(p => p.id));
+  const alvo = (contas||[]).filter(c => aprovados.has(c.id));
+  if(!alvo.length){ toast("Todas as pessoas aprovadas já entraram pelo menos uma vez."); return; }
+  if(!confirm("Enviar e-mail a " + alvo.length + " pessoa(s) aprovada(s) que ainda não entraram?")) return;
+  let enviados = 0, falhas = 0;
+  for(const c of alvo){
+    try{
+      if(c.confirmado) await nuvemPedirNovaSenha(c.email); else await nuvemReenviarConfirmacao(c.email);
+      enviados++;
+    }catch(e){ falhas++; if(/rate|limit|too many/i.test(e.message||"")) break; }
+    await new Promise(r => setTimeout(r, 1500));
+  }
+  const restam = alvo.length - enviados - falhas;
+  toast(enviados + " e-mail(s) enviado(s)" + (falhas ? ", " + falhas + " falha(s)" : "") + (restam > 0 ? ". O limite de envios do Supabase foi atingido; tente de novo daqui a uma hora." : "."), falhas || restam > 0 ? "err" : undefined);
 }
 
 function renderCadastrosPendentesDaNuvem(){

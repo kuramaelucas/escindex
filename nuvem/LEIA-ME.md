@@ -416,6 +416,8 @@ Três coisas que o cartão de sincronização mostra e valem uma explicação:
 | "Pendente" e a fila não baixa | Veja o erro no cartão de *Perfil*; quase sempre é internet, ou o projeto do Supabase pausado por inatividade (o plano gratuito pausa depois de uma semana sem uso — basta reativar no painel). |
 | "Sessão expirada" | O token venceu e não renovou. Clique em **Entrar de novo** e entre com e-mail e senha; a fila sobe em seguida. |
 | "N registros recusados pela nuvem" | O banco entendeu e recusou aqueles registros. Rode o `esquema.sql` inteiro de novo (é o caso comum: banco criado por uma versão anterior) e mostre os motivos listados no Perfil à coordenação. |
+| "Excluí a pessoa mas o e-mail não cadastra de novo" | O banco ainda não tem a função `excluir_conta`. Rode o `esquema.sql` inteiro de novo; depois, exclua outra vez (ou apague a conta em Authentication > Users). |
+| "Lembrar quem ainda não entrou" dá erro ou para no meio | Erro: falta a função `contas_sem_primeiro_acesso` (rode o `esquema.sql`). Parou no meio: limite de e-mails por hora do Supabase; tente de novo depois ou configure um SMTP próprio. |
 | "A nuvem não permitiu excluir este cadastro" | A política `perfis_excluir` é nova. Rode o `esquema.sql` inteiro de novo no SQL Editor e tente outra vez. Enquanto isso, **Inativar** já bloqueia a entrada. |
 
 ### Onde vejo quem eu aprovei
