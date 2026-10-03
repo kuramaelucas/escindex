@@ -359,7 +359,7 @@ function renderRevisaoFormatacao(){
     <button class="pill ${verAprovadas?"active":""}" onclick="verFormatacaoAprovadas(true)">${iconeSvg("check")} Já aprovadas (${nAprovadas})</button>
   </div>
   <div class="flex gap-1 mb-2">
-    <input class="input" id="buscaFormatacaoInput" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(f.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
+    <input class="input" id="buscaFormatacaoInput" aria-label="Buscar questão por texto" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(f.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
     <button class="btn btn-secondary btn-sm" onclick="buscarFormatacao()">Buscar</button>
     ${termo ? `<button class="btn btn-ghost btn-sm" onclick="limparBuscaFormatacao()">Limpar busca</button>` : ""}
   </div>
@@ -524,11 +524,11 @@ function renderUsuariosLocais(souMaster, eu){
       <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
       <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
       <td>${souMaster
-        ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
+        ? `<select class="select" style="padding:.3rem .5rem" aria-label="Papel de ${escapeHtml(u.nome)}" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
         : badgePapel(u.papel, u)}</td>
       <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
         : souMaster
-          ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
+          ? `<select class="select" style="padding:.3rem .5rem" aria-label="Nível de administrador de ${escapeHtml(u.nome)}" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
           : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
       <td>${badgeStatusUsuario(u.status)}</td>
       <td class="flex gap-1 quebra">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `

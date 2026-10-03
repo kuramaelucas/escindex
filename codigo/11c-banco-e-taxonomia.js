@@ -71,7 +71,7 @@ function renderBancoQuestoes(){
       </div>
     </div>
     <div class="flex gap-1 items-center mt-2 quebra">
-      <input class="input" id="buscaBancoInput" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
+      <input class="input" id="buscaBancoInput" aria-label="Buscar questão por texto do enunciado ou alternativa" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
       <button class="btn btn-secondary btn-sm" onclick="buscarNoBanco()">Buscar</button>
       <select class="select" style="max-width:220px" onchange="mudarFiltroBanco('tipo', this.value)" aria-label="Tipo de prova">
         <option value="">Residência e graduação</option>
@@ -686,7 +686,7 @@ function renderTaxonomia(){
                 <div class="text-xs muted">${assuntos.length} assunto(s) · ${contarQuestoesEspecialidade(esp.id)} questão(ões)</div></div>
               ${podeEditar ? `<div class="flex gap-1 quebra">
                 <button class="btn btn-ghost btn-sm" onclick="renomearEspecialidade('${esp.id}')">${iconeSvg("edit")} Renomear</button>
-                <select class="select" style="padding:.3rem .5rem;max-width:200px" onchange="moverEspecialidade('${esp.id}', this.value)">
+                <select class="select" style="padding:.3rem .5rem;max-width:200px" aria-label="Mover a especialidade ${escapeHtml(esp.nome)} para outra grande área" onchange="moverEspecialidade('${esp.id}', this.value)">
                   ${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${a.id===esp.areaId?"selected":""}>mover p/ ${escapeHtml(a.nome)}</option>`).join("")}
                 </select>
                 <button class="btn btn-secondary btn-sm" onclick="criarAssuntoNaEspecialidade('${esp.id}')">${iconeSvg("plus")} Assunto</button>
@@ -701,7 +701,7 @@ function renderTaxonomia(){
                   <td class="text-sm">${n}</td>
                   <td>${podeEditar ? `<div class="flex gap-1 quebra">
                     <button class="btn btn-ghost btn-sm" onclick="renomearAssunto('${a.id}')">renomear</button>
-                    <select class="select" style="padding:.25rem .4rem;max-width:190px" onchange="moverAssunto('${a.id}', this.value)">
+                    <select class="select" style="padding:.25rem .4rem;max-width:190px" aria-label="Mover o assunto ${escapeHtml(a.nome)} para outra especialidade" onchange="moverAssunto('${a.id}', this.value)">
                       <option value="${esp.id}">mover para…</option>
                       ${db.taxonomia.especialidades.filter(e=>e.id!==esp.id).map(e=>`<option value="${e.id}">${escapeHtml(nomeArea(e.areaId))} › ${escapeHtml(e.nome)}</option>`).join("")}
                     </select>

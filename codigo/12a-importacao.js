@@ -202,7 +202,7 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
   <div class="card mb-2">
     <div class="card-title">Passo 2 — peça a uma IA para formatar</div>
     <p class="text-sm muted">Copie o prompt abaixo (pode revisar antes), cole numa IA junto com o PDF/texto da prova, e traga o resultado para o Passo 3 — colando o texto ou salvando a resposta num documento do Word (.docx) e enviando o arquivo.</p>
-    <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
+    <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" aria-label="Prompt pronto para copiar" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
     <div class="flex gap-1 quebra">
       <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">${iconeSvg("search")} Copiar prompt</button>
       <button class="btn btn-ghost btn-sm" onclick="atualizarPromptImportacao()">${iconeSvg("refresh")} Atualizar prompt com tipo/instituição/ano acima</button>
@@ -212,7 +212,7 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
   <div class="card">
     <div class="card-title">Passo 3 — cole o texto ou envie o arquivo da prova</div>
     <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO, ANO e TIPO: ele é lido uma vez e aplicado às questões que vierem depois dele (enviando vários arquivos, cada um pode trazer o próprio cabeçalho). <strong>Questão com imagem?</strong> Na pré-visualização, cada questão tem o seu lugar para anexar a figura.</p>
-    <textarea class="textarea textarea-mono" id="textoImportacao" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
+    <textarea class="textarea textarea-mono" id="textoImportacao" aria-label="Cole aqui o resultado da IA ou o texto da prova" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
 ANO: ${escapeHtml(String(ctx.ano||""))}
 TIPO: ${escapeHtml(infoTipoProva(ctx.tipoProva).nome)}
 ===

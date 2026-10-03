@@ -138,6 +138,49 @@ function abrirModal(innerHtml, tamanho){
   overlay.onclick = function(e){ if(e.target===overlay) fecharModal(); };
   overlay.innerHTML = '<div class="modal '+(tamanho==="lg"?"modal-lg":"")+'">'+innerHtml+'</div>';
   document.body.appendChild(overlay);
+  rotularCamposParaLeitorDeTela(overlay); // janela não passa pelo desenho de tela, precisa da ligação aqui
+}
+/* ---------- acessibilidade: ligar cada rótulo ao seu campo ----------------
+   Quem enxerga liga a palavra "Senha" à caixinha logo abaixo pela posição na
+   tela. Um leitor de tela só faz essa ligação se ela estiver marcada no HTML;
+   sem isso anuncia "caixa de edição" sem dizer de quê, e a pessoa não sabe o
+   que escrever em cada campo.
+   Como todo formulário daqui sai do mesmo molde (um rótulo .label seguido do
+   campo), a ligação é feita de uma vez a cada desenho de tela e a cada janela
+   aberta, em vez de repetida à mão em dezenas de lugares: vale também para
+   telas futuras e nunca fica diferente do rótulo na tela, porque é dele que o
+   nome sai. Um rótulo nomeia um campo só: quando o bloco tem dois, o segundo
+   traz o próprio aria-label no HTML. Campo sem rótulo visível (seletor no fim
+   de linha de tabela, busca) também, porque só ali se sabe a que linha pertence. */
+let _seqCampoA11y = 0;
+function rotularCamposParaLeitorDeTela(raiz){
+  const escopo = raiz || document;
+  escopo.querySelectorAll("input:not([type=hidden]), select, textarea").forEach(campo=>{
+    // já tem nome (escrito à mão, ou o campo está dentro do próprio rótulo)
+    if(campo.getAttribute("aria-label") || campo.getAttribute("aria-labelledby") || campo.closest("label")) return;
+    if(campo.id && document.querySelector('label[for="'+campo.id+'"]')) return;
+    const rotulo = rotuloVisivelDoCampo(campo);
+    if(!rotulo) return;
+    if(rotulo.getAttribute("for") || rotulo.dataset.a11yUsado) return;
+    if(!campo.id) campo.id = "campo-a11y-"+(++_seqCampoA11y);
+    rotulo.dataset.a11yUsado = "1";
+    if(rotulo.tagName==="LABEL"){
+      rotulo.setAttribute("for", campo.id);
+    } else {
+      // rótulo escrito como <div class="label">: não aceita "for", então a
+      // ligação é pelo caminho inverso (o campo aponta para o rótulo)
+      if(!rotulo.id) rotulo.id = "rotulo-a11y-"+(++_seqCampoA11y);
+      campo.setAttribute("aria-labelledby", rotulo.id);
+    }
+  });
+}
+// o rótulo de um campo é o .label logo antes dele ou, dentro de um bloco
+// .field, o primeiro .label do bloco — como todos os formulários são montados
+function rotuloVisivelDoCampo(campo){
+  const anterior = campo.previousElementSibling;
+  if(anterior && anterior.classList && anterior.classList.contains("label")) return anterior;
+  const bloco = campo.closest(".field");
+  return bloco ? bloco.querySelector(".label") : null;
 }
 function fecharModal(){
   const el = document.getElementById("modalOverlayAtivo");

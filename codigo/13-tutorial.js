@@ -158,10 +158,12 @@ const GUIA_EQUIPE = [
   ]},
   { titulo:"Importar, Central de Provas e Revisar Formatação", itens:[
     "<strong>Importar Questões</strong>: uma questão por vez, em lote, ou uma prova inteira colada de uma vez (tipo de prova, instituição e ano informados uma vez só). O tipo é <strong>residência</strong> por padrão; prova da faculdade e Teste de Progresso são <strong>graduação</strong>.",
+    "No Passo 3 dá para <strong>enviar o arquivo da prova</strong> em vez de colar: documento do Word (<code>.docx</code>), <code>.txt</code>, <code>.md</code> ou <code>.csv</code>, um ou vários de uma vez. O conteúdo precisa estar no formato do script do Passo 2 (o botão <strong>Baixar modelo</strong> traz um exemplo); o PDF ou o Word original da banca não serve, porque não traz gabarito marcado nem explicação.",
     "A figura de cada questão (ECG, radiografia, foto) se anexa na pré-visualização. Se a transcrição disser que há imagem e ela não for anexada, a questão entra como <strong>Aguardando imagem</strong>.",
     "<strong>Central de Provas</strong>: acompanha cada prova em lotes até a publicação; a conferência aponta gabarito faltando, questão repetida e assunto inexistente. As figuras anexadas num lote ficam guardadas com ele até a publicação.",
     "Com a nuvem, toda questão enviada pela plataforma sobe com a imagem. As da turma chegam a <strong>Controle de Qualidade › Enviadas pela Turma</strong>: aprove (ela entra no banco de todos) ou recuse com um motivo, que volta para quem enviou. Para guardar de vez na pasta <code>dados/</code>, use <strong>Banco de Questões › Exportar para a pasta dados/</strong>.",
-    "<strong>Revisar Formatação</strong>: corrige o texto de questões importadas antes de chegarem aos alunos.",
+    "<strong>Revisar Formatação</strong>: corrige o texto de questões importadas antes de chegarem aos alunos. A tela se divide em <strong>blocos de envio</strong> (uma prova ou uma leva por bloco, com data, instituição, ano e quem enviou): confira uma prova de cada vez.",
+    "<strong>Professor e residente</strong> cobrem no máximo <strong>2 grandes áreas</strong>: uma clínica e, se quiser, Medicina Preventiva e Social, que é transversal. É o que define quais dúvidas de aluno chegam até a pessoa; o cadastro aplica a regra enquanto se marca.",
     "A explicação de toda questão é escrita pela equipe, a partir de fontes primárias — nunca copiada de cursinho ou site de questões.",
   ]},
   { titulo:"Qualidade e dúvidas", itens:[

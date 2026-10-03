@@ -358,8 +358,8 @@ function renderPainelDaTurma(){
     <div class="secao-corpo">
     <div class="flex justify-between items-center quebra-gap">
       <div class="flex gap-1 items-center quebra">
-        <input class="input" style="max-width:220px" placeholder="Buscar por nome ou e-mail" value="${escapeHtml(f.busca||"")}" onchange="mudarFiltroPainelTurma('busca', this.value)">
-        <select class="select" style="max-width:220px" onchange="mudarFiltroPainelTurma('ordem', this.value)">
+        <input class="input" style="max-width:220px" aria-label="Buscar pessoa por nome ou e-mail" placeholder="Buscar por nome ou e-mail" value="${escapeHtml(f.busca||"")}" onchange="mudarFiltroPainelTurma('busca', this.value)">
+        <select class="select" style="max-width:220px" aria-label="Ordenar a lista da turma" onchange="mudarFiltroPainelTurma('ordem', this.value)">
           <option value="ultimo" ${!ordens[f.ordem]||f.ordem==="ultimo"?"selected":""}>Último uso: mais recente primeiro</option>
           <option value="parado" ${f.ordem==="parado"?"selected":""}>Último uso: mais antigo primeiro</option>
           <option value="ativos" ${f.ordem==="ativos"?"selected":""}>Mais ativos (30 dias)</option>

@@ -198,14 +198,14 @@ function render(){
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
   if(usuarioAtual() && rotasPublicas.includes(state.route)) state.route = "inicio";
 
-  if(state.route==="landing"){ _telaDesenhada = null; app.innerHTML = renderLanding(); return; }
-  if(state.route==="login"){ _telaDesenhada = null; app.innerHTML = renderLogin(); return; }
-  if(state.route==="cadastro"){ _telaDesenhada = null; app.innerHTML = renderCadastro(); return; }
-  if(state.route==="retorno-email"){ _telaDesenhada = null; app.innerHTML = renderRetornoEmail(); return; }
+  if(state.route==="landing"){ desenharTelaPublica(renderLanding()); return; }
+  if(state.route==="login"){ desenharTelaPublica(renderLogin()); return; }
+  if(state.route==="cadastro"){ desenharTelaPublica(renderCadastro()); return; }
+  if(state.route==="retorno-email"){ desenharTelaPublica(renderRetornoEmail()); return; }
   // primeiro acesso: quem acabou de entrar pela primeira vez vê as boas-vindas
   // antes do painel — só no caminho para o início, para nunca prender ninguém
   if(state.route==="boas-vindas" || (state.route==="inicio" && precisaDasBoasVindas(usuarioAtual()))){
-    state.route = "boas-vindas"; _telaDesenhada = null; app.innerHTML = renderBoasVindas(); return;
+    state.route = "boas-vindas"; desenharTelaPublica(renderBoasVindas()); return;
   }
 
   // um administrador só entra nas rotas permitidas pelo seu nível
@@ -270,6 +270,14 @@ function render(){
   if(state.route === "inicio") agendarTutorialAoEntrar();
 }
 
+// telas sem menu nem topo (entrada, cadastro, boas-vindas): recriam a página
+// inteira e passam pela ligação rótulo-campo, como as demais
+function desenharTelaPublica(html){
+  _telaDesenhada = null;
+  document.getElementById("app").innerHTML = html;
+  rotularCamposParaLeitorDeTela();
+}
+
 /* ---------- por que isto não é um `app.innerHTML = ...` e pronto ----------
    Recriar a página inteira a cada clique fazia a tela PISCAR dentro de um
    conjunto de questões: marcar uma alternativa, riscar outra ou responder
@@ -298,6 +306,7 @@ function desenharTela(conteudoHtml){
     app.innerHTML = renderShell(conteudoHtml);
   }
   _telaDesenhada = { rota: state.route, chave };
+  rotularCamposParaLeitorDeTela();
   document.body.classList.toggle("modo-foco", !!state.modoFoco && state.route==="sessao");
   ativarGestoDeArrastar();
   // a barra fina de questões (sessão e simulado) mostra a questão atual no meio
@@ -555,7 +564,7 @@ function htmlMenuLateral(u){
 function htmlTopo(u){
   return `
         <div class="flex items-center gap-2">
-          <button class="icon-btn hamburger" onclick="abrirMenuMobile()">${iconeSvg("menu")}</button>
+          <button class="icon-btn hamburger" aria-label="Abrir menu" onclick="abrirMenuMobile()">${iconeSvg("menu")}</button>
           <div class="topbar-title">${tituloDaRota(state.route)}</div>
         </div>
         <div class="flex items-center gap-2">
