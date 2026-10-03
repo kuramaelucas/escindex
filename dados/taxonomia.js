@@ -392,5 +392,19 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-caesofago", especialidadeId: "esp-cirurgiaonco", nome: "Câncer de Esôfago" },
     { id: "ass-sincope", especialidadeId: "esp-cardio", nome: "Síncope" },
     { id: "ass-psiq-alimentar", especialidadeId: "esp-psiquiatria", nome: "Transtornos Alimentares (Anorexia, Bulimia, Compulsão)" },
+    /* Oitava leva, aberta pelo Teste de Progresso NIEPAEM (2º semestre de 2025 e 1º de 2026). */
+    { id: "ass-geriatria-perdapeso", especialidadeId: "esp-geriatria", nome: "Perda de Peso Involuntária no Idoso" },
+    { id: "ass-alergia-rinite", especialidadeId: "esp-alergiaimuno", nome: "Rinite Alérgica" },
+    { id: "ass-psiq-personalidade", especialidadeId: "esp-psiquiatria", nome: "Transtornos de Personalidade (Borderline)" },
+    { id: "ass-infectoped-coqueluche", especialidadeId: "esp-infectoped", nome: "Coqueluche" },
+    { id: "ass-derm-acne", especialidadeId: "esp-dermato", nome: "Acne" },
+    { id: "ass-saudeplanetaria", especialidadeId: "esp-saudefamilia", nome: "Saúde Planetária e Mudanças Climáticas" },
+    { id: "ass-pneumo-hp", especialidadeId: "esp-pneumo", nome: "Hipertensão Pulmonar" },
+    /* Oitava leva (continuação): assuntos abertos pela prova de 2026/1. */
+    { id: "ass-neuro-medula", especialidadeId: "esp-neuro", nome: "Síndromes Medulares" },
+    { id: "ass-psiq-toc", especialidadeId: "esp-psiquiatria", nome: "Transtorno Obsessivo-Compulsivo" },
+    { id: "ass-genetica-teratogenese", especialidadeId: "esp-genetica", nome: "Teratógenos e Defeitos Congênitos" },
+    { id: "ass-genetica-erros-inatos", especialidadeId: "esp-genetica", nome: "Erros Inatos do Metabolismo" },
+    { id: "ass-oft-orbita", especialidadeId: "esp-oftalmo", nome: "Celulite Periorbital e Orbitária" },
   ],
 });

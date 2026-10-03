@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 05/10/2026: 4.175 questões, das quais 4.040 reais, de 40 provas.
+Situação em 07/10/2026: 4.775 questões, das quais 4.640 reais, de 45 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -12,7 +12,16 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 
 | Prova | O que falta | Como resolver |
 | --- | --- | --- |
+| **Teste de Progresso NIEPAEM, 1º semestre de 2025** (08/05/2025, graduação) | O caderno da prova. Chegou só o gabarito comentado (120 comentários com as referências), que não traz enunciado nem alternativas | Enviar o PDF da prova do 1º semestre de 2025; os comentários dela já estão lidos e viram a explicação das questões (mesmo padrão de `dados/prova-tp-2025-2.js`) |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
+
+### Teste de Progresso 2025/2 e 2026/1: questões de gabarito discutível e cartões dos assuntos novos
+
+O gabarito é o oficial do NIEPAEM. As explicações já avisam onde a letra da banca é discutível: 2025/2 nº 13 (contracepção aos 12 anos e comunicação aos responsáveis), 70 (pneumonia necrosante: C ou D) e 80 (tumor testicular: o seminoma puro também tem AFP normal); 2026/1 nº 22 (o enunciado não descreve o sorteio, mas a banca chama de ensaio clínico), 30 (a citologia inflamatória com metaplasia imatura é benigna, mas o gabarito a trata como ASC-US), 38 (Gleason 6 com PI-RADS 4: a vigilância ativa seria defensável), 87 (urodinâmica na incontinência mista), 97 (cirurgia primária em vez de quimioterapia neoadjuvante no câncer de ovário avançado) e 116 (isquemia aguda grau III: amputação primária). Os 12 assuntos abertos por essas provas (`ass-geriatria-perdapeso`, `ass-alergia-rinite`, `ass-psiq-personalidade`, `ass-infectoped-coqueluche`, `ass-derm-acne`, `ass-saudeplanetaria`, `ass-pneumo-hp`, `ass-neuro-medula`, `ass-psiq-toc`, `ass-genetica-teratogenese`, `ass-genetica-erros-inatos` e `ass-oft-orbita`) ainda não têm cartão da equipe. Quando o NIEPAEM publicar um gabarito definitivo diferente (anulações), conferir as letras.
+
+### Teste de Progresso 2023/1 e 2023/2: revisão pelas diretrizes
+
+O gabarito é o oficial (comentado). O caderno de 2023/1 ("versão gabaritada") marca a letra A em todas as questões, em ordem de redação da banca, e na 42 a marcação não bate com o comentário (a correta é a do cristaloide); por isso as alternativas de 2023/1 foram embaralhadas e a resposta de cada uma conferida pelo texto do comentário. Duas questões ficaram **desatualizadas** por divergirem da diretriz atual: 2023/1 nº 87 (insuficiência istmocervical com 29 semanas: a diretriz indica corticoide antenatal e não repouso absoluto) e 2023/2 nº 95 (ASC-US: o rastreamento brasileiro passou ao teste de DNA-HPV em 18/08/2025). Também marcada como desatualizada a 2026/1 nº 30 (citologia inflamatória tratada como atípica). Ficam com aviso, sem mudar a letra: 2023/1 nº 3 e 63 e 71 (conduta de via aérea, antibiótico precoce na fratura exposta), 2023/2 nº 36 (complicação da displasia do quadril), 85 (convulsão em diabética: glicemia capilar), 88 (corticoide na rotura pré-termo), 98, 107 e 114.
 
 ### SES-SP 2026: gabarito da cópia do caderno, não o definitivo
 

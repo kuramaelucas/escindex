@@ -70,6 +70,11 @@ porque todo o resto aponta para ela):
 | `prova-sessp-2024.js` | SES-SP 2024 (Quadrix, aplicada em 16/12/2023, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
 | `prova-sessp-2025.js` | SES-SP 2025 (Quadrix, aplicada em 14/12/2024, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
 | `prova-sessp-2026.js` | SES-SP 2026 (Acesso Direto), prova real, **gabarito da cópia do caderno, ainda sem conferência com o definitivo** | 100 |
+| `prova-tp-2023-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2023 (graduação), prova real, comentário oficial aprimorado; alternativas embaralhadas | 120 |
+| `prova-tp-2023-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2023 (graduação), prova real, comentário oficial aprimorado | 120 |
+| `prova-tp-2024-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2024 (graduação), prova real, comentário oficial aprimorado | 120 |
+| `prova-tp-2025-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2025 (graduação), prova real, comentário oficial aprimorado | 120 |
+| `prova-tp-2026-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2026 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
@@ -77,8 +82,8 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **4.175 questões** (4.040 reais, de 40 provas), **943 cartões**, **258 assuntos** (20 deles, abertos pelas
-provas da FAMEMA, ainda sem cartão da equipe) e **1 simulado**.
+Total: **4.775 questões** (4.640 reais, de 45 provas), **943 cartões**, **270 assuntos** (32 deles, abertos pelas
+provas da FAMEMA e pelo Teste de Progresso, ainda sem cartão da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
 ver `imagens/LEIA-ME.md`, que lista as 233 que ainda faltam. O resumo de tudo o que falta no banco de questões
@@ -294,6 +299,19 @@ entravam em *Provas Antigas* misturadas às provas reais (a de 2024 aparecia
 com 101 questões, e havia uma "prova de 2021" que nunca existiu). Hoje
 *Provas Antigas* só mostra questão real, e lista à parte as anuladas pela
 banca — que não têm gabarito e por isso ficam fora da nota.
+
+### Exceção: provas que trazem o comentário oficial junto
+
+O Teste de Progresso do NIEPAEM (graduação) é divulgado com um **gabarito
+comentado com referências bibliográficas**, publicado pela própria banca no
+mesmo dia da prova. Esse comentário não é de terceiro: nas provas
+`prova-tp-*` a explicação parte dele e é **reescrita e aprimorada** pela equipe
+(dicas do enunciado, parâmetros com valor normal e ponto de corte em destaque,
+o motivo de cada alternativa errada) e as referências oficiais vão em
+`referencias`. Onde o gabarito da banca é discutível (a explicação diz), o
+texto avisa. A instituição leva o semestre no nome (`Teste de Progresso NIEPAEM
+2º semestre`), porque Provas Antigas agrupa por instituição, ano e tipo e duas
+aplicações no mesmo ano se misturariam.
 
 ## Cuidados práticos
 

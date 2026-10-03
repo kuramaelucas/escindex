@@ -40,7 +40,10 @@ test("tipo de prova: residência é o padrão e o Teste de Progresso é graduaç
     marcada: tipoProvaDe({ banca: "UNIFESP-EPM", tipoProva: "graduacao" }),
     invalida: tipoProvaDe({ banca: "UNIFESP-EPM", tipoProva: "outra" }),
     textos: ["Graduação", "graduacao", "Teste de Progresso", "Residência", "R1", "qualquer"].map(normalizarTipoProva),
-    todasResidencia: db.questoes.filter(q => q.real).every(q => tipoProvaDe(q) === "residencia"),
+    // as provas do Teste de Progresso (dados/prova-tp-*) são da graduação; o resto do banco real é residência
+    todasResidencia: db.questoes.filter(q => q.real && !/^Teste de Progresso/.test(q.banca)).every(q => tipoProvaDe(q) === "residencia"),
+    provasProgresso: [...new Set(db.questoes.filter(q => /^Teste de Progresso/.test(q.banca)).map(q => q.banca + " " + q.ano + " " + tipoProvaDe(q)))].sort(),
+    questoesProgresso: db.questoes.filter(q => /^Teste de Progresso/.test(q.banca) && q.real).length,
   }));
   assert.equal(r.real, "residencia");
   assert.equal(r.progresso, "graduacao");
@@ -48,6 +51,8 @@ test("tipo de prova: residência é o padrão e o Teste de Progresso é graduaç
   assert.equal(r.invalida, "residencia");
   assert.deepEqual(r.textos, ["graduacao", "graduacao", "graduacao", "residencia", "residencia", null]);
   assert.ok(r.todasResidencia);
+  assert.deepEqual(r.provasProgresso, ["Teste de Progresso NIEPAEM 1º semestre 2023 graduacao", "Teste de Progresso NIEPAEM 1º semestre 2024 graduacao", "Teste de Progresso NIEPAEM 1º semestre 2026 graduacao", "Teste de Progresso NIEPAEM 2º semestre 2023 graduacao", "Teste de Progresso NIEPAEM 2º semestre 2025 graduacao"]);
+  assert.equal(r.questoesProgresso, 600);
   await contexto.close();
 });
 
