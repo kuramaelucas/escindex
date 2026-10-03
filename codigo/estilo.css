@@ -250,6 +250,8 @@ tr:last-child td{border-bottom:none}
 }
 
 /* ---------- estatísticas / progresso ---------- */
+.detalhes-bloco{margin-top:.35rem}
+.detalhes-bloco summary{cursor:pointer}
 .stat-mini-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem}
 .stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .8rem;display:flex;align-items:baseline;gap:.5rem;min-width:0}
 .stat-mini .stat-value{font-size:1.25rem;line-height:1.1}

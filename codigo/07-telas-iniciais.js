@@ -382,7 +382,7 @@ function renderCardLivroOuroInicio(){
   const registros = (db.livroOuro||[]).slice().sort((a,b)=>(b.destaque?1:0)-(a.destaque?1:0) || (b.data||"").localeCompare(a.data||""));
   const destaque = registros[0];
   const podeEditar = podeAdmin("livro-ouro");
-  return `<div class="card mt-2" style="border-color:var(--amber)">
+  return `<div class="card-flat mt-2">
     <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
       <div style="min-width:240px;flex:1">
         <div class="card-title">${iconeSvg("star")} Livro de Ouro</div>
@@ -438,20 +438,25 @@ function renderInicioAluno(u){
   const calibracao = calibracaoConfianca(u.id);
   const flashVencidos = resumoFlashcards(u.id).vencidos;
   return `
-  <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})${subdivisoesDoBloco(bloco).length ? `<br><span class="text-sm muted">${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · " : ""}Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</span>` : ""}` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p></div>
+  <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p>
+  ${bloco && subdivisoesDoBloco(bloco).length ? `<details class="detalhes-bloco text-sm muted"><summary>${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · ver o período dividido" : "Ver o período dividido"}</summary>Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</details>` : ""}</div>
   ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
-  <div class="grid grid-4">
-    <div class="stat-tile"><div class="stat-value">${respondidasHoje}/${meta}</div><div class="stat-label">questões hoje</div><div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div></div>
-    <div class="stat-tile"><div class="stat-value">${seq}</div><div class="stat-label">dia(s) seguidos estudando</div></div>
-    <div class="stat-tile"><div class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</div><div class="stat-label">acerto geral (${totalRespostas} questões)</div></div>
-    <div class="stat-tile"><div class="stat-value">${revisarHoje.length}</div><div class="stat-label">assunto(s) para revisar hoje</div></div>
-  </div>
   <div class="card mt-2">
-    <div class="flex justify-between items-center">
-      <div><div class="card-title">Pronto para estudar?</div><div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div></div>
+    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+      <div style="min-width:240px;flex:1">
+        <div class="card-title">Pronto para estudar?</div>
+        <div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>
+        <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
+        <div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
+      </div>
       <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
     </div>
+  </div>
+  <div class="stat-mini-row mt-2">
+    <div class="stat-mini"><span class="stat-value">${seq}</span><span class="stat-label">dia(s) seguidos estudando</span></div>
+    <div class="stat-mini"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral (${totalRespostas} questões)</span></div>
+    <div class="stat-mini"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">assunto(s) para revisar hoje</span></div>
   </div>
   ${calibracao.alertaExcessoConfianca ? `<div class="card mt-2" style="border-color:var(--amber)">
     <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
