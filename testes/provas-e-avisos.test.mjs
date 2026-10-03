@@ -51,7 +51,7 @@ test("tipo de prova: residência é o padrão e o Teste de Progresso é graduaç
   assert.equal(r.invalida, "residencia");
   assert.deepEqual(r.textos, ["graduacao", "graduacao", "graduacao", "residencia", "residencia", null]);
   assert.ok(r.todasResidencia);
-  assert.deepEqual(r.provasProgresso, ["Teste de Progresso NIEPAEM 1º semestre 2026 graduacao", "Teste de Progresso NIEPAEM 2º semestre 2025 graduacao"]);
+  assert.deepEqual(r.provasProgresso, ["Teste de Progresso NIEPAEM 1º semestre 2023 graduacao", "Teste de Progresso NIEPAEM 1º semestre 2024 graduacao", "Teste de Progresso NIEPAEM 1º semestre 2026 graduacao", "Teste de Progresso NIEPAEM 2º semestre 2023 graduacao", "Teste de Progresso NIEPAEM 2º semestre 2025 graduacao"]);
   assert.equal(r.questoesProgresso, 240);
   await contexto.close();
 });
