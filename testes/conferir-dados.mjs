@@ -94,7 +94,7 @@ export function resumirNumeros(nums){
    regra: ficam como estão (as do Teste de Progresso aparecem como aviso, para
    serem melhoradas); prova nova NÃO entra aqui — ela tem de cumprir a regra. */
 export const PROVAS_ANTERIORES_AO_PADRAO = new Set([
-  "prova-santacasa-2023", "prova-santacasa-2025", "prova-santacasa-2026",
+  "prova-santacasa-2025", "prova-santacasa-2026",
   "prova-usp-2022", "prova-usp-2023", "prova-usp-2024", "prova-usp-2025", "prova-usp-2026",
   "prova-usprp-2021", "prova-usprp-2022", "prova-usprp-2023", "prova-usprp-2024", "prova-usprp-2025", "prova-usprp-2026",
   "prova-amrigs-2022", "prova-amrigs-2023", "prova-amrigs-2024", "prova-amrigs-2025",
