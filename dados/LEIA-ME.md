@@ -65,7 +65,7 @@ porque todo o resto aponta para ela):
 | `prova-famema-2022.js` | FAMEMA 2022 (Acesso Direto e Áreas Básicas), prova real, gabarito oficial | 100 |
 | `prova-famema-2023.js` | FAMEMA 2023 (R1), prova real, gabarito da edição usada | 100 |
 | `prova-famema-2025.js` | FAMEMA 2025 (Áreas Básicas e Acesso Direto), prova real, gabarito divulgado pela banca (preliminar) | 100 |
-| `prova-sessp-2022.js` | SES-SP 2022 (Quadrix, Programas de Acesso Direto), prova real, **gabarito resolvido pela equipe** (o oficial não veio) | 100 |
+| `prova-sessp-2022.js` | SES-SP 2022 (Quadrix, Programas de Acesso Direto), prova real, gabarito oficial definitivo (94 e 97 anuladas) | 100 |
 | `prova-sessp-2023.js` | SES-SP 2023 (Quadrix, Programas de Acesso Direto), prova real, gabarito definitivo da banca | 100 |
 | `prova-sessp-2024.js` | SES-SP 2024 (Quadrix, aplicada em 16/12/2023, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
 | `prova-sessp-2025.js` | SES-SP 2025 (Quadrix, aplicada em 14/12/2024, Acesso Direto), prova real, gabarito definitivo da banca | 100 |

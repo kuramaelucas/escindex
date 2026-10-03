@@ -14,10 +14,6 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 | --- | --- | --- |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
 
-### SES-SP 2022: gabarito resolvido pela equipe, não oficial
-
-O caderno entrou sem o gabarito oficial: o gabarito que veio junto (divulgado em 01/02/2023) é o da SES-SP 2023, que já entrou em `prova-sessp-2023.js`. As 100 letras de 2022 foram resolvidas pela equipe e cada explicação avisa disso. Enviar o **gabarito definitivo da seleção 2022** (Quadrix, divulgado em 28/01/2022) para conferir tudo e marcar as anuladas; a 33 (hemorroidas), a 79 (mecanismo de parto) e a 89 (redução de danos) são as mais duvidosas. A questão 97 tem duas alternativas corretas pelo gráfico e foi marcada como anulada pela equipe. SES-SP 2023, 2024 e 2025 têm gabarito definitivo da banca.
-
 ## 2. Texto incompleto
 
 Todas estas questões são da USP-RP e vieram de PDFs comentados que chegaram cortados.
