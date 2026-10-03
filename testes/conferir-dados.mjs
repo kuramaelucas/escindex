@@ -96,7 +96,7 @@ export function resumirNumeros(nums){
 export const PROVAS_ANTERIORES_AO_PADRAO = new Set([
   
   
-  "prova-amrigs-2023", "prova-amrigs-2024", "prova-amrigs-2025",
+  "prova-amrigs-2024", "prova-amrigs-2025",
   "prova-iamspe-2021", "prova-iamspe-2022", "prova-iamspe-2023", "prova-iamspe-2025", "prova-iamspe-2026",
   "prova-unesp-2023",
 ]);
