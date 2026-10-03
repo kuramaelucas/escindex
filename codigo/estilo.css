@@ -156,6 +156,20 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .pill:active{transform:scale(.96)}
 .pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
+/* ---------- blocos de envio (Revisar Formatação) ----------
+   Cada bloco é uma leva de questões que subiu junto: o cartão mostra quando
+   subiu, de onde veio e quantas questões tem, para a revisão ser feita por
+   remessa e não numa lista corrida de centenas de questões. */
+.lote-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:.6rem}
+.lote-chip{text-align:left;padding:.7rem .85rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease;font-family:inherit}
+.lote-chip:hover{border-color:var(--accent)}
+.lote-chip:active{transform:scale(.985)}
+.lote-chip.active{border-color:var(--accent);background:var(--accent-soft)}
+.lote-chip-data{font-size:.8rem;font-weight:700;color:var(--ink)}
+.lote-chip.active .lote-chip-data{color:var(--accent-dark)}
+.lote-chip-origem{font-size:.73rem;color:var(--muted);margin-top:.15rem;line-height:1.35}
+.lote-chip-qtd{font-size:.7rem;font-weight:600;color:var(--muted);margin-top:.35rem}
+
 /* ---------- mapa de questões do simulado (durante a prova) ----------
    Durante o simulado o mapa responde a UMA pergunta: já respondi esta
    questão ou não. Ele nunca diz se a resposta está certa ou errada — numa

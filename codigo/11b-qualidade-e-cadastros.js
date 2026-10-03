@@ -281,6 +281,58 @@ function responderDuvida(comentarioId, questaoId){
    e volta para a fila com "Devolver à fila". Aprovar não é aprovar o
    conteúdo clínico — é só "a forma está boa, não precisa reler". */
 function formatacaoAprovadaDe(qid){ return (db.formatacaoAprovada||{})[qid] || null; }
+/* ---------- Revisar Formatação: blocos por envio ---------------------------
+   Revisar formatação é trabalho de remessa: quem acabou de subir uma prova
+   quer conferir AQUELA prova, não caçar as questões dela no meio de todas as
+   outras. Por isso a tela se divide em blocos, um por envio.
+   Questão importada a partir daqui sai carimbada com loteId e importadoEm
+   (ver importarItensAnalisados). Para o que entrou antes — as de semente
+   inclusive — o bloco é reconstruído pelo que dá para saber: dia de criação +
+   prova de origem (banca e ano), que é o mesmo recorte, já que cada prova foi
+   carregada de uma vez. */
+function chaveLoteUpload(q){
+  if(q.loteId) return q.loteId;
+  return "sem-lote|"+(q.criadoEm||"sem-data")+"|"+(q.banca||"—")+"|"+(q.ano||"—");
+}
+function lotesDeUpload(lista){
+  const mapa = new Map();
+  lista.forEach(q=>{
+    const chave = chaveLoteUpload(q);
+    let lote = mapa.get(chave);
+    if(!lote){ lote = {chave, quando:"", bancas:new Set(), anos:new Set(), autores:new Set(), questoes:[]}; mapa.set(chave, lote); }
+    lote.questoes.push(q);
+    if(q.banca) lote.bancas.add(q.banca);
+    if(q.ano) lote.anos.add(String(q.ano));
+    if(q.criadoPor) lote.autores.add(q.criadoPor);
+    const quando = q.importadoEm || q.criadoEm || "";
+    if(quando > lote.quando) lote.quando = quando;
+  });
+  return [...mapa.values()].sort((a,b)=>(b.quando||"").localeCompare(a.quando||""));
+}
+// "19/09/2026" para o que só tem data; "19/09/2026 às 14:32" quando o lote
+// foi carimbado com a hora da importação
+function quandoDoLote(iso){
+  if(!iso) return "Sem data de envio";
+  const data = formatDataBR(iso);
+  if(iso.length <= 10) return data;
+  const d = new Date(iso);
+  return isNaN(d.getTime()) ? data : data+" às "+d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+}
+function origemDoLote(lote){
+  const bancas = [...lote.bancas], anos = [...lote.anos].sort();
+  if(!bancas.length) return "sem instituição informada";
+  const nome = bancas.length===1 ? bancas[0] : bancas.length+" instituições";
+  if(!anos.length) return nome;
+  return nome+" · "+(anos.length===1 ? anos[0] : anos[0]+"–"+anos[anos.length-1]);
+}
+function autorDoLote(lote){
+  const ids = [...lote.autores];
+  if(!ids.length) return "—";
+  if(ids.length > 1) return ids.length+" pessoas";
+  if(ids[0]==="seed") return "carga inicial da plataforma";
+  const u = getUsuario(ids[0]);
+  return u ? u.nome : "—";
+}
 function renderRevisaoFormatacao(){
   const f = state.filtroRota;
   const termo = (f.buscaFormatacao||"").toLowerCase();
@@ -289,8 +341,17 @@ function renderRevisaoFormatacao(){
   const nAprovadas = todas.filter(q=>formatacaoAprovadaDe(q.id)).length;
   let lista = todas.filter(q=>verAprovadas ? !!formatacaoAprovadaDe(q.id) : !formatacaoAprovadaDe(q.id));
   if(termo) lista = lista.filter(q=>q.enunciado.toLowerCase().includes(termo));
-  lista = lista.slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
-  const pagFormatacao = paginar(lista, "formatacao", {porPagina:15, assinatura:termo+"|"+verAprovadas+"|"+lista.length});
+  const lotes = lotesDeUpload(lista);
+  // a busca (ou aprovar a última do bloco) pode fazer o bloco escolhido deixar
+  // de existir; nesse caso cai no mais recente, em vez de uma tela vazia sem
+  // explicação
+  let selecionado = f.loteFormatacao;
+  if(selecionado !== "__todos__" && !lotes.some(l=>l.chave===selecionado)){
+    selecionado = lotes.length ? lotes[0].chave : "__todos__";
+  }
+  const lote = lotes.find(l=>l.chave===selecionado);
+  const visiveis = (lote ? lote.questoes : lista).slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
+  const pagFormatacao = paginar(visiveis, "formatacao", {porPagina:15, assinatura:termo+"|"+verAprovadas+"|"+selecionado+"|"+visiveis.length});
   return `
   <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico. Quando a questão estiver boa, <strong>"Aprovar formatação"</strong> a tira da fila de todos os revisores, para ninguém reler o que já foi conferido.</p></div>
   <div class="flex gap-1 mb-2 quebra">
@@ -298,9 +359,27 @@ function renderRevisaoFormatacao(){
     <button class="pill ${verAprovadas?"active":""}" onclick="verFormatacaoAprovadas(true)">${iconeSvg("check")} Já aprovadas (${nAprovadas})</button>
   </div>
   <div class="flex gap-1 mb-2">
-    <input class="input" id="buscaFormatacaoInput" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(f.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
+    <input class="input" id="buscaFormatacaoInput" aria-label="Buscar questão por texto" style="max-width:280px" placeholder="Buscar por texto..." value="${escapeHtml(f.buscaFormatacao||"")}" onkeydown="if(event.key==='Enter') buscarFormatacao()">
     <button class="btn btn-secondary btn-sm" onclick="buscarFormatacao()">Buscar</button>
+    ${termo ? `<button class="btn btn-ghost btn-sm" onclick="limparBuscaFormatacao()">Limpar busca</button>` : ""}
   </div>
+  <div class="card mb-2">
+    <div class="card-title">Blocos de envio</div>
+    <p class="text-sm muted mb-2">Cada bloco é uma leva de questões que entrou junto na plataforma${termo?" (considerando só o que a busca encontrou)":""}. Revisar por bloco é o jeito de conferir uma prova inteira sem perder o fio.</p>
+    ${lotes.length ? `<div class="lote-grid">
+      <button class="lote-chip ${selecionado==="__todos__"?"active":""}" onclick="selecionarLoteFormatacao('__todos__')">
+        <div class="lote-chip-data">Todas as questões</div>
+        <div class="lote-chip-origem">${lotes.length} bloco(s) de envio</div>
+        <div class="lote-chip-qtd">${lista.length} questão(ões)</div>
+      </button>
+      ${lotes.map(l=>`<button class="lote-chip ${selecionado===l.chave?"active":""}" onclick="selecionarLoteFormatacao(this.dataset.chave)" data-chave="${escapeHtml(l.chave)}">
+        <div class="lote-chip-data">${escapeHtml(quandoDoLote(l.quando))}</div>
+        <div class="lote-chip-origem">${escapeHtml(origemDoLote(l))}<br>por ${escapeHtml(autorDoLote(l))}</div>
+        <div class="lote-chip-qtd">${l.questoes.length} questão(ões)</div>
+      </button>`).join("")}
+    </div>` : '<div class="empty-state">Nenhum bloco para mostrar.</div>'}
+  </div>
+  ${lote ? `<div class="card-flat mb-2 text-sm">Revisando o bloco de <strong>${escapeHtml(quandoDoLote(lote.quando))}</strong> — ${escapeHtml(origemDoLote(lote))}, ${lote.questoes.length} questão(ões), enviado por ${escapeHtml(autorDoLote(lote))}.</div>` : ""}
   ${nuvemLigada() && !nuvemConectado() ? `<p class="text-xs muted mb-2">Você está numa conta só deste navegador: a aprovação vale aqui, mas não chega aos outros revisores. Entre com a conta da nuvem para dividir a fila.</p>` : ""}
   ${pagFormatacao.itens.map(q=>{
     const ap = formatacaoAprovadaDe(q.id);
@@ -317,8 +396,10 @@ function renderRevisaoFormatacao(){
       </div>
     </div>`;
   }).join("") || `<div class="empty-state">${verAprovadas ? "Nenhuma questão aprovada ainda." : (termo ? "Nenhuma questão encontrada." : "Nenhuma questão esperando revisão — todas já foram aprovadas.")}</div>`}
-  ${controlesPaginacao(pagFormatacao, "questão(ões), da mais recente para a mais antiga")}`;
+  ${controlesPaginacao(pagFormatacao, "questão(ões) neste recorte, da mais recente para a mais antiga")}`;
 }
+function selecionarLoteFormatacao(chave){ state.filtroRota.loteFormatacao = chave; render(); window.scrollTo(0,0); }
+function limparBuscaFormatacao(){ state.filtroRota.buscaFormatacao = ""; render(); }
 function verFormatacaoAprovadas(sim){ state.filtroRota.formatacaoVerAprovadas = !!sim; render(); }
 function alternarFormatacaoAprovada(qid){
   if(!db.formatacaoAprovada) db.formatacaoAprovada = {};
@@ -443,11 +524,11 @@ function renderUsuariosLocais(souMaster, eu){
       <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
       <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
       <td>${souMaster
-        ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
+        ? `<select class="select" style="padding:.3rem .5rem" aria-label="Papel de ${escapeHtml(u.nome)}" onchange="alterarPapelUsuario('${u.id}', this.value)">${CONFIG.papeis.map(p=>`<option value="${p}" ${u.papel===p?"selected":""}>${p}</option>`).join("")}</select>`
         : badgePapel(u.papel, u)}</td>
       <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
         : souMaster
-          ? `<select class="select" style="padding:.3rem .5rem" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
+          ? `<select class="select" style="padding:.3rem .5rem" aria-label="Nível de administrador de ${escapeHtml(u.nome)}" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
           : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
       <td>${badgeStatusUsuario(u.status)}</td>
       <td class="flex gap-1 quebra">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `

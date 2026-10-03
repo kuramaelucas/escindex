@@ -977,6 +977,36 @@ function enviarComentario(questaoId){
 function dentroDaAreaDeAtuacao(usuario, areaId){
   return !usuario.areasAtuacao || !usuario.areasAtuacao.length || usuario.areasAtuacao.includes(areaId);
 }
+/* ---------- regra das grandes áreas de professor/residente ----------------
+   Teto de CONFIG.maxAreasAtuacao áreas, sendo no máximo UMA clínica; a
+   Preventiva (CONFIG.areaTransversalId) é a única que pode ser somada. As
+   funções abaixo são a fonte única dessa regra: o formulário de cadastro, a
+   validação do envio e a migração de contas antigas (loadState) usam todas
+   elas — mudar o teto é mexer só no CONFIG. */
+function ehAreaTransversal(areaId){ return areaId === CONFIG.areaTransversalId; }
+function areasClinicas(areas){ return (areas||[]).filter(a=>!ehAreaTransversal(a)); }
+function validarAreasAtuacao(areas){
+  areas = [...new Set((areas||[]).filter(Boolean))];
+  if(!areas.length) return {ok:false, msg:"Selecione pelo menos uma grande área de atuação."};
+  if(areas.length > CONFIG.maxAreasAtuacao) return {ok:false, msg:"São no máximo "+CONFIG.maxAreasAtuacao+" grandes áreas por pessoa."};
+  if(areasClinicas(areas).length > 1){
+    return {ok:false, msg:"Escolha uma única grande área clínica. A segunda vaga é de "+nomeArea(CONFIG.areaTransversalId)+", que é transversal e pode ser somada a qualquer uma."};
+  }
+  return {ok:true};
+}
+// devolve a seleção já dentro da regra: mantém a primeira área clínica e, se
+// houver, a Preventiva. Serve à migração de cadastros feitos antes da regra.
+function normalizarAreasAtuacao(areas){
+  areas = [...new Set((areas||[]).filter(Boolean))];
+  return [areasClinicas(areas)[0], areas.find(ehAreaTransversal)].filter(Boolean);
+}
+// um professor não pode se oferecer para responder dúvida de área que não cobre
+function assuntosAjudaDentroDasAreas(assuntos, areas){
+  return (assuntos||[]).filter(id=>{
+    const e = getEspecialidade(id);
+    return e && (areas||[]).includes(e.areaId);
+  });
+}
 function duvidasPendentes(usuario){
   // uma dúvida é considerada "pendente" se, entre os comentários daquela questão
   // feitos por um aluno, nenhum comentário oficial posterior a ela responde

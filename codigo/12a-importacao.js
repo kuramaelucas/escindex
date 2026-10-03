@@ -131,7 +131,8 @@ function gerarPromptImportacao(){
     "- Transcreva o enunciado na íntegra, sem resumir e sem corrigir o texto original da prova.\n"+
     "- Se a questão tiver sido anulada pela banca, acrescente a linha: STATUS: anulada\n"+
     "- Se a prova tiver menos de 5 alternativas por questão, repita a última letra existente e deixe as demais vazias apenas se for inevitável; o ideal é manter exatamente as alternativas originais.\n"+
-    "- Se você não tiver certeza do gabarito oficial, escreva GABARITO: ? e explique a dúvida no campo EXPLICACAO, em vez de inventar.\n\n"+
+    "- Se você não tiver certeza do gabarito oficial, escreva GABARITO: ? e explique a dúvida no campo EXPLICACAO, em vez de inventar.\n"+
+    "- Responda só com os blocos das questões: esse texto vai ser salvo num documento (.docx ou .txt) e enviado direto para a plataforma, então qualquer comentário seu fora do formato atrapalha a leitura.\n\n"+
     "Aqui está a prova (colo o texto abaixo ou anexo o PDF/imagem):\n[COLE AQUI O TEXTO DA PROVA OU ANEXE O ARQUIVO]";
   }
   return "Você vai me ajudar a transcrever questões avulsas de provas "+descricaoProvaNoPrompt(ctx.tipoProva)+" para um formato de texto específico.\n\n"+
@@ -200,8 +201,8 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
 
   <div class="card mb-2">
     <div class="card-title">Passo 2 — peça a uma IA para formatar</div>
-    <p class="text-sm muted">Copie o prompt abaixo (pode revisar antes), cole numa IA junto com o PDF/texto da prova, e traga o resultado para o Passo 3.</p>
-    <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
+    <p class="text-sm muted">Copie o prompt abaixo (pode revisar antes), cole numa IA junto com o PDF/texto da prova, e traga o resultado para o Passo 3 — colando o texto ou salvando a resposta num documento do Word (.docx) e enviando o arquivo.</p>
+    <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" aria-label="Prompt pronto para copiar" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
     <div class="flex gap-1 quebra">
       <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">${iconeSvg("search")} Copiar prompt</button>
       <button class="btn btn-ghost btn-sm" onclick="atualizarPromptImportacao()">${iconeSvg("refresh")} Atualizar prompt com tipo/instituição/ano acima</button>
@@ -209,9 +210,9 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
   </div>
 
   <div class="card">
-    <div class="card-title">Passo 3 — cole aqui o texto formatado</div>
-    <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO, ANO e TIPO: ele é lido uma vez e aplicado a todas as questões. <strong>Questão com imagem?</strong> Na pré-visualização, cada questão tem o seu lugar para anexar a figura.</p>
-    <textarea class="textarea textarea-mono" id="textoImportacao" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
+    <div class="card-title">Passo 3 — cole o texto ou envie o arquivo da prova</div>
+    <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO, ANO e TIPO: ele é lido uma vez e aplicado às questões que vierem depois dele (enviando vários arquivos, cada um pode trazer o próprio cabeçalho). <strong>Questão com imagem?</strong> Na pré-visualização, cada questão tem o seu lugar para anexar a figura.</p>
+    <textarea class="textarea textarea-mono" id="textoImportacao" aria-label="Cole aqui o resultado da IA ou o texto da prova" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
 ANO: ${escapeHtml(String(ctx.ano||""))}
 TIPO: ${escapeHtml(infoTipoProva(ctx.tipoProva).nome)}
 ===
@@ -222,16 +223,192 @@ GABARITO: B
 ==="></textarea>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary" onclick="previsualizarImportacao()">Pré-visualizar</button>
-      <label class="btn btn-secondary clicavel">${iconeSvg("upload")} Carregar arquivo .txt<input type="file" accept=".txt,.md,.csv" style="display:none" onchange="carregarArquivoImportacao(this)"></label>
+      <label class="btn btn-secondary clicavel">${iconeSvg("upload")} Enviar arquivo da prova<input type="file" accept=".docx,.txt,.md,.csv" multiple style="display:none" onchange="carregarArquivoImportacao(this)"></label>
+      <button class="btn btn-ghost btn-sm" onclick="baixarModeloImportacao()">${iconeSvg("archive")} Baixar modelo</button>
     </div>
+    <p class="text-xs muted mt-1">Aceita documento do Word (.docx) e texto (.txt, .md, .csv), um ou vários de uma vez — o conteúdo precisa estar no formato do script do Passo 2. Documento .doc antigo: salve como .docx primeiro.</p>
   </div>
   <div id="previewImportacao" class="mt-2"></div>`;
 }
-function carregarArquivoImportacao(input){
-  const arq = input.files && input.files[0]; if(!arq) return;
-  const leitor = new FileReader();
-  leitor.onload = e => { document.getElementById("textoImportacao").value = e.target.result; toast("Arquivo carregado. Confira e clique em Pré-visualizar."); };
-  leitor.readAsText(arq);
+/* Upload de prova em arquivo (.docx do Word, .txt, .md, .csv). O caminho real
+   de quem monta prova é pedir o script a uma IA, a resposta ir parar num
+   documento do Word, e ser esse documento que a pessoa tem na mão. O arquivo
+   é só o transporte: quem manda no formato continua sendo o script do Passo 2.
+   O .docx é lido sem biblioteca (regra do projeto): é um ZIP comum com o texto
+   em word/document.xml; o ZIP é aberto lendo o índice do fim do arquivo e o
+   conteúdo é descompactado pelo próprio navegador (DecompressionStream).
+   Documento .doc antigo não é ZIP: a plataforma explica que basta salvar como
+   .docx, em vez de falhar sem dizer por quê. */
+
+/* Acha um arquivo dentro de um ZIP e devolve o conteúdo dele como texto.
+   Devolve null quando o arquivo não existe dentro do ZIP. */
+async function extrairDoZip(buffer, caminhoProcurado){
+  const bytes = new Uint8Array(buffer);
+  const dv = new DataView(buffer);
+  // o índice do ZIP (EOCD) fica no fim do arquivo; procura a assinatura dele
+  // de trás para frente, porque pode haver comentário depois
+  let eocd = -1;
+  const limite = Math.max(0, bytes.length - 66000);
+  for(let i = bytes.length - 22; i >= limite; i--){
+    if(bytes[i]===0x50 && bytes[i+1]===0x4b && bytes[i+2]===0x05 && bytes[i+3]===0x06){ eocd = i; break; }
+  }
+  if(eocd < 0) return null; // não é um ZIP (logo, não é um .docx)
+  const totalEntradas = dv.getUint16(eocd+10, true);
+  let p = dv.getUint32(eocd+16, true); // onde começa a tabela central
+  const decodificador = new TextDecoder("utf-8");
+  for(let n = 0; n < totalEntradas; n++){
+    if(p+46 > bytes.length || dv.getUint32(p, true) !== 0x02014b50) return null;
+    const metodo    = dv.getUint16(p+10, true);
+    const tamComp   = dv.getUint32(p+20, true);
+    const tamNome   = dv.getUint16(p+28, true);
+    const tamExtra  = dv.getUint16(p+30, true);
+    const tamComent = dv.getUint16(p+32, true);
+    const offLocal  = dv.getUint32(p+42, true);
+    const nome = decodificador.decode(bytes.subarray(p+46, p+46+tamNome));
+    if(nome === caminhoProcurado){
+      // o cabeçalho local diz onde exatamente começam os bytes do conteúdo
+      if(dv.getUint32(offLocal, true) !== 0x04034b50) return null;
+      const inicio = offLocal + 30 + dv.getUint16(offLocal+26, true) + dv.getUint16(offLocal+28, true);
+      const comprimido = buffer.slice(inicio, inicio + tamComp);
+      if(metodo === 0) return decodificador.decode(new Uint8Array(comprimido)); // guardado sem compressão
+      if(metodo !== 8) throw new Error("compressao-nao-suportada");
+      if(typeof DecompressionStream !== "function") throw new Error("navegador-antigo");
+      const fluxo = new Blob([comprimido]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+      return await new Response(fluxo).text();
+    }
+    p += 46 + tamNome + tamExtra + tamComent;
+  }
+  return null;
+}
+
+/* Converte o XML do Word em texto corrido, preservando as quebras de linha
+   (é o que o script usa para separar PERGUNTA, A, B...). */
+function xmlDoWordParaTexto(xml){
+  let t = xml;
+  t = t.replace(/<w:instrText[\s\S]*?<\/w:instrText>/g, "");   // códigos de campo (sumário, links)
+  t = t.replace(/<w:delText[\s\S]*?<\/w:delText>/g, "");        // texto apagado com controle de alterações
+  t = t.replace(/<w:tab\b[^>]*\/?>/g, "\t");
+  t = t.replace(/<w:br\b[^>]*\/?>/g, "\n");
+  t = t.replace(/<\/w:p>/g, "\n");                               // fim de parágrafo = quebra de linha
+  t = t.replace(/<[^>]+>/g, "");                                 // todo o resto da marcação some
+  t = t.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+       .replace(/&#x([0-9a-fA-F]+);/g, (m,h)=>String.fromCodePoint(parseInt(h,16)))
+       .replace(/&#(\d+);/g, (m,d)=>String.fromCodePoint(parseInt(d,10)))
+       .replace(/&amp;/g, "&");                                  // o & vem por último, senão desfaz os de cima
+  return t;
+}
+
+/* Tira as sujeirinhas que o Word deixa e que atrapalham a leitura dos
+   rótulos do script: espaço que não quebra, caractere invisível, linha de "="
+   de tamanho variado, parágrafo vazio. */
+function normalizarTextoDeProva(texto){
+  return (texto||"")
+    .replace(/\r\n?/g, "\n")
+    .replace(/[   ]/g, " ")
+    .replace(/[​‌‍⁠﻿­]/g, "")
+    .split("\n").map(l=>l.replace(/[ \t]+$/, "")).join("\n")
+    .replace(/^[ \t]*={3,}[ \t]*$/gm, "===")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+/* Lê um arquivo escolhido pelo usuário e devolve o texto dele. */
+async function lerArquivoDeProva(arquivo){
+  const nome = (arquivo.name||"").toLowerCase();
+  if(nome.endsWith(".doc")){
+    throw new Error('O arquivo "'+arquivo.name+'" está no formato antigo .doc (Word 97-2003), que não pode ser aberto aqui. No Word, use "Salvar como" e escolha "Documento do Word (.docx)".');
+  }
+  if(nome.endsWith(".docx")){
+    let xml = null;
+    try{
+      xml = await extrairDoZip(await arquivo.arrayBuffer(), "word/document.xml");
+    }catch(e){
+      if(e && e.message==="navegador-antigo") throw new Error("Este navegador não sabe abrir .docx. Atualize o navegador, ou salve o documento como .txt e envie novamente.");
+      throw new Error('Não foi possível abrir "'+arquivo.name+'". Abra o documento no Word e salve de novo como .docx, ou salve como .txt.');
+    }
+    if(xml === null) throw new Error('"'+arquivo.name+'" não parece ser um documento do Word válido. Abra e salve novamente como .docx, ou salve como .txt.');
+    return normalizarTextoDeProva(xmlDoWordParaTexto(xml));
+  }
+  const texto = await new Promise((resolve, reject)=>{
+    const leitor = new FileReader();
+    leitor.onload = e => resolve(e.target.result);
+    leitor.onerror = () => reject(new Error('Não foi possível ler "'+arquivo.name+'".'));
+    leitor.readAsText(arquivo);
+  });
+  return normalizarTextoDeProva(texto);
+}
+
+/* Quantas questões no formato do script existem neste texto. Avisar na hora
+   que o arquivo veio fora do formato é mais barato do que deixar a pessoa
+   clicar em Pré-visualizar e receber uma lista de erros. */
+function contarQuestoesNoTexto(texto){
+  const m = (texto||"").match(/^[ \t]*PERGUNTA[ \t]*:/gmi);
+  return m ? m.length : 0;
+}
+
+/* Aceita vários arquivos de uma vez (uma prova por arquivo), na ordem escolhida. */
+async function carregarArquivoImportacao(input){
+  const arquivos = [...(input.files||[])];
+  input.value = ""; // permite escolher o mesmo arquivo de novo depois
+  if(!arquivos.length) return;
+  const area = document.getElementById("textoImportacao");
+  const partes = [];
+  const falhas = [];
+  for(const arq of arquivos){
+    try{ partes.push(await lerArquivoDeProva(arq)); }
+    catch(e){ falhas.push(e.message); }
+  }
+  falhas.forEach(msg => toast(msg, "err"));
+  if(!partes.length) return;
+  // vários arquivos entram um atrás do outro, separados pela linha do script
+  const textoNovo = partes.join("\n===\n");
+  const jaTinha = (area.value||"").trim();
+  area.value = jaTinha ? jaTinha + "\n===\n" + textoNovo : textoNovo;
+  const quantas = contarQuestoesNoTexto(textoNovo);
+  if(!quantas){
+    toast("O arquivo foi aberto, mas não tem nenhuma questão no formato do script (falta PERGUNTA:).", "err");
+    document.getElementById("previewImportacao").innerHTML = renderAvisoArquivoForaDoFormato(arquivos.map(a=>a.name));
+    return;
+  }
+  toast(quantas+" questão(ões) encontrada(s) em "+partes.length+" arquivo(s). Confira a pré-visualização abaixo.");
+  previsualizarImportacao();
+}
+function renderAvisoArquivoForaDoFormato(nomes){
+  return `<div class="card" style="border-color:var(--amber)">
+    <div class="card-title">${iconeSvg("alert")} O arquivo abriu, mas não está no formato do script</div>
+    <p class="text-sm">${escapeHtml(nomes.join(", "))} — o texto foi carregado no Passo 3, mas não há nenhuma linha começando com <strong>PERGUNTA:</strong>, que é como cada questão começa no script.</p>
+    <p class="text-sm muted mt-1">O arquivo é só o transporte: o conteúdo dele precisa estar no formato do Passo 2. O caminho normal é copiar o prompt do Passo 2, colar numa IA junto com o PDF da prova, salvar a resposta num documento (.docx ou .txt) e enviar esse documento aqui.</p>
+    <p class="text-sm muted mt-1">Enviar o PDF ou o Word original da prova, do jeito que a banca publicou, não funciona: ali não existe gabarito marcado nem explicação, e a plataforma não inventa nenhum dos dois.</p>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">Copiar o prompt do Passo 2</button>
+      <button class="btn btn-ghost btn-sm" onclick="baixarModeloImportacao()">${iconeSvg("archive")} Baixar modelo preenchido</button>
+    </div>
+  </div>`;
+}
+/* Modelo com uma questão inteira preenchida, para quem prefere escrever a
+   prova à mão no Word em vez de pedir a uma IA. */
+function baixarModeloImportacao(){
+  const ctx = contextoImportacao();
+  const modelo =
+    "INSTITUICAO: "+(ctx.instituicao||CONFIG.bancaFoco)+"\n"+
+    "ANO: "+(ctx.ano||new Date().getFullYear())+"\n"+
+    "===\n"+
+    "PERGUNTA: Homem de 62 anos, hipertenso, chega ao pronto-socorro com dor torácica em aperto há 40 minutos. ECG mostra supradesnivelamento de ST em parede inferior. Qual a conduta imediata?\n"+
+    "A: Angioplastia primária, se disponível em até 120 minutos\n"+
+    "B: Apenas anticoagulação plena e observação\n"+
+    "C: Teste ergométrico antes de qualquer conduta\n"+
+    "D: Alta com sintomático e reavaliação ambulatorial\n"+
+    "GABARITO: A\n"+
+    "EXPLICACAO: Escreva aqui, com suas palavras, por que essa alternativa é a correta e por que as outras não são.\n"+
+    "REFERENCIAS: Diretriz da sociedade de especialidade, com nome e ano.\n"+
+    "AREA: Clínica Médica\n"+
+    "ESPECIALIDADE: Cardiologia\n"+
+    "ASSUNTO: Síndrome coronariana aguda\n"+
+    "DIFICULDADE: intermediario\n"+
+    "===\n"+
+    "PERGUNTA: (repita o bloco acima para cada questão, sempre separado por uma linha com três sinais de igual)\n";
+  baixarArquivo("modelo-prova-esc.txt", modelo, "text/plain;charset=utf-8");
+  toast("Modelo baixado. Preencha no Word ou no bloco de notas e envie de volta aqui.");
 }
 /* ---------- leitura do texto colado ---------- */
 /* `padroes` é opcional: quem chama de fora da tela de Importar Questões (a
@@ -252,24 +429,33 @@ function parseImportText(texto, padroes){
     });
     return campos;
   };
-  // 1) cabeçalho da prova: primeiro bloco sem PERGUNTA, só com instituição/ano
-  let cabecalho = {};
-  let inicio = 0;
-  const primeiro = lerCampos(blocos[0]||"");
-  if(!primeiro.PERGUNTA && (primeiro.INSTITUICAO || primeiro.BANCA || primeiro.ANO || primeiro.TIPO)){
-    cabecalho = primeiro; inicio = 1;
-  }
-  const instituicaoProva = (cabecalho.INSTITUICAO || cabecalho.BANCA || ctx.instituicao || CONFIG.bancaFoco).trim();
-  const anoProva = parseInt(cabecalho.ANO || ctx.ano) || new Date().getFullYear();
+  /* 1) cabeçalho da prova: bloco sem PERGUNTA, só com instituição/ano/tipo.
+     Pode aparecer mais de uma vez no mesmo texto — é o que acontece ao enviar
+     dois arquivos de uma vez, cada um com a sua prova. Cada cabeçalho vale das
+     questões seguintes até o próximo. */
+  let instituicaoProva = (ctx.instituicao || CONFIG.bancaFoco).trim();
+  let anoProva = parseInt(ctx.ano) || new Date().getFullYear();
   // o tipo de prova: o que o texto disser (na questão ou no cabeçalho), senão
   // o que a instituição diz (Teste de Progresso é graduação), senão o
   // escolhido na tela, senão o padrão
-  const tipoDoCabecalho = normalizarTipoProva(cabecalho.TIPO);
+  let tipoDoCabecalho = "";
   const tipoDaTela = tipoProvaValido(ctx.tipoProva) ? ctx.tipoProva : CONFIG.tipoProvaPadrao;
 
   const assinaturasDoLote = {};
-  return blocos.slice(inicio).map((bloco, idx)=>{
+  const resultado = [];
+  blocos.forEach(bloco=>{
     const campos = lerCampos(bloco);
+    if(!campos.PERGUNTA){
+      // sem enunciado: ou é cabeçalho de prova, ou é lixo (rodapé, "segue a
+      // prova:", página em branco) — o cabeçalho passa a valer daqui para a
+      // frente e nenhum dos dois vira questão
+      const ehCabecalho = campos.INSTITUICAO || campos.BANCA || campos.ANO || campos.TIPO;
+      if(campos.INSTITUICAO || campos.BANCA) instituicaoProva = (campos.INSTITUICAO || campos.BANCA).trim();
+      if(parseInt(campos.ANO)) anoProva = parseInt(campos.ANO);
+      if(campos.TIPO) tipoDoCabecalho = normalizarTipoProva(campos.TIPO);
+      if(ehCabecalho || !bloco.trim()) return;
+    }
+    const idx = resultado.length;
     const erros = [];
     if(!campos.PERGUNTA) erros.push("faltando PERGUNTA");
     // E é opcional: várias bancas (ex.: UNIFESP-EPM) usam só 4 alternativas.
@@ -298,7 +484,7 @@ function parseImportText(texto, padroes){
 
     const banca = (campos.INSTITUICAO || campos.BANCA || instituicaoProva).trim();
     const imagem = lerCampoImagem(campos.IMAGEM);
-    return {
+    resultado.push({
       indice: idx+1, campos, erros, avisos, valido: erros.length===0,
       // a linha IMAGEM disse que tem figura / o enunciado fala de uma figura
       imagemIndicada: imagem.tem, imagemDescricao: imagem.descricao,
@@ -317,8 +503,9 @@ function parseImportText(texto, padroes){
       tipoDoTexto: !!(normalizarTipoProva(campos.TIPO) || tipoDoCabecalho || /progresso/i.test(banca)),
       ano: parseInt(campos.ANO) || anoProva,
       status: ((campos.STATUS||"").trim().toLowerCase()==="anulada") ? "anulada" : null,
-    };
+    });
   });
+  return resultado;
 }
 /* A linha IMAGEM pode trazer um endereço (vira a imagem da questão) ou só
    dizer que a questão tem figura ("sim", ou uma descrição): aí a figura é
@@ -540,6 +727,11 @@ function importarItensAnalisados(resultado, destino, extras){
   let novosAssuntos = 0;
   const antesAssuntos = db.taxonomia.assuntos.length;
   const ignoradas = resultado.filter(r=>r.valido && r.importar===false).length;
+  // cada confirmação é UM lote: as questões saem daqui com o mesmo loteId e o
+  // mesmo instante, que é o que deixa Revisar Formatação mostrar "o que subiu
+  // junto" em vez de uma lista corrida de centenas de questões
+  const loteId = uid("lote");
+  const importadoEm = new Date().toISOString();
   resultado.filter(r=>r.valido && r.importar!==false).forEach(r=>{
     const c = r.campos;
     const tax = resolverTaxonomiaImportacao(r);
@@ -559,6 +751,7 @@ function importarItensAnalisados(resultado, destino, extras){
       status: r.status || (destino==="sugerir" ? "pendente" : "ativa"),
       estatisticas: {respostas:0, acertos:0, distribuicaoAlternativas:{}},
       criadoPor: u.id, autorPapel: u.papel, criadoEm: hojeISO(),
+      loteId, importadoEm,
     };
     if(destinoEhGrupo(destino)){ nova.grupoId = grupoDoDestino(u, destino).id; nova.status = r.status || "ativa"; }
     // rastro da prova de origem: o número da questão no caderno original é o
