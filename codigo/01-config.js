@@ -188,7 +188,7 @@ const CONFIG = {
        segredos da função do Supabase — nuvem/LEIA-ME.md). Vazia = sem
        push com o app fechado; o aviso na tela e o do navegador aberto
        continuam. */
-    vapidPublica: "",
+    vapidPublica: "BAYJL4vMDBD9O4fZg6f8AHk1oRcqMoDk60ZjhLvDYgRetsVdBTLJq0P-wkWo4BbliBNWj1d2fNTUFBenZFtAhBE",
     chaveAnon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6bm9jdmdtY2dpb3ZnY3docnZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MzQ4OTksImV4cCI6MjEwNTUxMDg5OX0.CyZ-46-2j3IO5JIUmwTqTuHyCDc6fkGE6Lbvpq22bbU",
   },
 };
