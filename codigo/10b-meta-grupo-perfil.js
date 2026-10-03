@@ -1000,6 +1000,10 @@ function renderPerfil(){
       <div class="hint mt-1">Atualize quando virar o ano letivo. Quem está no internato marca o ano em que está — 5º ou 6º. Quem já se formou marca "Formado(a)": não há calendário de formado — o calendário vem de um grupo de que você participe, ou de um que você mesmo monta em Meu Grupo.</div>
     </div>` : ""}
     <div class="field"><label class="label">Papel</label><div>${badgePapel(u.papel, u)}</div></div>
+    ${(u.papel==="professor"||u.papel==="residente") ? `<div class="field"><label class="label">Grandes áreas de atuação</label>
+      <div>${u.areasAtuacao&&u.areasAtuacao.length ? u.areasAtuacao.map(a=>`<span class="badge badge-muted">${escapeHtml(nomeArea(a))}</span>`).join(" ") : '<span class="text-sm muted">Nenhuma definida — você enxerga o conteúdo de todas as áreas.</span>'}</div>
+      <div class="hint mt-1">Cada professor ou residente cobre no máximo ${CONFIG.maxAreasAtuacao} grandes áreas: uma clínica e, opcionalmente, ${escapeHtml(nomeArea(CONFIG.areaTransversalId))}, que é transversal. É o que define quais dúvidas de aluno chegam até você. Para mudar, fale com a coordenação.</div>
+    </div>` : ""}
     ${u.papel==="admin" ? `<div class="field"><label class="label">Nível de administrador</label><div>${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}<div class="hint mt-1">${escapeHtml((CONFIG.niveisAdmin.find(n=>n.id===nivelAdminDe(u))||{}).descricao||"")}</div></div></div>` : ""}
     ${u.papel==="aluno" ? `<div class="field"><label class="label">Bloco atual</label><div>${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
   </div>

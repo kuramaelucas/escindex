@@ -111,9 +111,12 @@ function solicitarCadastro(){
     novo.grupoId = db.grupoOficialId;
   } else {
     const areasAtuacao = [...document.querySelectorAll(".cadAreaAtuacao:checked")].map(el=>el.value);
-    if(!areasAtuacao.length){ toast("Selecione pelo menos uma grande área de atuação.", "err"); return; }
+    const regraAreas = validarAreasAtuacao(areasAtuacao);
+    if(!regraAreas.ok){ toast(regraAreas.msg, "err"); return; }
     novo.areasAtuacao = areasAtuacao;
-    novo.assuntosAjuda = [...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value);
+    // a lista só mostra as especialidades das áreas marcadas, mas quem desmarca
+    // uma área depois de escolher especialidades dela não pode sair com o resíduo
+    novo.assuntosAjuda = assuntosAjudaDentroDasAreas([...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value), areasAtuacao);
   }
   db.usuarios.push(novo);
   if(!saveState()){

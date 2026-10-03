@@ -727,6 +727,11 @@ function importarItensAnalisados(resultado, destino, extras){
   let novosAssuntos = 0;
   const antesAssuntos = db.taxonomia.assuntos.length;
   const ignoradas = resultado.filter(r=>r.valido && r.importar===false).length;
+  // cada confirmação é UM lote: as questões saem daqui com o mesmo loteId e o
+  // mesmo instante, que é o que deixa Revisar Formatação mostrar "o que subiu
+  // junto" em vez de uma lista corrida de centenas de questões
+  const loteId = uid("lote");
+  const importadoEm = new Date().toISOString();
   resultado.filter(r=>r.valido && r.importar!==false).forEach(r=>{
     const c = r.campos;
     const tax = resolverTaxonomiaImportacao(r);
@@ -746,6 +751,7 @@ function importarItensAnalisados(resultado, destino, extras){
       status: r.status || (destino==="sugerir" ? "pendente" : "ativa"),
       estatisticas: {respostas:0, acertos:0, distribuicaoAlternativas:{}},
       criadoPor: u.id, autorPapel: u.papel, criadoEm: hojeISO(),
+      loteId, importadoEm,
     };
     if(destinoEhGrupo(destino)){ nova.grupoId = grupoDoDestino(u, destino).id; nova.status = r.status || "ativa"; }
     // rastro da prova de origem: o número da questão no caderno original é o

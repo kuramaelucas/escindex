@@ -513,6 +513,22 @@ function loadState(){
     sincronizarConteudoNovo();
     // níveis de administrador: bancos antigos não tinham esse campo
     db.usuarios.forEach(x=>{ if(x.papel==="admin" && !x.nivelAdmin) x.nivelAdmin = (x.id==="u-admin" ? "master" : "coordenacao"); });
+    // regra das grandes áreas (no máximo uma clínica + a Preventiva): cadastros
+    // feitos antes dela podem ter três, quatro ou as cinco. Fica a primeira
+    // clínica e a Preventiva, e as especialidades de ajuda órfãs são podadas —
+    // senão o professor continuaria recebendo dúvida de área que não cobre mais.
+    let areasNormalizadas = 0;
+    db.usuarios.forEach(x=>{
+      if(x.papel!=="professor" && x.papel!=="residente") return;
+      if(!Array.isArray(x.areasAtuacao) || !x.areasAtuacao.length) return;
+      if(validarAreasAtuacao(x.areasAtuacao).ok) return;
+      x.areasAtuacao = normalizarAreasAtuacao(x.areasAtuacao);
+      if(Array.isArray(x.assuntosAjuda)) x.assuntosAjuda = assuntosAjudaDentroDasAreas(x.assuntosAjuda, x.areasAtuacao);
+      areasNormalizadas++;
+    });
+    // grava agora: sem isso a correção só existiria em memória e o backup
+    // exportado sairia com a seleção antiga
+    if(areasNormalizadas) saveState();
     // a plataforma passou a se chamar "Esc": atualiza os e-mails das contas
     // de demonstração já salvas, pra continuarem batendo com a tela de entrada
     db.usuarios.forEach(x=>{ if(x.email && x.email.indexOf("@medbloco.demo")>=0) x.email = x.email.replace("@medbloco.demo","@esc.demo"); });

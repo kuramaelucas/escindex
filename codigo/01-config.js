@@ -99,6 +99,17 @@ const CONFIG = {
 
   papeis: ["admin", "professor", "residente", "aluno"],
 
+  // QUANTAS GRANDES ÁREAS UM PROFESSOR OU RESIDENTE PODE COBRIR
+  // A regra é de qualidade, não de burocracia: quem responde dúvida de aluno
+  // e revisa questão precisa estar em dia com a área, e ninguém está em dia
+  // com as cinco ao mesmo tempo. Daí o teto de duas — com uma exceção:
+  // Medicina Preventiva e Social é transversal (epidemiologia, bioética e SUS
+  // caem dentro de prova de qualquer especialidade), então pode ser somada a
+  // uma área clínica sem dobrar a carga. Na prática: no máximo 2 áreas e, se
+  // forem 2, uma delas é a Preventiva — nunca duas áreas clínicas.
+  maxAreasAtuacao: 2,
+  areaTransversalId: "area-mps",
+
   // Anos da faculdade oferecidos no cadastro e no perfil do aluno.
   // "Internato" saiu da lista: na prática ele corresponde ao 5º e 6º ano, e
   // ter as duas coisas no mesmo campo fazia duas pessoas do mesmo semestre

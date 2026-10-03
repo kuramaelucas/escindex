@@ -348,11 +348,14 @@ function renderCadastro(){
       </div>
       <div id="camposEquipe" style="display:none">
         <div class="field"><label class="label">Grandes áreas de atuação</label>
-          ${db.taxonomia.areas.map(a=>`<label class="checkbox-row mb-1"><input type="checkbox" class="cadAreaAtuacao" value="${a.id}"> ${escapeHtml(a.nome)}</label>`).join("")}
+          <div class="hint mb-1">No máximo ${CONFIG.maxAreasAtuacao}: <strong>uma área clínica</strong> e, se quiser, <strong>${escapeHtml(nomeArea(CONFIG.areaTransversalId))}</strong>, que é transversal e pode ser somada a qualquer uma. Cobrir menos área é o que permite responder dúvida com profundidade.</div>
+          ${db.taxonomia.areas.map(a=>`<label class="checkbox-row mb-1" data-area-row="${a.id}"><input type="checkbox" class="cadAreaAtuacao" value="${a.id}" onchange="atualizarAreasAtuacaoCadastro()"> ${escapeHtml(a.nome)}${ehAreaTransversal(a.id)?' <span class="badge badge-muted">transversal</span>':""}</label>`).join("")}
+          <div class="hint mt-1" id="cadAreasAviso"></div>
         </div>
         <div class="field"><label class="label">Especialidades específicas que você topa ajudar a responder dúvidas (opcional)</label>
-          <div class="grid grid-2">
-            ${db.taxonomia.areas.map(area=>`<div><div class="text-xs muted" style="font-weight:700;margin:.3rem 0 .2rem">${escapeHtml(area.nome)}</div>${db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>`<label class="checkbox-row mb-1"><input type="checkbox" class="cadAssuntoAjuda" value="${e.id}"> ${escapeHtml(e.nome)}</label>`).join("")}</div>`).join("")}
+          <div class="hint mb-1" id="cadAjudaAviso">Marque as grandes áreas acima para ver as especialidades.</div>
+          <div class="grid grid-2" id="cadAjudaGrid">
+            ${db.taxonomia.areas.map(area=>`<div data-area-grupo="${area.id}" style="display:none"><div class="text-xs muted" style="font-weight:700;margin:.3rem 0 .2rem">${escapeHtml(area.nome)}</div>${db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>`<label class="checkbox-row mb-1"><input type="checkbox" class="cadAssuntoAjuda" value="${e.id}"> ${escapeHtml(e.nome)}</label>`).join("")}</div>`).join("")}
           </div>
         </div>
       </div>
@@ -361,6 +364,38 @@ function renderCadastro(){
       <p class="text-sm mt-2">Já tem conta aprovada? <a href="javascript:void(0)" onclick="navigate('login')">Entrar</a></p>
     </div>
   </div>`;
+}
+/* Aplica a regra das grandes áreas enquanto a pessoa marca as caixas, em vez
+   de só reclamar no envio: escolhida uma área clínica, as outras clínicas
+   ficam desabilitadas (a Preventiva continua disponível) e a lista de
+   especialidades mostra só as das áreas marcadas. A validação de verdade
+   continua em solicitarCadastro() — esta parte é só afordância. */
+function atualizarAreasAtuacaoCadastro(){
+  const caixas = [...document.querySelectorAll(".cadAreaAtuacao")];
+  if(!caixas.length) return;
+  const marcadas = caixas.filter(c=>c.checked).map(c=>c.value);
+  const jaTemClinica = areasClinicas(marcadas).length >= 1;
+  caixas.forEach(c=>{
+    const bloquear = !c.checked && !ehAreaTransversal(c.value) && jaTemClinica;
+    c.disabled = bloquear;
+    const linha = document.querySelector('[data-area-row="'+c.value+'"]');
+    if(linha) linha.style.opacity = bloquear ? ".45" : "1";
+  });
+  const aviso = document.getElementById("cadAreasAviso");
+  if(aviso){
+    aviso.textContent = !marcadas.length ? ""
+      : jaTemClinica && marcadas.some(ehAreaTransversal) ? "Seleção completa: uma área clínica + a transversal."
+      : jaTemClinica ? "Você ainda pode somar " + nomeArea(CONFIG.areaTransversalId) + "."
+      : "Falta escolher a sua área clínica.";
+  }
+  // especialidades: mostra só as das áreas marcadas e desmarca o que sumiu
+  document.querySelectorAll("[data-area-grupo]").forEach(grupo=>{
+    const visivel = marcadas.includes(grupo.getAttribute("data-area-grupo"));
+    grupo.style.display = visivel ? "" : "none";
+    if(!visivel) grupo.querySelectorAll(".cadAssuntoAjuda").forEach(cb=>{ cb.checked = false; });
+  });
+  const avisoAjuda = document.getElementById("cadAjudaAviso");
+  if(avisoAjuda) avisoAjuda.style.display = marcadas.length ? "none" : "";
 }
 /* ==========================================================================
    9. PAINEL INICIAL (muda conforme o papel do usuário)
