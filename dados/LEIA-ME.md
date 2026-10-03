@@ -80,7 +80,7 @@ porque todo o resto aponta para ela):
 | `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
 | `flashcards-assuntos-usprp.js` | Cartões dos 3 assuntos abertos pelas provas da USP-RP (revisão pendente) | 9 |
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
-| `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
+| `demonstracao.js` | Vazio de propósito (sem contas nem exemplos); o fixture dos testes está em `testes/fixtures/` | 0 |
 
 Total: **4.775 questões** (4.640 reais, de 45 provas), **943 cartões**, **270 assuntos** (32 deles, abertos pelas
 provas da FAMEMA e pelo Teste de Progresso, ainda sem cartão da equipe) e **1 simulado**.
@@ -92,18 +92,12 @@ ver `imagens/LEIA-ME.md`, que lista as 229 que ainda faltam. O resumo de tudo o 
 
 ### Para a turma real entrar
 
-Esvazie **só** o `demonstracao.js` — deixe as três listas como `[]`. A
-plataforma abre limpa, sem contas de teste, sem comentários inventados e sem
-os agradecimentos de exemplo, e não perde questão, cartão nem calendário. Os
-outros trinta e seis arquivos continuam valendo.
-
-As contas de teste já estão no mínimo: **uma** de administrador (a da
-coordenação que mantém a plataforma) mais professor, residente e aluno, que
-existem para conferir como cada papel enxerga as telas. Na tela de entrada, o
-único acesso rápido oferecido a quem chega é o de **aluno** — os outros três
-entram por e-mail e senha. Antes de publicar, troque pelo menos a senha da
-conta de administrador (Perfil > Mudar a senha) ou apague-a e use a conta da
-nuvem, que é a de verdade.
+O `demonstracao.js` já está vazio: a plataforma abre limpa, sem contas de
+teste, sem comentários inventados e sem agradecimentos de exemplo, e não perde
+questão, cartão nem calendário. As contas de exemplo (administrador,
+professor, residente e aluno `@esc.demo`) ficam só em
+`testes/fixtures/demonstracao.js`, que o servidor dos testes entrega no lugar
+dele. A primeira conta administradora se faz pela nuvem (`nuvem/LEIA-ME.md`).
 
 Para conferir o que o navegador carregou de verdade, entre como administrador
 e vá em **Configurações > Arquivos de conteúdo**: a tela lista arquivo por

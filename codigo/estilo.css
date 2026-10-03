@@ -500,6 +500,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
    conteúdo (verso) já vem pronto no HTML, o efeito visual de flip acontece
    sem precisar manter o nó do DOM entre um render e outro. */
 @keyframes flash-flip{0%{transform:scaleX(1)}50%{transform:scaleX(.08)}100%{transform:scaleX(1)}}
+.flashcard{text-align:center;align-items:center}
 .flash-etiqueta{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.9rem}
 .flash-frente{font-family:var(--font-display);font-size:1.22rem;line-height:1.55;color:var(--ink);white-space:pre-line}
 .flash-verso{font-size:.95rem;line-height:1.6;color:var(--ink);white-space:pre-line}

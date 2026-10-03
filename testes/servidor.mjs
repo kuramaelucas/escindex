@@ -27,7 +27,9 @@ export function subirServidor({ semNuvem = false } = {}){
     const url = new URL(req.url, "http://localhost");
     let caminho = decodeURIComponent(url.pathname);
     if(caminho.endsWith("/")) caminho += "index.html";
-    const arquivo = path.join(RAIZ, caminho);
+    // dados/demonstracao.js está vazio no site; os testes precisam das contas
+    // de exemplo e as recebem do fixture no lugar dele.
+    const arquivo = path.join(RAIZ, caminho === "/dados/demonstracao.js" ? "/testes/fixtures/demonstracao.js" : caminho);
     if(!arquivo.startsWith(RAIZ) || !fs.existsSync(arquivo) || fs.statSync(arquivo).isDirectory()){
       res.writeHead(404); res.end("não encontrado"); return;
     }

@@ -34,10 +34,11 @@ A separação foi feita porque, com as 635 questões e os 501 cartões dentro do
 - **Nome:** "Esc" (era "MedBloco"). O nome fica em `CONFIG.nomePlataforma` (`codigo/01-config.js`).
 - **Banca de referência:** UNIFESP-EPM (`CONFIG.bancaFoco`), mas o app é agnóstico — filtra por instituição.
 
-### Contas de demonstração (senha entre parênteses)
+### Contas de demonstração
 
-| E-mail | Papel |
-|---|---|
+Desde 15/10/2026 o site **não traz conta de demonstração**: `dados/demonstracao.js` está vazio, e a plataforma abre sem usuários, comentários nem livro de ouro de exemplo (conta de verdade é a da nuvem). As quatro contas de antes (administrador, professor, residente e aluno `@esc.demo`) ficam só em `testes/fixtures/demonstracao.js`, que o servidor dos testes (`testes/servidor.mjs`) entrega no lugar do arquivo vazio — assim os testes de ponta a ponta seguem conferindo como cada papel enxerga as telas, sem deixar senha à vista no site. O acesso rápido "Entrar como aluno de teste" só aparece se a conta de aluno existir. Quem já tinha essas contas no `localStorage` do navegador continua com elas até limpar os dados do site.
+
+---|---|
 | admin@esc.demo (admin123) | Administrador **máster** — a única conta de administrador |
 | professor@esc.demo (prof123) | Professor |
 | residente@esc.demo (res123) | Residente |
