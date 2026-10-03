@@ -139,6 +139,10 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .prova-card .prova-ano{font-family:var(--font-display);font-size:1.6rem;line-height:1.1}
 .prova-card .prova-banca{font-weight:600;min-height:2.4em;display:flex;align-items:flex-start}
 .card-title{font-size:1.02rem;margin-bottom:.2rem}
+/* Hierarquia de cartões: .card é o conteúdo principal da tela; .card-flat é o
+   secundário (fundo cinza, para apoio e rodapés); .stat-mini/.stat-tile são
+   números. Borda colorida (.borda-alerta/-destaque/-perigo) só quando o cartão
+   pede atenção — se tudo tem moldura chamativa, nada se destaca. */
 .card-flat{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
 
 /* ---------- badges / pills ---------- */
@@ -218,6 +222,11 @@ tr:last-child td{border-bottom:none}
 .nav-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .65rem;border-radius:var(--radius-sm);color:var(--ink-2);font-size:.87rem;font-weight:500;cursor:pointer;border:1px solid transparent}
 .nav-item:hover{background:var(--surface-2)}
 .nav-item.active{background:var(--accent-soft);color:var(--accent-dark);font-weight:700}
+.nav-subtitulo{font-size:.7rem;color:var(--muted);font-weight:600;margin:.9rem .65rem .25rem;letter-spacing:.04em}
+.nav-grupo{display:flex;justify-content:space-between;align-items:center;cursor:pointer;border-radius:var(--radius-sm);padding:.15rem 0}
+.nav-grupo:hover{color:var(--ink-2)}
+.nav-seta{font-size:.7rem;transition:transform .15s ease}
+.nav-grupo.fechado .nav-seta{transform:rotate(-90deg)}
 .sidebar-footer{margin-top:auto;padding-top:1rem;border-top:1px solid var(--border)}
 .main{margin-left:252px;flex:1;min-width:0;display:flex;flex-direction:column}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:20}
@@ -245,6 +254,8 @@ tr:last-child td{border-bottom:none}
 }
 
 /* ---------- estatísticas / progresso ---------- */
+.detalhes-bloco{margin-top:.35rem}
+.detalhes-bloco summary{cursor:pointer}
 .stat-mini-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem}
 .stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .8rem;display:flex;align-items:baseline;gap:.5rem;min-width:0}
 .stat-mini .stat-value{font-size:1.25rem;line-height:1.1}
@@ -573,3 +584,32 @@ mark.destaque{background:var(--destaque);color:inherit;border-radius:3px;padding
 .barra-destaque[hidden]{display:none}
 /* Parâmetro objetivo que define a conduta, marcado com ** pelo autor da explicação (seção 11-B) */
 strong.parametro{font-weight:700;color:var(--accent-dark);background:var(--accent-soft);padding:0 .28em;border-radius:3px}
+
+/* Utilitários que substituíram style="" repetido nas telas. Levam !important
+   porque o estilo inline que trocaram sempre vencia a folha de estilo. */
+.quebra{flex-wrap:wrap!important}
+.quebra-gap{flex-wrap:wrap!important;gap:.5rem!important}
+.quebra-gap-p{flex-wrap:wrap!important;gap:.4rem!important}
+.sem-mb{margin-bottom:0!important}
+.sem-m{margin:0!important}
+.mb-02{margin-bottom:.2rem!important}
+.peso-400{font-weight:400!important}
+.peso-600{font-weight:600!important}
+.peso-700{font-weight:700!important}
+.clicavel{cursor:pointer!important}
+.borda-alerta{border-color:var(--amber)!important}
+.borda-destaque{border-color:var(--accent)!important}
+.borda-perigo{border-color:var(--danger)!important}
+.cresce-220{min-width:220px!important;flex:1!important}
+.cresce-240{min-width:240px!important;flex:1!important}
+.texto-alerta{color:var(--amber)!important}
+.texto-perigo{color:var(--danger)!important}
+.texto-dir{text-align:right!important}
+.quebra-linhas{white-space:pre-wrap!important}
+
+/* Modo foco da sessão de questões: só a questão na tela */
+body.modo-foco .sidebar,body.modo-foco .topbar{display:none}
+body.modo-foco .main{margin-left:0}
+/* origem e trilha da questão: texto discreto em vez de uma fileira de badges */
+.qcard-trilha{font-size:.76rem;color:var(--muted);align-self:center}
+@media (hover:none){.dica-teclas{display:none}}

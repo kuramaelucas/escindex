@@ -62,16 +62,16 @@ function abrirAviso(id){
 function renderAvisosCard(usuario){
   const avisos = avisosNaoLidos(usuario);
   if(!avisos.length) return "";
-  return `<div class="card mb-2" style="border-color:var(--amber)">
+  return `<div class="card mb-2 borda-alerta">
     <div class="flex justify-between items-center" style="margin-bottom:.5rem;gap:.5rem;flex-wrap:wrap">
-      <div class="card-title" style="margin-bottom:0">${iconeSvg("message")} Avisos da coordenação${avisos.length>1 ? ` (${avisos.length})` : ""}</div>
+      <div class="card-title sem-mb">${iconeSvg("message")} Avisos da coordenação${avisos.length>1 ? ` (${avisos.length})` : ""}</div>
       ${avisos.length>1 ? `<button class="link-btn" onclick="dispensarTodosOsAvisos()">dispensar todos</button>` : ""}
     </div>
     ${avisos.map(a => `<div class="card-flat mb-1">
       <div class="flex justify-between items-start" style="gap:.5rem">
         <div>
-          <div style="font-weight:700">${escapeHtml(a.titulo)}</div>
-          <div class="text-sm mt-1" style="white-space:pre-wrap">${escapeHtml(a.texto)}</div>
+          <div class="peso-700">${escapeHtml(a.titulo)}</div>
+          <div class="text-sm mt-1 quebra-linhas">${escapeHtml(a.texto)}</div>
           <div class="text-xs muted mt-1">${escapeHtml(a.autorNome || "Coordenação")} · ${formatDataBR(a.data)}${a.expiraEm ? " · vale até "+formatDataBR(a.expiraEm) : ""}</div>
         </div>
         <button class="icon-btn" title="Dispensar este aviso" onclick="dispensarAviso('${a.id}')">${iconeSvg("x")}</button>
@@ -111,7 +111,7 @@ function renderEnviarAvisos(){
   <div class="card-flat mb-2 text-sm">${nuvemConectado()
     ? `${iconeSvg("database")} Com a sua conta na nuvem, o aviso sobe e chega a cada pessoa na próxima sincronização — ao abrir a plataforma, ao voltar para a aba e a cada 45 segundos com ela aberta. Quem já deu permissão de notificação do navegador também recebe o aviso do sistema.`
     : `${iconeSvg("alert")} Sem conta na nuvem, o aviso vale <strong>só neste navegador</strong>: só quem abrir a plataforma neste computador o vê. Entre com a sua conta da nuvem para avisar toda a turma.`}</div>
-  ${semTabela ? `<div class="card mb-2" style="border-color:var(--amber)"><strong>${iconeSvg("alert")} Falta rodar o nuvem/esquema.sql.</strong> <span class="text-sm">Este banco ainda não tem a tabela <code>avisos</code>. Até rodar o SQL (e recarregar a página), o aviso fica guardado neste navegador e não chega aos outros.</span></div>` : ""}
+  ${semTabela ? `<div class="card mb-2 borda-alerta"><strong>${iconeSvg("alert")} Falta rodar o nuvem/esquema.sql.</strong> <span class="text-sm">Este banco ainda não tem a tabela <code>avisos</code>. Até rodar o SQL (e recarregar a página), o aviso fica guardado neste navegador e não chega aos outros.</span></div>` : ""}
 
   <div class="card mb-2">
     <div class="card-title">Novo aviso</div>
@@ -142,10 +142,10 @@ function renderEnviarAvisos(){
     ${avisos.length ? pag.itens.map(a => {
       const vencido = a.expiraEm && a.expiraEm < hojeISO();
       return `<div class="card-flat mb-1" style="${vencido?"opacity:.6":""}">
-        <div class="flex justify-between items-start" style="gap:.5rem;flex-wrap:wrap">
+        <div class="flex justify-between items-start quebra-gap">
           <div>
-            <div style="font-weight:700">${escapeHtml(a.titulo)} ${vencido ? '<span class="badge badge-muted">vencido</span>' : ""}</div>
-            <div class="text-sm mt-1" style="white-space:pre-wrap">${escapeHtml(a.texto)}</div>
+            <div class="peso-700">${escapeHtml(a.titulo)} ${vencido ? '<span class="badge badge-muted">vencido</span>' : ""}</div>
+            <div class="text-sm mt-1 quebra-linhas">${escapeHtml(a.texto)}</div>
             <div class="text-xs muted mt-1">Para: ${escapeHtml(textoDestinoDoAviso(a))}${a.rota ? " · leva a "+escapeHtml(tituloDaRota(a.rota)) : ""}</div>
             <div class="text-xs muted">${escapeHtml(a.autorNome || "—")} · ${formatDataBR(a.data)}${a.expiraEm ? " · vale até "+formatDataBR(a.expiraEm) : ""}${a.naNuvem ? " · na nuvem" : ""}</div>
           </div>

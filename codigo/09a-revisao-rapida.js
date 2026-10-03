@@ -39,15 +39,15 @@ function renderFlashcardsInicio(u){
   <div class="page-header"><h2>Revisão Rápida</h2><p>Cartões de conceito: você tenta lembrar, vira o cartão e diz honestamente se sabia. Serve para fixar o que a questão longa não fixa — e para atacar o assunto em que você jura que sabe e erra.</p></div>
 
   <div class="card mb-2" ${vistosHoje>=metaCartoes?'style="border-color:var(--accent)"':""}>
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1">
-        <div class="card-title" style="margin-bottom:.2rem">Meta de cartões de hoje</div>
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="card-title mb-02">Meta de cartões de hoje</div>
         <div class="text-sm muted">${vistosHoje>=metaCartoes
           ? "Meta de cartões batida. Se o dia não der para questão, o estudo de hoje já aconteceu."
           : `Faltam <strong>${faltamCartoes}</strong> cartão(ões) para fechar o dia.`}</div>
       </div>
-      <div class="flex items-center gap-2" style="flex-wrap:wrap">
-        <div style="text-align:right">
+      <div class="flex items-center gap-2 quebra">
+        <div class="texto-dir">
           <div class="stat-value" style="font-size:1.5rem">${vistosHoje}/${metaCartoes}</div>
           <div class="stat-label">cartões hoje${seqCartoes?" · "+seqCartoes+" dia(s) seguidos":""}</div>
         </div>
@@ -66,7 +66,7 @@ function renderFlashcardsInicio(u){
   </div>
 
   <div class="card mt-2">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="card-title">Baralho recomendado</div>
         <div class="text-sm muted">A plataforma escolhe a ordem: primeiro o que venceu, depois os assuntos em que sua confiança engana, depois os erros caros e só então o que você ainda não viu.</div>
@@ -75,16 +75,16 @@ function renderFlashcardsInicio(u){
     </div>
   </div>
 
-  ${falsaSeguranca.length ? `<div class="card mt-2" style="border-color:var(--amber)">
+  ${falsaSeguranca.length ? `<div class="card mt-2 borda-alerta">
     <div class="card-title">${iconeSvg("alert")} Só os assuntos em que você erra dizendo ter certeza</div>
     <p class="text-sm muted">${falsaSeguranca.slice(0,5).map(f=>escapeHtml(nomeAssunto(f.assuntoId))+" ("+f.taxa+"%)").join(" · ")}</p>
     <button class="btn btn-secondary mt-2" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">Revisar só esses</button>
   </div>` : ""}
 
   <div class="card mt-2">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1">
-        <div class="card-title" style="margin-bottom:.2rem">Monte o seu baralho</div>
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="card-title mb-02">Monte o seu baralho</div>
         <div class="text-sm muted">Um baralho do tamanho e do assunto que você escolher — por área, especialidade ou assunto, só os vencidos, só os que você ainda não viu ou só os que você escreveu.</div>
       </div>
       <button class="btn ${filtro.montagemAberta?"btn-secondary":"btn-primary"}" onclick="alternarMontagemBaralho()" aria-expanded="${!!filtro.montagemAberta}">${filtro.montagemAberta ? "Fechar a montagem" : iconeSvg("plus")+" Criar meu baralho"}</button>
@@ -121,8 +121,8 @@ function renderFlashcardsInicio(u){
   </div>
 
   ${meus.length ? `<div class="card mt-2">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
         <div class="card-title">Meus cartões (${meus.length})</div>
         <div class="text-sm muted">Os que você escreveu enquanto resolvia questões. São seus: ninguém mais vê, e entram no baralho junto com os da equipe.</div>
       </div>
@@ -143,8 +143,8 @@ function renderFlashcardsInicio(u){
     </tbody></table></div>
     ${controlesPaginacao(pagMeus, "cartão(ões) seu(s)")}
   </div>` : `<div class="card-flat mt-2 text-sm">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1"><strong>Escreva seus próprios cartões.</strong> Ao responder uma questão, o botão “${"Virar flashcard"}” monta um cartão já no assunto daquela questão — é o melhor momento para isso, porque o conceito que faltou ainda está fresco. Esses cartões são só seus.</div>
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220"><strong>Escreva seus próprios cartões.</strong> Ao responder uma questão, o botão “${"Virar flashcard"}” monta um cartão já no assunto daquela questão — é o melhor momento para isso, porque o conceito que faltou ainda está fresco. Esses cartões são só seus.</div>
       <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
     </div>
   </div>`}
@@ -152,10 +152,10 @@ function renderFlashcardsInicio(u){
   ${renderCartoesDoGrupo(u)}
 
   ${podeEditar ? `<div class="card mt-2">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1"><div class="card-title">Cartões da equipe (${daEquipe.length})</div>
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220"><div class="card-title">Cartões da equipe (${daEquipe.length})</div>
       <div class="text-sm muted">Material oficial, visível para todos os alunos. Os cartões pessoais que cada aluno escreve não aparecem aqui.</div></div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+      <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="navigate('material-pdf')">${iconeSvg("printer")} Imprimir baralho</button>
         <button class="btn btn-primary btn-sm" onclick="abrirFormularioFlashcard(null)">${iconeSvg("plus")} Novo cartão</button>
       </div>
@@ -284,11 +284,11 @@ function renderFlashcardsResumo(s){
   ${aRever.length ? `<div class="card mt-2">
     <div class="card-title">O que ficou pendente</div>
     ${aRever.map(n=>{ const c = getFlashcard(n.cartaoId); if(!c) return ""; return `<div class="card-flat mb-1">
-      <div class="text-sm" style="font-weight:600">${escapeHtml(c.frente.slice(0,160))}${c.frente.length>160?"…":""}</div>
+      <div class="text-sm peso-600">${escapeHtml(c.frente.slice(0,160))}${c.frente.length>160?"…":""}</div>
       <div class="text-xs muted mt-1">${escapeHtml(nomeAssunto(c.assuntoId))} · ${n.nota==="quase"?"lembrou com esforço":"não lembrou"}</div>
     </div>`; }).join("")}
   </div>` : `<div class="card mt-2"><p class="text-sm">Você acertou todos de primeira. Se isso se repetir, vale aumentar o recorte do baralho ou voltar para as questões — cartão fácil demais deixa de ensinar.</p></div>`}
-  <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+  <div class="flex gap-1 mt-2 quebra">
     <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">Mais uma rodada</button>
     ${aRever.length ? `<button class="btn btn-secondary" onclick="praticarQuestoesDoBaralho()">Praticar questões desses assuntos</button>` : ""}
     <button class="btn btn-ghost" onclick="sairDaSessaoFlash()">Encerrar</button>
@@ -357,8 +357,8 @@ function abrirFormularioFlashcard(id, opts){
     <div class="field">
       <label class="label">Imagem (opcional — ECG, fundo de olho, lesão de pele...)</label>
       <div id="fcImagemPreview" class="mb-1">${state.filtroRota.imagemFlashcard ? `<img src="${escapeHtml(state.filtroRota.imagemFlashcard)}" style="max-height:180px;max-width:100%;border:1px solid var(--border);border-radius:var(--radius-sm)" alt="">` : '<span class="text-xs muted">Nenhuma imagem anexada.</span>'}</div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
-        <label class="btn btn-secondary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Enviar arquivo<input type="file" accept="image/*" style="display:none" onchange="carregarImagemFlashcard(this)"></label>
+      <div class="flex gap-1 quebra">
+        <label class="btn btn-secondary btn-sm clicavel">${iconeSvg("upload")} Enviar arquivo<input type="file" accept="image/*" style="display:none" onchange="carregarImagemFlashcard(this)"></label>
         <button class="btn btn-ghost btn-sm" onclick="definirImagemFlashcardPorUrl()">Usar link (URL)</button>
         ${state.filtroRota.imagemFlashcard ? `<button class="btn btn-ghost btn-sm" onclick="removerImagemFlashcard()">Remover imagem</button>` : ""}
       </div>

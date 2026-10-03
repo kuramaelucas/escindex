@@ -188,6 +188,9 @@ let _telaDesenhada = null;
 
 function render(){
   const app = document.getElementById("app");
+  // o modo foco só existe dentro da sessão: qualquer outra tela o desliga
+  if(state.modoFoco && state.route!=="sessao") state.modoFoco = false;
+  if(!state.modoFoco) document.body.classList.remove("modo-foco");
   const rotasPublicas = ["landing","login","cadastro","retorno-email"];
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
   if(usuarioAtual() && rotasPublicas.includes(state.route)) state.route = "inicio";
@@ -292,6 +295,7 @@ function desenharTela(conteudoHtml){
     app.innerHTML = renderShell(conteudoHtml);
   }
   _telaDesenhada = { rota: state.route, chave };
+  document.body.classList.toggle("modo-foco", !!state.modoFoco && state.route==="sessao");
   ativarGestoDeArrastar();
   // a barra fina de questões (sessão e simulado) mostra a questão atual no meio
   centralizarBarraDeQuestoes();
@@ -481,23 +485,63 @@ function renderSemPermissao(permissao){
 /* O menu lateral e o topo são montados à parte do conteúdo de propósito:
    assim o render() consegue trocar SÓ o miolo da página quando a tela é a
    mesma (ver render()), sem recriar a estrutura inteira a cada clique. */
+/* Agrupamento do menu: só organiza, nenhum item sai do menu nem muda de rota.
+   Duas tabelas porque o mesmo item cai em grupos diferentes conforme quem olha
+   (Enviar Questões é "Contribuir" para o aluno e "Conteúdo" para a equipe). */
+const GRUPOS_MENU_ALUNO = ["Estudar","Acompanhar","Contribuir"];
+const GRUPO_DO_ITEM_ALUNO = {estudar:"Estudar", revisao:"Estudar", flashcards:"Estudar", simulados:"Estudar",
+  desempenho:"Acompanhar", "meu-grupo":"Acompanhar", historico:"Acompanhar", favoritos:"Acompanhar",
+  "importar-questoes":"Contribuir"};
+const GRUPOS_MENU_EQUIPE = ["Conteúdo","Provas","Dúvidas e revisão","Gestão"];
+const GRUPO_DO_ITEM_EQUIPE = {"banco-questoes":"Conteúdo", "importar-questoes":"Conteúdo", "central-provas":"Conteúdo",
+  "atualizar-questoes":"Conteúdo", taxonomia:"Conteúdo", flashcards:"Conteúdo", "revisao-formatacao":"Conteúdo",
+  "criar-simulado":"Provas", "material-pdf":"Provas", simulados:"Provas",
+  "fila-duvidas":"Dúvidas e revisão", "revisao-dificeis":"Dúvidas e revisão",
+  "painel-turma":"Gestão", blocos:"Gestão", "feedback-usuarios":"Gestão", "enviar-avisos":"Gestão", "config-geral":"Gestão"};
+// o número do selo de cada item (pedidos de acesso, de grupo, feedback não lido)
+function pendenciaDoItemMenu(item, u, pendCadastros){
+  if(item.id==="painel-turma") return pendCadastros;
+  if(item.id==="meu-grupo") return quantosPedidosDeEntradaNoGrupo(u);
+  if(item.id==="feedback-usuarios") return feedbacksNaoLidos();
+  return 0;
+}
+function htmlItemMenu(item, n){
+  const dica = item.id==="meu-grupo" && n>0 ? ' title="Pedidos para entrar no seu grupo"' : "";
+  const badge = n>0 ? ' <span class="badge badge-amber"'+dica+'>'+n+'</span>' : "";
+  return `<li class="nav-item ${state.route===item.id?"active":""}" onclick="navigate('${item.id}')">${iconeSvg(item.icon)}<span>${item.label}</span>${badge}</li>`;
+}
+// Recolher é escolha da pessoa e começa tudo aberto: o grupo recolhido mostra a
+// soma dos selos que escondeu, para um pedido pendente nunca passar despercebido.
+function alternarGrupoMenu(nome){
+  state.menuGruposFechados = state.menuGruposFechados || {};
+  state.menuGruposFechados[nome] = !state.menuGruposFechados[nome];
+  atualizarMenuLateral();
+}
+function htmlGrupoMenu(nome, itens, u, pendCadastros, recolhivel){
+  const lista = itens.map(item=>({item, n:pendenciaDoItemMenu(item, u, pendCadastros)}));
+  if(!recolhivel) return `<div class="nav-subtitulo">${escapeHtml(nome)}</div><ul class="nav-list">${lista.map(x=>htmlItemMenu(x.item, x.n)).join("")}</ul>`;
+  const fechado = !!(state.menuGruposFechados||{})[nome] && !itens.some(i=>i.id===state.route);
+  const soma = lista.reduce((t,x)=>t+x.n, 0);
+  const selo = fechado && soma>0 ? ' <span class="badge badge-amber">'+soma+'</span>' : "";
+  return `<div class="nav-subtitulo nav-grupo ${fechado?"fechado":""}" role="button" aria-expanded="${!fechado}" onclick="alternarGrupoMenu('${nome}')"><span>${escapeHtml(nome)}${selo}</span><span class="nav-seta">▾</span></div>
+    ${fechado ? "" : `<ul class="nav-list">${lista.map(x=>htmlItemMenu(x.item, x.n)).join("")}</ul>`}`;
+}
 function htmlMenuLateral(u){
   const nav = navItemsParaPapel(u.papel);
   // os pedidos da nuvem entram na conta (ver vigiarPedidosDeAcesso, seção 2-C)
   const pendCadastros = podeAprovarCadastros(u) ? quantosPedidosDeAcesso() : 0;
+  const comoAluno = u.papel==="aluno" || state.modoAluno;
+  const grupos = comoAluno ? GRUPOS_MENU_ALUNO : GRUPOS_MENU_EQUIPE;
+  const tabela = comoAluno ? GRUPO_DO_ITEM_ALUNO : GRUPO_DO_ITEM_EQUIPE;
+  // Início fica solto no topo; item sem grupo conhecido também (nunca some do menu)
+  const soltos = nav.filter(i=>!tabela[i.id]);
+  const porGrupo = grupos.map(g=>[g, nav.filter(i=>tabela[i.id]===g)]).filter(([,itens])=>itens.length);
   return `
       <div class="sidebar-brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
-      ${(u.papel==="aluno"||state.modoAluno) ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
+      ${comoAluno ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
       <div class="nav-section-label">${rotuloPapel(u.papel)}</div>
-      <ul class="nav-list">
-        ${nav.map(item=>{
-          let badge = "";
-          if(item.id==="painel-turma" && pendCadastros>0) badge = ' <span class="badge badge-amber">'+pendCadastros+'</span>';
-          if(item.id==="meu-grupo"){ const n = quantosPedidosDeEntradaNoGrupo(u); if(n>0) badge = ' <span class="badge badge-amber" title="Pedidos para entrar no seu grupo">'+n+'</span>'; }
-          if(item.id==="feedback-usuarios"){ const n = feedbacksNaoLidos(); if(n>0) badge = ' <span class="badge badge-amber">'+n+'</span>'; }
-          return `<li class="nav-item ${state.route===item.id?"active":""}" onclick="navigate('${item.id}')">${iconeSvg(item.icon)}<span>${item.label}</span>${badge}</li>`;
-        }).join("")}
-      </ul>
+      <ul class="nav-list">${soltos.map(item=>htmlItemMenu(item, pendenciaDoItemMenu(item, u, pendCadastros))).join("")}</ul>
+      ${porGrupo.map(([g, itens])=>htmlGrupoMenu(g, itens, u, pendCadastros, !comoAluno)).join("")}
       <div class="sidebar-footer">
         ${u.papel!=="aluno" ? `<div class="nav-item" onclick="alternarModoAluno()">${iconeSvg("book")}<span>${state.modoAluno?"Sair do modo aluno":"Entrar no modo aluno"}</span></div>` : ""}
         <div class="nav-item" onclick="alternarTema()">${iconeSvg("theme")}<span>${document.documentElement.getAttribute("data-theme")==="dark"?"Tema claro":"Tema escuro"}</span></div>

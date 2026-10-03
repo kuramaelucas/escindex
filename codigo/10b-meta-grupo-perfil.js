@@ -20,12 +20,12 @@ function abrirModalMeta(){
     ${cabecalhoJanela("Meta diária de questões")}
     <p class="text-sm muted">Quantas questões você quer responder por dia. Vale mais uma meta modesta que você cumpre todo dia do que uma ambiciosa que você abandona na terceira semana.</p>
     <div class="field mt-2"><label class="label">Questões por dia</label><input class="input" type="number" id="metaInput" value="${meta}" min="1" max="500"></div>
-    <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mb-2 quebra">
       <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaMinimaQuestoesDia}">mínimo (${db.configGeral.metaMinimaQuestoesDia})</button>
       <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaRecomendadaQuestoesDia}">ideal (${db.configGeral.metaRecomendadaQuestoesDia})</button>
     </div>
     <p class="text-xs muted">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia}/dia, ideal de ${db.configGeral.metaRecomendadaQuestoesDia}/dia. Hoje você já respondeu ${feitasHoje}.</p>
-    <div class="flex gap-1 mt-3" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaQuestoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('questoes')" title="Volta para a meta recomendada pela coordenação">Restaurar padrão (${db.configGeral.metaRecomendadaQuestoesDia})</button>`:""}</div>`);
+    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaQuestoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('questoes')" title="Volta para a meta recomendada pela coordenação">Restaurar padrão (${db.configGeral.metaRecomendadaQuestoesDia})</button>`:""}</div>`);
 }
 /* "Resetar" a meta é APAGAR a escolha pessoal, e não gravar o número padrão:
    assim a meta volta a acompanhar a recomendação da coordenação, inclusive
@@ -57,12 +57,12 @@ function abrirModalMetaCartoes(){
     ${cabecalhoJanela("Meta diária de cartões")}
     <p class="text-sm muted">Quantos flashcards você quer revisar por dia. Um cartão leva segundos, então a meta de cartões costuma ser bem maior que a de questões — e serve para segurar a rotina nos dias em que não dá para sentar e resolver prova.</p>
     <div class="field mt-2"><label class="label">Cartões por dia</label><input class="input" type="number" id="metaCartoesInput" value="${meta}" min="1" max="500"></div>
-    <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mb-2 quebra">
       <button class="pill" onclick="document.getElementById('metaCartoesInput').value=10">dia corrido (10)</button>
       <button class="pill" onclick="document.getElementById('metaCartoesInput').value=${recomendada}">recomendada (${recomendada})</button>
     </div>
     <p class="text-xs muted">Hoje você já revisou ${feitosHoje} cartão(ões). A meta de cartões não substitui a de questões: elas convivem, e bater qualquer uma das duas já mantém sua sequência daquele tipo de estudo.</p>
-    <div class="flex gap-1 mt-3" style="flex-wrap:wrap"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaCartoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('cartoes')" title="Volta para a meta recomendada">Restaurar padrão (${recomendada})</button>`:""}</div>`);
+    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaCartoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('cartoes')" title="Volta para a meta recomendada">Restaurar padrão (${recomendada})</button>`:""}</div>`);
 }
 function salvarMetaCartoes(){
   const valor = parseInt(document.getElementById("metaCartoesInput").value);
@@ -115,12 +115,12 @@ function renderMeuGrupo(){
   return `
   <div class="page-header"><h2>Meu Grupo</h2><p>Um grupo é uma turma de colegas. Ele pode seguir o <strong>rodízio do seu ano</strong> — todas as turmas passam pelos mesmos blocos, e o que muda é por qual bloco cada uma começa —, ter um <strong>calendário próprio</strong>, montado pelo grupo, ou existir só para <strong>dividir questões</strong> entre os membros. Além do grupo do calendário, você pode estar num <strong>segundo grupo, só para compartilhar questões</strong> (ele não muda o seu calendário).</p></div>
 
-  ${semTurma ? `<div class="card mb-2" style="border-color:var(--accent)">
+  ${semTurma ? `<div class="card mb-2 borda-destaque">
     <div class="card-title">${iconeSvg("users")} ${formado ? "Entre num grupo ou crie o seu" : "Escolha a sua turma"}</div>
     ${formado
       ? `<p class="text-sm">Você está como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>, e quem já se formou não segue um calendário de faculdade. Por isso não há bloco atual para você: a sessão recomendada mistura revisão com questões que você ainda não viu. Num grupo você pode <strong>dividir questões</strong> com os colegas e, se quiserem, <strong>montar um calendário próprio</strong> — é só criar o grupo abaixo, ou entrar num que já exista.</p>`
       : `<p class="text-sm">Você ainda está no <strong>calendário oficial da coordenação</strong>. Ele funciona, mas segue o primeiro grupo do rodízio: se a sua turma é outra, o bloco atual aparece trocado. Escolha abaixo a turma em que você está — ou crie a sua, se ela ainda não existir aqui.</p>
-    <div class="flex gap-1 items-end mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 items-end mt-2 quebra">
       <div class="field" style="margin-bottom:0;min-width:240px"><label class="label">O jeito rápido: qual é o seu grupo?</label>
         <select class="select" id="rodizioRapido">${opcoesRodizioPorLetra(u.anoFaculdade).map(o=>`<option value="${o.deslocamento}">${escapeHtml(tituloOpcaoRodizio(o))}</option>`).join("")}</select>
       </div>
@@ -131,29 +131,29 @@ function renderMeuGrupo(){
 
   <div class="card mb-2">
     <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-muted">Calendário oficial — nenhuma turma escolhida</span>' : `<span class="badge badge-accent">${escapeHtml(rotuloDoGrupo(meuGrupo, u))}</span>` + (meuGrupo.doRodizio ? '<span class="badge badge-muted">Turma do rodízio, aberta</span>' : souDono ? '<span class="badge badge-muted">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>')}</div>
-    <div class="flex justify-between items-center" style="gap:.5rem;flex-wrap:wrap">
+    <div class="flex justify-between items-center quebra-gap">
       <div style="font-weight:700;font-size:1.1rem">${escapeHtml(meuGrupo.nome)}</div>
       ${podeRenomearGrupo(meuGrupo, u) ? `<button class="btn btn-secondary btn-sm" onclick="abrirRenomearGrupo('${meuGrupo.id}')">${iconeSvg("edit")} Mudar o nome do grupo</button>` : ""}
     </div>
     <div class="text-sm muted mt-1">${detalheCalendario}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
     ${formado && !proprio ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>: ${meuGrupo.oficial ? "não há calendário de formado, então não existe bloco atual para você." : "o calendário que você acompanha é o do ano desta turma."}</div>` : ""}
-    ${!semTurma ? `<div class="flex gap-1 mt-2" style="flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="sairDoMeuGrupo()">Sair deste grupo${formado ? "" : " e voltar ao calendário oficial"}</button>
+    ${!semTurma ? `<div class="flex gap-1 mt-2 quebra"><button class="btn btn-ghost btn-sm" onclick="sairDoMeuGrupo()">Sair deste grupo${formado ? "" : " e voltar ao calendário oficial"}</button>
       ${!meuGrupo.doRodizio ? `<button class="btn btn-ghost btn-sm" onclick="passarGrupoParaSoQuestoes()" title="Libera o calendário para você escolher a turma do rodízio e continua neste grupo só para questões">Passar este grupo para só questões</button>` : ""}
       ${podeExcluirGrupo(meuGrupo, u) ? `<button class="btn btn-ghost btn-sm" onclick="excluirGrupo('${meuGrupo.id}')">${iconeSvg("trash")} Excluir grupo</button>` : ""}</div>` : ""}
   </div>
 
-  ${grupoQ ? `<div class="card mb-2" style="border-color:var(--accent)">
+  ${grupoQ ? `<div class="card mb-2 borda-destaque">
     <div class="qcard-meta mb-1"><span class="badge badge-accent">Grupo só de questões</span>${grupoQ.criadoPor===u.id ? '<span class="badge badge-muted">Criado por você</span>' : ""}</div>
     <div style="font-weight:700;font-size:1.1rem">${escapeHtml(grupoQ.nome)}</div>
     <div class="text-sm muted mt-1">Este grupo só compartilha questões, divisão de questões e grupos de estudo: o seu calendário continua sendo o de <strong>${escapeHtml(meuGrupo.oficial ? "coordenação" : meuGrupo.nome)}</strong> · ${(grupoQ.membrosAprovados||[]).length} membro(s).</div>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       ${podeRenomearGrupo(grupoQ, u) ? `<button class="btn btn-secondary btn-sm" onclick="abrirRenomearGrupo('${grupoQ.id}')">${iconeSvg("edit")} Mudar o nome</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="sairDoGrupoDeQuestoesPelaTela()">Sair deste grupo</button>
       ${podeExcluirGrupo(grupoQ, u) ? `<button class="btn btn-ghost btn-sm" onclick="excluirGrupo('${grupoQ.id}')">${iconeSvg("trash")} Excluir grupo</button>` : ""}
     </div>
   </div>` : ""}
 
-  ${gruposComPedido.length ? `<div class="card mb-2" style="border-color:var(--amber)">
+  ${gruposComPedido.length ? `<div class="card mb-2 borda-alerta">
     <div class="card-title">${iconeSvg("users")} Pedidos para entrar no grupo (${totalPedidos})</div>
     <p class="text-sm muted">Essas pessoas pediram para entrar ${gruposComPedido.length>1?"nos seus grupos":"no seu grupo"}. Só entram depois que você aprovar.</p>
     ${gruposComPedido.map(g=>`${gruposComPedido.length>1 ? `<div class="text-xs muted mt-1 mb-1">${escapeHtml(g.nome)}</div>` : ""}${g.solicitacoesPendentes.map(uidSolicitante=>`<div class="flex justify-between items-center card-flat mb-1">
@@ -190,7 +190,7 @@ function renderMeuGrupo(){
         ${semTurma && formado ? "" : `<option value="questoes">Só para compartilhar questões — não muda o meu calendário</option>`}
       </select>
     </div>
-    <div class="flex gap-1 items-end mt-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 items-end mt-1 quebra">
       <div class="field" style="margin-bottom:0;min-width:240px"><label class="label" id="novoGrupoNomeRotulo">${formado ? "Nome do grupo" : "Nome do grupo (opcional)"}</label><input class="input" id="novoGrupoNome" placeholder="${formado ? "Ex.: Residência 2027 — R1" : "Deixe em branco para usar o bloco de início"}"></div>
       <div class="field" id="novoGrupoRodizioCampo" style="margin-bottom:0;min-width:200px;${formado ? "display:none" : ""}"><label class="label">Grupo do rodízio</label>
         <select class="select" id="novoGrupoRodizio">
@@ -217,12 +217,12 @@ function renderMeuGrupo(){
       // quando o nome é só a letra (ou nem letra tem)
       const inicio = proprioG ? null : blocosDoGrupo(g, u)[0];
       return `
-      <div class="flex justify-between items-center mb-1 card-flat" style="gap:.5rem;flex-wrap:wrap">
+      <div class="flex justify-between items-center mb-1 card-flat quebra-gap">
         <div>
-          <div style="font-weight:600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloDoGrupo(g, u))}</span></div>
+          <div class="peso-600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloDoGrupo(g, u))}</span></div>
           <div class="text-xs muted">${proprioG ? "calendário próprio · "+g.blocosProprios.length+" bloco(s)" : escapeHtml(anoG)+(inicio ? " · começa em "+escapeHtml(inicio.nome) : "")} · hoje em ${escapeHtml(atualG?atualG.nome:"—")} · ${criador}</div>
         </div>
-        <div class="flex gap-1" style="flex-wrap:wrap">
+        <div class="flex gap-1 quebra">
         ${souMembro ? `<button class="btn btn-secondary btn-sm" onclick="usarGrupo('${g.id}')" title="Calendário e questões do grupo">Entrar neste grupo</button>${aceitaSoQuestoes ? `<button class="btn btn-ghost btn-sm" onclick="usarGrupo('${g.id}', true)" title="Só compartilha questões; seu calendário não muda">Só questões</button>` : ""}` :
           jaSolicitei ? `<button class="btn btn-secondary btn-sm" disabled>Solicitação enviada</button>` :
           `<button class="btn btn-secondary btn-sm" onclick="solicitarAcessoGrupo('${g.id}')">Pedir para entrar</button><button class="btn btn-ghost btn-sm" onclick="solicitarAcessoGrupo('${g.id}', true)" title="Só compartilha questões; seu calendário não muda">Só questões</button>`}
@@ -327,13 +327,13 @@ function renderCalendarioProprio(grupo, podeEditar){
   const atual = blocoAtualDoGrupo(grupo);
   return `
   <div class="card-flat mb-2 text-sm">${iconeSvg("calendar")} <strong>Calendário próprio</strong> — ${blocos.length} bloco(s), montados por ${podeEditar ? "você" : "quem criou o grupo"}. Não segue o rodízio de nenhum ano: cada bloco tem as próprias datas e o conteúdo do bloco atual é o que a sessão recomendada traz.</div>
-  ${podeEditar ? `<div class="flex gap-1 mb-2" style="flex-wrap:wrap"><button class="btn btn-primary btn-sm" onclick="abrirFormularioBlocoProprio('${grupo.id}', null)">${iconeSvg("plus")} Adicionar bloco</button></div>` : ""}
+  ${podeEditar ? `<div class="flex gap-1 mb-2 quebra"><button class="btn btn-primary btn-sm" onclick="abrirFormularioBlocoProprio('${grupo.id}', null)">${iconeSvg("plus")} Adicionar bloco</button></div>` : ""}
   ${blocos.map(b=>`
     <div class="card mb-1" ${atual&&b.id===atual.id?'style="border-color:var(--accent)"':""}>
       <div class="flex justify-between items-start">
         <div>
           ${atual&&b.id===atual.id?'<span class="badge badge-accent mb-1">Bloco atual</span>':""}
-          <div style="font-weight:700">${b.ordem}. ${escapeHtml(b.nome)}</div>
+          <div class="peso-700">${b.ordem}. ${escapeHtml(b.nome)}</div>
           <div class="text-sm muted mt-1">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)}</div>
           <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
         </div>
@@ -413,11 +413,11 @@ function renderMeusEstagios(u, grupo){
       const proprio = !!(u.ordemEstagios && u.ordemEstagios[b.id]);
       const ref = JSON.stringify(b.id).replace(/"/g, "&quot;");
       return `<div class="card-flat mt-2">
-        <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
-          <div style="font-weight:700">${escapeHtml(b.nome)} <span class="text-sm muted" style="font-weight:400">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)}</span></div>
+        <div class="flex justify-between items-center quebra-gap">
+          <div class="peso-700">${escapeHtml(b.nome)} <span class="text-sm muted peso-400">${formatDataBR(b.dataInicio)} – ${formatDataBR(b.dataFim)}</span></div>
           ${proprio ? `<button class="btn btn-ghost btn-sm" onclick="restaurarOrdemDosEstagios(${ref})">Voltar à ordem da turma</button>` : '<span class="badge badge-muted">ordem da turma</span>'}
         </div>
-        <div class="flex items-center gap-1 mt-1" style="flex-wrap:wrap">
+        <div class="flex items-center gap-1 mt-1 quebra">
           <label class="text-sm" for="comecar-${escapeHtml(b.id)}">Começar por:</label>
           <select class="select" id="comecar-${escapeHtml(b.id)}" style="max-width:340px" onchange="comecarEstagioPor(${ref}, this.value)">
             ${partes.map((pt, i) => `<option value="${escapeHtml(pt.nome)}" ${i===0?"selected":""}>${escapeHtml(pt.nome)}</option>`).join("")}
@@ -730,9 +730,9 @@ function renderQuestoesDoGrupo(grupo){
   const podeDividir = podeDividirQuestoesDoGrupo(grupo, u);
   const membros = membrosDoGrupo(grupo);
   return `<div class="card mb-2">
-    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
-      <div class="card-title" style="margin-bottom:0">Questões deste grupo (${questoes.length})</div>
-      <div class="flex gap-1" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center mb-1 quebra-gap">
+      <div class="card-title sem-mb">Questões deste grupo (${questoes.length})</div>
+      <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Colar prova inteira / importar em lote</button>
         <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar questão</button>
       </div>
@@ -741,7 +741,7 @@ function renderQuestoesDoGrupo(grupo){
     <div class="card-flat mt-2 text-sm">
       <strong>Dividir as questões entre os membros:</strong> cada pessoa fica com uma parte do mesmo tamanho, misturando os assuntos, e pratica só a sua.
       ${dividida ? `<div class="mt-1">${minhas.length ? `Você ficou com <strong>${minhas.length}</strong> questão(ões).` : "Você não ficou com nenhuma questão nesta divisão."}</div>` : `<div class="mt-1 muted">Ainda não foi dividido.</div>`}
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         ${minhas.length ? `<button class="btn btn-primary btn-sm" onclick="praticarMinhaParteDoGrupo('${grupo.id}')">${iconeSvg("book")} Praticar minha parte (${minhas.length})</button>` : ""}
         ${podeDividir ? `<button class="btn btn-secondary btn-sm" onclick="dividirQuestoesDoGrupo('${grupo.id}')" ${membros.length<2||!questoes.length?"disabled":""}>${iconeSvg("users")} ${dividida ? "Dividir de novo" : "Dividir entre os "+membros.length+" membros"}</button>` : ""}
         ${podeDividir && dividida ? `<button class="btn btn-ghost btn-sm" onclick="desfazerDivisaoDoGrupo('${grupo.id}')">Desfazer a divisão</button>` : ""}
@@ -750,7 +750,7 @@ function renderQuestoesDoGrupo(grupo){
     </div>
     <div class="card-flat mt-2 text-sm">
       <strong>Prova inteira de uma vez:</strong> em "Enviar Questões" você informa a instituição e o ano uma única vez, copia o prompt pronto, cola numa IA junto com o PDF da prova e traz o resultado de volta. Escolha o destino <em>"Questões do meu grupo"</em> para elas caírem direto aqui.
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("search")} Abrir tela com o prompt pronto</button>
         <button class="btn btn-ghost btn-sm" onclick="copiarTexto(gerarPromptImportacao(),'Prompt copiado! Cole numa IA junto com a prova.')">Copiar prompt agora</button>
       </div>
@@ -792,7 +792,7 @@ function renderIntegrantesDoGrupo(grupo){
   const gerente = podeGerirGrupo(grupo, u);
   return `<div class="card mb-2">
     <div class="card-title">${iconeSvg("users")} Integrantes do grupo (${membros.length})</div>
-    <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-1 quebra">
       ${membros.map(m=>`<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}" title="${escapeHtml(rotuloPapelNoGrupo(grupo, m))}">${escapeHtml(m.id===u.id ? m.nome+" (você)" : m.nome)}${grupo.criadoPor===m.id?" ★":""}${gerente && m.id!==u.id && m.id!==grupo.criadoPor ? ` <button class="link-btn" style="font-size:1em;line-height:1" title="Retirar ${escapeHtml(m.nome)} do grupo" aria-label="Retirar ${escapeHtml(m.nome)} do grupo" onclick="retirarDoGrupo('${grupo.id}','${m.id}')">×</button>` : ""}</span>`).join("") || '<span class="text-sm muted">Ninguém ainda.</span>'}
     </div>
     <p class="text-xs muted mt-1">★ = quem criou o grupo. ${gerente ? "Quem criou o grupo pode retirar um integrante no <strong>×</strong>: a pessoa volta ao calendário oficial e, para voltar, precisa pedir de novo. " : ""}${membros.length<2 ? "Convide os colegas: eles pedem para entrar em \"Entrar em um grupo já existente\" e o dono aprova." : "Com os integrantes à vista, dá para montar um grupo de estudo menor logo abaixo."}</p>
@@ -858,8 +858,8 @@ function renderSubgruposDoGrupo(grupo){
   const u = usuarioAtual();
   const lista = subgruposDoGrupo(grupo);
   return `<div class="card mb-2">
-    <div class="flex justify-between items-center mb-1" style="flex-wrap:wrap;gap:.5rem">
-      <div class="card-title" style="margin-bottom:0">${iconeSvg("users")} Grupos de estudo dentro deste grupo (${lista.length})</div>
+    <div class="flex justify-between items-center mb-1 quebra-gap">
+      <div class="card-title sem-mb">${iconeSvg("users")} Grupos de estudo dentro deste grupo (${lista.length})</div>
       <button class="btn btn-primary btn-sm" onclick="abrirFormularioSubgrupo(null, '${grupo.id}')">${iconeSvg("plus")} Criar grupo de estudo</button>
     </div>
     <p class="text-sm muted">Para dividir questões com só parte da turma — por exemplo, a lista que você enviou ou uma prova inteira. Você escolhe quem participa e quais questões entram, e cada pessoa pratica a sua parte. Não muda o seu calendário nem tira ninguém do grupo.</p>
@@ -871,17 +871,17 @@ function renderSubgruposDoGrupo(grupo){
       const souMembro = membros.some(m=>m.id===u.id);
       const dividido = !!sg.divisao && Object.keys(sg.divisao).length > 0;
       return `<div class="card-flat mt-2">
-        <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.5rem">
-          <div><div style="font-weight:700">${escapeHtml(sg.nome)}</div>
+        <div class="flex justify-between items-center quebra-gap">
+          <div><div class="peso-700">${escapeHtml(sg.nome)}</div>
             <div class="text-xs muted">${questoes.length} questão(ões) · criado por ${escapeHtml(nomeDoMembro(grupo, sg.criadoPor))}</div></div>
-          <div class="flex gap-1" style="flex-wrap:wrap">
+          <div class="flex gap-1 quebra">
             ${minhas.length ? `<button class="btn btn-primary btn-sm" onclick="praticarMinhaParteDoSubgrupo('${sg.id}')">${iconeSvg("book")} Praticar minha parte (${minhas.length})</button>` : ""}
             ${gerente ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioSubgrupo('${sg.id}', '${grupo.id}')">${iconeSvg("edit")} Editar</button>` : ""}
             ${souMembro && !gerente ? `<button class="btn btn-ghost btn-sm" onclick="sairDoSubgrupo('${sg.id}')">Sair</button>` : ""}
             ${gerente ? `<button class="btn btn-ghost btn-sm" onclick="excluirSubgrupo('${sg.id}')">${iconeSvg("trash")}</button>` : ""}
           </div>
         </div>
-        <div class="flex gap-1 mt-1" style="flex-wrap:wrap">${membros.map(m=>{
+        <div class="flex gap-1 mt-1 quebra">${membros.map(m=>{
           const n = dividido ? questoes.filter(q=>sg.divisao[q.id]===m.id).length : 0;
           const retirar = gerente && m.id!==u.id ? ` <button class="link-btn" style="font-size:1em;line-height:1" title="Retirar ${escapeHtml(m.nome)} deste grupo de estudo" aria-label="Retirar ${escapeHtml(m.nome)} deste grupo de estudo" onclick="retirarDoSubgrupo('${sg.id}','${m.id}')">×</button>` : "";
           return `<span class="badge ${m.id===u.id?"badge-accent":"badge-muted"}">${escapeHtml(m.id===u.id?"Você":m.nome)}${dividido?" · "+n:""}${retirar}</span>`;
@@ -1014,7 +1014,7 @@ function renderPerfil(){
   <div class="card mt-2" style="max-width:460px">
     <div class="card-title">Contribuir com questões</div>
     <p class="text-sm muted">Adicione questões uma a uma ou cole uma prova inteira (instituição e ano são informados uma vez só). Você escolhe se elas ficam apenas no seu grupo ou se vão como sugestão para o banco geral.</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Enviar prova ou questões</button>
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
     </div>
@@ -1085,14 +1085,14 @@ function renderCardBackup(){
     ${nuvemLigada() ? `<div class="card-flat mt-1 text-sm">${iconeSvg("archive")} <strong>Com a nuvem ligada</strong>, este backup tem só o que está NESTE navegador — não o estudo da turma. A cópia da turma inteira é o <strong>backup automático da nuvem</strong>: uma vez por dia, criptografado, pelo GitHub (passo a passo em <code>nuvem/LEIA-ME.md</code>, "Backup automático").</div>` : ""}
     <p class="text-sm ${kb>3500?"":"muted"}" ${kb>3500?'style="color:var(--amber);font-weight:600"':""}>Espaço ocupado: ${kb} KB${kb>3500?" — perto do limite do navegador. Imagens embutidas são o que mais pesa; prefira recortá-las antes de enviar ou usar links.":""}</p>
     <p class="text-sm ${backupAntigo?"":"muted"}" ${backupAntigo?'style="color:var(--amber);font-weight:600"':""}>Último backup: ${db.ultimoBackupEm ? formatDataBR(db.ultimoBackupEm) : "nunca feito"}</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="exportarBackup()">${iconeSvg("archive")} Exportar backup</button>
       <button class="btn btn-secondary btn-sm" onclick="baixarMeusDados()">${iconeSvg("download")} Só o meu estudo</button>
-      <label class="btn btn-secondary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Importar backup<input type="file" accept=".json" style="display:none" onchange="importarBackupArquivo(this)"></label>
+      <label class="btn btn-secondary btn-sm clicavel">${iconeSvg("upload")} Importar backup<input type="file" accept=".json" style="display:none" onchange="importarBackupArquivo(this)"></label>
       <button class="btn btn-danger btn-sm" onclick="confirmarReiniciarDemo()">${iconeSvg("trash")} Reiniciar dados</button>
     </div>
     <p class="text-xs muted mt-2">Importar substitui os dados atuais pelos do arquivo — inclusive respostas e cadastros de todos os usuários. Reiniciar apaga tudo e volta ao ponto de partida.</p>
-    ${bancoDeResgateDisponivel() ? (() => { const r = resumoDoResgate(); return `<div class="card-flat mt-2" style="border-color:var(--amber)">
+    ${bancoDeResgateDisponivel() ? (() => { const r = resumoDoResgate(); return `<div class="card-flat mt-2 borda-alerta">
       <div class="text-sm" style="font-weight:600;color:var(--amber)">${iconeSvg("archive")} Existe uma cópia de resgate neste navegador</div>
       <p class="text-sm muted mt-1">A plataforma encontrou um defeito nos dados salvos em algum momento e guardou o banco como ele estava antes de consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s), ${r.questoes} questão(ões)`:""}. Se algo tiver se perdido, é daqui que se recupera.</p>
       <button class="btn btn-secondary btn-sm mt-1" onclick="restaurarBancoDeResgate()">Ver e restaurar a cópia de resgate</button>

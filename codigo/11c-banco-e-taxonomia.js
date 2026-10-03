@@ -41,25 +41,25 @@ function renderBancoQuestoes(){
   <div class="page-header"><h2>Banco de Questões</h2><p>${db.questoes.length} questão(ões) no total (${questoesAtivas(true).length} ativas, excluindo anuladas/desatualizadas das sessões e estatísticas; inclui questões restritas a grupos de alunos). ${db.questoes.filter(aguardaImagem).length} aguardam a figura da prova e não aparecem para os alunos — filtre por Status &gt; Aguardando imagem.</p></div>
   <div class="card mb-2">
     <div class="grid grid-4">
-      <div class="field" style="margin-bottom:0"><label class="label">Instituição</label>
+      <div class="field sem-mb"><label class="label">Instituição</label>
         <select class="select" onchange="mudarFiltroBanco('banca', this.value)">
           <option value="">Todas</option>
           ${bancas.map(b=>`<option value="${escapeHtml(b)}" ${f.banca===b?"selected":""}>${escapeHtml(b)}</option>`).join("")}
         </select>
       </div>
-      <div class="field" style="margin-bottom:0"><label class="label">Ano</label>
+      <div class="field sem-mb"><label class="label">Ano</label>
         <select class="select" onchange="mudarFiltroBanco('ano', this.value)" ${f.ultimos5?"disabled":""}>
           <option value="">Todos</option>
           ${anosDisponiveis.map(a=>`<option value="${a}" ${String(f.ano)===String(a)?"selected":""}>${a}</option>`).join("")}
         </select>
       </div>
-      <div class="field" style="margin-bottom:0"><label class="label">Grande área</label>
+      <div class="field sem-mb"><label class="label">Grande área</label>
         <select class="select" onchange="mudarFiltroBanco('areaId', this.value)">
           <option value="">Todas</option>
           ${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${f.areaId===a.id?"selected":""}>${escapeHtml(a.nome)}</option>`).join("")}
         </select>
       </div>
-      <div class="field" style="margin-bottom:0"><label class="label">Status</label>
+      <div class="field sem-mb"><label class="label">Status</label>
         <select class="select" onchange="mudarFiltroBanco('status', this.value)">
           <option value="">Todos</option>
           <option value="ativa" ${f.status==="ativa"?"selected":""}>Ativa</option>
@@ -70,7 +70,7 @@ function renderBancoQuestoes(){
         </select>
       </div>
     </div>
-    <div class="flex gap-1 items-center mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 items-center mt-2 quebra">
       <input class="input" id="buscaBancoInput" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
       <button class="btn btn-secondary btn-sm" onclick="buscarNoBanco()">Buscar</button>
       <select class="select" style="max-width:220px" onchange="mudarFiltroBanco('tipo', this.value)" aria-label="Tipo de prova">
@@ -81,7 +81,7 @@ function renderBancoQuestoes(){
       <button class="link-btn text-xs" onclick="limparFiltrosBanco()">limpar filtros</button>
     </div>
   </div>
-  <div class="flex gap-1 items-center mb-2" style="flex-wrap:wrap">
+  <div class="flex gap-1 items-center mb-2 quebra">
     <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Nova questão manual</button>
     <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Importar em lote</button>
     ${questoesParaExportar().length ? `<button class="btn btn-ghost btn-sm" onclick="exportarQuestoesParaDados()" title="As questões aprovadas que entraram pela plataforma, num arquivo pronto para a pasta dados/">${iconeSvg("archive")} Exportar ${questoesParaExportar().length} enviada(s) para a pasta dados/</button>` : ""}
@@ -168,7 +168,7 @@ function abrirFormularioQuestao(qid){
       <div class="field"><label class="label">Especialidade</label><select class="select" id="fqEspecialidade" onchange="atualizarSelectAssuntoForm()"></select></div>
       <div class="field"><label class="label">Assunto</label><select class="select" id="fqAssunto"></select></div>
     </div>
-    <div class="flex gap-1 mb-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mb-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="criarEspecialidadeRapida()">${iconeSvg("plus")} Nova especialidade</button>
       <button class="btn btn-secondary btn-sm" onclick="criarAssuntoRapido()">${iconeSvg("plus")} Novo assunto</button>
       <span class="hint">Se a especialidade ou o assunto certo não estiver na lista, crie aqui mesmo — a questão já nasce classificada corretamente.</span>
@@ -193,8 +193,8 @@ function abrirFormularioQuestao(qid){
       <div class="hint">Escreva com suas palavras, a partir de diretriz, consenso ou artigo — não copie a resolução de sites de questões ou de cursinhos.</div></div>
     <div class="field"><label class="label">Referências consultadas</label><input class="input" id="fqReferencias" placeholder="Ex.: Diretriz da Sociedade Brasileira de Cardiologia 2024; Ministério da Saúde, PCDT 2023" value="${escapeHtml(q?(q.referencias||""):"")}"></div>
     <div class="field"><label class="label">Imagem da questão (opcional)</label>
-      <div class="flex gap-1" style="flex-wrap:wrap">
-        <label class="btn btn-secondary btn-sm" style="cursor:pointer">${iconeSvg("upload")} Enviar imagem<input type="file" accept="image/*" style="display:none" onchange="carregarImagemQuestao(this)"></label>
+      <div class="flex gap-1 quebra">
+        <label class="btn btn-secondary btn-sm clicavel">${iconeSvg("upload")} Enviar imagem<input type="file" accept="image/*" style="display:none" onchange="carregarImagemQuestao(this)"></label>
         <button class="btn btn-secondary btn-sm" onclick="definirImagemPorUrl()">${iconeSvg("search")} Usar link</button>
         <button class="btn btn-ghost btn-sm" onclick="removerImagemFormulario()">${iconeSvg("trash")} Remover</button>
       </div>
@@ -391,7 +391,7 @@ function salvarQuestaoFormulario(qid, forcar){
     abrirModal(`${cabecalhoJanela("Questão possivelmente duplicada")}
       <p class="text-sm">Já existe ${duplicadas.length} questão(ões) com enunciado praticamente igual no banco:</p>
       ${duplicadas.slice(0,3).map(d=>`<div class="card-flat mt-1"><div class="text-sm"><span class="enunciado-clicavel" onclick="fecharModal();abrirQuestaoCompleta('${d.id}')">${escapeHtml(d.enunciado.slice(0,180))}…</span></div><div class="text-xs muted mt-1">${escapeHtml(d.banca)} · ${d.ano} · ${escapeHtml(nomeAssunto(d.assuntoId))}</div><button class="link-btn mt-1" onclick="fecharModal();abrirQuestaoCompleta('${d.id}')">ver questão existente</button></div>`).join("")}
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
         <button class="btn btn-danger" onclick="salvarQuestaoPendente()">Salvar assim mesmo</button>
       </div>`);
@@ -651,7 +651,7 @@ function renderTaxonomia(){
   <div class="page-header"><h2>Especialidades e Assuntos</h2><p>Organize a árvore grande área › especialidade › assunto. É aqui que se conserta assunto na especialidade errada, nome duplicado e questão classificada de forma incoerente.</p></div>
 
   <div class="card mb-2" style="${d.total?"border-color:var(--amber)":""}">
-    <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
+    <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="card-title">Verificação de consistência</div>
         <p class="text-sm muted">${d.total ? d.total+" problema(s) encontrado(s)." : "Nenhum problema encontrado — árvore e questões estão coerentes."}</p>
@@ -673,7 +673,7 @@ function renderTaxonomia(){
     const totalArea = db.questoes.filter(q=>q.areaId===area.id).length;
     return `<div class="tree-area">
       <div class="tree-area-head" onclick="toggleTreeArea('tax-${area.id}')">
-        <span>${escapeHtml(area.nome)} <span class="text-xs muted" style="font-weight:400">— ${esps.length} especialidade(s), ${totalArea} questão(ões)</span></span>
+        <span>${escapeHtml(area.nome)} <span class="text-xs muted peso-400">— ${esps.length} especialidade(s), ${totalArea} questão(ões)</span></span>
         ${iconeSvg("chevron-d")}
       </div>
       <div class="tree-body" id="treebody-tax-${area.id}">
@@ -681,10 +681,10 @@ function renderTaxonomia(){
         ${esps.length ? esps.map(esp=>{
           const assuntos = db.taxonomia.assuntos.filter(a=>a.especialidadeId===esp.id);
           return `<div class="card-flat mb-2">
-            <div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-              <div><div style="font-weight:700">${escapeHtml(esp.nome)}</div>
+            <div class="flex justify-between items-center gap-2 quebra">
+              <div><div class="peso-700">${escapeHtml(esp.nome)}</div>
                 <div class="text-xs muted">${assuntos.length} assunto(s) · ${contarQuestoesEspecialidade(esp.id)} questão(ões)</div></div>
-              ${podeEditar ? `<div class="flex gap-1" style="flex-wrap:wrap">
+              ${podeEditar ? `<div class="flex gap-1 quebra">
                 <button class="btn btn-ghost btn-sm" onclick="renomearEspecialidade('${esp.id}')">${iconeSvg("edit")} Renomear</button>
                 <select class="select" style="padding:.3rem .5rem;max-width:200px" onchange="moverEspecialidade('${esp.id}', this.value)">
                   ${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${a.id===esp.areaId?"selected":""}>mover p/ ${escapeHtml(a.nome)}</option>`).join("")}
@@ -699,7 +699,7 @@ function renderTaxonomia(){
                 return `<tr>
                   <td class="text-sm">${escapeHtml(a.nome)}</td>
                   <td class="text-sm">${n}</td>
-                  <td>${podeEditar ? `<div class="flex gap-1" style="flex-wrap:wrap">
+                  <td>${podeEditar ? `<div class="flex gap-1 quebra">
                     <button class="btn btn-ghost btn-sm" onclick="renomearAssunto('${a.id}')">renomear</button>
                     <select class="select" style="padding:.25rem .4rem;max-width:190px" onchange="moverAssunto('${a.id}', this.value)">
                       <option value="${esp.id}">mover para…</option>

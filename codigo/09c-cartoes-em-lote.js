@@ -33,8 +33,8 @@ function renderCartoesEmLote(){
   const cob = coberturaDeCartoes();
   const faltando = cob.filter(c => c.cartoes < CARTOES_POR_ASSUNTO_ALVO);
   const semNenhum = cob.filter(c => c.cartoes === 0).length;
-  const cabecalho = `<div class="flex justify-between items-center gap-2" style="flex-wrap:wrap">
-      <div style="min-width:220px;flex:1"><div class="card-title">${iconeSvg("cards")} Cobrir os assuntos sem cartão — em lote</div>
+  const cabecalho = `<div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220"><div class="card-title">${iconeSvg("cards")} Cobrir os assuntos sem cartão — em lote</div>
       <div class="text-sm muted">${semNenhum} assunto(s) sem nenhum cartão da equipe e ${faltando.length - semNenhum} com menos de ${CARTOES_POR_ASSUNTO_ALVO}. Os que mais caem na prova vêm primeiro.</div></div>
       <button class="btn btn-secondary btn-sm" onclick="estadoLoteCartoes().aberto=!estadoLoteCartoes().aberto; render()">${st.aberto ? "Fechar" : "Abrir"}</button>
     </div>`;
@@ -48,20 +48,20 @@ function renderCartoesEmLote(){
       <button class="link-btn text-sm" onclick="selecionarAssuntosDoLote(0)">desmarcar</button></div>
     <div class="lote-assuntos mt-1">${lista.map(c => `<label class="checkbox-row text-sm"><input type="checkbox" ${sel.has(c.assuntoId)?"checked":""} onchange="alternarAssuntoDoLote('${c.assuntoId}', this.checked)">
       ${escapeHtml(c.nome)} <span class="text-xs muted">${escapeHtml(nomeEspecialidade(c.especialidadeId))} · ${c.cartoes} cartão(ões)${c.naProva?` · caiu ${c.naProva}× na prova`:""}</span></label>`).join("")}</div>
-    <div class="flex gap-1 items-center mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 items-center mt-2 quebra">
       <span class="text-sm">Cartões por assunto:</span>
       <input class="input" type="number" min="1" max="10" style="max-width:80px" value="${st.porAssunto}" onchange="estadoLoteCartoes().porAssunto=Math.max(1,Math.min(10,parseInt(this.value)||3)); render()">
       <button class="btn btn-primary btn-sm" ${sel.size?"":"disabled"} onclick="copiarTexto(modeloLoteCartoes(), 'Modelo copiado. Cole numa conversa de IA e traga a resposta para o campo abaixo.')">${iconeSvg("clipboard")} 2. Copiar o modelo (${sel.size} assunto(s))</button>
     </div>
     <div class="mt-2 text-sm"><strong>3. Cole a resposta e confira</strong></div>
     <textarea class="textarea textarea-mono mt-1" id="loteCartoesTexto" style="min-height:160px" placeholder="ASSUNTO: ass-...&#10;FRENTE: ...&#10;VERSO: ...&#10;FONTE: ...&#10;---">${escapeHtml(st.texto||"")}</textarea>
-    <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-1 quebra">
       <button class="btn btn-secondary btn-sm" onclick="conferirLoteCartoes()">Conferir</button>
       ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="publicarLoteCartoes()">4. Publicar ${a.validos.length} cartão(ões)</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="exportarCartoesParaDados()">${iconeSvg("download")} Exportar cartões publicados para a pasta dados/</button>
     </div>
     ${a ? `<div class="card-flat mt-2 text-sm">
-      <strong>${a.validos.length}</strong> cartão(ões) prontos para publicar${a.problemas.length?`, <strong style="color:var(--danger)">${a.problemas.length}</strong> com problema`:""}.
+      <strong>${a.validos.length}</strong> cartão(ões) prontos para publicar${a.problemas.length?`, <strong class="texto-perigo">${a.problemas.length}</strong> com problema`:""}.
       ${a.problemas.length ? `<ul class="text-xs mt-1">${a.problemas.slice(0,15).map(p=>`<li>${escapeHtml(p)}</li>`).join("")}</ul>` : ""}
       ${a.validos.length ? `<div class="table-wrap mt-1"><table><thead><tr><th>Assunto</th><th>Frente</th><th>Verso</th></tr></thead><tbody>${a.validos.slice(0,12).map(c=>`<tr><td class="text-xs">${escapeHtml(nomeAssunto(c.assuntoId))}</td><td class="text-xs">${escapeHtml(c.frente)}</td><td class="text-xs">${escapeHtml(c.verso)}</td></tr>`).join("")}</tbody></table></div>${a.validos.length>12?`<div class="text-xs muted">… e mais ${a.validos.length-12}.</div>`:""}` : ""}
     </div>` : ""}
@@ -223,11 +223,11 @@ function desenharAdicionarBaralho(){
       <p class="text-sm muted">Como você quer montar os cartões?</p>
       <div class="grid grid-2 mt-2">
         <button class="card-flat" style="text-align:left;cursor:pointer" onclick="fecharModal(); abrirFormularioFlashcard(null)">
-          <div style="font-weight:700">${iconeSvg("edit")} Escrever um cartão</div>
+          <div class="peso-700">${iconeSvg("edit")} Escrever um cartão</div>
           <div class="text-xs muted mt-1">Um cartão de cada vez, com as suas palavras.</div>
         </button>
         <button class="card-flat" style="text-align:left;cursor:pointer" onclick="mudarPassoBaralhoIA('ia')">
-          <div style="font-weight:700">${iconeSvg("cards")} Trazer um baralho inteiro de uma IA</div>
+          <div class="peso-700">${iconeSvg("cards")} Trazer um baralho inteiro de uma IA</div>
           <div class="text-xs muted mt-1">A plataforma monta o pedido; você cola a resposta de volta.</div>
         </button>
       </div>`);
@@ -239,32 +239,32 @@ function desenharAdicionarBaralho(){
     ${cabecalhoJanela("Trazer um baralho de uma IA")}
     <p class="text-sm muted">1. Diga o que quer; 2. copie o pedido e cole numa IA (ChatGPT, Claude, Gemini…) — se tiver resumo, aula ou PDF seu, anexe na conversa; 3. traga a resposta de volta e confira.</p>
     <div class="grid grid-2 mt-2">
-      <div class="field" style="margin-bottom:0"><label class="label">Assunto dos cartões</label>
+      <div class="field sem-mb"><label class="label">Assunto dos cartões</label>
         <select class="select" id="baralhoAssunto" onchange="guardarCamposBaralhoIA(); desenharAdicionarBaralho()">
           <option value="">Deixar a IA escolher o assunto de cada cartão</option>
           ${opcoesDeAssuntoAgrupadas(st.assuntoId)}
         </select></div>
-      <div class="field" style="margin-bottom:0"><label class="label">Quantos cartões</label>
+      <div class="field sem-mb"><label class="label">Quantos cartões</label>
         <input class="input" id="baralhoQtd" type="number" min="5" max="80" value="${st.quantidade}" onchange="guardarCamposBaralhoIA(); desenharAdicionarBaralho()"></div>
     </div>
     <div class="field mt-2"><label class="label">Tema ou pedido (opcional)</label>
       <textarea class="textarea" id="baralhoTema" style="min-height:60px" placeholder="Ex.: critérios diagnósticos e condutas de insuficiência cardíaca; ou: cartões do material que vou anexar" onchange="guardarCamposBaralhoIA(); desenharAdicionarBaralho()">${escapeHtml(st.tema)}</textarea></div>
-    <div class="flex gap-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 quebra">
       <button class="btn btn-primary btn-sm" onclick="guardarCamposBaralhoIA(); copiarTexto(promptBaralhoIA(), 'Pedido copiado. Cole numa IA e traga a resposta para o campo abaixo.')">${iconeSvg("clipboard")} Copiar o pedido para a IA</button>
     </div>
-    <details class="mt-1"><summary class="text-xs muted" style="cursor:pointer">Ver o pedido</summary>
+    <details class="mt-1"><summary class="text-xs muted clicavel">Ver o pedido</summary>
       <textarea class="textarea textarea-mono mt-1" readonly style="min-height:140px">${escapeHtml(promptBaralhoIA())}</textarea></details>
     <div class="field mt-2"><label class="label">Resposta da IA</label>
       <textarea class="textarea textarea-mono" id="baralhoTexto" style="min-height:130px" placeholder="FRENTE: ...&#10;VERSO: ...&#10;---">${escapeHtml(st.texto)}</textarea></div>
     ${podeEquipe ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoPessoal" ${st.pessoal?"checked":""} onchange="guardarCamposBaralhoIA(); desenharAdicionarBaralho()"> Só para mim (desmarque para publicar no baralho da equipe)</label>` : ""}
     ${(!podeEquipe || st.pessoal) && !grupoPrincipalDeQuestoes(usuarioAtual()).oficial ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoGrupo" ${st.compartilhar?"checked":""} onchange="guardarCamposBaralhoIA()"> Compartilhar com o meu grupo (${escapeHtml(grupoPrincipalDeQuestoes(usuarioAtual()).nome)}) — os colegas recebem estes cartões no baralho deles</label>` : ""}
-    <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-1 quebra">
       <button class="btn btn-secondary btn-sm" onclick="conferirBaralhoIA()">Conferir</button>
       ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="adicionarBaralhoIA()">Adicionar ${a.validos.length} cartão(ões)</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="mudarPassoBaralhoIA('escolha')">Voltar</button>
     </div>
     ${a ? `<div class="card-flat mt-2 text-sm">
-      <strong>${a.validos.length}</strong> cartão(ões) prontos${a.problemas.length?`, <strong style="color:var(--danger)">${a.problemas.length}</strong> com problema (ficam de fora)`:""}.
+      <strong>${a.validos.length}</strong> cartão(ões) prontos${a.problemas.length?`, <strong class="texto-perigo">${a.problemas.length}</strong> com problema (ficam de fora)`:""}.
       ${a.problemas.length ? `<ul class="text-xs mt-1">${a.problemas.slice(0,10).map(p=>`<li>${escapeHtml(p)}</li>`).join("")}</ul>` : ""}
       ${a.validos.length ? `<div class="table-wrap mt-1" style="max-height:200px;overflow:auto"><table><thead><tr><th>Assunto</th><th>Frente</th><th>Verso</th></tr></thead><tbody>${a.validos.slice(0,8).map(c=>`<tr><td class="text-xs">${escapeHtml(nomeAssunto(c.assuntoId))}</td><td class="text-xs">${escapeHtml(c.frente)}</td><td class="text-xs">${escapeHtml(c.verso)}</td></tr>`).join("")}</tbody></table></div>${a.validos.length>8?`<div class="text-xs muted">… e mais ${a.validos.length-8}.</div>`:""}` : ""}
     </div>` : ""}`, "lg");

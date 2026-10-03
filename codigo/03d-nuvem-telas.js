@@ -196,7 +196,7 @@ function abrirModalTrazerDadosLocais(){
       ${locais.map(x => `
         <div class="card-flat mb-1 flex justify-between items-center">
           <div>
-            <div style="font-weight:600">${escapeHtml(x.usuario.nome)}</div>
+            <div class="peso-600">${escapeHtml(x.usuario.nome)}</div>
             <div class="text-xs muted">${x.respostas} ${x.respostas===1?"resposta":"respostas"} · ${x.cartoes} ${x.cartoes===1?"cartão":"cartões"}</div>
           </div>
           <button class="btn btn-primary btn-sm" onclick="confirmarTrazerDadosLocais('${x.usuario.id}')">Trazer para minha conta</button>
@@ -830,7 +830,7 @@ function renderCardNuvem(){
       ${db.nuvem && db.nuvem.avisoImagens ? `<div class="card-flat mt-2 text-xs"><strong>${iconeSvg("alert")} Imagens de questões.</strong> ${escapeHtml(db.nuvem.avisoImagens)}</div>` : ""}
       ${_nuvemTabelasAusentes.size ? `<div class="card-flat mt-2 text-xs"><strong>${iconeSvg("alert")} Falta rodar o nuvem/esquema.sql.</strong> Este banco ainda não tem ${[..._nuvemTabelasAusentes].map(t=>"<code>"+escapeHtml(t)+"</code>").join(", ")}. O resto sincroniza normalmente; o que é dessa(s) tabela(s) fica guardado neste navegador e sobe sozinho depois que o SQL for rodado e a página recarregada.</div>` : ""}
       ${nuvemRecusadosHtml()}
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary btn-sm" onclick="nuvemSincronizar({forcarRedesenho:true})">${iconeSvg("refresh")} Sincronizar agora</button>
         <button class="btn btn-secondary btn-sm" onclick="nuvemDiagnosticar()">${iconeSvg("alert")} Testar a nuvem</button>
         ${locais.length ? `<button class="btn btn-secondary btn-sm" onclick="abrirModalTrazerDadosLocais()">${iconeSvg("upload")} Trazer estudo deste navegador</button>` : ""}
@@ -840,7 +840,7 @@ function renderCardNuvem(){
       <p class="text-xs muted mt-1">Sem internet a plataforma continua funcionando: o que você fizer fica numa fila e sobe sozinho quando a conexão voltar.</p>
     ` : `
       <p class="text-sm muted">A nuvem está configurada, mas você entrou sem conta — o estudo fica só neste navegador. Saia e entre com e-mail e senha para sincronizar.</p>
-      <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+      <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary btn-sm" onclick="fazerLogout()">Ir para a tela de entrada</button>
         <button class="btn btn-secondary btn-sm" onclick="nuvemDiagnosticar()">${iconeSvg("alert")} Testar a nuvem</button>
       </div>

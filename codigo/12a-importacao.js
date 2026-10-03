@@ -180,18 +180,18 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
       <div class="tab ${ctx.modo==="avulsas"?"active":""}" onclick="mudarModoImportacao('avulsas')">Questões avulsas</div>
     </div>
     <div class="grid grid-4">
-      <div class="field" style="margin-bottom:0"><label class="label">Tipo de prova</label>
+      <div class="field sem-mb"><label class="label">Tipo de prova</label>
         <select class="select" id="impTipoProva" onchange="mudarTipoProvaImportacao(this.value)">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${ctx.tipoProva===t.id?"selected":""}>${escapeHtml(t.nome)}${t.id===CONFIG.tipoProvaPadrao?" (padrão)":""}</option>`).join("")}</select>
         <div class="hint mt-1" id="impTipoProvaDica">${escapeHtml(infoTipoProva(ctx.tipoProva).descricao)}.</div>
       </div>
-      <div class="field" style="margin-bottom:0"><label class="label">Instituição da prova</label>
+      <div class="field sem-mb"><label class="label">Instituição da prova</label>
         <input class="input" id="impInstituicao" list="listaBancasImport" value="${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}" onchange="atualizarPromptImportacao()" ${ctx.modo==="avulsas"?'placeholder="usada só quando a questão não trouxer a própria"':""}>
         <datalist id="listaBancasImport">${htmlSugestoesDeInstituicao(ctx.tipoProva)}</datalist>
       </div>
-      <div class="field" style="margin-bottom:0"><label class="label">Ano da prova</label>
+      <div class="field sem-mb"><label class="label">Ano da prova</label>
         <input class="input" type="number" id="impAno" value="${escapeHtml(String(ctx.ano||new Date().getFullYear()))}" onchange="atualizarPromptImportacao()">
       </div>
-      <div class="field" style="margin-bottom:0"><label class="label">Destino das questões</label>
+      <div class="field sem-mb"><label class="label">Destino das questões</label>
         <select class="select" id="impDestino">${destinos.map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join("")}</select>
         ${meusGrupos.length ? `<div class="hint mt-1">${meusGrupos.length>1?"Seus grupos":"Seu grupo atual"}: ${meusGrupos.map(g=>escapeHtml(g.nome)).join(" e ")}</div>` : ""}
       </div>
@@ -202,7 +202,7 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
     <div class="card-title">Passo 2 — peça a uma IA para formatar</div>
     <p class="text-sm muted">Copie o prompt abaixo (pode revisar antes), cole numa IA junto com o PDF/texto da prova, e traga o resultado para o Passo 3.</p>
     <div class="field mt-1"><textarea class="textarea textarea-mono" id="promptImportacaoTexto" style="min-height:170px">${escapeHtml(gerarPromptImportacao())}</textarea></div>
-    <div class="flex gap-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 quebra">
       <button class="btn btn-secondary btn-sm" onclick="copiarTexto(document.getElementById('promptImportacaoTexto').value,'Prompt copiado! Cole numa IA junto com a prova.')">${iconeSvg("search")} Copiar prompt</button>
       <button class="btn btn-ghost btn-sm" onclick="atualizarPromptImportacao()">${iconeSvg("refresh")} Atualizar prompt com tipo/instituição/ano acima</button>
     </div>
@@ -220,9 +220,9 @@ A: ...
 B: ...
 GABARITO: B
 ==="></textarea>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary" onclick="previsualizarImportacao()">Pré-visualizar</button>
-      <label class="btn btn-secondary" style="cursor:pointer">${iconeSvg("upload")} Carregar arquivo .txt<input type="file" accept=".txt,.md,.csv" style="display:none" onchange="carregarArquivoImportacao(this)"></label>
+      <label class="btn btn-secondary clicavel">${iconeSvg("upload")} Carregar arquivo .txt<input type="file" accept=".txt,.md,.csv" style="display:none" onchange="carregarArquivoImportacao(this)"></label>
     </div>
   </div>
   <div id="previewImportacao" class="mt-2"></div>`;
@@ -451,7 +451,7 @@ function htmlImagemDaImportacao(r, i){
       ? "A transcrição diz que há uma imagem"+(r.imagemDescricao?" ("+escapeHtml(r.imagemDescricao)+")":"")+". Anexe o recorte da prova. Se importar sem ela, a questão entra como <em>aguardando imagem</em> e fica fora do estudo até a figura chegar."
       : "O enunciado fala de uma figura. Se ela existir, anexe o recorte da prova — sem ela a questão não se resolve."}</div>` : ""}
     ${r.imagemUrl ? `<img class="imp-imagem-previa" src="${escapeHtml(r.imagemUrl)}" alt="${escapeHtml(r.imagemLegenda||"Imagem da questão")}">` : ""}
-    <div class="flex gap-1 mt-1" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-1 quebra">
       <label class="btn ${falta?"btn-primary":"btn-secondary"} btn-sm" style="cursor:pointer">${iconeSvg("upload")} ${r.imagemUrl?"Trocar imagem":"Enviar imagem"}<input type="file" accept="image/*" style="display:none" onchange="carregarImagemImportacao(${i}, this)"></label>
       <button class="btn btn-ghost btn-sm" onclick="definirImagemImportacaoPorUrl(${i})">Usar link</button>
       ${r.imagemUrl ? `<button class="btn btn-ghost btn-sm" onclick="removerImagemImportacao(${i})">${iconeSvg("trash")} Remover</button>` : ""}
@@ -472,11 +472,11 @@ function renderPreviewImportacaoHtml(resultado, opts){
   return `<div class="card">
     <div class="card-title">Pré-visualização: ${validas} de ${resultado.length} questão(ões) marcadas para importar</div>
     <p class="text-sm muted mb-2">Confira a classificação de cada questão. Onde a IA não acertou a especialidade ou o assunto, escolha um equivalente da lista ou crie um novo com o nome sugerido.</p>
-    ${duplicadas ? `<div class="card-flat mb-2 text-sm" style="border-color:var(--amber)">${iconeSvg("alert")} <strong>${duplicadas} questão(ões) já existem</strong> no banco ou se repetem dentro deste mesmo lote. Elas vêm desmarcadas — marque manualmente se quiser importar assim mesmo.</div>` : ""}
-    ${semFigura ? `<div class="card-flat mb-2 text-sm" style="border-color:var(--amber)">${iconeSvg("alert")} <strong>${semFigura} questão(ões) parecem ter figura</strong> e ainda estão sem imagem. Anexe cada uma no campo "Imagem da questão", logo abaixo da classificação.</div>` : ""}
+    ${duplicadas ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${duplicadas} questão(ões) já existem</strong> no banco ou se repetem dentro deste mesmo lote. Elas vêm desmarcadas — marque manualmente se quiser importar assim mesmo.</div>` : ""}
+    ${semFigura ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${semFigura} questão(ões) parecem ter figura</strong> e ainda estão sem imagem. Anexe cada uma no campo "Imagem da questão", logo abaixo da classificação.</div>` : ""}
     ${resultado.map((r,i)=>`<div class="card-flat mb-1" ${r.valido?"":'style="border-color:var(--danger)"'}>
-      <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.4rem">
-        <span style="font-weight:600">Questão ${r.indice} · ${escapeHtml(r.banca)} ${r.ano}${r.status==="anulada"?" · anulada":""}</span>
+      <div class="flex justify-between items-center quebra-gap-p">
+        <span class="peso-600">Questão ${r.indice} · ${escapeHtml(r.banca)} ${r.ano}${r.status==="anulada"?" · anulada":""}</span>
           <span class="badge ${r.tipoProva==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(r.tipoProva).nome)}</span>
         <span class="flex items-center gap-1">
           ${r.numero?`<span class="badge badge-muted">nº ${r.numero} na prova</span>`:""}
@@ -489,18 +489,18 @@ function renderPreviewImportacaoHtml(resultado, opts){
       ${r.valido?`<label class="checkbox-row mt-1"><input type="checkbox" ${r.importar!==false?"checked":""} onchange="alternarImportacaoItem(${i})"> Importar esta questão</label>`:""}
       ${r.duplicada && r.duplicadasBanco.length?`<div class="text-xs muted mt-1">Já no banco: <button class="link-btn" onclick="abrirQuestaoCompleta('${r.duplicadasBanco[0]}')">ver questão existente</button></div>`:""}
       <div class="text-sm mt-1">${escapeHtml((r.campos.PERGUNTA||"(sem enunciado)").slice(0,180))}…</div>
-      ${r.erros.length ? `<div class="text-xs mt-1" style="color:var(--danger)">${r.erros.map(e=>escapeHtml(e)).join(" · ")}</div>` : ""}
-      ${r.avisos.length ? `<div class="text-xs mt-1" style="color:var(--amber)">${iconeSvg("alert")} ${r.avisos.map(e=>escapeHtml(e)).join(" · ")}</div>` : ""}
+      ${r.erros.length ? `<div class="text-xs mt-1 texto-perigo">${r.erros.map(e=>escapeHtml(e)).join(" · ")}</div>` : ""}
+      ${r.avisos.length ? `<div class="text-xs mt-1 texto-alerta">${iconeSvg("alert")} ${r.avisos.map(e=>escapeHtml(e)).join(" · ")}</div>` : ""}
       <div class="grid grid-3 mt-2">
-        <div class="field" style="margin-bottom:0"><label class="label">Grande área</label>
+        <div class="field sem-mb"><label class="label">Grande área</label>
           <select class="select" id="impArea-${i}" onchange="impMudarArea(${i})">${db.taxonomia.areas.map(a=>`<option value="${a.id}" ${r.areaId===a.id?"selected":""}>${escapeHtml(a.nome)}</option>`).join("")}</select></div>
-        <div class="field" style="margin-bottom:0"><label class="label">Especialidade</label>
+        <div class="field sem-mb"><label class="label">Especialidade</label>
           <select class="select" id="impEsp-${i}" onchange="impMudarEsp(${i})">${htmlOpcoesEspecialidade(r.areaId, r.especialidadeId, r.campos.ESPECIALIDADE)}</select></div>
-        <div class="field" style="margin-bottom:0"><label class="label">Assunto</label>
+        <div class="field sem-mb"><label class="label">Assunto</label>
           <select class="select" id="impAss-${i}" onchange="impMudarAssunto(${i})">${htmlOpcoesAssunto(r.especialidadeId, r.assuntoId, r.campos.ASSUNTO)}</select></div>
       </div>
       <div class="grid grid-3 mt-2">
-        <div class="field" style="margin-bottom:0"><label class="label">Tipo de prova</label>
+        <div class="field sem-mb"><label class="label">Tipo de prova</label>
           <select class="select" onchange="impMudarTipo(${i}, this.value)">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${r.tipoProva===t.id?"selected":""}>${escapeHtml(t.nome)}</option>`).join("")}</select></div>
       </div>
       ${htmlImagemDaImportacao(r, i)}

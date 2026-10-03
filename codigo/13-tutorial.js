@@ -229,7 +229,7 @@ function desenharPassoTutorial(){
     <label class="checkbox-row mt-2"><input type="checkbox" id="tutorialNaoMostrar" ${oculto ? "checked" : ""} onchange="definirTutorialAoEntrar(!this.checked)"> Não mostrar este tutorial quando eu entrar</label>
     <div class="tutorial-acoes mt-2">
       ${i > 0 ? `<button class="btn btn-secondary btn-sm" onclick="passoTutorial(-1)">Voltar</button>` : `<button class="btn btn-ghost btn-sm" onclick="fecharTutorial()">Pular</button>`}
-      <span class="flex gap-1" style="flex-wrap:wrap">
+      <span class="flex gap-1 quebra">
         ${ultimo ? `<button class="btn btn-secondary btn-sm" onclick="abrirGuiaCompleto()">${iconeSvg("book")} Ver guia completo</button>
           <button class="btn btn-primary btn-sm" onclick="fecharTutorial()">Começar</button>`
           : `<button class="btn btn-primary btn-sm" onclick="passoTutorial(1)">Próximo</button>`}
@@ -269,7 +269,7 @@ function abrirGuiaCompleto(){
         <ul>${s.itens.map(it => `<li>${it}</li>`).join("")}</ul>
       </details>`).join("")}
     </div>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="abrirTutorialRapido()">${iconeSvg("play")} Rever o tutorial rápido</button>
       <button class="btn btn-primary btn-sm" onclick="fecharModal()">Fechar</button>
     </div>`, "lg");
@@ -309,7 +309,7 @@ function renderCardAjuda(){
   return `<div class="card mt-2" style="max-width:460px">
     <div class="card-title">Ajuda e tutorial</div>
     <p class="text-sm muted">O tutorial rápido passa pelo essencial em um minuto; o guia completo explica cada função, tela por tela.</p>
-    <div class="flex gap-1 mt-2" style="flex-wrap:wrap">
+    <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary btn-sm" onclick="abrirTutorialRapido()">${iconeSvg("play")} Tutorial rápido</button>
       <button class="btn btn-secondary btn-sm" onclick="abrirGuiaCompleto()">${iconeSvg("book")} Guia completo</button>
     </div>

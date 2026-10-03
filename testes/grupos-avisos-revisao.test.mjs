@@ -41,7 +41,8 @@ test("questão em aberto não mostra área, assunto nem dificuldade; a imagem ve
         abertaTemAssunto: aberta.includes(">" + assunto.replace(/&/g, "&amp;") + "<"), simuladoTemAssunto: simulado.includes(">" + assunto.replace(/&/g, "&amp;") + "<"),
         abertaTemDificuldade: /Difícil|Fácil|Intermediária|Média|Muito/.test(aberta.split('class="qcard-enunciado"')[0]),
         abertaTemBanca: aberta.includes(q.banca.replace(/&/g, "&amp;")),
-        respondidaTemAssunto: respondida.includes(">" + assunto.replace(/&/g, "&amp;") + "<"),
+        // o assunto agora vem na trilha "especialidade › assunto", antes do enunciado
+        respondidaTemAssunto: respondida.split('class="qcard-enunciado"')[0].includes(assunto.replace(/&/g, "&amp;") + "</span>"),
         respondidaTemDificuldade: respondida.includes(rotuloDificuldade(calcularDificuldade(q))),
         ordemAberta: ordem(aberta), ordemRespondida: ordem(respondida),
         explica: /depois que você responder/.test(aberta),
