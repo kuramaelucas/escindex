@@ -189,7 +189,7 @@ function renderLogin(){
       <button class="btn btn-primary btn-block" onclick="tentarLogin()">Entrar</button>
       <p class="text-sm mt-2">Ainda não tem conta? <a href="javascript:void(0)" onclick="navigate('cadastro')">Solicitar cadastro</a></p>
       <p class="text-sm mt-1">${nuvemLigada() ? `<a href="javascript:void(0)" onclick="abrirEsqueciSenha()">Esqueci a senha</a> · ` : ""}<a href="javascript:void(0)" onclick="abrirAjudaAcesso()">Problemas para entrar?</a></p>
-      <div class="card-flat mt-3">
+      ${getUsuario("u-aluno1") ? `      <div class="card-flat mt-3">
         <div class="text-xs muted mb-1">${nuvemLigada()
           ? "Conhecer a plataforma sem criar conta — fica só neste navegador e não sincroniza:"
           : "Conhecer a plataforma sem criar conta (não pede senha):"}</div>
@@ -197,7 +197,7 @@ function renderLogin(){
           <button class="pill" onclick="fazerLoginDemo('aluno')">Entrar como aluno de teste</button>
         </div>
         <div class="text-xs muted mt-1">aluno@esc.demo / aluno123 — é a única conta de teste aberta. Professor, residente e coordenação usam as contas de verdade, acima.</div>
-      </div>
+      </div>` : ""}
     </div>
   </div>`;
 }

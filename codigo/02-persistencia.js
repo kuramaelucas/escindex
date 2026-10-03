@@ -163,7 +163,6 @@ function avisarSeFaltarConteudo(){
   if(!r.blocos)     faltando.push("o calendário de blocos (<code>dados/calendario.js</code>)");
   if(!r.questoes)   faltando.push("as questões (<code>dados/banco-didatico.js</code> e as provas)");
   if(!r.flashcards) faltando.push("os flashcards (<code>dados/flashcards-equipe.js</code>)");
-  if(!r.usuarios)   faltando.push("as contas de demonstração (<code>dados/demonstracao.js</code>)");
   if(!faltando.length) return;                      // veio tudo: nada a avisar
   const tudo = r.arquivos.length === 0;
   const tarja = document.createElement("div");

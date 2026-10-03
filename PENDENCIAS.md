@@ -47,6 +47,10 @@ Os trechos cortados aparecem marcados no próprio texto como "[texto incompleto 
 Conferir as 100 questões contra o gabarito definitivo da banca e marcar as anuladas (a edição não informa nenhuma).
 A explicação já avisa onde a alternativa dada como certa tem imprecisão: 2023-8 (a adrenalina intramuscular é a de 1:1.000, não 1:10.000) e 2023-59 (tratamento do HIV "na fase de contágio").
 
+### UNIFESP 2024 nº 1 e nº 88: gabarito que depende da leitura da banca
+
+Na **nº 1** (aneurisma sacular de aorta infrarrenal de 3 cm) o gabarito é o tratamento endovascular (C), e a explicação diz que ele só se sustenta pela forma sacular: pelo diâmetro isolado, a vigilância (A) seria a conduta. Na **nº 88** (triagem de fenilcetonúria que não se confirmou) o gabarito é a hiperfenilalaninemia materna (C), mas o enunciado não traz história materna. Conferir as duas letras com a folha oficial da banca.
+
 ### UNIFESP 2023 nº 30: gabarito que não combina com o enunciado
 
 O banco marca a letra A (teste t para duas populações independentes), mas o enunciado relaciona a mortalidade a quatro variáveis contínuas (leitos de UTI, Gini, IDH e analfabetismo), o que pede regressão múltipla ou, entre as opções, a correlação de Pearson (B). Conferir a letra com a folha oficial da banca; a explicação já avisa.
