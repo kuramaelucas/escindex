@@ -61,9 +61,15 @@ porque todo o resto aponta para ela):
 | `prova-iamspe-2025.js` | IAMSPE 2025 (Avança SP, Acesso Direto), prova real | 100 |
 | `prova-iamspe-2026.js` | IAMSPE 2026 (Avança SP, Acesso Direto), prova real | 100 |
 | `prova-unesp-2023.js` | UNESP (FMB) 2023 (R1 Acesso Direto), prova real | 100 |
+| `prova-famema-2021.js` | FAMEMA 2021 (Cebraspe, Áreas Básicas e Acesso Direto), prova real, gabarito oficial definitivo | 100 |
 | `prova-famema-2022.js` | FAMEMA 2022 (Acesso Direto e Áreas Básicas), prova real, gabarito oficial | 100 |
 | `prova-famema-2023.js` | FAMEMA 2023 (R1), prova real, gabarito da edição usada | 100 |
-| `prova-famema-2025.js` | FAMEMA 2025 (Áreas Básicas e Acesso Direto), prova real, gabarito preliminar + 15 resolvidas pela equipe | 100 |
+| `prova-famema-2025.js` | FAMEMA 2025 (Áreas Básicas e Acesso Direto), prova real, gabarito divulgado pela banca (preliminar) | 100 |
+| `prova-sessp-2022.js` | SES-SP 2022 (Quadrix, Programas de Acesso Direto), prova real, gabarito oficial definitivo (94 e 97 anuladas) | 100 |
+| `prova-sessp-2023.js` | SES-SP 2023 (Quadrix, Programas de Acesso Direto), prova real, gabarito definitivo da banca | 100 |
+| `prova-sessp-2024.js` | SES-SP 2024 (Quadrix, aplicada em 16/12/2023, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
+| `prova-sessp-2025.js` | SES-SP 2025 (Quadrix, aplicada em 14/12/2024, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
+| `prova-sessp-2026.js` | SES-SP 2026 (Acesso Direto), prova real, **gabarito da cópia do caderno, ainda sem conferência com o definitivo** | 100 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
 | `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
 | `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
@@ -71,7 +77,7 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Contas, comentários e livro de ouro de exemplo | 4 + 5 + 4 |
 
-Total: **3.575 questões** (3.440 reais, de 34 provas), **943 cartões**, **258 assuntos** (20 deles, abertos pelas
+Total: **4.175 questões** (4.040 reais, de 40 provas), **943 cartões**, **258 assuntos** (20 deles, abertos pelas
 provas da FAMEMA, ainda sem cartão da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
