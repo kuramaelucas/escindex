@@ -881,6 +881,51 @@ create policy perfis_excluir on public.perfis
   for delete to authenticated
   using (public.e_equipe() and id <> auth.uid());
 
+-- EXCLUIR A CONTA DE VERDADE (libera o e-mail para um novo cadastro). Apagar só
+-- o perfil deixava a conta em auth.users, e o e-mail continuava "já cadastrado".
+-- Esta função apaga a conta; o perfil e todo o estudo da pessoa saem junto, em
+-- cascata. SECURITY DEFINER é o que permite mexer em auth.users sem a chave
+-- service_role no site; por isso confere por dentro que quem chama é da equipe
+-- e que não é a própria conta.
+create or replace function public.excluir_conta(p_id uuid)
+returns boolean
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+begin
+  if auth.uid() is null or not public.e_equipe() or p_id = auth.uid() then
+    return false;
+  end if;
+  delete from auth.users where id = p_id;
+  return found;
+end;
+$$;
+revoke all on function public.excluir_conta(uuid) from public, anon;
+grant execute on function public.excluir_conta(uuid) to authenticated;
+
+-- QUEM AINDA NÃO ENTROU: contas que nunca fizeram login (last_sign_in_at nulo).
+-- O site usa a lista para reenviar o e-mail de acesso. confirmado = a pessoa já
+-- confirmou o e-mail mas nunca entrou. Só equipe; para os outros, zero linhas.
+create or replace function public.contas_sem_primeiro_acesso()
+returns table (id uuid, email text, nome text, confirmado boolean)
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  select u.id, u.email::text, coalesce(p.nome, ''), u.email_confirmed_at is not null
+    from auth.users u
+    left join public.perfis p on p.id = u.id
+   where auth.uid() is not null
+     and public.e_equipe()
+     and u.last_sign_in_at is null
+     and u.email is not null
+   order by u.created_at;
+$$;
+revoke all on function public.contas_sem_primeiro_acesso() from public, anon;
+grant execute on function public.contas_sem_primeiro_acesso() to authenticated;
+
 -- CALENDARIO: todo mundo que está numa conta lê (é o calendário de todos);
 -- só professor e administrador gravam — é quem edita em Admin > Blocos de
 -- Estudo. Sem update aqui um aluno não conseguiria receber a mudança nunca.
