@@ -78,6 +78,7 @@ Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem insta
 - A plataforma **explica o que faz**: quando o algoritmo prioriza, esconde ou muda algo, a tela diz o porquê. Regra que já quebrou uma vez ganha um caso em `testes/regras.test.mjs`.
 - Teste de ponta a ponta: Playwright em `testes/*.test.mjs`, nuvem simulada por `contexto.route(/supabase\.co/, …)`; feche servidor e contexto em `try/finally` (uma falha não pode travar o `node --test`).
 - Conteúdo: enunciado/alternativas/gabarito de prova pública se transcrevem; a **explicação é sempre autoral**, de fontes primárias — nunca copiada de cursinho ou site de questões (`dados/LEIA-ME.md`).
+- **Prova nova, justificativa completa:** toda questão real de arquivo novo em `dados/` traz a explicação no padrão — "Dicas do enunciado:" (ou da imagem), dados objetivos em `**destaque**` com valor normal e ponto de corte, e o motivo de cada alternativa errada (`dados/LEIA-ME.md`, "Padrão de justificativa de prova nova"). `npm run conferir` falha se faltar; só provas anteriores à regra ficam em `PROVAS_ANTERIORES_AO_PADRAO` (`testes/conferir-dados.mjs`), e prova nova nunca entra nessa lista. Comentário oficial da própria banca (Teste de Progresso) é ponto de partida, reescrito nesse padrão.
 
 ## Documentos
 
