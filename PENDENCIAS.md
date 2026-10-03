@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 05/10/2026: 4.175 questões, das quais 4.040 reais, de 40 provas.
+Situação em 07/10/2026: 4.415 questões, das quais 4.280 reais, de 42 provas.
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -12,7 +12,12 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 
 | Prova | O que falta | Como resolver |
 | --- | --- | --- |
+| **Teste de Progresso NIEPAEM, 1º semestre de 2025** (08/05/2025, graduação) | O caderno da prova. Chegou só o gabarito comentado (120 comentários com as referências), que não traz enunciado nem alternativas | Enviar o PDF da prova do 1º semestre de 2025; os comentários dela já estão lidos e viram a explicação das questões (mesmo padrão de `dados/prova-tp-2025-2.js`) |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
+
+### Teste de Progresso 2025/2 e 2026/1: questões de gabarito discutível e cartões dos assuntos novos
+
+O gabarito é o oficial do NIEPAEM. As explicações já avisam onde a letra da banca é discutível: 2025/2 nº 13 (contracepção aos 12 anos e comunicação aos responsáveis), 70 (pneumonia necrosante: C ou D) e 80 (tumor testicular: o seminoma puro também tem AFP normal); 2026/1 nº 22 (o enunciado não descreve o sorteio, mas a banca chama de ensaio clínico), 30 (a citologia inflamatória com metaplasia imatura é benigna, mas o gabarito a trata como ASC-US), 38 (Gleason 6 com PI-RADS 4: a vigilância ativa seria defensável), 87 (urodinâmica na incontinência mista), 97 (cirurgia primária em vez de quimioterapia neoadjuvante no câncer de ovário avançado) e 116 (isquemia aguda grau III: amputação primária). Os 12 assuntos abertos por essas provas (`ass-geriatria-perdapeso`, `ass-alergia-rinite`, `ass-psiq-personalidade`, `ass-infectoped-coqueluche`, `ass-derm-acne`, `ass-saudeplanetaria`, `ass-pneumo-hp`, `ass-neuro-medula`, `ass-psiq-toc`, `ass-genetica-teratogenese`, `ass-genetica-erros-inatos` e `ass-oft-orbita`) ainda não têm cartão da equipe. Quando o NIEPAEM publicar um gabarito definitivo diferente (anulações), conferir as letras.
 
 ### SES-SP 2026: gabarito da cópia do caderno, não o definitivo
 
