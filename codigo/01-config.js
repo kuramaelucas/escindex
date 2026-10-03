@@ -205,6 +205,7 @@ let state = {
   sessaoAtual: null,     // fila de questões em andamento (prática ou simulado)
   sessaoFlash: null,      // baralho de flashcards em andamento (revisão rápida)
   filtroRota: {},         // filtros temporários usados por algumas telas
+  menuGruposFechados: {}, // grupos do menu da equipe que a pessoa recolheu (só nesta sessão)
   mapaSessaoExpandido: false, // a barra de questões (sessão e simulado) está expandida? nasce fina, numa linha
   modoAluno: false,        // permite que admin/professor/residente também usem a plataforma como aluno
 };
