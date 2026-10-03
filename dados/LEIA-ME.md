@@ -331,9 +331,8 @@ comentário oficial — tem de trazer a justificativa completa, e quem confere �
 
 Abertura recomendada: `A alternativa C está correta. Dicas do enunciado: **…**: diagnóstico…`.
 As provas anteriores a essa regra (lista `PROVAS_ANTERIORES_AO_PADRAO`, em
-`testes/conferir-dados.mjs`) não falham; as do Teste de Progresso anteriores
-aparecem como **aviso**, com o número de explicações a melhorar. Prova nova
-**não** se acrescenta a essa lista: ela tem de cumprir a regra. O mesmo texto
+`testes/conferir-dados.mjs`) não falham. As do Teste de Progresso já
+cumprem o padrão e saíram da lista. Prova nova **não** se acrescenta a essa lista: ela tem de cumprir a regra. O mesmo texto
 está nos prompts de importação (`regrasDeConteudoImportacao`), para a IA já
 entregar a explicação no padrão.
 
