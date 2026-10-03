@@ -72,7 +72,7 @@ porque todo o resto aponta para ela):
 | `prova-sessp-2026.js` | SES-SP 2026 (Acesso Direto), prova real, **gabarito da cópia do caderno, ainda sem conferência com o definitivo** | 100 |
 | `prova-tp-2023-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2023 (graduação), prova real, comentário oficial aprimorado; alternativas embaralhadas | 120 |
 | `prova-tp-2023-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2023 (graduação), prova real, comentário oficial aprimorado | 120 |
-| `prova-tp-2024-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2024 (graduação), prova real, **gabarito resolvido pela equipe** (o oficial não veio) | 120 |
+| `prova-tp-2024-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2024 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `prova-tp-2025-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2025 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `prova-tp-2026-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2026 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
