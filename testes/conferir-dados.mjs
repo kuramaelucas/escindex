@@ -19,8 +19,6 @@
          nova (arquivo fora de PROVAS_ANTERIORES_AO_PADRAO): ver abaixo.
 
      AVISOS (não falham — é a lista do que falta fazer):
-       - explicação de prova do Teste de Progresso anterior ao padrão que
-         ainda não segue a justificativa completa;
        - prova com número faltando (ex.: "UNIFESP-EPM 2024: faltam 17, 43");
        - questão que depende de imagem/tabela da prova e ainda não tem;
        - enunciado que fala em imagem sem estar marcado como tal.
@@ -95,17 +93,7 @@ export function resumirNumeros(nums){
    Progresso) e para quem escreve do zero. As provas abaixo são anteriores à
    regra: ficam como estão (as do Teste de Progresso aparecem como aviso, para
    serem melhoradas); prova nova NÃO entra aqui — ela tem de cumprir a regra. */
-export const PROVAS_ANTERIORES_AO_PADRAO = new Set([
-  "prova-unifesp-2022", "prova-unifesp-2023", "prova-unifesp-2024", "prova-unifesp-2025", "prova-unifesp-2026",
-  "prova-santacasa-2021", "prova-santacasa-2022", "prova-santacasa-2023", "prova-santacasa-2025", "prova-santacasa-2026",
-  "prova-usp-2022", "prova-usp-2023", "prova-usp-2024", "prova-usp-2025", "prova-usp-2026",
-  "prova-usprp-2021", "prova-usprp-2022", "prova-usprp-2023", "prova-usprp-2024", "prova-usprp-2025", "prova-usprp-2026",
-  "prova-amrigs-2022", "prova-amrigs-2023", "prova-amrigs-2024", "prova-amrigs-2025",
-  "prova-iamspe-2021", "prova-iamspe-2022", "prova-iamspe-2023", "prova-iamspe-2025", "prova-iamspe-2026",
-  "prova-unesp-2023", "prova-famema-2021", "prova-famema-2022", "prova-famema-2023", "prova-famema-2025",
-  "prova-sessp-2022", "prova-sessp-2023", "prova-sessp-2024", "prova-sessp-2025", "prova-sessp-2026",
-  "prova-tp-2023-1", "prova-tp-2023-2", "prova-tp-2024-1", "prova-tp-2025-2", "prova-tp-2026-1",
-]);
+export const PROVAS_ANTERIORES_AO_PADRAO = new Set([]);
 const DICAS_DO_ENUNCIADO = /Dicas d[oa]s? (enunciado|imagem|figura|tabela|gráfico|lâmina|exame|ECG|eletrocardiograma|radiografia|tomografia|ressonância|foto|fotos|partograma|caso|ecomapa|espirometria|ultrassonografia|hemograma|gasometria|curva|esfregaço)/i;
 
 /* O que falta na explicação de uma questão para cumprir o padrão (lista vazia
@@ -149,7 +137,6 @@ export function conferir(){
     D.questoes.slice(desde, desde + a.itens).forEach(q => origem.set(q.id, a.nome));
     desde += a.itens;
   }
-  const legadoSemPadrao = new Map();
   const provas = new Map();
   for(const q of D.questoes){
     const onde = `questão ${q.id}`;
@@ -175,8 +162,6 @@ export function conferir(){
       if(arquivo && !PROVAS_ANTERIORES_AO_PADRAO.has(arquivo)){
         const faltas = faltasDeJustificativa(q);
         if(faltas.length) erros.push(`${onde} (${arquivo}): explicação fora do padrão de justificativa — ${faltas.join("; ")} (ver dados/LEIA-ME.md, "Como escrever a explicação")`);
-      } else if(arquivo && /^prova-tp-/.test(arquivo) && faltasDeJustificativa(q).length){
-        legadoSemPadrao.set(arquivo, (legadoSemPadrao.get(arquivo) || 0) + 1);
       }
       const chave = `${q.banca} ${q.ano}`;
       if(!provas.has(chave)) provas.set(chave, []);
@@ -197,7 +182,6 @@ export function conferir(){
       avisos.push(`${onde}: o enunciado fala de imagem/tabela, mas a questão não tem imagem nem "imagemPendente"`);
     }
   }
-  for(const [arquivo, n] of legadoSemPadrao) avisos.push(`${arquivo}: ${n} explicação(ões) ainda fora do padrão de justificativa (dicas do enunciado, dados em destaque e o motivo de cada errada) — melhorar`);
   // provas com buraco na numeração. Uma lacuna só é aceita quando está
   // listada aqui, com o motivo — o material de origem não trazia a questão e
   // ela não pode ser inventada; sai daqui quando for transcrita do caderno

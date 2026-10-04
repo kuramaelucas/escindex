@@ -330,10 +330,9 @@ comentário oficial — tem de trazer a justificativa completa, e quem confere �
    texto). Questão anulada só fica dispensada deste item.
 
 Abertura recomendada: `A alternativa C está correta. Dicas do enunciado: **…**: diagnóstico…`.
-As provas anteriores a essa regra (lista `PROVAS_ANTERIORES_AO_PADRAO`, em
-`testes/conferir-dados.mjs`) não falham; as do Teste de Progresso anteriores
-aparecem como **aviso**, com o número de explicações a melhorar. Prova nova
-**não** se acrescenta a essa lista: ela tem de cumprir a regra. O mesmo texto
+Hoje **todas** as provas reais do banco cumprem o padrão: a lista
+`PROVAS_ANTERIORES_AO_PADRAO` (em `testes/conferir-dados.mjs`) está vazia e
+fica assim. Prova nova **não** se acrescenta a ela: tem de cumprir a regra. O mesmo texto
 está nos prompts de importação (`regrasDeConteudoImportacao`), para a IA já
 entregar a explicação no padrão.
 
