@@ -85,7 +85,7 @@ const SEED_SEQUENCIAS_ANO = (window.EscDados && window.EscDados.sequenciasAno) |
 const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
 /* ---------------------------- SEED_QUESTOES -------------------------------
    As questões vêm dos arquivos da pasta dados/ (lista e ordem de carga em
-   ESC_ARQUIVOS.dados, no index.html); SEED_QUESTOES é só o apelido da lista
+   dados/manifesto.js); SEED_QUESTOES é só o apelido da lista
    já montada. Para acrescentar: a tela Importar Questões (ou a Central de
    Provas) ou um arquivo novo em dados/ — molde e passo a passo em
    dados/LEIA-ME.md.

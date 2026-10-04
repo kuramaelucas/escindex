@@ -2,7 +2,7 @@
    CONFERIDOR DA PASTA dados/
    ==========================================================================
    Lê todos os arquivos de conteúdo do jeito que o navegador lê (na ordem da
-   lista ESC_ARQUIVOS do index.html) e confere o que ninguém confere de olho
+   lista de dados/manifesto.js) e confere o que ninguém confere de olho
    em 635 questões:
 
      ERROS (fazem o teste falhar — algo está quebrado):
@@ -14,7 +14,9 @@
        - tipo de prova (tipoProva) diferente de "residencia" e "graduacao";
        - imagem apontando para um arquivo de dados/imagens/ que não existe;
        - simulado com questão que não existe; bloco com especialidade que
-         não existe; cartão sem frente ou sem verso.
+         não existe; cartão sem frente ou sem verso;
+       - explicação fora do padrão de justificativa em QUALQUER prova real
+         nova (arquivo fora de PROVAS_ANTERIORES_AO_PADRAO): ver abaixo.
 
      AVISOS (não falham — é a lista do que falta fazer):
        - prova com número faltando (ex.: "UNIFESP-EPM 2024: faltam 17, 43");
@@ -29,17 +31,17 @@ import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
-const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const RAIZ = process.env.ESC_RAIZ || path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 /* O enunciado fala de algo que o aluno precisa VER? Só as expressões que
    apareceram de verdade nas provas — "abaixo das artérias renais" não conta. */
 export const MENCIONA_IMAGEM = /(imagem anexa|\(imagem a seguir\)|\(figura\)|figura anexa|representad[ao] na (imagem|tabela)|gráfico abaixo|quadro abaixo|tabela do tipo|ECG de admissão a seguir|imagens do exame abaixo|ultrassonografia abdominal anexo)/i;
 
 export function arquivosDeConteudo(){
-  const html = fs.readFileSync(path.join(RAIZ, "index.html"), "utf8");
-  const lista = /dados:\s*\[([^\]]*)\]/.exec(html);
-  if(lista) return [...lista[1].matchAll(/"([^"]+)"/g)].map(m => "dados/" + m[1] + ".js");
-  return [...html.matchAll(/<script src="(dados\/[a-z0-9-]+\.js)/g)].map(m => m[1]);
+  const txt = fs.readFileSync(path.join(RAIZ, "dados", "manifesto.js"), "utf8");
+  const lista = /ESC_ARQUIVOS\.dados\s*=\s*\[([^\]]*)\]/.exec(txt);
+  if(!lista) throw new Error("não achei a lista window.ESC_ARQUIVOS.dados em dados/manifesto.js");
+  return [...lista[1].matchAll(/"([^"]+)"/g)].map(m => "dados/" + m[1] + ".js");
 }
 
 /* A plataforma tenta a extensão escrita e, se não achar, as outras (ver
@@ -77,6 +79,39 @@ export function resumirNumeros(nums){
   return partes.join(", ");
 }
 
+/* PADRÃO DE JUSTIFICATIVA DAS PROVAS REAIS. Toda questão real de prova nova
+   (arquivo que não está na lista abaixo) precisa de uma explicação que:
+     1. tenha corpo suficiente (300 caracteres ou mais);
+     2. destaque entre ** ** os dados objetivos (sinal vital, exame, valor de
+        corte, escore) e as dicas que levam à resposta;
+     3. nomeie as dicas do enunciado ("Dicas do enunciado:", "Dicas da imagem:"
+        etc.), isto é, mostre ONDE no caso está a resposta;
+     4. diga por que cada alternativa errada está errada (cada letra
+        errada aparece no texto).
+   É a regra de "Como escrever a explicação" em dados/LEIA-ME.md, e vale para
+   quem escreve a explicação a partir do comentário oficial da banca (Teste de
+   Progresso) e para quem escreve do zero. As provas abaixo são anteriores à
+   regra: ficam como estão (as do Teste de Progresso aparecem como aviso, para
+   serem melhoradas); prova nova NÃO entra aqui — ela tem de cumprir a regra. */
+export const PROVAS_ANTERIORES_AO_PADRAO = new Set([]);
+const DICAS_DO_ENUNCIADO = /Dicas d[oa]s? (enunciado|imagem|figura|tabela|gráfico|lâmina|exame|ECG|eletrocardiograma|radiografia|tomografia|ressonância|foto|fotos|partograma|caso|ecomapa|espirometria|ultrassonografia|hemograma|gasometria|curva|esfregaço)/i;
+
+/* O que falta na explicação de uma questão para cumprir o padrão (lista vazia
+   = cumpre). Anulada fica dispensada só do item 4: não tem alternativa certa. */
+export function faltasDeJustificativa(q){
+  const t = String(q.explicacaoGeral || ""), faltas = [];
+  if(t.length < 300) faltas.push("menos de 300 caracteres");
+  if(!/\*\*[^*]+\*\*/.test(t)) faltas.push("nenhum dado ou dica em destaque entre ** **");
+  if(!DICAS_DO_ENUNCIADO.test(t)) faltas.push('sem "Dicas do enunciado:" (ou da imagem, da figura…)');
+  if(q.status !== "anulada" && q.gabarito){
+    const semAbertura = t.replace(/A alternativa [A-E] /, "");
+    const semMencao = (q.alternativas || []).map(a => a.id)
+      .filter(L => L !== q.gabarito && !new RegExp("(^|[^A-Za-zÀ-ÿ])" + L + "([^A-Za-zÀ-ÿ]|$)").test(semAbertura));
+    if(semMencao.length) faltas.push("não diz por que erram as alternativas " + semMencao.join(", "));
+  }
+  return faltas;
+}
+
 export function conferir(){
   const { dados: D, faltando } = carregarConteudo();
   const erros = [], avisos = [], pendenciasImagem = [];
@@ -96,6 +131,12 @@ export function conferir(){
 
   // questões
   repetidos(D.questoes, "questão");
+  // de qual arquivo veio cada questão (a ordem de D.arquivos é a de registro)
+  const origem = new Map(); let desde = 0;
+  for(const a of D.arquivos.filter(a => a.tipo === "questões")){
+    D.questoes.slice(desde, desde + a.itens).forEach(q => origem.set(q.id, a.nome));
+    desde += a.itens;
+  }
   const provas = new Map();
   for(const q of D.questoes){
     const onde = `questão ${q.id}`;
@@ -117,6 +158,11 @@ export function conferir(){
     if(q.real){
       if(!q.banca || !q.ano) erros.push(`${onde}: questão real sem banca ou ano`);
       if(!Number.isInteger(q.numeroNaProva)) erros.push(`${onde}: questão real sem numeroNaProva`);
+      const arquivo = origem.get(q.id);
+      if(arquivo && !PROVAS_ANTERIORES_AO_PADRAO.has(arquivo)){
+        const faltas = faltasDeJustificativa(q);
+        if(faltas.length) erros.push(`${onde} (${arquivo}): explicação fora do padrão de justificativa — ${faltas.join("; ")} (ver dados/LEIA-ME.md, "Como escrever a explicação")`);
+      }
       const chave = `${q.banca} ${q.ano}`;
       if(!provas.has(chave)) provas.set(chave, []);
       provas.get(chave).push(q);
@@ -174,19 +220,28 @@ export function conferir(){
   };
 }
 
+/* Saída enxuta, para não gastar leitura:
+     npm run conferir                 tudo (como sempre)
+     npm run conferir -- --resumo     só os totais, quantas pendências e os erros
+     npm run conferir -- usp-2027     só as linhas que citam "usp-2027" (id, prova ou ano) */
 if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])){
   const r = conferir();
+  const filtro = process.argv.slice(2).filter(a => !a.startsWith("--")).map(a => a.replace(/^prova-/, "").toLowerCase());
+  const resumo = process.argv.includes("--resumo");
+  // "usp-2027" casa com o id (q-usp2027-005) e com a prova ("USP-SP (FMUSP) 2027"): todas as partes têm de aparecer
+  const casa = txt => !filtro.length || filtro.some(f => f.split("-").every(parte => txt.toLowerCase().includes(parte)));
   if(process.argv.includes("--json")){ console.log(JSON.stringify(r, null, 2)); }
   else {
     const t = r.totais;
     console.log(`Conteúdo: ${t.questoes} questões (${t.reais} reais, ${t.provas} provas), ${t.cartoes} cartões, ${t.assuntos} assuntos (${t.assuntosSemCartao} sem cartão da equipe).\n`);
-    if(r.pendenciasImagem.length){
-      console.log(`Questões esperando imagem ou tabela da prova original (${r.pendenciasImagem.length}):`);
-      r.pendenciasImagem.forEach(p => console.log(`  - ${p.id}: ${p.falta}${p.arquivo ? `  → salvar como ${p.arquivo}` : ""}`));
+    const pend = r.pendenciasImagem.filter(p => casa(p.id)), avisos = r.avisos.filter(casa), erros = r.erros.filter(casa);
+    if(pend.length){
+      console.log(`Questões esperando imagem ou tabela da prova original (${pend.length}):`);
+      if(!resumo) pend.forEach(p => console.log(`  - ${p.id}: ${p.falta}${p.arquivo ? `  → salvar como ${p.arquivo}` : ""}`));
       console.log("");
     }
-    if(r.avisos.length){ console.log(`Avisos (${r.avisos.length}):`); r.avisos.forEach(a => console.log("  - " + a)); console.log(""); }
-    if(r.erros.length){ console.log(`ERROS (${r.erros.length}):`); r.erros.forEach(e => console.log("  ✗ " + e)); }
+    if(avisos.length){ console.log(`Avisos (${avisos.length}):`); if(!resumo) avisos.forEach(a => console.log("  - " + a)); console.log(""); }
+    if(erros.length){ console.log(`ERROS (${erros.length}):`); erros.forEach(e => console.log("  ✗ " + e)); }
     else console.log("Nenhum erro. ✓");
   }
   process.exit(r.erros.length ? 1 : 0);

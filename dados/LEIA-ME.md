@@ -22,74 +22,30 @@ sozinho no GitHub a cada envio.
 
 ## O que tem aqui
 
-Na ordem em que são carregados (a ordem importa: a taxonomia vem primeiro
-porque todo o resto aponta para ela):
+A lista completa — arquivo por arquivo, com título, itens, questões que faltam,
+anuladas e figuras pendentes — está em **[`CATALOGO.md`](CATALOGO.md)**, gerado
+do próprio conteúdo por `npm run publicar` (por isso as contagens nunca
+envelhecem e ninguém atualiza número em documento). Para consultar sem abrir
+arquivo (cada prova tem ~300 KB): `npm run dados` (visão geral),
+`npm run dados -- usp-2026` (uma prova), `npm run dados -- q-usp2026-017`
+(uma questão), `npm run dados -- taxonomia cardio` (ids de assunto),
+`npm run dados -- buscar "sepse"` (enunciados).
 
-| Arquivo | Conteúdo | Itens |
-| --- | --- | --- |
-| `taxonomia.js` | Área > especialidade > assunto | 5 + 41 + 238 |
-| `calendario.js` | Blocos de estudo e a sequência de cada ano | 4 anos (o 6º tem 5 períodos do Grupo E, com subdivisões; o 4º tem 10 blocos e 10 turmas; o 5º, 12 estágios e o quadro de turmas) |
-| `banco-didatico.js` | Questões autorais da equipe, no estilo da prova | 135 |
-| `prova-unifesp-2022.js` | UNIFESP-EPM 2022 (Acesso Direto), prova real | 100 |
-| `prova-unifesp-2023.js` | UNIFESP-EPM 2023 (Acesso Direto), prova real | 100 |
-| `prova-unifesp-2024.js` | UNIFESP-EPM 2024 (Acesso Direto), prova real | 100 |
-| `prova-unifesp-2025.js` | UNIFESP-EPM 2025 (Acesso Direto), prova real | 100 |
-| `prova-unifesp-2026.js` | UNIFESP-EPM 2026 (Acesso Direto), prova real | 100 |
-| `prova-santacasa-2021.js` | Santa Casa de São Paulo (FCMSCSP) 2021 (R1 Acesso Direto), prova real | 100 |
-| `prova-santacasa-2022.js` | Santa Casa de São Paulo (FCMSCSP) 2022 (R1 Acesso Direto), prova real | 100 |
-| `prova-santacasa-2023.js` | Santa Casa de São Paulo (FCMSCSP) 2023 (R1 Acesso Direto), prova real | 100 |
-| `prova-santacasa-2025.js` | Santa Casa de São Paulo (FCMSCSP) 2025 (R1 Acesso Direto), prova real | 100 |
-| `prova-santacasa-2026.js` | Santa Casa de São Paulo (FCMSCSP) 2026 (R1 Acesso Direto), prova real | 100 |
-| `prova-usp-2022.js` | USP-SP (FMUSP) 2022 (R1 Acesso Direto), prova real | 100 |
-| `prova-usp-2023.js` | USP-SP (FMUSP) 2023 (R1 Acesso Direto), prova real | 120 |
-| `prova-usp-2024.js` | USP-SP (FMUSP) 2024 (R1 Acesso Direto), prova real | 120 |
-| `prova-usp-2025.js` | USP-SP (FMUSP) 2025 (R1 Acesso Direto), prova real | 120 |
-| `prova-usp-2026.js` | USP-SP (FMUSP) 2026 (R1 Acesso Direto), prova real | 120 |
-| `prova-usprp-2021.js` | USP-RP (FMRP) 2021 (R1 Acesso Direto), prova real | 118 |
-| `prova-usprp-2022.js` | USP-RP (FMRP) 2022 (R1 Acesso Direto), prova real | 100 |
-| `prova-usprp-2023.js` | USP-RP (FMRP) 2023 (R1 Acesso Direto), prova real | 100 |
-| `prova-usprp-2024.js` | USP-RP (FMRP) 2024 (R1 Acesso Direto), prova real | 100 |
-| `prova-usprp-2025.js` | USP-RP (FMRP) 2025 (R1 Acesso Direto), prova real | 100 |
-| `prova-usprp-2026.js` | USP-RP (FMRP) 2026 (R1 Acesso Direto), prova real | 100 |
-| `prova-amrigs-2020.js` | AMRIGS 2020 (prova AMB/AMRIGS/ACM/AMMS, aplicada em 22/11/2020, Acesso Direto), prova real, gabarito definitivo (12 anuladas) | 100 |
-| `prova-amrigs-2021.js` | AMRIGS 2021 (prova AMB/AMRIGS/ACM/AMMS 02/2021, aplicada em 14/11/2021, Acesso Direto), prova real, gabarito definitivo (7 anuladas) | 100 |
-| `prova-amrigs-2022.js` | AMRIGS 2022 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
-| `prova-amrigs-2023.js` | AMRIGS 2023 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
-| `prova-amrigs-2024.js` | AMRIGS 2024 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
-| `prova-amrigs-2025.js` | AMRIGS 2025 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
-| `prova-iamspe-2021.js` | IAMSPE 2021 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
-| `prova-iamspe-2022.js` | IAMSPE 2022 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
-| `prova-iamspe-2023.js` | IAMSPE 2023 (Quadrix, Acesso Direto e Áreas Básicas), prova real | 80 |
-| `prova-iamspe-2025.js` | IAMSPE 2025 (Avança SP, Acesso Direto), prova real | 100 |
-| `prova-iamspe-2026.js` | IAMSPE 2026 (Avança SP, Acesso Direto), prova real | 100 |
-| `prova-unesp-2023.js` | UNESP (FMB) 2023 (R1 Acesso Direto), prova real | 100 |
-| `prova-famema-2021.js` | FAMEMA 2021 (Cebraspe, Áreas Básicas e Acesso Direto), prova real, gabarito oficial definitivo | 100 |
-| `prova-famema-2022.js` | FAMEMA 2022 (Acesso Direto e Áreas Básicas), prova real, gabarito oficial | 100 |
-| `prova-famema-2023.js` | FAMEMA 2023 (R1), prova real, gabarito da edição usada | 100 |
-| `prova-famema-2025.js` | FAMEMA 2025 (Áreas Básicas e Acesso Direto), prova real, gabarito divulgado pela banca (preliminar) | 100 |
-| `prova-sessp-2022.js` | SES-SP 2022 (Quadrix, Programas de Acesso Direto), prova real, gabarito oficial definitivo (94 e 97 anuladas) | 100 |
-| `prova-sessp-2023.js` | SES-SP 2023 (Quadrix, Programas de Acesso Direto), prova real, gabarito definitivo da banca | 100 |
-| `prova-sessp-2024.js` | SES-SP 2024 (Quadrix, aplicada em 16/12/2023, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
-| `prova-sessp-2025.js` | SES-SP 2025 (Quadrix, aplicada em 14/12/2024, Acesso Direto), prova real, gabarito definitivo da banca | 100 |
-| `prova-sessp-2026.js` | SES-SP 2026 (Acesso Direto), prova real, **gabarito da cópia do caderno, ainda sem conferência com o definitivo** | 100 |
-| `prova-tp-2023-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2023 (graduação), prova real, comentário oficial aprimorado; alternativas embaralhadas | 120 |
-| `prova-tp-2023-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2023 (graduação), prova real, comentário oficial aprimorado | 120 |
-| `prova-tp-2024-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2024 (graduação), prova real, comentário oficial aprimorado | 120 |
-| `prova-tp-2025-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2025 (graduação), prova real, comentário oficial aprimorado; a nº 97 está desatualizada | 120 |
-| `prova-tp-2025-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2025 (graduação), prova real, comentário oficial aprimorado | 120 |
-| `prova-tp-2026-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2026 (graduação), prova real, comentário oficial aprimorado | 120 |
-| `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
-| `flashcards-assuntos-novos.js` | Cartões dos 125 assuntos que não tinham nenhum (revisão pendente) | 376 |
-| `flashcards-assuntos-usp.js` | Cartões dos 19 assuntos abertos pelas provas da USP-SP (revisão pendente) | 57 |
-| `flashcards-assuntos-usprp.js` | Cartões dos 3 assuntos abertos pelas provas da USP-RP (revisão pendente) | 9 |
-| `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
-| `demonstracao.js` | Vazio de propósito (sem contas nem exemplos); o fixture dos testes está em `testes/fixtures/` | 0 |
+**`manifesto.js` é a lista dos arquivos, na ordem em que carregam** (a ordem
+importa: a taxonomia vem primeiro, porque todo o resto aponta para ela). É
+nele — e não no `index.html` — que um arquivo novo é registrado, de modo que
+acrescentar conteúdo só mexe nesta pasta. O teste de higiene falha se a lista
+e a pasta divergirem.
 
-Total: **5.095 questões** (4.960 reais, de 48 provas), **943 cartões**, **270 assuntos** (32 deles, abertos pelas
-provas da FAMEMA e pelo Teste de Progresso, ainda sem cartão da equipe) e **1 simulado**.
+Os tipos de arquivo: `taxonomia.js`, `calendario.js`, `banco-didatico.js`
+(questões autorais), `prova-<banca>-<ano>.js` (uma prova real cada),
+`flashcards-*.js` (cartões da equipe), `simulados-equipe.js` e
+`demonstracao.js` (vazio de propósito: as contas de exemplo moram em
+`testes/fixtures/`). Observações de cada prova (origem do gabarito, figuras,
+anuladas) ficam no **cabeçalho do próprio arquivo**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
-ver `imagens/LEIA-ME.md`, que lista as 86 que ainda faltam. O resumo de tudo o que falta no banco de questões
+ver `imagens/LEIA-ME.md`, que explica como anexar. O resumo de tudo o que falta no banco de questões
 (provas incompletas, textos cortados, gabaritos a conferir) está em
 `../PENDENCIAS.md`.
 
@@ -131,21 +87,66 @@ Do mais fácil ao mais trabalhoso:
    o arquivo correspondente (`calendario.js` no caso do botão acima) pelo que
    foi exportado, ou siga o caminho 2 ou 3 para questões/taxonomia/etc., e
    publique o site de novo.
-2. **Acrescentar itens a um arquivo que já existe aqui.** Abra o arquivo, copie
-   o molde abaixo e acrescente antes do `]);` do fim.
-3. **Criar um arquivo novo** aqui e escrever o nome dele (sem o `.js`) na
-   lista `ESC_ARQUIVOS.dados` do `index.html` — é uma lista curta, logo no
-   fim do arquivo. É assim que entra uma prova inteira de uma banca nova.
-   **A ordem da lista é a ordem em que o conteúdo entra no banco** (a
-   taxonomia vem primeiro, porque todo o resto aponta para ela).
+2. **Por linha de comando, com a entrada compacta** (o caminho de quem — pessoa
+   ou IA — transcreve uma prova inteira; ver "Entrada compacta" abaixo):
+   `npm run nova-prova` cria o arquivo e o registra em `manifesto.js`;
+   `npm run adicionar-questoes` grava os lotes, conferindo antes.
+3. **À mão:** acrescentar itens a um arquivo que já existe aqui (copie o molde
+   abaixo e acrescente antes do `]);` do fim), ou criar um arquivo novo e
+   escrever o nome dele (sem o `.js`) em `manifesto.js`. É assim que entra uma
+   prova inteira de uma banca nova, e **a ordem da lista é a ordem em que o
+   conteúdo entra no banco**.
 
-**A cada publicação, mude a versão — num lugar só.** O `window.ESC_VERSAO`,
-no alto do `index.html`, é a data que vai no endereço de cada arquivo
-(`?v=…`) e é ela que impede o navegador de continuar usando o arquivo antigo
-depois de uma troca (e que faz a página se atualizar sozinha). Mudou um
-arquivo daqui — inclusive o `calendario.js` exportado da plataforma? Troque
-essa data antes de publicar. (Até setembro de 2026 eram doze lugares para
-trocar; o carregador passou a montar todos os endereços a partir dela.)
+**Depois de qualquer mudança aqui, rode `npm run publicar` — uma vez.** Ele
+regera o `CATALOGO.md` e atualiza a versão no `index.html`. A versão
+(`window.ESC_VERSAO`) tem o formato `AAAA-MM-DD.cHASH.dHASH`: o `cHASH` vem do
+código e o `dHASH` do conteúdo desta pasta, e é por isso que o navegador de
+cada aluno só baixa de novo o que mudou — **mudar a plataforma não refaz o
+download das questões (12 MB), e acrescentar uma prova não refaz o do código**.
+Ninguém troca a versão à mão (e esquecer não passa: `npm test` e o CI conferem
+com `npm run publicar -- --conferir`).
+
+## Entrada compacta — como subir uma prova gastando pouco
+
+Prova nova, do zero:
+
+```
+npm run nova-prova -- usp-2027 "USP-SP (FMUSP)" 2027 --total 120
+npm run dados -- taxonomia cardio                  # ids de assunto, só os que interessam
+npm run adicionar-questoes -- usp-2027 lote-1.json # lotes de 20–30; cada um é conferido
+npm run publicar
+```
+
+`nova-prova` cria `dados/prova-usp-2027.js` com o cabeçalho no padrão e a
+**ficha** da prova (`@ficha {...}`: banca, ano, prefixo dos ids, nº de
+alternativas, tipo) e a põe em `manifesto.js`. O arquivo de lote é uma lista
+JSON em que cada questão traz **só o que é dela** — a ferramenta completa
+`id`, `banca`, `ano`, `real`, `areaId`/`especialidadeId` (pelo assunto),
+`estatisticas`, `criadoPor`/`criadoEm`, e escreve no formato das outras provas:
+
+```json
+[{ "n": 1, "assunto": "ass-sca",
+   "enunciado": "Homem, 58 anos, dor torácica…",
+   "alt": ["texto da A", "texto da B", "texto da C", "texto da D"],
+   "gabarito": "C",
+   "explicacao": "A alternativa C está correta. Dicas do enunciado: **…** …",
+   "referencias": "Diretriz X, 2025.",
+   "dificuldade": "intermediario" }]
+```
+
+Opcionais: `status:"anulada"` (com `motivo` e `gabarito:""`), `figura:"png"`
+(ou `"jpg"`; a imagem tem de estar em `dados/imagens/<id>.png`),
+`imagemPendente:"ECG de admissão"`, `imagemLegenda`, `explicacoesAlternativas`.
+É **tudo ou nada**: se uma questão do lote falha (assunto que não existe,
+gabarito fora das letras, número repetido, explicação fora do padrão de
+justificativa, campo desconhecido), nada é gravado e o problema vem com o
+número da questão; `--simular` só confere. Depois de gravar, o conferidor
+completo roda de novo e, se achar erro nessas questões, o arquivo volta ao que era.
+
+Para **mudar a plataforma sem mexer em questões** vale o inverso: o
+conteúdo não conhece o código (só o molde acima), o teste de conteúdo
+(`npm run testar-mudanca`) escolhe sozinho o que rodar conforme o que mudou, e o
+hash do conteúdo não muda enquanto esta pasta não mudar.
 
 ## Como é um arquivo desta pasta
 
@@ -308,7 +309,33 @@ o motivo de cada alternativa errada) e as referências oficiais vão em
 `referencias`. Onde o gabarito da banca é discutível (a explicação diz), o
 texto avisa. A instituição leva o semestre no nome (`Teste de Progresso NIEPAEM
 2º semestre`), porque Provas Antigas agrupa por instituição, ano e tipo e duas
-aplicações no mesmo ano se misturariam.
+aplicações no mesmo ano se misturariam. Quando a banca **não** divulga o
+comentário (o caderno de 2022 chegou só com a alternativa certa marcada, sempre
+em A), a explicação é inteira da equipe, escrita de fontes primárias, as
+alternativas são embaralhadas para o estudo não virar "marque sempre A", e a
+questão cuja marcação contradiz o próprio enunciado segue o conteúdo e leva o
+motivo em `motivoStatus` (2022 nº 117).
+
+### Padrão de justificativa de prova nova (conferido sozinho)
+
+Toda questão **real** de uma prova nova — de qualquer banca, com ou sem
+comentário oficial — tem de trazer a justificativa completa, e quem confere é
+`npm run conferir` (e o teste `conteudo.test.mjs`), que **falha** se faltar algo:
+
+1. corpo suficiente (300 caracteres ou mais);
+2. os dados objetivos e as dicas que levam à resposta **em destaque** entre
+   `** **` (sinal vital, exame com o valor, ponto de corte, escore, achado da imagem);
+3. o rótulo **"Dicas do enunciado:"** (ou "Dicas da imagem:", "da figura:"…), que
+   mostra ONDE no caso está a resposta;
+4. **cada alternativa errada** com o seu motivo (cada letra errada aparece no
+   texto). Questão anulada só fica dispensada deste item.
+
+Abertura recomendada: `A alternativa C está correta. Dicas do enunciado: **…**: diagnóstico…`.
+Hoje **todas** as provas reais do banco cumprem o padrão: a lista
+`PROVAS_ANTERIORES_AO_PADRAO` (em `testes/conferir-dados.mjs`) está vazia e
+fica assim. Prova nova **não** se acrescenta a ela: tem de cumprir a regra. O mesmo texto
+está nos prompts de importação (`regrasDeConteudoImportacao`), para a IA já
+entregar a explicação no padrão.
 
 ## Cuidados práticos
 
