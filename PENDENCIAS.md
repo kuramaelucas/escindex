@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 07/10/2026: 4.775 questões, das quais 4.640 reais, de 45 provas.
+Situação em 04/10/2026: 4.775 questões, das quais 4.640 reais, de 45 provas, e 943 cartões da equipe (32 assuntos ainda sem cartão, seção 5).
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -13,6 +13,7 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 | Prova | O que falta | Como resolver |
 | --- | --- | --- |
 | **Teste de Progresso NIEPAEM, 1º semestre de 2025** (08/05/2025, graduação) | O caderno da prova. Chegou só o gabarito comentado (120 comentários com as referências), que não traz enunciado nem alternativas | Enviar o PDF da prova do 1º semestre de 2025; os comentários dela já estão lidos e viram a explicação das questões (mesmo padrão de `dados/prova-tp-2025-2.js`) |
+| **IAMSPE 2024** (Avança SP) | A prova inteira. Veio só o gabarito definitivo (60 questões por especialidade, "X" marca anulada), sem o caderno | Enviar o caderno da prova; o gabarito já está em mãos |
 | **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
 
 ### Teste de Progresso 2025/2 e 2026/1: questões de gabarito discutível e cartões dos assuntos novos
@@ -62,7 +63,6 @@ O banco marca a letra A (teste t para duas populações independentes), mas o en
 - **2022**: gabarito da folha oficial. A explicação avisa onde ele é discutível: 18 (coorte), 65 (classificação laparoscópica de Gomes), 68 (espaço do Rives-Stoppa) e 69 (sutura de Halsted).
 - **2023**: gabarito da edição em texto usada (como na UNESP), não da folha oficial; a edição não informa anuladas. Conferir com o definitivo, em especial 22, 25, 39, 45, 62 e 77, onde a explicação já avisa que o gabarito parece discutível.
 - **2025**: as 100 letras são as do gabarito divulgado pela banca no dia da prova (as 15 que antes eram só da equipe coincidem com ele). A 39 (diarreia) tem duas alternativas defensáveis, a A (zinco) e a D (ciprofloxacina na disenteria). Falta o gabarito definitivo (14/01/2025) para marcar as anuladas.
-- **IAMSPE 2024** (Avança SP): o gabarito definitivo chegou (60 questões por especialidade, "X" marca anulada), mas **sem o caderno de questões**; falta enviar a prova para entrar no banco.
 
 ### USP-RP 2021 a 2025: gabarito vindo do PDF comentado, não da folha oficial
 
@@ -166,3 +166,7 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
 - **AMRIGS 2021**: a prova inteira.
 - **UNESP 2023**: o gabarito definitivo oficial.
+
+## 5. Assuntos sem cartão da equipe (32)
+
+O banco tem 943 cartões em 238 dos 270 assuntos. Faltam cartões (três por assunto é o piso) para: `ass-politicasnacionais`, `ass-leishmaniose`, `ass-restricaocrescimento`, `ass-partopretermo`, `ass-vitalidadefetal`, `ass-ddsmalformacoes`, `ass-dorpelvica`, `ass-neuroendocrinos`, `ass-divertmeckel`, `ass-hipoglicemianeo`, `ass-intussuscepcao`, `ass-emerg-ambientais`, `ass-marcadorestumorais`, `ass-toxinfeccao`, `ass-anatomiacirurgica`, `ass-febrelactente`, `ass-orl-glandulas`, `ass-caesofago`, `ass-sincope`, `ass-psiq-alimentar` e os 12 do Teste de Progresso listados na seção 1. Em *Revisão Rápida › Cobrir os assuntos sem cartão — em lote* dá para gerar tudo numa tarde; os 376 cartões de `flashcards-assuntos-novos.js` ainda esperam a conferência de um professor (`revisao: "pendente"`).
