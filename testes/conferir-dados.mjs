@@ -93,12 +93,7 @@ export function resumirNumeros(nums){
    Progresso) e para quem escreve do zero. As provas abaixo são anteriores à
    regra: ficam como estão (as do Teste de Progresso aparecem como aviso, para
    serem melhoradas); prova nova NÃO entra aqui — ela tem de cumprir a regra. */
-export const PROVAS_ANTERIORES_AO_PADRAO = new Set([
-  
-  
-
-  "prova-unesp-2023",
-]);
+export const PROVAS_ANTERIORES_AO_PADRAO = new Set([]);
 const DICAS_DO_ENUNCIADO = /Dicas d[oa]s? (enunciado|imagem|figura|tabela|gráfico|lâmina|exame|ECG|eletrocardiograma|radiografia|tomografia|ressonância|foto|fotos|partograma|caso|ecomapa|espirometria|ultrassonografia|hemograma|gasometria|curva|esfregaço)/i;
 
 /* O que falta na explicação de uma questão para cumprir o padrão (lista vazia

@@ -27,10 +27,6 @@ O gabarito é o oficial (comentado). O caderno de 2023/1 ("versão gabaritada") 
 
 **2022 (04/10/2022):** o caderno veio sem comentário oficial e com a alternativa certa sempre em A; a explicação é toda da equipe e as alternativas foram embaralhadas. Quando a banca divulgar o gabarito comentado, enviar para conferir as 120 letras. Três questões estão como *desatualizadas*, com o motivo na questão: **28** (líquor com glicose de 26 mg/dL e o gabarito "enterovírus"), **70** (estágio IV, gabarito "quimioterapia neoadjuvante") e **117** (a marcação do caderno, "afastar dengue", contradiz a sensibilidade do teste: o gabarito aqui é "manter sob suspeita"). Também vale conferir a **7** (a peça da figura 1 foi lida como aneurisma, segundo a marcação do caderno: túnica média) e a **112** (a alternativa D, vulnerabilidades individual e social de ambas, também é defensável). **2020:** 91 e 105 foram anuladas pela banca; 81 e 90 estão *desatualizadas*. **2021:** 19 e 35 estão *desatualizadas*; a 120 não tem comentário oficial, só as referências.
 
-### Provas anteriores ao padrão de justificativa
-
-O conferidor lista como aviso as explicações das provas do Teste de Progresso de 2023 a 2026 que ainda não cumprem o padrão (dicas do enunciado, dados em destaque e o motivo de cada errada): 2023/1 (13), 2023/2 (6), 2024/1 (7), 2025/2 (5) e 2026/1 (10). A lista exata sai de `npm run conferir`; ao melhorar cada uma, o aviso some sozinho.
-
 ### SES-SP 2026: gabarito da cópia do caderno, não o definitivo
 
 As 100 letras vêm da lista de respostas da cópia do caderno; nenhuma questão está marcada como anulada. Enviar o **gabarito definitivo da seleção 2026** para conferir e marcar as anuladas. As explicações que dizem "foi a indicada no gabarito usado" apontam as letras mais duvidosas (por exemplo 12, 27, 44, 48, 70 e 92). A questão 48 (profilaxia da tuberculose em criança) segue o esquema de 270 doses, anterior ao protocolo atual do Ministério da Saúde (isoniazida por 6 meses).
