@@ -20,14 +20,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
-/* VERSÃO DA PLATAFORMA — mude a cada publicação, e SÓ AQUI.
+/* VERSÃO DA PLATAFORMA — NÃO se edita à mão: rode `npm run publicar`.
    É o remédio para "a página abriu a versão velha". O navegador (e o
    servidor do site) guardam cópia do index.html e dos arquivos das pastas
    codigo/ e dados/ e, depois de uma atualização, podem continuar
    entregando a cópia antiga — ou, pior, o index.html novo com um
    calendario.js velho. Três defesas:
-     1. todo arquivo de codigo/ e de dados/ é pedido com ?v=VERSÃO no
-        endereço (ver o carregador no fim desta página): versão nova é
+     1. todo arquivo de codigo/ é pedido com ?v=cHASH e todo arquivo de dados/
+        com ?v=dHASH (ver o carregador no fim desta página): versão nova é
         endereço novo, e cópia guardada não serve;
      2. ao abrir, a plataforma baixa o index.html do servidor sem cache e
         compara a versão dele com esta; se o servidor tem uma mais nova, a
@@ -35,12 +35,21 @@
         de uma questão) — ver verificarVersaoNova(), na seção 27-B;
      3. o service worker (sw.js) busca tudo na rede primeiro e só usa a
         cópia guardada quando não há internet.
-   AO PUBLICAR: troque a data abaixo. Como os ?v= são montados a partir
-   dela, não há mais doze lugares para lembrar — é um só. */
-window.ESC_VERSAO = "2026-11-21-justificativas-unesp2023";
-/* O visual vem de codigo/estilo.css, pedido com a versão no endereço pelo
-   mesmo motivo. */
-document.write('<link rel="stylesheet" href="codigo/estilo.css?v=' + encodeURIComponent(window.ESC_VERSAO) + '">');
+   O FORMATO é AAAA-MM-DD.cHASH.dHASH. Os dois hashes são calculados pelo
+   `npm run publicar` a partir do conteúdo: cHASH muda quando muda o código
+   (codigo/, sw.js, esta página); dHASH, quando muda o conteúdo (dados/*.js).
+   Por isso mexer só na plataforma não faz o navegador baixar de novo as
+   questões (12 MB), e acrescentar uma prova não refaz o download do código —
+   e ninguém precisa lembrar de trocar a versão: o teste de higiene falha
+   se ela estiver velha. */
+window.ESC_VERSAO = "2026-10-04.c3705098c.df3769368";
+window.ESC_VERSAO_PARTES = (function(){
+  var p = String(window.ESC_VERSAO).split(".");
+  return { codigo: p[1] || window.ESC_VERSAO, dados: p[2] || window.ESC_VERSAO };
+})();
+/* O visual vem de codigo/estilo.css, pedido com a versão do código no
+   endereço pelo mesmo motivo. */
+document.write('<link rel="stylesheet" href="codigo/estilo.css?v=' + encodeURIComponent(window.ESC_VERSAO_PARTES.codigo) + '">');
 </script>
 </head>
 <body>
@@ -194,30 +203,12 @@ window.EscDados = {
 };
 
 /* A LISTA DE ARQUIVOS, na ordem em que carregam. Conteúdo primeiro (o código
-   usa o que os arquivos de dados/ entregaram ao EscDados), código depois. */
+   usa o que os arquivos de dados/ entregaram ao EscDados), código depois.
+   A lista do conteúdo NÃO mora aqui: ela está em dados/manifesto.js (que
+   preenche ESC_ARQUIVOS.dados), para acrescentar uma prova mexer só na
+   pasta dados/. A do código fica aqui, porque é código. */
 window.ESC_ARQUIVOS = {
-  dados: [
-    "taxonomia", "calendario", "banco-didatico",
-    "prova-unifesp-2022", "prova-unifesp-2023", "prova-unifesp-2024",
-    "prova-unifesp-2025", "prova-unifesp-2026",
-    "prova-santacasa-2021", "prova-santacasa-2022", "prova-santacasa-2023",
-    "prova-santacasa-2025", "prova-santacasa-2026",
-    "prova-usp-2022", "prova-usp-2023", "prova-usp-2024", "prova-usp-2025",
-    "prova-usp-2026", "prova-usprp-2021", "prova-usprp-2022",
-    "prova-usprp-2023", "prova-usprp-2024", "prova-usprp-2025",
-    "prova-usprp-2026", "prova-amrigs-2022", "prova-amrigs-2023",
-    "prova-amrigs-2024", "prova-amrigs-2025",
-    "prova-iamspe-2021", "prova-iamspe-2022", "prova-iamspe-2023",
-    "prova-iamspe-2025", "prova-iamspe-2026", "prova-unesp-2023",
-    "prova-famema-2021", "prova-famema-2022", "prova-famema-2023",
-    "prova-famema-2025", "prova-sessp-2022", "prova-sessp-2023",
-    "prova-sessp-2024", "prova-sessp-2025", "prova-sessp-2026",
-    "prova-tp-2020-2", "prova-tp-2021-2", "prova-tp-2022-2",
-    "prova-tp-2023-1", "prova-tp-2023-2", "prova-tp-2024-1", "prova-tp-2025-2", "prova-tp-2026-1",
-    "flashcards-equipe",
-    "flashcards-assuntos-novos", "flashcards-assuntos-usp",
-    "flashcards-assuntos-usprp", "simulados-equipe", "demonstracao",
-  ],
+  dados: [],
   codigo: [
     "01-config", "02-persistencia",
     "03a-nuvem-conexao", "03b-nuvem-sincronizacao", "03c-nuvem-compartilhadas", "03d-nuvem-telas", "03e-nuvem-grupos",
@@ -234,17 +225,20 @@ window.ESC_ARQUIVOS = {
    arquivo, na ordem da lista. Escritas assim, durante a leitura da página,
    elas rodam uma depois da outra exatamente como linhas escritas à mão — e
    funcionam também com o arquivo aberto com dois cliques. Um arquivo que
-   não carrega fica anotado em ESC_FALTOU. */
-(function carregarArquivos(){
-  var v = encodeURIComponent(window.ESC_VERSAO);
-  window.ESC_FALTOU = [];
-  ["dados", "codigo"].forEach(function(pasta){
-    window.ESC_ARQUIVOS[pasta].forEach(function(nome){
-      var src = pasta + "/" + nome + ".js?v=" + v;
-      document.write('<script src="' + src + '" onerror="window.ESC_FALTOU.push(\'' + pasta + '/' + nome + '.js\')"><\/script>');
-    });
-  });
-})();
+   não carrega fica anotado em ESC_FALTOU. Dois passos: este escreve o
+   manifesto de dados/ (que diz quais arquivos de conteúdo existem) e o
+   próximo <script> escreve o resto, já com a lista na mão. */
+window.ESC_FALTOU = [];
+window.escCarregar = function(pasta, nome){
+  var v = encodeURIComponent(window.ESC_VERSAO_PARTES[pasta === "dados" ? "dados" : "codigo"]);
+  document.write('<script src="' + pasta + '/' + nome + '.js?v=' + v + '" onerror="window.ESC_FALTOU.push(\'' + pasta + '/' + nome + '.js\')"><\/script>');
+};
+window.escCarregar("dados", "manifesto");
+</script>
+<script>
+["dados", "codigo"].forEach(function(pasta){
+  window.ESC_ARQUIVOS[pasta].forEach(function(nome){ window.escCarregar(pasta, nome); });
+});
 </script>
 <script>
 /* Se o código não chegou (a pasta codigo/ ficou para trás, ou um arquivo dela

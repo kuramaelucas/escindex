@@ -2,7 +2,7 @@
    CONFERIDOR DA PASTA dados/
    ==========================================================================
    Lê todos os arquivos de conteúdo do jeito que o navegador lê (na ordem da
-   lista ESC_ARQUIVOS do index.html) e confere o que ninguém confere de olho
+   lista de dados/manifesto.js) e confere o que ninguém confere de olho
    em 635 questões:
 
      ERROS (fazem o teste falhar — algo está quebrado):
@@ -31,17 +31,17 @@ import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
-const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const RAIZ = process.env.ESC_RAIZ || path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 /* O enunciado fala de algo que o aluno precisa VER? Só as expressões que
    apareceram de verdade nas provas — "abaixo das artérias renais" não conta. */
 export const MENCIONA_IMAGEM = /(imagem anexa|\(imagem a seguir\)|\(figura\)|figura anexa|representad[ao] na (imagem|tabela)|gráfico abaixo|quadro abaixo|tabela do tipo|ECG de admissão a seguir|imagens do exame abaixo|ultrassonografia abdominal anexo)/i;
 
 export function arquivosDeConteudo(){
-  const html = fs.readFileSync(path.join(RAIZ, "index.html"), "utf8");
-  const lista = /dados:\s*\[([^\]]*)\]/.exec(html);
-  if(lista) return [...lista[1].matchAll(/"([^"]+)"/g)].map(m => "dados/" + m[1] + ".js");
-  return [...html.matchAll(/<script src="(dados\/[a-z0-9-]+\.js)/g)].map(m => m[1]);
+  const txt = fs.readFileSync(path.join(RAIZ, "dados", "manifesto.js"), "utf8");
+  const lista = /ESC_ARQUIVOS\.dados\s*=\s*\[([^\]]*)\]/.exec(txt);
+  if(!lista) throw new Error("não achei a lista window.ESC_ARQUIVOS.dados em dados/manifesto.js");
+  return [...lista[1].matchAll(/"([^"]+)"/g)].map(m => "dados/" + m[1] + ".js");
 }
 
 /* A plataforma tenta a extensão escrita e, se não achar, as outras (ver
@@ -220,19 +220,28 @@ export function conferir(){
   };
 }
 
+/* Saída enxuta, para não gastar leitura:
+     npm run conferir                 tudo (como sempre)
+     npm run conferir -- --resumo     só os totais, quantas pendências e os erros
+     npm run conferir -- usp-2027     só as linhas que citam "usp-2027" (id, prova ou ano) */
 if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])){
   const r = conferir();
+  const filtro = process.argv.slice(2).filter(a => !a.startsWith("--")).map(a => a.replace(/^prova-/, "").toLowerCase());
+  const resumo = process.argv.includes("--resumo");
+  // "usp-2027" casa com o id (q-usp2027-005) e com a prova ("USP-SP (FMUSP) 2027"): todas as partes têm de aparecer
+  const casa = txt => !filtro.length || filtro.some(f => f.split("-").every(parte => txt.toLowerCase().includes(parte)));
   if(process.argv.includes("--json")){ console.log(JSON.stringify(r, null, 2)); }
   else {
     const t = r.totais;
     console.log(`Conteúdo: ${t.questoes} questões (${t.reais} reais, ${t.provas} provas), ${t.cartoes} cartões, ${t.assuntos} assuntos (${t.assuntosSemCartao} sem cartão da equipe).\n`);
-    if(r.pendenciasImagem.length){
-      console.log(`Questões esperando imagem ou tabela da prova original (${r.pendenciasImagem.length}):`);
-      r.pendenciasImagem.forEach(p => console.log(`  - ${p.id}: ${p.falta}${p.arquivo ? `  → salvar como ${p.arquivo}` : ""}`));
+    const pend = r.pendenciasImagem.filter(p => casa(p.id)), avisos = r.avisos.filter(casa), erros = r.erros.filter(casa);
+    if(pend.length){
+      console.log(`Questões esperando imagem ou tabela da prova original (${pend.length}):`);
+      if(!resumo) pend.forEach(p => console.log(`  - ${p.id}: ${p.falta}${p.arquivo ? `  → salvar como ${p.arquivo}` : ""}`));
       console.log("");
     }
-    if(r.avisos.length){ console.log(`Avisos (${r.avisos.length}):`); r.avisos.forEach(a => console.log("  - " + a)); console.log(""); }
-    if(r.erros.length){ console.log(`ERROS (${r.erros.length}):`); r.erros.forEach(e => console.log("  ✗ " + e)); }
+    if(avisos.length){ console.log(`Avisos (${avisos.length}):`); if(!resumo) avisos.forEach(a => console.log("  - " + a)); console.log(""); }
+    if(erros.length){ console.log(`ERROS (${erros.length}):`); erros.forEach(e => console.log("  ✗ " + e)); }
     else console.log("Nenhum erro. ✓");
   }
   process.exit(r.erros.length ? 1 : 0);

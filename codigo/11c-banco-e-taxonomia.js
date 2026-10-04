@@ -122,7 +122,7 @@ function exportarQuestoesParaDados(){
     : "";
   const arquivo = "/* Questões enviadas pela plataforma e aprovadas pela equipe, exportadas em " + formatDataBR(hojeISO()) + " (" + lista.length + ").\n" +
     "   Para entrarem de vez no banco: salve este arquivo na pasta dados/, acrescente\n" +
-    "   \"" + nome + "\" à lista ESC_ARQUIVOS.dados do index.html e rode npm run conferir." +
+    "   \"" + nome + "\" à lista de dados/manifesto.js e rode npm run conferir." +
     (semNumero ? "\n   " + semNumero + " questão(ões) não têm numeroNaProva (o número na prova original): o conferidor\n   exige esse campo em questão real — preencha antes de publicar." : "") + avisoTax + " */\n" +
     "window.EscDados.registrarQuestoes(\"" + nome + "\", [\n" + linhas.join("\n") + "\n]);\n";
   baixarArquivo(nome + ".js", arquivo, "text/javascript");

@@ -1,23 +1,28 @@
 # Esc — guia de trabalho no código
 
-Plataforma de estudos para residência médica. Site estático **sem build, sem dependências, sem módulos**: `index.html` (moldura) + `codigo/` (código) + `dados/` (conteúdo), abre com dois cliques. Nuvem opcional (Supabase, só `fetch` na API REST). Tudo em **português**: telas, identificadores (`renderPainelTurma`, `nuvemMarcarFeedback`), comentários e documentação.
+Plataforma de estudos para residência médica. Site estático **sem build, sem dependências, sem módulos**: `index.html` (moldura) + `codigo/` (código) + `dados/` (conteúdo), abre com dois cliques. **Código e conteúdo são independentes**: mexer em um não toca no outro (ver "Conteúdo" abaixo). Nuvem opcional (Supabase, só `fetch` na API REST). Tudo em **português**: telas, identificadores (`renderPainelTurma`, `nuvemMarcarFeedback`), comentários e documentação.
 
 ## Comandos
 
 | Comando | Para quê |
 |---|---|
 | `npm run mapa` / `npm run mapa -- 11c` / `npm run mapa -- palavra` | onde está cada coisa: arquivos e seções / seções e funções de um arquivo, com linha / busca em funções e seções. **Use antes de abrir arquivo** e leia só o trecho (Read com offset/limit). |
+| `npm run dados` / `-- usp-2026` / `-- q-usp2026-017` / `-- taxonomia cardio` / `-- buscar "sepse"` | o conteúdo sem abrir arquivo (cada `dados/prova-*.js` tem ~300 KB — **nunca leia um inteiro**): visão geral / uma prova / uma questão / ids de assunto / busca no enunciado |
+| `npm run nova-prova -- usp-2027 "USP-SP (FMUSP)" 2027 --total 120` | cria `dados/prova-usp-2027.js` (cabeçalho + ficha) e a registra em `dados/manifesto.js` |
+| `npm run adicionar-questoes -- usp-2027 lote.json` | grava um lote de questões na entrada compacta (só o que é da questão; a ferramenta completa o resto), tudo ou nada, conferido; `--simular` só confere |
+| `npm run publicar` | **uma vez ao final de qualquer mudança**: atualiza a versão no `index.html` (hash do código × hash dos dados) e regera `dados/CATALOGO.md` |
+| `npm run testar-mudanca` | roda só o que a mudança pode ter quebrado (conteúdo → segundos; código → suíte inteira); `-- --ver` mostra a escolha |
 | `npm test` | tudo (Playwright/Chromium, ~3 min). Um teste: `node --test --test-name-pattern="trecho do nome" testes/arquivo.test.mjs` |
-| `npm run conferir` | confere a pasta `dados/` (ids, gabaritos, taxonomia, provas completas, figuras) |
+| `npm run conferir` (`-- --resumo`, `-- usp-2027`) | confere a pasta `dados/` (ids, gabaritos, taxonomia, provas completas, figuras); a saída inteira tem ~90 linhas — prefira o resumo ou o filtro por prova |
 | `npm run testar-sql` | `nuvem/esquema.sql` + regras de segurança (RLS) num PostgreSQL local temporário |
 | `npm run atualizar-dados -- arquivo.json` | grava em `dados/` as correções baixadas de "Questões para Atualizar" |
 
-Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem instalado (não rode `playwright install`); noutra máquina, `npx playwright install chromium` uma vez. CI: `.github/workflows/testes.yml` (testes + SQL num PostgreSQL de verdade).
+Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm run mapa` / `npm run dados`. No Claude Code na web o Chromium do Playwright já vem instalado (não rode `playwright install`); noutra máquina, `npx playwright install chromium` uma vez. CI: `.github/workflows/testes.yml` (testes + SQL num PostgreSQL de verdade).
 
 ## Como o código roda (leia antes de mexer)
 
 - `codigo/*.js` são **scripts comuns carregados em ordem** pela lista `ESC_ARQUIVOS.codigo` do `index.html`; todos dividem o mesmo escopo global. Função de um arquivo é chamada nos outros sem import. **Código que roda na carga** (fora de função) só pode usar o que arquivos anteriores já declararam.
-- Os arquivos de `dados/` rodam antes e chamam `window.EscDados.registrarQuestoes(nome, [...])` (e `registrarFlashcards`, `registrarTaxonomia`, `registrarCalendario`, `registrarSimulados`, `registrarDemonstracao`). `SEED_*` são só apelidos dessas listas.
+- A lista dos arquivos de `dados/` está em **`dados/manifesto.js`** (não no `index.html`); a de `codigo/` está no `ESC_ARQUIVOS.codigo` do `index.html`. Os arquivos de `dados/` rodam antes e chamam `window.EscDados.registrarQuestoes(nome, [...])` (e `registrarFlashcards`, `registrarTaxonomia`, `registrarCalendario`, `registrarSimulados`, `registrarDemonstracao`). `SEED_*` são só apelidos dessas listas.
 - `db` = o banco (localStorage `medbloco_db_v1`); `state` = estado temporário de tela. Padrão de toda ação: mudar `db` → `saveState()` → `render()` (ou redesenhar só a parte, ex. `redesenharQuestaoDaSessao()`). `saveState()` guarda de cada questão/cartão da semente **só a diferença** (`compactarParaArmazenar`) e incrementa `_geracaoDb`, que invalida os caches.
 - Telas: `renderX()` devolve HTML (template literal); eventos inline `onclick="fn('id')"` — por isso as funções são globais. Roteador: `render()` + `ROUTE_TITLES` + `navigate(rota)` (06); menu: `navItemsParaPapel` (06); permissão de admin por rota: `PERMISSAO_DA_ROTA` (04).
 - **Sempre** `escapeHtml()` em texto de usuário ou de conteúdo dentro do HTML.
@@ -72,13 +77,24 @@ Instalar: `npm ci`. No Claude Code na web o Chromium do Playwright já vem insta
 - **Comentário diz o porquê** (a decisão, o defeito que ela evita), em português, junto do código. Nada de changelog no código: a história vai para `docs/HISTORICO.md`.
 - Arquivo de `codigo/` começa com `/* codigo/<nome>.js — <o que tem>` e não passa de 1.400 linhas; passou, divida por assunto (`03a`, `03b`…) e atualize `ESC_ARQUIVOS` e o mapa acima. Nome de primeiro nível não se repete entre arquivos; função sem uso sai. (`testes/higiene.test.mjs` confere tudo isso.)
 - Antes de repetir um trecho de HTML/lógica, procure a utilidade que já existe (`npm run mapa -- palavra`).
-- Mudou o que vai para o ar (`codigo/`, `dados/`, `estilo.css`)? Troque `window.ESC_VERSAO` no `index.html` — é o que faz o navegador buscar os arquivos novos.
+- Mudou o que vai para o ar (`codigo/`, `dados/`, `estilo.css`)? Rode `npm run publicar` — ele escreve `window.ESC_VERSAO` (`AAAA-MM-DD.cHASH.dHASH`) no `index.html`; **nunca à mão**. O `cHASH` é do código e o `dHASH` dos dados, então o aluno só baixa de novo o que mudou. `npm test` falha se a versão estiver velha.
 - Tela nova: `renderX` no arquivo do assunto, rota no `render()` e em `ROUTE_TITLES`, item em `navItemsParaPapel`, permissão em `PERMISSAO_DA_ROTA` se for de admin, e texto no guia (`13-tutorial.js`) se for para o usuário. Rota que sai do menu continua respondendo (redireciona): link salvo não pode quebrar.
 - Mudança no modelo de dados vem com migração em `loadState` (02); se o dado sincroniza, com entrada em `NUVEM_TABELAS`/`NUVEM_GLOBAIS` e tabela no `esquema.sql`. Nenhuma dependência nova, nenhum framework (gráficos são SVG à mão; PDF é a impressão do navegador).
 - A plataforma **explica o que faz**: quando o algoritmo prioriza, esconde ou muda algo, a tela diz o porquê. Regra que já quebrou uma vez ganha um caso em `testes/regras.test.mjs`.
 - Teste de ponta a ponta: Playwright em `testes/*.test.mjs`, nuvem simulada por `contexto.route(/supabase\.co/, …)`; feche servidor e contexto em `try/finally` (uma falha não pode travar o `node --test`).
 - Conteúdo: enunciado/alternativas/gabarito de prova pública se transcrevem; a **explicação é sempre autoral**, de fontes primárias — nunca copiada de cursinho ou site de questões (`dados/LEIA-ME.md`).
 - **Prova nova, justificativa completa:** toda questão real de arquivo novo em `dados/` traz a explicação no padrão — "Dicas do enunciado:" (ou da imagem), dados objetivos em `**destaque**` com valor normal e ponto de corte, e o motivo de cada alternativa errada (`dados/LEIA-ME.md`, "Padrão de justificativa de prova nova"). `npm run conferir` falha se faltar; a lista de exceções `PROVAS_ANTERIORES_AO_PADRAO` (`testes/conferir-dados.mjs`) está vazia e prova nova nunca entra nela. Comentário oficial da própria banca (Teste de Progresso) é ponto de partida, reescrito nesse padrão.
+
+## Conteúdo (`dados/`) — subir prova sem reler o código
+
+Receita para prova nova (nada em `codigo/`, nada no `index.html`):
+1. `npm run nova-prova -- <nome> "<Banca>" <ano> --total N` (opções: `--alternativas 5`, `--tipo graduacao`, `--prefixo q-xxx`).
+2. `npm run dados -- taxonomia <palavra>` para os ids de assunto; `npm run dados -- buscar "<texto>"` para não repetir questão.
+3. Escreva lotes de 20–30 em JSON compacto (`n`, `assunto`, `enunciado`, `alt[]`, `gabarito`, `explicacao`, `referencias`; formato completo em `dados/LEIA-ME.md`, "Entrada compacta") e `npm run adicionar-questoes -- <nome> lote.json`. Falhou? Nada foi gravado e o erro diz a questão.
+4. Figuras em `dados/imagens/<id>.png`; sem a figura, `imagemPendente:"descrição"`.
+5. `npm run publicar` → `npm run testar-mudanca`. Não há tabela a editar à mão: `CATALOGO.md` e as contagens são geradas.
+
+Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/LEIA-ME.md`) — a ferramenta já recusa o que sai dele. Observação de uma prova (origem do gabarito, pendências) vai no **cabeçalho do arquivo dela**, não em documento à parte. Conserto de uma questão já publicada: `npm run atualizar-dados`. Mudar a plataforma **nunca** exige tocar em `dados/` (e o hash dos dados não muda se `dados/` não mudar).
 
 ## Documentos
 
