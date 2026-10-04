@@ -41,6 +41,8 @@ function nuvemAdotarDadosLocais(idLocal){
   });
   if(db.revisoesFlashcards) delete db.revisoesFlashcards[idLocal];
 
+  (db.logCartoes || []).forEach(l => { if(l.usuarioId === idLocal){ l.usuarioId = meuId; movidos++; nuvemRegistrar({logCartao:l}); } });
+
   const dias = (db.diasCartoes || {})[idLocal] || [];
   if(dias.length){
     if(!db.diasCartoes[meuId]) db.diasCartoes[meuId] = [];

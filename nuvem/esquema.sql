@@ -187,6 +187,10 @@ alter table public.perfis add column if not exists avisos_lidos jsonb not null d
 -- o segundo grupo da pessoa, só para compartilhar questões (Meu Grupo): o
 -- grupo do calendário continua em grupo_id.
 alter table public.perfis add column if not exists grupo_questoes_id text;
+-- a data EXATA da primeira prova importante, que só quem está no 6º ano pode
+-- marcar. Nula = vale o padrão (início de dezembro do 6º ano), que não é
+-- gravado: ele se calcula a partir do ano da faculdade.
+alter table public.perfis add column if not exists prova_alvo_data date;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)
@@ -207,6 +211,17 @@ create table if not exists public.respostas (
   criado_em             timestamptz not null default now()
 );
 create index if not exists respostas_sync_idx on public.respostas (usuario_id, criado_em);
+-- Para analisar se o algoritmo funciona (ver codigo/05a, ORIGENS_DE_QUESTAO):
+--   origem            de onde a questão veio na fila (bloco atual, revisão por erro, prévia…)
+--   tentativa         a Nª vez que a pessoa responde esta questão
+--   dias_desde_ultima há quantos dias foi a resposta anterior a ela (nulo na primeira)
+--   respondida_em     a hora EXATA em que respondeu (criado_em é a hora em que a resposta
+--                     chegou ao servidor, que pode ser horas depois, se estava sem internet)
+-- Para quem já rodou este arquivo antes destas colunas existirem:
+alter table public.respostas add column if not exists origem            text;
+alter table public.respostas add column if not exists tentativa         integer;
+alter table public.respostas add column if not exists dias_desde_ultima integer;
+alter table public.respostas add column if not exists respondida_em     timestamptz;
 
 -- ---------------------------------------------------------------------------
 -- 3. REVISOES — repetição espaçada das questões (ESTADO: vale a mais recente)
@@ -261,6 +276,34 @@ create table if not exists public.dias_cartoes (
 -- para quem já tinha a tabela antes de a contagem existir:
 alter table public.dias_cartoes add column if not exists quantidade integer not null default 0;
 create index if not exists dias_cartoes_sync_idx on public.dias_cartoes (usuario_id, criado_em);
+
+-- ---------------------------------------------------------------------------
+-- 5-B. LOG_REVISOES_CARTOES — cada vez que um cartão foi avaliado (REGISTRO)
+-- ---------------------------------------------------------------------------
+-- revisoes_flashcards guarda só o ESTADO de cada cartão (a última nota e o
+-- próximo prazo); esta tabela guarda a HISTÓRIA: uma linha por avaliação, com
+-- o intervalo que o cartão tinha antes e o que passou a ter, e há quantos dias
+-- foi a vista anterior. É o que permite medir quanto da turma lembra um cartão
+-- depois de 7, 14, 30 dias e ajustar o agendamento com dados, em vez de
+-- palpite. Só se acumula (ninguém altera nem apaga) e só SOBE: o site não
+-- baixa esta tabela de volta — são milhares de linhas por pessoa por ano, e
+-- nenhuma tela as usa; a análise é feita aqui, no painel do Supabase.
+create table if not exists public.log_revisoes_cartoes (
+  id               text        primary key,
+  usuario_id       uuid        not null references auth.users(id) on delete cascade,
+  cartao_id        text        not null,
+  assunto_id       text,
+  nota             text        not null,   -- sabia | quase | naolembrei
+  intervalo_antes  integer,
+  intervalo_depois integer,
+  dias_desde_ultima integer,
+  vistas           integer,
+  data             date,
+  respondida_em    timestamptz,
+  criado_em        timestamptz not null default now()
+);
+create index if not exists log_revisoes_cartoes_sync_idx on public.log_revisoes_cartoes (usuario_id, criado_em);
+create index if not exists log_revisoes_cartoes_cartao_idx on public.log_revisoes_cartoes (cartao_id, dias_desde_ultima);
 
 -- ---------------------------------------------------------------------------
 -- 6. FAVORITOS — questões marcadas com estrela (ESTADO)
@@ -824,6 +867,7 @@ alter table public.respostas            enable row level security;
 alter table public.revisoes             enable row level security;
 alter table public.revisoes_flashcards  enable row level security;
 alter table public.dias_cartoes         enable row level security;
+alter table public.log_revisoes_cartoes enable row level security;
 alter table public.favoritos            enable row level security;
 alter table public.favoritos_cartoes    enable row level security;
 alter table public.questoes_ocultas     enable row level security;
@@ -1186,7 +1230,7 @@ do $$
 declare t text;
 begin
   foreach t in array array[
-    'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
+    'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes', 'log_revisoes_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento'
   ] loop
@@ -1257,7 +1301,7 @@ do $$
 declare t text;
 begin
   foreach t in array array[
-    'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes',
+    'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes', 'log_revisoes_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
     'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',

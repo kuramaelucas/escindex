@@ -999,6 +999,7 @@ function renderPerfil(){
       </select>
       <div class="hint mt-1">Atualize quando virar o ano letivo. Quem está no internato marca o ano em que está — 5º ou 6º. Quem já se formou marca "Formado(a)": não há calendário de formado — o calendário vem de um grupo de que você participe, ou de um que você mesmo monta em Meu Grupo.</div>
     </div>` : ""}
+    ${u.papel==="aluno" ? renderCampoProvaAlvo(u) : ""}
     <div class="field"><label class="label">Papel</label><div>${badgePapel(u.papel, u)}</div></div>
     ${(u.papel==="professor"||u.papel==="residente") ? `<div class="field"><label class="label">Grandes áreas de atuação</label>
       <div>${u.areasAtuacao&&u.areasAtuacao.length ? u.areasAtuacao.map(a=>`<span class="badge badge-muted">${escapeHtml(nomeArea(a))}</span>`).join(" ") : '<span class="text-sm muted">Nenhuma definida — você enxerga o conteúdo de todas as áreas.</span>'}</div>
@@ -1053,6 +1054,7 @@ function dadosDoUsuario(id){
     respostas: doUsuario(db.respostas),
     revisoesQuestoes: porUsuario(db.revisoes),
     revisoesCartoes: porUsuario(db.revisoesFlashcards),
+    historicoDeCartoes: doUsuario(db.logCartoes),
     cartoesPorDia: porUsuario(db.cartoesPorDia),
     diasComCartao: (db.diasCartoes && db.diasCartoes[id]) || [],
     favoritos: doUsuario(db.favoritos),
@@ -1074,8 +1076,52 @@ function baixarMeusDados(){
 function salvarAnoFaculdade(){
   const u = usuarioAtual();
   u.anoFaculdade = document.getElementById("perfilAno").value;
+  // a data exata é só de quem está no último ano; ao mudar de ano ela não vale mais
+  if(!ehUltimoAnoDaFaculdade(u)) delete u.provaAlvoData;
   saveState();
   toast("Ano da faculdade atualizado.");
+  render();
+}
+/* O campo "Prova-alvo" do Perfil. Do 3º ao 5º ano a data é sempre o início de
+   dezembro do 6º ano e não se escolhe (a data exata de uma prova daqui a anos
+   seria um palpite); no 6º ano a pessoa pode pôr a data exata da primeira prova
+   importante. Formado(a) fica sem prova-alvo e não vê o campo. */
+function renderCampoProvaAlvo(u){
+  const alvo = provaAlvoDoUsuario(u);
+  if(!numeroDoAnoDaFaculdade(u)) return "";
+  const ate = somarDias(hojeISO(), 400);
+  if(!ehUltimoAnoDaFaculdade(u)){
+    return `<div class="field"><label class="label">Prova-alvo</label>
+      <div>${alvo ? formatDataBR(alvo.data) + " — " + escapeHtml(tempoParaProvaAlvo(alvo.dias)) : "—"}</div>
+      <div class="hint mt-1">Do ${escapeHtml(u.anoFaculdade)} até o 5º ano, a prova-alvo é sempre o início de dezembro do ${escapeHtml(CONFIG.provaAlvo.ano)}. Quando você chegar ao ${escapeHtml(CONFIG.provaAlvo.ano)}, poderá marcar a data exata da sua primeira prova importante.</div>
+    </div>`;
+  }
+  return `<div class="field"><label class="label" for="perfilProvaAlvo">Data da primeira prova importante</label>
+    <div class="flex gap-1 items-center quebra">
+      <input class="input" type="date" id="perfilProvaAlvo" min="${hojeISO()}" max="${ate}" value="${alvo && alvo.exata ? alvo.data : ""}" style="max-width:11rem">
+      <button class="btn btn-secondary btn-sm" onclick="salvarProvaAlvo()">Salvar a data</button>
+      ${alvo && alvo.exata ? `<button class="btn btn-ghost btn-sm" onclick="limparProvaAlvo()">Voltar ao padrão</button>` : ""}
+    </div>
+    <div class="hint mt-1">${alvo ? "Hoje a prova-alvo é <strong>" + formatDataBR(alvo.data) + "</strong> (" + (alvo.exata ? "a data que você marcou" : "o padrão: início de dezembro") + "; " + escapeHtml(tempoParaProvaAlvo(alvo.dias)) + ")." : "A prova-alvo padrão (início de dezembro) já passou — marque a data da sua próxima prova."} Com a prova se aproximando, as revisões espaçadas passam a voltar em no máximo ${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta, para nada ficar para depois dela.</div>
+  </div>`;
+}
+function salvarProvaAlvo(){
+  const u = usuarioAtual(); if(!u || !ehUltimoAnoDaFaculdade(u)) return;
+  const v = (document.getElementById("perfilProvaAlvo") || {}).value;
+  if(!dataISOValida(v)){ toast("Escolha uma data válida.", "err"); return; }
+  if(v < hojeISO()){ toast("A data já passou — escolha a da próxima prova.", "err"); return; }
+  if(v > somarDias(hojeISO(), 400)){ toast("A prova importante tem de estar a menos de 400 dias — para provas mais distantes vale o padrão (início de dezembro).", "err"); return; }
+  u.provaAlvoData = v;
+  saveState();
+  toast("Data da prova-alvo salva: " + formatDataBR(v) + ".");
+  render();
+}
+function limparProvaAlvo(){
+  const u = usuarioAtual(); if(!u) return;
+  delete u.provaAlvoData;
+  saveState();
+  toast("Voltou ao padrão: início de dezembro.");
+  render();
 }
 /* Caixa de backup — usada no Perfil e em Configurações, sempre só para o
    administrador máster. Exportar/importar JSON é a única rede de segurança

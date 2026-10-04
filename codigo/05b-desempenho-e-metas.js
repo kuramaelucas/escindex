@@ -570,3 +570,58 @@ function estimativaDeNota(usuarioId, banca){
            minimo: Math.max(0, Math.round((nota - 1.96*ep)*100)), maximo: Math.min(100, Math.round((nota + 1.96*ep)*100)),
            respostas: geral.total, areas };
 }
+
+/* ---------- a prova-alvo e o prazo da revisão ----------
+   Para quem está de 3º a 6º ano a prova-alvo é o início de dezembro do 6º ano
+   (CONFIG.provaAlvo); só no 6º ano a pessoa pode trocar o padrão pela data
+   exata da primeira prova importante (usuario.provaAlvoData). Formado(a) e
+   quem não informou o ano ficam sem prova-alvo: a data seria um palpite, e a
+   plataforma prefere não ter a data a ter uma que não é da pessoa. */
+function numeroDoAnoDaFaculdade(usuario){
+  const m = /^(\d)º ano$/.exec((usuario && usuario.anoFaculdade) || "");
+  return m ? +m[1] : null;
+}
+function ehUltimoAnoDaFaculdade(usuario){
+  return numeroDoAnoDaFaculdade(usuario) === numeroDoAnoDaFaculdade({ anoFaculdade: CONFIG.provaAlvo.ano });
+}
+function dataISOValida(iso){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return false;
+  const d = new Date(iso + "T00:00:00");
+  return !isNaN(d) && dataLocalISO(d) === iso;
+}
+/* { data, exata, dias } — `exata` quando é a data que a pessoa do 6º ano
+   escolheu; `dias` é quanto falta (0 = hoje). Data exata que já passou volta
+   para o padrão, enquanto o padrão ainda estiver pela frente. Devolve null
+   sem prova-alvo ou com ela já vencida. */
+function provaAlvoDoUsuario(usuario){
+  const n = numeroDoAnoDaFaculdade(usuario);
+  if(!n) return null;
+  const hoje = hojeISO();
+  if(ehUltimoAnoDaFaculdade(usuario) && dataISOValida(usuario.provaAlvoData) && usuario.provaAlvoData >= hoje){
+    return { data: usuario.provaAlvoData, exata: true, dias: diasEntre(hoje, usuario.provaAlvoData) };
+  }
+  const ultimo = numeroDoAnoDaFaculdade({ anoFaculdade: CONFIG.provaAlvo.ano });
+  const p = x => String(x).padStart(2, "0");
+  const data = (+hoje.slice(0, 4) + (ultimo - n)) + "-" + p(CONFIG.provaAlvo.mes) + "-" + p(CONFIG.provaAlvo.dia);
+  const dias = diasEntre(hoje, data);
+  return dias < 0 ? null : { data, exata: false, dias };
+}
+/* "faltam 58 dias" / "faltam cerca de 14 meses": o número exato de dias a três
+   anos de distância é falsa precisão. */
+function tempoParaProvaAlvo(dias){
+  if(dias === 0) return "é hoje";
+  if(dias <= 100) return "falta" + (dias === 1 ? " 1 dia" : "m " + dias + " dias");
+  const meses = Math.round(dias / 30.4);
+  return "faltam cerca de " + (meses >= 24 ? Math.round(meses / 12) + " anos" : meses + " meses");
+}
+/* O intervalo de revisão (dias), sem passar de uma fração do tempo que falta
+   para a prova-alvo (CONFIG.revisaoPelaProva) e sem baixar do piso. Sem
+   prova-alvo, devolve o intervalo como veio. */
+function limitarIntervaloPelaProva(usuarioId, intervalo){
+  const cfg = CONFIG.revisaoPelaProva;
+  if(!cfg || !cfg.ligado) return intervalo;
+  const alvo = provaAlvoDoUsuario(getUsuario(usuarioId));
+  if(!alvo) return intervalo;
+  const teto = Math.max(CONFIG.intervaloMinimoRevisao, Math.round(alvo.dias * cfg.fracaoDoPrazo));
+  return Math.min(intervalo, teto);
+}
