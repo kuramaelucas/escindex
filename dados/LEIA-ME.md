@@ -51,6 +51,8 @@ porque todo o resto aponta para ela):
 | `prova-usprp-2024.js` | USP-RP (FMRP) 2024 (R1 Acesso Direto), prova real | 100 |
 | `prova-usprp-2025.js` | USP-RP (FMRP) 2025 (R1 Acesso Direto), prova real | 100 |
 | `prova-usprp-2026.js` | USP-RP (FMRP) 2026 (R1 Acesso Direto), prova real | 100 |
+| `prova-amrigs-2020.js` | AMRIGS 2020 (prova AMB/AMRIGS/ACM/AMMS, aplicada em 22/11/2020, Acesso Direto), prova real, gabarito definitivo (12 anuladas) | 100 |
+| `prova-amrigs-2021.js` | AMRIGS 2021 (prova AMB/AMRIGS/ACM/AMMS 02/2021, aplicada em 14/11/2021, Acesso Direto), prova real, gabarito definitivo (7 anuladas) | 100 |
 | `prova-amrigs-2022.js` | AMRIGS 2022 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
 | `prova-amrigs-2023.js` | AMRIGS 2023 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
 | `prova-amrigs-2024.js` | AMRIGS 2024 (prova AMB/AMRIGS/ACM/AMMS, Acesso Direto), prova real | 100 |
@@ -73,6 +75,7 @@ porque todo o resto aponta para ela):
 | `prova-tp-2023-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2023 (graduação), prova real, comentário oficial aprimorado; alternativas embaralhadas | 120 |
 | `prova-tp-2023-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2023 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `prova-tp-2024-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2024 (graduação), prova real, comentário oficial aprimorado | 120 |
+| `prova-tp-2025-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2025 (graduação), prova real, comentário oficial aprimorado; a nº 97 está desatualizada | 120 |
 | `prova-tp-2025-2.js` | Teste de Progresso NIEPAEM, 2º semestre de 2025 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `prova-tp-2026-1.js` | Teste de Progresso NIEPAEM, 1º semestre de 2026 (graduação), prova real, comentário oficial aprimorado | 120 |
 | `flashcards-equipe.js` | Cartões de conceito escritos pela equipe | 501 |
@@ -82,11 +85,11 @@ porque todo o resto aponta para ela):
 | `simulados-equipe.js` | Provas montadas por professor/coordenação | 1 |
 | `demonstracao.js` | Vazio de propósito (sem contas nem exemplos); o fixture dos testes está em `testes/fixtures/` | 0 |
 
-Total: **4.775 questões** (4.640 reais, de 45 provas), **943 cartões**, **270 assuntos** (32 deles, abertos pelas
+Total: **5.095 questões** (4.960 reais, de 48 provas), **943 cartões**, **270 assuntos** (32 deles, abertos pelas
 provas da FAMEMA e pelo Teste de Progresso, ainda sem cartão da equipe) e **1 simulado**.
 
 A pasta `imagens/` guarda as figuras das provas (ECG, radiografia, tabela) —
-ver `imagens/LEIA-ME.md`, que lista as 229 que ainda faltam. O resumo de tudo o que falta no banco de questões
+ver `imagens/LEIA-ME.md`, que lista as 86 que ainda faltam. O resumo de tudo o que falta no banco de questões
 (provas incompletas, textos cortados, gabaritos a conferir) está em
 `../PENDENCIAS.md`.
 

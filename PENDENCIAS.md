@@ -1,6 +1,6 @@
 # Pendências do banco de questões
 
-Situação em 04/10/2026: 4.775 questões, das quais 4.640 reais, de 45 provas, e 943 cartões da equipe (32 assuntos ainda sem cartão, seção 5).
+Situação em 04/10/2026: 5.095 questões, das quais 4.960 reais, de 48 provas, e 943 cartões da equipe (32 assuntos ainda sem cartão, seção 5).
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
@@ -10,11 +10,15 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 
 ## 1. Provas ou questões que faltam
 
-| Prova | O que falta | Como resolver |
-| --- | --- | --- |
-| **Teste de Progresso NIEPAEM, 1º semestre de 2025** (08/05/2025, graduação) | O caderno da prova. Chegou só o gabarito comentado (120 comentários com as referências), que não traz enunciado nem alternativas | Enviar o PDF da prova do 1º semestre de 2025; os comentários dela já estão lidos e viram a explicação das questões (mesmo padrão de `dados/prova-tp-2025-2.js`) |
-| **IAMSPE 2024** (Avança SP) | A prova inteira. Veio só o gabarito definitivo (60 questões por especialidade, "X" marca anulada), sem o caderno | Enviar o caderno da prova; o gabarito já está em mãos |
-| **AMRIGS 2021** | A prova inteira. Veio só o edital de gabaritos definitivos, sem o caderno de questões | Enviar o caderno da prova 02/2021 (14/11/2021). O gabarito já está em mãos: anuladas 1, 40, 44, 54, 56, 68 e 89 |
+Nenhuma prova inteira espera caderno ou gabarito no momento. Entraram em 04/10/2026: AMRIGS 2020 e 2021 e o Teste de Progresso 2025/1. O "IAMSPE 2024" (Edital 02/2024) é a prova que o banco já tinha como IAMSPE 2025: caderno e gabarito conferem, nada a acrescentar. Faltam apenas os anos que ainda não chegaram (por exemplo, a Santa Casa 2024 e novos anos da UNESP).
+
+### Teste de Progresso 2025/1, AMRIGS 2020 e 2021: gabarito oficial discutível
+
+**Teste de Progresso 2025/1** (comentário oficial do NIEPAEM; sem anuladas conhecidas): a nº 97 (ASC-US aos 30 anos) está marcada como **desatualizada**, porque o rastreamento brasileiro passou ao teste de DNA-HPV em 18/08/2025. A explicação avisa onde a letra da banca é discutível: 51 (cetoacidose com potássio de 2,8 mEq/L: a reposição do potássio precede a insulina), 66 (derrame pleural com massa: o primeiro passo costuma ser a toracocentese, não a videotoracoscopia), 68 (Gleason 6 com PI-RADS 4: a vigilância ativa também seria defensável), 113 (o metilfenidato é de primeira escolha, mas a banca elegeu a alternativa do relato dos professores) e 117 (a PA de 158/97 mmHg, se confirmada, também contraindicaria o combinado).
+
+**AMRIGS 2021** (edital definitivo; anuladas 1, 40, 44, 54, 56, 68 e 89): a explicação avisa nas nº 17 (IECA no infarto também é verdadeira), 25 (creatinina de rotina em hígido jovem), 33 (pela regra dos nove, tronco mais membro superior dão 45%, e a conta de Parkland da afirmativa II está certa) e 46 (a categoria da cardiotocografia depende da variabilidade, que a imagem não permite avaliar). A nº 83 chama de "viés de memória" o que é viés de aferição.
+
+**AMRIGS 2020** (edital definitivo; anuladas 4, 19, 20, 31, 39, 49, 53, 55, 57, 75, 87 e 92): discutíveis a nº 13 (a aspirina como "único" antitrombótico), 14, 38 (o sinal de Dunphy também é de apendicite) e 61. Os motivos das anulações não constam do edital, e as explicações das anuladas dizem isso.
 
 ### Teste de Progresso 2025/2 e 2026/1: questões de gabarito discutível e cartões dos assuntos novos
 
@@ -164,7 +168,6 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 - **USP-RP 2024**, caderno com a folha de gabarito. Resolve 25 figuras e a conferência do gabarito. (Os cadernos de 2021 a 2023 foram aplicados em 03/10/2026; o de 2025 já foi aplicado em 01/10/2026: as 27 figuras e a 2025-99 saíram daqui, mas a folha de gabarito veio em branco, então o gabarito de 2025 ainda precisa da folha oficial.)
 - **USP-SP 2023**: 25 figuras.
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
-- **AMRIGS 2021**: a prova inteira.
 - **UNESP 2023**: o gabarito definitivo oficial.
 
 ## 5. Assuntos sem cartão da equipe (32)
