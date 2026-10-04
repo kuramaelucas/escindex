@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 5135 questões (5000 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 57 arquivos.
+**Total:** 5455 questões (5320 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 60 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -35,6 +35,8 @@
 | `prova-amrigs-2023.js` | AMRIGS 2023 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 1 anulada(s) |
 | `prova-amrigs-2024.js` | AMRIGS 2024 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 3 anulada(s) |
 | `prova-amrigs-2025.js` | AMRIGS 2025 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 3 anulada(s) |
+| `prova-amrigs-2020.js` | AMRIGS 2020 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 12 anulada(s) |
+| `prova-amrigs-2021.js` | AMRIGS 2021 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 7 anulada(s) |
 | `prova-iamspe-2021.js` | IAMSPE 2021 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 5 anulada(s) |
 | `prova-iamspe-2022.js` | IAMSPE 2022 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 4 anulada(s) |
 | `prova-iamspe-2023.js` | IAMSPE 2023 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 6 anulada(s) |
@@ -56,6 +58,7 @@
 | `prova-tp-2023-1.js` | Teste de Progresso NIEPAEM — 1º semestre de 2023 (graduação em Medicina) | 120 questões |  |
 | `prova-tp-2023-2.js` | Teste de Progresso NIEPAEM — 2º semestre de 2023 (graduação em Medicina) | 120 questões |  |
 | `prova-tp-2024-1.js` | Teste de Progresso NIEPAEM — 1º semestre de 2024 (graduação em Medicina) | 120 questões |  |
+| `prova-tp-2025-1.js` | Teste de Progresso NIEPAEM — 1º semestre de 2025 (graduação em Medicina) | 120 questões |  |
 | `prova-tp-2025-2.js` | Teste de Progresso NIEPAEM — 2º semestre de 2025 (graduação em Medicina) | 120 questões |  |
 | `prova-tp-2026-1.js` | Teste de Progresso NIEPAEM — 1º semestre de 2026 (graduação em Medicina) | 120 questões |  |
 | `flashcards-equipe.js` | FLASHCARDS DA EQUIPE — 501 cartões autorais | 501 flashcards |  |
