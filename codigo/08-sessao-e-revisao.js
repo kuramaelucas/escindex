@@ -47,7 +47,7 @@ function sessaoDeHoje(usuario){
 function iniciarRevisaoErros(){
   const pares = questoesErroOrdenadasPorAntiguidade(usuarioAtual().id);
   if(!pares.length){ toast("Você não tem erros ou chutes pendentes registrados — ótimo sinal!"); return; }
-  const itens = pares.slice(0,20).map(p=>({questaoId:p.questao.id, motivo:"Erro/chute anterior — respondido em "+formatDataBR(p.ultima.data)}));
+  const itens = pares.slice(0,20).map(p=>({questaoId:p.questao.id, origem:"erros", motivo:"Erro/chute anterior — respondido em "+formatDataBR(p.ultima.data)}));
   iniciarSessaoComLista(itens, "pratica");
 }
 /* A fila da revisão espaçada, na ordem de prioridade: o que a pessoa ainda não
@@ -56,9 +56,9 @@ function iniciarRevisaoErros(){
 function itensDaRevisaoEspacada(usuarioId, limite){
   const partes = partesDaRevisaoEspacada(usuarioId);
   const novas = selecionarComInterleaving(partes.novas, limite, pesosDeIncidencia(usuarioId))
-    .map(q=>({questaoId:q.id, motivo:"Revisão espaçada — você ainda não viu esta questão"}));
-  const erros = partes.erros.map(v=>({questaoId:v.questao.id, motivo:"Revisão espaçada — erro/chute anterior"}));
-  const decaimentos = partes.decaimentos.map(v=>({questaoId:v.questao.id, motivo:"Revisão espaçada — já faz tempo desde o último acerto"}));
+    .map(q=>({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão espaçada — você ainda não viu esta questão"}));
+  const erros = partes.erros.map(v=>({questaoId:v.questao.id, origem:"revisao_erro", motivo:"Revisão espaçada — erro/chute anterior"}));
+  const decaimentos = partes.decaimentos.map(v=>({questaoId:v.questao.id, origem:"revisao_decaimento", motivo:"Revisão espaçada — já faz tempo desde o último acerto"}));
   return [...novas, ...erros, ...decaimentos].slice(0, limite);
 }
 function iniciarRevisaoEspacada(){
@@ -262,7 +262,7 @@ function confirmarResposta(confianca){
   const marcada = marcadaDaQuestao(item.questaoId);
   if(!marcada) return;
   const tempoSeg = sessao.tsQuestao ? (Date.now()-sessao.tsQuestao)/1000 : null;
-  const resp = registrarResposta(usuarioAtual().id, item.questaoId, marcada, confianca, tempoSeg);
+  const resp = registrarResposta(usuarioAtual().id, item.questaoId, marcada, confianca, tempoSeg, origemDoItem(sessao, item));
   sessao.respostasSessao[sessao.indiceAtual] = resp;
   salvarSessaoEmAndamento();
   render();
@@ -387,7 +387,7 @@ function revisarErrosDestaSessao(){
   const eu = usuarioAtual().id;
   const pendentes = respostasFeitas(s).filter(r=>!r.correta || r.confianca==="chute");
   // a que a pessoa escondeu no meio do conjunto não volta aqui
-  const errados = pendentes.filter(r=>!questaoOculta(eu, r.questaoId)).map(r=>({questaoId:r.questaoId, motivo:"Erro ou chute no conjunto anterior"}));
+  const errados = pendentes.filter(r=>!questaoOculta(eu, r.questaoId)).map(r=>({questaoId:r.questaoId, origem:"erros", motivo:"Erro ou chute no conjunto anterior"}));
   if(!errados.length){ toast(pendentes.length ? "As questões que você errou ou chutou aqui estão escondidas." : "Você não errou nem chutou nenhuma questão deste conjunto."); return; }
   state.sessaoAtual = null;
   iniciarSessaoComLista(errados, "pratica");

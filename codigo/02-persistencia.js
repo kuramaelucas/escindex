@@ -215,6 +215,7 @@ function dbPadrao(){
     comentarios: copiaProfunda(SEED_COMENTARIOS),
     flashcards: copiaProfunda(SEED_FLASHCARDS),   // cartões de conceito (frente/verso)
     revisoesFlashcards: {},  // revisoesFlashcards[usuarioId][cartaoId] = {repeticoes,fator,intervalo,proximaRevisao}
+    logCartoes: [],      // uma linha por cartão avaliado: {id, usuarioId, cartaoId, assuntoId, nota, intervaloAntes, intervaloDepois, diasDesdeUltima, vistas, data, em} — só as mais recentes (CONFIG.limiteLogCartoesLocal); o histórico inteiro mora na nuvem
     diasCartoes: {},     // diasCartoes[usuarioId] = [AAAA-MM-DD] — os dias em que houve cartão (sustenta a sequência)
     cartoesPorDia: {},   // cartoesPorDia[usuarioId][AAAA-MM-DD] = quantos cartões naquele dia
     livroOuro: copiaProfunda(SEED_LIVRO_OURO), // doações e agradecimentos
@@ -277,7 +278,7 @@ function garantirEstruturaDb(alvo){
   // o que a turma produziu: preservado sempre que for uma lista
   lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("destaques"); lista("sessoes");
   lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios"); lista("avisos");
-  lista("cargasProvas"); lista("filaNuvem"); lista("grupos"); lista("subgrupos");
+  lista("cargasProvas"); lista("filaNuvem"); lista("logCartoes"); lista("grupos"); lista("subgrupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
   objeto("revisoes"); objeto("revisoesFlashcards"); objeto("diasCartoes"); objeto("cartoesPorDia");

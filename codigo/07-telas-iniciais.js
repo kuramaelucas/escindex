@@ -461,6 +461,24 @@ function enviarFeedbackGeral(){
   fecharModal();
   toast(naNuvem ? "Enviado! A mensagem sobe para a nuvem e chega aos administradores. Obrigado pelo retorno." : "Guardado neste navegador — sem conta na nuvem, ele não chega a outros aparelhos. Obrigado pelo retorno.");
 }
+/* A prova-alvo no Início: quanto falta e, quando a revisão já está sendo
+   encurtada por causa dela, a plataforma diz isso (ela explica o que faz). */
+function htmlCardProvaAlvo(u){
+  const alvo = provaAlvoDoUsuario(u);
+  if(!alvo) return "";
+  const teto = limitarIntervaloPelaProva(u.id, 100000);
+  const encurta = CONFIG.revisaoPelaProva.ligado && teto < Math.max(...CONFIG.intervalosBase);
+  return `<div class="card mt-2">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-240">
+        <div class="card-title">${iconeSvg("target")} Prova-alvo: ${formatDataBR(alvo.data)}</div>
+        <div class="text-sm muted">${escapeHtml(tempoParaProvaAlvo(alvo.dias).replace(/^./, c=>c.toUpperCase()))} — ${alvo.exata ? "a data da primeira prova importante que você marcou" : "o padrão: 1º de dezembro"}.</div>
+        ${encurta ? `<p class="text-xs muted mt-1">Com a prova chegando, as revisões espaçadas voltam em no máximo ${teto} dias (${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta): assim nada que você revisa fica para depois da prova.</p>` : ""}
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="navigate('perfil')">Ajustar a data</button>
+    </div>
+  </div>`;
+}
 function renderInicioAluno(u){
   const bloco = getBlocoAtual();
   const respondidasHoje = questoesRespondidasHoje(u.id);
@@ -477,6 +495,7 @@ function renderInicioAluno(u){
   ${bloco && subdivisoesDoBloco(bloco).length ? `<details class="detalhes-bloco text-sm muted"><summary>${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · ver o período dividido" : "Ver o período dividido"}</summary>Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</details>` : ""}</div>
   ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
+  ${htmlCardProvaAlvo(u)}
   <div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-240">

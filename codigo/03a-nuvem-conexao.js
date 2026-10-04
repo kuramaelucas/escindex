@@ -366,6 +366,8 @@ function nuvemAplicarPerfilLocal(p){
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
+  // a coluna pode nem existir neste banco (esquema.sql ainda não rodado de novo): só quem a traz decide
+  if("prova_alvo_data" in p){ if(p.prova_alvo_data) u.provaAlvoData = p.prova_alvo_data; else delete u.provaAlvoData; }
   // {} (reordenei de volta ao padrão) vale: é assim que "voltar à ordem da turma" chega ao outro aparelho
   if(p.ordem_estagios && typeof p.ordem_estagios === "object") u.ordemEstagios = p.ordem_estagios;
   // avisos já lidos: a união dos dois lados, porque ler num aparelho nunca desfaz a leitura no outro
@@ -399,6 +401,7 @@ function nuvemConferirPerfil(){
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
     lembrete_meta_horario: usuario.lembreteMetaHorario || null,
     boas_vindas_em: usuario.boasVindasEm || null,
+    prova_alvo_data: usuario.provaAlvoData || null,
     ordem_estagios: usuario.ordemEstagios || {},
     avisos_lidos: usuario.avisosLidos || [],
   };

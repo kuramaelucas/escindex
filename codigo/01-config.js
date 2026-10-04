@@ -119,6 +119,26 @@ const CONFIG = {
   // ano usado quando o aluno ainda não informou o dele (e para o calendário
   // oficial, que atende todos os anos)
   anoFaculdadePadrao: "6º ano",
+  /* PROVA-ALVO: a prova para a qual a pessoa estuda. Só existe para quem está
+     no 6º ano e para Formado(a) (`anos`): do 3º ao 5º a data seria um palpite
+     de anos, e a plataforma prefere não ter prova-alvo a ter uma que não é da
+     pessoa. Sem data marcada, vale o 1º de dezembro (as provas de residência
+     começam aí) — o próximo que ainda não passou; quem quiser põe a data exata
+     da primeira prova importante. */
+  provaAlvo: { mes: 12, dia: 1, anos: ["6º ano", "Formado(a)"] },
+  /* Com a prova-alvo por perto, a revisão espaçada não pode empurrar uma
+     questão ou cartão para depois da prova: o intervalo agendado passa a ser
+     no máximo esta fração do tempo que falta (o intervalo ótimo entre revisões
+     é uma fração do prazo até o teste — Cepeda et al., 2008 —, e perto da
+     prova ela é de 20% a 40%). Só encurta, nunca alonga, e só no agendamento
+     de agora: o que já estava agendado não muda. `ligado: false` desliga. */
+  revisaoPelaProva: { ligado: true, fracaoDoPrazo: 0.25 },
+  /* Quantas revisões de cartão (o registro de cada vez que um cartão foi
+     avaliado) ficam neste navegador. O arquivo completo mora na nuvem; aqui é
+     só uma janela recente, porque o localStorage tem uns 5 MB e esse registro
+     cresce a cada cartão (40 por dia, ~14 mil por ano). O que ainda não subiu
+     não depende deste limite: espera na fila de envio. */
+  limiteLogCartoesLocal: 4000,
   // Anos que NÃO têm calendário de blocos próprio. "Formado(a)" está aqui
   // porque quem já se formou não segue calendário de faculdade nenhum: não
   // aparece na tela de Blocos de Estudo e não ganha sequência própria. Ele
