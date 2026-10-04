@@ -17,7 +17,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-export const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+/* ESC_RAIZ troca a pasta do projeto — é como os testes das ferramentas
+   trabalham numa cópia, sem tocar na pasta de verdade. */
+export const RAIZ = process.env.ESC_RAIZ || path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 /* Os arquivos de codigo/ na ordem de carga (ESC_ARQUIVOS.codigo). */
 export function arquivosDeCodigo(){

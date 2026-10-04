@@ -12,8 +12,8 @@
 
    Publicado aqui, o cartão fica no navegador de quem publicou — como tudo o
    que a equipe cria pela plataforma. "Exportar para a pasta dados/" baixa um
-   arquivo pronto para entrar na pasta (e na lista ESC_ARQUIVOS do
-   index.html): é o que o torna de todo mundo. */
+   arquivo pronto para entrar na pasta (e na lista de
+   dados/manifesto.js): é o que o torna de todo mundo. */
 const CARTOES_POR_ASSUNTO_ALVO = 3;
 function estadoLoteCartoes(){
   if(!state.filtroRota.loteCartoes) state.filtroRota.loteCartoes = { selecionados: [], porAssunto: CARTOES_POR_ASSUNTO_ALVO, texto: "", analise: null, aberto: false };
@@ -65,7 +65,7 @@ function renderCartoesEmLote(){
       ${a.problemas.length ? `<ul class="text-xs mt-1">${a.problemas.slice(0,15).map(p=>`<li>${escapeHtml(p)}</li>`).join("")}</ul>` : ""}
       ${a.validos.length ? `<div class="table-wrap mt-1"><table><thead><tr><th>Assunto</th><th>Frente</th><th>Verso</th></tr></thead><tbody>${a.validos.slice(0,12).map(c=>`<tr><td class="text-xs">${escapeHtml(nomeAssunto(c.assuntoId))}</td><td class="text-xs">${escapeHtml(c.frente)}</td><td class="text-xs">${escapeHtml(c.verso)}</td></tr>`).join("")}</tbody></table></div>${a.validos.length>12?`<div class="text-xs muted">… e mais ${a.validos.length-12}.</div>`:""}` : ""}
     </div>` : ""}
-    <p class="text-xs muted mt-2">Os cartões publicados aqui ficam neste navegador. Para chegarem a todos, use "Exportar para a pasta dados/", ponha o arquivo na pasta e o nome dele na lista ESC_ARQUIVOS.dados do index.html (dados/LEIA-ME.md explica).</p>
+    <p class="text-xs muted mt-2">Os cartões publicados aqui ficam neste navegador. Para chegarem a todos, use "Exportar para a pasta dados/", ponha o arquivo na pasta e o nome dele na lista de dados/manifesto.js (dados/LEIA-ME.md explica).</p>
   </div>`;
 }
 function selecionarAssuntosDoLote(n){
@@ -173,7 +173,7 @@ function exportarCartoesParaDados(){
   const linhas = novos.map(c => "  " + JSON.stringify({ id: c.id, assuntoId: c.assuntoId, frente: c.frente, verso: c.verso, fonte: c.fonte || undefined, origem: "autoral", criadoPor: "seed", criadoEm: c.criadoEm, revisao: c.revisao || undefined }) + ",");
   const arquivo = "/* Cartões da equipe criados pela plataforma em " + formatDataBR(hojeISO()) + " (" + novos.length + ").\n" +
     "   Para entrarem para todos: salve este arquivo na pasta dados/ e acrescente\n" +
-    "   \"" + nome + "\" à lista ESC_ARQUIVOS.dados do index.html. */\n" +
+    "   \"" + nome + "\" à lista de dados/manifesto.js. */\n" +
     "window.EscDados.registrarFlashcards(\"" + nome + "\", [\n" + linhas.join("\n") + "\n]);\n";
   baixarArquivo(nome + ".js", arquivo, "text/javascript");
 }

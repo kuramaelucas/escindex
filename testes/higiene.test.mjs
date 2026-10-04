@@ -8,6 +8,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { RAIZ, arquivosDeCodigo } from "../ferramentas/mapa-do-codigo.mjs";
+import { arquivosDeConteudo } from "./conferir-dados.mjs";
 
 const arquivos = arquivosDeCodigo();
 const fontes = Object.fromEntries(arquivos.map(a => [a, fs.readFileSync(path.join(RAIZ, a), "utf8")]));
@@ -28,6 +29,14 @@ test("a lista ESC_ARQUIVOS.codigo do index.html é exatamente a pasta codigo/", 
   const pasta = fs.readdirSync(path.join(RAIZ, "codigo")).filter(f => f.endsWith(".js")).map(f => "codigo/" + f).sort();
   assert.deepEqual([...arquivos].sort(), pasta, "arquivo de codigo/ fora da lista (não carrega) ou item da lista sem arquivo");
   assert.deepEqual(arquivos, [...arquivos].sort(), "a ordem de carga segue a numeração dos nomes");
+});
+
+test("a lista de dados/manifesto.js é exatamente a pasta dados/ (a taxonomia primeiro)", () => {
+  const lista = arquivosDeConteudo();
+  const pasta = fs.readdirSync(path.join(RAIZ, "dados")).filter(f => f.endsWith(".js") && f !== "manifesto.js").map(f => "dados/" + f).sort();
+  assert.deepEqual([...lista].sort(), pasta, "arquivo de dados/ fora do manifesto (não carrega) ou item do manifesto sem arquivo");
+  assert.equal(new Set(lista).size, lista.length, "arquivo repetido no manifesto");
+  assert.equal(lista[0], "dados/taxonomia.js", "a taxonomia vem primeiro: todo o resto aponta para ela");
 });
 
 test("nenhum nome de primeiro nível declarado duas vezes", () => {
