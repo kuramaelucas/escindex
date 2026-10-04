@@ -472,10 +472,10 @@ function htmlCardProvaAlvo(u){
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-240">
         <div class="card-title">${iconeSvg("target")} Prova-alvo: ${formatDataBR(alvo.data)}</div>
-        <div class="text-sm muted">${escapeHtml(tempoParaProvaAlvo(alvo.dias).replace(/^./, c=>c.toUpperCase()))} — ${alvo.exata ? "a data da primeira prova importante que você marcou" : "início de dezembro do " + escapeHtml(CONFIG.provaAlvo.ano)}.</div>
+        <div class="text-sm muted">${escapeHtml(tempoParaProvaAlvo(alvo.dias).replace(/^./, c=>c.toUpperCase()))} — ${alvo.exata ? "a data da primeira prova importante que você marcou" : "o padrão: 1º de dezembro"}.</div>
         ${encurta ? `<p class="text-xs muted mt-1">Com a prova chegando, as revisões espaçadas voltam em no máximo ${teto} dias (${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta): assim nada que você revisa fica para depois da prova.</p>` : ""}
       </div>
-      ${ehUltimoAnoDaFaculdade(u) ? `<button class="btn btn-secondary btn-sm" onclick="navigate('perfil')">Ajustar a data</button>` : ""}
+      <button class="btn btn-secondary btn-sm" onclick="navigate('perfil')">Ajustar a data</button>
     </div>
   </div>`;
 }

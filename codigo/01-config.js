@@ -119,12 +119,13 @@ const CONFIG = {
   // ano usado quando o aluno ainda não informou o dele (e para o calendário
   // oficial, que atende todos os anos)
   anoFaculdadePadrao: "6º ano",
-  /* PROVA-ALVO: a prova para a qual a pessoa estuda. Vale para quem está de
-     3º a 6º ano e é sempre o INÍCIO DE DEZEMBRO do 6º ano (as provas de
-     residência começam aí). Só quem já está no 6º ano pode trocar o padrão
-     pela data exata da primeira prova importante — antes disso a data seria
-     um palpite de anos. Formado(a) fica sem prova-alvo. */
-  provaAlvo: { mes: 12, dia: 1, ano: "6º ano" },
+  /* PROVA-ALVO: a prova para a qual a pessoa estuda. Só existe para quem está
+     no 6º ano e para Formado(a) (`anos`): do 3º ao 5º a data seria um palpite
+     de anos, e a plataforma prefere não ter prova-alvo a ter uma que não é da
+     pessoa. Sem data marcada, vale o 1º de dezembro (as provas de residência
+     começam aí) — o próximo que ainda não passou; quem quiser põe a data exata
+     da primeira prova importante. */
+  provaAlvo: { mes: 12, dia: 1, anos: ["6º ano", "Formado(a)"] },
   /* Com a prova-alvo por perto, a revisão espaçada não pode empurrar uma
      questão ou cartão para depois da prova: o intervalo agendado passa a ser
      no máximo esta fração do tempo que falta (o intervalo ótimo entre revisões

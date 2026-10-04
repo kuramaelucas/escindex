@@ -572,39 +572,34 @@ function estimativaDeNota(usuarioId, banca){
 }
 
 /* ---------- a prova-alvo e o prazo da revisão ----------
-   Para quem está de 3º a 6º ano a prova-alvo é o início de dezembro do 6º ano
-   (CONFIG.provaAlvo); só no 6º ano a pessoa pode trocar o padrão pela data
-   exata da primeira prova importante (usuario.provaAlvoData). Formado(a) e
-   quem não informou o ano ficam sem prova-alvo: a data seria um palpite, e a
-   plataforma prefere não ter a data a ter uma que não é da pessoa. */
-function numeroDoAnoDaFaculdade(usuario){
-  const m = /^(\d)º ano$/.exec((usuario && usuario.anoFaculdade) || "");
-  return m ? +m[1] : null;
-}
-function ehUltimoAnoDaFaculdade(usuario){
-  return numeroDoAnoDaFaculdade(usuario) === numeroDoAnoDaFaculdade({ anoFaculdade: CONFIG.provaAlvo.ano });
+   Só tem prova-alvo quem está no 6º ano ou é Formado(a) (CONFIG.provaAlvo.anos).
+   Sem data marcada vale o 1º de dezembro — o próximo que ainda não passou —,
+   e a pessoa pode trocar pela data exata da primeira prova importante
+   (usuario.provaAlvoData). Do 3º ao 5º ano, e para quem não informou o ano,
+   não há prova-alvo: a data seria um palpite, e a plataforma prefere não ter
+   a data a ter uma que não é da pessoa. */
+function temProvaAlvo(usuario){
+  return !!usuario && CONFIG.provaAlvo.anos.includes(usuario.anoFaculdade);
 }
 function dataISOValida(iso){
   if(!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return false;
   const d = new Date(iso + "T00:00:00");
   return !isNaN(d) && dataLocalISO(d) === iso;
 }
-/* { data, exata, dias } — `exata` quando é a data que a pessoa do 6º ano
-   escolheu; `dias` é quanto falta (0 = hoje). Data exata que já passou volta
-   para o padrão, enquanto o padrão ainda estiver pela frente. Devolve null
-   sem prova-alvo ou com ela já vencida. */
+/* { data, exata, dias } — `exata` quando é a data que a pessoa escolheu;
+   `dias` é quanto falta (0 = hoje). Data exata que já passou volta ao padrão.
+   Devolve null para quem não tem prova-alvo. */
 function provaAlvoDoUsuario(usuario){
-  const n = numeroDoAnoDaFaculdade(usuario);
-  if(!n) return null;
+  if(!temProvaAlvo(usuario)) return null;
   const hoje = hojeISO();
-  if(ehUltimoAnoDaFaculdade(usuario) && dataISOValida(usuario.provaAlvoData) && usuario.provaAlvoData >= hoje){
+  if(dataISOValida(usuario.provaAlvoData) && usuario.provaAlvoData >= hoje){
     return { data: usuario.provaAlvoData, exata: true, dias: diasEntre(hoje, usuario.provaAlvoData) };
   }
-  const ultimo = numeroDoAnoDaFaculdade({ anoFaculdade: CONFIG.provaAlvo.ano });
   const p = x => String(x).padStart(2, "0");
-  const data = (+hoje.slice(0, 4) + (ultimo - n)) + "-" + p(CONFIG.provaAlvo.mes) + "-" + p(CONFIG.provaAlvo.dia);
-  const dias = diasEntre(hoje, data);
-  return dias < 0 ? null : { data, exata: false, dias };
+  const doAno = ano => ano + "-" + p(CONFIG.provaAlvo.mes) + "-" + p(CONFIG.provaAlvo.dia);
+  const ano = +hoje.slice(0, 4);
+  const data = doAno(ano) >= hoje ? doAno(ano) : doAno(ano + 1);
+  return { data, exata: false, dias: diasEntre(hoje, data) };
 }
 /* "faltam 58 dias" / "faltam cerca de 14 meses": o número exato de dias a três
    anos de distância é falsa precisão. */

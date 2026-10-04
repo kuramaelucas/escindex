@@ -89,7 +89,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | Os **destaques de texto** em questões e flashcards | cria a tabela `destaques`, com RLS e permissões (cada pessoa lê e grava os seus) |
 > | Os **avisos da coordenação** (Enviar Avisos) chegando a todos os aparelhos | cria a tabela `avisos` (toda conta aprovada lê; só o administrador grava) e `alter table public.perfis add column if not exists avisos_lidos jsonb ...` (o que a pessoa já dispensou) |
 > | O **registro de estudo para análise** (04/10/2026): de onde veio cada questão, que tentativa é, há quantos dias foi a anterior e a hora exata; e uma linha por cartão avaliado | `alter table public.respostas add column if not exists origem / tentativa / dias_desde_ultima / respondida_em` e a tabela nova `log_revisoes_cartoes` (cada pessoa grava e lê só a sua; **só sobe** — o site não a baixa de volta, e a análise se faz no painel do Supabase) |
-> | A **data exata da prova-alvo** (6º ano, Perfil) | `alter table public.perfis add column if not exists prova_alvo_data date;` |
+> | A **data exata da prova-alvo** (6º ano e Formado(a), em Perfil) | `alter table public.perfis add column if not exists prova_alvo_data date;` |
 > | O **segundo grupo da pessoa, só de questões** (Meu Grupo > Só questões) | `alter table public.perfis add column if not exists grupo_questoes_id text;` |
 > | A **ordem própria dos estágios do 6º ano** (Meu Grupo > Meus estágios) | `alter table public.perfis add column if not exists ordem_estagios jsonb ...` |
 > | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |

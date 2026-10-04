@@ -1,9 +1,9 @@
 /* ==========================================================================
    PROVA-ALVO E REGISTRO DE ESTUDO (com a nuvem)
    ==========================================================================
-   1. A prova-alvo é sempre o início de dezembro do 6º ano; só quem está no 6º
-      ano troca por uma data exata; Formado(a) fica sem. Perto da prova, a
-      revisão espaçada encurta o intervalo (e só encurta).
+   1. A prova-alvo só existe no 6º ano e para Formado(a): o padrão é 1º de
+      dezembro e a data exata é opcional; do 3º ao 5º não há. Perto da prova,
+      a revisão espaçada encurta o intervalo (e só encurta).
    2. Cada resposta guarda de onde veio, que tentativa é, há quantos dias foi a
       anterior e a hora exata; cada avaliação de cartão vira uma linha de log.
    3. Nada disso fica só no navegador: sobe para a nuvem (colunas novas em
@@ -30,7 +30,7 @@ async function abrirLocal(){
   return { pagina, contexto, erros };
 }
 
-test("a prova-alvo: início de dezembro do 6º ano para todos; data exata só no 6º ano; Formado(a) sem", async () => {
+test("a prova-alvo: só no 6º ano e para Formado(a), padrão 1º de dezembro e data exata opcional; do 3º ao 5º não há", async () => {
   const { pagina, contexto, erros } = await abrirLocal();
   try {
     const r = await pagina.evaluate(() => {
@@ -40,35 +40,37 @@ test("a prova-alvo: início de dezembro do 6º ano para todos; data exata só no
       const alvo = (ano, extra = {}) => { u.anoFaculdade = ano; delete u.provaAlvoData; Object.assign(u, extra); const a = provaAlvoDoUsuario(u); return a && { data: a.data, exata: a.exata, dias: a.dias }; };
       hoje("2026-10-04");
       const saida = {
-        terceiro: alvo("3º ano"), quarto: alvo("4º ano"), quinto: alvo("5º ano"), sexto: alvo("6º ano"),
-        // quem não está no 6º ano não escolhe: a data guardada não vale
+        terceiro: alvo("3º ano"), quarto: alvo("4º ano"), quinto: alvo("5º ano"), semAno: alvo(""),
+        // do 3º ao 5º ano não há prova-alvo, nem com data guardada
         terceiroComData: alvo("3º ano", { provaAlvoData: "2026-11-10" }),
+        sexto: alvo("6º ano"), formado: alvo("Formado(a)"),
         sextoExato: alvo("6º ano", { provaAlvoData: "2026-11-10" }),
+        formadoExato: alvo("Formado(a)", { provaAlvoData: "2027-03-15" }),
         sextoInvalida: alvo("6º ano", { provaAlvoData: "2026-02-30" }),
         sextoJaPassou: alvo("6º ano", { provaAlvoData: "2026-09-01" }),
-        formado: alvo("Formado(a)"), semAno: alvo(""),
       };
-      hoje("2026-12-15"); saida.sextoDepoisDeDezembro = alvo("6º ano");
-      hoje("2027-01-10"); saida.quintoEmJaneiro = alvo("5º ano");
+      hoje("2026-12-01"); saida.noDia = alvo("6º ano");
+      hoje("2026-12-15"); saida.depoisDeDezembro = alvo("Formado(a)");
       return saida;
     });
-    assert.deepEqual(r.terceiro, { data: "2029-12-01", exata: false, dias: 1154 });
-    assert.equal(r.quarto.data, "2028-12-01");
-    assert.equal(r.quinto.data, "2027-12-01");
+    assert.equal(r.terceiro, null, "3º ano não tem prova-alvo");
+    assert.equal(r.quarto, null);
+    assert.equal(r.quinto, null);
+    assert.equal(r.semAno, null);
+    assert.equal(r.terceiroComData, null, "nem com data guardada");
     assert.deepEqual(r.sexto, { data: "2026-12-01", exata: false, dias: 58 });
-    assert.equal(r.terceiroComData.data, "2029-12-01", "3º ano não escolhe data");
+    assert.deepEqual(r.formado, { data: "2026-12-01", exata: false, dias: 58 }, "Formado(a) também tem o padrão de 1º de dezembro");
     assert.deepEqual(r.sextoExato, { data: "2026-11-10", exata: true, dias: 37 });
+    assert.deepEqual(r.formadoExato, { data: "2027-03-15", exata: true, dias: 162 }, "Formado(a) também pode marcar a data exata");
     assert.equal(r.sextoInvalida.exata, false, "data inexistente é ignorada");
     assert.deepEqual([r.sextoJaPassou.data, r.sextoJaPassou.exata], ["2026-12-01", false], "data exata que passou volta ao padrão");
-    assert.equal(r.formado, null);
-    assert.equal(r.semAno, null);
-    assert.equal(r.sextoDepoisDeDezembro, null, "o padrão já passou");
-    assert.equal(r.quintoEmJaneiro.data, "2028-12-01", "em janeiro de 2027 quem está no 5º ano será do 6º em 2028 (a pessoa atualiza o ano ao virar o ano letivo)");
+    assert.deepEqual(r.noDia, { data: "2026-12-01", exata: false, dias: 0 }, "no próprio 1º de dezembro a prova é hoje");
+    assert.deepEqual([r.depoisDeDezembro.data, r.depoisDeDezembro.dias], ["2027-12-01", 351], "passado o 1º de dezembro, o padrão é o do ano seguinte");
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
 
-test("Perfil: 6º ano marca e desfaz a data exata; 3º a 5º só veem o padrão; mudar de ano apaga a data", async () => {
+test("Perfil: 6º ano e Formado(a) marcam e desfazem a data exata; 3º a 5º não têm prova-alvo; mudar de ano apaga a data", async () => {
   const { pagina, contexto, erros } = await abrirLocal();
   try {
     const r = await pagina.evaluate(() => {
@@ -86,11 +88,12 @@ test("Perfil: 6º ano marca e desfaz a data exata; 3º a 5º só veem o padrão;
       const aposLonge = u.provaAlvoData;
       const inicio = (navigate("inicio"), document.getElementById("app").innerText);
       tela(); limparProvaAlvo(); const limpa = u.provaAlvoData;
-      tela(); document.getElementById("perfilProvaAlvo").value = "2026-11-10"; salvarProvaAlvo();
+      const inicioPadrao = (navigate("inicio"), document.getElementById("app").innerText);
+      u.anoFaculdade = "Formado(a)"; const formado = { campo: (tela(), campo()) };
+      document.getElementById("perfilProvaAlvo").value = "2027-03-15"; salvarProvaAlvo(); formado.salva = u.provaAlvoData;
       tela(); document.getElementById("perfilAno").value = "5º ano"; salvarAnoFaculdade();
-      const aposMudar = { data: u.provaAlvoData, campo: campo(), texto: document.getElementById("app").innerText };
-      u.anoFaculdade = "Formado(a)"; tela(); const formado = campo();
-      return { sexto, salva, aposPassada, aposLonge, inicio, limpa, aposMudar, formado };
+      const quinto = { data: u.provaAlvoData, campo: campo(), texto: document.getElementById("app").innerText, inicio: (navigate("inicio"), document.getElementById("app").innerText) };
+      return { sexto, salva, aposPassada, aposLonge, inicio, limpa, inicioPadrao, formado, quinto };
     });
     assert.ok(r.sexto.campo, "o 6º ano vê o campo da data");
     assert.match(r.sexto.texto, /Data da primeira prova importante/);
@@ -100,10 +103,14 @@ test("Perfil: 6º ano marca e desfaz a data exata; 3º a 5º só veem o padrão;
     assert.match(r.inicio, /Prova-alvo: 10\/11\/2026/);
     assert.match(r.inicio, /a data da primeira prova importante que você marcou/);
     assert.equal(r.limpa, undefined);
-    assert.equal(r.aposMudar.data, undefined, "mudar de ano apaga a data exata");
-    assert.equal(r.aposMudar.campo, false, "no 5º ano não há campo para escolher");
-    assert.match(r.aposMudar.texto, /sempre o início de dezembro do 6º ano/);
-    assert.equal(r.formado, false);
+    assert.match(r.inicioPadrao, /Prova-alvo: 01\/12\/2026/);
+    assert.match(r.inicioPadrao, /o padrão: 1º de dezembro/);
+    assert.ok(r.formado.campo, "Formado(a) também vê o campo");
+    assert.equal(r.formado.salva, "2027-03-15");
+    assert.equal(r.quinto.data, undefined, "mudar para o 5º ano apaga a data exata");
+    assert.equal(r.quinto.campo, false, "no 5º ano não há campo para escolher");
+    assert.match(r.quinto.texto, /Ela passa a existir quando você chegar ao 6º ano/);
+    assert.doesNotMatch(r.quinto.inicio, /Prova-alvo:/, "o Início não mostra prova-alvo");
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
@@ -125,8 +132,8 @@ test("perto da prova a revisão encurta o intervalo — e só encurta; longe del
       const saida = {
         sexto: intervaloApos("6º ano", q),            // 58 dias até 1/12: teto de 25% = 15 dias
         sextoChute: intervaloApos("6º ano", q, "chute"),
-        terceiro: intervaloApos("3º ano", q),         // 3 anos de prazo: o teto passa de um mês
-        formado: intervaloApos("Formado(a)", q),
+        terceiro: intervaloApos("3º ano", q),         // sem prova-alvo: nada muda
+        formado: intervaloApos("Formado(a)", q),      // Formado(a) tem o padrão de 1º de dezembro
       };
       // a 3 dias da prova o piso de uma semana continua valendo
       CONFIG.hoje = () => new Date("2026-11-28T12:00:00"); saida.vesperas = intervaloApos("6º ano", q);
@@ -145,8 +152,8 @@ test("perto da prova a revisão encurta o intervalo — e só encurta; longe del
     });
     assert.equal(r.sexto, 15, "58 dias até a prova: 25% = 15 dias, em vez de um mês");
     assert.equal(r.sextoChute, 7, "o chute já volta no piso de uma semana");
-    assert.equal(r.terceiro, 30, "a três anos da prova nada muda");
-    assert.equal(r.formado, 30, "Formado(a) não tem prova-alvo");
+    assert.equal(r.terceiro, 30, "do 3º ao 5º ano não há prova-alvo: nada muda");
+    assert.equal(r.formado, 15, "Formado(a) também tem a prova-alvo padrão");
     assert.equal(r.vesperas, 7, "nunca abaixo do piso de uma semana");
     assert.equal(r.desligado, 30, "CONFIG.revisaoPelaProva.ligado = false devolve o comportamento de antes");
     assert.ok(r.cartao <= 15, "o cartão também respeita o prazo da prova (veio " + r.cartao + ")");

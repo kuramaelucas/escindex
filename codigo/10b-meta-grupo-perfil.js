@@ -1076,37 +1076,35 @@ function baixarMeusDados(){
 function salvarAnoFaculdade(){
   const u = usuarioAtual();
   u.anoFaculdade = document.getElementById("perfilAno").value;
-  // a data exata é só de quem está no último ano; ao mudar de ano ela não vale mais
-  if(!ehUltimoAnoDaFaculdade(u)) delete u.provaAlvoData;
+  // a prova-alvo só existe no 6º ano e para Formado(a); do 3º ao 5º a data exata não vale
+  if(!temProvaAlvo(u)) delete u.provaAlvoData;
   saveState();
   toast("Ano da faculdade atualizado.");
   render();
 }
-/* O campo "Prova-alvo" do Perfil. Do 3º ao 5º ano a data é sempre o início de
-   dezembro do 6º ano e não se escolhe (a data exata de uma prova daqui a anos
-   seria um palpite); no 6º ano a pessoa pode pôr a data exata da primeira prova
-   importante. Formado(a) fica sem prova-alvo e não vê o campo. */
+/* O campo "Prova-alvo" do Perfil. No 6º ano e para Formado(a) a pessoa pode pôr
+   a data exata da primeira prova importante (sem ela vale 1º de dezembro). Do
+   3º ao 5º ano não há prova-alvo — só um aviso de quando ela passa a existir. */
 function renderCampoProvaAlvo(u){
-  const alvo = provaAlvoDoUsuario(u);
-  if(!numeroDoAnoDaFaculdade(u)) return "";
-  const ate = somarDias(hojeISO(), 400);
-  if(!ehUltimoAnoDaFaculdade(u)){
+  if(!u.anoFaculdade) return "";
+  if(!temProvaAlvo(u)){
     return `<div class="field"><label class="label">Prova-alvo</label>
-      <div>${alvo ? formatDataBR(alvo.data) + " — " + escapeHtml(tempoParaProvaAlvo(alvo.dias)) : "—"}</div>
-      <div class="hint mt-1">Do ${escapeHtml(u.anoFaculdade)} até o 5º ano, a prova-alvo é sempre o início de dezembro do ${escapeHtml(CONFIG.provaAlvo.ano)}. Quando você chegar ao ${escapeHtml(CONFIG.provaAlvo.ano)}, poderá marcar a data exata da sua primeira prova importante.</div>
+      <div class="hint">Ela passa a existir quando você chegar ao 6º ano: o padrão é o 1º de dezembro, e você poderá marcar a data exata da sua primeira prova importante. Até lá, as revisões seguem o ritmo normal.</div>
     </div>`;
   }
+  const alvo = provaAlvoDoUsuario(u);
+  const ate = somarDias(hojeISO(), 400);
   return `<div class="field"><label class="label" for="perfilProvaAlvo">Data da primeira prova importante</label>
     <div class="flex gap-1 items-center quebra">
-      <input class="input" type="date" id="perfilProvaAlvo" min="${hojeISO()}" max="${ate}" value="${alvo && alvo.exata ? alvo.data : ""}" style="max-width:11rem">
+      <input class="input" type="date" id="perfilProvaAlvo" min="${hojeISO()}" max="${ate}" value="${alvo.exata ? alvo.data : ""}" style="max-width:11rem">
       <button class="btn btn-secondary btn-sm" onclick="salvarProvaAlvo()">Salvar a data</button>
-      ${alvo && alvo.exata ? `<button class="btn btn-ghost btn-sm" onclick="limparProvaAlvo()">Voltar ao padrão</button>` : ""}
+      ${alvo.exata ? `<button class="btn btn-ghost btn-sm" onclick="limparProvaAlvo()">Voltar ao padrão</button>` : ""}
     </div>
-    <div class="hint mt-1">${alvo ? "Hoje a prova-alvo é <strong>" + formatDataBR(alvo.data) + "</strong> (" + (alvo.exata ? "a data que você marcou" : "o padrão: início de dezembro") + "; " + escapeHtml(tempoParaProvaAlvo(alvo.dias)) + ")." : "A prova-alvo padrão (início de dezembro) já passou — marque a data da sua próxima prova."} Com a prova se aproximando, as revisões espaçadas passam a voltar em no máximo ${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta, para nada ficar para depois dela.</div>
+    <div class="hint mt-1">Hoje a prova-alvo é <strong>${formatDataBR(alvo.data)}</strong> (${alvo.exata ? "a data que você marcou" : "o padrão: 1º de dezembro"}; ${escapeHtml(tempoParaProvaAlvo(alvo.dias))}). Com a prova se aproximando, as revisões espaçadas passam a voltar em no máximo ${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta, para nada ficar para depois dela.</div>
   </div>`;
 }
 function salvarProvaAlvo(){
-  const u = usuarioAtual(); if(!u || !ehUltimoAnoDaFaculdade(u)) return;
+  const u = usuarioAtual(); if(!u || !temProvaAlvo(u)) return;
   const v = (document.getElementById("perfilProvaAlvo") || {}).value;
   if(!dataISOValida(v)){ toast("Escolha uma data válida.", "err"); return; }
   if(v < hojeISO()){ toast("A data já passou — escolha a da próxima prova.", "err"); return; }

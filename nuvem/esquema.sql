@@ -187,8 +187,8 @@ alter table public.perfis add column if not exists avisos_lidos jsonb not null d
 -- o segundo grupo da pessoa, só para compartilhar questões (Meu Grupo): o
 -- grupo do calendário continua em grupo_id.
 alter table public.perfis add column if not exists grupo_questoes_id text;
--- a data EXATA da primeira prova importante, que só quem está no 6º ano pode
--- marcar. Nula = vale o padrão (início de dezembro do 6º ano), que não é
+-- a data EXATA da primeira prova importante, que só quem está no 6º ano ou já
+-- se formou pode marcar. Nula = vale o padrão (1º de dezembro), que não é
 -- gravado: ele se calcula a partir do ano da faculdade.
 alter table public.perfis add column if not exists prova_alvo_data date;
 
