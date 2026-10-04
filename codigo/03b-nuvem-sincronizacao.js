@@ -28,8 +28,20 @@ const NUVEM_TABELAS = {
         alternativaEscolhida: linha.alternativa_escolhida, correta: linha.correta,
         confianca: linha.confianca, data: linha.data, tempoSeg: linha.tempo_seg,
         sessaoId: linha.sessao_id,
+        origem: linha.origem || undefined, tentativa: linha.tentativa || undefined,
+        diasDesdeUltima: typeof linha.dias_desde_ultima === "number" ? linha.dias_desde_ultima : undefined,
+        respondidaEm: linha.respondida_em || undefined,
       });
     },
+  },
+  log_revisoes_cartoes: {
+    // o registro de cada avaliação de cartão: SÓ SOBE. O histórico inteiro fica
+    // na nuvem (para analisar a retenção da turma); descer tudo para o
+    // navegador estouraria o localStorage, e nenhuma tela o usa. Por isso não
+    // há `aplicar`, e a descida pula esta tabela (soEnvio).
+    tipo: "registro", soEnvio: true, tempo: "criado_em",
+    chave: r => r.id,
+    aplicar: () => {},
   },
   revisoes: {
     tipo: "estado", tempo: "atualizado_em",
@@ -214,6 +226,19 @@ function nuvemRegistrar(o){
       assunto_id: r.assuntoId || null, alternativa_escolhida: r.alternativaEscolhida,
       correta: !!r.correta, confianca: r.confianca || null, tempo_seg: r.tempoSeg || null,
       sessao_id: r.sessaoId || null, data: r.data,
+      origem: r.origem || null, tentativa: r.tentativa || null,
+      dias_desde_ultima: typeof r.diasDesdeUltima === "number" ? r.diasDesdeUltima : null,
+      respondida_em: r.respondidaEm || null,
+    });
+  }
+  if(o.logCartao && o.logCartao.usuarioId === meuId){
+    const l = o.logCartao;
+    nuvemEnfileirar("log_revisoes_cartoes", {
+      id: l.id, usuario_id: l.usuarioId, cartao_id: l.cartaoId, assunto_id: l.assuntoId || null,
+      nota: l.nota, intervalo_antes: l.intervaloAntes == null ? null : l.intervaloAntes,
+      intervalo_depois: l.intervaloDepois == null ? null : l.intervaloDepois,
+      dias_desde_ultima: l.diasDesdeUltima == null ? null : l.diasDesdeUltima,
+      vistas: l.vistas || null, data: l.data, respondida_em: l.em || null,
     });
   }
   if(o.revisao && o.usuarioId === meuId){
@@ -373,7 +398,8 @@ function nuvemErroPassageiro(e){
    rodar o nuvem/esquema.sql, um F5 volta a mandar tudo). O dado em si nunca
    se perde: ele vive no navegador como todo o resto. */
 const NUVEM_CAMPOS_NOVOS = {
-  perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões)
+  perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id", "prova_alvo_data"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões); data exata da prova-alvo (6º ano)
+  respostas: ["origem", "tentativa", "dias_desde_ultima", "respondida_em"],  // de onde veio a questão, que tentativa é, dias desde a anterior e a hora exata
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],   // quantos cartões naquele dia
 };
@@ -639,7 +665,7 @@ async function nuvemReceberMudancas(){
   const meuId = nuvemSessao.usuarioId;
   if(!db.nuvem.marcas) db.nuvem.marcas = {};
   for(const [tabela, desc] of Object.entries(NUVEM_TABELAS)){
-    if(_nuvemTabelasAusentes.has(tabela)) continue;
+    if(_nuvemTabelasAusentes.has(tabela) || desc.soEnvio) continue;
     const coluna = tabela === "perfis" ? "id" : "usuario_id";
     const desde = db.nuvem.marcas[tabela] || "1970-01-01T00:00:00Z";
     let maior = desde, pagina = 0;

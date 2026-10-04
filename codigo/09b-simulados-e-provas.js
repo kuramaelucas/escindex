@@ -169,7 +169,7 @@ function finalizarSimulado(){
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
     if(resp===q.gabarito) acertos++;
-    if(resp) registrarResposta(u.id, it.questaoId, resp, "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null);
+    if(resp) registrarResposta(u.id, it.questaoId, resp, "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null, "simulado");
   });
   const nota = pct(acertos, sessao.itens.length);
   db.resultadosSimulados.push({id:uid("res"), usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
@@ -261,7 +261,7 @@ function revisarErrosDoSimulado(){
   const errados = sessao.itens.filter(it=>{
     const q = getQuestao(it.questaoId);
     return q && sessao.respostasSimulado[it.questaoId] !== q.gabarito && !questaoOculta(usuarioAtual().id, it.questaoId);
-  }).map(it=>({questaoId:it.questaoId, motivo:"Erro no simulado: "+(sessao.titulo||"")}));
+  }).map(it=>({questaoId:it.questaoId, origem:"erros", motivo:"Erro no simulado: "+(sessao.titulo||"")}));
   if(!errados.length){ toast("Você não errou nenhuma questão deste simulado."); return; }
   state.sessaoAtual = null;
   iniciarSessaoComLista(errados, "pratica");

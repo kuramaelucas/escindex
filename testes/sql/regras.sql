@@ -52,8 +52,17 @@ select pg_temp.tem_de_falhar($$insert into destaques(id,usuario_id,alvo,inicio,f
 update destaques set removido=true where id='d1';
 select pg_temp.igual((select count(*) from destaques where removido), 1, 'a pessoa desmarca o próprio destaque');
 
+-- o registro de cada avaliação de cartão e as colunas novas da resposta: só do dono
+insert into log_revisoes_cartoes(id,usuario_id,cartao_id,assunto_id,nota,intervalo_antes,intervalo_depois,dias_desde_ultima,vistas,data,respondida_em)
+  values ('l1','00000000-0000-0000-0000-00000000000a','c1','ass-sca','sabia',7,14,8,2,current_date,now());
+select pg_temp.tem_de_falhar($$insert into log_revisoes_cartoes(id,usuario_id,cartao_id,nota) values ('l2','00000000-0000-0000-0000-00000000000b','c1','sabia')$$, 'log de cartão em nome de outra pessoa');
+select pg_temp.igual((select count(*) from information_schema.columns where table_schema='public' and table_name='respostas' and column_name in ('origem','tentativa','dias_desde_ultima','respondida_em')), 4, 'a resposta tem origem, tentativa, dias desde a última e a hora exata');
+update perfis set prova_alvo_data = current_date + 30 where id='00000000-0000-0000-0000-00000000000a';
+select pg_temp.igual((select count(*) from perfis where prova_alvo_data is not null), 1, 'a pessoa grava a própria data de prova-alvo');
+
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);
 select pg_temp.igual((select count(*) from destaques), 0, 'ninguém lê o destaque de outra pessoa');
+select pg_temp.igual((select count(*) from log_revisoes_cartoes), 0, 'ninguém lê o log de cartões de outra pessoa');
 insert into comentarios(id,questao_id,usuario_id,autor_nome,texto,resposta_oficial) values ('c4','q1','00000000-0000-0000-0000-00000000000d','Res D','resposta',true);
 select pg_temp.igual((select count(*) from painel_turma()), 0, 'residente não vê o painel da turma');
 select pg_temp.igual((select count(*) from acerto_por_turma()), 0, 'residente não vê o acerto da turma');

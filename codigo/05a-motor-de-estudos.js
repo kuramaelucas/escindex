@@ -408,6 +408,8 @@ function registrarRevisao(usuarioId, questaoId, correta, confianca){
   if(confianca==="chute"){ entry.intervalo = CONFIG.intervaloMinimoRevisao; entry.repeticoes = Math.min(entry.repeticoes,1); }
   // a escada configurável (db.configGeral) pode trazer degraus curtos: o piso vale sempre
   entry.intervalo = Math.max(entry.intervalo, CONFIG.intervaloMinimoRevisao);
+  // perto da prova-alvo a questão não pode voltar só depois dela (ver limitarIntervaloPelaProva)
+  entry.intervalo = limitarIntervaloPelaProva(usuarioId, entry.intervalo);
   entry.proximaRevisao = somarDias(hojeISO(), entry.intervalo);
   entry.ultimaConfianca = confianca; entry.ultimaCorreta = correta; entry.ultimaData = hojeISO();
   db.revisoes[usuarioId][questaoId] = entry;
@@ -519,6 +521,8 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   if(!db.revisoesFlashcards) db.revisoesFlashcards = {};
   if(!db.revisoesFlashcards[usuarioId]) db.revisoesFlashcards[usuarioId] = {};
   const entry = db.revisoesFlashcards[usuarioId][cartaoId] || {repeticoes:0, fator:2.5, intervalo:0, vistas:0};
+  // o que valia ANTES desta avaliação, para o registro de cada revisão
+  const antes = { intervalo: entry.vistas ? entry.intervalo : null, ultimaData: entry.ultimaData || null };
   const q = nota==="sabia" ? 5 : nota==="quase" ? 3 : 0;
   const minimo = CONFIG.intervaloMinimoRevisao;
   if(q < 3){ entry.repeticoes = 0; entry.intervalo = minimo; }
@@ -532,11 +536,13 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   // "quase" nunca deixa o cartão dormir muito: é o sinal clássico de falsa segurança
   if(nota==="quase") entry.intervalo = minimo;
   entry.intervalo = Math.max(entry.intervalo, minimo);
+  entry.intervalo = limitarIntervaloPelaProva(usuarioId, entry.intervalo);
   entry.proximaRevisao = somarDias(hojeISO(), entry.intervalo);
   entry.ultimaNota = nota; entry.ultimaData = hojeISO();
   entry.vistas = (entry.vistas||0) + 1;
   db.revisoesFlashcards[usuarioId][cartaoId] = entry;
   nuvemRegistrar({usuarioId, cartaoId, revisaoCartao:entry});
+  registrarLogDeCartao(usuarioId, cartaoId, nota, antes, entry);
   // diário de dias com cartão revisado, que alimenta a sequência diária
   if(!db.diasCartoes) db.diasCartoes = {};
   if(!db.diasCartoes[usuarioId]) db.diasCartoes[usuarioId] = [];
@@ -551,6 +557,26 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   db.cartoesPorDia[usuarioId][hojeISO()] = feitosNoDia;
   nuvemRegistrar({usuarioId, diaCartao:hojeISO(), quantidadeCartoesDoDia:feitosNoDia});
   saveState();
+}
+/* Uma linha por avaliação de cartão. A revisão espaçada (revisoesFlashcards)
+   guarda só o ESTADO de cada cartão — a última nota e o próximo prazo —, e
+   por isso não dá para saber depois quanto o cartão foi lembrado a cada
+   intervalo. Este registro só se acumula (nunca é reescrito): é o que permite
+   calibrar o agendamento com a retenção real da turma. */
+function registrarLogDeCartao(usuarioId, cartaoId, nota, antes, entry){
+  const cartao = getFlashcard(cartaoId) || {};
+  const linha = {
+    id: uid("lc"), usuarioId, cartaoId, assuntoId: cartao.assuntoId || null, nota,
+    intervaloAntes: antes.intervalo, intervaloDepois: entry.intervalo,
+    diasDesdeUltima: antes.ultimaData ? Math.max(0, diasEntre(antes.ultimaData, hojeISO())) : null,
+    vistas: entry.vistas, data: hojeISO(), em: CONFIG.hoje().toISOString(),
+  };
+  if(!Array.isArray(db.logCartoes)) db.logCartoes = [];
+  db.logCartoes.push(linha);
+  // só uma janela recente fica aqui (a nuvem guarda tudo); ver CONFIG.limiteLogCartoesLocal
+  const sobra = db.logCartoes.length - CONFIG.limiteLogCartoesLocal;
+  if(sobra > 0) db.logCartoes.splice(0, sobra);
+  nuvemRegistrar({logCartao: linha});
 }
 /* Monta o baralho da sessão de revisão rápida. `filtro` aceita
    {assuntoId, especialidadeId, areaId, somenteFalsaSeguranca,
@@ -752,15 +778,16 @@ function montarSessaoSemCalendario(usuario, tamanho){
   const partes = partesDaRevisaoEspacada(usuarioId);
   const nRevisao = Math.round(tamanho * CONFIG.revisaoSemCalendario);
   const itens = [...partes.erros, ...partes.decaimentos].slice(0, nRevisao).map(v=>({questaoId:v.questao.id,
+    origem: v.motivo==="erro" ? "revisao_erro" : "revisao_decaimento",
     motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto"}));
   const usados = new Set(itens.map(it=>it.questaoId));
   const naoVistas = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id));
   selecionarComProgressao(naoVistas, tamanho - itens.length, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
-    .forEach(q=>{ itens.push({questaoId:q.id, motivo:"Questão que você ainda não viu"+rotulo(q)}); usados.add(q.id); });
+    .forEach(q=>{ itens.push({questaoId:q.id, origem:"nao_vista", motivo:"Questão que você ainda não viu"+rotulo(q)}); usados.add(q.id); });
   if(itens.length < tamanho){
     // banco quase todo respondido: completa com o que já venceu e, por fim, com qualquer questão
     const sobra = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id));
-    embaralhar(sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, motivo:"Complemento — você já respondeu quase tudo do banco"}));
+    embaralhar(sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, origem:"complemento", motivo:"Complemento — você já respondeu quase tudo do banco"}));
   }
   return embaralhar(itens);
 }
@@ -793,7 +820,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
      vencida não entra na conta — é questão que a pessoa já fez, e o prazo
      dela não muda porque o ano mudou. */
   const rotulo = q => rotuloProgressao(q, usuario);
-  const itensAtual = selecionarComProgressao(poolAtual, nAtual, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos)).map(q=>({questaoId:q.id,
+  const itensAtual = selecionarComProgressao(poolAtual, nAtual, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos)).map(q=>({questaoId:q.id, origem:"bloco_atual",
     motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "") + rotulo(q)}));
 
   /* Ordem da revisão: primeiro o que a pessoa AINDA NÃO VIU, depois o que
@@ -801,16 +828,16 @@ function montarSessaoRecomendada(usuarioId, tamanho){
      passou o prazo — ver partesDaRevisaoEspacada. */
   const partesRevisao = partesDaRevisaoEspacada(usuarioId, assuntosPassados);
   const itensRevisao = selecionarComProgressao(partesRevisao.novas, nRevisao, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
-    .map(q=>({questaoId:q.id, motivo:"Revisão — assunto de bloco anterior que você ainda não viu"+rotulo(q)}));
+    .map(q=>({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão — assunto de bloco anterior que você ainda não viu"+rotulo(q)}));
   const atrasoDe = v => diasEntre(proximaRevisaoEfetiva(v.entry), hojeISO());
   [...partesRevisao.erros, ...partesRevisao.decaimentos].slice(0, Math.max(0, nRevisao - itensRevisao.length)).forEach(v=>{
     const atraso = atrasoDe(v);
     const porErro = partesRevisao.erros.includes(v);
-    itensRevisao.push({questaoId:v.questao.id, motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" dia(s)" : ", no prazo")});
+    itensRevisao.push({questaoId:v.questao.id, origem: porErro ? "revisao_erro" : "revisao_decaimento", motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" dia(s)" : ", no prazo")});
   });
 
   const poolPrevia = questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental");
-  const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
+  const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, origem:"previa", motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
 
   let todos = [...itensAtual, ...itensRevisao, ...itensPrevia];
   // se o banco de demonstração não tiver questões suficientes para preencher a
@@ -818,7 +845,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   if(todos.length < tamanho){
     const usados = new Set(todos.map(t=>t.questaoId));
     const extras = selecionarComProgressao(questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id)), tamanho-todos.length, usuario, (p,k)=>embaralhar(p).slice(0,k))
-      .map(q=>({questaoId:q.id, motivo:"Complemento — banco de demonstração ainda é pequeno"+rotulo(q)}));
+      .map(q=>({questaoId:q.id, origem:"complemento", motivo:"Complemento — banco de demonstração ainda é pequeno"+rotulo(q)}));
     todos = [...todos, ...extras];
   }
   return embaralhar(todos);
@@ -893,15 +920,38 @@ function partesDaRevisaoEspacada(usuarioId, assuntos){
 }
 
 /* ---------- registrar uma resposta (retrieval practice) ---------- */
-function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca, tempoSeg){
+/* De onde a questão veio, em código (para analisar depois se o algoritmo
+   funciona: a revisão espaçada de fato recupera mais do que a prévia?). Fica
+   em cada item da fila (`origem`); item montado à mão cai em "lista". */
+const ORIGENS_DE_QUESTAO = {
+  bloco_atual: "bloco atual", revisao_nova: "revisão: assunto anterior ainda não visto",
+  revisao_erro: "revisão espaçada: erro ou chute anterior", revisao_decaimento: "revisão espaçada: acerto antigo",
+  previa: "prévia do próximo bloco", nao_vista: "questão ainda não vista (sem calendário)", complemento: "complemento da sessão",
+  erros: "refazer erros", lista: "lista montada pela pessoa", simulado: "simulado",
+};
+function origemDoItem(sessao, item){
+  if(item && item.origem) return item.origem;
+  return sessao && sessao.tipo === "simulado" ? "simulado" : "lista";
+}
+function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca, tempoSeg, origem){
   const q = getQuestao(questaoId);
   const correta = alternativaEscolhida === q.gabarito;
+  /* Quantas vezes esta pessoa já respondeu esta questão e há quantos dias foi
+     a última: a conta é feita direto na lista (o índice por questão só se
+     renova no saveState). Com a hora exata (respondidaEm), dá para estudar
+     em que horário e depois de qual intervalo a pessoa acerta mais. */
+  const anteriores = db.respostas.filter(r=>r.usuarioId===usuarioId && r.questaoId===questaoId);
+  const ultimaData = anteriores.reduce((m, r)=> r.data && r.data > m ? r.data : m, "");
   const resposta = {
     id:uid("r"), usuarioId, questaoId,
     areaId:q.areaId, especialidadeId:q.especialidadeId, assuntoId:q.assuntoId,
     alternativaEscolhida, correta, confianca, data:hojeISO(),
     tempoSeg: (tempoSeg && tempoSeg>0 && tempoSeg<3600) ? Math.round(tempoSeg) : null,
     sessaoId: state.sessaoAtual ? state.sessaoAtual.id : null,
+    origem: origem && ORIGENS_DE_QUESTAO[origem] ? origem : "lista",
+    tentativa: anteriores.length + 1,
+    diasDesdeUltima: ultimaData ? Math.max(0, diasEntre(ultimaData, hojeISO())) : null,
+    respondidaEm: CONFIG.hoje().toISOString(),
   };
   db.respostas.push(resposta);
   nuvemRegistrar({resposta});          // entra na fila de envio para a nuvem
