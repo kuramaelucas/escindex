@@ -96,7 +96,7 @@ export function resumirNumeros(nums){
 export const PROVAS_ANTERIORES_AO_PADRAO = new Set([
   
   
-  "prova-iamspe-2023", "prova-iamspe-2025", "prova-iamspe-2026",
+  "prova-iamspe-2025", "prova-iamspe-2026",
   "prova-unesp-2023",
 ]);
 const DICAS_DO_ENUNCIADO = /Dicas d[oa]s? (enunciado|imagem|figura|tabela|gráfico|lâmina|exame|ECG|eletrocardiograma|radiografia|tomografia|ressonância|foto|fotos|partograma|caso|ecomapa|espirometria|ultrassonografia|hemograma|gasometria|curva|esfregaço)/i;
