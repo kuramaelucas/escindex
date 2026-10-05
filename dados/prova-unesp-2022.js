@@ -8,6 +8,12 @@
    `real: true`. A origem do gabarito e o que ficou pendente (anuladas,
    figuras) se anotam aqui, neste cabeçalho.
 
+   Transcrita de caderno gabaritado em PDF; o gabarito é o da folha de
+   respostas desse caderno (nenhuma questão anulada). 23 questões trazem
+   figura (cariótipo, ECG, fotos, espirometria, tabelas, TC, radiografias,
+   esquemas e gráficos) em dados/imagens/, recortadas do caderno. As questões
+   22 e 23 compartilham o mesmo caso clínico.
+
    @ficha {"banca":"UNESP (FMB)","ano":2022,"prefixo":"q-unesp2022","alternativas":4,"total":100}
    ========================================================================== */
 window.EscDados.registrarQuestoes("prova-unesp-2022", [

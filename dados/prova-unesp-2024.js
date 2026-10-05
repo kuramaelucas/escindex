@@ -8,6 +8,12 @@
    `real: true`. A origem do gabarito e o que ficou pendente (anuladas,
    figuras) se anotam aqui, neste cabeçalho.
 
+   Transcrita de caderno gabaritado em PDF; o gabarito é o da folha de
+   respostas desse caderno. Anulada pela banca: 51 (marcada como anulada, sem
+   gabarito). 20 questões trazem figura (ECG, radiografias, partograma, curva
+   de altura uterina, tabelas, TC, ilustrações e gráficos) em dados/imagens/,
+   recortadas do caderno; as questões 41 e 42 compartilham o mesmo ECG.
+
    @ficha {"banca":"UNESP (FMB)","ano":2024,"prefixo":"q-unesp2024","alternativas":4,"total":100}
    ========================================================================== */
 window.EscDados.registrarQuestoes("prova-unesp-2024", [

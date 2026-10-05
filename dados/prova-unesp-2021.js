@@ -8,6 +8,13 @@
    `real: true`. A origem do gabarito e o que ficou pendente (anuladas,
    figuras) se anotam aqui, neste cabeçalho.
 
+   Transcrita de caderno gabaritado em PDF; o gabarito é o da folha de
+   respostas desse caderno. Anuladas pela banca: 24, 26 e 56 (marcadas como
+   anuladas, sem gabarito). 18 questões trazem figura (audiograma, curva de
+   perímetro cefálico, sorologia, microscopia, ECG, espirometria, fotos, TC,
+   radiografias, esquemas e gráficos) em dados/imagens/, recortadas do
+   caderno.
+
    @ficha {"banca":"UNESP (FMB)","ano":2021,"prefixo":"q-unesp2021","alternativas":4,"total":100}
    ========================================================================== */
 window.EscDados.registrarQuestoes("prova-unesp-2021", [

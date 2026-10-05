@@ -8,6 +8,17 @@
    `real: true`. A origem do gabarito e o que ficou pendente (anuladas,
    figuras) se anotam aqui, neste cabeçalho.
 
+   Transcrita de caderno gabaritado em PDF; o gabarito é o da folha de
+   respostas desse caderno (nenhuma questão anulada). 12 questões trazem
+   figura em dados/imagens/, recortadas do caderno. Três questões têm a
+   marcação do caderno em desacordo com o enunciado e seguem o conteúdo, com
+   status "desatualizada" e o motivo em motivoStatus: 56 (inibidor de SGLT-2
+   em DM1: o risco é cetoacidose; o caderno marca hipoglicemia grave), 67
+   (quadro clássico de invaginação intestinal; o caderno marca apendicite) e
+   75 (derrame parapneumônico simples; o caderno marca biópsia pleural). As
+   questões 55, 70 e 73 seguem o gabarito do caderno, mas a explicação aponta
+   que são discutíveis.
+
    @ficha {"banca":"UNESP (FMB)","ano":2025,"prefixo":"q-unesp2025","alternativas":4,"total":100}
    ========================================================================== */
 window.EscDados.registrarQuestoes("prova-unesp-2025", [
