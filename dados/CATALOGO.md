@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 5455 questões (5320 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 60 arquivos.
+**Total:** 5955 questões (5820 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 65 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -61,6 +61,11 @@
 | `prova-tp-2025-1.js` | Teste de Progresso NIEPAEM — 1º semestre de 2025 (graduação em Medicina) | 120 questões |  |
 | `prova-tp-2025-2.js` | Teste de Progresso NIEPAEM — 2º semestre de 2025 (graduação em Medicina) | 120 questões |  |
 | `prova-tp-2026-1.js` | Teste de Progresso NIEPAEM — 1º semestre de 2026 (graduação em Medicina) | 120 questões |  |
+| `prova-unesp-2021.js` | UNESP (FMB) 2021 | 100 questões | 3 anulada(s) |
+| `prova-unesp-2022.js` | UNESP (FMB) 2022 | 100 questões |  |
+| `prova-unesp-2024.js` | UNESP (FMB) 2024 | 100 questões | 1 anulada(s) |
+| `prova-unesp-2025.js` | UNESP (FMB) 2025 | 100 questões |  |
+| `prova-unesp-2026.js` | UNESP (FMB) 2026 | 100 questões |  |
 | `flashcards-equipe.js` | FLASHCARDS DA EQUIPE — 501 cartões autorais | 501 flashcards |  |
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
 | `flashcards-assuntos-usp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-SP (57 cartões) | 57 flashcards |  |
