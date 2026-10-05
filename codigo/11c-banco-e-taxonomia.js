@@ -196,14 +196,25 @@ function abrirFormularioQuestao(qid){
   const u = usuarioAtual();
   const criandoComoAluno = !q && u.papel==="aluno";
   const valorAlt = (letra)=> q ? ((q.alternativas.find(a=>a.id===letra)||{}).texto || "") : "";
+  const dissertativa = ehDissertativa(q);
   abrirModal(`
     ${cabecalhoJanela(q?"Editar questão":"Nova questão")}
     <div class="field"><label class="label">Enunciado</label><textarea class="textarea" id="fqEnunciado" style="min-height:100px">${escapeHtml(q?q.enunciado:"")}</textarea></div>
-    <div class="grid grid-2">${["A","B","C","D","E"].map(letra=>`<div class="field"><label class="label">Alternativa ${letra}${letra==="E"?" (opcional)":""}</label><input class="input" id="fqAlt${letra}" value="${escapeHtml(valorAlt(letra))}"></div>`).join("")}</div>
-    <div class="hint mb-2">Deixe a alternativa E em branco se a prova original tiver só 4 alternativas (A-D) — é o caso, por exemplo, da UNIFESP-EPM.</div>
+    <div class="field"><label class="label">Formato da questão</label><select class="select" id="fqFormato" onchange="alternarFormatoNoFormulario()">
+      <option value="objetiva" ${dissertativa?"":"selected"}>Múltipla escolha</option>
+      <option value="dissertativa" ${dissertativa?"selected":""}>Dissertativa (o aluno escreve a resposta e se avalia)</option>
+    </select></div>
+    <div id="fqBlocoObjetivo" ${dissertativa?"hidden":""}>
+      <div class="grid grid-2">${["A","B","C","D","E"].map(letra=>`<div class="field"><label class="label">Alternativa ${letra}${letra==="E"?" (opcional)":""}</label><input class="input" id="fqAlt${letra}" value="${escapeHtml(valorAlt(letra))}"></div>`).join("")}</div>
+      <div class="hint mb-2">Deixe a alternativa E em branco se a prova original tiver só 4 alternativas (A-D) — é o caso, por exemplo, da UNIFESP-EPM.</div>
+    </div>
+    <div id="fqBlocoDissertativa" ${dissertativa?"":"hidden"}>
+      <div class="field"><label class="label">Resposta esperada pela banca</label><textarea class="textarea" id="fqRespostaEsperada" style="min-height:100px">${escapeHtml(q?(q.respostaEsperada||""):"")}</textarea>
+        <div class="hint">É o que o aluno vê depois de escrever a dele e dizer a confiança. A justificativa (mais abaixo, em "Explicação") vem logo em seguida. A correção é do próprio aluno, que marca se acertou ou errou; dissertativa não entra em simulado nem em PDF.</div></div>
+    </div>
     <div class="grid grid-4">
       <div class="field"><label class="label">Tipo de prova</label><select class="select" id="fqTipoProva">${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${(q?tipoProvaDe(q):CONFIG.tipoProvaPadrao)===t.id?"selected":""} title="${escapeHtml(t.descricao)}">${escapeHtml(t.nome)}</option>`).join("")}</select></div>
-      <div class="field"><label class="label">Gabarito</label><select class="select" id="fqGabarito">${q&&!q.gabarito?`<option value="" selected>— (sem gabarito: anulada)</option>`:""}${["A","B","C","D","E"].map(l=>`<option value="${l}" ${q&&q.gabarito===l?"selected":""}>${l}</option>`).join("")}</select></div>
+      <div class="field" id="fqCampoGabarito" ${dissertativa?"hidden":""}><label class="label">Gabarito</label><select class="select" id="fqGabarito">${q&&!q.gabarito?`<option value="" selected>— (sem gabarito: anulada)</option>`:""}${["A","B","C","D","E"].map(l=>`<option value="${l}" ${q&&q.gabarito===l?"selected":""}>${l}</option>`).join("")}</select></div>
       <div class="field"><label class="label">Banca</label><input class="input" id="fqBanca" list="listaBancasForm" value="${escapeHtml(q?q.banca:CONFIG.bancaFoco)}">
         <datalist id="listaBancasForm">${[...new Set([...CONFIG.instituicoesReferencia, ...CONFIG.instituicoesGraduacao, ...db.questoes.map(x=>x.banca)])].map(b=>`<option value="${escapeHtml(b)}"></option>`).join("")}</datalist>
       </div>
@@ -407,7 +418,15 @@ function popularSelectAssunto(especialidadeId, assuntoIdSelecionado){
 }
 function atualizarSelectsTaxonomiaForm(){ popularSelectEspecialidade(document.getElementById("fqArea").value, null); popularSelectAssunto(null,null); }
 function atualizarSelectAssuntoForm(){ popularSelectAssunto(document.getElementById("fqEspecialidade").value, null); }
+// dissertativa não tem alternativas nem gabarito: troca o que o formulário pede
+function alternarFormatoNoFormulario(){
+  const dissertativa = document.getElementById("fqFormato").value === "dissertativa";
+  document.getElementById("fqBlocoObjetivo").hidden = dissertativa;
+  document.getElementById("fqCampoGabarito").hidden = dissertativa;
+  document.getElementById("fqBlocoDissertativa").hidden = !dissertativa;
+}
 function salvarQuestaoFormulario(qid, forcar){
+  const dissertativa = document.getElementById("fqFormato").value === "dissertativa";
   const dados = {
     enunciado: document.getElementById("fqEnunciado").value.trim(),
     // alternativa E é opcional: provas com só 4 alternativas (ex.: UNIFESP-EPM)
@@ -429,7 +448,16 @@ function salvarQuestaoFormulario(qid, forcar){
   const campoDestino = document.getElementById("fqDestino");
   const campoStatus = document.getElementById("fqStatus");
   if(campoStatus) dados.status = campoStatus.value;
-  if(!dados.enunciado || dados.alternativas.some(a=>!a.texto)){ toast("Preencha o enunciado e as 5 alternativas.", "err"); return; }
+  if(dissertativa){
+    dados.tipo = "dissertativa";
+    dados.respostaEsperada = (document.getElementById("fqRespostaEsperada").value||"").trim();
+    dados.alternativas = []; dados.gabarito = "";
+    if(!dados.enunciado || !dados.respostaEsperada){ toast("Preencha o enunciado e a resposta esperada pela banca.", "err"); return; }
+  }else{
+    // questão que deixou de ser dissertativa perde os campos dela
+    if(qid && ehDissertativa(getQuestao(qid))){ dados.tipo = ""; dados.respostaEsperada = ""; }
+    if(!dados.enunciado || dados.alternativas.some(a=>!a.texto)){ toast("Preencha o enunciado e as 5 alternativas.", "err"); return; }
+  }
   // antes de criar, avisa se essa questão já existe no banco
   const duplicadas = questoesDuplicadasDe(dados.enunciado, qid||null);
   if(duplicadas.length && !forcar){

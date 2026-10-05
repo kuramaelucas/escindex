@@ -33,9 +33,14 @@ function iniciarSessaoRecomendada(){
 }
 function montarSessaoRecomendadaDeHoje(){
   const u = usuarioAtual();
-  const restante = Math.max(5, metaDoUsuario(u) - questoesRespondidasHoje(u.id));
+  const feitas = questoesRespondidasHoje(u.id);
+  const crono = cronogramaDoUsuario(u);
+  // meta batida e cronograma do 6º ano passado da cota: a sessão extra não
+  // pode ser de 5 questões, que não dá para treinar prova
+  const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
+  const restante = Math.max(piso, metaDoUsuario(u) - feitas);
   const tamanho = Math.min(restante, 20);
-  iniciarSessaoComLista(montarSessaoRecomendada(u.id, tamanho), "pratica");
+  iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
 }
 /* A sessão guardada é de hoje? É o que decide se o botão de Estudar diz
    "continuar" ou "começar". */
@@ -129,6 +134,9 @@ function salvarSessaoEmAndamento(){
     // o que está marcado sem confirmar também é rascunho e também volta:
     // ver "marcar não é responder", logo abaixo
     marcadas: s.marcadas || {}, salvaEm: hojeISO(),
+    // a dissertativa também tem rascunho (o texto escrito) e uma etapa entre
+    // confirmar e se avaliar: ver 08c-questoes-dissertativas.js
+    rascunhos: s.rascunhos || {}, dissertativas: s.dissertativas || {},
   };
   nuvemRegistrar({usuarioId:u.id, sessaoEmAndamento: db.sessoesEmAndamento[u.id]});
   saveState();
@@ -178,6 +186,7 @@ function carregarSessaoEmAndamento(){
     indiceAtual: indice,
     respostasSessao: respostas, eliminadas: guardada.eliminadas || {},
     marcadas: marcadas,
+    rascunhos: guardada.rascunhos || {}, dissertativas: guardada.dissertativas || {},
     finalizada: false, tsQuestao: Date.now(),
   };
   return true;
@@ -337,6 +346,7 @@ function registrarSessaoNoHistorico(s){
       alternativaEscolhida: r.alternativaEscolhida,
       correta: r.correta,
       confianca: r.confianca,
+      ...(r.textoResposta ? { textoResposta: r.textoResposta } : {}),
     });
   });
   const registro = {
@@ -377,7 +387,7 @@ function abrirSessaoDoHistorico(sessaoId){
   state.sessaoAtual = {
     id: reg.id, tipo: reg.tipo, somenteLeitura:true, salvaNoHistorico:true, dataOriginal: reg.data,
     itens: reg.itens.map(i=>({questaoId:i.questaoId, motivo:i.motivo||"Revisão do histórico"})),
-    respostasSessao: reg.itens.map(i=>({questaoId:i.questaoId, alternativaEscolhida:i.alternativaEscolhida, correta:i.correta, confianca:i.confianca, data:reg.data})),
+    respostasSessao: reg.itens.map(i=>({questaoId:i.questaoId, alternativaEscolhida:i.alternativaEscolhida, textoResposta:i.textoResposta, correta:i.correta, confianca:i.confianca, data:reg.data})),
     indiceAtual:0, marcadas:{}, finalizada:true,
   };
   navigate("sessao");
@@ -427,7 +437,7 @@ function renderMapaSessao(sessao){
   const pills = sessao.itens.map((item, i) => {
     const r = respostaDoIndice(sessao, i);
     const atual = i === sessao.indiceAtual;
-    const marcadaSemResponder = !r && !!marcadaDaQuestao(item.questaoId);
+    const marcadaSemResponder = !r && !!(marcadaDaQuestao(item.questaoId) || dissertativaConfirmada(item.questaoId) || rascunhoDaDissertativa(item.questaoId).trim());
     let classe = "mapa-pill";
     let descricao = "Questão " + (i+1);
     let marca = "";
@@ -441,7 +451,7 @@ function renderMapaSessao(sessao){
       if(atencao) marca = `<span class="marca" aria-hidden="true"></span>`;
     } else if(marcadaSemResponder){
       classe += " marcada";
-      descricao += " — alternativa marcada, falta dizer a confiança";
+      descricao += " — em andamento, falta confirmar a resposta";
       marca = `<span class="marca" aria-hidden="true"></span>`;
     } else {
       classe += " agora";
@@ -518,7 +528,7 @@ function htmlCartaoDaSessao(sessao){
   const q = getQuestao(item.questaoId);
   const resp = respostaDoIndice(sessao, sessao.indiceAtual);
   return renderQuestionCard(q, resp
-    ? {selecionada: resp.alternativaEscolhida, respondida:true, somenteLeitura: !!sessao.somenteLeitura}
+    ? {selecionada: resp.alternativaEscolhida, respondida:true, resposta: resp, somenteLeitura: !!sessao.somenteLeitura}
     : {selecionada: marcadaDaQuestao(item.questaoId), respondida:false, somenteLeitura: !!sessao.somenteLeitura});
 }
 function redesenharQuestaoDaSessao(){
@@ -622,7 +632,7 @@ function renderSessaoResumo(){
           <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
         </div>
         <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}${q.enunciado.length>180?"…":""}</span></div>
-        <div class="text-xs muted mt-1">Você marcou ${escapeHtml(r.alternativaEscolhida)} · gabarito ${escapeHtml(q.gabarito)}</div>
+        <div class="text-xs muted mt-1">${ehDissertativa(q) ? "Dissertativa · você se avaliou: "+(r.correta?"acertou":"errou") : "Você marcou "+escapeHtml(r.alternativaEscolhida)+" · gabarito "+escapeHtml(q.gabarito)}</div>
         <div class="flex gap-1 mt-2 quebra">
           <button class="btn btn-secondary btn-sm" onclick="voltarParaQuestaoDaSessao(${i})">${iconeSvg("refresh")} Voltar à questão</button>
           ${botaoVerNaIntegra(q.id, "Ver na íntegra")}
@@ -713,6 +723,7 @@ function badgeAutoriaQuestao(q){
 }
 function renderQuestionCard(q, opts){
   opts = opts || {};
+  if(ehDissertativa(q)) return renderCartaoDissertativa(q, opts);
   const esp = getEspecialidade(q.especialidadeId), area = getArea(q.areaId);
   const dificuldade = calcularDificuldade(q);
   const corDificuldade = dificuldade<35 ? "badge-accent" : dificuldade<60 ? "badge-amber" : "badge-danger";
@@ -818,6 +829,13 @@ function renderFeedbackQuestao(q, opts){
       ? `<div class="card-flat mt-2 text-xs borda-alerta">${iconeSvg("alert")} Você tinha <strong>eliminado a alternativa ${escapeHtml(q.gabarito)}</strong>, que era a correta. Vale reler a explicação olhando para o motivo que fez você descartá-la — é ali que está a lacuna.</div>`
       : `<div class="card-flat mt-2 text-xs muted">${iconeSvg("check")} Você eliminou ${riscadas.length} alternativa(s) e nenhuma delas era a correta.</div>`;
   }
+  return html + renderRodapeDaQuestaoRespondida(q);
+}
+/* O que vem depois do gabarito e da explicação, na múltipla escolha e na
+   dissertativa: quantas vezes errou, aviso de questão anulada, referências,
+   ações e comentários. */
+function renderRodapeDaQuestaoRespondida(q){
+  let html = "";
   const historicoDaQuestao = respostasDaQuestao(usuarioAtual().id, q.id);
   const totalErros = historicoDaQuestao.filter(r=>!r.correta).length;
   if(totalErros){
@@ -1056,6 +1074,11 @@ function regraDeParametrosObjetivos(){
 
 /* ---------- prompt pronto para tirar dúvida com uma IA ---------- */
 function gerarPromptDuvida(q){
+  if(ehDissertativa(q)) return "Aja como um médico revisor especialista em provas de residência médica no Brasil.\n\n"+
+    "Analise CRITICAMENTE a questão dissertativa abaixo, com base em diretrizes e fontes primárias atuais, e diga se a resposta esperada está correta, completa e atualizada.\n\n"+
+    "--- QUESTÃO ("+q.banca+", "+q.ano+") ---\n"+q.enunciado+"\n\nResposta esperada pela banca: "+(q.respostaEsperada||"(não informada)")+"\nJustificativa atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+
+    "Responda de forma estruturada:\n1) A resposta esperada está correta e completa? O que falta ou está desatualizado?\n2) Quais pontos uma resposta de nota máxima precisa trazer?\n3) Quais diretrizes/referências (com nome e, se souber, ano) sustentam isso?\n\n"+
+    regraDeParametrosObjetivos();
   const alts = q.alternativas.map(a=>a.id+") "+a.texto).join("\n");
   return "Aja como um médico revisor especialista em questões de concursos de residência médica no Brasil.\n\n"+
   "Analise CRITICAMENTE a questão abaixo. Baseie-se em evidências científicas atuais e em fontes primárias: diretrizes e consensos de sociedades de especialidade, protocolos e PCDT do Ministério da Saúde, revisões sistemáticas e artigos originais. NÃO use nem reproduza resoluções de sites de questões, bancos comerciais ou cursinhos. NÃO invente referências ou dados — se não souber ou não tiver certeza de algo, diga isso explicitamente em vez de arriscar uma resposta incorreta.\n\n"+

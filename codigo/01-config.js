@@ -126,6 +126,16 @@ const CONFIG = {
      começam aí) — o próximo que ainda não passou; quem quiser põe a data exata
      da primeira prova importante. */
   provaAlvo: { mes: 12, dia: 1, anos: ["6º ano", "Formado(a)"] },
+  /* CRONOGRAMA DO 6º ANO. No dia, as primeiras `questoesNoSistema` questões
+     seguem a sessão recomendada de sempre (bloco atual, revisão, prévia); da
+     seguinte em diante só entra questão de prova real de residência, nos
+     assuntos que mais caem no banco e em que a pessoa mais erra
+     (prioridadesDeEstudo, olhando todas as provas do banco, não só a banca
+     de foco). `pesoExtras` é o quanto o assunto prioritário passa na frente
+     no sorteio. É a reta final: depois de cumprido o cronograma da faculdade,
+     o treino é com a prova de verdade, e sem desperdiçar tempo no que já se
+     sabe. */
+  cronogramaDoSextoAno: { anos: ["6º ano"], questoesNoSistema: 30, pesoExtras: 10, sessaoMinimaDeProva: 10 },
   /* Com a prova-alvo por perto, a revisão espaçada não pode empurrar uma
      questão ou cartão para depois da prova: o intervalo agendado passa a ser
      no máximo esta fração do tempo que falta (o intervalo ótimo entre revisões

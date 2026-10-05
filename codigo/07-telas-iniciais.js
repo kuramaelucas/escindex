@@ -662,6 +662,7 @@ function renderEstudar(){
         : `Mistura automática, sem calendário de blocos: ${Math.round(mistura.revisaoPassados*100)}% revisão espaçada e o resto de questões que você ainda não viu.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
       <div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${escapeHtml(explicacaoProgressao(u))}</div>
+      ${cronogramaDoUsuario(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronograma(u, feitasHoje))}</div>` : ""}
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
       <p class="text-xs muted mt-1">${deHoje
         ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
@@ -741,7 +742,7 @@ function renderEstudar(){
       <button class="btn btn-primary" onclick="gerarListaPersonalizada()">Gerar lista</button>
       <button class="btn btn-secondary" onclick="gerarListaPersonalizada(true)">Fazer como simulado</button>
     </div>
-    <div class="text-sm mt-2" id="contagemFiltro" aria-live="polite">${textoContagemFiltro(buscarQuestoesPorFiltro(u.id, {}).length)}</div>
+    <div class="text-sm mt-2" id="contagemFiltro" aria-live="polite">${htmlContagemFiltro(contagemDaListaPersonalizada(u.id, lerFiltrosPersonalizados()))}</div>
     </div>
   </div>`;
 }
@@ -780,6 +781,7 @@ function lerFiltrosPersonalizados(){
     apenasFavoritas: marcado("filtroApenasFavoritas"),
     apenasNaoRespondidas: marcado("filtroApenasNaoRespondidas"),
     incluirGrupoId: marcado("filtroIncluirGrupo") ? idsDosGruposDoUsuario(u) : undefined,
+    incluirRecentes: !!state.filtroRota.incluirRecentes,
   };
 }
 function textoContagemFiltro(n){
@@ -787,10 +789,24 @@ function textoContagemFiltro(n){
     ? `${iconeSvg("database")} <strong>${n.toLocaleString("pt-BR")}</strong> ${n===1?"questão":"questões"} no banco com esses filtros.`
     : `${iconeSvg("alert")} <strong>Nenhuma questão</strong> no banco com esses filtros — tire algum para ampliar.`;
 }
+/* A contagem, e logo abaixo — pequena, sem disputar a atenção — o aviso das
+   questões que ficaram de fora por terem sido respondidas há pouco, com o
+   botão de recolocá-las (ou de tirá-las de novo). */
+function htmlContagemFiltro(c){
+  let aviso = "";
+  if(c.recentes) aviso = c.incluidas
+    ? `<div class="text-xs muted" style="margin-top:.2rem">Estão dentro as ${c.recentes.toLocaleString("pt-BR")} que você respondeu há pouco e ainda não venceram na revisão. <button class="link-btn text-xs" onclick="alternarRecentesNaLista(false)">Tirar de novo</button></div>`
+    : `<div class="text-xs muted" style="margin-top:.2rem">${c.recentes.toLocaleString("pt-BR")} ${c.recentes===1?"questão ficou":"questões ficaram"} de fora por você ${c.recentes===1?"tê-la respondido":"tê-las respondido"} há pouco (ainda no prazo da revisão). <button class="link-btn text-xs" onclick="alternarRecentesNaLista(true)">Colocar de volta</button></div>`;
+  return textoContagemFiltro(c.total) + aviso;
+}
 // quantas questões os filtros marcados agora dão, antes de gerar a lista
 function atualizarContagemFiltro(){
   const alvo = document.getElementById("contagemFiltro"); if(!alvo) return;
-  alvo.innerHTML = textoContagemFiltro(buscarQuestoesPorFiltro(usuarioAtual().id, lerFiltrosPersonalizados()).length);
+  alvo.innerHTML = htmlContagemFiltro(contagemDaListaPersonalizada(usuarioAtual().id, lerFiltrosPersonalizados()));
+}
+function alternarRecentesNaLista(incluir){
+  state.filtroRota.incluirRecentes = !!incluir;
+  atualizarContagemFiltro();
 }
 function marcarTodasAreas(marcar){
   document.querySelectorAll(".filtroArea").forEach(el=>{ el.checked = !!marcar; });
@@ -831,7 +847,8 @@ function atualizarAssuntosFiltro(){
 function gerarListaPersonalizada(comoSimulado){
   const u = usuarioAtual();
   const tamanho = parseInt(document.getElementById("filtroTamanho").value)||15;
-  const pool = buscarQuestoesPorFiltro(u.id, lerFiltrosPersonalizados());
+  // simulado corrige sozinho e a dissertativa não tem gabarito: fica de fora dele
+  const pool = buscarQuestoesPorFiltro(u.id, lerFiltrosPersonalizados()).filter(q=>comoSimulado!==true || !ehDissertativa(q));
   if(!pool.length){ toast("Nenhuma questão encontrada com esses filtros.", "err"); return; }
   const escolhidas = embaralhar(pool).slice(0,tamanho);
   if(comoSimulado===true){
@@ -882,13 +899,13 @@ function abrirQuestaoCompleta(qid, opts){
     </div>
     <div class="qcard-enunciado" style="font-size:1.02rem;margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
     ${renderImagemQuestao(q)}
-    <div class="qcard-alts">
+    ${ehDissertativa(q) ? "" : `    <div class="qcard-alts">
       ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span></div>`).join("")}
-    </div>
-    <div class="feedback-box ok mt-2"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${q.explicacaoGeral?`<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`:" (sem explicação cadastrada ainda)"}</div>
+    </div>`}
+    ${ehDissertativa(q) ? `<div class="feedback-box ok mt-2"><strong>Resposta esperada pela banca:</strong><br><span ${atributoDestacavel(alvoDeQuestao(q.id,"resposta-esperada"))}>${htmlComDestaques(q.respostaEsperada||"", alvoDeQuestao(q.id,"resposta-esperada"))}</span>${q.explicacaoGeral?`<br><br><strong>Justificativa:</strong> <span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`:""}</div>` : `<div class="feedback-box ok mt-2"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${q.explicacaoGeral?`<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`:" (sem explicação cadastrada ainda)"}</div>`}
     ${renderReferenciasQuestao(q)}
     ${(q.explicacoesAlternativas && Object.keys(q.explicacoesAlternativas).length) ? `<div class="card-flat mt-2 text-sm">${Object.entries(q.explicacoesAlternativas).map(([letra,texto])=>`<div class="mb-1"><strong>${escapeHtml(letra)}:</strong> ${htmlComDestaques(texto, null, true)}</div>`).join("")}</div>` : ""}
-    ${ultima ? `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Sua última resposta: marcou ${escapeHtml(ultima.alternativaEscolhida)} (${ultima.correta?"correta":"incorreta"}, ${escapeHtml(rotuloConfianca(ultima.confianca))}) em ${formatDataBR(ultima.data)}.</div>` : ""}
+    ${ultima ? `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Sua última resposta: ${ehDissertativa(q) ? "escrita" : "marcou "+escapeHtml(ultima.alternativaEscolhida)} (${ultima.correta?"correta":"incorreta"}, ${escapeHtml(rotuloConfianca(ultima.confianca))}) em ${formatDataBR(ultima.data)}.</div>` : ""}
     ${minhaNota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(minhaNota)}</div></div>` : ""}
     <div class="flex gap-1 mt-3 quebra">
       ${q.status==="ativa" ? `<button class="btn btn-primary btn-sm" onclick="praticarSoEstaQuestao('${q.id}')">${iconeSvg("book")} Praticar esta questão</button>` : ""}

@@ -360,7 +360,8 @@ function renderAbaProvasAntigas(u){
   /* Só questão REAL forma prova: a prova antiga é "a prova de verdade, do
      jeito que caiu". As questões autorais (banco didático, demonstração)
      continuam em Estudar > Monte sua própria lista. */
-  const todasDosTipos = questoesAtivas(grupoUsuario).filter(q=>q.real);
+  // prova inteira precisa de gabarito objetivo: a dissertativa fica só nas sessões de estudo
+  const todasDosTipos = questoesAtivas(grupoUsuario).filter(q=>q.real && !ehDissertativa(q));
   /* RESIDÊNCIA E GRADUAÇÃO SEPARADAS. A prova da faculdade (e o Teste de
      Progresso) e a de residência não se comparam: uma confere o que ficou
      do ano, a outra seleciona para o R1. Cada uma tem a sua seção, e no 3º

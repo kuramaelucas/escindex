@@ -28,6 +28,16 @@ function embaralhar(array){
    imagem ou marcar "a imagem já chegou"). */
 function aguardaImagem(q){ return !!(q && q.imagemPendente); }
 
+/* QUESTÃO DISSERTATIVA (`tipo: "dissertativa"`). Sem alternativas nem
+   gabarito: a questão traz o enunciado, a `respostaEsperada` (a que a banca
+   espera) e a justificativa em `explicacaoGeral`. Quem estuda escreve a sua
+   resposta, diz a confiança, vê a esperada e AVALIA a si mesma (acertei ou
+   errei) — a plataforma não tem como corrigir texto livre, então a nota é da
+   pessoa, e o texto que ela escreveu fica guardado na resposta
+   (`textoResposta`) para comparar com as tentativas seguintes. Fica de fora
+   de simulado e de PDF, que precisam de gabarito objetivo. */
+function ehDissertativa(q){ return !!(q && q.tipo === "dissertativa"); }
+
 /* TIPO DE PROVA: residência ou graduação (CONFIG.tiposProva). A questão diz
    o seu em `tipoProva`; sem o campo, vale o padrão (residência) — exceto o
    Teste de Progresso, que é da graduação pelo próprio nome, para ninguém
@@ -474,7 +484,7 @@ function cartaoDeQuestao(q){
     assuntoId: q.assuntoId,
     status: "ativo",
     frente: q.enunciado,
-    verso: (alternativaCerta ? q.gabarito+") "+alternativaCerta.texto : "Gabarito: "+q.gabarito)
+    verso: (ehDissertativa(q) ? "Resposta esperada: "+q.respostaEsperada : alternativaCerta ? q.gabarito+") "+alternativaCerta.texto : "Gabarito: "+q.gabarito)
            + (q.explicacaoGeral ? "\n\n"+textoSemEnfase(q.explicacaoGeral) : ""),
   };
 }
@@ -806,6 +816,72 @@ function montarSessaoSemCalendario(usuario, tamanho){
   return embaralhar(itens);
 }
 
+/* CRONOGRAMA DO 6º ANO (CONFIG.cronogramaDoSextoAno). Só vale para quem está
+   no ano listado lá; sem ele, a sessão do dia é a recomendada de sempre. */
+function cronogramaDoUsuario(usuario){
+  const c = CONFIG.cronogramaDoSextoAno;
+  const ano = (usuario && usuario.anoFaculdade) || CONFIG.anoFaculdadePadrao;
+  return c && c.anos.includes(ano) ? c : null;
+}
+/* A sessão do dia: as primeiras questões do cronograma pelo sistema atual e,
+   passada a cota, as extras de prova de residência. `feitasHoje` é o que a
+   pessoa já respondeu hoje; a cota que falta cabe numa sessão só em parte
+   (a sessão que cruza a 30ª questão sai metade de cada). */
+function montarSessaoDoDia(usuarioId, tamanho, feitasHoje){
+  const crono = cronogramaDoUsuario(getUsuario(usuarioId));
+  if(!crono) return montarSessaoRecomendada(usuarioId, tamanho);
+  const noSistema = Math.min(tamanho, Math.max(0, crono.questoesNoSistema - feitasHoje));
+  const doSistema = noSistema ? montarSessaoRecomendada(usuarioId, noSistema) : [];
+  const usadas = new Set(doSistema.map(it=>it.questaoId));
+  // o sistema atual vem primeiro e as extras depois: a ordem é a do cronograma
+  const extras = montarSessaoDeProvaReal(usuarioId, tamanho - doSistema.length, usadas);
+  return [...doSistema, ...extras];
+}
+/* Sorteio ponderado sem repetição: cada questão recebe a chave sorteio^(1/peso)
+   e vão as de maior chave (peso 11 quase sempre passa na frente de peso 1).
+   Diferente do interleaving, que dá uma questão por assunto e dilui a
+   prioridade: aqui o assunto que mais cai e em que a pessoa mais erra pode
+   trazer várias questões da mesma sessão. */
+function sortearComPeso(pool, n, pesoDe){
+  return pool.map(q=>({q, chave: Math.pow(Math.random(), 1/Math.max(pesoDe(q), 1e-6))}))
+    .sort((a,b)=>b.chave-a.chave).slice(0, n).map(x=>x.q);
+}
+/* As extras: só questão real de residência, dos assuntos que mais caem nas
+   provas do banco e em que a pessoa mais erra (a nota de prioridade de
+   prioridadesDeEstudo, que já cruza as duas coisas), sem repetir o que ela
+   respondeu há pouco. Se faltar questão desses assuntos, completa com
+   qualquer outra de prova real; faltando ainda, com o resto do banco. */
+function montarSessaoDeProvaReal(usuarioId, n, excluidas){
+  if(n <= 0) return [];
+  const crono = cronogramaDoUsuario(getUsuario(usuarioId)) || CONFIG.cronogramaDoSextoAno;
+  const prior = {}, pesos = {};
+  prioridadesDeEstudo(usuarioId, TODAS_AS_PROVAS).forEach(p=>{ prior[p.assuntoId] = p; pesos[p.assuntoId] = 1 + crono.pesoExtras*p.prioridadeRelativa; });
+  const livres = questoesParaEstudo(usuarioId).filter(q=>!excluidas.has(q.id));
+  const reais = livres.filter(q=>!ehConsolidacao(q));
+  const motivo = q => {
+    const p = prior[q.assuntoId];
+    return "Extra do cronograma — prova de residência" + (p ? ": "+nomeAssunto(q.assuntoId)+" tem "+p.questoesNaProva+" questão(ões) nas provas do banco"+(p.taxa!==null ? " e você acerta "+p.taxa+"%" : " e você ainda não o respondeu") : "");
+  };
+  const itens = sortearComPeso(semRepeticaoPrematura(usuarioId, reais), n, q=>pesos[q.assuntoId] || 1)
+    .map(q=>({questaoId:q.id, origem:"extra_prova", motivo:motivo(q)}));
+  if(itens.length < n){
+    const ja = new Set(itens.map(it=>it.questaoId));
+    const resto = livres.filter(q=>!ja.has(q.id));
+    [...embaralharSemRepetir(usuarioId, resto.filter(q=>!ehConsolidacao(q))), ...embaralharSemRepetir(usuarioId, resto.filter(ehConsolidacao))]
+      .slice(0, n - itens.length)
+      .forEach(q=>itens.push({questaoId:q.id, origem:"extra_prova", motivo:"Extra do cronograma — as provas de residência do banco já foram quase todas respondidas"}));
+  }
+  return itens;
+}
+/* O que a tela diz sobre o cronograma e em que ponto do dia a pessoa está. */
+function explicacaoCronograma(usuario, feitasHoje){
+  const crono = cronogramaDoUsuario(usuario);
+  if(!crono) return "";
+  const cota = crono.questoesNoSistema;
+  return "Cronograma do 6º ano: as primeiras "+cota+" questões do dia seguem o sistema (bloco, revisão e prévia); da "+(cota+1)+"ª em diante só entram questões de prova real de residência, nos assuntos que mais caem no banco e em que você mais erra. "+
+    (feitasHoje >= cota ? "Hoje você já passou das "+cota+": o que vier agora é de prova." : "Hoje: "+feitasHoje+" de "+cota+" no sistema.");
+}
+
 function montarSessaoRecomendada(usuarioId, tamanho){
   const usuario = getUsuario(usuarioId);
   const grupo = getGrupoDoUsuario(usuario);
@@ -865,6 +941,11 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   return embaralhar(todos);
 }
 
+/* `filtros.incluirRecentes` recoloca na lista o que a pessoa respondeu há
+   pouco e ainda não venceu na revisão espaçada: por padrão a lista que ela
+   monta também não repete questão prematuramente (ver semRepeticaoPrematura),
+   e a tela diz quantas ficaram de fora e deixa trazê-las de volta
+   (contagemDaListaPersonalizada). */
 function buscarQuestoesPorFiltro(usuarioId, filtros){
   // telas de equipe (PDF) pedem o banco inteiro; as de estudo, só o que a
   // pessoa não escondeu
@@ -878,7 +959,17 @@ function buscarQuestoesPorFiltro(usuarioId, filtros){
   if(filtros.apenasErros) pool = pool.filter(q=>{ const u=ultimaResposta(usuarioId,q.id); return u && (!u.correta || u.confianca==="chute"); });
   if(filtros.apenasFavoritas) pool = pool.filter(q=>isFavorita(usuarioId,q.id));
   if(filtros.apenasNaoRespondidas) pool = pool.filter(q=>!jaFoiRespondida(usuarioId,q.id));
+  if(!filtros.incluirRecentes && !filtros.incluirInativas) pool = semRepeticaoPrematura(usuarioId, pool);
   return pool;
+}
+/* Quantas questões os filtros dão, quantas delas foram respondidas há pouco
+   (`recentes`) e se estão dentro da conta (`incluidas`) — o que a tela mostra,
+   em letra pequena, com o botão de tirá-las ou recolocá-las. */
+function contagemDaListaPersonalizada(usuarioId, filtros){
+  const todas = buscarQuestoesPorFiltro(usuarioId, Object.assign({}, filtros, {incluirRecentes:true}));
+  const recentes = todas.length - semRepeticaoPrematura(usuarioId, todas).length;
+  const incluidas = !!filtros.incluirRecentes;
+  return { total: incluidas ? todas.length : todas.length - recentes, recentes, incluidas };
 }
 
 function questoesErroOrdenadasPorAntiguidade(usuarioId){
@@ -940,16 +1031,19 @@ function partesDaRevisaoEspacada(usuarioId, assuntos){
 const ORIGENS_DE_QUESTAO = {
   bloco_atual: "bloco atual", revisao_nova: "revisão: assunto anterior ainda não visto",
   revisao_erro: "revisão espaçada: erro ou chute anterior", revisao_decaimento: "revisão espaçada: acerto antigo",
-  previa: "prévia do próximo bloco", nao_vista: "questão ainda não vista (sem calendário)", complemento: "complemento da sessão",
+  previa: "prévia do próximo bloco", extra_prova: "extra do cronograma do 6º ano: prova de residência", nao_vista: "questão ainda não vista (sem calendário)", complemento: "complemento da sessão",
   erros: "refazer erros", lista: "lista montada pela pessoa", simulado: "simulado",
 };
 function origemDoItem(sessao, item){
   if(item && item.origem) return item.origem;
   return sessao && sessao.tipo === "simulado" ? "simulado" : "lista";
 }
-function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca, tempoSeg, origem){
+/* Na dissertativa não há alternativa: `dissertativa` traz o texto que a pessoa
+   escreveu (`texto`) e a autoavaliação dela (`correta`). */
+function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca, tempoSeg, origem, dissertativa){
   const q = getQuestao(questaoId);
-  const correta = alternativaEscolhida === q.gabarito;
+  const aberta = ehDissertativa(q);
+  const correta = aberta ? !!(dissertativa && dissertativa.correta) : alternativaEscolhida === q.gabarito;
   /* Quantas vezes esta pessoa já respondeu esta questão e há quantos dias foi
      a última: a conta é feita direto na lista (o índice por questão só se
      renova no saveState). Com a hora exata (respondidaEm), dá para estudar
@@ -959,7 +1053,7 @@ function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca
   const resposta = {
     id:uid("r"), usuarioId, questaoId,
     areaId:q.areaId, especialidadeId:q.especialidadeId, assuntoId:q.assuntoId,
-    alternativaEscolhida, correta, confianca, data:hojeISO(),
+    alternativaEscolhida: aberta ? null : alternativaEscolhida, correta, confianca, data:hojeISO(),
     tempoSeg: (tempoSeg && tempoSeg>0 && tempoSeg<3600) ? Math.round(tempoSeg) : null,
     sessaoId: state.sessaoAtual ? state.sessaoAtual.id : null,
     origem: origem && ORIGENS_DE_QUESTAO[origem] ? origem : "lista",
@@ -967,17 +1061,18 @@ function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca
     diasDesdeUltima: ultimaData ? Math.max(0, diasEntre(ultimaData, hojeISO())) : null,
     respondidaEm: CONFIG.hoje().toISOString(),
   };
+  if(aberta) resposta.textoResposta = String((dissertativa && dissertativa.texto) || "").slice(0, 8000);
   db.respostas.push(resposta);
   nuvemRegistrar({resposta});          // entra na fila de envio para a nuvem
   q.estatisticas.respostas += 1;
   if(correta) q.estatisticas.acertos += 1;
-  q.estatisticas.distribuicaoAlternativas[alternativaEscolhida] = (q.estatisticas.distribuicaoAlternativas[alternativaEscolhida]||0)+1;
+  if(!aberta) q.estatisticas.distribuicaoAlternativas[alternativaEscolhida] = (q.estatisticas.distribuicaoAlternativas[alternativaEscolhida]||0)+1;
   // Estatística de qualidade da questão: qual alternativa o aluno já tinha
   // RISCADO (eliminado) quando ele acabou errando. Um distrator eliminado
   // com frequência por quem erra é inofensivo (todo mundo já sabia que era
   // errado); a informação valiosa é quando o gabarito aparece aqui — sinal
   // de que a resposta certa está disfarçada de errada para o aluno.
-  if(!correta){
+  if(!correta && !aberta){
     if(!q.estatisticas.eliminacoesAoErrar) q.estatisticas.eliminacoesAoErrar = {};
     eliminadasDaQuestao(questaoId).forEach(altId=>{
       q.estatisticas.eliminacoesAoErrar[altId] = (q.estatisticas.eliminacoesAoErrar[altId]||0)+1;

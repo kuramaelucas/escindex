@@ -27,7 +27,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 - Telas: `renderX()` devolve HTML (template literal); eventos inline `onclick="fn('id')"` — por isso as funções são globais. Roteador: `render()` + `ROUTE_TITLES` + `navigate(rota)` (06); menu: `navItemsParaPapel` (06); permissão de admin por rota: `PERMISSAO_DA_ROTA` (04).
 - **Sempre** `escapeHtml()` em texto de usuário ou de conteúdo dentro do HTML.
 - Utilidades (04): `abrirModal(html, "lg")`, `cabecalhoJanela(tituloHtml)`, `abrirModalTitulado(titulo, corpo)`, `fecharModal()`, `toast(msg, "err")`, `baixarArquivo(nome, conteudo, tipo)`, `paginar(lista, chave, {porPagina, assinatura})` + `controlesPaginacao(p, rotulo)`, `iconeSvg(nome)` (símbolos no `index.html`), `hojeISO()`, `formatDataBR()`, `uid(prefixo)`, `copiaProfunda()`; consultas `getQuestao/getAssunto/getEspecialidade` (indexadas), `getUsuario`, `usuarioAtual()`, `podeAdmin(perm)`, `podeGerirConteudo()`.
-- Questão: `real`, `banca`, `ano`, `numeroNaProva`, `status` (`ativa`/`anulada`/`desatualizada`/`pendente`/`rascunho`), `imagemPendente` (tira a questão do estudo dos alunos — `aguardaImagem(q)`). Fila de estudo usa `questoesParaEstudo(uid)`; contagens e provas inteiras usam `questoesAtivas()`.
+- Questão: `tipo` (`"dissertativa"` ou ausente = múltipla escolha; a dissertativa traz `respostaEsperada` e não tem alternativas nem gabarito — `ehDissertativa(q)`; fica fora de simulado e PDF), `real`, `banca`, `ano`, `numeroNaProva`, `status` (`ativa`/`anulada`/`desatualizada`/`pendente`/`rascunho`), `imagemPendente` (tira a questão do estudo dos alunos — `aguardaImagem(q)`). Fila de estudo usa `questoesParaEstudo(uid)`; contagens e provas inteiras usam `questoesAtivas()`.
 
 ## Nuvem (03a–03d + `nuvem/esquema.sql`)
 
@@ -55,6 +55,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `07-telas-iniciais.js` | 8–10-B | telas públicas, volta do e-mail, boas-vindas, Início, Estudar, questão na íntegra |
 | `08-sessao-e-revisao.js` | 11–12 | sessão de questões, barra de questões, cartão da questão, comentários, Revisão |
 | `08b-destaques-de-texto.js` | 11-B | selecionar um trecho da questão ou do cartão e destacá-lo (`htmlComDestaques`, `atributoDestacavel`), por pessoa |
+| `08c-questoes-dissertativas.js` | 11-C | questão dissertativa na sessão: escrever, confiança, resposta esperada, autoavaliação (`renderCartaoDissertativa`) |
 | `09a-revisao-rapida.js` | 12-B | flashcards |
 | `09b-simulados-e-provas.js` | 13–14 | simulados e provas antigas |
 | `09c-cartoes-em-lote.js` | 12-C, 12-D | cartões em lote; Adicionar baralho (trazer baralho inteiro de uma IA) |

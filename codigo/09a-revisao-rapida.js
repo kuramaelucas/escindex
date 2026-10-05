@@ -341,7 +341,7 @@ function abrirFormularioFlashcard(id, opts){
     ${questao ? `<div class="card-flat mb-2">
       <div class="text-xs muted" style="font-weight:700;letter-spacing:.06em;text-transform:uppercase">Questão de origem</div>
       <div class="text-sm mt-1">${escapeHtml(questao.enunciado.slice(0,220))}${questao.enunciado.length>220?"…":""}</div>
-      <div class="text-xs muted mt-1">${escapeHtml(questao.banca)} · ${questao.ano} · gabarito ${escapeHtml(questao.gabarito)}</div>
+      <div class="text-xs muted mt-1">${escapeHtml(questao.banca)} · ${questao.ano} · ${ehDissertativa(questao) ? "dissertativa" : "gabarito "+escapeHtml(questao.gabarito)}</div>
     </div>` : ""}
     <p class="text-sm muted">Cartão bom é curto e cobra UMA coisa. Se a frente precisa de dois parágrafos, provavelmente são dois cartões — ou é caso de questão, não de flashcard.</p>
     ${!daEquipe ? `<div class="card-flat mt-2 text-xs">${iconeSvg("user")} Este cartão fica <strong>só no seu baralho</strong>. Ninguém mais vê, e ele entra nas suas revisões junto com os cartões da equipe.</div>` : ""}
@@ -375,7 +375,7 @@ function abrirFormularioFlashcard(id, opts){
 function preencherCartaoComGabarito(qid){
   const q = getQuestao(qid); if(!q) return;
   const alt = (q.alternativas||[]).find(a=>a.id===q.gabarito);
-  const texto = (alt ? q.gabarito+") "+alt.texto : "Gabarito: "+q.gabarito) + (q.explicacaoGeral ? "\n\n"+textoSemEnfase(q.explicacaoGeral) : "");
+  const texto = (ehDissertativa(q) ? "Resposta esperada: "+q.respostaEsperada : alt ? q.gabarito+") "+alt.texto : "Gabarito: "+q.gabarito) + (q.explicacaoGeral ? "\n\n"+textoSemEnfase(q.explicacaoGeral) : "");
   const campo = document.getElementById("fcVerso");
   if(campo){ campo.value = texto; campo.focus(); }
 }
