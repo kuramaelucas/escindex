@@ -883,7 +883,6 @@ D: Suspender o tamoxifeno.
 GABARITO: B
 EXPLICACAO: A alternativa B está correta. Dicas do enunciado: **sangramento pós-menopausa** em usuária de **tamoxifeno** (efeito estrogênico no útero, fator de risco para pólipo, hiperplasia e adenocarcinoma de endométrio) e **eco endometrial de 8 mm (> 4-5 mm)**. A investigação padrão é a **histeroscopia diagnóstica com biópsia dirigida**, que permite ver lesões focais como pólipos e obter diagnóstico histológico. A: o progestagênio cíclico trataria sangramento disfuncional, e aqui precisa de diagnóstico antes. C: a ressonância é para estadiamento depois do diagnóstico. D: suspender o tamoxifeno pode ser discutido com a oncologia, mas não é a conduta imediata, que é investigar.
 REFERENCIAS: Febrasgo, Sangramento Uterino Pós-menopausa; ACOG Committee Opinion 601.
-IMAGEM: sim — USG transvaginal com eco endometrial de 8 mm
 AREA: Ginecologia e Obstetrícia
 ESPECIALIDADE: Oncologia Ginecológica
 ASSUNTO: Câncer de Endométrio

@@ -25,9 +25,27 @@ O destino "grupo" só aparece para o papel **aluno** (`opcoesDestinoImportacao`,
 questões da conta. Se a conta for de professor/administrador, a opção não
 aparece: use uma conta de aluno que seja membro do grupo.
 
+## Figuras
+
+Recortadas dos PDFs e guardadas em `figuras/<nome-do-arquivo-sem-extensão>/qNNN.jpg`
+(`qNNN-a`, `-b`… quando a questão tem mais de uma imagem), com o número da questão
+do `.txt`. Na pré-visualização do importador, anexe a figura de mesmo número à
+questão marcada com `IMAGEM: sim`. Por serem material do grupo, o repositório
+precisa ficar privado.
+
+- Simulado 6º ano (03/2025), Simulado 5 (05/2025), Simulado 2 do 5º ano (07/06) e
+  Simulado 4 (04/2025): figuras extraídas. O HTML do Simulado 6º ano já traz as suas.
+- Simulado 5º ano (01/2025): sem figuras, o PDF dessa prova não foi reenviado.
+- Questões marcadas que não têm imagem no PDF (a descrição estava só no enunciado)
+  tiveram a marca retirada (6º ano Q62, Simulado 5 Q36, 07/06 Q3 e Q96). No Simulado 4
+  as Q63 e Q72 continuam marcadas e sem figura recortada: confira no caderno.
+- Q50 e Q51 do 6º ano usam a mesma cardiotocografia (`q050.jpg`, `q051.jpg`).
+- Os recortes são automáticos: dê uma olhada em cada um ao anexar, pois um pode
+  trazer um pedaço de texto na borda.
+
 ## O que ficou de fora e por quê
 
-- **Figuras** (ECG, tomografia, fotos, gráficos): os blocos marcam `IMAGEM: sim —
+- **Figuras** (ECG, tomografia, fotos, gráficos), ver acima: os blocos marcam `IMAGEM: sim —
   <descrição>`; o arquivo da figura é anexado na pré-visualização, questão por
   questão. As questões de alternativas em imagem (68, 93 do 5º ano; 49, 71, 115
   do Simulado 4) trazem "figura do caderno" no lugar do texto da alternativa.

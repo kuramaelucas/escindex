@@ -40,7 +40,6 @@ D: Realizar dosagem sérica de tireoglobulina.
 GABARITO: C
 EXPLICACAO: A alternativa C está correta. Dicas do enunciado: nódulo de **1,8 cm, hipoecogênico, com microcalcificações** e vascularização central, em paciente eutireoidiana (TSH normal). São achados de alta suspeição para carcinoma papilífero e o tamanho ultrapassa o ponto de corte para punção; o próximo passo é a **PAAF guiada por USG**. A: a cintilografia só entra quando o TSH está suprimido (nódulo hiperfuncionante), o que não é o caso. B: a calcitonina é reservada à suspeita de carcinoma medular (história familiar, NEM), não de rotina. D: a tireoglobulina é marcador de seguimento pós-tireoidectomia e não diferencia nódulo benigno de maligno.
 REFERENCIAS: ATA 2015 Guidelines for Thyroid Nodules; Consenso brasileiro de nódulos tireoidianos (SBEM).
-IMAGEM: sim — USG de tireoide: nódulo hipoecogênico com microcalcificações
 AREA: Clínica Médica
 ESPECIALIDADE: Endocrinologia
 ASSUNTO: Tireoidopatias
@@ -1368,7 +1367,6 @@ D: Indicar tratamento conservador com analgésicos e antibioticoterapia oral, co
 GABARITO: C
 EXPLICACAO: A alternativa C está correta. Dicas do enunciado: **dor em hipocôndrio direito há 36 horas, Murphy positivo, febre baixa, leucocitose, PCR elevada** e, na USG, **cálculos, parede espessada de 5 mm e líquido perivesicular**: **colecistite aguda litiásica** em paciente sem icterícia, sem sinais de coledocolitíase. A melhor conduta é a **colecistectomia laparoscópica precoce, nas primeiras 72 horas** do início dos sintomas. A: esperar 6-8 semanas leva a recorrências e piora do resultado. B: a CPRE só é feita com suspeita de coledocolitíase. D: o tratamento conservador isolado não é indicado a paciente de risco aceitável.
 REFERENCIAS: Diretrizes de Tokyo 2018 para colecistite aguda; WSES 2020.
-IMAGEM: sim — USG com cálculos, espessamento e líquido perivesicular
 AREA: Cirurgia Geral
 ESPECIALIDADE: Abdome Agudo
 ASSUNTO: Colecistite Aguda

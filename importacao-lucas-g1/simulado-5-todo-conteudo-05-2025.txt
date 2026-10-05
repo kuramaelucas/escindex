@@ -508,7 +508,6 @@ D: Histeroscopia
 GABARITO: B
 EXPLICACAO: A alternativa B está correta. Dicas do enunciado: **dor pélvica, febre, dor à mobilização do colo, corrimento fétido e beta-hCG negativo**. Dicas da imagem: massa anexial de 8 cm com parede espessa, septos e ecos móveis, hipervascularização periférica: **abscesso tubo-ovariano**, forma grave de DIP. A conduta inicial é **antibioticoterapia parenteral de amplo espectro** com cobertura para anaeróbios e gram-negativos: **ceftriaxona + metronidazol (± doxiciclina)**. A: a cefuroxima oral é insuficiente nesse contexto. C: a laparoscopia é reservada a falha clínica ou complicações, como rotura. D: a histeroscopia é contraindicada na infecção ativa.
 REFERENCIAS: PCDT para IST (Ministério da Saúde, 2022); Febrasgo, Doença Inflamatória Pélvica.
-IMAGEM: sim — USG pélvica com massa anexial complexa de 8 cm, paredes espessas e septações (abscesso tubo-ovariano)
 AREA: Ginecologia e Obstetrícia
 ESPECIALIDADE: Ginecologia Geral
 ASSUNTO: Dor Pélvica Aguda e Massas Pélvicas
