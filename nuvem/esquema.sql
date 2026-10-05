@@ -222,6 +222,10 @@ alter table public.respostas add column if not exists origem            text;
 alter table public.respostas add column if not exists tentativa         integer;
 alter table public.respostas add column if not exists dias_desde_ultima integer;
 alter table public.respostas add column if not exists respondida_em     timestamptz;
+-- Questão dissertativa (05/10/2026): o texto que a pessoa digitou, para comparar com a
+-- resposta esperada e com as tentativas seguintes. Na dissertativa a alternativa_escolhida
+-- fica vazia e `correta` é a autoavaliação dela.
+alter table public.respostas add column if not exists texto_resposta    text;
 
 -- ---------------------------------------------------------------------------
 -- 3. REVISOES — repetição espaçada das questões (ESTADO: vale a mais recente)

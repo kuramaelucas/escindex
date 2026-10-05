@@ -31,6 +31,7 @@ const NUVEM_TABELAS = {
         origem: linha.origem || undefined, tentativa: linha.tentativa || undefined,
         diasDesdeUltima: typeof linha.dias_desde_ultima === "number" ? linha.dias_desde_ultima : undefined,
         respondidaEm: linha.respondida_em || undefined,
+        textoResposta: linha.texto_resposta || undefined,
       });
     },
   },
@@ -229,6 +230,7 @@ function nuvemRegistrar(o){
       origem: r.origem || null, tentativa: r.tentativa || null,
       dias_desde_ultima: typeof r.diasDesdeUltima === "number" ? r.diasDesdeUltima : null,
       respondida_em: r.respondidaEm || null,
+      texto_resposta: r.textoResposta || null,
     });
   }
   if(o.logCartao && o.logCartao.usuarioId === meuId){
@@ -399,7 +401,7 @@ function nuvemErroPassageiro(e){
    se perde: ele vive no navegador como todo o resto. */
 const NUVEM_CAMPOS_NOVOS = {
   perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id", "prova_alvo_data"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões); data exata da prova-alvo (6º ano)
-  respostas: ["origem", "tentativa", "dias_desde_ultima", "respondida_em"],  // de onde veio a questão, que tentativa é, dias desde a anterior e a hora exata
+  respostas: ["origem", "tentativa", "dias_desde_ultima", "respondida_em", "texto_resposta"],  // de onde veio a questão, que tentativa é, dias desde a anterior, a hora exata e o texto da resposta dissertativa
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],   // quantos cartões naquele dia
 };

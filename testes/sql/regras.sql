@@ -56,7 +56,7 @@ select pg_temp.igual((select count(*) from destaques where removido), 1, 'a pess
 insert into log_revisoes_cartoes(id,usuario_id,cartao_id,assunto_id,nota,intervalo_antes,intervalo_depois,dias_desde_ultima,vistas,data,respondida_em)
   values ('l1','00000000-0000-0000-0000-00000000000a','c1','ass-sca','sabia',7,14,8,2,current_date,now());
 select pg_temp.tem_de_falhar($$insert into log_revisoes_cartoes(id,usuario_id,cartao_id,nota) values ('l2','00000000-0000-0000-0000-00000000000b','c1','sabia')$$, 'log de cartão em nome de outra pessoa');
-select pg_temp.igual((select count(*) from information_schema.columns where table_schema='public' and table_name='respostas' and column_name in ('origem','tentativa','dias_desde_ultima','respondida_em')), 4, 'a resposta tem origem, tentativa, dias desde a última e a hora exata');
+select pg_temp.igual((select count(*) from information_schema.columns where table_schema='public' and table_name='respostas' and column_name in ('origem','tentativa','dias_desde_ultima','respondida_em','texto_resposta')), 5, 'a resposta tem origem, tentativa, dias desde a última, a hora exata e o texto da dissertativa');
 update perfis set prova_alvo_data = current_date + 30 where id='00000000-0000-0000-0000-00000000000a';
 select pg_temp.igual((select count(*) from perfis where prova_alvo_data is not null), 1, 'a pessoa grava a própria data de prova-alvo');
 

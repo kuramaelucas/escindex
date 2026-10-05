@@ -89,6 +89,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | Os **destaques de texto** em questões e flashcards | cria a tabela `destaques`, com RLS e permissões (cada pessoa lê e grava os seus) |
 > | Os **avisos da coordenação** (Enviar Avisos) chegando a todos os aparelhos | cria a tabela `avisos` (toda conta aprovada lê; só o administrador grava) e `alter table public.perfis add column if not exists avisos_lidos jsonb ...` (o que a pessoa já dispensou) |
 > | O **registro de estudo para análise** (04/10/2026): de onde veio cada questão, que tentativa é, há quantos dias foi a anterior e a hora exata; e uma linha por cartão avaliado | `alter table public.respostas add column if not exists origem / tentativa / dias_desde_ultima / respondida_em` e a tabela nova `log_revisoes_cartoes` (cada pessoa grava e lê só a sua; **só sobe** — o site não a baixa de volta, e a análise se faz no painel do Supabase) |
+> | O **texto da resposta das questões dissertativas** (05/10/2026) | `alter table public.respostas add column if not exists texto_resposta text;` (sem rodar, a avaliação da dissertativa sobe e o texto escrito fica só no aparelho) |
 > | A **data exata da prova-alvo** (6º ano e Formado(a), em Perfil) | `alter table public.perfis add column if not exists prova_alvo_data date;` |
 > | O **segundo grupo da pessoa, só de questões** (Meu Grupo > Só questões) | `alter table public.perfis add column if not exists grupo_questoes_id text;` |
 > | A **ordem própria dos estágios do 6º ano** (Meu Grupo > Meus estágios) | `alter table public.perfis add column if not exists ordem_estagios jsonb ...` |
@@ -387,6 +388,58 @@ publicar, volte ao Supabase e ponha o endereço do site em
 Se a pasta `dados/` não for junto, o site abre com uma tarja amarela no alto
 avisando exatamente isso; se a `codigo/` não for, a página diz qual arquivo
 faltou em vez de abrir em branco.
+
+## Mudar o endereço (link) do site sem perder nada
+
+O que está em jogo: o estudo de cada pessoa mora em **dois lugares** — no
+navegador (`localStorage`, que é separado **por endereço**: outro endereço é
+um navegador "vazio") e, com a nuvem ligada, na **conta** do Supabase (que não
+depende do endereço). Com a nuvem ligada e tudo sincronizado, trocar o link
+**não perde nada**: a pessoa entra com o mesmo e-mail e senha no endereço novo
+e o estudo desce de volta. O que se perde é só o que **nunca subiu**.
+
+**Antes de trocar (no endereço antigo):**
+
+1. Cada pessoa abre o site, vai em **Perfil > Conta e sincronização** e confere
+   que a fila está vazia; se não estiver, *Sincronizar agora*. Se aparecer
+   **Trazer estudo deste navegador**, é estudo que ainda só existe ali: clique
+   para subir para a conta. Quem estuda **sem conta** (só no navegador) não tem
+   como levar o estudo pelo link: ver "Sem nuvem" abaixo.
+2. O administrador máster baixa o **backup completo** (Perfil > Backup dos
+   dados > *Exportar backup*) e confere que o backup automático da nuvem rodou
+   (`backup-nuvem.yml`).
+3. Questões e correções feitas **só neste navegador** (sem a nuvem) também
+   precisam subir antes: o *Testar a nuvem* diz se há algo pendente.
+
+**A troca:**
+
+4. Publique o site no endereço novo (a pasta inteira, como em "Publicar o
+   site"). No Netlify: *Domain management > Add a domain*; no GitHub Pages:
+   *Settings > Pages > Custom domain* (e o DNS do domínio aponta para lá). O
+   endereço antigo pode ficar no ar redirecionando para o novo por um tempo.
+5. No Supabase, em **Authentication > URL Configuration**: ponha o endereço
+   novo em **Site URL** e acrescente `https://endereco-novo/**` em **Redirect
+   URLs** (mantenha o antigo enquanto ele existir). Sem isso, o link do e-mail
+   de aprovação e o de "esqueci a senha" não voltam para o Esc novo.
+6. Opcional: em `codigo/01-config.js`, `CONFIG.nuvem.enderecoDoSite` com o
+   endereço novo (vazio = o endereço da própria página, que já serve).
+7. Depois, `npm run publicar` e publicar de novo a pasta.
+
+**Depois (cada pessoa):** abre o link novo, **entra de novo** com o mesmo
+e-mail e senha — o estudo desce sozinho — e, se tinha o Esc **instalado como
+aplicativo**, instala de novo pelo endereço novo (o app instalado é preso ao
+endereço antigo).
+
+**Sem nuvem** (a plataforma só no navegador): o endereço novo começa vazio. O
+caminho é o administrador máster **exportar o backup no endereço antigo** e
+**importá-lo no novo** (*Perfil > Backup dos dados*: *Exportar backup* e
+*Importar backup*, que substitui os dados daquele navegador). O arquivo "Só o
+meu estudo" é uma cópia para guardar, não tem importação.
+
+O que não muda: contas, aprovações, grupos, questões enviadas, correções,
+comentários, avisos — tudo isso é da nuvem. O que **não** atravessa sozinho: o
+conteúdo da pasta `dados/` (vem junto com o site, então basta publicá-lo) e o
+que ficou só no navegador antigo.
 
 ## Quando algo não funciona
 

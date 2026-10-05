@@ -479,10 +479,15 @@ function questoesDificeis(){
    com o acerto geral — a pessoa não sabe se sabe, e a prova cobra. */
 let _cacheIncidencia = null;
 function bancaDeReferencia(){ return (db.configGeral && db.configGeral.bancaFoco) || CONFIG.bancaFoco; }
+/* Passando TODAS_AS_PROVAS no lugar da banca, a conta olha todas as provas
+   reais de residência do banco (o cronograma do 6º ano usa isso: o que mais
+   cai no conjunto das provas, não só numa instituição). */
+const TODAS_AS_PROVAS = "*";
 function incidenciaNaBanca(banca){
   banca = banca || bancaDeReferencia();
   if(_cacheIncidencia && _cacheIncidencia.geracao===_geracaoDb && _cacheIncidencia.banca===banca) return _cacheIncidencia.r;
-  const reais = db.questoes.filter(q=>q.real && q.banca===banca && q.status!=="desatualizada");
+  const daProva = banca===TODAS_AS_PROVAS ? (q=>!ehConsolidacao(q) && !q.grupoId) : (q=>q.real && q.banca===banca);
+  const reais = db.questoes.filter(q=>daProva(q) && q.status!=="desatualizada");
   const porAssunto = {}, porArea = {}, anos = new Set();
   reais.forEach(q=>{
     anos.add(q.ano);

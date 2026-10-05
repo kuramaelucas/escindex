@@ -387,7 +387,7 @@ function abrirDiaDoHistorico(dia){
   state.sessaoAtual = {
     id: "dia-"+dia, tipo:"pratica", somenteLeitura:true, salvaNoHistorico:true, dataOriginal: dia,
     itens: respostas.map(r=>({questaoId:r.questaoId, motivo:"Respondida em "+formatDataBR(dia)})),
-    respostasSessao: respostas.map(r=>({questaoId:r.questaoId, alternativaEscolhida:r.alternativaEscolhida, correta:r.correta, confianca:r.confianca, data:r.data})),
+    respostasSessao: respostas.map(r=>({id:r.id, questaoId:r.questaoId, alternativaEscolhida:r.alternativaEscolhida, textoResposta:r.textoResposta, correta:r.correta, confianca:r.confianca, data:r.data})),
     indiceAtual:0, marcadas:{}, finalizada:true,
   };
   navigate("sessao");

@@ -71,6 +71,7 @@ export function questaoComoTexto(q){
   L.push("  " + pares("areaId", "especialidadeId", "assuntoId") + ",");
   if(q.imagemUrl !== undefined || q.imagemPendente !== undefined || q.imagemLegenda !== undefined)
     L.push("  " + pares("imagemUrl", "imagemPendente", "imagemLegenda") + ",");
+  if(q.tipo !== undefined) L.push("  " + pares("tipo", "respostaEsperada") + ",");
   L.push("  enunciado:" + js(q.enunciado) + ",");
   L.push("  alternativas:[" + q.alternativas.map(a => `{id:${js(a.id)},texto:${js(a.texto)}}`).join(",") + "],");
   L.push("  gabarito:" + js(q.gabarito) + ",");

@@ -392,6 +392,8 @@ ol.lista-passos li{margin:.25rem 0}
 .nota-pessoal{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius-sm);padding:.7rem .9rem}
 .nota-pessoal-titulo{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
 .nota-pessoal .text-sm{white-space:pre-wrap}
+.resposta-escrita{white-space:pre-wrap;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.7rem .9rem;font-size:.9rem;line-height:1.55}
+.confidence-btn:disabled{opacity:.5;cursor:not-allowed}.confidence-btn:disabled:hover{border-color:var(--border-strong);background:var(--surface)}
 
 /* ---------- legenda e seletor de período dos gráficos de desempenho ---------- */
 /* No computador, o gráfico das 5 áreas fica ao lado da tabela das mesmas

@@ -15,6 +15,8 @@
      enunciado    texto da pergunta                     (obrigatório)
      alt          ["texto A", "texto B", …]  as letras vêm da ordem  (obrigatório)
      gabarito     "C"  (vazio quando anulada)           (obrigatório)
+   Questão DISSERTATIVA (o aluno escreve a resposta e se avalia): "tipo":"dissertativa"
+   e "resposta" (a resposta esperada pela banca) no lugar de "alt" e "gabarito".
      explicacao   explicação no padrão de justificativa (obrigatório)
      referencias, dificuldade (fundamental|intermediario|avancado; padrão intermediario)
      status ("anulada" pede "motivo"), figura ("png"|"jpg"|caminho), imagemPendente, imagemLegenda
@@ -29,7 +31,7 @@ import { fileURLToPath } from "node:url";
 import { RAIZ, carregar, lerFicha, questaoComoTexto, acrescentarAoArquivo } from "./lib-dados.mjs";
 import { conferir, faltasDeJustificativa, resumirNumeros } from "../testes/conferir-dados.mjs";
 
-const CAMPOS = new Set(["n", "assunto", "enunciado", "alt", "gabarito", "explicacao", "explicacoesAlternativas",
+const CAMPOS = new Set(["n", "assunto", "enunciado", "alt", "gabarito", "tipo", "resposta", "explicacao", "explicacoesAlternativas",
   "referencias", "dificuldade", "status", "motivo", "figura", "imagemPendente", "imagemLegenda"]);
 const DIFICULDADES = ["fundamental", "intermediario", "avancado"];
 const hoje = () => new Date().toISOString().slice(0, 10);
@@ -50,12 +52,18 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
     const ass = asss.get(e.assunto);
     if(!ass) erro(`assunto "${e.assunto}" não existe (npm run dados -- taxonomia palavra)`);
     if(!String(e.enunciado || "").trim()) erro("enunciado vazio");
-    if(!Array.isArray(e.alt) || e.alt.length !== letras.length) erro(`"alt" deve ter ${letras.length} alternativas (tem ${Array.isArray(e.alt) ? e.alt.length : 0})`);
+    const dissertativa = e.tipo === "dissertativa";
+    if(e.tipo !== undefined && !dissertativa) erro(`tipo "${e.tipo}" não existe (use "dissertativa", ou deixe sem o campo para múltipla escolha)`);
+    if(dissertativa){
+      if(!String(e.resposta || "").trim()) erro('dissertativa pede "resposta" (a resposta esperada pela banca)');
+      if(e.alt !== undefined || e.gabarito) erro('dissertativa não tem "alt" nem "gabarito"');
+    }else if(e.resposta !== undefined) erro('"resposta" só existe na dissertativa ("tipo":"dissertativa")');
+    else if(!Array.isArray(e.alt) || e.alt.length !== letras.length) erro(`"alt" deve ter ${letras.length} alternativas (tem ${Array.isArray(e.alt) ? e.alt.length : 0})`);
     else if(e.alt.some(t => !String(t).trim())) erro("alternativa vazia");
     const anulada = e.status === "anulada";
     if(e.status !== undefined && !["ativa", "anulada", "rascunho"].includes(e.status)) erro(`status "${e.status}" não existe (ativa, anulada, rascunho)`);
     if(anulada){ if(!e.motivo) erro('questão anulada pede "motivo"'); if(e.gabarito) erro("questão anulada fica sem gabarito"); }
-    else if(!letras.includes(e.gabarito)) erro(`gabarito "${e.gabarito}" não é uma das letras ${letras.join(", ")}`);
+    else if(!dissertativa && !letras.includes(e.gabarito)) erro(`gabarito "${e.gabarito}" não é uma das letras ${letras.join(", ")}`);
     if(e.dificuldade !== undefined && !DIFICULDADES.includes(e.dificuldade)) erro(`dificuldade "${e.dificuldade}" não existe (${DIFICULDADES.join(", ")})`);
     const q = {
       id: `${ficha.prefixo}-${String(e.n).padStart(3, "0")}`, banca: ficha.banca, real: true,
@@ -63,8 +71,9 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
       areaId: ass && esps.get(ass.especialidadeId) ? esps.get(ass.especialidadeId).areaId : undefined,
       especialidadeId: ass ? ass.especialidadeId : undefined, assuntoId: e.assunto,
       enunciado: e.enunciado,
-      alternativas: Array.isArray(e.alt) ? e.alt.map((t, k) => ({ id: letras[k], texto: String(t) })) : [],
-      gabarito: anulada ? "" : e.gabarito,
+      ...(dissertativa ? { tipo: "dissertativa", respostaEsperada: String(e.resposta || "") } : {}),
+      alternativas: Array.isArray(e.alt) && !dissertativa ? e.alt.map((t, k) => ({ id: letras[k], texto: String(t) })) : [],
+      gabarito: anulada || dissertativa ? "" : e.gabarito,
       explicacaoGeral: e.explicacao,
       explicacoesAlternativas: e.explicacoesAlternativas || {},
       referencias: e.referencias,

@@ -102,11 +102,13 @@ const GUIA_ALUNO = [
   { titulo:"Início e sessão do dia", itens:[
     "A <strong>sessão recomendada</strong> junta questões do seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo. O tamanho segue a sua meta diária.",
     "A sessão recomendada muda com o seu ano, do <strong>consolidar</strong> ao <strong>treinar a prova</strong>: <strong>3º ano 70% consolidação e 30% provas de residência; 4º ano 60/40; 5º ano 25/75; 6º ano 100% provas reais de residência</strong>. Consolidação são as questões didáticas do Esc e as provas da graduação. Cada questão da sessão diz de qual tipo é, e a tela Estudar explica a regra do seu ano.",
+    "<strong>No 6º ano há um cronograma por dia:</strong> as primeiras 30 questões seguem a sessão recomendada; da 31ª em diante só entram questões de prova real de residência, nos assuntos que mais caem no banco e em que você mais erra. Cada questão extra diz o porquê.",
     "A <strong>meta de hoje</strong> mostra quantas questões e cartões faltam.",
     "Se você sair no meio de uma sessão, ela fica guardada: o Início oferece <strong>Continuar</strong> de onde parou.",
   ]},
   { titulo:"Estudar: escolher o que fazer", itens:[
-    "<strong>Monte sua própria lista</strong> (clique em <strong>Criar minha lista</strong> para abrir as opções) filtra por área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano, só erros, só favoritas ou só as que você nunca respondeu. Dá para marcar <strong>mais de uma instituição</strong> e <strong>mais de um tipo de prova</strong> no mesmo conjunto.",
+    "<strong>Monte sua própria lista</strong> (clique em <strong>Criar minha lista</strong> para abrir as opções) filtra por área, especialidade, assunto, tipo de prova (residência ou graduação), instituição, ano, só erros, só favoritas ou só as que você nunca respondeu. Dá para marcar <strong>mais de uma instituição</strong> e <strong>mais de um tipo de prova</strong> no mesmo conjunto. Questão que você respondeu há pouco e ainda não venceu na revisão fica fora da lista; em letra pequena, abaixo da contagem, a tela diz quantas foram e deixa <strong>colocá-las de volta</strong>.",
+    "Questão <strong>dissertativa</strong> não tem alternativas: você escreve a resposta, marca a confiança e só então vê a <strong>resposta esperada pela banca</strong> e a justificativa. Depois se avalia — <strong>acertei</strong> ou <strong>errei</strong> — e é essa avaliação que conta. O que você escreveu fica guardado, e quando a questão volta a tela mostra as tentativas anteriores para comparar.",
     "A meta diária é ajustada em Estudar (e, em <strong>Ajustar meta</strong>, o botão <strong>Restaurar padrão</strong> devolve a recomendação da coordenação); o ano da faculdade e a turma, em Perfil e em Meu Grupo.",
   ]},
   { titulo:"Respondendo uma questão", itens:[

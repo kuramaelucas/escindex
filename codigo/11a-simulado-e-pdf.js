@@ -65,7 +65,7 @@ function buscarCandidatasSimulado(){
   const areaIds = [...document.querySelectorAll(".csArea:checked")].map(el=>el.value);
   const anos = [...document.querySelectorAll(".csAno:checked")].map(el=>parseInt(el.value));
   const bancas = [...document.querySelectorAll(".csBanca:checked")].map(el=>el.value);
-  const pool = buscarQuestoesPorFiltro(usuarioAtual().id, {areaIds, anos, bancas, incluirInativas:true}).map(q=>q.id);
+  const pool = buscarQuestoesPorFiltro(usuarioAtual().id, {areaIds, anos, bancas, incluirInativas:true}).filter(q=>!ehDissertativa(q)).map(q=>q.id);
   if(!state.filtroRota) state.filtroRota = {};
   state.filtroRota.criarSimulado = {pool, selecionadas:[]};
   render();
@@ -123,9 +123,10 @@ function questoesDoMaterialPDF(){
   if(ctx.fonte==="simulado"){
     const sim = db.simulados.find(s=>s.id===ctx.simuladoId);
     if(!sim) return [];
-    return (sim.questaoIds||[]).map(getQuestao).filter(Boolean);
+    return (sim.questaoIds||[]).map(getQuestao).filter(q=>q && !ehDissertativa(q));
   }
-  let pool = questoesAtivas();
+  // a dissertativa não tem alternativas nem gabarito para o papel
+  let pool = questoesAtivas().filter(q=>!ehDissertativa(q));
   if(ctx.areaId) pool = pool.filter(q=>q.areaId===ctx.areaId);
   if(ctx.especialidadeId) pool = pool.filter(q=>q.especialidadeId===ctx.especialidadeId);
   if(ctx.banca) pool = pool.filter(q=>q.banca===ctx.banca);

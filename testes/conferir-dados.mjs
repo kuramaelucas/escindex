@@ -103,7 +103,8 @@ export function faltasDeJustificativa(q){
   if(t.length < 300) faltas.push("menos de 300 caracteres");
   if(!/\*\*[^*]+\*\*/.test(t)) faltas.push("nenhum dado ou dica em destaque entre ** **");
   if(!DICAS_DO_ENUNCIADO.test(t)) faltas.push('sem "Dicas do enunciado:" (ou da imagem, da figura…)');
-  if(q.status !== "anulada" && q.gabarito){
+  // a dissertativa não tem alternativas: o item 4 é a resposta esperada (conferida em conferir())
+  if(q.tipo !== "dissertativa" && q.status !== "anulada" && q.gabarito){
     const semAbertura = t.replace(/A alternativa [A-E] /, "");
     const semMencao = (q.alternativas || []).map(a => a.id)
       .filter(L => L !== q.gabarito && !new RegExp("(^|[^A-Za-zÀ-ÿ])" + L + "([^A-Za-zÀ-ÿ]|$)").test(semAbertura));
@@ -146,9 +147,18 @@ export function conferir(){
     if(!asss.has(q.assuntoId)) erros.push(`${onde}: assunto inexistente ${q.assuntoId}`);
     else if(asss.get(q.assuntoId).especialidadeId !== q.especialidadeId) erros.push(`${onde}: o assunto ${q.assuntoId} não é da especialidade ${q.especialidadeId}`);
     const alts = (q.alternativas || []).map(a => a.id);
-    if(alts.length < 2) erros.push(`${onde}: menos de duas alternativas`);
-    if(new Set(alts).size !== alts.length) erros.push(`${onde}: alternativa repetida`);
-    if(q.status !== "anulada" && !alts.includes(q.gabarito)) erros.push(`${onde}: gabarito "${q.gabarito}" não é uma das alternativas (${alts.join(", ")})`);
+    if(q.tipo === "dissertativa"){
+      // resposta escrita: sem alternativas nem gabarito, mas com a resposta esperada pela banca
+      if(!String(q.respostaEsperada || "").trim()) erros.push(`${onde}: dissertativa sem respostaEsperada`);
+      if(alts.length) erros.push(`${onde}: dissertativa não tem alternativas`);
+    }else if(q.tipo !== undefined && q.tipo !== ""){
+      erros.push(`${onde}: tipo "${q.tipo}" não existe (use "dissertativa", ou deixe sem o campo para múltipla escolha)`);
+    }
+    if(q.tipo !== "dissertativa"){
+      if(alts.length < 2) erros.push(`${onde}: menos de duas alternativas`);
+      if(new Set(alts).size !== alts.length) erros.push(`${onde}: alternativa repetida`);
+      if(q.status !== "anulada" && !alts.includes(q.gabarito)) erros.push(`${onde}: gabarito "${q.gabarito}" não é uma das alternativas (${alts.join(", ")})`);
+    }
     if(!String(q.enunciado || "").trim()) erros.push(`${onde}: enunciado vazio`);
     // ênfase do autor nas explicações: "**" vem em pares, senão o último fica solto na tela
     [q.explicacaoGeral, ...Object.values(q.explicacoesAlternativas || {})].forEach(t => {

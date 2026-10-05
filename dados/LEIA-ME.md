@@ -134,6 +134,19 @@ JSON em que cada questão traz **só o que é dela** — a ferramenta completa
    "dificuldade": "intermediario" }]
 ```
 
+**Questão dissertativa** (o aluno escreve a resposta, diz a confiança, vê a
+esperada e se avalia): no lugar de `alt` e `gabarito`, `"tipo":"dissertativa"`
+e `"resposta"` (a resposta esperada pela banca). A explicação segue o mesmo
+padrão (dicas do enunciado, parâmetros em `**destaque**`), menos o item das
+alternativas, que não existem. Fica fora de simulado e de PDF.
+
+```json
+[{ "n": 5, "assunto": "ass-sepse", "tipo": "dissertativa",
+   "enunciado": "Descreva a conduta na primeira hora do choque séptico.",
+   "resposta": "Reposição volêmica, antibiótico em até 1 hora, noradrenalina se PAM < 65.",
+   "explicacao": "Dicas do enunciado: **choque séptico** …" }]
+```
+
 Opcionais: `status:"anulada"` (com `motivo` e `gabarito:""`), `figura:"png"`
 (ou `"jpg"`; a imagem tem de estar em `dados/imagens/<id>.png`),
 `imagemPendente:"ECG de admissão"`, `imagemLegenda`, `explicacoesAlternativas`.
