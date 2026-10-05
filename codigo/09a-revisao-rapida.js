@@ -110,7 +110,7 @@ function renderFlashcardsInicio(u){
     <div class="grid grid-3">
       <div class="field"><label class="label">Quais cartões</label>
         <select class="select" id="flashSituacao" onchange="atualizarOpcoesBaralho()">
-          ${[["","Todos (a plataforma ordena)"],["vencidos","Só os vencidos"],["novos","Só os que ainda não vi"],["meus","Só os que eu escrevi"]].map(([v,r])=>`<option value="${v}" ${(filtro.situacao||"")===v?"selected":""}>${r}</option>`).join("")}
+          ${[["","Todos (a plataforma ordena)"],["vencidos","Só os vencidos"],["novos","Só os que ainda não vi"],["meus","Só os que eu escrevi"],["livres","Só as minhas anotações (sem assunto)"]].map(([v,r])=>`<option value="${v}" ${(filtro.situacao||"")===v?"selected":""}>${r}</option>`).join("")}
         </select></div>
       <div class="field"><label class="label">Nº de cartões</label>
         <input class="input" id="flashTamanho" type="number" min="1" max="100" value="${filtro.tamanho||20}" onchange="atualizarOpcoesBaralho()"></div>
@@ -126,12 +126,15 @@ function renderFlashcardsInicio(u){
         <div class="card-title">Meus cartões (${meus.length})</div>
         <div class="text-sm muted">Os que você escreveu enquanto resolvia questões. São seus: ninguém mais vê, e entram no baralho junto com os da equipe.</div>
       </div>
-      <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
+      <div class="flex gap-1 quebra">
+        <button class="btn btn-secondary btn-sm" onclick="abrirAnotacaoRapida()">${iconeSvg("edit")} Anotação rápida</button>
+        <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
+      </div>
     </div>
     <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
       ${pagMeus.itens.map(c=>`<tr>
         <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
-        <td class="text-sm">${escapeHtml(nomeAssunto(c.assuntoId))}</td>
+        <td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td>
         <td class="text-xs muted">${c.criadoEm?formatDataBR(c.criadoEm):"—"}</td>
         <td class="flex gap-1">
           ${c.questaoOrigemId?`<button class="icon-btn" title="Ver a questão que originou o cartão" onclick="abrirQuestaoCompleta('${c.questaoOrigemId}')">${iconeSvg("search")}</button>`:""}
@@ -145,7 +148,10 @@ function renderFlashcardsInicio(u){
   </div>` : `<div class="card-flat mt-2 text-sm">
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220"><strong>Escreva seus próprios cartões.</strong> Ao responder uma questão, o botão “${"Virar flashcard"}” monta um cartão já no assunto daquela questão — é o melhor momento para isso, porque o conceito que faltou ainda está fresco. Esses cartões são só seus.</div>
-      <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
+      <div class="flex gap-1 quebra">
+        <button class="btn btn-secondary btn-sm" onclick="abrirAnotacaoRapida()">${iconeSvg("edit")} Anotação rápida</button>
+        <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
+      </div>
     </div>
   </div>`}
 
@@ -163,7 +169,7 @@ function renderFlashcardsInicio(u){
     <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th></th></tr></thead><tbody>
       ${pagEquipe.itens.map(c=>`<tr>
         <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span></td>
-        <td class="text-sm">${escapeHtml(nomeAssunto(c.assuntoId))}</td>
+        <td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td>
         <td class="flex gap-1">
           <button class="icon-btn" title="Editar" onclick="abrirFormularioFlashcard('${c.id}')">${iconeSvg("edit")}</button>
           <button class="icon-btn" title="Arquivar" onclick="arquivarFlashcard('${c.id}')">${iconeSvg("trash")}</button>
@@ -238,7 +244,7 @@ function pularFlashcard(delta){
 function sairDaSessaoFlash(){ state.sessaoFlash = null; navigate("flashcards"); }
 function renderFlashcardEmSessao(s){
   const cartao = s.cartoes[s.indice];
-  const assunto = nomeAssunto(cartao.assuntoId);
+  const assunto = nomeAssuntoDoCartao(cartao);
   const rev = revisaoDoCartao(usuarioAtual().id, cartao.id);
   const favoritoAqui = isFavoritoCartao(usuarioAtual().id, cartao.id);
   return `
@@ -285,7 +291,7 @@ function renderFlashcardsResumo(s){
     <div class="card-title">O que ficou pendente</div>
     ${aRever.map(n=>{ const c = getFlashcard(n.cartaoId); if(!c) return ""; return `<div class="card-flat mb-1">
       <div class="text-sm peso-600">${escapeHtml(c.frente.slice(0,160))}${c.frente.length>160?"…":""}</div>
-      <div class="text-xs muted mt-1">${escapeHtml(nomeAssunto(c.assuntoId))} · ${n.nota==="quase"?"lembrou com esforço":"não lembrou"}</div>
+      <div class="text-xs muted mt-1">${escapeHtml(nomeAssuntoDoCartao(c))} · ${n.nota==="quase"?"lembrou com esforço":"não lembrou"}</div>
     </div>`; }).join("")}
   </div>` : `<div class="card mt-2"><p class="text-sm">Você acertou todos de primeira. Se isso se repetir, vale aumentar o recorte do baralho ou voltar para as questões — cartão fácil demais deixa de ensinar.</p></div>`}
   <div class="flex gap-1 mt-2 quebra">
@@ -315,6 +321,10 @@ function praticarQuestoesDoBaralho(){
    aparece para mais ninguém. É caderno de estudo, não material publicado. */
 /* <option>s de todos os assuntos, agrupados por grande área, para os <select>
    de cartão (um só e baralho inteiro): "Especialidade › Assunto". */
+/* Cartão sem assunto é a "miscelânea": anotação solta da pessoa, que não
+   precisa caber num assunto do banco para entrar no baralho dela. */
+function nomeAssuntoDoCartao(c){ return c && c.assuntoId ? nomeAssunto(c.assuntoId) : "Miscelânea (sem assunto)"; }
+function abrirAnotacaoRapida(){ abrirFormularioFlashcard(null, {livre:true}); }
 function opcoesDeAssuntoAgrupadas(selecionado){
   return db.taxonomia.areas.map(area=>`<optgroup label="${escapeHtml(area.nome)}">${
     db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>
@@ -333,11 +343,16 @@ function abrirFormularioFlashcard(id, opts){
   const questao = opts.questaoId ? getQuestao(opts.questaoId) : null;
   // assunto pré-selecionado: o do cartão em edição, ou o da questão de origem
   const assuntoEscolhido = c ? c.assuntoId : (questao ? questao.assuntoId : null);
+  // "sem assunto" vai no topo (e já marcado) quando a pessoa está anotando
+  // livremente ou editando uma anotação; nos outros caminhos fica no fim, para
+  // o primeiro assunto continuar sendo o padrão de sempre
+  const semAssuntoNoTopo = !!opts.livre || (c && !c.assuntoId);
+  const opcaoSemAssunto = `<option value="" ${semAssuntoNoTopo?"selected":""}>Sem assunto — miscelânea (minhas anotações)</option>`;
   const titulo = c ? "Editar cartão" : (questao ? "Virar flashcard" : "Novo cartão");
   state.filtroRota.imagemFlashcard = c ? (c.imagemUrl || "") : "";
 
   abrirModal(`
-    ${cabecalhoJanela(titulo)}
+    ${cabecalhoJanela(opts.livre && !c ? "Anotação rápida" : titulo)}
     ${questao ? `<div class="card-flat mb-2">
       <div class="text-xs muted" style="font-weight:700;letter-spacing:.06em;text-transform:uppercase">Questão de origem</div>
       <div class="text-sm mt-1">${escapeHtml(questao.enunciado.slice(0,220))}${questao.enunciado.length>220?"…":""}</div>
@@ -347,8 +362,11 @@ function abrirFormularioFlashcard(id, opts){
     ${!daEquipe ? `<div class="card-flat mt-2 text-xs">${iconeSvg("user")} Este cartão fica <strong>só no seu baralho</strong>. Ninguém mais vê, e ele entra nas suas revisões junto com os cartões da equipe.</div>` : ""}
     <div class="field mt-2"><label class="label">Assunto</label>
       <select class="select" id="fcAssunto">
+        ${semAssuntoNoTopo ? opcaoSemAssunto : ""}
         ${opcoesDeAssuntoAgrupadas(assuntoEscolhido)}
+        ${semAssuntoNoTopo ? "" : opcaoSemAssunto}
       </select>
+      ${opts.livre ? `<div class="hint mt-1">Anotação sem assunto entra no seu baralho misto. Para revisar só estas, use "Só as minhas anotações" em "Criar meu baralho".</div>` : ""}
       ${questao ? `<div class="hint mt-1">Já veio marcado com o assunto da questão (${escapeHtml(nomeAssunto(questao.assuntoId))}). Troque se o seu cartão for sobre outra coisa.</div>` : ""}
     </div>
     <div class="field"><label class="label">Frente (a pergunta)</label><textarea class="textarea" id="fcFrente" style="min-height:80px" placeholder="${questao?"Ex.: o conceito que faltou para você acertar esta questão, virado em pergunta curta.":"Ex.: Qual é o tempo-alvo para angioplastia primária no IAM com supra?"}">${escapeHtml(c?c.frente:"")}</textarea></div>
@@ -368,7 +386,7 @@ function abrirFormularioFlashcard(id, opts){
     <p class="text-xs muted">${daEquipe
       ? "Mesma regra de conteúdo das questões: escrita autoral, baseada em diretrizes, consensos e protocolos oficiais. Nada copiado de cursinho, apostila ou banco comercial."
       : "Escreva com suas palavras. Cartão copiado do enunciado inteiro não ensina nada — o esforço de resumir é metade do aprendizado."}</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarFlashcard('${id||""}','${opts.questaoId||""}')">Salvar cartão</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarFlashcard('${id||""}','${opts.questaoId||""}')">Salvar cartão</button>${opts.livre && !c ? `<button class="btn btn-secondary" onclick="salvarFlashcard('','',true)">Salvar e criar outro</button>` : ""}<button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
 /* Atalho: joga o gabarito comentado no verso, para o aluno editar em cima
    em vez de começar da folha em branco. */
@@ -379,13 +397,16 @@ function preencherCartaoComGabarito(qid){
   const campo = document.getElementById("fcVerso");
   if(campo){ campo.value = texto; campo.focus(); }
 }
-function salvarFlashcard(id, questaoOrigemId){
+function salvarFlashcard(id, questaoOrigemId, criarOutro){
   const frente = (document.getElementById("fcFrente").value||"").trim();
   const verso = (document.getElementById("fcVerso").value||"").trim();
   const assuntoId = document.getElementById("fcAssunto").value;
   const imagemUrl = state.filtroRota.imagemFlashcard || "";
   const imagemLegenda = (document.getElementById("fcImagemLegenda").value||"").trim();
   if(!frente || !verso){ toast("Preencha frente e verso.", "err"); return; }
+  // sem assunto só vale para anotação pessoal: o baralho da equipe é organizado por assunto
+  const ehDaEquipe = id ? !!(db.flashcards||[]).find(x=>x.id===id && !x.usuarioId) : (podeGerirConteudo() && !state.modoAluno);
+  if(!assuntoId && ehDaEquipe){ toast("Cartão da equipe precisa de um assunto. Sem assunto é só para anotações pessoais.", "err"); return; }
   const u = usuarioAtual();
   if(!db.flashcards) db.flashcards = [];
   if(id){
@@ -412,6 +433,8 @@ function salvarFlashcard(id, questaoOrigemId){
   saveState(); fecharModal();
   toast(id ? "Cartão atualizado." : "Cartão criado. Ele entra na sua próxima revisão rápida.");
   render();
+  // anotando em sequência: a janela volta limpa, já sem assunto
+  if(criarOutro) abrirAnotacaoRapida();
 }
 /* ---------- promoção de cartão pessoal para o baralho da equipe -----------
    Hoje os dois mundos (cartão pessoal do aluno e baralho oficial da equipe)
@@ -464,7 +487,7 @@ function renderCartoesDoGrupo(u){
     <div class="card-title">${iconeSvg("users")} Cartões do grupo (${dosColegas.length})</div>
     <div class="text-sm muted">Compartilhados pelos colegas de ${escapeHtml(g.nome)}. Entram no seu baralho junto com os da equipe; só quem escreveu edita.</div>
     <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th>Colega</th></tr></thead><tbody>
-      ${pag.itens.map(c=>`<tr><td class="text-sm">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</td><td class="text-sm">${escapeHtml(nomeAssunto(c.assuntoId))}</td><td class="text-sm">${escapeHtml(nomeDoMembro(g, c.usuarioId))}</td></tr>`).join("")}
+      ${pag.itens.map(c=>`<tr><td class="text-sm">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</td><td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td><td class="text-sm">${escapeHtml(nomeDoMembro(g, c.usuarioId))}</td></tr>`).join("")}
     </tbody></table></div>
     ${controlesPaginacao(pag, "cartão(ões) do grupo")}
   </div>`;

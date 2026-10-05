@@ -604,7 +604,7 @@ function registrarLogDeCartao(usuarioId, cartaoId, nota, antes, entry){
 }
 /* Monta o baralho da sessão de revisão rápida. `filtro` aceita
    {assuntoId, especialidadeId, areaId, somenteFalsaSeguranca,
-    situacao: "vencidos" | "novos" | "meus"} */
+    situacao: "vencidos" | "novos" | "meus" | "livres"} */
 function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
   filtro = filtro || {};
   tamanho = tamanho || 20;
@@ -648,7 +648,8 @@ function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
     const meus = new Set(meusFlashcards(usuarioId).map(c=>c.id));
     candidatos = candidatos.filter(c => filtro.situacao==="vencidos" ? cartaoVencido(usuarioId, c.id)
       : filtro.situacao==="novos" ? !revs[c.id]
-      : filtro.situacao==="meus" ? meus.has(c.id) : true);
+      : filtro.situacao==="meus" ? meus.has(c.id)
+      : filtro.situacao==="livres" ? meus.has(c.id) && !c.assuntoId : true);
   }
   if(!candidatos.length) return [];
 

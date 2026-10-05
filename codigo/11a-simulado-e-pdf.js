@@ -332,7 +332,7 @@ function htmlFlashcardsPDF(){
       <div><strong>${escapeHtml(c.frente)}</strong></div>
       <div class="pdf-corte"></div>
       <div>${escapeHtml(c.verso)}</div>
-      <div style="font-size:8.5pt;color:#444;margin-top:.3rem">${escapeHtml(nomeAssunto(c.assuntoId))}</div>
+      <div style="font-size:8.5pt;color:#444;margin-top:.3rem">${escapeHtml(nomeAssuntoDoCartao(c))}</div>
     </div>`;
   });
   return html;
