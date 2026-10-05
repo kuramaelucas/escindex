@@ -245,3 +245,24 @@ test("6º ano (Grupo E): períodos com subdivisões repartem o tempo igualmente 
   assert.deepEqual(r.obst, [["2026-03-05", "2026-04-04"], ["2026-04-05", "2026-05-05"]]);
   await contexto.close();
 });
+
+test("questão respondida não volta em sessão nova antes do prazo da revisão espaçada", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const u = usuarioAtual();
+      // responde 200 questões hoje (certo e errado), depois monta várias sessões
+      const feitas = questoesParaEstudo(u.id).slice(0, 200);
+      feitas.forEach((q, i) => registrarResposta(u.id, q.id, q.gabarito, i % 2 ? "certeza" : "chute", 30, "pratica"));
+      const ids = new Set(feitas.map(q => q.id));
+      let repetidas = 0;
+      for(let i = 0; i < 10; i++) montarSessaoRecomendada(u.id, 20).forEach(it => { if(ids.has(it.questaoId)) repetidas++; });
+      const praticadas = embaralharSemRepetir(u.id, questoesParaEstudo(u.id)).slice(0, 50).filter(q => ids.has(q.id)).length;
+      return { repetidas, praticadas };
+    });
+    assert.equal(r.repetidas, 0);
+    assert.equal(r.praticadas, 0);
+  } finally { await contexto.close(); }
+});

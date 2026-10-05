@@ -258,6 +258,20 @@ function questoesParaEstudo(usuarioId, incluirGrupoId){
   const ativas = questoesAtivas(incluirGrupoId);
   return ocultas.size ? ativas.filter(q=>!ocultas.has(q.id)) : ativas;
 }
+/* REPETIÇÃO PREMATURA. Questão já respondida só volta pela revisão espaçada,
+   no prazo dela (nunca antes de 7 dias). Os sorteios "do bloco", "prévia" e
+   "complemento" olhavam o banco inteiro e devolviam questão feita ontem;
+   `semRepeticaoPrematura` tira do sorteio o que foi respondido e ainda não
+   venceu, e `embaralharSemRepetir` (para o complemento e a prática por
+   assunto, que não podem ficar vazios) só recorre a elas em último caso. */
+function repeticaoPrematura(usuarioId, questaoId){
+  return jaFoiRespondida(usuarioId, questaoId) && !revisaoVencida(usuarioId, questaoId);
+}
+function semRepeticaoPrematura(usuarioId, pool){ return pool.filter(q=>!repeticaoPrematura(usuarioId, q.id)); }
+function embaralharSemRepetir(usuarioId, pool){
+  const ok = embaralhar(semRepeticaoPrematura(usuarioId, pool));
+  return [...ok, ...embaralhar(pool.filter(q=>repeticaoPrematura(usuarioId, q.id)))];
+}
 /* Esconder só depois do segundo erro (CONFIG.errosParaEsconderQuestao): a
    primeira vez que se erra uma questão é justamente quando ela mais ensina.
    Quem já escondeu antes disso (ou sincronizou de outro aparelho) sempre
@@ -787,7 +801,7 @@ function montarSessaoSemCalendario(usuario, tamanho){
   if(itens.length < tamanho){
     // banco quase todo respondido: completa com o que já venceu e, por fim, com qualquer questão
     const sobra = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id));
-    embaralhar(sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, origem:"complemento", motivo:"Complemento — você já respondeu quase tudo do banco"}));
+    embaralharSemRepetir(usuarioId, sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, origem:"complemento", motivo:"Complemento — você já respondeu quase tudo do banco"}));
   }
   return embaralhar(itens);
 }
@@ -811,7 +825,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const nRevisao = Math.round(tamanho*mistura.revisaoPassados);
   const nPrevia = Math.max(0, tamanho - nAtual - nRevisao);
 
-  const poolAtual = questoesParaEstudo(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId));
+  const poolAtual = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId)));
   const pesos = pesosDeIncidencia(usuarioId);
   const destaque = assuntosQueMaisCaem(usuarioId);
   /* A proporção consolidação/residência do ano do aluno (CONFIG.progressaoConsolidacao)
@@ -836,7 +850,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
     itensRevisao.push({questaoId:v.questao.id, origem: porErro ? "revisao_erro" : "revisao_decaimento", motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" dia(s)" : ", no prazo")});
   });
 
-  const poolPrevia = questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental");
+  const poolPrevia = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));
   const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, origem:"previa", motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
 
   let todos = [...itensAtual, ...itensRevisao, ...itensPrevia];
@@ -844,7 +858,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   // meta, completamos com quaisquer questões ativas ainda não usadas nesta sessão
   if(todos.length < tamanho){
     const usados = new Set(todos.map(t=>t.questaoId));
-    const extras = selecionarComProgressao(questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id)), tamanho-todos.length, usuario, (p,k)=>embaralhar(p).slice(0,k))
+    const extras = selecionarComProgressao(questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id)), tamanho-todos.length, usuario, (p,k)=>embaralharSemRepetir(usuarioId, p).slice(0,k))
       .map(q=>({questaoId:q.id, origem:"complemento", motivo:"Complemento — banco de demonstração ainda é pequeno"+rotulo(q)}));
     todos = [...todos, ...extras];
   }
