@@ -95,9 +95,11 @@ function regrasDeConteudoImportacao(){
 /* A imagem da questão (ECG, radiografia, foto de lesão) quase nunca tem um
    endereço na internet: ela está no PDF. Por isso a IA só marca que ela
    existe — IMAGEM: sim — e quem está enviando anexa o arquivo na
-   pré-visualização, questão por questão (carregarImagemImportacao). */
+   pré-visualização, questão por questão (carregarImagemImportacao). A linha é
+   obrigatória (sim — descrição, ou nao) porque é ela que marca a questão como
+   "aguardando imagem" quando o arquivo não vem junto. */
 function linhaImagemDoPrompt(){
-  return "IMAGEM: [escreva sim se a questão tiver imagem (ECG, radiografia, tomografia, fundo de olho, foto de lesão, gráfico ou tabela em figura) — o arquivo é anexado depois, na plataforma. Se houver um endereço (URL) público da imagem, pode escrever o endereço no lugar. Deixe em branco se a questão não tiver imagem]\n";
+  return "IMAGEM: [OBRIGATÓRIO em toda questão. Se a questão tiver QUALQUER figura que você não consegue transcrever como texto (ECG, radiografia, tomografia, ultrassom, fundo de olho, foto de lesão, curva, gráfico, esquema, tabela ou quadro que esteja como imagem), escreva: sim — e, depois do traço, o que a figura mostra e onde ela aparece, para quem for anexá-la achar o recorte (ex.: sim — ECG de 12 derivações logo após o caso clínico). Se houver um endereço (URL) público da imagem, pode escrever o endereço no lugar. Se a questão não tiver figura, escreva: nao. Nunca deixe a linha em branco nem omita a linha: não saber se há figura é o que faz a questão ir ao ar incompleta. Não descreva a figura dentro do enunciado como se fosse texto — o enunciado fica como está na prova]\n";
 }
 function gerarPromptImportacao(){
   const ctx = contextoImportacao();
@@ -131,6 +133,7 @@ function gerarPromptImportacao(){
     "- Separe cada questão com uma linha contendo apenas: ===\n"+
     "- NÃO repita INSTITUICAO nem ANO dentro das questões (isso já está no cabeçalho).\n"+
     "- Transcreva o enunciado na íntegra, sem resumir e sem corrigir o texto original da prova.\n"+
+    "- Confira a prova questão por questão e preencha IMAGEM em TODAS (sim — descrição, ou nao). Uma figura esquecida vira questão sem figura para o aluno.\n"+
     "- Se a questão tiver sido anulada pela banca, acrescente a linha: STATUS: anulada\n"+
     "- Se a prova tiver menos de 5 alternativas por questão, repita a última letra existente e deixe as demais vazias apenas se for inevitável; o ideal é manter exatamente as alternativas originais.\n"+
     "- Se você não tiver certeza do gabarito oficial, escreva GABARITO: ? e explique a dúvida no campo EXPLICACAO, em vez de inventar.\n"+
