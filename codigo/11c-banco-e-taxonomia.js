@@ -21,9 +21,8 @@ function mudarFiltroBanco(campo, valor){
 }
 function limparFiltrosBanco(){ state.filtroRota.banco = {busca:"", banca:"", ano:"", areaId:"", status:"", ultimos5:false, tipo:""}; render(); }
 function buscarNoBanco(){ filtrosBanco().busca = document.getElementById("buscaBancoInput").value; render(); }
-function renderBancoQuestoes(){
+function listaFiltradaBanco(){
   const f = filtrosBanco();
-  const bancas = [...new Set(db.questoes.map(q=>q.banca))].sort();
   const anosDisponiveis = [...new Set(db.questoes.map(q=>q.ano))].sort((a,b)=>b-a);
   const anoMaisRecente = anosDisponiveis.length ? anosDisponiveis[0] : new Date().getFullYear();
   const termo = (f.busca||"").toLowerCase();
@@ -37,6 +36,14 @@ function renderBancoQuestoes(){
   if(f.status==="aguarda-imagem") lista = lista.filter(q=>aguardaImagem(q));
   else if(f.status) lista = lista.filter(q=>q.status===f.status);
   lista.sort((a,b)=> b.ano-a.ano || (a.banca||"").localeCompare(b.banca||""));
+  return lista;
+}
+function renderBancoQuestoes(){
+  const f = filtrosBanco();
+  const bancas = [...new Set(db.questoes.map(q=>q.banca))].sort();
+  const anosDisponiveis = [...new Set(db.questoes.map(q=>q.ano))].sort((a,b)=>b-a);
+  const anoMaisRecente = anosDisponiveis.length ? anosDisponiveis[0] : new Date().getFullYear();
+  const lista = listaFiltradaBanco();
   return `
   <div class="page-header"><h2>Banco de Questões</h2><p>${db.questoes.length} questão(ões) no total (${questoesAtivas(true).length} ativas, excluindo anuladas/desatualizadas das sessões e estatísticas; inclui questões restritas a grupos de alunos). ${db.questoes.filter(aguardaImagem).length} aguardam a figura da prova e não aparecem para os alunos — filtre por Status &gt; Aguardando imagem.</p></div>
   <div class="card mb-2">
@@ -87,6 +94,7 @@ function renderBancoQuestoes(){
     ${questoesParaExportar().length ? `<button class="btn btn-ghost btn-sm" onclick="exportarQuestoesParaDados()" title="As questões aprovadas que entraram pela plataforma, num arquivo pronto para a pasta dados/">${iconeSvg("archive")} Exportar ${questoesParaExportar().length} enviada(s) para a pasta dados/</button>` : ""}
     <span class="text-sm muted">${lista.length} resultado(s)</span>
   </div>
+  ${podeGerirConteudo() ? barraExclusaoEmLote(lista) : ""}
   ${renderListaBancoQuestoesHtml(lista, paginar(lista, "banco", {assinatura: JSON.stringify(f)}))}`;
 }
 /* ANEXAR DE VEZ AO BANCO. A questão aprovada pela plataforma já chega a toda
@@ -128,10 +136,48 @@ function exportarQuestoesParaDados(){
   baixarArquivo(nome + ".js", arquivo, "text/javascript");
   toast(lista.length + " questão(ões) exportada(s)" + (semNumero ? " — " + semNumero + " sem o número na prova: preencha antes de publicar (o arquivo explica)." : ". Salve o arquivo na pasta dados/."));
 }
+/* EXCLUSÃO EM LOTE. A seleção vive em `state` (não é dado do aluno). "Todas as
+   do filtro" serve para tirar uma prova ou um simulado inteiro: filtre por
+   instituição + ano e exclua; o aviso mostra quantas respostas de alunos
+   ficam sem a questão, porque excluir apaga o histórico delas. */
+function selecaoBanco(){ if(!state.selecaoBanco) state.selecaoBanco = new Set(); return state.selecaoBanco; }
+function alternarSelecaoBanco(qid, marcado){ marcado ? selecaoBanco().add(qid) : selecaoBanco().delete(qid); render(); }
+function selecionarPaginaBanco(marcado){
+  const lista = listaFiltradaBanco();
+  const pag = paginar(lista, "banco", {assinatura: JSON.stringify(filtrosBanco())});
+  pag.itens.forEach(q=> marcado ? selecaoBanco().add(q.id) : selecaoBanco().delete(q.id));
+  render();
+}
+function selecionarTodasDoFiltroBanco(){ listaFiltradaBanco().forEach(q=>selecaoBanco().add(q.id)); render(); }
+function limparSelecaoBanco(){ selecaoBanco().clear(); render(); }
+function barraExclusaoEmLote(lista){
+  const n = selecaoBanco().size;
+  return `<div class="flex gap-1 items-center mb-2 quebra">
+    <button class="btn btn-secondary btn-sm" onclick="selecionarTodasDoFiltroBanco()" title="Marca as ${lista.length} questões do filtro atual, de todas as páginas">Selecionar as ${lista.length} do filtro</button>
+    ${n ? `<span class="text-sm">${n} selecionada(s)</span>
+    <button class="btn btn-danger btn-sm" onclick="confirmarExcluirSelecionadasBanco()">${iconeSvg("trash")} Excluir selecionadas</button>
+    <button class="link-btn text-xs" onclick="limparSelecaoBanco()">limpar seleção</button>` : `<span class="text-sm muted">Marque questões na lista, ou filtre uma prova inteira e use "Selecionar as do filtro".</span>`}
+  </div>`;
+}
+function confirmarExcluirSelecionadasBanco(){
+  const ids = [...selecaoBanco()].filter(id=>getQuestao(id));
+  if(!ids.length){ limparSelecaoBanco(); return; }
+  const set = new Set(ids);
+  const respostas = (db.respostas||[]).filter(r=>set.has(r.questaoId)).length;
+  abrirModal(`${cabecalhoJanela("Excluir " + ids.length + " questão(ões)")}<p>Esta ação não pode ser desfeita. As questões saem do banco e das sessões${respostas ? "; " + respostas + " resposta(s) de alunos perdem a questão de origem" : ""}. Para manter o histórico, prefira marcar como "anulada" ou "desatualizada".</p><p class="text-sm muted">Questões que vêm da pasta dados/ voltam na próxima carga; para tirá-las de vez, apague-as dos arquivos de dados.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirSelecionadasBancoConfirmado()">Excluir ${ids.length} mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function excluirSelecionadasBancoConfirmado(){
+  const set = selecaoBanco();
+  const alvo = db.questoes.filter(q=>set.has(q.id));
+  alvo.forEach(q=> nuvemMarcarQuestaoFora(q, q.status==="pendente" ? "recusada" : "removida", q.status==="pendente" ? "Excluída pela equipe." : ""));
+  db.questoes = db.questoes.filter(q=>!set.has(q.id));
+  set.clear(); saveState(); fecharModal(); toast(alvo.length + " questão(ões) excluída(s)."); render();
+}
 function renderListaBancoQuestoesHtml(lista, paginaInfo){
   if(!lista.length) return '<div class="empty-state">Nenhuma questão encontrada com esses filtros.</div>';
-  return `<div class="table-wrap"><table><thead><tr><th>Questão</th><th>Instituição / Ano</th><th>Assunto</th><th>Status</th><th></th></tr></thead><tbody>
+  return `<div class="table-wrap"><table><thead><tr><th style="width:1%"><input type="checkbox" aria-label="Selecionar as questões desta página" ${(paginaInfo?paginaInfo.itens:lista).every(q=>selecaoBanco().has(q.id))?"checked":""} onchange="selecionarPaginaBanco(this.checked)"></th><th>Questão</th><th>Instituição / Ano</th><th>Assunto</th><th>Status</th><th></th></tr></thead><tbody>
     ${(paginaInfo ? paginaInfo.itens : lista).map(q=>`<tr>
+      <td><input type="checkbox" aria-label="Selecionar questão" ${selecaoBanco().has(q.id)?"checked":""} onchange="alternarSelecaoBanco('${q.id}', this.checked)"></td>
       <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span> ${q.grupoId?`<span class="badge badge-muted" title="Restrita ao grupo">${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"grupo")}</span>`:""}</td>
       <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${q.ano}</span>${tipoProvaDe(q)!==CONFIG.tipoProvaPadrao ? ` <span class="badge badge-amber">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>` : ""}</td>
       <td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td>

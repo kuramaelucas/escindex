@@ -1234,6 +1234,6 @@ function mostrarTodasAsEscondidasConfirmado(){
 }
 function praticarAssunto(assuntoId){
   const pool = questoesParaEstudo(usuarioAtual().id).filter(q=>q.assuntoId===assuntoId);
-  const itens = embaralhar(pool).slice(0,15).map(q=>({questaoId:q.id, motivo:"Revisão do assunto: "+nomeAssunto(assuntoId)}));
+  const itens = embaralharSemRepetir(usuarioAtual().id, pool).slice(0,15).map(q=>({questaoId:q.id, motivo:"Revisão do assunto: "+nomeAssunto(assuntoId)}));
   iniciarSessaoComLista(itens, "pratica");
 }

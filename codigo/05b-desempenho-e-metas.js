@@ -226,7 +226,7 @@ function praticarFilaDeConfianca(tipo){
 function praticarAssuntoFalsaSeguranca(assuntoId){
   const pool = questoesParaEstudo(usuarioAtual().id).filter(q=>q.assuntoId===assuntoId);
   if(!pool.length){ toast("Não há questões ativas deste assunto.", "err"); return; }
-  iniciarSessaoComLista(embaralhar(pool).slice(0,15).map(q=>({questaoId:q.id, motivo:"Assunto em que sua confiança não bate com o acerto: "+nomeAssunto(assuntoId)})), "pratica");
+  iniciarSessaoComLista(embaralharSemRepetir(usuarioAtual().id, pool).slice(0,15).map(q=>({questaoId:q.id, motivo:"Assunto em que sua confiança não bate com o acerto: "+nomeAssunto(assuntoId)})), "pratica");
 }
 function calibracaoConfianca(usuarioId){
   const respostas = db.respostas.filter(r=>r.usuarioId===usuarioId);
