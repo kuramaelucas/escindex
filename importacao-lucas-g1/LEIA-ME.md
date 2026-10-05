@@ -9,6 +9,8 @@ só no grupo.
 |---|---|---|---|
 | `simulado-5ano-01-2025.txt` | Simulado MSP5210/MSP6210 01/2025 — 5º ano | 120 | gabarito oficial (PDF "Simulado 05/04") |
 | `simulado-4-todo-conteudo-04-2025.txt` | Simulado MSP6210 04/2025 — todo o conteúdo | 120 | gabarito comentado oficial (PDF) |
+| `simulado-5-todo-conteudo-05-2025.txt` | Simulado MSP6210 05/2025 — todo o conteúdo | 120 | gabarito comentado oficial (PDF); explicações reescritas no padrão |
+| `simulado-5ano-02-07-06-2025.txt` | Simulado 2 do 5º ano (07/06/2025) | 120 | gabarito oficial (PDF só com as letras); explicações autorais |
 
 ## Como importar (logado como Lucas Kuramae)
 
@@ -28,7 +30,7 @@ aparece: use uma conta de aluno que seja membro do grupo.
   questão. As questões de alternativas em imagem (68, 93 do 5º ano; 49, 71, 115
   do Simulado 4) trazem "figura do caderno" no lugar do texto da alternativa.
 - **Duplicadas do banco público**: o importador as desmarca sozinho (5º ano:
-  23, 24, 35; Simulado 4: 75, 100); marque à mão se quiser a versão com a
+  23, 24, 35; Simulado 4: 75, 100; Simulado 5: 6 questões; as do 07/06 não repetem o banco); marque à mão se quiser a versão com a
   explicação nova.
 - **UNIFESP — avaliação discente 2026.2** e **Simulado 3 (6º ano)**: faltam os
   gabaritos (a tabela de respostas do `.docx` está em branco e o caderno do
@@ -43,6 +45,17 @@ aparece: use uma conta de aluno que seja membro do grupo.
   - 5º ano: Q10 (lactente de 50 dias, critérios de Rochester), Q24, Q27, Q65,
     Q70, Q88 (partograma com ocitocina em dose baixa; B também é defensável),
     Q91 (a alternativa A parece inconsistente), Q93, Q95.
+  - Simulado 5 (05/2025): Q24 (ARNI contra espironolactona/dapagliflozina:
+    hoje os quatro pilares entram juntos), Q25 (comentário fala em
+    sangramento, que o enunciado não traz), Q46 (dose de levotiroxina e
+    corte de TSH do gabarito diferem das diretrizes atuais), Q107 (BCG em
+    prematuro: critério do gabarito é o apresentado no enunciado).
+    A questão de alternativas em imagem (18, 49, 54) traz descrição da figura.
+  - Simulado 2 do 5º ano (07/06): Q29 (implante de etonogestrel com cefaleia
+    com fotofobia), Q32 (endometriose primária × dismenorreia), Q40, Q74
+    (suspender AAS 5-7 dias em prevenção secundária, contra as diretrizes
+    atuais), Q88 (fístula em Crohn: LIFT × sedenho), Q94, Q98 (justificativa
+    de notificar esterilização), Q112 (conduta para contatos de 12 e 16 anos).
   - Simulado 4: Q4 (cabeçalho do PDF diz B, comentário aponta C), Q44, Q59
     (comentário fala de apendagite, mas o enunciado indica colecistite), Q106
     (cabeçalho diz C, comentário descreve a alternativa B), Q113.
