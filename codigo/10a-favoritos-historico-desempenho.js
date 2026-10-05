@@ -113,7 +113,7 @@ function renderFavoritosCartoes(u, cartoes){
     const rev = revisaoDoCartao(u.id, cartao.id);
     return `<div class="card mb-1">
       <div class="qcard-meta mb-1">
-        <span class="badge badge-accent">${escapeHtml(nomeAssunto(cartao.assuntoId))}</span>
+        <span class="badge badge-accent">${escapeHtml(nomeAssuntoDoCartao(cartao))}</span>
         ${cartao.usuarioId ? '<span class="badge badge-muted">meu cartão</span>' : '<span class="badge badge-muted">cartão da equipe</span>'}
         ${cartao.origem==="questao" ? '<span class="badge badge-amber">gerado de uma questão</span>' : ""}
         ${rev && rev.proximaRevisao ? `<span class="badge badge-muted">volta em ${formatDataBR(proximaRevisaoCartao(rev))}</span>` : '<span class="badge badge-muted">ainda não revisado</span>'}

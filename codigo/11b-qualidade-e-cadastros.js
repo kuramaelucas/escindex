@@ -32,7 +32,7 @@ function renderListaFlashcardsSugeridos(lista){
   ${lista.length ? pag.itens.map(c=>{
     const autor = getUsuario(c.criadoPor);
     return `<div class="card mb-2">
-      <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssunto(c.assuntoId))}</span></div>
+      <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssuntoDoCartao(c))}</span></div>
       <div class="text-sm mt-1 peso-600">${escapeHtml(c.frente)}</div>
       <div class="text-sm mt-1 muted">${escapeHtml(c.verso)}</div>
       ${c.imagemUrl ? `<div class="text-xs muted mt-1">Inclui imagem${c.imagemLegenda?": "+escapeHtml(c.imagemLegenda):""}</div>` : ""}
