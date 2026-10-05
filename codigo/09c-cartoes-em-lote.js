@@ -1,4 +1,4 @@
-/* codigo/09c-cartoes-em-lote.js — Cartões em lote, a exportação do baralho para dados/ (seção 12-C) e o baralho inteiro trazido de uma IA (12-D).
+/* codigo/09c-cartoes-em-lote.js — Cartões em lote, a exportação do baralho para dados/ (seção 12-C) o baralho inteiro trazido de uma IA (12-D) e os cartões em lista (12-E).
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
@@ -346,5 +346,95 @@ function adicionarBaralhoIA(){
   state.filtroRota.baralhoIA = null;
   fecharModal();
   toast(a.validos.length + " cartão(ões) adicionados" + (equipe ? " ao baralho da equipe." : st.compartilhar ? " ao seu baralho e ao do seu grupo." : " ao seu baralho. Entram na sua próxima revisão rápida."));
+  render();
+}
+
+/* ==========================================================================
+   12-E. CARTÕES EM LISTA — vários cartões de uma vez, numa tabela
+   ==========================================================================
+   Duas colunas, Frente e Verso, uma linha por cartão: para quem já tem as
+   anotações prontas e não quer abrir o formulário a cada cartão. Os cartões
+   são sempre PESSOAIS (a equipe tem o lote por assunto, acima) e o assunto é
+   opcional — sem ele, entram na miscelânea. Colar de uma planilha ou de um
+   texto com Tab entre frente e verso preenche as linhas de uma vez.
+
+   O texto vive nos próprios campos da janela (não em `state`): adicionar ou
+   tirar uma linha mexe só na tabela, então nada do que foi digitado se
+   perde. Salvar é tudo ou nada: se uma linha estiver pela metade, nada é
+   gravado e a mensagem diz qual. */
+function htmlLinhaCartaoLista(frente, verso){
+  return `<tr>
+    <td><textarea class="textarea" data-lista="frente" style="min-height:52px" placeholder="Pergunta" onpaste="colarNaListaDeCartoes(event, this)">${escapeHtml(frente||"")}</textarea></td>
+    <td><textarea class="textarea" data-lista="verso" style="min-height:52px" placeholder="Resposta">${escapeHtml(verso||"")}</textarea></td>
+    <td><button class="icon-btn" title="Tirar esta linha" onclick="this.closest('tr').remove()">${iconeSvg("trash")}</button></td></tr>`;
+}
+function abrirCartoesEmLista(){
+  abrirModal(`
+    ${cabecalhoJanela("Criar cartões em lista")}
+    <p class="text-sm muted">Uma linha por cartão: pergunta à esquerda, resposta à direita. Dá para colar de uma planilha ou de um texto com Tab entre frente e verso (uma linha por cartão). Linhas vazias são ignoradas e os cartões ficam só no seu baralho.</p>
+    <div class="field mt-2"><label class="label">Assunto de todos (opcional)</label>
+      <select class="select" id="listaAssunto">
+        <option value="" selected>Sem assunto — miscelânea (minhas anotações)</option>
+        ${opcoesDeAssuntoAgrupadas("")}
+      </select></div>
+    <div class="table-wrap"><table><thead><tr><th>Frente</th><th>Verso</th><th></th></tr></thead>
+      <tbody id="listaCartoesLinhas">${Array.from({length: 5}, () => htmlLinhaCartaoLista("", "")).join("")}</tbody></table></div>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-secondary btn-sm" onclick="adicionarLinhasNaLista(3)">${iconeSvg("plus")} Mais linhas</button>
+      <button class="btn btn-primary" onclick="salvarCartoesEmLista()">Criar os cartões</button>
+      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+    </div>`, "lg");
+}
+function adicionarLinhasNaLista(n){
+  const corpo = document.getElementById("listaCartoesLinhas"); if(!corpo) return;
+  corpo.insertAdjacentHTML("beforeend", Array.from({length: n}, () => htmlLinhaCartaoLista("", "")).join(""));
+}
+/* Colar texto com Tab ou várias linhas na coluna Frente: cada linha vira um
+   cartão (antes do Tab, a frente; depois, o verso), a partir da linha onde se
+   colou. Texto simples, sem Tab nem quebra, cola normalmente. */
+function colarNaListaDeCartoes(ev, campo){
+  const texto = (ev.clipboardData && ev.clipboardData.getData("text")) || "";
+  if(!/\t|\n/.test(texto.replace(/\n$/, ""))) return;
+  ev.preventDefault();
+  const pares = texto.replace(/\r/g, "").split("\n").filter(l => l.trim()).map(l => { const [f, ...v] = l.split("\t"); return [f.trim(), v.join(" ").trim()]; });
+  const corpo = document.getElementById("listaCartoesLinhas");
+  let linha = campo.closest("tr");
+  pares.forEach(([f, v]) => {
+    if(!linha){ adicionarLinhasNaLista(1); linha = corpo.lastElementChild; }
+    linha.querySelector('[data-lista="frente"]').value = f;
+    linha.querySelector('[data-lista="verso"]').value = v;
+    linha = linha.nextElementSibling;
+  });
+}
+function salvarCartoesEmLista(){
+  const assuntoId = (document.getElementById("listaAssunto") || {}).value || "";
+  const linhas = [...document.querySelectorAll("#listaCartoesLinhas tr")].map((tr, i) => ({
+    n: i + 1,
+    frente: tr.querySelector('[data-lista="frente"]').value.trim(),
+    verso: tr.querySelector('[data-lista="verso"]').value.trim(),
+  })).filter(l => l.frente || l.verso);
+  if(!linhas.length){ toast("Escreva ao menos um cartão.", "err"); return; }
+  const meiaLinha = linhas.find(l => !l.frente || !l.verso);
+  if(meiaLinha){ toast("Linha " + meiaLinha.n + ": falta " + (meiaLinha.frente ? "o verso" : "a frente") + ". Nada foi criado.", "err"); return; }
+  const u = usuarioAtual();
+  const existentes = new Set([...flashcardsDaEquipe(), ...meusFlashcards(u.id)].map(c => normalizarFrente(c.frente)));
+  const novos = [];
+  let repetidos = 0;
+  linhas.forEach(l => {
+    const chave = normalizarFrente(l.frente);
+    if(existentes.has(chave)){ repetidos++; return; }
+    existentes.add(chave);
+    novos.push(l);
+  });
+  if(!novos.length){ toast("Todas as frentes já existem no seu baralho.", "err"); return; }
+  if(!db.flashcards) db.flashcards = [];
+  novos.forEach(l => {
+    const cartao = { id: uid("fc"), assuntoId, frente: l.frente, verso: l.verso, origem: "aluno", usuarioId: u.id,
+      status: "ativo", criadoPor: u.id, criadoEm: hojeISO() };
+    db.flashcards.push(cartao);
+    nuvemRegistrar({cartaoPessoal: cartao});
+  });
+  saveState(); fecharModal();
+  toast(novos.length + " cartão(ões) criado(s)" + (repetidos ? " · " + repetidos + " já existia(m) e ficou(aram) de fora" : "") + ". Entram na sua próxima revisão rápida.");
   render();
 }

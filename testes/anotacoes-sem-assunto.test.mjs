@@ -76,3 +76,38 @@ test("Cartão da equipe continua exigindo assunto", async () => {
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("Criar em lista: vários cartões de uma vez, colar com Tab, linha pela metade não grava nada", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal(); navigate("flashcards");
+      const botao = /Criar em lista/.test(document.body.innerHTML);
+      const antes = db.flashcards.length;
+      abrirCartoesEmLista();
+      const linhas = () => [...document.querySelectorAll("#listaCartoesLinhas tr")];
+      const preencher = (i, f, v) => { const tr = linhas()[i]; tr.querySelector('[data-lista="frente"]').value = f; tr.querySelector('[data-lista="verso"]').value = v; };
+      // meia linha: nada é gravado
+      preencher(0, "Só frente", "");
+      salvarCartoesEmLista();
+      const meia = db.flashcards.length - antes;
+      // colagem com Tab a partir da primeira linha (7 linhas: passa das 5 que existem)
+      const colado = Array.from({length: 7}, (_, i) => "P" + i + "\tR" + i).join("\n");
+      const campo = linhas()[0].querySelector('[data-lista="frente"]');
+      const ev = new Event("paste", { cancelable: true }); ev.clipboardData = { getData: () => colado };
+      colarNaListaDeCartoes(ev, campo);
+      const nLinhas = linhas().length;
+      salvarCartoesEmLista();
+      const criados = db.flashcards.slice(antes);
+      return { botao, meia, nLinhas, criados: criados.length, semAssunto: criados.every(c => !c.assuntoId), pessoais: criados.every(c => c.usuarioId === usuarioAtual().id),
+        par: [criados[3].frente, criados[3].verso], modalFechou: !document.getElementById("listaCartoesLinhas") };
+    });
+    assert.ok(r.botao);
+    assert.equal(r.meia, 0);
+    assert.ok(r.nLinhas >= 7);
+    assert.equal(r.criados, 7);
+    assert.ok(r.semAssunto && r.pessoais && r.modalFechou);
+    assert.deepEqual(r.par, ["P3", "R3"]);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

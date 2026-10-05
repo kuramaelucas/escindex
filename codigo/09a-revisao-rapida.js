@@ -128,6 +128,7 @@ function renderFlashcardsInicio(u){
       </div>
       <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirAnotacaoRapida()">${iconeSvg("edit")} Anotação rápida</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("cards")} Criar em lista</button>
         <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
       </div>
     </div>
@@ -150,6 +151,7 @@ function renderFlashcardsInicio(u){
       <div class="cresce-220"><strong>Escreva seus próprios cartões.</strong> Ao responder uma questão, o botão “${"Virar flashcard"}” monta um cartão já no assunto daquela questão — é o melhor momento para isso, porque o conceito que faltou ainda está fresco. Esses cartões são só seus.</div>
       <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirAnotacaoRapida()">${iconeSvg("edit")} Anotação rápida</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("cards")} Criar em lista</button>
         <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
       </div>
     </div>
