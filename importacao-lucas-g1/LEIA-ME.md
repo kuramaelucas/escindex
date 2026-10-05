@@ -10,6 +10,8 @@ só no grupo.
 | `simulado-5ano-01-2025.txt` | Simulado MSP5210/MSP6210 01/2025 — 5º ano | 120 | gabarito oficial (PDF "Simulado 05/04") |
 | `simulado-4-todo-conteudo-04-2025.txt` | Simulado MSP6210 04/2025 — todo o conteúdo | 120 | gabarito comentado oficial (PDF) |
 | `simulado-5-todo-conteudo-05-2025.txt` | Simulado MSP6210 05/2025 — todo o conteúdo | 120 | gabarito comentado oficial (PDF); explicações reescritas no padrão |
+| `simulado-6ano-03-2025.txt` | Simulado MSP6210 03/2025 — 6º ano | 120 | gabarito comentado oficial (PDF); explicações reescritas no padrão |
+| `simulado-6ano-03-2025.html` | o mesmo simulado, para estudar no navegador | 120 | arquivo único, sem internet: abre com dois cliques, mostra gabarito e explicação e guarda o progresso só no navegador |
 | `simulado-5ano-02-07-06-2025.txt` | Simulado 2 do 5º ano (07/06/2025) | 120 | gabarito oficial (PDF só com as letras); explicações autorais |
 
 ## Como importar (logado como Lucas Kuramae)
@@ -32,9 +34,8 @@ aparece: use uma conta de aluno que seja membro do grupo.
 - **Duplicadas do banco público**: o importador as desmarca sozinho (5º ano:
   23, 24, 35; Simulado 4: 75, 100; Simulado 5: 6 questões; as do 07/06 não repetem o banco); marque à mão se quiser a versão com a
   explicação nova.
-- **UNIFESP — avaliação discente 2026.2** e **Simulado 3 (6º ano)**: faltam os
-  gabaritos (a tabela de respostas do `.docx` está em branco e o caderno do
-  Simulado 3 não veio com gabarito). Entram assim que o gabarito chegar.
+- **UNIFESP — avaliação discente 2026.2**: falta o gabarito (a tabela de
+  respostas do `.docx` está em branco). Entra assim que o gabarito chegar.
 
 ## Pontos que merecem conferência
 
@@ -56,6 +57,13 @@ aparece: use uma conta de aluno que seja membro do grupo.
     (suspender AAS 5-7 dias em prevenção secundária, contra as diretrizes
     atuais), Q88 (fístula em Crohn: LIFT × sedenho), Q94, Q98 (justificativa
     de notificar esterilização), Q112 (conduta para contatos de 12 e 16 anos).
+  - Simulado 3 (6º ano, 03/2025): Q14 (a resposta "violência sexual" vem de sinais
+    comportamentais, as outras hipóteses também cabem), Q63 (cabeçalho aponta B e
+    o comentário descreve a histerectomia), Q70 (gabarito D; B também vale pelo
+    tempo de puerpério), Q84 (gabarito sem comentário), Q98 (tratamento de
+    colite por C. difficile hoje é vancomicina ou fidaxomicina), Q109 (gabarito
+    sem comentário; CPRE também seria defensável), Q112 (drenagem endoscópica
+    também é opção inicial), Q116 (a D também descreve conduta possível).
   - Simulado 4: Q4 (cabeçalho do PDF diz B, comentário aponta C), Q44, Q59
     (comentário fala de apendagite, mas o enunciado indica colecistite), Q106
     (cabeçalho diz C, comentário descreve a alternativa B), Q113.
