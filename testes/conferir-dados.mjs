@@ -185,7 +185,11 @@ export function conferir(){
   // provas com buraco na numeração. Uma lacuna só é aceita quando está
   // listada aqui, com o motivo — o material de origem não trazia a questão e
   // ela não pode ser inventada; sai daqui quando for transcrita do caderno
-  const LACUNAS_CONHECIDAS = {};
+  const LACUNAS_CONHECIDAS = {
+    // FAMERP: o PDF de origem não traz estas questões (ver o cabeçalho de cada prova)
+    "FAMERP 2024": [58, 59, 60, 61, 64, 65],
+    "FAMERP 2026": [68, 69, 70, 71, 75, 76, 77, 78, 79],
+  };
   for(const [chave, qs] of provas){
     const nums = qs.map(q => q.numeroNaProva).filter(Number.isInteger);
     const repetidosNum = nums.filter((n, i) => nums.indexOf(n) !== i);

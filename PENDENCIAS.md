@@ -12,6 +12,14 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 
 Nenhuma prova inteira espera caderno ou gabarito no momento. Entraram em 04/10/2026: AMRIGS 2020 e 2021 e o Teste de Progresso 2025/1. O "IAMSPE 2024" (Edital 02/2024) é a prova que o banco já tinha como IAMSPE 2025: caderno e gabarito conferem, nada a acrescentar. Faltam apenas os anos que ainda não chegaram (por exemplo, a Santa Casa 2024 e novos anos da UNESP).
 
+### FAMERP 2022 a 2026: caderno incompleto em 2024 e 2026, gabarito de 2023 não oficial
+
+Entraram em 05/10/2026 as cinco provas da FAMERP (385 questões). Pendências:
+
+- **FAMERP 2024**: o PDF não traz as questões 58 a 61 e 65, e a 64 está cortada (faltam as alternativas C e D). **FAMERP 2026**: faltam 69 a 71 e 76 a 79, e as 68 e 75 estão cortadas. As lacunas estão listadas em `LACUNAS_CONHECIDAS` (`testes/conferir-dados.mjs`) e no cabeçalho de cada prova, com o gabarito de cada uma. Entram quando o caderno completo chegar.
+- **FAMERP 2023**: o gabarito é a lista "Respostas" do PDF compartilhado, não o definitivo da banca. A 34 (teste do coraçãozinho com 89%) parece errada no arquivo; conferir com o definitivo.
+- Respostas da banca que a explicação marca como discutíveis: 2022-68; 2024-6 e 74; 2025-8, 28 e 38; 2026-45.
+
 ### Teste de Progresso 2025/1, AMRIGS 2020 e 2021: gabarito oficial discutível
 
 **Teste de Progresso 2025/1** (comentário oficial do NIEPAEM; sem anuladas conhecidas): a nº 97 (ASC-US aos 30 anos) está marcada como **desatualizada**, porque o rastreamento brasileiro passou ao teste de DNA-HPV em 18/08/2025. A explicação avisa onde a letra da banca é discutível: 51 (cetoacidose com potássio de 2,8 mEq/L: a reposição do potássio precede a insulina), 66 (derrame pleural com massa: o primeiro passo costuma ser a toracocentese, não a videotoracoscopia), 68 (Gleason 6 com PI-RADS 4: a vigilância ativa também seria defensável), 113 (o metilfenidato é de primeira escolha, mas a banca elegeu a alternativa do relato dos professores) e 117 (a PA de 158/97 mmHg, se confirmada, também contraindicaria o combinado); e a **nº 28** (hidrocefalia de pressão normal: na figura, o aspecto típico, com ventrículos dilatados e sulcos apagados, está na imagem A, e a banca marcou a B, que mostra uma lesão frontal; conferir a letra com o caderno original).
