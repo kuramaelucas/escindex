@@ -178,6 +178,12 @@ window.addEventListener("keydown", function(e){
   const alvo = document.activeElement;
   if(alvo && (alvo.tagName==="INPUT" || alvo.tagName==="TEXTAREA" || alvo.isContentEditable)) return;
   const tecla = e.key.toLowerCase();
+  // as setas do teclado passam questão e flashcard do mesmo jeito que arrastar o dedo
+  if(tecla==="arrowright" || tecla==="arrowleft"){
+    if(document.getElementById("modalOverlayAtivo") || e.ctrlKey || e.metaKey || e.altKey) return;
+    if(tecla==="arrowright") avancarPorGesto(); else voltarPorGesto();
+    return;
+  }
   if(tecla!=="a" && tecla!=="d") return;
   if(state.route==="simulado-ativo" && state.sessaoAtual && !state.sessaoAtual.finalizado){
     if(tecla==="a") irQuestaoSimulado(-1);

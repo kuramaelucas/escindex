@@ -162,6 +162,7 @@ const GUIA_EQUIPE = [
     "<strong>Desfazer</strong> devolve a questão ao que a pasta <code>dados/</code> diz, em todos os aparelhos.",
   ]},
   { titulo:"Importar, Central de Provas e Revisar Formatação", itens:[
+    "<strong>Formado(a)</strong>: a sessão recomendada começa explorando muitos assuntos com questões fáceis. Cada assunto sobe de nível sozinho quando você acerta com certeza com frequência e fica no fácil se você erra muito nele; um assunto não muda o nível dos outros. Com o teclado, as setas ← → passam de questão (e de cartão, depois de virar), como as setas das pontas da barra de questões.",
     "<strong>Importar Questões</strong>: uma questão por vez, em lote, ou uma prova inteira colada de uma vez (tipo de prova, instituição e ano informados uma vez só). O tipo é <strong>residência</strong> por padrão; prova da faculdade e Teste de Progresso são <strong>graduação</strong>.",
     "No Passo 3 dá para <strong>enviar o arquivo da prova</strong> em vez de colar: documento do Word (<code>.docx</code>), <code>.txt</code>, <code>.md</code> ou <code>.csv</code>, um ou vários de uma vez. O conteúdo precisa estar no formato do script do Passo 2 (o botão <strong>Baixar modelo</strong> traz um exemplo); o PDF ou o Word original da banca não serve, porque não traz gabarito marcado nem explicação.",
     "A figura de cada questão (ECG, radiografia, foto) se anexa na pré-visualização. Se a transcrição disser que há imagem e ela não for anexada, a questão entra como <strong>Aguardando imagem</strong>.",
