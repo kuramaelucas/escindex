@@ -217,7 +217,7 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
   <div class="card">
     <div class="card-title">Passo 3 — cole o texto ou envie o arquivo da prova</div>
     <p class="text-sm muted mb-1">Pode colar junto o cabeçalho com INSTITUICAO, ANO e TIPO: ele é lido uma vez e aplicado às questões que vierem depois dele (enviando vários arquivos, cada um pode trazer o próprio cabeçalho). <strong>Questão com imagem?</strong> Na pré-visualização, cada questão tem o seu lugar para anexar a figura.</p>
-    <textarea class="textarea textarea-mono" id="textoImportacao" aria-label="Cole aqui o resultado da IA ou o texto da prova" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
+    <textarea class="textarea textarea-mono" id="textoImportacao" data-proteger aria-label="Cole aqui o resultado da IA ou o texto da prova" style="min-height:200px" placeholder="INSTITUICAO: ${escapeHtml(ctx.instituicao||CONFIG.bancaFoco)}
 ANO: ${escapeHtml(String(ctx.ano||""))}
 TIPO: ${escapeHtml(infoTipoProva(ctx.tipoProva).nome)}
 ===
@@ -785,6 +785,7 @@ function confirmarImportacao(){
   const u = usuarioAtual();
   const r = importarItensAnalisados(resultado, destino);
   state.filtroRota.previewImportacao = null;
+  const areaTexto = document.getElementById("textoImportacao"); if(areaTexto) areaTexto.value = "";   // já importado: sair não é perder
   toast(r.importadas+" questão(ões) importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s) criado(s)":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
     (destinoEhGrupo(destino) ? " — disponíveis para o seu grupo. Em Meu Grupo, dá para dividir o conjunto entre quem quiser."

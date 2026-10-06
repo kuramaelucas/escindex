@@ -233,7 +233,7 @@ function enviarFiguraDaQuestao(qid, input){
 function confirmarDesfazerCorrecao(qid){
   abrirModal(`${cabecalhoJanela("Desfazer o conserto")}
     <p class="text-sm">A questão volta a ser exatamente o que está na pasta dados/ — texto, gabarito e figura.${nuvemConectado() ? " A correção sai da nuvem e dos outros aparelhos também." : ""}</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="desfazerCorrecao('${qid}')">Desfazer</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="desfazerCorrecao('${qid}')">Desfazer</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function desfazerCorrecao(qid){
   const q = getQuestao(qid), s = sementeDaQuestao(qid);

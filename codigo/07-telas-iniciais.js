@@ -268,7 +268,7 @@ function abrirEsqueciSenha(){
   abrirModalTitulado("Esqueci a senha", `
     <p class="text-sm">Mandamos um link para o seu e-mail. Ele traz você de volta para cá, numa tela para escolher a senha nova.</p>
     <div class="field mt-2"><label class="label">E-mail da conta</label><input class="input" id="esqueciEmail" type="email" value="${escapeHtml(digitado.includes("@") ? digitado : "")}"></div>
-    <div class="flex gap-1"><button class="btn btn-primary" onclick="pedirNovaSenhaDaTela('esqueciEmail')">Enviar o link</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1"><button class="btn btn-primary" onclick="pedirNovaSenhaDaTela('esqueciEmail')">Enviar o link</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function abrirReenviarConfirmacao(email){
   abrirModalTitulado("Falta confirmar o e-mail", `

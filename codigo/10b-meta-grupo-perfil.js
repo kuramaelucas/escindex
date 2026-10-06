@@ -25,7 +25,7 @@ function abrirModalMeta(){
       <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaRecomendadaQuestoesDia}">ideal (${db.configGeral.metaRecomendadaQuestoesDia})</button>
     </div>
     <p class="text-xs muted">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia}/dia, ideal de ${db.configGeral.metaRecomendadaQuestoesDia}/dia. Hoje você já respondeu ${feitasHoje}.</p>
-    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaQuestoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('questoes')" title="Volta para a meta recomendada pela coordenação">Restaurar padrão (${db.configGeral.metaRecomendadaQuestoesDia})</button>`:""}</div>`);
+    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>${u.metaQuestoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('questoes')" title="Volta para a meta recomendada pela coordenação">Restaurar padrão (${db.configGeral.metaRecomendadaQuestoesDia})</button>`:""}</div>`);
 }
 /* "Resetar" a meta é APAGAR a escolha pessoal, e não gravar o número padrão:
    assim a meta volta a acompanhar a recomendação da coordenação, inclusive
@@ -62,7 +62,7 @@ function abrirModalMetaCartoes(){
       <button class="pill" onclick="document.getElementById('metaCartoesInput').value=${recomendada}">recomendada (${recomendada})</button>
     </div>
     <p class="text-xs muted">Hoje você já revisou ${feitosHoje} cartão(ões). A meta de cartões não substitui a de questões: elas convivem, e bater qualquer uma das duas já mantém sua sequência daquele tipo de estudo.</p>
-    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>${u.metaCartoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('cartoes')" title="Volta para a meta recomendada">Restaurar padrão (${recomendada})</button>`:""}</div>`);
+    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>${u.metaCartoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('cartoes')" title="Volta para a meta recomendada">Restaurar padrão (${recomendada})</button>`:""}</div>`);
 }
 function salvarMetaCartoes(){
   const valor = parseInt(document.getElementById("metaCartoesInput").value);
@@ -291,7 +291,7 @@ function abrirRenomearGrupo(grupoId){
   abrirModal(`${cabecalhoJanela("Mudar o nome do grupo")}
     <div class="field"><label class="label">Nome do grupo</label><input class="input" id="renomearGrupoNome" value="${escapeHtml(g.nome)}" maxlength="80" onkeydown="if(event.key==='Enter')salvarNomeDoGrupo('${g.id}')">
       <div class="hint mt-1">${proprio ? "O nome aparece para todos os membros." : "Em branco, o grupo volta a se chamar pelo bloco em que começa."}</div></div>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarNomeDoGrupo('${g.id}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarNomeDoGrupo('${g.id}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
   setTimeout(()=>{ const c = document.getElementById("renomearGrupoNome"); if(c) c.focus(); }, 50);
 }
 function salvarNomeDoGrupo(grupoId){
@@ -357,7 +357,7 @@ function abrirFormularioBlocoProprio(grupoId, blocoId){
       <div class="field"><label class="label">Data de fim</label><input class="input" type="date" id="fbpFim" value="${b?b.dataFim:""}"></div>
     </div>
     <div class="field"><label class="label">Especialidades trabalhadas neste bloco</label>${htmlEscolhaEspecialidades(b?b.especialidadeIds:[], "fbpEsp")}</div>
-    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarBlocoProprio('${g.id}','${blocoId||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>
+    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarBlocoProprio('${g.id}','${blocoId||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
   `, "lg");
 }
 function salvarBlocoProprio(grupoId, blocoId){
@@ -385,7 +385,7 @@ function excluirBlocoProprio(grupoId, blocoId){
   if(!podeEditarCalendarioDoGrupo(g, usuarioAtual())) return;
   const b = g.blocosProprios.find(x=>x.id===blocoId); if(!b) return;
   abrirModalTitulado("Excluir bloco", `<p class="text-sm">Remove <strong>${escapeHtml(b.nome)}</strong> do calendário do grupo, para todos os membros. Não dá para desfazer.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoProprioConfirmado('${grupoId}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoProprioConfirmado('${grupoId}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirBlocoProprioConfirmado(grupoId, blocoId){
   const g = getGrupo(grupoId);
@@ -910,7 +910,7 @@ function abrirFormularioSubgrupo(id, grupoId){
     ${conjuntos.length ? `<div style="max-height:170px;overflow-y:auto">${conjuntos.map(c=>`<label class="checkbox-row mb-1"><input type="checkbox" class="sgConjunto" value="${escapeHtml(c.chave)}" ${c.ids.every(i=>marcadosQ.has(i))?"checked":""}> ${escapeHtml(c.chave)} <span class="text-xs muted">(${c.ids.length})</span></label>`).join("")}</div>`
       : `<p class="text-sm muted">O grupo ainda não tem questões. Envie uma prova ou lista em <button class="link-btn" onclick="fecharModal(); navigate('importar-questoes')">Enviar Questões</button> (destino "Questões do meu grupo") e volte aqui.</p>`}
     <p class="text-xs muted mt-1">As questões são divididas entre quem participa, na mesma quantidade e misturando os assuntos. Ao salvar, a divisão é refeita.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarSubgrupo('${id||""}', '${grupo.id}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarSubgrupo('${id||""}', '${grupo.id}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function salvarSubgrupo(id, grupoId){
   const u = usuarioAtual();

@@ -195,25 +195,34 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
    EXPANDE a barra para ver o conjunto inteiro de uma vez, em várias linhas,
    com a legenda. Numa prova de 100 questões, o mapa aberto ocupava metade
    da tela antes de a pessoa ver o enunciado. */
-.barra-questoes{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);padding:.3rem .4rem;margin-bottom:.75rem}
-.barra-questoes-linha{display:flex;align-items:center;gap:.45rem;min-width:0}
-.barra-questoes-resumo{flex:none;font-size:.74rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 .2rem;white-space:nowrap}
-.barra-questoes-trilho{flex:1;min-width:0;display:flex;gap:.25rem;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;padding:3px;
+.barra-questoes{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);padding:.45rem .6rem;margin-bottom:.75rem}
+.barra-questoes-linha{display:flex;align-items:center;gap:.65rem;min-width:0}
+.barra-questoes-resumo{flex:none;font-size:1.1rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 .3rem;white-space:nowrap}
+/* padding de 8px: o selo ✓/✕ sai 6px para fora do canto do botão e o trilho recorta o que passa da borda */
+.barra-questoes-trilho{position:relative;flex:1;min-width:0;display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;padding:9px 8px 6px;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%)}
 .barra-questoes-trilho::-webkit-scrollbar{display:none}
-.barra-questoes-expandir{flex:none;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--ink-2);cursor:pointer}
-.barra-questoes-expandir:hover{border-color:var(--accent);color:var(--accent)}
-.barra-questoes-expandir .icon{transition:transform .15s ease}
+.barra-questoes-expandir,.barra-questoes-seta{flex:none;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--ink-2);cursor:pointer;font-family:inherit}
+.barra-questoes-seta{width:34px;font-size:1.6rem;line-height:1;padding:0 0 .2rem}
+.barra-questoes-expandir:hover,.barra-questoes-seta:hover{border-color:var(--accent);color:var(--accent)}
+.barra-questoes-expandir .icon{transition:transform .15s ease;width:1.5em;height:1.5em}
 .barra-questoes.expandida .barra-questoes-expandir .icon{transform:rotate(180deg)}
 .barra-questoes.expandida .barra-questoes-trilho{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none;max-height:none}
-.barra-questoes-detalhe{margin-top:.4rem;padding:0 .2rem .15rem}
-/* na barra, os quadradinhos ficam menores — é isso que cabe numa linha fina */
-.barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:26px;height:24px;padding:0 .3rem;font-size:.7rem;border-radius:6px;gap:.12rem}
-.barra-questoes .pill-mapa{border-radius:6px}
-.barra-questoes .pill-mapa .ponto-resp{width:4px;height:4px}
-.barra-questoes .mapa-pill .marca{width:4px;height:4px}
+.barra-questoes-detalhe{margin-top:.6rem;padding:0 .3rem .2rem}
+/* o tamanho dos quadradinhos é 1,5x o da barra fina anterior (26x24 -> 39x36) */
+.barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:39px;height:36px;padding:0 .45rem;font-size:1.05rem;border-radius:8px;gap:.18rem}
+.barra-questoes .pill-mapa{border-radius:8px}
+.barra-questoes .pill-mapa .ponto-resp{width:6px;height:6px}
+.barra-questoes .mapa-pill .marca{width:6px;height:6px}
 .barra-questoes .mapa-pill.atual{outline-offset:0}
-.barra-questoes.expandida .mapa-pill,.barra-questoes.expandida .pill-mapa{min-width:30px;height:28px;font-size:.74rem}
+.barra-questoes.expandida .mapa-pill,.barra-questoes.expandida .pill-mapa{min-width:45px;height:42px;font-size:1.1rem}
+/* acertou/errou: borda mais grossa e um selo redondo no canto superior direito
+   (✓ verde / ✕ vermelho), para não depender só da cor do quadradinho */
+.barra-questoes .mapa-pill.acertou,.barra-questoes .mapa-pill.errou{border-width:2px}
+.mapa-pill{position:relative}
+.selo-resp{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:900;line-height:1;color:#fff;border:1.5px solid var(--surface)}
+.selo-resp.v{background:var(--accent)}
+.selo-resp.x{background:var(--danger)}
 
 /* ---------- tabelas ---------- */
 table{width:100%;border-collapse:collapse;font-size:.86rem}
@@ -316,7 +325,8 @@ ol.lista-passos li{margin:.25rem 0}
 .mapa-sessao-legenda .amostra.marcada{width:7px;height:7px;border-radius:50%;background:var(--amber);border-color:var(--amber)}
 @media (max-width:640px){
   .mapa-pill{min-width:29px;height:29px;font-size:.73rem}
-  .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{min-width:26px;height:24px;font-size:.7rem}
+  .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{min-width:39px;height:36px;font-size:1.05rem}
+  .barra-questoes-seta{display:none}
   .mapa-sessao-legenda{gap:.65rem}
   .mapa-sessao-legenda .so-largo{display:none}
 }

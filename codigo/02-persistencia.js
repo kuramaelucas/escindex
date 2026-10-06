@@ -639,7 +639,7 @@ function restaurarBancoDeResgate(){
   abrirModal(`${cabecalhoJanela("Restaurar a cópia de resgate")}
     <p class="text-sm">Esta é a cópia do banco como ele estava antes de a plataforma precisar consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s) e ${r.questoes} questão(ões)`:""}. Restaurar substitui os dados atuais deste navegador por ela.</p>
     <p class="text-sm muted mt-1">Exporte um backup do estado atual antes, se ainda não exportou — a restauração não pode ser desfeita.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="restaurarResgateConfirmado()">Restaurar a cópia</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="restaurarResgateConfirmado()">Restaurar a cópia</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function restaurarResgateConfirmado(){
   const bruto = localStorage.getItem(CHAVE_RESGATE);
@@ -834,7 +834,7 @@ function confirmarReiniciarDemo(){
     <p>Isso vai apagar tudo o que foi feito neste navegador (respostas, cadastros, favoritos, questões adicionadas) e voltar ao ponto de partida da demonstração. Essa ação não pode ser desfeita.</p>
     <div class="flex gap-1 mt-3">
       <button class="btn btn-danger" onclick="reiniciarDemoConfirmado()">Sim, reiniciar tudo</button>
-      <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>
     </div>`);
 }
 function reiniciarDemoConfirmado(){

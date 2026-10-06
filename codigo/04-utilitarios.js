@@ -135,7 +135,7 @@ function abrirModal(innerHtml, tamanho){
   const overlay = document.createElement("div");
   overlay.className = "modal-overlay";
   overlay.id = "modalOverlayAtivo";
-  overlay.onclick = function(e){ if(e.target===overlay) fecharModal(); };
+  overlay.onclick = function(e){ if(e.target===overlay) fecharModalComConfirmacao(); };
   overlay.innerHTML = '<div class="modal '+(tamanho==="lg"?"modal-lg":"")+'">'+innerHtml+'</div>';
   document.body.appendChild(overlay);
   rotularCamposParaLeitorDeTela(overlay); // janela não passa pelo desenho de tela, precisa da ligação aqui
@@ -186,6 +186,34 @@ function fecharModal(){
   const el = document.getElementById("modalOverlayAtivo");
   if(el) el.remove();
 }
+/* TRABALHO NÃO SALVO. Fechar uma janela ou sair de uma tela de escrita sem
+   querer (clique fora da janela, até um arrastar que termina fora dela;
+   botão voltar; fechar a aba) apagava tudo o que estava digitado — já custou
+   20 cartões escritos em lista. Por isso os caminhos de quem FECHA (clicar
+   fora, o X, Cancelar, trocar de tela, fechar a aba) perguntam antes; os
+   caminhos de quem terminou (salvou, importou) chamam fecharModal() direto e
+   não perguntam. "Escrito" é texto que difere do que o campo tinha ao ser
+   desenhado (defaultValue): filtro vazio ou campo que veio preenchido e não
+   foi mexido não conta. */
+const TEXTO_PERDIDO_PERGUNTA = "Você escreveu algo aqui e ainda não salvou. Sair agora apaga o que foi escrito.\n\nSair mesmo assim e perder o texto?";
+function camposComTextoNovo(raiz, seletor){
+  if(!raiz) return false;
+  return [...raiz.querySelectorAll(seletor || "textarea, input")].some(el => {
+    if(el.tagName === "INPUT" && !/^(text|number|search|url|email|tel)$/i.test(el.type || "text")) return false;
+    return el.value.trim() !== el.defaultValue.trim();
+  });
+}
+// textareas de tela inteira (Importar questões, lotes da Central de Provas) levam data-proteger
+function telaTemTextoNaoSalvo(){ return camposComTextoNovo(document.body, "[data-proteger]"); }
+function haTrabalhoNaoSalvo(){ return camposComTextoNovo(document.getElementById("modalOverlayAtivo")) || telaTemTextoNaoSalvo(); }
+function fecharModalComConfirmacao(){
+  const el = document.getElementById("modalOverlayAtivo");
+  if(el && camposComTextoNovo(el) && !confirm(TEXTO_PERDIDO_PERGUNTA)) return;
+  fecharModal();
+}
+// true = pode sair da tela (nada escrito, ou a pessoa aceitou perder)
+function confirmarSairDaTela(){ return !telaTemTextoNaoSalvo() || confirm(TEXTO_PERDIDO_PERGUNTA); }
+window.addEventListener("beforeunload", function(e){ if(haTrabalhoNaoSalvo()){ e.preventDefault(); e.returnValue = ""; } });
 
 /* Janela com cabeçalho padrão. Existe porque abrirModal recebe o HTML
    inteiro num argumento só: quem chamava abrirModal("Título", corpo) via a
@@ -200,7 +228,7 @@ function abrirModalTitulado(titulo, corpoHtml, tamanho){
 /* O cabeçalho padrão de toda janela: título (já em HTML — pode ter ícone)
    e o X de fechar. */
 function cabecalhoJanela(tituloHtml){
-  return '<div class="modal-header"><h3>' + tituloHtml + '</h3><button class="icon-btn" onclick="fecharModal()">' + iconeSvg("x") + '</button></div>';
+  return '<div class="modal-header"><h3>' + tituloHtml + '</h3><button class="icon-btn" onclick="fecharModalComConfirmacao()">' + iconeSvg("x") + '</button></div>';
 }
 
 function copiarTexto(texto, mensagem){

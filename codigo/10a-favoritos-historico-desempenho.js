@@ -283,7 +283,7 @@ function abrirFormularioLivroOuro(id){
       <div class="field"><label class="label">Data</label><input class="input" type="date" id="loData" value="${escapeHtml(r?(r.data||hojeISO()):hojeISO())}"></div>
       <div class="field"><label class="label">Destaque</label><label class="checkbox-row"><input type="checkbox" id="loDestaque" ${r&&r.destaque?"checked":""}> Mostrar no topo da lista</label></div>
     </div>
-    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarRegistroLivroOuro('${id||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarRegistroLivroOuro('${id||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function salvarRegistroLivroOuro(id){
   const dados = {
@@ -307,7 +307,7 @@ function removerRegistroLivroOuro(id){
   if(!podeAdmin("livro-ouro")){ toast("Seu nível de acesso não permite editar o Livro de Ouro.", "err"); return; }
   abrirModal(`${cabecalhoJanela("Remover registro")}
     <p>Tem certeza? O agradecimento deixará de aparecer para todos.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="removerRegistroLivroOuroConfirmado('${id}')">Remover</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="removerRegistroLivroOuroConfirmado('${id}')">Remover</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function removerRegistroLivroOuroConfirmado(id){
   db.livroOuro = (db.livroOuro||[]).filter(x=>x.id!==id);

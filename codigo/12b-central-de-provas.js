@@ -150,7 +150,7 @@ function confirmarExcluirCarga(cargaId){
   abrirModal(`${cabecalhoJanela("Descartar o acompanhamento desta prova?")}
     <p>Isso apaga o controle de lotes de <strong>${escapeHtml(nomeDaCarga(carga))}</strong>${r.prontas?" e o texto de "+r.prontas+" questão(ões) conferida(s) e ainda não publicada(s)":""}.</p>
     <p class="text-sm muted mt-1">As ${r.publicadas} questão(ões) já publicadas no banco <strong>continuam lá</strong> — quem apaga questão do banco é a tela Banco de Questões.</p>
-    <div class="flex gap-1 mt-3"><button class="btn btn-danger" onclick="excluirCargaProva('${carga.id}')">Descartar acompanhamento</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-3"><button class="btn btn-danger" onclick="excluirCargaProva('${carga.id}')">Descartar acompanhamento</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirCargaProva(cargaId){
   db.cargasProvas = cargasProvas().filter(c=>c.id!==cargaId);
@@ -349,7 +349,7 @@ function confirmarPublicarConferidos(cargaId){
   abrirModal(`${cabecalhoJanela(`Publicar ${conferidos.length===1?"o lote conferido":"os "+conferidos.length+" lotes conferidos"} no banco?`)}
     <p>Vão para o banco cerca de <strong>${questoes} questão(ões)</strong> de ${escapeHtml(nomeDaCarga(carga))}${carga.destino==="sugerir"?", como pendentes de aprovação":""}.</p>
     <p class="text-sm muted mt-1">Faixas: ${conferidos.map(l=>l.inicio+"–"+l.fim).join(", ")}. Depois de publicadas, elas passam a ser editadas pelo Banco de Questões como qualquer outra.</p>
-    <div class="flex gap-1 mt-3"><button class="btn btn-primary" onclick="publicarConferidosDaCarga('${carga.id}')">Publicar tudo</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-3"><button class="btn btn-primary" onclick="publicarConferidosDaCarga('${carga.id}')">Publicar tudo</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function publicarConferidosDaCarga(cargaId){
   const carga = getCargaProva(cargaId); if(!carga) return;
@@ -510,7 +510,7 @@ function renderLoteProva(carga, lote, aberto){
     ${aberto && lote.status!=="publicado" ? `
     <div class="mt-2">
       <p class="text-sm muted mb-1">Cole aqui o que a IA devolveu para as questões ${lote.inicio} a ${lote.fim}. Conferir não publica nada: só lê, valida e guarda.</p>
-      <textarea class="textarea textarea-mono" id="textoLote-${lote.id}" style="min-height:180px" placeholder="INSTITUICAO: ${escapeHtml(carga.instituicao)}
+      <textarea class="textarea textarea-mono" id="textoLote-${lote.id}" data-proteger style="min-height:180px" placeholder="INSTITUICAO: ${escapeHtml(carga.instituicao)}
 ANO: ${carga.ano}
 ===
 NUMERO: ${lote.inicio}
