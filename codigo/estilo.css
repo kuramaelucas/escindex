@@ -197,7 +197,7 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
    da tela antes de a pessoa ver o enunciado. */
 .barra-questoes{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);padding:.45rem .6rem;margin-bottom:.75rem}
 .barra-questoes-linha{display:flex;align-items:center;gap:.65rem;min-width:0}
-.barra-questoes-resumo{flex:none;font-size:1.1rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 .3rem;white-space:nowrap}
+.barra-questoes-resumo{flex:none;font-size:.99rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 .3rem;white-space:nowrap}
 /* padding de 8px: o selo ✓/✕ sai 6px para fora do canto do botão e o trilho recorta o que passa da borda */
 .barra-questoes-trilho{position:relative;flex:1;min-width:0;display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;padding:9px 8px 6px;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%)}
