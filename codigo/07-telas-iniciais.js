@@ -662,6 +662,7 @@ function renderEstudar(){
         : `Mistura automática, sem calendário de blocos: ${Math.round(mistura.revisaoPassados*100)}% revisão espaçada e o resto de questões que você ainda não viu.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
       <div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${escapeHtml(explicacaoProgressao(u))}</div>
+      ${cronogramaDeFormado(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronogramaFormado(u))}</div>` : ""}
       ${cronogramaDoUsuario(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronograma(u, feitasHoje))}</div>` : ""}
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
       <p class="text-xs muted mt-1">${deHoje

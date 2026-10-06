@@ -65,6 +65,31 @@ const CONFIG = {
   // especificidade: fundamental < intermediário < avançado
   // prevalencia: assuntos mais cobrados nas provas aparecem antes (são tratados como "mais fáceis/prioritários")
   pesosDificuldade: { taxaAcerto: 0.5, especificidade: 0.25, prevalencia: 0.25 },
+  // Com poucas respostas, a taxa de acerto de uma questão é ruído (3 de 4
+  // acertos não diz nada), então o peso dela cresce junto com o número de
+  // respostas e só chega inteiro em `respostasParaConfiarNaTaxa`. O que falta
+  // vai para a dificuldade sugerida (fundamental/intermediário/avançado), que é
+  // quem define a dificuldade enquanto a plataforma tem pouca gente.
+  respostasParaConfiarNaTaxa: 30,
+
+  /* CRONOGRAMA DE FORMADOS. Quem é Formado(a) não segue calendário de blocos;
+     em vez do "tudo que ainda não viu", começa EXPLORANDO: muitos assuntos,
+     questões de dificuldade baixa. Cada assunto sobe de nível por conta
+     própria (0 fácil, 1 médio, 2 difícil) olhando as últimas `janela`
+     respostas DAQUELE assunto: acertar com certeza com frequência sobe; errar
+     com frequência (`taxaErroQueSegura`) mantém o assunto no fácil. Os outros
+     assuntos não são afetados — o nível é por assunto, nunca da pessoa toda. */
+  cronogramaFormado: {
+    anos: ["Formado(a)"],
+    janela: 10, amostraMinima: 3,
+    taxaSeguraMedio: 0.6,                       // acertos com certeza / respostas, para chegar ao médio
+    taxaSeguraDificil: 0.8, minimoParaDificil: 6,
+    taxaErroQueSegura: 0.4,
+    maxPorAssunto: 2,                           // numa sessão, para não concentrar em poucos temas
+    pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra mais
+    // fatia de revisão da sessão pelo tanto que a pessoa já respondeu: no começo, quase tudo é exploração
+    revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
+  },
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
      acerto: voltar em 1 ou 2 dias é reler, não recuperar da memória. Vale

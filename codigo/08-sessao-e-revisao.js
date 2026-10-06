@@ -479,22 +479,22 @@ function htmlBarraDeQuestoes(o){
   return `<div class="barra-questoes${expandida ? " expandida" : ""}" id="${o.id}">
     <div class="barra-questoes-linha">
       <span class="barra-questoes-resumo" title="${escapeHtml(o.titulo || "")}">${o.feitas}/${o.total}</span>
-      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="rolarBarraDeQuestoes(this, -1)" aria-label="Questões anteriores" title="Rolar para trás">‹</button>`}
+      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="passarPelaBarra(-1)" aria-label="Questão anterior" title="Questão anterior (a barra acompanha)">‹</button>`}
       <div class="barra-questoes-trilho" role="navigation" aria-label="Questões do conjunto">${o.pills}</div>
-      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="rolarBarraDeQuestoes(this, 1)" aria-label="Próximas questões" title="Rolar para frente">›</button>`}
+      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="passarPelaBarra(1)" aria-label="Próxima questão" title="Próxima questão (a barra acompanha)">›</button>`}
       <button class="barra-questoes-expandir" onclick="alternarMapaSessao()" aria-expanded="${expandida}" title="${expandida ? "Recolher a barra" : "Expandir: ver todas as questões"}">${iconeSvg("chevron-d")}</button>
     </div>
     ${expandida ? `<div class="barra-questoes-detalhe">${o.detalhe || ""}</div>` : ""}
   </div>`;
 }
-/* Rolagem lateral do trilho durante a prova: setas nas pontas e a roda do
-   mouse (que só rola para cima e para baixo) convertida em rolagem de lado.
+/* As setas das pontas da barra passam a questão (anterior/próxima), e o trilho
+   acompanha sozinho — centralizarBarraDeQuestoes roda a cada desenho. Para ir
+   longe de uma vez, a roda do mouse (abaixo) ou o dedo rolam o trilho solto. */
+function passarPelaBarra(sentido){ if(sentido > 0) avancarPorGesto(); else voltarPorGesto(); }
+/* Rolagem lateral do trilho durante a prova: a roda do mouse (que só rola
+   para cima e para baixo) convertida em rolagem de lado.
    No celular o dedo já arrasta o trilho. Só vale com a barra recolhida — a
    expandida mostra tudo e não rola. */
-function rolarBarraDeQuestoes(botao, sentido){
-  const trilho = botao.parentElement.querySelector(".barra-questoes-trilho");
-  if(trilho) trilho.scrollBy({ left: sentido * Math.max(120, trilho.clientWidth * 0.7), behavior: "smooth" });
-}
 document.addEventListener("wheel", function(e){
   const trilho = e.target.closest && e.target.closest(".barra-questoes:not(.expandida) .barra-questoes-trilho");
   if(!trilho || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
