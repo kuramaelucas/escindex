@@ -202,10 +202,10 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .barra-questoes-trilho{position:relative;flex:1;min-width:0;display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;padding:9px 8px 6px;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%)}
 .barra-questoes-trilho::-webkit-scrollbar{display:none}
-.barra-questoes-expandir,.barra-questoes-seta{flex:none;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--ink-2);cursor:pointer;font-family:inherit}
+.barra-questoes-expandir,.barra-questoes-seta{flex:none;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--ink-2);cursor:pointer;font-family:inherit}
 .barra-questoes-seta{width:27px;height:34px;font-size:1.28rem;line-height:1;padding:0 0 .16rem}
 .barra-questoes-expandir:hover,.barra-questoes-seta:hover{border-color:var(--accent);color:var(--accent)}
-.barra-questoes-expandir .icon{transition:transform .15s ease;width:1.5em;height:1.5em}
+.barra-questoes-expandir .icon{transition:transform .15s ease;width:1.2em;height:1.2em}
 .barra-questoes.expandida .barra-questoes-expandir .icon{transform:rotate(180deg)}
 .barra-questoes.expandida .barra-questoes-trilho{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none;max-height:none}
 .barra-questoes-detalhe{margin-top:.6rem;padding:0 .3rem .2rem}
