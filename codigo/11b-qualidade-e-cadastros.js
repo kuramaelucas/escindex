@@ -83,7 +83,7 @@ function manterApenasUmaDuplicata(indiceGrupo){
   const excluir = g.filter(q=>q.id!==manter.id);
   abrirModal(`${cabecalhoJanela(`Excluir ${excluir.length} cópia(s)`)}
     <p class="text-sm">Será mantida a cópia com mais respostas registradas (${(manter.estatisticas||{}).respostas||0} resposta(s), ${escapeHtml(manter.banca)} ${manter.ano}). As demais serão excluídas definitivamente, junto com as estatísticas delas.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="confirmarManterApenasUma('${manter.id}','${excluir.map(q=>q.id).join(",")}')">Excluir as cópias</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="confirmarManterApenasUma('${manter.id}','${excluir.map(q=>q.id).join(",")}')">Excluir as cópias</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function confirmarManterApenasUma(manterId, idsExcluir){
   const ids = (idsExcluir||"").split(",").filter(Boolean);
@@ -135,7 +135,7 @@ function abrirRecusaQuestaoSugerida(qid){
     <p class="text-sm">A questão sai da fila e não entra no banco. Quem enviou vê que ela foi recusada${nuvemConectado() ? ", com o motivo que você escrever aqui" : ""}.</p>
     <div class="field mt-1"><label class="label">Motivo (opcional)</label>
       <textarea class="textarea" id="motivoRecusaQuestao" placeholder="ex.: já existe no banco; gabarito diferente do oficial; falta a imagem da prova"></textarea></div>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="recusarQuestaoSugerida('${qid}')">Recusar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="recusarQuestaoSugerida('${qid}')">Recusar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function recusarQuestaoSugerida(qid){
   const q = getQuestao(qid); if(!q) return;
@@ -259,7 +259,7 @@ function renderFilaDuvidas(){
 function responderDuvidaExtra(comentarioId, questaoId){
   abrirModal(`${cabecalhoJanela("Acrescentar resposta oficial")}
     <textarea class="textarea" id="respostaExtraTexto" style="min-height:120px" placeholder="Complemente a resposta anterior..."></textarea>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="enviarRespostaExtra('${questaoId}')">Enviar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="enviarRespostaExtra('${questaoId}')">Enviar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function enviarRespostaExtra(questaoId){
   const texto = (document.getElementById("respostaExtraTexto").value||"").trim();
@@ -638,7 +638,7 @@ function confirmarExcluirUsuario(id, onde){
     ${onde==="nuvem" ? `<p class="text-xs muted mt-2">Na nuvem, a <strong>conta inteira</strong> é apagada — cadastro, login e o estudo que a pessoa já tinha sincronizado — e o e-mail fica livre para um novo cadastro. (Se o banco ainda não tem a função <code>excluir_conta</code>, só o cadastro sai; rode de novo o <code>nuvem/esquema.sql</code> no Supabase.)</p>` : ""}
     <div class="flex gap-1 mt-3">
       <button class="btn btn-danger" onclick="excluirUsuarioConfirmado('${id}','${onde}')">${iconeSvg("trash")} Excluir mesmo assim</button>
-      <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>
     </div>`);
 }
 async function excluirUsuarioConfirmado(id, onde){

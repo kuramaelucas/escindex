@@ -388,7 +388,7 @@ function abrirFormularioFlashcard(id, opts){
     <p class="text-xs muted">${daEquipe
       ? "Mesma regra de conteúdo das questões: escrita autoral, baseada em diretrizes, consensos e protocolos oficiais. Nada copiado de cursinho, apostila ou banco comercial."
       : "Escreva com suas palavras. Cartão copiado do enunciado inteiro não ensina nada — o esforço de resumir é metade do aprendizado."}</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarFlashcard('${id||""}','${opts.questaoId||""}')">Salvar cartão</button>${opts.livre && !c ? `<button class="btn btn-secondary" onclick="salvarFlashcard('','',true)">Salvar e criar outro</button>` : ""}<button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarFlashcard('${id||""}','${opts.questaoId||""}')">Salvar cartão</button>${opts.livre && !c ? `<button class="btn btn-secondary" onclick="salvarFlashcard('','',true)">Salvar e criar outro</button>` : ""}<button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 /* Atalho: joga o gabarito comentado no verso, para o aluno editar em cima
    em vez de começar da folha em branco. */
@@ -545,7 +545,7 @@ function arquivarFlashcard(id){
     <p>${pessoal
       ? "O cartão sai do seu baralho. O histórico de revisão dele fica guardado, caso você queira retomá-lo depois."
       : "O cartão deixa de aparecer nos baralhos de todos os alunos, mas o histórico de quem já o revisou é preservado."}</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="arquivarFlashcardConfirmado('${id}')">Arquivar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="arquivarFlashcardConfirmado('${id}')">Arquivar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function arquivarFlashcardConfirmado(id){
   const c = (db.flashcards||[]).find(x=>x.id===id);

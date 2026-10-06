@@ -183,7 +183,7 @@ function retirarAviso(id){
   const a = (db.avisos||[]).find(x => x.id === id); if(!a) return;
   if(!podeEnviarAvisos(usuarioAtual())){ toast("Seu nível de acesso não inclui enviar avisos.", "err"); return; }
   abrirModalTitulado("Retirar aviso", `<p class="text-sm">O aviso <strong>${escapeHtml(a.titulo)}</strong> deixa de aparecer para todos. Quem já o leu não é afetado.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="retirarAvisoConfirmado('${id}')">Retirar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="retirarAvisoConfirmado('${id}')">Retirar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function retirarAvisoConfirmado(id){
   const a = (db.avisos||[]).find(x => x.id === id); if(!a) return;

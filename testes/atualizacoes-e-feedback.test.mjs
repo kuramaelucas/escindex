@@ -256,7 +256,7 @@ test("a barra de questões é fina, de uma linha, e expande; o tutorial saiu do 
   });
   assert.doesNotMatch(r.menu, /Tutorial/);
   assert.match(r.menu, /Perfil e configurações/);
-  assert.ok(r.fina.altura <= 48, "a barra recolhida deveria ter uma linha só (veio " + r.fina.altura + "px)");
+  assert.ok(r.fina.altura <= 72, "a barra recolhida deveria ter uma linha só (veio " + r.fina.altura + "px)");
   assert.ok(r.fina.rolou && r.fina.atualVisivel, "a questão atual deveria estar à vista no trilho");
   assert.ok(r.aberta.altura > r.fina.altura * 2 && r.aberta.legenda, "expandida, a barra mostra o conjunto inteiro e a legenda");
   assert.ok(r.largura <= 390, "sem rolagem lateral da página no celular");

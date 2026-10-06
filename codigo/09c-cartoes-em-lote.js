@@ -382,7 +382,7 @@ function abrirCartoesEmLista(){
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="adicionarLinhasNaLista(3)">${iconeSvg("plus")} Mais linhas</button>
       <button class="btn btn-primary" onclick="salvarCartoesEmLista()">Criar os cartões</button>
-      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-ghost" onclick="fecharModalComConfirmacao()">Cancelar</button>
     </div>`, "lg");
 }
 function adicionarLinhasNaLista(n){

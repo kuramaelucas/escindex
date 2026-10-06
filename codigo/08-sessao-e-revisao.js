@@ -458,12 +458,14 @@ function renderMapaSessao(sessao){
       descricao += " — ainda em branco";
     }
     if(atual){ classe += " atual"; descricao += " (você está aqui)"; }
-    return `<button class="${classe}" title="${escapeHtml(descricao)}" aria-label="${escapeHtml(descricao)}"${atual?' aria-current="true"':""} onclick="irParaIndiceDaSessao(${i})">${i+1}${marca}</button>`;
+    // selo no canto: ✓ acertou, ✕ errou — a cor sozinha não distingue bem numa barra pequena
+    const selo = r ? `<span class="selo-resp ${r.correta ? "v" : "x"}" aria-hidden="true">${r.correta ? "✓" : "✕"}</span>` : "";
+    return `<button class="${classe}" title="${escapeHtml(descricao)}" aria-label="${escapeHtml(descricao)}"${atual?' aria-current="true"':""} onclick="irParaIndiceDaSessao(${i})">${i+1}${marca}${selo}</button>`;
   }).join("");
   const detalhe = `<div class="text-xs muted">${resumo}</div>
     ${feitas ? `<div class="mapa-sessao-legenda text-xs muted">
-      <span><i class="amostra acertou"></i>acertou</span>
-      <span><i class="amostra errou"></i>errou</span>
+      <span><i class="amostra acertou"></i>✓ acertou</span>
+      <span><i class="amostra errou"></i>✕ errou</span>
       <span><i class="amostra marcada"></i><span class="so-largo">acerto no chute ou erro com certeza</span><span class="so-estreito">chute ou erro com certeza</span></span>
       <span class="so-largo"><i class="amostra"></i>em branco</span>
     </div>` : `<div class="text-xs muted mt-1">Cada quadradinho é uma questão da fila. Clique para ir a qualquer uma, respondida ou não; assim que você responder, ele mostra se acertou.</div>`}`;
@@ -477,12 +479,28 @@ function htmlBarraDeQuestoes(o){
   return `<div class="barra-questoes${expandida ? " expandida" : ""}" id="${o.id}">
     <div class="barra-questoes-linha">
       <span class="barra-questoes-resumo" title="${escapeHtml(o.titulo || "")}">${o.feitas}/${o.total}</span>
+      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="rolarBarraDeQuestoes(this, -1)" aria-label="Questões anteriores" title="Rolar para trás">‹</button>`}
       <div class="barra-questoes-trilho" role="navigation" aria-label="Questões do conjunto">${o.pills}</div>
+      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="rolarBarraDeQuestoes(this, 1)" aria-label="Próximas questões" title="Rolar para frente">›</button>`}
       <button class="barra-questoes-expandir" onclick="alternarMapaSessao()" aria-expanded="${expandida}" title="${expandida ? "Recolher a barra" : "Expandir: ver todas as questões"}">${iconeSvg("chevron-d")}</button>
     </div>
     ${expandida ? `<div class="barra-questoes-detalhe">${o.detalhe || ""}</div>` : ""}
   </div>`;
 }
+/* Rolagem lateral do trilho durante a prova: setas nas pontas e a roda do
+   mouse (que só rola para cima e para baixo) convertida em rolagem de lado.
+   No celular o dedo já arrasta o trilho. Só vale com a barra recolhida — a
+   expandida mostra tudo e não rola. */
+function rolarBarraDeQuestoes(botao, sentido){
+  const trilho = botao.parentElement.querySelector(".barra-questoes-trilho");
+  if(trilho) trilho.scrollBy({ left: sentido * Math.max(120, trilho.clientWidth * 0.7), behavior: "smooth" });
+}
+document.addEventListener("wheel", function(e){
+  const trilho = e.target.closest && e.target.closest(".barra-questoes:not(.expandida) .barra-questoes-trilho");
+  if(!trilho || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+  e.preventDefault();
+  trilho.scrollLeft += e.deltaY;
+}, { passive: false });
 /* No trilho de uma linha, a questão atual fica à vista, no meio. Rola só o
    trilho (scrollLeft), nunca a página. */
 function centralizarBarraDeQuestoes(){
@@ -918,7 +936,7 @@ function abrirNotaFavorita(qid){
     <div class="flex gap-1">
       <button class="btn btn-primary" onclick="salvarNotaFavoritaUI('${qid}')">Salvar anotação</button>
       ${nota ? `<button class="btn btn-secondary" onclick="apagarNotaFavoritaUI('${qid}')">Apagar anotação</button>` : ""}
-      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-ghost" onclick="fecharModalComConfirmacao()">Cancelar</button>
     </div>
     ${(!jaEra && !nota) ? "" : '<p class="text-xs muted mt-2">Tirar a questão dos favoritos apaga a anotação junto.</p>'}`);
 }
@@ -1043,7 +1061,7 @@ function abrirSinalizarDesatualizada(qid){
     ${cabecalhoJanela("Sinalizar questão")}
     <p class="text-sm muted">Isso avisa a coordenação para revisar a questão. Ela continua disponível normalmente até que um professor ou administrador confirme a alteração.</p>
     <div class="field mt-2"><label class="label">O que parece desatualizado ou incorreto? (opcional)</label><textarea class="textarea" id="motivoSinalizacao" placeholder="Ex.: a diretriz citada mudou em 2025..."></textarea></div>
-    <div class="flex gap-1"><button class="btn btn-primary" onclick="confirmarSinalizacao('${qid}')">Enviar sinalização</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1"><button class="btn btn-primary" onclick="confirmarSinalizacao('${qid}')">Enviar sinalização</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function confirmarSinalizacao(qid){
   const q = getQuestao(qid);
@@ -1242,7 +1260,7 @@ function mostrarTodasAsEscondidas(){
   abrirModalTitulado("Voltar a mostrar todas", `<p class="text-sm">As ${n} questões escondidas voltam a entrar nas suas sessões, revisões e listas.</p>
     <div class="flex gap-1 mt-3">
       <button class="btn btn-primary" onclick="fecharModal();mostrarTodasAsEscondidasConfirmado()">Voltar a mostrar</button>
-      <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>
     </div>`);
 }
 function mostrarTodasAsEscondidasConfirmado(){

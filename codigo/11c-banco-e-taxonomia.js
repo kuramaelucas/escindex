@@ -164,7 +164,7 @@ function confirmarExcluirSelecionadasBanco(){
   if(!ids.length){ limparSelecaoBanco(); return; }
   const set = new Set(ids);
   const respostas = (db.respostas||[]).filter(r=>set.has(r.questaoId)).length;
-  abrirModal(`${cabecalhoJanela("Excluir " + ids.length + " questão(ões)")}<p>Esta ação não pode ser desfeita. As questões saem do banco e das sessões${respostas ? "; " + respostas + " resposta(s) de alunos perdem a questão de origem" : ""}. Para manter o histórico, prefira marcar como "anulada" ou "desatualizada".</p><p class="text-sm muted">Questões que vêm da pasta dados/ voltam na próxima carga; para tirá-las de vez, apague-as dos arquivos de dados.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirSelecionadasBancoConfirmado()">Excluir ${ids.length} mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela("Excluir " + ids.length + " questão(ões)")}<p>Esta ação não pode ser desfeita. As questões saem do banco e das sessões${respostas ? "; " + respostas + " resposta(s) de alunos perdem a questão de origem" : ""}. Para manter o histórico, prefira marcar como "anulada" ou "desatualizada".</p><p class="text-sm muted">Questões que vêm da pasta dados/ voltam na próxima carga; para tirá-las de vez, apague-as dos arquivos de dados.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirSelecionadasBancoConfirmado()">Excluir ${ids.length} mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirSelecionadasBancoConfirmado(){
   const set = selecaoBanco();
@@ -263,7 +263,7 @@ function abrirFormularioQuestao(qid){
         <label class="checkbox-row mt-1"><input type="checkbox" id="fqImagemChegou"> A imagem já foi salva em dados/imagens/ — liberar a questão para os alunos</label></div></div>` : ""}
     </div>
     ${(q && (u.papel==="admin"||u.papel==="professor")) ? `<div class="text-xs muted mb-1">Criada por ${escapeHtml(getUsuario(q.criadoPor)?getUsuario(q.criadoPor).nome:"—")} em ${formatDataBR(q.criadoEm)}${q.aprovadoPor?" · aprovada por "+escapeHtml(getUsuario(q.aprovadoPor)?getUsuario(q.aprovadoPor).nome:"—"):""}${q.grupoId?" · restrita ao grupo "+escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—"):""}</div>` : ""}
-    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarQuestaoFormulario('${qid||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>
+    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarQuestaoFormulario('${qid||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
   `, "lg");
   state.filtroRota.imagemFormulario = q ? (q.imagemUrl || "") : "";
   setTimeout(()=>{
@@ -466,7 +466,7 @@ function salvarQuestaoFormulario(qid, forcar){
       <p class="text-sm">Já existe ${duplicadas.length} questão(ões) com enunciado praticamente igual no banco:</p>
       ${duplicadas.slice(0,3).map(d=>`<div class="card-flat mt-1"><div class="text-sm"><span class="enunciado-clicavel" onclick="fecharModal();abrirQuestaoCompleta('${d.id}')">${escapeHtml(d.enunciado.slice(0,180))}…</span></div><div class="text-xs muted mt-1">${escapeHtml(d.banca)} · ${d.ano} · ${escapeHtml(nomeAssunto(d.assuntoId))}</div><button class="link-btn mt-1" onclick="fecharModal();abrirQuestaoCompleta('${d.id}')">ver questão existente</button></div>`).join("")}
       <div class="flex gap-1 mt-2 quebra">
-        <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+        <button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>
         <button class="btn btn-danger" onclick="salvarQuestaoPendente()">Salvar assim mesmo</button>
       </div>`);
     return;
@@ -519,7 +519,7 @@ function salvarQuestaoPendente(){
   saveState(); fecharModal(); toast("Questão salva."); render();
 }
 function confirmarExcluirQuestao(qid){
-  abrirModal(`${cabecalhoJanela("Excluir questão")}<p>Esta ação não pode ser desfeita. Considere marcar como "anulada" ou "desatualizada" em vez de excluir, para manter o histórico de quem já respondeu.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela("Excluir questão")}<p>Esta ação não pode ser desfeita. Considere marcar como "anulada" ou "desatualizada" em vez de excluir, para manter o histórico de quem já respondeu.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirQuestaoConfirmado(qid){
   const q = getQuestao(qid);
@@ -702,7 +702,7 @@ function abrirMesclarAssunto(id){
       <select class="select" id="mesclarDestino">
         ${db.taxonomia.areas.map(area=>`<optgroup label="${escapeHtml(area.nome)}">${db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>outros.filter(x=>x.especialidadeId===e.id).map(x=>`<option value="${x.id}">${escapeHtml(e.nome)} › ${escapeHtml(x.nome)}</option>`).join("")).join("")}</optgroup>`).join("")}
       </select></div>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="confirmarMesclarAssunto('${id}')">Mesclar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="confirmarMesclarAssunto('${id}')">Mesclar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function confirmarMesclarAssunto(origemId){
   const destinoId = document.getElementById("mesclarDestino").value;

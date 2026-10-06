@@ -154,6 +154,7 @@ const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de e
 function tituloDaRota(r){ return ROUTE_TITLES[r] || CONFIG.nomePlataforma; }
 
 function navigate(route, params){
+  if(route !== state.route && !confirmarSairDaTela()) return;   // texto escrito e não salvo (ver fecharModalComConfirmacao)
   state.route = route; state.routeParams = params || {};
   if(location.hash !== "#/"+route) location.hash = "#/"+route;
   render();
@@ -162,7 +163,11 @@ function navigate(route, params){
 }
 window.addEventListener("hashchange", function(){
   const r = (location.hash||"").replace("#/","") || "landing";
-  if(r !== state.route){ state.route = r; render(); }
+  if(r !== state.route){
+    // botão voltar com texto por salvar: desfaz a troca do endereço e fica
+    if(!confirmarSairDaTela()){ history.replaceState(null, "", "#/" + state.route); return; }
+    state.route = r; render();
+  }
 });
 
 /* Atalhos de teclado: A/D para navegar entre questões. Só funcionam fora de

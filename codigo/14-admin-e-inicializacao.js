@@ -258,7 +258,7 @@ function abrirModalViradaDeAno(ano){
       <div class="hint mt-1">Hoje o bloco 1 começa em ${formatDataBR(seq[0].dataInicio)}.</div>
     </div>
     <div id="viradaPrevia"></div>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="aplicarViradaDeAno('${escapeHtml(ano)}')">Aplicar as novas datas</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="aplicarViradaDeAno('${escapeHtml(ano)}')">Aplicar as novas datas</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
   `, "lg");
   atualizarPreviaVirada(ano);
 }
@@ -361,7 +361,7 @@ function abrirFormularioBloco(ano, blocoId){
     <div class="field"><label class="label">Especialidades trabalhadas neste bloco</label>
       ${htmlEscolhaEspecialidades(b?b.especialidadeIds:[], "fbEsp")}
     </div>
-    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarBlocoFormulario('${escapeHtml(ano)}','${blocoId||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>
+    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarBlocoFormulario('${escapeHtml(ano)}','${blocoId||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
   `, "lg");
 }
 function salvarBlocoFormulario(ano, blocoId){
@@ -404,7 +404,7 @@ function confirmarExcluirBloco(ano, blocoId){
   ano = anoDeReferencia(ano);
   const seq = db.sequenciasAno[ano] || [];
   if(seq.length<=1){ toast("A sequência precisa ter pelo menos um bloco.", "err"); return; }
-  abrirModal(`${cabecalhoJanela(`Excluir bloco de ${escapeHtml(ano)}`)}<p>Isso remove o bloco da sequência de <strong>${escapeHtml(ano)}</strong>, para todas as turmas desse ano. Simulados já recomendados para ele continuam existindo, só deixam de ter um bloco de referência. Esta ação não pode ser desfeita.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoConfirmado('${escapeHtml(ano)}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela(`Excluir bloco de ${escapeHtml(ano)}`)}<p>Isso remove o bloco da sequência de <strong>${escapeHtml(ano)}</strong>, para todas as turmas desse ano. Simulados já recomendados para ele continuam existindo, só deixam de ter um bloco de referência. Esta ação não pode ser desfeita.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoConfirmado('${escapeHtml(ano)}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirBlocoConfirmado(ano, blocoId){
   ano = anoDeReferencia(ano);
