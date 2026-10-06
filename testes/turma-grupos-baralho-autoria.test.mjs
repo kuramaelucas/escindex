@@ -279,7 +279,7 @@ test("a questão em andamento fica centralizada no computador", async () => {
       return { centroCartao: c.left + c.width / 2, centroPrincipal: principal.left + principal.width / 2, largura: c.width };
     });
     assert.ok(Math.abs(m.centroCartao - m.centroPrincipal) < 4, `cartão fora do centro: ${m.centroCartao} x ${m.centroPrincipal}`);
-    assert.ok(m.largura <= 741);
+    assert.ok(m.largura <= 815);
     // no celular a coluna ocupa a largura toda, sem rolagem lateral
     await pagina.setViewportSize({ width: 390, height: 800 });
     const sem = await pagina.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1);

@@ -71,7 +71,7 @@ test("Sair da tela de importação com texto colado pergunta; importado ou vazio
   } finally { await contexto.close(); }
 });
 
-test("Barra de questões: maior, com setas, e ✓/✕ no canto das respondidas", async () => {
+test("Barra de questões: com setas, e ✓/✕ no canto das respondidas", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     await pagina.evaluate(() => { fazerLoginDemo("aluno"); fecharModal(); });
@@ -92,7 +92,7 @@ test("Barra de questões: maior, com setas, e ✓/✕ no canto das respondidas",
       const p = document.querySelector(".barra-questoes .mapa-pill"); const b = p.getBoundingClientRect();
       return { w: Math.round(b.width), h: Math.round(b.height), setas: document.querySelectorAll(".barra-questoes-seta").length };
     });
-    assert.ok(medida.h >= 36 && medida.w >= 39, JSON.stringify(medida));
+    assert.ok(medida.h >= 29 && medida.w >= 31 && medida.h < 36, JSON.stringify(medida));
     assert.equal(medida.setas, 2);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
