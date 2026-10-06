@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 6340 questões (6205 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 70 arquivos.
+**Total:** 6480 questões (6345 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 72 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -71,6 +71,8 @@
 | `prova-famerp-2025.js` | FAMERP 2025 | 80 questões | 3 anulada(s) |
 | `prova-famerp-2026.js` | FAMERP 2026 | 71 questões | faltam 68–71, 75–79; 4 anulada(s) |
 | `prova-famerp-2022.js` | FAMERP 2022 | 80 questões |  |
+| `prova-unicamp-2022.js` | UNICAMP 2022 — Residência Médica, Acesso Direto (múltipla escolha) | 80 questões | 2 anulada(s) |
+| `prova-unicamp-2022-dissertativa.js` | UNICAMP (dissertativa) 2022 — Residência Médica, Acesso Direto (prova dissertativa) | 60 questões |  |
 | `flashcards-equipe.js` | FLASHCARDS DA EQUIPE — 501 cartões autorais | 501 flashcards |  |
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
 | `flashcards-assuntos-usp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-SP (57 cartões) | 57 flashcards |  |
