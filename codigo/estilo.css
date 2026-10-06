@@ -209,13 +209,13 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .barra-questoes.expandida .barra-questoes-expandir .icon{transform:rotate(180deg)}
 .barra-questoes.expandida .barra-questoes-trilho{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none;max-height:none}
 .barra-questoes-detalhe{margin-top:.6rem;padding:0 .3rem .2rem}
-/* o tamanho dos quadradinhos é 1,5x o da barra fina anterior (26x24 -> 39x36) */
-.barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:39px;height:36px;padding:0 .45rem;font-size:1.05rem;border-radius:8px;gap:.18rem}
-.barra-questoes .pill-mapa{border-radius:8px}
-.barra-questoes .pill-mapa .ponto-resp{width:6px;height:6px}
-.barra-questoes .mapa-pill .marca{width:6px;height:6px}
+/* quadradinhos: 1,2x a barra fina original (26x24 -> 31x29), depois de terem passado por 1,5x e voltado 20% */
+.barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:31px;height:29px;padding:0 .36rem;font-size:.84rem;border-radius:7px;gap:.14rem}
+.barra-questoes .pill-mapa{border-radius:7px}
+.barra-questoes .pill-mapa .ponto-resp{width:5px;height:5px}
+.barra-questoes .mapa-pill .marca{width:5px;height:5px}
 .barra-questoes .mapa-pill.atual{outline-offset:0}
-.barra-questoes.expandida .mapa-pill,.barra-questoes.expandida .pill-mapa{min-width:45px;height:42px;font-size:1.1rem}
+.barra-questoes.expandida .mapa-pill,.barra-questoes.expandida .pill-mapa{min-width:36px;height:34px;font-size:.88rem}
 /* acertou/errou: borda mais grossa e um selo redondo no canto superior direito
    (✓ verde / ✕ vermelho), para não depender só da cor do quadradinho */
 .barra-questoes .mapa-pill.acertou,.barra-questoes .mapa-pill.errou{border-width:2px}
@@ -325,7 +325,7 @@ ol.lista-passos li{margin:.25rem 0}
 .mapa-sessao-legenda .amostra.marcada{width:7px;height:7px;border-radius:50%;background:var(--amber);border-color:var(--amber)}
 @media (max-width:640px){
   .mapa-pill{min-width:29px;height:29px;font-size:.73rem}
-  .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{min-width:39px;height:36px;font-size:1.05rem}
+  .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{min-width:31px;height:29px;font-size:.84rem}
   .barra-questoes-seta{display:none}
   .mapa-sessao-legenda{gap:.65rem}
   .mapa-sessao-legenda .so-largo{display:none}
@@ -335,13 +335,13 @@ ol.lista-passos li{margin:.25rem 0}
 }
 
 /* ---------- questão ---------- */
-.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:740px;margin-left:auto;margin-right:auto}
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;max-width:814px;margin-left:auto;margin-right:auto}
 /* A questão em andamento (sessão e simulado) fica numa coluna centralizada:
    num monitor largo, uma coluna de leitura colada na esquerda deixa metade da
    tela vazia. A barra de questões, o motivo e os botões entram na mesma
    coluna, para tudo ficar alinhado com o cartão. O .page que a contém também
    se centraliza (a página é mais larga que a coluna e nasce encostada ao menu). */
-.coluna-questao{max-width:740px;margin-left:auto;margin-right:auto}
+.coluna-questao{max-width:814px;margin-left:auto;margin-right:auto}
 .coluna-questao .qcard{max-width:none}
 .page:has(.coluna-questao){margin-left:auto;margin-right:auto}
 .qcard-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
