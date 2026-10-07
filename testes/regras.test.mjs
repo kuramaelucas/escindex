@@ -266,3 +266,20 @@ test("questão respondida não volta em sessão nova antes do prazo da revisão 
     assert.equal(r.praticadas, 0);
   } finally { await contexto.close(); }
 });
+
+test("a prova dissertativa aparece em Provas antigas, só para praticar (sem simulado com relógio)", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    fazerLoginDemo("aluno"); navigate("provas-antigas");
+    const g = (state.filtroRota.provasGrupos || []).find(x => x.banca === "UNICAMP (dissertativa)");
+    const cartao = [...document.querySelectorAll(".prova-card")].find(c => c.textContent.includes("UNICAMP (dissertativa)"));
+    return { existe: !!g, dissertativa: g && g.dissertativa, total: g && g.ids.length,
+      botoes: cartao ? [...cartao.querySelectorAll("button")].map(b => b.textContent.trim()) : [] };
+  });
+  assert.equal(r.existe, true);
+  assert.equal(r.dissertativa, true);
+  assert.ok(r.total >= 60);
+  assert.deepEqual(r.botoes, ["Fazer a prova (sem cronômetro)"]);
+  await contexto.close();
+});

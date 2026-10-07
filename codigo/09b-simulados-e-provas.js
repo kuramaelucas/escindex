@@ -360,8 +360,9 @@ function renderAbaProvasAntigas(u){
   /* Só questão REAL forma prova: a prova antiga é "a prova de verdade, do
      jeito que caiu". As questões autorais (banco didático, demonstração)
      continuam em Estudar > Monte sua própria lista. */
-  // prova inteira precisa de gabarito objetivo: a dissertativa fica só nas sessões de estudo
-  const todasDosTipos = questoesAtivas(grupoUsuario).filter(q=>q.real && !ehDissertativa(q));
+  // a prova dissertativa também é prova de verdade: aparece aqui, mas só para
+  // praticar (não há como corrigi-la sozinha nem cronometrá-la como simulado)
+  const todasDosTipos = questoesAtivas(grupoUsuario).filter(q=>q.real);
   /* RESIDÊNCIA E GRADUAÇÃO SEPARADAS. A prova da faculdade (e o Teste de
      Progresso) e a de residência não se comparam: uma confere o que ficou
      do ano, a outra seleciona para o R1. Cada uma tem a sua seção, e no 3º
@@ -386,6 +387,7 @@ function renderAbaProvasAntigas(u){
   const mapa = {};
   const chaveDaProva = q => q.banca+" ||| "+q.ano+" ||| "+tipoProvaDe(q);
   pool.forEach(q=>{ const chave = chaveDaProva(q); (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, tipo:tipoProvaDe(q), ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
+  Object.values(mapa).forEach(g => { g.dissertativa = g.ids.every(id=>ehDissertativa(getQuestao(id))); });
   const ordemNaProva = id => { const q = getQuestao(id); return (q && q.numeroNaProva) || 9999; };
   Object.values(mapa).forEach(g => g.ids.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)));
   /* AS ANULADAS NÃO SOMEM EM SILÊNCIO. Questão anulada não tem gabarito, então
@@ -410,19 +412,20 @@ function renderAbaProvasAntigas(u){
   const grupos = Object.values(mapa).sort((a,b)=> ordemTipos.indexOf(a.tipo)-ordemTipos.indexOf(b.tipo) || b.ano-a.ano || a.banca.localeCompare(b.banca));
   state.filtroRota.provasGrupos = grupos;
   const cartaoDaProva = (g, i) => {
-      const previo = desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+g.ano+" (simulado)");
+      const previo = g.dissertativa ? null : desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+g.ano+" (simulado)");
       const respondidas = g.ids.filter(id=>jaFoiRespondida(u.id, id)).length;
       return `<div class="card prova-card">
         <div class="prova-ano">${g.ano}</div>
         <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
-        <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span></div>
+        <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span>${g.dissertativa ? ` <span class="badge badge-accent">Dissertativa</span>` : ""}</div>
+        ${g.dissertativa ? `<div class="text-xs muted mb-1">Você escreve a resposta, diz a confiança e se avalia pela resposta esperada da banca. Não há simulado com relógio nem nota automática.</div>` : ""}
         <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
         ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
         ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
         <div class="flex gap-1 prova-acoes quebra">
-          <button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>
-          <button class="btn btn-secondary btn-sm" onclick="praticarProva(${i})">Praticar sem cronômetro</button>
+          ${g.dissertativa ? "" : `<button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>`}
+          <button class="btn ${g.dissertativa ? "btn-primary" : "btn-secondary"} btn-sm" onclick="praticarProva(${i})">${g.dissertativa ? "Fazer a prova (sem cronômetro)" : "Praticar sem cronômetro"}</button>
         </div>
       </div>`;
   };
@@ -489,6 +492,7 @@ function grupoDeProva(indice){
 }
 function fazerProvaComoSimulado(indice){
   const g = grupoDeProva(indice); if(!g) return;
+  if(g.dissertativa){ praticarProva(indice); return; }
   const titulo = "Prova "+g.banca+" "+g.ano+" (simulado)";
   state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:null, titulo,
     itens: g.ids.map(id=>({questaoId:id, motivo:"Prova "+g.banca+" "+g.ano})), indiceAtual:0, respostasSimulado:{},
