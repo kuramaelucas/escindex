@@ -103,7 +103,14 @@ test("aluno de teste: todas as telas abrem e uma questão é respondida", async 
 
   // responde uma questão pela tela, do jeito que o aluno faz
   const antes = await pagina.evaluate(() => db.respostas.length);
-  await pagina.evaluate(() => { navigate("estudar"); montarSessaoRecomendadaDeHoje(); });
+  // a sessão recomendada pode abrir numa dissertativa (sem alternativas):
+  // este teste confere o caminho da múltipla escolha, então vai para uma dela
+  await pagina.evaluate(() => {
+    navigate("estudar"); montarSessaoRecomendadaDeHoje();
+    const s = state.sessaoAtual;
+    const i = s.itens.findIndex(it => !ehDissertativa(getQuestao(it.questaoId)));
+    if(i >= 0){ s.indiceAtual = i; render(); }
+  });
   await pagina.locator('[onclick^="selecionarAlternativa("]').first().click();
   await pagina.locator(".confidence-btn", { hasText: "Certeza" }).click();
   const depois = await pagina.evaluate(() => db.respostas.length);
