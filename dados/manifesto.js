@@ -74,6 +74,8 @@ window.ESC_ARQUIVOS.dados = [
   "prova-famerp-2022",
   "prova-unicamp-2022",
   "prova-unicamp-2022-dissertativa",
+  "prova-unicamp-2023",
+  "prova-unicamp-2023-dissertativa",
   "flashcards-equipe",
   "flashcards-assuntos-novos",
   "flashcards-assuntos-usp",
