@@ -490,6 +490,7 @@ function renderInicioAluno(u){
   const sugestoes = sugestoesDeMelhoria(u.id, 4);
   const calibracao = calibracaoConfianca(u.id);
   const flashVencidos = resumoFlashcards(u.id).vencidos;
+  const emAndamento = sessaoEmAndamentoDe(u);
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p>
   ${bloco && subdivisoesDoBloco(bloco).length ? `<details class="detalhes-bloco text-sm muted"><summary>${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · ver o período dividido" : "Ver o período dividido"}</summary>Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</details>` : ""}</div>
@@ -504,7 +505,10 @@ function renderInicioAluno(u){
         <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
         <div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
       </div>
-      <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
+      <div class="flex gap-1 quebra">
+        ${emAndamento ? `<button class="btn btn-secondary" onclick="retomarSessaoEmAndamento()" title="${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}">${iconeSvg("refresh")} Continuar última sessão</button>` : ""}
+        <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
+      </div>
     </div>
   </div>
   <div class="stat-mini-row mt-2">
@@ -893,7 +897,7 @@ function abrirQuestaoCompleta(qid, opts){
       <span class="badge badge-accent">${escapeHtml(area?area.nome:"—")}</span>
       <span class="badge badge-muted">${escapeHtml(esp?esp.nome:"—")}</span>
       <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
-      <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>
+      <span class="badge badge-muted">${escapeHtml(q.banca)} · ${anoDaProva(q)}</span>
       ${badgeStatusQuestao(q.status)}
       ${badgeAutoriaQuestao(q)}
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}

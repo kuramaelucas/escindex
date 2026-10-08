@@ -132,12 +132,12 @@ function renderFlashcardsInicio(u){
         <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
       </div>
     </div>
-    <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
+    <div class="table-wrap mt-2"><table class="tabela-fina"><thead><tr><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
       ${pagMeus.itens.map(c=>`<tr>
-        <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
+        <td class="text-sm celula-frente"><span class="enunciado-clicavel" title="${escapeHtml(c.frente.slice(0,300))}" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
         <td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td>
         <td class="text-xs muted">${c.criadoEm?formatDataBR(c.criadoEm):"—"}</td>
-        <td class="flex gap-1">
+        <td class="acoes-fina">
           ${c.questaoOrigemId?`<button class="icon-btn" title="Ver a questão que originou o cartão" onclick="abrirQuestaoCompleta('${c.questaoOrigemId}')">${iconeSvg("search")}</button>`:""}
           <button class="icon-btn" title="Editar" onclick="abrirFormularioFlashcard('${c.id}')">${iconeSvg("edit")}</button>
           ${(c.grupoId || !grupoAtualDoCartao(u).oficial) ? `<button class="icon-btn" title="${c.grupoId ? "Tirar do grupo (volta a ser só seu)" : "Compartilhar com o meu grupo"}" onclick="compartilharCartaoComGrupo('${c.id}')">${iconeSvg("users")}</button>` : ""}
@@ -358,7 +358,7 @@ function abrirFormularioFlashcard(id, opts){
     ${questao ? `<div class="card-flat mb-2">
       <div class="text-xs muted" style="font-weight:700;letter-spacing:.06em;text-transform:uppercase">Questão de origem</div>
       <div class="text-sm mt-1">${escapeHtml(questao.enunciado.slice(0,220))}${questao.enunciado.length>220?"…":""}</div>
-      <div class="text-xs muted mt-1">${escapeHtml(questao.banca)} · ${questao.ano} · ${ehDissertativa(questao) ? "dissertativa" : "gabarito "+escapeHtml(questao.gabarito)}</div>
+      <div class="text-xs muted mt-1">${escapeHtml(questao.banca)} · ${anoDaProva(questao)} · ${ehDissertativa(questao) ? "dissertativa" : "gabarito "+escapeHtml(questao.gabarito)}</div>
     </div>` : ""}
     <p class="text-sm muted">Cartão bom é curto e cobra UMA coisa. Se a frente precisa de dois parágrafos, provavelmente são dois cartões — ou é caso de questão, não de flashcard.</p>
     ${!daEquipe ? `<div class="card-flat mt-2 text-xs">${iconeSvg("user")} Este cartão fica <strong>só no seu baralho</strong>. Ninguém mais vê, e ele entra nas suas revisões junto com os cartões da equipe.</div>` : ""}

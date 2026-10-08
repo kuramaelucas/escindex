@@ -173,7 +173,7 @@ function renderAtualizarQuestoes(){
     </div>
     ${corrigidas.length ? `<div class="table-wrap mt-2"><table><thead><tr><th>Questão</th><th>O que muda</th><th>Por</th><th></th></tr></thead><tbody>
       ${corrigidas.slice(0, 50).map(({ q, c }) => { const meta = (db.correcoes || {})[q.id] || {}; return `<tr>
-        <td class="text-sm nowrap">${escapeHtml(q.banca)} ${q.ano}${q.numeroNaProva ? " · nº " + q.numeroNaProva : ""}</td>
+        <td class="text-sm nowrap">${escapeHtml(q.banca)} ${anoDaProva(q)}${q.numeroNaProva ? " · nº " + q.numeroNaProva : ""}</td>
         <td class="text-xs">${[...Object.keys(c.campos).map(k => rotuloCampoCorrigivel(k, c.campos[k])), ...c.remover.map(k => k === "imagemPendente" ? "figura liberada" : "sem " + rotuloCampoCorrigivel(k))].map(escapeHtml).join(", ")}</td>
         <td class="text-xs muted">${escapeHtml(meta.porNome || "—")}${meta.naNuvem ? ` <span class="badge badge-accent" title="Já está na nuvem">nuvem</span>` : (nuvem ? ` <span class="badge badge-amber">subindo</span>` : ` <span class="badge badge-muted">só aqui</span>`)}</td>
         <td class="flex gap-1"><button class="icon-btn" title="Ver" onclick="abrirQuestaoCompleta('${q.id}')">${iconeSvg("search")}</button><button class="icon-btn" title="Editar" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")}</button><button class="icon-btn" title="Desfazer ou encerrar o conserto (a questão volta ao que a pasta dados/ diz)" onclick="confirmarDesfazerCorrecao('${q.id}')">${iconeSvg("trash")}</button></td>
@@ -197,7 +197,7 @@ function renderAtualizarQuestoes(){
   </div>
   ${lista.length ? pag.itens.map(({ q, motivos }) => `<div class="card mb-1">
     <div class="flex justify-between items-center quebra-gap-p">
-      <span class="text-sm peso-600">${escapeHtml(q.banca)} ${q.ano}${q.numeroNaProva ? " · nº " + q.numeroNaProva : ""}</span>
+      <span class="text-sm peso-600">${escapeHtml(q.banca)} ${anoDaProva(q)}${q.numeroNaProva ? " · nº " + q.numeroNaProva : ""}</span>
       <span class="qcard-meta sem-m">${motivos.map(m => `<span class="badge ${m.tipo === "imagem" || m.tipo === "rascunho" ? "badge-amber" : m.tipo === "sinalizada" ? "badge-danger" : "badge-muted"}">${escapeHtml(m.rotulo)}</span>`).join("")}</span>
     </div>
     <div class="text-sm mt-1"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml((q.enunciado || "").slice(0, 160))}${(q.enunciado || "").length > 160 ? "…" : ""}</span></div>

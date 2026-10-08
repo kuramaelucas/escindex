@@ -143,6 +143,57 @@ function resumoJanela(usuarioId, dias){
   };
 }
 
+/* ---------- assunto a assunto, em períodos de 15 dias --------------------
+   Quinzena é a escala em que um assunto já tem respostas suficientes para
+   dizer algo (por dia seria ruído, por mês esconderia a virada). Os períodos
+   terminam hoje e voltam de 15 em 15 dias até a primeira resposta da pessoa,
+   no máximo `maxPeriodos`.
+
+   O assunto que a pessoa NÃO estudou numa quinzena fica com a célula `null`
+   em vez de 0%: "não fez" e "fez e errou tudo" são coisas opostas, e a
+   comparação entre quinzenas (70% e depois 80%, 8 em 10) só vale entre as
+   que têm resposta. A tendência compara a última quinzena com resposta com a
+   anterior que também teve. */
+const DIAS_DO_PERIODO = 15;
+function evolucaoPorAssunto(usuarioId, maxPeriodos){
+  maxPeriodos = maxPeriodos || 12;
+  const minhas = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId);
+  if(!minhas.length) return {periodos:[], assuntos:[], cortou:false};
+  const hoje = hojeISO();
+  const primeira = minhas.reduce((m,r)=>r.data<m?r.data:m, hoje);
+  const necessarios = Math.max(1, Math.ceil((diasEntre(primeira, hoje)+1)/DIAS_DO_PERIODO));
+  const n = Math.min(necessarios, maxPeriodos);
+  const periodos = [];
+  for(let j=0; j<n; j++){
+    const fim = somarDias(hoje, -DIAS_DO_PERIODO*(n-1-j));
+    const inicio = somarDias(fim, -(DIAS_DO_PERIODO-1));
+    const dm = iso => iso.slice(8,10)+"/"+iso.slice(5,7);
+    periodos.push({inicio, fim, rotulo: dm(inicio)+"–"+dm(fim)});
+  }
+  const limite = periodos[0].inicio;
+  const porAssunto = {};
+  minhas.forEach(r=>{
+    if(r.data<limite || r.data>hoje) return;
+    const j = Math.min(n-1, Math.floor(diasEntre(limite, r.data)/DIAS_DO_PERIODO));
+    const a = porAssunto[r.assuntoId] = porAssunto[r.assuntoId] || {assuntoId:r.assuntoId, celulas:Array.from({length:n}, ()=>null), total:0, acertos:0};
+    const c = a.celulas[j] = a.celulas[j] || {total:0, acertos:0};
+    c.total++; a.total++;
+    if(r.correta){ c.acertos++; a.acertos++; }
+  });
+  const assuntos = Object.values(porAssunto).map(a=>{
+    a.celulas.forEach(c=>{ if(c) c.taxa = pct(c.acertos, c.total); });
+    const feitas = a.celulas.filter(Boolean);
+    const ultima = feitas[feitas.length-1], anterior = feitas[feitas.length-2];
+    return Object.assign(a, {
+      taxa: pct(a.acertos, a.total),
+      areaId: (areaDeAssunto(a.assuntoId)||{}).id,
+      variacao: (feitas.length>=2) ? ultima.taxa - anterior.taxa : null,
+      periodosComEstudo: feitas.length,
+    });
+  }).sort((x,y)=>y.total-x.total);
+  return {periodos, assuntos, cortou: necessarios>maxPeriodos};
+}
+
 /* Desempenho somado de TODAS as questões respondidas pelo usuário, sem
    separar por área ou assunto — incluindo quantas questões distintas do
    banco ele já viu (cobertura) e como está o desempenho considerando

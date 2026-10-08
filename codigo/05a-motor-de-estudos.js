@@ -47,6 +47,10 @@ function tipoProvaDe(q){
   if(q && tipoProvaValido(q.tipoProva)) return q.tipoProva;
   return q && /progresso/i.test(q.banca||"") ? "graduacao" : CONFIG.tipoProvaPadrao;
 }
+/* "2023" para uma prova de residência; "2023.1" e "2023.2" para o Teste de
+   Progresso, que se aplica duas vezes por ano. A instituição é a mesma
+   (`banca`), então o semestre é o que separa uma aplicação da outra. */
+function anoDaProva(q){ return q.ano + (q.semestre ? "."+q.semestre : ""); }
 function infoTipoProva(id){ return CONFIG.tiposProva.find(t=>t.id===id) || CONFIG.tiposProva.find(t=>t.id===CONFIG.tipoProvaPadrao); }
 /* "Graduação", "graduacao", "Teste de Progresso" → "graduacao". Devolve null
    quando o texto não diz nada reconhecível (quem chamou decide o padrão). */

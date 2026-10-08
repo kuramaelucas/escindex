@@ -849,7 +849,7 @@ function podeGerirSubgrupo(sg, u){ return !!u && (sg.criadoPor===u.id || podeAdm
 function conjuntosDeQuestoesDoGrupo(grupo){
   const mapa = {};
   questoesDoGrupo(grupo).forEach(q=>{
-    const chave = q.banca ? q.banca+" "+(q.ano||"") : "Questões avulsas";
+    const chave = q.banca ? q.banca+" "+(q.ano ? anoDaProva(q) : "") : "Questões avulsas";
     (mapa[chave] = mapa[chave] || {chave, ids:[]}).ids.push(q.id);
   });
   return Object.values(mapa).sort((a,b)=>a.chave.localeCompare(b.chave, "pt-BR"));

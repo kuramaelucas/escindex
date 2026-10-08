@@ -98,7 +98,7 @@ function renderCartaoDissertativa(q, opts){
       <span class="qcard-trilha">${escapeHtml(esp?esp.nome:"")} › ${escapeHtml(nomeAssunto(q.assuntoId))}</span>` : "";
   let html = `<div class="qcard">
     <div class="qcard-meta">${classificacao}
-      <span class="qcard-trilha">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
+      <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
       ${badgeAutoriaQuestao(q)}
       <span class="badge badge-amber" title="Você escreve a resposta e se avalia depois de ver a esperada pela banca">Dissertativa</span>
     </div>

@@ -62,7 +62,7 @@ function renderListaDuplicadas(grupos){
     <div class="text-sm peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${g[0].id}')">${escapeHtml(g[0].enunciado.slice(0,180))}…</span></div>
     <div class="table-wrap mt-2"><table><thead><tr><th>Instituição / Ano</th><th>Status</th><th>Respostas</th><th></th></tr></thead><tbody>
       ${g.map((q,i)=>`<tr>
-        <td class="text-sm">${escapeHtml(q.banca)} · ${q.ano}${i===0?' <span class="badge badge-accent">mais antiga</span>':""}</td>
+        <td class="text-sm">${escapeHtml(q.banca)} · ${anoDaProva(q)}${i===0?' <span class="badge badge-accent">mais antiga</span>':""}</td>
         <td>${badgeStatusQuestao(q.status)}</td>
         <td class="text-sm">${(q.estatisticas&&q.estatisticas.respostas)||0}</td>
         <td class="flex gap-1">
@@ -82,7 +82,7 @@ function manterApenasUmaDuplicata(indiceGrupo){
   const manter = g.slice().sort((a,b)=>(((b.estatisticas||{}).respostas||0)-((a.estatisticas||{}).respostas||0)))[0];
   const excluir = g.filter(q=>q.id!==manter.id);
   abrirModal(`${cabecalhoJanela(`Excluir ${excluir.length} cópia(s)`)}
-    <p class="text-sm">Será mantida a cópia com mais respostas registradas (${(manter.estatisticas||{}).respostas||0} resposta(s), ${escapeHtml(manter.banca)} ${manter.ano}). As demais serão excluídas definitivamente, junto com as estatísticas delas.</p>
+    <p class="text-sm">Será mantida a cópia com mais respostas registradas (${(manter.estatisticas||{}).respostas||0} resposta(s), ${escapeHtml(manter.banca)} ${anoDaProva(manter)}). As demais serão excluídas definitivamente, junto com as estatísticas delas.</p>
     <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="confirmarManterApenasUma('${manter.id}','${excluir.map(q=>q.id).join(",")}')">Excluir as cópias</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function confirmarManterApenasUma(manterId, idsExcluir){
@@ -99,7 +99,7 @@ function renderListaSugeridas(lista){
   ${lista.length ? pag.itens.map(q=>{
     const autor = getUsuario(q.criadoPor);
     return `<div class="card mb-2">
-      <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca||"")} ${q.ano}${q.numeroNaProva?" · nº "+q.numeroNaProva:""}</span>
+      <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca||"")} ${anoDaProva(q)}${q.numeroNaProva?" · nº "+q.numeroNaProva:""}</span>
         <span class="badge ${tipoProvaDe(q)==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>
         ${q.imagemUrl ? '<span class="badge badge-accent">com imagem</span>' : aguardaImagem(q) ? '<span class="badge badge-amber">falta a imagem</span>' : ""}
         ${q.naNuvem ? '<span class="badge badge-muted">na nuvem</span>' : ""}</div>
@@ -157,7 +157,7 @@ function renderListaDificeis(lista){
     const totalErros = q.estatisticas.respostas - q.estatisticas.acertos;
     const gabaritoEliminado = elim[q.gabarito] || 0;
     return `<div class="card mb-2">
-      <div class="qcard-meta"><span class="badge badge-danger">${taxa}% de acerto</span><span class="badge badge-muted">${q.estatisticas.respostas} respostas</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${q.ano}</span></div>
+      <div class="qcard-meta"><span class="badge badge-danger">${taxa}% de acerto</span><span class="badge badge-muted">${q.estatisticas.respostas} respostas</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${anoDaProva(q)}</span></div>
       <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
       <div class="mt-2">
         ${q.alternativas.map(alt=>{
@@ -182,7 +182,7 @@ function renderListaSinalizadas(lista){
   return `<p class="text-sm muted mb-2">Questões que alunos marcaram como possivelmente desatualizadas ou incorretas, mais sinalizadas primeiro. Se houver muitas reclamações concordantes, considere excluir.</p>
   ${lista.length ? pag.itens.map(q=>`
     <div class="card mb-2">
-      <div class="qcard-meta"><span class="badge badge-danger">${q.sinalizacoes.length} sinalização${q.sinalizacoes.length===1?"":"ões"}</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${q.ano}</span>${badgeStatusQuestao(q.status)}</div>
+      <div class="qcard-meta"><span class="badge badge-danger">${q.sinalizacoes.length} sinalização${q.sinalizacoes.length===1?"":"ões"}</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${anoDaProva(q)}</span>${badgeStatusQuestao(q.status)}</div>
       <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
       <div class="mt-2">
         ${q.sinalizacoes.map(s=>`<div class="card-flat mb-1 text-sm"><span class="muted">${formatDataBR(s.data)}:</span> ${escapeHtml(s.comentario || "(sem comentário adicional)")}</div>`).join("")}
@@ -223,7 +223,7 @@ function renderCardDuvida(c, respondida){
       <span class="badge badge-accent">${escapeHtml(area?area.nome:"—")}</span>
       <span class="badge badge-muted">${escapeHtml(nomeEspecialidade(q.especialidadeId))}</span>
       <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
-      <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>
+      <span class="badge badge-muted">${escapeHtml(q.banca)} · ${anoDaProva(q)}</span>
       ${badgeStatusQuestao(q.status)}
     </div>
     <div class="text-sm mt-2" style="font-weight:600;white-space:pre-line"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,320))}${q.enunciado.length>320?"…":""}</span></div>
@@ -385,7 +385,7 @@ function renderRevisaoFormatacao(){
     const ap = formatacaoAprovadaDe(q.id);
     return `
     <div class="card mb-2">
-      <div class="qcard-meta mb-1"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>${badgeStatusQuestao(q.status)}${ap ? `<span class="badge badge-accent">formatação aprovada${ap.porNome?" por "+escapeHtml(ap.porNome):""} em ${formatDataBR(ap.em)}</span>` : ""}</div>
+      <div class="qcard-meta mb-1"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca)} · ${anoDaProva(q)}</span>${badgeStatusQuestao(q.status)}${ap ? `<span class="badge badge-accent">formatação aprovada${ap.porNome?" por "+escapeHtml(ap.porNome):""} em ${formatDataBR(ap.em)}</span>` : ""}</div>
       <div class="text-sm" style="white-space:pre-line">${escapeHtml(q.enunciado)}</div>
       <div class="mt-2">${q.alternativas.map(a=>`<div class="text-sm">${escapeHtml(a.id)}) ${escapeHtml(a.texto)}${a.id===q.gabarito?" ✓":""}</div>`).join("")}</div>
       <div class="flex gap-1 mt-2 quebra">

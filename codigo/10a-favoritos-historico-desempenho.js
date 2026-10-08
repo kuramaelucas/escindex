@@ -62,7 +62,7 @@ function renderFavoritos(){
       <div class="qcard-meta mb-1">
         <span class="badge badge-accent">${escapeHtml(area?area.nome:"—")}</span>
         <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
-        <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>
+        <span class="badge badge-muted">${escapeHtml(q.banca)} · ${anoDaProva(q)}</span>
         ${ult ? `<span class="badge ${ult.correta?"badge-accent":"badge-danger"}">última: ${ult.correta?"acertou":"errou"}</span>` : '<span class="badge badge-muted">ainda não respondida</span>'}
         ${errosNaQuestao(u.id, q.id) ? `<span class="badge badge-danger">errada ${rotuloVezes(errosNaQuestao(u.id, q.id))}</span>` : ""}
       </div>
@@ -90,7 +90,7 @@ function renderQuestoesRetiradas(u, retiradas){
     return `<div class="card mb-1">
       <div class="qcard-meta mb-1">
         <span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span>
-        <span class="badge badge-muted">${escapeHtml(q.banca)} · ${q.ano}</span>
+        <span class="badge badge-muted">${escapeHtml(q.banca)} · ${anoDaProva(q)}</span>
         ${n ? `<span class="badge badge-danger">errada ${rotuloVezes(n)}</span>` : ""}
       </div>
       <div class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,200))}${q.enunciado.length>200?"…":""}</span></div>
@@ -547,7 +547,9 @@ function htmlCardNotaEstimada(u){
 function htmlCardOQueMaisCai(u, limite){
   const inc = incidenciaNaBanca();
   if(!inc.total) return "";
-  const lista = prioridadesDeEstudo(u.id).slice(0, limite);
+  const todas = prioridadesDeEstudo(u.id);
+  const aberta = !!ctxDesempenho().prioridadesAbertas;
+  const lista = aberta ? todas : todas.slice(0, limite);
   const faixaAnos = inc.anos.length ? inc.anos[0]+"–"+inc.anos[inc.anos.length-1] : "";
   return `<div class="card mb-2">
     <div class="card-title">${iconeSvg("star")} O que mais cai na prova × onde você erra</div>
@@ -562,8 +564,82 @@ function htmlCardOQueMaisCai(u, limite){
         <td><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${p.assuntoId}')">Praticar</button></td>
       </tr>`).join("")}</tbody>
     </table></div>
-    <button class="btn btn-primary btn-sm mt-2" onclick="praticarPrioridadesDaProva()">${iconeSvg("play")} Praticar as 5 maiores prioridades</button>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-primary btn-sm" onclick="praticarPrioridadesDaProva()">${iconeSvg("play")} Praticar as 5 maiores prioridades</button>
+      ${todas.length > limite ? `<button class="btn btn-secondary btn-sm" onclick="alternarPrioridadesAbertas()" aria-expanded="${aberta}">${aberta ? "Mostrar só as "+limite+" primeiras" : "Ver os demais assuntos ("+(todas.length-limite)+")"}</button>` : ""}
+    </div>
   </div>`;
+}
+function alternarPrioridadesAbertas(){ ctxDesempenho().prioridadesAbertas = !ctxDesempenho().prioridadesAbertas; render(); }
+/* ---------- Evolução por assunto, de 15 em 15 dias ------------------------
+   O motor (evolucaoPorAssunto, seção 4) devolve uma célula por quinzena;
+   quinzena sem resposta é "—", nunca 0%. Fica numa área recolhida porque é
+   o detalhe fino: quem quer só o retrato do período lê os cartões de cima. */
+function celulaEvolucao(c){
+  if(!c) return '<span class="muted" title="Nenhuma questão deste assunto nesta quinzena">—</span>';
+  return `<span class="badge ${c.taxa<50?"badge-danger":c.taxa<70?"badge-amber":"badge-accent"}">${c.taxa}%</span> <span class="text-xs muted">${c.acertos}/${c.total}</span>`;
+}
+function tendenciaEvolucao(v){
+  if(v===null) return '<span class="text-xs muted" title="Só uma quinzena com respostas: ainda não há com o que comparar">—</span>';
+  if(v===0) return '<span class="text-xs muted">= igual</span>';
+  return `<span class="peso-600" style="color:var(${v>0?"--accent":"--danger"})" title="Última quinzena com respostas contra a anterior que também teve">${v>0?"▲ +":"▼ "}${v} p.p.</span>`;
+}
+function evolucaoAgrupadaPorArea(ev){
+  return db.taxonomia.areas.map(area=>{
+    const assuntos = ev.assuntos.filter(a=>a.areaId===area.id);
+    const total = assuntos.reduce((t,a)=>t+a.total,0), acertos = assuntos.reduce((t,a)=>t+a.acertos,0);
+    return {area, assuntos, total, acertos};
+  }).filter(g=>g.assuntos.length);
+}
+function htmlEvolucaoPorAssunto(u){
+  const ev = evolucaoPorAssunto(u.id);
+  if(!ev.assuntos.length) return `<div class="card mb-2"><div class="card-title">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias</div><p class="text-sm muted">Aparece aqui quando você responder as primeiras questões.</p></div>`;
+  const grupos = evolucaoAgrupadaPorArea(ev);
+  return `<div class="card mb-2" id="evolucaoAssuntos">
+    <details>
+      <summary class="card-title" style="cursor:pointer">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias <span class="text-xs muted peso-400">(${ev.assuntos.length} assunto(s) · ${ev.periodos.length} período(s))</span></summary>
+      <p class="text-sm muted mt-1">Cada coluna é um período de 15 dias; o último termina hoje. Em cada célula, o acerto no assunto naquele período e quantas você acertou (ex.: <strong>80%</strong> <span class="text-xs muted">8/10</span>). <strong>—</strong> quer dizer que você não fez questões daquele assunto no período — não é erro nem acerto, e a comparação só vale entre períodos em que você fez. Pouca questão engana: 100% em 2 não é melhor que 75% em 40.${ev.cortou ? " Mostramos os últimos "+ev.periodos.length+" períodos ("+ev.periodos.length*DIAS_DO_PERIODO+" dias)." : ""}</p>
+      <div class="flex gap-1 mt-2 quebra">
+        <button class="btn btn-secondary btn-sm" onclick="alternarAreasDaEvolucao(true)">Abrir todas as áreas</button>
+        <button class="btn btn-secondary btn-sm" onclick="alternarAreasDaEvolucao(false)">Recolher todas</button>
+        <button class="btn btn-primary btn-sm" onclick="baixarEvolucaoPDF()">${iconeSvg("printer")} Salvar em PDF</button>
+      </div>
+      ${grupos.map(g=>`<details class="evolucao-area mt-2">
+        <summary class="peso-600 text-sm">${escapeHtml(g.area.nome)} <span class="text-xs muted peso-400">· ${g.assuntos.length} assunto(s) · ${pct(g.acertos,g.total)}% de acerto em ${g.total} respostas</span></summary>
+        <div class="table-wrap mt-1"><table class="evolucao-tabela">
+          <thead><tr><th>Assunto</th>${ev.periodos.map(p=>`<th>${p.rotulo}</th>`).join("")}<th>Tendência</th></tr></thead>
+          <tbody>${g.assuntos.map(a=>`<tr>
+            <td class="text-sm">${escapeHtml(nomeAssunto(a.assuntoId))} <span class="text-xs muted">(${a.acertos}/${a.total})</span></td>
+            ${a.celulas.map(c=>`<td class="text-sm">${celulaEvolucao(c)}</td>`).join("")}
+            <td>${tendenciaEvolucao(a.variacao)}</td>
+          </tr>`).join("")}</tbody>
+        </table></div>
+      </details>`).join("")}
+    </details>
+  </div>`;
+}
+function alternarAreasDaEvolucao(abrir){
+  document.querySelectorAll("#evolucaoAssuntos details.evolucao-area").forEach(d=>{ d.open = abrir; });
+}
+/* PDF = a impressão do navegador (como o Material em PDF): sem cor, com o
+   número por extenso, e em paisagem porque são até 12 colunas de período. */
+function htmlEvolucaoPDF(u){
+  const ev = evolucaoPorAssunto(u.id);
+  if(!ev.assuntos.length) return "";
+  const cel = c => c ? c.taxa+"% ("+c.acertos+"/"+c.total+")" : "—";
+  const tend = v => v===null ? "—" : (v>0?"+":"")+v+" p.p.";
+  return `<style>@page{size:A4 landscape;margin:12mm}</style>
+  <div class="pdf-cabecalho"><h1>Evolução por assunto — ${escapeHtml(u.nome)}</h1>
+    <div class="pdf-sub">${CONFIG.nomePlataforma} · períodos de 15 dias, o último termina em ${formatDataBR(hojeISO())} · gerado em ${formatDataBR(hojeISO())}</div></div>
+  ${evolucaoAgrupadaPorArea(ev).map(g=>`<h2 style="font-size:12pt;margin:.9rem 0 .3rem">${escapeHtml(g.area.nome)} <span style="font-weight:400;font-size:9pt">— ${pct(g.acertos,g.total)}% em ${g.total} respostas</span></h2>
+    <table class="pdf-tabela" style="font-size:8pt"><thead><tr><th>Assunto</th>${ev.periodos.map(p=>`<th>${p.rotulo}</th>`).join("")}<th>Tendência</th></tr></thead>
+    <tbody>${g.assuntos.map(a=>`<tr><td>${escapeHtml(nomeAssunto(a.assuntoId))} (${a.acertos}/${a.total})</td>${a.celulas.map(c=>`<td>${cel(c)}</td>`).join("")}<td>${tend(a.variacao)}</td></tr>`).join("")}</tbody></table>`).join("")}
+  <p style="font-size:8.5pt;margin-top:.8rem;color:#333">— = nenhuma questão do assunto no período (não é erro nem acerto). Tendência: última quinzena com respostas contra a anterior que também teve. Quantidades pequenas pesam pouco: 100% em 2 questões não supera 75% em 40.</p>`;
+}
+function baixarEvolucaoPDF(){
+  const html = htmlEvolucaoPDF(usuarioAtual());
+  if(!html){ toast("Responda algumas questões para gerar o relatório.", "err"); return; }
+  imprimir(html);
 }
 /* Um conjunto com as questões dos 5 assuntos de maior prioridade — primeiro
    as que a pessoa nunca viu ou errou, intercaladas por assunto. */
@@ -710,7 +786,9 @@ function renderDesempenho(){
     <p class="text-xs muted mt-1">O detalhe assunto a assunto fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>, ao lado da fila que diz o que fazer com cada um.</p>
   </div>
 
-  ${htmlCardOQueMaisCai(u, 10)}
+  ${htmlCardOQueMaisCai(u, 5)}
+
+  ${htmlEvolucaoPorAssunto(u)}
 
   <div class="grid grid-3 compacto mb-2">
     <div class="stat-tile"><div class="stat-value">${calibracao.certeza.n?calibracao.certeza.taxa+"%":"—"}</div><div class="stat-label">acerto quando você disse "certeza" (${calibracao.certeza.n})</div></div>
