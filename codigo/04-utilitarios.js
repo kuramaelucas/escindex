@@ -30,6 +30,39 @@ function iconeSvg(nome, cls){ return '<svg class="icon '+(cls||'')+'"><use href=
    A "assinatura" é o que faz a página voltar para a 1 sozinha quando os
    filtros mudam — sem isso, filtrar estando na página 7 mostraria uma lista
    vazia e pareceria um erro. */
+/* ORDENAR TABELA PELO TÍTULO DA COLUNA — clique no título ordena; clicar de
+   novo inverte. Colunas de número e data começam do maior para o menor (é o
+   que se quer ver primeiro: quem mais estudou, o uso mais recente); colunas de
+   texto começam em ordem alfabética (clicar em "Aluno" dá A→Z). Vazio ("nunca
+   usou", sem valor) vai sempre para o fim, nas duas direções. O empate mantém
+   a ordem que a lista já tinha, então a escolha do seletor continua valendo
+   como desempate. A escolha vive em `state.filtroRota`, junto dos filtros. */
+function ordemDaTabela(tabela){ return (state.filtroRota.ordemTabelas || {})[tabela] || null; }
+function limparOrdemDaTabela(tabela){ if(state.filtroRota.ordemTabelas) delete state.filtroRota.ordemTabelas[tabela]; }
+function assinaturaOrdemDaTabela(tabela){ const o = ordemDaTabela(tabela); return o ? o.col + ":" + o.dir : ""; }
+function clicarOrdemDaTabela(tabela, col, tipo){
+  const todas = state.filtroRota.ordemTabelas = state.filtroRota.ordemTabelas || {};
+  const o = todas[tabela];
+  todas[tabela] = (o && o.col === col) ? { col, dir: o.dir === "desc" ? "asc" : "desc" } : { col, dir: tipo === "texto" ? "asc" : "desc" };
+  render();
+}
+function cabecalhoOrdenavel(tabela, col, rotulo, tipo){
+  const o = ordemDaTabela(tabela);
+  const ativa = !!o && o.col === col;
+  const seta = ativa ? (o.dir === "desc" ? " ▼" : " ▲") : "";
+  const sort = ativa ? (o.dir === "desc" ? "descending" : "ascending") : "none";
+  return `<th aria-sort="${sort}"><button type="button" class="th-ordem ${ativa ? "ativa" : ""}" title="Ordenar por ${escapeHtml(String(rotulo).replace(/<[^>]*>/g, ""))} (clique de novo para inverter)" onclick="clicarOrdemDaTabela('${tabela}','${col}','${tipo || "numero"}')">${rotulo}${seta}</button></th>`;
+}
+function ordenarPorColuna(lista, tabela, valores){
+  const o = ordemDaTabela(tabela), valor = o && valores[o.col];
+  if(!valor) return lista;
+  const sinal = o.dir === "desc" ? -1 : 1;
+  const vazio = v => v === null || v === undefined || v === "";
+  const cmp = (a, b) => (typeof a === "number" && typeof b === "number") ? a - b : String(a).localeCompare(String(b), "pt-BR", { numeric: true, sensitivity: "base" });
+  return lista.map((x, i) => ({ x, i, v: valor(x) })).sort((p, q) =>
+    (vazio(p.v) || vazio(q.v)) ? (vazio(p.v) - vazio(q.v)) || (p.i - q.i) : (sinal * cmp(p.v, q.v)) || (p.i - q.i)).map(e => e.x);
+}
+
 const ITENS_POR_PAGINA = 25;
 function estadoPaginas(){
   if(!state.filtroRota.paginas) state.filtroRota.paginas = {};

@@ -474,7 +474,10 @@ function renderUsuariosDaNuvem(souMaster){
   }
   const porStatus = {aprovado:[], pendente:[], inativo:[], rejeitado:[]};
   nuvemUsuarios.forEach(p => { (porStatus[p.status] || (porStatus[p.status] = [])).push(p); });
-  const pag = paginar(nuvemUsuarios, "usuarios-nuvem", {porPagina:30});
+  const pag = paginar(ordenarPorColuna(nuvemUsuarios, "usuarios-nuvem", {
+    nome: p => p.nome || "", email: p => p.email || "", ano: p => p.ano_faculdade || "", papel: p => p.papel || "",
+    nivel: p => p.papel === "admin" ? rotuloNivelAdmin(p.nivel_admin || "coordenacao") : "", status: p => p.status || "",
+  }), "usuarios-nuvem", {porPagina:30, assinatura: nuvemUsuarios.length + assinaturaOrdemDaTabela("usuarios-nuvem")});
   return `<div class="card mb-2">
     <div class="flex justify-between items-center mb-1 quebra-gap">
       <div class="card-title sem-mb">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
@@ -483,7 +486,7 @@ function renderUsuariosDaNuvem(souMaster){
     <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova nos pedidos de acesso aparece aqui</strong> — a lista de pedidos mostra só quem ainda está pendente.</p>
     ${nuvemUsuariosErro ? `<p class="text-sm mt-1 texto-alerta peso-600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
     ${nuvemUsuarios.length ? `<div class="table-wrap mt-2"><table>
-      <thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead>
+      <thead><tr>${[["nome","Nome"],["email","E-mail / Matrícula"],["ano","Ano"],["papel","Papel"],["nivel","Nível de admin"],["status","Status"]].map(([c,r]) => cabecalhoOrdenavel("usuarios-nuvem", c, r, "texto")).join("")}<th></th></tr></thead>
       <tbody>${pag.itens.map(p => {
         const souEu = nuvemSessao && p.id === nuvemSessao.usuarioId;
         return `<tr>
@@ -511,14 +514,17 @@ function renderUsuariosDaNuvem(souMaster){
 }
 
 function renderUsuariosLocais(souMaster, eu){
-  const pagUsuarios = paginar(db.usuarios, "usuarios", {porPagina:30});
+  const pagUsuarios = paginar(ordenarPorColuna(db.usuarios, "usuarios", {
+    nome: u => u.nome || "", email: u => u.email || "", turma: u => (u.papel === "aluno" ? getGrupoDoUsuario(u).nome : "") + " " + (u.anoFaculdade || ""),
+    papel: u => u.papel || "", nivel: u => u.papel === "admin" ? rotuloNivelAdmin(nivelAdminDe(u)) : "", status: u => u.status || "",
+  }), "usuarios", {porPagina:30, assinatura: db.usuarios.length + assinaturaOrdemDaTabela("usuarios")});
   const admins = db.usuarios.filter(u=>u.papel==="admin");
   return `<div class="card">
     <div class="card-title">Contas deste navegador (${db.usuarios.length})</div>
     <p class="text-sm muted mb-2">${nuvemConectado()
       ? "As contas de teste e as de antes da nuvem. Elas funcionam só neste computador e não sincronizam — a turma de verdade é a lista acima."
       : db.usuarios.length + " cadastro(s) no total · " + admins.length + " administrador(es)."}</p>
-    <div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail / Matrícula</th><th>Turma / Ano</th><th>Papel</th><th>Nível de admin</th><th>Status</th><th></th></tr></thead><tbody>
+    <div class="table-wrap"><table><thead><tr>${[["nome","Nome"],["email","E-mail / Matrícula"],["turma","Turma / Ano"],["papel","Papel"],["nivel","Nível de admin"],["status","Status"]].map(([c,r]) => cabecalhoOrdenavel("usuarios", c, r, "texto")).join("")}<th></th></tr></thead><tbody>
     ${pagUsuarios.itens.map(u=>`<tr>
       <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}${u.daNuvem?' <span class="badge badge-accent">da nuvem</span>':""}</td>
       <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>

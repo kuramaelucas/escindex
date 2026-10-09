@@ -281,7 +281,13 @@ function renderPainelDaTurma(){
     ativos: (x, y) => y.r30 - x.r30 || x.nome.localeCompare(y.nome),
   };
   lista.sort(ordens[f.ordem] || ordens.ultimo);
-  const p = paginar(lista, "painel-turma", { assinatura: JSON.stringify(f) });
+  // clicar no título de uma coluna vale por cima do seletor; o seletor fica de desempate
+  lista = ordenarPorColuna(lista, "painel-turma", {
+    nome: a => a.nome, perfil: a => naEquipe ? rotuloPapelPainel(a.papel) : a.ano + " " + (nomeDoGrupoPainel(a.grupoId) || ""),
+    ultimo: a => ultimoUso(a) || null, dias30: a => a.dias30, r30: a => a.r30, respostas: a => a.respostas,
+    cartoes30: a => a.cartoes30, simulados: a => a.simulados || 0, condicao: a => a._al.condicao ? a._al.condicao.texto : "",
+  });
+  const p = paginar(lista, "painel-turma", { assinatura: JSON.stringify(f) + assinaturaOrdemDaTabela("painel-turma") });
 
   const origem = pd.origem === "nuvem"
     ? `Dados da nuvem — todos os cadastrados, de qualquer aparelho. Atualizado ${pd.em ? "às " + new Date(pd.em).toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"}) : ""}. <button class="link-btn" onclick="carregarPainelTurma(true); render()">atualizar</button>`
@@ -359,17 +365,17 @@ function renderPainelDaTurma(){
     <div class="flex justify-between items-center quebra-gap">
       <div class="flex gap-1 items-center quebra">
         <input class="input" style="max-width:220px" aria-label="Buscar pessoa por nome ou e-mail" placeholder="Buscar por nome ou e-mail" value="${escapeHtml(f.busca||"")}" onchange="mudarFiltroPainelTurma('busca', this.value)">
-        <select class="select" style="max-width:220px" aria-label="Ordenar a lista da turma" onchange="mudarFiltroPainelTurma('ordem', this.value)">
-          <option value="ultimo" ${!ordens[f.ordem]||f.ordem==="ultimo"?"selected":""}>Último uso: mais recente primeiro</option>
-          <option value="parado" ${f.ordem==="parado"?"selected":""}>Último uso: mais antigo primeiro</option>
-          <option value="ativos" ${f.ordem==="ativos"?"selected":""}>Mais ativos (30 dias)</option>
-          <option value="nome" ${f.ordem==="nome"?"selected":""}>Nome</option>
+        <select class="select" style="max-width:220px" aria-label="Ordenar a lista da turma" onchange="limparOrdemDaTabela('painel-turma'); mudarFiltroPainelTurma('ordem', this.value)">
+          ${ordemDaTabela("painel-turma") ? '<option value="" selected disabled>Pelo título da coluna</option>' : ""}<option value="ultimo" ${!ordemDaTabela("painel-turma") && (!ordens[f.ordem]||f.ordem==="ultimo")?"selected":""}>Último uso: mais recente primeiro</option>
+          <option value="parado" ${!ordemDaTabela("painel-turma") && f.ordem==="parado"?"selected":""}>Último uso: mais antigo primeiro</option>
+          <option value="ativos" ${!ordemDaTabela("painel-turma") && f.ordem==="ativos"?"selected":""}>Mais ativos (30 dias)</option>
+          <option value="nome" ${!ordemDaTabela("painel-turma") && f.ordem==="nome"?"selected":""}>Nome</option>
         </select>
         <button class="btn btn-secondary btn-sm" onclick="exportarPainelTurmaCsv()">${iconeSvg("download")} Baixar planilha (CSV)</button>
       </div>
     </div>
     <div class="table-wrap mt-2"><table>
-      <thead><tr><th>${naEquipe ? "Pessoa" : "Aluno"}</th><th>${naEquipe ? "Papel" : "Ano / turma"}</th><th>Último uso</th><th>Dias ativos (30)</th><th>Questões (30 dias)</th><th>Questões (total)</th><th>Cartões (30 dias)</th><th>Simulados</th>${naEquipe ? "" : "<th>Condição</th>"}</tr></thead>
+      <thead><tr>${[["nome", naEquipe ? "Pessoa" : "Aluno", "texto"], ["perfil", naEquipe ? "Papel" : "Ano / turma", "texto"], ["ultimo", "Último uso"], ["dias30", "Dias ativos (30)"], ["r30", "Questões (30 dias)"], ["respostas", "Questões (total)"], ["cartoes30", "Cartões (30 dias)"], ["simulados", "Simulados"]].concat(naEquipe ? [] : [["condicao", "Condição", "texto"]]).map(([c, r, t]) => cabecalhoOrdenavel("painel-turma", c, r, t)).join("")}</tr></thead>
       <tbody>${p.itens.map(a => {
         const al = a._al;
         return `<tr>
