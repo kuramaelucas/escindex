@@ -132,8 +132,10 @@ function renderFlashcardsInicio(u){
         <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
       </div>
     </div>
-    <div class="table-wrap mt-2"><table class="tabela-fina"><thead><tr><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
+    <div class="flex gap-1 items-center quebra mt-2" id="barraSelecaoCartoes">${htmlBarraSelecaoCartoes()}</div>
+    <div class="table-wrap mt-2"><table class="tabela-fina"><thead><tr><th style="width:2rem"><input type="checkbox" aria-label="Marcar todos os cartões desta página" ${pagMeus.itens.length && pagMeus.itens.every(c=>cartaoSelecionado(c.id))?"checked":""} onchange="marcarCartoesDaPagina(this.checked, ${escapeHtml(JSON.stringify(pagMeus.itens.map(c=>c.id)))})"></th><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
       ${pagMeus.itens.map(c=>`<tr>
+        <td><input type="checkbox" data-cartao-sel="${c.id}" aria-label="Marcar o cartão" ${cartaoSelecionado(c.id)?"checked":""} onchange="marcarCartao('${c.id}', this.checked)"></td>
         <td class="text-sm celula-frente"><span class="enunciado-clicavel" title="${escapeHtml(c.frente.slice(0,300))}" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
         <td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td>
         <td class="text-xs muted">${c.criadoEm?formatDataBR(c.criadoEm):"—"}</td>
@@ -184,6 +186,66 @@ function renderFlashcardsInicio(u){
   <div class="card-flat mt-2 text-sm">
     <strong>Como funciona:</strong> cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; nenhum cartão volta antes de 1 semana; "quase" fica sempre no prazo mínimo de 7 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão em 7 dias. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.
   </div>`;
+}
+/* Seleção de vários cartões seus para arquivar ou sugerir à equipe de uma vez.
+   Vive em `state.filtroRota` (some ao sair da tela) e é só de cartões pessoais.
+   Marcar não redesenha a tela, só a barra: a lista não pula de lugar. */
+function idsDeCartoesSelecionados(){
+  const sel = state.filtroRota.cartoesSelecionados || {};
+  const meus = new Set(meusFlashcards(usuarioAtual().id).map(c=>c.id));   // cartão arquivado ou apagado sai da seleção
+  return Object.keys(sel).filter(id => sel[id] && meus.has(id));
+}
+function cartaoSelecionado(id){ return !!(state.filtroRota.cartoesSelecionados || {})[id]; }
+function htmlBarraSelecaoCartoes(){
+  const n = idsDeCartoesSelecionados().length;
+  return n
+    ? `<span class="text-sm"><strong>${n}</strong> selecionado(s)</span>
+       <button class="btn btn-secondary btn-sm" onclick="sugerirCartoesSelecionadosParaEquipe()">${iconeSvg("upload")} Sugerir à equipe</button>
+       <button class="btn btn-danger btn-sm" onclick="arquivarCartoesSelecionados()">${iconeSvg("trash")} Arquivar selecionados</button>
+       <button class="btn btn-ghost btn-sm" onclick="limparSelecaoDeCartoes()">Limpar seleção</button>`
+    : `<span class="text-xs muted">Marque os cartões na primeira coluna para arquivar ou sugerir vários à equipe de uma vez.</span>`;
+}
+function atualizarBarraSelecaoCartoes(){
+  const el = document.getElementById("barraSelecaoCartoes"); if(el) el.innerHTML = htmlBarraSelecaoCartoes();
+}
+function marcarCartao(id, marcado){
+  const sel = state.filtroRota.cartoesSelecionados = state.filtroRota.cartoesSelecionados || {};
+  if(marcado) sel[id] = true; else delete sel[id];
+  atualizarBarraSelecaoCartoes();
+}
+function marcarCartoesDaPagina(marcado, ids){
+  ids.forEach(id => marcarCartao(id, marcado));
+  document.querySelectorAll("[data-cartao-sel]").forEach(c => { c.checked = cartaoSelecionado(c.dataset.cartaoSel); });
+}
+function limparSelecaoDeCartoes(){ state.filtroRota.cartoesSelecionados = {}; render(); }
+function arquivarCartoesSelecionados(){
+  const ids = idsDeCartoesSelecionados(); if(!ids.length) return;
+  abrirModal(`${cabecalhoJanela("Arquivar " + ids.length + " cartão(ões)")}
+    <p>Os ${ids.length} cartões selecionados saem do seu baralho. O histórico de revisão deles fica guardado, caso você queira retomá-los depois.</p>
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="arquivarCartoesSelecionadosConfirmado()">Arquivar ${ids.length}</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+}
+function arquivarCartoesSelecionadosConfirmado(){
+  const ids = idsDeCartoesSelecionados();
+  ids.forEach(id => {
+    const c = (db.flashcards||[]).find(x=>x.id===id);
+    if(!podeMexerNoCartao(c)) return;
+    c.status = "arquivado";
+    nuvemRegistrar({cartaoPessoal:c});
+  });
+  state.filtroRota.cartoesSelecionados = {};
+  saveState(); fecharModal(); toast(ids.length + " cartão(ões) arquivado(s)."); render();
+}
+function sugerirCartoesSelecionadosParaEquipe(){
+  const u = usuarioAtual();
+  const cartoes = idsDeCartoesSelecionados().map(id => (db.flashcards||[]).find(x=>x.id===id)).filter(c => c && c.usuarioId === u.id);
+  const elegiveis = cartoes.filter(c => !c.sugeridoParaEquipe || c.decisaoEm);   // os que já esperam decisão ficam como estão
+  if(!elegiveis.length){ toast("Os cartões marcados já estão esperando a decisão da equipe.", "err"); return; }
+  elegiveis.forEach(marcarCartaoComoSugerido);
+  state.filtroRota.cartoesSelecionados = {};
+  saveState();
+  const jaEsperavam = cartoes.length - elegiveis.length;
+  toast(elegiveis.length + " cartão(ões) enviado(s) para aprovação da coordenação/professor" + (jaEsperavam ? " · " + jaEsperavam + " já estava(m) esperando decisão" : "") + ". Continuam no seu baralho enquanto isso.");
+  render();
 }
 function atualizarFiltroFlash(){
   const f = state.filtroRota.flashcards = state.filtroRota.flashcards || {};
@@ -494,14 +556,17 @@ function renderCartoesDoGrupo(u){
     ${controlesPaginacao(pag, "cartão(ões) do grupo")}
   </div>`;
 }
-function sugerirFlashcardParaEquipe(id){
-  const u = usuarioAtual();
-  const c = (db.flashcards||[]).find(x=>x.id===id);
-  if(!c || c.usuarioId!==u.id){ toast("Cartão não encontrado.", "err"); return; }
+function marcarCartaoComoSugerido(c){
   if(c.grupoId){ c.grupoAntigoId = c.grupoId; delete c.grupoId; }   // um destino por vez
   c.sugeridoParaEquipe = true;
   c.sugeridoEm = hojeISO();
   delete c.decisaoEm; delete c.aprovadoEm; delete c.aprovadoPor; delete c.motivoRecusa;
+}
+function sugerirFlashcardParaEquipe(id){
+  const u = usuarioAtual();
+  const c = (db.flashcards||[]).find(x=>x.id===id);
+  if(!c || c.usuarioId!==u.id){ toast("Cartão não encontrado.", "err"); return; }
+  marcarCartaoComoSugerido(c);
   saveState();
   toast("Cartão enviado para aprovação da coordenação/professor. Ele continua no seu baralho normalmente enquanto isso.");
   render();

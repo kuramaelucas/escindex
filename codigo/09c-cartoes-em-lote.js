@@ -364,9 +364,10 @@ function adicionarBaralhoIA(){
    gravado e a mensagem diz qual. */
 function htmlLinhaCartaoLista(frente, verso){
   return `<tr>
+    <td class="text-xs muted texto-dir" data-lista="numero"></td>
     <td><textarea class="textarea" data-lista="frente" style="min-height:52px" placeholder="Pergunta" onpaste="colarNaListaDeCartoes(event, this)">${escapeHtml(frente||"")}</textarea></td>
     <td><textarea class="textarea" data-lista="verso" style="min-height:52px" placeholder="Resposta">${escapeHtml(verso||"")}</textarea></td>
-    <td><button class="icon-btn" title="Tirar esta linha" onclick="this.closest('tr').remove()">${iconeSvg("trash")}</button></td></tr>`;
+    <td><button class="icon-btn" title="Tirar esta linha" onclick="removerLinhaDaLista(this)">${iconeSvg("trash")}</button></td></tr>`;
 }
 function abrirCartoesEmLista(){
   abrirModal(`
@@ -377,17 +378,45 @@ function abrirCartoesEmLista(){
         <option value="" selected>Sem assunto — miscelânea (minhas anotações)</option>
         ${opcoesDeAssuntoAgrupadas("")}
       </select></div>
-    <div class="table-wrap"><table><thead><tr><th>Frente</th><th>Verso</th><th></th></tr></thead>
-      <tbody id="listaCartoesLinhas">${Array.from({length: 5}, () => htmlLinhaCartaoLista("", "")).join("")}</tbody></table></div>
+    <div class="table-wrap"><table><thead><tr><th title="Número da linha">#</th><th>Frente</th><th>Verso</th><th></th></tr></thead>
+      <tbody id="listaCartoesLinhas" oninput="atualizarContagemDaLista()" onkeydown="teclaNaListaDeCartoes(event)">${Array.from({length: 5}, () => htmlLinhaCartaoLista("", "")).join("")}</tbody></table></div>
+    <p class="text-sm mt-1" id="listaCartoesContagem" aria-live="polite"></p>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="adicionarLinhasNaLista(3)">${iconeSvg("plus")} Mais linhas</button>
       <button class="btn btn-primary" onclick="salvarCartoesEmLista()">Criar os cartões</button>
       <button class="btn btn-ghost" onclick="fecharModalComConfirmacao()">Cancelar</button>
     </div>`, "lg");
+  atualizarContagemDaLista();
 }
 function adicionarLinhasNaLista(n){
   const corpo = document.getElementById("listaCartoesLinhas"); if(!corpo) return;
   corpo.insertAdjacentHTML("beforeend", Array.from({length: n}, () => htmlLinhaCartaoLista("", "")).join(""));
+  atualizarContagemDaLista();
+}
+function removerLinhaDaLista(botao){ botao.closest("tr").remove(); atualizarContagemDaLista(); }
+/* Numera as linhas (o número é o da linha, o mesmo que a mensagem de erro de
+   "Criar os cartões" cita) e conta quantos cartões a lista já tem: só vale
+   linha com frente e verso, que é o que será gravado. */
+function atualizarContagemDaLista(){
+  const linhas = [...document.querySelectorAll("#listaCartoesLinhas tr")];
+  let prontos = 0, pelaMetade = 0;
+  linhas.forEach((tr, i) => {
+    tr.querySelector('[data-lista="numero"]').textContent = i + 1;
+    const f = tr.querySelector('[data-lista="frente"]').value.trim(), v = tr.querySelector('[data-lista="verso"]').value.trim();
+    if(f && v) prontos++; else if(f || v) pelaMetade++;
+  });
+  const el = document.getElementById("listaCartoesContagem"); if(!el) return;
+  el.innerHTML = "<strong>" + prontos + "</strong> cartão(ões) na lista" + (pelaMetade ? ' · <span class="texto-alerta">' + pelaMetade + " linha(s) pela metade</span>" : "") + ' <span class="muted">(' + linhas.length + " linha(s))</span>";
+}
+/* Tab saindo do verso da última linha abre uma linha nova e já cai na frente
+   dela: dá para digitar a lista inteira sem tocar no mouse. */
+function teclaNaListaDeCartoes(ev){
+  if(ev.key !== "Tab" || ev.shiftKey || ev.target.dataset.lista !== "verso") return;
+  const corpo = document.getElementById("listaCartoesLinhas");
+  if(!corpo || ev.target.closest("tr") !== corpo.lastElementChild) return;
+  ev.preventDefault();
+  adicionarLinhasNaLista(1);
+  corpo.lastElementChild.querySelector('[data-lista="frente"]').focus();
 }
 /* Colar texto com Tab ou várias linhas na coluna Frente: cada linha vira um
    cartão (antes do Tab, a frente; depois, o verso), a partir da linha onde se
@@ -405,6 +434,7 @@ function colarNaListaDeCartoes(ev, campo){
     linha.querySelector('[data-lista="verso"]').value = v;
     linha = linha.nextElementSibling;
   });
+  atualizarContagemDaLista();
 }
 function salvarCartoesEmLista(){
   const assuntoId = (document.getElementById("listaAssunto") || {}).value || "";
