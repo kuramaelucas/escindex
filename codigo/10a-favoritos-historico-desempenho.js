@@ -657,8 +657,8 @@ function praticarPrioridadesDaProva(){
   iniciarSessaoComLista(itens, "pratica");
 }
 
-function renderDesempenho(){
-  const u = usuarioAtual();
+/* Os números do Meu Desempenho, sem HTML (a tela só desenha o que está aqui). */
+function dadosDoDesempenho(u){
   const ctx = ctxDesempenho();
   const porArea = desempenhoPorArea(u.id);
   const calibracao = calibracaoConfianca(u.id);
@@ -676,6 +676,11 @@ function renderDesempenho(){
   const somaMeses = !ehDiario ? dados.itens.reduce((acc,m)=>({total:acc.total+m.total, acertos:acc.acertos+m.acertos}), {total:0,acertos:0}) : null;
   const mesesComEstudo = !ehDiario ? dados.itens.filter(m=>m.total>0) : [];
   const melhorMes = mesesComEstudo.length ? mesesComEstudo.slice().sort((a,b)=>b.taxa-a.taxa)[0] : null;
+  return {ctx, porArea, calibracao, totalGeral, falsaSeguranca, ritmo, cartoes, dados, rotuloPeriodo, ehDiario, resumo14, resumo30, resumoAtual, somaMeses, mesesComEstudo, melhorMes};
+}
+function renderDesempenho(){
+  const u = usuarioAtual();
+  const {ctx, porArea, calibracao, totalGeral, falsaSeguranca, ritmo, cartoes, dados, rotuloPeriodo, ehDiario, resumo14, resumo30, resumoAtual, somaMeses, mesesComEstudo, melhorMes} = dadosDoDesempenho(u);
 
   const graficoAreas = graficoBarrasVerticaisSvg(porArea.map(a=>({
     label: abreviarArea(a.nome), taxa: a.taxa, total: a.total, acertos: a.acertos,

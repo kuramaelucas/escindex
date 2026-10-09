@@ -148,7 +148,7 @@ const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de e
   favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil e configurações", "meu-grupo":"Meu Grupo",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", 
   taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
-  "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar",
+  "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar", "pendencias-conteudo":"Pendências de conteúdo",
   blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários",
   "enviar-avisos":"Enviar Avisos", "painel-turma":"Turma" };
 function tituloDaRota(r){ return ROUTE_TITLES[r] || CONFIG.nomePlataforma; }
@@ -268,6 +268,7 @@ function render(){
     case "importar-questoes": conteudo = renderImportarQuestoes(); break;
     case "central-provas": conteudo = renderCentralProvas(); break;
     case "atualizar-questoes": conteudo = renderAtualizarQuestoes(); break;
+    case "pendencias-conteudo": conteudo = renderPendenciasDeConteudo(); break;
     case "blocos": conteudo = renderBlocosConfig(); break;
     case "config-geral": conteudo = renderConfigGeral(); break;
     case "feedback-usuarios": conteudo = renderFeedbackUsuarios(); break;
@@ -453,6 +454,7 @@ function navItemsParaPapel(papel){
     {id:"importar-questoes", label:"Enviar Provas e Questões", icon:"upload"},
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
     {id:"atualizar-questoes", label:"Questões para Atualizar", icon:"refresh"},
+    {id:"pendencias-conteudo", label:"Pendências de conteúdo", icon:"alert"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
   ];
@@ -462,6 +464,7 @@ function navItemsParaPapel(papel){
     {id:"importar-questoes", label:"Importar Questões", icon:"upload"},
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
     {id:"atualizar-questoes", label:"Questões para Atualizar", icon:"refresh"},
+    {id:"pendencias-conteudo", label:"Pendências de conteúdo", icon:"alert"},
     {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
     {id:"criar-simulado", label:"Criar Simulado", icon:"plus"},
     {id:"material-pdf", label:"Material em PDF", icon:"printer"},
@@ -517,7 +520,7 @@ const GRUPO_DO_ITEM_ALUNO = {estudar:"Estudar", revisao:"Estudar", flashcards:"E
   "importar-questoes":"Contribuir"};
 const GRUPOS_MENU_EQUIPE = ["Conteúdo","Provas","Dúvidas e revisão","Gestão"];
 const GRUPO_DO_ITEM_EQUIPE = {"banco-questoes":"Conteúdo", "importar-questoes":"Conteúdo", "central-provas":"Conteúdo",
-  "atualizar-questoes":"Conteúdo", taxonomia:"Conteúdo", flashcards:"Conteúdo", "revisao-formatacao":"Conteúdo",
+  "atualizar-questoes":"Conteúdo", "pendencias-conteudo":"Conteúdo", taxonomia:"Conteúdo", flashcards:"Conteúdo", "revisao-formatacao":"Conteúdo",
   "criar-simulado":"Provas", "material-pdf":"Provas", simulados:"Provas",
   "fila-duvidas":"Dúvidas e revisão", "revisao-dificeis":"Dúvidas e revisão",
   "painel-turma":"Gestão", blocos:"Gestão", "feedback-usuarios":"Gestão", "enviar-avisos":"Gestão", "config-geral":"Gestão"};
@@ -526,7 +529,7 @@ const GRUPO_DO_ITEM_EQUIPE = {"banco-questoes":"Conteúdo", "importar-questoes":
    fumaça, notificação que aponta para ela). Item só se funde quando a pessoa
    tem pelo menos duas irmãs no menu; sozinho, continua como era. */
 const FAMILIAS_DO_MENU = [
-  {label:"Provas e importação", icon:"archive", abas:{"importar-questoes":"Importar", "central-provas":"Central de Provas", "atualizar-questoes":"Para atualizar"}},
+  {label:"Provas e importação", icon:"archive", abas:{"importar-questoes":"Importar", "central-provas":"Central de Provas", "atualizar-questoes":"Para atualizar", "pendencias-conteudo":"Pendências"}},
   {label:"Dúvidas e qualidade", icon:"message", abas:{"fila-duvidas":"Fila de Dúvidas", "revisao-dificeis":"Questões Difíceis"}},
 ];
 function familiaDaRota(rota, nav){

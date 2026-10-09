@@ -764,7 +764,7 @@ const PERMISSAO_DA_ROTA = {
   "usuarios":"usuarios", "config-geral":"config", "blocos":"blocos",
   "aprovar-cadastros":"cadastros", "feedback-usuarios":"cadastros", "taxonomia":"taxonomia",
   "material-pdf":"conteudo", "central-provas":"conteudo", "painel-turma":"turma",
-  "atualizar-questoes":"conteudo", "enviar-avisos":"avisos",
+  "atualizar-questoes":"conteudo", "pendencias-conteudo":"conteudo", "enviar-avisos":"avisos",
 };
 function nivelAdminDe(usuario){
   if(!usuario || usuario.papel!=="admin") return null;

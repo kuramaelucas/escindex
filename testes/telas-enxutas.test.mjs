@@ -69,3 +69,26 @@ test("Meu Desempenho: flashcards e ritmo fechados com o resumo à vista; abrir l
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("os números das telas saem de funções de dados, sem desenhar a tela", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      const antes = dadosDoInicioAluno(u);
+      const q = questoesParaEstudo(u.id)[0];
+      db.respostas.push({ id: "r-dados", usuarioId: u.id, questaoId: q.id, alternativaEscolhida: q.gabarito, correta: true, data: hojeISO(), confianca: "certeza", origem: "pratica", tentativa: 1 });
+      const depois = dadosDoInicioAluno(u);
+      const d = dadosDoDesempenho(u);
+      return { hoje: [antes.respondidasHoje, depois.respondidasHoje], total: [antes.totalRespostas, depois.totalRespostas],
+        chaves: Object.keys(d).sort(), taxa: d.totalGeral.taxa, ehDiario: d.ehDiario };
+    });
+    assert.deepEqual(r.hoje, [0, 1]);
+    assert.deepEqual(r.total, [0, 1]);
+    assert.ok(["calibracao", "cartoes", "porArea", "ritmo", "totalGeral"].every(k => r.chaves.includes(k)));
+    assert.equal(r.taxa, 100);
+    assert.equal(r.ehDiario, true);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

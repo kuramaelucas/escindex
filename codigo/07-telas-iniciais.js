@@ -479,7 +479,9 @@ function htmlCardProvaAlvo(u){
     <p class="text-xs muted mt-1">${alvo.exata ? "É a data da primeira prova importante que você marcou" : "É o padrão: 1º de dezembro"}.${encurta ? ` Com a prova chegando, as revisões espaçadas voltam em no máximo ${teto} dias (${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta): assim nada que você revisa fica para depois da prova.` : ""}</p>
   </div>`;
 }
-function renderInicioAluno(u){
+/* Só os números da tela inicial do aluno, sem HTML: dá para conferir uma regra
+   (o que conta como "hoje", a sequência de dias) sem desenhar a tela. */
+function dadosDoInicioAluno(u){
   const bloco = getBlocoAtual();
   const respondidasHoje = questoesRespondidasHoje(u.id);
   const meta = metaDoUsuario(u);
@@ -491,6 +493,10 @@ function renderInicioAluno(u){
   const calibracao = calibracaoConfianca(u.id);
   const flashVencidos = resumoFlashcards(u.id).vencidos;
   const emAndamento = sessaoEmAndamentoDe(u);
+  return {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento};
+}
+function renderInicioAluno(u){
+  const {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento} = dadosDoInicioAluno(u);
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p>
   ${bloco && subdivisoesDoBloco(bloco).length ? `<details class="detalhes-bloco text-sm muted"><summary>${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · ver o período dividido" : "Ver o período dividido"}</summary>Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</details>` : ""}</div>

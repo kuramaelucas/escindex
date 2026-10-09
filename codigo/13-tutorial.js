@@ -73,7 +73,7 @@ const TUTORIAL_RAPIDO = {
     { icone:"database", titulo:"Banco de Questões",
       texto:"Todas as questões, com filtros por instituição, ano, área e status. Em <strong>Status › Aguardando imagem</strong> ficam as que dependem de uma figura da prova ainda não anexada — elas não aparecem para os alunos até a imagem chegar." },
     { icone:"archive", titulo:"Importar e Central de Provas",
-      texto:"Traga questões em lote ou uma prova inteira. A Central acompanha cada prova até a publicação, e a conferência aponta gabarito faltando, questão repetida e assunto inexistente." },
+      texto:"Traga questões em lote ou uma prova inteira. A Central acompanha cada prova até a publicação, e a conferência aponta gabarito faltando, questão repetida e assunto inexistente. <strong>Pendências</strong> (aba ao lado) lista, direto do banco, o que ainda falta: figuras, questões desatualizadas, números de prova faltando e assuntos sem cartão." },
     { icone:"plus", titulo:"Simulados e material",
       texto:"<strong>Criar Simulado</strong> monta uma prova para a turma; <strong>Material em PDF</strong> gera listas para imprimir; <strong>Flashcards</strong> cuida do baralho da equipe." },
     { icone:"chart", titulo:"Turma",

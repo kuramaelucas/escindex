@@ -80,7 +80,7 @@ test("telas irmãs: uma entrada no menu, abas no topo, e o item fica ativo em qu
       return { menuAntes, abas, ativa, itemAtivo, rota: state.route,
         itensSoltos: ["Central de Provas", "Questões para Atualizar"].filter(x => document.getElementById("sidebarMenu").innerText.includes(x)) };
     });
-    assert.deepEqual(r.abas, ["Importar", "Central de Provas", "Para atualizar"]);
+    assert.deepEqual(r.abas, ["Importar", "Central de Provas", "Para atualizar", "Pendências"]);
     assert.equal(r.ativa, "Central de Provas");
     assert.match(r.itemAtivo, /Provas e importação/);
     assert.equal(r.rota, "atualizar-questoes");
