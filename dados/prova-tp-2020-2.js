@@ -21,10 +21,10 @@
    palpável pede ultrassonografia) e a 90 (rastreamento do colo do útero: em
    18/08/2025 o Ministério da Saúde passou a usar o teste de DNA-HPV).
 
-   Como prova da graduação, marca `tipoProva:"graduacao"`. A instituição leva
-   o semestre no nome (`banca`) para esta prova não se misturar com as demais
-   aplicações do Teste de Progresso em Provas Antigas, que agrupa por
-   instituição, ano e tipo.
+   Como prova da graduação, marca `tipoProva:"graduacao"`. A instituição é a mesma de todo o Teste de Progresso (`banca`); o semestre
+   vai no campo `semestre`, para esta prova não se misturar com a de outro
+   semestre ou ano em Provas Antigas, que agrupa por instituição, ano,
+   semestre e tipo.
 
    Figuras (imagens de exame, fotomicrografias, ECG, radiografias, tabelas e
    partograma) foram recortadas do caderno e estão em dados/imagens/. Este
@@ -33,7 +33,7 @@
 
 window.EscDados.registrarQuestoes("prova-tp-2020-2", [
 {
-  id:"q-tp20202-001", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:1,
+  id:"q-tp20202-001", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-erros-inatos",
   enunciado:"Criança, 6 meses, nascida de termo, sem intercorrências. Está em aleitamento materno. Apresenta atraso no desenvolvimento neuropsicomotor, convulsões, tremores e espasticidade de membros e dermatite eczematosa difusa. Mãe relata que a criança tem pele e cabelos mais claros que outros membros da família. Essa criança deve apresentar deficiência na enzima hepática:",
   alternativas:[{id:"A",texto:"Tirosina desidrogenase"},{id:"B",texto:"Fenilalanina hidroxilase"},{id:"C",texto:"Fenilalanina isomerase"},{id:"D",texto:"Tirosina dismutase"}],
@@ -46,7 +46,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-002", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:2,
+  id:"q-tp20202-002", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem, 67 anos, tabagista há 48 anos (2 maços/dia), portador de DPOC, diabete melito tipo II e insuficiência renal moderada, chega ao PA com relato de piora da dispneia há duas semanas, que iniciou aos grandes esforços e evoluiu para mínimos esforços. Refere tosse com expectoração abundante de coloração amarelo escuro. Há um dia apresentou febre. Exame físico: tiragem intercostal, expansibilidade torácica diminuída, sinais de hiperinsuflação pulmonar, timpanismo à percussão, frêmito tóraco-vocal aumentado em terço inferior do hemitórax direito. Murmúrios vesiculares difusamente diminuídos com estertores no terço inferior do hemitórax direito. RX: hiperinsuflação pulmonar e opacidade pulmonar no terço inferior do pulmão direito. Gasometria: pH = 7,21; PCO2 = 60 mmHg; PO2 = 84,8 mmHg; HCO3- = 19 mEq/L; BE = -0,5 mEq/L. O distúrbio ácido-básico é:",
   alternativas:[{id:"A",texto:"Acidose mista"},{id:"B",texto:"Acidose respiratória"},{id:"C",texto:"Acidose metabólica"},{id:"D",texto:"Alcalose compensada"}],
@@ -59,7 +59,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-003", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:3,
+  id:"q-tp20202-003", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:3,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
   enunciado:"Homem, 60 anos, apresenta perda de peso progressiva há 3 meses, com ocorrência de sangue no exame de fezes. Foi feita colonoscopia, que encontrou uma massa em sigmoide que, biopsiada, revelou um adenocarcinoma. Foi submetido a colectomia parcial e o resultado do anatomopatológico confirmou um adenocarcinoma de cólon. A avaliação genética do tumor revelou mutação no gene TP53, cuja proteína está relacionada com:",
   alternativas:[{id:"A",texto:"Transdução de sinal"},{id:"B",texto:"Adesão celular"},{id:"C",texto:"Reparo de malpareamento de DNA"},{id:"D",texto:"Controle do ciclo celular"}],
@@ -72,7 +72,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-004", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:4,
+  id:"q-tp20202-004", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-neoplasias",
   enunciado:"Homem, 40 anos, apresenta leucocitose acentuada e condições clínicas que levantam a hipótese diagnóstica de leucemia mieloide crônica (LMC). Uma amostra de medula óssea foi encaminhada para exame do cariótipo, mas no resultado não foram encontradas células em metáfase, solicitando-se repetição do exame, a critério do médico responsável. Diante do insucesso do exame e agravamento do quadro clínico do paciente, agora, o exame genético mais indicado a ser feito, o tipo de amostra e o resultado esperado são:",
   alternativas:[{id:"A",texto:"Exame do cariótipo com bandamento GTG, repetição, em amostra de sangue periférico - Translocação t(9;22)(q34.1;q11.2) - Rearranjo BCR/ABL."},{id:"B",texto:"FISH (Hibridação in situ por Fluorescência), em amostra de células da MO - Translocação t(9;22)(q34;q11.2) - Rearranjo BCR/ABL."},{id:"C",texto:"FISH (Hibridação in situ por Fluorescência) em amostra de células da MO - Translocação t(8;21)(q22;q22) - Rearranjo AML/ETO."},{id:"D",texto:"PCR (Reação em Cadeia da Polimerase) em amostra de células da MO - Presença do rearranjo PML/RARA."}],
@@ -85,7 +85,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-005", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:5,
+  id:"q-tp20202-005", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:5,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-infertilidade",
   enunciado:"Homem, 34 anos, casado, vem à consulta com seu urologista trazendo o resultado do exame de espermograma, apresentado a seguir: - Volume: 2mL (Normal: 2 a 5mL) - Cor: pérola - pH: 7,0 (Normal: 7,0) - Nº/mL: 5x10⁶ /mL (Normal: > 20x10⁶ / mL) - Total: 10x10⁶ /mL (Normal: > 40 x10 6 /mL) - Motilidade: 20% - 3 h - lentos; 30% - 3 h - rápidos; 50% - 3 h - imóveis - Morfologia: 70% (Normal: > 70%) - Leucócitos: 400/mm³ (Normal: até 1000/mm³ ) - Hemácias: 300/mL (Normal: até 1000/mL) O diagnóstico é de:",
   alternativas:[{id:"A",texto:"Teratospermia, que pode impedir o processo de fertilização devido à presença de mais de 50% de espermatozoides anormais no sêmen."},{id:"B",texto:"Azoospermia, que pode impedir o processo de fertilização devido à ausência de espermatozoide no sêmen."},{id:"C",texto:"Oligoastenospermia, que pode comprometer o processo de fertilização devido à diminuição do volume de sêmen ejaculado e da concentração e motilidade espermáticas."},{id:"D",texto:"Espermorragia, que pode comprometer o processo de fertilização devido à presença de sêmen de característica hemorrágica."}],
@@ -98,7 +98,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-006", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:6,
+  id:"q-tp20202-006", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:6,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-doencatrofoblastica",
   enunciado:"Uma gestante procurou seu médico após ter um sangramento vaginal muito escuro. No exame ultrassonográfico, o médico visualizou claramente o útero preenchido por pequenas áreas redondas, escuras, que lembravam cacho-de-uva, e a ausência de um embrião. No exame bioquímico foram encontradas altas doses do hormônio gonadotrofina coriônica. O anexo embrionário envolvido no desenvolvimento dessa doença é:",
   alternativas:[{id:"A",texto:"Saco vitelino"},{id:"B",texto:"Alantoide"},{id:"C",texto:"Âmnio"},{id:"D",texto:"Córion"}],
@@ -111,7 +111,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-007", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:7,
+  id:"q-tp20202-007", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
   imagemUrl:"dados/imagens/q-tp20202-007.jpg",
   enunciado:"Observe a fotomicrografia e responda qual o órgão, seguido pelos tipos celulares apontados pelos números 1, 2 e 3, respectivamente:",
@@ -125,7 +125,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-008", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:8,
+  id:"q-tp20202-008", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-epilepsia",
   enunciado:"Homem, 27 anos, trazido inconsciente ao serviço de emergência, com a informação que apresentou três crises seguidas de convulsões em intervalos livres de consciência. Caracterizado o estado de mal epiléptico, deve-se escolher uma droga para interromper as crises cujo mecanismo de ação seja mediado por:",
   alternativas:[{id:"A",texto:"Potencialização da neurotransmissão gabaérgica cortical."},{id:"B",texto:"Antagonismo de receptores de dopamina na via mesolímbica."},{id:"C",texto:"Agonismo parcial de receptores de serotonina no centro- encéfalo."},{id:"D",texto:"Antagonismo de receptores de glutamato de tipo NMDA no córtex."}],
@@ -138,7 +138,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-009", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:9,
+  id:"q-tp20202-009", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:9,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-hipofise",
   enunciado:"Mulher, 32 anos, queixa de fraqueza, tontura, e perda de peso de 5kg. Relata amenorreia, rarefação dos pelos axilares e pubianos. Apresenta cortisol plasmático de 1,2 micrograma/dL (referência: 6 a 16 micrograma/dL); renina plasmática de 6 mU/L (referência: 5-45 mU/L); sódio sérico de 136 mEq/L (referência: 135 a 145 mEq/L); potássio de 3,8 mEq/L (referência: 3,5 a 5,2 mEq/L). Os quadros clínico e laboratorial da paciente são compatíveis com:",
   alternativas:[{id:"A",texto:"Insuficiência adrenal e gonadal de causa primária."},{id:"B",texto:"Insuficiência adrenal por lesão primária da adrenal."},{id:"C",texto:"Insuficiência adrenal de causa hipofisária."},{id:"D",texto:"Insuficiência gonadal de causa primária."}],
@@ -151,7 +151,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-010", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:10,
+  id:"q-tp20202-010", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   imagemUrl:"dados/imagens/q-tp20202-010.jpg",
   enunciado:"Homem, 64 anos, relata falta de ar, especialmente quando deitado, cansaço que afeta sua capacidade de realizar exercícios e atividades domésticas, fadiga e inchaço nas pernas e tornozelos nos últimos dias. Observe as fotomicrografias 1 e 2 e identifique qual delas é compatível com o quadro apresentado e a principal alteração histológica detectada:",
@@ -165,7 +165,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-011", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:11,
+  id:"q-tp20202-011", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-cirrose",
   enunciado:"Homem, 70 anos, etilista crônico com cirrose hepática, apresenta há 10 dias quadro de confusão mental, perda de atenção e incoordenação motora. Exame físico: desidratado, ictérico e com flapping positivo. Esses sintomas se justificam por:",
   alternativas:[{id:"A",texto:"Altos níveis de amônia que atravessam a barreira hematoencefálica provocam edema e disfunção neuronal."},{id:"B",texto:"Altos níveis de bilirrubina que provocam destruição glial difusa, predominantemente no córtex cerebral."},{id:"C",texto:"Diminuição da osmolaridade intracelular resultante do metabolismo da amônia, causando edema cerebral."},{id:"D",texto:"Ação dos hepatócitos na degradação de toda a amônia do sistema porta, convertendo-a em glutamina e ureia."}],
@@ -178,7 +178,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-012", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:12,
+  id:"q-tp20202-012", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
   imagemUrl:"dados/imagens/q-tp20202-012.jpg",
   enunciado:"Mulher, 48 anos, apresenta duas lesões nodulares no dorso da mão (com aproximadamente 3 e 5 cm) que, aos exames clínicos, mostraram hipoestesia e ausência de sensibilidade térmica. Nervo mediano espessado. Baciloscopia positiva, foi coletado material de biópsia das lesões cutâneas. Na lâmina de pele desta paciente podemos observar:",
@@ -192,7 +192,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-013", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:13,
+  id:"q-tp20202-013", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:13,
   areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-imunodeficiencias",
   enunciado:"Criança, 8 anos, foi admitida no hospital infantil apresentando bronquiectasia e tosse persistente com escarro amarelo-esverdeado. A mãe relatou ao médico que a criança esteve cronicamente doente desde os 2 anos de idade, quando começou a apresentar infecções repetidas nos seios da face, orelha média e pulmões, aparentemente devido a repetidas infecções virais. Na citologia leucocitária, observou-se deficiência de células TCD8 e números normais de células TCD4. A redução do número de linfócitos TCD8 na criança foi provavelmente em decorrência:",
   alternativas:[{id:"A",texto:"Da apresentação de antígenos exógenos e endógenos via MHC-II."},{id:"B",texto:"Da localização do vírus em vesículas endocíticas e formação de complexos com a molécula de MHC-I."},{id:"C",texto:"Da degradação da bactéria em proteassomas e formação de complexos com moléculas de MHC-II."},{id:"D",texto:"Do reconhecimento de PAMP por receptores de reconhecimento de padrões moleculares."}],
@@ -205,7 +205,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-014", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:14,
+  id:"q-tp20202-014", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:14,
   areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-anafilaxia",
   enunciado:"Enquanto trabalhava na coleta de mel no campo, um homem foi atacado por enxame de abelhas africanizadas. Dez minutos depois, sentiu-se tonto e começou a apresentar prurido generalizado pelo corpo e couro cabeludo. Sentiu falta de ar e surgiram várias pápulas pelo corpo. Ao exame físico, apresenta reação urticariforme difusa pelo corpo. É correto afirmar que:",
   alternativas:[{id:"A",texto:"Os sintomas apresentados foram decorrentes da reação de hipersensibilidade localizada no trato respiratório, causando broncoespasmo e aumento da pressão arterial."},{id:"B",texto:"Houve ligação de anticorpos da classe IgA antiveneno de abelha com os receptores para a porção FC da imunoglobulina na superfície dos tecidos."},{id:"C",texto:"Trata-se de uma reação de hipersensibilidade citotóxica, devido à grande quantidade de veneno inoculada no organismo, que causa destruição dos mastócitos e liberação de mediadores vasoativos."},{id:"D",texto:"A reação é causada pela interação do antígeno com anticorpos da classe IgE presentes na superfície de mastócitos e basófilos, levando à sua degranulação e liberação de mediadores vasoativos."}],
@@ -218,7 +218,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-015", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:15,
+  id:"q-tp20202-015", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:15,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
   enunciado:"Desde o final de 2019 e início de 2020 começaram a ser descritos casos de pneumonia na cidade de Wuhan, na China. Logo depois, foi demonstrado por sequenciamento genômico que o agente causador era um novo coronavírus, logo batizado de SARS-CoV-2. O vírus se espalhou pelo mundo e a OMS declarou, em março, um estado de pandemia. O SARS-CoV-2 é, atualmente, classificado no gênero dos beta-coronavírus. Sobre as características da sua partícula, podemos dizer que:",
   alternativas:[{id:"A",texto:"É um vírus não envelopado, pois mantém viabilidade por longos períodos de tempo."},{id:"B",texto:"É um vírus envelopado e que possui um genoma RNA bastante longo."},{id:"C",texto:"Possui como genoma a estrutura de fita dupla do DNA."},{id:"D",texto:"Não possui proteína de superfície capaz de ligar-se a receptores na célula do hospedeiro."}],
@@ -231,7 +231,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-016", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:16,
+  id:"q-tp20202-016", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:16,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
   imagemUrl:"dados/imagens/q-tp20202-016.jpg",
   enunciado:"Mulher, 28 anos, apresenta ocorrência de corrimento vaginal há 6 dias. A paciente é sexualmente ativa com um único parceiro que ela conheceu no mês anterior. Exame ginecológico: vulva e vagina congestas, edemaciadas e doloridas, e apresenta o clitóris e colo do útero inflamados. Foi feito swab do saco posterior, obtendo-se pequena secreção incolor e com mau cheiro, sendo feito teste de Gram que não mostrou bactérias. Realizada citologia vaginal com a coloração de Shorr em aumento de 20 e 100 vezes. O agente causador é:",
@@ -245,7 +245,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-017", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:17,
+  id:"q-tp20202-017", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:17,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Criança, 4 anos, foi levada ao Pronto-Socorro em decorrência de quadro de crise asmática. Foi realizado tratamento com fenoterol inalatório e corticoide endovenoso. Houve melhora do quadro clínico da criança, porém a mãe observou uma aceleração cardíaca. Os efeitos de melhora do quadro clínico e a taquicardia são respectivamente decorrentes da:",
   alternativas:[{id:"A",texto:"Ação direta do fenoterol nos receptores beta 2 adrenérgicos existentes nos brônquios e ação direta do fenoterol em receptores beta 1 presentes no coração."},{id:"B",texto:"Ação indireta do fenoterol por bloqueio da metabolização das catecolaminas nos brônquios e ação direta do fenoterol em receptores alfa adrenérgicos cardíacos."},{id:"C",texto:"Ação direta do corticoide nos receptores beta 2 dos brônquios e ação indireta nos receptores beta 1 cardíacos."},{id:"D",texto:"Ação direta do corticoide nos receptores beta 1 dos brônquios e ação direta do fenoterol em receptores beta 1 cardíacos."}],
@@ -258,7 +258,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-018", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:18,
+  id:"q-tp20202-018", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:18,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"Homem, 42 anos, apresenta febre, tosse e suores noturnos. Exame físico: temperatura elevada, aumento da frequência respiratória, candidíase oral e diminuição dos murmúrios vesiculares na base do pulmão direito. Os exames laboratoriais revelam contagem de células TCD4+ = 60 células/μL (referência: 400 células/μL). O diagnóstico é:",
   alternativas:[{id:"A",texto:"Pneumonite por hipersensibilidade"},{id:"B",texto:"Doença autoimune seguida de pneumonia"},{id:"C",texto:"Pneumonia bacteriana"},{id:"D",texto:"HIV/AIDS com uma possível tuberculose"}],
@@ -271,7 +271,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-019", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:19,
+  id:"q-tp20202-019", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:19,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
   enunciado:"Mulher, 64 anos, hipertensa e tabagista, dá entrada no PS com queixa de formigamento na perna direita e no lado esquerdo do rosto, e dificuldade para andar. Durante a avaliação neurológica, foi observada ptose palpebral e miose à esquerda, hipoestesia dolorosa em tronco e membros à direita e em hemiface à esquerda, sensibilidade vibratória preservada em ambos os lados. Esses sintomas sugerem comprometimento de:",
   alternativas:[{id:"A",texto:"Ramos centrais da artéria cerebral posterior"},{id:"B",texto:"Artéria cerebelar superior"},{id:"C",texto:"Artéria cerebelar inferior posterior"},{id:"D",texto:"Ramos pontinos da artéria basilar"}],
@@ -284,7 +284,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-020", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:20,
+  id:"q-tp20202-020", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:20,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-ira",
   imagemUrl:"dados/imagens/q-tp20202-020.jpg",
   enunciado:"Homem, 57 anos, apresenta diminuição da taxa de filtração glomerular, elevação da creatinina sérica (2,1 mg/dL) e oligúria (350 mL/dia), após ter realizado cintilografia do miocárdio com contraste radiológico. As consequências da nefrotoxicidade estão presentes nas imagens da biópsia renal abaixo e podem ser descritas como:",
@@ -298,7 +298,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-021", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:21,
+  id:"q-tp20202-021", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:21,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   imagemUrl:"dados/imagens/q-tp20202-021.jpg",
   enunciado:"Homem, 52 anos, dá entrada no Pronto Atendimento com queixa de dor precordial em repouso, em aperto, de forte intensidade, com irradiação para membro superior esquerdo, sudorese e palidez cutânea, sem dispneia. Tabagista, portador de hipertensão arterial sistêmica, sem controle adequados. Apresentou o seguinte eletrocardiograma (ECG): O diagnóstico inicial e a conduta imediata são:",
@@ -312,7 +312,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-022", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:22,
+  id:"q-tp20202-022", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:22,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Mulher, 35 anos, procura atendimento por cefaleia e borramento visual, iniciado há 4 horas. É hipertensa desde os 30 anos, fazendo uso de vários medicamentos anti-hipertensivos. PA = 194 x 122 mmHg (média de três mensurações seguidas). Fundoscopia: presença de edema de papila, hemorragias e exsudatos. Qual é a hipótese diagnóstica e o exame para investigação inicial?",
   alternativas:[{id:"A",texto:"Encefalopatia hipertensiva. Tomografia Computadorizada de crânio."},{id:"B",texto:"Encefalite. Punção liquórica."},{id:"C",texto:"Acidente vascular cerebral. Angiotomografia de vasos intracranianos."},{id:"D",texto:"Crise de Feocromocitoma. Tomografia Computadorizada de adrenais."}],
@@ -325,7 +325,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-023", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:23,
+  id:"q-tp20202-023", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:23,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
   imagemUrl:"dados/imagens/q-tp20202-023.jpg",
   enunciado:"Mulher, 25 anos, queixa de fraqueza e formigamento em mãos e pés há 6 meses. Refere tratamento para hipotireoidismo. Exame físico: palidez cutâneo-mucosa e língua careca, sem outras alterações. Hemograma: hemácias = 4,16x106/µL; Hb = 9,4 g/dL; Ht = 29,8%; VCM = 117fL; HCM = 36,8pg; RDW = 22,1%; leucócitos = 2,8x103/µL; neutrófilos = 68%; linfócitos = 24%; monócitos = 4%; eosinófilos = 4%; plaquetas = 80x103/µl. Contagem de reticulócitos relativa 1%; contagem de reticulócitos absoluta 25x109/µl. Esfregaço de sangue periférico: A hipótese diagnóstica mais provável é de anemia:",
@@ -339,7 +339,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-024", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:24,
+  id:"q-tp20202-024", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:24,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
   enunciado:"Homem, 17 anos, queixa de aparecimento, há 10 dias, de equimoses em membros inferiores, atribuído inicialmente a algum trauma não percebido. Há 1 semana apareceram outras lesões no tronco e nos membros superiores, e algumas das lesões antigas aumentaram de tamanho. Há 3 dias notou sangramento gengival ao escovar os dentes. Não notou febre, emagrecimento, adenopatias. Refere boa saúde e não usa medicamentos, mas lembr a de um quadro de “gripe” resolvido há 2 semanas, sem necessidade de uso de qualquer medicação. Hemograma: Hemácias = 4,2 milhões/mm³ Hemoglobina = 12,3 g/dL Hematócrito = 38,2% Leucócitos totais = 6.320/mm³ Plaquetas = 13.000/mm³ O diagnóstico clínico-laboratorial mais provável é:",
   alternativas:[{id:"A",texto:"Pseudoplaquetopenia"},{id:"B",texto:"Púrpura Trombocitopênica Imune"},{id:"C",texto:"Púrpura de Henoch-Schonlein"},{id:"D",texto:"Leucemia Pró-Mielocítica Aguda"}],
@@ -352,7 +352,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-025", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:25,
+  id:"q-tp20202-025", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:25,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-drc",
   enunciado:"Homem, 59 anos, portador de hipertensão arterial sistêmica e diabetes há 15 anos, em tratamento irregular com captopril, hidroclorotiazida e anlodipina, comparece no ambulatório com queixa de dispneia aos médios esforços há 30 dias, associada a náuseas e edema de membros inferiores. Na ocasião da consulta, traz consigo um resultado de hemoglobina com valor de 7,0 g/dL. A principal hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Síndrome Mielodisplásica, de provável etiologia medicamentosa, sendo esplenomegalia um dos achados esperados no exame físico."},{id:"B",texto:"Insuficiência Cardíaca, de provável etiologia isquêmica, devendo ser estratificado com cintilografia de perfusão miocárdica."},{id:"C",texto:"Lesão Renal Aguda, de provável etiologia medicamentosa, sendo o uso do captopril um fator desencadeante da doença."},{id:"D",texto:"Doença Renal Crônica, de provável etiologia diabética, devendo ser confirmado com exame de urina, dosagem de creatinina e ultrassom renal."}],
@@ -365,7 +365,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-026", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:26,
+  id:"q-tp20202-026", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:26,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
   imagemUrl:"dados/imagens/q-tp20202-026.jpg",
   enunciado:"Homem, 50 anos, portador de diabete melito tipo 2 em tratamento com insulina, é atendido na UPA com quadro de febre não aferida, dor, edema e vermelhidão em membro inferior direito há 2 dias. Foto do membro afetado: O diagnóstico e a conduta são:",
@@ -379,7 +379,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-027", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:27,
+  id:"q-tp20202-027", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:27,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"Homem, 25 anos, tem diagnóstico de infecção pelo HIV há 5 anos e nunca fez acompanhamento médico, por escolha própria. Há três dias apresentou um episódio de crise convulsiva e notou perda de força à direita. Refere que vem perdendo peso e está com 10kg a menos do que o habitual. Tomografia de crânio: presença de lesão hipodensa, com edema e efeito de massa, com reforço em anel, após injeção de contraste endovenoso. Exames laboratoriais: carga viral do HIV = 160.000 cópias/mL (log. 5,20) e contagens de TCD4+ = 180 células/mm³ e TCD8+ = 1117 células/mm³ . A principal hipótese diagnóstica para o quadro neurológico é:",
   alternativas:[{id:"A",texto:"Leucoencefalopatia multifocal progressiva"},{id:"B",texto:"Neurocriptococose"},{id:"C",texto:"Linfoma primário do cérebro"},{id:"D",texto:"Neurotoxoplasmose"}],
@@ -392,7 +392,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-028", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:28,
+  id:"q-tp20202-028", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:28,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Homem, 30 anos, refere que há 3 dias está apresentando febre (38-39ºC) e manchas vermelhas pelo corpo, não pruriginosas. Relata também inapetência, mal-estar e cansaço. Exame físico: exantema em placas, principalmente em tronco e envolvimento palmo plantar, não pruriginoso; lesão ulcerada, borda elevada, não dolorosa, na região lateral esquerda da língua; micropoliadenopatia na região cervical anterior e posterior, móveis e indolores; fígado palpável a 2cm do rebordo costal direito e baço não palpável. A principal hipótese diagnóstica e o tratamento são:",
   alternativas:[{id:"A",texto:"Dengue; hidratação e repouso"},{id:"B",texto:"Sífilis secundária; penicilina benzatina"},{id:"C",texto:"Paracoccidioidomicose; itraconazol"},{id:"D",texto:"Doença de Behçet; dexametasona"}],
@@ -405,7 +405,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-029", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:29,
+  id:"q-tp20202-029", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:29,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-adrenal",
   imagemUrl:"dados/imagens/q-tp20202-029.jpg",
   enunciado:"Mulher, 30 anos, em avaliação de obesidade, refere amenorreia há 6 meses, hipertensão arterial, diabete melito, osteoporose. Está também em uso de antipsicóticos. Exames laboratoriais: K+ = 2,5 mEq/L; cortisol após uso de 1mg de dexametasona = 5,5 mcg/dL. As fotografias a seguir são da paciente no dia da consulta: A próxima etapa da investigação é solicitar:",
@@ -419,7 +419,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-030", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:30,
+  id:"q-tp20202-030", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:30,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-humor",
   enunciado:"Adolescente, 15 anos, apresenta há 2 meses sintomas de tristeza, anedonia, choro, irritabilidade, sentimento de inferioridade, hipersonia e aumento do apetite (especialmente para doces), chegando a ganhar 5kg no período. Nega ideação suicida. Medicada com Fluoxetina 20 mg/dia. Após uma semana começou a apresentar humor exaltado, logorreica, taquipsiquismo, diminuição da necessidade de sono, hipersexualidade e postura sedutora à consulta, falando a todo momento que era “a garota mais desejada da escola”. A conduta mais adequada para o momento é:",
   alternativas:[{id:"A",texto:"Aumento da Fluoxetina para 40 mg/dia."},{id:"B",texto:"Suspensão da Fluoxetina e introdução de Risperidona 2 mg/dia."},{id:"C",texto:"Suspensão da Fluoxetina e introdução de Haloperidol 5 mg/noite."},{id:"D",texto:"Suspensão da Fluoxetina e introdução de Carbonato de Lítio."}],
@@ -432,7 +432,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-031", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:31,
+  id:"q-tp20202-031", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:31,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   imagemUrl:"dados/imagens/q-tp20202-031.jpg",
   enunciado:"A imagem radiológica a seguir está geralmente associada a:",
@@ -446,7 +446,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-032", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:32,
+  id:"q-tp20202-032", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:32,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatites",
   enunciado:"Mulher, 23 anos, procurou a Unidade Básica de Saúde queixando-se de que, há três dias, sentiu mal-estar no corpo, que interpretou como sendo “uma gripe” que melhorou com uso de antigripal. Há um dia, notou urina muito escura que manchou a roupa, e que seus olhos ficaram amarelados. Exame físico: icterícia 2+/4+, fígado palpado a 3cm da borda costal direita, doloroso e com superfície lisa. Diante desse quadro, o diagnóstico funcional (sindrômico) mais provável é colestase:",
   alternativas:[{id:"A",texto:"Extra-hepática, de causa adquirida por processo neoplásico."},{id:"B",texto:"Intra-hepática, de causa mecânica por lesão canalicular."},{id:"C",texto:"Extra-hepática, de causa adquirida por obstrução do canal colédoco."},{id:"D",texto:"Intra-hepática, de causa metabólica com lesão hepatocelular."}],
@@ -459,7 +459,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-033", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:33,
+  id:"q-tp20202-033", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:33,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mulher, 20 anos, parda, apresenta cansaço e fadiga há cerca de 3 semanas, com piora gradativa. Perda de peso de 3kg nesse período, sem mudar a alimentação. Nos últimos 3 dias teve febre, dois ou três picos por dia, até 37,9ºC, que cedia com analgésico comum. Há 1 dia começou a ter dor torácica de moderada intensidade e dispneia ventilatória dependentes. Exame físico: discreto exantema nas regiões malares e dorso do nariz, afebril, PA = 120 x 80 mmHg, FC = 110 bpm, ausência de adenomegalias ou hepatoesplenomegalia, bulhas cardíacas hipofonéticas e murmúrio vesicular diminuído em ambas as bases pulmonares. Radiografia de tórax: aumento da área cardíaca e velamento dos seios costofrênicos bilateralmente. Exames laboratoriais: Hb = 9,8 g/dL, Ht = 29%, Leucócitos totais = 2900/mm³ , 70% neutrófilos, 30% linfócitos, 110.000 plaquetas/mm³ , Fator antinuclear (FAN) = 1:320, padrão nuclear pontilhado grosso. Os exames que devem ser solicitados para confirmar o diagnóstico são:",
   alternativas:[{id:"A",texto:"Fator reumatoide, anti-CCP, crioglobulinas."},{id:"B",texto:"Anticorpo anti-Sm, complementos C3 e C4, urina I."},{id:"C",texto:"Anticorpo antiproteína P ribossomal, anticorpo U3 RNP, anticorpo anti-LKM1."},{id:"D",texto:"Biópsia renal, anti-DNA hélice simples, antimitocôndria."}],
@@ -472,7 +472,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-034", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:34,
+  id:"q-tp20202-034", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:34,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-epilepsia",
   enunciado:"Homem, 64 anos, hipertenso, diabético, trazido à Unidade Básica de Saúde pela família, que o encontrou caído no banheiro com sinais de liberação esfincteriana. Referem que o paciente está “esquecido” e sonolento há 2 dias. Nega traumas ou episódios semelhantes anteriores. A melhor hipótese diagnóstica para o distúrbio paroxístico de consciência deste paciente é:",
   alternativas:[{id:"A",texto:"Ataque isquêmico transitório."},{id:"B",texto:"Síncope da micção no banheiro."},{id:"C",texto:"Crise epiléptica secundária a alterações metabólicas."},{id:"D",texto:"Epilepsia focal secundária a comprometimento vascular."}],
@@ -485,7 +485,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-035", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:35,
+  id:"q-tp20202-035", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:35,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   imagemUrl:"dados/imagens/q-tp20202-035.jpg",
   enunciado:"Homem, 71 anos, há 10 anos apresenta tosse diária com expectoração hialina em pequena quantidade e dispneia aos grandes esforços (mMRC 1). Nega chiado no peito e dor torácica. No ano anterior precisou procurar serviço médico após processo gripal e ficou internado por 48 horas. Tabagista atual de 7 cigarros ao dia e carga tabágica de 70 anos/maço. Exame físico: BEG, corado, eupneico, acianótico, PA = 100 x 70 mmHg, FC = 70 bpm, FR = 20 irpm, SatO2 = 92%, tórax em tonel com murmúrio vesicular globalmente diminuído, bulhas rítmicas e normofonéticas em 2 tempos, sem sopros. Exames realizados: Variável Pré Bd Pós Bd VEF1/CVF 0,46 0,45 VEF1 1,59L (59%) 1,59 (59%) CVF 2,91L (85%) 3,05 (89%) De acordo com o GOLD 2020, a classificação da DPOC nesse doente e o tratamento recomendado são:",
@@ -499,7 +499,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-036", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:36,
+  id:"q-tp20202-036", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:36,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-humor",
   enunciado:"Homem, 26 anos, trazido à Unidade Básica de Saúde por apresentar, há 3 meses, após término de relacionamento, sintomas de tristeza, anedonia, choro, insônia terminal com despertar precoce, sensação de inutilidade e inferioridade, desesperança e ideias de morte. Há 2 semanas o quadro se intensificou e o paciente deixou de assistir às aulas online, ficando isolado no seu quarto. Iniciou quadro de alucinações auditivas de caráter depreciativo. Quando questionado, referiu apresentar planejamento suicida (enforcamento no chuveiro do banheiro), perda do peso e apetite. Seus pais referem que um tio paterno se suicidou há 10 anos. Nesse caso, são fatores de risco para o suicídio:",
   alternativas:[{id:"A",texto:"Sexo masculino e idade."},{id:"B",texto:"Presença de desesperança e histórico familiar de suicídio."},{id:"C",texto:"Presença de tristeza e existência de planejamento suicida."},{id:"D",texto:"Presença de anedonia e de insônia terminal."}],
@@ -512,7 +512,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-037", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:37,
+  id:"q-tp20202-037", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:37,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-neuroendocrinos",
   enunciado:"Na investigação de hipoglicemia em mulher de 33 anos, os seguintes resultados de exames foram constatados: glicemia de jejum = 28, 33 e 36 mg/dL (VR: 70-100 mg/dL); insulinas basais (dosadas juntamente com as glicemias) = 24, 45 e 43 um/L (VR: 2-19); peptídeo C = 0,22 ng/mL (VR: 0,36-3,59). A causa provável da hipoglicemia é:",
   alternativas:[{id:"A",texto:"Uso de sulfonilureia"},{id:"B",texto:"Insulinoma"},{id:"C",texto:"Uso de insulina"},{id:"D",texto:"IGF-II"}],
@@ -525,7 +525,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-038", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:38,
+  id:"q-tp20202-038", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:38,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
   imagemUrl:"dados/imagens/q-tp20202-038.jpg",
   enunciado:"Homem, 42 anos, preto, com queixa de tosse seca e dispneia leve há 2 meses. A ausculta respiratória é normal, porém na radiografia simples de tórax foi identificado alargamento mediastinal e aumento do volume hilar bilateral. Nega febre, perda de peso ou outros sintomas sistêmicos. Imagem da radiografia de tórax na incidência póstero-anterior: O nome do sinal radiográfico e a principal hipótese diagnóstica são:",
@@ -539,7 +539,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-039", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:39,
+  id:"q-tp20202-039", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:39,
   areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-demencia",
   imagemUrl:"dados/imagens/q-tp20202-039.jpg",
   enunciado:"Homem, 75 anos, frágil, passou a residir com a filha há 3 meses, pois até então vinha apresentando várias quedas no domicílio. Há um mês começou a apresentar alteração do comportamento e esquecimento progressivo, e foi feito diagnóstico de demência. Há 10 dias vem apresentando diminuição progressiva da força em dimídio direito. Considerando o quadro do paciente, a imagem que representa os achados da etiologia mais provável é:",
@@ -553,7 +553,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-040", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:40,
+  id:"q-tp20202-040", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:40,
   areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-quedas",
   enunciado:"Mulher, 81 anos, 10 anos de escolaridade, é portadora de hipertensão arterial, demência vascular, doença arterial coronariana, diabete melito, deficiência visual, incontinência urinária e uso de prótese auditiva. Pesava 68kg há 8 meses. Percebe que seu nível de energia está reduzido, com fraqueza e cansaço. Passa 20 horas do dia deitada e não consegue andar uma quadra. Teve queda há dois meses, sem lesões importantes. Faz uso de enalapril, anlodipino, atenolol, metformina, gliclazida, polivitamínico, AAS e sinvastatina. Exame físico: índice de massa corporal (IMC) = 20 kg/m² , peso = 58kg, circunferência de panturrilha = 27cm. Gasta 25 segundos para andar 4,6 metros. MEEM (mini-exame do estado mental) = 22 pontos. Nesta paciente, o diagnóstico de síndrome da fragilidade do idoso se caracteriza por apresentar:",
   alternativas:[{id:"A",texto:"Incontinência urinária, passar 20 horas ao dia deitada, diminuição da velocidade da marcha, IMC de 20 kg/m² ."},{id:"B",texto:"Perda de 10kg em 8 meses, usar 8 medicamentos por dia, 27cm de circunferência da panturrilha, demência."},{id:"C",texto:"Perda de 10kg em 8 meses, redução do nível de energia com cansaço e fraqueza, diminuição da velocidade da marcha, não consegue andar uma quadra."},{id:"D",texto:"Queixa de cansaço e fraqueza, 7 doenças, deficiência sensorial, passar cerca de 20 horas ao dia deitada."}],
@@ -566,7 +566,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-041", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:41,
+  id:"q-tp20202-041", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:41,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-puerperio",
   enunciado:"Recém-nascido (RN), 10 dias de vida, em primeira consulta de rotina na Unidade Básica de Saúde. A mãe, 22 anos, primigesta, teve parto normal a termo, sem intercorrências. O RN está em aleitamento materno exclusivo desde o nascimento. Durante a consulta, o médico observa que a mãe tem aspecto abatido e mostra-se apática. Ela relata que está feliz com o bebê e que tem oferecido os cuidados orientados na maternidade. No entanto, está muito cansada, tem dormido pouco e tem momentos de irritabilidade, principalmente durante a noite, quando o RN chora e suga continuamente o seio, o que a faz pensar que seu leite é insuficiente e que ela não sabe acalmar o bebê. Relata também que tem tido choro fácil e frequente na ausência do marido. O médico escuta com atenção, encoraja a mãe a discutir seus sentimentos e assegura que o RN está bem, com evolução normal de peso, planejando uma reavaliação próxima do binômio mãe-filho. A conduta é:",
   alternativas:[{id:"A",texto:"Espaçar as mamadas ao seio para cada 3 horas."},{id:"B",texto:"Identificar e acionar uma rede de apoio para a mãe."},{id:"C",texto:"Iniciar complementação da amamentação com fórmula infantil."},{id:"D",texto:"Encaminhar a mãe para psicoterapia e iniciar antidepressivos."}],
@@ -579,7 +579,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-042", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:42,
+  id:"q-tp20202-042", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:42,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
   enunciado:"Menino, 4 anos, vem encaminhado ao ambulatório de pediatria com queixa de crescimento exagerado, pilificação pubiana e odor axilar. Peso = 25kg (> p97); estatura = 115cm (> p97); IMC = 18,9 kg/m² (> p97); estadio de Tanner: P3G3; testículos bilateralmente: 8mL (valor normal: < 4mL), de consistência normal; pênis estimulado; velocidade de crescimento: 8 cm/último ano. A idade óssea é de 8 anos. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Tumor testicular"},{id:"B",texto:"Tumor adrenal"},{id:"C",texto:"Puberdade precoce periférica"},{id:"D",texto:"Puberdade precoce central"}],
@@ -592,7 +592,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-043", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:43,
+  id:"q-tp20202-043", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:43,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-sepseneonatal",
   enunciado:"Gestante, 23 anos, chega ao pronto atendimento da maternidade em franco trabalho de parto, com idade gestacional estimada de 36 semanas. Refere ter feito 3 consultas de pré-natal na unidade básica de saúde, iniciadas há 5 semanas. Na última consulta, há 1 dia, o médico recomendou utilização de antibiótico, devido a uma queixa de disúria e aumento de secreção vaginal. Iniciaria o tratamento hoje, mas como teve dores e perda de líquido pela vagina, resolveu procurar o hospital. O parto ocorreu por via vaginal, sem intercorrências. O recém-nascido (RN) apresentou desconforto respiratório na sala de parto e foi encaminhado à unidade de terapia intensiva neonatal, onde evoluiu com quadro clínico e laboratorial compatível com sepse, confirmada por hemocultura coletada com 4 horas de vida. A análise do líquor mostrou: leucócitos = 40/mm³ ; proteínas = 190 mg/dL; glicorraquia = 20 mg/dL (glicemia: 90 mg/dL). Os agentes etiológicos mais prováveis são:",
   alternativas:[{id:"A",texto:"Escherichia coli ou Streptococcus beta-hemolítico do grupo B."},{id:"B",texto:"Streptococcus pneumoniae ou Listeria monocitogenes ."},{id:"C",texto:"Pseudomonas aeruginosa ou S taphylococcus epidermidis ."},{id:"D",texto:"Klebsiella pneumoniae e Staphylococcus aureus ."}],
@@ -605,7 +605,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-044", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:44,
+  id:"q-tp20202-044", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:44,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Lactente hígido, 6 meses, está em aleitamento materno exclusivo. A criança nasceu a termo e com peso adequado; não há nada digno de nota em relação aos seus antecedentes mórbidos. Quanto à suplementação de ferro, a conduta correta é:",
   alternativas:[{id:"A",texto:"Sulfato ferroso 2 mg/kg/dia até os 36 meses de idade."},{id:"B",texto:"Ferro elementar 1 mg/kg/dia até os 24 meses de idade."},{id:"C",texto:"Ferro elementar 1 mg/kg/dia de 12 a 36 meses de idade."},{id:"D",texto:"Sulfato ferroso 1 mg/kg/dia até os 24 meses de idade."}],
@@ -618,7 +618,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-045", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:45,
+  id:"q-tp20202-045", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:45,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   imagemUrl:"dados/imagens/q-tp20202-045.jpg",
   enunciado:"Lactente, 9 meses, nascida a termo com 3.100g, vem a consulta de puericultura na Unidade Básica de Saúde. A mãe relata aleitamento materno exclusivo até os 6 meses, quando voltou a trabalhar. Nesta época introduziu fórmula láctea enriquecida com cereais infantis e açúcar. Aos 7 meses foi introduzida papa salgada no almoço e no jantar, que consistia basicamente de batata com macarrão e carne moída. Dados antropométricos na consulta atual: Peso = 10.300g e Comprimento = 70cm. Considerando as curvas de crescimento preconizadas pela OMS (2006/2007) para a avaliação nutricional de um lactente de 9 meses de idade, o diagnóstico é:",
@@ -632,7 +632,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-046", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:46,
+  id:"q-tp20202-046", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:46,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   imagemUrl:"dados/imagens/q-tp20202-046.jpg",
   enunciado:"Menino, 3 anos, vem ao pronto-socorro trazido pela mãe, que notou 2 picos diários de febre de 37,5ºC nos últimos 3 dias, além de discreta indisposição. Há um dia surgiram manchas vermelhas na face, que progrediram para braços e pernas, e que pioravam com a exposição solar. Exame físico: BEG, corado, hidratado, eupneico, acianótico, anictérico, ativo, temperatura = 37,4ºC. Presença de eritema endurecido na face, intenso em região das bochechas (vide foto abaixo) e exantema maculopapular confluente, aspecto rendilhado com área central clara, simétrico, mais proeminente nas superfícies extensoras de braços e pernas, sem acometer palma e planta dos pés. O agente etiológico desse quadro clínico é:",
@@ -646,7 +646,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-047", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:47,
+  id:"q-tp20202-047", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:47,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
   enunciado:"Lactente, 2 meses, nascido a termo, trazido pela mãe à urgência devido a quadro iniciado há três dias com coriza, lacrimejamento e tosse, evoluindo há 24 horas com irritabilidade, palidez e desconforto respiratório que dificulta a mamada. Exame físico: FR = 78 irpm, FC: 160 bpm. taquidispneico, com tiragem intercostal e subdiafragmática. Ausculta pulmonar: murmúrio vesicular presente, com roncos, sibilos e estertores bilateralmente. SatO2 : 90%. O plano terapêutico a ser elaborado deve incluir:",
   alternativas:[{id:"A",texto:"Máscara de Venturi a 50% e internação em Unidade de Terapia Intensiva."},{id:"B",texto:"Oxigenoterapia com cateter nasal 2 L/min, limpeza nasal com soro fisiológico."},{id:"C",texto:"Ventilação mecânica e internação em Unidade de Terapia Intensiva."},{id:"D",texto:"Oxigenoterapia, considerando o uso de cateter nasal de alto fluxo."}],
@@ -659,7 +659,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-048", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:48,
+  id:"q-tp20202-048", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:48,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Menino, 7 anos, apresenta quadros recorrentes de tosse seca, chiado no peito e cansaço desde os 2 anos de idade, sendo que nos últimos 8 meses, a criança tem acordado à noite dizendo que não consegue respirar direito cerca de três vezes por semana, sintoma que só melhora após o uso de medicação de resgate (salbutamol spray). Relata vários atendimentos na unidade de pronto atendimento pelo mesmo motivo, porém nunca precisou de internação. Última exacerbação há cerca de 15 dias. Refere ainda que sempre foi muito ativa, mas agora não consegue mais participar de brincadeiras de corrida, porque fica cansado e começa a tossir. Há cerca de 6 meses iniciou tratamento com uma “bombinha” de Beclometasona 50mcg, faz uso inalatório com espaçador, 2 jatos a cada 12 horas. Antecedentes familiares: mãe com quadro de asma na infância. Exame físico: BEG, eupneica, FR = 28 irpm, corada, acianótica, hidratada. Ausculta pulmonar: MV presente bilateralmente, sem ruídos adventícios. O nível de controle da asma e a melhor conduta seriam, respectivamente:",
   alternativas:[{id:"A",texto:"Não controlada – Dobrar a dose de corticoide inalatório."},{id:"B",texto:"Não controlada – Associar beta-2 agonista de longa duração + corticoide inalatório."},{id:"C",texto:"Parcialmente controlada – Associar antileucotrieno."},{id:"D",texto:"Parcialmente controlada – Associar beta-2 agonista longa duração + corticoide inalatório."}],
@@ -672,7 +672,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-049", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:49,
+  id:"q-tp20202-049", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:49,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-neoplasias",
   enunciado:"Menino, 8 anos, previamente hígido, com história de febre e dor osteoarticular intermitente, difusa, mais frequente à noite, de forte intensidade, que melhora espontaneamente há 1 semana. Acomete membros superiores e inferiores nas articulações dos joelhos, tornozelos, punhos e cotovelos. Exame físico: regular estado geral, hipocorado 1+/4+. Adenomegalia cervical bilateral, submandibulares e supraclaviculares, com aproximadamente 2 a 3cm, móveis, fibroelásticos, indolores, sem sinais flogísticos. Orofaringe e otoscopia normais. Abdome flácido e plano, ruído hidroaéreo (+), timpânico, com fígado palpável a ± 3cm do rebordo costal direito, superfície lisa e consistência fibroelástica, baço palpável a 3cm do rebordo costal esquerdo. Hemograma: Hemoglobina = 9,0 g/dL (VR > 11,5 g/dL); Leucócitos = 47.200/mm³ (VR = 6.000 a 8.000/mm³ ), neutrófilos = 5.200/mm³ (VR = 1.800 a 8.000/mm³ ), linfócitos 41.500/mm³ (VR = 1.200 a 6000/mm³ , plaquetas = 100.000/mm³ (VR = 150.000 a 400.000/mm³ ). O diagnóstico provável é:",
   alternativas:[{id:"A",texto:"Linfoma"},{id:"B",texto:"Artrite idiopática juvenil"},{id:"C",texto:"Leucemia"},{id:"D",texto:"Artrite séptica"}],
@@ -685,7 +685,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-050", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:50,
+  id:"q-tp20202-050", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:50,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-pediatrica",
   imagemUrl:"dados/imagens/q-tp20202-050.jpg",
   enunciado:"Menino, 6 anos, vem ao Pronto-Socorro com história de dor na região inguinal esquerda e claudicação há mais ou menos 3 meses, com piora há 2 dias após o último treino de futebol. Exame físico: limitação do movimento de abdução da coxa esquerda e hipotrofia muscular em região da coxa esquerda. A figura abaixo mostra a radiografia solicitada (em PA): O diagnóstico provável é:",
@@ -699,7 +699,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-051", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:51,
+  id:"q-tp20202-051", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:51,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-malabsorcao",
   enunciado:"Menina, 2 anos, trazida à Unidade Básica de Saúde com relato de que desde os 9 meses de idade apresenta fezes amolecidas diárias, às vezes líquidas, acompanhada de dor em todo o abdome e distensão abdominal. Não quer se alimentar e está perdendo muito peso. As fezes são fétidas e a criança está mais pálida. Exame físico: regular estado geral, descorada 2+/4+, hidratada, eupneica, emagrecida, normocárdica, afebril. Abdome globoso, distensão abdominal e timpanismo. História pregressa da alimentação: aleitamento materno exclusivo no primeiro mês de vida. Iniciou leite de vaca aos 2 meses, papas de fruta aos 6 meses e papas de carne, legumes e cereais aos 7 meses. O diagnóstico provável é:",
   alternativas:[{id:"A",texto:"Alergia à proteína do leite de vaca"},{id:"B",texto:"Doença celíaca"},{id:"C",texto:"Doença de Crohn"},{id:"D",texto:"Síndrome do intestino irritável"}],
@@ -712,7 +712,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-052", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:52,
+  id:"q-tp20202-052", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:52,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-itu",
   enunciado:"Menino, 6 meses, é levado ao pronto-socorro com febre e irritabilidade há 2 dias, mantendo boa aceitação alimentar e estado geral preservado. Nega vômitos. Sem outras alterações ao exame físico ou anamnese, exceto presença de fimose. Realizada coleta de urina por cateterismo uretral evidenciando Urina 1: pH = 6, densidade = 1.020, nitrito +, esterase leucocitária +, leucócitos = 50/campo. Urocultura em execução. A hipótese diagnóstica e a conduta inicial mais adequada são:",
   alternativas:[{id:"A",texto:"Balanopostite; orientar antissepsia local e indicar antibioticoterapia tópica."},{id:"B",texto:"Infecção do trato urinário; internar paciente e iniciar antibiótico via endovenosa."},{id:"C",texto:"Febre sem sinais localizatórios; internar paciente e solicitar hemograma, líquor e culturas."},{id:"D",texto:"Infecção do trato urinário; iniciar antibioticoterapia oral e retorno para checar urocultura."}],
@@ -725,7 +725,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-053", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:53,
+  id:"q-tp20202-053", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:53,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-cardiopatiascongenitas",
   enunciado:"Menino, 2 anos, previamente hígido, em consulta na Unidade Básica de Saúde, apresentou quadro gripal com febre de 38ºC há 1 dia, sem outros sintomas associados. Exame físico: sopro sistólico de ejeção, vibratório, de intensidade de 2+/6+, audível na borda esternal esquerda inferior, sem irradiação, que diminui de intensidade na posição sentada. Bulhas cardíacas rítmicas em 2 tempos. FC = 114 bpm e FR = 28 irpm. Pulsos simétricos com boa amplitude. A hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Sopro inocente"},{id:"B",texto:"Endocardite bacteriana"},{id:"C",texto:"Comunicação interatrial"},{id:"D",texto:"Comunicação interventricular"}],
@@ -738,7 +738,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-054", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:54,
+  id:"q-tp20202-054", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:54,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-adrenal",
   enunciado:"Menino, 15 anos, apresenta episódios de cefaleia, mal-estar, com palpitação e flushing facial há 3 meses. Esses episódios acontecem duas a três vezes por semana, duram em média 15 a 20 minutos e costumam piorar durante atividade física. Apetite preservado. Antecedentes: nega diabetes mellitus e hipertensão arterial sistêmica. Exame físico: regular estado geral, orientado em tempo e espaço, afebril, acianótico, anictérico, hidratado, FR = 26 irpm, FC = 115 bpm e PA = 170 x 100 mmHg. Murmúrio vesicular presente, sem ruídos adventícios. Bulhas rítmicas normofonéticas sem sopros. A hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Síndrome de Cushing"},{id:"B",texto:"Hipertensão intracraniana"},{id:"C",texto:"Feocromocitoma"},{id:"D",texto:"Aldosteronismo primário"}],
@@ -751,7 +751,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-055", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:55,
+  id:"q-tp20202-055", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:55,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-cefaleias",
   enunciado:"Menino, 8 anos, queixa de cefaleia há 6 meses, holocraniana, não pulsátil, em aperto, às vezes fronto-temporal bilateral, de leve a moderada intensidade, duração de 20 a 30 minutos, de 1 a 2 eventos por semana, geralmente no final da tarde. Nega vômitos ou náuseas. Melhora com o sono e/ou o uso de analgésicos comuns e anti-inflamatórios não hormonais. Não interfere nas atividades desportivas e no desenvolvimento acadêmico. Exame físico: sem alterações. A hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Migrânea sem aura"},{id:"B",texto:"Cefaleia em salvas"},{id:"C",texto:"Vicio de refração"},{id:"D",texto:"Cefaleia tensional"}],
@@ -764,7 +764,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-056", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:56,
+  id:"q-tp20202-056", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:56,
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-refracao",
   enunciado:"Menino, 9 anos, queixa de fotofobia, ardor e hiperemia ocular bilateral, lacrimejamento e cefaleia vespertina quase diária na região frontal. Tem apresentado piora no desempenho escolar. A hipótese diagnóstica e conduta são:",
   alternativas:[{id:"A",texto:"Conjuntivite alérgica, uso de colírio antialérgico e lubrificante ocular."},{id:"B",texto:"Ametropia, com necessidade de uso de lentes corretoras."},{id:"C",texto:"Uveíte, investigar toxoplasmose."},{id:"D",texto:"Emetropia, sem necessidade de lentes corretoras."}],
@@ -777,7 +777,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-057", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:57,
+  id:"q-tp20202-057", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:57,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
   enunciado:"Menina, 18 meses, previamente hígida, chega ao Pronto Atendimento com quadro de febre há 2 dias que evoluiu com vômitos, e está alternando irritabilidade e letargia há 1 dia. Nega quadros semelhantes anteriormente e contato com pessoas doentes. Exame físico: mau estado geral, toxemiada, palidez cutânea e rendilhado cutâneo, FR = 54 irpm; FC = 154 bpm, perfusão periférica de 4 segundos com pulsos finos. A conduta imediata é:",
   alternativas:[{id:"A",texto:"Acesso venoso e drogas vasoativas"},{id:"B",texto:"Oxigenoterapia e drogas vasoativas"},{id:"C",texto:"Acesso venoso e expansão com soro fisiológico"},{id:"D",texto:"Hidratação IV e reposição de eletrólitos"}],
@@ -790,7 +790,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-058", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:58,
+  id:"q-tp20202-058", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:58,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
   enunciado:"Menino, 12 anos, refere Diabete Melito tipo 1 há 5 anos em uso irregular de insulina e dieta inadequada. Chega ao Pronto- Socorro em regular estado geral, sonolento, desidratado, hálito cetônico e dor abdominal intensa com vômitos. FR = 30 irpm, FC = 120 bpm, PA = 120 x 70 mmHg, perfusão periférica de 2 segundos. Exames laboratoriais: Urina1: glicosúria e cetonúria; Glicemia: 450 mg/dL; Gasometria: pH = 7,1; PO2 = 106mmHg; PCO2 = 22mmHg; bicarbonato de sódio = 9 mEq/L; Na+ = 137 mEq/L e K+ = 5,8 mEq/L. A hipótese diagnóstica e conduta imediata são:",
   alternativas:[{id:"A",texto:"Cetoacidose diabética; hidratação IV e insulina IV."},{id:"B",texto:"Cetoacidose diabética; hidratação IV e bicarbonato de sódio IV."},{id:"C",texto:"Estado hiperosmolar hiperglicêmico; hidratação IV e correção da hipercalemia."},{id:"D",texto:"Estado hiperosmolar hiperglicêmico; hidratação IV e insulina IV."}],
@@ -803,7 +803,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-059", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:59,
+  id:"q-tp20202-059", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:59,
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-ambientais",
   enunciado:"Em relação aos acidentes ofídicos, sabe-se que a alteração da coagulação, principalmente o fibrinogênio e o tempo de protrombina (TP), quando alterados, podem indicar que houve inoculação de veneno, embora um resultado negativo não exclua o envenenamento. Diante de um resultado alterado, pode-se excluir um acidente por:",
   alternativas:[{id:"A",texto:"Laquético"},{id:"B",texto:"Crotálico"},{id:"C",texto:"Botrópico"},{id:"D",texto:"Elapídico"}],
@@ -816,7 +816,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-060", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:60,
+  id:"q-tp20202-060", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:60,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-maustratos",
   enunciado:"Menino, 4 meses, apresenta irritabilidade e choro excessivo há algumas semanas, além de equimoses em diversos locais e em diferentes estágios de evolução. Pais decidiram procurar o Pronto-Socorro após observarem recusa alimentar, vômitos e um episódio de convulsão. O achado mais sugestivo para o diagnóstico é:",
   alternativas:[{id:"A",texto:"Petéquias na face"},{id:"B",texto:"Rigidez de nuca"},{id:"C",texto:"Hemorragia retiniana bilateral"},{id:"D",texto:"Hemorragia subdural unilateral"}],
@@ -829,7 +829,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-061", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:61,
+  id:"q-tp20202-061", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:61,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-cuidadosperi",
   enunciado:"Homem, 70 anos, há 60 dias foi vítima de acidente de trânsito que evoluiu com tromboembolismo pulmonar, sendo tratado com anticoagulante (varfarina na dose diária de 5mg). O Índice Internacional Normalizado (INR) se manteve em 2,05. Atualmente necessita de uma cirurgia para reconstrução dos ligamentos do joelho. No manejo perioperatório da anticoagulação, deve-se:",
   alternativas:[{id:"A",texto:"Suspender a varfarina 10 dias antes do procedimento e retornar um dia após a cirurgia."},{id:"B",texto:"Substituir a varfarina por heparina de baixo peso molecular e realizar a cirurgia quando INR < 1,25 e manter a anticoagulação pós-operatória."},{id:"C",texto:"Acrescentar a heparina de baixo peso molecular após 4 horas do término da cirurgia."},{id:"D",texto:"Suspender a varfarina e medicar com vitamina K no pré- operatório para INR < 1,25 e, após 2 dias da cirurgia, retornar com a varfarina."}],
@@ -842,7 +842,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-062", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:62,
+  id:"q-tp20202-062", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:62,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 25 anos, vítima de acidente com motocicleta, dá entrada na unidade de emergência com fratura exposta de tíbia. É levado com urgência ao centro cirúrgico para desbridamento de tecidos desvitalizados e fixação ortopédica. Duas semanas após a cirurgia, evolui com infecção da ferida cirúrgica. Na reabordagem cirúrgica deste paciente, a síntese de planos superficiais deve ser realizada com fio de:",
   alternativas:[{id:"A",texto:"Nylon®"},{id:"B",texto:"Catgut®"},{id:"C",texto:"Algodão"},{id:"D",texto:"Vicryl®"}],
@@ -855,7 +855,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-063", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:63,
+  id:"q-tp20202-063", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:63,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
   enunciado:"Homem, 17 anos, é encaminhado ao hospital terciário de referência com história de dor abdominal há três dias. No primeiro dia a dor era leve e mal definida, acompanhada de um episódio de vômito e hiporexia. Há dois dias a dor se localizou no quadrante inferior direito. Paciente relata que não procurou o hospital antes porque estava isolado, devido ao fato de ter tido contato com um amigo que positivou para a COVID-19. Exame físico: T = 37,8ºC, FC = 126 bpm, PA = 90 x 60 mmHg, dor à descompressão em todo abdome. TC de tórax normal. TC de abdome: apêndice cecal de 1,2cm sem ar na luz e com captação de contraste, com coleção de 140cm 3 ao redor do apêndice e várias coleções na cavidade abdominal. A conduta é:",
   alternativas:[{id:"A",texto:"RT-PCR para o SARS-CoV-2, internar o paciente na enfermaria de pacientes COVID-19, antibioticoterapia."},{id:"B",texto:"Sorologia para SARS-CoV-2, antibioticoterapia, aguardar resultado da sorologia para realizar cirurgia."},{id:"C",texto:"Sorologia para SARS-CoV-2, antibioticoterapia, drenagem de abscesso guiado por TC, apendicectomia após melhora clínica."},{id:"D",texto:"RT-PCR para SARS-CoV-2, cirurgia, antibioticoterapia, hemocultura."}],
@@ -868,7 +868,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-064", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:64,
+  id:"q-tp20202-064", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:64,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
   imagemUrl:"dados/imagens/q-tp20202-064.jpg",
   enunciado:"Menino, 10 dias de vida, 2920g, internado em UTI neonatal para suporte respiratório mecânico devido a grave quadro pulmonar, apresenta encarceramento de hérnia inguinal esquerda, semelhante à figura abaixo. A conduta é:",
@@ -882,7 +882,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-065", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:65,
+  id:"q-tp20202-065", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:65,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
   imagemUrl:"dados/imagens/q-tp20202-065.jpg",
   enunciado:"Homem, 48 anos, natural e procedente da Bahia, trabalhador rural, queixa de disfagia para alimentos sólidos há 6 anos, com piora progressiva. Precisa tomar água para ajudar a ingerir os alimentos. Perda de 5kg neste período. Nega tabagismo ou pirose retroesternal. Ingere bebidas alcoólicas ocasionalmente nos finais de semana. Exame físico: bom estado geral, IMC = 19 kg/m² , sem outras anormalidades. Exame radiológico a seguir. A conduta é: (figura 1: 10 segundos) (figura 2: 5 minutos) (figura 3: 30 minutos)",
@@ -896,7 +896,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-066", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:66,
+  id:"q-tp20202-066", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:66,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
   enunciado:"Mulher, 46 anos, obesa, há 60 dias apresenta episódios de náuseas, intolerância a alimentos gordurosos, com piora há vinte dias e, desde então, dor abdominal. Exame físico: consciente, orientada no tempo e no espaço, atenta, mucosas hidratadas, anictérica, T = 37ºC, FC = 90 bpm, FR = 20 irpm, PA = 125 x 80 mmHg, dor à palpação no hipocôndrio D, ruídos hidroaéreos presentes. Para o diagnóstico, além de exames laboratoriais, é preciso realizar:",
   alternativas:[{id:"A",texto:"Esofagograma"},{id:"B",texto:"RX do trânsito intestinal"},{id:"C",texto:"Ultrassonografia abdominal"},{id:"D",texto:"Videoendoscopia"}],
@@ -909,7 +909,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-067", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:67,
+  id:"q-tp20202-067", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:67,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-diverticulite",
   enunciado:"Homem, 65 anos, apresenta quadro de evacuações com sangue em grande quantidade e com presença de coágulos, seguido de quadro de síncope. Chega à unidade de emergência apresentando evacuações com sangue. Antecedentes pessoais: Hipertensão Arterial Sistêmica (HAS) controlada, lombalgia crônica (uso de AINES). Exame físico: descorado, desidratado, FC = 115 bpm, PA = 90 x 55 mmHg; abdome flácido, dor referida à palpação de mesogastro. Foi realizada ressuscitação volêmica com resposta transitória, retornando à instabilidade hemodinâmica. Paciente foi submetido a lavagem gástrica com refluxo de conteúdo biliar. Foi realizada transfusão de 6 concentrados de hemácias, mantendo quadro de instabilidade após períodos de estabilidade transitória. Endoscopia digestiva alta normal. A hipótese diagnóstica e a conduta são:",
   alternativas:[{id:"A",texto:"Doença diverticular dos cólons - Colectomia total"},{id:"B",texto:"Divertículo de Meckel - Cintilografia com hemácias marcadas"},{id:"C",texto:"Angiodisplasia dos cólons - Colonoscopia de emergência"},{id:"D",texto:"Doença diverticular dos cólons - Colonoscopia com preparo de cólon"}],
@@ -922,7 +922,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-068", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:68,
+  id:"q-tp20202-068", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:68,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
   enunciado:"Lactente, 30 dias de vida, nascido a termo, sexo masculino, peso adequado para a idade ao nascimento, em aleitamento materno exclusivo. Pré-natal sem intercorrências. Mãe relata que o bebê apresenta vômitos iniciados há uma semana, que aumentaram progressivamente em intensidade e frequência, de coloração branca e nos últimos episódios em jato. Houve perda de peso nos últimos dias. Exame físico: desidratação leve, abdome normotenso, com algumas ondas peristálticas no andar superior do abdome. A hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Atresia pilórica"},{id:"B",texto:"Refluxo gastroesofágico"},{id:"C",texto:"Atresia duodenal"},{id:"D",texto:"Estenose hipertrófica de piloro"}],
@@ -935,7 +935,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-069", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:69,
+  id:"q-tp20202-069", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:69,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-arterial",
   enunciado:"Homem, 55 anos, portador de arritmia cardíaca, comparece ao pronto atendimento com dor intensa na perna esquerda e com piora progressiva há 6 horas. Refere discreta perda da sensibilidade nesse membro. Exame físico: diminuição de temperatura nos pés, ausência de pulso femoral, poplíteo e tibial à esquerda, movimentação ativa presente, porém dolorosa com discreta dificuldade. A hipótese diagnóstica é de:",
   alternativas:[{id:"A",texto:"Radiculopatia lombar"},{id:"B",texto:"Oclusão arterial aguda"},{id:"C",texto:"Claudicação intermitente"},{id:"D",texto:"Trombose venosa profunda"}],
@@ -948,7 +948,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-070", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:70,
+  id:"q-tp20202-070", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:70,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-litiase",
   enunciado:"Mulher, 32 anos, com antecedente de litíase obstrutiva de vias urinárias, dá entrada na Emergência com dor lombar à esquerda de forte intensidade, náuseas e vômitos há um dia. Refere hematúria e febre. Exame físico: sinal de Giordano positivo. Os exames laboratoriais e de imagem necessários para fundamentar o diagnóstico são:",
   alternativas:[{id:"A",texto:"Hemograma, urina tipo 1, urocultura, potássio, creatinina, urografia excretora."},{id:"B",texto:"Urina tipo 1, urocultura, ureia, ultrassonografia de abdome total."},{id:"C",texto:"Hemograma, urina tipo I, urocultura, tomografia computadorizada de abdome."},{id:"D",texto:"Sódio, creatinina, urina tipo 1, hemocultura, ressonância magnética de abdome."}],
@@ -961,7 +961,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-071", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:71,
+  id:"q-tp20202-071", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:71,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-prostata",
   enunciado:"Homem, 68 anos, refere jato urinário fraco e entrecortado, esforço para iniciar micção e noctúria há 6 meses. PSA do ano anterior de 1,2 ng/mL. Antígeno Prostático Especifico (PSA) atual é de 2,6 ng/mL. Toque retal: próstata com dimensões de aproximadamente 40g de peso e consistência fibroelástica. Para descartar neoplasia maligna da próstata, deve-se solicitar:",
   alternativas:[{id:"A",texto:"Ressonância magnética multiparamétrica e biópsia prostática."},{id:"B",texto:"Tomografia computadorizada de abdome total e biópsia prostática."},{id:"C",texto:"Ultrassonografia de abdome total e fosfatase alcalina."},{id:"D",texto:"Ressonância magnética multiparamétrica e cintilografia."}],
@@ -974,7 +974,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-072", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:72,
+  id:"q-tp20202-072", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:72,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-escroto",
   enunciado:"Menino, 3 anos, é trazido à consulta de rotina com relato de que um dos testículos não está na bolsa escrotal. Não há história de trauma ou cirurgia prévia. A mãe relata que nunca prestou atenção se os testículos estavam antes na bolsa escrotal. Exame físico: testículo direito palpável na região inguinal, testículo esquerdo tópico; boa exposição da glande. A conduta é:",
   alternativas:[{id:"A",texto:"Testosterona para estimular a descida testicular."},{id:"B",texto:"Ultrassom para posterior definição de cirurgia."},{id:"C",texto:"Reavaliação semestral até 5 anos de idade."},{id:"D",texto:"Indicação de cirurgia o mais breve possível."}],
@@ -987,7 +987,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-073", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:73,
+  id:"q-tp20202-073", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:73,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Homem, 60 anos, apresenta dor e limitação da abdução e fraqueza no braço direito há uma semana, após uma queda na qual bateu o braço. Esse quadro caracteriza lesão do tendão:",
   alternativas:[{id:"A",texto:"do supraespinhal"},{id:"B",texto:"do subescapular"},{id:"C",texto:"do infraespinhal"},{id:"D",texto:"da cabeça longa do bíceps"}],
@@ -1000,7 +1000,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-074", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:74,
+  id:"q-tp20202-074", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:74,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-hidrocefalia",
   imagemUrl:"dados/imagens/q-tp20202-074.jpg",
   enunciado:"Menina, 8 anos, encontra-se internada para tratamento de meningite bacteriana há cinco dias com Ceftriaxone. Hoje, volta a apresentar cefaleia holocraniana e vômitos. Foi realizada tomografia de crânio, apresentada a seguir: A conduta a ser tomada é:",
@@ -1014,7 +1014,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-075", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:75,
+  id:"q-tp20202-075", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:75,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-queimaduras",
   enunciado:"Homem, 35 anos, com peso de 70kg, sofreu queimadura por chama na metade do tronco anterior e todo membro inferior esquerdo. A superfície corporal queimada é de:",
   alternativas:[{id:"A",texto:"36%"},{id:"B",texto:"9%"},{id:"C",texto:"18%"},{id:"D",texto:"27%"}],
@@ -1027,7 +1027,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-076", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:76,
+  id:"q-tp20202-076", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:76,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
   enunciado:"Mulher, 60 anos, refere aparecimento de nódulo na região central do pescoço, notado há cerca de 6 meses. Nega dor local e aumento desde então. Nega tabagismo, etilismo, cirurgias prévias. Exame físico: inspeção cervical e oroscopia sem alterações; à palpação cervical: nódulo de cerca de 2,0cm em topografia de lobo direito de tireoide, de consistência endurecida e móvel à deglutição. A conduta é:",
   alternativas:[{id:"A",texto:"Solicitar TSH e T4 livre, e ultrassom de tireoide com punção por agulha fina, se imagem sugerir malignidade."},{id:"B",texto:"Solicitar tomografia computadorizada de pescoço com contraste endovenoso e punção por agulha fina, se nódulo captante."},{id:"C",texto:"Solicitar TSH e T4 livre, cintilografia de tireoide e biopsia incisional, se nódulo frio."},{id:"D",texto:"Indicar tireoidectomia parcial, tendo em vista o alto risco de malignidade."}],
@@ -1040,7 +1040,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-077", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:77,
+  id:"q-tp20202-077", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:77,
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-complicacoes",
   enunciado:"Mulher, 30 anos, sem comorbidades, submetida a raquianestesia para correção cirúrgica de fratura de tíbia. Doze horas após o procedimento evolui com cefaleia em regiões frontal, occipital e temporal, de moderada intensidade, que piora na posição sentada e ereta, e melhora com decúbito dorsal. A conduta inicial para o tratamento é:",
   alternativas:[{id:"A",texto:"Hidratação, analgésicos e tampão sanguíneo epidural."},{id:"B",texto:"Repouso no leito, hidratação e tampão sanguíneo epidural."},{id:"C",texto:"Repouso no leito, hidratação e analgésicos."},{id:"D",texto:"Analgésicos, cafeína e cola de fibrina epidural."}],
@@ -1053,7 +1053,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-078", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:78,
+  id:"q-tp20202-078", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:78,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
   imagemUrl:"dados/imagens/q-tp20202-078.jpg",
   enunciado:"Homem, 32 anos, vítima de acidente de trânsito em rodovia. Era motorista do carro e, com o impacto, foi lançado sobre o volante do veículo. Foi atendido pelo Serviço Médico Pré- Hospitalar, que iniciou a reposição volêmica com Ringer Lactato e instalou máscara de oxigênio a 10 L/min, colar cervical e prancha rígida. Na chegada à emergência, durante a avaliação primária, queixa-se continuamente de dor torácica e dificuldade para respirar. PA = 80 x 50 mmHg; FC = 136 bpm; SaO2 = 88% com máscara de O2 a 12 L/min. Não há sangramento externo evidente. A ausculta respiratória está diminuída em todo hemitórax direito, com percussão maciça. Não há estase jugular. O FAST é positivo, demonstrando presença de líquido no espaço hepatorrenal. A radiografia de quadril é normal. A radiografia de tórax está representada na imagem abaixo: A conduta é:",
@@ -1067,7 +1067,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-079", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:79,
+  id:"q-tp20202-079", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:79,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
   imagemUrl:"dados/imagens/q-tp20202-079.jpg",
   enunciado:"Paciente retorna ao ambulatório após realização de ponte de safena com o seguinte achado de exame físico: área de deiscência total de pele com granulação no subcutâneo subjacente. Hiperemia leve ao redor da ferida e edema leve do membro. A enfermeira solicita avaliação médica. A conduta em relação à ferida cirúrgica é:",
@@ -1081,7 +1081,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-080", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:80,
+  id:"q-tp20202-080", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:80,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   imagemUrl:"dados/imagens/q-tp20202-080.jpg",
   enunciado:"Homem, 60 anos, é encaminhado à emergência do hospital com quadro de dor abdominal difusa em cólica associado a vômitos e distensão abdominal há 2 dias. Exame físico: desidratado, taquicárdico e afebril. Exame cardiorrespiratório sem alterações. Exame abdominal: cicatriz cirúrgica mediana do apêndice xifoide até a cicatriz umbilical, distensão abdominal, ruídos hidroaéreos aumentados e dor difusa à palpação, mas sem defesa ou dor à descompressão brusca. Radiografias mostradas abaixo: O diagnóstico é de:",
@@ -1095,7 +1095,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-081", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:81,
+  id:"q-tp20202-081", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:81,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
   enunciado:"Mulher, 40 anos, comparece à Unidade Básica de Saúde com queixa de nódulo de mama esquerda há três meses. Pela anamnese, pertence à população de risco habitual para câncer de mama. Ao exame, nódulo 2cm em quadrante súpero-lateral da mama esquerda, não aderido a outras estruturas, móvel. Linfonodos típicos em cadeias axilares. Traz mamografia realizada há um mês, laudo “BI-RADS 3”. O próximo passo propedêutico é:",
   alternativas:[{id:"A",texto:"Repetir mamografia em seis meses."},{id:"B",texto:"Ecografia de mamas."},{id:"C",texto:"Ressonância magnética de mamas."},{id:"D",texto:"Encaminhamento para hospital terciário."}],
@@ -1108,7 +1108,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-082", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:82,
+  id:"q-tp20202-082", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:82,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
   enunciado:"Mulher de 48 anos, nuligesta, apresenta queixa de amenorreia há 8 meses. Ciclos anteriores tinham duração de 35 a 45 dias. Não usa método contraceptivo. Refere insônia, sensação de cansaço e irritabilidade, sem manifestações androgênicas. Nega ganho ou perda de peso. O melhor conjunto de exames para iniciar a investigação da amenorreia é:",
   alternativas:[{id:"A",texto:"Prolactina, TSH e ultrassom transvaginal."},{id:"B",texto:"FSH, LH e TSH."},{id:"C",texto:"FSH, prolactina e ultrassom transvaginal."},{id:"D",texto:"FSH, prolactina e hCG."}],
@@ -1121,7 +1121,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-083", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:83,
+  id:"q-tp20202-083", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:83,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-endometriose",
   enunciado:"Mulher, 42 anos, G3P2A1, em amenorreia há 2 anos, em uso de sistema intrauterino de levonorgestrel, que iniciou por sangramento uterino anormal. Refere que há 6 meses iniciou dor pélvica crônica acíclica, de moderada intensidade, associada a dispareunia de profundidade, que atrapalha suas atividades habituais. Exame físico: nódulo endurecido em região retrocervical de 2cm e doloroso. A melhor conduta neste momento é:",
   alternativas:[{id:"A",texto:"Ultrassom transvaginal com preparo intestinal."},{id:"B",texto:"CA-125, laparoscopia diagnóstica."},{id:"C",texto:"IL-6, ultrassom transvaginal."},{id:"D",texto:"Colonoscopia, ressonância magnética."}],
@@ -1134,7 +1134,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-084", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:84,
+  id:"q-tp20202-084", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:84,
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Adolescente, 15 anos, comparece à Unidade Básica de Saúde referindo que iniciou atividade sexual há 4 meses, com parceiro único e uso irregular de preservativo. Deseja usar outro método contraceptivo. O método mais adequado é:",
   alternativas:[{id:"A",texto:"Anticoncepcional oral combinado."},{id:"B",texto:"Acetato de medroxiprogesterona de depósito trimensal."},{id:"C",texto:"Implante contraceptivo de etonogestrel."},{id:"D",texto:"Contraceptivo com progestagênio isolado oral."}],
@@ -1147,7 +1147,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-085", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:85,
+  id:"q-tp20202-085", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:85,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-infertilidade",
   enunciado:"Mulher, 38 anos, G1P1 (cesárea há 5 anos), vem tentando nova gravidez há 2 anos, porém sem sucesso. Laparotomia por apendicite há 4 anos. Traz citologia oncótica cervical normal de 10 meses atrás e nega qualquer outra queixa. Não apresenta antecedentes familiares dignos de nota. Relata ciclos menstruais a cada 28 a 30 dias, com volume de sangramento normal. Não mudou de parceiro sexual, que tem 40 anos e não apresenta queixas. Relata que apresentam relações sexuais completas uma vez por semana. Os exames físicos geral e ginecológico foram normais. A melhor conduta é:",
   alternativas:[{id:"A",texto:"Não é necessário solicitar exames complementares, pois a paciente já teve uma gestação / Orientar aumentar a frequência de relações sexuais logo após o término da menstruação."},{id:"B",texto:"Dosagens de FSH, prolactina e TSH para a mulher / Ultrassonografia transvaginal / Histerossalpingografia / Espermograma do parceiro."},{id:"C",texto:"Dosagens de FSH, prolactina e TSH para a mulher / Ultrassonografia transvaginal / Espermograma do parceiro."},{id:"D",texto:"Dosagens de FSH, LH, e prolactina para a mulher / Ultrassonografia transvaginal / Histerossalpingografia / Espermograma do parceiro."}],
@@ -1160,7 +1160,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-086", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:86,
+  id:"q-tp20202-086", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:86,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
   enunciado:"Mulher, 30 anos, nuligesta, apresenta colpocitologia oncótica com lesão intraepitelial de alto grau. Exame especular: colo com ectopia friável e teste de Schiller com iodo fraco periorificial. A conduta é:",
   alternativas:[{id:"A",texto:"Repetir colpocitologia oncótica em 6 meses."},{id:"B",texto:"Colher nova citologia, incluindo curetagem de canal endocervical."},{id:"C",texto:"Realizar biópsia da área de iodo negativo/fraco."},{id:"D",texto:"Realizar colposcopia imediatamente."}],
@@ -1173,7 +1173,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-087", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:87,
+  id:"q-tp20202-087", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:87,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-climaterio",
   enunciado:"Mulher, 52 anos, G2P2C0, laqueadura tubária há 20 anos, última menstruação há um ano e meio. Comparece à Unidade Básica de Saúde com queixa de ondas de calor, principalmente à noite, suores e despertar noturno com prejuízo do sono. Sente-se cansada e irritada. Sem outras queixas. Tem hipertensão arterial (Losartana 50mg) e hipotirodismo (Levotiroxina 75mcg/dia). Mãe falecida por AVC aos 65 anos. Avó materna faleceu por câncer de mama aos 70 anos. Última consulta ginecológica há 3 anos. Após avaliação clínica, laboratorial e mamográfica, podemos afirmar que a terapia hormonal:",
   alternativas:[{id:"A",texto:"sistêmica pode ser indicada para essa paciente, sendo a via transdérmica a primeira escolha."},{id:"B",texto:"tópica vaginal é a melhor indicação, devido aos antecedentes pessoais e familiares."},{id:"C",texto:"está contraindicada neste caso, sendo melhor o uso de antidepressivos para alívio dos sintomas vasomotores."},{id:"D",texto:"combinada não deve ser utilizada, devido à associação de estrogênio com piora da hipertensão arterial."}],
@@ -1186,7 +1186,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-088", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:88,
+  id:"q-tp20202-088", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:88,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-caovario",
   enunciado:"Mulher, 60 anos, foi encaminhada para avaliação ginecológica devido a aumento do volume abdominal. Exame físico geral e de mamas normal. Exame ginecológico com massa anexial de difícil avaliação. Tomografia computadorizada: ascite, massa anexial sólido-cística de aproximadamente 10cm, bilateral, e sinais de carcinomatose peritoneal. Exames laboratoriais: aumento importante do CA-125, demais marcadores tumorais normais. Paracentese: positivo para células neoplásicas. A hipótese diagnóstica mais provável e a proposta terapêutica inicial são:",
   alternativas:[{id:"A",texto:"Disgerminoma / Quimioterapia"},{id:"B",texto:"Adenocarcinoma seroso de ovário / Citorredução"},{id:"C",texto:"Teratoma maduro / Ooforectomia bilateral"},{id:"D",texto:"Carcinoma mucinoso de ovário / Radioterapia"}],
@@ -1199,7 +1199,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-089", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:89,
+  id:"q-tp20202-089", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:89,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
   imagemUrl:"dados/imagens/q-tp20202-089.jpg",
   enunciado:"Mulher, 28 anos, em atendimento em Unidade Básica de Saúde, refere corrimento vaginal espesso, prurido vulvovaginal intenso e ardência miccional. Está no 24º dia do ciclo menstrual, nega uso de método contraceptivo e relata estar sem atividade sexual há 6 meses. Exame ginecológico: vulvite intensa, conteúdo vaginal aumentado, esbranquiçado, aderido à parede vaginal e pH = 4,4. Whiff teste negativo. Ao exame a fresco foi observada a imagem a seguir: O melhor tratamento disponibilizado pelo Sistema Único de Saúde para este caso, por via vaginal, é:",
@@ -1213,7 +1213,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-090", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:90,
+  id:"q-tp20202-090", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:90,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
   enunciado:"Mulher, 23 anos, com início da vida sexual há 1 ano. De acordo com as Diretrizes de Rastreio do Câncer do Colo do Útero e a Política Nacional de Imunizações, a conduta quanto à colpocitologia e Prevenção Primária contra Papilomavírus Humano (HPV) é realizar colpocitologia:",
   alternativas:[{id:"A",texto:"A partir dos 25 anos, não vacinar."},{id:"B",texto:"Imediatamente, administrar vacina anti-HPV."},{id:"C",texto:"Imediatamente, vacina anti-HPV se captura híbrida com DNA viral negativa."},{id:"D",texto:"A partir dos 25 anos, vacinar se captura híbrida com DNA viral negativa."}],
@@ -1226,7 +1226,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-091", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:91,
+  id:"q-tp20202-091", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:91,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Gestante, 33 anos, G3P1A1, 12 semanas, durante consulta de pré-natal de risco habitual, são avaliados os resultados dos exames de rotina de pré-natal. O hemograma apresenta os seguintes resultados: hemoglobina = 11,2 g/dL; hematócrito = 34,3%; volume corpuscular médio = 88 fL (nl de 80 a 100 fL), hemoglobina corpuscular média = 29 pg (normal de 28 a 32 pg). A conduta adequada é indicar suplementação diária de ferro:",
   alternativas:[{id:"A",texto:"Nesta consulta com 40 a 60 mg/dia de ferro elementar."},{id:"B",texto:"A partir da 20ª semana, com 200 a 300 mg/dia de ferro elementar."},{id:"C",texto:"A partir da 20ª semana, com 40 a 60 mg/dia de ferro elementar."},{id:"D",texto:"Nesta consulta com 200 a 300 mg/dia de ferro elementar."}],
@@ -1238,7 +1238,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-092", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:92,
+  id:"q-tp20202-092", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:92,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   imagemUrl:"dados/imagens/q-tp20202-092.jpg",
   enunciado:"Parturiente, 26 anos, primigesta, 39 semanas de gestação, portadora de diagnóstico de diabetes melito gestacional, está internada no centro de parto normal com evolução conforme o partograma da figura abaixo. A altura uterina é de 39cm, a cardiotocografia categoria I, e a parturiente está exausta. O diagnóstico do partograma e a conduta obstétrica, respectivamente, são:",
@@ -1252,7 +1252,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-093", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:93,
+  id:"q-tp20202-093", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:93,
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Puérpera G3P3, 28 anos, se encontra no primeiro dia após parto cesárea e bem adaptada ao processo de amamentação. Deseja manter o aleitamento materno exclusivo por pelo menos 6 meses. A paciente deseja utilizar o dispositivo intrauterino (DIU) como método contraceptivo. A conduta a ser adotada após orientações à paciente sobre o método é:",
   alternativas:[{id:"A",texto:"Orientar inserção do DIU de levonorgestrel após retorno das menstruações."},{id:"B",texto:"Orientar inserção do DIU de cobre após retorno das menstruações."},{id:"C",texto:"Realizar inserção do DIU, de cobre ou levonorgestrel, neste momento."},{id:"D",texto:"Realizar inserção do DIU, de cobre ou levonorgestrel, após 48 horas do parto."}],
@@ -1265,7 +1265,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-094", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:94,
+  id:"q-tp20202-094", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:94,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dheg",
   enunciado:"Gestante, 29 anos, primigesta, 31 semanas, procura pronto atendimento obstétrico encaminhada por aumento dos níveis pressóricos, sem queixas. Nega hipertensão arterial crônica. Há uma medida de pressão arterial elevada (140 x 90 mmHg) no cartão de pré-natal, há 2 semanas. Exame físico: PA = 140 x 90 mmHg, FC = 98 bpm, FR = 18 rpm, edema generalizado (3+/4+ em membros inferiores). Exame obstétrico: AU = 29cm, BCF = 148 bpm, contrações uterinas ausentes. Os exames laboratoriais realizados no pronto atendimento estão apresentados abaixo: Exame Laboratorial Resultado Hemoglobina 15,3 g/dL Plaquetas 90.000/µL Ácido Úrico 5,4 mg/dL Creatinina 0,8 mg/dL ALT/TGO 84 UI/L AST/TGP 78 UI/L Relação proteína / creatinina 0,50 mg/mg na urina O diagnóstico é:",
   alternativas:[{id:"A",texto:"Hipertensão gestacional sem sinais de gravidade."},{id:"B",texto:"Pré-eclâmpsia sem sinais de gravidade."},{id:"C",texto:"Hipertensão gestacional com sinais de gravidade."},{id:"D",texto:"Pré-eclâmpsia com sinais de gravidade."}],
@@ -1278,7 +1278,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-095", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:95,
+  id:"q-tp20202-095", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:95,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   imagemUrl:"dados/imagens/q-tp20202-095.jpg",
   enunciado:"Primigesta, 31 anos, com 29 semanas de gestação, teve o diagnóstico de diabete melito gestacional há 1 mês. Retorna à consulta de pré-natal com resultados de perfil glicêmico domiciliar (quadro abaixo). No retorno passado, as glicemias se encontravam dentro da normalidade. Sem queixas gerais ou obstétricas. Refere ingesta nutricional adequada e tem feito caminhadas 5x/semana, conforme orientado pela equipe de saúde. Exame físico geral e obstétrico normais. Está com ganho de peso adequado. A conduta mais adequada para este caso é:",
@@ -1292,7 +1292,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-096", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:96,
+  id:"q-tp20202-096", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:96,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-puerperio",
   enunciado:"Puérpera, 22 anos, G2P2, 6º dia pós-parto cesáreo, procura pronto atendimento obstétrico, com queixa de febre e secreção vaginal fétida há um dia. Em aleitamento materno exclusivo. Exame físico: PA = 110 x 60 mmHg, FC = 88 bpm, FR = 16 irpm, T = 38,7ºC. Útero é palpável na cicatriz umbilical, amolecido e doloroso à palpação. Cicatriz cirúrgica sem alterações. Ao exame especular, apresenta loquiação amarelada em quantidade moderada com odor fétido, e ao toque apresenta colo pérvio. O esquema antimicrobiano correto é:",
   alternativas:[{id:"A",texto:"Vancomicina e gentamicina"},{id:"B",texto:"Clindamicina e metronidazol"},{id:"C",texto:"Clindamicina e gentamicina"},{id:"D",texto:"Vancomicina e meropenem"}],
@@ -1305,7 +1305,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-097", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:97,
+  id:"q-tp20202-097", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:97,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-partopretermo",
   enunciado:"Gestante, G3P2, 35 anos, IG = 35s3d, procura maternidade referindo perda de líquido via vaginal em grande quantidade há 3 horas. Nega contrações ou sangramentos. Fez pré-natal em Unidade Básica de Saúde sem intercorrências clínicas ou obstétricas. Exame físico geral: sinais vitais maternos normais. Altura uterina = 31cm. Atividade uterina ausente. Movimentação fetal presente. Exame especular: saída ativa de grande quantidade de líquido claro com grumos pelo orifício externo do colo. Toque: colo grosso, posterior, dilatado 2cm, apresentação cefálica. Cardiotocografia normal. Hemograma materno coletado hoje é normal. A melhor conduta é:",
   alternativas:[{id:"A",texto:"Conduta expectante e rastreio clínico de infecção."},{id:"B",texto:"Misoprostol via vaginal e penicilina cristalina."},{id:"C",texto:"Reavaliação clínica em dois dias."},{id:"D",texto:"Ocitocina endovenosa e betametasona."}],
@@ -1318,7 +1318,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-098", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:98,
+  id:"q-tp20202-098", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:98,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
   enunciado:"Gestante, 30 anos, G4P3 (3 cesáreas), 35 semanas de gestação, relata sangramento vaginal de moderada intensidade há 30 minutos. Teve dois episódios de sangramento com 29 e 31 semanas. Exame físico: PA = 95 x 55 mmHg, FC = 110 bpm, altura uterina = 32cm, FCF = 155 bpm, ausência de contrações. Exame especular: sangramento intenso pelo colo uterino e coágulos em fundo de saco. O diagnóstico e a conduta, respectivamente, são:",
   alternativas:[{id:"A",texto:"Placenta prévia; corticoterapia e ultrassonografia."},{id:"B",texto:"Descolamento prematuro da placenta; amniotomia e cesárea."},{id:"C",texto:"Placenta prévia; reposição volêmica e cesárea."},{id:"D",texto:"Descolamento prematuro da placenta; ultrassonografia e cesárea."}],
@@ -1331,7 +1331,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-099", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:99,
+  id:"q-tp20202-099", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:99,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-partopretermo",
   enunciado:"Secundigesta, 25 anos, com 32 semanas de gestação, procura pronto atendimento com queixa de contrações há um dia. Pré-natal sem intercorrências. Exame físico: bom estado geral, afebril, PA = 110 x 70 mmHg, altura uterina = 30cm, FCF = 144 bpm, dinâmica uterina presente (3 contrações moderadas/10minutos). Toque vaginal: colo médio, medianizado, pérvio 4cm, bolsa íntegra, apresentação cefálica. Foi iniciada a profilaxia para estreptococo do grupo B. Cardiotocografia normal. A conduta é:",
   alternativas:[{id:"A",texto:"Nifedipina e sulfato de magnésio."},{id:"B",texto:"Nifedipina e corticosteroides."},{id:"C",texto:"Corticosteroides e sulfato de magnésio."},{id:"D",texto:"Corticosteroides e hidratação endovenosa."}],
@@ -1344,7 +1344,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-100", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:100,
+  id:"q-tp20202-100", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:100,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Gestante, 20 anos, G2P1, 31 semanas, retorna à consulta de pré-natal. Apresenta teste treponêmico reagente e VDRL reagente, com titulação de 1/32. A sorologia para sífilis realizada no primeiro trimestre (treponêmico) foi não reagente. Não apresenta lesões dermatológicas ou linfadenopatia. Além do tratamento do parceiro, a conduta correta quanto ao tratamento da gestante é prescrever:",
   alternativas:[{id:"A",texto:"Ceftriaxona 1g/dia, via intramuscular, por 14 dias."},{id:"B",texto:"Penicilina G benzatina 2,4 milhões UI, via intramuscular, semanal, por 3 semanas."},{id:"C",texto:"Ceftriaxona 500 mg/dia, via intramuscular, por 14 dias."},{id:"D",texto:"Penicilina G benzatina 2,4 milhões UI, via intramuscular, dose única."}],
@@ -1357,7 +1357,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-101", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:101,
+  id:"q-tp20202-101", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:101,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-principiossus",
   enunciado:"Com a criação do Instituto Nacional de Previdência Social (INPS) em 1966, uma autarquia vinculada ao Ministério da Previdência e Assistência Social, as mudanças que ocorreram na assistência à saúde no Brasil foram:",
   alternativas:[{id:"A",texto:"Prestação de assistência médico-hospitalar aos trabalhadores urbanos, inseridos no mercado formal de trabalho."},{id:"B",texto:"Incremento de serviços hospitalares públicos para a assistência dos trabalhadores regidos pela Consolidação das Leis Trabalhistas (CLT)."},{id:"C",texto:"Estímulo ao desenvolvimento de serviços ambulatoriais privados para a assistência aos trabalhadores com carteira de trabalho assinada."},{id:"D",texto:"Desenvolvimento de ações de vigilância epidemiológica, sanitária e programas de prevenção contra doenças endêmicas."}],
@@ -1370,7 +1370,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-102", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:102,
+  id:"q-tp20202-102", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:102,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-principiossus",
   enunciado:"Mulher, 50 anos, procura a Unidade Básica de Saúde com queixas características de diabete melito tipo 2. É confirmado o diagnóstico e inicia o segmento ambulatorial. Diante da dificuldade de controle da doença, mesmo com tratamento adequado, é encaminhada para a endocrinologia, porém o tempo de espera para atendimento nessa especialidade é de um ano. No caso descrito, o princípio doutrinário do SUS que NÃO está sendo cumprido é:",
   alternativas:[{id:"A",texto:"Descentralização"},{id:"B",texto:"Universalidade"},{id:"C",texto:"Integralidade"},{id:"D",texto:"Hierarquização"}],
@@ -1383,7 +1383,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-103", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:103,
+  id:"q-tp20202-103", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:103,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-niveisatencao",
   enunciado:"Menina, 6 anos, é levada pela mãe para a terceira consulta em pronto atendimento (PA) nos últimos 3 meses por crises de asma: - Mãe: “Eu só trago ela aqui. Tem um ‘Posto de Saúde’ perto de casa, mas é muito difícil consultar lá. Tenho mais duas crianças e nunca consigo chegar a tempo para conseguir consulta no dia.” - Médica: “Vou consultar a sua filha hoje, mas a senhora precisa agendar uma consulta na UBS. Aqui no PA o tratamento dela se restringe à crise aguda da asma, não conseguimos oferecer outros cuidados de saúde que ela precisa.” Considerando os modelos de atenção à saúde vigentes no Brasil, a orientação da médica do PA foi:",
   alternativas:[{id:"A",texto:"Adequada, pois as ações longitudinais de vigilância à saúde são realizadas na UBS."},{id:"B",texto:"Inadequada, pois os serviços de urgência são porta de entrada do sistema e devem realizar atividades de vigilância à saúde."},{id:"C",texto:"Adequada, pois os serviços de urgência não são porta de entrada do sistema de saúde e não realizam vigilância à saúde."},{id:"D",texto:"Inadequada, pois a UBS não possui estrutura para o atendimento especializado que essa criança necessita."}],
@@ -1396,7 +1396,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-104", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:104,
+  id:"q-tp20202-104", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:104,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-niveisatencao",
   enunciado:"As normativas atuais do SUS propõem que os serviços de saúde sejam organizados de modo a estimular a prática de ações de promoção e de prevenção à saúde sem, contudo, deixar de ofertar ações de caráter curativo. Porém, quando os serviços se organizam de modo a priorizar as ações de caráter curativo, podem-se esperar repercussões em indicadores como:",
   alternativas:[{id:"A",texto:"Aumento da demanda por ações de saúde multiprofissionais."},{id:"B",texto:"Diminuição da mortalidade infantil."},{id:"C",texto:"Diminuição de internações por causas evitáveis."},{id:"D",texto:"Aumento da demanda por consultas médicas."}],
@@ -1409,7 +1409,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-105", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:105,
+  id:"q-tp20202-105", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:105,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
   enunciado:"Os profissionais da saúde na atenção básica, ao realizar exame físico em pacientes com suspeita de infecção pelo SARS- CoV-2, devem higienizar adequadamente as mãos e utilizar os seguintes equipamentos de proteção individual (EPI), de acordo com o Ministério da Saúde:",
   alternativas:[{id:"A",texto:"Protetor facial, máscara cirúrgica ou de tecido, gorro e avental descartáveis."},{id:"B",texto:"Óculos de proteção ou protetor facial, máscara cirúrgica, avental descartável e luvas de procedimento."},{id:"C",texto:"Gorro descartável, óculos de proteção ou protetor facial, máscara N95/PFF2 ou equivalente, avental descartável e luvas de procedimento."},{id:"D",texto:"Máscara N95/PFF2 ou equivalente e luvas de procedimento."}],
@@ -1421,7 +1421,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-106", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:106,
+  id:"q-tp20202-106", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:106,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-financiamento",
   enunciado:"Regulado pela Agência Nacional de Saúde Suplementar (ANS), o setor privado pode participar do SUS de modo complementar vendendo seus serviços conforme previsto na legislação vigente, ou pode operar de forma independente, de modo privado puro ou misto. Sobre a definição das modalidades, classifica-se como Medicina de Grupo:",
   alternativas:[{id:"A",texto:"Hospital Filantrópico"},{id:"B",texto:"Cooperativa Médica"},{id:"C",texto:"Operadora de Plano Privado de Assistência à Saúde"},{id:"D",texto:"Organização Social de Saúde"}],
@@ -1434,7 +1434,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-107", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:107,
+  id:"q-tp20202-107", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:107,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
   enunciado:"No contexto de uma pandemia como a COVID-19, a atuação do médico da Estratégia de Saúde da Família tem como responsabilidade:",
   alternativas:[{id:"A",texto:"Realização de teleatendimento para os casos sintomáticos e ações de promoção e prevenção no território."},{id:"B",texto:"Atendimento dos sintomáticos respiratórios em visita domiciliar, para reduzir risco de transmissão nas unidades de saúde."},{id:"C",texto:"Encaminhamento dos casos suspeitos e manutenção do atendimento de rotina."},{id:"D",texto:"Atendimento e monitoramento de casos suspeitos e ações de promoção e prevenção no território."}],
@@ -1447,7 +1447,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-108", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:108,
+  id:"q-tp20202-108", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:108,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
   enunciado:"Mulher, 33 anos, saudável, comparece à consulta com o ginecologista do Ambulatório Médico de Especialidades (AME) e diz que deseja realizar uma série de exames laboratoriais e de imagem, com a finalidade de garantir sua saúde. Faz exames de sangue e preventivos de câncer de colo de útero anuais desde os 30 anos de idade, trazendo resultados normais. Com base no conceito de prevenção quaternária, o médico deverá:",
   alternativas:[{id:"A",texto:"Solicitar exames de rastreamento para câncer de mama e câncer de colo uterino."},{id:"B",texto:"Esclarecer sobre a não necessidade de solicitar exames e manter seguimento na UBS de referência."},{id:"C",texto:"Solicitar exame de urina, hemograma, glicemia de jejum e eletrocardiograma."},{id:"D",texto:"Solicitar exames laboratoriais e de imagem atendendo à demanda da paciente."}],
@@ -1460,7 +1460,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-109", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:109,
+  id:"q-tp20202-109", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:109,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   imagemUrl:"dados/imagens/q-tp20202-109.jpg",
   enunciado:"A tabela a seguir mostra uma série histórica da razão de mortalidade materna do Brasil e regiões: Tabela X: Razão de mortalidade materna (RMM) - Brasil e Grandes Regiões (2009-2017) Fontes: SIM/SVS/MS e Sistema de Informações sobre Nascidos Vivos (Sinasc)/SVS/MS. Obs.: dados corrigidos utilizando-se a metodologia de vigilância de óbitos de mulher em idade fértil (Brasil, 2018). Assinale a alternativa que contém: o método de cálculo da Razão de Morte Materna (RMM) e a interpretação correta da variação percentual da RMM entre 2009 e 2017:",
@@ -1474,7 +1474,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-110", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:110,
+  id:"q-tp20202-110", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:110,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-niveisatencao",
   enunciado:"“Em nosso país temos um ambiente de transição demográfica acelerada em que as doenças crônicas convivem com outras de causas externas e com as doenças infecciosas. O descompasso entre uma situação de saúde de domínio relativo das condições crônicas com sistemas de atenção à saúde estruturados, prioritariamente, para responder às condições agudas e aos momentos de agudização das condições crônicas de forma fragmentada, episódica e reativa, é diagnosticado como o principal problema contemporâneo dos sistemas de atenção à saúde em todo o mundo e também no Brasil. ” O conceito explícito no texto acima e o modelo de atenção à saúde adequado ao seu enfrentamento são, respectivamente:",
   alternativas:[{id:"A",texto:"Doenças crônicas não transmissíveis; Unidade Básica de Saúde (UBS)."},{id:"B",texto:"Transição epidemiológica; Ambulatório Médico de Especialidades (AME)."},{id:"C",texto:"Tripla carga de doenças; Rede de Atenção à Saúde (RAS)."},{id:"D",texto:"Polarização epidemiológica; Unidade Básica de Saúde (UBS)."}],
@@ -1487,7 +1487,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-111", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:111,
+  id:"q-tp20202-111", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:111,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Objetivando-se estudar a relação entre exposição precoce ao leite de vaca e ocorrência de diabete melito tipo 1 entre menores de 18 anos atendidos em uma unidade de saúde, foi selecionada uma amostra constituída por 128 indivíduos de ambos os sexos. Foram entrevistadas 64 mães de portadores de diabete melito e 64 mães de pacientes sadios. Resultados: 84,4% dos indivíduos diabéticos foram expostos ao leite de vaca antes dos quatro meses de idade, enquanto no grupo de sadios este percentual foi de 64,1%. A análise univariada identificou uma associação estatisticamente significante entre exposição precoce ao leite de vaca e diabete (p = 0,01). Na análise multivariada, essa associação permaneceu e a razão chances estimada foi de 4,09 (IC95%: 1,19 - 14,04; p = 0,01). O tipo de estudo realizado e a conclusão nesse tipo de estudo são, respectivamente:",
   alternativas:[{id:"A",texto:"Caso-controle; não associação entre exposição precoce ao leite de vaca e ocorrência de diabete melito."},{id:"B",texto:"Caso-controle; forte associação entre exposição precoce ao leite de vaca e ocorrência de diabete melito."},{id:"C",texto:"Coorte; forte associação entre exposição precoce ao leite de vaca e ocorrência de diabete melito."},{id:"D",texto:"Coorte; não associação entre exposição precoce ao leite de vaca e ocorrência de diabete melito."}],
@@ -1500,7 +1500,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-112", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:112,
+  id:"q-tp20202-112", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:112,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
   enunciado:"A médica de uma Unidade Básica de Saúde atende um paciente de 21 anos de idade, emagrecido, com queixa de tosse crônica, usuário de drogas e em situação de rua. A hipótese diagnóstica é tuberculose pulmonar. A conduta que ela e sua equipe de saúde devem tomar nesse primeiro momento é:",
   alternativas:[{id:"A",texto:"Encaminhar o paciente para internação compulsória em instituição para dependentes químicos, objetivando garantir alimentação adequada e o início imediato do tratamento para a tuberculose."},{id:"B",texto:"Iniciar imediatamente o Tratamento Diretamente Observado (TDO), que deve ser mantido pelo CREAS/Consultório de Rua e orientar abstinência de drogas."},{id:"C",texto:"Encaminhar o paciente para internação compulsória em hospital geral, para confirmação e tratamento da tuberculose e tratamento da dependência química."},{id:"D",texto:"Realizar exame para detecção do Bacilo de Koch, ofertar a testagem para o HIV, hepatites virais e sífilis e buscar apoio do CREAS/Consultório de Rua."}],
@@ -1513,7 +1513,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-113", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:113,
+  id:"q-tp20202-113", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:113,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"Mulher, 25 anos, 35 semanas de gestação, soropositiva para HIV, com carga viral maior que 1.000 cópias/mL, comparece à UBS para iniciar o pré-natal. A orientação quanto ao tipo de parto que deverá ser realizado, visando diminuir o risco de transmissão vertical do HIV é:",
   alternativas:[{id:"A",texto:"Parto vaginal empelicado no momento oportuno."},{id:"B",texto:"Cesárea eletiva a partir da 38ª semana de gestação."},{id:"C",texto:"Cesárea na fase ativa de trabalho de parto."},{id:"D",texto:"Indução de parto vaginal a partir de 38ª semana."}],
@@ -1526,7 +1526,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-114", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:114,
+  id:"q-tp20202-114", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:114,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
   enunciado:"Mulher, 90 anos, não sabe ler ou escrever, lúcida, mora com uma sobrinha que trabalha fora o dia todo. Há poucos dias encontra-se acamada, com dificuldade para se locomover e fazer uso dos medicamentos prescritos para diabete (insulina), hipertensão e coronariopatia. A sobrinha procurou a UBS solicitando auxílio para o cuidado da tia. Dentro das possibilidades de atuação com maior chance de êxito, a equipe de saúde deve:",
   alternativas:[{id:"A",texto:"Realizar visitas domiciliares uma vez por semana."},{id:"B",texto:"Encaminhar a idosa para um lar de longa permanência."},{id:"C",texto:"Implementar um projeto terapêutico singular."},{id:"D",texto:"Designar um cuidador para se responsabilizar pelo tratamento."}],
@@ -1539,7 +1539,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-115", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:115,
+  id:"q-tp20202-115", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:115,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-saudetrabalhador",
   enunciado:"A relação entre exposição a substâncias e elementos no ambiente ocupacional e o aparecimento de doenças já é bastante conhecida. A American Thoracic Society divulgou recentemente a fração atribuível a fatores de risco ocupacionais para uma série de doenças. A alternativa que associa a doença às profissões de risco é:",
   alternativas:[{id:"A",texto:"Asma ocupacional - padeiros / marceneiros"},{id:"B",texto:"Pneumoconiose - fazendeiros / criadores de pássaros"},{id:"C",texto:"Bronquite crônica - mineiros de carvão / trabalhadores da construção civil"},{id:"D",texto:"Alveolite extrínseca alérgica - trabalhadores expostos a vapores, gases e fumaças"}],
@@ -1552,7 +1552,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-116", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:116,
+  id:"q-tp20202-116", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:116,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-politicasnacionais",
   enunciado:"Considerando a Política Nacional de Atenção Integral à Saúde do Homem de 2009, a estratégia mais adequada para melhorar o acesso da população masculina aos serviços de saúde na atenção básica é:",
   alternativas:[{id:"A",texto:"Priorizar o agendamento de consultas para essa população."},{id:"B",texto:"Aumentar a disponibilidade de consultas em urologia."},{id:"C",texto:"Realizar visitas domiciliares em horário noturno."},{id:"D",texto:"Flexibilizar o horário de funcionamento da unidade de saúde."}],
@@ -1565,7 +1565,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-117", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:117,
+  id:"q-tp20202-117", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:117,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-itu",
   enunciado:"Mulher, 22 anos, procura atendimento na UBS com sinais e sintomas de infecção urinária (cistite) há uma semana. Informa que é a quarta vez que apresenta quadro semelhante nos últimos 6 meses. Trabalha como profissional do sexo. Nega outras queixas. De acordo com as evidências nesse momento, além do tratamento da infecção aguda, deve-se:",
   alternativas:[{id:"A",texto:"Orientar higiene íntima após cada relação sexual."},{id:"B",texto:"Prescrever antibioticoterapia profilática por 6 meses."},{id:"C",texto:"Associar antibióticos tópicos, via vaginal, por 21 dias."},{id:"D",texto:"Indicar uso diário de ducha vaginal."}],
@@ -1578,7 +1578,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-118", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:118,
+  id:"q-tp20202-118", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:118,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilanciasanitaria",
   enunciado:"Gestante, 25 anos, 32 semanas, com diabete melito há 5 anos, desenvolveu pré-eclâmpsia e apresentou quadro convulsivo e descolamento prematuro de placenta. Foi realizado cesárea e a criança nasceu sem manifestar nenhum sinal de vida, com peso de 970 gramas. Após o parto, a mulher se recuperou bem. No preenchimento correto da declaração do óbito nos campos “tipo de óbito ” e “causas da morte”, deve constar:",
   alternativas:[{id:"A",texto:"Tipo óbito: Neonatal. Parte I: A - Hipóxia intrauterina (P20) B - Descolamento prematuro da placenta (abruptio placentae) (O45)."},{id:"B",texto:"Tipo óbito: Fetal. Parte I: A - Descolamento prematuro da placenta (abruptio placentae) (O45) B - Hipóxia intrauterina (P20)."},{id:"C",texto:"Tipo óbito: Fetal. Parte I: A - Hipóxia intrauterina (P20) B - Descolamento prematuro da placenta ( abruptio placentae ) (O45)."},{id:"D",texto:"Tipo óbito: Neonatal. Parte I: A - Descolamento prematuro da placenta (abruptio placentae) (O45) B - Hipóxia intrauterina (P20)."}],
@@ -1591,7 +1591,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-119", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:119,
+  id:"q-tp20202-119", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:119,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-politicasnacionais",
   enunciado:"Mulher, 47 anos, hipertensa, mora com seus quatro filhos e o companheiro que é etilista. Procurou a UBS próxima de sua residência devido a cefaleia persistente há 3 semanas. A enfermeira realizou o atendimento, verificou os sinais vitais (estáveis), porém observou choro silencioso da usuária. Conduziu-a para uma sala reservada, onde pôde ouvi-la atentamente. Ao término da conversa, a enfermeira solicitou apoio do psicólogo do NASF que estava na UBS no momento, que a auxiliou na conduta. A usuária foi liberada para casa com agendamento de consulta médica, orientação de controle da pressão arterial e convite para o grupo de mulheres realizado no centro de convivência do bairro. Nesta cena é possível observar a prática de algumas das diretrizes da Política Nacional de Humanização, instituída em 2003. Assinale a alternativa que contém as diretrizes presentes nesta cena:",
   alternativas:[{id:"A",texto:"Acolhimento, Ambiência, Clínica Ampliada."},{id:"B",texto:"Protagonismo, Valorização do Trabalhador, Transversalidade."},{id:"C",texto:"Acolhimento, Corresponsabilidade e Autonomia dos sujeitos."},{id:"D",texto:"Protagonismo, Transversalidade, Corresponsabilidade."}],
@@ -1604,7 +1604,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
 {
-  id:"q-tp20202-120", banca:"Teste de Progresso NIEPAEM 2º semestre", real:true, tipoProva:"graduacao", ano:2020, numeroNaProva:120,
+  id:"q-tp20202-120", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:120,
   areaId:"area-mps", especialidadeId:"esp-bioetica", assuntoId:"ass-principiosbioetica",
   enunciado:"Homem, 24 anos, recebe o diagnóstico de leucemia mieloide aguda após extensa investigação clínica e laboratorial em um serviço público de saúde. O paciente não aceita este diagnóstico, diz que não acredita nisso e que deseja procurar uma segunda opinião de uma junta médica antes de prosseguir para o tratamento da doença. Com base no código de ética médica, a melhor atitude do médico responsável deverá ser:",
   alternativas:[{id:"A",texto:"Recusar-se a continuar a prestar atendimento nesse caso."},{id:"B",texto:"Solicitar avaliação do serviço social."},{id:"C",texto:"Providenciar um boletim de ocorrência."},{id:"D",texto:"Aceitar a decisão do paciente."}],

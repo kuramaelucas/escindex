@@ -476,15 +476,17 @@ function renderMapaSessao(sessao){
    (pills) e o que aparece só com a barra expandida (detalhe). */
 function htmlBarraDeQuestoes(o){
   const expandida = !!state.mapaSessaoExpandido;
+  // setas e detalhe existem nos dois estados e o CSS os mostra/esconde: assim
+  // alternarMapaSessao anima a MESMA barra em vez de trocar o HTML (o "pulo")
   return `<div class="barra-questoes${expandida ? " expandida" : ""}" id="${o.id}">
     <div class="barra-questoes-linha">
       <span class="barra-questoes-resumo" title="${escapeHtml(o.titulo || "")}">${o.feitas}/${o.total}</span>
-      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="passarPelaBarra(-1)" aria-label="Questão anterior" title="Questão anterior (a barra acompanha)">‹</button>`}
+      <button class="barra-questoes-seta" onclick="passarPelaBarra(-1)" aria-label="Questão anterior" title="Questão anterior (a barra acompanha)" ${expandida ? "tabindex=\"-1\"" : ""}>‹</button>
       <div class="barra-questoes-trilho" role="navigation" aria-label="Questões do conjunto">${o.pills}</div>
-      ${expandida ? "" : `<button class="barra-questoes-seta" onclick="passarPelaBarra(1)" aria-label="Próxima questão" title="Próxima questão (a barra acompanha)">›</button>`}
+      <button class="barra-questoes-seta" onclick="passarPelaBarra(1)" aria-label="Próxima questão" title="Próxima questão (a barra acompanha)" ${expandida ? "tabindex=\"-1\"" : ""}>›</button>
       <button class="barra-questoes-expandir" onclick="alternarMapaSessao()" aria-expanded="${expandida}" title="${expandida ? "Recolher a barra" : "Expandir: ver todas as questões"}">${iconeSvg("chevron-d")}</button>
     </div>
-    ${expandida ? `<div class="barra-questoes-detalhe">${o.detalhe || ""}</div>` : ""}
+    <div class="barra-questoes-detalhe"><div class="barra-questoes-detalhe-miolo">${o.detalhe || ""}</div></div>
   </div>`;
 }
 /* As setas das pontas da barra passam a questão (anterior/próxima), e o trilho
@@ -514,14 +516,33 @@ function centralizarBarraDeQuestoes(){
     trilho.style.scrollBehavior = anterior;
   });
 }
+/* Expandir/recolher sem redesenhar: a barra que já está na tela troca de
+   classe e o trilho anima a altura do que tinha para a que passa a ter (o
+   detalhe e as setas animam por CSS). Redesenhar trocava o HTML de uma vez,
+   e a barra "pulava". */
 function alternarMapaSessao(){
   state.mapaSessaoExpandido = !state.mapaSessaoExpandido;
-  const s = state.sessaoAtual;
-  const mapa = document.getElementById("mapaDaSessao");
-  if(mapa && s && s.tipo !== "simulado" && !s.finalizada && state.route === "sessao"){
-    mapa.outerHTML = renderMapaSessao(s); centralizarBarraDeQuestoes(); return;
-  }
-  render();
+  const expandida = state.mapaSessaoExpandido;
+  const barra = document.querySelector(".barra-questoes");
+  if(!barra){ render(); return; }
+  const trilho = barra.querySelector(".barra-questoes-trilho");
+  const antes = trilho.offsetHeight;
+  barra.classList.toggle("expandida", expandida);
+  const botao = barra.querySelector(".barra-questoes-expandir");
+  botao.setAttribute("aria-expanded", String(expandida));
+  botao.title = expandida ? "Recolher a barra" : "Expandir: ver todas as questões";
+  barra.querySelectorAll(".barra-questoes-seta").forEach(b => { if(expandida) b.setAttribute("tabindex", "-1"); else b.removeAttribute("tabindex"); });
+  if(!expandida) centralizarBarraDeQuestoes();
+  const depois = trilho.scrollHeight;
+  if(!window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches || antes === depois) return;
+  trilho.style.overflow = "hidden";
+  trilho.style.height = antes + "px";
+  trilho.getBoundingClientRect(); // fixa o ponto de partida antes de animar
+  trilho.style.transition = "height .26s ease";
+  trilho.style.height = depois + "px";
+  const fim = () => { trilho.style.height = trilho.style.transition = trilho.style.overflow = ""; trilho.removeEventListener("transitionend", fim); };
+  trilho.addEventListener("transitionend", fim);
+  setTimeout(fim, 400); // rede de segurança se o transitionend não vier
 }
 /* Vai direto a uma questão da fila — qualquer uma, respondida ou em branco.
    O que a pessoa tinha marcado e riscado em cada questão continua lá, porque
@@ -764,7 +785,7 @@ function renderQuestionCard(q, opts){
       ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}` : "";
   let html = `<div class="qcard">
     <div class="qcard-meta">${classificacao}
-      <span class="qcard-trilha">${escapeHtml(q.banca)} · ${q.ano}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
+      <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
       ${badgeAutoriaQuestao(q)}
       ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-amber" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
       ${(q.banca||"").indexOf("Didático")>=0
@@ -1094,14 +1115,14 @@ function regraDeParametrosObjetivos(){
 function gerarPromptDuvida(q){
   if(ehDissertativa(q)) return "Aja como um médico revisor especialista em provas de residência médica no Brasil.\n\n"+
     "Analise CRITICAMENTE a questão dissertativa abaixo, com base em diretrizes e fontes primárias atuais, e diga se a resposta esperada está correta, completa e atualizada.\n\n"+
-    "--- QUESTÃO ("+q.banca+", "+q.ano+") ---\n"+q.enunciado+"\n\nResposta esperada pela banca: "+(q.respostaEsperada||"(não informada)")+"\nJustificativa atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+
+    "--- QUESTÃO ("+q.banca+", "+anoDaProva(q)+") ---\n"+q.enunciado+"\n\nResposta esperada pela banca: "+(q.respostaEsperada||"(não informada)")+"\nJustificativa atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+
     "Responda de forma estruturada:\n1) A resposta esperada está correta e completa? O que falta ou está desatualizado?\n2) Quais pontos uma resposta de nota máxima precisa trazer?\n3) Quais diretrizes/referências (com nome e, se souber, ano) sustentam isso?\n\n"+
     regraDeParametrosObjetivos();
   const alts = q.alternativas.map(a=>a.id+") "+a.texto).join("\n");
   return "Aja como um médico revisor especialista em questões de concursos de residência médica no Brasil.\n\n"+
   "Analise CRITICAMENTE a questão abaixo. Baseie-se em evidências científicas atuais e em fontes primárias: diretrizes e consensos de sociedades de especialidade, protocolos e PCDT do Ministério da Saúde, revisões sistemáticas e artigos originais. NÃO use nem reproduza resoluções de sites de questões, bancos comerciais ou cursinhos. NÃO invente referências ou dados — se não souber ou não tiver certeza de algo, diga isso explicitamente em vez de arriscar uma resposta incorreta.\n\n"+
   "Considere também a possibilidade de a questão estar mal formulada, ambígua, desatualizada, ou de o gabarito considerado estar incorreto — isso acontece de verdade em provas de residência e costuma gerar recursos administrativos.\n\n"+
-  "--- QUESTÃO ("+q.banca+", "+q.ano+") ---\n"+q.enunciado+"\n\nAlternativas:\n"+alts+"\n\n"+
+  "--- QUESTÃO ("+q.banca+", "+anoDaProva(q)+") ---\n"+q.enunciado+"\n\nAlternativas:\n"+alts+"\n\n"+
   "Gabarito considerado correto pela plataforma: "+q.gabarito+"\nExplicação atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+
   "Responda de forma estruturada:\n"+
   "1) Você concorda com o gabarito? Justifique clinicamente.\n"+
@@ -1220,7 +1241,8 @@ function renderRevisao(){
 function renderCartaoQuestoesErradas(u){
   const erradas = questoesErradasPeloUsuario(u.id);
   const escondidas = questoesRetiradasDaRevisao(u.id);
-  const pag = paginar(erradas, "revisao-erradas", {porPagina:10});
+  const aberta = !!state.filtroRota.errosAbertos;
+  const pag = aberta ? paginar(erradas, "revisao-erradas", {porPagina:10}) : null;
   const repetidas = erradas.filter(x=>x.erros>1).length;
   const linha = (x)=>`<div class="card-flat mb-1">
       <div class="qcard-meta mb-1">
@@ -1241,11 +1263,17 @@ function renderCartaoQuestoesErradas(u){
     <p class="text-sm muted">Cada uma com quantas vezes você já errou${repetidas ? ` — ${repetidas} você errou mais de uma vez` : ""}. A mais errada vem primeiro. Se já entendeu uma e não quer mais vê-la, "Não mostrar mais" a tira das suas sessões, revisões e listas (só das suas).</p>
     ${erradas.length ? `<div class="flex gap-1 mt-2 mb-2 quebra">
       <button class="btn btn-primary btn-sm" onclick="praticarQuestoesMaisErradas()">${iconeSvg("book")} Refazer as mais erradas</button>
+      <button class="btn btn-secondary btn-sm" onclick="alternarListaDeErradas()" aria-expanded="${aberta}">${aberta ? "Esconder a lista" : "Ver todas as questões erradas ("+erradas.length+")"}</button>
     </div>
-    ${pag.itens.map(linha).join("")}
-    ${controlesPaginacao(pag, "questão(ões) errada(s)")}` : '<p class="text-sm muted mt-1">Nenhuma questão errada fora das escondidas.</p>'}
+    ${aberta ? pag.itens.map(linha).join("")+controlesPaginacao(pag, "questão(ões) errada(s)") : ""}` : '<p class="text-sm muted mt-1">Nenhuma questão errada fora das escondidas.</p>'}
   </div>
   <div class="card-flat mt-2 text-sm">${iconeSvg("eye-off")} As questões que você pediu para não ver mais (${escondidas.length}) ficam em <button class="link-btn" onclick="state.filtroRota.abaFavoritos='retiradas';navigate('favoritos')">Favoritos &gt; Retiradas da revisão</button>, junto do que você salvou para rever.</div>`;
+}
+/* A lista fica fechada até a pessoa pedir: dezenas de enunciados empurravam
+   para baixo o resto da Revisão, que é o que ela veio ver. */
+function alternarListaDeErradas(){
+  state.filtroRota.errosAbertos = !state.filtroRota.errosAbertos;
+  render();
 }
 function praticarQuestoesMaisErradas(){
   const u = usuarioAtual();

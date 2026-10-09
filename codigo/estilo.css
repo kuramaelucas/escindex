@@ -208,7 +208,13 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .barra-questoes-expandir .icon{transition:transform .15s ease;width:1.2em;height:1.2em}
 .barra-questoes.expandida .barra-questoes-expandir .icon{transform:rotate(180deg)}
 .barra-questoes.expandida .barra-questoes-trilho{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none;max-height:none}
-.barra-questoes-detalhe{margin-top:.6rem;padding:0 .3rem .2rem}
+.barra-questoes-detalhe{display:grid;grid-template-rows:0fr;opacity:0;margin-top:0;padding:0 .3rem;transition:grid-template-rows .26s ease,opacity .2s ease,margin-top .26s ease}
+.barra-questoes-detalhe-miolo{min-height:0;overflow:hidden}
+.barra-questoes.expandida .barra-questoes-detalhe{grid-template-rows:1fr;opacity:1;margin-top:.6rem;padding-bottom:.2rem}
+/* as setas somem encolhendo (e não de uma vez), para o trilho crescer junto */
+.barra-questoes-seta{overflow:hidden;transition:width .2s ease,opacity .15s ease,margin .2s ease,border-width .2s ease}
+.barra-questoes.expandida .barra-questoes-seta{width:0;opacity:0;margin:0 -.33rem;border-width:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.barra-questoes-detalhe,.barra-questoes-seta,.barra-questoes-expandir .icon{transition:none}}
 /* quadradinhos: 1,2x a barra fina original (26x24 -> 31x29), depois de terem passado por 1,5x e voltado 20% */
 .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:31px;height:29px;padding:0 .36rem;font-size:.84rem;border-radius:7px;gap:.14rem}
 .barra-questoes .pill-mapa{border-radius:7px}
@@ -237,6 +243,15 @@ table{width:100%;border-collapse:collapse;font-size:.86rem}
 th{text-align:left;color:var(--muted);font-weight:600;font-size:.72rem;padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
 td{padding:.65rem .7rem;border-bottom:1px solid var(--border)}
 tr:last-child td{border-bottom:none}
+.evolucao-tabela td,.evolucao-tabela th{white-space:nowrap}
+.evolucao-tabela td:first-child,.evolucao-tabela th:first-child{position:sticky;left:0;background:var(--surface);white-space:normal;min-width:190px;z-index:1}
+.evolucao-area>summary,#evolucaoAssuntos>details>summary{cursor:pointer}
+.tabela-fina td{padding:.22rem .6rem;line-height:1.25}
+.tabela-fina th{padding:.35rem .6rem}
+.tabela-fina .celula-frente{max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tabela-fina .acoes-fina{white-space:nowrap;text-align:right}
+.tabela-fina .icon-btn{width:26px;height:26px;margin-left:.2rem;vertical-align:middle}
+.tabela-fina .icon-btn .icon{width:.95em;height:.95em}
 .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
 .table-wrap table{border:none}
 

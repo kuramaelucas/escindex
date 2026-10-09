@@ -385,8 +385,8 @@ function renderAbaProvasAntigas(u){
   // agrupa por instituição + ano + tipo (uma "prova" é a combinação das três
   // coisas), na ordem da prova original quando a questão sabe o próprio número
   const mapa = {};
-  const chaveDaProva = q => q.banca+" ||| "+q.ano+" ||| "+tipoProvaDe(q);
-  pool.forEach(q=>{ const chave = chaveDaProva(q); (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, tipo:tipoProvaDe(q), ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
+  const chaveDaProva = q => q.banca+" ||| "+q.ano+" ||| "+(q.semestre||"")+" ||| "+tipoProvaDe(q);
+  pool.forEach(q=>{ const chave = chaveDaProva(q); (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, semestre:q.semestre||0, tipo:tipoProvaDe(q), ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
   Object.values(mapa).forEach(g => { g.dissertativa = g.ids.every(id=>ehDissertativa(getQuestao(id))); });
   const ordemNaProva = id => { const q = getQuestao(id); return (q && q.numeroNaProva) || 9999; };
   Object.values(mapa).forEach(g => g.ids.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)));
@@ -409,13 +409,13 @@ function renderAbaProvasAntigas(u){
     if(f.areaId && q.areaId!==f.areaId) return;
     g.semImagem++;
   });
-  const grupos = Object.values(mapa).sort((a,b)=> ordemTipos.indexOf(a.tipo)-ordemTipos.indexOf(b.tipo) || b.ano-a.ano || a.banca.localeCompare(b.banca));
+  const grupos = Object.values(mapa).sort((a,b)=> ordemTipos.indexOf(a.tipo)-ordemTipos.indexOf(b.tipo) || b.ano-a.ano || b.semestre-a.semestre || a.banca.localeCompare(b.banca));
   state.filtroRota.provasGrupos = grupos;
   const cartaoDaProva = (g, i) => {
-      const previo = g.dissertativa ? null : desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+g.ano+" (simulado)");
+      const previo = g.dissertativa ? null : desempenhoPrevioSimulado(null, "Prova "+g.banca+" "+anoDaProva(g)+" (simulado)");
       const respondidas = g.ids.filter(id=>jaFoiRespondida(u.id, id)).length;
       return `<div class="card prova-card">
-        <div class="prova-ano">${g.ano}</div>
+        <div class="prova-ano">${anoDaProva(g)}</div>
         <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
         <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span>${g.dissertativa ? ` <span class="badge badge-accent">Dissertativa</span>` : ""}</div>
         ${g.dissertativa ? `<div class="text-xs muted mb-1">Você escreve a resposta, diz a confiança e se avalia pela resposta esperada da banca. Não há simulado com relógio nem nota automática.</div>` : ""}
@@ -493,14 +493,14 @@ function grupoDeProva(indice){
 function fazerProvaComoSimulado(indice){
   const g = grupoDeProva(indice); if(!g) return;
   if(g.dissertativa){ praticarProva(indice); return; }
-  const titulo = "Prova "+g.banca+" "+g.ano+" (simulado)";
+  const titulo = "Prova "+g.banca+" "+anoDaProva(g)+" (simulado)";
   state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:null, titulo,
-    itens: g.ids.map(id=>({questaoId:id, motivo:"Prova "+g.banca+" "+g.ano})), indiceAtual:0, respostasSimulado:{},
+    itens: g.ids.map(id=>({questaoId:id, motivo:"Prova "+g.banca+" "+anoDaProva(g)})), indiceAtual:0, respostasSimulado:{},
     duracaoMin: g.ids.length*2, finalizado:false, modoAprendizado:false,
     inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
   navigate("simulado-ativo");
 }
 function praticarProva(indice){
   const g = grupoDeProva(indice); if(!g) return;
-  iniciarSessaoComLista(g.ids.map(id=>({questaoId:id, motivo:"Prática — prova "+g.banca+" "+g.ano})), "pratica");
+  iniciarSessaoComLista(g.ids.map(id=>({questaoId:id, motivo:"Prática — prova "+g.banca+" "+anoDaProva(g)})), "pratica");
 }

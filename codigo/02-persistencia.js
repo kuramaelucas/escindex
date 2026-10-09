@@ -660,7 +660,7 @@ function restaurarResgateConfirmado(){
    que não conhece esse conteúdo. Esta função acrescenta ao banco salvo apenas
    o que falta, comparando pelo id — sem apagar nem sobrescrever nada do que o
    usuário já produziu (respostas, favoritos, questões próprias, edições). */
-const CAMPOS_QUE_O_CONTEUDO_COMPLETA = ["numeroNaProva", "imagemUrl", "imagemLegenda", "imagemPendente", "referencias", "tipoProva"];
+const CAMPOS_QUE_O_CONTEUDO_COMPLETA = ["numeroNaProva", "imagemUrl", "imagemLegenda", "imagemPendente", "referencias", "tipoProva", "semestre"];
 function sincronizarConteudoNovo(){
   let novos = 0;
   if(!db.taxonomia) return;
@@ -679,6 +679,10 @@ function sincronizarConteudoNovo(){
   SEED_QUESTOES.forEach(q=>{
     const salva = porId.get(q.id);
     if(salva && !q.real && !salva.real && salva.criadoPor==="seed" && salva.banca!==q.banca){ salva.banca = q.banca; novos++; }
+    // o Teste de Progresso passou a ter uma instituição só (o semestre foi
+    // para o campo `semestre`): quem já tinha as provas salvas com o nome
+    // antigo ("… 1º semestre") ganha o novo, senão ficaria com duas bancas
+    if(salva && salva.real && q.real && /^Teste de Progresso NIEPAEM/.test(q.banca) && salva.banca!==q.banca && /^Teste de Progresso NIEPAEM/.test(salva.banca||"")){ salva.banca = q.banca; novos++; }
   });
   SEED_QUESTOES.forEach(q=>{
     const salva = porId.get(q.id); if(!salva) return;

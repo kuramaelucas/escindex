@@ -320,9 +320,12 @@ mesmo dia da prova. Esse comentário não é de terceiro: nas provas
 (dicas do enunciado, parâmetros com valor normal e ponto de corte em destaque,
 o motivo de cada alternativa errada) e as referências oficiais vão em
 `referencias`. Onde o gabarito da banca é discutível (a explicação diz), o
-texto avisa. A instituição leva o semestre no nome (`Teste de Progresso NIEPAEM
-2º semestre`), porque Provas Antigas agrupa por instituição, ano e tipo e duas
-aplicações no mesmo ano se misturariam. Quando a banca **não** divulga o
+texto avisa. A instituição é uma só
+(`Teste de Progresso NIEPAEM`) e o semestre vai no campo `semestre` (1 ou 2) de
+cada questão, porque Provas Antigas agrupa por instituição, ano, semestre e
+tipo e duas aplicações no mesmo ano se misturariam; a tela mostra `2023.1` e
+`2023.2`. Em prova nova: `npm run nova-prova -- tp-2027-1 "Teste de Progresso
+NIEPAEM" 2027 --tipo graduacao --semestre 1`. Quando a banca **não** divulga o
 comentário (o caderno de 2022 chegou só com a alternativa certa marcada, sempre
 em A), a explicação é inteira da equipe, escrita de fontes primárias, as
 alternativas são embaralhadas para o estudo não virar "marque sempre A", e a

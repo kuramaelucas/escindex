@@ -249,6 +249,7 @@ test("a barra de questões é fina, de uma linha, e expande; o tutorial saiu do 
     const fina = { altura: barra.offsetHeight, rolou: trilho.scrollLeft > 0,
       atualVisivel: atual.offsetLeft >= trilho.scrollLeft && atual.offsetLeft + atual.offsetWidth <= trilho.scrollLeft + trilho.clientWidth };
     alternarMapaSessao();
+    await new Promise(ok => setTimeout(ok, 500)); // a barra anima a altura ao expandir
     const expandida = document.getElementById("mapaDaSessao");
     const aberta = { altura: expandida.offsetHeight, legenda: /acertou/.test(expandida.innerText) || /quadradinho/.test(expandida.innerText) };
     alternarMapaSessao();

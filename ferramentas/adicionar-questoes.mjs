@@ -67,7 +67,7 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
     if(e.dificuldade !== undefined && !DIFICULDADES.includes(e.dificuldade)) erro(`dificuldade "${e.dificuldade}" não existe (${DIFICULDADES.join(", ")})`);
     const q = {
       id: `${ficha.prefixo}-${String(e.n).padStart(3, "0")}`, banca: ficha.banca, real: true,
-      ...(ficha.tipoProva ? { tipoProva: ficha.tipoProva } : {}), ano: ficha.ano, numeroNaProva: e.n,
+      ...(ficha.tipoProva ? { tipoProva: ficha.tipoProva } : {}), ano: ficha.ano, ...(ficha.semestre ? { semestre: ficha.semestre } : {}), numeroNaProva: e.n,
       areaId: ass && esps.get(ass.especialidadeId) ? esps.get(ass.especialidadeId).areaId : undefined,
       especialidadeId: ass ? ass.especialidadeId : undefined, assuntoId: e.assunto,
       enunciado: e.enunciado,

@@ -67,7 +67,7 @@ const js = v => JSON.stringify(v);
 export function questaoComoTexto(q){
   const L = [], pares = (...campos) => campos.filter(c => q[c] !== undefined).map(c => `${c}:${js(q[c])}`).join(", ");
   L.push("{");
-  L.push("  " + pares("id", "banca", "real", "tipoProva", "ano", "numeroNaProva") + ",");
+  L.push("  " + pares("id", "banca", "real", "tipoProva", "ano", "semestre", "numeroNaProva") + ",");
   L.push("  " + pares("areaId", "especialidadeId", "assuntoId") + ",");
   if(q.imagemUrl !== undefined || q.imagemPendente !== undefined || q.imagemLegenda !== undefined)
     L.push("  " + pares("imagemUrl", "imagemPendente", "imagemLegenda") + ",");
@@ -111,7 +111,7 @@ export function lerFicha(nome){
   const q = reg && reg.questoes && reg.questoes[0];
   if(!q) throw new Error(`${nome}.js não tem a linha "@ficha" nem questão para copiar a ficha`);
   return {
-    banca: q.banca, ano: q.ano, tipoProva: q.tipoProva,
+    banca: q.banca, ano: q.ano, semestre: q.semestre, tipoProva: q.tipoProva,
     prefixo: q.id.replace(/-\d+$/, ""), alternativas: q.alternativas.length,
   };
 }

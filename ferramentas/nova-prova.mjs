@@ -4,13 +4,14 @@
    Uma linha, sem abrir arquivo nenhum:
 
      npm run nova-prova -- usp-2027 "USP-SP (FMUSP)" 2027 --total 120
-     npm run nova-prova -- tp-2027-1 "Teste de Progresso NIEPAEM 1º semestre" 2027 --tipo graduacao
+     npm run nova-prova -- tp-2027-1 "Teste de Progresso NIEPAEM" 2027 --tipo graduacao --semestre 1
 
    Opções (todas opcionais):
      --total N            quantas questões a prova tem (só vai no cabeçalho)
      --alternativas 4|5   quantas alternativas (padrão 4)
      --titulo "…"         o resto do título ("Residência Médica, R1 Acesso Direto")
      --tipo graduacao     prova da faculdade (o padrão é residência)
+     --semestre 1|2       aplicação do ano (Teste de Progresso): a instituição é a mesma, o semestre separa as provas
      --prefixo q-scmsp2027  o começo do id das questões (padrão: q- + nome sem hífens)
 
    O que faz: grava dados/prova-<nome>.js com o cabeçalho no padrão e a "ficha"
@@ -32,7 +33,7 @@ function lerArgs(argv){
   return { pos, opc };
 }
 
-export function criarProva({ nome, banca, ano, total, alternativas = 4, titulo = "", tipo = "", prefixo = "" }){
+export function criarProva({ nome, banca, ano, total, alternativas = 4, titulo = "", tipo = "", prefixo = "", semestre = 0 }){
   nome = nome.replace(/^prova-/, "");
   if(!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(nome)) throw new Error(`nome "${nome}" inválido: use minúsculas, números e hífens (ex.: usp-2027)`);
   if(!banca || !Number.isInteger(ano)) throw new Error('faltam a banca e o ano: npm run nova-prova -- usp-2027 "USP-SP (FMUSP)" 2027');
@@ -42,6 +43,7 @@ export function criarProva({ nome, banca, ano, total, alternativas = 4, titulo =
   const ficha = { banca, ano, prefixo: prefixo || "q-" + nome.replace(/-/g, ""), alternativas };
   if(total) ficha.total = total;
   if(tipo && tipo !== "residencia") ficha.tipoProva = tipo;
+  if(semestre){ if(![1, 2].includes(semestre)) throw new Error("--semestre é 1 ou 2"); ficha.semestre = semestre; }
   const letras = "ABCDE".slice(0, alternativas);
   const linha = "=".repeat(74);
   const cab = `/* ${linha}
@@ -70,7 +72,7 @@ if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.ar
     const r = criarProva({
       nome: pos[0] || "", banca: pos[1], ano: Number(pos[2]),
       total: opc.total ? Number(opc.total) : 0, alternativas: opc.alternativas ? Number(opc.alternativas) : 4,
-      titulo: opc.titulo || "", tipo: opc.tipo || "", prefixo: opc.prefixo || "",
+      titulo: opc.titulo || "", tipo: opc.tipo || "", prefixo: opc.prefixo || "", semestre: opc.semestre ? Number(opc.semestre) : 0,
     });
     console.log(`Criado ${r.arquivo} e acrescentado a dados/manifesto.js.`);
     console.log(`Ficha: ${JSON.stringify(r.ficha)}`);

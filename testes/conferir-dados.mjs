@@ -173,7 +173,7 @@ export function conferir(){
         const faltas = faltasDeJustificativa(q);
         if(faltas.length) erros.push(`${onde} (${arquivo}): explicação fora do padrão de justificativa — ${faltas.join("; ")} (ver dados/LEIA-ME.md, "Como escrever a explicação")`);
       }
-      const chave = `${q.banca} ${q.ano}`;
+      const chave = `${q.banca} ${q.ano}${q.semestre ? "."+q.semestre : ""}`;
       if(!provas.has(chave)) provas.set(chave, []);
       provas.get(chave).push(q);
     }

@@ -133,7 +133,8 @@ const GUIA_ALUNO = [
   ]},
   { titulo:"Meu Desempenho", itens:[
     "Acerto por grande área, especialidade e assunto, e a evolução no tempo.",
-    "<strong>O que mais cai</strong>: os assuntos que a banca cobra mais, cruzados com o seu acerto — onde vale a pena investir.",
+    "<strong>Evolução por assunto</strong>: abra a área recolhida para ver o seu acerto em cada assunto de 15 em 15 dias (ex.: 70% no primeiro período, 80% no seguinte). Período sem questões do assunto aparece como \"—\", não como erro, e dá para salvar em PDF.",
+    "<strong>O que mais cai</strong>: os assuntos que a banca cobra mais, cruzados com o seu acerto — onde vale a pena investir. Aparecem os 5 de maior prioridade; \"Ver os demais\" abre a lista toda.",
     "<strong>Nota estimada</strong>: uma projeção da sua nota na prova, com a faixa de incerteza.",
   ]},
   { titulo:"Turma, favoritos e histórico", itens:[

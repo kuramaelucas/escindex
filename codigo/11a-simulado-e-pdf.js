@@ -39,7 +39,7 @@ function renderCriarSimulado(){
   <div class="card mt-2">
     <div class="card-title">2. Selecionar questões (${ctx.selecionadas.length} selecionada(s) de ${ctx.pool.length})</div>
     <div class="table-wrap mt-1"><table><thead><tr><th></th><th>Questão</th><th>Assunto</th><th>Instituição / Ano</th></tr></thead><tbody>
-    ${ctx.pool.map(qid=>{ const q=getQuestao(qid); const marcado=ctx.selecionadas.includes(qid); return `<tr><td><input type="checkbox" onchange="toggleSelecaoSimulado('${qid}')" ${marcado?"checked":""}></td><td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${qid}')">${escapeHtml(q.enunciado.slice(0,90))}…</span></td><td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td><td class="text-sm">${escapeHtml(q.banca)} · ${q.ano}</td></tr>`; }).join("")}
+    ${ctx.pool.map(qid=>{ const q=getQuestao(qid); const marcado=ctx.selecionadas.includes(qid); return `<tr><td><input type="checkbox" onchange="toggleSelecaoSimulado('${qid}')" ${marcado?"checked":""}></td><td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${qid}')">${escapeHtml(q.enunciado.slice(0,90))}…</span></td><td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td><td class="text-sm">${escapeHtml(q.banca)} · ${anoDaProva(q)}</td></tr>`; }).join("")}
     </tbody></table></div>
   </div>
   <div class="card mt-2">
@@ -287,7 +287,7 @@ function htmlProvaPDF(){
     html += `<div class="pdf-questao">
       <span class="pdf-num">${i+1}.</span> ${escapeHtml(q.enunciado)}
       ${q.alternativas.map(a=>`<div class="pdf-alt">${escapeHtml(a.id)}) ${escapeHtml(a.texto)}</div>`).join("")}
-      <div class="pdf-meta">${escapeHtml(q.banca)} · ${q.ano} · ${escapeHtml(nomeAssunto(q.assuntoId))}</div>
+      <div class="pdf-meta">${escapeHtml(q.banca)} · ${anoDaProva(q)} · ${escapeHtml(nomeAssunto(q.assuntoId))}</div>
     </div>`;
   });
   if(ctx.comCartaoResposta){
@@ -300,7 +300,7 @@ function htmlProvaPDF(){
   if(ctx.comGabarito){
     html += `<div class="pdf-gabarito"><h2 style="font-size:13pt">Gabarito (uso do professor)</h2>
       <table class="pdf-tabela"><thead><tr><th>Nº</th><th>Gabarito</th><th>Assunto</th><th>Origem</th></tr></thead><tbody>
-      ${questoes.map((q,i)=>`<tr><td>${i+1}</td><td><strong>${escapeHtml(q.gabarito)}</strong></td><td>${escapeHtml(nomeAssunto(q.assuntoId))}</td><td>${escapeHtml(q.banca)} · ${q.ano}</td></tr>`).join("")}
+      ${questoes.map((q,i)=>`<tr><td>${i+1}</td><td><strong>${escapeHtml(q.gabarito)}</strong></td><td>${escapeHtml(nomeAssunto(q.assuntoId))}</td><td>${escapeHtml(q.banca)} · ${anoDaProva(q)}</td></tr>`).join("")}
       </tbody></table></div>`;
   }
   return html;
@@ -316,7 +316,7 @@ function htmlListaComentadaPDF(){
       ${q.alternativas.map(a=>`<div class="pdf-alt">${a.id===q.gabarito?"<strong>":""}${escapeHtml(a.id)}) ${escapeHtml(a.texto)}${a.id===q.gabarito?"</strong>":""}</div>`).join("")}
       <div style="margin-top:.35rem"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${ctx.comExplicacao&&q.explicacaoGeral?" "+htmlComDestaques(q.explicacaoGeral, null, true):""}</div>
       ${ctx.comReferencias && q.referencias ? `<div class="pdf-meta">Referências: ${escapeHtml(q.referencias)}</div>` : ""}
-      <div class="pdf-meta">${escapeHtml(q.banca)} · ${q.ano} · ${escapeHtml(nomeAssunto(q.assuntoId))}</div>
+      <div class="pdf-meta">${escapeHtml(q.banca)} · ${anoDaProva(q)} · ${escapeHtml(nomeAssunto(q.assuntoId))}</div>
     </div>`;
   });
   return html;
