@@ -669,7 +669,7 @@ function renderPreviewImportacaoHtml(resultado, opts){
     ${resultado.map((r,i)=>`<div class="card-flat mb-1" ${r.valido?"":'style="border-color:var(--danger)"'}>
       <div class="flex justify-between items-center quebra-gap-p">
         <span class="peso-600">Questão ${r.indice} · ${escapeHtml(r.banca)} ${r.ano}${r.status==="anulada"?" · anulada":""}</span>
-          <span class="badge ${r.tipoProva==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(r.tipoProva).nome)}</span>
+          <span class="badge ${r.tipoProva==="graduacao"?"badge-accent":"badge-muted"}">${escapeHtml(infoTipoProva(r.tipoProva).nome)}</span>
         <span class="flex items-center gap-1">
           ${r.numero?`<span class="badge badge-muted">nº ${r.numero} na prova</span>`:""}
           ${r.duplicada?`<span class="badge badge-amber" title="${r.duplicadaNoLote?"repetida dentro do texto colado":"já existe no banco"}">duplicada${r.duplicadaNoLote?" (igual à nº "+r.duplicadaNoLote+")":""}</span>`:""}

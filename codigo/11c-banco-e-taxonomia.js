@@ -38,6 +38,19 @@ function listaFiltradaBanco(){
   lista.sort((a,b)=> b.ano-a.ano || (a.banca||"").localeCompare(b.banca||""));
   return lista;
 }
+// um chip por filtro ligado, com o x que o desliga (a busca por texto fica na própria barra)
+function chipsDoBanco(f){
+  const chips = [];
+  const nomeArea = (f.areaId && (db.taxonomia.areas.find(a=>a.id===f.areaId)||{}).nome) || f.areaId;
+  const nomeStatus = {ativa:"Ativa", pendente:"Pendente", anulada:"Anulada", desatualizada:"Desatualizada", "aguarda-imagem":"Aguardando imagem"}[f.status] || f.status;
+  if(f.banca) chips.push({texto:f.banca, limpar:"mudarFiltroBanco('banca','')"});
+  if(f.ano && !f.ultimos5) chips.push({texto:"Ano "+f.ano, limpar:"mudarFiltroBanco('ano','')"});
+  if(f.ultimos5) chips.push({texto:"Últimos 5 anos", limpar:"mudarFiltroBanco('ultimos5',false)"});
+  if(f.areaId) chips.push({texto:nomeArea, limpar:"mudarFiltroBanco('areaId','')"});
+  if(f.status) chips.push({texto:nomeStatus, limpar:"mudarFiltroBanco('status','')"});
+  if(f.tipo) chips.push({texto:(CONFIG.tiposProva.find(t=>t.id===f.tipo)||{}).nome||f.tipo, limpar:"mudarFiltroBanco('tipo','')"});
+  return chips;
+}
 function renderBancoQuestoes(){
   const f = filtrosBanco();
   const bancas = [...new Set(db.questoes.map(q=>q.banca))].sort();
@@ -46,7 +59,10 @@ function renderBancoQuestoes(){
   const lista = listaFiltradaBanco();
   return `
   <div class="page-header"><h2>Banco de Questões</h2><p>${db.questoes.length} questão(ões) no total (${questoesAtivas(true).length} ativas, excluindo anuladas/desatualizadas das sessões e estatísticas; inclui questões restritas a grupos de alunos). ${db.questoes.filter(aguardaImagem).length} aguardam a figura da prova e não aparecem para os alunos — filtre por Status &gt; Aguardando imagem.</p></div>
-  <div class="card mb-2">
+  ${htmlFiltrosRecolhiveis("banco-filtros", chipsDoBanco(f), `
+      <input class="input" id="buscaBancoInput" aria-label="Buscar questão por texto do enunciado ou alternativa" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
+      <button class="btn btn-secondary btn-sm" onclick="buscarNoBanco()">Buscar</button>
+      <button class="link-btn text-xs" onclick="limparFiltrosBanco()">limpar filtros</button>`, `
     <div class="grid grid-4">
       <div class="field sem-mb"><label class="label">Instituição</label>
         <select class="select" onchange="mudarFiltroBanco('banca', this.value)">
@@ -78,16 +94,12 @@ function renderBancoQuestoes(){
       </div>
     </div>
     <div class="flex gap-1 items-center mt-2 quebra">
-      <input class="input" id="buscaBancoInput" aria-label="Buscar questão por texto do enunciado ou alternativa" style="max-width:280px" placeholder="Buscar por texto do enunciado ou alternativa..." value="${escapeHtml(f.busca||"")}" onkeydown="if(event.key==='Enter') buscarNoBanco()">
-      <button class="btn btn-secondary btn-sm" onclick="buscarNoBanco()">Buscar</button>
       <select class="select" style="max-width:220px" onchange="mudarFiltroBanco('tipo', this.value)" aria-label="Tipo de prova">
         <option value="">Residência e graduação</option>
         ${CONFIG.tiposProva.map(t=>`<option value="${t.id}" ${f.tipo===t.id?"selected":""}>${escapeHtml(t.nomeLongo)}</option>`).join("")}
       </select>
       <label class="checkbox-row"><input type="checkbox" ${f.ultimos5?"checked":""} onchange="mudarFiltroBanco('ultimos5', this.checked)"> Últimos 5 anos</label>
-      <button class="link-btn text-xs" onclick="limparFiltrosBanco()">limpar filtros</button>
-    </div>
-  </div>
+    </div>`)}
   <div class="flex gap-1 items-center mb-2 quebra">
     <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Nova questão manual</button>
     <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Importar em lote</button>
@@ -179,7 +191,7 @@ function renderListaBancoQuestoesHtml(lista, paginaInfo){
     ${(paginaInfo ? paginaInfo.itens : lista).map(q=>`<tr>
       <td><input type="checkbox" aria-label="Selecionar questão" ${selecaoBanco().has(q.id)?"checked":""} onchange="alternarSelecaoBanco('${q.id}', this.checked)"></td>
       <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span> ${q.grupoId?`<span class="badge badge-muted" title="Restrita ao grupo">${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"grupo")}</span>`:""}</td>
-      <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${anoDaProva(q)}</span>${tipoProvaDe(q)!==CONFIG.tipoProvaPadrao ? ` <span class="badge badge-amber">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>` : ""}</td>
+      <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${anoDaProva(q)}</span>${tipoProvaDe(q)!==CONFIG.tipoProvaPadrao ? ` <span class="badge badge-accent">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>` : ""}</td>
       <td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td>
       <td>${badgeStatusQuestao(q.status)}${aguardaImagem(q) ? ` <span class="badge badge-amber" title="${escapeHtml(q.imagemPendente)}">Aguardando imagem</span>` : ""}</td>
       <td class="flex gap-1">

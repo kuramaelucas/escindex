@@ -115,7 +115,7 @@ function renderFavoritosCartoes(u, cartoes){
       <div class="qcard-meta mb-1">
         <span class="badge badge-accent">${escapeHtml(nomeAssuntoDoCartao(cartao))}</span>
         ${cartao.usuarioId ? '<span class="badge badge-muted">meu cartão</span>' : '<span class="badge badge-muted">cartão da equipe</span>'}
-        ${cartao.origem==="questao" ? '<span class="badge badge-amber">gerado de uma questão</span>' : ""}
+        ${cartao.origem==="questao" ? '<span class="badge badge-muted">gerado de uma questão</span>' : ""}
         ${rev && rev.proximaRevisao ? `<span class="badge badge-muted">volta em ${formatDataBR(proximaRevisaoCartao(rev))}</span>` : '<span class="badge badge-muted">ainda não revisado</span>'}
       </div>
       <div class="text-sm peso-600">${escapeHtml(cartao.frente)}</div>
@@ -163,8 +163,8 @@ function praticarFavoritas(){
    respondidas, problemas sinalizados). */
 function tiposLivroOuro(){
   return {
-    doacao:      {nome:"Doação",       badge:"badge-amber",  icone:"star"},
-    colaboracao: {nome:"Colaboração",  badge:"badge-accent", icone:"users"},
+    doacao:      {nome:"Doação",       badge:"badge-accent",  icone:"star"},
+    colaboracao: {nome:"Colaboração",  badge:"badge-muted", icone:"users"},
     apoio:       {nome:"Apoio",        badge:"badge-muted",  icone:"check"},
   };
 }
@@ -197,7 +197,7 @@ function renderLivroOuro(){
       ${lista.map(r=>`<div class="card-flat mb-1">
         <div class="flex justify-between items-center gap-2 quebra">
           <div>
-            <div class="peso-700">${escapeHtml(r.nome)} ${r.destaque?'<span class="badge badge-amber">destaque</span>':""}</div>
+            <div class="peso-700">${escapeHtml(r.nome)} ${r.destaque?'<span class="badge badge-accent">destaque</span>':""}</div>
             <div class="text-sm muted mt-1">${escapeHtml(r.descricao||"")}</div>
             ${r.mensagem?`<div class="text-sm mt-1" style="font-family:var(--font-display);font-style:italic">“${escapeHtml(r.mensagem)}”</div>`:""}
             <div class="text-xs muted mt-1">${r.data?formatDataBR(r.data):""}${r.valor?" · "+escapeHtml(r.valor):""}</div>
@@ -657,8 +657,8 @@ function praticarPrioridadesDaProva(){
   iniciarSessaoComLista(itens, "pratica");
 }
 
-function renderDesempenho(){
-  const u = usuarioAtual();
+/* Os números do Meu Desempenho, sem HTML (a tela só desenha o que está aqui). */
+function dadosDoDesempenho(u){
   const ctx = ctxDesempenho();
   const porArea = desempenhoPorArea(u.id);
   const calibracao = calibracaoConfianca(u.id);
@@ -676,6 +676,11 @@ function renderDesempenho(){
   const somaMeses = !ehDiario ? dados.itens.reduce((acc,m)=>({total:acc.total+m.total, acertos:acc.acertos+m.acertos}), {total:0,acertos:0}) : null;
   const mesesComEstudo = !ehDiario ? dados.itens.filter(m=>m.total>0) : [];
   const melhorMes = mesesComEstudo.length ? mesesComEstudo.slice().sort((a,b)=>b.taxa-a.taxa)[0] : null;
+  return {ctx, porArea, calibracao, totalGeral, falsaSeguranca, ritmo, cartoes, dados, rotuloPeriodo, ehDiario, resumo14, resumo30, resumoAtual, somaMeses, mesesComEstudo, melhorMes};
+}
+function renderDesempenho(){
+  const u = usuarioAtual();
+  const {ctx, porArea, calibracao, totalGeral, falsaSeguranca, ritmo, cartoes, dados, rotuloPeriodo, ehDiario, resumo14, resumo30, resumoAtual, somaMeses, mesesComEstudo, melhorMes} = dadosDoDesempenho(u);
 
   const graficoAreas = graficoBarrasVerticaisSvg(porArea.map(a=>({
     label: abreviarArea(a.nome), taxa: a.taxa, total: a.total, acertos: a.acertos,
@@ -684,8 +689,7 @@ function renderDesempenho(){
   return `
   <div class="page-header"><h2>Meu Desempenho</h2><p>Primeiro o total de tudo que você já respondeu, depois como está indo no período que você escolher, e por fim onde mexer.</p></div>
 
-  <div class="par-de-cartoes">
-  <div class="card">
+  <div class="card mb-2">
     <div class="card-title">Desempenho total — todas as questões</div>
     <p class="text-sm muted">Soma de tudo que você já respondeu na plataforma, sem separar por área, assunto ou tipo de sessão.</p>
     <div class="grid grid-4 compacto mt-2">
@@ -696,8 +700,7 @@ function renderDesempenho(){
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title">${iconeSvg("cards")} Flashcards — contagem à parte</div>
+  ${htmlSecaoRecolhivel("desempenho-cartoes", iconeSvg("cards")+" Flashcards — contagem à parte", cartoes.revisoes+" revisões · "+cartoes.hoje+" hoje"+(cartoes.vencidos?" · "+cartoes.vencidos+" vencido(s)":""), `
     <p class="text-sm muted">Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão de prova leva minutos. Por isso ele é contado aqui, separado das questões acima: é volume de revisão, não taxa de acerto.</p>
     <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${cartoes.revisoes}</div><div class="stat-label">cartões revisados no total (contando as repetições)</div></div>
@@ -709,8 +712,7 @@ function renderDesempenho(){
       <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
       ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
     </div>
-  </div>
-  </div>
+  `)}
 
   ${htmlCardNotaEstimada(u)}
 
@@ -790,12 +792,13 @@ function renderDesempenho(){
 
   ${htmlEvolucaoPorAssunto(u)}
 
+  ${htmlSecaoRecolhivel("desempenho-confianca", "Sua confiança e o acerto", (calibracao.certeza.n ? "certeza: "+calibracao.certeza.taxa+"% de acerto" : "sem dados ainda")+((calibracao.alertaExcessoConfianca||falsaSeguranca.length) ? " · atenção" : ""), `
   <div class="grid grid-3 compacto mb-2">
     <div class="stat-tile"><div class="stat-value">${calibracao.certeza.n?calibracao.certeza.taxa+"%":"—"}</div><div class="stat-label">acerto quando você disse "certeza" (${calibracao.certeza.n})</div></div>
     <div class="stat-tile"><div class="stat-value">${calibracao.duvida.n?calibracao.duvida.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "na dúvida" (${calibracao.duvida.n})</div></div>
     <div class="stat-tile"><div class="stat-value">${calibracao.chute.n?calibracao.chute.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "chute" (${calibracao.chute.n})</div></div>
   </div>
-  ${(calibracao.alertaExcessoConfianca || falsaSeguranca.length) ? `<div class="card mb-2 borda-alerta">
+  ${(calibracao.alertaExcessoConfianca || falsaSeguranca.length) ? `<div class="card-flat mb-1 borda-alerta">
     <div class="card-title">Onde sua confiança engana</div>
     ${calibracao.alertaExcessoConfianca ? `<p class="text-sm">Nas questões em que você marcou "certeza", a taxa de acerto é de ${calibracao.certeza.taxa}%. Quando alguém tem certeza de verdade, esse número fica perto de 90%: a diferença é o tamanho do ponto cego.</p>` : ""}
     ${falsaSeguranca.length ? `<p class="text-sm muted mt-1">Assuntos em que você respondeu com certeza e errou mesmo assim — é para cá que vale direcionar o estudo antes de qualquer outra coisa:</p>
@@ -808,8 +811,8 @@ function renderDesempenho(){
       <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">${iconeSvg("cards")} Revisão rápida desses assuntos</button>
     </div>
   </div>` : ""}
-  ${ritmo ? `<div class="card mb-2">
-    <div class="card-title">Ritmo — quanto tempo você leva por questão</div>
+  `, calibracao.alertaExcessoConfianca || falsaSeguranca.length)}
+  ${ritmo ? htmlSecaoRecolhivel("desempenho-ritmo", "Ritmo — quanto tempo você leva por questão", "mediana de "+formatarDuracao(ritmo.mediana)+" por questão", `
     <p class="text-xs muted">Baseado em ${ritmo.n} questão(ões) cronometradas (prática e simulados).</p>
     <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(ritmo.mediana)}</div><div class="stat-label">tempo mediano por questão</div></div>
@@ -824,6 +827,6 @@ function renderDesempenho(){
         <span class="badge ${a.media>ritmo.mediana*1.5?"badge-amber":"badge-muted"}">${formatarDuracao(a.media)} por questão</span>
       </div>`).join("")}
     </div>` : ""}
-  </div>` : ""}
+  `) : ""}
   `;
 }

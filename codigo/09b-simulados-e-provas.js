@@ -316,7 +316,7 @@ function renderResultadoSimulado(){
       <p class="text-xs muted mb-1">Questões que consumiram bem mais tempo que a sua mediana. Travar numa questão que você acertou também conta: numa prova cronometrada, esse tempo sai de outra questão.</p>
       ${analiseTempo.lentas.map(l=>`<div class="flex justify-between items-center card-flat mb-1">
         <span class="text-sm">Questão ${l.i+1} · ${escapeHtml(nomeAssunto(getQuestao(l.qid).assuntoId))} <span class="badge ${l.correta?"badge-accent":"badge-danger"}">${l.correta?"acertou":"errou"}</span></span>
-        <span class="flex items-center gap-1"><span class="badge badge-amber">${formatarDuracao(l.seg)}</span><button class="link-btn" onclick="irParaRevisaoQuestaoSimulado(${l.i})">ver</button></span>
+        <span class="flex items-center gap-1"><span class="badge badge-muted">${formatarDuracao(l.seg)}</span><button class="link-btn" onclick="irParaRevisaoQuestaoSimulado(${l.i})">ver</button></span>
       </div>`).join("")}
     </div>` : '<p class="text-xs muted mt-2">Seu ritmo foi parelho: nenhuma questão destoou muito da mediana.</p>'}
   </div>` : ""}
@@ -417,7 +417,7 @@ function renderAbaProvasAntigas(u){
       return `<div class="card prova-card">
         <div class="prova-ano">${anoDaProva(g)}</div>
         <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
-        <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span>${g.dissertativa ? ` <span class="badge badge-accent">Dissertativa</span>` : ""}</div>
+        <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-accent":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span>${g.dissertativa ? ` <span class="badge badge-accent">Dissertativa</span>` : ""}</div>
         ${g.dissertativa ? `<div class="text-xs muted mb-1">Você escreve a resposta, diz a confiança e se avalia pela resposta esperada da banca. Não há simulado com relógio nem nota automática.</div>` : ""}
         <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
         ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}

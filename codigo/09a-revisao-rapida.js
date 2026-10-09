@@ -48,7 +48,7 @@ function renderFlashcardsInicio(u){
       </div>
       <div class="flex items-center gap-2 quebra">
         <div class="texto-dir">
-          <div class="stat-value" style="font-size:1.5rem">${vistosHoje}/${metaCartoes}</div>
+          <div class="stat-value" style="font-size:var(--fs-xl)">${vistosHoje}/${metaCartoes}</div>
           <div class="stat-label">cartões hoje${seqCartoes?" · "+seqCartoes+" dia(s) seguidos":""}</div>
         </div>
         <button class="btn btn-secondary btn-sm" onclick="abrirModalMetaCartoes()">${iconeSvg("target")} Ajustar meta</button>

@@ -50,17 +50,21 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `03e-nuvem-grupos.js` | 2-C | grupos, membros e grupos de estudo na nuvem (`nuvemConferirGrupos`); cartões enviados à equipe ou ao grupo (`flashcards_enviados`) |
 | `04-utilitarios.js` | 3 | datas, paginação, janelas, download, gráficos SVG, rodízio, consultas por id, permissões |
 | `05a-motor-de-estudos.js` | 4 | bloco atual, dificuldade, respostas, ocultas, repetição espaçada, flashcards, sessões |
+| `05c-cronogramas-de-sessao.js` | 4 | sessão sem calendário, cronograma de Formados e do 6º ano |
 | `05b-desempenho-e-metas.js` | 4 | desempenho, calibração, metas, lembrete, o que mais cai, nota estimada |
 | `06-entrada-e-estrutura.js` | 5–7 | login local, roteador, gesto de arrastar, menu e topo |
+| `06b-busca-global.js` | 5-B | busca global (Ctrl/Cmd+K e botão do topo): telas, assuntos e questões pelo enunciado (`abrirBuscaGlobal`) |
 | `07-telas-iniciais.js` | 8–10-B | telas públicas, volta do e-mail, boas-vindas, Início, Estudar, questão na íntegra |
-| `08-sessao-e-revisao.js` | 11–12 | sessão de questões, barra de questões, cartão da questão, comentários, Revisão |
+| `08-sessao-e-revisao.js` | 11 | sessão de questões, barra de questões, cartão da questão, comentários |
+| `08d-revisao.js` | 12 | tela de Revisão (por assunto, fila de erros e chutes) |
 | `08b-destaques-de-texto.js` | 11-B | selecionar um trecho da questão ou do cartão e destacá-lo (`htmlComDestaques`, `atributoDestacavel`), por pessoa |
 | `08c-questoes-dissertativas.js` | 11-C | questão dissertativa na sessão: escrever, confiança, resposta esperada, autoavaliação (`renderCartaoDissertativa`) |
 | `09a-revisao-rapida.js` | 12-B | flashcards |
 | `09b-simulados-e-provas.js` | 13–14 | simulados e provas antigas |
 | `09c-cartoes-em-lote.js` | 12-C, 12-D | cartões em lote; Adicionar baralho (trazer baralho inteiro de uma IA) |
 | `10a-favoritos-historico-desempenho.js` | 16–17 | Favoritos, Livro de Ouro, Histórico, Meu Desempenho |
-| `10b-meta-grupo-perfil.js` | 18–19 (+18-C) | Meta, Meu Grupo, Perfil e configurações, "Seus dados" |
+| `10b-meta-grupo-perfil.js` | 18 (+18-B, 18-C) | Meta, Meu Grupo, integrantes e grupos de estudo |
+| `10c-perfil.js` | 19 | Perfil e configurações, "Seus dados" |
 | `11a-simulado-e-pdf.js` | 20, 20-B | Criar Simulado, Material em PDF |
 | `11b-qualidade-e-cadastros.js` | 21, 23, 24 | Questões Difíceis/qualidade, Fila de Dúvidas, cadastros, usuários, Feedback dos Usuários |
 | `11c-banco-e-taxonomia.js` | 25, 25-B | Banco de Questões, formulário de questão, Especialidades e Assuntos |
@@ -69,6 +73,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `12a-importacao.js` | 26 | Importar/Enviar questões |
 | `12b-central-de-provas.js` | 26-B | Central de Provas |
 | `12c-questoes-para-atualizar.js` | 26-D | Questões para Atualizar (correções, arquivo de atualizações) |
+| `12d-pendencias-de-conteudo.js` | 26-E | Pendências de conteúdo: figuras, desatualizadas, provas com número faltando, assuntos sem cartão — calculado do banco (`pendenciasDeConteudo`) |
 | `13-tutorial.js` | 26-C | tutorial rápido e guia completo |
 | `14-admin-e-inicializacao.js` | 27–28 | Blocos, Configurações, versão nova, PWA, **inicialização (sempre o último)** |
 | `estilo.css` | — | visual (tokens de cor nos dois temas) |

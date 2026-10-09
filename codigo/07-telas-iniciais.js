@@ -38,7 +38,7 @@ function renderLanding(){
       <div>
         <span class="badge badge-accent">Projeto sem fins lucrativos</span>
         <h1 class="mt-2">Feito por quem passou pela EPM, para quem está passando.</h1>
-        <p class="mt-2" style="font-size:1.05rem;color:var(--ink-2);max-width:48ch;line-height:1.55">O ${CONFIG.nomePlataforma} é uma plataforma de estudos gratuita para os alunos de medicina da Escola Paulista de Medicina (UNIFESP), administrada por alunos e ex-alunos — do primeiro bloco do curso até a prova de residência.</p>
+        <p class="mt-2" style="font-size:var(--fs-base);color:var(--ink-2);max-width:48ch;line-height:1.55">O ${CONFIG.nomePlataforma} é uma plataforma de estudos gratuita para os alunos de medicina da Escola Paulista de Medicina (UNIFESP), administrada por alunos e ex-alunos — do primeiro bloco do curso até a prova de residência.</p>
         <div class="flex gap-1 mt-3 quebra">
           <button class="btn btn-primary" onclick="navigate('cadastro')">Solicitar cadastro</button>
           <button class="btn btn-secondary" onclick="navigate('login')">Já tenho conta</button>
@@ -468,18 +468,20 @@ function htmlCardProvaAlvo(u){
   if(!alvo) return "";
   const teto = limitarIntervaloPelaProva(u.id, 100000);
   const encurta = CONFIG.revisaoPelaProva.ligado && teto < Math.max(...CONFIG.intervalosBase);
-  return `<div class="card mt-2">
+  // Faixa fina, não cartão: a prova-alvo é contexto do estudo, não uma tarefa. A
+  // origem da data e o motivo do encurtamento ficam sempre à vista (a plataforma
+  // explica o que faz), mas em letra pequena.
+  return `<div class="faixa-prova">
     <div class="flex justify-between items-center gap-2 quebra">
-      <div class="cresce-240">
-        <div class="card-title">${iconeSvg("target")} Prova-alvo: ${formatDataBR(alvo.data)}</div>
-        <div class="text-sm muted">${escapeHtml(tempoParaProvaAlvo(alvo.dias).replace(/^./, c=>c.toUpperCase()))} — ${alvo.exata ? "a data da primeira prova importante que você marcou" : "o padrão: 1º de dezembro"}.</div>
-        ${encurta ? `<p class="text-xs muted mt-1">Com a prova chegando, as revisões espaçadas voltam em no máximo ${teto} dias (${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta): assim nada que você revisa fica para depois da prova.</p>` : ""}
-      </div>
-      <button class="btn btn-secondary btn-sm" onclick="navigate('perfil')">Ajustar a data</button>
+      <span class="text-sm">${iconeSvg("target")} <strong>Prova-alvo: ${formatDataBR(alvo.data)}</strong> · <span class="muted">${escapeHtml(tempoParaProvaAlvo(alvo.dias))}</span></span>
+      <button class="link-btn text-sm" onclick="navigate('perfil')">Ajustar a data</button>
     </div>
+    <p class="text-xs muted mt-1">${alvo.exata ? "É a data da primeira prova importante que você marcou" : "É o padrão: 1º de dezembro"}.${encurta ? ` Com a prova chegando, as revisões espaçadas voltam em no máximo ${teto} dias (${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta): assim nada que você revisa fica para depois da prova.` : ""}</p>
   </div>`;
 }
-function renderInicioAluno(u){
+/* Só os números da tela inicial do aluno, sem HTML: dá para conferir uma regra
+   (o que conta como "hoje", a sequência de dias) sem desenhar a tela. */
+function dadosDoInicioAluno(u){
   const bloco = getBlocoAtual();
   const respondidasHoje = questoesRespondidasHoje(u.id);
   const meta = metaDoUsuario(u);
@@ -491,12 +493,13 @@ function renderInicioAluno(u){
   const calibracao = calibracaoConfianca(u.id);
   const flashVencidos = resumoFlashcards(u.id).vencidos;
   const emAndamento = sessaoEmAndamentoDe(u);
+  return {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento};
+}
+function renderInicioAluno(u){
+  const {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento} = dadosDoInicioAluno(u);
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p>
   ${bloco && subdivisoesDoBloco(bloco).length ? `<details class="detalhes-bloco text-sm muted"><summary>${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · ver o período dividido" : "Ver o período dividido"}</summary>Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</details>` : ""}</div>
-  ${renderAvisosCard(u)}
-  ${renderNotificacoesCard(u)}
-  ${htmlCardProvaAlvo(u)}
   <div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-240">
@@ -510,19 +513,15 @@ function renderInicioAluno(u){
         <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
       </div>
     </div>
-  </div>
-  <div class="stat-mini-row mt-2">
-    <div class="stat-mini"><span class="stat-value">${seq}</span><span class="stat-label">dia(s) seguidos estudando</span></div>
-    <div class="stat-mini"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral (${totalRespostas} questões)</span></div>
-    <div class="stat-mini"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">assunto(s) para revisar hoje</span></div>
-  </div>
-  ${calibracao.alertaExcessoConfianca ? `<div class="card mt-2 borda-alerta">
-    <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
-    <div class="flex gap-1 mt-2 quebra">
-      <button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button>
-      <button class="btn btn-secondary btn-sm" onclick="navigate('desempenho')">Ver onde a confiança engana</button>
+    <div class="stat-mini-row mt-2">
+      <div class="stat-mini"><span class="stat-value">${seq}</span><span class="stat-label">dia(s) seguidos estudando</span></div>
+      <div class="stat-mini"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral (${totalRespostas} questões)</span></div>
+      <div class="stat-mini"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">assunto(s) para revisar hoje</span></div>
     </div>
-  </div>` : ""}
+    ${htmlCardProvaAlvo(u)}
+  </div>
+  ${renderAvisosCard(u)}
+  ${renderNotificacoesCard(u)}
   <div class="grid grid-2 mt-2">
     <div class="card">
       <div class="card-title">Sugestões de assuntos para melhorar</div>
@@ -533,6 +532,13 @@ function renderInicioAluno(u){
       <div class="card-title">Revisão pendente</div>
       ${revisarHoje.length ? `<p class="text-sm muted mt-1">${revisarHoje.length} assunto(s) já estudado(s) estão no momento certo de revisar, segundo seu histórico.</p>` : '<p class="text-sm muted mt-1">Nada vencido para revisar hoje. Continue estudando o bloco atual.</p>'}
       ${flashVencidos ? `<p class="text-sm mt-1">${flashVencidos} cartão(ões) de revisão rápida também venceram — dá pra limpar essa fila em poucos minutos.</p>` : ""}
+      ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
+        <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
+        <div class="flex gap-1 mt-1 quebra">
+          <button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button>
+          <button class="btn btn-secondary btn-sm" onclick="navigate('desempenho')">Ver onde a confiança engana</button>
+        </div>
+      </div>` : ""}
       <div class="flex gap-1 mt-2 quebra">
         ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
         <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
@@ -648,7 +654,7 @@ function renderEstudar(){
       </div>
       <div class="flex items-center gap-2 quebra">
         <div class="texto-dir">
-          <div class="stat-value" style="font-size:1.5rem">${feitasHoje}/${meta}</div>
+          <div class="stat-value" style="font-size:var(--fs-xl)">${feitasHoje}/${meta}</div>
           <div class="stat-label">questões hoje${seq?" · "+seq+" dia(s) seguidos":""}</div>
         </div>
         <button class="btn btn-secondary btn-sm" onclick="abrirModalMeta()">${iconeSvg("target")} Ajustar meta</button>
@@ -902,7 +908,7 @@ function abrirQuestaoCompleta(qid, opts){
       ${badgeAutoriaQuestao(q)}
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}
     </div>
-    <div class="qcard-enunciado" style="font-size:1.02rem;margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
+    <div class="qcard-enunciado" style="font-size:var(--fs-base);margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
     ${renderImagemQuestao(q)}
     ${ehDissertativa(q) ? "" : `    <div class="qcard-alts">
       ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span></div>`).join("")}

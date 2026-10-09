@@ -23,12 +23,20 @@ test("todo item do menu aparece, para cada papel e no modo aluno", async () => {
   try {
     const r = await pagina.evaluate(() => {
       const faltando = [];
+      // o menu da equipe começa recolhido; aqui interessa o que existe, então tudo aberto
+      state.menuGruposFechados = Object.fromEntries([...GRUPOS_MENU_ALUNO, ...GRUPOS_MENU_EQUIPE].map(g => [g, false]));
       for(const papel of ["aluno", "residente", "professor", "admin"]){
         const u = db.usuarios.find(x => x.papel === papel) || { id: "x", papel, nome: "Teste", email: "t@t" };
         const html = htmlMenuLateral(Object.assign({}, u, { papel }));
         const caixa = document.createElement("div"); caixa.innerHTML = html;
         const rotulos = [...caixa.querySelectorAll(".nav-item span")].map(s => s.textContent);
-        for(const item of navItemsParaPapel(papel)) if(!rotulos.includes(item.label)) faltando.push(papel + ":" + item.id);
+        // telas irmãs viram uma entrada só (FAMILIAS_DO_MENU); o item some do menu, não da tela
+        const doMenu = navItemsParaPapel(papel);
+        for(const item of doMenu){
+          const fam = familiaDaRota(item.id, doMenu);
+          const rotulo = fam ? fam.fam.label : item.label;
+          if(!rotulos.includes(rotulo)) faltando.push(papel + ":" + item.id);
+        }
       }
       return faltando;
     });
@@ -42,18 +50,58 @@ test("grupo recolhido da equipe soma os selos escondidos e abre sozinho na rota 
     const r = await pagina.evaluate(() => {
       fazerLogin("admin@esc.demo", "admin123"); fecharModal();
       db.feedbacks = db.feedbacks || [];
-      const aberto = document.querySelectorAll("#sidebarMenu .nav-grupo.fechado").length;
+      const fechadosNoInicio = [...document.querySelectorAll("#sidebarMenu .nav-grupo.fechado")].map(g => g.dataset.grupo);
       alternarGrupoMenu("Gestão");
       const menu = document.getElementById("sidebarMenu");
-      const recolhido = menu.querySelector(".nav-grupo.fechado")?.textContent.trim();
+      const recolhido = menu.querySelector('.nav-grupo.fechado[data-grupo="Gestão"]')?.textContent.trim();
       const some = !/Blocos de Estudo/.test(menu.innerText);
       navigate("blocos");
       const reabre = /Blocos de Estudo/.test(document.getElementById("sidebarMenu").innerText);
-      return { aberto, recolhido, some, reabre };
+      return { fechadosNoInicio, recolhido, some, reabre };
     });
-    assert.equal(r.aberto, 0, "tudo começa aberto");
+    assert.deepEqual(r.fechadosNoInicio.sort(), ["Conteúdo", "Dúvidas e revisão", "Provas"], "o menu da equipe começa enxuto: só Gestão aberta");
     assert.match(r.recolhido, /Gestão/);
     assert.ok(r.some);
     assert.ok(r.reabre, "o grupo da tela atual não fica recolhido");
+  } finally { await contexto.close(); }
+});
+
+test("telas irmãs: uma entrada no menu, abas no topo, e o item fica ativo em qualquer uma", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLogin("admin@esc.demo", "admin123"); fecharModal();
+      const menuAntes = document.getElementById("sidebarMenu").innerText;
+      navigate("central-provas");
+      const abas = [...document.querySelectorAll("#conteudoPagina .tabs-irmas .tab")].map(b => b.textContent.trim());
+      const ativa = document.querySelector("#conteudoPagina .tabs-irmas .tab.active")?.textContent.trim();
+      const itemAtivo = document.querySelector("#sidebarMenu .nav-item.active")?.textContent.trim();
+      document.querySelectorAll("#conteudoPagina .tabs-irmas .tab")[2].click();
+      return { menuAntes, abas, ativa, itemAtivo, rota: state.route,
+        itensSoltos: ["Central de Provas", "Questões para Atualizar"].filter(x => document.getElementById("sidebarMenu").innerText.includes(x)) };
+    });
+    assert.deepEqual(r.abas, ["Importar", "Central de Provas", "Para atualizar", "Pendências"]);
+    assert.equal(r.ativa, "Central de Provas");
+    assert.match(r.itemAtivo, /Provas e importação/);
+    assert.equal(r.rota, "atualizar-questoes");
+    assert.deepEqual(r.itensSoltos, [], "as irmãs não aparecem soltas no menu");
+  } finally { await contexto.close(); }
+});
+
+test("modo aluno da equipe: indicador no topo que leva de volta ao papel", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLogin("admin@esc.demo", "admin123"); fecharModal();
+      const antes = !!document.querySelector(".chip-modo-aluno");
+      alternarModoAluno();
+      const durante = document.querySelector(".chip-modo-aluno")?.textContent.trim();
+      document.querySelector(".chip-modo-aluno").click();
+      return { antes, durante, depois: !!document.querySelector(".chip-modo-aluno"), modo: state.modoAluno };
+    });
+    assert.equal(r.antes, false);
+    assert.match(r.durante, /Modo aluno/);
+    assert.equal(r.depois, false);
+    assert.equal(r.modo, false);
   } finally { await contexto.close(); }
 });
