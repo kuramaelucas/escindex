@@ -684,8 +684,7 @@ function renderDesempenho(){
   return `
   <div class="page-header"><h2>Meu Desempenho</h2><p>Primeiro o total de tudo que você já respondeu, depois como está indo no período que você escolher, e por fim onde mexer.</p></div>
 
-  <div class="par-de-cartoes">
-  <div class="card">
+  <div class="card mb-2">
     <div class="card-title">Desempenho total — todas as questões</div>
     <p class="text-sm muted">Soma de tudo que você já respondeu na plataforma, sem separar por área, assunto ou tipo de sessão.</p>
     <div class="grid grid-4 compacto mt-2">
@@ -696,8 +695,7 @@ function renderDesempenho(){
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title">${iconeSvg("cards")} Flashcards — contagem à parte</div>
+  ${htmlSecaoRecolhivel("desempenho-cartoes", iconeSvg("cards")+" Flashcards — contagem à parte", cartoes.revisoes+" revisões · "+cartoes.hoje+" hoje"+(cartoes.vencidos?" · "+cartoes.vencidos+" vencido(s)":""), `
     <p class="text-sm muted">Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão de prova leva minutos. Por isso ele é contado aqui, separado das questões acima: é volume de revisão, não taxa de acerto.</p>
     <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${cartoes.revisoes}</div><div class="stat-label">cartões revisados no total (contando as repetições)</div></div>
@@ -709,8 +707,7 @@ function renderDesempenho(){
       <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
       ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
     </div>
-  </div>
-  </div>
+  `)}
 
   ${htmlCardNotaEstimada(u)}
 
@@ -790,12 +787,13 @@ function renderDesempenho(){
 
   ${htmlEvolucaoPorAssunto(u)}
 
+  ${htmlSecaoRecolhivel("desempenho-confianca", "Sua confiança e o acerto", (calibracao.certeza.n ? "certeza: "+calibracao.certeza.taxa+"% de acerto" : "sem dados ainda")+((calibracao.alertaExcessoConfianca||falsaSeguranca.length) ? " · atenção" : ""), `
   <div class="grid grid-3 compacto mb-2">
     <div class="stat-tile"><div class="stat-value">${calibracao.certeza.n?calibracao.certeza.taxa+"%":"—"}</div><div class="stat-label">acerto quando você disse "certeza" (${calibracao.certeza.n})</div></div>
     <div class="stat-tile"><div class="stat-value">${calibracao.duvida.n?calibracao.duvida.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "na dúvida" (${calibracao.duvida.n})</div></div>
     <div class="stat-tile"><div class="stat-value">${calibracao.chute.n?calibracao.chute.taxa+"%":"—"}</div><div class="stat-label">acerto quando disse "chute" (${calibracao.chute.n})</div></div>
   </div>
-  ${(calibracao.alertaExcessoConfianca || falsaSeguranca.length) ? `<div class="card mb-2 borda-alerta">
+  ${(calibracao.alertaExcessoConfianca || falsaSeguranca.length) ? `<div class="card-flat mb-1 borda-alerta">
     <div class="card-title">Onde sua confiança engana</div>
     ${calibracao.alertaExcessoConfianca ? `<p class="text-sm">Nas questões em que você marcou "certeza", a taxa de acerto é de ${calibracao.certeza.taxa}%. Quando alguém tem certeza de verdade, esse número fica perto de 90%: a diferença é o tamanho do ponto cego.</p>` : ""}
     ${falsaSeguranca.length ? `<p class="text-sm muted mt-1">Assuntos em que você respondeu com certeza e errou mesmo assim — é para cá que vale direcionar o estudo antes de qualquer outra coisa:</p>
@@ -808,8 +806,8 @@ function renderDesempenho(){
       <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">${iconeSvg("cards")} Revisão rápida desses assuntos</button>
     </div>
   </div>` : ""}
-  ${ritmo ? `<div class="card mb-2">
-    <div class="card-title">Ritmo — quanto tempo você leva por questão</div>
+  `, calibracao.alertaExcessoConfianca || falsaSeguranca.length)}
+  ${ritmo ? htmlSecaoRecolhivel("desempenho-ritmo", "Ritmo — quanto tempo você leva por questão", "mediana de "+formatarDuracao(ritmo.mediana)+" por questão", `
     <p class="text-xs muted">Baseado em ${ritmo.n} questão(ões) cronometradas (prática e simulados).</p>
     <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(ritmo.mediana)}</div><div class="stat-label">tempo mediano por questão</div></div>
@@ -824,6 +822,6 @@ function renderDesempenho(){
         <span class="badge ${a.media>ritmo.mediana*1.5?"badge-amber":"badge-muted"}">${formatarDuracao(a.media)} por questão</span>
       </div>`).join("")}
     </div>` : ""}
-  </div>` : ""}
+  `) : ""}
   `;
 }

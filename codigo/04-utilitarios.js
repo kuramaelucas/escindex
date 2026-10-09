@@ -788,3 +788,45 @@ function podeGerirConteudo(usuario){
   return podeAdmin("conteudo", usuario);
 }
 function usuarioAtual(){ return state.usuarioAtualId ? getUsuario(state.usuarioAtualId) : null; }
+
+/* ==========================================================================
+   SEÇÕES E FILTROS RECOLHÍVEIS
+   ========================================================================== */
+/* Tela de lista ou de análise com tudo aberto cansa: o que a pessoa vem ver fica
+   no alto e o detalhe espera um clique. O estado aberto/fechado vive em
+   state.secoesRecolhiveis, porque a tela se redesenha a cada filtro ou período
+   e um <details> solto voltaria ao padrão a cada vez. */
+function secaoRecolhivelAberta(chave, padrao){
+  const s = state.secoesRecolhiveis || {};
+  return chave in s ? !!s[chave] : !!padrao;
+}
+function lembrarSecaoRecolhivel(chave, aberta){
+  state.secoesRecolhiveis = state.secoesRecolhiveis || {};
+  state.secoesRecolhiveis[chave] = !!aberta;
+}
+// resumoHtml é a linha que fica visível com a seção fechada: o número que diz se vale abrir
+function htmlSecaoRecolhivel(chave, tituloHtml, resumoHtml, corpoHtml, abertaPorPadrao){
+  return `<details class="card mb-2 secao-recolhivel" ${secaoRecolhivelAberta(chave, abertaPorPadrao) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('${chave}', this.open)">
+    <summary><span class="card-title sem-m">${tituloHtml}</span>${resumoHtml ? `<span class="secao-resumo text-sm muted">${resumoHtml}</span>` : ""}</summary>
+    <div class="secao-corpo">${corpoHtml}</div>
+  </details>`;
+}
+/* Filtros: a barra (botão "Filtros (n)", chips do que está ligado e o que a tela
+   quiser deixar sempre à vista, como a busca) e o corpo com os campos, que só
+   abre sob pedido. Cada chip tem o x que desliga aquele filtro (`limpar` é o
+   código do onclick). */
+function alternarFiltrosRecolhiveis(chave){
+  lembrarSecaoRecolhivel(chave, !secaoRecolhivelAberta(chave, false));
+  render();
+}
+function htmlFiltrosRecolhiveis(chave, chips, barraExtraHtml, corpoHtml){
+  const aberta = secaoRecolhivelAberta(chave, false);
+  return `<div class="card mb-2 filtros-recolhiveis">
+    <div class="filtros-barra">
+      <button class="btn btn-secondary btn-sm" aria-expanded="${aberta}" onclick="alternarFiltrosRecolhiveis('${chave}')">${iconeSvg("filter")} Filtros${chips.length ? " ("+chips.length+" ativo"+(chips.length===1?"":"s")+")" : ""} ${iconeSvg(aberta ? "arrow-up" : "arrow-down")}</button>
+      ${barraExtraHtml || ""}
+      ${chips.map(c=>`<span class="chip-filtro">${escapeHtml(c.texto)}<button class="chip-x" aria-label="Tirar o filtro ${escapeHtml(c.texto)}" onclick="${c.limpar}">${iconeSvg("x")}</button></span>`).join("")}
+    </div>
+    ${aberta ? `<div class="filtros-corpo mt-2">${corpoHtml}</div>` : ""}
+  </div>`;
+}

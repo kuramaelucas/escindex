@@ -275,7 +275,7 @@ function render(){
     case "painel-turma": conteudo = renderPainelTurma(); break;
     default: conteudo = renderInicio();
   }
-  desenharTela(conteudo);
+  desenharTela(htmlAbasDaFamilia(usuarioAtual()) + conteudo);
   // quem acabou de entrar e chegou ao Início vê o tutorial rápido (uma vez
   // por sessão, até pedir para não ver mais — codigo/13-tutorial.js)
   if(state.route === "inicio") agendarTutorialAoEntrar();
@@ -521,6 +521,39 @@ const GRUPO_DO_ITEM_EQUIPE = {"banco-questoes":"Conteúdo", "importar-questoes":
   "criar-simulado":"Provas", "material-pdf":"Provas", simulados:"Provas",
   "fila-duvidas":"Dúvidas e revisão", "revisao-dificeis":"Dúvidas e revisão",
   "painel-turma":"Gestão", blocos:"Gestão", "feedback-usuarios":"Gestão", "enviar-avisos":"Gestão", "config-geral":"Gestão"};
+/* Telas irmãs viram UMA entrada no menu da equipe, com abas no topo de cada uma.
+   Só a apresentação muda: cada rota continua existindo (link salvo, teste de
+   fumaça, notificação que aponta para ela). Item só se funde quando a pessoa
+   tem pelo menos duas irmãs no menu; sozinho, continua como era. */
+const FAMILIAS_DO_MENU = [
+  {label:"Provas e importação", icon:"archive", abas:{"importar-questoes":"Importar", "central-provas":"Central de Provas", "atualizar-questoes":"Para atualizar"}},
+  {label:"Dúvidas e qualidade", icon:"message", abas:{"fila-duvidas":"Fila de Dúvidas", "revisao-dificeis":"Questões Difíceis"}},
+];
+function familiaDaRota(rota, nav){
+  const fam = FAMILIAS_DO_MENU.find(f=>f.abas[rota]);
+  if(!fam) return null;
+  const ids = (nav||[]).map(i=>i.id).filter(id=>fam.abas[id]);
+  return ids.length>=2 ? {fam, ids} : null;
+}
+function agruparItensDaFamilia(nav){
+  const jaFundida = new Set();
+  const saida = [];
+  for(const item of nav){
+    const f = familiaDaRota(item.id, nav);
+    if(!f){ saida.push(item); continue; }
+    if(jaFundida.has(f.fam)) continue;
+    jaFundida.add(f.fam);
+    saida.push({id:f.ids[0], label:f.fam.label, icon:f.fam.icon, familia:f.ids});
+  }
+  return saida;
+}
+// as abas no alto de cada tela da família: trocar de irmã é um clique, sem voltar ao menu
+function htmlAbasDaFamilia(u){
+  if(!u || u.papel==="aluno" || state.modoAluno) return "";
+  const f = familiaDaRota(state.route, navItemsParaPapel(u.papel));
+  if(!f) return "";
+  return `<div class="tabs tabs-irmas" role="tablist">${f.ids.map(id=>`<button class="tab ${id===state.route?"active":""}" role="tab" aria-selected="${id===state.route}" onclick="navigate('${id}')">${escapeHtml(f.fam.abas[id])}</button>`).join("")}</div>`;
+}
 // o número do selo de cada item (pedidos de acesso, de grupo, feedback não lido)
 function pendenciaDoItemMenu(item, u, pendCadastros){
   if(item.id==="painel-turma") return pendCadastros;
@@ -531,26 +564,31 @@ function pendenciaDoItemMenu(item, u, pendCadastros){
 function htmlItemMenu(item, n){
   const dica = item.id==="meu-grupo" && n>0 ? ' title="Pedidos para entrar no seu grupo"' : "";
   const badge = n>0 ? ' <span class="badge badge-amber"'+dica+'>'+n+'</span>' : "";
-  return `<li class="nav-item ${state.route===item.id?"active":""}" onclick="navigate('${item.id}')">${iconeSvg(item.icon)}<span>${item.label}</span>${badge}</li>`;
+  const ativo = state.route===item.id || (item.familia && item.familia.includes(state.route));
+  return `<li class="nav-item ${ativo?"active":""}" onclick="navigate('${item.id}')">${iconeSvg(item.icon)}<span>${item.label}</span>${badge}</li>`;
 }
-// Recolher é escolha da pessoa e começa tudo aberto: o grupo recolhido mostra a
-// soma dos selos que escondeu, para um pedido pendente nunca passar despercebido.
+// O menu da equipe tem até 16 itens, então começa enxuto: só Gestão e o grupo da
+// tela atual abertos. Depois disso a escolha é da pessoa. O grupo recolhido mostra
+// a soma dos selos que escondeu, para um pedido pendente nunca passar despercebido.
 function alternarGrupoMenu(nome){
   state.menuGruposFechados = state.menuGruposFechados || {};
-  state.menuGruposFechados[nome] = !state.menuGruposFechados[nome];
+  const estavaAberto = !document.querySelector('#sidebarMenu .nav-grupo.fechado[data-grupo="'+nome+'"]');
+  state.menuGruposFechados[nome] = estavaAberto;
   atualizarMenuLateral();
 }
 function htmlGrupoMenu(nome, itens, u, pendCadastros, recolhivel){
   const lista = itens.map(item=>({item, n:pendenciaDoItemMenu(item, u, pendCadastros)}));
   if(!recolhivel) return `<div class="nav-subtitulo">${escapeHtml(nome)}</div><ul class="nav-list">${lista.map(x=>htmlItemMenu(x.item, x.n)).join("")}</ul>`;
-  const fechado = !!(state.menuGruposFechados||{})[nome] && !itens.some(i=>i.id===state.route);
+  const escolha = (state.menuGruposFechados||{})[nome];
+  const fechado = (escolha===undefined ? nome!=="Gestão" : !!escolha) && !itens.some(i=>i.id===state.route || (i.familia && i.familia.includes(state.route)));
   const soma = lista.reduce((t,x)=>t+x.n, 0);
   const selo = fechado && soma>0 ? ' <span class="badge badge-amber">'+soma+'</span>' : "";
-  return `<div class="nav-subtitulo nav-grupo ${fechado?"fechado":""}" role="button" aria-expanded="${!fechado}" onclick="alternarGrupoMenu('${nome}')"><span>${escapeHtml(nome)}${selo}</span><span class="nav-seta">▾</span></div>
+  return `<div class="nav-subtitulo nav-grupo ${fechado?"fechado":""}" data-grupo="${escapeHtml(nome)}" role="button" aria-expanded="${!fechado}" onclick="alternarGrupoMenu('${nome}')"><span>${escapeHtml(nome)}${selo}</span><span class="nav-seta">▾</span></div>
     ${fechado ? "" : `<ul class="nav-list">${lista.map(x=>htmlItemMenu(x.item, x.n)).join("")}</ul>`}`;
 }
 function htmlMenuLateral(u){
-  const nav = navItemsParaPapel(u.papel);
+  const comoAlunoMenu = u.papel==="aluno" || state.modoAluno;
+  const nav = comoAlunoMenu ? navItemsParaPapel(u.papel) : agruparItensDaFamilia(navItemsParaPapel(u.papel));
   // os pedidos da nuvem entram na conta (ver vigiarPedidosDeAcesso, seção 2-C)
   const pendCadastros = podeAprovarCadastros(u) ? quantosPedidosDeAcesso() : 0;
   const comoAluno = u.papel==="aluno" || state.modoAluno;
@@ -579,8 +617,11 @@ function htmlTopo(u){
           <div class="topbar-title">${tituloDaRota(state.route)}</div>
         </div>
         <div class="flex items-center gap-2">
+          ${htmlBotaoBusca()}
           ${renderChipNuvem()}
-          ${badgePapel(u.papel, u)}
+          ${state.modoAluno && u.papel!=="aluno"
+            ? `<button class="chip-modo-aluno" onclick="alternarModoAluno()" title="Você está vendo a plataforma como aluno; suas respostas contam para o seu progresso. Clique para voltar ao seu papel.">${iconeSvg("book")} Modo aluno · sair</button>`
+            : badgePapel(u.papel, u)}
           <span class="text-sm muted nowrap nome-no-topo">${escapeHtml(u.nome)}</span>
         </div>`;
 }

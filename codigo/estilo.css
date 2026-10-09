@@ -496,6 +496,10 @@ code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);pa
 .tabs{display:flex;gap:.3rem;border-bottom:1px solid var(--border);margin-bottom:1.4rem;overflow-x:auto}
 .tab{padding:.7rem 1rem;font-size:var(--fs-sm);font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
 .tab:hover{color:var(--ink)}
+button.tab{background:none;border:0;border-bottom:2px solid transparent;font-family:inherit}
+.tabs-irmas{margin-bottom:1rem}
+.chip-modo-aluno{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .7rem;border-radius:100px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-dark);font-size:var(--fs-xs);font-weight:700;cursor:pointer}
+.chip-modo-aluno:hover{background:var(--accent);color:#fff}
 .tab.active{color:var(--accent-dark);border-color:var(--accent)}
 
 /* ---------- vazio / empty state ---------- */
@@ -673,3 +677,32 @@ body.modo-foco .main{margin-left:0}
 /* origem e trilha da questão: texto discreto em vez de uma fileira de badges */
 .qcard-trilha{font-size:var(--fs-xs);color:var(--muted);align-self:center}
 @media (hover:none){.dica-teclas{display:none}}
+
+/* ---------- busca global (06b-busca-global.js) ---------- */
+.busca-topo{display:inline-flex;align-items:center;gap:.45rem;padding:.3rem .6rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--surface);color:var(--muted);font-size:var(--fs-sm);cursor:pointer}
+.busca-topo:hover{border-color:var(--accent);color:var(--ink)}
+.busca-topo kbd{font-family:var(--font-mono);font-size:var(--fs-2xs);padding:.05rem .35rem;border:1px solid var(--border);border-radius:4px;background:var(--surface-2)}
+.busca-campo{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
+.busca-campo .input{flex:1}
+.busca-lista{max-height:min(55vh,420px);overflow-y:auto;margin:0 -.4rem}
+.busca-grupo{font-size:var(--fs-2xs);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:.6rem .6rem .2rem}
+.busca-item{display:flex;align-items:flex-start;gap:.6rem;width:100%;text-align:left;padding:.5rem .6rem;border:0;border-radius:var(--radius-sm);background:none;cursor:pointer;color:var(--ink)}
+.busca-item.sel{background:var(--accent-soft);color:var(--accent-dark)}
+.busca-item-texto{display:flex;flex-direction:column;min-width:0}
+.busca-item-titulo{font-size:var(--fs-sm);font-weight:600;overflow-wrap:anywhere}
+.busca-item-detalhe{font-size:var(--fs-xs);color:var(--muted)}
+.busca-vazio{padding:1rem .6rem}
+.busca-rodape{margin-top:.6rem;padding-top:.5rem;border-top:1px solid var(--border)}
+@media (max-width:640px){ .busca-topo-texto,.busca-topo kbd{display:none} .busca-topo{padding:.4rem} }
+
+/* ---------- seções e filtros recolhíveis (04-utilitarios.js) ---------- */
+.secao-recolhivel>summary{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;cursor:pointer;list-style:none}
+.secao-recolhivel>summary::-webkit-details-marker{display:none}
+.secao-recolhivel>summary::after{content:"▾";margin-left:auto;color:var(--muted);transition:transform .15s}
+.secao-recolhivel[open]>summary::after{transform:rotate(180deg)}
+.secao-corpo{margin-top:.8rem}
+.filtros-barra{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.chip-filtro{display:inline-flex;align-items:center;gap:.2rem;padding:.15rem .25rem .15rem .6rem;border-radius:100px;background:var(--accent-soft);color:var(--accent-dark);font-size:var(--fs-xs);font-weight:600}
+.chip-x{display:inline-flex;align-items:center;justify-content:center;width:1.3rem;height:1.3rem;border:0;border-radius:50%;background:none;color:inherit;cursor:pointer;padding:0}
+.chip-x:hover{background:var(--accent);color:#fff}
+.chip-x .icon{width:.8rem;height:.8rem}

@@ -146,6 +146,7 @@ const GUIA_ALUNO = [
   ]},
   { titulo:"Perfil, aplicativo e dados", itens:[
     "Em <strong>Perfil e configurações</strong> (no fim do menu): ano da faculdade, lembrete diário de meta, este tutorial e o guia, senha (a troca pede a senha atual), instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
+    "<strong>Buscar:</strong> o botão <em>Buscar</em> no alto da tela (ou <kbd>Ctrl</kbd>+<kbd>K</kbd>, <kbd>⌘</kbd>+<kbd>K</kbd> no Mac) abre uma busca que vai direto a uma tela, a um assunto para praticar ou a uma questão pelo trecho do enunciado. Use as setas e o Enter. Ela não abre durante um simulado em andamento.",
     "Com a nuvem ligada, o estudo sincroniza entre aparelhos. Sem ela, tudo fica salvo neste navegador.",
     "<strong>Prova-alvo:</strong> existe no 6º ano e para quem já se formou. Sem data marcada vale o 1º de dezembro, e o Início mostra quanto falta; em Perfil você pode marcar a data exata da sua primeira prova importante. Quando a prova se aproxima, as revisões espaçadas passam a voltar em no máximo 25% do tempo que falta — para o que você revisa não ficar para depois dela. Do 3º ao 5º ano não há prova-alvo.",
   ]},
