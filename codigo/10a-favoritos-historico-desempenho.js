@@ -115,7 +115,7 @@ function renderFavoritosCartoes(u, cartoes){
       <div class="qcard-meta mb-1">
         <span class="badge badge-accent">${escapeHtml(nomeAssuntoDoCartao(cartao))}</span>
         ${cartao.usuarioId ? '<span class="badge badge-muted">meu cartão</span>' : '<span class="badge badge-muted">cartão da equipe</span>'}
-        ${cartao.origem==="questao" ? '<span class="badge badge-amber">gerado de uma questão</span>' : ""}
+        ${cartao.origem==="questao" ? '<span class="badge badge-muted">gerado de uma questão</span>' : ""}
         ${rev && rev.proximaRevisao ? `<span class="badge badge-muted">volta em ${formatDataBR(proximaRevisaoCartao(rev))}</span>` : '<span class="badge badge-muted">ainda não revisado</span>'}
       </div>
       <div class="text-sm peso-600">${escapeHtml(cartao.frente)}</div>
@@ -163,8 +163,8 @@ function praticarFavoritas(){
    respondidas, problemas sinalizados). */
 function tiposLivroOuro(){
   return {
-    doacao:      {nome:"Doação",       badge:"badge-amber",  icone:"star"},
-    colaboracao: {nome:"Colaboração",  badge:"badge-accent", icone:"users"},
+    doacao:      {nome:"Doação",       badge:"badge-accent",  icone:"star"},
+    colaboracao: {nome:"Colaboração",  badge:"badge-muted", icone:"users"},
     apoio:       {nome:"Apoio",        badge:"badge-muted",  icone:"check"},
   };
 }
@@ -197,7 +197,7 @@ function renderLivroOuro(){
       ${lista.map(r=>`<div class="card-flat mb-1">
         <div class="flex justify-between items-center gap-2 quebra">
           <div>
-            <div class="peso-700">${escapeHtml(r.nome)} ${r.destaque?'<span class="badge badge-amber">destaque</span>':""}</div>
+            <div class="peso-700">${escapeHtml(r.nome)} ${r.destaque?'<span class="badge badge-accent">destaque</span>':""}</div>
             <div class="text-sm muted mt-1">${escapeHtml(r.descricao||"")}</div>
             ${r.mensagem?`<div class="text-sm mt-1" style="font-family:var(--font-display);font-style:italic">“${escapeHtml(r.mensagem)}”</div>`:""}
             <div class="text-xs muted mt-1">${r.data?formatDataBR(r.data):""}${r.valor?" · "+escapeHtml(r.valor):""}</div>

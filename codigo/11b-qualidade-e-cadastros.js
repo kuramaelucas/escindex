@@ -100,7 +100,7 @@ function renderListaSugeridas(lista){
     const autor = getUsuario(q.criadoPor);
     return `<div class="card mb-2">
       <div class="qcard-meta"><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${escapeHtml(q.banca||"")} ${anoDaProva(q)}${q.numeroNaProva?" · nº "+q.numeroNaProva:""}</span>
-        <span class="badge ${tipoProvaDe(q)==="graduacao"?"badge-amber":"badge-muted"}">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>
+        <span class="badge ${tipoProvaDe(q)==="graduacao"?"badge-accent":"badge-muted"}">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>
         ${q.imagemUrl ? '<span class="badge badge-accent">com imagem</span>' : aguardaImagem(q) ? '<span class="badge badge-amber">falta a imagem</span>' : ""}
         ${q.naNuvem ? '<span class="badge badge-muted">na nuvem</span>' : ""}</div>
       <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
@@ -496,7 +496,7 @@ function renderUsuariosDaNuvem(souMaster){
         <td>${p.papel !== "admin" ? '<span class="text-xs muted">—</span>'
           : souMaster
             ? `<select class="select" style="padding:.3rem .5rem" onchange="mudarNivelNaNuvem('${p.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${(p.nivel_admin||"coordenacao")===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
-            : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(p.nivel_admin||"coordenacao"))}</span>`}</td>
+            : `<span class="badge badge-accent">${escapeHtml(rotuloNivelAdmin(p.nivel_admin||"coordenacao"))}</span>`}</td>
         <td>${badgeStatusUsuario(p.status)}</td>
         <td class="flex gap-1 quebra">
           ${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : souEu ? '<span class="text-xs muted">sua conta</span>' : `
@@ -529,7 +529,7 @@ function renderUsuariosLocais(souMaster, eu){
       <td>${u.papel!=="admin" ? '<span class="text-xs muted">—</span>'
         : souMaster
           ? `<select class="select" style="padding:.3rem .5rem" aria-label="Nível de administrador de ${escapeHtml(u.nome)}" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
-          : `<span class="badge badge-amber">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
+          : `<span class="badge badge-accent">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
       <td>${badgeStatusUsuario(u.status)}</td>
       <td class="flex gap-1 quebra">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `
         ${u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Inativar</button>`}

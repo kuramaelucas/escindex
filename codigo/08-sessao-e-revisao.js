@@ -632,7 +632,7 @@ function renderSessaoResumo(){
   const primeiraEmBranco = indicesEmBranco(sessao)[0];
   const linhaConfianca = (chave, rotulo) => {
     const c = porConfianca[chave];
-    return `<div class="stat-tile"><div class="stat-value" style="font-size:1.3rem">${c.n?pct(c.ok,c.n)+"%":"—"}</div><div class="stat-label">acerto quando ${rotulo} (${c.n} questão(ões))</div></div>`;
+    return `<div class="stat-tile"><div class="stat-value" style="font-size:var(--fs-lg)">${c.n?pct(c.ok,c.n)+"%":"—"}</div><div class="stat-label">acerto quando ${rotulo} (${c.n} questão(ões))</div></div>`;
   };
   return `
   <div class="page-header"><h2>Conjunto de questões concluído</h2><p>${sessao.somenteLeitura?"Revisão do conjunto respondido em "+formatDataBR(sessao.dataOriginal||hojeISO())+".":"Veja abaixo, questão a questão, o que você acertou, errou, chutou ou respondeu na dúvida. Clique em qualquer uma para voltar a ela."}</p></div>
@@ -787,7 +787,7 @@ function renderQuestionCard(q, opts){
     <div class="qcard-meta">${classificacao}
       <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
       ${badgeAutoriaQuestao(q)}
-      ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-amber" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
+      ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-accent" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
       ${(q.banca||"").indexOf("Didático")>=0
         ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'
         : (!q.real ? '<span class="badge badge-muted" title="Questão original escrita para esta demonstração, no estilo e nível da banca">Demonstração</span>' : "")}
@@ -1007,7 +1007,7 @@ function removerComentario(id){
 function renderComentarios(questaoId){
   const comentarios = comentariosAtivos().filter(c=>c.questaoId===questaoId).sort((a,b)=>a.data.localeCompare(b.data));
   return `<div class="mt-3" style="border-top:1px solid var(--border);padding-top:1rem">
-    <div style="font-weight:600;font-size:.9rem;margin-bottom:.6rem">${iconeSvg("message")} Comentários e dúvidas (${comentarios.length})</div>
+    <div style="font-weight:600;font-size:var(--fs-md);margin-bottom:.6rem">${iconeSvg("message")} Comentários e dúvidas (${comentarios.length})</div>
     ${comentarios.map(c=>{
       return `<div class="card-flat mb-1" ${c.respostaOficial?'style="border-color:var(--accent)"':""}>
         <div class="flex items-center gap-1"><span class="text-sm peso-600">${escapeHtml(nomeAutorComentario(c))}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}</div>

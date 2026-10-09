@@ -489,7 +489,7 @@ function rotuloPapel(papel){
   return {professor:"Área do Professor", residente:"Área do Residente", aluno:"Menu do Aluno"}[papel] || "";
 }
 function badgePapel(papel, usuario){
-  const cores = {admin:"badge-amber", professor:"badge-accent", residente:"badge-accent", aluno:"badge-muted"};
+  const cores = {admin:"badge-accent", professor:"badge-muted", residente:"badge-muted", aluno:"badge-muted"};
   const nomes = {admin:"Administrador", professor:"Professor", residente:"Residente", aluno:"Aluno"};
   let nome = nomes[papel] || papel;
   if(papel==="admin" && usuario) nome = rotuloNivelAdmin(nivelAdminDe(usuario));

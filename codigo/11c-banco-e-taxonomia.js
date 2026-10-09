@@ -179,7 +179,7 @@ function renderListaBancoQuestoesHtml(lista, paginaInfo){
     ${(paginaInfo ? paginaInfo.itens : lista).map(q=>`<tr>
       <td><input type="checkbox" aria-label="Selecionar questão" ${selecaoBanco().has(q.id)?"checked":""} onchange="alternarSelecaoBanco('${q.id}', this.checked)"></td>
       <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span> ${q.grupoId?`<span class="badge badge-muted" title="Restrita ao grupo">${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"grupo")}</span>`:""}</td>
-      <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${anoDaProva(q)}</span>${tipoProvaDe(q)!==CONFIG.tipoProvaPadrao ? ` <span class="badge badge-amber">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>` : ""}</td>
+      <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${anoDaProva(q)}</span>${tipoProvaDe(q)!==CONFIG.tipoProvaPadrao ? ` <span class="badge badge-accent">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>` : ""}</td>
       <td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td>
       <td>${badgeStatusQuestao(q.status)}${aguardaImagem(q) ? ` <span class="badge badge-amber" title="${escapeHtml(q.imagemPendente)}">Aguardando imagem</span>` : ""}</td>
       <td class="flex gap-1">

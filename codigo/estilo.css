@@ -31,6 +31,11 @@
   --radius-sm:7px; --radius:12px; --radius-lg:18px;
   --shadow-pop:0 12px 32px rgba(17,32,28,.16);
   --maxw:1180px;
+  /* Escala de tipografia: oito degraus em vez de ~35 tamanhos soltos. Tamanho
+     novo entra aqui, não como número no meio da regra — é o que mantém as
+     telas parecidas entre si. */
+  --fs-2xs:.7rem; --fs-xs:.76rem; --fs-sm:.85rem; --fs-md:.92rem;
+  --fs-base:1rem; --fs-lg:1.22rem; --fs-xl:1.65rem; --fs-2xl:2.6rem;
 }
 /* Modo escuro — mesma paleta de papéis (fundo/superfície/texto/tinta de
    marca), só com os valores invertidos para reduzir claridade à noite.
@@ -88,12 +93,12 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
-.text-sm{font-size:.82rem}
-.text-xs{font-size:.72rem}
+.text-sm{font-size:var(--fs-sm)}
+.text-xs{font-size:var(--fs-xs)}
 .nowrap{white-space:nowrap}
 
 /* ---------- botões ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem 1.15rem;border-radius:var(--radius-sm);border:1px solid transparent;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .05s ease;white-space:nowrap;background:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem 1.15rem;border-radius:var(--radius-sm);border:1px solid transparent;font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .05s ease;white-space:nowrap;background:none}
 .btn:active{transform:scale(.98)}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-primary:hover{background:var(--accent-dark)}
@@ -103,23 +108,23 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .btn-ghost:hover{background:var(--surface-2)}
 .btn-danger{background:var(--danger);color:#fff}
 .btn-danger:hover{background:#8f2e24}
-.btn-sm{padding:.4rem .7rem;font-size:.78rem}
+.btn-sm{padding:.4rem .7rem;font-size:var(--fs-xs)}
 .btn-block{width:100%}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;transition:border-color .12s ease,transform .08s ease,box-shadow .12s ease}
 .icon-btn:hover{border-color:var(--accent);box-shadow:var(--shadow-xs)}
 .icon-btn:active{transform:scale(.94)}
-.link-btn{background:none;border:none;padding:0;color:var(--accent-dark);font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:underline}
+.link-btn{background:none;border:none;padding:0;color:var(--accent-dark);font-weight:600;font-size:var(--fs-sm);cursor:pointer;text-decoration:underline}
 
 /* ---------- formulários ---------- */
 .field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
-.label{font-size:.8rem;font-weight:600;color:var(--ink-2)}
-.hint{font-size:.75rem;color:var(--muted)}
-.input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:.9rem;font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
+.label{font-size:var(--fs-sm);font-weight:600;color:var(--ink-2)}
+.hint{font-size:var(--fs-xs);color:var(--muted)}
+.input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:var(--fs-md);font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
 .input:focus,.select:focus,.textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
 .textarea{min-height:120px;resize:vertical}
-.textarea-mono{font-family:var(--font-mono);font-size:.82rem;line-height:1.6}
-.checkbox-row{display:flex;align-items:center;gap:.5rem;font-size:.85rem}
+.textarea-mono{font-family:var(--font-mono);font-size:var(--fs-sm);line-height:1.6}
+.checkbox-row{display:flex;align-items:center;gap:.5rem;font-size:var(--fs-sm)}
 
 /* ---------- cartões / superfícies ---------- */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.35rem}
@@ -136,9 +141,9 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
    botões são empurrados para a base para todos ficarem na mesma altura. */
 .prova-card{display:flex;flex-direction:column}
 .prova-card .prova-acoes{margin-top:auto;padding-top:.7rem}
-.prova-card .prova-ano{font-family:var(--font-display);font-size:1.6rem;line-height:1.1}
+.prova-card .prova-ano{font-family:var(--font-display);font-size:var(--fs-xl);line-height:1.1}
 .prova-card .prova-banca{font-weight:600;min-height:2.4em;display:flex;align-items:flex-start}
-.card-title{font-size:1.02rem;margin-bottom:.2rem}
+.card-title{font-size:var(--fs-base);margin-bottom:.2rem}
 /* Hierarquia de cartões: .card é o conteúdo principal da tela; .card-flat é o
    secundário (fundo cinza, para apoio e rodapés); .stat-mini/.stat-tile são
    números. Borda colorida (.borda-alerta/-destaque/-perigo) só quando o cartão
@@ -146,12 +151,15 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .card-flat{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
 
 /* ---------- badges / pills ---------- */
-.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .6rem;border-radius:100px;font-size:.7rem;font-weight:600;white-space:nowrap}
+ /* Cor de selo é sinal: âmbar e vermelho só para o que pede atenção ou ação
+   (pendente, vencido, erro, nota baixa); classificação (tipo de prova, papel,
+   duração) usa verde ou cinza. Se tudo tem cor, nada se destaca. */
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .6rem;border-radius:100px;font-size:var(--fs-2xs);font-weight:600;white-space:nowrap}
 .badge-accent{background:var(--accent-soft);color:var(--accent-dark)}
 .badge-amber{background:var(--amber-soft);color:var(--amber)}
 .badge-danger{background:var(--danger-soft);color:var(--danger)}
 .badge-muted{background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
-.pill{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);font-size:.8rem;font-weight:600;cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease}
+.pill{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease}
 .pill:hover{border-color:var(--accent)}
 .pill:active{transform:scale(.96)}
 .pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -165,10 +173,10 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .lote-chip:hover{border-color:var(--accent)}
 .lote-chip:active{transform:scale(.985)}
 .lote-chip.active{border-color:var(--accent);background:var(--accent-soft)}
-.lote-chip-data{font-size:.8rem;font-weight:700;color:var(--ink)}
+.lote-chip-data{font-size:var(--fs-sm);font-weight:700;color:var(--ink)}
 .lote-chip.active .lote-chip-data{color:var(--accent-dark)}
-.lote-chip-origem{font-size:.73rem;color:var(--muted);margin-top:.15rem;line-height:1.35}
-.lote-chip-qtd{font-size:.7rem;font-weight:600;color:var(--muted);margin-top:.35rem}
+.lote-chip-origem{font-size:var(--fs-xs);color:var(--muted);margin-top:.15rem;line-height:1.35}
+.lote-chip-qtd{font-size:var(--fs-2xs);font-weight:600;color:var(--muted);margin-top:.35rem}
 
 /* ---------- mapa de questões do simulado (durante a prova) ----------
    Durante o simulado o mapa responde a UMA pergunta: já respondi esta
@@ -197,13 +205,13 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
    da tela antes de a pessoa ver o enunciado. */
 .barra-questoes{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);padding:.45rem .6rem;margin-bottom:.75rem}
 .barra-questoes-linha{display:flex;align-items:center;gap:.65rem;min-width:0}
-.barra-questoes-resumo{flex:none;font-size:.99rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 .3rem;white-space:nowrap}
+.barra-questoes-resumo{flex:none;font-size:var(--fs-base);font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 .3rem;white-space:nowrap}
 /* padding de 8px: o selo ✓/✕ sai 6px para fora do canto do botão e o trilho recorta o que passa da borda */
 .barra-questoes-trilho{position:relative;flex:1;min-width:0;display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;padding:9px 8px 6px;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%)}
 .barra-questoes-trilho::-webkit-scrollbar{display:none}
 .barra-questoes-expandir,.barra-questoes-seta{flex:none;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--ink-2);cursor:pointer;font-family:inherit}
-.barra-questoes-seta{width:27px;height:34px;font-size:1.28rem;line-height:1;padding:0 0 .16rem}
+.barra-questoes-seta{width:27px;height:34px;font-size:var(--fs-lg);line-height:1;padding:0 0 .16rem}
 .barra-questoes-expandir:hover,.barra-questoes-seta:hover{border-color:var(--accent);color:var(--accent)}
 .barra-questoes-expandir .icon{transition:transform .15s ease;width:1.2em;height:1.2em}
 .barra-questoes.expandida .barra-questoes-expandir .icon{transform:rotate(180deg)}
@@ -216,12 +224,12 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .barra-questoes.expandida .barra-questoes-seta{width:0;opacity:0;margin:0 -.33rem;border-width:0;pointer-events:none}
 @media (prefers-reduced-motion:reduce){.barra-questoes-detalhe,.barra-questoes-seta,.barra-questoes-expandir .icon{transition:none}}
 /* quadradinhos: 1,2x a barra fina original (26x24 -> 31x29), depois de terem passado por 1,5x e voltado 20% */
-.barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:31px;height:29px;padding:0 .36rem;font-size:.84rem;border-radius:7px;gap:.14rem}
+.barra-questoes .mapa-pill,.barra-questoes .pill-mapa{flex:none;min-width:31px;height:29px;padding:0 .36rem;font-size:var(--fs-sm);border-radius:7px;gap:.14rem}
 .barra-questoes .pill-mapa{border-radius:7px}
 .barra-questoes .pill-mapa .ponto-resp{width:5px;height:5px}
 .barra-questoes .mapa-pill .marca{width:5px;height:5px}
 .barra-questoes .mapa-pill.atual{outline-offset:0}
-.barra-questoes.expandida .mapa-pill,.barra-questoes.expandida .pill-mapa{min-width:36px;height:34px;font-size:.88rem}
+.barra-questoes.expandida .mapa-pill,.barra-questoes.expandida .pill-mapa{min-width:36px;height:34px;font-size:var(--fs-sm)}
 /* acertou/errou: borda mais grossa e um selo redondo no canto superior direito
    (✓ verde / ✕ vermelho), para não depender só da cor do quadradinho */
 .barra-questoes .mapa-pill.acertou,.barra-questoes .mapa-pill.errou{border-width:2px}
@@ -234,13 +242,13 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .barra-questoes:not(.expandida) .mapa-pill.marcada{border-color:color-mix(in srgb,var(--amber) 55%,var(--border-strong))}
 .barra-questoes:not(.expandida) .selo-resp{opacity:.8;filter:saturate(.75)}
 .mapa-pill{position:relative}
-.selo-resp{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:900;line-height:1;color:#fff;border:1.5px solid var(--surface)}
+.selo-resp{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:var(--fs-2xs);font-weight:900;line-height:1;color:#fff;border:1.5px solid var(--surface)}
 .selo-resp.v{background:var(--accent)}
 .selo-resp.x{background:var(--danger)}
 
 /* ---------- tabelas ---------- */
-table{width:100%;border-collapse:collapse;font-size:.86rem}
-th{text-align:left;color:var(--muted);font-weight:600;font-size:.72rem;padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
+table{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:var(--fs-xs);padding:.5rem .7rem;border-bottom:1px solid var(--border-strong)}
 td{padding:.65rem .7rem;border-bottom:1px solid var(--border)}
 tr:last-child td{border-bottom:none}
 .evolucao-tabela td,.evolucao-tabela th{white-space:nowrap}
@@ -258,25 +266,25 @@ tr:last-child td{border-bottom:none}
 /* ---------- estrutura autenticada (shell) ---------- */
 .shell{display:flex;min-height:100vh}
 .sidebar{width:252px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:1.3rem 1rem;position:fixed;top:0;bottom:0;left:0;overflow-y:auto;z-index:40;transition:transform .2s ease}
-.sidebar-brand{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--ink);display:flex;align-items:center;gap:.55rem;margin-bottom:1.4rem;padding:0 .3rem}
-.sidebar-brand .mark{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:1rem}
+.sidebar-brand{font-family:var(--font-display);font-weight:700;font-size:var(--fs-lg);color:var(--ink);display:flex;align-items:center;gap:.55rem;margin-bottom:1.4rem;padding:0 .3rem}
+.sidebar-brand .mark{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:var(--fs-base)}
 .bloco-chip{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius-sm);padding:.6rem .75rem;margin-bottom:1.1rem}
-.bloco-chip-label{font-size:.66rem;color:var(--accent-dark);font-weight:700}
-.bloco-chip-name{font-size:.83rem;font-weight:600;color:var(--ink);margin-top:.15rem;line-height:1.3}
-.nav-section-label{font-size:.68rem;color:var(--muted);font-weight:700;margin:1rem .5rem .4rem;letter-spacing:.07em;text-transform:uppercase}
+.bloco-chip-label{font-size:var(--fs-2xs);color:var(--accent-dark);font-weight:700}
+.bloco-chip-name{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-top:.15rem;line-height:1.3}
+.nav-section-label{font-size:var(--fs-2xs);color:var(--muted);font-weight:700;margin:1rem .5rem .4rem;letter-spacing:.07em;text-transform:uppercase}
 .nav-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.1rem}
-.nav-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .65rem;border-radius:var(--radius-sm);color:var(--ink-2);font-size:.87rem;font-weight:500;cursor:pointer;border:1px solid transparent}
+.nav-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .65rem;border-radius:var(--radius-sm);color:var(--ink-2);font-size:var(--fs-sm);font-weight:500;cursor:pointer;border:1px solid transparent}
 .nav-item:hover{background:var(--surface-2)}
 .nav-item.active{background:var(--accent-soft);color:var(--accent-dark);font-weight:700}
-.nav-subtitulo{font-size:.7rem;color:var(--muted);font-weight:600;margin:.9rem .65rem .25rem;letter-spacing:.04em}
+.nav-subtitulo{font-size:var(--fs-2xs);color:var(--muted);font-weight:600;margin:.9rem .65rem .25rem;letter-spacing:.04em}
 .nav-grupo{display:flex;justify-content:space-between;align-items:center;cursor:pointer;border-radius:var(--radius-sm);padding:.15rem 0}
 .nav-grupo:hover{color:var(--ink-2)}
-.nav-seta{font-size:.7rem;transition:transform .15s ease}
+.nav-seta{font-size:var(--fs-2xs);transition:transform .15s ease}
 .nav-grupo.fechado .nav-seta{transform:rotate(-90deg)}
 .sidebar-footer{margin-top:auto;padding-top:1rem;border-top:1px solid var(--border)}
 .main{margin-left:252px;flex:1;min-width:0;display:flex;flex-direction:column}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:20}
-.topbar-title{font-size:1.05rem}
+.topbar-title{font-size:var(--fs-base)}
 .page{padding:2rem;max-width:var(--maxw);width:100%}
 .page.entrando{animation:page-in .22s ease}
 /* A animação de entrada é um sinal sutil de que a TELA mudou, sem esperar o
@@ -302,10 +310,12 @@ tr:last-child td{border-bottom:none}
 /* ---------- estatísticas / progresso ---------- */
 .detalhes-bloco{margin-top:.35rem}
 .detalhes-bloco summary{cursor:pointer}
+.faixa-prova{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--border)}
+.aviso-interno{border-left:3px solid var(--amber);background:var(--amber-soft);border-radius:var(--radius-sm);padding:.6rem .8rem;font-size:var(--fs-sm)}
 .stat-mini-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem}
 .stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .8rem;display:flex;align-items:baseline;gap:.5rem;min-width:0}
-.stat-mini .stat-value{font-size:1.25rem;line-height:1.1}
-.stat-mini .stat-label{font-size:.76rem;line-height:1.25}
+.stat-mini .stat-value{font-size:var(--fs-lg);line-height:1.1}
+.stat-mini .stat-label{font-size:var(--fs-xs);line-height:1.25}
 button.stat-mini{cursor:pointer;text-align:left;font:inherit;color:inherit}
 button.stat-mini:hover{border-color:var(--accent)}
 button.stat-mini.ativo{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
@@ -313,8 +323,8 @@ button.stat-mini.ativo{border-color:var(--accent);box-shadow:0 0 0 2px var(--acc
 ol.lista-passos{margin:.2rem 0 0;padding-left:1.2rem}
 ol.lista-passos li{margin:.25rem 0}
 .stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
-.stat-value{font-family:var(--font-display);font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--ink)}
-.stat-label{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+.stat-value{font-family:var(--font-display);font-size:var(--fs-xl);font-variant-numeric:tabular-nums;color:var(--ink)}
+.stat-label{font-size:var(--fs-xs);color:var(--muted);margin-top:.15rem}
 .progress-track{height:8px;background:var(--surface-2);border-radius:100px;overflow:hidden}
 .progress-fill{height:100%;background:var(--accent);border-radius:100px}
 .progress-fill.amber{background:var(--amber)}
@@ -324,7 +334,7 @@ ol.lista-passos li{margin:.25rem 0}
    aconteceu. Serve para navegar (clicar volta à questão) e para enxergar o
    conjunto inteiro sem sair da questão atual. Mora na barra fina
    (.barra-questoes, mais acima). */
-.mapa-pill{min-width:32px;height:32px;padding:0 .35rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:.15rem;cursor:pointer;transition:transform .08s ease,border-color .12s ease}
+.mapa-pill{min-width:32px;height:32px;padding:0 .35rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);font-family:inherit;font-size:var(--fs-xs);font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:.15rem;cursor:pointer;transition:transform .08s ease,border-color .12s ease}
 .mapa-pill:hover:not(:disabled){border-color:var(--accent)}
 .mapa-pill:active:not(:disabled){transform:scale(.94)}
 .mapa-pill:disabled{cursor:default;opacity:.85}
@@ -347,8 +357,8 @@ ol.lista-passos li{margin:.25rem 0}
 .mapa-sessao-legenda .amostra.errou{background:var(--danger-soft);border-color:var(--danger)}
 .mapa-sessao-legenda .amostra.marcada{width:7px;height:7px;border-radius:50%;background:var(--amber);border-color:var(--amber)}
 @media (max-width:640px){
-  .mapa-pill{min-width:29px;height:29px;font-size:.73rem}
-  .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{min-width:31px;height:29px;font-size:.84rem}
+  .mapa-pill{min-width:29px;height:29px;font-size:var(--fs-xs)}
+  .barra-questoes .mapa-pill,.barra-questoes .pill-mapa{min-width:31px;height:29px;font-size:var(--fs-sm)}
   .barra-questoes-seta{display:none}
   .mapa-sessao-legenda{gap:.65rem}
   .mapa-sessao-legenda .so-largo{display:none}
@@ -370,15 +380,15 @@ ol.lista-passos li{margin:.25rem 0}
 .qcard-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
 .qcard-img-wrap{margin:0 0 1.1rem;display:flex;flex-direction:column;align-items:center;text-align:center}
 .qcard-img{max-width:100%;max-height:420px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:var(--surface-2)}
-.qcard-img-legenda{font-size:.75rem;color:var(--muted);margin-top:.35rem;text-align:center}
+.qcard-img-legenda{font-size:var(--fs-xs);color:var(--muted);margin-top:.35rem;text-align:center}
 /* questão que dependia de uma figura da prova que ainda não foi anexada */
-.imagem-pendente{display:flex;gap:.6rem;align-items:flex-start;margin:0 0 1.1rem;padding:.75rem .9rem;border:1px dashed var(--amber);border-radius:var(--radius-sm);background:var(--amber-soft);font-size:.85rem}
+.imagem-pendente{display:flex;gap:.6rem;align-items:flex-start;margin:0 0 1.1rem;padding:.75rem .9rem;border:1px dashed var(--amber);border-radius:var(--radius-sm);background:var(--amber-soft);font-size:var(--fs-sm)}
 .imagem-pendente svg{flex:none;width:18px;height:18px;margin-top:.1rem}
 /* a figura de cada questão no envio em lote (pré-visualização) */
 .imp-imagem{padding:.7rem .8rem;border:1px dashed var(--border-strong);border-radius:var(--radius-sm);background:var(--surface-2)}
 .imp-imagem-falta{border-color:var(--amber);background:var(--amber-soft)}
 .imp-imagem-previa{display:block;max-width:100%;max-height:220px;object-fit:contain;margin-top:.4rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface)}
-.qcard-enunciado{font-family:var(--font-display);font-size:1.14rem;line-height:1.6;color:var(--ink);margin-bottom:1.5rem;white-space:pre-line}
+.qcard-enunciado{font-family:var(--font-display);font-size:var(--fs-lg);line-height:1.6;color:var(--ink);margin-bottom:1.5rem;white-space:pre-line}
 .qcard-alts{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.1rem}
 .qcard-alt{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .12s ease,box-shadow .12s ease;background:var(--surface)}
 .qcard-alt:hover{border-color:var(--accent);transform:translateX(2px);box-shadow:var(--shadow-xs)}
@@ -391,10 +401,10 @@ ol.lista-passos li{margin:.25rem 0}
 .qcard-alt.disabled:hover{transform:none;box-shadow:none;border-color:var(--border-strong)}
 .qcard-alt.disabled.selected:hover,.qcard-alt.disabled.correct:hover{border-color:var(--accent)}
 .qcard-alt.disabled.incorrect:hover{border-color:var(--danger)}
-.alt-letter{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;flex-shrink:0;color:var(--ink-2);background:var(--surface)}
+.alt-letter{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:var(--fs-xs);font-weight:700;flex-shrink:0;color:var(--ink-2);background:var(--surface)}
 .qcard-alt.selected .alt-letter,.qcard-alt.correct .alt-letter{border-color:var(--accent);color:var(--accent-dark)}
 .qcard-alt.incorrect .alt-letter{border-color:var(--danger);color:var(--danger)}
-.alt-text{font-size:.92rem;line-height:1.5;padding-top:.15rem;flex:1}
+.alt-text{font-size:var(--fs-md);line-height:1.5;padding-top:.15rem;flex:1}
 /* ---------- alternativas eliminadas ("riscar" como se faz na prova) ----------
    Quem risca uma alternativa está dizendo "esta eu já descartei". Ela fica
    apagada e com o texto cortado, mas continua no lugar: o objetivo é reduzir o
@@ -412,20 +422,20 @@ ol.lista-passos li{margin:.25rem 0}
 .qcard-alt.eliminada .alt-text{text-decoration:line-through;text-decoration-color:var(--muted)}
 .qcard-alt.eliminada .alt-letter{border-style:dashed}
 .confidence-row{display:flex;gap:.6rem;margin-top:1.1rem}
-.confidence-btn{flex:1;padding:.7rem .5rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:600;font-size:.83rem;cursor:pointer}
+.confidence-btn{flex:1;padding:.7rem .5rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:600;font-size:var(--fs-sm);cursor:pointer}
 .confidence-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
-.feedback-box{border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-top:1.1rem;font-size:.88rem;line-height:1.55}
+.feedback-box{border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-top:1.1rem;font-size:var(--fs-sm);line-height:1.55}
 .feedback-box.ok{background:var(--accent-soft);border:1px solid var(--accent)}
 .feedback-box.no{background:var(--danger-soft);border:1px solid var(--danger)}
 .qcard-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border)}
-.why-tag{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:1rem}
+.why-tag{display:flex;align-items:center;gap:.4rem;font-size:var(--fs-xs);color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:1rem}
 /* A anotação que o aluno escreveu para si mesmo numa questão salva. Fica com
    a cara de papel de rascunho (a faixa âmbar na lateral) para não se
    confundir com a explicação da questão, que é material da plataforma. */
 .nota-pessoal{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius-sm);padding:.7rem .9rem}
-.nota-pessoal-titulo{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.nota-pessoal-titulo{display:flex;align-items:center;gap:.35rem;font-size:var(--fs-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
 .nota-pessoal .text-sm{white-space:pre-wrap}
-.resposta-escrita{white-space:pre-wrap;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.7rem .9rem;font-size:.9rem;line-height:1.55}
+.resposta-escrita{white-space:pre-wrap;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.7rem .9rem;font-size:var(--fs-md);line-height:1.55}
 .confidence-btn:disabled{opacity:.5;cursor:not-allowed}.confidence-btn:disabled:hover{border-color:var(--border-strong);background:var(--surface)}
 
 /* ---------- legenda e seletor de período dos gráficos de desempenho ---------- */
@@ -434,13 +444,13 @@ ol.lista-passos li{margin:.25rem 0}
 /* "Se a prova fosse hoje": o número grande ao lado da tabela das áreas */
 .nota-estimada{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
 @media (min-width:900px){ .nota-estimada{grid-template-columns:220px minmax(0,1fr)} }
-.nota-estimada-valor{font-family:var(--font-display);font-size:2.6rem;line-height:1.1;color:var(--accent)}
+.nota-estimada-valor{font-family:var(--font-display);font-size:var(--fs-2xl);line-height:1.1;color:var(--accent)}
 /* barra de prioridade (O que mais cai × onde você erra) */
 .barra-prioridade{width:90px;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
 .barra-prioridade i{display:block;height:100%;background:var(--amber)}
 .areas-lado-a-lado{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
 @media (min-width:1000px){ .areas-lado-a-lado{grid-template-columns:minmax(260px,380px) minmax(0,1fr)} }
-.legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--muted);margin-top:.5rem;align-items:center}
+.legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:var(--fs-xs);color:var(--muted);margin-top:.5rem;align-items:center}
 .legenda-barras span{display:flex;align-items:center;gap:.35rem}
 .legenda-barras i{width:11px;height:11px;border-radius:3px;display:inline-block}
 /* "Como você está indo": o gráfico não precisa da largura toda (as barras têm
@@ -466,7 +476,7 @@ ol.lista-passos li{margin:.25rem 0}
 .modal-lg{max-width:820px}
 .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
 .toast-container{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;display:flex;flex-direction:column;gap:.6rem}
-.toast{background:var(--toast-bg);color:#fff;padding:.8rem 1.1rem;border-radius:var(--radius-sm);font-size:.85rem;box-shadow:var(--shadow-pop);max-width:320px;animation:toast-in .18s ease}
+.toast{background:var(--toast-bg);color:#fff;padding:.8rem 1.1rem;border-radius:var(--radius-sm);font-size:var(--fs-sm);box-shadow:var(--shadow-pop);max-width:320px;animation:toast-in .18s ease}
 .toast.err{background:var(--danger)}
 @keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
@@ -475,16 +485,16 @@ code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);pa
 
 /* Tarja de "faltou a pasta dados/" — aparece só quando nenhum arquivo de
    conteúdo foi carregado (ver avisarSeFaltarConteudo, no código). */
-.aviso-dados{background:var(--amber-soft);color:var(--amber);border-bottom:1px solid var(--amber);padding:.85rem 1.2rem;font-size:.85rem;line-height:1.55}
-.aviso-dados code{background:var(--surface);padding:.1rem .35rem;border-radius:4px;font-family:var(--font-mono);font-size:.8rem}
+.aviso-dados{background:var(--amber-soft);color:var(--amber);border-bottom:1px solid var(--amber);padding:.85rem 1.2rem;font-size:var(--fs-sm);line-height:1.55}
+.aviso-dados code{background:var(--surface);padding:.1rem .35rem;border-radius:4px;font-family:var(--font-mono);font-size:var(--fs-sm)}
 
 /* ---------- paginação de listas ---------- */
 .paginacao{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--border)}
-.paginacao-resumo{font-size:.78rem;color:var(--muted)}
+.paginacao-resumo{font-size:var(--fs-xs);color:var(--muted)}
 
 /* ---------- abas ---------- */
 .tabs{display:flex;gap:.3rem;border-bottom:1px solid var(--border);margin-bottom:1.4rem;overflow-x:auto}
-.tab{padding:.7rem 1rem;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab{padding:.7rem 1rem;font-size:var(--fs-sm);font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
 .tab:hover{color:var(--ink)}
 .tab.active{color:var(--accent-dark);border-color:var(--accent)}
 
@@ -494,7 +504,7 @@ code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);pa
 
 /* ---------- páginas públicas (landing / login) ---------- */
 .public-nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 0}
-.brand{font-family:var(--font-display);font-weight:700;font-size:1.3rem;display:flex;align-items:center;gap:.55rem}
+.brand{font-family:var(--font-display);font-weight:700;font-size:var(--fs-lg);display:flex;align-items:center;gap:.55rem}
 .brand .mark{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:3.5rem 0 4.5rem}
 @media (max-width:900px){.hero{grid-template-columns:1fr;padding:2rem 0}}
@@ -503,7 +513,7 @@ code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);pa
 @keyframes hero-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .auth-wrap{max-width:420px;margin:3rem auto;padding:0 1.5rem}
 .auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem}
-footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border);margin-top:2rem}
+footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-sm);border-top:1px solid var(--border);margin-top:2rem}
 
 /* ---------- enunciado clicável ----------
    Qualquer trecho de questão mostrado numa lista abre a questão inteira ao
@@ -519,7 +529,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 .area-gesto{touch-action:pan-y}
 .area-gesto.arrastando{transition:none}
 .area-gesto.soltando{transition:transform .18s ease}
-.dica-arrastar{display:none;align-items:center;justify-content:center;gap:.45rem;font-size:.74rem;color:var(--muted);margin-top:.6rem}
+.dica-arrastar{display:none;align-items:center;justify-content:center;gap:.45rem;font-size:var(--fs-xs);color:var(--muted);margin-top:.6rem}
 @media (max-width:960px){.dica-arrastar{display:flex}}
 
 /* ---------- flashcards ---------- */
@@ -536,21 +546,21 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
    sem precisar manter o nó do DOM entre um render e outro. */
 @keyframes flash-flip{0%{transform:scaleX(1)}50%{transform:scaleX(.08)}100%{transform:scaleX(1)}}
 .flashcard{text-align:center;align-items:center}
-.flash-etiqueta{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.9rem}
-.flash-frente{font-family:var(--font-display);font-size:1.22rem;line-height:1.55;color:var(--ink);white-space:pre-line}
-.flash-verso{font-size:.95rem;line-height:1.6;color:var(--ink);white-space:pre-line}
+.flash-etiqueta{font-size:var(--fs-2xs);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.9rem}
+.flash-frente{font-family:var(--font-display);font-size:var(--fs-lg);line-height:1.55;color:var(--ink);white-space:pre-line}
+.flash-verso{font-size:var(--fs-md);line-height:1.6;color:var(--ink);white-space:pre-line}
 .flash-verso strong{color:var(--accent-dark)}
 /* O convite para virar: como não há mais botão de "mostrar resposta", é este
    texto, dentro do próprio cartão, que diz o que fazer. */
-.flash-toque{display:flex;align-items:center;justify-content:center;gap:.35rem;text-align:center;font-size:.76rem;color:var(--muted);margin-top:1.4rem}
+.flash-toque{display:flex;align-items:center;justify-content:center;gap:.35rem;text-align:center;font-size:var(--fs-xs);color:var(--muted);margin-top:1.4rem}
 .flash-toque svg{width:14px;height:14px;opacity:.7}
 /* A estrela de favoritar fica no alto do cartão, fora do caminho do texto,
    e não vira o cartão junto (o clique dela para em si mesmo). */
 .flash-favorito{position:absolute;top:.8rem;right:.9rem}
 .flash-notas{display:flex;gap:.55rem;margin-top:1.1rem;max-width:640px;margin-left:auto;margin-right:auto}
-.flash-nota{flex:1;padding:.85rem .4rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:700;font-size:.82rem;cursor:pointer;line-height:1.3;transition:border-color .12s ease,background .12s ease,transform .08s ease}
+.flash-nota{flex:1;padding:.85rem .4rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:700;font-size:var(--fs-sm);cursor:pointer;line-height:1.3;transition:border-color .12s ease,background .12s ease,transform .08s ease}
 .flash-nota:active{transform:scale(.96)}
-.flash-nota small{display:block;font-weight:500;font-size:.68rem;color:var(--muted);margin-top:.2rem}
+.flash-nota small{display:block;font-weight:500;font-size:var(--fs-2xs);color:var(--muted);margin-top:.2rem}
 .flash-nota.ruim:hover{border-color:var(--danger);background:var(--danger-soft)}
 .flash-nota.medio:hover{border-color:var(--amber);background:var(--amber-soft)}
 .flash-nota.bom:hover{border-color:var(--accent);background:var(--accent-soft)}
@@ -571,8 +581,8 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:.82rem;border-t
 .grid.compacto{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem}
 .par-de-cartoes .grid.compacto{grid-template-columns:repeat(2,minmax(0,1fr))}
 .grid.compacto .stat-tile{padding:.55rem .8rem}
-.grid.compacto .stat-value{font-size:1.25rem;line-height:1.15}
-.grid.compacto .stat-label{font-size:.72rem;margin-top:.1rem}
+.grid.compacto .stat-value{font-size:var(--fs-lg);line-height:1.15}
+.grid.compacto .stat-label{font-size:var(--fs-xs);margin-top:.1rem}
 /* seção que abre e fecha (Painel da Turma) */
 details.secao-expansivel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1rem}
 details.secao-expansivel > summary{cursor:pointer;list-style:none;padding:.85rem 1.2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
@@ -615,7 +625,7 @@ details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
 .tutorial-passo{text-align:center;padding:.4rem .2rem 0}
 .tutorial-icone{width:3.2rem;height:3.2rem;margin:0 auto .7rem;border-radius:50%;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center}
 .tutorial-icone .icon{width:1.5rem;height:1.5rem}
-.tutorial-contador{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted, #6b7a76);margin-bottom:.3rem}
+.tutorial-contador{font-size:var(--fs-xs);letter-spacing:.04em;text-transform:uppercase;color:var(--muted, #6b7a76);margin-bottom:.3rem}
 .tutorial-titulo{margin:0 0 .5rem}
 .tutorial-texto{line-height:1.6;margin:0 auto;max-width:34rem}
 .tutorial-pontos{display:flex;gap:.35rem;justify-content:center;margin-top:1rem}
@@ -661,5 +671,5 @@ strong.parametro{font-weight:700;color:var(--accent-dark);background:var(--accen
 body.modo-foco .sidebar,body.modo-foco .topbar{display:none}
 body.modo-foco .main{margin-left:0}
 /* origem e trilha da questão: texto discreto em vez de uma fileira de badges */
-.qcard-trilha{font-size:.76rem;color:var(--muted);align-self:center}
+.qcard-trilha{font-size:var(--fs-xs);color:var(--muted);align-self:center}
 @media (hover:none){.dica-teclas{display:none}}

@@ -132,7 +132,7 @@ function renderMeuGrupo(){
   <div class="card mb-2">
     <div class="qcard-meta mb-1">${meuGrupo.oficial ? '<span class="badge badge-muted">Calendário oficial — nenhuma turma escolhida</span>' : `<span class="badge badge-accent">${escapeHtml(rotuloDoGrupo(meuGrupo, u))}</span>` + (meuGrupo.doRodizio ? '<span class="badge badge-muted">Turma do rodízio, aberta</span>' : souDono ? '<span class="badge badge-muted">Criado por você</span>' : '<span class="badge badge-muted">Criado por outro aluno</span>')}</div>
     <div class="flex justify-between items-center quebra-gap">
-      <div style="font-weight:700;font-size:1.1rem">${escapeHtml(meuGrupo.nome)}</div>
+      <div style="font-weight:700;font-size:var(--fs-lg)">${escapeHtml(meuGrupo.nome)}</div>
       ${podeRenomearGrupo(meuGrupo, u) ? `<button class="btn btn-secondary btn-sm" onclick="abrirRenomearGrupo('${meuGrupo.id}')">${iconeSvg("edit")} Mudar o nome do grupo</button>` : ""}
     </div>
     <div class="text-sm muted mt-1">${detalheCalendario}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" membro(s)":""}.</div>
@@ -144,7 +144,7 @@ function renderMeuGrupo(){
 
   ${grupoQ ? `<div class="card mb-2 borda-destaque">
     <div class="qcard-meta mb-1"><span class="badge badge-accent">Grupo só de questões</span>${grupoQ.criadoPor===u.id ? '<span class="badge badge-muted">Criado por você</span>' : ""}</div>
-    <div style="font-weight:700;font-size:1.1rem">${escapeHtml(grupoQ.nome)}</div>
+    <div style="font-weight:700;font-size:var(--fs-lg)">${escapeHtml(grupoQ.nome)}</div>
     <div class="text-sm muted mt-1">Este grupo só compartilha questões, divisão de questões e grupos de estudo: o seu calendário continua sendo o de <strong>${escapeHtml(meuGrupo.oficial ? "coordenação" : meuGrupo.nome)}</strong> · ${(grupoQ.membrosAprovados||[]).length} membro(s).</div>
     <div class="flex gap-1 mt-2 quebra">
       ${podeRenomearGrupo(grupoQ, u) ? `<button class="btn btn-secondary btn-sm" onclick="abrirRenomearGrupo('${grupoQ.id}')">${iconeSvg("edit")} Mudar o nome</button>` : ""}
