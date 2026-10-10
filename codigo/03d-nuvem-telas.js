@@ -817,8 +817,8 @@ function trocarMinhaSenha(){
   if(nova !== nova2){ toast("As duas senhas novas não são iguais.", "err"); return; }
   if(nova === atual){ toast("A nova senha é igual à atual.", "err"); return; }
   if(naNuvem){ nuvemTrocarSenha(atual, nova); return; }
-  if(u.senha !== atual){ toast("A senha atual está incorreta.", "err"); return; }
-  u.senha = nova;
+  if(!senhaLocalConfere(u, atual)){ toast("A senha atual está incorreta.", "err"); return; }
+  definirSenhaLocal(u, nova);
   saveState();
   toast("Senha alterada neste navegador.");
   render();

@@ -375,3 +375,42 @@ test("Evolução por assunto: a seção e as áreas abertas continuam abertas qu
     assert.deepEqual(r, { secao: true, area: true });
   } finally { await contexto.close(); }
 });
+
+test("senha de conta local: guardada com sal + hash (nunca em texto), conta antiga é convertida e a troca de senha continua valendo", async () => {
+  const { createHash } = await import("node:crypto");
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    // o SHA-256 próprio bate com o do Node, inclusive com acento e texto longo
+    const textos = ["", "abc", "senha com acentuação ção ü", "x".repeat(200)];
+    const nossos = await pagina.evaluate(ts => ts.map(sha256Hex), textos);
+    assert.deepEqual(nossos, textos.map(t => createHash("sha256").update(t).digest("hex")));
+
+    const r = await pagina.evaluate(() => {
+      // conta antiga, com a senha em texto
+      db.usuarios.push({ id: "u-antiga", nome: "Antiga", email: "antiga@teste.local", matricula: "A1", senha: "segredo1", papel: "aluno", status: "ativo" });
+      const errada = (fazerLogin("antiga@teste.local", "outra"), usuarioAtual());
+      fazerLogin("antiga@teste.local", "segredo1");
+      const u = getUsuario("u-antiga");
+      const aposLogin = { logou: usuarioAtual() && usuarioAtual().id === "u-antiga", texto: u.senha, temHash: !!u.senhaHash && !!u.senhaSal };
+      // a troca de senha vale: a nova entra, a velha não
+      document.body.insertAdjacentHTML("beforeend", '<input id="senhaAtual" value="segredo1"><input id="senhaNova" value="novasenha"><input id="senhaNova2" value="novasenha">');
+      trocarMinhaSenha();
+      state.usuarioAtualId = null;
+      fazerLogin("antiga@teste.local", "segredo1"); const velhaEntrou = !!usuarioAtual();
+      fazerLogin("antiga@teste.local", "novasenha"); const novaEntrou = !!usuarioAtual();
+      return { errada: errada === null, aposLogin, velhaEntrou, novaEntrou, noBanco: JSON.stringify(db).includes("segredo1") || JSON.stringify(db).includes("novasenha") };
+    });
+    assert.equal(r.errada, true);
+    assert.deepEqual(r.aposLogin, { logou: true, texto: undefined, temHash: true });
+    assert.equal(r.velhaEntrou, false);
+    assert.equal(r.novaEntrou, true);
+    assert.equal(r.noBanco, false, "nenhuma senha em texto no banco");
+
+    // a migração da carga converte o que veio de um backup antigo
+    await pagina.evaluate(() => { db.usuarios.push({ id: "u-bkp", nome: "Bkp", email: "bkp@teste.local", matricula: "B1", senha: "daBackup", papel: "aluno", status: "ativo" }); saveState({ imediato: true }); });
+    await pagina.reload(); await pronto(pagina);
+    const m = await pagina.evaluate(() => { const u = getUsuario("u-bkp"); return { texto: u.senha, hash: !!u.senhaHash, entra: (fazerLogin("bkp@teste.local", "daBackup"), !!usuarioAtual()) }; });
+    assert.deepEqual(m, { texto: undefined, hash: true, entra: true });
+  } finally { await contexto.close(); }
+});

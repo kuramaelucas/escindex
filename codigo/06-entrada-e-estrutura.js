@@ -10,7 +10,7 @@
    conta de um back-end — ver observações no resumo enviado no chat. */
 function fazerLogin(identificador, senha){
   const id = (identificador||"").trim().toLowerCase();
-  const usuario = db.usuarios.find(u => (u.email.toLowerCase()===id || u.matricula.toLowerCase()===id) && u.senha===senha);
+  const usuario = db.usuarios.find(u => (u.email.toLowerCase()===id || u.matricula.toLowerCase()===id) && senhaLocalConfere(u, senha));
   if(!usuario){ toast("Login ou senha incorretos.", "err"); return; }
   if(contaDemoDaEquipeBloqueada(usuario)){
     toast("As contas de demonstração da equipe ficam desligadas quando a plataforma está na nuvem — a senha delas é pública. Entre com a sua conta da nuvem.", "err");
@@ -19,6 +19,7 @@ function fazerLogin(identificador, senha){
   if(usuario.status==="pendente"){ toast("Seu cadastro ainda está aguardando aprovação de um administrador.", "err"); return; }
   if(usuario.status==="rejeitado"){ toast("Seu cadastro foi recusado. Fale com a coordenação.", "err"); return; }
   if(usuario.status==="inativo"){ toast("Sua conta está inativa. Fale com a coordenação.", "err"); return; }
+  converterSenhaLocalSeAntiga(usuario, senha);
   state.usuarioAtualId = usuario.id;
   // Com a nuvem ligada, esta é uma conta só deste navegador — e é preciso
   // dizer isso na hora. Sem o aviso, a pessoa estuda o dia inteiro achando
@@ -101,7 +102,8 @@ function solicitarCadastro(){
   if(db.usuarios.some(u=>u.email.toLowerCase()===email.toLowerCase())){ toast("Já existe um cadastro com este e-mail.", "err"); return; }
   if(db.usuarios.some(u=>u.matricula===matricula)){ toast("Já existe um cadastro com esta matrícula.", "err"); return; }
   const novoUsuarioId = uid("u");
-  const novo = {id:novoUsuarioId, nome, email, matricula, senha, papel:tipoAcesso, status:"pendente", criadoEm:hojeISO()};
+  const novo = {id:novoUsuarioId, nome, email, matricula, papel:tipoAcesso, status:"pendente", criadoEm:hojeISO()};
+  definirSenhaLocal(novo, senha);
   if(tipoAcesso==="aluno"){
     // O cadastro pergunta só o ano. A turma é escolhida depois, em Meu Grupo
     // (ver "UMA TURMA POR PESSOA"): quem acabou de chegar não tem como saber

@@ -505,6 +505,8 @@ function loadState(){
     // ano). Quem já estava cadastrado assim é movido para 6º ano, que é onde
     // está a maior parte de quem se declarava "internato" perto da prova.
     db.usuarios.forEach(x=>{ if(x.anoFaculdade==="Internato") x.anoFaculdade = "6º ano"; });
+    // senha local em texto (versões antigas, backups) vira sal + hash: ver definirSenhaLocal
+    db.usuarios.forEach(x=>{ if(typeof x.senha === "string" && x.senha && !x.senhaHash) definirSenhaLocal(x, x.senha); });
     if(db.aulas) delete db.aulas; // a área de aulas foi removida da plataforma
     if(db.configGeral && !db.configGeral.rampaRevisaoInicio) db.configGeral.rampaRevisaoInicio = [...CONFIG.rampaRevisaoInicio];
     // realinha área/especialidade das questões ao assunto de cada uma (o

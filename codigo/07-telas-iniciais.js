@@ -304,7 +304,7 @@ function tentarLogin(){
   // recusa, e a conferência local acontece logo em seguida, sem aviso
   // intermediário. O mesmo vale se a nuvem não responder.
   const id = (identificador||"").trim().toLowerCase();
-  const contaLocal = db.usuarios.find(u => !u.daNuvem && u.senha === senha &&
+  const contaLocal = db.usuarios.find(u => !u.daNuvem && senhaLocalConfere(u, senha) &&
     ((u.email||"").toLowerCase() === id || (u.matricula||"").toLowerCase() === id));
   if(nuvemLigada() && identificador.includes("@")){
     const botao = document.querySelector("#loginSenha") && document.querySelector(".auth-card .btn-primary");
