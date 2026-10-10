@@ -430,7 +430,7 @@ function renderTurmaPessoas(u){
   const souMaster = podeAdmin("usuarios", u);
   return `
   ${podeAprovarCadastros(u) ? renderPedidosDeAcesso() : ""}
-  ${souMaster ? `<details class="secao-expansivel">
+  ${souMaster ? `<details class="secao-expansivel" ${secaoRecolhivelAberta("cadastros-master", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('cadastros-master', this.open)">
     <summary><span class="card-title sem-m">Níveis de administrador</span><span class="text-xs muted">o que cada nível enxerga</span></summary>
     <div class="secao-corpo">
       <p class="text-sm muted mb-2">Cada nível enxerga apenas as áreas correspondentes no menu. Só um administrador máster pode alterar papéis e níveis.</p>

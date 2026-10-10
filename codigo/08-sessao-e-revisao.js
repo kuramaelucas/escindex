@@ -74,7 +74,7 @@ function iniciarRevisaoEspacada(){
 function iniciarSessaoComLista(itens, tipo){
   // listas montadas à mão (favoritas, uma prova antiga) também não levam
   // questão à espera da figura — ver aguardaImagem()
-  itens = itens.filter(it => !aguardaImagem(getQuestao(it.questaoId)));
+  itens = semQuestoesRepetidas(itens.filter(it => !aguardaImagem(getQuestao(it.questaoId))));
   if(!itens.length){ toast("Não há questões disponíveis para esta sessão.", "err"); return; }
   state.sessaoAtual = { id: uid("sessao"), tipo, itens, indiceAtual:0, respostasSessao:[], eliminadas:{}, marcadas:{}, finalizada:false, tsQuestao: Date.now() };
   salvarSessaoEmAndamento();

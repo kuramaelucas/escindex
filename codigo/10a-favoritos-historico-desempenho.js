@@ -596,7 +596,7 @@ function htmlEvolucaoPorAssunto(u){
   if(!ev.assuntos.length) return `<div class="card mb-2"><div class="card-title">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias</div><p class="text-sm muted">Aparece aqui quando você responder as primeiras questões.</p></div>`;
   const grupos = evolucaoAgrupadaPorArea(ev);
   return `<div class="card mb-2" id="evolucaoAssuntos">
-    <details>
+    <details ${secaoRecolhivelAberta("evolucao-assuntos", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('evolucao-assuntos', this.open)">
       <summary class="card-title" style="cursor:pointer">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias <span class="text-xs muted peso-400">(${ev.assuntos.length} assunto(s) · ${ev.periodos.length} período(s))</span></summary>
       <p class="text-sm muted mt-1">Cada coluna é um período de 15 dias; o último termina hoje. Em cada célula, o acerto no assunto naquele período e quantas você acertou (ex.: <strong>80%</strong> <span class="text-xs muted">8/10</span>). <strong>—</strong> quer dizer que você não fez questões daquele assunto no período — não é erro nem acerto, e a comparação só vale entre períodos em que você fez. Pouca questão engana: 100% em 2 não é melhor que 75% em 40.${ev.cortou ? " Mostramos os últimos "+ev.periodos.length+" períodos ("+ev.periodos.length*DIAS_DO_PERIODO+" dias)." : ""}</p>
       <div class="flex gap-1 mt-2 quebra">
@@ -604,7 +604,7 @@ function htmlEvolucaoPorAssunto(u){
         <button class="btn btn-secondary btn-sm" onclick="alternarAreasDaEvolucao(false)">Recolher todas</button>
         <button class="btn btn-primary btn-sm" onclick="baixarEvolucaoPDF()">${iconeSvg("printer")} Salvar em PDF</button>
       </div>
-      ${grupos.map(g=>`<details class="evolucao-area mt-2">
+      ${grupos.map(g=>`<details class="evolucao-area mt-2" ${secaoRecolhivelAberta("evolucao-area-"+g.area.id, false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('evolucao-area-${g.area.id}', this.open)">
         <summary class="peso-600 text-sm">${escapeHtml(g.area.nome)} <span class="text-xs muted peso-400">· ${g.assuntos.length} assunto(s) · ${pct(g.acertos,g.total)}% de acerto em ${g.total} respostas</span></summary>
         <div class="table-wrap mt-1"><table class="evolucao-tabela">
           <thead><tr><th>Assunto</th>${ev.periodos.map(p=>`<th>${p.rotulo}</th>`).join("")}<th>Tendência</th></tr></thead>

@@ -308,3 +308,70 @@ test("saveState junta a rajada numa gravação só e grava de vez ao sair da pá
     assert.deepEqual(r.imediato, { ok: true, valor: "d" });
   } finally { await contexto.close(); }
 });
+
+test("a mesma questão não aparece duas vezes na fila de uma sessão", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const ids = db.questoes.filter(q => q.status === "ativa").slice(0, 4).map(q => q.id);
+      // a mesma questão vinda de duas fatias (ex.: bloco atual e revisão)
+      const lista = [ids[0], ids[1], ids[0], ids[2], ids[1]].map(id => ({ questaoId: id, origem: "teste", motivo: "t" }));
+      iniciarSessaoComLista(lista, "pratica");
+      const fila = state.sessaoAtual.itens.map(i => i.questaoId);
+      // e a sessão recomendada, montada várias vezes, nunca repete
+      const u = usuarioAtual();
+      const repetiu = Array.from({ length: 30 }, () => montarSessaoRecomendada(u.id, 20)).some(s => new Set(s.map(i => i.questaoId)).size !== s.length);
+      return { fila, esperado: [ids[0], ids[1], ids[2]], repetiu };
+    });
+    assert.deepEqual(r.fila, r.esperado);
+    assert.equal(r.repetiu, false);
+  } finally { await contexto.close(); }
+});
+
+test("a atualização automática da página não recarrega com janela aberta, sessão em andamento ou texto digitado", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); navigate("inicio");
+      const livre = podeRecarregarSemInterromper();
+      abrirModal("<p>janela</p>");
+      const comJanela = podeRecarregarSemInterromper();
+      fecharModal();
+      navigate("estudar");
+      const foraDoInicio = podeRecarregarSemInterromper();
+      navigate("inicio");
+      const ids = db.questoes.filter(q => q.status === "ativa").slice(0, 2).map(q => q.id);
+      iniciarSessaoComLista(ids.map(id => ({ questaoId: id, origem: "t", motivo: "t" })), "pratica");
+      const comSessao = podeRecarregarSemInterromper();
+      return { livre, comJanela, foraDoInicio, comSessao };
+    });
+    assert.deepEqual(r, { livre: true, comJanela: false, foraDoInicio: false, comSessao: false });
+  } finally { await contexto.close(); }
+});
+
+test("Evolução por assunto: a seção e as áreas abertas continuam abertas quando a tela se redesenha", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(async () => {
+      fazerLoginDemo("aluno"); navigate("desempenho");
+      const u = usuarioAtual();
+      db.questoes.filter(q => q.status === "ativa").slice(0, 6).forEach((q, i) => db.respostas.push({ id: "ev" + i, usuarioId: u.id, questaoId: q.id,
+        areaId: q.areaId, especialidadeId: q.especialidadeId, assuntoId: q.assuntoId, alternativaEscolhida: "A", correta: i % 2 === 0, confianca: "certeza", data: hojeISO() }));
+      saveState(); render();
+      const caixa = () => document.querySelector("#evolucaoAssuntos > details");
+      if(!caixa()) return { semSecao: true };
+      caixa().open = true;
+      await new Promise(r => setTimeout(r, 50));
+      const area = document.querySelector("#evolucaoAssuntos details.evolucao-area");
+      area.open = true;
+      await new Promise(r => setTimeout(r, 50));
+      render();
+      return { secao: caixa().open, area: document.querySelector("#evolucaoAssuntos details.evolucao-area").open };
+    });
+    assert.deepEqual(r, { secao: true, area: true });
+  } finally { await contexto.close(); }
+});

@@ -756,6 +756,15 @@ function selecionarComInterleaving(pool, quantidade, pesos){
   return resultado;
 }
 
+/* Uma questão só aparece uma vez na mesma fila. As fatias da sessão (bloco
+   atual, revisão, prévia) são sorteadas em separado, e a mesma questão podia
+   cair em duas — por exemplo uma errada e já vencida de um assunto que também
+   é do bloco atual. Fica a primeira, que é a de maior prioridade. */
+function semQuestoesRepetidas(itens){
+  const vistas = new Set();
+  return itens.filter(it => { if(vistas.has(it.questaoId)) return false; vistas.add(it.questaoId); return true; });
+}
+
 function anoDaData(iso){ return parseInt((iso||"").slice(0,4)) || 0; }
 
 /* Assuntos que o aluno já viu em ANOS ANTERIORES — seja porque o calendário
