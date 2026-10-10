@@ -23,9 +23,11 @@ const TIPOS = {
 };
 
 export function subirServidor({ semNuvem = false } = {}){
+  const pedidos = [];   // caminho de cada pedido que chegou (os testes conferem o que NÃO voltou à rede)
   const servidor = http.createServer((req, res) => {
     const url = new URL(req.url, "http://localhost");
     let caminho = decodeURIComponent(url.pathname);
+    pedidos.push(caminho);
     if(caminho.endsWith("/")) caminho += "index.html";
     // dados/demonstracao.js está vazio no site; os testes precisam das contas
     // de exemplo e as recebem do fixture no lugar dele.
@@ -44,6 +46,6 @@ export function subirServidor({ semNuvem = false } = {}){
   });
   return new Promise(ok => servidor.listen(0, "127.0.0.1", () => {
     const { port } = servidor.address();
-    ok({ url: `http://127.0.0.1:${port}/`, fechar: () => new Promise(f => servidor.close(f)) });
+    ok({ url: `http://127.0.0.1:${port}/`, pedidos, fechar: () => new Promise(f => servidor.close(f)) });
   }));
 }
