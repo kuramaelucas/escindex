@@ -283,3 +283,28 @@ test("a prova dissertativa aparece em Provas antigas, só para praticar (sem sim
   assert.deepEqual(r.botoes, ["Fazer a prova (sem cronômetro)"]);
   await contexto.close();
 });
+
+test("saveState junta a rajada numa gravação só e grava de vez ao sair da página ou com {imediato:true}", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      const lido = () => JSON.parse(localStorage.getItem("medbloco_db_v1")).marcadorTeste || null;
+      let gravacoes = 0;
+      const original = Storage.prototype.setItem;
+      Storage.prototype.setItem = function(k, v){ if(k === CHAVE_STORAGE) gravacoes++; return original.call(this, k, v); };
+      const antes = gravacoes;
+      db.marcadorTeste = "a"; saveState(); db.marcadorTeste = "b"; saveState(); db.marcadorTeste = "c"; saveState();
+      const semGravarAinda = gravacoes === antes && lido() !== "c";
+      window.dispatchEvent(new Event("pagehide"));            // a página vai embora: grava na hora
+      const aposPagehide = { gravacoes: gravacoes - antes, valor: lido() };
+      db.marcadorTeste = "d"; const ok = saveState({ imediato: true });
+      const imediato = { ok, valor: lido() };
+      Storage.prototype.setItem = original;
+      return { semGravarAinda, aposPagehide, imediato };
+    });
+    assert.equal(r.semGravarAinda, true);
+    assert.deepEqual(r.aposPagehide, { gravacoes: 1, valor: "c" });
+    assert.deepEqual(r.imediato, { ok: true, valor: "d" });
+  } finally { await contexto.close(); }
+});

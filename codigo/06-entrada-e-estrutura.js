@@ -119,7 +119,7 @@ function solicitarCadastro(){
     novo.assuntosAjuda = assuntosAjudaDentroDasAreas([...document.querySelectorAll(".cadAssuntoAjuda:checked")].map(el=>el.value), areasAtuacao);
   }
   db.usuarios.push(novo);
-  if(!saveState()){
+  if(!saveState({ imediato:true })){
     // não gravou: desfaz na memória para a tela não mostrar um cadastro que
     // não existe, e deixa a pessoa na mesma tela com o que digitou
     db.usuarios = db.usuarios.filter(x => x.id !== novoUsuarioId);
