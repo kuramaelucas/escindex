@@ -60,3 +60,20 @@ test("código e dados com ?v=hash são servidos do cache na visita seguinte, sem
     assert.ok(novos.includes("/index.html") || novos.includes("/"), "a página (sem hash) continua rede primeiro");
   } finally { await contexto.close(); }
 });
+
+test("a política de segurança de conteúdo não bloqueia nada que a plataforma usa (servidor e arquivo aberto com dois cliques)", async () => {
+  const { RAIZ } = await import("./servidor.mjs");
+  for(const endereco of [srv.url + "index.html", "file://" + RAIZ + "/index.html"]){
+    const contexto = await navegador.newContext({ serviceWorkers: "block" });
+    await contexto.route(/supabase\.co|fonts\.g/, r => r.abort());
+    try{
+      const pagina = await contexto.newPage();
+      const violacoes = [];
+      pagina.on("console", m => { if(/Content Security Policy/i.test(m.text())) violacoes.push(m.text()); });
+      await pagina.goto(endereco);
+      await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+      assert.deepEqual(violacoes, [], endereco);
+      assert.ok(await pagina.evaluate(() => !!document.querySelector('meta[http-equiv="Content-Security-Policy"]')));
+    } finally { await contexto.close(); }
+  }
+});

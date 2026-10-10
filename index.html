@@ -10,6 +10,14 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Esc — Preparação para Residência Médica</title>
+<!-- Política de segurança de conteúdo, só o que não quebra a plataforma: o site
+     usa handlers inline (onclick) e document.write, então scripts e estilos
+     não podem ser restringidos; mas dá para fechar o que nunca é preciso —
+     plugins (object-src), <base> trocado (base-uri), formulário enviado para
+     fora (form-action) — e limitar para onde um script injetado consegue
+     mandar dado (connect-src: o próprio site e a nuvem Supabase). Se a
+     plataforma passar a falar com outro endereço, ele entra aqui. -->
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'; connect-src 'self' https://*.supabase.co">
 <meta name="description" content="Plataforma de estudos para a prova de residência médica: questões comentadas, revisão espaçada, flashcards e simulados.">
 <meta name="theme-color" content="#0B6E5C">
 <!-- Instalar como aplicativo (celular e computador): ver sw.js e manifest.webmanifest -->
@@ -42,7 +50,7 @@
    questões (12 MB), e acrescentar uma prova não refaz o download do código —
    e ninguém precisa lembrar de trocar a versão: o teste de higiene falha
    se ela estiver velha. */
-window.ESC_VERSAO = "2026-10-10.cdd640fb5.d33fec8ad";
+window.ESC_VERSAO = "2026-10-10.c58f93648.d33fec8ad";
 window.ESC_VERSAO_PARTES = (function(){
   var p = String(window.ESC_VERSAO).split(".");
   return { codigo: p[1] || window.ESC_VERSAO, dados: p[2] || window.ESC_VERSAO };
