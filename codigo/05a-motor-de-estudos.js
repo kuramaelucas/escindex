@@ -115,6 +115,22 @@ function questoesAtivas(incluirGrupoId){
   // escondidas do banco geral por padrão — só entram se o chamador pedir
   // explicitamente esse grupo (incluirGrupoId = id do grupo, ou a lista dos
   // grupos da pessoa) ou tudo (true).
+  // Telas que contam o banco (true) e filas sem grupo (undefined) chamam isto
+  // várias vezes por desenho; refiltrar milhares de questões a cada vez pesa.
+  // O cache vale por geração do db (saveState) e pelo tamanho da lista, e
+  // devolve cópia para quem ordenar/embaralhar no lugar não corromper o cache.
+  const chave = incluirGrupoId===true ? "tudo" : (incluirGrupoId===undefined ? "geral" : null);
+  if(chave && _cacheAtivas[chave] && _cacheAtivas.geracao===_geracaoDb && _cacheAtivas.total===db.questoes.length) return _cacheAtivas[chave].slice();
+  const lista = _filtrarQuestoesAtivas(incluirGrupoId);
+  if(chave){
+    if(_cacheAtivas.geracao!==_geracaoDb || _cacheAtivas.total!==db.questoes.length) _cacheAtivas = { geracao:_geracaoDb, total:db.questoes.length };
+    _cacheAtivas[chave] = lista;
+    return lista.slice();
+  }
+  return lista;
+}
+let _cacheAtivas = {};
+function _filtrarQuestoesAtivas(incluirGrupoId){
   return db.questoes.filter(q=>{
     if(q.status!=="ativa") return false;
     if(aguardaImagem(q)) return false;
@@ -738,6 +754,15 @@ function selecionarComInterleaving(pool, quantidade, pesos){
     i++; tentativas++;
   }
   return resultado;
+}
+
+/* Uma questão só aparece uma vez na mesma fila. As fatias da sessão (bloco
+   atual, revisão, prévia) são sorteadas em separado, e a mesma questão podia
+   cair em duas — por exemplo uma errada e já vencida de um assunto que também
+   é do bloco atual. Fica a primeira, que é a de maior prioridade. */
+function semQuestoesRepetidas(itens){
+  const vistas = new Set();
+  return itens.filter(it => { if(vistas.has(it.questaoId)) return false; vistas.add(it.questaoId); return true; });
 }
 
 function anoDaData(iso){ return parseInt((iso||"").slice(0,4)) || 0; }

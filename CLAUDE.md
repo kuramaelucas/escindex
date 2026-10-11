@@ -57,6 +57,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `07-telas-iniciais.js` | 8–10-B | telas públicas, volta do e-mail, boas-vindas, Início, Estudar, questão na íntegra |
 | `08-sessao-e-revisao.js` | 11 | sessão de questões, barra de questões, cartão da questão, comentários |
 | `08d-revisao.js` | 12 | tela de Revisão (por assunto, fila de erros e chutes) |
+| `08e-comentarios-e-duvidas.js` | 11-D | comentários e dúvidas por questão, regra das áreas de atuação, sinalizar desatualizada, prompt de dúvida para IA |
 | `08b-destaques-de-texto.js` | 11-B | selecionar um trecho da questão ou do cartão e destacá-lo (`htmlComDestaques`, `atributoDestacavel`), por pessoa |
 | `08c-questoes-dissertativas.js` | 11-C | questão dissertativa na sessão: escrever, confiança, resposta esperada, autoavaliação (`renderCartaoDissertativa`) |
 | `09a-revisao-rapida.js` | 12-B | flashcards |

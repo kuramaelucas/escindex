@@ -355,7 +355,7 @@ function nuvemAplicarPerfilLocal(p){
   u.papel = p.papel || "aluno";
   u.status = p.status || "pendente";
   u.daNuvem = true;
-  delete u.senha;                       // a senha vive no servidor, com hash — nunca aqui
+  delete u.senha; delete u.senhaHash; delete u.senhaSal;   // a senha vive no servidor, com hash — nunca aqui
   if(p.nivel_admin) u.nivelAdmin = p.nivel_admin; else delete u.nivelAdmin;
   if(p.ano_faculdade) u.anoFaculdade = p.ano_faculdade;
   if(p.bloco_atual_id) u.blocoAtualId = p.bloco_atual_id;

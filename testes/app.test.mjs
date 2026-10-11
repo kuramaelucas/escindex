@@ -38,3 +38,42 @@ test("depois de uma visita com internet, a plataforma abre sem internet", async 
   assert.deepEqual(erros, []);
   await contexto.close();
 });
+
+test("código e dados com ?v=hash são servidos do cache na visita seguinte, sem voltar à rede", async () => {
+  const contexto = await navegador.newContext();
+  await contexto.route(/supabase\.co|fonts\.g/, r => r.abort());
+  try{
+    const pagina = await contexto.newPage();
+    await pagina.goto(srv.url + "index.html");
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db);
+    await pagina.evaluate(() => navigator.serviceWorker.ready);
+    await pagina.reload();   // já controlada pelo service worker: os arquivos entram no cache
+    await pagina.waitForFunction(() => !!navigator.serviceWorker.controller && typeof db !== "undefined" && db);
+    const guardados = await pagina.evaluate(async () => (await (await caches.open("esc-versionados")).keys()).map(r => new URL(r.url).pathname));
+    assert.ok(guardados.some(c => c.startsWith("/dados/prova-")), "as provas de dados/ deveriam estar no cache");
+    assert.ok(guardados.some(c => c.startsWith("/codigo/")), "o código deveria estar no cache");
+    const antes = srv.pedidos.length;
+    await pagina.reload();
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db && db.questoes.length > 500);
+    const novos = srv.pedidos.slice(antes);
+    assert.deepEqual(novos.filter(c => /^\/(dados|codigo)\/.+\.(js|css)$/.test(c)), [], "arquivos versionados não podem voltar à rede");
+    assert.ok(novos.includes("/index.html") || novos.includes("/"), "a página (sem hash) continua rede primeiro");
+  } finally { await contexto.close(); }
+});
+
+test("a política de segurança de conteúdo não bloqueia nada que a plataforma usa (servidor e arquivo aberto com dois cliques)", async () => {
+  const { RAIZ } = await import("./servidor.mjs");
+  for(const endereco of [srv.url + "index.html", "file://" + RAIZ + "/index.html"]){
+    const contexto = await navegador.newContext({ serviceWorkers: "block" });
+    await contexto.route(/supabase\.co|fonts\.g/, r => r.abort());
+    try{
+      const pagina = await contexto.newPage();
+      const violacoes = [];
+      pagina.on("console", m => { if(/Content Security Policy/i.test(m.text())) violacoes.push(m.text()); });
+      await pagina.goto(endereco);
+      await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+      assert.deepEqual(violacoes, [], endereco);
+      assert.ok(await pagina.evaluate(() => !!document.querySelector('meta[http-equiv="Content-Security-Policy"]')));
+    } finally { await contexto.close(); }
+  }
+});

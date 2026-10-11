@@ -537,7 +537,7 @@ function enderecoDaVersao(versao){
   return location.pathname + "?v=" + encodeURIComponent(versao) + (location.hash || "");
 }
 function recarregarVersaoNova(versao){
-  try{ saveState(); }catch(e){ /* o que já estava salvo continua salvo */ }
+  try{ saveState({ imediato:true }); }catch(e){ /* o que já estava salvo continua salvo */ }
   location.replace(enderecoDaVersao(versao || (window.ESC_VERSAO + "." + Date.now())));
 }
 async function versaoNoServidor(){
@@ -549,6 +549,13 @@ async function versaoNoServidor(){
     return m ? m[1] : null;
   }catch(e){ return null; }   // sem internet: fica a versão que está aqui
 }
+const ROTAS_SEM_TRABALHO_EM_ANDAMENTO = ["landing","login","cadastro","retorno-email","boas-vindas","inicio"];
+function podeRecarregarSemInterromper(){
+  if(document.getElementById("modalOverlayAtivo")) return false;
+  if(state.sessaoAtual && !state.sessaoAtual.finalizada) return false;
+  if(typeof haTrabalhoNaoSalvo === "function" && haTrabalhoNaoSalvo()) return false;
+  return ROTAS_SEM_TRABALHO_EM_ANDAMENTO.includes(state.route);
+}
 async function verificarVersaoNova(aoAbrir){
   const agora = Date.now();
   if(!aoAbrir && agora - _ultimaConferenciaVersao < 10*60*1000) return;
@@ -557,7 +564,12 @@ async function verificarVersaoNova(aoAbrir){
   if(!nova || nova === window.ESC_VERSAO) return;
   let jaTentou = null;
   try{ jaTentou = sessionStorage.getItem(CHAVE_RECARGA_VERSAO); }catch(e){}
-  if(aoAbrir && jaTentou !== nova){
+  // recarregar só se não houver nada em andamento: a conferência é assíncrona
+  // e, quando a resposta chega, a pessoa já pode estar numa questão, com uma
+  // janela aberta ou com texto digitado — recarregar fecharia tudo isso (e
+  // as outras abas, que seguem a mesma regra, não são tocadas). Nesse caso
+  // vale a tarja, e a pessoa atualiza quando quiser.
+  if(aoAbrir && jaTentou !== nova && podeRecarregarSemInterromper()){
     try{ sessionStorage.setItem(CHAVE_RECARGA_VERSAO, nova); }catch(e){}
     recarregarVersaoNova(nova);
     return;

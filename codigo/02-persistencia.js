@@ -379,7 +379,7 @@ function loadState(){
   let bruto = null;
   try{
     bruto = localStorage.getItem(CHAVE_STORAGE);
-    if(!bruto){ db = dbPadrao(); saveState(); return; }
+    if(!bruto){ db = dbPadrao(); saveState({ imediato:true }); return; }
     const parsed = JSON.parse(bruto);
     /* Antes, um banco sem `usuarios` ou sem `questoes` era trocado pelo banco
        de demonstração. Mas "sem questões" é um banco que perdeu CONTEÚDO — o
@@ -388,7 +388,7 @@ function loadState(){
        objeto recomeça do zero, e mesmo assim com cópia de resgate. */
     if(!parsed || typeof parsed !== "object" || Array.isArray(parsed)){
       guardarCopiaDeResgate(bruto);
-      db = dbPadrao(); saveState(); return;
+      db = dbPadrao(); saveState({ imediato:true }); return;
     }
     db = parsed;
     garantirEstruturaDb(db);
@@ -404,7 +404,7 @@ function loadState(){
       db.grupoOficialId = grupoOficialId;
       delete db.blocos; delete db.blocoAtualIdManual;
       db.versao = 2;
-      saveState();
+      saveState({ imediato:true });
     }
     // preenche campos novos que dados salvos mais antigos podem não ter,
     // sem precisar reiniciar tudo
@@ -451,7 +451,7 @@ function loadState(){
         if(g.blocos && g.blocos.length) g.blocosArquivados = g.blocos;
         delete g.blocos;
       });
-      saveState();
+      saveState({ imediato:true });
     }
     (db.grupos||[]).forEach(g=>{ if(g.deslocamento===undefined) g.deslocamento = 0; });
     /* Anos sem calendário próprio (hoje "Formado(a)"): a sequência que
@@ -505,6 +505,8 @@ function loadState(){
     // ano). Quem já estava cadastrado assim é movido para 6º ano, que é onde
     // está a maior parte de quem se declarava "internato" perto da prova.
     db.usuarios.forEach(x=>{ if(x.anoFaculdade==="Internato") x.anoFaculdade = "6º ano"; });
+    // senha local em texto (versões antigas, backups) vira sal + hash: ver definirSenhaLocal
+    db.usuarios.forEach(x=>{ if(typeof x.senha === "string" && x.senha && !x.senhaHash) definirSenhaLocal(x, x.senha); });
     if(db.aulas) delete db.aulas; // a área de aulas foi removida da plataforma
     if(db.configGeral && !db.configGeral.rampaRevisaoInicio) db.configGeral.rampaRevisaoInicio = [...CONFIG.rampaRevisaoInicio];
     // realinha área/especialidade das questões ao assunto de cada uma (o
@@ -528,7 +530,7 @@ function loadState(){
     });
     // grava agora: sem isso a correção só existiria em memória e o backup
     // exportado sairia com a seleção antiga
-    if(areasNormalizadas) saveState();
+    if(areasNormalizadas) saveState({ imediato:true });
     // a plataforma passou a se chamar "Esc": atualiza os e-mails das contas
     // de demonstração já salvas, pra continuarem batendo com a tela de entrada
     db.usuarios.forEach(x=>{ if(x.email && x.email.indexOf("@medbloco.demo")>=0) x.email = x.email.replace("@medbloco.demo","@esc.demo"); });
@@ -571,7 +573,7 @@ function recuperarBanco(bruto, erroOriginal){
   }
   if(!db || typeof db !== "object" || Array.isArray(db)){
     db = dbPadrao();
-    tentar(saveState);
+    tentar(()=>saveState({ imediato:true }));
     avisarSobreBancoIlegivel();
     return;
   }
@@ -580,13 +582,13 @@ function recuperarBanco(bruto, erroOriginal){
   if(!pessoas){
     // nem um cadastro legível: aí sim não há o que preservar
     db = dbPadrao();
-    tentar(saveState);
+    tentar(()=>saveState({ imediato:true }));
     avisarSobreBancoIlegivel();
     return;
   }
   tentar(corrigirTaxonomiaAutomaticamente);
   tentar(sincronizarConteudoNovo);
-  tentar(saveState);
+  tentar(()=>saveState({ imediato:true }));
   avisarSobreReparoDoBanco(reparos, erroOriginal);
 }
 /* Roda uma etapa da recuperação sem deixar que ela derrube as outras. */
@@ -647,6 +649,7 @@ function restaurarResgateConfirmado(){
   // dados de todo mundo por nada — exatamente o que esta tela existe para
   // impedir
   if(!bruto){ toast("Não há cópia de resgate neste navegador.", "err"); return; }
+  descartarGravacaoPendente();
   try{
     localStorage.setItem(CHAVE_STORAGE, bruto);
     fecharModal();
@@ -707,7 +710,7 @@ function sincronizarConteudoNovo(){
       }
     });
   }
-  if(novos) saveState();
+  if(novos) saveState({ imediato:true });
 }
 
 /* O banco salvo no navegador não repete o texto do conteúdo-semente. Com
@@ -801,12 +804,21 @@ function tamanhoBancoKb(){
   try{ return Math.round(JSON.stringify(compactarParaArmazenar(db)).length/1024); }catch(e){ return 0; }
 }
 let _geracaoDb = 0; // incrementado a cada saveState(); invalida caches derivados de db (ver mapaPrevalenciasAssuntos)
-/* Devolve `true` se gravou mesmo. Quem cria um cadastro PRECISA olhar esse
-   retorno: antes, o armazenamento cheio fazia a tela dizer "cadastro
-   enviado", a pessoa ir embora e o cadastro não existir no recarregamento —
-   um dado perdido que ninguém sabia que tinha perdido. */
-function saveState(){
-  _geracaoDb++;
+/* Gravar é o passo caro: serializa o banco inteiro (milhares de questões
+   compactadas, respostas, histórico) e é síncrono. Fazia isso a cada clique
+   de resposta e a cada edição, travando a tela em aparelho fraco. Agora
+   saveState() só marca "sujo" e agenda UMA gravação para logo depois, que
+   junta todas as mudanças da rajada; o estado em memória (`db`) continua
+   sendo a verdade na hora, e _geracaoDb sobe já, para os caches caírem.
+   Para o dado não se perder, a gravação é forçada quando a página vai
+   embora (pagehide/beforeunload) ou a aba é escondida.
+   Quem PRECISA saber se gravou (cadastro novo) chama saveState({imediato:true})
+   e olha o retorno; no modo adiado o retorno é `true` e a falha aparece
+   (modal) quando a gravação acontece. */
+const ATRASO_GRAVACAO_MS = 300;
+let _gravacaoPendente = null;   // id do timer; null = nada sujo
+function gravarEstadoAgora(){
+  if(_gravacaoPendente!==null){ clearTimeout(_gravacaoPendente); _gravacaoPendente = null; }
   let gravou = true;
   try{
     localStorage.setItem(CHAVE_STORAGE, JSON.stringify(compactarParaArmazenar(db)));
@@ -823,6 +835,27 @@ function saveState(){
     }else{
       toast("Não foi possível salvar os dados neste navegador (armazenamento cheio ou bloqueado).", "err");
     }
+  }
+  return gravou;
+}
+/* Grava só se houver mudança esperando (barato de chamar à vontade). */
+/* Quem vai trocar o armazenamento por fora e recarregar (reiniciar a demo,
+   restaurar a cópia de resgate) precisa cancelar a gravação esperando: senão
+   o pagehide gravaria o banco velho por cima do que acabou de ser posto. */
+function descartarGravacaoPendente(){ if(_gravacaoPendente!==null){ clearTimeout(_gravacaoPendente); _gravacaoPendente = null; } }
+function gravarEstadoSePendente(){ if(_gravacaoPendente!==null) gravarEstadoAgora(); }
+if(typeof window !== "undefined"){
+  window.addEventListener("pagehide", gravarEstadoSePendente);
+  window.addEventListener("beforeunload", gravarEstadoSePendente);
+  document.addEventListener("visibilitychange", ()=>{ if(document.hidden) gravarEstadoSePendente(); });
+}
+function saveState(opcoes){
+  _geracaoDb++;
+  let gravou = true;
+  if(opcoes && opcoes.imediato){
+    gravou = gravarEstadoAgora();
+  }else if(_gravacaoPendente===null){
+    _gravacaoPendente = setTimeout(gravarEstadoAgora, ATRASO_GRAVACAO_MS);
   }
   // com a nuvem ligada, o que acabou de ser salvo aqui sobe alguns segundos
   // depois, em bloco (ver nuvemAgendarSync, na seção 2-C). Sem nuvem, esta
@@ -842,6 +875,7 @@ function confirmarReiniciarDemo(){
     </div>`);
 }
 function reiniciarDemoConfirmado(){
+  descartarGravacaoPendente();
   localStorage.removeItem(CHAVE_STORAGE);
   location.reload();
 }

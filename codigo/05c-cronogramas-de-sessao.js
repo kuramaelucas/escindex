@@ -224,7 +224,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const poolPrevia = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));
   const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, origem:"previa", motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
 
-  let todos = [...itensAtual, ...itensRevisao, ...itensPrevia];
+  let todos = semQuestoesRepetidas([...itensAtual, ...itensRevisao, ...itensPrevia]);
   // se o banco de demonstração não tiver questões suficientes para preencher a
   // meta, completamos com quaisquer questões ativas ainda não usadas nesta sessão
   if(todos.length < tamanho){

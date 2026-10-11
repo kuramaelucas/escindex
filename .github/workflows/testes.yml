@@ -1,7 +1,8 @@
 # Roda os testes automáticos a cada envio e a cada pull request:
 #   - o conferidor da pasta dados/ (ids, gabaritos, taxonomia, provas completas);
-#   - o teste de fumaça, que abre a plataforma num Chromium de verdade, entra
-#     com cada papel e passa por todas as telas, falhando em qualquer erro.
+#   - a suíte de testes, que abre a plataforma num Chromium de verdade, entra
+#     com cada papel e passa por todas as telas, falhando em qualquer erro
+#     (em 4 fragmentos paralelos).
 # Nada aqui publica o site nem fala com a nuvem.
 name: Testes
 
@@ -10,9 +11,34 @@ on:
   pull_request:
 
 jobs:
+  # O conferidor é rápido e não precisa de navegador: roda à parte, e uma
+  # falha de conteúdo aparece em segundos, sem esperar a suíte inteira.
+  dados:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Conferir a pasta dados/
+        run: npm run conferir
+
+  # A suíte (Playwright, ~6 min em série) dividida em 4 partes que rodam ao
+  # mesmo tempo: o node reparte os ARQUIVOS de teste entre os fragmentos
+  # (--test-shard). Os testes são independentes entre si (cada um sobe o
+  # próprio servidor), então a ordem entre arquivos não importa. fail-fast
+  # desligado para ver todas as falhas de uma vez, não só a primeira.
   testes:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        fragmento: [1, 2, 3, 4]
+    name: testes (${{ matrix.fragmento }}/4)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,10 +47,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Conferir a pasta dados/
-        run: npm run conferir
-      - name: Teste de fumaça
-        run: npm test
+      - name: Testes (fragmento ${{ matrix.fragmento }} de 4)
+        run: node --test --test-concurrency=1 --test-shard=${{ matrix.fragmento }}/4 testes/*.test.mjs
 
   # O nuvem/esquema.sql num PostgreSQL de verdade: roda num banco NOVO, roda
   # de novo por cima (tem de poder ser repetido) e as regras de segurança

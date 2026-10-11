@@ -283,3 +283,134 @@ test("a prova dissertativa aparece em Provas antigas, só para praticar (sem sim
   assert.deepEqual(r.botoes, ["Fazer a prova (sem cronômetro)"]);
   await contexto.close();
 });
+
+test("saveState junta a rajada numa gravação só e grava de vez ao sair da página ou com {imediato:true}", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      const lido = () => JSON.parse(localStorage.getItem("medbloco_db_v1")).marcadorTeste || null;
+      let gravacoes = 0;
+      const original = Storage.prototype.setItem;
+      Storage.prototype.setItem = function(k, v){ if(k === CHAVE_STORAGE) gravacoes++; return original.call(this, k, v); };
+      const antes = gravacoes;
+      db.marcadorTeste = "a"; saveState(); db.marcadorTeste = "b"; saveState(); db.marcadorTeste = "c"; saveState();
+      const semGravarAinda = gravacoes === antes && lido() !== "c";
+      window.dispatchEvent(new Event("pagehide"));            // a página vai embora: grava na hora
+      const aposPagehide = { gravacoes: gravacoes - antes, valor: lido() };
+      db.marcadorTeste = "d"; const ok = saveState({ imediato: true });
+      const imediato = { ok, valor: lido() };
+      Storage.prototype.setItem = original;
+      return { semGravarAinda, aposPagehide, imediato };
+    });
+    assert.equal(r.semGravarAinda, true);
+    assert.deepEqual(r.aposPagehide, { gravacoes: 1, valor: "c" });
+    assert.deepEqual(r.imediato, { ok: true, valor: "d" });
+  } finally { await contexto.close(); }
+});
+
+test("a mesma questão não aparece duas vezes na fila de uma sessão", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const ids = db.questoes.filter(q => q.status === "ativa").slice(0, 4).map(q => q.id);
+      // a mesma questão vinda de duas fatias (ex.: bloco atual e revisão)
+      const lista = [ids[0], ids[1], ids[0], ids[2], ids[1]].map(id => ({ questaoId: id, origem: "teste", motivo: "t" }));
+      iniciarSessaoComLista(lista, "pratica");
+      const fila = state.sessaoAtual.itens.map(i => i.questaoId);
+      // e a sessão recomendada, montada várias vezes, nunca repete
+      const u = usuarioAtual();
+      const repetiu = Array.from({ length: 30 }, () => montarSessaoRecomendada(u.id, 20)).some(s => new Set(s.map(i => i.questaoId)).size !== s.length);
+      return { fila, esperado: [ids[0], ids[1], ids[2]], repetiu };
+    });
+    assert.deepEqual(r.fila, r.esperado);
+    assert.equal(r.repetiu, false);
+  } finally { await contexto.close(); }
+});
+
+test("a atualização automática da página não recarrega com janela aberta, sessão em andamento ou texto digitado", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); navigate("inicio");
+      const livre = podeRecarregarSemInterromper();
+      abrirModal("<p>janela</p>");
+      const comJanela = podeRecarregarSemInterromper();
+      fecharModal();
+      navigate("estudar");
+      const foraDoInicio = podeRecarregarSemInterromper();
+      navigate("inicio");
+      const ids = db.questoes.filter(q => q.status === "ativa").slice(0, 2).map(q => q.id);
+      iniciarSessaoComLista(ids.map(id => ({ questaoId: id, origem: "t", motivo: "t" })), "pratica");
+      const comSessao = podeRecarregarSemInterromper();
+      return { livre, comJanela, foraDoInicio, comSessao };
+    });
+    assert.deepEqual(r, { livre: true, comJanela: false, foraDoInicio: false, comSessao: false });
+  } finally { await contexto.close(); }
+});
+
+test("Evolução por assunto: a seção e as áreas abertas continuam abertas quando a tela se redesenha", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(async () => {
+      fazerLoginDemo("aluno"); navigate("desempenho");
+      const u = usuarioAtual();
+      db.questoes.filter(q => q.status === "ativa").slice(0, 6).forEach((q, i) => db.respostas.push({ id: "ev" + i, usuarioId: u.id, questaoId: q.id,
+        areaId: q.areaId, especialidadeId: q.especialidadeId, assuntoId: q.assuntoId, alternativaEscolhida: "A", correta: i % 2 === 0, confianca: "certeza", data: hojeISO() }));
+      saveState(); render();
+      const caixa = () => document.querySelector("#evolucaoAssuntos > details");
+      if(!caixa()) return { semSecao: true };
+      caixa().open = true;
+      await new Promise(r => setTimeout(r, 50));
+      const area = document.querySelector("#evolucaoAssuntos details.evolucao-area");
+      area.open = true;
+      await new Promise(r => setTimeout(r, 50));
+      render();
+      return { secao: caixa().open, area: document.querySelector("#evolucaoAssuntos details.evolucao-area").open };
+    });
+    assert.deepEqual(r, { secao: true, area: true });
+  } finally { await contexto.close(); }
+});
+
+test("senha de conta local: guardada com sal + hash (nunca em texto), conta antiga é convertida e a troca de senha continua valendo", async () => {
+  const { createHash } = await import("node:crypto");
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    // o SHA-256 próprio bate com o do Node, inclusive com acento e texto longo
+    const textos = ["", "abc", "senha com acentuação ção ü", "x".repeat(200)];
+    const nossos = await pagina.evaluate(ts => ts.map(sha256Hex), textos);
+    assert.deepEqual(nossos, textos.map(t => createHash("sha256").update(t).digest("hex")));
+
+    const r = await pagina.evaluate(() => {
+      // conta antiga, com a senha em texto
+      db.usuarios.push({ id: "u-antiga", nome: "Antiga", email: "antiga@teste.local", matricula: "A1", senha: "segredo1", papel: "aluno", status: "ativo" });
+      const errada = (fazerLogin("antiga@teste.local", "outra"), usuarioAtual());
+      fazerLogin("antiga@teste.local", "segredo1");
+      const u = getUsuario("u-antiga");
+      const aposLogin = { logou: usuarioAtual() && usuarioAtual().id === "u-antiga", texto: u.senha, temHash: !!u.senhaHash && !!u.senhaSal };
+      // a troca de senha vale: a nova entra, a velha não
+      document.body.insertAdjacentHTML("beforeend", '<input id="senhaAtual" value="segredo1"><input id="senhaNova" value="novasenha"><input id="senhaNova2" value="novasenha">');
+      trocarMinhaSenha();
+      state.usuarioAtualId = null;
+      fazerLogin("antiga@teste.local", "segredo1"); const velhaEntrou = !!usuarioAtual();
+      fazerLogin("antiga@teste.local", "novasenha"); const novaEntrou = !!usuarioAtual();
+      return { errada: errada === null, aposLogin, velhaEntrou, novaEntrou, noBanco: JSON.stringify(db).includes("segredo1") || JSON.stringify(db).includes("novasenha") };
+    });
+    assert.equal(r.errada, true);
+    assert.deepEqual(r.aposLogin, { logou: true, texto: undefined, temHash: true });
+    assert.equal(r.velhaEntrou, false);
+    assert.equal(r.novaEntrou, true);
+    assert.equal(r.noBanco, false, "nenhuma senha em texto no banco");
+
+    // a migração da carga converte o que veio de um backup antigo
+    await pagina.evaluate(() => { db.usuarios.push({ id: "u-bkp", nome: "Bkp", email: "bkp@teste.local", matricula: "B1", senha: "daBackup", papel: "aluno", status: "ativo" }); saveState({ imediato: true }); });
+    await pagina.reload(); await pronto(pagina);
+    const m = await pagina.evaluate(() => { const u = getUsuario("u-bkp"); return { texto: u.senha, hash: !!u.senhaHash, entra: (fazerLogin("bkp@teste.local", "daBackup"), !!usuarioAtual()) }; });
+    assert.deepEqual(m, { texto: undefined, hash: true, entra: true });
+  } finally { await contexto.close(); }
+});

@@ -71,7 +71,7 @@ function renderPerfil(){
    quando a nuvem está desligada. */
 function dadosDoUsuario(id){
   const u = getUsuario(id) || {};
-  const perfil = Object.assign({}, u); delete perfil.senha;
+  const perfil = semCamposDeSenha(u);
   const doUsuario = (colecao) => (colecao || []).filter(x => x.usuarioId === id);
   const porUsuario = (mapa) => (mapa && mapa[id]) || {};
   return {
