@@ -296,7 +296,9 @@ function calibracaoConfianca(usuarioId){
    de um servidor de notificações — cada papel vê o que é relevante pra ele) ---------- */
 function gerarNotificacoes(usuario){
   const notifs = [];
-  if(usuario.papel==="aluno"){
+  // no modo aluno a equipe vê os lembretes de aluno SOMADOS aos do seu papel:
+  // sair de cena para estudar não pode esconder pedido de acesso nem dúvida
+  if(usuario.papel==="aluno" || state.modoAluno){
     // a turma passou a ser escolhida DEPOIS do cadastro (o cadastro pergunta
     // só o ano), então a plataforma precisa lembrar quem ainda não escolheu —
     // no calendário oficial o aluno vê o bloco do Grupo A, que pode não ser o
@@ -341,9 +343,10 @@ function gerarNotificacoes(usuario){
     const sinalizadas = db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0).length;
     if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" questão(ões) sinalizada(s) pelos alunos.", rota:"revisao-dificeis"});
   }
-  if(usuario.papel==="residente"){
-    const pend = duvidasPendentes(usuario).length;
-    if(pend) notifs.push({icon:"message", texto:pend+" dúvida(s) aguardando resposta.", rota:"fila-duvidas"});
+  if(usuario.papel==="residente" || usuario.papel==="admin" || usuario.papel==="professor"){
+    // só some quando alguém responde (resposta oficial); ver a lista não apaga o aviso
+    const pend = duvidasPendentes(usuario.papel==="residente" ? usuario : null).length;
+    if(pend) notifs.push({icon:"message", texto:pend+" dúvida(s) de alunos aguardando resposta.", rota:"fila-duvidas"});
   }
   return notifs;
 }

@@ -568,8 +568,7 @@ function renderInicioStaff(u){
   const pendCadastros = quantosPedidosDeAcesso();
   const dificeis = questoesDificeis().length;
   const ativas = questoesAtivas(true);
-  const totalAlunos = db.usuarios.filter(x=>x.papel==="aluno" && x.status==="aprovado").length;
-  const duvidas = comentariosAtivos().filter(c=>!c.respostaOficial).length;
+  const duvidas = duvidasPendentes().length;
   const aRevisar = ativas.filter(q=>!formatacaoAprovadaDe(q.id)).length;
   const ficha = (valor, rotulo, rota) => rota
     ? `<button class="stat-mini" onclick="navigate('${rota}')"><span class="stat-value">${valor}</span><span class="stat-label">${rotulo}</span></button>`
@@ -581,9 +580,8 @@ function renderInicioStaff(u){
   ${renderNotificacoesCard(u)}
   <div class="stat-mini-row">
     ${ficha(ativas.length, "questões ativas", temRota("banco-questoes") ? "banco-questoes" : null)}
-    ${ficha(totalAlunos, "alunos aprovados", temRota("painel-turma") ? "painel-turma" : null)}
     ${ficha(dificeis, "na fila de difíceis", "revisao-dificeis")}
-    ${ficha(duvidas, "dúvidas de alunos", temRota("fila-duvidas") ? "fila-duvidas" : null)}
+    ${ficha(duvidas, "dúvidas de alunos", "fila-duvidas")}
     ${ficha(aRevisar, "formatação a revisar", "revisao-formatacao")}
     ${podeAprovarCadastros(u) && temRota("painel-turma") ? ficha(pendCadastros, pendCadastros===1?"cadastro pendente":"cadastros pendentes", "aprovar-cadastros") : ""}
   </div>

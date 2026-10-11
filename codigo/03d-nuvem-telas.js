@@ -336,6 +336,7 @@ function quantosPedidosDeAcesso(){ return pedidosDeAcessoPendentes().length; }
 async function checarPedidosDeAcesso(){
   const u = usuarioAtual();
   if(!u || !podeAprovarCadastros(u)) return;
+  const antes = quantosPedidosDeAcesso();
   if(nuvemConectado()){
     try{
       nuvemCadastrosPendentes = await nuvemChamar("/rest/v1/perfis?status=eq.pendente&order=criado_em.asc&select=*") || [];
@@ -349,6 +350,10 @@ async function checarPedidosDeAcesso(){
   const agora = pendentes.map(p => p.id);
   if(JSON.stringify(agora) !== JSON.stringify(u.cadastrosAvisados || [])){ u.cadastrosAvisados = agora; saveState(); }
   atualizarMenuLateral();
+  // o Início foi desenhado antes da resposta da nuvem chegar: sem isto o aviso
+  // (e a ficha) só apareciam depois de outro clique, e pedido já avisado
+  // antes nunca reaparecia
+  if(pendentes.length !== antes && (state.route === "painel-turma" || state.route === "inicio")) render();
   // a inscrição de push muda de endereço de vez em quando: renova uma vez por sessão
   if(!u.avisoCadastrosDesligado && _pushRenovadoPara !== u.id && notificacaoDisponivel() && Notification.permission === "granted"){
     _pushRenovadoPara = u.id; nuvemAssinarPush();

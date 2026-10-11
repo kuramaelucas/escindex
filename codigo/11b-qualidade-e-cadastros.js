@@ -232,11 +232,11 @@ function renderCardDuvida(c, respondida){
       <button class="btn btn-secondary btn-sm" onclick="abrirPromptDuvida('${q.id}')">${iconeSvg("message")} Prompt de segunda opinião (IA)</button>
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar questão</button>
     </div>
-    <div class="card-flat mt-2"><span class="peso-600">${escapeHtml(nomeAutorComentario(c))}</span> <span class="text-xs muted">em ${formatDataBR(c.data)}</span><div class="text-sm mt-1">${escapeHtml(c.texto)}</div></div>
+    <div class="card-flat mt-2"><span class="peso-600">${escapeHtml(nomeAutorComentario(c))}</span> <span class="text-xs muted">em ${formatDataBR(c.data)}</span><div class="text-sm mt-1">${escapeHtml(c.texto)}</div>${podeRemoverComentario(c) ? `<div class="mt-1"><button class="btn btn-danger btn-sm" onclick="removerComentario('${c.id}')">${iconeSvg("trash")} Excluir dúvida</button></div>` : ""}</div>
     ${respostas.length ? respostas.map(r=>{
       return `<div class="card-flat mt-1 borda-destaque"><span class="peso-600">${escapeHtml(nomeAutorComentario(r))}</span> <span class="badge badge-accent">resposta oficial</span><div class="text-sm mt-1">${escapeHtml(r.texto)}</div><div class="text-xs muted mt-1">${formatDataBR(r.data)}</div></div>`;
     }).join("") : ""}
-    ${!respondida ? `<textarea class="textarea mt-2" id="respostaDuvida-${c.id}" placeholder="Escreva a resposta oficial..." style="min-height:80px"></textarea>
+    ${!respondida ? `<textarea class="textarea mt-2" id="respostaDuvida-${c.id}" aria-label="Resposta oficial à dúvida" placeholder="Escreva a resposta oficial..." style="min-height:80px"></textarea>
     <button class="btn btn-primary btn-sm mt-1" onclick="responderDuvida('${c.id}','${q.id}')">Enviar resposta</button>` : `<div class="mt-2"><button class="link-btn" onclick="responderDuvidaExtra('${c.id}','${q.id}')">Acrescentar outra resposta oficial</button></div>`}
   </div>`;
 }
