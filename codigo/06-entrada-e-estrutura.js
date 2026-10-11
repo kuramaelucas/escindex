@@ -467,6 +467,7 @@ function navItemsParaPapel(papel){
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
     {id:"atualizar-questoes", label:"Questões para Atualizar", icon:"refresh"},
     {id:"pendencias-conteudo", label:"Pendências de conteúdo", icon:"alert"},
+    {id:"fila-duvidas", label:"Fila de Dúvidas", icon:"message"},
     {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
     {id:"criar-simulado", label:"Criar Simulado", icon:"plus"},
     {id:"material-pdf", label:"Material em PDF", icon:"printer"},

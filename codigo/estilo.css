@@ -465,6 +465,24 @@ ol.lista-passos li{margin:.25rem 0}
 .grafico-lateral .janelas-curtas{grid-template-columns:1fr;gap:.3rem}
 .seletor-periodo{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.2rem}
 .seletor-periodo .pill{cursor:pointer}
+/* calendário de estudo (Meu Desempenho): três tons — sem estudo, estudou, meta batida */
+.calendario-estudo{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+@media (min-width:800px){ .calendario-estudo{grid-template-columns:minmax(0,1.3fr) minmax(220px,1fr)} }
+.cal-grade{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal-semana{text-align:center;font-size:var(--fs-xs,.75rem);color:var(--muted);font-weight:600}
+.cal-dia{position:relative;aspect-ratio:1/1;min-height:38px;border:1px solid var(--border);border-radius:6px;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.cal-dia.cal-fora{border:0;background:transparent}
+.cal-num{position:absolute;top:2px;left:4px;font-size:.65rem;color:var(--muted)}
+.cal-qtd{font-weight:700;font-size:var(--fs-sm)}
+.cal-dia.cal-estudou{background:var(--accent-soft);border-color:var(--accent-soft)}
+.cal-dia.cal-meta{background:var(--accent);border-color:var(--accent);color:#fff}
+.cal-dia.cal-meta .cal-num{color:#fff;opacity:.85}
+.cal-dia.cal-futuro{opacity:.45}
+.cal-dia.cal-hoje{outline:2px solid var(--accent-dark);outline-offset:1px}
+.cal-legenda{display:flex;align-items:center;gap:.5rem;font-size:var(--fs-sm);margin-top:.35rem}
+.cal-amostra{width:18px;height:18px;border-radius:4px;border:1px solid var(--border);background:var(--surface);flex:none}
+.cal-amostra.cal-estudou{background:var(--accent-soft);border-color:var(--accent-soft)}
+.cal-amostra.cal-meta{background:var(--accent);border-color:var(--accent)}
 
 /* ---------- árvore de taxonomia ---------- */
 .tree-area{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.7rem;overflow:hidden;background:var(--surface)}

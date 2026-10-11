@@ -485,6 +485,78 @@ function ctxDesempenho(){
   return state.filtroRota.desempenho;
 }
 function mudarPeriodoDesempenho(p){ ctxDesempenho().periodo = p; render(); }
+/* "Como você está indo" tem duas leituras do mesmo estudo, e a tela mostra uma
+   por vez para não pesar: o gráfico de barras (taxa de acerto no período) ou o
+   calendário (quais dias teve estudo, quanto, e em quais a meta foi batida). */
+function mudarVisaoDesempenho(v){ ctxDesempenho().visao = v; render(); }
+function mudarMesCalendario(delta){
+  const ctx = ctxDesempenho();
+  const [a, m] = (ctx.mes || hojeISO().slice(0,7)).split("-").map(Number);
+  const d = new Date(a, m - 1 + delta, 1);
+  ctx.mes = dataLocalISO(d).slice(0,7);
+  render();
+}
+const MESES_CALENDARIO = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+/* Um dia vira "meta batida" pela meta de questões de hoje: a plataforma não
+   guarda a meta que valia em cada dia antigo, então o calendário usa a atual
+   (e a legenda diz o número, para ninguém ler o cálculo errado). */
+function diasDoCalendario(usuarioId, mes, meta){
+  const porDia = {};
+  db.respostas.forEach(r=>{ if(r.usuarioId===usuarioId && r.data && r.data.startsWith(mes)) porDia[r.data] = (porDia[r.data]||0) + 1; });
+  const [a, m] = mes.split("-").map(Number);
+  const ultimo = new Date(a, m, 0).getDate();
+  const hoje = hojeISO();
+  const dias = [];
+  for(let d=1; d<=ultimo; d++){
+    const iso = mes + "-" + String(d).padStart(2,"0");
+    const questoes = porDia[iso] || 0;
+    const cartoes = iso <= hoje ? cartoesFeitosNoDia(usuarioId, iso).n : 0;
+    dias.push({iso, dia:d, questoes, cartoes, futuro: iso > hoje, hoje: iso === hoje, metaBatida: questoes >= meta});
+  }
+  return {dias, primeiroDiaSemana: new Date(a, m-1, 1).getDay()};
+}
+function htmlCalendarioEstudo(u){
+  const ctx = ctxDesempenho();
+  const mes = ctx.mes || hojeISO().slice(0,7);
+  const meta = metaDoUsuario(u);
+  const {dias, primeiroDiaSemana} = diasDoCalendario(u.id, mes, meta);
+  const [a, m] = mes.split("-").map(Number);
+  const estudados = dias.filter(d=>d.questoes>0);
+  const batidos = dias.filter(d=>d.metaBatida);
+  const totalMes = estudados.reduce((s,d)=>s+d.questoes, 0);
+  const ehMesAtual = mes >= hojeISO().slice(0,7);
+  const cabecalho = ["D","S","T","Q","Q","S","S"].map(x=>`<div class="cal-semana">${x}</div>`).join("");
+  const vazios = Array.from({length:primeiroDiaSemana}, ()=>`<div class="cal-dia cal-fora"></div>`).join("");
+  const celulas = dias.map(d=>{
+    const classe = d.metaBatida ? "cal-meta" : d.questoes>0 ? "cal-estudou" : "";
+    const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes + " questão(ões)" : "sem questões")
+      + (d.cartoes ? ", " + d.cartoes + " cartão(ões)" : "") + (d.metaBatida ? " — meta batida" : "");
+    return `<div class="cal-dia ${classe} ${d.futuro?"cal-futuro":""} ${d.hoje?"cal-hoje":""}" title="${escapeHtml(dica)}"><span class="cal-num">${d.dia}</span><span class="cal-qtd">${d.questoes||""}</span></div>`;
+  }).join("");
+  return `
+  <div class="calendario-estudo">
+    <div class="calendario-grade">
+      <div class="flex justify-between items-center mb-1">
+        <button class="btn btn-ghost btn-sm" onclick="mudarMesCalendario(-1)" aria-label="Mês anterior">‹</button>
+        <div class="peso-600">${MESES_CALENDARIO[m-1]} de ${a}</div>
+        <button class="btn btn-ghost btn-sm" onclick="mudarMesCalendario(1)" aria-label="Próximo mês" ${ehMesAtual?"disabled":""}>›</button>
+      </div>
+      <div class="cal-grade">${cabecalho}${vazios}${celulas}</div>
+    </div>
+    <div class="calendario-lateral">
+      <div class="text-sm peso-600">Legenda</div>
+      <div class="cal-legenda"><span class="cal-amostra cal-meta"></span> meta batida (${meta} questões ou mais)</div>
+      <div class="cal-legenda"><span class="cal-amostra cal-estudou"></span> estudou, abaixo da meta</div>
+      <div class="cal-legenda"><span class="cal-amostra"></span> sem questões</div>
+      <p class="text-xs muted mt-1">O número no quadrado é quantas questões você respondeu no dia. Passe o mouse (ou toque) para ver também os cartões revisados.</p>
+      <div class="grid compacto mt-2">
+        <div class="stat-tile"><div class="stat-value">${estudados.length}</div><div class="stat-label">dias com estudo no mês</div></div>
+        <div class="stat-tile"><div class="stat-value">${batidos.length}</div><div class="stat-label">dias com a meta batida</div></div>
+        <div class="stat-tile"><div class="stat-value">${totalMes}</div><div class="stat-label">questões respondidas no mês</div></div>
+      </div>
+    </div>
+  </div>`;
+}
 const PERIODOS_DESEMPENHO = [
   {id:"14d", label:"Últimos 14 dias"},
   {id:"30d", label:"Últimos 30 dias"},
@@ -682,6 +754,7 @@ function renderDesempenho(){
   const u = usuarioAtual();
   const {ctx, porArea, calibracao, totalGeral, falsaSeguranca, ritmo, cartoes, dados, rotuloPeriodo, ehDiario, resumo14, resumo30, resumoAtual, somaMeses, mesesComEstudo, melhorMes} = dadosDoDesempenho(u);
 
+  const visaoCalendario = ctx.visao === "calendario";
   const graficoAreas = graficoBarrasVerticaisSvg(porArea.map(a=>({
     label: abreviarArea(a.nome), taxa: a.taxa, total: a.total, acertos: a.acertos,
   })), {altura:140, larguraMax:60});
@@ -719,14 +792,21 @@ function renderDesempenho(){
   <div class="card mb-2">
     <div class="flex justify-between items-center gap-2 mb-2 quebra">
       <div style="min-width:320px;flex:1">
-        <div class="card-title mb-02">Como você está indo — ${escapeHtml(rotuloPeriodo.toLowerCase())}</div>
-        <div class="text-sm muted">Cada barra é 100% das questões daquele ${ehDiario?"dia":"mês"}: a parte verde é o que você acertou, o cinza é o que errou.</div>
+        <div class="card-title mb-02">Como você está indo${visaoCalendario ? " — calendário de estudo" : " — "+escapeHtml(rotuloPeriodo.toLowerCase())}</div>
+        <div class="text-sm muted">${visaoCalendario ? "Os dias em que você estudou e quanto; os dias de meta batida ficam com a cor mais forte." : "Cada barra é 100% das questões daquele "+(ehDiario?"dia":"mês")+": a parte verde é o que você acertou, o cinza é o que errou."}</div>
       </div>
-      <div class="seletor-periodo">
-        ${PERIODOS_DESEMPENHO.map(p=>`<button class="pill ${ctx.periodo===p.id?"active":""}" onclick="mudarPeriodoDesempenho('${p.id}')">${p.label}</button>`).join("")}
+      <div class="flex gap-1 quebra">
+        <div class="seletor-periodo">
+          <button class="pill ${!visaoCalendario?"active":""}" onclick="mudarVisaoDesempenho('grafico')">Gráfico</button>
+          <button class="pill ${visaoCalendario?"active":""}" onclick="mudarVisaoDesempenho('calendario')">${iconeSvg("calendar")} Calendário</button>
+        </div>
+        ${visaoCalendario ? "" : `<div class="seletor-periodo">
+          ${PERIODOS_DESEMPENHO.map(p=>`<button class="pill ${ctx.periodo===p.id?"active":""}" onclick="mudarPeriodoDesempenho('${p.id}')">${p.label}</button>`).join("")}
+        </div>`}
       </div>
     </div>
 
+    ${visaoCalendario ? htmlCalendarioEstudo(u) : `
     <div class="grafico-com-lateral">
     <div class="grafico-principal">
     ${graficoBarrasVerticaisSvg(dados.itens, {altura:130, larguraMax: ehDiario?22:36, rotuloRotacionado: ehDiario && dados.dias>20})}
@@ -760,7 +840,7 @@ function renderDesempenho(){
       ${(resumo14.taxa!==null && resumo30.taxa!==null && Math.abs(resumo14.taxa-resumo30.taxa)>=8) ? `<p class="text-xs mt-1 texto-alerta peso-600">As duas janelas estão distantes (${Math.abs(resumo14.taxa-resumo30.taxa)} p.p.): ${resumo14.taxa>resumo30.taxa?"as duas últimas semanas foram melhores que o mês inteiro — algo que você mudou está funcionando.":"as duas últimas semanas caíram em relação ao mês. Vale ver se mudou o assunto, o tipo de questão ou o ritmo."}</p>` : ""}
     </div>
     </div>
-    </div>
+    </div>`}
   </div>
 
   <div class="card mb-2">
