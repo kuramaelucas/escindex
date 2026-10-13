@@ -9,6 +9,7 @@
        essa questão;
      - o feedback do aluno chega ao administrador, e "marcar como lido" vai
        como alteração da linha (PATCH), não como upsert;
+     - a sinalização de questão do aluno chega à equipe, e descartar volta;
      - trocar a senha na nuvem exige a senha atual;
      - a barra de questões é fina, de uma linha, e expande;
      - o tutorial não está mais no menu lateral.
@@ -28,7 +29,7 @@ const ADMIN = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee";
 const b64 = o => Buffer.from(JSON.stringify(o)).toString("base64url");
 const token = id => b64({ alg: "HS256" }) + "." + b64({ sub: id, exp: 9999999999 }) + ".assinatura";
 const PNG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
-const CHAVES = { feedbacks: "id", correcoes_questoes: "questao_id" };
+const CHAVES = { feedbacks: "id", correcoes_questoes: "questao_id", sinalizacoes_questoes: "id" };
 
 function nuvemQueGuarda(){
   const banco = { tabelas: {}, arquivos: [], pedidos: [], relogio: Date.parse("2026-09-28T12:00:00Z") };
@@ -64,7 +65,7 @@ async function abrir(banco, { id, papel, nome, senha = "certa1", nivel = null })
       }
       const desde = (busca.get("atualizado_em") || "gt.1970").slice(3);
       // o RLS de mentira do feedback: quem escreveu vê o seu; o administrador, todos
-      const visiveis = [...banco.tabela(tabela).values()].filter(l => tabela !== "feedbacks" || papel === "admin" || l.usuario_id === id);
+      const visiveis = [...banco.tabela(tabela).values()].filter(l => (tabela !== "feedbacks" && tabela !== "sinalizacoes_questoes") || papel === "admin" || papel === "professor" || l.usuario_id === id);
       return json(visiveis.filter(l => l.atualizado_em > desde).sort((a, b) => a.atualizado_em.localeCompare(b.atualizado_em)));
     }
     if(url.pathname === "/rest/v1/perfis" && req.method() === "GET") return json([perfil]);
@@ -201,6 +202,40 @@ test("feedback da plataforma sobe e chega ao administrador; marcar como lido vai
   assert.equal(banco.pedidos.some(p => p.quem === ADMIN && p.caminho === "/rest/v1/feedbacks" && p.metodo === "POST"), false);
   assert.deepEqual(admin.erros, []);
   await aluna.contexto.close(); await admin.contexto.close();
+});
+
+test("sinalizar questão sobe para a nuvem e chega à equipe; descartar vai por PATCH e desce", async () => {
+  const banco = nuvemQueGuarda();
+  const aluna = await abrir(banco, { id: ALUNA, papel: "aluno", nome: "Ana Aluna" });
+  const QID = await aluna.pagina.evaluate(() => {
+    const q = db.questoes.find(x => x.real && x.alternativas && x.alternativas.length);
+    abrirSinalizarDesatualizada(q.id);
+    document.getElementById("motivoSinalizacao").value = "A diretriz citada mudou em 2025.";
+    confirmarSinalizacao(q.id);
+    return q.id;
+  });
+  await sincronizar(aluna.pagina);
+  const [linha] = [...banco.tabela("sinalizacoes_questoes").values()];
+  assert.ok(linha, "a sinalização deveria subir para /rest/v1/sinalizacoes_questoes");
+  assert.equal(linha.questao_id, QID);
+  assert.equal(linha.usuario_id, ALUNA);
+  assert.equal(linha.comentario, "A diretriz citada mudou em 2025.");
+  assert.equal(linha.descartada, false);
+
+  const prof = await abrir(banco, { id: PROF, papel: "professor", nome: "Paulo Prof" });
+  await sincronizar(prof.pagina);
+  const aba = await prof.pagina.evaluate(() => { navigate("revisao-dificeis"); mudarAbaQualidade("sinalizadas"); return document.getElementById("conteudoPagina").innerText; });
+  assert.match(aba, /A diretriz citada mudou em 2025/);
+  await prof.pagina.evaluate(qid => descartarSinalizacoes(qid), QID);
+  await sincronizar(prof.pagina);
+  const patch = banco.pedidos.find(p => p.quem === PROF && p.caminho === "/rest/v1/sinalizacoes_questoes" && p.metodo === "PATCH");
+  assert.ok(patch, "descartar deveria ir como PATCH");
+  assert.equal(banco.tabela("sinalizacoes_questoes").get(linha.id).descartada, true);
+  assert.equal(banco.pedidos.some(p => p.quem === PROF && p.caminho === "/rest/v1/sinalizacoes_questoes" && p.metodo === "POST"), false);
+  await sincronizar(aluna.pagina);
+  assert.equal(await aluna.pagina.evaluate(qid => (getQuestao(qid).sinalizacoes || []).length, QID), 0);
+  assert.deepEqual([...aluna.erros, ...prof.erros], []);
+  await aluna.contexto.close(); await prof.contexto.close();
 });
 
 test("trocar a senha da conta da nuvem exige a senha atual", async () => {

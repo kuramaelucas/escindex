@@ -197,7 +197,7 @@ function renderListaSinalizadas(lista){
     </div>`).join("") : '<div class="empty-state">Nenhuma questão sinalizada no momento.</div>'}
   ${controlesPaginacao(pag, "questão(ões) sinalizada(s)")}`;
 }
-function descartarSinalizacoes(qid){ getQuestao(qid).sinalizacoes = []; saveState(); toast("Sinalizações descartadas."); render(); }
+function descartarSinalizacoes(qid){ const q = getQuestao(qid); nuvemMarcarSinalizacoesDescartadas(q); q.sinalizacoes = []; saveState(); toast("Sinalizações descartadas."); render(); }
 function marcarRevisadaProfessor(qid){ getQuestao(qid).revisadaProfessor = true; saveState(); toast("Marcada como revisada pelo professor."); render(); }
 
 /* ==========================================================================

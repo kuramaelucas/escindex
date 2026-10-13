@@ -676,6 +676,30 @@ create table if not exists public.avisos (
 create index if not exists avisos_sync_idx on public.avisos (atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 11-K. SINALIZACOES_QUESTOES — "Sinalizar questão" chegando à equipe
+-- ---------------------------------------------------------------------------
+-- O aluno que sinaliza uma questão como desatualizada ou incorreta gravava
+-- a sinalização só no navegador dele: quem revisa (Controle de Qualidade,
+-- Questões para Atualizar), em outro navegador, nunca a recebia. Uma linha
+-- por sinalização. Quem sinalizou vê a sua; quem REVISA (e_revisor():
+-- professor, administrador e residente) vê todas e as descarta. Descartar
+-- marca `descartada` em vez de apagar, para o descarte também descer para os
+-- outros aparelhos da equipe.
+create table if not exists public.sinalizacoes_questoes (
+  id              text        primary key,
+  questao_id      text        not null,
+  usuario_id      uuid        references auth.users(id) on delete set null,
+  autor_nome      text        not null default '',
+  comentario      text        not null default '',
+  data            date,
+  descartada      boolean     not null default false,
+  atualizado_por  uuid        references auth.users(id) on delete set null,
+  atualizado_em   timestamptz not null default now()
+);
+create index if not exists sinalizacoes_questoes_sync_idx on public.sinalizacoes_questoes (atualizado_em);
+create index if not exists sinalizacoes_questoes_questao_idx on public.sinalizacoes_questoes (questao_id);
+
+-- ---------------------------------------------------------------------------
 -- 11-J. GRUPOS, MEMBROS, GRUPOS DE ESTUDO, QUESTÕES E CARTÕES DE GRUPO
 -- ---------------------------------------------------------------------------
 -- Até aqui os grupos (turmas) viviam só no navegador de quem os criou: um
@@ -773,7 +797,7 @@ begin
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
-    'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos',
+    'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados'
   ] loop
     execute format('drop trigger if exists carimbo_%1$s on public.%1$I', t);
@@ -888,6 +912,7 @@ alter table public.questoes_enviadas    enable row level security;
 alter table public.feedbacks            enable row level security;
 alter table public.correcoes_questoes   enable row level security;
 alter table public.avisos               enable row level security;
+alter table public.sinalizacoes_questoes enable row level security;
 alter table public.grupos               enable row level security;
 alter table public.grupo_membros        enable row level security;
 alter table public.subgrupos            enable row level security;
@@ -1203,6 +1228,22 @@ create policy feedbacks_alterar on public.feedbacks
   using (public.e_admin() or (usuario_id = auth.uid() and lido = false))
   with check (public.e_admin() or (usuario_id = auth.uid() and lido = false));
 
+-- SINALIZACOES_QUESTOES: quem sinalizou vê a sua; quem revisa vê todas.
+-- Criar: só em nome próprio e nunca já descartada. Alterar (descartar): só
+-- quem revisa.
+drop policy if exists sinalizacoes_questoes_ler     on public.sinalizacoes_questoes;
+drop policy if exists sinalizacoes_questoes_criar   on public.sinalizacoes_questoes;
+drop policy if exists sinalizacoes_questoes_alterar on public.sinalizacoes_questoes;
+create policy sinalizacoes_questoes_ler on public.sinalizacoes_questoes
+  for select to authenticated
+  using (usuario_id = auth.uid() or public.e_revisor());
+create policy sinalizacoes_questoes_criar on public.sinalizacoes_questoes
+  for insert to authenticated
+  with check (usuario_id = auth.uid() and descartada = false);
+create policy sinalizacoes_questoes_alterar on public.sinalizacoes_questoes
+  for update to authenticated
+  using (public.e_revisor()) with check (public.e_revisor());
+
 -- CORRECOES_QUESTOES: todos leem; grava quem revisa (e_revisor()).
 drop policy if exists correcoes_questoes_ler     on public.correcoes_questoes;
 drop policy if exists correcoes_questoes_criar   on public.correcoes_questoes;
@@ -1309,7 +1350,7 @@ begin
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
     'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
-    'feedbacks', 'correcoes_questoes', 'avisos',
+    'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados', 'push_inscricoes'
   ] loop
     execute format('revoke all on public.%1$I from anon', t);

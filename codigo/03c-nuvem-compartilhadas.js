@@ -129,6 +129,59 @@ function nuvemMarcarFeedback(id){
   return true;
 }
 
+/* SINALIZAÇÕES DE QUESTÃO (tabela sinalizacoes_questoes, seção 11-K do
+   esquema.sql): "Sinalizar questão" ficava só em q.sinalizacoes do navegador
+   de quem sinalizou, e a equipe — que lê em Controle de Qualidade e
+   Questões para Atualizar — nunca recebia. Agora cada sinalização sobe com
+   id; quem revisa recebe todas. Descartar não apaga a linha: marca
+   `descartada` (tombstone em db.nuvem.sinalizacoesDescartadas, porque a
+   sinalização some de q.sinalizacoes) e a marca desce aos outros aparelhos.
+   O que as telas leem continua sendo q.sinalizacoes. */
+NUVEM_GLOBAIS.sinalizacoes_questoes = {
+  chave: l => l.id,
+  colunaChave: "id",
+  // descartar é sempre alteração de linha existente (PATCH), mesmo a própria
+  alheia: l => !!l.descartada || (!!nuvemSessao && l.usuario_id !== nuvemSessao.usuarioId),
+  podeGravar: () => true,
+  aplicar: l => {
+    const q = getQuestao(l.questao_id);
+    if(!q) return;
+    const lista = (q.sinalizacoes || []).filter(s => s.id !== l.id);
+    if(!l.descartada) lista.push({ id: l.id, usuarioId: l.usuario_id, autorNome: l.autor_nome || "",
+      data: l.data || (l.atualizado_em || "").slice(0, 10), comentario: l.comentario || "", naNuvem: true });
+    q.sinalizacoes = lista;
+  },
+  linha: id => {
+    const morta = (db.nuvem.sinalizacoesDescartadas || {})[id];
+    if(morta) return Object.assign({}, morta, { descartada: true });
+    for(const q of db.questoes){
+      const s = (q.sinalizacoes || []).find(x => x.id === id);
+      if(s) return { id: s.id, questao_id: q.id, usuario_id: ehUuid(s.usuarioId) ? s.usuarioId : nuvemSessao.usuarioId,
+        autor_nome: s.autorNome || "", comentario: s.comentario || "", data: s.data || null, descartada: false };
+    }
+    return null;
+  },
+};
+/* Chamado ao sinalizar. Devolve o id que a sinalização leva (ou "" sem nuvem). */
+function nuvemMarcarSinalizacao(id){
+  if(!nuvemConectado()) return false;
+  nuvemMarcarGlobalPendente("sinalizacoes_questoes", id);
+  nuvemAgendarSync();
+  return true;
+}
+/* Descartar as sinalizações de uma questão: as que vieram da nuvem (ou foram
+   feitas com conta conectada) sobem como descartadas. */
+function nuvemMarcarSinalizacoesDescartadas(q){
+  if(!nuvemConectado()) return;
+  if(!db.nuvem.sinalizacoesDescartadas) db.nuvem.sinalizacoesDescartadas = {};
+  (q.sinalizacoes || []).filter(s => s.id && s.naNuvem).forEach(s => {
+    db.nuvem.sinalizacoesDescartadas[s.id] = { id: s.id, questao_id: q.id, usuario_id: s.usuarioId,
+      autor_nome: s.autorNome || "", comentario: s.comentario || "", data: s.data || null };
+    nuvemMarcarGlobalPendente("sinalizacoes_questoes", s.id);
+  });
+  nuvemAgendarSync();
+}
+
 /* AVISOS DA COORDENAÇÃO (tabela avisos, seção 11-I do esquema.sql): o painel
    Enviar Avisos. Todo mundo lê — o filtro por papel e por ano é feito na
    tela, um aviso não é segredo —; grava o administrador. Retirar um aviso

@@ -115,7 +115,11 @@ function abrirSinalizarDesatualizada(qid){
 function confirmarSinalizacao(qid){
   const q = getQuestao(qid);
   if(!q.sinalizacoes) q.sinalizacoes = [];
-  q.sinalizacoes.push({usuarioId:usuarioAtual().id, data:hojeISO(), comentario:(document.getElementById("motivoSinalizacao").value||"").trim()});
+  const eu = usuarioAtual();
+  const sinal = {id:uid("sin"), usuarioId:eu.id, autorNome:eu.nome||"", data:hojeISO(), comentario:(document.getElementById("motivoSinalizacao").value||"").trim()};
+  // só sobe a sinalização da conta conectada: conta local deste navegador não tem dono na nuvem
+  if(nuvemConectado() && eu.id === nuvemSessao.usuarioId){ sinal.naNuvem = true; q.sinalizacoes.push(sinal); nuvemMarcarSinalizacao(sinal.id); }
+  else q.sinalizacoes.push(sinal);
   saveState(); fecharModal();
   toast("Sinalização enviada. Obrigado — isso ajuda a manter o banco de questões confiável.");
 }
