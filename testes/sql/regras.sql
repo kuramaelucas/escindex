@@ -146,6 +146,23 @@ select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a'
 select pg_temp.igual((select count(*) from feedbacks where id='fb1' and lido), 1, 'quem enviou vê que foi lido');
 with x as (update feedbacks set lido=false, texto='mudei' where id='fb1' returning 1) select pg_temp.igual(count(*), 0, 'quem enviou não mexe depois de lido') from x;
 
+-- SINALIZAÇÕES DE QUESTÃO: chegam a quem revisa, e só a eles
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+insert into sinalizacoes_questoes(id,questao_id,usuario_id,autor_nome,comentario) values ('sn1','q-x-001','00000000-0000-0000-0000-00000000000a','Aluna A','diretriz mudou')
+  on conflict (id) do update set comentario=excluded.comentario;   -- o mesmo upsert do site
+select pg_temp.tem_de_falhar($$insert into sinalizacoes_questoes(id,questao_id,usuario_id) values ('sn2','q-x-001','00000000-0000-0000-0000-00000000000b')$$, 'sinalização em nome de outra pessoa');
+select pg_temp.tem_de_falhar($$insert into sinalizacoes_questoes(id,questao_id,usuario_id,descartada) values ('sn3','q-x-001','00000000-0000-0000-0000-00000000000a',true)$$, 'sinalização já nascendo descartada');
+with x as (update sinalizacoes_questoes set descartada=true where id='sn1' returning 1) select pg_temp.igual(count(*), 0, 'aluno não descarta a própria sinalização') from x;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from sinalizacoes_questoes), 0, 'aluno não lê a sinalização de outro');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+select pg_temp.igual((select count(*) from sinalizacoes_questoes where id='sn1'), 1, 'a sinalização chega ao professor');
+update sinalizacoes_questoes set descartada=true where id='sn1';
+select pg_temp.igual((select count(*) from sinalizacoes_questoes where id='sn1' and descartada), 1, 'professor descarta a sinalização');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000f',false);
+select pg_temp.igual((select count(*) from sinalizacoes_questoes where id='sn1'), 1, 'a sinalização chega ao administrador');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);   -- volta à aluna, como o bloco seguinte espera
+
 -- CORREÇÕES DAS QUESTÕES DA PASTA dados/: todos leem, só quem revisa grava
 select pg_temp.tem_de_falhar($$insert into correcoes_questoes(questao_id,campos) values ('q-x-001','{"gabarito":"B"}')$$, 'aluno corrigindo questão');
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);

@@ -77,6 +77,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | O que é | O que o arquivo faz |
 > |---|---|
 > | **Feedback da plataforma** ("Enviar feedback", "Quero contribuir") chegando aos administradores | cria a tabela `feedbacks` e a função `e_admin()` (quem escreve vê o seu; administradores veem todos e marcam como lido) |
+> | **Sinalizar questão** chegando à equipe (Controle de Qualidade, Questões para Atualizar) | cria a tabela `sinalizacoes_questoes` (quem sinalizou vê a sua; professor, residente e administrador veem todas e descartam) |
 > | **Consertos das questões da pasta `dados/`** (Questões para Atualizar: a figura que faltava, texto cortado, gabarito revisto) chegando à turma inteira | cria a tabela `correcoes_questoes` (todos leem; grava equipe e residentes); a figura usa o espaço de imagens `questoes` |
 > | **Questões enviadas pela plataforma** (com as imagens) chegando à equipe para aprovar e, aprovadas, à turma inteira | cria a tabela `questoes_enviadas`, a função `e_aprovado()` e o espaço de imagens `questoes` no Storage, com as regras de quem envia e quem aprova |
 > | **Comentários e dúvidas** nas questões chegando à turma e à Fila de Dúvidas | cria a tabela `comentarios` (todos leem; cada um grava o seu; só revisor dá resposta oficial) |
