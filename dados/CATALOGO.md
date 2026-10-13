@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 6740 questões (6605 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 75 arquivos.
+**Total:** 6840 questões (6705 reais, 135 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 76 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -76,6 +76,7 @@
 | `prova-unicamp-2023.js` | UNICAMP 2023 — Residência Médica, Acesso Direto (múltipla escolha) | 80 questões | 1 anulada(s) |
 | `prova-unicamp-2023-dissertativa.js` | UNICAMP (dissertativa) 2023 — Residência Médica, Acesso Direto (prova dissertativa) | 60 questões |  |
 | `prova-unicamp-2024-dissertativa.js` | UNICAMP (dissertativa) 2024 — Residência Médica, Acesso Direto (provas de respostas curtas, manhã e tarde) | 120 questões |  |
+| `prova-unicamp-2025-dissertativa.js` | UNICAMP (dissertativa) 2025 — Residência Médica, Acesso Direto (provas de respostas curtas, manhã e tarde) | 100 questões |  |
 | `flashcards-equipe.js` | FLASHCARDS DA EQUIPE — 501 cartões autorais | 501 flashcards |  |
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
 | `flashcards-assuntos-usp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-SP (57 cartões) | 57 flashcards |  |
