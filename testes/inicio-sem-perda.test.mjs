@@ -18,7 +18,9 @@ test("Início do aluno mantém meta, sequência, acerto, revisão, subdivisões 
     await pagina.goto(semNuvem.url + "index.html");
     await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
     const r = await pagina.evaluate(() => {
-      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); navigate("inicio");
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      usuarioAtual().modoPlataforma = "estatistico";   // o Início completo é o do modo estatístico
+      navigate("inicio");
       const pg = document.getElementById("conteudoPagina");
       const bloco = getBlocoAtual();
       return { texto: pg.innerText, temDetalhes: !!pg.querySelector(".detalhes-bloco"), temSub: !!(bloco && subdivisoesDoBloco(bloco).length),

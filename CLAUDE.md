@@ -54,6 +54,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `05b-desempenho-e-metas.js` | 4 | desempenho, calibração, metas, lembrete, o que mais cai, nota estimada |
 | `06-entrada-e-estrutura.js` | 5–7 | login local, roteador, gesto de arrastar, menu e topo |
 | `06b-busca-global.js` | 5-B | busca global (Ctrl/Cmd+K e botão do topo): telas, assuntos e questões pelo enunciado (`abrirBuscaGlobal`) |
+| `06c-modo-plataforma.js` | 5-C | modo resumido × estatístico do aluno: a escolha (`u.modoPlataforma`), a pergunta de primeira vez, o cartão do Perfil, `modoResumido()`, `soNoEstatistico()`, `explicacaoRecolhida()` |
 | `07-telas-iniciais.js` | 8–10-B | telas públicas, volta do e-mail, boas-vindas, Início, Estudar, questão na íntegra |
 | `08-sessao-e-revisao.js` | 11 | sessão de questões, barra de questões, cartão da questão, comentários |
 | `08d-revisao.js` | 12 | tela de Revisão (por assunto, fila de erros e chutes) |

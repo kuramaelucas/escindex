@@ -100,6 +100,7 @@ const TUTORIAL_RAPIDO = {
 /* ---------- o guia completo, por tela ---------- */
 const GUIA_ALUNO = [
   { titulo:"Início e sessão do dia", itens:[
+    "<strong>Modo resumido e modo estatístico.</strong> Você começa no <strong>resumido</strong>: Início enxuto, menu com Início, Estudar, Revisão Rápida e Meu Desempenho (o resto fica em <strong>Mais</strong>) e os porquês das sessões recolhidos atrás de “Por quê?”. No <strong>estatístico</strong> aparece tudo: sugestões de assuntos, o que mais cai, explicações e o menu completo. A plataforma pergunta uma vez; a escolha fica guardada e muda em <strong>Perfil e configurações</strong>. Nos dois modos os seus dados são gravados do mesmo jeito — trocar nunca apaga nada.",
     "A <strong>sessão recomendada</strong> junta questões do seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo. O tamanho segue a sua meta diária.",
     "A sessão recomendada muda com o seu ano, do <strong>consolidar</strong> ao <strong>treinar a prova</strong>: <strong>3º ano 70% consolidação e 30% provas de residência; 4º ano 60/40; 5º ano 25/75; 6º ano 100% provas reais de residência</strong>. Consolidação são as questões didáticas do Esc e as provas da graduação. Cada questão da sessão diz de qual tipo é, e a tela Estudar explica a regra do seu ano.",
     "<strong>No 6º ano há um cronograma por dia:</strong> as primeiras 30 questões seguem a sessão recomendada; da 31ª em diante só entram questões de prova real de residência, nos assuntos que mais caem no banco e em que você mais erra. Cada questão extra diz o porquê.",
@@ -310,7 +311,8 @@ function mostrarTutorialAoEntrar(opts){
 }
 function agendarTutorialAoEntrar(){
   // espera a tela do Início terminar de desenhar
-  setTimeout(() => { if(state.route === "inicio") mostrarTutorialAoEntrar(); }, 300);
+  // a pergunta do modo (resumido × estatístico) vem primeiro; o tutorial entra logo depois da escolha
+  setTimeout(() => { if(state.route === "inicio" && !perguntarModoDaPlataforma()) mostrarTutorialAoEntrar(); }, 300);
 }
 
 /* ---------- o cartão do Perfil ---------- */

@@ -504,7 +504,7 @@ function renderInicioAluno(u){
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-240">
         <div class="card-title">Pronto para estudar?</div>
-        <div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>
+        ${soNoEstatistico(`<div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>`)}
         <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
         <div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
       </div>
@@ -522,7 +522,7 @@ function renderInicioAluno(u){
   </div>
   ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
-  <div class="grid grid-2 mt-2">
+  ${modoResumido() ? htmlPendenciasResumidas(revisarHoje, flashVencidos, calibracao) : `<div class="grid grid-2 mt-2">
     <div class="card">
       <div class="card-title">Sugestões de assuntos para melhorar</div>
       ${sugestoes.length ? sugestoes.map(s=>`<div class="flex justify-between items-center mt-1"><span class="text-sm">${escapeHtml(nomeAssunto(s.assuntoId))}</span><span class="badge badge-danger">${s.taxa}% de acerto</span></div>`).join("") : '<div class="text-sm muted mt-1">Ainda não há dados suficientes — responda mais questões para receber sugestões.</div>'}
@@ -544,6 +544,26 @@ function renderInicioAluno(u){
         <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
       </div>
     </div>
+  </div>`}
+  ${htmlNotaModoResumido()}`;
+}
+/* O Início do modo resumido: no lugar dos dois quadros (sugestões e revisão
+   pendente), uma linha com o que venceu e os atalhos. O alerta de excesso de
+   confiança continua — é aviso, não estatística de enfeite. */
+function htmlPendenciasResumidas(revisarHoje, flashVencidos, calibracao){
+  const partes = [revisarHoje.length ? revisarHoje.length+" assunto(s) para revisar hoje" : "", flashVencidos ? flashVencidos+" cartão(ões) vencido(s)" : ""].filter(Boolean);
+  return `<div class="card mt-2">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="text-sm cresce-220">${partes.length ? "<strong>Pendente hoje:</strong> "+partes.join(" · ") : "Nada vencido para revisar hoje. Continue pelo bloco atual."}</div>
+      <div class="flex gap-1 quebra">
+        ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
+        <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
+      </div>
+    </div>
+    ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
+      <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%.
+      <div class="flex gap-1 mt-1 quebra"><button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button></div>
+    </div>` : ""}
   </div>`;
 }
 function renderInicioResidente(u){
@@ -659,23 +679,23 @@ function renderEstudar(){
       </div>
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(feitasHoje,meta))}%"></div></div>
-    <p class="text-xs muted mt-1">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia} e ideal de ${db.configGeral.metaRecomendadaQuestoesDia} questões por dia. A meta é sua e pode ser mudada a qualquer momento.</p>
+    ${soNoEstatistico(`<p class="text-xs muted mt-1">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia} e ideal de ${db.configGeral.metaRecomendadaQuestoesDia} questões por dia. A meta é sua e pode ser mudada a qualquer momento.</p>`)}
   </div>
 
   <div class="grid grid-2">
     <div class="card">
       <div class="card-title">Sessão recomendada</div>
-      <p class="text-sm muted">${bloco
+      ${explicacaoRecolhida("Por que esta sessão?", `<p class="text-sm muted">${bloco
         ? `Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Dentro do bloco atual, os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`
         : `Mistura automática, sem calendário de blocos: ${Math.round(mistura.revisaoPassados*100)}% revisão espaçada e o resto de questões que você ainda não viu.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
       <div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${escapeHtml(explicacaoProgressao(u))}</div>
       ${cronogramaDeFormado(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronogramaFormado(u))}</div>` : ""}
-      ${cronogramaDoUsuario(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronograma(u, feitasHoje))}</div>` : ""}
+      ${cronogramaDoUsuario(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronograma(u, feitasHoje))}</div>` : ""}`)}
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
-      <p class="text-xs muted mt-1">${deHoje
+      ${soNoEstatistico(`<p class="text-xs muted mt-1">${deHoje
         ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
-        : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."}</p>
+        : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."}</p>`)}
     </div>
     <div class="card">
       <div class="card-title">Revisar erros e chutes antigos</div>
@@ -683,7 +703,7 @@ function renderEstudar(){
       <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${errosPendentes===0?"disabled":""}>Revisar agora</button>
     </div>
   </div>
-  ${htmlCardPrioridadesEstudar(u)}
+  ${soNoEstatistico(htmlCardPrioridadesEstudar(u))}
   <div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">

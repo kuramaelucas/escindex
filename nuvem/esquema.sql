@@ -191,6 +191,10 @@ alter table public.perfis add column if not exists grupo_questoes_id text;
 -- se formou pode marcar. Nula = vale o padrão (1º de dezembro), que não é
 -- gravado: ele se calcula a partir do ano da faculdade.
 alter table public.perfis add column if not exists prova_alvo_data date;
+-- o modo da plataforma que o aluno escolheu (Perfil e configurações): 'resumido'
+-- ou 'estatistico'. Nulo = ainda não escolheu (vale o resumido e a pergunta
+-- aparece uma vez). Só muda a apresentação; nenhum dado de estudo depende dele.
+alter table public.perfis add column if not exists modo_plataforma text;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)

@@ -56,7 +56,7 @@ function renderFlashcardsInicio(u){
       </div>
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(vistosHoje,metaCartoes))}%"></div></div>
-    <p class="text-xs muted mt-1">Esta meta é separada da de questões, de propósito: cartão e questão treinam coisas diferentes, e num dia corrido dá para manter o ritmo só com cartões.</p>
+    ${soNoEstatistico(`<p class="text-xs muted mt-1">Esta meta é separada da de questões, de propósito: cartão e questão treinam coisas diferentes, e num dia corrido dá para manter o ritmo só com cartões.</p>`)}
   </div>
 
   <div class="grid grid-4">
@@ -196,10 +196,11 @@ function renderFlashcardsInicio(u){
   </div>
   ${renderCartoesEmLote()}` : ""}
 
-  <div class="card-flat mt-2 text-sm">
-    <strong>Como funciona:</strong> cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; nenhum cartão volta antes de 1 semana; "quase" fica sempre no prazo mínimo de 7 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão em 7 dias. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.
-  </div>`;
+  ${modoResumido() ? explicacaoRecolhida("Como funciona o intervalo dos cartões", `<p>${COMO_FUNCIONA_CARTOES}</p>`) : `<div class="card-flat mt-2 text-sm">
+    <strong>Como funciona:</strong> ${COMO_FUNCIONA_CARTOES}
+  </div>`}`;
 }
+const COMO_FUNCIONA_CARTOES = `cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; nenhum cartão volta antes de 1 semana; "quase" fica sempre no prazo mínimo de 7 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão em 7 dias. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.`;
 /* Seleção de vários cartões seus para arquivar ou sugerir à equipe de uma vez.
    Vive em `state.filtroRota` (some ao sair da tela) e é só de cartões pessoais.
    Marcar não redesenha a tela, só a barra: a lista não pula de lugar. */
