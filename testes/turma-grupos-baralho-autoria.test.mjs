@@ -233,6 +233,39 @@ test("Estudar: 'Criar minha lista' abre a montagem; Revisão Rápida: 'Criar meu
   } finally { await contexto.close(); }
 });
 
+test("Revisão Rápida: 'Meu baralho recomendado' traz só os cartões do aluno; fim da sessão só oferece questões se houver assunto", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      const assunto = db.taxonomia.assuntos[0].id;
+      db.flashcards = (db.flashcards||[]).concat([
+        {id:"t-livre", usuarioId:u.id, frente:"anotação solta", verso:"v", origem:"aluno", status:"ativo"},
+        {id:"t-assunto", usuarioId:u.id, assuntoId:assunto, frente:"com assunto", verso:"v", origem:"aluno", status:"ativo"},
+      ]);
+      const meus = montarBaralhoFlashcards(u.id, 100, {situacao:"meus"}).map(c=>c.id).sort();
+      navigate("flashcards");
+      const cartao = /Meu baralho recomendado/.test(document.getElementById("app")?.innerText || document.body.innerText);
+      // sessão só com a miscelânea: sem botão, com explicação
+      state.sessaoFlash = {cartoes:[], indice:0, virado:false, notas:[{cartaoId:"t-livre", nota:"naolembrei"}], finalizada:true};
+      render();
+      const textoMisc = document.body.innerText;
+      // sessão com cartão de assunto: o botão aparece
+      state.sessaoFlash = {cartoes:[], indice:0, virado:false, notas:[{cartaoId:"t-livre", nota:"naolembrei"},{cartaoId:"t-assunto", nota:"quase"}], finalizada:true};
+      render();
+      const textoAssunto = document.body.innerText;
+      return {meus, cartao, textoMisc, textoAssunto};
+    });
+    assert.deepEqual(r.meus, ["t-assunto", "t-livre"]);
+    assert.ok(r.cartao);
+    assert.ok(!/Praticar questões desses assuntos/.test(r.textoMisc));
+    assert.ok(/miscelânea/.test(r.textoMisc));
+    assert.ok(/Praticar questões desses assuntos/.test(r.textoAssunto));
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
 test("questão enviada por aluno diz quem enviou; a da equipe, a da pasta dados/ e a didática não levam nome", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
