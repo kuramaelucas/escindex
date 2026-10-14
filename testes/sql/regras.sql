@@ -59,6 +59,8 @@ select pg_temp.tem_de_falhar($$insert into log_revisoes_cartoes(id,usuario_id,ca
 select pg_temp.igual((select count(*) from information_schema.columns where table_schema='public' and table_name='respostas' and column_name in ('origem','tentativa','dias_desde_ultima','respondida_em','texto_resposta')), 5, 'a resposta tem origem, tentativa, dias desde a última, a hora exata e o texto da dissertativa');
 update perfis set prova_alvo_data = current_date + 30 where id='00000000-0000-0000-0000-00000000000a';
 select pg_temp.igual((select count(*) from perfis where prova_alvo_data is not null), 1, 'a pessoa grava a própria data de prova-alvo');
+update perfis set modo_plataforma = 'estatistico' where id='00000000-0000-0000-0000-00000000000a';
+select pg_temp.igual((select count(*) from perfis where modo_plataforma = 'estatistico'), 1, 'a pessoa grava o próprio modo da plataforma');
 
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);
 select pg_temp.igual((select count(*) from destaques), 0, 'ninguém lê o destaque de outra pessoa');

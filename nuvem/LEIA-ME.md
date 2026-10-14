@@ -92,6 +92,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | O **registro de estudo para análise** (04/10/2026): de onde veio cada questão, que tentativa é, há quantos dias foi a anterior e a hora exata; e uma linha por cartão avaliado | `alter table public.respostas add column if not exists origem / tentativa / dias_desde_ultima / respondida_em` e a tabela nova `log_revisoes_cartoes` (cada pessoa grava e lê só a sua; **só sobe** — o site não a baixa de volta, e a análise se faz no painel do Supabase) |
 > | O **texto da resposta das questões dissertativas** (05/10/2026) | `alter table public.respostas add column if not exists texto_resposta text;` (sem rodar, a avaliação da dissertativa sobe e o texto escrito fica só no aparelho) |
 > | A **data exata da prova-alvo** (6º ano e Formado(a), em Perfil) | `alter table public.perfis add column if not exists prova_alvo_data date;` |
+> | O **modo da plataforma** (resumido ou estatístico, Perfil e configurações) seguindo a pessoa entre aparelhos | `alter table public.perfis add column if not exists modo_plataforma text;` (sem rodar, a escolha vale só neste aparelho) |
 > | O **segundo grupo da pessoa, só de questões** (Meu Grupo > Só questões) | `alter table public.perfis add column if not exists grupo_questoes_id text;` |
 > | A **ordem própria dos estágios do 6º ano** (Meu Grupo > Meus estágios) | `alter table public.perfis add column if not exists ordem_estagios jsonb ...` |
 > | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |

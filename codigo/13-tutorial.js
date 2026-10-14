@@ -100,6 +100,7 @@ const TUTORIAL_RAPIDO = {
 /* ---------- o guia completo, por tela ---------- */
 const GUIA_ALUNO = [
   { titulo:"Início e sessão do dia", itens:[
+    "<strong>Modo resumido e modo estatístico.</strong> Você começa no <strong>resumido</strong>: Início enxuto, menu com Início, Estudar, Revisão Rápida e Meu Desempenho (o resto fica em <strong>Mais</strong>) e os porquês das sessões recolhidos atrás de “Por quê?”. No <strong>estatístico</strong> aparece tudo: sugestões de assuntos, o que mais cai, explicações e o menu completo. A plataforma pergunta uma vez; a escolha fica guardada e muda em <strong>Perfil e configurações</strong>. Nos dois modos os seus dados são gravados do mesmo jeito — trocar nunca apaga nada.",
     "A <strong>sessão recomendada</strong> junta questões do seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo. O tamanho segue a sua meta diária.",
     "A sessão recomendada muda com o seu ano, do <strong>consolidar</strong> ao <strong>treinar a prova</strong>: <strong>3º ano 70% consolidação e 30% provas de residência; 4º ano 60/40; 5º ano 25/75; 6º ano 100% provas reais de residência</strong>. Consolidação são as questões didáticas do Esc e as provas da graduação. Cada questão da sessão diz de qual tipo é, e a tela Estudar explica a regra do seu ano.",
     "<strong>No 6º ano há um cronograma por dia:</strong> as primeiras 30 questões seguem a sessão recomendada; da 31ª em diante só entram questões de prova real de residência, nos assuntos que mais caem no banco e em que você mais erra. Cada questão extra diz o porquê.",
@@ -122,6 +123,7 @@ const GUIA_ALUNO = [
   { titulo:"Revisão e Revisão Rápida", itens:[
     "<strong>Revisão</strong> traz as questões da revisão espaçada, nesta ordem: primeiro as dos assuntos já estudados que você <strong>ainda não viu</strong>, depois as que você <strong>errou</strong> (ou acertou no chute) e, por último, as que acertou e já passou o prazo. Acerto seguro só volta depois de 1 mês (2 no segundo acerto seguido, e mais ainda em assunto em que você vai bem); com <strong>3 acertos seguidos</strong> a questão sai da revisão.",
     "<strong>Revisão Rápida</strong> são os flashcards: os cartões da equipe, os seus e os gerados das questões que você errou com certeza ou acertou no chute. Você também pode sugerir um cartão seu para o baralho da equipe. O botão <strong>Criar meu baralho</strong> abre as opções de montagem: área, especialidade ou assunto, só os vencidos, só os que você ainda não viu ou só os seus, e quantos cartões.",
+    "<strong>Meu baralho recomendado</strong> (em Revisão Rápida) segue a mesma ordem do recomendado, mas só com os cartões que <strong>você</strong> escreveu. Ao fim da rodada, <strong>Praticar questões desses assuntos</strong> só aparece se algum cartão pendente tiver assunto: cartões da miscelânea não têm de onde puxar questões.",
     "<strong>Adicionar baralho</strong> (em Revisão Rápida) tem duas saídas: escrever um cartão ou <strong>trazer um baralho inteiro de uma IA</strong>. Você escolhe o assunto e a quantidade, copia o pedido pronto, cola numa IA (se tiver resumo ou PDF seu, anexe na conversa), traz a resposta de volta e <strong>confere</strong> antes de adicionar. Os cartões ficam só no seu baralho.",
     "<strong>Anotação rápida</strong> (em Revisão Rápida) cria um cartão seu <strong>sem assunto</strong>, para as suas anotações soltas — a <strong>miscelânea</strong>. Use <strong>Salvar e criar outro</strong> para anotar em sequência. Elas entram no baralho normal e, em <strong>Criar meu baralho &gt; Quais cartões</strong>, dá para revisar só elas.",
     "<strong>Criar em lista</strong> (em Revisão Rápida) abre uma tabela com Frente e Verso para criar vários cartões de uma vez. Dá para colar de uma planilha ou de um texto com Tab entre frente e verso. O assunto é opcional (vale para todos) e, se uma linha estiver pela metade, nada é criado e a mensagem diz qual.",
@@ -309,7 +311,8 @@ function mostrarTutorialAoEntrar(opts){
 }
 function agendarTutorialAoEntrar(){
   // espera a tela do Início terminar de desenhar
-  setTimeout(() => { if(state.route === "inicio") mostrarTutorialAoEntrar(); }, 300);
+  // a pergunta do modo (resumido × estatístico) vem primeiro; o tutorial entra logo depois da escolha
+  setTimeout(() => { if(state.route === "inicio" && !perguntarModoDaPlataforma()) mostrarTutorialAoEntrar(); }, 300);
 }
 
 /* ---------- o cartão do Perfil ---------- */

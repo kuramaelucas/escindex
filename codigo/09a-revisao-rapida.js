@@ -29,6 +29,7 @@ function renderFlashcardsInicio(u){
   const revs = db.revisoesFlashcards[u.id] || {};
   const vistosHoje = Object.values(revs).filter(r=>r.ultimaData===hojeISO()).length;
   const meus = meusFlashcards(u.id).slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
+  const vencidosMeus = meus.filter(c=>cartaoVencido(u.id, c.id)).length;
   const daEquipe = flashcardsDaEquipe();
   const metaCartoes = metaCartoesDoUsuario(u);
   const seqCartoes = sequenciaDiasCartoes(u.id);
@@ -55,7 +56,7 @@ function renderFlashcardsInicio(u){
       </div>
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(vistosHoje,metaCartoes))}%"></div></div>
-    <p class="text-xs muted mt-1">Esta meta é separada da de questões, de propósito: cartão e questão treinam coisas diferentes, e num dia corrido dá para manter o ritmo só com cartões.</p>
+    ${soNoEstatistico(`<p class="text-xs muted mt-1">Esta meta é separada da de questões, de propósito: cartão e questão treinam coisas diferentes, e num dia corrido dá para manter o ritmo só com cartões.</p>`)}
   </div>
 
   <div class="grid grid-4">
@@ -72,6 +73,18 @@ function renderFlashcardsInicio(u){
         <div class="text-sm muted">A plataforma escolhe a ordem: primeiro o que venceu, depois os assuntos em que sua confiança engana, depois os erros caros e só então o que você ainda não viu.</div>
       </div>
       <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Começar</button>
+    </div>
+  </div>
+
+  <div class="card mt-2">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="card-title">Meu baralho recomendado</div>
+        <div class="text-sm muted">${meus.length
+          ? `Só os ${meus.length} cartão(ões) que você escreveu, na mesma ordem do recomendado: vencidos, falsa segurança e só então os que você ainda não viu${vencidosMeus ? ` — ${vencidosMeus} vencido(s) hoje` : ""}. Fica de fora o que a equipe escreveu e o que a plataforma gera das suas questões.`
+          : "Você ainda não escreveu cartões. Quando tiver os seus, este baralho segue a mesma ordem do recomendado, só com eles."}</div>
+      </div>
+      <button class="btn btn-primary" ${meus.length ? "" : "disabled"} onclick="iniciarSessaoFlashcards({situacao:'meus'})">${iconeSvg("cards")} Começar</button>
     </div>
   </div>
 
@@ -183,10 +196,11 @@ function renderFlashcardsInicio(u){
   </div>
   ${renderCartoesEmLote()}` : ""}
 
-  <div class="card-flat mt-2 text-sm">
-    <strong>Como funciona:</strong> cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; nenhum cartão volta antes de 1 semana; "quase" fica sempre no prazo mínimo de 7 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão em 7 dias. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.
-  </div>`;
+  ${modoResumido() ? explicacaoRecolhida("Como funciona o intervalo dos cartões", `<p>${COMO_FUNCIONA_CARTOES}</p>`) : `<div class="card-flat mt-2 text-sm">
+    <strong>Como funciona:</strong> ${COMO_FUNCIONA_CARTOES}
+  </div>`}`;
 }
+const COMO_FUNCIONA_CARTOES = `cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; nenhum cartão volta antes de 1 semana; "quase" fica sempre no prazo mínimo de 7 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão em 7 dias. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.`;
 /* Seleção de vários cartões seus para arquivar ou sugerir à equipe de uma vez.
    Vive em `state.filtroRota` (some ao sair da tela) e é só de cartões pessoais.
    Marcar não redesenha a tela, só a barra: a lista não pula de lugar. */
@@ -344,6 +358,11 @@ function renderFlashcardsResumo(s){
   s.notas.forEach(n=>cont[n.nota]++);
   const total = s.notas.length;
   const aRever = s.notas.filter(n=>n.nota!=="sabia");
+  /* Cartão da miscelânea não tem assunto: sem assunto não há questão para
+     treinar. Só oferece a ponte se algum pendente tem assunto — e, quando
+     todos são soltos, a tela diz por que o botão não aparece. */
+  const assuntosPendentes = assuntosPendentesDaSessaoFlash(s);
+  const soMiscelanea = aRever.length > 0 && !assuntosPendentes.length;
   return `
   <div class="page-header"><h2>Fim da revisão rápida</h2><p>${total} cartão(ões) revisado(s). Cada um já tem nova data de retorno.</p></div>
   <div class="grid grid-3">
@@ -360,15 +379,20 @@ function renderFlashcardsResumo(s){
   </div>` : `<div class="card mt-2"><p class="text-sm">Você acertou todos de primeira. Se isso se repetir, vale aumentar o recorte do baralho ou voltar para as questões — cartão fácil demais deixa de ensinar.</p></div>`}
   <div class="flex gap-1 mt-2 quebra">
     <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">Mais uma rodada</button>
-    ${aRever.length ? `<button class="btn btn-secondary" onclick="praticarQuestoesDoBaralho()">Praticar questões desses assuntos</button>` : ""}
+    ${assuntosPendentes.length ? `<button class="btn btn-secondary" onclick="praticarQuestoesDoBaralho()">Praticar questões desses assuntos</button>` : ""}
     <button class="btn btn-ghost" onclick="sairDaSessaoFlash()">Encerrar</button>
-  </div>`;
+  </div>
+  ${soMiscelanea ? `<p class="text-xs muted mt-1">Não há “praticar questões” aqui porque os cartões pendentes são da miscelânea (sem assunto) — não há assunto de onde puxar questões.</p>` : ""}`;
+}
+// assuntos dos cartões que ficaram pendentes na sessão (miscelânea não tem assunto e fica de fora)
+function assuntosPendentesDaSessaoFlash(s){
+  return [...new Set(s.notas.filter(n=>n.nota!=="sabia").map(n=>{ const c = getFlashcard(n.cartaoId); return c?c.assuntoId:null; }).filter(Boolean))];
 }
 /* Ponte entre os dois formatos: depois do cartão, treinar a questão do mesmo
    assunto é o que transforma o conceito decorado em raciocínio. */
 function praticarQuestoesDoBaralho(){
   const s = state.sessaoFlash; if(!s) return;
-  const assuntos = [...new Set(s.notas.filter(n=>n.nota!=="sabia").map(n=>{ const c = getFlashcard(n.cartaoId); return c?c.assuntoId:null; }).filter(Boolean))];
+  const assuntos = assuntosPendentesDaSessaoFlash(s);
   const pool = questoesParaEstudo(usuarioAtual().id).filter(q=>assuntos.includes(q.assuntoId));
   if(!pool.length){ toast("Ainda não há questões cadastradas nesses assuntos.", "err"); return; }
   const itens = embaralhar(pool).slice(0,15).map(q=>({questaoId:q.id, motivo:"Assunto que ficou pendente na revisão rápida"}));

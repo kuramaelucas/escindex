@@ -50,6 +50,7 @@ function renderPerfil(){
       <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar uma questão</button>
     </div>
   </div>` : ""}
+  ${renderCardModoPlataforma(u)}
   ${renderCardAjuda()}
   ${renderCardInstalarApp()}
   ${renderCardSenha()}

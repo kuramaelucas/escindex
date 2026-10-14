@@ -604,14 +604,14 @@ function renderSessao(){
     </div>
   </div>
   ${renderMapaSessao(sessao)}
-  <div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(item.motivo)}</span></div>
+  ${explicacaoRecolhida("Por que esta questão?", `<div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(item.motivo)}</span></div>`)}
   <div class="area-gesto" id="areaGestoQuestao">
     ${htmlCartaoDaSessao(sessao)}
   </div>
-  <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
+  ${soNoEstatistico(`<div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>`)}
   <div class="flex justify-between items-center mt-2 gap-1 quebra">
     <button class="btn btn-secondary" onclick="voltarQuestaoSessao()" ${sessao.indiceAtual>0?"":"disabled"}>Anterior</button>
-    <div class="text-xs muted dica-teclas">Teclas A (anterior) / D (próxima)</div>
+    ${soNoEstatistico(`<div class="text-xs muted dica-teclas">Teclas A (anterior) / D (próxima)</div>`)}
     ${naUltima
       ? `<button class="btn btn-primary" onclick="${soLeitura?"voltarAoResumoDaSessao()":"finalizarSessaoPratica()"}">${soLeitura?"Ver resumo":"Finalizar sessão"}</button>`
       : `<button class="btn ${respondidaAqui?"btn-secondary":"btn-ghost"}" onclick="irQuestaoSessao(1)">${respondidaAqui?"Próxima":"Deixar para depois"}</button>`}

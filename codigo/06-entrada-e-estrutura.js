@@ -601,14 +601,21 @@ function htmlMenuLateral(u){
   const grupos = comoAluno ? GRUPOS_MENU_ALUNO : GRUPOS_MENU_EQUIPE;
   const tabela = comoAluno ? GRUPO_DO_ITEM_ALUNO : GRUPO_DO_ITEM_EQUIPE;
   // Início fica solto no topo; item sem grupo conhecido também (nunca some do menu)
-  const soltos = nav.filter(i=>!tabela[i.id]);
-  const porGrupo = grupos.map(g=>[g, nav.filter(i=>tabela[i.id]===g)]).filter(([,itens])=>itens.length);
+  let soltos = nav.filter(i=>!tabela[i.id]);
+  let porGrupo = grupos.map(g=>[g, nav.filter(i=>tabela[i.id]===g)]).filter(([,itens])=>itens.length);
+  // modo resumido: quatro itens à vista e o resto atrás de "Mais" — nenhum sai do menu nem muda de rota
+  const reduzido = comoAluno && modoResumido();
+  if(reduzido){
+    soltos = ITENS_DO_MENU_RESUMIDO.map(id=>nav.find(i=>i.id===id)).filter(Boolean);
+    const resto = nav.filter(i=>!ITENS_DO_MENU_RESUMIDO.includes(i.id));
+    porGrupo = resto.length ? [["Mais", resto]] : [];
+  }
   return `
       <div class="sidebar-brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
       ${comoAluno ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
       <div class="nav-section-label">${rotuloPapel(u.papel)}</div>
       <ul class="nav-list">${soltos.map(item=>htmlItemMenu(item, pendenciaDoItemMenu(item, u, pendCadastros))).join("")}</ul>
-      ${porGrupo.map(([g, itens])=>htmlGrupoMenu(g, itens, u, pendCadastros, !comoAluno)).join("")}
+      ${porGrupo.map(([g, itens])=>htmlGrupoMenu(g, itens, u, pendCadastros, !comoAluno || reduzido)).join("")}
       <div class="sidebar-footer">
         ${u.papel!=="aluno" ? `<div class="nav-item" onclick="alternarModoAluno()">${iconeSvg("book")}<span>${state.modoAluno?"Sair do modo aluno":"Entrar no modo aluno"}</span></div>` : ""}
         <div class="nav-item" onclick="alternarTema()">${iconeSvg("theme")}<span>${document.documentElement.getAttribute("data-theme")==="dark"?"Tema claro":"Tema escuro"}</span></div>
