@@ -359,10 +359,21 @@ function nuvemAplicarPerfilLocal(p){
   if(p.nivel_admin) u.nivelAdmin = p.nivel_admin; else delete u.nivelAdmin;
   if(p.ano_faculdade) u.anoFaculdade = p.ano_faculdade;
   if(p.bloco_atual_id) u.blocoAtualId = p.bloco_atual_id;
-  if(p.grupo_id) u.grupoId = p.grupo_id;
+  /* Os dois grupos (calendário e só de questões) são decididos aqui, e o
+     perfil que desce pode ser ANTERIOR à escolha que ainda não subiu: passar o
+     grupo do calendário para "só questões" põe o calendário no oficial; se o
+     perfil velho voltasse com o grupo antigo no calendário, ele ficava igual
+     ao de questões e getGrupoQuestoesDoUsuario o escondia — o segundo grupo
+     "sumia sozinho". Com mudança de perfil esperando para subir, os grupos
+     locais valem. */
+  const grupoLocalPendente = !!(db.nuvem && db.nuvem.perfilEnviado && db.nuvem.perfilEnviado !== JSON.stringify(linhaDoPerfil(u)));
+  if(!grupoLocalPendente){
+    // um perfil que traz os dois grupos iguais é inconsistente: o de questões vale, o calendário fica como estava
+    if(p.grupo_id && p.grupo_id !== p.grupo_questoes_id) u.grupoId = p.grupo_id;
+  }
   // nunca se limpa por aqui: o perfil que desce pode ser anterior ao que acabei de escolher, e
   // quem saiu do grupo já perde o lugar pelo status em grupo_membros (getGrupoQuestoesDoUsuario confere)
-  if(p.grupo_questoes_id && !u.grupoQuestoesId) u.grupoQuestoesId = p.grupo_questoes_id;
+  if(p.grupo_questoes_id && !u.grupoQuestoesId && !grupoLocalPendente) u.grupoQuestoesId = p.grupo_questoes_id;
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
@@ -386,11 +397,9 @@ function nuvemAplicarPerfilLocal(p){
    enfileira quando há diferença. Assim, qualquer tela nova já entra junto.
    Papel e status não entram de propósito: quem promove alguém é a
    coordenação, e o banco recusa a mudança vinda do aluno (ver esquema.sql). */
-function nuvemConferirPerfil(){
-  if(!nuvemConectado()) return;
-  const usuario = db.usuarios.find(u => u.id === nuvemSessao.usuarioId);
-  if(!usuario) return;
-  const linha = {
+/* A linha do perfil que sobe para a nuvem; a assinatura dela diz se há mudança esperando. */
+function linhaDoPerfil(usuario){
+  return {
     id: usuario.id,
     nome: usuario.nome || "",
     matricula: usuario.matricula || "",
@@ -408,6 +417,12 @@ function nuvemConferirPerfil(){
     ordem_estagios: usuario.ordemEstagios || {},
     avisos_lidos: usuario.avisosLidos || [],
   };
+}
+function nuvemConferirPerfil(){
+  if(!nuvemConectado()) return;
+  const usuario = db.usuarios.find(u => u.id === nuvemSessao.usuarioId);
+  if(!usuario) return;
+  const linha = linhaDoPerfil(usuario);
   const assinatura = JSON.stringify(linha);
   if(db.nuvem.perfilEnviado === assinatura) return;
   nuvemEnfileirar("perfis", linha);
