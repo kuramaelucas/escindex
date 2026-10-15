@@ -133,6 +133,7 @@ function renderSimuladoCard(s){
         ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)
           ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
           : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
+        ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
         ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
         <button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>
       </div>
@@ -142,13 +143,17 @@ function renderSimuladoCard(s){
 /* A tabela "simulado × estudo" (ver comparativoSimuladoEstudo, 05b), usada no
    resultado do simulado e em Meu Desempenho. Diz o que cada linha significa:
    a plataforma explica o que mostra. */
-function htmlComparativoSimuladoEstudo(linhas, titulo, intro){
+function htmlComparativoSimuladoEstudo(linhas, titulo, intro, opcoes){
   if(!linhas.length) return "";
+  // `maximo`: a página de resultado mostra só os assuntos que mais pedem atenção (a lista já vem ordenada)
+  const maximo = opcoes && opcoes.maximo;
+  const restantes = maximo ? linhas.length - maximo : 0;
+  if(restantes > 0) linhas = linhas.slice(0, maximo);
   const rotulo = l => l.queda===null ? '<span class="badge badge-muted">poucas respostas fora de simulado</span>'
     : l.queda>=15 ? '<span class="badge badge-amber">rende menos no simulado</span>'
     : l.queda<=-15 ? '<span class="badge badge-accent">rende mais no simulado</span>'
     : l.simTaxa<60 ? '<span class="badge badge-danger">fraco nos dois</span>' : '<span class="badge badge-accent">parecido</span>';
-  return `<div class="card mt-2" style="max-width:720px">
+  return `<div class="card mt-2">
     <div class="card-title">${escapeHtml(titulo)}</div>
     <p class="text-sm muted">${intro}</p>
     <div class="table-wrap mt-1"><table><thead><tr><th>Assunto</th><th>No simulado</th><th>Fora de simulado</th><th></th></tr></thead><tbody>
@@ -158,7 +163,7 @@ function htmlComparativoSimuladoEstudo(linhas, titulo, intro){
         <td class="text-sm">${l.estTotal ? `<strong>${l.estTaxa}%</strong> <span class="muted">(${l.estAcertos}/${l.estTotal})</span>` : '<span class="muted">—</span>'}</td>
         <td>${rotulo(l)}</td></tr>`).join("")}
     </tbody></table></div>
-    <p class="text-xs muted mt-1">"Fora de simulado" soma as questões que você fez nas trilhas, na revisão e nas listas. A comparação só é feita com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.</p>
+    <p class="text-xs muted mt-1">"Fora de simulado" soma as questões que você fez nas trilhas, na revisão e nas listas. A comparação só é feita com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.${restantes>0 ? ` Mostrando os ${maximo} que mais pedem atenção; mais ${restantes} em <button class="link-btn text-xs" onclick="navigate('desempenho')">Meu Desempenho</button>.` : ""}</p>
   </div>`;
 }
 function iniciarSimulado(simuladoId){
@@ -389,9 +394,13 @@ function analiseTempoSimulado(sessao, linhas){
     lentas: comTempo.filter(x=>x.seg > mediana*1.6).sort((a,b)=>b.seg-a.seg).slice(0,5),
   };
 }
-function irParaRevisaoQuestaoSimulado(i){
-  const alvo = document.getElementById("res-q-"+i);
-  if(alvo) alvo.scrollIntoView({behavior:"smooth", block:"start"});
+/* A revisão deixou de ser uma lista de todas as questões: a página de
+   resultado é um resumo, e o que o aluno quer reler é o que errou. */
+function alternarVerSoErrosSimulado(){
+  const sessao = state.sessaoAtual; if(!sessao) return;
+  sessao.verSoErros = !sessao.verSoErros;
+  render();
+  if(sessao.verSoErros){ const alvo = document.getElementById("res-erros"); if(alvo) alvo.scrollIntoView({behavior:"smooth", block:"start"}); }
 }
 function revisarErrosDoSimulado(){
   const sessao = state.sessaoAtual; if(!sessao) return;
@@ -409,6 +418,31 @@ function alternarModoAprendizadoSimulado(){
   toast(sessao.modoAprendizado ? "Modo aprendizado ativado: escolha a alternativa e confirme para ver a explicação; a barra passa a mostrar acertos e erros." : "Modo aprendizado desativado — voltando ao formato de prova.");
   render();
 }
+/* O painel anônimo da turma, para quem não é aluno (administrador, professor,
+   residente): nota média, distribuição e as questões em que mais se erra. Só
+   números somados — nunca nome nem nota de uma pessoa. */
+function htmlDesempenhoDosAlunos(chave){
+  const t = estatisticasTurmaSimulado(chave);
+  if(!t) return `<div class="card-flat text-sm muted">O desempenho dos alunos aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito isto ${nuvemConectado() ? "na turma" : "neste navegador"}; com menos, os números identificariam as pessoas.</div>`;
+  const piores = t.questoes.slice(0,5);
+  return `<div class="card-title">Desempenho dos alunos <span class="text-sm muted peso-400">· anônimo, ${t.n} alunos ${t.origem==="turma" ? "da turma" : "deste navegador"}, uma nota por aluno</span></div>
+    <div class="grid grid-4 mt-1">
+      <div class="stat-tile"><div class="stat-value">${t.n}</div><div class="stat-label">alunos</div></div>
+      <div class="stat-tile"><div class="stat-value">${Math.round(t.media)}%</div><div class="stat-label">média</div></div>
+      <div class="stat-tile"><div class="stat-value">${Math.round(t.mediana)}%</div><div class="stat-label">mediana</div></div>
+      <div class="stat-tile"><div class="stat-value">${Math.round(t.p90)}%</div><div class="stat-label">percentil 90</div></div>
+    </div>
+    <div class="mt-2">${graficoHistogramaSvg(t.buckets, -1, ["0-20","21-40","41-60","61-80","81-100"])}</div>
+    ${piores.length ? `<div class="text-sm peso-600 mt-2">Questões com menor taxa de acerto</div>
+      <div class="table-wrap mt-1"><table><thead><tr><th>Questão</th><th>Assunto</th><th>Acerto</th></tr></thead><tbody>
+      ${piores.map(c=>{ const q = getQuestao(c.questaoId); return `<tr><td class="text-sm"><button class="link-btn" onclick="abrirQuestaoCompleta('${c.questaoId}')">${q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button></td><td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td><td class="text-sm"><strong>${c.taxa}%</strong> <span class="muted">(${c.acertos}/${c.total})</span></td></tr>`; }).join("")}
+      </tbody></table></div>
+      <p class="text-xs muted mt-1">Taxa de acerto por questão, contando só as respostas deste navegador${t.origem==="turma" ? " (a nuvem devolve só as notas)" : ""}.</p>` : ""}`;
+}
+function ehEquipeVendoSimulado(){ const u = usuarioAtual(); return !!u && u.papel !== "aluno" && !state.modoAluno; }
+function abrirDesempenhoDosAlunos(chave, titulo){
+  abrirModalTitulado("Desempenho dos alunos · "+titulo, htmlDesempenhoDosAlunos(chave), "lg");
+}
 function renderResultadoSimulado(){
   const sessao = state.sessaoAtual;
   const total = sessao.itens.length;
@@ -422,58 +456,61 @@ function renderResultadoSimulado(){
   const nota = pct(acertos,total);
   const analiseTempo = analiseTempoSimulado(sessao, linhas);
   const chaveRanking = sessao.simuladoId || sessao.titulo;
-  const ranking = estatisticasRankingSimulado(chaveRanking, nota);
-  return `
-  <div class="card" style="max-width:480px">
+  const equipe = ehEquipeVendoSimulado();
+  const ranking = equipe ? null : estatisticasRankingSimulado(chaveRanking, nota);
+  const erradas = linhas.filter(l=>!l.correta);
+  const pillMapa = l => `<button class="pill" style="min-width:38px;justify-content:center;${l.resp===undefined?"":l.correta?"background:var(--accent);border-color:var(--accent);color:#fff":"background:var(--danger);border-color:var(--danger);color:#fff"}" onclick="abrirQuestaoCompleta('${l.q.id}')" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")} · abrir a questão">${l.i+1}</button>`;
+  return `<div class="coluna-resultado">
+  <div class="card">
     <h2>Resultado do simulado</h2>
-    <div class="stat-tile mt-2"><div class="stat-value">${nota}%</div><div class="stat-label">${acertos} de ${total} corretas</div></div>
-    <button class="btn btn-primary mt-2" onclick="state.sessaoAtual=null;navigate('simulados')">Voltar aos simulados</button>
+    <div class="flex items-center gap-2 quebra mt-1">
+      <div class="stat-tile"><div class="stat-value">${nota}%</div><div class="stat-label">${acertos} de ${total} corretas</div></div>
+      <div class="text-sm muted">${erradas.length ? `${erradas.length} errada(s) ou em branco` : "Você acertou tudo."}</div>
+    </div>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-primary btn-sm" onclick="state.sessaoAtual=null;navigate('simulados')">Voltar aos simulados</button>
+      ${erradas.length ? `<button class="btn btn-secondary btn-sm" onclick="revisarErrosDoSimulado()">${iconeSvg("refresh")} Praticar as que errei</button>
+      <button class="btn btn-secondary btn-sm" onclick="alternarVerSoErrosSimulado()">${sessao.verSoErros ? "Esconder as que errei" : "Ver só as que errei"}</button>` : ""}
+      <button class="btn btn-ghost btn-sm" onclick="state.sessaoAtual=null;navigate('historico')">Histórico</button>
+    </div>
+    <div class="text-sm peso-600 mt-2">Mapa de acertos <span class="muted peso-400">· verde acertou, vermelho errou, cinza em branco; clique para abrir a questão</span></div>
+    <div class="flex gap-1 quebra mt-1">${linhas.map(pillMapa).join("")}</div>
   </div>
-  ${ranking ? `
-  <div class="card mt-2" style="max-width:520px">
+  ${equipe ? `<div class="card mt-2">${htmlDesempenhoDosAlunos(chaveRanking)}</div>` : ranking ? `
+  <div class="card mt-2">
     <div class="card-title">Como você se saiu, de forma anônima</div>
     <p class="text-sm muted">${ranking.origem==="turma"
       ? `Comparado a ${ranking.n} alunos que fizeram este simulado, em qualquer aparelho (uma nota por aluno, sem identificar ninguém).`
       : `Comparado a ${ranking.n} alunos que fizeram este simulado neste navegador (uma nota por aluno, sem identificar ninguém).${nuvemLigada() && !nuvemConectado() ? " Entrando com a sua conta da nuvem, a comparação passa a ser com a turma inteira." : ""}`}</p>
-    <div class="grid grid-3 mt-2">
+    <div class="grid grid-3 mt-1">
       <div class="stat-tile"><div class="stat-value">Percentil ${ranking.percentil}</div><div class="stat-label">você superou ${ranking.percentil}% dos alunos</div></div>
       <div class="stat-tile"><div class="stat-value">${Math.round(ranking.mediana)}%</div><div class="stat-label">percentil 50 (nota mediana)</div></div>
-      <div class="stat-tile"><div class="stat-value">${Math.round(ranking.p90)}%</div><div class="stat-label">percentil 90 (nota de quem está entre os 10% melhores)</div></div>
+      <div class="stat-tile"><div class="stat-value">${Math.round(ranking.p90)}%</div><div class="stat-label">percentil 90 (os 10% melhores)</div></div>
     </div>
     <div class="mt-2">${graficoCurvaGaussSvg(ranking, nota)}</div>
     <p class="text-xs muted mt-1">Curva de Gauss desenhada com a média (${Math.round(ranking.media)}%) e o desvio padrão (${Math.round(ranking.desvio)} pontos) das notas dos alunos: é um ajuste, não a contagem exata.</p>
     <div class="mt-2">${graficoHistogramaSvg(ranking.buckets, ranking.bucketAtual, ["0-20","21-40","41-60","61-80","81-100"])}</div>
-  </div>` : `<div class="card-flat mt-2 text-sm muted" style="max-width:520px">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado ${nuvemConectado() ? "na turma" : "neste navegador"}.</div>`}
-  ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(usuarioAtual().id, {sessaoId:sessao.id}), "Seus assuntos neste simulado × o seu estudo", "Para cada assunto que caiu aqui, o seu acerto no simulado ao lado do acerto nas questões que você fez fora de simulado. Quem vai bem no estudo e mal aqui perde para o tempo ou para o formato da prova; quem vai mal nos dois precisa estudar o conteúdo.")}
-  ${analiseTempo ? `<div class="card mt-2" style="max-width:620px">
+  </div>` : `<div class="card-flat mt-2 text-sm muted">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado ${nuvemConectado() ? "na turma" : "neste navegador"}.</div>`}
+  ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(usuarioAtual().id, {sessaoId:sessao.id}), "Seus assuntos neste simulado × o seu estudo", "O acerto de cada assunto no simulado ao lado do acerto fora dele. Bom no estudo e mal aqui: tempo ou formato da prova. Mal nos dois: falta conteúdo.", {maximo:5})}
+  ${analiseTempo ? `<div class="card mt-2">
     <div class="card-title">Tempo</div>
-    <div class="grid grid-3 mt-2">
+    <div class="grid grid-3 mt-1">
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(analiseTempo.total)}</div><div class="stat-label">tempo total${sessao.duracaoMin?" (limite de "+sessao.duracaoMin+" min)":""}</div></div>
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(analiseTempo.media)}</div><div class="stat-label">média por questão</div></div>
-      <div class="stat-tile"><div class="stat-value">${formatarDuracao(analiseTempo.mediana)}</div><div class="stat-label">tempo mediano por questão</div></div>
+      <div class="stat-tile"><div class="stat-value">${formatarDuracao(analiseTempo.mediana)}</div><div class="stat-label">tempo mediano</div></div>
     </div>
     ${analiseTempo.lentas.length ? `<div class="mt-2">
       <div class="text-sm peso-600">Onde você travou</div>
-      <p class="text-xs muted mb-1">Questões que consumiram bem mais tempo que a sua mediana. Travar numa questão que você acertou também conta: numa prova cronometrada, esse tempo sai de outra questão.</p>
+      <p class="text-xs muted mb-1">Questões que consumiram bem mais tempo que a sua mediana; numa prova cronometrada, esse tempo sai de outra questão.</p>
       ${analiseTempo.lentas.map(l=>`<div class="flex justify-between items-center card-flat mb-1">
         <span class="text-sm">Questão ${l.i+1} · ${escapeHtml(nomeAssunto(getQuestao(l.qid).assuntoId))} <span class="badge ${l.correta?"badge-accent":"badge-danger"}">${l.correta?"acertou":"errou"}</span></span>
-        <span class="flex items-center gap-1"><span class="badge badge-muted">${formatarDuracao(l.seg)}</span><button class="link-btn" onclick="irParaRevisaoQuestaoSimulado(${l.i})">ver</button></span>
+        <span class="flex items-center gap-1"><span class="badge badge-muted">${formatarDuracao(l.seg)}</span><button class="link-btn" onclick="abrirQuestaoCompleta('${l.qid}')">ver</button></span>
       </div>`).join("")}
     </div>` : '<p class="text-xs muted mt-2">Seu ritmo foi parelho: nenhuma questão destoou muito da mediana.</p>'}
   </div>` : ""}
-  <div class="card mt-2">
-    <div class="card-title mb-1">Mapa de acertos e erros</div>
-    <p class="text-sm muted mb-2">Verde = acertou, vermelho = errou, cinza = deixou em branco. Clique num número para pular direto para a revisão daquela questão.</p>
-    <div class="flex gap-1 quebra">
-      ${linhas.map(l=>`<button class="pill" style="min-width:38px;justify-content:center;${l.resp===undefined?"":l.correta?"background:var(--accent);border-color:var(--accent);color:#fff":"background:var(--danger);border-color:var(--danger);color:#fff"}" onclick="irParaRevisaoQuestaoSimulado(${l.i})" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}">${l.i+1}</button>`).join("")}
-    </div>
-    <div class="flex gap-1 mt-2 quebra">
-      <button class="btn btn-secondary btn-sm" onclick="revisarErrosDoSimulado()">${iconeSvg("refresh")} Praticar agora só as que errei</button>
-      <button class="btn btn-ghost btn-sm" onclick="state.sessaoAtual=null;navigate('historico')">Ver histórico de atividade</button>
-    </div>
-  </div>
-  <div class="mt-3"><div class="card-title mb-1">Revisão questão a questão</div>
-  ${linhas.map(l=>`<div class="mb-2" id="res-q-${l.i}"><span class="badge ${l.resp===undefined?"badge-muted":l.correta?"badge-accent":"badge-danger"}">Questão ${l.i+1}: ${l.resp===undefined?"em branco":l.correta?"correta":"incorreta"}</span>${renderQuestionCard(l.q,{selecionada:l.resp, respondida:true})}</div>`).join("")}
+  ${sessao.verSoErros && erradas.length ? `<div class="mt-2" id="res-erros"><div class="card-title mb-1">Questões que você errou ou deixou em branco <span class="text-sm muted peso-400">· ${erradas.length}</span></div>
+  ${erradas.map(l=>`<div class="mb-2"><span class="badge ${l.resp===undefined?"badge-muted":"badge-danger"}">Questão ${l.i+1}: ${l.resp===undefined?"em branco":"incorreta"}</span>${renderQuestionCard(l.q,{selecionada:l.resp, respondida:true})}</div>`).join("")}
+  </div>` : ""}
   </div>`;
 }
 
@@ -567,6 +604,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
         <div class="flex gap-1 prova-acoes quebra">
           ${g.dissertativa ? "" : `<button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>`}
+          ${g.dissertativa || !ehEquipeVendoSimulado() ? "" : `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")}, '${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>`}
           <button class="btn ${g.dissertativa ? "btn-primary" : "btn-secondary"} btn-sm" onclick="praticarProva(${i})">${g.dissertativa ? "Fazer a prova (sem cronômetro)" : "Praticar sem cronômetro"}</button>
         </div>
       </div>`;

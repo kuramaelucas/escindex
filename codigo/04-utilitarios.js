@@ -409,7 +409,7 @@ function graficoHistogramaSvg(buckets, bucketAtual, labels){
 // Só há comparação a partir de MINIMO_ALUNOS_NA_COMPARACAO alunos: com menos,
 // percentil, p90 e curva identificariam as pessoas ou enganariam.
 const MINIMO_ALUNOS_NA_COMPARACAO = 10;
-function estatisticasRankingSimulado(chave, notaAtual){
+function notasAnonimasDoSimulado(chave){
   const primeiraPorAluno = new Map();
   db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).forEach(r => {
     const u = getUsuario(r.usuarioId);
@@ -422,8 +422,33 @@ function estatisticasRankingSimulado(chave, notaAtual){
   const porId = new Map();
   (daTurma || []).forEach(r => porId.set(r.id, r.nota));
   locais.forEach(r => { if(!porId.has(r.id)) porId.set(r.id, r.nota); });
-  const notas = [...porId.values()].sort((a,b)=>a-b);
-  const origem = daTurma ? "turma" : "navegador";
+  return { notas: [...porId.values()].sort((a,b)=>a-b), origem: daTurma ? "turma" : "navegador", tentativas: [...primeiraPorAluno.values()] };
+}
+/* Visão da equipe (administrador, professor, residente): o mesmo conjunto
+   anônimo do percentil, sem uma nota "da pessoa". Além das notas, a taxa de
+   acerto de cada questão — só com o que este navegador tem (a nuvem devolve
+   apenas notas), e só a partir do mesmo mínimo de alunos, para ninguém ser
+   identificado. */
+function estatisticasTurmaSimulado(chave){
+  const {notas, origem, tentativas} = notasAnonimasDoSimulado(chave);
+  const n = notas.length;
+  if(n < MINIMO_ALUNOS_NA_COMPARACAO) return null;
+  const media = notas.reduce((t,x)=>t+x,0)/n;
+  const mediana = n%2===0 ? (notas[n/2-1]+notas[n/2])/2 : notas[Math.floor(n/2)];
+  const buckets = [0,0,0,0,0];
+  notas.forEach(nt=>{ buckets[Math.min(4, Math.floor(nt/20))]++; });
+  const porQuestao = {};
+  tentativas.forEach(r => (r.itens||[]).forEach(it => {
+    const q = getQuestao(it.questaoId); if(!q) return;
+    const c = porQuestao[it.questaoId] = porQuestao[it.questaoId] || {questaoId:it.questaoId, total:0, acertos:0};
+    c.total++; if(r.respostas && r.respostas[it.questaoId] === q.gabarito) c.acertos++;
+  }));
+  const questoes = Object.values(porQuestao).filter(c=>c.total >= MINIMO_ALUNOS_NA_COMPARACAO)
+    .map(c=>({...c, taxa: pct(c.acertos, c.total)})).sort((a,b)=>a.taxa-b.taxa);
+  return {n, media, mediana, p90: notas[Math.ceil(0.9*n)-1], buckets, origem, questoes};
+}
+function estatisticasRankingSimulado(chave, notaAtual){
+  const {notas, origem} = notasAnonimasDoSimulado(chave);
   const n = notas.length;
   if(n < MINIMO_ALUNOS_NA_COMPARACAO) return null;
   const abaixoOuIgual = notas.filter(x=>x<=notaAtual).length;

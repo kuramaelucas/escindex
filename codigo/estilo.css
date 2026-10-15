@@ -377,6 +377,8 @@ ol.lista-passos li{margin:.25rem 0}
    tela vazia. A barra de questões, o motivo e os botões entram na mesma
    coluna, para tudo ficar alinhado com o cartão. O .page que a contém também
    se centraliza (a página é mais larga que a coluna e nasce encostada ao menu). */
+.coluna-resultado{max-width:760px}
+.coluna-resultado .card,.coluna-resultado .card-flat{max-width:none}
 .coluna-questao{max-width:814px;margin-left:auto;margin-right:auto}
 .coluna-questao .qcard{max-width:none}
 .page:has(.coluna-questao){margin-left:auto;margin-right:auto}
