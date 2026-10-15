@@ -224,7 +224,7 @@ function desenharAdicionarBaralho(){
       <div class="grid grid-2 mt-2">
         <button class="card-flat" style="text-align:left;cursor:pointer" onclick="fecharModal(); abrirFormularioFlashcard(null)">
           <div class="peso-700">${iconeSvg("edit")} Escrever um cartão</div>
-          <div class="text-xs muted mt-1">Um cartão de cada vez, com as suas palavras.</div>
+          <div class="text-xs muted mt-1">Um cartão ou vários de uma vez, com as suas palavras.</div>
         </button>
         <button class="card-flat" style="text-align:left;cursor:pointer" onclick="mudarPassoBaralhoIA('ia')">
           <div class="peso-700">${iconeSvg("cards")} Trazer um baralho inteiro de uma IA</div>
@@ -371,19 +371,20 @@ function htmlLinhaCartaoLista(frente, verso){
 }
 function abrirCartoesEmLista(){
   abrirModal(`
-    ${cabecalhoJanela("Criar cartões em lista")}
-    <p class="text-sm muted">Uma linha por cartão: pergunta à esquerda, resposta à direita. Dá para colar de uma planilha ou de um texto com Tab entre frente e verso (uma linha por cartão). Linhas vazias são ignoradas e os cartões ficam só no seu baralho.</p>
+    ${cabecalhoJanela("Novo cartão")}
+    <p class="text-sm muted">Começa com uma linha: preencha e crie um cartão, ou use <strong>Adicionar linha</strong> (ou Tab no fim do verso) para criar vários de uma vez. Dá para colar de uma planilha ou de um texto com Tab entre frente e verso (uma linha por cartão). Linhas vazias são ignoradas e os cartões ficam só no seu baralho.</p>
+    ${htmlCampoConjunto(usuarioAtual().id, "", "listaConjunto")}
     <div class="field mt-2"><label class="label">Assunto de todos (opcional)</label>
       <select class="select" id="listaAssunto">
         <option value="" selected>Sem assunto — miscelânea (minhas anotações)</option>
         ${opcoesDeAssuntoAgrupadas("")}
       </select></div>
     <div class="table-wrap"><table><thead><tr><th title="Número da linha">#</th><th>Frente</th><th>Verso</th><th></th></tr></thead>
-      <tbody id="listaCartoesLinhas" oninput="atualizarContagemDaLista()" onkeydown="teclaNaListaDeCartoes(event)">${Array.from({length: 5}, () => htmlLinhaCartaoLista("", "")).join("")}</tbody></table></div>
+      <tbody id="listaCartoesLinhas" oninput="atualizarContagemDaLista()" onkeydown="teclaNaListaDeCartoes(event)">${htmlLinhaCartaoLista("", "")}</tbody></table></div>
     <p class="text-sm mt-1" id="listaCartoesContagem" aria-live="polite"></p>
     <div class="flex gap-1 mt-2 quebra">
-      <button class="btn btn-secondary btn-sm" onclick="adicionarLinhasNaLista(3)">${iconeSvg("plus")} Mais linhas</button>
-      <button class="btn btn-primary" onclick="salvarCartoesEmLista()">Criar os cartões</button>
+      <button class="btn btn-secondary btn-sm" onclick="adicionarLinhasNaLista(1)">${iconeSvg("plus")} Adicionar linha</button>
+      <button class="btn btn-primary" onclick="salvarCartoesEmLista()">Criar</button>
       <button class="btn btn-ghost" onclick="fecharModalComConfirmacao()">Cancelar</button>
     </div>`, "lg");
   atualizarContagemDaLista();
@@ -438,6 +439,7 @@ function colarNaListaDeCartoes(ev, campo){
 }
 function salvarCartoesEmLista(){
   const assuntoId = (document.getElementById("listaAssunto") || {}).value || "";
+  const conjunto = lerConjuntoDoCampo("listaConjunto");
   const linhas = [...document.querySelectorAll("#listaCartoesLinhas tr")].map((tr, i) => ({
     n: i + 1,
     frente: tr.querySelector('[data-lista="frente"]').value.trim(),
@@ -459,7 +461,7 @@ function salvarCartoesEmLista(){
   if(!novos.length){ toast("Todas as frentes já existem no seu baralho.", "err"); return; }
   if(!db.flashcards) db.flashcards = [];
   novos.forEach(l => {
-    const cartao = { id: uid("fc"), assuntoId, frente: l.frente, verso: l.verso, origem: "aluno", usuarioId: u.id,
+    const cartao = { id: uid("fc"), assuntoId, conjunto, frente: l.frente, verso: l.verso, origem: "aluno", usuarioId: u.id,
       status: "ativo", criadoPor: u.id, criadoEm: hojeISO() };
     db.flashcards.push(cartao);
     nuvemRegistrar({cartaoPessoal: cartao});

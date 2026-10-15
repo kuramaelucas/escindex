@@ -565,7 +565,8 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-sm);bo
 .flashcard{position:relative;min-height:290px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);padding:2rem 1.8rem;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow-md);cursor:pointer;transition:box-shadow .15s ease,transform .1s ease}
 .flashcard:hover{box-shadow:var(--shadow-pop)}
 .flashcard:active{transform:scale(.985)}
-.flashcard.virado{border-color:var(--accent);animation:flash-flip .3s ease}
+.flashcard.virado{border-color:var(--accent)}
+.flashcard.girando{animation:flash-flip .3s ease}
 /* Truque leve de "virar": espreme o cartão na horizontal e solta — como o
    conteúdo (verso) já vem pronto no HTML, o efeito visual de flip acontece
    sem precisar manter o nó do DOM entre um render e outro. */
@@ -582,6 +583,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-sm);bo
 /* A estrela de favoritar fica no alto do cartão, fora do caminho do texto,
    e não vira o cartão junto (o clique dela para em si mesmo). */
 .flash-favorito{position:absolute;top:.8rem;right:.9rem}
+.flash-editar{position:absolute;top:.8rem;left:.9rem}
 .flash-notas{display:flex;gap:.55rem;margin-top:1.1rem;max-width:640px;margin-left:auto;margin-right:auto}
 .flash-nota{flex:1;padding:.85rem .4rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);font-weight:700;font-size:var(--fs-sm);cursor:pointer;line-height:1.3;transition:border-color .12s ease,background .12s ease,transform .08s ease}
 .flash-nota:active{transform:scale(.96)}

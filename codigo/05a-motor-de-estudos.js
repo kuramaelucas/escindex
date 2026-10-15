@@ -685,13 +685,15 @@ function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
 
   // 1) cartões autorais que passam pelo filtro
   let candidatos = flashcardsAtivos(usuarioId).filter(c=>combinaFiltro(c.assuntoId));
+  // conjunto próprio: só os cartões que a pessoa agrupou com esse nome
+  if(filtro.conjunto) candidatos = candidatos.filter(c=>c.usuarioId===usuarioId && c.conjunto===filtro.conjunto);
 
   // 2) cartões gerados a partir das questões mais "caras" do histórico:
   //    errou com certeza e acertou no chute são as duas pontas da má calibração
   const questoesCaras = []
     .concat(questoesErroComCerteza(usuarioId).map(x=>x.questao||x))
     .concat(questoesAcertoNoChute(usuarioId).map(x=>x.questao||x))
-    .filter(q=>q && combinaFiltro(q.assuntoId));
+    .filter(q=>q && !filtro.conjunto && combinaFiltro(q.assuntoId));
   const jaIncluidas = {};
   questoesCaras.forEach(q=>{
     if(jaIncluidas[q.id]) return;
