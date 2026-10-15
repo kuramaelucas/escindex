@@ -3,14 +3,14 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 6937 questões (6705 reais, 232 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 77 arquivos.
+**Total:** 6940 questões (6705 reais, 235 autorais), 943 cartões, 270 assuntos, 1 simulado(s), 77 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
 | `taxonomia.js` | TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos | 316 taxonomia |  |
 | `calendario.js` | CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada | 9 calendário |  |
 | `banco-didatico.js` | BANCO DIDÁTICO — 135 questões autorais | 135 questões | 1 anulada(s) |
-| `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 97 questões autorais | 97 questões |  |
+| `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais | 100 questões |  |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 — Acesso Direto (100 questões reais) | 100 questões | 1 anulada(s) |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 — Acesso Direto (100 questões reais) | 100 questões | 4 anulada(s) |
 | `prova-unifesp-2024.js` | UNIFESP-EPM 2024 — Acesso Direto (100 questões reais) | 100 questões | 3 anulada(s) |

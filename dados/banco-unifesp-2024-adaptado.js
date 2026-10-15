@@ -1,10 +1,10 @@
 /* ==========================================================================
-   BANCO UNIFESP 2024 ADAPTADO — 97 questões autorais
+   BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais
    ==========================================================================
    Cada questão parte do tema e das alternativas de uma questão da prova da
    UNIFESP-EPM 2024, mas o ENUNCIADO foi reescrito (caso clínico, dados
    epidemiológicos e diretrizes) para que a resposta correta passe a ser a
-   alternativa seguinte (A→B, B→C, C→D, D→A). Nas questões 001 a 057 as alternativas ficaram intactas; nas 058 a 097, que não admitiam a troca só pelo enunciado, as alternativas também foram reescritas.
+   alternativa seguinte (A→B, B→C, C→D, D→A). Nas questões 001 a 057 as alternativas ficaram intactas; nas 058 a 100, que não admitiam a troca só pelo enunciado, as alternativas também foram reescritas; as três últimas (098 a 100) partem de questões ANULADAS da prova original e foram corrigidas para terem uma única resposta correta.
    Não são questões reais: marcam `real: false` e instituição
    "Esc — Banco Didático" (nunca "UNIFESP-EPM 2024"), para não se misturarem
    à prova de 2024 em Provas Antigas. A justificativa de cada uma cita a
@@ -4556,6 +4556,147 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "explicacoesAlternativas": {},
   "referencias": "Sociedade Brasileira de Endocrinologia e Metabologia e Sociedade Brasileira de Pediatria, Consenso de baixa estatura; Pediatric Endocrine Society, Guidelines on delayed puberty; Kliegman, Nelson Textbook of Pediatrics (atraso constitucional).",
   "dificuldadeManual": "intermediario",
+  "status": "ativa",
+  "estatisticas": {
+    "respostas": 0,
+    "acertos": 0,
+    "distribuicaoAlternativas": {
+      "A": 0,
+      "B": 0,
+      "C": 0,
+      "D": 0
+    }
+  },
+  "criadoPor": "seed",
+  "criadoEm": "2026-10-15"
+},
+// adaptada da estrutura da Q47 da UNIFESP 2024
+{
+  "id": "q-adap24-098",
+  "banca": "Esc — Banco Didático",
+  "real": false,
+  "ano": 2026,
+  "areaId": "area-go",
+  "especialidadeId": "esp-oncogineco",
+  "assuntoId": "ass-camama",
+  "enunciado": "O câncer de mama é o mais incidente entre as mulheres brasileiras, e o rastreamento mamográfico é recomendado pelo Ministério da Saúde para mulheres de 50 a 69 anos (outras sociedades médicas o oferecem a partir dos 40 anos). Mulher, 42 anos de idade, assintomática, sem antecedentes pessoais ou familiares e com exame mamário normal, realizou mamografia de rastreamento anual por orientação do seu ginecologista. A mamografia mostrou nódulo de 8 mm, oval, de margens circunscritas, densidade igual à do parênquima, sem microcalcificações e sem distorção arquitetural, na mama direita; a incidência com compressão localizada (complemento mamográfico) confirmou os mesmos achados. A ultrassonografia mostrou nódulo sólido oval, paralelo à pele, hipoecoico e homogêneo, de margens circunscritas, sem sombra acústica posterior e sem sinais ao Doppler de vascularização atípica. A mama contralateral e as axilas estão normais. Qual é a conduta mais adequada?",
+  "alternativas": [
+    {
+      "id": "A",
+      "texto": "Biópsia do nódulo com agulha grossa."
+    },
+    {
+      "id": "B",
+      "texto": "Controle anual apenas com mamografia."
+    },
+    {
+      "id": "C",
+      "texto": "Controle ultrassonográfico em 6 meses."
+    },
+    {
+      "id": "D",
+      "texto": "Solicitar ressonância magnética das mamas."
+    }
+  ],
+  "gabarito": "C",
+  "explicacaoGeral": "A alternativa C está correta. Dicas do enunciado: **nódulo sólido oval, de margens circunscritas, paralelo à pele, hipoecoico homogêneo, sem calcificações, sem distorção e sem sombra acústica**, em mulher assintomática sem fatores de risco, são achados de **BI-RADS 3 (provavelmente benigno)**, cuja probabilidade de malignidade é inferior a 2%. A conduta do Colégio Americano de Radiologia é o **controle de curto intervalo**: nova avaliação (mamografia unilateral e ultrassonografia) em 6 meses, depois em 12 e 24 meses, com biópsia se houver crescimento ou mudança de características. A (biópsia) é indicada em BI-RADS 4 ou 5, o que exige achado suspeito (margens irregulares ou espiculadas, forma irregular, sombra posterior, microcalcificações pleomórficas). B (controle anual) é a conduta de BI-RADS 1 e 2 e não cumpre o seguimento de curto intervalo exigido para BI-RADS 3. D (ressonância) não tem papel aqui: é reservada a alto risco, dúvida persistente após os métodos convencionais, estadiamento ou avaliação de prótese, e não se destina a nódulo provavelmente benigno.",
+  "explicacoesAlternativas": {},
+  "referencias": "ACR BI-RADS Atlas, 5ª ed. (2013); Colégio Brasileiro de Radiologia, Sociedade Brasileira de Mastologia e FEBRASGO, Recomendações para rastreamento do câncer de mama; INCA / Ministério da Saúde, Diretrizes para a detecção precoce do câncer de mama no Brasil (2015).",
+  "dificuldadeManual": "avancado",
+  "status": "ativa",
+  "estatisticas": {
+    "respostas": 0,
+    "acertos": 0,
+    "distribuicaoAlternativas": {
+      "A": 0,
+      "B": 0,
+      "C": 0,
+      "D": 0
+    }
+  },
+  "criadoPor": "seed",
+  "criadoEm": "2026-10-15"
+},
+// adaptada da estrutura da Q68 da UNIFESP 2024
+{
+  "id": "q-adap24-099",
+  "banca": "Esc — Banco Didático",
+  "real": false,
+  "ano": 2026,
+  "areaId": "area-mps",
+  "especialidadeId": "esp-saudefamilia",
+  "assuntoId": "ass-saudetrabalhador",
+  "enunciado": "Cerca de 4 em cada 10 trabalhadores brasileiros estão na informalidade, e os acidentes e doenças do trabalho são de notificação compulsória no Sistema de Informação de Agravos de Notificação (Sinan). Sobre a Política Nacional de Saúde do Trabalhador e da Trabalhadora (PNSTT), instituída pela Portaria GM/MS nº 1.823/2012, é correto afirmar que:",
+  "alternativas": [
+    {
+      "id": "A",
+      "texto": "Tem como objetivo fortalecer a Vigilância em Saúde do Trabalhador (VISAT), de modo que desenvolva ações independentes e unilaterais, sem integração com os demais componentes da vigilância em saúde."
+    },
+    {
+      "id": "B",
+      "texto": "Restringe-se aos trabalhadores formais, com carteira assinada, vinculados ao Regime Geral de Previdência Social."
+    },
+    {
+      "id": "C",
+      "texto": "Prevê a constituição de uma rede de serviços paralela ao SUS para atender aos trabalhadores em processo de adoecimento."
+    },
+    {
+      "id": "D",
+      "texto": "É um conjunto de ações no âmbito do SUS, com transversalidade em todos os níveis de atenção, que considera o trabalho um dos determinantes do processo saúde-doença e se aplica a todos os trabalhadores, independentemente do vínculo."
+    }
+  ],
+  "gabarito": "D",
+  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: a **PNSTT (Portaria GM/MS nº 1.823/2012)** é política do SUS, de **caráter universal e transversal**: contempla todos os trabalhadores, urbanos e rurais, formais e informais, com ênfase naqueles em situação de maior vulnerabilidade, e considera o **trabalho um dos determinantes do processo saúde-doença**. Sua operacionalização se dá pela articulação da Rede Nacional de Atenção Integral à Saúde do Trabalhador (RENAST) com a Atenção Primária, a média e a alta complexidade, e a vigilância em saúde. A (VISAT independente e unilateral) está incorreta: a VISAT deve ser **integrada** às vigilâncias epidemiológica, sanitária e ambiental, e à atenção à saúde. B (somente trabalhadores formais) contraria o princípio da universalidade, pois a política alcança inclusive trabalhadores informais, autônomos e domésticos. C (rede paralela ao SUS) é incorreta: a atenção à saúde do trabalhador se dá na própria rede do SUS.",
+  "explicacoesAlternativas": {},
+  "referencias": "Portaria GM/MS nº 1.823, de 23 de agosto de 2012 (PNSTT); Portaria de Consolidação nº 2/2017, Anexo XV; Ministério da Saúde, Vigilância em Saúde do Trabalhador e Manual de Gestão e Gerenciamento da RENAST; IBGE, PNAD Contínua (informalidade).",
+  "dificuldadeManual": "intermediario",
+  "status": "ativa",
+  "estatisticas": {
+    "respostas": 0,
+    "acertos": 0,
+    "distribuicaoAlternativas": {
+      "A": 0,
+      "B": 0,
+      "C": 0,
+      "D": 0
+    }
+  },
+  "criadoPor": "seed",
+  "criadoEm": "2026-10-15"
+},
+// adaptada da estrutura da Q100 da UNIFESP 2024
+{
+  "id": "q-adap24-100",
+  "banca": "Esc — Banco Didático",
+  "real": false,
+  "ano": 2026,
+  "areaId": "area-cm",
+  "especialidadeId": "esp-hemato",
+  "assuntoId": "ass-hemato-hemoglobinopatias",
+  "enunciado": "A doença falciforme é a doença genética mais prevalente no Brasil, com cerca de 3.500 novos casos por ano, e a triagem neonatal permite o diagnóstico precoce. Menino, 3 anos de idade, com doença falciforme (SS), em uso regular de penicilina profilática, há dois dias apresenta dor abdominal, medicado em casa com dipirona, sem melhora, evoluindo para dor de intensidade 9 em escala de 0 a 10, com necessidade de morfina na emergência. Exame físico: temperatura de 39 °C, taquipneia e tiragem subcostal, saturação de oxigênio de 88% em ar ambiente. A radiografia de tórax mostra infiltrado novo em lobo inferior direito. Hb = 9,8 g/dL (valor basal de 9,5 g/dL), leucocitose com desvio à esquerda. Já foram iniciados oxigênio suplementar (saturação de 95%), analgesia e hidratação venosa em volume de manutenção. Qual é a próxima conduta mais adequada?",
+  "alternativas": [
+    {
+      "id": "A",
+      "texto": "Transfusão de concentrado de hemácias."
+    },
+    {
+      "id": "B",
+      "texto": "Antibioticoterapia de amplo espectro, com cefalosporina de terceira geração associada a macrolídeo."
+    },
+    {
+      "id": "C",
+      "texto": "Aumentar a hidratação endovenosa para 1,5 vezes a necessidade de manutenção."
+    },
+    {
+      "id": "D",
+      "texto": "Corticoide inalatório em altas doses."
+    }
+  ],
+  "gabarito": "B",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **criança com doença falciforme, dor, febre, taquipneia, hipoxemia e infiltrado novo na radiografia** configuram síndrome torácica aguda, principal causa de internação em UTI e de morte em doença falciforme. Como o tratamento já inclui **oxigênio, analgesia e hidratação de manutenção**, a medida seguinte, que não pode ser retardada, é **antibioticoterapia empírica com cefalosporina de terceira geração e macrolídeo**, para cobrir pneumococo e germes atípicos, pois infecção é causa ou complicação frequente do quadro. A (transfusão) é reservada a queda da hemoglobina de 1 g/dL ou mais em relação ao basal, hipoxemia persistente apesar do oxigênio ou piora clínica; aqui a Hb está no nível basal e a saturação respondeu ao oxigênio. C (aumentar a hidratação) é prejudicial: o excesso de volume causa edema pulmonar e piora a síndrome torácica, devendo-se manter hidratação de manutenção. D (corticoide inalatório em altas doses) não trata a síndrome torácica; corticoide sistêmico se associa a rebote de dor e reinternação, e o broncodilatador é reservado a sibilância.",
+  "explicacoesAlternativas": {},
+  "referencias": "Ministério da Saúde. Doença falciforme: condutas básicas para tratamento (2012) e PCDT da doença falciforme; NHLBI. Evidence-Based Management of Sickle Cell Disease, 2014; ASH Guidelines for Sickle Cell Disease, 2019-2020.",
+  "dificuldadeManual": "avancado",
   "status": "ativa",
   "estatisticas": {
     "respostas": 0,
