@@ -2707,7 +2707,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "B",
-      "texto": "Seguimento com ultrassonografia anual e reavaliação quando o diâmetro atingir 6,5 cm."
+      "texto": "Seguimento com ultrassonografia anual e reavaliação cirúrgica apenas quando o diâmetro atingir 6,5 cm."
     },
     {
       "id": "C",
@@ -2750,19 +2750,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Aplicar gelo diretamente sobre a lesão até o alívio da dor."
+      "texto": "Aplicar gelo diretamente sobre a lesão e mantê-lo até o alívio completo da dor, para limitar o edema e a progressão da queimadura em profundidade."
     },
     {
       "id": "B",
-      "texto": "Romper as bolhas, aplicar pomada anestésica e cobrir com gaze seca."
+      "texto": "Romper as bolhas, aplicar pomada anestésica e cobrir com gaze seca, para reduzir a dor nas trocas de curativo e proteger o leito."
     },
     {
       "id": "C",
-      "texto": "Resfriar a área queimada com água corrente em temperatura ambiente por cerca de 20 minutos, após retirar roupas e adornos, mantendo a criança aquecida."
+      "texto": "Resfriar a área com água corrente em temperatura ambiente por cerca de 20 minutos, retirando roupas e adornos e mantendo a criança aquecida."
     },
     {
       "id": "D",
-      "texto": "Aplicar sulfadiazina de prata em camada espessa e ocluir imediatamente, sem resfriamento prévio."
+      "texto": "Aplicar sulfadiazina de prata em camada espessa e ocluir imediatamente, sem resfriamento prévio, para prevenir infecção e facilitar o curativo."
     }
   ],
   "gabarito": "C",
@@ -2844,19 +2844,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Síndrome de hipertensão intracraniana; glioma; craniotomia descompressiva de urgência."
+      "texto": "Síndrome de hipertensão intracraniana; glioma de alto grau; craniotomia descompressiva de urgência, com corticoide e manitol."
     },
     {
       "id": "B",
-      "texto": "Síndrome da veia cava superior; carcinoma broncogênico; lobectomia de urgência."
+      "texto": "Síndrome da veia cava superior; carcinoma broncogênico; lobectomia de urgência, antes de qualquer biópsia."
     },
     {
       "id": "C",
-      "texto": "Síndrome da veia cava superior; linfoma mediastinal; biópsia da massa para diagnóstico histológico antes de iniciar o tratamento específico."
+      "texto": "Síndrome da veia cava superior; linfoma mediastinal; biópsia da massa para diagnóstico histológico antes do tratamento específico."
     },
     {
       "id": "D",
-      "texto": "Pericardite constritiva; tuberculose; pericardiectomia imediata."
+      "texto": "Pericardite constritiva; tuberculose; pericardiectomia imediata, associada a esquema antituberculoso."
     }
   ],
   "gabarito": "C",
@@ -2891,15 +2891,15 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Alfabloqueador, pela ação relaxante sobre a musculatura lisa do corpo cavernoso."
+      "texto": "Alfabloqueador, pela ação relaxante sobre a musculatura lisa do corpo cavernoso e do colo vesical."
     },
     {
       "id": "B",
-      "texto": "Inibidor da 5-alfarredutase, para melhorar o fluxo sanguíneo peniano."
+      "texto": "Inibidor da 5-alfarredutase, para melhorar o fluxo sanguíneo peniano e a resposta à estimulação."
     },
     {
       "id": "C",
-      "texto": "Reposição de testosterona por via intramuscular, pois a causa é hormonal na maioria dos diabéticos."
+      "texto": "Reposição de testosterona por via intramuscular, pois a causa é hormonal na maioria dos diabéticos, independentemente do nível sérico basal."
     },
     {
       "id": "D",
@@ -2938,7 +2938,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Laparotomia imediata com ressecção intestinal, por causa do sangramento nas fezes."
+      "texto": "Laparotomia imediata com ressecção do segmento acometido, por causa do sangramento nas fezes e do sinal do alvo."
     },
     {
       "id": "B",
@@ -2946,11 +2946,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Tomografia computadorizada de abdome com contraste antes de qualquer decisão."
+      "texto": "Tomografia computadorizada de abdome com contraste antes de qualquer decisão terapêutica, para confirmar o diagnóstico."
     },
     {
       "id": "D",
-      "texto": "Manter jejum e observação por 24 horas, pois a maioria das invaginações se reduz espontaneamente."
+      "texto": "Manter jejum e observação por 24 horas, pois a maioria das invaginações se reduz espontaneamente sem intervenção."
     }
   ],
   "gabarito": "B",
@@ -2985,11 +2985,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Atresia duodenal; descompressão gástrica e correção eletiva da malformação."
+      "texto": "Atresia duodenal; descompressão gástrica, correção eletiva da malformação e nutrição parenteral."
     },
     {
       "id": "B",
-      "texto": "Enterocolite necrosante; antibioticoterapia, jejum e tratamento clínico por 7 a 10 dias."
+      "texto": "Enterocolite necrosante; antibioticoterapia, jejum e tratamento clínico por 7 a 10 dias, com descompressão gástrica."
     },
     {
       "id": "C",
@@ -2997,7 +2997,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Doença de Hirschsprung; enema opaco e biópsia retal em regime ambulatorial."
+      "texto": "Doença de Hirschsprung; enema opaco e biópsia retal em regime ambulatorial, com irrigações intestinais."
     }
   ],
   "gabarito": "C",
@@ -3079,25 +3079,25 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "A notificação é desnecessária enquanto a violência for apenas suspeita, devendo-se aguardar a confirmação pela perícia."
+      "texto": "A notificação é desnecessária enquanto a violência for apenas suspeita, devendo-se aguardar a confirmação pela perícia e pelo serviço social."
     },
     {
       "id": "B",
-      "texto": "A notificação só é obrigatória quando a pessoa idosa for capaz de relatar o episódio e consentir com o registro."
+      "texto": "A notificação só é obrigatória quando a pessoa idosa for capaz de relatar o episódio e consentir com o registro, por respeito à autonomia."
     },
     {
       "id": "C",
-      "texto": "A comunicação só é devida se houver lesão física, pois a violência psicológica não é de notificação obrigatória."
+      "texto": "A comunicação só é devida se houver lesão física, pois a violência psicológica não é de notificação obrigatória nem de comunicação aos órgãos."
     },
     {
       "id": "D",
-      "texto": "A suspeita já obriga a notificação compulsória no Sinan, com comunicação a órgãos de proteção (Ministério Público e conselhos do idoso), sem exigir confirmação nem consentimento da vítima."
+      "texto": "A suspeita já obriga a notificação compulsória no Sinan e a comunicação aos órgãos de proteção, sem exigir confirmação nem consentimento da vítima."
     }
   ],
   "gabarito": "D",
   "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: **suspeita de violência psicológica contra pessoa idosa com demência** por um cuidador familiar sobrecarregado configura situação em que a legislação brasileira exige notificação. Pelo Estatuto da Pessoa Idosa (Lei 10.741/2003), a **suspeita ou confirmação** de violência deve ser obrigatoriamente comunicada pelos profissionais de saúde às autoridades (Ministério Público, conselhos do idoso, delegacia), e a violência interpessoal contra pessoa idosa é de notificação compulsória no Sinan, independentemente de confirmação, do tipo de violência ou do consentimento da vítima. A **sobrecarga do cuidador** é fator de risco conhecido e orienta a intervenção: apoio ao cuidador, rede de cuidados e reavaliação, sem retirar a obrigação de notificar. A (aguardar confirmação) contraria a lei, que se aplica à suspeita. B (depender de consentimento ou capacidade) é incorreto, e a demência não retira o direito de proteção. C (só lesão física) é incorreto: a violência psicológica é uma das formas de violência notificáveis.",
   "explicacoesAlternativas": {},
-  "referencias": "Lei 10.741/2003 (Estatuto da Pessoa Idosa), art. 19; Portaria GM/MS nº 217/2023 (lista nacional de notificação compulsória); Ministério da Saúde, Linha de cuidado para a atenção integral à saúde da pessoa idosa e Violência intrafamiliar: orientações para prática em serviço.",
+  "referencias": "Lei 10.741/2003 (Estatuto da Pessoa Idosa), art. 19; Portaria de Consolidação GM/MS nº 4/2017, Anexo V (Lista Nacional de Notificação Compulsória, atualizada por portarias posteriores; consultar a versão vigente); Ministério da Saúde, Linha de cuidado para a atenção integral à saúde da pessoa idosa e Violência intrafamiliar: orientações para prática em serviço.",
   "dificuldadeManual": "intermediario",
   "status": "ativa",
   "estatisticas": {
@@ -3126,11 +3126,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Considerar a função renal próxima do normal, pois a creatinina é inferior a 2,0 mg/dL."
+      "texto": "Considerar a função renal próxima do normal, pois a creatinina é inferior a 2,0 mg/dL e não há sintomas."
     },
     {
       "id": "B",
-      "texto": "Estimar a taxa de filtração glomerular pela equação CKD-EPI com creatinina e associar a relação albumina/creatinina em amostra isolada de urina."
+      "texto": "Estimar a taxa de filtração glomerular pela CKD-EPI e associar a relação albumina/creatinina em urina isolada."
     },
     {
       "id": "C",
@@ -3220,7 +3220,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Cetoacidose euglicêmica e deficiência de vitamina B12."
+      "texto": "Cetoacidose euglicêmica e deficiência de vitamina B12, respectivamente, por efeito de cada fármaco."
     },
     {
       "id": "B",
@@ -3228,11 +3228,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Hipoglicemia grave e esteatose hepática."
+      "texto": "Hipoglicemia grave e esteatose hepática, com elevação importante das transaminases."
     },
     {
       "id": "D",
-      "texto": "Ganho de peso e retenção hídrica com insuficiência cardíaca."
+      "texto": "Ganho de peso e retenção hídrica com insuficiência cardíaca, além de fraturas ósseas."
     }
   ],
   "gabarito": "B",
@@ -3314,7 +3314,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Prednisona oral em dose habitual de 1 mg/kg/dia, com tomografia de crânio."
+      "texto": "Prednisona oral em dose habitual de 1 mg/kg/dia, com tomografia de crânio sem contraste para afastar lesão expansiva."
     },
     {
       "id": "B",
@@ -3326,7 +3326,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Tratamento conservador, com coleta de VHS e PCR e biópsia de artéria temporal."
+      "texto": "Tratamento conservador, com coleta de VHS e PCR e biópsia de artéria temporal para afastar arterite de células gigantes."
     }
   ],
   "gabarito": "C",
@@ -3408,19 +3408,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "O peso líquido das compressas superou 500 g, limite que define hemorragia pós-parto."
+      "texto": "O peso líquido das compressas superou 500 g, limite que define hemorragia pós-parto e obriga a acionar o código."
     },
     {
       "id": "B",
-      "texto": "O recém-nascido era macrossômico, o que por si só determina o acionamento do código."
+      "texto": "O recém-nascido era macrossômico (4.200 g), fator de risco para atonia que por si só determina o acionamento do código de hemorragia."
     },
     {
       "id": "C",
-      "texto": "Houve sinais de choque associados ao sangramento, critério de gravidade que aciona o protocolo mesmo com perda estimada inferior a 500 mL."
+      "texto": "Os sinais de choque associados ao sangramento são critério de gravidade, que aciona o protocolo mesmo com perda abaixo de 500 mL."
     },
     {
       "id": "D",
-      "texto": "O sangramento só foi controlado após o quinto minuto da administração do uterotônico."
+      "texto": "O sangramento só foi controlado após o quinto minuto da administração do uterotônico, indicando refratariedade."
     }
   ],
   "gabarito": "C",
@@ -3455,19 +3455,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "A amniotomia, associada ou não a ocitocina, está indicada diante da falha de progressão do primeiro período, depois de informar a mulher sobre benefícios e riscos."
+      "texto": "A amniotomia, com ou sem ocitocina, é indicada na falha de progressão do primeiro período, após informar a mulher sobre benefícios e riscos."
     },
     {
       "id": "B",
-      "texto": "O uso de ocitocina é recomendado de rotina para prevenir atraso do trabalho de parto em mulheres sob analgesia peridural."
+      "texto": "O uso de ocitocina é recomendado de rotina para prevenir atraso do trabalho de parto em mulheres sob analgesia peridural, desde a admissão."
     },
     {
       "id": "C",
-      "texto": "O exame pélvico digital deve ser realizado a cada 2 horas para avaliação da progressão do trabalho de parto."
+      "texto": "O exame pélvico digital deve ser realizado a cada 2 horas para avaliação da progressão do trabalho de parto, registrando-se o resultado no partograma."
     },
     {
       "id": "D",
-      "texto": "A cardiotocografia deve ser oferecida de rotina na admissão para avaliar o bem-estar fetal."
+      "texto": "A cardiotocografia deve ser oferecida de rotina na admissão para avaliar o bem-estar fetal, mesmo em gestação de risco habitual."
     }
   ],
   "gabarito": "A",
@@ -3549,19 +3549,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Amniocentese para pesquisa do DNA viral."
+      "texto": "Amniocentese para pesquisa do DNA viral no líquido amniótico, para confirmar a infecção fetal e definir o prognóstico antes do parto."
     },
     {
       "id": "B",
-      "texto": "Prescrição de valaciclovir em altas doses."
+      "texto": "Prescrição de valaciclovir em altas doses, para reduzir a transmissão vertical e as sequelas fetais."
     },
     {
       "id": "C",
-      "texto": "Conduta expectante, com ultrassonografia obstétrica de rotina e acompanhamento do recém-nascido, sem investigação invasiva nem tratamento antiviral."
+      "texto": "Conduta expectante, com ultrassonografia de rotina e acompanhamento do recém-nascido, sem investigação invasiva nem antiviral."
     },
     {
       "id": "D",
-      "texto": "Ressonância magnética fetal para pesquisa de calcificações cerebrais."
+      "texto": "Ressonância magnética fetal para pesquisa de calcificações cerebrais e de alterações do desenvolvimento cortical."
     }
   ],
   "gabarito": "C",
@@ -3596,19 +3596,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Boletim de ocorrência e laudo do Instituto Médico Legal."
+      "texto": "Boletim de ocorrência e laudo do Instituto Médico Legal, para comprovar a violência antes do procedimento."
     },
     {
       "id": "B",
-      "texto": "Termo de consentimento livre e esclarecido da mulher, sem exigência de boletim de ocorrência, laudo pericial ou autorização judicial."
+      "texto": "Termo de consentimento da mulher, sem exigência de boletim de ocorrência, laudo pericial ou autorização judicial."
     },
     {
       "id": "C",
-      "texto": "Autorização judicial prévia, pois o médico não pode decidir sem ordem do juiz."
+      "texto": "Autorização judicial prévia, pois o médico não pode decidir sem ordem do juiz nem presumir a veracidade do relato."
     },
     {
       "id": "D",
-      "texto": "Boletim de ocorrência e termo de consentimento, com autorização do Ministério Público."
+      "texto": "Boletim de ocorrência e termo de consentimento, com autorização do Ministério Público, por se tratar de aborto previsto em lei."
     }
   ],
   "gabarito": "B",
@@ -3643,11 +3643,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Como os estudos I e II mostram associação inversa consistente, a recomendação de suplementar betacaroteno deve se basear neles, que refletem a vida real."
+      "texto": "Como os estudos I e II mostram associação inversa consistente, a recomendação de suplementar betacaroteno deve se basear neles."
     },
     {
       "id": "B",
-      "texto": "O ensaio clínico randomizado (III) tem maior validade interna e demonstra dano, de modo que o uso de betacaroteno como prevenção não deve ser recomendado."
+      "texto": "O ensaio clínico randomizado (III) tem maior validade interna e demonstra dano; o betacaroteno não deve ser recomendado na prevenção."
     },
     {
       "id": "C",
@@ -3690,7 +3690,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "A prevalência deve diminuir, pois menos pessoas morrerão pela doença."
+      "texto": "A prevalência deve diminuir, pois menos pessoas morrerão pela doença e o total de doentes cairá."
     },
     {
       "id": "B",
@@ -3702,7 +3702,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "A incidência deve aumentar, pois a sobrevida maior produz mais casos novos."
+      "texto": "A incidência deve aumentar, pois a maior sobrevida produz mais casos novos da doença na população."
     }
   ],
   "gabarito": "C",
@@ -3749,7 +3749,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Os cânceres detectados no rastreamento podem ser de crescimento mais lento do que os detectados por sinais e sintomas, o que superestima o benefício do teste (viés de duração)."
+      "texto": "Os cânceres detectados no rastreamento podem ser de crescimento mais lento que os detectados por sintomas, o que superestima o benefício (viés de duração)."
     }
   ],
   "gabarito": "D",
@@ -3784,11 +3784,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Estados com TMI mais altas tendem a ter %PMAQ menores, ao nível de confiança de 5%."
+      "texto": "Estados com TMI mais altas tendem a ter %PMAQ menores, ao nível de confiança de 5%, segundo o coeficiente."
     },
     {
       "id": "B",
-      "texto": "Estados com TMI mais altas tendem a ter %PMAQ maiores, ao nível de significância de 5%."
+      "texto": "Estados com TMI mais altas tendem a ter %PMAQ maiores, ao nível de significância de 5%, pois o coeficiente é significativo."
     },
     {
       "id": "C",
@@ -3796,7 +3796,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "O desempenho no PMAQ causa a redução da TMI, ao nível de significância de 5%."
+      "texto": "O desempenho no PMAQ causa a redução da TMI, ao nível de significância de 5%, pois a correlação é forte."
     }
   ],
   "gabarito": "C",
@@ -3831,19 +3831,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "O risco de morte aumentou 31% a cada porção adicional consumida, de forma linear."
+      "texto": "O risco de morte aumentou 31% a cada porção adicional consumida, de forma linear e dose-dependente."
     },
     {
       "id": "B",
-      "texto": "O risco de morte foi 31% maior entre os que consumiram mais de duas porções diárias em relação ao grupo de referência, e a associação é estatisticamente significante."
+      "texto": "O risco de morte foi 31% maior entre quem consumiu mais de duas porções diárias, e a associação é estatisticamente significante."
     },
     {
       "id": "C",
-      "texto": "O risco de morte aumentou em 50% entre aqueles que consumiram mais de duas porções diárias."
+      "texto": "O risco de morte aumentou em 50% entre aqueles que consumiram mais de duas porções diárias, conforme o limite superior do intervalo."
     },
     {
       "id": "D",
-      "texto": "O risco de morte não foi associado ao consumo de bebida adoçada, pois o intervalo de confiança é amplo."
+      "texto": "O risco de morte não foi associado ao consumo de bebida adoçada, pois o intervalo de confiança é amplo, o que impede qualquer conclusão."
     }
   ],
   "gabarito": "B",
@@ -3878,11 +3878,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Os homens têm maior risco de morrer por DAC, pois o coeficiente de mortalidade específico por DAC é maior entre eles (310 contra 260 por 100.000)."
+      "texto": "Os homens têm maior risco de morrer por DAC, pois o coeficiente de mortalidade específico por DAC é maior neles (310 contra 260 por 100.000)."
     },
     {
       "id": "B",
-      "texto": "As mulheres têm maior risco de morrer por DAC, pois a mortalidade proporcional por DAC é maior entre elas (37% contra 31%)."
+      "texto": "As mulheres têm maior risco de morrer por DAC, pois a mortalidade proporcional por DAC é maior entre elas (37% contra 31%), embora tenham menos óbitos."
     },
     {
       "id": "C",
@@ -3925,7 +3925,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Organizar um evento de promoção de saúde, convidar todos os usuários e selecionar 250 entre os que comparecerem."
+      "texto": "Organizar um evento de promoção de saúde, convidar todos os usuários e selecionar 250 entre os que comparecerem, por ordem de chegada."
     },
     {
       "id": "B",
@@ -3972,15 +3972,15 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "É ato privativo do médico, que deve emiti-lo apenas após a confirmação laboratorial do diagnóstico."
+      "texto": "É ato privativo do médico, que deve emiti-lo apenas após a confirmação laboratorial do diagnóstico clínico ou epidemiológico."
     },
     {
       "id": "B",
-      "texto": "Baseia-se em uma lista nacional, que os estados e municípios podem ampliar, incluindo outras doenças e agravos de acordo com o perfil epidemiológico local."
+      "texto": "Baseia-se em uma lista nacional, que estados e municípios podem ampliar conforme o perfil epidemiológico local."
     },
     {
       "id": "C",
-      "texto": "A obrigatoriedade aplica-se a cidadãos brasileiros, sendo facultativa no caso de pacientes estrangeiros."
+      "texto": "A obrigatoriedade aplica-se a cidadãos brasileiros, sendo facultativa no caso de pacientes estrangeiros ou em trânsito pelo país."
     },
     {
       "id": "D",
@@ -3988,9 +3988,9 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "B",
-  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **vigilância epidemiológica e perfil local** remetem à regra da Lista Nacional de Notificação Compulsória (Portaria GM/MS nº 217/2023): estados e municípios podem **incluir outras doenças e agravos** conforme seu perfil epidemiológico, de forma complementar à lista nacional. A (privativo do médico, só após confirmação) é incorreta: a obrigação é de médicos e de outros profissionais de saúde, além de responsáveis por serviços de saúde, e a notificação é feita diante da suspeita, sem aguardar confirmação. C (só cidadãos brasileiros) é incorreta: a obrigação se aplica a qualquer pessoa atendida em território nacional, inclusive estrangeiros. D (aguardar confirmação) contraria a oportunidade da vigilância, que exige notificação na suspeita, pois o atraso retarda o controle de surtos; o caso é depois confirmado ou descartado no Sinan.",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **vigilância epidemiológica e perfil local** remetem à regra da Lista Nacional de Notificação Compulsória (Portaria de Consolidação GM/MS nº 4/2017, Anexo V, atualizada por portarias posteriores): estados e municípios podem **incluir outras doenças e agravos** conforme seu perfil epidemiológico, de forma complementar à lista nacional. A (privativo do médico, só após confirmação) é incorreta: a obrigação é de médicos e de outros profissionais de saúde, além de responsáveis por serviços de saúde, e a notificação é feita diante da suspeita, sem aguardar confirmação. C (só cidadãos brasileiros) é incorreta: a obrigação se aplica a qualquer pessoa atendida em território nacional, inclusive estrangeiros. D (aguardar confirmação) contraria a oportunidade da vigilância, que exige notificação na suspeita, pois o atraso retarda o controle de surtos; o caso é depois confirmado ou descartado no Sinan.",
   "explicacoesAlternativas": {},
-  "referencias": "Lei 6.259/1975; Portaria GM/MS nº 217, de 1º de março de 2023 (Lista Nacional de Notificação Compulsória); Ministério da Saúde, Guia de Vigilância em Saúde.",
+  "referencias": "Lei 6.259/1975; Portaria de Consolidação GM/MS nº 4/2017, Anexo V (Lista Nacional de Notificação Compulsória, atualizada por portarias posteriores; consultar a versão vigente); Ministério da Saúde, Guia de Vigilância em Saúde.",
   "dificuldadeManual": "intermediario",
   "status": "ativa",
   "estatisticas": {
@@ -4015,27 +4015,27 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-go",
   "especialidadeId": "esp-planfamiliar",
   "assuntoId": "ass-contracepcao",
-  "enunciado": "No Brasil, mais da metade dos nascimentos decorre de gestações não planejadas, e a esterilização cirúrgica é um dos métodos contraceptivos mais usados por mulheres em união. Mulher, 21 anos de idade, casada, sem filhos, procura a UBS em busca de método contraceptivo. Depois de ser informada sobre todos os métodos possíveis, inclusive os reversíveis de longa duração, opta de forma firme pela laqueadura tubária. Segundo a Lei nº 14.443, de 2 de setembro de 2022, que alterou a Lei nº 9.263/1996 sobre planejamento familiar, qual é a alternativa correta?",
+  "enunciado": "No Brasil, mais da metade dos nascimentos decorre de gestações não planejadas, e a esterilização cirúrgica é um dos métodos contraceptivos mais usados por mulheres em união. Mulher, 23 anos de idade, casada, sem filhos, procura a UBS em busca de método contraceptivo. Depois de ser informada sobre todos os métodos possíveis, inclusive os reversíveis de longa duração, opta de forma firme pela laqueadura tubária. Segundo a Lei nº 14.443, de 2 de setembro de 2022, que alterou a Lei nº 9.263/1996 sobre planejamento familiar, qual é a alternativa correta?",
   "alternativas": [
     {
       "id": "A",
-      "texto": "O procedimento pode ser realizado, pois a paciente tem 21 anos, sem necessidade de autorização do cônjuge, respeitado o prazo mínimo de 60 dias entre a manifestação da vontade e a cirurgia."
+      "texto": "O procedimento pode ser realizado, pois a paciente tem 23 anos, sem autorização do cônjuge e respeitado o prazo de 60 dias após a manifestação da vontade."
     },
     {
       "id": "B",
-      "texto": "O procedimento só pode ser realizado com autorização escrita do cônjuge."
+      "texto": "O procedimento só pode ser realizado com autorização escrita do cônjuge, que deve assinar o termo de consentimento."
     },
     {
       "id": "C",
-      "texto": "O procedimento só poderia ser realizado se a paciente tivesse ao menos um filho vivo."
+      "texto": "O procedimento só poderia ser realizado se a paciente tivesse ao menos um filho vivo, independentemente da idade."
     },
     {
       "id": "D",
-      "texto": "O procedimento só poderia ser realizado se a paciente tivesse ao menos dois filhos vivos."
+      "texto": "O procedimento só poderia ser realizado se a paciente tivesse ao menos dois filhos vivos, independentemente da idade, e com aval do cônjuge."
     }
   ],
   "gabarito": "A",
-  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **idade de 21 anos, casada, sem filhos, opção firme após aconselhamento** são o cenário contemplado pela Lei nº 14.443/2022: a esterilização voluntária é permitida a **homens e mulheres com capacidade civil plena e maiores de 21 anos, ou com pelo menos dois filhos vivos**, observado o **prazo mínimo de 60 dias** entre a manifestação da vontade e o ato cirúrgico, período em que há acesso a serviço de regulação da fecundidade; **a lei suprimiu a exigência de consentimento do cônjuge**. B (autorização do cônjuge) era exigida pela redação anterior e foi revogada. C e D (número mínimo de filhos) são incorretas: o critério de pelo menos dois filhos é alternativo à idade de 21 anos, não cumulativo, de modo que a paciente de 21 anos pode ser esterilizada mesmo sem filhos.",
+  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **idade de 23 anos, casada, sem filhos, opção firme após aconselhamento** são o cenário contemplado pela Lei nº 14.443/2022: a esterilização voluntária é permitida a **homens e mulheres com capacidade civil plena e maiores de 21 anos, ou com pelo menos dois filhos vivos**, observado o **prazo mínimo de 60 dias** entre a manifestação da vontade e o ato cirúrgico, período em que há acesso a serviço de regulação da fecundidade; **a lei suprimiu a exigência de consentimento do cônjuge**. B (autorização do cônjuge) era exigida pela redação anterior e foi revogada. C e D (número mínimo de filhos) são incorretas: o critério de pelo menos dois filhos é alternativo à idade de 21 anos, não cumulativo, de modo que a paciente de 23 anos pode ser esterilizada mesmo sem filhos.",
   "explicacoesAlternativas": {},
   "referencias": "Lei nº 14.443/2022, que altera a Lei nº 9.263/1996 (planejamento familiar); Ministério da Saúde, Planejamento familiar: manual para o gestor e Cadernos de Atenção Básica; FEBRASGO, Manual de anticoncepção.",
   "dificuldadeManual": "intermediario",
@@ -4066,11 +4066,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Tremor fisiológico exacerbado; investigar função tireoidiana; evitar cafeína."
+      "texto": "Tremor fisiológico exacerbado; investigar função tireoidiana e uso de fármacos; evitar cafeína e privação de sono."
     },
     {
       "id": "B",
-      "texto": "Doença de Parkinson; eletroneuromiografia; levodopa."
+      "texto": "Doença de Parkinson; eletroneuromiografia para confirmar o diagnóstico; levodopa com reavaliação em 3 meses."
     },
     {
       "id": "C",
@@ -4078,7 +4078,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Esclerose múltipla; ressonância magnética de crânio; terapêutica conforme resultado."
+      "texto": "Esclerose múltipla; ressonância magnética de crânio; terapêutica conforme resultado e avaliação do neurologista."
     }
   ],
   "gabarito": "C",
@@ -4219,7 +4219,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Lesão na face e no tronco anterior, com escorrimento em direção aos pés."
+      "texto": "Lesão na face e no tronco anterior, com escorrimento em direção aos pés e ao chão."
     }
   ],
   "gabarito": "C",
@@ -4258,11 +4258,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "B",
-      "texto": "Restrição de crescimento intrauterino, que causa elevação transitória de fenilalanina."
+      "texto": "Restrição de crescimento intrauterino, que causa elevação transitória de fenilalanina por catabolismo proteico e imaturidade enzimática."
     },
     {
       "id": "C",
-      "texto": "Imaturidade hepática por prematuridade, com atraso da conversão de fenilalanina em tirosina."
+      "texto": "Imaturidade hepática por prematuridade, com atraso da conversão de fenilalanina em tirosina nas primeiras semanas de vida."
     },
     {
       "id": "D",
@@ -4301,7 +4301,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Comprometimento articular no primeiro surto."
+      "texto": "Extensão do comprometimento articular no primeiro surto (artrite migratória de grandes articulações)."
     },
     {
       "id": "B",
@@ -4309,11 +4309,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Nível sérico da ASLO no seguimento."
+      "texto": "Nível sérico da ASLO persistentemente elevado no seguimento clínico do paciente em profilaxia."
     },
     {
       "id": "D",
-      "texto": "Valor do VHS no primeiro surto."
+      "texto": "Valor do VHS durante o primeiro surto de febre reumática e a velocidade de normalização."
     }
   ],
   "gabarito": "B",
@@ -4348,19 +4348,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Suspender de imediato o leite materno e iniciar fórmula sem lactose, pois a galactosemia clássica é emergência."
+      "texto": "Suspender de imediato o leite materno e iniciar fórmula sem lactose, pois a galactosemia clássica é uma emergência neonatal."
     },
     {
       "id": "B",
-      "texto": "Retirar o leite de vaca e derivados da dieta materna e manter o aleitamento."
+      "texto": "Retirar o leite de vaca e derivados da dieta materna e manter o aleitamento, reavaliando em 30 dias."
     },
     {
       "id": "C",
-      "texto": "Não solicitar novos exames, pois o recém-nascido está assintomático."
+      "texto": "Não solicitar novos exames, pois o recém-nascido está assintomático e o valor está próximo da referência."
     },
     {
       "id": "D",
-      "texto": "Repetir a dosagem de galactose total em papel-filtro, mantendo o aleitamento e reavaliando clinicamente, com conduta conforme o resultado."
+      "texto": "Repetir a dosagem de galactose total em papel-filtro, mantendo o aleitamento e reavaliando o lactente."
     }
   ],
   "gabarito": "D",
@@ -4395,19 +4395,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Desenvolvimento normal; reduzir o tempo de tela para meia hora por dia."
+      "texto": "Desenvolvimento normal; reduzir o tempo de tela para meia hora por dia, com conteúdo educativo e acompanhado pelos pais."
     },
     {
       "id": "B",
-      "texto": "Desenvolvimento normal; estimular atividades, brincadeiras com outras crianças e leitura de histórias, e não expor a criança a telas."
+      "texto": "Desenvolvimento normal; estimular brincadeiras, leitura de histórias e convivência com outras crianças, sem telas."
     },
     {
       "id": "C",
-      "texto": "Desenvolvimento de linguagem atrasado; encaminhar para fonoaudiologia e manter o celular com tempo controlado."
+      "texto": "Desenvolvimento de linguagem atrasado; encaminhar para fonoaudiologia e manter o celular com tempo de tela controlado e supervisionado."
     },
     {
       "id": "D",
-      "texto": "Desenvolvimento motor e de linguagem atrasados; solicitar exame audiológico e avaliação neurológica."
+      "texto": "Desenvolvimento motor e de linguagem atrasados; solicitar exame audiológico, avaliação neurológica e de neuropsicomotricidade."
     }
   ],
   "gabarito": "B",
@@ -4442,11 +4442,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Vacinar com BCG ao nascer e iniciar isoniazida por 3 meses, sem prova tuberculínica."
+      "texto": "Vacinar com BCG ao nascer e iniciar isoniazida por 3 meses, sem prova tuberculínica, mantendo o aleitamento."
     },
     {
       "id": "B",
-      "texto": "Não vacinar, realizar prova tuberculínica na primeira semana e, se não reatora, aplicar BCG, sem quimioprofilaxia."
+      "texto": "Não vacinar, realizar prova tuberculínica na primeira semana e, se não reatora, aplicar BCG, sem quimioprofilaxia, apenas com seguimento clínico."
     },
     {
       "id": "C",
@@ -4454,7 +4454,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Não vacinar com BCG ao nascer; iniciar isoniazida por 3 meses e realizar prova tuberculínica; se menor que 5 mm, suspender a isoniazida e vacinar com BCG; se 5 mm ou mais, manter por 6 meses."
+      "texto": "Adiar a BCG; iniciar isoniazida por 3 meses e fazer prova tuberculínica: se menor que 5 mm, suspender a isoniazida e vacinar; se 5 mm ou mais, manter por 6 meses."
     }
   ],
   "gabarito": "D",
@@ -4489,19 +4489,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Oferecer dieta hipogordurosa e prescrever probiótico."
+      "texto": "Oferecer dieta hipogordurosa e prescrever probiótico por 5 dias, mantendo o soro de reidratação oral."
     },
     {
       "id": "B",
-      "texto": "Retirar a lactose da dieta e prescrever zinco oral."
+      "texto": "Retirar a lactose da dieta por duas semanas e prescrever zinco oral em dose de 10 mg ao dia."
     },
     {
       "id": "C",
-      "texto": "Manter a alimentação habitual e prescrever zinco oral, 20 mg por dia, por 10 dias."
+      "texto": "Manter a alimentação habitual e prescrever zinco oral, 20 mg/dia, por 10 dias."
     },
     {
       "id": "D",
-      "texto": "Manter a alimentação habitual e prescrever racecadotrila, por 3 dias."
+      "texto": "Manter a alimentação habitual e prescrever racecadotrila, por 3 dias, até cessar a diarreia."
     }
   ],
   "gabarito": "C",
