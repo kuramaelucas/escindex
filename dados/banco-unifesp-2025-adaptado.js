@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BANCO UNIFESP 2025 ADAPTADO — 60 questões autorais
+   BANCO UNIFESP 2025 ADAPTADO — 70 questões autorais
    ==========================================================================
    Cada questão parte do ASSUNTO e da posição de uma questão da prova da
    UNIFESP-EPM 2025, mas é escrita do zero: caso clínico, dados e alternativas
@@ -852,6 +852,147 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: mulher de **55 anos**, **assintomática** e de **risco habitual** (sem história pessoal ou familiar de câncer). O rastreamento do câncer de ovário com ultrassonografia transvaginal e CA-125 **não reduz a mortalidade** e causa muitos falsos-positivos, com cirurgias desnecessárias; o USPSTF o desaconselha (recomendação D). B está errada porque a mamografia bienal é recomendada pelo USPSTF de 40 a 74 anos. C está errada porque o rastreamento do câncer do colo do útero é recomendado até os 65 anos, por citologia a cada 3 anos ou teste de HPV a cada 5 anos. D está errada porque o rastreamento do câncer colorretal é recomendado de 45 a 75 anos, por exames de fezes ou colonoscopia.",
   explicacoesAlternativas:{},
   referencias:"US Preventive Services Task Force. Screening for ovarian cancer. JAMA 2018;319:588-594; USPSTF. Screening for breast cancer. JAMA 2024;331:1918-1930; USPSTF. Screening for cervical cancer. JAMA 2018;320:674-686; USPSTF. Screening for colorectal cancer. JAMA 2021;325:1965-1977.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q61 da UNIFESP 2025
+{
+  id:"q-adap25-061", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
+  enunciado:"Pesquisadores compararam, entre os 27 estados brasileiros, o consumo médio de sal por habitante, obtido em inquéritos de orçamento familiar, com a taxa de mortalidade por acidente vascular cerebral de cada estado, obtida no sistema de informações sobre mortalidade. Não havia informação sobre o consumo de sal das pessoas que morreram. Qual é o desenho desse estudo?",
+  alternativas:[{id:"A",texto:"Estudo de coorte retrospectivo, com seguimento de indivíduos expostos e não expostos ao sal."},{id:"B",texto:"Estudo de caso-controle, com comparação entre as pessoas que morreram e as que não morreram por AVC."},{id:"C",texto:"Estudo transversal analítico, com medida simultânea da exposição e do desfecho em indivíduos."},{id:"D",texto:"Estudo ecológico, em que a unidade de análise é o estado e não o indivíduo, com dados agregados."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a **unidade de análise é o estado** (27 estados), a exposição (**consumo médio de sal**) e o desfecho (**taxa de mortalidade**) são **agregados** de populações, e **não há dado individual** sobre o consumo de sal de quem morreu. Esse é o **estudo ecológico**, que compara grupos e não permite concluir sobre o risco do indivíduo (falácia ecológica). A está errada porque a coorte segue indivíduos expostos e não expostos no tempo, com dado individual. B está errada porque o caso-controle parte de indivíduos com e sem o desfecho e investiga a exposição de cada um. C está errada porque o estudo transversal mede exposição e desfecho no mesmo indivíduo, em um só momento.",
+  explicacoesAlternativas:{},
+  referencias:"Gordis L. Epidemiologia, 5ª ed., 2017 (capítulo sobre desenhos de estudo); Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014; von Elm E et al. STROBE statement. BMJ 2007;335:806-808.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q62 da UNIFESP 2025
+{
+  id:"q-adap25-062", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
+  enunciado:"Mulher, 34 anos, com miastenia gravis generalizada em tratamento com piridostigmina e prednisona, procura o pronto-socorro com 4 dias de infecção respiratória, piora da fraqueza, voz anasalada, disfagia, ptose bilateral e dispneia, com fala entrecortada. Peso de 60 kg. Exames: capacidade vital forçada de 700 mL, pressão inspiratória máxima de -18 cmH2O, SpO2 de 94% em ar ambiente e PaCO2 de 52 mmHg. Qual é a conduta inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Oxigênio por máscara e aumento da dose de piridostigmina, com reavaliação em 24 horas."},{id:"B",texto:"Pulsoterapia com metilprednisolona isolada, por ser o tratamento mais rápido da crise."},{id:"C",texto:"Observação em enfermaria, com oximetria contínua e nova medida da capacidade vital em 24 horas."},{id:"D",texto:"Intubação orotraqueal com ventilação mecânica e início de imunoglobulina endovenosa ou de plasmaférese."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: miastenia com **infecção como desencadeante**, **disfagia, voz anasalada e dispneia**, **capacidade vital de 700 mL (cerca de 12 mL/kg, abaixo de 20 mL/kg)**, **pressão inspiratória máxima de -18 cmH2O** (menos negativa que -30 cmH2O) e **PaCO2 de 52 mmHg** (retenção): crise miastênica com falência respiratória iminente. Indica-se a proteção da via aérea e a ventilação mecânica, e inicia-se imunoterapia de resgate (imunoglobulina endovenosa ou plasmaférese), com tratamento da infecção. A está errada porque o oxigênio não corrige a hipoventilação, e mais piridostigmina aumenta secreções e não resolve a crise. B está errada porque a pulsoterapia isolada pode causar piora transitória da fraqueza e não age no tempo necessário. C está errada porque a capacidade vital e a PaCO2 mostram que a observação é insegura.",
+  explicacoesAlternativas:{},
+  referencias:"Narayanaswami P et al. International consensus guidance for management of myasthenia gravis: 2020 update. Neurology 2021;96:114-122; Wendell LC, Levine JM. Myasthenic crisis. Neurohospitalist 2011;1:16-22.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q63 da UNIFESP 2025
+{
+  id:"q-adap25-063", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
+  imagemUrl:"dados/imagens/q-adap25-063.png", imagemLegenda:"Heredograma de uma família com miopatia de início na infância (ilustração esquemática; símbolos cheios indicam os afetados).",
+  enunciado:"A figura mostra o heredograma de uma família com uma miopatia de início na infância. Considerando o padrão de transmissão observado, qual é o tipo de herança mais provável?",
+  alternativas:[{id:"A",texto:"Herança autossômica dominante, de penetrância completa."},{id:"B",texto:"Herança autossômica recessiva, em genitores consanguíneos."},{id:"C",texto:"Herança recessiva ligada ao cromossomo X."},{id:"D",texto:"Herança mitocondrial, de transmissão materna."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas da figura: **só homens afetados** (II-2, III-1 e III-7); a doença **passa por mulheres não afetadas** (a filha II-1 e a filha II-4, que têm filhos afetados, são portadoras assintomáticas); o homem afetado II-2 tem **filhos homens sem a doença** (**sem transmissão de pai para filho**) e filhas portadoras. Esse é o padrão da herança recessiva ligada ao X. A está errada porque na herança dominante o genitor afetado estaria presente em cada geração, e aqui os genitores de II-2 não são afetados. B está errada porque na herança autossômica recessiva homens e mulheres seriam afetados com a mesma frequência, e os casamentos com cônjuges sem relação de parentesco tornariam improvável que todos os afetados fossem homens. D está errada porque na herança mitocondrial a mãe transmite a todos os filhos, de ambos os sexos, o que não ocorre nesse heredograma.",
+  explicacoesAlternativas:{},
+  referencias:"Nussbaum RL, McInnes RR, Willard HF. Thompson & Thompson Genética Médica, 8ª ed., 2016 (capítulo sobre padrões de herança monogênica); Bennett RL et al. Recommendations for standardized human pedigree nomenclature. J Genet Couns 2008;17:424-433.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q64 da UNIFESP 2025
+{
+  id:"q-adap25-064", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
+  enunciado:"Mulher, 52 anos, hipertensa, chega ao pronto-socorro 3 horas depois de cefaleia súbita e intensa, a pior de sua vida, seguida de vômitos. Exame: Glasgow 15, rigidez de nuca, sem déficit focal. A tomografia de crânio sem contraste mostra hiperdensidade nas cisternas basais, e a angiotomografia, aneurisma de 6 mm da artéria comunicante anterior. O tratamento do aneurisma foi programado para as próximas horas. Além do tratamento do aneurisma, qual medida reduz o risco de isquemia cerebral tardia e de mau prognóstico?",
+  alternativas:[{id:"A",texto:"Ácido tranexâmico por 3 meses, para evitar o ressangramento até a cicatrização do aneurisma."},{id:"B",texto:"Fenitoína profilática por 3 semanas, para prevenir crises convulsivas e a isquemia."},{id:"C",texto:"Nimodipina por via oral, 60 mg a cada 4 horas, durante 21 dias, monitorando a pressão."},{id:"D",texto:"Hipertensão induzida por rotina, com vasopressor, para prevenir o vasoespasmo."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **cefaleia súbita («a pior da vida»)**, **rigidez de nuca**, **hiperdensidade nas cisternas basais** e **aneurisma da comunicante anterior**: hemorragia subaracnóidea aneurismática, com risco de **vasoespasmo e isquemia cerebral tardia** entre o 4º e o 14º dia. A nimodipina (60 mg por via oral a cada 4 horas, por 21 dias) melhora o prognóstico funcional, sem necessariamente reduzir o vasoespasmo angiográfico, e é a medida recomendada, com atenção à hipotensão (pode-se fracionar a dose para 30 mg a cada 2 horas). A está errada porque o antifibrinolítico prolongado não melhorou os desfechos clínicos em estudos randomizados e aumenta eventos tromboembólicos; o tratamento precoce do aneurisma é que evita o ressangramento. B está errada porque a profilaxia anticonvulsivante prolongada não é recomendada e a fenitoína se associou a pior desfecho. D está errada porque a hipertensão induzida não é preventiva de rotina, e a pressão arterial deve ser mantida em faixas seguras até o aneurisma ser tratado.",
+  explicacoesAlternativas:{},
+  referencias:"Hoh BL et al. 2023 Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage. Stroke 2023;54:e314-e370; Post R et al. Short-term tranexamic acid treatment in aneurysmal subarachnoid haemorrhage (ULTRA). Lancet 2021;397:112-118.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q65 da UNIFESP 2025
+{
+  id:"q-adap25-065", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-caendometrio",
+  enunciado:"Mulher, 57 anos, foi submetida a histerectomia total com salpingo-ooforectomia bilateral e biópsia do linfonodo sentinela por carcinoma endometrioide de alto grau (grau 3), com invasão de 60% do miométrio e invasão linfovascular, sem comprometimento do colo, dos anexos ou dos linfonodos. A análise molecular mostrou mutação patogênica do domínio exonuclease do gene POLE, p53 selvagem e proteínas de reparo de pareamento (MMR) preservadas. Qual é o tratamento adjuvante mais adequado?",
+  alternativas:[{id:"A",texto:"Observação, sem tratamento adjuvante, pelo ótimo prognóstico desse subtipo molecular."},{id:"B",texto:"Quimioterapia com carboplatina e paclitaxel e radioterapia, pelo grau 3 e pela invasão linfovascular."},{id:"C",texto:"Braquiterapia vaginal isolada, por ser tumor de risco intermediário-alto pelos critérios clínicos."},{id:"D",texto:"Radioterapia pélvica externa isolada, pela profundidade da invasão do miométrio no útero."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: carcinoma endometrioide **grau 3**, com **invasão de 60% do miométrio** e **invasão linfovascular** (fatores que, isolados, levariam a tratamento adjuvante), porém **confinado ao útero (estádio I)**, com **mutação de POLE (exonuclease)**, p53 selvagem e MMR preservado. Na classificação molecular, o subtipo **POLE mutado** tem prognóstico excelente, e, nos estádios I e II, a recomendação é **não fazer tratamento adjuvante**, mesmo com características patológicas desfavoráveis. B está errada porque a quimioterapia com radioterapia é o tratamento do subtipo p53 anormal (alto risco) e de estádios avançados, e aqui seria excesso de tratamento. C está errada porque a braquiterapia isolada seria a opção para o risco intermediário-alto no subtipo de perfil molecular não específico. D está errada porque a radioterapia pélvica externa isolada só se indicaria por outros critérios (estádio mais avançado, por exemplo), e a profundidade de invasão perde o peso diante do subtipo POLE.",
+  explicacoesAlternativas:{},
+  referencias:"Concin N et al. ESGO/ESTRO/ESP guidelines for the management of patients with endometrial carcinoma. Int J Gynecol Cancer 2021;31:12-39 (atualização de 2025 não conferida); Berek JS et al. FIGO staging of endometrial cancer: 2023. Int J Gynaecol Obstet 2023;162:383-394.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q66 da UNIFESP 2025
+{
+  id:"q-adap25-066", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
+  enunciado:"Mulher, 62 anos, queixa-se há 3 meses de urgência miccional intensa, com perda de urina antes de chegar ao banheiro, 12 micções por dia e 3 noctúrias. Não tem disúria, hematúria nem perda urinária aos esforços. Bebe cerca de 5 xícaras de café por dia. Exame físico sem prolapso, urina tipo 1 normal e resíduo pós-miccional de 30 mL. Qual é a abordagem inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Injeção de toxina botulínica na bexiga, como primeira medida terapêutica."},{id:"B",texto:"Terapia comportamental, com treino vesical e redução da cafeína."},{id:"C",texto:"Neuromodulação sacral, com implante de eletrodo, por ser a mais eficaz."},{id:"D",texto:"Cirurgia de sling suburetral, para corrigir a perda de urina da paciente."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **urgência com perda antes de chegar ao banheiro**, **12 micções por dia e noctúria**, **sem perda aos esforços**, **urina tipo 1 normal** (sem infecção ou hematúria) e **resíduo de 30 mL** (sem retenção): bexiga hiperativa, com **ingestão alta de cafeína**. A abordagem inicial é a menos invasiva: terapia comportamental (treino vesical, ajuste de líquidos e redução de cafeína, exercícios do assoalho pélvico), com tratamento medicamentoso (agonista beta-3 ou antimuscarínico) acrescentado conforme o caso e a decisão compartilhada. A está errada porque a toxina botulínica intradetrusora é reservada à doença refratária, e exige disposição para cateterismo se houver retenção. C está errada porque a neuromodulação sacral também é um procedimento para casos refratários. D está errada porque o sling trata a incontinência de esforço, que a paciente não tem.",
+  explicacoesAlternativas:{},
+  referencias:"Cameron AP et al. The AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder. J Urol 2024;212:11-20 (as opções foram conferidas em resumos, não no texto); Sociedade Brasileira de Urologia e FEBRASGO, consensos de bexiga hiperativa.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q67 da UNIFESP 2025
+{
+  id:"q-adap25-067", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
+  enunciado:"Mulher, 34 anos, assintomática, vacinada contra HPV aos 14 anos, procura a unidade básica de saúde porque nunca realizou exame preventivo do colo do útero. Não tem imunossupressão nem história de lesão cervical. Segundo as diretrizes brasileiras mais recentes para o rastreamento do câncer do colo do útero, qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Teste de DNA-HPV oncogênico, repetido a cada 5 anos se o resultado for negativo."},{id:"B",texto:"Citologia anual por 2 anos seguidos e, depois, a cada 3 anos, pela vacinação prévia."},{id:"C",texto:"Citologia a cada 3 anos desde o início, sem o teste de HPV."},{id:"D",texto:"Colposcopia anual, porque nunca se rastreou e a vacinação não dispensa o exame."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: mulher de **34 anos** (dentro da faixa de 25 a 64 anos), **sem imunossupressão** nem lesão prévia (população geral) e **vacinada contra HPV**, mas **nunca rastreada**. As diretrizes brasileiras de 2025 adotam o **teste de DNA-HPV oncogênico** como rastreamento primário em mulheres de 25 a 64 anos, a cada **5 anos** se negativo; a vacinação **não dispensa** o rastreamento. B está errada porque o esquema de duas citologias anuais seguidas de citologia trienal era o das diretrizes de 2016, substituídas, e a vacinação não muda o intervalo. C está errada porque a citologia trienal exclusiva é o esquema anterior; hoje a citologia é usada como exame de triagem (reflexo) dos testes positivos. D está errada porque a colposcopia é exame de investigação das alterações do rastreamento, e não de rastreamento em mulher assintomática.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Portaria Conjunta SAES/SECTICS nº 13, de 29 de julho de 2025, que aprova a Parte I das Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero (conferida em resumos; o texto oficial não pôde ser aberto); Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero, 2ª ed., INCA, 2016 (substituída).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q68 da UNIFESP 2025
+{
+  id:"q-adap25-068", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
+  enunciado:"Mulher, 48 anos, assintomática, realiza mamografia de rastreamento, que mostra nódulo oval, circunscrito, isodenso, de 8 mm, na mama direita. A ultrassonografia complementar identifica nódulo sólido oval, circunscrito, paralelo à pele, sem sombra acústica e sem sinais de vascularização aumentada, de 8 mm. Não há história familiar de câncer de mama. A lesão foi classificada como BI-RADS 3. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Biópsia por agulha grossa para esclarecer o diagnóstico histológico da lesão."},{id:"B",texto:"Ressonância magnética das mamas, para definir se o nódulo é benigno ou não."},{id:"C",texto:"Exérese cirúrgica do nódulo, pelo risco de o nódulo ser um fibroadenoma complexo."},{id:"D",texto:"Controle por imagem em 6 meses e, depois, aos 12 e aos 24 meses."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: nódulo **sólido, oval, circunscrito, paralelo à pele**, **sem sombra acústica** nem sinais suspeitos, **8 mm**, classificado como **BI-RADS 3 (provavelmente benigno)**, com risco de malignidade de **2% ou menos**. A conduta é o seguimento por imagem de curto intervalo: primeiro controle em 6 meses, depois aos 12 e aos 24 meses de seguimento; a estabilidade confirma a benignidade, e a mudança leva à biópsia. A está errada porque a biópsia é indicada nas lesões BI-RADS 4 e 5 (suspeitas). B está errada porque a ressonância não é necessária para esclarecer lesão provavelmente benigna. C está errada porque a exérese cirúrgica de lesão provavelmente benigna é excesso e expõe a paciente a cirurgia sem necessidade.",
+  explicacoesAlternativas:{},
+  referencias:"American College of Radiology. ACR BI-RADS Atlas, 5ª ed., 2013 (a edição seguinte não foi conferida); Brasil. Ministério da Saúde/INCA. Parâmetros técnicos para o rastreamento do câncer de mama, 2021.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q69 da UNIFESP 2025
+{
+  id:"q-adap25-069", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
+  enunciado:"Mulher, 24 anos, queixa-se de ciclos menstruais a cada 45 a 60 dias desde a menarca, acne e crescimento excessivo de pelos no rosto, no abdome e no peito, com escore de Ferriman-Gallwey modificado de 14. Índice de massa corporal de 29 kg/m². O teste de gravidez é negativo. Não tem galactorreia, estrias violáceas nem sinais de virilização. Qual é o próximo passo para confirmar o diagnóstico de síndrome dos ovários policísticos?",
+  alternativas:[{id:"A",texto:"Ultrassonografia transvaginal obrigatória, para contar os folículos antrais em cada ovário."},{id:"B",texto:"Laparoscopia com biópsia de ovário, para documentar o aumento do estroma ovariano."},{id:"C",texto:"Dosagem do hormônio antimülleriano, necessária para confirmar o diagnóstico em todos os casos."},{id:"D",texto:"Excluir outras causas, com TSH, prolactina e 17-OH-progesterona, sem imagem."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **oligomenorreia desde a menarca** (disfunção ovulatória) e **hiperandrogenismo clínico (acne e hirsutismo, com Ferriman-Gallwey de 14, acima do ponto de corte para hirsutismo)**, **sem sinais de virilização, galactorreia ou hipercortisolismo**. Na mulher adulta, o diagnóstico de síndrome dos ovários policísticos exige dois de três critérios (hiperandrogenismo, disfunção ovulatória e ovários policísticos, avaliados por ultrassonografia ou hormônio antimülleriano), depois de afastadas outras causas; quando há **hiperandrogenismo e disfunção ovulatória juntos**, a imagem ou o antimülleriano **não são necessários**, e o passo seguinte é excluir outros diagnósticos (hipotireoidismo, hiperprolactinemia, hiperplasia adrenal não clássica por 17-hidroxiprogesterona). A está errada porque, com dois critérios clínicos presentes, a ultrassonografia não é obrigatória. B está errada porque a biópsia de ovário não faz parte do diagnóstico. C está errada porque o antimülleriano pode substituir a ultrassonografia como o terceiro critério, mas não é necessário aqui.",
+  explicacoesAlternativas:{},
+  referencias:"Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome. J Clin Endocrinol Metab 2023;108:2447-2469 (conferido em resumos); Rotterdam ESHRE/ASRM Consensus. Hum Reprod 2004;19:41-47.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q70 da UNIFESP 2025
+{
+  id:"q-adap25-070", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
+  enunciado:"Mulher, 34 anos, nuligesta, refere sangramento menstrual muito intenso, com coágulos, há 8 anos, com ciclos regulares. Deseja um método contraceptivo e não pretende engravidar nos próximos 5 anos. Hemoglobina de 11,2 g/dL e ferritina de 14 ng/mL. A ultrassonografia pélvica mostra útero de 120 mL com mioma intramural de 25 mm, sem distorção da cavidade endometrial, e endométrio de 8 mm. Qual é o tratamento mais adequado?",
+  alternativas:[{id:"A",texto:"Embolização das artérias uterinas, como tratamento inicial do sangramento da paciente."},{id:"B",texto:"DIU de levonorgestrel, que trata o sangramento e também contracepciona."},{id:"C",texto:"Análogo do GnRH em uso contínuo por 12 meses, para reduzir o volume do mioma e o fluxo."},{id:"D",texto:"Ácido tranexâmico apenas nos dias de fluxo, como método único para o sangramento."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **sangramento menstrual intenso com ciclos regulares** e **anemia ferropriva (hemoglobina de 11,2 g/dL e ferritina de 14 ng/mL)**, **mioma intramural de 25 mm sem distorção da cavidade** (a cavidade normal permite o dispositivo), paciente **sem desejo de gestação por 5 anos** e que **quer contracepção**. O sistema intrauterino de levonorgestrel reduz o sangramento em cerca de 70% a 90% e é contraceptivo, sendo tratamento clínico de primeira linha. A está errada porque a embolização é para mulheres com sintomas volumosos ou refratários, e em geral reduz a fertilidade. C está errada porque o análogo do GnRH contínuo é de curto prazo (3 a 6 meses, antes de cirurgia ou para corrigir anemia), com efeitos de hipoestrogenismo. D está errada porque o ácido tranexâmico reduz o fluxo, mas não é contraceptivo e a paciente quer um método.",
+  explicacoesAlternativas:{},
+  referencias:"National Institute for Health and Care Excellence. Heavy menstrual bleeding: assessment and management (NG88), 2018 (atualizada em 2021); Munro MG et al. FIGO classification system (PALM-COEIN) for causes of abnormal uterine bleeding. Int J Gynaecol Obstet 2018;143:393-408.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-15"

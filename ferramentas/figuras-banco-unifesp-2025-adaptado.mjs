@@ -132,7 +132,54 @@ function curvaRoc(){
   return moldura(W, H, g);
 }
 
-const FIGURAS = { "q-adap25-021": ecg12, "q-adap25-030": fibrilacaoAtrial, "q-adap25-053": curvaRoc };
+/* ---------- 063: heredograma de herança recessiva ligada ao X ---------- */
+function heredograma(){
+  const W = 1020, H = 520, T = 40, lado = 36, r = 19;
+  const gen = { I: 100, II: 230, III: 380 };
+  let g = "";
+  const linha = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${C.tinta}" stroke-width="2"/>`;
+  const simbolo = (x, y, sexo, afetado, rotulo) => {
+    const forma = sexo === "M"
+      ? `<rect x="${x - lado / 2}" y="${y - lado / 2}" width="${lado}" height="${lado}" fill="${afetado ? C.tinta : C.fundo}" stroke="${C.tinta}" stroke-width="2.2"/>`
+      : `<circle cx="${x}" cy="${y}" r="${r}" fill="${afetado ? C.tinta : C.fundo}" stroke="${C.tinta}" stroke-width="2.2"/>`;
+    return forma + (rotulo ? texto(x, y + lado / 2 + 20, rotulo, { ancora: "middle", t: 14, cor: C.tinta2 }) : "");
+  };
+  const casal = (xa, xb, y) => linha(xa + lado / 2, y, xb - lado / 2, y);
+  // geração I
+  g += simbolo(470, gen.I, "M", false, "1") + simbolo(590, gen.I, "F", false, "2") + casal(470, 590, gen.I);
+  const yIrm = 165;
+  g += linha(530, gen.I, 530, yIrm) + linha(200, yIrm, 760, yIrm);
+  // geração II: filhos do casal I-1 e I-2
+  const filhosII = [[200, "F", false, "1"], [360, "M", true, "2"], [600, "M", false, "3"], [760, "F", false, "4"]];
+  for(const [x, sexo, af, rot] of filhosII){ g += linha(x, yIrm, x, gen.II - lado / 2) + simbolo(x, gen.II, sexo, af, rot); }
+  // cônjuges de II-1, II-2 e II-4 (sem rótulo)
+  g += simbolo(80, gen.II, "M", false, "") + casal(80, 200, gen.II);
+  g += simbolo(480, gen.II, "F", false, "") + casal(360, 480, gen.II);
+  g += simbolo(880, gen.II, "M", false, "") + casal(760, 880, gen.II);
+  // geração III
+  const familias = [
+    { meio: 140, filhos: [[60, "M", true, "1"], [150, "F", false, "2"], [240, "M", false, "3"]] },
+    { meio: 420, filhos: [[380, "F", false, "4"], [460, "M", false, "5"]] },
+    { meio: 820, filhos: [[780, "F", false, "6"], [870, "M", true, "7"]] },
+  ];
+  const yIrm3 = 300;
+  for(const f of familias){
+    const xs = f.filhos.map(c => c[0]);
+    g += linha(f.meio, gen.II, f.meio, yIrm3) + linha(Math.min(...xs), yIrm3, Math.max(...xs), yIrm3);
+    for(const [x, sexo, af, rot] of f.filhos){ g += linha(x, yIrm3, x, gen.III - lado / 2) + simbolo(x, gen.III, sexo, af, rot); }
+  }
+  // numeração das gerações
+  for(const [rom, y] of Object.entries(gen)) g += texto(20, y + 6, rom, { t: 18, cor: C.tinta, peso: 700 });
+  // legenda
+  const ly = 470;
+  g += `<rect x="300" y="${ly - 14}" width="22" height="22" fill="${C.fundo}" stroke="${C.tinta}" stroke-width="2"/>` + texto(330, ly + 4, "homem", { t: 14 });
+  g += `<circle cx="415" cy="${ly - 3}" r="12" fill="${C.fundo}" stroke="${C.tinta}" stroke-width="2"/>` + texto(435, ly + 4, "mulher", { t: 14 });
+  g += `<rect x="520" y="${ly - 14}" width="22" height="22" fill="${C.tinta}" stroke="${C.tinta}" stroke-width="2"/>` + texto(550, ly + 4, "afetado", { t: 14 });
+  g += texto(20, 28, "Heredograma", { t: 19, cor: C.tinta, peso: 600 });
+  return moldura(W, H, g);
+}
+
+const FIGURAS = { "q-adap25-021": ecg12, "q-adap25-030": fibrilacaoAtrial, "q-adap25-053": curvaRoc, "q-adap25-063": heredograma };
 
 const pedidos = process.argv.slice(2);
 const navegador = await chromium.launch();
