@@ -74,7 +74,7 @@ function renderLanding(){
       <div class="flex gap-1 quebra">
         <button class="pill" onclick="fazerLoginDemo('aluno')">${iconeSvg("user")} Ver como aluno</button>
       </div>
-      <div class="text-xs muted mt-2">Uma conta de demonstração, só neste navegador: nada do que você fizer nela vale para a sua conta de verdade.</div>
+      <div class="text-xs muted mt-2">Uma conta de teste, sem memória: nada do que você fizer nela é guardado.</div>
     </div>
     <footer class="site-footer">${CONFIG.nomePlataforma} — projeto sem fins lucrativos, mantido por alunos e ex-alunos da Escola Paulista de Medicina (UNIFESP).</footer>
   </div>`;
@@ -189,15 +189,17 @@ function renderLogin(){
       <button class="btn btn-primary btn-block" onclick="tentarLogin()">Entrar</button>
       <p class="text-sm mt-2">Ainda não tem conta? <a href="javascript:void(0)" onclick="navigate('cadastro')">Solicitar cadastro</a></p>
       <p class="text-sm mt-1">${nuvemLigada() ? `<a href="javascript:void(0)" onclick="abrirEsqueciSenha()">Esqueci a senha</a> · ` : ""}<a href="javascript:void(0)" onclick="abrirAjudaAcesso()">Problemas para entrar?</a></p>
-      ${getUsuario("u-aluno1") ? `      <div class="card-flat mt-3">
-        <div class="text-xs muted mb-1">${nuvemLigada()
-          ? "Conhecer a plataforma sem criar conta — fica só neste navegador e não sincroniza:"
-          : "Conhecer a plataforma sem criar conta (não pede senha):"}</div>
+      <div class="card-flat mt-3">
+        <div class="text-xs muted mb-1">${SEED_USUARIOS.some(x=>x.id==="u-aluno1")
+          ? (nuvemLigada() ? "Conhecer a plataforma sem criar conta — fica só neste navegador e não sincroniza:" : "Conhecer a plataforma sem criar conta (não pede senha):")
+          : "Conhecer a plataforma sem criar conta — uma conta de teste que não guarda nada:"}</div>
         <div class="flex gap-1 quebra">
           <button class="pill" onclick="fazerLoginDemo('aluno')">Entrar como aluno de teste</button>
         </div>
-        <div class="text-xs muted mt-1">aluno@esc.demo / aluno123 — é a única conta de teste aberta. Professor, residente e coordenação usam as contas de verdade, acima.</div>
-      </div>` : ""}
+        <div class="text-xs muted mt-1">${SEED_USUARIOS.some(x=>x.id==="u-aluno1")
+          ? "aluno@esc.demo / aluno123 — é a única conta de teste aberta. Professor, residente e coordenação usam as contas de verdade, acima."
+          : "Sem memória (o que você fizer some ao sair ou recarregar) e sem simulados. Serve para ver como cada função funciona."}</div>
+      </div>
     </div>
   </div>`;
 }

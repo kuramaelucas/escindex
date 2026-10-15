@@ -227,6 +227,7 @@ function dbPadrao(){
     revisoes: {},          // revisoes[usuarioId][questaoId] = {repeticoes,fator,intervalo,proximaRevisao,ultimaConfianca}
     simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
     resultadosSimulados: [],
+    simuladosLiberados: [], // {usuarioId, simuladoId, data} — a pessoa trouxe as questões deste simulado para o estudo geral
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     feedbacks: [],          // comentários, sugestões e reclamações gerais sobre a plataforma
@@ -277,7 +278,7 @@ function garantirEstruturaDb(alvo){
   };
   // o que a turma produziu: preservado sempre que for uma lista
   lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("destaques"); lista("sessoes");
-  lista("resultadosSimulados"); lista("feedbacks"); lista("comentarios"); lista("avisos");
+  lista("resultadosSimulados"); lista("simuladosLiberados"); lista("feedbacks"); lista("comentarios"); lista("avisos");
   lista("cargasProvas"); lista("filaNuvem"); lista("logCartoes"); lista("grupos"); lista("subgrupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
@@ -663,6 +664,10 @@ function restaurarResgateConfirmado(){
    que não conhece esse conteúdo. Esta função acrescenta ao banco salvo apenas
    o que falta, comparando pelo id — sem apagar nem sobrescrever nada do que o
    usuário já produziu (respostas, favoritos, questões próprias, edições). */
+/* Simulados da semente que a equipe retirou de dados/. Só a semente completa
+   o banco salvo, então sem esta lista o simulado tirado do arquivo continuaria
+   aparecendo para quem já o tinha no navegador. */
+const SIMULADOS_RETIRADOS_DA_SEMENTE = ["sim-1"];
 const CAMPOS_QUE_O_CONTEUDO_COMPLETA = ["numeroNaProva", "imagemUrl", "imagemLegenda", "imagemPendente", "referencias", "tipoProva", "semestre"];
 function sincronizarConteudoNovo(){
   let novos = 0;
@@ -703,6 +708,9 @@ function sincronizarConteudoNovo(){
      completada, como já é a das questões. Só entra o que falta, por id — um
      simulado que a pessoa criou ou editou aqui não é tocado. */
   if(!db.simulados) db.simulados = [];
+  const antesDosRetirados = db.simulados.length;
+  db.simulados = db.simulados.filter(s=>!SIMULADOS_RETIRADOS_DA_SEMENTE.includes(s.id));
+  novos += antesDosRetirados - db.simulados.length;
   (SEED_SIMULADOS||[]).forEach(s=>{ if(!db.simulados.some(x=>x.id===s.id)){ db.simulados.push(copiaProfunda(s)); novos++; } });
   if(!db.flashcards) db.flashcards = [];
   SEED_FLASHCARDS.forEach(c=>{ if(!db.flashcards.some(x=>x.id===c.id)){ db.flashcards.push(copiaProfunda(c)); novos++; } });
@@ -826,6 +834,8 @@ const ATRASO_GRAVACAO_MS = 300;
 let _gravacaoPendente = null;   // id do timer; null = nada sujo
 function gravarEstadoAgora(){
   if(_gravacaoPendente!==null){ clearTimeout(_gravacaoPendente); _gravacaoPendente = null; }
+  // conta de teste (ver entrarComoAlunoTeste, seção 5): sem memória
+  if(state.contaTeste) return true;
   let gravou = true;
   try{
     localStorage.setItem(CHAVE_STORAGE, JSON.stringify(compactarParaArmazenar(db)));
@@ -858,6 +868,8 @@ if(typeof window !== "undefined"){
 }
 function saveState(opcoes){
   _geracaoDb++;
+  // a conta de teste não grava no navegador nem sobe para a nuvem
+  if(state.contaTeste) return true;
   let gravou = true;
   if(opcoes && opcoes.imediato){
     gravou = gravarEstadoAgora();

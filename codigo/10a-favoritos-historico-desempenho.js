@@ -789,6 +789,8 @@ function renderDesempenho(){
 
   ${htmlCardNotaEstimada(u)}
 
+  ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(u.id), "Simulados × estudo, por assunto", "Tudo o que você respondeu em simulados, assunto a assunto, comparado com o seu acerto fora de simulado. Os assuntos que mais caem no simulado em relação ao estudo vêm primeiro.")}
+
   <div class="card mb-2">
     <div class="flex justify-between items-center gap-2 mb-2 quebra">
       <div style="min-width:320px;flex:1">

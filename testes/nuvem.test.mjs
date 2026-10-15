@@ -141,7 +141,7 @@ test("comentário na questão sobe para a nuvem com o nome de quem escreveu", as
 
 test("percentil do simulado usa as notas da turma inteira", async () => {
   const sessao = { token: TOKEN, refresh: "r1", usuarioId: ID, email: "nova@turma.br" };
-  const notas = [40, 50, 60, 70, 80, 90].map((n, i) => ({ id: "t" + i, nota: n }));
+  const notas = [30, 40, 45, 50, 55, 60, 65, 70, 80, 90].map((n, i) => ({ id: "t" + i, nota: n }));
   const { pagina, contexto } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado"), sessao, rpc: { notas_do_simulado: notas } });
   const r = await pagina.evaluate(async () => {
     estatisticasRankingSimulado("Prova X", 75);                 // dispara a busca
@@ -149,8 +149,10 @@ test("percentil do simulado usa as notas da turma inteira", async () => {
     return estatisticasRankingSimulado("Prova X", 75);
   });
   assert.equal(r.origem, "turma");
-  assert.equal(r.n, 6);
-  assert.equal(r.percentil, 67);
+  assert.equal(r.n, 10);
+  assert.equal(r.percentil, 80);
+  assert.equal(r.mediana, 57.5);
+  assert.equal(r.p90, 80);
   await contexto.close();
 });
 

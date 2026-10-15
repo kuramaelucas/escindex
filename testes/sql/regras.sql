@@ -22,7 +22,10 @@ insert into respostas(id,usuario_id,questao_id,area_id,correta,data)
   select 'rg'||g,'00000000-0000-0000-0000-0000000000a2','q'||g,'area-cm',false,(now() at time zone 'America/Sao_Paulo')::date-g from generate_series(1,10) g;
 insert into resultados_simulados(id,usuario_id,simulado_id,titulo,nota) values
   ('s1','00000000-0000-0000-0000-00000000000a',null,'Prova X',60),
-  ('s2','00000000-0000-0000-0000-00000000000b','','Prova X',80);
+  ('s2','00000000-0000-0000-0000-00000000000b','','Prova X',80),
+  -- refazer o simulado e nota de professor não entram na comparação (uma nota por aluno)
+  ('s3','00000000-0000-0000-0000-00000000000a',null,'Prova X',100),
+  ('s4','00000000-0000-0000-0000-00000000000c',null,'Prova X',10);
 
 -- uma "tentativa que tem de falhar": roda o comando e exige erro
 create function pg_temp.tem_de_falhar(comando text, motivo text) returns void language plpgsql as $$
@@ -38,7 +41,7 @@ select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a'
 select pg_temp.igual((select count(*) from painel_turma()), 0, 'aluno não vê o painel da turma');
 select pg_temp.igual((select count(*) from atividade_por_semana(12)), 0, 'aluno não vê a atividade por semana');
 select pg_temp.igual((select count(*) from acerto_por_turma()), 0, 'aluno não vê o acerto da turma');
-select pg_temp.igual((select count(*) from notas_do_simulado('Prova X')), 2, 'percentil enxerga as notas da turma');
+select pg_temp.igual((select count(*) from notas_do_simulado('Prova X')), 2, 'percentil enxerga uma nota por aluno, sem equipe');
 select pg_temp.igual((select count(*) from respostas where usuario_id='00000000-0000-0000-0000-00000000000b'), 0, 'aluno não lê respostas dos outros');
 insert into comentarios(id,questao_id,usuario_id,autor_nome,texto) values ('c1','q1','00000000-0000-0000-0000-00000000000a','Aluna A','dúvida');
 select pg_temp.tem_de_falhar($$insert into comentarios(id,questao_id,usuario_id,texto) values ('c2','q1','00000000-0000-0000-0000-00000000000b','x')$$, 'comentário em nome de outra pessoa');

@@ -274,6 +274,7 @@ let state = {
   modoFoco: false,        // menu e topo escondidos durante a sessão de questões
   menuGruposFechados: {}, // grupos do menu da equipe que a pessoa recolheu (só nesta sessão)
   mapaSessaoExpandido: false, // a barra de questões (sessão e simulado) está expandida? nasce fina, numa linha
+  contaTeste: false,       // conta de teste de aluno: sem memória e sem simulados (entrarComoAlunoTeste, seção 5)
   modoAluno: false,        // permite que admin/professor/residente também usem a plataforma como aluno
 };
 

@@ -28,6 +28,44 @@ function desempenhoPorAssunto(usuarioId){
     };
   }).sort((a,b)=>a.taxa-b.taxa);
 }
+/* SIMULADO × ESTUDO. Para cada assunto em que a pessoa respondeu em simulado,
+   compara o acerto lá (resposta com origem "simulado") com o acerto nas
+   questões feitas fora de simulado (qualquer outra origem). A diferença é o
+   que interessa: quem acerta o assunto no estudo e erra no simulado perde
+   para o relógio, o cansaço ou o formato da prova, não para o conteúdo; e o
+   contrário (erra nos dois) é lacuna de conteúdo. Só afirma a comparação com
+   pelo menos 3 respostas fora de simulado no assunto (`base` = false avisa a
+   tela de que a base é pequena). `sessaoId` limita à tentativa que acabou. */
+const MINIMO_RESPOSTAS_PARA_COMPARAR = 3;
+function comparativoSimuladoEstudo(usuarioId, opcoes){
+  const sessaoId = opcoes && opcoes.sessaoId;
+  const sim = {}, est = {};
+  db.respostas.forEach(r=>{
+    if(r.usuarioId!==usuarioId || !r.assuntoId) return;
+    if(r.origem==="simulado"){
+      if(sessaoId && r.sessaoId!==sessaoId) return;
+      (sim[r.assuntoId] = sim[r.assuntoId]||[]).push(r);
+    }else{
+      (est[r.assuntoId] = est[r.assuntoId]||[]).push(r);
+    }
+  });
+  return Object.keys(sim).map(assuntoId=>{
+    const s = sim[assuntoId], e = est[assuntoId]||[];
+    const simAcertos = s.filter(r=>r.correta).length, estAcertos = e.filter(r=>r.correta).length;
+    const simTaxa = pct(simAcertos, s.length), estTaxa = e.length ? pct(estAcertos, e.length) : null;
+    return {
+      assuntoId, simTotal:s.length, simAcertos, simTaxa,
+      estTotal:e.length, estAcertos, estTaxa,
+      base: e.length >= MINIMO_RESPOSTAS_PARA_COMPARAR,
+      // positivo = rende menos no simulado do que no estudo
+      queda: (estTaxa!==null && e.length >= MINIMO_RESPOSTAS_PARA_COMPARAR) ? estTaxa - simTaxa : null,
+    };
+  }).sort((a,b)=>{
+    if((a.queda===null) !== (b.queda===null)) return a.queda===null ? 1 : -1;
+    return (b.queda||0) - (a.queda||0) || a.simTaxa - b.simTaxa;
+  });
+}
+
 // agrega o desempenho por assunto nas 5 grandes áreas — sempre retorna as
 // 5, mesmo sem nenhuma resposta ainda, pra dar uma visão completa
 function desempenhoPorArea(usuarioId){
@@ -309,7 +347,7 @@ function gerarNotificacoes(usuario){
     const vencidas = questoesRevisaoEspacadaVencidas(usuario.id).length;
     if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" questão(ões) vencida(s) para revisão espaçada.", rota:"revisao"});
     const bloco = getBlocoAtual(usuario);
-    const simsRecomendados = bloco ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id)) : [];
+    const simsRecomendados = (bloco && !contaTesteAtiva()) ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id)) : [];
     if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" simulado(s) novo(s) recomendado(s) para o seu bloco.", rota:"simulados", aba:"simulados"});
     const meta = metaDoUsuario(usuario);
     const hoje = questoesRespondidasHoje(usuario.id);

@@ -121,7 +121,7 @@ function renderSimuladoCard(s){
     <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="peso-700">${escapeHtml(s.titulo)}</div>
-        <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min</div>
+        <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
         ${previo ? `<div class="qcard-meta mt-1">
             <span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já feito · última nota ${previo.ultima.nota}%</span>
             <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
@@ -130,13 +130,39 @@ function renderSimuladoCard(s){
           </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
       </div>
       <div class="flex gap-1 quebra">
+        ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)
+          ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
+          : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
         ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
         <button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>
       </div>
     </div>
   </div>`;
 }
+/* A tabela "simulado × estudo" (ver comparativoSimuladoEstudo, 05b), usada no
+   resultado do simulado e em Meu Desempenho. Diz o que cada linha significa:
+   a plataforma explica o que mostra. */
+function htmlComparativoSimuladoEstudo(linhas, titulo, intro){
+  if(!linhas.length) return "";
+  const rotulo = l => l.queda===null ? '<span class="badge badge-muted">poucas respostas fora de simulado</span>'
+    : l.queda>=15 ? '<span class="badge badge-amber">rende menos no simulado</span>'
+    : l.queda<=-15 ? '<span class="badge badge-accent">rende mais no simulado</span>'
+    : l.simTaxa<60 ? '<span class="badge badge-danger">fraco nos dois</span>' : '<span class="badge badge-accent">parecido</span>';
+  return `<div class="card mt-2" style="max-width:720px">
+    <div class="card-title">${escapeHtml(titulo)}</div>
+    <p class="text-sm muted">${intro}</p>
+    <div class="table-wrap mt-1"><table><thead><tr><th>Assunto</th><th>No simulado</th><th>Fora de simulado</th><th></th></tr></thead><tbody>
+      ${linhas.map(l=>`<tr>
+        <td class="text-sm">${escapeHtml(nomeAssunto(l.assuntoId))}</td>
+        <td class="text-sm"><strong>${l.simTaxa}%</strong> <span class="muted">(${l.simAcertos}/${l.simTotal})</span></td>
+        <td class="text-sm">${l.estTotal ? `<strong>${l.estTaxa}%</strong> <span class="muted">(${l.estAcertos}/${l.estTotal})</span>` : '<span class="muted">—</span>'}</td>
+        <td>${rotulo(l)}</td></tr>`).join("")}
+    </tbody></table></div>
+    <p class="text-xs muted mt-1">"Fora de simulado" soma as questões que você fez nas trilhas, na revisão e nas listas. A comparação só é feita com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.</p>
+  </div>`;
+}
 function iniciarSimulado(simuladoId){
+  if(contaTesteAtiva()){ toast("Simulados ficam fechados na conta de teste.", "err"); return; }
   const s = db.simulados.find(x=>x.id===simuladoId); if(!s) return;
   // simulado montado antes de a questão ficar à espera da figura (ou
   // questão que saiu do banco) não entra — ver aguardaImagem()
@@ -342,14 +368,18 @@ function renderResultadoSimulado(){
   <div class="card mt-2" style="max-width:520px">
     <div class="card-title">Como você se saiu, de forma anônima</div>
     <p class="text-sm muted">${ranking.origem==="turma"
-      ? `Comparado às ${ranking.n} tentativas deste simulado feitas pela turma, em qualquer aparelho (sem identificar ninguém).`
-      : `Comparado às ${ranking.n} tentativas deste simulado registradas neste navegador (sem identificar ninguém).${nuvemLigada() && !nuvemConectado() ? " Entrando com a sua conta da nuvem, a comparação passa a ser com a turma inteira." : ""}`}</p>
-    <div class="grid grid-2 mt-2">
-      <div class="stat-tile"><div class="stat-value">Percentil ${ranking.percentil}</div><div class="stat-label">você superou ${ranking.percentil}% das tentativas</div></div>
-      <div class="stat-tile"><div class="stat-value">${ranking.mediana}%</div><div class="stat-label">nota mediana (percentil 50)</div></div>
+      ? `Comparado a ${ranking.n} alunos que fizeram este simulado, em qualquer aparelho (uma nota por aluno, sem identificar ninguém).`
+      : `Comparado a ${ranking.n} alunos que fizeram este simulado neste navegador (uma nota por aluno, sem identificar ninguém).${nuvemLigada() && !nuvemConectado() ? " Entrando com a sua conta da nuvem, a comparação passa a ser com a turma inteira." : ""}`}</p>
+    <div class="grid grid-3 mt-2">
+      <div class="stat-tile"><div class="stat-value">Percentil ${ranking.percentil}</div><div class="stat-label">você superou ${ranking.percentil}% dos alunos</div></div>
+      <div class="stat-tile"><div class="stat-value">${Math.round(ranking.mediana)}%</div><div class="stat-label">percentil 50 (nota mediana)</div></div>
+      <div class="stat-tile"><div class="stat-value">${Math.round(ranking.p90)}%</div><div class="stat-label">percentil 90 (nota de quem está entre os 10% melhores)</div></div>
     </div>
+    <div class="mt-2">${graficoCurvaGaussSvg(ranking, nota)}</div>
+    <p class="text-xs muted mt-1">Curva de Gauss desenhada com a média (${Math.round(ranking.media)}%) e o desvio padrão (${Math.round(ranking.desvio)} pontos) das notas dos alunos: é um ajuste, não a contagem exata.</p>
     <div class="mt-2">${graficoHistogramaSvg(ranking.buckets, ranking.bucketAtual, ["0-20","21-40","41-60","61-80","81-100"])}</div>
-  </div>` : `<div class="card-flat mt-2 text-sm muted" style="max-width:520px">Ainda não há tentativas suficientes deste simulado ${nuvemConectado() ? "na turma" : "neste navegador"} para calcular um percentil (é preciso pelo menos 3).</div>`}
+  </div>` : `<div class="card-flat mt-2 text-sm muted" style="max-width:520px">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado ${nuvemConectado() ? "na turma" : "neste navegador"}.</div>`}
+  ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(usuarioAtual().id, {sessaoId:sessao.id}), "Seus assuntos neste simulado × o seu estudo", "Para cada assunto que caiu aqui, o seu acerto no simulado ao lado do acerto nas questões que você fez fora de simulado. Quem vai bem no estudo e mal aqui perde para o tempo ou para o formato da prova; quem vai mal nos dois precisa estudar o conteúdo.")}
   ${analiseTempo ? `<div class="card mt-2" style="max-width:620px">
     <div class="card-title">Tempo</div>
     <div class="grid grid-3 mt-2">
