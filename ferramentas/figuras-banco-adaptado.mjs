@@ -149,9 +149,9 @@ function floresta(){
   return moldura(W, H, g);
 }
 
-/* ---------- 081: diagrama de dispersão, 27 estados, r = −0,534 ---------- */
+/* ---------- 081: diagrama de dispersão, 40 municípios, r = −0,72 ---------- */
 function dispersao(){
-  const W = 900, H = 580, E = 90, D = 30, T = 60, B = 76, n = 27, alvo = -0.534;
+  const W = 900, H = 580, E = 90, D = 30, T = 60, B = 76, n = 40, alvo = -0.72;
   const rand = semente(81), media = (v) => v.reduce((a, b) => a + b, 0) / v.length;
   const padroniza = (v) => { const m = media(v), dp = Math.sqrt(media(v.map(a => (a - m) ** 2))); return v.map(a => (a - m) / dp); };
   const xz = padroniza(Array.from({ length: n }, () => rand() + rand()));
@@ -159,21 +159,21 @@ function dispersao(){
   const proj = (v, u) => { const k = media(v.map((a, i) => a * u[i])) / media(u.map(a => a * a)); return v.map((a, i) => a - k * u[i]); };
   e = padroniza(proj(proj(e, xz), Array(n).fill(1)));
   const yz = xz.map((a, i) => alvo * a + Math.sqrt(1 - alvo * alvo) * e[i]);
-  const X = xz.map(a => 14 + 3.4 * a), Y = yz.map(a => 54 + 12 * a);
-  const x = (v) => E + ((v - 4) / 20) * (W - E - D), y = (v) => H - B - ((v - 10) / 90) * (H - T - B);
+  const X = xz.map(a => Math.min(99, 86 + 6.5 * a)), Y = yz.map(a => Math.max(1, 15 + 5.5 * a));   // cobertura (%) e casos por 100 mil
+  const x = (v) => E + ((v - 60) / 40) * (W - E - D), y = (v) => H - B - (v / 40) * (H - T - B);
   let g = "";
-  for(const v of [20, 40, 60, 80, 100]) g += `<line x1="${E}" x2="${W - D}" y1="${y(v)}" y2="${y(v)}" stroke="${C.grade}"/>` + texto(E - 10, y(v) + 5, v + "%", { ancora:"end" });
-  for(let v = 4; v <= 24; v += 4) g += texto(x(v), H - B + 24, v, { ancora:"middle" });
-  const rObs = media(X.map((v, i) => (v - media(X)) * (Y[i] - media(Y)))) / (Math.sqrt(media(X.map(v => (v - media(X)) ** 2))) * Math.sqrt(media(Y.map(v => (v - media(Y)) ** 2))));
-  console.log("  r da dispersão =", rObs.toFixed(3), "(alvo −0,534)");
-  const mx = media(X), my = media(Y), b = X.reduce((a, v, i) => a + (v - mx) * (Y[i] - my), 0) / X.reduce((a, v) => a + (v - mx) ** 2, 0);
+  for(const v of [0, 10, 20, 30, 40]) g += `<line x1="${E}" x2="${W - D}" y1="${y(v)}" y2="${y(v)}" stroke="${C.grade}"/>` + texto(E - 10, y(v) + 5, v, { ancora:"end" });
+  for(let v = 60; v <= 100; v += 10) g += texto(x(v), H - B + 24, v + "%", { ancora:"middle" });
+  const mx = media(X), my = media(Y), b1 = X.reduce((a, v, i) => a + (v - mx) * (Y[i] - my), 0) / X.reduce((a, v) => a + (v - mx) ** 2, 0);
+  const rObs = media(X.map((v, i) => (v - mx) * (Y[i] - my))) / (Math.sqrt(media(X.map(v => (v - mx) ** 2))) * Math.sqrt(media(Y.map(v => (v - my) ** 2))));
+  console.log("  r da dispersão =", rObs.toFixed(3), "(alvo -0,72; pontos limitados por corte: " + X.filter(v => v >= 99).length + " em X, " + Y.filter(v => v <= 1).length + " em Y)");
   const a0 = Math.min(...X), a1 = Math.max(...X);
-  g += `<line x1="${f1(x(a0))}" x2="${f1(x(a1))}" y1="${f1(y(my + b * (a0 - mx)))}" y2="${f1(y(my + b * (a1 - mx)))}" stroke="${C.tinta2}" stroke-width="2" stroke-dasharray="7 5"/>`;
+  g += `<line x1="${f1(x(a0))}" x2="${f1(x(a1))}" y1="${f1(y(my + b1 * (a0 - mx)))}" y2="${f1(y(my + b1 * (a1 - mx)))}" stroke="${C.tinta2}" stroke-width="2" stroke-dasharray="7 5"/>`;
   g += X.map((v, i) => `<circle cx="${f1(x(v))}" cy="${f1(y(Y[i]))}" r="6" fill="${C.azul}" stroke="${C.fundo}" stroke-width="2"/>`).join("");
-  g += texto(E, 34, "Taxa de mortalidade infantil × unidades com bom desempenho no PMAQ", { t:17, cor:C.tinta, peso:600 });
-  g += texto((E + W - D) / 2, H - 30, "Taxa de mortalidade infantil (óbitos por 1.000 nascidos vivos)", { ancora:"middle" });
-  g += texto(E - 62, (T + H - B) / 2, "Unidades com bom desempenho (%)", { ancora:"middle", rot:-90 });
-  g += texto(E, H - 8, "Cada ponto é um estado (27 pontos). Dados fictícios; a reta tracejada é o ajuste linear.", { t:12 });
+  g += texto(E, 34, "Cobertura da vacina tríplice viral × incidência de sarampo", { t:17, cor:C.tinta, peso:600 });
+  g += texto((E + W - D) / 2, H - 30, "Cobertura da vacina tríplice viral (%)", { ancora:"middle" });
+  g += texto(E - 62, (T + H - B) / 2, "Casos de sarampo por 100 mil habitantes", { ancora:"middle", rot:-90 });
+  g += texto(E, H - 8, "Cada ponto é um município (40 pontos). Dados fictícios; a reta tracejada é o ajuste linear.", { t:12 });
   return moldura(W, H, g);
 }
 
