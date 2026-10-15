@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BANCO UNIFESP 2025 ADAPTADO — 70 questões autorais
+   BANCO UNIFESP 2025 ADAPTADO — 80 questões autorais
    ==========================================================================
    Cada questão parte do ASSUNTO e da posição de uma questão da prova da
    UNIFESP-EPM 2025, mas é escrita do zero: caso clínico, dados e alternativas
@@ -994,6 +994,147 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   explicacoesAlternativas:{},
   referencias:"National Institute for Health and Care Excellence. Heavy menstrual bleeding: assessment and management (NG88), 2018 (atualizada em 2021); Munro MG et al. FIGO classification system (PALM-COEIN) for causes of abnormal uterine bleeding. Int J Gynaecol Obstet 2018;143:393-408.",
   dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q71 da UNIFESP 2025
+{
+  id:"q-adap25-071", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-climaterio",
+  enunciado:"Mulher, 52 anos, com menopausa aos 50 anos, histerectomizada por mioma há 3 anos, com ovários preservados, queixa-se há 1 ano de fogachos intensos, sudorese noturna e insônia. Não tem história de câncer de mama, tromboembolismo ou doença cardiovascular. PA de 118/76 mmHg, IMC de 24 kg/m² e mamografia normal. Deseja tratamento medicamentoso. Qual é a terapia hormonal mais adequada?",
+  alternativas:[{id:"A",texto:"Estrogênio associado a progestogênio contínuo, para proteger o endométrio."},{id:"B",texto:"Progestogênio isolado em dose alta, que controla os fogachos de modo equivalente."},{id:"C",texto:"Estrogênio isolado, sem progestogênio, pela ausência de útero."},{id:"D",texto:"Tibolona associada a estrogênio, para ampliar o efeito sobre os sintomas."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **sintomas vasomotores intensos** (fogachos, sudorese e insônia), **52 anos e menopausa há 2 anos** (menos de 60 anos e menos de 10 anos de menopausa: janela favorável), **sem contraindicações** (sem câncer de mama, tromboembolismo ou doença cardiovascular) e **sem útero** (histerectomia). O estrogênio isolado trata os sintomas e dispensa o progestogênio, cuja função é proteger o endométrio contra a hiperplasia causada pelo estrogênio, e ele traz riscos próprios (mama, tromboembolismo). A está errada porque o progestogênio é desnecessário sem útero e acrescenta risco. B está errada porque o progestogênio isolado não é equivalente ao estrogênio no controle dos sintomas vasomotores. D está errada porque a tibolona é uma alternativa isolada ao esquema estroprogestativo, e não se associa ao estrogênio.",
+  explicacoesAlternativas:{},
+  referencias:"The 2022 Hormone Therapy Position Statement of The North American Menopause Society. Menopause 2022;29:767-794; Sociedade Brasileira de Climatério. Consenso Brasileiro de Terapêutica Hormonal da Menopausa, 2018 (edição mais nova não conferida).",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q72 da UNIFESP 2025
+{
+  id:"q-adap25-072", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
+  enunciado:"Gestante, 28 semanas, sem diagnóstico prévio de diabetes, realiza teste oral de tolerância à glicose com 75 g, com glicemias de 88 mg/dL em jejum, 186 mg/dL em 1 hora e 148 mg/dL em 2 horas. Qual é a interpretação do resultado?",
+  alternativas:[{id:"A",texto:"Diabetes mellitus gestacional, porque o valor de 1 hora ultrapassa 180 mg/dL e basta um valor alterado."},{id:"B",texto:"Resultado normal, porque a glicemia de jejum e a de 2 horas estão dentro dos limites."},{id:"C",texto:"Intolerância à glicose sem diagnóstico de diabetes gestacional, por haver só um valor alterado."},{id:"D",texto:"Diabetes mellitus pré-gestacional, porque o valor de 1 hora ultrapassa 180 mg/dL."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: teste de **75 g entre 24 e 28 semanas**, com **jejum de 88 mg/dL** (limite de 92 mg/dL), **1 hora de 186 mg/dL** (limite de 180 mg/dL) e **2 horas de 148 mg/dL** (limite de 153 mg/dL). Pelos critérios da IADPSG, adotados pela OMS e pelas diretrizes brasileiras, **um único valor** igual ou acima do ponto de corte **(jejum ≥ 92, 1 hora ≥ 180 ou 2 horas ≥ 153 mg/dL)** fecha o diagnóstico de diabetes mellitus gestacional; aqui, o valor de 1 hora está alterado. B está errada porque o diagnóstico não exige alteração dos três pontos nem do jejum. C está errada porque não existe a categoria «intolerância sem diagnóstico» na gestação: um valor alterado basta. D está errada porque o diabetes franco (pré-gestacional) exigiria jejum de 126 mg/dL ou mais ou glicemia de 2 horas de 200 mg/dL ou mais, e não é o caso.",
+  explicacoesAlternativas:{},
+  referencias:"Metzger BE et al. International Association of Diabetes and Pregnancy Study Groups recommendations. Diabetes Care 2010;33:676-682; Organização Pan-Americana da Saúde/Ministério da Saúde/SBD. Rastreamento e diagnóstico de diabetes mellitus gestacional no Brasil, 2016; American Diabetes Association. Standards of Care in Diabetes - 2025, section 15. Diabetes Care 2025;48(Suppl 1).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q73 da UNIFESP 2025
+{
+  id:"q-adap25-073", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-infertilidade",
+  enunciado:"Casal formado por uma mulher de 37 anos, nuligesta, com ciclos regulares, e um homem de 39 anos, sem filhos e saudável, tenta engravidar há 8 meses, com relações sexuais sem proteção duas a três vezes por semana, sem sucesso. Procuram atendimento por ansiedade. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Orientar a manter as tentativas por mais 4 meses, completando 12 meses, antes de qualquer exame."},{id:"B",texto:"Orientar a manter as tentativas por 24 meses, porque a maioria dos casais engravida nesse prazo de tempo."},{id:"C",texto:"Encaminhar diretamente à fertilização in vitro, sem investigação prévia, pela idade da mulher."},{id:"D",texto:"Iniciar a investigação do casal, pois, com mulher de 35 anos ou mais, o prazo para investigar é de 6 meses."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: mulher de **37 anos** (35 anos ou mais) e **8 meses** de tentativas, com relações regulares, sem queixas. A infertilidade se define por 12 meses de relações sem proteção na mulher com menos de 35 anos, e **6 meses na mulher com 35 anos ou mais**, porque a reserva ovariana cai com a idade e o atraso diminui as chances; por isso a investigação do casal (avaliação da ovulação, das tubas, do útero e do espermograma) deve começar já. A está errada porque aplica o prazo de 12 meses a uma mulher com 35 anos ou mais. B está errada porque 24 meses é prazo longo demais, e a espera reduz a chance de gestação. C está errada porque a fertilização in vitro só se indica depois da investigação, de acordo com a causa.",
+  explicacoesAlternativas:{},
+  referencias:"Practice Committee of the American Society for Reproductive Medicine. Definitions of infertility and recurrent pregnancy loss: a committee opinion. Fertil Steril 2020;113:533-535; ESHRE Guideline: unexplained infertility. Hum Reprod Open 2023;2023:hoad048.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q74 da UNIFESP 2025
+{
+  id:"q-adap25-074", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-aloimunizacaorh",
+  enunciado:"Mulher de 29 anos, do grupo sanguíneo O com fator Rh ausente, está na primeira gestação, com 28 semanas. O pai do feto é Rh positivo. A pesquisa de anticorpos contra hemácias (Coombs indireto) colhida hoje não detecta anticorpos. Qual medida deve ser tomada para evitar a aloimunização?",
+  alternativas:[{id:"A",texto:"Repetir o Coombs indireto a cada 4 semanas e aplicar a imunoglobulina anti-D somente depois do parto."},{id:"B",texto:"Imunoglobulina anti-D agora e nova dose em até 72 horas após o parto, se o bebê for Rh positivo."},{id:"C",texto:"Nenhuma medida, porque o Coombs indireto negativo afasta o risco de sensibilização."},{id:"D",texto:"Dopplervelocimetria da artéria cerebral média toda semana, para detectar precocemente a anemia fetal."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: mulher **Rh negativo**, na **primeira gestação**, com **Coombs indireto negativo** (ainda **não sensibilizada**) e pai do feto Rh positivo (o feto pode ser Rh positivo), na **28ª semana**. A profilaxia da aloimunização se faz com imunoglobulina anti-D (300 mcg, por via intramuscular) por volta da 28ª semana e nova dose em até 72 horas depois do parto, se o recém-nascido for Rh positivo; também se aplica depois de eventos sensibilizantes (aborto, sangramento, procedimentos invasivos). A está errada porque deixar a profilaxia só para o pós-parto perde a proteção das sensibilizações silenciosas do fim da gestação. C está errada porque o Coombs negativo mostra apenas que ela ainda não se sensibilizou, e é justamente por isso que a profilaxia funciona. D está errada porque a dopplervelocimetria da artéria cerebral média serve à gestante já sensibilizada, com título significativo.",
+  explicacoesAlternativas:{},
+  referencias:"American College of Obstetricians and Gynecologists. Practice Bulletin nº 181: Prevention of Rh D alloimmunization. Obstet Gynecol 2017;130:e57-e70; Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q75 da UNIFESP 2025
+{
+  id:"q-adap25-075", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-doencatrofoblastica",
+  enunciado:"Mulher, 28 anos, G1P0, foi submetida a esvaziamento uterino por vácuo-aspiração por mola hidatiforme completa, confirmada à histologia, com hCG de 180.000 mUI/mL antes do procedimento. Está assintomática e sem sangramento, e a ultrassonografia pélvica depois do esvaziamento mostra cavidade uterina vazia. Qual é a conduta de seguimento mais adequada?",
+  alternativas:[{id:"A",texto:"Dosagem semanal do hCG até negativar, com contracepção eficaz durante o seguimento."},{id:"B",texto:"Dosagem mensal do hCG por 2 anos, liberando uma nova gestação após 6 meses de seguimento."},{id:"C",texto:"Seguimento só clínico e ultrassonográfico, sem hCG, por se tratar de uma mola benigna."},{id:"D",texto:"Segunda curetagem sistemática em 15 dias, para confirmar o esvaziamento completo do útero."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **mola hidatiforme completa** com **hCG inicial de 180.000 mUI/mL**, tratada por **vácuo-aspiração** e hoje assintomática. A mola completa pode evoluir para neoplasia trofoblástica gestacional (cerca de 15% a 20% dos casos), e o seguimento se faz com **dosagem semanal do hCG até a negativação** e depois com dosagens periódicas por alguns meses, com **contracepção eficaz** para que uma gestação não confunda a interpretação do hCG; a curva de queda é o que detecta a persistência. B está errada porque o seguimento semanal inicial é indispensável e o seguimento mensal por 2 anos não é o preconizado. C está errada porque, sem o hCG, não há como detectar a neoplasia; a ultrassonografia não substitui o marcador. D está errada porque a segunda curetagem não é rotina, e é reservada a casos selecionados com tecido retido e sangramento.",
+  explicacoesAlternativas:{},
+  referencias:"Ngan HYS et al. Update on the diagnosis and management of gestational trophoblastic disease (FIGO Cancer Report 2018). Int J Gynaecol Obstet 2018;143(Suppl 2):79-85; American College of Obstetricians and Gynecologists. Practice Bulletin nº 53: Diagnosis and treatment of gestational trophoblastic disease, 2004 (reafirmado).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q76 da UNIFESP 2025
+{
+  id:"q-adap25-076", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
+  enunciado:"Gestante de 31 anos, com 30 semanas, sem intercorrências, recebeu 3 doses de vacina contra o tétano há 3 anos, 3 doses de vacina contra hepatite B e refere esquema vacinal completo na infância. Qual vacina deve ser administrada nesta gestação, independentemente do esquema anterior?",
+  alternativas:[{id:"A",texto:"Tríplice viral, para proteger o recém-nascido contra sarampo, caxumba e rubéola."},{id:"B",texto:"Varicela, porque a gestante e o feto não têm imunidade natural contra a doença."},{id:"C",texto:"dTpa (difteria, tétano e coqueluche), uma dose a cada gestação, a partir da 20ª semana."},{id:"D",texto:"HPV, em dose de reforço antes do parto, para proteger a mulher e o recém-nascido."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: gestante de **30 semanas** com **tétano já vacinado há 3 anos** (3 doses), o que mostra que ela tem esquema anterior, mas a **vacina dTpa** é indicada **a cada gestação**, a partir da 20ª semana, para transferir anticorpos contra a coqueluche ao recém-nascido, antes de ele poder ser vacinado. A está errada porque as vacinas de vírus vivos atenuados, como a tríplice viral, são contraindicadas na gestação. B está errada porque a vacina de varicela também é de vírus vivo atenuado, contraindicada na gestação. D está errada porque a vacina HPV não é recomendada durante a gestação e não protege o recém-nascido.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação e Nota Técnica sobre vacinação da gestante (dTpa a partir da 20ª semana; texto oficial vigente não conferido); Sociedade Brasileira de Imunizações. Calendário de vacinação da gestante, 2025.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q77 da UNIFESP 2025
+{
+  id:"q-adap25-077", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
+  enunciado:"Gestante de 31 anos, secundigesta, com 38 semanas, tem diagnóstico de diabetes gestacional feito com 26 semanas e controlado apenas com dieta e atividade física, com 90% das glicemias de jejum e pós-prandiais dentro da meta. IMC pré-gestacional de 28 kg/m². A ultrassonografia mostra peso fetal estimado de 3.200 g (percentil 60) e líquido amniótico normal, e a vitalidade fetal é normal. Qual é a conduta mais adequada em relação ao momento e à via de parto?",
+  alternativas:[{id:"A",texto:"Cesárea eletiva nesta semana, por causa do diagnóstico de diabetes gestacional da paciente."},{id:"B",texto:"Indução do parto entre 36 e 37 semanas, para evitar a macrossomia fetal."},{id:"C",texto:"Aguardar o trabalho de parto espontâneo até 40 semanas e 6 dias, com vigilância fetal."},{id:"D",texto:"Cesárea eletiva com 39 semanas, pelo risco de macrossomia e de distocia de ombro no parto."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: diabetes gestacional **controlado só com dieta (classe A1)**, **90% das glicemias na meta**, **peso fetal de 3.200 g** (abaixo de 4.500 g) e **vitalidade fetal normal**. Nesse perfil de baixo risco, o parto não deve ser antecipado antes de 39 semanas sem outra indicação; a gestante pode aguardar o trabalho de parto espontâneo até **40 semanas e 6 dias**, com vigilância fetal, e a indução se oferece se passar disso. A via de parto é obstétrica. A está errada porque o diabetes gestacional bem controlado não é indicação de cesárea. B está errada porque a indução antes de 39 semanas, sem indicação fetal ou materna, aumenta a morbidade respiratória neonatal. D está errada porque a cesárea por macrossomia só se considera com peso fetal estimado de 4.500 g ou mais na gestante diabética.",
+  explicacoesAlternativas:{},
+  referencias:"American College of Obstetricians and Gynecologists. Practice Bulletin nº 190: Gestational diabetes mellitus. Obstet Gynecol 2018;131:e49-e64; ACOG Committee Opinion nº 831: Medically indicated late-preterm and early-term deliveries. Obstet Gynecol 2021;138:e35-e39.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q78 da UNIFESP 2025
+{
+  id:"q-adap25-078", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-abortamento",
+  enunciado:"Mulher, 33 anos, IIIG, IIIA (três abortamentos consecutivos antes de 10 semanas, sem partos), com o mesmo parceiro. Cariótipo do casal normal, útero normal à histerossonografia e TSH normal. O anticoagulante lúpico é positivo em duas ocasiões separadas por 12 semanas, e a anticardiolipina IgG é de 62 GPL (acima do percentil 99), confirmada em 12 semanas. Nunca teve trombose. Chega ao pré-natal com 6 semanas de gestação e embrião com batimentos cardíacos. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Apenas ácido acetilsalicílico em dose baixa, porque a heparina é reservada às pacientes com trombose prévia."},{id:"B",texto:"Ácido acetilsalicílico em dose baixa associado a heparina de baixo peso molecular em dose profilática."},{id:"C",texto:"Heparina de baixo peso molecular em dose terapêutica plena durante toda a gestação."},{id:"D",texto:"Prednisona e imunoglobulina endovenosa, para suprimir a produção dos anticorpos antifosfolípide."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **três abortamentos consecutivos antes de 10 semanas**, causas genéticas e anatômicas afastadas (**cariótipo normal**, útero normal), **anticoagulante lúpico positivo e anticardiolipina IgG em título médio ou alto, confirmados em 12 semanas** e **sem trombose prévia**: síndrome antifosfolípide obstétrica. O tratamento recomendado na gestação é o **ácido acetilsalicílico em dose baixa associado à heparina de baixo peso molecular em dose profilática**, o que aumenta a chance de nascido vivo. A está errada porque a associação à heparina profilática é a recomendada na forma obstétrica, e o ácido acetilsalicílico isolado tem resultado inferior. C está errada porque a dose terapêutica plena é indicada na síndrome com trombose, e não na forma apenas obstétrica. D está errada porque o corticoide e a imunoglobulina não melhoram o desfecho gestacional e expõem a paciente a efeitos adversos.",
+  explicacoesAlternativas:{},
+  referencias:"Tektonidou MG et al. EULAR recommendations for the management of antiphospholipid syndrome in adults. Ann Rheum Dis 2019;78:1296-1304; ESHRE Guideline Group on RPL. ESHRE guideline: recurrent pregnancy loss: an update in 2022. Hum Reprod Open 2023;2023:hoad002.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q79 da UNIFESP 2025
+{
+  id:"q-adap25-079", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-gestacaomultipla",
+  enunciado:"Gestante de 33 anos, primigesta, com 37 semanas e 4 dias de gestação gemelar dicoriônica e diamniótica sem complicações, está em trabalho de parto espontâneo, com 5 cm de dilatação. O primeiro gemelar está em apresentação cefálica e o segundo, em apresentação pélvica. Os pesos fetais estimados são de 2.750 g e 2.900 g, e a vitalidade fetal é normal. Qual é a conduta mais adequada em relação à via de parto?",
+  alternativas:[{id:"A",texto:"Cesárea, porque o segundo gemelar está em apresentação pélvica e não pode nascer por via vaginal."},{id:"B",texto:"Parto vaginal, pois o primeiro é cefálico, com o segundo gemelar manejado por equipe treinada em parto pélvico."},{id:"C",texto:"Cesárea, porque toda gestação gemelar, independentemente da apresentação, tem indicação de parto cesáreo."},{id:"D",texto:"Cesárea, porque o segundo gemelar é maior que o primeiro e o parto vaginal seria mais difícil."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: gestação **dicoriônica e diamniótica**, a **termo (37 semanas e 4 dias)**, **trabalho de parto espontâneo**, **primeiro gemelar cefálico** e pesos fetais **próximos (2.750 g e 2.900 g, diferença de cerca de 5%)**. Quando o primeiro gemelar é cefálico, o parto vaginal planejado é seguro, qualquer que seja a apresentação do segundo, e o ensaio clínico randomizado de parto planejado em gemelares não mostrou vantagem da cesárea; o segundo gemelar é conduzido por equipe com treinamento em manobras de parto pélvico e versão interna. A está errada porque a apresentação do segundo gemelar não é indicação de cesárea. C está errada porque a gestação gemelar, por si só, não é indicação de cesárea. D está errada porque o segundo gemelar apenas um pouco maior (cerca de 5%) não é indicação; a discordância de peso só pesa quando for grande.",
+  explicacoesAlternativas:{},
+  referencias:"American College of Obstetricians and Gynecologists. Practice Bulletin nº 231: Multifetal gestations: twin, triplet, and higher-order multifetal pregnancies. Obstet Gynecol 2021;137:e145-e162; Barrett JFR et al. A randomized trial of planned cesarean or vaginal delivery for twin pregnancy. N Engl J Med 2013;369:1295-1305.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q80 da UNIFESP 2025
+{
+  id:"q-adap25-080", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
+  imagemUrl:"dados/imagens/q-adap25-080.png", imagemLegenda:"Cardiotocografia dos últimos 10 minutos (ilustração esquemática): frequência cardíaca fetal e atividade uterina.",
+  enunciado:"Primigesta, 26 anos, com 39 semanas, em trabalho de parto espontâneo, com 5 cm de dilatação, bolsa rota há 3 horas com líquido claro, recebendo ocitocina em infusão contínua para correção da dinâmica uterina. Está em decúbito dorsal, com PA de 118/74 mmHg e sem febre. A cardiotocografia dos últimos 30 minutos mantém o padrão mostrado na figura. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Manter a conduta expectante e a ocitocina, porque as desacelerações são benignas durante o trabalho de parto."},{id:"B",texto:"Aumentar a dose de ocitocina para acelerar o parto antes que o estado fetal se deteriore."},{id:"C",texto:"Cesárea imediata, sem outras medidas prévias, por se tratar de traçado de categoria III."},{id:"D",texto:"Ressuscitação intrauterina (decúbito lateral, hidratação, suspender ocitocina) e preparar o parto operatório."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas da figura e do enunciado: **linha de base de cerca de 150 bpm** (normal), **variabilidade mínima (5 bpm ou menos)** e **desacelerações tardias recorrentes** (início depois do pico da contração, com retorno depois do seu fim, até cerca de 110 bpm) em **todas as contrações**, em paciente **em decúbito dorsal** e **com ocitocina**. É um traçado de **categoria II (indeterminado)**, que exige avaliação e reanimação intrauterina: mudar para decúbito lateral, hidratar, **suspender a ocitocina** (a hiperatividade uterina reduz a perfusão placentária) e tratar causas como a hipotensão; se o padrão persistir ou se agravar para categoria III, indica-se o parto, em geral operatório, e por isso o centro cirúrgico deve estar pronto. A está errada porque as desacelerações tardias refletem insuficiência placentária e não são benignas. B está errada porque aumentar a ocitocina agrava a hipoperfusão placentária. C está errada porque a categoria III exige ausência de variabilidade com desacelerações recorrentes ou bradicardia, o que a figura não mostra; a primeira medida é a reanimação intrauterina.",
+  explicacoesAlternativas:{},
+  referencias:"Macones GA et al. The 2008 National Institute of Child Health and Human Development workshop report on electronic fetal monitoring. Obstet Gynecol 2008;112:661-666; American College of Obstetricians and Gynecologists. Practice Bulletin nº 106: Intrapartum fetal heart rate monitoring, 2009 (reafirmado); Brasil. Ministério da Saúde. Diretrizes Nacionais de Assistência ao Parto Normal, 2017.",
+  dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-15"
 }

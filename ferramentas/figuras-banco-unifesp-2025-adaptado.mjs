@@ -179,7 +179,37 @@ function heredograma(){
   return moldura(W, H, g);
 }
 
-const FIGURAS = { "q-adap25-021": ecg12, "q-adap25-030": fibrilacaoAtrial, "q-adap25-053": curvaRoc, "q-adap25-063": heredograma };
+/* ---------- 080: cardiotocografia, desacelerações tardias recorrentes com variabilidade mínima ---------- */
+function cardiotocografia(){
+  const W = 1100, H = 620, E = 90, D = 40, T = 70, alturaFcf = 300, alturaToco = 130, vao = 36, dur = 10;
+  const x = (min) => E + (min / dur) * (W - E - D);
+  const yF = (b) => T + (1 - (b - 60) / 150) * alturaFcf;                   // FCF de 60 a 210 bpm
+  const yoToco = T + alturaFcf + vao, yU = (mm) => yoToco + (1 - mm / 100) * alturaToco;
+  let g = `<rect x="${E}" y="${f1(yF(160))}" width="${W - E - D}" height="${f1(yF(110) - yF(160))}" fill="${C.faixa}"/>`;
+  for(let b = 60; b <= 210; b += 30){ g += `<line x1="${E}" x2="${W - D}" y1="${f1(yF(b))}" y2="${f1(yF(b))}" stroke="${C.grade}"/>` + texto(E - 10, yF(b) + 5, b, { ancora: "end" }); }
+  for(let m = 0; m <= dur; m++){ g += `<line x1="${f1(x(m))}" x2="${f1(x(m))}" y1="${T}" y2="${yoToco + alturaToco}" stroke="${m % 5 ? C.grade : C.eixo}" stroke-width="${m % 5 ? 1 : 1.4}"/>` + texto(x(m), yoToco + alturaToco + 24, m, { ancora: "middle" }); }
+  for(let u = 0; u <= 100; u += 25){ g += `<line x1="${E}" x2="${W - D}" y1="${f1(yU(u))}" y2="${f1(yU(u))}" stroke="${C.grade}"/>` + texto(E - 10, yU(u) + 5, u, { ancora: "end" }); }
+  g += `<rect x="${E}" y="${T}" width="${W - E - D}" height="${alturaFcf}" fill="none" stroke="${C.eixo}"/><rect x="${E}" y="${yoToco}" width="${W - E - D}" height="${alturaToco}" fill="none" stroke="${C.eixo}"/>`;
+  const picos = [1.3, 3.8, 6.3, 8.8], fundos = [38, 42, 36, 40];
+  // atividade uterina: contrações de cerca de 75 s, a cada 2,5 min
+  const toco = []; for(let t = 0; t <= dur; t += 0.01){ let v = 10; picos.forEach(c => v += 55 * Math.exp(-(((t - c) / 0.33) ** 2))); toco.push([x(t), yU(v)]); }
+  g += `<path d="${caminho(toco)}" fill="none" stroke="${C.laranja}" stroke-width="2.4" stroke-linejoin="round"/>`;
+  // frequência cardíaca fetal: linha de base de 150 bpm, variabilidade mínima e desacelerações tardias (nadir 27 s depois do pico)
+  const fcf = [];
+  for(let t = 0; t <= dur; t += 0.01){
+    let v = 150 + 1.6 * Math.sin(2 * Math.PI * t * 5.2) + 1.2 * Math.sin(2 * Math.PI * t * 9.1 + 1) + 0.9 * Math.sin(2 * Math.PI * t * 14.3 + 2);
+    picos.forEach((c, i) => { const tn = c + 0.45; v -= fundos[i] * Math.exp(-(((t - tn) / (t < tn ? 0.30 : 0.36)) ** 2)); });
+    fcf.push([x(t), yF(v)]);
+  }
+  g += `<path d="${caminho(fcf)}" fill="none" stroke="${C.azul}" stroke-width="2.6" stroke-linejoin="round"/>`;
+  g += texto(E, 36, "Cardiotocografia — últimos 10 minutos (ilustração esquemática)", { t: 18, cor: C.tinta, peso: 600 });
+  g += texto(E - 62, T + alturaFcf / 2, "FCF (bpm)", { ancora: "middle", rot: -90, t: 14 }) + texto(E - 62, yoToco + alturaToco / 2, "Útero (mmHg)", { ancora: "middle", rot: -90, t: 14 });
+  g += texto((E + W - D) / 2, yoToco + alturaToco + 52, "Tempo (min)", { ancora: "middle", t: 14 });
+  g += texto(E, H - 12, "Traçado esquemático desenhado por computador. A faixa cinza marca 110 a 160 bpm.", { t: 12.5 });
+  return moldura(W, H, g);
+}
+
+const FIGURAS = { "q-adap25-021": ecg12, "q-adap25-030": fibrilacaoAtrial, "q-adap25-053": curvaRoc, "q-adap25-063": heredograma, "q-adap25-080": cardiotocografia };
 
 const pedidos = process.argv.slice(2);
 const navegador = await chromium.launch();
