@@ -11,6 +11,7 @@ window.ESC_ARQUIVOS.dados = [
   "taxonomia",
   "calendario",
   "banco-didatico",
+  "banco-unifesp-2024-adaptado",
   "prova-unifesp-2022",
   "prova-unifesp-2023",
   "prova-unifesp-2024",
