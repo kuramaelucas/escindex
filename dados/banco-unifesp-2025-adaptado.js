@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BANCO UNIFESP 2025 ADAPTADO — 50 questões autorais
+   BANCO UNIFESP 2025 ADAPTADO — 60 questões autorais
    ==========================================================================
    Cada questão parte do ASSUNTO e da posição de uma questão da prova da
    UNIFESP-EPM 2025, mas é escrita do zero: caso clínico, dados e alternativas
@@ -297,10 +297,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
 {
   id:"q-adap25-021", banca:"Esc — Banco Didático", real:false, ano:2027,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  enunciado:"Mulher, 61 anos, hipertensa e dislipidêmica, é atendida em hospital sem serviço de hemodinâmica, 90 minutos depois do início de dor torácica intensa, em aperto, com sudorese. O eletrocardiograma mostra supradesnivelamento do segmento ST de 3 mm de V1 a V5. PA 138/84 mmHg e FC 92 bpm, sem sinais de insuficiência cardíaca. Não há contraindicação à fibrinólise. O serviço de hemodinâmica mais próximo só poderá realizar a angioplastia cerca de 150 minutos após o primeiro contato médico. Qual é a conduta de reperfusão mais adequada?",
+  imagemUrl:"dados/imagens/q-adap25-021.png", imagemLegenda:"Eletrocardiograma de 12 derivações da paciente (ilustração esquemática).",
+  enunciado:"Mulher, 61 anos, hipertensa e dislipidêmica, é atendida em hospital sem serviço de hemodinâmica, 90 minutos depois do início de dor torácica intensa, em aperto, com sudorese. O eletrocardiograma de 12 derivações é mostrado na figura. PA 138/84 mmHg e FC 92 bpm, sem sinais de insuficiência cardíaca. Não há contraindicação à fibrinólise. O serviço de hemodinâmica mais próximo só poderá realizar a angioplastia cerca de 150 minutos após o primeiro contato médico. Qual é a conduta de reperfusão mais adequada?",
   alternativas:[{id:"A",texto:"Transferência para angioplastia primária, sem trombolítico, pois a angioplastia sempre é preferível."},{id:"B",texto:"Fibrinólise imediata, seguida de transferência para angiografia coronária nas primeiras 24 horas."},{id:"C",texto:"Espera da dosagem seriada de troponina para confirmar o infarto antes de indicar qualquer reperfusão."},{id:"D",texto:"Anticoagulação plena e dupla antiagregação, reservando a reperfusão para a persistência da dor."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **dor típica há 90 minutos** (menos de 12 horas), **supradesnivelamento de ST de 3 mm de V1 a V5** (infarto anterior extenso, sem necessidade de esperar marcador), **sem contraindicação à fibrinólise** e **angioplastia só em 150 minutos**, acima do limite de **120 minutos** do primeiro contato médico até a passagem do fio-guia. Quando a angioplastia primária não pode ser feita nesse prazo, a fibrinólise deve ser aplicada logo, e o paciente é transferido para angiografia (estratégia farmacoinvasiva), em geral entre 2 e 24 horas, ou antes, se a reperfusão falhar. A está errada porque a preferência pela angioplastia só vale quando ela é possível dentro de 120 minutos; esperar 150 minutos perde o benefício. C está errada porque, no STEMI, a decisão de reperfundir é clínica e eletrocardiográfica e não aguarda troponina. D está errada porque anticoagulação e antiagregação são complementares e não substituem a reperfusão no infarto com supradesnível de ST.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado e da figura: **dor típica há 90 minutos** (menos de 12 horas) e **supradesnivelamento convexo do segmento ST de V1 a V6**, com máximo em V2 e V3 (cerca de 4 mm), estendido a I e aVL e com infradesnivelamento recíproco em DIII e aVF (infarto anterior extenso, sem necessidade de esperar marcador), **sem contraindicação à fibrinólise** e **angioplastia só em 150 minutos**, acima do limite de **120 minutos** do primeiro contato médico até a passagem do fio-guia. Quando a angioplastia primária não pode ser feita nesse prazo, a fibrinólise deve ser aplicada logo, e o paciente é transferido para angiografia (estratégia farmacoinvasiva), em geral entre 2 e 24 horas, ou antes, se a reperfusão falhar. A está errada porque a preferência pela angioplastia só vale quando ela é possível dentro de 120 minutos; esperar 150 minutos perde o benefício. C está errada porque, no STEMI, a decisão de reperfundir é clínica e eletrocardiográfica e não aguarda troponina. D está errada porque anticoagulação e antiagregação são complementares e não substituem a reperfusão no infarto com supradesnível de ST.",
   explicacoesAlternativas:{},
   referencias:"Byrne RA et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J 2023;44:3720-3826; Rao SV et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. Circulation 2025;151:e771-e862 (tempos e classes conferidos apenas em resumos).",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -423,10 +424,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
 {
   id:"q-adap25-030", banca:"Esc — Banco Didático", real:false, ano:2027,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
-  enunciado:"Mulher, 72 anos, com pneumonia comunitária grave, evolui com choque séptico: depois da infusão de 30 mL/kg de cristaloide balanceado, mantém PA de 78/42 mmHg (pressão arterial média de 54 mmHg), lactato de 4,6 mmol/L e oligúria. O eletrocardiograma mostra fibrilação atrial de início recente, com frequência ventricular de 138 bpm. O antibiótico já foi administrado. Qual vasopressor deve ser a primeira escolha?",
+  imagemUrl:"dados/imagens/q-adap25-030.png", imagemLegenda:"Traçado do monitor na derivação DII (ilustração esquemática).",
+  enunciado:"Mulher, 72 anos, com pneumonia comunitária grave, evolui com choque séptico: depois da infusão de 30 mL/kg de cristaloide balanceado, mantém PA de 78/42 mmHg (pressão arterial média de 54 mmHg), lactato de 4,6 mmol/L e oligúria. O ritmo, de início recente, é mostrado no traçado do monitor (derivação DII) da figura. O antibiótico já foi administrado. Qual vasopressor deve ser a primeira escolha?",
   alternativas:[{id:"A",texto:"Dopamina em dose intermediária, por aumentar a pressão e o débito cardíaco."},{id:"B",texto:"Adrenalina em infusão contínua, por seu efeito vasopressor e inotrópico potente."},{id:"C",texto:"Noradrenalina em infusão contínua, com monitorização da pressão arterial."},{id:"D",texto:"Fenilefrina em infusão contínua, por não ter efeito sobre a frequência cardíaca."}],
   gabarito:"C",
-  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **choque séptico** (PAM de 54 mmHg e **lactato de 4,6 mmol/L** persistentes após **30 mL/kg** de cristaloide), com **fibrilação atrial de 138 bpm**. A noradrenalina é o vasopressor de primeira linha no choque séptico, e a campanha de sobrevivência à sepse a recomenda sobre dopamina e adrenalina; na presença de taquiarritmia, é a que menos a agrava. A está errada porque a dopamina causa mais taquiarritmia, inclusive fibrilação atrial, e está associada a maior mortalidade que a noradrenalina. B está errada porque a adrenalina é droga de segunda ou terceira linha, adicionada quando a noradrenalina e a vasopressina não bastam, e pode piorar a taquicardia e o lactato. D está errada porque a fenilefrina é vasoconstritor puro, reduz o débito cardíaco e não é recomendada como primeira escolha no choque séptico. A vasopressina é acrescentada à noradrenalina quando a dose dela sobe.",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado e da figura: **choque séptico** (PAM de 54 mmHg e **lactato de 4,6 mmol/L** persistentes após **30 mL/kg** de cristaloide), com **fibrilação atrial de resposta ventricular rápida** no traçado (intervalos RR irregulares, ausência de onda P e cerca de **140 bpm**). A noradrenalina é o vasopressor de primeira linha no choque séptico, e a campanha de sobrevivência à sepse a recomenda sobre dopamina e adrenalina; na presença de taquiarritmia, é a que menos a agrava. A está errada porque a dopamina causa mais taquiarritmia, inclusive fibrilação atrial, e está associada a maior mortalidade que a noradrenalina. B está errada porque a adrenalina é droga de segunda ou terceira linha, adicionada quando a noradrenalina e a vasopressina não bastam, e pode piorar a taquicardia e o lactato. D está errada porque a fenilefrina é vasoconstritor puro, reduz o débito cardíaco e não é recomendada como primeira escolha no choque séptico. A vasopressina é acrescentada à noradrenalina quando a dose dela sobe.",
   explicacoesAlternativas:{},
   referencias:"Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026. Intensive Care Med 2026 (doi 10.1007/s00134-026-08361-1; recomendações conferidas em resumos); Evans L et al. Surviving Sepsis Campaign 2021. Crit Care Med 2021;49:e1063-e1143.",
   dificuldadeManual:"intermediario", status:"ativa",
@@ -709,6 +711,147 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a **equipe de Saúde da Família** (equipe de referência) discute o caso com profissionais da **eMulti** (fisioterapeuta e psicólogo), definem **plano de cuidado compartilhado** e **atendimentos conjuntos**, **sem transferir** a paciente. Esse é o **apoio matricial**, que oferece retaguarda assistencial e técnico-pedagógica à equipe de referência, com corresponsabilização, e é uma das principais ações das equipes multiprofissionais da atenção primária (eMulti, que sucederam o NASF). A está errada porque, na referência e contrarreferência, a paciente é encaminhada e o cuidado muda de serviço. B está errada porque a interconsulta formal é uma pergunta pontual, sem plano compartilhado nem corresponsabilização. C está errada porque a classificação de prioridade não é o que a equipe descreve.",
   explicacoesAlternativas:{},
   referencias:"Campos GWS, Domitti AC. Apoio matricial e equipe de referência: uma metodologia para gestão do trabalho interdisciplinar em saúde. Cad Saúde Pública 2007;23:399-407; Brasil. Ministério da Saúde. Portaria GM/MS nº 635, de 22 de maio de 2023 (eMulti).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q51 da UNIFESP 2025
+{
+  id:"q-adap25-051", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-niveisatencao",
+  enunciado:"Um grupo de municípios vizinhos quer ser reconhecido como Região de Saúde, para organizar a rede e pactuar recursos de forma conjunta. Segundo o decreto que regulamenta a organização do SUS, quais ações e serviços a região precisa conter, no mínimo?",
+  alternativas:[{id:"A",texto:"Atenção primária, urgência e emergência, atenção psicossocial, atenção especializada ambulatorial e hospitalar e vigilância em saúde."},{id:"B",texto:"Atenção primária, urgência e emergência, atenção hospitalar de alta complexidade e reabilitação, sem exigência de vigilância em saúde."},{id:"C",texto:"Atenção primária, maternidade de alto risco, terapia renal substitutiva e serviço de oncologia de alta complexidade."},{id:"D",texto:"Unidades básicas de saúde e hospital geral, com urgência e emergência, referenciando o restante a outras regiões."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: a pergunta é sobre os **serviços mínimos** que o decreto exige para **instituir uma Região de Saúde**. O Decreto nº 7.508/2011 determina que a região contenha, no mínimo, ações e serviços de **atenção primária**, **urgência e emergência**, **atenção psicossocial**, **atenção ambulatorial especializada e hospitalar** e **vigilância em saúde**; os serviços de maior complexidade podem ser pactuados entre regiões. B está errada porque a vigilância em saúde faz parte do conjunto mínimo, e a atenção hospitalar de alta complexidade não é exigida. C está errada porque maternidade de alto risco, terapia renal substitutiva e oncologia de alta complexidade são serviços que, em geral, se organizam em escala macrorregional, e não são exigidos em toda região. D está errada porque omite a atenção psicossocial, a atenção ambulatorial especializada e a vigilância em saúde.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Decreto nº 7.508, de 28 de junho de 2011, art. 5º; Lei nº 8.080/1990, art. 7º.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q52 da UNIFESP 2025
+{
+  id:"q-adap25-052", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
+  enunciado:"Um programa de rastreamento de câncer de cólon passou a diagnosticar os tumores, em média, 3 anos antes do aparecimento dos sintomas. Depois da implantação do programa, a sobrevida em 5 anos após o diagnóstico passou de 40% para 70%, mas a mortalidade por câncer de cólon na população permaneceu a mesma. Qual é a melhor explicação para o aumento da sobrevida sem redução da mortalidade?",
+  alternativas:[{id:"A",texto:"Viés de seleção, pois quem aceita o rastreamento é mais saudável que quem o recusa."},{id:"B",texto:"Viés de antecipação diagnóstica, pois a sobrevida é contada desde um diagnóstico mais precoce."},{id:"C",texto:"Viés de aferição, pois os médicos dos pacientes rastreados registram a morte com maior frequência."},{id:"D",texto:"Viés de confusão, pois a idade dos pacientes rastreados é maior que a dos não rastreados."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: o rastreamento antecipa o diagnóstico em **3 anos**, a **sobrevida em 5 anos sobe de 40% para 70%** e a **mortalidade da população não muda**. A sobrevida é contada a partir do diagnóstico; se o diagnóstico vem 3 anos antes e a morte ocorre na mesma data, o paciente \"sobrevive\" 3 anos a mais sem viver um dia a mais: é o viés de antecipação diagnóstica (lead-time bias). Por isso, a eficácia de um rastreamento se prova pela **redução da mortalidade** (específica e, idealmente, geral), e não pelo aumento da sobrevida. A está errada porque o viés de seleção (efeito do voluntário saudável) existe, mas não explica por si só a mudança da sobrevida com mortalidade populacional inalterada. C está errada porque o registro dos óbitos não difere entre os grupos no cenário descrito. D está errada porque diferença de idade seria confusão que alteraria a mortalidade, e não é o que o enunciado descreve.",
+  explicacoesAlternativas:{},
+  referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014 (capítulo sobre prevenção); Gordis L. Epidemiologia, 5ª ed., 2017.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q53 da UNIFESP 2025
+{
+  id:"q-adap25-053", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
+  imagemUrl:"dados/imagens/q-adap25-053.png", imagemLegenda:"Curva ROC de um teste diagnóstico (ilustração esquemática; dados fictícios).",
+  enunciado:"Um lote de testes rápidos de gravidez tem um defeito de fabricação: qualquer que seja a concentração de hCG na urina, a fita nunca desenvolve a linha de resultado positivo. Esses testes são usados para identificar gestantes, tendo a ultrassonografia como padrão de referência. Qual ponto da curva ROC mostrada na figura representa a sensibilidade e a especificidade desse teste?",
+  alternativas:[{id:"A",texto:"Ponto 1."},{id:"B",texto:"Ponto 2."},{id:"C",texto:"Ponto 3."},{id:"D",texto:"Ponto 4."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado e da figura: a fita **nunca fica positiva**, isto é, classifica **todas as mulheres como negativas**. Assim, não acerta nenhuma gestante (**sensibilidade de 0%**) e acerta todos os não doentes (**especificidade de 100%**, ou seja, **1 − especificidade = 0**). Na curva ROC, o eixo vertical é a sensibilidade e o eixo horizontal é 1 − especificidade; o par (0; 0) é o canto inferior esquerdo, o **ponto 3**. A (ponto 1) está errada porque ele fica no canto superior direito, (1; 1): é o teste que classifica todos como positivos, com sensibilidade de 100% e especificidade de 0%. B (ponto 2) está errada porque está perto do canto superior esquerdo, o de um teste bom, com sensibilidade alta e poucos falsos-positivos. D (ponto 4) está errada porque está sobre a diagonal, (0,5; 0,5), que representa um teste sem poder discriminatório (equivalente ao acaso).",
+  explicacoesAlternativas:{},
+  referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014 (capítulo sobre diagnóstico); Hanley JA, McNeil BJ. Radiology 1982;143:29-36.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q54 da UNIFESP 2025
+{
+  id:"q-adap25-054", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
+  enunciado:"Em um estudo caso-controle sobre câncer de pulmão, foram incluídos 300 casos e 600 controles, e a exposição residencial ao radônio foi investigada nos dois grupos. A razão de chances (odds ratio) encontrada foi de 3,0, com intervalo de confiança de 95% de 2,2 a 4,1. Qual é a interpretação correta desse resultado?",
+  alternativas:[{id:"A",texto:"A chance de exposição ao radônio foi 3 vezes maior nos casos do que nos controles."},{id:"B",texto:"O risco de câncer de pulmão nos expostos foi exatamente 3 vezes o dos não expostos."},{id:"C",texto:"A incidência de câncer de pulmão foi 3 vezes maior na população exposta ao radônio."},{id:"D",texto:"Em 300 pessoas expostas, 3 desenvolverão câncer de pulmão para cada pessoa não exposta."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **estudo caso-controle** (casos e controles selecionados pelo desfecho, exposição investigada depois), **razão de chances de 3,0** e **IC 95% de 2,2 a 4,1** (não inclui 1, associação estatisticamente significativa). Em estudo caso-controle, parte-se do desfecho e a medida natural é a razão de chances de exposição: a chance de ter sido exposto ao radônio é 3 vezes maior entre os casos que entre os controles. Ela estima o risco relativo apenas quando a doença é rara na população. B está errada porque o risco (incidência) não pode ser calculado diretamente em estudo caso-controle, já que a proporção de casos é definida pelo pesquisador. C está errada porque a incidência é medida em coortes ou ensaios, em que se segue a população. D está errada porque mistura números sem relação com a medida e atribui à razão de chances uma interpretação de incidência.",
+  explicacoesAlternativas:{},
+  referencias:"Gordis L. Epidemiologia, 5ª ed., 2017 (capítulos sobre estudos caso-controle e medidas de associação); Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., 2014.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q55 da UNIFESP 2025
+{
+  id:"q-adap25-055", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-drc",
+  enunciado:"Mulher, 63 anos, com diabetes mellitus tipo 2 há 12 anos e hipertensão arterial, tem doença renal crônica com taxa de filtração glomerular estimada de 38 mL/min/1,73 m² e relação albumina/creatinina urinária de 520 mg/g. Usa losartana 100 mg ao dia, metformina 500 mg duas vezes ao dia e hidroclorotiazida 25 mg ao dia. PA 126/74 mmHg, potássio de 4,6 mEq/L e hemoglobina glicada de 7,6%. Qual medicamento deve ser acrescentado para reduzir a progressão da doença renal e os eventos cardiovasculares?",
+  alternativas:[{id:"A",texto:"Anlodipino em substituição à losartana, pois protege o rim de forma equivalente a ela."},{id:"B",texto:"Inibidor de SGLT2, como a empagliflozina, independentemente do controle glicêmico."},{id:"C",texto:"Enalapril, em associação à losartana, para bloqueio duplo do sistema renina-angiotensina."},{id:"D",texto:"Sitagliptina, pois reduz a albuminúria e a progressão da doença renal."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: diabetes tipo 2 com doença renal crônica **G3b** (TFGe de 38 mL/min/1,73 m²) e albuminúria **A3** (520 mg/g), já em **dose máxima de bloqueador do receptor da angiotensina**, **potássio normal** e controle pressórico adequado. Os inibidores de SGLT2 (dapagliflozina, empagliflozina) são recomendados no diabetes tipo 2 com doença renal crônica e TFGe de 20 mL/min/1,73 m² ou mais, pois reduzem a progressão da doença renal, a insuficiência cardíaca e os eventos cardiovasculares, com efeito independente do controle glicêmico. A está errada porque o anlodipino controla a pressão, mas não reduz a albuminúria e não substitui o bloqueio do sistema renina-angiotensina. C está errada porque a associação de inibidor da ECA e bloqueador do receptor aumenta hiperpotassemia e lesão renal aguda, sem benefício adicional. D está errada porque a sitagliptina é neutra para os desfechos renais e cardiovasculares.",
+  explicacoesAlternativas:{},
+  referencias:"KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314; ADA. Standards of Care in Diabetes - 2025, section 11 (Chronic Kidney Disease and Risk Management). Diabetes Care 2025;48(Suppl 1).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q56 da UNIFESP 2025
+{
+  id:"q-adap25-056", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
+  enunciado:"Homem, 60 anos, com diabetes mellitus tipo 2, usa metformina 1.000 mg duas vezes ao dia e empagliflozina 25 mg ao dia, com hemoglobina glicada de 7,2% e função renal normal. Foi indicada colecistectomia eletiva sob anestesia geral, com jejum de 8 horas, agendada para daqui a 7 dias. Qual é a orientação mais adequada em relação à empagliflozina?",
+  alternativas:[{id:"A",texto:"Manter a dose habitual até a manhã da cirurgia, por ter baixo risco de hipoglicemia."},{id:"B",texto:"Suspender apenas na véspera, porque o efeito diurético termina em 24 horas."},{id:"C",texto:"Suspender 3 dias antes da cirurgia, por causa do risco de cetoacidose euglicêmica."},{id:"D",texto:"Suspender somente se a glicemia de jejum no dia da cirurgia for superior a 250 mg/dL."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: diabetes tipo 2 em uso de **inibidor de SGLT2 (empagliflozina)**, **cirurgia eletiva sob anestesia geral** com **jejum de 8 horas** e controle glicêmico adequado (**hemoglobina glicada de 7,2%**). Os inibidores de SGLT2 aumentam o risco de **cetoacidose euglicêmica** no perioperatório (jejum, estresse cirúrgico e menor ingestão), com glicemia normal ou pouco elevada, e por isso devem ser suspensos **pelo menos 3 dias antes** da cirurgia (4 dias para a ertugliflozina), com retomada quando houver ingestão normal. A está errada porque manter a dose até a cirurgia expõe ao risco de cetoacidose; o risco de hipoglicemia não é o problema dessa classe. B está errada porque os efeitos metabólicos do fármaco (cetogênese) persistem por mais de 24 horas após a última dose. D está errada porque a cetoacidose euglicêmica ocorre justamente com glicemias normais, e a suspensão não pode depender da glicemia do dia.",
+  explicacoesAlternativas:{},
+  referencias:"American Diabetes Association. Standards of Care in Diabetes - 2025, section 16 (Diabetes Care in the Hospital). Diabetes Care 2025;48(Suppl 1); FDA Drug Safety Communication on SGLT2 inhibitors and ketoacidosis, 2020.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q57 da UNIFESP 2025
+{
+  id:"q-adap25-057", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
+  enunciado:"Um teste rápido para detecção de uma doença tem sensibilidade de 95% e especificidade de 90%. Ele será aplicado em 1.000 pessoas de uma comunidade em que a prevalência da doença é de 2%. Entre as pessoas com resultado positivo, qual é, aproximadamente, a proporção que realmente tem a doença (valor preditivo positivo)?",
+  alternativas:[{id:"A",texto:"95%, pois é a probabilidade de o teste ser positivo em quem tem a doença."},{id:"B",texto:"90%, pois é a probabilidade de o teste ser negativo em quem não tem a doença."},{id:"C",texto:"2%, pois o teste não altera a probabilidade de doença que a prevalência já indica."},{id:"D",texto:"16%, pois a maior parte dos resultados positivos é de pessoas sem a doença."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **1.000 pessoas**, **prevalência de 2%** (20 doentes e 980 não doentes), **sensibilidade de 95%** e **especificidade de 90%**. Entre os 20 doentes, o teste detecta **19** (verdadeiros-positivos); entre os 980 sem a doença, **98** têm resultado falso-positivo (10% de 980). O total de positivos é 19 + 98 = 117, e o **valor preditivo positivo é 19 ÷ 117 = 16%**. A baixa prevalência faz a maioria dos positivos ser de falsos-positivos, mesmo com bom desempenho do teste. A está errada porque 95% é a sensibilidade, e não o valor preditivo. B está errada porque 90% é a especificidade. C está errada porque não há base para supor que a metade dos testados seja positiva; apenas 117 em 1.000 (cerca de 12%) são positivos.",
+  explicacoesAlternativas:{},
+  referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014 (capítulo sobre diagnóstico); Gordis L. Epidemiologia, 5ª ed., 2017.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q58 da UNIFESP 2025
+{
+  id:"q-adap25-058", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
+  enunciado:"Mulher, 8 anos, sem história prévia de alergia a medicamentos, apresenta urticária generalizada, edema de glote e hipotensão 20 minutos depois da primeira dose de amoxicilina por via oral. A reação foi tratada com adrenalina e evoluiu bem. Pela classificação de Rawlins e Thompson das reações adversas a medicamentos, como essa reação deve ser classificada?",
+  alternativas:[{id:"A",texto:"Tipo B (bizarra), imprevisível, não relacionada à dose e de mecanismo imunológico (alérgico)."},{id:"B",texto:"Tipo A (aumentada), previsível, relacionada à dose e ao efeito farmacológico do fármaco."},{id:"C",texto:"Tipo C (crônica), relacionada ao uso prolongado e à dose cumulativa do medicamento."},{id:"D",texto:"Tipo D (tardia), que surge muito tempo depois, às vezes após o fim da exposição."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: reação **na primeira dose**, **minutos depois** do uso, com **urticária, edema de glote e hipotensão** (anafilaxia), sem história prévia de alergia: é uma reação **imprevisível**, que não depende da dose nem do efeito farmacológico da amoxicilina e tem **mecanismo imunológico**, isto é, **tipo B (bizarra)**. A está de acordo com as características desse tipo: ocorre em minoria dos pacientes, sem relação com a dose. B está errada porque as reações do tipo A (aumentadas) são previsíveis, frequentes e dose-dependentes (por exemplo, sangramento com varfarina ou hipoglicemia com insulina). C está errada porque o tipo C (crônica) decorre do uso prolongado, como a osteoporose por corticoide. D está errada porque o tipo D (tardia) surge meses ou anos depois, como a carcinogênese, e não minutos depois da primeira dose.",
+  explicacoesAlternativas:{},
+  referencias:"Rawlins MD, Thompson JW. Pathogenesis of adverse drug reactions. In: Davies DM (ed.). Textbook of Adverse Drug Reactions. Oxford University Press, 1977; Edwards IR, Aronson JK. Adverse drug reactions: definitions, diagnosis, and management. Lancet 2000;356:1255-1259.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q59 da UNIFESP 2025
+{
+  id:"q-adap25-059", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
+  enunciado:"Homem, 35 anos, é vítima de queda de motocicleta e chega ao pronto-socorro 2 horas depois, com dor intensa no quadril esquerdo, encurtamento e rotação externa do membro inferior. Está hemodinamicamente estável, sem outras lesões ao exame inicial e sem déficit neurovascular. A radiografia mostra fratura transcervical do colo do fêmur esquerdo, com desvio acentuado (Garden IV). Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Redução anatômica e osteossíntese com parafusos canulados, em caráter de urgência."},{id:"B",texto:"Artroplastia total do quadril, por ser o tratamento padrão das fraturas do colo do fêmur com desvio."},{id:"C",texto:"Tração cutânea e fixação eletiva da fratura depois de 2 semanas, para esperar a melhora do edema."},{id:"D",texto:"Tratamento conservador com repouso no leito e carga parcial até a consolidação."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **adulto jovem (35 anos)**, **trauma de alta energia**, **fratura transcervical com desvio (Garden IV)** e quadril sem outras lesões. No paciente jovem com fratura do colo do fêmur, o objetivo é **preservar a articulação**: faz-se a redução anatômica e a fixação interna (parafusos canulados ou outro método estável) em urgência, nas primeiras 24 horas, para reduzir o risco de necrose avascular da cabeça femoral. B está errada porque a artroplastia é o tratamento do idoso com fratura desviada, e não do adulto jovem com osso bom. C está errada porque o atraso na redução e na fixação aumenta a necrose avascular. D está errada porque a fratura do colo femoral desviada não consolida com tratamento conservador e a imobilização prolongada traz complicações.",
+  explicacoesAlternativas:{},
+  referencias:"Court-Brown CM et al. Rockwood and Green's Fractures in Adults, 9ª ed., 2019 (capítulo sobre fraturas do colo do fêmur); Slobogean GP et al. Management of young femoral neck fractures: is there a consensus? Injury 2015;46:435-440.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q60 da UNIFESP 2025
+{
+  id:"q-adap25-060", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
+  enunciado:"Mulher, 55 anos, assintomática, sem história pessoal ou familiar de câncer, hipertensa em tratamento, procura a unidade básica de saúde para exames periódicos. De acordo com as recomendações do Serviço de Prevenção dos Estados Unidos (USPSTF), qual rastreamento NÃO deve ser oferecido de rotina?",
+  alternativas:[{id:"A",texto:"Ultrassonografia transvaginal e CA-125 para o rastreamento do câncer de ovário."},{id:"B",texto:"Mamografia a cada 2 anos para o rastreamento do câncer de mama."},{id:"C",texto:"Teste de papilomavírus humano ou citologia cervical para o rastreamento do câncer do colo do útero."},{id:"D",texto:"Pesquisa de sangue oculto nas fezes ou colonoscopia para o rastreamento do câncer colorretal."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: mulher de **55 anos**, **assintomática** e de **risco habitual** (sem história pessoal ou familiar de câncer). O rastreamento do câncer de ovário com ultrassonografia transvaginal e CA-125 **não reduz a mortalidade** e causa muitos falsos-positivos, com cirurgias desnecessárias; o USPSTF o desaconselha (recomendação D). B está errada porque a mamografia bienal é recomendada pelo USPSTF de 40 a 74 anos. C está errada porque o rastreamento do câncer do colo do útero é recomendado até os 65 anos, por citologia a cada 3 anos ou teste de HPV a cada 5 anos. D está errada porque o rastreamento do câncer colorretal é recomendado de 45 a 75 anos, por exames de fezes ou colonoscopia.",
+  explicacoesAlternativas:{},
+  referencias:"US Preventive Services Task Force. Screening for ovarian cancer. JAMA 2018;319:588-594; USPSTF. Screening for breast cancer. JAMA 2024;331:1918-1930; USPSTF. Screening for cervical cancer. JAMA 2018;320:674-686; USPSTF. Screening for colorectal cancer. JAMA 2021;325:1965-1977.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-15"
