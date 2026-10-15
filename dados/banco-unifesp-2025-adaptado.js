@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BANCO UNIFESP 2025 ADAPTADO — 30 questões autorais
+   BANCO UNIFESP 2025 ADAPTADO — 50 questões autorais
    ==========================================================================
    Cada questão parte do ASSUNTO e da posição de uma questão da prova da
    UNIFESP-EPM 2025, mas é escrita do zero: caso clínico, dados e alternativas
@@ -429,6 +429,286 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **choque séptico** (PAM de 54 mmHg e **lactato de 4,6 mmol/L** persistentes após **30 mL/kg** de cristaloide), com **fibrilação atrial de 138 bpm**. A noradrenalina é o vasopressor de primeira linha no choque séptico, e a campanha de sobrevivência à sepse a recomenda sobre dopamina e adrenalina; na presença de taquiarritmia, é a que menos a agrava. A está errada porque a dopamina causa mais taquiarritmia, inclusive fibrilação atrial, e está associada a maior mortalidade que a noradrenalina. B está errada porque a adrenalina é droga de segunda ou terceira linha, adicionada quando a noradrenalina e a vasopressina não bastam, e pode piorar a taquicardia e o lactato. D está errada porque a fenilefrina é vasoconstritor puro, reduz o débito cardíaco e não é recomendada como primeira escolha no choque séptico. A vasopressina é acrescentada à noradrenalina quando a dose dela sobe.",
   explicacoesAlternativas:{},
   referencias:"Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026. Intensive Care Med 2026 (doi 10.1007/s00134-026-08361-1; recomendações conferidas em resumos); Evans L et al. Surviving Sepsis Campaign 2021. Crit Care Med 2021;49:e1063-e1143.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q31 da UNIFESP 2025
+{
+  id:"q-adap25-031", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-drc",
+  enunciado:"Homem, 61 anos, com doença renal diabética, taxa de filtração glomerular estimada de 26 mL/min/1,73 m² e proteinúria de 2,1 g/24 h, tem PA de 156/92 mmHg e inicia enalapril 10 mg ao dia. Dez dias depois, a creatinina passa de 2,0 para 2,4 mg/dL e o potássio é 5,0 mEq/L; a PA é 138/82 mmHg, e o paciente está assintomático, com peso estável e sem edema. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Suspender o enalapril, pois o aumento da creatinina indica lesão renal pelo medicamento."},{id:"B",texto:"Manter o enalapril, com nova dosagem de creatinina e de potássio em uma a duas semanas."},{id:"C",texto:"Reduzir o enalapril à metade e associar espironolactona para controlar o potássio."},{id:"D",texto:"Trocar o enalapril por anlodipino, que protege o rim sem alterar a creatinina."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: doença renal diabética com **proteinúria de 2,1 g/24 h** (indicação de bloqueio do sistema renina-angiotensina), **aumento da creatinina de 2,0 para 2,4 mg/dL (20%)** em 10 dias, **potássio de 5,0 mEq/L** (abaixo de 5,5 mEq/L) e paciente **sem hipovolemia**. A queda da pressão intraglomerular com o inibidor da ECA eleva a creatinina de forma esperada; aceita-se aumento de até **30%** nas primeiras semanas, e o medicamento deve ser mantido, com nova dosagem de creatinina e potássio em 1 a 2 semanas. A está errada porque suspender por um aumento de 20% retira o principal tratamento antiproteinúrico; só se suspende se o aumento passar de 30%, se o potássio ficar em 5,5 mEq/L ou mais de forma persistente ou se houver hipovolemia. C está errada porque a espironolactona aumenta o potássio, e não o controla. D está errada porque o anlodipino controla a pressão, mas não reduz a proteinúria nem tem o mesmo efeito de proteção renal na doença diabética.",
+  explicacoesAlternativas:{},
+  referencias:"KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314; KDIGO 2021 Clinical Practice Guideline for the Management of Blood Pressure in CKD. Kidney Int 2021;99(3S):S1-S87.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q32 da UNIFESP 2025
+{
+  id:"q-adap25-032", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
+  enunciado:"Homem, 72 anos, com insuficiência cardíaca de fração de ejeção de 28% e uso crônico de furosemida 40 mg por via oral ao dia, procura o pronto-socorro com ganho de 7 kg em duas semanas, ortopneia, edema de membros inferiores até as coxas e estertores até os ápices pulmonares. PA 138/82 mmHg, FC 96 bpm, SpO2 de 91% em ar ambiente, extremidades quentes e bem perfundidas, creatinina de 1,2 mg/dL. Qual é a estratégia diurética inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Dobrar a furosemida oral e reavaliar em uma semana, no ambulatório de insuficiência cardíaca."},{id:"B",texto:"Furosemida endovenosa em bolus de 20 mg, dose menor que a oral para evitar piora da função renal."},{id:"C",texto:"Dobutamina em infusão contínua, para melhorar a diurese pelo aumento do débito cardíaco."},{id:"D",texto:"Furosemida endovenosa em bolus, em dose não inferior à oral, com reavaliação em 2 horas."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **congestão importante** (7 kg em 2 semanas, ortopneia, edema até as coxas, estertores e SpO2 de 91%) em paciente com **perfusão preservada** (extremidades quentes, PA de 138/82 mmHg): perfil quente e congesto. Quem já usa diurético de alça por via oral recebe furosemida endovenosa em bolus, com dose **no mínimo igual à dose oral diária** (aqui, pelo menos 40 mg), e a resposta é avaliada cedo, com diurese e natriurese em cerca de 2 horas; se for insuficiente, dobra-se a dose. A está errada porque o paciente tem congestão com hipoxemia e precisa de internação e diurético endovenoso, pois a absorção intestinal está reduzida pelo edema da parede. B está errada porque 20 mg por via endovenosa é dose menor que a oral habitual, o que costuma ser ineficaz em quem já usa diurético. C está errada porque a dobutamina é reservada ao baixo débito com hipoperfusão, ausente neste caso, e pode causar arritmias.",
+  explicacoesAlternativas:{},
+  referencias:"McDonagh TA et al. 2021 ESC Guidelines for the diagnosis and treatment of acute and chronic heart failure. Eur Heart J 2021;42:3599-3726; Felker GM et al. Diuretic strategies in patients with acute decompensated heart failure (DOSE). N Engl J Med 2011;364:797-805; Rohde LEP et al. Diretriz Brasileira de Insuficiência Cardíaca Crônica e Aguda. Arq Bras Cardiol 2018;111:436-539.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q33 da UNIFESP 2025
+{
+  id:"q-adap25-033", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
+  enunciado:"Homem, 58 anos, etilista e desnutrido, é trazido ao pronto-socorro após uma crise convulsiva tônico-clônica generalizada. A esposa relata vômitos há 5 dias e ingestão de grande volume de água. Está sonolento, hipovolêmico clinicamente, com PA 100/60 mmHg. Exames: sódio de 108 mEq/L, potássio de 2,8 mEq/L, glicemia de 96 mg/dL e osmolaridade plasmática de 224 mOsm/kg. A convulsão cessou espontaneamente. Qual é a conduta inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Restrição hídrica e nova dosagem de sódio em 24 horas, como em qualquer hiponatremia crônica."},{id:"B",texto:"Soro fisiológico a 0,9%, 1.000 mL em 1 hora, para repor o volume e corrigir o sódio com rapidez."},{id:"C",texto:"Tolvaptana por via oral, para corrigir o sódio de forma rápida e segura em qualquer paciente."},{id:"D",texto:"Bolus de solução salina a 3% (100 a 150 mL), repetido se necessário, para elevar o sódio em 4 a 6 mEq/L."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **sódio de 108 mEq/L** (hiponatremia grave) com **convulsão** e sonolência, isto é, hiponatremia **sintomática grave**, com risco de edema cerebral. O tratamento inicial é o bolus de solução salina hipertônica a 3% (100 a 150 mL), repetido se preciso, para elevar o sódio em **4 a 6 mEq/L** nas primeiras horas, o suficiente para reverter os sintomas. Etilismo, desnutrição e **hipopotassemia (2,8 mEq/L)** são fatores de risco para **desmielinização osmótica**; por isso, o limite de correção é de **8 mEq/L em 24 horas**, com dosagem frequente do sódio e reposição de potássio, que também eleva o sódio. A está errada porque a restrição hídrica serve a quadros crônicos e assintomáticos, não à convulsão. B está errada porque o soro fisiológico em volume alto, em paciente hipovolêmico com diurese hipotônica diluída, pode elevar o sódio com rapidez excessiva depois que o estímulo à vasopressina cessa. C está errada porque a tolvaptana não é indicada na hiponatremia aguda sintomática e tem risco de correção excessiva.",
+  explicacoesAlternativas:{},
+  referencias:"Spasovski G et al. Clinical practice guideline on diagnosis and treatment of hyponatraemia. Eur J Endocrinol 2014;170:G1-G47; Verbalis JG et al. Diagnosis, evaluation, and treatment of hyponatremia: expert panel recommendations. Am J Med 2013;126(10 Suppl 1):S1-S42.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q34 da UNIFESP 2025
+{
+  id:"q-adap25-034", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-artrites",
+  enunciado:"Mulher, 45 anos, com artrite simétrica de mãos, punhos e pés há 4 meses, rigidez matinal de 90 minutos, 12 articulações dolorosas e 8 edemadas, índice de atividade DAS28 de 5,8, fator reumatoide e anti-CCP em títulos altos e erosões nas radiografias de mãos. Nunca usou medicamentos modificadores de doença. Função hepática e renal normais, sorologias para hepatites e radiografia de tórax sem alterações. Qual é a conduta medicamentosa inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Anti-TNF em monoterapia desde o início, porque o prognóstico é ruim e a doença está muito ativa."},{id:"B",texto:"Prednisona em dose alta contínua como único tratamento, até o controle completo da doença."},{id:"C",texto:"Hidroxicloroquina em monoterapia, por ser o modificador de doença de menor toxicidade."},{id:"D",texto:"Metotrexato com ácido fólico, em dose escalonada, associado a prednisona em baixa dose por pouco tempo."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **artrite reumatoide recente (4 meses)**, **DAS28 de 5,8** (alta atividade, acima de 5,1), **fator reumatoide e anti-CCP em títulos altos** e **erosões** (fatores de mau prognóstico), sem tratamento prévio e sem contraindicação ao metotrexato. O tratamento começa o mais cedo possível com um DMARD sintético convencional, o **metotrexato** (com ácido fólico), em dose escalonada, e pode-se associar glicocorticoide em dose baixa por curto período (ponte) até o efeito do metotrexato, com o objetivo de remissão ou baixa atividade (tratar até o alvo). A está errada porque o biológico não é a primeira etapa, e o DMARD biológico entra se o alvo não for atingido em 3 a 6 meses com o convencional. B está errada porque o glicocorticoide em dose alta e contínua isolado não modifica a evolução da doença e acumula eventos adversos. C está errada porque a hidroxicloroquina tem eficácia insuficiente em doença de alta atividade e com fatores de mau prognóstico.",
+  explicacoesAlternativas:{},
+  referencias:"Smolen JS et al. EULAR recommendations for the management of rheumatoid arthritis with synthetic and biological DMARDs: 2022 update. Ann Rheum Dis 2023;82:3-18; Fraenkel L et al. 2021 ACR Guideline for the Treatment of Rheumatoid Arthritis. Arthritis Rheumatol 2021;73:1108-1123.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q35 da UNIFESP 2025
+{
+  id:"q-adap25-035", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
+  enunciado:"Mulher, 41 anos, em tratamento de hanseníase dimorfa com poliquimioterapia multibacilar há 3 meses, queixa-se de que as lesões antigas ficaram mais vermelhas, inchadas e dolorosas e surgiram placas novas. Há 5 dias tem dor no trajeto do nervo ulnar direito, com formigamento e dificuldade para abrir os dedos. Exame físico: placas eritematoedematosas sobre as lesões prévias, nervo ulnar direito espessado e doloroso, perda de força na abdução do 5º dedo; afebril, sem nódulos dolorosos e sem edema de mãos e pés. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Manter a poliquimioterapia e iniciar prednisona 1 mg/kg/dia, com avaliação neurológica."},{id:"B",texto:"Suspender a poliquimioterapia e iniciar talidomida, por se tratar de reação tipo 2."},{id:"C",texto:"Suspender a poliquimioterapia até o fim da reação e tratar apenas com analgésicos simples."},{id:"D",texto:"Manter a poliquimioterapia e usar anti-inflamatório não hormonal, com imobilização do braço."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: lesões antigas **inflamadas** (eritema e edema sobre as placas prévias), **placas novas**, **neurite do ulnar** com perda de força, **sem febre e sem nódulos eritematosos dolorosos** (que seriam do eritema nodoso hansênico): **reação tipo 1 (reação reversa)**, com neurite, no tratamento da forma dimorfa. A reação não é motivo para parar a poliquimioterapia, e a neurite exige corticoide para evitar lesão nervosa permanente: prednisona 1 mg/kg/dia, com reduções graduais e avaliação neurológica seriada. B está errada porque a talidomida é usada na reação tipo 2 e seria contraindicada em mulher em idade fértil; a poliquimioterapia também não se suspende. C está errada porque suspender o tratamento deixa a infecção ativa e a analgesia simples não trata a neurite. D está errada porque o anti-inflamatório não hormonal e a imobilização não bastam diante de perda de função do nervo; a neurite com déficit é indicação de corticoide.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Hanseníase, 2022; Brasil. Ministério da Saúde. Diretrizes para vigilância, atenção e eliminação da hanseníase como problema de saúde pública: manual técnico-operacional, 2016.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q36 da UNIFESP 2025
+{
+  id:"q-adap25-036", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
+  enunciado:"Homem, 68 anos, 5 dias depois de artroplastia total de joelho, apresenta dispneia súbita e dor torácica pleurítica. PA 128/76 mmHg, FC 104 bpm, FR 24 irpm, SpO2 de 90% em ar ambiente. A angiotomografia de tórax mostra embolia pulmonar bilateral em artérias lobares e segmentares, com relação entre os diâmetros do ventrículo direito e esquerdo de 1,2. A troponina está elevada. Não há sangramento ativo nem contraindicação à anticoagulação. Qual é a conduta inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Anticoagulação plena em internação monitorada, reservando a trombólise para a instabilidade hemodinâmica."},{id:"B",texto:"Trombólise sistêmica imediata com alteplase, pela disfunção do ventrículo direito e pela troponina elevada."},{id:"C",texto:"Colocação de filtro de veia cava inferior e anticoagulação oral após a alta imediata."},{id:"D",texto:"Anticoagulação oral e alta hospitalar no mesmo dia, pois a pressão arterial é normal."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: embolia pulmonar com **PA de 128/76 mmHg** (hemodinamicamente estável), **disfunção do ventrículo direito** (relação VD/VE de 1,2) e **troponina elevada**: risco **intermediário-alto** pela ESC (risco de descompensação nos primeiros dias). A conduta é anticoagulação plena (heparina de baixo peso molecular ou não fracionada) em ambiente monitorado, com trombólise de resgate se houver instabilidade hemodinâmica. B está errada porque a trombólise sistêmica de rotina no risco intermediário-alto reduziu a descompensação, mas aumentou o sangramento maior e o acidente vascular cerebral hemorrágico, sem reduzir a mortalidade (estudo PEITHO). C está errada porque o filtro de veia cava é reservado a quem tem contraindicação absoluta à anticoagulação ou recorrência apesar dela. D está errada porque a disfunção do ventrículo direito e a troponina elevada afastam o tratamento ambulatorial, reservado ao risco baixo.",
+  explicacoesAlternativas:{},
+  referencias:"Konstantinides SV et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism. Eur Heart J 2020;41:543-603 (não foi encontrada edição mais nova); Meyer G et al. Fibrinolysis for patients with intermediate-risk pulmonary embolism (PEITHO). N Engl J Med 2014;370:1402-1411.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q37 da UNIFESP 2025
+{
+  id:"q-adap25-037", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
+  enunciado:"Homem, 66 anos, com infecção urinária, chega ao pronto-socorro com febre, PA de 82/44 mmHg, FC de 118 bpm, lactato de 5,2 mmol/L e oligúria. Pesa 80 kg. A hemocultura e a urocultura já foram coletadas, e o antibiótico foi iniciado na primeira hora. Qual é a melhor conduta para a ressuscitação volêmica inicial?",
+  alternativas:[{id:"A",texto:"Hidroxietilamido a 6%, expansor que mantém o volume por mais tempo no espaço intravascular."},{id:"B",texto:"Albumina a 5% associada ao cristaloide desde o início, para elevar a pressão oncótica do plasma."},{id:"C",texto:"Cristaloide balanceado, como o Ringer lactato, ao menos 30 mL/kg nas primeiras 3 horas, com reavaliação."},{id:"D",texto:"Solução glicosada a 5% em volume alto, para evitar o excesso de sódio e de cloro."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **choque séptico** (PA de 82/44 mmHg, **lactato de 5,2 mmol/L**, oligúria) em homem de **80 kg**, com cultura colhida e antibiótico já iniciado. A ressuscitação inicial se faz com cristaloide, de preferência **balanceado** (Ringer lactato ou solução similar) e em pelo menos **30 mL/kg** (aqui, 2.400 mL) nas primeiras 3 horas, com reavaliação frequente da resposta (pressão, perfusão, diurese, lactato) para evitar tanto a falta quanto o excesso de volume. A está errada porque os amidos (hidroxietilamido) aumentam a lesão renal e a necessidade de diálise, e as diretrizes recomendam não os usar. B está errada porque a albumina associada desde o início não é recomendada; sugere-se cristaloide isolado. D está errada porque a solução glicosada a 5% é hipotônica e quase toda sai do espaço intravascular, não expandindo o volume.",
+  explicacoesAlternativas:{},
+  referencias:"Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026. Intensive Care Med 2026 (doi 10.1007/s00134-026-08361-1; conferida em resumos); Evans L et al. Surviving Sepsis Campaign 2021. Crit Care Med 2021;49:e1063-e1143; Semler MW et al. SMART. N Engl J Med 2018;378:829-839.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q38 da UNIFESP 2025
+{
+  id:"q-adap25-038", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
+  enunciado:"Homem, 68 anos, portador de doença pulmonar obstrutiva crônica, procura o pronto-socorro com febre, tosse com secreção purulenta e confusão mental recente. FR 32 irpm, PA 112/68 mmHg, FC 118 bpm, SpO2 de 88% em ar ambiente, sem necessidade de ventilação mecânica ou vasopressor. A radiografia mostra infiltrado em dois lobos do pulmão direito. Exames: ureia 72 mg/dL, leucócitos 3.200/mm³, plaquetas 180.000/mm³ e relação PaO2/FiO2 de 140. Qual é a classificação da gravidade e o local de tratamento mais adequado?",
+  alternativas:[{id:"A",texto:"Pneumonia não grave, porque não há critério maior; tratamento em enfermaria geral."},{id:"B",texto:"Pneumonia não grave, porque a pressão arterial é normal; tratamento ambulatorial."},{id:"C",texto:"Pneumonia grave por critério maior, porque a relação PaO2/FiO2 está muito baixa; tratamento em UTI."},{id:"D",texto:"Pneumonia grave por três ou mais critérios menores; tratamento em unidade de terapia intensiva."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **sem critério maior** (sem ventilação mecânica nem vasopressor), mas com vários critérios menores: **FR de 32 irpm** (30 ou mais), **PaO2/FiO2 de 140** (250 ou menos), **infiltrado multilobar**, **confusão mental**, **ureia de 72 mg/dL** (nitrogênio ureico de cerca de 34 mg/dL, acima de 20) e **leucopenia de 3.200/mm³** (abaixo de 4.000). Três ou mais critérios menores caracterizam pneumonia grave, com indicação de unidade de terapia intensiva. A está errada porque a ausência de critério maior não basta: três critérios menores equivalem a um maior. B está errada porque a pressão arterial normal não afasta a gravidade, que aqui está na insuficiência respiratória, no estado mental e na uremia. C está errada porque a hipoxemia grave é critério menor; os critérios maiores são ventilação mecânica invasiva e choque séptico com vasopressor.",
+  explicacoesAlternativas:{},
+  referencias:"Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia: ATS/IDSA Guideline. Am J Respir Crit Care Med 2019;200:e45-e67 (atualização da ATS de 2025 sobre imagem, antibiótico, duração e corticoide, sem mudar a classificação de gravidade); Corrêa RA et al. Diretrizes brasileiras para pneumonia adquirida na comunidade em adultos imunocompetentes, 2018. J Bras Pneumol 2018;44:405-423.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q39 da UNIFESP 2025
+{
+  id:"q-adap25-039", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-arboviroses",
+  enunciado:"Mulher, 28 anos, com febre havia 4 dias, apresenta defervescência e, no dia seguinte, dor abdominal intensa e contínua, vômitos persistentes e sangramento gengival. PA 110/70 mmHg sem hipotensão postural, FC 96 bpm, enchimento capilar de 2 segundos, sem derrame pleural ou ascite. Exames: hematócrito de 48% (basal de 40%), plaquetas de 40.000/mm³ e transaminases três vezes o normal. A sorologia de dengue está pendente. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Alta com hidratação oral e retorno em 24 horas, pois a pressão arterial está normal."},{id:"B",texto:"Internação e soro fisiológico a 0,9%, 10 mL/kg na primeira hora, com reavaliação."},{id:"C",texto:"Reposição imediata de 20 mL/kg de soro fisiológico em 20 minutos, como no choque da dengue."},{id:"D",texto:"Transfusão de plaquetas, pois a contagem está abaixo de 50.000/mm³ e há sangramento."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: dengue na **fase crítica** (defervescência no 4º-5º dia) com **sinais de alarme**: **dor abdominal intensa e contínua**, **vômitos persistentes**, **sangramento de mucosa** e **hemoconcentração (hematócrito de 48% contra 40%)**, plaquetas de 40.000/mm³; **sem choque** (PA normal, enchimento capilar de 2 segundos). É o **grupo C** do Ministério da Saúde: internação (leito de observação por pelo menos 4 horas ou até o hematócrito) e reposição imediata de soro fisiológico a 0,9%, **10 mL/kg na primeira hora**, com reavaliação clínica e do hematócrito. A está errada porque os sinais de alarme impedem a alta e a hidratação oral (grupos A e B). C está errada porque a reposição rápida de 20 mL/kg em 20 minutos é o esquema do grupo D (dengue grave com choque), ausente neste caso. D está errada porque a transfusão de plaquetas não é feita só pela contagem; fica para sangramento grave ou plaquetopenia muito baixa e hemorragia, e a paciente sangra apenas pelas gengivas.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Dengue: diagnóstico e manejo clínico: adulto e criança, 6ª ed., Brasília, 2024 (o texto oficial não pôde ser aberto; o esquema do grupo C foi conferido em fluxos estaduais e municipais que o reproduzem, e o do grupo D, de 20 mL/kg, não foi conferido).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q40 da UNIFESP 2025
+{
+  id:"q-adap25-040", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-farmacodermias",
+  enunciado:"Mulher, 52 anos, iniciou alopurinol há 4 semanas por hiperuricemia, e há 5 dias apresenta febre de 38,9 °C, erupção cutânea eritematosa generalizada e edema facial. Exame físico: exantema maculopapular pruriginoso em tronco e membros, edema de face, linfonodos cervicais palpáveis e sem lesões em mucosas. Exames: leucócitos 14.000/mm³ com eosinófilos de 2.800/mm³, TGO 240 U/L e TGP 310 U/L, creatinina normal. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Manter o alopurinol e associar anti-histamínico, pois o exantema é benigno e autolimitado."},{id:"B",texto:"Suspender o alopurinol e observar, pois a retirada do medicamento basta nas reações cutâneas."},{id:"C",texto:"Suspender o alopurinol e iniciar corticoide sistêmico, com seguimento prolongado e retirada gradual."},{id:"D",texto:"Substituir o alopurinol por febuxostate e iniciar antibiótico, por suspeita de infecção bacteriana."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: início **4 semanas depois** de um fármaco de alto risco (alopurinol), **febre**, **exantema generalizado com edema facial**, **linfonodomegalia**, **eosinofilia de 2.800/mm³** e **transaminases elevadas** (hepatite): reação a fármaco com eosinofilia e sintomas sistêmicos (DRESS). A conduta é suspender o fármaco e, havendo comprometimento de órgão (fígado), iniciar corticoide sistêmico (prednisona 0,5 a 1 mg/kg/dia) com retirada lenta, ao longo de semanas, porque a doença recai com redução rápida. A está errada porque manter o agente desencadeante agrava a reação, que tem mortalidade de cerca de 10%. B está errada porque a suspensão isolada pode bastar nos casos leves, sem lesão de órgão, mas não com hepatite e febre. D está errada porque o febuxostate não é alternativa segura sem avaliação, e o quadro não tem sinais de infecção bacteriana.",
+  explicacoesAlternativas:{},
+  referencias:"Kardaun SH et al. Drug reaction with eosinophilia and systemic symptoms (DRESS): an original multisystem adverse drug reaction (RegiSCAR). Br J Dermatol 2013;169:1071-1080; Husain Z et al. J Am Acad Dermatol 2013;68:693.e1-693.e14.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q41 da UNIFESP 2025
+{
+  id:"q-adap25-041", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
+  enunciado:"Homem, 66 anos, hipertenso, é levado ao pronto-socorro 90 minutos depois do início súbito de fraqueza no hemicorpo direito e dificuldade de falar. Exame: NIHSS de 14; PA de 192/108 mmHg, confirmada em nova medida; glicemia capilar de 128 mg/dL. A tomografia de crânio sem contraste não mostra hemorragia. Não há uso de anticoagulante, cirurgia recente nem outra contraindicação à trombólise. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Administrar o trombolítico de imediato, sem tratar a pressão, porque a janela terapêutica é curta."},{id:"B",texto:"Contraindicar a trombólise porque a pressão está acima de 185/110 mmHg e manter apenas o tratamento conservador."},{id:"C",texto:"Reduzir a pressão com anti-hipertensivo endovenoso para menos de 185/110 mmHg e administrar o trombolítico."},{id:"D",texto:"Normalizar a pressão para cerca de 120/80 mmHg em uma hora, antes de qualquer outro tratamento."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: acidente vascular cerebral isquêmico com **90 minutos de evolução** (dentro da janela de 4,5 horas), **NIHSS de 14**, tomografia **sem hemorragia**, sem contraindicação e **PA de 192/108 mmHg**, acima do limite para trombólise. A hipertensão acima de **185/110 mmHg** não contraindica a trombólise se puder ser reduzida: usa-se anti-hipertensivo endovenoso (labetalol ou nicardipina) até ficar abaixo desse limite, administra-se o trombolítico (alteplase 0,9 mg/kg ou tenecteplase 0,25 mg/kg) e mantém-se a pressão abaixo de **180/105 mmHg** nas 24 horas seguintes. A está errada porque a pressão não controlada aumenta o risco de transformação hemorrágica. B está errada porque a PA acima do limite só impede a trombólise se não for possível reduzi-la. D está errada porque queda abrupta até valores normais pode reduzir a perfusão da penumbra isquêmica e piorar o déficit, além de atrasar o tratamento.",
+  explicacoesAlternativas:{},
+  referencias:"Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke. Stroke 2026 (doi 10.1161/STR.0000000000000513; o limite de 185/110 mmHg foi conferido em resumos); Powers WJ et al. 2019 AHA/ASA Guidelines for the Early Management of Patients With Acute Ischemic Stroke. Stroke 2019;50:e344-e418.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q42 da UNIFESP 2025
+{
+  id:"q-adap25-042", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-farmacodermias",
+  enunciado:"Mulher, 30 anos, iniciou lamotrigina há 3 semanas, com aumento rápido de dose, e apresenta há 4 dias febre de 39 °C, dor ao engolir, erosões dolorosas em boca, olhos e genitais, e lesões em alvo atípicas que se tornaram bolhas, com descolamento da pele em cerca de 40% da superfície corporal e sinal de Nikolsky positivo. PA de 100/60 mmHg e FC de 112 bpm. Qual é a conduta inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Suspender a lamotrigina de imediato e internar em UTI ou em centro de queimados, com cuidados de suporte."},{id:"B",texto:"Reduzir a dose da lamotrigina pela metade e acompanhar em ambulatório com anti-histamínico."},{id:"C",texto:"Manter a lamotrigina e iniciar pulsoterapia com metilprednisolona como tratamento de primeira linha."},{id:"D",texto:"Tratar em regime ambulatorial com corticoide tópico e anti-histamínico, orientando retorno em 48 horas."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: fármaco de risco (**lamotrigina, com aumento rápido de dose**) iniciado **3 semanas antes**, **febre**, lesões em alvo atípicas e bolhas, **erosões em três mucosas** (boca, olhos e genitais), **sinal de Nikolsky** positivo e **descolamento de cerca de 40%** da superfície corporal (acima de 30%): necrólise epidérmica tóxica. O primeiro passo é suspender o fármaco suspeito e internar em unidade de terapia intensiva ou de queimados, com reposição de volume, controle térmico, cuidado das feridas e das mucosas, analgesia e avaliação oftalmológica. B está errada porque a redução de dose não interrompe a reação, que exige a retirada total do fármaco. C está errada porque o corticoide sistêmico não é tratamento de primeira linha: as evidências são fracas e há risco de infecção, e o suporte é a base. D está errada porque o quadro é grave e com risco de vida (acometimento extenso, sepse e perda de líquidos), sem possibilidade de tratamento ambulatorial.",
+  explicacoesAlternativas:{},
+  referencias:"Seminario-Vidal L et al. Society of Dermatology Hospitalists supportive care guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults. J Am Acad Dermatol 2020;82:1553-1567; Creamer D et al. UK guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults 2016. Br J Dermatol 2016;174:1194-1227.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q43 da UNIFESP 2025
+{
+  id:"q-adap25-043", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
+  enunciado:"Um ensaio clínico randomizado comparou um novo anti-hipertensivo com o tratamento padrão quanto ao desfecho composto de morte cardiovascular, infarto ou acidente vascular cerebral. O resultado foi risco relativo de 0,80 (intervalo de confiança de 95% de 0,62 a 1,04; p = 0,09). Com base nesse resultado, qual é a interpretação correta?",
+  alternativas:[{id:"A",texto:"O estudo demonstrou que o novo medicamento não tem efeito sobre o desfecho composto."},{id:"B",texto:"A diferença não é significativa a 5%, mas o intervalo não exclui um benefício importante."},{id:"C",texto:"O novo medicamento reduziu o risco do desfecho em 20%, com significância estatística a 5%."},{id:"D",texto:"O valor de p mostra que há 9% de probabilidade de a hipótese nula ser verdadeira, refutando-a."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **risco relativo de 0,80** (redução relativa estimada de 20%), **IC 95% de 0,62 a 1,04** (inclui o valor 1, que indica ausência de efeito) e **p = 0,09** (acima de 0,05). Ou seja, o resultado não é estatisticamente significativo a 5%, mas o intervalo vai de uma redução de 38% a um aumento de 4%, e portanto não exclui um benefício clinicamente importante: o estudo é inconclusivo, e não negativo. A está errada porque ausência de significância não é prova de ausência de efeito (o estudo pode ter faltado poder). C está errada porque, com o IC incluindo 1, o resultado não é significativo a 5%. D está errada porque o valor de p é a probabilidade de se obter um resultado tão extremo se a hipótese nula fosse verdadeira, e não a probabilidade de a hipótese nula ser verdadeira.",
+  explicacoesAlternativas:{},
+  referencias:"Wasserstein RL, Lazar NA. The ASA statement on p-values: context, process, and purpose. Am Stat 2016;70:129-133; Altman DG, Bland JM. Absence of evidence is not evidence of absence. BMJ 1995;311:485.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q44 da UNIFESP 2025
+{
+  id:"q-adap25-044", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilanciasanitaria",
+  enunciado:"Menino, 6 anos, não vacinado por recusa da família, é atendido com febre de 39,5 °C há 4 dias, tosse, coriza, conjuntivite e exantema maculopapular que começou atrás das orelhas e desceu para o tronco e os membros. À inspeção da boca, há manchas esbranquiçadas na mucosa jugal. Uma irmã de 2 anos, também não vacinada, começou a ter sintomas semelhantes. Em relação à vigilância epidemiológica, qual é a conduta adequada?",
+  alternativas:[{id:"A",texto:"Notificar semanalmente, junto com as demais doenças exantemáticas, depois que a sorologia confirmar o caso."},{id:"B",texto:"Aguardar o resultado do IgM para só então notificar, a fim de evitar notificações falsas."},{id:"C",texto:"Notificar apenas se houver casos confirmados entre os contatos, na ficha de investigação de surto."},{id:"D",texto:"Notificar de imediato, em até 24 horas, e colher amostras para exames, sem aguardar confirmação."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **febre, tosse, coriza e conjuntivite** seguidas de **exantema cefalocaudal** e **manchas de Koplik** na mucosa jugal, em criança **não vacinada**, com **segundo caso suspeito na família**: sarampo. O caso suspeito de sarampo é de notificação compulsória e imediata, em até 24 horas, para a vigilância municipal ou estadual, sem esperar a confirmação laboratorial; as amostras (soro para IgM e IgG, e swab de nasofaringe ou urina para a detecção do vírus) são colhidas no primeiro contato, e as medidas de controle, como o bloqueio vacinal dos contatos, começam logo. A está errada porque a notificação semanal vale para agravos de menor urgência, e a espera pela sorologia atrasa o bloqueio. B está errada porque a notificação é do caso suspeito, e não do confirmado. C está errada porque um único caso suspeito já aciona a investigação, sem esperar contatos confirmados.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2023; Portaria de Consolidação GM/MS nº 4/2017, anexo da Lista Nacional de Notificação Compulsória, com as atualizações posteriores (a edição vigente da lista não foi conferida no texto oficial; o sarampo consta como de notificação imediata em todas as edições conhecidas).",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q45 da UNIFESP 2025
+{
+  id:"q-adap25-045", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-saudepopulacoes",
+  enunciado:"Homem, 45 anos, em situação de rua há 3 anos, procura uma unidade básica de saúde por tosse há 6 semanas, emagrecimento e sudorese noturna. Na recepção, o funcionário informa que só pode atendê-lo com comprovante de residência e documento com foto, que o paciente não tem. Qual é a conduta correta da equipe?",
+  alternativas:[{id:"A",texto:"Acolher, atender e cadastrar, sem exigir comprovante de residência ou documento."},{id:"B",texto:"Encaminhar ao pronto-socorro, o único serviço que atende pessoas sem comprovante de endereço."},{id:"C",texto:"Orientar a buscar a unidade do bairro onde morou por último, onde estaria cadastrado."},{id:"D",texto:"Atender somente nesta consulta e exigir os documentos antes de novos retornos e exames."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **pessoa em situação de rua**, com **sintomas respiratórios por mais de 3 semanas** (sintomático respiratório, a ser investigado para tuberculose) e **impedimento por falta de comprovante de residência e de documento**. O SUS é universal (a saúde é direito de todos e dever do Estado), e a falta de endereço ou de documento não pode ser motivo para recusar ou condicionar o atendimento; a equipe deve acolher, cadastrar e investigar o caso (baciloscopia ou teste rápido molecular), contando, quando houver, com o Consultório na Rua. B está errada porque a atenção primária atende a pessoa sem endereço, e o pronto-socorro não é o único serviço. C está errada porque não há obrigação de cadastro prévio por endereço, e a orientação cria uma barreira. D está errada porque condicionar retornos e exames aos documentos mantém a barreira de acesso e interrompe a investigação de uma doença de notificação e de transmissão respiratória.",
+  explicacoesAlternativas:{},
+  referencias:"Constituição Federal de 1988, art. 196; Lei nº 8.080/1990 (universalidade); Decreto nº 7.053/2009 (Política Nacional para a População em Situação de Rua); Portaria GM/MS nº 2.436/2017 (PNAB). A norma específica de cadastro sem comprovante de residência não foi conferida no texto.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q46 da UNIFESP 2025
+{
+  id:"q-adap25-046", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
+  enunciado:"Em um ensaio clínico randomizado com 800 pacientes, divididos igualmente em dois grupos, avaliou-se um novo antiplaquetário para a prevenção de infarto em um ano. Ocorreram 60 infartos no grupo placebo e 40 no grupo tratado. Qual é o número necessário para tratar (NNT) para evitar um infarto?",
+  alternativas:[{id:"A",texto:"3 pacientes, o inverso da redução relativa do risco (33%)."},{id:"B",texto:"5 pacientes, a redução absoluta do risco em pontos percentuais."},{id:"C",texto:"20 pacientes, o inverso da redução absoluta do risco."},{id:"D",texto:"10 pacientes, o inverso do risco no grupo tratado."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **400 pacientes por grupo** (800 divididos igualmente), **60 infartos no placebo (15%)** e **40 no grupo tratado (10%)**. A redução absoluta do risco (RAR) é 15% − 10% = **5 pontos percentuais (0,05)**, e o NNT é o inverso dela: 1 ÷ 0,05 = **20**, ou seja, tratar 20 pacientes por um ano evita um infarto. A está errada porque a redução relativa do risco é 5% ÷ 15% = 33%, e seu inverso (cerca de 3) não é o NNT, que depende do risco absoluto. B está errada porque 5 é a RAR expressa em pontos percentuais; o NNT é o inverso dela expressa em fração. D está errada porque o inverso do risco do grupo tratado (1 ÷ 0,10 = 10) não mede o benefício, que é uma diferença entre os grupos.",
+  explicacoesAlternativas:{},
+  referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica: Elementos Essenciais, 5ª ed., Artmed, 2014; Laupacis A, Sackett DL, Roberts RS. An assessment of clinically useful measures of the consequences of treatment. N Engl J Med 1988;318:1728-1733.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q47 da UNIFESP 2025
+{
+  id:"q-adap25-047", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-gestaosaude",
+  enunciado:"A secretaria municipal de saúde de uma cidade precisa comprovar, ao Conselho de Saúde, que atingiu o percentual mínimo de aplicação de receitas próprias em ações e serviços públicos de saúde. Segundo a Lei Complementar nº 141/2012, qual das despesas abaixo pode ser contabilizada nesse percentual?",
+  alternativas:[{id:"A",texto:"Pagamento de aposentadorias e pensões dos servidores que atuaram na área da saúde municipal."},{id:"B",texto:"Compra de medicamentos do componente básico da assistência farmacêutica para as unidades do município."},{id:"C",texto:"Merenda escolar e outros programas de alimentação, ainda que executados em unidades de saúde."},{id:"D",texto:"Assistência à saúde dos servidores municipais, por meio de plano exclusivo com acesso restrito."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a pergunta é sobre despesa que conta no **mínimo constitucional** de aplicação em ações e serviços públicos de saúde (15% da receita de impostos nos municípios, 12% nos estados). Contam as despesas com ações de **acesso universal, igualitário e gratuito**, voltadas às diretrizes do SUS, e a compra de medicamentos do componente básico para a rede é uma delas. A está errada porque o pagamento de aposentadorias e pensões, inclusive de servidores da saúde, é vedado nesse cômputo. C está errada porque a merenda escolar e os programas de alimentação, ainda que executados em unidades de saúde, não contam nesse cômputo. D está errada porque a assistência a clientela fechada, sem acesso universal, não é ação e serviço público de saúde para esse fim.",
+  explicacoesAlternativas:{},
+  referencias:"Lei Complementar nº 141, de 13 de janeiro de 2012, arts. 2º a 4º; Constituição Federal de 1988, art. 198, §2º, e ADCT, art. 77.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q48 da UNIFESP 2025
+{
+  id:"q-adap25-048", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilanciasanitaria",
+  enunciado:"Gestante de 24 anos, com 20 semanas, realiza o teste rápido treponêmico no pré-natal com resultado reagente, e o VDRL é reagente na titulação de 1:8. Ela nega tratamento anterior para sífilis. Em relação à vigilância epidemiológica, qual é a conduta adequada?",
+  alternativas:[{id:"A",texto:"Notificar somente no parto, junto com a notificação da sífilis congênita do recém-nascido."},{id:"B",texto:"Notificar apenas se a titulação do VDRL for igual ou superior a 1:16, que indica doença ativa."},{id:"C",texto:"Notificar como sífilis em gestante, independentemente do estágio e do tratamento."},{id:"D",texto:"Notificar somente após a conclusão do tratamento, com a confirmação da cura sorológica."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **gestante** com **teste treponêmico reagente e VDRL 1:8 reagente**, sem tratamento prévio: caso de sífilis na gestação. A sífilis em gestante é de notificação compulsória no Sistema de Informação de Agravos de Notificação (SINAN), assim que o caso é identificado, independentemente do estágio clínico, da titulação do VDRL ou do tratamento; a notificação orienta as ações de prevenção da sífilis congênita. A está errada porque aguardar o parto perde o tempo de tratamento e de vigilância do pré-natal. B está errada porque não existe título mínimo de VDRL para notificar; títulos baixos também são casos. D está errada porque a notificação não depende da conclusão do tratamento nem da cura sorológica.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST), 2022; Portaria de Consolidação GM/MS nº 4/2017, anexo da Lista Nacional de Notificação Compulsória, com atualizações posteriores (edição vigente não conferida no texto oficial).",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q49 da UNIFESP 2025
+{
+  id:"q-adap25-049", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-principiossus",
+  enunciado:"Em um município, o prefeito pretende reformular o Conselho Municipal de Saúde. Pelas normas que regem o controle social no SUS, qual deve ser a composição do conselho?",
+  alternativas:[{id:"A",texto:"Metade de gestores e prestadores de serviço, um quarto de usuários e um quarto de profissionais de saúde."},{id:"B",texto:"Metade de profissionais de saúde, um quarto de usuários e um quarto de gestores e prestadores de serviço."},{id:"C",texto:"Metade de usuários, um quarto de trabalhadores da saúde e um quarto de gestores e prestadores de serviços."},{id:"D",texto:"Um terço de usuários, um terço de profissionais de saúde e um terço de gestores e prestadores de serviço."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: a pergunta é sobre a **composição do Conselho de Saúde**, instância colegiada, permanente e deliberativa do controle social no SUS. A representação dos usuários é **paritária em relação ao conjunto dos demais segmentos**: **50% de usuários**, **25% de trabalhadores da saúde** e **25% de gestores e prestadores de serviço**. A está errada porque dá a maioria ao governo e aos prestadores, invertendo a lógica do controle social. B está errada porque a maioria cabe aos usuários, e não aos profissionais. D está errada porque a divisão em três partes iguais não respeita a paridade do conselho, em que os usuários ocupam metade das vagas.",
+  explicacoesAlternativas:{},
+  referencias:"Lei nº 8.142, de 28 de dezembro de 1990, art. 1º, §4º; Conselho Nacional de Saúde. Resolução nº 453, de 10 de maio de 2012.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q50 da UNIFESP 2025
+{
+  id:"q-adap25-050", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
+  enunciado:"Em uma unidade básica de saúde, a equipe de Saúde da Família atende uma idosa com dor crônica, depressão e dificuldade de mobilidade, cujo cuidado está parado há meses. A equipe combina uma reunião com o fisioterapeuta e o psicólogo da equipe multiprofissional (eMulti) do território, em que os profissionais discutem o caso juntos, definem um plano de cuidado compartilhado e combinam atendimentos conjuntos, sem que a paciente seja transferida para outro serviço. Que arranjo de cuidado é esse?",
+  alternativas:[{id:"A",texto:"Referência e contrarreferência, com encaminhamento da paciente e retorno posterior."},{id:"B",texto:"Interconsulta formal, em que o especialista responde por escrito a uma pergunta da equipe."},{id:"C",texto:"Triagem de risco, em que a eMulti classifica a prioridade da paciente na fila de espera."},{id:"D",texto:"Apoio matricial, com corresponsabilização entre a equipe e os especialistas."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a **equipe de Saúde da Família** (equipe de referência) discute o caso com profissionais da **eMulti** (fisioterapeuta e psicólogo), definem **plano de cuidado compartilhado** e **atendimentos conjuntos**, **sem transferir** a paciente. Esse é o **apoio matricial**, que oferece retaguarda assistencial e técnico-pedagógica à equipe de referência, com corresponsabilização, e é uma das principais ações das equipes multiprofissionais da atenção primária (eMulti, que sucederam o NASF). A está errada porque, na referência e contrarreferência, a paciente é encaminhada e o cuidado muda de serviço. B está errada porque a interconsulta formal é uma pergunta pontual, sem plano compartilhado nem corresponsabilização. C está errada porque a classificação de prioridade não é o que a equipe descreve.",
+  explicacoesAlternativas:{},
+  referencias:"Campos GWS, Domitti AC. Apoio matricial e equipe de referência: uma metodologia para gestão do trabalho interdisciplinar em saúde. Cad Saúde Pública 2007;23:399-407; Brasil. Ministério da Saúde. Portaria GM/MS nº 635, de 22 de maio de 2023 (eMulti).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-15"
