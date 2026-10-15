@@ -131,7 +131,7 @@ const GUIA_ALUNO = [
   { titulo:"Provas e Simulados", itens:[
     "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, separadas em <strong>provas de residência</strong> e <strong>provas da graduação</strong> (o Teste de Progresso é graduação) e filtráveis por instituição, ano e área. No 3º e 4º ano, as da graduação aparecem primeiro. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>.",
     "O cartão de cada prova diz quantas questões foram anuladas pela banca e quantas esperam a figura da prova — essas ficam de fora por enquanto.",
-    "Os <strong>simulados da equipe</strong> aparecem na mesma tela, com o resultado da última vez que você fez.",
+    "Os <strong>simulados</strong> (da equipe e os enviados para a plataforma) aparecem na mesma tela, e a <strong>busca</strong> no topo acha provas e simulados por instituição, ano ou título (\"Unifesp\" e \"EPM\" valem os dois), com o resultado da última vez que você fez.",
   ]},
   { titulo:"Meu Desempenho", itens:[
     "Acerto por grande área, especialidade e assunto, e a evolução no tempo.",

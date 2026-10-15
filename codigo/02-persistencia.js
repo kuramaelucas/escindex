@@ -697,6 +697,13 @@ function sincronizarConteudoNovo(){
     });
   });
   SEED_USUARIOS.forEach(u=>{ if(!db.usuarios.some(x=>x.id===u.id)){ db.usuarios.push(copiaProfunda(u)); novos++; } });
+  /* Simulado novo da pasta dados/ chega a quem já tinha o banco salvo. Sem
+     isto só quem abria a plataforma pela primeira vez via o simulado subido
+     depois (ex.: "Simulado EPM 2026"): a lista salva no navegador nunca era
+     completada, como já é a das questões. Só entra o que falta, por id — um
+     simulado que a pessoa criou ou editou aqui não é tocado. */
+  if(!db.simulados) db.simulados = [];
+  (SEED_SIMULADOS||[]).forEach(s=>{ if(!db.simulados.some(x=>x.id===s.id)){ db.simulados.push(copiaProfunda(s)); novos++; } });
   if(!db.flashcards) db.flashcards = [];
   SEED_FLASHCARDS.forEach(c=>{ if(!db.flashcards.some(x=>x.id===c.id)){ db.flashcards.push(copiaProfunda(c)); novos++; } });
   if(!db.livroOuro) { db.livroOuro = copiaProfunda(SEED_LIVRO_OURO); novos++; }
