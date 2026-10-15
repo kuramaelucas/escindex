@@ -377,6 +377,8 @@ ol.lista-passos li{margin:.25rem 0}
    tela vazia. A barra de questões, o motivo e os botões entram na mesma
    coluna, para tudo ficar alinhado com o cartão. O .page que a contém também
    se centraliza (a página é mais larga que a coluna e nasce encostada ao menu). */
+.coluna-resultado{max-width:760px}
+.coluna-resultado .card,.coluna-resultado .card-flat{max-width:none}
 .coluna-questao{max-width:814px;margin-left:auto;margin-right:auto}
 .coluna-questao .qcard{max-width:none}
 .page:has(.coluna-questao){margin-left:auto;margin-right:auto}
@@ -729,3 +731,11 @@ body.modo-foco .main{margin-left:0}
 .chip-x{display:inline-flex;align-items:center;justify-content:center;width:1.3rem;height:1.3rem;border:0;border-radius:50%;background:none;color:inherit;cursor:pointer;padding:0}
 .chip-x:hover{background:var(--accent);color:#fff}
 .chip-x .icon{width:.8rem;height:.8rem}
+
+.tabela-compacta{font-size:12px}
+.tabela-compacta th,.tabela-compacta td{padding:4px 8px}
+.tabela-compacta .badge{font-size:11px;padding:1px 6px}
+.linha-barra{display:grid;grid-template-columns:minmax(110px,1.2fr) 3fr minmax(90px,.8fr);align-items:center;gap:10px;padding:5px 0;font-size:13px}
+.linha-barra-trilho{display:block;height:8px;border-radius:4px;background:var(--border)}
+.linha-barra-trilho>span{display:block;height:100%;border-radius:4px}
+.linha-barra-valor{text-align:right}

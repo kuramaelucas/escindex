@@ -171,7 +171,7 @@ const NUVEM_TABELAS = {
     },
   },
   resultados_simulados: {
-    tipo: "registro", tempo: "criado_em",
+    tipo: "registro", atualizavel: true, tempo: "criado_em",
     chave: r => r.id,
     aplicar: linha => {
       if(db.resultadosSimulados.some(r => r.id === linha.id)) return;

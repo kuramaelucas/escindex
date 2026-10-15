@@ -722,6 +722,7 @@ loadState();
   // navegador) e o estudo feito em outro aparelho desce em segundo plano
   nuvemCarregarSessaoSalva();
   nuvemLigarGatilhos();
+  recalcularResultadosSimulados();   // gabarito corrigido muda a nota de quem já fez
   if(nuvemConectado() && !voltouDoEmail){
     const eu = db.usuarios.find(x => x.id === nuvemSessao.usuarioId);
     if(eu && eu.status === "aprovado"){

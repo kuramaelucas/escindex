@@ -92,6 +92,7 @@ function registrarCorrecaoDaQuestao(qid){
   if(c) db.correcoes[qid] = { porNome: (usuarioAtual() || {}).nome || "", em: hojeISO(), naNuvem: false };
   else delete db.correcoes[qid];
   if(c || (antes && antes.naNuvem)) nuvemMarcarCorrecao(qid);
+  recalcularResultadosSimulados();
   return true;
 }
 
