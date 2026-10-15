@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BANCO UNIFESP 2025 ADAPTADO — 80 questões autorais
+   BANCO UNIFESP 2025 ADAPTADO — 100 questões autorais
    ==========================================================================
    Cada questão parte do ASSUNTO e da posição de uma questão da prova da
    UNIFESP-EPM 2025, mas é escrita do zero: caso clínico, dados e alternativas
@@ -1134,6 +1134,286 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   explicacaoGeral:"A alternativa D está correta. Dicas da figura e do enunciado: **linha de base de cerca de 150 bpm** (normal), **variabilidade mínima (5 bpm ou menos)** e **desacelerações tardias recorrentes** (início depois do pico da contração, com retorno depois do seu fim, até cerca de 110 bpm) em **todas as contrações**, em paciente **em decúbito dorsal** e **com ocitocina**. É um traçado de **categoria II (indeterminado)**, que exige avaliação e reanimação intrauterina: mudar para decúbito lateral, hidratar, **suspender a ocitocina** (a hiperatividade uterina reduz a perfusão placentária) e tratar causas como a hipotensão; se o padrão persistir ou se agravar para categoria III, indica-se o parto, em geral operatório, e por isso o centro cirúrgico deve estar pronto. A está errada porque as desacelerações tardias refletem insuficiência placentária e não são benignas. B está errada porque aumentar a ocitocina agrava a hipoperfusão placentária. C está errada porque a categoria III exige ausência de variabilidade com desacelerações recorrentes ou bradicardia, o que a figura não mostra; a primeira medida é a reanimação intrauterina.",
   explicacoesAlternativas:{},
   referencias:"Macones GA et al. The 2008 National Institute of Child Health and Human Development workshop report on electronic fetal monitoring. Obstet Gynecol 2008;112:661-666; American College of Obstetricians and Gynecologists. Practice Bulletin nº 106: Intrapartum fetal heart rate monitoring, 2009 (reafirmado); Brasil. Ministério da Saúde. Diretrizes Nacionais de Assistência ao Parto Normal, 2017.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q81 da UNIFESP 2025
+{
+  id:"q-adap25-081", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
+  enunciado:"Mulher, 41 anos, apresenta sangramento pós-coito há 3 meses. O exame especular mostra lesão exofítica de 4,2 cm no colo uterino, e a biópsia revela carcinoma escamoso invasor. O toque retal e a ressonância de pelve mostram invasão do paramétrio direito, sem extensão à parede pélvica, sem acometimento da vagina inferior e sem hidronefrose; o PET-CT não mostra linfonodos suspeitos nem metástases. Segundo o estadiamento da FIGO 2018, qual é o tratamento mais adequado?",
+  alternativas:[{id:"A",texto:"Histerectomia radical com linfadenectomia pélvica, seguida de radioterapia adjuvante, conforme a patologia."},{id:"B",texto:"Traquelectomia radical com linfadenectomia pélvica, para preservar o útero e a fertilidade da paciente."},{id:"C",texto:"Conização com margens livres e seguimento citológico semestral, por se tratar de lesão exofítica."},{id:"D",texto:"Radioterapia pélvica externa com cisplatina semanal concomitante, complementada por braquiterapia."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: carcinoma escamoso de **4,2 cm** com **invasão do paramétrio** (sem atingir a parede pélvica), sem acometimento da vagina inferior, sem hidronefrose e **sem linfonodos suspeitos** ao PET-CT: estádio **IIB da FIGO 2018** (doença localmente avançada). O tratamento padrão é a quimiorradioterapia definitiva, com **radioterapia externa e cisplatina semanal** seguidas de **braquiterapia**. A está errada porque a cirurgia radical não é tratamento primário do paramétrio acometido: seria seguida de radioterapia, somando morbidade sem ganho. B está errada porque a traquelectomia radical é só para tumores iniciais, pequenos (até 2 cm), sem invasão do paramétrio, em mulheres que querem preservar a fertilidade. C está errada porque a conização trata lesões pré-invasivas ou de estádio muito inicial, e não um tumor de 4,2 cm com invasão parametrial.",
+  explicacoesAlternativas:{},
+  referencias:"Bhatla N et al. Revised FIGO staging for carcinoma of the cervix uteri. Int J Gynaecol Obstet 2019;145:129-135; Cibula D et al. ESGO/ESTRO/ESP guidelines for the management of patients with cervical cancer: update 2023. Int J Gynecol Cancer 2023;33:649-666.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q82 da UNIFESP 2025
+{
+  id:"q-adap25-082", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
+  enunciado:"Enfermeiro de um hospital, 36 anos, faz o exame periódico de saúde ocupacional, e a prova tuberculínica é de 13 mm; a radiografia de tórax é normal. Na consulta, relata tosse seca há 5 semanas, sudorese noturna ocasional e perda de 2 kg no período. Não tem HIV nem outras comorbidades. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Investigar tuberculose ativa com teste rápido molecular no escarro, antes de tratar a infecção latente."},{id:"B",texto:"Iniciar rifampicina por 4 meses, esquema de tratamento da infecção latente, bem tolerado e eficaz."},{id:"C",texto:"Repetir a prova tuberculínica em 8 semanas, para confirmar a conversão antes de qualquer tratamento."},{id:"D",texto:"Orientar apenas acompanhamento, porque a radiografia de tórax normal afasta a doença ativa."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **tosse há 5 semanas** (mais de 3 semanas define o sintomático respiratório), **sudorese noturna** e **perda de peso**, em **profissional de saúde** com **prova tuberculínica de 13 mm**. A **radiografia normal não afasta tuberculose pulmonar**, e antes de tratar a infecção latente é obrigatório excluir doença ativa: investiga-se com o teste rápido molecular no escarro (e cultura), e só se trata a infecção latente se a investigação for negativa. B está errada porque a monoterapia com rifampicina na tuberculose ativa não reconhecida seleciona bacilos resistentes e deve ser evitada. C está errada porque repetir a prova tuberculínica não esclarece a causa dos sintomas e atrasa o diagnóstico. D está errada porque a radiografia normal não exclui a doença nos casos iniciais ou com baixa carga bacilar.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Vigilância da Infecção Latente pelo Mycobacterium tuberculosis no Brasil, 2ª ed., 2022; Brasil. Ministério da Saúde. Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed., 2019 (o texto vigente de tratamento da infecção latente não foi aberto).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q83 da UNIFESP 2025
+{
+  id:"q-adap25-083", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
+  enunciado:"Lactente de 4 meses e 10 dias, nascido a termo e saudável, é levado à unidade básica de saúde pela primeira vez depois da maternidade. A caderneta mostra apenas BCG e a primeira dose da vacina contra hepatite B, ao nascer. Qual das vacinas abaixo não pode mais ser iniciada por ter ultrapassado a idade máxima para a primeira dose?",
+  alternativas:[{id:"A",texto:"Pentavalente (DTP, Hib e hepatite B), que não tem idade máxima para a primeira dose."},{id:"B",texto:"Rotavírus humano, pois a primeira dose só pode ser administrada até os 3 meses e 15 dias de idade."},{id:"C",texto:"Poliomielite inativada, que pode ser iniciada em qualquer idade durante a infância da criança."},{id:"D",texto:"Pneumocócica 10-valente, que pode ser iniciada até os 4 anos, 11 meses e 29 dias de idade."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: lactente de **4 meses e 10 dias** (já ultrapassou 3 meses e 15 dias), com esquema atrasado (só **BCG e hepatite B ao nascer**). A vacina contra o rotavírus tem **idade-limite**: a primeira dose pode ser dada de **1 mês e 15 dias a 3 meses e 15 dias**, e a segunda, até 7 meses e 29 dias, por causa do risco de invaginação intestinal com doses tardias; por isso, ela não pode mais ser iniciada. A está errada porque a pentavalente pode ser iniciada em atraso, mesmo depois dos 4 meses. C está errada porque a vacina inativada contra a poliomielite pode ser iniciada em qualquer idade. D está errada porque a pneumocócica 10-valente pode ser aplicada, em esquema reduzido, até os 4 anos, 11 meses e 29 dias, sem limite de 3 meses e 15 dias.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Manual de Normas e Procedimentos para Vacinação, 2014; Brasil. Ministério da Saúde. Calendário Nacional de Vacinação da Criança (a edição vigente não pôde ser aberta; a idade-limite do rotavírus se mantém nas edições conhecidas).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q84 da UNIFESP 2025
+{
+  id:"q-adap25-084", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-alimentar",
+  enunciado:"Lactente de 5 meses, em aleitamento misto, recebe pela primeira vez mamadeira de fórmula infantil à base de leite de vaca. Dez minutos depois, apresenta urticária generalizada, vômitos, palidez, hipotonia e sibilância. FC de 180 bpm, FR de 52 irpm, SpO2 de 90% e enchimento capilar de 4 segundos. Qual é a conduta imediata mais adequada?",
+  alternativas:[{id:"A",texto:"Anti-histamínico por via oral e observação por 4 horas na unidade, com reavaliação clínica."},{id:"B",texto:"Corticoide por via endovenosa em dose alta, que é o tratamento de primeira escolha na anafilaxia."},{id:"C",texto:"Adrenalina por via intramuscular na face lateral da coxa, 0,01 mg/kg, repetida em minutos se preciso."},{id:"D",texto:"Adrenalina por via subcutânea, com absorção equivalente à intramuscular e menor risco de efeitos."}],
+  gabarito:"C",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **primeira exposição ao leite de vaca**, **sintomas minutos depois**, **urticária generalizada**, **vômitos**, **hipotonia**, **sibilância** e sinais de choque (**FC de 180 bpm, SpO2 de 90%, enchimento capilar de 4 segundos**): anafilaxia por alergia à proteína do leite de vaca. O tratamento imediato e de primeira linha é a **adrenalina intramuscular** na face lateral da coxa (0,01 mg/kg da solução 1:1.000, repetida em 5 a 15 minutos se preciso), com oxigênio, acesso venoso e reposição de volume. A está errada porque o anti-histamínico isolado trata só a urticária e não reverte o choque nem o broncoespasmo. B está errada porque o corticoide tem início de ação lento e não é tratamento de primeira linha da anafilaxia. D está errada porque a via subcutânea tem absorção mais lenta e menos previsível, e a via intramuscular é a recomendada.",
+  explicacoesAlternativas:{},
+  referencias:"Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020. World Allergy Organ J 2020;13:100472; Associação Brasileira de Alergia e Imunologia. Guia prático para o manejo da anafilaxia, 2022.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q85 da UNIFESP 2025
+{
+  id:"q-adap25-085", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-alimentar",
+  enunciado:"Lactente de 3 meses, em aleitamento materno exclusivo, apresenta há 3 semanas fezes com raios de sangue em todas as evacuações. Ganha peso de forma adequada, não tem outros sintomas e o exame físico é normal. A mãe consome leite e derivados diariamente. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Manter o aleitamento, excluir o leite de vaca e derivados da dieta da mãe por 2 a 4 semanas e reintroduzi-los depois."},{id:"B",texto:"Suspender o aleitamento materno e iniciar fórmula à base de soja, até o fim do primeiro ano de vida."},{id:"C",texto:"Substituir o aleitamento por fórmula de aminoácidos e dosar a IgE específica para o leite de vaca."},{id:"D",texto:"Dosar a IgE específica para o leite de vaca e excluir o leite da dieta materna somente se o resultado for positivo no exame."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: lactente de **3 meses** em **aleitamento materno exclusivo**, com **fezes com raios de sangue**, **bom ganho de peso** e **exame normal**: proctocolite alérgica induzida por proteína (alergia à proteína do leite de vaca não mediada por IgE). O leite materno deve ser mantido; a mãe exclui leite de vaca e derivados da dieta por **2 a 4 semanas**, e a melhora confirma a hipótese, seguindo-se a **reintrodução** para confirmar o diagnóstico (o desaparecimento do sintoma e o retorno com a reintrodução). B está errada porque não se suspende o aleitamento materno, e a fórmula de soja não é a indicada como primeira escolha no lactente. C está errada porque a fórmula de aminoácidos é reservada a quadros graves ou sem melhora com outras medidas, e a IgE não faz parte da investigação dos quadros não mediados por IgE. D está errada porque a IgE específica não é útil nesse tipo de alergia, e o diagnóstico se faz pela dieta de exclusão e reintrodução.",
+  explicacoesAlternativas:{},
+  referencias:"Solé D et al. Consenso Brasileiro sobre Alergia Alimentar: 2018. Arq Asma Alerg Imunol 2018;2:7-38; Koletzko S et al. Diagnostic approach and management of cow's-milk protein allergy in infants and children: ESPGHAN GI Committee practical guidelines. J Pediatr Gastroenterol Nutr 2012;55:221-229.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q86 da UNIFESP 2025
+{
+  id:"q-adap25-086", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
+  enunciado:"Lactente de 8 meses, previamente saudável, apresenta há 10 horas episódios de choro intenso, com flexão das pernas sobre o abdome, que se repetem a cada 15 a 20 minutos, com palidez e prostração entre as crises. Teve 3 vômitos e eliminou fezes com muco e sangue, de aspecto gelatinoso. Exame: FC de 140 bpm, PA 90/55 mmHg, enchimento capilar de 2 segundos, massa alongada palpável no hipocôndrio direito, sem distensão abdominal acentuada e sem sinais de peritonite. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Laparotomia imediata, pois o quadro é de abdome cirúrgico em lactente com crises de dor e vômitos."},{id:"B",texto:"Redução não cirúrgica por enema de ar ou de líquido, guiada por radioscopia ou ultrassonografia."},{id:"C",texto:"Jejum, antibiótico e observação clínica por 24 horas, para reavaliar a necessidade de exames."},{id:"D",texto:"Enema com bário em alta pressão, para fazer o diagnóstico e a redução da lesão ao mesmo tempo."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **lactente de 8 meses**, com **crises de choro em cólica intermitentes**, **palidez e prostração entre as crises**, **vômitos**, **fezes em geleia de framboesa (muco e sangue)** e **massa palpável em salsicha**: invaginação intestinal, sem **peritonite**, sem choque (**FC de 140 bpm, enchimento capilar de 2 segundos**) e sem distensão. No paciente estável e sem sinais de perfuração, o tratamento inicial é a **redução não cirúrgica** por enema de ar (pneumático) ou de líquido, guiado por imagem, com alta taxa de sucesso, e equipe cirúrgica de sobreaviso. A está errada porque a cirurgia é reservada a peritonite, perfuração, choque ou falha da redução. C está errada porque a espera expõe o intestino à isquemia, e a invaginação não resolve com jejum e antibiótico. D está errada porque o enema com bário em alta pressão aumenta o risco de perfuração e de peritonite por bário e foi substituído pelo ar ou pelo soro.",
+  explicacoesAlternativas:{},
+  referencias:"Kelley-Quon LI et al. Management of intussusception in children: a systematic review. J Pediatr Surg 2021;56:587-596; Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q87 da UNIFESP 2025
+{
+  id:"q-adap25-087", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
+  enunciado:"Adolescente de 15 anos, com asma leve, relata sintomas de tosse e chiado cerca de duas vezes por mês, sem despertares noturnos, e usa salbutamol inalatório apenas quando tem sintomas. Há 3 semanas, após uma infecção respiratória, teve uma crise que exigiu atendimento de urgência com corticoide oral. A função pulmonar é normal entre as crises. Segundo a iniciativa global para a asma (GINA), qual é o tratamento mais adequado?",
+  alternativas:[{id:"A",texto:"Manter o salbutamol isolado quando necessário, por se tratar de asma leve e de sintomas intermitentes."},{id:"B",texto:"Corticoide inalatório em dose alta, de uso diário, para prevenir novas crises."},{id:"C",texto:"Antileucotrieno de uso diário em monoterapia, como alternativa ao corticoide inalatório."},{id:"D",texto:"Budesonida-formoterol em dose baixa, usada apenas quando necessário para aliviar os sintomas."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **asma leve** (sintomas duas vezes por mês), porém com **crise grave recente** que exigiu corticoide oral, mostrando que o risco de exacerbação existe mesmo com poucos sintomas; **adolescente de 15 anos** (12 anos ou mais). A GINA não recomenda mais o broncodilatador de curta duração isolado, porque ele não trata a inflamação das vias aéreas e os pacientes com asma leve têm crises graves; o tratamento preferido é o **corticoide inalatório com formoterol em dose baixa, usado apenas quando necessário** (aliviador e controlador). A está errada porque o tratamento só com salbutamol deixa a inflamação sem controle e aumenta o risco de exacerbações graves. B está errada porque a dose alta diária é excessiva para a asma leve. C está errada porque o antileucotrieno em monoterapia é menos eficaz que o corticoide inalatório e fica como alternativa.",
+  explicacoesAlternativas:{},
+  referencias:"Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2024 update (a atualização de 2025 não foi conferida no texto); Sociedade Brasileira de Pneumologia e Tisiologia. Diretrizes da SBPT para o manejo da asma, 2020.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q88 da UNIFESP 2025
+{
+  id:"q-adap25-088", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-constipacao",
+  enunciado:"Menino, 5 anos, tem há 1 ano evacuações a cada 5 ou 6 dias, com fezes ressecadas e volumosas, dor abdominal e manchas de fezes na roupa íntima, que a mãe interpreta como diarreia. Não tem vômitos, sangue nas fezes, febre, nem alterações neurológicas, e o crescimento é adequado. Exame físico: abdome com massa fecal palpável em hipogástrio e fossa ilíaca esquerda, ânus normal e ampola retal com fezes endurecidas ao toque. Qual é o tratamento inicial mais adequado?",
+  alternativas:[{id:"A",texto:"Desimpactação com polietilenoglicol em dose elevada por alguns dias, seguida de manutenção por meses."},{id:"B",texto:"Óleo mineral por via oral em dose alta, por ser eficaz e de baixo custo, associado à dieta rica em fibras."},{id:"C",texto:"Enemas fosfatados diários, mantidos por 2 meses, para manter o intestino vazio e evitar a retenção fecal."},{id:"D",texto:"Aumento de fibras e de água, sem medicamentos, pois a causa é funcional e comportamental."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **fezes ressecadas e volumosas a cada 5 ou 6 dias**, **dor abdominal**, **escape fecal** (as manchas na roupa íntima, que a mãe chama de diarreia, são o transbordamento por retenção), **massa fecal palpável** e **ampola retal com fezes endurecidas**: constipação funcional com **impactação fecal**, sem sinais de alarme (sem sangue, vômitos, febre ou alteração neurológica e com crescimento normal). O tratamento é a **desimpactação**, com polietilenoglicol (macrogol) em dose alta por alguns dias, seguida de **manutenção** em dose menor por meses, com orientações de toalete e dieta. B está errada porque o óleo mineral em dose alta tem risco de aspiração e pneumonite lipoídica, e não é a primeira escolha. C está errada porque enemas fosfatados em uso diário e prolongado causam distúrbios hidroeletrolíticos e trauma psicológico, e são reservados ao resgate. D está errada porque a dieta isolada não desfaz uma impactação.",
+  explicacoesAlternativas:{},
+  referencias:"Tabbers MM et al. Evidence-based guidelines for the evaluation and treatment of functional constipation in infants and children: ESPGHAN/NASPGHAN. J Pediatr Gastroenterol Nutr 2014;58:258-274; Hyams JS et al. Functional disorders: children and adolescents (Rome IV). Gastroenterology 2016;150:1456-1468.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q89 da UNIFESP 2025
+{
+  id:"q-adap25-089", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-reanimacao",
+  enunciado:"Recém-nascido a termo, nascido de parto vaginal, está hipotônico e em apneia ao nascimento. Após os passos iniciais, a ventilação com pressão positiva por máscara facial foi iniciada com ar ambiente, e o movimento do tórax foi confirmado. Depois de 30 segundos de ventilação efetiva, o monitor de saturação mostra FC de 45 bpm, e o recém-nascido continua apneico. Qual é o próximo passo da reanimação?",
+  alternativas:[{id:"A",texto:"Manter a ventilação com máscara por mais 30 segundos e reavaliar a FC, sem outras medidas adicionais."},{id:"B",texto:"Intubar, aumentar a FiO2 para 100% e iniciar a massagem cardíaca coordenada com a ventilação."},{id:"C",texto:"Administrar adrenalina endovenosa e só depois iniciar a massagem cardíaca torácica do recém-nascido."},{id:"D",texto:"Iniciar apenas a massagem cardíaca com a máscara facial, mantendo o ar ambiente a 21%."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **apneia e hipotonia**, ventilação com pressão positiva **efetiva** (movimento do tórax confirmado) por **30 segundos**, com **FC de 45 bpm (abaixo de 60 bpm)**: está indicada a massagem cardíaca. Como a ventilação por máscara não reverteu a bradicardia, o passo seguinte é assegurar a via aérea com **intubação traqueal** (ou máscara laríngea), **aumentar a FiO2 para 100%** e iniciar a **massagem cardíaca** coordenada com a ventilação, na proporção de 3 compressões para 1 ventilação. A está errada porque repetir a ventilação sem mudar a estratégia, com FC abaixo de 60 bpm após 30 segundos de ventilação efetiva, atrasa a massagem. C está errada porque a adrenalina vem depois de massagem e ventilação bem feitas, quando a FC continua abaixo de 60 bpm. D está errada porque a massagem deve ser feita com FiO2 de 100%, e a ventilação com via aérea segura é preferível.",
+  explicacoesAlternativas:{},
+  referencias:"Sociedade Brasileira de Pediatria. Diretrizes para Reanimação do Recém-Nascido ≥34 semanas em sala de parto, 2022; Aziz K et al. Part 5: Neonatal Resuscitation. 2020 AHA Guidelines for CPR and ECC. Circulation 2020;142(Suppl 2):S524-S550 (a edição de 2025 da AHA não foi conferida).",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q90 da UNIFESP 2025
+{
+  id:"q-adap25-090", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-triagemneonatal",
+  enunciado:"Recém-nascido de 12 dias, a termo e assintomático, é levado à consulta porque o teste do pezinho (papel-filtro, coletado no 4º dia de vida) mostrou TSH elevado, de 45 mUI/L, e a unidade de triagem o convocou. O exame físico é normal, com peso adequado e fontanelas normais. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Repetir o teste do pezinho em papel-filtro em 15 dias e decidir conforme o novo resultado."},{id:"B",texto:"Coletar de imediato TSH e T4 livre séricos, para confirmar o diagnóstico e tratar."},{id:"C",texto:"Aguardar até 30 dias de vida e repetir a triagem, pois o TSH é elevado no período neonatal."},{id:"D",texto:"Iniciar a levotiroxina por 2 semanas, sem confirmação, e suspender o tratamento aos 3 anos."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **TSH elevado no papel-filtro (45 mUI/L)** em recém-nascido de **12 dias**, assintomático (os sinais do hipotireoidismo congênito aparecem tardiamente): triagem positiva para hipotireoidismo congênito. A conduta é a **confirmação imediata** com **TSH e T4 livre séricos**, e, se confirmado, a levotiroxina deve ser iniciada o mais cedo possível, de preferência antes dos 14 dias de vida, para proteger o desenvolvimento neurológico. A está errada porque repetir o teste de triagem atrasa o tratamento, e a confirmação deve ser sérica. C está errada porque aguardar 30 dias expõe o cérebro a hormônio insuficiente na fase crítica. D está errada porque o tratamento só se inicia depois da confirmação, e a reavaliação da necessidade de reposição, em casos sem causa definida, ocorre depois dos 3 anos, e não com 2 semanas.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Manual Técnico da Triagem Neonatal Biológica, 2016; Léger J et al. European Society for Paediatric Endocrinology consensus guidelines on screening, diagnosis, and management of congenital hypothyroidism. J Clin Endocrinol Metab 2014;99:363-384.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q91 da UNIFESP 2025
+{
+  id:"q-adap25-091", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-triagemneonatal",
+  enunciado:"Recém-nascido de 15 dias, a termo, em aleitamento materno exclusivo e assintomático, é convocado porque a triagem neonatal acusou fenilalanina elevada. A coleta confirmatória mostra fenilalanina sérica de 20 mg/dL (referência abaixo de 2 mg/dL) com tirosina normal, e a confirmação de fenilcetonúria clássica é feita. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Iniciar fórmula sem fenilalanina e manter o leite materno em quantidade ajustada pelos níveis séricos."},{id:"B",texto:"Suspender por completo o leite materno e iniciar fórmula à base de soja como principal alimento do lactente."},{id:"C",texto:"Aguardar o aparecimento de sinais neurológicos para iniciar a restrição alimentar, evitando dietas desnecessárias."},{id:"D",texto:"Iniciar a dieta restrita apenas aos 6 meses, quando for introduzida a alimentação complementar."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **fenilalanina de 20 mg/dL** (acima de 10 mg/dL, na faixa clássica), **tirosina normal**, **15 dias de vida** e **assintomático**: o dano neurológico da fenilcetonúria é evitável quando o tratamento começa nas primeiras semanas, mas é irreversível se for tardio. A dieta consiste em fórmula metabólica **isenta de fenilalanina** associada a uma **quantidade controlada de leite materno** (que contém pouca fenilalanina), ajustada pela dosagem seriada de fenilalanina, para manter o nível sérico na faixa-alvo. B está errada porque o leite materno não precisa ser suspenso, e a fórmula de soja contém fenilalanina em quantidade que não é compatível com a restrição. C está errada porque os sinais neurológicos surgem depois do dano. D está errada porque o atraso até 6 meses compromete o neurodesenvolvimento: o tratamento começa assim que o diagnóstico é confirmado.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Fenilcetonúria (a edição vigente não foi aberta); van Wegberg AMJ et al. The complete European guidelines on phenylketonuria: diagnosis and treatment. Orphanet J Rare Dis 2017;12:162.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q92 da UNIFESP 2025
+{
+  id:"q-adap25-092", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-febrereumatica",
+  enunciado:"Menina, 10 anos, teve há 8 meses um surto de febre reumática com cardite e coreia, tratado com penicilina benzatina e anti-inflamatórios. O ecocardiograma de controle mostra insuficiência mitral leve persistente, com espessamento valvar, e a paciente está em uso de penicilina benzatina a cada 21 dias. A mãe pergunta por quanto tempo a profilaxia deverá ser mantida. Qual é a orientação correta?",
+  alternativas:[{id:"A",texto:"Por 10 anos depois do último surto ou até os 40 anos de idade, prevalecendo o período mais longo."},{id:"B",texto:"Por 5 anos depois do último surto ou até os 21 anos de idade, prevalecendo sempre o período mais longo."},{id:"C",texto:"Por 1 ano depois do último surto, pois a coreia isolada não exige profilaxia prolongada."},{id:"D",texto:"Até completar 18 anos de idade, independentemente da evolução do dano valvar."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **surto de febre reumática com cardite** e **lesão valvar residual** (insuficiência mitral leve persistente, com espessamento valvar), em criança de 10 anos, em profilaxia secundária. A duração da profilaxia depende do comprometimento cardíaco: na febre reumática com **cardite e doença valvar residual**, mantém-se por **10 anos depois do último surto ou até os 40 anos, o que for mais longo** (e, em alguns casos, por toda a vida). B está errada porque 5 anos ou até os 21 anos é o prazo da febre reumática sem cardite. C está errada porque a profilaxia curta não protege contra recorrências, que agravam a lesão valvar. D está errada porque a idade, por si só, não determina a duração: o dano valvar residual prolonga a profilaxia além dos 18 anos.",
+  explicacoesAlternativas:{},
+  referencias:"Barbosa PJB et al. Diretrizes Brasileiras para o diagnóstico, tratamento e prevenção da febre reumática. Arq Bras Cardiol 2009;93(3 Supl 4):1-18; Gerber MA et al. Prevention of rheumatic fever and diagnosis and treatment of acute Streptococcal pharyngitis. Circulation 2009;119:1541-1551; Gewitz MH et al. Revision of the Jones Criteria. Circulation 2015;131:1806-1818 (atualização brasileira posterior não conferida).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q93 da UNIFESP 2025
+{
+  id:"q-adap25-093", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-descrresp",
+  enunciado:"Gestante de 28 anos, com 30 semanas, apresenta trabalho de parto prematuro com 4 cm de dilatação e bolsas íntegras, sem sinais de infecção. A tocólise foi iniciada para tentar adiar o parto por 48 horas. Qual medida deve ser tomada para reduzir a síndrome do desconforto respiratório do recém-nascido?",
+  alternativas:[{id:"A",texto:"Betametasona 12 mg intramuscular em dose única, pois a segunda dose não traz benefício."},{id:"B",texto:"Hidrocortisona 100 mg por via endovenosa a cada 8 horas, durante 24 horas, antes do parto."},{id:"C",texto:"Betametasona 12 mg intramuscular a cada 24 horas, durante 5 dias seguidos, antes do parto."},{id:"D",texto:"Betametasona 12 mg por via intramuscular, 2 doses com 24 horas de intervalo, o mais cedo possível."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **gestação de 30 semanas** (entre 24 e 34 semanas, faixa em que o corticoide antenatal é indicado), **trabalho de parto prematuro** com **risco de parto nos próximos 7 dias** (dilatação de 4 cm, bolsas íntegras). O corticoide antenatal acelera a maturação pulmonar e reduz a síndrome do desconforto respiratório, a hemorragia intraventricular e a mortalidade neonatal. O esquema de escolha é a **betametasona 12 mg por via intramuscular, 2 doses com 24 horas de intervalo**, e o benefício é maior quando o parto ocorre de 24 horas a 7 dias depois da primeira dose. A está errada porque a dose única é incompleta, e o esquema validado são duas doses. B está errada porque a hidrocortisona atravessa pouco a placenta e não é usada para maturação pulmonar fetal. C está errada porque um curso de 5 dias é excessivo e não estudado, e doses repetidas aumentam o risco de efeitos adversos no feto.",
+  explicacoesAlternativas:{},
+  referencias:"World Health Organization. WHO recommendations on antenatal corticosteroids for improving preterm birth outcomes, 2022; McGoldrick E et al. Antenatal corticosteroids for accelerating fetal lung maturation for women at risk of preterm birth. Cochrane Database Syst Rev 2020;12:CD004454; ACOG Committee Opinion nº 713. Obstet Gynecol 2017;130:e102-e109.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q94 da UNIFESP 2025
+{
+  id:"q-adap25-094", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
+  enunciado:"Lactente de 38 dias, nascido a termo, em aleitamento materno exclusivo, com icterícia desde o nascimento, que persiste e se acentuou, é levado à consulta. A mãe relata fezes de cor clara, quase brancas, e urina escura há 1 semana. Bom estado geral e ganho de peso razoável. Exame físico: icterícia de zona IV, fígado palpável a 3 cm do rebordo costal direito, de consistência firme. Exames: bilirrubina total de 6,4 mg/dL e direta de 4,8 mg/dL. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Encaminhar já para investigar atresia biliar, pois a cirurgia deve ser feita antes de 60 dias."},{id:"B",texto:"Suspender o leite materno por 48 horas, para confirmar o diagnóstico de icterícia do leite materno."},{id:"C",texto:"Iniciar fototerapia domiciliar e reavaliar a bilirrubina em 1 semana, pelo valor da bilirrubina total."},{id:"D",texto:"Orientar a manter o aleitamento e aguardar a resolução espontânea, que costuma ocorrer até os 3 meses."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **icterícia persistente após 14 dias de vida**, **fezes acólicas (brancas)**, **colúria**, **hepatomegalia firme** e **bilirrubina direta de 4,8 mg/dL (75% da total)**, acima de 1 mg/dL: colestase, com suspeita de **atresia de vias biliares**. A cirurgia de Kasai deve ser feita idealmente **antes de 60 dias de vida**, pois a chance de sucesso cai com o atraso, e por isso o lactente deve ser encaminhado de imediato ao serviço especializado, para ultrassonografia e confirmação. B está errada porque a icterícia do leite materno é de predomínio indireto e não causa fezes acólicas, colúria nem hepatomegalia. C está errada porque a fototerapia trata hiperbilirrubinemia indireta, e não resolve a colestase. D está errada porque a icterícia com bilirrubina direta elevada nunca é fisiológica e não se resolve espontaneamente.",
+  explicacoesAlternativas:{},
+  referencias:"Fawaz R et al. Guideline for the evaluation of cholestatic jaundice in infants: NASPGHAN and ESPGHAN. J Pediatr Gastroenterol Nutr 2017;64:154-168; Sociedade Brasileira de Pediatria. Documento científico: colestase neonatal e atresia de vias biliares.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q95 da UNIFESP 2025
+{
+  id:"q-adap25-095", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-mps", especialidadeId:"esp-bioetica", assuntoId:"ass-comunicacaoclinica",
+  enunciado:"Em uma consulta ambulatorial, o pediatra comunica aos pais de uma menina de 6 anos que o exame confirmou o diagnóstico de leucemia linfoblástica aguda. A mãe começa a chorar, o pai fica em silêncio com o olhar fixo, e logo diz: «Isso não pode ser verdade, deve haver um engano». Qual é a atitude de comunicação mais adequada nesse momento?",
+  alternativas:[{id:"A",texto:"Continuar a explicar o protocolo de tratamento, para reduzir a ansiedade com informações."},{id:"B",texto:"Reconhecer a emoção, demonstrar compreensão e fazer uma pausa em silêncio antes de continuar a conversa."},{id:"C",texto:"Tranquilizar os pais, dizendo que a doença tem cura quase certa e que não há motivo para tanta preocupação."},{id:"D",texto:"Sugerir um calmante à mãe e adiar a conversa para outro dia, para que a notícia seja assimilada."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **choro da mãe**, **silêncio e olhar fixo do pai** e a frase de **negação** («não pode ser verdade»): reações emocionais esperadas diante da má notícia. No protocolo SPIKES, depois de dar a informação, vem a etapa de **responder às emoções com empatia**: reconhecer e nomear a emoção, mostrar compreensão e **fazer uma pausa em silêncio**, deixando os pais reagirem antes de retomar as informações; só então se passa ao plano de cuidado. A está errada porque seguir com informações técnicas enquanto os pais estão emocionalmente sobrecarregados não é assimilado e rompe o vínculo. C está errada porque a tranquilização precoce e exagerada (falso conforto) invalida a emoção e pode contradizer o prognóstico real. D está errada porque medicar a mãe e adiar a conversa evita o problema sem acolhê-lo, e interrompe o plano que os pais precisam conhecer.",
+  explicacoesAlternativas:{},
+  referencias:"Baile WF et al. SPIKES: a six-step protocol for delivering bad news. Oncologist 2000;5:302-311; Back A, Arnold R, Tulsky J. Mastering Communication with Seriously Ill Patients. Cambridge University Press, 2009 (respostas empáticas, mnemônico NURSE).",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q96 da UNIFESP 2025
+{
+  id:"q-adap25-096", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
+  enunciado:"Menino, 6 anos e 10 meses, é levado à consulta por parar de crescer: a estatura era de 104 cm aos 4 anos e 5 meses e é de 110 cm hoje, com velocidade de crescimento de 2,5 cm/ano (esperado de 5 a 7 cm/ano). O peso passou do percentil 50 ao 85 no período, e o IMC está elevado. Os pais referem cansaço, sono excessivo e constipação, e o exame físico mostra pele seca e fácies pouco expressiva, sem dismorfismos nem desproporção corporal. Estaturas dos pais de 172 cm (pai) e 160 cm (mãe). A idade óssea é de 4 anos. Qual é a investigação inicial mais adequada?",
+  alternativas:[{id:"A",texto:"Dosagem de TSH e T4 livre, com anticorpo antitireoperoxidase se o TSH estiver alterado ou elevado."},{id:"B",texto:"Dosagem de IGF-1 e IGFBP-3, e teste de estímulo do GH, antes de qualquer outro exame."},{id:"C",texto:"Cariótipo com contagem de 30 células, para pesquisar síndrome de Turner e mosaicismos."},{id:"D",texto:"Cortisol urinário de 24 horas e cortisol salivar noturno, para investigar síndrome de Cushing."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **desaceleração do crescimento** (velocidade de 2,5 cm/ano), **peso que sobe de percentil** enquanto a estatura cai, **IMC elevado**, **idade óssea atrasada (4 anos para 6 anos e 10 meses)**, **cansaço, sono excessivo, constipação e pele seca** e **proporções normais**: hipotireoidismo adquirido (tireoidite de Hashimoto, em geral). A investigação inicial é a dosagem de **TSH e T4 livre**, simples e de baixo custo, com anticorpo antitireoperoxidase para confirmar a etiologia autoimune. B está errada porque a deficiência de GH é investigada depois de excluídas causas mais comuns e simples, como o hipotireoidismo; além disso, o hipotireoidismo baixa o IGF-1 e invalida o teste de estímulo. C está errada porque o cariótipo é para meninas com baixa estatura inexplicada, em que se suspeita de Turner. D está errada porque a síndrome de Cushing causa baixa estatura com ganho de peso, mas o quadro clínico, com constipação e sono excessivo, aponta para hipotireoidismo, e o rastreamento de Cushing não é inicial.",
+  explicacoesAlternativas:{},
+  referencias:"Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed., 2021 (capítulos de crescimento e de doenças da tireoide); Sperling MA (ed.). Sperling Pediatric Endocrinology, 5ª ed., Elsevier, 2021.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q97 da UNIFESP 2025
+{
+  id:"q-adap25-097", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-maustratos",
+  enunciado:"Menina de 5 anos é levada ao pronto-socorro pela mãe, que diz que a filha caiu da bicicleta há 2 dias. Na consulta, a criança está quieta e evita contato visual. Exame físico: equimoses de 2 a 3 cm na face interna das coxas e hiperemia perineal. Ao ser questionada, diz que não quer voltar para casa «por causa do tio». O padrasto aguarda na recepção. O médico suspeita de violência sexual. Qual é a conduta mais adequada?",
+  alternativas:[{id:"A",texto:"Aguardar a confirmação da violência por perícia, antes de qualquer notificação ao Conselho Tutelar."},{id:"B",texto:"Obter a autorização da mãe para notificar, para preservar o vínculo da criança com a família."},{id:"C",texto:"Interrogar a criança com detalhes sobre os fatos e registrar o relato completo em prontuário."},{id:"D",texto:"Notificar o Conselho Tutelar e o SINAN, sem esperar confirmação nem autorização."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **explicação incompatível com o mecanismo** (queda de bicicleta e equimoses na **face interna das coxas** e **hiperemia perineal**), **criança retraída** que **não quer voltar para casa «por causa do tio»** e agressor em potencial no convívio: suspeita fundamentada de violência sexual. A **suspeita** já obriga a notificação ao **Conselho Tutelar** (e a notificação compulsória no SINAN), **sem aguardar confirmação** nem autorização da família, cabendo ao serviço garantir a proteção da criança (internação protetiva, se necessário) e acionar a rede, inclusive o atendimento especializado, com profilaxias quando indicadas. A está errada porque a lei exige comunicação da suspeita, e a espera expõe a criança a novo abuso. B está errada porque a notificação não depende da autorização dos responsáveis, que podem ser os próprios agressores ou encobridores. C está errada porque o interrogatório detalhado revitimiza a criança; a escuta deve ser especializada, feita por profissional treinado, na forma da lei.",
+  explicacoesAlternativas:{},
+  referencias:"Lei nº 8.069/1990 (Estatuto da Criança e do Adolescente), art. 13; Lei nº 13.431/2017 (escuta especializada e depoimento especial); Lei nº 14.344/2022 (Lei Henry Borel); Brasil. Ministério da Saúde. Linha de cuidado para a atenção integral à saúde de crianças, adolescentes e suas famílias em situação de violências, 2010.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q98 da UNIFESP 2025
+{
+  id:"q-adap25-098", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
+  enunciado:"Mulher, 27 anos, que planeja engravidar nos próximos meses, procura consulta pré-concepcional. Tem antecedente de uma gestação anterior, há 2 anos, com feto com mielomeningocele. É hígida, não faz uso de medicamentos antiepilépticos nem tem diabetes. Qual é a conduta mais adequada em relação ao ácido fólico?",
+  alternativas:[{id:"A",texto:"0,4 mg por dia, a dose habitual de toda gestante, que basta mesmo com antecedente de defeito do tubo neural."},{id:"B",texto:"1 mg por dia, a partir do início do 2º trimestre da gestação e mantido até o parto."},{id:"C",texto:"4 mg por dia, iniciada apenas quando a gravidez for confirmada por exame de sangue, até a 12ª semana."},{id:"D",texto:"4 mg por dia, iniciada pelo menos 1 mês antes da concepção e mantida até a 12ª semana de gestação."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **antecedente de feto com mielomeningocele** (defeito do tubo neural), **planejamento da gestação** e **ausência de outros fatores** (sem antiepilépticos nem diabetes). O risco de recorrência do defeito do tubo neural é de cerca de 2% a 5%, e a suplementação com **dose alta (4 mg por dia)**, iniciada **pelo menos 1 mês antes da concepção** e mantida **até a 12ª semana**, reduz esse risco em cerca de 70% (o fechamento do tubo neural ocorre na 4ª semana, antes de muitas mulheres saberem que estão grávidas). A está errada porque 0,4 mg é a dose para o risco habitual, e o antecedente exige dose maior. B está errada porque o início no 2º trimestre perde a janela de formação do tubo neural. C está errada porque a dose é correta, mas começar só com o diagnóstico da gravidez perde o período crítico.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022; American College of Obstetricians and Gynecologists. Practice Bulletin nº 187: Neural tube defects. Obstet Gynecol 2017;130:e279-e290; US Preventive Services Task Force. Folic acid supplementation to prevent neural tube defects. JAMA 2023;330:454-459.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q99 da UNIFESP 2025
+{
+  id:"q-adap25-099", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
+  enunciado:"Recém-nascido a termo, com 6 dias de vida, é filho de mulher que teve soroconversão para toxoplasmose no 2º trimestre, tratada com espiramicina, sem acompanhamento posterior. O exame físico mostra hepatoesplenomegalia leve e icterícia. O fundo de olho revela coriorretinite periférica, e a ultrassonografia transfontanelar, calcificações intracranianas difusas. A sorologia do recém-nascido tem IgG e IgM positivos para toxoplasmose, e o IgA também é positivo. Qual é o tratamento indicado?",
+  alternativas:[{id:"A",texto:"Espiramicina por 12 meses, droga de escolha para o recém-nascido infectado."},{id:"B",texto:"Clindamicina por via oral, em monoterapia, por 6 semanas."},{id:"C",texto:"Observação e acompanhamento mensal sem tratamento, pois a mãe já foi tratada na gestação."},{id:"D",texto:"Pirimetamina, sulfadiazina e ácido folínico por 12 meses, com controle do hemograma."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **soroconversão materna** na gestação com tratamento incompleto e sem seguimento, e um recém-nascido com **coriorretinite**, **calcificações intracranianas difusas**, **hepatoesplenomegalia** e **IgM e IgA positivos**: toxoplasmose congênita sintomática. O tratamento é a **associação de pirimetamina, sulfadiazina e ácido folínico por 12 meses**, com controle semanal ou quinzenal do hemograma (a pirimetamina causa neutropenia), e corticoide se houver coriorretinite ativa ou proteinorraquia alta. A está errada porque a espiramicina é usada na gestante para reduzir a transmissão vertical e não trata a criança já infectada. B está errada porque a clindamicina isolada não substitui o esquema com antifolínicos. C está errada porque o tratamento materno não cura o recém-nascido infectado, e a doença é ativa.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de notificação e investigação: toxoplasmose gestacional e congênita, 2018; Maldonado YA, Read JS. Diagnosis, treatment, and prevention of congenital toxoplasmosis in the United States. Pediatrics 2017;139:e20163860.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-15"
+},
+// adaptada da estrutura da Q100 da UNIFESP 2025
+{
+  id:"q-adap25-100", banca:"Esc — Banco Didático", real:false, ano:2027,
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
+  enunciado:"Recém-nascido de 10 dias, a termo, com microcefalia, hepatoesplenomegalia, petéquias e icterícia colestática. A tomografia de crânio mostra calcificações periventriculares e dilatação ventricular, e a emissão otoacústica está ausente nos dois ouvidos. A reação em cadeia da polimerase da urina, colhida nas primeiras duas semanas de vida, é positiva para citomegalovírus. Qual é o tratamento mais adequado?",
+  alternativas:[{id:"A",texto:"Valganciclovir por via oral por 6 meses, com controle de neutrófilos."},{id:"B",texto:"Ganciclovir por via endovenosa por 6 semanas, seguido de observação clínica."},{id:"C",texto:"Aciclovir por via endovenosa por 21 dias, em dose alta, pela doença do sistema nervoso central."},{id:"D",texto:"Imunoglobulina hiperimune contra citomegalovírus, em dose única, e acompanhamento ambulatorial."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **microcefalia**, **calcificações periventriculares**, **ventriculomegalia**, **hepatoesplenomegalia**, **petéquias**, **icterícia colestática**, **perda auditiva** e **PCR positiva para citomegalovírus na urina nas primeiras 3 semanas de vida** (o que confirma a infecção congênita): doença congênita sintomática com comprometimento do sistema nervoso central. O tratamento antiviral indicado é o **valganciclovir oral (16 mg/kg a cada 12 horas) por 6 meses**, iniciado no primeiro mês de vida, que melhora a evolução auditiva e do neurodesenvolvimento, com controle de neutrófilos e transaminases. B está errada porque o esquema de 6 semanas de ganciclovir endovenoso é o esquema antigo, de menor benefício e maior toxicidade. C está errada porque o aciclovir trata o herpes simples e não é ativo contra o citomegalovírus. D está errada porque a imunoglobulina hiperimune não tem eficácia comprovada no recém-nascido infectado.",
+  explicacoesAlternativas:{},
+  referencias:"Kimberlin DW et al. Valganciclovir for symptomatic congenital cytomegalovirus disease. N Engl J Med 2015;372:933-943; Rawlinson WD et al. Congenital cytomegalovirus infection in pregnancy and the neonate: consensus recommendations for prevention, diagnosis, and therapy. Lancet Infect Dis 2017;17:e177-e188.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-15"
