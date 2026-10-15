@@ -394,10 +394,11 @@ test("cartão que o aluno cria só para si aparece nos outros aparelhos dele, e 
   try{
     // pelo formulário, como a pessoa faria (inclui editar e arquivar)
     await celular.pagina.evaluate(() => {
-      abrirFormularioFlashcard(null);
-      document.getElementById("fcFrente").value = "Cartão só meu";
-      document.getElementById("fcVerso").value = "Resposta";
-      salvarFlashcard("", "");
+      abrirFormularioFlashcard(null);   // para o aluno abre a lista, com uma linha
+      const linha = document.querySelector("#listaCartoesLinhas tr");
+      linha.querySelector('[data-lista="frente"]').value = "Cartão só meu";
+      linha.querySelector('[data-lista="verso"]').value = "Resposta";
+      salvarCartoesEmLista();
     });
     await sincronizar(celular.pagina);
     assert.equal(banco.tabela("flashcards_pessoais").size, 1);

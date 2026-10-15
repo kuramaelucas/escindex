@@ -168,7 +168,7 @@ function iniciarSimulado(simuladoId){
   // questão que saiu do banco) não entra — ver aguardaImagem()
   const qids = s.questoes.filter(qid=>{ const q = getQuestao(qid); return q && !aguardaImagem(q); });
   if(!qids.length){ toast("Este simulado não tem questões disponíveis no momento.", "err"); return; }
-  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId, titulo:s.titulo, itens:qids.map(qid=>({questaoId:qid, motivo:"Simulado: "+s.titulo})), indiceAtual:0, respostasSimulado:{}, duracaoMin:s.duracaoMin, finalizado:false, modoAprendizado:false, inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
+  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId, titulo:s.titulo, itens:qids.map(qid=>({questaoId:qid, motivo:"Simulado: "+s.titulo})), indiceAtual:0, respostasSimulado:{}, duracaoMin:s.duracaoMin, finalizado:false, modoAprendizado:false, escolhaPendente:{}, ocultarTimer:false, pausadoDesde:null, inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
   navigate("simulado-ativo");
 }
 
@@ -176,20 +176,45 @@ function iniciarSimulado(simuladoId){
    O relógio corre num intervalo próprio e só escreve no elemento da tela,
    sem redesenhar a página inteira a cada segundo. O tempo gasto em cada
    questão é acumulado toda vez que o aluno troca de questão ou finaliza —
-   é esse número que depois mostra onde ele trava. */
+   é esse número que depois mostra onde ele trava.
+
+   O relógio PARA quando a pessoa sai da página (troca de aba, minimiza,
+   bloqueia o celular): tempo longe da tela não é tempo de prova. Em vez de
+   guardar pausas à parte, ao voltar empurramos `inicioMs` e `tsQuestao` para
+   frente pelo tempo que ficou fora — todas as contas (restante, tempo por
+   questão, tempo total) continuam certas sem saber que houve pausa. */
 let intervaloCronometro = null;
+function momentoDeReferenciaSimulado(s){ return s.pausadoDesde || s.fimMs || Date.now(); }
+function pausarCronometroSimulado(){
+  const s = state.sessaoAtual;
+  if(!s || s.tipo!=="simulado" || s.finalizado || !s.inicioMs || s.pausadoDesde) return;
+  s.pausadoDesde = Date.now();
+}
+function retomarCronometroSimulado(){
+  const s = state.sessaoAtual;
+  if(!s || s.tipo!=="simulado" || !s.pausadoDesde) return;
+  const fora = Date.now() - s.pausadoDesde;
+  s.inicioMs += fora;
+  if(s.tsQuestao) s.tsQuestao += fora;
+  s.pausadoDesde = null;
+  atualizarCronometro();
+}
+if(typeof document!=="undefined"){
+  document.addEventListener("visibilitychange", () => { if(document.hidden) pausarCronometroSimulado(); else retomarCronometroSimulado(); });
+}
 function acumularTempoQuestaoSimulado(){
   const s = state.sessaoAtual;
   if(!s || s.tipo!=="simulado" || !s.tsQuestao) return;
   const item = s.itens[s.indiceAtual]; if(!item) return;
-  const delta = (Date.now() - s.tsQuestao)/1000;
+  const agora = s.pausadoDesde || Date.now();
+  const delta = (agora - s.tsQuestao)/1000;
   if(delta>0 && delta<7200) s.tempos[item.questaoId] = (s.tempos[item.questaoId]||0) + delta;
-  s.tsQuestao = Date.now();
+  s.tsQuestao = agora;
 }
 function tempoDecorridoSimulado(){
   const s = state.sessaoAtual;
   if(!s || !s.inicioMs) return 0;
-  return Math.floor(((s.fimMs||Date.now()) - s.inicioMs)/1000);
+  return Math.floor((momentoDeReferenciaSimulado(s) - s.inicioMs)/1000);
 }
 function pararCronometro(){
   if(intervaloCronometro && typeof clearInterval==="function"){ clearInterval(intervaloCronometro); }
@@ -203,7 +228,8 @@ function atualizarCronometro(){
   if(!el) return;
   const decorrido = tempoDecorridoSimulado();
   const limite = (s.duracaoMin||0)*60;
-  if(!limite){ el.textContent = formatarDuracao(decorrido)+" decorridos"; return; }
+  const pausa = s.pausadoDesde ? " (pausado)" : "";
+  if(!limite){ el.textContent = formatarDuracao(decorrido)+" decorridos"+pausa; return; }
   const restante = limite - decorrido;
   if(restante<=0){
     el.textContent = "tempo esgotado";
@@ -211,7 +237,7 @@ function atualizarCronometro(){
     finalizarSimulado();
     return;
   }
-  el.textContent = formatarDuracao(restante)+" restantes";
+  el.textContent = formatarDuracao(restante)+" restantes"+pausa;
   el.className = "badge " + (restante<300 ? "badge-danger" : restante<600 ? "badge-amber" : "badge-muted");
 }
 function garantirCronometro(){
@@ -222,7 +248,29 @@ function selecionarAlternativaSimulado(altId){
   if(haTextoSelecionado()) return;   // quem arrastou para destacar não escolheu a alternativa
   const sessao = state.sessaoAtual; if(!sessao) return;
   desriscarSeNecessario(altId);
-  sessao.respostasSimulado[sessao.itens[sessao.indiceAtual].questaoId] = altId;
+  const qid = sessao.itens[sessao.indiceAtual].questaoId;
+  if(sessao.modoAprendizado){
+    // no modo aprendizado a resposta só vale ao confirmar (e, confirmada, trava):
+    // o clique sozinho não revela a explicação por engano
+    if(sessao.respostasSimulado[qid] !== undefined) return;
+    (sessao.escolhaPendente = sessao.escolhaPendente || {})[qid] = altId;
+    render(); return;
+  }
+  sessao.respostasSimulado[qid] = altId;
+  render();
+}
+function confirmarRespostaSimulado(){
+  const sessao = state.sessaoAtual; if(!sessao) return;
+  const qid = sessao.itens[sessao.indiceAtual].questaoId;
+  const escolha = (sessao.escolhaPendente||{})[qid];
+  if(!escolha){ toast("Escolha uma alternativa antes de confirmar.", "err"); return; }
+  sessao.respostasSimulado[qid] = escolha;
+  delete sessao.escolhaPendente[qid];
+  render();
+}
+function alternarOcultarTimerSimulado(){
+  const sessao = state.sessaoAtual; if(!sessao) return;
+  sessao.ocultarTimer = !sessao.ocultarTimer;
   render();
 }
 function irQuestaoSimulado(delta){ const s=state.sessaoAtual; acumularTempoQuestaoSimulado(); s.indiceAtual=Math.max(0,Math.min(s.itens.length-1,s.indiceAtual+delta)); render(); }
@@ -233,6 +281,7 @@ function confirmarSairSimulado(){
 function finalizarSimulado(){
   const sessao = state.sessaoAtual; const u = usuarioAtual();
   if(sessao.finalizado) return;
+  retomarCronometroSimulado();   // fechar a prova com o relógio parado contaria o tempo fora
   acumularTempoQuestaoSimulado();
   sessao.fimMs = Date.now();
   const tempoTotalSeg = sessao.inicioMs ? tempoDecorridoSimulado() : null;
@@ -271,14 +320,16 @@ function renderSimuladoAtivo(){
   const emBranco = sessao.itens.length - respondidasCount;
   const emModoAprendizado = !!sessao.modoAprendizado;
   const jaRespondeuEssa = respostaAtual !== undefined;
+  const escolhaPendente = (sessao.escolhaPendente||{})[q.id];
   garantirCronometro();
   return `<div class="coluna-questao">
   <div class="flex justify-between items-center mb-2 quebra-gap">
     <div class="text-sm muted flex items-center gap-1 quebra">
       <span>Questão ${sessao.indiceAtual+1} de ${sessao.itens.length} · ${respondidasCount} respondida(s) · ${emBranco} em branco</span>
-      ${iconeSvg("clock")}<span class="badge badge-muted" id="cronometroSimulado">${sessao.duracaoMin?formatarDuracao(Math.max(0,sessao.duracaoMin*60 - tempoDecorridoSimulado()))+" restantes":formatarDuracao(tempoDecorridoSimulado())+" decorridos"}</span>
+      ${sessao.ocultarTimer ? "" : iconeSvg("clock")}<span class="badge badge-muted" id="cronometroSimulado"${sessao.ocultarTimer ? ' style="display:none"' : ""}>${sessao.duracaoMin?formatarDuracao(Math.max(0,sessao.duracaoMin*60 - tempoDecorridoSimulado()))+" restantes":formatarDuracao(tempoDecorridoSimulado())+" decorridos"}</span>
     </div>
-    <div class="flex gap-1">
+    <div class="flex gap-1 quebra">
+      <button class="btn btn-ghost btn-sm" onclick="alternarOcultarTimerSimulado()" title="O tempo continua correndo e o simulado ainda termina no limite; só some da tela">${iconeSvg(sessao.ocultarTimer?"eye":"eye-off")} ${sessao.ocultarTimer?"Mostrar cronômetro":"Esconder cronômetro"}</button>
       <button class="btn ${emModoAprendizado?"btn-primary":"btn-secondary"} btn-sm" onclick="alternarModoAprendizadoSimulado()" title="Mostra a explicação assim que você responder, sem esperar o fim do simulado">${emModoAprendizado?iconeSvg("check")+" Modo aprendizado ativado":"Ativar modo aprendizado"}</button>
       <button class="btn btn-ghost btn-sm" onclick="confirmarSairSimulado()">Sair sem salvar</button>
     </div>
@@ -290,16 +341,30 @@ function renderSimuladoAtivo(){
       // localiza na prova e no caderno de rascunho
       const respondida = sessao.respostasSimulado[it.questaoId] !== undefined;
       const atual = i===sessao.indiceAtual;
+      // no modo aprendizado a pessoa já vê a correção de cada questão, então a
+      // barra também mostra acerto e erro (✓/✕); fora dele, só "respondida"
+      if(emModoAprendizado && respondida){
+        const qp = getQuestao(it.questaoId);
+        const certa = !!qp && sessao.respostasSimulado[it.questaoId] === qp.gabarito;
+        const desc = "Questão "+(i+1)+(certa?" — você acertou":" — você errou")+(atual?" (você está nesta)":"");
+        return `<button class="mapa-pill ${certa?"acertou":"errou"}${atual?" atual":""}" onclick="irQuestaoSimuladoIndice(${i})" title="${desc}" aria-label="${desc}"${atual?' aria-current="true"':""}>${i+1}<span class="selo-resp ${certa?"v":"x"}" aria-hidden="true">${certa?"✓":"✕"}</span></button>`;
+      }
       return `<button class="pill pill-mapa ${respondida?"respondida":"em-branco"}${atual?" atual":""}" onclick="irQuestaoSimuladoIndice(${i})" title="Questão ${i+1} — ${respondida?"respondida":"em branco"}${atual?" (você está nesta)":""}" aria-label="Questão ${i+1}, ${respondida?"respondida":"em branco"}"${atual?' aria-current="true"':""}>${respondida?'<span class="ponto-resp"></span>':""}${i+1}</button>`;
     }).join(""),
     detalhe: `<div class="mapa-legenda text-xs muted">
       <span class="amostra"><span class="quadro"></span>respondida (${respondidasCount})</span>
       <span class="amostra"><span class="quadro vazio"></span>em branco (${emBranco})</span>
     </div>
-    <div class="text-xs muted mt-1">Clique num número para ir direto, ou use as teclas A (anterior) / D (próxima). A barra mostra só o que já foi respondido; se a resposta está certa ou errada você fica sabendo no resultado, quando o simulado acabar.</div>` })}
+    <div class="text-xs muted mt-1">Clique num número para ir direto, ou use as teclas A (anterior) / D (próxima). ${emModoAprendizado
+      ? "No modo aprendizado a barra mostra ✓ nas que você acertou e ✕ nas que errou."
+      : "A barra mostra só o que já foi respondido; se a resposta está certa ou errada você fica sabendo no resultado, quando o simulado acabar (ou ativando o modo aprendizado)."}</div>` })}
   <div class="area-gesto" id="areaGestoQuestao">
-    ${renderQuestionCard(q, emModoAprendizado ? {selecionada:respostaAtual, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
+    ${renderQuestionCard(q, emModoAprendizado ? {selecionada:jaRespondeuEssa ? respostaAtual : escolhaPendente, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
   </div>
+  ${emModoAprendizado && !jaRespondeuEssa ? `<div class="flex items-center gap-1 mt-2 quebra">
+    <button class="btn btn-primary" onclick="confirmarRespostaSimulado()" ${escolhaPendente?"":"disabled"}>${iconeSvg("check")} Confirmar resposta</button>
+    <span class="text-xs muted">${escolhaPendente?"Depois de confirmar não dá para trocar: a explicação aparece e a resposta fica registrada.":"Escolha uma alternativa e confirme para ver a explicação."}</span>
+  </div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
   <div class="flex justify-between mt-2">
     <button class="btn btn-secondary" onclick="irQuestaoSimulado(-1)" ${sessao.indiceAtual===0?"disabled":""}>Anterior</button>
@@ -341,7 +406,7 @@ function revisarErrosDoSimulado(){
 function alternarModoAprendizadoSimulado(){
   const sessao = state.sessaoAtual; if(!sessao) return;
   sessao.modoAprendizado = !sessao.modoAprendizado;
-  toast(sessao.modoAprendizado ? "Modo aprendizado ativado: a partir de agora você vê a explicação assim que responder." : "Modo aprendizado desativado — voltando ao formato de prova.");
+  toast(sessao.modoAprendizado ? "Modo aprendizado ativado: escolha a alternativa e confirme para ver a explicação; a barra passa a mostrar acertos e erros." : "Modo aprendizado desativado — voltando ao formato de prova.");
   render();
 }
 function renderResultadoSimulado(){

@@ -138,6 +138,11 @@ function renderFlashcardsInicio(u){
         <select class="select" id="flashSituacao" onchange="atualizarOpcoesBaralho()">
           ${[["","Todos (a plataforma ordena)"],["vencidos","Só os vencidos"],["novos","Só os que ainda não vi"],["meus","Só os que eu escrevi"],["livres","Só as minhas anotações (sem assunto)"]].map(([v,r])=>`<option value="${v}" ${(filtro.situacao||"")===v?"selected":""}>${r}</option>`).join("")}
         </select></div>
+      ${conjuntosDoUsuario(u.id).length ? `<div class="field"><label class="label">Conjunto meu</label>
+        <select class="select" id="flashConjunto" onchange="atualizarOpcoesBaralho()">
+          <option value="">Qualquer</option>
+          ${conjuntosDoUsuario(u.id).map(n=>`<option value="${escapeHtml(n)}" ${filtro.conjunto===n?"selected":""}>${escapeHtml(n)}</option>`).join("")}
+        </select></div>` : ""}
       <div class="field"><label class="label">Nº de cartões</label>
         <input class="input" id="flashTamanho" type="number" min="1" max="100" value="${filtro.tamanho||20}" onchange="atualizarOpcoesBaralho()"></div>
     </div>
@@ -153,17 +158,17 @@ function renderFlashcardsInicio(u){
         <div class="text-sm muted">Os que você escreveu enquanto resolvia questões. São seus: ninguém mais vê, e entram no baralho junto com os da equipe.</div>
       </div>
       <div class="flex gap-1 quebra">
-        <button class="btn btn-secondary btn-sm" onclick="abrirAnotacaoRapida()">${iconeSvg("edit")} Anotação rápida</button>
-        <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("cards")} Criar em lista</button>
-        <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("plus")} Novo cartão</button>
+        <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("cards")} Adicionar baralho</button>
       </div>
     </div>
     <div class="flex gap-1 items-center quebra mt-2" id="barraSelecaoCartoes">${htmlBarraSelecaoCartoes()}</div>
-    <div class="table-wrap mt-2"><table class="tabela-fina"><thead><tr><th style="width:2rem"><input type="checkbox" aria-label="Marcar todos os cartões desta página" ${pagMeus.itens.length && pagMeus.itens.every(c=>cartaoSelecionado(c.id))?"checked":""} onchange="marcarCartoesDaPagina(this.checked, ${escapeHtml(JSON.stringify(pagMeus.itens.map(c=>c.id)))})"></th><th>Frente</th><th>Assunto</th><th>Criado em</th><th></th></tr></thead><tbody>
+    <div class="table-wrap mt-2"><table class="tabela-fina"><thead><tr><th style="width:2rem"><input type="checkbox" aria-label="Marcar todos os cartões desta página" ${pagMeus.itens.length && pagMeus.itens.every(c=>cartaoSelecionado(c.id))?"checked":""} onchange="marcarCartoesDaPagina(this.checked, ${escapeHtml(JSON.stringify(pagMeus.itens.map(c=>c.id)))})"></th><th>Frente</th><th>Assunto</th><th>Conjunto</th><th>Criado em</th><th></th></tr></thead><tbody>
       ${pagMeus.itens.map(c=>`<tr>
         <td><input type="checkbox" data-cartao-sel="${c.id}" aria-label="Marcar o cartão" ${cartaoSelecionado(c.id)?"checked":""} onchange="marcarCartao('${c.id}', this.checked)"></td>
         <td class="text-sm celula-frente"><span class="enunciado-clicavel" title="${escapeHtml(c.frente.slice(0,300))}" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
         <td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td>
+        <td class="text-sm">${c.conjunto ? `<span class="badge badge-muted">${escapeHtml(c.conjunto)}</span>` : '<span class="muted">—</span>'}</td>
         <td class="text-xs muted">${c.criadoEm?formatDataBR(c.criadoEm):"—"}</td>
         <td class="acoes-fina">
           ${c.questaoOrigemId?`<button class="icon-btn" title="Ver a questão que originou o cartão" onclick="abrirQuestaoCompleta('${c.questaoOrigemId}')">${iconeSvg("search")}</button>`:""}
@@ -178,9 +183,8 @@ function renderFlashcardsInicio(u){
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220"><strong>Escreva seus próprios cartões.</strong> Ao responder uma questão, o botão “${"Virar flashcard"}” monta um cartão já no assunto daquela questão — é o melhor momento para isso, porque o conceito que faltou ainda está fresco. Esses cartões são só seus.</div>
       <div class="flex gap-1 quebra">
-        <button class="btn btn-secondary btn-sm" onclick="abrirAnotacaoRapida()">${iconeSvg("edit")} Anotação rápida</button>
-        <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("cards")} Criar em lista</button>
-        <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("plus")} Adicionar baralho</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("plus")} Novo cartão</button>
+        <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("cards")} Adicionar baralho</button>
       </div>
     </div>
   </div>`}
@@ -354,6 +358,8 @@ function atualizarOpcoesBaralho(){
   const f = state.filtroRota.flashcards = state.filtroRota.flashcards || {};
   f.situacao = document.getElementById("flashSituacao").value || null;
   f.tamanho = Math.max(1, Math.min(100, parseInt(document.getElementById("flashTamanho").value) || 20));
+  const selConjunto = document.getElementById("flashConjunto");
+  f.conjunto = selConjunto && selConjunto.value ? selConjunto.value : null;
   const c = document.getElementById("contagemBaralho");
   if(c) c.textContent = textoContagemBaralho(usuarioAtual().id, f);
 }
@@ -373,7 +379,9 @@ function iniciarSessaoFlashcards(filtro){
 function virarFlashcard(){
   if(haTextoSelecionado()) return;   // quem arrastou para destacar não quis virar o cartão
   const s = state.sessaoFlash; if(!s) return;
-  s.virado = !s.virado; render();
+  s.virado = !s.virado;
+  s.animarVirada = true;   // só o clique do usuário gira o cartão (ver renderFlashcardEmSessao)
+  render();
 }
 function responderFlashcard(nota){
   const s = state.sessaoFlash; if(!s) return;
@@ -395,6 +403,11 @@ function renderFlashcardEmSessao(s){
   const assunto = nomeAssuntoDoCartao(cartao);
   const rev = revisaoDoCartao(usuarioAtual().id, cartao.id);
   const favoritoAqui = isFavoritoCartao(usuarioAtual().id, cartao.id);
+  /* O giro é resposta ao clique de virar, não ao desenho do cartão: sem esta
+     trava, todo redesenho de um cartão virado (favoritar, destacar, editar,
+     passar para o próximo) refazia a animação e o cartão "rodava" sozinho. */
+  const girar = !!(s.animarVirada && s.virado);
+  s.animarVirada = false;
   return `
   <div class="flex justify-between items-center mb-2">
     <div class="text-sm muted">Cartão ${s.indice+1} de ${s.cartoes.length}</div>
@@ -403,7 +416,8 @@ function renderFlashcardEmSessao(s){
   <div class="progress-track mb-3"><div class="progress-fill" style="width:${pct(s.notas.length, s.cartoes.length)}%"></div></div>
   <div class="why-tag">${iconeSvg("target")}<span>${escapeHtml(assunto)}${cartao.origem==="questao"?" · gerado de uma questão que você errou com certeza ou acertou no chute":""}${rev&&rev.vistas?" · visto "+rev.vistas+"x":""}</span></div>
   <div class="flash-palco">
-    <div class="flashcard ${s.virado?"virado":""} area-gesto" id="areaGestoQuestao" onclick="virarFlashcard()">
+    <div class="flashcard ${s.virado?"virado":""}${girar?" girando":""} area-gesto" id="areaGestoQuestao" onclick="virarFlashcard()">
+      ${podeMexerNoCartao(cartao) && cartao.id.indexOf("fc-q-")!==0 ? `<button class="icon-btn flash-editar" title="Editar este cartão" aria-label="Editar este cartão" onclick="event.stopPropagation();abrirFormularioFlashcard('${cartao.id}')">${iconeSvg("edit")}</button>` : ""}
       <button class="icon-btn flash-favorito" title="${favoritoAqui?"Tirar dos favoritos":"Salvar este cartão nos favoritos"}" aria-label="${favoritoAqui?"Tirar este cartão dos favoritos":"Salvar este cartão nos favoritos"}" onclick="event.stopPropagation();toggleFavoritoCartaoUI('${cartao.id}')" style="${favoritoAqui?"border-color:var(--amber);color:var(--amber)":""}">${iconeSvg("star")}</button>
       <div class="flash-etiqueta">${s.virado?"Resposta":"Pergunta"}</div>
       ${cartao.imagemUrl ? `<div class="qcard-img-wrap"><img class="qcard-img" src="${escapeHtml(cartao.imagemUrl)}" alt="${escapeHtml(cartao.imagemLegenda||"Imagem do cartão")}" loading="lazy">${cartao.imagemLegenda?`<div class="qcard-img-legenda">${escapeHtml(cartao.imagemLegenda)}</div>`:""}</div>` : ""}
@@ -481,8 +495,25 @@ function praticarQuestoesDoBaralho(){
    de cartão (um só e baralho inteiro): "Especialidade › Assunto". */
 /* Cartão sem assunto é a "miscelânea": anotação solta da pessoa, que não
    precisa caber num assunto do banco para entrar no baralho dela. */
+/* Conjunto = nome que a pessoa dá a um grupo de cartões SEUS ("Cardio R1",
+   "Erros do simulado"): uma subdivisão do baralho próprio, escolhida na hora de
+   montar o baralho para revisar. Texto livre, sem cadastro à parte: o conjunto
+   existe enquanto algum cartão o usa. */
+function conjuntosDoUsuario(usuarioId){
+  return [...new Set(meusFlashcards(usuarioId).map(c=>c.conjunto).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"pt-BR"));
+}
+function lerConjuntoDoCampo(idCampo){
+  const el = document.getElementById(idCampo);
+  return el ? el.value.trim().replace(/\s+/g," ").slice(0,60) : "";
+}
+function htmlCampoConjunto(usuarioId, atual, idCampo){
+  return `<div class="field"><label class="label">Conjunto (opcional)</label>
+    <input class="input" id="${idCampo}" list="${idCampo}Opcoes" maxlength="60" value="${escapeHtml(atual||"")}" placeholder="Ex.: Cardio R1 — deixe vazio para não agrupar">
+    <datalist id="${idCampo}Opcoes">${conjuntosDoUsuario(usuarioId).map(n=>`<option value="${escapeHtml(n)}">`).join("")}</datalist>
+    <div class="hint mt-1">Dê um nome para agrupar estes cartões numa subdivisão só sua. Depois, em "Criar meu baralho", dá para revisar só esse conjunto.</div>
+  </div>`;
+}
 function nomeAssuntoDoCartao(c){ return c && c.assuntoId ? nomeAssunto(c.assuntoId) : "Miscelânea (sem assunto)"; }
-function abrirAnotacaoRapida(){ abrirFormularioFlashcard(null, {livre:true}); }
 function opcoesDeAssuntoAgrupadas(selecionado){
   return db.taxonomia.areas.map(area=>`<optgroup label="${escapeHtml(area.nome)}">${
     db.taxonomia.especialidades.filter(e=>e.areaId===area.id).map(e=>
@@ -493,6 +524,10 @@ function opcoesDeAssuntoAgrupadas(selecionado){
 function abrirFormularioFlashcard(id, opts){
   opts = opts || {};
   const u = usuarioAtual();
+  /* Criar cartão pessoal é uma tela só: a lista, que abre com UMA linha e
+     cresce (um cartão ou vários). O formulário abaixo fica para editar, para
+     virar flashcard uma questão (assunto e gabarito vêm dela) e para a equipe. */
+  if(!id && !opts.questaoId && !(podeGerirConteudo() && !state.modoAluno)){ abrirCartoesEmLista(); return; }
   const c = id ? (db.flashcards||[]).find(x=>x.id===id) : null;
   if(c && c.usuarioId && c.usuarioId!==u.id){ toast("Este cartão é de outro usuário.", "err"); return; }
   if(c && !c.usuarioId && !podeGerirConteudo()){ toast("Cartões da equipe só podem ser editados por professores e administradores de conteúdo.", "err"); return; }
@@ -501,16 +536,15 @@ function abrirFormularioFlashcard(id, opts){
   const questao = opts.questaoId ? getQuestao(opts.questaoId) : null;
   // assunto pré-selecionado: o do cartão em edição, ou o da questão de origem
   const assuntoEscolhido = c ? c.assuntoId : (questao ? questao.assuntoId : null);
-  // "sem assunto" vai no topo (e já marcado) quando a pessoa está anotando
-  // livremente ou editando uma anotação; nos outros caminhos fica no fim, para
-  // o primeiro assunto continuar sendo o padrão de sempre
-  const semAssuntoNoTopo = !!opts.livre || (c && !c.assuntoId);
+  // "sem assunto" vai no topo (e já marcado) ao editar uma anotação; nos outros
+  // caminhos fica no fim, para o primeiro assunto continuar sendo o padrão
+  const semAssuntoNoTopo = !!(c && !c.assuntoId);
   const opcaoSemAssunto = `<option value="" ${semAssuntoNoTopo?"selected":""}>Sem assunto — miscelânea (minhas anotações)</option>`;
   const titulo = c ? "Editar cartão" : (questao ? "Virar flashcard" : "Novo cartão");
   state.filtroRota.imagemFlashcard = c ? (c.imagemUrl || "") : "";
 
   abrirModal(`
-    ${cabecalhoJanela(opts.livre && !c ? "Anotação rápida" : titulo)}
+    ${cabecalhoJanela(titulo)}
     ${questao ? `<div class="card-flat mb-2">
       <div class="text-xs muted" style="font-weight:700;letter-spacing:.06em;text-transform:uppercase">Questão de origem</div>
       <div class="text-sm mt-1">${escapeHtml(questao.enunciado.slice(0,220))}${questao.enunciado.length>220?"…":""}</div>
@@ -524,9 +558,9 @@ function abrirFormularioFlashcard(id, opts){
         ${opcoesDeAssuntoAgrupadas(assuntoEscolhido)}
         ${semAssuntoNoTopo ? "" : opcaoSemAssunto}
       </select>
-      ${opts.livre ? `<div class="hint mt-1">Anotação sem assunto entra no seu baralho misto. Para revisar só estas, use "Só as minhas anotações" em "Criar meu baralho".</div>` : ""}
       ${questao ? `<div class="hint mt-1">Já veio marcado com o assunto da questão (${escapeHtml(nomeAssunto(questao.assuntoId))}). Troque se o seu cartão for sobre outra coisa.</div>` : ""}
     </div>
+    ${!daEquipe ? htmlCampoConjunto(u.id, c ? c.conjunto : "", "fcConjunto") : ""}
     <div class="field"><label class="label">Frente (a pergunta)</label><textarea class="textarea" id="fcFrente" style="min-height:80px" placeholder="${questao?"Ex.: o conceito que faltou para você acertar esta questão, virado em pergunta curta.":"Ex.: Qual é o tempo-alvo para angioplastia primária no IAM com supra?"}">${escapeHtml(c?c.frente:"")}</textarea></div>
     <div class="field"><label class="label">Verso (a resposta)</label><textarea class="textarea" id="fcVerso" style="min-height:120px" placeholder="Resposta direta, em uma ou duas frases, com a justificativa essencial.">${escapeHtml(c?c.verso:"")}</textarea></div>
     ${questao && !c ? `<button class="link-btn mb-2" onclick="preencherCartaoComGabarito('${questao.id}')">Preencher o verso com o gabarito comentado</button>` : ""}
@@ -544,7 +578,7 @@ function abrirFormularioFlashcard(id, opts){
     <p class="text-xs muted">${daEquipe
       ? "Mesma regra de conteúdo das questões: escrita autoral, baseada em diretrizes, consensos e protocolos oficiais. Nada copiado de cursinho, apostila ou banco comercial."
       : "Escreva com suas palavras. Cartão copiado do enunciado inteiro não ensina nada — o esforço de resumir é metade do aprendizado."}</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarFlashcard('${id||""}','${opts.questaoId||""}')">Salvar cartão</button>${opts.livre && !c ? `<button class="btn btn-secondary" onclick="salvarFlashcard('','',true)">Salvar e criar outro</button>` : ""}<button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarFlashcard('${id||""}','${opts.questaoId||""}')">Salvar cartão</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 /* Atalho: joga o gabarito comentado no verso, para o aluno editar em cima
    em vez de começar da folha em branco. */
@@ -555,7 +589,7 @@ function preencherCartaoComGabarito(qid){
   const campo = document.getElementById("fcVerso");
   if(campo){ campo.value = texto; campo.focus(); }
 }
-function salvarFlashcard(id, questaoOrigemId, criarOutro){
+function salvarFlashcard(id, questaoOrigemId){
   const frente = (document.getElementById("fcFrente").value||"").trim();
   const verso = (document.getElementById("fcVerso").value||"").trim();
   const assuntoId = document.getElementById("fcAssunto").value;
@@ -573,6 +607,7 @@ function salvarFlashcard(id, questaoOrigemId, criarOutro){
     if(c.usuarioId && c.usuarioId!==u.id){ toast("Este cartão é de outro usuário.", "err"); return; }
     if(!c.usuarioId && !podeGerirConteudo()){ toast("Cartões da equipe só podem ser editados por professores e administradores.", "err"); return; }
     Object.assign(c, {frente, verso, assuntoId, imagemUrl, imagemLegenda});
+    if(c.usuarioId) c.conjunto = lerConjuntoDoCampo("fcConjunto");
     if(c.usuarioId) nuvemRegistrar({cartaoPessoal:c});
   } else {
     // sem permissão de conteúdo (ou em modo aluno) o cartão nasce pessoal
@@ -581,6 +616,7 @@ function salvarFlashcard(id, questaoOrigemId, criarOutro){
       id: uid("fc"), frente, verso, assuntoId, imagemUrl, imagemLegenda,
       origem: pessoal ? "aluno" : "autoral",
       usuarioId: pessoal ? u.id : null,
+      conjunto: pessoal ? lerConjuntoDoCampo("fcConjunto") : "",
       questaoOrigemId: questaoOrigemId || null,
       status: "ativo", criadoPor: u.id, criadoEm: hojeISO(),
     });
@@ -591,8 +627,6 @@ function salvarFlashcard(id, questaoOrigemId, criarOutro){
   saveState(); fecharModal();
   toast(id ? "Cartão atualizado." : "Cartão criado. Ele entra na sua próxima revisão rápida.");
   render();
-  // anotando em sequência: a janela volta limpa, já sem assunto
-  if(criarOutro) abrirAnotacaoRapida();
 }
 /* ---------- promoção de cartão pessoal para o baralho da equipe -----------
    Hoje os dois mundos (cartão pessoal do aluno e baralho oficial da equipe)

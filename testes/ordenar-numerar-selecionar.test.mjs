@@ -65,6 +65,9 @@ test("Criar em lista: linhas numeradas, contador e Tab na última linha abre out
   try{
     await pagina.evaluate(() => { fazerLoginDemo("aluno"); fecharModal(); navigate("flashcards"); abrirCartoesEmLista(); });
     const numeros = () => pagina.$$eval('#listaCartoesLinhas [data-lista="numero"]', e => e.map(x => x.textContent));
+    assert.deepEqual(await numeros(), ["1"], "a lista abre com uma linha só");
+    await pagina.click("button:has-text(\"Adicionar linha\")");
+    await pagina.evaluate(() => adicionarLinhasNaLista(3));
     assert.deepEqual(await numeros(), ["1", "2", "3", "4", "5"]);
     await pagina.fill('#listaCartoesLinhas tr:nth-child(1) [data-lista="frente"]', "F1");
     await pagina.fill('#listaCartoesLinhas tr:nth-child(1) [data-lista="verso"]', "V1");

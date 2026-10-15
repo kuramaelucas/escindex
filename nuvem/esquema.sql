@@ -196,6 +196,10 @@ alter table public.perfis add column if not exists prova_alvo_data date;
 -- aparece uma vez). Só muda a apresentação; nenhum dado de estudo depende dele.
 alter table public.perfis add column if not exists modo_plataforma text;
 
+-- Conjunto próprio de cartões (15/10/2026): o nome que o aluno dá a um grupo
+-- de cartões seus. Nulo = sem conjunto. Sem rodar, o nome vale só no aparelho.
+alter table public.flashcards_pessoais add column if not exists conjunto text;
+
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)
 -- ---------------------------------------------------------------------------

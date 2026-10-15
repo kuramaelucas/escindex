@@ -144,7 +144,7 @@ const NUVEM_TABELAS = {
         id: linha.id, usuarioId: linha.usuario_id, assuntoId: linha.assunto_id,
         frente: linha.frente, verso: linha.verso,
         imagemUrl: linha.imagem_url || "", imagemLegenda: linha.imagem_legenda || "",
-        questaoOrigemId: linha.questao_origem_id || null,
+        questaoOrigemId: linha.questao_origem_id || null, conjunto: linha.conjunto || "",
         origem: linha.origem || "aluno", status: linha.status || "ativo",
         criadoPor: linha.usuario_id, criadoEm: linha.criado_em || hojeISO(),
       };
@@ -300,6 +300,7 @@ function nuvemRegistrar(o){
       id: c.id, usuario_id: c.usuarioId, assunto_id: c.assuntoId || null,
       frente: c.frente, verso: c.verso, imagem_url: c.imagemUrl || null,
       imagem_legenda: c.imagemLegenda || null, questao_origem_id: c.questaoOrigemId || null,
+      conjunto: c.conjunto || null,
       origem: c.origem || "aluno", status: c.status || "ativo",
       removido: !!o.removido, criado_em: c.criadoEm || hojeISO(),
     });
@@ -403,7 +404,8 @@ const NUVEM_CAMPOS_NOVOS = {
   perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id", "prova_alvo_data", "modo_plataforma"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões); data exata da prova-alvo (6º ano)
   respostas: ["origem", "tentativa", "dias_desde_ultima", "respondida_em", "texto_resposta"],  // de onde veio a questão, que tentativa é, dias desde a anterior, a hora exata e o texto da resposta dissertativa
   favoritos: ["nota"],            // a anotação pessoal da questão salva
-  dias_cartoes: ["quantidade"],   // quantos cartões naquele dia
+  dias_cartoes: ["quantidade"],
+  flashcards_pessoais: ["conjunto"],  // o nome do conjunto próprio a que o cartão pertence   // quantos cartões naquele dia
 };
 const _nuvemCamposAusentes = {};  // tabela -> lista de colunas que este banco não tem
 function nuvemCampoQueFalta(tabela, e){

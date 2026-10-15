@@ -19,43 +19,42 @@ async function abrir(){
   return { pagina, contexto, erros };
 }
 
-test("Anotação rápida cria cartão pessoal sem assunto e o filtro 'livres' o encontra", async () => {
+test("Novo cartão do aluno abre a lista com uma linha; sem assunto vai para a miscelânea e com conjunto o filtro o encontra", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     const r = await pagina.evaluate(() => {
       fazerLoginDemo("aluno"); fecharModal();
       navigate("flashcards");
       const antes = db.flashcards.length;
-      const botao = /Anotação rápida/.test(document.body.innerHTML);
-      // o formulário comum continua com o primeiro assunto como padrão
+      const botao = /Novo cartão/.test(document.body.innerHTML);
       abrirFormularioFlashcard(null);
-      const padraoComum = document.getElementById("fcAssunto").value;
-      fecharModal();
-      abrirAnotacaoRapida();
-      const sel = document.getElementById("fcAssunto");
-      const padraoLivre = sel.value;
-      const botaoOutro = /Salvar e criar outro/.test(document.body.innerHTML);
-      document.getElementById("fcFrente").value = "Minha anotação";
-      document.getElementById("fcVerso").value = "Resposta solta";
-      salvarFlashcard("", "", true);
+      const linhasAoAbrir = document.querySelectorAll("#listaCartoesLinhas tr").length;
+      const tr = document.querySelector("#listaCartoesLinhas tr");
+      tr.querySelector('[data-lista="frente"]').value = "Minha anotação";
+      tr.querySelector('[data-lista="verso"]').value = "Resposta solta";
+      document.getElementById("listaConjunto").value = "  Cardio   R1 ";
+      salvarCartoesEmLista();
       const novo = db.flashcards[db.flashcards.length - 1];
-      const reabriu = !!document.getElementById("fcFrente") && document.getElementById("fcFrente").value === "";
-      fecharModal();
       const u = usuarioAtual();
       const livres = montarBaralhoFlashcards(u.id, 50, { situacao: "livres" });
-      return { botao, antes, depois: db.flashcards.length, padraoComum, padraoLivre, botaoOutro, reabriu,
-        assunto: novo.assuntoId, pessoal: novo.usuarioId === u.id, rotulo: nomeAssuntoDoCartao(novo),
-        livres: livres.map(c => c.id), id: novo.id };
+      const doConjunto = montarBaralhoFlashcards(u.id, 50, { conjunto: "Cardio R1" });
+      const outroConjunto = montarBaralhoFlashcards(u.id, 50, { conjunto: "Outro" });
+      return { botao, linhasAoAbrir, antes, depois: db.flashcards.length,
+        assunto: novo.assuntoId, conjunto: novo.conjunto, pessoal: novo.usuarioId === u.id, rotulo: nomeAssuntoDoCartao(novo),
+        livres: livres.map(c => c.id), doConjunto: doConjunto.map(c => c.id), outroConjunto: outroConjunto.length, id: novo.id,
+        conjuntos: conjuntosDoUsuario(u.id) };
     });
     assert.ok(r.botao);
-    assert.ok(r.padraoComum !== "", "o formulário comum não pode passar a vir sem assunto");
-    assert.equal(r.padraoLivre, "");
-    assert.ok(r.botaoOutro && r.reabriu);
+    assert.equal(r.linhasAoAbrir, 1);
     assert.equal(r.depois, r.antes + 1);
     assert.ok(!r.assunto);
+    assert.equal(r.conjunto, "Cardio R1");
+    assert.deepEqual(r.conjuntos, ["Cardio R1"]);
     assert.ok(r.pessoal);
     assert.match(r.rotulo, /Miscelânea/);
     assert.deepEqual(r.livres, [r.id]);
+    assert.deepEqual(r.doConjunto, [r.id]);
+    assert.equal(r.outroConjunto, 0);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
@@ -82,7 +81,7 @@ test("Criar em lista: vários cartões de uma vez, colar com Tab, linha pela met
   try{
     const r = await pagina.evaluate(() => {
       fazerLoginDemo("aluno"); fecharModal(); navigate("flashcards");
-      const botao = /Criar em lista/.test(document.body.innerHTML);
+      const botao = /Novo cartão/.test(document.body.innerHTML);
       const antes = db.flashcards.length;
       abrirCartoesEmLista();
       const linhas = () => [...document.querySelectorAll("#listaCartoesLinhas tr")];
@@ -91,7 +90,7 @@ test("Criar em lista: vários cartões de uma vez, colar com Tab, linha pela met
       preencher(0, "Só frente", "");
       salvarCartoesEmLista();
       const meia = db.flashcards.length - antes;
-      // colagem com Tab a partir da primeira linha (7 linhas: passa das 5 que existem)
+      // colagem com Tab a partir da primeira linha (7 linhas: passa da única que abre)
       const colado = Array.from({length: 7}, (_, i) => "P" + i + "\tR" + i).join("\n");
       const campo = linhas()[0].querySelector('[data-lista="frente"]');
       const ev = new Event("paste", { cancelable: true }); ev.clipboardData = { getData: () => colado };
@@ -108,6 +107,32 @@ test("Criar em lista: vários cartões de uma vez, colar com Tab, linha pela met
     assert.equal(r.criados, 7);
     assert.ok(r.semAssunto && r.pessoais && r.modalFechou);
     assert.deepEqual(r.par, ["P3", "R3"]);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Revisão rápida: editar o cartão durante a sessão e o cartão só gira ao virar", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      db.flashcards.push({ id: "fc-meu-1", assuntoId: "", conjunto: "X", frente: "F antiga", verso: "V antiga", origem: "aluno", usuarioId: u.id, status: "ativo", criadoPor: u.id, criadoEm: hojeISO() });
+      iniciarSessaoFlashcards({ conjunto: "X" });
+      const botaoEditar = !!document.querySelector(".flash-editar");
+      virarFlashcard();
+      const giraAoVirar = !!document.querySelector(".flashcard.girando");
+      render();
+      const giraAoRedesenhar = !!document.querySelector(".flashcard.girando");
+      abrirFormularioFlashcard("fc-meu-1");
+      document.getElementById("fcFrente").value = "F nova";
+      salvarFlashcard("fc-meu-1", "");
+      return { botaoEditar, giraAoVirar, giraAoRedesenhar, frenteNaSessao: state.sessaoFlash.cartoes[0].frente, virado: state.sessaoFlash.virado };
+    });
+    assert.ok(r.botaoEditar && r.giraAoVirar);
+    assert.equal(r.giraAoRedesenhar, false);
+    assert.equal(r.frenteNaSessao, "F nova");
+    assert.equal(r.virado, true);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
