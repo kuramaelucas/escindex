@@ -4,7 +4,7 @@
    Cada questão parte do tema e das alternativas de uma questão da prova da
    UNIFESP-EPM 2024, mas o ENUNCIADO foi reescrito (caso clínico, dados
    epidemiológicos e diretrizes) para que a resposta correta passe a ser a
-   alternativa seguinte (A→B, B→C, C→D, D→A). As alternativas ficaram intactas.
+   alternativa seguinte (A→B, B→C, C→D, D→A). Nas questões 001 a 057 as alternativas ficaram intactas; nas 058 a 097, que não admitiam a troca só pelo enunciado, as alternativas também foram reescritas.
    Não são questões reais: marcam `real: false` e instituição
    "Esc — Banco Didático" (nunca "UNIFESP-EPM 2024"), para não se misturarem
    à prova de 2024 em Provas Antigas. A justificativa de cada uma cita a
