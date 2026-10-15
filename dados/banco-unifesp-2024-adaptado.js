@@ -132,7 +132,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Estatina, inibidor de enzima de conversão da angiotensina, AAS e clopidogrel."
+      "texto": "Estatina, inibidor da enzima de conversão da angiotensina, AAS e clopidogrel."
     }
   ],
   "gabarito": "D",
@@ -163,7 +163,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cg",
   "especialidadeId": "esp-abdagudo",
   "assuntoId": "ass-colangite",
-  "enunciado": "Mulher, 52 anos, obesa (IMC 31 kg/m2), apresenta dor abdominal há 3 dias, de intensidade progressiva, no hipocôndrio direito, irradiada para a região interescapular, com náuseas, vômitos, febre e colúria. Exame físico: REG, sonolenta, FC = 112 bpm, PA = 130/80 mmHg, T = 39 ºC, icterícia 2+/4+, dor à palpação do hipocôndrio direito, sem sinais de irritação peritoneal. Exames: creatinina = 2,6 mg/dL, bilirrubina total = 4,8 mg/dL (direta = 3,9), leucócitos = 18.300/mm3 e plaquetas = 82.000/mm3. Ultrassonografia: vesícula com cálculos móveis, colédoco com 1,0 cm de diâmetro e imagem hiperecogênica com sombra acústica no colédoco distal. Pelos critérios de Tokyo 2018 esta paciente apresenta:",
+  "enunciado": "Mulher, 52 anos, obesa (IMC 31 kg/m2), apresenta dor abdominal há 3 dias, de intensidade progressiva, no hipocôndrio direito, irradiada para a região interescapular, com náuseas, vômitos, febre e colúria. Exame físico: REG, sonolenta, FC = 112 bpm, PA = 130/80 mmHg, T = 39 °C, icterícia 2+/4+, dor à palpação do hipocôndrio direito, sem sinais de irritação peritoneal. Exames: creatinina = 2,6 mg/dL, bilirrubina total = 4,8 mg/dL (direta = 3,9), leucócitos = 18.300/mm3 e plaquetas = 82.000/mm3. Ultrassonografia: vesícula com cálculos móveis, colédoco com 1,0 cm de diâmetro e imagem hiperecogênica com sombra acústica no colédoco distal. Pelos critérios de Tokyo 2018 esta paciente apresenta:",
   "alternativas": [
     {
       "id": "A",
@@ -183,7 +183,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "D",
-  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: o diagnóstico é de colangite aguda definitiva (**febre 39 ºC e leucocitose 18.300** = inflamação sistêmica; **bilirrubina total 4,8 e icterícia** = colestase; **colédoco dilatado com cálculo** = imagem). A gravidade, nos critérios de Tokyo 2018, é **grau III (grave)** quando há disfunção de pelo menos um órgão: **creatinina > 2,0 mg/dL** (renal), **plaquetas < 100.000/mm3** (hematológica) e **alteração do nível de consciência** (neurológica). Aqui há três disfunções. A (grau I) é a colangite que não preenche critério de grau II nem de grau III. C (grau II) exige dois critérios entre leucocitose ou leucopenia, febre ≥ 39 ºC, idade ≥ 75 anos, bilirrubina total ≥ 5 mg/dL e hipoalbuminemia, sem disfunção orgânica; seria a classificação se a função de órgãos estivesse preservada. B (grau IV) não existe, pois a classificação de Tokyo vai do grau I ao III. No grau III o tratamento é suporte intensivo, antibiótico e drenagem biliar urgente.",
+  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: o diagnóstico é de colangite aguda definitiva (**febre 39 °C e leucocitose 18.300** = inflamação sistêmica; **bilirrubina total 4,8 e icterícia** = colestase; **colédoco dilatado com cálculo** = imagem). A gravidade, nos critérios de Tokyo 2018, é **grau III (grave)** quando há disfunção de pelo menos um órgão: **creatinina > 2,0 mg/dL** (renal), **plaquetas < 100.000/mm3** (hematológica) e **alteração do nível de consciência** (neurológica). Aqui há três disfunções. A (grau I) é a colangite que não preenche critério de grau II nem de grau III. C (grau II) exige dois critérios entre leucocitose ou leucopenia, febre ≥ 39 °C, idade ≥ 75 anos, bilirrubina total ≥ 5 mg/dL e hipoalbuminemia, sem disfunção orgânica; seria a classificação se a função de órgãos estivesse preservada. B (grau IV) não existe, pois a classificação de Tokyo vai do grau I ao III. No grau III o tratamento é suporte intensivo, antibiótico e drenagem biliar urgente.",
   "explicacoesAlternativas": {},
   "referencias": "Kiriyama S et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis. J Hepatobiliary Pancreat Sci, 2018.",
   "dificuldadeManual": "avancado",
@@ -218,7 +218,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "B",
-      "texto": "Intubação oro traqueal."
+      "texto": "Intubação orotraqueal."
     },
     {
       "id": "C",
@@ -257,7 +257,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cg",
   "especialidadeId": "esp-urologia",
   "assuntoId": "ass-uro-prostata",
-  "enunciado": "Homem, 66 anos, refere há 1 ano diminuição do jato urinário, noctúria 3 x, esforço miccional e sensação de esvaziamento vesical incompleto (IPSS = 22). Toque retal já realizado: próstata aumentada, fibroelástica, lisa, sem nódulos. PSA = 1,9 ng/mL, creatinina = 1,9 mg/dL (era 1,0 mg/dL há um ano), urina tipo 1 sem hematúria ou infecção, sem globo vesical palpável. Qual é a propedêutica complementar e a terapêutica iniciais para o diagnóstico mais provável?",
+  "enunciado": "Homem, 66 anos, refere há 1 ano diminuição do jato urinário, noctúria 3 vezes, esforço miccional e sensação de esvaziamento vesical incompleto (IPSS = 22). Toque retal já realizado: próstata aumentada, fibroelástica, lisa, sem nódulos. PSA = 1,9 ng/mL, creatinina = 1,9 mg/dL (era 1,0 mg/dL há um ano), urina tipo 1 sem hematúria ou infecção, sem globo vesical palpável. Qual é a propedêutica complementar e a terapêutica iniciais para o diagnóstico mais provável?",
   "alternativas": [
     {
       "id": "A",
@@ -304,7 +304,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cm",
   "especialidadeId": "esp-infecto",
   "assuntoId": "ass-itu",
-  "enunciado": "Mulher, 28 anos, vida sexual ativa, previamente saudável, procura o Pronto Socorro com febre de 38,6 ºC e dor lombar à direita há 24 horas, precedidas de disúria. Bom estado geral, hidratada, tolera líquidos e comprimidos, sem náuseas ou vômitos; PA = 118/76 mmHg, FC = 96 bpm; sinal de Giordano positivo à direita. Teste de gravidez negativo. Exame de urina: leucocitúria e nitrito positivo. Ultrassonografia de vias urinárias sem hidronefrose ou cálculos. Não usou antibiótico nos últimos 3 meses. Qual é a conduta baseada no diagnóstico mais provável?",
+  "enunciado": "Mulher, 28 anos, vida sexual ativa, previamente saudável, procura o pronto-socorro com febre de 38,6 °C e dor lombar à direita há 24 horas, precedidas de disúria. Bom estado geral, hidratada, tolera líquidos e comprimidos, sem náuseas ou vômitos; PA = 118/76 mmHg, FC = 96 bpm; sinal de Giordano positivo à direita. Teste de gravidez negativo. Exame de urina: leucocitúria e nitrito positivo. Ultrassonografia de vias urinárias sem hidronefrose ou cálculos. Não usou antibiótico nos últimos 3 meses. Qual é a conduta baseada no diagnóstico mais provável?",
   "alternativas": [
     {
       "id": "A",
@@ -316,11 +316,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Antibioticoterapia endovenoso com cobertura para gram(-)."
+      "texto": "Antibioticoterapia endovenosa com cobertura para gram-negativos."
     },
     {
       "id": "D",
-      "texto": "Antibioticoterapia oral com cobertura para gram(-)."
+      "texto": "Antibioticoterapia oral com cobertura para gram-negativos."
     }
   ],
   "gabarito": "D",
@@ -492,7 +492,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cg",
   "especialidadeId": "esp-trauma",
   "assuntoId": "ass-traumaabd",
-  "enunciado": "Homem, 45 anos, vítima de queda de telhado (6 metros) há 1 hora, dá entrada na sala de emergência de um hospital especializado em trauma. Na chegada, PA = 80/50 mmHg e índice de choque de 1,5, que se mantém acima de 1,3 após infusão de 2.000 mL de cristaloide e 2 concentrados de hemácias. Abdome distendido e doloroso, com FAST positivo em quatro quadrantes. Levado ao centro cirúrgico, a laparotomia mostra hemoperitônio volumoso e avulsão do hilo esplênico (lesão grau V), com sangramento ativo. Qual é a conduta mais adequada?",
+  "enunciado": "Homem, 45 anos, vítima de queda de telhado (6 metros) há 1 hora, dá entrada na sala de emergência de um hospital especializado em trauma. Na chegada, PA = 80/50 mmHg e índice de choque de 1,5, que se mantém acima de 1,3 após infusão de 2.000 mL de cristaloide e 2 concentrados de hemácias. Abdome distendido e doloroso, com FAST positivo em quatro quadrantes. No centro cirúrgico, a laparotomia mostra hemoperitônio volumoso e avulsão do hilo esplênico (lesão grau V), com sangramento ativo. Qual é a conduta mais adequada?",
   "alternativas": [
     {
       "id": "A",
@@ -594,11 +594,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "B",
-      "texto": "Esquistossomose hepato esplênica."
+      "texto": "Esquistossomose hepatoesplênica."
     },
     {
       "id": "C",
-      "texto": "Esteato hepatite."
+      "texto": "Esteato-hepatite."
     },
     {
       "id": "D",
@@ -692,7 +692,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Herpes Zoster."
+      "texto": "Herpes-zóster."
     },
     {
       "id": "D",
@@ -876,7 +876,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "B",
-      "texto": "Colonizar pacientes em ambiente hospitalar por tempo prolongado, de desenvolver resistência a antifúngicos e causar surtos em hospitais."
+      "texto": "Colonizar pacientes em ambiente hospitalar por tempo prolongado, desenvolver resistência a antifúngicos e causar surtos em hospitais."
     },
     {
       "id": "C",
@@ -1068,7 +1068,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "B",
-      "texto": "Hipocrômica e microcítica, hiporregenerativa com contagem de reticulócitos baixos"
+      "texto": "Hipocrômica e microcítica, hiporregenerativa com contagem de reticulócitos baixos."
     },
     {
       "id": "C",
@@ -1205,19 +1205,19 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Ventilação controlada a volume, volume corrente = 420 ml, PEEP = 5 cmH2O, FR = 30 irpm, relação I:E = 1:2, sensibilidade = 2 L/min, FiO2 = 100%."
+      "texto": "Ventilação controlada a volume, volume corrente = 420 mL, PEEP = 5 cmH2O, FR = 30 irpm, relação I:E = 1:2, sensibilidade = 2 L/min, FiO2 = 100%."
     },
     {
       "id": "B",
-      "texto": "Ventilação controlada a volume, volume corrente = 630 ml, PEEP = 5 cmH2O, FR = 12 irpm, relação I:E = 1:2, sensibilidade = 2 L/min, FiO2 = 100%."
+      "texto": "Ventilação controlada a volume, volume corrente = 630 mL, PEEP = 5 cmH2O, FR = 12 irpm, relação I:E = 1:2, sensibilidade = 2 L/min, FiO2 = 100%."
     },
     {
       "id": "C",
-      "texto": "Ventilação por pressão de suporte, pressão de suporte = 8 cm H2O, PEEP = 5 cm H2O, sensibilidade = 2 L/min, FiO2 = 100%."
+      "texto": "Ventilação por pressão de suporte, pressão de suporte = 8 cmH2O, PEEP = 5 cmH2O, sensibilidade = 2 L/min, FiO2 = 100%."
     },
     {
       "id": "D",
-      "texto": "Ventilação por pressão de suporte, pressão de suporte = 12 cm H2O, PEEP = 5 cm H2O, relação I:E = 1:2, sensibilidade = 2 L/min, FiO2 = 100%."
+      "texto": "Ventilação por pressão de suporte, pressão de suporte = 12 cmH2O, PEEP = 5 cmH2O, relação I:E = 1:2, sensibilidade = 2 L/min, FiO2 = 100%."
     }
   ],
   "gabarito": "B",
@@ -1248,11 +1248,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cg",
   "especialidadeId": "esp-ortopedia",
   "assuntoId": "ass-orto-infeccoes",
-  "enunciado": "Mulher, 22 anos, estudante, com múltiplos parceiros sexuais sem uso de preservativo, procura o pronto-socorro com febre de 38,8 ºC, poliartralgia migratória há 5 dias e, desde ontem, dor e edema no joelho esquerdo. Exame físico: lesões pustulosas isoladas nas extremidades e no tronco, tenossinovite no punho direito e sinal da tecla positivo no joelho esquerdo, com limitação importante do movimento. Exames: leucócitos = 15.000/mm3 e proteína C reativa = 12 mg/dL. Líquido sinovial do joelho: turvo, 52.000 leucócitos/mm3 com 90% de polimorfonucleares, ausência de cristais e coloração de Gram com diplococos gram-negativos intracelulares. Considerando o diagnóstico mais provável, qual é a conduta mais adequada?",
+  "enunciado": "Mulher, 22 anos, estudante, com múltiplos parceiros sexuais sem uso de preservativo, procura o pronto-socorro com febre de 38,8 °C, poliartralgia migratória há 5 dias e, desde ontem, dor e edema no joelho esquerdo. Exame físico: lesões pustulosas isoladas nas extremidades e no tronco, tenossinovite no punho direito e sinal da tecla positivo no joelho esquerdo, com limitação importante do movimento. Exames: leucócitos = 15.000/mm3 e proteína C reativa = 12 mg/dL. Líquido sinovial do joelho: turvo, 52.000 leucócitos/mm3 com 90% de polimorfonucleares, ausência de cristais e coloração de Gram com diplococos gram-negativos intracelulares. Considerando o diagnóstico mais provável, qual é a conduta mais adequada?",
   "alternativas": [
     {
       "id": "A",
-      "texto": "Iniciar ceftriaxone e realizar lavagem articular"
+      "texto": "Iniciar ceftriaxona e realizar lavagem articular."
     },
     {
       "id": "B",
@@ -1268,7 +1268,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "A",
-  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **mulher jovem, sexualmente ativa, com múltiplos parceiros sem preservativo** (a infecção gonocócica disseminada é a causa mais comum de artrite séptica em adultos jovens sexualmente ativos), **tríade de febre, tenossinovite e lesões cutâneas pustulosas**, **poliartralgia migratória evoluindo para monoartrite do joelho**, **líquido sinovial inflamatório (52.000 leucócitos, 90% de polimorfonucleares) sem cristais** e **diplococos gram-negativos intracelulares**: **artrite gonocócica**. O tratamento é **ceftriaxone** (1 g por via endovenosa a cada 24 horas) e **drenagem da articulação** (punções de repetição ou lavagem artroscópica), com cobertura para clamídia, tratamento dos parceiros e testagem para HIV e sífilis. B (alopurinol) e C (anti-inflamatório não hormonal) são condutas da gota, que cursa com cristais de urato e não com diplococos. D (colchicina) trata a crise de gota, o que não se aplica à paciente: não há cristais no líquido sinovial e há diplococos gram-negativos.",
+  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **mulher jovem, sexualmente ativa, com múltiplos parceiros sem preservativo** (a infecção gonocócica disseminada é a causa mais comum de artrite séptica em adultos jovens sexualmente ativos), **tríade de febre, tenossinovite e lesões cutâneas pustulosas**, **poliartralgia migratória evoluindo para monoartrite do joelho**, **líquido sinovial inflamatório (52.000 leucócitos, 90% de polimorfonucleares) sem cristais** e **diplococos gram-negativos intracelulares**: **artrite gonocócica**. O tratamento é **ceftriaxona** (1 g por via endovenosa a cada 24 horas) e **drenagem da articulação** (punções de repetição ou lavagem artroscópica), com cobertura para clamídia, tratamento dos parceiros e testagem para HIV e sífilis. B (alopurinol) e C (anti-inflamatório não hormonal) são condutas da gota, que cursa com cristais de urato e não com diplococos. D (colchicina) trata a crise de gota, o que não se aplica à paciente: não há cristais no líquido sinovial e há diplococos gram-negativos.",
   "explicacoesAlternativas": {},
   "referencias": "CDC. Sexually Transmitted Infections Treatment Guidelines, 2021 (infecção gonocócica disseminada); Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022; Sociedade Brasileira de Reumatologia.",
   "dificuldadeManual": "intermediario",
@@ -1295,7 +1295,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cg",
   "especialidadeId": "esp-neurocirurgia",
   "assuntoId": "ass-neurocir-tce",
-  "enunciado": "Homem, 27 anos, vítima de acidente motociclístico, é admitido na UTI com traumatismo cranioencefálico grave (Glasgow 5 na cena), intubado, em monitorização contínua da pressão intracraniana (PIC) por cateter intraparenquimatoso. A tomografia mostra edema cerebral difuso sem lesão com indicação cirúrgica. A PIC está entre 32 e 38 mmHg há mais de 1 hora, apesar de cabeceira a 30º, normocapnia, sedação plena com propofol e fentanil, bloqueio neuromuscular, solução salina hipertônica e drenagem liquórica. PAM = 90 mmHg, sem vasopressor. Qual é a melhor conduta para sedação e analgesia no momento?",
+  "enunciado": "Homem, 27 anos, vítima de acidente motociclístico, é admitido na UTI com traumatismo cranioencefálico grave (Glasgow 5 na cena), intubado, em monitorização contínua da pressão intracraniana (PIC) por cateter intraparenquimatoso. A tomografia mostra edema cerebral difuso sem lesão com indicação cirúrgica. A PIC está entre 32 e 38 mmHg há mais de 1 hora, apesar de cabeceira a 30°, normocapnia, sedação plena com propofol e fentanil, bloqueio neuromuscular, solução salina hipertônica e drenagem liquórica. PAM = 90 mmHg, sem vasopressor. Qual é a melhor conduta para sedação e analgesia no momento?",
   "alternativas": [
     {
       "id": "A",
@@ -1303,7 +1303,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "B",
-      "texto": "Midazolan e morfina."
+      "texto": "Midazolam e morfina."
     },
     {
       "id": "C",
@@ -1401,7 +1401,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Miomectomias laparoscópica."
+      "texto": "Miomectomia laparoscópica."
     },
     {
       "id": "D",
@@ -1436,7 +1436,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-go",
   "especialidadeId": "esp-ginecologia",
   "assuntoId": "ass-infertilidade",
-  "enunciado": "Mulher, 33 anos, casada há 5 anos, com infertilidade conjugal há 3 anos. O marido é saudável, tem 36 anos e o espermograma é normal. Refere ciclos regulares, porém com fluxo muito diminuído (hipomenorreia), e nega dismenorreia e dispareunia. Aos 17 anos, submeteu-se à curetagem uterina por abortamento infectado, realizado em condições inseguras, com febre e internação prolongada. A histerossalpingografia mostra cavidade uterina de contornos irregulares, com múltiplas falhas de enchimento lineares e angulares (aspecto «em favo de mel»), e as duas trompas pérvias, com difusão livre do contraste para a cavidade peritoneal. Qual é a provável etiologia da infertilidade?",
+  "enunciado": "Mulher, 33 anos, casada há 5 anos, com infertilidade conjugal há 3 anos. O marido é saudável, tem 36 anos e o espermograma é normal. Refere ciclos regulares, porém com fluxo muito diminuído (hipomenorreia), e nega dismenorreia e dispareunia. Aos 17 anos, submeteu-se à curetagem uterina por abortamento infectado, realizado em condições inseguras, com febre e internação prolongada. A histerossalpingografia mostra cavidade uterina de contornos irregulares, com múltiplas falhas de enchimento lineares e angulares, e as duas trompas pérvias, com difusão livre do contraste para a cavidade peritoneal. Qual é a provável etiologia da infertilidade?",
   "alternativas": [
     {
       "id": "A",
@@ -1906,7 +1906,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cm",
   "especialidadeId": "esp-infecto",
   "assuntoId": "ass-ist",
-  "enunciado": "Secundigesta, 28 anos, parto anterior no termo. Primeira consulta em UBS com diagnóstico de gravidez tópica de 8 semanas, assintomática. Há 14 meses tratou sífilis, conforme cartão de pré-natal da gestação anterior, com penicilina benzatina 7.200.000 UI (3 doses semanais), e o VDRL de controle, há 6 meses, foi de 1:2. Refere novo parceiro há 3 meses, sem uso de preservativo, que não realizou testagem. Realizado teste rápido para sífilis, com resultado reagente, e VDRL atual de 1:16. Sem lesões genitais ou sintomas neurológicos ou oftalmológicos. Qual é a conduta mais indicada?",
+  "enunciado": "Secundigesta, 28 anos, parto anterior a termo. Primeira consulta em UBS com diagnóstico de gravidez tópica de 8 semanas, assintomática. Há 14 meses tratou sífilis, conforme cartão de pré-natal da gestação anterior, com penicilina benzatina 7.200.000 UI (3 doses semanais), e o VDRL de controle, há 6 meses, foi de 1:2. Refere novo parceiro há 3 meses, sem uso de preservativo, que não realizou testagem. Realizado teste rápido para sífilis, com resultado reagente, e VDRL atual de 1:16. Sem lesões genitais ou sintomas neurológicos ou oftalmológicos. Qual é a conduta mais indicada?",
   "alternativas": [
     {
       "id": "A",
@@ -1973,7 +1973,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "D",
-  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: **homem de 67 anos** (a incidência da doença de Parkinson cresce com a idade, atingindo cerca de 1% das pessoas acima de 65 anos), **bradicinesia assimétrica, tremor de repouso e rigidez em roda denteada** (síndrome parkinsoniana), **redução do olfato e constipação** (sintomas não motores precoces) e **eletroneuromiografia e reflexos normais, sem fraqueza ou atrofia**: **doença de Parkinson**, de diagnóstico clínico (critérios da Movement Disorder Society). A (síndrome de Guillain-Barré) é paralisia flácida ascendente com arreflexia, de instalação em dias a semanas. B (esclerose múltipla) acomete adultos jovens, principalmente mulheres, com surtos de déficits focais, neurite óptica e alterações na ressonância. C (esclerose lateral amiotrófica) combina sinais de primeiro e segundo neurônio motor, com fraqueza, atrofia, fasciculações e eletroneuromiografia com desnervação, sem tremor de repouso nem bradicinesia.",
+  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: **homem de 67 anos** (a prevalência da doença de Parkinson cresce com a idade, atingindo cerca de 1% das pessoas acima de 65 anos), **bradicinesia assimétrica, tremor de repouso e rigidez em roda denteada** (síndrome parkinsoniana), **redução do olfato e constipação** (sintomas não motores precoces) e **eletroneuromiografia e reflexos normais, sem fraqueza ou atrofia**: **doença de Parkinson**, de diagnóstico clínico (critérios da Movement Disorder Society). A (síndrome de Guillain-Barré) é paralisia flácida ascendente com arreflexia, de instalação em dias a semanas. B (esclerose múltipla) acomete adultos jovens, principalmente mulheres, com surtos de déficits focais, neurite óptica e alterações na ressonância. C (esclerose lateral amiotrófica) combina sinais de primeiro e segundo neurônio motor, com fraqueza, atrofia, fasciculações e eletroneuromiografia com desnervação, sem tremor de repouso nem bradicinesia.",
   "explicacoesAlternativas": {},
   "referencias": "Postuma RB et al. MDS clinical diagnostic criteria for Parkinson's disease. Mov Disord, 2015; Ministério da Saúde. PCDT da Doença de Parkinson.",
   "dificuldadeManual": "intermediario",
@@ -2006,7 +2006,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Ressonância magnética de crânio e pesquisa do anticorpo anti-glicoproteina."
+      "texto": "Ressonância magnética de crânio e pesquisa do anticorpo anti-MOG (glicoproteína do oligodendrócito)."
     },
     {
       "id": "B",
@@ -2018,11 +2018,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Biópsia muscular e pesquisa do anticorpo anti-MUSK."
+      "texto": "Biópsia muscular e pesquisa do anticorpo anti-MuSK."
     }
   ],
   "gabarito": "C",
-  "explicacaoGeral": "A alternativa C está correta. Dicas do enunciado e da figura: **mulher jovem, previamente hígida, com início psiquiátrico (insônia, agitação, delírios)** seguido de **crises convulsivas, discinesias orofaciais, rebaixamento da consciência e instabilidade autonômica**, **líquor com pleocitose linfocítica**, **RM de crânio normal** e **EEG com padrão «delta brush»**: **encefalite autoimune por anticorpo anti-receptor de NMDA**, a encefalite autoimune mais comum, que predomina em mulheres jovens. Como **cerca de metade das mulheres adultas com a doença tem teratoma de ovário associado**, solicita-se **imagem da pelve (ressonância ou ultrassonografia) para procurar o tumor**, junto com a **pesquisa do anticorpo anti-NMDAR no líquor (e no soro)**; a ressecção do teratoma e a imunoterapia mudam o prognóstico. A (RM de crânio e anticorpo anti-glicoproteína) corresponde à pesquisa do anticorpo anti-MOG, associado a neurite óptica e mielite, e a RM de crânio já foi normal. B (tomografia de tórax e anticorpo anti-receptor de acetilcolina) investiga miastenia e timoma, que causam fraqueza flutuante e não encefalite. D (biópsia muscular e anticorpo anti-MuSK) investiga miastenia com anticorpo anti-MuSK ou miopatia, também sem relação com o quadro.",
+  "explicacaoGeral": "A alternativa C está correta. Dicas do enunciado e da figura: **mulher jovem, previamente hígida, com início psiquiátrico (insônia, agitação, delírios)** seguido de **crises convulsivas, discinesias orofaciais, rebaixamento da consciência e instabilidade autonômica**, **líquor com pleocitose linfocítica**, **RM de crânio normal** e **EEG com padrão «delta brush»**: **encefalite autoimune por anticorpo anti-receptor de NMDA**, a encefalite autoimune mais comum, que predomina em mulheres jovens. Como **cerca de metade das mulheres adultas com a doença tem teratoma de ovário associado**, solicita-se **imagem da pelve (ressonância ou ultrassonografia) para procurar o tumor**, junto com a **pesquisa do anticorpo anti-NMDAR no líquor (e no soro)**; a ressecção do teratoma e a imunoterapia mudam o prognóstico. A (RM de crânio e anticorpo anti-MOG) investiga a doença associada ao anticorpo anti-MOG, que causa neurite óptica e mielite, e a RM de crânio já foi normal. B (tomografia de tórax e anticorpo anti-receptor de acetilcolina) investiga miastenia e timoma, que causam fraqueza flutuante e não encefalite. D (biópsia muscular e anticorpo anti-MuSK) investiga miastenia com anticorpo anti-MuSK ou miopatia, também sem relação com o quadro.",
   "explicacoesAlternativas": {},
   "referencias": "Graus F et al. A clinical approach to diagnosis of autoimmune encephalitis. Lancet Neurol, 2016; Titulaer MJ et al. Treatment and prognostic factors for long-term outcome in patients with anti-NMDA receptor encephalitis. Lancet Neurol, 2013.",
   "dificuldadeManual": "avancado",
@@ -2163,7 +2163,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "A",
-  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **idoso com 25 anos de diabetes e doença renal crônica (TFG ≈ 28), que mora sozinho e come pouco**, em uso de **glibenclamida** (sulfonilureia de meia-vida longa, com metabólitos ativos que se acumulam na doença renal) e **insulina NPH**; **episódios de madrugada com sudorese, tremor e confusão que melhoram com açúcar**, que configuram hipoglicemia; e **HbA1c de 6,1%**, que em idoso frágil, com complicações e risco de hipoglicemia, significa **excesso de tratamento**. A conduta é **desintensificar**: suspender a glibenclamida, reduzir a insulina e adotar **meta menos rígida (HbA1c em torno de 8%)**, com glicemia capilar sempre que houver sintomas. B (manter e orientar lanche) trata o sintoma e preserva a causa; a HbA1c de 6,1% não está 'dentro da meta' para este paciente. C (metformina) é contraindicada com TFG abaixo de 30 mL/min/1,73 m2, pelo risco de acidose láctica. D (investigar TSH, vitamina B12 e depressão antes de mexer no esquema) adia a correção de uma causa evidente e perigosa de hipoglicemia, embora outras causas possam ser avaliadas depois.",
+  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **idoso com 25 anos de diabetes e doença renal crônica (TFG ≈ 28), que mora sozinho e come pouco**, em uso de **glibenclamida** (sulfonilureia de meia-vida longa, com metabólitos ativos que se acumulam na doença renal) e **insulina NPH**; **episódios de madrugada com sudorese, tremor e confusão que melhoram com açúcar**, que configuram hipoglicemia; e **HbA1c de 6,1%**, que em idoso frágil, com complicações e risco de hipoglicemia, significa **excesso de tratamento**. A conduta é **desintensificar**: suspender a glibenclamida, reduzir a insulina e adotar **meta menos rígida (HbA1c em torno de 8%)**, com glicemia capilar sempre que houver sintomas. B (manter e orientar lanche) trata o sintoma e preserva a causa; a HbA1c de 6,1% não está «dentro da meta» para este paciente. C (metformina) é contraindicada com TFG abaixo de 30 mL/min/1,73 m2, pelo risco de acidose láctica. D (investigar TSH, vitamina B12 e depressão antes de mexer no esquema) adia a correção de uma causa evidente e perigosa de hipoglicemia, embora outras causas possam ser avaliadas depois.",
   "explicacoesAlternativas": {},
   "referencias": "Diretriz da Sociedade Brasileira de Diabetes, hipoglicemia; ADA Standards of Care in Diabetes, Glycemic Goals and Hypoglycemia; Sociedade Brasileira de Geriatria e Gerontologia.",
   "dificuldadeManual": "intermediario",
@@ -2331,7 +2331,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cm",
   "especialidadeId": "esp-dermato",
   "assuntoId": "ass-derm-infeccoes",
-  "enunciado": "Mulher, 58 anos, imunocompetente, apresenta otalgia intensa à esquerda há 2 dias e, desde ontem, erupção de vesículas agrupadas sobre base eritematosa na concha auricular e no conduto auditivo externo esquerdos. Há 12 horas notou desvio da rima labial e dificuldade para fechar o olho esquerdo, com zumbido e vertigem. Exame físico: paralisia facial periférica completa à esquerda (House-Brackmann V), sem outras alterações neurológicas. A terapia com aciclovir é iniciada. Qual dos seguintes passos é o mais apropriado?",
+  "enunciado": "Mulher, 58 anos, imunocompetente, apresenta otalgia intensa à esquerda há 2 dias e, desde ontem, erupção de vesículas agrupadas sobre base eritematosa na concha auricular e no conduto auditivo externo esquerdos. Há 12 horas notou desvio da rima labial e dificuldade para fechar o olho esquerdo, com zumbido e vertigem. Exame físico: paralisia facial periférica completa à esquerda (House-Brackmann VI), sem outras alterações neurológicas. A terapia com aciclovir é iniciada. Qual dos seguintes passos é o mais apropriado?",
   "alternativas": [
     {
       "id": "A",
@@ -2476,7 +2476,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "alternativas": [
     {
       "id": "A",
-      "texto": "Anemia Ferropriva."
+      "texto": "Anemia ferropriva."
     },
     {
       "id": "B",
@@ -2566,7 +2566,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cg",
   "especialidadeId": "esp-urologia",
   "assuntoId": "ass-uro-malformacoes",
-  "enunciado": "Menina, 5 meses de idade, com febre de 39 ºC há 2 dias e irritabilidade, sem outro foco. A urocultura (coleta por cateterismo vesical) mostra crescimento de Escherichia coli > 100.000 UFC/mL, e a paciente é tratada por 10 dias, com boa resposta clínica. Trata-se do primeiro episódio de infecção do trato urinário, sem história familiar de refluxo vesicoureteral. Qual é o exame de imagem indicado inicialmente?",
+  "enunciado": "Menina, 5 meses de idade, com febre de 39 °C há 2 dias e irritabilidade, sem outro foco. A urocultura (coleta por cateterismo vesical) mostra crescimento de Escherichia coli > 100.000 UFC/mL, e a paciente é tratada por 10 dias, com boa resposta clínica. Trata-se do primeiro episódio de infecção do trato urinário, sem história familiar de refluxo vesicoureteral. Qual é o exame de imagem indicado inicialmente?",
   "alternativas": [
     {
       "id": "A",
@@ -2723,11 +2723,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "D",
-      "texto": "Correção eletiva do aneurisma, preferencialmente por via endovascular, associada a cessação do tabagismo e estatina."
+      "texto": "Correção eletiva do aneurisma, preferencialmente por via endovascular, associada ao controle dos fatores de risco e ao uso de estatina."
     }
   ],
   "gabarito": "D",
-  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: **homem, 68 anos, ex-tabagista** (principal grupo de risco e de rastreamento) e **diâmetro de 5,8 cm** (acima do limiar de 5,5 cm em homens) indicam correção eletiva mesmo em assintomático, pois o risco anual de ruptura cresce de forma exponencial com o diâmetro. **Colo com 28 mm e angulação de 40°, acessos ilíacos adequados e risco cirúrgico baixo** tornam a anatomia favorável ao reparo endovascular (EVAR), que reduz a mortalidade perioperatória em relação à cirurgia aberta; a cirurgia aberta permanece opção. Controle de fatores de risco (tabagismo, estatina, pressão arterial) complementa a conduta. A (vigilância a cada 3 anos) vale apenas para aneurismas de 3,0 a 3,9 cm. B (vigilância anual) é a conduta para aneurismas de 4,0 a 4,9 cm; esperar 6,5 cm expõe o paciente a risco de ruptura desnecessário, já que a indicação é 5,5 cm. C (embolização do saco) não é tratamento aceito para aneurisma de aorta, pois não exclui a pressão sistêmica da parede e mantém o risco de ruptura.",
+  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: **homem, 68 anos, ex-tabagista** (principal grupo de risco e de rastreamento) e **diâmetro de 5,8 cm** (acima do limiar de 5,5 cm em homens) indicam correção eletiva mesmo em assintomático, pois o risco anual de ruptura cresce de forma exponencial com o diâmetro. **Colo com 28 mm e angulação de 40°, acessos ilíacos adequados e risco cirúrgico baixo** tornam a anatomia favorável ao reparo endovascular (EVAR), que reduz a mortalidade perioperatória em relação à cirurgia aberta; a cirurgia aberta permanece opção. Manter a abstinência do tabaco, usar estatina e controlar a pressão arterial complementa a conduta. A (vigilância a cada 3 anos) vale apenas para aneurismas de 3,0 a 3,9 cm. B (vigilância anual) é a conduta para aneurismas de 4,0 a 4,9 cm; esperar 6,5 cm expõe o paciente a risco de ruptura desnecessário, já que a indicação é 5,5 cm. C (embolização do saco) não é tratamento aceito para aneurisma de aorta, pois não exclui a pressão sistêmica da parede e mantém o risco de ruptura.",
   "explicacoesAlternativas": {},
   "referencias": "Society for Vascular Surgery. Clinical practice guidelines on abdominal aortic aneurysm, 2018; ESVS Guidelines on AAA, 2024; USPSTF, rastreamento de aneurisma de aorta abdominal, 2019.",
   "dificuldadeManual": "intermediario",
@@ -2813,7 +2813,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Oblíqua a 45º em relação às rugas, para quebrar a linha da cicatriz."
+      "texto": "Oblíqua a 45° em relação às rugas, para quebrar a linha da cicatriz."
     },
     {
       "id": "D",
@@ -2821,7 +2821,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "B",
-  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **lesão centro-lateral da fronte** e menção às **linhas de Langer** indicam que a incisão deve seguir as linhas de tensão cutânea relaxada, que na fronte são **horizontais**, paralelas às rugas de expressão do músculo frontal. Incisões paralelas a essas linhas cicatrizam com menor tensão, cicatriz mais fina e melhor resultado estético. A excisão fusiforme deve ter razão comprimento:largura de cerca de 3:1 e ângulos de ~30º. O carcinoma basocelular nodular de baixo risco e menor que 2 cm, nessa localização, admite margem de 4 mm. A (vertical) cruza as linhas de expressão, aumenta a tensão e produz cicatriz alargada e visível. C (oblíqua) também cruza as linhas de tensão e gera cicatriz assimétrica e mais evidente. D (circular, sem orientação) ignora o princípio das linhas de tensão e dificulta o fechamento primário sem distorção, formando orelhas de cão.",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **lesão centro-lateral da fronte** e menção às **linhas de Langer** indicam que a incisão deve seguir as linhas de tensão cutânea relaxada, que na fronte são **horizontais**, paralelas às rugas de expressão do músculo frontal. Incisões paralelas a essas linhas cicatrizam com menor tensão, cicatriz mais fina e melhor resultado estético. A excisão fusiforme deve ter razão comprimento:largura de cerca de 3:1 e ângulos de ~30°. O carcinoma basocelular nodular de baixo risco e menor que 2 cm, nessa localização, admite margem de 4 mm. A (vertical) cruza as linhas de expressão, aumenta a tensão e produz cicatriz alargada e visível. C (oblíqua) também cruza as linhas de tensão e gera cicatriz assimétrica e mais evidente. D (circular, sem orientação) ignora o princípio das linhas de tensão e dificulta o fechamento primário sem distorção, formando orelhas de cão.",
   "explicacoesAlternativas": {},
   "referencias": "NCCN Guidelines: Basal Cell Skin Cancer (versão vigente); Diretrizes da Sociedade Brasileira de Dermatologia para carcinoma basocelular; INCA, Estimativa de incidência de câncer no Brasil; Townsend, Sabiston Tratado de Cirurgia (princípios de incisões e linhas de tensão).",
   "dificuldadeManual": "intermediario",
@@ -2868,7 +2868,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "C",
-  "explicacaoGeral": "A alternativa C está correta. Dicas do enunciado: **edema cervicofacial matinal com piora ao se curvar, circulação colateral torácica e edema de papila** caracterizam a síndrome da veia cava superior. **Idade de 28 anos, não tabagista e massa de mediastino anterior volumosa** tornam o linfoma (Hodgkin, linfoma B primário do mediastino ou linfoblástico T) a causa mais provável nessa faixa etária, diferentemente do adulto idoso tabagista, em que predomina o câncer de pulmão. Como **não há estridor nem comprometimento de via aérea ou do sistema nervoso central**, o paciente é estável e o tratamento não deve ser iniciado às cegas: obtém-se diagnóstico histológico primeiro (biópsia por agulha grossa guiada por imagem ou mediastinoscopia), porque corticoide, radioterapia ou quimioterapia prévios podem inviabilizar a histologia, e o tratamento depende do tipo tumoral. A (hipertensão intracraniana) é consequência venosa e não diagnóstico primário; craniotomia não tem papel. B (carcinoma broncogênico com lobectomia) é improvável no perfil e a cirurgia de urgência não é conduta de síndrome da veia cava superior. D (pericardite constritiva) não explica massa mediastinal nem circulação colateral cervicofacial.",
+  "explicacaoGeral": "A alternativa C está correta. Dicas do enunciado: **edema cervicofacial matinal com piora ao se curvar, circulação colateral torácica e edema de papila** caracterizam a síndrome da veia cava superior. **Idade de 28 anos, não tabagista e massa de mediastino anterior volumosa** tornam o linfoma (Hodgkin, linfoma B primário do mediastino ou linfoblástico T) a causa mais provável nessa faixa etária, diferentemente do adulto idoso tabagista, em que predomina o câncer de pulmão. Como **não há estridor nem comprometimento de via aérea ou do sistema nervoso central**, o paciente é estável e o tratamento não deve ser iniciado às cegas: obtém-se diagnóstico histológico primeiro (biópsia por agulha grossa guiada por imagem ou mediastinoscopia), porque corticoide, radioterapia ou quimioterapia prévios podem inviabilizar a histologia, e o tratamento depende do tipo tumoral. Tumor de células germinativas e timoma também compõem o diagnóstico diferencial da massa de mediastino anterior no adulto jovem, e a biópsia (com marcadores tumorais) é o que os distingue. A (hipertensão intracraniana) é consequência venosa e não diagnóstico primário; craniotomia não tem papel. B (carcinoma broncogênico com lobectomia) é improvável no perfil e a cirurgia de urgência não é conduta de síndrome da veia cava superior. D (pericardite constritiva) não explica massa mediastinal nem circulação colateral cervicofacial.",
   "explicacoesAlternativas": {},
   "referencias": "Wilson LD, Detterbeck FC, Yahalom J. Superior vena cava syndrome with malignant causes. N Engl J Med 2007; NCCN Guidelines: Hodgkin Lymphoma e B-Cell Lymphomas; ESMO Clinical Practice Guidelines (oncologic emergencies).",
   "dificuldadeManual": "avancado",
@@ -2942,7 +2942,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cg",
   "especialidadeId": "esp-abdagudo",
   "assuntoId": "ass-obstrucao",
-  "enunciado": "Menino, 10 meses de idade, previamente hígido, é levado ao pronto-socorro com crises de choro em cólica intermitentes e vômitos há 14 horas; há 3 horas evacuou fezes com muco e sangue (‘geleia de morango’). Ultrassonografia: imagem em ‘alvo’ na fossa ilíaca direita, sem líquido livre. Recebeu hidratação venosa e correção dos distúrbios hidroeletrolíticos, está hemodinamicamente estável, sem peritonite nem pneumoperitônio na radiografia. Qual é a conduta terapêutica definitiva mais adequada?",
+  "enunciado": "Menino, 10 meses de idade, previamente hígido, é levado ao pronto-socorro com crises de choro em cólica intermitentes e vômitos há 14 horas; há 3 horas evacuou fezes com muco e sangue («geleia de morango»). Ultrassonografia: imagem em «alvo» na fossa ilíaca direita, sem líquido livre. Recebeu hidratação venosa e correção dos distúrbios hidroeletrolíticos, está hemodinamicamente estável, sem peritonite nem pneumoperitônio na radiografia. Qual é a conduta terapêutica definitiva mais adequada?",
   "alternativas": [
     {
       "id": "A",
@@ -3083,7 +3083,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cm",
   "especialidadeId": "esp-geriatria",
   "assuntoId": "ass-geriatria-maustratos",
-  "enunciado": "Mulher, 88 anos de idade, com demência moderada, episódios de delírio e agitação, vem à consulta na UBS acompanhada do filho, seu único cuidador, que apresenta sinais de esgotamento. Durante a consulta, em desentendimento com a mãe, ele grita que vai ‘internar a velha’ e diz que ‘ela não presta para mais nada’. Diante da suspeita de violência psicológica, assinale a alternativa correta.",
+  "enunciado": "Mulher, 88 anos de idade, com demência moderada, episódios de delírio e agitação, vem à consulta na UBS acompanhada do filho, seu único cuidador, que apresenta sinais de esgotamento. Durante a consulta, em desentendimento com a mãe, ele grita que vai «internar a velha» e diz que «ela não presta para mais nada». Diante da suspeita de violência psicológica, assinale a alternativa correta.",
   "alternativas": [
     {
       "id": "A",
@@ -3150,7 +3150,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "B",
-  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **diabetes e hipertensão de longa data** colocam a paciente em grupo de risco para doença renal crônica, que deve ser avaliada por **taxa de filtração glomerular estimada (TFGe) com a equação CKD-EPI** (preferencialmente a versão de 2021 sem coeficiente racial) e por **albuminúria**, avaliada pela relação albumina/creatinina em amostra isolada; o estadiamento KDIGO combina as duas medidas. A creatinina de 1,8 mg/dL em mulher de 62 anos corresponde a TFGe bastante reduzida (cerca de 30 mL/min/1,73 m²). A (creatinina abaixo de 2,0 é ‘quase normal’) é erro frequente, pois a creatinina só se eleva após perda importante da filtração. C (urina de 24 horas rotineira) é sujeita a erros de coleta e não é superior à estimativa; é reservada a situações específicas. D (Cockcroft-Gault) é usada em ajuste de doses de alguns fármacos, e não como equação recomendada para estadiar a doença renal crônica.",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **diabetes e hipertensão de longa data** colocam a paciente em grupo de risco para doença renal crônica, que deve ser avaliada por **taxa de filtração glomerular estimada (TFGe) com a equação CKD-EPI** (preferencialmente a versão de 2021 sem coeficiente racial) e por **albuminúria**, avaliada pela relação albumina/creatinina em amostra isolada; o estadiamento KDIGO combina as duas medidas. A creatinina de 1,8 mg/dL em mulher de 62 anos corresponde a TFGe bastante reduzida (cerca de 30 mL/min/1,73 m²). A (creatinina abaixo de 2,0 é «quase normal») é erro frequente, pois a creatinina só se eleva após perda importante da filtração. C (urina de 24 horas rotineira) é sujeita a erros de coleta e não é superior à estimativa; é reservada a situações específicas. D (Cockcroft-Gault) é usada em ajuste de doses de alguns fármacos, e não como equação recomendada para estadiar a doença renal crônica.",
   "explicacoesAlternativas": {},
   "referencias": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD; Sociedade Brasileira de Nefrologia, Diretrizes de DRC; Ministério da Saúde, Diretrizes clínicas para o cuidado ao paciente com doença renal crônica no SUS (2014).",
   "dificuldadeManual": "intermediario",
@@ -3244,7 +3244,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "B",
-  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **uso prolongado de metformina (8 anos)** associa-se a redução dos níveis de vitamina B12 (por má absorção ileal), que deve ser dosada periodicamente, sobretudo diante de neuropatia ou anemia; o **inibidor de SGLT2 recém-iniciado** pode causar cetoacidose diabética euglicêmica (situações de jejum, doença aguda ou cirurgia, baixa reserva insulínica) e infecções genitais fúngicas e do trato urinário por glicosúria. A ordem ‘respectivamente’ importa. A (cetoacidose euglicêmica e deficiência de B12) inverte as drogas: cetoacidose euglicêmica é do iSGLT2 e a deficiência de B12 é da metformina. C (hipoglicemia grave e esteatose hepática) não corresponde: nenhuma das duas drogas causa hipoglicemia isolada relevante, e iSGLT2 reduz esteatose. D (ganho de peso e retenção hídrica/insuficiência cardíaca) descreve pioglitazona e insulina; metformina é neutra ou reduz peso e iSGLT2 reduz internações por insuficiência cardíaca.",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **uso prolongado de metformina (8 anos)** associa-se a redução dos níveis de vitamina B12 (por má absorção ileal), que deve ser dosada periodicamente, sobretudo diante de neuropatia ou anemia; o **inibidor de SGLT2 recém-iniciado** pode causar cetoacidose diabética euglicêmica (situações de jejum, doença aguda ou cirurgia, baixa reserva insulínica) e infecções genitais fúngicas e do trato urinário por glicosúria. A ordem «respectivamente» importa. A (cetoacidose euglicêmica e deficiência de B12) inverte as drogas: cetoacidose euglicêmica é do iSGLT2 e a deficiência de B12 é da metformina. C (hipoglicemia grave e esteatose hepática) não corresponde: nenhuma das duas drogas causa hipoglicemia isolada relevante, e iSGLT2 reduz esteatose. D (ganho de peso e retenção hídrica/insuficiência cardíaca) descreve pioglitazona e insulina; metformina é neutra ou reduz peso e iSGLT2 reduz internações por insuficiência cardíaca.",
   "explicacoesAlternativas": {},
   "referencias": "American Diabetes Association. Standards of Care in Diabetes, 2024 (farmacoterapia e efeitos adversos); Diretriz da Sociedade Brasileira de Diabetes, 2023-2024; Pesquisa Nacional de Saúde 2019 (IBGE).",
   "dificuldadeManual": "intermediario",
@@ -3412,7 +3412,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-go",
   "especialidadeId": "esp-obstetricia",
   "assuntoId": "ass-sangramentos",
-  "enunciado": "Puérpera, com parto vaginal a termo de recém-nascido de 4.200 g, apresentou sangramento vaginal intenso logo após a dequitação. A monitorização mostrou pulso de 120 bpm e pressão arterial de 85 x 55 mmHg, com pele fria e sudoreica. Houve redução do sangramento 8 minutos após ocitocina endovenosa e ergometrina intramuscular. O peso líquido das compressas ao final do atendimento foi de 400 g. A enfermeira acionou corretamente o código de hemorragia pós-parto, porque:",
+  "enunciado": "Puérpera, com parto vaginal a termo de recém-nascido de 4.200 g, apresentou sangramento vaginal intenso logo após a dequitação. A monitorização mostrou pulso de 120 bpm e pressão arterial de 85 x 55 mmHg, com pele fria e sudoreica. Houve redução do sangramento 8 minutos após ocitocina endovenosa e metilergometrina intramuscular. O peso líquido das compressas ao final do atendimento foi de 400 g. A enfermeira acionou corretamente o código de hemorragia pós-parto, porque:",
   "alternativas": [
     {
       "id": "A",
@@ -3518,7 +3518,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     },
     {
       "id": "C",
-      "texto": "Apresentação cefálica defletida de 2º grau (face)."
+      "texto": "Apresentação cefálica defletida de 3º grau (face)."
     },
     {
       "id": "D",
@@ -3526,7 +3526,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "B",
-  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **primigesta adolescente de baixa estatura, feto de 3.900 g, expulsivo prolongado sem progressão** com **bossa serossanguínea volumosa e cavalgamento das suturas** caracterizam desproporção cefalopélvica: a pressão prolongada do polo cefálico contra a pelve estreita gera edema do couro cabeludo (bossa) e a moldagem exagerada dos ossos do crânio (cavalgamento). Esses sinais, associados à parada de progressão, indicam avaliação para cesariana. A (cranioestenose) é fusão precoce das suturas, de modo que não há cavalgamento, e sim ausência de mobilidade. C (cefálica defletida de 2º grau, ou face) tem como achado ao toque a palpação de mento, boca e nariz, com bossa de face, e não cavalgamento. D (assinclitismo posterior sem desproporção) pode ocorrer em partos normais, e a correção do polo cefálico é esperada sem moldagem exagerada nem bossa volumosa.",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **primigesta adolescente de baixa estatura, feto de 3.900 g, expulsivo prolongado sem progressão** com **bossa serossanguínea volumosa e cavalgamento das suturas** caracterizam desproporção cefalopélvica: a pressão prolongada do polo cefálico contra a pelve estreita gera edema do couro cabeludo (bossa) e a moldagem exagerada dos ossos do crânio (cavalgamento). Esses sinais, associados à parada de progressão, indicam avaliação para cesariana. A (cranioestenose) é fusão precoce das suturas, de modo que não há cavalgamento, e sim ausência de mobilidade. C (cefálica defletida de 3º grau, ou face) tem como achado ao toque a palpação de mento, boca e nariz, com bossa de face, e não cavalgamento. D (assinclitismo posterior sem desproporção) pode ocorrer em partos normais, e a correção do polo cefálico é esperada sem moldagem exagerada nem bossa volumosa.",
   "explicacoesAlternativas": {},
   "referencias": "FEBRASGO, Tratado de Obstetrícia; Ministério da Saúde, Diretriz Nacional de Assistência ao Parto Normal, 2017; Cunningham FG et al., Williams Obstetrics (distocia e desproporção cefalopélvica).",
   "dificuldadeManual": "intermediario",
@@ -3553,7 +3553,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-go",
   "especialidadeId": "esp-obstetricia",
   "assuntoId": "ass-prenatal",
-  "enunciado": "Gestante de 20 semanas procura a UBS com quadro gripal há 3 semanas (febre baixa, mialgia e cefaleia). A sorologia do início do pré-natal, com 8 semanas, mostrava IgG negativo e IgM negativo para citomegalovírus. A sorologia atual mostra IgM e IgG positivos, com teste de avidez de IgG de baixa avidez. O ultrassom obstétrico morfológico é normal. Qual é a conduta mais adequada?",
+  "enunciado": "Gestante de 20 semanas procura a UBS com quadro gripal há 3 semanas (febre baixa, mialgia e cefaleia). A sorologia do início do pré-natal, com 8 semanas, mostrava IgG negativo e IgM negativo para citomegalovírus. A sorologia atual mostra IgM e IgG positivos, e IgG de baixa avidez no teste de avidez. O ultrassom obstétrico morfológico é normal. Qual é a conduta mais adequada?",
   "alternativas": [
     {
       "id": "A",
@@ -3573,7 +3573,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "A",
-  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **IgG e IgM negativos com 8 semanas e IgM e IgG positivos agora, com IgG de baixa avidez**, depois de **quadro gripal há 3 semanas**: **soroconversão recente, infecção primária por citomegalovírus** na gestação. Nesse cenário, o risco de transmissão ao feto é alto, e o **diagnóstico da infecção fetal** se faz pela **amniocentese com pesquisa do DNA viral (PCR)**, **a partir de 21 semanas e pelo menos 6 a 8 semanas após a infecção materna**, para que o vírus tenha tempo de ser excretado na urina fetal; a ultrassonografia normal não exclui infecção. B (valaciclovir em altas doses) é opção em protocolos de pesquisa e não é recomendado de rotina. C (conduta expectante) seria aceitável na infecção não primária, o que não é o caso. D (ressonância magnética fetal) é exame complementar para casos com alterações ultrassonográficas ou com infecção fetal confirmada, e não para rastrear.",
+  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **IgG e IgM negativos com 8 semanas e IgM e IgG positivos agora, com IgG de baixa avidez**, depois de **quadro gripal há 3 semanas**: **soroconversão recente, infecção primária por citomegalovírus** na gestação. Nesse cenário, o risco de transmissão ao feto é alto, e o **diagnóstico da infecção fetal** se faz pela **amniocentese com pesquisa do DNA viral (PCR)**, **a partir de 21 semanas e pelo menos 6 a 8 semanas após a infecção materna**, para que o vírus tenha tempo de ser excretado na urina fetal; a ultrassonografia normal não exclui infecção. B (valaciclovir em altas doses, 8 g/dia) tem evidência de reduzir a transmissão vertical quando iniciado na infecção periconcepcional ou no primeiro trimestre, é uso fora da bula e não é conduta padrão; aqui a infecção ocorreu no segundo trimestre, e a prioridade é diagnosticar a infecção fetal. C (conduta expectante) seria aceitável na infecção não primária, o que não é o caso. D (ressonância magnética fetal) é exame complementar para casos com alterações ultrassonográficas ou com infecção fetal confirmada, e não para rastrear.",
   "explicacoesAlternativas": {},
   "referencias": "ACOG Practice Bulletin 151, Cytomegalovirus, Parvovirus B19, Varicella Zoster, and Toxoplasmosis in Pregnancy; SMFM Consult Series 2020; SOGC Guideline 2017 sobre infecção por CMV; FEBRASGO, Infecções na gestação.",
   "dificuldadeManual": "avancado",
@@ -3812,7 +3812,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "A",
-  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **coeficiente de Pearson de −0,72** indica correlação **negativa e forte** (sentidos opostos: quanto maior a cobertura vacinal, menor a incidência), e **p < 0,001** é menor que 0,05, portanto estatisticamente significante **ao nível de significância de 5%** (alfa). B inverte o sinal: um r negativo significa que as variáveis variam em sentidos opostos. C (relação causal) é incorreta: a correlação, em dados ecológicos agregados por município, não demonstra causalidade e está sujeita à falácia ecológica e a fatores de confusão, como acesso a serviços e densidade populacional; a evidência de que a vacina previne o sarampo vem de outros delineamentos. D (não há correlação, ao nível de confiança de 5%) erra duas vezes: o p-valor mostra correlação significante, e 5% é o nível de significância; o nível de confiança é o complementar (95%).",
+  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **coeficiente de Pearson de −0,72** indica correlação **negativa e forte** (sentidos opostos: quanto maior a cobertura vacinal, menor a incidência), e **p < 0,001** é menor que 0,05, portanto estatisticamente significante **ao nível de significância de 5%** (alfa). B (maior incidência com maior cobertura) inverte o sinal: um r negativo significa que as variáveis variam em sentidos opostos. C (relação causal) é incorreta: a correlação, em dados ecológicos agregados por município, não demonstra causalidade e está sujeita à falácia ecológica e a fatores de confusão, como acesso a serviços e densidade populacional; a evidência de que a vacina previne o sarampo vem de outros delineamentos. D (não há correlação, ao nível de confiança de 5%) erra duas vezes: o p-valor mostra correlação significante, e 5% é o nível de significância; o nível de confiança é o complementar (95%).",
   "explicacoesAlternativas": {},
   "referencias": "Vieira S, Introdução à Bioestatística; Medronho RA, Epidemiologia (correlação e estudos ecológicos); Ministério da Saúde, Programa Nacional de Imunizações.",
   "dificuldadeManual": "intermediario",
@@ -3859,7 +3859,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "B",
-  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **RR = 0,80** significa risco 20% menor (1 − 0,80 = 0,20) no grupo exposto à atividade física em relação aos sedentários, e **IC95% de 0,68 a 0,94 não inclui o valor 1**, o que indica associação estatisticamente significante ao nível de 5%. A (a cada 150 minutos adicionais, de forma linear) extrapola: o RR refere-se à categoria 'pelo menos 150 minutos por semana', e a relação dose-resposta não foi informada. C (redução de 32%) confunde o limite inferior do intervalo de confiança (0,68) com a estimativa pontual; 0,68 é apenas o valor mais extremo plausível. D (sem associação) é incorreto: o intervalo, embora tenha amplitude, não contém o valor nulo (1). Associação não prova causalidade, e fatores de confusão, como o estado de saúde prévio, devem ser considerados.",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **RR = 0,80** significa risco 20% menor (1 − 0,80 = 0,20) no grupo exposto à atividade física em relação aos sedentários, e **IC95% de 0,68 a 0,94 não inclui o valor 1**, o que indica associação estatisticamente significante ao nível de 5%. A (a cada 150 minutos adicionais, de forma linear) extrapola: o RR refere-se à categoria «pelo menos 150 minutos por semana», e a relação dose-resposta não foi informada. C (redução de 32%) confunde o limite inferior do intervalo de confiança (0,68) com a estimativa pontual; 0,68 é apenas o valor mais extremo plausível. D (sem associação) é incorreto: o intervalo, embora tenha amplitude, não contém o valor nulo (1). Associação não prova causalidade, e fatores de confusão, como o estado de saúde prévio, devem ser considerados.",
   "explicacoesAlternativas": {},
   "referencias": "Fletcher RH, Epidemiologia Clínica (interpretação de risco relativo e intervalo de confiança); Medronho RA, Epidemiologia; Organização Mundial da Saúde, Diretrizes sobre atividade física e comportamento sedentário, 2020.",
   "dificuldadeManual": "intermediario",
@@ -3980,7 +3980,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-mps",
   "especialidadeId": "esp-epidemio",
   "assuntoId": "ass-vigilanciasanitaria",
-  "enunciado": "A notificação compulsória é um dos pilares da vigilância epidemiológica no Brasil e alimenta os sistemas de informação que orientam a resposta a surtos e epidemias, como a dengue, a sífilis e a tuberculose. Em relação à notificação compulsória de doenças, agravos e eventos de saúde pública, assinale a alternativa correta.",
+  "enunciado": "A notificação compulsória é um dos pilares da vigilância epidemiológica no Brasil e alimenta os sistemas de informação que orientam a resposta a surtos e epidemias e o controle de doenças como a dengue, a sífilis e a tuberculose. Em relação à notificação compulsória de doenças, agravos e eventos de saúde pública, assinale a alternativa correta.",
   "alternativas": [
     {
       "id": "A",
@@ -4027,7 +4027,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-go",
   "especialidadeId": "esp-planfamiliar",
   "assuntoId": "ass-contracepcao",
-  "enunciado": "Mulher, 36 anos, G3P2 (dois filhos vivos), com cesárea eletiva programada para as 39 semanas por duas cesáreas anteriores. Há 3 meses, em consulta de planejamento familiar na UBS, depois de receber orientação sobre todos os métodos contraceptivos, manifestou por escrito o desejo de laqueadura tubária e assinou o termo de consentimento. O marido é contrário à esterilização. Segundo a Lei nº 14.443/2022, qual é a conduta correta?",
+  "enunciado": "Mulher, 36 anos, G3P2 (dois filhos vivos), com cesárea eletiva programada para as 39 semanas. Há 3 meses, em consulta de planejamento familiar na UBS, depois de receber orientação sobre todos os métodos contraceptivos, manifestou por escrito o desejo de laqueadura tubária e assinou o termo de consentimento. O marido é contrário à esterilização. Segundo a Lei nº 14.443/2022, qual é a conduta correta?",
   "alternativas": [
     {
       "id": "A",
@@ -4047,7 +4047,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "A",
-  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **36 anos e dois filhos vivos**, **manifestação de vontade por escrito há 3 meses, depois de aconselhamento sobre os outros métodos**, **cesárea programada** e **marido contrário**. A Lei nº 14.443/2022 permite a esterilização voluntária de **homens e mulheres com capacidade civil plena e maiores de 21 anos ou com pelo menos dois filhos vivos**, observado o **prazo mínimo de 60 dias** entre a manifestação da vontade e o ato cirúrgico; **a lei suprimiu a exigência de consentimento do cônjuge** e **permite a laqueadura durante o parto (inclusive cesárea)**, desde que cumpridos o prazo e as condições médicas. B (autorização do marido) era exigida pela redação anterior e foi revogada. C (proibida durante o parto, 42 dias depois) era a regra anterior, que atrasava a esterilização e deixava a mulher exposta a nova gestação. D (mais de 40 anos) é incorreta: o critério de dois filhos vivos é alternativo à idade de 21 anos, e a paciente cumpre os dois.",
+  "explicacaoGeral": "A alternativa A está correta. Dicas do enunciado: **36 anos e dois filhos vivos**, **manifestação de vontade por escrito há 3 meses, depois de aconselhamento sobre os outros métodos**, **cesárea programada** e **marido contrário**. A Lei nº 14.443/2022 permite a esterilização voluntária de **homens e mulheres com capacidade civil plena e maiores de 21 anos ou com pelo menos dois filhos vivos**, observado o **prazo mínimo de 60 dias** entre a manifestação da vontade e o ato cirúrgico; **a lei suprimiu a exigência de consentimento do cônjuge** e **permite a laqueadura durante o parto (inclusive cesárea)**, desde que cumpridos o prazo e as condições médicas. B (autorização do marido) era exigida pela redação anterior e foi revogada. C (proibida durante o parto, só 42 dias depois) era a regra geral anterior, que só admitia exceção para cesarianas sucessivas; a lei de 2022 passou a permitir a laqueadura no parto, cumpridos o prazo e as condições médicas, o que evita novo procedimento e nova gestação. D (mais de 40 anos) é incorreta: o critério de dois filhos vivos é alternativo à idade de 21 anos, e a paciente cumpre os dois.",
   "explicacoesAlternativas": {},
   "referencias": "Lei nº 14.443/2022, que altera a Lei nº 9.263/1996 (planejamento familiar); Ministério da Saúde, Planejamento familiar: manual para o gestor e Cadernos de Atenção Básica; FEBRASGO, Manual de anticoncepção.",
   "dificuldadeManual": "intermediario",
@@ -4074,7 +4074,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-cm",
   "especialidadeId": "esp-neuro",
   "assuntoId": "ass-neuro-movimento",
-  "enunciado": "Homem, 68 anos de idade, com história familiar de tremor (o pai tinha ‘mão tremida’), queixa-se de piora de tremor de longa data nas mãos, atualmente com impacto social: deixou de frequentar a padaria para tomar café por comentários jocosos de que estaria de ressaca. Observa que o tremor melhora após ingerir álcool. O tremor ocorre ao segurar a xícara e ao escrever, e não em repouso; não há bradicinesia, rigidez nem outras alterações neurológicas. Qual é o diagnóstico mais provável e a investigação e conduta mais adequadas?",
+  "enunciado": "Homem, 68 anos de idade, com história familiar de tremor (o pai tinha «mão tremida»), queixa-se de piora de tremor de longa data nas mãos, atualmente com impacto social: deixou de frequentar a padaria para tomar café por comentários jocosos de que estaria de ressaca. Observa que o tremor melhora após ingerir álcool. O tremor ocorre ao segurar a xícara e ao escrever, e não em repouso; não há bradicinesia, rigidez nem outras alterações neurológicas. Qual é o diagnóstico mais provável e a investigação e conduta mais adequadas?",
   "alternativas": [
     {
       "id": "A",
@@ -4215,7 +4215,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-ped",
   "especialidadeId": "esp-emergped",
   "assuntoId": "ass-emergped-maustratos",
-  "enunciado": "Lactente de 4 meses é levado ao pronto-socorro pelo pai, que relata que o bebê 'ficou mole' e chorou muito depois de cair do sofá, de cerca de 50 cm de altura, há 2 dias. Está irritado, sem lesões externas evidentes além de uma pequena equimose na região posterior do tórax. Foi realizada radiografia de esqueleto. Qual dos achados abaixo mais sugere abuso físico?",
+  "enunciado": "Lactente de 4 meses é levado ao pronto-socorro pelo pai, que relata que o bebê «ficou mole» e chorou muito depois de cair do sofá, de cerca de 50 cm de altura, há 2 dias. Está irritado, sem lesões externas evidentes além de uma pequena equimose na região posterior do tórax. Foi realizada radiografia de esqueleto. Qual dos achados abaixo mais sugere abuso físico?",
   "alternativas": [
     {
       "id": "A",
@@ -4450,7 +4450,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "areaId": "area-ped",
   "especialidadeId": "esp-neonato",
   "assuntoId": "ass-neo-exposicaotb",
-  "enunciado": "Recém-nascido a termo, assintomático, filho de mãe com tuberculose pulmonar bacilífera (baciloscopia de escarro positiva), com tratamento iniciado 10 dias antes do parto. Qual é a conduta mais adequada para a criança, segundo o Ministério da Saúde?",
+  "enunciado": "Recém-nascido a termo, assintomático, filho de mãe com tuberculose pulmonar bacilífera (baciloscopia de escarro positiva), com tratamento iniciado 10 dias antes do parto. Qual é a conduta mais adequada para a criança, segundo o Manual de Recomendações para o Controle da Tuberculose no Brasil (2ª edição, 2019), do Ministério da Saúde?",
   "alternativas": [
     {
       "id": "A",
@@ -4470,7 +4470,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "D",
-  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: **mãe bacilífera com tratamento iniciado há apenas 10 dias do parto** significa que o recém-nascido tem exposição intensa e contato com caso bacilífero ainda transmissor. O Ministério da Saúde recomenda **adiar a BCG** (a isoniazida, que inativa o bacilo vacinal, é incompatível com a vacinação), iniciar **isoniazida por 3 meses** e, ao final, fazer a **prova tuberculínica**: se for **menor que 5 mm**, suspende-se a isoniazida e aplica-se a BCG; se **5 mm ou mais**, a infecção latente é tratada com manutenção da isoniazida por 6 meses no total, excluída doença ativa. A (BCG ao nascer com isoniazida) é incorreta pela inativação do bacilo vacinal e pela omissão da prova após a profilaxia. B (sem quimioprofilaxia) deixa o recém-nascido exposto sem proteção, e a prova na primeira semana é pouco confiável pela imaturidade da resposta. C (BCG e acompanhamento) desconsidera o risco de doença disseminada em lactente exposto.",
+  "explicacaoGeral": "A alternativa D está correta. Dicas do enunciado: **mãe bacilífera com tratamento iniciado há apenas 10 dias do parto** significa que o recém-nascido tem exposição intensa e contato com caso bacilífero ainda transmissor. O Manual de Recomendações para o Controle da Tuberculose no Brasil (2019) recomenda **adiar a BCG** (a isoniazida, que inativa o bacilo vacinal, é incompatível com a vacinação), iniciar **isoniazida por 3 meses** e, ao final, fazer a **prova tuberculínica**: se for **menor que 5 mm**, suspende-se a isoniazida e aplica-se a BCG; se **5 mm ou mais**, a infecção latente é tratada com manutenção da isoniazida por 6 meses no total, excluída doença ativa. Notas posteriores do Ministério da Saúde ampliaram o uso da rifampicina por 4 meses no tratamento preventivo em outras faixas etárias, e a conduta vigente deve ser conferida no manual e nas notas atualizadas. A (BCG ao nascer com isoniazida) é incorreta pela inativação do bacilo vacinal e pela omissão da prova após a profilaxia. B (sem quimioprofilaxia) deixa o recém-nascido exposto sem proteção, e a prova na primeira semana é pouco confiável pela imaturidade da resposta. C (BCG e acompanhamento) desconsidera o risco de doença disseminada em lactente exposto.",
   "explicacoesAlternativas": {},
   "referencias": "Ministério da Saúde. Manual de Recomendações para o Controle da Tuberculose no Brasil (2019); Ministério da Saúde, Protocolo de vigilância da infecção latente pelo Mycobacterium tuberculosis; Sociedade Brasileira de Pediatria, Tuberculose em crianças e adolescentes.",
   "dificuldadeManual": "intermediario",
@@ -4517,7 +4517,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
     }
   ],
   "gabarito": "B",
-  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **diarreia aquosa com 2 dias, com irritabilidade, olhos fundos, sede aumentada e prega cutânea que se desfaz lentamente** configuram **desidratação (dois ou mais sinais do grupo 'algum grau de desidratação')**, sem sinais de choque (pulsos cheios e enchimento capilar de 2 segundos) nem de desidratação grave (letargia, incapacidade de beber, prega muito lenta). Indica-se o **Plano B**: **soro de reidratação oral na unidade, de 50 a 100 mL/kg em 4 a 6 horas**, com reavaliação ao final do período, **manutenção da alimentação e do aleitamento** e **zinco 20 mg/dia por 10 dias**. A (Plano A) é o tratamento da criança sem desidratação, em casa. C (Plano C) é reservado à desidratação grave ou ao fracasso da via oral. D (Plano B com jejum) está errada: o jejum não é recomendado, e a alimentação deve continuar durante a reidratação.",
+  "explicacaoGeral": "A alternativa B está correta. Dicas do enunciado: **diarreia aquosa com 2 dias, com irritabilidade, olhos fundos, sede aumentada e prega cutânea que se desfaz lentamente** configuram **desidratação (dois ou mais sinais do grupo «algum grau de desidratação»)**, sem sinais de choque (pulsos cheios e enchimento capilar de 2 segundos) nem de desidratação grave (letargia, incapacidade de beber, prega muito lenta). Indica-se o **Plano B**: **soro de reidratação oral na unidade, de 50 a 100 mL/kg em 4 a 6 horas**, com reavaliação ao final do período, **manutenção da alimentação e do aleitamento** e **zinco 20 mg/dia por 10 dias**. A (Plano A) é o tratamento da criança sem desidratação, em casa. C (Plano C) é reservado à desidratação grave ou ao fracasso da via oral. D (Plano B com jejum) está errada: o jejum não é recomendado, e a alimentação deve continuar durante a reidratação.",
   "explicacoesAlternativas": {},
   "referencias": "Ministério da Saúde. Manual de Manejo Clínico da Doença Diarreica Aguda e Plano A, B e C; OMS/UNICEF, Clinical management of acute diarrhoea; Sociedade Brasileira de Pediatria, Diarreia aguda: diagnóstico e tratamento.",
   "dificuldadeManual": "intermediario",
