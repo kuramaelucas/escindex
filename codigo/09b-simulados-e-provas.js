@@ -145,25 +145,28 @@ function renderSimuladoCard(s){
    a plataforma explica o que mostra. */
 function htmlComparativoSimuladoEstudo(linhas, titulo, intro, opcoes){
   if(!linhas.length) return "";
-  // `maximo`: a página de resultado mostra só os assuntos que mais pedem atenção (a lista já vem ordenada)
-  const maximo = opcoes && opcoes.maximo;
-  const restantes = maximo ? linhas.length - maximo : 0;
-  if(restantes > 0) linhas = linhas.slice(0, maximo);
-  const rotulo = l => l.queda===null ? '<span class="badge badge-muted">poucas respostas fora de simulado</span>'
+  const rotulo = l => l.queda===null ? '<span class="badge badge-muted">poucas respostas fora</span>'
     : l.queda>=15 ? '<span class="badge badge-amber">rende menos no simulado</span>'
     : l.queda<=-15 ? '<span class="badge badge-accent">rende mais no simulado</span>'
     : l.simTaxa<60 ? '<span class="badge badge-danger">fraco nos dois</span>' : '<span class="badge badge-accent">parecido</span>';
+  const tabela = lista => `<div class="table-wrap mt-1"><table class="tabela-compacta"><thead><tr><th>Assunto</th><th>Simulado</th><th>Fora</th><th></th></tr></thead><tbody>
+      ${lista.map(l=>`<tr>
+        <td>${escapeHtml(nomeAssunto(l.assuntoId))}</td>
+        <td><strong>${l.simTaxa}%</strong> <span class="muted">(${l.simAcertos}/${l.simTotal})</span></td>
+        <td>${l.estTotal ? `<strong>${l.estTaxa}%</strong> <span class="muted">(${l.estAcertos}/${l.estTotal})</span>` : '<span class="muted">—</span>'}</td>
+        <td>${rotulo(l)}</td></tr>`).join("")}
+    </tbody></table></div>`;
+  // `maximo`: a página de resultado mostra de início só os assuntos que mais
+  // pedem atenção (a lista já vem ordenada); o resto abre sob demanda
+  const maximo = opcoes && opcoes.maximo;
+  const visiveis = maximo ? linhas.slice(0, maximo) : linhas;
+  const resto = maximo ? linhas.slice(maximo) : [];
   return `<div class="card mt-2">
     <div class="card-title">${escapeHtml(titulo)}</div>
-    <p class="text-sm muted">${intro}</p>
-    <div class="table-wrap mt-1"><table><thead><tr><th>Assunto</th><th>No simulado</th><th>Fora de simulado</th><th></th></tr></thead><tbody>
-      ${linhas.map(l=>`<tr>
-        <td class="text-sm">${escapeHtml(nomeAssunto(l.assuntoId))}</td>
-        <td class="text-sm"><strong>${l.simTaxa}%</strong> <span class="muted">(${l.simAcertos}/${l.simTotal})</span></td>
-        <td class="text-sm">${l.estTotal ? `<strong>${l.estTaxa}%</strong> <span class="muted">(${l.estAcertos}/${l.estTotal})</span>` : '<span class="muted">—</span>'}</td>
-        <td>${rotulo(l)}</td></tr>`).join("")}
-    </tbody></table></div>
-    <p class="text-xs muted mt-1">"Fora de simulado" soma as questões que você fez nas trilhas, na revisão e nas listas. A comparação só é feita com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.${restantes>0 ? ` Mostrando os ${maximo} que mais pedem atenção; mais ${restantes} em <button class="link-btn text-xs" onclick="navigate('desempenho')">Meu Desempenho</button>.` : ""}</p>
+    <p class="text-xs muted">${intro}</p>
+    ${tabela(visiveis)}
+    ${resto.length ? `<details class="mt-1"><summary class="text-xs link-btn">Ver os outros ${resto.length} assuntos</summary>${tabela(resto)}</details>` : ""}
+    <p class="text-xs muted mt-1">"Fora" soma as questões feitas nas trilhas, na revisão e nas listas. Só há comparação com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.</p>
   </div>`;
 }
 function iniciarSimulado(simuladoId){
@@ -443,6 +446,42 @@ function ehEquipeVendoSimulado(){ const u = usuarioAtual(); return !!u && u.pape
 function abrirDesempenhoDosAlunos(chave, titulo){
   abrirModalTitulado("Desempenho dos alunos · "+titulo, htmlDesempenhoDosAlunos(chave), "lg");
 }
+/* Acerto por grande área (as 5 especialidades da taxonomia) neste simulado:
+   mostra de relance onde a nota foi puxada para baixo. */
+function htmlAcertoPorEspecialidade(linhas){
+  const por = {};
+  linhas.forEach(l=>{
+    if(!l.q.areaId) return;
+    const c = por[l.q.areaId] = por[l.q.areaId] || {total:0, acertos:0};
+    c.total++; if(l.correta) c.acertos++;
+  });
+  const areas = db.taxonomia.areas.filter(a=>por[a.id]);
+  if(!areas.length) return "";
+  return `<div class="card mt-2">
+    <div class="card-title">Acerto por especialidade</div>
+    ${areas.map(a=>{ const c = por[a.id], t = pct(c.acertos, c.total); return `<div class="linha-barra"><span class="linha-barra-nome">${escapeHtml(a.nome)}</span><span class="linha-barra-trilho"><span style="width:${t}%;background:${t>=70?"var(--accent)":t>=50?"var(--amber, #d99a1e)":"var(--danger)"}"></span></span><span class="linha-barra-valor"><strong>${t}%</strong> <span class="muted">(${c.acertos}/${c.total})</span></span></div>`; }).join("")}
+  </div>`;
+}
+/* Gabarito corrigido depois da prova (arquivo de atualizações ou correção na
+   plataforma) muda a nota de quem já fez: refaz acertos e nota de todo
+   resultado guardado, com o gabarito de hoje. Os da própria pessoa sobem de
+   novo para a nuvem; os dos outros alunos sobem quando cada um abre o site
+   (a linha é dele e só ele pode alterá-la). */
+function recalcularResultadosSimulados(){
+  let mudou = 0;
+  db.resultadosSimulados.forEach(r=>{
+    if(!r.itens || !r.itens.length) return;
+    const qs = r.itens.map(it=>getQuestao(it.questaoId));
+    if(qs.some(q=>!q)) return;   // questão saiu do banco: mantém a nota que valia
+    const acertos = r.itens.reduce((t,it,i)=> t + ((r.respostas||{})[it.questaoId]===qs[i].gabarito ? 1 : 0), 0);
+    const nota = pct(acertos, r.itens.length);
+    if(acertos===r.acertos && nota===r.nota) return;
+    r.acertos = acertos; r.nota = nota; mudou++;
+    if(typeof nuvemRegistrar === "function") nuvemRegistrar({resultadoSimulado:r});
+  });
+  if(mudou) saveState();
+  return mudou;
+}
 function renderResultadoSimulado(){
   const sessao = state.sessaoAtual;
   const total = sessao.itens.length;
@@ -491,6 +530,7 @@ function renderResultadoSimulado(){
     <p class="text-xs muted mt-1">Curva de Gauss desenhada com a média (${Math.round(ranking.media)}%) e o desvio padrão (${Math.round(ranking.desvio)} pontos) das notas dos alunos: é um ajuste, não a contagem exata.</p>
     <div class="mt-2">${graficoHistogramaSvg(ranking.buckets, ranking.bucketAtual, ["0-20","21-40","41-60","61-80","81-100"])}</div>
   </div>` : `<div class="card-flat mt-2 text-sm muted">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado ${nuvemConectado() ? "na turma" : "neste navegador"}.</div>`}
+  ${htmlAcertoPorEspecialidade(linhas)}
   ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(usuarioAtual().id, {sessaoId:sessao.id}), "Seus assuntos neste simulado × o seu estudo", "O acerto de cada assunto no simulado ao lado do acerto fora dele. Bom no estudo e mal aqui: tempo ou formato da prova. Mal nos dois: falta conteúdo.", {maximo:5})}
   ${analiseTempo ? `<div class="card mt-2">
     <div class="card-title">Tempo</div>

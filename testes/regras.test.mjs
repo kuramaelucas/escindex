@@ -414,3 +414,22 @@ test("senha de conta local: guardada com sal + hash (nunca em texto), conta anti
     assert.deepEqual(m, { texto: undefined, hash: true, entra: true });
   } finally { await contexto.close(); }
 });
+
+test("gabarito corrigido depois da prova refaz a nota de quem já fez, e o acerto por especialidade aparece no resultado", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      const q = db.questoes.find(x => x.gabarito && x.areaId && !ehDissertativa(x) && x.status === "ativa");
+      const outra = ["A","B","C","D","E"].find(l => l !== q.gabarito);
+      db.resultadosSimulados.push({ id: "res-t", usuarioId: "u-x", titulo: "T", nota: 100, acertos: 1, total: 1, data: hojeISO(), itens: [{ questaoId: q.id }], respostas: { [q.id]: q.gabarito } });
+      const antes = recalcularResultadosSimulados();
+      q.gabarito = outra;   // a banca mudou o gabarito
+      const mudou = recalcularResultadosSimulados();
+      const res = db.resultadosSimulados.find(x => x.id === "res-t");
+      const html = htmlAcertoPorEspecialidade([{ q, correta: false }]);
+      return { antes, mudou, nota: res.nota, acertos: res.acertos, html: html.includes("Acerto por especialidade") && html.includes("0%") };
+    });
+    assert.deepEqual(r, { antes: 0, mudou: 1, nota: 0, acertos: 0, html: true });
+  } finally { await contexto.close(); }
+});
