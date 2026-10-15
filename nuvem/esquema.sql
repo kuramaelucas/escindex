@@ -196,10 +196,6 @@ alter table public.perfis add column if not exists prova_alvo_data date;
 -- aparece uma vez). Só muda a apresentação; nenhum dado de estudo depende dele.
 alter table public.perfis add column if not exists modo_plataforma text;
 
--- Conjunto próprio de cartões (15/10/2026): o nome que o aluno dá a um grupo
--- de cartões seus. Nulo = sem conjunto. Sem rodar, o nome vale só no aparelho.
-alter table public.flashcards_pessoais add column if not exists conjunto text;
-
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)
 -- ---------------------------------------------------------------------------
@@ -422,6 +418,11 @@ create table if not exists public.flashcards_pessoais (
   atualizado_em     timestamptz not null default now()
 );
 create index if not exists flashcards_pessoais_sync_idx on public.flashcards_pessoais (usuario_id, atualizado_em);
+-- Conjunto próprio de cartões (15/10/2026): o nome que o aluno dá a um grupo
+-- de cartões seus. Nulo = sem conjunto. Sem rodar, o nome vale só no aparelho.
+-- Fica aqui, depois do create table: num banco novo a tabela ainda não existe
+-- na seção 1, e o alter ali derrubava o esquema inteiro.
+alter table public.flashcards_pessoais add column if not exists conjunto text;
 
 -- ---------------------------------------------------------------------------
 -- 8. SESSOES — conjuntos de questões concluídos (REGISTRO)
