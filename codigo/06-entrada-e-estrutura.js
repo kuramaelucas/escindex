@@ -42,10 +42,13 @@ function contaDemoDaEquipeBloqueada(usuario){
    papéis mexem em conteúdo e em cadastros de gente de verdade, e não podem
    ficar abertos a quem abrir o endereço. O mapa continua com os quatro
    porque as contas existem (entram por e-mail e senha); o que saiu foi o
-   botão. */
+   botão.
+   Sem a conta u-aluno1 em dados/demonstracao.js (o site no ar vem vazio), o
+   acesso é a CONTA DE TESTE: um aluno que só existe na memória da página. */
 function fazerLoginDemo(papel){
   const mapa = {admin:"u-admin", professor:"u-prof", residente:"u-res", aluno:"u-aluno1"};
   if(papel !== "aluno"){ toast("Este papel entra por e-mail e senha — o acesso rápido é só o de aluno.", "err"); return; }
+  if(!SEED_USUARIOS.some(x => x.id === mapa.aluno)){ entrarComoAlunoTeste(); return; }
   const alvo = getUsuario(mapa[papel]);
   if(!alvo){ toast("A conta de teste de aluno não está mais neste banco.", "err"); return; }
   state.usuarioAtualId = alvo.id;
@@ -53,6 +56,36 @@ function fazerLoginDemo(papel){
   // com a nuvem ligada, é fácil entrar por aqui sem perceber e depois
   // estranhar que nada sincroniza — estes acessos são só deste navegador
   if(nuvemLigada()) toast("Acesso de demonstração: o que você fizer aqui fica só neste navegador e não sobe para a nuvem.");
+}
+/* CONTA DE TESTE DE ALUNO — para ver as funções da plataforma sem conta.
+   Sem memória: o aluno é criado só no `db` da página e saveState() não grava
+   nada enquanto `state.contaTeste` estiver ligado (nem no navegador, nem na
+   nuvem); sair, ou recarregar, devolve o banco do jeito que estava. Sem
+   simulados: simulado e prova cronometrada guardam notas e alimentam a
+   comparação da turma, e uma conta que não deixa rastro não pode entrar nisso
+   (ver ROTAS_DE_SIMULADO). */
+const ID_ALUNO_TESTE = "u-aluno-teste";
+const ROTAS_DE_SIMULADO = ["simulados", "simulado-ativo", "provas-antigas", "criar-simulado"];
+function contaTesteAtiva(){ return !!state.contaTeste; }
+function entrarComoAlunoTeste(){
+  // o que já esperava para ser gravado é do banco de verdade: sai antes de o
+  // aluno de teste entrar no `db`
+  gravarEstadoSePendente();
+  state.contaTeste = true;
+  if(!getUsuario(ID_ALUNO_TESTE)){
+    db.usuarios.push({ id:ID_ALUNO_TESTE, nome:"Aluno de teste", email:"teste@esc.demo", matricula:"TESTE", papel:"aluno", status:"aprovado", anoFaculdade:CONFIG.anoFaculdadePadrao, boasVindasEm:hojeISO(), criadoEm:hojeISO() });
+  }
+  state.usuarioAtualId = ID_ALUNO_TESTE;
+  navigate("inicio");
+  toast("Conta de teste: nada do que você fizer aqui é guardado, e os simulados ficam fechados. Ao sair ou recarregar, tudo volta ao começo.");
+}
+/* Tela no lugar de simulado e provas cronometradas na conta de teste. */
+function renderBloqueadoNaContaTeste(){
+  return `<div class="empty-state">
+    <h3>Indisponível na conta de teste</h3>
+    <p class="mt-2">Simulados e provas cronometradas guardam notas e entram na comparação com a turma. A conta de teste não guarda nada, então fica sem eles. Todo o resto da plataforma funciona.</p>
+    <button class="btn btn-primary mt-3" onclick="navigate('inicio')">Voltar ao início</button>
+  </div>`;
 }
 /* Sair limpa também o estado temporário das telas (filtros, páginas, texto
    colado ainda não importado). Sem isso, o rascunho de uma prova que uma
@@ -63,6 +96,13 @@ function limparEstadoDasTelas(){
   state.filtroRota = {}; state.sessaoAtual = null; state.sessaoFlash = null; state.modoAluno = false;
 }
 function fazerLogout(){
+  // a conta de teste não deixa rastro: recarregar descarta o `db` da página e
+  // lê de novo o que estava gravado antes dela
+  if(state.contaTeste){
+    state.contaTeste = false; state.usuarioAtualId = null;
+    location.hash = "#/landing"; location.reload();
+    return;
+  }
   // com a nuvem ligada, sair é sair da conta (e a fila pendente é avisada)
   if(nuvemConectado()){ nuvemSairDaConta(); return; }
   limparEstadoDasTelas();
@@ -219,6 +259,11 @@ function render(){
   // antes do painel — só no caminho para o início, para nunca prender ninguém
   if(state.route==="boas-vindas" || (state.route==="inicio" && precisaDasBoasVindas(usuarioAtual()))){
     state.route = "boas-vindas"; desenharTelaPublica(renderBoasVindas()); return;
+  }
+
+  if(contaTesteAtiva() && ROTAS_DE_SIMULADO.includes(state.route)){
+    desenharTela(renderBloqueadoNaContaTeste());
+    return;
   }
 
   // um administrador só entra nas rotas permitidas pelo seu nível
@@ -436,6 +481,10 @@ function voltarPorGesto(){
    não uma ferramenta de estudo. Agora fica no rodapé da tela inicial, que é
    onde ele é de fato lido, e em Configurações, para quem o mantém. */
 function navItemsParaPapel(papel){
+  const itens = itensDoMenuDoPapel(papel);
+  return contaTesteAtiva() ? itens.filter(i => !ROTAS_DE_SIMULADO.includes(i.id)) : itens;
+}
+function itensDoMenuDoPapel(papel){
   const aluno = [
     {id:"inicio", label:"Início", icon:"home"},
     {id:"estudar", label:"Estudar", icon:"book"},
@@ -635,6 +684,7 @@ function htmlTopo(u){
           ${state.modoAluno && u.papel!=="aluno"
             ? `<button class="chip-modo-aluno" onclick="alternarModoAluno()" title="Você está vendo a plataforma como aluno; suas respostas contam para o seu progresso. Clique para voltar ao seu papel.">${iconeSvg("book")} Modo aluno · sair</button>`
             : badgePapel(u.papel, u)}
+          ${contaTesteAtiva() ? `<span class="badge badge-amber" title="Nada do que você faz nesta conta é guardado; sair ou recarregar volta tudo ao começo.">conta de teste · sem memória</span>` : ""}
           <span class="text-sm muted nowrap nome-no-topo">${escapeHtml(u.nome)}</span>
         </div>`;
 }

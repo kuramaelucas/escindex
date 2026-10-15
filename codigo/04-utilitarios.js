@@ -396,16 +396,28 @@ function graficoHistogramaSvg(buckets, bucketAtual, labels){
   }).join("");
   return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'">'+barras+'</svg>';
 }
-// ranking anônimo: compara a nota do usuário com todas as tentativas já
-// registradas do MESMO simulado (por id, ou por título quando é uma "prova
-// antiga" avulsa), sem expor quem são as outras pessoas — só a posição.
+// ranking anônimo: compara a nota do usuário com as dos ALUNOS que fizeram o
+// MESMO simulado (por id, ou por título quando é uma "prova antiga" avulsa),
+// sem expor quem são — só a posição. Conta uma nota por aluno (a da primeira
+// tentativa): quem refaz o simulado várias vezes não pode puxar a curva.
 //
-// Com a nuvem ligada, as tentativas são as da TURMA INTEIRA (notas anônimas
-// vindas de notas_do_simulado, no esquema.sql), somadas às deste navegador
-// que ainda não subiram — por id, para a mesma tentativa não contar duas
-// vezes. `origem` diz de onde veio, e a tela conta isso à pessoa.
+// Com a nuvem ligada, as notas são as da TURMA INTEIRA (anônimas, vindas de
+// notas_do_simulado, no esquema.sql, que já devolve uma por aluno), somadas às
+// deste navegador que ainda não subiram — por id, para a mesma tentativa não
+// contar duas vezes. `origem` diz de onde veio, e a tela conta isso à pessoa.
+//
+// Só há comparação a partir de MINIMO_ALUNOS_NA_COMPARACAO alunos: com menos,
+// percentil, p90 e curva identificariam as pessoas ou enganariam.
+const MINIMO_ALUNOS_NA_COMPARACAO = 10;
 function estatisticasRankingSimulado(chave, notaAtual){
-  const locais = db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).map(r => ({ id: r.id, nota: r.nota }));
+  const primeiraPorAluno = new Map();
+  db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).forEach(r => {
+    const u = getUsuario(r.usuarioId);
+    if(u && u.papel !== "aluno") return;
+    const antes = primeiraPorAluno.get(r.usuarioId);
+    if(!antes || (r.data || "") < (antes.data || "")) primeiraPorAluno.set(r.usuarioId, r);
+  });
+  const locais = [...primeiraPorAluno.values()].map(r => ({ id: r.id, nota: r.nota }));
   const daTurma = (typeof notasDaTurmaDoSimulado === "function") ? notasDaTurmaDoSimulado(chave) : null;
   const porId = new Map();
   (daTurma || []).forEach(r => porId.set(r.id, r.nota));
@@ -413,14 +425,46 @@ function estatisticasRankingSimulado(chave, notaAtual){
   const notas = [...porId.values()].sort((a,b)=>a-b);
   const origem = daTurma ? "turma" : "navegador";
   const n = notas.length;
-  if(n < 3) return null; // amostra pequena demais pra um percentil fazer sentido
+  if(n < MINIMO_ALUNOS_NA_COMPARACAO) return null;
   const abaixoOuIgual = notas.filter(x=>x<=notaAtual).length;
   const percentil = Math.round((abaixoOuIgual/n)*100);
   const mediana = n%2===0 ? (notas[n/2-1]+notas[n/2])/2 : notas[Math.floor(n/2)];
+  // p90 pelo posto mais próximo: a menor nota que deixa 90% da turma nela ou abaixo
+  const p90 = notas[Math.ceil(0.9*n)-1];
+  const media = notas.reduce((t,x)=>t+x,0)/n;
+  const desvio = Math.sqrt(notas.reduce((t,x)=>t+(x-media)*(x-media),0)/n);
   const buckets = [0,0,0,0,0];
   notas.forEach(nt=>{ buckets[Math.min(4, Math.floor(nt/20))]++; });
   const bucketAtual = Math.min(4, Math.floor(notaAtual/20));
-  return {n, percentil, mediana, buckets, bucketAtual, origem};
+  return {n, percentil, mediana, p90, media, desvio, buckets, bucketAtual, origem};
+}
+/* Curva de Gauss (normal) com a média e o desvio da turma, de 0 a 100, com
+   marcas no percentil 50, no percentil 90 e na nota da pessoa. É a curva
+   ajustada às notas, não um histograma: ajuda a ver a posição relativa, e a
+   tela diz isso. Desvio muito pequeno é suavizado (mínimo 3 pontos) para a
+   curva não virar uma agulha. */
+function graficoCurvaGaussSvg(r, notaAtual){
+  const w=480, h=190, padBaixo=30, padTopo=26, padLado=14;
+  const dp = Math.max(3, r.desvio);
+  const dens = x => Math.exp(-0.5*Math.pow((x-r.media)/dp, 2));
+  const X = v => padLado + (Math.max(0, Math.min(100, v))/100)*(w-2*padLado);
+  const Y = d => h-padBaixo - d*(h-padBaixo-padTopo);
+  const pontos = [];
+  for(let v=0; v<=100; v+=2) pontos.push([X(v), Y(dens(v))]);
+  const linha = pontos.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
+  const area = linha+" L"+X(100).toFixed(1)+" "+Y(0)+" L"+X(0).toFixed(1)+" "+Y(0)+" Z";
+  const marca = (v, rotulo, cor, alto) =>
+    '<line x1="'+X(v)+'" x2="'+X(v)+'" y1="'+(padTopo-4)+'" y2="'+Y(0)+'" stroke="'+cor+'" stroke-width="2" stroke-dasharray="'+(alto?"":"4 3")+'"/>'+
+    '<text x="'+X(v)+'" y="'+(alto?12:22)+'" text-anchor="middle" font-size="11" font-weight="700" fill="'+cor+'">'+rotulo+'</text>';
+  const eixo = [0,20,40,60,80,100].map(v=>'<text x="'+X(v)+'" y="'+(h-10)+'" text-anchor="middle" font-size="11" fill="var(--ink-2)">'+v+'</text>').join("");
+  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'" role="img" aria-label="Curva de Gauss das notas da turma, com percentil 50, percentil 90 e a sua nota">'+
+    '<path d="'+area+'" fill="var(--border-strong)" opacity=".35"/>'+
+    '<path d="'+linha+'" fill="none" stroke="var(--ink-2)" stroke-width="2"/>'+
+    '<line x1="'+X(0)+'" x2="'+X(100)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="var(--border-strong)"/>'+
+    marca(r.mediana, "P50 · "+Math.round(r.mediana), "var(--ink-2)", false)+
+    marca(r.p90, "P90 · "+Math.round(r.p90), "var(--amber)", false)+
+    marca(notaAtual, "você · "+notaAtual, "var(--accent)", true)+
+    eixo+'</svg>';
 }
 
 /* ---------------------------- consultas rápidas ---------------------------

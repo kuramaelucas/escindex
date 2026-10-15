@@ -81,7 +81,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | **Consertos das questões da pasta `dados/`** (Questões para Atualizar: a figura que faltava, texto cortado, gabarito revisto) chegando à turma inteira | cria a tabela `correcoes_questoes` (todos leem; grava equipe e residentes); a figura usa o espaço de imagens `questoes` |
 > | **Questões enviadas pela plataforma** (com as imagens) chegando à equipe para aprovar e, aprovadas, à turma inteira | cria a tabela `questoes_enviadas`, a função `e_aprovado()` e o espaço de imagens `questoes` no Storage, com as regras de quem envia e quem aprova |
 > | **Comentários e dúvidas** nas questões chegando à turma e à Fila de Dúvidas | cria a tabela `comentarios` (todos leem; cada um grava o seu; só revisor dá resposta oficial) |
-> | **Percentil de simulado** com as notas da turma inteira | cria a função `notas_do_simulado()` (devolve só id aleatório e nota) |
+> | **Percentil de simulado** com as notas da turma inteira | cria a função `notas_do_simulado()` (devolve só id aleatório e nota, uma por aluno — a da primeira tentativa; equipe de fora). A comparação só aparece com 10 alunos ou mais |
 > | **Painel da Turma** (professor e coordenação) — só uso por pessoa, a equipe incluída, e o acerto só somado por ano e turma (mínimo de 3 alunos) | recria `painel_turma()` (sem acerto individual), cria `acerto_por_turma()` e atualiza `atividade_por_semana()` (só a equipe recebe linhas) |
 > | A anotação pessoal da questão salva | `alter table public.favoritos add column if not exists nota text ...` |
 > | Quantos flashcards você fez em cada dia | `alter table public.dias_cartoes add column if not exists quantidade integer ...` |

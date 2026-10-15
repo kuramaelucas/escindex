@@ -67,6 +67,19 @@ function renderFlashcardsInicio(u){
   </div>
 
   <div class="card mt-2">
+    <div class="card-title">${iconeSvg("search")} Pesquisar cartões</div>
+    <div class="flex gap-1 quebra mt-1">
+      <input class="input" id="buscaCartoesCampo" type="search" autocomplete="off" value="${escapeHtml(buscaFlashcards().texto)}" placeholder="Ex.: sepse, cetoacidose, Wells…" aria-label="Pesquisar cartões" oninput="digitarBuscaFlashcards(this.value)" style="flex:1;min-width:220px">
+      <select class="select" id="buscaCartoesEscopo" aria-label="Onde pesquisar" onchange="mudarEscopoBuscaFlashcards(this.value)" style="max-width:260px">
+        <option value="todos" ${buscaFlashcards().escopo==="todos"?"selected":""}>Todos da plataforma</option>
+        <option value="meus" ${buscaFlashcards().escopo==="meus"?"selected":""}>Só os meus</option>
+      </select>
+    </div>
+    <div class="text-xs muted mt-1">Procura na frente, no verso e no assunto, sem diferenciar maiúscula nem acento. "Todos da plataforma" inclui os da equipe e os do seu grupo, além dos seus.</div>
+    <div id="buscaCartoesResultado" class="mt-2">${htmlResultadoBuscaFlashcards(u)}</div>
+  </div>
+
+  <div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="card-title">Baralho recomendado</div>
@@ -199,6 +212,63 @@ function renderFlashcardsInicio(u){
   ${modoResumido() ? explicacaoRecolhida("Como funciona o intervalo dos cartões", `<p>${COMO_FUNCIONA_CARTOES}</p>`) : `<div class="card-flat mt-2 text-sm">
     <strong>Como funciona:</strong> ${COMO_FUNCIONA_CARTOES}
   </div>`}`;
+}
+/* ---------- pesquisar cartões ----------
+   Dois escopos: "todos" (tudo o que a pessoa enxerga: a equipe, o grupo e os
+   dela — flashcardsAtivos) e "meus" (só os que ela escreveu). As palavras se
+   combinam, sem acento nem maiúscula. Digitar redesenha só o resultado: a
+   tela inteira tiraria o foco do campo. */
+function buscaFlashcards(){
+  const b = state.filtroRota.buscaFlashcards;
+  return { texto: (b && b.texto) || "", escopo: (b && b.escopo) || "todos" };
+}
+function cartoesDaBusca(u){
+  const b = buscaFlashcards();
+  const termos = normalizarBusca(b.texto).split(/\s+/).filter(Boolean);
+  if(!termos.length) return [];
+  const base = b.escopo === "meus" ? meusFlashcards(u.id) : flashcardsAtivos(u.id);
+  return base.filter(c=>{
+    const texto = normalizarBusca([textoSemEnfase(c.frente), textoSemEnfase(c.verso), nomeAssuntoDoCartao(c)].join(" "));
+    return termos.every(t=>texto.includes(t));
+  });
+}
+function etiquetaDonoDoCartao(c, u){
+  if(!c.usuarioId) return '<span class="badge badge-muted">equipe</span>';
+  if(c.usuarioId === u.id) return '<span class="badge badge-accent">meu</span>';
+  return '<span class="badge badge-muted">do meu grupo</span>';
+}
+function htmlResultadoBuscaFlashcards(u){
+  const b = buscaFlashcards();
+  if(!b.texto.trim()) return '<div class="text-sm muted">Digite uma palavra para achar cartões.</div>';
+  const lista = cartoesDaBusca(u);
+  if(!lista.length) return '<div class="empty-state">Nenhum cartão ' + (b.escopo==="meus" ? "seu " : "") + 'combina com "' + escapeHtml(b.texto) + '".' + (b.escopo==="meus" ? ' <button class="link-btn" onclick="mudarEscopoBuscaFlashcards(\'todos\')">Pesquisar em todos da plataforma</button>' : "") + '</div>';
+  const pag = paginar(lista, "flash-busca", {porPagina:10, assinatura: b.escopo+"|"+b.texto});
+  return '<div class="table-wrap"><table class="tabela-fina"><thead><tr><th>Frente</th><th>Assunto</th><th>De quem</th><th></th></tr></thead><tbody>' +
+    pag.itens.map(c=>{
+      const frente = textoSemEnfase(c.frente);
+      return '<tr><td class="text-sm celula-frente"><span class="enunciado-clicavel" onclick="abrirCartaoDaBusca(\'' + c.id + '\')">' + escapeHtml(frente.slice(0,110)) + (frente.length>110?"…":"") + '</span></td>' +
+        '<td class="text-sm">' + escapeHtml(nomeAssuntoDoCartao(c)) + '</td><td>' + etiquetaDonoDoCartao(c, u) + '</td>' +
+        '<td class="acoes-fina"><button class="icon-btn" title="Estudar só este cartão" onclick="revisarSoEsteCartao(\'' + c.id + '\')">' + iconeSvg("play") + '</button></td></tr>';
+    }).join("") + '</tbody></table></div>' + controlesPaginacao(pag, "cartão(ões) encontrado(s)");
+}
+function atualizarResultadoBuscaFlashcards(){
+  const alvo = document.getElementById("buscaCartoesResultado");
+  if(alvo) alvo.innerHTML = htmlResultadoBuscaFlashcards(usuarioAtual());
+}
+function digitarBuscaFlashcards(valor){
+  state.filtroRota.buscaFlashcards = { ...buscaFlashcards(), texto: valor };
+  atualizarResultadoBuscaFlashcards();
+}
+function mudarEscopoBuscaFlashcards(escopo){
+  state.filtroRota.buscaFlashcards = { ...buscaFlashcards(), escopo: escopo === "meus" ? "meus" : "todos" };
+  render();
+}
+function abrirCartaoDaBusca(id){
+  const c = getFlashcard(id); if(!c) return;
+  abrirModalTitulado(nomeAssuntoDoCartao(c), `
+    <div class="card-flat"><div class="text-xs muted">Pergunta</div><div class="mt-1" style="white-space:pre-wrap">${escapeHtml(textoSemEnfase(c.frente))}</div></div>
+    <div class="card-flat mt-1"><div class="text-xs muted">Resposta</div><div class="mt-1" style="white-space:pre-wrap">${escapeHtml(textoSemEnfase(c.verso))}</div></div>
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="fecharModal();revisarSoEsteCartao('${c.id}')">${iconeSvg("cards")} Estudar só este</button><button class="btn btn-secondary" onclick="fecharModal()">Fechar</button></div>`);
 }
 const COMO_FUNCIONA_CARTOES = `cada cartão tem seu próprio intervalo. "Sabia" empurra o cartão para longe; nenhum cartão volta antes de 1 semana; "quase" fica sempre no prazo mínimo de 7 dias, porque lembrar com esforço é exatamente o sinal de que o conceito ainda não está firme; "não lembrei" devolve o cartão em 7 dias. Esse histórico é separado do das questões: dá para saber o conceito e ainda assim errar a questão, e a plataforma trata os dois como coisas diferentes.`;
 /* Seleção de vários cartões seus para arquivar ou sugerir à equipe de uma vez.

@@ -1370,7 +1370,9 @@ $$;
 -- resultados_simulados, que o RLS fecha para cada um enxergar só as suas —
 -- por isso o percentil antigo só contava as tentativas daquele navegador.
 -- Esta função devolve SÓ o identificador aleatório da tentativa e a nota:
--- nem quem fez, nem quando, nem as respostas. A "chave" é a mesma do site:
+-- nem quem fez, nem quando, nem as respostas. É uma nota por ALUNO (a da
+-- primeira tentativa; equipe fica de fora), para quem refaz o simulado não
+-- puxar a curva. A "chave" é a mesma do site:
 -- o id do simulado, ou o título quando é uma prova antiga feita como
 -- simulado. SECURITY DEFINER é o que a deixa ler por cima do RLS — e por
 -- isso ela devolve tão pouco.
@@ -1381,11 +1383,16 @@ stable
 security definer
 set search_path = public, pg_temp
 as $$
-  select r.id, r.nota
-    from public.resultados_simulados r
-   where auth.uid() is not null
-     and r.nota is not null
-     and coalesce(nullif(r.simulado_id, ''), r.titulo) = p_chave;
+  select x.id, x.nota
+    from (
+      select distinct on (r.usuario_id) r.id, r.nota
+        from public.resultados_simulados r
+        join public.perfis p on p.id = r.usuario_id and p.papel = 'aluno'
+       where auth.uid() is not null
+         and r.nota is not null
+         and coalesce(nullif(r.simulado_id, ''), r.titulo) = p_chave
+       order by r.usuario_id, r.criado_em, r.id
+    ) x;
 $$;
 revoke all on function public.notas_do_simulado(text) from public, anon;
 grant execute on function public.notas_do_simulado(text) to authenticated;

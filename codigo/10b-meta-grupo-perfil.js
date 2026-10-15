@@ -578,7 +578,12 @@ function solicitarAcessoGrupo(grupoId, soQuestoes){
 function aprovarAcessoGrupo(grupoId, usuarioId){
   const g = getGrupo(grupoId); if(!g) return;
   const solicitante = getUsuario(usuarioId);
-  if(solicitante){
+  /* Com a nuvem, o "solicitante" que este aparelho conhece é só o cadastro
+     que veio da lista da turma, sem os grupos dele: entrar no lugar dele aqui
+     o tiraria dos outros grupos (inclusive o só de questões) e a nuvem
+     subiria essa saída. Quem decide os grupos da pessoa é o aparelho dela,
+     quando a aprovação chega (aplicarMembroDaNuvem). */
+  if(solicitante && !solicitante.daNuvem){
     const soQuestoes = !!(solicitante.pedidoSoQuestoes && solicitante.pedidoSoQuestoes[grupoId]);
     if(solicitante.pedidoSoQuestoes) delete solicitante.pedidoSoQuestoes[grupoId];
     entrarNoGrupo(solicitante, grupoId, { soQuestoes });

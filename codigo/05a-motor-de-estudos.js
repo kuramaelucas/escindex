@@ -291,8 +291,40 @@ function questaoOculta(usuarioId, questaoId){ return idsOcultosDo(usuarioId).has
    o banco ou montam prova inteira continuam no questoesAtivas(). */
 function questoesParaEstudo(usuarioId, incluirGrupoId){
   const ocultas = idsOcultosDo(usuarioId);
+  const reservadas = idsReservadosParaSimulado(usuarioId);
   const ativas = questoesAtivas(incluirGrupoId);
-  return ocultas.size ? ativas.filter(q=>!ocultas.has(q.id)) : ativas;
+  return (ocultas.size || reservadas.size) ? ativas.filter(q=>!ocultas.has(q.id) && !reservadas.has(q.id)) : ativas;
+}
+/* QUESTÕES DE SIMULADO FICAM FORA DO ESTUDO. As questões dos simulados da
+   equipe (tipo "simulado_professor") não entram nas trilhas, na revisão nem
+   nos filtros do Estudar: quem as vê antes perde a prova cronometrada. A
+   pessoa decide: "Trazer para o estudo geral" no cartão do simulado
+   (alternarSimuladoNoEstudo) libera as questões daquele simulado só para
+   ela. Fica no navegador (ainda não sobe para a nuvem). */
+function simuladoLiberadoParaEstudo(usuarioId, simuladoId){
+  return (db.simuladosLiberados||[]).some(l=>l.usuarioId===usuarioId && l.simuladoId===simuladoId);
+}
+function idsReservadosParaSimulado(usuarioId){
+  if(!_cacheReservadas || _cacheReservadas.geracao !== _geracaoDb) _cacheReservadas = { geracao:_geracaoDb, porUsuario:{} };
+  let conj = _cacheReservadas.porUsuario[usuarioId];
+  if(!conj){
+    conj = new Set();
+    (db.simulados||[]).filter(s=>s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioId, s.id))
+      .forEach(s=>(s.questoes||[]).forEach(id=>conj.add(id)));
+    _cacheReservadas.porUsuario[usuarioId] = conj;
+  }
+  return conj;
+}
+let _cacheReservadas = null;
+function alternarSimuladoNoEstudo(simuladoId){
+  const u = usuarioAtual(); if(!u) return;
+  if(!Array.isArray(db.simuladosLiberados)) db.simuladosLiberados = [];
+  const i = db.simuladosLiberados.findIndex(l=>l.usuarioId===u.id && l.simuladoId===simuladoId);
+  if(i>=0) db.simuladosLiberados.splice(i,1);
+  else db.simuladosLiberados.push({usuarioId:u.id, simuladoId, data:hojeISO()});
+  saveState();
+  toast(i>=0 ? "As questões deste simulado voltaram a ficar de fora do seu estudo." : "As questões deste simulado agora entram no seu estudo geral (trilhas, revisão e filtros).");
+  render();
 }
 /* REPETIÇÃO PREMATURA. Questão já respondida só volta pela revisão espaçada,
    no prazo dela (nunca antes de 7 dias). Os sorteios "do bloco", "prévia" e
