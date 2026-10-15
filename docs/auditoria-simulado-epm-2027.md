@@ -120,7 +120,7 @@ Legenda: **Gab.** = letra do gabarito (e posição por tamanho, de 1ª a 4ª); *
 | 20 | Lesões Ligamentares do Joelho | A | B (1ª) | 16% | busca |
 | 21 | Síndrome Coronariana Aguda | A | B (3ª) | 22% | parcial |
 | 22 | Distúrbios do Cálcio e Paratireoide | C | D (1ª) | 24% | memória |
-| 23 | Parada Cardiorrespiratória e RCP | C | D (3ª) | 29% | parcial |
+| 23 | Parada Cardiorrespiratória e RCP | C | D (3ª) | 28% | parcial |
 | 24 | Doenças da Hipófise (Adenomas, Hipopituitarismo) | C | D (2ª) | 9% | memória |
 | 25 | Insuficiência Cardíaca | anulada | B (4ª) | 27% | parcial |
 | 26 | Demência e Delirium | C | D (3ª) | 13% | memória |
@@ -136,16 +136,16 @@ Legenda: **Gab.** = letra do gabarito (e posição por tamanho, de 1ª a 4ª); *
 | 36 | Tromboembolismo Pulmonar | D | A (2ª) | 26% | busca |
 | 37 | Sepse | B | C (1ª) | 25% | busca |
 | 38 | Pneumonia Adquirida na Comunidade | C | D (2ª) | 33% | busca |
-| 39 | Arboviroses | A | B (4ª) | 21% | parcial |
+| 39 | Arboviroses | A | B (4ª) | 19% | parcial |
 | 40 | Farmacodermias | B | C (1ª) | 22% | memória |
 | 41 | Acidente Vascular Cerebral | anulada | C (2ª) | 36% | parcial |
 | 42 | Farmacodermias | anulada | A (1ª) | 31% | memória |
 | 43 | Bioestatística e Testes de Hipótese | anulada | B (3ª) | 27% | memória |
-| 44 | Vigilância Sanitária e Notificação Compulsória | C | D (3ª) | 16% | parcial |
+| 44 | Vigilância Sanitária e Notificação Compulsória | C | D (3ª) | 15% | parcial |
 | 45 | Saúde de Populações Específicas (indígena, negra | D | A (4ª) | 12% | parcial |
 | 46 | Medidas de Frequência e Associação | B | C (3ª) | 39% | memória |
 | 47 | Modelos de Gestão em Saúde (OSS, Contratos de Ge | A | B (1ª) | 10% | memória |
-| 48 | Vigilância Sanitária e Notificação Compulsória | B | C (4ª) | 19% | parcial |
+| 48 | Vigilância Sanitária e Notificação Compulsória | B | C (4ª) | 20% | parcial |
 | 49 | Princípios e Diretrizes do SUS | B | C (1ª) | 33% | memória |
 | 50 | Estratégia Saúde da Família | C | D (4ª) | 11% | busca |
 | 51 | Níveis de Atenção à Saúde | D | A (2ª) | 29% | memória |
@@ -164,7 +164,7 @@ Legenda: **Gab.** = letra do gabarito (e posição por tamanho, de 1ª a 4ª); *
 | 64 | Acidente Vascular Cerebral | B | C (2ª) | 16% | memória |
 | 65 | Câncer de Endométrio | D | A (4ª) | 15% | memória |
 | 66 | Incontinência Urinária e Prolapso Genital | A | B (4ª) | 29% | parcial |
-| 67 | Câncer de Colo do Útero | D | A (2ª) | 31% | parcial |
+| 67 | Câncer de Colo do Útero | D | A (2ª) | 28% | parcial |
 | 68 | Câncer de Mama | C | D (4ª) | 21% | memória |
 | 69 | Ciclo Menstrual e Distúrbios | C | D (4ª) | 9% | busca |
 | 70 | Miomatose Uterina | A | B (4ª) | 45% | memória |
@@ -173,18 +173,18 @@ Legenda: **Gab.** = letra do gabarito (e posição por tamanho, de 1ª a 4ª); *
 | 73 | Infertilidade Conjugal | C | D (1ª) | 44% | memória |
 | 74 | Aloimunização Rh e Doença Hemolítica Perinatal | A | B (3ª) | 28% | memória |
 | 75 | Doença Trofoblástica Gestacional | D | A (4ª) | 42% | memória |
-| 76 | Assistência Pré-natal | B | C (1ª) | 16% | memória |
+| 76 | Assistência Pré-natal | B | C (1ª) | 13% | memória |
 | 77 | Diabetes Mellitus Gestacional | B | C (3ª) | 44% | memória |
 | 78 | Abortamento | anulada | B (2ª) | 43% | memória |
 | 79 | Gestação Múltipla | A | B (1ª) | 41% | memória |
 | 80 | Trabalho de Parto | C | D (2ª*) | 35% | memória |
 | 81 | Câncer de Colo do Útero | C | D (3ª) | 14% | memória |
 | 82 | Tuberculose | D | A (1ª) | 20% | memória |
-| 83 | Calendário Vacinal | A | B (1ª) | 31% | memória |
+| 83 | Calendário Vacinal | A | B (1ª) | 28% | memória |
 | 84 | Alergia Alimentar (APLV e Esofagite Eosinofílica | B | C (1ª) | 14% | memória |
 | 85 | Alergia Alimentar (APLV e Esofagite Eosinofílica | D | A (2ª) | 28% | memória |
 | 86 | Obstrução Intestinal | A | B (2ª) | 17% | memória |
-| 87 | Asma | C | D (2ª) | 20% | memória |
+| 87 | Asma | C | D (2ª) | 19% | memória |
 | 88 | Constipação Intestinal | D | A (3ª) | 25% | memória |
 | 89 | Reanimação Neonatal | A | B (3ª) | 45% | memória |
 | 90 | Triagem Neonatal (Teste do Pezinho) | A | B (4ª) | 29% | memória |
@@ -625,7 +625,7 @@ A alternativa D está correta. Dicas do enunciado: hiperparatireoidismo primári
 
 ### 23. Parada Cardiorrespiratória e RCP
 
-Homem, 60 anos, apresenta fibrilação ventricular presenciada na unidade de terapia intensiva e recupera a circulação espontânea após 2 choques e 9 minutos de reanimação. Permanece intubado, em ventilação mecânica, sem abrir os olhos nem obedecer a comandos. PA 102/62 mmHg (pressão arterial média de 75 mmHg), FC 96 bpm, temperatura de 36,4 °C e SpO2 de 100% com FiO2 de 100%. O eletrocardiograma não mostra supradesnivelamento do segmento ST. Qual é a conduta mais adequada nas primeiras horas?
+Homem, 60 anos, apresenta fibrilação ventricular presenciada na unidade de terapia intensiva e recupera a circulação espontânea após 2 choques e 9 minutos de reanimação. Permanece intubado, em ventilação mecânica, sem abrir os olhos nem obedecer a comandos. PA 102/62 mmHg (pressão arterial média de 75 mmHg), FC 96 bpm, temperatura de 36,4 °C e SpO2 de 100% com FiO2 de 100%. O eletrocardiograma não mostra supradesnivelamento do segmento ST. Qual é a conduta mais adequada nas primeiras horas, segundo as diretrizes da AHA de 2025 para os cuidados pós-parada?
 
 - **A)** Manter a FiO2 em 100% por 24 horas, para proteger o encéfalo contra nova hipóxia grave.
 - **B)** Aceitar pressão arterial média de 50 a 60 mmHg, para poupar o consumo de oxigênio do coração.
@@ -929,7 +929,7 @@ A alternativa D está correta. Dicas do enunciado: **sem critério maior** (sem 
 
 ### 39. Arboviroses
 
-Mulher, 28 anos, com febre havia 4 dias, apresenta defervescência e, no dia seguinte, dor abdominal intensa e contínua, vômitos persistentes e sangramento gengival. PA 110/70 mmHg sem hipotensão postural, FC 96 bpm, enchimento capilar de 2 segundos, sem derrame pleural ou ascite. Exames: hematócrito de 48% (basal de 40%), plaquetas de 40.000/mm³ e transaminases três vezes o normal. A sorologia de dengue está pendente. Qual é a conduta mais adequada?
+Mulher, 28 anos, com febre havia 4 dias, apresenta defervescência e, no dia seguinte, dor abdominal intensa e contínua, vômitos persistentes e sangramento gengival. PA 110/70 mmHg sem hipotensão postural, FC 96 bpm, enchimento capilar de 2 segundos, sem derrame pleural ou ascite. Exames: hematócrito de 48% (basal de 40%), plaquetas de 40.000/mm³ e transaminases três vezes o normal. A sorologia de dengue está pendente. Qual é a conduta mais adequada, segundo o manual de manejo clínico da dengue do Ministério da Saúde (2024)?
 
 - **A)** Alta com hidratação oral e retorno em 24 horas, pois a pressão arterial está normal.
 - **B)** Internação e soro fisiológico a 0,9%, 10 mL/kg na primeira hora, com reavaliação.
@@ -1024,7 +1024,7 @@ A alternativa B está correta. Dicas do enunciado: **risco relativo de 0,80** (r
 
 ### 44. Vigilância Sanitária e Notificação Compulsória
 
-Menino, 6 anos, não vacinado por recusa da família, é atendido com febre de 39,5 °C há 4 dias, tosse, coriza, conjuntivite e exantema maculopapular que começou atrás das orelhas e desceu para o tronco e os membros. À inspeção da boca, há manchas esbranquiçadas na mucosa jugal. Uma irmã de 2 anos, também não vacinada, começou a ter sintomas semelhantes. Em relação à vigilância epidemiológica, qual é a conduta adequada?
+Menino, 6 anos, não vacinado por recusa da família, é atendido com febre de 39,5 °C há 4 dias, tosse, coriza, conjuntivite e exantema maculopapular que começou atrás das orelhas e desceu para o tronco e os membros. À inspeção da boca, há manchas esbranquiçadas na mucosa jugal. Uma irmã de 2 anos, também não vacinada, começou a ter sintomas semelhantes. Em relação à vigilância epidemiológica e à Lista Nacional de Notificação Compulsória, qual é a conduta adequada?
 
 - **A)** Notificar semanalmente, junto com as demais doenças exantemáticas, depois que a sorologia confirmar o caso.
 - **B)** Aguardar o resultado do IgM para só então notificar, a fim de evitar notificações falsas.
@@ -1100,7 +1100,7 @@ A alternativa B está correta. Dicas do enunciado: a pergunta é sobre despesa q
 
 ### 48. Vigilância Sanitária e Notificação Compulsória
 
-Gestante de 24 anos, com 20 semanas, realiza o teste rápido treponêmico no pré-natal com resultado reagente, e o VDRL é reagente na titulação de 1:8. Ela nega tratamento anterior para sífilis. Em relação à vigilância epidemiológica, qual é a conduta adequada?
+Gestante de 24 anos, com 20 semanas, realiza o teste rápido treponêmico no pré-natal com resultado reagente, e o VDRL é reagente na titulação de 1:8. Ela nega tratamento anterior para sífilis. Em relação à vigilância epidemiológica e à Lista Nacional de Notificação Compulsória, qual é a conduta adequada?
 
 - **A)** Notificar no momento do parto, junto com a notificação da sífilis congênita do recém-nascido.
 - **B)** Notificar se a titulação do VDRL for igual ou superior a 1:16, que indica doença ativa.
@@ -1461,7 +1461,7 @@ A alternativa B está correta. Dicas do enunciado: **urgência com perda antes d
 
 ### 67. Câncer de Colo do Útero
 
-Mulher, 34 anos, assintomática, vacinada contra HPV aos 14 anos, procura a unidade básica de saúde porque nunca realizou exame preventivo do colo do útero. Não tem imunossupressão nem história de lesão cervical. Segundo as diretrizes brasileiras mais recentes para o rastreamento do câncer do colo do útero, qual é a conduta mais adequada?
+Mulher, 34 anos, assintomática, vacinada contra HPV aos 14 anos, procura a unidade básica de saúde porque nunca realizou exame preventivo do colo do útero. Não tem imunossupressão nem história de lesão cervical. Segundo as diretrizes brasileiras de 2025 para o rastreamento do câncer do colo do útero (Portaria Conjunta SAES/SECTICS nº 13/2025), qual é a conduta mais adequada?
 
 - **A)** Teste de DNA-HPV oncogênico, repetido a cada 5 anos se o resultado for negativo.
 - **B)** Citologia anual por 2 anos seguidos e, depois, a cada 3 anos, pela vacinação prévia.
@@ -1632,7 +1632,7 @@ A alternativa A está correta. Dicas do enunciado: **mola hidatiforme completa**
 
 ### 76. Assistência Pré-natal
 
-Gestante de 31 anos, com 30 semanas, sem intercorrências, recebeu 3 doses de vacina contra o tétano há 3 anos, 3 doses de vacina contra hepatite B e refere esquema vacinal completo na infância. Qual vacina deve ser administrada nesta gestação, independentemente do esquema anterior?
+Gestante de 31 anos, com 30 semanas, sem intercorrências, recebeu 3 doses de vacina contra o tétano há 3 anos, 3 doses de vacina contra hepatite B e refere esquema vacinal completo na infância. Segundo o calendário do Programa Nacional de Imunizações, qual vacina deve ser administrada nesta gestação, independentemente do esquema anterior?
 
 - **A)** dT (dupla adulto), como reforço único, porque o esquema anterior contra o tétano está completo.
 - **B)** Nenhuma vacina, porque o esquema completo contra tétano e hepatite B dispensa doses na gestação.
@@ -1765,7 +1765,7 @@ A alternativa A está correta. Dicas do enunciado: **3 semanas de rifampicina, i
 
 ### 83. Calendário Vacinal
 
-Lactente de 4 meses e 10 dias, nascido a termo e saudável, é levado à unidade básica de saúde pela primeira vez depois da maternidade. A caderneta mostra apenas BCG e a primeira dose da vacina contra hepatite B, ao nascer. Qual das vacinas abaixo não pode mais ser iniciada por ter ultrapassado a idade máxima para a primeira dose?
+Lactente de 4 meses e 10 dias, nascido a termo e saudável, é levado à unidade básica de saúde pela primeira vez depois da maternidade. A caderneta mostra apenas BCG e a primeira dose da vacina contra hepatite B, ao nascer. Segundo o Programa Nacional de Imunizações, qual das vacinas abaixo não pode mais ser iniciada por ter ultrapassado a idade máxima para a primeira dose?
 
 - **A)** Pentavalente (DTP, Hib e hepatite B), que não tem idade máxima para a primeira dose.
 - **B)** Rotavírus humano, pois a primeira dose só pode ser administrada até os 3 meses e 15 dias de idade.
@@ -1841,7 +1841,7 @@ A alternativa B está correta. Dicas do enunciado: **lactente de 8 meses**, com 
 
 ### 87. Asma
 
-Adolescente de 15 anos, com asma leve, relata sintomas de tosse e chiado cerca de duas vezes por mês, sem despertares noturnos, e usa salbutamol inalatório apenas quando tem sintomas. Há 3 semanas, após uma infecção respiratória, teve uma crise que exigiu atendimento de urgência com corticoide oral. A função pulmonar é normal entre as crises. Segundo a iniciativa global para a asma (GINA), qual é o tratamento mais adequado?
+Adolescente de 15 anos, com asma leve, relata sintomas de tosse e chiado cerca de duas vezes por mês, sem despertares noturnos, e usa salbutamol inalatório apenas quando tem sintomas. Há 3 semanas, após uma infecção respiratória, teve uma crise que exigiu atendimento de urgência com corticoide oral. A função pulmonar é normal entre as crises. Segundo a iniciativa global para a asma (GINA, edição de 2024), qual é o tratamento mais adequado?
 
 - **A)** Manter o salbutamol isolado quando necessário, por se tratar de asma leve e sintomas intermitentes.
 - **B)** Corticoide inalatório em dose alta, de uso diário, para prevenir novas crises.
