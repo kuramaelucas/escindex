@@ -23,25 +23,71 @@ function abaProvas(){
   return f.abaProvas;
 }
 function mudarAbaProvas(aba){ state.filtroRota.abaProvas = aba; render(); }
+/* ---------- busca da tela (vale para as duas abas) ----------
+   Um campo só, acima das abas: "unifesp" ou "epm" acha a prova da UNIFESP-EPM
+   e também os simulados dela, esteja a pessoa na aba que estiver. As palavras
+   se combinam (todas precisam aparecer), sem diferenciar maiúscula nem acento. */
+function buscaProvas(){ return state.filtroRota.buscaProvas || ""; }
+function normalizarBusca(t){ return String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+function textoBuscavelProva(partes){
+  let t = normalizarBusca(partes.filter(Boolean).join(" "));
+  // UNIFESP e EPM são a mesma instituição (UNIFESP-EPM): quem digita um acha o outro
+  if(/unifesp|\bepm\b/.test(t)) t += " unifesp epm unifesp-epm";
+  return t;
+}
+function combinaComBusca(partes){
+  const termos = normalizarBusca(buscaProvas()).split(/\s+/).filter(Boolean);
+  if(!termos.length) return true;
+  const texto = textoBuscavelProva(partes);
+  return termos.every(t=>texto.includes(t));
+}
+// um simulado é achado pelo título e pela instituição e ano das questões dele
+function simuladoCombinaComBusca(s){
+  if(!buscaProvas().trim()) return true;
+  const qs = (s.questoes||[]).map(getQuestao).filter(Boolean);
+  return combinaComBusca([s.titulo, ...new Set(qs.map(q=>q.banca)), ...new Set(qs.map(q=>q.ano))]);
+}
+function digitarBuscaProvas(valor){
+  state.filtroRota.buscaProvas = valor;
+  // só o resultado é redesenhado: redesenhar a tela inteira tiraria o foco do campo
+  const alvo = document.getElementById("provasConteudo");
+  if(alvo) alvo.innerHTML = conteudoProvasESimulados(usuarioAtual());
+}
+function limparBuscaProvas(){ state.filtroRota.buscaProvas = ""; render(); }
 function renderProvasESimulados(){
   const u = usuarioAtual();
+  return `
+  <div class="page-header"><h2>Provas e Simulados</h2><p>Prova inteira, no relógio. Na primeira aba, as provas antigas como caíram; na segunda, os simulados (os da equipe e os que foram enviados para a plataforma).</p></div>
+  <div class="card mb-2">
+    <label class="label" for="buscaProvasCampo">Buscar</label>
+    <div class="flex gap-1 quebra">
+      <input class="input" id="buscaProvasCampo" type="search" autocomplete="off" value="${escapeHtml(buscaProvas())}" placeholder="Ex.: Unifesp, EPM, USP 2024, Santa Casa…" aria-label="Buscar em provas e simulados" oninput="digitarBuscaProvas(this.value)" style="flex:1;min-width:220px">
+      ${buscaProvas() ? `<button class="btn btn-secondary btn-sm" onclick="limparBuscaProvas()">Limpar</button>` : ""}
+    </div>
+    <div class="text-xs muted mt-1">Procura por instituição, ano e título do simulado, nas provas antigas e nos simulados ao mesmo tempo. "Unifesp" e "EPM" acham as mesmas coisas.</div>
+  </div>
+  <div id="provasConteudo">${conteudoProvasESimulados(u)}</div>`;
+}
+function conteudoProvasESimulados(u){
   const aba = abaProvas();
+  const busca = buscaProvas().trim();
   const bloco = getBlocoAtual();
-  const recomendados = bloco ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id)) : [];
-  const outros = db.simulados.filter(s=>!recomendados.includes(s));
+  const simuladosVisiveis = db.simulados.filter(simuladoCombinaComBusca);
+  const recomendados = bloco ? simuladosVisiveis.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id)) : [];
+  const outros = simuladosVisiveis.filter(s=>!recomendados.includes(s));
   const meusResultados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
   const pagResultados = paginar(meusResultados, "provas-resultados", {porPagina:10});
   return `
-  <div class="page-header"><h2>Provas e Simulados</h2><p>Prova inteira, no relógio. Na primeira aba, as provas antigas como caíram; na segunda, os simulados montados pela equipe para um bloco ou assunto.</p></div>
   <div class="flex gap-1 mb-2 quebra">
     <button class="pill ${aba==="antigas"?"active":""}" onclick="mudarAbaProvas('antigas')">${iconeSvg("archive")} Provas antigas</button>
-    <button class="pill ${aba==="simulados"?"active":""}" onclick="mudarAbaProvas('simulados')">${iconeSvg("clipboard")} Simulados da equipe (${db.simulados.length})</button>
+    <button class="pill ${aba==="simulados"?"active":""}" onclick="mudarAbaProvas('simulados')">${iconeSvg("clipboard")} Simulados (${busca ? simuladosVisiveis.length+" de "+db.simulados.length : db.simulados.length})</button>
   </div>
-  ${aba==="antigas" ? renderAbaProvasAntigas(u) : `
-    <p class="text-sm muted mb-2">Montados por professores, com tempo e tamanho definidos por eles. ${bloco ? `Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).` : "Sem calendário de blocos, não há simulado recomendado para o seu bloco: todos aparecem juntos."}</p>
+  ${aba==="antigas" ? renderAbaProvasAntigas(u, simuladosVisiveis) : `
+    <p class="text-sm muted mb-2">Os da equipe e os enviados para a plataforma, com tempo e tamanho já definidos. ${bloco ? `Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).` : "Sem calendário de blocos, não há simulado recomendado para o seu bloco: todos aparecem juntos."}</p>
     ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
-    ${outros.length ? `<div class="card-title mt-3 mb-1">Outros simulados disponíveis</div>${outros.map(renderSimuladoCard).join("")}` : ""}
-    ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>' : ""}
+    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div>${outros.map(renderSimuladoCard).join("")}` : ""}
+    ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>'
+      : !simuladosVisiveis.length ? `<div class="empty-state">Nenhum simulado combina com "${escapeHtml(busca)}". <button class="link-btn" onclick="limparBuscaProvas()">limpar a busca</button> ou veja as provas antigas na aba ao lado.</div>` : ""}
   `}
   ${meusResultados.length ? `<div class="card mt-3">
     <div class="card-title mb-1">Suas notas (provas antigas e simulados)</div>
@@ -354,7 +400,7 @@ function mudarFiltroProvas(campo, valor){
 }
 function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false, tipo:""}; render(); }
 function renderProvasAntigas(){ return renderProvasESimulados(); }
-function renderAbaProvasAntigas(u){
+function renderAbaProvasAntigas(u, simuladosDaBusca){
   const f = filtrosProvas();
   const grupoUsuario = (u.papel==="aluno"||state.modoAluno) ? idsDosGruposDoUsuario(u) : true;
   /* Só questão REAL forma prova: a prova antiga é "a prova de verdade, do
@@ -379,6 +425,7 @@ function renderAbaProvasAntigas(u){
   let pool = todas;
   if(f.banca) pool = pool.filter(q=>q.banca===f.banca);
   if(f.ano) pool = pool.filter(q=>q.ano===parseInt(f.ano));
+  if(buscaProvas().trim()) pool = pool.filter(q=>combinaComBusca([q.banca, q.ano, q.semestre ? q.semestre+"º semestre" : "", q.faseProva, infoTipoProva(tipoProvaDe(q)).nomeLongo]));
   if(f.areaId) pool = pool.filter(q=>q.areaId===f.areaId);
   if(f.ultimos5) pool = pool.filter(q=>q.ano > anoMaisRecente-5);
 
@@ -484,7 +531,8 @@ function renderAbaProvasAntigas(u){
     </div>
   </div>
   <p class="text-sm muted mb-2">${grupos.length} prova(s) encontrada(s) · ${pool.length} questão(ões) no total com os filtros atuais.</p>
-  ${secoes || '<div class="empty-state">Nenhuma prova encontrada com esses filtros.</div>'}`;
+  ${secoes || '<div class="empty-state">Nenhuma prova encontrada com esses filtros.</div>'}
+  ${buscaProvas().trim() && simuladosDaBusca.length ? `<div class="card-title mt-3 mb-1">Simulados que combinam com a busca <span class="text-sm muted peso-400">· ${simuladosDaBusca.length}</span></div>${simuladosDaBusca.map(renderSimuladoCard).join("")}` : ""}`;
 }
 function grupoDeProva(indice){
   const grupos = state.filtroRota.provasGrupos || [];
