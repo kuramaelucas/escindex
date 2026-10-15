@@ -204,3 +204,7 @@ imagemUrl:"dados/imagens/q-usp2027-012.png", imagemLegenda:"ECG de 12 derivaçõ
 Se a figura ainda não estiver pronta, acrescente também
 `imagemPendente:"o que a prova mostrava"` — é o texto do aviso, e é o que faz o
 conferidor listar a questão como pendência em vez de acusar erro.
+
+## Figuras geradas por código
+
+As figuras de `q-adap24-001`, `020`, `021`, `043`, `078` e `081` (banco adaptado da UNIFESP 2024) não vêm de uma prova: são ilustrações esquemáticas ou de dados fictícios, geradas por `node ferramentas/figuras-banco-adaptado.mjs` (determinístico). Para mudar uma, edite o desenho nesse arquivo e rode-o de novo; não edite o PNG à mão.
