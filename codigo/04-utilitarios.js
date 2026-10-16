@@ -218,6 +218,30 @@ function rotuloVisivelDoCampo(campo){
 function fecharModal(){
   const el = document.getElementById("modalOverlayAtivo");
   if(el) el.remove();
+  const aba = document.getElementById("modalMinimizado");
+  if(aba) aba.remove();
+}
+/* Minimizar a janela: esconde-a (sem apagar nada do que foi escrito) e deixa
+   uma aba no canto para voltar. Serve para o cartão em montagem: quem está
+   virando uma questão em flashcard precisa rever o enunciado e a explicação
+   que a janela cobre, e esquecer de algo não deve custar o texto digitado. */
+function minimizarModal(rotulo){
+  const el = document.getElementById("modalOverlayAtivo");
+  if(!el || document.getElementById("modalMinimizado")) return;
+  el.style.display = "none";
+  const aba = document.createElement("button");
+  aba.id = "modalMinimizado";
+  aba.className = "btn btn-primary modal-minimizado";
+  aba.type = "button";
+  aba.innerHTML = iconeSvg("cards") + " " + escapeHtml(rotulo || "Voltar à janela") + " · voltar";
+  aba.onclick = restaurarModalMinimizado;
+  document.body.appendChild(aba);
+}
+function restaurarModalMinimizado(){
+  const el = document.getElementById("modalOverlayAtivo");
+  if(el) el.style.display = "";
+  const aba = document.getElementById("modalMinimizado");
+  if(aba) aba.remove();
 }
 /* TRABALHO NÃO SALVO. Fechar uma janela ou sair de uma tela de escrita sem
    querer (clique fora da janela, até um arrastar que termina fora dela;
@@ -260,8 +284,10 @@ function abrirModalTitulado(titulo, corpoHtml, tamanho){
 }
 /* O cabeçalho padrão de toda janela: título (já em HTML — pode ter ícone)
    e o X de fechar. */
-function cabecalhoJanela(tituloHtml){
-  return '<div class="modal-header"><h3>' + tituloHtml + '</h3><button class="icon-btn" onclick="fecharModalComConfirmacao()">' + iconeSvg("x") + '</button></div>';
+function cabecalhoJanela(tituloHtml, opcoes){
+  const minimizar = opcoes && opcoes.minimizavel
+    ? '<button class="btn btn-ghost btn-sm" type="button" title="Esconder esta janela para ver a tela por trás; o que você escreveu fica guardado" onclick="minimizarModal(\'' + String(opcoes.minimizavel).replace(/'/g, "") + '\')">Minimizar</button>' : "";
+  return '<div class="modal-header"><h3>' + tituloHtml + '</h3><span class="flex gap-1 items-center">' + minimizar + '<button class="icon-btn" onclick="fecharModalComConfirmacao()">' + iconeSvg("x") + '</button></span></div>';
 }
 
 function copiarTexto(texto, mensagem){
@@ -409,6 +435,15 @@ function graficoHistogramaSvg(buckets, bucketAtual, labels){
 // Só há comparação a partir de MINIMO_ALUNOS_NA_COMPARACAO alunos: com menos,
 // percentil, p90 e curva identificariam as pessoas ou enganariam.
 const MINIMO_ALUNOS_NA_COMPARACAO = 10;
+// Quantos alunos já fizeram, mesmo abaixo do mínimo: só a contagem aparece
+// (ela não identifica ninguém); as notas continuam escondidas até o mínimo.
+function frasePoucosAlunosNoSimulado(chave){
+  const n = notasAnonimasDoSimulado(chave).notas.length;
+  const falta = Math.max(0, MINIMO_ALUNOS_NA_COMPARACAO - n);
+  return (n === 1 ? "Até agora 1 aluno fez" : n === 0 ? "Ainda nenhum aluno fez" : `Até agora ${n} alunos fizeram`) +
+    ` isto ${nuvemConectado() ? "na turma" : "neste navegador"}` +
+    (n ? `; faltam ${falta} para liberar os números` : "") + ".";
+}
 function notasAnonimasDoSimulado(chave){
   const primeiraPorAluno = new Map();
   db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).forEach(r => {

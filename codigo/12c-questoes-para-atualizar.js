@@ -155,6 +155,17 @@ function renderAtualizarQuestoes(){
       <li><strong>Baixe as atualizações</strong>: um arquivo com <em>só</em> as questões consertadas, e as imagens. Na pasta do projeto, <code>npm run atualizar-dados -- arquivo.json</code> grava tudo nos arquivos de <code>dados/</code>.</li>
     </ol>
   </div>
+  <div class="card mb-2">
+    <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:.6rem">
+      <div>
+        <div class="card-title mb-02">${iconeSvg("alert")} Relatos dos alunos para o Claude</div>
+        <div class="text-sm muted">${relatosParaClaude().length
+          ? `<strong>${relatosParaClaude().length}</strong> relato(s) em aberto (sinalizações e dúvidas sem resposta oficial), em ${new Set(relatosParaClaude().map(r => r.questaoId)).size} questão(ões). O arquivo não leva o nome de ninguém.`
+          : "Nenhuma sinalização ou dúvida em aberto."} Na pasta do projeto: <code>npm run relatos -- arquivo.json</code> abre cada questão relatada, e o que o Claude fizer fica em <code>docs/REGISTRO-DE-RELATOS.md</code> para alguém conferir.</div>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="baixarRelatosParaClaude()" ${relatosParaClaude().length ? "" : "disabled"}>${iconeSvg("download")} Baixar os relatos</button>
+    </div>
+  </div>
   <div class="grid grid-4 mb-2">
     ${TIPOS_DE_ATUALIZACAO.slice(0, 4).map(t => `<button class="stat-mini${f.tipo === t.id ? " ativo" : ""}" onclick="mudarFiltroAtualizar('tipo', '${f.tipo === t.id ? "" : t.id}')"><div class="stat-value">${conta(t.id)}</div><div class="stat-label">${escapeHtml(t.nome)}</div></button>`).join("")}
   </div>
@@ -301,4 +312,26 @@ async function baixarAtualizacoesParaDados(){
   baixarArquivo(nome, JSON.stringify(conteudo, null, 1), "application/json");
   toast(conteudo.total + " questão(ões) no arquivo " + nome + ". Na pasta do projeto: npm run atualizar-dados -- " + nome +
     (semImagemEmbutida ? " (" + semImagemEmbutida + " figura(s) vão pelo endereço da nuvem; a ferramenta baixa)." : "."));
+}
+
+/* ---------- os relatos para o Claude ----------
+   Sinalizações e dúvidas ainda sem resposta oficial, num arquivo que o
+   ferramentas/relatos.mjs lê para levar direto à questão. Sem nome de aluno:
+   só o papel de quem escreveu. */
+function relatosParaClaude(){
+  const relatos = [];
+  db.questoes.forEach(q => (q.sinalizacoes || []).forEach(s => relatos.push({
+    id: s.id, tipo: "sinalizacao", questaoId: q.id, data: s.data || "", texto: s.comentario || "", papelAutor: (getUsuario(s.usuarioId) || {}).papel || "",
+  })));
+  duvidasPendentes().forEach(c => relatos.push({ id: c.id, tipo: "duvida", questaoId: c.questaoId, data: c.data || "", texto: c.texto || "", papelAutor: c.papelAutor || "" }));
+  return relatos.filter(r => getQuestao(r.questaoId));
+}
+function baixarRelatosParaClaude(){
+  if(!podeAtualizarQuestoes()){ toast("Esta ação é da equipe e dos residentes.", "err"); return; }
+  const relatos = relatosParaClaude();
+  if(!relatos.length){ toast("Nenhum relato em aberto.", "err"); return; }
+  const nome = "relatos-" + hojeISO() + ".json";
+  baixarArquivo(nome, JSON.stringify({ formato: "esc-relatos-questoes", versao: 1, geradoEm: new Date().toISOString(),
+    relatos: relatos.map(r => { const q = getQuestao(r.questaoId); return { ...r, banca: q.banca, ano: q.ano, numeroNaProva: q.numeroNaProva || null }; }) }, null, 1), "application/json");
+  toast(relatos.length + " relato(s) no arquivo " + nome + ". Na pasta do projeto: npm run relatos -- " + nome);
 }

@@ -544,7 +544,7 @@ function abrirFormularioFlashcard(id, opts){
   state.filtroRota.imagemFlashcard = c ? (c.imagemUrl || "") : "";
 
   abrirModal(`
-    ${cabecalhoJanela(titulo)}
+    ${cabecalhoJanela(titulo, questao ? {minimizavel: "Cartão em montagem"} : null)}
     ${questao ? `<div class="card-flat mb-2">
       <div class="text-xs muted" style="font-weight:700;letter-spacing:.06em;text-transform:uppercase">Questão de origem</div>
       <div class="text-sm mt-1">${escapeHtml(questao.enunciado.slice(0,220))}${questao.enunciado.length>220?"…":""}</div>

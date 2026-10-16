@@ -13,6 +13,7 @@ Plataforma de estudos para residência médica. Site estático **sem build, sem 
 | `npm run publicar` | **uma vez ao final de qualquer mudança**: atualiza a versão no `index.html` (hash do código × hash dos dados) e regera `dados/CATALOGO.md` |
 | `npm run testar-mudanca` | roda só o que a mudança pode ter quebrado (conteúdo → segundos; código → suíte inteira); `-- --ver` mostra a escolha |
 | `npm test` | tudo (Playwright/Chromium, ~3 min). Um teste: `node --test --test-name-pattern="trecho do nome" testes/arquivo.test.mjs` |
+| `npm run relatos -- relatos-AAAA-MM-DD.json` / `-- <arquivo> q-id` / `-- registrar q-id --relatos ids --acao "…"` / `-- pendentes` | questões **relatadas por alunos** (sinalização, dúvida): lista da mais citada à menos / uma questão com os relatos e o texto inteiro / grava em `docs/REGISTRO-DE-RELATOS.md` o que foi feito (campos alterados vêm do diff com o HEAD) para uma pessoa conferir. O arquivo vem do site (*Questões para Atualizar › Baixar os relatos*), fica fora do git (texto de aluno) e **toda correção feita a partir de relato termina com `registrar`** |
 | `npm run conferir` (`-- --resumo`, `-- usp-2027`) | confere a pasta `dados/` (ids, gabaritos, taxonomia, provas completas, figuras); a saída inteira tem ~90 linhas — prefira o resumo ou o filtro por prova |
 | `npm run testar-sql` | `nuvem/esquema.sql` + regras de segurança (RLS) num PostgreSQL local temporário |
 | `npm run atualizar-dados -- arquivo.json` | grava em `dados/` as correções baixadas de "Questões para Atualizar" |

@@ -133,12 +133,35 @@ function renderSimuladoCard(s){
         ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)
           ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
           : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
+        ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="abrirRenomearSimulado('${s.id}')" title="Mudar o nome deste simulado">${iconeSvg("edit")} Renomear</button>` : ""}
         ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
         ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
         <button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>
       </div>
     </div>
   </div>`;
+}
+/* Renomear um simulado (equipe). O que liga as notas ao simulado é o id, não
+   o título: mudar o nome não apaga histórico nem comparação com a turma. */
+function abrirRenomearSimulado(simuladoId){
+  const s = db.simulados.find(x=>x.id===simuladoId);
+  if(!s || !podeGerirConteudo()) return;
+  abrirModal(`${cabecalhoJanela("Mudar o nome do simulado")}
+    <div class="field"><label class="label" for="renomearSimuladoNome">Nome do simulado</label><input class="input" id="renomearSimuladoNome" value="${escapeHtml(s.titulo)}" maxlength="100" onkeydown="if(event.key==='Enter')salvarNomeDoSimulado('${s.id}')">
+      <div class="hint mt-1">As notas e o histórico dos alunos continuam ligados a este simulado.</div></div>
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarNomeDoSimulado('${s.id}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+  setTimeout(()=>{ const c = document.getElementById("renomearSimuladoNome"); if(c){ c.focus(); c.select(); } }, 50);
+}
+function salvarNomeDoSimulado(simuladoId){
+  const s = db.simulados.find(x=>x.id===simuladoId);
+  if(!s || !podeGerirConteudo()) return;
+  const nome = document.getElementById("renomearSimuladoNome").value.trim();
+  if(!nome){ toast("Dê um nome para o simulado.", "err"); return; }
+  s.titulo = nome;
+  saveState();
+  fecharModal();
+  toast('O simulado agora se chama "'+nome+'".');
+  render();
 }
 /* A tabela "simulado × estudo" (ver comparativoSimuladoEstudo, 05b), usada no
    resultado do simulado e em Meu Desempenho. Diz o que cada linha significa:
@@ -370,7 +393,7 @@ function renderSimuladoAtivo(){
     ${renderQuestionCard(q, emModoAprendizado ? {selecionada:jaRespondeuEssa ? respostaAtual : escolhaPendente, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
   </div>
   ${emModoAprendizado && !jaRespondeuEssa ? `<div class="flex items-center gap-1 mt-2 quebra">
-    <button class="btn btn-primary" onclick="confirmarRespostaSimulado()" ${escolhaPendente?"":"disabled"}>${iconeSvg("check")} Confirmar resposta</button>
+    <button class="btn btn-primary" onclick="confirmarRespostaSimulado()" ${escolhaPendente?"":"disabled"}>${iconeSvg("check")} Confirmar resposta <span class="text-xs">(espaço)</span></button>
     <span class="text-xs muted">${escolhaPendente?"Depois de confirmar não dá para trocar: a explicação aparece e a resposta fica registrada.":"Escolha uma alternativa e confirme para ver a explicação."}</span>
   </div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
@@ -426,7 +449,7 @@ function alternarModoAprendizadoSimulado(){
    números somados — nunca nome nem nota de uma pessoa. */
 function htmlDesempenhoDosAlunos(chave){
   const t = estatisticasTurmaSimulado(chave);
-  if(!t) return `<div class="card-flat text-sm muted">O desempenho dos alunos aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito isto ${nuvemConectado() ? "na turma" : "neste navegador"}; com menos, os números identificariam as pessoas.</div>`;
+  if(!t) return `<div class="card-flat text-sm muted"><strong>${frasePoucosAlunosNoSimulado(chave)}</strong> O desempenho dos alunos aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} tiverem feito; com menos, os números identificariam as pessoas.</div>`;
   const piores = t.questoes.slice(0,5);
   return `<div class="card-title">Desempenho dos alunos <span class="text-sm muted peso-400">· anônimo, ${t.n} alunos ${t.origem==="turma" ? "da turma" : "deste navegador"}, uma nota por aluno</span></div>
     <div class="grid grid-4 mt-1">
@@ -529,7 +552,7 @@ function renderResultadoSimulado(){
     <div class="mt-2">${graficoCurvaGaussSvg(ranking, nota)}</div>
     <p class="text-xs muted mt-1">Curva de Gauss desenhada com a média (${Math.round(ranking.media)}%) e o desvio padrão (${Math.round(ranking.desvio)} pontos) das notas dos alunos: é um ajuste, não a contagem exata.</p>
     <div class="mt-2">${graficoHistogramaSvg(ranking.buckets, ranking.bucketAtual, ["0-20","21-40","41-60","61-80","81-100"])}</div>
-  </div>` : `<div class="card-flat mt-2 text-sm muted">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado ${nuvemConectado() ? "na turma" : "neste navegador"}.</div>`}
+  </div>` : `<div class="card-flat mt-2 text-sm muted">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado. <strong>${frasePoucosAlunosNoSimulado(chaveRanking)}</strong></div>`}
   ${htmlAcertoPorEspecialidade(linhas)}
   ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(usuarioAtual().id, {sessaoId:sessao.id}), "Seus assuntos neste simulado × o seu estudo", "O acerto de cada assunto no simulado ao lado do acerto fora dele. Bom no estudo e mal aqui: tempo ou formato da prova. Mal nos dois: falta conteúdo.", {maximo:5})}
   ${analiseTempo ? `<div class="card mt-2">
