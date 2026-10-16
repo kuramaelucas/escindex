@@ -122,7 +122,7 @@ function exportarQuestoesParaDados(){
   if(!lista.length){ toast("Não há questão aprovada pela plataforma para exportar.", "err"); return; }
   const nome = "questoes-enviadas-" + hojeISO();
   const campos = ["banca","real","tipoProva","ano","numeroNaProva","areaId","especialidadeId","assuntoId","enunciado","alternativas","gabarito",
-    "explicacaoGeral","explicacoesAlternativas","referencias","imagemUrl","imagemLegenda","imagemPendente","dificuldadeManual","status","motivoStatus","faseProva"];
+    "explicacaoGeral","explicacoesAlternativas","referencias","imagemUrl","imagemLegenda","imagemPendente","dificuldadeManual","status","motivoStatus","faseProva","justificativaEm"];
   const linhas = lista.map(q => {
     const o = { id: q.id };
     campos.forEach(c => { if(q[c] !== undefined && q[c] !== "" && q[c] !== null) o[c] = q[c]; });
@@ -493,6 +493,8 @@ function salvarQuestaoFormulario(qid, forcar){
       delete atual.imagemPendente;
       atual.imagemLiberada = true;
     }
+    // explicação mudou: a justificativa passa a ser deste mês (ver mesDaJustificativa)
+    if((atual.explicacaoGeral||"") !== (dados.explicacaoGeral||"")) dados.justificativaEm = hojeISO().slice(0, 7);
     Object.assign(atual, dados);
     // questão da pasta dados/: o conserto vira correção, sobe e desce para
     // todos (Questões para Atualizar, seção 26-D); as outras sobem inteiras
@@ -500,7 +502,7 @@ function salvarQuestaoFormulario(qid, forcar){
     nuvemMarcarQuestao(atual.id);
   }
   else{
-    const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO() };
+    const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO(), justificativaEm:hojeISO().slice(0, 7) };
     if(campoDestino){
       if(destinoEhGrupo(campoDestino.value)){ nova.grupoId = grupoDoDestino(u, campoDestino.value).id; nova.status = "ativa"; }
       else{ nova.status = "pendente"; }

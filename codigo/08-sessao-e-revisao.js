@@ -273,8 +273,34 @@ function confirmarResposta(confianca){
   const tempoSeg = sessao.tsQuestao ? (Date.now()-sessao.tsQuestao)/1000 : null;
   const resp = registrarResposta(usuarioAtual().id, item.questaoId, marcada, confianca, tempoSeg, origemDoItem(sessao, item));
   sessao.respostasSessao[sessao.indiceAtual] = resp;
+  sessao.ultimaConfianca = confianca;
   salvarSessaoEmAndamento();
   render();
+}
+/* Atalho de teclado para responder sem o mouse. No simulado em modo
+   aprendizado (o único que tem "Confirmar resposta"), o espaço confirma. Na
+   prática a resposta só vale com a confiança declarada, então o espaço
+   repete a última confiança usada no conjunto e, na primeira vez, avisa que
+   é preciso escolher (1 certeza, 2 dúvida, 3 chute): nunca se declara
+   confiança por quem respondeu. */
+function atalhoConfirmarResposta(tecla, e){
+  const s = state.sessaoAtual;
+  if(!s || s.somenteLeitura) return;
+  if(state.route==="simulado-ativo" && !s.finalizado){
+    if(tecla!==" " || !s.modoAprendizado) return;
+    const qid = s.itens[s.indiceAtual].questaoId;
+    if(s.respostasSimulado[qid] !== undefined || !(s.escolhaPendente||{})[qid]) return;
+    e.preventDefault(); confirmarRespostaSimulado();
+    return;
+  }
+  if(state.route!=="sessao" || s.finalizada) return;
+  const item = s.itens[s.indiceAtual];
+  if(!item || respostaDoIndice(s, s.indiceAtual) || !marcadaDaQuestao(item.questaoId)) return;
+  e.preventDefault();
+  const porTecla = {"1":"certeza", "2":"duvida", "3":"chute"};
+  const confianca = tecla===" " ? s.ultimaConfianca : porTecla[tecla];
+  if(!confianca){ toast("Diga a confiança: tecla 1 = certeza, 2 = na dúvida, 3 = chute. Depois o espaço repete a última.", "err"); return; }
+  confirmarResposta(confianca);
 }
 /* ---------- navegação livre, inclusive por cima do que ficou em branco ----
    A fila anda para os dois lados e não exige responder para seguir: travar a
@@ -840,11 +866,11 @@ function renderQuestionCard(q, opts){
     } else {
     html += opts.selecionada ? `
       <div class="confidence-row">
-        <button class="confidence-btn" onclick="confirmarResposta('certeza')">Certeza</button>
-        <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida</button>
-        <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute</button>
+        <button class="confidence-btn" onclick="confirmarResposta('certeza')">Certeza <span class="muted text-xs">(1)</span></button>
+        <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida <span class="muted text-xs">(2)</span></button>
+        <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute <span class="muted text-xs">(3)</span></button>
       </div>
-      <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão.</div>` : "";
+      <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última confiança.</div>` : "";
     html += dicaRiscar(opts.selecionada ? "" : "Selecione uma alternativa para continuar. ");
     }
   } else {
@@ -855,7 +881,7 @@ function renderQuestionCard(q, opts){
 }
 function renderFeedbackQuestao(q, opts){
   const correta = opts.selecionada === q.gabarito;
-  let html = `<div class="feedback-box ${correta?"ok":"no"}"><strong>${correta?"Resposta correta.":"Resposta incorreta."}</strong> Gabarito: ${q.gabarito}.<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`;
+  let html = `<div class="feedback-box ${correta?"ok":"no"}"><strong>${correta?"Resposta correta.":"Resposta incorreta."}</strong> Gabarito: ${q.gabarito}.<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>${htmlMesDaJustificativa(q)}`;
   if(q.explicacoesAlternativas && q.explicacoesAlternativas[opts.selecionada] && opts.selecionada!==q.gabarito){
     html += `<br><br><em>Sobre a alternativa que você marcou:</em> <span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao-alt"))}>${htmlComDestaques(q.explicacoesAlternativas[opts.selecionada], alvoDeQuestao(q.id,"explicacao-alt"), true)}</span>`;
   }

@@ -222,8 +222,16 @@ window.addEventListener("keydown", function(e){
   const tecla = e.key.toLowerCase();
   // as setas do teclado passam questão e flashcard do mesmo jeito que arrastar o dedo
   if(tecla==="arrowright" || tecla==="arrowleft"){
-    if(document.getElementById("modalOverlayAtivo") || e.ctrlKey || e.metaKey || e.altKey) return;
+    if((document.getElementById("modalOverlayAtivo") && !document.getElementById("modalMinimizado")) || e.ctrlKey || e.metaKey || e.altKey) return;
     if(tecla==="arrowright") avancarPorGesto(); else voltarPorGesto();
+    return;
+  }
+  // Barra de espaço confirma a resposta marcada; 1/2/3 escolhem a confiança na prática
+  if(tecla===" " || tecla==="1" || tecla==="2" || tecla==="3"){
+    if((document.getElementById("modalOverlayAtivo") && !document.getElementById("modalMinimizado")) || e.ctrlKey || e.metaKey || e.altKey) return;
+    // botão em foco: o espaço já o aciona sozinho, e confirmar junto seria duplo
+    if(alvo && (alvo.tagName==="BUTTON" || alvo.tagName==="A" || alvo.tagName==="SELECT")) return;
+    atalhoConfirmarResposta(tecla, e);
     return;
   }
   if(tecla!=="a" && tecla!=="d") return;
