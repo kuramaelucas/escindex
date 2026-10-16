@@ -669,11 +669,12 @@ details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
 .guia-secao li{margin-bottom:.35rem}
 
 /* Destaque de texto (seção 11-B): o trecho marcado e a barrinha que aparece ao selecionar */
-mark.destaque{background:var(--destaque);color:inherit;border-radius:3px;padding:0 .08em;cursor:pointer}
+/* destaque sem padding nem negrito: ambos mudam a largura do texto e faziam palavras descerem de linha; o respiro vem do box-shadow, que não ocupa espaço */
+mark.destaque{background:var(--destaque);color:inherit;border-radius:3px;box-shadow:0 0 0 .08em var(--destaque);cursor:pointer}
 .barra-destaque{position:absolute;z-index:60;padding:.3rem;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:var(--shadow-pop)}
 .barra-destaque[hidden]{display:none}
 /* Parâmetro objetivo que define a conduta, marcado com ** pelo autor da explicação (seção 11-B) */
-strong.parametro{font-weight:700;color:var(--accent-dark);background:var(--accent-soft);padding:0 .28em;border-radius:3px}
+strong.parametro{font-weight:inherit;color:var(--accent-dark);background:var(--accent-soft);box-shadow:0 0 0 .14em var(--accent-soft);border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 
 /* Utilitários que substituíram style="" repetido nas telas. Levam !important
    porque o estilo inline que trocaram sempre vencia a folha de estilo. */

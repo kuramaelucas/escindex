@@ -79,7 +79,7 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
       referencias: e.referencias,
       dificuldadeManual: e.dificuldade || "intermediario", status: e.status || "ativa",
       ...(anulada ? { motivoStatus: e.motivo } : {}),
-      criadoPor: "seed", criadoEm: hoje(),
+      criadoPor: "seed", criadoEm: hoje(), justificativaEm: hoje().slice(0, 7),
     };
     if(e.figura) q.imagemUrl = /^(png|jpe?g|webp)$/i.test(e.figura) ? `dados/imagens/${q.id}.${e.figura.toLowerCase()}` : e.figura;
     if(e.imagemPendente) q.imagemPendente = e.imagemPendente;

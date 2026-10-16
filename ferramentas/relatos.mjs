@@ -70,7 +70,7 @@ export function blocoDaQuestao(texto, id){
   let fim = i; while(fim < linhas.length - 1 && !/^\s*\},?\s*$/.test(linhas[fim])) fim++;
   return linhas.slice(ini, fim + 1);
 }
-const CAMPOS = ["enunciado", "alternativas", "gabarito", "explicacaoGeral", "explicacoesAlternativas", "referencias", "imagemUrl", "imagemPendente", "status", "motivoStatus", "assuntoId", "dificuldadeManual"];
+const CAMPOS = ["enunciado", "alternativas", "gabarito", "explicacaoGeral", "explicacoesAlternativas", "referencias", "imagemUrl", "imagemPendente", "status", "motivoStatus", "assuntoId", "dificuldadeManual", "justificativaEm"];
 export function camposAlterados(antes, depois){
   const por = bloco => { const m = {}; (bloco || []).forEach(l => { for(const c of CAMPOS){ if(new RegExp(`(^|\\s|,)${c}:`).test(l) && l.trim().startsWith(c + ":")) m[c] = l.trim(); } }); return m; };
   const a = por(antes), d = por(depois);

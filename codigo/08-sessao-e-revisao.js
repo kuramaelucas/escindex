@@ -881,7 +881,7 @@ function renderQuestionCard(q, opts){
 }
 function renderFeedbackQuestao(q, opts){
   const correta = opts.selecionada === q.gabarito;
-  let html = `<div class="feedback-box ${correta?"ok":"no"}"><strong>${correta?"Resposta correta.":"Resposta incorreta."}</strong> Gabarito: ${q.gabarito}.<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`;
+  let html = `<div class="feedback-box ${correta?"ok":"no"}"><strong>${correta?"Resposta correta.":"Resposta incorreta."}</strong> Gabarito: ${q.gabarito}.<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>${htmlMesDaJustificativa(q)}`;
   if(q.explicacoesAlternativas && q.explicacoesAlternativas[opts.selecionada] && opts.selecionada!==q.gabarito){
     html += `<br><br><em>Sobre a alternativa que você marcou:</em> <span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao-alt"))}>${htmlComDestaques(q.explicacoesAlternativas[opts.selecionada], alvoDeQuestao(q.id,"explicacao-alt"), true)}</span>`;
   }

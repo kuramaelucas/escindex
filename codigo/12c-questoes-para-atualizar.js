@@ -27,7 +27,7 @@
    pasta dados/, para um ajuste automático de taxonomia num navegador não
    virar "correção" para a turma inteira. */
 const CAMPOS_CORRIGIVEIS = ["enunciado", "alternativas", "gabarito", "explicacaoGeral", "explicacoesAlternativas", "referencias",
-  "imagemUrl", "imagemLegenda", "imagemPendente", "status", "motivoStatus"];
+  "imagemUrl", "imagemLegenda", "imagemPendente", "status", "motivoStatus", "justificativaEm"];
 const MARCA_TEXTO_INCOMPLETO = /\[texto incompleto/i;
 
 function podeAtualizarQuestoes(u){

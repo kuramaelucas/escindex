@@ -309,6 +309,28 @@ function irQuestaoSimuladoIndice(i){ acumularTempoQuestaoSimulado(); state.sessa
 function confirmarSairSimulado(){
   abrirModal(`${cabecalhoJanela("Sair sem salvar?")}<p>Se sair agora, suas respostas deste simulado não serão registradas.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="fecharModal();state.sessaoAtual=null;navigate('simulados')">Sair mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Continuar simulado</button></div>`);
 }
+/* O botão "Finalizar simulado": com questão em branco ou, no modo aprendizado,
+   alternativa marcada e não confirmada (não conta como resposta), pergunta
+   antes — terminar sem perceber que ficaram questões para trás não tem volta.
+   O fim por tempo esgotado chama finalizarSimulado() direto, sem perguntar. */
+function pedirFinalizarSimulado(){
+  const s = state.sessaoAtual; if(!s || s.finalizado) return;
+  const pendentes = [], emBranco = [];
+  s.itens.forEach((it, i) => {
+    if(s.respostasSimulado[it.questaoId] !== undefined) return;
+    if((s.escolhaPendente || {})[it.questaoId]) pendentes.push(i); else emBranco.push(i);
+  });
+  if(!pendentes.length && !emBranco.length){ finalizarSimulado(); return; }
+  const lista = l => l.slice(0, 12).map(i => i+1).join(", ") + (l.length > 12 ? "…" : "");
+  abrirModalTitulado("Finalizar o simulado?", `
+    <p class="text-sm">Tem certeza? Depois de finalizar não dá para responder mais.</p>
+    ${emBranco.length ? `<p class="text-sm mt-1"><strong>${emBranco.length}</strong> questão(ões) sem resposta (nº ${lista(emBranco)}). Em branco, a questão conta como errada na nota.</p>` : ""}
+    ${pendentes.length ? `<p class="text-sm mt-1"><strong>${pendentes.length}</strong> com alternativa marcada mas <strong>não confirmada</strong> (nº ${lista(pendentes)}). Sem confirmar, a marcação não vale como resposta.</p>` : ""}
+    <div class="flex gap-1 mt-3 quebra">
+      <button class="btn btn-primary" onclick="fecharModal(); irQuestaoSimuladoIndice(${(emBranco.concat(pendentes).sort((a,b)=>a-b))[0]})">Voltar e responder (nº ${(emBranco.concat(pendentes).sort((a,b)=>a-b))[0]+1})</button>
+      <button class="btn btn-secondary" onclick="fecharModal(); finalizarSimulado()">Finalizar assim mesmo</button>
+    </div>`);
+}
 function finalizarSimulado(){
   const sessao = state.sessaoAtual; const u = usuarioAtual();
   if(sessao.finalizado) return;
@@ -399,7 +421,7 @@ function renderSimuladoAtivo(){
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
   <div class="flex justify-between mt-2">
     <button class="btn btn-secondary" onclick="irQuestaoSimulado(-1)" ${sessao.indiceAtual===0?"disabled":""}>Anterior</button>
-    ${sessao.indiceAtual < sessao.itens.length-1 ? `<button class="btn btn-secondary" onclick="irQuestaoSimulado(1)">Próxima</button>` : `<button class="btn btn-primary" onclick="finalizarSimulado()">Finalizar simulado</button>`}
+    ${sessao.indiceAtual < sessao.itens.length-1 ? `<button class="btn btn-secondary" onclick="irQuestaoSimulado(1)">Próxima</button>` : `<button class="btn btn-primary" onclick="pedirFinalizarSimulado()">Finalizar simulado</button>`}
   </div>
   </div>`;
 }

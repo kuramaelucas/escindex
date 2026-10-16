@@ -125,6 +125,22 @@ function dataLocalISO(d){
 }
 function hojeISO(){ return dataLocalISO(CONFIG.hoje()); }
 
+/* Quando a justificativa da questão foi escrita (AAAA-MM): serve para saber
+   quais explicações revisar quando uma diretriz muda. Questão sem o campo usa
+   o mês de criação, que na prática é o mês em que a explicação nasceu. */
+function mesDaJustificativa(q){
+  const m = String((q && (q.justificativaEm || q.criadoEm)) || "").slice(0, 7);
+  return /^\d{4}-\d{2}$/.test(m) ? m : "";
+}
+function rotuloMesDaJustificativa(q){
+  const m = mesDaJustificativa(q); if(!m) return "";
+  const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  return meses[parseInt(m.slice(5), 10) - 1] + "/" + m.slice(0, 4);
+}
+function htmlMesDaJustificativa(q){
+  const r = rotuloMesDaJustificativa(q);
+  return r ? `<div class="text-xs muted mt-1 justificativa-mes" title="Mês em que esta justificativa foi escrita; diretrizes podem mudar depois">justificativa de ${r}</div>` : "";
+}
 function formatDataBR(iso){
   if(!iso) return "—";
   const [a,m,d] = iso.slice(0,10).split("-");

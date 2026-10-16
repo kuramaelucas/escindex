@@ -80,7 +80,7 @@ export function questaoComoTexto(q){
   if(q.referencias !== undefined) L.push("  referencias:" + js(q.referencias) + ",");
   L.push("  " + pares("dificuldadeManual", "status", "motivoStatus") + ",");
   L.push("  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},");
-  L.push("  " + pares("criadoPor", "criadoEm"));
+  L.push("  " + pares("criadoPor", "criadoEm", "justificativaEm"));
   L.push("}");
   return L.join("\n");
 }

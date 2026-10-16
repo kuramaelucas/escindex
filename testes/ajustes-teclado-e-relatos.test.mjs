@@ -87,3 +87,48 @@ test("relatos: agrupa por questão, registra sem texto de aluno e acha os campos
   assert.deepEqual(camposAlterados(a, d), ["explicacaoGeral"]);
   assert.equal(blocoDaQuestao(arq("q-a"), "q-z").length, 4, "o bloco para na chave da própria questão");
 });
+
+test("finalizar simulado com questão em branco ou marcada sem confirmar pergunta antes", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const ids = db.questoes.filter(q => !q.tipo && q.status === "ativa" && !aguardaImagem(q)).slice(0, 3).map(q => q.id);
+      db.simulados.push({ id: "sim-fin", titulo: "Fin", questoes: ids, duracaoMin: 30, tipo: "simulado_professor" });
+      iniciarSimulado("sim-fin");
+      const s = state.sessaoAtual;
+      s.respostasSimulado[ids[0]] = "A";
+      s.escolhaPendente = { [ids[1]]: "B" };
+      pedirFinalizarSimulado();
+      const texto = document.querySelector("#modalOverlayAtivo").textContent;
+      const aindaAberto = !state.sessaoAtual.finalizado;
+      fecharModal();
+      s.respostasSimulado[ids[1]] = "B"; s.respostasSimulado[ids[2]] = "C";
+      pedirFinalizarSimulado();
+      return { texto, aindaAberto, semPergunta: state.sessaoAtual.finalizado === true };
+    });
+    assert.match(r.texto, /Tem certeza/);
+    assert.match(r.texto, /1 questão\(ões\) sem resposta/);
+    assert.match(r.texto, /não confirmada/);
+    assert.ok(r.aindaAberto, "perguntar não finaliza");
+    assert.ok(r.semPergunta, "tudo respondido finaliza direto");
+  } finally { await contexto.close(); }
+});
+
+test("o mês da justificativa aparece pequeno e o destaque não muda a largura do texto", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const rotulo = rotuloMesDaJustificativa({ justificativaEm: "2026-10" }), antigo = rotuloMesDaJustificativa({ criadoEm: "2025-03-02" });
+      document.body.insertAdjacentHTML("beforeend", `<p id="tp" style="font-weight:400">texto <strong class="parametro">dez</strong></p>`);
+      const e = document.querySelector("#tp strong"), cs = getComputedStyle(e);
+      return { rotulo, antigo, peso: cs.fontWeight, esq: cs.paddingLeft, dir: cs.paddingRight, html: htmlMesDaJustificativa({ justificativaEm: "2026-10" }) };
+    });
+    assert.equal(r.rotulo, "out/2026");
+    assert.equal(r.antigo, "mar/2025", "sem o campo vale o mês de criação");
+    assert.equal(r.peso, "400", "sem negrito, que alarga as letras");
+    assert.equal(r.esq + r.dir, "0px0px", "sem padding, que empurra palavras para a linha de baixo");
+    assert.match(r.html, /justificativa de out\/2026/);
+  } finally { await contexto.close(); }
+});
