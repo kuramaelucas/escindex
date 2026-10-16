@@ -1,7 +1,7 @@
 /* ferramentas/medir-banco-adaptado.mjs — mede um banco de questões adaptadas (autorais) em
    relação à prova real em que se inspiram, sem abrir arquivo nenhum.
 
-   Uso: node ferramentas/medir-banco-adaptado.mjs banco-unifesp-2025-adaptado prova-unifesp-2025
+   Uso: node ferramentas/medir-banco-adaptado.mjs banco-simulado-epm-2 prova-unifesp-2025
 
    O que mede (os números que o pedido de simulado exige):
    - a letra do gabarito (cada uma perto de 25%) e a sequência mais longa da mesma letra;

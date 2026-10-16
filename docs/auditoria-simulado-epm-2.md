@@ -1,8 +1,8 @@
-# Auditoria do Simulado EPM 2027 - 1
+# Auditoria do Simulado EPM 2
 
-Gerada em 15/10/2026 a partir de `dados/banco-unifesp-2025-adaptado.js` e `dados/simulados-equipe.js` (simulado `sim-epm2027-1`, 100 questões, 240 minutos, sem bloco recomendado). Os números são **posições no simulado**, que seguem a ordem da prova da UNIFESP-EPM 2025 (a questão *n* do simulado é a adaptação da questão *n* da prova real). O id da questão no banco é `q-adap25-NNN`, com NNN igual à posição.
+Gerada em 16/10/2026 a partir de `dados/banco-simulado-epm-2.js` e `dados/simulados-equipe.js` (simulado `sim-epm2`, 100 questões, 240 minutos, sem bloco recomendado). Os números são **posições no simulado**, que seguem a ordem da prova da UNIFESP-EPM 2025 (a questão *n* do simulado é a adaptação da questão *n* da prova real). O id da questão no banco é `q-adap25-NNN`, com NNN igual à posição.
 
-O que este documento é: o registro do que foi medido e do que **não** foi conferido em fonte oficial. As medidas se repetem com `node ferramentas/medir-banco-adaptado.mjs banco-unifesp-2025-adaptado prova-unifesp-2025`; as figuras, com `node ferramentas/figuras-banco-unifesp-2025-adaptado.mjs`.
+O que este documento é: o registro do que foi medido e do que **não** foi conferido em fonte oficial. As medidas se repetem com `node ferramentas/medir-banco-adaptado.mjs banco-simulado-epm-2 prova-unifesp-2025`; as figuras, com `node ferramentas/figuras-banco-simulado-epm-2.mjs`.
 
 ## 1. Regra de construção
 
@@ -168,7 +168,7 @@ Legenda: **Gab.** = letra do gabarito (e posição por tamanho, de 1ª a 4ª); *
 | 68 | Câncer de Mama | C | D (4ª) | 21% | memória |
 | 69 | Ciclo Menstrual e Distúrbios | C | D (4ª) | 9% | busca |
 | 70 | Miomatose Uterina | A | B (4ª) | 45% | memória |
-| 71 | Climatério | B | C (4ª) | 26% | memória |
+| 71 | Climatério | B | C (4ª) | 30% | memória |
 | 72 | Diabetes Mellitus Gestacional | D | A (1ª) | 16% | memória |
 | 73 | Infertilidade Conjugal | C | D (1ª) | 44% | memória |
 | 74 | Aloimunização Rh e Doença Hemolítica Perinatal | A | B (3ª) | 28% | memória |
@@ -1537,7 +1537,7 @@ A alternativa B está correta. Dicas do enunciado: **sangramento menstrual inten
 
 ### 71. Climatério
 
-Mulher, 52 anos, com menopausa aos 50 anos, histerectomizada por mioma há 3 anos, com ovários preservados, queixa-se há 1 ano de fogachos intensos, sudorese noturna e insônia. Não tem história de câncer de mama, tromboembolismo ou doença cardiovascular. PA de 118/76 mmHg, IMC de 24 kg/m² e mamografia normal. Deseja tratamento medicamentoso. Qual é a terapia hormonal mais adequada?
+Mulher, 52 anos, histerectomizada por mioma há 3 anos, com ovários preservados, queixa-se há 2 anos de fogachos intensos, sudorese noturna e insônia, com FSH de 62 mUI/mL. Não tem história de câncer de mama, tromboembolismo ou doença cardiovascular. PA de 118/76 mmHg, IMC de 24 kg/m² e mamografia normal. Deseja tratamento medicamentoso. Qual é a terapia hormonal mais adequada?
 
 - **A)** Estrogênio associado a progestogênio contínuo, para proteger o endométrio.
 - **B)** Progestogênio isolado em dose alta, que controla os fogachos de modo equivalente.
@@ -1550,7 +1550,7 @@ Mulher, 52 anos, com menopausa aos 50 anos, histerectomizada por mioma há 3 ano
 
 <details><summary>Explicação</summary>
 
-A alternativa C está correta. Dicas do enunciado: **sintomas vasomotores intensos** (fogachos, sudorese e insônia), **52 anos e menopausa há 2 anos** (menos de 60 anos e menos de 10 anos de menopausa: janela favorável), **sem contraindicações** (sem câncer de mama, tromboembolismo ou doença cardiovascular) e **sem útero** (histerectomia). O estrogênio isolado trata os sintomas e dispensa o progestogênio, cuja função é proteger o endométrio contra a hiperplasia causada pelo estrogênio, e ele traz riscos próprios (mama, tromboembolismo). A está errada porque o progestogênio é desnecessário sem útero e acrescenta risco. B está errada porque o progestogênio isolado não é equivalente ao estrogênio no controle dos sintomas vasomotores. D está errada porque a tibolona é uma alternativa isolada ao esquema estroprogestativo, e não se associa ao estrogênio.
+A alternativa C está correta. Dicas do enunciado: **sintomas vasomotores intensos** (fogachos, sudorese e insônia), **52 anos, sintomas há 2 anos e FSH de 62 mUI/mL** (faixa de menopausa, que não pode ser definida pela amenorreia depois da histerectomia; menos de 60 anos e menos de 10 anos de menopausa: janela favorável), **sem contraindicações** (sem câncer de mama, tromboembolismo ou doença cardiovascular) e **sem útero** (histerectomia). O estrogênio isolado trata os sintomas e dispensa o progestogênio, cuja função é proteger o endométrio contra a hiperplasia causada pelo estrogênio, e ele traz riscos próprios (mama, tromboembolismo). A está errada porque o progestogênio é desnecessário sem útero e acrescenta risco. B está errada porque o progestogênio isolado não é equivalente ao estrogênio no controle dos sintomas vasomotores. D está errada porque a tibolona é uma alternativa isolada ao esquema estroprogestativo, e não se associa ao estrogênio.
 
 </details>
 
@@ -1767,9 +1767,9 @@ A alternativa A está correta. Dicas do enunciado: **3 semanas de rifampicina, i
 
 Lactente de 4 meses e 10 dias, nascido a termo e saudável, é levado à unidade básica de saúde pela primeira vez depois da maternidade. A caderneta mostra apenas BCG e a primeira dose da vacina contra hepatite B, ao nascer. Segundo o Programa Nacional de Imunizações, qual das vacinas abaixo não pode mais ser iniciada por ter ultrapassado a idade máxima para a primeira dose?
 
-- **A)** Pentavalente (DTP, Hib e hepatite B), que não tem idade máxima para a primeira dose.
+- **A)** Pentavalente (DTP, Hib e hepatite B), que ainda pode ser iniciada com essa idade.
 - **B)** Rotavírus humano, pois a primeira dose só pode ser administrada até os 3 meses e 15 dias de idade.
-- **C)** Poliomielite inativada, que pode ser iniciada em qualquer idade durante a infância da criança.
+- **C)** Poliomielite inativada, que pode ser iniciada até os 4 anos, 11 meses e 29 dias de idade.
 - **D)** Pneumocócica 10-valente, que pode ser iniciada até os 4 anos, 11 meses e 29 dias de idade.
 
 **Gabarito: B.** Questão-base da prova de 2025: nº 83, gabarito oficial A.
@@ -1778,7 +1778,7 @@ Lactente de 4 meses e 10 dias, nascido a termo e saudável, é levado à unidade
 
 <details><summary>Explicação</summary>
 
-A alternativa B está correta. Dicas do enunciado: lactente de **4 meses e 10 dias** (já ultrapassou 3 meses e 15 dias), com esquema atrasado (só **BCG e hepatite B ao nascer**). A vacina contra o rotavírus tem **idade-limite**: a primeira dose pode ser dada de **1 mês e 15 dias a 3 meses e 15 dias**, e a segunda, até 7 meses e 29 dias, por causa do risco de invaginação intestinal com doses tardias; por isso, ela não pode mais ser iniciada. A está errada porque a pentavalente pode ser iniciada em atraso, mesmo depois dos 4 meses. C está errada porque a vacina inativada contra a poliomielite pode ser iniciada em qualquer idade. D está errada porque a pneumocócica 10-valente pode ser aplicada, em esquema reduzido, até os 4 anos, 11 meses e 29 dias, sem limite de 3 meses e 15 dias.
+A alternativa B está correta. Dicas do enunciado: lactente de **4 meses e 10 dias** (já ultrapassou 3 meses e 15 dias), com esquema atrasado (só **BCG e hepatite B ao nascer**). A vacina contra o rotavírus tem **idade-limite**: a primeira dose pode ser dada de **1 mês e 15 dias a 3 meses e 15 dias**, e a segunda, até 7 meses e 29 dias, por causa do risco de invaginação intestinal com doses tardias; por isso, ela não pode mais ser iniciada. A está errada porque a pentavalente pode ser iniciada em atraso, mesmo depois dos 4 meses. C está errada porque a vacina inativada contra a poliomielite pode ser iniciada até os 4 anos, 11 meses e 29 dias. D está errada porque a pneumocócica 10-valente pode ser aplicada, em esquema reduzido, até os 4 anos, 11 meses e 29 dias, sem limite de 3 meses e 15 dias.
 
 </details>
 
@@ -2101,6 +2101,6 @@ Recém-nascido de 10 dias, a termo, com microcefalia, hepatoesplenomegalia, pet�
 
 <details><summary>Explicação</summary>
 
-A alternativa A está correta. Dicas do enunciado: **microcefalia**, **calcificações periventriculares**, **ventriculomegalia**, **hepatoesplenomegalia**, **petéquias**, **icterícia colestática**, **perda auditiva** e **PCR positiva para citomegalovírus na urina nas primeiras 3 semanas de vida** (o que confirma a infecção congênita): doença congênita sintomática com comprometimento do sistema nervoso central. O tratamento antiviral indicado é o **valganciclovir oral (16 mg/kg a cada 12 horas) por 6 meses**, iniciado no primeiro mês de vida, que melhora a evolução auditiva e do neurodesenvolvimento, com controle de neutrófilos e transaminases. B está errada porque o esquema de 6 semanas de ganciclovir endovenoso é o esquema antigo, de menor benefício e maior toxicidade. C está errada porque o aciclovir trata o herpes simples e não é ativo contra o citomegalovírus. D está errada porque a imunoglobulina hiperimune não tem eficácia comprovada no recém-nascido infectado.
+A alternativa A está correta. Dicas do enunciado: **microcefalia**, **calcificações periventriculares**, **ventriculomegalia**, **hepatoesplenomegalia**, **petéquias**, **icterícia colestática**, **perda auditiva** e **PCR positiva para citomegalovírus na urina colhida nas primeiras 2 semanas de vida** (dentro das 3 primeiras semanas, o que confirma a infecção congênita): doença congênita sintomática com comprometimento do sistema nervoso central. O tratamento antiviral indicado é o **valganciclovir oral (16 mg/kg a cada 12 horas) por 6 meses**, iniciado no primeiro mês de vida, que melhora a evolução auditiva e do neurodesenvolvimento, com controle de neutrófilos e transaminases. B está errada porque o esquema de 6 semanas de ganciclovir endovenoso é o esquema antigo, de menor benefício e maior toxicidade. C está errada porque o aciclovir trata o herpes simples e não é ativo contra o citomegalovírus. D está errada porque a imunoglobulina hiperimune não tem eficácia comprovada no recém-nascido infectado.
 
 </details>

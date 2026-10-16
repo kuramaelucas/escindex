@@ -10,9 +10,9 @@
    misturarem à prova de 2025 em Provas Antigas. A explicação segue o padrão de
    justificativa e cada questão cita a diretriz de base com edição e ano; o que
    não pôde ser conferido no texto oficial está dito na referência da questão
-   e em docs/auditoria-simulado-epm-2027.md.
+   e em docs/auditoria-simulado-epm-2.md.
    ========================================================================== */
-window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
+window.EscDados.registrarQuestoes("banco-simulado-epm-2", [
 // adaptada da estrutura da Q1 da UNIFESP 2025
 {
   id:"q-adap25-001", banca:"Esc — Banco Didático", real:false, ano:2027,
@@ -25,7 +25,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Gan TJ et al. Fourth Consensus Guidelines for the Management of Postoperative Nausea and Vomiting. Anesth Analg 2020;131:411-48; Fifth Consensus Guidelines for the Management of PONV, sumário executivo (Anesth Analg, 2025); Apfel CC et al. Anesthesiology 1999;91:693-700.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q2 da UNIFESP 2025
 {
@@ -39,7 +39,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Vogel JD et al. Clinical Practice Guideline for the Management of Colonic Volvulus and Acute Colonic Pseudo-Obstruction (ASCRS). Dis Colon Rectum 2016;59:589-600.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q3 da UNIFESP 2025
 {
@@ -53,7 +53,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"American College of Surgeons. ATLS – Advanced Trauma Life Support, 10ª ed., 2018 (a 11ª ed., de 2025, não foi conferida); EAU Guidelines on Urological Trauma, 2024.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q4 da UNIFESP 2025
 {
@@ -67,7 +67,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Isselbacher EM et al. 2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease. Circulation 2022;146:e334-e482; Erbel R et al. 2014 ESC Guidelines on aortic diseases.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q5 da UNIFESP 2025
 {
@@ -81,7 +81,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Tenner S et al. American College of Gastroenterology Guideline: Management of Acute Pancreatitis. Am J Gastroenterol 2024;119:419-437; Crockett SD et al. AGA Institute Guideline on Initial Management of Acute Pancreatitis. Gastroenterology 2018;154:1096-1101.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q6 da UNIFESP 2025
 {
@@ -95,7 +95,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed., capítulo de malformações do trato digestório; Holcomb GW, Murphy JP, St Peter SD. Holcomb and Ashcraft's Pediatric Surgery, 7ª ed., 2020.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q7 da UNIFESP 2025
 {
@@ -109,7 +109,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Krishnan U et al. ESPGHAN-NASPGHAN Guidelines for the Evaluation and Treatment of Gastrointestinal and Nutritional Complications in Children With Esophageal Atresia-Tracheoesophageal Fistula. J Pediatr Gastroenterol Nutr 2016;63:550-570; Holcomb GW et al. Holcomb and Ashcraft's Pediatric Surgery, 7ª ed., 2020.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q8 da UNIFESP 2025
 {
@@ -123,7 +123,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"British Orthopaedic Association/BAPRAS. Standards for the Management of Open Fractures of the Lower Limb (BOAST), 2017; Gustilo RB, Anderson JT. J Bone Joint Surg Am 1976;58:453-8; Thorne CH et al. Grabb and Smith's Plastic Surgery, 8ª ed., 2019.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q9 da UNIFESP 2025
 {
@@ -137,7 +137,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Wanhainen A et al. European Society for Vascular Surgery (ESVS) 2024 Clinical Practice Guidelines on the Management of Abdominal Aorto-Iliac Artery Aneurysms. Eur J Vasc Endovasc Surg 2024;67:192-331; Chaikof EL et al. SVS Practice Guidelines on AAA. J Vasc Surg 2018;67:2-77.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q10 da UNIFESP 2025
 {
@@ -151,7 +151,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Higgins JPT et al. (ed.). Cochrane Handbook for Systematic Reviews of Interventions, versão 6.4, 2023 (ferramenta RoB 2); Schulz KF et al. CONSORT 2010 Statement. BMJ 2010;340:c332.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q11 da UNIFESP 2025
 {
@@ -165,7 +165,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Hall J et al. ASCRS Clinical Practice Guidelines for the Management of Left-Sided Colonic Diverticulitis. Dis Colon Rectum 2020;63:728-747; Sartelli M et al. 2020 update of the WSES guidelines for acute colonic diverticulitis in the emergency setting. World J Emerg Surg 2020;15:32.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q12 da UNIFESP 2025
 {
@@ -179,7 +179,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Roberts ME et al. BTS Guideline for Pleural Disease. Thorax 2023;78(Suppl 3):s1-s42; Bedawi EO et al. ERS/ESTS statement on the management of pleural infection in adults. Eur Respir J 2023;61:2201062.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q13 da UNIFESP 2025
 {
@@ -193,7 +193,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Silvestri GA et al. Methods for Staging Non-small Cell Lung Cancer: Diagnosis and Management of Lung Cancer, 3ª ed., ACCP Guidelines. Chest 2013;143(5 Suppl):e211S-e250S; De Leyn P et al. ESTS guidelines for preoperative lymph node staging for non-small cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-798.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q14 da UNIFESP 2025
 {
@@ -207,7 +207,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Grillo HC. Surgery of the Trachea and Bronchi. Hamilton: BC Decker, 2004; FDA Public Health Notification: Complications from Metallic Tracheal Stents in Patients with Benign Airway Disorders, 2005.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q15 da UNIFESP 2025
 {
@@ -221,7 +221,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Babjuk M et al. EAU Guidelines on Non-muscle-invasive Bladder Cancer (TaT1 and CIS), edição 2024; Holzbeierlein JM et al. Diagnosis and Treatment of Non-Muscle Invasive Bladder Cancer: AUA/SUO Guideline, 2024 (J Urol 2024;211:533-538).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q16 da UNIFESP 2025
 {
@@ -235,7 +235,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Lerner LB et al. Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline. J Urol 2021;206:806-817 (emenda de 2023); Sociedade Brasileira de Urologia, consensos de HPB.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q17 da UNIFESP 2025
 {
@@ -249,7 +249,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Bodenham A et al. Association of Anaesthetists of Great Britain and Ireland: Safe vascular access 2016. Anaesthesia 2016;71:573-585; Practice Guidelines for Central Venous Access 2020, ASA Task Force (Anesthesiology 2020;132:8-43; a recomendação sobre punção arterial inadvertida não pôde ser conferida no texto).",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q18 da UNIFESP 2025
 {
@@ -263,7 +263,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Chey WD et al. ACG Clinical Guideline: Treatment of Helicobacter pylori Infection. Am J Gastroenterol 2024;119:1730-1753; Coelho LGV et al. IV Brazilian Consensus Conference on Helicobacter pylori infection. Arq Gastroenterol 2018;55:97-121.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q19 da UNIFESP 2025
 {
@@ -277,7 +277,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Kattah JC et al. HINTS to diagnose stroke in the acute vestibular syndrome. Stroke 2009;40:3504-3510; Edlow JA et al. Guidelines for Reasonable and Appropriate Care in the Emergency Department 3 (GRACE-3): Acute dizziness and vertigo in the emergency department. Acad Emerg Med 2023.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q20 da UNIFESP 2025
 {
@@ -291,7 +291,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Benjaminse A, Gokeler A, van der Schans CP. Clinical diagnosis of an anterior cruciate ligament rupture: a meta-analysis. J Orthop Sports Phys Ther 2006;36:267-288.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q21 da UNIFESP 2025
 {
@@ -306,7 +306,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Byrne RA et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J 2023;44:3720-3826; Rao SV et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. Circulation 2025;151:e771-e862 (tempos e classes conferidos apenas em resumos).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q22 da UNIFESP 2025
 {
@@ -320,7 +320,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Bilezikian JP et al. Evaluation and Management of Primary Hyperparathyroidism: Summary Statement and Guidelines from the Fifth International Workshop. J Bone Miner Res 2022;37:2293-2314 (critérios conferidos na 4ª edição, J Clin Endocrinol Metab 2014;99:3561-3569; o texto da 5ª não pôde ser aberto).",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q23 da UNIFESP 2025
 {
@@ -334,7 +334,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Part 11: Post-Cardiac Arrest Care. 2025 American Heart Association Guidelines for CPR and Emergency Cardiovascular Care. Circulation 2025;152 (valores conferidos em resumos da AHA, não no texto integral); Sociedade Brasileira de Cardiologia. Diretriz de Ressuscitação Cardiopulmonar e Cuidados Cardiovasculares de Emergência, 2019.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q24 da UNIFESP 2025
 {
@@ -348,7 +348,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Katznelson L et al. Acromegaly: An Endocrine Society Clinical Practice Guideline. J Clin Endocrinol Metab 2014;99:3933-3951.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q25 da UNIFESP 2025
 {
@@ -362,7 +362,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Rohde LEP et al. Diretriz Brasileira de Insuficiência Cardíaca Crônica e Aguda. Arq Bras Cardiol 2018;111:436-539, e atualização de 2021 (Arq Bras Cardiol 2021;116:1174-1212); McDonagh TA et al. 2021 ESC Guidelines for heart failure (Eur Heart J 2021;42:3599-3726) e atualização de 2023; Heidenreich PA et al. 2022 AHA/ACC/HFSA Guideline (Circulation 2022;145:e895-e1032).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q26 da UNIFESP 2025
 {
@@ -376,7 +376,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"McKeith IG et al. Diagnosis and management of dementia with Lewy bodies: Fourth consensus report of the DLB Consortium. Neurology 2017;89:88-100.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q27 da UNIFESP 2025
 {
@@ -390,7 +390,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Tamma PD et al. IDSA 2024 Guidance on the Treatment of Antimicrobial-Resistant Gram-Negative Infections. Clin Infect Dis 2024 (ciae403); Harris PNA et al. Effect of piperacillin-tazobactam vs meropenem on 30-day mortality (MERINO). JAMA 2018;320:984-994.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q28 da UNIFESP 2025
 {
@@ -404,7 +404,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Bosch X, Poch E, Grau JM. Rhabdomyolysis and acute kidney injury. N Engl J Med 2009;361:62-72; KDIGO Clinical Practice Guideline for Acute Kidney Injury. Kidney Int Suppl 2012;2:1-138.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q29 da UNIFESP 2025
 {
@@ -418,7 +418,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Constituição Federal de 1988, art. 203, V; Lei nº 8.742/1993 (LOAS), art. 20, com redação da Lei nº 14.176/2021; Lei nº 8.213/1991 (benefícios da Previdência Social).",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q30 da UNIFESP 2025
 {
@@ -433,7 +433,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026. Intensive Care Med 2026 (doi 10.1007/s00134-026-08361-1; recomendações conferidas em resumos); Evans L et al. Surviving Sepsis Campaign 2021. Crit Care Med 2021;49:e1063-e1143.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q31 da UNIFESP 2025
 {
@@ -447,7 +447,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314; KDIGO 2021 Clinical Practice Guideline for the Management of Blood Pressure in CKD. Kidney Int 2021;99(3S):S1-S87.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q32 da UNIFESP 2025
 {
@@ -461,7 +461,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"McDonagh TA et al. 2021 ESC Guidelines for the diagnosis and treatment of acute and chronic heart failure. Eur Heart J 2021;42:3599-3726; Felker GM et al. Diuretic strategies in patients with acute decompensated heart failure (DOSE). N Engl J Med 2011;364:797-805; Rohde LEP et al. Diretriz Brasileira de Insuficiência Cardíaca Crônica e Aguda. Arq Bras Cardiol 2018;111:436-539.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q33 da UNIFESP 2025
 {
@@ -475,7 +475,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Spasovski G et al. Clinical practice guideline on diagnosis and treatment of hyponatraemia. Eur J Endocrinol 2014;170:G1-G47; Verbalis JG et al. Diagnosis, evaluation, and treatment of hyponatremia: expert panel recommendations. Am J Med 2013;126(10 Suppl 1):S1-S42.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q34 da UNIFESP 2025
 {
@@ -489,7 +489,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Smolen JS et al. EULAR recommendations for the management of rheumatoid arthritis with synthetic and biological DMARDs: 2022 update. Ann Rheum Dis 2023;82:3-18; Fraenkel L et al. 2021 ACR Guideline for the Treatment of Rheumatoid Arthritis. Arthritis Rheumatol 2021;73:1108-1123.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q35 da UNIFESP 2025
 {
@@ -503,7 +503,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Hanseníase, 2022; Brasil. Ministério da Saúde. Diretrizes para vigilância, atenção e eliminação da hanseníase como problema de saúde pública: manual técnico-operacional, 2016.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q36 da UNIFESP 2025
 {
@@ -517,7 +517,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Konstantinides SV et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism. Eur Heart J 2020;41:543-603 (não foi encontrada edição mais nova); Meyer G et al. Fibrinolysis for patients with intermediate-risk pulmonary embolism (PEITHO). N Engl J Med 2014;370:1402-1411.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q37 da UNIFESP 2025
 {
@@ -531,7 +531,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026. Intensive Care Med 2026 (doi 10.1007/s00134-026-08361-1; conferida em resumos); Evans L et al. Surviving Sepsis Campaign 2021. Crit Care Med 2021;49:e1063-e1143; Semler MW et al. SMART. N Engl J Med 2018;378:829-839.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q38 da UNIFESP 2025
 {
@@ -545,7 +545,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia: ATS/IDSA Guideline. Am J Respir Crit Care Med 2019;200:e45-e67 (atualização da ATS de 2025 sobre imagem, antibiótico, duração e corticoide, sem mudar a classificação de gravidade); Corrêa RA et al. Diretrizes brasileiras para pneumonia adquirida na comunidade em adultos imunocompetentes, 2018. J Bras Pneumol 2018;44:405-423.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q39 da UNIFESP 2025
 {
@@ -559,7 +559,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Dengue: diagnóstico e manejo clínico: adulto e criança, 6ª ed., Brasília, 2024 (o texto oficial não pôde ser aberto; o esquema do grupo C foi conferido em fluxos estaduais e municipais que o reproduzem, e o do grupo D, de 20 mL/kg, não foi conferido).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q40 da UNIFESP 2025
 {
@@ -573,7 +573,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Kardaun SH et al. Drug reaction with eosinophilia and systemic symptoms (DRESS): an original multisystem adverse drug reaction (RegiSCAR). Br J Dermatol 2013;169:1071-1080; Husain Z et al. J Am Acad Dermatol 2013;68:693.e1-693.e14.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q41 da UNIFESP 2025
 {
@@ -587,7 +587,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke. Stroke 2026 (doi 10.1161/STR.0000000000000513; o limite de 185/110 mmHg foi conferido em resumos); Powers WJ et al. 2019 AHA/ASA Guidelines for the Early Management of Patients With Acute Ischemic Stroke. Stroke 2019;50:e344-e418.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q42 da UNIFESP 2025
 {
@@ -601,7 +601,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Seminario-Vidal L et al. Society of Dermatology Hospitalists supportive care guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults. J Am Acad Dermatol 2020;82:1553-1567; Creamer D et al. UK guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults 2016. Br J Dermatol 2016;174:1194-1227.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q43 da UNIFESP 2025
 {
@@ -615,7 +615,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Wasserstein RL, Lazar NA. The ASA statement on p-values: context, process, and purpose. Am Stat 2016;70:129-133; Altman DG, Bland JM. Absence of evidence is not evidence of absence. BMJ 1995;311:485.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q44 da UNIFESP 2025
 {
@@ -629,7 +629,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2023; Portaria de Consolidação GM/MS nº 4/2017, anexo da Lista Nacional de Notificação Compulsória, com as atualizações posteriores (a edição vigente da lista não foi conferida no texto oficial; o sarampo consta como de notificação imediata em todas as edições conhecidas).",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q45 da UNIFESP 2025
 {
@@ -643,7 +643,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Constituição Federal de 1988, art. 196; Lei nº 8.080/1990 (universalidade); Decreto nº 7.053/2009 (Política Nacional para a População em Situação de Rua); Portaria GM/MS nº 2.436/2017 (PNAB). A norma específica de cadastro sem comprovante de residência não foi conferida no texto.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q46 da UNIFESP 2025
 {
@@ -657,7 +657,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica: Elementos Essenciais, 5ª ed., Artmed, 2014; Laupacis A, Sackett DL, Roberts RS. An assessment of clinically useful measures of the consequences of treatment. N Engl J Med 1988;318:1728-1733.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q47 da UNIFESP 2025
 {
@@ -671,7 +671,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Lei Complementar nº 141, de 13 de janeiro de 2012, arts. 2º a 4º; Constituição Federal de 1988, art. 198, §2º, e ADCT, art. 77.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q48 da UNIFESP 2025
 {
@@ -685,7 +685,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST), 2022; Portaria de Consolidação GM/MS nº 4/2017, anexo da Lista Nacional de Notificação Compulsória, com atualizações posteriores (edição vigente não conferida no texto oficial).",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q49 da UNIFESP 2025
 {
@@ -699,7 +699,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Lei nº 8.142, de 28 de dezembro de 1990, art. 1º, §4º; Conselho Nacional de Saúde. Resolução nº 453, de 10 de maio de 2012.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q50 da UNIFESP 2025
 {
@@ -713,7 +713,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Campos GWS, Domitti AC. Apoio matricial e equipe de referência: uma metodologia para gestão do trabalho interdisciplinar em saúde. Cad Saúde Pública 2007;23:399-407; Brasil. Ministério da Saúde. Portaria GM/MS nº 635, de 22 de maio de 2023 (eMulti).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q51 da UNIFESP 2025
 {
@@ -727,7 +727,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Decreto nº 7.508, de 28 de junho de 2011, art. 5º; Lei nº 8.080/1990, art. 7º.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q52 da UNIFESP 2025
 {
@@ -741,7 +741,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014 (capítulo sobre prevenção); Gordis L. Epidemiologia, 5ª ed., 2017.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q53 da UNIFESP 2025
 {
@@ -756,7 +756,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014 (capítulo sobre diagnóstico); Hanley JA, McNeil BJ. Radiology 1982;143:29-36.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q54 da UNIFESP 2025
 {
@@ -770,7 +770,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Gordis L. Epidemiologia, 5ª ed., 2017 (capítulos sobre estudos caso-controle e medidas de associação); Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., 2014.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q55 da UNIFESP 2025
 {
@@ -784,7 +784,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314; ADA. Standards of Care in Diabetes - 2025, section 11 (Chronic Kidney Disease and Risk Management). Diabetes Care 2025;48(Suppl 1).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q56 da UNIFESP 2025
 {
@@ -798,7 +798,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"American Diabetes Association. Standards of Care in Diabetes - 2025, section 16 (Diabetes Care in the Hospital). Diabetes Care 2025;48(Suppl 1); FDA Drug Safety Communication on SGLT2 inhibitors and ketoacidosis, 2020.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q57 da UNIFESP 2025
 {
@@ -812,7 +812,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014 (capítulo sobre diagnóstico); Gordis L. Epidemiologia, 5ª ed., 2017.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q58 da UNIFESP 2025
 {
@@ -826,7 +826,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Rawlins MD, Thompson JW. Pathogenesis of adverse drug reactions. In: Davies DM (ed.). Textbook of Adverse Drug Reactions. Oxford University Press, 1977; Edwards IR, Aronson JK. Adverse drug reactions: definitions, diagnosis, and management. Lancet 2000;356:1255-1259.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q59 da UNIFESP 2025
 {
@@ -840,7 +840,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Court-Brown CM et al. Rockwood and Green's Fractures in Adults, 9ª ed., 2019 (capítulo sobre fraturas do colo do fêmur); Slobogean GP et al. Management of young femoral neck fractures: is there a consensus? Injury 2015;46:435-440.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q60 da UNIFESP 2025
 {
@@ -854,7 +854,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"US Preventive Services Task Force. Screening for ovarian cancer. JAMA 2018;319:588-594; USPSTF. Screening for breast cancer. JAMA 2024;331:1918-1930; USPSTF. Screening for cervical cancer. JAMA 2018;320:674-686; USPSTF. Screening for colorectal cancer. JAMA 2021;325:1965-1977.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q61 da UNIFESP 2025
 {
@@ -868,7 +868,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Gordis L. Epidemiologia, 5ª ed., 2017 (capítulo sobre desenhos de estudo); Fletcher RH, Fletcher SW, Fletcher GS. Epidemiologia Clínica, 5ª ed., Artmed, 2014; von Elm E et al. STROBE statement. BMJ 2007;335:806-808.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q62 da UNIFESP 2025
 {
@@ -882,7 +882,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Narayanaswami P et al. International consensus guidance for management of myasthenia gravis: 2020 update. Neurology 2021;96:114-122; Wendell LC, Levine JM. Myasthenic crisis. Neurohospitalist 2011;1:16-22.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q63 da UNIFESP 2025
 {
@@ -897,7 +897,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Nussbaum RL, McInnes RR, Willard HF. Thompson & Thompson Genética Médica, 8ª ed., 2016 (capítulo sobre padrões de herança monogênica); Bennett RL et al. Recommendations for standardized human pedigree nomenclature. J Genet Couns 2008;17:424-433.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q64 da UNIFESP 2025
 {
@@ -911,7 +911,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Hoh BL et al. 2023 Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage. Stroke 2023;54:e314-e370; Post R et al. Short-term tranexamic acid treatment in aneurysmal subarachnoid haemorrhage (ULTRA). Lancet 2021;397:112-118.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q65 da UNIFESP 2025
 {
@@ -925,7 +925,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Concin N et al. ESGO/ESTRO/ESP guidelines for the management of patients with endometrial carcinoma. Int J Gynecol Cancer 2021;31:12-39 (atualização de 2025 não conferida); Berek JS et al. FIGO staging of endometrial cancer: 2023. Int J Gynaecol Obstet 2023;162:383-394.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q66 da UNIFESP 2025
 {
@@ -939,7 +939,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Cameron AP et al. The AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder. J Urol 2024;212:11-20 (as opções foram conferidas em resumos, não no texto); Sociedade Brasileira de Urologia e FEBRASGO, consensos de bexiga hiperativa.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q67 da UNIFESP 2025
 {
@@ -953,7 +953,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Portaria Conjunta SAES/SECTICS nº 13, de 29 de julho de 2025, que aprova a Parte I das Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero (conferida em resumos; o texto oficial não pôde ser aberto); Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero, 2ª ed., INCA, 2016 (substituída).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q68 da UNIFESP 2025
 {
@@ -967,7 +967,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Sandoval-Leon AC et al. Paget's disease of the nipple. Breast Cancer Res Treat 2013;141:1-12; Brasil. Ministério da Saúde/INCA. Diretrizes para a detecção precoce do câncer de mama no Brasil, 2015.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q69 da UNIFESP 2025
 {
@@ -981,7 +981,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome. J Clin Endocrinol Metab 2023;108:2447-2469 (conferido em resumos); Rotterdam ESHRE/ASRM Consensus. Hum Reprod 2004;19:41-47.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q70 da UNIFESP 2025
 {
@@ -995,21 +995,21 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"National Institute for Health and Care Excellence. Heavy menstrual bleeding: assessment and management (NG88), 2018 (atualizada em 2021); Munro MG et al. FIGO classification system (PALM-COEIN) for causes of abnormal uterine bleeding. Int J Gynaecol Obstet 2018;143:393-408.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q71 da UNIFESP 2025
 {
   id:"q-adap25-071", banca:"Esc — Banco Didático", real:false, ano:2027,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-climaterio",
-  enunciado:"Mulher, 52 anos, com menopausa aos 50 anos, histerectomizada por mioma há 3 anos, com ovários preservados, queixa-se há 1 ano de fogachos intensos, sudorese noturna e insônia. Não tem história de câncer de mama, tromboembolismo ou doença cardiovascular. PA de 118/76 mmHg, IMC de 24 kg/m² e mamografia normal. Deseja tratamento medicamentoso. Qual é a terapia hormonal mais adequada?",
+  enunciado:"Mulher, 52 anos, histerectomizada por mioma há 3 anos, com ovários preservados, queixa-se há 2 anos de fogachos intensos, sudorese noturna e insônia, com FSH de 62 mUI/mL. Não tem história de câncer de mama, tromboembolismo ou doença cardiovascular. PA de 118/76 mmHg, IMC de 24 kg/m² e mamografia normal. Deseja tratamento medicamentoso. Qual é a terapia hormonal mais adequada?",
   alternativas:[{id:"A",texto:"Estrogênio associado a progestogênio contínuo, para proteger o endométrio."},{id:"B",texto:"Progestogênio isolado em dose alta, que controla os fogachos de modo equivalente."},{id:"C",texto:"Estrogênio isolado, sem progestogênio, pela ausência de útero."},{id:"D",texto:"Tibolona associada a estrogênio, para ampliar o efeito sobre os sintomas."}],
   gabarito:"C",
-  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **sintomas vasomotores intensos** (fogachos, sudorese e insônia), **52 anos e menopausa há 2 anos** (menos de 60 anos e menos de 10 anos de menopausa: janela favorável), **sem contraindicações** (sem câncer de mama, tromboembolismo ou doença cardiovascular) e **sem útero** (histerectomia). O estrogênio isolado trata os sintomas e dispensa o progestogênio, cuja função é proteger o endométrio contra a hiperplasia causada pelo estrogênio, e ele traz riscos próprios (mama, tromboembolismo). A está errada porque o progestogênio é desnecessário sem útero e acrescenta risco. B está errada porque o progestogênio isolado não é equivalente ao estrogênio no controle dos sintomas vasomotores. D está errada porque a tibolona é uma alternativa isolada ao esquema estroprogestativo, e não se associa ao estrogênio.",
+  explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **sintomas vasomotores intensos** (fogachos, sudorese e insônia), **52 anos, sintomas há 2 anos e FSH de 62 mUI/mL** (faixa de menopausa, que não pode ser definida pela amenorreia depois da histerectomia; menos de 60 anos e menos de 10 anos de menopausa: janela favorável), **sem contraindicações** (sem câncer de mama, tromboembolismo ou doença cardiovascular) e **sem útero** (histerectomia). O estrogênio isolado trata os sintomas e dispensa o progestogênio, cuja função é proteger o endométrio contra a hiperplasia causada pelo estrogênio, e ele traz riscos próprios (mama, tromboembolismo). A está errada porque o progestogênio é desnecessário sem útero e acrescenta risco. B está errada porque o progestogênio isolado não é equivalente ao estrogênio no controle dos sintomas vasomotores. D está errada porque a tibolona é uma alternativa isolada ao esquema estroprogestativo, e não se associa ao estrogênio.",
   explicacoesAlternativas:{},
   referencias:"The 2022 Hormone Therapy Position Statement of The North American Menopause Society. Menopause 2022;29:767-794; Sociedade Brasileira de Climatério. Consenso Brasileiro de Terapêutica Hormonal da Menopausa, 2018 (edição mais nova não conferida).",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q72 da UNIFESP 2025
 {
@@ -1023,7 +1023,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"American Diabetes Association. Standards of Care in Diabetes - 2025, section 15 (Management of Diabetes in Pregnancy). Diabetes Care 2025;48(Suppl 1); American College of Obstetricians and Gynecologists. Practice Bulletin nº 190: Gestational diabetes mellitus. Obstet Gynecol 2018;131:e49-e64.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q73 da UNIFESP 2025
 {
@@ -1037,7 +1037,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Practice Committee of the American Society for Reproductive Medicine. Definitions of infertility and recurrent pregnancy loss: a committee opinion. Fertil Steril 2020;113:533-535; ESHRE Guideline: unexplained infertility. Hum Reprod Open 2023;2023:hoad048.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q74 da UNIFESP 2025
 {
@@ -1051,7 +1051,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"American College of Obstetricians and Gynecologists. Practice Bulletin nº 181: Prevention of Rh D alloimmunization. Obstet Gynecol 2017;130:e57-e70; Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q75 da UNIFESP 2025
 {
@@ -1065,7 +1065,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Ngan HYS et al. Update on the diagnosis and management of gestational trophoblastic disease (FIGO Cancer Report 2018). Int J Gynaecol Obstet 2018;143(Suppl 2):79-85; American College of Obstetricians and Gynecologists. Practice Bulletin nº 53: Diagnosis and treatment of gestational trophoblastic disease, 2004 (reafirmado).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q76 da UNIFESP 2025
 {
@@ -1079,7 +1079,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação e Nota Técnica sobre vacinação da gestante (dTpa a partir da 20ª semana; texto oficial vigente não conferido); Sociedade Brasileira de Imunizações. Calendário de vacinação da gestante, 2025.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q77 da UNIFESP 2025
 {
@@ -1093,7 +1093,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"American College of Obstetricians and Gynecologists. Practice Bulletin nº 190: Gestational diabetes mellitus. Obstet Gynecol 2018;131:e49-e64; ACOG Committee Opinion nº 831: Medically indicated late-preterm and early-term deliveries. Obstet Gynecol 2021;138:e35-e39.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q78 da UNIFESP 2025
 {
@@ -1107,7 +1107,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Tektonidou MG et al. EULAR recommendations for the management of antiphospholipid syndrome in adults. Ann Rheum Dis 2019;78:1296-1304; ESHRE Guideline Group on RPL. ESHRE guideline: recurrent pregnancy loss: an update in 2022. Hum Reprod Open 2023;2023:hoad002.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q79 da UNIFESP 2025
 {
@@ -1121,7 +1121,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"American College of Obstetricians and Gynecologists. Practice Bulletin nº 231: Multifetal gestations: twin, triplet, and higher-order multifetal pregnancies. Obstet Gynecol 2021;137:e145-e162; Barrett JFR et al. A randomized trial of planned cesarean or vaginal delivery for twin pregnancy. N Engl J Med 2013;369:1295-1305.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q80 da UNIFESP 2025
 {
@@ -1136,7 +1136,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Macones GA et al. The 2008 National Institute of Child Health and Human Development workshop report on electronic fetal monitoring. Obstet Gynecol 2008;112:661-666; American College of Obstetricians and Gynecologists. Practice Bulletin nº 106: Intrapartum fetal heart rate monitoring, 2009 (reafirmado); Brasil. Ministério da Saúde. Diretrizes Nacionais de Assistência ao Parto Normal, 2017.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q81 da UNIFESP 2025
 {
@@ -1150,7 +1150,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Bhatla N et al. Revised FIGO staging for carcinoma of the cervix uteri. Int J Gynaecol Obstet 2019;145:129-135; Cibula D et al. ESGO/ESTRO/ESP guidelines for the management of patients with cervical cancer: update 2023. Int J Gynecol Cancer 2023;33:649-666.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q82 da UNIFESP 2025
 {
@@ -1164,21 +1164,21 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed., 2019 (o texto vigente de manejo de reações adversas não pôde ser aberto); Nahid P et al. Official ATS/CDC/ERS/IDSA clinical practice guidelines: treatment of drug-susceptible tuberculosis. Clin Infect Dis 2016;63:e147-e195.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q83 da UNIFESP 2025
 {
   id:"q-adap25-083", banca:"Esc — Banco Didático", real:false, ano:2027,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
   enunciado:"Lactente de 4 meses e 10 dias, nascido a termo e saudável, é levado à unidade básica de saúde pela primeira vez depois da maternidade. A caderneta mostra apenas BCG e a primeira dose da vacina contra hepatite B, ao nascer. Segundo o Programa Nacional de Imunizações, qual das vacinas abaixo não pode mais ser iniciada por ter ultrapassado a idade máxima para a primeira dose?",
-  alternativas:[{id:"A",texto:"Pentavalente (DTP, Hib e hepatite B), que não tem idade máxima para a primeira dose."},{id:"B",texto:"Rotavírus humano, pois a primeira dose só pode ser administrada até os 3 meses e 15 dias de idade."},{id:"C",texto:"Poliomielite inativada, que pode ser iniciada em qualquer idade durante a infância da criança."},{id:"D",texto:"Pneumocócica 10-valente, que pode ser iniciada até os 4 anos, 11 meses e 29 dias de idade."}],
+  alternativas:[{id:"A",texto:"Pentavalente (DTP, Hib e hepatite B), que ainda pode ser iniciada com essa idade."},{id:"B",texto:"Rotavírus humano, pois a primeira dose só pode ser administrada até os 3 meses e 15 dias de idade."},{id:"C",texto:"Poliomielite inativada, que pode ser iniciada até os 4 anos, 11 meses e 29 dias de idade."},{id:"D",texto:"Pneumocócica 10-valente, que pode ser iniciada até os 4 anos, 11 meses e 29 dias de idade."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: lactente de **4 meses e 10 dias** (já ultrapassou 3 meses e 15 dias), com esquema atrasado (só **BCG e hepatite B ao nascer**). A vacina contra o rotavírus tem **idade-limite**: a primeira dose pode ser dada de **1 mês e 15 dias a 3 meses e 15 dias**, e a segunda, até 7 meses e 29 dias, por causa do risco de invaginação intestinal com doses tardias; por isso, ela não pode mais ser iniciada. A está errada porque a pentavalente pode ser iniciada em atraso, mesmo depois dos 4 meses. C está errada porque a vacina inativada contra a poliomielite pode ser iniciada em qualquer idade. D está errada porque a pneumocócica 10-valente pode ser aplicada, em esquema reduzido, até os 4 anos, 11 meses e 29 dias, sem limite de 3 meses e 15 dias.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: lactente de **4 meses e 10 dias** (já ultrapassou 3 meses e 15 dias), com esquema atrasado (só **BCG e hepatite B ao nascer**). A vacina contra o rotavírus tem **idade-limite**: a primeira dose pode ser dada de **1 mês e 15 dias a 3 meses e 15 dias**, e a segunda, até 7 meses e 29 dias, por causa do risco de invaginação intestinal com doses tardias; por isso, ela não pode mais ser iniciada. A está errada porque a pentavalente pode ser iniciada em atraso, mesmo depois dos 4 meses. C está errada porque a vacina inativada contra a poliomielite pode ser iniciada até os 4 anos, 11 meses e 29 dias. D está errada porque a pneumocócica 10-valente pode ser aplicada, em esquema reduzido, até os 4 anos, 11 meses e 29 dias, sem limite de 3 meses e 15 dias.",
   explicacoesAlternativas:{},
   referencias:"Brasil. Ministério da Saúde. Manual de Normas e Procedimentos para Vacinação, 2014; Brasil. Ministério da Saúde. Calendário Nacional de Vacinação da Criança (a edição vigente não pôde ser aberta; a idade-limite do rotavírus se mantém nas edições conhecidas).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q84 da UNIFESP 2025
 {
@@ -1192,7 +1192,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020. World Allergy Organ J 2020;13:100472; Associação Brasileira de Alergia e Imunologia. Guia prático para o manejo da anafilaxia, 2022.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q85 da UNIFESP 2025
 {
@@ -1206,7 +1206,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Solé D et al. Consenso Brasileiro sobre Alergia Alimentar: 2018. Arq Asma Alerg Imunol 2018;2:7-38; Koletzko S et al. Diagnostic approach and management of cow's-milk protein allergy in infants and children: ESPGHAN GI Committee practical guidelines. J Pediatr Gastroenterol Nutr 2012;55:221-229.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q86 da UNIFESP 2025
 {
@@ -1220,7 +1220,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Kelley-Quon LI et al. Management of intussusception in children: a systematic review. J Pediatr Surg 2021;56:587-596; Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q87 da UNIFESP 2025
 {
@@ -1234,7 +1234,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2024 update (a atualização de 2025 não foi conferida no texto); Sociedade Brasileira de Pneumologia e Tisiologia. Diretrizes da SBPT para o manejo da asma, 2020.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q88 da UNIFESP 2025
 {
@@ -1248,7 +1248,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Tabbers MM et al. Evidence-based guidelines for the evaluation and treatment of functional constipation in infants and children: ESPGHAN/NASPGHAN. J Pediatr Gastroenterol Nutr 2014;58:258-274; Hyams JS et al. Functional disorders: children and adolescents (Rome IV). Gastroenterology 2016;150:1456-1468.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q89 da UNIFESP 2025
 {
@@ -1262,7 +1262,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Sociedade Brasileira de Pediatria. Diretrizes para Reanimação do Recém-Nascido ≥34 semanas em sala de parto, 2022; Aziz K et al. Part 5: Neonatal Resuscitation. 2020 AHA Guidelines for CPR and ECC. Circulation 2020;142(Suppl 2):S524-S550 (a edição de 2025 da AHA não foi conferida).",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q90 da UNIFESP 2025
 {
@@ -1276,7 +1276,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Manual Técnico da Triagem Neonatal Biológica, 2016; Léger J et al. European Society for Paediatric Endocrinology consensus guidelines on screening, diagnosis, and management of congenital hypothyroidism. J Clin Endocrinol Metab 2014;99:363-384.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q91 da UNIFESP 2025
 {
@@ -1290,7 +1290,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Fibrose Cística (edição vigente não aberta); Farrell PM et al. Diagnosis of cystic fibrosis: consensus guidelines from the Cystic Fibrosis Foundation. J Pediatr 2017;181S:S4-S15.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q92 da UNIFESP 2025
 {
@@ -1304,7 +1304,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Barbosa PJB et al. Diretrizes Brasileiras para o diagnóstico, tratamento e prevenção da febre reumática. Arq Bras Cardiol 2009;93(3 Supl 4):1-18; Gerber MA et al. Prevention of rheumatic fever and diagnosis and treatment of acute Streptococcal pharyngitis. Circulation 2009;119:1541-1551; Gewitz MH et al. Revision of the Jones Criteria. Circulation 2015;131:1806-1818 (atualização brasileira posterior não conferida).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q93 da UNIFESP 2025
 {
@@ -1318,7 +1318,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"World Health Organization. WHO recommendations on antenatal corticosteroids for improving preterm birth outcomes, 2022; McGoldrick E et al. Antenatal corticosteroids for accelerating fetal lung maturation for women at risk of preterm birth. Cochrane Database Syst Rev 2020;12:CD004454; ACOG Committee Opinion nº 713. Obstet Gynecol 2017;130:e102-e109.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q94 da UNIFESP 2025
 {
@@ -1332,7 +1332,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Fawaz R et al. Guideline for the evaluation of cholestatic jaundice in infants: NASPGHAN and ESPGHAN. J Pediatr Gastroenterol Nutr 2017;64:154-168; Sociedade Brasileira de Pediatria. Documento científico: colestase neonatal e atresia de vias biliares.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q95 da UNIFESP 2025
 {
@@ -1346,7 +1346,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Baile WF et al. SPIKES: a six-step protocol for delivering bad news. Oncologist 2000;5:302-311; Back A, Arnold R, Tulsky J. Mastering Communication with Seriously Ill Patients. Cambridge University Press, 2009 (respostas empáticas, mnemônico NURSE).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q96 da UNIFESP 2025
 {
@@ -1360,7 +1360,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed., 2021 (capítulos de crescimento e de doenças da tireoide); Sperling MA (ed.). Sperling Pediatric Endocrinology, 5ª ed., Elsevier, 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q97 da UNIFESP 2025
 {
@@ -1374,7 +1374,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Lei nº 8.069/1990 (Estatuto da Criança e do Adolescente), art. 13; Lei nº 13.431/2017 (escuta especializada e depoimento especial); Lei nº 14.344/2022 (Lei Henry Borel); Brasil. Ministério da Saúde. Linha de cuidado para a atenção integral à saúde de crianças, adolescentes e suas famílias em situação de violências, 2010.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q98 da UNIFESP 2025
 {
@@ -1388,7 +1388,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022; American College of Obstetricians and Gynecologists. Practice Bulletin nº 187: Neural tube defects. Obstet Gynecol 2017;130:e279-e290; US Preventive Services Task Force. Folic acid supplementation to prevent neural tube defects. JAMA 2023;330:454-459.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q99 da UNIFESP 2025
 {
@@ -1402,7 +1402,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   referencias:"Brasil. Ministério da Saúde. Protocolo de notificação e investigação: toxoplasmose gestacional e congênita, 2018; Maldonado YA, Read JS. Diagnosis, treatment, and prevention of congenital toxoplasmosis in the United States. Pediatrics 2017;139:e20163860.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 },
 // adaptada da estrutura da Q100 da UNIFESP 2025
 {
@@ -1411,11 +1411,11 @@ window.EscDados.registrarQuestoes("banco-unifesp-2025-adaptado", [
   enunciado:"Recém-nascido de 10 dias, a termo, com microcefalia, hepatoesplenomegalia, petéquias e icterícia colestática. A tomografia de crânio mostra calcificações periventriculares e dilatação ventricular, e a emissão otoacústica está ausente nos dois ouvidos. A reação em cadeia da polimerase da urina, colhida nas primeiras duas semanas de vida, é positiva para citomegalovírus. Qual é o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Valganciclovir por via oral por 6 meses, com controle de neutrófilos."},{id:"B",texto:"Ganciclovir por via endovenosa por 6 semanas, seguido de observação clínica."},{id:"C",texto:"Aciclovir por via endovenosa por 21 dias, em dose alta, pela doença do sistema nervoso central."},{id:"D",texto:"Imunoglobulina hiperimune contra citomegalovírus, em dose única, e acompanhamento ambulatorial."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **microcefalia**, **calcificações periventriculares**, **ventriculomegalia**, **hepatoesplenomegalia**, **petéquias**, **icterícia colestática**, **perda auditiva** e **PCR positiva para citomegalovírus na urina nas primeiras 3 semanas de vida** (o que confirma a infecção congênita): doença congênita sintomática com comprometimento do sistema nervoso central. O tratamento antiviral indicado é o **valganciclovir oral (16 mg/kg a cada 12 horas) por 6 meses**, iniciado no primeiro mês de vida, que melhora a evolução auditiva e do neurodesenvolvimento, com controle de neutrófilos e transaminases. B está errada porque o esquema de 6 semanas de ganciclovir endovenoso é o esquema antigo, de menor benefício e maior toxicidade. C está errada porque o aciclovir trata o herpes simples e não é ativo contra o citomegalovírus. D está errada porque a imunoglobulina hiperimune não tem eficácia comprovada no recém-nascido infectado.",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **microcefalia**, **calcificações periventriculares**, **ventriculomegalia**, **hepatoesplenomegalia**, **petéquias**, **icterícia colestática**, **perda auditiva** e **PCR positiva para citomegalovírus na urina colhida nas primeiras 2 semanas de vida** (dentro das 3 primeiras semanas, o que confirma a infecção congênita): doença congênita sintomática com comprometimento do sistema nervoso central. O tratamento antiviral indicado é o **valganciclovir oral (16 mg/kg a cada 12 horas) por 6 meses**, iniciado no primeiro mês de vida, que melhora a evolução auditiva e do neurodesenvolvimento, com controle de neutrófilos e transaminases. B está errada porque o esquema de 6 semanas de ganciclovir endovenoso é o esquema antigo, de menor benefício e maior toxicidade. C está errada porque o aciclovir trata o herpes simples e não é ativo contra o citomegalovírus. D está errada porque a imunoglobulina hiperimune não tem eficácia comprovada no recém-nascido infectado.",
   explicacoesAlternativas:{},
   referencias:"Kimberlin DW et al. Valganciclovir for symptomatic congenital cytomegalovirus disease. N Engl J Med 2015;372:933-943; Rawlinson WD et al. Congenital cytomegalovirus infection in pregnancy and the neonate: consensus recommendations for prevention, diagnosis, and therapy. Lancet Infect Dis 2017;17:e177-e188.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-15"
+  criadoPor:"seed", criadoEm:"2026-10-16"
 }
 ]);

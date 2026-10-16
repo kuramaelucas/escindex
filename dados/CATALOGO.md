@@ -11,7 +11,7 @@
 | `calendario.js` | CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada | 9 calendário |  |
 | `banco-didatico.js` | BANCO DIDÁTICO — 135 questões autorais | 135 questões | 1 anulada(s) |
 | `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais | 100 questões |  |
-| `banco-unifesp-2025-adaptado.js` | BANCO UNIFESP 2025 ADAPTADO — 100 questões autorais | 100 questões |  |
+| `banco-simulado-epm-2.js` | BANCO UNIFESP 2025 ADAPTADO — 100 questões autorais | 100 questões |  |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 — Acesso Direto (100 questões reais) | 100 questões | 1 anulada(s) |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 — Acesso Direto (100 questões reais) | 100 questões | 4 anulada(s) |
 | `prova-unifesp-2024.js` | UNIFESP-EPM 2024 — Acesso Direto (100 questões reais) | 100 questões | 3 anulada(s) |

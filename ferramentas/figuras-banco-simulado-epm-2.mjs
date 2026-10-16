@@ -1,8 +1,8 @@
-/* ferramentas/figuras-banco-unifesp-2025-adaptado.mjs — gera as figuras (PNG) das
+/* ferramentas/figuras-banco-simulado-epm-2.mjs — gera as figuras (PNG) das
    questões do banco adaptado da UNIFESP 2025 em que o dado é visual por natureza
    (eletrocardiograma, ritmo, curva ROC, heredograma, cardiotocografia, curva de crescimento).
 
-   Uso: node ferramentas/figuras-banco-unifesp-2025-adaptado.mjs [id ...]
+   Uso: node ferramentas/figuras-banco-simulado-epm-2.mjs [id ...]
    Saída: dados/imagens/q-adap25-NNN.png
 
    São ilustrações esquemáticas, desenhadas por código a partir dos números do
