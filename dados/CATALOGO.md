@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 7240 questões (6805 reais, 435 autorais), 943 cartões, 270 assuntos, 3 simulado(s), 80 arquivos.
+**Total:** 7840 questões (7405 reais, 435 autorais), 943 cartões, 270 assuntos, 3 simulado(s), 85 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -81,6 +81,11 @@
 | `prova-unicamp-2024-dissertativa.js` | UNICAMP (dissertativa) 2024 — Residência Médica, Acesso Direto (provas de respostas curtas, manhã e tarde) | 120 questões |  |
 | `prova-unicamp-2025-dissertativa.js` | UNICAMP (dissertativa) 2025 — Residência Médica, Acesso Direto (provas de respostas curtas, manhã e tarde) | 100 questões |  |
 | `prova-unifesp-discente-2026-2.js` | UNIFESP-EPM — Avaliação Discente do Internato (Medicina) 2026.2 | 100 questões |  |
+| `prova-uspsp-simulado-1.js` | Simulados USP SP — 05/04/2025 2025 — Competências Médicas I e II, simulado do 5º ano (FMUSP) | 120 questões |  |
+| `prova-uspsp-simulado-2.js` | Simulados USP SP — 07/06/2025 2025 — Competências Médicas I e II, simulado 2 do 5º ano (FMUSP) | 120 questões |  |
+| `prova-uspsp-simulado-5.js` | Simulados USP SP — Simulado 5 (05/2025) 2025 — Simulado 5 do 5º ano, gabarito comentado (FMUSP) | 120 questões |  |
+| `prova-uspsp-simulado-4.js` | Simulados USP SP — Simulado 4 (04/2025) 2025 — Simulado 4, todo o conteúdo, gabarito comentado (FMUSP) | 120 questões |  |
+| `prova-uspsp-simulado-3.js` | Simulados USP SP — Simulado 3, 6º ano (03/2025) 2025 — Simulado 3, conteúdo do 6º ano, gabarito comentado (FMUSP) | 120 questões |  |
 | `flashcards-equipe.js` | FLASHCARDS DA EQUIPE — 501 cartões autorais | 501 flashcards |  |
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
 | `flashcards-assuntos-usp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-SP (57 cartões) | 57 flashcards |  |
