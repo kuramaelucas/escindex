@@ -470,6 +470,16 @@ create table if not exists public.sessao_em_andamento (
 );
 create index if not exists sessao_em_andamento_sync_idx on public.sessao_em_andamento (usuario_id, atualizado_em);
 
+-- Uma linha por pessoa e simulado. dados = null significa "descartado/finalizado".
+create table if not exists public.simulados_em_andamento (
+  usuario_id    uuid        not null references auth.users(id) on delete cascade,
+  simulado_id   text        not null,
+  dados         jsonb,
+  atualizado_em timestamptz not null default now(),
+  primary key (usuario_id, simulado_id)
+);
+create index if not exists simulados_em_andamento_sync_idx on public.simulados_em_andamento (usuario_id, atualizado_em);
+
 -- ---------------------------------------------------------------------------
 -- 11. CALENDARIO — a sequência de blocos de cada ano (ESTADO, mas GLOBAL)
 -- ---------------------------------------------------------------------------
@@ -805,7 +815,7 @@ begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
-    'sessao_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
+    'sessao_em_andamento', 'simulados_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
     'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados'
   ] loop
@@ -913,6 +923,7 @@ alter table public.flashcards_pessoais  enable row level security;
 alter table public.sessoes              enable row level security;
 alter table public.resultados_simulados enable row level security;
 alter table public.sessao_em_andamento  enable row level security;
+alter table public.simulados_em_andamento enable row level security;
 alter table public.calendario           enable row level security;
 alter table public.livro_ouro           enable row level security;
 alter table public.formatacao_aprovada  enable row level security;
@@ -1286,7 +1297,7 @@ begin
   foreach t in array array[
     'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes', 'log_revisoes_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
-    'sessoes', 'resultados_simulados', 'sessao_em_andamento'
+    'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'simulados_em_andamento'
   ] loop
     execute format('drop policy if exists %1$s_ler     on public.%1$I', t);
     execute format('drop policy if exists %1$s_criar   on public.%1$I', t);
@@ -1357,7 +1368,7 @@ begin
   foreach t in array array[
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes', 'log_revisoes_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
-    'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'calendario',
+    'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'simulados_em_andamento', 'calendario',
     'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
     'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados', 'push_inscricoes'

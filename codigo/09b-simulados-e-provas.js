@@ -211,7 +211,7 @@ function iniciarSimulado(simuladoId){
 /* ---------- simulado em andamento (guardar, continuar, recomeçar) ----------
    Sair da prova não pode custar as respostas: a cada resposta, troca de
    questão ou saída o estado inteiro vai para db.simuladosEmAndamento. O guardado
-   fica com o relógio PARADO (pausadoDesde), então o tempo longe da tela não
+   sobe para a nuvem (continua em outro aparelho) e fica com o relógio PARADO (pausadoDesde), então o tempo longe da tela não
    conta ao continuar — retomarCronometroSimulado() empurra os marcos. */
 function simuladoGuardado(simuladoId, usuarioId){
   const u = usuarioId || (usuarioAtual() || {}).id;
@@ -225,11 +225,15 @@ function guardarSimuladoEmAndamento(){
   if(!copia.pausadoDesde) copia.pausadoDesde = Date.now();
   if(!db.simuladosEmAndamento) db.simuladosEmAndamento = {};
   (db.simuladosEmAndamento[u.id] = db.simuladosEmAndamento[u.id] || {})[s.simuladoId] = copia;
+  nuvemRegistrar({usuarioId:u.id, simuladoId:s.simuladoId, simuladoEmAndamento:copia});
   saveState();
 }
 function descartarSimuladoGuardado(simuladoId){
   const u = usuarioAtual(); if(!u || !db.simuladosEmAndamento || !db.simuladosEmAndamento[u.id]) return;
-  if(db.simuladosEmAndamento[u.id][simuladoId]){ delete db.simuladosEmAndamento[u.id][simuladoId]; saveState(); }
+  if(db.simuladosEmAndamento[u.id][simuladoId]){ delete db.simuladosEmAndamento[u.id][simuladoId];
+    nuvemRegistrar({usuarioId:u.id, simuladoId, simuladoEmAndamento:"apagar"});
+    saveState();
+  }
 }
 function continuarSimulado(simuladoId){
   const g = simuladoGuardado(simuladoId);

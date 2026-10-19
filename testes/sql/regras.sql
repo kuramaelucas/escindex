@@ -53,6 +53,9 @@ select pg_temp.tem_de_falhar($$update perfis set papel='admin' where id='0000000
 insert into destaques(id,usuario_id,alvo,inicio,fim,trecho) values ('d1','00000000-0000-0000-0000-00000000000a','q:q1:enunciado',3,9,'trecho');
 select pg_temp.tem_de_falhar($$insert into destaques(id,usuario_id,alvo,inicio,fim,trecho) values ('d2','00000000-0000-0000-0000-00000000000b','q:q1:enunciado',0,4,'x')$$, 'destaque em nome de outra pessoa');
 update destaques set removido=true where id='d1';
+-- simulado em andamento: cada pessoa guarda só o seu
+insert into simulados_em_andamento(usuario_id,simulado_id,dados) values ('00000000-0000-0000-0000-00000000000a','sim1','{"indiceAtual":2}');
+select pg_temp.tem_de_falhar($$insert into simulados_em_andamento(usuario_id,simulado_id,dados) values ('00000000-0000-0000-0000-00000000000b','sim1','{}')$$, 'simulado guardado em nome de outra pessoa');
 select pg_temp.igual((select count(*) from destaques where removido), 1, 'a pessoa desmarca o próprio destaque');
 
 -- o registro de cada avaliação de cartão e as colunas novas da resposta: só do dono
@@ -67,6 +70,7 @@ select pg_temp.igual((select count(*) from perfis where modo_plataforma = 'estat
 
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);
 select pg_temp.igual((select count(*) from destaques), 0, 'ninguém lê o destaque de outra pessoa');
+select pg_temp.igual((select count(*) from simulados_em_andamento), 0, 'ninguém lê o simulado em andamento de outra pessoa');
 select pg_temp.igual((select count(*) from log_revisoes_cartoes), 0, 'ninguém lê o log de cartões de outra pessoa');
 insert into comentarios(id,questao_id,usuario_id,autor_nome,texto,resposta_oficial) values ('c4','q1','00000000-0000-0000-0000-00000000000d','Res D','resposta',true);
 select pg_temp.igual((select count(*) from painel_turma()), 0, 'residente não vê o painel da turma');
