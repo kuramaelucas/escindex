@@ -8,6 +8,14 @@
    `real: true`. A origem do gabarito e o que ficou pendente (anuladas,
    figuras) se anotam aqui, neste cabeçalho.
 
+   Origem: caderno de questões e gabarito oficial do simulado da USP-SP de
+   05/04/2025 (PDFs). Questões e alternativas foram transcritas; texto
+   confuso foi mantido como no original. Gabaritos alterados pela equipe:
+   Q91 (A→C) e Q95 (B→D), cada um com a nota de alteração na própria questão.
+   Q68 e Q93 trazem as alternativas em imagem no original: viraram uma única
+   montagem rotulada. Mantidos como no gabarito oficial, mas discutíveis
+   (a explicação diz por quê): Q8, Q15, Q21, Q24, Q56, Q70, Q88, Q90, Q109.
+
    @ficha {"banca":"Simulados USP SP — 05/04/2025","ano":2025,"prefixo":"q-uspsp1","alternativas":4,"total":120,"tipoProva":"graduacao","semestre":1}
    ========================================================================== */
 window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [

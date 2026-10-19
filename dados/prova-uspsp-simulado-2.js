@@ -8,6 +8,12 @@
    `real: true`. A origem do gabarito e o que ficou pendente (anuladas,
    figuras) se anotam aqui, neste cabeçalho.
 
+   Origem: caderno de questões e gabarito oficial do simulado da USP-SP de
+   07/06/2025 (PDFs). Gabarito oficial mantido em todas as 120; discutíveis
+   (a explicação diz por quê): Q32, Q54, Q56, Q65, Q74 (AAS em prevenção
+   secundária), Q88, Q98, Q112 (alternativas imprecisas). O caderno repetia a
+   Q49 dentro da alternativa D da Q48; o texto foi separado.
+
    @ficha {"banca":"Simulados USP SP — 07/06/2025","ano":2025,"prefixo":"q-uspsp2","alternativas":4,"total":120,"tipoProva":"graduacao","semestre":1}
    ========================================================================== */
 window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
