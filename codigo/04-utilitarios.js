@@ -141,6 +141,22 @@ function htmlMesDaJustificativa(q){
   const r = rotuloMesDaJustificativa(q);
   return r ? `<div class="text-xs muted mt-1 justificativa-mes" title="Mês em que esta justificativa foi escrita; diretrizes podem mudar depois">justificativa de ${r}</div>` : "";
 }
+/* QUESTÃO ALTERADA. A equipe pode ter mexido no texto de uma questão de prova
+   real (dado ou unidade corrigidos, pergunta mais clara, gabarito revisado). O
+   campo `questaoAlterada` diz em uma frase o que mudou e NÃO torna a questão
+   autoral: ela continua `real:true`, da banca e do ano de origem. O selo
+   aparece sempre, para o aluno saber que o texto não é o do caderno; a frase
+   só depois de responder, porque ela pode revelar o gabarito. */
+function notaDeQuestaoAlterada(q){
+  return q && typeof q.questaoAlterada === "string" ? q.questaoAlterada.trim() : "";
+}
+function badgeQuestaoAlterada(q){
+  return notaDeQuestaoAlterada(q) ? '<span class="badge badge-amber badge-questao-alterada" title="A equipe alterou esta questão em relação à prova original; o que mudou aparece depois que você responde">Questão alterada</span>' : "";
+}
+function htmlAvisoQuestaoAlterada(q){
+  const nota = notaDeQuestaoAlterada(q);
+  return nota ? `<div class="card-flat mt-2 text-xs borda-alerta aviso-questao-alterada">${iconeSvg("alert")} <strong>Questão alterada</strong> em relação à prova original: ${escapeHtml(nota)}</div>` : "";
+}
 function formatDataBR(iso){
   if(!iso) return "—";
   const [a,m,d] = iso.slice(0,10).split("-");

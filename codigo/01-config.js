@@ -199,7 +199,7 @@ const CONFIG = {
   // conteúdo logo acima de SEED_QUESTOES.
   instituicoesReferencia: ["UNIFESP-EPM", "USP-SP (FMUSP)", "USP-RP (FMRP)", "Santa Casa de São Paulo (FCMSCSP)", "IAMSPE", "UNESP (FMB)", "AMRIGS", "FAMEMA"],
   // o mesmo, para as provas da graduação
-  instituicoesGraduacao: ["Teste de Progresso"],
+  instituicoesGraduacao: ["Teste de Progresso", "UNIFESP-EPM — Avaliação Discente"],
 
   /* TIPO DE PROVA. Prova de residência (o acesso ao R1) e prova da
      graduação (as provas da faculdade e o Teste de Progresso) medem coisas

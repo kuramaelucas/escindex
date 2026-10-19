@@ -668,7 +668,7 @@ function restaurarResgateConfirmado(){
    o banco salvo, então sem esta lista o simulado tirado do arquivo continuaria
    aparecendo para quem já o tinha no navegador. */
 const SIMULADOS_RETIRADOS_DA_SEMENTE = ["sim-1"];
-const CAMPOS_QUE_O_CONTEUDO_COMPLETA = ["numeroNaProva", "imagemUrl", "imagemLegenda", "imagemPendente", "referencias", "tipoProva", "semestre"];
+const CAMPOS_QUE_O_CONTEUDO_COMPLETA = ["numeroNaProva", "imagemUrl", "imagemLegenda", "imagemPendente", "referencias", "tipoProva", "semestre", "questaoAlterada"];
 function sincronizarConteudoNovo(){
   let novos = 0;
   if(!db.taxonomia) return;

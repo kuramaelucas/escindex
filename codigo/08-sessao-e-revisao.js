@@ -813,6 +813,7 @@ function renderQuestionCard(q, opts){
     <div class="qcard-meta">${classificacao}
       <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
       ${badgeAutoriaQuestao(q)}
+      ${badgeQuestaoAlterada(q)}
       ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-accent" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
       ${(q.banca||"").indexOf("Didático")>=0
         ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'
@@ -920,6 +921,7 @@ function renderRodapeDaQuestaoRespondida(q){
   if(q.status==="anulada" || q.status==="desatualizada"){
     html += `<div class="feedback-box" style="background:var(--amber-soft);border:1px solid var(--amber)"><strong>${iconeSvg("alert")} Atenção:</strong> ${q.status==="anulada"?"esta questão foi anulada.":"esta questão está marcada como desatualizada."} ${escapeHtml(q.motivoStatus||"")} Ela não entra nas suas estatísticas nem em novas sessões.</div>`;
   }
+  html += htmlAvisoQuestaoAlterada(q);
   html += renderReferenciasQuestao(q);
   html += renderAcoesQuestao(q);
   html += renderComentarios(q.id);

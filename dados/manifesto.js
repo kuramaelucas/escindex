@@ -81,6 +81,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-unicamp-2023-dissertativa",
   "prova-unicamp-2024-dissertativa",
   "prova-unicamp-2025-dissertativa",
+  "prova-unifesp-discente-2026-2",
   "flashcards-equipe",
   "flashcards-assuntos-novos",
   "flashcards-assuntos-usp",

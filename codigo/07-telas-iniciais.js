@@ -926,6 +926,7 @@ function abrirQuestaoCompleta(qid, opts){
       <span class="badge badge-muted">${escapeHtml(q.banca)} · ${anoDaProva(q)}</span>
       ${badgeStatusQuestao(q.status)}
       ${badgeAutoriaQuestao(q)}
+      ${badgeQuestaoAlterada(q)}
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}
     </div>
     <div class="qcard-enunciado" style="font-size:var(--fs-base);margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
@@ -934,6 +935,7 @@ function abrirQuestaoCompleta(qid, opts){
       ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span></div>`).join("")}
     </div>`}
     ${ehDissertativa(q) ? `<div class="feedback-box ok mt-2"><strong>Resposta esperada pela banca:</strong><br><span ${atributoDestacavel(alvoDeQuestao(q.id,"resposta-esperada"))}>${htmlComDestaques(q.respostaEsperada||"", alvoDeQuestao(q.id,"resposta-esperada"))}</span>${q.explicacaoGeral?`<br><br><strong>Justificativa:</strong> <span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`:""}</div>` : `<div class="feedback-box ok mt-2"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${q.explicacaoGeral?`<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>${htmlMesDaJustificativa(q)}`:" (sem explicação cadastrada ainda)"}</div>`}
+    ${htmlAvisoQuestaoAlterada(q)}
     ${renderReferenciasQuestao(q)}
     ${(q.explicacoesAlternativas && Object.keys(q.explicacoesAlternativas).length) ? `<div class="card-flat mt-2 text-sm">${Object.entries(q.explicacoesAlternativas).map(([letra,texto])=>`<div class="mb-1"><strong>${escapeHtml(letra)}:</strong> ${htmlComDestaques(texto, null, true)}</div>`).join("")}</div>` : ""}
     ${ultima ? `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Sua última resposta: ${ehDissertativa(q) ? "escrita" : "marcou "+escapeHtml(ultima.alternativaEscolhida)} (${ultima.correta?"correta":"incorreta"}, ${escapeHtml(rotuloConfianca(ultima.confianca))}) em ${formatDataBR(ultima.data)}.</div>` : ""}

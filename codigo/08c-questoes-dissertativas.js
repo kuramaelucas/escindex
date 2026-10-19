@@ -100,6 +100,7 @@ function renderCartaoDissertativa(q, opts){
     <div class="qcard-meta">${classificacao}
       <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
       ${badgeAutoriaQuestao(q)}
+      ${badgeQuestaoAlterada(q)}
       <span class="badge badge-accent" title="Você escreve a resposta e se avalia depois de ver a esperada pela banca">Dissertativa</span>
     </div>
     <div class="qcard-enunciado" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
