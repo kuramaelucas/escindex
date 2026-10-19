@@ -85,6 +85,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-uspsp-simulado-1",
   "prova-uspsp-simulado-2",
   "prova-uspsp-simulado-5",
+  "prova-uspsp-simulado-4",
   "flashcards-equipe",
   "flashcards-assuntos-novos",
   "flashcards-assuntos-usp",
