@@ -115,13 +115,27 @@ function desempenhoPrevioSimulado(simuladoId, titulo){
     variacao: tentativas.length>1 ? ultima.nota - tentativas[tentativas.length-2].nota : null,
   };
 }
+/* DATAS DO SIMULADO. `criadoEm` é quando ele foi montado/enviado para a
+   plataforma; `liberadoEm` (opcional) é quando passou a valer para os alunos.
+   Sem `liberadoEm`, a liberação é a própria criação. O aluno vê as duas
+   datas para saber se o simulado é novo ou se já circula há tempo. */
+function htmlDatasDoSimulado(s){
+  const criado = s.criadoEm ? formatDataBR(s.criadoEm) : "";
+  const liberado = (s.liberadoEm || s.criadoEm) ? formatDataBR(s.liberadoEm || s.criadoEm) : "";
+  if(!liberado) return "";
+  return `<div class="text-xs muted">liberado em ${liberado}${criado && criado !== liberado ? ` · enviado em ${criado}` : ""}</div>`;
+}
 function renderSimuladoCard(s){
   const previo = desempenhoPrevioSimulado(s.id, s.titulo);
+  const andamento = simuladoEmAndamentoDe(usuarioAtual(), s.id);
+  const prog = andamento ? progressoDoSimuladoEmAndamento(andamento) : null;
   return `<div class="card mb-1">
     <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="peso-700">${escapeHtml(s.titulo)}</div>
         <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
+        ${htmlDatasDoSimulado(s)}
+        ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} questões respondidas</span></div>` : ""}
         ${previo ? `<div class="qcard-meta mt-1">
             <span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já feito · última nota ${previo.ultima.nota}%</span>
             <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
@@ -136,7 +150,8 @@ function renderSimuladoCard(s){
         ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="abrirRenomearSimulado('${s.id}')" title="Mudar o nome deste simulado">${iconeSvg("edit")} Renomear</button>` : ""}
         ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
         ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
-        <button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>
+        ${prog ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('${s.id}')">Continuar</button>
+        <button class="btn btn-ghost btn-sm" onclick="iniciarSimulado('${s.id}')" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>` : `<button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>`}
       </div>
     </div>
   </div>`;
@@ -192,9 +207,13 @@ function htmlComparativoSimuladoEstudo(linhas, titulo, intro, opcoes){
     <p class="text-xs muted mt-1">"Fora" soma as questões feitas nas trilhas, na revisão e nas listas. Só há comparação com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.</p>
   </div>`;
 }
-function iniciarSimulado(simuladoId){
+function iniciarSimulado(simuladoId, recomecar){
   if(contaTesteAtiva()){ toast("Simulados ficam fechados na conta de teste.", "err"); return; }
   const s = db.simulados.find(x=>x.id===simuladoId); if(!s) return;
+  if(simuladoEmAndamentoDe(usuarioAtual(), simuladoId)){
+    if(!recomecar){ perguntarRecomecarSimulado(simuladoId, `iniciarSimulado('${simuladoId}', true)`); return; }
+    descartarSimuladoEmAndamento(simuladoId);
+  }
   // simulado montado antes de a questão ficar à espera da figura (ou
   // questão que saiu do banco) não entra — ver aguardaImagem()
   const qids = s.questoes.filter(qid=>{ const q = getQuestao(qid); return q && !aguardaImagem(q); });
@@ -231,7 +250,7 @@ function retomarCronometroSimulado(){
   atualizarCronometro();
 }
 if(typeof document!=="undefined"){
-  document.addEventListener("visibilitychange", () => { if(document.hidden) pausarCronometroSimulado(); else retomarCronometroSimulado(); });
+  document.addEventListener("visibilitychange", () => { if(document.hidden){ pausarCronometroSimulado(); salvarSimuladoEmAndamento(); } else retomarCronometroSimulado(); });
 }
 function acumularTempoQuestaoSimulado(){
   const s = state.sessaoAtual;
@@ -285,9 +304,11 @@ function selecionarAlternativaSimulado(altId){
     // o clique sozinho não revela a explicação por engano
     if(sessao.respostasSimulado[qid] !== undefined) return;
     (sessao.escolhaPendente = sessao.escolhaPendente || {})[qid] = altId;
+    salvarSimuladoEmAndamento();
     render(); return;
   }
   sessao.respostasSimulado[qid] = altId;
+  salvarSimuladoEmAndamento();
   render();
 }
 function confirmarRespostaSimulado(){
@@ -297,18 +318,104 @@ function confirmarRespostaSimulado(){
   if(!escolha){ toast("Escolha uma alternativa antes de confirmar.", "err"); return; }
   sessao.respostasSimulado[qid] = escolha;
   delete sessao.escolhaPendente[qid];
+  salvarSimuladoEmAndamento();
   render();
 }
 function alternarOcultarTimerSimulado(){
   const sessao = state.sessaoAtual; if(!sessao) return;
   sessao.ocultarTimer = !sessao.ocultarTimer;
+  salvarSimuladoEmAndamento();
   render();
 }
-function irQuestaoSimulado(delta){ const s=state.sessaoAtual; acumularTempoQuestaoSimulado(); s.indiceAtual=Math.max(0,Math.min(s.itens.length-1,s.indiceAtual+delta)); render(); }
-function irQuestaoSimuladoIndice(i){ acumularTempoQuestaoSimulado(); state.sessaoAtual.indiceAtual=i; render(); }
+function irQuestaoSimulado(delta){ const s=state.sessaoAtual; acumularTempoQuestaoSimulado(); s.indiceAtual=Math.max(0,Math.min(s.itens.length-1,s.indiceAtual+delta)); salvarSimuladoEmAndamento(); render(); }
+function irQuestaoSimuladoIndice(i){ acumularTempoQuestaoSimulado(); state.sessaoAtual.indiceAtual=i; salvarSimuladoEmAndamento(); render(); }
 function confirmarSairSimulado(){
-  abrirModal(`${cabecalhoJanela("Sair sem salvar?")}<p>Se sair agora, suas respostas deste simulado não serão registradas.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="fecharModal();state.sessaoAtual=null;navigate('simulados')">Sair mesmo assim</button><button class="btn btn-secondary" onclick="fecharModal()">Continuar simulado</button></div>`);
+  abrirModal(`${cabecalhoJanela("Sair do simulado?")}<p class="text-sm">Suas respostas já estão guardadas neste aparelho: você pode <strong>continuar depois</strong>, de onde parou. O relógio fica parado enquanto o simulado está fechado.</p>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-primary" onclick="fecharModal();sairDoSimuladoGuardando()">Sair e continuar depois</button>
+      <button class="btn btn-danger" onclick="fecharModal();sairDoSimuladoDescartando()">Descartar e sair</button>
+      <button class="btn btn-secondary" onclick="fecharModal()">Voltar ao simulado</button>
+    </div>`);
 }
+function sairDoSimuladoGuardando(){
+  salvarSimuladoEmAndamento();
+  pararCronometro();
+  state.sessaoAtual = null;
+  navigate("simulados");
+}
+function sairDoSimuladoDescartando(){
+  const s = state.sessaoAtual;
+  if(s) descartarSimuladoEmAndamento(chaveDoSimuladoEmAndamento(s));
+  pararCronometro();
+  state.sessaoAtual = null;
+  navigate("simulados");
+}
+/* SIMULADO EM ANDAMENTO. Antes, sair da página (ou fechar o navegador) no meio
+   do simulado perdia tudo: a sessão só existia em memória. Agora cada resposta,
+   troca de questão e mudança de modo é guardada em `db.simuladosEmAndamento`
+   (por pessoa e por simulado) e o simulado pode ser retomado de onde parou.
+   O tempo já gasto fica guardado e o relógio só volta a correr ao retomar: a
+   pausa entre uma sessão e outra não conta, como a pausa de trocar de aba.
+   Fica no aparelho (ainda não sobe para a nuvem). A chave é o id do simulado,
+   ou "prova:<título>" quando a prova antiga é feita como simulado. */
+function chaveDoSimuladoEmAndamento(s){ return s.simuladoId || ("prova:" + s.titulo); }
+function simuladoEmAndamentoDe(usuario, chave){
+  const mapa = usuario && db.simuladosEmAndamento && db.simuladosEmAndamento[usuario.id];
+  const g = mapa && mapa[chave];
+  return g && g.itens && g.itens.length ? g : null;
+}
+/* respondidas × total, sobre as questões que ainda existem no banco */
+function progressoDoSimuladoEmAndamento(g){
+  const resp = g.respostasSimulado || {};
+  const itens = (g.itens || []).filter(it => getQuestao(it.questaoId) && !aguardaImagem(getQuestao(it.questaoId)));
+  return { feitas: itens.filter(it => resp[it.questaoId] !== undefined).length, total: itens.length };
+}
+function salvarSimuladoEmAndamento(){
+  const s = state.sessaoAtual, u = usuarioAtual();
+  if(!u || !s || s.tipo !== "simulado" || s.finalizado || s.somenteLeitura || !s.inicioMs) return;
+  acumularTempoQuestaoSimulado();
+  if(!db.simuladosEmAndamento) db.simuladosEmAndamento = {};
+  const mapa = db.simuladosEmAndamento[u.id] = db.simuladosEmAndamento[u.id] || {};
+  mapa[chaveDoSimuladoEmAndamento(s)] = {
+    id: s.id, simuladoId: s.simuladoId || null, titulo: s.titulo, itens: s.itens, indiceAtual: s.indiceAtual,
+    respostasSimulado: {...s.respostasSimulado}, escolhaPendente: {...(s.escolhaPendente || {})},
+    modoAprendizado: !!s.modoAprendizado, ocultarTimer: !!s.ocultarTimer, duracaoMin: s.duracaoMin,
+    tempos: {...(s.tempos || {})}, decorridoMs: Math.max(0, momentoDeReferenciaSimulado(s) - s.inicioMs),
+    iniciadoEm: (mapa[chaveDoSimuladoEmAndamento(s)] || {}).iniciadoEm || hojeISO(), salvaEm: hojeISO(),
+  };
+  saveState();
+}
+function descartarSimuladoEmAndamento(chave){
+  const u = usuarioAtual(), mapa = u && db.simuladosEmAndamento && db.simuladosEmAndamento[u.id];
+  if(mapa && mapa[chave]){ delete mapa[chave]; saveState(); }
+}
+function continuarSimulado(chave){
+  const u = usuarioAtual(), g = simuladoEmAndamentoDe(u, chave);
+  if(!g){ toast("Não há simulado guardado para continuar.", "err"); return; }
+  // questão que saiu do banco (ou ficou à espera da figura) desde então não entra
+  const itens = g.itens.filter(it => { const q = getQuestao(it.questaoId); return q && !aguardaImagem(q); });
+  if(!itens.length){ toast("Este simulado não tem questões disponíveis no momento.", "err"); return; }
+  state.sessaoAtual = { id:g.id, tipo:"simulado", simuladoId:g.simuladoId || null, titulo:g.titulo, itens,
+    indiceAtual: Math.min(g.indiceAtual || 0, itens.length-1), respostasSimulado:{...g.respostasSimulado},
+    duracaoMin:g.duracaoMin, finalizado:false, modoAprendizado:!!g.modoAprendizado, escolhaPendente:{...(g.escolhaPendente || {})},
+    ocultarTimer:!!g.ocultarTimer, pausadoDesde:null, inicioMs: Date.now() - (g.decorridoMs || 0), tsQuestao:Date.now(), tempos:{...(g.tempos || {})} };
+  navigate("simulado-ativo");
+}
+function perguntarRecomecarSimulado(chave, chamadaRecomecar){
+  const g = simuladoEmAndamentoDe(usuarioAtual(), chave); if(!g) return;
+  const p = progressoDoSimuladoEmAndamento(g);
+  abrirModalTitulado("Você já começou este simulado", `
+    <p class="text-sm">Há ${p.feitas} de ${p.total} questões respondidas, guardadas desde ${formatDataBR(g.salvaEm)}. Recomeçar apaga essas respostas.</p>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-primary" onclick="fecharModal();continuarSimulado('${escapeHtml(chave).replace(/'/g,"&#39;")}')">Continuar de onde parei</button>
+      <button class="btn btn-danger" onclick="fecharModal();${chamadaRecomecar}">Recomeçar do zero</button>
+    </div>`);
+}
+/* a página fecha ou some: o tempo gasto até aqui também fica guardado */
+if(typeof window!=="undefined"){
+  window.addEventListener("pagehide", () => { pausarCronometroSimulado(); salvarSimuladoEmAndamento(); });
+}
+
 /* O botão "Finalizar simulado": com questão em branco ou, no modo aprendizado,
    alternativa marcada e não confirmada (não conta como resposta), pergunta
    antes — terminar sem perceber que ficaram questões para trás não tem volta.
@@ -348,6 +455,7 @@ function finalizarSimulado(){
   const nota = pct(acertos, sessao.itens.length);
   db.resultadosSimulados.push({id:uid("res"), usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
   nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
+  if(db.simuladosEmAndamento && db.simuladosEmAndamento[u.id]) delete db.simuladosEmAndamento[u.id][chaveDoSimuladoEmAndamento(sessao)];
   saveState();
   sessao.finalizado = true;
   pararCronometro();
@@ -415,7 +523,7 @@ function renderSimuladoAtivo(){
     ${renderQuestionCard(q, emModoAprendizado ? {selecionada:jaRespondeuEssa ? respostaAtual : escolhaPendente, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
   </div>
   ${emModoAprendizado && !jaRespondeuEssa ? `<div class="flex items-center gap-1 mt-2 quebra">
-    <button class="btn btn-primary" onclick="confirmarRespostaSimulado()" ${escolhaPendente?"":"disabled"}>${iconeSvg("check")} Confirmar resposta <span class="text-xs">(espaço)</span></button>
+    <button class="btn btn-primary" onclick="confirmarRespostaSimulado()" ${escolhaPendente?"":"disabled"}>${iconeSvg("check")} Confirmar resposta</button>
     <span class="text-xs muted">${escolhaPendente?"Depois de confirmar não dá para trocar: a explicação aparece e a resposta fica registrada.":"Escolha uma alternativa e confirme para ver a explicação."}</span>
   </div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
@@ -463,6 +571,7 @@ function revisarErrosDoSimulado(){
 function alternarModoAprendizadoSimulado(){
   const sessao = state.sessaoAtual; if(!sessao) return;
   sessao.modoAprendizado = !sessao.modoAprendizado;
+  salvarSimuladoEmAndamento();
   toast(sessao.modoAprendizado ? "Modo aprendizado ativado: escolha a alternativa e confirme para ver a explicação; a barra passa a mostrar acertos e erros." : "Modo aprendizado desativado — voltando ao formato de prova.");
   render();
 }
@@ -686,9 +795,13 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
         <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
         ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
         ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
+        ${(()=>{ const em = simuladoEmAndamentoDe(u, "prova:Prova "+g.banca+" "+anoDaProva(g)+" (simulado)"); if(!em) return ""; const p = progressoDoSimuladoEmAndamento(em); return `<div class="qcard-meta mb-1"><span class="badge badge-amber">simulado em andamento · ${p.feitas} de ${p.total} respondidas</span></div>`; })()}
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
         <div class="flex gap-1 prova-acoes quebra">
-          ${g.dissertativa ? "" : `<button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>`}
+          ${g.dissertativa ? "" : (simuladoEmAndamentoDe(u, "prova:Prova "+g.banca+" "+anoDaProva(g)+" (simulado)")
+            ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('prova:Prova ${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)} (simulado)')">Continuar o simulado</button>
+               <button class="btn btn-ghost btn-sm" onclick="fazerProvaComoSimulado(${i})" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>`
+            : `<button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>`)}
           ${g.dissertativa || !ehEquipeVendoSimulado() ? "" : `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")}, '${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>`}
           <button class="btn ${g.dissertativa ? "btn-primary" : "btn-secondary"} btn-sm" onclick="praticarProva(${i})">${g.dissertativa ? "Fazer a prova (sem cronômetro)" : "Praticar sem cronômetro"}</button>
         </div>
@@ -756,10 +869,15 @@ function grupoDeProva(indice){
   const grupos = state.filtroRota.provasGrupos || [];
   return grupos[indice] || null;
 }
-function fazerProvaComoSimulado(indice){
+function fazerProvaComoSimulado(indice, recomecar){
   const g = grupoDeProva(indice); if(!g) return;
   if(g.dissertativa){ praticarProva(indice); return; }
   const titulo = "Prova "+g.banca+" "+anoDaProva(g)+" (simulado)";
+  const chave = "prova:"+titulo;
+  if(simuladoEmAndamentoDe(usuarioAtual(), chave)){
+    if(!recomecar){ perguntarRecomecarSimulado(chave, `fazerProvaComoSimulado(${indice}, true)`); return; }
+    descartarSimuladoEmAndamento(chave);
+  }
   state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:null, titulo,
     itens: g.ids.map(id=>({questaoId:id, motivo:"Prova "+g.banca+" "+anoDaProva(g)})), indiceAtual:0, respostasSimulado:{},
     duracaoMin: g.ids.length*2, finalizado:false, modoAprendizado:false,

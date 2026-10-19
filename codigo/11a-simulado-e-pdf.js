@@ -81,7 +81,7 @@ function salvarSimuladoCriado(){
   const titulo = document.getElementById("csTitulo").value.trim() || "Simulado sem título";
   const duracao = parseInt(document.getElementById("csDuracao").value) || Math.max(10,ctx.selecionadas.length*2);
   const blocos = [...document.querySelectorAll(".csBloco:checked")].map(el=>el.value);
-  db.simulados.push({id:uid("sim"), titulo, questoes:ctx.selecionadas.slice(), duracaoMin:duracao, recomendadoParaBlocos:blocos, tipo:"simulado_professor", criadoPor:usuarioAtual().id, criadoEm:hojeISO()});
+  db.simulados.push({id:uid("sim"), titulo, questoes:ctx.selecionadas.slice(), duracaoMin:duracao, recomendadoParaBlocos:blocos, tipo:"simulado_professor", criadoPor:usuarioAtual().id, criadoEm:hojeISO(), liberadoEm:hojeISO()});
   saveState();
   state.filtroRota.criarSimulado = null;
   toast("Simulado criado.");

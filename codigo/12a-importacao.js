@@ -90,7 +90,8 @@ function regrasDeConteudoImportacao(){
   "- Depois: por que CADA uma das outras está errada, uma por uma, na ordem (A, B, C...), começando pelo que o PRÓPRIO ENUNCIADO diz — o dado do caso que a descarta (idade, sexo, tempo de evolução, sinal ou sintoma presente ou ausente, achado do exame físico, resultado de exame, comorbidade, medicação em uso, contexto epidemiológico). Dizer apenas \"não é a conduta indicada\" não serve: o aluno precisa saber ONDE, no caso, a alternativa morre.\n"+
   "- Quando uma alternativa estiver errada por conhecimento que não vem do caso (dose errada, conduta inexistente, conceito trocado), diga isso explicitamente em vez de inventar uma pista no enunciado.\n"+
   "- Escreva isso em texto corrido, numa linha só (o campo EXPLICACAO não aceita quebra de linha).\n\n"+
-  regraDeParametrosObjetivos()+"\n";
+  regraDeParametrosObjetivos()+"\n"+
+  regraDeFisiopatologiaEEpidemiologia()+"\n";
 }
 /* A imagem da questão (ECG, radiografia, foto de lesão) quase nunca tem um
    endereço na internet: ela está no PDF. Por isso a IA só marca que ela

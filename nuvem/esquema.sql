@@ -892,6 +892,31 @@ create trigger proteger_perfil
   before insert or update on public.perfis
   for each row execute function public.proteger_papel_e_status();
 
+-- QUANDO o cadastro foi aprovado (aba Detalhes, em Usuários). A data é do
+-- BANCO, não do site: o gatilho a escreve na hora em que o status passa a
+-- 'aprovado' e a mantém fixa nas demais edições, então ninguém a altera pelo
+-- navegador. Cadastros aprovados antes desta coluna ficam sem data ("—").
+alter table public.perfis add column if not exists aprovado_em timestamptz;
+create or replace function public.carimbar_aprovacao()
+returns trigger
+language plpgsql
+as $$
+begin
+  if tg_op = 'INSERT' then
+    new.aprovado_em := case when new.status = 'aprovado' then now() else null end;
+  elsif new.status = 'aprovado' and old.status is distinct from 'aprovado' then
+    new.aprovado_em := now();
+  else
+    new.aprovado_em := old.aprovado_em;
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists carimbo_aprovacao on public.perfis;
+create trigger carimbo_aprovacao
+  before insert or update on public.perfis
+  for each row execute function public.carimbar_aprovacao();
+
 -- ---------------------------------------------------------------------------
 -- 14. ROW LEVEL SECURITY — cada um enxerga o seu
 -- ---------------------------------------------------------------------------

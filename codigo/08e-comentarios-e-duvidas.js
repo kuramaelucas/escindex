@@ -143,6 +143,20 @@ function regraDeParametrosObjetivos(){
   "- Use os asteriscos só nesses parâmetros (poucos por explicação; nunca em títulos nem em palavras comuns). Se a questão não depende de nenhum parâmetro objetivo, explique normalmente, sem asteriscos.\n";
 }
 
+/* FISIOPATOLOGIA E EPIDEMIOLOGIA NA EXPLICAÇÃO. Explicação que só diz "é o
+   quadro típico" faz o aluno decorar a resposta; o que fixa é o mecanismo (por
+   que o achado aparece, por que a conduta funciona) e o contexto que torna a
+   hipótese provável naquele paciente (frequência, idade, fator de risco). Esta
+   é a ÚNICA definição dessa regra, como a de parâmetros acima: o prompt de
+   importação/transcrição (12a, 12b) e o de tirar dúvida com IA usam este texto. */
+function regraDeFisiopatologiaEEpidemiologia(){
+  return "FISIOPATOLOGIA E EPIDEMIOLOGIA (a explicação ENSINA, não só aponta a resposta):\n"+
+  "- Depois das dicas do enunciado, explique em 1 a 3 frases o MECANISMO fisiopatológico que liga os achados do caso ao diagnóstico ou à conduta: por que o sinal ou o sintoma aparece, por que o exame se altera, por que o tratamento funciona. Não basta dizer \"é o quadro típico\".\n"+
+  "- Dê o contexto EPIDEMIOLÓGICO que torna a hipótese provável neste paciente: frequência relativa entre as causas possíveis, faixa etária e sexo mais afetados, fatores de risco presentes no caso e, quando souber, incidência ou prevalência; diga se o dado vale para o Brasil.\n"+
+  "- Se o mecanismo explica por que uma alternativa errada falha (efeito adverso, contraindicação, ação em outro nível da cadeia), use-o no motivo daquela alternativa.\n"+
+  "- Número epidemiológico só com a fonte em REFERENCIAS; se não tiver certeza do número, diga que não tem, em vez de inventar.\n";
+}
+
 /* ---------- prompt pronto para tirar dúvida com uma IA ---------- */
 function gerarPromptDuvida(q){
   if(ehDissertativa(q)) return "Aja como um médico revisor especialista em provas de residência médica no Brasil.\n\n"+
@@ -167,8 +181,10 @@ function gerarPromptDuvida(q){
   "Quando a alternativa estiver errada por conhecimento que não vem do caso (uma dose errada, uma conduta que não existe, um "+
   "conceito trocado), diga isso explicitamente, em vez de forçar uma justificativa que o enunciado não sustenta.\n"+
   "5) Aponte a pegadinha da questão: qual alternativa é a \"quase certa\", o que a torna atraente e qual detalhe do enunciado a derruba.\n"+
-  "6) Parâmetros objetivos: se a conduta ou o diagnóstico depende de um número, siga o padrão abaixo (é o mesmo das explicações da plataforma).\n\n"+
-  regraDeParametrosObjetivos();
+  "6) Parâmetros objetivos: se a conduta ou o diagnóstico depende de um número, siga o padrão abaixo (é o mesmo das explicações da plataforma).\n"+
+  "7) Fisiopatologia e epidemiologia: explique o mecanismo que liga os achados do caso à resposta e o contexto epidemiológico que torna a hipótese provável, no padrão do último bloco abaixo.\n\n"+
+  regraDeParametrosObjetivos()+"\n"+
+  regraDeFisiopatologiaEEpidemiologia();
 }
 function abrirPromptDuvida(qid){
   const prompt = gerarPromptDuvida(getQuestao(qid));

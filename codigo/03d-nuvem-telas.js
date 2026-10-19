@@ -71,6 +71,13 @@ function nuvemAdotarDadosLocais(idLocal){
   db.sessoes.forEach(s => { if(s.usuarioId === idLocal){ s.usuarioId = meuId; movidos++; nuvemRegistrar({sessaoConcluida:s}); } });
   db.resultadosSimulados.forEach(r => { if(r.usuarioId === idLocal){ r.usuarioId = meuId; movidos++; nuvemRegistrar({resultadoSimulado:r}); } });
 
+  // simulado começado antes do login: fica só neste aparelho, e passa para a conta
+  const simsLocais = (db.simuladosEmAndamento || {})[idLocal];
+  if(simsLocais){
+    if(!db.simuladosEmAndamento[meuId]) db.simuladosEmAndamento[meuId] = {};
+    Object.keys(simsLocais).forEach(k => { if(!db.simuladosEmAndamento[meuId][k]){ db.simuladosEmAndamento[meuId][k] = simsLocais[k]; movidos++; } });
+    delete db.simuladosEmAndamento[idLocal];
+  }
   const fila = (db.sessoesEmAndamento || {})[idLocal];
   if(fila && !db.sessoesEmAndamento[meuId]){
     db.sessoesEmAndamento[meuId] = fila;
