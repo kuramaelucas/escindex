@@ -492,6 +492,7 @@ function renderSimuladoAtivo(){
     <div class="flex gap-1 quebra">
       <button class="btn btn-ghost btn-sm" onclick="alternarOcultarTimerSimulado()" title="O tempo continua correndo e o simulado ainda termina no limite; só some da tela">${iconeSvg(sessao.ocultarTimer?"eye":"eye-off")} ${sessao.ocultarTimer?"Mostrar cronômetro":"Esconder cronômetro"}</button>
       <button class="btn ${emModoAprendizado?"btn-primary":"btn-secondary"} btn-sm" onclick="alternarModoAprendizadoSimulado()" title="Mostra a explicação assim que você responder, sem esperar o fim do simulado">${emModoAprendizado?iconeSvg("check")+" Modo aprendizado ativado":"Ativar modo aprendizado"}</button>
+      <button class="btn btn-ghost btn-sm" onclick="alternarModoFoco()" title="Esconde o menu e o topo para fazer a prova sem distração">${state.modoFoco ? "Sair do foco" : "Modo foco"}</button>
       <button class="btn btn-ghost btn-sm" onclick="confirmarSairSimulado()">Sair sem salvar</button>
     </div>
   </div>

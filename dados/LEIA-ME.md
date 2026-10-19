@@ -271,9 +271,16 @@ imagem, tempo, dose, idade-limite ou escore:
 4. **Escore validado** (Glasgow, APGAR, CURB-65, qSOFA, Wells, CHA2DS2-VASc,
    Child-Pugh, MELD, Alvarado…): calcule-o para o caso, mostre a soma item a
    item e a faixa de risco/conduta correspondente.
+   **Não deixe o escore colado no ponto de corte**: monte o caso com um valor
+   claramente de um lado da faixa (a resposta não pode depender de um ponto
+   só). E **ensine a gravidade**: diga por que cada item pontua daquele jeito
+   (o que a idade, a ureia, a PA etc. medem no organismo), em vez de só somar.
 5. Valores e pontos de corte são os da diretriz citada em `referencias`; se
    mudam com idade, sexo, gestação ou método, diga para quem valem. Sem
    certeza do número, escreva isso — não invente.
+   **Prefira diretrizes brasileiras** (PCDT/Ministério da Saúde, Conitec, SBC,
+   SBD, SBPT, SBP, FEBRASGO, SBU, AMB) às internacionais, citando a fonte; se
+   divergirem, explique a diferença.
 6. Asteriscos só nos parâmetros (poucos por explicação, nunca em título nem
    em palavra comum). Questão que não depende de número não leva asterisco.
 
