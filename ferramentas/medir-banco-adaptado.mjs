@@ -7,15 +7,16 @@
      node ferramentas/medir-banco-adaptado.mjs banco-simulado-epm-2 prova-unifesp-2025 --exigir   (sai com código 1 se faltar meta)
      node ferramentas/medir-banco-adaptado.mjs banco-simulado-epm-2 prova-unifesp-2025 --md       (tabela pronta para a auditoria)
      node ferramentas/medir-banco-adaptado.mjs --todos --exigir        (os bancos de ferramentas/bancos-adaptados.json)
-   Opções: --margem 10 (limite, em %, da alternativa mais longa sobre a 2ª) · --incluir-anteriores (com --todos)
+   Opções: --margem 10 (limite, em %, da alternativa mais longa sobre a 2ª) · --direcao acima (gabarito = letra anterior; padrão abaixo) · --incluir-anteriores (com --todos)
 
    Metas que exigem (as do pedido de simulado):
    - a letra do gabarito: cada uma perto de 100/k % (tolerância de 4 pontos);
    - a posição do gabarito por tamanho de alternativa (1ª a kª), cada uma perto de 100/k %;
    - a alternativa mais longa passa a 2ª em no máximo 10% — olhe posição por posição, não só o máximo;
    - a distribuição por área idêntica à da prova real;
-   - o gabarito é a alternativa SEGUINTE à da prova real (A→B … último→A); onde a real foi anulada
-     a letra é livre e só sai na lista, para conferir o equilíbrio;
+   - o gabarito é a alternativa SEGUINTE à da prova real (A→B … último→A) — ou a ANTERIOR (B→A … A→último)
+     quando o banco declara `"direcao": "acima"` em bancos-adaptados.json; onde a real foi anulada a letra
+     é livre e só sai na lista, para conferir o equilíbrio;
    - o assunto de cada posição é o da questão real da mesma posição;
    - a semelhança do enunciado (palavras de 3 letras ou mais) com o da questão real correspondente e
      com as outras questões reais da mesma prova: no máximo 50%;
@@ -45,6 +46,7 @@ export function medir(novas, reais, outras = [], opcoes = {}){
   const n = novas.length, k = Math.max(...novas.map(q => q.alternativas.length));
   const letras = novas[0].alternativas.map(a => a.id);
   const alvo = 1 / k, tol = METAS.toleranciaPontos / 100;
+  const passo = opcoes.direcao === "acima" ? -1 : 1, nomeDirecao = passo === 1 ? "seguinte" : "anterior";
 
   // letra do gabarito e posição do gabarito por tamanho
   const porLetra = contar(novas, q => q.gabarito);
@@ -70,7 +72,7 @@ export function medir(novas, reais, outras = [], opcoes = {}){
     const r = reais[i]; if(!r) return;
     const ri = letras.indexOf(r.gabarito);
     if(!r.gabarito || r.status === "anulada" || ri < 0) livres.push(i + 1);
-    else if(q.gabarito !== letras[(ri + 1) % k]) falha("gabarito = letra seguinte", `posição ${i + 1} (${q.id}): a real é ${r.gabarito}, o esperado é ${letras[(ri + 1) % k]}, o banco tem ${q.gabarito}`);
+    else if(q.gabarito !== letras[(ri + passo + k) % k]) falha("gabarito = letra seguinte", `posição ${i + 1} (${q.id}): a real é ${r.gabarito}, o esperado (letra ${nomeDirecao}) é ${letras[(ri + passo + k) % k]}, o banco tem ${q.gabarito}`);
     if(r.assuntoId && q.assuntoId !== r.assuntoId) falha("assunto da posição", `posição ${i + 1} (${q.id}): ${q.assuntoId}, a real é ${r.assuntoId}`);
   });
   const livresPorLetra = contar(livres.map(p => novas[p - 1]), q => q.gabarito);
@@ -105,7 +107,7 @@ export function medir(novas, reais, outras = [], opcoes = {}){
   novas.forEach((q, i) => q.alternativas.filter(a => a.id !== q.gabarito).forEach(a => { if(!new RegExp(`\\b${a.id}\\b[^.]{0,40}?errad`).test(q.explicacaoGeral || "")) semComentario.push(`${i + 1}${a.id}`); }));
   const erradas = novas.reduce((s, q) => s + q.alternativas.length - 1, 0), explicadas = erradas - semComentario.length;
 
-  return { violacoes, dados: { n, k, porLetra, porRank, empates: posicoes.filter(p => p.empate).length, maiorMargem: Math.max(...posicoes.map(p => p.margem)), acimaMargem: acimaMargem.length, maiorSeq,
+  return { violacoes, dados: { direcao: opcoes.direcao === "acima" ? "acima" : "abaixo", n, k, porLetra, porRank, empates: posicoes.filter(p => p.empate).length, maiorMargem: Math.max(...posicoes.map(p => p.margem)), acimaMargem: acimaMargem.length, maiorSeq,
     areaNovas, areaReais, livres, livresPorLetra, semComentario, simMax, simPos, simMedia: sim.reduce((a, b) => a + b, 0) / n, simAcima: sim.filter(s => s * 100 > METAS.semelhancaMaxPct).length, cruzada, repetidas, dificuldade, erradas, explicadas } };
 }
 
@@ -119,7 +121,7 @@ export function tabelaMarkdown(r){
     `| Posição do gabarito por tamanho (1ª = mais longa) | ${Object.keys(d.porRank).sort().map(k => `${k}ª ${d.porRank[k]}`).join(", ")} (${d.empates} com empate) | ~${pct1(1 / d.k)} cada | ${ok("posição do gabarito por tamanho")} |`,
     `| Maior margem da alternativa mais longa sobre a 2ª | ${pct1(d.maiorMargem)}; ${d.acimaMargem} posição(ões) acima do limite | no máximo ${METAS.margemMaxPct}% | ${ok("margem de tamanho")} |`,
     `| Distribuição por área | ${lista(d.areaNovas)} | idêntica à da prova real | ${ok("distribuição por área")} |`,
-    `| Gabarito = letra seguinte à da prova real | ${d.livres.length} posição(ões) livre(s) (anuladas): ${d.livres.join(", ") || "—"} | A→B, B→C… | ${ok("gabarito = letra seguinte")} |`,
+    `| Gabarito = letra ${d.direcao === "acima" ? "anterior" : "seguinte"} à da prova real | ${d.livres.length} posição(ões) livre(s) (anuladas): ${d.livres.join(", ") || "—"} | ${d.direcao === "acima" ? "B→A, C→B…" : "A→B, B→C…"} | ${ok("gabarito = letra seguinte")} |`,
     `| Semelhança do enunciado com a questão real correspondente | máxima ${pct1(d.simMax)} (posição ${d.simPos}); média ${pct1(d.simMedia)}; ${d.simAcima} acima do limite | no máximo ${METAS.semelhancaMaxPct}% | ${ok("semelhança com a prova real")} |`,
     `| Repete outra questão do banco | ${d.repetidas.length} | 0 | ${ok("repete outra questão do banco")} |`,
     `| Alternativas erradas comentadas na explicação | ${d.explicadas} de ${d.erradas} | todas | — |`,
@@ -155,17 +157,17 @@ export function lerBancos(){ return JSON.parse(fs.readFileSync(path.join(RAIZ, "
 function principal(){
   const args = process.argv.slice(2);
   const flag = (f) => args.includes(f), valor = (f) => { const i = args.indexOf(f); return i >= 0 ? args[i + 1] : undefined; };
-  const posicionais = args.filter((a, i) => !a.startsWith("--") && args[i - 1] !== "--margem");
+  const posicionais = args.filter((a, i) => !a.startsWith("--") && !["--margem", "--direcao"].includes(args[i - 1]));
   const opcoes = valor("--margem") ? { margemMaxPct: Number(valor("--margem")) } : {};
   const { D, arquivos } = carregar();
   const lista = flag("--todos")
-    ? Object.entries(lerBancos()).filter(([, c]) => flag("--incluir-anteriores") || c.padrao === "atual").map(([banco, c]) => [banco, c.guia, c.padrao])
-    : [[posicionais[0], posicionais[1], "atual"]];
+    ? Object.entries(lerBancos()).filter(([, c]) => flag("--incluir-anteriores") || c.padrao === "atual").map(([banco, c]) => [banco, c.guia, c.padrao, c.direcao])
+    : [[posicionais[0], posicionais[1], "atual", valor("--direcao")]];
   if(!lista[0][0] || !lista[0][1]){ console.error("uso: node ferramentas/medir-banco-adaptado.mjs <banco> <prova-real> [--exigir] [--md]   ou   --todos [--exigir]"); process.exit(1); }
   let faltou = false;
-  for(const [banco, guia, padrao] of lista){
+  for(const [banco, guia, padrao, direcao] of lista){
     const novas = achar(arquivos, banco), reais = achar(arquivos, guia), ids = new Set(novas.map(q => q.id));
-    const r = medir(novas, reais, D.questoes.filter(q => !ids.has(q.id)), opcoes);
+    const r = medir(novas, reais, D.questoes.filter(q => !ids.has(q.id)), { ...opcoes, direcao });
     if(flag("--md")) console.log(`### ${banco}\n\n${tabelaMarkdown(r)}\n`); else { relatorio(banco, guia, r); if(lista.length > 1) console.log(""); }
     if(r.violacoes.length && padrao === "atual") faltou = true;
   }

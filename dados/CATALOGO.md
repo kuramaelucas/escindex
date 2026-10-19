@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 7040 questões (6705 reais, 335 autorais), 943 cartões, 270 assuntos, 2 simulado(s), 78 arquivos.
+**Total:** 7140 questões (6705 reais, 435 autorais), 943 cartões, 270 assuntos, 3 simulado(s), 79 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -12,6 +12,7 @@
 | `banco-didatico.js` | BANCO DIDÁTICO — 135 questões autorais | 135 questões | 1 anulada(s) |
 | `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais | 100 questões |  |
 | `banco-simulado-epm-2.js` | BANCO UNIFESP 2025 ADAPTADO — 100 questões autorais | 100 questões |  |
+| `banco-simulado-epm-3.js` | BANCO SIMULADO EPM 3 (base: UNIFESP-EPM 2022) — 100 questões autorais | 100 questões |  |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 — Acesso Direto (100 questões reais) | 100 questões | 1 anulada(s) |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 — Acesso Direto (100 questões reais) | 100 questões | 4 anulada(s) |
 | `prova-unifesp-2024.js` | UNIFESP-EPM 2024 — Acesso Direto (100 questões reais) | 100 questões | 3 anulada(s) |
@@ -83,5 +84,5 @@
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
 | `flashcards-assuntos-usp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-SP (57 cartões) | 57 flashcards |  |
 | `flashcards-assuntos-usprp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-RP (9 cartões) | 9 flashcards |  |
-| `simulados-equipe.js` | SIMULADOS DA EQUIPE — provas montadas por professor ou coordenação | 2 simulados |  |
+| `simulados-equipe.js` | SIMULADOS DA EQUIPE — provas montadas por professor ou coordenação | 3 simulados |  |
 | `demonstracao.js` | DEMONSTRAÇÃO — contas, comentários e livro de ouro de exemplo | 0 demonstração |  |

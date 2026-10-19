@@ -335,8 +335,26 @@ function dispersao({ alvo = -0.72, n = 40 } = {}){
   return moldura(W, H, g);
 }
 
+/* ---------- taquicardia regular de QRS estreito (supraventricular), derivação DII ---------- */
+function taquicardiaSupraventricular({ fc = 168, dur = 6 } = {}){
+  const ppm = 5, E = 50, T = 70, W = E + dur * 25 * ppm + 40, H = 360, yBase = T + 150, rr = 60 / fc;
+  let g = papelEcg(E, T, dur * 25 * ppm, 250, ppm);
+  const pts = [];
+  for(let t = 0; t <= dur; t += 0.004){
+    let v = 0;
+    // sem onda P visível: o QRS é estreito (cerca de 80 ms) e o segmento ST tem leve infradesnivelamento, comum na taquicardia rápida
+    for(let b = 0.3; b < dur + 0.5; b += rr){ const u = t - b; if(Math.abs(u) < 0.3) v += gauss(u, -0.025, -0.8, 0.008) + gauss(u, 0, 10, 0.011) + gauss(u, 0.026, -1.8, 0.011) + gauss(u, 0.09, -0.9, 0.05) + gauss(u, 0.16, 0.8, 0.04); }
+    pts.push([E + t * 25 * ppm, yBase - v * ppm]);
+  }
+  g += `<path d="${caminho(pts)}" fill="none" stroke="#111" stroke-width="1.7" stroke-linejoin="round"/>`;
+  g += texto(E, 38, "Derivação DII — 25 mm/s, 10 mm/mV (ilustração esquemática)", { t: 18, cor: C.tinta, peso: 600 });
+  g += texto(E, H - 16, "Traçado esquemático desenhado por computador; não é o exame de um paciente.", { t: 13 });
+  return moldura(W, H, g);
+}
+
 /* nome → { desenhar, descricao, parametros } */
 export const MODELOS = {
+  taquicardiaSupraventricular: { desenhar: taquicardiaSupraventricular, descricao: "DII com taquicardia regular de QRS estreito, sem onda P visível (padrão: 168 bpm)", parametros: "fc (bpm), dur (s)" },
   ecg12:            { desenhar: ecg12,            descricao: "Eletrocardiograma de 12 derivações com ritmo longo em DII (padrão: infarto anterior com supra de ST, 90 bpm)", parametros: "rr (s), derivacoes" },
   fibrilacaoAtrial: { desenhar: fibrilacaoAtrial, descricao: "DII com fibrilação atrial e resposta ventricular rápida (RR irregular, sem onda P)", parametros: "batimentos, dur (s), sementeAleatoria" },
   curvaRoc:         { desenhar: curvaRoc,         descricao: "Curva ROC com quatro pontos numerados", parametros: "expoente" },

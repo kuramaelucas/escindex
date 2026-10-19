@@ -136,3 +136,11 @@ test("figuras: o catálogo é determinístico, os parâmetros mudam o desenho e 
   assert.match(sugerir("Radiografia de tórax realizada na sala de emergência"), /não se desenha/);
   assert.match(sugerir("Curva de IMC para idade"), /sem modelo/);
 });
+
+test("medir: com direcao 'acima' o gabarito esperado é a letra ANTERIOR à da prova real", () => {
+  const anterior = (g) => LETRAS[(LETRAS.indexOf(g) + 3) % 4];
+  const b = reais.map((r, i) => questao(i + 1, { g: anterior(r.gabarito), rank: (i % 4) + 1, assunto: r.assuntoId, area: r.areaId }));
+  assert.deepEqual(medir(b, reais, [], { direcao: "acima" }).violacoes.filter(v => v.meta === "gabarito = letra seguinte"), []);
+  assert.ok(medir(b, reais, []).violacoes.some(v => v.meta === "gabarito = letra seguinte"), "no sentido contrário, a letra anterior é violação");
+  assert.match(tabelaMarkdown(medir(b, reais, [], { direcao: "acima" })), /letra anterior/);
+});

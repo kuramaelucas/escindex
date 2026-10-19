@@ -1,4 +1,17 @@
 {
-  "banco-simulado-epm-2": { "guia": "prova-unifesp-2025", "padrao": "atual" },
-  "banco-unifesp-2024-adaptado": { "guia": "prova-unifesp-2024", "padrao": "anterior" }
+  "banco-simulado-epm-2": {
+    "guia": "prova-unifesp-2025",
+    "padrao": "atual",
+    "direcao": "abaixo"
+  },
+  "banco-unifesp-2024-adaptado": {
+    "guia": "prova-unifesp-2024",
+    "padrao": "anterior",
+    "direcao": "abaixo"
+  },
+  "banco-simulado-epm-3": {
+    "guia": "prova-unifesp-2022",
+    "padrao": "atual",
+    "direcao": "acima"
+  }
 }
