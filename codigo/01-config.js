@@ -64,6 +64,10 @@ const CONFIG = {
   // taxaAcerto: quanto menor a taxa de acerto geral, mais difícil
   // especificidade: fundamental < intermediário < avançado
   // prevalencia: assuntos mais cobrados nas provas aparecem antes (são tratados como "mais fáceis/prioritários")
+  // Mistura de dificuldade que "Sugerir seleção" aplica ao montar um simulado.
+  // Os bancos de estudo ficam em ~30/50/20 (fácil/médio/difícil); o simulado
+  // pesa mais para o difícil porque a prova real é mais dura que a prática.
+  misturaSimulado: { facil: 0.15, medio: 0.45, dificil: 0.40 },
   pesosDificuldade: { taxaAcerto: 0.5, especificidade: 0.25, prevalencia: 0.25 },
   // Com poucas respostas, a taxa de acerto de uma questão é ruído (3 de 4
   // acertos não diz nada), então o peso dela cresce junto com o número de

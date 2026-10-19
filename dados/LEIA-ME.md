@@ -386,6 +386,26 @@ fica assim. Prova nova **não** se acrescenta a ela: tem de cumprir a regra. O m
 está nos prompts de importação (`regrasDeConteudoImportacao`), para a IA já
 entregar a explicação no padrão.
 
+### Questão autoral (simulado adaptado): nível de dificuldade
+
+Valem para as questões **escritas daqui para a frente** (as já publicadas não
+são reescritas). A mistura alvo de um banco autoral é **15% fácil, 45% médio e
+40% difícil** (`dificuldadeManual`: `fundamental`, `intermediario`, `avancado`),
+a mesma que o gerador de simulado sugere; `npm run medir-bancos` informa o
+desvio. Para a questão sair difícil sem mudar assunto, área e posição do gabarito:
+
+1. **Duas etapas de raciocínio**: pedir a conduta depende de antes firmar o
+   diagnóstico (ou o estadiamento), em vez de dar o diagnóstico no enunciado.
+2. **Alternativas que competem**: erradas que seriam certas em outro contexto
+   (conduta certa no paciente errado, exame certo na hora errada, dose da
+   diretriz internacional contra a brasileira), todas de tamanho parecido.
+3. **Dado que exige conta**: o escore ou o cálculo não vem pronto; o aluno soma
+   (valor longe do ponto de corte, ver a regra de escore acima).
+4. **Caso menos típico**: idoso, gestante, doença renal ou hepática, interação
+   medicamentosa, apresentação atípica.
+5. **Diretriz brasileira atual** como referência, com a diferença para a
+   internacional explicada quando houver.
+
 ## Cuidados práticos
 
 - **Salve sempre em UTF-8.** Acento torto na tela quase sempre é isso.
