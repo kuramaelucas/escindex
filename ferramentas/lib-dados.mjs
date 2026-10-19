@@ -78,6 +78,7 @@ export function questaoComoTexto(q){
   L.push("  explicacaoGeral:" + js(q.explicacaoGeral) + ",");
   L.push("  explicacoesAlternativas:" + js(q.explicacoesAlternativas || {}) + ",");
   if(q.referencias !== undefined) L.push("  referencias:" + js(q.referencias) + ",");
+  if(q.questaoAlterada !== undefined) L.push("  questaoAlterada:" + js(q.questaoAlterada) + ",");
   L.push("  " + pares("dificuldadeManual", "status", "motivoStatus") + ",");
   L.push("  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},");
   L.push("  " + pares("criadoPor", "criadoEm", "justificativaEm"));

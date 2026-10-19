@@ -150,6 +150,8 @@ alternativas, que não existem. Fica fora de simulado e de PDF.
 Opcionais: `status:"anulada"` (com `motivo` e `gabarito:""`), `figura:"png"`
 (ou `"jpg"`; a imagem tem de estar em `dados/imagens/<id>.png`),
 `imagemPendente:"ECG de admissão"`, `imagemLegenda`, `explicacoesAlternativas`.
+`"alterada":"o que mudou"` marca a **questão alterada** (ver "Questão real que a
+equipe alterou", abaixo): grava `questaoAlterada` e a plataforma mostra o selo.
 É **tudo ou nada**: se uma questão do lote falha (assunto que não existe,
 gabarito fora das letras, número repetido, explicação fora do padrão de
 justificativa, campo desconhecido), nada é gravado e o problema vem com o
@@ -237,6 +239,7 @@ arquivo já neste formato.
   explicacaoGeral:"Por que a correta é correta — escrita pela equipe.",
   explicacoesAlternativas:{},      // opcional: {"A":"por que A está errada", …}
   referencias:"Diretriz X, 2025.", // opcional, mas recomendado
+  questaoAlterada:"",              // opcional: uma frase do que a equipe mudou no texto da prova real (dá o selo "Questão alterada")
   dificuldadeManual:"intermediario",  // fundamental | intermediario | avancado
   status:"ativa",                  // ativa | anulada | rascunho
   motivoStatus:"",                 // obrigatório quando status é "anulada"
@@ -310,6 +313,18 @@ entravam em *Provas Antigas* misturadas às provas reais (a de 2024 aparecia
 com 101 questões, e havia uma "prova de 2021" que nunca existiu). Hoje
 *Provas Antigas* só mostra questão real, e lista à parte as anuladas pela
 banca — que não têm gabarito e por isso ficam fora da nota.
+
+### Questão real que a equipe alterou
+
+Quando o caderno de origem tem erro (unidade ou dado trocado, afirmativa
+incorreta, pergunta que não diz o que pede) a equipe pode corrigir o texto
+sem torná-lo autoral: a questão continua `real: true`, da banca e do ano de
+origem, e ganha `questaoAlterada` com **uma frase** do que mudou. A
+plataforma mostra o selo "Questão alterada" sempre e a frase só depois de
+responder (ela pode citar o gabarito). Ortografia e formatação se arrumam sem
+aviso. Gabarito que muda, e questão cujo caderno deixava a pergunta
+incompleta, entram na frase e no cabeçalho do arquivo da prova, para uma pessoa
+da equipe conferir (exemplo: `prova-unifesp-discente-2026-2.js`).
 
 ### Exceção: provas que trazem o comentário oficial junto
 

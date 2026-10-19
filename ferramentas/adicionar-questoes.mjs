@@ -20,6 +20,7 @@
      explicacao   explicação no padrão de justificativa (obrigatório)
      referencias, dificuldade (fundamental|intermediario|avancado; padrão intermediario)
      status ("anulada" pede "motivo"), figura ("png"|"jpg"|caminho), imagemPendente, imagemLegenda
+     alterada     o que a equipe mudou em relação à prova original (vira `questaoAlterada` e o aviso "Questão alterada" na tela)
      explicacoesAlternativas  {"A":"…"}   (opcional)
    Tudo ou nada: se uma questão falha, nenhuma é gravada e a lista de problemas
    diz qual (pelo número). Depois da gravação, o conferidor roda de novo e, se
@@ -32,7 +33,7 @@ import { RAIZ, carregar, lerFicha, questaoComoTexto, acrescentarAoArquivo } from
 import { conferir, faltasDeJustificativa, resumirNumeros } from "../testes/conferir-dados.mjs";
 
 const CAMPOS = new Set(["n", "assunto", "enunciado", "alt", "gabarito", "tipo", "resposta", "explicacao", "explicacoesAlternativas",
-  "referencias", "dificuldade", "status", "motivo", "figura", "imagemPendente", "imagemLegenda"]);
+  "referencias", "dificuldade", "status", "motivo", "figura", "imagemPendente", "imagemLegenda", "alterada"]);
 const DIFICULDADES = ["fundamental", "intermediario", "avancado"];
 const hoje = () => new Date().toISOString().slice(0, 10);
 
@@ -84,6 +85,10 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
     if(e.figura) q.imagemUrl = /^(png|jpe?g|webp)$/i.test(e.figura) ? `dados/imagens/${q.id}.${e.figura.toLowerCase()}` : e.figura;
     if(e.imagemPendente) q.imagemPendente = e.imagemPendente;
     if(e.imagemLegenda) q.imagemLegenda = e.imagemLegenda;
+    if(e.alterada !== undefined){
+      if(!String(e.alterada).trim()) erro('"alterada" vazio: diga em uma frase o que mudou em relação à prova original');
+      else q.questaoAlterada = String(e.alterada).trim();
+    }
     // a regra de justificativa é a do conferidor — a mesma que vale depois
     faltasDeJustificativa(q).forEach(f => erro(`explicação fora do padrão — ${f}`));
     [q.explicacaoGeral, ...Object.values(q.explicacoesAlternativas)].forEach(t => {

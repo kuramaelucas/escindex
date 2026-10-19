@@ -40,8 +40,9 @@ test("tipo de prova: residência é o padrão e o Teste de Progresso é graduaç
     marcada: tipoProvaDe({ banca: "UNIFESP-EPM", tipoProva: "graduacao" }),
     invalida: tipoProvaDe({ banca: "UNIFESP-EPM", tipoProva: "outra" }),
     textos: ["Graduação", "graduacao", "Teste de Progresso", "Residência", "R1", "qualquer"].map(normalizarTipoProva),
-    // as provas do Teste de Progresso (dados/prova-tp-*) são da graduação; o resto do banco real é residência
-    todasResidencia: db.questoes.filter(q => q.real && !/^Teste de Progresso/.test(q.banca)).every(q => tipoProvaDe(q) === "residencia"),
+    // as provas do Teste de Progresso (dados/prova-tp-*) e as marcadas `tipoProva:"graduacao"` (a Avaliação Discente da UNIFESP) são da graduação; o resto do banco real é residência
+    todasResidencia: db.questoes.filter(q => q.real && !/^Teste de Progresso/.test(q.banca) && q.tipoProva !== "graduacao").every(q => tipoProvaDe(q) === "residencia"),
+    avaliacaoDiscente: db.questoes.filter(q => /Avaliação Discente/.test(q.banca)).map(q => tipoProvaDe(q) + anoDaProva(q)).filter((v, i, a) => a.indexOf(v) === i),
     provasProgresso: [...new Set(db.questoes.filter(q => /^Teste de Progresso/.test(q.banca)).map(q => q.banca + " " + anoDaProva(q) + " " + tipoProvaDe(q)))].sort(),
     questoesProgresso: db.questoes.filter(q => /^Teste de Progresso/.test(q.banca) && q.real).length,
   }));
@@ -51,6 +52,7 @@ test("tipo de prova: residência é o padrão e o Teste de Progresso é graduaç
   assert.equal(r.invalida, "residencia");
   assert.deepEqual(r.textos, ["graduacao", "graduacao", "graduacao", "residencia", "residencia", null]);
   assert.ok(r.todasResidencia);
+  assert.deepEqual(r.avaliacaoDiscente, ["graduacao2026.2"], "a Avaliação Discente UNIFESP é da graduação e fica fora da incidência da residência");
   assert.deepEqual(r.provasProgresso, ["2020.2","2021.2","2022.2","2023.1","2023.2","2024.1","2025.1","2025.2","2026.1"].map(e => "Teste de Progresso NIEPAEM " + e + " graduacao"));
   assert.equal(r.questoesProgresso, 1080);
   await contexto.close();
