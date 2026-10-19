@@ -490,7 +490,7 @@ function renderUsuariosDaNuvem(souMaster){
       <tbody>${pag.itens.map(p => {
         const souEu = nuvemSessao && p.id === nuvemSessao.usuarioId;
         return `<tr>
-        <td>${escapeHtml(p.nome || "(sem nome)")}${souEu?' <span class="badge badge-muted">você</span>':""}</td>
+        <td>${escapeHtml(p.nome || "(sem nome)")}${souEu?' <span class="badge badge-muted">você</span>':""}${htmlDatasDoCadastro(p.criado_em, p.aprovado_em)}</td>
         <td class="text-sm">${escapeHtml(p.email || "")}<br><span class="muted">${escapeHtml(p.matricula || "—")}</span></td>
         <td class="text-sm">${escapeHtml(p.ano_faculdade || "—")}</td>
         <td>${souMaster
@@ -502,6 +502,7 @@ function renderUsuariosDaNuvem(souMaster){
             : `<span class="badge badge-accent">${escapeHtml(rotuloNivelAdmin(p.nivel_admin||"coordenacao"))}</span>`}</td>
         <td>${badgeStatusUsuario(p.status)}</td>
         <td class="flex gap-1 quebra">
+          <button class="btn btn-ghost btn-sm" onclick="abrirDetalhesDoUsuario('${p.id}','nuvem')">Detalhes</button>
           ${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : souEu ? '<span class="text-xs muted">sua conta</span>' : `
             ${p.status !== "aprovado" ? `<button class="btn btn-primary btn-sm" onclick="mudarStatusNaNuvem('${p.id}','aprovado')">Aprovar</button>` : ""}
             ${p.status === "aprovado" ? `<button class="btn btn-ghost btn-sm" onclick="mudarStatusNaNuvem('${p.id}','inativo')">Inativar</button>` : ""}
@@ -526,7 +527,7 @@ function renderUsuariosLocais(souMaster, eu){
       : db.usuarios.length + " cadastro(s) no total · " + admins.length + " administrador(es)."}</p>
     <div class="table-wrap"><table><thead><tr>${[["nome","Nome"],["email","E-mail / Matrícula"],["turma","Turma / Ano"],["papel","Papel"],["nivel","Nível de admin"],["status","Status"]].map(([c,r]) => cabecalhoOrdenavel("usuarios", c, r, "texto")).join("")}<th></th></tr></thead><tbody>
     ${pagUsuarios.itens.map(u=>`<tr>
-      <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}${u.daNuvem?' <span class="badge badge-accent">da nuvem</span>':""}</td>
+      <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}${u.daNuvem?' <span class="badge badge-accent">da nuvem</span>':""}${htmlDatasDoCadastro(u.criadoEm, u.aprovadoEm)}</td>
       <td class="text-sm">${escapeHtml(u.email)}<br><span class="muted">${escapeHtml(u.matricula)}</span></td>
       <td class="text-sm">${escapeHtml(u.papel==="aluno"?getGrupoDoUsuario(u).nome:"—")}<br><span class="muted">${escapeHtml(u.anoFaculdade||"—")}</span></td>
       <td>${souMaster
@@ -537,7 +538,7 @@ function renderUsuariosLocais(souMaster, eu){
           ? `<select class="select" style="padding:.3rem .5rem" aria-label="Nível de administrador de ${escapeHtml(u.nome)}" onchange="alterarNivelAdmin('${u.id}', this.value)">${CONFIG.niveisAdmin.map(n=>`<option value="${n.id}" ${nivelAdminDe(u)===n.id?"selected":""}>${escapeHtml(n.nome)}</option>`).join("")}</select>`
           : `<span class="badge badge-accent">${escapeHtml(rotuloNivelAdmin(nivelAdminDe(u)))}</span>`}</td>
       <td>${badgeStatusUsuario(u.status)}</td>
-      <td class="flex gap-1 quebra">${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `
+      <td class="flex gap-1 quebra"><button class="btn btn-ghost btn-sm" onclick="abrirDetalhesDoUsuario('${u.id}','local')">Detalhes</button>${!souMaster ? '<span class="text-xs muted">sem permissão</span>' : `
         ${u.status==="inativo" ? `<button class="btn btn-secondary btn-sm" onclick="reativarUsuario('${u.id}')">Reativar</button>` : `<button class="btn btn-ghost btn-sm" onclick="desativarUsuario('${u.id}')">Inativar</button>`}
         ${u.id===eu.id ? "" : `<button class="btn btn-danger btn-sm" onclick="confirmarExcluirUsuario('${u.id}','local')">${iconeSvg("trash")} Excluir</button>`}`}
       </td>
@@ -545,6 +546,43 @@ function renderUsuariosLocais(souMaster, eu){
     </tbody></table></div>
     ${controlesPaginacao(pagUsuarios, "cadastro(s) neste navegador")}
   </div>`;
+}
+/* DATA DE CADASTRO E DE APROVAÇÃO. O cadastro (`criado_em`) e a aprovação
+   (`aprovado_em`, carimbada pelo banco no instante em que o status vira
+   "aprovado") ficam à vista na lista de usuários e na janela de detalhes.
+   Quem foi aprovado antes de a coluna existir fica sem data de aprovação: a
+   plataforma diz isso em vez de chutar. Aceita "AAAA-MM-DD" (conta local) ou
+   o carimbo completo da nuvem, que vira a data do fuso de quem olha. */
+function dataDoCarimbo(valor){
+  if(!valor) return "";
+  const txt = String(valor);
+  if(/^\d{4}-\d{2}-\d{2}$/.test(txt)) return formatDataBR(txt);
+  const d = new Date(txt);
+  return isNaN(d) ? "" : formatDataBR(dataLocalISO(d));
+}
+function htmlDatasDoCadastro(criado, aprovado){
+  const c = dataDoCarimbo(criado), a = dataDoCarimbo(aprovado);
+  if(!c && !a) return "";
+  return `<div class="text-xs muted">${c ? "cadastro " + c : ""}${c && a ? " · " : ""}${a ? "aprovado " + a : ""}</div>`;
+}
+function abrirDetalhesDoUsuario(id, onde){
+  const p = onde === "nuvem" ? (nuvemUsuarios || []).find(x => x.id === id) : getUsuario(id);
+  if(!p){ toast("Cadastro não encontrado.", "err"); return; }
+  const nuvem = onde === "nuvem";
+  const criado = nuvem ? p.criado_em : p.criadoEm, aprovado = nuvem ? p.aprovado_em : p.aprovadoEm;
+  const ano = nuvem ? p.ano_faculdade : p.anoFaculdade;
+  const linha = (rotulo, valor) => `<tr><th class="text-sm" style="text-align:left;white-space:nowrap">${rotulo}</th><td class="text-sm">${valor}</td></tr>`;
+  abrirModalTitulado("Detalhes do cadastro", `
+    <table><tbody>
+      ${linha("Nome", escapeHtml(p.nome || "(sem nome)"))}
+      ${linha("E-mail", escapeHtml(p.email || "—"))}
+      ${linha("Matrícula", escapeHtml(p.matricula || "—"))}
+      ${linha("Papel", escapeHtml(p.papel || "—"))}
+      ${linha("Ano da faculdade", escapeHtml(ano || "—"))}
+      ${linha("Status", badgeStatusUsuario(p.status))}
+      ${linha("Cadastro feito em", escapeHtml(dataDoCarimbo(criado) || "—"))}
+      ${linha("Aprovado em", p.status === "pendente" || p.status === "rejeitado" ? "—" : escapeHtml(dataDoCarimbo(aprovado) || "sem registro (aprovado antes de a data ser guardada)"))}
+    </tbody></table>`);
 }
 function mudarPapelNaNuvem(id, papel){
   if(!podeAdmin("usuarios")){ toast("Só um administrador máster pode alterar papéis.", "err"); render(); return; }
@@ -678,6 +716,7 @@ function apagarDadosLocaisDoUsuario(id){
   if(db.diasCartoes) delete db.diasCartoes[id];
   if(db.cartoesPorDia) delete db.cartoesPorDia[id];
   if(db.sessoesEmAndamento) delete db.sessoesEmAndamento[id];
+  if(db.simuladosEmAndamento) delete db.simuladosEmAndamento[id];
   (db.grupos||[]).forEach(g => {
     g.membrosAprovados = (g.membrosAprovados||[]).filter(x => x !== id);
     g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(x => x !== id);

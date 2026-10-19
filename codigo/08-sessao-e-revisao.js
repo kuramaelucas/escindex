@@ -119,8 +119,8 @@ function sairDaSessao(){
 
    Agora a sessão de PRÁTICA é gravada junto com o resto dos dados, por
    usuário, e retomada de onde parou — mesma fila, mesma ordem, mesmas
-   alternativas riscadas. Simulado não entra aqui de propósito: é prova com
-   cronômetro, e prova que se pausa e retoma no dia seguinte não mede nada. */
+   alternativas riscadas. Simulado tem a sua própria guarda (salvarSimuladoEmAndamento, 09b), porque leva o
+   tempo gasto e a prova é guardada por simulado, não numa fila única. */
 function salvarSessaoEmAndamento(){
   const s = state.sessaoAtual;
   const u = usuarioAtual();

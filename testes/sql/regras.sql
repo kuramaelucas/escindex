@@ -64,6 +64,9 @@ update perfis set prova_alvo_data = current_date + 30 where id='00000000-0000-00
 select pg_temp.igual((select count(*) from perfis where prova_alvo_data is not null), 1, 'a pessoa grava a própria data de prova-alvo');
 update perfis set modo_plataforma = 'estatistico' where id='00000000-0000-0000-0000-00000000000a';
 select pg_temp.igual((select count(*) from perfis where modo_plataforma = 'estatistico'), 1, 'a pessoa grava o próprio modo da plataforma');
+select pg_temp.igual((select count(*) from perfis where id='00000000-0000-0000-0000-00000000000a' and aprovado_em is not null), 1, 'a aprovação do cadastro ganha a data do banco');
+update perfis set aprovado_em = '2000-01-01' where id='00000000-0000-0000-0000-00000000000a';
+select pg_temp.igual((select count(*) from perfis where id='00000000-0000-0000-0000-00000000000a' and aprovado_em > '2001-01-01'), 1, 'a pessoa não muda a data da própria aprovação');
 
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000d',false);
 select pg_temp.igual((select count(*) from destaques), 0, 'ninguém lê o destaque de outra pessoa');

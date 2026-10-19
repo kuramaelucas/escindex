@@ -230,6 +230,7 @@ function dbPadrao(){
     simuladosLiberados: [], // {usuarioId, simuladoId, data} — a pessoa trouxe as questões deste simulado para o estudo geral
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
+    simuladosEmAndamento: {}, // simuladosEmAndamento[usuarioId][chave] = simulado não terminado (ver salvarSimuladoEmAndamento, 09b)
     feedbacks: [],          // comentários, sugestões e reclamações gerais sobre a plataforma
     avisos: [],             // recados da coordenação aos usuários (seção 24-D): {id, titulo, texto, rota, papeis, anos, data, expiraEm, autorNome, removido}
     subgrupos: [],          // grupos de estudo dentro de uma turma, para dividir questões (seção 18-C): {id, grupoId, nome, criadoPor, membros, questaoIds, divisao}
@@ -283,7 +284,7 @@ function garantirEstruturaDb(alvo){
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
   objeto("revisoes"); objeto("revisoesFlashcards"); objeto("diasCartoes"); objeto("cartoesPorDia");
-  objeto("sessoesEmAndamento"); objeto("sequenciasAno"); objeto("configGeral");
+  objeto("sessoesEmAndamento"); objeto("simuladosEmAndamento"); objeto("sequenciasAno"); objeto("configGeral");
   if(!alvo.taxonomia || typeof alvo.taxonomia !== "object"){ reparos.push("taxonomia"); alvo.taxonomia = {areas:[],especialidades:[],assuntos:[]}; }
   ["areas","especialidades","assuntos"].forEach(k=>{
     if(!Array.isArray(alvo.taxonomia[k])){ reparos.push("taxonomia."+k); alvo.taxonomia[k] = []; }
@@ -418,6 +419,8 @@ function loadState(){
     if(!db.cargasProvas) db.cargasProvas = [];
     // sessão retomável entrou depois: quem já usava começa sem nenhuma guardada
     if(!db.sessoesEmAndamento) db.sessoesEmAndamento = {};
+    // simulado retomável entrou depois: quem já usava começa sem nenhum guardado
+    if(!db.simuladosEmAndamento) db.simuladosEmAndamento = {};
     /* Blocos deixaram de pertencer ao grupo e passaram a pertencer ao ANO da
        faculdade, com cada turma entrando na sequência por um bloco diferente.
        A migração não joga calendário nenhum fora: o calendário que cada grupo

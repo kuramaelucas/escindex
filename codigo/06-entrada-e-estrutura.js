@@ -170,7 +170,7 @@ function solicitarCadastro(){
   toast("Cadastro enviado! Assim que um administrador aprovar, você poderá entrar.");
   navigate("login");
 }
-function aprovarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Cadastro aprovado — a pessoa sai dos pedidos e passa a aparecer na lista de usuários."); render(); }
+function aprovarUsuario(id){ const u = getUsuario(id); u.status="aprovado"; u.aprovadoEm = hojeISO(); saveState(); toast("Cadastro aprovado — a pessoa sai dos pedidos e passa a aparecer na lista de usuários."); render(); }
 function rejeitarUsuario(id){ getUsuario(id).status="rejeitado"; saveState(); toast("Cadastro recusado."); render(); }
 function desativarUsuario(id){ getUsuario(id).status="inativo"; saveState(); toast("Conta inativada: a pessoa deixa de conseguir entrar, mas o estudo dela fica guardado."); render(); }
 function reativarUsuario(id){ getUsuario(id).status="aprovado"; saveState(); toast("Usuário reativado."); render(); }

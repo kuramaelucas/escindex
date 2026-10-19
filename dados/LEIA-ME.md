@@ -277,6 +277,17 @@ imagem, tempo, dose, idade-limite ou escore:
 6. Asteriscos só nos parâmetros (poucos por explicação, nunca em título nem
    em palavra comum). Questão que não depende de número não leva asterisco.
 
+7. **Fisiopatologia:** depois das dicas, 1 a 3 frases com o **mecanismo** que liga
+   os achados do caso ao diagnóstico ou à conduta (por que o sinal aparece, por
+   que o exame se altera, por que o tratamento funciona). "É o quadro típico"
+   não basta.
+8. **Epidemiologia:** o contexto que torna a hipótese provável naquele
+   paciente (frequência entre as causas, faixa etária e sexo, fator de risco
+   presente, incidência ou prevalência quando houver fonte, e se vale para o
+   Brasil). Número só com a fonte em `referencias`; sem certeza, não invente.
+   Se o mecanismo explica por que uma alternativa errada falha, use-o no motivo
+   dela.
+
 Exemplo: `"… o paciente está em choque: **PAS 82 mmHg** (normal: 90–120 mmHg;
 < 90 mmHg = choque) com **FC 128 bpm** (normal: 60–100). A conduta é expansão
 volêmica antes de qualquer investigação…"`.
