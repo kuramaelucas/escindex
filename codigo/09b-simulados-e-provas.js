@@ -356,7 +356,7 @@ function sairDoSimuladoDescartando(){
    (por pessoa e por simulado) e o simulado pode ser retomado de onde parou.
    O tempo já gasto fica guardado e o relógio só volta a correr ao retomar: a
    pausa entre uma sessão e outra não conta, como a pausa de trocar de aba.
-   Fica no aparelho (ainda não sobe para a nuvem). A chave é o id do simulado,
+   Sobe para a nuvem (`simulados_em_andamento`), então continua em outro aparelho. A chave é o id do simulado,
    ou "prova:<título>" quando a prova antiga é feita como simulado. */
 function chaveDoSimuladoEmAndamento(s){ return s.simuladoId || ("prova:" + s.titulo); }
 function simuladoEmAndamentoDe(usuario, chave){
@@ -376,18 +376,20 @@ function salvarSimuladoEmAndamento(){
   acumularTempoQuestaoSimulado();
   if(!db.simuladosEmAndamento) db.simuladosEmAndamento = {};
   const mapa = db.simuladosEmAndamento[u.id] = db.simuladosEmAndamento[u.id] || {};
-  mapa[chaveDoSimuladoEmAndamento(s)] = {
+  const chave = chaveDoSimuladoEmAndamento(s);
+  mapa[chave] = {
     id: s.id, simuladoId: s.simuladoId || null, titulo: s.titulo, itens: s.itens, indiceAtual: s.indiceAtual,
     respostasSimulado: {...s.respostasSimulado}, escolhaPendente: {...(s.escolhaPendente || {})},
     modoAprendizado: !!s.modoAprendizado, ocultarTimer: !!s.ocultarTimer, duracaoMin: s.duracaoMin,
     tempos: {...(s.tempos || {})}, decorridoMs: Math.max(0, momentoDeReferenciaSimulado(s) - s.inicioMs),
-    iniciadoEm: (mapa[chaveDoSimuladoEmAndamento(s)] || {}).iniciadoEm || hojeISO(), salvaEm: hojeISO(),
+    iniciadoEm: (mapa[chave] || {}).iniciadoEm || hojeISO(), salvaEm: hojeISO(),
   };
+  nuvemRegistrar({usuarioId:u.id, simuladoId:chave, simuladoEmAndamento:mapa[chave]});
   saveState();
 }
 function descartarSimuladoEmAndamento(chave){
   const u = usuarioAtual(), mapa = u && db.simuladosEmAndamento && db.simuladosEmAndamento[u.id];
-  if(mapa && mapa[chave]){ delete mapa[chave]; saveState(); }
+  if(mapa && mapa[chave]){ delete mapa[chave]; nuvemRegistrar({usuarioId:u.id, simuladoId:chave, simuladoEmAndamento:"apagar"}); saveState(); }
 }
 function continuarSimulado(chave){
   const u = usuarioAtual(), g = simuladoEmAndamentoDe(u, chave);
@@ -455,7 +457,11 @@ function finalizarSimulado(){
   const nota = pct(acertos, sessao.itens.length);
   db.resultadosSimulados.push({id:uid("res"), usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
   nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
-  if(db.simuladosEmAndamento && db.simuladosEmAndamento[u.id]) delete db.simuladosEmAndamento[u.id][chaveDoSimuladoEmAndamento(sessao)];
+  const chaveEmAndamento = chaveDoSimuladoEmAndamento(sessao);
+  if(db.simuladosEmAndamento && (db.simuladosEmAndamento[u.id] || {})[chaveEmAndamento]){
+    delete db.simuladosEmAndamento[u.id][chaveEmAndamento];
+    nuvemRegistrar({usuarioId:u.id, simuladoId:chaveEmAndamento, simuladoEmAndamento:"apagar"});
+  }
   saveState();
   sessao.finalizado = true;
   pararCronometro();

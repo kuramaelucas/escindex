@@ -192,6 +192,16 @@ const NUVEM_TABELAS = {
       else delete db.sessoesEmAndamento[linha.usuario_id];
     },
   },
+  simulados_em_andamento: {
+    tipo: "estado", tempo: "atualizado_em",
+    chave: r => r.usuario_id + "|" + r.simulado_id,
+    aplicar: linha => {
+      if(!db.simuladosEmAndamento) db.simuladosEmAndamento = {};
+      const meus = db.simuladosEmAndamento[linha.usuario_id] = db.simuladosEmAndamento[linha.usuario_id] || {};
+      if(linha.dados) meus[linha.simulado_id] = linha.dados;
+      else delete meus[linha.simulado_id];
+    },
+  },
 };
 
 /* ---------------------------- a fila de envio ----------------------------
@@ -325,6 +335,12 @@ function nuvemRegistrar(o){
     nuvemEnfileirar("sessao_em_andamento", {
       usuario_id: o.usuarioId,
       dados: o.sessaoEmAndamento === "apagar" ? null : o.sessaoEmAndamento,
+    });
+  }
+  if(o.simuladoEmAndamento && o.usuarioId === meuId){
+    nuvemEnfileirar("simulados_em_andamento", {
+      usuario_id: o.usuarioId, simulado_id: o.simuladoId,
+      dados: o.simuladoEmAndamento === "apagar" ? null : o.simuladoEmAndamento,
     });
   }
 }

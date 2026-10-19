@@ -87,6 +87,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | Quantos flashcards você fez em cada dia | `alter table public.dias_cartoes add column if not exists quantidade integer ...` |
 > | Os **flashcards favoritados** | cria a tabela `favoritos_cartoes`, com RLS e permissões |
 > | As **questões escondidas** ("não mostrar mais") | cria a tabela `questoes_ocultas`, com RLS e permissões |
+> | O **simulado em andamento** (19/10/2026): sair da prova guarda respostas e tempo, e dá para continuar ou recomeçar em outro aparelho | cria a tabela `simulados_em_andamento` (uma linha por pessoa e simulado; cada pessoa lê e grava só a sua). Sem rodar, o andamento vale só no aparelho |
 > | Os **destaques de texto** em questões e flashcards | cria a tabela `destaques`, com RLS e permissões (cada pessoa lê e grava os seus) |
 > | Os **avisos da coordenação** (Enviar Avisos) chegando a todos os aparelhos | cria a tabela `avisos` (toda conta aprovada lê; só o administrador grava) e `alter table public.perfis add column if not exists avisos_lidos jsonb ...` (o que a pessoa já dispensou) |
 > | O **registro de estudo para análise** (04/10/2026): de onde veio cada questão, que tentativa é, há quantos dias foi a anterior e a hora exata; e uma linha por cartão avaliado | `alter table public.respostas add column if not exists origem / tentativa / dias_desde_ultima / respondida_em` e a tabela nova `log_revisoes_cartoes` (cada pessoa grava e lê só a sua; **só sobe** — o site não a baixa de volta, e a análise se faz no painel do Supabase) |
