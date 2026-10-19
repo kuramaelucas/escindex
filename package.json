@@ -14,7 +14,12 @@
     "nova-prova": "node ferramentas/nova-prova.mjs",
     "adicionar-questoes": "node ferramentas/adicionar-questoes.mjs",
     "testar-mudanca": "node ferramentas/testar-mudanca.mjs",
-    "relatos": "node ferramentas/relatos.mjs"
+    "relatos": "node ferramentas/relatos.mjs",
+    "medir-bancos": "node ferramentas/medir-banco-adaptado.mjs --todos --exigir",
+    "conferir-numeros": "node ferramentas/conferir-numeros.mjs",
+    "vigencia": "node ferramentas/vigencia.mjs",
+    "pos-simulado": "node ferramentas/pos-simulado.mjs",
+    "figuras": "node ferramentas/figuras.mjs"
   },
   "devDependencies": {
     "playwright": "1.56.1"
