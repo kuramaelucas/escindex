@@ -13,5 +13,10 @@
     "guia": "prova-unifesp-2022",
     "padrao": "atual",
     "direcao": "acima"
+  },
+  "banco-simulado-epm-4": {
+    "guia": "prova-unifesp-2026",
+    "padrao": "atual",
+    "direcao": "abaixo"
   }
 }
