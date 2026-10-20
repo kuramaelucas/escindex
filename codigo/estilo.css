@@ -142,6 +142,18 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .acoes-inicio{position:relative}
 .link-discreto{position:absolute;right:0;top:100%;margin-top:.3rem;white-space:nowrap;background:none;border:none;padding:0;color:var(--muted);font-size:calc(var(--fs-2xs) * 1.1);cursor:pointer;text-decoration:underline dotted}
 .link-discreto:hover{color:var(--accent-dark)}
+/* No computador, "Começar agora" fica ABAIXO de "Continuar última sessão". No
+   celular os botões de cima ocupam a largura toda e "Tempo contado?" passa
+   para a frente (esquerda) de "Começar agora", na mesma linha. */
+.acoes-inicio > .flex{flex-direction:column;align-items:stretch}
+@media (max-width:600px){
+  .acoes-inicio{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;width:100%}
+  .acoes-inicio > .flex{display:contents}
+  .acoes-inicio .btn-secondary{flex:1 0 100%;order:0}
+  .link-discreto{position:static;order:1;margin:0}
+  .acoes-inicio .btn-primary{order:2;margin-left:auto}
+  .linha-progresso{margin-bottom:var(--esp-2)}
+}
 /* janela "Tempo contado": atalhos e o relógio editável */
 .tempo-atalhos{display:flex;flex-wrap:wrap;gap:var(--esp-1)}
 .chip-tempo{padding:.35rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);color:var(--ink);font-size:var(--fs-sm);font-weight:600;cursor:pointer}
