@@ -509,6 +509,16 @@ function proximaRevisaoEfetiva(entry){
   }
   return entry.proximaRevisao;
 }
+/* Quanto o item está atrasado em relação ao intervalo que lhe foi dado. Dias
+   de atraso sozinhos enganam: 7 dias depois de um prazo de 7 é o dobro do
+   esperado; 7 dias depois de um prazo de 60 é quase nada. A fila ordena por
+   esta razão, para o que está esquecendo de fato vir antes do que só venceu.
+   Item no prazo ou sem prazo devolve 0. */
+function urgenciaDeRevisao(proxima, intervalo){
+  if(!proxima) return 0;
+  const atraso = diasEntre(proxima, hojeISO());
+  return atraso > 0 ? atraso / Math.max(1, intervalo || CONFIG.intervaloMinimoRevisao) : 0;
+}
 function revisaoVencida(usuarioId, questaoId){
   const entry = db.revisoes[usuarioId] && db.revisoes[usuarioId][questaoId];
   const proxima = proximaRevisaoEfetiva(entry);
@@ -716,6 +726,10 @@ function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
   const blocoAtual = getBlocoAtual();
   const assuntosDoBloco = assuntoIdsDoBloco(blocoAtual);
 
+  const urgencia = (c)=>{
+    const rev = revisaoDoCartao(usuarioId, c.id);
+    return rev ? urgenciaDeRevisao(proximaRevisaoCartao(rev), rev.intervalo) : 0;
+  };
   const prioridade = (c)=>{
     const rev = revisaoDoCartao(usuarioId, c.id);
     if(rev && proximaRevisaoCartao(rev) <= hoje) return 0;                    // vencido
@@ -725,8 +739,10 @@ function montarBaralhoFlashcards(usuarioId, tamanho, filtro){
     return 5;
   };
   return embaralhar(candidatos)
-    .map(c=>({cartao:c, p:prioridade(c)}))
-    .sort((a,b)=>a.p-b.p)
+    .map(c=>({cartao:c, p:prioridade(c), u:urgencia(c)}))
+    // entre os vencidos, o mais atrasado em relação ao próprio prazo vem antes
+    // (o embaralhamento acima só desempata o que tem a mesma urgência)
+    .sort((a,b)=>a.p-b.p || b.u-a.u)
     .slice(0, tamanho)
     .map(x=>x.cartao);
 }

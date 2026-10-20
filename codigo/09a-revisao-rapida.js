@@ -387,7 +387,9 @@ function responderFlashcard(nota){
   const s = state.sessaoFlash; if(!s) return;
   const cartao = s.cartoes[s.indice];
   registrarRevisaoFlashcard(usuarioAtual().id, cartao.id, nota);
-  s.notas.push({cartaoId:cartao.id, nota});
+  // reavaliar um cartão revisitado troca a nota da sessão em vez de duplicá-la
+  const anterior = s.notas.findIndex(n=>n.cartaoId===cartao.id);
+  if(anterior>=0) s.notas[anterior] = {cartaoId:cartao.id, nota}; else s.notas.push({cartaoId:cartao.id, nota});
   if(s.indice < s.cartoes.length-1){ s.indice++; s.virado = false; }
   else s.finalizada = true;
   render(); window.scrollTo(0,0);

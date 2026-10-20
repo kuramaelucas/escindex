@@ -433,3 +433,27 @@ test("gabarito corrigido depois da prova refaz a nota de quem já fez, e o acert
     assert.deepEqual(r, { antes: 0, mudou: 1, nota: 0, acertos: 0, html: true });
   } finally { await contexto.close(); }
 });
+
+test("Criar Simulado: a sugestão marca a mistura mais difícil e completa pelo nível mais próximo", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await pagina.evaluate(() => {
+      const pool = questoesAtivas().filter(q => !ehDissertativa(q)).map(q => q.id);
+      state.filtroRota = state.filtroRota || {};
+      state.filtroRota.criarSimulado = { pool, selecionadas: [] };
+      const campo = document.createElement("input"); campo.id = "csQuantidade"; campo.value = "40"; document.body.appendChild(campo);
+      sugerirSelecaoSimulado();
+      const n = [0, 0, 0];
+      state.filtroRota.criarSimulado.selecionadas.forEach(id => n[nivelDaQuestao(getQuestao(id))]++);
+      const disponivel = [0, 0, 0]; pool.forEach(id => disponivel[nivelDaQuestao(getQuestao(id))]++);
+      return { n, disponivel };
+    });
+    const total = r.n[0] + r.n[1] + r.n[2];
+    assert.equal(total, 40);
+    // difícil é o alvo maior: 16 de 40, ou tudo o que existe se houver menos
+    assert.ok(r.n[2] >= Math.min(16, r.disponivel[2]));
+    assert.ok(r.n[0] <= 6 || r.disponivel[1] + r.disponivel[2] < 34);
+  } finally { await contexto.close(); }
+});

@@ -289,7 +289,12 @@ function questoesRevisaoEspacadaVencidas(usuarioId){
     const entry = revisoesDoUsuario[q.id];
     const motivo = (!entry.ultimaCorreta || entry.ultimaConfianca==="chute") ? "erro" : "decaimento";
     return {questao:q, entry, motivo};
-  }).sort((a,b)=>proximaRevisaoEfetiva(a.entry).localeCompare(proximaRevisaoEfetiva(b.entry))); // mais atrasada primeiro
+  }).sort((a,b)=>{
+    // mais atrasada em relação ao próprio prazo primeiro (ver urgenciaDeRevisao);
+    // empate: a de vencimento mais antigo
+    const ua = urgenciaDeRevisao(proximaRevisaoEfetiva(a.entry), a.entry.intervalo), ub = urgenciaDeRevisao(proximaRevisaoEfetiva(b.entry), b.entry.intervalo);
+    return ub-ua || proximaRevisaoEfetiva(a.entry).localeCompare(proximaRevisaoEfetiva(b.entry));
+  });
 }
 /* Os assuntos de que a revisão espaçada pode trazer questão que a pessoa
    nunca viu: os dos blocos já passados e os de anos anteriores. Sem bloco
