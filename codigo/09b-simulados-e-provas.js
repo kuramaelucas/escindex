@@ -84,8 +84,8 @@ function conteudoProvasESimulados(u){
   </div>
   ${aba==="antigas" ? renderAbaProvasAntigas(u, simuladosVisiveis) : `
     <p class="text-sm muted mb-2">Os da equipe e os enviados para a plataforma, com tempo e tamanho já definidos. ${bloco ? `Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).` : "Sem calendário de blocos, não há simulado recomendado para o seu bloco: todos aparecem juntos."}</p>
-    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
-    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div>${outros.map(renderSimuladoCard).join("")}` : ""}
+    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div><div class="grid grid-3 mb-2">${recomendados.map(renderSimuladoCard).join("")}</div>` : ""}
+    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div><div class="grid grid-3 mb-2">${outros.map(renderSimuladoCard).join("")}</div>` : ""}
     ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>'
       : !simuladosVisiveis.length ? `<div class="empty-state">Nenhum simulado combina com "${escapeHtml(busca)}". <button class="link-btn" onclick="limparBuscaProvas()">limpar a busca</button> ou veja as provas antigas na aba ao lado.</div>` : ""}
   `}
@@ -100,13 +100,66 @@ function conteudoProvasESimulados(u){
 }
 // as duas rotas antigas continuam respondendo e levam à mesma tela
 function renderSimulados(){ return renderProvasESimulados(); }
+/* As vezes que a pessoa fez aquele simulado, da mais antiga à mais recente.
+   `chave` é o id do simulado ou, na prova antiga feita como simulado (que não
+   tem id), o título — a mesma chave do percentil. A data só tem o dia; o sort é
+   estável, então duas tentativas no mesmo dia ficam na ordem em que foram
+   guardadas e "a anterior" continua sendo a certa. */
+function tentativasDoSimulado(usuarioId, chave){
+  return db.resultadosSimulados
+    .filter(r=>r.usuarioId===usuarioId && (r.simuladoId || r.titulo)===chave)
+    .sort((a,b)=>(a.data||"").localeCompare(b.data||""));
+}
+/* Acerto de uma questão numa tentativa, com o gabarito de hoje (o mesmo que
+   recalcularResultadosSimulados usa para a nota). null = a tentativa não teve
+   essa questão, ou é de antes de o detalhe ser guardado. */
+function acertouNaTentativa(r, qid){
+  if(!r || !r.itens || !r.itens.some(it=>it.questaoId===qid)) return null;
+  const q = getQuestao(qid);
+  return q ? (r.respostas||{})[qid]===q.gabarito : null;
+}
+/* O que mudou entre duas tentativas, só nas questões que as duas tiveram (o
+   simulado pode ter perdido ou ganhado questão no meio do caminho). Sem
+   detalhe guardado numa das pontas, devolve null: sobra só a comparação de nota. */
+function compararTentativas(atual, anterior){
+  if(!atual || !anterior || !atual.itens || !anterior.itens) return null;
+  const por = {passouAAcertar:[], passouAErrar:[], acertouNasDuas:[], erroNasDuas:[]};
+  atual.itens.forEach(it=>{
+    const agora = acertouNaTentativa(atual, it.questaoId), antes = acertouNaTentativa(anterior, it.questaoId);
+    if(agora===null || antes===null) return;
+    por[agora ? (antes ? "acertouNasDuas" : "passouAAcertar") : (antes ? "passouAErrar" : "erroNasDuas")].push(it.questaoId);
+  });
+  const comuns = por.passouAAcertar.length + por.passouAErrar.length + por.acertouNasDuas.length + por.erroNasDuas.length;
+  return comuns ? {...por, comuns} : null;
+}
+function classeBadgeNota(nota){ return nota>=70 ? "badge-accent" : nota>=50 ? "badge-amber" : "badge-danger"; }
+/* Clicar num simulado já feito abre as tentativas dele, do mais novo para o
+   mais antigo, com a variação da nota e, quando há detalhe guardado, quantas
+   questões passaram a ser acertadas ou erradas em relação à tentativa de antes. */
+function abrirHistoricoDoSimulado(chave){
+  const tentativas = tentativasDoSimulado(usuarioAtual().id, chave);
+  if(!tentativas.length){ toast("Você ainda não fez este simulado.", "err"); return; }
+  const titulo = tentativas[tentativas.length-1].titulo || chave;
+  const linhas = tentativas.map((t,i)=>({t, n:i+1, ant:i ? tentativas[i-1] : null})).reverse();
+  const corpo = `<p class="text-sm muted">Cada linha é uma vez que você fez este simulado. A comparação é sempre com a tentativa logo antes e usa o gabarito de hoje.</p>
+    <div class="table-wrap mt-1"><table class="tabela-compacta"><thead><tr><th>#</th><th>Data</th><th>Nota</th><th>Acertos</th><th>Em relação à anterior</th><th></th></tr></thead><tbody>
+    ${linhas.map(({t,n,ant})=>{
+      const comp = compararTentativas(t, ant);
+      const delta = ant ? t.nota - ant.nota : null;
+      return `<tr>
+        <td>${n}</td><td>${formatDataBR(t.data)}</td>
+        <td><span class="badge ${classeBadgeNota(t.nota)}">${t.nota}%</span></td>
+        <td>${t.acertos}/${t.total}</td>
+        <td>${!ant ? '<span class="muted">primeira vez</span>' : `<span class="badge ${delta>=0?"badge-accent":"badge-danger"}">${delta>=0?"+":""}${delta} pts</span>${comp ? ` <span class="muted" title="Questões que as duas tentativas tiveram">passou a acertar <strong>${comp.passouAAcertar.length}</strong> · passou a errar <strong>${comp.passouAErrar.length}</strong></span>` : ""}`}</td>
+        <td>${t.itens ? `<button class="link-btn" onclick="fecharModal(); verDetalheResultadoSimulado('${t.id}')">ver resultado</button>` : ""}</td>
+      </tr>`; }).join("")}
+    </tbody></table></div>`;
+  abrirModalTitulado("Suas tentativas · "+titulo, corpo, "lg");
+}
 /* histórico do próprio usuário naquele simulado, para ele saber, na hora de
    escolher, se já fez e como foi */
 function desempenhoPrevioSimulado(simuladoId, titulo){
-  const u = usuarioAtual();
-  const tentativas = db.resultadosSimulados
-    .filter(r=>r.usuarioId===u.id && (simuladoId ? r.simuladoId===simuladoId : r.titulo===titulo))
-    .sort((a,b)=>a.data.localeCompare(b.data));
+  const tentativas = tentativasDoSimulado(usuarioAtual().id, simuladoId || titulo);
   if(!tentativas.length) return null;
   const notas = tentativas.map(t=>t.nota);
   const ultima = tentativas[tentativas.length-1];
@@ -129,30 +182,27 @@ function renderSimuladoCard(s){
   const previo = desempenhoPrevioSimulado(s.id, s.titulo);
   const andamento = simuladoEmAndamentoDe(usuarioAtual(), s.id);
   const prog = andamento ? progressoDoSimuladoEmAndamento(andamento) : null;
-  return `<div class="card mb-1">
-    <div class="flex justify-between items-center gap-2 quebra">
-      <div>
-        <div class="peso-700">${escapeHtml(s.titulo)}</div>
-        <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
-        ${htmlDatasDoSimulado(s)}
-        ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} questões respondidas</span></div>` : ""}
-        ${previo ? `<div class="qcard-meta mt-1">
-            <span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já feito · última nota ${previo.ultima.nota}%</span>
-            <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
-            <span class="badge badge-muted">${previo.n} tentativa(s) · ${formatDataBR(previo.ultima.data)}</span>
-            ${previo.variacao!==null ? `<span class="badge ${previo.variacao>=0?"badge-accent":"badge-danger"}">${previo.variacao>=0?"+":""}${previo.variacao} pts vs. anterior</span>` : ""}
-          </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
-      </div>
-      <div class="flex gap-1 quebra">
-        ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)
-          ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
-          : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
-        ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="abrirRenomearSimulado('${s.id}')" title="Mudar o nome deste simulado">${iconeSvg("edit")} Renomear</button>` : ""}
-        ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
-        ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
-        ${prog ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('${s.id}')">Continuar</button>
-        <button class="btn btn-ghost btn-sm" onclick="iniciarSimulado('${s.id}')" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>` : `<button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>`}
-      </div>
+  return `<div class="card prova-card">
+    <div class="peso-700 prova-banca">${previo ? `<button class="link-btn titulo-simulado" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Ver as ${previo.n} vez(es) que você fez este simulado e como a nota mudou">${escapeHtml(s.titulo)}</button>` : escapeHtml(s.titulo)}</div>
+    <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
+    ${htmlDatasDoSimulado(s)}
+    ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} questões respondidas</span></div>` : ""}
+    ${previo ? `<div class="qcard-meta mt-1">
+        <span class="badge ${classeBadgeNota(previo.ultima.nota)}">última nota ${previo.ultima.nota}%</span>
+        <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
+        <span class="badge badge-muted">${previo.n} tentativa(s) · ${formatDataBR(previo.ultima.data)}</span>
+        ${previo.variacao!==null ? `<span class="badge ${previo.variacao>=0?"badge-accent":"badge-danger"}">${previo.variacao>=0?"+":""}${previo.variacao} pts vs. anterior</span>` : ""}
+      </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
+    <div class="flex gap-1 prova-acoes quebra">
+      ${prog ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('${s.id}')">Continuar</button>
+      <button class="btn btn-ghost btn-sm" onclick="iniciarSimulado('${s.id}')" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>` : `<button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>`}
+      ${previo ? `<button class="btn btn-secondary btn-sm" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Todas as vezes que você fez, lado a lado">Minhas tentativas</button>` : ""}
+      ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
+      ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)
+        ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
+        : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
+      ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="abrirRenomearSimulado('${s.id}')" title="Mudar o nome deste simulado">${iconeSvg("edit")} Renomear</button>` : ""}
+      ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
     </div>
   </div>`;
 }
@@ -455,7 +505,9 @@ function finalizarSimulado(){
     if(resp) registrarResposta(u.id, it.questaoId, resp, "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null, "simulado");
   });
   const nota = pct(acertos, sessao.itens.length);
-  db.resultadosSimulados.push({id:uid("res"), usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
+  const resultadoId = uid("res");
+  sessao.resultadoId = resultadoId;   // a página de resultado acha, por ele, a tentativa de antes para comparar
+  db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
   nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
   const chaveEmAndamento = chaveDoSimuladoEmAndamento(sessao);
   if(db.simuladosEmAndamento && (db.simuladosEmAndamento[u.id] || {})[chaveEmAndamento]){
@@ -470,7 +522,7 @@ function finalizarSimulado(){
 function verDetalheResultadoSimulado(resultadoId){
   const r = db.resultadosSimulados.find(x=>x.id===resultadoId);
   if(!r || !r.itens){ toast("Este resultado é de antes desta função existir e não tem detalhe salvo.", "err"); return; }
-  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, tempoTotalSeg:r.tempoTotalSeg||null };
+  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, resultadoId:r.id, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, tempoTotalSeg:r.tempoTotalSeg||null };
   navigate("simulado-ativo");
 }
 function renderSimuladoAtivo(){
@@ -609,18 +661,49 @@ function abrirDesempenhoDosAlunos(chave, titulo){
 }
 /* Acerto por grande área (as 5 especialidades da taxonomia) neste simulado:
    mostra de relance onde a nota foi puxada para baixo. */
-function htmlAcertoPorEspecialidade(linhas){
-  const por = {};
+function htmlAcertoPorEspecialidade(linhas, previa){
+  const por = {}, antes = {};
   linhas.forEach(l=>{
     if(!l.q.areaId) return;
     const c = por[l.q.areaId] = por[l.q.areaId] || {total:0, acertos:0};
     c.total++; if(l.correta) c.acertos++;
   });
+  // taxa da tentativa anterior por área, só nas questões que esta também teve
+  // (senão a diferença viria de a prova ter mudado, não de a pessoa ter mudado)
+  if(previa) linhas.forEach(l=>{
+    const a = l.q.areaId ? acertouNaTentativa(previa, l.q.id) : null;
+    if(a===null) return;
+    const c = antes[l.q.areaId] = antes[l.q.areaId] || {total:0, acertos:0};
+    c.total++; if(a) c.acertos++;
+  });
   const areas = db.taxonomia.areas.filter(a=>por[a.id]);
   if(!areas.length) return "";
   return `<div class="card mt-2">
     <div class="card-title">Acerto por especialidade</div>
-    ${areas.map(a=>{ const c = por[a.id], t = pct(c.acertos, c.total); return `<div class="linha-barra"><span class="linha-barra-nome">${escapeHtml(a.nome)}</span><span class="linha-barra-trilho"><span style="width:${t}%;background:${t>=70?"var(--accent)":t>=50?"var(--amber, #d99a1e)":"var(--danger)"}"></span></span><span class="linha-barra-valor"><strong>${t}%</strong> <span class="muted">(${c.acertos}/${c.total})</span></span></div>`; }).join("")}
+    ${areas.map(a=>{ const c = por[a.id], t = pct(c.acertos, c.total); return `<div class="linha-barra"><span class="linha-barra-nome">${escapeHtml(a.nome)}</span><span class="linha-barra-trilho"><span style="width:${t}%;background:${t>=70?"var(--accent)":t>=50?"var(--amber, #d99a1e)":"var(--danger)"}"></span></span><span class="linha-barra-valor"><strong>${t}%</strong> <span class="muted">(${c.acertos}/${c.total})</span>${antes[a.id] ? `<div class="text-xs muted">antes ${pct(antes[a.id].acertos, antes[a.id].total)}%</div>` : ""}</span></div>`; }).join("")}
+  </div>`;
+}
+/* A tentativa de antes da que está na tela: a imediatamente anterior do mesmo
+   simulado, da mesma pessoa. Sem `resultadoId` (sessão que não vem de um
+   resultado guardado) não há o que comparar. */
+function tentativaAnteriorDaSessao(sessao){
+  if(!sessao || !sessao.resultadoId) return null;
+  const u = usuarioAtual();
+  const tentativas = tentativasDoSimulado(u.id, sessao.simuladoId || sessao.titulo);
+  const i = tentativas.findIndex(r=>r.id===sessao.resultadoId);
+  return i>0 ? tentativas[i-1] : null;
+}
+/* Resumo, sob o mapa de acertos, do que mudou desde a tentativa anterior. */
+function htmlComparacaoComAnterior(comp, previa, linhas){
+  if(!previa) return "";
+  const numeros = ids => ids.map(id=>1+linhas.findIndex(l=>l.q.id===id)).sort((a,b)=>a-b).join(", ");
+  if(!comp) return `<p class="text-xs muted mt-2">Sua tentativa anterior (${formatDataBR(previa.data)}) teve ${previa.nota}%, mas foi guardada sem o detalhe por questão, então não dá para comparar uma a uma.</p>`;
+  const linha = (rotulo, ids) => ids.length ? `<div class="text-sm mt-1"><strong>${rotulo}</strong> (${ids.length}): nº ${numeros(ids)}</div>` : "";
+  return `<div class="mt-2">
+    <div class="text-sm peso-600">Em relação à tentativa de ${formatDataBR(previa.data)}</div>
+    <p class="text-xs muted">↑ passou a acertar, ↓ passou a errar. Só entram as ${comp.comuns} questões que as duas tentativas tiveram.</p>
+    ${linha("Passou a acertar ↑", comp.passouAAcertar)}${linha("Passou a errar ↓", comp.passouAErrar)}
+    <div class="text-xs muted mt-1">Acertou nas duas: ${comp.acertouNasDuas.length} · errou nas duas: ${comp.erroNasDuas.length}</div>
   </div>`;
 }
 /* Gabarito corrigido depois da prova (arquivo de atualizações ou correção na
@@ -659,12 +742,22 @@ function renderResultadoSimulado(){
   const equipe = ehEquipeVendoSimulado();
   const ranking = equipe ? null : estatisticasRankingSimulado(chaveRanking, nota);
   const erradas = linhas.filter(l=>!l.correta);
-  const pillMapa = l => `<button class="pill" style="min-width:38px;justify-content:center;${l.resp===undefined?"":l.correta?"background:var(--accent);border-color:var(--accent);color:#fff":"background:var(--danger);border-color:var(--danger);color:#fff"}" onclick="abrirQuestaoCompleta('${l.q.id}')" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")} · abrir a questão">${l.i+1}</button>`;
+  const previa = tentativaAnteriorDaSessao(sessao);
+  const comp = previa ? compararTentativas(db.resultadosSimulados.find(r=>r.id===sessao.resultadoId), previa) : null;
+  // a "sombra": o anel de cada número tem a cor do que aconteceu na tentativa
+  // anterior, e a seta marca quem mudou (a cor sozinha não basta para todo mundo)
+  const pillMapa = l => {
+    const antes = comp ? acertouNaTentativa(previa, l.q.id) : null;
+    const mudou = antes!==null && antes!==l.correta;
+    const aviso = antes===null ? "" : ` · antes: ${antes?"acertou":"errou"}`;
+    return `<button class="pill pill-resultado ${l.resp===undefined?"":l.correta?"certa":"errada"}" style="min-width:38px;justify-content:center" onclick="abrirQuestaoCompleta('${l.q.id}')" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}${aviso} · abrir a questão">${l.i+1}${mudou ? `<span class="seta-mudanca" aria-hidden="true">${l.correta?"↑":"↓"}</span>` : ""}</button>`;
+  };
   return `<div class="coluna-resultado">
   <div class="card">
     <h2>Resultado do simulado</h2>
     <div class="flex items-center gap-2 quebra mt-1">
       <div class="stat-tile"><div class="stat-value">${nota}%</div><div class="stat-label">${acertos} de ${total} corretas</div></div>
+      ${previa ? `<div class="stat-tile anterior" title="Sua tentativa de ${formatDataBR(previa.data)}"><div class="stat-value">${previa.nota}%</div><div class="stat-label">antes · ${previa.acertos} de ${previa.total}${nota!==previa.nota ? ` · <strong>${nota>previa.nota?"+":""}${nota-previa.nota} pts</strong>` : ""}</div></div>` : ""}
       <div class="text-sm muted">${erradas.length ? `${erradas.length} errada(s) ou em branco` : "Você acertou tudo."}</div>
     </div>
     <div class="flex gap-1 mt-2 quebra">
@@ -675,6 +768,7 @@ function renderResultadoSimulado(){
     </div>
     <div class="text-sm peso-600 mt-2">Mapa de acertos <span class="muted peso-400">· verde acertou, vermelho errou, cinza em branco; clique para abrir a questão</span></div>
     <div class="flex gap-1 quebra mt-1">${linhas.map(pillMapa).join("")}</div>
+    ${htmlComparacaoComAnterior(comp, previa, linhas)}
   </div>
   ${equipe ? `<div class="card mt-2">${htmlDesempenhoDosAlunos(chaveRanking)}</div>` : ranking ? `
   <div class="card mt-2">
@@ -691,7 +785,7 @@ function renderResultadoSimulado(){
     <p class="text-xs muted mt-1">Curva de Gauss desenhada com a média (${Math.round(ranking.media)}%) e o desvio padrão (${Math.round(ranking.desvio)} pontos) das notas dos alunos: é um ajuste, não a contagem exata.</p>
     <div class="mt-2">${graficoHistogramaSvg(ranking.buckets, ranking.bucketAtual, ["0-20","21-40","41-60","61-80","81-100"])}</div>
   </div>` : `<div class="card-flat mt-2 text-sm muted">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado. <strong>${frasePoucosAlunosNoSimulado(chaveRanking)}</strong></div>`}
-  ${htmlAcertoPorEspecialidade(linhas)}
+  ${htmlAcertoPorEspecialidade(linhas, previa)}
   ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(usuarioAtual().id, {sessaoId:sessao.id}), "Seus assuntos neste simulado × o seu estudo", "O acerto de cada assunto no simulado ao lado do acerto fora dele. Bom no estudo e mal aqui: tempo ou formato da prova. Mal nos dois: falta conteúdo.", {maximo:5})}
   ${analiseTempo ? `<div class="card mt-2">
     <div class="card-title">Tempo</div>
@@ -803,7 +897,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
         ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
         ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
         ${(()=>{ const em = simuladoEmAndamentoDe(u, "prova:Prova "+g.banca+" "+anoDaProva(g)+" (simulado)"); if(!em) return ""; const p = progressoDoSimuladoEmAndamento(em); return `<div class="qcard-meta mb-1"><span class="badge badge-amber">simulado em andamento · ${p.feitas} de ${p.total} respondidas</span></div>`; })()}
-        ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${previo.ultima.nota>=70?"badge-accent":previo.ultima.nota>=50?"badge-amber":"badge-danger"}">já fez como simulado · ${previo.ultima.nota}%</span></div>` : ""}
+        ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${classeBadgeNota(previo.ultima.nota)}">já fez como simulado · ${previo.ultima.nota}%</span> <button class="link-btn text-xs" onclick="abrirHistoricoDoSimulado(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")})">${previo.n>1 ? "ver as "+previo.n+" tentativas" : "ver a tentativa"}</button></div>` : ""}
         <div class="flex gap-1 prova-acoes quebra">
           ${g.dissertativa ? "" : (simuladoEmAndamentoDe(u, "prova:Prova "+g.banca+" "+anoDaProva(g)+" (simulado)")
             ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('prova:Prova ${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)} (simulado)')">Continuar o simulado</button>
