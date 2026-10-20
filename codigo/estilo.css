@@ -134,7 +134,18 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .label{font-size:var(--fs-sm);font-weight:600;color:var(--ink-2)}
 .hint{font-size:var(--fs-xs);color:var(--muted)}
 .input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:var(--fs-md);font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
-.select-compacto{width:auto;padding:.4rem .6rem;font-size:var(--fs-sm)}
+.acoes-inicio{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem}
+.link-discreto{background:none;border:none;padding:0;color:var(--muted);font-size:var(--fs-2xs);cursor:pointer;text-decoration:underline dotted}
+.link-discreto:hover{color:var(--accent-dark)}
+/* janela "Tempo contado": atalhos e o relógio editável */
+.tempo-atalhos{display:flex;flex-wrap:wrap;gap:var(--esp-1)}
+.chip-tempo{padding:.35rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);color:var(--ink);font-size:var(--fs-sm);font-weight:600;cursor:pointer}
+.chip-tempo:hover{border-color:var(--accent)}
+.chip-tempo[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.relogio-tempo{display:flex;align-items:center;gap:.4rem;font-family:var(--font-display);font-size:var(--fs-xl)}
+.relogio-tempo input{width:3.6rem;text-align:center;font:inherit;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--surface);color:var(--ink);padding:.3rem .2rem}
+.relogio-tempo input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.relogio-tempo small{font-family:inherit;font-size:var(--fs-sm);color:var(--muted)}
 .input:focus,.select:focus,.textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
 .textarea{min-height:120px;resize:vertical}
 .textarea-mono{font-family:var(--font-mono);font-size:var(--fs-sm);line-height:1.6}

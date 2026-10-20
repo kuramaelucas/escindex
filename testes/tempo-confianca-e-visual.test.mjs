@@ -31,11 +31,10 @@ test("Sessão por tempo: o tempo de cada questão é o do aluno + 10% e define o
       const qs = questoesAtivas().filter(q => !ehDissertativa(q) && !aguardaImagem(q)).slice(0, 8);
       qs.forEach(q => registrarResposta(u.id, q.id, q.gabarito, "certeza", 60, "pratica"));
       const comHistorico = ritmoPorQuestao(u.id);
-      state.tempoSessaoMin = 30;
       const cabem = questoesQueCabemEm(u.id, 30);
       state.sessaoAtual = null;
-      montarSessaoRecomendadaDeHoje();
-      return { semHistorico, comHistorico, cabem, itens: state.sessaoAtual.itens.length, frase: fraseTempoDaSessao(u.id) };
+      montarSessaoRecomendadaDeHoje(30);
+      return { semHistorico, comHistorico, cabem, itens: state.sessaoAtual.itens.length, conta: contaDoTempoDaSessao(u.id, 30).texto };
     });
     assert.equal(r.semHistorico.medido, false);
     assert.equal(r.semHistorico.estimadoSeg, 132);          // 120 s padrão + 10%
@@ -44,19 +43,57 @@ test("Sessão por tempo: o tempo de cada questão é o do aluno + 10% e define o
     assert.equal(r.comHistorico.estimadoSeg, 66);           // 60 s + 10%
     assert.equal(r.cabem, 27);                              // 1800 / 66
     assert.equal(r.itens, 27);
-    assert.match(r.frase, /27 questões/);
-    assert.match(r.frase, /10% de folga/);
+    assert.match(r.conta, /27 questões/);
+    assert.match(r.conta, /10% de folga/);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
 
-test("Início: o seletor de tempo existe e escolher 15 min muda a frase", async () => {
+test("Início: só um link discreto abaixo de Começar agora; a janela aplica o tempo", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
-    await pagina.evaluate(() => navigate("inicio"));
-    await pagina.selectOption("#tempoDaSessao", "15");
-    const frase = await pagina.textContent("#fraseTempoDaSessao");
-    assert.match(frase, /15 min ≈ \d+ questões/);
+    await pagina.evaluate(() => { const u = usuarioAtual(); const qs = questoesAtivas().filter(q => !ehDissertativa(q) && !aguardaImagem(q)).slice(0, 8); qs.forEach(q => registrarResposta(u.id, q.id, q.gabarito, "certeza", 60, "pratica")); navigate("inicio"); });
+    assert.equal(await pagina.locator("select").count(), 0, "o seletor antigo saiu do Início");
+    const posicao = await pagina.evaluate(() => {
+      const c = document.querySelector(".btn-primary").getBoundingClientRect(), l = document.querySelector(".link-discreto").getBoundingClientRect();
+      return { abaixo: l.top >= c.bottom - 1, menor: l.height < c.height };
+    });
+    assert.ok(posicao.abaixo && posicao.menor);
+    await pagina.click(".link-discreto");
+    assert.equal(await pagina.locator(".chip-tempo").count(), 6);
+    assert.deepEqual(await pagina.locator(".chip-tempo").allTextContents(), ["15 min", "30 min", "45 min", "1h", "1h30", "2h"]);
+    await pagina.click('.chip-tempo[data-min="60"]');
+    assert.equal(await pagina.inputValue("#tempoSessaoHoras"), "1");
+    assert.equal(await pagina.inputValue("#tempoSessaoMinutos"), "0");
+    assert.match(await pagina.textContent("#contaTempoSessao"), /1h ÷ 1:06 por questão .* = 54 questões/);
+    // editar como um relógio: 1h20 = 80 min
+    await pagina.fill("#tempoSessaoMinutos", "20");
+    assert.match(await pagina.textContent("#contaTempoSessao"), /1h20 ÷ .* = 72 questões/);
+    assert.match(await pagina.textContent("#aplicarTempoSessao"), /72 questões/);
+    await pagina.click("#aplicarTempoSessao");
+    assert.equal(await pagina.evaluate(() => state.sessaoAtual.itens.length), 72);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Nuvem: a confiança do simulado sobe com o resultado e volta ao baixar", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const u = usuarioAtual();
+      window.nuvemConectado = () => true;
+      nuvemSessao = { usuarioId: u.id };
+      db.filaNuvem = [];
+      const res = { id: "res-x", usuarioId: u.id, simuladoId: "sim-x", titulo: "T", nota: 50, acertos: 1, total: 2, data: hojeISO(), itens: [], respostas: {}, tempos: {}, tempoTotalSeg: 100, confiancas: { "q-1": "chute" } };
+      nuvemRegistrar({ resultadoSimulado: res });
+      const op = db.filaNuvem.find(o => o.tabela === "resultados_simulados");
+      db.resultadosSimulados = [];
+      NUVEM_TABELAS.resultados_simulados.aplicar({ id: "res-y", usuario_id: u.id, simulado_id: "s", titulo: "T", nota: 1, acertos: 1, total: 1, data: "2026-10-20", itens: [], respostas: {}, tempos: {}, tempo_total_seg: 5, confiancas: { "q-2": "certeza" } });
+      return { enviada: op && op.registro.confiancas, baixada: db.resultadosSimulados[0].confiancas, campoNovo: NUVEM_CAMPOS_NOVOS.resultados_simulados };
+    });
+    assert.deepEqual(r.enviada, { "q-1": "chute" });
+    assert.deepEqual(r.baixada, { "q-2": "certeza" });
+    assert.deepEqual(r.campoNovo, ["confiancas"]);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

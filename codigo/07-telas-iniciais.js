@@ -509,16 +509,13 @@ function renderInicioAluno(u){
         ${soNoEstatistico(`<div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>`)}
         <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
         <div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
-        <div class="text-xs muted mt-1" id="fraseTempoDaSessao">${fraseTempoDaSessao(u.id)}</div>
       </div>
-      <div class="flex gap-1 quebra items-center">
-        <label class="text-xs muted" for="tempoDaSessao">Tempo</label>
-        <select id="tempoDaSessao" class="select select-compacto" onchange="mudarTempoDaSessao(this.value)" aria-label="Quanto tempo você tem para estudar agora">
-          <option value="0"${tempoDaSessaoEscolhido()?"":" selected"}>livre</option>
-          ${OPCOES_DE_TEMPO_DA_SESSAO.map(m=>`<option value="${m}"${tempoDaSessaoEscolhido()===m?" selected":""}>${m} min</option>`).join("")}
-        </select>
+      <div class="acoes-inicio">
+       <div class="flex gap-1 quebra">
         ${emAndamento ? `<button class="btn btn-secondary" onclick="retomarSessaoEmAndamento()" title="${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}">${iconeSvg("refresh")} Continuar última sessão</button>` : ""}
         <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
+       </div>
+       <button class="link-discreto" onclick="abrirSessaoPorTempo()" title="Diga quanto tempo você tem e a sessão se monta no seu ritmo">Tempo contado?</button>
       </div>
     </div>
     <div class="stat-mini-row mt-2">

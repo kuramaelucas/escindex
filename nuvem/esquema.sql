@@ -458,6 +458,10 @@ create table if not exists public.resultados_simulados (
   criado_em       timestamptz not null default now()
 );
 create index if not exists resultados_simulados_sync_idx on public.resultados_simulados (usuario_id, criado_em);
+-- a confiança que a pessoa declarou em cada questão do simulado feito em modo
+-- aprendizado (treino): {"q-id": "certeza" | "duvida" | "chute"}. Para quem já
+-- rodou este arquivo antes desta coluna existir:
+alter table public.resultados_simulados add column if not exists confiancas jsonb not null default '{}'::jsonb;
 
 -- ---------------------------------------------------------------------------
 -- 10. SESSAO_EM_ANDAMENTO — a fila não terminada, para retomar em outro aparelho

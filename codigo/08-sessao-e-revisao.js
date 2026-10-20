@@ -31,7 +31,7 @@ function iniciarSessaoRecomendada(){
   }
   montarSessaoRecomendadaDeHoje();
 }
-function montarSessaoRecomendadaDeHoje(){
+function montarSessaoRecomendadaDeHoje(minutos){
   const u = usuarioAtual();
   const feitas = questoesRespondidasHoje(u.id);
   const crono = cronogramaDoUsuario(u);
@@ -39,11 +39,70 @@ function montarSessaoRecomendadaDeHoje(){
   // pode ser de 5 questões, que não dá para treinar prova
   const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
   const restante = Math.max(piso, metaDoUsuario(u) - feitas);
-  // com tempo escolhido, o tamanho vem do ritmo da pessoa (e passa dos 20 de
-  // sempre: 90 min para quem responde em 1 min são mais de 60 questões)
-  const minutos = tempoDaSessaoEscolhido();
+  // com tempo contado, o tamanho vem do ritmo da pessoa (ver abrirSessaoPorTempo)
   const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, 20);
   iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
+}
+/* "Tempo contado?" — a pessoa diz quanto tempo tem e a sessão se monta para
+   caber nele. Atalhos para os tempos comuns e um relógio editável (horas e
+   minutos) para os demais; a conta aparece por extenso e só vira sessão
+   quando a pessoa aplica. */
+let _minutosDaSessaoPorTempo = 30;
+function abrirSessaoPorTempo(){
+  _minutosDaSessaoPorTempo = 30;
+  const u = usuarioAtual();
+  abrirModalTitulado("Tempo contado", `
+    <p class="text-sm muted">Quanto tempo você tem agora? A sessão é montada com quantas questões cabem nele, no seu ritmo.</p>
+    <div class="tempo-atalhos mt-2" id="atalhosTempoSessao">
+      ${ATALHOS_DE_TEMPO_DA_SESSAO.map(m=>`<button class="chip-tempo" data-min="${m}" onclick="definirTempoDaSessaoPorTempo(${m})">${rotuloDeMinutos(m)}</button>`).join("")}
+    </div>
+    <div class="relogio-tempo mt-2" aria-label="Tempo da sessão">
+      <input id="tempoSessaoHoras" type="number" min="0" max="8" inputmode="numeric" aria-label="Horas" oninput="editarTempoDaSessaoPorTempo()"><small>h</small>
+      <input id="tempoSessaoMinutos" type="number" min="0" max="59" inputmode="numeric" aria-label="Minutos" oninput="editarTempoDaSessaoPorTempo()"><small>min</small>
+    </div>
+    <div class="card-flat text-sm mt-2" id="contaTempoSessao"></div>
+    ${sessaoDeHoje(u) ? `<p class="text-xs muted mt-1">Você tem um conjunto de hoje em andamento; aplicar monta um novo e deixa aquele de lado.</p>` : ""}
+    <div class="flex gap-1 mt-3 quebra">
+      <button class="btn btn-primary" id="aplicarTempoSessao" onclick="aplicarSessaoPorTempo()">Criar sessão</button>
+      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+    </div>`);
+  atualizarJanelaSessaoPorTempo();
+}
+function definirTempoDaSessaoPorTempo(min){
+  _minutosDaSessaoPorTempo = min;
+  atualizarJanelaSessaoPorTempo();
+}
+function editarTempoDaSessaoPorTempo(){
+  const h = Number(document.getElementById("tempoSessaoHoras").value) || 0;
+  const m = Number(document.getElementById("tempoSessaoMinutos").value) || 0;
+  _minutosDaSessaoPorTempo = Math.max(0, Math.min(480, Math.round(h*60 + m)));
+  atualizarJanelaSessaoPorTempo(true);
+}
+/* `deDigitacao`: quem está digitando nos campos não pode ter o valor trocado
+   debaixo do dedo (60 viraria "1" e "0" a cada tecla). */
+function atualizarJanelaSessaoPorTempo(deDigitacao){
+  const min = _minutosDaSessaoPorTempo;
+  if(!deDigitacao){
+    document.getElementById("tempoSessaoHoras").value = Math.floor(min/60);
+    document.getElementById("tempoSessaoMinutos").value = min%60;
+  }
+  document.querySelectorAll("#atalhosTempoSessao .chip-tempo").forEach(b=>b.setAttribute("aria-pressed", String(Number(b.dataset.min)===min)));
+  const botao = document.getElementById("aplicarTempoSessao");
+  const caixa = document.getElementById("contaTempoSessao");
+  if(min < 5){
+    caixa.textContent = "Escolha pelo menos 5 minutos.";
+    botao.disabled = true; botao.textContent = "Criar sessão";
+    return;
+  }
+  const c = contaDoTempoDaSessao(usuarioAtual().id, min);
+  caixa.innerHTML = c.texto;
+  botao.disabled = false; botao.textContent = "Criar sessão com "+c.n+" questões";
+}
+function aplicarSessaoPorTempo(){
+  const min = _minutosDaSessaoPorTempo;
+  if(min < 5) return;
+  fecharModal();
+  montarSessaoRecomendadaDeHoje(min);
 }
 /* A sessão guardada é de hoje? É o que decide se o botão de Estudar diz
    "continuar" ou "começar". */
