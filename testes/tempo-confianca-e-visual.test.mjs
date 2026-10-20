@@ -55,11 +55,11 @@ test("Início: só um link discreto abaixo de Começar agora; a janela aplica o 
     await pagina.evaluate(() => { const u = usuarioAtual(); const qs = questoesAtivas().filter(q => !ehDissertativa(q) && !aguardaImagem(q)).slice(0, 8); qs.forEach(q => registrarResposta(u.id, q.id, q.gabarito, "certeza", 60, "pratica")); navigate("inicio"); });
     assert.equal(await pagina.locator("select").count(), 0, "o seletor antigo saiu do Início");
     const posicao = await pagina.evaluate(() => {
-      const c = document.querySelector(".btn-primary").getBoundingClientRect(), l = document.querySelector(".link-discreto").getBoundingClientRect();
-      return { abaixo: l.top >= c.bottom - 1, menor: l.height < c.height };
+      const c = document.querySelector(".btn-primary").getBoundingClientRect(), l = document.querySelector(".btn-tempo").getBoundingClientRect();
+      return { abaixo: l.top >= c.bottom - 1, noventa: Math.abs(l.height / c.height - 0.9) < 0.02 };
     });
-    assert.ok(posicao.abaixo && posicao.menor);
-    await pagina.click(".link-discreto");
+    assert.ok(posicao.abaixo && posicao.noventa, JSON.stringify(posicao));
+    await pagina.click(".btn-tempo");
     assert.equal(await pagina.locator(".chip-tempo").count(), 6);
     assert.deepEqual(await pagina.locator(".chip-tempo").allTextContents(), ["15 min", "30 min", "45 min", "1h", "1h30", "2h"]);
     await pagina.click('.chip-tempo[data-min="60"]');

@@ -134,9 +134,15 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .label{font-size:var(--fs-sm);font-weight:600;color:var(--ink-2)}
 .hint{font-size:var(--fs-xs);color:var(--muted)}
 .input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:var(--fs-md);font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
-.acoes-inicio{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem}
-.link-discreto{background:none;border:none;padding:0;color:var(--muted);font-size:var(--fs-2xs);cursor:pointer;text-decoration:underline dotted}
-.link-discreto:hover{color:var(--accent-dark)}
+/* Os botões do cartão "Pronto para estudar?" ficam empilhados e centralizados.
+   "Tempo contado?" é um retângulo com 90% da altura dos de cima: é ação de
+   apoio, então não pode pesar como o principal, mas pequeno demais não se
+   achava (era um link de 10 px). */
+.acoes-inicio{--h-acao:2.6rem;display:grid;justify-items:stretch;gap:.5rem}
+.acoes-inicio > .flex{justify-content:center}
+.acoes-inicio .btn-primary:only-child{flex:1}
+.acoes-inicio .btn{height:var(--h-acao)}
+.acoes-inicio .btn-tempo{height:calc(var(--h-acao) * .9)}
 /* janela "Tempo contado": atalhos e o relógio editável */
 .tempo-atalhos{display:flex;flex-wrap:wrap;gap:var(--esp-1)}
 .chip-tempo{padding:.35rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);color:var(--ink);font-size:var(--fs-sm);font-weight:600;cursor:pointer}
