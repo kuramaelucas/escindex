@@ -54,7 +54,7 @@ test("depois de responder, a classificação continua inteira (área, especialid
       const q = db.questoes.find(x => x.real && x.status === "ativa");
       const html = renderQuestionCard(q, { respondida: true, selecionada: q.gabarito });
       const caixa = document.createElement("div"); caixa.innerHTML = html;
-      const texto = caixa.querySelector(".qcard-meta").textContent.replace(/\s+/g, " ");
+      const texto = caixa.querySelector(".qcard").textContent.replace(/\s+/g, " ");
       return { texto, esp: getEspecialidade(q.especialidadeId)?.nome, assunto: nomeAssunto(q.assuntoId), banca: q.banca, ano: q.ano };
     });
     assert.ok(r.texto.includes(r.esp) && r.texto.includes(r.assunto) && r.texto.includes(r.banca) && r.texto.includes(String(r.ano)), r.texto);

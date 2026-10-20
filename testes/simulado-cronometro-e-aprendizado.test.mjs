@@ -47,8 +47,8 @@ test("Simulado: esconder cronômetro, pausar fora da aba, confirmar no aprendiza
       const errada = q.alternativas.find(a => a.id !== q.gabarito).id;
       selecionarAlternativaSimulado(errada);
       out.antesDeConfirmar = s.respostasSimulado[q.id];
-      out.botaoConfirmar = /Confirmar resposta/.test(document.body.innerHTML);
-      confirmarRespostaSimulado();
+      out.botaoConfirmar = /confirmarRespostaSimulado\('certeza'\)/.test(document.body.innerHTML);
+      confirmarRespostaSimulado("certeza");
       out.depois = s.respostasSimulado[q.id];
       selecionarAlternativaSimulado(q.gabarito);
       out.travou = s.respostasSimulado[q.id] === errada;

@@ -509,8 +509,14 @@ function renderInicioAluno(u){
         ${soNoEstatistico(`<div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>`)}
         <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
         <div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
+        <div class="text-xs muted mt-1" id="fraseTempoDaSessao">${fraseTempoDaSessao(u.id)}</div>
       </div>
-      <div class="flex gap-1 quebra">
+      <div class="flex gap-1 quebra items-center">
+        <label class="text-xs muted" for="tempoDaSessao">Tempo</label>
+        <select id="tempoDaSessao" class="select select-compacto" onchange="mudarTempoDaSessao(this.value)" aria-label="Quanto tempo você tem para estudar agora">
+          <option value="0"${tempoDaSessaoEscolhido()?"":" selected"}>livre</option>
+          ${OPCOES_DE_TEMPO_DA_SESSAO.map(m=>`<option value="${m}"${tempoDaSessaoEscolhido()===m?" selected":""}>${m} min</option>`).join("")}
+        </select>
         ${emAndamento ? `<button class="btn btn-secondary" onclick="retomarSessaoEmAndamento()" title="${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}">${iconeSvg("refresh")} Continuar última sessão</button>` : ""}
         <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
       </div>
@@ -537,13 +543,13 @@ function renderInicioAluno(u){
       ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
         <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
         <div class="flex gap-1 mt-1 quebra">
-          <button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button>
+          <button class="btn btn-secondary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button>
           <button class="btn btn-secondary btn-sm" onclick="navigate('desempenho')">Ver onde a confiança engana</button>
         </div>
       </div>` : ""}
       <div class="flex gap-1 mt-2 quebra">
         ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-        <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
+        <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
       </div>
     </div>
   </div>`}
@@ -559,12 +565,12 @@ function htmlPendenciasResumidas(revisarHoje, flashVencidos, calibracao){
       <div class="text-sm cresce-220">${partes.length ? "<strong>Pendente hoje:</strong> "+partes.join(" · ") : "Nada vencido para revisar hoje. Continue pelo bloco atual."}</div>
       <div class="flex gap-1 quebra">
         ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-        <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
+        <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
       </div>
     </div>
     ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
       <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%.
-      <div class="flex gap-1 mt-1 quebra"><button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button></div>
+      <div class="flex gap-1 mt-1 quebra"><button class="btn btn-secondary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button></div>
     </div>` : ""}
   </div>`;
 }

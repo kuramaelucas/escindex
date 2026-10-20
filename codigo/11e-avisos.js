@@ -59,15 +59,26 @@ function abrirAviso(id){
 }
 /* O card da tela inicial. Fica acima das notificações calculadas: o recado da
    coordenação é a coisa mais específica que a pessoa vai ler ali. */
+/* O card começa FECHADO, numa linha só, como o de Notificações: o aviso não
+   some (o número e o título do mais recente ficam à vista), mas não empurra
+   para baixo o botão de estudar. Abre num toque e lembra a escolha enquanto a
+   pessoa está na plataforma. */
+function alternarAvisos(){
+  state.avisosAbertos = !state.avisosAbertos;
+  render();
+}
 function renderAvisosCard(usuario){
   const avisos = avisosNaoLidos(usuario);
   if(!avisos.length) return "";
+  const aberto = !!state.avisosAbertos;
   return `<div class="card mb-2 borda-alerta">
-    <div class="flex justify-between items-center" style="margin-bottom:.5rem;gap:.5rem;flex-wrap:wrap">
-      <div class="card-title sem-mb">${iconeSvg("message")} Avisos da coordenação${avisos.length>1 ? ` (${avisos.length})` : ""}</div>
-      ${avisos.length>1 ? `<button class="link-btn" onclick="dispensarTodosOsAvisos()">dispensar todos</button>` : ""}
+    <div class="flex justify-between items-center clicavel gap-1" role="button" tabindex="0" aria-expanded="${aberto}" onclick="alternarAvisos()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alternarAvisos()}">
+      <div class="card-title sem-mb">${iconeSvg("message")} Avisos da coordenação${avisos.length>1 ? ` (${avisos.length})` : ""}${aberto ? "" : ` <span class="text-sm muted peso-400">· ${escapeHtml(avisos[0].titulo)}</span>`}</div>
+      <span class="text-xs muted">${aberto ? "recolher" : "ver"} ${iconeSvg(aberto ? "arrow-up" : "arrow-down")}</span>
     </div>
-    ${avisos.map(a => `<div class="card-flat mb-1">
+    ${aberto ? `<div class="mt-2">
+      ${avisos.length>1 ? `<div class="mb-1"><button class="link-btn" onclick="dispensarTodosOsAvisos()">dispensar todos</button></div>` : ""}
+      ${avisos.map(a => `<div class="card-flat mb-1">
       <div class="flex justify-between items-start" style="gap:.5rem">
         <div>
           <div class="peso-700">${escapeHtml(a.titulo)}</div>
@@ -77,7 +88,7 @@ function renderAvisosCard(usuario){
         <button class="icon-btn" title="Dispensar este aviso" onclick="dispensarAviso('${a.id}')">${iconeSvg("x")}</button>
       </div>
       ${a.rota ? `<button class="btn btn-secondary btn-sm mt-1" onclick="abrirAviso('${a.id}')">Abrir ${escapeHtml(tituloDaRota(a.rota))}</button>` : ""}
-    </div>`).join("")}
+    </div>`).join("")}</div>` : ""}
   </div>`;
 }
 /* Aviso novo que chega pela nuvem enquanto a pessoa usa a plataforma: além do

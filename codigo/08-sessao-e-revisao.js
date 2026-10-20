@@ -39,7 +39,10 @@ function montarSessaoRecomendadaDeHoje(){
   // pode ser de 5 questões, que não dá para treinar prova
   const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
   const restante = Math.max(piso, metaDoUsuario(u) - feitas);
-  const tamanho = Math.min(restante, 20);
+  // com tempo escolhido, o tamanho vem do ritmo da pessoa (e passa dos 20 de
+  // sempre: 90 min para quem responde em 1 min são mais de 60 questões)
+  const minutos = tempoDaSessaoEscolhido();
+  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, 20);
   iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
 }
 /* A sessão guardada é de hoje? É o que decide se o botão de Estudar diz
@@ -287,10 +290,12 @@ function atalhoConfirmarResposta(tecla, e){
   const s = state.sessaoAtual;
   if(!s || s.somenteLeitura) return;
   if(state.route==="simulado-ativo" && !s.finalizado){
-    if(tecla!==" " || !s.modoAprendizado) return;
+    if(!s.modoAprendizado) return;
     const qid = s.itens[s.indiceAtual].questaoId;
     if(s.respostasSimulado[qid] !== undefined || !(s.escolhaPendente||{})[qid]) return;
-    e.preventDefault(); confirmarRespostaSimulado();
+    const confianca = tecla===" " ? s.ultimaConfianca : {"1":"certeza", "2":"duvida", "3":"chute"}[tecla];
+    if(!confianca){ toast("Diga a confiança: tecla 1 = certeza, 2 = na dúvida, 3 = chute. Depois o espaço repete a última.", "err"); return; }
+    e.preventDefault(); confirmarRespostaSimulado(confianca);
     return;
   }
   if(state.route!=="sessao" || s.finalizada) return;
@@ -802,23 +807,29 @@ function renderQuestionCard(q, opts){
      e o número de erros anteriores dão pista da alternativa. Enquanto a
      questão está em aberto ficam só as tags de ORIGEM (banca, ano, tipo da
      prova), que dizem de onde a questão veio e não o que ela cobra. */
-  const classificacao = opts.respondida ? `
-      <span class="badge badge-accent">${escapeHtml(area?area.nome:"")}</span>
-      <span class="qcard-trilha">${escapeHtml(esp?esp.nome:"")} › ${escapeHtml(nomeAssunto(q.assuntoId))}</span>` : "";
-  const dicas = opts.respondida ? `
+  /* A linha de cima leva só o que decide algo: de onde a questão veio
+     (banca, ano, número) e os selos que mudam como ela deve ser lida
+     (alterada, escondida). Área, dificuldade, quantos erros, autoria e o tipo
+     de prova ficam em "detalhes": são contexto, e sete selos juntos faziam o
+     olho passar por cima de todos. */
+  const detalhes = [
+    opts.respondida ? `<span class="badge badge-accent">${escapeHtml(area?area.nome:"")}</span>
+      <span class="qcard-trilha">${escapeHtml(esp?esp.nome:"")} › ${escapeHtml(nomeAssunto(q.assuntoId))}</span>
       <span class="badge ${corDificuldade}">${rotuloDificuldade(dificuldade)}</span>
-      ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}
-      ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}` : "";
+      ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}` : "",
+    badgeAutoriaQuestao(q),
+    q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-accent" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : "",
+    (q.banca||"").indexOf("Didático")>=0
+      ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'
+      : (!q.real ? '<span class="badge badge-muted" title="Questão original escrita para esta demonstração, no estilo e nível da banca">Demonstração</span>' : ""),
+  ].join("").trim();
   let html = `<div class="qcard">
-    <div class="qcard-meta">${classificacao}
+    <div class="qcard-meta">
       <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
-      ${badgeAutoriaQuestao(q)}
       ${badgeQuestaoAlterada(q)}
-      ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-accent" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
-      ${(q.banca||"").indexOf("Didático")>=0
-        ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'
-        : (!q.real ? '<span class="badge badge-muted" title="Questão original escrita para esta demonstração, no estilo e nível da banca">Demonstração</span>' : "")}
+      ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}
     </div>
+    ${detalhes ? `<details class="qcard-detalhes"><summary>detalhes</summary><div class="qcard-meta">${detalhes}</div></details>` : ""}
     <!-- aqui o enunciado já aparece inteiro, então ele não vira link para
          "ver na íntegra": abrir uma janela com o mesmo texto não acrescenta
          nada. O enunciado clicável continua valendo nas LISTAS, onde o texto

@@ -87,14 +87,14 @@ test("sair do simulado: guardar mantém, descartar apaga; o botão de confirmar 
       alternarModoAprendizadoSimulado();
       selecionarAlternativaSimulado("A");
       const html = renderSimuladoAtivo();
-      confirmarRespostaSimulado();
+      confirmarRespostaSimulado("certeza");
       sairDoSimuladoGuardando();
       const guardou = !!simuladoEmAndamentoDe(usuarioAtual(), "sim-t2");
       continuarSimulado("sim-t2");
       sairDoSimuladoDescartando();
       return { html, guardou, depois: simuladoEmAndamentoDe(usuarioAtual(), "sim-t2"), card: renderSimuladoCard(db.simulados.find(x => x.id === "sim-t2")) };
     });
-    assert.match(r.html, /Confirmar resposta/);
+    assert.match(r.html, /confirmarRespostaSimulado\('certeza'\)/);
     assert.doesNotMatch(r.html, /\(espaço\)/);
     assert.ok(r.guardou);
     assert.equal(r.depois, null);
