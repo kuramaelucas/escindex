@@ -789,7 +789,6 @@ function renderDesempenho(){
 
   ${htmlCardNotaEstimada(u)}
 
-  ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(u.id), "Simulados × estudo, por assunto", "Tudo o que você respondeu em simulados, assunto a assunto, comparado com o seu acerto fora de simulado. Os assuntos que mais caem no simulado em relação ao estudo vêm primeiro.")}
 
   <div class="card mb-2">
     <div class="flex justify-between items-center gap-2 mb-2 quebra">
@@ -910,5 +909,10 @@ function renderDesempenho(){
       </div>`).join("")}
     </div>` : ""}
   `) : ""}
+
+  ${htmlComparativoSimuladoEstudo(
+    comparativoSimuladoEstudo(u.id).filter(l=>l.queda!==null).sort((a,b)=>Math.abs(b.queda)-Math.abs(a.queda)).slice(0,10),
+    "Simulados × estudo — os 10 assuntos com maior diferença",
+    "Os assuntos em que o seu acerto no simulado mais se afasta do acerto fora dele, para cima ou para baixo.", {semResto:true})}
   `;
 }

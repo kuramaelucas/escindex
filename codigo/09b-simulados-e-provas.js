@@ -246,7 +246,7 @@ function htmlComparativoSimuladoEstudo(linhas, titulo, intro, opcoes){
     </tbody></table></div>`;
   // `maximo`: a página de resultado mostra de início só os assuntos que mais
   // pedem atenção (a lista já vem ordenada); o resto abre sob demanda
-  const maximo = opcoes && opcoes.maximo;
+  const maximo = opcoes && opcoes.maximo; // `semResto`: a lista já vem cortada, sem expansível
   const visiveis = maximo ? linhas.slice(0, maximo) : linhas;
   const resto = maximo ? linhas.slice(maximo) : [];
   return `<div class="card mt-2">
