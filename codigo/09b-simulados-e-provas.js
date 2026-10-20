@@ -186,7 +186,7 @@ function renderSimuladoCard(s){
     <div class="peso-700 prova-banca">${previo ? `<button class="link-btn titulo-simulado" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Ver as ${previo.n} vez(es) que você fez este simulado e como a nota mudou">${escapeHtml(s.titulo)}</button>` : escapeHtml(s.titulo)}</div>
     <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
     ${htmlDatasDoSimulado(s)}
-    ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} respondidas</span></div>` : ""}
+    ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} questões respondidas</span></div>` : ""}
     ${previo ? `<div class="qcard-meta mt-1">
         <span class="badge ${classeBadgeNota(previo.ultima.nota)}">última nota ${previo.ultima.nota}%</span>
         <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
