@@ -252,6 +252,7 @@ function htmlComparativoSimuladoEstudo(linhas, titulo, intro, opcoes){
   return `<div class="card mt-2">
     <div class="card-title">${escapeHtml(titulo)}</div>
     <p class="text-xs muted">${intro}</p>
+    ${(opcoes && opcoes.controles) || ""}
     ${tabela(visiveis)}
     ${resto.length ? `<details class="mt-1"><summary class="text-xs link-btn">Ver os outros ${resto.length} assuntos</summary>${tabela(resto)}</details>` : ""}
     <p class="text-xs muted mt-1">"Fora" soma as questões feitas nas trilhas, na revisão e nas listas. Só há comparação com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.</p>

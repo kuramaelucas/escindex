@@ -484,6 +484,26 @@ function ctxDesempenho(){
   if(!state.filtroRota.desempenho) state.filtroRota.desempenho = {periodo:"14d"};
   return state.filtroRota.desempenho;
 }
+/* Ordem do comparativo simulado × estudo: "queda" (padrão: simulado pior que o
+   estudo), "simulado" (menor acerto no simulado) ou "geral" (menor acerto fora
+   dele). Cada ordem tira da lista o que ela não consegue medir. */
+const ORDENS_SIMULADO_ESTUDO = [
+  {id:"queda", label:"Maior queda no simulado"},
+  {id:"simulado", label:"Pior no simulado"},
+  {id:"geral", label:"Pior no geral"},
+];
+function linhasSimuladoEstudoOrdenadas(usuarioId){
+  const ordem = ctxDesempenho().ordemSimEstudo || "queda";
+  const linhas = comparativoSimuladoEstudo(usuarioId);
+  if(ordem==="simulado") return linhas.sort((a,b)=>a.simTaxa-b.simTaxa || b.simTotal-a.simTotal);
+  if(ordem==="geral") return linhas.filter(l=>l.estTotal>0).sort((a,b)=>a.estTaxa-b.estTaxa || b.estTotal-a.estTotal);
+  return linhas.filter(l=>l.queda!==null).sort((a,b)=>b.queda-a.queda);
+}
+function htmlOrdemSimuladoEstudo(){
+  const atual = ctxDesempenho().ordemSimEstudo || "queda";
+  return `<div class="seletor-periodo mt-1">${ORDENS_SIMULADO_ESTUDO.map(o=>`<button class="pill ${atual===o.id?"active":""}" onclick="mudarOrdemSimuladoEstudo('${o.id}')">${o.label}</button>`).join("")}</div>`;
+}
+function mudarOrdemSimuladoEstudo(o){ ctxDesempenho().ordemSimEstudo = o; render(); }
 function mudarPeriodoDesempenho(p){ ctxDesempenho().periodo = p; render(); }
 /* "Como você está indo" tem duas leituras do mesmo estudo, e a tela mostra uma
    por vez para não pesar: o gráfico de barras (taxa de acerto no período) ou o
@@ -789,7 +809,6 @@ function renderDesempenho(){
 
   ${htmlCardNotaEstimada(u)}
 
-  ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(u.id), "Simulados × estudo, por assunto", "Tudo o que você respondeu em simulados, assunto a assunto, comparado com o seu acerto fora de simulado. Os assuntos que mais caem no simulado em relação ao estudo vêm primeiro.")}
 
   <div class="card mb-2">
     <div class="flex justify-between items-center gap-2 mb-2 quebra">
@@ -910,5 +929,7 @@ function renderDesempenho(){
       </div>`).join("")}
     </div>` : ""}
   `) : ""}
+
+  ${htmlComparativoSimuladoEstudo(linhasSimuladoEstudoOrdenadas(u.id), "Simulados × estudo, por assunto", "Seu acerto no simulado ao lado do acerto fora dele. Por padrão vêm primeiro os assuntos em que o simulado ficou pior que o estudo; os 10 primeiros abertos, o resto no expansível.", {maximo:10, controles:htmlOrdemSimuladoEstudo()})}
   `;
 }
