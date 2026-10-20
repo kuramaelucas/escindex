@@ -246,12 +246,13 @@ function htmlComparativoSimuladoEstudo(linhas, titulo, intro, opcoes){
     </tbody></table></div>`;
   // `maximo`: a página de resultado mostra de início só os assuntos que mais
   // pedem atenção (a lista já vem ordenada); o resto abre sob demanda
-  const maximo = opcoes && opcoes.maximo; // `semResto`: a lista já vem cortada, sem expansível
+  const maximo = opcoes && opcoes.maximo;
   const visiveis = maximo ? linhas.slice(0, maximo) : linhas;
   const resto = maximo ? linhas.slice(maximo) : [];
   return `<div class="card mt-2">
     <div class="card-title">${escapeHtml(titulo)}</div>
     <p class="text-xs muted">${intro}</p>
+    ${(opcoes && opcoes.controles) || ""}
     ${tabela(visiveis)}
     ${resto.length ? `<details class="mt-1"><summary class="text-xs link-btn">Ver os outros ${resto.length} assuntos</summary>${tabela(resto)}</details>` : ""}
     <p class="text-xs muted mt-1">"Fora" soma as questões feitas nas trilhas, na revisão e nas listas. Só há comparação com ${MINIMO_RESPOSTAS_PARA_COMPARAR} respostas ou mais no assunto.</p>
