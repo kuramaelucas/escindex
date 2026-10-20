@@ -362,11 +362,18 @@ function selecionarAlternativaSimulado(altId){
   salvarSimuladoEmAndamento();
   render();
 }
-function confirmarRespostaSimulado(){
+const ROTULOS_CONFIANCA = {certeza:"Certeza", duvida:"Na dúvida", chute:"Chute"};
+/* No modo aprendizado (o treino) o simulado pergunta a confiança, como nas
+   outras sessões: certeza, dúvida ou chute. Fora dele não pergunta: prova de
+   verdade não tem esse intervalo, e interromper a cada questão tira o ritmo. */
+function confirmarRespostaSimulado(confianca){
   const sessao = state.sessaoAtual; if(!sessao) return;
   const qid = sessao.itens[sessao.indiceAtual].questaoId;
   const escolha = (sessao.escolhaPendente||{})[qid];
   if(!escolha){ toast("Escolha uma alternativa antes de confirmar.", "err"); return; }
+  if(!ROTULOS_CONFIANCA[confianca]){ toast("Diga a confiança: certeza, na dúvida ou chute.", "err"); return; }
+  (sessao.confiancas = sessao.confiancas || {})[qid] = confianca;
+  sessao.ultimaConfianca = confianca;
   sessao.respostasSimulado[qid] = escolha;
   delete sessao.escolhaPendente[qid];
   salvarSimuladoEmAndamento();
@@ -430,7 +437,7 @@ function salvarSimuladoEmAndamento(){
   const chave = chaveDoSimuladoEmAndamento(s);
   mapa[chave] = {
     id: s.id, simuladoId: s.simuladoId || null, titulo: s.titulo, itens: s.itens, indiceAtual: s.indiceAtual,
-    respostasSimulado: {...s.respostasSimulado}, escolhaPendente: {...(s.escolhaPendente || {})},
+    respostasSimulado: {...s.respostasSimulado}, escolhaPendente: {...(s.escolhaPendente || {})}, confiancas: {...(s.confiancas || {})},
     modoAprendizado: !!s.modoAprendizado, ocultarTimer: !!s.ocultarTimer, duracaoMin: s.duracaoMin,
     tempos: {...(s.tempos || {})}, decorridoMs: Math.max(0, momentoDeReferenciaSimulado(s) - s.inicioMs),
     iniciadoEm: (mapa[chave] || {}).iniciadoEm || hojeISO(), salvaEm: hojeISO(),
@@ -450,7 +457,7 @@ function continuarSimulado(chave){
   if(!itens.length){ toast("Este simulado não tem questões disponíveis no momento.", "err"); return; }
   state.sessaoAtual = { id:g.id, tipo:"simulado", simuladoId:g.simuladoId || null, titulo:g.titulo, itens,
     indiceAtual: Math.min(g.indiceAtual || 0, itens.length-1), respostasSimulado:{...g.respostasSimulado},
-    duracaoMin:g.duracaoMin, finalizado:false, modoAprendizado:!!g.modoAprendizado, escolhaPendente:{...(g.escolhaPendente || {})},
+    duracaoMin:g.duracaoMin, finalizado:false, modoAprendizado:!!g.modoAprendizado, escolhaPendente:{...(g.escolhaPendente || {})}, confiancas:{...(g.confiancas || {})},
     ocultarTimer:!!g.ocultarTimer, pausadoDesde:null, inicioMs: Date.now() - (g.decorridoMs || 0), tsQuestao:Date.now(), tempos:{...(g.tempos || {})} };
   navigate("simulado-ativo");
 }
@@ -503,12 +510,12 @@ function finalizarSimulado(){
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
     if(resp===q.gabarito) acertos++;
-    if(resp) registrarResposta(u.id, it.questaoId, resp, "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null, "simulado");
+    if(resp) registrarResposta(u.id, it.questaoId, resp, (sessao.confiancas||{})[it.questaoId] || "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null, "simulado");
   });
   const nota = pct(acertos, sessao.itens.length);
   const resultadoId = uid("res");
   sessao.resultadoId = resultadoId;   // a página de resultado acha, por ele, a tentativa de antes para comparar
-  db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}});
+  db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}, confiancas:{...(sessao.confiancas||{})}});
   nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
   const chaveEmAndamento = chaveDoSimuladoEmAndamento(sessao);
   if(db.simuladosEmAndamento && (db.simuladosEmAndamento[u.id] || {})[chaveEmAndamento]){
@@ -523,7 +530,7 @@ function finalizarSimulado(){
 function verDetalheResultadoSimulado(resultadoId){
   const r = db.resultadosSimulados.find(x=>x.id===resultadoId);
   if(!r || !r.itens){ toast("Este resultado é de antes desta função existir e não tem detalhe salvo.", "err"); return; }
-  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, resultadoId:r.id, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, tempoTotalSeg:r.tempoTotalSeg||null };
+  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, resultadoId:r.id, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, confiancas:{...(r.confiancas||{})}, tempoTotalSeg:r.tempoTotalSeg||null };
   navigate("simulado-ativo");
 }
 function renderSimuladoAtivo(){
@@ -582,10 +589,10 @@ function renderSimuladoAtivo(){
   <div class="area-gesto" id="areaGestoQuestao">
     ${renderQuestionCard(q, emModoAprendizado ? {selecionada:jaRespondeuEssa ? respostaAtual : escolhaPendente, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
   </div>
-  ${emModoAprendizado && !jaRespondeuEssa ? `<div class="flex items-center gap-1 mt-2 quebra">
-    <button class="btn btn-primary" onclick="confirmarRespostaSimulado()" ${escolhaPendente?"":"disabled"}>${iconeSvg("check")} Confirmar resposta</button>
-    <span class="text-xs muted">${escolhaPendente?"Depois de confirmar não dá para trocar: a explicação aparece e a resposta fica registrada.":"Escolha uma alternativa e confirme para ver a explicação."}</span>
-  </div>` : ""}
+  ${emModoAprendizado && !jaRespondeuEssa ? `<div class="confidence-row">
+    ${Object.keys(ROTULOS_CONFIANCA).map((c,i)=>`<button class="confidence-btn" onclick="confirmarRespostaSimulado('${c}')" ${escolhaPendente?"":"disabled"}>${ROTULOS_CONFIANCA[c]} <span class="muted text-xs">(${i+1})</span></button>`).join("")}
+  </div>
+  <div class="text-xs muted mt-1">${escolhaPendente?"Escolha a confiança para confirmar. Depois não dá para trocar: a explicação aparece e a resposta fica registrada. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última.":"Escolha uma alternativa e diga a confiança para ver a explicação."}</div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
   <div class="flex justify-between mt-2">
     <button class="btn btn-secondary" onclick="irQuestaoSimulado(-1)" ${sessao.indiceAtual===0?"disabled":""}>Anterior</button>
@@ -605,10 +612,51 @@ function analiseTempoSimulado(sessao, linhas){
   const mediana = ordenados.length%2 ? ordenados[meio] : Math.round((ordenados[meio-1]+ordenados[meio])/2);
   const soma = ordenados.reduce((a,b)=>a+b,0);
   const total = sessao.tempoTotalSeg || soma;
+  const ritmo = ritmoPorQuestao(usuarioAtual().id);
   return {
     total, media: Math.round(soma/comTempo.length), mediana,
     lentas: comTempo.filter(x=>x.seg > mediana*1.6).sort((a,b)=>b.seg-a.seg).slice(0,5),
+    // errou em menos da metade da mediana: costuma ser leitura apressada
+    apressadas: comTempo.filter(x=>!x.correta && x.seg < mediana*0.5).sort((a,b)=>a.seg-b.seg).slice(0,5),
+    todas: comTempo.map(x=>({...x, confianca:(sessao.confiancas||{})[x.qid]||null})),
+    ritmo,
   };
+}
+/* O que a pessoa declarou em cada questão do treino, cruzado com o resultado:
+   "certeza" e errou é o erro mais caro; "chute" e acertou não conta como
+   saber. Só existe quando o simulado foi feito no modo aprendizado. */
+function resumoConfiancaSimulado(sessao, linhas){
+  const conf = sessao.confiancas || {};
+  const por = {certeza:{n:0,ok:0}, duvida:{n:0,ok:0}, chute:{n:0,ok:0}};
+  linhas.forEach(l=>{ const c = conf[l.q.id]; if(por[c]){ por[c].n++; if(l.correta) por[c].ok++; } });
+  const total = por.certeza.n + por.duvida.n + por.chute.n;
+  return total ? {por, total, erroComCerteza: por.certeza.n - por.certeza.ok, acertoNoChute: por.chute.ok} : null;
+}
+function htmlConfiancaDoSimulado(resumo){
+  if(!resumo) return "";
+  return `<div class="card mt-2">
+    <div class="card-title">Sua confiança neste treino</div>
+    <div class="grid grid-3 mt-1">
+      ${Object.keys(ROTULOS_CONFIANCA).map(c=>{ const x = resumo.por[c]; return `<div class="stat-tile"><div class="stat-value">${x.n}</div><div class="stat-label">${ROTULOS_CONFIANCA[c].toLowerCase()}${x.n ? ` · acertou ${x.ok} (${pct(x.ok,x.n)}%)` : ""}</div></div>`; }).join("")}
+    </div>
+    ${resumo.erroComCerteza ? `<p class="text-sm mt-1"><strong>${resumo.erroComCerteza}</strong> erro(s) com certeza: são os que mais merecem releitura, porque você não sabia que não sabia.</p>` : ""}
+    ${resumo.acertoNoChute ? `<p class="text-sm mt-1"><strong>${resumo.acertoNoChute}</strong> acerto(s) no chute: a plataforma conta como não sabido, e eles voltam na revisão.</p>` : ""}
+  </div>`;
+}
+/* Uma barra por questão, na ordem da prova: onde o tempo foi e se valeu a
+   pena. A linha tracejada é a mediana; a barra âmbar passou de 1,6 vez ela. */
+function htmlTempoPorQuestao(analise){
+  const maximo = Math.max(...analise.todas.map(x=>x.seg), 1);
+  const lenta = x => x.seg > analise.mediana*1.6;
+  return `<details class="mt-2"><summary class="text-sm link-btn">Ver o tempo de cada questão</summary>
+    <div class="tempo-por-questao mt-1">${analise.todas.map(x=>`<div class="tempo-linha" title="Questão ${x.i+1}: ${formatarDuracao(x.seg)}">
+      <span class="text-xs muted tempo-num">${x.i+1}</span>
+      <span class="tempo-trilho"><span class="tempo-barra ${x.correta?"ok":"erro"}${lenta(x)?" lenta":""}" style="width:${Math.max(2,Math.round(x.seg/maximo*100))}%"></span><span class="tempo-mediana" style="left:${Math.round(analise.mediana/maximo*100)}%"></span></span>
+      <span class="text-xs tempo-valor">${formatarDuracao(x.seg)}</span>
+      <span class="text-xs muted tempo-conf">${x.confianca ? ROTULOS_CONFIANCA[x.confianca].toLowerCase() : ""}</span>
+    </div>`).join("")}</div>
+    <p class="text-xs muted mt-1">Verde acertou, vermelho errou; mais clara e tracejada = passou de 1,6× a sua mediana (${formatarDuracao(analise.mediana)}). A linha vertical marca a mediana.</p>
+  </details>`;
 }
 /* A revisão deixou de ser uma lista de todas as questões: a página de
    resultado é um resumo, e o que o aluno quer reler é o que errou. */
@@ -788,6 +836,7 @@ function renderResultadoSimulado(){
   </div>` : `<div class="card-flat mt-2 text-sm muted">A comparação com os outros alunos (percentil, curva de Gauss, P50 e P90) aparece quando pelo menos ${MINIMO_ALUNOS_NA_COMPARACAO} alunos tiverem feito este simulado. <strong>${frasePoucosAlunosNoSimulado(chaveRanking)}</strong></div>`}
   ${htmlAcertoPorEspecialidade(linhas, previa)}
   ${htmlComparativoSimuladoEstudo(comparativoSimuladoEstudo(usuarioAtual().id, {sessaoId:sessao.id}), "Seus assuntos neste simulado × o seu estudo", "O acerto de cada assunto no simulado ao lado do acerto fora dele. Bom no estudo e mal aqui: tempo ou formato da prova. Mal nos dois: falta conteúdo.", {maximo:5})}
+  ${htmlConfiancaDoSimulado(resumoConfiancaSimulado(sessao, linhas))}
   ${analiseTempo ? `<div class="card mt-2">
     <div class="card-title">Tempo</div>
     <div class="grid grid-3 mt-1">
@@ -803,6 +852,9 @@ function renderResultadoSimulado(){
         <span class="flex items-center gap-1"><span class="badge badge-muted">${formatarDuracao(l.seg)}</span><button class="link-btn" onclick="abrirQuestaoCompleta('${l.qid}')">ver</button></span>
       </div>`).join("")}
     </div>` : '<p class="text-xs muted mt-2">Seu ritmo foi parelho: nenhuma questão destoou muito da mediana.</p>'}
+    ${analiseTempo.apressadas.length ? `<p class="text-sm mt-2"><strong>Rápido demais:</strong> ${analiseTempo.apressadas.map(x=>"Q"+(x.i+1)+" ("+formatarDuracao(x.seg)+")").join(", ")} — você errou em menos da metade do seu tempo mediano. Vale reler o enunciado inteiro antes de marcar.</p>` : ""}
+    <p class="text-xs muted mt-2">No seu estudo você leva cerca de ${formatarDuracao(analiseTempo.ritmo.baseSeg)} por questão${analiseTempo.ritmo.medido ? "" : " (estimativa, ainda sem tempos registrados)"}; aqui a média foi ${formatarDuracao(analiseTempo.media)}.</p>
+    ${htmlTempoPorQuestao(analiseTempo)}
   </div>` : ""}
   ${sessao.verSoErros && erradas.length ? `<div class="mt-2" id="res-erros"><div class="card-title mb-1">Questões que você errou ou deixou em branco <span class="text-sm muted peso-400">· ${erradas.length}</span></div>
   ${erradas.map(l=>`<div class="mb-2"><span class="badge ${l.resp===undefined?"badge-muted":"badge-danger"}">Questão ${l.i+1}: ${l.resp===undefined?"em branco":"incorreta"}</span>${renderQuestionCard(l.q,{selecionada:l.resp, respondida:true})}</div>`).join("")}

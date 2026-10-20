@@ -31,7 +31,7 @@ function iniciarSessaoRecomendada(){
   }
   montarSessaoRecomendadaDeHoje();
 }
-function montarSessaoRecomendadaDeHoje(){
+function montarSessaoRecomendadaDeHoje(minutos){
   const u = usuarioAtual();
   const feitas = questoesRespondidasHoje(u.id);
   const crono = cronogramaDoUsuario(u);
@@ -39,8 +39,70 @@ function montarSessaoRecomendadaDeHoje(){
   // pode ser de 5 questões, que não dá para treinar prova
   const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
   const restante = Math.max(piso, metaDoUsuario(u) - feitas);
-  const tamanho = Math.min(restante, 20);
+  // com tempo contado, o tamanho vem do ritmo da pessoa (ver abrirSessaoPorTempo)
+  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, 20);
   iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
+}
+/* "Tempo contado?" — a pessoa diz quanto tempo tem e a sessão se monta para
+   caber nele. Atalhos para os tempos comuns e um relógio editável (horas e
+   minutos) para os demais; a conta aparece por extenso e só vira sessão
+   quando a pessoa aplica. */
+let _minutosDaSessaoPorTempo = 30;
+function abrirSessaoPorTempo(){
+  _minutosDaSessaoPorTempo = 30;
+  const u = usuarioAtual();
+  abrirModalTitulado("Tempo contado", `
+    <p class="text-sm muted">Quanto tempo você tem agora? A sessão é montada com quantas questões cabem nele, no seu ritmo.</p>
+    <div class="tempo-atalhos mt-2" id="atalhosTempoSessao">
+      ${ATALHOS_DE_TEMPO_DA_SESSAO.map(m=>`<button class="chip-tempo" data-min="${m}" onclick="definirTempoDaSessaoPorTempo(${m})">${rotuloDeMinutos(m)}</button>`).join("")}
+    </div>
+    <div class="relogio-tempo mt-2" aria-label="Tempo da sessão">
+      <input id="tempoSessaoHoras" type="number" min="0" max="8" inputmode="numeric" aria-label="Horas" oninput="editarTempoDaSessaoPorTempo()"><small>h</small>
+      <input id="tempoSessaoMinutos" type="number" min="0" max="59" inputmode="numeric" aria-label="Minutos" oninput="editarTempoDaSessaoPorTempo()"><small>min</small>
+    </div>
+    <div class="card-flat text-sm mt-2" id="contaTempoSessao"></div>
+    ${sessaoDeHoje(u) ? `<p class="text-xs muted mt-1">Você tem um conjunto de hoje em andamento; aplicar monta um novo e deixa aquele de lado.</p>` : ""}
+    <div class="flex gap-1 mt-3 quebra">
+      <button class="btn btn-primary" id="aplicarTempoSessao" onclick="aplicarSessaoPorTempo()">Criar sessão</button>
+      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+    </div>`);
+  atualizarJanelaSessaoPorTempo();
+}
+function definirTempoDaSessaoPorTempo(min){
+  _minutosDaSessaoPorTempo = min;
+  atualizarJanelaSessaoPorTempo();
+}
+function editarTempoDaSessaoPorTempo(){
+  const h = Number(document.getElementById("tempoSessaoHoras").value) || 0;
+  const m = Number(document.getElementById("tempoSessaoMinutos").value) || 0;
+  _minutosDaSessaoPorTempo = Math.max(0, Math.min(480, Math.round(h*60 + m)));
+  atualizarJanelaSessaoPorTempo(true);
+}
+/* `deDigitacao`: quem está digitando nos campos não pode ter o valor trocado
+   debaixo do dedo (60 viraria "1" e "0" a cada tecla). */
+function atualizarJanelaSessaoPorTempo(deDigitacao){
+  const min = _minutosDaSessaoPorTempo;
+  if(!deDigitacao){
+    document.getElementById("tempoSessaoHoras").value = Math.floor(min/60);
+    document.getElementById("tempoSessaoMinutos").value = min%60;
+  }
+  document.querySelectorAll("#atalhosTempoSessao .chip-tempo").forEach(b=>b.setAttribute("aria-pressed", String(Number(b.dataset.min)===min)));
+  const botao = document.getElementById("aplicarTempoSessao");
+  const caixa = document.getElementById("contaTempoSessao");
+  if(min < 5){
+    caixa.textContent = "Escolha pelo menos 5 minutos.";
+    botao.disabled = true; botao.textContent = "Criar sessão";
+    return;
+  }
+  const c = contaDoTempoDaSessao(usuarioAtual().id, min);
+  caixa.innerHTML = c.texto;
+  botao.disabled = false; botao.textContent = "Criar sessão com "+c.n+" questões";
+}
+function aplicarSessaoPorTempo(){
+  const min = _minutosDaSessaoPorTempo;
+  if(min < 5) return;
+  fecharModal();
+  montarSessaoRecomendadaDeHoje(min);
 }
 /* A sessão guardada é de hoje? É o que decide se o botão de Estudar diz
    "continuar" ou "começar". */
@@ -287,10 +349,12 @@ function atalhoConfirmarResposta(tecla, e){
   const s = state.sessaoAtual;
   if(!s || s.somenteLeitura) return;
   if(state.route==="simulado-ativo" && !s.finalizado){
-    if(tecla!==" " || !s.modoAprendizado) return;
+    if(!s.modoAprendizado) return;
     const qid = s.itens[s.indiceAtual].questaoId;
     if(s.respostasSimulado[qid] !== undefined || !(s.escolhaPendente||{})[qid]) return;
-    e.preventDefault(); confirmarRespostaSimulado();
+    const confianca = tecla===" " ? s.ultimaConfianca : {"1":"certeza", "2":"duvida", "3":"chute"}[tecla];
+    if(!confianca){ toast("Diga a confiança: tecla 1 = certeza, 2 = na dúvida, 3 = chute. Depois o espaço repete a última.", "err"); return; }
+    e.preventDefault(); confirmarRespostaSimulado(confianca);
     return;
   }
   if(state.route!=="sessao" || s.finalizada) return;
@@ -802,23 +866,29 @@ function renderQuestionCard(q, opts){
      e o número de erros anteriores dão pista da alternativa. Enquanto a
      questão está em aberto ficam só as tags de ORIGEM (banca, ano, tipo da
      prova), que dizem de onde a questão veio e não o que ela cobra. */
-  const classificacao = opts.respondida ? `
-      <span class="badge badge-accent">${escapeHtml(area?area.nome:"")}</span>
-      <span class="qcard-trilha">${escapeHtml(esp?esp.nome:"")} › ${escapeHtml(nomeAssunto(q.assuntoId))}</span>` : "";
-  const dicas = opts.respondida ? `
+  /* A linha de cima leva só o que decide algo: de onde a questão veio
+     (banca, ano, número) e os selos que mudam como ela deve ser lida
+     (alterada, escondida). Área, dificuldade, quantos erros, autoria e o tipo
+     de prova ficam em "detalhes": são contexto, e sete selos juntos faziam o
+     olho passar por cima de todos. */
+  const detalhes = [
+    opts.respondida ? `<span class="badge badge-accent">${escapeHtml(area?area.nome:"")}</span>
+      <span class="qcard-trilha">${escapeHtml(esp?esp.nome:"")} › ${escapeHtml(nomeAssunto(q.assuntoId))}</span>
       <span class="badge ${corDificuldade}">${rotuloDificuldade(dificuldade)}</span>
-      ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}
-      ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}` : "";
+      ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}` : "",
+    badgeAutoriaQuestao(q),
+    q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-accent" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : "",
+    (q.banca||"").indexOf("Didático")>=0
+      ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'
+      : (!q.real ? '<span class="badge badge-muted" title="Questão original escrita para esta demonstração, no estilo e nível da banca">Demonstração</span>' : ""),
+  ].join("").trim();
   let html = `<div class="qcard">
-    <div class="qcard-meta">${classificacao}
+    <div class="qcard-meta">
       <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
-      ${badgeAutoriaQuestao(q)}
       ${badgeQuestaoAlterada(q)}
-      ${q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-accent" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : ""}${dicas}
-      ${(q.banca||"").indexOf("Didático")>=0
-        ? '<span class="badge badge-accent" title="Questão autoral de construção de conhecimento: cobra o conceito de base antes do caso complexo">Didática</span>'
-        : (!q.real ? '<span class="badge badge-muted" title="Questão original escrita para esta demonstração, no estilo e nível da banca">Demonstração</span>' : "")}
+      ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}
     </div>
+    ${detalhes ? `<details class="qcard-detalhes"><summary>detalhes</summary><div class="qcard-meta">${detalhes}</div></details>` : ""}
     <!-- aqui o enunciado já aparece inteiro, então ele não vira link para
          "ver na íntegra": abrir uma janela com o mesmo texto não acrescenta
          nada. O enunciado clicável continua valendo nas LISTAS, onde o texto

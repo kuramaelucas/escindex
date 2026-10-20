@@ -180,6 +180,7 @@ const NUVEM_TABELAS = {
         titulo: linha.titulo, nota: linha.nota, acertos: linha.acertos, total: linha.total,
         data: linha.data, itens: linha.itens || [], respostas: linha.respostas || {},
         tempos: linha.tempos || {}, tempoTotalSeg: linha.tempo_total_seg,
+        confiancas: linha.confiancas || {},
       });
     },
   },
@@ -329,6 +330,7 @@ function nuvemRegistrar(o){
       titulo: r.titulo || null, nota: r.nota, acertos: r.acertos, total: r.total,
       data: r.data, itens: r.itens || [], respostas: r.respostas || {},
       tempos: r.tempos || {}, tempo_total_seg: r.tempoTotalSeg || null,
+      confiancas: r.confiancas || {},
     });
   }
   if(o.sessaoEmAndamento && o.usuarioId === meuId){
@@ -419,6 +421,7 @@ function nuvemErroPassageiro(e){
 const NUVEM_CAMPOS_NOVOS = {
   perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id", "prova_alvo_data", "modo_plataforma"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões); data exata da prova-alvo (6º ano)
   respostas: ["origem", "tentativa", "dias_desde_ultima", "respondida_em", "texto_resposta"],  // de onde veio a questão, que tentativa é, dias desde a anterior, a hora exata e o texto da resposta dissertativa
+  resultados_simulados: ["confiancas"],  // certeza/dúvida/chute de cada questão do simulado feito em modo aprendizado
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],
   flashcards_pessoais: ["conjunto"],  // o nome do conjunto próprio a que o cartão pertence   // quantos cartões naquele dia

@@ -510,9 +510,12 @@ function renderInicioAluno(u){
         <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
         <div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
       </div>
-      <div class="flex gap-1 quebra">
+      <div class="acoes-inicio">
+       <div class="flex gap-1 quebra">
         ${emAndamento ? `<button class="btn btn-secondary" onclick="retomarSessaoEmAndamento()" title="${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}">${iconeSvg("refresh")} Continuar última sessão</button>` : ""}
         <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
+       </div>
+       <button class="link-discreto" onclick="abrirSessaoPorTempo()" title="Diga quanto tempo você tem e a sessão se monta no seu ritmo">Tempo contado?</button>
       </div>
     </div>
     <div class="stat-mini-row mt-2">
@@ -537,13 +540,13 @@ function renderInicioAluno(u){
       ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
         <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
         <div class="flex gap-1 mt-1 quebra">
-          <button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button>
+          <button class="btn btn-secondary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button>
           <button class="btn btn-secondary btn-sm" onclick="navigate('desempenho')">Ver onde a confiança engana</button>
         </div>
       </div>` : ""}
       <div class="flex gap-1 mt-2 quebra">
         ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-        <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
+        <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
       </div>
     </div>
   </div>`}
@@ -559,12 +562,12 @@ function htmlPendenciasResumidas(revisarHoje, flashVencidos, calibracao){
       <div class="text-sm cresce-220">${partes.length ? "<strong>Pendente hoje:</strong> "+partes.join(" · ") : "Nada vencido para revisar hoje. Continue pelo bloco atual."}</div>
       <div class="flex gap-1 quebra">
         ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-        <button class="btn ${!revisarHoje.length && flashVencidos ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
+        <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
       </div>
     </div>
     ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
       <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%.
-      <div class="flex gap-1 mt-1 quebra"><button class="btn btn-primary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button></div>
+      <div class="flex gap-1 mt-1 quebra"><button class="btn btn-secondary btn-sm" onclick="praticarFilaDeConfianca('certeza')">Praticar o que errei com certeza</button></div>
     </div>` : ""}
   </div>`;
 }

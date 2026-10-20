@@ -400,7 +400,7 @@ function renderNotificacoesCard(usuario){
   const notifs = gerarNotificacoes(usuario);
   if(!notifs.length) return "";
   const aberta = !!state.notificacoesAbertas;
-  return `<div class="card mb-2 borda-destaque">
+  return `<div class="card mb-2">
     <div class="flex justify-between items-center clicavel" role="button" tabindex="0" aria-expanded="${aberta}" onclick="alternarNotificacoes()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alternarNotificacoes()}">
       <div class="card-title sem-m">${iconeSvg("alert")} Notificações <span class="badge badge-accent">${notifs.length}</span></div>
       <span class="text-xs muted">${aberta ? "recolher" : "ver"} ${iconeSvg(aberta ? "arrow-up" : "arrow-down")}</span>
@@ -416,6 +416,46 @@ function sequenciaDiasEstudo(usuarioId){
 }
 function questoesRespondidasHoje(usuarioId){ return db.respostas.filter(r=>r.usuarioId===usuarioId && r.data===hojeISO()).length; }
 function metaDoUsuario(usuario){ return (usuario && usuario.metaQuestoesDia) || (db.configGeral && db.configGeral.metaRecomendadaQuestoesDia) || CONFIG.metaRecomendadaQuestoesDia; }
+
+/* ---------- sessão pelo tempo que a pessoa tem --------------------------------
+   "Tenho 30 minutos": quantas questões cabem depende do ritmo DELA, não de um
+   número fixo. A base é o tempo mediano das últimas respostas com tempo
+   registrado (a mediana não se deixa levar pela questão em que a pessoa
+   largou o celular) e somamos 10% de folga: numa sessão real há troca de
+   questão, leitura da explicação e pausa, e quem planeja pelo tempo mínimo
+   estoura o horário. Sem histórico (menos de 5 tempos), vale um padrão. */
+const FOLGA_DE_TEMPO_POR_QUESTAO = 1.10;
+const TEMPO_PADRAO_POR_QUESTAO_SEG = 120;
+const MINIMO_DE_TEMPOS_PARA_RITMO = 5;
+// atalhos da janela "Tempo contado", em minutos: 15, 30, 45, 1h, 1h30 e 2h
+const ATALHOS_DE_TEMPO_DA_SESSAO = [15, 30, 45, 60, 90, 120];
+const LIMITE_DE_QUESTOES_POR_TEMPO = 200;   // 8 h num ritmo de 1 min: o teto é só para a lista não estourar
+function ritmoPorQuestao(usuarioId){
+  const tempos = db.respostas
+    .filter(r => r.usuarioId===usuarioId && r.tempoSeg>0 && !r.textoResposta)
+    .slice(-200).map(r => r.tempoSeg).sort((a,b)=>a-b);
+  const medido = tempos.length >= MINIMO_DE_TEMPOS_PARA_RITMO;
+  const meio = Math.floor(tempos.length/2);
+  const base = medido ? (tempos.length%2 ? tempos[meio] : (tempos[meio-1]+tempos[meio])/2) : TEMPO_PADRAO_POR_QUESTAO_SEG;
+  return {baseSeg: Math.round(base), estimadoSeg: Math.round(base*FOLGA_DE_TEMPO_POR_QUESTAO), medido, amostra: tempos.length};
+}
+function questoesQueCabemEm(usuarioId, minutos){
+  const {estimadoSeg} = ritmoPorQuestao(usuarioId);
+  return Math.min(LIMITE_DE_QUESTOES_POR_TEMPO, Math.max(3, Math.floor(minutos*60/estimadoSeg)));
+}
+/* "1h30" / "45 min" — o jeito de falar o tempo na janela */
+function rotuloDeMinutos(min){
+  const h = Math.floor(min/60), m = min%60;
+  if(!h) return m+" min";
+  return m ? h+"h"+String(m).padStart(2,"0") : h+"h";
+}
+/* A conta por extenso, para a pessoa conferir antes de aplicar. */
+function contaDoTempoDaSessao(usuarioId, minutos){
+  const r = ritmoPorQuestao(usuarioId);
+  const origem = r.medido ? `seu ritmo (${formatarDuracao(r.baseSeg)} por questão)` : `${formatarDuracao(TEMPO_PADRAO_POR_QUESTAO_SEG)} por questão, o padrão — você ainda não tem tempos registrados`;
+  const n = questoesQueCabemEm(usuarioId, minutos);
+  return {n, texto: `${rotuloDeMinutos(minutos)} ÷ ${formatarDuracao(r.estimadoSeg)} por questão (${origem} + 10% de folga) = <strong>${n} questões</strong>`};
+}
 
 /* ---------- a mesma régua diária, agora também para os cartões -------------
    Tem gente que estuda melhor por flashcard do que por questão longa — e tem
