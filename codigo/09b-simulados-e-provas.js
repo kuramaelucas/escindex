@@ -84,8 +84,8 @@ function conteudoProvasESimulados(u){
   </div>
   ${aba==="antigas" ? renderAbaProvasAntigas(u, simuladosVisiveis) : `
     <p class="text-sm muted mb-2">Os da equipe e os enviados para a plataforma, com tempo e tamanho já definidos. ${bloco ? `Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).` : "Sem calendário de blocos, não há simulado recomendado para o seu bloco: todos aparecem juntos."}</p>
-    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div>${recomendados.map(renderSimuladoCard).join("")}` : ""}
-    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div>${outros.map(renderSimuladoCard).join("")}` : ""}
+    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div><div class="grid grid-3 mb-2">${recomendados.map(renderSimuladoCard).join("")}</div>` : ""}
+    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div><div class="grid grid-3 mb-2">${outros.map(renderSimuladoCard).join("")}</div>` : ""}
     ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>'
       : !simuladosVisiveis.length ? `<div class="empty-state">Nenhum simulado combina com "${escapeHtml(busca)}". <button class="link-btn" onclick="limparBuscaProvas()">limpar a busca</button> ou veja as provas antigas na aba ao lado.</div>` : ""}
   `}
@@ -182,31 +182,27 @@ function renderSimuladoCard(s){
   const previo = desempenhoPrevioSimulado(s.id, s.titulo);
   const andamento = simuladoEmAndamentoDe(usuarioAtual(), s.id);
   const prog = andamento ? progressoDoSimuladoEmAndamento(andamento) : null;
-  return `<div class="card mb-1">
-    <div class="flex justify-between items-center gap-2 quebra">
-      <div>
-        <div class="peso-700">${previo ? `<button class="link-btn titulo-simulado" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Ver as ${previo.n} vez(es) que você fez este simulado e como a nota mudou">${escapeHtml(s.titulo)}</button>` : escapeHtml(s.titulo)}</div>
-        <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
-        ${htmlDatasDoSimulado(s)}
-        ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} questões respondidas</span></div>` : ""}
-        ${previo ? `<div class="qcard-meta mt-1">
-            <span class="badge ${classeBadgeNota(previo.ultima.nota)}">já feito · última nota ${previo.ultima.nota}%</span>
-            <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
-            <span class="badge badge-muted">${previo.n} tentativa(s) · ${formatDataBR(previo.ultima.data)}</span>
-            ${previo.variacao!==null ? `<span class="badge ${previo.variacao>=0?"badge-accent":"badge-danger"}">${previo.variacao>=0?"+":""}${previo.variacao} pts vs. anterior</span>` : ""}
-          </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
-      </div>
-      <div class="flex gap-1 quebra">
-        ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)
-          ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
-          : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
-        ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="abrirRenomearSimulado('${s.id}')" title="Mudar o nome deste simulado">${iconeSvg("edit")} Renomear</button>` : ""}
-        ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
-        ${previo ? `<button class="btn btn-secondary btn-sm" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Todas as vezes que você fez, lado a lado">Minhas tentativas</button>` : ""}
-        ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
-        ${prog ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('${s.id}')">Continuar</button>
-        <button class="btn btn-ghost btn-sm" onclick="iniciarSimulado('${s.id}')" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>` : `<button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>`}
-      </div>
+  return `<div class="card prova-card">
+    <div class="peso-700 prova-banca">${previo ? `<button class="link-btn titulo-simulado" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Ver as ${previo.n} vez(es) que você fez este simulado e como a nota mudou">${escapeHtml(s.titulo)}</button>` : escapeHtml(s.titulo)}</div>
+    <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
+    ${htmlDatasDoSimulado(s)}
+    ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} respondidas</span></div>` : ""}
+    ${previo ? `<div class="qcard-meta mt-1">
+        <span class="badge ${classeBadgeNota(previo.ultima.nota)}">última nota ${previo.ultima.nota}%</span>
+        <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
+        <span class="badge badge-muted">${previo.n} tentativa(s) · ${formatDataBR(previo.ultima.data)}</span>
+        ${previo.variacao!==null ? `<span class="badge ${previo.variacao>=0?"badge-accent":"badge-danger"}">${previo.variacao>=0?"+":""}${previo.variacao} pts vs. anterior</span>` : ""}
+      </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
+    <div class="flex gap-1 prova-acoes quebra">
+      ${prog ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('${s.id}')">Continuar</button>
+      <button class="btn btn-ghost btn-sm" onclick="iniciarSimulado('${s.id}')" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>` : `<button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>`}
+      ${previo ? `<button class="btn btn-secondary btn-sm" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Todas as vezes que você fez, lado a lado">Minhas tentativas</button>` : ""}
+      ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
+      ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)
+        ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
+        : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
+      ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="abrirRenomearSimulado('${s.id}')" title="Mudar o nome deste simulado">${iconeSvg("edit")} Renomear</button>` : ""}
+      ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
     </div>
   </div>`;
 }
@@ -705,7 +701,7 @@ function htmlComparacaoComAnterior(comp, previa, linhas){
   const linha = (rotulo, ids) => ids.length ? `<div class="text-sm mt-1"><strong>${rotulo}</strong> (${ids.length}): nº ${numeros(ids)}</div>` : "";
   return `<div class="mt-2">
     <div class="text-sm peso-600">Em relação à tentativa de ${formatDataBR(previa.data)}</div>
-    <p class="text-xs muted">O anel de cada número é o que aconteceu naquela vez (verde acertou, vermelho errou); ↑ passou a acertar, ↓ passou a errar. Só entram as ${comp.comuns} questões que as duas tentativas tiveram.</p>
+    <p class="text-xs muted">↑ passou a acertar, ↓ passou a errar. Só entram as ${comp.comuns} questões que as duas tentativas tiveram.</p>
     ${linha("Passou a acertar ↑", comp.passouAAcertar)}${linha("Passou a errar ↓", comp.passouAErrar)}
     <div class="text-xs muted mt-1">Acertou nas duas: ${comp.acertouNasDuas.length} · errou nas duas: ${comp.erroNasDuas.length}</div>
   </div>`;
@@ -754,14 +750,14 @@ function renderResultadoSimulado(){
     const antes = comp ? acertouNaTentativa(previa, l.q.id) : null;
     const mudou = antes!==null && antes!==l.correta;
     const aviso = antes===null ? "" : ` · antes: ${antes?"acertou":"errou"}`;
-    return `<button class="pill${antes===null?"":antes?" sombra-acertou":" sombra-errou"}" style="min-width:38px;justify-content:center;${l.resp===undefined?"":l.correta?"background:var(--accent);border-color:var(--accent);color:#fff":"background:var(--danger);border-color:var(--danger);color:#fff"}" onclick="abrirQuestaoCompleta('${l.q.id}')" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}${aviso} · abrir a questão">${l.i+1}${mudou ? `<span class="seta-mudanca" aria-hidden="true">${l.correta?"↑":"↓"}</span>` : ""}</button>`;
+    return `<button class="pill pill-resultado ${l.resp===undefined?"":l.correta?"certa":"errada"}" style="min-width:38px;justify-content:center" onclick="abrirQuestaoCompleta('${l.q.id}')" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}${aviso} · abrir a questão">${l.i+1}${mudou ? `<span class="seta-mudanca" aria-hidden="true">${l.correta?"↑":"↓"}</span>` : ""}</button>`;
   };
   return `<div class="coluna-resultado">
   <div class="card">
     <h2>Resultado do simulado</h2>
     <div class="flex items-center gap-2 quebra mt-1">
       <div class="stat-tile"><div class="stat-value">${nota}%</div><div class="stat-label">${acertos} de ${total} corretas</div></div>
-      ${previa ? `<div class="stat-tile sombra-anterior" title="Sua tentativa de ${formatDataBR(previa.data)}"><div class="stat-value">${previa.nota}%</div><div class="stat-label">antes · ${previa.acertos} de ${previa.total}${nota!==previa.nota ? ` · <strong>${nota>previa.nota?"+":""}${nota-previa.nota} pts</strong>` : ""}</div></div>` : ""}
+      ${previa ? `<div class="stat-tile anterior" title="Sua tentativa de ${formatDataBR(previa.data)}"><div class="stat-value">${previa.nota}%</div><div class="stat-label">antes · ${previa.acertos} de ${previa.total}${nota!==previa.nota ? ` · <strong>${nota>previa.nota?"+":""}${nota-previa.nota} pts</strong>` : ""}</div></div>` : ""}
       <div class="text-sm muted">${erradas.length ? `${erradas.length} errada(s) ou em branco` : "Você acertou tudo."}</div>
     </div>
     <div class="flex gap-1 mt-2 quebra">

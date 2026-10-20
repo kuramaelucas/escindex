@@ -48,10 +48,10 @@ test("tentativas do simulado: lista, comparação com a anterior e sombra no map
     assert.match(r.modal, /primeira vez/);
     assert.match(r.modal, /passou a acertar\s*1/);
     assert.match(r.modal, /passou a errar\s*1/);
-    assert.match(r.resultado, /sombra-anterior/);
+    assert.match(r.resultado, /stat-tile anterior/);
     assert.match(r.resultado, /Passou a acertar ↑/);
     assert.match(r.resultado, /Passou a errar ↓/);
     assert.equal((r.resultado.match(/seta-mudanca/g) || []).length, 2, "só as duas questões que mudaram ganham seta");
-    assert.doesNotMatch(r.primeira, /sombra-anterior/, "a primeira tentativa não tem com o que comparar");
+    assert.doesNotMatch(r.primeira, /stat-tile anterior/, "a primeira tentativa não tem com o que comparar");
   } finally { await contexto.close(); }
 });
