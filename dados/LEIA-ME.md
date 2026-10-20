@@ -271,9 +271,16 @@ imagem, tempo, dose, idade-limite ou escore:
 4. **Escore validado** (Glasgow, APGAR, CURB-65, qSOFA, Wells, CHA2DS2-VASc,
    Child-Pugh, MELD, Alvarado…): calcule-o para o caso, mostre a soma item a
    item e a faixa de risco/conduta correspondente.
+   **Não deixe o escore colado no ponto de corte**: monte o caso com um valor
+   claramente de um lado da faixa (a resposta não pode depender de um ponto
+   só). E **ensine a gravidade**: diga por que cada item pontua daquele jeito
+   (o que a idade, a ureia, a PA etc. medem no organismo), em vez de só somar.
 5. Valores e pontos de corte são os da diretriz citada em `referencias`; se
    mudam com idade, sexo, gestação ou método, diga para quem valem. Sem
    certeza do número, escreva isso — não invente.
+   **Prefira diretrizes brasileiras** (PCDT/Ministério da Saúde, Conitec, SBC,
+   SBD, SBPT, SBP, FEBRASGO, SBU, AMB) às internacionais, citando a fonte; se
+   divergirem, explique a diferença.
 6. Asteriscos só nos parâmetros (poucos por explicação, nunca em título nem
    em palavra comum). Questão que não depende de número não leva asterisco.
 
@@ -378,6 +385,26 @@ Hoje **todas** as provas reais do banco cumprem o padrão: a lista
 fica assim. Prova nova **não** se acrescenta a ela: tem de cumprir a regra. O mesmo texto
 está nos prompts de importação (`regrasDeConteudoImportacao`), para a IA já
 entregar a explicação no padrão.
+
+### Questão autoral (simulado adaptado): nível de dificuldade
+
+Valem para as questões **escritas daqui para a frente** (as já publicadas não
+são reescritas). A mistura alvo de um banco autoral é **15% fácil, 45% médio e
+40% difícil** (`dificuldadeManual`: `fundamental`, `intermediario`, `avancado`),
+a mesma que o gerador de simulado sugere; `npm run medir-bancos` informa o
+desvio. Para a questão sair difícil sem mudar assunto, área e posição do gabarito:
+
+1. **Duas etapas de raciocínio**: pedir a conduta depende de antes firmar o
+   diagnóstico (ou o estadiamento), em vez de dar o diagnóstico no enunciado.
+2. **Alternativas que competem**: erradas que seriam certas em outro contexto
+   (conduta certa no paciente errado, exame certo na hora errada, dose da
+   diretriz internacional contra a brasileira), todas de tamanho parecido.
+3. **Dado que exige conta**: o escore ou o cálculo não vem pronto; o aluno soma
+   (valor longe do ponto de corte, ver a regra de escore acima).
+4. **Caso menos típico**: idoso, gestante, doença renal ou hepática, interação
+   medicamentosa, apresentação atípica.
+5. **Diretriz brasileira atual** como referência, com a diferença para a
+   internacional explicada quando houver.
 
 ## Cuidados práticos
 

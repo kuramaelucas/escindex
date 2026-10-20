@@ -235,6 +235,10 @@ window.addEventListener("keydown", function(e){
     return;
   }
   if(tecla!=="a" && tecla!=="d") return;
+  if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){
+    if(tecla==="a") voltarPorGesto(); else avancarPorGesto();
+    return;
+  }
   if(state.route==="simulado-ativo" && state.sessaoAtual && !state.sessaoAtual.finalizado){
     if(tecla==="a") irQuestaoSimulado(-1);
     if(tecla==="d") irQuestaoSimulado(1);
@@ -253,7 +257,7 @@ let _telaDesenhada = null;
 function render(){
   const app = document.getElementById("app");
   // o modo foco só existe dentro da sessão: qualquer outra tela o desliga
-  if(state.modoFoco && state.route!=="sessao") state.modoFoco = false;
+  if(state.modoFoco && state.route!=="sessao" && state.route!=="simulado-ativo") state.modoFoco = false;
   if(!state.modoFoco) document.body.classList.remove("modo-foco");
   const rotasPublicas = ["landing","login","cadastro","retorno-email"];
   if(!usuarioAtual() && !rotasPublicas.includes(state.route)) state.route = "landing";
@@ -374,7 +378,7 @@ function desenharTela(conteudoHtml){
   }
   _telaDesenhada = { rota: state.route, chave };
   rotularCamposParaLeitorDeTela();
-  document.body.classList.toggle("modo-foco", !!state.modoFoco && state.route==="sessao");
+  document.body.classList.toggle("modo-foco", !!state.modoFoco && (state.route==="sessao" || state.route==="simulado-ativo"));
   ativarGestoDeArrastar();
   // a barra fina de questões (sessão e simulado) mostra a questão atual no meio
   centralizarBarraDeQuestoes();
@@ -456,7 +460,10 @@ function ativarGestoDeArrastar(){
 function avancarPorGesto(){
   if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){
     const s = state.sessaoFlash;
-    if(!s.virado){ toast("Vire o cartão e diga se lembrava antes de passar."); return; }
+    // cartão já avaliado nesta sessão (a pessoa voltou a ele): segue sem nova
+    // nota, a avaliação anterior continua valendo
+    const jaAvaliado = s.notas.some(n=>n.cartaoId===s.cartoes[s.indice].id);
+    if(!s.virado && !jaAvaliado){ toast("Vire o cartão e diga se lembrava antes de passar."); return; }
     pularFlashcard(1); return;
   }
   const s = state.sessaoAtual; if(!s) return;

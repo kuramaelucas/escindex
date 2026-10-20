@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 7840 questões (7405 reais, 435 autorais), 943 cartões, 270 assuntos, 3 simulado(s), 85 arquivos.
+**Total:** 7940 questões (7405 reais, 535 autorais), 943 cartões, 270 assuntos, 4 simulado(s), 86 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -13,6 +13,7 @@
 | `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais | 100 questões |  |
 | `banco-simulado-epm-2.js` | BANCO UNIFESP 2025 ADAPTADO — 100 questões autorais | 100 questões |  |
 | `banco-simulado-epm-3.js` | BANCO SIMULADO EPM 3 (base: UNIFESP-EPM 2022) — 100 questões autorais | 100 questões |  |
+| `banco-simulado-epm-4.js` | SIMULADO EPM 4 (base: prova-unifesp-2026) — 100 questões autorais | 100 questões |  |
 | `prova-unifesp-2022.js` | UNIFESP-EPM 2022 — Acesso Direto (100 questões reais) | 100 questões | 1 anulada(s) |
 | `prova-unifesp-2023.js` | UNIFESP-EPM 2023 — Acesso Direto (100 questões reais) | 100 questões | 4 anulada(s) |
 | `prova-unifesp-2024.js` | UNIFESP-EPM 2024 — Acesso Direto (100 questões reais) | 100 questões | 3 anulada(s) |
@@ -90,5 +91,5 @@
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
 | `flashcards-assuntos-usp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-SP (57 cartões) | 57 flashcards |  |
 | `flashcards-assuntos-usprp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-RP (9 cartões) | 9 flashcards |  |
-| `simulados-equipe.js` | SIMULADOS DA EQUIPE — provas montadas por professor ou coordenação | 3 simulados |  |
+| `simulados-equipe.js` | SIMULADOS DA EQUIPE — provas montadas por professor ou coordenação | 4 simulados |  |
 | `demonstracao.js` | DEMONSTRAÇÃO — contas, comentários e livro de ouro de exemplo | 0 demonstração |  |

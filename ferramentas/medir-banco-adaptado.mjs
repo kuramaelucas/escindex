@@ -22,14 +22,14 @@
      com as outras questões reais da mesma prova: no máximo 50%;
    - nenhuma questão repete outra do banco (≥25% de trechos de 4 palavras ou ≥60% do vocabulário).
    Só informa, sem exigir: maior sequência da mesma letra, distribuição de dificuldade (alvo
-   30/50/20 depois de calibrada pelo desempenho real), alternativas erradas comentadas na explicação ("B está errada porque…").
+   15/45/40 depois de calibrada pelo desempenho real), alternativas erradas comentadas na explicação ("B está errada porque…").
    Só lê o conteúdo de dados/ (pela lista do manifesto); não grava nada. */
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { carregar, RAIZ } from "./lib-dados.mjs";
 
-export const METAS = { toleranciaPontos: 4, margemMaxPct: 10, semelhancaMaxPct: 50, trechosPct: 25, vocabularioPct: 60, dificuldade: { fundamental: 30, intermediario: 50, avancado: 20 } };
+export const METAS = { toleranciaPontos: 4, margemMaxPct: 10, semelhancaMaxPct: 50, trechosPct: 25, vocabularioPct: 60, dificuldade: { fundamental: 15, intermediario: 45, avancado: 40 } };
 
 const semAcento = (t) => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 const palavras = (t) => new Set(semAcento(t).match(/[a-z0-9]{3,}/g) || []);
