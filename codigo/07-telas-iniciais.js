@@ -515,7 +515,7 @@ function renderInicioAluno(u){
         ${emAndamento ? `<button class="btn btn-secondary" onclick="retomarSessaoEmAndamento()" title="${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}">${iconeSvg("refresh")} Continuar última sessão</button>` : ""}
         <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
        </div>
-       <button class="btn btn-secondary btn-tempo" onclick="abrirSessaoPorTempo()" title="Diga quanto tempo você tem e a sessão se monta no seu ritmo">Tempo contado?</button>
+       <button class="link-discreto" onclick="abrirSessaoPorTempo()" title="Diga quanto tempo você tem e a sessão se monta no seu ritmo">Tempo contado?</button>
       </div>
     </div>
     <div class="stat-mini-row mt-2">
