@@ -280,7 +280,8 @@ test("a prova dissertativa aparece em Provas antigas, só para praticar (sem sim
   assert.equal(r.existe, true);
   assert.equal(r.dissertativa, true);
   assert.ok(r.total >= 60);
-  assert.deepEqual(r.botoes, ["Fazer a prova (sem cronômetro)"]);
+  // "Tirar do banco" vale para toda prova; o que importa aqui é não haver simulado com relógio
+  assert.deepEqual(r.botoes, ["Fazer a prova (sem cronômetro)", "Tirar do banco"]);
   await contexto.close();
 });
 

@@ -130,10 +130,30 @@ function questoesAtivas(incluirGrupoId){
   return lista;
 }
 let _cacheAtivas = {};
+/* PROVA INATIVA. Tirar uma prova do banco não apaga nada: as questões ficam
+   em db.questoes (e em dados/), só deixam de contar como ativas — somem do
+   estudo, das provas antigas e das estatísticas deste navegador, e voltam
+   inteiras quando a prova é reativada. A chave é a mesma que agrupa a prova
+   na tela de Provas (banca + ano + semestre + tipo). */
+function chaveDaProvaDe(q){ return q.banca+" ||| "+q.ano+" ||| "+(q.semestre||"")+" ||| "+tipoProvaDe(q); }
+function provaInativa(q){
+  const l = db.provasInativas;
+  return !!(l && l.length && q.real && l.some(p=>p.chave===chaveDaProvaDe(q)));
+}
+function inativarProva(chave, rotulo){
+  if(!db.provasInativas) db.provasInativas = [];
+  if(!db.provasInativas.some(p=>p.chave===chave)) db.provasInativas.push({chave, rotulo, data:hojeISO()});
+  saveState();
+}
+function reativarProva(chave){
+  db.provasInativas = (db.provasInativas||[]).filter(p=>p.chave!==chave);
+  saveState();
+}
 function _filtrarQuestoesAtivas(incluirGrupoId){
   return db.questoes.filter(q=>{
     if(q.status!=="ativa") return false;
     if(aguardaImagem(q)) return false;
+    if(provaInativa(q)) return false;
     if(q.grupoId && incluirGrupoId!==true && q.grupoId!==incluirGrupoId && !(Array.isArray(incluirGrupoId) && incluirGrupoId.includes(q.grupoId))) return false;
     return true;
   });

@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 7940 questões (7405 reais, 535 autorais), 943 cartões, 270 assuntos, 4 simulado(s), 86 arquivos.
+**Total:** 8040 questões (7505 reais, 535 autorais), 943 cartões, 270 assuntos, 4 simulado(s), 87 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -87,6 +87,7 @@
 | `prova-uspsp-simulado-5.js` | Simulados USP SP — Simulado 5 (05/2025) 2025 — Simulado 5 do 5º ano, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-uspsp-simulado-4.js` | Simulados USP SP — Simulado 4 (04/2025) 2025 — Simulado 4, todo o conteúdo, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-uspsp-simulado-3.js` | Simulados USP SP — Simulado 3, 6º ano (03/2025) 2025 — Simulado 3, conteúdo do 6º ano, gabarito comentado (FMUSP) | 120 questões |  |
+| `prova-simulado-epm-2026-10.js` | Simulado EPM/UNIFESP (Turma 89) 2026 — Prova de Residência Médica, Avaliação Discente - Internato, 18/10/2026 | 100 questões | 1 anulada(s) |
 | `flashcards-equipe.js` | FLASHCARDS DA EQUIPE — 501 cartões autorais | 501 flashcards |  |
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
 | `flashcards-assuntos-usp.js` | FLASHCARDS DA EQUIPE — assuntos abertos pelas provas da USP-SP (57 cartões) | 57 flashcards |  |

@@ -228,6 +228,7 @@ function dbPadrao(){
     simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
     resultadosSimulados: [],
     simuladosLiberados: [], // {usuarioId, simuladoId, data} — a pessoa trouxe as questões deste simulado para o estudo geral
+    provasInativas: [],     // {chave, rotulo, data} — provas tiradas do banco deste navegador sem apagar nada (ver provaInativa, 05a)
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     simuladosEmAndamento: {}, // simuladosEmAndamento[usuarioId][chave] = simulado não terminado (ver salvarSimuladoEmAndamento, 09b)
@@ -279,7 +280,7 @@ function garantirEstruturaDb(alvo){
   };
   // o que a turma produziu: preservado sempre que for uma lista
   lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("destaques"); lista("sessoes");
-  lista("resultadosSimulados"); lista("simuladosLiberados"); lista("feedbacks"); lista("comentarios"); lista("avisos");
+  lista("resultadosSimulados"); lista("simuladosLiberados"); lista("provasInativas"); lista("feedbacks"); lista("comentarios"); lista("avisos");
   lista("cargasProvas"); lista("filaNuvem"); lista("logCartoes"); lista("grupos"); lista("subgrupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");

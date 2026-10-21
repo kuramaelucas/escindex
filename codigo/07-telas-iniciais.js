@@ -476,7 +476,7 @@ function htmlCardProvaAlvo(u){
   return `<div class="faixa-prova">
     <div class="flex justify-between items-center gap-2 quebra">
       <span class="text-sm">${iconeSvg("target")} <strong>Prova-alvo: ${formatDataBR(alvo.data)}</strong> · <span class="muted">${escapeHtml(tempoParaProvaAlvo(alvo.dias))}</span></span>
-      <button class="link-btn text-sm" onclick="navigate('perfil')">Ajustar a data</button>
+      <button class="link-btn text-sm" onclick="abrirAjusteProvaAlvo()">Ajustar a data</button>
     </div>
     <p class="text-xs muted mt-1">${alvo.exata ? "É a data da primeira prova importante que você marcou" : "É o padrão: 1º de dezembro"}.${encurta ? ` Com a prova chegando, as revisões espaçadas voltam em no máximo ${teto} dias (${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta): assim nada que você revisa fica para depois da prova.` : ""}</p>
   </div>`;

@@ -130,14 +130,15 @@ function renderCampoProvaAlvo(u){
     <div class="hint mt-1">Hoje a prova-alvo é <strong>${formatDataBR(alvo.data)}</strong> (${alvo.exata ? "a data que você marcou" : "o padrão: 1º de dezembro"}; ${escapeHtml(tempoParaProvaAlvo(alvo.dias))}). Com a prova se aproximando, as revisões espaçadas passam a voltar em no máximo ${Math.round(CONFIG.revisaoPelaProva.fracaoDoPrazo*100)}% do tempo que falta, para nada ficar para depois dela.</div>
   </div>`;
 }
-function salvarProvaAlvo(){
+function salvarProvaAlvo(idCampo){
   const u = usuarioAtual(); if(!u || !temProvaAlvo(u)) return;
-  const v = (document.getElementById("perfilProvaAlvo") || {}).value;
+  const v = (document.getElementById(idCampo || "perfilProvaAlvo") || {}).value;
   if(!dataISOValida(v)){ toast("Escolha uma data válida.", "err"); return; }
   if(v < hojeISO()){ toast("A data já passou — escolha a da próxima prova.", "err"); return; }
   if(v > somarDias(hojeISO(), 400)){ toast("A prova importante tem de estar a menos de 400 dias — para provas mais distantes vale o padrão (início de dezembro).", "err"); return; }
   u.provaAlvoData = v;
   saveState();
+  if(idCampo) fecharModal();
   toast("Data da prova-alvo salva: " + formatDataBR(v) + ".");
   render();
 }
@@ -145,6 +146,7 @@ function limparProvaAlvo(){
   const u = usuarioAtual(); if(!u) return;
   delete u.provaAlvoData;
   saveState();
+  if(document.getElementById("ajusteProvaAlvo")) fecharModal();
   toast("Voltou ao padrão: início de dezembro.");
   render();
 }
@@ -173,4 +175,21 @@ function renderCardBackup(){
       <button class="btn btn-secondary btn-sm mt-1" onclick="restaurarBancoDeResgate()">Ver e restaurar a cópia de resgate</button>
     </div>`; })() : ""}
   </div>`;
+}
+/* "Ajustar a data" do Início: a janela abre no próprio lugar, com o calendário
+   do navegador já aberto (antes o botão levava ao Perfil e a pessoa não achava
+   o campo). O `showPicker` pode ser recusado; aí vale clicar no campo. */
+function abrirAjusteProvaAlvo(){
+  const u = usuarioAtual(); if(!u || !temProvaAlvo(u)) return;
+  const alvo = provaAlvoDoUsuario(u);
+  abrirModalTitulado("Data da prova-alvo", `<div class="modal-body">
+    <p class="text-sm muted">Escolha no calendário a data da sua primeira prova importante. Sem data marcada vale o 1º de dezembro.</p>
+    <input class="input mt-1" type="date" id="ajusteProvaAlvo" min="${hojeISO()}" max="${somarDias(hojeISO(), 400)}" value="${alvo.exata ? alvo.data : ""}" onclick="try{this.showPicker()}catch(e){}">
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-primary btn-sm" onclick="salvarProvaAlvo('ajusteProvaAlvo')">Salvar a data</button>
+      ${alvo.exata ? `<button class="btn btn-ghost btn-sm" onclick="limparProvaAlvo()">Voltar ao padrão</button>` : ""}
+    </div>
+  </div>`);
+  const campo = document.getElementById("ajusteProvaAlvo");
+  if(campo){ campo.focus(); try{ campo.showPicker(); }catch(e){} }
 }

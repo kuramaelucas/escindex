@@ -912,7 +912,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
   // agrupa por instituição + ano + tipo (uma "prova" é a combinação das três
   // coisas), na ordem da prova original quando a questão sabe o próprio número
   const mapa = {};
-  const chaveDaProva = q => q.banca+" ||| "+q.ano+" ||| "+(q.semestre||"")+" ||| "+tipoProvaDe(q);
+  const chaveDaProva = chaveDaProvaDe;
   pool.forEach(q=>{ const chave = chaveDaProva(q); (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, semestre:q.semestre||0, tipo:tipoProvaDe(q), ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
   Object.values(mapa).forEach(g => { g.dissertativa = g.ids.every(id=>ehDissertativa(getQuestao(id))); });
   const ordemNaProva = id => { const q = getQuestao(id); return (q && q.numeroNaProva) || 9999; };
@@ -958,6 +958,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
             : `<button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>`)}
           ${g.dissertativa || !ehEquipeVendoSimulado() ? "" : `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")}, '${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>`}
           <button class="btn ${g.dissertativa ? "btn-primary" : "btn-secondary"} btn-sm" onclick="praticarProva(${i})">${g.dissertativa ? "Fazer a prova (sem cronômetro)" : "Praticar sem cronômetro"}</button>
+          <button class="btn btn-ghost btn-sm" onclick="confirmarInativarProva(${i})" title="Tira a prova do banco sem apagar nada; dá para reativar">Tirar do banco</button>
         </div>
       </div>`;
   };
@@ -1017,7 +1018,42 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
   </div>
   <p class="text-sm muted mb-2">${grupos.length} prova(s) encontrada(s) · ${pool.length} questão(ões) no total com os filtros atuais.</p>
   ${secoes || '<div class="empty-state">Nenhuma prova encontrada com esses filtros.</div>'}
+  ${htmlProvasInativas()}
   ${buscaProvas().trim() && simuladosDaBusca.length ? `<div class="card-title mt-3 mb-1">Simulados que combinam com a busca <span class="text-sm muted peso-400">· ${simuladosDaBusca.length}</span></div>${simuladosDaBusca.map(renderSimuladoCard).join("")}` : ""}`;
+}
+/* As provas tiradas do banco ficam listadas aqui, com quantas questões
+   guardam, para reativar com um clique (nada foi apagado). */
+function htmlProvasInativas(){
+  const lista = db.provasInativas || [];
+  if(!lista.length) return "";
+  const linhas = lista.map(p=>{
+    const n = db.questoes.filter(q=>q.real && chaveDaProvaDe(q)===p.chave).length;
+    return `<div class="flex justify-between items-center gap-2 quebra mt-1"><span class="text-sm"><strong>${escapeHtml(p.rotulo)}</strong> · <span class="muted">${n} questão(ões) guardadas, fora do estudo desde ${escapeHtml(formatDataBR(p.data))}</span></span>
+      <button class="btn btn-secondary btn-sm" onclick="reativarProvaDoBanco(${JSON.stringify(p.chave).replace(/"/g,"&quot;")})">Reativar</button></div>`;
+  }).join("");
+  return `<div class="card mt-3"><div class="card-title">Provas fora do banco <span class="text-sm muted peso-400">· ${lista.length}</span></div>
+    <p class="text-xs muted">Nada foi apagado: estas provas só deixaram de aparecer no estudo, nas provas e nas estatísticas deste navegador. Reativar traz tudo de volta.</p>${linhas}</div>`;
+}
+function confirmarInativarProva(indice){
+  const g = grupoDeProva(indice); if(!g) return;
+  const nome = g.banca+" "+anoDaProva(g);
+  abrirModalTitulado("Tirar a prova do banco?", `<div class="modal-body">
+    <p class="text-sm"><strong>${escapeHtml(nome)}</strong> (${g.ids.length} questões) deixa de aparecer no estudo, nas provas e nas estatísticas <strong>deste navegador</strong>. Nenhuma questão é apagada, e as respostas já dadas ficam guardadas. Para trazê-la de volta: Provas e Simulados › Provas antigas › <em>Provas fora do banco</em> › Reativar.</p>
+    <div class="flex gap-1 mt-2 quebra"><button class="btn btn-primary btn-sm" onclick="inativarProvaDoBanco(${indice})">Tirar do banco</button><button class="btn btn-ghost btn-sm" onclick="fecharModal()">Cancelar</button></div>
+  </div>`);
+}
+function inativarProvaDoBanco(indice){
+  const g = grupoDeProva(indice); if(!g) return;
+  const q = getQuestao(g.ids[0]); if(!q) return;
+  inativarProva(chaveDaProvaDe(q), g.banca+" "+anoDaProva(g));
+  fecharModal();
+  toast("Prova fora do banco. Dá para reativar no fim da lista de provas.");
+  render();
+}
+function reativarProvaDoBanco(chave){
+  reativarProva(chave);
+  toast("Prova de volta ao banco.");
+  render();
 }
 function grupoDeProva(indice){
   const grupos = state.filtroRota.provasGrupos || [];
