@@ -101,6 +101,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | A **ordem própria dos estágios do 6º ano** (Meu Grupo > Meus estágios) | `alter table public.perfis add column if not exists ordem_estagios jsonb ...` |
 > | O **Livro de Ouro** para toda a turma | cria a tabela `livro_ouro` (todos leem, a equipe grava) |
 > | A **formatação aprovada** em Revisar Formatação | cria a tabela `formatacao_aprovada` e a função `e_revisor()` (grava equipe e residentes) |
+> | **Prova inativada** pelo administrador (Provas antigas › Inativar prova; Banco de Questões › Excluir › Inativar) para todos | cria a tabela `provas_inativas` (todos leem, a equipe grava) |
 > | A tela de **primeiro acesso** não reaparecer em outro aparelho | `alter table public.perfis add column if not exists boas_vindas_em date` |
 > | **Grupos na nuvem** (01/10/2026): o grupo, o pedido de entrada e a aprovação pelo dono, os integrantes, os grupos de estudo, as **questões enviadas para o grupo** (só os membros veem) e os **cartões**: sugeridos à equipe (o professor aprova) ou compartilhados com o grupo | cria as tabelas `grupos`, `grupo_membros`, `subgrupos` e `flashcards_enviados`, as funções `e_do_grupo()` e `e_dono_do_grupo()` e `alter table public.questoes_enviadas add column if not exists grupo_id text`, com RLS e permissões. Sem rodar, os grupos e os cartões continuam só no navegador (e as questões de grupo esperam na fila) — nada se perde |
 >

@@ -57,6 +57,14 @@ update destaques set removido=true where id='d1';
 insert into simulados_em_andamento(usuario_id,simulado_id,dados) values ('00000000-0000-0000-0000-00000000000a','sim1','{"indiceAtual":2}');
 select pg_temp.tem_de_falhar($$insert into simulados_em_andamento(usuario_id,simulado_id,dados) values ('00000000-0000-0000-0000-00000000000b','sim1','{}')$$, 'simulado guardado em nome de outra pessoa');
 select pg_temp.igual((select count(*) from destaques where removido), 1, 'a pessoa desmarca o próprio destaque');
+-- provas inativas: todos leem, só a equipe grava (aluno não esconde prova da turma)
+select pg_temp.tem_de_falhar($$insert into provas_inativas(chave,rotulo) values ('Banca ||| 2026 |||  ||| residencia','Banca 2026')$$, 'aluno inativando prova');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+insert into provas_inativas(chave,rotulo,por_nome) values ('Banca ||| 2026 |||  ||| residencia','Banca 2026','Prof C');
+update provas_inativas set inativa=false where chave='Banca ||| 2026 |||  ||| residencia';
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+select pg_temp.igual((select count(*) from provas_inativas), 1, 'aluno lê as provas inativas');
+select pg_temp.tem_de_falhar($$update provas_inativas set inativa=true where chave='Banca ||| 2026 |||  ||| residencia' returning case when inativa then 1/0 end$$, 'aluno reativando ou inativando prova existente');
 
 -- o registro de cada avaliação de cartão e as colunas novas da resposta: só do dono
 insert into log_revisoes_cartoes(id,usuario_id,cartao_id,assunto_id,nota,intervalo_antes,intervalo_depois,dias_desde_ultima,vistas,data,respondida_em)

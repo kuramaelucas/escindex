@@ -537,6 +537,24 @@ create table if not exists public.formatacao_aprovada (
 create index if not exists formatacao_aprovada_sync_idx on public.formatacao_aprovada (atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 11-C. PROVAS_INATIVAS — provas tiradas do banco sem apagar (GLOBAL)
+-- ---------------------------------------------------------------------------
+-- O administrador pode inativar uma prova em vez de excluí-la: as questões, as
+-- respostas e as estatísticas ficam, mas a prova some para quem estuda. Uma
+-- linha por prova (`chave` = instituição ||| ano ||| semestre ||| tipo);
+-- `inativa = false` é a reativação. Todo mundo que está numa conta lê (precisa
+-- saber o que esconder); grava a equipe (e_equipe()).
+create table if not exists public.provas_inativas (
+  chave          text        primary key,
+  rotulo         text        not null default '',
+  inativa        boolean     not null default true,
+  por_nome       text        not null default '',
+  atualizado_por uuid        references auth.users(id) on delete set null,
+  atualizado_em  timestamptz not null default now()
+);
+create index if not exists provas_inativas_sync_idx on public.provas_inativas (atualizado_em);
+
+-- ---------------------------------------------------------------------------
 -- 11-D. COMENTARIOS — comentários e dúvidas nas questões (GLOBAL)
 -- ---------------------------------------------------------------------------
 -- O que alguém escreve embaixo de uma questão ("não entendi por que não é a
@@ -819,7 +837,7 @@ begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
-    'sessao_em_andamento', 'simulados_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada',
+    'sessao_em_andamento', 'simulados_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada', 'provas_inativas',
     'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados'
   ] loop
@@ -956,6 +974,7 @@ alter table public.simulados_em_andamento enable row level security;
 alter table public.calendario           enable row level security;
 alter table public.livro_ouro           enable row level security;
 alter table public.formatacao_aprovada  enable row level security;
+alter table public.provas_inativas      enable row level security;
 alter table public.comentarios          enable row level security;
 alter table public.questoes_enviadas    enable row level security;
 alter table public.feedbacks            enable row level security;
@@ -1091,6 +1110,18 @@ create policy formatacao_aprovada_criar on public.formatacao_aprovada
 create policy formatacao_aprovada_alterar on public.formatacao_aprovada
   for update to authenticated
   using (public.e_revisor()) with check (public.e_revisor());
+
+-- PROVAS_INATIVAS: todos leem; grava a equipe.
+drop policy if exists provas_inativas_ler     on public.provas_inativas;
+drop policy if exists provas_inativas_criar   on public.provas_inativas;
+drop policy if exists provas_inativas_alterar on public.provas_inativas;
+create policy provas_inativas_ler on public.provas_inativas
+  for select to authenticated using (true);
+create policy provas_inativas_criar on public.provas_inativas
+  for insert to authenticated with check (public.e_equipe());
+create policy provas_inativas_alterar on public.provas_inativas
+  for update to authenticated
+  using (public.e_equipe()) with check (public.e_equipe());
 
 -- COMENTARIOS: todos leem; cada um escreve e edita o próprio; a equipe
 -- (professor/administrador) edita qualquer um — é quem modera. Marcar como
@@ -1398,7 +1429,7 @@ begin
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes', 'log_revisoes_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'simulados_em_andamento', 'calendario',
-    'livro_ouro', 'formatacao_aprovada', 'comentarios', 'questoes_enviadas',
+    'livro_ouro', 'formatacao_aprovada', 'provas_inativas', 'comentarios', 'questoes_enviadas',
     'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados', 'push_inscricoes'
   ] loop

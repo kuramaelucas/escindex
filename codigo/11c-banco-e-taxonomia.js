@@ -176,7 +176,34 @@ function confirmarExcluirSelecionadasBanco(){
   if(!ids.length){ limparSelecaoBanco(); return; }
   const set = new Set(ids);
   const respostas = (db.respostas||[]).filter(r=>set.has(r.questaoId)).length;
-  abrirModal(`${cabecalhoJanela("Excluir " + ids.length + " questão(ões)")}<p>Esta ação não pode ser desfeita. As questões saem do banco e das sessões${respostas ? "; " + respostas + " resposta(s) de alunos perdem a questão de origem" : ""}. Para manter o histórico, prefira marcar como "anulada" ou "desatualizada".</p><p class="text-sm muted">Questões que vêm da pasta dados/ voltam na próxima carga; para tirá-las de vez, apague-as dos arquivos de dados.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirSelecionadasBancoConfirmado()">Excluir ${ids.length} mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela("Excluir " + ids.length + " questão(ões)")}<p>Esta ação não pode ser desfeita. As questões saem do banco e das sessões${respostas ? "; " + respostas + " resposta(s) de alunos perdem a questão de origem" : ""}. Para manter o histórico, prefira marcar como "anulada" ou "desatualizada".</p><p class="text-sm muted">Questões que vêm da pasta dados/ voltam na próxima carga; para tirá-las de vez, apague-as dos arquivos de dados.</p>${htmlOpcaoInativarProvas(ids)}<div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirSelecionadasBancoConfirmado()">Excluir ${ids.length} mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+}
+/* Inativar × excluir. Quem tira uma prova inteira quase sempre quer só que ela
+   saia de vista: inativar esconde dos alunos (e das provas e do estudo) sem
+   apagar questão, resposta nem estatística, e dá para reativar. Excluir é para
+   o que não deve existir mais. */
+function provasDasQuestoes(ids){
+  const mapa = {};
+  ids.map(getQuestao).filter(q => q && q.real).forEach(q => {
+    const k = chaveDaProvaDe(q);
+    if(!mapa[k]) mapa[k] = { chave:k, rotulo:q.banca + " " + anoDaProva(q), n:0 };
+    mapa[k].n++;
+  });
+  return Object.values(mapa);
+}
+let _provasParaInativar = [];
+function htmlOpcaoInativarProvas(ids){
+  _provasParaInativar = provasDasQuestoes(ids);
+  if(!_provasParaInativar.length) return "";
+  const nomes = _provasParaInativar.map(p => escapeHtml(p.rotulo) + " (" + p.n + ")").join(", ");
+  return `<div class="feedback-box ok mt-2"><strong>Em vez de excluir, inativar?</strong> ${nomes}. Inativar tira a prova de vista dos alunos, do estudo e dos simulados, <strong>sem apagar nada</strong>: questões, respostas e estatísticas ficam guardadas e dá para reativar depois.
+    <div class="mt-1"><button class="btn btn-primary btn-sm" onclick="inativarProvasSelecionadasBanco()">Inativar ${_provasParaInativar.length > 1 ? _provasParaInativar.length + " provas" : "a prova"}</button></div></div>`;
+}
+function inativarProvasSelecionadasBanco(){
+  _provasParaInativar.forEach(p => inativarProva(p.chave, p.rotulo));
+  selecaoBanco().clear(); fecharModal();
+  toast(_provasParaInativar.length + " prova(s) inativada(s) para todos. Reative em Provas e Simulados › Provas antigas.");
+  render();
 }
 function excluirSelecionadasBancoConfirmado(){
   const set = selecaoBanco();
@@ -193,7 +220,7 @@ function renderListaBancoQuestoesHtml(lista, paginaInfo){
       <td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span> ${q.grupoId?`<span class="badge badge-muted" title="Restrita ao grupo">${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"grupo")}</span>`:""}</td>
       <td class="text-sm nowrap">${escapeHtml(q.banca)}<br><span class="muted">${anoDaProva(q)}</span>${tipoProvaDe(q)!==CONFIG.tipoProvaPadrao ? ` <span class="badge badge-accent">${escapeHtml(infoTipoProva(tipoProvaDe(q)).nome)}</span>` : ""}</td>
       <td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td>
-      <td>${badgeStatusQuestao(q.status)}${aguardaImagem(q) ? ` <span class="badge badge-amber" title="${escapeHtml(q.imagemPendente)}">Aguardando imagem</span>` : ""}</td>
+      <td>${badgeStatusQuestao(q.status)}${provaInativa(q) ? ` <span class="badge badge-muted" title="A prova foi inativada: os alunos não a veem">Prova inativa</span>` : ""}${aguardaImagem(q) ? ` <span class="badge badge-amber" title="${escapeHtml(q.imagemPendente)}">Aguardando imagem</span>` : ""}</td>
       <td class="flex gap-1">
         <button class="icon-btn" title="Ver na íntegra" onclick="abrirQuestaoCompleta('${q.id}')">${iconeSvg("search")}</button>
         <button class="icon-btn" title="Editar" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")}</button>
@@ -533,7 +560,7 @@ function salvarQuestaoPendente(){
   saveState(); fecharModal(); toast("Questão salva."); render();
 }
 function confirmarExcluirQuestao(qid){
-  abrirModal(`${cabecalhoJanela("Excluir questão")}<p>Esta ação não pode ser desfeita. Considere marcar como "anulada" ou "desatualizada" em vez de excluir, para manter o histórico de quem já respondeu.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela("Excluir questão")}<p>Esta ação não pode ser desfeita. Considere marcar como "anulada" ou "desatualizada" em vez de excluir, para manter o histórico de quem já respondeu.</p>${htmlOpcaoInativarProvas([qid])}<div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirQuestaoConfirmado(qid){
   const q = getQuestao(qid);

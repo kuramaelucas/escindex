@@ -52,6 +52,23 @@ const NUVEM_GLOBAIS = {
     },
   },
 };
+/* PROVAS INATIVAS: a decisão do administrador de tirar uma prova do banco
+   (sem apagar) vale para todos. Uma linha por prova, `inativa=false` é a
+   reativação. Grava quem gere conteúdo (e_equipe no banco). */
+NUVEM_GLOBAIS.provas_inativas = {
+  chave: l => l.chave,
+  podeGravar: () => podeEditarCalendarioNaNuvem(),
+  aplicar: l => {
+    if(!Array.isArray(db.provasInativas)) db.provasInativas = [];
+    const reg = { chave:l.chave, rotulo:l.rotulo || "", inativa:l.inativa !== false, data:(l.atualizado_em || "").slice(0,10) || hojeISO(), por:l.por_nome || "" };
+    const i = db.provasInativas.findIndex(x => x.chave === l.chave);
+    if(i >= 0) db.provasInativas[i] = reg; else db.provasInativas.push(reg);
+  },
+  linha: chave => {
+    const e = (db.provasInativas || []).find(x => x.chave === chave);
+    return { chave, rotulo:e ? e.rotulo : "", inativa:e ? e.inativa !== false : true, por_nome:e ? (e.por || "") : "" };
+  },
+};
 /* COMENTÁRIOS E DÚVIDAS nas questões. São de todos (a dúvida do aluno
    precisa chegar ao residente), mas cada linha tem dono: o banco só aceita
    o comentário de quem está escrevendo, e "resposta oficial" só de quem

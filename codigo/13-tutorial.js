@@ -129,7 +129,7 @@ const GUIA_ALUNO = [
     "<strong>Conjunto</strong>: ao criar ou editar um cartão seu, dê um nome (ex.: “Cardio R1”) para agrupá-lo numa subdivisão só sua. Em <strong>Criar meu baralho &gt; Conjunto meu</strong> você revisa só aquele conjunto. Durante a revisão, o lápis no canto do cartão deixa <strong>editar</strong> os seus cartões na hora.",
   ]},
   { titulo:"Provas e Simulados", itens:[
-    "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, separadas em <strong>provas de residência</strong> e <strong>provas da graduação</strong> (o Teste de Progresso é graduação) e filtráveis por instituição, ano e área. No 3º e 4º ano, as da graduação aparecem primeiro. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>.",
+    "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, separadas em <strong>provas de residência</strong> e <strong>provas da graduação</strong> (o Teste de Progresso é graduação) e filtráveis por instituição, ano e área. No 3º e 4º ano, as da graduação aparecem primeiro. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>. ",
     "O cartão de cada prova diz quantas questões foram anuladas pela banca e quantas esperam a figura da prova — essas ficam de fora por enquanto.",
     "Durante um simulado: <strong>Esconder cronômetro</strong> tira o relógio da tela (o tempo segue correndo); o relógio <strong>para sozinho</strong> quando você sai da aba ou da janela e volta a contar quando retorna. O <strong>modo aprendizado</strong> pede que você <strong>confirme</strong> a resposta antes de mostrar a explicação e faz a barra de questões mostrar ✓ (acertou) e ✕ (errou).",
     "Os <strong>simulados</strong> (da equipe e os enviados para a plataforma) aparecem na mesma tela, e a <strong>busca</strong> no topo acha provas e simulados por instituição, ano ou título (\"Unifesp\" e \"EPM\" valem os dois), com o resultado da última vez que você fez.",
@@ -151,7 +151,7 @@ const GUIA_ALUNO = [
     "Em <strong>Perfil e configurações</strong> (no fim do menu): ano da faculdade, lembrete diário de meta, este tutorial e o guia, senha (a troca pede a senha atual), instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
     "<strong>Buscar:</strong> o botão <em>Buscar</em> no alto da tela (ou <kbd>Ctrl</kbd>+<kbd>K</kbd>, <kbd>⌘</kbd>+<kbd>K</kbd> no Mac) abre uma busca que vai direto a uma tela, a um assunto para praticar ou a uma questão pelo trecho do enunciado. Use as setas e o Enter. Ela não abre durante um simulado em andamento.",
     "Com a nuvem ligada, o estudo sincroniza entre aparelhos. Sem ela, tudo fica salvo neste navegador.",
-    "<strong>Prova-alvo:</strong> existe no 6º ano e para quem já se formou. Sem data marcada vale o 1º de dezembro, e o Início mostra quanto falta; em Perfil você pode marcar a data exata da sua primeira prova importante. Quando a prova se aproxima, as revisões espaçadas passam a voltar em no máximo 25% do tempo que falta — para o que você revisa não ficar para depois dela. Do 3º ao 5º ano não há prova-alvo.",
+    "<strong>Prova-alvo:</strong> existe no 6º ano e para quem já se formou. Sem data marcada vale o 1º de dezembro, e o Início mostra quanto falta, e em <strong>Ajustar a data</strong> (no Início, com o calendário na hora; ou em Perfil) você marca a data exata da sua primeira prova importante. Quando a prova se aproxima, as revisões espaçadas passam a voltar em no máximo 25% do tempo que falta — para o que você revisa não ficar para depois dela. Do 3º ao 5º ano não há prova-alvo.",
   ]},
 ];
 const GUIA_EQUIPE = [
@@ -208,7 +208,7 @@ const GUIA_RESIDENTE = [
     "<strong>Questões Difíceis</strong>: confira gabarito e explicação das questões que a turma mais erra.",
     "<strong>Enviar Provas e Questões</strong>, <strong>Central de Provas</strong> e <strong>Revisar Formatação</strong>: ajude a trazer provas novas e a deixá-las prontas.",
     "<strong>Questões para Atualizar</strong>: envie a figura que falta, complete o texto cortado, reveja o gabarito — o conserto chega a toda a turma pela nuvem.",
-    "<strong>Provas e Simulados</strong>: as mesmas provas antigas e simulados que os alunos veem.",
+    "<strong>Provas e Simulados</strong>: as mesmas provas antigas e simulados que os alunos veem. Na <strong>lixeira</strong> de cada prova você escolhe entre <strong>inativar</strong> (a prova deixa de existir para os alunos (estudo, provas e simulados) sem apagar nada — as respostas e estatísticas ficam — e volta com <strong>Reativar</strong>) e <strong>excluir</strong> (apaga as questões da prova), na lista <em>Provas inativas</em> no fim da tela. Ao excluir questões no Banco de Questões, a janela pergunta se você prefere inativar a prova.",
   ]},
 ];
 function secoesDoGuia(papel){

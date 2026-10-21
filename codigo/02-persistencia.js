@@ -97,6 +97,7 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
    parafraseada de cursinho ou site de questões. Questão real: `real: true`,
    banca, ano e numeroNaProva; autoral de demonstração: `real: false`. */
 const SEED_QUESTOES = (window.EscDados && window.EscDados.questoes) || [];
+const SEED_PROVAS_INATIVAS = (window.EscDados && window.EscDados.provasInativas) || [];   // provas que já chegam inativas (ver provaInativa, 05a)
 
 /* ---------------------------- SEED_LIVRO_OURO -----------------------------
    O "Livro de Ouro" registra quem sustenta e quem ajuda a construir a
@@ -228,6 +229,7 @@ function dbPadrao(){
     simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
     resultadosSimulados: [],
     simuladosLiberados: [], // {usuarioId, simuladoId, data} — a pessoa trouxe as questões deste simulado para o estudo geral
+    provasInativas: [],     // {chave, rotulo, inativa, data, por} — provas tiradas do banco pelo administrador, sem apagar nada; sincroniza (ver provaInativa, 05a)
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     simuladosEmAndamento: {}, // simuladosEmAndamento[usuarioId][chave] = simulado não terminado (ver salvarSimuladoEmAndamento, 09b)
@@ -279,7 +281,7 @@ function garantirEstruturaDb(alvo){
   };
   // o que a turma produziu: preservado sempre que for uma lista
   lista("usuarios"); lista("respostas"); lista("favoritos"); lista("favoritosCartoes"); lista("questoesOcultas"); lista("destaques"); lista("sessoes");
-  lista("resultadosSimulados"); lista("simuladosLiberados"); lista("feedbacks"); lista("comentarios"); lista("avisos");
+  lista("resultadosSimulados"); lista("simuladosLiberados"); lista("provasInativas"); lista("feedbacks"); lista("comentarios"); lista("avisos");
   lista("cargasProvas"); lista("filaNuvem"); lista("logCartoes"); lista("grupos"); lista("subgrupos");
   // conteúdo: se vier estragado, volta vazio e é repovoado pela pasta "dados/"
   lista("questoes"); lista("flashcards"); lista("simulados"); lista("livroOuro");
