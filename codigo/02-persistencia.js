@@ -97,6 +97,7 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
    parafraseada de cursinho ou site de questões. Questão real: `real: true`,
    banca, ano e numeroNaProva; autoral de demonstração: `real: false`. */
 const SEED_QUESTOES = (window.EscDados && window.EscDados.questoes) || [];
+const SEED_PROVAS_INATIVAS = (window.EscDados && window.EscDados.provasInativas) || [];   // provas que já chegam inativas (ver provaInativa, 05a)
 
 /* ---------------------------- SEED_LIVRO_OURO -----------------------------
    O "Livro de Ouro" registra quem sustenta e quem ajuda a construir a
@@ -228,7 +229,7 @@ function dbPadrao(){
     simulados: copiaProfunda(SEED_SIMULADOS), // provas antigas / simulados criados por professores
     resultadosSimulados: [],
     simuladosLiberados: [], // {usuarioId, simuladoId, data} — a pessoa trouxe as questões deste simulado para o estudo geral
-    provasInativas: [],     // {chave, rotulo, data} — provas tiradas do banco deste navegador sem apagar nada (ver provaInativa, 05a)
+    provasInativas: [],     // {chave, rotulo, inativa, data, por} — provas tiradas do banco pelo administrador, sem apagar nada; sincroniza (ver provaInativa, 05a)
     sessoes: [],            // histórico de conjuntos de questões concluídos (feedback questão a questão)
     sessoesEmAndamento: {}, // sessoesEmAndamento[usuarioId] = fila de questões não terminada, para retomar depois
     simuladosEmAndamento: {}, // simuladosEmAndamento[usuarioId][chave] = simulado não terminado (ver salvarSimuladoEmAndamento, 09b)

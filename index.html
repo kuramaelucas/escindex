@@ -50,7 +50,7 @@
    questões (12 MB), e acrescentar uma prova não refaz o download do código —
    e ninguém precisa lembrar de trocar a versão: o teste de higiene falha
    se ela estiver velha. */
-window.ESC_VERSAO = "2026-10-21.c32a6e629.d2d9fae1a";
+window.ESC_VERSAO = "2026-10-21.cf1e98ec6.d9d25af88";
 window.ESC_VERSAO_PARTES = (function(){
   var p = String(window.ESC_VERSAO).split(".");
   return { codigo: p[1] || window.ESC_VERSAO, dados: p[2] || window.ESC_VERSAO };
@@ -158,6 +158,7 @@ window.EscDados = {
   usuarios: [],         // vira SEED_USUARIOS    (contas de demonstração)
   livroOuro: [],        // vira SEED_LIVRO_OURO
   comentarios: [],      // vira SEED_COMENTARIOS
+  provasInativas: [],   // vira SEED_PROVAS_INATIVAS (provas que já chegam inativas: {chave, rotulo})
   arquivos: [],         // um registro por arquivo que entregou conteúdo
 
   _anotar: function(nomeArquivo, tipo, itens){
@@ -200,6 +201,10 @@ window.EscDados = {
       Object.keys(c.sequenciasAno).forEach(ano => { this.sequenciasAno[ano] = c.sequenciasAno[ano]; n++; });
     }
     this._anotar(nomeArquivo, "calendário", n);
+  },
+  registrarProvasInativas: function(nomeArquivo, lista){
+    if(!Array.isArray(lista)) return;
+    this._anotar(nomeArquivo, "provas inativas", this._juntar(this.provasInativas, lista));
   },
   registrarDemonstracao: function(nomeArquivo, d){
     if(!d) return;

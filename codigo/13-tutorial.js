@@ -129,7 +129,7 @@ const GUIA_ALUNO = [
     "<strong>Conjunto</strong>: ao criar ou editar um cartão seu, dê um nome (ex.: “Cardio R1”) para agrupá-lo numa subdivisão só sua. Em <strong>Criar meu baralho &gt; Conjunto meu</strong> você revisa só aquele conjunto. Durante a revisão, o lápis no canto do cartão deixa <strong>editar</strong> os seus cartões na hora.",
   ]},
   { titulo:"Provas e Simulados", itens:[
-    "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, separadas em <strong>provas de residência</strong> e <strong>provas da graduação</strong> (o Teste de Progresso é graduação) e filtráveis por instituição, ano e área. No 3º e 4º ano, as da graduação aparecem primeiro. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>. Em <strong>Tirar do banco</strong> a prova deixa de aparecer no estudo, nas provas e nas estatísticas <em>deste navegador</em> sem ser apagada: ela fica em <em>Provas fora do banco</em>, no fim da lista, e volta com um clique em <strong>Reativar</strong>.",
+    "As <strong>provas antigas</strong> são as provas reais, do jeito que caíram, separadas em <strong>provas de residência</strong> e <strong>provas da graduação</strong> (o Teste de Progresso é graduação) e filtráveis por instituição, ano e área. No 3º e 4º ano, as da graduação aparecem primeiro. Faça <strong>como simulado</strong> (no cronômetro, com nota no fim) ou <strong>pratique sem cronômetro</strong>. ",
     "O cartão de cada prova diz quantas questões foram anuladas pela banca e quantas esperam a figura da prova — essas ficam de fora por enquanto.",
     "Durante um simulado: <strong>Esconder cronômetro</strong> tira o relógio da tela (o tempo segue correndo); o relógio <strong>para sozinho</strong> quando você sai da aba ou da janela e volta a contar quando retorna. O <strong>modo aprendizado</strong> pede que você <strong>confirme</strong> a resposta antes de mostrar a explicação e faz a barra de questões mostrar ✓ (acertou) e ✕ (errou).",
     "Os <strong>simulados</strong> (da equipe e os enviados para a plataforma) aparecem na mesma tela, e a <strong>busca</strong> no topo acha provas e simulados por instituição, ano ou título (\"Unifesp\" e \"EPM\" valem os dois), com o resultado da última vez que você fez.",
@@ -208,7 +208,7 @@ const GUIA_RESIDENTE = [
     "<strong>Questões Difíceis</strong>: confira gabarito e explicação das questões que a turma mais erra.",
     "<strong>Enviar Provas e Questões</strong>, <strong>Central de Provas</strong> e <strong>Revisar Formatação</strong>: ajude a trazer provas novas e a deixá-las prontas.",
     "<strong>Questões para Atualizar</strong>: envie a figura que falta, complete o texto cortado, reveja o gabarito — o conserto chega a toda a turma pela nuvem.",
-    "<strong>Provas e Simulados</strong>: as mesmas provas antigas e simulados que os alunos veem.",
+    "<strong>Provas e Simulados</strong>: as mesmas provas antigas e simulados que os alunos veem. Em <strong>Inativar prova</strong> a prova deixa de existir para os alunos (estudo, provas e simulados) sem apagar nada — as respostas e estatísticas ficam — e volta com <strong>Reativar</strong>, na lista <em>Provas inativas</em> no fim da tela. Ao excluir questões no Banco de Questões, a janela pergunta se você prefere inativar a prova.",
   ]},
 ];
 function secoesDoGuia(papel){

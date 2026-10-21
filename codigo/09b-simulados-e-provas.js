@@ -958,7 +958,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
             : `<button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>`)}
           ${g.dissertativa || !ehEquipeVendoSimulado() ? "" : `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")}, '${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>`}
           <button class="btn ${g.dissertativa ? "btn-primary" : "btn-secondary"} btn-sm" onclick="praticarProva(${i})">${g.dissertativa ? "Fazer a prova (sem cronômetro)" : "Praticar sem cronômetro"}</button>
-          <button class="btn btn-ghost btn-sm" onclick="confirmarInativarProva(${i})" title="Tira a prova do banco sem apagar nada; dá para reativar">Tirar do banco</button>
+          ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="confirmarInativarProva(${i})" title="Inativa a prova para todos, sem apagar nada; dá para reativar">Inativar prova</button>` : ""}
         </div>
       </div>`;
   };
@@ -1021,25 +1021,29 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
   ${htmlProvasInativas()}
   ${buscaProvas().trim() && simuladosDaBusca.length ? `<div class="card-title mt-3 mb-1">Simulados que combinam com a busca <span class="text-sm muted peso-400">· ${simuladosDaBusca.length}</span></div>${simuladosDaBusca.map(renderSimuladoCard).join("")}` : ""}`;
 }
-/* As provas tiradas do banco ficam listadas aqui, com quantas questões
-   guardam, para reativar com um clique (nada foi apagado). */
+/* As provas inativas ficam listadas aqui, só para quem gere conteúdo (para os
+   alunos a prova deixou de existir), com quantas questões guardam, para
+   reativar com um clique — nada foi apagado e as estatísticas ficam. */
 function htmlProvasInativas(){
-  const lista = db.provasInativas || [];
+  if(!podeGerirConteudo()) return "";
+  const lista = provasInativasLista();
   if(!lista.length) return "";
   const linhas = lista.map(p=>{
     const n = db.questoes.filter(q=>q.real && chaveDaProvaDe(q)===p.chave).length;
-    return `<div class="flex justify-between items-center gap-2 quebra mt-1"><span class="text-sm"><strong>${escapeHtml(p.rotulo)}</strong> · <span class="muted">${n} questão(ões) guardadas, fora do estudo desde ${escapeHtml(formatDataBR(p.data))}</span></span>
+    return `<div class="flex justify-between items-center gap-2 quebra mt-1"><span class="text-sm"><strong>${escapeHtml(p.rotulo)}</strong> · <span class="muted">${n} questão(ões) guardadas${p.data ? ", inativa desde " + escapeHtml(formatDataBR(p.data)) : ", já chegou inativa"}${p.por ? " (" + escapeHtml(p.por) + ")" : ""}</span></span>
       <button class="btn btn-secondary btn-sm" onclick="reativarProvaDoBanco(${JSON.stringify(p.chave).replace(/"/g,"&quot;")})">Reativar</button></div>`;
   }).join("");
-  return `<div class="card mt-3"><div class="card-title">Provas fora do banco <span class="text-sm muted peso-400">· ${lista.length}</span></div>
-    <p class="text-xs muted">Nada foi apagado: estas provas só deixaram de aparecer no estudo, nas provas e nas estatísticas deste navegador. Reativar traz tudo de volta.</p>${linhas}</div>`;
+  return `<div class="card mt-3"><div class="card-title">Provas inativas <span class="text-sm muted peso-400">· ${lista.length} · só você e a equipe veem esta lista</span></div>
+    <p class="text-xs muted">Os alunos não veem nem estudam estas provas. Nada foi apagado: as questões, as respostas e as estatísticas continuam guardadas. Reativar traz tudo de volta para todos.</p>${linhas}</div>`;
 }
+/* Inativar × excluir: a pergunta que o administrador vê antes de tirar uma prova. */
 function confirmarInativarProva(indice){
   const g = grupoDeProva(indice); if(!g) return;
   const nome = g.banca+" "+anoDaProva(g);
-  abrirModalTitulado("Tirar a prova do banco?", `<div class="modal-body">
-    <p class="text-sm"><strong>${escapeHtml(nome)}</strong> (${g.ids.length} questões) deixa de aparecer no estudo, nas provas e nas estatísticas <strong>deste navegador</strong>. Nenhuma questão é apagada, e as respostas já dadas ficam guardadas. Para trazê-la de volta: Provas e Simulados › Provas antigas › <em>Provas fora do banco</em> › Reativar.</p>
-    <div class="flex gap-1 mt-2 quebra"><button class="btn btn-primary btn-sm" onclick="inativarProvaDoBanco(${indice})">Tirar do banco</button><button class="btn btn-ghost btn-sm" onclick="fecharModal()">Cancelar</button></div>
+  abrirModalTitulado("Inativar a prova?", `<div class="modal-body">
+    <p class="text-sm"><strong>${escapeHtml(nome)}</strong> (${g.ids.length} questões) deixa de aparecer para os alunos, no estudo, nas provas e nos simulados. <strong>Nada é apagado</strong>: as questões, as respostas e as estatísticas ficam guardadas, e dá para reativar a qualquer momento.</p>
+    <div class="flex gap-1 mt-2 quebra"><button class="btn btn-primary btn-sm" onclick="inativarProvaDoBanco(${indice})">Inativar</button><button class="btn btn-ghost btn-sm" onclick="fecharModal()">Cancelar</button></div>
+    <p class="text-xs muted mt-2">Para apagar de vez, use Banco de Questões (filtre a prova, selecione e exclua): lá você escolhe entre inativar e excluir.</p>
   </div>`);
 }
 function inativarProvaDoBanco(indice){
@@ -1047,7 +1051,7 @@ function inativarProvaDoBanco(indice){
   const q = getQuestao(g.ids[0]); if(!q) return;
   inativarProva(chaveDaProvaDe(q), g.banca+" "+anoDaProva(g));
   fecharModal();
-  toast("Prova fora do banco. Dá para reativar no fim da lista de provas.");
+  toast("Prova inativada para todos. Dá para reativar no fim da lista de provas.");
   render();
 }
 function reativarProvaDoBanco(chave){

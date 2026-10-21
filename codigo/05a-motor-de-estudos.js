@@ -131,23 +131,49 @@ function questoesAtivas(incluirGrupoId){
 }
 let _cacheAtivas = {};
 /* PROVA INATIVA. Tirar uma prova do banco não apaga nada: as questões ficam
-   em db.questoes (e em dados/), só deixam de contar como ativas — somem do
-   estudo, das provas antigas e das estatísticas deste navegador, e voltam
-   inteiras quando a prova é reativada. A chave é a mesma que agrupa a prova
-   na tela de Provas (banca + ano + semestre + tipo). */
+   em db.questoes (e em dados/) e as respostas e estatísticas dos alunos
+   continuam guardadas; a prova só deixa de existir para quem estuda — some do
+   estudo, das provas antigas e dos simulados — e volta inteira ao reativar.
+   É decisão do administrador e vale para todos (sobe pela nuvem, tabela
+   provas_inativas). A chave é a que agrupa a prova na tela de Provas
+   (banca + ano + semestre + tipo). Cada entrada de db.provasInativas é
+   {chave, rotulo, inativa, data, por}; `inativa:false` é uma reativação, e
+   fica registrada para a lista padrão do arquivo de dados (provas que já
+   chegam inativas, EscDados.provasInativas) não voltar a valer. */
 function chaveDaProvaDe(q){ return q.banca+" ||| "+q.ano+" ||| "+(q.semestre||"")+" ||| "+tipoProvaDe(q); }
+function _estadoDaProva(chave){
+  const e = (db.provasInativas || []).find(p => p.chave === chave);
+  if(e) return e.inativa !== false;
+  return (SEED_PROVAS_INATIVAS || []).some(p => p.chave === chave);
+}
 function provaInativa(q){
-  const l = db.provasInativas;
-  return !!(l && l.length && q.real && l.some(p=>p.chave===chaveDaProvaDe(q)));
+  if(!q.real) return false;
+  const c = (_cacheProvasInativas && _cacheProvasInativas.geracao === _geracaoDb) ? _cacheProvasInativas : (_cacheProvasInativas = { geracao:_geracaoDb, porChave:{} });
+  const k = chaveDaProvaDe(q);
+  if(!(k in c.porChave)) c.porChave[k] = _estadoDaProva(k);
+  return c.porChave[k];
 }
-function inativarProva(chave, rotulo){
+let _cacheProvasInativas = null;
+// as inativas de agora: as do banco mais as que já chegam inativas e ninguém reativou
+function provasInativasLista(){
+  const doBanco = (db.provasInativas || []).filter(p => p.inativa !== false);
+  const padrao = (SEED_PROVAS_INATIVAS || []).filter(p => !(db.provasInativas || []).some(e => e.chave === p.chave));
+  return doBanco.concat(padrao.map(p => ({ chave:p.chave, rotulo:p.rotulo, data:p.data || "", por:p.por || "" })));
+}
+function _registrarEstadoDaProva(chave, rotulo, inativa){
   if(!db.provasInativas) db.provasInativas = [];
-  if(!db.provasInativas.some(p=>p.chave===chave)) db.provasInativas.push({chave, rotulo, data:hojeISO()});
+  const por = (usuarioAtual() || {}).nome || "";
+  const e = db.provasInativas.find(p => p.chave === chave);
+  if(e) Object.assign(e, { rotulo: rotulo || e.rotulo, inativa, data:hojeISO(), por });
+  else db.provasInativas.push({ chave, rotulo, inativa, data:hojeISO(), por });
+  nuvemMarcarGlobalPendente("provas_inativas", chave);
+  nuvemAgendarSync();
   saveState();
 }
+function inativarProva(chave, rotulo){ _registrarEstadoDaProva(chave, rotulo, true); }
 function reativarProva(chave){
-  db.provasInativas = (db.provasInativas||[]).filter(p=>p.chave!==chave);
-  saveState();
+  const l = provasInativasLista().find(p => p.chave === chave);
+  _registrarEstadoDaProva(chave, l ? l.rotulo : "", false);
 }
 function _filtrarQuestoesAtivas(incluirGrupoId){
   return db.questoes.filter(q=>{

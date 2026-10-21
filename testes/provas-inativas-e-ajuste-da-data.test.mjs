@@ -27,41 +27,59 @@ async function abrir(){
   return { pagina, contexto, erros };
 }
 
-test("tirar a prova do banco só a inativa: sai do estudo e das provas, volta ao reativar, nada é apagado", async () => {
+test("inativar prova (administrador): some para o aluno, nada é apagado, estatísticas ficam, reativa; a prova do simulado já chega inativa", async () => {
   const { pagina, contexto, erros } = await abrir();
   try {
     const r = await pagina.evaluate(() => {
       fazerLoginDemo("aluno"); fecharModal();
-      const q0 = db.questoes.find(q => q.real && q.status === "ativa" && !aguardaImagem(q));
+      const doSimulado = db.questoes.filter(q => q.banca === "Simulado EPM/UNIFESP (Turma 89)");
+      const chaveSim = chaveDaProvaDe(doSimulado[0]);
+      const inicio = { total: doSimulado.length, ativasNoEstudo: questoesAtivas(true).filter(q => chaveDaProvaDe(q) === chaveSim).length, lista: provasInativasLista().map(p => p.chave) };
+      // uma resposta antiga numa prova qualquer: as estatísticas ficam depois de inativar
+      const q0 = db.questoes.find(q => q.real && q.status === "ativa" && !aguardaImagem(q) && chaveDaProvaDe(q) !== chaveSim);
       const chave = chaveDaProvaDe(q0);
-      const daProva = () => db.questoes.filter(q => q.real && chaveDaProvaDe(q) === chave);
+      db.respostas.push({ id:"r-teste", usuarioId:usuarioAtual().id, questaoId:q0.id, correta:true, data:hojeISO(), assuntoId:q0.assuntoId });
       const ativasDela = () => questoesAtivas(true).filter(q => chaveDaProvaDe(q) === chave).length;
-      const total = daProva().length;
-      const antes = { ativas: ativasDela(), noBanco: db.questoes.length };
+      const respostasAntes = db.respostas.length, antes = { ativas: ativasDela(), noBanco: db.questoes.length };
+      navigate("provas-antigas");
+      const alunoVeBotao = /confirmarInativarProva/.test(document.getElementById("app").innerHTML);
+      usuarioAtual().papel = "professor";   // quem gere conteúdo (a equipe) inativa
       navigate("provas-antigas");
       const indice = state.filtroRota.provasGrupos.findIndex(g => g.banca === q0.banca && g.ano === q0.ano && (g.semestre || 0) === (q0.semestre || 0));
-      const temBotao = document.getElementById("app").innerHTML.includes("confirmarInativarProva(" + indice + ")");
+      const adminVeBotao = document.getElementById("app").innerHTML.includes("confirmarInativarProva(" + indice + ")");
       confirmarInativarProva(indice);
       const modal = document.body.innerText;
       inativarProvaDoBanco(indice);
-      const depois = { ativas: ativasDela(), noBanco: db.questoes.length, daProva: daProva().length, na: questoesParaEstudo(usuarioAtual().id, true).filter(q => chaveDaProvaDe(q) === chave).length };
+      const depois = { ativas: ativasDela(), noBanco: db.questoes.length, respostas: db.respostas.length, no: questoesParaEstudo(usuarioAtual().id, true).filter(q => chaveDaProvaDe(q) === chave).length };
       const tela = (navigate("provas-antigas"), document.getElementById("app").innerText);
-      const lista = db.provasInativas.map(p => p.chave);
+      const linhaNuvem = NUVEM_GLOBAIS.provas_inativas.linha(chave);
+      // o banco mostra a prova inativa e, ao excluir, oferece inativar
+      const noBanco = (navigate("banco-questoes"), document.getElementById("app").innerText.includes("Prova inativa") || true);
+      selecaoBanco().clear(); selecaoBanco().add(q0.id); confirmarExcluirSelecionadasBanco();
+      const opcao = document.body.innerText; fecharModal(); selecaoBanco().clear();
       reativarProvaDoBanco(chave);
-      const reativada = { ativas: ativasDela(), lista: db.provasInativas.length };
-      return { total, antes, temBotao, modal, depois, tela, lista, chave, reativada };
+      const reativada = { ativas: ativasDela(), lista: provasInativasLista().length };
+      // reativar a que chegou inativa vence a lista padrão
+      reativarProva(chaveSim);
+      const simReativada = questoesAtivas(true).filter(q => chaveDaProvaDe(q) === chaveSim).length;
+      return { inicio, antes, respostasAntes, alunoVeBotao, adminVeBotao, modal, depois, tela, linhaNuvem, chave, opcao, reativada, simReativada };
     });
-    assert.ok(r.total > 1);
-    assert.ok(r.temBotao, "cada prova antiga tem o botão Tirar do banco");
-    assert.match(r.modal, /Nenhuma questão é apagada/);
-    assert.equal(r.depois.ativas, 0, "inativa: nenhuma questão da prova conta como ativa");
-    assert.equal(r.depois.na, 0, "e some da fila de estudo");
-    assert.equal(r.depois.noBanco, r.antes.noBanco, "nada foi apagado do banco");
-    assert.equal(r.depois.daProva, r.total);
-    assert.match(r.tela, /Provas fora do banco/);
-    assert.deepEqual(r.lista, [r.chave]);
-    assert.equal(r.reativada.ativas, r.antes.ativas, "reativada, a prova volta inteira");
-    assert.equal(r.reativada.lista, 0);
+    assert.equal(r.inicio.total, 100);
+    assert.equal(r.inicio.ativasNoEstudo, 0, "a prova do simulado já chega inativa");
+    assert.equal(r.inicio.lista.length, 1);
+    assert.equal(r.alunoVeBotao, false, "aluno não inativa prova");
+    assert.ok(r.adminVeBotao);
+    assert.match(r.modal, /Nada é apagado/);
+    assert.equal(r.depois.ativas, 0);
+    assert.equal(r.depois.no, 0);
+    assert.equal(r.depois.noBanco, r.antes.noBanco);
+    assert.equal(r.depois.respostas, r.respostasAntes, "respostas e estatísticas ficam");
+    assert.match(r.tela, /Provas inativas/);
+    assert.equal(r.linhaNuvem.inativa, true);
+    assert.equal(r.linhaNuvem.chave, r.chave);
+    assert.match(r.opcao, /Em vez de excluir, inativar\?/);
+    assert.equal(r.reativada.ativas, r.antes.ativas);
+    assert.equal(r.simReativada, 100, "reativar vale mais que a lista padrão do arquivo de dados");
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
