@@ -134,9 +134,26 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .label{font-size:var(--fs-sm);font-weight:600;color:var(--ink-2)}
 .hint{font-size:var(--fs-xs);color:var(--muted)}
 .input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:var(--fs-md);font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
-.acoes-inicio{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem}
-.link-discreto{background:none;border:none;padding:0;color:var(--muted);font-size:var(--fs-2xs);cursor:pointer;text-decoration:underline dotted}
+/* A barra de progresso e os botões ficam na mesma linha, com o centro dos
+   botões sobre a barra; "Tempo contado?" pende por baixo dos botões sem
+   aumentar a altura da linha (senão empurraria os botões para cima da barra). */
+.linha-progresso{display:flex;align-items:center;gap:var(--esp-2);flex-wrap:wrap;margin-bottom:1.9rem}
+.linha-progresso .progress-track{flex:1 1 220px}
+.acoes-inicio{position:relative}
+.link-discreto{position:absolute;right:0;top:100%;margin-top:.3rem;white-space:nowrap;background:none;border:none;padding:0;color:var(--muted);font-size:calc(var(--fs-2xs) * 1.1);cursor:pointer;text-decoration:underline dotted}
 .link-discreto:hover{color:var(--accent-dark)}
+/* No computador, "Começar agora" fica ABAIXO de "Continuar última sessão". No
+   celular os botões de cima ocupam a largura toda e "Tempo contado?" passa
+   para a frente (esquerda) de "Começar agora", na mesma linha. */
+.acoes-inicio > .flex{flex-direction:column;align-items:stretch}
+@media (max-width:600px){
+  .acoes-inicio{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;width:100%}
+  .acoes-inicio > .flex{display:contents}
+  .acoes-inicio .btn-secondary{flex:1 0 100%;order:0}
+  .link-discreto{position:static;order:1;margin:0}
+  .acoes-inicio .btn-primary{order:2;margin-left:auto}
+  .linha-progresso{margin-bottom:var(--esp-2)}
+}
 /* janela "Tempo contado": atalhos e o relógio editável */
 .tempo-atalhos{display:flex;flex-wrap:wrap;gap:var(--esp-1)}
 .chip-tempo{padding:.35rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);color:var(--ink);font-size:var(--fs-sm);font-weight:600;cursor:pointer}

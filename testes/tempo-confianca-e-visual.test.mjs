@@ -56,9 +56,12 @@ test("Início: só um link discreto abaixo de Começar agora; a janela aplica o 
     assert.equal(await pagina.locator("select").count(), 0, "o seletor antigo saiu do Início");
     const posicao = await pagina.evaluate(() => {
       const c = document.querySelector(".btn-primary").getBoundingClientRect(), l = document.querySelector(".link-discreto").getBoundingClientRect();
-      return { abaixo: l.top >= c.bottom - 1, menor: l.height < c.height };
+      const t = document.querySelector(".linha-progresso .progress-track").getBoundingClientRect();
+      const fonte = parseFloat(getComputedStyle(document.querySelector(".link-discreto")).fontSize);
+      // centro do botão sobre a barra de progresso; link com .7rem + 10%
+      return { abaixo: l.top >= c.bottom - 1, menor: l.height < c.height, alinhado: Math.abs((c.top + c.bottom)/2 - (t.top + t.bottom)/2) < 2, fonte: Math.abs(fonte - 16*0.77) < 0.3 };
     });
-    assert.ok(posicao.abaixo && posicao.menor);
+    assert.ok(posicao.abaixo && posicao.menor && posicao.alinhado && posicao.fonte, JSON.stringify(posicao));
     await pagina.click(".link-discreto");
     assert.equal(await pagina.locator(".chip-tempo").count(), 6);
     assert.deepEqual(await pagina.locator(".chip-tempo").allTextContents(), ["15 min", "30 min", "45 min", "1h", "1h30", "2h"]);
