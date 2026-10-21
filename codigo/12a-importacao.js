@@ -464,10 +464,12 @@ function parseImportText(texto, padroes){
     const idx = resultado.length;
     const erros = [];
     if(!campos.PERGUNTA) erros.push("faltando PERGUNTA");
-    // E é opcional: várias bancas (ex.: UNIFESP-EPM) usam só 4 alternativas.
-    ["A","B","C","D"].forEach(l=>{ if(!campos[l]) erros.push("faltando alternativa "+l); });
+    // E é opcional (UNIFESP-EPM usa 4) e C/D também: o item Certo/Errado (CEBRASPE)
+    // tem só A e B. Sem C, D não faz sentido; o gabarito tem de ser uma letra que existe.
+    ["A","B"].forEach(l=>{ if(!campos[l]) erros.push("faltando alternativa "+l); });
+    if(campos.D && !campos.C) erros.push("faltando alternativa C");
     const gab = (campos.GABARITO||"").trim().toUpperCase();
-    if(!["A","B","C","D","E"].includes(gab)) erros.push("GABARITO ausente ou inválido"+(gab==="?"?" (a IA marcou dúvida — confira o gabarito oficial)":""));
+    if(!["A","B","C","D","E"].includes(gab) || !campos[gab]) erros.push("GABARITO ausente ou inválido"+(gab==="?"?" (a IA marcou dúvida — confira o gabarito oficial)":""));
 
     // taxonomia: não é mais erro bloqueante — vira sugestão editável na tela
     const areaEncontrada = db.taxonomia.areas.find(a=>a.nome.toLowerCase()===((campos.AREA||"").trim().toLowerCase()));
