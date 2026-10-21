@@ -49,6 +49,7 @@ test("inativar prova (administrador): some para o aluno, nada é apagado, estat�
       const adminVeBotao = document.getElementById("app").innerHTML.includes("confirmarInativarProva(" + indice + ")");
       confirmarInativarProva(indice);
       const modal = document.body.innerText;
+      const lixeira = document.getElementById("app").innerHTML.includes('aria-label="Inativar ou excluir a prova"');
       inativarProvaDoBanco(indice);
       const depois = { ativas: ativasDela(), noBanco: db.questoes.length, respostas: db.respostas.length, no: questoesParaEstudo(usuarioAtual().id, true).filter(q => chaveDaProvaDe(q) === chave).length };
       const tela = (navigate("provas-antigas"), document.getElementById("app").innerText);
@@ -62,13 +63,16 @@ test("inativar prova (administrador): some para o aluno, nada é apagado, estat�
       // reativar a que chegou inativa vence a lista padrão
       reativarProva(chaveSim);
       const simReativada = questoesAtivas(true).filter(q => chaveDaProvaDe(q) === chaveSim).length;
-      return { inicio, antes, respostasAntes, alunoVeBotao, adminVeBotao, modal, depois, tela, linhaNuvem, chave, opcao, reativada, simReativada };
+      return { lixeira, inicio, antes, respostasAntes, alunoVeBotao, adminVeBotao, modal, depois, tela, linhaNuvem, chave, opcao, reativada, simReativada };
     });
     assert.equal(r.inicio.total, 100);
     assert.equal(r.inicio.ativasNoEstudo, 0, "a prova do simulado já chega inativa");
     assert.equal(r.inicio.lista.length, 1);
     assert.equal(r.alunoVeBotao, false, "aluno não inativa prova");
     assert.ok(r.adminVeBotao);
+    assert.ok(r.lixeira, "o botão da prova é a lixeira");
+    assert.match(r.modal, /Inativar/);
+    assert.match(r.modal, /Excluir/);
     assert.match(r.modal, /Nada é apagado/);
     assert.equal(r.depois.ativas, 0);
     assert.equal(r.depois.no, 0);
@@ -111,6 +115,26 @@ test("Início: Ajustar a data abre a janela com a data, salva ali e volta ao pad
     assert.match(r.inicio, /Prova-alvo: 10\/11\/2026/);
     assert.equal(r.limpa, undefined);
     assert.ok(r.fechouAoLimpar);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("lixeira da prova: Excluir apaga as questões da prova de vez", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try {
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal(); usuarioAtual().papel = "professor";
+      const q0 = db.questoes.find(q => q.real && q.status === "ativa" && !aguardaImagem(q) && !provaInativa(q));
+      const chave = chaveDaProvaDe(q0);
+      const n = () => db.questoes.filter(q => q.real && chaveDaProvaDe(q) === chave).length;
+      const antes = n();
+      navigate("provas-antigas");
+      const indice = state.filtroRota.provasGrupos.findIndex(g => g.banca === q0.banca && g.ano === q0.ano && (g.semestre || 0) === (q0.semestre || 0));
+      confirmarInativarProva(indice); excluirProvaDoBanco(indice);
+      return { antes, depois: n() };
+    });
+    assert.ok(r.antes > 1);
+    assert.equal(r.depois, 0);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

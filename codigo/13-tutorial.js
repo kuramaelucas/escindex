@@ -208,7 +208,7 @@ const GUIA_RESIDENTE = [
     "<strong>Questões Difíceis</strong>: confira gabarito e explicação das questões que a turma mais erra.",
     "<strong>Enviar Provas e Questões</strong>, <strong>Central de Provas</strong> e <strong>Revisar Formatação</strong>: ajude a trazer provas novas e a deixá-las prontas.",
     "<strong>Questões para Atualizar</strong>: envie a figura que falta, complete o texto cortado, reveja o gabarito — o conserto chega a toda a turma pela nuvem.",
-    "<strong>Provas e Simulados</strong>: as mesmas provas antigas e simulados que os alunos veem. Em <strong>Inativar prova</strong> a prova deixa de existir para os alunos (estudo, provas e simulados) sem apagar nada — as respostas e estatísticas ficam — e volta com <strong>Reativar</strong>, na lista <em>Provas inativas</em> no fim da tela. Ao excluir questões no Banco de Questões, a janela pergunta se você prefere inativar a prova.",
+    "<strong>Provas e Simulados</strong>: as mesmas provas antigas e simulados que os alunos veem. Na <strong>lixeira</strong> de cada prova você escolhe entre <strong>inativar</strong> (a prova deixa de existir para os alunos (estudo, provas e simulados) sem apagar nada — as respostas e estatísticas ficam — e volta com <strong>Reativar</strong>) e <strong>excluir</strong> (apaga as questões da prova), na lista <em>Provas inativas</em> no fim da tela. Ao excluir questões no Banco de Questões, a janela pergunta se você prefere inativar a prova.",
   ]},
 ];
 function secoesDoGuia(papel){
