@@ -220,6 +220,11 @@ window.addEventListener("keydown", function(e){
   const alvo = document.activeElement;
   if(alvo && (alvo.tagName==="INPUT" || alvo.tagName==="TEXTAREA" || alvo.isContentEditable)) return;
   const tecla = e.key.toLowerCase();
+  // questão aberta pelo mapa de acertos do simulado: A/D e setas passam de questão dentro da janela
+  if(document.getElementById("navResultadoSimulado") && !e.ctrlKey && !e.metaKey && !e.altKey){
+    if(tecla==="a" || tecla==="arrowleft"){ irQuestaoDoResultado(-1); return; }
+    if(tecla==="d" || tecla==="arrowright"){ irQuestaoDoResultado(1); return; }
+  }
   // as setas do teclado passam questão e flashcard do mesmo jeito que arrastar o dedo
   if(tecla==="arrowright" || tecla==="arrowleft"){
     if((document.getElementById("modalOverlayAtivo") && !document.getElementById("modalMinimizado")) || e.ctrlKey || e.metaKey || e.altKey) return;
