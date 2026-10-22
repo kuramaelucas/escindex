@@ -775,6 +775,57 @@ function recalcularResultadosSimulados(){
   if(mudou) saveState();
   return mudou;
 }
+/* Questão aberta pelo mapa de acertos. Mostra a resposta marcada ao lado do
+   gabarito (o aluno quer saber o que ele escolheu, não só a certa) e deixa
+   passar para a seguinte ou voltar sem fechar a janela: botões, A/D e setas
+   (tratados em 06) e arrastar para o lado (aqui, porque a janela não tem a
+   área de gesto da sessão). O índice vem do próprio simulado, não do id. */
+function abrirQuestaoDoResultado(indice){
+  const sessao = state.sessaoAtual;
+  if(!sessao || !sessao.itens[indice]) return;
+  const total = sessao.itens.length;
+  const q = getQuestao(sessao.itens[indice].questaoId);
+  if(!q) return;
+  const resp = sessao.respostasSimulado[q.id];
+  const veredito = resp===undefined ? `<span class="badge badge-muted">em branco</span>` : resp===q.gabarito ? `<span class="badge badge-accent">acertou</span>` : `<span class="badge badge-danger">errou</span>`;
+  abrirModal(`<div id="navResultadoSimulado" data-indice="${indice}">
+    ${cabecalhoJanela(`Questão ${indice+1} de ${total} ${veredito}`)}
+    <div class="flex justify-between items-center mb-2">
+      <button class="btn btn-secondary btn-sm" onclick="irQuestaoDoResultado(-1)" ${indice===0?"disabled":""} title="Anterior (A ou seta para a esquerda)">← Anterior</button>
+      <span class="text-xs muted">${resp===undefined ? "você deixou em branco" : "você marcou "+escapeHtml(resp)} · gabarito ${escapeHtml(q.gabarito||"—")}</span>
+      <button class="btn btn-secondary btn-sm" onclick="irQuestaoDoResultado(1)" ${indice===total-1?"disabled":""} title="Próxima (D ou seta para a direita)">Próxima →</button>
+    </div>
+    <div id="areaGestoResultado">${renderQuestionCard(q, {selecionada:resp, respondida:true})}</div>
+    <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
+  </div>`, "lg");
+  ativarGestoNoResultado();
+}
+function irQuestaoDoResultado(passo){
+  const el = document.getElementById("navResultadoSimulado");
+  const sessao = state.sessaoAtual;
+  if(!el || !sessao) return;
+  const alvo = Number(el.dataset.indice) + passo;
+  if(alvo < 0 || alvo >= sessao.itens.length) return;
+  abrirQuestaoDoResultado(alvo);
+}
+function ativarGestoNoResultado(){
+  const area = document.getElementById("areaGestoResultado");
+  if(!area) return;
+  let x0 = 0, y0 = 0, ativo = false;
+  area.addEventListener("touchstart", function(e){
+    if(e.touches.length!==1 || haTextoSelecionado()){ ativo = false; return; }
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; ativo = true;
+  }, {passive:true});
+  area.addEventListener("touchend", function(e){
+    if(!ativo) return;
+    ativo = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - x0, dy = t.clientY - y0;
+    // mesmas regras do gesto da sessão: claramente horizontal e a partir de 70px
+    if(Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy)*2) return;
+    irQuestaoDoResultado(dx < 0 ? 1 : -1);
+  }, {passive:true});
+}
 function renderResultadoSimulado(){
   const sessao = state.sessaoAtual;
   const total = sessao.itens.length;
@@ -799,7 +850,7 @@ function renderResultadoSimulado(){
     const antes = comp ? acertouNaTentativa(previa, l.q.id) : null;
     const mudou = antes!==null && antes!==l.correta;
     const aviso = antes===null ? "" : ` · antes: ${antes?"acertou":"errou"}`;
-    return `<button class="pill pill-resultado ${l.resp===undefined?"":l.correta?"certa":"errada"}" style="min-width:38px;justify-content:center" onclick="abrirQuestaoCompleta('${l.q.id}')" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}${aviso} · abrir a questão">${l.i+1}${mudou ? `<span class="seta-mudanca" aria-hidden="true">${l.correta?"↑":"↓"}</span>` : ""}</button>`;
+    return `<button class="pill pill-resultado ${l.resp===undefined?"":l.correta?"certa":"errada"}" style="min-width:38px;justify-content:center" onclick="abrirQuestaoDoResultado(${l.i})" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}${aviso} · abrir a questão">${l.i+1}${mudou ? `<span class="seta-mudanca" aria-hidden="true">${l.correta?"↑":"↓"}</span>` : ""}</button>`;
   };
   return `<div class="coluna-resultado">
   <div class="card">
@@ -849,7 +900,7 @@ function renderResultadoSimulado(){
       <p class="text-xs muted mb-1">Questões que consumiram bem mais tempo que a sua mediana; numa prova cronometrada, esse tempo sai de outra questão.</p>
       ${analiseTempo.lentas.map(l=>`<div class="flex justify-between items-center card-flat mb-1">
         <span class="text-sm">Questão ${l.i+1} · ${escapeHtml(nomeAssunto(getQuestao(l.qid).assuntoId))} <span class="badge ${l.correta?"badge-accent":"badge-danger"}">${l.correta?"acertou":"errou"}</span></span>
-        <span class="flex items-center gap-1"><span class="badge badge-muted">${formatarDuracao(l.seg)}</span><button class="link-btn" onclick="abrirQuestaoCompleta('${l.qid}')">ver</button></span>
+        <span class="flex items-center gap-1"><span class="badge badge-muted">${formatarDuracao(l.seg)}</span><button class="link-btn" onclick="abrirQuestaoDoResultado(${l.i})">ver</button></span>
       </div>`).join("")}
     </div>` : '<p class="text-xs muted mt-2">Seu ritmo foi parelho: nenhuma questão destoou muito da mediana.</p>'}
     ${analiseTempo.apressadas.length ? `<p class="text-sm mt-2"><strong>Rápido demais:</strong> ${analiseTempo.apressadas.map(x=>"Q"+(x.i+1)+" ("+formatarDuracao(x.seg)+")").join(", ")} — você errou em menos da metade do seu tempo mediano. Vale reler o enunciado inteiro antes de marcar.</p>` : ""}

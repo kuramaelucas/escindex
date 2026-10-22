@@ -132,3 +132,28 @@ test("o mês da justificativa aparece pequeno e o destaque não muda a largura d
     assert.match(r.html, /justificativa de out\/2026/);
   } finally { await contexto.close(); }
 });
+
+test("resultado do simulado: a questão aberta mostra o que foi marcado e navega por botão, A/D e setas", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const qs = db.questoes.filter(q => !q.tipo && q.status === "ativa" && !aguardaImagem(q)).slice(0, 3);
+      const errada = q => q.alternativas.find(a => a.id !== q.gabarito).id;
+      state.sessaoAtual = { id: "sim-t", tipo: "simulado", titulo: "T", itens: qs.map(q => ({ questaoId: q.id })), indiceAtual: 0, respostasSimulado: { [qs[0].id]: qs[0].gabarito, [qs[1].id]: errada(qs[1]) }, finalizado: true, tempos: {}, confiancas: {} };
+      abrirQuestaoDoResultado(1);
+    });
+    const indice = () => pagina.evaluate(() => document.getElementById("navResultadoSimulado").dataset.indice);
+    assert.equal(await indice(), "1");
+    assert.match(await pagina.locator("#navResultadoSimulado").innerText(), /você marcou [A-E]/);
+    await pagina.keyboard.press("d");
+    assert.equal(await indice(), "2");
+    await pagina.keyboard.press("ArrowLeft");
+    await pagina.keyboard.press("a");
+    assert.equal(await indice(), "0");
+    await pagina.keyboard.press("a");
+    assert.equal(await indice(), "0", "na primeira questão não volta mais");
+    await pagina.evaluate(() => irQuestaoDoResultado(1));
+    assert.equal(await indice(), "1");
+  } finally { await contexto.close(); }
+});
