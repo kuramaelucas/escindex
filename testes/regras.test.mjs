@@ -486,3 +486,26 @@ test("desempenho do assunto: conta a primeira resposta, mostra a faixa e pesa as
     assert.equal(r.geral, 21);
   } finally { await contexto.close(); }
 });
+
+test("nota estimada: a nota dos simulados aparece à parte, só depois de 20 questões feitas em simulado", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const u = usuarioAtual();
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const qs = db.questoes.filter(q => q.real && q.status === "ativa").slice(0, 60);
+      const poe = (q, i, origem, correta) => db.respostas.push({ id: "t" + origem + i, usuarioId: u.id, questaoId: q.id, areaId: q.areaId, assuntoId: q.assuntoId, correta, origem, confianca: "duvida", data: hojeISO() });
+      qs.slice(0, 40).forEach((q, i) => poe(q, i, "lista", true));          // estudo: acerta tudo
+      const antes = estimativaDeNota(u.id);
+      qs.slice(40, 60).forEach((q, i) => poe(q, i, "simulado", false));      // simulado: erra tudo, questões diferentes
+      const depois = estimativaDeNota(u.id);
+      return { faltam: antes.faltamParaSimulado, simAntes: antes.simulado, sim: depois.simulado && depois.simulado.nota, est: depois.estudo && depois.estudo.nota, geral: depois.nota };
+    });
+    assert.equal(r.faltam, 20);
+    assert.equal(r.simAntes, null);
+    assert.ok(r.sim < r.est, `simulado ${r.sim} deveria ficar abaixo do estudo ${r.est}`);
+    assert.ok(r.sim < r.geral && r.geral < r.est);
+  } finally { await contexto.close(); }
+});

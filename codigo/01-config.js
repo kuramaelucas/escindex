@@ -37,7 +37,8 @@ const CONFIG = {
     questoesRecentes: 15,      // "desempenho recente" de um assunto = as últimas 15 questões (primeira resposta de cada)
     minRecentesParaPesar: 5,   // com menos que isso, só vale o histórico total
     pesoDoRecente: 0.5,        // acerto estimado = metade histórico total, metade últimas questões
-    minRespostasParaNota: 30,  // a estimativa de nota só aparece a partir de 30 respostas
+    minRespostasParaNota: 30,
+    minRespostasSimuladoParaNota: 20,  // a nota só dos simulados aparece a partir de 20 questões feitas em simulado  // a estimativa de nota só aparece a partir de 30 respostas
   },
   hoje: () => new Date(), // usado no lugar de "new Date()" direto, fácil de simular outra data no futuro
 

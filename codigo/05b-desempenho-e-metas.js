@@ -8,10 +8,10 @@
    só a primeira resposta de cada questão; as repetições entram à parte, como
    retenção (`taxaTodas`). Resposta sem questaoId conta como questão própria. */
 function chaveCronologica(r){ return r.respondidaEm || r.data || ""; }
-function primeirasRespostas(usuarioId){
+function primeirasRespostas(usuarioId, filtro){
   const primeira = new Map();
   db.respostas.forEach(r=>{
-    if(r.usuarioId!==usuarioId) return;
+    if(r.usuarioId!==usuarioId || (filtro && !filtro(r))) return;
     const k = r.questaoId || r.id;
     const atual = primeira.get(k);
     if(!atual || chaveCronologica(r) < chaveCronologica(atual)) primeira.set(k, r);
@@ -750,15 +750,28 @@ function estimativaDeNota(usuarioId, banca){
   const inc = incidenciaNaBanca(banca);
   const geral = acertoGeralDoUsuario(usuarioId);
   if(!inc.total || geral.total < CONFIG.incidencia.minRespostasParaNota) return null;
+  const principal = notaDasRespostas(inc, primeirasRespostas(usuarioId), geral.taxa);
+  /* Simulado × estudo lado a lado: no simulado há relógio, cansaço e a prova
+     inteira de uma vez — a nota de lá é a que mais se parece com a do dia.
+     Cada lado conta a primeira resposta DE CADA QUESTÃO naquele contexto. */
+  const sim = primeirasRespostas(usuarioId, r=>r.origem==="simulado");
+  const est = primeirasRespostas(usuarioId, r=>r.origem!=="simulado");
+  const min = CONFIG.incidencia.minRespostasSimuladoParaNota;
+  return Object.assign({ banca: inc.banca, anos: inc.anos, respostas: geral.total }, principal, {
+    simulado: sim.length >= min ? Object.assign({respostas: sim.length}, notaDasRespostas(inc, sim, geral.taxa)) : null,
+    estudo: sim.length >= min && est.length >= CONFIG.incidencia.minRespostasParaNota ? Object.assign({respostas: est.length}, notaDasRespostas(inc, est, geral.taxa)) : null,
+    faltamParaSimulado: sim.length >= min ? 0 : min - sim.length,
+  });
+}
+function notaDasRespostas(inc, respostas, taxaGeral){
   const k = CONFIG.incidencia.respostasDePeso;
   let nota = 0, variancia = 0;
-  const primeiras = primeirasRespostas(usuarioId);
   const areas = db.taxonomia.areas.map(area=>{
-    const rs = primeiras.filter(r=>r.areaId===area.id);
+    const rs = respostas.filter(r=>r.areaId===area.id);
     const acertos = rs.filter(r=>r.correta).length;
     // a área tem mais respostas que o assunto: a janela das "últimas" é o dobro
     const ult = rs.slice(-2*CONFIG.incidencia.questoesRecentes);
-    const p = acertoEstimadoDoRecorte({total:rs.length, acertos, recente:{total:ult.length, acertos:ult.filter(r=>r.correta).length}}, geral.taxa);
+    const p = acertoEstimadoDoRecorte({total:rs.length, acertos, recente:{total:ult.length, acertos:ult.filter(r=>r.correta).length}}, taxaGeral);
     const fatia = (inc.porArea[area.id]||0) / inc.total;
     nota += fatia * p;
     variancia += fatia*fatia * p*(1-p) / (rs.length + k);
@@ -766,9 +779,8 @@ function estimativaDeNota(usuarioId, banca){
              pontos: fatia * p * 100 };
   });
   const ep = Math.sqrt(variancia);
-  return { banca: inc.banca, anos: inc.anos, nota: Math.round(nota*100),
-           minimo: Math.max(0, Math.round((nota - 1.96*ep)*100)), maximo: Math.min(100, Math.round((nota + 1.96*ep)*100)),
-           respostas: geral.total, areas };
+  return { nota: Math.round(nota*100),
+           minimo: Math.max(0, Math.round((nota - 1.96*ep)*100)), maximo: Math.min(100, Math.round((nota + 1.96*ep)*100)), areas };
 }
 
 /* ---------- a prova-alvo e o prazo da revisão ----------
