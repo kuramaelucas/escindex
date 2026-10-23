@@ -127,6 +127,8 @@ const CONFIG = {
   // é o acerto deles, e a taxa de acerto de uma pessoa é só dela. O banco
   // aplica a mesma regra (acerto_por_turma no esquema.sql, "tot.alunos >= 3").
   minAlunosParaMedia: 3,
+  minAlunosParaSuspeita: 10, // alunos que responderam a questão para a turma apontar gabarito/enunciado suspeito
+  erroComCertezaSuspeito: 0.3, // fatia da turma que erra dizendo ter certeza para a questão virar suspeita
   // "Não mostrar mais esta questão" só é oferecido depois deste número de
   // erros NA MESMA questão: errar uma vez é o começo da lição, não motivo
   // para tirar a questão da frente

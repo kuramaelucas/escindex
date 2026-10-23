@@ -1638,6 +1638,53 @@ $$;
 revoke all on function public.acerto_por_turma() from public, anon;
 grant execute on function public.acerto_por_turma() to authenticated;
 
+-- acerto_por_questao(): para a equipe achar questão com GABARITO OU ENUNCIADO
+-- SUSPEITO. O acerto guardado no navegador (estatisticas da questão) é só do
+-- aparelho; aqui a conta é da turma toda. Conta a PRIMEIRA resposta de cada
+-- aluno aprovado em cada questão (refazer mede memória), e só devolve a
+-- questão com 3 alunos ou mais — mesma regra do acerto por turma: com menos, o
+-- número seria o de uma pessoa. Devolve só somas por questão (acertos, erros
+-- com certeza, quantos escolheram cada alternativa); nenhum aluno aparece.
+-- Só a equipe (e_equipe) recebe linhas.
+drop function if exists public.acerto_por_questao();
+create function public.acerto_por_questao()
+returns table (
+  questao_id          text,
+  alunos              bigint,
+  acertos             bigint,
+  erros_com_certeza   bigint,
+  alternativas        jsonb
+)
+language sql
+stable
+security definer
+set search_path = public, pg_temp
+as $$
+  with primeira as (
+    select distinct on (x.usuario_id, x.questao_id)
+           x.usuario_id, x.questao_id, x.correta, x.confianca, x.alternativa_escolhida
+      from public.respostas x
+      join public.perfis p on p.id = x.usuario_id
+     where public.e_equipe() and p.papel = 'aluno' and p.status = 'aprovado'
+     order by x.usuario_id, x.questao_id, coalesce(x.respondida_em, x.criado_em), x.id
+  ),
+  alts as (
+    select questao_id, alternativa_escolhida as alt, count(*) as n
+      from primeira where alternativa_escolhida is not null
+     group by questao_id, alternativa_escolhida
+  )
+  select pr.questao_id,
+         count(*) as alunos,
+         count(*) filter (where pr.correta) as acertos,
+         count(*) filter (where not pr.correta and pr.confianca = 'certeza') as erros_com_certeza,
+         coalesce((select jsonb_object_agg(a.alt, a.n) from alts a where a.questao_id = pr.questao_id), '{}'::jsonb)
+    from primeira pr
+   group by pr.questao_id
+  having count(*) >= 3;
+$$;
+revoke all on function public.acerto_por_questao() from public, anon;
+grant execute on function public.acerto_por_questao() to authenticated;
+
 -- Semana a semana, por ano da faculdade: quantos alunos estudaram, quantas
 -- questões e com que acerto. É o gráfico de "a turma está usando?". Semana
 -- com menos de 3 alunos ativos devolve o acerto vazio (seria o de uma pessoa).

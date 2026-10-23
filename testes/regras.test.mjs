@@ -563,3 +563,29 @@ test("curva de retenção: só conta acerto firme seguido de nova resposta, por 
     assert.equal(r.ate60.veredito, "adequada");   // 11/12: faixa provável ainda inclui a meta, não dá para mandar alargar
   } finally { await contexto.close(); }
 });
+
+test("suspeitas da turma: aponta o padrão de erro (alternativa errada mais marcada que o gabarito, erro com certeza), não só a taxa baixa", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("admin");
+      const [a, b, c, d] = db.questoes.filter(q => q.real && q.status === "ativa" && q.gabarito && !ehDissertativa(q) && !q.revisadaProfessor);
+      const errada = q => q.alternativas.find(x => x.id !== q.gabarito).id;
+      const linhas = [
+        { questao_id: a.id, alunos: 20, acertos: 4, erros_com_certeza: 10, alternativas: { [errada(a)]: 12, [a.gabarito]: 4 } },   // suspeita nos dois sinais
+        { questao_id: b.id, alunos: 20, acertos: 5, erros_com_certeza: 1, alternativas: { [b.gabarito]: 5, [errada(b)]: 5 } },       // difícil, mas sem padrão: não é suspeita
+        { questao_id: c.id, alunos: 6, acertos: 0, erros_com_certeza: 6, alternativas: { [errada(c)]: 6 } },                         // poucos alunos: ainda não decide
+        { questao_id: d.id, alunos: 15, acertos: 6, erros_com_certeza: 6, alternativas: { [d.gabarito]: 6, [errada(d)]: 5 } },       // só erro com certeza
+      ];
+      const lista = suspeitasDeQuestoes(linhas);
+      state.filtroRota.suspeitasDados = { lista, questoes: linhas.length };
+      const html = renderListaSuspeitas();
+      return { ids: lista.map(s => s.q.id), esperados: [a.id, d.id], sinaisA: lista[0].sinais.length, sinaisD: lista[1].sinais.length, mostraA: html.includes(a.id), mostraB: html.includes(b.id) };
+    });
+    assert.deepEqual(r.ids, r.esperados);       // a primeira (dois sinais) vem antes
+    assert.equal(r.sinaisA, 2);
+    assert.equal(r.sinaisD, 1);
+    assert.ok(r.mostraA && !r.mostraB);
+  } finally { await contexto.close(); }
+});

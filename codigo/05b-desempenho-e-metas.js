@@ -689,6 +689,32 @@ function questoesDificeis(){
     .sort((a,b)=>(a.estatisticas.acertos/a.estatisticas.respostas)-(b.estatisticas.acertos/b.estatisticas.respostas));
 }
 
+/* QUESTÃO SUSPEITA PELA TURMA. Taxa de acerto baixa pode ser só questão difícil;
+   o que denuncia gabarito ou enunciado com problema é o PADRÃO do erro: a turma
+   escolhe com certeza uma alternativa que não é o gabarito, ou a errada é mais
+   marcada que a certa. `linhas` vem de acerto_por_questao() (primeira resposta
+   de cada aluno, só questão com 3 alunos ou mais). Aqui só entra questão com
+   CONFIG.minAlunosParaSuspeita alunos: com 3 ou 4, um aluno muda tudo. */
+function suspeitasDeQuestoes(linhas){
+  const lista = [];
+  (linhas||[]).forEach(l=>{
+    const alunos = +l.alunos, acertos = +l.acertos, certeza = +l.erros_com_certeza;
+    if(alunos < CONFIG.minAlunosParaSuspeita) return;
+    const q = getQuestao(l.questao_id);
+    if(!q || ehDissertativa(q) || q.status!=="ativa" || q.revisadaProfessor) return;
+    const escolhas = l.alternativas || {};
+    const [altTop, nTop] = Object.entries(escolhas).sort((a,b)=>b[1]-a[1])[0] || [null, 0];
+    const sinais = [];
+    const compartilhaCerteza = certeza/alunos;
+    if(altTop && altTop!==q.gabarito && nTop > (escolhas[q.gabarito]||0)) sinais.push("mais alunos marcaram a "+altTop+" ("+nTop+") do que o gabarito, a "+q.gabarito+" ("+(escolhas[q.gabarito]||0)+")");
+    if(compartilhaCerteza >= CONFIG.erroComCertezaSuspeito) sinais.push(Math.round(compartilhaCerteza*100)+"% da turma errou dizendo ter certeza");
+    if(!sinais.length) return;
+    const sinalizacoes = (q.sinalizacoes||[]).length;
+    lista.push({ q, alunos, taxa: pct(acertos, alunos), certeza: Math.round(compartilhaCerteza*100), altTop, sinais, sinalizacoes,
+                 pontos: compartilhaCerteza + (sinais.length>1 ? 0.5 : 0.25) + 0.1*sinalizacoes });
+  });
+  return lista.sort((a,b)=>b.pontos-a.pontos);
+}
 /* ---------- O QUE MAIS CAI NA PROVA (incidência na banca) -----------------
    As provas reais que estão no banco dizem, assunto por assunto, o que a
    banca cobra — e quanto. Cruzado com o acerto de cada pessoa, isso vira a
