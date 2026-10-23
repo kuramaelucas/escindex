@@ -529,12 +529,18 @@ test("errar com certeza antecipa até 3 questões do mesmo assunto; errar na dú
       const aposDuvida = irmas.slice(0, 5).filter(q => db.revisoes[u.id][q.id].proximaRevisao !== longe).length;
       registrarRevisao(u.id, alvo.id, false, "certeza");
       const antecipadas = irmas.slice(0, 5).filter(q => db.revisoes[u.id][q.id].proximaRevisao !== longe);
+      // o que vale é a data EFETIVA (a da fila), e ela tem de sobreviver à ida e volta pela nuvem, que só leva os campos conhecidos
+      const viaNuvem = q => { const e = db.revisoes[u.id][q.id]; return proximaRevisaoEfetiva({ repeticoes: e.repeticoes, fator: e.fator, intervalo: e.intervalo, proximaRevisao: e.proximaRevisao, ultimaData: e.ultimaData, ultimaCorreta: e.ultimaCorreta, ultimaConfianca: e.ultimaConfianca }); };
+      const efetivas = antecipadas.map(viaNuvem);
+      const intactaEfetiva = irmas.slice(0, 5).filter(q => !antecipadas.includes(q)).map(q => proximaRevisaoEfetiva(db.revisoes[u.id][q.id]));
       return { aposDuvida, n: antecipadas.length, data: db.revisoes[u.id][antecipadas[0].id].proximaRevisao, esperada: somarDias(hojeISO(), CONFIG.intervaloMinimoRevisao),
-               naoRespondidaIntacta: !db.revisoes[u.id][irmas[6].id] };
+               naoRespondidaIntacta: !db.revisoes[u.id][irmas[6].id], efetivas, intactaEfetiva, longe };
     });
     assert.equal(r.aposDuvida, 0);
     assert.equal(r.n, 3);
     assert.equal(r.data, r.esperada);
+    assert.deepEqual(r.efetivas, [r.esperada, r.esperada, r.esperada]);   // o piso de um mês não desfaz a antecipação
+    assert.ok(r.intactaEfetiva.every(d => d === r.longe));               // as que não foram antecipadas seguem no prazo
     assert.ok(r.naoRespondidaIntacta);       // questão que a pessoa nunca respondeu não ganha revisão
   } finally { await contexto.close(); }
 });

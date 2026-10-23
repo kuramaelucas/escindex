@@ -565,7 +565,7 @@ function anteciparQuestoesIrmas(usuarioId, questaoId){
     .sort((a,b)=> proximaRevisaoEfetiva(b[1]).localeCompare(proximaRevisaoEfetiva(a[1])))
     .slice(0, CONFIG.irmasAntecipadas);
   candidatas.forEach(([id, e])=>{
-    e.proximaRevisao = limite; e.antecipadaPor = questaoId; e.antecipadaEm = hojeISO();
+    e.proximaRevisao = limite;
     nuvemRegistrar({usuarioId, questaoId:id, revisao:e});
   });
   return candidatas.map(([id])=>id);
@@ -575,6 +575,11 @@ function anteciparQuestoesIrmas(usuarioId, questaoId){
    curto; o piso vale para elas também, sem reescrever o que já está guardado. */
 function proximaRevisaoEfetiva(entry){
   if(!entry || !entry.proximaRevisao) return null;
+  /* Entrada ANTECIPADA de propósito (anteciparQuestoesIrmas): a data é anterior
+     a ultimaData + intervalo, coisa que um prazo curto antigo nunca tem. O piso
+     não vale para ela. É deduzido dos campos que sincronizam: um marcador novo
+     se perderia ao descer da nuvem (revisoes.aplicar só traz os campos conhecidos). */
+  if(entry.ultimaData && entry.intervalo && entry.proximaRevisao < somarDias(entry.ultimaData, entry.intervalo)) return entry.proximaRevisao;
   if(entry.ultimaData){
     const acertoFirme = entry.ultimaCorreta && entry.ultimaConfianca !== "chute";
     const piso = somarDias(entry.ultimaData, acertoFirme ? CONFIG.intervalosAposAcerto[0] : CONFIG.intervaloMinimoRevisao);

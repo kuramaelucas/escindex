@@ -614,7 +614,7 @@ function htmlCardNotaEstimada(u){
     const faltam = CONFIG.incidencia.minRespostasParaNota - acertoGeralDoUsuario(u.id).total;
     return `<div class="card mb-2">
       <div class="card-title">${iconeSvg("target")} Se a prova fosse hoje</div>
-      <p class="text-sm muted">Com mais ${faltam} resposta(s), a plataforma estima a sua nota na prova da ${escapeHtml(inc.banca)}, área por área, pelo peso que cada grande área teve nas provas de ${faixaAnos}.</p>
+      <p class="text-sm muted">Com mais ${faltam} questão(ões) diferente(s) respondida(s) (refazer uma questão não conta), a plataforma estima a sua nota na prova da ${escapeHtml(inc.banca)}, área por área, pelo peso que cada grande área teve nas provas de ${faixaAnos}.</p>
     </div>`;
   }
   const larga = est.maximo - est.minimo > 16;
@@ -867,7 +867,7 @@ function renderDesempenho(){
 
   <div class="card mb-2">
     <div class="card-title">Comparação entre as 5 grandes áreas</div>
-    <p class="text-sm muted">Todas as suas respostas somadas, agrupadas nas cinco áreas cobradas na prova. É neste nível que se decide onde colocar as próximas horas de estudo.</p>
+    <p class="text-sm muted">A primeira resposta de cada questão, agrupada nas cinco áreas cobradas na prova (refazer uma questão mede memória dela, não domínio da área, e fica de fora desta conta). É neste nível que se decide onde colocar as próximas horas de estudo.</p>
     <div class="areas-lado-a-lado mt-2">
     <div class="areas-grafico">${graficoAreas}</div>
     <div class="table-wrap"><table>

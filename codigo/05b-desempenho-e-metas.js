@@ -85,7 +85,6 @@ function desempenhoPorAssunto(usuarioId){
     recente.taxa = pct(recente.acertos, recente.total);
     const todas = repeticoes[assuntoId] || {total, acertos};
     const faixa = faixaDeWilson(acertos, total);
-    const revisao = proximaRevisaoAssunto(usuarioId, assuntoId);
     return {
       assuntoId, total, acertos, taxa: pct(acertos,total), evolucao,
       recente, minimo: faixa.minimo, maximo: faixa.maximo,
@@ -93,7 +92,9 @@ function desempenhoPorAssunto(usuarioId){
       totalTodas: todas.total, taxaTodas: pct(todas.acertos, todas.total),
       especialidadeId: especialidadeDeAssunto(assuntoId)?.id,
       areaId: areaDeAssunto(assuntoId)?.id,
-      proximaRevisao: revisao ? revisao.proxima : null,
+      // preguiçosa: filtra todas as respostas a cada assunto e quase ninguém lê;
+      // prioridadesDeEstudo chama esta função várias vezes por tela
+      get proximaRevisao(){ const r = proximaRevisaoAssunto(usuarioId, assuntoId); return r ? r.proxima : null; },
     };
   // do mais certamente fraco ao menos: o teto da faixa pesa mais que a taxa solta,
   // senão "0 de 1" ficaria sempre no topo e "2 de 10" (muito mais convincente) abaixo
@@ -186,7 +187,7 @@ function desempenhoPorArea(usuarioId){
     return {
       areaId: area.id, nome: area.nome, total: info.total, acertos: info.acertos,
       taxa: info.total ? pct(info.acertos, info.total) : null,
-      assuntos: info.assuntos.sort((a,b)=>a.taxa-b.taxa),
+      assuntos: info.assuntos.sort((a,b)=>a.maximo-b.maximo || a.taxa-b.taxa),   // mesma ordem de desempenhoPorAssunto
     };
   });
 }
@@ -811,7 +812,7 @@ function assuntosQueMaisCaem(usuarioId){
    com o mesmo "puxão" para o acerto geral quando a área tem poucas
    respostas. A faixa (mais ou menos) é o erro-padrão dessa conta: com
    poucas respostas ela é larga, e a tela diz isso em vez de fingir precisão.
-   Só aparece a partir de CONFIG.incidencia.minRespostasParaNota respostas. */
+   Só aparece a partir de CONFIG.incidencia.minRespostasParaNota questões diferentes respondidas. */
 function estimativaDeNota(usuarioId, banca){
   const inc = incidenciaNaBanca(banca);
   const geral = acertoGeralDoUsuario(usuarioId);
