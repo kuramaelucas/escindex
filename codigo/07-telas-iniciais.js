@@ -530,7 +530,7 @@ function renderInicioAluno(u){
   ${modoResumido() ? htmlPendenciasResumidas(revisarHoje, flashVencidos, calibracao) : `<div class="grid grid-2 mt-2">
     <div class="card">
       <div class="card-title">Sugestões de assuntos para melhorar</div>
-      ${sugestoes.length ? sugestoes.map(s=>`<div class="flex justify-between items-center mt-1"><span class="text-sm">${escapeHtml(nomeAssunto(s.assuntoId))}</span><span class="badge badge-danger">${s.taxa}% de acerto</span></div>`).join("") : '<div class="text-sm muted mt-1">Ainda não há dados suficientes — responda mais questões para receber sugestões.</div>'}
+      ${sugestoes.length ? sugestoes.map(s=>`<div class="flex justify-between items-center mt-1"><span class="text-sm">${escapeHtml(nomeAssunto(s.assuntoId))}</span><span class="badge badge-danger" title="${escapeHtml(textoDetalheDoAssunto(s))}">${Math.round(s.acertoEstimado*100)}% de acerto</span></div>`).join("") : '<div class="text-sm muted mt-1">Ainda não há dados suficientes — responda mais questões para receber sugestões.</div>'}
       <button class="link-btn mt-2" onclick="navigate('desempenho')">Ver desempenho completo</button>
     </div>
     <div class="card">

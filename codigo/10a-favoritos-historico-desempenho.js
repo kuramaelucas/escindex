@@ -879,7 +879,7 @@ function renderDesempenho(){
             <td class="text-sm">${a.acertos}</td>
             <td class="text-sm">${a.total-a.acertos}</td>
             <td>${a.taxa!==null?`<span class="badge ${a.taxa<50?"badge-danger":a.taxa<70?"badge-amber":"badge-accent"}">${a.taxa}%</span>`:'<span class="text-xs muted">sem dados</span>'}</td>
-            <td class="text-sm">${pior?escapeHtml(nomeAssunto(pior.assuntoId))+' <span class="muted">('+pior.taxa+'% em '+pior.total+')</span>':"—"}</td>
+            <td class="text-sm">${pior?escapeHtml(nomeAssunto(pior.assuntoId))+' <span class="muted" title="'+escapeHtml(textoDetalheDoAssunto(pior))+'">('+pior.taxa+'% em '+pior.total+' · faixa '+pior.minimo+'–'+pior.maximo+'%)</span>':"—"}</td>
             <td>${pior?`<button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${pior.assuntoId}')">Praticar</button>`:""}</td>
           </tr>`;
         }).join("")}

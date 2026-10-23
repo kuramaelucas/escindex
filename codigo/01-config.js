@@ -34,6 +34,9 @@ const CONFIG = {
     acertoPresumido: 0.6,      // acerto usado para quem ainda não respondeu nada
     pesoNaSessao: 3,           // na sessão recomendada, o assunto de maior prioridade vem até 4× mais cedo (0 desliga)
     topParaDestacar: 15,       // os 15 assuntos de maior prioridade ganham o selo "cai muito" no motivo da questão
+    questoesRecentes: 15,      // "desempenho recente" de um assunto = as últimas 15 questões (primeira resposta de cada)
+    minRecentesParaPesar: 5,   // com menos que isso, só vale o histórico total
+    pesoDoRecente: 0.5,        // acerto estimado = metade histórico total, metade últimas questões
     minRespostasParaNota: 30,  // a estimativa de nota só aparece a partir de 30 respostas
   },
   hoje: () => new Date(), // usado no lugar de "new Date()" direto, fácil de simular outra data no futuro

@@ -2,31 +2,94 @@
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ---------- desempenho / sugestões / calibração de confiança ---------- */
+/* PRIMEIRA RESPOSTA. Refazer uma questão (revisão espaçada, "praticar erradas")
+   mede memória daquela questão, não domínio do assunto — e infla justamente os
+   assuntos mais revisados. Por isso a taxa que decide prioridade e nota conta
+   só a primeira resposta de cada questão; as repetições entram à parte, como
+   retenção (`taxaTodas`). Resposta sem questaoId conta como questão própria. */
+function chaveCronologica(r){ return r.respondidaEm || r.data || ""; }
+function primeirasRespostas(usuarioId){
+  const primeira = new Map();
+  db.respostas.forEach(r=>{
+    if(r.usuarioId!==usuarioId) return;
+    const k = r.questaoId || r.id;
+    const atual = primeira.get(k);
+    if(!atual || chaveCronologica(r) < chaveCronologica(atual)) primeira.set(k, r);
+  });
+  return [...primeira.values()].sort((a,b)=>chaveCronologica(a).localeCompare(chaveCronologica(b)));
+}
+/* Faixa de Wilson (95%) em %: "3 de 4" e "75 de 100" não valem o mesmo, e a
+   taxa solta esconde isso. Fica melhor que a faixa normal com amostra pequena
+   e com taxa perto de 0 ou 100. */
+function faixaDeWilson(acertos, total){
+  if(!total) return {minimo:0, maximo:100};
+  const z = 1.96, p = acertos/total, z2 = z*z;
+  const centro = (p + z2/(2*total)) / (1 + z2/total);
+  const meia = z*Math.sqrt(p*(1-p)/total + z2/(4*total*total)) / (1 + z2/total);
+  return {minimo: Math.max(0, Math.round((centro-meia)*100)), maximo: Math.min(100, Math.round((centro+meia)*100))};
+}
+/* Acerto estimado de um recorte (assunto ou área) misturando o histórico todo
+   e as últimas questões: quem melhorou (ou piorou) há pouco não fica preso ao
+   número da vida inteira. Os dois lados são puxados para o acerto geral
+   (CONFIG.incidencia.respostasDePeso) para não premiar nem punir amostra
+   pequena. `m` = {total, acertos, recente:{total, acertos}}. */
+function acertoEstimadoDoRecorte(m, taxaGeral){
+  const k = CONFIG.incidencia.respostasDePeso;
+  const total = (m.acertos + k*taxaGeral) / (m.total + k);
+  const rec = m.recente;
+  if(!rec || rec.total < CONFIG.incidencia.minRecentesParaPesar) return total;
+  const recente = (rec.acertos + k*taxaGeral) / (rec.total + k);
+  const w = CONFIG.incidencia.pesoDoRecente;
+  return (1-w)*total + w*recente;
+}
+/* O porquê do número de um assunto, para a dica da tela: a plataforma explica o que faz. */
+function textoDetalheDoAssunto(d){
+  return "Primeira resposta de cada questão: "+d.acertos+" de "+d.total+" ("+d.taxa+"%, faixa provável "+d.minimo+"–"+d.maximo+"%). "
+    +"Últimas "+d.recente.total+": "+d.recente.taxa+"%. "
+    +"Contando as repetições: "+d.taxaTodas+"% em "+d.totalTodas+". "
+    +"O número principal mistura o histórico e as últimas questões.";
+}
 function desempenhoPorAssunto(usuarioId){
   const porAssunto = {};
-  db.respostas.filter(r=>r.usuarioId===usuarioId).forEach(r=>{
+  primeirasRespostas(usuarioId).forEach(r=>{
     (porAssunto[r.assuntoId] = porAssunto[r.assuntoId]||[]).push(r);
   });
+  const repeticoes = {};
+  db.respostas.forEach(r=>{
+    if(r.usuarioId!==usuarioId) return;
+    const m = repeticoes[r.assuntoId] = repeticoes[r.assuntoId] || {total:0, acertos:0};
+    m.total++; if(r.correta) m.acertos++;
+  });
+  const geral = acertoGeralDoUsuario(usuarioId).taxa;
   return Object.entries(porAssunto).map(([assuntoId, respostas])=>{
-    respostas.sort((a,b)=>a.data.localeCompare(b.data));
     const total = respostas.length;
     const acertos = respostas.filter(r=>r.correta).length;
-    // evolução: média móvel em blocos de até 3 respostas, para dar uma linha
-    // de tendência mesmo com poucos dados (comum no início de uso)
+    // evolução: média móvel em blocos, para dar uma linha de tendência mesmo
+    // com poucos dados (comum no início de uso)
     const tamanhoBloco = Math.max(1, Math.ceil(total/8));
     const evolucao = [];
     for(let i=0;i<total;i+=tamanhoBloco){
       const fatia = respostas.slice(i, i+tamanhoBloco);
       evolucao.push(pct(fatia.filter(r=>r.correta).length, fatia.length));
     }
+    const ult = respostas.slice(-CONFIG.incidencia.questoesRecentes);
+    const recente = {total: ult.length, acertos: ult.filter(r=>r.correta).length};
+    recente.taxa = pct(recente.acertos, recente.total);
+    const todas = repeticoes[assuntoId] || {total, acertos};
+    const faixa = faixaDeWilson(acertos, total);
     const revisao = proximaRevisaoAssunto(usuarioId, assuntoId);
     return {
       assuntoId, total, acertos, taxa: pct(acertos,total), evolucao,
+      recente, minimo: faixa.minimo, maximo: faixa.maximo,
+      acertoEstimado: acertoEstimadoDoRecorte({total, acertos, recente}, geral),
+      totalTodas: todas.total, taxaTodas: pct(todas.acertos, todas.total),
       especialidadeId: especialidadeDeAssunto(assuntoId)?.id,
       areaId: areaDeAssunto(assuntoId)?.id,
       proximaRevisao: revisao ? revisao.proxima : null,
     };
-  }).sort((a,b)=>a.taxa-b.taxa);
+  // do mais certamente fraco ao menos: o teto da faixa pesa mais que a taxa solta,
+  // senão "0 de 1" ficaria sempre no topo e "2 de 10" (muito mais convincente) abaixo
+  }).sort((a,b)=>a.maximo-b.maximo || a.taxa-b.taxa);
 }
 /* SIMULADO × ESTUDO. Para cada assunto em que a pessoa respondeu em simulado,
    compara o acerto lá (resposta com origem "simulado") com o acerto nas
@@ -257,7 +320,9 @@ function desempenhoTotal(usuarioId){
   };
 }
 function sugestoesDeMelhoria(usuarioId, limite){
-  return desempenhoPorAssunto(usuarioId).filter(d=>d.total>=5 && d.taxa<70).slice(0, limite||5);
+  // vale o acerto estimado (histórico + últimas questões), não a taxa da vida inteira:
+  // quem já virou o jogo num assunto deixa de ser lembrado dele
+  return desempenhoPorAssunto(usuarioId).filter(d=>d.total>=5 && d.acertoEstimado<0.7).slice(0, limite||5);
 }
 /* Ritmo do aluno ao longo de todas as respostas cronometradas. */
 function analiseDeTempo(usuarioId){
@@ -632,7 +697,7 @@ function incidenciaNaBanca(banca){
   return r;
 }
 function acertoGeralDoUsuario(usuarioId){
-  const rs = db.respostas.filter(r=>r.usuarioId===usuarioId);
+  const rs = primeirasRespostas(usuarioId);
   return { total: rs.length, acertos: rs.filter(r=>r.correta).length,
            taxa: rs.length ? rs.filter(r=>r.correta).length/rs.length : CONFIG.incidencia.acertoPresumido };
 }
@@ -640,16 +705,11 @@ function prioridadesDeEstudo(usuarioId, banca){
   const inc = incidenciaNaBanca(banca);
   if(!inc.total) return [];
   const geral = acertoGeralDoUsuario(usuarioId);
-  const k = CONFIG.incidencia.respostasDePeso;
   const minhas = {};
-  db.respostas.forEach(r=>{
-    if(r.usuarioId!==usuarioId) return;
-    const m = minhas[r.assuntoId] = minhas[r.assuntoId] || { total:0, acertos:0 };
-    m.total++; if(r.correta) m.acertos++;
-  });
+  desempenhoPorAssunto(usuarioId).forEach(d=>{ minhas[d.assuntoId] = d; });
   const lista = Object.values(inc.porAssunto).map(a=>{
     const m = minhas[a.assuntoId] || { total:0, acertos:0 };
-    const acertoEstimado = (m.acertos + k*geral.taxa) / (m.total + k);
+    const acertoEstimado = m.total ? m.acertoEstimado : geral.taxa;
     const fatia = a.n / inc.total;
     return {
       assuntoId: a.assuntoId, areaId: a.areaId, questoesNaProva: a.n, anosQueCaiu: a.anos.size,
@@ -692,10 +752,13 @@ function estimativaDeNota(usuarioId, banca){
   if(!inc.total || geral.total < CONFIG.incidencia.minRespostasParaNota) return null;
   const k = CONFIG.incidencia.respostasDePeso;
   let nota = 0, variancia = 0;
+  const primeiras = primeirasRespostas(usuarioId);
   const areas = db.taxonomia.areas.map(area=>{
-    const rs = db.respostas.filter(r=>r.usuarioId===usuarioId && r.areaId===area.id);
+    const rs = primeiras.filter(r=>r.areaId===area.id);
     const acertos = rs.filter(r=>r.correta).length;
-    const p = (acertos + k*geral.taxa) / (rs.length + k);
+    // a área tem mais respostas que o assunto: a janela das "últimas" é o dobro
+    const ult = rs.slice(-2*CONFIG.incidencia.questoesRecentes);
+    const p = acertoEstimadoDoRecorte({total:rs.length, acertos, recente:{total:ult.length, acertos:ult.filter(r=>r.correta).length}}, geral.taxa);
     const fatia = (inc.porArea[area.id]||0) / inc.total;
     nota += fatia * p;
     variancia += fatia*fatia * p*(1-p) / (rs.length + k);

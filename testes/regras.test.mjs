@@ -457,3 +457,32 @@ test("Criar Simulado: a sugestão marca a mistura mais difícil e completa pelo 
     assert.ok(r.n[0] <= 6 || r.disponivel[1] + r.disponivel[2] < 34);
   } finally { await contexto.close(); }
 });
+
+test("desempenho do assunto: conta a primeira resposta, mostra a faixa e pesa as últimas 15", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      const u = usuarioAtual();
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const [a, b] = db.taxonomia.assuntos;
+      const poe = (ass, q, correta, dia) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q, assuntoId: ass, correta, data: somarDias(hojeISO(), -dia), respondidaEm: somarDias(hojeISO(), -dia) + "T10:00:00Z", confianca: "duvida" });
+      // assunto A: 20 questões, erra as 10 primeiras e acerta as 10 últimas; depois refaz todas e acerta
+      for(let i = 0; i < 20; i++) poe(a.id, "qa" + i, i >= 10, 60 - i);
+      for(let i = 0; i < 20; i++) poe(a.id, "qa" + i, true, 1);
+      // assunto B: uma única resposta errada, só para existir mais de um assunto no total geral
+      poe(b.id, "qb0", false, 5);
+      const A = desempenhoPorAssunto(u.id).find(x => x.assuntoId === a.id);
+      return { total: A.total, acertos: A.acertos, todas: A.totalTodas, taxaTodas: A.taxaTodas, rec: A.recente, estimado: A.acertoEstimado, faixa: [A.minimo, A.maximo], geral: acertoGeralDoUsuario(u.id).total };
+    });
+    assert.equal(r.total, 20);          // repetição não conta como domínio
+    assert.equal(r.acertos, 10);
+    assert.equal(r.todas, 40);          // mas continua registrada como retenção
+    assert.equal(r.taxaTodas, 75);
+    assert.deepEqual([r.rec.total, r.rec.acertos], [15, 10]);   // últimas 15: as 5 mais antigas erradas já saíram
+    assert.ok(r.estimado > 0.5, "as últimas questões puxam o estimado para cima da taxa de 50%");
+    assert.ok(r.faixa[0] < 50 && r.faixa[1] > 50);
+    assert.equal(r.geral, 21);
+  } finally { await contexto.close(); }
+});
