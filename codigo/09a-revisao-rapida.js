@@ -373,8 +373,13 @@ function iniciarSessaoFlashcards(filtro){
   const u = usuarioAtual();
   const cartoes = montarBaralhoFlashcards(u.id, (filtro && filtro.tamanho) || 20, filtro||{});
   if(!cartoes.length){ toast("Não há cartões para este recorte ainda. Tente um filtro mais amplo, ou peça à equipe para cadastrar cartões desse assunto.", "err"); return; }
-  state.sessaoFlash = { cartoes, indice:0, virado:false, notas:[], finalizada:false };
+  // o recorte fica na sessão (cópia: o filtro da tela muda depois): "Mais uma rodada" repete o mesmo baralho, e não o recomendado
+  state.sessaoFlash = { cartoes, indice:0, virado:false, notas:[], finalizada:false, filtro:copiaProfunda(filtro||{}) };
   navigate("flashcards");
+}
+function maisUmaRodadaFlashcards(){
+  const s = state.sessaoFlash;
+  iniciarSessaoFlashcards((s && s.filtro) || {});
 }
 function virarFlashcard(){
   if(haTextoSelecionado()) return;   // quem arrastou para destacar não quis virar o cartão
@@ -464,7 +469,7 @@ function renderFlashcardsResumo(s){
     </div>`; }).join("")}
   </div>` : `<div class="card mt-2"><p class="text-sm">Você acertou todos de primeira. Se isso se repetir, vale aumentar o recorte do baralho ou voltar para as questões — cartão fácil demais deixa de ensinar.</p></div>`}
   <div class="flex gap-1 mt-2 quebra">
-    <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">Mais uma rodada</button>
+    <button class="btn btn-primary" onclick="maisUmaRodadaFlashcards()">Mais uma rodada</button>
     ${assuntosPendentes.length ? `<button class="btn btn-secondary" onclick="praticarQuestoesDoBaralho()">Praticar questões desses assuntos</button>` : ""}
     <button class="btn btn-ghost" onclick="sairDaSessaoFlash()">Encerrar</button>
   </div>
