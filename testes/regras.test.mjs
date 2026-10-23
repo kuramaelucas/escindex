@@ -538,3 +538,28 @@ test("errar com certeza antecipa até 3 questões do mesmo assunto; errar na dú
     assert.ok(r.naoRespondidaIntacta);       // questão que a pessoa nunca respondeu não ganha revisão
   } finally { await contexto.close(); }
 });
+
+test("curva de retenção: só conta acerto firme seguido de nova resposta, por faixa de dias, e só opina com casos suficientes", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const u = usuarioAtual();
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const base = "2026-01-01";
+      const poe = (q, dia, correta, confianca) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q, correta, confianca, data: somarDias(base, dia), respondidaEm: somarDias(base, dia) + "T10:00:00Z" });
+      // 12 questões: acerto firme, volta 40 dias depois — 11 acertam e 1 erra
+      for(let i = 0; i < 12; i++){ poe("q" + i, 0, true, "certeza"); poe("q" + i, 40, i !== 0, "certeza"); }
+      // acerto no chute não conta como ponto de partida; mesmo dia também não
+      poe("c", 0, true, "chute"); poe("c", 10, false, "duvida");
+      poe("d", 0, true, "certeza"); poe("d", 0, false, "certeza");
+      const f = curvaDeRetencao(u.id);
+      return Object.fromEntries(f.map(x => [x.id, { n: x.n, taxa: x.taxa, veredito: x.veredito }]));
+    });
+    assert.deepEqual(r.ate14, { n: 0, taxa: null, veredito: "poucos" });
+    assert.equal(r.ate60.n, 12);
+    assert.equal(r.ate60.taxa, 92);
+    assert.equal(r.ate60.veredito, "adequada");   // 11/12: faixa provável ainda inclui a meta, não dá para mandar alargar
+  } finally { await contexto.close(); }
+});

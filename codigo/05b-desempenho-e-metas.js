@@ -91,6 +91,38 @@ function desempenhoPorAssunto(usuarioId){
   // senão "0 de 1" ficaria sempre no topo e "2 de 10" (muito mais convincente) abaixo
   }).sort((a,b)=>a.maximo-b.maximo || a.taxa-b.taxa);
 }
+/* CURVA DE RETENÇÃO: depois de um acerto firme, quanto a pessoa acerta a mesma
+   questão quando ela volta em N dias? É o teste da escada de revisão com o
+   uso real: se aos 30–60 dias o acerto continua alto, o intervalo pode
+   crescer; se já caiu, está longo demais. Só conta par "acerto firme → próxima
+   resposta" (é nesse caso que a escada decide esperar mais) e ignora o mesmo
+   dia. Só diagnostica — nunca muda a escada sozinha. */
+const FAIXAS_DE_RETENCAO = [
+  {id:"ate14", rotulo:"até 14 dias", ate:14}, {id:"ate30", rotulo:"15 a 30 dias", ate:30},
+  {id:"ate60", rotulo:"31 a 60 dias", ate:60}, {id:"mais60", rotulo:"mais de 60 dias", ate:Infinity},
+];
+function curvaDeRetencao(usuarioId){
+  const faixas = FAIXAS_DE_RETENCAO.map(f=>({...f, n:0, acertos:0}));
+  const porQuestao = {};
+  db.respostas.forEach(r=>{ if(r.usuarioId===usuarioId && r.questaoId && r.data) (porQuestao[r.questaoId] = porQuestao[r.questaoId]||[]).push(r); });
+  Object.values(porQuestao).forEach(rs=>{
+    rs.sort((a,b)=>chaveCronologica(a).localeCompare(chaveCronologica(b)));
+    for(let i=1;i<rs.length;i++){
+      if(!acertoFirme(rs[i-1])) continue;
+      const dias = diasEntre(rs[i-1].data, rs[i].data);
+      if(dias<1) continue;
+      const f = faixas.find(x=>dias<=x.ate);
+      f.n++; if(rs[i].correta) f.acertos++;
+    }
+  });
+  const meta = CONFIG.retencaoAlvo;
+  return faixas.map(f=>{
+    const w = faixaDeWilson(f.acertos, f.n);
+    let veredito = "poucos";                                   // amostra pequena não decide nada
+    if(f.n >= CONFIG.minParesParaRetencao) veredito = w.minimo >= meta+5 ? "alargar" : w.maximo < meta-5 ? "encurtar" : "adequada";
+    return {...f, taxa: f.n ? pct(f.acertos, f.n) : null, minimo: w.minimo, maximo: w.maximo, veredito};
+  });
+}
 /* SIMULADO × ESTUDO. Para cada assunto em que a pessoa respondeu em simulado,
    compara o acerto lá (resposta com origem "simulado") com o acerto nas
    questões feitas fora de simulado (qualquer outra origem). A diferença é o

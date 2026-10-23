@@ -114,6 +114,8 @@ const CONFIG = {
   intervalosAposAcerto: [30, 60],
   irmasAntecipadas: 3,       // errar com certeza traz de volta até 3 questões do mesmo assunto que estavam de molho (0 desliga)
   acertosParaDominarQuestao: 3,
+  retencaoAlvo: 85,          // % de acerto que a escada de revisão deve manter quando a questão volta
+  minParesParaRetencao: 10,  // pares "acerto firme → próxima resposta" para opinar sobre uma faixa de dias
   bonusAssuntoForte: [{ taxa: 0.85, fator: 2 }, { taxa: 0.7, fator: 1.5 }],
   minRespostasAssuntoForte: 8,
 
