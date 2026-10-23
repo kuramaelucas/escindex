@@ -239,6 +239,7 @@ function aplicarMembroDaNuvem(l){
     const eu = euNaNuvem();
     if(eu && eu.grupoId === g.id) entrarNoGrupo(eu, db.grupoOficialId);
     if(eu && eu.grupoQuestoesId === g.id) delete eu.grupoQuestoesId;
+    if(eu) soltarQuestoesDoGrupo(g.id);   // sem acesso ao grupo, sem as questões dele neste aparelho
   }
   // o dono aprovou o meu pedido: agora eu estou nesta turma (e saio da anterior)
   if(id === nuvemSessao.usuarioId && l.status === "aprovado" && estavaPendente){
@@ -334,7 +335,7 @@ NUVEM_GLOBAIS.flashcards_enviados = {
     const c = (db.flashcards || []).find(x => x.id === id);
     if(!c) return true;
     if(/^data:image\//.test(c.imagemUrl || "")){
-      try{ c.imagemUrl = await nuvemSubirImagem(c.imagemUrl, id); saveState(); }
+      try{ c.imagemUrl = await nuvemSubirImagem(c.imagemUrl, id, !!c.grupoId); saveState(); }
       catch(e){
         if(e.semRede || e.sessaoExpirada || e.status === 401 || e.status === 429 || e.status >= 500) throw e;
         db.nuvem.avisoImagens = "A imagem de um cartão não subiu: " + (e.message || "o espaço de imagens recusou o arquivo") +

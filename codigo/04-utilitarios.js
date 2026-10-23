@@ -867,21 +867,43 @@ function gruposDoUsuario(usuario){
 function grupoPrincipalDeQuestoes(usuario){ return gruposDoUsuario(usuario)[0] || getGrupoOficial(); }
 /* Destino "do meu grupo" ao enviar questões: "grupo" é o principal e "grupo2"
    o segundo, para quem está em dois. Cada opção diz o nome do grupo, porque
-   é a pessoa quem escolhe para qual dos dois a questão vai. */
+   é a pessoa quem escolhe para qual dos dois a questão vai.
+   Só entram os grupos para os quais o envio funciona: com a nuvem ligada, a
+   questão de um grupo que só existe neste navegador nunca chegaria aos colegas
+   (ver questaoSobeParaNuvem). Sem grupo nenhum não há destino "do grupo" —
+   antes ele caía no calendário oficial e a questão ficava presa no aparelho
+   enquanto a tela prometia que o grupo a receberia. */
+function gruposParaEnviarQuestoes(usuario){
+  return gruposDoUsuario(usuario).filter(g => !nuvemConectado() || grupoDeNuvem(g));
+}
 function destinoEhGrupo(destino){ return destino === "grupo" || destino === "grupo2"; }
 function grupoDoDestino(usuario, destino){
-  const gs = gruposDoUsuario(usuario);
-  return (destino === "grupo2" ? gs[1] : gs[0]) || getGrupoOficial();
+  const gs = gruposParaEnviarQuestoes(usuario);
+  return (destino === "grupo2" ? gs[1] : gs[0]) || null;
+}
+function valorDoDestinoDoGrupo(usuario, grupoId){
+  const i = gruposParaEnviarQuestoes(usuario).findIndex(g => g.id === grupoId);
+  return i < 0 ? "" : (i ? "grupo2" : "grupo");
 }
 function opcoesDeDestinoDeGrupo(usuario, textoUnico, textoDoGrupo){
-  const gs = gruposDoUsuario(usuario);
+  const gs = gruposParaEnviarQuestoes(usuario);
+  if(!gs.length) return [];
   if(gs.length < 2) return [["grupo", textoUnico]];
   return gs.map((g, i) => [i ? "grupo2" : "grupo", textoDoGrupo(g)]);
 }
 function idsDosGruposDoUsuario(usuario){ return gruposDoUsuario(usuario).map(g => g.id); }
+/* Quem sai de um grupo (ou é retirado dele) perde o acesso às questões dele na
+   nuvem, mas o aparelho nunca recebe esse aviso: a linha deixa de descer e a
+   cópia local ficava para sempre. Só as que já subiram são soltas — a que
+   ainda está só aqui é de quem a escreveu. */
+function soltarQuestoesDoGrupo(grupoId, todas){
+  db.questoes = db.questoes.filter(q => !(q.grupoId === grupoId && (todas || q.naNuvem)));
+}
 function tirarDosGrupos(usuario, manter){
+  const eu = typeof euNaNuvem === "function" && nuvemConectado() ? euNaNuvem() : null;
   (db.grupos||[]).forEach(g => {
     if(g.oficial || manter.includes(g.id)) return;
+    if(eu && eu.id === usuario.id && (g.membrosAprovados||[]).includes(usuario.id)) soltarQuestoesDoGrupo(g.id);
     g.membrosAprovados = (g.membrosAprovados||[]).filter(id => id !== usuario.id);
     g.solicitacoesPendentes = (g.solicitacoesPendentes||[]).filter(id => id !== usuario.id);
   });

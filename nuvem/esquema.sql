@@ -1181,6 +1181,33 @@ create policy questoes_enviadas_alterar on public.questoes_enviadas
         and (status = 'pendente' or (status = 'aprovada' and public.e_revisor())))
   );
 
+-- Na questão de um grupo qualquer membro corrige, mas REMOVER é só de quem a
+-- enviou ou da dona do grupo (e da equipe), e a autoria e o grupo não mudam:
+-- a política acima só olha a linha nova, então quem fosse membro podia apagar
+-- a questão de outra pessoa (ou assumir a autoria dela antes de apagar).
+create or replace function public.proteger_questao_de_grupo()
+returns trigger
+language plpgsql
+as $$
+begin
+  if old.grupo_id is null or public.e_equipe() then
+    return new;
+  end if;
+  if new.autor_id is distinct from old.autor_id or new.grupo_id is distinct from old.grupo_id then
+    raise exception 'a autoria e o grupo de uma questão de grupo não mudam' using errcode = '42501';
+  end if;
+  if new.status = 'removida' and old.status is distinct from 'removida'
+     and old.autor_id <> auth.uid() and not public.e_dono_do_grupo(old.grupo_id) then
+    raise exception 'só quem enviou a questão ou a dona do grupo a remove' using errcode = '42501';
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists proteger_questao_de_grupo on public.questoes_enviadas;
+create trigger proteger_questao_de_grupo
+  before update on public.questoes_enviadas
+  for each row execute function public.proteger_questao_de_grupo();
+
 -- GRUPOS: toda conta aprovada lê (é a lista de "pedir para entrar"). Cria quem
 -- vai ser a dona; a turma do rodízio (id 'rodizio-…') não tem dona e qualquer
 -- conta aprovada pode criar a linha dela, que só guarda a divisão das

@@ -241,6 +241,11 @@ select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b'
 select pg_temp.igual((select count(*) from questoes_enviadas where id='qg1'), 1, 'o membro lê a questão do grupo');
 update questoes_enviadas set dados='{"enunciado":"corrigida por B"}' where id='qg1';   -- trabalho em conjunto: qualquer membro corrige (PATCH)
 select pg_temp.igual((select count(*) from questoes_enviadas where id='qg1' and dados->>'enunciado'='corrigida por B'), 1, 'o membro corrige a questão do grupo');
+select pg_temp.tem_de_falhar($$update questoes_enviadas set status='removida' where id='qg1'$$, 'membro removendo a questão que outra pessoa enviou');
+select pg_temp.tem_de_falhar($$update questoes_enviadas set autor_id='00000000-0000-0000-0000-00000000000b' where id='qg1'$$, 'membro assumindo a autoria da questão de outra pessoa');
+insert into questoes_enviadas(id,autor_id,autor_nome,status,grupo_id,dados) values ('qg5','00000000-0000-0000-0000-00000000000b','Aluno B','aprovada','g1','{"enunciado":"do B"}');
+update questoes_enviadas set status='removida' where id='qg5';   -- quem enviou remove a própria
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qg5' and status='removida'), 1, 'quem enviou remove a própria questão do grupo');
 select pg_temp.igual((select count(*) from subgrupos where id='sg1'), 1, 'o membro lê os grupos de estudo');
 update subgrupos set dados='{"membros":["b"]}' where id='sg1';
 select pg_temp.igual((select count(*) from subgrupos where dados->>'membros'='["b"]'), 1, 'o membro mexe no grupo de estudo (sair é editar a lista)');

@@ -17,12 +17,18 @@ function contextoImportacao(){
   if(!tipoProvaValido(state.filtroRota.importacao.tipoProva)) state.filtroRota.importacao.tipoProva = CONFIG.tipoProvaPadrao;
   return state.filtroRota.importacao;
 }
+function mudarDestinoImportacao(valor){
+  contextoImportacao().destino = valor;
+  if(state.filtroRota.previewImportacao){ state.filtroRota.destinoImportacao = valor; redesenharPreviewImportacao(); }   // o aviso de destino acompanha a escolha
+}
 function mudarModoImportacao(modo){ contextoImportacao().modo = modo; sincronizarCabecalhoImportacao(); render(); }
 function sincronizarCabecalhoImportacao(){
   const ctx = contextoImportacao();
   const inst = document.getElementById("impInstituicao");
   const ano = document.getElementById("impAno");
   const tipo = document.getElementById("impTipoProva");
+  const destino = document.getElementById("impDestino");
+  if(destino) ctx.destino = destino.value;   // sem isto, trocar de modo devolvia o destino ao primeiro da lista
   if(inst) ctx.instituicao = inst.value.trim() || CONFIG.bancaFoco;
   if(ano) ctx.ano = (ano.value||"").trim();
   if(tipo && tipoProvaValido(tipo.value)) ctx.tipoProva = tipo.value;
@@ -152,13 +158,15 @@ function gerarPromptImportacao(){
 }
 function opcoesDestinoImportacao(){
   const u = usuarioAtual();
+  const doGrupo = opcoesDeDestinoDeGrupo(u, "Questões do meu grupo (ficam disponíveis na hora, só para o grupo)", g=>"Questões do grupo "+g.nome+" (ficam disponíveis na hora, só para ele)");
   if(u.papel==="aluno") return [
-    ...opcoesDeDestinoDeGrupo(u, "Questões do meu grupo (ficam disponíveis na hora, só para o grupo)", g=>"Questões do grupo "+g.nome+" (ficam disponíveis na hora, só para ele)"),
+    ...doGrupo,
     ["sugerir","Sugerir para o banco geral (passa por aprovação de um professor)"],
   ];
   if(u.papel==="residente") return [
     ["sugerir","Enviar para o banco geral (passa por aprovação de um professor)"],
     ["ativa","Publicar direto no banco geral"],
+    ...doGrupo,
   ];
   return [
     ["ativa","Publicar direto no banco geral"],
@@ -169,7 +177,9 @@ function renderImportarQuestoes(){
   const u = usuarioAtual();
   const ctx = contextoImportacao();
   const destinos = opcoesDestinoImportacao();
-  const meusGrupos = u.papel==="aluno" ? gruposDoUsuario(u) : [];
+  const meusGrupos = u.papel==="aluno"||u.papel==="residente" ? gruposDoUsuario(u) : [];
+  const semDestinoDeGrupo = (u.papel==="aluno"||u.papel==="residente") && !destinos.some(([v])=>destinoEhGrupo(v));
+  const destinoEscolhido = destinos.some(([v])=>v===ctx.destino) ? ctx.destino : destinos[0][0];
   return `
   <div class="page-header"><h2>${u.papel==="aluno"||u.papel==="residente"?"Enviar Provas e Questões":"Importar Questões"}</h2>
   <p>Cole uma prova inteira ou questões avulsas — por exemplo, já formatadas por uma IA a partir do PDF da prova — para adicionar ao banco em lote.</p></div>
@@ -199,8 +209,11 @@ ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
         <input class="input" type="number" id="impAno" value="${escapeHtml(String(ctx.ano||new Date().getFullYear()))}" onchange="atualizarPromptImportacao()">
       </div>
       <div class="field sem-mb"><label class="label">Destino das questões</label>
-        <select class="select" id="impDestino">${destinos.map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join("")}</select>
-        ${meusGrupos.length ? `<div class="hint mt-1">${meusGrupos.length>1?"Seus grupos":"Seu grupo atual"}: ${meusGrupos.map(g=>escapeHtml(g.nome)).join(" e ")}</div>` : ""}
+        <select class="select" id="impDestino" onchange="mudarDestinoImportacao(this.value)">${destinos.map(([v,l])=>`<option value="${v}" ${v===destinoEscolhido?"selected":""}>${escapeHtml(l)}</option>`).join("")}</select>
+        ${meusGrupos.length && !semDestinoDeGrupo ? `<div class="hint mt-1">${meusGrupos.length>1?"Seus grupos":"Seu grupo atual"}: ${meusGrupos.map(g=>escapeHtml(g.nome)).join(" e ")}</div>` : ""}
+        ${semDestinoDeGrupo ? `<div class="hint mt-1">${meusGrupos.length
+          ? "Seu grupo ainda não está na nuvem, então não dá para enviar questões só a ele daqui. Peça à dona do grupo para recriá-lo com a conta na nuvem."
+          : "Você ainda não está em um grupo — entre em um ou crie o seu em <button class=\"link-btn\" onclick=\"navigate('meu-grupo')\">Meu Grupo</button> para enviar questões só aos colegas."}</div>` : ""}
       </div>
     </div>
   </div>
@@ -664,10 +677,15 @@ function renderPreviewImportacaoHtml(resultado, opts){
   const validas = resultado.filter(r=>r.valido && r.importar!==false).length;
   const duplicadas = resultado.filter(r=>r.duplicada).length;
   const semFigura = resultado.filter(r=>r.valido && r.importar!==false && r.pareceTerImagem && !r.imagemUrl).length;
+  const destinoDoLote = opts.rotulo ? "" : textoDoDestinoImportacao(state.filtroRota.destinoImportacao);
+  const noGrupo = !opts.rotulo && destinoEhGrupo(state.filtroRota.destinoImportacao);
+  const semAssuntoNoGrupo = noGrupo ? resultado.filter(r=>r.valido && r.importar!==false && (r.especialidadeId==="__novo__" || r.assuntoId==="__novo__")).length : 0;
   return `<div class="card">
     <div class="card-title">Pré-visualização: ${validas} de ${resultado.length} questão(ões) marcadas para importar</div>
     <p class="text-sm muted mb-2">Confira a classificação de cada questão. Onde a IA não acertou a especialidade ou o assunto, escolha um equivalente da lista ou crie um novo com o nome sugerido.</p>
-    ${duplicadas ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${duplicadas} questão(ões) já existem</strong> no banco ou se repetem dentro deste mesmo lote. Elas vêm desmarcadas — marque manualmente se quiser importar assim mesmo.</div>` : ""}
+    ${destinoDoLote ? `<div class="card-flat mb-2 text-sm">${iconeSvg("users")} <strong>Destino:</strong> ${escapeHtml(destinoDoLote)}</div>` : ""}
+    ${semAssuntoNoGrupo ? `<div class="card-flat mb-2 text-sm">${iconeSvg("alert")} ${semAssuntoNoGrupo} questão(ões) estão com especialidade ou assunto que não existe na plataforma. Em questões do grupo, assunto novo não é criado: elas entram em <strong>Outros › Assunto geral</strong>, a menos que você escolha um assunto da lista abaixo.</div>` : ""}
+    ${duplicadas ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${duplicadas} questão(ões) já existem</strong> no banco ou se repetem dentro deste mesmo lote. Elas vêm desmarcadas — marque manualmente se quiser importar assim mesmo.${noGrupo && resultado.some(r=>r.duplicadasBanco.some(id=>{ const q = getQuestao(id); return q && !q.grupoId; })) ? " <strong>As que já estão no banco geral você já estuda por lá;</strong> marque só se quiser uma cópia no conjunto do grupo (para dividir entre os colegas, por exemplo)." : ""}</div>` : ""}
     ${semFigura ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${semFigura} questão(ões) parecem ter figura</strong> e ainda estão sem imagem. Anexe cada uma no campo "Imagem da questão", logo abaixo da classificação.</div>` : ""}
     ${resultado.map((r,i)=>`<div class="card-flat mb-1" ${r.valido?"":'style="border-color:var(--danger)"'}>
       <div class="flex justify-between items-center quebra-gap-p">
@@ -700,22 +718,26 @@ function renderPreviewImportacaoHtml(resultado, opts){
       </div>
       ${htmlImagemDaImportacao(r, i)}
     </div>`).join("")}
-    <button class="btn btn-primary mt-2" onclick="${opts.aoConfirmar||"confirmarImportacao()"}" ${validas===0?"disabled":""}>${escapeHtml(opts.rotulo||"Importar")} ${validas} questão(ões)</button>
+    <button class="btn btn-primary mt-2" onclick="${opts.aoConfirmar||"confirmarImportacao()"}" ${validas===0?"disabled":""}>${escapeHtml(opts.rotulo||"Importar")} ${validas} questão(ões)${opts.rotulo ? "" : escapeHtml(rotuloCurtoDoDestino(state.filtroRota.destinoImportacao))}</button>
   </div>`;
 }
-/* cria especialidade/assunto novos quando a pessoa escolheu "+ criar" */
-function resolverTaxonomiaImportacao(r){
+/* cria especialidade/assunto novos quando a pessoa escolheu "+ criar".
+   `soGrupo`: a questão é de um grupo e a taxonomia é de todos, então um nome
+   que a IA inventou (ou escreveu sem acento) não vira especialidade/assunto
+   novo — a questão cai em "Outros › Assunto geral", que a pessoa pode trocar
+   na pré-visualização escolhendo um assunto que já existe. */
+function resolverTaxonomiaImportacao(r, soGrupo){
   let areaId = r.areaId || db.taxonomia.areas[0].id;
   let espId = r.especialidadeId;
   if(!espId || espId==="__novo__"){
-    const nome = (r.campos.ESPECIALIDADE||"").trim() || "Outros";
+    const nome = soGrupo ? "Outros" : ((r.campos.ESPECIALIDADE||"").trim() || "Outros");
     let existente = db.taxonomia.especialidades.find(e=>e.areaId===areaId && e.nome.toLowerCase()===nome.toLowerCase());
     if(!existente){ existente = {id:uid("esp"), areaId, nome}; db.taxonomia.especialidades.push(existente); }
     espId = existente.id;
   }
   let assId = r.assuntoId;
   if(!assId || assId==="__novo__"){
-    const nome = (r.campos.ASSUNTO||"").trim() || (r.campos.ESPECIALIDADE||"").trim() || "Assunto geral";
+    const nome = soGrupo ? "Assunto geral" : ((r.campos.ASSUNTO||"").trim() || (r.campos.ESPECIALIDADE||"").trim() || "Assunto geral");
     let existente = db.taxonomia.assuntos.find(a=>a.especialidadeId===espId && a.nome.toLowerCase()===nome.toLowerCase());
     if(!existente){ existente = {id:uid("ass"), especialidadeId:espId, nome}; db.taxonomia.assuntos.push(existente); }
     assId = existente.id;
@@ -728,9 +750,35 @@ function resolverTaxonomiaImportacao(r){
    por dois caminhos diferentes é como nasce diferença de comportamento.
    Devolve o que foi feito, para quem chamou avisar a pessoa e, no caso da
    Central de Provas, guardar os ids do lote publicado. */
+/* O destino escolhido, dito por extenso na pré-visualização e no botão final:
+   "Importar 40 questões" não dizia se iam para o grupo, para a fila da equipe
+   ou direto para o banco de todos. */
+function textoDoDestinoImportacao(destino){
+  const u = usuarioAtual();
+  if(destinoEhGrupo(destino)){
+    const g = grupoDoDestino(u, destino);
+    return g ? "só o grupo "+g.nome+" ("+membrosDoGrupo(g).length+" integrante(s)) vai ver estas questões; elas ficam disponíveis na hora." : "";
+  }
+  if(destino==="sugerir") return "banco geral, depois da aprovação de um professor.";
+  if(destino==="ativa") return "publicadas direto no banco geral, para toda a turma.";
+  return "";
+}
+function rotuloCurtoDoDestino(destino){
+  const g = destinoEhGrupo(destino) ? grupoDoDestino(usuarioAtual(), destino) : null;
+  return g ? " para o grupo "+g.nome : destino==="sugerir" ? " como sugestão" : "";
+}
+/* Abre o envio já apontando para o grupo que a pessoa estava vendo em Meu Grupo. */
+function abrirEnvioParaGrupo(grupoId){
+  const v = valorDoDestinoDoGrupo(usuarioAtual(), grupoId);
+  if(v) contextoImportacao().destino = v;
+  navigate("importar-questoes");
+}
 function importarItensAnalisados(resultado, destino, extras){
   extras = extras || {};
   const u = usuarioAtual();
+  // destino "do grupo" sem grupo: nada é criado (ia para o calendário oficial e não subia)
+  const grupoDestino = destinoEhGrupo(destino) ? grupoDoDestino(u, destino) : null;
+  if(destinoEhGrupo(destino) && !grupoDestino) return {importadas:0, ignoradas:0, novosAssuntos:0, aguardandoImagem:0, ids:[], semGrupo:true};
   const idsCriados = [];
   let novosAssuntos = 0;
   const antesAssuntos = db.taxonomia.assuntos.length;
@@ -742,7 +790,7 @@ function importarItensAnalisados(resultado, destino, extras){
   const importadoEm = new Date().toISOString();
   resultado.filter(r=>r.valido && r.importar!==false).forEach(r=>{
     const c = r.campos;
-    const tax = resolverTaxonomiaImportacao(r);
+    const tax = resolverTaxonomiaImportacao(r, !!grupoDestino);
     const nova = {
       id: uid("q"), banca: r.banca, real: true, ano: r.ano,
       areaId: tax.areaId, especialidadeId: tax.especialidadeId, assuntoId: tax.assuntoId,
@@ -761,7 +809,7 @@ function importarItensAnalisados(resultado, destino, extras){
       criadoPor: u.id, autorPapel: u.papel, criadoEm: hojeISO(),
       loteId, importadoEm,
     };
-    if(destinoEhGrupo(destino)){ nova.grupoId = grupoDoDestino(u, destino).id; nova.status = r.status || "ativa"; }
+    if(grupoDestino){ nova.grupoId = grupoDestino.id; nova.status = r.status || "ativa"; }
     // rastro da prova de origem: o número da questão no caderno original é o
     // que permite depois conferir se a prova entrou inteira ou ficou buraco
     if(r.numero) nova.numeroNaProva = r.numero;
@@ -787,11 +835,12 @@ function confirmarImportacao(){
   const destino = state.filtroRota.destinoImportacao || "ativa";
   const u = usuarioAtual();
   const r = importarItensAnalisados(resultado, destino);
+  if(r.semGrupo){ toast("Você não tem um grupo para receber estas questões. Escolha outro destino.", "err"); return; }
   state.filtroRota.previewImportacao = null;
   const areaTexto = document.getElementById("textoImportacao"); if(areaTexto) areaTexto.value = "";   // já importado: sair não é perder
   toast(r.importadas+" questão(ões) importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s) criado(s)":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
-    (destinoEhGrupo(destino) ? " — disponíveis para o seu grupo. Em Meu Grupo, dá para dividir o conjunto entre quem quiser."
+    (destinoEhGrupo(destino) ? " — disponíveis para o grupo "+grupoDoDestino(u, destino).nome+". Para praticar, use \"Praticar as questões do grupo\" em Meu Grupo; lá também dá para dividir o conjunto entre quem quiser."
       : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")
       : destino==="sugerir" ? " — aguardando aprovação de um professor." : "."));
   navigate(destinoEhGrupo(destino) ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");
