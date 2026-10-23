@@ -74,8 +74,9 @@ function renderRevisao(){
     <p class="text-sm muted">Se quiser focar especificamente no que errou ou chutou, sem misturar com revisão por decaimento, use esta lista — ordenada da mais antiga para a mais recente.</p>
     <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${!erros.length?"disabled":""}>Revisar só erros</button>
   </div>
+  ${htmlCurvaDeRetencao(u)}
   <div class="card-flat mt-2 text-sm">
-    <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute), mas nunca abaixo de 1 semana. A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo, mas sem repetir o que você já domina: acerto seguro espera um mês e, depois de três, a questão sai da fila. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
+    <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute), mas nunca abaixo de 1 semana. A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo, mas sem repetir o que você já domina: acerto seguro espera um mês e, depois de três, a questão sai da fila. Errar com certeza antecipa também até ${CONFIG.irmasAntecipadas} questões do mesmo assunto que estavam de molho (prazo de 1 semana), porque o erro com certeza costuma ser lacuna do assunto, não da questão. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
   </div>`;
 }
 /* As questões que a pessoa já errou, com quantas vezes cada uma — a
@@ -149,4 +150,22 @@ function praticarAssunto(assuntoId){
   const pool = questoesParaEstudo(usuarioAtual().id).filter(q=>q.assuntoId===assuntoId);
   const itens = embaralharSemRepetir(usuarioAtual().id, pool).slice(0,15).map(q=>({questaoId:q.id, motivo:"Revisão do assunto: "+nomeAssunto(assuntoId)}));
   iniciarSessaoComLista(itens, "pratica");
+}
+
+/* Curva de retenção: o que acontece quando uma questão que você acertou com segurança volta. */
+function htmlCurvaDeRetencao(u){
+  const faixas = curvaDeRetencao(u.id);
+  const veredito = {
+    alargar: "Você ainda acerta quase tudo: os intervalos podem crescer.",
+    encurtar: "Já esquece nessa distância: a revisão está chegando tarde.",
+    adequada: "Na medida: o intervalo mantém o que você sabe.",
+    poucos: "Ainda poucos casos para opinar.",
+  };
+  const total = faixas.reduce((s,f)=>s+f.n, 0);
+  return htmlSecaoRecolhivel("revisao-retencao", "Quanto você retém entre uma revisão e outra", total ? total+" revisões medidas" : "sem dados ainda", `
+    <p class="text-sm muted">Quando uma questão que você acertou com segurança volta depois de N dias, quanto você acerta? A plataforma busca manter perto de ${CONFIG.retencaoAlvo}%. Só opina com ${CONFIG.minParesParaRetencao} casos ou mais por faixa, e a faixa provável mostra o quanto o número ainda pode variar. Isto só mede: os intervalos não mudam sozinhos.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Voltou depois de</th><th>Casos</th><th>Acerto</th><th>Faixa provável</th><th></th></tr></thead>
+      <tbody>${faixas.map(f=>`<tr><td class="text-sm">${f.rotulo}</td><td class="text-sm">${f.n}</td><td class="text-sm">${f.taxa!==null?f.taxa+"%":"—"}</td><td class="text-sm">${f.n?f.minimo+"–"+f.maximo+"%":"—"}</td><td class="text-sm muted">${veredito[f.veredito]}</td></tr>`).join("")}</tbody>
+    </table></div>`);
 }

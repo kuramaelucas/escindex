@@ -83,6 +83,7 @@ envio, num PostgreSQL de verdade, junto com as regras de segurança).
 > | **Comentários e dúvidas** nas questões chegando à turma e à Fila de Dúvidas | cria a tabela `comentarios` (todos leem; cada um grava o seu; só revisor dá resposta oficial) |
 > | **Percentil de simulado** com as notas da turma inteira | cria a função `notas_do_simulado()` (devolve só id aleatório e nota, uma por aluno — a da primeira tentativa; equipe de fora). A comparação só aparece com 10 alunos ou mais |
 > | **Painel da Turma** (professor e coordenação) — só uso por pessoa, a equipe incluída, e o acerto só somado por ano e turma (mínimo de 3 alunos) | recria `painel_turma()` (sem acerto individual), cria `acerto_por_turma()` e atualiza `atividade_por_semana()` (só a equipe recebe linhas) |
+> | **Suspeitas da turma** (Controle de Qualidade): questões em que a turma erra com um padrão de defeito (alternativa errada mais marcada que o gabarito, erro com certeza) | cria a função `acerto_por_questao()` (só a equipe recebe linhas; soma a primeira resposta de cada aluno por questão, com 3 alunos ou mais, sem nome de ninguém). Sem rodar, a aba avisa que falta rodar o esquema |
 > | A anotação pessoal da questão salva | `alter table public.favoritos add column if not exists nota text ...` |
 > | Quantos flashcards você fez em cada dia | `alter table public.dias_cartoes add column if not exists quantidade integer ...` |
 > | Os **flashcards favoritados** | cria a tabela `favoritos_cartoes`, com RLS e permissões |

@@ -34,7 +34,11 @@ const CONFIG = {
     acertoPresumido: 0.6,      // acerto usado para quem ainda não respondeu nada
     pesoNaSessao: 3,           // na sessão recomendada, o assunto de maior prioridade vem até 4× mais cedo (0 desliga)
     topParaDestacar: 15,       // os 15 assuntos de maior prioridade ganham o selo "cai muito" no motivo da questão
-    minRespostasParaNota: 30,  // a estimativa de nota só aparece a partir de 30 respostas
+    questoesRecentes: 15,      // "desempenho recente" de um assunto = as últimas 15 questões (primeira resposta de cada)
+    minRecentesParaPesar: 5,   // com menos que isso, só vale o histórico total
+    pesoDaRecencia: 2,         // cada questão recente conta como 2 na hora de pesar o recente contra o antigo (peso ≈ 0,3 com histórico longo)
+    minRespostasParaNota: 30,
+    minRespostasSimuladoParaNota: 20,  // a nota só dos simulados aparece a partir de 20 questões feitas em simulado  // a estimativa de nota só aparece a partir de 30 respostas
   },
   hoje: () => new Date(), // usado no lugar de "new Date()" direto, fácil de simular outra data no futuro
 
@@ -108,7 +112,10 @@ const CONFIG = {
      zera a contagem. Num assunto em que a pessoa vai bem (taxa das últimas
      respostas), o intervalo cresce ainda mais — bonusAssuntoForte. */
   intervalosAposAcerto: [30, 60],
+  irmasAntecipadas: 3,       // errar com certeza traz de volta até 3 questões do mesmo assunto que estavam de molho (0 desliga)
   acertosParaDominarQuestao: 3,
+  retencaoAlvo: 85,          // % de acerto que a escada de revisão deve manter quando a questão volta
+  minParesParaRetencao: 10,  // pares "acerto firme → próxima resposta" para opinar sobre uma faixa de dias
   bonusAssuntoForte: [{ taxa: 0.85, fator: 2 }, { taxa: 0.7, fator: 1.5 }],
   minRespostasAssuntoForte: 8,
 
@@ -120,6 +127,8 @@ const CONFIG = {
   // é o acerto deles, e a taxa de acerto de uma pessoa é só dela. O banco
   // aplica a mesma regra (acerto_por_turma no esquema.sql, "tot.alunos >= 3").
   minAlunosParaMedia: 3,
+  minAlunosParaSuspeita: 10, // alunos que responderam a questão para a turma apontar gabarito/enunciado suspeito
+  erroComCertezaSuspeito: 0.3, // fatia da turma que erra dizendo ter certeza para a questão virar suspeita
   // "Não mostrar mais esta questão" só é oferecido depois deste número de
   // erros NA MESMA questão: errar uma vez é o começo da lição, não motivo
   // para tirar a questão da frente

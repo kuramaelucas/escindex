@@ -253,6 +253,11 @@ function notasDaTurmaDoSimulado(chave){
    só chega somado por ano e por turma: o de cada pessoa não sai do banco.
    Banco que ainda não tem acerto_por_turma (esquema.sql antigo) não derruba
    o painel: as médias somem e a tela diz que faltam. */
+/* Acerto da turma por questão (só a equipe recebe linhas). 404 = o banco ainda
+   não tem a função: quem chama avisa para rodar o esquema.sql de novo. */
+function nuvemAcertoPorQuestao(){
+  return nuvemChamar("/rest/v1/rpc/acerto_por_questao", { method: "POST", body: "{}" });
+}
 async function nuvemPainelTurma(){
   const medias = nuvemChamar("/rest/v1/rpc/acerto_por_turma", { method: "POST", body: "{}" })
     .catch(e => { if(e && e.status === 404) return null; throw e; });

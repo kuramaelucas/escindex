@@ -11,10 +11,14 @@ function renderRevisaoDificeis(){
   const sugeridas = questoesSugeridas();
   const duplicadas = gruposDeDuplicatas();
   const cartoesSugeridos = flashcardsSugeridos();
+  carregarSuspeitasDaTurma();
+  const suspeitas = state.filtroRota.suspeitasDados;
+  const nSuspeitas = suspeitas && suspeitas.lista ? suspeitas.lista.length : null;
   return `
   <div class="page-header"><h2>Controle de Qualidade</h2><p>Questões que merecem uma segunda olhada: baixa taxa de acerto, sinalizadas por alunos, ou sugeridas para o banco geral. Professores, residentes e administradores têm acesso — e podem editar a questão direto daqui.</p></div>
   <div class="tabs">
     <div class="tab ${aba==="dificeis"?"active":""}" onclick="mudarAbaQualidade('dificeis')">Questões Difíceis (${lista.length})</div>
+    <div class="tab ${aba==="suspeitas"?"active":""}" onclick="mudarAbaQualidade('suspeitas')">Suspeitas da turma (${nSuspeitas===null?"…":nSuspeitas})</div>
     <div class="tab ${aba==="sinalizadas"?"active":""}" onclick="mudarAbaQualidade('sinalizadas')">Sinalizadas por Alunos (${sinalizadas.length})</div>
     <div class="tab ${aba==="sugeridas"?"active":""}" onclick="mudarAbaQualidade('sugeridas')">Enviadas pela Turma (${sugeridas.length})</div>
     <div class="tab ${aba==="duplicadas"?"active":""}" onclick="mudarAbaQualidade('duplicadas')">Duplicadas (${duplicadas.length})</div>
@@ -22,6 +26,7 @@ function renderRevisaoDificeis(){
   </div>
   ${aba==="dificeis" ? renderListaDificeis(lista)
     : aba==="sinalizadas" ? renderListaSinalizadas(sinalizadas)
+    : aba==="suspeitas" ? renderListaSuspeitas()
     : aba==="duplicadas" ? renderListaDuplicadas(duplicadas)
     : aba==="flashcards" ? renderListaFlashcardsSugeridos(cartoesSugeridos)
     : renderListaSugeridas(sugeridas)}`;
@@ -45,6 +50,42 @@ function renderListaFlashcardsSugeridos(lista){
     </div>`;
   }).join("") : '<div class="empty-state">Nenhuma sugestão de flashcard pendente no momento.</div>'}
   ${controlesPaginacao(pag, "sugestão(ões) de flashcard")}`;
+}
+/* Carrega uma vez o acerto da turma por questão (nuvem) e deixa pronta a lista
+   de suspeitas; sem nuvem não há turma para comparar. */
+function carregarSuspeitasDaTurma(forcar){
+  const atual = state.filtroRota.suspeitasDados;
+  if(!nuvemConectado()){ state.filtroRota.suspeitasDados = { semNuvem: true }; return; }
+  if(atual && !forcar && (atual.carregando || atual.lista || atual.erro)) return;
+  state.filtroRota.suspeitasDados = { carregando: true };
+  nuvemAcertoPorQuestao().then(linhas => {
+    state.filtroRota.suspeitasDados = { lista: suspeitasDeQuestoes(linhas || []), questoes: (linhas || []).length };
+    if(state.route==="revisao-dificeis") render();
+  }).catch(e => {
+    state.filtroRota.suspeitasDados = { erro: e.status === 404
+      ? "O banco ainda não tem a função acerto_por_questao(). Rode o nuvem/esquema.sql inteiro no Supabase (SQL Editor > Run); ele não apaga nada."
+      : (e.message || "Não foi possível carregar o acerto da turma.") };
+    if(state.route==="revisao-dificeis") render();
+  });
+}
+function renderListaSuspeitas(){
+  const d = state.filtroRota.suspeitasDados || {};
+  const intro = `<p class="text-sm muted mb-2">Questões em que a turma erra de um jeito que parece defeito da questão, e não falta de estudo: mais alunos marcam uma alternativa errada do que o gabarito, ou muita gente erra dizendo ter certeza. Conta a primeira resposta de cada aluno e só aparece com ${CONFIG.minAlunosParaSuspeita} alunos ou mais. Confira o gabarito na fonte; depois, se mexer, registre com <code>npm run relatos -- registrar</code> quando houver relato de aluno.</p>`;
+  if(d.semNuvem) return intro+'<div class="empty-state">Esta análise compara a turma toda e precisa da nuvem ligada.</div>';
+  if(d.carregando || !d.lista && !d.erro) return intro+'<div class="empty-state">Carregando o acerto da turma…</div>';
+  if(d.erro) return intro+`<div class="empty-state">${escapeHtml(d.erro)}</div>`;
+  const pag = paginar(d.lista, "qualidade-suspeitas", {porPagina:10});
+  return intro+(d.lista.length ? pag.itens.map(s=>`
+    <div class="card mb-2">
+      <div class="qcard-meta"><span class="badge badge-danger">${s.taxa}% de acerto</span><span class="badge badge-muted">${s.alunos} alunos</span>${s.sinalizacoes ? `<span class="badge badge-amber">${s.sinalizacoes} sinalização(ões)</span>` : ""}<span class="badge badge-muted">${escapeHtml(nomeAssunto(s.q.assuntoId))}</span></div>
+      <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${s.q.id}')">${escapeHtml(s.q.enunciado.slice(0,180))}…</span></div>
+      <ul class="text-sm mt-1">${s.sinais.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
+      <div class="flex gap-1 mt-2 quebra">
+        ${botaoVerNaIntegra(s.q.id, "Ver questão completa")}
+        <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${s.q.id}')">${iconeSvg("edit")} Editar</button>
+      </div>
+    </div>`).join("") : `<div class="empty-state">Nenhuma questão com padrão de erro suspeito entre as ${d.questoes} que já têm alunos suficientes.</div>`)
+    +controlesPaginacao(pag, "questão(ões) suspeita(s)");
 }
 function mudarAbaQualidade(aba){ state.filtroRota.abaQualidade = aba; render(); }
 function podeAprovarQuestoes(){ const u = usuarioAtual(); return u && (u.papel==="admin" || u.papel==="professor"); }

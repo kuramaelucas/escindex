@@ -41,6 +41,7 @@ select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a'
 select pg_temp.igual((select count(*) from painel_turma()), 0, 'aluno não vê o painel da turma');
 select pg_temp.igual((select count(*) from atividade_por_semana(12)), 0, 'aluno não vê a atividade por semana');
 select pg_temp.igual((select count(*) from acerto_por_turma()), 0, 'aluno não vê o acerto da turma');
+select pg_temp.igual((select count(*) from acerto_por_questao()), 0, 'aluno não vê o acerto por questão');
 select pg_temp.igual((select count(*) from notas_do_simulado('Prova X')), 2, 'percentil enxerga uma nota por aluno, sem equipe');
 select pg_temp.igual((select count(*) from respostas where usuario_id='00000000-0000-0000-0000-00000000000b'), 0, 'aluno não lê respostas dos outros');
 insert into comentarios(id,questao_id,usuario_id,autor_nome,texto) values ('c1','q1','00000000-0000-0000-0000-00000000000a','Aluna A','dúvida');
@@ -86,6 +87,7 @@ select pg_temp.igual((select count(*) from log_revisoes_cartoes), 0, 'ninguém l
 insert into comentarios(id,questao_id,usuario_id,autor_nome,texto,resposta_oficial) values ('c4','q1','00000000-0000-0000-0000-00000000000d','Res D','resposta',true);
 select pg_temp.igual((select count(*) from painel_turma()), 0, 'residente não vê o painel da turma');
 select pg_temp.igual((select count(*) from acerto_por_turma()), 0, 'residente não vê o acerto da turma');
+select pg_temp.igual((select count(*) from acerto_por_questao()), 0, 'residente não vê o acerto por questão');
 
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
 select pg_temp.igual((select count(*) from painel_turma()), 6, 'professor vê os alunos e a equipe (o uso da equipe também interessa)');
@@ -96,6 +98,10 @@ select pg_temp.igual((select count(*) from painel_turma() t, jsonb_object_keys(t
 select pg_temp.igual((select count(*) from acerto_por_turma() where ano_faculdade='3º ano' and grupo_id is null), 1, 'acerto do 3º ano aparece com 3 alunos');
 select pg_temp.igual((select acertos from acerto_por_turma() where ano_faculdade='3º ano' and grupo_id is null), 37, 'acerto do 3º ano é a soma dos três (27 da Aluna A + 10 da F + 0 do G)');
 select pg_temp.igual((select count(*) from acerto_por_turma() where ano_faculdade='4º ano'), 0, 'o 4º ano tem um aluno sem resposta: sem média');
+-- acerto por questão: q1..q10 têm 3 alunos (A acerta q1, F acerta, G erra); q11..q40 só a Aluna A, e uma pessoa sozinha não aparece
+select pg_temp.igual((select count(*) from acerto_por_questao()), 10, 'só as questões com 3 alunos aparecem no acerto por questão');
+select pg_temp.igual((select acertos from acerto_por_questao() where questao_id='q1'), 2, 'acerto por questão: A e F acertam q1, G erra');
+select pg_temp.igual((select count(*) from acerto_por_questao() t, jsonb_object_keys(to_jsonb(t)) k where k ~ 'usuario|aluno_id|nome'), 0, 'acerto por questão não devolve ninguém por nome');
 select pg_temp.igual((select respostas from painel_turma() where nome='Aluna A'), 40, 'painel soma as respostas');
 select pg_temp.igual((select respostas from acerto_por_turma() where ano_faculdade='3º ano' and grupo_id is null), 60, 'o acerto agregado soma as respostas dos três');
 select pg_temp.igual((select respostas_7d from painel_turma() where nome='Aluna A'), 6, 'painel conta os últimos 7 dias');

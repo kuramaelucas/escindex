@@ -2,31 +2,135 @@
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ---------- desempenho / sugestões / calibração de confiança ---------- */
+/* PRIMEIRA RESPOSTA. Refazer uma questão (revisão espaçada, "praticar erradas")
+   mede memória daquela questão, não domínio do assunto — e infla justamente os
+   assuntos mais revisados. Por isso a taxa que decide prioridade e nota conta
+   só a primeira resposta de cada questão; as repetições entram à parte, como
+   retenção (`taxaTodas`). Resposta sem questaoId conta como questão própria. */
+function chaveCronologica(r){ return r.respondidaEm || r.data || ""; }
+function primeirasRespostas(usuarioId, filtro){
+  const primeira = new Map();
+  db.respostas.forEach(r=>{
+    if(r.usuarioId!==usuarioId || (filtro && !filtro(r))) return;
+    const k = r.questaoId || r.id;
+    const atual = primeira.get(k);
+    if(!atual || chaveCronologica(r) < chaveCronologica(atual)) primeira.set(k, r);
+  });
+  return [...primeira.values()].sort((a,b)=>chaveCronologica(a).localeCompare(chaveCronologica(b)));
+}
+/* Faixa de Wilson (95%) em %: "3 de 4" e "75 de 100" não valem o mesmo, e a
+   taxa solta esconde isso. Fica melhor que a faixa normal com amostra pequena
+   e com taxa perto de 0 ou 100. */
+function faixaDeWilson(acertos, total){
+  if(!total) return {minimo:0, maximo:100};
+  const z = 1.96, p = acertos/total, z2 = z*z;
+  const centro = (p + z2/(2*total)) / (1 + z2/total);
+  const meia = z*Math.sqrt(p*(1-p)/total + z2/(4*total*total)) / (1 + z2/total);
+  return {minimo: Math.max(0, Math.round((centro-meia)*100)), maximo: Math.min(100, Math.round((centro+meia)*100))};
+}
+/* Acerto estimado de um recorte (assunto ou área) misturando o que veio ANTES
+   com as últimas questões. As últimas fazem parte do total, então misturar
+   "recente" com "total" contaria o recente duas vezes e o peso mudaria com o
+   tamanho do histórico; por isso a comparação é recente × antigo, sem
+   sobreposição. O peso do recente é a sua parte nos dados, contando em dobro
+   (CONFIG.incidencia.pesoDaRecencia): com histórico longo ele fica perto de
+   0,3; com pouco histórico, onde o recente é quase tudo, ele domina. Cada
+   lado é puxado para o acerto geral (respostasDePeso) para não premiar nem
+   punir amostra pequena. `m` = {total, acertos, recente:{total, acertos}},
+   com `recente` contido em `total`. */
+function acertoEstimadoDoRecorte(m, taxaGeral){
+  const k = CONFIG.incidencia.respostasDePeso;
+  const rec = m.recente;
+  const antigoTotal = m.total - (rec ? rec.total : 0);
+  if(!rec || rec.total < CONFIG.incidencia.minRecentesParaPesar || antigoTotal <= 0)
+    return (m.acertos + k*taxaGeral) / (m.total + k);
+  const pRecente = (rec.acertos + k*taxaGeral) / (rec.total + k);
+  const pAntigo = (m.acertos - rec.acertos + k*taxaGeral) / (antigoTotal + k);
+  const f = CONFIG.incidencia.pesoDaRecencia * rec.total;
+  const w = f / (f + antigoTotal);
+  return (1-w)*pAntigo + w*pRecente;
+}
+/* O porquê do número de um assunto, para a dica da tela: a plataforma explica o que faz. */
+function textoDetalheDoAssunto(d){
+  return "Primeira resposta de cada questão: "+d.acertos+" de "+d.total+" ("+d.taxa+"%, faixa provável "+d.minimo+"–"+d.maximo+"%). "
+    +"Últimas "+d.recente.total+": "+d.recente.taxa+"%. "
+    +"Contando as repetições: "+d.taxaTodas+"% em "+d.totalTodas+". "
+    +"O número principal compara o que veio antes com as últimas questões, que pesam mais.";
+}
 function desempenhoPorAssunto(usuarioId){
   const porAssunto = {};
-  db.respostas.filter(r=>r.usuarioId===usuarioId).forEach(r=>{
+  primeirasRespostas(usuarioId).forEach(r=>{
     (porAssunto[r.assuntoId] = porAssunto[r.assuntoId]||[]).push(r);
   });
+  const repeticoes = {};
+  db.respostas.forEach(r=>{
+    if(r.usuarioId!==usuarioId) return;
+    const m = repeticoes[r.assuntoId] = repeticoes[r.assuntoId] || {total:0, acertos:0};
+    m.total++; if(r.correta) m.acertos++;
+  });
+  const geral = acertoGeralDoUsuario(usuarioId).taxa;
   return Object.entries(porAssunto).map(([assuntoId, respostas])=>{
-    respostas.sort((a,b)=>a.data.localeCompare(b.data));
     const total = respostas.length;
     const acertos = respostas.filter(r=>r.correta).length;
-    // evolução: média móvel em blocos de até 3 respostas, para dar uma linha
-    // de tendência mesmo com poucos dados (comum no início de uso)
+    // evolução: média móvel em blocos, para dar uma linha de tendência mesmo
+    // com poucos dados (comum no início de uso)
     const tamanhoBloco = Math.max(1, Math.ceil(total/8));
     const evolucao = [];
     for(let i=0;i<total;i+=tamanhoBloco){
       const fatia = respostas.slice(i, i+tamanhoBloco);
       evolucao.push(pct(fatia.filter(r=>r.correta).length, fatia.length));
     }
-    const revisao = proximaRevisaoAssunto(usuarioId, assuntoId);
+    const ult = respostas.slice(-CONFIG.incidencia.questoesRecentes);
+    const recente = {total: ult.length, acertos: ult.filter(r=>r.correta).length};
+    recente.taxa = pct(recente.acertos, recente.total);
+    const todas = repeticoes[assuntoId] || {total, acertos};
+    const faixa = faixaDeWilson(acertos, total);
     return {
       assuntoId, total, acertos, taxa: pct(acertos,total), evolucao,
+      recente, minimo: faixa.minimo, maximo: faixa.maximo,
+      acertoEstimado: acertoEstimadoDoRecorte({total, acertos, recente}, geral),
+      totalTodas: todas.total, taxaTodas: pct(todas.acertos, todas.total),
       especialidadeId: especialidadeDeAssunto(assuntoId)?.id,
       areaId: areaDeAssunto(assuntoId)?.id,
-      proximaRevisao: revisao ? revisao.proxima : null,
+      // preguiçosa: filtra todas as respostas a cada assunto e quase ninguém lê;
+      // prioridadesDeEstudo chama esta função várias vezes por tela
+      get proximaRevisao(){ const r = proximaRevisaoAssunto(usuarioId, assuntoId); return r ? r.proxima : null; },
     };
-  }).sort((a,b)=>a.taxa-b.taxa);
+  // do mais certamente fraco ao menos: o teto da faixa pesa mais que a taxa solta,
+  // senão "0 de 1" ficaria sempre no topo e "2 de 10" (muito mais convincente) abaixo
+  }).sort((a,b)=>a.maximo-b.maximo || a.taxa-b.taxa);
+}
+/* CURVA DE RETENÇÃO: depois de um acerto firme, quanto a pessoa acerta a mesma
+   questão quando ela volta em N dias? É o teste da escada de revisão com o
+   uso real: se aos 30–60 dias o acerto continua alto, o intervalo pode
+   crescer; se já caiu, está longo demais. Só conta par "acerto firme → próxima
+   resposta" (é nesse caso que a escada decide esperar mais) e ignora o mesmo
+   dia. Só diagnostica — nunca muda a escada sozinha. */
+const FAIXAS_DE_RETENCAO = [
+  {id:"ate14", rotulo:"até 14 dias", ate:14}, {id:"ate30", rotulo:"15 a 30 dias", ate:30},
+  {id:"ate60", rotulo:"31 a 60 dias", ate:60}, {id:"mais60", rotulo:"mais de 60 dias", ate:Infinity},
+];
+function curvaDeRetencao(usuarioId){
+  const faixas = FAIXAS_DE_RETENCAO.map(f=>({...f, n:0, acertos:0}));
+  const porQuestao = {};
+  db.respostas.forEach(r=>{ if(r.usuarioId===usuarioId && r.questaoId && r.data) (porQuestao[r.questaoId] = porQuestao[r.questaoId]||[]).push(r); });
+  Object.values(porQuestao).forEach(rs=>{
+    rs.sort((a,b)=>chaveCronologica(a).localeCompare(chaveCronologica(b)));
+    for(let i=1;i<rs.length;i++){
+      if(!acertoFirme(rs[i-1])) continue;
+      const dias = diasEntre(rs[i-1].data, rs[i].data);
+      if(dias<1) continue;
+      const f = faixas.find(x=>dias<=x.ate);
+      f.n++; if(rs[i].correta) f.acertos++;
+    }
+  });
+  const meta = CONFIG.retencaoAlvo;
+  return faixas.map(f=>{
+    const w = faixaDeWilson(f.acertos, f.n);
+    let veredito = "poucos";                                   // amostra pequena não decide nada
+    if(f.n >= CONFIG.minParesParaRetencao) veredito = w.minimo >= meta+5 ? "alargar" : w.maximo < meta-5 ? "encurtar" : "adequada";
+    return {...f, taxa: f.n ? pct(f.acertos, f.n) : null, minimo: w.minimo, maximo: w.maximo, veredito};
+  });
 }
 /* SIMULADO × ESTUDO. Para cada assunto em que a pessoa respondeu em simulado,
    compara o acerto lá (resposta com origem "simulado") com o acerto nas
@@ -83,7 +187,7 @@ function desempenhoPorArea(usuarioId){
     return {
       areaId: area.id, nome: area.nome, total: info.total, acertos: info.acertos,
       taxa: info.total ? pct(info.acertos, info.total) : null,
-      assuntos: info.assuntos.sort((a,b)=>a.taxa-b.taxa),
+      assuntos: info.assuntos.sort((a,b)=>a.maximo-b.maximo || a.taxa-b.taxa),   // mesma ordem de desempenhoPorAssunto
     };
   });
 }
@@ -257,7 +361,9 @@ function desempenhoTotal(usuarioId){
   };
 }
 function sugestoesDeMelhoria(usuarioId, limite){
-  return desempenhoPorAssunto(usuarioId).filter(d=>d.total>=5 && d.taxa<70).slice(0, limite||5);
+  // vale o acerto estimado (histórico + últimas questões), não a taxa da vida inteira:
+  // quem já virou o jogo num assunto deixa de ser lembrado dele
+  return desempenhoPorAssunto(usuarioId).filter(d=>d.total>=5 && d.acertoEstimado<0.7).slice(0, limite||5);
 }
 /* Ritmo do aluno ao longo de todas as respostas cronometradas. */
 function analiseDeTempo(usuarioId){
@@ -592,6 +698,32 @@ function questoesDificeis(){
     .sort((a,b)=>(a.estatisticas.acertos/a.estatisticas.respostas)-(b.estatisticas.acertos/b.estatisticas.respostas));
 }
 
+/* QUESTÃO SUSPEITA PELA TURMA. Taxa de acerto baixa pode ser só questão difícil;
+   o que denuncia gabarito ou enunciado com problema é o PADRÃO do erro: a turma
+   escolhe com certeza uma alternativa que não é o gabarito, ou a errada é mais
+   marcada que a certa. `linhas` vem de acerto_por_questao() (primeira resposta
+   de cada aluno, só questão com 3 alunos ou mais). Aqui só entra questão com
+   CONFIG.minAlunosParaSuspeita alunos: com 3 ou 4, um aluno muda tudo. */
+function suspeitasDeQuestoes(linhas){
+  const lista = [];
+  (linhas||[]).forEach(l=>{
+    const alunos = +l.alunos, acertos = +l.acertos, certeza = +l.erros_com_certeza;
+    if(alunos < CONFIG.minAlunosParaSuspeita) return;
+    const q = getQuestao(l.questao_id);
+    if(!q || ehDissertativa(q) || q.status!=="ativa" || q.revisadaProfessor) return;
+    const escolhas = l.alternativas || {};
+    const [altTop, nTop] = Object.entries(escolhas).sort((a,b)=>b[1]-a[1])[0] || [null, 0];
+    const sinais = [];
+    const compartilhaCerteza = certeza/alunos;
+    if(altTop && altTop!==q.gabarito && nTop > (escolhas[q.gabarito]||0)) sinais.push("mais alunos marcaram a "+altTop+" ("+nTop+") do que o gabarito, a "+q.gabarito+" ("+(escolhas[q.gabarito]||0)+")");
+    if(compartilhaCerteza >= CONFIG.erroComCertezaSuspeito) sinais.push(Math.round(compartilhaCerteza*100)+"% da turma errou dizendo ter certeza");
+    if(!sinais.length) return;
+    const sinalizacoes = (q.sinalizacoes||[]).length;
+    lista.push({ q, alunos, taxa: pct(acertos, alunos), certeza: Math.round(compartilhaCerteza*100), altTop, sinais, sinalizacoes,
+                 pontos: compartilhaCerteza + (sinais.length>1 ? 0.5 : 0.25) + 0.1*sinalizacoes });
+  });
+  return lista.sort((a,b)=>b.pontos-a.pontos);
+}
 /* ---------- O QUE MAIS CAI NA PROVA (incidência na banca) -----------------
    As provas reais que estão no banco dizem, assunto por assunto, o que a
    banca cobra — e quanto. Cruzado com o acerto de cada pessoa, isso vira a
@@ -632,7 +764,7 @@ function incidenciaNaBanca(banca){
   return r;
 }
 function acertoGeralDoUsuario(usuarioId){
-  const rs = db.respostas.filter(r=>r.usuarioId===usuarioId);
+  const rs = primeirasRespostas(usuarioId);
   return { total: rs.length, acertos: rs.filter(r=>r.correta).length,
            taxa: rs.length ? rs.filter(r=>r.correta).length/rs.length : CONFIG.incidencia.acertoPresumido };
 }
@@ -640,16 +772,11 @@ function prioridadesDeEstudo(usuarioId, banca){
   const inc = incidenciaNaBanca(banca);
   if(!inc.total) return [];
   const geral = acertoGeralDoUsuario(usuarioId);
-  const k = CONFIG.incidencia.respostasDePeso;
   const minhas = {};
-  db.respostas.forEach(r=>{
-    if(r.usuarioId!==usuarioId) return;
-    const m = minhas[r.assuntoId] = minhas[r.assuntoId] || { total:0, acertos:0 };
-    m.total++; if(r.correta) m.acertos++;
-  });
+  desempenhoPorAssunto(usuarioId).forEach(d=>{ minhas[d.assuntoId] = d; });
   const lista = Object.values(inc.porAssunto).map(a=>{
     const m = minhas[a.assuntoId] || { total:0, acertos:0 };
-    const acertoEstimado = (m.acertos + k*geral.taxa) / (m.total + k);
+    const acertoEstimado = m.total ? m.acertoEstimado : geral.taxa;
     const fatia = a.n / inc.total;
     return {
       assuntoId: a.assuntoId, areaId: a.areaId, questoesNaProva: a.n, anosQueCaiu: a.anos.size,
@@ -685,17 +812,33 @@ function assuntosQueMaisCaem(usuarioId){
    com o mesmo "puxão" para o acerto geral quando a área tem poucas
    respostas. A faixa (mais ou menos) é o erro-padrão dessa conta: com
    poucas respostas ela é larga, e a tela diz isso em vez de fingir precisão.
-   Só aparece a partir de CONFIG.incidencia.minRespostasParaNota respostas. */
+   Só aparece a partir de CONFIG.incidencia.minRespostasParaNota questões diferentes respondidas. */
 function estimativaDeNota(usuarioId, banca){
   const inc = incidenciaNaBanca(banca);
   const geral = acertoGeralDoUsuario(usuarioId);
   if(!inc.total || geral.total < CONFIG.incidencia.minRespostasParaNota) return null;
+  const principal = notaDasRespostas(inc, primeirasRespostas(usuarioId), geral.taxa);
+  /* Simulado × estudo lado a lado: no simulado há relógio, cansaço e a prova
+     inteira de uma vez — a nota de lá é a que mais se parece com a do dia.
+     Cada lado conta a primeira resposta DE CADA QUESTÃO naquele contexto. */
+  const sim = primeirasRespostas(usuarioId, r=>r.origem==="simulado");
+  const est = primeirasRespostas(usuarioId, r=>r.origem!=="simulado");
+  const min = CONFIG.incidencia.minRespostasSimuladoParaNota;
+  return Object.assign({ banca: inc.banca, anos: inc.anos, respostas: geral.total }, principal, {
+    simulado: sim.length >= min ? Object.assign({respostas: sim.length}, notaDasRespostas(inc, sim, geral.taxa)) : null,
+    estudo: sim.length >= min && est.length >= CONFIG.incidencia.minRespostasParaNota ? Object.assign({respostas: est.length}, notaDasRespostas(inc, est, geral.taxa)) : null,
+    faltamParaSimulado: sim.length >= min ? 0 : min - sim.length,
+  });
+}
+function notaDasRespostas(inc, respostas, taxaGeral){
   const k = CONFIG.incidencia.respostasDePeso;
   let nota = 0, variancia = 0;
   const areas = db.taxonomia.areas.map(area=>{
-    const rs = db.respostas.filter(r=>r.usuarioId===usuarioId && r.areaId===area.id);
+    const rs = respostas.filter(r=>r.areaId===area.id);
     const acertos = rs.filter(r=>r.correta).length;
-    const p = (acertos + k*geral.taxa) / (rs.length + k);
+    // a área tem mais respostas que o assunto: a janela das "últimas" é o dobro
+    const ult = rs.slice(-2*CONFIG.incidencia.questoesRecentes);
+    const p = acertoEstimadoDoRecorte({total:rs.length, acertos, recente:{total:ult.length, acertos:ult.filter(r=>r.correta).length}}, taxaGeral);
     const fatia = (inc.porArea[area.id]||0) / inc.total;
     nota += fatia * p;
     variancia += fatia*fatia * p*(1-p) / (rs.length + k);
@@ -703,9 +846,8 @@ function estimativaDeNota(usuarioId, banca){
              pontos: fatia * p * 100 };
   });
   const ep = Math.sqrt(variancia);
-  return { banca: inc.banca, anos: inc.anos, nota: Math.round(nota*100),
-           minimo: Math.max(0, Math.round((nota - 1.96*ep)*100)), maximo: Math.min(100, Math.round((nota + 1.96*ep)*100)),
-           respostas: geral.total, areas };
+  return { nota: Math.round(nota*100),
+           minimo: Math.max(0, Math.round((nota - 1.96*ep)*100)), maximo: Math.min(100, Math.round((nota + 1.96*ep)*100)), areas };
 }
 
 /* ---------- a prova-alvo e o prazo da revisão ----------

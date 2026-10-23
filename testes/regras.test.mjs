@@ -457,3 +457,161 @@ test("Criar Simulado: a sugestão marca a mistura mais difícil e completa pelo 
     assert.ok(r.n[0] <= 6 || r.disponivel[1] + r.disponivel[2] < 34);
   } finally { await contexto.close(); }
 });
+
+test("desempenho do assunto: conta a primeira resposta, mostra a faixa e pesa as últimas 15", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      const u = usuarioAtual();
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const [a, b] = db.taxonomia.assuntos;
+      const poe = (ass, q, correta, dia) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q, assuntoId: ass, correta, data: somarDias(hojeISO(), -dia), respondidaEm: somarDias(hojeISO(), -dia) + "T10:00:00Z", confianca: "duvida" });
+      // assunto A: 20 questões, erra as 10 primeiras e acerta as 10 últimas; depois refaz todas e acerta
+      for(let i = 0; i < 20; i++) poe(a.id, "qa" + i, i >= 10, 60 - i);
+      for(let i = 0; i < 20; i++) poe(a.id, "qa" + i, true, 1);
+      // assunto B: uma única resposta errada, só para existir mais de um assunto no total geral
+      poe(b.id, "qb0", false, 5);
+      const A = desempenhoPorAssunto(u.id).find(x => x.assuntoId === a.id);
+      return { total: A.total, acertos: A.acertos, todas: A.totalTodas, taxaTodas: A.taxaTodas, rec: A.recente, estimado: A.acertoEstimado, faixa: [A.minimo, A.maximo], geral: acertoGeralDoUsuario(u.id).total };
+    });
+    assert.equal(r.total, 20);          // repetição não conta como domínio
+    assert.equal(r.acertos, 10);
+    assert.equal(r.todas, 40);          // mas continua registrada como retenção
+    assert.equal(r.taxaTodas, 75);
+    assert.deepEqual([r.rec.total, r.rec.acertos], [15, 10]);   // últimas 15: as 5 mais antigas erradas já saíram
+    assert.ok(r.estimado > 0.5, "as últimas questões puxam o estimado para cima da taxa de 50%");
+    assert.ok(r.faixa[0] < 50 && r.faixa[1] > 50);
+    assert.equal(r.geral, 21);
+  } finally { await contexto.close(); }
+});
+
+test("nota estimada: a nota dos simulados aparece à parte, só depois de 20 questões feitas em simulado", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const u = usuarioAtual();
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const qs = db.questoes.filter(q => q.real && q.status === "ativa").slice(0, 60);
+      const poe = (q, i, origem, correta) => db.respostas.push({ id: "t" + origem + i, usuarioId: u.id, questaoId: q.id, areaId: q.areaId, assuntoId: q.assuntoId, correta, origem, confianca: "duvida", data: hojeISO() });
+      qs.slice(0, 40).forEach((q, i) => poe(q, i, "lista", true));          // estudo: acerta tudo
+      const antes = estimativaDeNota(u.id);
+      qs.slice(40, 60).forEach((q, i) => poe(q, i, "simulado", false));      // simulado: erra tudo, questões diferentes
+      const depois = estimativaDeNota(u.id);
+      return { faltam: antes.faltamParaSimulado, simAntes: antes.simulado, sim: depois.simulado && depois.simulado.nota, est: depois.estudo && depois.estudo.nota, geral: depois.nota };
+    });
+    assert.equal(r.faltam, 20);
+    assert.equal(r.simAntes, null);
+    assert.ok(r.sim < r.est, `simulado ${r.sim} deveria ficar abaixo do estudo ${r.est}`);
+    assert.ok(r.sim < r.geral && r.geral < r.est);
+  } finally { await contexto.close(); }
+});
+
+test("errar com certeza antecipa até 3 questões do mesmo assunto; errar na dúvida não mexe em nenhuma", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const u = usuarioAtual();
+      db.revisoes[u.id] = {};
+      const porAssunto = {};
+      db.questoes.filter(q => q.real && q.status === "ativa" && q.gabarito && !aguardaImagem(q)).forEach(q => (porAssunto[q.assuntoId] = porAssunto[q.assuntoId] || []).push(q));
+      const grupo = Object.values(porAssunto).find(g => g.length >= 7);
+      const [alvo, ...irmas] = grupo;
+      const longe = somarDias(hojeISO(), 60);
+      irmas.slice(0, 5).forEach(q => { db.revisoes[u.id][q.id] = { repeticoes: 1, fator: 2.5, intervalo: 60, proximaRevisao: longe, ultimaData: hojeISO(), ultimaCorreta: true, ultimaConfianca: "certeza" }; });
+      db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: alvo.id, assuntoId: alvo.assuntoId, areaId: alvo.areaId, correta: false, confianca: "duvida", data: hojeISO() });
+      registrarRevisao(u.id, alvo.id, false, "duvida");
+      const aposDuvida = irmas.slice(0, 5).filter(q => db.revisoes[u.id][q.id].proximaRevisao !== longe).length;
+      registrarRevisao(u.id, alvo.id, false, "certeza");
+      const antecipadas = irmas.slice(0, 5).filter(q => db.revisoes[u.id][q.id].proximaRevisao !== longe);
+      // o que vale é a data EFETIVA (a da fila), e ela tem de sobreviver à ida e volta pela nuvem, que só leva os campos conhecidos
+      const viaNuvem = q => { const e = db.revisoes[u.id][q.id]; return proximaRevisaoEfetiva({ repeticoes: e.repeticoes, fator: e.fator, intervalo: e.intervalo, proximaRevisao: e.proximaRevisao, ultimaData: e.ultimaData, ultimaCorreta: e.ultimaCorreta, ultimaConfianca: e.ultimaConfianca }); };
+      const efetivas = antecipadas.map(viaNuvem);
+      const intactaEfetiva = irmas.slice(0, 5).filter(q => !antecipadas.includes(q)).map(q => proximaRevisaoEfetiva(db.revisoes[u.id][q.id]));
+      return { aposDuvida, n: antecipadas.length, data: db.revisoes[u.id][antecipadas[0].id].proximaRevisao, esperada: somarDias(hojeISO(), CONFIG.intervaloMinimoRevisao),
+               naoRespondidaIntacta: !db.revisoes[u.id][irmas[6].id], efetivas, intactaEfetiva, longe };
+    });
+    assert.equal(r.aposDuvida, 0);
+    assert.equal(r.n, 3);
+    assert.equal(r.data, r.esperada);
+    assert.deepEqual(r.efetivas, [r.esperada, r.esperada, r.esperada]);   // o piso de um mês não desfaz a antecipação
+    assert.ok(r.intactaEfetiva.every(d => d === r.longe));               // as que não foram antecipadas seguem no prazo
+    assert.ok(r.naoRespondidaIntacta);       // questão que a pessoa nunca respondeu não ganha revisão
+  } finally { await contexto.close(); }
+});
+
+test("curva de retenção: só conta acerto firme seguido de nova resposta, por faixa de dias, e só opina com casos suficientes", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const u = usuarioAtual();
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const base = "2026-01-01";
+      const poe = (q, dia, correta, confianca) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q, correta, confianca, data: somarDias(base, dia), respondidaEm: somarDias(base, dia) + "T10:00:00Z" });
+      // 12 questões: acerto firme, volta 40 dias depois — 11 acertam e 1 erra
+      for(let i = 0; i < 12; i++){ poe("q" + i, 0, true, "certeza"); poe("q" + i, 40, i !== 0, "certeza"); }
+      // acerto no chute não conta como ponto de partida; mesmo dia também não
+      poe("c", 0, true, "chute"); poe("c", 10, false, "duvida");
+      poe("d", 0, true, "certeza"); poe("d", 0, false, "certeza");
+      const f = curvaDeRetencao(u.id);
+      return Object.fromEntries(f.map(x => [x.id, { n: x.n, taxa: x.taxa, veredito: x.veredito }]));
+    });
+    assert.deepEqual(r.ate14, { n: 0, taxa: null, veredito: "poucos" });
+    assert.equal(r.ate60.n, 12);
+    assert.equal(r.ate60.taxa, 92);
+    assert.equal(r.ate60.veredito, "adequada");   // 11/12: faixa provável ainda inclui a meta, não dá para mandar alargar
+  } finally { await contexto.close(); }
+});
+
+test("suspeitas da turma: aponta o padrão de erro (alternativa errada mais marcada que o gabarito, erro com certeza), não só a taxa baixa", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("admin");
+      const [a, b, c, d] = db.questoes.filter(q => q.real && q.status === "ativa" && q.gabarito && !ehDissertativa(q) && !q.revisadaProfessor);
+      const errada = q => q.alternativas.find(x => x.id !== q.gabarito).id;
+      const linhas = [
+        { questao_id: a.id, alunos: 20, acertos: 4, erros_com_certeza: 10, alternativas: { [errada(a)]: 12, [a.gabarito]: 4 } },   // suspeita nos dois sinais
+        { questao_id: b.id, alunos: 20, acertos: 5, erros_com_certeza: 1, alternativas: { [b.gabarito]: 5, [errada(b)]: 5 } },       // difícil, mas sem padrão: não é suspeita
+        { questao_id: c.id, alunos: 6, acertos: 0, erros_com_certeza: 6, alternativas: { [errada(c)]: 6 } },                         // poucos alunos: ainda não decide
+        { questao_id: d.id, alunos: 15, acertos: 6, erros_com_certeza: 6, alternativas: { [d.gabarito]: 6, [errada(d)]: 5 } },       // só erro com certeza
+      ];
+      const lista = suspeitasDeQuestoes(linhas);
+      state.filtroRota.suspeitasDados = { lista, questoes: linhas.length };
+      const html = renderListaSuspeitas();
+      return { ids: lista.map(s => s.q.id), esperados: [a.id, d.id], sinaisA: lista[0].sinais.length, sinaisD: lista[1].sinais.length, mostraA: html.includes(a.id), mostraB: html.includes(b.id) };
+    });
+    assert.deepEqual(r.ids, r.esperados);       // a primeira (dois sinais) vem antes
+    assert.equal(r.sinaisA, 2);
+    assert.equal(r.sinaisD, 1);
+    assert.ok(r.mostraA && !r.mostraB);
+  } finally { await contexto.close(); }
+});
+
+test("acerto estimado: o recente é comparado com o antigo (sem contar duas vezes) e pesa mais quando o histórico é curto", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      const g = 0.5;
+      const longo = acertoEstimadoDoRecorte({ total: 115, acertos: 65, recente: { total: 15, acertos: 15 } }, g);   // 100 antigas a 50% + 15 recentes certas
+      const semAntigo = acertoEstimadoDoRecorte({ total: 15, acertos: 15, recente: { total: 15, acertos: 15 } }, g);
+      const total = (15 + 4 * g) / (15 + 4);
+      const curto = acertoEstimadoDoRecorte({ total: 20, acertos: 10, recente: { total: 15, acertos: 10 } }, g);     // 5 antigas erradas + 15 recentes a 67%
+      const pouco = acertoEstimadoDoRecorte({ total: 8, acertos: 4, recente: { total: 4, acertos: 4 } }, g);         // menos de 5 recentes: vale só o total
+      return { longo, semAntigo, total, curto, pouco, poucoTotal: (4 + 4 * g) / (8 + 4) };
+    });
+    assert.ok(r.longo > 0.57 && r.longo < 0.62, "histórico longo: o recente puxa pouco, " + r.longo);
+    assert.ok(Math.abs(r.semAntigo - r.total) < 1e-9, "sem parte antiga não há o que comparar");
+    assert.ok(r.curto > 0.55, "histórico curto: o recente domina, " + r.curto);
+    assert.ok(Math.abs(r.pouco - r.poucoTotal) < 1e-9);
+  } finally { await contexto.close(); }
+});
