@@ -36,7 +36,7 @@ const CONFIG = {
     topParaDestacar: 15,       // os 15 assuntos de maior prioridade ganham o selo "cai muito" no motivo da questão
     questoesRecentes: 15,      // "desempenho recente" de um assunto = as últimas 15 questões (primeira resposta de cada)
     minRecentesParaPesar: 5,   // com menos que isso, só vale o histórico total
-    pesoDoRecente: 0.5,        // acerto estimado = metade histórico total, metade últimas questões
+    pesoDaRecencia: 2,         // cada questão recente conta como 2 na hora de pesar o recente contra o antigo (peso ≈ 0,3 com histórico longo)
     minRespostasParaNota: 30,
     minRespostasSimuladoParaNota: 20,  // a nota só dos simulados aparece a partir de 20 questões feitas em simulado  // a estimativa de nota só aparece a partir de 30 respostas
   },

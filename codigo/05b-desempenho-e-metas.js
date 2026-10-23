@@ -28,26 +28,34 @@ function faixaDeWilson(acertos, total){
   const meia = z*Math.sqrt(p*(1-p)/total + z2/(4*total*total)) / (1 + z2/total);
   return {minimo: Math.max(0, Math.round((centro-meia)*100)), maximo: Math.min(100, Math.round((centro+meia)*100))};
 }
-/* Acerto estimado de um recorte (assunto ou área) misturando o histórico todo
-   e as últimas questões: quem melhorou (ou piorou) há pouco não fica preso ao
-   número da vida inteira. Os dois lados são puxados para o acerto geral
-   (CONFIG.incidencia.respostasDePeso) para não premiar nem punir amostra
-   pequena. `m` = {total, acertos, recente:{total, acertos}}. */
+/* Acerto estimado de um recorte (assunto ou área) misturando o que veio ANTES
+   com as últimas questões. As últimas fazem parte do total, então misturar
+   "recente" com "total" contaria o recente duas vezes e o peso mudaria com o
+   tamanho do histórico; por isso a comparação é recente × antigo, sem
+   sobreposição. O peso do recente é a sua parte nos dados, contando em dobro
+   (CONFIG.incidencia.pesoDaRecencia): com histórico longo ele fica perto de
+   0,3; com pouco histórico, onde o recente é quase tudo, ele domina. Cada
+   lado é puxado para o acerto geral (respostasDePeso) para não premiar nem
+   punir amostra pequena. `m` = {total, acertos, recente:{total, acertos}},
+   com `recente` contido em `total`. */
 function acertoEstimadoDoRecorte(m, taxaGeral){
   const k = CONFIG.incidencia.respostasDePeso;
-  const total = (m.acertos + k*taxaGeral) / (m.total + k);
   const rec = m.recente;
-  if(!rec || rec.total < CONFIG.incidencia.minRecentesParaPesar) return total;
-  const recente = (rec.acertos + k*taxaGeral) / (rec.total + k);
-  const w = CONFIG.incidencia.pesoDoRecente;
-  return (1-w)*total + w*recente;
+  const antigoTotal = m.total - (rec ? rec.total : 0);
+  if(!rec || rec.total < CONFIG.incidencia.minRecentesParaPesar || antigoTotal <= 0)
+    return (m.acertos + k*taxaGeral) / (m.total + k);
+  const pRecente = (rec.acertos + k*taxaGeral) / (rec.total + k);
+  const pAntigo = (m.acertos - rec.acertos + k*taxaGeral) / (antigoTotal + k);
+  const f = CONFIG.incidencia.pesoDaRecencia * rec.total;
+  const w = f / (f + antigoTotal);
+  return (1-w)*pAntigo + w*pRecente;
 }
 /* O porquê do número de um assunto, para a dica da tela: a plataforma explica o que faz. */
 function textoDetalheDoAssunto(d){
   return "Primeira resposta de cada questão: "+d.acertos+" de "+d.total+" ("+d.taxa+"%, faixa provável "+d.minimo+"–"+d.maximo+"%). "
     +"Últimas "+d.recente.total+": "+d.recente.taxa+"%. "
     +"Contando as repetições: "+d.taxaTodas+"% em "+d.totalTodas+". "
-    +"O número principal mistura o histórico e as últimas questões.";
+    +"O número principal compara o que veio antes com as últimas questões, que pesam mais.";
 }
 function desempenhoPorAssunto(usuarioId){
   const porAssunto = {};

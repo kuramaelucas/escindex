@@ -589,3 +589,23 @@ test("suspeitas da turma: aponta o padrão de erro (alternativa errada mais marc
     assert.ok(r.mostraA && !r.mostraB);
   } finally { await contexto.close(); }
 });
+
+test("acerto estimado: o recente é comparado com o antigo (sem contar duas vezes) e pesa mais quando o histórico é curto", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      const g = 0.5;
+      const longo = acertoEstimadoDoRecorte({ total: 115, acertos: 65, recente: { total: 15, acertos: 15 } }, g);   // 100 antigas a 50% + 15 recentes certas
+      const semAntigo = acertoEstimadoDoRecorte({ total: 15, acertos: 15, recente: { total: 15, acertos: 15 } }, g);
+      const total = (15 + 4 * g) / (15 + 4);
+      const curto = acertoEstimadoDoRecorte({ total: 20, acertos: 10, recente: { total: 15, acertos: 10 } }, g);     // 5 antigas erradas + 15 recentes a 67%
+      const pouco = acertoEstimadoDoRecorte({ total: 8, acertos: 4, recente: { total: 4, acertos: 4 } }, g);         // menos de 5 recentes: vale só o total
+      return { longo, semAntigo, total, curto, pouco, poucoTotal: (4 + 4 * g) / (8 + 4) };
+    });
+    assert.ok(r.longo > 0.57 && r.longo < 0.62, "histórico longo: o recente puxa pouco, " + r.longo);
+    assert.ok(Math.abs(r.semAntigo - r.total) < 1e-9, "sem parte antiga não há o que comparar");
+    assert.ok(r.curto > 0.55, "histórico curto: o recente domina, " + r.curto);
+    assert.ok(Math.abs(r.pouco - r.poucoTotal) < 1e-9);
+  } finally { await contexto.close(); }
+});
