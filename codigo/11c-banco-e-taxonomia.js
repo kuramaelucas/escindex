@@ -230,7 +230,7 @@ function renderListaBancoQuestoesHtml(lista, paginaInfo){
   </tbody></table></div>
   ${paginaInfo ? controlesPaginacao(paginaInfo, "questão(ões)") : ""}`;
 }
-function abrirFormularioQuestao(qid){
+function abrirFormularioQuestao(qid, grupoPreferidoId){
   const q = qid ? getQuestao(qid) : null;
   const u = usuarioAtual();
   const criandoComoAluno = !q && u.papel==="aluno";
@@ -276,7 +276,7 @@ function abrirFormularioQuestao(qid){
         <option value="avancado" ${q&&q.dificuldadeManual==="avancado"?"selected":""}>Avançado</option>
       </select></div>
       ${criandoComoAluno ? `<div class="field"><label class="label">Destino</label><select class="select" id="fqDestino">
-        ${opcoesDeDestinoDeGrupo(u, "Só para o meu grupo (fica disponível na hora)", g=>"Só para o grupo "+g.nome+" (fica disponível na hora)").map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join("")}
+        ${opcoesDeDestinoDeGrupo(u, "Só para o meu grupo (fica disponível na hora)", g=>"Só para o grupo "+g.nome+" (fica disponível na hora)").map(([v,l])=>`<option value="${v}" ${v===valorDoDestinoDoGrupo(u, grupoPreferidoId)?"selected":""}>${escapeHtml(l)}</option>`).join("")}
         <option value="geral">Sugerir para o banco geral (passa por revisão do admin)</option>
       </select></div>` : `<div class="field"><label class="label">Status</label><select class="select" id="fqStatus">
         <option value="ativa" ${!q||q.status==="ativa"?"selected":""}>Ativa</option>
@@ -531,7 +531,11 @@ function salvarQuestaoFormulario(qid, forcar){
   else{
     const nova = { id:uid("q"), ...dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO(), justificativaEm:hojeISO().slice(0, 7) };
     if(campoDestino){
-      if(destinoEhGrupo(campoDestino.value)){ nova.grupoId = grupoDoDestino(u, campoDestino.value).id; nova.status = "ativa"; }
+      if(destinoEhGrupo(campoDestino.value)){
+        const g = grupoDoDestino(u, campoDestino.value);
+        if(!g){ toast("Você não tem um grupo para receber esta questão. Escolha outro destino.", "err"); return; }
+        nova.grupoId = g.id; nova.status = "ativa";
+      }
       else{ nova.status = "pendente"; }
     } else if(!nova.status){ nova.status = "ativa"; }
     db.questoes.push(nova);
@@ -550,7 +554,7 @@ function salvarQuestaoPendente(){
   if(pend.qid){ Object.assign(getQuestao(pend.qid), pend.dados); registrarCorrecaoDaQuestao(pend.qid); nuvemMarcarQuestao(pend.qid); }
   else{
     const nova = { id:uid("q"), ...pend.dados, real:true, explicacoesAlternativas:{}, estatisticas:{respostas:0,acertos:0,distribuicaoAlternativas:{}}, criadoPor:u.id, autorPapel:u.papel, criadoEm:hojeISO() };
-    if(destinoEhGrupo(pend.destino)){ nova.grupoId = grupoDoDestino(u, pend.destino).id; nova.status = "ativa"; }
+    if(destinoEhGrupo(pend.destino) && grupoDoDestino(u, pend.destino)){ nova.grupoId = grupoDoDestino(u, pend.destino).id; nova.status = "ativa"; }
     else if(pend.destino){ nova.status = "pendente"; }
     else if(!nova.status){ nova.status = "ativa"; }
     db.questoes.push(nova);
@@ -564,6 +568,8 @@ function confirmarExcluirQuestao(qid){
 }
 function excluirQuestaoConfirmado(qid){
   const q = getQuestao(qid);
+  if(q && q.grupoId && !podeExcluirQuestaoDoGrupo(q, usuarioAtual())){ toast("Só quem enviou a questão ou quem criou o grupo pode excluí-la.", "err"); return; }
+  if(q && q.grupoId){ const g = getGrupo(q.grupoId); if(g && g.divisao) delete g.divisao[qid]; }
   // enviada pela plataforma: a exclusão também sai dos outros aparelhos
   // (uma pendente vira "recusada" para quem enviou; uma aprovada, "removida")
   if(q) nuvemMarcarQuestaoFora(q, q.status==="pendente" ? "recusada" : "removida", q.status==="pendente" ? "Excluída pela equipe." : "");

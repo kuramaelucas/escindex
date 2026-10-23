@@ -11,6 +11,8 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 > 2. **Authentication > URL Configuration**: pôr o endereço do site em *Site URL* e em *Redirect URLs* (com `**` no fim). É o que faz o link de confirmação de e-mail e o de "esqueci a senha" voltarem para o Esc (seção 4-B; passo a passo em `nuvem/LEIA-ME.md`, passo 3).
 > 3. **Backup automático**: cadastrar no GitHub os segredos `SUPABASE_DB_URL` e `BACKUP_SENHA` (`nuvem/LEIA-ME.md`, "Backup automático"). Até lá, o fluxo roda e só avisa que está desligado.
 >
+> **Já aplicado no Supabase (23/10/2026):** o gatilho `proteger_questao_de_grupo` (exclusão de questão de grupo só por quem a enviou, pela dona do grupo e pela equipe) foi criado direto no projeto, sem passar pelo histórico de migrações; ele também está no `esquema.sql`, que fica em dia na próxima vez que o arquivo inteiro for rodado.
+>
 > **Cadastro: e-mail só na aprovação + push para admins (02/10/2026).** Para valer: (a) em *Authentication > Providers > Email*, **desligar "Confirm email"** — o e-mail passa a sair quando a coordenação aprova (link de acesso, modelo *Magic Link*; ele avisa e confirma ao mesmo tempo); (b) **rodar de novo o `esquema.sql`** (tabela `push_inscricoes`); (c) opcional, para o aviso chegar com o app fechado: `nuvem/LEIA-ME.md` passo 3-B (chave VAPID, função `avisar-pedido`, webhook em `perfis`). Sem (c) o aviso continua só com o Esc aberto.
 
 ---

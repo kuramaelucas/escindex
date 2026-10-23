@@ -557,6 +557,7 @@ function excluirGrupo(grupoId, aoSair){
    sem grupo de questões). Serve tanto para quem exclui quanto para quem
    recebe a exclusão pela nuvem. */
 function removerGrupoDoNavegador(grupoId){
+  soltarQuestoesDoGrupo(grupoId, true);   // sem o grupo, as questões dele ficariam órfãs no banco local
   db.grupos = db.grupos.filter(x => x.id !== grupoId);
   db.subgrupos = (db.subgrupos || []).filter(s => s.grupoId !== grupoId);
   db.usuarios.forEach(x => {
@@ -720,6 +721,10 @@ function desfazerDivisaoDoGrupo(grupoId){
   toast("Divisão desfeita: as questões ficam sem responsável.");
   render();
 }
+function praticarQuestoesDoGrupo(grupoId){
+  const g = getGrupo(grupoId); if(!g) return;
+  iniciarSessaoComLista(questoesDoGrupo(g).filter(q=>q.status==="ativa").map(q=>({questaoId:q.id, motivo:"Questão do grupo "+g.nome})), "pratica");
+}
 function praticarMinhaParteDoGrupo(grupoId){
   const g = getGrupo(grupoId); if(!g) return;
   const minhas = minhaParteDoGrupo(g, usuarioAtual().id);
@@ -728,7 +733,8 @@ function praticarMinhaParteDoGrupo(grupoId){
 }
 function renderQuestoesDoGrupo(grupo){
   const u = usuarioAtual();
-  const questoes = questoesDoGrupo(grupo);
+  const questoes = questoesDoGrupo(grupo).sort((a,b)=>(b.ano||0)-(a.ano||0) || (a.banca||"").localeCompare(b.banca||"", "pt-BR") || (a.numeroNaProva||999)-(b.numeroNaProva||999));
+  const provas = provasDoGrupo(grupo, questoes);
   const pagGrupo = paginar(questoes, "questoes-grupo", {porPagina:20});
   const dividida = !!grupo.divisao && Object.keys(grupo.divisao).length > 0;
   const minhas = minhaParteDoGrupo(grupo, u.id);
@@ -738,11 +744,12 @@ function renderQuestoesDoGrupo(grupo){
     <div class="flex justify-between items-center mb-1 quebra-gap">
       <div class="card-title sem-mb">Questões deste grupo (${questoes.length})</div>
       <div class="flex gap-1 quebra">
-        <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Colar prova inteira / importar em lote</button>
-        <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Adicionar questão</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirEnvioParaGrupo('${grupo.id}')">${iconeSvg("upload")} Colar prova inteira / importar em lote</button>
+        <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null, '${grupo.id}')">${iconeSvg("plus")} Adicionar questão</button>
       </div>
     </div>
-    <p class="text-sm muted">Qualquer pessoa do grupo pode contribuir. Essas questões ficam disponíveis só pra quem está neste grupo — em "Estudar &gt; Monte sua lista", marque "incluir questões do meu grupo" pra praticá-las.</p>
+    <p class="text-sm muted">Qualquer pessoa do grupo pode contribuir. Essas questões ficam disponíveis só pra quem está neste grupo. Elas não entram no estudo geral: pratique todas de uma vez com o botão abaixo, ou em "Estudar &gt; Monte sua lista", marcando "incluir questões do meu grupo".</p>
+    ${questoes.some(q=>q.status==="ativa" && !aguardaImagem(q)) ? `<button class="btn btn-primary btn-sm mt-1" onclick="praticarQuestoesDoGrupo('${grupo.id}')">${iconeSvg("book")} Praticar as questões do grupo (${questoes.filter(q=>q.status==="ativa" && !aguardaImagem(q)).length})</button>` : ""}
     <div class="card-flat mt-2 text-sm">
       <strong>Dividir as questões entre os membros:</strong> cada pessoa fica com uma parte do mesmo tamanho, misturando os assuntos, e pratica só a sua.
       ${dividida ? `<div class="mt-1">${minhas.length ? `Você ficou com <strong>${minhas.length}</strong> questão(ões).` : "Você não ficou com nenhuma questão nesta divisão."}</div>` : `<div class="mt-1 muted">Ainda não foi dividido.</div>`}
@@ -756,18 +763,67 @@ function renderQuestoesDoGrupo(grupo){
     <div class="card-flat mt-2 text-sm">
       <strong>Prova inteira de uma vez:</strong> em "Enviar Questões" você informa a instituição e o ano uma única vez, copia o prompt pronto, cola numa IA junto com o PDF da prova e traz o resultado de volta. Escolha o destino <em>"Questões do meu grupo"</em> para elas caírem direto aqui.
       <div class="flex gap-1 mt-2 quebra">
-        <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("search")} Abrir tela com o prompt pronto</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirEnvioParaGrupo('${grupo.id}')">${iconeSvg("search")} Abrir tela com o prompt pronto</button>
         <button class="btn btn-ghost btn-sm" onclick="copiarTexto(gerarPromptImportacao(),'Prompt copiado! Cole numa IA junto com a prova.')">Copiar prompt agora</button>
       </div>
     </div>
-    ${questoes.length ? `<div class="table-wrap mt-2"><table><thead><tr><th>Questão</th><th>Assunto</th>${dividida?"<th>Responsável</th>":""}<th></th></tr></thead><tbody>
+    ${questoes.length ? `${provas.length ? `<div class="mt-2"><div class="label">Provas e listas enviadas ao grupo</div>
+      ${provas.map(pv=>`<div class="card-flat mt-1 flex justify-between items-center quebra-gap-p"><span class="text-sm"><strong>${escapeHtml(pv.banca)} ${escapeHtml(String(pv.ano||""))}</strong> · ${pv.qs.length} questão(ões) · enviada${pv.autores.length>1?"s":""} por ${escapeHtml(pv.autores.join(", "))}</span>
+        ${pv.qs.some(q=>podeExcluirQuestaoDoGrupo(q,u)) ? `<button class="btn btn-ghost btn-sm" onclick="confirmarExcluirProvaDoGrupo('${grupo.id}','${encodeURIComponent(pv.chave)}')">${iconeSvg("trash")} Excluir ${pv.qs.every(q=>podeExcluirQuestaoDoGrupo(q,u))?"esta prova":"as minhas"}</button>` : ""}</div>`).join("")}</div>` : ""}
+    <div class="table-wrap mt-2"><table><thead><tr><th>Questão</th><th>Prova</th><th>Assunto</th><th>Enviada por</th>${dividida?"<th>Responsável</th>":""}<th></th></tr></thead><tbody>
       ${pagGrupo.itens.map(q=>{
         const resp = responsavelDaQuestao(grupo, q.id);
-        return `<tr><td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span></td><td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td>${dividida?`<td class="text-sm">${resp ? escapeHtml(resp.id===u.id ? "Você" : resp.nome) : '<span class="muted">sem responsável</span>'}</td>`:""}<td class="flex gap-1"><button class="icon-btn" title="Ver na íntegra" onclick="abrirQuestaoCompleta('${q.id}')">${iconeSvg("search")}</button><button class="icon-btn" title="Editar" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")}</button></td></tr>`;
+        return `<tr><td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,90))}…</span></td><td class="text-sm">${escapeHtml(q.banca||"")} ${escapeHtml(String(q.ano||""))}${q.numeroNaProva?" · nº "+q.numeroNaProva:""}</td><td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td><td class="text-sm">${escapeHtml(nomeDeQuemEnviouAQuestao(grupo, q))}${q.criadoEm?`<div class="text-xs muted">${formatDataBR(q.criadoEm)}</div>`:""}</td>${dividida?`<td class="text-sm">${resp ? escapeHtml(resp.id===u.id ? "Você" : resp.nome) : '<span class="muted">sem responsável</span>'}</td>`:""}<td class="flex gap-1"><button class="icon-btn" title="Ver na íntegra" onclick="abrirQuestaoCompleta('${q.id}')">${iconeSvg("search")}</button><button class="icon-btn" title="Editar" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")}</button>${podeExcluirQuestaoDoGrupo(q,u) ? `<button class="icon-btn" title="Excluir" onclick="confirmarExcluirQuestaoDoGrupo('${q.id}')">${iconeSvg("trash")}</button>` : ""}</td></tr>`;
       }).join("")}
     </tbody></table></div>
     ${controlesPaginacao(pagGrupo, "questão(ões) do grupo")}` : '<p class="text-sm muted mt-1">Nenhuma questão adicionada ainda.</p>'}
   </div>`;
+}
+/* Qualquer integrante corrige uma questão do grupo (é trabalho em conjunto),
+   mas excluir é de quem a enviou, da dona do grupo e da coordenação — o banco
+   também recusa o resto (gatilho proteger_questao_de_grupo, esquema.sql). */
+function podeExcluirQuestaoDoGrupo(q, u){
+  const g = q && q.grupoId ? getGrupo(q.grupoId) : null;
+  return !!(g && u && (q.criadoPor === u.id || g.criadoPor === u.id || podeGerirConteudo(u)));
+}
+function nomeDeQuemEnviouAQuestao(grupo, q){
+  const u = getUsuario(q.criadoPor);
+  return q.autorNome || (u && u.nome) || (q.criadoPor ? nomeDoMembro(grupo, q.criadoPor) : "—");
+}
+// as provas e listas do grupo, da mais recente para a mais antiga: é assim que as questões chegam (um lote por prova)
+function provasDoGrupo(grupo, questoes){
+  const mapa = new Map();
+  questoes.forEach(q=>{
+    const chave = (q.banca||"")+"|"+(q.ano||"");
+    if(!mapa.has(chave)) mapa.set(chave, {chave, banca:q.banca||"", ano:q.ano, qs:[], autores:[]});
+    const pv = mapa.get(chave);
+    pv.qs.push(q);
+    const nome = nomeDeQuemEnviouAQuestao(grupo, q);
+    if(!pv.autores.includes(nome)) pv.autores.push(nome);
+  });
+  return [...mapa.values()].sort((a,b)=>(b.ano||0)-(a.ano||0) || a.banca.localeCompare(b.banca, "pt-BR"));
+}
+function confirmarExcluirQuestaoDoGrupo(qid){
+  const q = getQuestao(qid);
+  if(!q || !podeExcluirQuestaoDoGrupo(q, usuarioAtual())){ toast("Só quem enviou a questão ou quem criou o grupo pode excluí-la.", "err"); return; }
+  abrirModal(`${cabecalhoJanela("Excluir questão do grupo")}<p class="text-sm">A questão some para todo o grupo e não dá para desfazer. Para só corrigir um erro, use <strong>Editar</strong>.</p>
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirQuestaoConfirmado('${qid}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+}
+function confirmarExcluirProvaDoGrupo(grupoId, chaveCodificada){
+  const g = getGrupo(grupoId), u = usuarioAtual(); if(!g) return;
+  const chave = decodeURIComponent(chaveCodificada);
+  const minhas = provasDoGrupo(g, questoesDoGrupo(g)).filter(p=>p.chave===chave).flatMap(p=>p.qs).filter(q=>podeExcluirQuestaoDoGrupo(q, u));
+  if(!minhas.length) return;
+  abrirModal(`${cabecalhoJanela("Excluir prova do grupo")}<p class="text-sm">${minhas.length} questão(ões) saem do grupo para todos os integrantes. Isso não pode ser desfeito.</p>
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirProvaDoGrupoConfirmado('${grupoId}','${chaveCodificada}')">Excluir ${minhas.length} questão(ões)</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+}
+function excluirProvaDoGrupoConfirmado(grupoId, chaveCodificada){
+  const g = getGrupo(grupoId), u = usuarioAtual(); if(!g) return;
+  const chave = decodeURIComponent(chaveCodificada);
+  const ids = provasDoGrupo(g, questoesDoGrupo(g)).filter(p=>p.chave===chave).flatMap(p=>p.qs).filter(q=>podeExcluirQuestaoDoGrupo(q, u)).map(q=>q.id);
+  ids.forEach(id=>{ const q = getQuestao(id); if(q) nuvemMarcarQuestaoFora(q, "removida", ""); if(g.divisao) delete g.divisao[id]; });
+  db.questoes = db.questoes.filter(q=>!ids.includes(q.id));
+  saveState(); fecharModal(); toast(ids.length+" questão(ões) excluída(s) do grupo."); render();
 }
 
 /* ==========================================================================
@@ -913,7 +969,7 @@ function abrirFormularioSubgrupo(id, grupoId){
     <div style="max-height:150px;overflow-y:auto">${membros.map(m=>`<label class="checkbox-row mb-1"><input type="checkbox" class="sgMembro" value="${m.id}" ${marcadosM.has(m.id)?"checked":""}> ${escapeHtml(m.nome)}${m.id===u.id?" (você)":""}</label>`).join("")}</div>
     <div class="label mb-1 mt-2">Quais questões entram <span class="muted">(do grupo, por prova)</span></div>
     ${conjuntos.length ? `<div style="max-height:170px;overflow-y:auto">${conjuntos.map(c=>`<label class="checkbox-row mb-1"><input type="checkbox" class="sgConjunto" value="${escapeHtml(c.chave)}" ${c.ids.every(i=>marcadosQ.has(i))?"checked":""}> ${escapeHtml(c.chave)} <span class="text-xs muted">(${c.ids.length})</span></label>`).join("")}</div>`
-      : `<p class="text-sm muted">O grupo ainda não tem questões. Envie uma prova ou lista em <button class="link-btn" onclick="fecharModal(); navigate('importar-questoes')">Enviar Questões</button> (destino "Questões do meu grupo") e volte aqui.</p>`}
+      : `<p class="text-sm muted">O grupo ainda não tem questões. Envie uma prova ou lista em <button class="link-btn" onclick="fecharModal(); abrirEnvioParaGrupo('${grupo.id}')">Enviar Questões</button> (destino "Questões do meu grupo") e volte aqui.</p>`}
     <p class="text-xs muted mt-1">As questões são divididas entre quem participa, na mesma quantidade e misturando os assuntos. Ao salvar, a divisão é refeita.</p>
     <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="salvarSubgrupo('${id||""}', '${grupo.id}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }

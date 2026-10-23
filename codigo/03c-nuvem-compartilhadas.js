@@ -317,18 +317,23 @@ function linhaDaQuestaoNaNuvem(q){
    questão passa a apontar para o endereço público dela — aqui também, para
    uma nova tentativa não mandar a mesma imagem de novo. */
 async function nuvemEnviarImagemDaQuestao(q){
-  q.imagemUrl = await nuvemSubirImagem(q.imagemUrl, q.id);
+  q.imagemUrl = await nuvemSubirImagem(q.imagemUrl, q.id, !!q.grupoId);
   saveState();
 }
 /* Sobe uma imagem data:image/... para o balde e devolve o endereço público. */
-async function nuvemSubirImagem(dataUrl, nomeBase){
+async function nuvemSubirImagem(dataUrl, nomeBase, soDoGrupo){
   const [cabecalho, base64] = String(dataUrl).split(",");
   const tipo = (/^data:([^;,]+)/.exec(cabecalho) || [])[1] || "image/jpeg";
   const binario = atob(base64 || "");
   const bytes = new Uint8Array(binario.length);
   for(let i = 0; i < binario.length; i++) bytes[i] = binario.charCodeAt(i);
   const ext = { "image/png": "png", "image/webp": "webp", "image/gif": "gif" }[tipo] || "jpg";
-  const caminho = nuvemSessao.usuarioId + "/" + encodeURIComponent(nomeBase) + "-" + Date.now().toString(36) + "." + ext;
+  // o balde é público (a imagem aparece no cartão por um endereço comum), então a
+  // figura de uma questão de grupo recebe um nome impossível de adivinhar: só
+  // quem recebe a linha da questão — os membros — fica sabendo o endereço
+  let aleatorio = "";
+  if(soDoGrupo){ const b = crypto.getRandomValues(new Uint8Array(16)); aleatorio = Array.from(b, x => x.toString(16).padStart(2, "0")).join(""); }
+  const caminho = nuvemSessao.usuarioId + "/" + (soDoGrupo ? "g-" + aleatorio : encodeURIComponent(nomeBase) + "-" + Date.now().toString(36)) + "." + ext;
   await nuvemChamar("/storage/v1/object/" + BALDE_IMAGENS_QUESTOES + "/" + caminho, {
     method: "POST", headers: { "Content-Type": tipo, "x-upsert": "false" }, body: new Blob([bytes], { type: tipo }),
   });
