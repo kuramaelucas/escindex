@@ -112,6 +112,7 @@ const CONFIG = {
      zera a contagem. Num assunto em que a pessoa vai bem (taxa das últimas
      respostas), o intervalo cresce ainda mais — bonusAssuntoForte. */
   intervalosAposAcerto: [30, 60],
+  irmasAntecipadas: 3,       // errar com certeza traz de volta até 3 questões do mesmo assunto que estavam de molho (0 desliga)
   acertosParaDominarQuestao: 3,
   bonusAssuntoForte: [{ taxa: 0.85, fator: 2 }, { taxa: 0.7, fator: 1.5 }],
   minRespostasAssuntoForte: 8,

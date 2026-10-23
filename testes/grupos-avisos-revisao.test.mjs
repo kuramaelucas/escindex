@@ -104,7 +104,7 @@ test("revisão espaçada: não vistas, depois erros, depois acertos vencidos —
       const marcarErro = q => (q.gabarito === "A" ? "B" : "A");
       dia("2026-03-01");
       registrarResposta(u.id, certa.id, certa.gabarito, "certeza", 5);
-      registrarResposta(u.id, errada.id, marcarErro(errada), "certeza", 5);
+      registrarResposta(u.id, errada.id, marcarErro(errada), "duvida", 5);
       const e1 = db.revisoes[u.id][certa.id], e2 = db.revisoes[u.id][errada.id];
       const primeiro = { intervalo: e1.intervalo, prox: e1.proximaRevisao, intervaloErro: e2.intervalo };
       dia("2026-03-30"); const venceEm29 = revisaoVencida(u.id, certa.id);

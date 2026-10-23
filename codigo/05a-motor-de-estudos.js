@@ -542,6 +542,33 @@ function registrarRevisao(usuarioId, questaoId, correta, confianca){
   entry.ultimaConfianca = confianca; entry.ultimaCorreta = correta; entry.ultimaData = hojeISO();
   db.revisoes[usuarioId][questaoId] = entry;
   nuvemRegistrar({usuarioId, questaoId, revisao:entry});
+  if(!correta && confianca==="certeza") anteciparQuestoesIrmas(usuarioId, questaoId);
+}
+/* ERRO COM CERTEZA É LACUNA DO ASSUNTO, não azar daquela questão: quem tinha
+   certeza e errou provavelmente erraria as questões vizinhas do mesmo assunto
+   que hoje estão "de molho" por terem sido acertadas há tempo. Por isso, as
+   (até CONFIG.irmasAntecipadas) mais distantes voltam em
+   CONFIG.intervaloMinimoRevisao dias, no máximo. Só mexe em questão que a
+   pessoa já respondeu, que ainda não está dominada e que voltaria depois
+   desse prazo; nunca adia nada. */
+function anteciparQuestoesIrmas(usuarioId, questaoId){
+  const alvo = getQuestao(questaoId);
+  const mapa = db.revisoes[usuarioId];
+  if(!alvo || !mapa || !CONFIG.irmasAntecipadas) return [];
+  const limite = somarDias(hojeISO(), CONFIG.intervaloMinimoRevisao);
+  const candidatas = Object.entries(mapa)
+    .filter(([id, e])=>{
+      if(id===questaoId || !e || !e.proximaRevisao) return false;
+      const q = getQuestao(id);
+      return q && q.assuntoId===alvo.assuntoId && !aguardaImagem(q) && !questaoDominada(usuarioId, id) && proximaRevisaoEfetiva(e) > limite;
+    })
+    .sort((a,b)=> proximaRevisaoEfetiva(b[1]).localeCompare(proximaRevisaoEfetiva(a[1])))
+    .slice(0, CONFIG.irmasAntecipadas);
+  candidatas.forEach(([id, e])=>{
+    e.proximaRevisao = limite; e.antecipadaPor = questaoId; e.antecipadaEm = hojeISO();
+    nuvemRegistrar({usuarioId, questaoId:id, revisao:e});
+  });
+  return candidatas.map(([id])=>id);
 }
 /* Quando a questão volta de fato. Revisões guardadas antes dos pisos (um mês
    depois de acerto firme, uma semana nos demais casos) podem trazer prazo

@@ -509,3 +509,32 @@ test("nota estimada: a nota dos simulados aparece à parte, só depois de 20 que
     assert.ok(r.sim < r.geral && r.geral < r.est);
   } finally { await contexto.close(); }
 });
+
+test("errar com certeza antecipa até 3 questões do mesmo assunto; errar na dúvida não mexe em nenhuma", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const u = usuarioAtual();
+      db.revisoes[u.id] = {};
+      const porAssunto = {};
+      db.questoes.filter(q => q.real && q.status === "ativa" && q.gabarito && !aguardaImagem(q)).forEach(q => (porAssunto[q.assuntoId] = porAssunto[q.assuntoId] || []).push(q));
+      const grupo = Object.values(porAssunto).find(g => g.length >= 7);
+      const [alvo, ...irmas] = grupo;
+      const longe = somarDias(hojeISO(), 60);
+      irmas.slice(0, 5).forEach(q => { db.revisoes[u.id][q.id] = { repeticoes: 1, fator: 2.5, intervalo: 60, proximaRevisao: longe, ultimaData: hojeISO(), ultimaCorreta: true, ultimaConfianca: "certeza" }; });
+      db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: alvo.id, assuntoId: alvo.assuntoId, areaId: alvo.areaId, correta: false, confianca: "duvida", data: hojeISO() });
+      registrarRevisao(u.id, alvo.id, false, "duvida");
+      const aposDuvida = irmas.slice(0, 5).filter(q => db.revisoes[u.id][q.id].proximaRevisao !== longe).length;
+      registrarRevisao(u.id, alvo.id, false, "certeza");
+      const antecipadas = irmas.slice(0, 5).filter(q => db.revisoes[u.id][q.id].proximaRevisao !== longe);
+      return { aposDuvida, n: antecipadas.length, data: db.revisoes[u.id][antecipadas[0].id].proximaRevisao, esperada: somarDias(hojeISO(), CONFIG.intervaloMinimoRevisao),
+               naoRespondidaIntacta: !db.revisoes[u.id][irmas[6].id] };
+    });
+    assert.equal(r.aposDuvida, 0);
+    assert.equal(r.n, 3);
+    assert.equal(r.data, r.esperada);
+    assert.ok(r.naoRespondidaIntacta);       // questão que a pessoa nunca respondeu não ganha revisão
+  } finally { await contexto.close(); }
+});
