@@ -52,6 +52,13 @@ As medidas se repetem com `node ferramentas/medir-banco-adaptado.mjs banco-simul
 - **47** (fístula urogenital): o teste do tampão está descrito com azul de metileno na bexiga e índigo carmim (ou fenazopiridina) por via venosa; variações de técnica existem.
 - **80** (rim): conduta do estágio T1a; limiar de 4 cm da AUA/EAU não conferido na edição mais recente.
 
-## 5. Revisão independente
+## 5. Segunda revisão de conteúdo (27/10/2026)
 
-**Não feita nesta rodada.** Nos simulados anteriores, dois revisores independentes releram as 100 questões (resposta igual ao gabarito) e acharam ajustes de conteúdo; aqui isso ainda precisa ser feito antes de o simulado ser dado a alunos. O que foi feito: medição por script, conferência de números, busca de repetição contra as cerca de 8.000 questões do banco, e uma releitura própria que corrigiu a sequência vacinal citada na explicação da 67 e a justificativa do esquema de penicilina da 70.
+Feita por **leitura cega**: as 100 questões foram relidas sem o gabarito e respondidas de novo, e depois comparadas com ele (100 de 100 iguais). Foi uma segunda leitura pela mesma autoria, e não por revisores independentes; a revisão por pessoas da equipe continua recomendada antes de dar o simulado a alunos. Ajustes feitos:
+
+- **67**: o enunciado dizia que o lactente de 4 meses já tinha a «segunda dose» de pentavalente, VIP e pneumocócica no segundo e terceiro meses, o que não fecha com o calendário; passou a ser a primeira dose, aos 2 meses. Na explicação, a sequência vacinal foi corrigida (meningocócica C aos 3 e 5 meses).
+- **89**: as áreas queimadas (tronco anterior e posterior e membro superior = 45%) não somavam os 30% do enunciado; passaram a tronco anterior, membro superior esquerdo, face e pescoço, que dão cerca de 30%.
+- **70**: o motivo de errar a penicilina cristalina deixou de dizer que ela só vale com alteração; o protocolo a admite também quando o seguimento não é garantido.
+- **24**: «Secretaria Estadual de Saúde do estado» era redundante; **35**: frase solta sobre outros instrumentos reescrita; **91**: concordância («discreta tiragem»).
+- Dicas do enunciado conferidas contra os números dos enunciados (`conferir-numeros`: 0 divergências) e metas do medidor refeitas depois dos ajustes: todas cumpridas (posição do gabarito por tamanho 25/24/29/22).
+- Pendências que a leitura não resolve: conferir em texto oficial os itens listados na seção 3 (vacina HPV, regra da União, sífilis congênita, receituário, edições de SSC e ATLS).
