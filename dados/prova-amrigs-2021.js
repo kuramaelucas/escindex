@@ -969,12 +969,12 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
   enunciado:"Mãe de um bebê o levou para à primeira consulta de revisão de puericultura com cinco meses e dez dias. Apresentou a carteira de vacinação abaixo. Qual das seguintes vacinas NÃO seria indicada para regularização imediata das vacinas desse paciente?",
   alternativas:[{id:"A",texto:"Penta."},{id:"B",texto:"Rotavírus humano."},{id:"C",texto:"Pneumocócica 10 (conjugada)."},{id:"D",texto:"Meningocócica C (conjugada)."}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B é a resposta pedida (a vacina que NÃO seria indicada). Dicas da imagem: o cartão mostra **apenas BCG e hepatite B, feitas ao nascer**, e todo o resto em branco; aos **5 meses e 10 dias** faltam penta, VIP, rotavírus, pneumocócica e meningocócica C. O **rotavírus humano** tem limite de idade: a primeira dose só pode ser dada até **3 meses e 15 dias** (e a segunda, até 7 meses e 29 dias), e por isso não pode mais ser iniciado. A, C e D estão erradas como resposta porque podem ser regularizadas: A, a penta; C, a pneumocócica 10-valente; D, a meningocócica C conjugada.",
+  explicacaoGeral:"A alternativa B é a resposta pedida (a vacina que NÃO seria indicada). Dicas da imagem: o cartão mostra **apenas BCG e hepatite B, feitas ao nascer**, e todo o resto em branco; aos **5 meses e 10 dias** faltam penta, VIP, rotavírus, pneumocócica e meningocócica C. Na época da prova (2021), o **rotavírus humano** tinha limite de idade: a primeira dose só podia ser dada até **3 meses e 15 dias** (e a segunda, até 7 meses e 29 dias), e por isso não podia mais ser iniciado aos 5 meses. Desde a Nota Técnica 193/2024 do Ministério da Saúde (dez/2024), a primeira dose pode ser dada até **11 meses e 29 dias** e a segunda até **23 meses e 29 dias**, com intervalo mínimo de 30 dias: hoje o rotavírus seria indicado nesta criança e nenhuma alternativa serviria como resposta. A, C e D estão erradas como resposta porque podem ser regularizadas: A, a penta; C, a pneumocócica 10-valente; D, a meningocócica C conjugada.",
   explicacoesAlternativas:{},
   referencias:"Ministério da Saúde. Manual de Normas e Procedimentos para Vacinação, 2014; calendário nacional de vacinação.",
-  dificuldadeManual:"fundamental", status:"ativa",
+  dificuldadeManual:"fundamental", status:"desatualizada", motivoStatus:"O gabarito (rotavírus, por já ter passado de 3 meses e 15 dias) vale pela regra de 2021. Pela Nota Técnica 193/2024-CGICI/DPNI/SVSA/MS, a primeira dose vai até 11 meses e 29 dias, e a criança de 5 meses e 10 dias hoje pode receber o rotavírus: nenhuma alternativa seria a resposta.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
-  criadoPor:"seed", criadoEm:"2026-10-04"
+  criadoPor:"seed", criadoEm:"2026-10-04", justificativaEm:"2026-10"
 },
 {
   id:"q-amrigs2021-073", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:73,

@@ -172,10 +172,13 @@ test("o que mais cai e a nota estimada saem das provas reais", async () => {
     saveState();
     const nota = estimativaDeNota(u.id);
     const prio = prioridadesDeEstudo(u.id);
-    return { total: inc.total, anos: inc.anos, antes, nota: nota && nota.nota, faixa: nota && [nota.minimo, nota.maximo],
+    // desatualizada não conta na incidência (a regra mudou, a prova não vale como retrato): o esperado vem dos dados, não de um 500 fixo
+    const esperado = db.questoes.filter(q => q.real && q.banca === "UNIFESP-EPM" && q.status !== "desatualizada").length;
+    return { total: inc.total, esperado, anos: inc.anos, antes, nota: nota && nota.nota, faixa: nota && [nota.minimo, nota.maximo],
              somaFatias: nota && nota.areas.reduce((s, a) => s + a.fatia, 0), prio0: prio[0], ordenada: prio.every((p, i) => !i || prio[i-1].prioridade >= p.prioridade) };
   });
-  assert.equal(r.total, 500);
+  assert.equal(r.total, r.esperado);
+  assert.ok(r.total >= 490, "cinco provas de 100 questões, menos as poucas desatualizadas: " + r.total);
   assert.deepEqual(r.anos, [2022, 2023, 2024, 2025, 2026]);
   assert.equal(r.antes, null);
   assert.ok(r.nota > 0 && r.nota < 100, "nota " + r.nota);
