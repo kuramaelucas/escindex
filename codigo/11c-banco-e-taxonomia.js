@@ -411,12 +411,14 @@ function carregarImagemQuestao(input){ comprimirImagemDoArquivo(input, definirIm
 
 /* ---------- detecção de questões duplicadas ----------
    Compara o enunciado normalizado (sem acento, pontuação ou espaço extra).
-   Os 160 primeiros caracteres bastam: provas repetidas costumam vir com o
-   mesmo caso clínico, ainda que a formatação mude. */
+   Vale o enunciado inteiro, não só o começo: questões diferentes dividem o
+   mesmo caso clínico e mudam só a pergunta no final ("qual o diagnóstico?" ×
+   "qual a conduta?"), e a comparação pelos primeiros caracteres as acusava
+   como cópias. */
 function chaveTextoQuestao(texto){
   return normalizarNome(texto).replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
 }
-function assinaturaEnunciado(texto){ return chaveTextoQuestao(texto).slice(0,160); }
+function assinaturaEnunciado(texto){ return chaveTextoQuestao(texto); }
 /* Índice assinatura -> questões, na mesma linha das outras caches por
    _geracaoDb. Sem ele, colar uma prova inteira (100 questões) chamava
    questoesDuplicadasDe() 100 vezes, e cada chamada varria o banco inteiro

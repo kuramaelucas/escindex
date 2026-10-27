@@ -618,3 +618,18 @@ test("acerto estimado: o recente é comparado com o antigo (sem contar duas veze
     assert.ok(Math.abs(r.pouco - r.poucoTotal) < 1e-9);
   } finally { await contexto.close(); }
 });
+
+test("duplicadas: mesmo caso clínico com pergunta diferente não é cópia; enunciado igual por inteiro é", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    const caso = "Paciente de 45 anos, diabético, com febre há três dias, tosse produtiva e dispneia progressiva, saturação de 88% em ar ambiente. ";
+    return {
+      outraPergunta: assinaturaEnunciado(caso + "Qual o diagnóstico mais provável?") === assinaturaEnunciado(caso + "Qual a conduta inicial?"),
+      mesmaComFormatacao: assinaturaEnunciado(caso + "Qual a conduta inicial?") === assinaturaEnunciado(caso.toUpperCase() + "  Qual a conduta inicial?!")
+    };
+  });
+  assert.equal(r.outraPergunta, false);
+  assert.equal(r.mesmaComFormatacao, true);
+  await contexto.close();
+});
