@@ -42,8 +42,9 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
   const problemas = [], questoes = [], vistos = new Set();
   const asss = new Map(taxonomia.assuntos.map(a => [a.id, a]));
   const esps = new Map(taxonomia.especialidades.map(e => [e.id, e]));
-  const letras = "ABCDEFGH".slice(0, ficha.alternativas || 4).split("");
   entrada.forEach((e, i) => {
+    // prova com 4 e 5 alternativas misturadas (banco didático): a ficha traz "alternativasVariavel" e vale o tamanho de cada "alt"
+    const letras = "ABCDEFGH".slice(0, ficha.alternativasVariavel && Array.isArray(e.alt) ? e.alt.length : ficha.alternativas || 4).split("");
     const onde = Number.isInteger(e.n) ? `questão ${e.n}` : `item ${i + 1} da lista`;
     const erro = t => problemas.push(`${onde}: ${t}`);
     Object.keys(e).filter(k => !CAMPOS.has(k)).forEach(k => erro(`campo "${k}" desconhecido (campos: ${[...CAMPOS].join(", ")})`));
@@ -67,7 +68,7 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
     else if(!dissertativa && !letras.includes(e.gabarito)) erro(`gabarito "${e.gabarito}" não é uma das letras ${letras.join(", ")}`);
     if(e.dificuldade !== undefined && !DIFICULDADES.includes(e.dificuldade)) erro(`dificuldade "${e.dificuldade}" não existe (${DIFICULDADES.join(", ")})`);
     const q = {
-      id: `${ficha.prefixo}-${String(e.n).padStart(3, "0")}`, banca: ficha.banca, real: true,
+      id: `${ficha.prefixo}-${String(e.n).padStart(3, "0")}`, banca: ficha.banca, real: ficha.real !== false,
       ...(ficha.tipoProva ? { tipoProva: ficha.tipoProva } : {}), ano: ficha.ano, ...(ficha.semestre ? { semestre: ficha.semestre } : {}), numeroNaProva: e.n,
       areaId: ass && esps.get(ass.especialidadeId) ? esps.get(ass.especialidadeId).areaId : undefined,
       especialidadeId: ass ? ass.especialidadeId : undefined, assuntoId: e.assunto,
@@ -100,8 +101,7 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
 }
 
 export function adicionar(nome, arquivoEntrada, { simular = false } = {}){
-  nome = nome.replace(/^prova-/, "");
-  const slug = "prova-" + nome, arq = path.join(RAIZ, "dados", slug + ".js");
+  const slug = /^banco-/.test(nome) ? nome : "prova-" + nome.replace(/^prova-/, ""), arq = path.join(RAIZ, "dados", slug + ".js");
   const ficha = lerFicha(slug);
   let entrada = JSON.parse(fs.readFileSync(arquivoEntrada, "utf8"));
   if(entrada && !Array.isArray(entrada)) entrada = entrada.questoes;
@@ -139,7 +139,7 @@ if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.ar
     const nums = resumirNumeros(r.questoes.map(q => q.numeroNaProva));
     if(r.simulado) console.log(`Conferido, nada gravado: ${r.questoes.length} questões (${nums}) estão no padrão.`);
     else {
-      console.log(`Gravadas ${r.questoes.length} questões (${nums}) em dados/prova-${args[0].replace(/^prova-/, "")}.js — ${r.total} na prova.`);
+      console.log(`Gravadas ${r.questoes.length} questões (${nums}) em dados/${/^banco-/.test(args[0]) ? args[0] : "prova-" + args[0].replace(/^prova-/, "")}.js — ${r.total} na prova.`);
       if(r.faltam.length) console.log(`Ainda faltam: ${resumirNumeros(r.faltam)}.`);
       (r.avisos || []).forEach(a => console.log("  aviso: " + a));
       console.log("Ao terminar: npm run publicar");
