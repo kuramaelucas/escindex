@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos
+   TAXONOMIA — as 5 grandes áreas, 41 especialidades e 270 assuntos
    ==========================================================================
    A árvore que classifica tudo na plataforma: área > especialidade > assunto.
    Toda questão e todo flashcard apontam para um `assuntoId` daqui, então este
@@ -105,11 +105,11 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-itu", especialidadeId: "esp-infecto", nome: "Infecção do Trato Urinário" },
     { id: "ass-peleparte", especialidadeId: "esp-infecto", nome: "Infecções de Pele e Partes Moles" },
     { id: "ass-meningites", especialidadeId: "esp-infecto", nome: "Meningites" },
-    { id: "ass-ist", especialidadeId: "esp-infecto", nome: "Infecções Sexualmente Transmissíveis (sífilis e úlceras)" },
+    { id: "ass-ist", especialidadeId: "esp-infecto", nome: "IST: Sífilis, Úlceras Genitais e Protocolo do Ministério da Saúde" },
     { id: "ass-leptospirose", especialidadeId: "esp-infecto", nome: "Leptospirose" },
     { id: "ass-malaria", especialidadeId: "esp-infecto", nome: "Malária" },
     { id: "ass-endocardite", especialidadeId: "esp-infecto", nome: "Endocardite Infecciosa" },
-    { id: "ass-imunizacao", especialidadeId: "esp-infecto", nome: "Imunização do Adulto" },
+    { id: "ass-imunizacao", especialidadeId: "esp-infecto", nome: "Imunização do Adulto e Imunobiológicos Especiais (raiva, febre amarela, imunossuprimidos)" },
     { id: "ass-iras", especialidadeId: "esp-infecto", nome: "Infecções Relacionadas à Assistência (IRAS)" },
 
     { id: "ass-ira", especialidadeId: "esp-nefro", nome: "Injúria Renal Aguda" },
@@ -136,7 +136,7 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-reanimacao", especialidadeId: "esp-neonato", nome: "Reanimação Neonatal" },
 
     { id: "ass-puericultura", especialidadeId: "esp-crescdesenv", nome: "Puericultura" },
-    { id: "ass-calendariovacinal", especialidadeId: "esp-crescdesenv", nome: "Calendário Vacinal" },
+    { id: "ass-calendariovacinal", especialidadeId: "esp-crescdesenv", nome: "Calendário Vacinal da Criança (PNI)" },
 
     { id: "ass-exantematicas", especialidadeId: "esp-infectoped", nome: "Doenças Exantemáticas" },
     { id: "ass-ivas", especialidadeId: "esp-infectoped", nome: "Infecções de Vias Aéreas Superiores" },
@@ -151,7 +151,7 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-trabalhoparto", especialidadeId: "esp-obstetricia", nome: "Trabalho de Parto" },
 
     { id: "ass-ciclomenstrual", especialidadeId: "esp-ginecologia", nome: "Ciclo Menstrual e Distúrbios" },
-    { id: "ass-ists", especialidadeId: "esp-ginecologia", nome: "Infecções Sexualmente Transmissíveis" },
+    { id: "ass-ists", especialidadeId: "esp-ginecologia", nome: "Vulvovaginites, Cervicites e IST Ginecológicas (HPV, Herpes, DIP)" },
     { id: "ass-climaterio", especialidadeId: "esp-ginecologia", nome: "Climatério" },
 
     { id: "ass-contracepcao", especialidadeId: "esp-planfamiliar", nome: "Métodos Contraceptivos" },
@@ -194,7 +194,7 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-neuro-avc", especialidadeId: "esp-neuro", nome: "Acidente Vascular Cerebral" },
     { id: "ass-neuro-cefaleias", especialidadeId: "esp-neuro", nome: "Cefaleias" },
     { id: "ass-neuro-epilepsia", especialidadeId: "esp-neuro", nome: "Epilepsia e Crises Convulsivas" },
-    { id: "ass-neuro-neuromuscular", especialidadeId: "esp-neuro", nome: "Doenças Neuromusculares e Desmielinizantes" },
+    { id: "ass-neuro-neuromuscular", especialidadeId: "esp-neuro", nome: "Doenças Neuromusculares (Guillain-Barré, ELA, Neuropatias, Miopatias)" },
     { id: "ass-neuro-movimento", especialidadeId: "esp-neuro", nome: "Distúrbios do Movimento" },
     { id: "ass-neuro-vertigem", especialidadeId: "esp-neuro", nome: "Tontura e Vertigem" },
 
@@ -211,7 +211,7 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-reumato-artrites", especialidadeId: "esp-reumato", nome: "Artrite Reumatoide e Espondiloartrites" },
     { id: "ass-reumato-les", especialidadeId: "esp-reumato", nome: "Lúpus Eritematoso Sistêmico" },
     { id: "ass-reumato-cristais", especialidadeId: "esp-reumato", nome: "Artrites por Cristais (Gota e Pseudogota)" },
-    { id: "ass-reumato-vasculites", especialidadeId: "esp-reumato", nome: "Vasculites e Outras Conectivopatias" },
+    { id: "ass-reumato-vasculites", especialidadeId: "esp-reumato", nome: "Vasculites, SAAF e Polimialgia" },
 
     { id: "ass-hemato-anemias", especialidadeId: "esp-hemato", nome: "Anemias" },
     { id: "ass-hemato-neoplasias", especialidadeId: "esp-hemato", nome: "Neoplasias Hematológicas" },
@@ -247,7 +247,7 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-neurocir-tumores", especialidadeId: "esp-neurocirurgia", nome: "Tumores do Sistema Nervoso Central" },
 
     { id: "ass-orl-fratura", especialidadeId: "esp-orl", nome: "Trauma Nasal e Facial" },
-    { id: "ass-orl-vertigem", especialidadeId: "esp-orl", nome: "Vertigem Periférica" },
+    { id: "ass-orl-vertigem", especialidadeId: "esp-orl", nome: "Vertigem Periférica e Perda Auditiva (Audiometria)" },
     { id: "ass-orl-viasaereas", especialidadeId: "esp-orl", nome: "Vias Aéreas Superiores e Sono" },
 
     { id: "ass-alergia-anafilaxia", especialidadeId: "esp-alergiaimuno", nome: "Anafilaxia e Reações Alérgicas Graves" },
@@ -308,7 +308,7 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-geriatria-maustratos", especialidadeId: "esp-geriatria", nome: "Violência e Maus-tratos contra o Idoso" },
     { id: "ass-hepatopatiasautoimunes", especialidadeId: "esp-gastro", nome: "Hepatopatias Colestáticas e Autoimunes (CBP, CEP, Hepatite Autoimune)" },
     { id: "ass-dii", especialidadeId: "esp-gastro", nome: "Doença Inflamatória Intestinal" },
-    { id: "ass-reumato-conectivopatias", especialidadeId: "esp-reumato", nome: "Esclerose Sistêmica e Outras Conectivopatias" },
+    { id: "ass-reumato-conectivopatias", especialidadeId: "esp-reumato", nome: "Esclerose Sistêmica, Miopatias Inflamatórias e Outras Conectivopatias" },
     { id: "ass-tabagismo", especialidadeId: "esp-saudefamilia", nome: "Cessação do Tabagismo" },
     { id: "ass-oft-tumores", especialidadeId: "esp-oftalmo", nome: "Tumores Intraoculares (Melanoma de Coroide)" },
     { id: "ass-vm", especialidadeId: "esp-pneumo", nome: "Ventilação Mecânica Invasiva" },
