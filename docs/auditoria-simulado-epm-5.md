@@ -62,3 +62,23 @@ Feita por **leitura cega**: as 100 questões foram relidas sem o gabarito e resp
 - **24**: «Secretaria Estadual de Saúde do estado» era redundante; **35**: frase solta sobre outros instrumentos reescrita; **91**: concordância («discreta tiragem»).
 - Dicas do enunciado conferidas contra os números dos enunciados (`conferir-numeros`: 0 divergências) e metas do medidor refeitas depois dos ajustes: todas cumpridas (posição do gabarito por tamanho 25/24/29/22).
 - Pendências que a leitura não resolve: conferir em texto oficial os itens listados na seção 3 (vacina HPV, regra da União, sífilis congênita, receituário, edições de SSC e ATLS).
+
+## 6. Conferência com fontes externas (27/10/2026)
+
+Mesmo método da seção 6 de `docs/auditoria-simulado-epm-6.md`: só gov.br e sbp.com.br abriram nesta máquina (afya.com.br, saude.mg.gov.br, scielo.iec.gov.br e bvsms.saude.gov.br não); um PDF da Sociedade Brasileira de Pediatria foi lido no texto e a página da Society of Critical Care Medicine sobre a Surviving Sepsis Campaign 2026 foi lida; o resto veio de trechos de busca.
+
+**Erro achado e corrigido**
+- **70** (sífilis congênita): o enunciado dava VDRL do recém-nascido de 1:2 (reagente), com tudo o mais normal, e a resposta era penicilina benzatina em dose única. Pelo texto da Sociedade Brasileira de Pediatria (conduta do Ministério da Saúde de 2006) e pelo protocolo de IST de 2020 que aparece nas buscas, a benzatina vale quando o VDRL do recém-nascido é **não reagente** e todos os exames são normais; com VDRL reagente em qualquer título, o esquema é penicilina cristalina por 10 dias. O enunciado passou a VDRL não reagente, e a explicação traz a regra e o motivo de a cristalina ser a resposta quando o VDRL é reagente. O texto da edição vigente do protocolo do Ministério não foi aberto.
+
+**Conferido sem divergência**
+- **8 e 15** (sepse): a Surviving Sepsis Campaign 2026 foi publicada em março de 2026 e mantém antimicrobiano em até 1 hora no choque e na sepse provável, em até 3 horas na sepse possível sem choque, sugere corticoide venoso no choque séptico, noradrenalina como primeira escolha e vasopressina como segundo agente. As questões citam a edição de 2021 no enunciado; a conduta é a mesma na de 2026. A dose da hidrocortisona e o critério de início não constavam na página e não foram conferidos.
+- **60** (vacina HPV): dose única de 9 a 14 anos e três doses em imunossuprimidos, confirmadas no portal do Ministério da Saúde (Nota Técnica nº 41/2024; calendário e instrução normativa de 2026). O trecho sobre rastreamento por DNA-HPV não foi conferido.
+- **23** (financiamento): estados, 12%, e municípios, 15%, conferidos em busca em fonte oficial; a regra da União (art. 5º: empenhado do ano anterior mais a variação do PIB) continua na lei consolidada que a busca trouxe, e a explicação cita as mudanças posteriores sem que a questão dependa delas.
+- **29** (Portaria 344): validade de 30 dias e quantidade para até 60 dias nas notificações B e na receita de controle especial, conferidas em busca. A receita digital exige assinatura qualificada (ICP-Brasil) para essas listas, e a questão não cobra isso.
+- **18** (hanseníase): na reação tipo 2, talidomida é a primeira escolha e prednisona a alternativa (protocolo de 2022 em trecho de busca); doses e duração da poliquimioterapia não conferidas.
+- **14** (DPOC): GOLD 2025 prefere LABA+LAMA e, havendo indicação de corticoide inalatório, LABA+LAMA+CI; eosinófilos de 300 ou mais favorecem o CI. Sem divergência com as questões.
+
+**Não conferido** (continuam em «memória»): 13 e 92 (ATLS: a busca não trouxe os limiares da 11ª edição; só uma fonte secundária cita 1 litro e 200 mL por hora), 53 (AVC), 31 e 66 (protocolo de IST de 2022), 1 (CHA2DS2-VASc e CHA2DS2-VA) e as demais.
+
+**Observação sobre o medidor:** `npm run medir-bancos` em todos os bancos aponta duas posições de bancos mais antigos (q-adap22-027 e q-adap22-083) com vocabulário parecido com as questões 46 e 48 deste simulado, que não existiam quando aqueles bancos foram medidos. Os temas são diferentes (BI-RADS 0 contra BI-RADS 4C; escolha do fármaco na osteoporose com outro caso); o alerta é de palavras em comum, e as outras falhas listadas já existiam antes do EPM 5.
+
