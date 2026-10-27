@@ -176,3 +176,7 @@ Uma figura por código (`ferramentas/figuras-banco-simulado-epm-3.mjs`, modelo `
 Dois revisores independentes, que não escreveram as questões, leram as posições 1 a 50 e 51 a 100. Cada um respondeu à pergunta sem ver o gabarito: **100 de 100 iguais ao gabarito**. Não houve gabarito errado. Achados corrigidos: erro de conteúdo na explicação (22, 25, 73, 84), dado desatualizado ou impreciso (1, 3, 10, 14, 15, 20, 30, 37, 98, 82, 72, 62, 57, 69), enunciado que repetia ou entregava o raciocínio (7, 24, 27, 44, 54, 58, 60, 74, 80, 91, 96) e forma (9, 12, 32, 41, 43, 55, 75, 76, 77, 100).
 
 **Não aplicado, por decisão de redação:** o valor do escore SYNTAX dado pronto na 5 (o aluno não o calcula de cabeça); o CIWA-Ar dado na 100; o diagnóstico já dito no enunciado em 62, 75, 84, 88, 93 e 99, onde a pergunta é de conduta; pequenas diferenças de grafia entre alternativas (73, 77).
+
+## Rodada de 27/10/2026
+
+- **56** (uretrite gonocócica): a página oficial do PCDT de IST confirma que o anexo foi alterado em 04/07/2024 (página atualizada em 22/01/2025). O texto do anexo não foi aberto, então ceftriaxona 500 mg IM com azitromicina 1 g VO e o tratamento da parceria continuam de memória: **comparar com a versão de 2024 antes de mudar o gabarito**. Referência da questão atualizada com a data da alteração.

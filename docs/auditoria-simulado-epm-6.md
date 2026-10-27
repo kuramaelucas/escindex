@@ -82,3 +82,9 @@ Ferramentas: busca na web e leitura de páginas. **Só alguns domínios responde
 - **61** (citologia com atipia glandular): colposcopia com avaliação do canal endocervical e investigação do endométrio acima de 35 anos, segundo estudo brasileiro que cita as diretrizes do INCA de 2016; o PDF do INCA não foi lido por inteiro.
 
 **Não conferido** (continuam em «memória»): 64, 76, 90, 98, 108 e as demais questões. A leitura de PDFs grandes depende de baixá-los e extraí-los; ficou para uma próxima rodada.
+
+## Rodada de 27/10/2026 — fontes primárias conferidas a partir do dossiê de auditoria
+
+- **76** (nódulo pulmonar em rastreamento): o achado vinha de um programa de rastreamento, mas a resposta usava a Sociedade Fleischner (2017), que vale para nódulos incidentais. A questão passou ao **Lung-RADS v2022 (ACR)**: nódulo sólido de 6 a menos de 8 mm no exame basal é categoria 3, com tomografia de baixa dose em **6 meses**. Enunciado, alternativa D, explicação e referências reescritos. O PDF do ACR não pôde ser aberto neste ambiente; a tabela foi conferida pelo resumo do dossiê e de memória.
+- **108** (AIT): dupla antiagregação por 21 dias, iniciada em até 24 horas, em AIT de alto risco (ABCD2 de 4 ou mais), confere com resumos da diretriz AHA/ASA de 2026; gabarito mantido, referência atualizada. Texto integral não aberto.
+- **21** (malária por P. vivax, G6PD intermediária): documento oficial «Esquemas recomendados para o tratamento da malária no Brasil», 1ª edição revisada (2026), aberto: G6PD de 4,1 a 6,0 UI/gHb = 3 dias de cloroquina e 7 dias de primaquina (0,5 mg/kg/dia). Gabarito mantido. Corrigida a contraindicação da primaquina (gestantes, puérperas até um mês de amamentação e menores de 6 meses). Doses em comprimidos por faixa de peso não conferidas linha a linha.

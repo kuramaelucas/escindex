@@ -82,3 +82,6 @@ Mesmo método da seção 6 de `docs/auditoria-simulado-epm-6.md`: só gov.br e s
 
 **Observação sobre o medidor:** `npm run medir-bancos` em todos os bancos aponta duas posições de bancos mais antigos (q-adap22-027 e q-adap22-083) com vocabulário parecido com as questões 46 e 48 deste simulado, que não existiam quando aqueles bancos foram medidos. Os temas são diferentes (BI-RADS 0 contra BI-RADS 4C; escolha do fármaco na osteoporose com outro caso); o alerta é de palavras em comum, e as outras falhas listadas já existiam antes do EPM 5.
 
+## Rodada de 27/10/2026
+
+- **8 e 15** (sepse): a Surviving Sepsis Campaign 2026 (Prescott HC, Antonelli M, Alhazzani W, et al.; Intensive Care Medicine, 23/03/2026, doi 10.1007/s00134-026-08361-1) mantém antimicrobiano em até 1 hora no choque e na sepse provável, e em até 3 horas na sepse possível sem choque (conferido em busca em 27/10/2026), o que sustenta o gabarito da 8. As questões continuam perguntando pela campanha de 2021. Referências com o DOI da versão de 2026. Na 15, dose e critério de início da hidrocortisona na versão de 2026 seguem não conferidos.
