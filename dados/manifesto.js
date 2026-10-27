@@ -16,6 +16,7 @@ window.ESC_ARQUIVOS.dados = [
   "banco-simulado-epm-3",
   "banco-simulado-epm-4",
   "banco-simulado-epm-5",
+  "banco-simulado-epm-6",
   "prova-unifesp-2022",
   "prova-unifesp-2023",
   "prova-unifesp-2024",

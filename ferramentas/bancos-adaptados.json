@@ -23,5 +23,10 @@
     "guia": "prova-unifesp-2023",
     "padrao": "atual",
     "direcao": "abaixo"
+  },
+  "banco-simulado-epm-6": {
+    "guia": "prova-usprp-2021",
+    "padrao": "atual",
+    "direcao": "acima"
   }
 }
