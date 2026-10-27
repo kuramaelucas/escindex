@@ -66,6 +66,35 @@ function separarEnfase(texto){
 }
 // o texto sem a marcação de ênfase, para onde ela não se aplica (cartão gerado, prompt)
 function textoSemEnfase(texto){ return separarEnfase(texto).plano; }
+/* PARÁGRAFOS DA EXPLICAÇÃO. A explicação é gravada como um bloco só; na tela
+   ela ganha respiro: a frase do gabarito, as "Dicas do enunciado", o raciocínio
+   (cortado em parágrafos quando passa de ~300 caracteres) e cada alternativa
+   errada em linha própria. As quebras são só desenho: ficam fora do texto
+   puro, então as posições dos destaques da pessoa continuam valendo.
+   Devolve {posição: 2 (parágrafo) | 1 (linha)} em `plano`. */
+function quebrasDeParagrafo(plano){
+  const quebras = {};
+  const marcar = (pos, n) => { if(pos > 0 && pos < plano.length) quebras[pos] = Math.max(quebras[pos] || 0, n); };
+  const re = (r, fn) => { let m; while((m = r.exec(plano))) fn(m); };
+  re(/^A alternativa [A-E] está correta\. (?=\S)/g, m => marcar(m[0].length, 2));
+  re(/(?<=[.!?:] )Dicas d[oa]s? [^:\n]{1,20}:/g, m => marcar(m.index, 2));
+  let primeiraAlt = plano.length, achouAlt = false;
+  re(/(?<=[.;:!?] )(?:[A-E]\) (?=(?:Errad[ao]|Incorret[ao]|Corret[ao]|Cert[ao]|Verdadeir[ao]|Fals[ao])\b)|A alternativa [A-E] está (?:errada|incorreta)\b)/g, m => {
+    marcar(m.index, 2);
+    if(!achouAlt){ achouAlt = true; primeiraAlt = m.index; }
+  });
+  // corpo do raciocínio: depois da última quebra, corta numa fronteira de frase quando o trecho já está longo
+  const posicoes = Object.keys(quebras).map(Number).sort((x, y) => x - y);
+  let desde = 0;
+  re(/(?<=[a-zà-ú0-9)%]{4,}\.) (?=[A-ZÀ-Ú])/g, m => {
+    const pos = m.index + 1;
+    if(pos >= primeiraAlt) return;
+    const ultima = posicoes.filter(x => x <= pos).pop();
+    if(ultima !== undefined && ultima > desde) desde = ultima;
+    if(pos - desde > 300 && pos < primeiraAlt - 40){ marcar(pos, 2); desde = pos; }
+  });
+  return quebras;
+}
 /* O texto já escapado, com <mark> nos trechos destacados pela pessoa e
    <strong class="parametro"> na ênfase do autor. Sem nenhum dos dois, é
    exatamente escapeHtml(texto). `comEnfase` liga a leitura dos "**" (só as
@@ -73,8 +102,10 @@ function textoSemEnfase(texto){ return separarEnfase(texto).plano; }
 function htmlComDestaques(texto, alvo, comEnfase){
   const { plano, faixas } = comEnfase ? separarEnfase(texto) : { plano: String(texto === null || texto === undefined ? "" : texto), faixas: [] };
   const lista = alvo ? destaquesValidosDoTexto(plano, alvo) : [];
-  if(!lista.length && !faixas.length) return escapeHtml(plano);
+  const quebras = comEnfase ? quebrasDeParagrafo(plano) : {};
+  if(!lista.length && !faixas.length && !Object.keys(quebras).length) return escapeHtml(plano);
   const cortes = new Set([0, plano.length]);
+  Object.keys(quebras).forEach(p => cortes.add(Number(p)));
   lista.forEach(d => { cortes.add(d.inicio); cortes.add(d.fim); });
   faixas.forEach(f => { cortes.add(f.inicio); cortes.add(f.fim); });
   const pontos = [...cortes].sort((a, b) => a - b);
@@ -85,6 +116,7 @@ function htmlComDestaques(texto, alvo, comEnfase){
     if(faixas.some(f => f.inicio <= de && f.fim >= ate)) trecho = '<strong class="parametro">' + trecho + '</strong>';
     const d = lista.find(x => x.inicio <= de && x.fim >= ate);
     if(d) trecho = '<mark class="destaque" data-destaque="' + escapeHtml(d.id) + '" title="Clique para remover o destaque">' + trecho + '</mark>';
+    if(quebras[de]) html += (quebras[de] === 2 ? '<span class="quebra-paragrafo"></span>' : "<br>");
     html += trecho;
   }
   return html;
@@ -177,7 +209,17 @@ function atualizarBarraDeDestaque(){
 function textoDoAlvo(el){ return el.textContent; }
 function repintarAlvo(el){
   if(!el) return;
-  el.innerHTML = htmlComDestaques(textoDoAlvo(el), el.getAttribute("data-alvo"));
+  const alvo = el.getAttribute("data-alvo");
+  // explicação: devolve os "**" do autor ao texto antes de repintar, senão o negrito
+  // sublinhado e os parágrafos sumiriam assim que a pessoa marcasse um trecho
+  const ehExplicacao = /:explicacao(-alt)?$/.test(alvo);
+  let texto = textoDoAlvo(el);
+  if(ehExplicacao){
+    const copia = el.cloneNode(true);
+    copia.querySelectorAll("strong.parametro").forEach(n => { n.textContent = "**" + n.textContent + "**"; });
+    texto = copia.textContent;
+  }
+  el.innerHTML = htmlComDestaques(texto, alvo, ehExplicacao);
 }
 function destacarSelecao(){
   const p = _destaquePendente, u = usuarioAtual();
@@ -208,6 +250,19 @@ function apagarDestaque(id){
   const [d] = db.destaques.splice(i, 1);
   nuvemRegistrar({ destaque: Object.assign({}, d, { removido: true }) });
   return d;
+}
+/* Conjunto de questões novo (sessão, simulado, prova refeita) começa limpo:
+   o destaque de uma passada anterior entregaria o que importava da última vez
+   e a pessoa leria a marca em vez do enunciado. Vale para enunciado,
+   alternativas e explicação da questão; o cartão de flashcard não é tocado. */
+function limparDestaquesDasQuestoes(questaoIds){
+  const u = usuarioAtual();
+  if(!u || !(db.destaques || []).length) return;
+  const prefixos = questaoIds.map(id => "q:" + id + ":");
+  const apagar = db.destaques.filter(d => d.usuarioId === u.id && prefixos.some(p => d.alvo.startsWith(p)));
+  if(!apagar.length) return;
+  apagar.forEach(d => apagarDestaque(d.id));
+  saveState();
 }
 function removerDestaque(id){
   const marca = document.querySelector('mark.destaque[data-destaque="' + id + '"]');

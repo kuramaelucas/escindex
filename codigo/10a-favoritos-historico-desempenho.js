@@ -624,7 +624,8 @@ function htmlCardNotaEstimada(u){
     <div class="nota-estimada mt-2">
       <div><div class="nota-estimada-valor">${est.nota}%</div>
         <div class="text-xs muted">provavelmente entre ${est.minimo}% e ${est.maximo}%${larga ? " — faixa larga porque ainda há poucas respostas; ela estreita com o uso" : ""}</div></div>
-      ${est.simulado ? `<p class="text-sm mt-2"><strong>Só nos simulados:</strong> ${est.simulado.nota}% (entre ${est.simulado.minimo}% e ${est.simulado.maximo}%, ${est.simulado.respostas} questões)${est.estudo ? ` · <strong>só no estudo:</strong> ${est.estudo.nota}% (${est.estudo.respostas} questões)` : ""}. ${est.estudo && est.estudo.nota - est.simulado.nota >= 8 ? "Você rende menos com relógio e prova inteira do que estudando: treinar em simulado vale tanto quanto estudar mais conteúdo." : "A nota de simulado é a que mais se parece com a do dia da prova."}</p>` : `<p class="text-xs muted mt-2">Faça simulados (faltam ${est.faltamParaSimulado} questões feitas em simulado) para ver aqui a nota só deles, a que mais se parece com a do dia da prova.</p>`}
+      <div class="nota-estimada-detalhe">
+      ${est.simulado ? `<p class="text-sm"><strong>Só nos simulados:</strong> ${est.simulado.nota}% (entre ${est.simulado.minimo}% e ${est.simulado.maximo}%, ${est.simulado.respostas} questões)${est.estudo ? ` · <strong>só no estudo:</strong> ${est.estudo.nota}% (${est.estudo.respostas} questões)` : ""}. ${est.estudo && est.estudo.nota - est.simulado.nota >= 8 ? "Você rende menos com relógio e prova inteira do que estudando: treinar em simulado vale tanto quanto estudar mais conteúdo." : "A nota de simulado é a que mais se parece com a do dia da prova."}</p>` : `<p class="text-xs muted">Faça simulados (faltam ${est.faltamParaSimulado} questões feitas em simulado) para ver aqui a nota só deles, a que mais se parece com a do dia da prova.</p>`}
       <div class="table-wrap"><table>
         <thead><tr><th>Grande área</th><th>Peso na prova</th><th>Seu acerto</th><th>Pontos de 100</th></tr></thead>
         <tbody>${est.areas.map(a=>`<tr>
@@ -634,6 +635,7 @@ function htmlCardNotaEstimada(u){
           <td class="text-sm">${a.pontos.toFixed(1).replace(".", ",")} <span class="muted">de ${Math.round(a.fatia*100)}</span></td>
         </tr>`).join("")}</tbody>
       </table></div>
+      </div>
     </div>
   </div>`;
 }

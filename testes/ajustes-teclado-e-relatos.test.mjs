@@ -121,13 +121,16 @@ test("o mês da justificativa aparece pequeno e o destaque não muda a largura d
     const r = await pagina.evaluate(() => {
       fazerLoginDemo("aluno"); fecharModal();
       const rotulo = rotuloMesDaJustificativa({ justificativaEm: "2026-10" }), antigo = rotuloMesDaJustificativa({ criadoEm: "2025-03-02" });
-      document.body.insertAdjacentHTML("beforeend", `<p id="tp" style="font-weight:400">texto <strong class="parametro">dez</strong></p>`);
-      const e = document.querySelector("#tp strong"), cs = getComputedStyle(e);
-      return { rotulo, antigo, peso: cs.fontWeight, esq: cs.paddingLeft, dir: cs.paddingRight, html: htmlMesDaJustificativa({ justificativaEm: "2026-10" }) };
+      document.body.insertAdjacentHTML("beforeend", `<p id="tp" style="font-weight:400">texto <mark class="destaque">dez</mark> <strong class="parametro">dois</strong></p>`);
+      const e = document.querySelector("#tp mark"), cs = getComputedStyle(e), par = getComputedStyle(document.querySelector("#tp strong"));
+      return { rotulo, antigo, peso: cs.fontWeight, esq: cs.paddingLeft, dir: cs.paddingRight, pesoParametro: par.fontWeight, linhaParametro: par.textDecorationLine, fundoParametro: par.backgroundColor, html: htmlMesDaJustificativa({ justificativaEm: "2026-10" }) };
     });
     assert.equal(r.rotulo, "out/2026");
     assert.equal(r.antigo, "mar/2025", "sem o campo vale o mês de criação");
-    assert.equal(r.peso, "400", "sem negrito, que alarga as letras");
+    assert.equal(r.peso, "400", "o destaque da pessoa fica sem negrito, que alarga as letras");
+    assert.equal(r.pesoParametro, "700", "o parâmetro do autor é negrito...");
+    assert.equal(r.linhaParametro, "underline", "...e sublinhado");
+    assert.equal(r.fundoParametro, "rgba(0, 0, 0, 0)", "sem fundo colorido que se confunda com o amarelo do destaque");
     assert.equal(r.esq + r.dir, "0px0px", "sem padding, que empurra palavras para a linha de baixo");
     assert.match(r.html, /justificativa de out\/2026/);
   } finally { await contexto.close(); }

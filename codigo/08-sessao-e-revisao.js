@@ -138,6 +138,7 @@ function iniciarSessaoComLista(itens, tipo){
   // questão à espera da figura — ver aguardaImagem()
   itens = semQuestoesRepetidas(itens.filter(it => !aguardaImagem(getQuestao(it.questaoId))));
   if(!itens.length){ toast("Não há questões disponíveis para esta sessão.", "err"); return; }
+  limparDestaquesDasQuestoes(itens.map(it => it.questaoId));
   state.sessaoAtual = { id: uid("sessao"), tipo, itens, indiceAtual:0, respostasSessao:[], eliminadas:{}, marcadas:{}, finalizada:false, tsQuestao: Date.now() };
   salvarSessaoEmAndamento();
   navigate("sessao");

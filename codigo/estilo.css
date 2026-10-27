@@ -124,6 +124,8 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .link-btn{background:none;border:none;padding:0;color:var(--accent-dark);font-weight:600;font-size:var(--fs-sm);cursor:pointer;text-decoration:underline}
 .link-btn.titulo-simulado{font-size:inherit;text-align:left}
 /* mapa de acertos do resultado: cores suaves; o que mudou desde a tentativa anterior vai na seta */
+.mapa-acertos{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));gap:.4rem}
+.mapa-acertos .pill{justify-content:center;padding-left:0;padding-right:0;position:relative}
 .pill-resultado.certa{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--border-strong));color:var(--accent-dark)}
 .pill-resultado.errada{background:var(--danger-soft);border-color:color-mix(in srgb,var(--danger) 45%,var(--border-strong));color:var(--danger)}
 .pill .seta-mudanca{margin-left:.15rem;font-size:var(--fs-xs)}
@@ -497,6 +499,8 @@ ol.lista-passos li{margin:.25rem 0}
 /* "Se a prova fosse hoje": o número grande ao lado da tabela das áreas */
 .nota-estimada{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
 @media (min-width:900px){ .nota-estimada{grid-template-columns:220px minmax(0,1fr)} }
+.nota-estimada-detalhe{min-width:0}
+.nota-estimada-detalhe .table-wrap{margin-top:.75rem}
 .nota-estimada-valor{font-family:var(--font-display);font-size:var(--fs-2xl);line-height:1.1;color:var(--accent)}
 /* barra de prioridade (O que mais cai × onde você erra) */
 .barra-prioridade{width:90px;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
@@ -721,8 +725,10 @@ details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
 mark.destaque{background:var(--destaque);color:inherit;border-radius:3px;box-shadow:0 0 0 .08em var(--destaque);cursor:pointer}
 .barra-destaque{position:absolute;z-index:60;padding:.3rem;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:var(--shadow-pop)}
 .barra-destaque[hidden]{display:none}
-/* Parâmetro objetivo que define a conduta, marcado com ** pelo autor da explicação (seção 11-B) */
-strong.parametro{font-weight:inherit;color:var(--accent-dark);background:var(--accent-soft);box-shadow:0 0 0 .14em var(--accent-soft);border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* Quebra de parágrafo dentro da explicação (quebrasDeParagrafo, seção 11-B) */
+.quebra-paragrafo{display:block;height:.7rem}
+/* Parâmetro objetivo que define a conduta, marcado com ** pelo autor da explicação (seção 11-B): negrito + sublinhado, sem fundo colorido, para não se confundir com o amarelo do destaque da pessoa */
+strong.parametro{font-weight:700;color:inherit;text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.18em}
 
 /* Utilitários que substituíram style="" repetido nas telas. Levam !important
    porque o estilo inline que trocaram sempre vencia a folha de estilo. */

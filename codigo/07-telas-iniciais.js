@@ -886,6 +886,7 @@ function gerarListaPersonalizada(comoSimulado){
   if(!pool.length){ toast("Nenhuma questão encontrada com esses filtros.", "err"); return; }
   const escolhidas = embaralhar(pool).slice(0,tamanho);
   if(comoSimulado===true){
+    limparDestaquesDasQuestoes(escolhidas.map(q=>q.id));
     state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:null, titulo:"Simulado personalizado ("+escolhidas.length+" questões)",
       itens: escolhidas.map(q=>({questaoId:q.id, motivo:"Simulado personalizado"})), indiceAtual:0, respostasSimulado:{},
       duracaoMin: escolhidas.length*2, finalizado:false, modoAprendizado:false,
