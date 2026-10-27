@@ -80,7 +80,7 @@ function quebrasDeParagrafo(plano){
   re(/(?<=[.!?:] )Dicas d[oa]s? [^:\n]{1,20}:/g, m => marcar(m.index, 2));
   let primeiraAlt = plano.length, achouAlt = false;
   re(/(?<=[.;:!?] )(?:[A-E]\) (?=(?:Errad[ao]|Incorret[ao]|Corret[ao]|Cert[ao]|Verdadeir[ao]|Fals[ao])\b)|A alternativa [A-E] está (?:errada|incorreta)\b)/g, m => {
-    marcar(m.index, achouAlt ? 1 : 2);
+    marcar(m.index, 2);
     if(!achouAlt){ achouAlt = true; primeiraAlt = m.index; }
   });
   // corpo do raciocínio: depois da última quebra, corta numa fronteira de frase quando o trecho já está longo
@@ -116,7 +116,7 @@ function htmlComDestaques(texto, alvo, comEnfase){
     if(faixas.some(f => f.inicio <= de && f.fim >= ate)) trecho = '<strong class="parametro">' + trecho + '</strong>';
     const d = lista.find(x => x.inicio <= de && x.fim >= ate);
     if(d) trecho = '<mark class="destaque" data-destaque="' + escapeHtml(d.id) + '" title="Clique para remover o destaque">' + trecho + '</mark>';
-    if(quebras[de]) html = html.replace(/\s+$/, "") + (quebras[de] === 2 ? '<span class="quebra-paragrafo"></span>' : "<br>");
+    if(quebras[de]) html += (quebras[de] === 2 ? '<span class="quebra-paragrafo"></span>' : "<br>");
     html += trecho;
   }
   return html;
@@ -209,7 +209,17 @@ function atualizarBarraDeDestaque(){
 function textoDoAlvo(el){ return el.textContent; }
 function repintarAlvo(el){
   if(!el) return;
-  el.innerHTML = htmlComDestaques(textoDoAlvo(el), el.getAttribute("data-alvo"));
+  const alvo = el.getAttribute("data-alvo");
+  // explicação: devolve os "**" do autor ao texto antes de repintar, senão o negrito
+  // sublinhado e os parágrafos sumiriam assim que a pessoa marcasse um trecho
+  const ehExplicacao = /:explicacao(-alt)?$/.test(alvo);
+  let texto = textoDoAlvo(el);
+  if(ehExplicacao){
+    const copia = el.cloneNode(true);
+    copia.querySelectorAll("strong.parametro").forEach(n => { n.textContent = "**" + n.textContent + "**"; });
+    texto = copia.textContent;
+  }
+  el.innerHTML = htmlComDestaques(texto, alvo, ehExplicacao);
 }
 function destacarSelecao(){
   const p = _destaquePendente, u = usuarioAtual();

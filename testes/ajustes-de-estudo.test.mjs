@@ -233,9 +233,7 @@ test("destacar texto: selecionar um trecho da questão, marcar, continuar marcad
     await pagina.click("#barraDestaque button");
     assert.equal(await pagina.evaluate(() => db.destaques.length), 1, "o destaque que engloba os outros os substitui");
 
-    // volta à questão: continua marcado; e sobrevive a recarregar a página
-    await pagina.evaluate(qid => { navigate("inicio"); praticarSoEstaQuestao(qid); }, ids.qid);
-    await pagina.waitForSelector(".qcard-enunciado mark.destaque");
+    // sobrevive a recarregar a página
     await pagina.reload();
     await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
     assert.equal(await pagina.evaluate(() => db.destaques.length), 1, "guardado no navegador");
@@ -248,8 +246,19 @@ test("destacar texto: selecionar um trecho da questão, marcar, continuar marcad
     });
     assert.ok(achou);
 
+    // conjunto novo (a questão refeita) começa sem marcação; no apagar da antiga, a nuvem é avisada
+    await pagina.evaluate(qid => { navigate("inicio"); praticarSoEstaQuestao(qid); }, ids.qid);
+    await pagina.waitForSelector(".qcard-enunciado[data-alvo]");
+    assert.deepEqual(await pagina.evaluate(() => ({ n: db.destaques.length, marcas: document.querySelectorAll(".qcard-enunciado mark.destaque").length })), { n: 0, marcas: 0 }, "refazer a questão não traz o destaque da vez anterior");
+
     // remover: clicar no trecho marcado
-    await pagina.evaluate(qid => { praticarSoEstaQuestao(qid); }, ids.qid);
+    await pagina.evaluate(() => {
+      const el = document.querySelector(".qcard-enunciado[data-alvo]");
+      const r = document.createRange(); r.setStart(el.firstChild, 2); r.setEnd(el.firstChild, 14);
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    });
+    await pagina.waitForSelector("#barraDestaque:not([hidden]) button");
+    await pagina.click("#barraDestaque button");
     await pagina.waitForSelector(".qcard-enunciado mark.destaque");
     await pagina.click(".qcard-enunciado mark.destaque");
     await pagina.waitForSelector("#barraDestaque:not([hidden]) button");
@@ -320,10 +329,16 @@ test("justificativa: **parâmetro** vira realce, convive com o destaque do aluno
       const tmp = document.createElement("div"); tmp.innerHTML = misto;
       const q = db.questoes.find(x => x.status === "ativa");
       const regra = regraDeParametrosObjetivos();
-      return { puro, semPar, plano, misto, textoDoMisto: tmp.textContent, regra,
+      // parágrafos: gabarito, dicas e cada alternativa errada em bloco próprio, sem mexer no texto puro
+      const longa = "A alternativa B está correta. Dicas do enunciado: **x**. Conta. A alternativa A está errada: foo. A alternativa C está errada: bar.";
+      const paragrafos = (htmlComDestaques(longa, null, true).match(/quebra-paragrafo/g) || []).length;
+      const paragrafosFora = (htmlComDestaques(longa, null, false).match(/quebra-paragrafo/g) || []).length;
+      return { paragrafos, paragrafosFora, puro, semPar, plano, misto, textoDoMisto: tmp.textContent, regra,
         duvida: gerarPromptDuvida(q).includes(regra), importacao: gerarPromptImportacao().includes(regra),
         central: regrasDeConteudoImportacao().includes(regra) };
     });
+    assert.equal(r.paragrafos, 3, "uma quebra antes das dicas e uma antes de cada alternativa errada");
+    assert.equal(r.paragrafosFora, 0, "só a explicação ganha parágrafos");
     assert.equal(r.puro, 'Choque: <strong class="parametro">PAS 82 mmHg</strong> (normal: 90–120) exige volume.');
     assert.equal(r.semPar, "a ** solta &lt;b&gt;");
     assert.equal(r.plano, "Choque: PAS 82 mmHg (normal: 90–120) exige volume.");
