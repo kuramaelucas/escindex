@@ -62,3 +62,23 @@ Feita por **leitura cega**: as 120 questões foram relidas sem o gabarito e resp
 - **118**: uma estatística nacional de início de diálise por cateter foi retirada por não ter fonte conferida.
 - Dicas do enunciado conferidas contra os números dos enunciados (`conferir-numeros`: 0 divergências) e metas do medidor refeitas depois dos ajustes: todas cumpridas.
 - Pendências que a leitura não resolve: conferir em texto oficial os itens da seção 3.
+
+## 6. Conferência com fontes externas (27/10/2026)
+
+Ferramentas: busca na web e leitura de páginas. **Só alguns domínios responderam** (gov.br e sbp.com.br abriram; portais como afya.com.br e saude.mg.gov.br não resolveram nesta máquina). Dois PDFs oficiais foram lidos no texto; os demais itens vieram de trechos de busca de fontes oficiais ou secundárias, e estão marcados como tal.
+
+**Conferido em texto oficial**
+- **21** (malária por vivax): PDF «Esquemas recomendados para o tratamento da malária no Brasil» (Ministério da Saúde). O esquema atual depende da G6PD: 6,1 UI/gHb ou mais, cloroquina por 3 dias e tafenoquina em dose única; de 4,1 a 6,0, cloroquina por 3 dias e primaquina por 7 dias; 4,0 ou menos, primaquina semanal. **Erro achado:** o enunciado dizia «G6PD normal», caso em que hoje a resposta seria tafenoquina, e não primaquina por 7 dias. O enunciado passou a 5,2 UI/gHb (intermediária) e a explicação traz as três faixas. As doses de primaquina por peso não foram conferidas.
+- **33** (líquido meconial): diretrizes da Sociedade Brasileira de Pediatria (atualização de maio de 2021), seção 7. A resposta está certa, mas a explicação dizia que a boca e o nariz só se aspiram «se houver secreção»; o texto oficial diz que é prudente aspirá-los suavemente com sonda nº 10 nos passos iniciais do não vigoroso, em até 30 segundos, com ventilação por máscara em ar ambiente no primeiro minuto, e que a aspiração traqueal só vale com forte suspeita de obstrução após 30 segundos de ventilação efetiva. A explicação foi corrigida. A versão de 2022 não foi aberta.
+
+**Conferido em trecho de busca (fonte oficial ou que a cita)**
+- **1** (raiva): esquema de 4 doses (dias 0, 3, 7 e 14), Nota Informativa nº 26/2017 do Ministério da Saúde, e soro mais vacina quando o animal não pode ser observado. Sem divergência.
+- **2** (Lei Complementar 141/2012): art. 36, §5º, audiência pública até o final de maio, setembro e fevereiro; relatório ao conselho de saúde. Sem divergência.
+- **16** (sarampo): notificação em até 24 horas e bloqueio vacinal oportuno em até 72 horas; coleta de IgM e RT-PCR. Sem divergência.
+- **26** (teste do coraçãozinho): Portaria GM/MS nº 1.940/2018 (oximetria entre 24 e 48 horas; alteração, nova medida em 1 hora; alteração confirmada, ecocardiograma em 24 horas). A resposta está de acordo. Há relato, em fonte secundária, de uma revisão de 2022 da Sociedade Brasileira de Pediatria com outros limiares (89% ou menos positivo; 90 a 94% ou diferença de 4 pontos ou mais, repetir até duas vezes), **não confirmado em texto**; a referência da questão diz isso.
+- **9** (faringoamigdalite): os cortes de peso da penicilina benzatina variam entre protocolos (20, 25 e 27 kg). O caso tinha 22 kg e podia dar 600.000 UI conforme o protocolo; passou a **30 kg** (9 anos), acima de todos os cortes, e a explicação diz que o corte varia.
+- **103** (infecção latente da tuberculose): nota informativa de 2024 do Ministério da Saúde acrescenta 3 meses de rifampicina com isoniazida (3RH) para menores de 10 anos. A resposta (6H ou 4R) continua entre os esquemas válidos; a explicação cita o 3RH. Texto da nota não aberto.
+- **50 e 65** (herpes genital e vaginose bacteriana): aciclovir 400 mg a cada 8 horas por 7 a 10 dias e metronidazol 250 mg, 2 comprimidos, duas vezes ao dia por 7 dias constam em guias e protocolos que reproduzem o protocolo do Ministério da Saúde de 2020; o texto da edição vigente não foi aberto.
+- **61** (citologia com atipia glandular): colposcopia com avaliação do canal endocervical e investigação do endométrio acima de 35 anos, segundo estudo brasileiro que cita as diretrizes do INCA de 2016; o PDF do INCA não foi lido por inteiro.
+
+**Não conferido** (continuam em «memória»): 64, 76, 90, 98, 108 e as demais questões. A leitura de PDFs grandes depende de baixá-los e extraí-los; ficou para uma próxima rodada.
