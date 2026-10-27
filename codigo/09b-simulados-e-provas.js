@@ -269,6 +269,7 @@ function iniciarSimulado(simuladoId, recomecar){
   // questão que saiu do banco) não entra — ver aguardaImagem()
   const qids = s.questoes.filter(qid=>{ const q = getQuestao(qid); return q && !aguardaImagem(q); });
   if(!qids.length){ toast("Este simulado não tem questões disponíveis no momento.", "err"); return; }
+  limparDestaquesDasQuestoes(qids);
   state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId, titulo:s.titulo, itens:qids.map(qid=>({questaoId:qid, motivo:"Simulado: "+s.titulo})), indiceAtual:0, respostasSimulado:{}, duracaoMin:s.duracaoMin, finalizado:false, modoAprendizado:false, escolhaPendente:{}, ocultarTimer:false, pausadoDesde:null, inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
   navigate("simulado-ativo");
 }
@@ -850,7 +851,7 @@ function renderResultadoSimulado(){
     const antes = comp ? acertouNaTentativa(previa, l.q.id) : null;
     const mudou = antes!==null && antes!==l.correta;
     const aviso = antes===null ? "" : ` · antes: ${antes?"acertou":"errou"}`;
-    return `<button class="pill pill-resultado ${l.resp===undefined?"":l.correta?"certa":"errada"}" style="min-width:38px;justify-content:center" onclick="abrirQuestaoDoResultado(${l.i})" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}${aviso} · abrir a questão">${l.i+1}${mudou ? `<span class="seta-mudanca" aria-hidden="true">${l.correta?"↑":"↓"}</span>` : ""}</button>`;
+    return `<button class="pill pill-resultado ${l.resp===undefined?"":l.correta?"certa":"errada"}" onclick="abrirQuestaoDoResultado(${l.i})" title="${l.resp===undefined?"em branco":(l.correta?"acertou":"errou")}${aviso} · abrir a questão">${l.i+1}${mudou ? `<span class="seta-mudanca" aria-hidden="true">${l.correta?"↑":"↓"}</span>` : ""}</button>`;
   };
   return `<div class="coluna-resultado">
   <div class="card">
@@ -867,7 +868,7 @@ function renderResultadoSimulado(){
       <button class="btn btn-ghost btn-sm" onclick="state.sessaoAtual=null;navigate('historico')">Histórico</button>
     </div>
     <div class="text-sm peso-600 mt-2">Mapa de acertos <span class="muted peso-400">· verde acertou, vermelho errou, cinza em branco; clique para abrir a questão</span></div>
-    <div class="flex gap-1 quebra mt-1">${linhas.map(pillMapa).join("")}</div>
+    <div class="mapa-acertos mt-1">${linhas.map(pillMapa).join("")}</div>
     ${htmlComparacaoComAnterior(comp, previa, linhas)}
   </div>
   ${equipe ? `<div class="card mt-2">${htmlDesempenhoDosAlunos(chaveRanking)}</div>` : ranking ? `
@@ -1147,6 +1148,7 @@ function fazerProvaComoSimulado(indice, recomecar){
     if(!recomecar){ perguntarRecomecarSimulado(chave, `fazerProvaComoSimulado(${indice}, true)`); return; }
     descartarSimuladoEmAndamento(chave);
   }
+  limparDestaquesDasQuestoes(g.ids);
   state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:null, titulo,
     itens: g.ids.map(id=>({questaoId:id, motivo:"Prova "+g.banca+" "+anoDaProva(g)})), indiceAtual:0, respostasSimulado:{},
     duracaoMin: g.ids.length*2, finalizado:false, modoAprendizado:false,
