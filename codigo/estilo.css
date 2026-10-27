@@ -124,7 +124,7 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .link-btn{background:none;border:none;padding:0;color:var(--accent-dark);font-weight:600;font-size:var(--fs-sm);cursor:pointer;text-decoration:underline}
 .link-btn.titulo-simulado{font-size:inherit;text-align:left}
 /* mapa de acertos do resultado: cores suaves; o que mudou desde a tentativa anterior vai na seta */
-.mapa-acertos{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:.4rem}
+.mapa-acertos{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));gap:.4rem}
 .mapa-acertos .pill{justify-content:center;padding-left:0;padding-right:0;position:relative}
 .pill-resultado.certa{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--border-strong));color:var(--accent-dark)}
 .pill-resultado.errada{background:var(--danger-soft);border-color:color-mix(in srgb,var(--danger) 45%,var(--border-strong));color:var(--danger)}
