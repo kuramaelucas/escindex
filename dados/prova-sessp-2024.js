@@ -1106,7 +1106,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **jovem de 32 anos com diabetes tipo 2 recente, HbA1c de 8,5% (meta: < 7%) e IMC de 37 kg/m² (obesidade grau II)**. Com HbA1c acima de 8,5% e obesidade, indica-se tratamento combinado desde o início: estilo de vida, **metformina em dose plena (2 g/dia)** e um segundo fármaco com benefício de peso e cardiorrenal, como a **semaglutida** (agonista de GLP-1). A (metformina em dose baixa) é insuficiente. C (cirurgia bariátrica) é discutida depois da falha clínica. D (gliclazida) causa ganho de peso. E (insulina) é para HbA1c muito alta ou sintomas catabólicos.",
   explicacoesAlternativas:{},
-  referencias:"Sociedade Brasileira de Diabetes. Diretriz da Sociedade Brasileira de Diabetes, edição vigente; American Diabetes Association. Standards of Medical Care in Diabetes.",
+  referencias:"Sociedade Brasileira de Diabetes. Diretriz da Sociedade Brasileira de Diabetes, edição vigente; American Diabetes Association. Standards of Medical Care in Diabetes. Sociedade Brasileira de Diabetes. Diretriz SBD 2026: Manejo do Diabetes Mellitus Tipo 2 (Valente F, Lyra R, Albuquerque L, et al.; editor Bertoluci MC), doi 10.29327/5881296.2026-2, última revisão 23/10/2026, https://diretriz.diabetes.org.br/manejo-do-diabetes-mellitus-tipo-2/ (R7: HbA1c de 7,5% ou mais no início, terapia dupla desde o começo; R9: IMC de 30 ou mais, agonista de GLP-1 ou GLP-1/GIP). Nível de confirmação da atualização: texto aberto em 27/10/2026, sem divergência com o gabarito.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

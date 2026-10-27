@@ -545,14 +545,15 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 },
 {
   id:"q-unicampdis2025-037", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:37,
+  justificativaEm:"2026-10",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-violenciasexual",
   tipo:"dissertativa", respostaEsperada:"Vacinação com esquema de três doses (0, 2 e 6 meses).",
   enunciado:"Mulher, 37a, vítima de violência sexual há 20 horas (com penetração vaginal), em atendimento médico. EM RELAÇÃO À VACINAÇÃO PARA HPV A ORIENTAÇÃO É:",
   alternativas:[],
   gabarito:"",
-  explicacaoGeral:"Dicas do enunciado: mulher de **37 anos**, **vítima de violência sexual há 20 horas, com penetração vaginal**, em atendimento. Pela norma técnica do Ministério da Saúde para profilaxia pós-violência sexual, a **vacina HPV** é indicada para as **vítimas dessa faixa de idade** (de 9 a 45 anos) **sem vacinação prévia**, com **esquema de três doses (0, 2 e 6 meses)** (esquema estendido, porque a vacinação rotineira de duas doses vale só para meninas e meninos até 14 anos). A vacina deve ser aplicada nesse atendimento junto com a profilaxia de hepatite B, tétano, ISTs e contracepção de emergência. Só pontua a resposta que cite as três doses.",
+  explicacaoGeral:"Dicas do enunciado: mulher de **37 anos**, **vítima de violência sexual há 20 horas, com penetração vaginal**, em atendimento. Pela norma técnica do Ministério da Saúde para profilaxia pós-violência sexual, a **vacina HPV** é indicada para as **vítimas dessa faixa de idade** (de 9 a 45 anos) **sem vacinação prévia**, com **esquema de três doses (0, 2 e 6 meses)** (esquema estendido, porque a vacinação rotineira de duas doses vale só para meninas e meninos até 14 anos). A vacina deve ser aplicada nesse atendimento junto com a profilaxia de hepatite B, tétano, ISTs e contracepção de emergência. Só pontua a resposta que cite as três doses. Atualização (27/10/2026): a Nota Técnica nº 96/2026 do DPNI (setembro de 2026) descreve a oferta de 2023 da vacina HPV a mulheres e homens de 9 a 45 anos vítimas de violência sexual e a estende a crianças a partir de 2 anos, em dose única. A nota não trata do número de doses de quem tem 9 anos ou mais: o esquema de três doses (0, 2 e 6 meses) citado acima segue a norma técnica anterior e precisa ser conferido no calendário vigente antes de ser usado para estudo.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Norma Técnica de Prevenção e Tratamento dos Agravos Resultantes da Violência Sexual; Calendário Nacional de Vacinação.",
+  referencias:"Ministério da Saúde, Norma Técnica de Prevenção e Tratamento dos Agravos Resultantes da Violência Sexual; Calendário Nacional de Vacinação. Brasil. Ministério da Saúde. SVSA/DPNI. Nota Técnica nº 96/2026-CGICI/DPNI/SVSA/MS (assinada em 10/09/2026; SEI 25000.136955/2026-72): vacina HPV para crianças vítimas de violência sexual a partir de 2 anos, em dose única. Nível de confirmação da atualização: texto integral aberto em 27/10/2026.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-13"

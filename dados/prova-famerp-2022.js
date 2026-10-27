@@ -804,7 +804,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **HbA1c de 11% (> 10%)** e **sintomas de hiperglicemia (poliúria e polidipsia)** após 15 anos de diabetes, em uso de metformina: indicam **importante déficit de insulina e glicotoxicidade**; nessas situações, as diretrizes recomendam **insulinização (basal) por via inicial**, podendo-se retirar depois. A) errada: o inibidor de DPP-4 reduz a HbA1c em cerca de 0,5–0,8 ponto, insuficiente. B) errada: o inibidor de SGLT2 reduz em torno de 0,7–1 ponto e perde eficácia na hiperglicemia muito alta e com sintomas de catabolismo. C) errada: o GLP-1 é potente (1–1,5), mas não atinge a queda necessária de 4 pontos e não é o primeiro passo na descompensação sintomática.",
   explicacoesAlternativas:{},
-  referencias:"Diretriz da Sociedade Brasileira de Diabetes 2023; ADA Standards of Care 2023.",
+  referencias:"Diretriz da Sociedade Brasileira de Diabetes 2023; ADA Standards of Care 2023. Sociedade Brasileira de Diabetes. Diretriz SBD 2026: Manejo do Diabetes Mellitus Tipo 2 (Valente F, Lyra R, Albuquerque L, et al.; editor Bertoluci MC), doi 10.29327/5881296.2026-2, última revisão 23/10/2026, https://diretriz.diabetes.org.br/manejo-do-diabetes-mellitus-tipo-2/ (R14: sintomas moderados a graves de insulinopenia, terapia baseada em insulina, a ser substituída depois por terapia não insulínica quando estável (R15)). Nível de confirmação da atualização: texto aberto em 27/10/2026, sem divergência com o gabarito.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-05"

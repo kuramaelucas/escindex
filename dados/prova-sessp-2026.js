@@ -46,7 +46,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2026", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **obesidade (100 kg), risco cardiovascular alto e hemoglobina glicada acima da meta após 4 meses de terapia tripla** (sulfonilureia, inibidor de SGLT2 e metformina). Nessa situação, a diretriz da Sociedade Brasileira de Diabetes manda **intensificar sem esperar**, e a classe com benefício cardiovascular e perda de peso é o agonista de GLP-1: **associar liraglutida**. A (esperar 12 meses) é inércia terapêutica. C e D retiram a empagliflozina, que traz proteção cardiorrenal e deve ser mantida. E (só insulina) abandona classes com benefício comprovado.",
   explicacoesAlternativas:{},
-  referencias:"Sociedade Brasileira de Diabetes. Diretriz da Sociedade Brasileira de Diabetes, edição vigente; American Diabetes Association. Standards of Medical Care in Diabetes.",
+  referencias:"Sociedade Brasileira de Diabetes. Diretriz da Sociedade Brasileira de Diabetes, edição vigente; American Diabetes Association. Standards of Medical Care in Diabetes. Sociedade Brasileira de Diabetes. Diretriz SBD 2026: Manejo do Diabetes Mellitus Tipo 2 (Valente F, Lyra R, Albuquerque L, et al.; editor Bertoluci MC), doi 10.29327/5881296.2026-2, última revisão 23/10/2026, https://diretriz.diabetes.org.br/manejo-do-diabetes-mellitus-tipo-2/ (R12: HbA1c acima da meta após 3 meses de terapia tripla, considerar a quádrupla; R13: insulina só depois da quádrupla). Nível de confirmação da atualização: texto aberto em 27/10/2026, sem divergência com o gabarito.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

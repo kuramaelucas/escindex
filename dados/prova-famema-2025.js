@@ -117,13 +117,14 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 },
 {
   id:"q-famema2025-008", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:8,
+  justificativaEm:"2026-10",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Paciente de 79 anos chega à unidade com queixa de dispneia. Ela tem antecedente de diabetes melito tratado com hipoglicemiante oral e por 10 anos fez uso de reposi- ção hormonal para melhora de sintomas da menopausa. Assinale a alternativa que apresenta a definição eletrocar- diográfica de infarto agudo do miocárdio com supradesni- velamento do segmento ST nessa paciente.",
   alternativas:[{id:"A",texto:"Elevação de 1,5 mm do ponto J nas derivações V2 e V3."},{id:"B",texto:"Elevação de 0,2 mm do ponto J nas derivações V7 a V9."},{id:"C",texto:"Elevação de 0,5 mm do ponto J nas derivações DII e DIII."},{id:"D",texto:"Aparecimento de novo bloqueio de ramo direito."}],
   gabarito:"A",
-  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **mulher**, idosa e diabética, com dispneia (apresentação atípica). Pela quarta definição universal, o supradesnivelamento do ponto J é: em V2-V3, ≥ **1,5 mm** em mulheres (≥ 2 mm em homens ≥ 40 anos e ≥ 2,5 mm abaixo de 40); nas demais derivações, ≥ **1 mm**; em V7-V9, ≥ 0,5 mm. B e C trazem valores insuficientes (0,2 e 0,5 mm; V7-V9 exigiria 0,5 mm). D está errada: bloqueio de ramo direito novo não define IAMCSST.",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **mulher**, idosa e diabética, com dispneia (apresentação atípica). Pela quarta definição universal, o supradesnivelamento do ponto J é: em V2-V3, ≥ **1,5 mm** em mulheres (≥ 2 mm em homens ≥ 40 anos e ≥ 2,5 mm abaixo de 40); nas demais derivações, ≥ **1 mm**; em V7-V9, ≥ 0,5 mm. B e C trazem valores insuficientes (0,2 e 0,5 mm; V7-V9 exigiria 0,5 mm). D está errada: bloqueio de ramo direito novo não define IAMCSST. Atualização (27/10/2026): a Quinta Definição Universal de Infarto do Miocárdio (ESC/ACC/AHA/WHF, 2026) manteve os limiares de supradesnivelamento do ponto J (em V2-V3, 2,5 mm em homens abaixo de 40 anos, 2 mm em homens de 40 anos ou mais e 1,5 mm em mulheres; 1 mm nas demais derivações), então a resposta não muda.",
   explicacoesAlternativas:{},
-  referencias:"Thygesen K et al. Fourth Universal Definition of Myocardial Infarction, 2018.",
+  referencias:"Thygesen K et al. Fourth Universal Definition of Myocardial Infarction, 2018. Mills NL, Newby LK, Zaman S, et al. Fifth Universal Definition of Myocardial Infarction (2026). Eur Heart J 2026;47:5911-5958, doi 10.1093/eurheartj/ehag101. Nível de confirmação da atualização: artigo integral aberto em 27/10/2026.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

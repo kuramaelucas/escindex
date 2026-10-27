@@ -110,4 +110,5 @@ Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/LEIA
 
 - `RESUMO-PROJETO-ESC.md` — o que a plataforma faz e o **porquê** de cada decisão (seções 4–5), pendências no topo. Para conversa fora do Claude Code, anexe-o junto com o arquivo de `codigo/` da tela.
 - `docs/HISTORICO.md` — o que mudou em cada rodada. Só quando precisar da história.
+- `docs/DIRETRIZES-VIGENTES.md` — banco de referências: o que cada diretriz nova mudou, o nível de confirmação e as questões já conferidas; consulte antes de escrever ou revisar explicação desses temas.
 - `PENDENCIAS.md` (o que falta no conteúdo), `dados/LEIA-ME.md` (formato do conteúdo), `nuvem/LEIA-ME.md` (ligar e manter a nuvem).
