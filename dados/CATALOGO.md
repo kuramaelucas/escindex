@@ -3,11 +3,11 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 9143 questões (7505 reais, 1638 autorais), 943 cartões, 275 assuntos, 6 simulado(s), 100 arquivos.
+**Total:** 9834 questões (7505 reais, 2329 autorais), 943 cartões, 277 assuntos, 6 simulado(s), 105 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
-| `taxonomia.js` | TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos | 321 taxonomia |  |
+| `taxonomia.js` | TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos | 323 taxonomia |  |
 | `calendario.js` | CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada | 9 calendário |  |
 | `banco-didatico.js` | BANCO DIDÁTICO — 135 questões autorais | 135 questões | 1 anulada(s) |
 | `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais | 100 questões |  |
@@ -90,6 +90,11 @@
 | `prova-uspsp-simulado-4.js` | Simulados USP SP — Simulado 4 (04/2025) 2025 — Simulado 4, todo o conteúdo, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-uspsp-simulado-3.js` | Simulados USP SP — Simulado 3, 6º ano (03/2025) 2025 — Simulado 3, conteúdo do 6º ano, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-simulado-epm-2026-10.js` | Simulado EPM/UNIFESP (Turma 89) 2026 — Prova de Residência Médica, Avaliação Discente - Internato, 18/10/2026 | 100 questões |  |
+| `banco-didatico-grad-parasitoses.js` | Esc — Banco Didático 2026 | 198 questões | 10 anulada(s); 7 esperando figura |
+| `banco-didatico-grad-hiv.js` | Esc — Banco Didático 2026 | 218 questões | 9 anulada(s); 5 esperando figura |
+| `banco-didatico-grad-neutropenia.js` | Esc — Banco Didático 2026 | 75 questões | 4 anulada(s) |
+| `banco-didatico-grad-influenza.js` | Esc — Banco Didático 2026 | 20 questões |  |
+| `banco-didatico-grad-meningites.js` | Esc — Banco Didático 2026 | 180 questões | 12 anulada(s); 6 esperando figura |
 | `banco-didatico-grad-micoses.js` | Esc — Banco Didático 2026 | 73 questões | 1 anulada(s); 8 esperando figura |
 | `banco-didatico-grad-sfiha.js` | Esc — Banco Didático 2026 | 35 questões | 1 esperando figura |
 | `banco-didatico-grad-endocardite.js` | Esc — Banco Didático 2026 | 63 questões | 4 anulada(s) |

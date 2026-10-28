@@ -111,6 +111,8 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-febretifoide", especialidadeId: "esp-infecto", nome: "Febre Tifoide" },
     { id: "ass-febrehemorragica", especialidadeId: "esp-infecto", nome: "Hantavirose, Ebola e Outras Febres Hemorrágicas Virais" },
     { id: "ass-lyme", especialidadeId: "esp-infecto", nome: "Doença de Lyme (Lyme-símile)" },
+    { id: "ass-influenza", especialidadeId: "esp-infecto", nome: "Influenza e Síndrome Respiratória Aguda Grave" },
+    { id: "ass-neutropeniafebril", especialidadeId: "esp-infecto", nome: "Neutropenia Febril e Febre de Origem Indeterminada" },
     { id: "ass-micosesinvasivas", especialidadeId: "esp-infecto", nome: "Micoses Sistêmicas e Oportunistas (paracoccidioidomicose, candidíase, criptococose, aspergilose, histoplasmose, mucormicose)" },
     { id: "ass-malaria", especialidadeId: "esp-infecto", nome: "Malária" },
     { id: "ass-endocardite", especialidadeId: "esp-infecto", nome: "Endocardite Infecciosa" },

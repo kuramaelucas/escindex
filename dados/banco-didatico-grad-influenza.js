@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Esc — Banco Didático 2026
+   (questões autorais, 5 alternativas A–E)
+   ==========================================================================
+   Banco didático: as questões não são de prova identificada e marcam
+   `real: false`; as explicações são autorais, escritas pela equipe a partir de fontes primárias
+   (dados/LEIA-ME.md, "Política de conteúdo"). A origem do gabarito e o que ficou pendente (anuladas,
+   figuras) se anotam aqui, neste cabeçalho.
+
+   @ficha {"banca":"Esc — Banco Didático","ano":2026,"prefixo":"q-gdinfluenza","alternativas":5,"alternativasVariavel":true,"real":false,"tipoProva":"graduacao"}
+   ========================================================================== */
+window.EscDados.registrarQuestoes("banco-didatico-grad-influenza", [
+{
+  id:"q-gdinfluenza-001", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:1,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Para um caso de paciente com Síndrome Respiratória Aguda Grave (SRAG), internado em Unidade de Terapia Intensiva (UTI) de unidade de saúde sentinela decorrente de influenza sazonal,",
+  alternativas:[{id:"A",texto:"a notificação no Sistema de Informação da Vigilância Epidemiológica da Gripe (SIVEP-Gripe) não deve ser realizada, mas apenas na ocorrência de surto."},{id:"B",texto:"os tratamentos com antivirais, não conseguem reduzir a duração dos sintomas, principalmente, em pacientes com imunossupressão."},{id:"C",texto:"a notificação como caso confirmado só pode ocorrer se houver confirmação laboratorial."},{id:"D",texto:"o diagnóstico laboratorial, pela pesquisa de vírus da influenza, é um dos componentes da vigilância sentinela de SRAG em UTI e vigilância universal da SRAG em pacientes hospitalizados."},{id:"E",texto:"a identificação do vírus em laboratório não é importante para a vigilância, uma vez que é sempre o vírus C, antigenicamente estável, o agente etiológico da SRAG."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a **SRAG hospitalizada** é de **notificação compulsória universal**, e a **pesquisa laboratorial do vírus influenza** integra a **vigilância sentinela** (em UTI e em unidades de saúde sentinelas) e a **vigilância universal da SRAG**. Mecanismo: identificar o vírus e o subtipo permite acompanhar a circulação, orientar o antiviral e compor a vacina. A: o caso de SRAG é notificado sempre no SIVEP-Gripe, e não só em surto. B: o antiviral (oseltamivir) reduz a duração dos sintomas e as complicações, inclusive em imunossuprimidos. C: o caso pode ser confirmado por critério laboratorial, clínico-epidemiológico ou clínico, e não só pelo laboratório. E: os vírus A e B causam a SRAG, e o tipo C é de doença leve, com mudanças antigênicas pequenas.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-002", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:2,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"O manejo racional de pacientes portadores de influenza dentro do ambiente hospitalar é fundamental para minimizar riscos de transmissão e otimizar leitos de internação. Portanto, a Comissão de Controle de Infecção Hospitalar deve reforçar as seguintes medidas, de acordo com orientações fornecidas pelo Ministério da Saúde:",
+  alternativas:[{id:"A",texto:"Coleta de swab nasal para realização de PCR (Polymerase Chain Reaction) em todos os pacientes internados, independente dos critérios de gravidade."},{id:"B",texto:"Manter precaução por aerosol até o momento da alta hospitalar."},{id:"C",texto:"Manter precaução respiratória até 72 horas após desaparecimento da febre."},{id:"D",texto:"Notificar à Vigilância Epidemiológica todos os pacientes que se encaixem na definição de caso: febre, de início súbito, acompanhada de tosse ou odinofagia, associada a pelo menos um dos seguintes sintomas: mialgia, cefaleia ou artralgia."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a medida que o enunciado considera correta é **notificar os pacientes que se enquadram na definição de caso**: **febre de início súbito, com tosse ou odinofagia, e pelo menos um entre mialgia, cefaleia ou artralgia**. Atenção: pelo Guia atual do Ministério, a notificação individual obrigatória é a do **caso de SRAG**, e a síndrome gripal isolada é monitorada por vigilância sentinela; o item é o de maior aderência à definição de caso entre as opções. Mecanismo: a definição de caso padroniza a vigilância. A: o PCR de todos os internados, sem critério de gravidade, não é recomendado, pois a coleta se faz nos casos graves e sentinelas. B: a precaução para influenza é por **gotículas** (máscara cirúrgica), e não por aerossol, salvo procedimentos geradores de aerossol. C: a precaução é mantida por **24 horas após o fim da febre** (ou 7 dias do início dos sintomas), e não 72 horas.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-003", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:3,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Mulher de 33 anos, previamente saudável, há dois dias, após viagem de avião, apresenta quadro de febre de 39,5ºC, astenia, mialgia e artralgia difusa, evoluindo com dispneia intensa e tosse nas últimas 6 horas. É atendida na sala de emergência consciente, com saturação periférica de oxigênio de 81% em ar ambiente, esforço respiratório, roncos e estertores crepitantes difusos. A radiografia de tórax evidenciou opacidades em vidro fosco difusas e consolidações em ambas bases pulmonares. Hemograma apresenta 12530 leucócitos/mm³, 624 bastonetes/mm³, 5012 segmentados/mm³ e 5763 linfócitos/mm³. Foi instituída ventilação não invasiva. Assinale a alternativa que representa o tratamento melhor indicado para esta paciente.",
+  alternativas:[{id:"A",texto:"Oseltamivir."},{id:"B",texto:"Levofloxacino."},{id:"C",texto:"Amoxicilina+ácido clavulânico."},{id:"D",texto:"Ceftriaxona+claritromicina."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **síndrome gripal com febre alta, mialgia e artralgia, que evolui em dois dias para insuficiência respiratória grave (SpO2 de 81%) com opacidades difusas bilaterais, em jovem hígida e com sazonalidade**: **SRAG por influenza**. O tratamento é o **oseltamivir iniciado de imediato**, sem esperar o exame, mesmo com mais de 48 horas de sintomas, por se tratar de caso grave. Mecanismo: o oseltamivir inibe a neuraminidase e impede a liberação de novos vírus das células infectadas. B: o levofloxacino cobre bactérias atípicas e pneumococo, mas não trata o vírus. C: amoxicilina com clavulanato não trata o vírus. D: a associação de ceftriaxona e claritromicina cobre pneumonia bacteriana, e pode ser somada ao antiviral, mas não o substitui.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-004", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:4,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Assinale a alternativa INCORRETA sobre o vírus influenza e as condutas relacionadas a ele:",
+  alternativas:[{id:"A",texto:"A síndrome respiratória aguda grave é a febre de início súbito associada a sintomas respiratórios."},{id:"B",texto:"A síndrome respiratória aguda grave é a síndrome gripal associada a sinais de gravidade, como desconforto respiratório e hipotensão."},{id:"C",texto:"No Brasil, a vacinação contra influenza é administrada na rede pública, em campanhas anuais para indivíduos que pertençam a grupos de risco e profissionais de saúde."},{id:"D",texto:"O oseltamivir é a medicação de escolha no Brasil para tratamento de influenza e deve ser iniciado nas primeiras 48 horas de sintomas, quando indicado."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: a alternativa A está **incorreta**: **febre de início súbito associada a sintomas respiratórios** é a definição de **síndrome gripal**, e a **SRAG** é a síndrome gripal **com dispneia ou outros sinais de gravidade**. Mecanismo: o que separa as duas é a gravidade respiratória (dispneia, SpO2 baixa, hipotensão). B: descreve corretamente a SRAG. C: a vacina é oferecida em campanhas anuais aos grupos prioritários. D: o oseltamivir é o antiviral de escolha e, nos casos graves, é dado mesmo depois das 48 horas.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-005", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:5,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"O vírus influenza, pertencente à família Ortomixiviridae, mais suscetível às variações antigênicas, sofre alterações em sua estrutura genômica. São responsáveis pela ocorrência das epidemias de influenza e, podemos ACEITAR a seu respeito que, a proteína H:",
+  alternativas:[{id:"A",texto:"Não está associada à infecção das células do trato respiratório superior, onde o vírus se multiplica, enquanto a proteína N facilita a saída das partículas virais do interior das células infectadas."},{id:"B",texto:"Está associada à infecção das células do trato respiratório superior, onde o vírus se multiplica, enquanto a proteína N facilita a saída das partículas virais do interior das células infectadas."},{id:"C",texto:"Está associada à infecção das células do trato respiratório superior, onde o vírus se multiplica, enquanto a proteína N facilita a entrada das partículas virais do interior das células infectadas."},{id:"D",texto:"Está associada à infecção das células do trato respiratório superior, onde o vírus se multiplica, enquanto a proteína N facilita a saída das partículas virais do exterior das células infectadas."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a **hemaglutinina (H)** se liga ao **ácido siálico** da célula do trato respiratório e permite a **entrada** do vírus, e a **neuraminidase (N)** **cliva o ácido siálico** e permite a **saída** dos novos vírions de dentro da célula. Mecanismo: o oseltamivir bloqueia a neuraminidase, e as mutações de H e N (deriva e salto antigênico) explicam epidemias e pandemias. A: nega o papel da H na infecção. C: diz que a N facilita a entrada, o que é papel da H. D: diz que a N facilita a saída \"do exterior\", o que é incoerente.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-006", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:6,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"O homem, suínos, equinos, focas e aves são os principais reservatórios. As aves migratórias, principalmente as aquáticas e as silvestres, desempenham importante papel na disseminação natural da doença entre distintos pontos do globo terrestre. Podemos ACEITAR que, o vírus influenza tipo A:",
+  alternativas:[{id:"A",texto:"Infecta o homem, suínos, cavalos, mamíferos marinhos e aves; o tipo B infecta, exclusivamente humanos; e o tipo C, humanos e suínos."},{id:"B",texto:"Não infecta o homem, suínos, cavalos, mamíferos marinhos e aves; o tipo B não infecta humanos; e o tipo C, humanos e suínos."},{id:"C",texto:"Infecta o homem, suínos, cavalos, mamíferos marinhos e aves; o tipo B infecta, exclusivamente humanos; e o tipo C, apenas suínos."},{id:"D",texto:"Infecta o homem, suínos, cavalos, mamíferos marinhos e aves; o tipo B infecta, exclusivamente humanos; e o tipo C, humanos, apenas."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: o **influenza A** tem **amplo espectro de hospedeiros** (homem, suínos, cavalos, mamíferos marinhos e aves, que são o reservatório natural), o **influenza B** infecta **quase só o homem**, e o **influenza C** infecta **humanos e suínos**. Mecanismo: a circulação em aves e suínos permite o rearranjo genético (reassortment) e o surgimento de subtipos pandêmicos. B: o tipo A infecta o homem, e o tipo B também. C: o tipo C infecta humanos além de suínos. D: o tipo C não é exclusivo de humanos.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-007", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:7,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Dentro dos achados clínicos compatíveis com a Influenza, somente seria inadequado considerar o seguinte:",
+  alternativas:[{id:"A",texto:"As queixas respiratórias, com exceção da tosse, tornam-se mais brandas com a progressão da doença e mantêm-se, em geral, por três a quatro semanas após o desaparecimento da febre."},{id:"B",texto:"A rouquidão é mais comum em crianças."},{id:"C",texto:"A tosse, a fadiga e o mal-estar frequentemente persistem pelo período de uma a duas semanas e raramente podem perdurar por mais de seis semanas."},{id:"D",texto:"A linfadenopatia cervical é mais comum em crianças."}],
+  gabarito:"A",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: a afirmativa A é a **inadequada**: na influenza, os sintomas respiratórios (**exceto a tosse**) **melhoram em poucos dias** e a febre dura **de 3 a 4 dias**, e o que dura de uma a duas semanas são a **tosse, a fadiga e o mal-estar**. Não se mantêm por 3 a 4 semanas. Mecanismo: a inflamação da mucosa respiratória leva semanas para se resolver, o que mantém tosse e astenia. B: a rouquidão (laringite) é mais comum em crianças. C: tosse, fadiga e mal-estar persistem por 1 a 2 semanas, raramente mais de 6. D: a linfadenopatia cervical é mais comum em crianças.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-008", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:8,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Dentro dos aspectos clínicos epidemiológicos atuais, a respeito da Influenza, apenas não podemos concordar com o seguinte item:",
+  alternativas:[{id:"A",texto:"O período de incubação da influenza dura de um a quatro dias."},{id:"B",texto:"A transmissibilidade em adultos ocorre principalmente 24 horas antes do início dos sintomas e dura até três dias após o final da febre."},{id:"C",texto:"Nas crianças pode durar média dez dias, podendo se prolongar por mais tempo em pacientes Imunossuprimidos."},{id:"D",texto:"A febre geralmente é menos acentuada em crianças."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a afirmativa D é a que **não** se aceita: a **febre é mais alta em crianças** (frequentemente acima de 39 °C), e não menos acentuada. Mecanismo: a resposta inflamatória sem imunidade prévia é mais intensa nas crianças. A: a incubação é de 1 a 4 dias (média de 2). B: o adulto transmite desde 24 horas antes dos sintomas até cerca de 3 dias depois da febre. C: a excreção viral na criança dura cerca de 10 dias e é mais longa em imunossuprimidos.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-009", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:9,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Apenas não podemos considerar como adequado o seguinte item referente à Epidemiologia da Influenza.",
+  alternativas:[{id:"A",texto:"A influenza ocorre durante todo o ano, mas é mais frequente no outono e no inverno, quando as temperaturas caem, principalmente no Sul e Sudeste do País."},{id:"B",texto:"A melhor maneira de se prevenir contra a doença, é vacinar-se anualmente."},{id:"C",texto:"A estratégia de vacinação na Rede Pública De Saúde foi sendo ampliada e, atualmente, a vacinação é indicada para indivíduos com 60 anos ou mais de idade, população privada de liberdade e funcionários do sistema prisional, povos indígenas, crianças com idade de 6 meses a menor de 5 anos, profissionais de saúde, pessoas portadoras de doenças crônicas não transmissíveis e outras condições clínicas especiais (conforme listagem definida pelo Ministério da Saúde com sociedades científicas), gestantes e puérperas."},{id:"D",texto:"A vacina é capaz de promover imunidade durante o período de maior circulação dos vírus influenza, mas sem reduzir o agravamento da doença."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a afirmativa D é a **inadequada**: a **vacina** protege durante o período de maior circulação e **reduz também a gravidade**, as internações e a mortalidade, mesmo quando não evita a infecção. Mecanismo: os anticorpos contra a hemaglutinina bloqueiam a entrada do vírus, e a imunidade celular limita a replicação. A: a sazonalidade é maior no outono e no inverno, em Sul e Sudeste. B: a vacinação anual é a melhor prevenção. C: os grupos prioritários listados correspondem à estratégia do Programa Nacional de Imunizações.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-010", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:10,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Dentro das condutas com medicamentos sintomáticos e da hidratação, está indicado o uso de Fosfato de Oseltamivir para os casos que tenham condições e fatores de risco para complicações, mesmo em atendimento ambulatorial, sendo apenas inadequado, dentro do uso da medicação, que:",
+  alternativas:[{id:"A",texto:"Para a prescrição deste medicamento é usado o receituário simples."},{id:"B",texto:"É de grande a importância da administração, preferencialmente, nas primeiras 6 horas após o início dos sintomas."},{id:"C",texto:"Caso o medicamento fosfato de oseltamivir na apresentação de suspensão oral não estiver disponível, a cápsula pode ser aberta e o seu conteúdo misturado à pequena quantidade de água com açúcar, logo antes da administração."},{id:"D",texto:"Esta indicação fundamenta-se no benefício que a terapêutica precoce proporciona, tanto na redução da duração dos sintomas quanto na ocorrência de complicações da infecção pelos vírus da influenza, em pacientes com condições e fatores de risco para complicações."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a afirmativa B é a **inadequada**: o oseltamivir deve ser iniciado **preferencialmente nas primeiras 48 horas** do início dos sintomas, e não nas primeiras 6 horas. Mecanismo: o benefício é maior quanto mais cedo, pois a replicação viral tem pico nos primeiros dois dias, mas o limite prático do protocolo é de 48 horas (e, nos graves e de risco, trata-se mesmo depois). A: a prescrição usa receituário simples. C: a cápsula pode ser aberta e misturada em água com açúcar quando falta a suspensão. D: o benefício da terapêutica precoce nos de risco é a redução da duração dos sintomas e das complicações.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-011", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:11,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Qual dos marcadores abaixo determina pior gravidade nos pacientes com pneumonia por H1N1?",
+  alternativas:[{id:"A",texto:"Procalcitonina."},{id:"B",texto:"PCR ultrassensível."},{id:"C",texto:"NT pro BNP."},{id:"D",texto:"DHL."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: na **pneumonia por H1N1**, o marcador associado a **pior gravidade e prognóstico** nesta lista é o **DHL (desidrogenase lática)**, elevado pela lesão pulmonar difusa e pela destruição celular. Mecanismo: a lesão alveolar extensa libera DHL, e valores altos acompanham o dano pulmonar e a necessidade de ventilação. A: a procalcitonina sobe nas infecções bacterianas e costuma ser baixa na influenza pura. B: a PCR é inespecífica. C: o NT-proBNP indica sobrecarga cardíaca.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-012", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:12,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Podemos considerar como acometido por Síndrome Respiratória Aguda Grave (SRAG), um indivíduo de qualquer idade, com síndrome gripal conforme definição, e que apresente dispneia ou os seguintes sinais de gravidade, EXCETO:",
+  alternativas:[{id:"A",texto:"Saturação de SpO2 < 95% em ar ambiente."},{id:"B",texto:"Sinais de desconforto respiratório ou aumento da frequência respiratória avaliada independente da idade."},{id:"C",texto:"Piora nas condições clínicas de doença de base."},{id:"D",texto:"Hipotensão em relação à pressão arterial habitual do paciente."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a alternativa B é a que **não** serve: os **sinais de desconforto respiratório ou o aumento da frequência respiratória** devem ser avaliados **de acordo com a idade**, e não \"independente da idade\", pois a frequência respiratória normal varia muito entre o lactente e o adulto. Mecanismo: o valor de taquipneia depende da faixa etária. A: SpO2 abaixo de 95% em ar ambiente é sinal de gravidade. C: a piora da doença de base é sinal de gravidade. D: a hipotensão em relação à pressão habitual é sinal de gravidade.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-013", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:13,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Em relação ao uso de Oseltamivir no tratamento da influenza, analise as seguintes assertivas:\n\nI. A droga deve ser prescrita na dose de 75 mg 2x/dia por 5 dias.\nII. Náuseas e vômitos podem ser minimizados se a droga for ingerida com a alimentação.\nIII. Reduz a duração dos sintomas nos casos de Influenza não complicada e, se iniciado dentro de 2 dias, do início dos sintomas.\nIV. Tem sido associado a alterações psiquiátricas em pacientes com mais de 70 anos.\n\nQuais estão CORRETAS?",
+  alternativas:[{id:"A",texto:"Apenas I e II."},{id:"B",texto:"Apenas I e III."},{id:"C",texto:"Apenas II e IV."},{id:"D",texto:"Apenas I, II e III."},{id:"E",texto:"Apenas I, III e IV."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: as assertivas **I, II e III são corretas**: a dose do adulto é **75 mg duas vezes ao dia por 5 dias**; a **ingestão com alimento reduz náuseas e vômitos**, efeitos adversos mais comuns; e o oseltamivir **reduz a duração dos sintomas** na influenza não complicada quando iniciado **dentro de 48 horas**. A **IV é falsa**: os eventos neuropsiquiátricos (delírio, alucinação) foram descritos sobretudo em **crianças e adolescentes**, e não em maiores de 70 anos. Mecanismo: a droga inibe a neuraminidase, e o efeito é maior quanto mais precoce. A: omite a III, verdadeira. B: omite a II, verdadeira. C: inclui a IV, falsa. E: inclui a IV, falsa.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-014", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:14,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Em casos de suspeita clínica de infecção por influenza, o uso do oseltamivir é indicado para pacientes que:",
+  alternativas:[{id:"A",texto:"Se apresentam sem vacinação contra gripe sazonal prévia."},{id:"B",texto:"Pertencem ao grupo de risco, tais como gestantes e idosos."},{id:"C",texto:"Tiveram confirmação laboratorial, mas estão fora do grupo de risco."},{id:"D",texto:"Desenvolvem sintomas durante a internação a que foram submetidos, independente do motivo da internação."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: o oseltamivir é indicado, **na suspeita clínica**, para pacientes de **grupo de risco para complicações** (gestantes, puérperas, idosos, crianças menores de 5 anos, imunossuprimidos, portadores de doenças crônicas), e para **SRAG**. Mecanismo: nesses pacientes o antiviral reduz o risco de complicações e de morte. A: não ter sido vacinado, isoladamente, não é indicação. C: o paciente sem risco e sem gravidade não precisa do antiviral, mesmo com confirmação. D: sintomas durante uma internação não são critério por si só, sendo indicados os de risco ou graves.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-015", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:15,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Para gestantes com suspeita ou confirmação de infecção por influenza sazonal (H1N1) qual é o tratamento antiviral recomendado?",
+  alternativas:[{id:"A",texto:"Aciclovir."},{id:"B",texto:"Fanciclovir."},{id:"C",texto:"Ganciclovir."},{id:"D",texto:"Oseltamivir."},{id:"E",texto:"Zidovudina."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a **gestante** com suspeita ou confirmação de influenza deve receber o **oseltamivir** o quanto antes, pois a gravidez é **fator de risco para formas graves**. Mecanismo: a imunidade modulada e a menor reserva respiratória na gestação aumentam a gravidade. A: o aciclovir trata herpes. B: o fanciclovir trata herpes-zóster. C: o ganciclovir trata CMV. E: a zidovudina é antirretroviral e não age sobre o influenza.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-016", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:16,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Segundo o Protocolo de Tratamento de Influenza estabelecido pelo Ministério da Saúde em 2013, considera-se caso suspeito de síndrome respiratória aguda grave indivíduo de qualquer idade com síndrome gripal, na ausência de outro diagnóstico específico, e qualquer um dos seguintes sinais de gravidade, EXCETO:",
+  alternativas:[{id:"A",texto:"Saturação de SpO2 < 95% em ar ambiente."},{id:"B",texto:"Febre elevada de início súbito."},{id:"C",texto:"Piora nas condições clínicas de doença de base."},{id:"D",texto:"Sinais de desconforto respiratório ou aumento da frequência respiratória avaliada de acordo com idade."},{id:"E",texto:"Hipotensão em relação à pressão arterial habitual dos pacientes."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a **febre elevada de início súbito** é parte da **definição de síndrome gripal**, e **não é sinal de gravidade**. Os sinais de gravidade para SRAG são a **dispneia, a SpO2 < 95%, o desconforto respiratório ou a taquipneia para a idade, a hipotensão e a piora da doença de base**. Mecanismo: a gravidade se mede pelo comprometimento respiratório e hemodinâmico, e não pela febre. A: SpO2 baixa é sinal de gravidade. C: a piora da doença de base é sinal de gravidade. D: o desconforto respiratório ou taquipneia (para a idade) é sinal de gravidade. E: a hipotensão é sinal de gravidade.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-017", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:17,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Mulher com 68 anos de idade foi trazida à Emergência por apresentar quadro de febre de até 39°C, mialgias, cefaleia, tosse seca, dispneia e piora do estado geral há três dias, com piora nas últimas seis horas. Ao exame encontra-se acordada, orientada, com frequência respiratória = 30 irpm, pressão arterial = 100 x 60 mmHg, frequência cardíaca = 115 bpm, oximetria digital = 86%, em ar ambiente. Sem outras alterações ao exame físico. A radiografia de tórax mostra infiltrado intersticial bilateral. A paciente foi transferida para a Unidade de Terapia Intensiva em quarto privativo e foi iniciada reposição volêmica. Qual a conduta inicial indicada para esta paciente?",
+  alternativas:[{id:"A",texto:"Iniciar oxigenoterapia, colher três amostras de hemocultura aeróbia e iniciar azitromicina."},{id:"B",texto:"Colher secreção respiratória para PCR viral, prescrever oxigenoterapia e oseltamivir."},{id:"C",texto:"Iniciar ventilação mecânica não invasiva, colher material para exame bacteriológico e iniciar oseltamivir."},{id:"D",texto:"Iniciar ventilação mecânica invasiva com circuito fechado como medida de isolamento respiratório e prescrever zanamivir."},{id:"E",texto:"Colher material para PCR para H1N1 e prescrever medidas de suporte, já que a paciente apresenta sintomas há mais de 48 horas."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **idosa com síndrome gripal e SRAG** (FR de 30, SpO2 de 86%, hipotensão, infiltrado intersticial bilateral): a conduta inicial é **colher a secreção respiratória para PCR viral, dar oxigênio e iniciar o oseltamivir sem demora**, já que é caso grave e de risco, mesmo com mais de 48 horas de sintomas. Mecanismo: o antiviral precoce reduz a mortalidade na SRAG, e a coleta da amostra não deve atrasar o tratamento. A: a azitromicina e a hemocultura são medidas de pneumonia bacteriana, e falta o antiviral. C: a ventilação não invasiva não é a conduta inicial se o oxigênio basta, e o item não está bem fundamentado. D: a ventilação invasiva imediata não é necessária, e o zanamivir não é a escolha para o paciente grave. E: o antiviral é indicado também após 48 horas nos casos graves.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-018", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:18,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"As infecções por influenza (A e B) têm terapêutica antiviral específica com a seguinte droga:",
+  alternativas:[{id:"A",texto:"Ganciclovir."},{id:"B",texto:"Oseltamivir."},{id:"C",texto:"Ritonavir."},{id:"D",texto:"Aciclovir."}],
+  gabarito:"B",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: o **oseltamivir** é o antiviral específico para **influenza A e B**, por inibir a **neuraminidase**. Mecanismo: ao bloquear a neuraminidase, o vírus fica preso à superfície da célula e não se espalha. A: o ganciclovir trata CMV. C: o ritonavir é antirretroviral (HIV). D: o aciclovir trata herpes simples e varicela-zóster.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"fundamental", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-019", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:19,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"A pandemia de Influenza ocorrida em 2009 foi causada por um novo subtipo viral derivado de uma linhagem suína, o Influenza A H1N1. Uma das diferenças entre as infecções causadas por esse novo agente e as causadas pelo vírus sazonal que circulava anteriormente é o (a):",
+  alternativas:[{id:"A",texto:"Transmissão respiratória e por contato."},{id:"B",texto:"Maior risco de óbito em portadores de doença pulmonar prévia."},{id:"C",texto:"Possibilidade de tratamento com antivirais."},{id:"D",texto:"Alta incidência de formas graves em adultos jovens saudáveis."},{id:"E",texto:"Predomínio de manifestações respiratórias."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a **pandemia de H1N1 de 2009** diferiu da gripe sazonal por causar **formas graves e óbitos em adultos jovens saudáveis** e em gestantes, enquanto a gripe sazonal mata sobretudo idosos. Mecanismo: o vírus novo encontrou pouca imunidade em quem tinha menos de 60 anos, pois os idosos tinham anticorpos de vírus H1N1 antigos. A: a transmissão respiratória e por contato é comum a todos os influenza. B: o maior risco em portadores de doença pulmonar prévia vale para a gripe sazonal também. C: o tratamento com antivirais era possível também na sazonal. E: o predomínio das manifestações respiratórias é geral.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"intermediario", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+},
+{
+  id:"q-gdinfluenza-020", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:20,
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  enunciado:"Em relação a quimioprofilaxia das infecções por Influenza, pode-se afirmar que:",
+  alternativas:[{id:"A",texto:"A quimioprofilaxia é mais utilizada pelos indivíduos de baixo risco que não receberam a vacina contra influenza;"},{id:"B",texto:"A administração simultânea da quimioprofilaxia e da vacina de vírus vivo atenuados não interfere com a resposta vacinal;"},{id:"C",texto:"Agentes virais devem ser administrados até no mínimo duas semanas depois da aplicação da vacina de vírus vivos;"},{id:"D",texto:"A administração de vacina de vírus vivo não deve ser iniciada antes de no mínimo 48h depois da suspensão do tratamento antiviral."}],
+  gabarito:"D",
+  explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: a **vacina de vírus vivo atenuado** (nasal) pode ter a replicação inibida por um antiviral ativo, por isso **só se aplica depois de pelo menos 48 horas da suspensão do antiviral**. Mecanismo: o inibidor da neuraminidase reduz a replicação do vírus vacinal e a resposta imune. A: a quimioprofilaxia é reservada a pessoas de **alto risco** expostas, e não a baixo risco. B: a administração simultânea **interfere** na resposta vacinal. C: o inverso: o antiviral não deve ser dado nas **duas semanas após** a vacina de vírus vivo, já que o esquema recomenda espaçamento, e o item inverte a lógica de proteção.",
+  explicacoesAlternativas:{},
+  referencias:"Brasil. Ministério da Saúde. Protocolo de Tratamento de Influenza, 2017; Guia de Vigilância em Saúde; Uyeki TM et al. Clinical Practice Guidelines by the IDSA: Seasonal Influenza, Clin Infect Dis 2019;68:e1.",
+  dificuldadeManual:"avancado", status:"ativa",
+  estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
+  criadoPor:"seed", criadoEm:"2026-10-28", justificativaEm:"2026-10"
+}
+]);
