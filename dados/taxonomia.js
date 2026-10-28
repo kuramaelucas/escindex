@@ -107,6 +107,8 @@ window.EscDados.registrarTaxonomia("taxonomia", {
     { id: "ass-meningites", especialidadeId: "esp-infecto", nome: "Meningites" },
     { id: "ass-ist", especialidadeId: "esp-infecto", nome: "Infecções Sexualmente Transmissíveis (sífilis e úlceras)" },
     { id: "ass-leptospirose", especialidadeId: "esp-infecto", nome: "Leptospirose" },
+    { id: "ass-chagas", especialidadeId: "esp-infecto", nome: "Doença de Chagas" },
+    { id: "ass-febretifoide", especialidadeId: "esp-infecto", nome: "Febre Tifoide" },
     { id: "ass-malaria", especialidadeId: "esp-infecto", nome: "Malária" },
     { id: "ass-endocardite", especialidadeId: "esp-infecto", nome: "Endocardite Infecciosa" },
     { id: "ass-imunizacao", especialidadeId: "esp-infecto", nome: "Imunização do Adulto" },

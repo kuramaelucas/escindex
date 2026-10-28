@@ -3,11 +3,11 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 8260 questões (7505 reais, 755 autorais), 943 cartões, 270 assuntos, 6 simulado(s), 90 arquivos.
+**Total:** 8842 questões (7505 reais, 1337 autorais), 943 cartões, 272 assuntos, 6 simulado(s), 95 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
-| `taxonomia.js` | TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos | 316 taxonomia |  |
+| `taxonomia.js` | TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos | 318 taxonomia |  |
 | `calendario.js` | CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada | 9 calendário |  |
 | `banco-didatico.js` | BANCO DIDÁTICO — 135 questões autorais | 135 questões | 1 anulada(s) |
 | `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais | 100 questões |  |
@@ -90,6 +90,11 @@
 | `prova-uspsp-simulado-4.js` | Simulados USP SP — Simulado 4 (04/2025) 2025 — Simulado 4, todo o conteúdo, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-uspsp-simulado-3.js` | Simulados USP SP — Simulado 3, 6º ano (03/2025) 2025 — Simulado 3, conteúdo do 6º ano, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-simulado-epm-2026-10.js` | Simulado EPM/UNIFESP (Turma 89) 2026 — Prova de Residência Médica, Avaliação Discente - Internato, 18/10/2026 | 100 questões |  |
+| `banco-didatico-grad-hepatoesplenomegalias.js` | Esc — Banco Didático 2026 — Graduação, Hepatoesplenomegalias infecciosas | 93 questões | 2 anulada(s) |
+| `banco-didatico-grad-pneumonias.js` | Esc — Banco Didático 2026 — Graduação, Pneumonias | 142 questões | 7 anulada(s); 7 esperando figura |
+| `banco-didatico-grad-antibioticos.js` | Esc — Banco Didático 2026 — Graduação, Antibióticos | 126 questões | 6 anulada(s); 1 esperando figura |
+| `banco-didatico-grad-arboviroses.js` | Esc — Banco Didático 2026 — Graduação, Arboviroses | 121 questões | 1 esperando figura |
+| `banco-didatico-grad-sepse.js` | Esc — Banco Didático 2026 — Graduação, Sepse | 100 questões | 6 anulada(s) |
 | `provas-inativas.js` | banco (questões, gabarito, explicações), mas os alunos não o veem enquanto o | 1 provas inativas |  |
 | `flashcards-equipe.js` | FLASHCARDS DA EQUIPE — 501 cartões autorais | 501 flashcards |  |
 | `flashcards-assuntos-novos.js` | FLASHCARDS DA EQUIPE — assuntos que ainda não tinham cartão (376 cartões) | 376 flashcards |  |
