@@ -54,6 +54,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `05a-motor-de-estudos.js` | 4 | bloco atual, dificuldade, respostas, ocultas, repetição espaçada, flashcards, sessões |
 | `05c-cronogramas-de-sessao.js` | 4 | sessão sem calendário, cronograma de Formados e do 6º ano |
 | `05b-desempenho-e-metas.js` | 4 | desempenho, calibração, metas, lembrete, o que mais cai, nota estimada |
+| `05d-trilha-de-estudos.js` | 4 | trilha por taxa de erro: assuntos com mais erro recebem mais questões; janela de montagem e cartão de sugestão (`abrirTrilhaDeEstudos`) |
 | `06-entrada-e-estrutura.js` | 5–7 | login local, roteador, gesto de arrastar, menu e topo |
 | `06b-busca-global.js` | 5-B | busca global (Ctrl/Cmd+K e botão do topo): telas, assuntos e questões pelo enunciado (`abrirBuscaGlobal`) |
 | `06c-modo-plataforma.js` | 5-C | modo resumido × estatístico do aluno: a escolha (`u.modoPlataforma`), a pergunta de primeira vez, o cartão do Perfil, `modoResumido()`, `soNoEstatistico()`, `explicacaoRecolhida()` |

@@ -206,12 +206,53 @@ function salvarSessaoEmAndamento(){
 }
 function limparSessaoEmAndamento(){
   const u = usuarioAtual(); if(!u || !db.sessoesEmAndamento) return;
-  if(db.sessoesEmAndamento[u.id]){ delete db.sessoesEmAndamento[u.id]; saveState(); }
+  if(db.sessoesEmAndamento[u.id]){
+    delete db.sessoesEmAndamento[u.id];
+    // sem avisar a nuvem, a cópia de lá ressuscitava o conjunto já terminado
+    // (ou descartado) na próxima sincronização, como se estivesse pela metade
+    nuvemRegistrar({usuarioId:u.id, sessaoEmAndamento:"apagar"});
+    saveState();
+  }
+}
+/* Um conjunto parado há mais de uma semana deixa de ser oferecido para
+   continuar: a fila foi montada com a matéria e as revisões daquele dia e
+   perde o sentido. O que já foi respondido não se perde — vira uma linha
+   "não terminado" no Histórico (arquivarSessoesVencidas). */
+const DIAS_PARA_SESSAO_VENCER = 7;
+function sessaoVencida(guardada){
+  return !!(guardada && guardada.salvaEm && diasEntre(guardada.salvaEm, hojeISO()) > DIAS_PARA_SESSAO_VENCER);
+}
+/* Tira da área "em andamento" os conjuntos vencidos de todas as pessoas deste
+   aparelho e guarda no histórico o que tinha sido respondido. Roda na carga;
+   o que ainda não tem nenhuma resposta simplesmente some. */
+function arquivarSessoesVencidas(){
+  const mapa = db.sessoesEmAndamento || {};
+  let mudou = false;
+  Object.keys(mapa).forEach(usuarioId => {
+    const g = mapa[usuarioId];
+    if(!sessaoVencida(g)) return;
+    const itens = g.itens ? itensRespondidosDaSessao(g) : [];
+    if(itens.length && !(db.sessoes || []).some(x => x.id === g.id)){
+      if(!db.sessoes) db.sessoes = [];
+      const registro = {
+        id: g.id, usuarioId, tipo: g.tipo || "pratica", data: g.salvaEm,
+        total: itens.length, acertos: itens.filter(i => i.correta).length,
+        itens, naoTerminada: true, planejadas: g.itens.length,
+      };
+      db.sessoes.push(registro);
+      nuvemRegistrar({sessaoConcluida: registro});
+    }
+    delete mapa[usuarioId];
+    nuvemRegistrar({usuarioId, sessaoEmAndamento:"apagar"});
+    mudou = true;
+  });
+  if(mudou) saveState();
 }
 function sessaoEmAndamentoDe(usuario){
   if(!usuario || !db.sessoesEmAndamento) return null;
   const guardada = db.sessoesEmAndamento[usuario.id];
   if(!guardada || !guardada.itens || !guardada.itens.length) return null;
+  if(sessaoVencida(guardada)) return null;
   // Questão excluída ou desativada desde então some da fila. As respostas
   // andam pela POSIÇÃO na fila, então elas precisam sair junto: tirar a
   // questão 2 e deixar as respostas como estavam faria a resposta da 3
@@ -414,19 +455,9 @@ function fecharSessaoPratica(){
   limparSessaoEmAndamento(); // conjunto concluído: não há mais o que retomar
   render(); window.scrollTo(0,0);
 }
-/* Guarda o conjunto de questões concluído no histórico do aluno, com o
-   detalhe de cada questão (o que marcou, se acertou e qual foi a confiança).
-   É esse registro que alimenta a tela "Histórico de Atividade" e permite
-   reabrir a página de feedback depois. */
-function registrarSessaoNoHistorico(s){
-  if(s.somenteLeitura) return;
-  const feitas = respostasFeitas(s);
-  if(!feitas.length) return;
-  if(!db.sessoes) db.sessoes = [];
-  const u = usuarioAtual();
-  const anterior = db.sessoes.find(x => x.id === s.id) || null;
-  // as questões deixadas em branco não entram: não houve resposta, e contá-las
-  // como linha do histórico inventaria um erro que não aconteceu
+/* As questões deixadas em branco não entram: não houve resposta, e contá-las
+   como linha do histórico inventaria um erro que não aconteceu. */
+function itensRespondidosDaSessao(s){
   const itens = [];
   s.itens.forEach((it, i) => {
     const r = respostaDoIndice(s, i);
@@ -440,6 +471,20 @@ function registrarSessaoNoHistorico(s){
       ...(r.textoResposta ? { textoResposta: r.textoResposta } : {}),
     });
   });
+  return itens;
+}
+/* Guarda o conjunto de questões concluído no histórico do aluno, com o
+   detalhe de cada questão (o que marcou, se acertou e qual foi a confiança).
+   É esse registro que alimenta a tela "Histórico de Atividade" e permite
+   reabrir a página de feedback depois. */
+function registrarSessaoNoHistorico(s){
+  if(s.somenteLeitura) return;
+  const feitas = respostasFeitas(s);
+  if(!feitas.length) return;
+  if(!db.sessoes) db.sessoes = [];
+  const u = usuarioAtual();
+  const anterior = db.sessoes.find(x => x.id === s.id) || null;
+  const itens = itensRespondidosDaSessao(s);
   const registro = {
     id: s.id, usuarioId: u.id, tipo: s.tipo||"pratica",
     data: (s.salvaNoHistorico && anterior) ? anterior.data : hojeISO(),

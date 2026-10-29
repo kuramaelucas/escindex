@@ -91,9 +91,10 @@ function conteudoProvasESimulados(u){
   `}
   ${meusResultados.length ? `<div class="card mt-3">
     <div class="card-title mb-1">Suas notas (provas antigas e simulados)</div>
-    <div class="table-wrap"><table><thead><tr><th>Prova</th><th>Nota</th><th>Data</th><th></th></tr></thead><tbody>
-      ${pagResultados.itens.map(r=>`<tr><td class="text-sm">${escapeHtml(r.titulo||"—")}</td><td><span class="badge ${r.nota>=70?"badge-accent":r.nota>=50?"badge-amber":"badge-danger"}">${r.nota}%</span></td><td class="text-sm">${formatDataBR(r.data)}</td><td>${r.itens?`<button class="link-btn" onclick="verDetalheResultadoSimulado('${r.id}')">ver detalhes</button>`:""}</td></tr>`).join("")}
+    <div class="table-wrap"><table><thead><tr><th>Prova</th><th>Nota</th><th>Data</th></tr></thead><tbody>
+      ${pagResultados.itens.map(r=>`<tr${r.itens?` class="linha-clicavel" onclick="verDetalheResultadoSimulado('${r.id}')" title="Abrir o resultado e o feedback desta prova"`:""}><td class="text-sm">${r.itens?`<button class="link-btn titulo-simulado" onclick="event.stopPropagation();verDetalheResultadoSimulado('${r.id}')">${escapeHtml(r.titulo||"—")}</button>`:escapeHtml(r.titulo||"—")}</td><td><span class="badge ${r.nota>=70?"badge-accent":r.nota>=50?"badge-amber":"badge-danger"}">${r.nota}%</span></td><td class="text-sm">${formatDataBR(r.data)}</td></tr>`).join("")}
     </tbody></table></div>
+    <p class="text-xs muted mt-1">Clique na prova para abrir o resultado e o feedback questão a questão.</p>
     ${controlesPaginacao(pagResultados, "resultado(s)")}
   </div>` : ""}
   `;
@@ -346,6 +347,12 @@ function garantirCronometro(){
   if(intervaloCronometro || typeof setInterval!=="function") return;
   intervaloCronometro = setInterval(atualizarCronometro, 1000);
 }
+/* O dia em que cada questão foi respondida. As respostas do simulado só entram
+   em db.respostas ao finalizar; sem este carimbo, uma prova feita em três dias
+   e fechada no quarto contaria tudo no quarto (meta do dia, sequência, gráficos). */
+function carimbarRespostaSimulado(sessao, qid){
+  (sessao.momentos = sessao.momentos || {})[qid] = { data: hojeISO(), respondidaEm: CONFIG.hoje().toISOString() };
+}
 function selecionarAlternativaSimulado(altId){
   if(haTextoSelecionado()) return;   // quem arrastou para destacar não escolheu a alternativa
   const sessao = state.sessaoAtual; if(!sessao) return;
@@ -360,6 +367,7 @@ function selecionarAlternativaSimulado(altId){
     render(); return;
   }
   sessao.respostasSimulado[qid] = altId;
+  carimbarRespostaSimulado(sessao, qid);
   salvarSimuladoEmAndamento();
   render();
 }
@@ -376,6 +384,7 @@ function confirmarRespostaSimulado(confianca){
   (sessao.confiancas = sessao.confiancas || {})[qid] = confianca;
   sessao.ultimaConfianca = confianca;
   sessao.respostasSimulado[qid] = escolha;
+  carimbarRespostaSimulado(sessao, qid);
   delete sessao.escolhaPendente[qid];
   salvarSimuladoEmAndamento();
   render();
@@ -440,7 +449,7 @@ function salvarSimuladoEmAndamento(){
     id: s.id, simuladoId: s.simuladoId || null, titulo: s.titulo, itens: s.itens, indiceAtual: s.indiceAtual,
     respostasSimulado: {...s.respostasSimulado}, escolhaPendente: {...(s.escolhaPendente || {})}, confiancas: {...(s.confiancas || {})},
     modoAprendizado: !!s.modoAprendizado, ocultarTimer: !!s.ocultarTimer, duracaoMin: s.duracaoMin,
-    tempos: {...(s.tempos || {})}, decorridoMs: Math.max(0, momentoDeReferenciaSimulado(s) - s.inicioMs),
+    tempos: {...(s.tempos || {})}, momentos: {...(s.momentos || {})}, decorridoMs: Math.max(0, momentoDeReferenciaSimulado(s) - s.inicioMs),
     iniciadoEm: (mapa[chave] || {}).iniciadoEm || hojeISO(), salvaEm: hojeISO(),
   };
   nuvemRegistrar({usuarioId:u.id, simuladoId:chave, simuladoEmAndamento:mapa[chave]});
@@ -459,7 +468,7 @@ function continuarSimulado(chave){
   state.sessaoAtual = { id:g.id, tipo:"simulado", simuladoId:g.simuladoId || null, titulo:g.titulo, itens,
     indiceAtual: Math.min(g.indiceAtual || 0, itens.length-1), respostasSimulado:{...g.respostasSimulado},
     duracaoMin:g.duracaoMin, finalizado:false, modoAprendizado:!!g.modoAprendizado, escolhaPendente:{...(g.escolhaPendente || {})}, confiancas:{...(g.confiancas || {})},
-    ocultarTimer:!!g.ocultarTimer, pausadoDesde:null, inicioMs: Date.now() - (g.decorridoMs || 0), tsQuestao:Date.now(), tempos:{...(g.tempos || {})} };
+    ocultarTimer:!!g.ocultarTimer, pausadoDesde:null, inicioMs: Date.now() - (g.decorridoMs || 0), tsQuestao:Date.now(), tempos:{...(g.tempos || {})}, momentos:{...(g.momentos || {})} };
   navigate("simulado-ativo");
 }
 function perguntarRecomecarSimulado(chave, chamadaRecomecar){
@@ -511,7 +520,8 @@ function finalizarSimulado(){
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
     if(resp===q.gabarito) acertos++;
-    if(resp) registrarResposta(u.id, it.questaoId, resp, (sessao.confiancas||{})[it.questaoId] || "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null, "simulado");
+    // sem carimbo (simulado guardado antes de existir) vale o dia de hoje
+    if(resp) registrarResposta(u.id, it.questaoId, resp, (sessao.confiancas||{})[it.questaoId] || "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null, "simulado", undefined, (sessao.momentos||{})[it.questaoId]);
   });
   const nota = pct(acertos, sessao.itens.length);
   const resultadoId = uid("res");

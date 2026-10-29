@@ -709,6 +709,7 @@ function renderEstudar(){
     </div>
   </div>
   ${soNoEstatistico(htmlCardPrioridadesEstudar(u))}
+  ${htmlCardTrilhaSugerida(u)}
   <div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">
