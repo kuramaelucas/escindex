@@ -2,7 +2,7 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **211** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **191** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
@@ -12,9 +12,6 @@ Total: **211** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Epidemiologia e bioestatística (livros-texto) | 23 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 10 |
-| NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) | 10 |
-| Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) | 9 |
-| Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 7 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 7 |
 | Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) | 7 |
 | Nefrologia (KDIGO, ACR contraste, SBN) | 6 |
@@ -24,6 +21,9 @@ Total: **211** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Anestesia (ASRA, ASA, DAS) | 4 |
 | AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 4 |
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) | 3 |
+| NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) | 3 |
+| Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 2 |
+| Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) | 1 |
 
 ## Livros-texto e outras fontes sem diretriz (31)
 
@@ -183,41 +183,6 @@ Total: **211** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-090` (gab. D, simulado-epm-5): Diretrizes da Sociedade Americana de Cirurgiões de Cólon e Reto para abscesso e fístula anorretal (2022); Sociedade Brasileira de Coloproctologia.
 - `q-adap23-099` (gab. D, simulado-epm-5): Diretrizes da Associação Europeia de Urologia Pediátrica sobre hipospádia (2024); Sociedade Brasileira de Urologia e Sociedade Brasileira de Cirurgia
 
-## NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) (10)
-
-- `q-adap26-004` (gab. A, simulado-epm-4): Gershenwald JE et al. AJCC Cancer Staging Manual, 8ª ed. (CA Cancer J Clin 2017); NCCN Guidelines Melanoma: Cutaneous (versão 2025); Sociedade Brasile
-- `q-adap26-006` (gab. C, simulado-epm-4): Rami-Porta R et al. IASLC Staging Project, 9ª edição do TNM do pulmão (J Thorac Oncol 2024); NCCN Guidelines Non-Small Cell Lung Cancer (versão 2025);
-- `q-adap26-013` (gab. C, simulado-epm-4): NCCN Guidelines Colon Cancer (versão 2025); André T et al. Oxaliplatin, fluorouracil, and leucovorin as adjuvant treatment for colon cancer (N Engl J
-- `q-adap26-017` (gab. A, simulado-epm-4): NCCN Guidelines Rectal Cancer (versão 2025); Bahadoer RR et al. Short-course radiotherapy followed by chemotherapy before TME (RAPIDO), Lancet Oncol 2
-- `q-adap26-031` (gab. C, simulado-epm-4): NCCN Guidelines Basal Cell Skin Cancer (versão 2025); Sociedade Brasileira de Dermatologia, Consenso brasileiro de carcinoma basocelular; Connolly SM
-- `q-adap26-045` (gab. A, simulado-epm-4): Olawaiye AB et al. FIGO staging for carcinoma of the vulva: 2021 revision (Int J Gynaecol Obstet 2021); Oonk MHM et al. European Society of Gynaecolog
-- `q-adap26-100` (gab. C, simulado-epm-4): Ray-Coquard I et al. Non-epithelial ovarian cancer: ESMO Clinical Practice Guidelines (Ann Oncol 2018); Brown J et al. Gynecologic Cancer InterGroup c
-- `q-adap23-043` (gab. B, simulado-epm-5): Estadiamento da FIGO para o câncer de colo do útero (2018, atualizado em 2021); Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero
-- `q-adap23-063` (gab. D, simulado-epm-5): Critérios diagnósticos do Grupo Internacional de Trabalho em Mieloma (IMWG, 2014); Diretrizes brasileiras de mieloma múltiplo (Associação Brasileira d
-- `q-adap23-086` (gab. D, simulado-epm-5): Diretriz da Academia Americana de Dermatologia para melanoma cutâneo (2019); Diretriz da NCCN de melanoma; Sociedade Brasileira de Dermatologia e Soci
-
-## Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) (9)
-
-- `q-adap22-021` (gab. A, simulado-epm-3): Nussbaum RL, McInnes RR, Willard HF. Thompson & Thompson Genetics and Genomics in Medicine, 9ª ed. Elsevier, 2016 (herança ligada ao X); Srivastava A
-- `q-adap22-082` (gab. B, simulado-epm-3): FitzGerald JD et al. 2020 American College of Rheumatology Guideline for the Management of Gout. Arthritis Care Res 2020;72:744-60. Texto oficial não
-- `q-adap22-092` (gab. A, simulado-epm-3): Shaker MS et al. Anaphylaxis — a 2020 practice parameter update, systematic review, and Grading of Recommendations, Assessment, Development and Evalua
-- `q-adap26-035` (gab. A, simulado-epm-4): FitzGerald JD et al. 2020 American College of Rheumatology Guideline for the Management of Gout (Arthritis Care Res 2020); Richette P et al. 2016 upda
-- `q-adap26-037` (gab. A, simulado-epm-4): Maz M et al. 2021 American College of Rheumatology/Vasculitis Foundation Guideline for the Management of Giant Cell Arteritis and Takayasu Arteritis (
-- `q-adap26-097` (gab. D, simulado-epm-4): Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020 (World Allergy Organ J 2020); Shaker MS et al. Anaphylaxis: a 2020 practice para
-- `q-adap23-010` (gab. C, simulado-epm-5): Diretriz ACR/Vasculitis Foundation para vasculites associadas ao ANCA (2021); recomendações da EULAR para vasculites associadas ao ANCA (2022).
-- `q-adap23-016` (gab. B, simulado-epm-5): Diretriz ACR/Vasculitis Foundation para arterite de Takayasu e arterite de células gigantes (2021); recomendações da EULAR para vasculites de grandes
-- `q-adap23-075` (gab. D, simulado-epm-5): Diretriz do Colégio Americano de Reumatologia para gota (2020); Recomendações da EULAR para gota (2016, atualizadas em 2023); Sociedade Brasileira de
-
-## Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) (7)
-
-- `q-adap22-014` (gab. A, simulado-epm-3): MacDuff A et al. Management of spontaneous pneumothorax: British Thoracic Society Pleural Disease Guideline 2010. Thorax 2010;65(Suppl 2):ii18-31 e Ro
-- `q-adap22-015` (gab. A, simulado-epm-3): Postmus PE et al. Early and locally advanced non-small-cell lung cancer (NSCLC): ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(Suppl 4):iv1-iv2
-- `q-adap26-005` (gab. C, simulado-epm-4): Feller-Kopman DJ et al. Management of Malignant Pleural Effusions: An Official ATS/STS/STR Clinical Practice Guideline (Am J Respir Crit Care Med 2018
-- `q-adap26-038` (gab. D, simulado-epm-4): Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia: ATS/IDSA Clinical Practice Guideline (Am J Respir Crit Care Med
-- `q-adap23-069` (gab. D, simulado-epm-5): Iniciativa Global para a Asma (GINA), relatório de estratégia (edição vigente); Diretrizes brasileiras para testes de função pulmonar (Sociedade Brasi
-- `q-adap23-077` (gab. D, simulado-epm-5): Diretrizes da Sociedade Europeia de Cirurgia Torácica e da Sociedade Americana de Cirurgia Torácica sobre quilotórax; Diretrizes brasileiras de derram
-- `q-adap23-095` (gab. C, simulado-epm-5): Diretriz da Sociedade Britânica de Doenças Torácicas sobre pneumotórax espontâneo (2023); Consenso do Colégio Americano de Médicos do Tórax; Sociedade
-
 ## Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) (7)
 
 - `q-adap22-083` (gab. D, simulado-epm-3): Camacho PM et al. American Association of Clinical Endocrinologists/American College of Endocrinology Clinical Practice Guidelines for the diagnosis a
@@ -289,4 +254,19 @@ Total: **211** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap22-055` (gab. B, simulado-epm-3): Fallon M et al. Management of cancer pain in adult patients: ESMO Clinical Practice Guidelines. Ann Oncol 2018;29(Suppl 4):iv166-91; World Health Orga
 - `q-adap22-075` (gab. D, simulado-epm-3): Stupp R et al. Radiotherapy plus concomitant and adjuvant temozolomide for glioblastoma. N Engl J Med 2005;352:987-96; Louis DN et al. The 2021 WHO Cl
 - `q-adap23-082` (gab. A, simulado-epm-5): Diretrizes japonesas de tratamento do câncer gástrico (JGCA, 2021); Diretriz ESMO do câncer gástrico (2022); Diretriz brasileira do câncer gástrico (S
+
+## NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) (3)
+
+- `q-adap26-045` (gab. A, simulado-epm-4): Olawaiye AB et al. FIGO staging for carcinoma of the vulva: 2021 revision (Int J Gynaecol Obstet 2021); Oonk MHM et al. European Society of Gynaecolog
+- `q-adap26-100` (gab. C, simulado-epm-4): Ray-Coquard I et al. Non-epithelial ovarian cancer: ESMO Clinical Practice Guidelines (Ann Oncol 2018); Brown J et al. Gynecologic Cancer InterGroup c
+- `q-adap23-043` (gab. B, simulado-epm-5): Estadiamento da FIGO para o câncer de colo do útero (2018, atualizado em 2021); Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero
+
+## Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) (2)
+
+- `q-adap26-005` (gab. C, simulado-epm-4): Feller-Kopman DJ et al. Management of Malignant Pleural Effusions: An Official ATS/STS/STR Clinical Practice Guideline (Am J Respir Crit Care Med 2018
+- `q-adap23-077` (gab. D, simulado-epm-5): Diretrizes da Sociedade Europeia de Cirurgia Torácica e da Sociedade Americana de Cirurgia Torácica sobre quilotórax; Diretrizes brasileiras de derram
+
+## Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) (1)
+
+- `q-adap22-021` (gab. A, simulado-epm-3): Nussbaum RL, McInnes RR, Willard HF. Thompson & Thompson Genetics and Genomics in Medicine, 9ª ed. Elsevier, 2016 (herança ligada ao X); Srivastava A
 

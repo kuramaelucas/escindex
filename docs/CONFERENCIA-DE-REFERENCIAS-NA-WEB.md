@@ -43,6 +43,15 @@ Nenhum gabarito foi alterado.
 - **KDIGO**: anemia na DRC 2026 (Kidney Int 109:1); glomerulopatias atualizadas por capítulos; **AKI/AKD 2026 só em rascunho** (consulta pública até 11/05/2026).
 - **ADA Standards 2026** (Diabetes Care 2026;49 Suppl 1, dez/2025). **ATA 2025 de câncer diferenciado de tireoide** (doi 10.1177/10507256251363120). Critérios de **Jones 2015** seguem vigentes. **IDSA 2025 de ITU complicada** (CID, 17/07/2025).
 
+### Oncologia, reumatologia, alergia e pneumologia
+- **NCCN**: versão 1.2026 de pulmão não pequenas células alinhada ao TNM 9ª edição (AJCC); o estudo ATOMIC apoia imunoterapia mais cedo no cólon com instabilidade de microssatélites. Melanoma, cólon, reto e basocelular: versões vigentes **não** conferidas. `q-adap26-004`, `q-adap26-006`, `q-adap26-013`, `q-adap26-017`, `q-adap26-031`, `q-adap23-086`.
+- **ESMO 2025 de pulmão inicial e localmente avançado** (Ann Oncol): existe (imunoterapia perioperatória; segmentectomia em periféricos até 2 cm). `q-adap22-015`.
+- **IMWG**: sem revisão posterior a 2014 localizada. `q-adap23-063`.
+- **Gota**: sem diretriz EULAR posterior a 2016 confirmada nem atualização da ACR 2020. `q-adap22-082`, `q-adap26-035`, `q-adap23-075`.
+- **Vasculites**: sem atualização da ACR/Vasculitis Foundation 2021 localizada; upadacitinibe aprovado pela FDA para arterite de células gigantes em abril/2025 (SELECT-GCA). `q-adap26-037`, `q-adap23-016`, `q-adap23-010`.
+- **Anafilaxia**: atualizações da AAAAI/ACAAI (2022–2024) desaconselham corticoide e anti-histamínico de rotina e relativizam a ida ao pronto-socorro após adrenalina precoce. `q-adap22-092`, `q-adap26-097`.
+- **BTS 2023 de doença pleural**: registros compatíveis no PubMed. `q-adap22-014`, `q-adap23-095`.
+
 ### Ginecologia e obstetrícia
 - **ESGO/ESTRO/ESP 2025** de endométrio (Lancet Oncol 2025;26:e423-e435). **OMS/FIGO/ICM 2025 de HPP** (51 recomendações; ação com 300 mL ou sinais vitais alterados). **OMS MEC 6ª ed. (2025)** e **OMS SPR 4ª ed. (nov/2025)** existem; categorias dos combinados e ulipristal/IMC **não** conferidas. **FDA, nov/2025**: retirada do alerta de caixa preta de terapia hormonal. **ACOG, jul/2024**: não rastrear diabetes gestacional antes de 24 semanas. Sem substituição localizada: PB 222, PB 217, corticoides antenatais, corioamnionite, ASCCP 2019. ESHRE endometriose 2022 tinha revisão prevista para 2025 (não confirmada).
 
