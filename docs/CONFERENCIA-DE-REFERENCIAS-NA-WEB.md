@@ -59,6 +59,11 @@ Nenhum gabarito foi alterado.
 - **Hipersensibilidade perioperatória**: diretriz francesa (70 recomendações, 2025 ou 2026). `q-adap22-006`.
 - **KDIGO**: nefrite lúpica 2024 publicada; DMO-DRC mantém a versão de 2017 (conferência de controvérsias, Kidney Int, mar/2025). `q-adap26-086`, `q-adap23-064`.
 - **Sem atualização localizada**: ATA 2016 de tireotoxicose, AACE/ACE 2020 de osteoporose (revisão chamada em 2024), consenso DLB 2017, APA 2020 de esquizofrenia, diretrizes europeias de hiponatremia (2014), AASLD 2021 e EASL 2018 de cirrose, ASRA 2020 de toxicidade por anestésico local, ASA/ASRA 2016 de opioide neuraxial, orientação da OMS de corticosteroides na covid-19 (só a de 2020).
+- **ADA/EASD/JBDS/AACE/DTS 2024 de crises hiperglicêmicas** (Diabetes Care 2024;47(8)): beta-hidroxibutirato à beira do leito, insulina subcutânea na CAD leve. O limiar de potássio da `q-adap23-034` não foi conferido. **Beers 2023** confirmado (JAGS 2023;71:2052-2081). **World Falls Guidelines 2022**, **ASAM 2020** de abstinência alcoólica e **WFH 3ª ed. 2020** de hemofilia (ISTH 2024 também existe) sem edição nova.
+- **Câncer gástrico**: ESMO recomenda FLOT perioperatório (IB ou maior); durvalumabe com FLOT apontado como novo padrão; diretriz ESMO de out/2026 relatada por fonte secundária e não verificada. `q-adap23-082`.
+- **CRIE**: 6ª edição do manual (2023) e Portaria GM/MS nº 6.623/2025 (RIE); a `q-adap26-096` cita a 5ª edição.
+- **SJS/NET**: diretriz alemã S3 (2024), protocolo francês (2024) e diretriz latino-americana (WAO J, 2025). `q-adap26-039`.
+- **KDIGO 2026 de anemia na DRC**: resumo executivo em Kidney Int 2026;109(1).
 - **Surviving Sepsis Campaign 2026** passou a constar também nas notas de `q-adap25-030`, `q-adap25-037` e `q-adap23-015`.
 
 ### Ginecologia e obstetrícia
