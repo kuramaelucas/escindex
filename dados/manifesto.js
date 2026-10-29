@@ -91,6 +91,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-uspsp-simulado-4",
   "prova-uspsp-simulado-3",
   "prova-simulado-epm-2026-10",
+  "banco-simulado-didatico-epm",
   "banco-didatico-grad-malaria",
   "banco-didatico-grad-tuberculose",
   "banco-didatico-grad-iras",
