@@ -2,7 +2,7 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **218** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **211** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
@@ -11,7 +11,6 @@ Total: **218** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 26 |
 | Epidemiologia e bioestatística (livros-texto) | 23 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
-| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 11 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 10 |
 | NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) | 10 |
 | Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) | 9 |
@@ -23,6 +22,7 @@ Total: **218** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) | 5 |
 | Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 4 |
 | Anestesia (ASRA, ASA, DAS) | 4 |
+| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 4 |
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) | 3 |
 
 ## Livros-texto e outras fontes sem diretriz (31)
@@ -170,20 +170,6 @@ Total: **218** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-046` (gab. B, simulado-epm-5): Atlas BI-RADS do Colégio Americano de Radiologia (5ª edição, 2013); Diretrizes para a Detecção Precoce do Câncer de Mama no Brasil (INCA/Ministério da
 - `q-adap23-052` (gab. A, simulado-epm-5): Critérios de classificação de síndrome antifosfolípide do ACR/EULAR (2023); Recomendações da EULAR para síndrome antifosfolípide (2019); Diretriz da A
 
-## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) (11)
-
-- `q-adap25-023` (gab. D, simulado-epm-2): Part 11: Post-Cardiac Arrest Care. 2025 American Heart Association Guidelines for CPR and Emergency Cardiovascular Care. Circulation 2025;152 (valores
-- `q-adap22-065` (gab. D, simulado-epm-3): Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support: 2020 AHA Guidelines for CPR and ECC. Circulation 2020;142(Suppl 2):S469-523; Glob
-- `q-adap22-081` (gab. C, simulado-epm-3): Page RL et al. 2015 ACC/AHA/HRS Guideline for the Management of Adult Patients With Supraventricular Tachycardia. Circulation 2016;133:e506-74; Appelb
-- `q-adap22-085` (gab. B, simulado-epm-3): Holbrook A et al. Evidence-based management of anticoagulant therapy: Antithrombotic Therapy and Prevention of Thrombosis, 9ª ed.: ACCP Evidence-Based
-- `q-adap26-001` (gab. B, simulado-epm-4): 2024 AHA/ACC Guideline for Perioperative Cardiovascular Management for Noncardiac Surgery (Circulation 2024); Lee TH et al., índice de risco cardíaco
-- `q-adap26-009` (gab. B, simulado-epm-4): Conte MS et al. Global Vascular Guidelines on the management of chronic limb-threatening ischemia (J Vasc Surg 2019); Gornik HL et al. 2024 ACC/AHA Gu
-- `q-adap26-023` (gab. D, simulado-epm-4): Otto CM et al. 2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease (Circulation 2021); Praz F et al. 2025 ESC/EACTS Guid
-- `q-adap26-027` (gab. B, simulado-epm-4): Schmidt GA et al. Liberation from mechanical ventilation in critically ill adults: ATS/ACCP Clinical Practice Guideline (Am J Respir Crit Care Med 201
-- `q-adap23-002` (gab. B, simulado-epm-5): Diretriz Brasileira de Valvopatias (Sociedade Brasileira de Cardiologia, 2020); Diretriz ACC/AHA de doença valvar (2020); Diretriz ESC/EACTS de doença
-- `q-adap23-020` (gab. D, simulado-epm-5): Diretriz CHEST de tratamento do tromboembolismo venoso (2021); Diretriz ESC de embolia pulmonar aguda (2019); Diretriz da American Society of Hematolo
-- `q-adap23-096` (gab. A, simulado-epm-5): Diretrizes da Associação Americana de Tireoide para carcinoma medular (2015); Consenso brasileiro de nódulos e câncer diferenciado de tireoide (SBEM/S
-
 ## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) (10)
 
 - `q-adap22-012` (gab. C, simulado-epm-3): EAU/ESPU. EAU Guidelines on Paediatric Urology (capítulos sobre uropatia obstrutiva e válvula de uretra posterior), edição de 2024; Partin AW et al. C
@@ -290,6 +276,13 @@ Total: **218** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap22-002` (gab. B, simulado-epm-3): American Society of Anesthesiologists Task Force. Practice Guidelines for the Prevention, Detection, and Management of Respiratory Depression Associat
 - `q-adap22-006` (gab. C, simulado-epm-3): Garvey LH et al. Management of suspected immediate perioperative allergic reactions: an international overview and consensus recommendations. Br J Ana
 - `q-adap23-093` (gab. C, simulado-epm-5): Diretrizes da Sociedade Americana de Anestesia Regional (ASRA) sobre toxicidade sistêmica dos anestésicos locais (2020); Barash, Anestesia Clínica; So
+
+## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) (4)
+
+- `q-adap22-065` (gab. D, simulado-epm-3): Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support: 2020 AHA Guidelines for CPR and ECC. Circulation 2020;142(Suppl 2):S469-523; Glob
+- `q-adap22-085` (gab. B, simulado-epm-3): Holbrook A et al. Evidence-based management of anticoagulant therapy: Antithrombotic Therapy and Prevention of Thrombosis, 9ª ed.: ACCP Evidence-Based
+- `q-adap26-027` (gab. B, simulado-epm-4): Schmidt GA et al. Liberation from mechanical ventilation in critically ill adults: ATS/ACCP Clinical Practice Guideline (Am J Respir Crit Care Med 201
+- `q-adap23-020` (gab. D, simulado-epm-5): Diretriz CHEST de tratamento do tromboembolismo venoso (2021); Diretriz ESC de embolia pulmonar aguda (2019); Diretriz da American Society of Hematolo
 
 ## Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) (3)
 

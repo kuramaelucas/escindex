@@ -17,6 +17,7 @@ Pedido: revisar os simulados autorais já criados com acesso ao PubMed e à web,
 | `q-adap22-031` | "OMS (2023)" passou a "OMS (2023, mantido nas recomendações consolidadas OMS/FIGO/ICM de 2025)" | Diretrizes de HPP de out/2025 |
 | `q-adap24-033` | Alternativa C: a citologia trienal é descrita como das diretrizes de 2016; acrescenta o HPV-DNA de 2025 | Portaria Conjunta SAES/SECTICS nº 13/2025 |
 | `q-adap24-080` | Enunciado: "mulheres de 50 a 69 anos" virou "na faixa etária-alvo" | Mamografia de 40 a 74 anos anunciada em set/2025; faixa oficial não confirmada |
+| `q-adap26-023` | Explicação: "TAVI a partir dos 70 anos" passou a "...na estenose aórtica com valva tricúspide" | ESC/EACTS 2025 (doi 10.1093/eurheartj/ehaf194), fontes secundárias |
 
 Nenhum gabarito foi alterado.
 
@@ -31,6 +32,10 @@ Nenhum gabarito foi alterado.
 - **ACC/AHA 2025 de SCA** (Circulation 2025;151): não apareceu no PubMed com o título; resumos web divergem sobre fibrinólise (10 min na ESC × 30 min porta-agulha na ACC/AHA) e sobre a angiografia após fibrinólise (2 × 3 h). `q-adap25-021`, `q-adap22-080`.
 - **ESC/EACTS 2025 de valvopatias**, **ESC 2024** (SCC ehae177, FA ehae176, arterial ehae179), **ESC 2026 de insuficiência cardíaca** (só dois fenótipos, FEVE <50% e ≥50%): existem.
 - **ATLS 11ª edição (2025)**: existe; controle de hemorragia exsanguinante antes da via aérea (xABCDE) segundo fontes secundárias; tabela de classes de hemorragia não conferida.
+- **AHA 2025 de cuidados pós-parada** (Parte 11): oxigênio 100% até estabilizar e depois SpO2 de 90 a 98%, PAM ≥65 mmHg, temperatura constante de 32 a 37,5 °C por ≥36 h (fontes divergem na classe) e prognóstico multimodal só após 72 h. `q-adap25-023`.
+- **ESC/EACTS 2025 de valvopatias** (Praz et al., doi 10.1093/eurheartj/ehaf194): TAVI recomendado a partir dos 70 anos (antes 75) na estenose aórtica com valva tricúspide e via transfemoral. `q-adap26-023`.
+- **ACC/AHA/HRS 2015 de TSV**: sem substituição localizada. **ATA 2015 de carcinoma medular**: rascunho de atualização sobre terapia sistêmica ainda não publicado.
+- **AHA/ACC 2024 de manejo perioperatório**: registros compatíveis no PubMed. **ACC/AHA 2024 de DAP de membros inferiores**: não encontrada por título no PubMed.
 - **Hipertensão**: nova Diretriz Brasileira de Hipertensão 2025 (SBC, SBN, SBH; meta <130/80 mmHg; pré-hipertensão 120–139/80–89). Condutas das questões não contestadas, mas classificação por estágios e definição de crise devem ser conferidas. `q-adap23-005`, `q-adap23-012`, `q-adap22-090`.
 
 ### Pneumologia, nefrologia, endocrinologia, reumatologia
