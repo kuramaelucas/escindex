@@ -62,8 +62,19 @@ test("trilha: assunto com o dobro de erro recebe o dobro de questões, misturada
     assert.ok(r.so3Assuntos <= 3);
     assert.equal(r.apenasErradas, 3, "só as 3 respostas erradas (2 + 1)");
     assert.match(r.card, /Montar trilha/);
-    // a janela abre, mostra a prévia e inicia uma sessão com a origem "trilha"
-    await pagina.evaluate(() => abrirTrilhaDeEstudos(0));
+    // a janela abre com os assuntos de mais erro marcados; desmarcar redistribui, marcar um da fila o inclui
+    await pagina.evaluate(() => { definirTamanhoDaTrilha(12); abrirTrilhaDeEstudos(2); });
+    const marcados0 = await pagina.evaluate(() => [..._trilha.assuntos]);
+    assert.equal(marcados0.length, 2, "a plataforma sugere os 2 de mais erro");
+    assert.match(await pagina.textContent("#previaTrilha"), /Próximos da fila/);
+    const depoisDesmarcar = await pagina.evaluate(() => { alternarAssuntoDaTrilha(_trilha.assuntos[0]); return montarTrilhaPorErro(usuarioAtual().id, { ..._trilha, foco: 0 }).itens.length; });
+    assert.equal(depoisDesmarcar, 12, "as 12 questões passam para o assunto que ficou");
+    const depoisMarcar = await pagina.evaluate(() => {
+      const fila = document.querySelectorAll("#previaTrilha input[type=checkbox]:not(:checked)");
+      fila[0].click();
+      return _trilha.assuntos.length;
+    });
+    assert.equal(depoisMarcar, 2, "marcar um assunto da fila o inclui");
     assert.match(await pagina.textContent("#previaTrilha"), /questão\(ões\)/);
     await pagina.evaluate(() => iniciarTrilhaDeEstudos());
     const sessao = await pagina.evaluate(() => ({ n: state.sessaoAtual.itens.length, origem: state.sessaoAtual.itens[0].origem }));
