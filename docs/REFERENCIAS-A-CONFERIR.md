@@ -2,7 +2,7 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **152** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
@@ -10,7 +10,7 @@ Total: **152** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 29 |
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 26 |
 | Epidemiologia e bioestatística (livros-texto) | 23 |
-| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
+| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 18 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 10 |
 | AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 2 |
 | Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 2 |
@@ -142,7 +142,7 @@ Total: **152** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-028` (gab. B, simulado-epm-5): Medronho et al., Epidemiologia; Gordis, Epidemiologia; Rouquayrol e Gurgel, Epidemiologia & Saúde.
 - `q-adap23-030` (gab. B, simulado-epm-5): Vieira, Bioestatística: tópicos avançados; Fletcher, Epidemiologia Clínica; Altman, Practical Statistics for Medical Research.
 
-## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) (21)
+## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) (18)
 
 - `q-adap25-066` (gab. B, simulado-epm-2): Cameron AP et al. The AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder. J Urol 2024;212:11-20 (as opções foram confe
 - `q-adap25-069` (gab. D, simulado-epm-2): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome. J
@@ -152,12 +152,9 @@ Total: **152** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap22-027` (gab. C, simulado-epm-3): American College of Radiology. ACR BI-RADS Atlas, 5ª ed., 2013; Urban LABD et al. Recomendações do Colégio Brasileiro de Radiologia, da Sociedade Bras
 - `q-adap22-028` (gab. A, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 228: Management of Symptomatic Uterine Leiomyomas. Obstet Gynecol 2021;137:
 - `q-adap22-029` (gab. B, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 228: Management of Symptomatic Uterine Leiomyomas. Obstet Gynecol 2021;137:
-- `q-adap22-032` (gab. C, simulado-epm-3): World Health Organization. WHO recommendations: intrapartum care for a positive childbirth experience, 2018, e Labour Care Guide, 2020; American Colle
 - `q-adap22-034` (gab. C, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 178: Shoulder Dystocia. Obstet Gynecol 2017;129:e123-33 (reafirmado). Texto
-- `q-adap22-039` (gab. D, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 200: Early Pregnancy Loss. Obstet Gynecol 2018;132:e197-207; World Health O
 - `q-adap26-047` (gab. B, simulado-epm-4): Practice Committee of the American Society for Reproductive Medicine. Current evaluation of amenorrhea (Fertil Steril 2008); Hughes IA et al. Androgen
 - `q-adap26-048` (gab. C, simulado-epm-4): Nambiar AK et al. EAU Guidelines on Assessment and Nonsurgical Management of Urinary Incontinence (Eur Urol 2022); Kobashi KC et al. Surgical Treatmen
-- `q-adap26-049` (gab. C, simulado-epm-4): Ministério da Saúde, Atenção humanizada ao abortamento: norma técnica, 2ª ed. (2011); WHO, Abortion care guideline (2022); FEBRASGO, Abortamento infec
 - `q-adap26-051` (gab. B, simulado-epm-4): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome (H
 - `q-adap26-053` (gab. C, simulado-epm-4): Ministério da Saúde/INCA, Diretrizes brasileiras para o rastreamento do câncer do colo do útero, 2ª ed. (2016) para o manejo das lesões; a atualização
 - `q-adap26-059` (gab. C, simulado-epm-4): ACOG Practice Bulletin 192: Management of alloimmunization during pregnancy (Obstet Gynecol 2018); Mari G et al. Noninvasive diagnosis by Doppler ultr
