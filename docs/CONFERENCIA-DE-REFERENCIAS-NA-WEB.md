@@ -24,8 +24,16 @@ Depois que a rede da sessão foi liberada em parte, foram lidos os textos oficia
 | IDSA 2026 AMR Guidance, publicada em 30/07/2026 (idsociety.org) | Carbapenêmico preferido na ESBL fora do trato urinário; piperacilina-tazobactam não sugerida nesses sítios | `q-adap26-033` (gabarito confirmado) |
 | KDIGO 2026 de anemia, resumo executivo (kdigo.org) | Limiares de ferro na DRC: ferritina <100 e TSAT <40%, ou ferritina 100–300 e TSAT <25% | `q-adap26-034` (confirmado) |
 | US MEC 2024, CDC (PMC11315372) | Combinados em categoria 4 com <21 dias de pós-parto; categoria 4 na enxaqueca com aura | `q-adap22-025` (parcial), `q-adap26-043` |
+| GOLD 2026, relatório completo v1.3 (goldcopd.org) | Oxigenoterapia domiciliar: PaO2 ≤55 mmHg ou SaO2 ≤88%, ou 55–60 com hipertensão pulmonar, edema ou policitemia (Ht >55%); mais de 15 h/dia, mas estudo recente mostra que 24 h não superou 15 h; VNI com pH <7,35 e PaCO2 >45 | `q-adap26-040`, `q-adap23-014` (confirmados) |
+| GINA 2026, relatório (ginasthma.org) | Trilha 1 (ICS-formoterol como aliviador) preferida; SABA isolado não recomendado; dobrar ICS em ≤5 anos; magnésio IV 40–50 mg/kg (máx. 2 g) | `q-adap25-087`, `q-adap22-086`, `q-adap26-095`, `q-adap22-069`, `q-adap22-065` (confirmados) |
+| Relatório Conitec nº 1.051, PCDT de Alzheimer (gov.br/conitec) | Donepezila 5 mg/dia, subindo a 10 mg após 4–6 semanas; memantina com dose reduzida se depuração <50 mL/min | `q-adap22-095` (confirmado) |
+| PCDT de fibrose cística, resumo oficial (gov.br/conitec) | Duas dosagens de TIR elevadas levam ao teste do suor | `q-adap25-091` (fluxo confirmado) |
+| CDC, tratamento da gonorreia (cdc.gov) | Artrite gonocócica: ceftriaxona 1 g IM/IV a cada 24 h, ≥7 dias, doxiciclina 7 dias se clamídia não excluída | `q-adap24-027` (confirmado; drenagem não consta da página) |
+| KDIGO 2024 de DRC, resumo executivo (kdigo.org) | PAS <120 mmHg quando tolerada (2B); KFRE 3–5% para encaminhamento | `q-adap22-076` (confirmado) |
 | ATA, página de diretrizes (thyroid.org) | Hipertireoidismo 2016 e carcinoma medular 2015 seguem como as publicadas | `q-adap23-003`, `q-adap23-096` |
 | EAU, página de urolitíase (uroweb.org) | Edição 2026 é revisão completa da de 2025 (lista das seções revisadas) | `q-adap22-004`, `q-adap26-014`, `q-adap26-091` |
+
+**Abrem, mas sem texto útil** (JavaScript ou pagamento): páginas das diretrizes ESMO (`esmo.org`), ACOG (`acog.org`, HTTP 402) e o PMC raspado em HTML (retornou só o resumo). Para ESMO e ACOG, o conteúdo continua sem conferência.
 
 **Ainda bloqueados na rede da sessão** (não resolvem ou o proxy recusa): `ahajournals.org`, `cpr.heart.org`, `professional.heart.org`, `iris.who.int`, `cdn.who.int`, `apps.who.int`, o CloudFront da EAU (`d56bochluxqnz.cloudfront.net`), `academic.oup.com`, `diabetesjournals.org`, `sbim.org.br`, `easl.eu`, `asra.com`, `asam.org`, `scielo.br`, `sbc.org.br` e os sites de periódicos (NEJM, Lancet, JAMA, Wolters Kluwer, AAP). Abrem: `gov.br`, `who.int` (páginas, não os PDFs), `kdigo.org`, `ginasthma.org`, `goldcopd.org`, `escardio.org`, `nccn.org`, `acog.org`, `esmo.org`, `idsociety.org`, `sbp.com.br`, `cdc.gov`, `thyroid.org`, `uroweb.org` e o PMC.
 

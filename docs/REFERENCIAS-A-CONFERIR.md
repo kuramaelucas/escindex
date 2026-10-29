@@ -2,7 +2,7 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **153** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **152** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
@@ -12,7 +12,7 @@ Total: **153** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Epidemiologia e bioestatística (livros-texto) | 23 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 10 |
-| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 3 |
+| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 2 |
 | Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 2 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 2 |
 | Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) | 2 |
@@ -179,9 +179,8 @@ Total: **153** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-090` (gab. D, simulado-epm-5): Diretrizes da Sociedade Americana de Cirurgiões de Cólon e Reto para abscesso e fístula anorretal (2022); Sociedade Brasileira de Coloproctologia.
 - `q-adap23-099` (gab. D, simulado-epm-5): Diretrizes da Associação Europeia de Urologia Pediátrica sobre hipospádia (2024); Sociedade Brasileira de Urologia e Sociedade Brasileira de Cirurgia
 
-## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) (3)
+## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) (2)
 
-- `q-adap22-065` (gab. D, simulado-epm-3): Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support: 2020 AHA Guidelines for CPR and ECC. Circulation 2020;142(Suppl 2):S469-523; Glob
 - `q-adap22-085` (gab. B, simulado-epm-3): Holbrook A et al. Evidence-based management of anticoagulant therapy: Antithrombotic Therapy and Prevention of Thrombosis, 9ª ed.: ACCP Evidence-Based
 - `q-adap23-020` (gab. D, simulado-epm-5): Diretriz CHEST de tratamento do tromboembolismo venoso (2021); Diretriz ESC de embolia pulmonar aguda (2019); Diretriz da American Society of Hematolo
 
