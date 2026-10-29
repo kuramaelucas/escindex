@@ -76,7 +76,9 @@ function conteudoProvasESimulados(u){
   const recomendados = bloco ? simuladosVisiveis.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id)) : [];
   const outros = simuladosVisiveis.filter(s=>!recomendados.includes(s));
   const meusResultados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
-  const pagResultados = paginar(meusResultados, "provas-resultados", {porPagina:10});
+  const resultadosVisiveis = limitarLista(meusResultados, "provas-resultados", 5);
+  const recomendadosVisiveis = limitarLista(recomendados, "provas-sim-recomendados", 5);
+  const outrosVisiveis = limitarLista(outros, "provas-sim-outros", 5);
   return `
   <div class="flex gap-1 mb-2 quebra">
     <button class="pill ${aba==="antigas"?"active":""}" onclick="mudarAbaProvas('antigas')">${iconeSvg("archive")} Provas antigas</button>
@@ -84,18 +86,18 @@ function conteudoProvasESimulados(u){
   </div>
   ${aba==="antigas" ? renderAbaProvasAntigas(u, simuladosVisiveis) : `
     <p class="text-sm muted mb-2">Os da equipe e os enviados para a plataforma, com tempo e tamanho já definidos. ${bloco ? `Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).` : "Sem calendário de blocos, não há simulado recomendado para o seu bloco: todos aparecem juntos."}</p>
-    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div><div class="grid grid-3 mb-2">${recomendados.map(renderSimuladoCard).join("")}</div>` : ""}
-    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div><div class="grid grid-3 mb-2">${outros.map(renderSimuladoCard).join("")}</div>` : ""}
+    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div><div class="grid grid-3 mb-1">${recomendadosVisiveis.itens.map(renderSimuladoCard).join("")}</div>${botaoMostrarTudo(recomendadosVisiveis, "provas-sim-recomendados")}<div class="mb-2"></div>` : ""}
+    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div><div class="grid grid-3 mb-1">${outrosVisiveis.itens.map(renderSimuladoCard).join("")}</div>${botaoMostrarTudo(outrosVisiveis, "provas-sim-outros")}<div class="mb-2"></div>` : ""}
     ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>'
       : !simuladosVisiveis.length ? `<div class="empty-state">Nenhum simulado combina com "${escapeHtml(busca)}". <button class="link-btn" onclick="limparBuscaProvas()">limpar a busca</button> ou veja as provas antigas na aba ao lado.</div>` : ""}
   `}
   ${meusResultados.length ? `<div class="card mt-3">
     <div class="card-title mb-1">Suas notas (provas antigas e simulados)</div>
     <div class="table-wrap"><table><thead><tr><th>Prova</th><th>Nota</th><th>Data</th></tr></thead><tbody>
-      ${pagResultados.itens.map(r=>`<tr${r.itens?` class="linha-clicavel" onclick="verDetalheResultadoSimulado('${r.id}')" title="Abrir o resultado e o feedback desta prova"`:""}><td class="text-sm">${r.itens?`<button class="link-btn titulo-simulado" onclick="event.stopPropagation();verDetalheResultadoSimulado('${r.id}')">${escapeHtml(r.titulo||"—")}</button>`:escapeHtml(r.titulo||"—")}</td><td><span class="badge ${r.nota>=70?"badge-accent":r.nota>=50?"badge-amber":"badge-danger"}">${r.nota}%</span></td><td class="text-sm">${formatDataBR(r.data)}</td></tr>`).join("")}
+      ${resultadosVisiveis.itens.map(r=>`<tr${r.itens?` class="linha-clicavel" onclick="verDetalheResultadoSimulado('${r.id}')" title="Abrir o resultado e o feedback desta prova"`:""}><td class="text-sm">${r.itens?`<button class="link-btn titulo-simulado" onclick="event.stopPropagation();verDetalheResultadoSimulado('${r.id}')">${escapeHtml(r.titulo||"—")}</button>`:escapeHtml(r.titulo||"—")}</td><td><span class="badge ${r.nota>=70?"badge-accent":r.nota>=50?"badge-amber":"badge-danger"}">${r.nota}%</span></td><td class="text-sm">${formatDataBR(r.data)}</td></tr>`).join("")}
     </tbody></table></div>
     <p class="text-xs muted mt-1">Clique na prova para abrir o resultado e o feedback questão a questão.</p>
-    ${controlesPaginacao(pagResultados, "resultado(s)")}
+    ${botaoMostrarTudo(resultadosVisiveis, "provas-resultados", "resultados")}
   </div>` : ""}
   `;
 }
@@ -1037,9 +1039,17 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
           ? "Nenhuma prova deste tipo com os filtros atuais."
           : `Ainda não há ${escapeHtml(info.nomeLongo.toLowerCase())} no banco (${escapeHtml(info.descricao)}). Quem tiver uma pode <button class="link-btn" onclick="navigate('importar-questoes')">enviar pela plataforma</button>, escolhendo o tipo de prova ${escapeHtml(info.nome)}.`}</div>`;
     }
+    /* Cinco provas por instituição (as mais recentes, que é a ordem da lista);
+       o resto abre no "Mostrar tudo". Busca ativa mostra tudo o que combina. */
+    const chaveAberta = "provas-antigas-"+tipo, porBanca = {};
+    const aberta = !!(state.filtroRota.listasAbertas||{})[chaveAberta] || !!buscaProvas().trim();
+    const visiveis = daSecao.filter(x=> aberta || (porBanca[x.g.banca] = (porBanca[x.g.banca]||0)+1) <= 5);
+    const contaBanca = {}; daSecao.forEach(x=>{ contaBanca[x.g.banca] = (contaBanca[x.g.banca]||0)+1; });
+    const temExcesso = Object.values(contaBanca).some(n=>n>5);
+    const botaoSecao = !buscaProvas().trim() && temExcesso ? botaoMostrarTudo({podeAbrir:true, aberta:!!(state.filtroRota.listasAbertas||{})[chaveAberta], total:daSecao.length}, chaveAberta, "provas") : "";
     return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)} <span class="text-sm muted peso-400">· ${escapeHtml(info.descricao)} · ${daSecao.length} prova(s)</span></div>
       ${prioritaria ? `<p class="text-xs muted mb-1">${iconeSvg("star")} No ${escapeHtml(u.anoFaculdade)}, estas vêm primeiro: são as que consolidam o conhecimento do ano. As de residência continuam logo abaixo.</p>` : ""}
-      <div class="grid grid-3 mb-2">${daSecao.map(x=>cartaoDaProva(x.g, x.i)).join("")}</div>`;
+      <div class="grid grid-3 mb-1">${visiveis.map(x=>cartaoDaProva(x.g, x.i)).join("")}</div>${botaoSecao}<div class="mb-2"></div>`;
   }).join("");
 
   return `

@@ -392,6 +392,114 @@ function abrirDiaDoHistorico(dia){
   };
   navigate("sessao");
 }
+/* O histórico tem duas leituras do mesmo estudo: o calendário (o mês de uma
+   vez, com a cor dizendo quão perto da meta cada dia ficou) e a lista dia a
+   dia. A escolha fica na tela; o calendário é o padrão porque mostra a
+   constância, e o clique no dia leva ao mesmo cartão da lista. */
+function ctxHistorico(){
+  if(!state.filtroRota.historico) state.filtroRota.historico = {visao:"calendario"};
+  return state.filtroRota.historico;
+}
+function mudarVisaoHistorico(v){ ctxHistorico().visao = v; render(); }
+function mudarMesHistorico(delta){
+  const ctx = ctxHistorico();
+  const [a, m] = (ctx.mes || hojeISO().slice(0,7)).split("-").map(Number);
+  ctx.mes = dataLocalISO(new Date(a, m - 1 + delta, 1)).slice(0,7);
+  ctx.dia = null;
+  render();
+}
+function escolherDiaDoHistorico(dia){ ctxHistorico().dia = dia; render(); }
+/* Conjunto vindo da trilha por erro leva o motivo "Trilha por erro — …" nos
+   itens (05d); reconhecer por ali evita gravar um campo novo e vale também
+   para os conjuntos antigos. */
+function rotuloDoConjunto(sess){
+  const motivo = sess.itens && sess.itens[0] && sess.itens[0].motivo || "";
+  return /^Trilha/i.test(motivo) ? {trilha:true, nome:"Trilha por erro"} : {trilha:false, nome:"Conjunto"};
+}
+/* O cartão de um dia: o mesmo na lista e no painel que o calendário abre.
+   Cada coisa feita no dia tem a sua linha e o seu botão de abrir. */
+function htmlDiaDoHistorico(d){
+  const taxa = d.total ? pct(d.acertos, d.total) : null;
+  const corTaxa = t => t>=70?"badge-accent":t>=50?"badge-amber":"badge-danger";
+  const linhas = [];
+  d.sessoes.forEach(sess=>{
+    const t = pct(sess.acertos, sess.total), rot = rotuloDoConjunto(sess);
+    const motivo = (sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática").replace(/^Trilha por erro\s*—\s*/i, "");
+    linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
+      <span>${iconeSvg(rot.trilha?"target":"book")} ${sess.naoTerminada ? `${rot.nome.toLowerCase()} <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} questão(ões) respondida(s) (parado há mais de 7 dias)` : `${rot.nome.toLowerCase()} de ${sess.total} questão(ões)`} — ${escapeHtml(motivo)}</span>
+      <span class="flex items-center gap-1"><span class="badge ${corTaxa(t)}">${t}%</span>
+      <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir ${rot.trilha?"esta trilha":"este conjunto"}</button></span>
+    </div>`);
+  });
+  if(d.cartoes) linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
+    <span>${iconeSvg("cards")} ${d.cartoes} flashcard(s) revisado(s)${d.cartoesExatos?"":" (ao menos)"}</span>
+    <button class="link-btn text-xs" onclick="navigate('flashcards')">ir para a Revisão Rápida</button></div>`);
+  d.simulados.forEach(sim=>{
+    linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
+      <span>${iconeSvg("clipboard")} simulado — ${escapeHtml(sim.titulo||"—")}</span>
+      <span class="flex items-center gap-1"><span class="badge ${corTaxa(sim.nota)}">${sim.nota}%</span>
+      ${sim.itens?`<button class="link-btn text-xs" onclick="verDetalheResultadoSimulado('${sim.id}')">abrir feedback</button>`:""}</span>
+    </div>`);
+  });
+  return `<div class="card-flat mb-1">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="peso-600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
+        <div class="text-xs muted mt-1">${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}</div>
+      </div>
+      <div class="flex items-center gap-1 quebra">
+        ${taxa!==null ? `<span class="badge ${corTaxa(taxa)}">${taxa}% de acerto</span>` : ""}
+        ${d.total ? `<button class="btn btn-secondary btn-sm" onclick="abrirDiaDoHistorico('${d.data}')">${iconeSvg("chart")} Abrir o dia</button>` : ""}
+      </div>
+    </div>
+    ${linhas.length ? `<div class="mt-2" style="border-top:1px solid var(--border);padding-top:.6rem">${linhas.join("")}</div>` : ""}
+  </div>`;
+}
+/* Mesma progressão de cor do calendário de Meu Desempenho: meta batida (cor
+   forte), estudou abaixo da meta (cor suave), sem estudo (neutro). Aqui
+   cartão e simulado também contam como "estudou". */
+function htmlCalendarioHistorico(u, diasAtivos){
+  const ctx = ctxHistorico();
+  const mes = ctx.mes || hojeISO().slice(0,7);
+  const meta = metaDoUsuario(u);
+  const {dias, primeiroDiaSemana} = diasDoCalendario(u.id, mes, meta);
+  const porData = new Map(diasAtivos.map(d=>[d.data, d]));
+  const [a, m] = mes.split("-").map(Number);
+  const doMes = dias.filter(d=>porData.has(d.iso));
+  if(!ctx.dia || !ctx.dia.startsWith(mes) || !porData.has(ctx.dia)) ctx.dia = doMes.length ? doMes[doMes.length-1].iso : null;
+  const ehMesAtual = mes >= hojeISO().slice(0,7);
+  const cabecalho = ["D","S","T","Q","Q","S","S"].map(x=>`<div class="cal-semana">${x}</div>`).join("");
+  const vazios = Array.from({length:primeiroDiaSemana}, ()=>`<div class="cal-dia cal-fora"></div>`).join("");
+  const celulas = dias.map(d=>{
+    const ativo = porData.get(d.iso);
+    const classe = d.metaBatida ? "cal-meta" : ativo ? "cal-estudou" : "";
+    const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes + " questão(ões)" : "sem questões")
+      + (d.cartoes ? ", " + d.cartoes + " cartão(ões)" : "") + (ativo && ativo.simulados.length ? ", " + ativo.simulados.length + " simulado(s)" : "") + (d.metaBatida ? " — meta batida" : "");
+    const conteudo = `<span class="cal-num">${d.dia}</span><span class="cal-qtd">${d.questoes||""}</span>`;
+    const comum = `${classe} ${d.futuro?"cal-futuro":""} ${d.hoje?"cal-hoje":""} ${ctx.dia===d.iso?"cal-selecionado":""}`;
+    return ativo ? `<button type="button" class="cal-dia cal-clicavel ${comum}" title="${escapeHtml(dica)}" aria-pressed="${ctx.dia===d.iso}" onclick="escolherDiaDoHistorico('${d.iso}')">${conteudo}</button>`
+                 : `<div class="cal-dia ${comum}" title="${escapeHtml(dica)}">${conteudo}</div>`;
+  }).join("");
+  return `
+  <div class="calendario-estudo">
+    <div class="calendario-grade">
+      <div class="flex justify-between items-center mb-1">
+        <button class="btn btn-ghost btn-sm" onclick="mudarMesHistorico(-1)" aria-label="Mês anterior">‹</button>
+        <div class="peso-600">${MESES_CALENDARIO[m-1]} de ${a}</div>
+        <button class="btn btn-ghost btn-sm" onclick="mudarMesHistorico(1)" aria-label="Próximo mês" ${ehMesAtual?"disabled":""}>›</button>
+      </div>
+      <div class="cal-grade">${cabecalho}${vazios}${celulas}</div>
+      <div class="flex gap-2 quebra mt-2">
+        <div class="cal-legenda"><span class="cal-amostra cal-meta"></span> meta batida (${meta} questões ou mais)</div>
+        <div class="cal-legenda"><span class="cal-amostra cal-estudou"></span> estudou, abaixo da meta</div>
+        <div class="cal-legenda"><span class="cal-amostra"></span> sem estudo</div>
+      </div>
+    </div>
+    <div class="calendario-lateral" aria-live="polite">
+      ${ctx.dia ? htmlDiaDoHistorico(porData.get(ctx.dia)) : `<p class="text-sm muted">Nenhum estudo registrado em ${MESES_CALENDARIO[m-1]}. Use as setas para ver outro mês.</p>`}
+    </div>
+  </div>`;
+}
 function renderHistorico(){
   const u = usuarioAtual();
   const sessoes = (db.sessoes||[]).filter(x=>x.usuarioId===u.id).slice().reverse();
@@ -405,6 +513,7 @@ function renderHistorico(){
   const pagDias = paginar(diasAtivos, "historico-dias", {porPagina:15});
   const pagSimulados = paginar(simulados, "historico-simulados", {porPagina:15});
   const cartoesTotal = diasAtivos.reduce((soma,d)=>soma+d.cartoes, 0);
+  const visaoCal = ctxHistorico().visao !== "lista";
   return `
   <div class="page-header"><h2>Histórico de Atividade</h2><p>Tudo o que você já estudou, dia a dia, do mais recente para o mais antigo — questões (dentro ou fora de um conjunto), flashcards e simulados.</p></div>
   <div class="grid grid-4 compacto mb-2">
@@ -419,43 +528,18 @@ function renderHistorico(){
     <p class="text-xs muted mt-1">Cada barra é a taxa de acerto do dia; o número entre parênteses é quantas questões você respondeu naquele dia.</p>
   </div>
   <div class="card mb-2">
-    <div class="card-title mb-1">Dia a dia</div>
-    <p class="text-sm muted mb-2">Cada dia é uma linha, com tudo o que você fez nele — inclusive as questões respondidas fora de um conjunto e os flashcards. Clique no dia para reabrir o feedback questão a questão.</p>
-    ${diasAtivos.length ? pagDias.itens.map(d=>{
-      const taxa = d.total ? pct(d.acertos, d.total) : null;
-      const sessoesDoDia = d.sessoes.length;
-      const fechadasDoDia = d.sessoes.filter(x=>!x.naoTerminada).length;
-      const abertasDoDia = sessoesDoDia - fechadasDoDia;
-      return `<div class="card-flat mb-1">
-        <div class="flex justify-between items-center gap-2 quebra">
-          <div class="cresce-220">
-            <div class="peso-600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
-            <div class="text-xs muted mt-1">
-              ${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}
-              ${d.cartoes ? ` · ${d.cartoes} flashcard(s)${d.cartoesExatos?"":" (ao menos)"}` : ""}
-              ${fechadasDoDia ? ` · ${fechadasDoDia} conjunto(s) fechado(s)` : ""}${abertasDoDia ? ` · ${abertasDoDia} conjunto(s) não terminado(s)` : ""}
-              ${d.simulados.length ? ` · ${d.simulados.length} simulado(s)` : ""}
-            </div>
-          </div>
-          <div class="flex items-center gap-1 quebra">
-            ${taxa!==null ? `<span class="badge ${taxa>=70?"badge-accent":taxa>=50?"badge-amber":"badge-danger"}">${taxa}% de acerto</span>` : ""}
-            ${d.cartoes ? `<span class="badge badge-muted">${iconeSvg("cards")} ${d.cartoes}</span>` : ""}
-            ${d.total ? `<button class="btn btn-secondary btn-sm" onclick="abrirDiaDoHistorico('${d.data}')">${iconeSvg("chart")} Abrir o dia</button>` : ""}
-          </div>
-        </div>
-        ${sessoesDoDia ? `<div class="mt-2" style="border-top:1px solid var(--border);padding-top:.6rem">
-          ${d.sessoes.map(sess=>{
-            const t = pct(sess.acertos, sess.total);
-            return `<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
-              <span>${iconeSvg("book")} ${sess.naoTerminada ? `conjunto <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} questão(ões) respondida(s) (parado há mais de 7 dias)` : `conjunto de ${sess.total} questão(ões)`} — ${escapeHtml(sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática")}</span>
-              <span class="flex items-center gap-1"><span class="badge ${t>=70?"badge-accent":t>=50?"badge-amber":"badge-danger"}">${t}%</span>
-              <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir este conjunto</button></span>
-            </div>`;
-          }).join("")}
-        </div>` : ""}
-      </div>`;
-    }).join("") : '<p class="text-sm muted mt-1">Você ainda não estudou nenhum dia por aqui. Comece em "Estudar" ou na "Revisão Rápida".</p>'}
-    ${controlesPaginacao(pagDias, "dia(s)")}
+    <div class="flex justify-between items-center gap-2 mb-2 quebra">
+      <div style="min-width:280px;flex:1">
+        <div class="card-title mb-02">Dia a dia</div>
+        <div class="text-sm muted">${visaoCal ? "Cada quadrado é um dia: quanto mais forte a cor, mais perto da meta. Clique num dia para ver tudo o que foi feito nele." : "Cada dia é uma linha, com tudo o que você fez nele — inclusive as questões fora de um conjunto, as trilhas, os flashcards e os simulados."}</div>
+      </div>
+      <div class="abas-caixa" role="tablist" aria-label="Forma de ver o histórico">
+        <button class="pill ${visaoCal?"active":""}" role="tab" aria-selected="${visaoCal}" onclick="mudarVisaoHistorico('calendario')">${iconeSvg("calendar")} Calendário</button>
+        <button class="pill ${!visaoCal?"active":""}" role="tab" aria-selected="${!visaoCal}" onclick="mudarVisaoHistorico('lista')">${iconeSvg("book")} Lista</button>
+      </div>
+    </div>
+    ${visaoCal ? htmlCalendarioHistorico(u, diasAtivos) : (diasAtivos.length ? pagDias.itens.map(d=>htmlDiaDoHistorico(d)).join("") : '<p class="text-sm muted mt-1">Você ainda não estudou nenhum dia por aqui. Comece em "Estudar" ou na "Revisão Rápida".</p>')}
+    ${visaoCal ? "" : controlesPaginacao(pagDias, "dia(s)")}
   </div>
   <div class="card">
     <div class="card-title mb-1">Simulados realizados</div>
@@ -892,12 +976,10 @@ function renderDesempenho(){
       </tbody>
     </table></div>
     </div>
-    <p class="text-xs muted mt-1">O detalhe assunto a assunto fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>, ao lado da fila que diz o que fazer com cada um.</p>
+    <p class="text-xs muted mt-1">O detalhe assunto a assunto, com a fila e a trilha que dizem o que fazer com cada um, fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>.</p>
   </div>
 
   ${htmlCardOQueMaisCai(u, 5)}
-
-  ${htmlCardTrilhaSugerida(u)}
 
   ${htmlEvolucaoPorAssunto(u)}
 

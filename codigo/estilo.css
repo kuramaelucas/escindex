@@ -809,3 +809,21 @@ body.modo-foco .main{margin-left:0}
 .tempo-mediana{position:absolute;top:0;bottom:0;border-left:2px dashed var(--ink-2)}
 .tempo-valor{text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:520px){.tempo-linha{grid-template-columns:1.6rem 1fr 3rem}.tempo-conf{display:none}}
+/* Abas grandes no título de uma caixa (Histórico: Calendário × Lista) */
+.abas-caixa{display:flex;gap:.4rem;padding:.25rem;border:1px solid var(--border);border-radius:999px;background:var(--surface-2,var(--surface))}
+.abas-caixa .pill{cursor:pointer;font-size:var(--fs-base,1rem);padding:.5rem 1.1rem;font-weight:600}
+button.cal-dia.cal-clicavel{font:inherit;color:inherit;cursor:pointer;padding:0}
+button.cal-dia.cal-meta{color:#fff}
+button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
+.cal-dia.cal-selecionado{box-shadow:0 0 0 2px var(--accent-dark)}
+/* Lista de uma linha fina por item (Revisão: assuntos vencidos) */
+.linha-fina{display:flex;align-items:center;gap:.6rem;padding:.25rem 0;border-bottom:1px solid var(--border)}
+.linha-fina:last-child{border-bottom:0}
+.linha-fina-nome{flex:1;min-width:0;font-size:var(--fs-sm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.linha-fina .btn{padding:.15rem .6rem;min-height:0}
+@media (max-width:520px){.linha-fina{flex-wrap:wrap}.linha-fina-nome{flex-basis:100%;white-space:normal}.linha-fina .text-xs{flex:1}}
+/* No celular os três baralhos não cabem lado a lado: viram um carrossel que desliza */
+@media (max-width:900px){
+  .grid-baralhos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:var(--esp-2);padding-bottom:.4rem;-webkit-overflow-scrolling:touch}
+  .grid-baralhos > .card{flex:0 0 82%;scroll-snap-align:start;margin-top:0}
+}

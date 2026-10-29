@@ -114,6 +114,23 @@ function controlesPaginacao(p, rotulo){
   </div>`;
 }
 
+/* Lista que mostra só as primeiras linhas e abre o resto num clique: onde a
+   ordem já põe o mais importante no começo, paginar esconde o resto sem
+   avisar e despeja tudo de uma vez pesa. `chave` guarda se a pessoa abriu. */
+function limitarLista(lista, chave, maximo){
+  const aberta = !!(state.filtroRota.listasAbertas || {})[chave];
+  return { itens: aberta ? lista : lista.slice(0, maximo), total: lista.length, aberta, podeAbrir: lista.length > maximo };
+}
+function botaoMostrarTudo(l, chave, rotulo){
+  if(!l.podeAbrir) return "";
+  return `<button class="btn btn-ghost btn-sm mt-1" onclick="alternarListaAberta('${chave}')" aria-expanded="${l.aberta}">${l.aberta ? "Mostrar menos" : "Mostrar tudo ("+l.total+(rotulo?" "+rotulo:"")+")"}</button>`;
+}
+function alternarListaAberta(chave){
+  if(!state.filtroRota.listasAbertas) state.filtroRota.listasAbertas = {};
+  state.filtroRota.listasAbertas[chave] = !state.filtroRota.listasAbertas[chave];
+  render();
+}
+
 /* A data "AAAA-MM-DD" do DIA DE QUEM ESTÁ USANDO, no relógio local.
    toISOString() dá a data em UTC — no Brasil (UTC−3), a partir das 21h ela
    já é a de amanhã: a meta do dia zerava às nove da noite, a sequência de
