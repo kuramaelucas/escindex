@@ -3387,7 +3387,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "gabarito": "C",
   "explicacaoGeral": "A alternativa C está correta. Dicas do enunciado: **gestante com registro de apenas uma dose de tríplice viral** e a pergunta sobre a **vacina contraindicada na gestação**. A **tríplice viral é de vírus vivo atenuado** e está **contraindicada durante a gestação**, pelo risco teórico de infecção fetal; deve ser aplicada **no puerpério**, e a mulher em idade fértil deve evitar a gravidez por 30 dias após a dose. A (influenza inativada) é recomendada em qualquer trimestre, e protege a mãe e o lactente nos primeiros meses. B (dTpa) é recomendada a cada gestação, a partir da 20ª semana (a gestante está com 14 semanas, então será aplicada depois). D (hepatite B) é vacina inativada, segura e indicada se o esquema estiver incompleto.",
   "explicacoesAlternativas": {},
-  "referencias": "Ministério da Saúde. Calendário Nacional de Vacinação e Manual de Normas e Procedimentos para Vacinação; SBIm. Calendário de vacinação da gestante; ACIP/CDC (Tdap em cada gestação).",
+  "referencias": "Ministério da Saúde. Calendário Nacional de Vacinação e Manual de Normas e Procedimentos para Vacinação; SBIm. Calendário de vacinação da gestante; ACIP/CDC (Tdap em cada gestação). O Calendário Nacional 2026 mantém a dTpa a partir da 20ª semana, confirmado em 29/10/2026; a contraindicação da tríplice viral na gestação não foi conferida em texto oficial.",
   "dificuldadeManual": "intermediario",
   "status": "ativa",
   "estatisticas": {
@@ -4190,7 +4190,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "gabarito": "C",
   "explicacaoGeral": "A alternativa C está correta. Dicas do enunciado: a **vacina de vírus vivo atenuado** relaciona-se a pequeno aumento do risco de invaginação intestinal, razão pela qual há contraindicação em lactentes com **história pessoal de invaginação intestinal**, malformação congênita não corrigida do trato digestivo e imunodeficiência combinada grave. A (história familiar de invaginação) não contraindica a vacina. B (prematuridade extrema) não contraindica; prematuros clinicamente estáveis devem ser vacinados dentro dos limites de idade, de acordo com a idade cronológica. D (convívio com gestante) não contraindica: o vírus vacinal excretado nas fezes não oferece risco relevante e a gestante convivente não deve ser motivo de adiamento. Os limites de idade devem ser respeitados: pela Nota Técnica 193/2024 do Ministério da Saúde (dez/2024), a primeira dose pode ser dada de 1 mês e 15 dias a 11 meses e 29 dias e a segunda, de 3 meses e 15 dias a 23 meses e 29 dias (até então, os limites eram 3 meses e 15 dias e 7 meses e 29 dias).",
   "explicacoesAlternativas": {},
-  "referencias": "Ministério da Saúde, Manual de Normas e Procedimentos para Vacinação e Calendário Nacional de Vacinação; SBIm, Calendário de vacinação da criança; Sociedade Brasileira de Pediatria.",
+  "referencias": "Ministério da Saúde, Manual de Normas e Procedimentos para Vacinação e Calendário Nacional de Vacinação; SBIm, Calendário de vacinação da criança; Sociedade Brasileira de Pediatria. A Nota Técnica nº 193/2024 foi confirmada em 29/10/2026 no gov.br e em tabelas municipais: primeira dose de 1 mês e 15 dias a 11 meses e 29 dias, segunda de 3 meses e 15 dias a 23 meses e 29 dias.",
   "dificuldadeManual": "intermediario",
   "status": "ativa",
   "estatisticas": {
