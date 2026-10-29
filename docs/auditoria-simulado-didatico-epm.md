@@ -142,7 +142,7 @@ Posição no simulado, área, assunto da taxonomia e a questão real das provas 
 
 **Nenhum texto oficial de diretriz foi aberto nesta rodada.** Todas as 100 questões estão no nível «memória» (cada referência diz isso). Os pontos em que a regra muda com o tempo ou em que a versão citada pode estar velha, e que merecem conferência na edição vigente:
 
-- **5, 99, 44 e 49** (profilaxia da raiva, calendário e vacinas, triagem neonatal): protocolos do Ministério da Saúde e do Programa Nacional de Imunizações mudam com frequência; conferir esquemas e idades na versão vigente.
+- **99, 44 e 49** (calendário e vacinas, triagem neonatal): protocolos do Ministério da Saúde e do Programa Nacional de Imunizações mudam com frequência; conferir esquemas e idades na versão vigente.
 - **76, 81 e 13** (hanseníase, tuberculose na gestação, doença inflamatória pélvica): esquemas do Ministério da Saúde de 2019 a 2022.
 - **35** (exame de retorno ao trabalho): redação da NR-7 pode ter sido atualizada (o prazo é o de 30 dias de afastamento; o momento é antes de o trabalhador reassumir a função).
 - **61, 21, 41, 46, 86 e 62**: GOLD, ESC, ECCO, KDIGO e AHA citados sem confirmação da edição mais nova.
@@ -150,6 +150,15 @@ Posição no simulado, área, assunto da taxonomia e a questão real das provas 
 - **72, 52 e 22**: protocolos oncológicos (cisplatina neoadjuvante, triagem de Lynch, FLOT) mudam com novos estudos.
 - Questões com cálculo (10, 50, 60, 90): conferidas à mão.
 
-## 5. Revisão
+## 5. Revisão externa de 29/10/2026 (questões 5 e 11)
+
+Um parecer externo ("Justificativas da revisão", 29/10/2026) apontou dois problemas. Os dois foram conferidos nas fontes enviadas e corrigidos:
+
+- **Questão 5 (profilaxia da raiva): erro confirmado e questão refeita.** A Nota Técnica nº 8/2022-CGZV/DEIDT/SVS/MS (Quadro 3 e fluxograma) manda, para cão ou gato **sadio e passível de observação por 10 dias**, em exposição leve **ou grave**, lavar o ferimento, **não iniciar a profilaxia** e observar o animal; só se ele adoecer, morrer ou desaparecer se indica vacina (4 doses, dias 0, 3, 7 e 14) e, na exposição grave, soro (40 UI/kg) ou imunoglobulina (20 UI/kg). O esquema de 2 doses (dias 0 e 3) que eu havia dado como correto era o do protocolo antigo, revogado por essa nota; a questão ficou sem resposta certa. Agora o gabarito é "lavar, não iniciar a profilaxia e observar o cão por 10 dias", e o esquema antigo virou distrator. O quadro de 10/07/2026 citado no parecer não pôde ser aberto, mas a conduta para cão sadio observável é a mesma da nota técnica (a nota é de 2022: vale conferir se algo mudou depois).
+- **Questão 11 (colangite biliar primária): gabarito mantido, explicação atualizada.** A diretriz AASLD/AGA de 2026 (Levy C et al., Hepatology) confirma o ácido ursodesoxicólico (13 a 15 mg/kg ao dia) como primeira linha, avaliação da resposta entre 6 e 12 meses, e, na resposta inadequada, **agonistas PPAR (elafibranor, seladelpar)** como adição, ou isolados se houver intolerância ao ácido ursodesoxicólico; fibratos ficam fora da bula, e o ácido obeticólico não é recomendado. A retirada do ácido obeticólico do mercado dos Estados Unidos foi confirmada em notícias da imprensa médica; a revogação pela agência europeia e o comunicado da AASLD de 06/11/2025 citados no parecer **não foram verificados** por mim, e o PCDT brasileiro também não foi aberto. A explicação deixou de apresentar o ácido obeticólico como opção de rotina.
+
+O parecer registra que não valida as demais 98 questões, e eu também não as revalidei: as demais referências continuam no nível «memória».
+
+## 6. Revisão pela equipe
 
 Foi uma releitura pela mesma autoria. A revisão por pessoas da equipe (leitura cega, com resposta de cada questão comparada ao gabarito) continua recomendada antes de dar o simulado a alunos.
