@@ -809,3 +809,10 @@ body.modo-foco .main{margin-left:0}
 .tempo-mediana{position:absolute;top:0;bottom:0;border-left:2px dashed var(--ink-2)}
 .tempo-valor{text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:520px){.tempo-linha{grid-template-columns:1.6rem 1fr 3rem}.tempo-conf{display:none}}
+/* Abas grandes no título de uma caixa (Histórico: Calendário × Lista) */
+.abas-caixa{display:flex;gap:.4rem;padding:.25rem;border:1px solid var(--border);border-radius:999px;background:var(--surface-2,var(--surface))}
+.abas-caixa .pill{cursor:pointer;font-size:var(--fs-base,1rem);padding:.5rem 1.1rem;font-weight:600}
+button.cal-dia.cal-clicavel{font:inherit;color:inherit;cursor:pointer;padding:0}
+button.cal-dia.cal-meta{color:#fff}
+button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
+.cal-dia.cal-selecionado{box-shadow:0 0 0 2px var(--accent-dark)}
