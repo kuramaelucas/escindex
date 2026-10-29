@@ -2,13 +2,13 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **237** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **231** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
-| Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 32 |
 | Livros-texto e outras fontes sem diretriz | 31 |
 | Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 29 |
+| Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 26 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 23 |
 | Epidemiologia e bioestatística (livros-texto) | 23 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
@@ -24,41 +24,6 @@ Total: **237** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 4 |
 | Anestesia (ASRA, ASA, DAS) | 4 |
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) | 3 |
-
-## Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) (32)
-
-- `q-adap25-096` (gab. A, simulado-epm-2): Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed., 2021 (capítulos de crescimento e de doenças da tireoide); Sperling MA (ed.). Sperling
-- `q-adap22-013` (gab. B, simulado-epm-3): Ashcraft KW et al. Pediatric Surgery, 7ª ed. Elsevier, 2019 (capítulo sobre estenose hipertrófica do piloro); Hernanz-Schulman M. Infantile hypertroph
-- `q-adap22-017` (gab. C, simulado-epm-3): Glorieux FH et al. Cyclic administration of pamidronate in children with severe osteogenesis imperfecta. N Engl J Med 1998;339:947-52; Dwan K et al. B
-- `q-adap22-059` (gab. C, simulado-epm-3): Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed. Manole, 2021 (corpo estranho de vias aéreas); Fidkowski CW et al. Anesthetic considera
-- `q-adap22-061` (gab. D, simulado-epm-3): Kocher MS et al. Differentiating between septic arthritis and transient synovitis of the hip in children: an evidence-based clinical prediction algori
-- `q-adap22-063` (gab. C, simulado-epm-3): Brasil. Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), art. 13, e Lei nº 13.010/2014; Sociedade Brasileira de Pediatria.
-- `q-adap22-064` (gab. B, simulado-epm-3): Monclair T et al. The International Neuroblastoma Risk Group (INRG) staging system: an INRG Task Force report. J Clin Oncol 2009;27:298-303; Pizzo PA,
-- `q-adap22-066` (gab. B, simulado-epm-3): World Health Organization. The treatment of diarrhoea: a manual for physicians and other senior health workers, 4ª revisão, 2005; Freedman SB et al. O
-- `q-adap22-070` (gab. D, simulado-epm-3): Brasil. Ministério da Saúde. Guia alimentar para crianças brasileiras menores de 2 anos, 2019; Sociedade Brasileira de Pediatria. Manual de alimentaçã
-- `q-adap22-071` (gab. C, simulado-epm-3): Brasil. Ministério da Saúde. Caderneta da Criança (curvas da OMS de perímetro cefálico); Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª e
-- `q-adap22-072` (gab. B, simulado-epm-3): Bradley JS et al. The management of community-acquired pneumonia in infants and children older than 3 months of age: IDSA/PIDS guidelines. Clin Infect
-- `q-adap22-096` (gab. C, simulado-epm-3): Weinreb RN, Grajewski A, Papadopoulos M, Grigg J, Freedman S, eds. Childhood Glaucoma: The 9th Consensus Report of the World Glaucoma Association. Ams
-- `q-adap26-002` (gab. D, simulado-epm-4): Brasil, Ministério da Saúde: Atenção à saúde do recém-nascido, guia para os profissionais de saúde (2011); Sociedade Brasileira de Pediatria, programa
-- `q-adap26-020` (gab. D, simulado-epm-4): Gartland JJ. Management of supracondylar fractures of the humerus in children (Surg Gynecol Obstet 1959); AAOS Clinical Practice Guideline: Management
-- `q-adap26-083` (gab. B, simulado-epm-4): Léger J et al. European Society for Paediatric Endocrinology consensus guidelines on screening, diagnosis, and management of congenital hypothyroidism
-- `q-adap26-084` (gab. C, simulado-epm-4): Ministério da Saúde, Protocolo Clínico e Diretrizes Terapêuticas para Prevenção da Transmissão Vertical de HIV, Sífilis e Hepatites Virais (2022); Soc
-- `q-adap26-087` (gab. D, simulado-epm-4): Sociedade Brasileira de Pediatria, Consenso sobre anemia ferropriva: mais que uma doença, uma urgência médica (2018); Ministério da Saúde, Manual de c
-- `q-adap26-088` (gab. A, simulado-epm-4): Ministério da Saúde, Manejo do paciente com diarreia (2017); Sociedade Brasileira de Pediatria, Diarreia aguda: diagnóstico e tratamento (2017); Guari
-- `q-adap26-089` (gab. B, simulado-epm-4): Ralston SL et al. Clinical Practice Guideline: The Diagnosis, Management, and Prevention of Bronchiolitis (Pediatrics 2014); Sociedade Brasileira de P
-- `q-adap26-090` (gab. A, simulado-epm-4): Sociedade Brasileira de Pediatria, Documento científico: desconforto respiratório do recém-nascido a termo; Hermansen CL, Lorah KN. Respiratory distre
-- `q-adap26-092` (gab. B, simulado-epm-4): Wolraich ML et al. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents (Pediatrics 2019); Ame
-- `q-adap26-093` (gab. D, simulado-epm-4): Marcus CL et al. Diagnosis and management of childhood obstructive sleep apnea syndrome (Pediatrics 2012); Mitchell RB et al. Clinical Practice Guidel
-- `q-adap26-098` (gab. A, simulado-epm-4): Puopolo KM et al. Management of neonates born at 35 0/7 or more weeks with risk factors for early-onset sepsis (Pediatrics 2018); Sociedade Brasileira
-- `q-adap26-099` (gab. D, simulado-epm-4): Heyman MB, Committee on Nutrition. Lactose intolerance in infants, children, and adolescents (Pediatrics 2006); Sociedade Brasileira de Pediatria, Dia
-- `q-adap23-042` (gab. C, simulado-epm-5): Manual de Orientação de Ginecologia Infanto-Puberal (Febrasgo); Diretriz da Sociedade Brasileira de Pediatria sobre ginecologia na infância.
-- `q-adap23-058` (gab. A, simulado-epm-5): Sociedade Brasileira de Pediatria, Departamento de Endocrinologia, orientações sobre baixa estatura; Consenso de baixa estatura idiopática; Tanner, es
-- `q-adap23-068` (gab. C, simulado-epm-5): Sociedade Brasileira de Pediatria, Conselho Brasileiro de Oftalmologia e Sociedade Brasileira de Oftalmologia Pediátrica, Diretrizes de triagem da ret
-- `q-adap23-073` (gab. B, simulado-epm-5): Sociedade Brasileira de Pediatria, Manejo da hiperbilirrubinemia neonatal (2021); Diretriz da Academia Americana de Pediatria sobre hiperbilirrubinemi
-- `q-adap23-076` (gab. A, simulado-epm-5): Manual de Manejo Clínico da Doença Diarreica Aguda (Ministério da Saúde); Organização Mundial da Saúde, Tratamento da diarreia: manual para médicos; S
-- `q-adap23-078` (gab. A, simulado-epm-5): Diretrizes da Sociedade Americana de Doenças Infecciosas Pediátricas para infecções osteoarticulares (2021); Sociedade Brasileira de Ortopedia e Traum
-- `q-adap23-091` (gab. C, simulado-epm-5): Diretriz da Sociedade Brasileira de Pediatria sobre crupe; Diretriz da Academia Americana de Otorrinolaringologia e Cirurgia de Cabeça e Pescoço; West
-- `q-adap23-100` (gab. B, simulado-epm-5): Diretrizes da Sociedade Americana de Neurocirurgia e do Congresso de Cirurgiões Neurológicos sobre hidrocefalia pediátrica; Sociedade Brasileira de Ne
 
 ## Livros-texto e outras fontes sem diretriz (31)
 
@@ -125,6 +90,35 @@ Total: **237** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-062` (gab. C, simulado-epm-5): Diretrizes da Federação Mundial de Hemofilia para o tratamento da hemofilia (3ª edição, 2020); Manual de Hemofilia do Ministério da Saúde.
 - `q-adap23-066` (gab. A, simulado-epm-5): Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST e para Profilaxia Pós-Exposição de Risco à Infecção pelo HIV (Min
 - `q-adap23-071` (gab. C, simulado-epm-5): Lei nº 14.154/2021 (triagem neonatal); Diretrizes da Associação Brasileira de Alergia e Imunologia para erros inatos da imunidade; Critérios da Fundaç
+
+## Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) (26)
+
+- `q-adap25-096` (gab. A, simulado-epm-2): Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed., 2021 (capítulos de crescimento e de doenças da tireoide); Sperling MA (ed.). Sperling
+- `q-adap22-013` (gab. B, simulado-epm-3): Ashcraft KW et al. Pediatric Surgery, 7ª ed. Elsevier, 2019 (capítulo sobre estenose hipertrófica do piloro); Hernanz-Schulman M. Infantile hypertroph
+- `q-adap22-017` (gab. C, simulado-epm-3): Glorieux FH et al. Cyclic administration of pamidronate in children with severe osteogenesis imperfecta. N Engl J Med 1998;339:947-52; Dwan K et al. B
+- `q-adap22-059` (gab. C, simulado-epm-3): Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª ed. Manole, 2021 (corpo estranho de vias aéreas); Fidkowski CW et al. Anesthetic considera
+- `q-adap22-061` (gab. D, simulado-epm-3): Kocher MS et al. Differentiating between septic arthritis and transient synovitis of the hip in children: an evidence-based clinical prediction algori
+- `q-adap22-063` (gab. C, simulado-epm-3): Brasil. Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), art. 13, e Lei nº 13.010/2014; Sociedade Brasileira de Pediatria.
+- `q-adap22-064` (gab. B, simulado-epm-3): Monclair T et al. The International Neuroblastoma Risk Group (INRG) staging system: an INRG Task Force report. J Clin Oncol 2009;27:298-303; Pizzo PA,
+- `q-adap22-066` (gab. B, simulado-epm-3): World Health Organization. The treatment of diarrhoea: a manual for physicians and other senior health workers, 4ª revisão, 2005; Freedman SB et al. O
+- `q-adap22-070` (gab. D, simulado-epm-3): Brasil. Ministério da Saúde. Guia alimentar para crianças brasileiras menores de 2 anos, 2019; Sociedade Brasileira de Pediatria. Manual de alimentaçã
+- `q-adap22-071` (gab. C, simulado-epm-3): Brasil. Ministério da Saúde. Caderneta da Criança (curvas da OMS de perímetro cefálico); Sociedade Brasileira de Pediatria. Tratado de Pediatria, 5ª e
+- `q-adap22-096` (gab. C, simulado-epm-3): Weinreb RN, Grajewski A, Papadopoulos M, Grigg J, Freedman S, eds. Childhood Glaucoma: The 9th Consensus Report of the World Glaucoma Association. Ams
+- `q-adap26-002` (gab. D, simulado-epm-4): Brasil, Ministério da Saúde: Atenção à saúde do recém-nascido, guia para os profissionais de saúde (2011); Sociedade Brasileira de Pediatria, programa
+- `q-adap26-020` (gab. D, simulado-epm-4): Gartland JJ. Management of supracondylar fractures of the humerus in children (Surg Gynecol Obstet 1959); AAOS Clinical Practice Guideline: Management
+- `q-adap26-083` (gab. B, simulado-epm-4): Léger J et al. European Society for Paediatric Endocrinology consensus guidelines on screening, diagnosis, and management of congenital hypothyroidism
+- `q-adap26-084` (gab. C, simulado-epm-4): Ministério da Saúde, Protocolo Clínico e Diretrizes Terapêuticas para Prevenção da Transmissão Vertical de HIV, Sífilis e Hepatites Virais (2022); Soc
+- `q-adap26-088` (gab. A, simulado-epm-4): Ministério da Saúde, Manejo do paciente com diarreia (2017); Sociedade Brasileira de Pediatria, Diarreia aguda: diagnóstico e tratamento (2017); Guari
+- `q-adap26-090` (gab. A, simulado-epm-4): Sociedade Brasileira de Pediatria, Documento científico: desconforto respiratório do recém-nascido a termo; Hermansen CL, Lorah KN. Respiratory distre
+- `q-adap26-093` (gab. D, simulado-epm-4): Marcus CL et al. Diagnosis and management of childhood obstructive sleep apnea syndrome (Pediatrics 2012); Mitchell RB et al. Clinical Practice Guidel
+- `q-adap26-099` (gab. D, simulado-epm-4): Heyman MB, Committee on Nutrition. Lactose intolerance in infants, children, and adolescents (Pediatrics 2006); Sociedade Brasileira de Pediatria, Dia
+- `q-adap23-042` (gab. C, simulado-epm-5): Manual de Orientação de Ginecologia Infanto-Puberal (Febrasgo); Diretriz da Sociedade Brasileira de Pediatria sobre ginecologia na infância.
+- `q-adap23-058` (gab. A, simulado-epm-5): Sociedade Brasileira de Pediatria, Departamento de Endocrinologia, orientações sobre baixa estatura; Consenso de baixa estatura idiopática; Tanner, es
+- `q-adap23-068` (gab. C, simulado-epm-5): Sociedade Brasileira de Pediatria, Conselho Brasileiro de Oftalmologia e Sociedade Brasileira de Oftalmologia Pediátrica, Diretrizes de triagem da ret
+- `q-adap23-076` (gab. A, simulado-epm-5): Manual de Manejo Clínico da Doença Diarreica Aguda (Ministério da Saúde); Organização Mundial da Saúde, Tratamento da diarreia: manual para médicos; S
+- `q-adap23-078` (gab. A, simulado-epm-5): Diretrizes da Sociedade Americana de Doenças Infecciosas Pediátricas para infecções osteoarticulares (2021); Sociedade Brasileira de Ortopedia e Traum
+- `q-adap23-091` (gab. C, simulado-epm-5): Diretriz da Sociedade Brasileira de Pediatria sobre crupe; Diretriz da Academia Americana de Otorrinolaringologia e Cirurgia de Cabeça e Pescoço; West
+- `q-adap23-100` (gab. B, simulado-epm-5): Diretrizes da Sociedade Americana de Neurocirurgia e do Congresso de Cirurgiões Neurológicos sobre hidrocefalia pediátrica; Sociedade Brasileira de Ne
 
 ## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) (23)
 
