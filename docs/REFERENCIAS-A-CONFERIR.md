@@ -2,16 +2,16 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **252** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **237** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
-| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 35 |
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 32 |
-| Livros-texto e outras fontes sem diretriz | 32 |
+| Livros-texto e outras fontes sem diretriz | 31 |
 | Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 29 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 23 |
 | Epidemiologia e bioestatística (livros-texto) | 23 |
+| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
 | AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 11 |
 | NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) | 10 |
 | Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) | 9 |
@@ -24,44 +24,6 @@ Total: **252** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 4 |
 | Anestesia (ASRA, ASA, DAS) | 4 |
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) | 3 |
-
-## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) (35)
-
-- `q-adap25-066` (gab. B, simulado-epm-2): Cameron AP et al. The AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder. J Urol 2024;212:11-20 (as opções foram confe
-- `q-adap25-069` (gab. D, simulado-epm-2): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome. J
-- `q-adap25-071` (gab. C, simulado-epm-2): The 2022 Hormone Therapy Position Statement of The North American Menopause Society. Menopause 2022;29:767-794; Sociedade Brasileira de Climatério. Co
-- `q-adap22-022` (gab. C, simulado-epm-3): Panay N et al. Evidence-based guideline: premature ovarian insufficiency. Hum Reprod Open 2024; ESHRE, 2024 (corte de FSH de 25 UI/L, uma dosagem com
-- `q-adap22-023` (gab. D, simulado-epm-3): The 2022 Hormone Therapy Position Statement of The North American Menopause Society. Menopause 2022;29:767-94; Harlow SD et al. Executive summary of t
-- `q-adap22-024` (gab. A, simulado-epm-3): Ray-Coquard I et al. Non-epithelial ovarian cancer: ESMO Clinical Practice Guidelines for diagnosis, treatment and follow-up. Ann Oncol 2018;29(Suppl
-- `q-adap22-026` (gab. B, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 214: Pelvic Organ Prolapse. Obstet Gynecol 2019;134:e126-42; Bump RC et al.
-- `q-adap22-027` (gab. C, simulado-epm-3): American College of Radiology. ACR BI-RADS Atlas, 5ª ed., 2013; Urban LABD et al. Recomendações do Colégio Brasileiro de Radiologia, da Sociedade Bras
-- `q-adap22-028` (gab. A, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 228: Management of Symptomatic Uterine Leiomyomas. Obstet Gynecol 2021;137:
-- `q-adap22-029` (gab. B, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 228: Management of Symptomatic Uterine Leiomyomas. Obstet Gynecol 2021;137:
-- `q-adap22-030` (gab. A, simulado-epm-3): Perkins RB et al. 2019 ASCCP Risk-Based Management Consensus Guidelines for Abnormal Cervical Cancer Screening Tests and Cancer Precursors. J Low Geni
-- `q-adap22-032` (gab. C, simulado-epm-3): World Health Organization. WHO recommendations: intrapartum care for a positive childbirth experience, 2018, e Labour Care Guide, 2020; American Colle
-- `q-adap22-034` (gab. C, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 178: Shoulder Dystocia. Obstet Gynecol 2017;129:e123-33 (reafirmado). Texto
-- `q-adap22-035` (gab. B, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 217: Prelabor Rupture of Membranes. Obstet Gynecol 2020;135:e80-97. Texto o
-- `q-adap22-037` (gab. A, simulado-epm-3): Poon LC et al. The International Federation of Gynecology and Obstetrics (FIGO) initiative on pre-eclampsia: A pragmatic guide for first-trimester scr
-- `q-adap22-039` (gab. D, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 200: Early Pregnancy Loss. Obstet Gynecol 2018;132:e197-207; World Health O
-- `q-adap22-041` (gab. B, simulado-epm-3): Faculty of Sexual and Reproductive Healthcare. FSRH Clinical Guideline: Emergency Contraception, 2023; American College of Obstetricians and Gynecolog
-- `q-adap26-042` (gab. C, simulado-epm-4): The 2022 Hormone Therapy Position Statement of The North American Menopause Society (Menopause 2022); Federação Brasileira das Associações de Ginecolo
-- `q-adap26-044` (gab. D, simulado-epm-4): ESHRE guideline: endometriosis (Becker CM et al., Hum Reprod Open 2022); Protocolo Clínico e Diretrizes Terapêuticas da Endometriose, Ministério da Sa
-- `q-adap26-047` (gab. B, simulado-epm-4): Practice Committee of the American Society for Reproductive Medicine. Current evaluation of amenorrhea (Fertil Steril 2008); Hughes IA et al. Androgen
-- `q-adap26-048` (gab. C, simulado-epm-4): Nambiar AK et al. EAU Guidelines on Assessment and Nonsurgical Management of Urinary Incontinence (Eur Urol 2022); Kobashi KC et al. Surgical Treatmen
-- `q-adap26-049` (gab. C, simulado-epm-4): Ministério da Saúde, Atenção humanizada ao abortamento: norma técnica, 2ª ed. (2011); WHO, Abortion care guideline (2022); FEBRASGO, Abortamento infec
-- `q-adap26-050` (gab. D, simulado-epm-4): WHO recommendations for the prevention and treatment of postpartum haemorrhage (2012, atualização 2017); ACOG Practice Bulletin 183: Postpartum hemorr
-- `q-adap26-051` (gab. B, simulado-epm-4): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome (H
-- `q-adap26-052` (gab. A, simulado-epm-4): WHO. Selected practice recommendations for contraceptive use, 3ª ed. (2016); Glasier A et al. Can we identify women at risk of pregnancy despite using
-- `q-adap26-053` (gab. C, simulado-epm-4): Ministério da Saúde/INCA, Diretrizes brasileiras para o rastreamento do câncer do colo do útero, 2ª ed. (2016) para o manejo das lesões; a atualização
-- `q-adap26-054` (gab. B, simulado-epm-4): ACOG/SMFM Obstetric Care Consensus No. 1: Safe prevention of the primary cesarean delivery (Obstet Gynecol 2014); ACOG Practice Bulletin 217: Prelabor
-- `q-adap26-055` (gab. C, simulado-epm-4): ACOG Practice Bulletin 222: Gestational hypertension and preeclampsia (Obstet Gynecol 2020); WHO recommendations for prevention and treatment of pre-e
-- `q-adap26-056` (gab. C, simulado-epm-4): Higgins RD et al. Evaluation and management of women and newborns with a maternal diagnosis of chorioamnionitis: summary of a workshop (Obstet Gynecol
-- `q-adap26-059` (gab. C, simulado-epm-4): ACOG Practice Bulletin 192: Management of alloimmunization during pregnancy (Obstet Gynecol 2018); Mari G et al. Noninvasive diagnosis by Doppler ultr
-- `q-adap26-085` (gab. A, simulado-epm-4): ACOG Committee Opinion 713: Antenatal corticosteroid therapy for fetal maturation (Obstet Gynecol 2017); McGoldrick E et al. Antenatal corticosteroids
-- `q-adap23-041` (gab. C, simulado-epm-5): Classificação FIGO de causas de sangramento uterino anormal (2011, atualizada em 2018); Manual de Orientação da Febrasgo sobre leiomioma uterino; Dire
-- `q-adap23-044` (gab. A, simulado-epm-5): Opinião do Comitê do ACOG sobre sangramento pós-menopausa (2018); Manual de Orientação de Climatério (Febrasgo); consenso da Sociedade Europeia de Gin
-- `q-adap23-046` (gab. B, simulado-epm-5): Atlas BI-RADS do Colégio Americano de Radiologia (5ª edição, 2013); Diretrizes para a Detecção Precoce do Câncer de Mama no Brasil (INCA/Ministério da
-- `q-adap23-052` (gab. A, simulado-epm-5): Critérios de classificação de síndrome antifosfolípide do ACR/EULAR (2023); Recomendações da EULAR para síndrome antifosfolípide (2019); Diretriz da A
 
 ## Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) (32)
 
@@ -98,12 +60,11 @@ Total: **252** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-091` (gab. C, simulado-epm-5): Diretriz da Sociedade Brasileira de Pediatria sobre crupe; Diretriz da Academia Americana de Otorrinolaringologia e Cirurgia de Cabeça e Pescoço; West
 - `q-adap23-100` (gab. B, simulado-epm-5): Diretrizes da Sociedade Americana de Neurocirurgia e do Congresso de Cirurgiões Neurológicos sobre hidrocefalia pediátrica; Sociedade Brasileira de Ne
 
-## Livros-texto e outras fontes sem diretriz (32)
+## Livros-texto e outras fontes sem diretriz (31)
 
 - `q-adap22-009` (gab. B, simulado-epm-3): Flint PW et al. Cummings Otolaryngology: Head and Neck Surgery, 7ª ed. Elsevier, 2021 (capítulo sobre trauma nasal e septal); Sociedade Brasileira de
 - `q-adap22-010` (gab. C, simulado-epm-3): American College of Surgeons. ATLS – Advanced Trauma Life Support, 9ª ed., 2012 (limites numéricos da tabela de classes de hemorragia); a 10ª (2018) e
 - `q-adap22-011` (gab. D, simulado-epm-3): Walsh MC, Kliegman RM. Necrotizing enterocolitis: treatment based on staging criteria. Pediatr Clin North Am 1986;33:179-201; Neu J, Walker WA. Necrot
-- `q-adap22-031` (gab. D, simulado-epm-3): World Health Organization. WHO recommendations on the assessment of postpartum blood loss and treatment bundles for postpartum haemorrhage, 2023; Gall
 - `q-adap22-040` (gab. B, simulado-epm-3): Weinreb RN, Aung T, Medeiros FA. The pathophysiology and treatment of glaucoma: a review. JAMA 2014;311:1901-11; European Glaucoma Society. Terminolog
 - `q-adap22-067` (gab. A, simulado-epm-3): Baile WF et al. SPIKES — A six-step protocol for delivering bad news: application to the patient with cancer. Oncologist 2000;5:302-11. Texto não aber
 - `q-adap22-068` (gab. C, simulado-epm-3): Nussbaum RL, McInnes RR, Willard HF. Thompson & Thompson Genetics and Genomics in Medicine, 9ª ed. Elsevier, 2016 (translocações robertsonianas e risc
@@ -216,6 +177,30 @@ Total: **252** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-021` (gab. A, simulado-epm-5): Gordis, Epidemiologia; Rothman, Greenland e Lash, Epidemiologia Moderna; diretriz STROBE para estudos observacionais.
 - `q-adap23-028` (gab. B, simulado-epm-5): Medronho et al., Epidemiologia; Gordis, Epidemiologia; Rouquayrol e Gurgel, Epidemiologia & Saúde.
 - `q-adap23-030` (gab. B, simulado-epm-5): Vieira, Bioestatística: tópicos avançados; Fletcher, Epidemiologia Clínica; Altman, Practical Statistics for Medical Research.
+
+## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) (21)
+
+- `q-adap25-066` (gab. B, simulado-epm-2): Cameron AP et al. The AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder. J Urol 2024;212:11-20 (as opções foram confe
+- `q-adap25-069` (gab. D, simulado-epm-2): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome. J
+- `q-adap22-022` (gab. C, simulado-epm-3): Panay N et al. Evidence-based guideline: premature ovarian insufficiency. Hum Reprod Open 2024; ESHRE, 2024 (corte de FSH de 25 UI/L, uma dosagem com
+- `q-adap22-024` (gab. A, simulado-epm-3): Ray-Coquard I et al. Non-epithelial ovarian cancer: ESMO Clinical Practice Guidelines for diagnosis, treatment and follow-up. Ann Oncol 2018;29(Suppl
+- `q-adap22-026` (gab. B, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 214: Pelvic Organ Prolapse. Obstet Gynecol 2019;134:e126-42; Bump RC et al.
+- `q-adap22-027` (gab. C, simulado-epm-3): American College of Radiology. ACR BI-RADS Atlas, 5ª ed., 2013; Urban LABD et al. Recomendações do Colégio Brasileiro de Radiologia, da Sociedade Bras
+- `q-adap22-028` (gab. A, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 228: Management of Symptomatic Uterine Leiomyomas. Obstet Gynecol 2021;137:
+- `q-adap22-029` (gab. B, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 228: Management of Symptomatic Uterine Leiomyomas. Obstet Gynecol 2021;137:
+- `q-adap22-032` (gab. C, simulado-epm-3): World Health Organization. WHO recommendations: intrapartum care for a positive childbirth experience, 2018, e Labour Care Guide, 2020; American Colle
+- `q-adap22-034` (gab. C, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 178: Shoulder Dystocia. Obstet Gynecol 2017;129:e123-33 (reafirmado). Texto
+- `q-adap22-039` (gab. D, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 200: Early Pregnancy Loss. Obstet Gynecol 2018;132:e197-207; World Health O
+- `q-adap26-047` (gab. B, simulado-epm-4): Practice Committee of the American Society for Reproductive Medicine. Current evaluation of amenorrhea (Fertil Steril 2008); Hughes IA et al. Androgen
+- `q-adap26-048` (gab. C, simulado-epm-4): Nambiar AK et al. EAU Guidelines on Assessment and Nonsurgical Management of Urinary Incontinence (Eur Urol 2022); Kobashi KC et al. Surgical Treatmen
+- `q-adap26-049` (gab. C, simulado-epm-4): Ministério da Saúde, Atenção humanizada ao abortamento: norma técnica, 2ª ed. (2011); WHO, Abortion care guideline (2022); FEBRASGO, Abortamento infec
+- `q-adap26-051` (gab. B, simulado-epm-4): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome (H
+- `q-adap26-053` (gab. C, simulado-epm-4): Ministério da Saúde/INCA, Diretrizes brasileiras para o rastreamento do câncer do colo do útero, 2ª ed. (2016) para o manejo das lesões; a atualização
+- `q-adap26-059` (gab. C, simulado-epm-4): ACOG Practice Bulletin 192: Management of alloimmunization during pregnancy (Obstet Gynecol 2018); Mari G et al. Noninvasive diagnosis by Doppler ultr
+- `q-adap23-041` (gab. C, simulado-epm-5): Classificação FIGO de causas de sangramento uterino anormal (2011, atualizada em 2018); Manual de Orientação da Febrasgo sobre leiomioma uterino; Dire
+- `q-adap23-044` (gab. A, simulado-epm-5): Opinião do Comitê do ACOG sobre sangramento pós-menopausa (2018); Manual de Orientação de Climatério (Febrasgo); consenso da Sociedade Europeia de Gin
+- `q-adap23-046` (gab. B, simulado-epm-5): Atlas BI-RADS do Colégio Americano de Radiologia (5ª edição, 2013); Diretrizes para a Detecção Precoce do Câncer de Mama no Brasil (INCA/Ministério da
+- `q-adap23-052` (gab. A, simulado-epm-5): Critérios de classificação de síndrome antifosfolípide do ACR/EULAR (2023); Recomendações da EULAR para síndrome antifosfolípide (2019); Diretriz da A
 
 ## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) (11)
 
