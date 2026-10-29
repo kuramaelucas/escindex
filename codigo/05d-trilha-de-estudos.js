@@ -257,7 +257,7 @@ function iniciarTrilhaDeEstudos(){
   iniciarSessaoComLista(t.itens, "pratica");
 }
 
-/* O cartão que sugere a trilha, na tela Estudar e no Meu Desempenho. Só aparece
+/* O cartão que sugere a trilha, nas telas Estudar e Revisão. Só aparece
    quando há assunto com erro e amostra suficiente. */
 function htmlCardTrilhaSugerida(u){
   const piores = assuntosComMaisErro(u.id, 3);

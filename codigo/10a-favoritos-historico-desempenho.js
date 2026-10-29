@@ -976,12 +976,10 @@ function renderDesempenho(){
       </tbody>
     </table></div>
     </div>
-    <p class="text-xs muted mt-1">O detalhe assunto a assunto fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>, ao lado da fila que diz o que fazer com cada um.</p>
+    <p class="text-xs muted mt-1">O detalhe assunto a assunto, com a fila e a trilha que dizem o que fazer com cada um, fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>.</p>
   </div>
 
   ${htmlCardOQueMaisCai(u, 5)}
-
-  ${htmlCardTrilhaSugerida(u)}
 
   ${htmlEvolucaoPorAssunto(u)}
 
