@@ -19,7 +19,10 @@
     "conferir-numeros": "node ferramentas/conferir-numeros.mjs",
     "vigencia": "node ferramentas/vigencia.mjs",
     "pos-simulado": "node ferramentas/pos-simulado.mjs",
-    "figuras": "node ferramentas/figuras.mjs"
+    "figuras": "node ferramentas/figuras.mjs",
+    "anotar-conferencia": "node ferramentas/anotar-conferencia.mjs",
+    "referencias-a-conferir": "node ferramentas/referencias-a-conferir.mjs --excluir banco-simulado-epm-6",
+    "texto-oficial": "node ferramentas/texto-oficial.mjs"
   },
   "devDependencies": {
     "playwright": "1.56.1"

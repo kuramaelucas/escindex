@@ -1,25 +1,25 @@
 # Referências de simulados autorais ainda com confirmação fraca
 
-Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
+Gerado por `npm run referencias-a-conferir` em 29/10/2026 a partir de `dados/` (bancos: banco-simulado-epm-2, banco-unifesp-2024-adaptado, banco-simulado-epm-3, banco-simulado-epm-4, banco-simulado-epm-5). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** têm nota de conferência datada.
 
-Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
 
 | Grupo | Questões |
 |---|---|
 | Livros-texto e outras fontes sem diretriz | 31 |
-| Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 29 |
+| Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 28 |
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 26 |
 | Epidemiologia e bioestatística (livros-texto) | 23 |
-| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 18 |
-| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 10 |
-| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 2 |
+| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) | 18 |
+| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 10 |
+| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) | 2 |
 | Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 2 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 2 |
-| Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) | 2 |
-| Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) | 1 |
+| Gastro/hepato (EASL, AASLD, ACG, Roma, Chicago) | 2 |
+| Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, dor) | 1 |
 | Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) | 1 |
 | Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 1 |
-| Infectologia (IDSA, CDC, OMS, SBI, RECOVERY, APDM) | 1 |
+| Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 1 |
 
 ## Livros-texto e outras fontes sem diretriz (31)
 
@@ -55,7 +55,7 @@ Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-097` (gab. B, simulado-epm-5): Diretrizes da Brain Trauma Foundation para o traumatismo cranioencefálico grave (4ª edição, 2016, com atualização de 2020); ATLS (10ª edição); estudo
 - `q-adap23-098` (gab. B, simulado-epm-5): ATLS, Suporte Avançado de Vida no Trauma (10ª edição); Diretrizes da Sociedade Britânica de Doenças Torácicas sobre drenagem torácica (2023); Diretriz
 
-## Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) (29)
+## Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) (28)
 
 - `q-adap25-045` (gab. A, simulado-epm-2): Constituição Federal de 1988, art. 196; Lei nº 8.080/1990 (universalidade); Decreto nº 7.053/2009 (Política Nacional para a População em Situação de R
 - `q-adap25-067` (gab. A, simulado-epm-2): Brasil. Ministério da Saúde. Portaria Conjunta SAES/SECTICS nº 13, de 29 de julho de 2025, que aprova a Parte I das Diretrizes Brasileiras para o Rast
@@ -74,7 +74,6 @@ Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap26-070` (gab. B, simulado-epm-4): Constituição Federal de 1988, arts. 196 a 198; Lei 8.080/1990, art. 7º; Paim J et al. O sistema de saúde brasileiro: história, avanços e desafios (Lan
 - `q-adap26-077` (gab. C, simulado-epm-4): Starfield B. Atenção primária: equilíbrio entre necessidades de saúde, serviços e tecnologia (UNESCO/Ministério da Saúde, 2002); Portaria GM/MS nº 2.4
 - `q-adap23-007` (gab. A, simulado-epm-5): Recomendações da European LeukemiaNet para leucemia mieloide crônica (2020); classificação da OMS de neoplasias hematolinfoides (5ª edição, 2022); Pro
-- `q-adap23-023` (gab. A, simulado-epm-5): Constituição Federal, art. 198; Emenda Constitucional nº 29/2000; Lei Complementar nº 141/2012 (estados, 12%; municípios, 15%; a regra da União, no ar
 - `q-adap23-024` (gab. B, simulado-epm-5): Decreto nº 7.508/2011; Lei nº 8.142/1990; Lei Orgânica da Saúde (Lei nº 8.080/1990).
 - `q-adap23-025` (gab. B, simulado-epm-5): Política Nacional de Atenção à Saúde dos Povos Indígenas (Portaria GM/MS nº 254/2002); Lei nº 9.836/1999 (Subsistema de Atenção à Saúde Indígena).
 - `q-adap23-027` (gab. D, simulado-epm-5): Política Nacional de Saúde Integral da População Negra (Portaria GM/MS nº 992/2009); Estatuto da Igualdade Racial (Lei nº 12.288/2010); Portaria MS nº
@@ -142,7 +141,7 @@ Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-028` (gab. B, simulado-epm-5): Medronho et al., Epidemiologia; Gordis, Epidemiologia; Rouquayrol e Gurgel, Epidemiologia & Saúde.
 - `q-adap23-030` (gab. B, simulado-epm-5): Vieira, Bioestatística: tópicos avançados; Fletcher, Epidemiologia Clínica; Altman, Practical Statistics for Medical Research.
 
-## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) (18)
+## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) (18)
 
 - `q-adap25-066` (gab. B, simulado-epm-2): Cameron AP et al. The AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder. J Urol 2024;212:11-20 (as opções foram confe
 - `q-adap25-069` (gab. D, simulado-epm-2): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome. J
@@ -163,7 +162,7 @@ Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-046` (gab. B, simulado-epm-5): Atlas BI-RADS do Colégio Americano de Radiologia (5ª edição, 2013); Diretrizes para a Detecção Precoce do Câncer de Mama no Brasil (INCA/Ministério da
 - `q-adap23-052` (gab. A, simulado-epm-5): Critérios de classificação de síndrome antifosfolípide do ACR/EULAR (2023); Recomendações da EULAR para síndrome antifosfolípide (2019); Diretriz da A
 
-## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) (10)
+## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) (10)
 
 - `q-adap22-012` (gab. C, simulado-epm-3): EAU/ESPU. EAU Guidelines on Paediatric Urology (capítulos sobre uropatia obstrutiva e válvula de uretra posterior), edição de 2024; Partin AW et al. C
 - `q-adap22-018` (gab. B, simulado-epm-3): Björck M et al. Editor's Choice – European Society for Vascular Surgery (ESVS) 2020 Clinical Practice Guidelines on the Management of Acute Limb Ischa
@@ -176,7 +175,7 @@ Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-090` (gab. D, simulado-epm-5): Diretrizes da Sociedade Americana de Cirurgiões de Cólon e Reto para abscesso e fístula anorretal (2022); Sociedade Brasileira de Coloproctologia.
 - `q-adap23-099` (gab. D, simulado-epm-5): Diretrizes da Associação Europeia de Urologia Pediátrica sobre hipospádia (2024); Sociedade Brasileira de Urologia e Sociedade Brasileira de Cirurgia
 
-## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) (2)
+## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) (2)
 
 - `q-adap22-085` (gab. B, simulado-epm-3): Holbrook A et al. Evidence-based management of anticoagulant therapy: Antithrombotic Therapy and Prevention of Thrombosis, 9ª ed.: ACCP Evidence-Based
 - `q-adap23-020` (gab. D, simulado-epm-5): Diretriz CHEST de tratamento do tromboembolismo venoso (2021); Diretriz ESC de embolia pulmonar aguda (2019); Diretriz da American Society of Hematolo
@@ -191,12 +190,12 @@ Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap26-026` (gab. D, simulado-epm-4): Salehi M et al. Hypoglycemia after gastric bypass surgery: current concepts and controversies (J Clin Endocrinol Metab 2018); Sociedade Brasileira de
 - `q-adap23-050` (gab. C, simulado-epm-5): Diretriz da Endocrine Society sobre hirsutismo (2018); Diretriz internacional baseada em evidências para síndrome dos ovários policísticos (2023); Man
 
-## Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) (2)
+## Gastro/hepato (EASL, AASLD, ACG, Roma, Chicago) (2)
 
 - `q-adap26-061` (gab. D, simulado-epm-4): Gardner A et al. Cauda equina syndrome: a review (Eur Spine J 2011); Todd NV. Cauda equina syndrome: the timing of surgery probably does influence out
 - `q-adap23-079` (gab. D, simulado-epm-5): ATLS, Suporte Avançado de Vida no Trauma, 10ª edição; Diretrizes da Associação Britânica de Ortopedia e da Sociedade Brasileira de Ortopedia e Traumat
 
-## Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) (1)
+## Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, dor) (1)
 
 - `q-adap22-075` (gab. D, simulado-epm-3): Stupp R et al. Radiotherapy plus concomitant and adjuvant temozolomide for glioblastoma. N Engl J Med 2005;352:987-96; Louis DN et al. The 2021 WHO Cl
 
@@ -208,7 +207,7 @@ Total: **149** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 
 - `q-adap23-019` (gab. A, simulado-epm-5): Terceiro Consenso Internacional de Definições para Sepse e Choque Séptico, Sepsis-3 (JAMA, 2016); Surviving Sepsis Campaign (2021).
 
-## Infectologia (IDSA, CDC, OMS, SBI, RECOVERY, APDM) (1)
+## Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) (1)
 
 - `q-adap23-072` (gab. B, simulado-epm-5): Consenso de tuberculose do sistema nervoso central; Manual de Recomendações para o Controle da Tuberculose no Brasil (Ministério da Saúde, 2019); Dire
 
