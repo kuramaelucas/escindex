@@ -9,6 +9,26 @@ Pedido: revisar os simulados autorais já criados com acesso ao PubMed e à web,
 - Regra seguida: **não mudar gabarito nem explicação clínica por resumo de fonte secundária.** Só se registra, na própria `referencias` da questão, o que foi confirmado e o que ficou em aberto. Exceções, quando o fato era inequívoco, estão em "Textos alterados".
 - As notas ficam no campo `referencias` de cada questão (busque por `29/10/2026` em `dados/banco-*.js`). A lista do que **ainda** não foi conferido está em `docs/REFERENCIAS-A-CONFERIR.md`.
 
+
+## Conferências feitas no texto oficial (após a liberação de rede, 29/10/2026)
+
+Depois que a rede da sessão foi liberada em parte, foram lidos os textos oficiais abaixo. **Esses são os únicos itens conferidos contra a fonte primária** (além da ACG 2024 de pancreatite, lida no PMC).
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| PCDT-IST, Portaria SCTIE/MS nº 12/2021 (gov.br/conitec) | Ceftriaxona 500 mg IM com azitromicina 1 g VO na gonorreia não complicada; benzatina 2,4 milhões UI na sífilis recente e 7,2 milhões na tardia; aciclovir 400 mg 3x/dia a partir da 36ª semana na gestante com herpes | `q-adap22-056`, `q-adap24-041`, `q-adap22-036` |
+| PCDT de transmissão vertical (gov.br/conitec) | TDF+3TC+DTG preferencial na gestante, início o mais cedo possível sem aguardar genotipagem; recém-nascido de mãe adequadamente tratada com VDRL não reagente só em seguimento | `q-adap22-060`, `q-adap24-088` |
+| PCDT de hanseníase 2022 (gov.br/conitec) | Talidomida de 100 a 400 mg/dia | `q-adap23-018` |
+| Nota Técnica 193/2024 (gov.br) | Rotavírus: D1 de 1 mês e 15 dias a 11 meses e 29 dias; D2 de 3 meses e 15 dias a 23 meses e 29 dias | `q-adap25-083`, `q-adap24-089` |
+| SBP, Diretriz nº 32, 2026 (sbp.com.br) | Ferro: tratamento 3 a 6 mg/kg/dia; hemograma em 30 a 45 dias; profilaxia fixa de 10 a 12,5 mg/dia em dois ciclos | `q-adap26-087` (texto corrigido: 3 a 5 virou 3 a 6 mg/kg/dia) |
+| IDSA 2026 AMR Guidance, publicada em 30/07/2026 (idsociety.org) | Carbapenêmico preferido na ESBL fora do trato urinário; piperacilina-tazobactam não sugerida nesses sítios | `q-adap26-033` (gabarito confirmado) |
+| KDIGO 2026 de anemia, resumo executivo (kdigo.org) | Limiares de ferro na DRC: ferritina <100 e TSAT <40%, ou ferritina 100–300 e TSAT <25% | `q-adap26-034` (confirmado) |
+| US MEC 2024, CDC (PMC11315372) | Combinados em categoria 4 com <21 dias de pós-parto; categoria 4 na enxaqueca com aura | `q-adap22-025` (parcial), `q-adap26-043` |
+| ATA, página de diretrizes (thyroid.org) | Hipertireoidismo 2016 e carcinoma medular 2015 seguem como as publicadas | `q-adap23-003`, `q-adap23-096` |
+| EAU, página de urolitíase (uroweb.org) | Edição 2026 é revisão completa da de 2025 (lista das seções revisadas) | `q-adap22-004`, `q-adap26-014`, `q-adap26-091` |
+
+**Ainda bloqueados na rede da sessão** (não resolvem ou o proxy recusa): `ahajournals.org`, `cpr.heart.org`, `professional.heart.org`, `iris.who.int`, `cdn.who.int`, `apps.who.int`, o CloudFront da EAU (`d56bochluxqnz.cloudfront.net`), `academic.oup.com`, `diabetesjournals.org`, `sbim.org.br`, `easl.eu`, `asra.com`, `asam.org`, `scielo.br`, `sbc.org.br` e os sites de periódicos (NEJM, Lancet, JAMA, Wolters Kluwer, AAP). Abrem: `gov.br`, `who.int` (páginas, não os PDFs), `kdigo.org`, `ginasthma.org`, `goldcopd.org`, `escardio.org`, `nccn.org`, `acog.org`, `esmo.org`, `idsociety.org`, `sbp.com.br`, `cdc.gov`, `thyroid.org`, `uroweb.org` e o PMC.
+
 ## Textos alterados (o único conteúdo mexido)
 
 | Questão | O que mudou | Por quê |
