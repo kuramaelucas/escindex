@@ -2,7 +2,7 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **191** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **170** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
@@ -12,18 +12,17 @@ Total: **191** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 | Epidemiologia e bioestatística (livros-texto) | 23 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 10 |
-| Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 7 |
-| Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) | 7 |
-| Nefrologia (KDIGO, ACR contraste, SBN) | 6 |
-| Infectologia (IDSA, CDC, OMS, SBI, RECOVERY, APDM) | 5 |
-| Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) | 5 |
-| Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 4 |
-| Anestesia (ASRA, ASA, DAS) | 4 |
 | AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 4 |
+| Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) | 4 |
+| Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 4 |
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) | 3 |
+| Nefrologia (KDIGO, ACR contraste, SBN) | 3 |
+| Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) | 3 |
 | NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) | 3 |
 | Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 2 |
+| Infectologia (IDSA, CDC, OMS, SBI, RECOVERY, APDM) | 2 |
 | Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) | 1 |
+| Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 1 |
 
 ## Livros-texto e outras fontes sem diretriz (31)
 
@@ -183,65 +182,6 @@ Total: **191** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-090` (gab. D, simulado-epm-5): Diretrizes da Sociedade Americana de Cirurgiões de Cólon e Reto para abscesso e fístula anorretal (2022); Sociedade Brasileira de Coloproctologia.
 - `q-adap23-099` (gab. D, simulado-epm-5): Diretrizes da Associação Europeia de Urologia Pediátrica sobre hipospádia (2024); Sociedade Brasileira de Urologia e Sociedade Brasileira de Cirurgia
 
-## Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) (7)
-
-- `q-adap22-083` (gab. D, simulado-epm-3): Camacho PM et al. American Association of Clinical Endocrinologists/American College of Endocrinology Clinical Practice Guidelines for the diagnosis a
-- `q-adap26-025` (gab. A, simulado-epm-4): Bilezikian JP et al. Evaluation and management of primary hyperparathyroidism: summary statement and guidelines from the Fifth International Workshop
-- `q-adap26-026` (gab. D, simulado-epm-4): Salehi M et al. Hypoglycemia after gastric bypass surgery: current concepts and controversies (J Clin Endocrinol Metab 2018); Sociedade Brasileira de
-- `q-adap23-003` (gab. B, simulado-epm-5): Diretrizes da Associação Americana de Tireoide para hipertireoidismo e outras causas de tireotoxicose (2016); Sociedade Brasileira de Endocrinologia e
-- `q-adap23-034` (gab. D, simulado-epm-5): Consenso da ADA sobre crises hiperglicêmicas em adultos (2024); Diretriz da Sociedade Brasileira de Diabetes (2023-2024).
-- `q-adap23-048` (gab. A, simulado-epm-5): Diretrizes Brasileiras de Osteoporose (Sociedade Brasileira de Endocrinologia e Metabologia, 2018, com atualização de 2023); Diretriz da Endocrine Soc
-- `q-adap23-050` (gab. C, simulado-epm-5): Diretriz da Endocrine Society sobre hirsutismo (2018); Diretriz internacional baseada em evidências para síndrome dos ovários policísticos (2023); Man
-
-## Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) (7)
-
-- `q-adap22-088` (gab. A, simulado-epm-3): Stabler SP. Vitamin B12 deficiency. N Engl J Med 2013;368:149-60; Hunt A et al. Pernicious anaemia: BMJ 2014;349:g5226. Textos não abertos nesta rodad
-- `q-adap22-089` (gab. B, simulado-epm-3): 2023 American Geriatrics Society Beers Criteria Update Expert Panel. American Geriatrics Society 2023 updated AGS Beers Criteria for potentially inapp
-- `q-adap22-095` (gab. C, simulado-epm-3): Brasil. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas da Doença de Alzheimer (edição vigente não conferida); Livingston G et al. De
-- `q-adap22-099` (gab. B, simulado-epm-3): Keepers GA et al. The American Psychiatric Association Practice Guideline for the Treatment of Patients With Schizophrenia. Am J Psychiatry 2020;177:8
-- `q-adap22-100` (gab. A, simulado-epm-3): Mayo-Smith MF et al. Management of alcohol withdrawal delirium: an evidence-based practice guideline. Arch Intern Med 2004;164:1405-12; American Socie
-- `q-adap26-032` (gab. D, simulado-epm-4): McKeith IG et al. Diagnosis and management of dementia with Lewy bodies: Fourth consensus report of the DLB Consortium (Neurology 2017); Academia Bras
-- `q-adap26-046` (gab. C, simulado-epm-4): World Falls Guidelines (Montero-Odasso M et al., Age Ageing 2022); Sociedade Brasileira de Geriatria e Gerontologia, Projeto Diretrizes: quedas em ido
-
-## Nefrologia (KDIGO, ACR contraste, SBN) (6)
-
-- `q-adap22-076` (gab. C, simulado-epm-3): KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117
-- `q-adap26-029` (gab. B, simulado-epm-4): Spasovski G et al. Clinical practice guideline on diagnosis and treatment of hyponatraemia (Eur J Endocrinol 2014); Verbalis JG et al. Diagnosis, eval
-- `q-adap26-034` (gab. B, simulado-epm-4): KDIGO 2026 Clinical Practice Guideline for Anemia in Chronic Kidney Disease (Kidney Int 2026); KDIGO Clinical Practice Guideline for Anemia in CKD (Ki
-- `q-adap26-086` (gab. B, simulado-epm-4): Fanouriakis A et al. EULAR recommendations for the management of systemic lupus erythematosus: 2023 update (Ann Rheum Dis 2024); KDIGO 2024 Clinical P
-- `q-adap23-064` (gab. C, simulado-epm-5): Diretriz KDIGO para o distúrbio mineral e ósseo na doença renal crônica (2017, com atualização de 2024); Diretrizes brasileiras de doença renal crônic
-- `q-adap23-074` (gab. D, simulado-epm-5): Sociedade Brasileira de Pediatria e Sociedade Brasileira de Nefrologia, orientações sobre glomerulonefrite difusa aguda; KDIGO, Diretriz de doenças gl
-
-## Infectologia (IDSA, CDC, OMS, SBI, RECOVERY, APDM) (5)
-
-- `q-adap22-078` (gab. B, simulado-epm-3): Salavastru CM et al. European guideline for the management of scabies. J Eur Acad Dermatol Venereol 2017;31:1248-53; Brasil. Ministério da Saúde. Guia
-- `q-adap22-097` (gab. D, simulado-epm-3): RECOVERY Collaborative Group. Dexamethasone in hospitalized patients with Covid-19. N Engl J Med 2021;384:693-704; World Health Organization. Therapeu
-- `q-adap26-033` (gab. D, simulado-epm-4): Harris PNA et al. Effect of piperacillin-tazobactam vs meropenem on 30-day mortality for patients with E coli or Klebsiella pneumoniae bloodstream inf
-- `q-adap26-096` (gab. A, simulado-epm-4): Ministério da Saúde, Manual dos Centros de Referência para Imunobiológicos Especiais, 5ª ed. (2019); Sociedade Brasileira de Imunizações, Calendário d
-- `q-adap23-072` (gab. B, simulado-epm-5): Consenso de tuberculose do sistema nervoso central; Manual de Recomendações para o Controle da Tuberculose no Brasil (Ministério da Saúde, 2019); Dire
-
-## Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) (5)
-
-- `q-adap22-079` (gab. A, simulado-epm-3): Biggins SW et al. Diagnosis, evaluation, and management of ascites, spontaneous bacterial peritonitis and hepatorenal syndrome: 2021 practice guidance
-- `q-adap26-039` (gab. B, simulado-epm-4): Bastuji-Garin S et al. Clinical classification of cases of toxic epidermal necrolysis, Stevens-Johnson syndrome, and erythema multiforme (Arch Dermato
-- `q-adap26-061` (gab. D, simulado-epm-4): Gardner A et al. Cauda equina syndrome: a review (Eur Spine J 2011); Todd NV. Cauda equina syndrome: the timing of surgery probably does influence out
-- `q-adap23-006` (gab. D, simulado-epm-5): Orientação da AASLD sobre ascite, peritonite bacteriana espontânea e síndrome hepatorrenal (2021); Diretriz da EASL para cirrose descompensada (2018).
-- `q-adap23-079` (gab. D, simulado-epm-5): ATLS, Suporte Avançado de Vida no Trauma, 10ª edição; Diretrizes da Associação Britânica de Ortopedia e da Sociedade Brasileira de Ortopedia e Traumat
-
-## Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) (4)
-
-- `q-adap25-030` (gab. C, simulado-epm-2): Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026. Intensive Care Med 2026 (doi 10.1007/s00134-026-08
-- `q-adap25-037` (gab. C, simulado-epm-2): Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026. Intensive Care Med 2026 (doi 10.1007/s00134-026-08
-- `q-adap23-015` (gab. C, simulado-epm-5): Surviving Sepsis Campaign, diretrizes internacionais para o manejo da sepse e do choque séptico em adultos (2021); atualização de 2026 (Critical Care
-- `q-adap23-019` (gab. A, simulado-epm-5): Terceiro Consenso Internacional de Definições para Sepse e Choque Séptico, Sepsis-3 (JAMA, 2016); Surviving Sepsis Campaign (2021).
-
-## Anestesia (ASRA, ASA, DAS) (4)
-
-- `q-adap22-001` (gab. D, simulado-epm-3): Neal JM et al. The Third American Society of Regional Anesthesia and Pain Medicine Practice Advisory on Local Anesthetic Systemic Toxicity: Executive
-- `q-adap22-002` (gab. B, simulado-epm-3): American Society of Anesthesiologists Task Force. Practice Guidelines for the Prevention, Detection, and Management of Respiratory Depression Associat
-- `q-adap22-006` (gab. C, simulado-epm-3): Garvey LH et al. Management of suspected immediate perioperative allergic reactions: an international overview and consensus recommendations. Br J Ana
-- `q-adap23-093` (gab. C, simulado-epm-5): Diretrizes da Sociedade Americana de Anestesia Regional (ASRA) sobre toxicidade sistêmica dos anestésicos locais (2020); Barash, Anestesia Clínica; So
-
 ## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) (4)
 
 - `q-adap22-065` (gab. D, simulado-epm-3): Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support: 2020 AHA Guidelines for CPR and ECC. Circulation 2020;142(Suppl 2):S469-523; Glob
@@ -249,11 +189,37 @@ Total: **191** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap26-027` (gab. B, simulado-epm-4): Schmidt GA et al. Liberation from mechanical ventilation in critically ill adults: ATS/ACCP Clinical Practice Guideline (Am J Respir Crit Care Med 201
 - `q-adap23-020` (gab. D, simulado-epm-5): Diretriz CHEST de tratamento do tromboembolismo venoso (2021); Diretriz ESC de embolia pulmonar aguda (2019); Diretriz da American Society of Hematolo
 
+## Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) (4)
+
+- `q-adap22-088` (gab. A, simulado-epm-3): Stabler SP. Vitamin B12 deficiency. N Engl J Med 2013;368:149-60; Hunt A et al. Pernicious anaemia: BMJ 2014;349:g5226. Textos não abertos nesta rodad
+- `q-adap22-089` (gab. B, simulado-epm-3): 2023 American Geriatrics Society Beers Criteria Update Expert Panel. American Geriatrics Society 2023 updated AGS Beers Criteria for potentially inapp
+- `q-adap22-100` (gab. A, simulado-epm-3): Mayo-Smith MF et al. Management of alcohol withdrawal delirium: an evidence-based practice guideline. Arch Intern Med 2004;164:1405-12; American Socie
+- `q-adap26-046` (gab. C, simulado-epm-4): World Falls Guidelines (Montero-Odasso M et al., Age Ageing 2022); Sociedade Brasileira de Geriatria e Gerontologia, Projeto Diretrizes: quedas em ido
+
+## Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) (4)
+
+- `q-adap26-025` (gab. A, simulado-epm-4): Bilezikian JP et al. Evaluation and management of primary hyperparathyroidism: summary statement and guidelines from the Fifth International Workshop
+- `q-adap26-026` (gab. D, simulado-epm-4): Salehi M et al. Hypoglycemia after gastric bypass surgery: current concepts and controversies (J Clin Endocrinol Metab 2018); Sociedade Brasileira de
+- `q-adap23-034` (gab. D, simulado-epm-5): Consenso da ADA sobre crises hiperglicêmicas em adultos (2024); Diretriz da Sociedade Brasileira de Diabetes (2023-2024).
+- `q-adap23-050` (gab. C, simulado-epm-5): Diretriz da Endocrine Society sobre hirsutismo (2018); Diretriz internacional baseada em evidências para síndrome dos ovários policísticos (2023); Man
+
 ## Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, WHO dor) (3)
 
 - `q-adap22-055` (gab. B, simulado-epm-3): Fallon M et al. Management of cancer pain in adult patients: ESMO Clinical Practice Guidelines. Ann Oncol 2018;29(Suppl 4):iv166-91; World Health Orga
 - `q-adap22-075` (gab. D, simulado-epm-3): Stupp R et al. Radiotherapy plus concomitant and adjuvant temozolomide for glioblastoma. N Engl J Med 2005;352:987-96; Louis DN et al. The 2021 WHO Cl
 - `q-adap23-082` (gab. A, simulado-epm-5): Diretrizes japonesas de tratamento do câncer gástrico (JGCA, 2021); Diretriz ESMO do câncer gástrico (2022); Diretriz brasileira do câncer gástrico (S
+
+## Nefrologia (KDIGO, ACR contraste, SBN) (3)
+
+- `q-adap22-076` (gab. C, simulado-epm-3): KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117
+- `q-adap26-034` (gab. B, simulado-epm-4): KDIGO 2026 Clinical Practice Guideline for Anemia in Chronic Kidney Disease (Kidney Int 2026); KDIGO Clinical Practice Guideline for Anemia in CKD (Ki
+- `q-adap23-074` (gab. D, simulado-epm-5): Sociedade Brasileira de Pediatria e Sociedade Brasileira de Nefrologia, orientações sobre glomerulonefrite difusa aguda; KDIGO, Diretriz de doenças gl
+
+## Gastro/hepato (EASL, AASLD, ACG, Roma IV, Chicago) (3)
+
+- `q-adap26-039` (gab. B, simulado-epm-4): Bastuji-Garin S et al. Clinical classification of cases of toxic epidermal necrolysis, Stevens-Johnson syndrome, and erythema multiforme (Arch Dermato
+- `q-adap26-061` (gab. D, simulado-epm-4): Gardner A et al. Cauda equina syndrome: a review (Eur Spine J 2011); Todd NV. Cauda equina syndrome: the timing of surgery probably does influence out
+- `q-adap23-079` (gab. D, simulado-epm-5): ATLS, Suporte Avançado de Vida no Trauma, 10ª edição; Diretrizes da Associação Britânica de Ortopedia e da Sociedade Brasileira de Ortopedia e Traumat
 
 ## NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) (3)
 
@@ -266,7 +232,16 @@ Total: **191** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap26-005` (gab. C, simulado-epm-4): Feller-Kopman DJ et al. Management of Malignant Pleural Effusions: An Official ATS/STS/STR Clinical Practice Guideline (Am J Respir Crit Care Med 2018
 - `q-adap23-077` (gab. D, simulado-epm-5): Diretrizes da Sociedade Europeia de Cirurgia Torácica e da Sociedade Americana de Cirurgia Torácica sobre quilotórax; Diretrizes brasileiras de derram
 
+## Infectologia (IDSA, CDC, OMS, SBI, RECOVERY, APDM) (2)
+
+- `q-adap26-096` (gab. A, simulado-epm-4): Ministério da Saúde, Manual dos Centros de Referência para Imunobiológicos Especiais, 5ª ed. (2019); Sociedade Brasileira de Imunizações, Calendário d
+- `q-adap23-072` (gab. B, simulado-epm-5): Consenso de tuberculose do sistema nervoso central; Manual de Recomendações para o Controle da Tuberculose no Brasil (Ministério da Saúde, 2019); Dire
+
 ## Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) (1)
 
 - `q-adap22-021` (gab. A, simulado-epm-3): Nussbaum RL, McInnes RR, Willard HF. Thompson & Thompson Genetics and Genomics in Medicine, 9ª ed. Elsevier, 2016 (herança ligada ao X); Srivastava A
+
+## Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) (1)
+
+- `q-adap23-019` (gab. A, simulado-epm-5): Terceiro Consenso Internacional de Definições para Sepse e Choque Séptico, Sepsis-3 (JAMA, 2016); Surviving Sepsis Campaign (2021).
 

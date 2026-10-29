@@ -52,6 +52,15 @@ Nenhum gabarito foi alterado.
 - **Anafilaxia**: atualizações da AAAAI/ACAAI (2022–2024) desaconselham corticoide e anti-histamínico de rotina e relativizam a ida ao pronto-socorro após adrenalina precoce. `q-adap22-092`, `q-adap26-097`.
 - **BTS 2023 de doença pleural**: registros compatíveis no PubMed. `q-adap22-014`, `q-adap23-095`.
 
+### Endocrinologia, neurologia, nefrologia, infectologia, gastro e anestesia
+- **IDSA 2026** (bactérias gram-negativas resistentes; Healio, 26/08/2026): piperacilina-tazobactam deixou de ser desaconselhada em ITU por ESBL e passou a alternativa. A `q-adap26-033` (bacteremia grave, MERINO, carbapenêmico) não foi conferida na versão de 2026.
+- **PCDT de Alzheimer** atualizado pela Conitec em 2025 (relatório nº 1.051; donepezila com ou sem memantina na forma grave); sem decisão sobre lecanemabe ou donanemabe localizada. `q-adap22-095`.
+- **Sarna**: BASHH 2025 (permetrina 5% ou ivermectina 200 mcg/kg, segunda dose em 7 a 14 dias); versão europeia IUSTI de 2026 em rascunho. `q-adap22-078`.
+- **Hipersensibilidade perioperatória**: diretriz francesa (70 recomendações, 2025 ou 2026). `q-adap22-006`.
+- **KDIGO**: nefrite lúpica 2024 publicada; DMO-DRC mantém a versão de 2017 (conferência de controvérsias, Kidney Int, mar/2025). `q-adap26-086`, `q-adap23-064`.
+- **Sem atualização localizada**: ATA 2016 de tireotoxicose, AACE/ACE 2020 de osteoporose (revisão chamada em 2024), consenso DLB 2017, APA 2020 de esquizofrenia, diretrizes europeias de hiponatremia (2014), AASLD 2021 e EASL 2018 de cirrose, ASRA 2020 de toxicidade por anestésico local, ASA/ASRA 2016 de opioide neuraxial, orientação da OMS de corticosteroides na covid-19 (só a de 2020).
+- **Surviving Sepsis Campaign 2026** passou a constar também nas notas de `q-adap25-030`, `q-adap25-037` e `q-adap23-015`.
+
 ### Ginecologia e obstetrícia
 - **ESGO/ESTRO/ESP 2025** de endométrio (Lancet Oncol 2025;26:e423-e435). **OMS/FIGO/ICM 2025 de HPP** (51 recomendações; ação com 300 mL ou sinais vitais alterados). **OMS MEC 6ª ed. (2025)** e **OMS SPR 4ª ed. (nov/2025)** existem; categorias dos combinados e ulipristal/IMC **não** conferidas. **FDA, nov/2025**: retirada do alerta de caixa preta de terapia hormonal. **ACOG, jul/2024**: não rastrear diabetes gestacional antes de 24 semanas. Sem substituição localizada: PB 222, PB 217, corticoides antenatais, corioamnionite, ASCCP 2019. ESHRE endometriose 2022 tinha revisão prevista para 2025 (não confirmada).
 
