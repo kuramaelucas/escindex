@@ -397,6 +397,7 @@ function renderHistorico(){
   const sessoes = (db.sessoes||[]).filter(x=>x.usuarioId===u.id).slice().reverse();
   const simulados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
   const dias = atividadePorDia(u.id, 14);
+  const fechadas = sessoes.filter(x=>!x.naoTerminada).length;
   const totalRespostas = db.respostas.filter(r=>r.usuarioId===u.id).length;
   const totalAcertos = db.respostas.filter(r=>r.usuarioId===u.id && r.correta).length;
   const ultimos7 = db.respostas.filter(r=>r.usuarioId===u.id && diasEntre(r.data, hojeISO())<7);
@@ -407,7 +408,7 @@ function renderHistorico(){
   return `
   <div class="page-header"><h2>Histórico de Atividade</h2><p>Tudo o que você já estudou, dia a dia, do mais recente para o mais antigo — questões (dentro ou fora de um conjunto), flashcards e simulados.</p></div>
   <div class="grid grid-4 compacto mb-2">
-    <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">dia(s) com estudo registrado · ${sessoes.length} conjunto(s) fechado(s)</div></div>
+    <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">dia(s) com estudo registrado · ${fechadas} conjunto(s) fechado(s)${sessoes.length-fechadas?" · "+(sessoes.length-fechadas)+" não terminado(s)":""}</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas}</div><div class="stat-label">questões respondidas no total${cartoesTotal?" · "+cartoesTotal+" flashcard(s)":""}</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</div><div class="stat-label">taxa de acerto geral</div></div>
     <div class="stat-tile"><div class="stat-value">${ultimos7.length?pct(ultimos7.filter(r=>r.correta).length, ultimos7.length)+"%":"—"}</div><div class="stat-label">taxa de acerto nos últimos 7 dias (${ultimos7.length} questões)</div></div>
@@ -423,6 +424,8 @@ function renderHistorico(){
     ${diasAtivos.length ? pagDias.itens.map(d=>{
       const taxa = d.total ? pct(d.acertos, d.total) : null;
       const sessoesDoDia = d.sessoes.length;
+      const fechadasDoDia = d.sessoes.filter(x=>!x.naoTerminada).length;
+      const abertasDoDia = sessoesDoDia - fechadasDoDia;
       return `<div class="card-flat mb-1">
         <div class="flex justify-between items-center gap-2 quebra">
           <div class="cresce-220">
@@ -430,7 +433,7 @@ function renderHistorico(){
             <div class="text-xs muted mt-1">
               ${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}
               ${d.cartoes ? ` · ${d.cartoes} flashcard(s)${d.cartoesExatos?"":" (ao menos)"}` : ""}
-              ${sessoesDoDia ? ` · ${sessoesDoDia} conjunto(s) fechado(s)` : ""}
+              ${fechadasDoDia ? ` · ${fechadasDoDia} conjunto(s) fechado(s)` : ""}${abertasDoDia ? ` · ${abertasDoDia} conjunto(s) não terminado(s)` : ""}
               ${d.simulados.length ? ` · ${d.simulados.length} simulado(s)` : ""}
             </div>
           </div>
@@ -444,7 +447,7 @@ function renderHistorico(){
           ${d.sessoes.map(sess=>{
             const t = pct(sess.acertos, sess.total);
             return `<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
-              <span>${iconeSvg("book")} conjunto de ${sess.total} questão(ões) — ${escapeHtml(sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática")}</span>
+              <span>${iconeSvg("book")} ${sess.naoTerminada ? `conjunto <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} questão(ões) respondida(s) (parado há mais de 7 dias)` : `conjunto de ${sess.total} questão(ões)`} — ${escapeHtml(sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática")}</span>
               <span class="flex items-center gap-1"><span class="badge ${t>=70?"badge-accent":t>=50?"badge-amber":"badge-danger"}">${t}%</span>
               <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir este conjunto</button></span>
             </div>`;
@@ -893,6 +896,8 @@ function renderDesempenho(){
   </div>
 
   ${htmlCardOQueMaisCai(u, 5)}
+
+  ${htmlCardTrilhaSugerida(u)}
 
   ${htmlEvolucaoPorAssunto(u)}
 
