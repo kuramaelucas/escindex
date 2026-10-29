@@ -52,8 +52,13 @@ Nenhum gabarito foi alterado.
 - **PCDT**: Parkinson (Portaria Conjunta SAES/SECTICS nº 16, de 01/08/2025); fibrose cística (nº 5, de 30/04/2024); HIV pediátrico em módulos (Portarias SECTICS nº 75 e nº 76, de 28/12/2023); doxiciclina como profilaxia pós-exposição (portaria de 11/03/2026). Sem edição posterior localizada: IST 2022, transmissão vertical 2022, hanseníase 2022, dengue 6ª ed. (2024), parto normal 2017, Manual de Gestação de Alto Risco 2022. Esclerose múltipla: atualização estava em consulta pública. Triagem neonatal: Lei 14.154/2021 em etapas e Portaria GM/MS nº 7.293/2025.
 - **Tuberculose**: sem novo manual em 2025; 3HP preferencial para infecção latente desde a NI nº 1/2022.
 
-### Cirurgia e outras
-- **WSES 2025 de apendicite** (JAMA Surg, 28/01/2026, doi 10.1001/jamasurg.2025.6218). Sem atualização localizada: Tokyo 2018, WSES de diverticulite 2020, USPSTF colorretal/pulmão (2021) e próstata (2018).
+### Cirurgia, trauma e gastroenterologia
+- **WSES 2025 de apendicite** (JAMA Surg, 28/01/2026, doi 10.1001/jamasurg.2025.6218): existe. `q-adap26-011`, `q-adap23-057`.
+- **HerniaSurge**: atualização de 2023 (BJS Open, PMC10588975) substitui a de 2018. `q-adap26-015`, `q-adap23-085`.
+- **EAU**: urolitíase com atualização limitada em 2025 e revisão completa em 2026. `q-adap22-004`, `q-adap26-014`, `q-adap26-091`; as outras diretrizes EAU (LUTS, carcinoma renal, urologia pediátrica) não foram conferidas.
+- **Critérios de Roma V** publicados em 2026 (Gastroenterology 2026;170(6), doi 10.1053/j.gastro.2026.02.003), com "constipação crônica" no lugar de "funcional". `q-adap22-077` usa Roma IV.
+- **Receituário de controle especial**: RDC 873/2024 (Sistema Nacional de Controle de Receituários) e RDC 1.000/2025; a validade de 30 dias da Notificação B não foi reconfirmada. `q-adap23-029`.
+- Sem atualização localizada: WSES de obstrução de delgado por bridas (2017) e de trauma pélvico (2017), ASCRS de diverticulite (2020; ACP 2022 semelhante), Tóquio 2018, USPSTF colorretal/pulmão (2021) e próstata (2018).
 
 ## O que falta
 

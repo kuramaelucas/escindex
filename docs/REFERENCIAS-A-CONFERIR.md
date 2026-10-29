@@ -2,17 +2,17 @@
 
 Gerado em 29/10/2026 a partir de `dados/` (exclui `banco-simulado-epm-6`, já realizado). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** ganharam nota de conferência na web.
 
-Total: **231** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
+Total: **218** questões. Para conferir uma: `npm run dados -- q-id` e abrir o texto oficial da diretriz.
 
 | Grupo | Questões |
 |---|---|
 | Livros-texto e outras fontes sem diretriz | 31 |
 | Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 29 |
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 26 |
-| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 23 |
 | Epidemiologia e bioestatística (livros-texto) | 23 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, WHO/CDC MEC, ASCCP, IADPSG) | 21 |
 | AHA/ACC/ESC — cardiologia (periop., aorta, valvas, ACS, PCR, ressuscitação) | 11 |
+| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) | 10 |
 | NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) | 10 |
 | Reumatologia, hematologia e alergia (ACR, EULAR, ASH, WFH, anafilaxia) | 9 |
 | Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 7 |
@@ -120,32 +120,6 @@ Total: **231** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-091` (gab. C, simulado-epm-5): Diretriz da Sociedade Brasileira de Pediatria sobre crupe; Diretriz da Academia Americana de Otorrinolaringologia e Cirurgia de Cabeça e Pescoço; West
 - `q-adap23-100` (gab. B, simulado-epm-5): Diretrizes da Sociedade Americana de Neurocirurgia e do Congresso de Cirurgiões Neurológicos sobre hidrocefalia pediátrica; Sociedade Brasileira de Ne
 
-## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) (23)
-
-- `q-adap22-004` (gab. A, simulado-epm-3): EAU Guidelines on Urolithiasis, edição de 2024 (European Association of Urology). Singer M et al. The Third International Consensus Definitions for Se
-- `q-adap22-007` (gab. C, simulado-epm-3): Hall J et al. The American Society of Colon and Rectal Surgeons Clinical Practice Guidelines for the Management of Left-Sided Colonic Diverticulitis.
-- `q-adap22-012` (gab. C, simulado-epm-3): EAU/ESPU. EAU Guidelines on Paediatric Urology (capítulos sobre uropatia obstrutiva e válvula de uretra posterior), edição de 2024; Partin AW et al. C
-- `q-adap22-018` (gab. B, simulado-epm-3): Björck M et al. Editor's Choice – European Society for Vascular Surgery (ESVS) 2020 Clinical Practice Guidelines on the Management of Acute Limb Ischa
-- `q-adap22-019` (gab. D, simulado-epm-3): De Maeseneer MG et al. Editor's Choice – European Society for Vascular Surgery (ESVS) 2022 Clinical Practice Guidelines on the Management of Chronic V
-- `q-adap22-077` (gab. D, simulado-epm-3): Mearin F et al. Bowel disorders. Gastroenterology 2016;150:1393-407 (critérios de Roma IV); American Gastroenterological Association. Technical review
-- `q-adap26-003` (gab. A, simulado-epm-4): Ten Broek RPG et al. Bologna guidelines for diagnosis and management of adhesive small bowel obstruction, World J Emerg Surg 2018; WSES 2017.
-- `q-adap26-012` (gab. D, simulado-epm-4): EAU Guidelines on Non-neurogenic Male LUTS (2024); Sociedade Brasileira de Urologia, I Consenso Brasileiro de Hiperplasia Prostática Benigna.
-- `q-adap26-014` (gab. B, simulado-epm-4): EAU Guidelines on Urolithiasis (2024), seção de litíase na gestação; Semins MJ, Matlaga BR. Kidney stones during pregnancy (Nat Rev Urol 2014); Socied
-- `q-adap26-015` (gab. C, simulado-epm-4): HerniaSurge Group. International guidelines for groin hernia management (Hernia 2018); Colégio Brasileiro de Cirurgiões, hérnias da parede abdominal.
-- `q-adap26-016` (gab. C, simulado-epm-4): Yadlapati R et al. Esophageal motility disorders on high-resolution manometry: Chicago Classification v4.0 (Neurogastroenterol Motil 2021); Vaezi MF e
-- `q-adap26-060` (gab. B, simulado-epm-4): Yokoe M et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (J Hepatobiliary Pancreat Sci 2018); Okamoto K e
-- `q-adap26-091` (gab. A, simulado-epm-4): EAU Guidelines on Urolithiasis (2024); Pearle MS et al. Medical management of kidney stones: AUA guideline (J Urol 2014); Sociedade Brasileira de Urol
-- `q-adap23-029` (gab. A, simulado-epm-5): Portaria SVS/MS nº 344/1998 e atualizações (Anvisa); Resolução da Diretoria Colegiada da Anvisa sobre receituário.
-- `q-adap23-057` (gab. A, simulado-epm-5): Diretrizes de Jerusalém da Sociedade Mundial de Cirurgia de Emergência para apendicite (2020); Escore de Alvarado (Annals of Emergency Medicine, 1986)
-- `q-adap23-080` (gab. C, simulado-epm-5): Diretriz da Associação Europeia de Urologia sobre carcinoma de células renais (2024); Diretriz da Associação Americana de Urologia sobre massa renal l
-- `q-adap23-083` (gab. C, simulado-epm-5): Diretrizes da American Society of Hematology para diagnóstico de tromboembolismo venoso (2018); escore de Wells (Lancet, 1997; modificado em 2003); Di
-- `q-adap23-084` (gab. C, simulado-epm-5): Diretriz da Sociedade Europeia de Cirurgia Vascular para aneurisma de aorta abdominal (2024); Diretriz da Sociedade de Cirurgia Vascular dos Estados U
-- `q-adap23-085` (gab. A, simulado-epm-5): Diretrizes da Sociedade Internacional de Hérnia (HerniaSurge) para hérnia inguinal (2018); Colégio Brasileiro de Cirurgiões; Sabiston, Tratado de Ciru
-- `q-adap23-090` (gab. D, simulado-epm-5): Diretrizes da Sociedade Americana de Cirurgiões de Cólon e Reto para abscesso e fístula anorretal (2022); Sociedade Brasileira de Coloproctologia.
-- `q-adap23-092` (gab. D, simulado-epm-5): ATLS, Suporte Avançado de Vida no Trauma (10ª edição); Diretrizes da Sociedade Mundial de Cirurgia de Emergência para fraturas pélvicas instáveis (201
-- `q-adap23-094` (gab. A, simulado-epm-5): Diretrizes da Sociedade Mundial de Cirurgia de Emergência para obstrução do intestino delgado (2018); Reisner e Cohen, Gallstone ileus (World J Surg,
-- `q-adap23-099` (gab. D, simulado-epm-5): Diretrizes da Associação Europeia de Urologia Pediátrica sobre hipospádia (2024); Sociedade Brasileira de Urologia e Sociedade Brasileira de Cirurgia
-
 ## Epidemiologia e bioestatística (livros-texto) (23)
 
 - `q-adap22-042` (gab. C, simulado-epm-3): Greenland S et al. Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations. Eur J Epidemiol 2016;31:337-50; Altman
@@ -209,6 +183,19 @@ Total: **231** questões. Para conferir uma: `npm run dados -- q-id` e abrir o t
 - `q-adap23-002` (gab. B, simulado-epm-5): Diretriz Brasileira de Valvopatias (Sociedade Brasileira de Cardiologia, 2020); Diretriz ACC/AHA de doença valvar (2020); Diretriz ESC/EACTS de doença
 - `q-adap23-020` (gab. D, simulado-epm-5): Diretriz CHEST de tratamento do tromboembolismo venoso (2021); Diretriz ESC de embolia pulmonar aguda (2019); Diretriz da American Society of Hematolo
 - `q-adap23-096` (gab. A, simulado-epm-5): Diretrizes da Associação Americana de Tireoide para carcinoma medular (2015); Consenso brasileiro de nódulos e câncer diferenciado de tireoide (SBEM/S
+
+## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tokyo, Bologna, HerniaSurge, ACG/AGA) (10)
+
+- `q-adap22-012` (gab. C, simulado-epm-3): EAU/ESPU. EAU Guidelines on Paediatric Urology (capítulos sobre uropatia obstrutiva e válvula de uretra posterior), edição de 2024; Partin AW et al. C
+- `q-adap22-018` (gab. B, simulado-epm-3): Björck M et al. Editor's Choice – European Society for Vascular Surgery (ESVS) 2020 Clinical Practice Guidelines on the Management of Acute Limb Ischa
+- `q-adap22-019` (gab. D, simulado-epm-3): De Maeseneer MG et al. Editor's Choice – European Society for Vascular Surgery (ESVS) 2022 Clinical Practice Guidelines on the Management of Chronic V
+- `q-adap26-012` (gab. D, simulado-epm-4): EAU Guidelines on Non-neurogenic Male LUTS (2024); Sociedade Brasileira de Urologia, I Consenso Brasileiro de Hiperplasia Prostática Benigna.
+- `q-adap26-016` (gab. C, simulado-epm-4): Yadlapati R et al. Esophageal motility disorders on high-resolution manometry: Chicago Classification v4.0 (Neurogastroenterol Motil 2021); Vaezi MF e
+- `q-adap23-080` (gab. C, simulado-epm-5): Diretriz da Associação Europeia de Urologia sobre carcinoma de células renais (2024); Diretriz da Associação Americana de Urologia sobre massa renal l
+- `q-adap23-083` (gab. C, simulado-epm-5): Diretrizes da American Society of Hematology para diagnóstico de tromboembolismo venoso (2018); escore de Wells (Lancet, 1997; modificado em 2003); Di
+- `q-adap23-084` (gab. C, simulado-epm-5): Diretriz da Sociedade Europeia de Cirurgia Vascular para aneurisma de aorta abdominal (2024); Diretriz da Sociedade de Cirurgia Vascular dos Estados U
+- `q-adap23-090` (gab. D, simulado-epm-5): Diretrizes da Sociedade Americana de Cirurgiões de Cólon e Reto para abscesso e fístula anorretal (2022); Sociedade Brasileira de Coloproctologia.
+- `q-adap23-099` (gab. D, simulado-epm-5): Diretrizes da Associação Europeia de Urologia Pediátrica sobre hipospádia (2024); Sociedade Brasileira de Urologia e Sociedade Brasileira de Cirurgia
 
 ## NCCN (melanoma, pulmão, cólon, reto, basocelular, uterino) (10)
 
