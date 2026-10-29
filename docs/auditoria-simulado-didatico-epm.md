@@ -159,6 +159,26 @@ Um parecer externo ("Justificativas da revisão", 29/10/2026) apontou dois probl
 
 O parecer registra que não valida as demais 98 questões, e eu também não as revalidei: as demais referências continuam no nível «memória».
 
-## 6. Revisão pela equipe
+## 6. Segunda revisão independente, com o PubMed (29/10/2026)
+
+Conferência dos pontos de maior risco com artigos do PubMed (plugin PubMed). **Não foi uma revalidação das 100 questões**: foram 11 afirmações escolhidas por risco (doses, limiares, esquemas e números de estudos); o PubMed traz literatura, não protocolos do Ministério da Saúde, que ficaram de fora.
+
+| Questão | Afirmação | Resultado no PubMed |
+|---|---|---|
+| 98 | estrogênio vaginal previne infecção urinária recorrente na pós-menopausa; o oral não | **Confirmada**: metanálise de ensaios randomizados, risco relativo de 0,42 (vaginal) e sem benefício do oral (doi 10.1007/s00192-020-04397-z); ensaio com anel ou creme (doi 10.1097/SPV.0000000000000749) |
+| 3 | ácido tranexâmico 1 g venoso, em até 3 horas | **Confirmada**: WOMAN, 20 060 mulheres; morte por sangramento com risco relativo de 0,81, e de 0,69 em até 3 horas (doi 10.1016/S0140-6736(17)30638-4) |
+| 26 | D-dímero ajustado à idade (idade × 10 acima de 50 anos) | **Confirmada** (ADJUST-PE; doi 10.1111/jth.14733) |
+| 21 | prednisona 40 mg por 5 dias na exacerbação da DPOC | **Confirmada** como o desenho do estudo REDUCE (5 contra 14 dias; doi 10.4414/smw.2010.13109); o resultado não foi aberto aqui |
+| 74 | herpes neonatal com acometimento do sistema nervoso central: aciclovir venoso por 21 dias e depois oral por 6 meses | **Confirmada** em relato de caso que cita o esquema (doi 10.1093/jpids/pix017); sem ensaio aberto nesta busca |
+| 36 | poliarterite nodosa por vírus B: antiviral, glicocorticoide curto e plasmaférese | **Confirmada** em revisões (doi 10.1007/s11926-021-00983-2); a evidência é de estudos não controlados, e a explicação passou a dizer isso |
+| 46 | sacubitril-valsartana e angioedema | **Em parte**: o angioedema é raro nos ensaios (0,5% contra 0,3%; doi 10.1016/j.ijcard.2020.08.067); o intervalo de 36 horas vem da bula, não de ensaio, e a referência agora diz isso |
+| 64 | hérnia diafragmática: ventilação suave, hipercapnia permissiva, hipertensão pulmonar | **Corrigida**: o consenso CDH EURO (doi 10.1159/000444210) recomenda ventilação convencional, PaCO2 de 50 a 70 mmHg e sildenafil na hipertensão pulmonar grave; eu havia escrito «óxido nítrico, se necessário», e a explicação agora diz que o óxido nítrico não é de rotina |
+| 58 | paroxetina e fluoxetina reduzem a eficácia do tamoxifeno | **Corrigida (era afirmação forte demais)**: o mecanismo (inibição do CYP2D6) é real e as diretrizes recomendam evitar, mas uma revisão sistemática de 15 estudos (doi 10.1016/j.clbc.2021.10.003) e uma coorte de 2016 com HR de 0,96 (doi 10.1136/bmj.i5014) não mostram efeito clínico consistente. O gabarito (venlafaxina ou gabapentina) fica, e a explicação foi reescrita como precaução, não como fato comprovado. Acrescentei também a advertência da FDA para lesão hepática com fezolinetant (doi 10.1097/AOG.0000000000006331) |
+| 81 | tuberculose na gestação: esquema com os quatro fármacos | **Com nuance**: os dados de segurança da pirazinamida na gestação são limitados, e alguns países usam 9 meses sem ela (doi 10.1007/s11904-022-00641-x); a OMS e o Ministério da Saúde mantêm os quatro. A conduta e o gabarito não mudam; a explicação e o motivo da alternativa errada passaram a dizer isso, e que o etambutol é seguro |
+| 34 | azitromicina ou ciprofloxacino na disenteria da criança | **Com ressalva**: a resistência varia por região (3% e 30% em crianças do Irã; doi 10.1080/20477724.2023.2179451); a explicação manda seguir o perfil local |
+
+Não verificadas por falta de artigo útil na busca (ficam no nível «memória»): intervalo de 12 meses do ácido ursodesoxicólico (conferido na diretriz AASLD/AGA enviada, seção 5), esquemas de hanseníase, de doença inflamatória pélvica e de raiva (conferido na nota técnica, seção 5), e os limiares de cirurgia da raiz da aorta no Marfan (a busca confirmou a cirurgia profilática, mas não os centímetros). **O que o PubMed não cobre**: protocolos e calendários do Ministério da Saúde, normas trabalhistas, e legislação.
+
+## 7. Revisão pela equipe
 
 Foi uma releitura pela mesma autoria. A revisão por pessoas da equipe (leitura cega, com resposta de cada questão comparada ao gabarito) continua recomendada antes de dar o simulado a alunos.
