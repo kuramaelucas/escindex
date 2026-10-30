@@ -715,6 +715,23 @@ function redesenharQuestaoDaSessao(){
   const mapa = document.getElementById("mapaDaSessao");
   if(mapa){ mapa.outerHTML = renderMapaSessao(sessao); centralizarBarraDeQuestoes(); }
 }
+/* "Como funciona" sob as alternativas: quem é novo na plataforma o vê aberto;
+   depois de DICAS_ATE_RESPOSTAS respostas ele nasce recolhido (a pessoa já viu
+   a explicação dezenas de vezes) e a escolha explícita de abrir ou fechar vale
+   sempre. O toque que a página dispara ao desenhar o <details> aberto não conta
+   como escolha — só quando o estado difere do que a tela já mostrava. */
+const DICAS_ATE_RESPOSTAS = 10;
+function dicasDaQuestaoAbertas(){
+  const u = usuarioAtual();
+  if(u && typeof u.dicasDaQuestaoAbertas === "boolean") return u.dicasDaQuestaoAbertas;
+  return !u || db.respostas.filter(r=>r.usuarioId===u.id).length < DICAS_ATE_RESPOSTAS;
+}
+function lembrarDicasDaQuestao(aberta){
+  const u = usuarioAtual();
+  if(!u || !!aberta === dicasDaQuestaoAbertas()) return;
+  u.dicasDaQuestaoAbertas = !!aberta;
+  saveState();
+}
 function renderSessao(){
   const sessao = state.sessaoAtual;
   if(!sessao || sessao.finalizada) return renderSessaoResumo();
@@ -727,7 +744,7 @@ function renderSessao(){
   // uma linha só, em vez de dois avisos soltos; o "em branco" só depois que o
   // conjunto começou (no primeiro cartão é só o tamanho da fila)
   const avisoRodape = [
-    (!respondidaAqui && !soLeitura && !naUltima) ? "Dá para seguir sem responder: a questão fica em branco no mapa e você volta a ela quando quiser — o que estiver marcado e riscado continua aqui." : "",
+    (!respondidaAqui && !soLeitura && !naUltima) ? "Pode pular: a questão fica em branco no mapa e o que você marcou e riscou continua aqui." : "",
     (!soLeitura && emBranco && feitas) ? `${emBranco} ${emBranco===1?"questão em branco":"questões em branco"} neste conjunto.` : "",
   ].filter(Boolean).join(" ");
   return `<div class="coluna-questao">
@@ -972,11 +989,14 @@ function renderQuestionCard(q, opts){
     </div>`;
   if(!opts.respondida){
     const nRiscadas = eliminadasDaQuestao(q.id).length;
-    // uma linha só: o que falta fazer, o que o × faz e por que as tags esperam
+    // o que falta fazer fica sempre à vista; o que o × faz e por que as tags esperam
+    // ficam atrás de "Como funciona", aberto para quem é novo e recolhido para quem
+    // já respondeu o bastante (ver dicasDaQuestaoAbertas) — a explicação não some,
+    // só deixa de repetir em toda questão
     const dicaRiscar = comeco => opts.somenteLeitura ? "" :
-      `<div class="text-xs muted mt-2">${comeco}${iconeSvg("eye-off")} Assunto, especialidade e dificuldade aparecem depois que você responder, para não entregar o diagnóstico. ${nRiscadas
+      `<div class="text-xs muted mt-2">${comeco}<details class="dica-questao" ${dicasDaQuestaoAbertas() ? "open" : ""} ontoggle="lembrarDicasDaQuestao(this.open)"><summary>${iconeSvg("eye-off")} Como funciona</summary>Assunto, especialidade e dificuldade aparecem depois que você responder, para não entregar o diagnóstico. ${nRiscadas
         ? `${nRiscadas} alternativa(s) eliminada(s) — clique no × de novo para trazer de volta.`
-        : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</div>`;
+        : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</details></div>`;
     if(opts.modoSimulado){
       // no simulado (fora do modo aprendizado): sem confiança e sem feedback imediato — só marca e segue
       html += dicaRiscar("");
