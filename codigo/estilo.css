@@ -41,7 +41,9 @@
   --fs-enunciado:calc(var(--fs-lg) * .93);
   /* Escala de espaçamento: quatro degraus. Margem e respiro entram aqui, não
      como rem solto no meio da regra — é o que dá o mesmo ritmo vertical às
-     telas. Os utilitários .mt-*/.mb-*/.gap-* e o .card usam estes valores. */
+     telas. Os utilitários .mt-N, .mb-N e .gap-N e o .card usam estes valores.
+     (Não escreva "asterisco-barra" neste comentário: fecha o comentário no meio e
+     engole a declaração de --esp-1 logo abaixo, como já aconteceu.) */
   --esp-1:.5rem; --esp-2:1rem; --esp-3:1.5rem; --esp-4:2rem;
 }
 /* Modo escuro — mesma paleta de papéis (fundo/superfície/texto/tinta de
@@ -105,7 +107,7 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;s
 .nowrap{white-space:nowrap}
 
 /* ---------- botões ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem 1.15rem;border-radius:var(--radius-sm);border:1px solid transparent;font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .05s ease;white-space:nowrap;background:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--esp-1);padding:.65rem 1.15rem;border-radius:var(--radius-sm);border:1px solid transparent;font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .05s ease;white-space:nowrap;background:none}
 .btn:active{transform:scale(.98)}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-primary:hover{background:var(--accent-dark)}
@@ -134,7 +136,7 @@ tr.linha-clicavel:hover td{background:var(--surface-2, rgba(127,127,127,.08))}
 .stat-tile.anterior{opacity:.65}
 
 /* ---------- formulários ---------- */
-.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:var(--esp-2)}
 .label{font-size:var(--fs-sm);font-weight:600;color:var(--ink-2)}
 .hint{font-size:var(--fs-xs);color:var(--muted)}
 .input,.select,.textarea{border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.62rem .75rem;font-size:var(--fs-md);font-family:inherit;background:var(--surface);color:var(--ink);width:100%}
@@ -144,14 +146,14 @@ tr.linha-clicavel:hover td{background:var(--surface-2, rgba(127,127,127,.08))}
 .linha-progresso{display:flex;align-items:center;gap:var(--esp-2);flex-wrap:wrap;margin-bottom:1.9rem}
 .linha-progresso .progress-track{flex:1 1 220px}
 .acoes-inicio{position:relative}
-.link-discreto{position:absolute;right:0;top:100%;margin-top:.3rem;white-space:nowrap;background:none;border:none;padding:0;color:var(--muted);font-size:calc(var(--fs-2xs) * 1.1);cursor:pointer;text-decoration:underline dotted}
+.link-discreto{position:absolute;right:0;top:100%;margin-top:.3rem;white-space:nowrap;background:none;border:none;padding:0;color:var(--muted);font-size:var(--fs-xs);cursor:pointer;text-decoration:underline dotted}
 .link-discreto:hover{color:var(--accent-dark)}
 /* No computador, "Começar agora" fica ABAIXO de "Continuar última sessão". No
    celular os botões de cima ocupam a largura toda e "Tempo contado?" passa
    para a frente (esquerda) de "Começar agora", na mesma linha. */
 .acoes-inicio > .flex{flex-direction:column;align-items:stretch}
 @media (max-width:600px){
-  .acoes-inicio{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;width:100%}
+  .acoes-inicio{display:flex;flex-wrap:wrap;align-items:center;gap:var(--esp-1);width:100%}
   .acoes-inicio > .flex{display:contents}
   .acoes-inicio .btn-secondary{flex:1 0 100%;order:0}
   .link-discreto{position:static;order:1;margin:0}
@@ -170,7 +172,7 @@ tr.linha-clicavel:hover td{background:var(--surface-2, rgba(127,127,127,.08))}
 .input:focus,.select:focus,.textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
 .textarea{min-height:120px;resize:vertical}
 .textarea-mono{font-family:var(--font-mono);font-size:var(--fs-sm);line-height:1.6}
-.checkbox-row{display:flex;align-items:center;gap:.5rem;font-size:var(--fs-sm)}
+.checkbox-row{display:flex;align-items:center;gap:var(--esp-1);font-size:var(--fs-sm)}
 
 /* ---------- cartões / superfícies ---------- */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--esp-3)}
@@ -334,7 +336,7 @@ tr:last-child td{border-bottom:none}
 .main{margin-left:252px;flex:1;min-width:0;display:flex;flex-direction:column}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:20}
 .topbar-title{font-size:var(--fs-base)}
-.page{padding:2rem;max-width:var(--maxw);width:100%}
+.page{padding:var(--esp-4);max-width:var(--maxw);width:100%}
 .page.entrando{animation:page-in .22s ease}
 /* A animação de entrada é um sinal sutil de que a TELA mudou, sem esperar o
    usuário reparar via scroll ou título. Por isso ela vive numa classe à
@@ -362,7 +364,7 @@ tr:last-child td{border-bottom:none}
 .faixa-prova{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--border)}
 .aviso-interno{border-left:3px solid var(--amber);background:var(--amber-soft);border-radius:var(--radius-sm);padding:.6rem .8rem;font-size:var(--fs-sm)}
 .stat-mini-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem}
-.stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .8rem;display:flex;align-items:baseline;gap:.5rem;min-width:0}
+.stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .8rem;display:flex;align-items:baseline;gap:var(--esp-1);min-width:0}
 .stat-mini .stat-value{font-size:var(--fs-lg);line-height:1.1}
 .stat-mini .stat-label{font-size:var(--fs-xs);line-height:1.25}
 button.stat-mini{cursor:pointer;text-align:left;font:inherit;color:inherit}
@@ -484,8 +486,8 @@ ol.lista-passos li{margin:.25rem 0}
 .feedback-box{border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-top:1.1rem;font-size:var(--fs-sm);line-height:1.55}
 .feedback-box.ok{background:var(--accent-soft);border:1px solid var(--accent)}
 .feedback-box.no{background:var(--danger-soft);border:1px solid var(--danger)}
-.qcard-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border)}
-.why-tag{display:flex;align-items:center;gap:.4rem;font-size:var(--fs-xs);color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:1rem}
+.qcard-actions{display:flex;flex-wrap:wrap;gap:var(--esp-1);margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border)}
+.why-tag{display:flex;align-items:center;gap:.4rem;font-size:var(--fs-xs);color:var(--accent-dark);background:var(--accent-soft);padding:.35rem .65rem;border-radius:var(--radius-sm);margin-bottom:var(--esp-2)}
 /* A anotação que o aluno escreveu para si mesmo numa questão salva. Fica com
    a cara de papel de rascunho (a faixa âmbar na lateral) para não se
    confundir com a explicação da questão, que é material da plataforma. */
@@ -499,7 +501,7 @@ ol.lista-passos li{margin:.25rem 0}
 /* No computador, o gráfico das 5 áreas fica ao lado da tabela das mesmas
    áreas (uma coisa explica a outra); no celular, um embaixo do outro. */
 /* "Se a prova fosse hoje": o número grande ao lado da tabela das áreas */
-.nota-estimada{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+.nota-estimada{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--esp-2);align-items:start}
 @media (min-width:900px){ .nota-estimada{grid-template-columns:220px minmax(0,1fr)} }
 .nota-estimada-detalhe{min-width:0}
 .nota-estimada-detalhe .table-wrap{margin-top:.75rem}
@@ -507,14 +509,14 @@ ol.lista-passos li{margin:.25rem 0}
 /* barra de prioridade (O que mais cai × onde você erra) */
 .barra-prioridade{width:90px;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
 .barra-prioridade i{display:block;height:100%;background:var(--amber)}
-.areas-lado-a-lado{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+.areas-lado-a-lado{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--esp-2);align-items:start}
 @media (min-width:1000px){ .areas-lado-a-lado{grid-template-columns:minmax(260px,380px) minmax(0,1fr)} }
-.legenda-barras{display:flex;flex-wrap:wrap;gap:1rem;font-size:var(--fs-xs);color:var(--muted);margin-top:.5rem;align-items:center}
+.legenda-barras{display:flex;flex-wrap:wrap;gap:var(--esp-2);font-size:var(--fs-xs);color:var(--muted);margin-top:var(--esp-1);align-items:center}
 .legenda-barras span{display:flex;align-items:center;gap:.35rem}
 .legenda-barras i{width:11px;height:11px;border-radius:3px;display:inline-block}
 /* "Como você está indo": o gráfico não precisa da largura toda (as barras têm
    teto), então os números ficam ao lado dele em vez de empilhados em cima. */
-.grafico-com-lateral{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+.grafico-com-lateral{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--esp-2);align-items:start}
 @media (min-width:1000px){ .grafico-com-lateral{grid-template-columns:minmax(0,1.35fr) minmax(280px,1fr)} }
 .grafico-lateral{display:flex;flex-direction:column;gap:.7rem;min-width:0}
 .grafico-lateral .grid.compacto{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -522,7 +524,7 @@ ol.lista-passos li{margin:.25rem 0}
 .seletor-periodo{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.2rem}
 .seletor-periodo .pill{cursor:pointer}
 /* calendário de estudo (Meu Desempenho): três tons — sem estudo, estudou, meta batida */
-.calendario-estudo{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start}
+.calendario-estudo{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--esp-2);align-items:start}
 @media (min-width:800px){ .calendario-estudo{grid-template-columns:minmax(0,1.3fr) minmax(220px,1fr)} }
 .cal-grade{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
 .cal-semana{text-align:center;font-size:var(--fs-xs,.75rem);color:var(--muted);font-weight:600}
@@ -535,7 +537,7 @@ ol.lista-passos li{margin:.25rem 0}
 .cal-dia.cal-meta .cal-num{color:#fff;opacity:.85}
 .cal-dia.cal-futuro{opacity:.45}
 .cal-dia.cal-hoje{outline:2px solid var(--accent-dark);outline-offset:1px}
-.cal-legenda{display:flex;align-items:center;gap:.5rem;font-size:var(--fs-sm);margin-top:.35rem}
+.cal-legenda{display:flex;align-items:center;gap:var(--esp-1);font-size:var(--fs-sm);margin-top:.35rem}
 .cal-amostra{width:18px;height:18px;border-radius:4px;border:1px solid var(--border);background:var(--surface);flex:none}
 .cal-amostra.cal-estudou{background:var(--accent-soft);border-color:var(--accent-soft)}
 .cal-amostra.cal-meta{background:var(--accent);border-color:var(--accent)}
@@ -575,7 +577,7 @@ code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);pa
 .tab{padding:.7rem 1rem;font-size:var(--fs-sm);font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
 .tab:hover{color:var(--ink)}
 button.tab{background:none;border:0;border-bottom:2px solid transparent;font-family:inherit}
-.tabs-irmas{margin-bottom:1rem}
+.tabs-irmas{margin-bottom:var(--esp-2)}
 .chip-modo-aluno{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .7rem;border-radius:100px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-dark);font-size:var(--fs-xs);font-weight:700;cursor:pointer}
 .chip-modo-aluno:hover{background:var(--accent);color:#fff}
 .tab.active{color:var(--accent-dark);border-color:var(--accent)}
@@ -589,12 +591,12 @@ button.tab{background:none;border:0;border-bottom:2px solid transparent;font-fam
 .brand{font-family:var(--font-display);font-weight:700;font-size:var(--fs-lg);display:flex;align-items:center;gap:.55rem}
 .brand .mark{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:3.5rem 0 4.5rem}
-@media (max-width:900px){.hero{grid-template-columns:1fr;padding:2rem 0}}
+@media (max-width:900px){.hero{grid-template-columns:1fr;padding:var(--esp-4) 0}}
 .hero h1{font-size:clamp(2rem,1.55rem + 2vw,2.75rem);letter-spacing:-.01em}
 .hero-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.6rem;box-shadow:var(--shadow-pop);animation:hero-in .5s ease}
 @keyframes hero-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .auth-wrap{max-width:420px;margin:3rem auto;padding:0 1.5rem}
-.auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem}
+.auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--esp-4)}
 footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-sm);border-top:1px solid var(--border);margin-top:2rem}
 
 /* ---------- enunciado clicável ----------
@@ -619,7 +621,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-sm);bo
 .lote-assuntos{display:grid;grid-template-columns:minmax(0,1fr);gap:.1rem .9rem;max-height:320px;overflow:auto;padding:.4rem;border:1px solid var(--border);border-radius:var(--radius-sm)}
 @media (min-width:900px){ .lote-assuntos{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .flash-palco{max-width:640px;margin:0 auto;perspective:1400px}
-.flashcard{position:relative;min-height:290px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);padding:2rem 1.8rem;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow-md);cursor:pointer;transition:box-shadow .15s ease,transform .1s ease}
+.flashcard{position:relative;min-height:290px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);padding:var(--esp-4) 1.8rem;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow-md);cursor:pointer;transition:box-shadow .15s ease,transform .1s ease}
 .flashcard:hover{box-shadow:var(--shadow-pop)}
 .flashcard:active{transform:scale(.985)}
 .flashcard.virado{border-color:var(--accent)}
@@ -653,10 +655,10 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-sm);bo
    Telas de cartões soltos (Perfil, Configurações) desperdiçavam metade da
    tela: cada cartão numa linha só. Em colunas, o navegador reparte os
    cartões conforme a altura de cada um; no celular vira uma coluna. */
-.cartoes-colunas{columns:2 380px;column-gap:1rem}
+.cartoes-colunas{columns:2 380px;column-gap:var(--esp-2)}
 .cartoes-colunas > *{break-inside:avoid;margin:0 0 1rem !important;max-width:none !important}
 /* dois cartões lado a lado só onde cabe; abaixo disso, um embaixo do outro */
-.par-de-cartoes{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start;margin-bottom:1rem}
+.par-de-cartoes{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--esp-2);align-items:start;margin-bottom:var(--esp-2)}
 .par-de-cartoes > .card{margin:0}
 @media (min-width:1100px){ .par-de-cartoes{grid-template-columns:repeat(2,minmax(0,1fr))} }
 /* campos de formulário que se ajeitam à largura do cartão */
@@ -668,7 +670,7 @@ footer.site-footer{padding:2.5rem 0;color:var(--muted);font-size:var(--fs-sm);bo
 .grid.compacto .stat-value{font-size:var(--fs-lg);line-height:1.15}
 .grid.compacto .stat-label{font-size:var(--fs-xs);margin-top:.1rem}
 /* seção que abre e fecha (Painel da Turma) */
-details.secao-expansivel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1rem}
+details.secao-expansivel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:var(--esp-2)}
 details.secao-expansivel > summary{cursor:pointer;list-style:none;padding:.85rem 1.2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
 details.secao-expansivel > summary::-webkit-details-marker{display:none}
 details.secao-expansivel > summary::before{content:"▸";color:var(--muted);transition:transform .12s ease}
@@ -680,7 +682,7 @@ details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
 .topbar > div{min-width:0}
 .topbar-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .main{overflow-x:clip}
-@media (max-width:640px){ .topbar .nome-no-topo{display:none} .topbar{gap:.5rem} }
+@media (max-width:640px){ .topbar .nome-no-topo{display:none} .topbar{gap:var(--esp-1)} }
 
 /* ---------- impressão / PDF ----------
    Para gerar PDF sem depender de nenhuma biblioteca externa, a plataforma
@@ -701,7 +703,7 @@ details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
   .pdf-gabarito{page-break-before:always}
   .pdf-tabela{width:100%;border-collapse:collapse;font-size:9.5pt}
   .pdf-tabela th,.pdf-tabela td{border:1px solid #999;padding:.28rem .4rem;text-align:left}
-  .pdf-flash{border:1px solid #666;padding:.55rem .7rem;margin-bottom:.5rem;page-break-inside:avoid;font-size:10pt}
+  .pdf-flash{border:1px solid #666;padding:.55rem .7rem;margin-bottom:var(--esp-1);page-break-inside:avoid;font-size:10pt}
   .pdf-corte{border-top:1px dashed #999;margin:.8rem 0}
 }
 
@@ -712,11 +714,11 @@ details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
 .tutorial-contador{font-size:var(--fs-xs);letter-spacing:.04em;text-transform:uppercase;color:var(--muted, #6b7a76);margin-bottom:.3rem}
 .tutorial-titulo{margin:0 0 .5rem}
 .tutorial-texto{line-height:1.6;margin:0 auto;max-width:34rem}
-.tutorial-pontos{display:flex;gap:.35rem;justify-content:center;margin-top:1rem}
+.tutorial-pontos{display:flex;gap:.35rem;justify-content:center;margin-top:var(--esp-2)}
 .tutorial-pontos span{width:.5rem;height:.5rem;border-radius:50%;background:var(--border, #cfd8d5)}
 .tutorial-pontos span.ativo{background:var(--accent);width:1.2rem;border-radius:.3rem}
-.tutorial-acoes{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
-.guia-secoes{display:flex;flex-direction:column;gap:.5rem}
+.tutorial-acoes{display:flex;justify-content:space-between;align-items:center;gap:var(--esp-1);flex-wrap:wrap}
+.guia-secoes{display:flex;flex-direction:column;gap:var(--esp-1)}
 .guia-secao{border:1px solid var(--border, #cfd8d5);border-radius:var(--radius-sm);padding:.2rem .9rem}
 .guia-secao summary{cursor:pointer;font-weight:600;padding:.55rem 0}
 .guia-secao ul{margin:.1rem 0 .7rem;padding-left:1.2rem;line-height:1.6}
@@ -735,7 +737,7 @@ strong.parametro{font-weight:700;color:inherit;text-decoration:underline;text-de
 /* Utilitários que substituíram style="" repetido nas telas. Levam !important
    porque o estilo inline que trocaram sempre vencia a folha de estilo. */
 .quebra{flex-wrap:wrap!important}
-.quebra-gap{flex-wrap:wrap!important;gap:.5rem!important}
+.quebra-gap{flex-wrap:wrap!important;gap:var(--esp-1)!important}
 .quebra-gap-p{flex-wrap:wrap!important;gap:.4rem!important}
 .sem-mb{margin-bottom:0!important}
 .sem-m{margin:0!important}
@@ -784,7 +786,7 @@ body.modo-foco .main{margin-left:0}
 .secao-recolhivel>summary::after{content:"▾";margin-left:auto;color:var(--muted);transition:transform .15s}
 .secao-recolhivel[open]>summary::after{transform:rotate(180deg)}
 .secao-corpo{margin-top:.8rem}
-.filtros-barra{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.filtros-barra{display:flex;align-items:center;gap:var(--esp-1);flex-wrap:wrap}
 .chip-filtro{display:inline-flex;align-items:center;gap:.2rem;padding:.15rem .25rem .15rem .6rem;border-radius:100px;background:var(--accent-soft);color:var(--accent-dark);font-size:var(--fs-xs);font-weight:600}
 .chip-x{display:inline-flex;align-items:center;justify-content:center;width:1.3rem;height:1.3rem;border:0;border-radius:50%;background:none;color:inherit;cursor:pointer;padding:0}
 .chip-x:hover{background:var(--accent);color:#fff}
@@ -800,7 +802,7 @@ body.modo-foco .main{margin-left:0}
 
 /* ---------- tempo por questão no resultado do simulado ---------- */
 .tempo-por-questao{display:grid;gap:.25rem}
-.tempo-linha{display:grid;grid-template-columns:1.8rem 1fr 3.2rem 5rem;align-items:center;gap:.5rem}
+.tempo-linha{display:grid;grid-template-columns:1.8rem 1fr 3.2rem 5rem;align-items:center;gap:var(--esp-1)}
 .tempo-num{text-align:right}
 .tempo-trilho{position:relative;height:.7rem;background:var(--surface-2);border-radius:100px;overflow:hidden}
 .tempo-barra{display:block;height:100%;border-radius:100px;background:var(--accent)}
@@ -826,4 +828,37 @@ button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
 @media (max-width:900px){
   .grid-baralhos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:var(--esp-2);padding-bottom:.4rem;-webkit-overflow-scrolling:touch}
   .grid-baralhos > .card{flex:0 0 82%;scroll-snap-align:start;margin-top:0}
+}
+
+/* ---------- Início e telas de leitura enxutas ----------
+   Indicadores em linha: número + rótulo sem moldura. Três caixinhas com borda
+   para três números gastavam altura (e, no celular, viravam três blocos
+   empilhados) sem dizer mais do que a mesma linha de texto diz. */
+.indicadores{display:flex;flex-wrap:wrap;gap:var(--esp-1) var(--esp-3);margin-top:var(--esp-2)}
+.indicador{display:inline-flex;align-items:baseline;gap:.4rem;min-width:0}
+.indicador .stat-value{font-size:var(--fs-lg);line-height:1.1}
+.indicador .stat-label{margin-top:0}
+/* faixa recolhida (avisos, notificações): uma linha, sem o respiro de um cartão cheio */
+.card-compacto{padding:.65rem var(--esp-2)}
+/* ações de apoio dentro do cartão principal, sem competir com "Começar agora" */
+.acoes-apoio{display:flex;flex-wrap:wrap;align-items:center;gap:var(--esp-1);margin-top:var(--esp-2);padding-top:var(--esp-2);border-top:1px solid var(--border)}
+/* Rodapé do Início: Livro de Ouro e feedback numa faixa só, sem fundo — são
+   reconhecimento e canal de contato, não tarefas, e o cinza cheio dos dois
+   cartões antigos puxava o olhar para longe do botão de estudar. */
+.rodape-inicio{margin-top:var(--esp-3);padding-top:var(--esp-2);border-top:1px solid var(--border);display:flex;flex-direction:column;gap:var(--esp-1);font-size:var(--fs-sm);color:var(--ink-2)}
+.rodape-inicio-item{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--esp-1)}
+.rodape-inicio .btn-ghost{color:var(--accent-dark)}
+/* dica da questão que o aluno experiente recolhe: a explicação continua a um clique */
+.dica-questao>summary{cursor:pointer;width:max-content;color:var(--muted)}
+.dica-questao>summary:hover{color:var(--accent-dark)}
+/* Meu Desempenho: linha de texto no lugar do quadro cinza das janelas curtas */
+.janelas-curtas-linha{display:flex;flex-wrap:wrap;gap:.15rem var(--esp-3)}
+
+/* ---------- questão no celular ----------
+   .page (1,25rem) + .qcard (1,75rem) + a borda de cada alternativa deixavam o
+   texto com ~60% da largura: alternativas de quatro linhas viravam seis. */
+@media (max-width:640px){
+  .page:has(.coluna-questao){padding-left:.75rem;padding-right:.75rem}
+  .qcard{padding:var(--esp-2)}
+  .qcard-alt{padding:.7rem .75rem;gap:.6rem}
 }
