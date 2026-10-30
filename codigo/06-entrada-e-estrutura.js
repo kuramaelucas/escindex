@@ -681,7 +681,7 @@ function htmlMenuLateral(u){
   }
   return `
       <div class="sidebar-brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
-      ${comoAluno ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
+      ${comoAluno && !reduzido ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
       <div class="nav-section-label">${rotuloPapel(u.papel)}</div>
       <ul class="nav-list">${soltos.map(item=>htmlItemMenu(item, pendenciaDoItemMenu(item, u, pendCadastros))).join("")}</ul>
       ${porGrupo.map(([g, itens])=>htmlGrupoMenu(g, itens, u, pendCadastros, !comoAluno || reduzido)).join("")}
