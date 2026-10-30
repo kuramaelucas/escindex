@@ -15,11 +15,11 @@
    - SIMULADO é um recorte montado pela equipe (ou por você), com tempo e
      tamanho escolhidos. Serve para treinar um bloco ou um assunto.
 
-   O histórico de notas é o mesmo para os dois, então fica embaixo das duas
-   abas em vez de duplicado. */
+   O histórico de notas é o mesmo para os dois, então é uma terceira aba
+   (Histórico) em vez de duplicado embaixo de cada uma. */
 function abaProvas(){
   const f = state.filtroRota;
-  if(f.abaProvas !== "simulados" && f.abaProvas !== "antigas") f.abaProvas = "antigas";
+  if(!["simulados", "antigas", "historico"].includes(f.abaProvas)) f.abaProvas = "antigas";
   return f.abaProvas;
 }
 function mudarAbaProvas(aba){ state.filtroRota.abaProvas = aba; render(); }
@@ -50,6 +50,9 @@ function simuladoCombinaComBusca(s){
 function digitarBuscaProvas(valor){
   state.filtroRota.buscaProvas = valor;
   // só o resultado é redesenhado: redesenhar a tela inteira tiraria o foco do campo
+  redesenharProvasConteudo();
+}
+function redesenharProvasConteudo(){
   const alvo = document.getElementById("provasConteudo");
   if(alvo) alvo.innerHTML = conteudoProvasESimulados(usuarioAtual());
 }
@@ -75,31 +78,73 @@ function conteudoProvasESimulados(u){
   const simuladosVisiveis = db.simulados.filter(simuladoCombinaComBusca);
   const recomendados = bloco ? simuladosVisiveis.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id)) : [];
   const outros = simuladosVisiveis.filter(s=>!recomendados.includes(s));
-  const meusResultados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
-  const resultadosVisiveis = limitarLista(meusResultados, "provas-resultados", 5);
-  const recomendadosVisiveis = limitarLista(recomendados, "provas-sim-recomendados", 5);
-  const outrosVisiveis = limitarLista(outros, "provas-sim-outros", 5);
+  const recomendadosVisiveis = rolagemLista(recomendados, "provas-sim-recomendados");
+  const outrosVisiveis = rolagemLista(outros, "provas-sim-outros");
   return `
   <div class="flex gap-1 mb-2 quebra">
     <button class="pill ${aba==="antigas"?"active":""}" onclick="mudarAbaProvas('antigas')">${iconeSvg("archive")} Provas antigas</button>
     <button class="pill ${aba==="simulados"?"active":""}" onclick="mudarAbaProvas('simulados')">${iconeSvg("clipboard")} Simulados (${busca ? simuladosVisiveis.length+" de "+db.simulados.length : db.simulados.length})</button>
+    <button class="pill ${aba==="historico"?"active":""}" onclick="mudarAbaProvas('historico')">${iconeSvg("chart")} Histórico</button>
   </div>
-  ${aba==="antigas" ? renderAbaProvasAntigas(u, simuladosVisiveis) : `
+  ${aba==="historico" ? htmlHistoricoDeNotas(u) : aba==="antigas" ? renderAbaProvasAntigas(u, simuladosVisiveis) : `
     <p class="text-sm muted mb-2">Os da equipe e os enviados para a plataforma, com tempo e tamanho já definidos. ${bloco ? `Os recomendados são os do seu bloco atual (${escapeHtml(bloco.nome)}).` : "Sem calendário de blocos, não há simulado recomendado para o seu bloco: todos aparecem juntos."}</p>
-    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div><div class="grid grid-3 mb-1">${recomendadosVisiveis.itens.map(renderSimuladoCard).join("")}</div>${botaoMostrarTudo(recomendadosVisiveis, "provas-sim-recomendados")}<div class="mb-2"></div>` : ""}
-    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div><div class="grid grid-3 mb-1">${outrosVisiveis.itens.map(renderSimuladoCard).join("")}</div>${botaoMostrarTudo(outrosVisiveis, "provas-sim-outros")}<div class="mb-2"></div>` : ""}
+    ${recomendados.length ? `<div class="card-title mb-1">Recomendados para o seu bloco atual</div><div class="grid grid-3 mb-1">${recomendadosVisiveis.itens.map(renderSimuladoCard).join("")}</div>${sentinelaRolagem(recomendadosVisiveis, "provas-sim-recomendados", "redesenharProvasConteudo")}<div class="mb-2"></div>` : ""}
+    ${outros.length ? `<div class="card-title mt-3 mb-1">${recomendados.length ? "Outros simulados disponíveis" : "Simulados disponíveis"}</div><div class="grid grid-3 mb-1">${outrosVisiveis.itens.map(renderSimuladoCard).join("")}</div>${sentinelaRolagem(outrosVisiveis, "provas-sim-outros", "redesenharProvasConteudo")}<div class="mb-2"></div>` : ""}
     ${!db.simulados.length ? '<div class="empty-state">Nenhum simulado disponível ainda. Peça a um professor para criar e recomendar um simulado para o seu bloco — ou faça uma prova antiga inteira, na aba ao lado.</div>'
       : !simuladosVisiveis.length ? `<div class="empty-state">Nenhum simulado combina com "${escapeHtml(busca)}". <button class="link-btn" onclick="limparBuscaProvas()">limpar a busca</button> ou veja as provas antigas na aba ao lado.</div>` : ""}
   `}
-  ${meusResultados.length ? `<div class="card mt-3">
-    <div class="card-title mb-1">Suas notas (provas antigas e simulados)</div>
-    <div class="table-wrap"><table><thead><tr><th>Prova</th><th>Nota</th><th>Data</th></tr></thead><tbody>
-      ${resultadosVisiveis.itens.map(r=>`<tr${r.itens?` class="linha-clicavel" onclick="verDetalheResultadoSimulado('${r.id}')" title="Abrir o resultado e o feedback desta prova"`:""}><td class="text-sm">${r.itens?`<button class="link-btn titulo-simulado" onclick="event.stopPropagation();verDetalheResultadoSimulado('${r.id}')">${escapeHtml(r.titulo||"—")}</button>`:escapeHtml(r.titulo||"—")}</td><td><span class="badge ${r.nota>=70?"badge-accent":r.nota>=50?"badge-amber":"badge-danger"}">${r.nota}%</span></td><td class="text-sm">${formatDataBR(r.data)}</td></tr>`).join("")}
+  `;
+}
+/* ---------- aba Histórico: todas as provas e simulados que a pessoa fez ----------
+   Simulado tem `simuladoId`; a prova antiga feita como simulado não tem (a
+   chave dela é o título), e é assim que os dois se separam. Os cabeçalhos
+   "Nota" e "Data" ordenam com um clique (de novo, inverte); "Nota" é a taxa de
+   acerto da tentativa. Rola de 15 em 15, como as outras abas. */
+function filtroHistoricoNotas(){
+  if(!state.filtroRota.historicoNotas) state.filtroRota.historicoNotas = {tipo:"todos", ordem:"data", dir:"desc"};
+  return state.filtroRota.historicoNotas;
+}
+function mudarFiltroHistoricoNotas(tipo){
+  filtroHistoricoNotas().tipo = tipo;
+  if(state.filtroRota.rolagem) delete state.filtroRota.rolagem["provas-historico"];
+  render();
+}
+function ordenarHistoricoNotas(coluna){
+  const f = filtroHistoricoNotas();
+  if(f.ordem===coluna) f.dir = f.dir==="desc" ? "asc" : "desc";
+  else { f.ordem = coluna; f.dir = "desc"; }
+  if(state.filtroRota.rolagem) delete state.filtroRota.rolagem["provas-historico"];
+  render();
+}
+function htmlHistoricoDeNotas(u){
+  const f = filtroHistoricoNotas();
+  const todos = db.resultadosSimulados.filter(r=>r.usuarioId===u.id);
+  const ehSimulado = r => !!r.simuladoId;
+  const nSim = todos.filter(ehSimulado).length, nProva = todos.length - nSim;
+  const lista = todos.filter(r=> f.tipo==="simulados" ? ehSimulado(r) : f.tipo==="provas" ? !ehSimulado(r) : true)
+    .sort((a,b)=>{
+      const c = f.ordem==="nota" ? (a.nota-b.nota) || (a.data||"").localeCompare(b.data||"") : (a.data||"").localeCompare(b.data||"") || (a.nota-b.nota);
+      return f.dir==="desc" ? -c : c;
+    });
+  const v = rolagemLista(lista, "provas-historico");
+  const seta = col => f.ordem===col ? (f.dir==="desc" ? " ▼" : " ▲") : "";
+  const cabecalho = (col, rotulo) => `<th><button class="link-btn" onclick="ordenarHistoricoNotas('${col}')" title="Ordenar por ${rotulo.toLowerCase()}; clique de novo para inverter" aria-sort="${f.ordem===col?(f.dir==="desc"?"descending":"ascending"):"none"}">${rotulo}${seta(col)}</button></th>`;
+  const media = lista.length ? Math.round(lista.reduce((t,r)=>t+r.nota,0)/lista.length) : null;
+  return `
+  <p class="text-sm muted mb-2">Todas as provas e simulados que você fez, com a nota de cada vez. Clique em <strong>Nota</strong> (taxa de acerto) ou <strong>Data</strong> para ordenar.</p>
+  <div class="flex gap-1 mb-2 quebra">
+    <button class="pill ${f.tipo==="todos"?"active":""}" onclick="mudarFiltroHistoricoNotas('todos')">Todos (${todos.length})</button>
+    <button class="pill ${f.tipo==="simulados"?"active":""}" onclick="mudarFiltroHistoricoNotas('simulados')">Só simulados (${nSim})</button>
+    <button class="pill ${f.tipo==="provas"?"active":""}" onclick="mudarFiltroHistoricoNotas('provas')">Só provas (${nProva})</button>
+  </div>
+  ${lista.length ? `<div class="card">
+    <div class="card-title mb-1">Suas notas${media!==null ? ` <span class="text-sm muted peso-400">· ${lista.length} feita(s) · média ${media}%</span>` : ""}</div>
+    <div class="table-wrap"><table><thead><tr><th>Prova</th><th>Tipo</th>${cabecalho("nota","Nota")}<th>Acertos</th>${cabecalho("data","Data")}</tr></thead><tbody>
+      ${v.itens.map(r=>`<tr${r.itens?` class="linha-clicavel" onclick="verDetalheResultadoSimulado('${r.id}')" title="Abrir o resultado e o feedback desta prova"`:""}><td class="text-sm">${r.itens?`<button class="link-btn titulo-simulado" onclick="event.stopPropagation();verDetalheResultadoSimulado('${r.id}')">${escapeHtml(r.titulo||"—")}</button>`:escapeHtml(r.titulo||"—")}</td><td class="text-sm muted">${ehSimulado(r)?"Simulado":"Prova"}</td><td><span class="badge ${classeBadgeNota(r.nota)}">${r.nota}%</span></td><td class="text-sm">${r.acertos!=null && r.total ? r.acertos+"/"+r.total : "—"}</td><td class="text-sm">${formatDataBR(r.data)}</td></tr>`).join("")}
     </tbody></table></div>
     <p class="text-xs muted mt-1">Clique na prova para abrir o resultado e o feedback questão a questão.</p>
-    ${botaoMostrarTudo(resultadosVisiveis, "provas-resultados", "resultados")}
-  </div>` : ""}
-  `;
+    ${sentinelaRolagem(v, "provas-historico", "redesenharProvasConteudo")}
+  </div>` : `<div class="empty-state">${todos.length ? "Nada com esse filtro." : "Você ainda não fez nenhuma prova nem simulado. Faça um nas outras abas e a nota aparece aqui."}</div>`}`;
 }
 // as duas rotas antigas continuam respondendo e levam à mesma tela
 function renderSimulados(){ return renderProvasESimulados(); }
@@ -940,6 +985,7 @@ function mudarFiltroProvas(campo, valor){
   else f[campo] = valor;
   // a instituição escolhida pode não ter prova do tipo novo
   if(campo==="tipo") f.banca = "";
+  if(state.filtroRota.rolagem) Object.keys(state.filtroRota.rolagem).filter(k=>k.startsWith("provas-antigas-")).forEach(k=>delete state.filtroRota.rolagem[k]);
   render();
 }
 function limparFiltrosProvas(){ state.filtroRota.provas = {banca:"", ano:"", areaId:"", ultimos5:false, tipo:""}; render(); }
@@ -1039,17 +1085,12 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
           ? "Nenhuma prova deste tipo com os filtros atuais."
           : `Ainda não há ${escapeHtml(info.nomeLongo.toLowerCase())} no banco (${escapeHtml(info.descricao)}). Quem tiver uma pode <button class="link-btn" onclick="navigate('importar-questoes')">enviar pela plataforma</button>, escolhendo o tipo de prova ${escapeHtml(info.nome)}.`}</div>`;
     }
-    /* Cinco provas por instituição (as mais recentes, que é a ordem da lista);
-       o resto abre no "Mostrar tudo". Busca ativa mostra tudo o que combina. */
-    const chaveAberta = "provas-antigas-"+tipo, porBanca = {};
-    const aberta = !!(state.filtroRota.listasAbertas||{})[chaveAberta] || !!buscaProvas().trim();
-    const visiveis = daSecao.filter(x=> aberta || (porBanca[x.g.banca] = (porBanca[x.g.banca]||0)+1) <= 5);
-    const contaBanca = {}; daSecao.forEach(x=>{ contaBanca[x.g.banca] = (contaBanca[x.g.banca]||0)+1; });
-    const temExcesso = Object.values(contaBanca).some(n=>n>5);
-    const botaoSecao = !buscaProvas().trim() && temExcesso ? botaoMostrarTudo({podeAbrir:true, aberta:!!(state.filtroRota.listasAbertas||{})[chaveAberta], total:daSecao.length}, chaveAberta, "provas") : "";
+    /* Todas as provas da seção, 15 por vez ao descer a página (rolagem
+       infinita); a busca ativa também mostra só o que combina. */
+    const visiveis = rolagemLista(daSecao, "provas-antigas-"+tipo);
     return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)} <span class="text-sm muted peso-400">· ${escapeHtml(info.descricao)} · ${daSecao.length} prova(s)</span></div>
       ${prioritaria ? `<p class="text-xs muted mb-1">${iconeSvg("star")} No ${escapeHtml(u.anoFaculdade)}, estas vêm primeiro: são as que consolidam o conhecimento do ano. As de residência continuam logo abaixo.</p>` : ""}
-      <div class="grid grid-3 mb-1">${visiveis.map(x=>cartaoDaProva(x.g, x.i)).join("")}</div>${botaoSecao}<div class="mb-2"></div>`;
+      <div class="grid grid-3 mb-1">${visiveis.itens.map(x=>cartaoDaProva(x.g, x.i)).join("")}</div>${sentinelaRolagem(visiveis, "provas-antigas-"+tipo, "redesenharProvasConteudo")}<div class="mb-2"></div>`;
   }).join("");
 
   return `

@@ -105,7 +105,7 @@ function painelTurmaLocal(){
     const area = r.areaId || "?"; g.porArea[area] = g.porArea[area] || [0, 0]; g.porArea[area][0]++; if(r.correta) g.porArea[area][1]++;
   };
   db.respostas.forEach(r => {
-    const u = getUsuario(r.usuarioId); if(!u || u.papel !== "aluno" || u.status !== "aprovado") return;
+    const u = getUsuario(r.usuarioId); if(!contaComoAluno(u) || u.status !== "aprovado") return;
     const ano = u.anoFaculdade || "(sem ano)", turma = u.grupoId || "";
     junta("ano|" + ano + "|" + turma, ano, turma, u.id, r); junta("ano|" + ano, ano, null, u.id, r); junta("todos", null, null, u.id, r);
   });
@@ -113,7 +113,7 @@ function painelTurmaLocal(){
     .map(g => Object.assign({}, g, { alunos: g.alunos.size }));
   const semanas = {};
   db.respostas.forEach(r => {
-    const u = getUsuario(r.usuarioId); if(!u || u.papel !== "aluno" || !r.data || r.data <= somarDias(hoje, -84)) return;
+    const u = getUsuario(r.usuarioId); if(!contaComoAluno(u) || !r.data || r.data <= somarDias(hoje, -84)) return;
     const d = new Date(r.data + "T00:00:00"); const seg = somarDias(r.data, -((d.getDay() + 6) % 7));
     const k = (u.anoFaculdade || "(sem ano)") + "|" + seg;
     const s = semanas[k] = semanas[k] || { ano: u.anoFaculdade || "(sem ano)", semana: seg, alunos: new Set(), respostas: 0, acertos: 0 };
@@ -214,8 +214,8 @@ function renderPainelDaTurma(){
   const dados = pd.dados;
   const semFuncaoMedias = dados.medias === null;
   const todasAsPessoas = dados.pessoas;
-  const equipe = todasAsPessoas.filter(a => a.papel !== "aluno");
-  const todos = todasAsPessoas.filter(a => a.papel === "aluno");
+  const equipe = todasAsPessoas.filter(a => !contaComoAluno(a));
+  const todos = todasAsPessoas.filter(a => contaComoAluno(a));
   const anos = [...new Set(todos.map(a => a.ano))].sort((a, b) => {
     const ia = CONFIG.anosFaculdade.indexOf(a), ib = CONFIG.anosFaculdade.indexOf(b);
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
@@ -400,11 +400,11 @@ function exportarPainelTurmaCsv(){
   const pd = state.filtroRota.painelDados; if(!pd || !pd.dados) return;
   const f = filtrosPainelTurma();
   const naEquipe = f.ano === ANO_EQUIPE_PAINEL;
-  const lista = pd.dados.pessoas.filter(a => naEquipe ? a.papel !== "aluno" : (a.papel === "aluno" && (f.ano === "todos" || a.ano === f.ano)));
+  const lista = pd.dados.pessoas.filter(a => naEquipe ? !contaComoAluno(a) : (contaComoAluno(a) && (f.ano === "todos" || a.ano === f.ano)));
   const campo = v => { const t = v === null || v === undefined ? "" : String(v); return /[";\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
   // só uso: o acerto de cada pessoa não sai nem na planilha
   const cab = ["nome","email","papel","ano","turma","status","ultima_atividade","dias_ativos_30d","questoes_30d","questoes_total","cartoes_30d","simulados","condicao"];
-  const linhas = lista.map(a => { const al = a.papel === "aluno" ? alertasDoAluno(a) : { ultima: [a.ultimaResposta, a.ultimoCartao].filter(Boolean).sort().pop() || "", condicao: null };
+  const linhas = lista.map(a => { const al = contaComoAluno(a) ? alertasDoAluno(a) : { ultima: [a.ultimaResposta, a.ultimoCartao].filter(Boolean).sort().pop() || "", condicao: null };
     return [a.nome, a.email, a.papel, a.ano, nomeDoGrupoPainel(a.grupoId), a.status, al.ultima || "", a.dias30, a.r30, a.respostas, a.cartoes30, a.simulados,
       al.condicao ? al.condicao.texto : ""].map(campo).join(";"); });
   // ";" e BOM: é o que o Excel em português abre sem assistente de importação

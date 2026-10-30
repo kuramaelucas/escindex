@@ -127,7 +127,7 @@ test("Suas notas: a linha da prova abre o detalhe e não há mais o botão 'ver 
       const ids = questoesParaEstudo(u.id).filter(q => !ehDissertativa(q)).slice(0, 2).map(q => q.id);
       db.resultadosSimulados.push({ id: "res-clique", usuarioId: u.id, titulo: "Prova clicável", nota: 50, acertos: 1, total: 2, data: hojeISO(),
         itens: ids.map(questaoId => ({ questaoId })), respostas: {}, tempos: {} });
-      navigate("simulados");
+      navigate("simulados"); mudarAbaProvas("historico");
       return document.body.innerHTML;
     });
     assert.doesNotMatch(html, /ver detalhes/);
