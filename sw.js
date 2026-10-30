@@ -22,10 +22,10 @@
    3. TOCAR NO AVISO ABRE O ESC na tela de Estudar.
 
    4. O CÓDIGO E OS DADOS NÃO SÃO BAIXADOS DE NOVO SE NÃO MUDARAM. Todo
-      arquivo de codigo/ e dados/ é pedido com ?v=cHASH ou ?v=dHASH (a versão
-      é AAAA-MM-DD.cHASH.dHASH): o endereço já muda quando o conteúdo muda,
+      arquivo de codigo/ e dados/ é pedido com ?v=cHASH (código) ou com o hash do próprio arquivo
+      (dados/, ESC_HASH_DADOS no index.html; a versão é AAAA-MM-DD.cHASH.dHASH): o endereço já muda quando o conteúdo muda,
       então a cópia guardada para aquele endereço nunca está velha e é
-      servida direto (cache-first), sem ir à rede. Isso poupa os ~16 MB de
+      servida direto (cache-first), sem ir à rede. Isso poupa os MB de
       dados a cada visita (e a cada versão nova do CÓDIGO, que não mexe nos
       dados). A página e o manifesto, que não têm hash, continuam rede
       primeiro. Ao assumir, o service worker apaga as cópias de hashes que
@@ -87,16 +87,21 @@ async function versionadoPrimeiro(req){
   const guardada = await cache.match(req);
   if(guardada) return guardada;
   const resp = await fetch(req);
-  if(resp && resp.ok && resp.type === "basic") cache.put(req, resp.clone());
+  if(resp && resp.ok && resp.type === "basic"){
+    // cada arquivo de dados/ tem hash próprio: ao guardar a cópia nova, a antiga
+    // do mesmo arquivo sai (ignoreSearch casa pelo caminho, sem o ?v=)
+    await cache.delete(req, { ignoreSearch: true });
+    await cache.put(req, resp.clone());
+  }
   return resp;
 }
-/* Fica só o que a versão atual pede: o hash da cópia (?v=) tem de ser um dos
-   dois da versão em que este service worker foi registrado. */
+/* Cópias de código de versões anteriores: o hash do código (?v=) tem de ser o
+   da versão deste service worker. Os de dados/ se renovam em versionadoPrimeiro. */
 async function podarVersionados(){
   const cache = await caches.open(CACHE_VERSIONADOS);
   for(const req of await cache.keys()){
-    const v = new URL(req.url).searchParams.get("v");
-    if(!HASHES_VIGENTES.has(v)) await cache.delete(req);
+    const url = new URL(req.url);
+    if(url.pathname.includes("/codigo/") && !HASHES_VIGENTES.has(url.searchParams.get("v"))) await cache.delete(req);
   }
 }
 
