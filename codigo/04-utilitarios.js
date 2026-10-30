@@ -432,7 +432,7 @@ function graficoBarrasVerticaisSvg(itens, opts){
   if(!comDados.length) return '<div class="text-xs muted">Você ainda não respondeu questões neste período.</div>';
 
   const alturaPlot = opts.altura || 170;
-  const padTopo = 22, padBaixo = opts.rotuloRotacionado ? 52 : 30, padEsq = 34, padDir = 8;
+  const padTopo = 34, padBaixo = opts.rotuloRotacionado ? 52 : 30, padEsq = 34, padDir = 8;
   // barras finas quando há muitos dias, largas quando são poucas categorias
   const larguraBarra = Math.min(opts.larguraMax || 46, Math.max(8, 620/itens.length - 6));
   const gap = Math.max(3, larguraBarra*0.28);
@@ -442,6 +442,11 @@ function graficoBarrasVerticaisSvg(itens, opts){
   // mostra o número dentro/acima da barra só quando cabe sem embolar
   const mostrarPct = larguraBarra >= 22;
 
+  // volume: 2 de 2 não pesa como 80 de 100. A cor da barra esmaece conforme o
+  // total do período fica pequeno perto do maior (piso de 20 questões, para
+  // um período inteiro de poucas questões também parecer fraco) e o número de
+  // questões vai escrito sob a porcentagem.
+  const referencia = Math.max(20, ...comDados.map(i=>i.total));
   const grade = [0,25,50,75,100].map(v=>{
     const y = padTopo + alturaPlot - (v/100)*alturaPlot;
     return '<line x1="'+padEsq+'" y1="'+y+'" x2="'+(w-padDir)+'" y2="'+y+'" stroke="var(--border)" stroke-width="1"'+(v===0?'':' stroke-dasharray="2 3"')+'/>'+
@@ -464,10 +469,12 @@ function graficoBarrasVerticaisSvg(itens, opts){
     // em 0% de acerto a barra fica inteiramente cinza: nenhum resquício de
     // verde, senão o gráfico sugere um acerto que não houve
     const verde = it.taxa>0 ? Math.max(2, alturaAcerto) : 0;
-    return '<g><title>'+titulo+'</title>'+
+    const opacidade = (0.35 + 0.65*Math.min(1, it.total/referencia)).toFixed(2);
+    return '<g><title>'+titulo+'</title><g opacity="'+opacidade+'">'+
       '<rect x="'+x+'" y="'+padTopo+'" width="'+larguraBarra+'" height="'+Math.max(0,alturaErro)+'" fill="var(--barra-erro)" rx="3"/>'+
-      (verde ? '<rect x="'+x+'" y="'+yAcerto+'" width="'+larguraBarra+'" height="'+verde+'" fill="var(--barra-acerto)" rx="3"/>' : "")+
-      (mostrarPct ? '<text x="'+(x+larguraBarra/2)+'" y="'+(padTopo-6)+'" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink-2)">'+it.taxa+'%</text>' : "")+
+      (verde ? '<rect x="'+x+'" y="'+yAcerto+'" width="'+larguraBarra+'" height="'+verde+'" fill="var(--barra-acerto)" rx="3"/>' : "")+'</g>'+
+      (mostrarPct ? '<text x="'+(x+larguraBarra/2)+'" y="'+(padTopo-17)+'" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink-2)">'+it.taxa+'%</text>'+
+        '<text x="'+(x+larguraBarra/2)+'" y="'+(padTopo-6)+'" text-anchor="middle" font-size="9" fill="var(--muted)">'+it.total+'q</text>' : "")+
       '</g>'+rotulo;
   }).join("");
 
@@ -480,6 +487,7 @@ function graficoBarrasVerticaisSvg(itens, opts){
     '<div class="legenda-barras">'+
       '<span><i style="background:var(--barra-acerto)"></i>acertos</span>'+
       '<span><i style="background:var(--barra-erro)"></i>erros</span>'+
+      '<span class="muted">barra mais clara = menos questões (o número abaixo da % é o total)</span>'+
       (mostrarPct?'':'<span class="muted">passe o dedo ou o mouse numa barra para ver o número</span>')+
     '</div>';
 }
