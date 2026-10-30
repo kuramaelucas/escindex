@@ -170,6 +170,13 @@ function sairDaSessao(){
   // sair NÃO joga a fila fora: ela fica guardada e a pessoa volta exatamente
   // de onde parou, na mesma sequência de questões (ver salvarSessaoEmAndamento)
   salvarSessaoEmAndamento();
+  // tudo respondido = conjunto terminado: "Continuar" não teria o que oferecer
+  // (Finalizar só abriria o resumo), então ele já vai para o histórico. A
+  // guarda de cada resposta não pode fazer isso: a pessoa ainda está na tela.
+  if(state.sessaoAtual && !state.sessaoAtual.somenteLeitura && !state.sessaoAtual.finalizada && state.sessaoAtual.tipo!=="simulado" && !indicesEmBranco(state.sessaoAtual).length){
+    registrarSessaoNoHistorico(state.sessaoAtual);
+    limparSessaoEmAndamento();
+  }
   state.sessaoAtual=null;
   navigate(eraHistorico?"historico":"estudar");
 }
@@ -230,15 +237,17 @@ function arquivarSessoesVencidas(){
   let mudou = false;
   Object.keys(mapa).forEach(usuarioId => {
     const g = mapa[usuarioId];
-    if(!sessaoVencida(g)) return;
+    const completa = sessaoGuardadaCompleta(g);
+    if(!sessaoVencida(g) && !completa) return;
     const itens = g.itens ? itensRespondidosDaSessao(g) : [];
     if(itens.length && !(db.sessoes || []).some(x => x.id === g.id)){
       if(!db.sessoes) db.sessoes = [];
       const registro = {
         id: g.id, usuarioId, tipo: g.tipo || "pratica", data: g.salvaEm,
         total: itens.length, acertos: itens.filter(i => i.correta).length,
-        itens, naoTerminada: true, planejadas: g.itens.length,
+        itens, planejadas: g.itens.length,
       };
+      if(!completa) registro.naoTerminada = true;
       db.sessoes.push(registro);
       nuvemRegistrar({sessaoConcluida: registro});
     }
@@ -248,11 +257,16 @@ function arquivarSessoesVencidas(){
   });
   if(mudou) saveState();
 }
+/* Guardada com todas as questões respondidas (de versões em que sair não
+   fechava o conjunto): não há o que continuar, vira histórico na carga. */
+function sessaoGuardadaCompleta(g){
+  return !!(g && g.itens && g.itens.length && g.itens.every((_, i) => (g.respostasSessao || [])[i]));
+}
 function sessaoEmAndamentoDe(usuario){
   if(!usuario || !db.sessoesEmAndamento) return null;
   const guardada = db.sessoesEmAndamento[usuario.id];
   if(!guardada || !guardada.itens || !guardada.itens.length) return null;
-  if(sessaoVencida(guardada)) return null;
+  if(sessaoVencida(guardada) || sessaoGuardadaCompleta(guardada)) return null;
   // Questão excluída ou desativada desde então some da fila. As respostas
   // andam pela POSIÇÃO na fila, então elas precisam sair junto: tirar a
   // questão 2 e deixar as respostas como estavam faria a resposta da 3
