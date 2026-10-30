@@ -164,7 +164,7 @@ test("Painel da Turma lê as funções do banco, separa por ano, mostra a equipe
     cartoes_total: 0, cartoes_30d: 0, ultimo_cartao: null, simulados: 0 });
   const { pagina, contexto, erros } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado", "professor"), sessao, rpc: {
     painel_turma: [pessoa("a1", "Ana", "3º ano", 40, hoje), pessoa("a2", "Beto", "4º ano", 0, null), pessoa("a3", "Caio", "4º ano", 20, hoje),
-      pessoa("p1", "Doutora Admin", "6º ano", 12, hoje, "admin")],
+      pessoa("p1", "Doutora Admin", "6º ano", 12, hoje, "admin"), pessoa("p2", "Prof Teste", "6º ano", 5, hoje, "professor")],
     // só o 4º ano tem alunos suficientes para ter média; o 3º ano (1 aluno) não vem do banco
     acerto_por_turma: [{ ano_faculdade: "4º ano", grupo_id: null, alunos: 3, respostas: 100, acertos: 62, respostas_30d: 40, acertos_30d: 20, por_area: { "area-cm": [100, 62] } }],
     atividade_por_semana: [{ ano_faculdade: "3º ano", semana: hoje, alunos_ativos: 1, respostas: 40, acertos: null }],
@@ -182,8 +182,9 @@ test("Painel da Turma lê as funções do banco, separa por ano, mostra a equipe
   assert.match(texto, /3º ano \(1\)/);
   assert.match(texto, /4º ano \(2\)/);
   assert.match(texto, /Equipe \(1\)/);
+  assert.match(texto, /6º ano \(1\)/, "o administrador conta como aluno do ano dele");
   assert.match(texto, /nunca estudou/);
-  assert.doesNotMatch(texto, /Doutora Admin/, "a equipe fica na própria aba");
+  assert.doesNotMatch(texto, /Prof Teste/, "a equipe fica na própria aba");
   // o acerto de cada pessoa não aparece: só a média do ano, e onde há alunos suficientes
   assert.doesNotMatch(texto, /Acerto geral|Menor acerto|acerto caiu/);
   const cabecalhos = await pagina.$$eval("#app table thead th", ths => ths.map(t => t.innerText));
@@ -196,8 +197,8 @@ test("Painel da Turma lê as funções do banco, separa por ano, mostra a equipe
   assert.match(await pagina.innerText("#app"), /menos de 3 alunos com resposta/);
   await pagina.evaluate(() => mudarFiltroPainelTurma("ano", "equipe"));
   const daEquipe = await pagina.innerText("#app");
-  assert.match(daEquipe, /Doutora Admin/);
-  assert.match(daEquipe, /Administrador/);
+  assert.match(daEquipe, /Prof Teste/);
+  assert.doesNotMatch(daEquipe, /Doutora Admin/);
   assert.doesNotMatch(daEquipe, /Ana|Beto/);
   assert.deepEqual(erros, []);
   await contexto.close();

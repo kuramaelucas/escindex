@@ -275,6 +275,7 @@ test("a prova dissertativa aparece em Provas antigas, só para praticar (sem sim
   await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
   const r = await pagina.evaluate(() => {
     fazerLoginDemo("aluno"); navigate("provas-antigas");
+    state.filtroRota.rolagem = { "provas-antigas-graduacao": 9999, "provas-antigas-residencia": 9999 }; render();
     const g = (state.filtroRota.provasGrupos || []).find(x => x.banca === "UNICAMP (dissertativa)");
     const cartao = [...document.querySelectorAll(".prova-card")].find(c => c.textContent.includes("UNICAMP (dissertativa)"));
     return { existe: !!g, dissertativa: g && g.dissertativa, total: g && g.ids.length,

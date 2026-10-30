@@ -51,6 +51,7 @@ function renderPerfil(){
     </div>
   </div>` : ""}
   ${renderCardModoPlataforma(u)}
+  ${renderCardIaDuvidas(u)}
   ${renderCardAjuda()}
   ${renderCardInstalarApp()}
   ${renderCardSenha()}

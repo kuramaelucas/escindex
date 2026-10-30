@@ -387,6 +387,7 @@ function desenharTela(conteudoHtml){
   ativarGestoDeArrastar();
   // a barra fina de questões (sessão e simulado) mostra a questão atual no meio
   centralizarBarraDeQuestoes();
+  requestAnimationFrame(verificarRolagemInfinita);
 }
 /* Reinicia a animação de entrada: sem tirar e repor a classe (com um toque no
    layout no meio), o navegador entende que nada mudou e não toca nada. */

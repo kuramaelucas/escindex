@@ -131,6 +131,36 @@ function alternarListaAberta(chave){
   render();
 }
 
+/* Rolagem infinita: a lista mostra 15 e, ao chegar perto do fim da página,
+   acrescenta mais 15 sozinha — sem botão "mostrar mais" nem página seguinte,
+   e sem esconder o resto: descer sempre leva a tudo. A sentinela é um
+   marcador no fim da lista; `verificarRolagemInfinita` roda a cada rolagem e
+   depois de cada desenho de tela (lista curta já nasce cheia até passar do
+   fundo da janela). `redesenhar` é o nome da função que refaz só a parte da
+   tela, para a posição da rolagem não voltar ao topo. */
+const PASSO_ROLAGEM_INFINITA = 15;
+function rolagemLista(lista, chave, passo){
+  const mapa = state.filtroRota.rolagem = state.filtroRota.rolagem || {};
+  const n = mapa[chave] || passo || PASSO_ROLAGEM_INFINITA;
+  return { itens: lista.slice(0, n), total: lista.length, restam: Math.max(0, lista.length - n) };
+}
+function sentinelaRolagem(l, chave, redesenhar){
+  return l.restam ? `<div class="rolagem-sentinela text-xs muted mt-1" data-rolagem="${escapeHtml(chave)}" data-redesenhar="${redesenhar||""}" role="status">Mostrando ${l.itens.length} de ${l.total} — o resto carrega ao descer…</div>` : "";
+}
+function verificarRolagemInfinita(){
+  const alvo = document.querySelector(".rolagem-sentinela");
+  if(!alvo) return;
+  if(alvo.getBoundingClientRect().top > window.innerHeight + 400) return;
+  const mapa = state.filtroRota.rolagem = state.filtroRota.rolagem || {};
+  const chave = alvo.dataset.rolagem;
+  mapa[chave] = (mapa[chave] || PASSO_ROLAGEM_INFINITA) + PASSO_ROLAGEM_INFINITA;
+  const fn = alvo.dataset.redesenhar;
+  if(fn && typeof window[fn] === "function") window[fn](); else render();
+  requestAnimationFrame(verificarRolagemInfinita);
+}
+document.addEventListener("scroll", () => requestAnimationFrame(verificarRolagemInfinita), true);
+window.addEventListener("resize", () => requestAnimationFrame(verificarRolagemInfinita));
+
 /* A data "AAAA-MM-DD" do DIA DE QUEM ESTÁ USANDO, no relógio local.
    toISOString() dá a data em UTC — no Brasil (UTC−3), a partir das 21h ela
    já é a de amanhã: a meta do dia zerava às nove da noite, a sequência de
@@ -493,11 +523,15 @@ function frasePoucosAlunosNoSimulado(chave){
     ` isto ${nuvemConectado() ? "na turma" : "neste navegador"}` +
     (n ? `; faltam ${falta} para liberar os números` : "") + ".";
 }
+/* O administrador também estuda: entra nas contas da turma (gráfico de todos
+   os alunos, percentil, média do ano e da turma dele) como qualquer aluno.
+   Professor e residente continuam fora — são equipe. */
+function contaComoAluno(u){ return !!u && (u.papel === "aluno" || u.papel === "admin"); }
 function notasAnonimasDoSimulado(chave){
   const primeiraPorAluno = new Map();
   db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).forEach(r => {
     const u = getUsuario(r.usuarioId);
-    if(u && u.papel !== "aluno") return;
+    if(u && !contaComoAluno(u)) return;
     const antes = primeiraPorAluno.get(r.usuarioId);
     if(!antes || (r.data || "") < (antes.data || "")) primeiraPorAluno.set(r.usuarioId, r);
   });

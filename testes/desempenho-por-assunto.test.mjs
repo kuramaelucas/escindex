@@ -86,8 +86,8 @@ test("Teste de Progresso é uma banca só; as provas se distinguem por 2023.1 e 
       const tp = db.questoes.filter(q => /^Teste de Progresso/.test(q.banca));
       navigate("provas-antigas");
       mudarFiltroProvas("tipo", "graduacao");
-      // só as 5 provas mais recentes de cada instituição aparecem; as outras abrem no "Mostrar tudo"
-      alternarListaAberta("provas-antigas-graduacao");
+      // as provas aparecem de 15 em 15 ao descer a página; aqui pedimos todas de uma vez
+      state.filtroRota.rolagem = { "provas-antigas-graduacao": 9999 }; render();
       const cartoes = [...document.querySelectorAll(".prova-card .prova-ano")].map(e => e.textContent.trim());
       return { bancas: [...new Set(tp.map(q => q.banca))], cartoes, rotulo: anoDaProva(tp.find(q => q.ano === 2023 && q.semestre === 1)) };
     });
