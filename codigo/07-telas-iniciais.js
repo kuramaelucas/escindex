@@ -483,10 +483,15 @@ function dadosDoInicioAluno(u){
   const respondidasHoje = questoesRespondidasHoje(u.id);
   const meta = metaDoUsuario(u);
   const seq = sequenciaDiasEstudo(u.id);
-  const totalRespostas = db.respostas.filter(r=>r.usuarioId===u.id).length;
-  const totalAcertos = db.respostas.filter(r=>r.usuarioId===u.id && r.correta).length;
+  let totalRespostas = 0, totalAcertos = 0;
+  for(const r of db.respostas){
+    if(r.usuarioId!==u.id) continue;
+    totalRespostas++;
+    if(r.correta) totalAcertos++;
+  }
   const revisarHoje = assuntosParaRevisarHoje(u.id);
-  const sugestoes = sugestoesDeMelhoria(u.id, 4);
+  // as sugestões só são desenhadas no modo estatístico: no resumido o cálculo seria jogado fora
+  const sugestoes = modoResumido() ? [] : sugestoesDeMelhoria(u.id, 4);
   const calibracao = calibracaoConfianca(u.id);
   const flashVencidos = resumoFlashcards(u.id).vencidos;
   const emAndamento = sessaoEmAndamentoDe(u);
@@ -495,6 +500,9 @@ function dadosDoInicioAluno(u){
 function renderInicioAluno(u){
   const {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento} = dadosDoInicioAluno(u);
   const resumido = modoResumido();
+  // no resumido o botão de destaque segue o dia: meta batida e cartões vencidos → a revisão rápida passa à frente
+  const metaBatida = respondidasHoje >= meta;
+  const revisaoEmDestaque = resumido && metaBatida && flashVencidos > 0;
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p>
   ${bloco && subdivisoesDoBloco(bloco).length ? `<details class="detalhes-bloco text-sm muted" ${secaoRecolhivelAberta("inicio-periodo-dividido", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('inicio-periodo-dividido', this.open)"><summary>${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · ver o período dividido" : "Ver o período dividido"}</summary>Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</details>` : ""}</div>
@@ -502,27 +510,27 @@ function renderInicioAluno(u){
     <div class="cresce-240">
         <div class="card-title">Pronto para estudar?</div>
         ${soNoEstatistico(`<div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>`)}
-        <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje</div>
+        <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje${resumido && metaBatida ? " · meta batida" : ""}</div>
     </div>
     <div class="linha-progresso mt-1">
       <div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
       <div class="acoes-inicio">
        <div class="flex gap-1 quebra">
         ${emAndamento ? `<button class="btn btn-secondary" onclick="retomarSessaoEmAndamento()" title="${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}">${iconeSvg("refresh")} Continuar última sessão</button>` : ""}
-        <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
+        <button class="btn ${metaBatida && resumido ? "btn-secondary" : "btn-primary"}" onclick="iniciarSessaoRecomendada()">${metaBatida && resumido ? "Estudar mais" : "Começar agora"}</button>
        </div>
        <button class="link-discreto" onclick="abrirSessaoPorTempo()" title="Diga quanto tempo você tem e a sessão se monta no seu ritmo">Tempo contado?</button>
       </div>
     </div>
     <div class="indicadores">
       <span class="indicador"><span class="stat-value">${seq}</span><span class="stat-label">dia(s) seguidos estudando</span></span>
-      <span class="indicador"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral (${totalRespostas} questões)</span></span>
+      <span class="indicador"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral${resumido ? "" : ` (${totalRespostas} questões)`}</span></span>
       <span class="indicador"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">assunto(s) para revisar hoje</span></span>
       ${resumido && flashVencidos ? `<span class="indicador"><span class="stat-value">${flashVencidos}</span><span class="stat-label">cartão(ões) vencido(s)</span></span>` : ""}
     </div>
     ${resumido ? `<div class="acoes-apoio">
       ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-      <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida</button>
+      <button class="btn ${revisaoEmDestaque ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisão rápida${flashVencidos ? ` (${flashVencidos})` : ""}</button>
     </div>` : ""}
     ${htmlCardProvaAlvo(u)}
   </div>
@@ -674,7 +682,7 @@ function renderEstudar(){
           <div class="stat-value" style="font-size:var(--fs-xl)">${feitasHoje}/${meta}</div>
           <div class="stat-label">questões hoje${seq?" · "+seq+" dia(s) seguidos":""}</div>
         </div>
-        <button class="btn btn-secondary btn-sm" onclick="abrirModalMeta()">${iconeSvg("target")} Ajustar meta</button>
+        ${soNoEstatistico(`<button class="btn btn-secondary btn-sm" onclick="abrirModalMeta()">${iconeSvg("target")} Ajustar meta</button>`)}
       </div>
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(feitasHoje,meta))}%"></div></div>
@@ -703,12 +711,12 @@ function renderEstudar(){
     </div>
   </div>
   ${soNoEstatistico(htmlCardPrioridadesEstudar(u))}
-  ${htmlCardTrilhaSugerida(u)}
+  ${soNoEstatistico(htmlCardTrilhaSugerida(u))}
   <div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">
         <div class="card-title mb-02">Monte sua própria lista</div>
-        <p class="text-sm muted">Um conjunto só seu, do jeito que você escolher: por área, especialidade, assunto, tipo de prova, instituição, ano ou situação (erros, favoritas, ainda não respondidas).</p>
+        <p class="text-sm muted">${modoResumido() ? "Um conjunto só seu: por área, assunto, prova, ano ou situação." : "Um conjunto só seu, do jeito que você escolher: por área, especialidade, assunto, tipo de prova, instituição, ano ou situação (erros, favoritas, ainda não respondidas)."}</p>
       </div>
       <button class="btn ${listaAberta?"btn-secondary":"btn-primary"}" id="botaoMontarLista" aria-expanded="${listaAberta}" aria-controls="montagemLista" onclick="alternarMontagemLista()">${listaAberta ? "Fechar a montagem" : iconeSvg("plus")+" Criar minha lista"}</button>
     </div>
