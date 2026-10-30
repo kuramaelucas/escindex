@@ -280,7 +280,13 @@ function copiarPromptDuvida(){
 }
 function abrirIaDoUsuario(){
   const ia = iaEscolhidaDoUsuario(usuarioAtual());
-  window.open(ia.url, "_blank", "noopener");
+  // No celular o link da IA é entregue ao aplicativo instalado; com "_blank" o
+  // navegador abria uma aba nova antes disso e ela ficava aberta depois do app.
+  // Navegando na própria aba não sobra aba; o prompt já foi copiado e o estado
+  // fica salvo, então voltar à plataforma não perde nada.
+  const celular = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+  if(celular) window.location.href = ia.url;
+  else window.open(ia.url, "_blank", "noopener");
 }
 function abrirPromptDuvida(qid){
   const prompt = gerarPromptDuvida(getQuestao(qid));
