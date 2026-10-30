@@ -187,14 +187,103 @@ function gerarPromptDuvida(q){
   regraDeParametrosObjetivos()+"\n"+
   regraDeFisiopatologiaEEpidemiologia();
 }
+/* ---------- para onde o aluno leva o prompt ----------
+   O prompt de dúvida tem 3,5 a 9,5 mil caracteres (13 mil+ na URL), mais do
+   que os sites de IA aceitam de forma confiável num endereço. Por isso o
+   caminho é sempre o mesmo e nunca corta nada: copiar o prompt inteiro e só
+   então abrir a IA, para a pessoa colar. As quatro conhecidas já vêm
+   prontas; quem usa outra cadastra o endereço dela em Perfil. */
+const IAS_PARA_DUVIDA = [
+  {id:"chatgpt", nome:"ChatGPT", url:"https://chatgpt.com/"},
+  {id:"claude", nome:"Claude", url:"https://claude.ai/new"},
+  {id:"gemini", nome:"Gemini", url:"https://gemini.google.com/app"},
+  {id:"perplexity", nome:"Perplexity", url:"https://www.perplexity.ai/"},
+];
+// só endereço web (https ou http): o campo é do aluno e vira link que abre numa aba
+function urlDeIaValida(texto){
+  try{ const u = new URL(String(texto||"").trim()); return (u.protocol==="https:" || u.protocol==="http:") ? u.href : null; }
+  catch(e){ return null; }
+}
+function iaPropriaDoUsuario(u){
+  const p = u && u.iaPropria;
+  return p && p.nome && urlDeIaValida(p.url) ? {id:"propria", nome:String(p.nome), url:urlDeIaValida(p.url)} : null;
+}
+function opcoesDeIa(u){ const p = iaPropriaDoUsuario(u); return p ? [...IAS_PARA_DUVIDA, p] : IAS_PARA_DUVIDA; }
+// sem escolha feita, o ChatGPT (o mais conhecido) é o ponto de partida; a troca fica à vista
+function iaEscolhidaDoUsuario(u){
+  const lista = opcoesDeIa(u);
+  return lista.find(x=>x.id===(u && u.iaPreferida)) || lista[0];
+}
+function escolherIaPreferida(id){
+  const u = usuarioAtual(); if(!u || !opcoesDeIa(u).some(x=>x.id===id)) return;
+  u.iaPreferida = id; saveState();
+  const ia = iaEscolhidaDoUsuario(u);
+  const botao = document.getElementById("botaoAbrirIa");
+  if(botao) botao.innerHTML = iconeSvg("chevron-r") + " 2. Abrir " + escapeHtml(ia.nome);
+  const sel = document.getElementById("iaDoPrompt"); if(sel) sel.value = id;
+  if(state.route==="perfil") render();
+}
+function salvarIaPropria(){
+  const u = usuarioAtual();
+  const nome = document.getElementById("iaPropriaNome").value.trim();
+  const url = urlDeIaValida(document.getElementById("iaPropriaUrl").value);
+  if(!nome){ toast("Dê um nome para a sua IA (por exemplo, DeepSeek).", "err"); return; }
+  if(!url){ toast("Cole o endereço completo da IA, começando por https://", "err"); return; }
+  u.iaPropria = {nome: nome.slice(0, 30), url}; u.iaPreferida = "propria"; saveState();
+  toast(nome + " cadastrada e escolhida."); render();
+}
+function removerIaPropria(){
+  const u = usuarioAtual(); delete u.iaPropria;
+  if(u.iaPreferida==="propria") delete u.iaPreferida;
+  saveState(); render();
+}
+function renderCardIaDuvidas(u){
+  const ia = iaEscolhidaDoUsuario(u), propria = iaPropriaDoUsuario(u);
+  return `<div class="card mt-2" style="max-width:460px">
+    <div class="card-title">IA para tirar dúvidas</div>
+    <p class="text-sm muted">Em cada questão, <em>Tirar dúvida com IA</em> prepara um prompt completo. Escolha aqui a IA que abre depois de você copiá-lo.</p>
+    <div class="field mt-1">
+      ${opcoesDeIa(u).map(o=>`<label class="checkbox-row"><input type="radio" name="iaPreferida" ${o.id===ia.id?"checked":""} onchange="escolherIaPreferida('${o.id}')"> ${escapeHtml(o.nome)}${o.id==="propria"?` <span class="muted text-xs">(a sua)</span>`:""}</label>`).join("")}
+    </div>
+    <details class="mt-1">
+      <summary class="text-sm">${propria ? "Trocar a minha IA" : "Uso outra IA — cadastrar"}</summary>
+      <ol class="text-sm muted mt-1" style="padding-left:1.2rem">
+        <li>Abra no navegador a IA que você prefere (DeepSeek, Copilot, Grok, Maritaca…).</li>
+        <li>Copie o endereço da barra do navegador, na página onde você começa uma conversa nova.</li>
+        <li>Cole abaixo, dê um nome e salve. Pronto: ela passa a ser a escolhida.</li>
+      </ol>
+      <div class="field mt-1"><label class="label" for="iaPropriaNome">Nome</label><input class="input" id="iaPropriaNome" maxlength="30" value="${escapeHtml(propria?propria.nome:"")}" placeholder="Ex.: DeepSeek"></div>
+      <div class="field"><label class="label" for="iaPropriaUrl">Endereço</label><input class="input" id="iaPropriaUrl" value="${escapeHtml(propria?propria.url:"")}" placeholder="https://chat.deepseek.com/"></div>
+      <div class="flex gap-1 quebra"><button class="btn btn-primary btn-sm" onclick="salvarIaPropria()">Salvar minha IA</button>${propria?`<button class="btn btn-ghost btn-sm" onclick="removerIaPropria()">Remover</button>`:""}</div>
+    </details>
+  </div>`;
+}
+function copiarPromptDuvida(){
+  copiarTexto(document.getElementById("promptDuvidaTexto").value, "Prompt copiado! Agora abra a IA e cole (Ctrl+V).");
+  const b = document.getElementById("botaoAbrirIa");
+  if(b){ b.disabled = false; b.title = ""; }
+  const c = document.getElementById("passoCopiado"); if(c) c.hidden = false;
+}
+function abrirIaDoUsuario(){
+  const ia = iaEscolhidaDoUsuario(usuarioAtual());
+  window.open(ia.url, "_blank", "noopener");
+}
 function abrirPromptDuvida(qid){
   const prompt = gerarPromptDuvida(getQuestao(qid));
+  const u = usuarioAtual(), ia = iaEscolhidaDoUsuario(u);
   abrirModal(`
     ${cabecalhoJanela("Prompt para tirar dúvida com uma IA")}
-    <p class="text-sm muted mb-2">Copie o texto abaixo e cole em qualquer assistente de IA (Claude, ChatGPT, Gemini...) para obter uma segunda opinião, com evidências, sobre esta questão.</p>
-    <textarea class="textarea textarea-mono" style="min-height:280px" readonly id="promptDuvidaTexto">${escapeHtml(prompt)}</textarea>
-    <div class="flex gap-1 mt-2">
-      <button class="btn btn-primary" onclick="copiarTexto(document.getElementById('promptDuvidaTexto').value,'Prompt copiado! Cole em uma IA de sua confiança.')">${iconeSvg("search")} Copiar prompt</button>
-      <button class="btn btn-secondary" onclick="fecharModal()">Fechar</button>
+    <p class="text-sm muted mb-2">Dois passos: <strong>copie o prompt</strong> e, em seguida, <strong>abra a IA</strong> e cole (Ctrl+V). O botão da IA só libera depois de copiar, para você não abrir a IA de mãos vazias.</p>
+    <textarea class="textarea textarea-mono" style="min-height:260px" readonly id="promptDuvidaTexto">${escapeHtml(prompt)}</textarea>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-primary" onclick="copiarPromptDuvida()">${iconeSvg("search")} 1. Copiar prompt</button>
+      <button class="btn btn-secondary" id="botaoAbrirIa" disabled title="Copie o prompt primeiro" onclick="abrirIaDoUsuario()">${iconeSvg("chevron-r")} 2. Abrir ${escapeHtml(ia.nome)}</button>
+      <button class="btn btn-ghost" onclick="fecharModal()">Fechar</button>
+    </div>
+    <div class="text-sm mt-1" id="passoCopiado" hidden>${iconeSvg("check")} Prompt copiado. Agora é só abrir a IA e colar.</div>
+    <div class="flex gap-1 mt-2 quebra" style="align-items:center">
+      <label class="text-xs muted" for="iaDoPrompt">IA:</label>
+      <select class="select" id="iaDoPrompt" style="max-width:220px" onchange="escolherIaPreferida(this.value)">${opcoesDeIa(u).map(o=>`<option value="${o.id}" ${o.id===ia.id?"selected":""}>${escapeHtml(o.nome)}</option>`).join("")}</select>
+      <button class="link-btn text-xs" onclick="fecharModal(); navigate('perfil')">usar outra IA (cadastrar no Perfil)</button>
     </div>`, "lg");
 }
