@@ -159,10 +159,17 @@ function regraDeFisiopatologiaEEpidemiologia(){
 }
 
 /* ---------- prompt pronto para tirar dúvida com uma IA ---------- */
-function gerarPromptDuvida(q){
+/* A dúvida do aluno entra logo depois da questão e vem pedida em primeiro
+   lugar: sem isso ela se perde no meio das instruções gerais, e a pergunta
+   que ele fez é justamente a que ele quer ver respondida. */
+function blocoDuvidaEspecifica(duvida){
+  const d = String(duvida||"").trim();
+  return d ? "--- MINHA DÚVIDA ESPECÍFICA ---\n"+d+"\n--- FIM DA DÚVIDA ---\nResponda PRIMEIRO a essa dúvida, de forma direta e com base em fontes primárias; depois siga a análise estruturada abaixo.\n\n" : "";
+}
+function gerarPromptDuvida(q, duvida){
   if(ehDissertativa(q)) return "Aja como um médico revisor especialista em provas de residência médica no Brasil.\n\n"+
     "Analise CRITICAMENTE a questão dissertativa abaixo, com base em diretrizes e fontes primárias atuais, e diga se a resposta esperada está correta, completa e atualizada.\n\n"+
-    "--- QUESTÃO ("+q.banca+", "+anoDaProva(q)+") ---\n"+q.enunciado+"\n\nResposta esperada pela banca: "+(q.respostaEsperada||"(não informada)")+"\nJustificativa atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+
+    "--- QUESTÃO ("+q.banca+", "+anoDaProva(q)+") ---\n"+q.enunciado+"\n\nResposta esperada pela banca: "+(q.respostaEsperada||"(não informada)")+"\nJustificativa atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+blocoDuvidaEspecifica(duvida)+
     "Responda de forma estruturada:\n1) A resposta esperada está correta e completa? O que falta ou está desatualizado?\n2) Quais pontos uma resposta de nota máxima precisa trazer?\n3) Quais diretrizes/referências (com nome e, se souber, ano) sustentam isso?\n\n"+
     regraDeParametrosObjetivos();
   const alts = q.alternativas.map(a=>a.id+") "+a.texto).join("\n");
@@ -170,7 +177,7 @@ function gerarPromptDuvida(q){
   "Analise CRITICAMENTE a questão abaixo. Baseie-se em evidências científicas atuais e em fontes primárias: diretrizes e consensos de sociedades de especialidade, protocolos e PCDT do Ministério da Saúde, revisões sistemáticas e artigos originais. NÃO use nem reproduza resoluções de sites de questões, bancos comerciais ou cursinhos. NÃO invente referências ou dados — se não souber ou não tiver certeza de algo, diga isso explicitamente em vez de arriscar uma resposta incorreta.\n\n"+
   "Considere também a possibilidade de a questão estar mal formulada, ambígua, desatualizada, ou de o gabarito considerado estar incorreto — isso acontece de verdade em provas de residência e costuma gerar recursos administrativos.\n\n"+
   "--- QUESTÃO ("+q.banca+", "+anoDaProva(q)+") ---\n"+q.enunciado+"\n\nAlternativas:\n"+alts+"\n\n"+
-  "Gabarito considerado correto pela plataforma: "+q.gabarito+"\nExplicação atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+
+  "Gabarito considerado correto pela plataforma: "+q.gabarito+"\nExplicação atual da plataforma: "+q.explicacaoGeral+"\n--- FIM DA QUESTÃO ---\n\n"+blocoDuvidaEspecifica(duvida)+
   "Responda de forma estruturada:\n"+
   "1) Você concorda com o gabarito? Justifique clinicamente.\n"+
   "2) Há alguma ambiguidade, erro ou desatualização na questão ou nas alternativas? Se sim, qual e por quê?\n"+
@@ -258,6 +265,13 @@ function renderCardIaDuvidas(u){
     </details>
   </div>`;
 }
+// a dúvida muda o prompt: o que já tinha sido copiado deixa de valer, então o botão da IA volta a esperar uma nova cópia
+function digitarDuvidaEspecifica(qid, texto){
+  document.getElementById("promptDuvidaTexto").value = gerarPromptDuvida(getQuestao(qid), texto);
+  const b = document.getElementById("botaoAbrirIa");
+  if(b){ b.disabled = true; b.title = "Copie o prompt primeiro"; }
+  const c = document.getElementById("passoCopiado"); if(c) c.hidden = true;
+}
 function copiarPromptDuvida(){
   copiarTexto(document.getElementById("promptDuvidaTexto").value, "Prompt copiado! Agora abra a IA e cole (Ctrl+V).");
   const b = document.getElementById("botaoAbrirIa");
@@ -274,7 +288,13 @@ function abrirPromptDuvida(qid){
   abrirModal(`
     ${cabecalhoJanela("Prompt para tirar dúvida com uma IA")}
     <p class="text-sm muted mb-2">Dois passos: <strong>copie o prompt</strong> e, em seguida, <strong>abra a IA</strong> e cole (Ctrl+V). O botão da IA só libera depois de copiar, para você não abrir a IA de mãos vazias.</p>
-    <textarea class="textarea textarea-mono" style="min-height:260px" readonly id="promptDuvidaTexto">${escapeHtml(prompt)}</textarea>
+    <div class="field">
+      <label class="label" for="duvidaEspecifica">Sua dúvida específica <span class="muted peso-400">(opcional)</span></label>
+      <textarea class="textarea" id="duvidaEspecifica" rows="3" maxlength="1500" placeholder="Ex.: Por que não é a alternativa C, se o paciente tem febre há 3 dias?" oninput="digitarDuvidaEspecifica('${qid}', this.value)"></textarea>
+      <div class="hint">Ela entra no prompt logo depois da questão, e a IA responde a ela primeiro.</div>
+    </div>
+    <label class="label" for="promptDuvidaTexto">Prompt que será copiado</label>
+    <textarea class="textarea textarea-mono" style="min-height:220px" readonly id="promptDuvidaTexto">${escapeHtml(prompt)}</textarea>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary" onclick="copiarPromptDuvida()">${iconeSvg("search")} 1. Copiar prompt</button>
       <button class="btn btn-secondary" id="botaoAbrirIa" disabled title="Copie o prompt primeiro" onclick="abrirIaDoUsuario()">${iconeSvg("chevron-r")} 2. Abrir ${escapeHtml(ia.nome)}</button>

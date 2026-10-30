@@ -20,6 +20,16 @@ test("botão da IA nasce desativado, libera ao copiar e abre a IA escolhida (ou 
     assert.match(await pagina.innerText("#botaoAbrirIa"), /ChatGPT/);
     await pagina.click("text=1. Copiar prompt");
     assert.equal(await pagina.isEnabled("#botaoAbrirIa"), true);
+    // a dúvida específica entra no prompt, depois da questão, e invalida a cópia anterior
+    await pagina.fill("#duvidaEspecifica", "Por que não é a C?");
+    assert.equal(await pagina.isDisabled("#botaoAbrirIa"), true);
+    const prompt = await pagina.inputValue("#promptDuvidaTexto");
+    assert.ok(prompt.indexOf("MINHA DÚVIDA ESPECÍFICA") > prompt.indexOf("FIM DA QUESTÃO"));
+    assert.match(prompt, /Por que não é a C\?/);
+    await pagina.fill("#duvidaEspecifica", "");
+    assert.doesNotMatch(await pagina.inputValue("#promptDuvidaTexto"), /MINHA DÚVIDA/);
+    await pagina.click("text=1. Copiar prompt");
+    assert.equal(await pagina.isEnabled("#botaoAbrirIa"), true);
     await pagina.selectOption("#iaDoPrompt", "gemini");
     assert.match(await pagina.innerText("#botaoAbrirIa"), /Gemini/);
     const r = await pagina.evaluate(() => {
