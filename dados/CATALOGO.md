@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 10470 questões (7705 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 111 arquivos.
+**Total:** 10570 questões (7805 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 112 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -92,6 +92,7 @@
 | `prova-simulado-epm-2026-10.js` | Simulado EPM/UNIFESP (Turma 89) 2026 — Prova de Residência Médica, Avaliação Discente - Internato, 18/10/2026 | 100 questões |  |
 | `prova-sirio-2023.js` | Sírio-Libanês (SP) 2023 | 100 questões | 1 anulada(s) |
 | `prova-sirio-2024.js` | Sírio-Libanês (SP) 2024 | 100 questões |  |
+| `prova-sirio-2025.js` | Sírio-Libanês (SP) 2025 | 100 questões | 7 anulada(s) |
 | `banco-simulado-didatico-epm.js` | SIMULADO DIDÁTICO EPM — 100 questões autorais (base: UNIFESP-EPM 2022 a 2026) | 100 questões |  |
 | `banco-didatico-grad-malaria.js` | Esc — Banco Didático 2026 | 27 questões | 3 anulada(s) |
 | `banco-didatico-grad-tuberculose.js` | Esc — Banco Didático 2026 | 182 questões | 9 anulada(s); 6 esperando figura |
