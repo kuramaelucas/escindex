@@ -321,7 +321,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **colangite aguda por coledocolitíase**, com **cálculo impactado no colédoco distal**, vias biliares dilatadas, colelitíase com barro biliar, e a pergunta sobre o fator associado a **maior risco de falha da CPRE**. A literatura aponta como preditores de falha de extração **cálculos grandes (maiores que 15 mm), impactados, em formato de barril, número múltiplo e ductos distais estreitos ou angulados**, e o **cálculo impactado** é o fator mais citado; porém a colangite aguda, a dilatação e o barro biliar não aumentam a falha. O caderno não informa o motivo da anulação. A) a colelitíase associada não aumenta a falha. B) as vias dilatadas facilitam a canulação e a extração. C) o barro biliar não é preditor. D) a colangite não é preditor, mas exige a drenagem. E) o cálculo impactado é o preditor clássico de dificuldade.",
   explicacoesAlternativas:{},
   referencias:"Diretriz da ASGE sobre coledocolitíase, 2019; Buxbaum JL et al. Gastrointest Endosc 2019.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -464,7 +464,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **3.000 mL de soro fisiológico** em paciente com trauma abdominal, com **pH de 7,29, HCO3 de 15 mEq/L, pCO2 de 32 mmHg** (compensação respiratória). A grande oferta de **cloro** (154 mEq/L no SF) causa **acidose metabólica hiperclorêmica com ânion gap normal**, por diluição do bicarbonato e menor reabsorção renal do bicarbonato, o mecanismo descrito na alternativa A. O enunciado traz **'BE de 10'** sem sinal negativo, e o caderno não informa o motivo da anulação. B) o bicarbonato não é mais reabsorvido, e sim perdido. C) a queda da pressão oncótica causa edema, não acidose. D) a hipernatremia não inibe a excreção de H+. E) a hemodiluição não causa a acidose por hipoxemia. Epidemiologia: a acidose hiperclorêmica ocorre em 30% dos pacientes com grande volume de salina.",
   explicacoesAlternativas:{},
   referencias:"Self WH et al. N Engl J Med 2018 (SMART); ATLS 10ª edição.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -555,7 +555,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: menino de 8 anos, **estatura no percentil 75**, **PA de 118 × 78 mmHg**, com **P90 de 116/77** e **P95 de 120/81**. Como os valores estão **iguais ou acima do P90 e abaixo do P95** (e abaixo de 120/80), a classificação, se repetida em outras aferições, é de **pressão arterial elevada**. O caderno não informa o motivo da anulação. A) a PA normal é menor que P90. C) a hipertensão estágio 1 exige valores iguais ou maiores que P95. D) o estágio 2 exige P95 mais 12 mmHg. E) a crise hipertensiva exige sintomas ou valores muito altos. Epidemiologia: a PA elevada na infância associa-se a obesidade e a risco cardiovascular na vida adulta.",
   explicacoesAlternativas:{},
   referencias:"Diretriz Brasileira de Hipertensão Arterial, 2020; Flynn JT et al. Pediatrics 2017.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -737,7 +737,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: lactente de **3 meses**, bom estado geral, sem toxemia, **febre de 38,8 °C** sem foco, vacinação em dia. No protocolo da SBP, em lactentes de 28 a 90 dias com bom aspecto, a abordagem é por **critérios de baixo risco** (Rochester, Boston ou Philadelphia, ou o escore PECARN), com **hemograma, PCR, urina e hemocultura** e a decisão entre **observação ambulatorial com reavaliação em 24 horas** ou internação, e **líquor** se os marcadores de risco estiverem alterados ou se a criança estiver mal. O caderno não informa o motivo da anulação. A) sem exames é conduta para maiores de 3 meses vacinados. B) a avaliação completa com líquor e antibiótico empírico é para lactentes de alto risco ou com menos de 28 dias. C) apenas hemograma e urina é insuficiente. D) descreve a conduta de baixo risco, de que decorre a discussão. E) o antibiótico oral empírico sem exames não é padrão. Epidemiologia: 8 a 12% dos lactentes febris têm infecção bacteriana grave.",
   explicacoesAlternativas:{},
   referencias:"Sociedade Brasileira de Pediatria. Febre sem sinais localizatórios, 2021; Kuppermann N et al. JAMA Pediatr 2019 (PECARN).",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -997,7 +997,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: mulher de **53 anos** com **fogachos, irritabilidade e falha de memória**, **amenorreia há 8 meses** (mas com **histerectomia há 10 anos**), **hipertensa controlada** e **mamografia BI-RADS 2**. Em mulher histerectomizada e sem contraindicações, o tratamento é **estrogênio isolado, de preferência transdérmico** (menor risco tromboembólico e melhor perfil em hipertensas), sem progestagênio. O caderno não informa o motivo da anulação. B) e D) o progestagênio é desnecessário sem útero. C) a progesterona isolada tem eficácia limitada nos sintomas vasomotores. E) a testosterona não é tratamento de primeira linha. Epidemiologia: 70 a 80% das mulheres têm sintomas vasomotores, e a terapia hormonal é o tratamento mais eficaz.",
   explicacoesAlternativas:{},
   referencias:"Diretriz da NAMS sobre terapia hormonal, 2022; Consenso Brasileiro de Terapêutica Hormonal da Menopausa, FEBRASGO.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -1309,7 +1309,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **Estimativa Rápida Participativa (ERP)** na territorialização e **genograma e ecomapa** de um adolescente de 16 anos com crises de ansiedade, que mora com a mãe e o padrasto (relação conflituosa), evadiu da escola e tem vínculo forte com a avó materna e com um projeto social de capoeira. O **genograma** representa a estrutura e as relações familiares, e o **ecomapa** complementa mostrando as **relações da família com o meio** (pessoas, instituições e recursos comunitários), identificando a avó e o projeto social como **pontos de apoio** para o plano de cuidado, o que descreve a alternativa D. O caderno não informa o motivo da anulação. A) o genograma pode representar relações significativas, e a divisão da alternativa é imprecisa. B) a ERP serve ao diagnóstico do território, não ao clínico individual. C) o ecomapa não identifica vínculos hereditários. E) o conflito intrafamiliar também aparece no genograma, mas o ecomapa não é exclusivo de instituições. Epidemiologia: o ecomapa e o genograma são ferramentas centrais da abordagem familiar na atenção primária.",
   explicacoesAlternativas:{},
   referencias:"McGoldrick M. Genogramas: avaliação e intervenção familiar; Ministério da Saúde. Caderno de Atenção Básica: territorialização.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },

@@ -291,7 +291,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: o caso é de **demência por corpúsculos de Lewy** (alucinações visuais, sonolência diurna, comportamento do sono REM e quedas), e pergunta o medicamento a evitar. Nessa doença há **hipersensibilidade grave aos antipsicóticos**, sobretudo os de alta potência, como o **haloperidol**, por déficit dopaminérgico nigroestriatal, e pode haver piora motora, sedação intensa e síndrome neuroléptica maligna. A **amitriptilina** tem forte ação anticolinérgica e também é inadequada em idosos; o caderno não informa o motivo da anulação, e as alternativas C e E são ambas discutíveis. A) a duloxetina é opção para depressão. B) a sertralina é opção de antidepressivo seguro. D) a mirtazapina pode ser usada na insônia e na depressão do idoso. Epidemiologia: até 50% dos pacientes com demência de Lewy têm reação adversa grave aos neurolépticos.",
   explicacoesAlternativas:{},
   referencias:"McKeith IG et al. Neurology 2017; Critérios de Beers da AGS, 2023.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -594,7 +594,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **adolescente em uso de metotrexato e corticoide** para artrite idiopática juvenil, sem vacina de **febre amarela** (vírus vivo atenuado), com viagem programada para área rural. A imunossupressão com corticoide em dose imunossupressora e metotrexato é **contraindicação relativa** à vacina de vírus vivo, e o Ministério da Saúde recomenda avaliar risco-benefício e, em geral, **adiar a vacina** e orientar proteção contra picadas quando a exposição é possível; a decisão depende da dose do corticoide e do tempo de tratamento. O caderno não informa o motivo da anulação. A) suspender o corticoide por conta própria não é seguro. B) vacinar imediatamente desconsidera a imunossupressão. C) a espera de 30 dias após suspender o metotrexato não é a regra. D) vacinar só se houver surto não é critério. E) contraindicar a vacina é o que o PNI orienta em imunossupressão importante, com medidas de prevenção.",
   explicacoesAlternativas:{},
   referencias:"Ministério da Saúde. Manual dos CRIE, 2019; SBP, Calendário de vacinação para pacientes especiais.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -868,7 +868,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **câncer epitelial de ovário estádio I** operado há 6 meses (histerectomia e anexectomia bilateral) em mulher de **40 anos**, com **fogachos, insônia, ressecamento vaginal e dispareunia** da menopausa cirúrgica precoce. Em mulheres jovens com menopausa precoce, a terapia hormonal é recomendada até a idade da menopausa natural, e nos cânceres epiteliais de ovário de baixo risco em estádio inicial não há evidência de que o estrogênio piore o prognóstico, devendo-se discutir risco e benefício, além do estrogênio vaginal para os sintomas genitais. O caderno não informa o motivo da anulação. A) a terapia hormonal local e sistêmica pode ser indicada, mas sem consenso. B) o progestagênio transdérmico isolado não trata os sintomas. C) contraindicar a terapia combinada faz sentido, pois não há útero, mas o estrogênio vaginal isolado trata só a síndrome geniturinária. D) a terapia combinada é desnecessária sem útero. E) contraindicar o estrogênio sistêmico em estádio I não é consenso.",
   explicacoesAlternativas:{},
   referencias:"Diretriz da NAMS sobre terapia hormonal, 2022; Consenso Brasileiro de Terapêutica Hormonal da Menopausa, FEBRASGO.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -1051,7 +1051,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **primípara de 19 anos** com **28 dias de puerpério** em **aleitamento misto**, que pede método de início imediato. Pelos critérios da OMS, com **mais de 21 dias de pós-parto** e sem fatores de risco para tromboembolismo, o **DIU de levonorgestrel** e o DIU de cobre podem ser inseridos (acima de 4 semanas a categoria é 1), e a **drospirenona isolada** também é categoria 1 após 6 semanas e 2 se o aleitamento está estabelecido. A coexistência de mais de uma alternativa adequada (A, B e C) explica a dificuldade da questão, e o caderno não informa o motivo da anulação. D) o anel vaginal combinado e E) o estradiol com nomegestrol são combinados, contraindicados antes de 6 semanas na lactação. Epidemiologia: a gravidez no intervalo menor que 18 meses aumenta o risco de parto prematuro.",
   explicacoesAlternativas:{},
   referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -1092,7 +1092,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   explicacaoGeral:"Questão anulada pela banca. Dicas da imagem: gráfico com os **coeficientes de incidência de coinfecção TB-HIV (por 100 mil habitantes) entre 2010 e 2021** para as macrorregiões e o Brasil. A **região Sul** tem os maiores coeficientes (cerca de 14 por 100 mil em 2010), seguida pelo Norte, com tendência de alta até 2018 e queda a partir de então; o Centro-Oeste tem os menores valores (cerca de 4 a 5 por 100 mil). O caderno não informa o motivo da anulação. A) a queda não foi sustentada nem uniforme (houve alta no Norte). B) o Norte subiu entre 2012 e 2018 e caiu depois, mas as datas da alternativa não coincidem exatamente com a curva. C) o Centro-Oeste tem a menor incidência e relativa estabilidade, mas a afirmação 'em todo o período' também é imprecisa. D) a maior redução proporcional foi no Sul, não no Sudeste. E) o Nordeste não é o cenário mais grave. Epidemiologia: a coinfecção TB-HIV é grande causa de morte em pessoas vivendo com HIV.",
   explicacoesAlternativas:{},
   referencias:"Lima LV et al. Epidemiol Serv Saúde 2024; Ministério da Saúde, Boletim Epidemiológico de Tuberculose.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -1171,7 +1171,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **fibrilação atrial de alta resposta (110 bpm)**, paciente **assintomático e estável**, que voltou do cardiologista **sem conduta farmacológica ou diagnóstica**. Pela **coordenação do cuidado** na atenção primária, a ação esperada é reavaliar o caso na própria UBS e, havendo divergência, dialogar com o especialista ou buscar nova opinião pelo sistema de regulação, em vez de internar ou pular níveis. A FA com FC acima de 110 em assintomático pede controle de frequência e avaliação do risco de AVC (CHA2DS2-VASc), que o médico de família pode iniciar. O caderno não informa o motivo da anulação. A) repetir os exames sem necessidade não é coordenação. B) é plausível, mas a alternativa mistura protocolos. C) a internação é desnecessária em paciente estável. D) o encaminhamento direto ao terciário viola a referência. E) a segunda opinião pela regulação é opção, mas a anulação indica discussão.",
   explicacoesAlternativas:{},
   referencias:"Política Nacional de Atenção Básica, 2017; Starfield B. Atenção Primária.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
@@ -1210,7 +1210,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: beneficiário de **plano privado** que teve **cirurgia negada por não constar da cobertura contratada**, e pergunta se a recusa é legítima pelas regras da ANS. O tema é o **rol de procedimentos da ANS**, que define a cobertura mínima obrigatória; a **Lei 14.454/2022** passou a permitir cobertura de procedimentos fora do rol quando houver comprovação científica ou recomendação da CONITEC, o que tornou a resposta dependente da interpretação do caso (rol exemplificativo ou taxativo mitigado). O caderno não informa o motivo da anulação. A) a obrigatoriedade irrestrita não existe. B) o rol define a cobertura mínima, e o contrato pode ofertar mais. C) os planos devem cobrir urgência e emergência após a carência. D) a análise de pertinência não obriga autorizar tudo. E) a cobertura depende também da regulação da ANS, não só do contrato.",
   explicacoesAlternativas:{},
   referencias:"Lei 9.656/1998; Lei 14.454/2022; ANS, Rol de Procedimentos e Eventos em Saúde.",
-  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como "Anulada", sem informar o motivo. A explicação aponta o que a questão discute.",
+  dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Anulada pela banca: a folha de respostas do caderno marca a questão como \"Anulada\", sem informar o motivo. A explicação aponta o que a questão discute.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
 },
