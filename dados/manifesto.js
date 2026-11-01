@@ -95,6 +95,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-sirio-2024",
   "prova-sirio-2025",
   "prova-sirio-2026",
+  "prova-sirio-2027",
   "banco-simulado-didatico-epm",
   "banco-didatico-grad-malaria",
   "banco-didatico-grad-tuberculose",
