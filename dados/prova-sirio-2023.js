@@ -10,7 +10,7 @@
 
    Prova de Residência Médica do Hospital Sírio-Libanês (SP) 2023, caderno
    da Medway (100 questões, 5 alternativas A–E). O gabarito é o da folha de
-   respostas ao final do caderno; a questão 100 consta como anulada. As 14
+   respostas ao final do caderno; a questão 100 consta como anulada. As 13
    figuras (tabelas, radiografias, ECG, tomografias, fotografia, gráfico) estão em dados/imagens/,
    extraídas do próprio caderno. As explicações são autorais.
 
