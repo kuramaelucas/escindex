@@ -7,6 +7,8 @@
      npm run dados -- taxonomia            os ids de área, especialidade e assunto
      npm run dados -- taxonomia cardio     só os que combinam com a palavra
      npm run dados -- buscar "sepse"       questões cujo enunciado tem a palavra (para não repetir)
+     npm run dados -- resumo-assuntos      por assunto: questões reais, autorais e cartões (menos cobertos primeiro)
+     npm run dados -- resumo-assuntos cardio   só os que combinam com a palavra
 
    É o que se roda ANTES de ler um arquivo de dados/: quase sempre a resposta
    já está aqui, em poucas linhas.
@@ -45,7 +47,7 @@ function listarTudo({ D, arquivos }){
     }
     console.log(`  ${a.nome.padEnd(28)} ${String(a.itens).padStart(4)} ${a.tipo.padEnd(11)} ${extra}`);
   }
-  console.log("\nMais: npm run dados -- <prova> | <id da questão> | taxonomia [palavra] | buscar \"texto\"");
+  console.log("\nMais: npm run dados -- <prova> | <id da questão> | taxonomia [palavra] | buscar \"texto\" | resumo-assuntos [palavra]");
 }
 
 function umaProva(reg){
@@ -85,6 +87,23 @@ function taxonomia({ D }, busca){
   if(!n) console.log(`nenhum assunto combina com "${busca}"`);
 }
 
+/* Onde há lacuna: por assunto, quantas questões reais e autorais e quantos
+   cartões existem. Os menos cobertos vêm primeiro — é a lista de "o que
+   adicionar" sem varrer nenhum arquivo. */
+function resumoAssuntos({ D }, busca){
+  const b = sem(busca), esp = Object.fromEntries(D.taxonomia.especialidades.map(e => [e.id, e.nome]));
+  const linhas = D.taxonomia.assuntos
+    .filter(a => !b || sem(a.id + " " + a.nome + " " + (esp[a.especialidadeId] || "")).includes(b))
+    .map(a => {
+      const qs = D.questoes.filter(q => q.assuntoId === a.id);
+      return { id: a.id, nome: a.nome, esp: esp[a.especialidadeId] || "", reais: qs.filter(q => q.real).length, autorais: qs.filter(q => !q.real).length, cartoes: D.flashcards.filter(c => c.assuntoId === a.id).length };
+    })
+    .sort((x, y) => (x.reais + x.autorais) - (y.reais + y.autorais) || x.cartoes - y.cartoes);
+  if(!linhas.length) return console.log(`nenhum assunto combina com "${busca}"`);
+  console.log(`${linhas.length} assuntos — reais / autorais / cartões (menos cobertos primeiro):`);
+  linhas.forEach(l => console.log(`  ${l.id.padEnd(30)} ${String(l.reais).padStart(4)} ${String(l.autorais).padStart(4)} ${String(l.cartoes).padStart(4)}  ${l.nome} (${l.esp})`));
+}
+
 function buscar({ D }, texto){
   const b = sem(texto), achadas = D.questoes.filter(q => sem(q.enunciado).includes(b));
   console.log(`${achadas.length} questões com "${texto}" no enunciado${achadas.length > 20 ? " (mostrando 20)" : ""}:`);
@@ -97,6 +116,7 @@ if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.ar
     const c = carregar(), cmd = args[0];
     if(!cmd) listarTudo(c);
     else if(cmd === "taxonomia") taxonomia(c, args.slice(1).join(" "));
+    else if(cmd === "resumo-assuntos") resumoAssuntos(c, args.slice(1).join(" "));
     else if(cmd === "buscar") buscar(c, args.slice(1).join(" "));
     else if(/^q-/.test(cmd)){
       const q = c.D.questoes.find(x => x.id === cmd);

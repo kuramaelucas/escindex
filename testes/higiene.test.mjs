@@ -75,6 +75,24 @@ test("o CLAUDE.md cita todo arquivo de codigo/", () => {
   assert.deepEqual(faltam, [], "arquivo novo em codigo/ sem linha no mapa do CLAUDE.md");
 });
 
+/* O roteador do CLAUDE.md só serve se acompanhar o projeto: pasta de primeiro
+   nível, comando npm ou guia de dados/ que nasce sem linha ali volta a obrigar
+   quem trabalha a reler tudo para descobrir onde as coisas estão. */
+test("o CLAUDE.md cita toda pasta de primeiro nível, todo comando npm e todo guia de dados/", () => {
+  const guia = fs.readFileSync(path.join(RAIZ, "CLAUDE.md"), "utf8");
+  const ignoradas = new Set(["node_modules", "testes/resultados"]);
+  const pastas = fs.readdirSync(RAIZ, { withFileTypes: true })
+    .filter(d => d.isDirectory() && !d.name.startsWith(".") && !ignoradas.has(d.name)).map(d => d.name);
+  const scripts = Object.keys(JSON.parse(fs.readFileSync(path.join(RAIZ, "package.json"), "utf8")).scripts || {});
+  const guias = fs.readdirSync(path.join(RAIZ, "dados")).filter(n => /^[A-Z-]+\.md$/.test(n) && n !== "CATALOGO.md");
+  const faltam = [
+    ...pastas.filter(p => !guia.includes(p + "/")).map(p => `pasta ${p}/`),
+    ...scripts.filter(c => !guia.includes("npm run " + c) && !guia.includes("npm " + c) && !(c === "test" && guia.includes("npm test"))).map(c => `comando npm ${c}`),
+    ...guias.filter(g => !guia.includes(g)).map(g => `guia dados/${g}`),
+  ];
+  assert.deepEqual(faltam, [], "acrescente uma linha no roteador/mapa do CLAUDE.md para: " + faltam.join(", "));
+});
+
 /* Nasceu de um defeito real: um comentário do :root escrevia ".mt-*" seguido de "/" e
    o "*" + "/" fechava o comentário no meio; o resto do texto virava uma declaração
    inválida que engolia --esp-1. Sem o token, .mt-1/.mb-1/.gap-1 ficavam sem espaço

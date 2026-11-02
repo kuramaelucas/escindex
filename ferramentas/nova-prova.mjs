@@ -78,6 +78,6 @@ if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.ar
     });
     console.log(`Criado ${r.arquivo} e acrescentado a dados/manifesto.js.`);
     console.log(`Ficha: ${JSON.stringify(r.ficha)}`);
-    console.log(`Próximo: npm run adicionar-questoes -- ${r.slug} lote-1.json   (formato: dados/LEIA-ME.md, "Entrada compacta")`);
+    console.log(`Próximo: npm run adicionar-questoes -- ${r.slug} lotes/lote-1.json   (formato: dados/ADICIONAR.md; a pasta lotes/ fica fora do git)`);
   }catch(e){ console.error("Erro: " + e.message); process.exit(1); }
 }
