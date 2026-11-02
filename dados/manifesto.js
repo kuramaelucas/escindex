@@ -98,6 +98,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-sirio-2027",
   "prova-sirio-2021",
   "prova-sirio-2022",
+  "prova-fmabc-2025",
   "banco-simulado-didatico-epm",
   "banco-didatico-grad-malaria",
   "banco-didatico-grad-tuberculose",
