@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Einstein (HIAE) 2026
+   (75 questões reais, 4 alternativas A–D)
+   ==========================================================================
+   Enunciado, alternativas e gabarito de prova pública são transcritos; as
+   explicações são autorais, escritas pela equipe a partir de fontes primárias
+   (dados/LEIA-ME.md, "Política de conteúdo"). Todas as questões marcam
+   `real: true`. A origem do gabarito e o que ficou pendente (anuladas,
+   figuras) se anotam aqui, neste cabeçalho.
+
+   @ficha {"banca":"Einstein (HIAE)","ano":2026,"prefixo":"q-einstein2026","alternativas":4,"total":75}
+   ========================================================================== */
+window.EscDados.registrarQuestoes("prova-einstein-2026", [
+]);
