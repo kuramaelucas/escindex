@@ -59,7 +59,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: cirrótico com **declínio cognitivo, asterixe e distensão abdominal**, **NEWS 6**, **temperatura de 37,6 °C** e **sem foco infeccioso evidente**: o quadro é compatível com **encefalopatia hepática** por causas não infecciosas, além de ascite. Para pacientes com **possível sepse sem choque**, o Surviving Sepsis Campaign orienta uma **avaliação rápida de causas infecciosas e não infecciosas** antes de iniciar antimicrobianos, que são instituídos em até 3 horas se a suspeita de infecção persistir. Epidemiologia: a cirrose é fator de risco para infecção, e a PBE deve ser excluída por paracentese. A) a febre de 37,6 °C não define sepse. B) a meta principal não é normalizar o lactato. D) a sepse provável com choque exigiria antibiótico em 1 hora. E) os 30 mL/kg são para hipoperfusão ou choque.",
   explicacoesAlternativas:{},
-  referencias:"Surviving Sepsis Campaign, Evans L et al. Crit Care Med 2021 e atualização; Diretriz da AASLD, 2021.",
+  referencias:"Surviving Sepsis Campaign 2026 (Society of Critical Care Medicine); Diretriz da AASLD, 2021.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -72,7 +72,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **edema agudo de pulmão hipertensivo** (PA 232 × 131, estertores até os ápices, B3, expectoração rósea). Na emergência hipertensiva com edema agudo de pulmão, a meta é **reduzir a PA sistólica para menos de 140 mmHg na primeira hora**, com vasodilatadores (nitroglicerina ou nitroprussiato) e diurético, aliviando a sobrecarga do VE. Epidemiologia: o edema agudo hipertensivo acomete 15 a 20% das admissões por IC aguda. A) a hidralazina causa taquicardia reflexa e não é indicada. C) o nitroprussiato é opção no EAP, e a afirmação sobre piorar o fluxo coronariano não o contraindica. D) o labetalol bloqueia beta e reduz o inotropismo, desfavorável na congestão. E) a CPAP alivia a congestão e a carga de trabalho respiratório, mas o texto atribui o benefício a isquemia subendocárdica de forma imprecisa.",
   explicacoesAlternativas:{},
-  referencias:"Diretriz da ACC/AHA para hipertensão, 2017; Diretriz da SBC para insuficiência cardíaca aguda.",
+  referencias:"Diretriz Brasileira de Hipertensão Arterial 2025 (seção 11.6.4, crise hipertensiva); Diretriz da SBC para insuficiência cardíaca aguda.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

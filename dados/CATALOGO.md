@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 11395 questões (8630 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 122 arquivos.
+**Total:** 11995 questões (9230 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 128 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -97,6 +97,12 @@
 | `prova-sirio-2027.js` | Sírio-Libanês (SP) 2027 | 100 questões | 6 anulada(s) |
 | `prova-sirio-2021.js` | Sírio-Libanês (SP) 2021 | 100 questões |  |
 | `prova-sirio-2022.js` | Sírio-Libanês (SP) 2022 | 100 questões |  |
+| `prova-fmabc-2025.js` | FMABC 2025 | 100 questões | 5 anulada(s) |
+| `prova-fmabc-2024.js` | FMABC 2024 | 100 questões |  |
+| `prova-fmabc-2021.js` | FMABC 2021 | 100 questões | 3 anulada(s) |
+| `prova-fmabc-2022.js` | FMABC 2022 | 100 questões | 1 anulada(s) |
+| `prova-fmabc-2023.js` | FMABC 2023 | 100 questões | 2 anulada(s) |
+| `prova-fmabc-2026.js` | FMABC 2026 | 100 questões | 7 anulada(s) |
 | `prova-einstein-2021.js` | Einstein (HIAE) 2021 | 50 questões |  |
 | `prova-einstein-2022.js` | Einstein (HIAE) 2022 | 75 questões |  |
 | `prova-einstein-2023.js` | Einstein (HIAE) 2023 | 75 questões | 1 anulada(s) |

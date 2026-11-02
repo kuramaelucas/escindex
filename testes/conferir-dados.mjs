@@ -26,6 +26,7 @@
    Para rodar:  node testes/conferir-dados.mjs      (ou  npm run conferir)
    Com --json, imprime o relatório em JSON (usado pelo teste automático).
    ========================================================================== */
+import { problemasDeReferencia } from "../ferramentas/lib-referencias.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
@@ -88,7 +89,7 @@ export function resumirNumeros(nums){
         etc.), isto é, mostre ONDE no caso está a resposta;
      4. diga por que cada alternativa errada está errada (cada letra
         errada aparece no texto).
-   É a regra de "Como escrever a explicação" em dados/LEIA-ME.md, e vale para
+   É a regra de "Como escrever a explicação" em dados/PADRAO-EXPLICACAO.md, e vale para
    quem escreve a explicação a partir do comentário oficial da banca (Teste de
    Progresso) e para quem escreve do zero. As provas abaixo são anteriores à
    regra: ficam como estão (as do Teste de Progresso aparecem como aviso, para
@@ -164,6 +165,8 @@ export function conferir(){
     [q.explicacaoGeral, ...Object.values(q.explicacoesAlternativas || {})].forEach(t => {
       if(t && (String(t).match(/\*\*/g) || []).length % 2) erros.push(`${onde}: "**" sem par na explicação (o destaque de parâmetro abre e fecha com **)`);
     });
+    // conferência de referências (docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md): vale para o que é criado depois do corte, real ou autoral
+    problemasDeReferencia(q).forEach(t => erros.push(`${onde}: ${t}`));
     if(q.tipoProva !== undefined && !["residencia", "graduacao"].includes(q.tipoProva)) erros.push(`${onde}: tipoProva "${q.tipoProva}" não existe (use "residencia" ou "graduacao")`);
     if(q.real){
       if(!q.banca || !q.ano) erros.push(`${onde}: questão real sem banca ou ano`);
@@ -171,7 +174,7 @@ export function conferir(){
       const arquivo = origem.get(q.id);
       if(arquivo && !PROVAS_ANTERIORES_AO_PADRAO.has(arquivo)){
         const faltas = faltasDeJustificativa(q);
-        if(faltas.length) erros.push(`${onde} (${arquivo}): explicação fora do padrão de justificativa — ${faltas.join("; ")} (ver dados/LEIA-ME.md, "Como escrever a explicação")`);
+        if(faltas.length) erros.push(`${onde} (${arquivo}): explicação fora do padrão de justificativa — ${faltas.join("; ")} (ver dados/PADRAO-EXPLICACAO.md)`);
       }
       const chave = `${q.banca} ${q.ano}${q.semestre ? "."+q.semestre : ""}`;
       if(!provas.has(chave)) provas.set(chave, []);
