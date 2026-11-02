@@ -25,7 +25,7 @@ JSON em que cada questão traz **só o que é dela** — a ferramenta completa
    "alt": ["texto da A", "texto da B", "texto da C", "texto da D"],
    "gabarito": "C",
    "explicacao": "A alternativa C está correta. Dicas do enunciado: **…** …",
-   "referencias": "Diretriz X, 2025.",
+   "referencias": "Diretriz X, 2025 (texto lido em 02/11/2026 em gov.br).",
    "dificuldade": "intermediario" }]
 ```
 

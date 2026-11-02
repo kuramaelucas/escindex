@@ -26,6 +26,7 @@
    Para rodar:  node testes/conferir-dados.mjs      (ou  npm run conferir)
    Com --json, imprime o relatório em JSON (usado pelo teste automático).
    ========================================================================== */
+import { problemasDeReferencia } from "../ferramentas/lib-referencias.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
@@ -164,6 +165,8 @@ export function conferir(){
     [q.explicacaoGeral, ...Object.values(q.explicacoesAlternativas || {})].forEach(t => {
       if(t && (String(t).match(/\*\*/g) || []).length % 2) erros.push(`${onde}: "**" sem par na explicação (o destaque de parâmetro abre e fecha com **)`);
     });
+    // conferência de referências (docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md): vale para o que é criado depois do corte, real ou autoral
+    problemasDeReferencia(q).forEach(t => erros.push(`${onde}: ${t}`));
     if(q.tipoProva !== undefined && !["residencia", "graduacao"].includes(q.tipoProva)) erros.push(`${onde}: tipoProva "${q.tipoProva}" não existe (use "residencia" ou "graduacao")`);
     if(q.real){
       if(!q.banca || !q.ano) erros.push(`${onde}: questão real sem banca ou ano`);

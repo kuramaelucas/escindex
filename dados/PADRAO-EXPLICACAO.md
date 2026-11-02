@@ -23,6 +23,27 @@ imagem, tempo, dose, idade-limite ou escore:
    claramente de um lado da faixa (a resposta não pode depender de um ponto
    só). E **ensine a gravidade**: diga por que cada item pontua daquele jeito
    (o que a idade, a ureia, a PA etc. medem no organismo), em vez de só somar.
+### Referências conferidas (obrigatório em questão criada desde 02/11/2026)
+
+Prova nova, prova real ou questão autoral: a explicação é sempre de **fonte primária**, e o que a sustenta fica escrito
+em `referencias`. O conferidor (`npm run conferir`) e o `adicionar-questoes` recusam a questão criada desde
+02/11/2026 cuja referência:
+
+- esteja vazia;
+- não traga **a data em que o texto foi lido** (`DD/MM/AAAA`), com onde e o que foi lido;
+- cite uma diretriz que está em `ferramentas/edicoes-vigentes.json` **sem a edição vigente** (nem uma posterior). Ou
+  cita a vigente e confere o que mudou, ou mantém a antiga de propósito e diz, na própria referência, que leu a
+  vigente e por que não muda a conduta.
+
+Como fazer, sem repetir busca: (1) `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md` diz o que já foi lido; (2)
+`npm run texto-oficial -- <url> --buscar "termo"` baixa o PDF ou a página oficial e mostra as linhas; (3) escreva as
+`referencias` do lote com edição, ano e "texto lido em DD/MM/AAAA em <site>" (ou `npm run anotar-conferencia` numa
+questão já gravada). Se o texto não abrir (domínio bloqueado, pago), diga isso **com data** ("texto oficial não aberto,
+domínio X bloqueado, DD/MM/AAAA"): passa no conferidor e a questão continua na fila de `npm run referencias-a-conferir`.
+Descobriu uma edição nova que a tabela não tem? Acrescente a entrada em `ferramentas/edicoes-vigentes.json` (nome, `termo`,
+`vigente`, `edicao`, `verificadoEm`) e rode `npm run referencias-a-conferir`: a lista `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md`
+mostra quais questões, de qualquer prova, passam a citar edição superada.
+
 5. Valores e pontos de corte são os da diretriz citada em `referencias`; se
    mudam com idade, sexo, gestação ou método, diga para quem valem. Sem
    certeza do número, escreva isso — não invente.

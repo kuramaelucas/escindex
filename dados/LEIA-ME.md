@@ -185,7 +185,7 @@ arquivo já neste formato.
   gabarito:"C",                    // vazio ("") quando a banca anulou
   explicacaoGeral:"Por que a correta é correta — escrita pela equipe.",
   explicacoesAlternativas:{},      // opcional: {"A":"por que A está errada", …}
-  referencias:"Diretriz X, 2025.", // opcional, mas recomendado
+  referencias:"Diretriz X, 2025 (texto lido em 02/11/2026 em gov.br).", // obrigatório nas questões criadas desde 02/11/2026 — ver "Referências conferidas" abaixo
   questaoAlterada:"",              // opcional: uma frase do que a equipe mudou no texto da prova real (dá o selo "Questão alterada")
   dificuldadeManual:"intermediario",  // fundamental | intermediario | avancado
   status:"ativa",                  // ativa | anulada | rascunho

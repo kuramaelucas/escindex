@@ -45,7 +45,7 @@ test("a entrada compacta grava `alterada` como questaoAlterada, e vazio é recus
   const taxonomia = { assuntos: [{ id: "ass-sca", especialidadeId: "esp-cardio" }], especialidades: [{ id: "esp-cardio", areaId: "area-cm" }] };
   const ficha = { banca: "UNIFESP-EPM", ano: 2026, prefixo: "q-teste", alternativas: 4 };
   const base = {
-    n: 1, assunto: "ass-sca", enunciado: "Homem de 58 anos com dor torácica.", alt: ["a", "b", "c", "d"], gabarito: "C", referencias: "Diretriz X.",
+    n: 1, assunto: "ass-sca", enunciado: "Homem de 58 anos com dor torácica.", alt: ["a", "b", "c", "d"], gabarito: "C", referencias: "Diretriz X, 2025 (texto lido em 02/11/2026 em gov.br).",
     explicacao: "A alternativa C está correta. Dicas do enunciado: **dor torácica típica** em homem de **58 anos** indica síndrome coronariana aguda e o ECG deve ser feito em até 10 minutos, "
       + "com troponina seriada. A) Errada: não explica o quadro. B) Errada: não explica o quadro. D) Errada: não explica o quadro, e a conduta correta é outra, descrita acima.",
   };
