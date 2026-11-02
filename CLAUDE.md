@@ -1,6 +1,6 @@
 # Esc — guia de trabalho no código
 
-Plataforma de estudos para residência médica. Site estático **sem build, sem dependências, sem módulos**: `index.html` (moldura) + `codigo/` (código) + `dados/` (conteúdo), abre com dois cliques. **Código e conteúdo são independentes**: mexer em um não toca no outro (ver "Conteúdo" abaixo). Nuvem opcional (Supabase, só `fetch` na API REST). Tudo em **português**: telas, identificadores (`renderPainelTurma`, `nuvemMarcarFeedback`), comentários e documentação.
+Plataforma de estudos para residência médica. Site estático **sem build, sem dependências, sem módulos**: `index.html` (moldura) + `codigo/` (código) + `dados/` (conteúdo), abre com dois cliques. **Código e conteúdo são independentes** (`icones/` = ícones do PWA, sem lógica): mexer em um não toca no outro (ver "Conteúdo" abaixo). Nuvem opcional (Supabase, só `fetch` na API REST). Tudo em **português**: telas, identificadores (`renderPainelTurma`, `nuvemMarcarFeedback`), comentários e documentação.
 
 ## Roteador de trabalho — decida a zona ANTES de abrir qualquer arquivo
 
@@ -9,8 +9,8 @@ Regra permanente (vale sem o usuário pedir): classifique o pedido numa zona, le
 | Zona | Quando | Leia só isto | Não leia |
 |---|---|---|---|
 | **A. Estrutura** (programa) | tela, botão, regra de estudo, estilo, nuvem, PWA, testes | `npm run mapa -- <palavra>` → trecho do arquivo de `codigo/` (Read com offset/limit); "Como o código roda" e "Regras da casa" abaixo | `dados/` |
-| **B1. Questões — analisar o que já existe** | achar duplicata, auditar assunto/gabarito/explicação, estatística, relato de aluno, corrigir uma questão | `npm run dados` (visão) → `-- <prova>` → `-- <q-id>`; `-- taxonomia <palavra>`; `-- buscar "<texto>"`; `npm run conferir -- --resumo`; `npm run relatos` | `codigo/`, `dados/LEIA-ME.md` inteiro, qualquer prova inteira |
-| **B2. Questões — só adicionar** | prova nova ou lote novo | só a receita "Conteúdo" abaixo + `dados/LEIA-ME.md` seções "Entrada compacta" e "Padrão de justificativa de prova nova" (`grep -n '^#' dados/LEIA-ME.md` para achar). `nova-prova` → `adicionar-questoes` (use `--simular` antes). Para evitar repetição: só `dados -- buscar`. | provas existentes, `codigo/`, histórico |
+| **B1. Questões — analisar o que já existe** | achar duplicata, auditar assunto/gabarito/explicação, estatística, relato de aluno, corrigir uma questão | `npm run dados` (visão) → `-- <prova>` → `-- <q-id>`; `-- taxonomia <palavra>`; `-- buscar "<texto>"`; `-- resumo-assuntos [palavra]` (lacunas: onde faltam questões/cartões); `npm run conferir -- --resumo`; `npm run relatos` | `codigo/`, os guias de `dados/`, qualquer prova inteira |
+| **B2. Questões — só adicionar** | prova nova ou lote novo | só a receita "Conteúdo" abaixo + **`dados/ADICIONAR.md`** (formato do lote) + **`dados/PADRAO-EXPLICACAO.md`** (como escrever a explicação); rascunhos de lote em `lotes/` (fora do git). Molde da questão/política de conteúdo: `dados/LEIA-ME.md`, só se precisar. `nova-prova` → `adicionar-questoes` (use `--simular` antes). Para evitar repetição: só `dados -- buscar`. | provas existentes, `codigo/`, histórico |
 | **C. Dados de estudo/nuvem** (modelo de dados, sync) | campo novo, tabela, migração | seção "Nuvem" abaixo + `02-persistencia.js`/`03*` pelo `mapa`; `nuvem/LEIA-ME.md` | conteúdo de `dados/` |
 | **D. Documentação/histórico** | só se o pedido for sobre decisões passadas | `RESUMO-PROJETO-ESC.md` (seções 4–5), `docs/HISTORICO.md` por busca | tudo o mais |
 
@@ -23,7 +23,7 @@ Ao terminar: zona A/C → `npm run publicar` + `npm run testar-mudanca`; zona B 
 | Comando | Para quê |
 |---|---|
 | `npm run mapa` / `npm run mapa -- 11c` / `npm run mapa -- palavra` | onde está cada coisa: arquivos e seções / seções e funções de um arquivo, com linha / busca em funções e seções. **Use antes de abrir arquivo** e leia só o trecho (Read com offset/limit). |
-| `npm run dados` / `-- usp-2026` / `-- q-usp2026-017` / `-- taxonomia cardio` / `-- buscar "sepse"` | o conteúdo sem abrir arquivo (cada `dados/prova-*.js` tem ~300 KB — **nunca leia um inteiro**): visão geral / uma prova / uma questão / ids de assunto / busca no enunciado |
+| `npm run dados` / `-- resumo-assuntos` / `-- usp-2026` / `-- q-usp2026-017` / `-- taxonomia cardio` / `-- buscar "sepse"` | o conteúdo sem abrir arquivo (cada `dados/prova-*.js` tem ~300 KB — **nunca leia um inteiro**): visão geral / uma prova / uma questão / ids de assunto / busca no enunciado |
 | `npm run nova-prova -- usp-2027 "USP-SP (FMUSP)" 2027 --total 120` | cria `dados/prova-usp-2027.js` (cabeçalho + ficha) e a registra em `dados/manifesto.js` |
 | `npm run adicionar-questoes -- usp-2027 lote.json` | grava um lote de questões na entrada compacta (só o que é da questão; a ferramenta completa o resto), tudo ou nada, conferido; `--simular` só confere |
 | `npm run publicar` | **uma vez ao final de qualquer mudança**: atualiza a versão no `index.html` (hash do código × hash dos dados) e regera `dados/CATALOGO.md` |
@@ -110,18 +110,18 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 - A plataforma **explica o que faz**: quando o algoritmo prioriza, esconde ou muda algo, a tela diz o porquê. Regra que já quebrou uma vez ganha um caso em `testes/regras.test.mjs`.
 - Teste de ponta a ponta: Playwright em `testes/*.test.mjs`, nuvem simulada por `contexto.route(/supabase\.co/, …)`; feche servidor e contexto em `try/finally` (uma falha não pode travar o `node --test`).
 - Conteúdo: enunciado/alternativas/gabarito de prova pública se transcrevem; a **explicação é sempre autoral**, de fontes primárias — nunca copiada de cursinho ou site de questões (`dados/LEIA-ME.md`).
-- **Prova nova, justificativa completa:** toda questão real de arquivo novo em `dados/` traz a explicação no padrão — "Dicas do enunciado:" (ou da imagem), dados objetivos em `**destaque**` com valor normal e ponto de corte, o **mecanismo fisiopatológico** e o **contexto epidemiológico** que levam à resposta, e o motivo de cada alternativa errada (`dados/LEIA-ME.md`, "Padrão de justificativa de prova nova"; o texto dos prompts é `regraDeFisiopatologiaEEpidemiologia`, 08e). `npm run conferir` só checa a forma; o conteúdo (itens 7 e 8) é de quem escreve. `npm run conferir` falha se faltar; a lista de exceções `PROVAS_ANTERIORES_AO_PADRAO` (`testes/conferir-dados.mjs`) está vazia e prova nova nunca entra nela. Comentário oficial da própria banca (Teste de Progresso) é ponto de partida, reescrito nesse padrão.
+- **Prova nova, justificativa completa:** toda questão real de arquivo novo em `dados/` traz a explicação no padrão — "Dicas do enunciado:" (ou da imagem), dados objetivos em `**destaque**` com valor normal e ponto de corte, o **mecanismo fisiopatológico** e o **contexto epidemiológico** que levam à resposta, e o motivo de cada alternativa errada (`dados/PADRAO-EXPLICACAO.md`, "Padrão de justificativa de prova nova"; o texto dos prompts é `regraDeFisiopatologiaEEpidemiologia`, 08e). `npm run conferir` só checa a forma; o conteúdo (itens 7 e 8) é de quem escreve. `npm run conferir` falha se faltar; a lista de exceções `PROVAS_ANTERIORES_AO_PADRAO` (`testes/conferir-dados.mjs`) está vazia e prova nova nunca entra nela. Comentário oficial da própria banca (Teste de Progresso) é ponto de partida, reescrito nesse padrão.
 
 ## Conteúdo (`dados/`) — subir prova sem reler o código
 
 Receita para prova nova (nada em `codigo/`, nada no `index.html`):
 1. `npm run nova-prova -- <nome> "<Banca>" <ano> --total N` (opções: `--alternativas 5`, `--tipo graduacao`, `--prefixo q-xxx`).
 2. `npm run dados -- taxonomia <palavra>` para os ids de assunto; `npm run dados -- buscar "<texto>"` para não repetir questão.
-3. Escreva lotes de 20–30 em JSON compacto (`n`, `assunto`, `enunciado`, `alt[]`, `gabarito`, `explicacao`, `referencias`; formato completo em `dados/LEIA-ME.md`, "Entrada compacta") e `npm run adicionar-questoes -- <nome> lote.json`. Falhou? Nada foi gravado e o erro diz a questão.
+3. Escreva lotes de 20–30 em JSON compacto (`n`, `assunto`, `enunciado`, `alt[]`, `gabarito`, `explicacao`, `referencias`; formato completo em `dados/ADICIONAR.md`; salve em `lotes/`, fora do git) e `npm run adicionar-questoes -- <nome> lote.json`. Falhou? Nada foi gravado e o erro diz a questão.
 4. Figuras em `dados/imagens/<id>.png`; sem a figura, `imagemPendente:"descrição"`.
 5. `npm run publicar` → `npm run testar-mudanca`. Não há tabela a editar à mão: `CATALOGO.md` e as contagens são geradas.
 
-Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/LEIA-ME.md`) — a ferramenta já recusa o que sai dele. Observação de uma prova (origem do gabarito, pendências) vai no **cabeçalho do arquivo dela**, não em documento à parte. Conserto de uma questão já publicada: `npm run atualizar-dados`. Mudar a plataforma **nunca** exige tocar em `dados/` (e o hash dos dados não muda se `dados/` não mudar).
+Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/PADRAO-EXPLICACAO.md`) — a ferramenta já recusa o que sai dele. Observação de uma prova (origem do gabarito, pendências) vai no **cabeçalho do arquivo dela**, não em documento à parte. Conserto de uma questão já publicada: `npm run atualizar-dados`. Mudar a plataforma **nunca** exige tocar em `dados/` (e o hash dos dados não muda se `dados/` não mudar).
 
 ## Documentos
 

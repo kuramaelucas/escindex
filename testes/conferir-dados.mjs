@@ -88,7 +88,7 @@ export function resumirNumeros(nums){
         etc.), isto é, mostre ONDE no caso está a resposta;
      4. diga por que cada alternativa errada está errada (cada letra
         errada aparece no texto).
-   É a regra de "Como escrever a explicação" em dados/LEIA-ME.md, e vale para
+   É a regra de "Como escrever a explicação" em dados/PADRAO-EXPLICACAO.md, e vale para
    quem escreve a explicação a partir do comentário oficial da banca (Teste de
    Progresso) e para quem escreve do zero. As provas abaixo são anteriores à
    regra: ficam como estão (as do Teste de Progresso aparecem como aviso, para
@@ -171,7 +171,7 @@ export function conferir(){
       const arquivo = origem.get(q.id);
       if(arquivo && !PROVAS_ANTERIORES_AO_PADRAO.has(arquivo)){
         const faltas = faltasDeJustificativa(q);
-        if(faltas.length) erros.push(`${onde} (${arquivo}): explicação fora do padrão de justificativa — ${faltas.join("; ")} (ver dados/LEIA-ME.md, "Como escrever a explicação")`);
+        if(faltas.length) erros.push(`${onde} (${arquivo}): explicação fora do padrão de justificativa — ${faltas.join("; ")} (ver dados/PADRAO-EXPLICACAO.md)`);
       }
       const chave = `${q.banca} ${q.ano}${q.semestre ? "."+q.semestre : ""}`;
       if(!provas.has(chave)) provas.set(chave, []);
