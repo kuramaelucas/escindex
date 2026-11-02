@@ -163,9 +163,10 @@ const NUVEM_TABELAS = {
     chave: r => r.id,
     aplicar: linha => {
       const registro = {
-        id: linha.id, usuarioId: linha.usuario_id, tipo: linha.tipo, data: linha.data,
+        id: linha.id, usuarioId: linha.usuario_id, tipo: linha.tipo === "incompleta" ? "pratica" : linha.tipo, data: linha.data,
         total: linha.total, acertos: linha.acertos, itens: linha.itens || [],
       };
+      if(linha.tipo === "incompleta") registro.naoTerminada = true;
       const i = db.sessoes.findIndex(s => s.id === linha.id);
       if(i >= 0) db.sessoes[i] = registro; else db.sessoes.push(registro);
     },
@@ -319,7 +320,9 @@ function nuvemRegistrar(o){
   if(o.sessaoConcluida && o.sessaoConcluida.usuarioId === meuId){
     const s = o.sessaoConcluida;
     nuvemEnfileirar("sessoes", {
-      id: s.id, usuario_id: s.usuarioId, tipo: s.tipo, data: s.data,
+      // "não terminado" não tem coluna própria: viaja no tipo, para não exigir
+      // que a pessoa rode o esquema.sql de novo
+      id: s.id, usuario_id: s.usuarioId, tipo: s.naoTerminada ? "incompleta" : s.tipo, data: s.data,
       total: s.total, acertos: s.acertos, itens: s.itens || [],
     });
   }

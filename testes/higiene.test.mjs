@@ -74,3 +74,21 @@ test("o CLAUDE.md cita todo arquivo de codigo/", () => {
   const faltam = arquivos.map(a => path.basename(a)).filter(nome => !guia.includes(nome));
   assert.deepEqual(faltam, [], "arquivo novo em codigo/ sem linha no mapa do CLAUDE.md");
 });
+
+/* Nasceu de um defeito real: um comentário do :root escrevia ".mt-*" seguido de "/" e
+   o "*" + "/" fechava o comentário no meio; o resto do texto virava uma declaração
+   inválida que engolia --esp-1. Sem o token, .mt-1/.mb-1/.gap-1 ficavam sem espaço
+   (e qualquer regra nova com var(--esp-1) também). */
+test("estilo.css: cada comentário termina onde deveria e os tokens de espaçamento existem", () => {
+  const css = fs.readFileSync(path.join(RAIZ, "codigo/estilo.css"), "utf8");
+  for(const m of css.matchAll(/\/\*([\s\S]*?)\*\//g)){
+    const depois = css.slice(m.index + m[0].length).split("\n")[0];
+    assert.ok(!/\*\//.test(depois), "um comentário parece ter sido fechado antes da hora, na linha " + (css.slice(0, m.index).split("\n").length) + ": " + depois.trim().slice(0, 80));
+  }
+  const raiz = css.match(/:root\{([\s\S]*?)\n\}/)[1].replace(/\/\*[\s\S]*?\*\//g, "");
+  for(const t of ["--esp-1", "--esp-2", "--esp-3", "--esp-4"]) assert.match(raiz, new RegExp(t + ":\\s*[\\d.]+rem"), t + " precisa estar definido no :root");
+  const usados = new Set([...css.matchAll(/var\((--[\w-]+)/g)].map(m => m[1]));
+  const definidos = new Set([...css.matchAll(/(--[\w-]+)\s*:/g)].map(m => m[1]));
+  const sem = [...usados].filter(v => !definidos.has(v));
+  assert.deepEqual(sem, [], "variável CSS usada e nunca definida");
+});

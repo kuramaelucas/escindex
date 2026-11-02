@@ -170,6 +170,13 @@ function sairDaSessao(){
   // sair NÃO joga a fila fora: ela fica guardada e a pessoa volta exatamente
   // de onde parou, na mesma sequência de questões (ver salvarSessaoEmAndamento)
   salvarSessaoEmAndamento();
+  // tudo respondido = conjunto terminado: "Continuar" não teria o que oferecer
+  // (Finalizar só abriria o resumo), então ele já vai para o histórico. A
+  // guarda de cada resposta não pode fazer isso: a pessoa ainda está na tela.
+  if(state.sessaoAtual && !state.sessaoAtual.somenteLeitura && !state.sessaoAtual.finalizada && state.sessaoAtual.tipo!=="simulado" && !indicesEmBranco(state.sessaoAtual).length){
+    registrarSessaoNoHistorico(state.sessaoAtual);
+    limparSessaoEmAndamento();
+  }
   state.sessaoAtual=null;
   navigate(eraHistorico?"historico":"estudar");
 }
@@ -206,12 +213,60 @@ function salvarSessaoEmAndamento(){
 }
 function limparSessaoEmAndamento(){
   const u = usuarioAtual(); if(!u || !db.sessoesEmAndamento) return;
-  if(db.sessoesEmAndamento[u.id]){ delete db.sessoesEmAndamento[u.id]; saveState(); }
+  if(db.sessoesEmAndamento[u.id]){
+    delete db.sessoesEmAndamento[u.id];
+    // sem avisar a nuvem, a cópia de lá ressuscitava o conjunto já terminado
+    // (ou descartado) na próxima sincronização, como se estivesse pela metade
+    nuvemRegistrar({usuarioId:u.id, sessaoEmAndamento:"apagar"});
+    saveState();
+  }
+}
+/* Um conjunto parado há mais de uma semana deixa de ser oferecido para
+   continuar: a fila foi montada com a matéria e as revisões daquele dia e
+   perde o sentido. O que já foi respondido não se perde — vira uma linha
+   "não terminado" no Histórico (arquivarSessoesVencidas). */
+const DIAS_PARA_SESSAO_VENCER = 7;
+function sessaoVencida(guardada){
+  return !!(guardada && guardada.salvaEm && diasEntre(guardada.salvaEm, hojeISO()) > DIAS_PARA_SESSAO_VENCER);
+}
+/* Tira da área "em andamento" os conjuntos vencidos de todas as pessoas deste
+   aparelho e guarda no histórico o que tinha sido respondido. Roda na carga;
+   o que ainda não tem nenhuma resposta simplesmente some. */
+function arquivarSessoesVencidas(){
+  const mapa = db.sessoesEmAndamento || {};
+  let mudou = false;
+  Object.keys(mapa).forEach(usuarioId => {
+    const g = mapa[usuarioId];
+    const completa = sessaoGuardadaCompleta(g);
+    if(!sessaoVencida(g) && !completa) return;
+    const itens = g.itens ? itensRespondidosDaSessao(g) : [];
+    if(itens.length && !(db.sessoes || []).some(x => x.id === g.id)){
+      if(!db.sessoes) db.sessoes = [];
+      const registro = {
+        id: g.id, usuarioId, tipo: g.tipo || "pratica", data: g.salvaEm,
+        total: itens.length, acertos: itens.filter(i => i.correta).length,
+        itens, planejadas: g.itens.length,
+      };
+      if(!completa) registro.naoTerminada = true;
+      db.sessoes.push(registro);
+      nuvemRegistrar({sessaoConcluida: registro});
+    }
+    delete mapa[usuarioId];
+    nuvemRegistrar({usuarioId, sessaoEmAndamento:"apagar"});
+    mudou = true;
+  });
+  if(mudou) saveState();
+}
+/* Guardada com todas as questões respondidas (de versões em que sair não
+   fechava o conjunto): não há o que continuar, vira histórico na carga. */
+function sessaoGuardadaCompleta(g){
+  return !!(g && g.itens && g.itens.length && g.itens.every((_, i) => (g.respostasSessao || [])[i]));
 }
 function sessaoEmAndamentoDe(usuario){
   if(!usuario || !db.sessoesEmAndamento) return null;
   const guardada = db.sessoesEmAndamento[usuario.id];
   if(!guardada || !guardada.itens || !guardada.itens.length) return null;
+  if(sessaoVencida(guardada) || sessaoGuardadaCompleta(guardada)) return null;
   // Questão excluída ou desativada desde então some da fila. As respostas
   // andam pela POSIÇÃO na fila, então elas precisam sair junto: tirar a
   // questão 2 e deixar as respostas como estavam faria a resposta da 3
@@ -414,19 +469,9 @@ function fecharSessaoPratica(){
   limparSessaoEmAndamento(); // conjunto concluído: não há mais o que retomar
   render(); window.scrollTo(0,0);
 }
-/* Guarda o conjunto de questões concluído no histórico do aluno, com o
-   detalhe de cada questão (o que marcou, se acertou e qual foi a confiança).
-   É esse registro que alimenta a tela "Histórico de Atividade" e permite
-   reabrir a página de feedback depois. */
-function registrarSessaoNoHistorico(s){
-  if(s.somenteLeitura) return;
-  const feitas = respostasFeitas(s);
-  if(!feitas.length) return;
-  if(!db.sessoes) db.sessoes = [];
-  const u = usuarioAtual();
-  const anterior = db.sessoes.find(x => x.id === s.id) || null;
-  // as questões deixadas em branco não entram: não houve resposta, e contá-las
-  // como linha do histórico inventaria um erro que não aconteceu
+/* As questões deixadas em branco não entram: não houve resposta, e contá-las
+   como linha do histórico inventaria um erro que não aconteceu. */
+function itensRespondidosDaSessao(s){
   const itens = [];
   s.itens.forEach((it, i) => {
     const r = respostaDoIndice(s, i);
@@ -440,6 +485,20 @@ function registrarSessaoNoHistorico(s){
       ...(r.textoResposta ? { textoResposta: r.textoResposta } : {}),
     });
   });
+  return itens;
+}
+/* Guarda o conjunto de questões concluído no histórico do aluno, com o
+   detalhe de cada questão (o que marcou, se acertou e qual foi a confiança).
+   É esse registro que alimenta a tela "Histórico de Atividade" e permite
+   reabrir a página de feedback depois. */
+function registrarSessaoNoHistorico(s){
+  if(s.somenteLeitura) return;
+  const feitas = respostasFeitas(s);
+  if(!feitas.length) return;
+  if(!db.sessoes) db.sessoes = [];
+  const u = usuarioAtual();
+  const anterior = db.sessoes.find(x => x.id === s.id) || null;
+  const itens = itensRespondidosDaSessao(s);
   const registro = {
     id: s.id, usuarioId: u.id, tipo: s.tipo||"pratica",
     data: (s.salvaNoHistorico && anterior) ? anterior.data : hojeISO(),
@@ -670,6 +729,23 @@ function redesenharQuestaoDaSessao(){
   const mapa = document.getElementById("mapaDaSessao");
   if(mapa){ mapa.outerHTML = renderMapaSessao(sessao); centralizarBarraDeQuestoes(); }
 }
+/* "Como funciona" sob as alternativas: quem é novo na plataforma o vê aberto;
+   depois de DICAS_ATE_RESPOSTAS respostas ele nasce recolhido (a pessoa já viu
+   a explicação dezenas de vezes) e a escolha explícita de abrir ou fechar vale
+   sempre. O toque que a página dispara ao desenhar o <details> aberto não conta
+   como escolha — só quando o estado difere do que a tela já mostrava. */
+const DICAS_ATE_RESPOSTAS = 10;
+function dicasDaQuestaoAbertas(){
+  const u = usuarioAtual();
+  if(u && typeof u.dicasDaQuestaoAbertas === "boolean") return u.dicasDaQuestaoAbertas;
+  return !u || db.respostas.filter(r=>r.usuarioId===u.id).length < DICAS_ATE_RESPOSTAS;
+}
+function lembrarDicasDaQuestao(aberta){
+  const u = usuarioAtual();
+  if(!u || !!aberta === dicasDaQuestaoAbertas()) return;
+  u.dicasDaQuestaoAbertas = !!aberta;
+  saveState();
+}
 function renderSessao(){
   const sessao = state.sessaoAtual;
   if(!sessao || sessao.finalizada) return renderSessaoResumo();
@@ -682,7 +758,7 @@ function renderSessao(){
   // uma linha só, em vez de dois avisos soltos; o "em branco" só depois que o
   // conjunto começou (no primeiro cartão é só o tamanho da fila)
   const avisoRodape = [
-    (!respondidaAqui && !soLeitura && !naUltima) ? "Dá para seguir sem responder: a questão fica em branco no mapa e você volta a ela quando quiser — o que estiver marcado e riscado continua aqui." : "",
+    (!respondidaAqui && !soLeitura && !naUltima) ? "Pode pular: a questão fica em branco no mapa e o que você marcou e riscou continua aqui." : "",
     (!soLeitura && emBranco && feitas) ? `${emBranco} ${emBranco===1?"questão em branco":"questões em branco"} neste conjunto.` : "",
   ].filter(Boolean).join(" ");
   return `<div class="coluna-questao">
@@ -927,11 +1003,14 @@ function renderQuestionCard(q, opts){
     </div>`;
   if(!opts.respondida){
     const nRiscadas = eliminadasDaQuestao(q.id).length;
-    // uma linha só: o que falta fazer, o que o × faz e por que as tags esperam
+    // o que falta fazer fica sempre à vista; o que o × faz e por que as tags esperam
+    // ficam atrás de "Como funciona", aberto para quem é novo e recolhido para quem
+    // já respondeu o bastante (ver dicasDaQuestaoAbertas) — a explicação não some,
+    // só deixa de repetir em toda questão
     const dicaRiscar = comeco => opts.somenteLeitura ? "" :
-      `<div class="text-xs muted mt-2">${comeco}${iconeSvg("eye-off")} Assunto, especialidade e dificuldade aparecem depois que você responder, para não entregar o diagnóstico. ${nRiscadas
+      `<div class="text-xs muted mt-2">${comeco}<details class="dica-questao" ${dicasDaQuestaoAbertas() ? "open" : ""} ontoggle="lembrarDicasDaQuestao(this.open)"><summary>${iconeSvg("eye-off")} Como funciona</summary>Assunto, especialidade e dificuldade aparecem depois que você responder, para não entregar o diagnóstico. ${nRiscadas
         ? `${nRiscadas} alternativa(s) eliminada(s) — clique no × de novo para trazer de volta.`
-        : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</div>`;
+        : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</details></div>`;
     if(opts.modoSimulado){
       // no simulado (fora do modo aprendizado): sem confiança e sem feedback imediato — só marca e segue
       html += dicaRiscar("");

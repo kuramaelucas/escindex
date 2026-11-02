@@ -7,6 +7,7 @@
 function renderRevisao(){
   const u = usuarioAtual();
   const assuntos = assuntosParaRevisarHoje(u.id);
+  const vencidos = limitarLista(assuntos, "revisao-vencidos", 5);
   const erros = questoesErroOrdenadasPorAntiguidade(u.id);
   const partesEspacada = partesDaRevisaoEspacada(u.id);
   const naoVistas = partesEspacada.novas.length;
@@ -27,9 +28,10 @@ function renderRevisao(){
   </div>
   <div class="card mt-2">
     <div class="card-title">Assuntos vencidos (${assuntos.length})</div>
-    ${assuntos.length ? `<div class="table-wrap mt-2"><table><thead><tr><th>Assunto</th><th>Taxa recente</th><th>Atraso</th><th></th></tr></thead><tbody>
-      ${assuntos.map(a=>`<tr><td>${escapeHtml(nomeAssunto(a.assuntoId))}</td><td>${Math.round(a.taxa*100)}%</td><td>${a.atrasoDias} dia(s)</td><td><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${a.assuntoId}')">Praticar</button></td></tr>`).join("")}
-    </tbody></table></div>` : '<p class="text-sm muted mt-1">Nenhum assunto vencido hoje — em dia com a revisão.</p>'}
+    ${assuntos.length ? `<div class="mt-2">
+      ${vencidos.itens.map(a=>`<div class="linha-fina"><span class="linha-fina-nome">${escapeHtml(nomeAssunto(a.assuntoId))}</span><span class="text-xs muted nowrap">${Math.round(a.taxa*100)}% · ${a.atrasoDias} dia(s) de atraso</span><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${a.assuntoId}')">Praticar</button></div>`).join("")}
+      ${botaoMostrarTudo(vencidos, "revisao-vencidos", "assuntos")}
+    </div>` : '<p class="text-sm muted mt-1">Nenhum assunto vencido hoje — em dia com a revisão.</p>'}
   </div>
   <div class="card mt-2">
     <div class="card-title">Filas por tipo de erro</div>
@@ -59,6 +61,7 @@ function renderRevisao(){
       </div>`).join("")}
     </div>` : ""}
   </div>
+  ${htmlCardTrilhaSugerida(u)}
   <div class="card mt-2">
     <div class="card-title">Revisão rápida por flashcards (${resumoFlashcards(u.id).vencidos} vencido(s))</div>
     <p class="text-sm muted">Cartão de conceito em vez de questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>

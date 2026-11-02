@@ -977,15 +977,18 @@ const ORIGENS_DE_QUESTAO = {
   bloco_atual: "bloco atual", revisao_nova: "revisão: assunto anterior ainda não visto",
   revisao_erro: "revisão espaçada: erro ou chute anterior", revisao_decaimento: "revisão espaçada: acerto antigo",
   previa: "prévia do próximo bloco", extra_prova: "extra do cronograma do 6º ano: prova de residência", nao_vista: "questão ainda não vista (sem calendário)", complemento: "complemento da sessão",
-  erros: "refazer erros", lista: "lista montada pela pessoa", simulado: "simulado",
+  erros: "refazer erros", trilha: "trilha de estudos por erro", lista: "lista montada pela pessoa", simulado: "simulado",
 };
 function origemDoItem(sessao, item){
   if(item && item.origem) return item.origem;
   return sessao && sessao.tipo === "simulado" ? "simulado" : "lista";
 }
 /* Na dissertativa não há alternativa: `dissertativa` traz o texto que a pessoa
-   escreveu (`texto`) e a autoavaliação dela (`correta`). */
-function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca, tempoSeg, origem, dissertativa){
+   escreveu (`texto`) e a autoavaliação dela (`correta`).
+   `quando` ({data, respondidaEm}) existe para o simulado: ele só grava as respostas
+   ao ser finalizado, e uma prova começada num dia e fechada em outro não pode
+   despejar tudo no dia de fechar (meta, sequência e gráficos são por dia). */
+function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca, tempoSeg, origem, dissertativa, quando){
   const q = getQuestao(questaoId);
   const aberta = ehDissertativa(q);
   const correta = aberta ? !!(dissertativa && dissertativa.correta) : alternativaEscolhida === q.gabarito;
@@ -993,18 +996,19 @@ function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca
      a última: a conta é feita direto na lista (o índice por questão só se
      renova no saveState). Com a hora exata (respondidaEm), dá para estudar
      em que horário e depois de qual intervalo a pessoa acerta mais. */
+  const dia = (quando && quando.data) || hojeISO();
   const anteriores = db.respostas.filter(r=>r.usuarioId===usuarioId && r.questaoId===questaoId);
   const ultimaData = anteriores.reduce((m, r)=> r.data && r.data > m ? r.data : m, "");
   const resposta = {
     id:uid("r"), usuarioId, questaoId,
     areaId:q.areaId, especialidadeId:q.especialidadeId, assuntoId:q.assuntoId,
-    alternativaEscolhida: aberta ? null : alternativaEscolhida, correta, confianca, data:hojeISO(),
+    alternativaEscolhida: aberta ? null : alternativaEscolhida, correta, confianca, data:dia,
     tempoSeg: (tempoSeg && tempoSeg>0 && tempoSeg<3600) ? Math.round(tempoSeg) : null,
     sessaoId: state.sessaoAtual ? state.sessaoAtual.id : null,
     origem: origem && ORIGENS_DE_QUESTAO[origem] ? origem : "lista",
     tentativa: anteriores.length + 1,
-    diasDesdeUltima: ultimaData ? Math.max(0, diasEntre(ultimaData, hojeISO())) : null,
-    respondidaEm: CONFIG.hoje().toISOString(),
+    diasDesdeUltima: ultimaData ? Math.max(0, diasEntre(ultimaData, dia)) : null,
+    respondidaEm: (quando && quando.respondidaEm) || CONFIG.hoje().toISOString(),
   };
   if(aberta) resposta.textoResposta = String((dissertativa && dissertativa.texto) || "").slice(0, 8000);
   db.respostas.push(resposta);

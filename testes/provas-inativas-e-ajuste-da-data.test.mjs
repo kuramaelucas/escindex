@@ -45,6 +45,7 @@ test("inativar prova (administrador): some para o aluno, nada é apagado, estat�
       const alunoVeBotao = /confirmarInativarProva/.test(document.getElementById("app").innerHTML);
       usuarioAtual().papel = "professor";   // quem gere conteúdo (a equipe) inativa
       navigate("provas-antigas");
+      state.filtroRota.rolagem = { "provas-antigas-graduacao": 9999, "provas-antigas-residencia": 9999 }; render();   // a lista rola de 15 em 15
       const indice = state.filtroRota.provasGrupos.findIndex(g => g.banca === q0.banca && g.ano === q0.ano && (g.semestre || 0) === (q0.semestre || 0));
       const adminVeBotao = document.getElementById("app").innerHTML.includes("confirmarInativarProva(" + indice + ")");
       confirmarInativarProva(indice);

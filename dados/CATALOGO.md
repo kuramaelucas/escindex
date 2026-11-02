@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 10270 questões (7505 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 109 arquivos.
+**Total:** 10970 questões (8205 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 116 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -90,6 +90,13 @@
 | `prova-uspsp-simulado-4.js` | Simulados USP SP — Simulado 4 (04/2025) 2025 — Simulado 4, todo o conteúdo, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-uspsp-simulado-3.js` | Simulados USP SP — Simulado 3, 6º ano (03/2025) 2025 — Simulado 3, conteúdo do 6º ano, gabarito comentado (FMUSP) | 120 questões |  |
 | `prova-simulado-epm-2026-10.js` | Simulado EPM/UNIFESP (Turma 89) 2026 — Prova de Residência Médica, Avaliação Discente - Internato, 18/10/2026 | 100 questões |  |
+| `prova-sirio-2023.js` | Sírio-Libanês (SP) 2023 | 100 questões | 1 anulada(s) |
+| `prova-sirio-2024.js` | Sírio-Libanês (SP) 2024 | 100 questões |  |
+| `prova-sirio-2025.js` | Sírio-Libanês (SP) 2025 | 100 questões | 7 anulada(s) |
+| `prova-sirio-2026.js` | Sírio-Libanês (SP) 2026 | 100 questões |  |
+| `prova-sirio-2027.js` | Sírio-Libanês (SP) 2027 | 100 questões | 6 anulada(s) |
+| `prova-sirio-2021.js` | Sírio-Libanês (SP) 2021 | 100 questões |  |
+| `prova-sirio-2022.js` | Sírio-Libanês (SP) 2022 | 100 questões |  |
 | `banco-simulado-didatico-epm.js` | SIMULADO DIDÁTICO EPM — 100 questões autorais (base: UNIFESP-EPM 2022 a 2026) | 100 questões |  |
 | `banco-didatico-grad-malaria.js` | Esc — Banco Didático 2026 | 27 questões | 3 anulada(s) |
 | `banco-didatico-grad-tuberculose.js` | Esc — Banco Didático 2026 | 182 questões | 9 anulada(s); 6 esperando figura |

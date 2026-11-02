@@ -680,7 +680,10 @@ function sincronizarConteudoNovo(){
   (SEED_TAXONOMIA.areas||[]).forEach(a=>{ if(!db.taxonomia.areas.some(x=>x.id===a.id)){ db.taxonomia.areas.push(copiaProfunda(a)); novos++; } });
   (SEED_TAXONOMIA.especialidades||[]).forEach(e=>{ if(!db.taxonomia.especialidades.some(x=>x.id===e.id)){ db.taxonomia.especialidades.push(copiaProfunda(e)); novos++; } });
   (SEED_TAXONOMIA.assuntos||[]).forEach(a=>{ if(!db.taxonomia.assuntos.some(x=>x.id===a.id)){ db.taxonomia.assuntos.push(copiaProfunda(a)); novos++; } });
-  SEED_QUESTOES.forEach(q=>{ if(!db.questoes.some(x=>x.id===q.id)){ db.questoes.push(copiaProfunda(q)); novos++; } });
+  // Set em vez de db.questoes.some(...) dentro do forEach: com ~10 mil questões
+  // eram ~100 milhões de comparações a cada abertura do site.
+  const idsDasQuestoes = new Set(db.questoes.map(x=>x.id));
+  SEED_QUESTOES.forEach(q=>{ if(!idsDasQuestoes.has(q.id)){ db.questoes.push(copiaProfunda(q)); idsDasQuestoes.add(q.id); novos++; } });
   // Campos que o conteúdo ganhou DEPOIS de a questão já estar salva no
   // navegador — o número dela na prova, a imagem que falta. Só se preenche o
   // que está vazio: uma questão que a equipe editou aqui fica como está.
@@ -718,7 +721,8 @@ function sincronizarConteudoNovo(){
   novos += antesDosRetirados - db.simulados.length;
   (SEED_SIMULADOS||[]).forEach(s=>{ if(!db.simulados.some(x=>x.id===s.id)){ db.simulados.push(copiaProfunda(s)); novos++; } });
   if(!db.flashcards) db.flashcards = [];
-  SEED_FLASHCARDS.forEach(c=>{ if(!db.flashcards.some(x=>x.id===c.id)){ db.flashcards.push(copiaProfunda(c)); novos++; } });
+  const idsDosCartoes = new Set(db.flashcards.map(x=>x.id));
+  SEED_FLASHCARDS.forEach(c=>{ if(!idsDosCartoes.has(c.id)){ db.flashcards.push(copiaProfunda(c)); idsDosCartoes.add(c.id); novos++; } });
   if(!db.livroOuro) { db.livroOuro = copiaProfunda(SEED_LIVRO_OURO); novos++; }
   // um ano da faculdade que ganhou calendário no código e ainda não existe no
   // banco salvo entra aqui — sem tocar nos anos que a coordenação já editou

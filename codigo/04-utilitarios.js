@@ -114,6 +114,53 @@ function controlesPaginacao(p, rotulo){
   </div>`;
 }
 
+/* Lista que mostra só as primeiras linhas e abre o resto num clique: onde a
+   ordem já põe o mais importante no começo, paginar esconde o resto sem
+   avisar e despeja tudo de uma vez pesa. `chave` guarda se a pessoa abriu. */
+function limitarLista(lista, chave, maximo){
+  const aberta = !!(state.filtroRota.listasAbertas || {})[chave];
+  return { itens: aberta ? lista : lista.slice(0, maximo), total: lista.length, aberta, podeAbrir: lista.length > maximo };
+}
+function botaoMostrarTudo(l, chave, rotulo){
+  if(!l.podeAbrir) return "";
+  return `<button class="btn btn-ghost btn-sm mt-1" onclick="alternarListaAberta('${chave}')" aria-expanded="${l.aberta}">${l.aberta ? "Mostrar menos" : "Mostrar tudo ("+l.total+(rotulo?" "+rotulo:"")+")"}</button>`;
+}
+function alternarListaAberta(chave){
+  if(!state.filtroRota.listasAbertas) state.filtroRota.listasAbertas = {};
+  state.filtroRota.listasAbertas[chave] = !state.filtroRota.listasAbertas[chave];
+  render();
+}
+
+/* Rolagem infinita: a lista mostra 15 e, ao chegar perto do fim da página,
+   acrescenta mais 15 sozinha — sem botão "mostrar mais" nem página seguinte,
+   e sem esconder o resto: descer sempre leva a tudo. A sentinela é um
+   marcador no fim da lista; `verificarRolagemInfinita` roda a cada rolagem e
+   depois de cada desenho de tela (lista curta já nasce cheia até passar do
+   fundo da janela). `redesenhar` é o nome da função que refaz só a parte da
+   tela, para a posição da rolagem não voltar ao topo. */
+const PASSO_ROLAGEM_INFINITA = 15;
+function rolagemLista(lista, chave, passo){
+  const mapa = state.filtroRota.rolagem = state.filtroRota.rolagem || {};
+  const n = mapa[chave] || passo || PASSO_ROLAGEM_INFINITA;
+  return { itens: lista.slice(0, n), total: lista.length, restam: Math.max(0, lista.length - n) };
+}
+function sentinelaRolagem(l, chave, redesenhar){
+  return l.restam ? `<div class="rolagem-sentinela text-xs muted mt-1" data-rolagem="${escapeHtml(chave)}" data-redesenhar="${redesenhar||""}" role="status">Mostrando ${l.itens.length} de ${l.total} — o resto carrega ao descer…</div>` : "";
+}
+function verificarRolagemInfinita(){
+  const alvo = document.querySelector(".rolagem-sentinela");
+  if(!alvo) return;
+  if(alvo.getBoundingClientRect().top > window.innerHeight + 400) return;
+  const mapa = state.filtroRota.rolagem = state.filtroRota.rolagem || {};
+  const chave = alvo.dataset.rolagem;
+  mapa[chave] = (mapa[chave] || PASSO_ROLAGEM_INFINITA) + PASSO_ROLAGEM_INFINITA;
+  const fn = alvo.dataset.redesenhar;
+  if(fn && typeof window[fn] === "function") window[fn](); else render();
+  requestAnimationFrame(verificarRolagemInfinita);
+}
+document.addEventListener("scroll", () => requestAnimationFrame(verificarRolagemInfinita), true);
+window.addEventListener("resize", () => requestAnimationFrame(verificarRolagemInfinita));
+
 /* A data "AAAA-MM-DD" do DIA DE QUEM ESTÁ USANDO, no relógio local.
    toISOString() dá a data em UTC — no Brasil (UTC−3), a partir das 21h ela
    já é a de amanhã: a meta do dia zerava às nove da noite, a sequência de
@@ -385,7 +432,7 @@ function graficoBarrasVerticaisSvg(itens, opts){
   if(!comDados.length) return '<div class="text-xs muted">Você ainda não respondeu questões neste período.</div>';
 
   const alturaPlot = opts.altura || 170;
-  const padTopo = 22, padBaixo = opts.rotuloRotacionado ? 52 : 30, padEsq = 34, padDir = 8;
+  const padTopo = 34, padBaixo = opts.rotuloRotacionado ? 52 : 30, padEsq = 34, padDir = 8;
   // barras finas quando há muitos dias, largas quando são poucas categorias
   const larguraBarra = Math.min(opts.larguraMax || 46, Math.max(8, 620/itens.length - 6));
   const gap = Math.max(3, larguraBarra*0.28);
@@ -395,6 +442,11 @@ function graficoBarrasVerticaisSvg(itens, opts){
   // mostra o número dentro/acima da barra só quando cabe sem embolar
   const mostrarPct = larguraBarra >= 22;
 
+  // volume: 2 de 2 não pesa como 80 de 100. A cor da barra esmaece conforme o
+  // total do período fica pequeno perto do maior (piso de 20 questões, para
+  // um período inteiro de poucas questões também parecer fraco) e o número de
+  // questões vai escrito sob a porcentagem.
+  const referencia = Math.max(20, ...comDados.map(i=>i.total));
   const grade = [0,25,50,75,100].map(v=>{
     const y = padTopo + alturaPlot - (v/100)*alturaPlot;
     return '<line x1="'+padEsq+'" y1="'+y+'" x2="'+(w-padDir)+'" y2="'+y+'" stroke="var(--border)" stroke-width="1"'+(v===0?'':' stroke-dasharray="2 3"')+'/>'+
@@ -417,10 +469,12 @@ function graficoBarrasVerticaisSvg(itens, opts){
     // em 0% de acerto a barra fica inteiramente cinza: nenhum resquício de
     // verde, senão o gráfico sugere um acerto que não houve
     const verde = it.taxa>0 ? Math.max(2, alturaAcerto) : 0;
-    return '<g><title>'+titulo+'</title>'+
+    const opacidade = (0.35 + 0.65*Math.min(1, it.total/referencia)).toFixed(2);
+    return '<g><title>'+titulo+'</title><g opacity="'+opacidade+'">'+
       '<rect x="'+x+'" y="'+padTopo+'" width="'+larguraBarra+'" height="'+Math.max(0,alturaErro)+'" fill="var(--barra-erro)" rx="3"/>'+
-      (verde ? '<rect x="'+x+'" y="'+yAcerto+'" width="'+larguraBarra+'" height="'+verde+'" fill="var(--barra-acerto)" rx="3"/>' : "")+
-      (mostrarPct ? '<text x="'+(x+larguraBarra/2)+'" y="'+(padTopo-6)+'" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink-2)">'+it.taxa+'%</text>' : "")+
+      (verde ? '<rect x="'+x+'" y="'+yAcerto+'" width="'+larguraBarra+'" height="'+verde+'" fill="var(--barra-acerto)" rx="3"/>' : "")+'</g>'+
+      (mostrarPct ? '<text x="'+(x+larguraBarra/2)+'" y="'+(padTopo-17)+'" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink-2)">'+it.taxa+'%</text>'+
+        '<text x="'+(x+larguraBarra/2)+'" y="'+(padTopo-6)+'" text-anchor="middle" font-size="9" fill="var(--muted)">'+it.total+'q</text>' : "")+
       '</g>'+rotulo;
   }).join("");
 
@@ -433,6 +487,7 @@ function graficoBarrasVerticaisSvg(itens, opts){
     '<div class="legenda-barras">'+
       '<span><i style="background:var(--barra-acerto)"></i>acertos</span>'+
       '<span><i style="background:var(--barra-erro)"></i>erros</span>'+
+      '<span class="muted">barra mais clara = menos questões (o número abaixo da % é o total)</span>'+
       (mostrarPct?'':'<span class="muted">passe o dedo ou o mouse numa barra para ver o número</span>')+
     '</div>';
 }
@@ -476,11 +531,15 @@ function frasePoucosAlunosNoSimulado(chave){
     ` isto ${nuvemConectado() ? "na turma" : "neste navegador"}` +
     (n ? `; faltam ${falta} para liberar os números` : "") + ".";
 }
+/* O administrador também estuda: entra nas contas da turma (gráfico de todos
+   os alunos, percentil, média do ano e da turma dele) como qualquer aluno.
+   Professor e residente continuam fora — são equipe. */
+function contaComoAluno(u){ return !!u && (u.papel === "aluno" || u.papel === "admin"); }
 function notasAnonimasDoSimulado(chave){
   const primeiraPorAluno = new Map();
   db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).forEach(r => {
     const u = getUsuario(r.usuarioId);
-    if(u && u.papel !== "aluno") return;
+    if(u && !contaComoAluno(u)) return;
     const antes = primeiraPorAluno.get(r.usuarioId);
     if(!antes || (r.data || "") < (antes.data || "")) primeiraPorAluno.set(r.usuarioId, r);
   });

@@ -71,7 +71,7 @@ function renderAvisosCard(usuario){
   const avisos = avisosNaoLidos(usuario);
   if(!avisos.length) return "";
   const aberto = !!state.avisosAbertos;
-  return `<div class="card mb-2 borda-alerta">
+  return `<div class="card card-compacto mb-2 borda-alerta">
     <div class="flex justify-between items-center clicavel gap-1" role="button" tabindex="0" aria-expanded="${aberto}" onclick="alternarAvisos()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alternarAvisos()}">
       <div class="card-title sem-mb">${iconeSvg("message")} Avisos da coordenação${avisos.length>1 ? ` (${avisos.length})` : ""}${aberto ? "" : ` <span class="text-sm muted peso-400">· ${escapeHtml(avisos[0].titulo)}</span>`}</div>
       <span class="text-xs muted">${aberto ? "recolher" : "ver"} ${iconeSvg(aberto ? "arrow-up" : "arrow-down")}</span>

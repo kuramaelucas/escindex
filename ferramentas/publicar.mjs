@@ -9,7 +9,7 @@
    AAAA-MM-DD.cHASH.dHASH, e quem a escreve é esta ferramenta — ninguém troca à mão:
      cHASH  vem do código  (codigo/, sw.js, manifest, o index.html fora a linha da versão)
      dHASH  vem do conteúdo (dados/*.js)
-   O navegador pede codigo/ com ?v=cHASH e dados/ com ?v=dHASH. Resultado: mudar
+   O navegador pede codigo/ com ?v=cHASH e cada dados/X.js com o hash do próprio X (ESC_HASH_DADOS). Resultado: mudar
    a plataforma não faz ninguém baixar as questões de novo, e acrescentar uma
    prova não refaz o download do código. A data só muda quando algum hash muda.
 
@@ -28,6 +28,7 @@ import { resumirNumeros } from "../testes/conferir-dados.mjs";
 const INDEX = path.join(RAIZ, "index.html");
 const CATALOGO = path.join(RAIZ, "dados", "CATALOGO.md");
 const LINHA_VERSAO = /(window\.ESC_VERSAO\s*=\s*")([^"]*)(")/;
+const LINHA_HASHES = /window\.ESC_HASH_DADOS\s*=\s*\{[^}]*\};/;
 
 const listar = pasta => fs.readdirSync(path.join(RAIZ, pasta)).filter(f => /\.(js|css)$/.test(f)).sort().map(f => pasta + "/" + f);
 
@@ -40,10 +41,19 @@ function hashDe(arquivos, normalizar = (rel, buf) => buf){
   return h.digest("hex").slice(0, 8);
 }
 
-/* O index.html entra no hash do código, menos a própria linha da versão (senão
-   gravar a versão mudaria o hash para sempre). */
+/* Um hash por arquivo de dados/: prova nova ou corrigida muda só o endereço
+   dela, e o aluno baixa só ela (antes um hash único refazia o download de tudo). */
+export function hashesPorArquivo(){
+  const mapa = {};
+  for(const rel of listar("dados").filter(f => f.endsWith(".js"))) mapa[path.basename(rel, ".js")] = hashDe([rel]);
+  return mapa;
+}
+
+/* O index.html entra no hash do código, menos a linha da versão e a dos hashes
+   de dados (senão gravá-las mudaria o hash para sempre — e mexer em conteúdo
+   refaria o download do código). */
 export function hashes(){
-  const semVersao = (rel, buf) => rel === "index.html" ? Buffer.from(buf.toString("utf8").replace(LINHA_VERSAO, "$1$3")) : buf;
+  const semVersao = (rel, buf) => rel === "index.html" ? Buffer.from(buf.toString("utf8").replace(LINHA_VERSAO, "$1$3").replace(LINHA_HASHES, "")) : buf;
   return {
     codigo: hashDe([...listar("codigo"), "sw.js", "manifest.webmanifest", "index.html"], semVersao),
     dados: hashDe(listar("dados")),
@@ -62,6 +72,9 @@ export function versaoEsperada(){
   if(p[1] === "c" + h.codigo && p[2] === "d" + h.dados) return atual;
   return `${new Date().toISOString().slice(0, 10)}.c${h.codigo}.d${h.dados}`;
 }
+
+const linhaDeHashes = () => "window.ESC_HASH_DADOS = " + JSON.stringify(hashesPorArquivo()) + ";";
+const hashesGravados = () => (LINHA_HASHES.exec(fs.readFileSync(INDEX, "utf8")) || [""])[0];
 
 export function catalogo(){
   const { D, arquivos } = carregar();
@@ -89,14 +102,14 @@ export function catalogo(){
 if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])){
   const soConferir = process.argv.includes("--conferir");
   const versao = versaoEsperada(), cat = catalogo();
-  const velhaVersao = versao !== versaoGravada();
+  const velhaVersao = versao !== versaoGravada() || hashesGravados() !== linhaDeHashes();
   const velhoCatalogo = !fs.existsSync(CATALOGO) || fs.readFileSync(CATALOGO, "utf8") !== cat;
   if(soConferir){
     if(velhaVersao) console.error(`A versão do index.html (${versaoGravada()}) está velha — o código ou o conteúdo mudou. Rode: npm run publicar`);
     if(velhoCatalogo) console.error("dados/CATALOGO.md está velho — o conteúdo mudou. Rode: npm run publicar");
     process.exit(velhaVersao || velhoCatalogo ? 1 : 0);
   }
-  if(velhaVersao) fs.writeFileSync(INDEX, fs.readFileSync(INDEX, "utf8").replace(LINHA_VERSAO, `$1${versao}$3`));
+  if(velhaVersao) fs.writeFileSync(INDEX, fs.readFileSync(INDEX, "utf8").replace(LINHA_VERSAO, `$1${versao}$3`).replace(LINHA_HASHES, () => linhaDeHashes()));
   if(velhoCatalogo) fs.writeFileSync(CATALOGO, cat);
   const antes = versaoGravada();
   console.log(velhaVersao ? `Versão: ${versao}` : `Versão já em dia: ${antes}`);

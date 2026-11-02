@@ -171,7 +171,7 @@ function renderMaterialPDF(){
   const ctx = ctxMaterialPDF();
   const ehQuestoes = ctx.tipo==="prova" || ctx.tipo==="lista";
   const total = ctx.tipo==="flashcards" ? flashcardsDoMaterialPDF().length
-              : ctx.tipo==="desempenho" ? db.usuarios.filter(x=>x.papel==="aluno" && x.status==="aprovado").length
+              : ctx.tipo==="desempenho" ? db.usuarios.filter(x=>contaComoAluno(x) && x.status==="aprovado").length
               : questoesDoMaterialPDF().length;
   const rotuloTotal = ctx.tipo==="flashcards" ? "cartão(ões)" : ctx.tipo==="desempenho" ? "aluno(s)" : "questão(ões)";
   return `
@@ -363,7 +363,7 @@ function htmlFlashcardsPDF(){
   return html;
 }
 function htmlDesempenhoPDF(){
-  const alunos = db.usuarios.filter(x=>x.papel==="aluno" && x.status==="aprovado");
+  const alunos = db.usuarios.filter(x=>contaComoAluno(x) && x.status==="aprovado");
   if(!alunos.length) return "";
   let html = cabecalhoPDF("Relatório de desempenho da turma");
   const linhas = alunos.map(a=>{

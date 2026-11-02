@@ -718,6 +718,7 @@ loadState();
   // se a pasta "dados/" não veio junto, a tarja explica antes de a pessoa
   // achar que a plataforma quebrou
   avisarSeFaltarConteudo();
+  arquivarSessoesVencidas();   // conjunto parado há mais de 7 dias vai para o Histórico como "não terminado"
   // nuvem: quem já entrou neste aparelho continua entrado (a sessão fica no
   // navegador) e o estudo feito em outro aparelho desce em segundo plano
   nuvemCarregarSessaoSalva();

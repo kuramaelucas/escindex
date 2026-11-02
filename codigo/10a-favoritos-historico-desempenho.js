@@ -392,11 +392,120 @@ function abrirDiaDoHistorico(dia){
   };
   navigate("sessao");
 }
+/* O histórico tem duas leituras do mesmo estudo: o calendário (o mês de uma
+   vez, com a cor dizendo quão perto da meta cada dia ficou) e a lista dia a
+   dia. A escolha fica na tela; o calendário é o padrão porque mostra a
+   constância, e o clique no dia leva ao mesmo cartão da lista. */
+function ctxHistorico(){
+  if(!state.filtroRota.historico) state.filtroRota.historico = {visao:"calendario"};
+  return state.filtroRota.historico;
+}
+function mudarVisaoHistorico(v){ ctxHistorico().visao = v; render(); }
+function mudarMesHistorico(delta){
+  const ctx = ctxHistorico();
+  const [a, m] = (ctx.mes || hojeISO().slice(0,7)).split("-").map(Number);
+  ctx.mes = dataLocalISO(new Date(a, m - 1 + delta, 1)).slice(0,7);
+  ctx.dia = null;
+  render();
+}
+function escolherDiaDoHistorico(dia){ ctxHistorico().dia = dia; render(); }
+/* Conjunto vindo da trilha por erro leva o motivo "Trilha por erro — …" nos
+   itens (05d); reconhecer por ali evita gravar um campo novo e vale também
+   para os conjuntos antigos. */
+function rotuloDoConjunto(sess){
+  const motivo = sess.itens && sess.itens[0] && sess.itens[0].motivo || "";
+  return /^Trilha/i.test(motivo) ? {trilha:true, nome:"Trilha por erro"} : {trilha:false, nome:"Conjunto"};
+}
+/* O cartão de um dia: o mesmo na lista e no painel que o calendário abre.
+   Cada coisa feita no dia tem a sua linha e o seu botão de abrir. */
+function htmlDiaDoHistorico(d){
+  const taxa = d.total ? pct(d.acertos, d.total) : null;
+  const corTaxa = t => t>=70?"badge-accent":t>=50?"badge-amber":"badge-danger";
+  const linhas = [];
+  d.sessoes.forEach(sess=>{
+    const t = pct(sess.acertos, sess.total), rot = rotuloDoConjunto(sess);
+    const motivo = (sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática").replace(/^Trilha por erro\s*—\s*/i, "");
+    linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
+      <span>${iconeSvg(rot.trilha?"target":"book")} ${sess.naoTerminada ? `${rot.nome.toLowerCase()} <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} questão(ões) respondida(s) (parado há mais de 7 dias)` : `${rot.nome.toLowerCase()} de ${sess.total} questão(ões)`} — ${escapeHtml(motivo)}</span>
+      <span class="flex items-center gap-1"><span class="badge ${corTaxa(t)}">${t}%</span>
+      <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir ${rot.trilha?"esta trilha":"este conjunto"}</button></span>
+    </div>`);
+  });
+  if(d.cartoes) linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
+    <span>${iconeSvg("cards")} ${d.cartoes} flashcard(s) revisado(s)${d.cartoesExatos?"":" (ao menos)"}</span>
+    <button class="link-btn text-xs" onclick="navigate('flashcards')">ir para a Revisão Rápida</button></div>`);
+  d.simulados.forEach(sim=>{
+    linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
+      <span>${iconeSvg("clipboard")} simulado — ${escapeHtml(sim.titulo||"—")}</span>
+      <span class="flex items-center gap-1"><span class="badge ${corTaxa(sim.nota)}">${sim.nota}%</span>
+      ${sim.itens?`<button class="link-btn text-xs" onclick="verDetalheResultadoSimulado('${sim.id}')">abrir feedback</button>`:""}</span>
+    </div>`);
+  });
+  return `<div class="card-flat mb-1">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-220">
+        <div class="peso-600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
+        <div class="text-xs muted mt-1">${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}</div>
+      </div>
+      <div class="flex items-center gap-1 quebra">
+        ${taxa!==null ? `<span class="badge ${corTaxa(taxa)}">${taxa}% de acerto</span>` : ""}
+        ${d.total ? `<button class="btn btn-secondary btn-sm" onclick="abrirDiaDoHistorico('${d.data}')">${iconeSvg("chart")} Abrir o dia</button>` : ""}
+      </div>
+    </div>
+    ${linhas.length ? `<div class="mt-2" style="border-top:1px solid var(--border);padding-top:.6rem">${linhas.join("")}</div>` : ""}
+  </div>`;
+}
+/* Mesma progressão de cor do calendário de Meu Desempenho: meta batida (cor
+   forte), estudou abaixo da meta (cor suave), sem estudo (neutro). Aqui
+   cartão e simulado também contam como "estudou". */
+function htmlCalendarioHistorico(u, diasAtivos){
+  const ctx = ctxHistorico();
+  const mes = ctx.mes || hojeISO().slice(0,7);
+  const meta = metaDoUsuario(u);
+  const {dias, primeiroDiaSemana} = diasDoCalendario(u.id, mes, meta);
+  const porData = new Map(diasAtivos.map(d=>[d.data, d]));
+  const [a, m] = mes.split("-").map(Number);
+  const doMes = dias.filter(d=>porData.has(d.iso));
+  if(!ctx.dia || !ctx.dia.startsWith(mes) || !porData.has(ctx.dia)) ctx.dia = doMes.length ? doMes[doMes.length-1].iso : null;
+  const ehMesAtual = mes >= hojeISO().slice(0,7);
+  const cabecalho = ["D","S","T","Q","Q","S","S"].map(x=>`<div class="cal-semana">${x}</div>`).join("");
+  const vazios = Array.from({length:primeiroDiaSemana}, ()=>`<div class="cal-dia cal-fora"></div>`).join("");
+  const celulas = dias.map(d=>{
+    const ativo = porData.get(d.iso);
+    const classe = d.metaBatida ? "cal-meta" : ativo ? "cal-estudou" : "";
+    const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes + " questão(ões)" : "sem questões")
+      + (d.cartoes ? ", " + d.cartoes + " cartão(ões)" : "") + (ativo && ativo.simulados.length ? ", " + ativo.simulados.length + " simulado(s)" : "") + (d.metaBatida ? " — meta batida" : "");
+    const conteudo = `<span class="cal-num">${d.dia}</span><span class="cal-qtd">${d.questoes||""}</span>`;
+    const comum = `${classe} ${d.futuro?"cal-futuro":""} ${d.hoje?"cal-hoje":""} ${ctx.dia===d.iso?"cal-selecionado":""}`;
+    return ativo ? `<button type="button" class="cal-dia cal-clicavel ${comum}" title="${escapeHtml(dica)}" aria-pressed="${ctx.dia===d.iso}" onclick="escolherDiaDoHistorico('${d.iso}')">${conteudo}</button>`
+                 : `<div class="cal-dia ${comum}" title="${escapeHtml(dica)}">${conteudo}</div>`;
+  }).join("");
+  return `
+  <div class="calendario-estudo">
+    <div class="calendario-grade">
+      <div class="flex justify-between items-center mb-1">
+        <button class="btn btn-ghost btn-sm" onclick="mudarMesHistorico(-1)" aria-label="Mês anterior">‹</button>
+        <div class="peso-600">${MESES_CALENDARIO[m-1]} de ${a}</div>
+        <button class="btn btn-ghost btn-sm" onclick="mudarMesHistorico(1)" aria-label="Próximo mês" ${ehMesAtual?"disabled":""}>›</button>
+      </div>
+      <div class="cal-grade">${cabecalho}${vazios}${celulas}</div>
+      <div class="flex gap-2 quebra mt-2">
+        <div class="cal-legenda"><span class="cal-amostra cal-meta"></span> meta batida (${meta} questões ou mais)</div>
+        <div class="cal-legenda"><span class="cal-amostra cal-estudou"></span> estudou, abaixo da meta</div>
+        <div class="cal-legenda"><span class="cal-amostra"></span> sem estudo</div>
+      </div>
+    </div>
+    <div class="calendario-lateral" aria-live="polite">
+      ${ctx.dia ? htmlDiaDoHistorico(porData.get(ctx.dia)) : `<p class="text-sm muted">Nenhum estudo registrado em ${MESES_CALENDARIO[m-1]}. Use as setas para ver outro mês.</p>`}
+    </div>
+  </div>`;
+}
 function renderHistorico(){
   const u = usuarioAtual();
   const sessoes = (db.sessoes||[]).filter(x=>x.usuarioId===u.id).slice().reverse();
   const simulados = db.resultadosSimulados.filter(r=>r.usuarioId===u.id).sort((a,b)=>b.data.localeCompare(a.data));
   const dias = atividadePorDia(u.id, 14);
+  const fechadas = sessoes.filter(x=>!x.naoTerminada).length;
   const totalRespostas = db.respostas.filter(r=>r.usuarioId===u.id).length;
   const totalAcertos = db.respostas.filter(r=>r.usuarioId===u.id && r.correta).length;
   const ultimos7 = db.respostas.filter(r=>r.usuarioId===u.id && diasEntre(r.data, hojeISO())<7);
@@ -404,10 +513,11 @@ function renderHistorico(){
   const pagDias = paginar(diasAtivos, "historico-dias", {porPagina:15});
   const pagSimulados = paginar(simulados, "historico-simulados", {porPagina:15});
   const cartoesTotal = diasAtivos.reduce((soma,d)=>soma+d.cartoes, 0);
+  const visaoCal = ctxHistorico().visao !== "lista";
   return `
   <div class="page-header"><h2>Histórico de Atividade</h2><p>Tudo o que você já estudou, dia a dia, do mais recente para o mais antigo — questões (dentro ou fora de um conjunto), flashcards e simulados.</p></div>
   <div class="grid grid-4 compacto mb-2">
-    <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">dia(s) com estudo registrado · ${sessoes.length} conjunto(s) fechado(s)</div></div>
+    <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">dia(s) com estudo registrado · ${fechadas} conjunto(s) fechado(s)${sessoes.length-fechadas?" · "+(sessoes.length-fechadas)+" não terminado(s)":""}</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas}</div><div class="stat-label">questões respondidas no total${cartoesTotal?" · "+cartoesTotal+" flashcard(s)":""}</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</div><div class="stat-label">taxa de acerto geral</div></div>
     <div class="stat-tile"><div class="stat-value">${ultimos7.length?pct(ultimos7.filter(r=>r.correta).length, ultimos7.length)+"%":"—"}</div><div class="stat-label">taxa de acerto nos últimos 7 dias (${ultimos7.length} questões)</div></div>
@@ -418,41 +528,18 @@ function renderHistorico(){
     <p class="text-xs muted mt-1">Cada barra é a taxa de acerto do dia; o número entre parênteses é quantas questões você respondeu naquele dia.</p>
   </div>
   <div class="card mb-2">
-    <div class="card-title mb-1">Dia a dia</div>
-    <p class="text-sm muted mb-2">Cada dia é uma linha, com tudo o que você fez nele — inclusive as questões respondidas fora de um conjunto e os flashcards. Clique no dia para reabrir o feedback questão a questão.</p>
-    ${diasAtivos.length ? pagDias.itens.map(d=>{
-      const taxa = d.total ? pct(d.acertos, d.total) : null;
-      const sessoesDoDia = d.sessoes.length;
-      return `<div class="card-flat mb-1">
-        <div class="flex justify-between items-center gap-2 quebra">
-          <div class="cresce-220">
-            <div class="peso-600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
-            <div class="text-xs muted mt-1">
-              ${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}
-              ${d.cartoes ? ` · ${d.cartoes} flashcard(s)${d.cartoesExatos?"":" (ao menos)"}` : ""}
-              ${sessoesDoDia ? ` · ${sessoesDoDia} conjunto(s) fechado(s)` : ""}
-              ${d.simulados.length ? ` · ${d.simulados.length} simulado(s)` : ""}
-            </div>
-          </div>
-          <div class="flex items-center gap-1 quebra">
-            ${taxa!==null ? `<span class="badge ${taxa>=70?"badge-accent":taxa>=50?"badge-amber":"badge-danger"}">${taxa}% de acerto</span>` : ""}
-            ${d.cartoes ? `<span class="badge badge-muted">${iconeSvg("cards")} ${d.cartoes}</span>` : ""}
-            ${d.total ? `<button class="btn btn-secondary btn-sm" onclick="abrirDiaDoHistorico('${d.data}')">${iconeSvg("chart")} Abrir o dia</button>` : ""}
-          </div>
-        </div>
-        ${sessoesDoDia ? `<div class="mt-2" style="border-top:1px solid var(--border);padding-top:.6rem">
-          ${d.sessoes.map(sess=>{
-            const t = pct(sess.acertos, sess.total);
-            return `<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
-              <span>${iconeSvg("book")} conjunto de ${sess.total} questão(ões) — ${escapeHtml(sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática")}</span>
-              <span class="flex items-center gap-1"><span class="badge ${t>=70?"badge-accent":t>=50?"badge-amber":"badge-danger"}">${t}%</span>
-              <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir este conjunto</button></span>
-            </div>`;
-          }).join("")}
-        </div>` : ""}
-      </div>`;
-    }).join("") : '<p class="text-sm muted mt-1">Você ainda não estudou nenhum dia por aqui. Comece em "Estudar" ou na "Revisão Rápida".</p>'}
-    ${controlesPaginacao(pagDias, "dia(s)")}
+    <div class="flex justify-between items-center gap-2 mb-2 quebra">
+      <div style="min-width:280px;flex:1">
+        <div class="card-title mb-02">Dia a dia</div>
+        <div class="text-sm muted">${visaoCal ? "Cada quadrado é um dia: quanto mais forte a cor, mais perto da meta. Clique num dia para ver tudo o que foi feito nele." : "Cada dia é uma linha, com tudo o que você fez nele — inclusive as questões fora de um conjunto, as trilhas, os flashcards e os simulados."}</div>
+      </div>
+      <div class="abas-caixa" role="tablist" aria-label="Forma de ver o histórico">
+        <button class="pill ${visaoCal?"active":""}" role="tab" aria-selected="${visaoCal}" onclick="mudarVisaoHistorico('calendario')">${iconeSvg("calendar")} Calendário</button>
+        <button class="pill ${!visaoCal?"active":""}" role="tab" aria-selected="${!visaoCal}" onclick="mudarVisaoHistorico('lista')">${iconeSvg("book")} Lista</button>
+      </div>
+    </div>
+    ${visaoCal ? htmlCalendarioHistorico(u, diasAtivos) : (diasAtivos.length ? pagDias.itens.map(d=>htmlDiaDoHistorico(d)).join("") : '<p class="text-sm muted mt-1">Você ainda não estudou nenhum dia por aqui. Comece em "Estudar" ou na "Revisão Rápida".</p>')}
+    ${visaoCal ? "" : controlesPaginacao(pagDias, "dia(s)")}
   </div>
   <div class="card">
     <div class="card-title mb-1">Simulados realizados</div>
@@ -650,11 +737,11 @@ function htmlCardOQueMaisCai(u, limite){
     <div class="card-title">${iconeSvg("star")} O que mais cai na prova × onde você erra</div>
     <p class="text-sm muted">Os assuntos que mais caíram nas provas da ${escapeHtml(inc.banca)} (${faixaAnos}), em ordem de <strong>prioridade</strong>: quanto da prova o assunto ocupa, multiplicado pelo quanto você ainda erra nele. Assunto que você nunca respondeu entra com o seu acerto geral. É esta mesma conta que faz a sessão recomendada trazer primeiro esses assuntos, dentro do bloco atual.</p>
     <div class="table-wrap mt-2"><table>
-      <thead><tr><th>Assunto</th><th>Caiu na prova</th><th>Seu acerto</th><th>Prioridade</th><th></th></tr></thead>
+      <thead><tr><th>Assunto</th><th>Caiu na prova <span class="text-xs muted peso-400">(q. = questões)</span></th><th>Seu acerto</th><th>Prioridade</th><th></th></tr></thead>
       <tbody>${lista.map(p=>`<tr>
-        <td class="text-sm"><strong>${escapeHtml(nomeAssunto(p.assuntoId))}</strong> <span class="text-xs muted">${escapeHtml((getArea(p.areaId)||{}).nome||"")}</span></td>
-        <td class="text-sm">${p.questoesNaProva} questão(ões) <span class="text-xs muted">em ${p.anosQueCaiu} de ${inc.anos.length} anos</span></td>
-        <td class="text-sm">${p.taxa!==null ? `<span class="badge ${p.taxa<50?"badge-danger":p.taxa<70?"badge-amber":"badge-accent"}">${p.taxa}%</span> <span class="text-xs muted">em ${p.respondidas}</span>` : '<span class="text-xs muted">nunca respondeu</span>'}</td>
+        <td class="text-sm"><strong>${escapeHtml(nomeAssunto(p.assuntoId))}</strong><div class="text-xs muted">${escapeHtml((getArea(p.areaId)||{}).nome||"")}</div></td>
+        <td class="text-sm nowrap" title="${p.questoesNaProva} questão(ões) em ${p.anosQueCaiu} de ${inc.anos.length} anos">${p.questoesNaProva} q. <span class="text-xs muted">· ${p.anosQueCaiu}/${inc.anos.length} anos</span></td>
+        <td class="text-sm nowrap">${p.taxa!==null ? `<span class="badge ${p.taxa<50?"badge-danger":p.taxa<70?"badge-amber":"badge-accent"}">${p.taxa}%</span> <span class="text-xs muted">em ${p.respondidas}</span>` : '<span class="text-xs muted">nunca respondeu</span>'}</td>
         <td><div class="barra-prioridade" title="prioridade relativa"><i style="width:${Math.max(4, Math.round(p.prioridadeRelativa*100))}%"></i></div></td>
         <td><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${p.assuntoId}')">Praticar</button></td>
       </tr>`).join("")}</tbody>
@@ -782,44 +869,18 @@ function renderDesempenho(){
     label: abreviarArea(a.nome), taxa: a.taxa, total: a.total, acertos: a.acertos,
   })), {altura:140, larguraMax:60});
 
-  return `
-  <div class="page-header"><h2>Meu Desempenho</h2><p>Primeiro o total de tudo que você já respondeu, depois como está indo no período que você escolher, e por fim onde mexer.</p></div>
+  /* Sem nenhuma resposta, cartões de zeros e gráficos vazios ocupavam uns 2.000px
+     de tela sem dizer nada. Nesse caso as seções de números ficam RECOLHIDAS
+     (com "sem dados ainda" à vista) e um aviso curto diz o que fazer; com a
+     primeira resposta, voltam a ser os cartões de sempre. */
+  const semDados = totalGeral.total === 0;
+  const cartaoOuSecao = (chave, tituloHtml, corpoHtml) => semDados
+    ? htmlSecaoRecolhivel(chave, tituloHtml, "sem dados ainda", corpoHtml, false)
+    : `<div class="card mb-2"><div class="card-title">${tituloHtml}</div>${corpoHtml}</div>`;
 
-  <div class="card mb-2">
-    <div class="card-title">Desempenho total — todas as questões</div>
-    <p class="text-sm muted">Soma de tudo que você já respondeu na plataforma, sem separar por área, assunto ou tipo de sessão.</p>
-    <div class="grid grid-4 compacto mt-2">
-      <div class="stat-tile"><div class="stat-value">${totalGeral.taxa!==null?totalGeral.taxa+"%":"—"}</div><div class="stat-label">acerto em todas as respostas (${totalGeral.acertos}/${totalGeral.total})</div></div>
-      <div class="stat-tile"><div class="stat-value">${totalGeral.taxaUltimaTentativa!==null?totalGeral.taxaUltimaTentativa+"%":"—"}</div><div class="stat-label">acerto considerando só a última tentativa de cada questão</div></div>
-      <div class="stat-tile"><div class="stat-value">${totalGeral.distintas}</div><div class="stat-label">questões diferentes já respondidas (${totalGeral.cobertura}% do banco)</div></div>
-      <div class="stat-tile"><div class="stat-value">${totalGeral.naoRespondidas}</div><div class="stat-label">questões do banco que você ainda não viu</div></div>
-    </div>
-  </div>
-
-  ${htmlSecaoRecolhivel("desempenho-cartoes", iconeSvg("cards")+" Flashcards — contagem à parte", cartoes.revisoes+" revisões · "+cartoes.hoje+" hoje"+(cartoes.vencidos?" · "+cartoes.vencidos+" vencido(s)":""), `
-    <p class="text-sm muted">Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão de prova leva minutos. Por isso ele é contado aqui, separado das questões acima: é volume de revisão, não taxa de acerto.</p>
-    <div class="grid grid-4 compacto mt-2">
-      <div class="stat-tile"><div class="stat-value">${cartoes.revisoes}</div><div class="stat-label">cartões revisados no total (contando as repetições)</div></div>
-      <div class="stat-tile"><div class="stat-value">${cartoes.cartoes}</div><div class="stat-label">cartões diferentes que já passaram pelo seu baralho</div></div>
-      <div class="stat-tile"><div class="stat-value">${cartoes.hoje}</div><div class="stat-label">revisados hoje (meta de ${metaCartoesDoUsuario(u)} por dia)</div></div>
-      <div class="stat-tile"><div class="stat-value">${cartoes.dias}</div><div class="stat-label">dias com cartão revisado${cartoes.sequencia?` · ${cartoes.sequencia} seguido(s)`:""}</div></div>
-    </div>
-    <div class="flex gap-1 mt-2 quebra">
-      <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
-      ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
-    </div>
-  `)}
-
-  ${htmlCardNotaEstimada(u)}
-
-
-  <div class="card mb-2">
-    <div class="flex justify-between items-center gap-2 mb-2 quebra">
-      <div style="min-width:320px;flex:1">
-        <div class="card-title mb-02">Como você está indo${visaoCalendario ? " — calendário de estudo" : " — "+escapeHtml(rotuloPeriodo.toLowerCase())}</div>
-        <div class="text-sm muted">${visaoCalendario ? "Os dias em que você estudou e quanto; os dias de meta batida ficam com a cor mais forte." : "Cada barra é 100% das questões daquele "+(ehDiario?"dia":"mês")+": a parte verde é o que você acertou, o cinza é o que errou."}</div>
-      </div>
-      <div class="flex gap-1 quebra">
+  const tituloComo = "Como você está indo" + (visaoCalendario ? " — calendário de estudo" : " — "+escapeHtml(rotuloPeriodo.toLowerCase()));
+  const descComo = visaoCalendario ? "Os dias em que você estudou e quanto; os dias de meta batida ficam com a cor mais forte." : "Cada barra é 100% das questões daquele "+(ehDiario?"dia":"mês")+": a parte verde é o que você acertou, o cinza é o que errou.";
+  const seletoresComo = `<div class="flex gap-1 quebra">
         <div class="seletor-periodo">
           <button class="pill ${!visaoCalendario?"active":""}" onclick="mudarVisaoDesempenho('grafico')">Gráfico</button>
           <button class="pill ${visaoCalendario?"active":""}" onclick="mudarVisaoDesempenho('calendario')">${iconeSvg("calendar")} Calendário</button>
@@ -827,15 +888,22 @@ function renderDesempenho(){
         ${visaoCalendario ? "" : `<div class="seletor-periodo">
           ${PERIODOS_DESEMPENHO.map(p=>`<button class="pill ${ctx.periodo===p.id?"active":""}" onclick="mudarPeriodoDesempenho('${p.id}')">${p.label}</button>`).join("")}
         </div>`}
+      </div>`;
+  // as duas janelas curtas numa linha de texto (antes, um quadro cinza que repetia os números ao lado); o alerta de distância continua
+  const janelasCurtas = `<div class="text-xs muted">
+      <div class="janelas-curtas-linha">
+        <span>Últimos 14 dias: <strong>${resumo14.taxa!==null?resumo14.taxa+"%":"—"}</strong> (${resumo14.total} questões, ${resumo14.diasComEstudo} dias com estudo)</span>
+        <span>Últimos 30 dias: <strong>${resumo30.taxa!==null?resumo30.taxa+"%":"—"}</strong> (${resumo30.total} questões, ${resumo30.diasComEstudo} dias com estudo)</span>
       </div>
-    </div>
-
-    ${visaoCalendario ? htmlCalendarioEstudo(u) : `
+      ${(resumo14.taxa!==null && resumo30.taxa!==null && Math.abs(resumo14.taxa-resumo30.taxa)>=8) ? `<p class="text-xs mt-1 texto-alerta peso-600">As duas janelas estão distantes (${Math.abs(resumo14.taxa-resumo30.taxa)} p.p.): ${resumo14.taxa>resumo30.taxa?"as duas últimas semanas foram melhores que o mês inteiro — algo que você mudou está funcionando.":"as duas últimas semanas caíram em relação ao mês. Vale ver se mudou o assunto, o tipo de questão ou o ritmo."}</p>` : ""}
+    </div>`;
+  const corpoComo = visaoCalendario ? htmlCalendarioEstudo(u) : `
     <div class="grafico-com-lateral">
     <div class="grafico-principal">
     ${graficoBarrasVerticaisSvg(dados.itens, {altura:130, larguraMax: ehDiario?22:36, rotuloRotacionado: ehDiario && dados.dias>20})}
     ${ehDiario ? `<p class="text-xs muted mt-1">Traço fino na base = dia sem nenhuma questão. Dia parado aparece de propósito: a constância é metade do resultado, e um gráfico que esconde os buracos mente sobre a rotina.</p>`
       : `<p class="text-xs muted mt-1">Mês sem questão aparece como traço na base. Comparar meses só faz sentido junto do volume: 100% em 3 questões não é melhor do que 72% em 400.</p>`}
+    ${janelasCurtas}
     </div>
     <div class="grafico-lateral">
     ${ehDiario ? `
@@ -854,21 +922,61 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${mesesComEstudo.length}</div><div class="stat-label">meses com pelo menos uma questão</div></div>
       <div class="stat-tile"><div class="stat-value">${melhorMes?melhorMes.taxa+"%":"—"}</div><div class="stat-label">melhor mês${melhorMes?" ("+escapeHtml(melhorMes.label)+")":""}</div></div>
     </div>`}
+    </div>
+    </div>`;
 
-    <div class="card-flat">
-      <div class="text-sm peso-600">As duas janelas curtas, lado a lado</div>
-      <div class="grid grid-2 janelas-curtas mt-1">
-        <div class="text-sm">Últimos 14 dias: <strong>${resumo14.taxa!==null?resumo14.taxa+"%":"—"}</strong> <span class="muted">(${resumo14.total} questões, ${resumo14.diasComEstudo} dias com estudo)</span></div>
-        <div class="text-sm">Últimos 30 dias: <strong>${resumo30.taxa!==null?resumo30.taxa+"%":"—"}</strong> <span class="muted">(${resumo30.total} questões, ${resumo30.diasComEstudo} dias com estudo)</span></div>
+  return `
+  <div class="page-header"><h2>Meu Desempenho</h2><p>Primeiro o total de tudo que você já respondeu, depois como está indo no período que você escolher, e por fim onde mexer.</p></div>
+
+  ${semDados ? `<div class="card mb-2">
+    <div class="flex justify-between items-center gap-2 quebra">
+      <div class="cresce-240">
+        <div class="card-title">Ainda não há respostas para analisar</div>
+        <p class="text-sm muted">Responda a primeira sessão e esta tela passa a mostrar seu acerto, a evolução por período e as áreas mais fracas. Até lá, essas seções ficam recolhidas.</p>
       </div>
-      ${(resumo14.taxa!==null && resumo30.taxa!==null && Math.abs(resumo14.taxa-resumo30.taxa)>=8) ? `<p class="text-xs mt-1 texto-alerta peso-600">As duas janelas estão distantes (${Math.abs(resumo14.taxa-resumo30.taxa)} p.p.): ${resumo14.taxa>resumo30.taxa?"as duas últimas semanas foram melhores que o mês inteiro — algo que você mudou está funcionando.":"as duas últimas semanas caíram em relação ao mês. Vale ver se mudou o assunto, o tipo de questão ou o ritmo."}</p>` : ""}
+      <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
     </div>
-    </div>
-    </div>`}
-  </div>
+  </div>` : ""}
 
-  <div class="card mb-2">
-    <div class="card-title">Comparação entre as 5 grandes áreas</div>
+  ${cartaoOuSecao("desempenho-total", "Desempenho total — todas as questões", `
+    <p class="text-sm muted">Soma de tudo que você já respondeu na plataforma, sem separar por área, assunto ou tipo de sessão.</p>
+    <div class="grid grid-4 compacto mt-2">
+      <div class="stat-tile"><div class="stat-value">${totalGeral.taxa!==null?totalGeral.taxa+"%":"—"}</div><div class="stat-label">acerto em todas as respostas (${totalGeral.acertos}/${totalGeral.total})</div></div>
+      <div class="stat-tile"><div class="stat-value">${totalGeral.taxaUltimaTentativa!==null?totalGeral.taxaUltimaTentativa+"%":"—"}</div><div class="stat-label">acerto considerando só a última tentativa de cada questão</div></div>
+      <div class="stat-tile"><div class="stat-value">${totalGeral.distintas}</div><div class="stat-label">questões diferentes já respondidas (${totalGeral.cobertura}% do banco)</div></div>
+      <div class="stat-tile"><div class="stat-value">${totalGeral.naoRespondidas}</div><div class="stat-label">questões do banco que você ainda não viu</div></div>
+    </div>`)}
+
+  ${htmlSecaoRecolhivel("desempenho-cartoes", iconeSvg("cards")+" Flashcards — contagem à parte", cartoes.revisoes+" revisões · "+cartoes.hoje+" hoje"+(cartoes.vencidos?" · "+cartoes.vencidos+" vencido(s)":""), `
+    <p class="text-sm muted">Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão de prova leva minutos. Por isso ele é contado aqui, separado das questões acima: é volume de revisão, não taxa de acerto.</p>
+    <div class="grid grid-4 compacto mt-2">
+      <div class="stat-tile"><div class="stat-value">${cartoes.revisoes}</div><div class="stat-label">cartões revisados no total (contando as repetições)</div></div>
+      <div class="stat-tile"><div class="stat-value">${cartoes.cartoes}</div><div class="stat-label">cartões diferentes que já passaram pelo seu baralho</div></div>
+      <div class="stat-tile"><div class="stat-value">${cartoes.hoje}</div><div class="stat-label">revisados hoje (meta de ${metaCartoesDoUsuario(u)} por dia)</div></div>
+      <div class="stat-tile"><div class="stat-value">${cartoes.dias}</div><div class="stat-label">dias com cartão revisado${cartoes.sequencia?` · ${cartoes.sequencia} seguido(s)`:""}</div></div>
+    </div>
+    <div class="flex gap-1 mt-2 quebra">
+      <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
+      ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
+    </div>
+  `)}
+
+  ${htmlCardNotaEstimada(u)}
+
+  ${semDados
+    ? htmlSecaoRecolhivel("desempenho-como-indo", tituloComo, "sem dados ainda", `<p class="text-sm muted">${descComo}</p><div class="mt-1 mb-2">${seletoresComo}</div>${corpoComo}`, false)
+    : `<div class="card mb-2">
+    <div class="flex justify-between items-center gap-2 mb-2 quebra">
+      <div style="min-width:320px;flex:1">
+        <div class="card-title mb-02">${tituloComo}</div>
+        <div class="text-sm muted">${descComo}</div>
+      </div>
+      ${seletoresComo}
+    </div>
+    ${corpoComo}
+  </div>`}
+
+  ${cartaoOuSecao("desempenho-areas", "Comparação entre as 5 grandes áreas", `
     <p class="text-sm muted">A primeira resposta de cada questão, agrupada nas cinco áreas cobradas na prova (refazer uma questão mede memória dela, não domínio da área, e fica de fora desta conta). É neste nível que se decide onde colocar as próximas horas de estudo.</p>
     <div class="areas-lado-a-lado mt-2">
     <div class="areas-grafico">${graficoAreas}</div>
@@ -881,7 +989,7 @@ function renderDesempenho(){
             <td class="text-sm peso-600">${escapeHtml(a.nome)}</td>
             <td class="text-sm">${a.acertos}</td>
             <td class="text-sm">${a.total-a.acertos}</td>
-            <td>${a.taxa!==null?`<span class="badge ${a.taxa<50?"badge-danger":a.taxa<70?"badge-amber":"badge-accent"}">${a.taxa}%</span>`:'<span class="text-xs muted">sem dados</span>'}</td>
+            <td class="nowrap">${a.taxa!==null?`<span class="badge ${a.taxa<50?"badge-danger":a.taxa<70?"badge-amber":"badge-accent"}">${a.taxa}%</span>`:'<span class="text-xs muted">sem dados</span>'}</td>
             <td class="text-sm">${pior?escapeHtml(nomeAssunto(pior.assuntoId))+' <span class="muted" title="'+escapeHtml(textoDetalheDoAssunto(pior))+'">('+pior.taxa+'% em '+pior.total+' · faixa '+pior.minimo+'–'+pior.maximo+'%)</span>':"—"}</td>
             <td>${pior?`<button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${pior.assuntoId}')">Praticar</button>`:""}</td>
           </tr>`;
@@ -889,8 +997,7 @@ function renderDesempenho(){
       </tbody>
     </table></div>
     </div>
-    <p class="text-xs muted mt-1">O detalhe assunto a assunto fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>, ao lado da fila que diz o que fazer com cada um.</p>
-  </div>
+    <p class="text-xs muted mt-1">O detalhe assunto a assunto, com a fila e a trilha que dizem o que fazer com cada um, fica em <button class="link-btn" onclick="navigate('revisao')">Revisão</button>.</p>`)}
 
   ${htmlCardOQueMaisCai(u, 5)}
 

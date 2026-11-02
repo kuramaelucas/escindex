@@ -506,7 +506,7 @@ function renderNotificacoesCard(usuario){
   const notifs = gerarNotificacoes(usuario);
   if(!notifs.length) return "";
   const aberta = !!state.notificacoesAbertas;
-  return `<div class="card mb-2">
+  return `<div class="card card-compacto mb-2">
     <div class="flex justify-between items-center clicavel" role="button" tabindex="0" aria-expanded="${aberta}" onclick="alternarNotificacoes()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alternarNotificacoes()}">
       <div class="card-title sem-m">${iconeSvg("alert")} Notificações <span class="badge badge-accent">${notifs.length}</span></div>
       <span class="text-xs muted">${aberta ? "recolher" : "ver"} ${iconeSvg(aberta ? "arrow-up" : "arrow-down")}</span>

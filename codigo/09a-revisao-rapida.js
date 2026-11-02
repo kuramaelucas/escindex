@@ -39,7 +39,8 @@ function renderFlashcardsInicio(u){
   return `
   <div class="page-header"><h2>Revisão Rápida</h2><p>Cartões de conceito: você tenta lembrar, vira o cartão e diz honestamente se sabia. Serve para fixar o que a questão longa não fixa — e para atacar o assunto em que você jura que sabe e erra.</p></div>
 
-  <div class="card mb-2" ${vistosHoje>=metaCartoes?'style="border-color:var(--accent)"':""}>
+  <div class="grid grid-2 mb-2">
+  <div class="card" ${vistosHoje>=metaCartoes?'style="border-color:var(--accent)"':""}>
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">
         <div class="card-title mb-02">Meta de cartões de hoje</div>
@@ -57,6 +58,12 @@ function renderFlashcardsInicio(u){
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(vistosHoje,metaCartoes))}%"></div></div>
     ${soNoEstatistico(`<p class="text-xs muted mt-1">Esta meta é separada da de questões, de propósito: cartão e questão treinam coisas diferentes, e num dia corrido dá para manter o ritmo só com cartões.</p>`)}
+  </div>
+  <div class="card">
+    <div class="card-title mb-02">Baralho recomendado</div>
+    <div class="text-sm muted">A plataforma escolhe a ordem: primeiro o que venceu, depois os assuntos em que sua confiança engana, depois os erros caros e só então o que você ainda não viu.</div>
+    <button class="btn btn-primary mt-2" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Começar</button>
+  </div>
   </div>
 
   <div class="grid grid-4">
@@ -79,43 +86,27 @@ function renderFlashcardsInicio(u){
     <div id="buscaCartoesResultado" class="mt-2">${htmlResultadoBuscaFlashcards(u)}</div>
   </div>
 
-  <div class="card mt-2">
-    <div class="flex justify-between items-center gap-2 quebra">
-      <div>
-        <div class="card-title">Baralho recomendado</div>
-        <div class="text-sm muted">A plataforma escolhe a ordem: primeiro o que venceu, depois os assuntos em que sua confiança engana, depois os erros caros e só então o que você ainda não viu.</div>
-      </div>
-      <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Começar</button>
-    </div>
+  <div class="grid grid-3 grid-baralhos mt-2">
+  <div class="card">
+    <div class="card-title">Meu baralho recomendado</div>
+    <div class="text-sm muted">${meus.length
+      ? `Só os ${meus.length} cartão(ões) que você escreveu, na mesma ordem do recomendado${vencidosMeus ? ` — ${vencidosMeus} vencido(s) hoje` : ""}. Fica de fora o que a equipe escreveu e o que a plataforma gera das suas questões.`
+      : "Você ainda não escreveu cartões. Quando tiver os seus, este baralho segue a mesma ordem do recomendado, só com eles."}</div>
+    <button class="btn btn-primary mt-2" ${meus.length ? "" : "disabled"} onclick="iniciarSessaoFlashcards({situacao:'meus'})">${iconeSvg("cards")} Começar</button>
   </div>
-
-  <div class="card mt-2">
-    <div class="flex justify-between items-center gap-2 quebra">
-      <div class="cresce-220">
-        <div class="card-title">Meu baralho recomendado</div>
-        <div class="text-sm muted">${meus.length
-          ? `Só os ${meus.length} cartão(ões) que você escreveu, na mesma ordem do recomendado: vencidos, falsa segurança e só então os que você ainda não viu${vencidosMeus ? ` — ${vencidosMeus} vencido(s) hoje` : ""}. Fica de fora o que a equipe escreveu e o que a plataforma gera das suas questões.`
-          : "Você ainda não escreveu cartões. Quando tiver os seus, este baralho segue a mesma ordem do recomendado, só com eles."}</div>
-      </div>
-      <button class="btn btn-primary" ${meus.length ? "" : "disabled"} onclick="iniciarSessaoFlashcards({situacao:'meus'})">${iconeSvg("cards")} Começar</button>
-    </div>
-  </div>
-
-  ${falsaSeguranca.length ? `<div class="card mt-2 borda-alerta">
-    <div class="card-title">${iconeSvg("alert")} Só os assuntos em que você erra dizendo ter certeza</div>
+  ${falsaSeguranca.length ? `<div class="card borda-alerta">
+    <div class="card-title">${iconeSvg("alert")} Só assuntos em que você erra com certeza</div>
     <p class="text-sm muted">${falsaSeguranca.slice(0,5).map(f=>escapeHtml(nomeAssunto(f.assuntoId))+" ("+f.taxa+"%)").join(" · ")}</p>
     <button class="btn btn-secondary mt-2" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">Revisar só esses</button>
   </div>` : ""}
-
-  <div class="card mt-2">
-    <div class="flex justify-between items-center gap-2 quebra">
-      <div class="cresce-220">
-        <div class="card-title mb-02">Monte o seu baralho</div>
-        <div class="text-sm muted">Um baralho do tamanho e do assunto que você escolher — por área, especialidade ou assunto, só os vencidos, só os que você ainda não viu ou só os que você escreveu.</div>
-      </div>
-      <button class="btn ${filtro.montagemAberta?"btn-secondary":"btn-primary"}" onclick="alternarMontagemBaralho()" aria-expanded="${!!filtro.montagemAberta}">${filtro.montagemAberta ? "Fechar a montagem" : iconeSvg("plus")+" Criar meu baralho"}</button>
-    </div>
-    ${filtro.montagemAberta ? `<div class="mt-2">
+  <div class="card">
+    <div class="card-title">Monte o seu baralho</div>
+    <div class="text-sm muted">Do tamanho e do assunto que você escolher: por área, especialidade ou assunto, só os vencidos, os que ainda não viu ou só os que você escreveu.</div>
+    <button class="btn ${filtro.montagemAberta?"btn-secondary":"btn-primary"} mt-2" onclick="alternarMontagemBaralho()" aria-expanded="${!!filtro.montagemAberta}">${filtro.montagemAberta ? "Fechar a montagem" : iconeSvg("plus")+" Criar meu baralho"}</button>
+  </div>
+  </div>
+  ${filtro.montagemAberta ? `<div class="card mt-2">
+    <div class="card-title">Monte o seu baralho</div>
     <div class="grid grid-3">
       <div class="field"><label class="label">Grande área</label>
         <select class="select" id="flashArea" onchange="atualizarFiltroFlash()">
@@ -149,7 +140,6 @@ function renderFlashcardsInicio(u){
     <div class="text-sm muted mb-2" id="contagemBaralho">${textoContagemBaralho(u.id, filtro)}</div>
     <button class="btn btn-primary" onclick="iniciarSessaoFlashcards(state.filtroRota.flashcards||{})">${iconeSvg("cards")} Começar com este baralho</button>
     </div>` : ""}
-  </div>
 
   ${meus.length ? `<div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">

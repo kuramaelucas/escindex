@@ -387,6 +387,7 @@ function desenharTela(conteudoHtml){
   ativarGestoDeArrastar();
   // a barra fina de questões (sessão e simulado) mostra a questão atual no meio
   centralizarBarraDeQuestoes();
+  requestAnimationFrame(verificarRolagemInfinita);
 }
 /* Reinicia a animação de entrada: sem tirar e repor a classe (com um toque no
    layout no meio), o navegador entende que nada mudou e não toca nada. */
@@ -681,7 +682,7 @@ function htmlMenuLateral(u){
   }
   return `
       <div class="sidebar-brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
-      ${comoAluno ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
+      ${comoAluno && !reduzido ? `<div class="bloco-chip"><div class="bloco-chip-label">BLOCO ATUAL</div><div class="bloco-chip-name">${escapeHtml((getBlocoAtual()||{}).nome||"—")}</div></div>` : ""}
       <div class="nav-section-label">${rotuloPapel(u.papel)}</div>
       <ul class="nav-list">${soltos.map(item=>htmlItemMenu(item, pendenciaDoItemMenu(item, u, pendCadastros))).join("")}</ul>
       ${porGrupo.map(([g, itens])=>htmlGrupoMenu(g, itens, u, pendCadastros, !comoAluno || reduzido)).join("")}

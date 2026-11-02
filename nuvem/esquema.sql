@@ -1490,7 +1490,7 @@ as $$
     from (
       select distinct on (r.usuario_id) r.id, r.nota
         from public.resultados_simulados r
-        join public.perfis p on p.id = r.usuario_id and p.papel = 'aluno'
+        join public.perfis p on p.id = r.usuario_id and p.papel in ('aluno', 'admin')
        where auth.uid() is not null
          and r.nota is not null
          and coalesce(nullif(r.simulado_id, ''), r.titulo) = p_chave
@@ -1611,7 +1611,7 @@ as $$
            x.correta, x.data
       from public.perfis p
       join public.respostas x on x.usuario_id = p.id
-     where public.e_equipe() and p.papel = 'aluno' and p.status = 'aprovado'
+     where public.e_equipe() and p.papel in ('aluno', 'admin') and p.status = 'aprovado'
   ),
   tot as (
     select ano, grupo,
@@ -1665,7 +1665,7 @@ as $$
            x.usuario_id, x.questao_id, x.correta, x.confianca, x.alternativa_escolhida
       from public.respostas x
       join public.perfis p on p.id = x.usuario_id
-     where public.e_equipe() and p.papel = 'aluno' and p.status = 'aprovado'
+     where public.e_equipe() and p.papel in ('aluno', 'admin') and p.status = 'aprovado'
      order by x.usuario_id, x.questao_id, coalesce(x.respondida_em, x.criado_em), x.id
   ),
   alts as (
@@ -1701,7 +1701,7 @@ as $$
          count(*),
          case when count(distinct x.usuario_id) >= 3 then count(*) filter (where x.correta) end
     from public.respostas x
-    join public.perfis p on p.id = x.usuario_id and p.papel = 'aluno'
+    join public.perfis p on p.id = x.usuario_id and p.papel in ('aluno', 'admin')
    where public.e_equipe()
      and x.data > (now() at time zone 'America/Sao_Paulo')::date - (7 * greatest(1, least(p_semanas, 104)))
    group by 1, 2
