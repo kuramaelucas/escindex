@@ -18,7 +18,8 @@
    Questão DISSERTATIVA (o aluno escreve a resposta e se avalia): "tipo":"dissertativa"
    e "resposta" (a resposta esperada pela banca) no lugar de "alt" e "gabarito".
      explicacao   explicação no padrão de justificativa (obrigatório)
-     referencias, dificuldade (fundamental|intermediario|avancado; padrão intermediario)
+     referencias  diretriz/obra com edição e ano, e a data em que o TEXTO foi lido ("… conferido em DD/MM/AAAA"); obrigatório
+     dificuldade (fundamental|intermediario|avancado; padrão intermediario)
      status ("anulada" pede "motivo"), figura ("png"|"jpg"|caminho), imagemPendente, imagemLegenda
      alterada     o que a equipe mudou em relação à prova original (vira `questaoAlterada` e o aviso "Questão alterada" na tela)
      explicacoesAlternativas  {"A":"…"}   (opcional)
@@ -31,6 +32,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { RAIZ, carregar, lerFicha, questaoComoTexto, acrescentarAoArquivo } from "./lib-dados.mjs";
 import { conferir, faltasDeJustificativa, resumirNumeros } from "../testes/conferir-dados.mjs";
+import { problemasDeReferencia } from "./lib-referencias.mjs";
 
 const CAMPOS = new Set(["n", "assunto", "enunciado", "alt", "gabarito", "tipo", "resposta", "explicacao", "explicacoesAlternativas",
   "referencias", "dificuldade", "status", "motivo", "figura", "imagemPendente", "imagemLegenda", "alterada"]);
@@ -92,6 +94,8 @@ export function montarQuestoes(entrada, ficha, { taxonomia, numerosExistentes })
     }
     // a regra de justificativa é a do conferidor — a mesma que vale depois
     faltasDeJustificativa(q).forEach(f => erro(`explicação fora do padrão — ${f}`));
+    // a de referências também: lida e datada, e sem citar edição superada (ferramentas/lib-referencias.mjs)
+    problemasDeReferencia(q).forEach(t => erro(`referências — ${t}`));
     [q.explicacaoGeral, ...Object.values(q.explicacoesAlternativas)].forEach(t => {
       if(t && (String(t).match(/\*\*/g) || []).length % 2) erro('"**" sem par na explicação');
     });

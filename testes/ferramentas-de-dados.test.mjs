@@ -14,7 +14,7 @@ const EXPLICACAO = "A alternativa C está correta. Dicas do enunciado: **dor tor
 const questao = (n, extra = {}) => ({
   n, assunto: "ass-sca", enunciado: `Enunciado da questão ${n}?`,
   alt: ["Anti-inflamatório.", "Observação.", "Cateterismo urgente.", "Alta."], gabarito: "C",
-  explicacao: EXPLICACAO, referencias: "Diretriz X, 2025.", ...extra,
+  explicacao: EXPLICACAO, referencias: "Diretriz X, 2025 (texto lido em 02/11/2026 em gov.br).", ...extra,
 });
 
 /* uma cópia mínima: a moldura, a taxonomia, o calendário e um manifesto só com eles */

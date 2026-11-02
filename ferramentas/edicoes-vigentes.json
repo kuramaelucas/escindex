@@ -1,0 +1,317 @@
+{
+  "_leia": "Tabela das edições vigentes das diretrizes que as referências costumam citar. Serve ao conferidor e a `npm run referencias-a-conferir`: uma referência que casa com `termo` e não menciona o ano `vigente` (nem um posterior) é sinalizada. Mantenha ao conferir: edição nova entra aqui, com `verificadoEm`. Regex sem diferenciar maiúsculas. NÃO prova que a edição citada esteja errada (a questão pode usar a antiga de propósito e dizer isso), só obriga a decidir.",
+  "edicoes": [
+    {
+      "id": "ssc",
+      "nome": "Surviving Sepsis Campaign",
+      "termo": "Surviving Sepsis|Campanha Sobrevivendo",
+      "vigente": 2026,
+      "edicao": "SSC 2026 (Intensive Care Med 2026;52:863-936)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "aha-avc",
+      "nome": "AHA/ASA, AVC isquêmico agudo",
+      "termo": "Early Management of Patients With Acute Ischemic Stroke|AVC isquêmico agudo",
+      "vigente": 2026,
+      "edicao": "AHA/ASA 2026 (Stroke, doi 10.1161/STR.0000000000000513)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "acc-sca",
+      "nome": "ACC/AHA, síndromes coronarianas agudas",
+      "termo": "Acute Coronary Syndromes",
+      "vigente": 2025,
+      "edicao": "ACC/AHA/ACEP/NAEMSP/SCAI 2025 (Circulation 2025;151)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "esc-valvas",
+      "nome": "ESC/EACTS, valvopatias",
+      "termo": "valvular heart disease|Valvopatias|doença valvar",
+      "vigente": 2025,
+      "edicao": "ESC/EACTS 2025 (doi 10.1093/eurheartj/ehaf194)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "aha-rcp",
+      "nome": "AHA, RCP e atendimento cardiovascular de emergência",
+      "termo": "Guidelines for CPR|CPR and ECC|Ressuscitação Cardiopulmonar",
+      "vigente": 2025,
+      "edicao": "AHA/AAP 2025 (Partes 5, 6, 8 e 11)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "sbc-has",
+      "nome": "SBC, hipertensão arterial",
+      "termo": "Diretrizes? Brasileiras? de Hipertensão",
+      "vigente": 2025,
+      "edicao": "Diretriz Brasileira de Hipertensão 2025 (SBC, SBN, SBH)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "kdigo-anemia",
+      "nome": "KDIGO, anemia na DRC",
+      "termo": "KDIGO.{0,60}Anemia|Anemia.{0,60}KDIGO",
+      "vigente": 2026,
+      "edicao": "KDIGO 2026 (Kidney Int 2026;109)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "kdigo-drc",
+      "nome": "KDIGO, avaliação e manejo da DRC",
+      "termo": "KDIGO.{0,80}(Evaluation and Management of Chronic Kidney Disease|Diretriz.{0,20}DRC)",
+      "vigente": 2024,
+      "edicao": "KDIGO 2024 (Kidney Int 2024;105(4S))",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "kdigo-lupica",
+      "nome": "KDIGO, nefrite lúpica",
+      "termo": "KDIGO.{0,60}(Lupus|lúpica)",
+      "vigente": 2024,
+      "edicao": "KDIGO 2024 de nefrite lúpica",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "gold",
+      "nome": "GOLD, DPOC",
+      "termo": "\\bGOLD\\b|Global Initiative for Chronic Obstructive|Iniciativa Global.{0,20}DPOC",
+      "vigente": 2026,
+      "edicao": "GOLD 2026 (relatório v1.3)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "gina",
+      "nome": "GINA, asma",
+      "termo": "\\bGINA\\b|Global Initiative for Asthma|Iniciativa Global para a Asma",
+      "vigente": 2026,
+      "edicao": "GINA 2026 (Strategy Report, maio/2026)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "ada",
+      "nome": "ADA, Standards of Care in Diabetes",
+      "termo": "Standards of Care in Diabetes|Padrões de Cuidado em Diabetes",
+      "vigente": 2026,
+      "edicao": "ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "ata-dtc",
+      "nome": "ATA, câncer diferenciado de tireoide",
+      "termo": "Differentiated Thyroid Cancer|Thyroid Nodules and Differentiated",
+      "vigente": 2025,
+      "edicao": "ATA 2025 (Thyroid 2025, doi 10.1177/10507256251363120)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "ats-pac",
+      "nome": "ATS/IDSA, pneumonia comunitária do adulto",
+      "termo": "Adults with Community-acquired Pneumonia|Metlay|pneumonia (adquirida na )?comunit[aá]ria.{0,60}adult|adult.{0,60}pneumonia (adquirida na )?comunit",
+      "vigente": 2025,
+      "edicao": "Atualização ATS 2025 (a IDSA não a endossou)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "idsa-amr",
+      "nome": "IDSA, gram-negativos resistentes",
+      "termo": "Antimicrobial-Resistant Gram-Negative|Gram-Negativ.{0,40}Resistent",
+      "vigente": 2026,
+      "edicao": "IDSA 2026 AMR Guidance (30/07/2026)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "oms-mec",
+      "nome": "OMS, critérios de elegibilidade contraceptiva",
+      "termo": "Medical eligibility criteria for contraceptive|Critérios (Médicos )?de Elegibilidade",
+      "vigente": 2025,
+      "edicao": "OMS MEC 6ª edição (2025)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "oms-spr",
+      "nome": "OMS, Selected practice recommendations",
+      "termo": "Selected practice recommendations",
+      "vigente": 2025,
+      "edicao": "OMS SPR 4ª edição (2025)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "oms-hpp",
+      "nome": "OMS, hemorragia pós-parto",
+      "termo": "(WHO|OMS|World Health).{0,120}(postpartum haemorrhage|hemorragia pós-parto)|(postpartum haemorrhage|hemorragia pós-parto).{0,120}(WHO|OMS)",
+      "vigente": 2025,
+      "edicao": "OMS/FIGO/ICM 2025 (51 recomendações)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "esgo-endometrio",
+      "nome": "ESGO/ESTRO/ESP, carcinoma endometrial",
+      "termo": "ESGO.{0,60}(endometri)|(endometri).{0,80}ESGO",
+      "vigente": 2025,
+      "edicao": "ESGO/ESTRO/ESP 2025 (Lancet Oncol 2025;26)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "wses-apendicite",
+      "nome": "WSES, apendicite aguda",
+      "termo": "WSES.{0,80}(apendicite|appendicitis)|Jerusalem",
+      "vigente": 2025,
+      "edicao": "WSES Jerusalem 2025 (JAMA Surg 2026)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "herniasurge",
+      "nome": "HerniaSurge, hérnia inguinal",
+      "termo": "HerniaSurge",
+      "vigente": 2023,
+      "edicao": "HerniaSurge 2023 (BJS Open)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "ers-bronquiectasia",
+      "nome": "ERS, bronquiectasias do adulto",
+      "termo": "(ERS|European Respiratory Society).{0,100}bronchiectasis|bronchiectasis.{0,100}(ERS|European Respiratory Society)",
+      "vigente": 2025,
+      "edicao": "ERS 2025 (Eur Respir J 2025)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "bts-pleural",
+      "nome": "BTS, doença pleural",
+      "termo": "British Thoracic Society.{0,60}(Pleural|pneumot)|Pleural Disease",
+      "vigente": 2023,
+      "edicao": "BTS 2023 (Thorax 2023;78 Suppl 3)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "roma",
+      "nome": "Critérios de Roma",
+      "termo": "Rome IV|Roma IV|critérios de Roma|Bowel disorders",
+      "vigente": 2026,
+      "edicao": "Roma V (Gastroenterology 2026;170(6))",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "das",
+      "nome": "Difficult Airway Society",
+      "termo": "Difficult Airway Society",
+      "vigente": 2025,
+      "edicao": "DAS 2025 (Br J Anaesth)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "acg-pancreatite",
+      "nome": "ACG, pancreatite aguda",
+      "termo": "(American College of Gastroenterology|\\bACG\\b).{0,80}Pancreatitis|Pancreatitis.{0,80}\\bACG\\b",
+      "vigente": 2024,
+      "edicao": "ACG 2024 (Am J Gastroenterol 2024;119)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "esvs-aaa",
+      "nome": "ESVS, aneurisma de aorta abdominal",
+      "termo": "Abdominal Aorto-?iliac|Aneurysm.{0,40}ESVS|ESVS.{0,60}Aneurysm",
+      "vigente": 2024,
+      "edicao": "ESVS 2024 (Eur J Vasc Endovasc Surg 2024;67)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "esmo-pulmao",
+      "nome": "ESMO, CPNPC inicial e localmente avançado",
+      "termo": "(NSCLC|non-small-cell).{0,120}ESMO|ESMO.{0,120}(NSCLC|non-small-cell)",
+      "vigente": 2025,
+      "edicao": "ESMO 2025 (Ann Oncol 2025;36)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "acog-dmg",
+      "nome": "ACOG, diabetes na gestação",
+      "termo": "Practice Bulletin.{0,30}190|ACOG.{0,100}Gestational Diabetes|Gestational Diabetes.{0,100}ACOG",
+      "vigente": 2024,
+      "edicao": "Atualização clínica ACOG, julho/2024",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "pcdt-parkinson",
+      "nome": "PCDT, doença de Parkinson",
+      "termo": "Parkinson.{0,80}(PCDT|Protocolo Cl)|(PCDT|Protocolo Cl).{0,80}Parkinson",
+      "vigente": 2025,
+      "edicao": "Portaria Conjunta SAES/SECTICS nº 16, de 01/08/2025",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "pcdt-alzheimer",
+      "nome": "PCDT, doença de Alzheimer",
+      "termo": "Alzheimer.{0,80}(PCDT|Protocolo Cl)|(PCDT|Protocolo Cl).{0,80}Alzheimer",
+      "vigente": 2025,
+      "edicao": "Relatório Conitec nº 1.051 (set/2025)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "pcdt-fc",
+      "nome": "PCDT, fibrose cística",
+      "termo": "Fibrose Cística.{0,60}(PCDT|Protocolo)|(PCDT|Protocolo).{0,60}Fibrose Cística",
+      "vigente": 2024,
+      "edicao": "Portaria Conjunta SAES/SECTICS nº 5, de 30/04/2024",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "rastreio-colo",
+      "nome": "Rastreamento do câncer do colo do útero (MS)",
+      "termo": "Rastreamento do Câncer do Colo do Útero",
+      "vigente": 2025,
+      "edicao": "Portaria Conjunta SAES/SECTICS nº 13/2025 (HPV-DNA)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "notificacao",
+      "nome": "Lista Nacional de Notificação Compulsória",
+      "termo": "Lista Nacional de Notificação Compulsória",
+      "vigente": 2026,
+      "edicao": "Portarias GM/MS nº 6.734/2025, 10.175/2026 e 11.211/2026",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "calendario-vacinal",
+      "nome": "Calendário Nacional de Vacinação",
+      "termo": "Calendário Nacional de Vacinação",
+      "vigente": 2026,
+      "edicao": "Instrução Normativa do Calendário 2026",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "sbp-ferro",
+      "nome": "SBP, deficiência de ferro e anemia ferropriva",
+      "termo": "(deficiência de ferro|anemia ferropriva).{0,200}(SBP|Sociedade Brasileira de Pediatria)|(SBP|Sociedade Brasileira de Pediatria).{0,200}(deficiência de ferro|anemia ferropriva)",
+      "vigente": 2026,
+      "edicao": "SBP, Diretriz nº 32, atualização 2026",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "oms-covid",
+      "nome": "OMS, terapêutica na covid-19",
+      "termo": "Therapeutics and COVID-19|COVID-19: living guideline",
+      "vigente": 2025,
+      "edicao": "OMS, Therapeutics and COVID-19, agosto/2025",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "nccn",
+      "nome": "NCCN (versões frequentes)",
+      "termo": "\\bNCCN\\b",
+      "vigente": 2026,
+      "edicao": "Versões 2026 em nccn.org (exigem login)",
+      "verificadoEm": "2026-11-02"
+    },
+    {
+      "id": "eau",
+      "nome": "EAU (edições anuais)",
+      "termo": "\\bEAU\\b Guidelines|Associação Europeia de Urologia|European Association of Urology",
+      "vigente": 2026,
+      "edicao": "EAU 2026 (urolitíase: revisão completa)",
+      "verificadoEm": "2026-11-02"
+    }
+  ]
+}
