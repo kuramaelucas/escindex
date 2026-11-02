@@ -102,6 +102,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-fmabc-2024",
   "prova-fmabc-2021",
   "prova-fmabc-2022",
+  "prova-fmabc-2023",
   "banco-simulado-didatico-epm",
   "banco-didatico-grad-malaria",
   "banco-didatico-grad-tuberculose",

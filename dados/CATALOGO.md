@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 11370 questões (8605 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 120 arquivos.
+**Total:** 11470 questões (8705 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 121 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -101,6 +101,7 @@
 | `prova-fmabc-2024.js` | FMABC 2024 | 100 questões |  |
 | `prova-fmabc-2021.js` | FMABC 2021 | 100 questões | 3 anulada(s) |
 | `prova-fmabc-2022.js` | FMABC 2022 | 100 questões | 1 anulada(s) |
+| `prova-fmabc-2023.js` | FMABC 2023 | 100 questões | 2 anulada(s) |
 | `banco-simulado-didatico-epm.js` | SIMULADO DIDÁTICO EPM — 100 questões autorais (base: UNIFESP-EPM 2022 a 2026) | 100 questões |  |
 | `banco-didatico-grad-malaria.js` | Esc — Banco Didático 2026 | 27 questões | 3 anulada(s) |
 | `banco-didatico-grad-tuberculose.js` | Esc — Banco Didático 2026 | 182 questões | 9 anulada(s); 6 esperando figura |
