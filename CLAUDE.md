@@ -2,6 +2,22 @@
 
 Plataforma de estudos para residência médica. Site estático **sem build, sem dependências, sem módulos**: `index.html` (moldura) + `codigo/` (código) + `dados/` (conteúdo), abre com dois cliques. **Código e conteúdo são independentes**: mexer em um não toca no outro (ver "Conteúdo" abaixo). Nuvem opcional (Supabase, só `fetch` na API REST). Tudo em **português**: telas, identificadores (`renderPainelTurma`, `nuvemMarcarFeedback`), comentários e documentação.
 
+## Roteador de trabalho — decida a zona ANTES de abrir qualquer arquivo
+
+Regra permanente (vale sem o usuário pedir): classifique o pedido numa zona, leia **só** o que a zona manda e ignore o resto. Nunca releia o projeto inteiro; nunca abra `dados/prova-*.js` inteiro (~300 KB).
+
+| Zona | Quando | Leia só isto | Não leia |
+|---|---|---|---|
+| **A. Estrutura** (programa) | tela, botão, regra de estudo, estilo, nuvem, PWA, testes | `npm run mapa -- <palavra>` → trecho do arquivo de `codigo/` (Read com offset/limit); "Como o código roda" e "Regras da casa" abaixo | `dados/` |
+| **B1. Questões — analisar o que já existe** | achar duplicata, auditar assunto/gabarito/explicação, estatística, relato de aluno, corrigir uma questão | `npm run dados` (visão) → `-- <prova>` → `-- <q-id>`; `-- taxonomia <palavra>`; `-- buscar "<texto>"`; `npm run conferir -- --resumo`; `npm run relatos` | `codigo/`, `dados/LEIA-ME.md` inteiro, qualquer prova inteira |
+| **B2. Questões — só adicionar** | prova nova ou lote novo | só a receita "Conteúdo" abaixo + `dados/LEIA-ME.md` seções "Entrada compacta" e "Padrão de justificativa de prova nova" (`grep -n '^#' dados/LEIA-ME.md` para achar). `nova-prova` → `adicionar-questoes` (use `--simular` antes). Para evitar repetição: só `dados -- buscar`. | provas existentes, `codigo/`, histórico |
+| **C. Dados de estudo/nuvem** (modelo de dados, sync) | campo novo, tabela, migração | seção "Nuvem" abaixo + `02-persistencia.js`/`03*` pelo `mapa`; `nuvem/LEIA-ME.md` | conteúdo de `dados/` |
+| **D. Documentação/histórico** | só se o pedido for sobre decisões passadas | `RESUMO-PROJETO-ESC.md` (seções 4–5), `docs/HISTORICO.md` por busca | tudo o mais |
+
+Pedido que cruza zonas (ex.: tela nova que lista questões): comece pela A e consulte B1 por comando, nunca por leitura de arquivo.
+
+Ao terminar: zona A/C → `npm run publicar` + `npm run testar-mudanca`; zona B → `npm run conferir -- <prova>` + `publicar`. **Se uma pasta, ferramenta ou assunto novo surgir, acrescente uma linha neste roteador no mesmo commit** — é assim que a divisão continua valendo no futuro.
+
 ## Comandos
 
 | Comando | Para quê |
