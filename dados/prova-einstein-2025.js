@@ -27,7 +27,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **72 anos, diabético com doença cardiovascular aterosclerótica estabelecida**, em uso de metformina e inibidor de SGLT2. Os agonistas do receptor de GLP-1 reduzem eventos cardiovasculares maiores e promovem **perda de peso e redução discreta da PAS (cerca de 2 a 4 mmHg)**. Mecanismo: a ativação do receptor de GLP-1 aumenta a secreção de insulina dependente da glicose, retarda o esvaziamento gástrico e reduz o apetite. B (aumento do HDL) está errada, pois o benefício principal é cardiovascular e metabólico, sem efeito relevante no HDL; C (hipoglicemia frequente) está errada, pois a ação é dependente da glicose, e metformina e SGLT2 não causam hipoglicemia; D (TFG < 15) está errada, pois os dados em doença renal avançada são limitados.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes da Sociedade Brasileira de Diabetes (2023); ADA Standards of Care 2024; estudos LEADER, SUSTAIN-6 e REWIND.",
+  referencias:"Diretrizes da Sociedade Brasileira de Diabetes (2023); ADA Standards of Care 2024; estudos LEADER, SUSTAIN-6 e REWIND. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -40,7 +40,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **choque séptico de foco urinário** (febre, dor lombar, disúria), **PA 78 × 44 mmHg após 2 litros de cristaloide** (30 mL/kg de 60 kg = 1,8 L já administrados), **lactato e creatinina 2,6 mg/dL** (normal: 0,6–1,2). Em foco urinário com choque, a **ultrassonografia à beira-leito** procura **obstrução (hidronefrose, litíase)**, que exige **drenagem** (controle de foco). Mecanismo: a obstrução infectada gera pionefrose e não responde só a antibiótico. A (hidrocortisona) é adjuvante apenas com noradrenalina em dose alta, B (mais 1 litro e aguardar UTI) retarda o vasopressor: após 30 mL/kg e PAM < 65, inicia-se noradrenalina, e D (meropenem) escalona o antibiótico sem indicação de resistência.",
   explicacoesAlternativas:{},
-  referencias:"Surviving Sepsis Campaign 2021; Instituto Latino-Americano de Sepse (ILAS).",
+  referencias:"Surviving Sepsis Campaign 2021; Instituto Latino-Americano de Sepse (ILAS). Conferência 02/11/2026: edição vigente de Surviving Sepsis Campaign: SSC 2026 (Intensive Care Med 2026;52:863-936); texto não aberto nesta rodada (02/11/2026), a explicação segue a edição citada e deve ser revista pela vigente.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -53,7 +53,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta (gabarito da banca). Dicas do enunciado: jovem de **26 anos, asmático**, com **fibrilação atrial de alta resposta (FC 136 bpm)**, **estável** (PA 130 × 80 mmHg), que **teve broncoespasmo com metoprolol**. O controle de frequência deve evitar betabloqueador pelo risco de broncoespasmo, usando **bloqueador de canal de cálcio não di-hidropiridínico (verapamil ou diltiazem)**. Mecanismo: o bloqueio do nó AV pelo verapamil reduz a resposta ventricular sem efeito nos receptores beta-2 brônquicos. A (esmolol) é betabloqueador, embora cardiosseletivo, B (cardioversão elétrica) é para instabilidade (e exige anticoagulação em FA > 48 h), e C (propafenona, cardioversão química) é contraindicada com a duração incerta sem anticoagulação.",
   explicacoesAlternativas:{},
-  referencias:"Diretriz Brasileira de Fibrilação Atrial (SBC, 2023); ESC 2020.",
+  referencias:"Diretriz Brasileira de Fibrilação Atrial (SBC, 2023); ESC 2020. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -66,7 +66,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **etilista crônico (0,5 L de destilado por 35 anos)**, **ascite**, **bilirrubina 3,8 mg/dL** (normal: 0,1–1,2), **albumina 2,5 g/dL** (normal: 3,5–5,0), **INR 1,8** (normal: 0,8–1,2) e fígado reduzido: **cirrose descompensada com ascite**. O próximo passo é a **paracentese diagnóstica**, com análise do líquido (gradiente soro-ascite de albumina, contagem de neutrófilos, cultura), para confirmar a hipertensão portal e **excluir peritonite bacteriana espontânea**. Mecanismo: o líquido ascítico infectado muda a conduta e o prognóstico. A (furosemida a 80 mg), B (espironolactona) e D (albumina) são tratamentos que dependem da análise do líquido e de a ascite ser de origem portal.",
   explicacoesAlternativas:{},
-  referencias:"AASLD, Diagnosis, Management of Ascites (2021); EASL 2018.",
+  referencias:"AASLD, Diagnosis, Management of Ascites (2021); EASL 2018. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -79,7 +79,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta (é o item que NÃO pode ser feito). Dicas do enunciado: **doença de Crohn em uso de adalimumabe (anti-TNF)**, ou seja, **imunossuprimido**. Vacinas de **vírus vivos atenuados** (como a **dengue tetravalente**, febre amarela, SCR e varicela) são **contraindicadas**. Mecanismo: o vírus vivo pode se replicar sem controle em quem tem imunidade celular reduzida. Podem ser aplicadas as **vacinas inativadas**: meningocócica C (A), HPV (B, em 3 doses para imunossuprimidos) e hepatite B (C, com dose dobrada e esquema de 3 doses, em imunossuprimidos).",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Manual dos Centros de Referência para Imunobiológicos Especiais (CRIE, 2023); SBIm.",
+  referencias:"Ministério da Saúde, Manual dos Centros de Referência para Imunobiológicos Especiais (CRIE, 2023); SBIm. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -92,7 +92,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **dor torácica típica há 1 hora**, **supradesnivelamento de ST em V2–V4**, **troponina elevada** (IAMCSST de parede anterior) e **lesão de 99% na DA média**. A conduta é a **angioplastia primária com stent** (reperfusão mecânica), de preferência em até **90 minutos** do primeiro contato (janela de até 12 horas). Mecanismo: a reabertura da artéria culpada limita a necrose miocárdica, que cresce em minutos. A (tratamento clínico sem revascularização) deixa a artéria ocluída, B (cirurgia imediata) é reservada a anatomia não passível de ICP, e C (observar 24 horas) desperdiça o miocárdio salvável.",
   explicacoesAlternativas:{},
-  referencias:"Diretriz Brasileira de IAM com Supra de ST (SBC, 2015; atualização 2021); ESC 2023 para SCA.",
+  referencias:"Diretriz Brasileira de IAM com Supra de ST (SBC, 2015; atualização 2021); ESC 2023 para SCA. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -105,7 +105,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta (gabarito da banca). Dicas do enunciado: **hipertensão resistente verdadeira** em uso de 5 classes (**IECA, anlodipino, clortalidona, espironolactona e carvedilol**) com boa adesão e **PA > 140 × 90 mmHg**. Antes de intensificar, **investigam-se causas secundárias** (apneia do sono, hiperaldosteronismo, estenose de artéria renal) e associa-se um fármaco de ação central, como a **clonidina**, na etapa seguinte. Mecanismo: a clonidina reduz a atividade simpática central. A (trocar clortalidona por hidroclorotiazida) é errada, pois a clortalidona é preferida na hipertensão resistente; B (furosemida) é indicada com doença renal avançada; C (suspender a espironolactona) retira o fármaco mais eficaz na resistência (estudo PATHWAY-2), e a hidralazina é de terceira linha.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes Brasileiras de Hipertensão Arterial (SBC, 2020); ESH 2023.",
+  referencias:"Diretrizes Brasileiras de Hipertensão Arterial (SBC, 2020); ESH 2023. Conferência 02/11/2026: edição vigente de SBC, hipertensão arterial: Diretriz Brasileira de Hipertensão 2025 (SBC, SBN, SBH); texto não aberto nesta rodada (02/11/2026), a explicação segue a edição citada e deve ser revista pela vigente.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -118,7 +118,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (gabarito da banca). Dicas do enunciado: **asma em tratamento (budesonida-formoterol)** com **ACT de 18/25** (< 20: não controlada), **sintomas noturnos**, **uso de resgate 1–2 vezes por semana**, **rinite persistente, refluxo, obesidade (IMC 33)** e **exposição ao cão**: **asma de difícil controle**, em que antes de escalonar se **revisam técnica inalatória, adesão, comorbidades (rinite e DRGE) e exposição ambiental**. Mecanismo: comorbidades e alérgenos mantêm a inflamação das vias aéreas. B (asma leve controlada) ignora o ACT, C (adicionar LAMA ou antileucotrieno) escalona sem corrigir fatores modificáveis, e D (imunobiológico) é para asma grave após otimização, com falha do tratamento em doses altas.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2024; Diretrizes da SBPT para Asma (2020).",
+  referencias:"GINA 2024; Diretrizes da SBPT para Asma (2020). Conferência 02/11/2026: GINA 2026: não relido por mim; consta lido em 29/10/2026 em docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md (ICS-formoterol como aliviador preferido, SABA isolado não recomendado), compatível com a explicação.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -131,7 +131,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta (gabarito da banca). Dicas do enunciado: **idosa com disfagia e tosse ao se alimentar (fator para broncoaspiração)**, **FR 25 irpm**, **SpO2 91%**, **ureia 60 mg/dL**, **consolidação em base direita com infiltrados em base esquerda**, **sem uso prévio de antibiótico**: **pneumonia adquirida na comunidade de provável origem aspirativa**, tratada com cobertura habitual (ceftriaxona e azitromicina), **oxigênio por cateter nasal** e coleta de culturas e antígenos urinários. Mecanismo: o conteúdo orofaríngeo aspirado inocula bactérias da flora oral, em geral cobertas por betalactâmico. A (ambulatorial, sem exames) subestima a gravidade, B (clindamicina rotineira) não é recomendada, pois a cobertura anaeróbia não é padrão, e C (UTI com alto fluxo e hidrocortisona) superestima, pois a paciente não preenche critérios maiores de gravidade.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes Brasileiras de Pneumonia Adquirida na Comunidade (SBPT, 2018); ATS/IDSA 2019.",
+  referencias:"Diretrizes Brasileiras de Pneumonia Adquirida na Comunidade (SBPT, 2018); ATS/IDSA 2019. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -144,7 +144,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta (é a medida que NÃO se adota). Dicas do enunciado: DPOC com **piora súbita da dispneia (mMRC 1 para 3)**, **SpO2 86%**, **estase jugular, edema, hepatomegalia e hemoptoicos**, sem aumento da expectoração purulenta nem febre: o quadro sugere **cor pulmonale agudo/TEP ou insuficiência cardíaca**, e não exacerbação infecciosa. Adotam-se **exame de imagem, D-dímero (ou angiotomografia) e oxigenoterapia**. Mecanismo: a hipertensão pulmonar causa sobrecarga do ventrículo direito, com sinais de congestão sistêmica. Corticoide sistêmico só se justifica em exacerbação por aumento de dispneia, escarro e purulência (critérios de Anthonisen), e aqui poderia piorar a descompensação cardíaca. A, B e C são medidas coerentes com a investigação.",
   explicacoesAlternativas:{},
-  referencias:"GOLD 2024; Diretrizes Brasileiras de DPOC (SBPT, 2021).",
+  referencias:"GOLD 2024; Diretrizes Brasileiras de DPOC (SBPT, 2021). Conferência 02/11/2026: GOLD 2026 (relatório v1.3, goldcopd.org): texto lido em 02/11/2026; confirma LABA+LAMA+ICS na exacerbação com eosinófilos ≥ 100/µL (como inicial no grupo E com ≥ 300) e acidose respiratória com PaCO2 > 45 mmHg e pH < 7,35.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -157,7 +157,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"",
   explicacaoGeral:"Questão anulada pela banca; não há gabarito. Dicas do enunciado: **TEP maciço (de alto risco)** com **PA 85 × 50 mmHg**, **lactato elevado**, hipertensão pulmonar e **cirurgia ortopédica recente**. Em TEP com instabilidade hemodinâmica, a conduta preconizada é a **trombólise sistêmica com alteplase** (alternativa B), mas a **cirurgia recente** é contraindicação relativa, o que gerou ambiguidade entre trombólise (B), embolectomia (C) e outras medidas, e levou à anulação. Mecanismo: a obstrução maciça do leito pulmonar causa falência aguda do ventrículo direito e choque obstrutivo. A (heparina de baixo peso molecular) é insuficiente no choque, D (vasopressores) são suporte e não tratam a causa, e a escolha entre B e C depende do risco hemorrágico.",
   explicacoesAlternativas:{},
-  referencias:"Diretriz Brasileira de TEP (SBPT/SBC); ESC 2019.",
+  referencias:"Diretriz Brasileira de TEP (SBPT/SBC); ESC 2019. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Questão anulada pela banca.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -170,7 +170,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **AVC isquêmico tratado com rt-PA** e, no **segundo dia**, **rebaixamento da consciência, piora súbita da hemiparesia e sinais de hipertensão intracraniana**: **transformação hemorrágica** do infarto (a complicação mais temida da trombólise, em cerca de 6% dos casos sintomáticos). Mecanismo: a recanalização de um vaso com parede lesada permite a extravasamento de sangue no tecido isquêmico, e o rt-PA lisa os coágulos hemostáticos. A (falha da trombólise) e C (extensão da penumbra) explicam piora gradual, e não súbita com hipertensão intracraniana, e B (hemorragia subaracnoidea) não é complicação típica do rt-PA.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes Brasileiras de AVC isquêmico agudo (SBDCV); AHA/ASA 2019.",
+  referencias:"Diretrizes Brasileiras de AVC isquêmico agudo (SBDCV); AHA/ASA 2019. Conferência 02/11/2026: edição vigente de AHA/ASA, AVC isquêmico agudo: AHA/ASA 2026 (Stroke, doi 10.1161/STR.0000000000000513); texto não aberto nesta rodada (02/11/2026), a explicação segue a edição citada e deve ser revista pela vigente.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -183,7 +183,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **FC 160 bpm**, **PA 90/60 mmHg**, **pulsos finos e irregulares**, **tontura e sudorese** (instabilidade) e ECG com **QRS estreito, RR irregularmente irregular e sem ondas P nem \"dente de serra\"**: **fibrilação atrial de alta resposta com instabilidade**. A conduta é a **cardioversão elétrica sincronizada imediata** (120–200 J bifásico). Mecanismo: em instabilidade o tempo é crítico e a cardioversão restaura o ritmo sinusal, e o risco de embolia é aceito. A (adenosina) é para TSV regular, C (amiodarona) e D (verapamil, que pode piorar a hipotensão) são para pacientes estáveis.",
   explicacoesAlternativas:{},
-  referencias:"Diretriz Brasileira de Fibrilação Atrial (SBC, 2023); AHA/ACC/HRS 2023.",
+  referencias:"Diretriz Brasileira de Fibrilação Atrial (SBC, 2023); AHA/ACC/HRS 2023. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -196,7 +196,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: idoso de **83 anos** com **atenção prejudicada, pensamento desorganizado e flutuação** ao longo de 3 dias (sonolência alternando com agitação): **delirium**. Os **fatores predisponentes** são **idade avançada e doença de Parkinson (vulnerabilidade cerebral)**, e o **fator precipitante** é a **pneumonia** (opacidade com broncograma em base esquerda). Mecanismo: o modelo multifatorial combina vulnerabilidade prévia do cérebro com um insulto agudo, que desequilibra neurotransmissores (déficit colinérgico, excesso de dopamina) e causa inflamação. A (internação, sexo e IC), B (hipertensão, hipotireoidismo e déficit sensorial) e D (sexo, limitação motora e embolia) incluem fatores que não explicam o caso.",
   explicacoesAlternativas:{},
-  referencias:"Inouye, Delirium in Elderly People (Lancet 2014); Sociedade Brasileira de Geriatria, Delirium.",
+  referencias:"Inouye, Delirium in Elderly People (Lancet 2014); Sociedade Brasileira de Geriatria, Delirium. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -209,7 +209,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: idosa de **82 anos** com **fadiga, perda de 5 kg, diarreia intermitente**, **uso de AINE**, **palidez e queilite angular**, **Hb 9,0 g/dL**, **VCM 75 fL** (normal: 80–100), **HCM 25 pg** (normal: 27–33) e **RDW 16%** (aumentado: anisocitose), com **plaquetose (400.000/µL)** reativa: **anemia ferropriva**. Mecanismo: a perda crônica de sangue oculto (AINE, possível neoplasia) esgota o ferro, e a medula produz hemácias pequenas e heterogêneas. A (doença crônica) costuma ser normocítica, B (talassemia) tem RDW normal e outras alterações, e C (sideroblástica) é rara, com população dupla.",
   explicacoesAlternativas:{},
-  referencias:"Harrison, Medicina Interna; Diretrizes da AGA para anemia ferropriva.",
+  referencias:"Harrison, Medicina Interna; Diretrizes da AGA para anemia ferropriva. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -222,7 +222,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (gabarito da banca). Dicas do enunciado: **dor epigástrica com vômitos**, **lipase 1.250 U/L** (normal: 10–140; diagnóstico com ≥ 3 vezes o limite) e **amilase 245 U/L**, **FC 126 bpm, PA 95 × 60 mmHg**, **ureia 90 mg/dL e creatinina 1,9 mg/dL** (hipovolemia): **pancreatite aguda** com hipovolemia. O tratamento inicial é **monitorização, hidratação com Ringer lactato, analgesia, antiemético e controle da diurese (sonda vesical)**. Mecanismo: a inflamação causa sequestro de líquido no terceiro espaço, e a hidratação precoce reduz a necrose e a lesão renal. B (dieta parenteral e antibióticos) e C (meropenem) não têm indicação inicial, e D (UTI e dieta) não se justifica, pois a dieta oral deve ser reintroduzida precocemente, conforme tolerância.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes da ACG (2024) e da IAP/APA para pancreatite aguda; Classificação de Atlanta revisada.",
+  referencias:"Diretrizes da ACG (2024) e da IAP/APA para pancreatite aguda; Classificação de Atlanta revisada. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -236,7 +236,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta (gabarito da banca). Dicas da imagem e do enunciado: mulher de **26 anos** com **mal-estar e dor em hipogástrio**, disúria e polaciúria, **leucócitos urinários de 20.000/mL** (inespecífico), sem sinais peritoneais, e tomografia com **apêndice espessado e densificação da gordura**, **sem coleção ou perfuração**: **apendicite aguda não complicada**. Mecanismo: a obstrução do lúmen apendicular causa distensão, inflamação e isquemia, com sintomas urinários por irritação vesical adjacente. A (abscesso tubo-ovariano) e B (ureterolitíase) não têm o achado de imagem, e D (perfurada) exigiria coleção, ar extraluminal ou peritonite.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes de Jerusalém para apendicite (WSES 2020); Sabiston.",
+  referencias:"Diretrizes de Jerusalém para apendicite (WSES 2020); Sabiston. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -250,7 +250,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas da imagem e do enunciado: **drenagem de tórax prévia** em pneumotórax, e agora **dor, taquipneia, murmúrio reduzido à direita e SatO2 93% com O2**, com radiografia que **mostra o dreno mal posicionado (fora do espaço pleural/trajeto subcutâneo)** e persistência do pneumotórax com **enfisema subcutâneo**. Se o dreno não funciona, **retira-se e realiza-se nova drenagem** em posição adequada. Mecanismo: dreno fora do espaço pleural não evacua ar, e o pneumotórax progride. B (drenar o lado esquerdo) não tem justificativa, C (aguardar tomografia) atrasa o tratamento em paciente sintomático, e D (fisioterapia) não resolve um dreno disfuncional.",
   explicacoesAlternativas:{},
-  referencias:"ATLS 10ª ed.; Diretriz EAST para drenagem de tórax.",
+  referencias:"ATLS 10ª ed.; Diretriz EAST para drenagem de tórax. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -263,7 +263,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: o nódulo com **maior risco de malignidade** é o **sólido, hipoecogênico, com contornos parcialmente delimitados (margens irregulares) e focos hiperecogênicos puntiformes (microcalcificações)**, de **1,2 cm** no terço superior do lobo direito. Mecanismo: o carcinoma papilífero forma psamomas (corpos calcificados microscópicos) que aparecem como microcalcificações, e a infiltração dá margens irregulares. Epidemiologia: o carcinoma papilífero é cerca de 80% dos cânceres de tireoide. A (sólido hipoecogênico bem delimitado e pequeno, de 0,8 cm, sem microcalcificações), B (hiperecogênico, bem definido, com fluxo periférico) e C (isoecogênico com calcificações grosseiras, que são menos específicas e mais associadas a bócio) têm menor suspeição.",
   explicacoesAlternativas:{},
-  referencias:"ATA 2015; ACR TI-RADS 2017; Consenso Brasileiro de Nódulos Tireoidianos (SBEM/CBR).",
+  referencias:"ATA 2015; ACR TI-RADS 2017; Consenso Brasileiro de Nódulos Tireoidianos (SBEM/CBR). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -277,7 +277,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (gabarito da banca). Dicas da imagem e do enunciado: mulher de **70 anos** com **hematoquezia há 3 meses**, **perda de 10 kg**, **Hb 10,9 g/dL**, **ferritina 40 ng/mL** (limítrofe) e **saturação de transferrina de 12%** (normal: 20–50%): **anemia ferropriva** por perda crônica; a ressonância e a colonoscopia mostram **massa vegetante e estenosante** no segmento distal do cólon/reto. A conduta pré-operatória é **repor ferro por via endovenosa** (ganho rápido de hemoglobina, preferível quando a cirurgia está próxima e a via oral é pouco eficaz), reduzindo a necessidade de transfusão. Mecanismo: a inflamação do tumor eleva a hepcidina e bloqueia a absorção oral do ferro. B e D (eritropoetina) não são o tratamento da anemia ferropriva, que responde à reposição de ferro; C e D (neoplasia de canal anal) não correspondem ao local, pois o canal anal tem carcinoma epidermoide, tratado com quimiorradioterapia e não com cirurgia primária.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes do INCA para câncer colorretal; ESPEN, Nutrição perioperatória; ERAS 2018.",
+  referencias:"Diretrizes do INCA para câncer colorretal; ESPEN, Nutrição perioperatória; ERAS 2018. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -290,7 +290,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta (gabarito da banca). Dicas do enunciado: **colisão sem cinto de segurança**, **crepitações e murmúrio vesicular reduzido à direita**, **PA 90 × 70 mmHg, FC 130 bpm, FR 24 irpm e SatO2 88%** apesar de oxigênio: **choque com insuficiência respiratória de origem torácica**, compatível com **pneumotórax hipertensivo**, cuja conduta imediata é a **descompressão por toracocentese (agulha, 2º espaço intercostal na linha hemiclavicular, ou 5º na linha axilar anterior)**, seguida de dreno. Mecanismo: o ar sob pressão no espaço pleural desvia o mediastino, reduz o retorno venoso e causa choque obstrutivo. A (cristaloide) não trata a causa, C (intubação com pressão positiva) pode piorar o pneumotórax hipertensivo, e D (FAST) não deve atrasar a descompressão.",
   explicacoesAlternativas:{},
-  referencias:"ATLS 10ª ed.; Diretrizes sobre pneumotórax hipertensivo.",
+  referencias:"ATLS 10ª ed.; Diretrizes sobre pneumotórax hipertensivo. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -303,7 +303,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: TCE com **queda de Glasgow de 14 (AO 4, RV 4, RM 6 = 14) para 8 (AO 2, RV 2, RM 4)**, **midríase à direita** (sinal de herniação) e **ferimento parietal direito**: **TCE grave (Glasgow ≤ 8)** com sinal de hérnia. A conduta é **proteger a via aérea com intubação orotraqueal** e **transferir para centro de trauma com neurocirurgião**, mantendo oxigenação e PA. Mecanismo: o hematoma com efeito de massa causa herniação do úncus e compressão do III par, e o tempo até a descompressão é decisivo. B e C (TCE moderado) erram a classificação (moderado é Glasgow 9–12), e D (tomografia no hospital sem neurocirurgia, atrasando a transferência) retarda a decisão: a imagem se faz no centro de destino, se não puder ser feita rápido.",
   explicacoesAlternativas:{},
-  referencias:"ATLS 10ª ed.; Brain Trauma Foundation, Guidelines for TBI (4ª ed.).",
+  referencias:"ATLS 10ª ed.; Brain Trauma Foundation, Guidelines for TBI (4ª ed.). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -316,7 +316,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **etilista crônico**, **hematêmese e melena** com **choque (PA 80 × 60 mmHg, FC 120 bpm)**, segundo episódio em 6 meses, e **rebaixamento por nova hematêmese com intubação**: **hemorragia varicosa por hipertensão portal**. O procedimento que o emergencista faz para controle quando a endoscopia não está disponível é o **balão de Sengstaken-Blakemore** (tamponamento esofagogástrico). As complicações são **necrose de asa do nariz** (pela fixação ou tração), **isquemia e perfuração do esôfago** e aspiração. Mecanismo: a pressão do balão comprime as varizes, mas também a mucosa e a parede esofágica. A (contaminação, febre e hemólise) descreve transfusão, C (encefalopatia, hemobilia e insuficiência renal) descreve outras situações, e D (ulceração, estenose e dor) são complicações da escleroterapia endoscópica.",
   explicacoesAlternativas:{},
-  referencias:"Baveno VII (2022); AASLD, Portal Hypertensive Bleeding (2017); Manual do balão de Sengstaken-Blakemore.",
+  referencias:"Baveno VII (2022); AASLD, Portal Hypertensive Bleeding (2017); Manual do balão de Sengstaken-Blakemore. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -329,7 +329,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **hernioplastia inguinal laparoscópica (TAPP)** seguida de **dor inguinal com irradiação para a face medial da coxa persistente após 6 semanas**, sem hematoma, abaulamento ou recidiva: **dor neuropática por lesão ou compressão do ramo genital do nervo genitofemoral ou do nervo cutâneo femoral lateral** por **grampos** fixados lateralmente aos vasos epigástricos e abaixo do trato iliopúbico (**\"triângulo da dor\"**). A terapia inicial é **medicamentosa para dor neuropática (gabapentina ou pregabalina)**. Mecanismo: o grampo ou a tela comprime ou aprisiona o nervo e provoca dor neuropática. B (vasos gonadais) causaria dor testicular, C (migração da tela) e D (seroma) não explicam a dor irradiada e teriam sinais ao exame.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes da International Endohernia Society (2014) e da European Hernia Society (2009) sobre dor crônica pós-herniorrafia.",
+  referencias:"Diretrizes da International Endohernia Society (2014) e da European Hernia Society (2009) sobre dor crônica pós-herniorrafia. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -342,7 +342,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **adolescente de 12 anos com cólicas biliares há 2 meses** e **múltiplos cálculos** na ultrassonografia. Na infância e na adolescência, a colelitíase **pigmentar por hemólise crônica** é frequente, e a **anemia falciforme** é a principal associação. Mecanismo: a hemólise aumenta a bilirrubina não conjugada, que precipita como cálculos de bilirrubinato de cálcio. Epidemiologia: até 30% dos pacientes com anemia falciforme têm litíase biliar até a adolescência. A (puberdade precoce) não é fator reconhecido, B (história familiar) e C (hipercolesterolemia familiar) são fatores para cálculos de colesterol, mais comuns em adultas obesas e menos associados a esta faixa etária.",
   explicacoesAlternativas:{},
-  referencias:"Nelson, Tratado de Pediatria; SBP, Colelitíase na infância.",
+  referencias:"Nelson, Tratado de Pediatria; SBP, Colelitíase na infância. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -355,7 +355,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **mulher de 68 anos** com **icterícia progressiva, colúria e acolia**, **perda de 5 kg**, **bilirrubina direta elevada, fosfatase alcalina 1.200 U/L e gama-GT 2.100 U/L** (colestase intensa) e ultrassonografia com **dilatação acentuada das vias biliares intra-hepáticas, vesícula murcha e colédoco de calibre normal**. Esse padrão mostra que a obstrução está **acima da inserção do ducto cístico, na confluência dos ductos hepáticos**: **tumor de Klatskin (colangiocarcinoma hilar)**. Mecanismo: a lesão obstrui os ductos hepáticos direito e esquerdo e não dilata o colédoco nem a vesícula. Epidemiologia: pico entre 60 e 70 anos. A (coledocolitíase) e B (adenocarcinoma de papila) dilatariam o colédoco, e a vesícula ficaria dilatada em B (sinal de Courvoisier), e D (síndrome de Mirizzi) é compressão do hepático comum por cálculo no infundíbulo, com cálculos na imagem.",
   explicacoesAlternativas:{},
-  referencias:"Sabiston, Tratado de Cirurgia; Diretrizes do INCA para colangiocarcinoma; Classificação de Bismuth-Corlette.",
+  referencias:"Sabiston, Tratado de Cirurgia; Diretrizes do INCA para colangiocarcinoma; Classificação de Bismuth-Corlette. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -368,7 +368,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **homem de 45 anos** com **hemorragia digestiva alta** e, à endoscopia, **tumor de 3 cm em fundo gástrico recoberto por mucosa normal e com umbilicação central**: aspecto de **lesão subepitelial (GIST)**. A **biópsia da superfície** pode dar **falso-negativo**, pois a lesão está sob a mucosa. Mecanismo: o tumor estromal se origina das células intersticiais de Cajal, na camada muscular própria, e ulcera o centro quando cresce. Epidemiologia: o GIST é o sarcoma mais comum do tubo digestivo, com pico por volta dos 60 anos. A (gastrectomia D2 na urgência) não se aplica, pois o GIST raramente metastatiza para linfonodos, B (radioterapia hemostática) é indicação paliativa e não de primeira linha, e C (síndrome de Lynch) não se relaciona com tumor subepitelial.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes do INCA para GIST; NCCN, Gastrointestinal Stromal Tumors; Sabiston.",
+  referencias:"Diretrizes do INCA para GIST; NCCN, Gastrointestinal Stromal Tumors; Sabiston. Conferência 02/11/2026: edição vigente de NCCN (versões frequentes): Versões 2026 em nccn.org (exigem login); texto não aberto nesta rodada (02/11/2026), a explicação segue a edição citada e deve ser revista pela vigente.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -381,7 +381,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: a colonoscopia é **diagnóstica e terapêutica**, pois permite **polipectomia** (e ressecção de lesões precoces, como adenomas e alguns carcinomas T1), o que **previne o câncer** ao remover a lesão precursora. Mecanismo: a sequência adenoma-carcinoma leva anos, e a retirada do pólipo interrompe a evolução. B (doença de Crohn começa o rastreamento antes dos 45 anos e a retocolite segue a população geral) está errada, pois ambas as doenças inflamatórias têm vigilância própria, a partir de 8 anos de doença extensa; C (colonoscopia virtual como alternativa) é aceita por algumas diretrizes, mas não é a afirmativa pedida como correta nesta questão; D (baixa sensibilidade e alta especificidade) está errada, pois a colonoscopia tem alta sensibilidade e especificidade e a limitação é o custo, o preparo e o risco do procedimento.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes do INCA e da SBCP para rastreamento do câncer colorretal; USPSTF 2021; ACG 2021.",
+  referencias:"Diretrizes do INCA e da SBCP para rastreamento do câncer colorretal; USPSTF 2021; ACG 2021. Conferência 02/11/2026: a Portaria Conjunta SAES/SECTICS nº 13/2025 (DNA-HPV, 25 a 64 anos) substituiu as diretrizes de 2016; texto oficial não aberto, PDFs de cópia e gov.br bloqueados na rede da sessão em 02/11/2026; resposta mantida segundo a diretriz em vigor na época da prova, a rever pela de 2025.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -394,7 +394,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta (gabarito da banca). Dicas do enunciado: **mulher de 45 anos, cabeleireira (ortostatismo prolongado), tabagista**, com **dor, peso e cansaço no final do dia que melhoram com a elevação das pernas**, **varizes tortuosas visíveis, edema e telangiectasias**, **sem alterações de pele ou úlcera**. Pela **CEAP**: **C1** telangiectasias, **C2** varizes, **C3 edema**, C4 alterações da pele (pigmentação, eczema, lipodermatoesclerose), C5 úlcera cicatrizada, C6 úlcera ativa. O edema com varizes e sem alteração cutânea é **C3**. O tratamento cirúrgico (ou endovascular) das varizes é indicado quando há sintomas que reduzem a qualidade de vida, associado a **meias de compressão**. Mecanismo: a incompetência valvular causa refluxo e hipertensão venosa. A (C4) erra a classificação, B (anticoagulação plena) e C (escleroterapia de telangiectasias como medida central para os sintomas) não são a conduta indicada.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes da SBACV para doença venosa crônica (2015); Classificação CEAP.",
+  referencias:"Diretrizes da SBACV para doença venosa crônica (2015); Classificação CEAP. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -407,7 +407,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **dor 5/10 (moderada)** no 1º pós-operatório de colecistectomia, **sem alívio com paracetamol e cetoprofeno**, **alergia à dipirona**, sem complicação cirúrgica. O passo seguinte da escada analgésica é um **opioide fraco ou de ação curta (tramadol)**, associado à analgesia multimodal. Mecanismo: o tramadol atua em receptores opioides mu e inibe a recaptação de serotonina e noradrenalina, com menor risco de depressão respiratória. A (aumentar o paracetamol) já está na dose máxima (4 g/dia), C (relaxantes musculares) não são indicados para dor visceral/incisional, e D (morfina) é um passo a mais do que o necessário para dor moderada.",
   explicacoesAlternativas:{},
-  referencias:"OMS, Escada analgésica; Diretrizes da SBA para analgesia pós-operatória; Sociedade Americana de Anestesiologistas, Pain Management.",
+  referencias:"OMS, Escada analgésica; Diretrizes da SBA para analgesia pós-operatória; Sociedade Americana de Anestesiologistas, Pain Management. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -421,7 +421,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"",
   explicacaoGeral:"Questão anulada pela banca; não há gabarito. Dicas da imagem e do enunciado: escolar de **8 anos** com **FC 187 bpm**, **PA 98 × 56 mmHg**, **enchimento capilar de 2 segundos**, pulsos cheios e **sem desconforto respiratório**: taquicardia **estável**. O ritmo mostra **QRS estreito e regular**, compatível com **taquicardia supraventricular (TSV)**; no fluxograma do PALS, em TSV estável (QRS estreito) a conduta inicial é a **manobra vagal**, depois **adenosina** (0,1 mg/kg, em bolus rápido) e, se instável, **cardioversão sincronizada (0,5–1 J/kg)**. A frequência de 187 bpm cai na faixa em que a taquicardia sinusal (até 220 bpm em lactentes e 180 bpm em crianças) pode ser confundida com TSV, o que gerou a anulação. Mecanismo: a TSV por reentrada tem início e término súbitos e FC fixa. A (adenosina imediata) e B (adenosina após manobra vagal) diferem pela ordem, C (cardioversão) é para instabilidade e D (atropina) é para bradicardia.",
   explicacoesAlternativas:{},
-  referencias:"PALS 2020; Diretriz de Arritmias Pediátricas (SBC).",
+  referencias:"PALS 2020; Diretriz de Arritmias Pediátricas (SBC). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Questão anulada pela banca.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -434,7 +434,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: menino de **8 anos** com **edema, oligúria e urina escura (hematúria)**, **infecção de pele há 1 mês**, **PA 138 × 67 mmHg (PAM 99 mmHg, hipertensão)** e **SatO2 89% com estertores bibasais** (congestão pulmonar): **glomerulonefrite pós-estreptocócica (GNPE)** com sobrecarga de volume. O exame esperado é o **anti-DNase B elevado** (a ASLO é menos sensível após infecção de pele, em que a anti-DNase B é o marcador), com **complemento C3 baixo**. A conduta inicial é **restrição hidrossalina e diurético de alça (furosemida)**. Mecanismo: imunocomplexos e ativação do complemento causam inflamação glomerular com retenção de sódio e água. A (ASLO diminuída) e D (dismorfismo, mas com albumina e corticoide) e B (albumina baixa e corticoide) descrevem síndrome nefrótica, que é outro quadro.",
   explicacoesAlternativas:{},
-  referencias:"KDIGO 2021 para glomerulopatias; SBP, Glomerulonefrite difusa aguda pós-estreptocócica.",
+  referencias:"KDIGO 2021 para glomerulopatias; SBP, Glomerulonefrite difusa aguda pós-estreptocócica. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -447,7 +447,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: lactente de **9 meses** com diarreia há 3 dias, **mucosas secas, olhos fundos, irritabilidade, diminuição da elasticidade da pele**, mas com **lágrimas presentes**, **pulsos cheios** e **fontanela normotensa**: **desidratação (plano B)** sem choque. A conduta inicial é a **terapia de reidratação oral** (SRO 50–100 mL/kg em 4 a 6 horas) com **reavaliação**. Mecanismo: o cotransporte de sódio e glicose no intestino permanece funcional na diarreia aguda. B (exames antes de iniciar) retarda a reidratação, e C e D (reidratação endovenosa) são para choque, vômitos incoercíveis ou falha da via oral (plano C), e a solução glicosada a 5% não é a solução de escolha para reposição volêmica.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Manejo do paciente com diarreia (2017); OMS.",
+  referencias:"Ministério da Saúde, Manejo do paciente com diarreia (2017); OMS. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -460,7 +460,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: criança de **4 anos** com **hematomas em diferentes estágios de cicatrização (roxos e amarelados) em costas, braços e pernas**, **retraimento, evitação do contato visual e postura defensiva**: sinais de **maus-tratos repetidos**. A conduta inicial é a **notificação compulsória** (Conselho Tutelar e vigilância), pois a suspeita fundamentada basta. Mecanismo: hematomas em locais protegidos e em estágios diferentes indicam lesões repetidas. A (tratamento psicológico e escola) e C (orientar a avó a conversar com os pais) atrasam a proteção e expõem a criança, e D (exames de coagulação) pode ser feito na investigação, mas não pode adiar a notificação.",
   explicacoesAlternativas:{},
-  referencias:"ECA (Lei 8.069/1990, art. 13); Ministério da Saúde, Linha de cuidado para crianças em situação de violência.",
+  referencias:"ECA (Lei 8.069/1990, art. 13); Ministério da Saúde, Linha de cuidado para crianças em situação de violência. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -473,7 +473,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: menino de **7 anos** com **linfonodo cervical de 3,5 cm endurecido, aderido a planos profundos, indolor, de crescimento progressivo em 3 semanas**, **febre baixa** e **linfonodo supraclavicular homolateral de 1 cm**: **sinais de alarme para neoplasia (linfoma)**. A conduta é a **biópsia excisional do linfonodo** associada a **exames de imagem (ultrassonografia cervical e tomografia de tórax)**. Mecanismo: linfonodos supraclaviculares, duros, aderidos e crescentes têm alta chance de malignidade, e a arquitetura é necessária para classificar o linfoma. B (observar por 4–6 semanas) e C (exames laboratoriais sem biópsia) atrasam o diagnóstico, e D (punção por agulha fina) é insuficiente para linfoma, que exige a arquitetura do linfonodo.",
   explicacoesAlternativas:{},
-  referencias:"SBP, Linfonodomegalia na infância; Nelson, Pediatria; Hoffman, Hematology.",
+  referencias:"SBP, Linfonodomegalia na infância; Nelson, Pediatria; Hoffman, Hematology. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -486,7 +486,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: lactente de **8 meses** com **vômitos, urticária e angioedema periocular imediatos após ovo**: **alergia ao ovo IgE-mediada com anafilaxia**, tratada com adrenalina. A **mãe nutriz não precisa restringir ovo** na dieta se o lactente reagiu apenas ao contato direto, pois a quantidade de proteína no leite é mínima e não há evidência de reação por essa via em quem teve exposição direta; o aleitamento é mantido. Mecanismo: a IgE específica é sensibilizada, e a reação ocorre com a ingestão direta de doses relevantes. A (vacinas com embrião de galinha são contraindicadas) está errada, pois SCR e influenza (e febre amarela, com cautela) podem ser avaliadas e aplicadas, a maioria sem risco; B (IgE específica contraindicada pela idade) está errada, pois a dosagem e os testes cutâneos são úteis em qualquer idade; C (teste de provocação obrigatório) está errada, pois, com anafilaxia clara, o diagnóstico se baseia na história e na IgE.",
   explicacoesAlternativas:{},
-  referencias:"Guia Prático de Alergia Alimentar (ASBAI/SBP, 2018); EAACI 2023.",
+  referencias:"Guia Prático de Alergia Alimentar (ASBAI/SBP, 2018); EAACI 2023. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -499,7 +499,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: criança de **10 anos** com **infecções bacterianas sinopulmonares recorrentes (sinusites, otites, 2 pneumonias)** desde os 3 anos, **giardíase recorrente com diarreia** e crescimento normal: padrão de **imunodeficiência humoral (hipogamaglobulinemia/deficiência de anticorpos)**. A investigação inicial é a **dosagem de imunoglobulinas (IgG, IgA, IgM)** e a **avaliação da resposta a antígenos polissacarídeos** (sorologia pós-vacina pneumocócica), além de subclasses. Mecanismo: sem anticorpos específicos, não há opsonização de bactérias encapsuladas e há infecções por Giardia, que depende de IgA. A (imunofenotipagem e tomografia), C (anticorpos proteicos e IgE para aeroalérgenos) e D (genética de fagócitos e espirometria) não são as primeiras etapas.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes da ASBAI e do Grupo Brasileiro de Imunodeficiências (BRAGID); IUIS 2022.",
+  referencias:"Diretrizes da ASBAI e do Grupo Brasileiro de Imunodeficiências (BRAGID); IUIS 2022. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -512,7 +512,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: menino de **12 anos** com **testículos de volume normal para a idade**, **escroto com leve pigmentação** e **poucos pelos ao redor do pênis**: **Tanner II (G2 P2)**, com **aumento testicular (≥ 4 mL)** e pelos escassos e finos. O início da puberdade masculina ocorre entre **9 e 14 anos**, e o estádio II aos 12 anos é normal. Mecanismo: a ativação do eixo hipotálamo-hipófise-gonadal eleva a testosterona e leva ao crescimento dos testículos, o primeiro sinal. B (Tanner I) e C (Tanner III, puberdade precoce, que seria antes dos 9 anos) erram o estádio, e D (maturação só pelo hormônio) é falsa, pois o estadiamento é clínico.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Caderneta do Adolescente; Marshall e Tanner.",
+  referencias:"Ministério da Saúde, Caderneta do Adolescente; Marshall e Tanner. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -525,7 +525,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: RN a termo com **apneia e hipotonia**, **FC 80 bpm** antes e **FC 60 bpm após 30 segundos de VPP em ar ambiente** sem respiração espontânea: a ventilação pode estar **ineficaz** (tórax sem expansão). Antes de passar à intubação ou à massagem, aplica-se a sequência **M.R. SOPA**: corrigir a **máscara (escape)**, reposicionar, aspirar, abrir a boca e aumentar a pressão. Mecanismo: sem ventilação eficaz, a hipóxia persiste e a FC não melhora. A (oxigênio suplementar) vem depois de ventilação efetiva, C (intubação) vem depois das manobras corretivas, e D (massagem) só se FC < 60 bpm **após 30 segundos de ventilação efetiva**.",
   explicacoesAlternativas:{},
-  referencias:"Programa de Reanimação Neonatal da SBP (2022); AHA/ILCOR 2020.",
+  referencias:"Programa de Reanimação Neonatal da SBP (2022); AHA/ILCOR 2020. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -538,7 +538,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: pré-escolar de **3 anos** com **febre alta (> 39 °C) por 3 a 5 dias a cada 4 a 6 semanas**, **estomatite aftosa, faringite e adenite cervical**, **assintomático entre os episódios** e crescimento normal: **síndrome PFAPA** (febre periódica, aftas, faringite e adenite). O manejo do episódio é **dose única de corticoide (prednisona 1–2 mg/kg)**, que costuma abortar a febre em horas. Mecanismo: autoinflamação com ativação de interleucina-1, sensível ao corticoide. A (ibuprofeno) controla a febre, mas não aborta o episódio, B (adenoamigdalectomia) é opção em casos selecionados e refratários, e D (colchicina) é opção na profilaxia de casos frequentes, mas não é o manejo do episódio agudo.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes de febre recorrente na infância (SBP); Marshall, PFAPA (J Pediatr 1987).",
+  referencias:"Diretrizes de febre recorrente na infância (SBP); Marshall, PFAPA (J Pediatr 1987). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -551,7 +551,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: criança de **5 anos** com **claudicação e dor na perna direita há 24 horas**, **bom estado geral, sem febre ou toxemia**, **infecção viral há 1 semana** e posição antálgica: **sinovite transitória do quadril**, autolimitada. A conduta é **sintomáticos (anti-inflamatório) e repouso relativo**, com reavaliação em 24 a 48 horas. Mecanismo: reação inflamatória pós-viral da sinóvia, com derrame, sem infecção. Epidemiologia: é a causa mais comum de dor no quadril entre 3 e 8 anos. A (antibiótico) não se indica sem critérios de artrite séptica (febre, VHS > 40 mm/h, leucocitose, recusa a apoiar), C (tomografia) e D (ultrassonografia para deslizamento epifisário, que ocorre em adolescentes obesos de 10 a 16 anos) não se justificam.",
   explicacoesAlternativas:{},
-  referencias:"SBOT; Tachdjian, Ortopedia Pediátrica; Kocher, Critérios para artrite séptica.",
+  referencias:"SBOT; Tachdjian, Ortopedia Pediátrica; Kocher, Critérios para artrite séptica. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -564,7 +564,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (gabarito da banca). Dicas do enunciado: escolar de **8 anos** com **asma** e, após 4 semanas de **corticoide inalatório em baixa dose** (técnica e adesão conferidas), ainda tem **sintomas diurnos e resgate em média 3 vezes por semana**: **asma não controlada no passo 2**. O GINA indica subir ao **passo 3**, com **budesonida-formoterol em baixa dose diária (MART: manutenção e resgate)**, em lugar do ICS e do salbutamol. Mecanismo: o formoterol é broncodilatador de início rápido e, em combinação com o corticoide, trata a inflamação a cada uso. B (dobrar a beclometasona e trocar o resgate) é uma opção descrita para quem já usa a combinação, C (associar montelucaste) é opção alternativa de menor eficácia, e D (suspender a manutenção e usar só a combinação em demanda) é o passo 1–2 para adultos e adolescentes, sem validação em escolares.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2024; Diretrizes da SBPT para Asma (2020).",
+  referencias:"GINA 2024; Diretrizes da SBPT para Asma (2020). Conferência 02/11/2026: GINA 2026: não relido por mim; consta lido em 29/10/2026 em docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md (ICS-formoterol como aliviador preferido, SABA isolado não recomendado), compatível com a explicação.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -577,7 +577,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: lactente de **6 meses** com **febre há 72 horas, tosse, coriza, conjuntivite intensa**, **exantema maculopapular difuso (face, tronco e membros)** e linfonodos cervicais pequenos: **sarampo** (síndrome dos 3 C: tosse, coriza, conjuntivite). A conduta é a **notificação compulsória imediata** (em até 24 horas) e o **bloqueio vacinal** dos contatos. Mecanismo: a transmissão aérea é intensa (R0 de 12 a 18), e a vigilância precoce contém os surtos. Epidemiologia: o Brasil perdeu o status de país livre de sarampo em 2019 e o recuperou em 2024. B (Kawasaki, com ecocardiograma e imunoglobulina) tem febre ≥ 5 dias e outros critérios, C (amoxicilina) trata infecção bacteriana, e D (prova do laço) é teste de dengue.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Guia de Vigilância em Saúde: Sarampo; Red Book (AAP).",
+  referencias:"Ministério da Saúde, Guia de Vigilância em Saúde: Sarampo; Red Book (AAP). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -591,7 +591,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"",
   explicacaoGeral:"Questão anulada pela banca; não há gabarito. Dicas da imagem: adolescente de **12 anos** em **Tanner M3P3**, com o **IMC acima da curva do escore-z +3** (**obesidade grave** para a idade, valor próximo de 32 kg/m²). Na avaliação nutricional, o IMC acima de +3 é obesidade grave, com **rastreamento de comorbidades** (perfil lipídico, glicemia, transaminases, pressão arterial) e **orientação alimentar, atividade física (≥ 60 minutos diários)** e acompanhamento. Mecanismo: o excesso de gordura visceral causa resistência à insulina, dislipidemia e esteatose. A (LDL isolado para síndrome metabólica), B (30 minutos de atividade) e D (ultrassonografia abdominal como rastreio de rotina) são afirmações parcial ou discutivelmente corretas, e C (manter o peso, sem redução) pode ser inadequada na obesidade grave, e esse conjunto de alternativas discutíveis levou à anulação.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Caderno de Atenção Básica: Obesidade; Diretrizes da SBP para obesidade na infância e adolescência.",
+  referencias:"Ministério da Saúde, Caderno de Atenção Básica: Obesidade; Diretrizes da SBP para obesidade na infância e adolescência. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Questão anulada pela banca.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -604,7 +604,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"",
   explicacaoGeral:"Questão anulada pela banca; não há gabarito. Dicas do enunciado: lactente de **6 meses sem nenhuma vacina**. O esquema de atualização pelo PNI inclui **BCG (dose única)**, **hepatite B**, **pentavalente (3 doses, intervalo de 60 dias)**, **VIP (3 doses)**, **pneumocócica 10-valente (2 doses + reforço)**, **meningocócica C (2 doses, intervalo de 60 dias)** e, para a **rotavírus, a idade-limite de 7 meses e 29 dias para a última dose** (1ª dose até 3 meses e 15 dias), de modo que a criança de 6 meses **já não pode iniciar o esquema do rotavírus**; além disso, as vacinas contra COVID-19 e as doses estavam em atualização no período. As alternativas A (inclui rotavírus em 2 doses), B e C (COVID-19 e esquemas incompletos) e D (rotavírus em dose única, DTP em vez de pentavalente) trazem inconsistências em relação ao calendário, e nenhuma é integralmente correta, o que levou à anulação. Mecanismo: o limite de idade do rotavírus se deve ao risco de invaginação intestinal em lactentes mais velhos.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Calendário Nacional de Vacinação (2023–2024) e Informe técnico de esquemas atrasados.",
+  referencias:"Ministério da Saúde, Calendário Nacional de Vacinação (2023–2024) e Informe técnico de esquemas atrasados. Conferência 02/11/2026: edição vigente de Calendário Nacional de Vacinação: Instrução Normativa do Calendário 2026; texto não aberto nesta rodada (02/11/2026), a explicação segue a edição citada e deve ser revista pela vigente.",
   dificuldadeManual:"intermediario", status:"anulada", motivoStatus:"Questão anulada pela banca.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -617,7 +617,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **primeira hora do puerpério de parto gemelar**, com **sangramento genital súbito em moderada quantidade**, em paciente com **hipertensão crônica**. As **medidas iniciais** são **chamar ajuda (acionar a equipe de hemorragia/Código Vermelho)**, **estimar a perda sanguínea (por pesagem ou medida)** e **calcular o índice de choque (FC ÷ PAS; normal: 0,5–0,7; ≥ 0,9 indica risco)**, com acessos venosos e monitorização, enquanto se identificam as causas (os \"4 Ts\": tônus, trauma, tecido, trombina). Mecanismo: a gestação múltipla distende o útero e aumenta o risco de atonia. A (misoprostol retal, ergotamina e balão), C (ácido tranexâmico, transfusão e ligadura) e D (ocitocina, ergotamina e resfriamento) são condutas específicas que vêm depois da avaliação inicial, e a ergotamina é contraindicada em hipertensa.",
   explicacoesAlternativas:{},
-  referencias:"Manual de Hemorragia Pós-parto (FEBRASGO/MS, 2022); OMS 2023, Recomendações para HPP; Protocolo Código Vermelho.",
+  referencias:"Manual de Hemorragia Pós-parto (FEBRASGO/MS, 2022); OMS 2023, Recomendações para HPP; Protocolo Código Vermelho. Conferência 02/11/2026: edição vigente de OMS, hemorragia pós-parto: OMS/FIGO/ICM 2025 (51 recomendações); texto não aberto nesta rodada (02/11/2026), a explicação segue a edição citada e deve ser revista pela vigente.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -630,7 +630,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **pelve com estreito superior ovalado e diâmetro anteroposterior reduzido** (achatado), **insinuação no diâmetro transverso** e **ângulo subpúbico amplo**. A **pelve platipeloide** é achatada no sentido anteroposterior, com diâmetro transverso maior, e o feto insinua-se no **transverso**. Mecanismo: o formato achatado do estreito superior favorece a insinuação transversa e pode causar parada da descida. A (ginecoide, a mais frequente, circular), B (androide, em forma de coração, com espinhas proeminentes e ângulo subpúbico estreito) e C (antropoide, ovalada no sentido anteroposterior, com insinuação no diâmetro oblíquo ou anteroposterior) têm outras características.",
   explicacoesAlternativas:{},
-  referencias:"Williams Obstetrics; Classificação de Caldwell-Moloy.",
+  referencias:"Williams Obstetrics; Classificação de Caldwell-Moloy. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -643,7 +643,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **40 anos**, **diabetes tipo 2 há 8 anos**, **obesidade grau I**, **HbA1c de 9,6%** (meta pré-concepção: < 6,5%, idealmente 6,0–6,5%), em consulta pré-concepção. A hiperglicemia no período da organogênese eleva o risco de **cardiopatias (comunicação interventricular)**, **síndrome da regressão caudal**, **defeitos do tubo neural** e outras malformações. Mecanismo: a glicose elevada gera estresse oxidativo e altera a expressão gênica no embrião. Epidemiologia: o risco de malformações chega a 2 a 4 vezes o da população geral em mau controle. A (agenesia renal e deleção de falanges), B (hipertelorismo e implantação baixa de orelhas) e C (cisto de plexo coroide e estenose uretral) não são as associações típicas do diabetes.",
   explicacoesAlternativas:{},
-  referencias:"ACOG Practice Bulletin 201 (diabetes pré-gestacional); Diretrizes da Sociedade Brasileira de Diabetes (2022).",
+  referencias:"ACOG Practice Bulletin 201 (diabetes pré-gestacional); Diretrizes da Sociedade Brasileira de Diabetes (2022). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -656,7 +656,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta (gabarito da banca). Dicas do enunciado: **35 semanas**, **PA 173 × 121 mmHg** (**crise hipertensiva: ≥ 160 × 110 mmHg**), **dor epigástrica e náuseas** (sinais de gravidade e iminência de eclâmpsia): **pré-eclâmpsia com sinais de gravidade**. A conduta: **internação**, **exames da rotina hipertensiva** (hemograma, plaquetas, creatinina, transaminases, DHL), **hidralazina (ou nifedipino) para reduzir a PA**, **sulfato de magnésio** (profilaxia de eclâmpsia) e **indução do parto após a estabilização**, pois a gestação está a partir de 34 semanas. Mecanismo: o sulfato de magnésio reduz as convulsões por efeito no receptor NMDA e vasodilatação cerebral. A (cesariana de rotina) não é obrigatória, B (metildopa, que é tratamento de manutenção, e corticoide a 35 semanas, que não é indicado a partir de 34 semanas) e D (sem sulfato de magnésio) erram.",
   explicacoesAlternativas:{},
-  referencias:"Manual de Gestação de Alto Risco (MS, 2022); ACOG Practice Bulletin 222.",
+  referencias:"Manual de Gestação de Alto Risco (MS, 2022); ACOG Practice Bulletin 222. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -669,7 +669,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta (gabarito da banca). Dicas do enunciado: mulher de **40 anos, nuligesta**, **exérese da zona de transformação tipo 3** com **lesão de alto grau**, **área de invasão estromal de 1,6 mm** (**estádio IA1: invasão < 3 mm**, sem invasão linfovascular) e **margens livres**. Nesse caso, o tratamento pode ser **conservador (conização)** em quem deseja gestar, com **seguimento rigoroso por citologia e colposcopia**, por ter risco muito baixo de metástase linfática (< 1%). Mecanismo: a microinvasão superficial raramente atinge linfáticos. A (traquelectomia) é para estádios maiores (IA2 e IB1) com desejo de gestação, C (idade avançada e baixa reserva, que não é critério de contraindicação ao tratamento conservador) e D (negativação do DNA-HPV como condição) não correspondem à conduta.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero (INCA, 2016); FIGO 2018, estádio IA1.",
+  referencias:"Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero (INCA, 2016); FIGO 2018, estádio IA1. Conferência 02/11/2026: a Portaria Conjunta SAES/SECTICS nº 13/2025 (DNA-HPV, 25 a 64 anos) substituiu as diretrizes de 2016; texto oficial não aberto, PDFs de cópia e gov.br bloqueados na rede da sessão em 02/11/2026; resposta mantida segundo a diretriz em vigor na época da prova, a rever pela de 2025.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -682,7 +682,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: homem trans em uso de **testosterona há 6 meses**, com **corrimento amarelo fluido abundante, prurido, escoriações**, **mucosa atrófica com pequenas erosões** e **pH alcalino** (normal vaginal: 3,8–4,5). A testosterona induz **hipoestrogenismo e atrofia vaginal**, com perda de lactobacilos e crescimento de bactérias entéricas: **vaginite aeróbia**, que tem inflamação, erosões e pH > 5. Mecanismo: sem estrogênio, o epitélio perde glicogênio, reduz os lactobacilos e o pH sobe, o que favorece E. coli, estreptococos e estafilococos. A (vaginose bacteriana) tem odor e células-chave, sem inflamação, B (tricomoníase) tem corrimento bolhoso e colo em framboesa, e D (vaginose citolítica) ocorre com pH ácido e excesso de lactobacilos.",
   explicacoesAlternativas:{},
-  referencias:"Donders, Aerobic vaginitis (2002); WPATH SOC 8; PCDT para IST (MS, 2022).",
+  referencias:"Donders, Aerobic vaginitis (2002); WPATH SOC 8; PCDT para IST (MS, 2022). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -695,7 +695,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: mulher de **28 anos** com **LSIL e, 6 meses depois, ASC-US** (segundo resultado alterado). Pelas diretrizes brasileiras, em mulheres a partir de 25 anos com **citologia alterada na repetição**, o encaminhamento é para **colposcopia com biópsia dirigida**. Mecanismo: alterações persistentes por 6 meses sugerem infecção persistente por HPV e risco de lesão de alto grau. A (repetir em 12 meses) não considera a persistência, C (genotipagem de DNA-HPV) não faz parte do fluxo do SUS para esse caso, e D (acompanhamento anual por vacinação) está errada, pois a vacina não dispensa o seguimento da alteração.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero (INCA, 2016).",
+  referencias:"Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero (INCA, 2016). Conferência 02/11/2026: a Portaria Conjunta SAES/SECTICS nº 13/2025 (DNA-HPV, 25 a 64 anos) substituiu as diretrizes de 2016; texto oficial não aberto, PDFs de cópia e gov.br bloqueados na rede da sessão em 02/11/2026; resposta mantida segundo a diretriz em vigor na época da prova, a rever pela de 2025.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -708,7 +708,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: gestante **Rh negativa já aloimunizada**. Com **Coombs indireto positivo**, o passo seguinte é a **pesquisa de anticorpos irregulares com identificação e titulação** (título crítico: ≥ 1:16 para anti-D), que define o risco e o seguimento com Doppler da artéria cerebral média. Mecanismo: o anticorpo IgG materno atravessa a placenta e causa hemólise fetal. A (pesquisa do Rh fetal no sangue materno com acurácia de 85%) está errada, pois a acurácia do DNA fetal livre passa de 95%; C (vasodilatação) está errada, pois o marcador é o **aumento do pico de velocidade sistólica da artéria cerebral média** (> 1,5 MoM), e D (imunoglobulina anti-D no 3º trimestre) está errada, pois a profilaxia não serve para quem já está aloimunizada.",
   explicacoesAlternativas:{},
-  referencias:"Manual de Gestação de Alto Risco (MS, 2022); FEBRASGO, Doença hemolítica perinatal; ACOG Practice Bulletin 192.",
+  referencias:"Manual de Gestação de Alto Risco (MS, 2022); FEBRASGO, Doença hemolítica perinatal; ACOG Practice Bulletin 192. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -721,7 +721,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: gestante com **sorologia não reagente no início** e **teste treponêmico positivo na 28ª semana**: **sífilis adquirida na gestação**, em geral **recente**. No seguimento, o **aumento do título do VDRL em duas diluições (4 vezes)** após o tratamento indica **reinfecção ou falha** e **indica retratamento**. Mecanismo: o título não treponêmico acompanha a atividade da doença e deve cair 2 diluições em 3 a 6 meses. A (latente tardia) não se aplica, pois houve soroconversão em poucos meses, B (falso positivo se título ≤ 1:4) não é conclusão adequada, pois o teste treponêmico é confirmatório e a conduta é tratar, e C (3 doses semanais) é esquema para sífilis tardia ou de duração ignorada, e não para recente (dose única).",
   explicacoesAlternativas:{},
-  referencias:"PCDT para Atenção Integral às Pessoas com IST (MS, 2022); Protocolo de transmissão vertical (2022).",
+  referencias:"PCDT para Atenção Integral às Pessoas com IST (MS, 2022); Protocolo de transmissão vertical (2022). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -734,7 +734,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (gabarito da banca). Dicas do enunciado: atraso menstrual de **7 semanas, sangramento e dor em baixo ventre**, com **β-hCG de 1.200 mUI/mL** e **saco gestacional intrauterino de 10 mm**: **ameaça de aborto** (gestação intrauterina com sangramento). Mecanismo: a hemorragia decidual pode ocorrer sem expulsão e metade das gestações evolui bem. B (colo pérvio, sem restos) sugere **aborto inevitável**, não ameaça, C (embrião de 5 mm sem batimentos) está errada, pois o embrião com **CCN ≥ 7 mm sem batimento** define a gestação não evolutiva, D (cavidade vazia e colo impérvio com β-hCG 4.000) sugere **gestação de localização desconhecida/ectópica**, e não aborto incompleto.",
   explicacoesAlternativas:{},
-  referencias:"FEBRASGO, Abortamento; ACOG Practice Bulletin 200.",
+  referencias:"FEBRASGO, Abortamento; ACOG Practice Bulletin 200. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -747,7 +747,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta (gabarito da banca). Dicas do enunciado: mulher de **52 anos**, **tumor de 1,7 cm (cT1c) com axila negativa**, **grau 3**, **receptores hormonais negativos**, **Ki-67 de 70%** e **HER2 positivo (3+)**: **câncer HER2-positivo (não luminal)**. Em tumor de até 2 cm com axila negativa, o tratamento é **cirurgia conservadora com sentinela**, seguida de **quimioterapia adjuvante, trastuzumabe e radioterapia** (após cirurgia conservadora). Mecanismo: o anti-HER2 bloqueia o receptor superexpresso e melhora a sobrevida. A (mastectomia com prótese) é mais agressiva do que o necessário, C (neoadjuvância com duplo bloqueio) é para tumores maiores ou com axila positiva e tamoxifeno não se usa com receptor negativo, e D (tamoxifeno) também é errada pelo receptor negativo.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes do INCA/SBM; NCCN, Breast Cancer; ASCO 2021, Neoadjuvant therapy.",
+  referencias:"Diretrizes do INCA/SBM; NCCN, Breast Cancer; ASCO 2021, Neoadjuvant therapy. Conferência 02/11/2026: edição vigente de NCCN (versões frequentes): Versões 2026 em nccn.org (exigem login); texto não aberto nesta rodada (02/11/2026), a explicação segue a edição citada e deve ser revista pela vigente.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -760,7 +760,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **adolescente de 17 anos** com **dismenorreia e dor pélvica acíclica**, sem desejo de gestar, e ultrassonografia com preparo intestinal com **espessamento discreto e inespecífico dos ligamentos uterossacros**. Sem confirmação diagnóstica, o manejo é **tratamento clínico empírico com contraceptivo oral combinado (contínuo)** e **reavaliação em 3 meses**. Mecanismo: a supressão do ciclo e da ovulação reduz o estímulo estrogênico e a dor. A (ressonância) e C (laparoscopia) são para falha do tratamento clínico ou dúvida diagnóstica relevante, e D (CA-125) não tem utilidade diagnóstica, pois é inespecífico.",
   explicacoesAlternativas:{},
-  referencias:"Consenso de Endometriose (FEBRASGO/SBE 2021); ESHRE 2022.",
+  referencias:"Consenso de Endometriose (FEBRASGO/SBE 2021); ESHRE 2022. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -773,7 +773,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta (é a que NÃO é causa reconhecida). Dicas do enunciado: a pergunta cobre as causas de **sangramento uterino anormal volumoso**. Pela PALM-COEIN: **coagulopatias (doença de von Willebrand)**, **leiomioma**, **adenomiose**, **pólipo**, **uso de anticoagulante (iatrogênica)**, **disfunção ovulatória**. A **endometriose** causa dor, dismenorreia e infertilidade, mas **não é causa direta reconhecida de menstruação volumosa**. Mecanismo: o sangramento volumoso se relaciona à superfície endometrial aumentada ou à hemostasia alterada. A (von Willebrand), B (mioma) e C (anticoagulantes) são causas reconhecidas.",
   explicacoesAlternativas:{},
-  referencias:"FIGO, Classificação PALM-COEIN (2011); FEBRASGO.",
+  referencias:"FIGO, Classificação PALM-COEIN (2011); FEBRASGO. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -786,7 +786,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **dor pélvica há 5 dias**, **febre de 38,5 °C**, **secreção cervical purulenta**, **dor à mobilização do colo**, **leucócitos 13.950/mm³** (normal: 4.000–11.000), **PCR 57 mg/L**, β-hCG negativo e ultrassonografia com **espessamento tubário e pequena quantidade de líquido**: **doença inflamatória pélvica (DIP) leve a moderada, sem abscesso**. O tratamento é **ambulatorial**, com **antibioticoterapia de amplo espectro por via oral (ceftriaxona IM + doxiciclina + metronidazol, por 14 dias)** e **reavaliação em 3 dias**. Mecanismo: a ascensão de gonococo, clamídia e anaeróbios causa salpingite. B e D (internação e cirurgia) são para abscesso, gestação, falha ao tratamento oral ou doença grave, e C (reavaliação em 7 dias) é prazo longo, pois o protocolo preconiza 72 horas.",
   explicacoesAlternativas:{},
-  referencias:"PCDT para Atenção Integral às Pessoas com IST (MS, 2022).",
+  referencias:"PCDT para Atenção Integral às Pessoas com IST (MS, 2022). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -799,7 +799,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: mulher de **22 anos** com **ciclos regulares**, **acne**, **escore de Ferriman-Gallwey de 10** (hirsutismo: ≥ 4–6, conforme o critério), **acantose nigricans** e **IMC de 24,2**, após suspensão de contraceptivo. O hiperandrogenismo clínico exige **excluir outras causas** (hiperplasia adrenal não clássica, hiperprolactinemia, tumor de androgênio, hipotireoidismo, Cushing) com **testosterona, 17-OH-progesterona, TSH, prolactina e ultrassonografia pélvica**, antes de rotular como SOP. Mecanismo: o diagnóstico de SOP é de exclusão e exige hiperandrogenismo com disfunção ovulatória ou morfologia policística. A (mio-inositol e contraceptivo), B (TOTG e tranquilizar) e D (metformina e progestagênio) tratam antes de diagnosticar.",
   explicacoesAlternativas:{},
-  referencias:"Diretriz Internacional de SOP (2023); Endocrine Society.",
+  referencias:"Diretriz Internacional de SOP (2023); Endocrine Society. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -812,7 +812,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **febre há 4 dias, mialgia, cefaleia, dor retro-orbital, exantema**, **tontura postural (hipotensão postural)**, **plaquetas 80.000/mm³** e **hematócrito 45%** (aumento da hemoconcentração; normal em homens: 40–50%). A **tontura ao levantar** e a **plaquetopenia progressiva** são **sinais de alarme**: **dengue grupo C**. A conduta é **reposição volêmica imediata (10 mL/kg de cristaloide na primeira hora)** e **transferência para unidade de referência** com leito de observação, reavaliando o hematócrito. Mecanismo: o aumento da permeabilidade capilar causa extravasamento de plasma e hemoconcentração. A (grupo A) e B (grupo B) ignoram os sinais de alarme, e C (grupo D, choque, com pulso fino e hipotensão) superestima, pois a PA está preservada.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Dengue: diagnóstico e manejo clínico em adultos e crianças (2024).",
+  referencias:"Ministério da Saúde, Dengue: diagnóstico e manejo clínico em adultos e crianças (2024). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -825,7 +825,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **adolescente de 18 anos em situação de rua**, **32 semanas, sem pré-natal**, **sem documentação**, **má nutrição**, **BCF não auscultado claramente**. As estratégias intersetoriais corretas são **cadastrar na UBS de referência**, **acionar a assistência social**, **buscar parcerias com a sociedade civil** e **referenciar ao pré-natal de alto risco**, com busca ativa. Mecanismo: a APS coordena o cuidado com a rede e atua sobre os determinantes sociais, e a falta de documento não impede o acesso (universalidade). A (internação compulsória em comunidade terapêutica) viola direitos e não tem base, B (rede que não usa a UBS) fragmenta o cuidado, e D (responsabilizar a paciente pela adesão) culpabiliza a vítima de barreiras de acesso.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Política Nacional de Atenção Básica (2017) e Consultório na Rua; Manual de Gestação de Alto Risco.",
+  referencias:"Ministério da Saúde, Política Nacional de Atenção Básica (2017) e Consultório na Rua; Manual de Gestação de Alto Risco. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -838,7 +838,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (gabarito da banca). Dicas do enunciado: o marido **controla o acesso da paciente ao próprio salário**, o que configura **violência patrimonial** (retenção ou controle de dinheiro e bens). A paciente expressa **impotência**, quer mudar e **não deseja expor os filhos**. A conduta do médico é **nomear a violência**, **informar os direitos**, orientar sobre **ajuda jurídica e apoio psicológico** e **construir com ela um plano de segurança**, respeitando sua autonomia e seu ritmo. Mecanismo: a escuta qualificada e o vínculo permitem que a mulher reconheça a violência e decida os próximos passos. B (encaminhar ao assistente social sem plano) transfere a responsabilidade, C (conta secreta, sem envolver a equipe) ignora o papel da APS, e D (banalizar e propor aconselhamento financeiro do casal) minimiza a violência.",
   explicacoesAlternativas:{},
-  referencias:"Lei Maria da Penha (Lei 11.340/2006, art. 7º); Ministério da Saúde, Linha de cuidado para atenção às mulheres em situação de violência.",
+  referencias:"Lei Maria da Penha (Lei 11.340/2006, art. 7º); Ministério da Saúde, Linha de cuidado para atenção às mulheres em situação de violência. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -851,7 +851,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: na APS brasileira, os transtornos de somatização são **mais frequentes em mulheres**, de **baixa renda e baixa escolaridade**, e associam-se a **transtornos mentais comuns (depressão e ansiedade)**, sem psicose. Mecanismo: o sofrimento psíquico se expressa por sintomas físicos, e o estresse social e a sobrecarga de cuidado contribuem. A (alta escolaridade e estresse ocupacional) inverte o perfil, B (prevalência igual entre homens e mulheres) é falsa, e C (mais diagnosticados por acesso frequente, independentemente da condição socioeconômica) atribui o fenômeno ao viés do profissional, sem sustentação.",
   explicacoesAlternativas:{},
-  referencias:"Gusso e Lopes, Tratado de Medicina de Família e Comunidade; Fortes et al., Transtornos mentais comuns na APS.",
+  referencias:"Gusso e Lopes, Tratado de Medicina de Família e Comunidade; Fortes et al., Transtornos mentais comuns na APS. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -864,7 +864,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **cefaleia em aperto na nuca, que desce para os ombros, de intensidade leve a moderada**, **1 a 2 vezes por semana**, **sem sinais de alarme** e **exame normal**, com **PA de consultório normal (126 × 86 mmHg)** apesar de relato de picos domiciliares: **cefaleia tensional episódica**, primária. O tratamento é **analgésico/anti-inflamatório não esteroidal** nos episódios, **medidas não farmacológicas (massagem, relaxamento)** e controle de gatilhos. Mecanismo: contratura de músculos pericranianos e sensibilização central. A (secundária por hipertensão) é incorreta, pois a hipertensão leve raramente causa cefaleia, B (profilaxia com antidepressivo e imagem) não se indica sem frequência alta ou sinais de alarme, e D (cefaleia crônica diária por abuso) exige uso ≥ 15 dias por mês, e aqui o uso é de poucos dias.",
   explicacoesAlternativas:{},
-  referencias:"Classificação Internacional das Cefaleias (ICHD-3); Consenso da Sociedade Brasileira de Cefaleia.",
+  referencias:"Classificação Internacional das Cefaleias (ICHD-3); Consenso da Sociedade Brasileira de Cefaleia. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -877,7 +877,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: adolescente de **16 anos**, **homoafetivo, sexualmente ativo, sem uso consistente de preservativo e com múltiplos parceiros** (alta exposição). A **PrEP** é indicada a **adolescentes a partir de 15 anos com peso ≥ 35 kg** e prática sexual de risco. Mecanismo: tenofovir + entricitabina atinge níveis protetores na mucosa e reduz a aquisição do HIV em mais de 90% com adesão. B (PEP até uma semana) está errada, pois a **PEP deve começar até 72 horas** da exposição, C (consentimento dos pais) está errada, pois o adolescente tem o direito de acesso à PrEP, e D (PEP por 6 meses) está errada, pois a PEP dura **28 dias**.",
   explicacoesAlternativas:{},
-  referencias:"PCDT de Profilaxia Pré-Exposição (PrEP) ao HIV (MS, 2022); PCDT de PEP (2021).",
+  referencias:"PCDT de Profilaxia Pré-Exposição (PrEP) ao HIV (MS, 2022); PCDT de PEP (2021). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -890,7 +890,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta (gabarito da banca). Dicas do enunciado: diabético que **iniciou NPH há 10 dias**, com **tontura, turvação visual e poliúria**, **glicemia de 288 mg/dL** e **cetonúria negativa**: **hiperglicemia sem cetoacidose**. A conduta na UBS é **correção com insulina regular (cerca de 10% da dose diária total)**, **hidratação (inclusive oral)** e **reavaliação da glicemia em 4 horas**. Mecanismo: a insulina regular tem início em 30 minutos e pico em 2–3 horas, e é o recurso para corrigir a hiperglicemia aguda. A (encaminhar ao serviço de emergência) não é necessário sem cetose, C (NPH para correção) é inadequada, pois a NPH tem início lento e é basal, e D (reavaliar em 30 minutos) é intervalo curto demais para a ação da insulina.",
   explicacoesAlternativas:{},
-  referencias:"Diretrizes da Sociedade Brasileira de Diabetes (2022); Caderno de Atenção Básica: Diabetes Mellitus.",
+  referencias:"Diretrizes da Sociedade Brasileira de Diabetes (2022); Caderno de Atenção Básica: Diabetes Mellitus. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -903,7 +903,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **transtorno por uso de álcool com AUDIT de 24 pontos** (≥ 20 sugere dependência), **2 dias sem beber**, **insônia, náuseas e inquietação**, **sem febre, sudorese, tremor ou sintomas psicóticos**, sem comorbidades graves, com suporte e sem episódios graves anteriores: **abstinência leve a moderada**, que pode ser tratada em **regime ambulatorial no CAPS** com **observação**, **diazepam (até 10 mg de 8/8 horas)** e **tiamina 100 mg IM por 5 dias**, orientação de sinais de alerta e retorno breve. Mecanismo: o benzodiazepínico substitui a ação gabaérgica do álcool e previne convulsões e delirium tremens. A (ISRS e benzodiazepínicos, além de encaminhar à UBS) não trata a abstinência, B (encaminhar à APS) ignora a porta de entrada do CAPS, e C (emergência e internação) é para abstinência grave ou complicada.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde, Protocolo de atenção ao uso de álcool; Diretrizes do ABP para síndrome de abstinência alcoólica.",
+  referencias:"Ministério da Saúde, Protocolo de atenção ao uso de álcool; Diretrizes do ABP para síndrome de abstinência alcoólica. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -916,7 +916,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: um ensaio clínico randomizado de boa qualidade garante que **os grupos sejam semelhantes nas características basais**, o que mostra o êxito da **randomização**. Mecanismo: a randomização distribui de modo equilibrado os fatores conhecidos e desconhecidos de confusão. B (único centro) não é critério de qualidade e limita a validade externa, C (análise apenas dos que aderiram, \"por protocolo\") enviesa os resultados, e a análise correta é por **intenção de tratar**, e D (publicação em revista de alto impacto) não mede o rigor metodológico.",
   explicacoesAlternativas:{},
-  referencias:"CONSORT 2010; Cochrane, Risk of Bias 2 (RoB 2).",
+  referencias:"CONSORT 2010; Cochrane, Risk of Bias 2 (RoB 2). Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -929,7 +929,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: na **meta-análise**, a **estimativa-resumo** combina os resultados dos estudos **ponderando cada um por sua precisão** (inverso da variância), de modo que estudos maiores têm mais peso. Mecanismo: ponderar pelo inverso da variância dá mais influência aos estudos mais precisos. A (mesmo significado) está errada, pois a **revisão sistemática** é o método de busca e seleção de estudos, e a **meta-análise** é a técnica estatística opcional que combina resultados; B (excluir sistematicamente os estudos com vieses) está errada, pois se **avalia o risco de viés** e se faz análise de sensibilidade; D (heterogeneidade invalida o cálculo) está errada, pois se usa modelo de efeitos aleatórios e se investiga a causa.",
   explicacoesAlternativas:{},
-  referencias:"Cochrane Handbook for Systematic Reviews; PRISMA 2020.",
+  referencias:"Cochrane Handbook for Systematic Reviews; PRISMA 2020. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -942,7 +942,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: registros de **calouros de 1970** coletados **periodicamente** (exposição: peso e altura) e **avaliados em 2022** para verificar o **desenvolvimento de doença cardiovascular**: os dados da exposição foram registrados no passado e o desfecho foi verificado depois, usando registros existentes, caracterizando uma **coorte retrospectiva (histórica)**. Mecanismo: parte-se da exposição e acompanha-se até o desfecho, com dados já disponíveis. B (transversal) mede exposição e desfecho ao mesmo tempo, C (caso-controle) parte do desfecho para a exposição, e D (adaptativo) é um delineamento de ensaio clínico.",
   explicacoesAlternativas:{},
-  referencias:"Fletcher, Epidemiologia Clínica; Gordis, Epidemiologia.",
+  referencias:"Fletcher, Epidemiologia Clínica; Gordis, Epidemiologia. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -955,7 +955,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: no ensaio **cross-over**, cada participante recebe as duas intervenções em sequência e o planejamento deve considerar o **efeito residual (carryover)** da primeira, com **período de washout** entre elas. Mecanismo: se a primeira intervenção deixa efeito, ele contamina a segunda fase e vicia a comparação. A (elimina a randomização) está errada, pois se randomiza a **ordem** das intervenções, B (requer randomização estratificada) está errada, pois não é obrigatória, e D (aumenta a validade externa) está errada, pois o cross-over aumenta a **eficiência estatística** (cada paciente é seu próprio controle), e não a validade externa.",
   explicacoesAlternativas:{},
-  referencias:"Hulley, Delineando a Pesquisa Clínica; CONSORT para ensaios cross-over.",
+  referencias:"Hulley, Delineando a Pesquisa Clínica; CONSORT para ensaios cross-over. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -968,7 +968,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: mulher de **45 anos** com **dores difusas há mais de 8 meses, fadiga e sono não reparador**, exames normais, que **chora e teme que não levem a sério** suas queixas, com **dor difusa à palpação sem inflamação**: quadro sugestivo de **fibromialgia** ou sofrimento somático. Pelo **método clínico centrado na pessoa**, a **primeira abordagem** é **explorar a experiência da doença**: sentimentos, ideias, medos, expectativas e impacto funcional, para só então construir o plano em conjunto. Mecanismo: validar o sofrimento fortalece o vínculo e favorece a adesão. A (diagnóstico imediato e tricíclicos), B (novos exames) e D (reumatologista por possível doença autoimune) pulam a escuta e repetem a medicalização.",
   explicacoesAlternativas:{},
-  referencias:"Stewart, Medicina Centrada na Pessoa; Gusso e Lopes, Tratado de Medicina de Família e Comunidade.",
+  referencias:"Stewart, Medicina Centrada na Pessoa; Gusso e Lopes, Tratado de Medicina de Família e Comunidade. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -981,7 +981,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: antes de 1988, o sistema público de saúde era organizado pela **previdência social (INAMPS)** e **atendia os trabalhadores formais com carteira assinada** (cidadania regulada), enquanto os **informais** dependiam da **filantropia, das santas casas ou da rede pública limitada**. Mecanismo: o acesso era vinculado à contribuição previdenciária. A criação do SUS (Constituição de 1988) tornou a saúde **direito de todos e dever do Estado**, universal. A (mesmo acesso de hoje) e C (direito sempre garantido a todos pelo SUS) ignoram a história, e D (informais atendidos pelo INAMPS e formais com plano de saúde do empregador) inverte os papéis: o INAMPS atendia os formais.",
   explicacoesAlternativas:{},
-  referencias:"Paim, O sistema de saúde brasileiro; Constituição Federal de 1988 (art. 196); Lei 8.080/1990.",
+  referencias:"Paim, O sistema de saúde brasileiro; Constituição Federal de 1988 (art. 196); Lei 8.080/1990. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
@@ -994,7 +994,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: paciente com **diabetes não controlado** com **idas frequentes ao pronto-socorro**. Pelo conceito de **rede de atenção à saúde**, a estratégia mais eficaz é uma **linha de cuidado** que **coordene e monitore o paciente desde a APS até os serviços especializados, quando necessário**, com fluxos, referência e contrarreferência. Mecanismo: a integração entre pontos de atenção e a gestão do caso reduzem as descompensações e as internações evitáveis. A (centralizar na APS de forma exclusiva) ignora o apoio especializado, B (encaminhar ao especialista) fragmenta o cuidado, e D (protocolo que facilita o acesso a outros níveis) não organiza o cuidado e pode sobrecarregar a rede.",
   explicacoesAlternativas:{},
-  referencias:"Mendes, As redes de atenção à saúde; Ministério da Saúde, Portaria 4.279/2010.",
+  referencias:"Mendes, As redes de atenção à saúde; Ministério da Saúde, Portaria 4.279/2010. Conferência 02/11/2026: fonte citada de memória; texto oficial ou obra não aberto nesta rodada.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-02", justificativaEm:"2026-11"
