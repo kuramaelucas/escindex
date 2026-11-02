@@ -54,3 +54,58 @@ test("o endereço .pdf do gov.br vira o do arquivo; outros ficam como estão", (
   assert.equal(urlDoArquivo("https://www.gov.br/a/b.pdf/@@display-file/file"), "https://www.gov.br/a/b.pdf/@@display-file/file");
   assert.equal(urlDoArquivo("https://kdigo.org/x.pdf"), "https://kdigo.org/x.pdf");
 });
+
+/* ---------- a regra que vale para tudo que for criado depois do corte ---------- */
+import { problemasDeReferencia, alertasDeEdicao, prepararTermo, edicoesVigentes, CORTE_DA_CONFERENCIA } from "../ferramentas/lib-referencias.mjs";
+
+const NOVA = { criadoEm: CORTE_DA_CONFERENCIA };
+
+test("questão criada depois do corte sem referências, ou sem data de conferência, é recusada", () => {
+  assert.equal(problemasDeReferencia({ ...NOVA, referencias: "" }).length, 1);
+  const semData = problemasDeReferencia({ ...NOVA, referencias: "KDIGO 2024 CKD guideline. Nível de confirmação: memória." });
+  assert.ok(semData.some(t => /data de conferência/.test(t)));
+});
+
+test("referência lida e datada, com a edição vigente, passa", () => {
+  const ok = problemasDeReferencia({ ...NOVA, referencias: "Surviving Sepsis Campaign 2026 (Intensive Care Med 2026), texto lido em 02/11/2026 em idsociety.org." });
+  assert.deepEqual(ok, []);
+});
+
+test("dizer com data que o texto não abriu vale como registro honesto", () => {
+  const ok = problemasDeReferencia({ ...NOVA, referencias: "Diretriz X 2025; texto oficial não aberto (domínio bloqueado) em 05/12/2026." });
+  assert.deepEqual(ok, []);
+});
+
+test("citar uma diretriz da tabela sem a edição vigente é recusado, e mencioná-la libera", () => {
+  const velha = problemasDeReferencia({ ...NOVA, referencias: "GOLD 2022, conferido em 02/11/2026." });
+  assert.ok(velha.some(t => /GOLD, DPOC/.test(t) && /vigente/.test(t)));
+  const liberada = problemasDeReferencia({ ...NOVA, referencias: "GOLD 2022 (usada de propósito); a edição GOLD 2026 foi lida e não muda esta conduta, conferido em 02/11/2026." });
+  assert.deepEqual(liberada, []);
+});
+
+test("questão anterior ao corte não falha (entra na fila)", () => {
+  assert.deepEqual(problemasDeReferencia({ criadoEm: "2026-10-30", referencias: "" }), []);
+});
+
+test("a sigla só casa como palavra inteira, também junto de acento", () => {
+  const tab = edicoesVigentes();
+  const gina = tab.find(e => e.id === "gina");
+  assert.ok(!gina.re.test("veja a página do site"), '"página" não é GINA');
+  assert.ok(!gina.re.test("câncer de vagina"));
+  assert.ok(gina.re.test("GINA 2019"));
+  assert.equal(alertasDeEdicao("GINA 2019").length, 1);
+  assert.equal(alertasDeEdicao("GINA 2026").length, 0);
+  assert.equal(prepararTermo("\\bGINA\\b"), "(?<![\\p{L}])GINA(?![\\p{L}])");
+});
+
+test("pneumonia do adulto é distinta da pediátrica na tabela", () => {
+  assert.equal(alertasDeEdicao("Bradley JS et al. Management of Community-Acquired Pneumonia in Infants and Children (PIDS/IDSA), 2011").length, 0);
+  assert.equal(alertasDeEdicao("Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia, 2019").length, 1);
+});
+
+test("toda entrada da tabela de edições tem termo válido, ano e fonte", () => {
+  for(const e of edicoesVigentes()){
+    assert.ok(e.id && e.nome && Number.isInteger(e.vigente) && e.edicao && e.verificadoEm, `entrada incompleta: ${e.id}`);
+  }
+  assert.equal(new Set(edicoesVigentes().map(e => e.id)).size, edicoesVigentes().length, "id repetido");
+});

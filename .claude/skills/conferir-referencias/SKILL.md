@@ -19,6 +19,12 @@ Rodada feita em 29/10/2026 nos simulados autorais (500 questões, exceto `banco-
 
 Fim da rodada: `npm run publicar`, `npm run conferir -- --resumo`, `npm run testar-mudanca` (e `node --test testes/higiene.test.mjs`), regerar a lista, commit.
 
+## O que já vale sozinho para o que for criado (desde 02/11/2026)
+
+- `npm run conferir` e `npm run adicionar-questoes` **recusam** a questão cujo `referencias` esteja vazio, sem data de conferência (`DD/MM/AAAA`) ou que cite uma diretriz de `ferramentas/edicoes-vigentes.json` sem a edição vigente (regra em `ferramentas/lib-referencias.mjs`). Vale para prova real e autoral. Ao escrever uma questão nova: leia o texto (`npm run texto-oficial`), cite edição e ano, escreva "texto lido em DD/MM/AAAA em <site>". Se o domínio estiver bloqueado, diga isso **com data**.
+- **Mantenha a tabela de edições vigentes.** Ao descobrir uma edição nova (ou ao conferir uma), acrescente/atualize a entrada em `ferramentas/edicoes-vigentes.json` (`termo` em regex, `vigente` = ano, `edicao`, `verificadoEm`); depois `npm run referencias-a-conferir` mostra em `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md` quais questões de **todas** as provas ficaram com edição superada. Isso é o que atualiza o passado quando uma diretriz muda.
+- Siglas no `termo` ganham fronteira que entende acento sozinhas (não use `\b`).
+
 ## Método
 
 1. **Escolha o que checar.** `npm run referencias-a-conferir -- --so-resumo`; priorize diretrizes que têm edição nova (anuais: NCCN, GINA, GOLD, ADA, EAU; recentes: SSC 2026, AHA/ASA 2026, ESC/EACTS 2025, KDIGO 2024–2026, IDSA 2026, OMS 2025) e documentos do Ministério da Saúde (PCDT, notas técnicas, calendário).

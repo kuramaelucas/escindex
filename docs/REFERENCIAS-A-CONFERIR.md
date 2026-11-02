@@ -1,6 +1,6 @@
 # Referências de simulados autorais ainda com confirmação fraca
 
-Gerado por `npm run referencias-a-conferir` em 29/10/2026 a partir de `dados/` (bancos: banco-simulado-epm-2, banco-unifesp-2024-adaptado, banco-simulado-epm-3, banco-simulado-epm-4, banco-simulado-epm-5). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** têm nota de conferência datada.
+Gerado por `npm run referencias-a-conferir` em 01/11/2026 a partir de `dados/` (bancos: banco-simulado-epm-2, banco-unifesp-2024-adaptado, banco-simulado-epm-3, banco-simulado-epm-4, banco-simulado-epm-5). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** têm nota de conferência datada.
 
 Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
 

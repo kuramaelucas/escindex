@@ -10,15 +10,14 @@
      node ferramentas/referencias-a-conferir.mjs --bancos banco-simulado-epm-4       só esse(s) banco(s), separados por vírgula
      node ferramentas/referencias-a-conferir.mjs --so-resumo          só os números no terminal, sem escrever o arquivo
 
-   Os bancos são os de ferramentas/bancos-adaptados.json (simulados autorais). O agrupamento é por palavras-chave
+   Os bancos são os de ferramentas/bancos-adaptados.json (simulados autorais). Escreve também docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md (todas as provas, pela tabela de edições vigentes). O agrupamento é por palavras-chave
    da referência: serve para decidir por onde começar, não para classificar com rigor. */
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { RAIZ, carregar } from "./lib-dados.mjs";
 
-const FRACA = /(não foi conferid|não conferid|não foram conferid|não aberto|não abert|rede bloqueada|Nível de confirmação: memória|de memória|em resumos)/i;
-const COM_DATA = /\b\d{2}\/\d{2}\/20\d{2}\b/;
+import { FRACA, COM_DATA, alertasDeEdicao, edicoesVigentes, CORTE_DA_CONFERENCIA } from "./lib-referencias.mjs";
 
 /* Grupos, do mais específico ao mais geral; vale o primeiro que casa. */
 const FAMILIAS = [
@@ -90,6 +89,32 @@ function principal(){
   }
   fs.writeFileSync(path.join(RAIZ, "docs", "REFERENCIAS-A-CONFERIR.md"), md);
   console.log("escrito: docs/REFERENCIAS-A-CONFERIR.md");
+
+  /* Segunda lista: TODAS as provas (reais e autorais), não só os simulados — as questões que citam uma diretriz da
+     tabela ferramentas/edicoes-vigentes.json sem mencionar a edição vigente. É o ponto de partida para revisar as provas reais. */
+  const porEdicao = new Map();
+  let total = 0;
+  for(const a of arquivos){
+    if(!a.questoes || fora.includes(a.nome)) continue;
+    for(const q of a.questoes) for(const e of alertasDeEdicao(q.referencias)){
+      if(!porEdicao.has(e.id)) porEdicao.set(e.id, { e, itens: [] });
+      porEdicao.get(e.id).itens.push({ q, banco: a.nome }); total++;
+    }
+  }
+  const ordem = [...porEdicao.values()].sort((x, y) => y.itens.length - x.itens.length);
+  console.log(`${total} citação(ões) de edição anterior à vigente em ${ordem.reduce((n, g) => n + g.itens.length, 0)} par(es) questão×diretriz (todas as provas).`);
+  let md2 = `# Questões que citam uma diretriz sem a edição vigente\n\nGerado por \`npm run referencias-a-conferir\` em ${hoje} para **todas** as provas de \`dados/\` (reais e autorais), com a tabela \`ferramentas/edicoes-vigentes.json\` (${edicoesVigentes().length} diretrizes). `
+    + `Uma questão entra aqui se a referência casa com a diretriz e não menciona o ano da edição vigente nem um posterior. Isso **não** prova que a explicação esteja errada: é a fila de revisão. `
+    + `Questões criadas a partir de ${CORTE_DA_CONFERENCIA} não podem ficar aqui (o conferidor recusa).\n\n`
+    + `| Diretriz (edição vigente) | Questões |\n|---|---|\n` + ordem.map(g => `| ${g.e.nome}: ${g.e.edicao} | ${g.itens.length} |\n`).join("") + "\n";
+  for(const g of ordem){
+    md2 += `## ${g.e.nome} — vigente: ${g.e.edicao} (${g.itens.length})\n\n`;
+    md2 += g.itens.slice(0, 60).map(({ q, banco }) => `\`${q.id}\` (${banco.replace(/^(banco|prova)-/, "")})`).join(", ");
+    if(g.itens.length > 60) md2 += `, … e mais ${g.itens.length - 60}`;
+    md2 += "\n\n";
+  }
+  fs.writeFileSync(path.join(RAIZ, "docs", "REFERENCIAS-COM-EDICAO-ANTERIOR.md"), md2);
+  console.log("escrito: docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md");
 }
 
 if(import.meta.url === pathToFileURL(process.argv[1]).href) principal();
