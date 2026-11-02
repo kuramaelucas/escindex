@@ -66,7 +66,9 @@ test("cronograma do 6º ano: as 30 primeiras do dia seguem o sistema; da 31ª em
       // prevalência e erro: o assunto das extras pesa mais do que o de uma questão qualquer de residência
       const prior = {}; prioridadesDeEstudo(u.id, TODAS_AS_PROVAS).forEach(p => { prior[p.assuntoId] = p.prioridadeRelativa; });
       const media = ids => ids.reduce((s, id) => s + (prior[getQuestao(id).assuntoId] || 0), 0) / ids.length;
-      let mediaExtras = 0; const rodadas = 20;
+      // 200 rodadas, não 20: a razão extras/banco gira em torno de 1,35 e, com 20 sorteios, o desvio da média (~0,02) fazia o
+      // teste cair de vez em quando contra o limite de 1,3 (falhou na CI sem mudança de código); com 200 o piso medido é 1,33
+      let mediaExtras = 0; const rodadas = 200;
       for(let i = 0; i < rodadas; i++) mediaExtras += media(montarSessaoDoDia(u.id, 20, 30).map(it => it.questaoId)) / rodadas;
       const todas = questoesParaEstudo(u.id).filter(q => !ehConsolidacao(q)).map(q => q.id);
       const mediaBanco = media(todas);
