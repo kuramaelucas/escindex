@@ -46,6 +46,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-amrigs-2021",
   "reposicoes-amrigs-2021",
   "reposicoes-rotavirus",
+  "reposicoes-colo-e-lei",
   "prova-iamspe-2021",
   "prova-iamspe-2022",
   "prova-iamspe-2023",
