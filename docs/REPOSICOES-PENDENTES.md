@@ -3,11 +3,11 @@
 Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que já foi tentado e o estado das fontes está em `docs/REPOSICOES-NOTAS.md`.
 
 ```
-126 anuladas/desatualizadas sem reposição; 64 já têm reposição.
+125 anuladas/desatualizadas sem reposição; 65 já têm reposição.
   area-cm: 37
   area-mps: 23
   area-go: 23
-  area-cg: 23
+  area-cg: 22
   area-ped: 20
 ```
 
@@ -126,7 +126,7 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-fmabc2026-055` (anulada, ass-reanimacao): RN nascido de 39 semanas e 5 dias teve parto cesárea devido a sofrimento fetal agudo. Líquido amniótico com me
 - `q-einstein2025-045` (anulada, ass-calendariovacinal): Lactente de 6 meses comparece à consulta na Unidade Básica de Saúde, onde é verificado que nunca recebeu nenhu
 
-## area-cg (23)
+## area-cg (22)
 
 - `q-scmsp2022-012` (anulada, ass-toce-cicatrizacao): Assinale a alternativa correta quanto aos enxertos cutâneos.
 - `q-scmsp2022-013` (anulada, ass-queimaduras): A escarotomia deve ser evitada em queimaduras circulares de extremidades, pelo risco de causar piora da perfus
@@ -141,7 +141,6 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-iamspe2023-025` (anulada, ass-toce-video): Quanto à técnica operatória em cirurgias de apendicite aguda, assinale a alternativa que apresenta corretament
 - `q-iamspe2025-028` (anulada, ass-toce-fios): Durante uma hemicolectomia direita, existe a demanda por ligadura vascular, anastomose intestinal, e fechament
 - `q-sessp2023-005` (anulada, ass-cacolorretal): Um paciente de 75 anos de idade, hipertenso controlado, com queixa de sangramento anal há 6 meses após as evac
-- `q-sessp2023-009` (anulada, ass-queimaduras): Paciente, masculino, de 45 anos de idade, vítima de incêndio de grandes proporções em sua casa, tendo permanec
 - `q-sessp2023-046` (anulada, ass-orto-osteometabolicas): A osteoporose é uma doença esquelética sistêmica e silenciosa. É considerada uma doença osteometabólica caract
 - `q-sessp2024-028` (anulada, ass-cuidadosperi): De acordo com o projeto Aceleração da Recuperação Total Pós-Operatória (ACERTO), assinale a alternativa incorr
 - `q-tp20222-070` (desatualizada, ass-cirtorax-neoplasia): Homem, 66 anos, tabagista (35 anos.maço) apresenta tosse seca, dor torácica à esquerda e emagrecimento não int
