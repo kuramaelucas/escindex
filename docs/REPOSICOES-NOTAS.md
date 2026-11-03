@@ -23,7 +23,7 @@ Bloqueados: `sbc.org.br`, `scielo.br`, `academic.oup.com` (ESC e Hum Reprod), `a
 - Sangramento pós-menopausa e hiperplasia: FAMERP 2025 nº 26, Santa Casa 2022 nº 43 (ESGO/ESHRE/ESGE, ACOG).
 - Cardiologia ESC/AHA: Einstein 2025 nº 11 (TEP), IAMSPE 2023 nº 16 (endocardite), Einstein 2025 nº 31 (PALS), USP 2024 nº 55 já feita.
 - Puberdade precoce: AMRIGS 2024 nº 66. Saúde do trabalhador: FAMERP 2026 nº 5 (Factory Act), parte da AMRIGS 2021 nº 89 (notificação).
-- Cirurgia: pancreatite (Santa Casa 2021 nº 34, UNICAMP 2022 nº 27), hérnia (Santa Casa 2022 nº 18), colecistite na gestante, queimaduras, TOCE.
+- Cirurgia (pancreatite e diverticulite já feitas, via PMC das WSES): hérnia (Santa Casa 2022 nº 18), colecistite na gestante, queimaduras, TOCE.
 - Dado do enunciado incoerente, sem resposta defensável: AMRIGS 2020 nº 92 (T4 > 30 com TSH normal).
 
 ## Regras que valeram

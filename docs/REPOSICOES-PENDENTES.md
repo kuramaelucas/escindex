@@ -3,11 +3,11 @@
 Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que já foi tentado e o estado das fontes está em `docs/REPOSICOES-NOTAS.md`.
 
 ```
-128 anuladas/desatualizadas sem reposição; 62 já têm reposição.
+126 anuladas/desatualizadas sem reposição; 64 já têm reposição.
   area-cm: 37
-  area-cg: 25
   area-mps: 23
   area-go: 23
+  area-cg: 23
   area-ped: 20
 ```
 
@@ -126,9 +126,8 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-fmabc2026-055` (anulada, ass-reanimacao): RN nascido de 39 semanas e 5 dias teve parto cesárea devido a sofrimento fetal agudo. Líquido amniótico com me
 - `q-einstein2025-045` (anulada, ass-calendariovacinal): Lactente de 6 meses comparece à consulta na Unidade Básica de Saúde, onde é verificado que nunca recebeu nenhu
 
-## area-cg (25)
+## area-cg (23)
 
-- `q-scmsp2021-034` (anulada, ass-pancreatite): Na pancreatite aguda, não está indicada a realização da tomografia de abdome no caso de
 - `q-scmsp2022-012` (anulada, ass-toce-cicatrizacao): Assinale a alternativa correta quanto aos enxertos cutâneos.
 - `q-scmsp2022-013` (anulada, ass-queimaduras): A escarotomia deve ser evitada em queimaduras circulares de extremidades, pelo risco de causar piora da perfus
 - `q-scmsp2022-018` (anulada, ass-hernias): Julgue os itens subsequentes. I O tratamento cirúrgico é indicado para mulheres com hérnia inguinocrural, seja
@@ -147,7 +146,6 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-sessp2024-028` (anulada, ass-cuidadosperi): De acordo com o projeto Aceleração da Recuperação Total Pós-Operatória (ACERTO), assinale a alternativa incorr
 - `q-tp20222-070` (desatualizada, ass-cirtorax-neoplasia): Homem, 66 anos, tabagista (35 anos.maço) apresenta tosse seca, dor torácica à esquerda e emagrecimento não int
 - `q-unesp2025-075` (desatualizada, ass-cirtorax-pleura): Homem de 54 anos apresenta dor torácica e tosse com expectoração amarelada há 5 dias, febre há 2 dias. AP: tab
-- `q-unicamp2022-027` (anulada, ass-pancreatite): Mulher, 43a, procura o Pronto Socorro com queixa de dor epigástrica de forte intensidade, irradiada para o dor
 - `q-unicamp2023-027` (anulada, ass-queimaduras): Homem, 26a, é trazido ao Pronto Socorro após queimadura na face anterior do corpo, por uso de álcool líquido e
 - `q-sirio2027-023` (anulada, ass-colangite): Um paciente de 48 anos será submetido à colangiopancreatografia endoscópica retrógrada (CPRE) devido a quadro 
 - `q-fmabc2025-022` (anulada, ass-orto-fraturas): A obtenção de uma história detalhada do paciente com lesões esqueléticas é essencial para um diagnóstico acura
