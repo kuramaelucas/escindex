@@ -3,11 +3,11 @@
 Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que já foi tentado e o estado das fontes está em `docs/REPOSICOES-NOTAS.md`.
 
 ```
-125 anuladas/desatualizadas sem reposição; 65 já têm reposição.
+124 anuladas/desatualizadas sem reposição; 66 já têm reposição.
   area-cm: 37
   area-mps: 23
   area-go: 23
-  area-cg: 22
+  area-cg: 21
   area-ped: 20
 ```
 
@@ -126,7 +126,7 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-fmabc2026-055` (anulada, ass-reanimacao): RN nascido de 39 semanas e 5 dias teve parto cesárea devido a sofrimento fetal agudo. Líquido amniótico com me
 - `q-einstein2025-045` (anulada, ass-calendariovacinal): Lactente de 6 meses comparece à consulta na Unidade Básica de Saúde, onde é verificado que nunca recebeu nenhu
 
-## area-cg (22)
+## area-cg (21)
 
 - `q-scmsp2022-012` (anulada, ass-toce-cicatrizacao): Assinale a alternativa correta quanto aos enxertos cutâneos.
 - `q-scmsp2022-013` (anulada, ass-queimaduras): A escarotomia deve ser evitada em queimaduras circulares de extremidades, pelo risco de causar piora da perfus
@@ -148,5 +148,4 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-unicamp2023-027` (anulada, ass-queimaduras): Homem, 26a, é trazido ao Pronto Socorro após queimadura na face anterior do corpo, por uso de álcool líquido e
 - `q-sirio2027-023` (anulada, ass-colangite): Um paciente de 48 anos será submetido à colangiopancreatografia endoscópica retrógrada (CPRE) devido a quadro 
 - `q-fmabc2025-022` (anulada, ass-orto-fraturas): A obtenção de uma história detalhada do paciente com lesões esqueléticas é essencial para um diagnóstico acura
-- `q-fmabc2022-035` (anulada, ass-colecistite): Gestante na trigésima terceira semana de gestação é admitida na emergência com quadro de mal estar abdominal, 
 - `q-fmabc2026-016` (anulada, ass-cacolorretal): Paciente do sexo feminino, 30 anos, refere desejar realizar exames de rastreio de câncer colorretal, pois está
