@@ -61,6 +61,7 @@ window.ESC_ARQUIVOS.dados = [
   "reposicoes-epidemiologia-1",
   "reposicoes-imagens-1",
   "reposicoes-imagens-2",
+  "reposicoes-ist-1",
   "prova-iamspe-2021",
   "prova-iamspe-2022",
   "prova-iamspe-2023",
