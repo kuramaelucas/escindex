@@ -90,7 +90,21 @@ function selecionarComProgressao(pool, n, usuario, selecionar){
   let nCons = Math.round(n*fc), nRes = n - nCons;
   if(cons.length < nCons){ nRes += nCons - cons.length; nCons = cons.length; }
   if(res.length < nRes){ nCons = Math.min(cons.length, nCons + nRes - res.length); nRes = res.length; }
-  return selecionar(cons, nCons).concat(selecionar(res, nRes));
+  return selecionarIgualPorArea(cons, nCons, selecionar).concat(selecionar(res, nRes));
+}
+/* CONSOLIDAÇÃO SEM VIÉS DE ÁREA. O pool de consolidação (simulados autorais +
+   Teste de Progresso) tem ~65% de Clínica Médica, contra ~34% nas provas
+   reais; sorteado direto, o aluno de 3º/4º ano via CM demais. Aqui as vagas
+   se dividem igualmente (1:1:1:1:1) entre as áreas que o pool tem; área sem
+   questão suficiente devolve a vaga às outras (distribuirPorPeso, 05d). */
+function selecionarIgualPorArea(pool, n, selecionar){
+  if(n <= 0 || !pool.length) return [];
+  const grupos = {};
+  pool.forEach(q=>{ (grupos[q.areaId||"?"] = grupos[q.areaId||"?"] || []).push(q); });
+  const ids = Object.keys(grupos);
+  if(ids.length < 2) return selecionar(pool, n);
+  const aloc = distribuirPorPeso(ids.map(id=>({id, peso:1, cap:grupos[id].length})), n);
+  return ids.flatMap(id=>aloc[id] ? selecionar(grupos[id], aloc[id]) : []);
 }
 /* O que a tela diz sobre a proporção: a regra do ano, o que conta como
    consolidação e a exceção (falta de questão de um dos lados). */
