@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12011 questões (9230 reais, 2781 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 133 arquivos.
+**Total:** 12013 questões (9230 reais, 2783 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 134 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -48,6 +48,7 @@
 | `reposicoes-colo-e-lei.js` | REPOSIÇÕES — rastreamento do câncer do colo do útero (2025) e Lei 14.443/2022 | 5 questões |  |
 | `reposicoes-clinicas-1.js` | REPOSIÇÕES — gonorreia (PCDT de IST 2022), doença de Crohn e intervalo de confiança | 4 questões |  |
 | `reposicoes-clinicas-2.js` | REPOSIÇÕES — questões anuladas (asma e sífilis) | 2 questões |  |
+| `reposicoes-pcdt-1.js` | REPOSIÇÕES — questões anuladas (hanseníase e transmissão vertical do HIV) | 2 questões |  |
 | `prova-iamspe-2021.js` | IAMSPE 2021 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 5 anulada(s) |
 | `prova-iamspe-2022.js` | IAMSPE 2022 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 4 anulada(s) |
 | `prova-iamspe-2023.js` | IAMSPE 2023 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 6 anulada(s) |
