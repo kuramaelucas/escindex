@@ -50,6 +50,7 @@ window.ESC_ARQUIVOS.dados = [
   "reposicoes-clinicas-1",
   "reposicoes-clinicas-2",
   "reposicoes-pcdt-1",
+  "reposicoes-pcdt-2",
   "prova-iamspe-2021",
   "prova-iamspe-2022",
   "prova-iamspe-2023",
