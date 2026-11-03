@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12023 questões (9230 reais, 2793 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 138 arquivos.
+**Total:** 12025 questões (9230 reais, 2795 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 139 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -53,6 +53,7 @@
 | `reposicoes-pcdt-3.js` | REPOSIÇÕES — hipertensão e diabetes (PCDT do Ministério da Saúde) | 4 questões |  |
 | `reposicoes-pcdt-4.js` | REPOSIÇÕES — DPOC e asma pediátrica (PCDT do Ministério da Saúde) | 3 questões |  |
 | `reposicoes-gina-1.js` | REPOSIÇÕES — asma do adulto e exacerbação (GINA 2026) | 2 questões |  |
+| `reposicoes-clinicas-3.js` | REPOSIÇÕES — meningite viral (Guia de Vigilância) e trabalho de parto prematuro (NICE) | 2 questões |  |
 | `prova-iamspe-2021.js` | IAMSPE 2021 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 5 anulada(s) |
 | `prova-iamspe-2022.js` | IAMSPE 2022 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 4 anulada(s) |
 | `prova-iamspe-2023.js` | IAMSPE 2023 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 6 anulada(s) |

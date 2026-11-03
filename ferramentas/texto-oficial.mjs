@@ -22,7 +22,8 @@ import { pathToFileURL } from "node:url";
 
 export function urlDoArquivo(url){
   /* gov.br/conitec e gov.br/saude: a URL que termina em .pdf é uma página de listagem */
-  if(/gov\.br\/.*\.pdf$/i.test(url) && !/@@display-file|@@download/.test(url)) return url + "/@@display-file/file";
+  // só o portal www.gov.br (o bvsms.saude.gov.br, por exemplo, entrega o PDF direto)
+  if(/^https?:\/\/www\.gov\.br\/.*\.pdf$/i.test(url) && !/@@display-file|@@download/.test(url)) return url + "/@@display-file/file";
   return url;
 }
 
