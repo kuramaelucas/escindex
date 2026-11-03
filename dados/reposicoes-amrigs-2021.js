@@ -21,7 +21,8 @@ window.EscDados.registrarQuestoes("reposicoes-amrigs-2021", [
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **adulto que cai desacordado em campo** e a pergunta pela **sequência inicial**. Pela AHA 2020, a ordem é: (2) **checar responsividade** e acionar ajuda, (4) **checar pulso** (com a respiração, em até **10 segundos**), (3) **iniciar compressões** se não houver pulso e (1) **garantir a via aérea** depois, na sequência C-A-B. Mecanismo: na parada cardíaca súbita do adulto a causa mais comum é arritmia (FV/TV sem pulso); sem compressões a perfusão coronariana e cerebral cessa e a chance de sobrevida cai cerca de **7 a 10% por minuto**, por isso a via aérea não pode atrasar as compressões. Epidemiologia: a maior parte das paradas súbitas de atletas tem causa cardíaca. A está errada porque checar o pulso antes de ver a responsividade inverte o início. B está errada porque coloca a via aérea e as compressões antes de confirmar a parada. D está errada porque garante a via aérea antes das compressões, atrasando-as.",
   explicacoesAlternativas:{},
   referencias:"American Heart Association. Destaques das Diretrizes de RCP e ACE da AHA, 2020.",
-  dificuldadeManual:"fundamental", status:"ativa",
+  dificuldadeManual:"fundamental", status:"rascunho",
+  motivoStatus:"Rascunho: a explicação cita a AHA 2020 e a edição vigente (AHA 2025, publicada em outubro/2025) não pôde ser lida (cpr.heart.org e ahajournals.org recusam o acesso da sessão). Conferir a sequência inicial do adulto na edição 2025 antes de ativar.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-04"
 }

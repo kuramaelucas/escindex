@@ -208,7 +208,13 @@ function htmlAvisoQuestaoAlterada(q){
    banca ou desatualizada) aparece na prova feita na íntegra, mas a resposta
    não vira acerto nem erro: não entra na nota, não grava resposta e não mexe
    nas estatísticas da questão. */
-function foraDaNota(q){ return !!q && !ehDissertativa(q) && (q.status==="anulada" || q.status==="desatualizada" || !q.gabarito); }
+function foraDaNota(q){ return !!q && !ehDissertativa(q) && (q.status==="anulada" || !q.gabarito); }
+/* Na PROVA na íntegra a desatualizada também fica fora da nota (o gabarito da
+   banca pode já não valer); no estudo geral ela conta normalmente. */
+function foraDaNotaDaProva(q){ return foraDaNota(q) || (!!q && q.status==="desatualizada"); }
+function badgeDesatualizada(q){
+  return q && q.status==="desatualizada" ? '<span class="badge badge-amber" title="A conduta desta questão pode ter mudado desde a prova; leia a explicação com a diretriz atual em mente">Desatualizada</span>' : "";
+}
 /* REPOSIÇÃO POR IA. Segunda versão de uma questão anulada ou desatualizada:
    uma questão à parte (`reposicaoDe` aponta para a original), que o aluno só
    encontra se escolher a prova "com correção por IA". Conta no desempenho do

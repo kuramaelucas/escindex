@@ -191,7 +191,8 @@ function reativarProva(chave){
 }
 function _filtrarQuestoesAtivas(incluirGrupoId){
   return db.questoes.filter(q=>{
-    if(q.status!=="ativa") return false;
+    // desatualizada continua no estudo, com selo (a diretriz pode ter mudado; a explicação avisa)
+    if(q.status!=="ativa" && q.status!=="desatualizada") return false;
     if(aguardaImagem(q)) return false;
     if(provaInativa(q)) return false;
     if(q.grupoId && incluirGrupoId!==true && q.grupoId!==incluirGrupoId && !(Array.isArray(incluirGrupoId) && incluirGrupoId.includes(q.grupoId))) return false;

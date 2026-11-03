@@ -933,7 +933,7 @@ function abrirQuestaoCompleta(qid, opts){
       <span class="badge badge-muted">${escapeHtml(q.banca)} · ${anoDaProva(q)}</span>
       ${badgeStatusQuestao(q.status)}
       ${badgeAutoriaQuestao(q)}
-      ${badgeQuestaoAlterada(q)}${badgeReposicaoIA(q)}
+      ${badgeQuestaoAlterada(q)}${badgeReposicaoIA(q)}${badgeDesatualizada(q)}
       ${q.grupoId?`<span class="badge badge-muted">grupo: ${escapeHtml(getGrupo(q.grupoId)?getGrupo(q.grupoId).nome:"—")}</span>`:""}
     </div>
     <div class="qcard-enunciado" style="font-size:var(--fs-base);margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>

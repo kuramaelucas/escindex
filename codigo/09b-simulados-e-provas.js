@@ -164,7 +164,7 @@ function tentativasDoSimulado(usuarioId, chave){
 function acertouNaTentativa(r, qid){
   if(!r || !r.itens || !r.itens.some(it=>it.questaoId===qid)) return null;
   const q = getQuestao(qid);
-  return q && !foraDaNota(q) ? (r.respostas||{})[qid]===q.gabarito : null;
+  return q && !foraDaNotaDaProva(q) ? (r.respostas||{})[qid]===q.gabarito : null;
 }
 /* O que mudou entre duas tentativas, só nas questões que as duas tiveram (o
    simulado pode ter perdido ou ganhado questão no meio do caminho). Sem
@@ -566,7 +566,7 @@ function finalizarSimulado(){
   sessao.itens.forEach(it=>{
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
-    if(foraDaNota(q)) return;   // anulada/desatualizada: aparece, mas não vira acerto, erro nem resposta
+    if(foraDaNotaDaProva(q)) return;   // anulada/desatualizada: aparece, mas não vira acerto, erro nem resposta
     contaveis++;
     if(resp===q.gabarito) acertos++;
     // sem carimbo (simulado guardado antes de existir) vale o dia de hoje
@@ -631,7 +631,7 @@ function renderSimuladoAtivo(){
       const atual = i===sessao.indiceAtual;
       // no modo aprendizado a pessoa já vê a correção de cada questão, então a
       // barra também mostra acerto e erro (✓/✕); fora dele, só "respondida"
-      if(emModoAprendizado && respondida && !foraDaNota(getQuestao(it.questaoId))){
+      if(emModoAprendizado && respondida && !foraDaNotaDaProva(getQuestao(it.questaoId))){
         const qp = getQuestao(it.questaoId);
         const certa = !!qp && sessao.respostasSimulado[it.questaoId] === qp.gabarito;
         const desc = "Questão "+(i+1)+(certa?" — você acertou":" — você errou")+(atual?" (você está nesta)":"");
@@ -826,8 +826,8 @@ function recalcularResultadosSimulados(){
     if(!r.itens || !r.itens.length) return;
     const qs = r.itens.map(it=>getQuestao(it.questaoId));
     if(qs.some(q=>!q)) return;   // questão saiu do banco: mantém a nota que valia
-    const contaveis = qs.filter(q=>!foraDaNota(q)).length;
-    const acertos = r.itens.reduce((t,it,i)=> t + (!foraDaNota(qs[i]) && (r.respostas||{})[it.questaoId]===qs[i].gabarito ? 1 : 0), 0);
+    const contaveis = qs.filter(q=>!foraDaNotaDaProva(q)).length;
+    const acertos = r.itens.reduce((t,it,i)=> t + (!foraDaNotaDaProva(qs[i]) && (r.respostas||{})[it.questaoId]===qs[i].gabarito ? 1 : 0), 0);
     const nota = pct(acertos, contaveis);
     if(acertos===r.acertos && nota===r.nota && contaveis===r.total) return;
     r.acertos = acertos; r.nota = nota; r.total = contaveis; mudou++;
@@ -893,7 +893,7 @@ function renderResultadoSimulado(){
   const todasLinhas = sessao.itens.map((it,i)=>{
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
-    const fora = foraDaNota(q);
+    const fora = foraDaNotaDaProva(q);
     const correta = !fora && resp===q.gabarito; if(correta) acertos++;
     return {i,q,resp,correta,fora};
   });
@@ -1006,7 +1006,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
      continuam em Estudar > Monte sua própria lista. */
   // a prova dissertativa também é prova de verdade: aparece aqui, mas só para
   // praticar (não há como corrigi-la sozinha nem cronometrá-la como simulado)
-  const todasDosTipos = questoesAtivas(grupoUsuario).filter(q=>q.real);
+  const todasDosTipos = questoesAtivas(grupoUsuario).filter(q=>q.real && q.status!=="desatualizada");   // a desatualizada entra à parte (g.desatualizadas)
   /* RESIDÊNCIA E GRADUAÇÃO SEPARADAS. A prova da faculdade (e o Teste de
      Progresso) e a de residência não se comparam: uma confere o que ficou
      do ano, a outra seleciona para o R1. Cada uma tem a sua seção, e no 3º

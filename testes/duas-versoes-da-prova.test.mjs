@@ -16,11 +16,18 @@ test("escolha da versão, anulada fora da nota e prova com IA fora da classifica
     const p = await contexto.newPage();
     await p.goto(servidor.url + "index.html");
     await p.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+    // a reposição do arquivo de dados está em rascunho até alguém conferi-la na AHA 2025;
+    // aqui ela vale como modelo (fixture) para exercitar a função
+    await p.evaluate(() => { getQuestao("q-amrigs2021-001-ia").status = "ativa"; });
     await p.evaluate(() => { fazerLoginDemo("aluno"); navigate("provas-antigas"); });
     await p.evaluate(() => { state.filtroRota.provas = {banca:"AMRIGS", ano:"2021", areaId:"", ultimos5:false, tipo:""}; render(); });
     const indice = await p.evaluate(() => state.filtroRota.provasGrupos.findIndex(g => g.banca==="AMRIGS" && g.ano===2021));
     assert.ok(indice >= 0);
     if(PRINTS) await p.locator(".prova-card").first().screenshot({ path: PRINTS + "/1-cartao.png" });
+
+    // desatualizada entra no estudo geral (com selo); anulada continua fora
+    const estudo = await p.evaluate(() => ({ des: questoesAtivas(true).some(q => q.status==="desatualizada"), anu: questoesAtivas(true).some(q => q.status==="anulada") }));
+    assert.equal(estudo.des, true); assert.equal(estudo.anu, false);
 
     // a pergunta aparece nas duas funções
     for(const acao of [`fazerProvaComoSimulado(${indice})`, `praticarProva(${indice})`]){
