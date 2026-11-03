@@ -57,6 +57,7 @@ window.ESC_ARQUIVOS.dados = [
   "reposicoes-clinicas-3",
   "reposicoes-sbd-1",
   "reposicoes-ferro-1",
+  "reposicoes-saude-trabalhador-1",
   "reposicoes-puberdade-1",
   "reposicoes-vacinas-2",
   "reposicoes-asma-pediatrica-1",
