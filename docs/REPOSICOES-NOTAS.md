@@ -16,6 +16,13 @@ PMC pela ferramenta PubMed (texto grande: salvar em arquivo e extrair trechos). 
 Bloqueados: `sbc.org.br`, `scielo.br`, `academic.oup.com` (ESC e Hum Reprod), `ahajournals.org`, `cochrane.org`, `bmj.com`,
 `iris.who.int` (abre vazio), `in.gov.br`, `aafp.org`, `europepmc.org`, `gdt.gradepro.org`, `escardio.org` (só índice).
 
+## Dicas da busca no PubMed (ferramenta MCP)
+
+Consulta longa ou com `OR` entre siglas devolve zero ou lixo recente. Funciona: título exato da diretriz, ou 3 a 5 palavras
+(ex.: `escharotomy indications burns`). Confira sempre título e autores em `get_article_metadata` antes de citar; nunca chute
+PMCID (já deu artigo de química). Texto grande vem salvo em arquivo: extrair trechos com python, e dizer na `referencias`
+que só parte foi lida. Limite de taxa: esperar 2 s entre chamadas seguidas.
+
 ## Ficaram para trás, por falta de fonte lida
 
 - Vacinas em atraso: USP 2024 nº 79, Einstein 2025 nº 45 (falta a tabela de atualização do Calendário/IN 2026); prematuro (IAMSPE 2022 nº 48).
@@ -23,7 +30,7 @@ Bloqueados: `sbc.org.br`, `scielo.br`, `academic.oup.com` (ESC e Hum Reprod), `a
 - Sangramento pós-menopausa e hiperplasia: FAMERP 2025 nº 26, Santa Casa 2022 nº 43 (ESGO/ESHRE/ESGE, ACOG).
 - Cardiologia ESC/AHA: Einstein 2025 nº 11 (TEP), IAMSPE 2023 nº 16 (endocardite), Einstein 2025 nº 31 (PALS), USP 2024 nº 55 já feita.
 - Puberdade precoce: AMRIGS 2024 nº 66. Saúde do trabalhador: FAMERP 2026 nº 5 (Factory Act), parte da AMRIGS 2021 nº 89 (notificação).
-- Cirurgia (pancreatite, diverticulite e queimadura SES-SP 2023 nº 9 , colecistite na gestante e ACERTO (jejum) já feitas): hérnia (Santa Casa 2022 nº 18), queimaduras (Santa Casa 2022 nº 13, UNICAMP 2023 nº 27), osteoporose, checklist de cirurgia segura, TOCE.
+- Cirurgia (pancreatite, diverticulite e queimadura SES-SP 2023 nº 9 , colecistite na gestante e ACERTO (jejum) já feitas): hérnia (Santa Casa 2022 nº 18), queimaduras (Santa Casa 2022 nº 13, UNICAMP 2023 nº 27), osteoporose (SES-SP 2023 nº 46: três buscas no PubMed não acharam diretriz brasileira nem texto aberto; a sociedade ABRASSO/SBEM fica em scielo, bloqueado), checklist de cirurgia segura, TOCE.
 - Dado do enunciado incoerente, sem resposta defensável: AMRIGS 2020 nº 92 (T4 > 30 com TSH normal).
 
 ## Regras que valeram
