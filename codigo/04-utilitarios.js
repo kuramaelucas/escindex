@@ -204,6 +204,21 @@ function htmlAvisoQuestaoAlterada(q){
   const nota = notaDeQuestaoAlterada(q);
   return nota ? `<div class="card-flat mt-2 text-xs borda-alerta aviso-questao-alterada">${iconeSvg("alert")} <strong>Questão alterada</strong> em relação à prova original: ${escapeHtml(nota)}</div>` : "";
 }
+/* ANULADA / DESATUALIZADA × NOTA. Questão sem gabarito válido (anulada pela
+   banca ou desatualizada) aparece na prova feita na íntegra, mas a resposta
+   não vira acerto nem erro: não entra na nota, não grava resposta e não mexe
+   nas estatísticas da questão. */
+function foraDaNota(q){ return !!q && !ehDissertativa(q) && (q.status==="anulada" || q.status==="desatualizada" || !q.gabarito); }
+/* REPOSIÇÃO POR IA. Segunda versão de uma questão anulada ou desatualizada:
+   uma questão à parte (`reposicaoDe` aponta para a original), que o aluno só
+   encontra se escolher a prova "com correção por IA". Conta no desempenho do
+   dia e do mês, mas a prova feita assim não entra na classificação. */
+function reposicaoDaQuestao(qid){
+  return db.questoes.find(x => x.reposicaoDe === qid && x.status === "ativa") || null;
+}
+function badgeReposicaoIA(q){
+  return q && q.reposicaoDe ? '<span class="badge badge-amber" title="Versão corrigida por IA de uma questão anulada ou desatualizada pela banca. Conta no seu desempenho, mas não na classificação do simulado.">Reposição por IA</span>' : "";
+}
 function formatDataBR(iso){
   if(!iso) return "—";
   const [a,m,d] = iso.slice(0,10).split("-");
@@ -540,6 +555,7 @@ function notasAnonimasDoSimulado(chave){
   db.resultadosSimulados.filter(r => (r.simuladoId || r.titulo) === chave).forEach(r => {
     const u = getUsuario(r.usuarioId);
     if(u && !contaComoAluno(u)) return;
+    if(r.semClassificacao) return;   // prova com correção por IA não entra na classificação
     const antes = primeiraPorAluno.get(r.usuarioId);
     if(!antes || (r.data || "") < (antes.data || "")) primeiraPorAluno.set(r.usuarioId, r);
   });

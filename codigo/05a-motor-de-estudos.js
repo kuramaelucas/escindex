@@ -1005,6 +1005,9 @@ function origemDoItem(sessao, item){
 function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca, tempoSeg, origem, dissertativa, quando){
   const q = getQuestao(questaoId);
   const aberta = ehDissertativa(q);
+  /* Anulada/desatualizada mostrada na prova na íntegra: nada é gravado. A
+     resposta volta só para a sessão poder mostrar a explicação. */
+  if(foraDaNota(q)) return { id:uid("r"), usuarioId, questaoId, alternativaEscolhida, correta:false, confianca, foraDaNota:true, data:hojeISO() };
   const correta = aberta ? !!(dissertativa && dissertativa.correta) : alternativaEscolhida === q.gabarito;
   /* Quantas vezes esta pessoa já respondeu esta questão e há quantos dias foi
      a última: a conta é feita direto na lista (o índice por questão só se

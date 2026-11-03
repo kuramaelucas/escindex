@@ -164,7 +164,7 @@ function tentativasDoSimulado(usuarioId, chave){
 function acertouNaTentativa(r, qid){
   if(!r || !r.itens || !r.itens.some(it=>it.questaoId===qid)) return null;
   const q = getQuestao(qid);
-  return q ? (r.respostas||{})[qid]===q.gabarito : null;
+  return q && !foraDaNota(q) ? (r.respostas||{})[qid]===q.gabarito : null;
 }
 /* O que mudou entre duas tentativas, só nas questões que as duas tiveram (o
    simulado pode ter perdido ou ganhado questão no meio do caminho). Sem
@@ -562,18 +562,20 @@ function finalizarSimulado(){
   acumularTempoQuestaoSimulado();
   sessao.fimMs = Date.now();
   const tempoTotalSeg = sessao.inicioMs ? tempoDecorridoSimulado() : null;
-  let acertos = 0;
+  let acertos = 0, contaveis = 0;
   sessao.itens.forEach(it=>{
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
+    if(foraDaNota(q)) return;   // anulada/desatualizada: aparece, mas não vira acerto, erro nem resposta
+    contaveis++;
     if(resp===q.gabarito) acertos++;
     // sem carimbo (simulado guardado antes de existir) vale o dia de hoje
     if(resp) registrarResposta(u.id, it.questaoId, resp, (sessao.confiancas||{})[it.questaoId] || "duvida", sessao.tempos ? sessao.tempos[it.questaoId] : null, "simulado", undefined, (sessao.momentos||{})[it.questaoId]);
   });
-  const nota = pct(acertos, sessao.itens.length);
+  const nota = pct(acertos, contaveis);
   const resultadoId = uid("res");
   sessao.resultadoId = resultadoId;   // a página de resultado acha, por ele, a tentativa de antes para comparar
-  db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:sessao.itens.length, data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}, confiancas:{...(sessao.confiancas||{})}});
+  db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:contaveis, semClassificacao:!!sessao.semClassificacao, versaoProva:sessao.versaoProva||"original", data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}, confiancas:{...(sessao.confiancas||{})}});
   nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
   const chaveEmAndamento = chaveDoSimuladoEmAndamento(sessao);
   if(db.simuladosEmAndamento && (db.simuladosEmAndamento[u.id] || {})[chaveEmAndamento]){
@@ -629,7 +631,7 @@ function renderSimuladoAtivo(){
       const atual = i===sessao.indiceAtual;
       // no modo aprendizado a pessoa já vê a correção de cada questão, então a
       // barra também mostra acerto e erro (✓/✕); fora dele, só "respondida"
-      if(emModoAprendizado && respondida){
+      if(emModoAprendizado && respondida && !foraDaNota(getQuestao(it.questaoId))){
         const qp = getQuestao(it.questaoId);
         const certa = !!qp && sessao.respostasSimulado[it.questaoId] === qp.gabarito;
         const desc = "Questão "+(i+1)+(certa?" — você acertou":" — você errou")+(atual?" (você está nesta)":"");
@@ -824,10 +826,11 @@ function recalcularResultadosSimulados(){
     if(!r.itens || !r.itens.length) return;
     const qs = r.itens.map(it=>getQuestao(it.questaoId));
     if(qs.some(q=>!q)) return;   // questão saiu do banco: mantém a nota que valia
-    const acertos = r.itens.reduce((t,it,i)=> t + ((r.respostas||{})[it.questaoId]===qs[i].gabarito ? 1 : 0), 0);
-    const nota = pct(acertos, r.itens.length);
-    if(acertos===r.acertos && nota===r.nota) return;
-    r.acertos = acertos; r.nota = nota; mudou++;
+    const contaveis = qs.filter(q=>!foraDaNota(q)).length;
+    const acertos = r.itens.reduce((t,it,i)=> t + (!foraDaNota(qs[i]) && (r.respostas||{})[it.questaoId]===qs[i].gabarito ? 1 : 0), 0);
+    const nota = pct(acertos, contaveis);
+    if(acertos===r.acertos && nota===r.nota && contaveis===r.total) return;
+    r.acertos = acertos; r.nota = nota; r.total = contaveis; mudou++;
     if(typeof nuvemRegistrar === "function") nuvemRegistrar({resultadoSimulado:r});
   });
   if(mudou) saveState();
@@ -886,19 +889,22 @@ function ativarGestoNoResultado(){
 }
 function renderResultadoSimulado(){
   const sessao = state.sessaoAtual;
-  const total = sessao.itens.length;
   let acertos = 0;
-  const linhas = sessao.itens.map((it,i)=>{
+  const todasLinhas = sessao.itens.map((it,i)=>{
     const q = getQuestao(it.questaoId);
     const resp = sessao.respostasSimulado[it.questaoId];
-    const correta = resp===q.gabarito; if(correta) acertos++;
-    return {i,q,resp,correta};
+    const fora = foraDaNota(q);
+    const correta = !fora && resp===q.gabarito; if(correta) acertos++;
+    return {i,q,resp,correta,fora};
   });
+  const linhas = todasLinhas.filter(l=>!l.fora);   // só o que conta: nota, tempo e comparações
+  const foraLinhas = todasLinhas.filter(l=>l.fora);
+  const total = linhas.length;
   const nota = pct(acertos,total);
   const analiseTempo = analiseTempoSimulado(sessao, linhas);
   const chaveRanking = sessao.simuladoId || sessao.titulo;
   const equipe = ehEquipeVendoSimulado();
-  const ranking = equipe ? null : estatisticasRankingSimulado(chaveRanking, nota);
+  const ranking = equipe || sessao.semClassificacao ? null : estatisticasRankingSimulado(chaveRanking, nota);
   const erradas = linhas.filter(l=>!l.correta);
   const previa = tentativaAnteriorDaSessao(sessao);
   const comp = previa ? compararTentativas(db.resultadosSimulados.find(r=>r.id===sessao.resultadoId), previa) : null;
@@ -925,7 +931,9 @@ function renderResultadoSimulado(){
       <button class="btn btn-ghost btn-sm" onclick="state.sessaoAtual=null;navigate('historico')">Histórico</button>
     </div>
     <div class="text-sm peso-600 mt-2">Mapa de acertos <span class="muted peso-400">· verde acertou, vermelho errou, cinza em branco; clique para abrir a questão</span></div>
-    <div class="mapa-acertos mt-1">${linhas.map(pillMapa).join("")}</div>
+    <div class="mapa-acertos mt-1">${todasLinhas.map(l=> l.fora ? `<button class="pill pill-resultado" onclick="abrirQuestaoDoResultado(${l.i})" title="${l.q.status==="desatualizada"?"desatualizada":"anulada"}: aparece na prova, mas a resposta não conta">${l.q.numeroNaProva||l.i+1}</button>` : pillMapa(l)).join("")}</div>
+    ${foraLinhas.length ? `<div class="text-xs muted mt-1">${foraLinhas.length} questão(ões) anulada(s) ou desatualizada(s) apareceram na prova e não entram na nota (cinza, sem cor).</div>` : ""}
+    ${sessao.semClassificacao ? `<div class="card-flat mt-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>Prova com correção por IA.</strong> Suas respostas contam no desempenho do dia e na taxa de acerto diária e mensal, mas esta nota <strong>não entra na classificação</strong> do simulado.</div>` : ""}
     ${htmlComparacaoComAnterior(comp, previa, linhas)}
   </div>
   ${equipe ? `<div class="card mt-2">${htmlDesempenhoDosAlunos(chaveRanking)}</div>` : ranking ? `
@@ -1023,7 +1031,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
   // coisas), na ordem da prova original quando a questão sabe o próprio número
   const mapa = {};
   const chaveDaProva = chaveDaProvaDe;
-  pool.forEach(q=>{ const chave = chaveDaProva(q); (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, semestre:q.semestre||0, tipo:tipoProvaDe(q), ids:[], anuladas:[], semImagem:0}).ids.push(q.id); });
+  pool.forEach(q=>{ const chave = chaveDaProva(q); (mapa[chave] = mapa[chave] || {banca:q.banca, ano:q.ano, semestre:q.semestre||0, tipo:tipoProvaDe(q), ids:[], anuladas:[], desatualizadas:[], semImagem:0}).ids.push(q.id); });
   Object.values(mapa).forEach(g => { g.dissertativa = g.ids.every(id=>ehDissertativa(getQuestao(id))); });
   const ordemNaProva = id => { const q = getQuestao(id); return (q && q.numeroNaProva) || 9999; };
   Object.values(mapa).forEach(g => g.ids.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)));
@@ -1032,12 +1040,12 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
      prova de 100 questões aparecendo com 93, sem explicação, parece prova
      incompleta. O cartão diz quantas são, quais são, e deixa abrir cada uma. */
   db.questoes.forEach(q=>{
-    if(q.status!=="anulada" || !q.real) return;
+    if((q.status!=="anulada" && q.status!=="desatualizada") || !q.real) return;
     const g = mapa[chaveDaProva(q)]; if(!g) return;
     if(f.areaId && q.areaId!==f.areaId) return;
-    g.anuladas.push(q.id);
+    (q.status==="anulada" ? g.anuladas : g.desatualizadas).push(q.id);
   });
-  Object.values(mapa).forEach(g => g.anuladas.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)));
+  Object.values(mapa).forEach(g => { g.anuladas.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)); g.desatualizadas.sort((a,b)=> ordemNaProva(a)-ordemNaProva(b)); });
   // as que esperam a figura da prova também ficam de fora, e o cartão diz
   // quantas (ver aguardaImagem)
   db.questoes.forEach(q=>{
@@ -1057,7 +1065,8 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
         <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-accent":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span>${g.dissertativa ? ` <span class="badge badge-accent">Dissertativa</span>` : ""}</div>
         ${g.dissertativa ? `<div class="text-xs muted mb-1">Você escreve a resposta, diz a confiança e se avalia pela resposta esperada da banca. Não há simulado com relógio nem nota automática.</div>` : ""}
         <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
-        ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca não têm gabarito e ficam fora da prova feita aqui">+ ${g.anuladas.length} anulada(s) pela banca, fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
+        ${reposicoesDaProva(g).length ? `<div class="text-xs mb-1"><span class="badge badge-amber">${reposicoesDaProva(g).length} com reposição por IA</span> <span class="muted">ao começar, você escolhe a versão da prova</span></div>` : ""}
+        ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca aparecem na prova, mas a resposta não conta na nota">+ ${g.anuladas.length} anulada(s) pela banca, aparecem na prova e ficam fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
         ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
         ${(()=>{ const em = simuladoEmAndamentoDe(u, "prova:Prova "+g.banca+" "+anoDaProva(g)+" (simulado)"); if(!em) return ""; const p = progressoDoSimuladoEmAndamento(em); return `<div class="qcard-meta mb-1"><span class="badge badge-amber">simulado em andamento · ${p.feitas} de ${p.total} respondidas</span></div>`; })()}
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${classeBadgeNota(previo.ultima.nota)}">já fez como simulado · ${previo.ultima.nota}%</span> <button class="link-btn text-xs" onclick="abrirHistoricoDoSimulado(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")})">${previo.n>1 ? "ver as "+previo.n+" tentativas" : "ver a tentativa"}</button></div>` : ""}
@@ -1200,23 +1209,64 @@ function grupoDeProva(indice){
   const grupos = state.filtroRota.provasGrupos || [];
   return grupos[indice] || null;
 }
-function fazerProvaComoSimulado(indice, recomecar){
+/* AS DUAS VERSÕES DA PROVA. Feita na íntegra, a prova mostra as questões
+   anuladas ou desatualizadas (a resposta delas não conta para a nota). Quando
+   alguma tem reposição corrigida por IA, a pessoa escolhe antes de começar:
+   "original" = como foi realizada de fato; "ia" = a reposição no lugar da
+   anulada. A versão com IA continua valendo para o desempenho diário e mensal,
+   mas fica fora da classificação (percentil) do simulado. */
+function reposicoesDaProva(g){
+  return [...(g.anuladas||[]), ...(g.desatualizadas||[])].filter(id => reposicaoDaQuestao(id));
+}
+function itensDaProva(g, versao, rotulo){
+  const ordem = id => { const q = getQuestao(id); return (q && q.numeroNaProva) || 9999; };
+  const ids = [...g.ids, ...(g.anuladas||[]), ...(g.desatualizadas||[])].sort((a,b)=> ordem(a)-ordem(b));
+  return ids.map(id => {
+    const rep = versao==="ia" ? reposicaoDaQuestao(id) : null;
+    return {questaoId: rep ? rep.id : id, motivo: rotulo};
+  });
+}
+function perguntarVersaoDaProva(indice, acao){
+  const g = grupoDeProva(indice); if(!g) return;
+  const n = reposicoesDaProva(g).length;
+  const fora = (g.anuladas||[]).length + (g.desatualizadas||[]).length;
+  const total = g.ids.length;
+  const chamada = v => acao==="simulado" ? `fazerProvaComoSimulado(${indice}, true, '${v}')` : `praticarProva(${indice}, '${v}')`;
+  abrirModalTitulado("Qual versão da prova você quer fazer?", `
+    <p class="text-sm">Esta prova teve ${fora} questão(ões) anulada(s) ou desatualizada(s) e ${n} delas ${n===1?"tem":"têm"} uma reposição corrigida por IA.</p>
+    <div class="grid gap-1 mt-2">
+      <button class="card text-left" id="versaoOriginal" onclick="fecharModal();${chamada("original")}">
+        <strong>Como foi realizada de fato</strong>
+        <div class="text-sm muted">As ${fora} anuladas aparecem, mas sua resposta não conta como acerto nem erro. A nota é sobre ${total} questões e entra na classificação do simulado.</div>
+      </button>
+      <button class="card text-left" id="versaoIA" onclick="fecharModal();${chamada("ia")}">
+        <strong>Com a correção feita por IA</strong>
+        <div class="text-sm muted">${n} questão(ões) vêm no lugar da anulada, com o texto corrigido e o selo "Reposição por IA". Elas contam no seu desempenho diário e na taxa de acerto, mas <strong>esta prova não entra na classificação</strong> do simulado.</div>
+      </button>
+    </div>
+    <div class="flex gap-1 mt-2"><button class="btn btn-ghost btn-sm" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function fazerProvaComoSimulado(indice, recomecar, versao){
   const g = grupoDeProva(indice); if(!g) return;
   if(g.dissertativa){ praticarProva(indice); return; }
-  const titulo = "Prova "+g.banca+" "+anoDaProva(g)+" (simulado)";
+  const comIA = versao==="ia";
+  const titulo = "Prova "+g.banca+" "+anoDaProva(g)+(comIA ? " com correção por IA" : "")+" (simulado)";
   const chave = "prova:"+titulo;
+  if(!versao && reposicoesDaProva(g).length){ perguntarVersaoDaProva(indice, "simulado"); return; }
   if(simuladoEmAndamentoDe(usuarioAtual(), chave)){
-    if(!recomecar){ perguntarRecomecarSimulado(chave, `fazerProvaComoSimulado(${indice}, true)`); return; }
+    if(!recomecar){ perguntarRecomecarSimulado(chave, `fazerProvaComoSimulado(${indice}, true${versao ? `, '${versao}'` : ""})`); return; }
     descartarSimuladoEmAndamento(chave);
   }
-  limparDestaquesDasQuestoes(g.ids);
+  const itens = itensDaProva(g, versao, "Prova "+g.banca+" "+anoDaProva(g));
+  limparDestaquesDasQuestoes(itens.map(it=>it.questaoId));
   state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:null, titulo,
-    itens: g.ids.map(id=>({questaoId:id, motivo:"Prova "+g.banca+" "+anoDaProva(g)})), indiceAtual:0, respostasSimulado:{},
+    itens, indiceAtual:0, respostasSimulado:{}, versaoProva: versao || "original", semClassificacao: comIA,
     duracaoMin: g.ids.length*2, finalizado:false, modoAprendizado:false,
     inicioMs:Date.now(), tsQuestao:Date.now(), tempos:{} };
   navigate("simulado-ativo");
 }
-function praticarProva(indice){
+function praticarProva(indice, versao){
   const g = grupoDeProva(indice); if(!g) return;
-  iniciarSessaoComLista(g.ids.map(id=>({questaoId:id, motivo:"Prática — prova "+g.banca+" "+anoDaProva(g)})), "pratica");
+  if(!versao && reposicoesDaProva(g).length){ perguntarVersaoDaProva(indice, "pratica"); return; }
+  iniciarSessaoComLista(itensDaProva(g, versao, "Prática — prova "+g.banca+" "+anoDaProva(g)), "pratica");
 }
