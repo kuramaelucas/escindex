@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12038 questões (9230 reais, 2808 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 144 arquivos.
+**Total:** 12039 questões (9230 reais, 2809 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 145 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -59,6 +59,7 @@
 | `reposicoes-sbc-1.js` | REPOSIÇÃO — insuficiência cardíaca aguda (Diretriz da SBC) | 1 questões |  |
 | `reposicoes-epidemiologia-1.js` | REPOSIÇÕES — epidemiologia e bioestatística | 5 questões |  |
 | `reposicoes-imagens-1.js` | REPOSIÇÕES — questões anuladas que dependem de imagem | 2 questões |  |
+| `reposicoes-imagens-2.js` | REPOSIÇÃO — estado nutricional do adolescente (IMC por idade) | 1 questões |  |
 | `prova-iamspe-2021.js` | IAMSPE 2021 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 5 anulada(s) |
 | `prova-iamspe-2022.js` | IAMSPE 2022 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 4 anulada(s) |
 | `prova-iamspe-2023.js` | IAMSPE 2023 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 6 anulada(s) |
