@@ -40,9 +40,9 @@ function renderCriarSimulado(){
     <div class="card-title">2. Selecionar questões (${ctx.selecionadas.length} selecionada(s) de ${ctx.pool.length})</div>
     <div class="flex gap-1 items-center quebra mt-1">
       <input class="input" type="number" id="csQuantidade" min="1" max="${ctx.pool.length}" value="${Math.min(ctx.pool.length, 30)}" style="max-width:90px" aria-label="Quantidade de questões">
-      <button class="btn btn-secondary btn-sm" onclick="sugerirSelecaoSimulado()" title="Marca questões na mistura ${Math.round(CONFIG.misturaSimulado.facil*100)}% fáceis, ${Math.round(CONFIG.misturaSimulado.medio*100)}% médias e ${Math.round(CONFIG.misturaSimulado.dificil*100)}% difíceis">Sugerir seleção com mistura mais difícil</button>
+      <button class="btn btn-secondary btn-sm" onclick="sugerirSelecaoSimulado()" title="Marca questões 1:1:1:1:1 entre as áreas, na mistura ${Math.round(CONFIG.misturaSimulado.facil*100)}% fáceis, ${Math.round(CONFIG.misturaSimulado.medio*100)}% médias e ${Math.round(CONFIG.misturaSimulado.dificil*100)}% difíceis">Sugerir seleção com mistura mais difícil</button>
     </div>
-    <p class="text-xs muted mt-1">A sugestão marca ${Math.round(CONFIG.misturaSimulado.facil*100)}% de questões fáceis, ${Math.round(CONFIG.misturaSimulado.medio*100)}% médias e ${Math.round(CONFIG.misturaSimulado.dificil*100)}% difíceis (nota de dificuldade: taxa de acerto da turma, nível da questão e quanto o assunto cai). Se faltar questão de um nível, o resto vem do nível mais próximo. Você pode ajustar as caixas depois.</p>
+    <p class="text-xs muted mt-1">A sugestão divide as questões igualmente entre as áreas (1:1:1:1:1) e, dentro de cada uma, marca ${Math.round(CONFIG.misturaSimulado.facil*100)}% de questões fáceis, ${Math.round(CONFIG.misturaSimulado.medio*100)}% médias e ${Math.round(CONFIG.misturaSimulado.dificil*100)}% difíceis (nota de dificuldade: taxa de acerto da turma, nível da questão e quanto o assunto cai). Se faltar questão de um nível, o resto vem do nível mais próximo. Você pode ajustar as caixas depois.</p>
     <div class="table-wrap mt-1"><table><thead><tr><th></th><th>Questão</th><th>Assunto</th><th>Instituição / Ano</th><th>Dificuldade</th></tr></thead><tbody>
     ${ctx.pool.map(qid=>{ const q=getQuestao(qid); const marcado=ctx.selecionadas.includes(qid); return `<tr><td><input type="checkbox" onchange="toggleSelecaoSimulado('${qid}')" ${marcado?"checked":""}></td><td class="text-sm"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${qid}')">${escapeHtml(q.enunciado.slice(0,90))}…</span></td><td class="text-sm">${escapeHtml(nomeAssunto(q.assuntoId))}</td><td class="text-sm">${escapeHtml(q.banca)} · ${anoDaProva(q)}</td><td class="text-sm">${rotuloDificuldade(calcularDificuldade(q))}</td></tr>`; }).join("")}
     </tbody></table></div>
@@ -81,24 +81,37 @@ function toggleSelecaoSimulado(qid){
   if(idx>=0) ctx.selecionadas.splice(idx,1); else ctx.selecionadas.push(qid);
   render();
 }
-/* Marca `quantidade` questões do pool na mistura de CONFIG.misturaSimulado.
-   Dentro de cada nível o sorteio é embaralhado; o que faltar num nível é
-   completado pelo nível mais próximo (difícil → médio → fácil), para a prova
-   nunca ficar mais fácil do que o pedido por falta de candidata. */
+/* Marca `quantidade` questões do pool SEMPRE na proporção 1:1:1:1:1 entre as
+   grandes áreas presentes (CM, CG, GO, Ped, Preventiva): o banco tem muito
+   mais CM, e sorteado direto o simulado herdava esse viés. Dentro de cada
+   área vale a mistura de CONFIG.misturaSimulado (fáceis/médias/difíceis);
+   o que faltar num nível é completado pelo nível mais próximo (difícil →
+   médio → fácil), e a área que não tiver questão suficiente devolve a vaga
+   às outras (a tela avisa quando o simulado não fecha 1:1:1:1:1). */
 function sugerirSelecaoSimulado(){
   const ctx = state.filtroRota.criarSimulado; if(!ctx) return;
   const total = Math.max(1, Math.min(ctx.pool.length, parseInt(document.getElementById("csQuantidade").value) || 30));
   const m = CONFIG.misturaSimulado;
-  const niveis = [[],[],[]];
-  embaralhar(ctx.pool).forEach(qid=>{ niveis[nivelDaQuestao(getQuestao(qid))].push(qid); });
-  const alvo = [Math.round(total*m.facil), Math.round(total*m.medio), 0];
-  alvo[2] = Math.max(0, total - alvo[0] - alvo[1]);
+  const porArea = {};
+  embaralhar(ctx.pool).forEach(qid=>{ const q=getQuestao(qid); (porArea[q.areaId||"?"] = porArea[q.areaId||"?"] || []).push(qid); });
+  const areas = Object.keys(porArea);
+  const aloc = distribuirPorPeso(areas.map(id=>({id, peso:1, cap:porArea[id].length})), total);
   const escolhidas = [];
-  [2,1,0].forEach(n=>{ escolhidas.push(...niveis[n].splice(0, alvo[n])); });
-  // sobra de alvo: completa do mais difícil para o mais fácil
-  [2,1,0].forEach(n=>{ while(escolhidas.length<total && niveis[n].length) escolhidas.push(niveis[n].shift()); });
+  areas.forEach(a=>{
+    const t = aloc[a]; if(!t) return;
+    const niveis = [[],[],[]];
+    porArea[a].forEach(qid=>{ niveis[nivelDaQuestao(getQuestao(qid))].push(qid); });
+    const alvo = [Math.round(t*m.facil), Math.round(t*m.medio), 0];
+    alvo[2] = Math.max(0, t - alvo[0] - alvo[1]);
+    const dela = [];
+    [2,1,0].forEach(n=>{ dela.push(...niveis[n].splice(0, alvo[n])); });
+    [2,1,0].forEach(n=>{ while(dela.length<t && niveis[n].length) dela.push(niveis[n].shift()); });
+    escolhidas.push(...dela);
+  });
   ctx.selecionadas = ctx.pool.filter(qid=>escolhidas.includes(qid));
-  toast(ctx.selecionadas.length+" questões marcadas na mistura mais difícil.");
+  const contagem = areas.map(a=>(getArea(a)||{nome:a}).nome+" "+(aloc[a]||0)).join(" · ");
+  const fechou = areas.length>1 && new Set(areas.map(a=>aloc[a])).size===1;
+  toast(ctx.selecionadas.length+" questões marcadas — "+contagem+(areas.length>1 ? (fechou ? " (1:1:1:1:1)" : " (alguma área não tem questões para igualar)") : ""));
   render();
 }
 function salvarSimuladoCriado(){

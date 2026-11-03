@@ -444,7 +444,8 @@ test("Criar Simulado: a sugestão marca a mistura mais difícil e completa pelo 
     await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
     await pagina.evaluate(() => fazerLoginDemo("aluno"));
     const r = await pagina.evaluate(() => {
-      const pool = questoesAtivas().filter(q => !ehDissertativa(q)).map(q => q.id);
+      // uma área só: a mistura de dificuldade vale dentro de cada área (o 1:1:1:1:1 tem teste próprio)
+      const pool = questoesAtivas().filter(q => !ehDissertativa(q) && q.areaId === "area-cm").map(q => q.id);
       state.filtroRota = state.filtroRota || {};
       state.filtroRota.criarSimulado = { pool, selecionadas: [] };
       const campo = document.createElement("input"); campo.id = "csQuantidade"; campo.value = "40"; document.body.appendChild(campo);
@@ -617,5 +618,27 @@ test("acerto estimado: o recente é comparado com o antigo (sem contar duas veze
     assert.ok(Math.abs(r.semAntigo - r.total) < 1e-9, "sem parte antiga não há o que comparar");
     assert.ok(r.curto > 0.55, "histórico curto: o recente domina, " + r.curto);
     assert.ok(Math.abs(r.pouco - r.poucoTotal) < 1e-9);
+  } finally { await contexto.close(); }
+});
+
+test("consolidação e simulado criado dividem as vagas 1:1:1:1:1 entre as áreas, sem viés de Clínica Médica", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      const ativas = questoesAtivas().filter(q => !ehDissertativa(q));
+      const conta = ids => { const c = {}; ids.forEach(q => { const a = getQuestao(q.id || q).areaId; c[a] = (c[a] || 0) + 1; }); return c; };
+      // consolidação: 50 vagas entre as 5 áreas = 10 de cada
+      const pool = ativas.filter(ehConsolidacao);
+      const sel = selecionarIgualPorArea(pool, 50, (p, k) => embaralhar(p).slice(0, k));
+      // simulado: sugestão de 40 questões do banco inteiro
+      state.filtroRota = { criarSimulado: { pool: ativas.map(q => q.id), selecionadas: [] } };
+      const campo = document.createElement("input"); campo.id = "csQuantidade"; campo.value = 40; document.body.appendChild(campo);
+      sugerirSelecaoSimulado();
+      return { cons: conta(sel), sim: conta(state.filtroRota.criarSimulado.selecionadas) };
+    });
+    assert.deepEqual(Object.values(r.cons), [10, 10, 10, 10, 10]);
+    assert.deepEqual(Object.values(r.sim), [8, 8, 8, 8, 8]);
   } finally { await contexto.close(); }
 });
