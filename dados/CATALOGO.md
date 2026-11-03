@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12049 questões (9230 reais, 2819 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 152 arquivos.
+**Total:** 12050 questões (9230 reais, 2820 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 153 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -56,6 +56,7 @@
 | `reposicoes-clinicas-3.js` | REPOSIÇÕES — meningite viral (Guia de Vigilância) e trabalho de parto prematuro (NICE) | 2 questões |  |
 | `reposicoes-sbd-1.js` | REPOSIÇÕES — hiperglicemia na gestação (diretriz da SBD) | 2 questões |  |
 | `reposicoes-ferro-1.js` | REPOSIÇÕES — suplementação de ferro na gestação (Programa Nacional) | 1 questões |  |
+| `reposicoes-has-pediatrica-1.js` | REPOSIÇÕES — pressão arterial na criança (Diretriz Brasileira de HAS 2025) | 1 questões |  |
 | `reposicoes-fa-1.js` | REPOSIÇÕES — fibrilação atrial de início recente (Diretriz Brasileira de FA 2025) | 1 questões |  |
 | `reposicoes-valvopatias-1.js` | REPOSIÇÕES — valvopatias e gestação (Diretriz Brasileira de Valvopatias 2026) | 1 questões |  |
 | `reposicoes-pre-eclampsia-1.js` | REPOSIÇÕES — pré-eclâmpsia pré-termo com parto programado (NICE NG133) | 1 questões |  |
