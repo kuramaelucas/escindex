@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12030 questões (9230 reais, 2800 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 141 arquivos.
+**Total:** 12031 questões (9230 reais, 2801 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 142 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -56,6 +56,7 @@
 | `reposicoes-clinicas-3.js` | REPOSIÇÕES — meningite viral (Guia de Vigilância) e trabalho de parto prematuro (NICE) | 2 questões |  |
 | `reposicoes-sbd-1.js` | REPOSIÇÕES — hiperglicemia na gestação (diretriz da SBD) | 2 questões |  |
 | `reposicoes-vacinas-1.js` | REPOSIÇÕES — vacinas da criança (Instrução Normativa do Calendário 2026) | 3 questões |  |
+| `reposicoes-sbc-1.js` | REPOSIÇÃO — insuficiência cardíaca aguda (Diretriz da SBC) | 1 questões |  |
 | `prova-iamspe-2021.js` | IAMSPE 2021 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 5 anulada(s) |
 | `prova-iamspe-2022.js` | IAMSPE 2022 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 4 anulada(s) |
 | `prova-iamspe-2023.js` | IAMSPE 2023 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 6 anulada(s) |
