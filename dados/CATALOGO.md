@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12052 questões (9230 reais, 2822 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 155 arquivos.
+**Total:** 12053 questões (9230 reais, 2823 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 156 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -56,6 +56,7 @@
 | `reposicoes-clinicas-3.js` | REPOSIÇÕES — meningite viral (Guia de Vigilância) e trabalho de parto prematuro (NICE) | 2 questões |  |
 | `reposicoes-sbd-1.js` | REPOSIÇÕES — hiperglicemia na gestação (diretriz da SBD) | 2 questões |  |
 | `reposicoes-ferro-1.js` | REPOSIÇÕES — suplementação de ferro na gestação (Programa Nacional) | 1 questões |  |
+| `reposicoes-vacinas-2.js` | REPOSIÇÕES — vacinas do adolescente (Calendário Nacional de Vacinação 2026) | 1 questões |  |
 | `reposicoes-asma-pediatrica-1.js` | REPOSIÇÕES — asma em criança de 5 anos ou menos (GINA 2026) | 1 questões |  |
 | `reposicoes-bioestatistica-1.js` | REPOSIÇÕES — sensibilidade e especificidade (D-dímero na suspeita de TEP) | 1 questões |  |
 | `reposicoes-has-pediatrica-1.js` | REPOSIÇÕES — pressão arterial na criança (Diretriz Brasileira de HAS 2025) | 1 questões |  |
