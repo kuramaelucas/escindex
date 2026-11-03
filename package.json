@@ -21,6 +21,7 @@
     "pos-simulado": "node ferramentas/pos-simulado.mjs",
     "figuras": "node ferramentas/figuras.mjs",
     "anotar-conferencia": "node ferramentas/anotar-conferencia.mjs",
+    "reposicoes-pendentes": "node ferramentas/reposicoes-pendentes.mjs",
     "referencias-a-conferir": "node ferramentas/referencias-a-conferir.mjs --excluir banco-simulado-epm-6",
     "texto-oficial": "node ferramentas/texto-oficial.mjs"
   },
