@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 11995 questões (9230 reais, 2765 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 128 arquivos.
+**Total:** 12042 questões (9230 reais, 2812 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 146 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -43,6 +43,24 @@
 | `prova-amrigs-2025.js` | AMRIGS 2025 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 3 anulada(s) |
 | `prova-amrigs-2020.js` | AMRIGS 2020 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 12 anulada(s) |
 | `prova-amrigs-2021.js` | AMRIGS 2021 — Prova AMB/AMRIGS/ACM/AMMS, Acesso Direto e Autoavaliação | 100 questões | 7 anulada(s) |
+| `reposicoes-amrigs-2021.js` | REPOSIÇÕES — AMRIGS 2021 (corrigidas por IA) | 1 questões |  |
+| `reposicoes-rotavirus.js` | REPOSIÇÕES — vacina rotavírus (questões desatualizadas pela Nota Técnica 193/2024) | 4 questões |  |
+| `reposicoes-colo-e-lei.js` | REPOSIÇÕES — rastreamento do câncer do colo do útero (2025) e Lei 14.443/2022 | 5 questões |  |
+| `reposicoes-clinicas-1.js` | REPOSIÇÕES — gonorreia (PCDT de IST 2022), doença de Crohn e intervalo de confiança | 4 questões |  |
+| `reposicoes-clinicas-2.js` | REPOSIÇÕES — questões anuladas (asma e sífilis) | 2 questões |  |
+| `reposicoes-pcdt-1.js` | REPOSIÇÕES — questões anuladas (hanseníase e transmissão vertical do HIV) | 2 questões |  |
+| `reposicoes-pcdt-2.js` | REPOSIÇÃO — vacinação da gestante (dTpa a partir da 20ª semana) | 1 questões |  |
+| `reposicoes-pcdt-3.js` | REPOSIÇÕES — hipertensão e diabetes (PCDT do Ministério da Saúde) | 4 questões |  |
+| `reposicoes-pcdt-4.js` | REPOSIÇÕES — DPOC e asma pediátrica (PCDT do Ministério da Saúde) | 3 questões |  |
+| `reposicoes-gina-1.js` | REPOSIÇÕES — asma do adulto e exacerbação (GINA 2026) | 2 questões |  |
+| `reposicoes-clinicas-3.js` | REPOSIÇÕES — meningite viral (Guia de Vigilância) e trabalho de parto prematuro (NICE) | 2 questões |  |
+| `reposicoes-sbd-1.js` | REPOSIÇÕES — hiperglicemia na gestação (diretriz da SBD) | 2 questões |  |
+| `reposicoes-vacinas-1.js` | REPOSIÇÕES — vacinas da criança (Instrução Normativa do Calendário 2026) | 3 questões |  |
+| `reposicoes-sbc-1.js` | REPOSIÇÃO — insuficiência cardíaca aguda (Diretriz da SBC) | 1 questões |  |
+| `reposicoes-epidemiologia-1.js` | REPOSIÇÕES — epidemiologia e bioestatística | 5 questões |  |
+| `reposicoes-imagens-1.js` | REPOSIÇÕES — questões anuladas que dependem de imagem | 2 questões |  |
+| `reposicoes-imagens-2.js` | REPOSIÇÃO — estado nutricional do adolescente (IMC por idade) | 1 questões |  |
+| `reposicoes-ist-1.js` | REPOSIÇÕES — IST e violência sexual (PCDT de IST 2022) | 3 questões |  |
 | `prova-iamspe-2021.js` | IAMSPE 2021 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 5 anulada(s) |
 | `prova-iamspe-2022.js` | IAMSPE 2022 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 4 anulada(s) |
 | `prova-iamspe-2023.js` | IAMSPE 2023 — Residência Médica, Acesso Direto e Áreas Básicas | 80 questões | 6 anulada(s) |

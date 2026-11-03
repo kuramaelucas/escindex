@@ -152,7 +152,7 @@ function iniciarSessaoComLista(itens, tipo){
    respostasFeitas(); quem precisa da resposta de uma posição usa
    respostaDoIndice(), que devolve null quando aquela ficou em branco. */
 function respostaDoIndice(s, i){ return (s && s.respostasSessao && s.respostasSessao[i]) || null; }
-function respostasFeitas(s){ return ((s && s.respostasSessao) || []).filter(Boolean); }
+function respostasFeitas(s){ return ((s && s.respostasSessao) || []).filter(r => r && !r.foraDaNota); }
 function indicesEmBranco(s){
   const fora = [];
   if(!s || !s.itens) return fora;
@@ -962,7 +962,7 @@ function renderQuestionCard(q, opts){
   let html = `<div class="qcard">
     <div class="qcard-meta">
       <span class="qcard-trilha">${escapeHtml(q.banca)} · ${anoDaProva(q)}${q.numeroNaProva ? ` · questão ${q.numeroNaProva}` : ""}</span>
-      ${badgeQuestaoAlterada(q)}
+      ${badgeQuestaoAlterada(q)}${badgeReposicaoIA(q)}${badgeDesatualizada(q)}
       ${escondida ? `<span class="badge badge-muted" title="Você escondeu esta questão: ela não entra mais nas suas sessões">escondida</span>` : ""}
     </div>
     ${detalhes ? `<details class="qcard-detalhes"><summary>detalhes</summary><div class="qcard-meta">${detalhes}</div></details>` : ""}
@@ -1031,6 +1031,9 @@ function renderQuestionCard(q, opts){
   return html;
 }
 function renderFeedbackQuestao(q, opts){
+  if(foraDaNota(q)){
+    return `<div class="feedback-box" style="background:var(--amber-soft);border:1px solid var(--amber)"><strong>${iconeSvg("alert")} Questão ${q.status==="desatualizada"?"desatualizada":"anulada"}:</strong> não há gabarito, então a sua resposta <strong>não conta</strong> como acerto nem como erro.<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span></div>` + renderRodapeDaQuestaoRespondida(q);
+  }
   const correta = opts.selecionada === q.gabarito;
   let html = `<div class="feedback-box ${correta?"ok":"no"}"><strong>${correta?"Resposta correta.":"Resposta incorreta."}</strong> Gabarito: ${q.gabarito}.<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>${htmlMesDaJustificativa(q)}`;
   if(q.explicacoesAlternativas && q.explicacoesAlternativas[opts.selecionada] && opts.selecionada!==q.gabarito){
@@ -1069,7 +1072,7 @@ function renderRodapeDaQuestaoRespondida(q){
     html += `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Histórico nesta questão: ${historicoDaQuestao.length} tentativas, nenhum erro.</div>`;
   }
   if(q.status==="anulada" || q.status==="desatualizada"){
-    html += `<div class="feedback-box" style="background:var(--amber-soft);border:1px solid var(--amber)"><strong>${iconeSvg("alert")} Atenção:</strong> ${q.status==="anulada"?"esta questão foi anulada.":"esta questão está marcada como desatualizada."} ${escapeHtml(q.motivoStatus||"")} Ela não entra nas suas estatísticas nem em novas sessões.</div>`;
+    html += `<div class="feedback-box" style="background:var(--amber-soft);border:1px solid var(--amber)"><strong>${iconeSvg("alert")} Atenção:</strong> ${q.status==="anulada"?"esta questão foi anulada.":"esta questão está marcada como desatualizada."} ${escapeHtml(q.motivoStatus||"")} ${q.status==="anulada" ? "Ela não entra nas suas estatísticas nem em novas sessões." : "Você pode estudá-la e ela conta no seu desempenho; na prova na íntegra ela fica fora da nota. Confira a diretriz atual na explicação."}</div>`;
   }
   html += htmlAvisoQuestaoAlterada(q);
   html += renderReferenciasQuestao(q);
