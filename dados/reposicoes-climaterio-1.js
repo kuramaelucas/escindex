@@ -9,7 +9,7 @@
 window.EscDados.registrarQuestoes("reposicoes-climaterio-1", [
  {
   "id": "q-sirio2027-075-ia",
-  "banca": "Sírio-Libanês",
+  "banca": "Sírio-Libanês (SP)",
   "real": false,
   "ano": 2027,
   "reposicaoDe": "q-sirio2027-075",
@@ -35,7 +35,7 @@ window.EscDados.registrarQuestoes("reposicoes-climaterio-1", [
  },
  {
   "id": "q-unifesp2023-048-ia",
-  "banca": "UNIFESP",
+  "banca": "UNIFESP-EPM",
   "real": false,
   "ano": 2023,
   "reposicaoDe": "q-unifesp2023-048",

@@ -10,7 +10,7 @@
 window.EscDados.registrarQuestoes("reposicoes-contracepcao-1", [
  {
   "id": "q-sirio2025-078-ia",
-  "banca": "Sírio-Libanês",
+  "banca": "Sírio-Libanês (SP)",
   "real": false,
   "ano": 2025,
   "reposicaoDe": "q-sirio2025-078",

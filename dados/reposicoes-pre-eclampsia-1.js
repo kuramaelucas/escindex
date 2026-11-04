@@ -10,7 +10,7 @@
 window.EscDados.registrarQuestoes("reposicoes-pre-eclampsia-1", [
  {
   "id": "q-unifesp2026-055-ia",
-  "banca": "UNIFESP",
+  "banca": "UNIFESP-EPM",
   "real": false,
   "ano": 2026,
   "reposicaoDe": "q-unifesp2026-055",

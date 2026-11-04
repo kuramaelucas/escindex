@@ -13,6 +13,11 @@ test("toda reposição aponta para uma original anulada ou desatualizada que exi
     assert.equal(q.real, false, `${q.id}: reposição não é questão real da banca`);
     assert.equal(q.id, id + "-ia", `${q.id}: id da reposição = id da original + -ia`);
     assert.equal(q.assuntoId, original.assuntoId, `${q.id}: mesmo assunto da original`);
+    // a reposição fica na prova da original: banca, ano, semestre e tipo iguais. Sem isso ela vira uma "prova" à parte
+    // (foi o que fez a TP 2020.2 aparecer como "2020" na lista das provas do Teste de Progresso).
+    for(const campo of ["banca", "ano", "semestre", "tipoProva", "areaId", "especialidadeId"]){
+      assert.equal(q[campo], original[campo], `${q.id}: ${campo} igual ao da original`);
+    }
     // reposição ativa chega ao aluno: referência lida e datada. Em rascunho (sem a leitura) não chega.
     if(q.status === "ativa") assert.ok(q.referencias && /\d{2}\/\d{2}\/\d{4}/.test(q.referencias), `${q.id}: referência com data`);
     else assert.ok(q.motivoStatus, `${q.id}: reposição fora de "ativa" precisa dizer por quê (motivoStatus)`);

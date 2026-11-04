@@ -12,6 +12,8 @@ window.EscDados.registrarQuestoes("reposicoes-ferro-1", [
   "banca": "Teste de Progresso NIEPAEM",
   "real": false,
   "ano": 2020,
+  "semestre": 2,
+  "tipoProva": "graduacao",
   "reposicaoDe": "q-tp20202-091",
   "areaId": "area-go",
   "especialidadeId": "esp-obstetricia",
