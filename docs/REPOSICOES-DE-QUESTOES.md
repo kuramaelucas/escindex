@@ -2,6 +2,15 @@
 
 Memória de trabalho: o que a plataforma faz, como se escreve uma reposição, o que já foi lido e feito, o que falta e as armadilhas. Escrito em 03/11/2026, ao fim da primeira rodada (PR #118). O estado atual sai de `npm run reposicoes`; este texto não o substitui.
 
+## 0. Antes de criar uma reposição (lista de 30 segundos)
+
+1. `npm run reposicoes -- pendentes [palavra]` e `npm run reposicoes -- <q-id>`: a lista **vem da ferramenta**, nunca de script solto na pasta temporária (uma contagem feita assim errou em mais de 10 questões).
+2. Já tem reposição? O id `<original>-ia` repetido o `conferir` recusa. Está lá numa edição velha (ex.: IC 2018)? **Atualize** a existente em vez de duplicar.
+3. Leia a seção 4 (o que abre) e a 8 (o que ficou para trás e por quê) antes de procurar fonte.
+4. **A reposição herda da original: `banca` (nome idêntico, ex. `UNIFESP-EPM`, `Sírio-Libanês (SP)`), `ano`, `semestre`, `tipoProva`, `areaId`, `especialidadeId`, `assuntoId`.** Teste de Progresso exige `semestre` e `tipoProva:"graduacao"`. Esquecer isso criou a "prova" fantasma *TP 2020* e derrubou o CI em todo commit seguinte (`testes/provas-e-avisos.test.mjs`); agora `testes/reposicoes.test.mjs` confere esses campos. Confira de uma vez, antes de commitar: `node --test testes/reposicoes.test.mjs`.
+5. Molde do começo da questão (só o que muda é o conteúdo): `id: "<id original>-ia"`, `banca`/`ano`/`semestre`/`tipoProva`/`areaId`/`especialidadeId`/`assuntoId` copiados da original, `real:false`, `reposicaoDe`, `status:"ativa"`, `criadoPor:"seed"`, `criadoEm` = hoje, `referencias` com "texto lido em DD/MM/AAAA" e "Conferido em DD/MM/AAAA" na **data em que leu**.
+6. Fecho: `npm run conferir -- --resumo` → `npm run publicar` → `node --test testes/higiene.test.mjs testes/reposicoes.test.mjs` → commit → **olhar o CI do GitHub** (`npm test` não roda onde não há Playwright; um teste de navegador pode falhar por dado que o `conferir` não vê).
+
 ## 1. O que é
 
 Prova real tem questão **anulada** (sem gabarito) e **desatualizada** (gabarito que a diretriz de hoje não sustenta). A **reposição** é uma questão à parte, escrita pela equipe a partir de texto oficial lido, que aponta para a original por `reposicaoDe`.
@@ -111,3 +120,10 @@ Estado em 03/11/2026: **190** anuladas/desatualizadas de prova real, **47** com 
 **Busca no PubMed (ferramenta MCP):** consulta longa ou com `OR` entre siglas devolve zero ou lixo recente; funciona título exato ou 3 a 5 palavras. Confira título e autores em `get_article_metadata` antes de citar e **nunca chute PMCID** (um chute deu artigo de química). Texto grande vem salvo em arquivo: extraia trechos com python e diga na `referencias` que só parte foi lida. Esperar 2 s entre chamadas.
 
 **Ficaram para trás, por falta de fonte lida:** vacinas em atraso (USP 2024 nº 79, Einstein 2025 nº 45: falta a tabela de atualização da IN 2026; prematuro IAMSPE 2022 nº 48); estatística (UNIFESP 2022 nº 52, 2023 nº 38, 2025 nº 43; Einstein 2023 nº 70; Santa Casa 2021 nº 85 e nº 92, 2023 nº 82; TP 2022.2 nº 117: manual de dengue); sangramento pós-menopausa e hiperplasia (FAMERP 2025 nº 26, Santa Casa 2022 nº 43: ESGO/ESHRE/ESGE, ACOG); ESC/AHA (Einstein 2025 nº 11 TEP, IAMSPE 2023 nº 16 endocardite, Einstein 2025 nº 31 PALS); puberdade precoce (AMRIGS 2024 nº 66); Factory Act (FAMERP 2026 nº 5) e a parte de notificação da AMRIGS 2021 nº 89; cirurgia (hérnia Santa Casa 2022 nº 18, queimaduras Santa Casa 2022 nº 13 e UNICAMP 2023 nº 27, osteoporose SES-SP 2023 nº 46, checklist de cirurgia segura, TOCE); AMRIGS 2020 nº 92 (T4 > 30 com TSH normal, sem resposta defensável). **Candidatas com fonte provável (NICE):** abortamento (USP 2023 nº 35, AMRIGS 2021 nº 44), indução do parto (Santa Casa 2022 nº 60).
+
+## 9. Lições de processo (para não repetir)
+
+- **O CI é o árbitro.** Em 03–04/11/2026 todo commit da branch ficou vermelho por um campo faltando numa reposição, e só foi visto ao abrir a PR. Em sessão sem Playwright, conferir o resultado do workflow `Testes` depois do push (não esperar a PR).
+- **Memória fica no repositório, não na conversa.** O que se aprende (fonte que abre, armadilha, lista do que falta) entra nesta página no mesmo commit; a lista de pendentes é calculada por `npm run reposicoes`, sem cópia manual.
+- Duas conversas em paralelo geraram duas ferramentas iguais (`reposicoes` e `reposicoes-pendentes`) e dois guias. Antes de criar ferramenta ou documento, `npm run mapa`/`git log origin/main` e procurar o que já existe.
+- Citação (autores, volume, páginas) só com `get_article_metadata` aberto; nunca de memória.
