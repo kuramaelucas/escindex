@@ -13,6 +13,8 @@ Abrem: `gov.br/saude` (calendário de vacinação, PCDTs, NR-7 e anexos da NR-15
 `/wp-json/wp/v2/search?search=...`, abra a página do artigo e pegue o link do `.pdf`), `ginasthma.org`, `cdc.gov/mmwr`,
 PMC pela ferramenta PubMed (texto grande: salvar em arquivo e extrair trechos). `npm run texto-oficial -- <url> --buscar "regex"`.
 
+Também abrem pelo PMC (ferramenta PubMed): FIGO 2019 de pré-eclâmpsia (PMC6944283), SAGES 2024 (PMC11133165), WSES 2019 e 2020 (PMC6567462, PMC7206757).
+
 Bloqueados: `sbc.org.br`, `scielo.br`, `academic.oup.com` (ESC e Hum Reprod), `ahajournals.org`, `cochrane.org`, `bmj.com`,
 `iris.who.int` (abre vazio), `in.gov.br`, `aafp.org`, `europepmc.org`, `gdt.gradepro.org`, `escardio.org` (só índice).
 

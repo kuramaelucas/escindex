@@ -57,6 +57,7 @@ window.ESC_ARQUIVOS.dados = [
   "reposicoes-clinicas-3",
   "reposicoes-sbd-1",
   "reposicoes-ferro-1",
+  "reposicoes-rastreio-pre-eclampsia-1",
   "reposicoes-acerto-1",
   "reposicoes-colecistite-gestante-1",
   "reposicoes-queimaduras-1",

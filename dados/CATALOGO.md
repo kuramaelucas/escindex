@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12062 questões (9230 reais, 2832 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 163 arquivos.
+**Total:** 12063 questões (9230 reais, 2833 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 164 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -56,6 +56,7 @@
 | `reposicoes-clinicas-3.js` | REPOSIÇÕES — meningite viral (Guia de Vigilância) e trabalho de parto prematuro (NICE) | 2 questões |  |
 | `reposicoes-sbd-1.js` | REPOSIÇÕES — hiperglicemia na gestação (diretriz da SBD) | 2 questões |  |
 | `reposicoes-ferro-1.js` | REPOSIÇÕES — suplementação de ferro na gestação (Programa Nacional) | 1 questões |  |
+| `reposicoes-rastreio-pre-eclampsia-1.js` | REPOSIÇÕES — rastreio e prevenção da pré-eclâmpsia no 1º trimestre (FIGO 2019) | 1 questões |  |
 | `reposicoes-acerto-1.js` | REPOSIÇÕES — projeto ACERTO: jejum pré-operatório abreviado | 1 questões |  |
 | `reposicoes-colecistite-gestante-1.js` | REPOSIÇÕES — colecistite aguda na gestação (diretriz da SAGES 2024) | 1 questões |  |
 | `reposicoes-queimaduras-1.js` | REPOSIÇÕES — queimaduras: coeficiente inicial da reposição volêmica (ABA 2024) | 1 questões |  |

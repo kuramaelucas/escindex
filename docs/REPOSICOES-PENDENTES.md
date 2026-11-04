@@ -3,10 +3,10 @@
 Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que já foi tentado e o estado das fontes está em `docs/REPOSICOES-NOTAS.md`.
 
 ```
-123 anuladas/desatualizadas sem reposição; 67 já têm reposição.
+122 anuladas/desatualizadas sem reposição; 68 já têm reposição.
   area-cm: 37
   area-mps: 23
-  area-go: 23
+  area-go: 22
   area-ped: 20
   area-cg: 20
 ```
@@ -37,7 +37,7 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-fmabc2026-018` (anulada, ass-gestaosaude): Dra. Layse, cirurgia, é contratada por um hospital e recebe por procedimento realizado. Dra. Jackeline trabalh
 - `q-einstein2023-070` (anulada, ass-desenhosestudo): Uma queixa frequente de pacientes que tiveram Covid-19 é de uma alteração cognitiva leve, caracterizada princi
 
-## area-go (23)
+## area-go (22)
 
 - `q-unifesp2024-047` (anulada, ass-camama): Mulher, 42 anos de idade, assintomática e sem antecedentes familiares ou pessoais, sem alterações no exame ma
 - `q-unifesp2025-078` (anulada, ass-abortamento): Mulher 40 anos de idade, IIIG, IP, IIA com o mesmo parceiro. Os abortamentos ocorreram entre 7 e 8 semanas de 
@@ -61,7 +61,6 @@ Gerado por `npm run reposicoes-pendentes -- --md`; não editar à mão. O que j�
 - `q-unicamp2022-063` (anulada, ass-cacolo): Mulher, 23a, procura o Unidade Básica de Saúde para consulta ginecológica de rotina, refere vida sexual ativa 
 - `q-sirio2025-064` (anulada, ass-climaterio): Uma mulher de 40 anos de idade refere ter sido operada há 6 meses por câncer epitelial de ovário estádio I, qu
 - `q-fmabc2021-053` (anulada, ass-trabalhoparto): Mulher, 27 anos de idade, G3P2, idade gestacional 39 semanas, no pronto atendimento com queixa de contrações f
-- `q-einstein2026-049` (anulada, ass-dheg): Quanto ao rastreio de pré-eclampsia, assinale a alternativa correta.
 
 ## area-cm (37)
 
