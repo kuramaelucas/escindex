@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12042 questões (9230 reais, 2812 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 146 arquivos.
+**Total:** 12063 questões (9230 reais, 2833 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 164 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -55,6 +55,24 @@
 | `reposicoes-gina-1.js` | REPOSIÇÕES — asma do adulto e exacerbação (GINA 2026) | 2 questões |  |
 | `reposicoes-clinicas-3.js` | REPOSIÇÕES — meningite viral (Guia de Vigilância) e trabalho de parto prematuro (NICE) | 2 questões |  |
 | `reposicoes-sbd-1.js` | REPOSIÇÕES — hiperglicemia na gestação (diretriz da SBD) | 2 questões |  |
+| `reposicoes-ferro-1.js` | REPOSIÇÕES — suplementação de ferro na gestação (Programa Nacional) | 1 questões |  |
+| `reposicoes-rastreio-pre-eclampsia-1.js` | REPOSIÇÕES — rastreio e prevenção da pré-eclâmpsia no 1º trimestre (FIGO 2019) | 1 questões |  |
+| `reposicoes-acerto-1.js` | REPOSIÇÕES — projeto ACERTO: jejum pré-operatório abreviado | 1 questões |  |
+| `reposicoes-colecistite-gestante-1.js` | REPOSIÇÕES — colecistite aguda na gestação (diretriz da SAGES 2024) | 1 questões |  |
+| `reposicoes-queimaduras-1.js` | REPOSIÇÕES — queimaduras: coeficiente inicial da reposição volêmica (ABA 2024) | 1 questões |  |
+| `reposicoes-pancreatite-1.js` | REPOSIÇÕES — pancreatite aguda: imagem na admissão e tomografia (WSES 2019) | 2 questões |  |
+| `reposicoes-diverticulite-1.js` | REPOSIÇÕES — diverticulite aguda com abscesso (diretriz da WSES 2020) | 1 questões |  |
+| `reposicoes-saude-trabalhador-1.js` | REPOSIÇÕES — saúde do trabalhador: NR-7 (monitoramento biológico) e NR-15 (ruído) | 2 questões |  |
+| `reposicoes-puberdade-1.js` | REPOSIÇÕES — baixa estatura e atraso constitucional do crescimento e da puberdade | 1 questões |  |
+| `reposicoes-vacinas-2.js` | REPOSIÇÕES — vacinas do adolescente (Calendário Nacional de Vacinação 2026) | 1 questões |  |
+| `reposicoes-asma-pediatrica-1.js` | REPOSIÇÕES — asma em criança de 5 anos ou menos (GINA 2026) | 1 questões |  |
+| `reposicoes-bioestatistica-1.js` | REPOSIÇÕES — sensibilidade e especificidade (D-dímero na suspeita de TEP) | 1 questões |  |
+| `reposicoes-has-pediatrica-1.js` | REPOSIÇÕES — pressão arterial na criança (Diretriz Brasileira de HAS 2025) | 1 questões |  |
+| `reposicoes-fa-1.js` | REPOSIÇÕES — fibrilação atrial de início recente (Diretriz Brasileira de FA 2025) | 1 questões |  |
+| `reposicoes-valvopatias-1.js` | REPOSIÇÕES — valvopatias e gestação (Diretriz Brasileira de Valvopatias 2026) | 1 questões |  |
+| `reposicoes-pre-eclampsia-1.js` | REPOSIÇÕES — pré-eclâmpsia pré-termo com parto programado (NICE NG133) | 1 questões |  |
+| `reposicoes-climaterio-1.js` | REPOSIÇÕES — climatério e terapia hormonal (NICE NG23) | 2 questões |  |
+| `reposicoes-contracepcao-1.js` | REPOSIÇÕES — contracepção no pós-parto com aleitamento (critérios de elegibilidade) | 1 questões |  |
 | `reposicoes-vacinas-1.js` | REPOSIÇÕES — vacinas da criança (Instrução Normativa do Calendário 2026) | 3 questões |  |
 | `reposicoes-sbc-1.js` | REPOSIÇÃO — insuficiência cardíaca aguda (Diretriz da SBC) | 1 questões |  |
 | `reposicoes-epidemiologia-1.js` | REPOSIÇÕES — epidemiologia e bioestatística | 5 questões |  |
