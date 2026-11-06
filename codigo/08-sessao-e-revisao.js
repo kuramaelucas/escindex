@@ -653,6 +653,36 @@ document.addEventListener("wheel", function(e){
   e.preventDefault();
   trilho.scrollLeft += e.deltaY;
 }, { passive: false });
+/* Arrastar o trilho com o mouse (no celular o dedo já rola). Só passa a
+   valer depois de 5px de movimento e, se houve arrasto, o clique que o mouse
+   solta em cima de um quadradinho é engolido: senão arrastar abriria a questão. */
+(function(){
+  let trilho = null, x0 = 0, s0 = 0, moveu = false;
+  document.addEventListener("mousedown", function(e){
+    if(e.button !== 0) return;
+    const t = e.target.closest && e.target.closest(".barra-questoes:not(.expandida) .barra-questoes-trilho");
+    if(!t) return;
+    trilho = t; x0 = e.clientX; s0 = t.scrollLeft; moveu = false;
+  });
+  document.addEventListener("mousemove", function(e){
+    if(!trilho) return;
+    const dx = e.clientX - x0;
+    if(!moveu && Math.abs(dx) < 5) return;
+    if(!moveu){ moveu = true; trilho.style.scrollBehavior = "auto"; trilho.classList.add("arrastando-trilho"); }
+    trilho.scrollLeft = s0 - dx;
+    e.preventDefault();
+  });
+  document.addEventListener("mouseup", function(){
+    if(!trilho) return;
+    const t = trilho; trilho = null;
+    t.style.scrollBehavior = ""; t.classList.remove("arrastando-trilho");
+    if(moveu){
+      const bloquear = function(ev){ ev.stopPropagation(); ev.preventDefault(); };
+      document.addEventListener("click", bloquear, true);
+      setTimeout(()=>document.removeEventListener("click", bloquear, true), 0);
+    }
+  });
+})();
 /* No trilho de uma linha, a questão atual fica à vista, no meio. Rola só o
    trilho (scrollLeft), nunca a página. */
 function centralizarBarraDeQuestoes(){
@@ -1017,9 +1047,9 @@ function renderQuestionCard(q, opts){
     } else {
     html += opts.selecionada ? `
       <div class="confidence-row">
-        <button class="confidence-btn" onclick="confirmarResposta('certeza')">Certeza <span class="muted text-xs">(1)</span></button>
-        <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida <span class="muted text-xs">(2)</span></button>
-        <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute <span class="muted text-xs">(3)</span></button>
+        <button class="confidence-btn" onclick="confirmarResposta('certeza')">Certeza <span class="muted text-xs tecla-atalho">(1)</span></button>
+        <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida <span class="muted text-xs tecla-atalho">(2)</span></button>
+        <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute <span class="muted text-xs tecla-atalho">(3)</span></button>
       </div>
       <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última confiança.</div>` : "";
     html += dicaRiscar(opts.selecionada ? "" : "Selecione uma alternativa para continuar. ");

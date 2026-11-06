@@ -521,7 +521,7 @@ function renderCardMeusEnvios(){
   const envios = Object.entries((db.nuvem && db.nuvem.meusEnvios) || {}).filter(([, e]) => e.autorId === eu.id)
     .map(([id, e]) => Object.assign({ id }, e)).sort((a, b) => (b.em || "").localeCompare(a.em || ""));
   const soAqui = questoesSoNesteNavegador();
-  const naFila = ((db.nuvem && db.nuvem.globaisPendentes) || []).filter(p => p.tabela === "questoes_enviadas").length;
+  const naFila = !nuvemConectado() ? 0 : ((db.nuvem && db.nuvem.globaisPendentes) || []).filter(p => p.tabela === "questoes_enviadas").length;
   if(!envios.length && !soAqui.length && !naFila) return "";
   const conta = st => envios.filter(e => e.status === st).length;
   const rotulo = { pendente: ["badge-amber", "aguardando a equipe"], aprovada: ["badge-accent", "aprovada — no banco de todos"], recusada: ["badge-danger", "recusada"], removida: ["badge-muted", "removida do banco"] };

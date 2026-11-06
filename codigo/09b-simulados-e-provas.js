@@ -104,6 +104,11 @@ function filtroHistoricoNotas(){
   if(!state.filtroRota.historicoNotas) state.filtroRota.historicoNotas = {tipo:"todos", ordem:"data", dir:"desc"};
   return state.filtroRota.historicoNotas;
 }
+function mudarNomeHistoricoNotas(nome){
+  filtroHistoricoNotas().nome = nome;
+  if(state.filtroRota.rolagem) delete state.filtroRota.rolagem["provas-historico"];
+  render();
+}
 function mudarFiltroHistoricoNotas(tipo){
   filtroHistoricoNotas().tipo = tipo;
   if(state.filtroRota.rolagem) delete state.filtroRota.rolagem["provas-historico"];
@@ -121,7 +126,10 @@ function htmlHistoricoDeNotas(u){
   const todos = db.resultadosSimulados.filter(r=>r.usuarioId===u.id);
   const ehSimulado = r => !!r.simuladoId;
   const nSim = todos.filter(ehSimulado).length, nProva = todos.length - nSim;
+  const nomes = [...new Set(todos.map(r=>r.titulo||"—"))].sort((a,b)=>a.localeCompare(b,"pt-BR",{numeric:true}));
+  if(f.nome && !nomes.includes(f.nome)) f.nome = "";
   const lista = todos.filter(r=> f.tipo==="simulados" ? ehSimulado(r) : f.tipo==="provas" ? !ehSimulado(r) : true)
+    .filter(r=> !f.nome || (r.titulo||"—")===f.nome)
     .sort((a,b)=>{
       const c = f.ordem==="nota" ? (a.nota-b.nota) || (a.data||"").localeCompare(b.data||"") : (a.data||"").localeCompare(b.data||"") || (a.nota-b.nota);
       return f.dir==="desc" ? -c : c;
@@ -136,6 +144,7 @@ function htmlHistoricoDeNotas(u){
     <button class="pill ${f.tipo==="todos"?"active":""}" onclick="mudarFiltroHistoricoNotas('todos')">Todos (${todos.length})</button>
     <button class="pill ${f.tipo==="simulados"?"active":""}" onclick="mudarFiltroHistoricoNotas('simulados')">Só simulados (${nSim})</button>
     <button class="pill ${f.tipo==="provas"?"active":""}" onclick="mudarFiltroHistoricoNotas('provas')">Só provas (${nProva})</button>
+    <select class="input" aria-label="Filtrar por nome do simulado" onchange="mudarNomeHistoricoNotas(this.value)"><option value="">Todos os nomes</option>${nomes.map(n=>`<option value="${escapeHtml(n)}"${f.nome===n?" selected":""}>${escapeHtml(n)}</option>`).join("")}</select>
   </div>
   ${lista.length ? `<div class="card">
     <div class="card-title mb-1">Suas notas${media!==null ? ` <span class="text-sm muted peso-400">· ${lista.length} feita(s) · média ${media}%</span>` : ""}</div>
@@ -558,6 +567,17 @@ function pedirFinalizarSimulado(){
 function finalizarSimulado(){
   const sessao = state.sessaoAtual; const u = usuarioAtual();
   if(sessao.finalizado) return;
+  // Trava e limpa o "em andamento" ANTES de qualquer conta: se algo abaixo
+  // falhar, o simulado não fica meio terminado (sem finalizar, pedindo para
+  // finalizar de novo e gravando o mesmo resultado duas vezes). Também evita
+  // que o salvamento por visibilitychange/pagehide recrie a cópia guardada.
+  sessao.finalizado = true;
+  const chaveEmAndamento = chaveDoSimuladoEmAndamento(sessao);
+  if(db.simuladosEmAndamento && (db.simuladosEmAndamento[u.id] || {})[chaveEmAndamento]){
+    delete db.simuladosEmAndamento[u.id][chaveEmAndamento];
+    nuvemRegistrar({usuarioId:u.id, simuladoId:chaveEmAndamento, simuladoEmAndamento:"apagar"});
+  }
+  if(sessao.resultadoId) return;   // já gravado: nunca duplica
   retomarCronometroSimulado();   // fechar a prova com o relógio parado contaria o tempo fora
   acumularTempoQuestaoSimulado();
   sessao.fimMs = Date.now();
@@ -577,13 +597,7 @@ function finalizarSimulado(){
   sessao.resultadoId = resultadoId;   // a página de resultado acha, por ele, a tentativa de antes para comparar
   db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:contaveis, semClassificacao:!!sessao.semClassificacao, versaoProva:sessao.versaoProva||"original", data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}, confiancas:{...(sessao.confiancas||{})}});
   nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
-  const chaveEmAndamento = chaveDoSimuladoEmAndamento(sessao);
-  if(db.simuladosEmAndamento && (db.simuladosEmAndamento[u.id] || {})[chaveEmAndamento]){
-    delete db.simuladosEmAndamento[u.id][chaveEmAndamento];
-    nuvemRegistrar({usuarioId:u.id, simuladoId:chaveEmAndamento, simuladoEmAndamento:"apagar"});
-  }
   saveState();
-  sessao.finalizado = true;
   pararCronometro();
   render();
 }
@@ -650,7 +664,7 @@ function renderSimuladoAtivo(){
     ${renderQuestionCard(q, emModoAprendizado ? {selecionada:jaRespondeuEssa ? respostaAtual : escolhaPendente, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
   </div>
   ${emModoAprendizado && !jaRespondeuEssa ? `<div class="confidence-row">
-    ${Object.keys(ROTULOS_CONFIANCA).map((c,i)=>`<button class="confidence-btn" onclick="confirmarRespostaSimulado('${c}')" ${escolhaPendente?"":"disabled"}>${ROTULOS_CONFIANCA[c]} <span class="muted text-xs">(${i+1})</span></button>`).join("")}
+    ${Object.keys(ROTULOS_CONFIANCA).map((c,i)=>`<button class="confidence-btn" onclick="confirmarRespostaSimulado('${c}')" ${escolhaPendente?"":"disabled"}>${ROTULOS_CONFIANCA[c]} <span class="muted text-xs tecla-atalho">(${i+1})</span></button>`).join("")}
   </div>
   <div class="text-xs muted mt-1">${escolhaPendente?"Escolha a confiança para confirmar. Depois não dá para trocar: a explicação aparece e a resposta fica registrada. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última.":"Escolha uma alternativa e diga a confiança para ver a explicação."}</div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>

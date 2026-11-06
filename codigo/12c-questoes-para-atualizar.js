@@ -135,7 +135,8 @@ function renderAtualizarQuestoes(){
   const f = filtrosAtualizar();
   const todas = questoesParaAtualizar();
   const corrigidas = questoesComCorrecao();
-  const naFila = ((db.nuvem && db.nuvem.globaisPendentes) || []).filter(p => p.tabela === "correcoes_questoes").length;
+  // sem nuvem conectada nada está "subindo": o aviso ficava para sempre na tela
+  const naFila = nuvemConectado() ? ((db.nuvem && db.nuvem.globaisPendentes) || []).filter(p => p.tabela === "correcoes_questoes").length : 0;
   const conta = tipo => todas.filter(x => x.motivos.some(m => m.tipo === tipo)).length;
   const bancas = [...new Set(todas.map(x => x.q.banca))].sort();
   let lista = todas;
