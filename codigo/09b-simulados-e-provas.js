@@ -666,7 +666,7 @@ function renderSimuladoAtivo(){
   ${emModoAprendizado && !jaRespondeuEssa ? `<div class="confidence-row">
     ${Object.keys(ROTULOS_CONFIANCA).map((c,i)=>`<button class="confidence-btn" onclick="confirmarRespostaSimulado('${c}')" ${escolhaPendente?"":"disabled"}>${ROTULOS_CONFIANCA[c]} <span class="muted text-xs tecla-atalho">(${i+1})</span></button>`).join("")}
   </div>
-  <div class="text-xs muted mt-1">${escolhaPendente?"Escolha a confiança para confirmar. Depois não dá para trocar: a explicação aparece e a resposta fica registrada. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última.":"Escolha uma alternativa e diga a confiança para ver a explicação."}</div>` : ""}
+  <div class="text-xs muted mt-1">${escolhaPendente?"Escolha a confiança para confirmar. Depois não dá para trocar: a explicação aparece e a resposta fica registrada. <span class="tecla-atalho">Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última.</span>":"Escolha uma alternativa e diga a confiança para ver a explicação."}</div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
   <div class="flex justify-between mt-2">
     <button class="btn btn-secondary" onclick="irQuestaoSimulado(-1)" ${sessao.indiceAtual===0?"disabled":""}>Anterior</button>
@@ -932,7 +932,8 @@ function renderResultadoSimulado(){
   };
   return `<div class="coluna-resultado">
   <div class="card">
-    <h2>Resultado do simulado</h2>
+    <h2>${escapeHtml(sessao.titulo || "Resultado do simulado")}</h2>
+    <div class="text-xs muted">Resultado</div>
     <div class="flex items-center gap-2 quebra mt-1">
       <div class="stat-tile"><div class="stat-value">${nota}%</div><div class="stat-label">${acertos} de ${total} corretas</div></div>
       ${previa ? `<div class="stat-tile anterior" title="Sua tentativa de ${formatDataBR(previa.data)}"><div class="stat-value">${previa.nota}%</div><div class="stat-label">antes · ${previa.acertos} de ${previa.total}${nota!==previa.nota ? ` · <strong>${nota>previa.nota?"+":""}${nota-previa.nota} pts</strong>` : ""}</div></div>` : ""}
