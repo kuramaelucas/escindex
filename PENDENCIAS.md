@@ -28,9 +28,9 @@ Entraram em 05/10/2026 as cinco provas da FAMERP (385 questões). Pendências:
 
 **AMRIGS 2020** (edital definitivo; anuladas 4, 19, 20, 31, 39, 49, 53, 55, 57, 75, 87 e 92): discutíveis a nº 13 (a aspirina como "único" antitrombótico), 14, 38 (o sinal de Dunphy também é de apendicite) e 61. Os motivos das anulações não constam do edital, e as explicações das anuladas dizem isso.
 
-### USP-SP (FMUSP) 2022 a 2026: diretrizes a atualizar e letras a conferir
+### USP e UNIFESP: referências e diretrizes a atualizar
 
-A revisão no padrão novo (mecanismo, epidemiologia e referência datada) está completa nas 580 questões (08/11/2026), mas **nenhum texto de diretriz foi reaberto**: todas seguem na fila de `npm run referencias-a-conferir`. `docs/REVISAO-USP.md` traz, por prova, a tabela de diretrizes a atualizar (edição citada × vigente, com o domínio que bloqueia a leitura) e as letras a conferir: `q-usp2022-089` e `-100`, `q-usp2023-052`, `q-usp2024-089` e `-103`, `q-usp2025-089` e `-097`, `q-usp2026-048`, `-057`, `-107` e `-117`. PDFs que destravam mais questões: AHA/ASA 2026 (AVC), AHA 2025 (RCP), BTS 2023 e Portaria SAES/SECTICS 13/2025 (colo do útero).
+As 580 questões da USP 2022–2026 e as 582 da UNIFESP estão no padrão novo, mas o texto das diretrizes quase não foi lido (USP: nenhum; UNIFESP: 14). Todas as pendências de referência dessas provas — edições superadas, diretrizes fora da tabela de edições, PDFs a enviar e letras de gabarito a conferir — estão em **`docs/PENDENCIAS-DE-REFERENCIAS.md`**.
 
 ### Teste de Progresso 2025/2 e 2026/1: questões de gabarito discutível e cartões dos assuntos novos
 
