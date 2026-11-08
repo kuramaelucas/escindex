@@ -134,7 +134,7 @@ Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/PADR
 
 Coisas que só a pessoa pode fazer e que ficaram esperando. **A partir da data de cada aviso, abra a conversa lembrando dele**, uma vez por conversa, em uma ou duas frases, sem esperar o pedido. Quando o aviso for resolvido, apague-o daqui (e a pendência correspondente no topo do `RESUMO-PROJETO-ESC.md`) no mesmo commit.
 
-- **A partir de 09/11/2026 — rodar o SQL da trilha de Formado(a) no Supabase.** A migração (coluna `perfis.trilha` + `painel_turma()` recriada, projeto "Esc Project", id `jznocvgmcgiovgcwhrvi`) foi tentada em 08/11/2026 pelo conector, mas expirou sem resposta à confirmação; **não se sabe se foi aplicada**. Antes de avisar, confira só lendo (nada de alterar): com a ferramenta `execute_sql` do conector Supabase, `select count(*) from information_schema.columns where table_schema='public' and table_name='perfis' and column_name='trilha'` e o retorno de `painel_turma()` (`pg_get_function_result`). Se a coluna existir e a função devolver `trilha`, está feito: apague este aviso. Se não, diga à pessoa que falta rodar e como: SQL Editor do Supabase > colar o `nuvem/esquema.sql` inteiro > Run (idempotente; só o trecho da trilha está em `nuvem/esquema.sql`, busque por `trilha`), ou aprovar a migração quando o conector perguntar. Sem isso, os assuntos pulados na trilha valem só no aparelho e a seção "Trilha dos Formados" não aparece no Painel da Turma.
+- *(nenhum no momento)*
 
 ## Documentos
 
