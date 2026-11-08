@@ -751,3 +751,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 **Avaliação Discente UNIFESP 2026.2, 47 explicações curtas (08/11/2026).** Acrescentados fisiopatologia e epidemiologia qualitativas ao fim da explicação e nota datada às referências, preservando o texto existente. Fecha as explicações curtas (< 900 caracteres) das seis provas da UNIFESP.
 
 **UNIFESP 2024 completa no padrão novo (08/11/2026).** As 95 explicações longas receberam fisiopatologia e epidemiologia qualitativas e a nota datada nas referências, sem reescrever o texto existente. Com as curtas e as lidas em diretriz, as 97 questões ativas da prova de 2024 estão no padrão.
+
+**UNIFESP 2025 completa no padrão novo (08/11/2026).** As 91 explicações longas receberam fisiopatologia e epidemiologia qualitativas e nota datada nas referências, sem reescrever o texto existente. As 93 questões ativas da prova estão no padrão.
