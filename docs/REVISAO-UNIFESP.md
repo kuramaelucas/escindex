@@ -73,23 +73,7 @@ O que as notas datadas dizem: onde o texto da diretriz foi lido (SSC 2026, Sepsi
 
 ## Pendente
 
-- **Rastreamento do colo do útero** (`q-unifesp2024-048`, `q-unifesp2025-067`): o texto da Portaria Conjunta SAES/SECTICS nº 13/2025 não abre aqui (cfbm.gov.br, cofen.gov.br e inca recusam). As duas explicações citam as diretrizes de 2016 (citologia aos 25 anos, LSIL em < 25 anos repete em 3 anos; histerectomia com NIC 3 prévio) e podem estar superadas pelo HPV-DNA. Enviar o PDF da portaria.
-- `q-unifesp2024-078`: confirmar no texto oficial a alternativa B (estados e municípios acrescentam agravos) e o papel do Sinan; ler as Portarias 6.734/2025 e 11.211/2026.
-- `q-unifesp2026-083`: Manual de Normas Técnicas da Triagem Neonatal não aberto.
-- `q-unifesp2024-029`: valor de referência do descenso noturno na diretriz.
-
-- `q-unifesp2023-019`: o texto primário do Sepsis-3 (Singer, JAMA 2016) não abriu; a conferência usou a apresentação da ACEP que o reproduz. Reler no JAMA quando o domínio liberar.
-- `q-udisc20262-004`: diretrizes da SBPT para DPOC não relidas.
-- `q-unifesp2023-069`: Box 11-4 do GINA (dispositivo na criança) não relido linha a linha.
-- `q-unifesp2022-086`: o gabarito (dobrar o corticoide inalatório) reflete esquema anterior ao GINA atual, que prefere associar formoterol. Questão real; a equipe decide se marca como desatualizada.
-- `q-unifesp2026-040`: o enunciado não traz eosinófilos nem exacerbações; gabarito mantido.
-- Bloqueio (domínio não abre nesta sessão): AVC (AHA/ASA 2026), RCP (AHA 2025), urolitíase (EAU), NCCN (login) e BTS. Questões: `q-unifesp2022-020`, `q-unifesp2023-053`, `q-unifesp2025-023`, `q-unifesp2023-095`, `q-udisc20262-076`, `-077`, `-078` e as 8 do NCCN da lista abaixo.
-- Nada mais resta na faixa de explicações sem mecanismo; resta a fila de conferência de referências da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
-
-## Bloqueios encontrados em 08/11/2026
-
-- **SSC 2026**: o Springer recusa (403); resolvido com o PDF enviado pela equipe. GOLD e GINA 2026 abrem em goldcopd.org e ginasthma.org.
-- Os mesmos domínios bloqueados do guia da skill (ahajournals, EAU/CloudFront, NCCN com login) valem para as questões de AVC, RCP, urolitíase e oncologia.
+Tudo o que falta (rastreamento do colo do útero, letras a conferir, domínios bloqueados e PDFs a enviar) está consolidado em **`docs/PENDENCIAS-DE-REFERENCIAS.md`**, junto com as pendências da USP. Este arquivo guarda só o histórico da revisão.
 
 ## Fila de edição superada
 

@@ -767,3 +767,17 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 **UNIFESP 2026 completa no padrão novo (08/11/2026).** As 94 explicações longas receberam fisiopatologia e epidemiologia qualitativas e nota datada nas referências, sem reescrever o texto existente. As 97 questões ativas da prova estão no padrão.
 
 **Fechamento da revisão da UNIFESP no padrão novo (08/11/2026).** Discente 2026.2 (51) e as 39 explicações longas de 2022 e 2023 que faltavam: fisiopatologia e epidemiologia qualitativas e nota datada nas referências. As 582 questões ativas das seis provas estão no padrão (0 referências sem data; 13 com edição anterior de diretriz de texto não aberto). Fila de PDFs e pendências em `docs/REVISAO-UNIFESP.md`.
+
+**USP 2022 no padrão novo (08/11/2026).** As 100 questões da prova da USP-SP 2022 receberam fisiopatologia, epidemiologia e nota datada em `referencias` (gabaritos e textos da prova intactos; nenhum texto de diretriz foi reaberto, então todas seguem na fila de conferência). Criado `docs/REVISAO-USP.md` com a medição das cinco provas, a lista de diretrizes a atualizar (edição citada × vigente) e as duas letras a conferir; ponteiro em `PENDENCIAS.md`.
+
+**USP 2023 no padrão novo (08/11/2026).** As 120 questões (3 anuladas) receberam fisiopatologia, epidemiologia e nota datada em `referencias`; gabaritos e textos intactos. `docs/REVISAO-USP.md` ganhou a lista de diretrizes a atualizar desta prova e uma letra a conferir (`q-usp2023-052`).
+
+**USP 2024 no padrão novo (08/11/2026).** As 120 questões (3 anuladas) receberam fisiopatologia, epidemiologia e nota datada em `referencias`; gabaritos e textos intactos. `docs/REVISAO-USP.md` ganhou as diretrizes a atualizar desta prova e duas letras a conferir (`q-usp2024-103` e `-089`).
+
+**USP 2025 e 2026 no padrão novo; fecha a revisão da USP (08/11/2026).** As 240 questões (2 anuladas em 2026) receberam fisiopatologia, epidemiologia e nota datada em `referencias`; com isso as 580 questões das provas da USP 2022 a 2026 estão no padrão. `docs/REVISAO-USP.md` traz as diretrizes a atualizar por prova e as letras a conferir (`q-usp2025-089`, `-097`, `q-usp2026-107`, `-117`, `-048`, `-057`). Nenhum texto de diretriz foi reaberto: todas continuam na fila de `npm run referencias-a-conferir`.
+
+**Consolidação das pendências de referência (08/11/2026).** Criado `docs/PENDENCIAS-DE-REFERENCIAS.md` com as pendências da USP e da UNIFESP num só arquivo (edições superadas por diretriz, diretrizes fora da tabela de edições, PDFs a enviar, letras a conferir); `REVISAO-USP.md` e `REVISAO-UNIFESP.md` passam a guardar só o histórico.
+
+**CI fixado em ubuntu-24.04 (08/11/2026).** O `ubuntu-latest` do GitHub passou a ser Ubuntu 26.04, onde o Playwright 1.56.1 não instala o Chromium (`Playwright does not support chromium on ubuntu26.04-x64`); os jobs de `.github/workflows/testes.yml` ficam em `ubuntu-24.04` até o Playwright acompanhar.
+
+**Esquema da nuvem rodado (08/11/2026).** As colunas `perfis.tamanho_sessao` e `perfis.regua_formado` (cronograma de Formados) foram criadas no projeto Esc do Supabase; `npm run testar-sql` passou antes. O restante do `esquema.sql` já estava aplicado.

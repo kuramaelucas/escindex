@@ -14,7 +14,7 @@ jobs:
   # O conferidor é rápido e não precisa de navegador: roda à parte, e uma
   # falha de conteúdo aparece em segundos, sem esperar a suíte inteira.
   dados:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
   # próprio servidor), então a ordem entre arquivos não importa. fail-fast
   # desligado para ver todas as falhas de uma vez, não só a primeira.
   testes:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -54,7 +54,7 @@ jobs:
   # de novo por cima (tem de poder ser repetido) e as regras de segurança
   # (quem lê e grava o quê) se comportam como o arquivo promete.
   esquema-da-nuvem:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     services:
       postgres:
