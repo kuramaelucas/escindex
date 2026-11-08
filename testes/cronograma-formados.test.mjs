@@ -190,3 +190,63 @@ test("Formado(a): assuntos com menos de 5 questões viram miscelânea rara, sem 
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("Trilha: reabre assunto parado ou com acerto recente baixo, pular respeita pré-requisito, projeção até a prova e painel somado", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)"; u.provaAlvoData = somarDias(hojeISO(), 100);
+      const R = (a, q, c, d) => ({ id: uid("r"), usuarioId: u.id, questaoId: q, assuntoId: a, correta: c, data: d, respondidaEm: d + "T10:00:00Z" });
+      const t0 = trilhaDeFormado(u.id);
+      const exige = SEED_TRILHA_FORMADOS.exige;
+      const naoLiberado = t0.itens.find(i => !i.liberado && !i.consolidado);
+      pularAssuntoDaTrilha(naoLiberado.id);
+      const recusouNaoLiberado = !(document.querySelector(".modal") && /Pular este assunto/.test(document.querySelector(".modal").innerText));
+      const base = t0.emEstudo[0].id;                                   // assunto livre de pré-requisito
+      const dependente = Object.keys(exige).find(k => exige[k].includes(base) && t0.itens.find(i => i.id === k && !i.misc && !i.sem));
+      // 1) consolida a base há 90 dias: a regra diz "consolidado", mas o tempo reabre
+      for(let i = 0; i < 70; i++) db.respostas.push(R(base, "v" + i, true, somarDias(hojeISO(), -90)));
+      const t1 = trilhaDeFormado(u.id), itBase = t1.itens.find(i => i.id === base);
+      const reabriuPorTempo = !!itBase.reabertura && /dias/.test(itBase.reabertura) && t1.emEstudo[0].id === base;
+      const dependenteLiberado = dependente ? !t1.itens.find(i => i.id === dependente).esperaPor.length : true;   // reabrir a base não trava quem depende dela
+      // acerto recente baixo reabre também
+      db.respostas = db.respostas.filter(x => x.assuntoId !== base);
+      for(let i = 0; i < 60; i++) db.respostas.push(R(base, "w" + i, true, somarDias(hojeISO(), -2)));
+      for(let i = 0; i < 5; i++) db.respostas.push(R(base, "e" + i, false, hojeISO()));
+      const motivoRecente = motivoDeReaberturaFormado(_estatisticaDosAssuntosFormado(u.id)[base], true);
+      // 2) pular: só assunto liberado; o dependente passa a ficar liberado
+      db.respostas = db.respostas.filter(x => x.assuntoId !== base);
+      confirmarPuloDaTrilha(base);
+      const t2 = trilhaDeFormado(u.id);
+      const pulou = t2.pulados.some(i => i.id === base) && !t2.emEstudo.some(i => i.id === base);
+      const depLiberou = dependente ? !t2.itens.find(i => i.id === dependente).esperaPor.length : true;
+      const naoContaComoConsolidado = t2.consolidados === t0.consolidados;
+      const perfil = linhaDoPerfil(u);
+      // 3) projeção
+      for(let i = 0; i < 56; i++) db.respostas.push(R(t2.emEstudo[0].id, "p" + i, i % 2 === 0, somarDias(hojeISO(), -(i % 28))));
+      const proj = projecaoDaTrilha(u, trilhaDeFormado(u.id));
+      abrirTrilhaDeFormado();
+      const tela = document.querySelector(".modal").innerText;
+      // 6) painel
+      const resumo = resumoDaTrilha(u);
+      const tres = [1, 2, 3].map(() => ({ trilha: resumo }));
+      return { reabriuPorTempo, dependenteLiberado, motivoRecente, recusouNaoLiberado, pulou, depLiberou, naoContaComoConsolidado,
+        perfilTrilha: perfil.trilha && Object.keys(perfil.trilha.pulados), perfilResumo: Object.keys(perfil.trilha.resumo),
+        proj: proj && { ritmo: proj.ritmo > 1, pos: !!proj.alcanca || proj.orcamento >= 0 }, tela,
+        painel: htmlTrilhaDaTurma(tres), painelPoucos: htmlTrilhaDaTurma(tres.slice(0, 2)), temAcerto: JSON.stringify(resumo).includes("correta") };
+    });
+    assert.ok(r.reabriuPorTempo, "90 dias parado reabre e vai para o início da fila");
+    assert.ok(r.dependenteLiberado, "reabrir a base não trava quem depende dela");
+    assert.match(r.motivoRecente, /acerto nas últimas 10 caiu/);
+    assert.ok(r.recusouNaoLiberado, "não se pula assunto cujos pré-requisitos não foram vencidos");
+    assert.ok(r.pulou); assert.ok(r.depLiberou); assert.ok(r.naoContaComoConsolidado);
+    assert.ok(r.perfilTrilha.length === 1 && r.perfilResumo.includes("emEstudo"));
+    assert.ok(r.proj.ritmo);
+    assert.match(r.tela, /Até sua prova/); assert.match(r.tela, /questões por dia/); assert.match(r.tela, /já domino, pular/); assert.match(r.tela, /Que você pulou/);
+    assert.match(r.painel, /Trilha dos Formados/); assert.match(r.painel, /posição mediana/);
+    assert.match(r.painelPoucos, /Menos de 3 formados/);
+    assert.equal(r.temAcerto, false, "o resumo não carrega taxa de acerto");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

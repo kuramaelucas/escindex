@@ -66,7 +66,7 @@ function normalizarPessoaDaNuvem(l){
     respostas: +l.respostas || 0, r7: +l.respostas_7d || 0, r30: +l.respostas_30d || 0,
     dias30: +l.dias_ativos_30d || 0, ultimaResposta: l.ultima_resposta || null,
     cartoes: +l.cartoes_total || 0, cartoes30: +l.cartoes_30d || 0, ultimoCartao: l.ultimo_cartao || null,
-    simulados: +l.simulados || 0,
+    simulados: +l.simulados || 0, trilha: l.trilha || null,
   };
 }
 /* Uma linha de acerto somado. `ano` nulo = todos os anos; `grupoId` nulo =
@@ -94,6 +94,7 @@ function painelTurmaLocal(){
       cartoes30: Object.entries(dias).filter(([d]) => d > d30).reduce((s, [, n]) => s + (+n || 0), 0),
       ultimoCartao: Object.keys(dias).sort().pop() || null,
       simulados: db.resultadosSimulados.filter(r => r.usuarioId === u.id).length,
+      trilha: resumoDaTrilha(u),
     };
   });
   // o acerto, só dos alunos aprovados e somado: (ano, turma), ano e todos os anos
@@ -342,6 +343,8 @@ function renderPainelDaTurma(){
     </div>
   </details>` : ""}
 
+  ${naEquipe ? "" : htmlTrilhaDaTurma(aprovados)}
+
   ${naEquipe ? "" : `<div class="grid grid-2 mb-2">
     <div class="card">
       <div class="card-title">Semana a semana</div>
@@ -393,6 +396,40 @@ function renderPainelDaTurma(){
     </table></div>
     ${controlesPaginacao(p, naEquipe ? "pessoa(s)" : "aluno(s)")}
     <p class="text-xs muted mt-2">"Condição": <em>em dia</em> (usou nos últimos 7 dias), <em>parado</em> (7 dias ou mais sem responder questão nem revisar cartão) ou <em>nunca estudou</em>. ${naEquipe ? "A equipe não tem condição: o painel só mostra o quanto usa." : ""} O painel mostra uso; a taxa de acerto de cada pessoa é só dela, em Meu Desempenho.</p>
+    </div>
+  </details>`;
+}
+/* A trilha dos Formados (05e), SOMADA: nunca o nome nem o acerto de ninguém. Cada
+   número vem de `trilha` (o resumo que o próprio aluno sobe) e um assunto só
+   aparece se pelo menos `minAlunosParaMedia` pessoas o têm, como nas médias. Mostra
+   onde a turma está na fila e em que assuntos ela mais se concentra, trava, reabre e pula. */
+function htmlTrilhaDaTurma(alunos){
+  const com = alunos.filter(a => a.trilha && a.trilha.total);
+  if(!com.length) return "";
+  const min = CONFIG.minAlunosParaMedia;
+  if(com.length < min) return `<div class="card mb-2"><div class="card-title">Trilha dos Formados</div><p class="text-sm muted">Menos de ${min} formados usando a trilha neste recorte: os números só aparecem a partir de ${min}, para ninguém ser identificado.</p></div>`;
+  const conta = campo => { const m = {}; com.forEach(a => (a.trilha[campo] || []).forEach(id => { m[id] = (m[id] || 0) + 1; })); return Object.entries(m).filter(([, n]) => n >= min).sort((x, y) => y[1] - x[1]).slice(0, 8); };
+  const lista = campo => { const l = conta(campo); return l.length ? `<ol class="text-sm">${l.map(([id, n]) => `<li>${escapeHtml(nomeAssunto(id))} <span class="text-xs muted">· ${n} formado(s)</span></li>`).join("")}</ol>` : `<p class="text-sm muted">Nenhum assunto com ${min} ou mais formados.</p>`; };
+  const posicoes = com.map(a => a.trilha.posicao || 0).sort((x, y) => x - y), mediana = posicoes[Math.floor(posicoes.length / 2)];
+  const consolidados = com.map(a => a.trilha.consolidados || 0).sort((x, y) => x - y);
+  const total = Math.max(...com.map(a => a.trilha.total));
+  const ondas = {}; com.forEach(a => { const o = Math.floor(((a.trilha.posicao || 1) - 1) / 30) + 1; ondas[o] = (ondas[o] || 0) + 1; });
+  return `<details class="secao-expansivel" ${secaoAbertaPainel("trilha")?"open":""} ontoggle="guardarSecaoPainel('trilha', this.open)">
+    <summary><span class="card-title sem-m">Trilha dos Formados</span><span class="text-xs muted">${com.length} formado(s)</span></summary>
+    <div class="secao-corpo">
+    <p class="text-xs muted">Onde os formados estão na fila de assuntos (os que mais caem nas provas, na ordem em que um constrói o outro). Só somas: nenhum nome, nenhuma taxa de acerto. Quem vê: professores e administradores com acesso à Turma.</p>
+    <div class="grid grid-3 compacto mt-1">
+      <div class="stat-tile"><div class="stat-value">${mediana}</div><div class="stat-label">posição mediana na fila (de ${total})</div></div>
+      <div class="stat-tile"><div class="stat-value">${consolidados[Math.floor(consolidados.length / 2)]}</div><div class="stat-label">assuntos consolidados (mediana)</div></div>
+      <div class="stat-tile"><div class="stat-value">${com.reduce((s, a) => s + (a.trilha.pulados || []).length, 0)}</div><div class="stat-label">pulos de assunto (“já domino”)</div></div>
+    </div>
+    <p class="text-xs muted mt-2">Formados por onda da fila (30 assuntos cada): ${Object.keys(ondas).sort((x, y) => x - y).map(o => `onda ${o}: <strong>${ondas[o]}</strong>`).join(" · ")}</p>
+    <div class="grid grid-2 mt-2">
+      <div><h4>Onde mais gente está estudando</h4>${lista("emEstudo")}</div>
+      <div><h4>Onde mais gente trava (20+ respostas sem consolidar)</h4>${lista("travados")}</div>
+      <div><h4>O que mais volta para revisão</h4>${lista("reabertos")}</div>
+      <div><h4>O que mais é pulado (“já domino”)</h4>${lista("pulados")}</div>
+    </div>
     </div>
   </details>`;
 }

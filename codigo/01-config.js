@@ -101,6 +101,10 @@ const CONFIG = {
     minimoParaConsolidar: 5,                    // piso de questões feitas num assunto pequeno (nunca consolida com 1 questão)
     // assunto com menos de `minimoPorAssunto` questões não tem fila própria: suas questões formam, só na hora de montar a sessão, uma miscelânea que entra com `chance` por vaga (1 a cada 100)
     miscelania: { minimoPorAssunto: 5, chance: 0.01 },
+    // assunto consolidado volta à fila (05e) se faz `diasSemRevisar` dias sem uma resposta nele ou se o acerto das últimas 10 cai abaixo de `acertoParaReabrir`
+    reabertura: { diasSemRevisar: 60, acertoParaReabrir: 0.60, minimoRespostas: 10 },
+    // projeção da data da prova (05e): ritmo = respostas por dia nas últimas `diasDeRitmo` dias; custo de um assunto = respostas que faltam para consolidá-lo
+    projecao: { diasDeRitmo: 28, respostasAssuntoGrande: 60, coberturaMeta: 0.80 },
     // quando um assunto está consolidado e libera os que dependem dele (05e, assuntoConsolidadoFormado)
     consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, janelaPequeno: 10, acertoPequeno: 0.70, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
   },
