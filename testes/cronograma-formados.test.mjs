@@ -117,7 +117,7 @@ test("Formado(a): a trilha abre só os assuntos em estudo, trava o que depende d
       const ids = new Set(sessao.map(it => getQuestao(it.questaoId).assuntoId));
       const foraDaTrilha = [...ids].filter(a => !t0.emEstudo.some(i => i.id === a)).length;
       // consolida a base e todos os pré-requisitos dela, acertando com certeza
-      const consolidar = id => { for(const p of (exige[id] || [])) consolidar(p); for(let i = 0; i < 6; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x" + Math.random(), assuntoId: id, correta: true, confianca: "certeza", data: hojeISO() }); };
+      const consolidar = id => { for(const p of (exige[id] || [])) consolidar(p); for(let i = 0; i < 60; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x" + Math.random(), assuntoId: id, correta: true, confianca: "certeza", data: hojeISO() }); };
       (exige[filho] || []).forEach(consolidar);
       const t1 = trilhaDeFormado(u.id);
       abrirTrilhaDeFormado();
@@ -129,7 +129,34 @@ test("Formado(a): a trilha abre só os assuntos em estudo, trava o que depende d
     assert.equal(r.foraDaTrilha, 0, "com a trilha cheia, a sessão fica nos assuntos em estudo");
     assert.equal(r.depois, true, "consolidada a base, o assunto entra em estudo");
     assert.match(r.tela, /Em estudo agora/);
+    assert.match(r.tela, /de 10 em 10 respostas/);
     assert.match(r.tela, /Libera depois de consolidar|Vêm a seguir/);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Formado(a): regra de consolidação (assunto pequeno × grande) e gráfico de 10 em 10", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const mk = (n, acertos) => Array.from({ length: n }, (_, i) => ({ questaoId: "q" + i, correta: i < acertos }));
+      const antigoRuim = [...mk(40, 0).map((x, i) => ({ ...x, questaoId: "a" + i })), ...mk(20, 18).map((x, i) => ({ ...x, questaoId: "b" + i }))];
+      const u = (fazerLoginDemo("aluno"), fecharModal(), usuarioAtual());
+      const q = questoesParaEstudo(u.id)[0];
+      for(let i = 0; i < 23; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: q.assuntoId, correta: i % 2 === 0, data: "2026-11-0" + (1 + i % 8) });
+      return {
+        peqOk: assuntoConsolidadoFormado(mk(10, 8), 20),         // 10 de 20 feitas, 80%
+        peqPoucas: assuntoConsolidadoFormado(mk(9, 9), 20),      // menos da metade
+        peqBaixo: assuntoConsolidadoFormado(mk(10, 7), 20),      // 70%
+        grandeOk: assuntoConsolidadoFormado(antigoRuim, 120),    // 60 respostas; últimas 20 = 90%
+        grandeCedo: assuntoConsolidadoFormado(mk(50, 50), 120),  // 50 não é "mais de 50"
+        semQuestao: assuntoConsolidadoFormado([], 0),
+        svg: graficoDesempenhoEmBlocos(db.respostas.filter(x => x.usuarioId === u.id), 12),
+      };
+    });
+    assert.deepEqual([r.peqOk, r.peqPoucas, r.peqBaixo, r.grandeOk, r.grandeCedo, r.semQuestao], [true, false, false, true, false, true]);
+    assert.match(r.svg, /<svg/);
+    assert.match(r.svg, /1–10/);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

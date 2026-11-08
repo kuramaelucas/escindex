@@ -73,7 +73,9 @@ function montarSessaoDeFormado(usuario, tamanho){
   pegar(permitidas, tamanho - itens.length, c.maxPorAssunto);
   // 2) faltou: assuntos que só têm questão acima do nível entram pela mais fácil, e o teto sobe um pouco
   if(itens.length < tamanho){
-    const acima = naoVistas.filter(q=>!usados.has(q.id)).sort((a,b)=>nivelDaQuestao(a)-nivelDaQuestao(b));
+    // assunto já consolidado (05e) fica por último: o aluno já domina, então a vaga vai para o que ainda falta
+    const consolidado = id => trilha && trilha.itens.some(it => it.id === id && it.consolidado && !it.sem);
+    const acima = naoVistas.filter(q=>!usados.has(q.id)).sort((a,b)=>(consolidado(a.assuntoId)-consolidado(b.assuntoId)) || nivelDaQuestao(a)-nivelDaQuestao(b));
     acima.forEach(q => {
       if(itens.length >= tamanho || (porAssunto[q.assuntoId]||0) >= c.maxPorAssunto+1) return;
       itens.push({questaoId:q.id, origem:"nao_vista", motivo:motivoDe(q)+" (o assunto não tem questão mais fácil sem resposta)"});
