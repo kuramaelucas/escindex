@@ -942,7 +942,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 },
 {
   id:"q-famerp2025-071", banca:"FAMERP", real:true, ano:2025, numeroNaProva:71,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Paciente com 85 anos apresentando episódios de sensação de entalar ao ingerir alimentos e dor torácica. Em algumas situações tem que 'tomar um gole de água para descer' a comida. Em decorrência destes engasgos sua família o levou para consulta com médico em sua cidade. Lá realizou EDA (Endoscopia digestiva alta) cujo laudo foi apenas antrite leve. Também realizou um exame radiológico contrastado com esôfago em aspecto de 'saca-rolhas'. Assinale, dentre as alternativas abaixo, o diagnóstico provável para este caso:",
   alternativas:[{id:"A",texto:"Acalasia idiopática"},{id:"B",texto:"Espasmo esofagiano difuso"},{id:"C",texto:"Esôfago em quebra-nozes"},{id:"D",texto:"DIME (distúrbio inespecífico da motilidade esofagiana)"}],
   gabarito:"B",

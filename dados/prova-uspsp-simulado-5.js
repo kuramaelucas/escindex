@@ -36,7 +36,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-002", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:2,
-  areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-toc",
+  areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-ansiedade",
   enunciado:"Um paciente de 27 anos de idade, com diagnóstico de transtorno obsessivo-compulsivo, está em tratamento farmacológico regular há 3 meses. Há 5 dias iniciou, por conta própria, uso de fitoterápico à base de erva-de-são-joão para \"ajudar no humor\". Evoluiu com agitação psicomotora, sudorese intensa, tremores, hiperreflexia e clônus em membros inferiores, além de temperatura axilar de 38,7 °C. Considerando a principal síndrome clínica, qual a provável medicação que o paciente faz uso para o tratamento do TOC?",
   alternativas:[{id:"A",texto:"Haloperidol."},{id:"B",texto:"Zolpidem."},{id:"C",texto:"Fluoxetina."},{id:"D",texto:"Lítio."}],
   gabarito:"C",
@@ -169,7 +169,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-012", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:12,
-  areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-vertigem",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-vertigem",
   imagemUrl:"dados/imagens/q-uspsp5-012.png", imagemLegenda:"Audiometrias da orelha direita e da orelha esquerda.",
   enunciado:"Um homem de 55 anos de idade apresenta hipoacusia e zumbido há 5 anos, associados a otorreia bilateral. Nega episódios de otalgia ou febre. Traz à consulta a audiometria abaixo. Qual é a classificação desse exame, segundo a OMS?",
   alternativas:[{id:"A",texto:"Perda auditiva condutiva."},{id:"B",texto:"Perda auditiva mista."},{id:"C",texto:"Perda auditiva neurossensorial."},{id:"D",texto:"Audição dentro da normalidade."}],
@@ -420,7 +420,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-031", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:31,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma mulher de 28 anos de idade, em tratamento ambulatorial para doença inflamatória pélvica aguda, retorna para seguimento acompanhada do parceiro, que questiona se deve receber algum tratamento. Paciente e parceiro assintomáticos no momento. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Não é necessário o tratamento do parceiro."},{id:"B",texto:"Azitromicina e ceftriaxona."},{id:"C",texto:"Ciprofloxacino e doxiciclina."},{id:"D",texto:"Penicilina e azitromicina."}],
   gabarito:"B",
@@ -485,7 +485,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-036", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:36,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma mulher de 25 anos de idade com dor pélvica intensa e febre há 2 dias. Ao exame ginecológico: dor à palpação em hipogástrio, dor à mobilização do colo e dor anexial à direita. Corrimento amarelado com odor fétido. Beta-hCG negativo. Ultrassonografia com imagem complexa em região anexial direita, com cerca de 8 cm, com conteúdo heterogêneo delimitado por paredes espessas e irregulares, com septações internas e possível presença de ecos internos móveis. Estruturas tubária e ovariana encontram-se indistintas. Reforço acústico posterior e sinais de líquido livre pélvico em pequena quantidade. Vascularização periférica aumentada ao Doppler colorido. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Cefuroxima oral."},{id:"B",texto:"Ceftriaxona e metronidazol parenterais."},{id:"C",texto:"Laparoscopia."},{id:"D",texto:"Histeroscopia."}],
   gabarito:"B",
@@ -589,7 +589,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-044", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:44,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma gestante, 24 anos de idade, de 32 semanas, má aderente ao pré-natal, apresenta sorologia de HIV negativa e VDRL 1:128. Refere que está sem parceiro desde o diagnóstico da gravidez. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Penicilina G benzatina 1.200.000 UI intramuscular dose única e reavaliar VDRL em um mês."},{id:"B",texto:"Penicilina G benzatina 2.400.000 UI intramuscular uma vez por semana por 3 semanas e acompanhar VDRL mensal."},{id:"C",texto:"Aguardar teste treponêmico específico para iniciar tratamento."},{id:"D",texto:"Solicitar internação e iniciar penicilina G cristalina, dada idade gestacional avançada."}],
   gabarito:"B",
@@ -849,7 +849,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-063", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:63,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"A dilatação pneumática com balão (DPB) é uma opção terapêutica para a acalásia. Qual é o principal risco associado a este procedimento e qual estratégia é recomendada para minimizá-lo?",
   alternativas:[{id:"A",texto:"Sangramento esofágico; uso de balões de maior diâmetro inicialmente."},{id:"B",texto:"Refluxo gastroesofágico; realização de fundoplicatura concomitante."},{id:"C",texto:"Perfuração esofágica; iniciar com balões de menor diâmetro (30 mm) e progressão gradual."},{id:"D",texto:"Recorrência dos sintomas; injeções repetidas de toxina botulínica."}],
   gabarito:"C",
@@ -1144,7 +1144,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-085", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:85,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma mulher de 28 anos de idade procurou a unidade de saúde da família para uma consulta de acolhimento devido a corrimento vaginal há 05 dias. Fez uso de banho de assento, mas não teve melhora. É atendida pela enfermeira que encaminha para consulta médica. Relata corrimento vaginal acinzentado, esbranquiçado e com cheiro forte, diz que costuma ter relações sexuais desprotegidas com o parceiro, com penetração e ejaculação dentro da vagina e quer saber se é uma doença sexualmente transmissível. Ao exame especular: paredes vaginais tróficas, colo centrado, sem lesões aparentes, presença de corrimento branco acinzentado fino, pH de 5,0 e teste de Whiff positivo. Qual deve ser a conduta farmacológica e a resposta à dúvida da paciente?",
   alternativas:[{id:"A",texto:"Fluconazol 100 mg dose única; não, a vaginose bacteriana não é uma IST, logo não é necessário tratar o parceiro."},{id:"B",texto:"Clindamicina creme vaginal 1x à noite por 7 noites; sim, a vaginose bacteriana é uma IST e deve ser tratado igualmente o parceiro com metronidazol 400 mg de 12/12 h por 7 dias e clindamicina tópico de 12/12 h por 7 dias sobre a glande."},{id:"C",texto:"Metronidazol 250 mg, 2 comprimidos de 12/12 horas por 7 dias; não, a vaginose bacteriana não é uma IST, mas pode aumentar o risco de transmissão de IST."},{id:"D",texto:"Clindamicina 300 mg 2x ao dia por 7 dias; não, a vaginose bacteriana não é uma IST, mas o tratamento do parceiro é mandatório para evitar recorrência."}],
   gabarito:"C",
@@ -1183,7 +1183,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-088", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:88,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Um homem de 23 anos de idade, estudante, procura atendimento no Centro de Saúde com queixa de \"saída de secreção amarelada pelo pênis\" há três dias, associada a ardência ao urinar. Nega febre ou outras queixas sistêmicas. Relata que teve uma nova parceira sexual há cerca de 10 dias e que não usou preservativo em todas as relações. A parceira, até onde ele sabe, não apresenta sintomas. Ao exame clínico, apresenta-se em bom estado geral, e a inspeção da genitália revela hiperemia do meato uretral com saída de secreção purulenta à expressão da uretra. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Prescrever azitromicina 1 g, via oral, em dose única, por ser um tratamento de maior adesão, e solicitar uma urocultura com antibiograma para guiar o tratamento definitivo caso não haja melhora."},{id:"B",texto:"Prescrever ceftriaxona 500 mg, via intramuscular, dose única, associada à doxiciclina 100 mg, via oral, de 12/12 h por 7 dias; oferecer testagem para HIV, sífilis e hepatites virais; e orientar a convocação da(s) parceria(s) sexual(is) para tratamento."},{id:"C",texto:"Administrar ceftriaxona 500 mg, via intramuscular, em dose única na unidade; orientar o uso de preservativos e agendar retorno em 15 dias para reavaliação clínica, sem a necessidade de tratar a parceria, uma vez que ela se encontra assintomática."},{id:"D",texto:"Coletar amostra da secreção para bacterioscopia com coloração de Gram e cultura, e, enquanto aguarda o resultado, prescrever ciprofloxacino 500 mg, via oral, de 12/12 h por 3 dias, por se tratar de uma provável infecção do trato urinário."}],
   gabarito:"B",
@@ -1301,7 +1301,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-097", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:97,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Uma lactente de 9 meses de idade foi atendida na Unidade Básica de Saúde com história de evacuações líquidas, explosivas, 5 a 6 vezes ao dia há um dia. Apresentou também 3-4 episódios de vômitos em 24 horas, além de febre de até 38,8 °C. A mãe refere estar oferecendo \"soro caseiro\", água e suco de frutas, porém observou diminuição do volume da diurese. Refere também redução na aceitação de alimentos sólidos. Ao exame clínico: REG, irritada (ávida para tomar líquido), descorada +/4+, eupneica, febril (38 °C), olhos \"fundos\", sem lágrimas, saliva espessa e escassa. À palpação, fontanela 1x1 cm levemente deprimida. FC = 110 bpm, FR = 45 irpm, TEC = 3 seg, PA = 80x55 mmHg. Abdome globoso, timpânico, RHA aumentados, sem visceromegalias. Pulsos centrais e periféricos palpáveis e cheios. Períneo com hiperemia importante. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Prescrever fase de expansão rápida com SF 0,9% 20 mL/kg intravenoso."},{id:"B",texto:"Oferecer soro de reidratação oral em um período de até 4-6 horas."},{id:"C",texto:"Passar sonda nasogástrica para oferecer soro de reidratação."},{id:"D",texto:"Encaminhar imediatamente à Unidade de Emergência."}],
   gabarito:"B",
@@ -1327,7 +1327,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 },
 {
   id:"q-uspsp5-099", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:99,
-  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-orbita",
+  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Uma criança de 7 anos de idade é levada ao pronto atendimento com queixa de sintomas gripais (tosse, febre baixa e coriza) há 12 dias. A tosse piora à noite e tem secreção amarelada. Há 3 dias com dor de cabeça e um episódio de vômito. Hoje com edema palpebral à direita. Ao exame clínico apresenta edema e hiperemia palpebral à direita, dor importante à movimentação ocular do mesmo lado e leve proptose. À avaliação da retrofaringe observa-se secreção amarelada. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Início imediato com antibiótico parenteral e, se não houver melhora em 4 dias, solicitar tomografia de crânio e órbita."},{id:"B",texto:"Início imediato com amoxicilina + clavulanato via oral com retorno em 24 horas para reavaliação."},{id:"C",texto:"Início imediato com antibiótico parenteral e solicitar tomografia de crânio e órbita."},{id:"D",texto:"Solicitar avaliação da equipe de otorrinolaringologia para avaliar a necessidade de antibiótico parenteral."}],
   gabarito:"C",

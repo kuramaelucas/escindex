@@ -139,7 +139,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 },
 {
   id:"q-uspsp2-010", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:10,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatopatiasautoimunes",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatites",
   enunciado:"Mulher, 45 anos de idade, apresenta quadro de fadiga crônica e prurido generalizado há 6 meses. Exames laboratoriais mostram elevação de fosfatase alcalina e gama GT, com aminotransferases discretamente elevadas. Bilirrubinas normais. Na investigação, qual exame sorológico é o mais específico para confirmar a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Anticorpo anti-músculo liso"},{id:"B",texto:"Anticorpo anti-LKM1"},{id:"C",texto:"Anticorpo anti-mitocôndria"},{id:"D",texto:"Anticorpo anti-Ro/SS-A"}],
   gabarito:"C",
@@ -895,7 +895,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 },
 {
   id:"q-uspsp2-067", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:67,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Uma lactente de 4 meses de idade, nascida a termo, é levada ao pronto-socorro com história de tosse e rinorreia hialina há 2 dias, evoluindo com piora do cansaço, febre baixa (37,8°C) e dificuldade para mamar nas últimas 6 horas. Ao exame clínico, apresenta-se taquidispneica (FR: 60 irpm), com tiragem subcostal leve, sibilância expiratório difuso e roncos de transmissão. Saturação de oxigênio de 93% em ar ambiente. Qual é a principal hipótese diagnóstica e qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Pneumonia bacteriana; solicitar radiografia de tórax e iniciar amoxicilina."},{id:"B",texto:"Bronquiolite viral aguda; solicitar hemograma completo e PCR."},{id:"C",texto:"Pneumonia intersticial; iniciar corticóide inalatório e azitromicina."},{id:"D",texto:"Bronquiolite viral aguda; não é necessário exames laboratoriais ou de imagem."}],
   gabarito:"D",
@@ -1134,7 +1134,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 },
 {
   id:"q-uspsp2-085", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:85,
-  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-caesofago",
+  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
   enunciado:"Homem de 72 anos de idade, com histórico de tabagismo pesado por 50 anos e etilismo crônico, procura o pronto-socorro com queixas de disfagia progressiva para sólidos e líquidos, odinofagia e perda ponderal de 15 kg nos últimos 4 meses. A endoscopia digestiva alta revela uma massa vegetante, friável e ulcerada no terço médio do esôfago. A biópsia inicial é inconclusiva. Qual é o tipo histológico de neoplasia esofágica mais provável neste paciente?",
   alternativas:[{id:"A",texto:"Adenocarcinoma."},{id:"B",texto:"Carcinoma de células escamosas (CEC)."},{id:"C",texto:"Linfoma esofágico."},{id:"D",texto:"Tumor estromal gastrointestinal (GIST) esofágico."}],
   gabarito:"B",
@@ -1359,7 +1359,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 },
 {
   id:"q-uspsp2-102", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:102,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Em uma área endêmica para malária, a equipe de Vigilância Epidemiológica realiza ações contínuas de controle e prevenção. Apesar dos esforços, ocorrem falhas na sustentabilidade dessas ações, como a descontinuidade da busca ativa de casos e a falta de manutenção da vigilância entomológica. Qual é a consequência mais provável dessas falhas na sustentabilidade do controle?",
   alternativas:[{id:"A",texto:"Redução permanente da incidência da malária na área."},{id:"B",texto:"Eliminação da malária na área, permitindo classificá-la como zona livre."},{id:"C",texto:"Reaparecimento da transmissão da malária na área."},{id:"D",texto:"Manutenção do nível endêmico da malária, sem alterações significativas."}],
   gabarito:"C",

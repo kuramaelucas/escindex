@@ -118,7 +118,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 },
 {
   id:"q-sessp2023-008", banca:"SES-SP", real:true, ano:2023, numeroNaProva:8,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Uma mulher de 55 anos de idade foi submetida a reconstrução mamária com músculo reto abdominal (TRAM) bilateral após mastectomia radical. Está em programação de radioterapia pós-operatória. Com base nesse caso clínico, assinale a alternativa correta, quanto à cicatrização de feridas dessa paciente.",
   alternativas:[{id:"A",texto:"A presença de leucócitos com contagem de 100 por centímetro quadrado retarda a cicatrização de feridas."},{id:"B",texto:"A denervação tem um efeito deletério na contração da ferida e na epitelização."},{id:"C",texto:"Quimioterapia iniciada 10 a 14 dias após a cirurgia tem pouco efeito sobre o estado final da cicatrização."},{id:"D",texto:"A isquemia tecidual é o principal componente do dano tecidual causado pela irradiação."},{id:"E",texto:"A radioterapia pós-operatória deve ser adiada por, pelo menos, 4 a 6 meses após a cirurgia, para diminuir a incidência de complicações da ferida."}],
   gabarito:"D",
@@ -327,7 +327,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 },
 {
   id:"q-sessp2023-024", banca:"SES-SP", real:true, ano:2023, numeroNaProva:24,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Foi levado para o hospital um recém-nascido, do sexo masculino, com 39 semanas de vida, AIG, assintomático, filho de mãe com tuberculose, diagnosticada no início do terceiro trimestre, em tratamento regular. Exames maternos dos últimos 15 dias revelaram o seguinte: pesquisa BAAR no escarro negativo e radiografia de tórax sem alterações. Com base nesse caso hipotético, assinale a alternativa correta, com relação à conduta recomendada para o paciente em questão.",
   alternativas:[{id:"A",texto:"A amamentação deve ser orientada sem qualquer restrição, e a vacina BCG pode ser aplicada."},{id:"B",texto:"A amamentação deve ser contraindicada, devido ao risco de passagem do Mycobacterium tuberculosis pelo leite humano."},{id:"C",texto:"A mãe deve amamentar seu filho usando máscara até o final do tratamento."},{id:"D",texto:"A amamentação deve ser orientada, porém recomenda-se, para a criança, o uso profilático de rifampicina até o terceiro mês de vida."},{id:"E",texto:"A mãe deve amamentar seu filho usando máscara, e a vacina BCG deve ser aplicada após o terceiro mês de vida."}],
   gabarito:"",
@@ -497,7 +497,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 },
 {
   id:"q-sessp2023-037", banca:"SES-SP", real:true, ano:2023, numeroNaProva:37,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"De acordo com as diretrizes da Sociedade Brasileira de Pediatria acerca do manejo de infecção causada pelo vírus sincicial respiratório (VSR), assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A fisioterapia respiratória é recomendada para todos os quadros."},{id:"B",texto:"O corte de saturação de oxigênio usado para indicar o uso de oxigenoterapia é 94%."},{id:"C",texto:"Sempre que o paciente for internado, deve-se manter o uso de corticoide oral."},{id:"D",texto:"Quanto ao uso de broncodilatador, o uso de acordo com a resposta clínica pode eventualmente ser considerado, mas só deve ser mantido se houver evidência de melhora imediata."},{id:"E",texto:"A toda criança com quadro de bronquiolite deve ser prescrita antibioticoterapia para evitar complicações bacterianas."}],
   gabarito:"D",

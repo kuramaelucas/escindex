@@ -237,7 +237,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2021", [
 {
   id:"q-usprp2021-017", banca:"USP-RP (FMRP)", real:true, ano:2021, numeroNaProva:17,
   imagemUrl:"dados/imagens/q-usprp2021-017.png", imagemLegenda:"Foto da manobra realizada no exame do joelho",
-  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ligamentos",
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Um homem de 35 anos, vem à Unidade de Saúde da Família queixando se de dor no joelho direito ao deambular e sem irradiação. Nega trauma prévio e relata algumas crepitações. O exame não mostrou derrame articular, edema, rubor ou calor. A força e mobilidade estavam preservadas. Você então resolve realizar algumas manobras para investigar a presença de lesões nas estruturas do joelho. Ao exame físico você decide realizar a manobra representada pela figura abaixo. Figura da manobra realizada no exame físico Este teste é mais sensível para avaliar qual estrutura anatômica descrita abaixo?",
   alternativas:[{id:"A",texto:"Tendão poplíteo."},{id:"B",texto:"Ligamento cruzado anterior."},{id:"C",texto:"Menisco medial."},{id:"D",texto:"Ligamento colateral lateral."}],
   gabarito:"B",
@@ -290,7 +290,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2021", [
 },
 {
   id:"q-usprp2021-021", banca:"USP-RP (FMRP)", real:true, ano:2021, numeroNaProva:21,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Quando se compara a distribuição de malária no Brasil de acordo com a região de ocorrência, verifica-se que aproximadamente 99% dos casos localizam-se na Amazônia. Entretanto, o coeficiente de letalidade na região extra amazônica chega a ser 128 vezes mais elevado. A explicação para isso repousa no seguinte fato:",
   alternativas:[{id:"A",texto:"Subnotificação acentuada de óbitos por malária na região amazônica."},{id:"B",texto:"Menos recursos para diagnóstico e tratamento da doença fora da Amazônia."},{id:"C",texto:"Casos mais graves são vistos com mais frequência na área fora da Amazônia."},{id:"D",texto:"Maior probabilidade de retardo no diagnóstico fora da Amazônia."}],
   gabarito:"D",
@@ -876,7 +876,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2021", [
 {
   id:"q-usprp2021-065", banca:"USP-RP (FMRP)", real:true, ano:2021, numeroNaProva:65,
   imagemUrl:"dados/imagens/q-usprp2021-065.png", imagemLegenda:"Imagem da lesão vulvar",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 23 anos, G3P1A2, procura unidade básica de saúde com história de lesão na vulva, sensação de dor leve no local e corrimento associado. Mantém atividade sexual regular sem uso de preservativo, apenas contraceptivo hormonal combinado. Refere que as lesões surgiram há pouco mais de um mês. Não sabe referir se houve vesículas em qualquer momento do quadro. Durante o exame físico, foi visto a seguinte lesão. IMAGEM DA LESAO Com base nas informações descritas e na imagem, assinale a alternativa que contenha a opção mais adequada neste momento, conforme o Ministério da Saúde.",
   alternativas:[{id:"A",texto:"Aciclovir, azitromicina, penicilina."},{id:"B",texto:"Ceftriaxona, doxiciclina, metronidazol."},{id:"C",texto:"Aciclovir, ceftriaxona, metronidazol."},{id:"D",texto:"Doxiciclina, penicilina, ciprofloxacina."}],
   gabarito:"D",

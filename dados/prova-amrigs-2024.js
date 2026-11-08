@@ -127,7 +127,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-009", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:9,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-desmielinizante",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"A presença de bandas oligoclonais no líquor sugere fortemente o diagnóstico de:",
   alternativas:[{id:"A",texto:"Alzheimer."},{id:"B",texto:"Esclerose múltipla."},{id:"C",texto:"Linfoma de células B."},{id:"D",texto:"Meningite viral."}],
   gabarito:"B",
@@ -192,7 +192,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-014", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:14,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Em relação à malária, analise as assertivas a seguir: I. O diagnóstico confirmatório da malária baseia-se no encontro de parasitos no sangue. O método mais utilizado é a microscopia de gota espessa de sangue, colhida por punção digital e corada pelo método de Walker. II. A sorologia para pesquisa de anticorpos antiplasmodium não deve ser realizada no caso de suspeita de malária. Seu resultado é relacionado à exposição prévia e é restrito apenas a estudos científicos. Sua solicitação no contexto clínico leva à demora no diagnóstico e maior risco de complicações. III. Pessoas com deficiência suspeita ou confirmada de glicose-6-fosfato-desidrogenase (G6PD), atividade abaixo de 30%, não deverão fazer uso de primaquina. Quais estão corretas?",
   alternativas:[{id:"A",texto:"Apenas I e II."},{id:"B",texto:"Apenas I e III."},{id:"C",texto:"Apenas II e III."},{id:"D",texto:"I, II e III."}],
   gabarito:"D",
@@ -623,7 +623,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 {
   id:"q-amrigs2024-047", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:47,
   imagemUrl:"dados/imagens/q-amrigs2024-047.jpg", imagemLegenda:"Figura 1 — foto da vulva com as mãos do examinador afastando os lábios, e uma seta indicando uma estrutura",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Na Figura 1 abaixo, a seta indica o(s):",
   alternativas:[{id:"A",texto:"Prepúcio."},{id:"B",texto:"Grandes lábios."},{id:"C",texto:"Pequenos lábios."},{id:"D",texto:"Clitóris."}],
   gabarito:"C",
@@ -636,7 +636,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-048", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:48,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Sobre o tratamento para o condiloma vulvar acuminado, que pode ser realizado na unidade de saúde, é correto afirmar que:",
   alternativas:[{id:"A",texto:"O ácido tricloroacético (ATA) a 10% pode ser feito em 3 aplicações."},{id:"B",texto:"O ATA a 80%-90% pode ser aplicado semanalmente por 8 a 10 semanas."},{id:"C",texto:"O ATA não pode ser aplicado na gestação."},{id:"D",texto:"O imiquimod 5% creme só pode ser aplicado depois do segundo trimestre."}],
   gabarito:"B",

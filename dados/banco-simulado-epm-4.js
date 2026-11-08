@@ -1333,7 +1333,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-4", [
 {
   id:"q-adap26-089", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente de 5 meses de idade, sem comorbidades, nascido a termo, com coriza há 3 dias, tosse, taquipneia leve e sibilos, sem febre. Exame físico: bom estado geral, FR 52 irpm, discreta retração subcostal, SpO2 de 96% em ar ambiente, hidratado e aceitando bem a mamada. Os pais pedem «uma inalação com bombinha e um remédio de corticoide para não piorar». Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Prescrever salbutamol inalatório de 4 em 4 horas e prednisolona oral por 5 dias, para evitar a progressão da doença."},{id:"B",texto:"Orientar cuidados de suporte, como aspiração nasal, fracionamento da dieta e hidratação, e sinais de alarme."},{id:"C",texto:"Prescrever amoxicilina por 7 dias, pois a evolução com sibilos e coriza indica superinfecção bacteriana comprovada."},{id:"D",texto:"Internar para oxigenoterapia e inalação com adrenalina, mesmo com saturação normal, por precaução do plantonista."}],
   gabarito:"B",
@@ -1483,7 +1483,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-4", [
 {
   id:"q-adap26-099", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-intolerancialactose",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-malabsorcao",
   enunciado:"Lactente de 7 meses de idade, em aleitamento misto, teve gastroenterite aguda há 10 dias, tratada com reidratação oral, com melhora inicial. Desde então, mantém evacuações líquidas, explosivas, ácidas, 5 a 6 vezes ao dia, com distensão abdominal e assadura perianal, sem sangue, muco ou febre. Ganho de peso estacionado. O exame das fezes mostra pH de 5,0 e substâncias redutoras de 2+. A criança está hidratada e ativa. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Suspender todo o leite e iniciar fórmula de aminoácidos por seis meses, como na alergia à proteína do leite de vaca."},{id:"B",texto:"Iniciar antibiótico oral para tratar supercrescimento bacteriano intestinal, por ser causa de fezes ácidas."},{id:"C",texto:"Manter a fórmula habitual e associar probiótico, pois o quadro é funcional e se resolve espontaneamente."},{id:"D",texto:"Substituir temporariamente por fórmula sem lactose, com reintrodução gradual do leite após a recuperação intestinal."}],
   gabarito:"D",

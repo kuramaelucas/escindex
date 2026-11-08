@@ -172,7 +172,7 @@ window.EscDados.registrarQuestoes("prova-simulado-epm-2026-10", [
 },
 {
   id:"q-simepm89-012", banca:"Simulado EPM/UNIFESP (Turma 89)", real:true, ano:2026, numeroNaProva:12,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatopatiasautoimunes",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatites",
   enunciado:"Paciente de 35 anos de idade com colangite esclerosante idiopática apresenta icterícia (bilirrubina total de 4), estenose de 1 cm no ducto hepático comum, de aspecto benigno, dosagem de CA 19-9 normal e ausência de células malignas no esfregaço do colédoco realizado por via endoscópica. Qual é a conduta inicial?",
   alternativas:[{id:"A",texto:"Iniciar o tratamento medicamentoso com corticoide."},{id:"B",texto:"Iniciar o tratamento medicamentoso com imunossupressor."},{id:"C",texto:"Usar ácido ursodesoxicólico + dilatação endoscópica da estenose."},{id:"D",texto:"Ressecar a estenose + hepaticojejunostomia em Y de Roux."}],
   gabarito:"C",
@@ -1108,7 +1108,7 @@ window.EscDados.registrarQuestoes("prova-simulado-epm-2026-10", [
 },
 {
   id:"q-simepm89-034", banca:"Simulado EPM/UNIFESP (Turma 89)", real:true, ano:2026, numeroNaProva:34,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente de 23 anos, sexarca aos 18 anos, com um parceiro sexual, utiliza anticoncepcional hormonal oral. Refere último coito há 2 semanas. Vem à consulta no Pronto Atendimento de Ginecologia queixando-se de corrimento amarelo, fétido, às vezes esverdeado, em média quantidade, tendo iniciado há 2 dias. Nuligesta, nega comorbidades. Ao exame ginecológico: nota-se edema e hiperemia vulvar discreta, vagina com hiperemia difusa, e conteúdo vaginal amarelo-esverdeado e colo com hiperemia. Junção escamocolunar -2. Qual a impressão diagnóstica e a conduta, respectivamente?",
   alternativas:[{id:"A",texto:"Chlamydia trachomatis – azitromicina 1 grama via oral, dose única."},{id:"B",texto:"Gardnerella vaginalis – metronidazol 250 mg dois comprimidos via oral de 8 em 8 horas por 7 dias."},{id:"C",texto:"Trichomonas vaginalis – metronidazol 250 mg dois comprimidos via oral de 12 em 12 horas por 7 dias."},{id:"D",texto:"Candidíase vaginal – fluconazol 150 mg, dose única."}],
   gabarito:"C",
@@ -1134,7 +1134,7 @@ window.EscDados.registrarQuestoes("prova-simulado-epm-2026-10", [
 },
 {
   id:"q-simepm89-036", banca:"Simulado EPM/UNIFESP (Turma 89)", real:true, ano:2026, numeroNaProva:36,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente de 28 anos, G2C2, utiliza pílula anticoncepcional como método contraceptivo (contendo etinilestradiol 30 mcg + drospirenona 3 mg). O último parto foi há 2 anos. Está separada do marido. Não tem companheiro fixo. Não usa preservativo. Refere último coito há 30 dias. Vem à consulta ginecológica queixando-se de corrimento claro, pequena quantidade, sem odor fétido. Refere disúria moderada. Exame especular: vulva e vagina sem alterações. Conteúdo vaginal claro, aspecto mucoide. Colo com ectopia e friabilidade com sangramento fácil da mucosa cervical. Toque: colo friável, corpo uterino em anteversoflexão, tamanho normal. Anexos e paramétrios sem alterações. Nesse caso, qual a hipótese diagnóstica, o método diagnóstico e a conduta, respectivamente?",
   alternativas:[{id:"A",texto:"Cancro mole – bacterioscopia corada pelo Gram e identificação de morfotipos de H. ducreyi – ciprofloxacina 500 mg via oral, de 12 em 12 horas, por 3 dias."},{id:"B",texto:"Sífilis – VDRL e teste treponêmico – penicilina benzatina 2,4 milhões UI intramuscular (sendo 1,2 milhão UI em cada glúteo), dose única."},{id:"C",texto:"Neisseria gonorrhoeae – cultura em meio de Thayer-Martin – ceftriaxona 500 mg IM, dose única."},{id:"D",texto:"Chlamydia trachomatis – captura híbrida para clamídia – doxiciclina 100 mg via oral, de 12 em 12 horas, por 7 dias."}],
   gabarito:"D",
@@ -1213,7 +1213,7 @@ window.EscDados.registrarQuestoes("prova-simulado-epm-2026-10", [
 },
 {
   id:"q-simepm89-042", banca:"Simulado EPM/UNIFESP (Turma 89)", real:true, ano:2026, numeroNaProva:42,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   imagemUrl:"dados/imagens/q-simepm89-042.jpg",
   enunciado:"Homem de 67 anos, hipertenso, assintomático em acompanhamento ambulatorial de rotina. Ao exame físico, encontra-se em bom estado geral, com pressão arterial de 138/82 mmHg e frequência cardíaca de 60 bpm. O eletrocardiograma realizado é apresentado. Qual é o principal achado eletrocardiográfico observado?",
   alternativas:[{id:"A",texto:"Bloqueio divisional anterossuperior esquerdo."},{id:"B",texto:"Bloqueio completo do ramo esquerdo."},{id:"C",texto:"Bloqueio divisional póstero-inferior esquerdo."},{id:"D",texto:"Sobrecarga ventricular direita."}],
@@ -1253,7 +1253,7 @@ window.EscDados.registrarQuestoes("prova-simulado-epm-2026-10", [
 },
 {
   id:"q-simepm89-045", banca:"Simulado EPM/UNIFESP (Turma 89)", real:true, ano:2026, numeroNaProva:45,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sincope",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Considere as situações abaixo em relação ao paciente com síncope e correlacione a primeira coluna com a segunda:\nI – Hipersensibilidade do seio carotídeo\nII – BAV total paroxístico\nIII – Síncope neurocardiogênica\nIV – Estenose aórtica\n( ) Indicação de marcapasso definitivo\n( ) Marcador de mau prognóstico\n( ) Relacionada à movimentação do pescoço\n( ) Pode ser relacionada à punção venosa",
   alternativas:[{id:"A",texto:"I, IV, II, III"},{id:"B",texto:"II, III, IV, I"},{id:"C",texto:"II, IV, I, III"},{id:"D",texto:"III, II, IV, I"}],
   gabarito:"C",

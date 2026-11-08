@@ -49,7 +49,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2020", [
 },
 {
   id:"q-amrigs2020-003", banca:"AMRIGS", real:true, ano:2020, numeroNaProva:3,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Em relação à investigação complementar das cardiopatias, assinale a alternativa INCORRETA.",
   alternativas:[{id:"A",texto:"Baixa voltagem do QRS e alternância elétrica sugerem derrame pericárdico."},{id:"B",texto:"Cintilografia com zona de hipoperfusão em repouso e no esforço indica necrose."},{id:"C",texto:"A presença de onda U no ECG é um sinal de isquemia miocárdica."},{id:"D",texto:"Ecocardiograma transtorácico na Estenose Aórtica é o exame de escolha para o acompanhamento."}],
   gabarito:"C",
@@ -283,7 +283,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2020", [
 },
 {
   id:"q-amrigs2020-021", banca:"AMRIGS", real:true, ano:2020, numeroNaProva:21,
-  areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-divertmeckel",
+  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
   enunciado:"O divertículo de Meckel está localizado:",
   alternativas:[{id:"A",texto:"No terço proximal do esôfago."},{id:"B",texto:"No terço distal do esôfago."},{id:"C",texto:"Na borda antimesentérica do íleo, 45 a 60 cm proximal à válvula ileocecal."},{id:"D",texto:"No cólon descendente."}],
   gabarito:"C",
@@ -699,7 +699,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2020", [
 },
 {
   id:"q-amrigs2020-053", banca:"AMRIGS", real:true, ano:2020, numeroNaProva:53,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"As úlceras genitais femininas são lesões nas quais há perda de tecido epitelial com envolvimento da epiderme e, às vezes, da derme, podendo ser localizadas na vulva e/ou vagina e/ou colo uterino. Em relação às úlceras genitais e às doenças que podem estar relacionadas a ela, assinale a alternativa INCORRETA.",
   alternativas:[{id:"A",texto:"“Cancro duro” é a úlcera genital da infecção secundária da sífilis. Geralmente, é não dolorosa, única, com base e bordas endurecidas."},{id:"B",texto:"Na infecção herpética, antes da ulceração, geralmente as lesões iniciam com pápulas eritematosas seguidas por vesículas agrupadas com conteúdo citrino."},{id:"C",texto:"“Cancro mole” é caracterizado por úlceras rasas e dolorosas, com base granulomatosa e fácil sangramento ao toque. A combinação de úlceras genitais e linfadenopatia dolorosa sugere o diagnóstico de cancro mole."},{id:"D",texto:"O paciente com queixa de úlcera genital deve sempre ser aconselhado a realizar os testes virais, como anti-HIV e VDRL, e ter o parceiro convocado/tratado."}],
   gabarito:"",

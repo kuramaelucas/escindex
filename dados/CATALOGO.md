@@ -3,11 +3,11 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12063 questões (9230 reais, 2833 autorais), 943 cartões, 277 assuntos, 7 simulado(s), 164 arquivos.
+**Total:** 12063 questões (9230 reais, 2833 autorais), 943 cartões, 237 assuntos, 7 simulado(s), 164 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
-| `taxonomia.js` | TAXONOMIA — as 5 grandes áreas, 41 especialidades e 238 assuntos | 323 taxonomia |  |
+| `taxonomia.js` | TAXONOMIA — as 5 grandes áreas, 41 especialidades e 237 assuntos | 283 taxonomia |  |
 | `calendario.js` | CALENDÁRIO DE BLOCOS — a ordem em que a matéria é estudada | 9 calendário |  |
 | `banco-didatico.js` | BANCO DIDÁTICO — 135 questões autorais | 135 questões | 1 anulada(s) |
 | `banco-unifesp-2024-adaptado.js` | BANCO UNIFESP 2024 ADAPTADO — 100 questões autorais | 100 questões |  |

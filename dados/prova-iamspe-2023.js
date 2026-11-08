@@ -212,7 +212,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2023", [
 },
 {
   id:"q-iamspe2023-015", banca:"IAMSPE", real:true, ano:2023, numeroNaProva:15,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-desmielinizante",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"A causa mais frequente de neurite ótica retrobulbar em uma mulher de 31 anos de idade é",
   alternativas:[{id:"A",texto:"tóxica."},{id:"B",texto:"isquêmica."},{id:"C",texto:"infecciosa viral."},{id:"D",texto:"desmielinizante."},{id:"E",texto:"infecciosa bacteriana."}],
   gabarito:"D",
@@ -719,7 +719,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2023", [
 },
 {
   id:"q-iamspe2023-054", banca:"IAMSPE", real:true, ano:2023, numeroNaProva:54,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma paciente com queixa clínica de corrimento esbranquiçado, ardor vulvovaginal intenso e prurido foi diagnosticada como portadora de vaginite citolítica. Considerando esse caso clínico, assinale a alternativa correta, a respeito desse diagnóstico.",
   alternativas:[{id:"A",texto:"Trata-se de uma situação em que a proliferação de fungos vaginais é tão intensa que leva a citólise acentuada."},{id:"B",texto:"A vaginite citolítica é causada pelo Mobiluncus mulieris, devendo ser tratada com metronidazol."},{id:"C",texto:"Na vaginite citolítica, o pH é ácido e a presença de lactobacilos está aumentada."},{id:"D",texto:"Pelos critérios de Amsel, a paciente apresenta vaginose bacteriana."},{id:"E",texto:"Drogas que podem ser utilizadas no tratamento dessa paciente incluem isoconazol, fenticonazol e nistatina."}],
   gabarito:"C",
@@ -1008,7 +1008,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2023", [
 },
 {
   id:"q-iamspe2023-076", banca:"IAMSPE", real:true, ano:2023, numeroNaProva:76,
-  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-incorporacao",
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
   enunciado:"Deve-se levar em consideração os conceitos de eficácia, efetividade e eficiência ao se tomar a decisão de incorporar uma nova tecnologia no sistema de saúde nacional. Em relação a tais conceitos, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Eficácia refere-se ao resultado de uma intervenção aplicada em larga escala na prática cotidiana."},{id:"B",texto:"Eficiência refere-se à possibilidade de atingir um resultado independentemente dos custos envolvidos."},{id:"C",texto:"Efetividade refere-se ao resultado de uma intervenção realizada em condições controladas, como nos ensaios clínicos controlados."},{id:"D",texto:"Eficiência é a qualidade daquilo que cumpre com as metas planejadas, ou seja, é uma característica pertencente às pessoas que alcançam os resultados esperados."},{id:"E",texto:"Efetividade refere-se ao resultado de uma intervenção aplicada sob as condições habituais da prática médica."}],
   gabarito:"E",

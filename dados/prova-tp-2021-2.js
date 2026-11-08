@@ -888,7 +888,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 },
 {
   id:"q-tp20212-066", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:66,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   imagemUrl:"dados/imagens/q-tp20212-066.jpg",
   enunciado:"Paciente comparece ao ambulatório após realização de ponte de safena com o seguinte achado de exame físico: área de deiscência total de pele, com granulação no subcutâneo subjacente. Hiperemia leve ao redor da ferida e edema do membro. A enfermeira solicita avaliação em relação à ferida cirúrgica. Pode-se afirmar:",
   alternativas:[{id:"A",texto:"O ferimento está em fase retardada de cicatrização, com risco elevado de desenvolver infecção secundária de ferida cirúrgica. Introduzir antibioticoterapia de largo espectro por 10 dias."},{id:"B",texto:"O ferimento está em fase avançada de granulação (cicatrização por segunda intenção), sem sinais de infecção local. Manter a aplicação de curativos oclusivos."},{id:"C",texto:"O ferimento está com aspecto infeccioso, com hiperemia e exsudação do leito da ferida. Realizar desbridamento cirúrgico e introduzir antibioticoterapia para germes Gram positivos por 14 dias."},{id:"D",texto:"Deiscência recente de pele e subcutâneo com exposição muscular, sem sinais de infecção. Limpeza e desbridamento da ferida, reavivamento de bordas e ressutura da pele."}],
@@ -1191,7 +1191,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 },
 {
   id:"q-tp20212-089", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:89,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 32 anos, apresenta corrimento vaginal de coloração amarelo-esverdeada, prurido vulvar discreto e disuria. Exame físico: conteúdo vaginal esverdeado, bolhoso e colo em “framboesa”. O exame complementar para confirmação diagnóstica é:",
   alternativas:[{id:"A",texto:"Colposcopia com biopsia."},{id:"B",texto:"Citologia oncótica do colo uterino e vagina."},{id:"C",texto:"Bacterioscopia do conteúdo vaginal."},{id:"D",texto:"Exame a fresco do conteúdo vaginal direto."}],
   gabarito:"D",

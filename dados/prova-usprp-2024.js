@@ -316,7 +316,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2024", [
 },
 {
   id:"q-usprp2024-023", banca:"USP-RP (FMRP)", real:true, ano:2024, numeroNaProva:23,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Considerando princípios de cicatrização de feridas cirúrgicas, o objetivo é restaurar a anatomia e função mais próxima da normalidade possível. Ao proceder o fechamento de uma herniorrafia inguinal em homem adulto de 45 anos, tabagista, trabalhador na construção civil, temos que considerar os vários fatores locais e sistêmicos que podem afetar o sucesso da cirurgia. Assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"O tabagismo pouco interfere no processo de cicatrização, desde que suspenda 1 semana antes da cirurgia."},{id:"B",texto:"O tempo para a retirada de pontos da sutura deve considerar restabelecimento da força tênsil da ferida."},{id:"C",texto:"A atividade física pesada deve ser evitada até 6 semanas após a cirurgia e consequentemente o paciente deverá ficar afastado do trabalho."},{id:"D",texto:"É indicado a utilização do fio de categut cromado para o fechamento da aponeurose e subcutâneo, e o fio de nylon para pontos na pele."}],
   gabarito:"B",

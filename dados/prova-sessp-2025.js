@@ -291,7 +291,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 },
 {
   id:"q-sessp2025-021", banca:"SES-SP", real:true, ano:2025, numeroNaProva:21,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Assinale a alternativa incorreta acerca das úlceras de pressão.",
   alternativas:[{id:"A",texto:"O tratamento é clínico, sem intervenção cirúrgica, desde que a ferida seja limpa meticulosamente, com água e sabão ou algum outro meio surfactante e que seja evitada pressão na área em questão."},{id:"B",texto:"Úlceras de pressão são úlceras decorrentes de isquemia tecidual local provocadas pela alteração do reflexo de dor."},{id:"C",texto:"Pacientes tetraplégicos, idosos com fraturas de colo de fêmur e pacientes criticamente doentes são os mais afetados."},{id:"D",texto:"As úlceras de pressão podem se desenvolver em 24 horas ou levar até 5 dias para sua manifestação."},{id:"E",texto:"Ao mesmo tempo em que as alterações cutâneas ocorrem, a úlcera no plano profundo pode ser muito mais extensa, uma vez que, quanto mais profundo for o tecido, mais intensos são os efeitos da pressão."}],
   gabarito:"A",
@@ -826,7 +826,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 },
 {
   id:"q-sessp2025-062", banca:"SES-SP", real:true, ano:2025, numeroNaProva:62,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma paciente de 23 anos de idade relatou ter corrimento branco amarelado com odor desagradável, que piora quando mantém relações sexuais. Ao exame especular, o colo uterino estava aparentemente normal, e o conteúdo vaginal era branco leitoso. Ao realizar exame a fresco com soro fisiológico, o médico encontrou diversas células, descritas como clue cells ou células alvos. Com base nessa situação hipotética, esses achados sugerem",
   alternativas:[{id:"A",texto:"candidíase vaginal."},{id:"B",texto:"infecção por Trichomonas vaginalis."},{id:"C",texto:"infecção por Gardnerella vaginalis."},{id:"D",texto:"infecção por HPV."},{id:"E",texto:"infecção por HIV."}],
   gabarito:"C",
@@ -930,7 +930,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 },
 {
   id:"q-sessp2025-070", banca:"SES-SP", real:true, ano:2025, numeroNaProva:70,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma paciente portadora de herpes genital simples indagou o ginecologista a respeito da origem da afecção, do prognóstico e da terapêutica. Com base nessa situação hipotética, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"É causada pelos cinco tipos de herpes (1, 2, 3, 4 e 5) e tem bom prognóstico."},{id:"B",texto:"Pode ser recorrente, mas é curada com a vacina."},{id:"C",texto:"O tratamento é, preferencialmente, local com o aciclovir."},{id:"D",texto:"A vacina para HPV por reação cruzada melhora o prognóstico da doença."},{id:"E",texto:"É uma doença recorrente, incurável e as recidivas são mais comuns nas infecções pelo tipo 2."}],
   gabarito:"E",

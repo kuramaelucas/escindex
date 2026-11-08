@@ -1320,7 +1320,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-5", [
 {
   id:"q-adap23-088", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Mulher, 22 anos de idade, negra, apresenta há 8 meses uma lesão nodular, firme, elevada e de contorno irregular, de 2,5 cm, no lóbulo da orelha esquerda, no local de um piercing. A lesão cresce além dos limites da perfuração original, causa prurido e dor ao toque. Qual é o tratamento de primeira linha mais adequado?",
   alternativas:[{id:"A",texto:"Infiltração intralesional de triancinolona, que pode ser repetida a cada 4 a 6 semanas, com compressão local e avaliação de excisão."},{id:"B",texto:"Criocirurgia com nitrogênio líquido em sessão única mensal, que remove o tecido fibroso em definitivo, sem risco de recidiva."},{id:"C",texto:"Aplicação diária de corticoide tópico de alta potência com curativo oclusivo por três anos, que impede o crescimento do queloide."},{id:"D",texto:"Exérese cirúrgica isolada com sutura simples e sem tratamento adjuvante, que cura o queloide em mais de 90% dos casos."}],
   gabarito:"A",
@@ -1350,7 +1350,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-5", [
 {
   id:"q-adap23-090", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 34 anos de idade, diabetes mellitus tipo 2 controlado, queixa-se de dor perianal intensa e pulsátil há 3 dias, que piora ao sentar e à evacuação, com febre de 38,3 °C. Exame físico: abaulamento hiperemiado, quente, doloroso e com flutuação, de 4 cm, na região perianal esquerda, e toque retal doloroso, sem massas. Qual é o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Antibioticoterapia oral isolada por 10 dias, associada a banhos de assento mornos, com reavaliação em uma semana sem drenagem do abscesso."},{id:"B",texto:"Aplicação de compressas mornas e analgésico por 7 dias e cirurgia eletiva depois, pois o abscesso perianal costuma drenar espontaneamente e sem risco."},{id:"C",texto:"Fistulotomia ampla imediata com secção do esfíncter anal, pois todo abscesso perianal tem fístula associada que deve ser tratada no mesmo ato."},{id:"D",texto:"Incisão e drenagem cirúrgica do abscesso sob anestesia, de preferência precoce, com antibiótico complementar pelo diabetes."}],
   gabarito:"D",

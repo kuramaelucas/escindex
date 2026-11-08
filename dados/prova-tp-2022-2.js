@@ -97,7 +97,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-005", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:5,
-  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-teratogenese",
+  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
   imagemUrl:"dados/imagens/q-tp20222-005.jpg",
   enunciado:"Na figura abaixo, está demonstrada uma das etapas da gametogênese feminina na meiose I. Um evento anormal, causador de aberrações numéricas nos seres humanos, pode ocorrer na fase identificada por:",
   alternativas:[{id:"A",texto:"III"},{id:"B",texto:"II"},{id:"C",texto:"I"},{id:"D",texto:"IV"}],
@@ -111,7 +111,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-006", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:6,
-  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-teratogenese",
+  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
   imagemUrl:"dados/imagens/q-tp20222-006.jpg",
   enunciado:"Gestante, 24 anos, realizou ultrassonografia morfológica pré- natal (imagem abaixo): O período, a falha embriológica e a carência nutricional responsáveis pelo achado são, respectivamente:",
   alternativas:[{id:"A",texto:"3ª e 4ª semanas, falha na neurulação primária; vitamina B9."},{id:"B",texto:"2ª e 3ª semanas, falha na neurulação primária; vitamina B12."},{id:"C",texto:"3ª e 4ª semanas, falha na neurulação secundária; ácido fólico."},{id:"D",texto:"2ª e 3ª semanas, falha na neurulação secundária; vitamina B6."}],
@@ -139,7 +139,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-008", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:8,
-  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ligamentos",
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Homem, 23 anos, jogador de futebol, sofreu entorse no tornozelo direito de grau II, ocasionando dificuldades para manter o tornozelo estável. O tratamento medicamentoso para reduzir dor, inflamação e edema pode ser feito com anti-inflamatórios não esteroidais, cujo modo de ação é:",
   alternativas:[{id:"A",texto:"Inibição da enzima ciclo-oxigenase, com consequente inibição da síntese de leucotrienos."},{id:"B",texto:"Inibição da enzima fosfolipase A2, com consequente inibição da liberação de ácido araquidônico."},{id:"C",texto:"Inibição da enzima ciclo-oxigenase, com consequente inibição da síntese de prostaglandinas."},{id:"D",texto:"Ativação da enzima ciclo-oxigenase, com consequente aumento da formação de tromboxanos."}],
   gabarito:"C",
@@ -218,7 +218,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-014", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:14,
-  areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-rinite",
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Adolescente, 17 anos, queixa-se de crises de espirros, prurido nasal, coriza e, eventualmente, obstrução nasal noturna, há 5 anos. O quadro é episódico e desencadeado por contato com poeira, com frequência mensal e duração de 2 a 3 dias. Há seis meses houve piora dos episódios, com sintomas diários, após aquisição de um gato que dorme em sua cama. O quadro se deve à hipersensibilidade:",
   alternativas:[{id:"A",texto:"Mediada por imunocomplexo"},{id:"B",texto:"IgE mediada (tipo 1)"},{id:"C",texto:"IgA mediada (resposta de mucosa)"},{id:"D",texto:"IgM mediada (tipo 2)"}],
   gabarito:"B",
@@ -244,7 +244,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-016", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:16,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   imagemUrl:"dados/imagens/q-tp20222-016.jpg",
   enunciado:"Homem, 30 anos, caminhoneiro, retornou de Rondônia há 10 dias. Há sete dias iniciou quadro de febre de 39,5ºC, precedida por calafrios intensos, com posterior sudorese e diminuição do quadro febril. O micro-organismo responsável pelo quadro está representado por:",
   alternativas:[{id:"A",texto:"Primeira imagem (de cima para baixo)."},{id:"B",texto:"Segunda imagem (de cima para baixo)."},{id:"C",texto:"Terceira imagem (de cima para baixo)."},{id:"D",texto:"Quarta imagem (de cima para baixo)."}],
@@ -298,7 +298,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-020", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:20,
-  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-disfuncaoeretil",
+  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-escroto",
   enunciado:"Homem, 32 anos, procurou atendimento médico com queixa de impotência sexual e infertilidade. Relata desenvolvimento normal da puberdade. Realizou exames solicitados, cujos resultados foram: testosterona plasmática: 20ng/dL (VR: 300 a 800ng/dL); LH: 22U/L (VR: 1,7 a 7 IU/L). O paciente apresenta:",
   alternativas:[{id:"A",texto:"Tumor hipofisário produtor de LH."},{id:"B",texto:"Resistência às ações do LH."},{id:"C",texto:"Insuficiência dos gonadotrofos."},{id:"D",texto:"Deficiência primária da função testicular."}],
   gabarito:"D",
@@ -683,7 +683,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-049", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:49,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente, 4 meses, com diagnóstico de bronquiolite por vírus respiratório sincicial, apresentou piora clínica com desconforto respiratório no terceiro dia de evolução clínica e necessidade de internação para oxigenoterapia inalatória. Está no sétimo dia de doença e apresenta uma maior necessidade de oxigênio inalatório para manutenção da saturação. A conduta a seguir é:",
   alternativas:[{id:"A",texto:"Investigar complicações como atelectasia ou coinfecção bacteriana."},{id:"B",texto:"Encaminhar para unidade de terapia intensiva para intubação orotraqueal."},{id:"C",texto:"Associar inalações com beta agonistas e corticoide sistêmico."},{id:"D",texto:"Indicar a nebulização com epinefrina e salina hipertônica."}],
   gabarito:"A",
@@ -1355,7 +1355,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 },
 {
   id:"q-tp20222-100", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:100,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos, procura atendimento por corrimento vaginal de pequena quantidade, líquido, amarelado, associado a mau odor há 2 meses. É sexualmente ativa e teve a última menstruação há 10 dias. Exame ginecológico: inspeção genital sem alterações; exame especular: moderada quantidade de secreção acinzentada, pH vaginal = 5,5, teste de Whiff positivo. O tratamento se faz com:",
   alternativas:[{id:"A",texto:"Banho com bicarbonato"},{id:"B",texto:"Fluconazol"},{id:"C",texto:"Metronidazol"},{id:"D",texto:"Corticosteroide"}],
   gabarito:"C",

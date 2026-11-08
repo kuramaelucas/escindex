@@ -301,7 +301,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 },
 {
   id:"q-famerp2022-022", banca:"FAMERP", real:true, ano:2022, numeroNaProva:22,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Menino de 4 meses de idade, com desenvolvimento pondero-estatural normal, é levado à emergência pediátrica pelos pais, por apresentar piora do desconforto respiratório da alimentação. Referem que ele estava bem até ontem, quando iniciou sintomas respiratórios e uma febre baixa. No exame físico verificou-se palidez e cianose perioral, frequência respiratória de 65 mrpm, e sibilos por todo o tórax. A gasometria arterial mostrou pH de 7,15, pCO2 de 65 mmHg e bicarbonato de 20 mmol/L. Qual das explicações a seguir melhor corresponde à condição apresentada pela criança?",
   alternativas:[{id:"A",texto:"É provável que a criança apresente refluxo gastresofágico e uma aspiração."},{id:"B",texto:"É provável que a criança apresente bronquiolite e esteja em risco para insuficiência respiratória."},{id:"C",texto:"É provável que a criança apresente bronquiolite e seus sintomas deverão melhorar com 2 ou mais administrações de um agonista beta-2 adrenérgico."},{id:"D",texto:"O quadro clínico é compatível com sepse bacteriana, e, portanto, dever-se-á iniciar antibioticoterapia."}],
   gabarito:"B",
@@ -405,7 +405,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 },
 {
   id:"q-famerp2022-030", banca:"FAMERP", real:true, ano:2022, numeroNaProva:30,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Lactente de 6 meses, previamente hígido, internado com quadro de diarreia e vômitos, fezes com sangue ou muco, afebril durante a internação. Ao exame físico está afebril, FC: 180 bpm, FR: [não informada], olhos fundos e presença de irritabilidade. O restante do exame físico se encontra sem anormalidades. Com base neste quadro, a alternativa correta é:",
   alternativas:[{id:"A",texto:"Desidratação grave, expansão com albumina 20% e reavaliação depois."},{id:"B",texto:"Desidratação grave, expansão com 20 ml/kg de soro fisiológico e repetir até que a criança esteja hidratada."},{id:"C",texto:"Desidratação moderada, iniciar soro de reidratação oral que deverá ser administrado até que desapareçam os sinais de desidratação."},{id:"D",texto:"Desidratação moderada, indicar sonda gástrica e iniciar soro de reidratação oral contínuo até que os sinais de desidratação desapareçam."}],
   gabarito:"C",

@@ -58,9 +58,9 @@ window.EscDados.registrarQuestoes("reposicoes-ist-1", [
   "real": false,
   "ano": 2020,
   "reposicaoDe": "q-amrigs2020-053",
-  "areaId": "area-go",
-  "especialidadeId": "esp-ginecologia",
-  "assuntoId": "ass-ists",
+  "areaId": "area-cm",
+  "especialidadeId": "esp-infecto",
+  "assuntoId": "ass-ist",
   "enunciado": "As úlceras genitais femininas são lesões nas quais há perda de tecido epitelial com envolvimento da epiderme e, às vezes, da derme, podendo ser localizadas na vulva e/ou vagina e/ou colo uterino. Em relação às úlceras genitais e às doenças que podem estar relacionadas a ela, assinale a alternativa INCORRETA.",
   "alternativas": [
    {

@@ -12,7 +12,7 @@
 window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 {
   id:"q-gdmalaria-001", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:1,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Entre os anos de 2003 e 2014, os casos de malária entre crianças e adolescentes, no Brasil, representaram cerca de 47% do total registrado. Qual é a espécie que tem maior prevalência no Brasil?",
   alternativas:[{id:"A",texto:"Plasmodium vivax."},{id:"B",texto:"Plasmodium falciparum."},{id:"C",texto:"Plasmodium malariae."},{id:"D",texto:"Plasmodium ovale."}],
   gabarito:"A",
@@ -25,7 +25,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-002", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:2,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Paciente do sexo feminino, 38 anos, previamente hígida, apresentando há cinco dias febre, calafrios, mal-estar, mialgia, astenia e sudorese fria. Mora em Rondônia, trabalha em escritório de advocacia e não teve viagens recentes. Conforme os dados clínicos e epidemiológicos, a principal hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Malária."},{id:"B",texto:"Pneumonia."},{id:"C",texto:"Infecção do trato urinário."},{id:"D",texto:"Gripe."}],
   gabarito:"A",
@@ -38,7 +38,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-003", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:3,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Mulher de 33 anos, não grávida, com síndrome ictero-febril aguda foi diagnosticada laboratorialmente com malária por Plasmodium vivax. Ao exame físico: febril, ictérica +++/4+, PA: 90 x 50 mmHg. Os exames laboratoriais evidenciaram ureia 43 mg/dL, creatinina 2,1 mg/dL. Nessa situação, segundo orientações do Ministério da Saúde, a conduta CORRETA é:",
   alternativas:[{id:"A",texto:"Acompanhar ambulatorialmente e tratar com cloroquina e primaquina;"},{id:"B",texto:"Acompanhar ambulatorialmente e administrar artesunato e clindamicina;"},{id:"C",texto:"Internar e tratar com cloroquina e primaquina;"},{id:"D",texto:"Internar e administrar artesunato e clindamicina;"}],
   gabarito:"D",
@@ -51,7 +51,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-004", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:4,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A malária é a mais importante das doenças parasitárias humanas, sendo uma doença transmitida pela picada do mosquito do gênero:",
   alternativas:[{id:"A",texto:"Aedes."},{id:"B",texto:"Anopheles."},{id:"C",texto:"Phlebotomus."},{id:"D",texto:"Plasmodium."},{id:"E",texto:"Culex"}],
   gabarito:"B",
@@ -64,7 +64,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-005", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:5,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A malária é caracterizada por manifestações clínicas como febre alta, acompanhada de calafrios, sudorese profunda e cefaleia. Em alguns pacientes aparecem sintomas prodrômicos vários dias antes dos paroxismos da doença, a exemplo de náuseas, vômitos, astenia, fadiga, anorexia. A decisão de como tratar o paciente com malária deve ser precedida de informações de diferentes aspectos.\n\nIdentifique a alternativa que apresenta CORRETAMENTE um aspecto a ser considerado e sua justificativa.",
   alternativas:[{id:"A",texto:"Espécie do plasmódio infectante - não se faz necessária a identificação da espécie, pois os esquemas terapêuticos são todos semelhantes."},{id:"B",texto:"Idade do paciente – pela maior toxicidade em adultos jovens."},{id:"C",texto:"História de exposição anterior à infecção – indivíduos infectados pela segunda ou terceira vez tendem a apresentar formas mais graves da doença."},{id:"D",texto:"Gravidade da doença – necessidade de hospitalização e de tratamento com esquemas especiais antimaláricos."},{id:"E",texto:"Condições associadas – não existe tratamento disponível para gestantes."}],
   gabarito:"D",
@@ -77,7 +77,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-006", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:6,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A malária é a doença parasitária mais importante dos seres humanos, causando centenas de milhões de casos e cerca de um milhão de mortes por ano. A doença é endêmica na maior parte dos trópicos, incluindo grande parte das Américas do Sul e Central, da África, do Oriente Médio, do subcontinente indiano, do Sudeste da Ásia e da Oceania. A transmissão, a morbidade e a mortalidade são máximas na África, onde a maioria das mortes por malária ocorre em crianças jovens. A malária também é comum nos viajantes de áreas não endêmicas para os trópicos.\n\nSão manifestações associadas à malária grave por P. falciparum variadas disfunções do sistema orgânico, EXCETO.",
   alternativas:[{id:"A",texto:"Lesão renal aguda em decorrência da necrose tubular aguda."},{id:"B",texto:"Anormalidades neurológicas que progridem para alterações na consciência, convulsões repetidas e coma."},{id:"C",texto:"Anormalidades de sangramento, inclusive coagulação intravascular disseminada."},{id:"D",texto:"Infecções bacterianas secundárias, incluindo pneumonia e bacteremia por Salmonella."},{id:"E",texto:"Edema pulmonar cardiogênico e síndrome do desconforto respiratório agudo."}],
   gabarito:"D",
@@ -90,7 +90,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-007", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:7,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Arteméter e lumefantrina são tratamentos de escolha para malária por:",
   alternativas:[{id:"A",texto:"Plasmodium vivax formas graves."},{id:"B",texto:"Plasmodium falciparum e P. vivax."},{id:"C",texto:"Plasmodium ovale e P. vivax."},{id:"D",texto:"Plasmodium falciparum."}],
   gabarito:"D",
@@ -103,7 +103,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-008", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:8,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Os casos graves e/ou complicados de malária habitualmente têm como agente etiológico o Plasmodium falciparum, porém há relatos em portadores de P.vivax. O tratamento dos casos graves e/ou complicados se fez com drogas distintas das usadas nos casos leves ou moderados, fato que torna importante o reconhecimento dos critérios de gravidade ou complicações nos portadores de malária. Dentre tais critérios de gravidade, pode-se citar:",
   alternativas:[{id:"A",texto:"Insuficiência renal."},{id:"B",texto:"Leucocitose."},{id:"C",texto:"Hipertensão arterial."},{id:"D",texto:"Cefaléia intensa."}],
   gabarito:"A",
@@ -116,7 +116,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-009", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:9,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Sobre a infecção pelo Plasmodium, é CORRETO afirmar que:",
   alternativas:[{id:"A",texto:"A gravidade da malária depende da relação do hospedeiro (vulnerabilidade e estado imunológico) com o Plasmodium sp. (espécie infectante e densidade parasitária)."},{id:"B",texto:"A concentração elevada de lactato e amônia na circulação é responsável pelos sintomas neurológicos na malária grave."},{id:"C",texto:"A forma grave da doença está relacionada somente à infecção pelo Plasmodium falciparum e independe da densidade parasitária."},{id:"D",texto:"A citoaderência e o processo de formação de rosetas são fenômenos presentes na infecção pelo Plasmodium falciparum, porém não estão relacionados às formas graves da infecção."}],
   gabarito:"A",
@@ -129,7 +129,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-010", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:10,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Sobre a malária, analise as afirmativas abaixo e julgue- as em (V) verdadeiro ou (F) falso:\n\n( ) A malária é uma doença infecciosa febril, aguda, causada por parasito unicelular.\n( ) No Brasil, três espécies de Plasmodium causam malária. P. malarie, P. vivax, P. falciparum.\n( ) A transmissão da malária se dá através da picada do mosquito macho Anopheles.\n( ) Os sintomas febris antecedem o rompimento das hemácias.\n\nA sequência correta de cima para baixo é:",
   alternativas:[{id:"A",texto:"V, V, V, V"},{id:"B",texto:"V, V, F, F"},{id:"C",texto:"F, F, V, V"},{id:"D",texto:"V, F, V, F"},{id:"E",texto:"F, V, F, V"}],
   gabarito:"B",
@@ -142,7 +142,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-011", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:11,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Sobre a malária, podemos afirmar que:",
   alternativas:[{id:"A",texto:"As espécies mais prevalentes no Brasil são P. falciparum e P. malariae."},{id:"B",texto:"A transmissão vetorial ocorre pela picada de mosquitos do gênero Lutzomyia."},{id:"C",texto:"O período de incubação é inferior a 7 dias, independente da espécie de plasmódio."},{id:"D",texto:"O homem é o único reservatório com importância epidemiológica."},{id:"E",texto:"Mato Grosso do Sul é considerada área endêmica."}],
   gabarito:"D",
@@ -155,7 +155,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-012", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:12,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Mulher de 60 anos adquire malária por Plasmodium vivax não grave através de uma transfusão de concentrado de hemácias. Levando em consideração o ciclo biológico do P. vivax, o tratamento de primeira escolha deve ser:",
   alternativas:[{id:"A",texto:"Cloroquina isoladamente."},{id:"B",texto:"Cloroquina associada à primaquina."},{id:"C",texto:"Arteméter combinado com lumefantrina."},{id:"D",texto:"Artesunato combinado com mefloquina."}],
   gabarito:"",
@@ -168,7 +168,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-013", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:13,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Um homem com 24 anos de idade, geólogo, irá viajar em expedição na Amazônia Legal daqui a 20 dias, onde deverá passar cerca de dois meses em localidades diferentes, coletando amostras de solo para sua tese de doutorado. Ele procurou a Unidade Básica de Saúde do seu bairro para orientações sobre a profilaxia da malária. Qual é a conduta adequada neste momento para garantir a segurança do paciente?",
   alternativas:[{id:"A",texto:"Solicitar ao paciente o seu itinerário e pedir que ele retorne em dois dias para que seja informado acerca da conduta adequada, pois a estimativa do risco do viajante adquirir malária no destino deve levar em consideração a Incidência Parasitária Anual (IPA)."},{id:"B",texto:"Orientar o paciente a vacinar-se pelo menos dez dias antes da viagem, tendo em vista que, apesar da malária ser uma doença grave tem tratamento específico, possui uma vacina segura e eficaz. Informar que não é necessário tomar a vacina se ele já foi vacinado nos últimos dez anos e orientá-lo a levar o cartão de vacinação na bagagem."},{id:"C",texto:"Orientar o paciente a tomar as seguintes medidas de proteção contra picadas de mosquitos: uso de roupas claras e com manga longa; uso de mosquiteiro impregnado com piretroides e uso de repelentes à base de dietilmetaloamida (DEET), principalmente ao amanhecer e ao pôr do sol."},{id:"D",texto:"Informar ao paciente que a medida de prevenção mais segura contra a malária é a quimioprofilaxia (QPX), que consiste no uso de drogas antimaláricas em doses subterapêuticas. O esquema não previne, no entanto, infecção pelo Plasmodium sp ou recaídas por P. vivax ou P. ovale."}],
   gabarito:"",
@@ -181,7 +181,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-014", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:14,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Homem, 65 anos, caminhoneiro, que carrega madeira da região Norte (Rondônia) para o estado de São Paulo, procura atendimento médico. HMA: há 4 meses queixa-se de febre diária, associada a episódios de tremedeira. ES: demonstraram anemia, trombocitopenia e uma gota espessa com alta parasitemia por Plasmodium vivax. Evolução: Refere ter recebido tratamento durante 3 dias e apresentou remissão completa dos sintomas. Desde então, não viajou mais para fora do estado de São Paulo. Entretanto, voltou a apresentar febre diária há 4 dias. Repetiu a gota espessa que se mostrou positiva para o Plasmodium vivax (1 parasita/campo). A medicação mais indicada para prevenir uma situação como a descrita acima é:",
   alternativas:[{id:"A",texto:"Artesunato."},{id:"B",texto:"Cloroquina."},{id:"C",texto:"Mefloquina."},{id:"D",texto:"Primaquina."}],
   gabarito:"D",
@@ -194,7 +194,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-015", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:15,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Um turista volta de um lugar onde há endemia de malária falciparum. Alertar os médicos em caso de febre é de suma importância para o diagnóstico e instituição precoce do tratamento, o que melhora o prognóstico da malária por Plasmodium falciparum. Deve-se ter forte suspeita desta doença em pessoas que apresentem-se febris após retornaram de zona endêmica em até:",
   alternativas:[{id:"A",texto:"1 ano."},{id:"B",texto:"7 dias."},{id:"C",texto:"2 meses."},{id:"D",texto:"6 meses."}],
   gabarito:"C",
@@ -207,7 +207,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-016", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:16,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Durante uma viagem na região amazônica, uma pessoa da equipe passou a apresentar mal-estar, dor de cabeça, mialgia generalizada, náuseas, vômitos e tonturas, seguidos de tremor, febre, sudorese. O diagnóstico de malária foi confirmado pelo teste de gota espessa. Este teste se baseia na:",
   alternativas:[{id:"A",texto:"Visualização do parasita dentro das hemácias após coloração com corantes biológicos."},{id:"B",texto:"Visualização da bactéria dentro das hemácias após coloração de Gram."},{id:"C",texto:"Identificação do parasita fora das células e apresentando movimentos aleatórios."},{id:"D",texto:"Identificação do parasita dentro dos linfócitos e fora das células."},{id:"E",texto:"Visualização do parasita dentro dos linfócitos, sem coloração especial."}],
   gabarito:"A",
@@ -220,7 +220,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-017", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:17,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A Malária é caracterizada por febres recorrentes e calafrios, associados com a lise sincrônica de hemácias parasitadas, cuja severidade e manifestações características são determinadas pela espécie de Plasmodium infectante. É correto afirmar que:",
   alternativas:[{id:"A",texto:"A maioria dos pacientes com febre intermitente e calafrios com intervalos de 48h estão infectados por Plasmodium vivax."},{id:"B",texto:"Nas infecções por Plasmodium falciparum, os episódios de febre e calafrios têm ciclo regular de sintomas de 72h."},{id:"C",texto:"A apresentação clínica das infecções por Plasmodium ovale caracteriza-se por febre e calafrios irregulares com intervalos maiores que 72h."},{id:"D",texto:"A maioria dos pacientes com infecção por Plasmodium malariae tem febre e calafrios regulares a cada 48h."}],
   gabarito:"A",
@@ -233,7 +233,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-018", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:18,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Paciente de 45 anos, agricultor, morador da zona rural do município de Acrelândia - Acre, procura atendimento devido à febre, cefaleia, artralgia e calafrios. No exame físico, a única alteração era a detecção de febre (temperatura axilar: 38,4ºC). Pesquisa de Plasmodium: duas cruzes de P. vivax. Iniciada terapêutica adequada para o caso segundo as normas do Ministério da Saúde. Paciente retorna no quarto dia a partir do início do tratamento, apresentando icterícia intensa, vômitos e dor abdominal, que diz terem iniciado no dia anterior. Relata desaparecimento dos sintomas apresentados no começo da doença. Provavelmente, a causa desse quadro e a conduta serão, respectivamente:",
   alternativas:[{id:"A",texto:"Hemólise pela primaquina; suspensão do tratamento."},{id:"B",texto:"Hemólise pela cloroquina; manter o esquema apenas com primaquina."},{id:"C",texto:"Hemólise pelo quinino; substituí-lo pela cloroquina."},{id:"D",texto:"Hepatotoxicidade devido à cloroquina e primaquina."},{id:"E",texto:"Hepatotoxicidade devido exclusivamente ao quinino."}],
   gabarito:"A",
@@ -246,7 +246,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-019", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:19,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Homem com 29 anos de idade reside em cidade de grande porte da região Sudeste, onde trabalha como administrador de empresas. No próximo final de semana, vai viajar para um município da região Norte. Preocupado com as informações sobre a ocorrência de malária na região, procurou a Unidade Básica de Saúde para receber orientações quanto à profilaxia da malária. Na consulta com o médico, não relatou nenhum problema de saúde e informou que iria permanecer no município por dez dias. O médico da Unidade Básica de Saúde explicou a ele a forma de transmissão da malária, os sintomas da doença e orientou quanto à profilaxia. A orientação adequada a esse usuário é:",
   alternativas:[{id:"A",texto:"Não viajar, uma vez que a quimioprofilaxia deve ser iniciada uma semana antes da chegada na zona de transmissão de malária e não haveria tempo hábil para que a quimioprofilaxia fosse capaz de oferecer proteção no dia de sua chegada."},{id:"B",texto:"Especificar as medidas de proteção individual e prescrever a quimioprofilaxia com a combinação de atovaquona + proguanil para reduzir o risco de efeitos colaterais."},{id:"C",texto:"Orientar quanto às medidas de proteção individual e prescrever a quimioprofilaxia com mefloquina, 250 mg semanalmente, iniciando imediatamente o uso do medicamento."},{id:"D",texto:"Informar sobre as medidas de proteção individual e prescrever quimioprofilaxia com dois comprimidos de cloroquina por semana durante o período em que permanecer na área com transmissão de malária."},{id:"E",texto:"Orientar quanto às medidas de proteção individual como: não se aproximar de áreas de risco após o entardecer e logo ao nascer do dia; usar roupas claras e de mangas longas; aplicar repelentes nas partes do corpo expostas e utilizar mosquiteiro para dormir."}],
   gabarito:"E",
@@ -259,7 +259,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-020", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:20,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"No tratamento da malária em gestantes, é contraindicado o uso de:",
   alternativas:[{id:"A",texto:"Primaquina."},{id:"B",texto:"Cloroquina."},{id:"C",texto:"Quinina."},{id:"D",texto:"Clindamicina."}],
   gabarito:"A",
@@ -272,7 +272,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-021", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:21,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Mulher, 30 anos, recebe o diagnóstico de malária por Plasmodium falciparum após viagem à Tanzânia. A parasitemia é de 7%, o hematócrito de 20%, a bilirrubina total de 8 mg/dL e a creatinina de 2,8 mg/dL. Há redução do nível de consciência com necessidade de Intubação Orotraqueal. O tratamento de escolha é:",
   alternativas:[{id:"A",texto:"Cloroquina"},{id:"B",texto:"Quinino venoso"},{id:"C",texto:"Artesunato venoso"},{id:"D",texto:"Mefloquina"}],
   gabarito:"C",
@@ -285,7 +285,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-022", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:22,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Com o aumento da frequência de viagens, seja a lazer ou a trabalho, torna-se cada vez mais importante orientar o paciente a respeito do risco de aquisição de doenças infecciosas durante a viagem. Para determinar o risco individual de adquirir malária em um roteiro de viagem é necessário que o profissional obtenha informações detalhadas sobre a mesma. Roteiros que incluam as características descritas abaixo são aqueles que oferecem risco elevado de transmissão e, consequentemente, de manifestação de malária grave ao viajante, EXCETO:",
   alternativas:[{id:"A",texto:"Destino que inclua locais com níveis elevados de transmissão de malária e/ou transmissão em perímetro urbano."},{id:"B",texto:"Viajantes que visitam amigos e parentes e/ou realizam atividades do pôr do sol ao amanhecer."},{id:"C",texto:"Dormir ao ar livre, em acampamentos, barcos, ou habitações precárias sem proteção contra mosquitos."},{id:"D",texto:"Duração da viagem maior que o período de incubação da doença, ou seja, permanecer no local por tempo maior que o período mínimo de incubação da doença (sete dias)."},{id:"E",texto:"Altitude do destino superior a 1.000 m de altitude."}],
   gabarito:"E",
@@ -298,7 +298,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-023", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:23,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Homem, 21 anos, internado há 12 horas com diagnóstico confirmado de malária por Plasmodium falciparum, em uso de quinino e clindamicina venosos. Exame físico: comatoso, sudorético, extremidades frias e hipotensão arterial (PA = 90 x 60 mmHg), sinal de Babinski presente. O evento que provavelmente causou a piora neurológica foi:",
   alternativas:[{id:"A",texto:"Hiponatremia."},{id:"B",texto:"Sepse por Gram-negativo."},{id:"C",texto:"Edema agudo de pulmão."},{id:"D",texto:"Hipoglicemia."}],
   gabarito:"D",
@@ -311,7 +311,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-024", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:24,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Atualmente no Brasil, o tratamento da malária por Plasmodium falciparum em um indivíduo adulto, sexo masculino, sem comorbidades, que não curse com nenhuma manifestação que indique gravidade, deverá ser preferencialmente com a:",
   alternativas:[{id:"A",texto:"Combinação de artemeter e mefloquina por via oral;"},{id:"B",texto:"Associação de cloroquina e artesunato por via oral;"},{id:"C",texto:"Combinação de quinino e mefloquina por via oral;"},{id:"D",texto:"Cloroquina por via oral isoladamente;"}],
   gabarito:"A",
@@ -324,7 +324,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-025", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:25,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Com relação à malária, considere as seguintes afirmativas:\n\n1. A malária é uma doença causada por um parasita unicelular que ocorre nas regiões subtropicais e tropicais do mundo, sendo transmitida prioritariamente pela picada do mosquito do gênero Anopheles.\n2. Durante a esquizogonia pré-eritrocítica, são originadas formas hepáticas latentes (hipnozoítos), que são responsáveis pela recaída da doença, que pode ocorrer durante a infecção pelos P. vivax e P. falciparum.\n3. O ciclo de vida dos plasmódios se caracteriza por processos de reprodução sexuada e assexuada no vetor e assexuada no homem. Os trofozoítos são a forma parasitária de transmissão da doença do mosquito para o homem.\n4. Quatro espécies de plasmódios podem ocasionar a malária. No Brasil, são encontradas as espécies P. vivax, P. malarie e P. falciparum, sendo a malária falciparum a mais frequentemente descrita.\n\nAssinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Somente as afirmativas 1, 2 e 4 são verdadeiras."},{id:"B",texto:"Somente as afirmativas 3 e 4 são verdadeiras."},{id:"C",texto:"Somente as afirmativas 1 e 3 são verdadeiras."},{id:"D",texto:"Somente as afirmativas 1 e 2 são verdadeiras."},{id:"E",texto:"Somente a afirmativa 3 é verdadeira."}],
   gabarito:"",
@@ -337,7 +337,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-026", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:26,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Com relação ao manejo clínico da malária grave, é correto afirmar, EXCETO:",
   alternativas:[{id:"A",texto:"A heparina e os glicocorticoides possuem papel central na terapêutica."},{id:"B",texto:"É a indicação principal para o uso de derivados da artemisinina."},{id:"C",texto:"O choque deve ser tratado com reposição hídrica cuidadosa."},{id:"D",texto:"O desenvolvimento de SARA é indicação para assistência ventilatória com PEEP."},{id:"E",texto:"Medidas contra o edema cerebral (ex.: manitol) não são úteis no coma malárico."}],
   gabarito:"A",
@@ -350,7 +350,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-malaria", [
 },
 {
   id:"q-gdmalaria-027", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:27,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Qual é o teste laboratorial mais confiável para o diagnóstico de ataque agudo de malária?",
   alternativas:[{id:"A",texto:"Reação da polimerase em cadeia para malária."},{id:"B",texto:"Hemograma."},{id:"C",texto:"Contagem de plaquetas."},{id:"D",texto:"Esfregaço de sangue periférico (Giemsa)."},{id:"E",texto:"Dipstick para detecção de anticorpos circulantes."}],
   gabarito:"D",

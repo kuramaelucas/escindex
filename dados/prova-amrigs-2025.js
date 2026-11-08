@@ -115,7 +115,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2025", [
 },
 {
   id:"q-amrigs2025-008", banca:"AMRIGS", real:true, ano:2025, numeroNaProva:8,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Em relação à crise renal esclerodérmica, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A presença de anticorpo anticentrômero sinaliza um alto risco para crise renal esclerodérmica."},{id:"B",texto:"A droga de escolha para o tratamento da crise são os inibidores da enzima de conversão da angiotensina."},{id:"C",texto:"A crise hipertensiva faz parte da abertura do quadro em todos os pacientes."},{id:"D",texto:"O exame de urina mostra proteinúria maciça e hematúria macroscópica."}],
   gabarito:"B",
@@ -609,7 +609,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2025", [
 },
 {
   id:"q-amrigs2025-046", banca:"AMRIGS", real:true, ano:2025, numeroNaProva:46,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos, procura atendimento médico queixando-se de corrimento vaginal, odor fétido e prurido. Ao exame especular, observa-se corrimento acinzentado, fluido e homogêneo, aderido às paredes da vagina. O pH vaginal é 5,0 e o teste de aminas é positivo. Diante do quadro clínico apresentado, o diagnóstico mais provável é de __________, e o tratamento preconizado é ____________________, por _________. Assinale a alternativa que preenche, correta e respectivamente, as lacunas do trecho acima.",
   alternativas:[{id:"A",texto:"candidíase vaginal – fluconazol 150 mg ao dia, VO – 3 dias"},{id:"B",texto:"vaginose bacteriana – secnidazol 2 g, VO – 1 dia"},{id:"C",texto:"tricomoníase – metronidazol 2 g, dose única, VO – 1 dia"},{id:"D",texto:"vaginite aeróbica – clindamicina creme vaginal 2% – 14 dias"}],
   gabarito:"B",
@@ -908,7 +908,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2025", [
 },
 {
   id:"q-amrigs2025-069", banca:"AMRIGS", real:true, ano:2025, numeroNaProva:69,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Criança, 8 meses, chega à unidade de emergência febril e com rinorreia abundante há três dias. Na consulta, está taquipneica e, ao exame inicial, chama a atenção a hipoxemia de 89% em ar ambiente e a sibilância difusa na ausculta pulmonar, sem sinais de hipoperfusão tecidual. O manejo inicial dessa criança deve considerar:",
   alternativas:[{id:"A",texto:"Oxigenação com cateter nasal de baixo fluxo e fração inspirada de oxigênio de 100% inicialmente."},{id:"B",texto:"Antibioticoterapia empírica com ampicilina intravenosa."},{id:"C",texto:"Salbutamol inalado associado a corticosteroide sistêmico."},{id:"D",texto:"Lavagem nasal com cloreto de sódio a 0,9% e oxigenação adequada."}],
   gabarito:"D",
@@ -921,7 +921,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2025", [
 },
 {
   id:"q-amrigs2025-070", banca:"AMRIGS", real:true, ano:2025, numeroNaProva:70,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Considerando um caso de desidratação em escolar, de 16 kg, associada à diarreia aguda febril tipo disenteria, ainda sem sinais de taquicardia, sem rebaixamento de sensório, nem prolongamento do tempo de enchimento capilar, a correção deve ser feita no(a) ____________ e com o insumo denominado ____________. Assinale a alternativa que preenche, correta e respectivamente, as lacunas do trecho acima.",
   alternativas:[{id:"A",texto:"sala de emergência – soro reidratante oral"},{id:"B",texto:"domicílio – soro reidratante oral"},{id:"C",texto:"unidade de terapia intensiva – ringer lactato intravenoso"},{id:"D",texto:"sala de emergência – soro fisiológico intravenoso"}],
   gabarito:"A",

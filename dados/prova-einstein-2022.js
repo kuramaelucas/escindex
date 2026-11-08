@@ -44,7 +44,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 },
 {
   id:"q-einstein2022-003", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:3,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Atenção: Para responder as questões de números 3 e 4 considere o caso abaixo. Paciente masculino 19 anos, procura o pronto-socorro com queixa de corrimento Uretral. Entre os esquemas terapêuticos abaixo, o mais indicado para este paciente é",
   alternativas:[{id:"A",texto:"Ceftriaxona + Azitromicina."},{id:"B",texto:"Ciprofloxacino."},{id:"C",texto:"Ciprofloxacino + Azitromicina."},{id:"D",texto:"Ceftriaxona."}],
   gabarito:"A",
@@ -57,7 +57,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 },
 {
   id:"q-einstein2022-004", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:4,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Atenção: Para responder as questões de números 3 e 4 considere o caso abaixo. Paciente masculino 19 anos, procura o pronto-socorro com queixa de corrimento Uretral. Ao examinar este paciente observa-se lesão peniana ulcerada, de fundo limpo e indolor. Entre as opções abaixo, a melhor conduta é prescrever",
   alternativas:[{id:"A",texto:"penicilina benzatina 2.400.000 UI em 0 e 7 dias."},{id:"B",texto:"penicilina benzatina 1.200.000 UI em 0 e 7 dias."},{id:"C",texto:"imediatamente penicilina benzatina 1.200.000 UI dose única."},{id:"D",texto:"imediatamente penicilina benzatina 2.400.000 UI dose única."}],
   gabarito:"D",
@@ -402,7 +402,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 },
 {
   id:"q-einstein2022-030", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:30,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Um homem de 47 anos faz seguimento ambulatorial por queixa de refluxo gastroesofágico. Em endoscopia solicitada após exacerbação dos sintomas dispépticos, notou-se que a mucosa do esôfago distal, junto à transição com o estômago, tem cor de salmão, numa extensão de 2 cm. A biópsia mostrou esôfago de Barrett, sem displasia. A opção de tratamento mais indicada neste momento é:",
   alternativas:[{id:"A",texto:"Cirurgia de Heller-Pinotti."},{id:"B",texto:"Cirurgia de Nissen."},{id:"C",texto:"Bromoprida, 10 mg, três vezes ao dia, antes das refeições."},{id:"D",texto:"Omeprazol, 20 mg, duas vezes ao dia."}],
   gabarito:"D",
@@ -480,7 +480,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 },
 {
   id:"q-einstein2022-036", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:36,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente de 4 meses de vida é levado a UPA com história de obstrução nasal, coriza clara e tosse há 4 dias. Há 1 dia houve piora do quadro com tosse mais intensa, dificuldade para respirar e respiração rápida. Nega febre, sonolência, gemência ou apneia. Mãe refere que a criança nasceu de termo, por cesariana, e nega doenças anteriores. Negou também sintomáticos respiratórios em casa. Ao exame, o lactente está em bom estado geral, acianótico, hidratado, ativo, FR: 66 ipm e discreta tiragem intercostal. SatO2: 95%. À ausculta pulmonar, apresenta murmúrio vesicular presente e sibilos bilateralmente. O teste RT-PCR de swab nasal para Covid-19 colhido hoje apresentou resultado negativo. Entre as seguintes propostas terapêuticas, a melhor para este caso é:",
   alternativas:[{id:"A",texto:"adrenalina por via inalatória e medidas de suporte."},{id:"B",texto:"broncodilatador por via inalatória e prednisolona 1 mg/kg."},{id:"C",texto:"inalação com soro fisiológico e medidas de suporte."},{id:"D",texto:"amoxicilina, por via oral, durante 10 dias e retorno em 48 horas."}],
   gabarito:"C",
@@ -597,7 +597,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 },
 {
   id:"q-einstein2022-045", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:45,
-  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-tumores",
+  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-catarata",
   imagemUrl:"dados/imagens/q-einstein2022-045.png",
   enunciado:"Pais de pré-escolar, sexo feminino, 4 anos, em consulta de rotina com pediatra referem que as fotos de sua filha, quando tiradas com flash, apresentam a seguinte alteração: O exame ocular revelou: reflexo vermelho alterado no olho direito e normal no esquerdo. Fundo de olho normal à esquerda e à direita com múltiplas massas rosadas, vascularizadas, parcialmente calcificadas, preenchendo a cavidade vítrea. Entre as seguintes hipóteses diagnósticas, a mais provável para este caso é:",
   alternativas:[{id:"A",texto:"descolamento de retina."},{id:"B",texto:"retinoblastoma."},{id:"C",texto:"catarata congênita."},{id:"D",texto:"doença de Coats."}],
@@ -650,7 +650,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 },
 {
   id:"q-einstein2022-049", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:49,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma mulher de 22 anos de idade procura atendimento ginecológico de rotina na UBS. Refere, que às vezes, apresenta sangramento após relação sexual. Não tem parceiro fixo, é nuligesta e utiliza contraceptivo hormonal combinado. Tem ciclos menstruais regulares. No exame especular, observa-se secreção mucopurulenta no colo uterino, em pequena quantidade. A passagem da espátula no colo causa sangramento. Nesse caso, entre as seguintes opções terapêuticas, a mais indicada é",
   alternativas:[{id:"A",texto:"ceftriaxona 500 mg IM dose única mais azitromicina 1 g VO dose única."},{id:"B",texto:"penicilina benzatina 1.200.000 UI IM dose única."},{id:"C",texto:"doxiciclina 500 mg VO dose única."},{id:"D",texto:"ciprofloxacina 500 mg VO 1 vez por dia por 14 dias."}],
   gabarito:"A",

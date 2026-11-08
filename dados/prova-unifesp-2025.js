@@ -109,7 +109,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2025", [
 },
 {
   id:"q-unifesp2025-008", banca:"UNIFESP-EPM", real:true, ano:2025, numeroNaProva:8,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 18 anos de idade, vítima de acidente por queda de moto, apresenta lesão na face posterior do antebraço direito. Exame físico: lesão de aproximadamente 25 x 7 cm, com sangramento e sujidade local, exposição da musculatura e gordura e sem exposição de vasos, nervos, tendões ou osso. Radiografia: ausência de fraturas. Submeteu-se a lavagem com desbridamento pela equipe da Cirurgia Geral. Após 10 dias, foi solicitada uma interconsulta para a equipe de Cirurgia Plástica. Qual é a conduta mais adequada para a cobertura?",
   alternativas:[{id:"A",texto:"Enxerto de pele total."},{id:"B",texto:"Enxerto de pele parcial."},{id:"C",texto:"Retalho microcirúrgico."},{id:"D",texto:"Fechamento por segunda intenção."}],
   gabarito:"B",
@@ -252,7 +252,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2025", [
 },
 {
   id:"q-unifesp2025-019", banca:"UNIFESP-EPM", real:true, ano:2025, numeroNaProva:19,
-  areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-vertigem",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-vertigem",
   enunciado:"Mulher, 44 anos de idade, apresenta quadro súbito de vertigem rotatória intensa há 3 horas, associada a náuseas, vômitos, sudorese profusa e mal-estar, que pioram à movimentação cefálica. Nega sintomas auditivos associados. Antecedentes: diabetes tipo 1 em uso de insulina, dislipidemia em uso de atorvastatina, hipertensão arterial em uso de anlodipino. Refere cefaleia por abuso de analgésico, em seguimento. Exame físico: PA100x60 mmHg, FC 98 bpm, Sat O2 98% em ar ambiente, dextro 113 mg/dL, REG, descorada (1+/4+), desidratada (2+/4+), eupneica. Nistagmo: espontâneo horizontal para a direita, semi-espontâneo presente ao olhar para a direita (horizontal para a direita) e ao olhar para a esquerda (horizontal para a direita), sendo mais intenso com o olhar para a direita e ausente com o olhar para cima e para baixo. HIT (head impulse test): presença de sacada corretiva ao virar a cabeça para a esquerda. Otoscopia: membranas timpânicas íntegras e translúcidas, meato acústico externo livre. Paciente não tolerou testes de Romberg, Fukuda e manobras posicionais por quadro de vômitos e mal-estar. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Migrânea vestibular."},{id:"B",texto:"Acidente Vascular Cerebral."},{id:"C",texto:"Vertigem Posicional Paroxística Benigna."},{id:"D",texto:"Neurite vestibular."}],
   gabarito:"D",
@@ -265,7 +265,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2025", [
 },
 {
   id:"q-unifesp2025-020", banca:"UNIFESP-EPM", real:true, ano:2025, numeroNaProva:20,
-  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ligamentos",
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Homem, 35 anos de idade, vem ao ambulatório de joelho após 3 semanas de acidente de carro no qual sofreu trauma direto no seu joelho esquerdo contra o painel do carro. Refere que na ocasião percebeu grande hematoma, inchaço e dor no joelho. Foi ao pronto socorro e realizou radiografias sem fraturas, sendo recomendado anti-inflamatórios e crioterapia. Exame físico: aumento da translação posterior do joelho esquerdo e deslizamento posterior da tíbia. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Lesão do ligamento cruzado posterior."},{id:"B",texto:"Lesão do ligamento cruzado anterior."},{id:"C",texto:"Lesão do ligamento menisco-femoral."},{id:"D",texto:"Lesão do ligamento oblíquo posterior."}],
   gabarito:"A",

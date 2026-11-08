@@ -370,7 +370,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 },
 {
   id:"q-uspsp4-027", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:27,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-uspsp4-027.png", imagemLegenda:"Exame especular da paciente.",
   enunciado:"Uma mulher de 22 anos de idade apresenta corrimento vaginal. O exame especular é apresentado (imagem). Qual afirmação é compatível com o achado vaginal?",
   alternativas:[{id:"A",texto:"pH > 4,5."},{id:"B",texto:"Teste de aminas negativo."},{id:"C",texto:"Identificação do agente por KOH."},{id:"D",texto:"Abundância de lactobacilos."}],
@@ -476,7 +476,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 },
 {
   id:"q-uspsp4-035", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:35,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma mulher de 29 anos de idade relata o aparecimento de lesão genital há 5 dias, associada a dor local. Ao exame clínico, observa-se a presença de úlceras agrupadas, rasas, dolorosas, de bordas irregulares, com base eritematosa e presença de linfadenopatia inguinal dolorosa. Qual é o diagnóstico provável?",
   alternativas:[{id:"A",texto:"Cancro mole (cancroide)."},{id:"B",texto:"Herpes genital."},{id:"C",texto:"Cancro duro (sífilis primária)."},{id:"D",texto:"Donovanose."}],
   gabarito:"A",
@@ -865,7 +865,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 },
 {
   id:"q-uspsp4-064", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:64,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   imagemUrl:"dados/imagens/q-uspsp4-064.png", imagemLegenda:"Esofagograma contrastado do paciente.",
   enunciado:"Um homem, 50 anos de idade, natural de Feira de Santana (BA), queixa-se de disfagia progressiva há 5 anos, atualmente para líquidos. Tem regurgitação e necessidade de uso de coluna d'água associada. Vem à triagem com o exame contrastado ao lado (esofagograma). Considerando que a manometria esofágica confirmou o diagnóstico mais provável. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Tratamento clínico."},{id:"B",texto:"Dilatação endoscópica."},{id:"C",texto:"Fundoplicatura a Nissen VLP."},{id:"D",texto:"Cardiomiotomia + fundoplicatura VLP."}],
@@ -879,7 +879,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 },
 {
   id:"q-uspsp4-065", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:65,
-  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-caesofago",
+  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
   enunciado:"Um homem de 65 anos de idade, em acompanhamento na Unidade Básica de Saúde devido a queixas de azia há mais de 10 anos, vem apresentando disfagia para alimentos sólidos. Realizou exame de endoscopia digestiva alta que revelou lesão ulcerada subestenosante na região do esôfago distal até a transição esofagogástrica. A biópsia está em análise. Qual é o provável tipo histológico e o estadiamento neste caso?",
   alternativas:[{id:"A",texto:"Adenocarcinoma; tomografia computadorizada de pescoço, tórax, abdome e pelve."},{id:"B",texto:"Adenocarcinoma; tomografia computadorizada de tórax e laparoscopia diagnóstica."},{id:"C",texto:"Carcinoma espinocelular; tomografia por emissão de pósitrons (PET-CT)."},{id:"D",texto:"Carcinoma espinocelular; tomografia computadorizada de pescoço, tórax, abdome e pelve."}],
   gabarito:"A",
@@ -1408,7 +1408,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 },
 {
   id:"q-uspsp4-105", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:105,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Um recém-nascido de 37 semanas, filho de mãe diabética insulinodependente, com 2 horas de vida, assintomático, apresenta glicemia capilar de 38 mg/dL. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Iniciar infusão venosa de glicose 10% em bolus."},{id:"B",texto:"Aguardar nova dosagem em 1 hora sem intervenção."},{id:"C",texto:"Oferecer alimentação oral ou gel de dextrose imediatamente e repetir a glicemia em 30 minutos."},{id:"D",texto:"Considerar valor normal e manter conduta expectante."}],
   gabarito:"C",
@@ -1514,7 +1514,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 },
 {
   id:"q-uspsp4-113", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:113,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Uma criança de 18 meses de vida, filha de mãe bacilífera (em tratamento, sem baciloscopia negativa), apresenta prova tuberculínica (PPD) não reatora. Qual é a conduta de quimioprofilaxia e vacinal mais adequada para esta criança, conforme as diretrizes para tuberculose (TB) na infância?",
   alternativas:[{id:"A",texto:"Iniciar isoniazida, manter por 3 meses e aplicar BCG após nova PPD não reatora."},{id:"B",texto:"Aplicar a BCG imediatamente e iniciar rifampicina profilática por 6 meses."},{id:"C",texto:"Adiar a BCG, mas iniciar rifampicina até o resultado da PPD."},{id:"D",texto:"Aplicar a BCG e iniciar isoniazida profilática por 6 meses."}],
   gabarito:"A",
@@ -1540,7 +1540,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 },
 {
   id:"q-uspsp4-115", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:115,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   imagemUrl:"dados/imagens/q-uspsp4-115.png", imagemLegenda:"Imagens de ultrassonografia pulmonar (A a D).",
   enunciado:"Uma lactente de 4 meses de idade, nascida a termo, é levada ao pronto-socorro com história de tosse e rinorreia hialina há 2 dias, evoluindo com piora do cansaço, febre baixa (37,8 °C) e dificuldade para mamar nas últimas 6 horas. Ao exame clínico, apresenta-se taquidispneica (FR: 60 irpm), com tiragem subcostal leve, sibilância expiratória difusa e roncos de transmissão. Saturação de oxigênio de 93% em ar ambiente. Considerando a principal hipótese diagnóstica, qual é o padrão de imagem no POCUS pulmonar esperado?",
   alternativas:[{id:"A",texto:"Imagem A (ultrassom pulmonar)."},{id:"B",texto:"Imagem B (ultrassom pulmonar, com modo M)."},{id:"C",texto:"Imagem C (ultrassom pulmonar)."},{id:"D",texto:"Imagem D (ultrassom pulmonar)."}],

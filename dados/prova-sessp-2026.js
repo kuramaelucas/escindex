@@ -354,7 +354,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2026", [
 },
 {
   id:"q-sessp2026-026", banca:"SES-SP", real:true, ano:2026, numeroNaProva:26,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Um homem de 35 anos é admitido no pronto atendimento devido a quadro de hematêmese. Refere viagem recente para o litoral, com retorno há 3 dias, após a qual desenvolveu quadro de infecção intestinal aguda com diarreia e vômitos desde então. Refere piora recente dos quadros de vômitos nas últimas 24 horas. Encontra-se hemodinamicamente estável e sem sinais de peritonite. Foi submetido à endoscopia digestiva alta após estabilização inicial que identificou uma laceração linear na região da transição esofagogástrica, sem sangramento ativo. Assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A localização mais comum desse tipo de lesão é junto à grande curvatura gástrica."},{id:"B",texto:"A maioria dos casos apresenta sangramento recorrente, sendo indicada abordagem cirúrgica em caso de recorrência."},{id:"C",texto:"A embolização angiográfica da lesão constitui a primeira linha de tratamento em caso de ressangramento."},{id:"D",texto:"Durante a endoscopia, a realização de biópsias é imprescindível para afastar a suspeita de neoplasia."},{id:"E",texto:"A maioria dos casos é autolimitada e apresenta resolução espontânea após 72 horas."}],
   gabarito:"E",
@@ -731,7 +731,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2026", [
 },
 {
   id:"q-sessp2026-055", banca:"SES-SP", real:true, ano:2026, numeroNaProva:55,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"No tratamento da cetoacidose diabética, em crianças e adolescentes com diabetes tipo 1, para evitar complicações, após monitoração e a coleta de exames, deve ser iniciada imediatamente a",
   alternativas:[{id:"A",texto:"aplicação de insulina humana regular na dose habitual ou se o diagnóstico é feito na primodescompensação, 0,15 UI/kg."},{id:"B",texto:"reposição de fluídos com soro fisiológico ou Ringer-lactato 20 mL/kg em 20 minutos."},{id:"C",texto:"reposição de fluídos com soro fisiológico e soro glicosado 5%, na proporção 3:1, 150 mL/kg em 24 horas."},{id:"D",texto:"punção de 2 acessos venosos para infusão concomitante de soro fisiológico 10 mL/kg em 20 minutos, repetidos 3 vezes, até diurese clara e infusão de insulina regular 0,05 a 0,1 UI/kg/ hora."},{id:"E",texto:"punção de 2 acessos venosos para infusão concomitante de soro fisiológico 10 mL/kg/hora e soro fisiológico e soro glicosado 5%, na proporção de 1:1, com cloreto de potássio 19,1%, 20 mEq/L, 0,5 mEq/kg/hora."}],
   gabarito:"B",

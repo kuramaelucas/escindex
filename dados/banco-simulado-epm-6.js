@@ -256,7 +256,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-6", [
 {
   id:"q-adap21-017", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ligamentos",
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Homem, 24 anos de idade, jogador de futebol, sofre uma torção do joelho direito durante uma partida, com dor na interlinha articular medial, estalido e derrame discreto nos dias seguintes. Duas semanas depois, o joelho «trava» em semiflexão e não estende completamente; ele sente dor ao agachar e ao girar o corpo. Exame físico: perda da extensão passiva de 15 graus, dor à palpação da interlinha medial e teste de McMurray positivo; Lachman negativo. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Ressonância magnética e artroscopia para reparo ou ressecção parcial do menisco, pelo bloqueio mecânico do joelho do atleta."},{id:"B",texto:"Reconstrução do ligamento cruzado anterior com enxerto do tendão patelar, pelo teste de Lachman e pela instabilidade do joelho."},{id:"C",texto:"Imobilização gessada em extensão por 6 semanas, que cicatriza a lesão meniscal pela região vascularizada em qualquer situação."},{id:"D",texto:"Fisioterapia isolada e anti-inflamatório por três meses, aguardando a reabsorção espontânea do fragmento meniscal deslocado na articulação."}],
   gabarito:"A",
@@ -316,7 +316,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-6", [
 {
   id:"q-adap21-021", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Homem, 36 anos de idade, comerciante em Manaus, apresenta há 4 dias febre alta com calafrios e sudorese a cada 48 horas, cefaleia e mialgia. Exame físico: palidez leve; baço palpável a 2 cm do rebordo. A gota espessa identifica Plasmodium vivax, e a parasitemia é baixa. O teste quantitativo de G6PD mostra atividade de 5,2 UI/gHb (atividade intermediária). Ele não usa outros medicamentos. Qual é o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Cloroquina por 3 dias isolada, pois a primaquina é contraindicada a todos os pacientes com malária por Plasmodium vivax na Amazônia."},{id:"B",texto:"Artemeter com lumefantrina por 3 dias, isoladamente, que elimina também as formas hepáticas latentes do parasito e evita as recaídas."},{id:"C",texto:"Cloroquina por 3 dias associada à primaquina por 7 dias, para eliminar as formas sanguíneas e os hipnozoítos hepáticos e evitar recaídas."},{id:"D",texto:"Quinina com doxiciclina por 7 dias, que é o esquema de primeira linha da malária não complicada por Plasmodium vivax no Brasil."}],
   gabarito:"C",
@@ -976,7 +976,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-6", [
 {
   id:"q-adap21-065", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos de idade, sem parceiro fixo há 6 meses, queixa-se de corrimento vaginal fino, acinzentado e com odor desagradável, mais intenso após as relações sexuais e durante a menstruação, sem prurido, disúria ou dor pélvica. Exame especular: conteúdo vaginal homogêneo, aderido às paredes, sem inflamação do colo. O pH vaginal é de 5,5; o teste das aminas (hidróxido de potássio a 10%) é positivo; o exame a fresco mostra células-chave e escassos lactobacilos, sem leucócitos nem parasitas móveis. Qual é o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Fluconazol 150 mg por via oral em dose única, que trata a vaginose bacteriana por eliminar as leveduras do conteúdo vaginal."},{id:"B",texto:"Metronidazol 2 g por via oral em dose única para a paciente e, ao mesmo tempo, para todos os parceiros sexuais, com abstinência por 30 dias."},{id:"C",texto:"Metronidazol 500 mg por via oral a cada 12 horas por 7 dias, sem necessidade de tratar o parceiro sexual de rotina."},{id:"D",texto:"Ceftriaxona 500 mg por via intramuscular em dose única e azitromicina 1 g por via oral, esquema da cervicite por gonococo e clamídia."}],
   gabarito:"C",

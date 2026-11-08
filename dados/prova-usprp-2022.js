@@ -20,7 +20,7 @@
 window.EscDados.registrarQuestoes("prova-usprp-2022", [
 {
   id:"q-usprp2022-001", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:1,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente feminina, 27 anos, com queixa de corrimento vaginal há 2 meses e odor desagradável. Ao exame físico especular você coleta exame de Papanicolau e observa moderada quantidade de corrimento em fundo de saco vaginal de coloração acinzentada, sem alterações em paredes vaginais e colo de útero. Wiff teste realizado e foi positivo; no exame à fresco observou-se a presença de Clue Cells. Diante desse quadro clínico qual a melhor conduta, além de orientar prevenção de infecções sexualmente transmissíveis (IST) e discutir métodos contraceptivos?",
   alternativas:[{id:"A",texto:"Prescrever metronidazol 500 mg de 12/12h, uma semana."},{id:"B",texto:"Prescrever ciprofloxacina 500 mg (doe única), doxicilina 10 mg, 12/12 h, 7 dias."},{id:"C",texto:"Prescrever fluconazol 150 mg em dose única."},{id:"D",texto:"Prescrever dexametasona, apresentação creme vaginal."}],
   gabarito:"A",
@@ -341,7 +341,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 {
   id:"q-usprp2022-025", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:25,
   imagemUrl:"dados/imagens/q-usprp2022-025.png", imagemLegenda:"Foto da ferida esternal após três ciclos de terapia por pressão negativa",
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem de 64 anos foi submetido a revascularização do miocárdio, cujo acesso foi por meio de esternotomia mediana. Após 25 dias de cirurgia, iniciou drenagem purulenta e deiscência da ferida operatória. O tratamento inicial foi feito com desbridamento dos tecidos desvitalizados e terapia por pressão negativa. Após três ciclos de terapia, a ferida cirúrgica encontra-se como mostrado na figura: Qual o melhor tratamento subsequente?",
   alternativas:[{id:"A",texto:"Cicatrização por segunda intenção."},{id:"B",texto:"Enxerto de pele total."},{id:"C",texto:"Rotação de retalho miocutâneo."},{id:"D",texto:"Fechamento primário da pele."}],
   gabarito:"C",
@@ -634,7 +634,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 {
   id:"q-usprp2022-047", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:47,
   imagemUrl:"dados/imagens/q-usprp2022-047.png", imagemLegenda:"Figura 1 — lesões vulvares",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Primigesta, 16 anos, 21 semanas, refere lesões na vulva há 30 dias. Na consulta na Unidade Básica de Saúde, a avaliação da genitália evidencia as lesões mostradas na figura 1. Qual a melhor conduta para esse caso?",
   alternativas:[{id:"A",texto:"Ácido tricloacético 80%."},{id:"B",texto:"Podofilotoxina."},{id:"C",texto:"Expectante."},{id:"D",texto:"Imiguimode."}],
   gabarito:"A",
@@ -701,7 +701,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 },
 {
   id:"q-usprp2022-052", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:52,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Nuligesta, 26 anos, vem ao pronto atendimento queixando de corrimento fétido há 10 dias e dor no baixo ventre há sete dias. Nega febre, vômitos ou diarreia. Usa dispositivo intrauterino (DIU) de cobre há um ano. Ao exame, observa-se conteúdo vaginal de coloração esverdeada e odor fétido, dor a palpação profunda de hipogástrio e ao toque vaginal apresenta dor à mobilização do colo e palpação de anexos. Qual o manejo mais adequado para essa paciente?",
   alternativas:[{id:"A",texto:"Internação hospitalar, clindamicina e gentamicina, manter DIU."},{id:"B",texto:"Tratamento ambulatorial, azitromicina, ceftriaxona e metronidazol, retirar DIU."},{id:"C",texto:"Tratamento ambulatorial, doxiciclina, ceftriaxona e metronidazol, manter DIU."},{id:"D",texto:"Internação hospitalar, penicilina cristalina e ceftriaxona, retirar DIU."}],
   gabarito:"C",
@@ -1194,7 +1194,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2022", [
 {
   id:"q-usprp2022-089", banca:"USP-RP (FMRP)", real:true, ano:2022, numeroNaProva:89,
   imagemUrl:"dados/imagens/q-usprp2022-089.png", imagemLegenda:"Foto da pele da criança (lesões eritematosas)",
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mãe refere que seu filho de 8 anos está apresentando quedas frequentes ao solo há 3 semanas. Refere dificuldades em subir escadas e de se levantar da posição sentada, necessitando de ajuda Criança está deprimida e irritada, Ao exame físico você nota sua pele avermelhada (foto abaixo), dificuldade de manter os braços elevados e de subir a escada para sentar-se na maca. Qual a hipótese diagnóstica principal?",
   alternativas:[{id:"A",texto:"Dermatomiosite juvenil."},{id:"B",texto:"Síndrome de Guillain-Barré."},{id:"C",texto:"Lupus eritematoso sistêmico juvenil."},{id:"D",texto:"Miosite viral."}],
   gabarito:"A",

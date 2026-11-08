@@ -761,7 +761,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 },
 {
   id:"q-sessp2024-057", banca:"SES-SP", real:true, ano:2024, numeroNaProva:57,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Com relação à diarreia e à desidratação na infância e aos planos A, B e C de reidratação do Ministério da Saúde, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"No caso de desidratação moderada (3%-9%), deve-se aplicar o plano B: administrar a solução de terapia de reidratação oral (SRO), inicialmente entre 50 a 100 mL/kg, durante quatro a seis horas."},{id:"B",texto:"O uso do plano A requer observação na unidade de saúde para todos os casos, suplementação com zinco e pausa na dieta."},{id:"C",texto:"Seguindo-se o plano C, na fase de expansão para menores de cinco anos de idade, deve-se iniciar com 20 mL/kg de peso de ringer com lactato e repetir essa quantidade até que a criança esteja hidratada."},{id:"D",texto:"O plano C consiste em corrigir a desidratação grave com terapia de reidratação por via enteral. O paciente deve ser mantido no serviço de saúde, em hidratação enteral de manutenção, com oferta de líquidos, via oral, na quantidade adequada."},{id:"E",texto:"Na diarreia aguda, recomenda-se apenas o uso de fórmula sem lactose para lactentes tratados ambulatorialmente."}],
   gabarito:"A",

@@ -285,7 +285,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-021", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:21,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Em relação à cicatrização tecidual e suas fases, assinale a alternativa INCORRETA.",
   alternativas:[{id:"A",texto:"Durante a fase inflamatória, há predomínio do colágeno tipo I e, após, durante as demais fases, observamos um pico do colágeno tipo III."},{id:"B",texto:"O processo de cicatrização é composto por três fases, sendo a segunda fase nomeada como proliferativa."},{id:"C",texto:"Durante a fase inflamatória, primeira fase do processo cicatricial, há um aumento da permeabilidade vascular."},{id:"D",texto:"Neutrófilos e macrófagos são predominantes na fase inflamatória."}],
   gabarito:"A",
@@ -298,7 +298,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-022", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:22,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Em relação aos fatores que influenciam negativamente o processo cicatricial, podemos citar, EXCETO:",
   alternativas:[{id:"A",texto:"Drogas exógenas."},{id:"B",texto:"Desnutrição."},{id:"C",texto:"Deficiência de vitamina A, C e D."},{id:"D",texto:"Infecção."}],
   gabarito:"B",
@@ -402,7 +402,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-030", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:30,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"São efeitos do curativo a vácuo, EXCETO:",
   alternativas:[{id:"A",texto:"Manutenção da umidade e redução do edema da ferida."},{id:"B",texto:"Remodelamento tecidual que favorece a cicatrização."},{id:"C",texto:"Diminuição do fluxo sanguíneo e consequentemente diminuição da resposta inflamatória."},{id:"D",texto:"Redução da carga bacteriana."}],
   gabarito:"C",
@@ -870,7 +870,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-066", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:66,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Lactente de 18 meses chega na emergência, pois, desde a noite passada, está mais prostrado, aceitou pouco a janta e vomitou logo em seguida. Está há 3 dias com evacuações líquidas 4-5 vezes ao dia sem restos patológicos, e febrícula 2 picos ao dia. Ao exame, está taquicárdico, normotenso, GLASGOW de 10, desidratado grave com déficit perfusional importante. Consultou no início dos sintomas e, como estava hidratado, foi liberado apenas com soro oral e sintomáticos. Em relação a esse caso, é correto afirmar que:",
   alternativas:[{id:"A",texto:"A hipopotassemia, caso presente, se justifica pela diarreia aguda."},{id:"B",texto:"O diagnóstico é de choque séptico e deve-se iniciar expansão volêmica cristaloide, com soro fisiológico melhor que ringer lactato."},{id:"C",texto:"O estado neurológico na admissão indica intubação traqueal para permeabilizar via aérea."},{id:"D",texto:"A pressão arterial e o lactato sérico normais afastam choque séptico nesse caso, classificando a situação clínica como sepse grave."}],
   gabarito:"A",

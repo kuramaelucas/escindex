@@ -14,9 +14,9 @@ window.EscDados.registrarQuestoes("reposicoes-clinicas-1", [
   "real": false,
   "ano": 2021,
   "reposicaoDe": "q-sirio2021-065",
-  "areaId": "area-go",
-  "especialidadeId": "esp-ginecologia",
-  "assuntoId": "ass-ists",
+  "areaId": "area-cm",
+  "especialidadeId": "esp-infecto",
+  "assuntoId": "ass-ist",
   "enunciado": "Durante o exame especular de uma mulher de 28 anos, assintomática, observa-se a presença de cervicite, com sangramento endocervical durante a coleta de citologia cervicovaginal. O esfregaço obtido corado pelo Gram mostra diplococos Gram-negativos no citoplasma de polimorfonucleares neutrófilos. A conduta é:",
   "alternativas": [
    {

@@ -103,7 +103,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 },
 {
   id:"q-unicampdis2025-006", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:6,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   tipo:"dissertativa", respostaEsperada:"Sífilis tratada (cicatriz sorológica).",
   enunciado:"Mulher, 30a, previamente hígida, procurou a Unidade Básica de Saúde em junho de 2023 por apresentar lesões elevadas e acinzentadas na região perianal. A investigação mostrou anti-HIV=negativo, teste treponêmico=positivo e VDRL=1:128. Foi tratada com benzilpenicilina benzatina 2.400.000 UI em dose única. Retornou em junho de 2024, referindo não ter tido atividade sexual desde o diagnóstico, e estar assintomática, com VDRL=1:8. O DIAGNÓSTICO EM JUNHO DE 2024 ERA:",
   alternativas:[],
@@ -416,7 +416,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 },
 {
   id:"q-unicampdis2025-028", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:28,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   tipo:"dissertativa", respostaEsperada:"Glicose a 10% 2 mL/kg por via endovenosa em bolus (200 mg/kg de glicose).",
   enunciado:"Menino, 3 horas de vida, filho de mãe com diabetes, apresenta tremores leves e hipotonia. A glicemia neste momento é 35mg/dL. A PRESCRIÇÃO MÉDICA É:",
   alternativas:[],
@@ -444,7 +444,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 },
 {
   id:"q-unicampdis2025-030", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:30,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   imagemUrl:"dados/imagens/q-unicampdis2025-030.jpg",
   tipo:"dissertativa", respostaEsperada:"Vírus sincicial respiratório.",
   enunciado:"Menina, 2m, é trazida ao Pronto Socorro com história de coriza e tosse há cinco dias, com dois episódios de febre no primeiro dia. Mãe refere que há dois dias a criança apresenta dificuldade para mamar e falta de ar. Nega doenças e uso de medicamentos. Exame físico: regular estado geral, FR=71irpm; FC=165bpm; PA=82/50mmHg; oximetria de pulso=90% (cateter nasal com 2L O2/min); batimento de aletas nasais; retração de fúrcula; retração subcostal moderada; pulsos cheios; enchimento capilar=2 segundos; pulmões: murmúrio vesicular presente com sibilos expiratórios. Radiograma de tórax (imagem Q30) O DIAGNÓSTICO ETIOLÓGICO MAIS PROVÁVEL É:",
@@ -797,7 +797,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 },
 {
   id:"q-unicampdis2025-055", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:55,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   tipo:"dissertativa", respostaEsperada:"Uso de metformina (acidose láctica associada à metformina em doença renal).",
   enunciado:"Mulher, 52a, tratou infecção de trato urinário com ciprofloxacino há cerca de três semanas, apresentando há uma semana redução da diurese, dispneia em repouso, inapetência, náuseas e diarreia. Antecedentes pessoais: diabetes melito, hipertensão arterial e doença renal crônica. Medicamentos em uso: metformina e losartana. Exame físico: PA=126/74mmHg, T=36,8 °C, FC=76 bpm, edema de membros inferiores bilateral e simétrico 2+/4+, auscultas cardíaca e pulmonar sem alterações, dor leve à palpação profunda de abdome, indolor à manobra de punho percussão lombar. Exames laboratoriais: hemoglobina=9,8g/dL, hematócrito=33%, leucócitos=7.500/mm³, plaquetas=380.000/mm³, ureia=110mg/dL, creatinina=3,0mg/dL, Na=134mEq/L, K=4,2mEq/L, Cloro=105mmol/L, albumina=4g/dL, glicemia=82mg/dL; gasometria venosa: pH=7,21, pCO2=38mmHg, pO2=44mmHg, HCO3=15,2mmol/L, BE=-11,9, Lactato=8,5mmol/L; exame de urina: proteína 1+, hemácias 10 por campo, leucócitos 30 por campo. A PRINCIPAL CAUSA PARA O DISTÚRBIO ÁCIDO-BASE APRESENTADO É:",
   alternativas:[],
@@ -1223,7 +1223,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 },
 {
   id:"q-unicampdis2025-085", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:85,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   tipo:"dissertativa", respostaEsperada:"Penicilina benzatina 2.400.000 UI por via intramuscular (com dessensibilização, pois há alergia à penicilina).",
   enunciado:"Mulher, 19a, primigesta, idade gestacional de 30 semanas, vem para consulta pré-natal de rotina, trazendo exames laboratoriais realizados às 28 semanas. Nega queixas, refere boa movimentação fetal, em uso de sulfato ferroso 40mg/dia. Antecedentes: nega doenças crônicas, refere alergia a dipirona e penicilina, exames de rotina de pré-natal de primeiro trimestre todos normais (incluindo a sorologia de sífilis negativa). Exames laboratoriais: hemoglobina=11,6mg/dL; glicemia de jejum=88mg/dL; exame de urina=normal; urocultura=negativa. Sorologias: HIV=negativa; toxoplasmose=IgG e IgM negativas; sífilis: (CMIA)=positivo; VDRL=1:64. DE ACORDO COM O PROTOCOLO CLÍNICO E DIRETRIZES TERAPÊUTICAS PARA PREVENÇÃO DA TRANSMISSÃO VERTICAL DE HIV, SÍFILIS E HEPATITES VIRAIS, 2022, O TRATAMENTO INDICADO PARA ESTA PACIENTE É:",
   alternativas:[],

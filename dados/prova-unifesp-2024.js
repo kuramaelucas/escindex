@@ -82,7 +82,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-006", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:6,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem, 68 anos de idade, encontra-se em pósoperatório de cirurgia de revascularização miocárdica, sem intercorrências, com ecocardiograma mostrando função ventricular normal e discreto derrame pleural à radiografia de tórax. Quais medicações devem ser continuadas após alta hospitalar?",
   alternativas:[{id:"A",texto:"Betabloqueador, estatina, AAS e diurético."},{id:"B",texto:"Clopidogrel, AAS, inibidor da enzima de conversão da angiotensina e diurético."},{id:"C",texto:"Betabloqueador, inibidor da enzima de conversão da angiotensina, estatina e AAS."},{id:"D",texto:"Estatina, inibidor de enzima de conversão da angiotensina, AAS e clopidogrel."}],
   gabarito:"C",
@@ -212,7 +212,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-016", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:16,
-  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-disfuncaoeretil",
+  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-escroto",
   enunciado:"Homem, 65 anos de idade, diabético, tabagista, apresenta disfunção erétil há um ano. Qual é o tratamento mais indicado?",
   alternativas:[{id:"A",texto:"Alfa bloqueador."},{id:"B",texto:"Inibidor da 5-alfa-redutase."},{id:"C",texto:"Inibidor da fosfodiesterase tipo 5."},{id:"D",texto:"Lepidium meyenii."}],
   gabarito:"C",
@@ -251,7 +251,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-019", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:19,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-ecn",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
   enunciado:"Recém-nascido, Apgar 9 e 10, apresenta vômitos biliosos e distensão abdominal ao terceiro dia de vida. Repentinamente teve comprometimento importante do estado geral, necessitando de intubação e drogas vasoativas. O abdome, previamente flácido e indolor, ficou distendido e doloroso. Quais são os diagnósticos mais prováveis?",
   alternativas:[{id:"A",texto:"Suboclusão duodenal; atresia jejuno-ileal."},{id:"B",texto:"Volvo intestinal; enterocolite necrosante."},{id:"C",texto:"Estenose hipertrófica do piloro; atresia pilórica."},{id:"D",texto:"Megacólon congênito; síndrome da rolha meconial."}],
   gabarito:"B",
@@ -290,7 +290,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-022", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:22,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatopatiasautoimunes",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatites",
   enunciado:"Mulher, 50 anos de idade, apresenta prurido em todo o corpo, fadiga, dor abdominal no quadrante superior direito, anorexia e alteração no padrão do sono. Exame físico: hepatoesplenomegalia, icterícia +/4, escoriações na pele por prurido, sem outras alterações. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Colangite biliar primária."},{id:"B",texto:"Esquistossomose hepato esplênica."},{id:"C",texto:"Esteato hepatite."},{id:"D",texto:"Colecistite crônica calculosa."}],
   gabarito:"A",
@@ -329,7 +329,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-025", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:25,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mulher, 54 anos de idade, apresenta quadro de fenômeno de Raynaud e úlceras digitais há 1 ano. Pesquisa de autoanticorpos evidenciou FAN positivo 1/640 com padrão centromérico. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Lúpus eritematoso sistêmico."},{id:"B",texto:"Dermatomiosite."},{id:"C",texto:"Esclerose sistêmica."},{id:"D",texto:"Vasculite de pequenos vasos."}],
   gabarito:"C",
@@ -446,7 +446,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-034", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:34,
-  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-tumores",
+  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-catarata",
   enunciado:"Homem, 55 anos de idade, previamente hígido, comparece para exame oftalmológico de rotina. Fundo de olho: lesão circunscrita, pigmentada e subrretiniana no olho esquerdo. Com este achado foi solicitado ultrassonografia ocular que evidenciou lesão com espessura de 5,5 mm e baixa refletividade interna. Baseado na principal hipótese diagnóstica, a investigação para estadiamento sistêmico deve ser iniciada por qual órgão?",
   alternativas:[{id:"A",texto:"Pulmão."},{id:"B",texto:"Cérebro."},{id:"C",texto:"Rim."},{id:"D",texto:"Fígado."}],
   gabarito:"D",
@@ -537,7 +537,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-041", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:41,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-desmielinizante",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Mulher, 34 anos de idade, queixa-se de dor à movimentação do olho esquerdo e escotoma na visão central do mesmo olho, há 5 dias. Portadora de hipertensão arterial sistêmica, nega vacinação ou infecção recentes. Exame: acuidade visual de 20/80 no olho esquerdo, discromatopsia e defeito pupilar aferente relativo, sem edema de papila. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Corticoterapia oral com prednisona; tomografia de crânio."},{id:"B",texto:"Pulsoterapia com metilprednisolona; ressonância magnética de crânio."},{id:"C",texto:"Tratamento conservador; orientação sobre melhora espontânea do quadro."},{id:"D",texto:"Tratamento conservador; coleta VHS, PCR e biópsia de artéria temporal."}],
   gabarito:"B",
@@ -1230,7 +1230,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2024", [
 },
 {
   id:"q-unifesp2024-094", banca:"UNIFESP-EPM", real:true, ano:2024, numeroNaProva:94,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Recém-nascido de mãe diagnosticada com tuberculose pulmonar e tratamento iniciado 10 dias antes do parto. Qual é a conduta terapêutica para a criança?",
   alternativas:[{id:"A",texto:"Vacinar com BCG e tratar com isoniazida por 3 meses, sem necessidade de realizar o PPD antes ou depois do uso da profilaxia com isoniazida, se criança assintomática"},{id:"B",texto:"Não dar vacina BCG, realizar PPD na primeira semana e se PPD não reator, vacinar com BCG, sem necessidade de profilaxia."},{id:"C",texto:"Não dar vacina BCG, iniciar profilaxia com isoniazida por 3 meses, realizar PPD e se PPD > 5 mm, com criança assintomática, manter isoniazida até 6 meses."},{id:"D",texto:"Vacinar com BCG e fazer acompanhamento mensal até o 6º mês de vida, realizar PPD se apresentar alguma sintomatologia"}],
   gabarito:"C",

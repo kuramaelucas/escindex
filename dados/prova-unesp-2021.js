@@ -465,7 +465,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 },
 {
   id:"q-unesp2021-035", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:35,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-unesp2021-035.jpg", imagemLegenda:"Exame microscópico do conteúdo vaginal (coloração de Gram)",
   enunciado:"Mulher de 21 anos queixa-se de dispareunia. Exame ginecológico: colo com intensa hiperemia e edema, JEC-3, recoberta por secreção amarelada espessa, teste de aminas negativo e pH vaginal 4,4. Exame microscópico do conteúdo vaginal a seguir. A hipótese diagnóstica e o melhor tratamento são, respectivamente:",
   alternativas:[{id:"A",texto:"Vaginite aeróbia; clindamicina creme vaginal a 2% por 14 dias."},{id:"B",texto:"Cervicite; azitromicina 1 g (VO) e ceftriaxone 500 mg (IM) em doses únicas."},{id:"C",texto:"Vaginose bacteriana; metronidazol 500 mg (VO) de 12/12 h por 7 dias."},{id:"D",texto:"Candidíase vulvovaginal; fluconazol 150 mg (VO) em dose única,"}],
@@ -730,7 +730,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 },
 {
   id:"q-unesp2021-055", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:55,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-medula",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Na síndrome de primeiro neurônio ou do neurônio motor superior, as manifestações são:",
   alternativas:[{id:"A",texto:"Hipotonia, fraqueza muscular, hiporreflexia, fasciculações."},{id:"B",texto:"Ausência de reflexo cutâneo abdominal, fraqueza muscular, reflexo cutâneo plantar em flexão e hipertonia."},{id:"C",texto:"Reflexo cutâneo plantar em flexão, normorreflexia, normotonia e leve fraqueza muscular."},{id:"D",texto:"Hipertonia, fraqueza muscular, hiperreflexia e presença de sinal de Babinski."}],
   gabarito:"D",
@@ -1180,7 +1180,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 },
 {
   id:"q-unesp2021-089", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:89,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"RN foi vacinado com BCG ao nascer. Sua mãe foi diagnosticada com tuberculose pulmonar bacilífera logo após o parto. A conduta para o RN, seguindo as orientações do Ministério da Saúde, é:",
   alternativas:[{id:"A",texto:"Isoniazida por três meses; em seguida, realizar prova tuberculínica; e, se < 5 mm, suspender isoniazida e revacinar com BCG."},{id:"B",texto:"Rifampicina suspensão por três meses; em seguida, realizar prova tuberculínica; e, se ≥ 5 mm, manter rifampicina por mais 3 meses."},{id:"C",texto:"Rifampicina suspensão por seis meses, não estando indicada a realização da prova tuberculínica."},{id:"D",texto:"Isoniazida por seis meses, não estando indicada a realização da prova tuberculínica."}],
   gabarito:"D",
