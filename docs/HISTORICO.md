@@ -755,3 +755,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 **UNIFESP 2025 completa no padrão novo (08/11/2026).** As 91 explicações longas receberam fisiopatologia e epidemiologia qualitativas e nota datada nas referências, sem reescrever o texto existente. As 93 questões ativas da prova estão no padrão.
 
 **UNIFESP 2026 completa no padrão novo (08/11/2026).** As 94 explicações longas receberam fisiopatologia e epidemiologia qualitativas e nota datada nas referências, sem reescrever o texto existente. As 97 questões ativas da prova estão no padrão.
+
+**Fechamento da revisão da UNIFESP no padrão novo (08/11/2026).** Discente 2026.2 (51) e as 39 explicações longas de 2022 e 2023 que faltavam: fisiopatologia e epidemiologia qualitativas e nota datada nas referências. As 582 questões ativas das seis provas estão no padrão (0 referências sem data; 13 com edição anterior de diretriz de texto não aberto). Fila de PDFs e pendências em `docs/REVISAO-UNIFESP.md`.

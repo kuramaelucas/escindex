@@ -37,7 +37,15 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 | Manual de Normas Técnicas da Triagem Neonatal (MS) | `q-unifesp2026-083` |
 | Portarias GM/MS 6.734/2025 e 11.211/2026 (lista de notificação) | `q-unifesp2024-078` |
 
+## Resultado da rodada (08/11/2026)
+
+**Todas as 582 questões ativas das seis provas da UNIFESP foram revistas** no padrão novo: dicas, parâmetros, mecanismo, epidemiologia (qualitativa, sem número sem fonte), motivo de cada alternativa errada e referência com data da leitura. Medição final: 0 referências sem data; 13 ainda citam edição anterior de diretriz cujo texto não abre nesta sessão (2022-30, 2023-9, 2023-81, 2024-14, 2024-48, 2025-65, 2025-67, 2025-77, 2025-81, 2026-57, Discente 77, 78 e 81). Nenhum gabarito foi alterado.
+
+O que as notas datadas dizem: onde o texto da diretriz foi lido (SSC 2026, Sepsis-3 por apresentação ACEP, GOLD 2026, GINA 2026, Diretriz Brasileira de Hipertensão 2025, relatório da Conitec sobre fibrose cística, Portaria de Consolidação 4/2017) e onde **não** foi reaberto (todas as demais; ficam na fila de `npm run referencias-a-conferir`). Próximo passo: ler essas fontes quando os PDFs da tabela acima chegarem, reconferir as condutas e tirar as questões da fila.
+
 ## Feito (08/11/2026)
+
+- **Discente 2026.2 completa e fechamento das provas de 2022 e 2023:** as 51 explicações longas da Discente e as 39 de 2022 e 2023 que ainda faltavam receberam fisiopatologia/epidemiologia e nota datada.
 
 - **UNIFESP 2026 completa (97 questões ativas):** as 94 de explicação longa receberam fisiopatologia/epidemiologia e nota datada. Na fila de conferência: 2026-6, 2026-17 (NCCN), 2026-33 (IDSA 2026), 2026-34 (KDIGO 2024), 2026-50 (OMS/FIGO/ICM 2025), 2026-52 (OMS MEC 6ª), 2026-57 (ACOG 2024), 2026-72 (norma Anvisa abril/2025), 2026-84 (PCDT de transmissão vertical), 2026-96 (calendário 2026).
 
@@ -76,7 +84,7 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 - `q-unifesp2022-086`: o gabarito (dobrar o corticoide inalatório) reflete esquema anterior ao GINA atual, que prefere associar formoterol. Questão real; a equipe decide se marca como desatualizada.
 - `q-unifesp2026-040`: o enunciado não traz eosinófilos nem exacerbações; gabarito mantido.
 - Bloqueio (domínio não abre nesta sessão): AVC (AHA/ASA 2026), RCP (AHA 2025), urolitíase (EAU), NCCN (login) e BTS. Questões: `q-unifesp2022-020`, `q-unifesp2023-053`, `q-unifesp2025-023`, `q-unifesp2023-095`, `q-udisc20262-076`, `-077`, `-078` e as 8 do NCCN da lista abaixo.
-- Restam as demais questões (explicações longas da Discente 2026.2, cerca de 51) da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
+- Nada mais resta na faixa de explicações sem mecanismo; resta a fila de conferência de referências da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
 
 ## Bloqueios encontrados em 08/11/2026
 
