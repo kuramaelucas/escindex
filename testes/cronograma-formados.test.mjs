@@ -66,7 +66,7 @@ test("Formado(a): o assunto sobe de fase pela taxa de acerto, 100% sobe na hora,
       const novo = fase(A).fase;
       __responder(A, [true, true, true]);                               // 100% nas 3 primeiras: fase 2
       const depoisDe3 = fase(A).fase;
-      __responder(A, [true, false, true, false, true, true]);           // 4 de 6 = 67% ≥ 65%: fase 3
+      __responder(A, [true, false, true, false, true, true]);           // 4 de 6 = 67% ≥ 60% (régua do padrão): fase 3
       const depoisDe9 = fase(A).fase;
       // revisão: a mesma questão de novo, errada, não mexe na fase
       const q = window.__formado.porAssunto[A][0];
@@ -82,7 +82,7 @@ test("Formado(a): o assunto sobe de fase pela taxa de acerto, 100% sobe na hora,
     });
     assert.equal(r.novo, 0);
     assert.equal(r.depoisDe3, 1, "100% nas três primeiras sobe de fase");
-    assert.equal(r.depoisDe9, 2, "67% com seis respostas passa a régua da fase 2 (65%)");
+    assert.equal(r.depoisDe9, 2, "67% com seis respostas passa a régua da fase 2 (60% no padrão)");
     assert.equal(r.comRevisao, 2, "resposta de revisão não muda a fase");
     assert.equal(r.B, 0, "50% de acerto segura na fase 1");
     assert.equal(r.C, 0, "acerto no chute conta como erro");
@@ -172,6 +172,48 @@ test("Formado(a): menos retorno — acerto com certeza sai da revisão; no assun
     assert.equal(r.concluido, true);
     assert.deepEqual(r.formado, { certeza: false, duvida: true, erro: true, chute: true, duvidaConcluido: false });
     assert.equal(r.outroAno, true, "fora do cronograma de Formados, o acerto com certeza continua voltando");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Formado(a): ritmo das fases — a régua muda por aluno, refaz as fases e a escolha vai para a nuvem", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    await pagina.evaluate(PREPARO_FORMADO);
+    const r = await pagina.evaluate(() => {
+      const { u, grandes: [A, B] } = window.__formado, fase = a => faseDoAssuntoFormado(u.id, a).fase;
+      __responder(A, [true, false, true, false, true, false]);             // 50%
+      __responder(B, [true, false, true, false, true, true]);              // 67%
+      const em = ritmo => { if(ritmo) u.reguaFormado = ritmo; else delete u.reguaFormado; return [fase(A), fase(B)]; };
+      const padrao = em(null), firme = em("firme"), rapida = em("rapida");
+      const reguas = { padrao: (delete u.reguaFormado, reguaDoFormado(u)), lixo: (u.reguaFormado = "xyz", ritmoDoFormado(u)) };
+      delete u.reguaFormado;
+      abrirRitmoDoFormado();
+      const janela = document.querySelectorAll('input[name="ritmoFormado"]').length;
+      document.querySelector('input[name="ritmoFormado"][value="rapida"]').checked = true;
+      salvarRitmoDoFormado();
+      const salvo = u.reguaFormado, linha = linhaDoPerfil(u).regua_formado, texto = explicacaoCronogramaFormado(u);
+      abrirRitmoDoFormado();
+      document.querySelector('input[name="ritmoFormado"][value="padrao"]').checked = true;
+      salvarRitmoDoFormado();
+      const voltou = !("reguaFormado" in u);
+      const base = { id: u.id, nome: u.nome, papel: u.papel, status: "aprovado" };
+      nuvemAplicarPerfilLocal({ ...base, regua_formado: "firme" });
+      const daNuvem = u.reguaFormado;
+      NUVEM_TABELAS.perfis.aplicar({ ...base, regua_formado: null });
+      return { padrao, firme, rapida, reguas, janela, salvo, linha, texto, voltou, daNuvem, nuloApaga: !("reguaFormado" in u) };
+    });
+    assert.deepEqual(r.padrao, [0, 1], "padrão (60%): 50% fica, 67% sobe");
+    assert.deepEqual(r.firme, [0, 0], "firme (70%): nenhum sobe");
+    assert.deepEqual(r.rapida, [1, 1], "rápido (50%): os dois sobem");
+    assert.deepEqual(r.reguas.padrao, [0.6, 0.6, 0.55]);
+    assert.equal(r.reguas.lixo, "padrao", "valor desconhecido vale o padrão");
+    assert.equal(r.janela, 3);
+    assert.equal(r.salvo, "rapida"); assert.equal(r.linha, "rapida");
+    assert.match(r.texto, /50%, 50%, 45% .*ritmo Rápido/);
+    assert.equal(r.voltou, true, "escolher o padrão apaga a escolha");
+    assert.equal(r.daNuvem, "firme");
+    assert.equal(r.nuloApaga, true);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

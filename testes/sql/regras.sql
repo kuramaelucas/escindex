@@ -78,6 +78,8 @@ update perfis set modo_plataforma = 'estatistico' where id='00000000-0000-0000-0
 select pg_temp.igual((select count(*) from perfis where modo_plataforma = 'estatistico'), 1, 'a pessoa grava o próprio modo da plataforma');
 update perfis set tamanho_sessao = 35 where id='00000000-0000-0000-0000-00000000000a';
 select pg_temp.igual((select count(*) from perfis where tamanho_sessao = 35), 1, 'a pessoa grava o próprio tamanho de sessão');
+update perfis set regua_formado = 'rapida' where id='00000000-0000-0000-0000-00000000000a';
+select pg_temp.igual((select count(*) from perfis where regua_formado = 'rapida'), 1, 'a pessoa grava o próprio ritmo das fases');
 select pg_temp.igual((select count(*) from perfis where id='00000000-0000-0000-0000-00000000000a' and aprovado_em is not null), 1, 'a aprovação do cadastro ganha a data do banco');
 update perfis set aprovado_em = '2000-01-01' where id='00000000-0000-0000-0000-00000000000a';
 select pg_temp.igual((select count(*) from perfis where id='00000000-0000-0000-0000-00000000000a' and aprovado_em > '2001-01-01'), 1, 'a pessoa não muda a data da própria aprovação');

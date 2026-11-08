@@ -26,11 +26,12 @@ let _cacheFasesFormado = null;
    de volta justamente o que a pessoa errou e puxaria a fase para baixo por
    construção. Acerto no chute conta como erro (é lacuna, não domínio). Sobe
    de fase quem acerta as `amostraRapida` primeiras daquela fase (100%) ou,
-   com `amostraMinima` respostas, quem acerta `acertoParaAvancar[fase]` das
+   com `amostraMinima` respostas, quem acerta a régua do ritmo escolhido das
    últimas `janela`. Passou da última: assunto concluído, sai das questões
    novas (os erros dele seguem na revisão espaçada). */
 function fasesDosAssuntosFormado(usuarioId){
-  const chave = usuarioId+"|"+_geracaoDb+"|"+db.respostas.length;
+  const regua = reguaDoFormado(getUsuario(usuarioId));
+  const chave = usuarioId+"|"+_geracaoDb+"|"+db.respostas.length+"|"+regua.join(",");
   if(_cacheFasesFormado && _cacheFasesFormado.chave === chave) return _cacheFasesFormado.mapa;
   const c = CONFIG.cronogramaFormado, mapa = {}, vistas = new Set();
   const quando = r => r.respondidaEm || ((r.data || "")+"T12");
@@ -45,19 +46,28 @@ function fasesDosAssuntosFormado(usuarioId){
     const q = getQuestao(r.questaoId);
     e.naFase.push(!!r.correta && r.confianca !== "chute");
     if(q) e.porNivel[nivelProprioDaQuestao(q)]++;
-    if(passouDaFaseFormado(e.naFase, e.fase)){ e.fase++; e.naFase = []; e.porNivel = [0,0,0]; }
+    if(passouDaFaseFormado(e.naFase, e.fase, regua)){ e.fase++; e.naFase = []; e.porNivel = [0,0,0]; }
   });
   Object.values(mapa).forEach(e=>{ e.concluido = e.fase >= c.fases.length; e.acertosNaFase = e.naFase.filter(Boolean).length; });
   _cacheFasesFormado = { chave, mapa };
   return mapa;
 }
 function faseVaziaFormado(){ return { fase:0, total:0, naFase:[], porNivel:[0,0,0], acertosNaFase:0, concluido:false, ultimaData:"" }; }
-function passouDaFaseFormado(lista, fase){
+/* Ritmo escolhido pelo aluno (Estudar > Ritmo das fases) e a régua de cada fase. */
+function ritmoDoFormado(usuario){
+  const r = usuario && usuario.reguaFormado;
+  return CONFIG.cronogramaFormado.reguas[r] ? r : "padrao";
+}
+function reguaDoFormado(usuario){
+  const c = CONFIG.cronogramaFormado, base = c.reguas[ritmoDoFormado(usuario)].acerto;
+  return c.ajusteDaReguaPorFase.map(a => Math.round((base + a)*100)/100);
+}
+function passouDaFaseFormado(lista, fase, regua){
   const c = CONFIG.cronogramaFormado, n = lista.length;
   if(n === c.amostraRapida && lista.every(Boolean)) return true;      // 100% de saída: não precisa esperar a amostra
   if(n < c.amostraMinima) return false;
   const ultimas = lista.slice(-c.janela);
-  return ultimas.filter(Boolean).length / ultimas.length >= c.acertoParaAvancar[fase];
+  return ultimas.filter(Boolean).length / ultimas.length >= regua[fase];
 }
 /* MENOS RETORNO (Formado). Quem faz ~200 questões por semana acumula revisão
    mais rápido do que consegue fazer: medido no simulador, a fila vencida era
@@ -216,12 +226,39 @@ function explicacaoCronogramaFormado(usuario){
   const alvo = alvoDasAreasFormado([...areas]);
   const misturas = c.fases.map((m,i)=>"fase "+(i+1)+": "+m.map(pctFormado).join("/")).join(", ");
   return "Cronograma de formado(a): cada assunto passa por "+c.fases.length+" fases, com cada vez mais questão difícil ("+misturas+" de fácil/média/difícil). "+
-    "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+c.acertoParaAvancar.map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+". "+
+    "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+reguaDoFormado(usuario).map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+" — ritmo "+c.reguas[ritmoDoFormado(usuario)].nome+", que você muda em Ritmo das fases. "+
     "Acerto no chute conta como erro e a revisão não muda a fase. Depois da última fase o assunto está concluído e sai das questões novas; o mesmo vale quando as questões novas dele acabam. "+
     "Para sobrar tempo para o banco inteiro, a revisão traz de volta só o que você errou, chutou ou acertou na dúvida: acerto com certeza não volta, e no assunto concluído nenhum acerto volta. "+
     "As questões novas se dividem entre as áreas na proporção das provas ("+[...areas].map(a=>nomeArea(a)+" "+pctFormado(alvo[a])).join(", ")+"). "+
     "Hoje: "+explorados+" de "+ids.length+" assuntos explorados · "+porFase.map((n,i)=>"fase "+(i+1)+": "+n).join(" · ")+" · concluídos: "+concluidos+(esgotados ? " · sem questão nova: "+esgotados : "")+". Por área: "+textoDasAreas+". "+
     "A fatia de revisão cresce com o que você já respondeu ("+pctFormado(fracao)+" agora)."+aviso;
+}
+/* RITMO DAS FASES. A janela mostra os três ritmos com a régua de cada um e
+   quantos assuntos mudariam de fase agora se o ritmo mudasse (a fase é
+   refeita do histórico, então trocar o ritmo vale também para o passado). */
+function abrirRitmoDoFormado(){
+  const u = usuarioAtual(), c = CONFIG.cronogramaFormado, atual = ritmoDoFormado(u);
+  const contar = ritmo => { const antes = u.reguaFormado; u.reguaFormado = ritmo;
+    const m = fasesDosAssuntosFormado(u.id), n = Object.values(m).filter(e=>e.total).reduce((s,e)=>s + e.fase, 0);
+    if(antes === undefined) delete u.reguaFormado; else u.reguaFormado = antes; return n; };
+  const agora = contar(atual);
+  abrirModalTitulado("Ritmo das fases", `
+    <p class="text-sm muted">Quanto você precisa acertar nas questões novas de um assunto para ele subir de fase. Acertar as ${c.amostraRapida} primeiras da fase sobe em qualquer ritmo.</p>
+    ${Object.entries(c.reguas).map(([id, r])=>{ const regua = c.ajusteDaReguaPorFase.map(a=>pctFormado(r.acerto+a)).join(", ");
+      const dif = contar(id) - agora;
+      return `<label class="card-flat mt-1 flex gap-1 items-center"><input type="radio" name="ritmoFormado" value="${id}" ${id===atual?"checked":""}>
+        <span><strong>${escapeHtml(r.nome)}</strong> — ${regua} (fase 1, 2, 3): ${escapeHtml(r.descricao)}${dif ? ` <span class="muted">· ${dif>0?"+":""}${dif} subida(s) de fase com o que você já respondeu</span>` : ""}</span></label>`; }).join("")}
+    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarRitmoDoFormado()">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function salvarRitmoDoFormado(){
+  const marcado = document.querySelector('input[name="ritmoFormado"]:checked');
+  if(!marcado) return;
+  const u = usuarioAtual();
+  // o padrão não se grava: acompanha o padrão se ele mudar
+  if(marcado.value === "padrao") delete u.reguaFormado; else u.reguaFormado = marcado.value;
+  saveState(); fecharModal();
+  toast("Ritmo das fases: "+CONFIG.cronogramaFormado.reguas[ritmoDoFormado(u)].nome+".");
+  render();
 }
 function montarSessaoSemCalendario(usuario, tamanho){
   if(cronogramaDeFormado(usuario)) return montarSessaoDeFormado(usuario, tamanho);

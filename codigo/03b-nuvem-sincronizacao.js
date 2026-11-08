@@ -17,6 +17,7 @@ const NUVEM_TABELAS = {
       if(!linha.meta_cartoes_dia) delete u.metaCartoesDia;
       // só quem traz a coluna decide: um banco sem ela (esquema.sql não rodado) não apaga a escolha
       if("tamanho_sessao" in linha && !linha.tamanho_sessao) delete u.tamanhoSessao;
+      if("regua_formado" in linha && !linha.regua_formado) delete u.reguaFormado;
     },
   },
   respostas: {
@@ -424,7 +425,7 @@ function nuvemErroPassageiro(e){
    rodar o nuvem/esquema.sql, um F5 volta a mandar tudo). O dado em si nunca
    se perde: ele vive no navegador como todo o resto. */
 const NUVEM_CAMPOS_NOVOS = {
-  perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id", "prova_alvo_data", "modo_plataforma", "tamanho_sessao"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões); data exata da prova-alvo (6º ano)
+  perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id", "prova_alvo_data", "modo_plataforma", "tamanho_sessao", "regua_formado"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões); data exata da prova-alvo (6º ano)
   respostas: ["origem", "tentativa", "dias_desde_ultima", "respondida_em", "texto_resposta"],  // de onde veio a questão, que tentativa é, dias desde a anterior, a hora exata e o texto da resposta dissertativa
   resultados_simulados: ["confiancas"],  // certeza/dúvida/chute de cada questão do simulado feito em modo aprendizado
   favoritos: ["nota"],            // a anotação pessoal da questão salva

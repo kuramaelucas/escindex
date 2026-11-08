@@ -377,6 +377,7 @@ function nuvemAplicarPerfilLocal(p){
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
   if(p.tamanho_sessao) u.tamanhoSessao = p.tamanho_sessao;
+  if(p.regua_formado && CONFIG.cronogramaFormado.reguas[p.regua_formado]) u.reguaFormado = p.regua_formado;
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
   // a escolha feita neste aparelho vale mais que a que desce: o perfil de lá pode ser anterior a ela
   if(p.modo_plataforma && !u.modoPlataforma && (p.modo_plataforma === "resumido" || p.modo_plataforma === "estatistico")) u.modoPlataforma = p.modo_plataforma;
@@ -411,6 +412,7 @@ function linhaDoPerfil(usuario){
     meta_questoes_dia: usuario.metaQuestoesDia || null,
     meta_cartoes_dia: usuario.metaCartoesDia || null,
     tamanho_sessao: usuario.tamanhoSessao || null,
+    regua_formado: usuario.reguaFormado || null,
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
     lembrete_meta_horario: usuario.lembreteMetaHorario || null,
     boas_vindas_em: usuario.boasVindasEm || null,

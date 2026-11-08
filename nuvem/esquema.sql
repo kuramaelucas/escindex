@@ -197,6 +197,8 @@ alter table public.perfis add column if not exists prova_alvo_data date;
 alter table public.perfis add column if not exists modo_plataforma text;
 -- questões por sessão recomendada escolhidas pela pessoa (Ajustar meta); nulo = padrão da plataforma
 alter table public.perfis add column if not exists tamanho_sessao integer;
+-- ritmo das fases do cronograma de Formados ('firme' ou 'rapida'); nulo = padrão
+alter table public.perfis add column if not exists regua_formado text;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)

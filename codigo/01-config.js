@@ -88,7 +88,16 @@ const CONFIG = {
     anos: ["Formado(a)"],
     // mistura de fácil/média/difícil de cada fase: ninguém fica só no fácil
     fases: [[0.50, 0.35, 0.15], [0.35, 0.50, 0.15], [0.15, 0.50, 0.35]],
-    acertoParaAvancar: [0.70, 0.65, 0.60],      // por fase: a última tem mais difícil, a régua é um pouco menor
+    /* Régua para subir de fase: o aluno escolhe o ritmo (u.reguaFormado; sem
+       escolha, "padrao"). Ritmos prontos em vez de número livre: a tela explica
+       cada um e ninguém "conclui" assunto com 30% de acerto. A fase 3 tem mais
+       questão difícil, então a régua dela é 5 pontos menor. */
+    reguas: {
+      firme:  { nome: "Firme",  acerto: 0.70, descricao: "só sobe com domínio claro; mais tempo em cada fase" },
+      padrao: { nome: "Padrão", acerto: 0.60, descricao: "equilíbrio entre firmar e avançar" },
+      rapida: { nome: "Rápido", acerto: 0.50, descricao: "avança cedo para chegar logo às difíceis; os erros voltam pela revisão" },
+    },
+    ajusteDaReguaPorFase: [0, 0, -0.05],
     amostraRapida: 3,                           // acertou as 3 primeiras da fase (100%): sobe sem esperar
     amostraMinima: 6, janela: 8,                // senão: com 6 respostas na fase, olha a taxa das últimas 8
     maxPorAssunto: 2,                           // numa sessão, para não concentrar em poucos temas
