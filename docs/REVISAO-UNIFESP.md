@@ -19,9 +19,28 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 2. **Explicações curtas** (2022, 2023, Discente): acrescentar mecanismo e epidemiologia.
 3. **Demais**: data de leitura em `referencias` e mecanismo/epidemiologia.
 
+## Feito (08/11/2026)
+
+14 questões no padrão novo, com mecanismo, epidemiologia e referência datada, gabaritos intactos:
+
+- **Sepse (SSC 2026, PDF integral enviado pela equipe):** `q-unifesp2022-098`, `q-unifesp2023-008`, `q-unifesp2023-015`, `q-unifesp2025-030`, `q-unifesp2025-037`, `q-udisc20262-001`.
+- **Sepsis-3:** `q-unifesp2023-019`.
+- **DPOC (GOLD 2026 v1.3):** `q-unifesp2023-014`, `q-unifesp2026-040`, `q-udisc20262-004`.
+- **Asma (GINA 2026):** `q-unifesp2022-069`, `q-unifesp2022-086`, `q-unifesp2023-069`, `q-unifesp2026-095`.
+
+## Pendente
+
+- `q-unifesp2023-019`: o texto primário do Sepsis-3 (Singer, JAMA 2016) não abriu; a conferência usou a apresentação da ACEP que o reproduz. Reler no JAMA quando o domínio liberar.
+- `q-udisc20262-004`: diretrizes da SBPT para DPOC não relidas.
+- `q-unifesp2023-069`: Box 11-4 do GINA (dispositivo na criança) não relido linha a linha.
+- `q-unifesp2022-086`: o gabarito (dobrar o corticoide inalatório) reflete esquema anterior ao GINA atual, que prefere associar formoterol. Questão real; a equipe decide se marca como desatualizada.
+- `q-unifesp2026-040`: o enunciado não traz eosinófilos nem exacerbações; gabarito mantido.
+- Bloqueio (domínio não abre nesta sessão): AVC (AHA/ASA 2026), RCP (AHA 2025), urolitíase (EAU), NCCN (login) e BTS. Questões: `q-unifesp2022-020`, `q-unifesp2023-053`, `q-unifesp2025-023`, `q-unifesp2023-095`, `q-udisc20262-076`, `-077`, `-078` e as 8 do NCCN da lista abaixo.
+- Restam as demais questões da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
+
 ## Bloqueios encontrados em 08/11/2026
 
-- **SSC 2026** (doi 10.1007/s00134-026-08361-1, PMID 41870560): sem PMCID, PubMed sem resumo, `link.springer.com` recusa (403). Texto não lido; as 7 questões de sepse seguem com a SSC 2021 até a liberação do domínio. Não mudar conduta por fonte secundária.
+- **SSC 2026**: o Springer recusa (403); resolvido com o PDF enviado pela equipe. GOLD e GINA 2026 abrem em goldcopd.org e ginasthma.org.
 - Os mesmos domínios bloqueados do guia da skill (ahajournals, EAU/CloudFront, NCCN com login) valem para as questões de AVC, RCP, urolitíase e oncologia.
 
 ## Fila de edição superada
