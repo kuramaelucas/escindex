@@ -39,6 +39,8 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 
 ## Feito (08/11/2026)
 
+- **Avaliação Discente 2026.2, explicações curtas (47 questões):** já tinham dicas e motivo de cada alternativa; acrescentei o parágrafo de fisiopatologia e epidemiologia e a nota datada nas referências (texto das fontes citadas não reaberto). Com isso, **todas as explicações abaixo de 900 caracteres das seis provas foram revistas**.
+
 - **UNIFESP 2023, explicações curtas (66 questões):** mesmo método da prova de 2022. Observações nas referências: 2023-30 (o gabarito A parece em desacordo com o enunciado; conferir com a banca), 2023-49 (momento do parto no acretismo: as diretrizes atuais indicam 34 a 36+6 semanas), 2023-84 (intervalo de vigilância do aneurisma; ESVS 2024 não aberta), 2023-23 (a EC 95 foi substituída pelo arcabouço fiscal de 2023), 2023-27 (a política é de 2009, o enunciado diz 2013).
 
 - **UNIFESP 2022, explicações curtas (82 questões, todas as que tinham menos de 900 caracteres):** reescritas no padrão novo, com dicas, mecanismo, epidemiologia (sem número sem fonte) e referência datada. Como o texto da diretriz não foi aberto, cada uma diz isso na própria referência e continua na fila de `npm run referencias-a-conferir`. Gabaritos intactos. Observações registradas nas referências: 2022-8 (drenagem pré-sacral e lavagem distal discutidas), 2022-80 (metas de tempo ESC × ACC/AHA), 2022-91 (atualização ATS 2025 não relida), 2022-97 (norma de isolamento da covid de 2021), 2022-60 (esquema do HIV a reconferir).
@@ -68,7 +70,7 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 - `q-unifesp2022-086`: o gabarito (dobrar o corticoide inalatório) reflete esquema anterior ao GINA atual, que prefere associar formoterol. Questão real; a equipe decide se marca como desatualizada.
 - `q-unifesp2026-040`: o enunciado não traz eosinófilos nem exacerbações; gabarito mantido.
 - Bloqueio (domínio não abre nesta sessão): AVC (AHA/ASA 2026), RCP (AHA 2025), urolitíase (EAU), NCCN (login) e BTS. Questões: `q-unifesp2022-020`, `q-unifesp2023-053`, `q-unifesp2025-023`, `q-unifesp2023-095`, `q-udisc20262-076`, `-077`, `-078` e as 8 do NCCN da lista abaixo.
-- Restam as explicações curtas da Discente 2026.2 (47), depois as demais questões da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
+- Restam as demais questões (explicações com 900 caracteres ou mais, cerca de 340 nas provas de 2024, 2025, 2026 e Discente) da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
 
 ## Bloqueios encontrados em 08/11/2026
 
