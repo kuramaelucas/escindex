@@ -25,7 +25,7 @@ async function abrirPagina(contexto) {
   await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
   return pagina;
 }
-const ligar = pagina => pagina.evaluate(() => { window.__padLigado = true; window.dispatchEvent(new Event("gamepadconnected")); });
+const ligar = pagina => pagina.evaluate(() => { window.__padLigado = true; window.dispatchEvent(new Event("gamepadconnected")); }).then(() => pagina.waitForTimeout(150));
 /* aperta e solta, dando um quadro de animação entre os dois para o laço enxergar a mudança */
 async function apertar(pagina, botao) {
   await pagina.evaluate(b => { window.__pad.buttons[b].pressed = true; }, botao);
@@ -40,7 +40,7 @@ test("os rótulos dos botões só aparecem com controle conectado, na questão e
   try {
     const pagina = await abrirPagina(contexto);
     await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
-    const visiveis = () => pagina.evaluate(() => [...document.querySelectorAll(".dica-controle")].filter(e => getComputedStyle(e).display !== "none").map(e => e.textContent));
+    const visiveis = () => pagina.evaluate(() => [...document.querySelectorAll(".dica-controle")].filter(e => getComputedStyle(e).display !== "none").map(e => getComputedStyle(e, "::before").content.replace(/"/g, "")));
     assert.deepEqual(await visiveis(), [], "sem controle, nenhum rótulo");
     await ligar(pagina);
     await pagina.waitForFunction(() => document.body.classList.contains("com-controle"));
@@ -48,7 +48,7 @@ test("os rótulos dos botões só aparecem com controle conectado, na questão e
     assert.deepEqual(alts.slice(0, 4), ["▲", "◀", "▶", "▼"], "A cima, B esquerda, C direita, D baixo");
     // com a alternativa marcada, ▲ ◀ ▼ viram a confiança (chute, certeza, dúvida)
     await apertar(pagina, BOTAO.direita);
-    const confirmando = await pagina.evaluate(() => [...document.querySelectorAll(".confidence-btn")].map(b => b.textContent.replace(/\s+/g, " ").trim()));
+    const confirmando = await pagina.evaluate(() => [...document.querySelectorAll(".confidence-btn")].map(b => b.textContent.replace(/\s+/g, " ").trim() + " " + getComputedStyle(b.querySelector(".dica-controle"), "::before").content.replace(/"/g, "")));
     assert.match(confirmando[0], /Certeza.*◀/);
     assert.match(confirmando[1], /dúvida.*▼/);
     assert.match(confirmando[2], /Chute.*▲/);
@@ -148,5 +148,101 @@ test("com uma janela aberta o controle só rola: não responde por trás dela", 
     await pagina.evaluate(() => abrirModalTitulado("Aviso", "<p>texto</p>"));
     await apertar(pagina, BOTAO.cima);
     assert.equal(await pagina.evaluate(() => { const s = state.sessaoAtual; return marcadaDaQuestao(s.itens[s.indiceAtual].questaoId); }), null);
+  } finally { await contexto.close(); }
+});
+
+test("a marca do controle muda o desenho dos rótulos (PlayStation △ □ ○ ✕, Xbox Y X B A)", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block", viewport: { width: 1200, height: 900 } });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await abrirPagina(contexto);
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    const rotulos = () => pagina.evaluate(() => [...document.querySelectorAll(".qcard-alt .dica-controle")].slice(0, 4).map(e => getComputedStyle(e, "::before").content.replace(/"/g, "")));
+    await pagina.evaluate(() => { window.__pad.id = "054c-0ce6-Wireless Controller"; });
+    await ligar(pagina);
+    await pagina.waitForFunction(() => document.body.dataset.marcaControle === "ps");
+    assert.deepEqual(await rotulos(), ["△", "□", "○", "✕"]);
+    await pagina.evaluate(() => { window.__pad.id = "Xbox 360 Controller (STANDARD GAMEPAD Vendor: 045e)"; });
+    await pagina.waitForFunction(() => document.body.dataset.marcaControle === "xbox");
+    assert.deepEqual(await rotulos(), ["Y", "X", "B", "A"]);
+  } finally { await contexto.close(); }
+});
+
+test("depois de responder, o botão de baixo vai para a próxima questão; L3 risca a marcada; vibra ao responder", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block", viewport: { width: 1200, height: 900 } });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await abrirPagina(contexto);
+    await pagina.evaluate(() => {
+      window.__vibrou = [];
+      window.__pad.vibrationActuator = { playEffect: (t, o) => { window.__vibrou.push(o.duration); return Promise.resolve(); } };
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada();
+    });
+    await ligar(pagina);
+    const idx = () => pagina.evaluate(() => state.sessaoAtual.indiceAtual);
+    // marcar C e riscar com L3: some a marca e a alternativa fica eliminada
+    await apertar(pagina, BOTAO.direita);
+    await apertar(pagina, 10);
+    const riscou = await pagina.evaluate(() => { const s = state.sessaoAtual; const id = s.itens[s.indiceAtual].questaoId; return { marcada: marcadaDaQuestao(id), eliminadas: (s.eliminadas || {})[id] || [] }; });
+    assert.equal(riscou.marcada, null);
+    assert.deepEqual(riscou.eliminadas, ["C"]);
+    // responder (A + certeza) vibra; em seguida o botão de baixo avança
+    await apertar(pagina, BOTAO.cima);
+    await apertar(pagina, BOTAO.esquerda);
+    assert.equal(await pagina.evaluate(() => window.__vibrou.length), 1, "vibrou uma vez ao responder");
+    assert.equal(await idx(), 0);
+    await apertar(pagina, BOTAO.baixo);
+    assert.equal(await idx(), 1, "respondida: baixo = próxima");
+  } finally { await contexto.close(); }
+});
+
+test("flashcards: direita vira, e esquerda / baixo / cima dão sabia / quase / não lembrei", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block", viewport: { width: 1200, height: 900 } });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await abrirPagina(contexto);
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoFlashcards(); });
+    await ligar(pagina);
+    const sessao = () => pagina.evaluate(() => ({ rota: state.route, indice: state.sessaoFlash && state.sessaoFlash.indice, virado: state.sessaoFlash && state.sessaoFlash.virado, notas: state.sessaoFlash ? state.sessaoFlash.notas.map(n => n.nota) : [] }));
+    assert.equal((await sessao()).rota, "flashcards");
+    await apertar(pagina, BOTAO.esquerda);   // sem virar, a nota não vale
+    assert.deepEqual((await sessao()).notas, []);
+    await apertar(pagina, BOTAO.direita);
+    assert.equal((await sessao()).virado, true);
+    await apertar(pagina, BOTAO.esquerda);
+    let r = await sessao();
+    assert.deepEqual(r.notas, ["sabia"]);
+    assert.equal(r.virado, false);
+    await apertar(pagina, BOTAO.direita); await apertar(pagina, BOTAO.baixo);
+    await apertar(pagina, BOTAO.direita); await apertar(pagina, BOTAO.cima);
+    assert.deepEqual((await sessao()).notas, ["sabia", "quase", "naolembrei"]);
+  } finally { await contexto.close(); }
+});
+
+test("a opção do Perfil desliga o controle, e o analógico direito rola mais depressa que a seta", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block", viewport: { width: 1000, height: 500 } });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await abrirPagina(contexto);
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await ligar(pagina);
+    const rolar = async (aplicar, limpar) => {
+      await pagina.evaluate(() => scrollTo(0, 0));
+      await pagina.evaluate(aplicar); await pagina.waitForTimeout(300); await pagina.evaluate(limpar);
+      return pagina.evaluate(() => scrollY);
+    };
+    const seta = await rolar(() => { window.__pad.buttons[13].pressed = true; }, () => { window.__pad.buttons[13].pressed = false; });
+    const analogico = await rolar(() => { window.__pad.axes[3] = 1; }, () => { window.__pad.axes[3] = 0; });
+    assert.ok(analogico > seta * 1.5, `analógico direito (${analogico}) mais rápido que a seta (${seta})`);
+    // desligado: rótulos somem e o botão não responde
+    await pagina.evaluate(() => controleSalvarConfig({ ativo: false }));
+    assert.equal(await pagina.evaluate(() => document.body.classList.contains("com-controle")), false);
+    await apertar(pagina, BOTAO.cima);
+    assert.equal(await pagina.evaluate(() => { const s = state.sessaoAtual; return marcadaDaQuestao(s.itens[s.indiceAtual].questaoId); }), null);
+    await pagina.evaluate(() => controleSalvarConfig({ ativo: true }));
+    await apertar(pagina, BOTAO.cima);
+    assert.equal(await pagina.evaluate(() => { const s = state.sessaoAtual; return marcadaDaQuestao(s.itens[s.indiceAtual].questaoId); }), "A");
+    // o cartão do Perfil existe e reflete a escolha
+    assert.match(await pagina.evaluate(() => renderCardControle()), /Usar o controle quando conectado/);
   } finally { await contexto.close(); }
 });
