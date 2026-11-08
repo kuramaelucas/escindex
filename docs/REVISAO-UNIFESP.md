@@ -39,6 +39,8 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 
 ## Feito (08/11/2026)
 
+- **UNIFESP 2026 completa (97 questões ativas):** as 94 de explicação longa receberam fisiopatologia/epidemiologia e nota datada. Na fila de conferência: 2026-6, 2026-17 (NCCN), 2026-33 (IDSA 2026), 2026-34 (KDIGO 2024), 2026-50 (OMS/FIGO/ICM 2025), 2026-52 (OMS MEC 6ª), 2026-57 (ACOG 2024), 2026-72 (norma Anvisa abril/2025), 2026-84 (PCDT de transmissão vertical), 2026-96 (calendário 2026).
+
 - **UNIFESP 2025 completa (93 questões ativas):** as 91 de explicação longa receberam fisiopatologia/epidemiologia e nota datada. Observações nas referências: 2025-13 (NCCN), 2025-23 (AHA 2025), 2025-65 (ESGO 2025), 2025-77 (ACOG 2024), 2025-81 (FIGO/NCCN), 2025-83 (calendário 2026 e regra do rotavírus) ficam na fila de conferência.
 
 - **UNIFESP 2024 completa (97 questões ativas):** além das curtas, as 95 de explicação longa receberam parágrafo de fisiopatologia e epidemiologia e nota datada nas referências (texto das fontes citadas não reaberto; exceção: 2024-29, 2024-78 e as de diretriz aberta, conferidas antes). Observação: na 2024-86 (doença de McArdle) o quadro com diabetes e dificuldade escolar sugere revisar o diagnóstico da banca; gabarito mantido.
@@ -74,7 +76,7 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 - `q-unifesp2022-086`: o gabarito (dobrar o corticoide inalatório) reflete esquema anterior ao GINA atual, que prefere associar formoterol. Questão real; a equipe decide se marca como desatualizada.
 - `q-unifesp2026-040`: o enunciado não traz eosinófilos nem exacerbações; gabarito mantido.
 - Bloqueio (domínio não abre nesta sessão): AVC (AHA/ASA 2026), RCP (AHA 2025), urolitíase (EAU), NCCN (login) e BTS. Questões: `q-unifesp2022-020`, `q-unifesp2023-053`, `q-unifesp2025-023`, `q-unifesp2023-095`, `q-udisc20262-076`, `-077`, `-078` e as 8 do NCCN da lista abaixo.
-- Restam as demais questões (explicações longas das provas de 2026 e Discente 2026.2, cerca de 145) da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
+- Restam as demais questões (explicações longas da Discente 2026.2, cerca de 51) da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
 
 ## Bloqueios encontrados em 08/11/2026
 

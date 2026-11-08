@@ -753,3 +753,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 **UNIFESP 2024 completa no padrão novo (08/11/2026).** As 95 explicações longas receberam fisiopatologia e epidemiologia qualitativas e a nota datada nas referências, sem reescrever o texto existente. Com as curtas e as lidas em diretriz, as 97 questões ativas da prova de 2024 estão no padrão.
 
 **UNIFESP 2025 completa no padrão novo (08/11/2026).** As 91 explicações longas receberam fisiopatologia e epidemiologia qualitativas e nota datada nas referências, sem reescrever o texto existente. As 93 questões ativas da prova estão no padrão.
+
+**UNIFESP 2026 completa no padrão novo (08/11/2026).** As 94 explicações longas receberam fisiopatologia e epidemiologia qualitativas e nota datada nas referências, sem reescrever o texto existente. As 97 questões ativas da prova estão no padrão.
