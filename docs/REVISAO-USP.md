@@ -22,9 +22,11 @@ Mesmo método da `docs/REVISAO-UNIFESP.md`: cada explicação ganha **fisiopatol
 
 - **USP 2024 completa (120 questões, 3 anuladas: `-055`, `-079`, `-110`):** mesmo método, nenhum texto de diretriz reaberto.
 
+- **USP 2025 completa (120 questões)** e **USP 2026 completa (120 questões, 2 anuladas: `-054` e `-120`):** mesmo método, nenhum texto de diretriz reaberto. Com isso **as 580 questões da USP 2022–2026 estão no padrão novo**.
+
 ## Pendente
 
-- USP 2025 (120) e 2026 (120, 2 anuladas), nesta ordem, em blocos de 20.
+- Ler as fontes primárias das tabelas abaixo (a fila de `npm run referencias-a-conferir` lista as 580) e, onde a edição vigente mudar o número ou a conduta, reescrever a explicação e conferir a letra com a banca.
 
 ## Diretrizes a atualizar (achadas em USP 2022)
 
@@ -99,7 +101,42 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 | Lista de Notificação Compulsória 2022 | 2026 | `q-usp2024-077` |
 | PCDT de Parkinson | versão 2025 | `q-usp2024-071` |
 
+## Diretrizes a atualizar (achadas em USP 2025 e 2026)
+
+| Diretriz citada | Vigente | Questões |
+|---|---|---|
+| Rastreamento do colo do útero INCA 2016 | Portaria Conjunta SAES/SECTICS 13/2025 (DNA-HPV) | `q-usp2025-009`, `q-usp2026-085`, `-114` |
+| ACOG PB 146 (2014, pós-datismo) | ACOG CO 831 (2021) | `q-usp2025-019` |
+| ESC 2018 cardiopatia/gestação | ESC/EACTS 2025 (valvopatias) | `q-usp2025-016`, `-017`, `q-usp2026-097`, `-120` |
+| ESC pericárdio 2015 | ESC 2025 | `q-usp2025-089` |
+| AHA PALS 2020 | AHA 2025 | `q-usp2025-062`, `-072`, `q-usp2026-049`, `-070` |
+| GOLD 2024 | GOLD 2026 | `q-usp2025-093`, `-094` |
+| GINA 2025 | GINA 2026 | `q-usp2026-063`, `-070` |
+| ADA 2025 | ADA 2026 | `q-usp2025-079` |
+| ATS/IDSA CAP 2019 | ATS/IDSA 2025 | `q-usp2025-087` |
+| ESC FA 2020/ESC 2024 | ESC 2024 | `q-usp2025-083` |
+| ATLS 10ª ed. | ATLS 11ª ed. 2025 | `q-usp2025-026`, `-037`, `q-usp2026-027`, `-044`, `-045` |
+| NCCN 2024 | NCCN 2026 | `q-usp2026-031` |
+| OMS MEC 5ª ed. 2015 | OMS MEC 6ª ed. 2025 | `q-usp2026-116`, `q-usp2026-018` |
+| SSC pediátrica 2020 | SSC 2026 / pediátrica nova | `q-usp2026-053` |
+| ACOG CO 797 / BTS 2010 | BTS 2023 | `q-usp2026-044` |
+| IDSA cateter 2009 | IDSA 2024-2025 | `q-usp2026-055` |
+| Calendário da Gestante/Nacional 2024 | Calendário 2026 | `q-usp2026-056` |
+| PCDT-IST 2022 e PCDT de Transmissão Vertical | versões do MS posteriores | `q-usp2025-120`, `q-usp2026-032`, `-084`, `-110` |
+| PCDT-PEP 2024 | verificar | `q-usp2026-109` |
+| Norma técnica de violência sexual 2012 | nova edição 2024 | `q-usp2026-103` |
+| Dengvaxia/vacinas de dengue 2024 | vacinação do SUS 2024-2026 | `q-usp2025-118` |
+| Lei 9.656/1998 e RN 557/2022 | texto vigente da ANS | `q-usp2025-097` |
+| PCDT de Parkinson/HAS (SBC 2020 → 2025) | SBC 2025 | `q-usp2026-017` |
+
 ## Letras a conferir (não alteradas)
+
+- `q-usp2025-089`: o gabarito é prednisona (pericardite em DRC IIIb), mas a ESC prefere colchicina mais AINE ou corticoide em baixa dose quando o AINE é contraindicado; conferir com o texto de 2025.
+- `q-usp2025-097`: a explicação diz proibição de rescisão unilateral, mas a RN 557/2022 permite a rescisão de contratos coletivos; conferir a letra D com o texto vigente.
+- `q-usp2026-107`: LH e FSH baixos com estradiol indetectável sugerem causa central; o gabarito (hiperprolactinemia) merece conferência com o enunciado completo.
+- `q-usp2026-117`: a diretriz AUA/SUFU 2024 coloca os beta-3 agonistas como opção equivalente ou preferível ao anticolinérgico.
+- `q-usp2026-048`: a ordem entre fixação do fêmur e revascularização é controversa (muitos serviços usam shunt precoce).
+- `q-usp2026-057`: conferir se o quadro do enunciado configura anafilaxia (nesse caso, adrenalina) antes de manter anti-histamínico.
 
 - `q-usp2024-103`: o gabarito é clomifeno, mas a diretriz internacional de SOP de 2023 citada recomenda o letrozol como primeira linha de indução; conferir a letra.
 - `q-usp2024-089`: a explicação trata da lei 14.443/2022 (prazo de 60 dias); conferir o texto da lei sobre laqueadura no pós-parto imediato antes de manter a letra A.

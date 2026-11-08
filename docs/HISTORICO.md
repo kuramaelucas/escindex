@@ -763,3 +763,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 **USP 2023 no padrão novo (08/11/2026).** As 120 questões (3 anuladas) receberam fisiopatologia, epidemiologia e nota datada em `referencias`; gabaritos e textos intactos. `docs/REVISAO-USP.md` ganhou a lista de diretrizes a atualizar desta prova e uma letra a conferir (`q-usp2023-052`).
 
 **USP 2024 no padrão novo (08/11/2026).** As 120 questões (3 anuladas) receberam fisiopatologia, epidemiologia e nota datada em `referencias`; gabaritos e textos intactos. `docs/REVISAO-USP.md` ganhou as diretrizes a atualizar desta prova e duas letras a conferir (`q-usp2024-103` e `-089`).
+
+**USP 2025 e 2026 no padrão novo; fecha a revisão da USP (08/11/2026).** As 240 questões (2 anuladas em 2026) receberam fisiopatologia, epidemiologia e nota datada em `referencias`; com isso as 580 questões das provas da USP 2022 a 2026 estão no padrão. `docs/REVISAO-USP.md` traz as diretrizes a atualizar por prova e as letras a conferir (`q-usp2025-089`, `-097`, `q-usp2026-107`, `-117`, `-048`, `-057`). Nenhum texto de diretriz foi reaberto: todas continuam na fila de `npm run referencias-a-conferir`.
