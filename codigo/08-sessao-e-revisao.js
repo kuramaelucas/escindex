@@ -1015,6 +1015,9 @@ function renderQuestionCard(q, opts){
         // respondida os riscos viram registro do que a pessoa pensou, não
         // mais rascunho editável
         const podeRiscar = !opts.respondida && !opts.somenteLeitura;
+        // rótulos do controle de videogame (só aparecem com controle conectado): com a alternativa já
+        // marcada, ▲ ◀ ▼ viram a confiança e só C e E ainda trocam de alternativa
+        const emConfirmacao = !!opts.selecionada && (!opts.modoSimulado || !!(state.sessaoAtual && state.sessaoAtual.modoAprendizado));
         return q.alternativas.map(alt=>{
           const riscada = eliminadas.includes(alt.id);
           let classe = "qcard-alt";
@@ -1031,7 +1034,7 @@ function renderQuestionCard(q, opts){
           const botaoRiscar = podeRiscar
             ? `<button class="alt-cortar" title="${riscada?"Trazer a alternativa de volta":"Eliminar esta alternativa"}" aria-label="${riscada?"Trazer a alternativa "+alt.id+" de volta":"Eliminar a alternativa "+alt.id}" onclick="event.stopPropagation();alternarAlternativaEliminada('${alt.id}')">${iconeSvg("x")}</button>`
             : "";
-          return `<div class="${classe}"${onclickAttr}><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span>${botaoRiscar}</div>`;
+          return `<div class="${classe}"${onclickAttr}><span class="alt-letter">${alt.id}</span>${podeRiscar ? htmlDicaDoControleAlternativa(alt.id, emConfirmacao) : ""}<span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span>${botaoRiscar}</div>`;
         }).join("");
       })()}
     </div>`;
@@ -1051,10 +1054,10 @@ function renderQuestionCard(q, opts){
     } else {
     html += opts.selecionada ? `
       <div class="confidence-row">
-        <button class="confidence-btn" onclick="confirmarResposta('certeza')">Certeza <span class="muted text-xs tecla-atalho">(1)</span></button>
-        <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida <span class="muted text-xs tecla-atalho">(2)</span></button>
-        <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute <span class="muted text-xs tecla-atalho">(3)</span></button>
-      </div>
+        <button class="confidence-btn" onclick="confirmarResposta('certeza')">Certeza <span class="muted text-xs tecla-atalho">(1)</span>${htmlDicaDoControleConfianca("certeza")}</button>
+        <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida <span class="muted text-xs tecla-atalho">(2)</span>${htmlDicaDoControleConfianca("duvida")}</button>
+        <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute <span class="muted text-xs tecla-atalho">(3)</span>${htmlDicaDoControleConfianca("chute")}</button>
+      </div>${htmlDicaDoControleTrocar()}
       <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última confiança.</div>` : "";
     html += dicaRiscar(opts.selecionada ? "" : "Selecione uma alternativa para continuar. ");
     }

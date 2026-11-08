@@ -126,6 +126,7 @@ const GUIA_ALUNO = [
   ]},
   { titulo:"Respondendo uma questão", itens:[
     "Com o teclado, as setas ← → passam de questão (e de cartão, depois de virar), como as setas das pontas da barra de questões.",
+    "Com um controle de videogame conectado (aperte um botão para o navegador reconhecê-lo): ↑ ↓ rolam a tela, ← → passam de questão, e os botões da direita escolhem a alternativa (cima = A, esquerda = B, direita = C, baixo = D, R1 = E). Com a alternativa marcada, cima = chute, esquerda = certeza e baixo = dúvida; L1 desmarca para escolher outra. Os desenhos de cada botão só aparecem enquanto o controle estiver conectado.",
     "Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>. A confiança entra na revisão espaçada: chute e erro voltam antes.",
     "O <strong>×</strong> ao lado de cada alternativa risca o que você já descartou (clique de novo para trazer de volta).",
     "Assunto, especialidade e dificuldade só aparecem <strong>depois de responder</strong>, para não entregar o diagnóstico. Se a questão tem imagem, ela vem logo abaixo do enunciado, antes das alternativas.",
