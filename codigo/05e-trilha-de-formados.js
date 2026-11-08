@@ -57,8 +57,10 @@ function trilhaDeFormado(usuarioId){
   const itens = ordem.filter(id => getAssunto(id)).map((id, i) => {
     const rs = resp[id] || [], erros = rs.filter(r => !r.correta).length;
     const sem = !disponiveis[id];
-    const consolidado = assuntoConsolidadoFormado(rs, disponiveis[id] || 0);
-    return { id, pos: i + 1, n: rs.length, erros, nivel: nivelDoAssuntoFormado(usuarioId, id).nivel, consolidado, sem,
+    // assunto com pouquíssimas questões vira "miscelânea": sem fila própria, não trava nem é travado (ver montarSessaoDeFormado)
+    const misc = !sem && disponiveis[id] < c.miscelania.minimoPorAssunto;
+    const consolidado = misc || assuntoConsolidadoFormado(rs, disponiveis[id] || 0);
+    return { id, pos: i + 1, n: rs.length, erros, nivel: nivelDoAssuntoFormado(usuarioId, id).nivel, consolidado, sem, misc,
       disponiveis: disponiveis[id] || 0, reais: reais[id] || 0 };
   });
   const por = Object.fromEntries(itens.map(it => [it.id, it]));
@@ -66,13 +68,13 @@ function trilhaDeFormado(usuarioId){
     it.esperaPor = (exige[it.id] || []).filter(p => por[p] && !por[p].consolidado);
     it.liberado = !it.esperaPor.length;
   });
-  const pendentes = itens.filter(it => !it.consolidado);
+  const pendentes = itens.filter(it => !it.consolidado);   // miscelânea já vem consolidada: fora das filas
   const emEstudo = pendentes.filter(it => it.liberado).slice(0, c.assuntosEmEstudo);
   const marcados = new Set(emEstudo.map(it => it.id));
   const proximos = pendentes.filter(it => !marcados.has(it.id)).slice(0, 10);
-  const totReais = itens.reduce((s, it) => s + it.reais, 0) || 1;
-  const valor = { itens, emEstudo, proximos, consolidados: itens.filter(it => it.consolidado && !it.sem).length, total: itens.length,
-    cobertura: itens.filter(it => it.consolidado && !it.sem).reduce((s, it) => s + it.reais, 0) / totReais };
+  const totReais = itens.filter(it => !it.misc).reduce((s, it) => s + it.reais, 0) || 1;
+  const valor = { itens, emEstudo, proximos, consolidados: itens.filter(it => it.consolidado && !it.sem && !it.misc).length, total: itens.filter(it => !it.misc).length,
+    miscelania: itens.filter(it => it.misc), cobertura: itens.filter(it => it.consolidado && !it.sem && !it.misc).reduce((s, it) => s + it.reais, 0) / totReais };
   _trilhaFormadoCache = { chave, valor };
   return valor;
 }
@@ -96,7 +98,7 @@ function abrirTrilhaDeFormado(){
     <div class="modal-body">
       <p class="text-sm">Você consolidou <strong>${t.consolidados} de ${t.total}</strong> assuntos, que juntos respondem por cerca de <strong>${pct}%</strong> das questões reais do banco.</p>
       <div class="progress-track mt-1"><div class="progress-fill" style="width:${Math.min(100, pct)}%"></div></div>
-      <div class="card-flat mt-2 text-xs">${iconeSvg("target")} <strong>Como a trilha é montada.</strong> A fila junta o que <em>mais cai nas provas</em> (provas recentes pesam mais) com o que <em>um assunto exige de outro</em>: por exemplo, pré-natal vem antes de trabalho de parto, e hipertensão antes de doença coronariana. Você estuda até <strong>${CONFIG.cronogramaFormado.assuntosEmEstudo} assuntos por vez</strong>. Um assunto fica <strong>consolidado</strong> assim: se ele tem <em>menos de ${k.limitePequeno} questões</em>, quando você já fez pelo menos <strong>metade</strong> delas e acertou <strong>mais de ${Math.round(k.acertoPequeno * 100)}% nas últimas ${k.janelaPequeno}</strong>; se tem ${k.limitePequeno} ou mais, quando você respondeu <strong>mais de ${k.minimoRespostasGrande}</strong> e acertou <strong>${Math.round(k.acertoGrande * 100)}% ou mais nas últimas ${k.janelaGrande}</strong>. Aí ele abre vaga e libera os que dependem dele. As respostas de <strong>simulados</strong> contam como as das demais questões. Questões de assuntos fora de “Em estudo” só entram quando as de cima acabam.</div>
+      <div class="card-flat mt-2 text-xs">${iconeSvg("target")} <strong>Como a trilha é montada.</strong> A fila junta o que <em>mais cai nas provas</em> (provas recentes pesam mais) com o que <em>um assunto exige de outro</em>: por exemplo, pré-natal vem antes de trabalho de parto, e hipertensão antes de doença coronariana. Você estuda até <strong>${CONFIG.cronogramaFormado.assuntosEmEstudo} assuntos por vez</strong>. Um assunto fica <strong>consolidado</strong> assim: se ele tem <em>menos de ${k.limitePequeno} questões</em>, quando você já fez pelo menos <strong>metade</strong> delas e acertou <strong>mais de ${Math.round(k.acertoPequeno * 100)}% nas últimas ${k.janelaPequeno}</strong>; se tem ${k.limitePequeno} ou mais, quando você respondeu <strong>mais de ${k.minimoRespostasGrande}</strong> e acertou <strong>${Math.round(k.acertoGrande * 100)}% ou mais nas últimas ${k.janelaGrande}</strong>. Aí ele abre vaga e libera os que dependem dele. Assuntos com menos de ${CONFIG.cronogramaFormado.miscelania.minimoPorAssunto} questões (${t.miscelania.length} hoje) não têm fila própria: as questões deles aparecem de vez em quando, misturadas (cerca de 1 a cada ${Math.round(1 / CONFIG.cronogramaFormado.miscelania.chance)} questões), sem formar um grupo na plataforma. As respostas de <strong>simulados</strong> contam como as das demais questões. Questões de assuntos fora de “Em estudo” só entram quando as de cima acabam.</div>
       <h4 class="mt-3">Seu desempenho, de 10 em 10 respostas</h4>
       ${graficoDesempenhoEmBlocos(db.respostas.filter(r => r.usuarioId === u.id), 12)}
       <h4 class="mt-3">Em estudo agora (${t.emEstudo.length})</h4>

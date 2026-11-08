@@ -99,6 +99,8 @@ const CONFIG = {
     revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
     assuntosEmEstudo: 12,                       // trilha (05e): quantos assuntos da fila estão abertos de cada vez
     minimoParaConsolidar: 5,                    // piso de questões feitas num assunto pequeno (nunca consolida com 1 questão)
+    // assunto com menos de `minimoPorAssunto` questões não tem fila própria: suas questões formam, só na hora de montar a sessão, uma miscelânea que entra com `chance` por vaga (1 a cada 100)
+    miscelania: { minimoPorAssunto: 5, chance: 0.01 },
     // quando um assunto está consolidado e libera os que dependem dele (05e, assuntoConsolidadoFormado)
     consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, janelaPequeno: 10, acertoPequeno: 0.70, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
   },

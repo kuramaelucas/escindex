@@ -70,6 +70,15 @@ function montarSessaoDeFormado(usuario, tamanho){
       usados.add(q.id); porAssunto[q.assuntoId] = (porAssunto[q.assuntoId]||0)+1; n--;
     });
   };
+  // miscelânea (05e): questões de assuntos com poucas questões, sorteadas à parte e raramente — nunca vira grupo visível
+  if(trilha){
+    const raros = new Set(trilha.miscelania.map(it => it.id)), pool = naoVistas.filter(q => raros.has(q.assuntoId) && !usados.has(q.id));
+    let vagas = 0; for(let i = itens.length; i < tamanho; i++) if(Math.random() < c.miscelania.chance) vagas++;
+    sortearComPeso(pool, pool.length, () => 1).slice(0, vagas).forEach(q => {
+      itens.push({questaoId:q.id, origem:"nao_vista", motivo:"Miscelânea — "+nomeAssunto(q.assuntoId)+" tem poucas questões no banco, então aparece só de vez em quando"});
+      usados.add(q.id);
+    });
+  }
   pegar(permitidas, tamanho - itens.length, c.maxPorAssunto);
   // 2) faltou: assuntos que só têm questão acima do nível entram pela mais fácil, e o teto sobe um pouco
   if(itens.length < tamanho){

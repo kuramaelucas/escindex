@@ -113,7 +113,9 @@ test("Formado(a): a trilha abre só os assuntos em estudo, trava o que depende d
       const filho = Object.keys(exige).find(k => t0.itens.find(i => i.id === k && !i.sem) && exige[k].every(p => t0.itens.find(i => i.id === p && !i.sem)));
       const base = exige[filho][0];
       const antes = { filhoEmEstudo: t0.emEstudo.some(i => i.id === filho), baseEmEstudo: t0.emEstudo.some(i => i.id === base), n: t0.emEstudo.length };
+      const real = Math.random; Math.random = () => 0.5;    // sem a miscelânea rara (1%) entrando por sorteio
       const sessao = montarSessaoSemCalendario(u, 20);
+      Math.random = real;
       const ids = new Set(sessao.map(it => getQuestao(it.questaoId).assuntoId));
       const foraDaTrilha = [...ids].filter(a => !t0.emEstudo.some(i => i.id === a)).length;
       // consolida a base e todos os pré-requisitos dela, acertando com certeza
@@ -162,6 +164,29 @@ test("Formado(a): regra de consolidação (assunto pequeno × grande) e gráfico
     assert.equal(r.simuladoConta, true, 'resposta de simulado entra na trilha');
     assert.match(r.svg, /<svg/);
     assert.match(r.svg, /1–10/);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Formado(a): assuntos com menos de 5 questões viram miscelânea rara, sem fila própria nem grupo na taxonomia", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)";
+      const t = trilhaDeFormado(u.id);
+      const misc = new Set(t.miscelania.map(i => i.id));
+      const antesTax = db.taxonomia.assuntos.length;
+      const real = Math.random;
+      const contar = (valor) => { Math.random = () => valor; let n = 0; try{ for(let k = 0; k < 5; k++) n += montarSessaoDeFormado(u, 20).filter(it => misc.has(getQuestao(it.questaoId).assuntoId) && /^Miscelânea/.test(it.motivo)).length; } finally { Math.random = real; } return n; };
+      return { qtd: misc.size, emEstudoMisc: t.emEstudo.some(i => misc.has(i.id)), proximosMisc: t.proximos.some(i => misc.has(i.id)),
+        semSorteio: contar(0.5), comSorteio: contar(0.0), taxonomia: db.taxonomia.assuntos.length === antesTax, nomeGrupo: db.taxonomia.assuntos.some(a => /miscel/i.test(a.nome)) };
+    });
+    assert.ok(r.qtd > 0, "o banco tem assuntos com menos de 5 questões");
+    assert.equal(r.emEstudoMisc, false); assert.equal(r.proximosMisc, false);
+    assert.equal(r.semSorteio, 0, "sem sorteio favorável, nenhuma miscelânea");
+    assert.ok(r.comSorteio > 0, "com sorteio favorável, a miscelânea aparece");
+    assert.equal(r.taxonomia, true); assert.equal(r.nomeGrupo, false);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
