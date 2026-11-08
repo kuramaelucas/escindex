@@ -80,10 +80,12 @@ const CONFIG = {
   // quem define a dificuldade enquanto a plataforma tem pouca gente.
   respostasParaConfiarNaTaxa: 30,
 
-  /* CRONOGRAMA DE FORMADOS (regra em 05c). Quem é Formado(a) não segue
-     calendário de blocos: cada assunto passa por fases com cada vez mais
-     questão difícil e sobe de fase pela taxa de acerto das questões novas
-     DAQUELE assunto — o nível é por assunto, nunca da pessoa toda. */
+  /* CRONOGRAMA DE FORMADOS. Quem é Formado(a) não segue calendário de blocos.
+     QUAIS assuntos: a trilha (05e) — poucos de cada vez, na ordem da demanda
+     nas provas e dos pré-requisitos. QUAL dificuldade: cada assunto passa por
+     fases com cada vez mais questão difícil e sobe pela taxa de acerto das
+     questões novas DAQUELE assunto (05c); passar da última consolida o
+     assunto na trilha. O nível é por assunto, nunca da pessoa toda. */
   cronogramaFormado: {
     anos: ["Formado(a)"],
     // mistura de fácil/média/difícil de cada fase: ninguém fica só no fácil
@@ -111,16 +113,31 @@ const CONFIG = {
     amostraMinima: 6, janela: 8,                // senão: com 6 respostas na fase, olha a taxa das últimas 8
     maxPorAssunto: 2,                           // numa sessão, para não concentrar em poucos temas
     pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra antes
-    esperaMaxima: 3,                            // assunto que não aparece há semanas sobe até 3× na fila da área
-    areaIgual: 0.5,                             // cota de cada grande área: metade igual, metade pela incidência nas provas
-    janelaDeCobertura: 150,                     // a cota olha as últimas 150 questões novas para compensar a área que ficou para trás
+    esperaMaxima: 3,                            // fora da trilha: assunto que não aparece há semanas sobe até 3× na fila
     // fatia de revisão da sessão pelo tanto que a pessoa já respondeu: no começo, quase tudo é exploração
     revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
     // com muita revisão vencida (quem faz ~200 questões/semana), a fatia sobe para a fila não crescer sem fim
     filaQueAceleraRevisao: 120, revisaoComFilaGrande: 0.55,
+    assuntosEmEstudo: 12,                       // trilha (05e): quantos assuntos da fila estão abertos de cada vez
+    minimoParaConsolidar: 5,                    // piso de questões feitas num assunto pequeno (nunca consolida com 1 questão)
+    // assunto com menos de `minimoPorAssunto` questões não tem fila própria: suas questões formam, só na hora de montar a sessão, uma miscelânea que entra com `chance` por vaga (1 a cada 100)
+    miscelania: { minimoPorAssunto: 5, chance: 0.01 },
+    // assunto consolidado volta à fila (05e) se faz `diasSemRevisar` dias sem uma resposta nele ou se o acerto das últimas 10 cai abaixo de `acertoParaReabrir`
+    reabertura: { diasSemRevisar: 60, acertoParaReabrir: 0.60, minimoRespostas: 10 },
+    // projeção da data da prova (05e): ritmo = respostas por dia nas últimas `diasDeRitmo` dias; custo de um assunto = respostas que faltam para consolidá-lo
+    // assunto grande: as três fases pedem de 9 (100% de saída) a ~25 questões novas; a estimativa usa 25
+    projecao: { diasDeRitmo: 28, respostasAssuntoGrande: 25, coberturaMeta: 0.80 },
+    // quando um assunto está consolidado e libera os que dependem dele (05e, assuntoConsolidadoFormado)
+    consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, janelaPequeno: 10, acertoPequeno: 0.70, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
   },
   // questões por sessão recomendada quando a pessoa não escolheu (Ajustar meta > Questões por sessão)
   tamanhoSessaoPadrao: 20,
+
+  /* Revisão sugerida (05f): assunto com ao menos `minimoRespostas` respostas e `diasSemVer` dias sem ver
+     entra (mensal; bimestral se o assunto tem menos de `limitePequeno` questões na plataforma; fora se tem menos de `limiteSemRevisaoPorTempo`); o conjunto é preenchido `porRodada` questões de cada assunto por vez, pela ordem de erro e de tempo parado. */
+  revisaoSugerida: { diasSemVer: 30, minimoRespostas: 3, porRodada: 5,
+    // assunto pequeno (poucas questões na plataforma) esfria mais devagar: bimestral; abaixo do último limite não há revisão por tempo
+    diasAssuntoPequeno: 60, limitePequeno: 20, limiteSemRevisaoPorTempo: 10 },
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
      acerto: voltar em 1 ou 2 dias é reler, não recuperar da memória. Vale

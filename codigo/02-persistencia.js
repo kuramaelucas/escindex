@@ -100,6 +100,7 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
    parafraseada de cursinho ou site de questões. Questão real: `real: true`,
    banca, ano e numeroNaProva; autoral de demonstração: `real: false`. */
 const SEED_QUESTOES = (window.EscDados && window.EscDados.questoes) || [];
+const SEED_TRILHA_FORMADOS = (window.EscDados && window.EscDados.trilhaFormados) || null;   // fila de assuntos do cronograma de Formado(a) (ver 05e)
 const SEED_PROVAS_INATIVAS = (window.EscDados && window.EscDados.provasInativas) || [];   // provas que já chegam inativas (ver provaInativa, 05a)
 
 /* ---------------------------- SEED_LIVRO_OURO -----------------------------
@@ -799,6 +800,13 @@ function aplicarFusoesDeAssuntos(){
     }
     for(const k in o){ const v = o[k]; if(v && typeof v === "object") pilha.push(v); }
   }
+  // 3) os assuntos pulados da trilha de Formado(a) são um mapa {assuntoId: data}: o id é a CHAVE, que a varredura acima não vê
+  (db.usuarios||[]).forEach(u=>{
+    if(!u.trilhaPulados || !Object.keys(u.trilhaPulados).some(i=>mapa[i])) return;
+    const novo = {};
+    Object.keys(u.trilhaPulados).forEach(i=>{ const d = destinoDeAssuntoFundido(i); if(!novo[d] || u.trilhaPulados[i] > novo[d]) novo[d] = u.trilhaPulados[i]; });
+    u.trilhaPulados = novo; mudancas++;
+  });
   return mudancas;
 }
 

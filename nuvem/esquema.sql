@@ -199,6 +199,11 @@ alter table public.perfis add column if not exists modo_plataforma text;
 alter table public.perfis add column if not exists tamanho_sessao integer;
 -- ritmo das fases do cronograma de Formados ('firme' ou 'rapida'); nulo = padrão
 alter table public.perfis add column if not exists regua_formado text;
+-- a trilha do cronograma de Formado(a): { pulados: {assunto: data}, resumo: {...} }.
+-- `pulados` segue a pessoa entre aparelhos; `resumo` (posição, quantos consolidados,
+-- ids dos assuntos em estudo/travados/reabertos/pulados) é o que o Painel da Turma
+-- soma, SEM taxa de acerto nem resposta nenhuma. Nulo = nunca usou a trilha.
+alter table public.perfis add column if not exists trilha jsonb;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)
@@ -1544,7 +1549,8 @@ returns table (
   cartoes_total     bigint,
   cartoes_30d       bigint,
   ultimo_cartao     date,
-  simulados         bigint
+  simulados         bigint,
+  trilha            jsonb
 )
 language sql
 stable
@@ -1559,7 +1565,8 @@ as $$
     coalesce(r.total_30d, 0),
     coalesce(r.dias_30d, 0), r.ultima,
     coalesce(c.total, 0), coalesce(c.total_30d, 0), c.ultimo,
-    coalesce(s.n, 0)
+    coalesce(s.n, 0),
+    p.trilha -> 'resumo'
   from public.perfis p
   cross join hoje
   left join lateral (

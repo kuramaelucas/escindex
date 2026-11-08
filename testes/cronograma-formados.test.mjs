@@ -90,7 +90,8 @@ test("Formado(a): o assunto sobe de fase pela taxa de acerto, 100% sobe na hora,
     assert.equal(r.novasDeD, 0, "assunto concluído não recebe questão nova");
     assert.ok(r.motivos.some(m => /^Exploração/.test(m)), JSON.stringify(r.motivos.slice(0, 5)));
     assert.match(r.motivoDeFase, /^Fase 1 de 3 — .+: 3 acerto\(s\) em 6 nesta fase · questão média$/);
-    assert.match(r.texto, /concluídos: 1/);
+    assert.match(r.texto, /passaram das fases: 1/);
+    assert.match(r.texto, /1 de \d+ consolidados/);
     assert.match(r.texto, /50%\/35%\/15%/);
     assert.equal(r.cronoDe6, false);
     assert.deepEqual(erros, []);
@@ -119,34 +120,40 @@ test("Formado(a): a dificuldade segue a mistura da fase e pula o nível que falt
   } finally { await contexto.close(); }
 });
 
-test("Formado(a): as questões novas da sessão se dividem entre as áreas pela cota e a revisão cresce com a fila", async () => {
+test("Formado(a): a sessão tira as questões novas dos assuntos em estudo da trilha, com a dificuldade da fase, e a revisão cresce com a fila", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     await pagina.evaluate(PREPARO_FORMADO);
     const r = await pagina.evaluate(() => {
-      const { u } = window.__formado;
-      const sessao = montarSessaoSemCalendario(u, 40), novas = sessao.filter(it => it.origem === "nao_vista");
-      const porArea = {}; novas.forEach(it => { const a = getQuestao(it.questaoId).areaId; porArea[a] = (porArea[a] || 0) + 1; });
-      const alvo = alvoDasAreasFormado(Object.keys(porArea));
+      const { u } = window.__formado, c = CONFIG.cronogramaFormado;
+      const t = trilhaDeFormado(u.id), emEstudo = new Set(t.emEstudo.map(it => it.id));
+      const cabe = t.emEstudo.length * c.maxPorAssunto;
+      const sessao = montarSessaoSemCalendario(u, 20), novas = sessao.filter(it => it.origem === "nao_vista" && !/^Miscelânea/.test(it.motivo));
+      const foraDaTrilha = novas.filter(it => !emEstudo.has(getQuestao(it.questaoId).assuntoId)).length;
       const porAssunto = {}; novas.forEach(it => { const a = getQuestao(it.questaoId).assuntoId; porAssunto[a] = (porAssunto[a] || 0) + 1; });
+      // sessão maior que a trilha comporta: o excedente vem de fora, e a tela diz por quê
+      const grande = montarSessaoSemCalendario(u, cabe + 10).filter(it => it.origem === "nao_vista" && !/^Miscelânea/.test(it.motivo));
+      const daTrilhaNaGrande = grande.filter(it => emEstudo.has(getQuestao(it.questaoId).assuntoId)).length;
+      const motivoFora = grande.filter(it => !emEstudo.has(getQuestao(it.questaoId).assuntoId)).map(it => it.motivo)[0] || "";
       // passa dos degraus iniciais da revisão
       const q = questoesParaEstudo(u.id)[0];
       for(let i = 0; i < 120; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x-" + i, assuntoId: q.assuntoId, correta: true, confianca: "certeza", data: hojeISO() });
-      const c = CONFIG.cronogramaFormado;
-      return { n: novas.length, porArea, alvo, somaAlvo: Object.values(alvo).reduce((a, b) => a + b, 0), maxPorAssunto: Math.max(...Object.values(porAssunto)),
-        normal: fracaoRevisaoFormado(u.id, 0), cheia: fracaoRevisaoFormado(u.id, c.filaQueAceleraRevisao), revisaoComFilaGrande: c.revisaoComFilaGrande };
+      return { n: novas.length, foraDaTrilha, maxPorAssunto: Math.max(...Object.values(porAssunto)), cabe, daTrilhaNaGrande, motivoFora,
+        motivos: novas.map(it => it.motivo), normal: fracaoRevisaoFormado(u.id, 0), cheia: fracaoRevisaoFormado(u.id, c.filaQueAceleraRevisao), revisaoComFilaGrande: c.revisaoComFilaGrande };
     });
-    assert.equal(Object.keys(r.porArea).length, 5, "as cinco grandes áreas entram: " + JSON.stringify(r.porArea));
-    Object.keys(r.porArea).forEach(a => assert.ok(Math.abs(r.porArea[a] - r.alvo[a]*r.n) <= 1.5, a + ": " + JSON.stringify(r)));
-    assert.ok(Math.abs(r.somaAlvo - 1) < 1e-9);
+    assert.ok(r.n >= 15);
+    assert.equal(r.foraDaTrilha, 0, "numa sessão de 20, as novas vêm só dos assuntos em estudo");
     assert.ok(r.maxPorAssunto <= 2, "teto de duas novas por assunto");
+    assert.ok(r.motivos.every(m => /questão (fácil|média|difícil)/.test(m) && /na sua trilha/.test(m)), r.motivos[0]);
+    assert.equal(r.daTrilhaNaGrande, r.cabe, "a trilha enche até o teto antes de buscar fora");
+    assert.match(r.motivoFora, /fora da trilha/);
     assert.equal(r.normal, 0.4);
     assert.equal(r.cheia, r.revisaoComFilaGrande);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
 
-test("Formado(a): menos retorno — acerto com certeza sai da revisão; no assunto concluído, qualquer acerto; erro e chute voltam", async () => {
+test("Formado(a): menos retorno — acerto com certeza sai da revisão; no assunto consolidado, qualquer acerto; erro e chute voltam", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     await pagina.evaluate(PREPARO_FORMADO);
@@ -161,7 +168,7 @@ test("Formado(a): menos retorno — acerto com certeza sai da revisão; no assun
       for(let i = 0; i < 9; i++) responder(qd[i], true, "certeza");
       responder(qd[9], true, "duvida");
       const daqui = dias => { const t = Date.now() + dias*86400000; CONFIG.hoje = () => new Date(t); };
-      daqui(70);
+      daqui(45);   // depois dos 30 dias do acerto na dúvida e antes dos 60 em que a trilha reabre o assunto parado
       const vencida = x => revisaoVencida(u.id, x.id);
       const formado = { certeza: vencida(q[0]), duvida: vencida(q[1]), erro: vencida(q[2]), chute: vencida(q[3]), duvidaConcluido: vencida(qd[9]) };
       u.anoFaculdade = "6º ano";
@@ -172,6 +179,22 @@ test("Formado(a): menos retorno — acerto com certeza sai da revisão; no assun
     assert.equal(r.concluido, true);
     assert.deepEqual(r.formado, { certeza: false, duvida: true, erro: true, chute: true, duvidaConcluido: false });
     assert.equal(r.outroAno, true, "fora do cronograma de Formados, o acerto com certeza continua voltando");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Trilha: errar na revisão não reabre o assunto consolidado; errar nas questões que a pessoa escolheu fazer, sim", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const R = (c, origem, i) => ({ id: "r" + i, questaoId: "q" + i, correta: c, origem, data: hojeISO(), respondidaEm: hojeISO() + "T10:" + String(i % 60).padStart(2, "0") + ":00Z" });
+      const base = Array.from({ length: 60 }, (_, i) => R(true, "nao_vista", i));
+      const comRevisao = [...base, ...Array.from({ length: 10 }, (_, i) => R(false, "revisao_erro", 100 + i))];
+      const comLista = [...base, ...Array.from({ length: 5 }, (_, i) => R(false, "lista", 200 + i))];
+      return { revisao: motivoDeReaberturaFormado(comRevisao, true), lista: motivoDeReaberturaFormado(comLista, true) };
+    });
+    assert.equal(r.revisao, null, "a revisão traz o que a pessoa errou: o acerto dela não reabre o assunto");
+    assert.match(r.lista || "", /acerto nas últimas 10 caiu/);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
@@ -300,14 +323,14 @@ test("Tamanho da sessão: a pessoa escolhe em Ajustar meta, a sessão respeita e
   } finally { await contexto.close(); }
 });
 
-test("Simulação: quatro semanas de 200 questões cobrem as áreas, seguem a mistura e não repetem cedo", async () => {
+test("Simulação: quatro semanas de 200 questões seguem a trilha e a mistura das fases e não repetem cedo", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     const r = await simularFormado(pagina, { semanas: 4, porSemana: 200 });
     assert.deepEqual(r.falhas, [], JSON.stringify(r.cobertura));
     assert.ok(r.semanas.every(s => s.feitas >= 200), "o ritmo de 200 por semana coube nas sessões");
-    assert.ok(r.semanas[3].explorados / r.semanas[3].assuntos > 0.75, "em quatro semanas a maior parte dos assuntos foi vista");
-    assert.ok(r.semanas[3].porFase[1] > 0, "algum assunto já subiu de fase");
+    assert.ok(r.fatiaDaTrilha > 0.9, "as questões novas vêm dos assuntos em estudo: " + r.fatiaDaTrilha);
+    assert.ok(r.semanas[3].consolidados > r.semanas[0].consolidados, "assuntos consolidam e a trilha anda");
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
@@ -334,6 +357,198 @@ test("Setas do teclado passam questão e flashcard; as setas da barra também", 
     assert.equal(await pagina.evaluate(() => state.sessaoFlash.indice), i0 + 1);
     await pagina.keyboard.press("ArrowLeft");
     assert.equal(await pagina.evaluate(() => state.sessaoFlash.indice), i0);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Formado(a): a trilha abre só os assuntos em estudo, trava o que depende de base não consolidada e libera ao consolidar", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)";
+      const t0 = trilhaDeFormado(u.id);
+      const exige = SEED_TRILHA_FORMADOS.exige;
+      const filho = Object.keys(exige).find(k => t0.itens.find(i => i.id === k && !i.sem) && exige[k].every(p => t0.itens.find(i => i.id === p && !i.sem)));
+      const base = exige[filho][0];
+      const antes = { filhoEmEstudo: t0.emEstudo.some(i => i.id === filho), baseEmEstudo: t0.emEstudo.some(i => i.id === base), n: t0.emEstudo.length };
+      const real = Math.random; Math.random = () => 0.5;    // sem a miscelânea rara (1%) entrando por sorteio
+      const sessao = montarSessaoSemCalendario(u, 20);
+      Math.random = real;
+      const ids = new Set(sessao.map(it => getQuestao(it.questaoId).assuntoId));
+      const foraDaTrilha = [...ids].filter(a => !t0.emEstudo.some(i => i.id === a)).length;
+      // consolida a base e todos os pré-requisitos dela, acertando com certeza
+      const consolidar = id => { for(const p of (exige[id] || [])) consolidar(p); for(let i = 0; i < 60; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x" + Math.random(), assuntoId: id, correta: true, confianca: "certeza", data: hojeISO() }); };
+      (exige[filho] || []).forEach(consolidar);
+      const t1 = trilhaDeFormado(u.id);
+      abrirTrilhaDeFormado();
+      const tela = document.querySelector(".modal") ? document.querySelector(".modal").innerText : "";
+      return { antes, foraDaTrilha, depois: t1.emEstudo.some(i => i.id === filho), consolidados: t1.consolidados, tela };
+    });
+    assert.equal(r.antes.filhoEmEstudo, false, "assunto que exige base não consolidada não está em estudo");
+    assert.ok(r.antes.n <= 12);
+    assert.equal(r.foraDaTrilha, 0, "com a trilha cheia, a sessão fica nos assuntos em estudo");
+    assert.equal(r.depois, true, "consolidada a base, o assunto entra em estudo");
+    assert.match(r.tela, /Em estudo agora/);
+    assert.match(r.tela, /de 10 em 10 respostas/);
+    assert.match(r.tela, /Libera depois de consolidar|Vêm a seguir/);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Formado(a): regra de consolidação (assunto pequeno × grande) e gráfico de 10 em 10", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const mk = (n, acertos) => Array.from({ length: n }, (_, i) => ({ questaoId: "q" + i, correta: i < acertos }));
+      const antigoRuim = [...mk(40, 0).map((x, i) => ({ ...x, questaoId: "a" + i })), ...mk(20, 18).map((x, i) => ({ ...x, questaoId: "b" + i }))];
+      const u = (fazerLoginDemo("aluno"), fecharModal(), usuarioAtual());
+      const q = questoesParaEstudo(u.id)[0];
+      for(let i = 0; i < 23; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: q.assuntoId, correta: i % 2 === 0, data: "2026-11-0" + (1 + i % 8) });
+      return {
+        peqOk: assuntoConsolidadoFormado(mk(10, 8), 20),         // 10 de 20 feitas, 80%
+        peqPoucas: assuntoConsolidadoFormado(mk(9, 9), 20),      // menos da metade
+        peqBaixo: assuntoConsolidadoFormado(mk(10, 7), 20),      // 70% não passa de 70%
+        peqRecente: assuntoConsolidadoFormado([...mk(10, 0).map((x, i) => ({ ...x, questaoId: "z" + i })), ...mk(10, 9)], 20),  // começou mal, últimas 10 = 90%
+        grandeOk: assuntoConsolidadoFormado(antigoRuim, 120),    // 60 respostas; últimas 20 = 90%
+        grandeCedo: assuntoConsolidadoFormado(mk(50, 50), 120),  // 50 não é "mais de 50"
+        semQuestao: assuntoConsolidadoFormado([], 0),
+        simuladoConta: (() => { const a = q.assuntoId, antes = trilhaDeFormado(u.id).itens.find(i => i.id === a).n;
+          db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "sim-x", assuntoId: a, correta: true, origem: "simulado", data: "2026-11-09", respondidaEm: "2026-11-09T10:00:00Z" });
+          return trilhaDeFormado(u.id).itens.find(i => i.id === a).n === antes + 1; })(),
+        svg: graficoDesempenhoEmBlocos(db.respostas.filter(x => x.usuarioId === u.id), 12),
+      };
+    });
+    assert.deepEqual([r.peqOk, r.peqPoucas, r.peqBaixo, r.peqRecente, r.grandeOk, r.grandeCedo, r.semQuestao], [true, false, false, true, true, false, true]);
+    assert.equal(r.simuladoConta, true, 'resposta de simulado entra na trilha');
+    assert.match(r.svg, /<svg/);
+    assert.match(r.svg, /1–10/);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Formado(a): assuntos com menos de 5 questões viram miscelânea rara, sem fila própria nem grupo na taxonomia", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)";
+      const t = trilhaDeFormado(u.id);
+      const misc = new Set(t.miscelania.map(i => i.id));
+      const antesTax = db.taxonomia.assuntos.length;
+      const real = Math.random;
+      const contar = (valor) => { Math.random = () => valor; let n = 0; try{ for(let k = 0; k < 5; k++) n += montarSessaoDeFormado(u, 20).filter(it => misc.has(getQuestao(it.questaoId).assuntoId) && /^Miscelânea/.test(it.motivo)).length; } finally { Math.random = real; } return n; };
+      return { qtd: misc.size, emEstudoMisc: t.emEstudo.some(i => misc.has(i.id)), proximosMisc: t.proximos.some(i => misc.has(i.id)),
+        semSorteio: contar(0.5), comSorteio: contar(0.0), taxonomia: db.taxonomia.assuntos.length === antesTax, nomeGrupo: db.taxonomia.assuntos.some(a => /miscel/i.test(a.nome)) };
+    });
+    assert.ok(r.qtd > 0, "o banco tem assuntos com menos de 5 questões");
+    assert.equal(r.emEstudoMisc, false); assert.equal(r.proximosMisc, false);
+    assert.equal(r.semSorteio, 0, "sem sorteio favorável, nenhuma miscelânea");
+    assert.ok(r.comSorteio > 0, "com sorteio favorável, a miscelânea aparece");
+    assert.equal(r.taxonomia, true); assert.equal(r.nomeGrupo, false);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Trilha: reabre assunto parado ou com acerto recente baixo, pular respeita pré-requisito, projeção até a prova e painel somado", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)"; u.provaAlvoData = somarDias(hojeISO(), 100);
+      const R = (a, q, c, d) => ({ id: uid("r"), usuarioId: u.id, questaoId: q, assuntoId: a, correta: c, data: d, respondidaEm: d + "T10:00:00Z" });
+      const t0 = trilhaDeFormado(u.id);
+      const exige = SEED_TRILHA_FORMADOS.exige;
+      const naoLiberado = t0.itens.find(i => !i.liberado && !i.consolidado);
+      pularAssuntoDaTrilha(naoLiberado.id);
+      const recusouNaoLiberado = !(document.querySelector(".modal") && /Pular este assunto/.test(document.querySelector(".modal").innerText));
+      const base = t0.emEstudo[0].id;                                   // assunto livre de pré-requisito
+      const dependente = Object.keys(exige).find(k => exige[k].includes(base) && t0.itens.find(i => i.id === k && !i.misc && !i.sem));
+      // 1) consolida a base há 90 dias: a regra diz "consolidado", mas o tempo reabre
+      for(let i = 0; i < 70; i++) db.respostas.push(R(base, "v" + i, true, somarDias(hojeISO(), -90)));
+      const t1 = trilhaDeFormado(u.id), itBase = t1.itens.find(i => i.id === base);
+      const reabriuPorTempo = !!itBase.reabertura && /dias/.test(itBase.reabertura) && t1.emEstudo[0].id === base;
+      const dependenteLiberado = dependente ? !t1.itens.find(i => i.id === dependente).esperaPor.length : true;   // reabrir a base não trava quem depende dela
+      // acerto recente baixo reabre também
+      db.respostas = db.respostas.filter(x => x.assuntoId !== base);
+      for(let i = 0; i < 60; i++) db.respostas.push(R(base, "w" + i, true, somarDias(hojeISO(), -2)));
+      for(let i = 0; i < 5; i++) db.respostas.push(R(base, "e" + i, false, hojeISO()));
+      const motivoRecente = motivoDeReaberturaFormado(_estatisticaDosAssuntosFormado(u.id)[base], true);
+      // 2) pular: só assunto liberado; o dependente passa a ficar liberado
+      db.respostas = db.respostas.filter(x => x.assuntoId !== base);
+      confirmarPuloDaTrilha(base);
+      const t2 = trilhaDeFormado(u.id);
+      const pulou = t2.pulados.some(i => i.id === base) && !t2.emEstudo.some(i => i.id === base);
+      const depLiberou = dependente ? !t2.itens.find(i => i.id === dependente).esperaPor.length : true;
+      const naoContaComoConsolidado = t2.consolidados === t0.consolidados;
+      const perfil = linhaDoPerfil(u);
+      // 3) projeção
+      for(let i = 0; i < 56; i++) db.respostas.push(R(t2.emEstudo[0].id, "p" + i, i % 2 === 0, somarDias(hojeISO(), -(i % 28))));
+      const proj = projecaoDaTrilha(u, trilhaDeFormado(u.id));
+      abrirTrilhaDeFormado();
+      const tela = document.querySelector(".modal").innerText;
+      // 6) painel
+      const resumo = resumoDaTrilha(u);
+      const tres = [1, 2, 3].map(() => ({ trilha: resumo }));
+      return { reabriuPorTempo, dependenteLiberado, motivoRecente, recusouNaoLiberado, pulou, depLiberou, naoContaComoConsolidado,
+        perfilTrilha: perfil.trilha && Object.keys(perfil.trilha.pulados), perfilResumo: Object.keys(perfil.trilha.resumo),
+        proj: proj && { ritmo: proj.ritmo > 1, pos: !!proj.alcanca || proj.orcamento >= 0 }, tela,
+        painel: htmlTrilhaDaTurma(tres), painelPoucos: htmlTrilhaDaTurma(tres.slice(0, 2)), temAcerto: JSON.stringify(resumo).includes("correta") };
+    });
+    assert.ok(r.reabriuPorTempo, "90 dias parado reabre e vai para o início da fila");
+    assert.ok(r.dependenteLiberado, "reabrir a base não trava quem depende dela");
+    assert.match(r.motivoRecente, /acerto nas últimas 10 caiu/);
+    assert.ok(r.recusouNaoLiberado, "não se pula assunto cujos pré-requisitos não foram vencidos");
+    assert.ok(r.pulou); assert.ok(r.depLiberou); assert.ok(r.naoContaComoConsolidado);
+    assert.ok(r.perfilTrilha.length === 1 && r.perfilResumo.includes("emEstudo"));
+    assert.ok(r.proj.ritmo);
+    assert.match(r.tela, /Até sua prova/); assert.match(r.tela, /questões por dia/); assert.match(r.tela, /já domino, pular/); assert.match(r.tela, /Que você pulou/);
+    assert.match(r.painel, /Trilha dos Formados/); assert.match(r.painel, /posição mediana/);
+    assert.match(r.painelPoucos, /Menos de 3 formados/);
+    assert.equal(r.temAcerto, false, "o resumo não carrega taxa de acerto");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Revisão sugerida: assuntos esfriados, mais erro primeiro e depois mais tempo parado, no tamanho pedido", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      const porAssunto = {}; questoesParaEstudo(u.id).forEach(q => { if(!ehDissertativa(q)) (porAssunto[q.assuntoId] = porAssunto[q.assuntoId] || []).push(q); });
+      const total = {}; questoesAtivas().forEach(q => { total[q.assuntoId] = (total[q.assuntoId] || 0) + 1; });
+      const com = (min, max) => Object.keys(porAssunto).filter(a => porAssunto[a].length >= 10 && total[a] >= min && total[a] < max);
+      const [A, B, C, D, E] = com(20, 1e9);
+      const [F, G] = com(10, 20);                                 // pequenos: bimestral
+      const H = Object.keys(porAssunto).find(a => total[a] < 10 && porAssunto[a].length >= 4);   // sem revisão por tempo
+      const R = (a, q, correta, dias) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: a, correta, confianca: "certeza", data: somarDias(hojeISO(), -dias), respondidaEm: somarDias(hojeISO(), -dias) + "T10:00:00Z" });
+      // A: erra 80%, parado há 35 dias · B: erra 80%, 50 dias (empate no erro → B vem antes por tempo) · C: erra 40%, 31 dias · D: recente (20 dias, ainda dentro do mês) · E: poucas respostas
+      // F (pequeno): 45 dias, ainda não esfriou · G (pequeno): 70 dias, esfriou · H (menos de 10 questões): 300 dias, sem revisão por tempo
+      porAssunto[A].slice(0, 10).forEach((q, i) => R(A, q, i < 2, 35));
+      porAssunto[B].slice(0, 10).forEach((q, i) => R(B, q, i < 2, 50));
+      porAssunto[C].slice(0, 10).forEach((q, i) => R(C, q, i < 6, 31));
+      porAssunto[D].slice(0, 10).forEach((q, i) => R(D, q, false, 20));
+      porAssunto[E].slice(0, 2).forEach((q) => R(E, q, false, 60));
+      porAssunto[F].slice(0, 10).forEach((q, i) => R(F, q, i < 3, 45));
+      porAssunto[G].slice(0, 10).forEach((q, i) => R(G, q, i < 9, 70));
+      porAssunto[H].slice(0, 4).forEach((q) => R(H, q, false, 300));
+      const cand = candidatosDaRevisaoSugerida(u.id);
+      const ordem = cand.assuntos.map(a => a.assuntoId);
+      const m8 = montarRevisaoSugerida(u.id, 8), m3 = montarRevisaoSugerida(u.id, 3);
+      const assuntosDe = m => m.itens.map(it => getQuestao(it.questaoId).assuntoId);
+      const primeiraB = getQuestao(m8.itens[0].questaoId);
+      abrirRevisaoSugerida(8);
+      const tela = document.querySelector(".modal").innerText;
+      return { A, B, C, D, E, F, G, H, ordem, a8: assuntosDe(m8), a3: assuntosDe(m3), motivo: m8.itens[0].motivo, origem: m8.itens[0].origem, tela, card: htmlCardRevisaoSugerida(u) };
+    });
+    assert.deepEqual(r.ordem, [r.B, r.A, r.C, r.G], "taxa de erro primeiro; empate, mais tempo parado; recente, pequeno que ainda não esfriou, pouca resposta e menos de 10 questões ficam fora");
+    assert.deepEqual(r.a8, [...Array(5).fill(r.B), ...Array(3).fill(r.A)], "5 por rodada, na ordem dos assuntos, até completar o pedido");
+    assert.deepEqual(r.a3, Array(3).fill(r.B));
+    assert.match(r.motivo, /Revisão sugerida — .*erro de 80% e faz 50 dias/);
+    assert.equal(r.origem, "revisao_sugerida");
+    assert.match(r.tela, /8 questões, nesta ordem de assuntos/);
+    assert.match(r.card, /Montar revisão sugerida/);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

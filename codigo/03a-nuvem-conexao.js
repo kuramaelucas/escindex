@@ -389,6 +389,8 @@ function nuvemAplicarPerfilLocal(p){
   if(p.modo_plataforma && !u.modoPlataforma && (p.modo_plataforma === "resumido" || p.modo_plataforma === "estatistico")) u.modoPlataforma = p.modo_plataforma;
   // a coluna pode nem existir neste banco (esquema.sql ainda não rodado de novo): só quem a traz decide
   if("prova_alvo_data" in p){ if(p.prova_alvo_data) u.provaAlvoData = p.prova_alvo_data; else delete u.provaAlvoData; }
+  // os assuntos pulados da trilha: o que está neste aparelho vale mais que o que desce (mesma regra do modo da plataforma)
+  if(p.trilha && typeof p.trilha === "object" && p.trilha.pulados && !u.trilhaPulados) u.trilhaPulados = p.trilha.pulados;
   // {} (reordenei de volta ao padrão) vale: é assim que "voltar à ordem da turma" chega ao outro aparelho
   if(p.ordem_estagios && typeof p.ordem_estagios === "object") u.ordemEstagios = p.ordem_estagios;
   // avisos já lidos: a união dos dois lados, porque ler num aparelho nunca desfaz a leitura no outro
@@ -424,6 +426,7 @@ function linhaDoPerfil(usuario){
     boas_vindas_em: usuario.boasVindasEm || null,
     prova_alvo_data: usuario.provaAlvoData || null,
     modo_plataforma: usuario.modoPlataforma || null,
+    trilha: linhaDaTrilhaDoPerfil(usuario),
     ordem_estagios: usuario.ordemEstagios || {},
     avisos_lidos: usuario.avisosLidos || [],
   };
