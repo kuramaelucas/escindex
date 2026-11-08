@@ -374,6 +374,14 @@ function nuvemAplicarPerfilLocal(p){
   // nunca se limpa por aqui: o perfil que desce pode ser anterior ao que acabei de escolher, e
   // quem saiu do grupo já perde o lugar pelo status em grupo_membros (getGrupoQuestoesDoUsuario confere)
   if(p.grupo_questoes_id && !u.grupoQuestoesId && !grupoLocalPendente) u.grupoQuestoesId = p.grupo_questoes_id;
+  /* Escolhas de estudo do aluno (questões por sessão, ritmo das fases): com
+     mudança local ainda por subir, vale a deste aparelho — o perfil que desce
+     pode ser anterior a ela e a apagaria. Coluna ausente (banco sem o
+     esquema.sql novo) não decide; nula, sim: é "voltei ao padrão" noutro aparelho. */
+  if(!grupoLocalPendente){
+    if("tamanho_sessao" in p){ if(p.tamanho_sessao) u.tamanhoSessao = p.tamanho_sessao; else delete u.tamanhoSessao; }
+    if("regua_formado" in p){ if(CONFIG.cronogramaFormado.reguas[p.regua_formado] && p.regua_formado !== "padrao") u.reguaFormado = p.regua_formado; else delete u.reguaFormado; }
+  }
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
@@ -411,6 +419,8 @@ function linhaDoPerfil(usuario){
     grupo_questoes_id: usuario.grupoQuestoesId || null,
     meta_questoes_dia: usuario.metaQuestoesDia || null,
     meta_cartoes_dia: usuario.metaCartoesDia || null,
+    tamanho_sessao: usuario.tamanhoSessao || null,
+    regua_formado: usuario.reguaFormado || null,
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
     lembrete_meta_horario: usuario.lembreteMetaHorario || null,
     boas_vindas_em: usuario.boasVindasEm || null,

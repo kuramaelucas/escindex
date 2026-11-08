@@ -697,12 +697,12 @@ function renderEstudar(){
         : `Mistura automática, sem calendário de blocos: ${Math.round(mistura.revisaoPassados*100)}% revisão espaçada e o resto de questões que você ainda não viu.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
       <div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${escapeHtml(explicacaoProgressao(u))}</div>
-      ${cronogramaDeFormado(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronogramaFormado(u))} <button class="btn btn-ghost btn-sm" onclick="abrirTrilhaDeFormado()">Ver minha trilha</button></div>` : ""}
+      ${cronogramaDeFormado(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronogramaFormado(u))} <button class="btn btn-ghost btn-sm" onclick="abrirTrilhaDeFormado()">Ver minha trilha</button> <button class="btn btn-ghost btn-sm" onclick="abrirRitmoDoFormado()">Ritmo das fases: ${escapeHtml(CONFIG.cronogramaFormado.reguas[ritmoDoFormado(u)].nome)}</button></div>` : ""}
       ${cronogramaDoUsuario(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronograma(u, feitasHoje))}</div>` : ""}`)}
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
       ${soNoEstatistico(`<p class="text-xs muted mt-1">${deHoje
         ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
-        : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."}</p>`)}
+        : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."} Cada sessão traz até ${tamanhoDaSessaoDoUsuario(u)} questões (muda em Ajustar meta).</p>`)}
     </div>
     <div class="card">
       <div class="card-title">Revisar erros e chutes antigos</div>

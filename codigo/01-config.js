@@ -80,23 +80,44 @@ const CONFIG = {
   // quem define a dificuldade enquanto a plataforma tem pouca gente.
   respostasParaConfiarNaTaxa: 30,
 
-  /* CRONOGRAMA DE FORMADOS. Quem é Formado(a) não segue calendário de blocos;
-     em vez do "tudo que ainda não viu", começa EXPLORANDO: muitos assuntos,
-     questões de dificuldade baixa. Cada assunto sobe de nível por conta
-     própria (0 fácil, 1 médio, 2 difícil) olhando as últimas `janela`
-     respostas DAQUELE assunto: acertar com certeza com frequência sobe; errar
-     com frequência (`taxaErroQueSegura`) mantém o assunto no fácil. Os outros
-     assuntos não são afetados — o nível é por assunto, nunca da pessoa toda. */
+  /* CRONOGRAMA DE FORMADOS. Quem é Formado(a) não segue calendário de blocos.
+     QUAIS assuntos: a trilha (05e) — poucos de cada vez, na ordem da demanda
+     nas provas e dos pré-requisitos. QUAL dificuldade: cada assunto passa por
+     fases com cada vez mais questão difícil e sobe pela taxa de acerto das
+     questões novas DAQUELE assunto (05c); passar da última consolida o
+     assunto na trilha. O nível é por assunto, nunca da pessoa toda. */
   cronogramaFormado: {
     anos: ["Formado(a)"],
-    janela: 10, amostraMinima: 3,
-    taxaSeguraMedio: 0.6,                       // acertos com certeza / respostas, para chegar ao médio
-    taxaSeguraDificil: 0.8, minimoParaDificil: 6,
-    taxaErroQueSegura: 0.4,
+    // mistura de fácil/média/difícil de cada fase: ninguém fica só no fácil
+    fases: [[0.50, 0.35, 0.15], [0.35, 0.50, 0.15], [0.15, 0.50, 0.35]],
+    /* Régua para subir de fase: o aluno escolhe o ritmo (u.reguaFormado; sem
+       escolha, "padrao"). Ritmos prontos em vez de número livre: a tela explica
+       cada um e ninguém "conclui" assunto com 30% de acerto. A fase 3 tem mais
+       questão difícil, então a régua dela é 5 pontos menor. */
+    reguas: {
+      firme: { nome: "Firme", acerto: 0.70,
+        como: "o assunto só muda de fase quando você acerta 70% das últimas questões novas dele. Você passa mais tempo em cada fase, com mais fáceis e médias antes das difíceis",
+        quando: "se está retomando a matéria depois de um tempo parado(a), ou quer a base bem firme antes de encarar questão difícil",
+        cuidado: "avança devagar: muitos assuntos ficam semanas na fase 1, e as difíceis demoram a aparecer" },
+      padrao: { nome: "Padrão", acerto: 0.60,
+        como: "o assunto muda de fase com 60% de acerto nas últimas questões novas dele: uma régua intermediária, que exige mais acerto do que erro sem segurar o assunto até a perfeição",
+        quando: "para a maioria, que estuda com regularidade e quer equilibrar firmar a base e avançar",
+        cuidado: "é o ponto de partida; se sentir que está parado(a) ou correndo demais, troque" },
+      rapida: { nome: "Rápido", acerto: 0.50,
+        como: "o assunto muda de fase com 50% de acerto. Você chega mais cedo às fases com mais questão difícil, e o que errar volta pela revisão espaçada",
+        quando: "se já domina boa parte da matéria, ou se a prova está perto e você quer treinar no nível dela",
+        cuidado: "um assunto pode avançar sem estar firme: acompanhe a revisão, é lá que os erros voltam" },
+    },
+    ajusteDaReguaPorFase: [0, 0, -0.05],
+    amostraRapida: 3,                           // acertou as 3 primeiras da fase (100%): sobe sem esperar
+    amostraMinima: 6, janela: 8,                // senão: com 6 respostas na fase, olha a taxa das últimas 8
     maxPorAssunto: 2,                           // numa sessão, para não concentrar em poucos temas
-    pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra mais
+    pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra antes
+    esperaMaxima: 3,                            // fora da trilha: assunto que não aparece há semanas sobe até 3× na fila
     // fatia de revisão da sessão pelo tanto que a pessoa já respondeu: no começo, quase tudo é exploração
     revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
+    // com muita revisão vencida (quem faz ~200 questões/semana), a fatia sobe para a fila não crescer sem fim
+    filaQueAceleraRevisao: 120, revisaoComFilaGrande: 0.55,
     assuntosEmEstudo: 12,                       // trilha (05e): quantos assuntos da fila estão abertos de cada vez
     minimoParaConsolidar: 5,                    // piso de questões feitas num assunto pequeno (nunca consolida com 1 questão)
     // assunto com menos de `minimoPorAssunto` questões não tem fila própria: suas questões formam, só na hora de montar a sessão, uma miscelânea que entra com `chance` por vaga (1 a cada 100)
@@ -104,10 +125,13 @@ const CONFIG = {
     // assunto consolidado volta à fila (05e) se faz `diasSemRevisar` dias sem uma resposta nele ou se o acerto das últimas 10 cai abaixo de `acertoParaReabrir`
     reabertura: { diasSemRevisar: 60, acertoParaReabrir: 0.60, minimoRespostas: 10 },
     // projeção da data da prova (05e): ritmo = respostas por dia nas últimas `diasDeRitmo` dias; custo de um assunto = respostas que faltam para consolidá-lo
-    projecao: { diasDeRitmo: 28, respostasAssuntoGrande: 60, coberturaMeta: 0.80 },
+    // assunto grande: as três fases pedem de 9 (100% de saída) a ~25 questões novas; a estimativa usa 25
+    projecao: { diasDeRitmo: 28, respostasAssuntoGrande: 25, coberturaMeta: 0.80 },
     // quando um assunto está consolidado e libera os que dependem dele (05e, assuntoConsolidadoFormado)
     consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, janelaPequeno: 10, acertoPequeno: 0.70, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
   },
+  // questões por sessão recomendada quando a pessoa não escolheu (Ajustar meta > Questões por sessão)
+  tamanhoSessaoPadrao: 20,
 
   /* Revisão sugerida (05f): assunto com ao menos `minimoRespostas` respostas e `diasSemVer` dias sem ver
      entra (mensal; bimestral se o assunto tem menos de `limitePequeno` questões na plataforma; fora se tem menos de `limiteSemRevisaoPorTempo`); o conjunto é preenchido `porRodada` questões de cada assunto por vez, pela ordem de erro e de tempo parado. */

@@ -521,6 +521,10 @@ function sequenciaDiasEstudo(usuarioId){
   return seq;
 }
 function questoesRespondidasHoje(usuarioId){ return db.respostas.filter(r=>r.usuarioId===usuarioId && r.data===hojeISO()).length; }
+/* Quantas questões entram em cada sessão recomendada: escolha da pessoa
+   (Ajustar meta), senão o padrão. Separado da meta porque quem faz 40 por
+   dia costuma preferir duas sessões de 20 — e quem estuda de uma vez, a meta inteira. */
+function tamanhoDaSessaoDoUsuario(usuario){ return (usuario && usuario.tamanhoSessao) || CONFIG.tamanhoSessaoPadrao; }
 function metaDoUsuario(usuario){ return (usuario && usuario.metaQuestoesDia) || (db.configGeral && db.configGeral.metaRecomendadaQuestoesDia) || CONFIG.metaRecomendadaQuestoesDia; }
 
 /* ---------- sessão pelo tempo que a pessoa tem --------------------------------

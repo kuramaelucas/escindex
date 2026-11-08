@@ -103,7 +103,8 @@ test("revisão espaçada: não vistas, depois erros, depois acertos vencidos —
       const [certa, errada, nova] = Object.values(porAssunto).find(l => l.length >= 3);
       const marcarErro = q => (q.gabarito === "A" ? "B" : "A");
       dia("2026-03-01");
-      registrarResposta(u.id, certa.id, certa.gabarito, "certeza", 5);
+      // acerto na dúvida: para o formado, o acerto com certeza nem volta (dispensadaDaRevisaoFormado)
+      registrarResposta(u.id, certa.id, certa.gabarito, "duvida", 5);
       registrarResposta(u.id, errada.id, marcarErro(errada), "duvida", 5);
       const e1 = db.revisoes[u.id][certa.id], e2 = db.revisoes[u.id][errada.id];
       const primeiro = { intervalo: e1.intervalo, prox: e1.proximaRevisao, intervaloErro: e2.intervalo };
@@ -115,7 +116,7 @@ test("revisão espaçada: não vistas, depois erros, depois acertos vencidos —
       const ordenada = ordemMotivos.every((v, i) => i === 0 || ordemMotivos[i - 1] <= v);
       const posicoes = { nova: itens.findIndex(i => i.questaoId === nova.id), erro: itens.findIndex(i => i.questaoId === errada.id), certa: itens.findIndex(i => i.questaoId === certa.id) };
       // segundo acerto seguido: 60 dias; o terceiro aposenta a questão
-      registrarResposta(u.id, certa.id, certa.gabarito, "certeza", 5);
+      registrarResposta(u.id, certa.id, certa.gabarito, "duvida", 5);
       const segundo = db.revisoes[u.id][certa.id].intervalo;
       registrarResposta(u.id, certa.id, certa.gabarito, "duvida", 5);
       saveState();

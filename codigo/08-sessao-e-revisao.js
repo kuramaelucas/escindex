@@ -40,7 +40,7 @@ function montarSessaoRecomendadaDeHoje(minutos){
   const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
   const restante = Math.max(piso, metaDoUsuario(u) - feitas);
   // com tempo contado, o tamanho vem do ritmo da pessoa (ver abrirSessaoPorTempo)
-  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, 20);
+  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, tamanhoDaSessaoDoUsuario(u));
   iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
 }
 /* "Tempo contado?" — a pessoa diz quanto tempo tem e a sessão se monta para
@@ -961,8 +961,12 @@ function renderQuestionCard(q, opts){
   opts = opts || {};
   if(ehDissertativa(q)) return renderCartaoDissertativa(q, opts);
   const esp = getEspecialidade(q.especialidadeId), area = getArea(q.areaId);
-  const dificuldade = calcularDificuldade(q);
-  const corDificuldade = dificuldade<35 ? "badge-accent" : dificuldade<60 ? "badge-amber" : "badge-danger";
+  /* O selo mostra a dificuldade da própria questão (acerto de quem respondeu e
+     nível sugerido), a mesma que a sessão de Formados usa no motivo. Com o
+     termo de prevalência, toda intermediária de assunto pouco cobrado saía
+     "Difícil" — e o motivo dizia "questão média" ao lado. */
+  const nivelDoSelo = nivelProprioDaQuestao(q);
+  const corDificuldade = ["badge-accent", "badge-amber", "badge-danger"][nivelDoSelo];
   // quantas vezes ESTA pessoa já errou a questão — fora do simulado, que
   // imita a prova e não dá pista nenhuma
   const eu = usuarioAtual();
@@ -981,7 +985,7 @@ function renderQuestionCard(q, opts){
   const detalhes = [
     opts.respondida ? `<span class="badge badge-accent">${escapeHtml(area?area.nome:"")}</span>
       <span class="qcard-trilha">${escapeHtml(esp?esp.nome:"")} › ${escapeHtml(nomeAssunto(q.assuntoId))}</span>
-      <span class="badge ${corDificuldade}">${rotuloDificuldade(dificuldade)}</span>
+      <span class="badge ${corDificuldade}" title="Dificuldade da questão: acerto de quem já respondeu e nível sugerido">${["Fácil", "Médio", "Difícil"][nivelDoSelo]}</span>
       ${errosAqui ? `<span class="badge badge-danger" title="Quantas vezes você já errou esta questão">errada ${rotuloVezes(errosAqui)}</span>` : ""}` : "",
     badgeAutoriaQuestao(q),
     q.real && tipoProvaDe(q)==="graduacao" ? `<span class="badge badge-accent" title="${escapeHtml(infoTipoProva("graduacao").descricao)}">Prova da graduação</span>` : "",

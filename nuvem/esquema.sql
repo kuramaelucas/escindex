@@ -195,6 +195,10 @@ alter table public.perfis add column if not exists prova_alvo_data date;
 -- ou 'estatistico'. Nulo = ainda não escolheu (vale o resumido e a pergunta
 -- aparece uma vez). Só muda a apresentação; nenhum dado de estudo depende dele.
 alter table public.perfis add column if not exists modo_plataforma text;
+-- questões por sessão recomendada escolhidas pela pessoa (Ajustar meta); nulo = padrão da plataforma
+alter table public.perfis add column if not exists tamanho_sessao integer;
+-- ritmo das fases do cronograma de Formados ('firme' ou 'rapida'); nulo = padrão
+alter table public.perfis add column if not exists regua_formado text;
 -- a trilha do cronograma de Formado(a): { pulados: {assunto: data}, resumo: {...} }.
 -- `pulados` segue a pessoa entre aparelhos; `resumo` (posição, quantos consolidados,
 -- ids dos assuntos em estudo/travados/reabertos/pulados) é o que o Painel da Turma

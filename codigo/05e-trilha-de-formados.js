@@ -52,7 +52,12 @@ function motivoDeReaberturaFormado(rs, consolidadoPelaRegra){
   if(!consolidadoPelaRegra || !rs.length) return null;
   const ultima = rs[rs.length - 1], dias = ultima && ultima.data ? diasEntre(ultima.data, hojeISO()) : 0;
   if(dias > k.diasSemRevisar) return "faz " + dias + " dias que você não responde nada deste assunto";
-  const recentes = rs.slice(-10);
+  /* Resposta de REVISÃO não entra no acerto recente: a revisão traz justamente o
+     que a pessoa errou ou acertou na dúvida (acerto com certeza nem volta, 05c),
+     então o acerto dela é baixo por construção e reabria à toa quase todo
+     assunto consolidado — medido no simulador, um terço das questões novas ia
+     para reabertos. O acerto de agora sai das questões que ela escolheu fazer. */
+  const recentes = rs.filter(r => !/^revisao_/.test(r.origem || "")).slice(-10);
   if(recentes.length >= k.minimoRespostas && recentes.filter(r => r.correta).length / recentes.length < k.acertoParaReabrir)
     return "o acerto nas últimas 10 caiu para " + Math.round(100 * recentes.filter(r => r.correta).length / recentes.length) + "%";
   return null;
@@ -83,7 +88,7 @@ function desfazerPuloDaTrilha(assuntoId){
 }
 
 /* PROJEÇÃO ATÉ A PROVA. Custo de um assunto = respostas que ainda faltam para
-   consolidá-lo (pequeno: metade das questões; grande: `respostasAssuntoGrande`);
+   consolidá-lo (pequeno: metade das questões; grande: `respostasAssuntoGrande`, o que as três fases costumam pedir);
    o ritmo é a média diária das últimas semanas. Anda pela fila na ordem e vê até
    onde o ritmo chega antes da data da prova, e que ritmo daria a cobertura-meta.
    É uma estimativa, e a tela diz isso. */
@@ -113,11 +118,12 @@ function projecaoDaTrilha(usuario, t){
 }
 
 /* null = sem trilha (conteúdo sem o arquivo). Do contrário:
-   { itens: [{id, pos, n, erros, nivel, consolidado, liberado, esperaPor[], disponiveis, reais}],
+   { itens: [{id, pos, n, erros, fase, fases, consolidado, liberado, esperaPor[], disponiveis, reais}],
      emEstudo, proximos, consolidados, total, cobertura } */
 function trilhaDeFormado(usuarioId){
   if(typeof SEED_TRILHA_FORMADOS === "undefined" || !SEED_TRILHA_FORMADOS) return null;
-  const chave = usuarioId + "|" + (typeof _geracaoDb !== "undefined" ? _geracaoDb : 0) + "|" + db.respostas.length;
+  // o ritmo das fases (05c) muda o que já consolidou: entra na chave
+  const chave = usuarioId + "|" + (typeof _geracaoDb !== "undefined" ? _geracaoDb : 0) + "|" + db.respostas.length + "|" + reguaDoFormado(getUsuario(usuarioId)).join(",");
   if(_trilhaFormadoCache.chave === chave) return _trilhaFormadoCache.valor;
   const c = CONFIG.cronogramaFormado, { ordem, exige } = SEED_TRILHA_FORMADOS;
   const resp = _estatisticaDosAssuntosFormado(usuarioId), pulados = (getUsuario(usuarioId) || {}).trilhaPulados || {};
@@ -130,10 +136,15 @@ function trilhaDeFormado(usuarioId){
     // assunto com pouquíssimas questões vira "miscelânea": sem fila própria, não trava nem é travado (ver montarSessaoDeFormado)
     const misc = !sem && disponiveis[id] < c.miscelania.minimoPorAssunto;
     const pulado = !!(pulados[id]) && !misc && !sem;
-    const porRegra = misc || assuntoConsolidadoFormado(rs, disponiveis[id] || 0);
+    /* Consolida pela regra da trilha OU por passar da última fase de dificuldade
+       (05c, com o ritmo que o aluno escolheu): a fase 3 já exige acertar com
+       um terço de questão difícil, então quem passou dela não precisa esperar
+       as 50 respostas da regra de assunto grande. */
+    const fase = faseDoAssuntoFormado(usuarioId, id);
+    const porRegra = misc || fase.concluido || assuntoConsolidadoFormado(rs, disponiveis[id] || 0);
     const reabertura = pulado || misc || sem ? null : motivoDeReaberturaFormado(rs, porRegra);
     const consolidado = pulado || (porRegra && !reabertura);
-    return { id, pos: i + 1, n: rs.length, erros, nivel: nivelDoAssuntoFormado(usuarioId, id).nivel, consolidado, sem, misc, pulado, reabertura,
+    return { id, pos: i + 1, n: rs.length, erros, fase: Math.min(fase.fase, c.fases.length - 1), passouDasFases: fase.concluido, consolidado, sem, misc, pulado, reabertura,
       // quem depende deste assunto só espera pela REGRA: um assunto reaberto para revisão não tira os de cima da fila
       base: pulado || porRegra,
       disponiveis: disponiveis[id] || 0, reais: reais[id] || 0 };
@@ -158,8 +169,8 @@ function trilhaDeFormado(usuarioId){
 
 function _linhaDaTrilha(it, comEspera, comPular){
   const a = getAssunto(it.id), esp = getEspecialidade(a.especialidadeId);
-  const nivel = ROTULO_NIVEL_FORMADO[it.nivel];
-  const andamento = it.n ? `${it.n} resposta(s), ${it.erros} erro(s) · nível ${nivel}` : "ainda não começou";
+  const fase = it.passouDasFases ? "passou das " + CONFIG.cronogramaFormado.fases.length + " fases" : "fase " + (it.fase + 1) + " de " + CONFIG.cronogramaFormado.fases.length;
+  const andamento = it.n ? `${it.n} resposta(s), ${it.erros} erro(s) · ${fase}` : "ainda não começou";
   const acoes = (comPular && it.liberado && !it.consolidado ? ` · <a href="#" onclick="pularAssuntoDaTrilha('${it.id}'); return false;">já domino, pular</a>` : "") + (it.pulado ? ` · <a href="#" onclick="desfazerPuloDaTrilha('${it.id}'); return false;">desfazer o pulo</a>` : "");
   const reaberto = it.reabertura ? ` <span class="badge badge-amber">revisão: ${escapeHtml(it.reabertura)}</span>` : "";
   const porque = comEspera
@@ -202,7 +213,7 @@ function graficoDesempenhoEmBlocos(respostas, maxBlocos){
   const blocos = [];
   for(let i = 0; i < rs.length; i += 10){
     const grupo = rs.slice(i, i + 10), por = [0, 1, 2].map(() => ({ t: 0, a: 0 }));
-    grupo.forEach(r => { const q = getQuestao(r.questaoId), nv = q ? nivelDaQuestao(q) : null; if(nv !== null && por[nv]){ por[nv].t++; if(r.correta) por[nv].a++; } });
+    grupo.forEach(r => { const q = getQuestao(r.questaoId), nv = q ? nivelProprioDaQuestao(q) : null; if(nv !== null && por[nv]){ por[nv].t++; if(r.correta) por[nv].a++; } });
     blocos.push({ de: i + 1, ate: i + grupo.length, geral: Math.round(100 * grupo.filter(r => r.correta).length / grupo.length), por });
   }
   const mostrados = blocos.slice(-(maxBlocos || 12));
