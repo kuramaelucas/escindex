@@ -19,7 +19,28 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 2. **Explicações curtas** (2022, 2023, Discente): acrescentar mecanismo e epidemiologia.
 3. **Demais**: data de leitura em `referencias` e mecanismo/epidemiologia.
 
+## O que preciso da equipe (PDFs; os domínios abaixo não abrem na sessão)
+
+| Documento | Destrava |
+|---|---|
+| Portaria Conjunta SAES/SECTICS nº 13/2025 (rastreamento do colo do útero, HPV-DNA) | `q-unifesp2024-048`, `q-unifesp2025-067` |
+| AHA/ASA 2026, AVC isquêmico agudo (Stroke, doi 10.1161/STR.0000000000000513) | `q-unifesp2022-020`, `q-unifesp2023-053` |
+| AHA 2025, RCP e atendimento cardiovascular de emergência (partes 5, 6, 8 e 11) | `q-unifesp2025-023` |
+| BTS 2023, doença pleural (Thorax 2023;78 Suppl 3) | `q-unifesp2023-095`, `q-udisc20262-076`, `-077`, `-078` |
+| NCCN: pulmão (NSCLC), ovário, colo do útero, endométrio, melanoma (versões 2026; exigem login) | `q-unifesp2022-015`, `-024`, `-030`, `q-unifesp2023-043`, `-045`, `-086`, `q-unifesp2024-013`, `-014`, `q-unifesp2025-013`, `q-unifesp2026-006` |
+| OMS MEC 6ª edição (2025) | `q-unifesp2022-025`, `q-udisc20262-087`, `-099` |
+| OMS/FIGO/ICM 2025, hemorragia pós-parto | `q-unifesp2026-050`, `q-udisc20262-085` |
+| HerniaSurge 2023 (BJS Open) | `q-unifesp2023-085` |
+| ADA Standards of Care 2026; SBD 2023-2024 (DMG) e ACOG, diabetes na gestação (jul/2024) | `q-udisc20262-081`, `q-unifesp2025-077`, `q-unifesp2026-057` |
+| Singer et al., Sepsis-3 (JAMA 2016;315:801), texto primário | `q-unifesp2023-019` |
+| Diretrizes da SBPT para DPOC | `q-udisc20262-004` |
+| Manual de Normas Técnicas da Triagem Neonatal (MS) | `q-unifesp2026-083` |
+| Portarias GM/MS 6.734/2025 e 11.211/2026 (lista de notificação) | `q-unifesp2024-078` |
+
 ## Feito (08/11/2026)
+
+- **UNIFESP 2022, explicações curtas (82 questões, todas as que tinham menos de 900 caracteres):** reescritas no padrão novo, com dicas, mecanismo, epidemiologia (sem número sem fonte) e referência datada. Como o texto da diretriz não foi aberto, cada uma diz isso na própria referência e continua na fila de `npm run referencias-a-conferir`. Gabaritos intactos. Observações registradas nas referências: 2022-8 (drenagem pré-sacral e lavagem distal discutidas), 2022-80 (metas de tempo ESC × ACC/AHA), 2022-91 (atualização ATS 2025 não relida), 2022-97 (norma de isolamento da covid de 2021), 2022-60 (esquema do HIV a reconferir).
+
 
 14 questões no padrão novo, com mecanismo, epidemiologia e referência datada, gabaritos intactos:
 
@@ -45,7 +66,7 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 - `q-unifesp2022-086`: o gabarito (dobrar o corticoide inalatório) reflete esquema anterior ao GINA atual, que prefere associar formoterol. Questão real; a equipe decide se marca como desatualizada.
 - `q-unifesp2026-040`: o enunciado não traz eosinófilos nem exacerbações; gabarito mantido.
 - Bloqueio (domínio não abre nesta sessão): AVC (AHA/ASA 2026), RCP (AHA 2025), urolitíase (EAU), NCCN (login) e BTS. Questões: `q-unifesp2022-020`, `q-unifesp2023-053`, `q-unifesp2025-023`, `q-unifesp2023-095`, `q-udisc20262-076`, `-077`, `-078` e as 8 do NCCN da lista abaixo.
-- Restam as demais questões da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
+- Restam as explicações curtas de 2023 (67) e da Discente 2026.2 (47), depois as demais questões da fila de edição superada (OMS MEC, HPV/colo do útero, SBC hipertensão, HerniaSurge, notificação compulsória, ADA, ACOG, HPP, triagem neonatal) e ~560 questões só sem data/mecanismo.
 
 ## Bloqueios encontrados em 08/11/2026
 
