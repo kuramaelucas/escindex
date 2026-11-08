@@ -66,7 +66,7 @@ window.EscDados.registrarQuestoes("prova-famema-2023", [
 },
 {
   id:"q-famema2023-004", banca:"FAMEMA", real:true, ano:2023, numeroNaProva:4,
-  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-incorporacao",
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
   enunciado:"Assinale a alternativa correta sobre a Relação Nacional de Medicamentos Essenciais (RENAME).",
   alternativas:[{id:"A",texto:"A RENAME substitui o Formulário Terapêutico Nacional (FTN) nos municípios de pequeno porte."},{id:"B",texto:"A RENAME é acompanhada pelo FTN, que subsidia a prescrição, a dispensação e o uso dos seus medicamentos."},{id:"C",texto:"Todas as doenças existentes estão contempladas na RENAME."},{id:"D",texto:"A RENAME é atualizada anualmente com base nos pareceres das sociedades médicas de especialidade e em consulta popular."}],
   gabarito:"B",
@@ -666,7 +666,7 @@ window.EscDados.registrarQuestoes("prova-famema-2023", [
 },
 {
   id:"q-famema2023-050", banca:"FAMEMA", real:true, ano:2023, numeroNaProva:50,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 30 anos foi ao pronto-socorro com uma lesão genital ulcerada que foi caracterizada como IST. Com essa característica descrita, assinale a alternativa que contempla as possíveis infecções.",
   alternativas:[{id:"A",texto:"Sífilis, donovanose e herpes."},{id:"B",texto:"Gonorreia, sífilis e clamídia."},{id:"C",texto:"Clamídia, donovanose e herpes."},{id:"D",texto:"Clamídia, donovanose e linfogranuloma."}],
   gabarito:"A",

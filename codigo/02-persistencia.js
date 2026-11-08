@@ -11,6 +11,9 @@
    O objeto vazio do fim é a rede de proteção: sem o arquivo, a plataforma
    abre e avisa (avisarSeFaltarConteudo) em vez de quebrar na primeira tela. */
 const SEED_TAXONOMIA = (window.EscDados && window.EscDados.taxonomia) || { areas:[], especialidades:[], assuntos:[] };
+// assuntos que a equipe fundiu em outro: { "id-que-sumiu": "id-que-ficou" }
+// (vem de `fusoes` em dados/taxonomia.js; ver aplicarFusoesDeAssuntos)
+const SEED_FUSOES_DE_ASSUNTOS = SEED_TAXONOMIA.fusoes || {};
 
 /* ---------------------------- SEED_BLOCOS --------------------------------
    O calendário de blocos de estudo. Cada bloco tem uma janela de datas e as
@@ -735,7 +738,76 @@ function sincronizarConteudoNovo(){
       }
     });
   }
+  novos += aplicarFusoesDeAssuntos();
   if(novos) saveState({ imediato:true });
+}
+
+/* Quando a equipe funde dois assuntos (ex.: "Enterocolite Necrosante" passa a
+   ser parte de "Abdome Agudo do RN"), o id antigo some da pasta dados/, mas
+   continua gravado no navegador de quem já estudava: nas respostas (que
+   guardam área/especialidade/assunto do momento), nos cartões e questões
+   próprios, nos registros de revisão e na nuvem. Sem este passo, o
+   desempenho por assunto contaria o mesmo tema duas vezes e o assunto antigo
+   reapareceria como "sem nome". O mapa `fusoes` (dados/taxonomia.js) diz para
+   onde cada id foi; aqui se apagam os ids antigos da árvore e se reescreve o
+   que apontava para eles. Roda a cada abertura (barato) e depois de trazer
+   dados da nuvem, porque o servidor ainda tem as linhas com o id antigo.
+   Os nomes dos assuntos que receberam fusão seguem a pasta dados/: a fusão
+   muda o que o assunto é, então o nome antigo ficaria errado. */
+function destinoDeAssuntoFundido(id){
+  // segue a cadeia (A→B, B→C); o limite evita laço se alguém errar o mapa
+  let atual = id, passos = 0;
+  while(SEED_FUSOES_DE_ASSUNTOS[atual] && passos++ < 10) atual = SEED_FUSOES_DE_ASSUNTOS[atual];
+  return atual;
+}
+function aplicarFusoesDeAssuntos(){
+  const mapa = SEED_FUSOES_DE_ASSUNTOS;
+  if(!db || !db.taxonomia || !Object.keys(mapa).length) return 0;
+  let mudancas = 0;
+  const assuntos = db.taxonomia.assuntos;
+  // 1) a árvore: o assunto que sumiu sai; o que ficou ganha o nome e a
+  //    especialidade da pasta dados/
+  const tamanhoAntes = assuntos.length;
+  db.taxonomia.assuntos = assuntos.filter(a=>!mapa[a.id]);
+  mudancas += tamanhoAntes - db.taxonomia.assuntos.length;
+  const destinos = new Set(Object.keys(mapa).map(destinoDeAssuntoFundido));
+  (SEED_TAXONOMIA.assuntos||[]).forEach(sem=>{
+    if(!destinos.has(sem.id)) return;
+    const a = db.taxonomia.assuntos.find(x=>x.id===sem.id);
+    if(a && (a.nome!==sem.nome || a.especialidadeId!==sem.especialidadeId)){ a.nome = sem.nome; a.especialidadeId = sem.especialidadeId; mudancas++; }
+  });
+  // 2) tudo o que aponta para um assunto que sumiu (menos a própria árvore)
+  const espDoAssunto = id=>{ const a = db.taxonomia.assuntos.find(x=>x.id===id); return a && db.taxonomia.especialidades.find(e=>e.id===a.especialidadeId); };
+  const vistos = new WeakSet();
+  const pilha = Object.keys(db).filter(k=>k!=="taxonomia").map(k=>db[k]);
+  while(pilha.length){
+    const o = pilha.pop();
+    if(!o || typeof o !== "object" || vistos.has(o)) continue;
+    vistos.add(o);
+    if(Array.isArray(o)){ for(const x of o) if(x && typeof x === "object") pilha.push(x); continue; }
+    if(typeof o.assuntoId === "string" && mapa[o.assuntoId]){
+      const novo = destinoDeAssuntoFundido(o.assuntoId);
+      o.assuntoId = novo; mudancas++;
+      // o item guarda área/especialidade junto: acompanham o assunto novo
+      const esp = espDoAssunto(novo);
+      if(esp){
+        if("especialidadeId" in o) o.especialidadeId = esp.id;
+        if("areaId" in o) o.areaId = esp.areaId;
+      }
+    }
+    if(Array.isArray(o.assuntoIds) && o.assuntoIds.some(i=>mapa[i])){
+      o.assuntoIds = [...new Set(o.assuntoIds.map(destinoDeAssuntoFundido))]; mudancas++;
+    }
+    for(const k in o){ const v = o[k]; if(v && typeof v === "object") pilha.push(v); }
+  }
+  // 3) os assuntos pulados da trilha de Formado(a) são um mapa {assuntoId: data}: o id é a CHAVE, que a varredura acima não vê
+  (db.usuarios||[]).forEach(u=>{
+    if(!u.trilhaPulados || !Object.keys(u.trilhaPulados).some(i=>mapa[i])) return;
+    const novo = {};
+    Object.keys(u.trilhaPulados).forEach(i=>{ const d = destinoDeAssuntoFundido(i); if(!novo[d] || u.trilhaPulados[i] > novo[d]) novo[d] = u.trilhaPulados[i]; });
+    u.trilhaPulados = novo; mudancas++;
+  });
+  return mudancas;
 }
 
 /* O banco salvo no navegador não repete o texto do conteúdo-semente. Com

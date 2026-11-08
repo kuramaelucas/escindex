@@ -831,7 +831,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
 },
 {
   id:"q-famema2022-063", banca:"FAMEMA", real:true, ano:2022, numeroNaProva:63,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Paciente proveniente do interior da Bahia com história de disfagia e halitose associadas à perda de 20 kg para investigação diagnóstica. Realizou um esofagograma que apresenta uma evidente dilatação do órgão, presença de ondas terciárias e o sinal do bico do pássaro. O grau de acometimento para esse achado, segundo a classificação de Rezende, é:",
   alternativas:[{id:"A",texto:"IV."},{id:"B",texto:"III."},{id:"C",texto:"II."},{id:"D",texto:"I."}],
   gabarito:"B",
@@ -974,7 +974,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
 },
 {
   id:"q-famema2022-074", banca:"FAMEMA", real:true, ano:2022, numeroNaProva:74,
-  areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-divertmeckel",
+  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
   enunciado:"Paciente, masculino, 17 anos, em investigação no pronto-socorro de dor abdominal, realizou uma TC de abdome com duplo contraste com achado de enterolitos. O diagnóstico para esse caso é:",
   alternativas:[{id:"A",texto:"apendicite."},{id:"B",texto:"diverticulite de Meckel."},{id:"C",texto:"fístula biliar."},{id:"D",texto:"doença celíaca."}],
   gabarito:"B",
@@ -1078,7 +1078,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
 },
 {
   id:"q-famema2022-082", banca:"FAMEMA", real:true, ano:2022, numeroNaProva:82,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Recém-nascido pré-termo e pequeno para a idade gestacional apresenta, com 3 horas de vida, episódio de palidez, cianose e tremores. O plantonista realiza um controle de glicemia capilar com resultado de 40 mg/dL. A conduta inicial deve ser:",
   alternativas:[{id:"A",texto:"oferecer 2 mL/kg de glicose oral a 10% e repetir a dextro após 30 minutos."},{id:"B",texto:"infundir 2 mL/kg de soro glicosado a 10% em bolus."},{id:"C",texto:"prescrever soro de manutenção com velocidade de infusão de glicose (VIG) de 6 mg/kg/min."},{id:"D",texto:"confirmar o resultado com glicemia plasmática para definir a conduta."}],
   gabarito:"B",

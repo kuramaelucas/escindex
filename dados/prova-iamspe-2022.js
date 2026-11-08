@@ -321,7 +321,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 {
   id:"q-iamspe2022-023", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:23,
   imagemUrl:"dados/imagens/q-iamspe2022-023.jpg", imagemLegenda:"Exame contrastado",
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Considerando o exame acima apresentado, assim como seus achados, é correto afirmar que o mais provável sintoma do paciente seria",
   alternativas:[{id:"A",texto:"dor abdominal."},{id:"B",texto:"pirose."},{id:"C",texto:"dispepsia."},{id:"D",texto:"odinofagia."},{id:"E",texto:"disfagia."}],
   gabarito:"E",
@@ -750,7 +750,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-056", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:56,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma das principais queixas de pacientes que procuram o ginecologista é o corrimento vaginal. Dependendo da etiologia, ele tem sintomatologia e achados diferentes no exame ginecológico. Em relação às vulvovaginites, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Na vaginose bacteriana, é comum o pH abaixo de 5,0."},{id:"B",texto:"Na tricomoníase, não é necessário o tratamento do parceiro sexual."},{id:"C",texto:"Uso de antibióticos, diabetes e gravidez são fatores de risco para candidíase."},{id:"D",texto:"A etiologia da vaginose bacteriana sempre é a Gardnerella vaginalis."},{id:"E",texto:"O HPV é um achado cada dia mais frequente nas mulheres com vaginite citolítica."}],
   gabarito:"C",

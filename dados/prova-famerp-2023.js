@@ -420,7 +420,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 },
 {
   id:"q-famerp2023-031", banca:"FAMERP", real:true, ano:2023, numeroNaProva:31,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Paciente de 3 anos, pesando 18 kg é levado à unidade de pronto atendimento com história de diarreia há 05 dias associado a recusa alimentar, febre baixa e vômitos. A mãe relata que as fezes são líquidas, sem presença de muco ou sangue. Ao exame físico, a criança apresentava-se letárgica, sem filme lacrimal, olhos muito fundos, frequência cardíaca de 175 bpm, tempo de enchimento capilar de 4 segundos e sinal da prega que desaparece lentamente. Considerando o quadro acima, o diagnóstico e a conduta correta são, respectivamente",
   alternativas:[{id:"A",texto:"Desidratação grave. O tratamento deve ser realizado em ambiente hospitalar. Deve-se iniciar imediatamente hidratação venosa com soro fisiológico 0,9% 20 ml/kg em 30 minutos até que ocorra melhora dos sinais de desidratação e choque e após manter hidratação venosa de manutenção com soro fisiológico 0,9% + soro glicosado 5% até que o paciente tenha condições de iniciar hidratação por via oral."},{id:"B",texto:"Desidratação grave. O tratamento deve ser realizado em ambiente hospitalar. Deve-se iniciar hidratação venosa de manutenção com soro fisiológico 0,9% + soro glicosado 5% com oferta hídrica de 100% holliday até que o paciente tenha condições de iniciar hidratação por via oral."},{id:"C",texto:"Desidratação moderada. O tratamento deve ser realizado na unidade de saúde com soro de reidratação oral mediante oferta de 50 - 100 ml/kg em 4 horas, até que os sinais de desidratação desapareçam. O paciente deverá permanecer até a reidratação completa e reinício da alimentação via oral."},{id:"D",texto:"Desidratação moderada. O tratamento deve ser realizado na unidade de saúde com soro de reidratação oral mediante oferta de 200 ml/kg em 4 horas, até que os sinais de desidratação desapareçam. O paciente deverá permanecer até a reidratação completa e reinício da alimentação via oral."}],
   gabarito:"A",
@@ -734,7 +734,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 },
 {
   id:"q-famerp2023-055", banca:"FAMERP", real:true, ano:2023, numeroNaProva:55,
-  areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-divertmeckel",
+  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
   imagemUrl:"dados/imagens/q-famerp2023-055.png", imagemLegenda:"Achado intraoperatório após a redução da invaginação.",
   enunciado:"Um paciente com quadro de obstrução intestinal por intussuscepção é submetido a laparotomia exploradora e após a redução da invaginação é encontrado a afecção mostrada na foto abaixo. Sobre esta afecção podemos afirmar que se trata de:",
   alternativas:[{id:"A",texto:"Divertículo epifrênico"},{id:"B",texto:"Divertículo de Meckel"},{id:"C",texto:"Divertículo de Zenker"},{id:"D",texto:"Pseudo divertículo intestinal"}],
@@ -774,7 +774,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 },
 {
   id:"q-famerp2023-058", banca:"FAMERP", real:true, ano:2023, numeroNaProva:58,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Paciente de 70 anos, relata que vêm apresentando dificuldade para engolir há vários anos, queixando-se de sensação de entalo até para alimentos pastosos necessitando de ingesta de líquido para 'empurrar' a comida. Notou emagrecimento neste período, acha que perdeu 20 Kg. Nasceu e reside em zona rural próximo a São José do Rio Preto, nega histórico de neoplasia em sua família. Procurou atendimento em sua cidade onde realizou uma Endoscopia Digestiva Alta (EDA) cujo laudo mostrou esofagite edematosa e gastrite enantematosa. Sobre este quadro clínico e dentre as alternativas abaixo, qual a que melhor se enquadra na condução deste caso:",
   alternativas:[{id:"A",texto:"Solicitar um Exame Radiológico Contrastado tendo como hipótese diagnóstica o megaesôfago."},{id:"B",texto:"A EDA foi sugestiva de refluxo gastroesofágico, com isso iniciar o tratamento com inibidor de bomba de Próton (IBP) e medidas comportamentais."},{id:"C",texto:"O melhor seria repetir a EDA com biópsias para pesquisa do Helicobacter Pylori"},{id:"D",texto:"Iniciar tratamento com IBP mas solicitar um Tomografia de Tórax para excluir uma compressão extrínseca."}],
   gabarito:"A",

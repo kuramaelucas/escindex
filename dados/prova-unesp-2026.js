@@ -924,7 +924,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 },
 {
   id:"q-unesp2026-070", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:70,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Mulher de 48 anos de idade apresentou um sarcoma em região torácica que, após radioterapia e ressecção cirúrgica, gerou uma grande perda tecidual. AP: obesidade e DM. O fator que contraindica a realização de expansão tecidual local como primeira opção para avanço de retalho visando à reconstrução do defeito é",
   alternativas:[{id:"A",texto:"irradiação prévia."},{id:"B",texto:"obesidade."},{id:"C",texto:"diabetes mellitus."},{id:"D",texto:"idade."}],
   gabarito:"A",
@@ -1228,7 +1228,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 },
 {
   id:"q-unesp2026-093", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:93,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Puérpera de 32 anos de idade está, há 45 dias, em tratamento supervisionado para tuberculose com esquema RIPE (rifampicina, isoniazida, pirazinamida e etambutol), após investigação de tosse ter mostrado pesquisa positiva de BAAR (bacilo álcool-ácido resistente) no escarro. Coabita com companheiro de 35 anos de idade e RN de 25 dias de vida. A conduta atualmente indicada pelo Ministério da Saúde, em relação ao RN comunicante, é",
   alternativas:[{id:"A",texto:"notificar o serviço de vigilância, realizar teste IGRA (ensaio de liberação de interferon gama) e, se reagente ou indeterminado, vacinar com BCG e iniciar tratamento de infecção latente com rifampicina."},{id:"B",texto:"não vacinar com BCG, prescrever rifampicina por três meses, fazer teste tuberculínico (TT) após conclusão da rifampicina e, se TT menor que 5 mm, aplicar BCG."},{id:"C",texto:"indicar uso de fórmula láctea e não amamentar, não aplicar o BCG, prescrever isoniazida por três meses e, após o término, realizar TT; se TT igual ou maior do que 5 mm, manter o tratamento por mais três meses."},{id:"D",texto:"notificar o serviço de vigilância, prescrever rifampicina por quatro meses e, após término, aplicar o BCG, sem realizar TT."}],
   gabarito:"D",

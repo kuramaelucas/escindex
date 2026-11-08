@@ -115,7 +115,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "ano": 2026,
   "areaId": "area-cm",
   "especialidadeId": "esp-cardio",
-  "assuntoId": "ass-dac-cronica",
+  "assuntoId": "ass-sca",
   "enunciado": "Homem, 61 anos, hipertenso e diabético tipo 2, asmático grave com broncoespasmo recorrente em uso diário de broncodilatador, foi submetido à cirurgia de revascularização miocárdica com três enxertos, 8 dias após infarto agudo do miocárdio sem supradesnivelamento do ST. Evoluiu sem intercorrências, com ecocardiograma mostrando função ventricular normal e discreto derrame pleural à radiografia de tórax. Quais medicações devem ser continuadas após a alta hospitalar?",
   "alternativas": [
     {
@@ -1106,7 +1106,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "ano": 2026,
   "areaId": "area-cm",
   "especialidadeId": "esp-oftalmo",
-  "assuntoId": "ass-oft-tumores",
+  "assuntoId": "ass-oft-catarata",
   "enunciado": "Homem, 62 anos, tabagista (45 anos-maço), com emagrecimento recente e tosse persistente, queixa-se de embaçamento visual no olho esquerdo há 3 semanas. Fundo de olho: lesão elevada, amelanótica, amarelo-esbranquiçada, subretiniana, com descolamento seroso de retina adjacente. Ultrassonografia ocular: lesão com espessura de 3 mm e alta refletividade interna. Não há história de neoplasia prévia. Baseado na principal hipótese diagnóstica, a investigação para localizar o tumor primário deve ser iniciada por qual órgão?",
   "alternativas": [
     {
@@ -2894,7 +2894,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "ano": 2026,
   "areaId": "area-cg",
   "especialidadeId": "esp-urologia",
-  "assuntoId": "ass-uro-disfuncaoeretil",
+  "assuntoId": "ass-uro-escroto",
   "enunciado": "Homem, 58 anos de idade, diabético tipo 2 há 12 anos, hipertenso e ex-tabagista, queixa-se há 1 ano de dificuldade para obter e manter ereção suficiente para o ato sexual, com libido preservada. Exame físico sem alterações, testosterona total normal, em uso de metformina, enalapril e sinvastatina; não usa nitratos e não tem angina. Qual é o tratamento inicial mais indicado?",
   "alternativas": [
     {
@@ -2988,7 +2988,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "ano": 2026,
   "areaId": "area-ped",
   "especialidadeId": "esp-neonato",
-  "assuntoId": "ass-neo-ecn",
+  "assuntoId": "ass-neo-malformacoesdigestivas",
   "enunciado": "Recém-nascido a termo, 3.350 g, Apgar 9 e 10, em aleitamento materno, sem intercorrências, recebe alta com 36 horas de vida e retorna ao 3º dia com vômitos biliosos. No pronto-socorro, o abdome estava flácido e indolor; de repente, apresenta palidez, taquicardia, choque e distensão abdominal dolorosa, com sangue nas fezes, necessitando de intubação e drogas vasoativas. Qual é o diagnóstico mais provável e a conduta imediata?",
   "alternativas": [
     {
@@ -3317,7 +3317,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "ano": 2026,
   "areaId": "area-cm",
   "especialidadeId": "esp-neuro",
-  "assuntoId": "ass-neuro-desmielinizante",
+  "assuntoId": "ass-neuro-neuromuscular",
   "enunciado": "Mulher, 24 anos, previamente hígida, apresenta há 10 dias perda visual progressiva e dor à movimentação ocular no olho direito e, há 4 dias, perda visual também no olho esquerdo. Há 1 semana, notou náuseas e vômitos persistentes, soluços incoercíveis, fraqueza nas pernas e urgência urinária. Exame: acuidade visual de conta-dedos bilateral, defeito pupilar aferente relativo bilateral e papilas de aspecto normal; força grau 4 nos membros inferiores, com hiperreflexia e nível sensitivo em T6. Ressonância magnética: lesão hiperintensa em T2 que se estende por 5 segmentos vertebrais contíguos na medula torácica e lesão no nervo óptico direito; a ressonância de crânio não mostra lesões periventriculares. Qual é a conduta mais adequada?",
   "alternativas": [
     {
@@ -4449,7 +4449,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "ano": 2026,
   "areaId": "area-ped",
   "especialidadeId": "esp-neonato",
-  "assuntoId": "ass-neo-exposicaotb",
+  "assuntoId": "ass-neo-infeccoescongenitas",
   "enunciado": "Recém-nascido a termo, assintomático, filho de mãe com tuberculose pulmonar bacilífera (baciloscopia de escarro positiva), com tratamento iniciado 10 dias antes do parto. Qual é a conduta mais adequada para a criança, segundo o Manual de Recomendações para o Controle da Tuberculose no Brasil (2ª edição, 2019), do Ministério da Saúde?",
   "alternativas": [
     {

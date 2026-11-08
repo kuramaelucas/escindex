@@ -130,6 +130,14 @@ export function conferir(){
   repetidos(tax.areas, "área"); repetidos(tax.especialidades, "especialidade"); repetidos(tax.assuntos, "assunto");
   tax.especialidades.forEach(e => { if(!areas.has(e.areaId)) erros.push(`especialidade ${e.id} aponta para área inexistente ${e.areaId}`); });
   tax.assuntos.forEach(a => { if(!esps.has(a.especialidadeId)) erros.push(`assunto ${a.id} aponta para especialidade inexistente ${a.especialidadeId}`); });
+  // assuntos fundidos: o id que sumiu tem de sumir de verdade, e o destino tem de existir
+  Object.entries(tax.fusoes || {}).forEach(([antigo, novo]) => {
+    if(asss.has(antigo)) erros.push(`fusão ${antigo} → ${novo}: o assunto ${antigo} ainda está na taxonomia`);
+    let destino = novo, passos = 0;
+    while((tax.fusoes || {})[destino] && passos++ < 10) destino = tax.fusoes[destino];
+    if(destino === antigo || passos >= 10) erros.push(`fusão ${antigo} → ${novo}: o mapa de fusões dá volta`);
+    else if(!asss.has(destino)) erros.push(`fusão ${antigo} → ${novo}: o destino ${destino} não existe na taxonomia`);
+  });
 
   // questões
   repetidos(D.questoes, "questão");

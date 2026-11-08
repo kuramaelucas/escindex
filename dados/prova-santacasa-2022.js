@@ -160,7 +160,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2022", [
 },
 {
   id:"q-scmsp2022-012", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2022, numeroNaProva:12,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Assinale a alternativa correta quanto aos enxertos cutâneos.",
   alternativas:[{id:"A",texto:"A alteração da pigmentação do enxerto ou da área doadora constitui um tipo de complicação dos enxertos cutâneos que poderá ser tratada com o uso de abrasão, maquiagem, tatuagem ou enxertos superpostos."},{id:"B",texto:"O enxerto de pele parcial apresenta, via de regra, menor contração secundária e maior contração primária, tendo pior resultado estético."},{id:"C",texto:"Entre os mecanismos de integração do enxerto, a fase de neovascularização ocorre após 48 h, quando se estabelecem conexões vasculares entre o enxerto e o leito receptor, permanecendo até o 10.o dia."},{id:"D",texto:"A área receptora deve estar limpa, sem tecidos desvitalizados, e com bom sangramento, fator importante para a integração do enxerto."},{id:"E",texto:"A área receptora que apresentar tecido de granulação exuberante é a que terá melhor integração do enxerto."}],
   gabarito:"",
@@ -321,7 +321,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2022", [
 },
 {
   id:"q-scmsp2022-024", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2022, numeroNaProva:24,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Um paciente de um ano e dois meses de idade, 10 kg, com diarreia aguda há três dias, foi levado ao serviço de emergência. Ao exame físico, sinais clínicos de desidratação grau 2 e vômitos incoercíveis. Realizou os seguintes exames laboratoriais: pH 7,25; pCO2 25; bic 11; BE -14,5; Na 137; K 4,7; e cloro 106. Com base nesse caso hipotético, assinale a alternativa que apresenta a melhor prescrição no momento para o paciente.",
   alternativas:[{id:"A",texto:"bicarbonato de sódio 8,4% 12 mEq EV em 4 h"},{id:"B",texto:"SF 0,9% 500 mL EV em uma hora"},{id:"C",texto:"SF 0,9% 200 mL EV em 10 a 20 min."},{id:"D",texto:"SF 0,9% 100 mL EV em uma hora"},{id:"E",texto:"bicarbonato de sódio 8,4% 12 mEq EV em uma hora"}],
   gabarito:"B",
@@ -439,7 +439,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2022", [
 },
 {
   id:"q-scmsp2022-033", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2022, numeroNaProva:33,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Uma lactente com dois meses de vida, sem antecedentes mórbidos, foi levada ao pronto-socorro com história de coriza, tosse, febre de 37,8 IC há três dias e cansaço há um dia. Ao exame físico, está taquidispneica, acianótica, levemente desidratada e com saturação de oxigênio de 89%. Apresenta tiragem subcostal e intercostal, além de sibilância. Com base nesse caso hipotético, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A radiografia de tórax é imprescindível para estabelecer o diagnóstico."},{id:"B",texto:"O painel molecular da pesquisa de vírus respiratórios é necessário para determinar o tratamento."},{id:"C",texto:"A hidratação endovenosa pode ser realizada com soro hipotônico."},{id:"D",texto:"A oximetria de pulso contínua não é recomendada."},{id:"E",texto:"Já é possível a prevenção dessa doença por meio de vacina contra o agente mais frequente."}],
   gabarito:"D",
@@ -1015,7 +1015,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2022", [
 },
 {
   id:"q-scmsp2022-077", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2022, numeroNaProva:77,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"O posicionamento correto do eletrodo para a derivação torácica V4 do eletrocardiograma é no",
   alternativas:[{id:"A",texto:"quinto espaço intercostal, na linha hemiclavicular esquerda."},{id:"B",texto:"quinto espaço intercostal, entre a região paraesternal esquerda e a linha hemiclavicular esquerda."},{id:"C",texto:"quinto espaço intercostal, na linha axilar média esquerda."},{id:"D",texto:"quarto espaço intercostal, na região paraesternal direita."},{id:"E",texto:"quarto espaço intercostal, na região paraesternal esquerda."}],
   gabarito:"A",

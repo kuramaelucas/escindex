@@ -96,7 +96,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 },
 {
   id:"q-einstein2023-007", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:7,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sincope",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   imagemUrl:"dados/imagens/q-einstein2023-007.png",
   enunciado:"Paciente de 40 anos, com sobrepeso, inicia programa de atividade física por conta própria. Não tem nenhuma comorbidade. Um dia, após correr 5 km, apresentou quadro de lipotimia e dor torácica que melhoraram após descanso. O exame físico é normal. Solicitado ECG mostrado abaixo. Entre as hipóteses diagnósticas abaixo, a mais provável para esta paciente é:",
   alternativas:[{id:"A",texto:"cardiomiopatia hipertrófica."},{id:"B",texto:"disautonomia."},{id:"C",texto:"doença cardíaca isquêmica."},{id:"D",texto:"estenose aórtica."}],
@@ -162,7 +162,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 },
 {
   id:"q-einstein2023-012", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:12,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Ao se candidatar à doação de sangue, um paciente de 32 anos realiza exames de triagem e tem os seguintes resultados: VDRL 1/1 e FTA-ABS positivo. Ele não se lembra de ter apresentado qualquer sintoma de sífilis e nunca foi tratado. Atualmente apresenta encontros sexuais casuais. Encaminhado para coleta de líquido cefalorraquidiano que se mostrou normal sem qualquer evidência de sífilis. Entre as seguintes opções, a melhor para este paciente é",
   alternativas:[{id:"A",texto:"penicilina cristalina endovenosa, 18 milhões de unidades por dez dias."},{id:"B",texto:"orientar paciente que se trata de doença pregressa e não precisa de tratamento."},{id:"C",texto:"dose única de 2.400.000 UI de penicilina benzatina."},{id:"D",texto:"dose semanal de 2.400.00 UI de penicilina benzatina por três semanas."}],
   gabarito:"D",
@@ -439,7 +439,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 },
 {
   id:"q-einstein2023-033", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:33,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Lactente do sexo feminino de 12 meses de idade, previamente hígida, chega à Unidade Básica de Saúde com quadro de febre e diarreia há um dia. Apresentou oito episódios de eliminação de fezes líquidas em grande quantidade, sem sangue ou muco. Ao exame clínico, apresenta-se em regular estado geral, alerta, choro sem lágrima, boca e língua secas, pulsos cheios, enchimento capilar de 2 segundos e Sinal da Prega desaparecendo rapidamente. Seu peso atual é de 10 kg. Segundo as orientações do Ministério da Saúde, neste momento, dentre as condutas propostas, a mais adequada para a reidratação da criança deve ser administração de:",
   alternativas:[{id:"A",texto:"200 mL de Soro Fisiológico 0,9% endovenoso durante 30 minutos."},{id:"B",texto:"100 a 200 mL de solução de reidratação oral no período de 2 horas."},{id:"C",texto:"500 a 1.000 mL de solução de reidratação oral no período de 4 a 6 horas."},{id:"D",texto:"100 a 200 mL de solução de reidratação oral após cada evacuação, no domicílio."}],
   gabarito:"C",
@@ -635,7 +635,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 },
 {
   id:"q-einstein2023-048", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:48,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos de idade, assintomática, refere relacionamento com novo parceiro há 1 mês. Realizado exame físico ginecológico com identificação de corrimento vaginal. A orientação que o médico deve dar à paciente em caso de",
   alternativas:[{id:"A",texto:"tricomoníase: não é necessário o tratamento do parceiro, pois não é mais considerada IST."},{id:"B",texto:"vulvovaginite fúngica: só será considerada recidivante caso ocorra mais 3 episódios no próximo ano."},{id:"C",texto:"vaginose bacteriana: será realizado o tratamento, mesmo que assintomático."},{id:"D",texto:"detecção de protozoários na microscopia: está indicado a coleta do protoparasitológico de fezes."}],
   gabarito:"C",

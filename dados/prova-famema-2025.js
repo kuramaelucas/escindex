@@ -352,7 +352,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 },
 {
   id:"q-famema2025-026", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:26,
-  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-caesofago",
+  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
   enunciado:"Homem de 62 anos, tabagista crônico, apresenta odinofa- gia, disfagia progressiva e perda de peso significativa nos últimos 4 meses. A endoscopia digestiva alta revela uma lesão irregular e ulcerada no terço médio do esôfago. O principal fator prognóstico para essa condição é:",
   alternativas:[{id:"A",texto:"o tipo histológico do tumor."},{id:"B",texto:"a profundidade de invasão da parede esofágica."},{id:"C",texto:"a presença de disfagia ao diagnóstico."},{id:"D",texto:"o tabagismo atual."}],
   gabarito:"B",
@@ -391,7 +391,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 },
 {
   id:"q-famema2025-029", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:29,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"O fator mais prejudicial para a cicatrização de feridas em pacientes diabéticos é:",
   alternativas:[{id:"A",texto:"aumento da angiogênese."},{id:"B",texto:"hipóxia tecidual."},{id:"C",texto:"hipertermia localizada."},{id:"D",texto:"aumento da perfusão sanguínea."}],
   gabarito:"B",
@@ -456,7 +456,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 },
 {
   id:"q-famema2025-034", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:34,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sincope",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Adolescente, sexo masculino, 13 anos de idade, é tra- zido por um acompanhante da escola após “desmaiar” durante uma competição com os colegas para ver quem permanecia em pé parado por mais tempo, sem se me- xer, uma “brincadeira” transmitida em vídeo por uma rede social do adolescente. Um ajudante da coordenadoria da escola viu o garoto “desmaiando”, “perdendo a cons- ciência” e “caindo no chão”. Imediatamente, os colegas o sacudiram e ele foi socorrido por esse funcionário, com retomada completa da consciência em cerca de “segundos”. Não se observou nenhum trauma na cabeça durante a queda. Levantou-se sozinho, disse que estava bem, mas foi trazido ao médico mesmo assim. Ficou pálido durante a queda segundo descrição de quem o viu. No pronto atendimento, estava bem, Glasgow 15, orientado e bem comunicativo. Nenhuma alteração foi percebida no seu exame físico. O diagnóstico mais provável e a conduta imediata serão:",
   alternativas:[{id:"A",texto:"síncope psicogênica; orientação e encaminhamento para terapia psicológica."},{id:"B",texto:"síncope cardiogênica; realização de um ecocardio- grama."},{id:"C",texto:"síncope neuromediada; alta do pronto atendimento com orientações preventivas."},{id:"D",texto:"síncope metabólica; realização de um teste de tole- rância oral à glicose."}],
   gabarito:"C",
@@ -703,7 +703,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 },
 {
   id:"q-famema2025-053", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:53,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 22 anos vem ao pronto atendimento com dor pélvica que apareceu após a última menstruação, de for- te intensidade há 4 dias. Não apresenta sintomas gas- trintestinais associados. Tem vida sexual ativa e refere parceiro único e, como método contraceptivo, usa DIU de cobre. Menstruação regular, sem atrasos. Ao exame físico, observa-se que a paciente está corada e subfebril (axilar = 37,7 o C). Ausculta cardiopulmonar normais. Ab- dome doloroso e com rigidez abdominal. Toque vaginal: dor a mobilização cervical. Dentre os exames solicitados, tem-se os seguintes re- sultados: BHcG negativo. Hb 12/ Ht 36. Leucócitos 13 000 leucócitos/mL. PCR 4 mg/dL. Pelo quadro exposto, qual a principal hipótese diagnós- tica?",
   alternativas:[{id:"A",texto:"Dismenorreia."},{id:"B",texto:"Gestação ectópica."},{id:"C",texto:"Apendicite."},{id:"D",texto:"Doença inflamatória pélvica aguda."}],
   gabarito:"D",
@@ -716,7 +716,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 },
 {
   id:"q-famema2025-054", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:54,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Quanto ao manejo sindrômico das úlceras genitais, o Mi- nistério da Saúde orienta que",
   alternativas:[{id:"A",texto:"se há úlcera genital, deve ser solicitada a sorologia para HSV tipo 1 e 2."},{id:"B",texto:"se a lesão não tem vesículas e duração menor que 4 semanas, devem ser tratados sífilis e cancro mole."},{id:"C",texto:"se a lesão tem vesículas e duração superior a 4 se- manas, deve-se fazer a biópsia e tratar donovanose."},{id:"D",texto:"se a lesão for única e dolorosa, deve ser tratada como cancro duro."}],
   gabarito:"B",
@@ -1224,7 +1224,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 },
 {
   id:"q-famema2025-093", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:93,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente de 21 anos chega à unidade de emergência com sintomas sugestivos de sepse e doença inflamatória pélvica aguda. Não há histórico de alergias. Nesse momento, recomenda-se o uso",
   alternativas:[{id:"A",texto:"apenas de ceftrixone e metronidazol."},{id:"B",texto:"apenas de ceftrixone e doxiciclina."},{id:"C",texto:"de ceftrixone, doxiciclina e metronidazol."},{id:"D",texto:"de clindamicina, ampicilina e cefotaxima."}],
   gabarito:"C",

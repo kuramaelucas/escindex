@@ -183,7 +183,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 },
 {
   id:"q-sirio2021-013", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:13,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-lyme",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   imagemUrl:"dados/imagens/q-sirio2021-013.png",
   enunciado:"Paciente 23 anos, sexo masculino, morador de zona rural, deu entrada no pronto-socorro com relato de febre, fraqueza muscular, dores articulares e mancha vermelha na perna, conforme foto abaixo. Diante do quadro clínico e da alteração cutânea, o provável diagnóstico é de:",
   alternativas:[{id:"A",texto:"Erisipela."},{id:"B",texto:"Reação alérgica."},{id:"C",texto:"Dengue."},{id:"D",texto:"Febre reumática aguda."},{id:"E",texto:"Doença de Lyme."}],
@@ -302,7 +302,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 },
 {
   id:"q-sirio2021-022", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:22,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Um senhor de 34 anos será submetido a hernioplastia incisional, devido a hérnia abdominal com anel de 5 cm de diâmetro, em cicatriz de incisão mediana. Previamente hígido, refere tabagismo. IMC: 29 kg/m². O cirurgião optou pelo uso de tela de polipropileno em posição onlay. Dreno mais adequado e critério para sua retirada, entre as opções mostradas:",
   alternativas:[{id:"A",texto:"Port-o-vac − Segundo pós-operatório, desde que débito seroso."},{id:"B",texto:"Penrose − Débito < 50 mL, desde que seroso."},{id:"C",texto:"Waterman − Entre 3ᵒ e 4ᵒ pós-operatório."},{id:"D",texto:"Penrose − Entre 3ᵒ e 4ᵒ pós-operatório."},{id:"E",texto:"Port-o-vac − Débito < 50 mL, desde que seroso."}],
   gabarito:"E",
@@ -631,7 +631,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 },
 {
   id:"q-sirio2021-047", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:47,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"A necessidade hídrica basal para uma criança com peso de 17 kg, tomando como base a Regra de Holliday-Segar, é:",
   alternativas:[{id:"A",texto:"1.350 mL."},{id:"B",texto:"1.400 mL."},{id:"C",texto:"1.250 mL."},{id:"D",texto:"1.750 mL."},{id:"E",texto:"1.100 mL."}],
   gabarito:"A",
@@ -867,7 +867,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 },
 {
   id:"q-sirio2021-065", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:65,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Durante o exame especular de uma mulher de 28 anos, assintomática, observa-se a presença de cervicite, com sangramento endocervical durante a coleta de citologia cervicovaginal. O esfregaço obtido corado pelo Gram mostra diplococos Gram-negativos no citoplasma de polimorfonucleares neutrófilos. A conduta é:",
   alternativas:[{id:"A",texto:"Prescrever azitromicina por 3 dias para o casal."},{id:"B",texto:"Prescrever ciprofloxacina e azitromicina para o casal."},{id:"C",texto:"Cauterizar o local da cervicite com energia ou ácido."},{id:"D",texto:"Enviar o material para cultura em meio de Tayer- Martin."},{id:"E",texto:"Pesquisar clamídia por meio de RT-PCR."}],
   gabarito:"B",

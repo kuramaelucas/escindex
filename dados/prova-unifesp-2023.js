@@ -1153,7 +1153,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2023", [
 },
 {
   id:"q-unifesp2023-088", banca:"UNIFESP-EPM", real:true, ano:2023, numeroNaProva:88,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 44 anos de idade, chega ao pronto socorro imediatamente após ter sofrido uma lesão na ponta do polegar esquerdo enquanto trabalhava com uma serra de mesa. O exame físico mostra uma ferida de 1,5 x 1,5 cm envolvendo a ponta do polegar com osso visível na base da ferida. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Sutura primária."},{id:"B",texto:"Enxerto de pele total."},{id:"C",texto:"Fechamento por segunda intenção."},{id:"D",texto:"Retalho local."}],
   gabarito:"D",
@@ -1179,7 +1179,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2023", [
 },
 {
   id:"q-unifesp2023-090", banca:"UNIFESP-EPM", real:true, ano:2023, numeroNaProva:90,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Lactente, 5 meses de vida, apresenta episódios repetidos de abaulamento endurecido, hiperemiado e doloroso em região perianal. Foi submetido a tratamento com antibioticoterapia oral em todas as ocasiões, porém houve recidiva da lesão no mesmo local após o término do tratamento. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Retocolite ulcerativa."},{id:"B",texto:"Anomalia anorretal."},{id:"C",texto:"Fístula perianal."},{id:"D",texto:"Alergia alimentar."}],
   gabarito:"C",

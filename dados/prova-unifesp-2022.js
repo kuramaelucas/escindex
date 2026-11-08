@@ -69,7 +69,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
 },
 {
   id:"q-unifesp2022-005", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:5,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Mulher, 64 anos de idade, hipertensa e diabética, apresenta angina estável há 3 anos, em tratamento medicamentoso irregular, não otimizado. Ecocardiograma: função biventricular preservada, sem alteração valvar. Coronariografia: lesão triarterial com 40% de obstrução nas artérias descendente anterior, circunflexa e coronária direita distal. Qual é o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Intervenção coronária percutânea com stent farmacológico."},{id:"B",texto:"Tratamento conservador."},{id:"C",texto:"Cirurgia de revascularização miocárdica."},{id:"D",texto:"Intervenção coronária percutânea com stent de primeira geração."}],
   gabarito:"B",
@@ -147,7 +147,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
 },
 {
   id:"q-unifesp2022-011", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:11,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-ecn",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
   enunciado:"Recém-nascido, 2 dias de vida, sexo masculino, prematuro de 30 semanas, pesando 1 500 gramas, internado na UTI Neonatal, apresenta taquicardia, distensão abdominal e evacuação de fezes sanguinolentas após a introdução de dieta com leite materno exclusivo. Exame físico: abdômen distendido, com pele brilhante, hiperemia periumbilical e doloroso à palpação. O diagnóstico mais provável e o tratamento mais adequado são, respectivamente:",
   alternativas:[{id:"A",texto:"enterocolite necrotizante; jejum, sonda nasogástrica aberta e antibioticoterapia."},{id:"B",texto:"alergia à proteína do leite; introdução de dieta isenta de lactose."},{id:"C",texto:"alergia à proteína do leite; monitorização da pressão intra-abdominal."},{id:"D",texto:"enterocolite necrotizante; cirurgia precoce: estomias e drenagem abdominal."}],
   gabarito:"A",
@@ -472,7 +472,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
 },
 {
   id:"q-unifesp2022-036", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:36,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Gestante, 42 anos de idade, 2G 1 parto normal há 20 anos, em seguimento pré-natal, traz a seguinte sorologia para sífilis: ■ Teste rápido para sífilis: reagente ■ Método Eletroquimioluminométrico com antígeno treponêmico (EQL): reagente ■ VDRL: não reagente Nega diagnóstico e tratamento prévios para sífilis. Está assintomática. A hipótese diagnóstica e a conduta são, respectivamente:",
   alternativas:[{id:"A",texto:"sífilis latente precoce; tratar com penicilina benzatina 2 400 000 UI via intramuscular."},{id:"B",texto:"sífilis latente tardia; tratar com penicilina benzatina 7 200 000 UI via intramuscular."},{id:"C",texto:"cicatriz sorológica por tratamento prévio não documentado; não tratar e solicitar controle com VDRL em 30 dias."},{id:"D",texto:"sífilis secundária; tratar com penicilina benzatina 2 400 000 UI via intramuscular."}],
   gabarito:"B",

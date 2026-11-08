@@ -64,7 +64,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-005", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:5,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Os processos de migrações, tanto nos países endêmicos quanto nós não endêmicos, contribuíram para tornar ainda mais complexos os cenários epidemiológicos.",
   alternativas:[{id:"A",texto:"Adicionalmente, eventos de reativação da doença de Chagas não associados a imunodeficiências adquiridas ou induzidas, como no contexto de transplante de órgãos, têm se tornado desafios emergentes para os sistemas de saúde."},{id:"B",texto:"Adicionalmente, eventos de reativação da doença de Chagas associados a imunodeficiências adquiridas ou induzidas, como no contexto de transplante de órgãos, não têm se tornado desafios emergentes para os sistemas de saúde."},{id:"C",texto:"Adicionalmente, eventos de reativação da doença de Chagas associados a imunodeficiências adquiridas ou induzidas, como no contexto de transplante de órgãos, têm se tornado desafios emergentes para os sistemas de saúde."},{id:"D",texto:"Adicionalmente, eventos de desativação da doença de Chagas associados a imunodeficiências adquiridas ou induzidas, como no contexto de transplante de órgãos, têm se tornado desafios emergentes para os sistemas de saúde."}],
   gabarito:"C",
@@ -116,7 +116,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-009", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:9,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Sobre a doença de Chagas é correto afirmar que:",
   alternativas:[{id:"A",texto:"O tratamento, preconizado pelo Ministério da Saúde (MS), deve ser feito com nifurtimox, e em casos de intolerância ou que não respondam ao tratamento, o MS disponibiliza o benznidazol."},{id:"B",texto:"A doença de Chagas, se mantém confinada em áreas rurais, e estima-se que,aproximadamente, seis milhões de pessoas estejam infectadas na América Latina (América do Sul, América Central, e México) (WHO, 2015)."},{id:"C",texto:"O resfriamento ou congelamento de alimentos previne a transmissão oral por T. cruzi,assim como o cozimento acima de 45°C, a pasteurização e a liofilização."},{id:"D",texto:"O período de incubação para transmissão vetorial é de 4 a 15 dias, para transmissãotransfusional/transplante é de 30 a 40 dias ou mais, e para transmissão oral é de 3 a 22 dias."}],
   gabarito:"D",
@@ -129,7 +129,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-010", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:10,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febretifoide",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-toxinfeccao",
   enunciado:"A infecção por qual dos agentes abaixo mais frequentemente pode cursar com sinal de Faget?",
   alternativas:[{id:"A",texto:"P. aeruginosa."},{id:"B",texto:"Salmonella typhi."},{id:"C",texto:"S. aureus."},{id:"D",texto:"S. pneumoniae."},{id:"E",texto:"S. pyogenes."}],
   gabarito:"B",
@@ -233,7 +233,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-018", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:18,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Com respeito à miocardiopatia por doença de Chagas, identifique a alternativa INCORRETA:",
   alternativas:[{id:"A",texto:"A fase aguda da doença é geral incaracterística e passa despercebida."},{id:"B",texto:"A transmissão do protozoário pode ser na forma oral ou transfusão de sangue."},{id:"C",texto:"A doença caracteristicamente leva à disfunção sistólica de ventrículo esquerdo, poupando o sistema de condução intraventricular."},{id:"D",texto:"O tratamento com agentes antiparasitários na fase crônica pode ser considerado, mesmo na ausência de sinais de infecção ativa."},{id:"E",texto:"Na doença crônica, com aneurismas ventriculares trombogênicos, a anticoagulação pode ser necessária por tempo indeterminado."}],
   gabarito:"C",
@@ -259,7 +259,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-020", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:20,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Considerando a morbidade e a mortalidade potencial, o diagnóstico e o manejo apropriado da reativação da doença de Chagas no contexto de transplante de órgãos é extremamente importante. Está CORRETO que:",
   alternativas:[{id:"A",texto:"A doença de Chagas constitui a primeira causa de indicação de transplante cardíaco no Brasil, correspondendo a 35% dos pacientes submetidos ao procedimento."},{id:"B",texto:"A doença de Chagas constitui a terceira causa de indicação de transplante cardíaco no Brasil, correspondendo a 35% dos pacientes submetidos ao procedimento."},{id:"C",texto:"A doença de Chagas constitui a terceira causa de indicação de transplante cardíaco no Brasil, correspondendo a 95% dos pacientes submetidos ao procedimento."},{id:"D",texto:"A doença de Chagas constitui raramente causa de indicação de transplante cardíaco no Brasil, correspondendo a 35% dos pacientes submetidos ao procedimento."}],
   gabarito:"B",
@@ -272,7 +272,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-021", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:21,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Métodos parasitológicos diretos na fase aguda, sendo o exame parasitológico o mais indicado nesta fase. Somente sendo INCORRETO que",
   alternativas:[{id:"A",texto:"é definido pela presença de parasitos circulantes."},{id:"B",texto:"é definido pela presença de parasitos demonstráveis no exame direto do sangue periférico."},{id:"C",texto:"a situação ideal é a realização da coleta com paciente febril e dentro de 30 dias do início de sintomas."},{id:"D",texto:"incluem: pesquisa a fresco de tripanossomatídeos – execução rápida e simples, sendo menos sensível que o esfregaço corado."}],
   gabarito:"D",
@@ -285,7 +285,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-022", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:22,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Forma cardíaca é a forma que ocorre em cerca de 30% dos casos crônicos e é considerada responsável pela maior frequência de óbitos na doença de Chagas crônica (DCC). Está CORRETO, apenas, que",
   alternativas:[{id:"A",texto:"não ocorrem evidências de acometimento cardíaco que, frequentemente, evolui para quadros de miocardiopatia dilatada e insuficiência cardíaca congestiva (ICC)."},{id:"B",texto:"ocorrem evidências de acometimento cardíaco que, frequentemente, evolui para quadros de miocardiopatia dilatada e insuficiência cardíaca congestiva (ICC)."},{id:"C",texto:"ocorrem evidências de acometimento cardíaco que, frequentemente, evolui para quadros de miocardiopatia restritiva e insuficiência cardíaca congestiva (ICC)."},{id:"D",texto:"ocorrem evidências de acometimento cardíaco que, frequentemente, evolui para quadros de miocardiopatia dilatada, mas nunca para insuficiência cardíaca congestiva (ICC)."}],
   gabarito:"B",
@@ -298,7 +298,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-023", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:23,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"No caso da doença de Chagas aguda (DCA) devido à transmissão oral, os estudos indicam diferenças na evolução clínica por esta forma de transmissão. Têm sido relatados: exantema cutâneo, hemorragia digestiva (hematêmese, hematoquezia ou melena), icterícia, aumento das aminotransferases, além de quadros mais frequentes e mais graves de insuficiência cardíaca. Está ERRADO, apenas um item. Indique-o.",
   alternativas:[{id:"A",texto:"Fenômenos de enterite, abdome agudo e sangramento fecal."},{id:"B",texto:"Ressalta-se que a morbimortalidade é mais baixa na transmissão oral que a observada nos casos agudos por transmissão vetorial."},{id:"C",texto:"Choque, hepatite focal podem ocorrer e têm significação prognóstica variada, devendo ser rotineiramente pesquisados e monitorados."},{id:"D",texto:"Quadros clínicos graves podem cursar com meningoencefalite, especialmente em lactente ou em casos de reativação (pessoas com comprometimento imunológico)."}],
   gabarito:"B",
@@ -311,7 +311,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-024", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:24,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Uma das formas habituais de transmissão de T. cruzi para o homem, o vetor (triatomíneo), ao se alimentar em mamíferos infectados com elevadas taxas de T. cruzi, pode se infectar e, ao se alimentar novamente, infecta outro mamífero, inclusive o homem. Somente um item se apresenta INCORRETO. Indique-o.",
   alternativas:[{id:"A",texto:"Sinais de porta de entrada, característicos da transmissão vetorial, como o sinal de Romaña (edema bipalpebral unilateral por reação inflamatória à penetração do parasito, na conjuntiva e adjacências)."},{id:"B",texto:"Deve-se ressaltar que a picada de um triatomíneo pode causar reações alérgicas locais ou sistêmicas, sem que isso signifique, necessariamente, infecção por T. cruzi."},{id:"C",texto:"No caso da doença de Chagas aguda (DCA) por transmissão oral, os surtos estudados parecem indicar diferenças na evolução clínica por esta forma de transmissão."},{id:"D",texto:"Chagoma de inoculação (lesões furunculoides, supurativas, em membros, tronco e face, por reação inflamatória à penetração do parasito, que se mostram descamativas após duas ou três semanas) são menos frequentes."}],
   gabarito:"D",
@@ -324,7 +324,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-025", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:25,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A maioria dos indivíduos com infecção por T. cruzi alberga o parasito no sangue, nos tecidos e órgãos, durante toda a vida. Na fase aguda inicial, podemos aceitar todos os itens abaixo, apenas um está incorreto, indique o INCORRETO.",
   alternativas:[{id:"A",texto:"Predomina o parasito em número elevado circulante na corrente sanguínea."},{id:"B",texto:"A manifestação mais característica é a febre constante, inicialmente elevada (38,5 a 39°C), podendo apresentar picos vespertinos ocasionais."},{id:"C",texto:"As manifestações de síndrome febril podem persistir por até 12 meses."},{id:"D",texto:"Esta fase aguda inicial, mesmo não tratada nem diagnosticada, pode evoluir com desaparecimento espontâneo da febre e da maior parte das outras manifestações clínicas, evoluindo para a fase crônica."}],
   gabarito:"C",
@@ -337,7 +337,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-026", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:26,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"No Brasil, devido à efetividade do controle dos serviços de hemoterapia e, consequentemente, maior qualidade do sangue para transfusão, tem-se alcançado significativo impacto no controle da transmissão transfusional do T. cruzi. Marque o item ERRADO.",
   alternativas:[{id:"A",texto:"Representa via sem importância de propagação da doença nos centros urbanos."},{id:"B",texto:"É considerada a principal forma de transmissão em países não endêmicos como Canadá, Espanha, Estados Unidos e outros."},{id:"C",texto:"É considerada a principal forma de transmissão em países latino-americanos que estejam em processo de controle da transmissão vetorial."},{id:"D",texto:"Vertical – ocorre, principalmente, pela via transplacentária e pode ocorrer em qualquer fase da doença (aguda ou crônica)."}],
   gabarito:"A",
@@ -376,7 +376,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-029", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:29,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Na fase crônica da doença de Chagas a parasitemia é baixa e intermitente. Inicialmente é assintomática e sem sinais de comprometimento cardíaco e/ou digestivo, e pode apresentar-se com as forma indeterminada, somente sendo INCORRETO que:",
   alternativas:[{id:"A",texto:"Paciente assintomático e sem sinais de comprometimento do aparelho circulatório (clínica, eletrocardiograma e radiografia a de tórax normais)."},{id:"B",texto:"Aparelho digestivo (avaliação clínica e radiológica normais de esôfago e cólon)."},{id:"C",texto:"Esse quadro poderá perdurar por toda a vida do indivíduo infectado."},{id:"D",texto:"Nunca pode evoluir tardiamente para a forma cardíaca, digestiva ou associada cardiodigestiva."}],
   gabarito:"D",
@@ -441,7 +441,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-034", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:34,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Quanto ao sinal de Romaña, que faz parte do quadro clínico da doença de Chagas, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Está associado à fase crônica da doença."},{id:"B",texto:"Está associado à porta de entrada da doença, quando o T. cruzi penetra pela conjuntiva."},{id:"C",texto:"Está associado à forma congênita da doença de Chagas."},{id:"D",texto:"Está associado ao megaesôfago chagásico."}],
   gabarito:"B",
@@ -493,7 +493,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-038", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:38,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febretifoide",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-toxinfeccao",
   enunciado:"O tratamento antibioticoterápico de primeira escolha para febre tifóide grave complicada é:",
   alternativas:[{id:"A",texto:"sulfametoxazol-trimetoprim"},{id:"B",texto:"cloranfenicol"},{id:"C",texto:"ceftriaxona"},{id:"D",texto:"amoxicilina"}],
   gabarito:"C",
@@ -506,7 +506,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-039", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:39,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Julgue o item seguinte, a respeito da doença de Chagas.\n\nA fase crônica indeterminada é a mais frequente em portadores da doença de Chagas.",
   alternativas:[{id:"A",texto:"Certo."},{id:"B",texto:"Errado."}],
   gabarito:"A",
@@ -545,7 +545,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-042", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:42,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febretifoide",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-toxinfeccao",
   enunciado:"Qual é o reservatório mais comum de Salmonella typhi, agente etiológico da febre tifoide, numa pessoa portadora?",
   alternativas:[{id:"A",texto:"Apêndice."},{id:"B",texto:"Vesícula biliar."},{id:"C",texto:"Cólon sigmoide."},{id:"D",texto:"Intestino grosso."},{id:"E",texto:"Intestino delgado."}],
   gabarito:"B",
@@ -623,7 +623,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-048", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:48,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A doença de Chagas é uma das consequências da infecção humana produzida pelo protozoário flagelado Trypanosoma cruzi. Após a entrada do parasito no organismo, basicamente ocorrem duas etapas fundamentais na infecção humana, que são a fase inicial aguda e a fase crônica. Tendo em vista os aspectos clínicos dos portadores dessa enfermidade, verifique as afirmativas a seguir:\n\nI. Na fase inicial da doença ocorrem manifestações de doença febril, não persistindo mais do que 5 semanas. Nessa fase, os sinais e sintomas não desaparecem facilmente e podem progredir para formas agudas que levam ao óbito;\nII. A fase crônica inicialmente é assintomática e sem sinais de comprometimento cardíaco e/ou digestivo. Pode apresentar-se como forma indeterminada, forma cardíaca, forma digestiva e forma associada;\nIII. Na forma indeterminada o paciente é assintomático e sem sinais de comprometimento do aparelho circulatório e do aparelho digestivo. Esse quadro poderá perdurar por toda vida da pessoa infectada;\nIV. A forma associada é a ocorrência concomitante de lesões compatíveis às formas cardíacas e do aparelho respiratório.\n\nEstão CORRETAS apenas as afirmativas:",
   alternativas:[{id:"A",texto:"I e II."},{id:"B",texto:"II e III."},{id:"C",texto:"III e IV."},{id:"D",texto:"I e IV."},{id:"E",texto:"II e IV."}],
   gabarito:"B",
@@ -649,7 +649,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-050", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:50,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Qual das alternativas NÃO se relaciona com pior prognóstico na cardiopatia chagásica?",
   alternativas:[{id:"A",texto:"Alterações eletrocardiográficas."},{id:"B",texto:"Tromboembolismo."},{id:"C",texto:"Reativação da infecção."},{id:"D",texto:"Sinal de Romaña."}],
   gabarito:"D",
@@ -688,7 +688,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-053", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:53,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A doença de Chagas representa uma condição infecciosa (com fase aguda ou crônica) classificada como enfermidade negligenciada pela Organização Mundial da Saúde (OMS). Estima-se em aproximadamente 6 a 7 milhões o número de pessoas infectadas em todo o mundo, a maioria na América Latina. Migrações humanas não controladas, degradação ambiental, alterações climáticas, maior concentração da população em áreas urbanas e precariedade de condições socioeconômicas (habitação, educação, saneamento, renda, entre outras) inserem-se como determinantes e condicionantes sociais para a transmissão de T. cruzi ao homem.\n\nCom relação ao tratamento antiparasitário da doença de Chagas, podemos afirmar que:",
   alternativas:[{id:"A",texto:"O tratamento antiparasitário deve ser realizado em indivíduos na fase crônica da doença de Chagas com a forma cardíaca grave."},{id:"B",texto:"Na fase aguda, o tratamento não deve ser realizado em todos os casos, independentemente da via de transmissão do parasito."},{id:"C",texto:"Os casos diagnosticados como doença de Chagas congênita não devem receber tratamento antiparasitário."},{id:"D",texto:"Não devem ser tratadas crianças com idade igual ou inferior a 12 anos portadoras da doença de Chagas em sua fase crônica."},{id:"E",texto:"Para adolescentes com idade entre 13 e 18 anos e adultos com infecção crônica, quando se consegue estabelecer que a fase aguda ocorreu até 12 anos antes, é usualmente recomendado o tratamento antiparasitário."}],
   gabarito:"E",
@@ -714,7 +714,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-055", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:55,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febretifoide",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-toxinfeccao",
   enunciado:"Dentre os exames citados abaixo, o mais sensível no diagnóstico laboratorial da febre tifoide, baseado no isolamento e identificação do agente etiológico é a:",
   alternativas:[{id:"A",texto:"Mielocultura."},{id:"B",texto:"Hemocultura após a terceira semana da doença."},{id:"C",texto:"Hemocultura nas duas semanas iniciais da doença."},{id:"D",texto:"Urinocultura antes da segunda semana da doença."}],
   gabarito:"A",
@@ -727,7 +727,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-056", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:56,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Um paciente com quarenta anos de idade, natural e procedente de Barreiras (BA), procurou o ambulatório de clínica médica e informou que apresentava quadro de constipação intestinal havia seis meses, situação que o obriga a usar laxantes seguidamente. O paciente não apresenta disfagia e não mostrou alterações dignas de nota no exame físico.\n\nCom relação a esse caso clínico, julgue o item seguinte.\n\nO procedimento de averiguação mais indicado para se investigar se o referido paciente está acometido por doença de Chagas é pesquisar a presença do parasito em sangue periférico.",
   alternativas:[{id:"A",texto:"Certo."},{id:"B",texto:"Errado."}],
   gabarito:"B",
@@ -740,7 +740,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-057", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:57,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Um paciente com quarenta anos de idade, natural e procedente de Barreiras (BA), procurou o ambulatório de clínica médica e informou que apresentava quadro de constipação intestinal havia seis meses, situação que o obriga a usar laxantes seguidamente. O paciente não apresenta disfagia e não mostrou alterações dignas de nota no exame físico. Com relação a esse caso clínico, julgue o item seguinte.\n\nEm caso de doença de Chagas, a realização do exame radiológico contrastado é a melhor forma de diagnosticar o comprometimento intestinal do paciente.",
   alternativas:[{id:"A",texto:"Certo."},{id:"B",texto:"Errado."}],
   gabarito:"A",
@@ -766,7 +766,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-059", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:59,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Em relação ao aleitamento materno, ele deve ser proibido em alguns casos de infecção materna. Além da infecção pelo HIV, o aleitamento materno deve ser proibido nos casos de:",
   alternativas:[{id:"A",texto:"Hepatite A."},{id:"B",texto:"Sarampo."},{id:"C",texto:"Tuberculose."},{id:"D",texto:"Dengue."},{id:"E",texto:"Doença de Chagas Aguda."}],
   gabarito:"E",
@@ -792,7 +792,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-061", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:61,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febretifoide",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-toxinfeccao",
   enunciado:"Qual é o exame mais indicado para o diagnóstico da febre tifoide na 3ª semana de evolução?",
   alternativas:[{id:"A",texto:"Coprocultura."},{id:"B",texto:"Urinocultura."},{id:"C",texto:"Hemocultura."},{id:"D",texto:"Reação de Widal."},{id:"E",texto:"NDA."}],
   gabarito:"A",
@@ -844,7 +844,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-065", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:65,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febretifoide",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-toxinfeccao",
   enunciado:"A respeito da ocorrência da febre tifoide no Brasil, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Apresenta sazonalidade, com predominância de casos no inverno."},{id:"B",texto:"Apresenta alterações cíclicas que têm importância prática para a prevenção."},{id:"C",texto:"Sua ocorrência está diretamente relacionada às condições de saneamento existente."},{id:"D",texto:"Em áreas endêmicas, acomete com maior frequência individual os menores de 15 anos de idade."},{id:"E",texto:"Sua taxa de ataque aumenta com a idade."}],
   gabarito:"C",
@@ -922,7 +922,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-071", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:71,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Quanto ao tratamento antiparasitário da doença de Chagas, assinale a alternativa incorreta:",
   alternativas:[{id:"A",texto:"O Nifurtimox e o benzonidazol são os fármacos indicados."},{id:"B",texto:"Deve ser feito nos dos casos agudos e congênitos."},{id:"C",texto:"Deve ser feito nos pacientes com insuficiência cardíaca classe IV de NYHA."},{id:"D",texto:"Deve ser feito nos pacientes com idades < 15 anos."},{id:"E",texto:"Todas estão incorretas."}],
   gabarito:"C",
@@ -948,7 +948,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-073", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:73,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febretifoide",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-toxinfeccao",
   enunciado:"Paciente volta de viagem ao Peru. Procura médico quinze dias após sua chegada e sete dias após o surgimento do quadro com febre, atualmente de até 39,5°C; grande queda do estado geral, tosse seca, dor, distensão abdominal difusa e constipação intestinal. Ao exame: TAx.: 39,9°C; FC: 98 bpm; pulmões limpos; abdome pouco distendido; peristalse presente; pouco doloroso difusamente; baço palpável a 3 cm da reborda costal esquerda; presença de manchas de coloração rósea na pele sobre o abdome. Radiografia do tórax normal, 2.800 leucócitos com 19% de bastões. Colhidas culturas, o antibiótico que deve ser usado inicialmente é:",
   alternativas:[{id:"A",texto:"Sulfametoxazol + trimetoprima."},{id:"B",texto:"Ciprofloxacina."},{id:"C",texto:"Cloranfenicol."},{id:"D",texto:"Ampicilina."}],
   gabarito:"B",
@@ -987,7 +987,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-076", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:76,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Na abordagem do paciente com cardiopatia chagásica,",
   alternativas:[{id:"A",texto:"o diagnóstico sorológico é confirmado (ou excluído) pelo emprego de pelo menos três testes sorológicos de princípios diferentes."},{id:"B",texto:"o comprometimento cardíaco está presente em 90,0% dos casos em fase aguda, usualmente benigno na grande maioria dos casos."},{id:"C",texto:"o prognóstico é diretamente proporcional à idade do paciente e mais grave em crianças com miocardite ou encefalite."},{id:"D",texto:"o uso de carvedilol, bisoprolol ou succinato de metoprolol é indicado para tratar pacientes com sinais/sintomas de IC, pregressos ou atuais e FEVE \"menor ou igual a\" 35,0%."}],
   gabarito:"B",
@@ -1065,7 +1065,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-082", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:82,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Em relação à doença de Chagas, assinale a afirmativa INCORRETA.",
   alternativas:[{id:"A",texto:"A reativação da doença, com manifestações da fase aguda, pode ocorrer em pacientes imunocomprometidos (uso de drogas imunossupressoras, neoplasias hematológicas) ou em coinfecção pelo HIV."},{id:"B",texto:"A transmissão do agente etiológico, Tripanossoma cruzi, pode ocorrer via oral, vetorial, transfusional, transplacentária, por aleitamento materno e transplante de órgãos."},{id:"C",texto:"Pessoas infectadas pelo Tripanossoma cruzi armazenam o parasito nos tecidos e/ou sangue por toda a vida, sendo consideradas potencialmente infectantes, mesmo quando assintomáticas."},{id:"D",texto:"A reação à picada do triatomíneo, caracterizada por edema local, reconhecida clinicamente como “chagoma de inoculação”, na pele exposta, ou “sinal de Romanã”, na região periorbitária, confirma o diagnóstico de infecção pelo Tripanossoma cruzi."}],
   gabarito:"D",
@@ -1078,7 +1078,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-083", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:83,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Sobre Doença de Chagas aguda",
   alternativas:[{id:"A",texto:"É considerada doença de notificação obrigatória"},{id:"B",texto:"Podem estar relacionada à ingesta de caldo de cana e açaí contaminados com tripanossomas"},{id:"C",texto:"Cardiomegalia e sinais de insuficiência cardíaca aguda podem estar presentes"},{id:"D",texto:"O tratamento é feito com benznidazol"},{id:"E",texto:"Todas estão corretas"}],
   gabarito:"E",
@@ -1091,7 +1091,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-084", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:84,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"O tratamento da doença de Chagas permanece insatisfatório. A droga disponível que reduz a parasitemia e a duração dos sintomas, mas que pode apresentar como efeitos colaterais polineuropatia e convulsões, entre outros, é:",
   alternativas:[{id:"A",texto:"Alopurinol."},{id:"B",texto:"Fluconazol."},{id:"C",texto:"Cloroquina."},{id:"D",texto:"Nifurtimox."}],
   gabarito:"D",
@@ -1104,7 +1104,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-085", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:85,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"A Doença de Chagas transfusional foi descrita pela primeira vez no Brasil em 1952, sendo obrigatórios os testes de triagem nos bancos de sangue. São sinais e sintomas comuns da doença de chagas transmitidos via transfusional, EXCETO:",
   alternativas:[{id:"A",texto:"Febre."},{id:"B",texto:"Linfadenopatia."},{id:"C",texto:"Esplenomegalia."},{id:"D",texto:"Sinal de Romaña."},{id:"E",texto:"Síndrome mononucleose simile."}],
   gabarito:"D",
@@ -1156,7 +1156,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-hepatoesplenomegalias", [
 },
 {
   id:"q-gdhepatoesplenomegalias-089", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:89,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-chagas",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Na Doença de Chagas é CORRETO afirmar:",
   alternativas:[{id:"A",texto:"Observa-se apenas uma fase: a crônica."},{id:"B",texto:"A forma cardíaca é mais expressiva, não só pela alta prevalência, mas pela sua morbimortalidade."},{id:"C",texto:"O diagnóstico do megacólon é clínico."},{id:"D",texto:"A cardiopatia chagásica não é considerada como embolígenica."}],
   gabarito:"B",

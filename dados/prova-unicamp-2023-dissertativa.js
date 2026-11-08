@@ -255,7 +255,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 },
 {
   id:"q-unicampdis2023-017", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:17,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   tipo:"dissertativa", respostaEsperada:"Esofagograma baritado (exame contrastado de esôfago, estômago e duodeno; radiografia contrastada do esôfago).",
   enunciado:"Homem, 45a, natural da Bahia, refere dificuldade em se alimentar há quatro anos, necessitando ingerir líquidos com a comida. Há seis meses, a dificuldade piorou até para alimentos líquidos e a própria saliva. Acorda à noite com episódios de tosse. Refere perda de 5Kg nos últimos três meses. Antecedentes pessoais: tabagismo=20 anos/maço; etilismo=2 doses destilado/dia há 10 anos; trabalha na lavoura com agrotóxicos. Sorologia para Chagas=1/64; endoscopia digestiva alta=normal. QUAL EXAME DEVE SER SOLICITADO PARA COMPLEMENTAR A AVALIAÇÃO DA DISFAGIA?",
   alternativas:[],
@@ -441,7 +441,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 },
 {
   id:"q-unicampdis2023-030", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:30,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-coqueluche",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   tipo:"dissertativa", respostaEsperada:"Coqueluche (infecção por Bordetella pertussis, tosse comprida).",
   enunciado:"Menino, 2m, é trazido ao Pronto Atendimento com história de tosse há oito dias. Hoje a mãe refere que a criança apresentou três episódios de perda de fôlego e cianose após tosse. Nega inapetência e febre. Antecedentes: mãe não realizou pré-natal, parto vaginal a termo, sem intercorrências, peso adequado e recebeu alta da maternidade com 48h de vida. Exame físico: bom estado geral; T=36,5oC; FC=148bpm; FR=67irpm; pulmões: murmúrio vesicular presente e simétrico, sem ruídos adventícios; coração: bulhas rítmicas normofonéticas; abdome: fígado a 2cm do rebordo costal direito, hepatimetria=4cm; pulsos simétricos. Durante o exame, apresentou um episódio de tosse seguido de cianose periférica, com duração de dois minutos, e melhora com a introdução de oxigênio em máscara não reinalante. Hb=9,7g/dL; Ht=30%; leucócitos=15.740/mm3 (78% linfócitos típicos, 13% neutrófilos, 1% eosinófilos, 8% monócitos). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -483,7 +483,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 },
 {
   id:"q-unicampdis2023-033", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:33,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   tipo:"dissertativa", respostaEsperada:"Desidratação moderada (grau 2, de segundo grau).",
   enunciado:"Menino, 2a, é trazido à Unidade Básica de Saúde com queixa de fezes líquidas (seis vezes ao dia), vômitos há dois dias, com piora há um dia. Exame físico: Regular estado geral; T=36,4oC; FC=145bpm; FR=26irpm; mucosas secas; turgor pastoso; perfusão periférica menor que 2 segundos; hipoativo e reativo. QUAL É O GRAU DE DESIDRATAÇÃO DESTA CRIANÇA?",
   alternativas:[],
@@ -554,7 +554,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 },
 {
   id:"q-unicampdis2023-038", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:38,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-unicampdis2023-038.jpg",
   tipo:"dissertativa", respostaEsperada:"Herpes genital (herpes simples, herpes tipo 2). Herpes-zóster e outras lesões ulceradas não pontuam.",
   enunciado:"Mulher, 28a, refere dor e prurido vulvar, além de disúria. Refere que já teve três episódios semelhantes. Ao exame ginecológico, observa-se (figura Q38, anexo). A PRINCIPAL HIPÓTESE DIAGNÓSTICA É:",

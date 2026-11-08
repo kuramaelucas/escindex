@@ -243,7 +243,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 },
 {
   id:"q-einstein2026-018", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:18,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem de 28 anos sofreu trauma doméstico com serra elétrica, evoluindo com perda de substância na ponta do II quirodáctilo direito, com exposição da polpa, porém sem exposição óssea ou tendínea. O paciente encontra- se estável, sem outras lesões associadas. Qual é a melhor opção de fechamento para este defeito cutâneo?",
   alternativas:[{id:"A",texto:"Enxerto de pele parcial da coxa."},{id:"B",texto:"Fechamento primário com descolamento amplo para sutura sem tensão."},{id:"C",texto:"Fechamento por segunda intenção."},{id:"D",texto:"Retalho de avanço V-Y local."}],
   gabarito:"D",
@@ -256,7 +256,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 },
 {
   id:"q-einstein2026-019", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:19,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Homem de 69 anos, natural da Bahia, tabagista 50 anos/maço vem à Unidade Básica de Saúde com queixa progressiva de dificuldade para se alimentar há 4 meses, tendo perdido 5 kg no período. Refere que, inicialmente, apresentava dificuldade apenas com carnes e com alimentos mais sólidos, mas atualmente tem dificuldade também com líquidos, associada a episódios de regurgitação noturna. Nega odinofagia, hematêmese ou histórico familiar de câncer. Diz também que tem o hábito de tomar água com as refeições para ajudar a empurrar o alimento e refere ter tido conhecidos com doença de Chagas. Ao exame físico, encontra-se emagrecido, corado, normotenso, sem outras alterações relevantes ao exame clínico. Com base nesse caso, a conduta inicial adequada é",
   alternativas:[{id:"A",texto:"solicitar esofagografia baritada para diferenciar acalásia primária de neoplasia de esôfago distal."},{id:"B",texto:"solicitar endoscopia digestiva alta para investigação de obstrução mecânica ou neoplasia."},{id:"C",texto:"solicitar manometria esofágica de alta resolução para confirmar o diagnóstico de acalásia secundária."},{id:"D",texto:"iniciar nifedipina sublingual e omeprazol, considerando acalásia como diagnóstico mais provável e aguardar resposta clínica."}],
   gabarito:"B",
@@ -858,7 +858,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 },
 {
   id:"q-einstein2026-065", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:65,
-  areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-acne",
+  areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
   imagemUrl:"dados/imagens/q-einstein2026-065.png",
   enunciado:"Leia o caso e avalie a imagem a seguir: Diana tem 25 anos e fez tratamentos para acne desde o início da adolescência. Já utilizou diversos tratamentos tópicos e orais, mas de forma intermitente e curta (menos de trinta dias); logo que melhorava, parava o cuidado. Hoje ela foi à UBS pedindo para ser encaminhada para dermatologista porque quer dar fim ao problema. Atualmente trabalha e estuda, mora com os pais, está com vacinas em dia, não tem outras queixas, já tem prática sexual e faz uso de anticoncepcional oral (ACO), mas deseja passar para dispositivo intrauterino. Segue foto da paciente: (Imagem gerada por IA - ChatGPT5) Considerando todas as informações ofertadas, assinale a alternativa que apresenta corretamente a conduta adequada para o caso.",
   alternativas:[{id:"A",texto:"Encaminhar à dermatologia, pois é um caso de acne grave com história de falhas de tratamento, e orientar a não trocar ainda o ACO, pois ele ajuda no tratamento da acne."},{id:"B",texto:"Reiniciar o tratamento para acne moderada, com uso de tetraciclina oral e tratamento tópico com retinoide por sessenta dias, e solicitar Papanicolau para avaliar troca de método anticoncepcional."},{id:"C",texto:"Iniciar o tratamento com uso de doxiciclina oral por três meses, corticoide tópico e manutenção do método anticoncepcional no primeiro momento, com reavaliação em trinta dias."},{id:"D",texto:"Iniciar o tratamento para acne leve, com uso tópico de retinoide tópico e peróxido de benzoíla por sessenta dias; caso não haja melhora, a paciente deve ser encaminhada à dermatologia."}],
@@ -951,7 +951,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 },
 {
   id:"q-einstein2026-072", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:72,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Gestante de 24 anos, 30 semanas, procura atendimento por dor intensa e feridas em região genital há cinco dias, que no momento dificulta a sua deambulação. Há cerca de um ano, teve quadro muito semelhante, mas não procurou atendimento. Ao exame: múltiplas úlceras rasas, de fundo avermelhado, bordas irregulares, algumas já cicatrizando. Linfonodos inguinais discretamente aumentados e dolorosos. Perguntada, a paciente refere que o quadro iniciou com lesões bolhosas. Qual a conduta correta para esse caso?",
   alternativas:[{id:"A",texto:"Iniciar penicilina G benzatina em dose única, cobrindo sífilis, e observar evolução antes de introduzir outro tratamento."},{id:"B",texto:"Introduzir aciclovir oral, diante da suspeita de herpes recorrente, e solicitar testagem rápida para sífilis com eventual associação de penicilina se reagente."},{id:"C",texto:"Prescrever ceftriaxona intramuscular associada a azitromicina oral, visando à cobertura para cancro mole e clamídia, postergando o início de antivirais."},{id:"D",texto:"Optar por tratamento sindrômico com penicilina G benzatina + aciclovir, independentemente da confirmação diagnóstica, considerando riscos para mãe e feto."}],
   gabarito:"B",

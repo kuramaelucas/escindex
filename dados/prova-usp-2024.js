@@ -22,7 +22,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 {
   id:"q-usp2024-001", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:1,
   imagemUrl:"dados/imagens/q-usp2024-001.png", imagemLegenda:"Controles de enfermagem, radiografia de tórax e prescrição atual",
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"TEXTO PARA AS QUESTÕES 01 E 02 Paciente de 2 meses, sexo masculino, em uso de fórmula láctea de partida, foi internado em leito de enfermaria há 24 horas. Na admissão, apresentava história de tosse e coriza há dois dias e desconforto respiratório há um dia. Ao exame clínico, neste momento, paciente segue com desconforto respiratório, apresenta ausculta respiratória com sibilos e estertores em bases bilateralmente, tiragem subdiafragmática leve/ moderada, FR: 71 ipm, FC: 168 bpm, SpO2 94% em cateter nasal de oxigênio 2 L/min. Peso: 4 kg. As anotações nos controles de enfermagem, o exame de imagem realizado e a prescrição atual são demonstrados a seguir: Assinale a alternativa que apresenta a conduta indicada para esse paciente, neste momento.",
   alternativas:[{id:"A",texto:"Prescrever penicilina cristalina."},{id:"B",texto:"Introduzir soro de manutenção."},{id:"C",texto:"Iniciar salbutamol spray."},{id:"D",texto:"Manter a prescrição atual."}],
   gabarito:"B",
@@ -36,7 +36,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 {
   id:"q-usp2024-002", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:2,
   imagemUrl:"dados/imagens/q-usp2024-002.jpg", imagemLegenda:"As quatro alternativas são fotografias de dispositivos de oxigenoterapia com o fluxo indicado (A, B, C e D)",
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"TEXTO PARA AS QUESTÕES 01 E 02 Paciente de 2 meses, sexo masculino, em uso de fórmula láctea de partida, foi internado em leito de enfermaria há 24 horas. Na admissão, apresentava história de tosse e coriza há dois dias e desconforto respiratório há um dia. Ao exame clínico, neste momento, paciente segue com desconforto respiratório, apresenta ausculta respiratória com sibilos e estertores em bases bilateralmente, tiragem subdiafragmática leve/ moderada, FR: 71 ipm, FC: 168 bpm, SpO2 94% em cateter nasal de oxigênio 2 L/min. Peso: 4 kg. O lactente evoluiu algumas horas depois com piora do cansaço, apresentando tiragens importantes e batimento de asa nasal, com SpO2 de 90% em cateter nasal 2 L/min. Foi optado por escalonar suporte respiratório. Assinale a alternativa que contem o dispositivo mais adequado neste momento e o respectivo fluxo a ser utilizado inicialmente.",
   alternativas:[{id:"A",texto:"Dispositivo e fluxo A (ver figura)."},{id:"B",texto:"Dispositivo e fluxo B (ver figura)."},{id:"C",texto:"Dispositivo e fluxo C (ver figura)."},{id:"D",texto:"Dispositivo e fluxo D (ver figura)."}],
   gabarito:"C",
@@ -223,7 +223,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-016", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:16,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Paciente de 05 anos com antecedente de encefalopatia crônica não progressiva, portador de traqueostomia e gastrostomia, apresenta quadro de diarreia há cinco dias, cerca de 10 episódios por dia. Nesse período, recebeu soro de reidratação caseiro, cerca de 200 mL, após episódios diarreicos. Foi trazido hoje ao departamento de emergência, devido sonolência e diminuição da diurese. Na admissão, paciente apresentava choque hipotensivo, sendo iniciada expansão com soro fisiológico. Após primeira expansão, a equipe que prestava o atendimento recebeu o resultado da gasometria, descrito a seguir: - pH: 7.25 - HCO 3: 12 mmol/L - Base Excess: -5,0 mmol/L - Sódio: 160 mEq/L - Potássio: 3.3 mEq/L. Na reavaliação pós-primeira expansão, paciente segue em REG, pálido, frequência cardíaca 150 bpm, FR 40 ipm e PA 76x42 mmHg, TEC 6 s. Assinale a alternativa correta com relação à estratégia para hidratação do paciente.",
   alternativas:[{id:"A",texto:"Iniciar soro de reidratação oral por gastrostomia."},{id:"B",texto:"Prosseguir expansão endovenosa com fluido isotônico."},{id:"C",texto:"Prosseguir expansão endovenosa com soro glicosado 5%."},{id:"D",texto:"Iniciar soro de manutenção + reposição com sódio 3 mEq/100 kcal."}],
   gabarito:"B",
@@ -236,7 +236,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-017", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:17,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Paciente de 05 anos com antecedente de encefalopatia crônica não progressiva, portador de traqueostomia e gastrostomia, apresenta quadro de diarreia há cinco dias, cerca de 10 episódios por dia. Nesse período, recebeu soro de reidratação caseiro, cerca de 200 mL, após episódios diarreicos. Foi trazido hoje ao departamento de emergência, devido sonolência e diminuição da diurese. Na admissão, paciente apresentava choque hipotensivo, sendo iniciada expansão com soro fisiológico. Após primeira expansão, a equipe que prestava o atendimento recebeu o resultado da gasometria, descrito a seguir: - pH: 7.25 - HCO 3: 12 mmol/L - Base Excess: - 5,0 mmol/L - Sódio: 160 mEq/L - Potássio: 3.3 mEq/L. Assinale a conduta a ser realizada para adequação do sódio, após estabilização hemodinâmica:",
   alternativas:[{id:"A",texto:"Recoleta do sódio sérico após 6 horas e verificar se houve queda de, no mínimo, 1 mEq/ hora. Sem reposição até resultados."},{id:"B",texto:"Recoleta do sódio sérico após 6 horas e verificar se houve queda de, no máximo, 1 mEq/ hora. Sem reposição até resultados."},{id:"C",texto:"Recoleta imediata do sódio sérico, cálculo do déficit de água livre e reposição preferencialmente parenteral em até 24 horas."},{id:"D",texto:"Recoleta imediata do sódio sérico, cálculo do déficit de água livre e reposição preferencialmente enteralem 48-72 horas."}],
   gabarito:"D",
@@ -720,7 +720,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-053", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:53,
-  areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-vertigem",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-vertigem",
   enunciado:"Paciente, 43 anos, comparece ao ambulatório com queixa de tontura rotatória recorrente com duração de minutos a horas, associada à plenitude auricular e zumbido pior à direita. As crises não são desencadeadas por movimentos da cabeça. Nega náuseas, vômitos, escurecimento visual ou perda de consciência. A paciente conta ainda que, apesar do quadro se arrastar há 10 anos, no último ano notou que a sua audição vem flutuando, com períodos de melhora e piora, e que nota hipoacusia pior no ouvido direito. Nega tontura na consulta atual. Exame físico: BEG, corado, hidratado, acianótico, eupneico. Head-impulse test: sem sacada corretiva. Pesquisa de nistagmo: sem nistagmo espontâneo ou evocado pelo olhar. Pesquisa de desvio skew: sem desvio skew. Assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Vertigem postural paroxística benigna pelos episódios de tontura em crises, com queixa ausente no momento da consulta."},{id:"B",texto:"Tontura de origem central pelo head-impulse test normal."},{id:"C",texto:"Tontura psicogênica inespecífica em decorrência de sua longa duração."},{id:"D",texto:"Síndrome de Ménière com necessidade de realizar audiometria pelas queixas otológicas."}],
   gabarito:"D",
@@ -789,7 +789,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 {
   id:"q-usp2024-058", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:58,
   imagemUrl:"dados/imagens/q-usp2024-058.jpg", imagemLegenda:"Fotografia do rash facial",
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Paciente de 48 anos apresenta há 6 meses lesões na face (rash predominantemente em região periorbital e fronte, conforme imagem a seguir) e também em membros superiores. Relacionado ao quadro clinico, assinale qual dos sintomas e mais provável para essa paciente.",
   alternativas:[{id:"A",texto:"Fraqueza da musculatura proximal de membros."},{id:"B",texto:"Oligoartrite de grandes articulações."},{id:"C",texto:"Oligúria."},{id:"D",texto:"Edema de membros inferiores."}],
   gabarito:"A",
@@ -1286,7 +1286,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-095", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:95,
-  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-disfuncaoeretil",
+  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-escroto",
   enunciado:"Antônio, 41 anos de idade, queixa-se de dificuldade para manter e iniciar a ereção há 8 meses. Refere que tem sentido menos vontade de ter relações sexuais e que não tem conseguido atingir o orgasmo. Antônio têm estado mais triste, desanimado, cansado com o trabalho, com dificuldade para manter o sono e se divertir. Nega desejo sexual por outras pessoas e também parou de se masturbar. Mantém ereção matinal. E tabagista (50 anos-maço), consome álcool (5 doses aos finais de semana). Vânia tem 47 anos, e esposa de Antônio. Refere que nunca teve interesse sexual por Antônio e nem por outras pessoas, teve poucas parcerias ao longo da vida. Sente-se saudável e satisfeita com sua vida sexual, corpo e relacionamento. Parou de menstruar há 2 anos, apresenta fogachos. Nega comorbidades, nega uso de álcool, tabaco ou situações de violência. Considerando o caso, indique qual a fase do ciclo da resposta sexual esta alterada e uma possível explicação para sua escolha.",
   alternativas:[{id:"A",texto:"Antônio: fase de excitação, alterações vasculares decorrentes do tabagismo; Vania: nenhuma, possível orientação sexual assexual."},{id:"B",texto:"Antônio: fase da excitação, provável quadro depressão; Vania: fase do desejo, poucas experiencias sexuais."},{id:"C",texto:"Antônio: fase de desejo, fadiga decorrente de sobrecarga no trabalho; Vania: fase do desejo, sintomas decorrentes de síndrome climatérica."},{id:"D",texto:"Antônio: fase de desejo, provável quadro de depressão; Vânia: nenhuma, possível orientação sexual assexual."}],
   gabarito:"D",
@@ -1540,7 +1540,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 {
   id:"q-usp2024-114", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:114,
   imagemUrl:"dados/imagens/q-usp2024-114.jpg", imagemLegenda:"Fotografia do exame especular; as quatro alternativas são imagens de bacterioscopia (A, B, C e D)",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente, 36 anos, queixa-se de corrimento vaginal e sensação de ardência vaginal há 10 dias, com odor desagradável e piora após relação sexual. Nega comorbidades ou uso de medicamentos. Nuligesta, refere uso de DIU de cobre ha 3 anos. Parceiro sexual único há 12 meses. Exame ginecológico: especular com conteúdo vaginal branco-acinzentado, em grande quantidade, bolhoso e com odor pronunciado, colo epitelizado, apresentado a seguir. Toque vaginal: útero em anteversoflexão, volume habitual, móvel, indolor à mobilização, ausência de massas anexiais. Realizou-se o exame bacterioscópico. Assinale qual o achado compatível com a principal hipótese diagnóstica.",
   alternativas:[{id:"A",texto:"Lâmina A (ver figura)."},{id:"B",texto:"Lâmina B (ver figura)."},{id:"C",texto:"Lâmina C (ver figura)."},{id:"D",texto:"Lâmina D (ver figura)."}],
   gabarito:"A",

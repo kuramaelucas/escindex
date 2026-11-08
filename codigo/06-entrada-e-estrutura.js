@@ -193,7 +193,11 @@ const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de e
   "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar", "pendencias-conteudo":"Pendências de conteúdo",
   blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários",
   "enviar-avisos":"Enviar Avisos", "painel-turma":"Turma" };
-function tituloDaRota(r){ return ROUTE_TITLES[r] || CONFIG.nomePlataforma; }
+/* Na prova e no resultado, o título é o NOME do simulado/prova (não só "Simulado"). */
+function tituloDaRota(r){
+  if(r==="simulado-ativo" && state.sessaoAtual && state.sessaoAtual.tipo==="simulado" && state.sessaoAtual.titulo) return state.sessaoAtual.titulo;
+  return ROUTE_TITLES[r] || CONFIG.nomePlataforma;
+}
 
 function navigate(route, params){
   if(route !== state.route && !confirmarSairDaTela()) return;   // texto escrito e não salvo (ver fecharModalComConfirmacao)
@@ -697,7 +701,7 @@ function htmlTopo(u){
   return `
         <div class="flex items-center gap-2">
           <button class="icon-btn hamburger" aria-label="Abrir menu" onclick="abrirMenuMobile()">${iconeSvg("menu")}</button>
-          <div class="topbar-title">${tituloDaRota(state.route)}</div>
+          <div class="topbar-title">${escapeHtml(tituloDaRota(state.route))}</div>
         </div>
         <div class="flex items-center gap-2">
           ${htmlBotaoBusca()}

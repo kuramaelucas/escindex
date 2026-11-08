@@ -309,7 +309,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2022", [
 },
 {
   id:"q-fmabc2022-023", banca:"FMABC", real:true, ano:2022, numeroNaProva:23,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Em relação ao processo de cicatrização dos tecidos, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"As três fases do processo de cicatrização são: inflamação, proliferação e recuperação."},{id:"B",texto:"A fase inflamatória caracteriza-se pela diminuição da permeabilidade vascular."},{id:"C",texto:"Angiogênese, fibroplasia e epitelização são fenômenos encontrados na fase proliferativa."},{id:"D",texto:"A força tênsil da ferida é diretamente proporcional ao acúmulo de plaquetas na ferida."},{id:"E",texto:"O colágeno produzido pelas plaquetas é, inicialmente, responsável pela resistência da cicatriz."}],
   gabarito:"C",
@@ -816,7 +816,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2022", [
 },
 {
   id:"q-fmabc2022-062", banca:"FMABC", real:true, ano:2022, numeroNaProva:62,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher procura o médico da UBS com queixa de corrimento vaginal amarelado, com odor fétido, que traz a sensação de queimação, disúria e, às vezes, dor na relação sexual. No exame especular, além do conteúdo vaginal, observa-se lesões puntiformes no colo. Frente a essa infeção, a terapêutica indicada é",
   alternativas:[{id:"A",texto:"penicilina benzatina."},{id:"B",texto:"azitromicina."},{id:"C",texto:"metronidazol."},{id:"D",texto:"miconazol."},{id:"E",texto:"nistatina."}],
   gabarito:"C",

@@ -22,9 +22,19 @@ import { carregar, RAIZ } from "./lib-dados.mjs";
 const PESO_DESBLOQUEIO = 0.3, DECAIMENTO = 0.85, POR_ONDA = 30;
 const { D } = carregar();
 const T = D.taxonomia;
-const pre = JSON.parse(fs.readFileSync(path.join(RAIZ, "ferramentas", "prerequisitos-formados.json"), "utf8"));
-delete pre._leia;
+const preBruto = JSON.parse(fs.readFileSync(path.join(RAIZ, "ferramentas", "prerequisitos-formados.json"), "utf8"));
+delete preBruto._leia;
 const curto = id => id.replace(/^ass-/, "");
+/* Assuntos fundidos pela equipe (taxonomia.fusoes: id que sumiu → id que ficou): o arquivo de
+   pré-requisitos pode ainda citar o antigo. Segue a cadeia até o id vivo, junta os pré-requisitos
+   de quem se fundiu e tira o que viraria "assunto exige a si mesmo". */
+const fusoes = T.fusoes || {};
+const vivo = id => { let x = "ass-" + id, passos = 0; while(fusoes[x] && passos++ < 10) x = fusoes[x]; return curto(x); };
+const pre = {};
+for(const [k, v] of Object.entries(preBruto)){
+  const kk = vivo(k), lista = pre[kk] = pre[kk] || [];
+  for(const p of v){ const pp = vivo(p); if(pp !== kk && !lista.includes(pp)) lista.push(pp); }
+}
 
 const ativas = D.questoes.filter(q => q.real && (!q.status || q.status === "ativa") && q.tipo !== "dissertativa");
 const anoMax = Math.max(...ativas.map(q => +q.ano || 0));

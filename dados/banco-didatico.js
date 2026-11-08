@@ -764,7 +764,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-20", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-hemostasia",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"A manobra de Pringle, empregada em sangramentos hepáticos, consiste em:",
   alternativas:[{id:"A",texto:"Compressão direta do parênquima hepático com compressas por 10 minutos"},{id:"B",texto:"Ligadura definitiva da veia cava inferior infra-hepática"},{id:"C",texto:"Clampeamento temporário do pedículo hepático no ligamento hepatoduodenal, interrompendo o fluxo da artéria hepática e da veia porta"},{id:"D",texto:"Empacotamento definitivo do fígado com telas absorvíveis"},{id:"E",texto:"Clampeamento da aorta supracelíaca"}],
   gabarito:"C",
@@ -776,7 +776,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-21", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-hemostasia",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Sobre a eletrocirurgia, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Na modalidade monopolar, a corrente percorre o paciente da ponta ativa até a placa dispersiva, que deve ser ampla e bem aderida à pele"},{id:"B",texto:"Na modalidade bipolar, a corrente atravessa o corpo do paciente até a placa dispersiva"},{id:"C",texto:"A placa dispersiva pode ser colocada sobre proeminência óssea ou prótese metálica, sem prejuízo"},{id:"D",texto:"O modo 'coagulação' corta melhor os tecidos do que o modo 'corte'"},{id:"E",texto:"A eletrocirurgia bipolar é contraindicada em pacientes com marcapasso"}],
   gabarito:"A",
@@ -788,7 +788,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-22", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-hemostasia",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Qual das opções abaixo é um método de hemostasia definitiva?",
   alternativas:[{id:"A",texto:"Compressão digital do vaso"},{id:"B",texto:"Torniquete pneumático em membro"},{id:"C",texto:"Clampeamento temporário com pinça vascular"},{id:"D",texto:"Ligadura do vaso com fio cirúrgico"},{id:"E",texto:"Manobra de Pringle"}],
   gabarito:"D",
@@ -800,7 +800,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-23", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"O dreno de Penrose é classificado como:",
   alternativas:[{id:"A",texto:"Dreno aspirativo fechado, que exige vácuo contínuo"},{id:"B",texto:"Dreno laminar passivo, que funciona por capilaridade e gravidade, em sistema aberto"},{id:"C",texto:"Dreno tubular rígido conectado a selo d'água"},{id:"D",texto:"Cateter de irrigação contínua da cavidade"},{id:"E",texto:"Dreno exclusivo de cavidade torácica"}],
   gabarito:"B",
@@ -812,7 +812,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-24", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Sobre o uso de drenos em cirurgia abdominal, qual afirmação está de acordo com a prática atual?",
   alternativas:[{id:"A",texto:"Todo procedimento abdominal deve ser drenado, para detectar sangramento precocemente"},{id:"B",texto:"O dreno previne a formação de coleções e reduz a taxa de infecção em qualquer cirurgia"},{id:"C",texto:"O dreno substitui a hemostasia cuidadosa durante o ato operatório"},{id:"D",texto:"Drenos devem ser mantidos até a alta hospitalar em todos os casos"},{id:"E",texto:"A drenagem de rotina não é recomendada em procedimentos como a colecistectomia eletiva não complicada, pois não reduz complicações e pode aumentar a morbidade"}],
   gabarito:"E",
@@ -824,7 +824,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-25", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Qual é a sequência correta das fases da cicatrização de uma ferida?",
   alternativas:[{id:"A",texto:"Proliferativa, inflamatória, remodelação"},{id:"B",texto:"Remodelação, inflamatória, proliferativa"},{id:"C",texto:"Inflamatória, proliferativa, remodelação (maturação)"},{id:"D",texto:"Hemostática, remodelação, inflamatória"},{id:"E",texto:"Proliferativa, remodelação, inflamatória"}],
   gabarito:"C",
@@ -836,7 +836,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-26", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Sobre a força tênsil da ferida cicatrizada, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Atinge cerca de 20% em 3 semanas e estabiliza em torno de 70 a 80% da pele original após meses de remodelação"},{id:"B",texto:"Atinge 100% da resistência da pele íntegra em 15 dias"},{id:"C",texto:"Não se altera após a retirada dos pontos"},{id:"D",texto:"É maior na ferida cicatrizada do que na pele íntegra, devido ao excesso de colágeno"},{id:"E",texto:"Depende exclusivamente do tipo de fio utilizado"}],
   gabarito:"A",
@@ -848,7 +848,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-27", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Uma ferida contaminada foi deixada aberta e, após cinco dias, apresentando tecido de granulação limpo e sem sinais infecciosos, foi suturada. Esse tipo de fechamento é chamado de:",
   alternativas:[{id:"A",texto:"Cicatrização por primeira intenção"},{id:"B",texto:"Cicatrização por segunda intenção"},{id:"C",texto:"Cicatrização por quarta intenção"},{id:"D",texto:"Cicatrização por terceira intenção (fechamento primário tardio)"},{id:"E",texto:"Enxertia de pele parcial"}],
   gabarito:"D",
@@ -884,7 +884,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-toce-30", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-posicionamento",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-antissepsia",
   enunciado:"Paciente em posição de litotomia por período prolongado evolui com pé caído e perda da dorsiflexão no pós-operatório. Qual é a lesão mais provável e como preveni-la?",
   alternativas:[{id:"A",texto:"Lesão do nervo femoral, prevenida com flexão máxima do quadril"},{id:"B",texto:"Lesão do plexo braquial, prevenida limitando a abdução do braço a 90°"},{id:"C",texto:"Lesão do nervo fibular comum por compressão contra a perneira, prevenida com acolchoamento na cabeça da fíbula e cuidado no posicionamento"},{id:"D",texto:"Lesão do nervo ciático, prevenida com abdução máxima das coxas"},{id:"E",texto:"Lesão medular por hiperextensão, prevenida com coxim lombar"}],
   gabarito:"C",
@@ -897,7 +897,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 // ---------- CARDIOLOGIA (construção de conhecimento) ----------
 {
   id:"q-card-01", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Em um eletrocardiograma registrado na velocidade padrão de 25 mm/s, com ritmo regular e intervalo RR de 4 quadrados grandes (20 mm), qual é a frequência cardíaca aproximada?",
   alternativas:[{id:"A",texto:"75 bpm"},{id:"B",texto:"60 bpm"},{id:"C",texto:"50 bpm"},{id:"D",texto:"100 bpm"},{id:"E",texto:"150 bpm"}],
   gabarito:"A",
@@ -909,7 +909,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-card-02", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Qual é o valor normal do intervalo PR em adultos e o que caracteriza o bloqueio atrioventricular de primeiro grau?",
   alternativas:[{id:"A",texto:"PR de 80 a 100 ms; o bloqueio de 1º grau cursa com PR encurtado"},{id:"B",texto:"PR de 120 a 200 ms; no bloqueio de 1º grau há dissociação completa entre P e QRS"},{id:"C",texto:"PR de 200 a 300 ms; no bloqueio de 1º grau há ondas P bloqueadas intermitentes"},{id:"D",texto:"PR de 120 a 200 ms; no bloqueio de 1º grau o PR é maior que 200 ms, porém toda onda P é seguida de QRS"},{id:"E",texto:"O PR não tem valor de referência, variando apenas com a idade"}],
   gabarito:"D",
@@ -921,7 +921,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-card-03", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Traçado mostra alargamento progressivo do intervalo PR batimento a batimento até que uma onda P não é conduzida, reiniciando o ciclo. Trata-se de:",
   alternativas:[{id:"A",texto:"BAV de 1º grau"},{id:"B",texto:"BAV de 2º grau Mobitz I (fenômeno de Wenckebach)"},{id:"C",texto:"BAV de 2º grau Mobitz II"},{id:"D",texto:"BAV total (3º grau)"},{id:"E",texto:"Bloqueio sinoatrial"}],
   gabarito:"B",
@@ -981,7 +981,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-card-08", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Paciente de 60 anos, hipertenso, com dor torácica típica desencadeada por esforços moderados e aliviada com repouso, há 6 meses, sem alterações no ECG de repouso. Qual é a conduta inicial mais adequada?",
   alternativas:[{id:"A",texto:"Coronariografia imediata, por se tratar de angina estável"},{id:"B",texto:"Iniciar tratamento clínico otimizado e solicitar teste não invasivo de isquemia, como teste ergométrico ou exame de imagem sob estresse"},{id:"C",texto:"Prescrever apenas analgésico e reavaliar em 6 meses"},{id:"D",texto:"Indicar revascularização cirúrgica empírica"},{id:"E",texto:"Suspender qualquer atividade física definitivamente"}],
   gabarito:"B",
@@ -1558,7 +1558,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-inf-26", banca:"Esc — Banco Didático", real:false, ano:2026,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   enunciado:"Paciente retorna da região amazônica com febre intermitente e calafrios. A gota espessa identifica Plasmodium vivax. Qual é o tratamento e por que a primaquina é necessária?",
   alternativas:[{id:"A",texto:"Cloroquina associada a primaquina, esta última para eliminar os hipnozoítos hepáticos e evitar recaídas"},{id:"B",texto:"Apenas cloroquina, pois o vivax não recidiva"},{id:"C",texto:"Artemeter-lumefantrina isolado, por 7 dias"},{id:"D",texto:"Primaquina isolada em dose única"},{id:"E",texto:"Doxiciclina por 30 dias"}],
   gabarito:"A",

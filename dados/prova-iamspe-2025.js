@@ -580,7 +580,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2025", [
 },
 {
   id:"q-iamspe2025-043", banca:"IAMSPE", real:true, ano:2025, numeroNaProva:43,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente com queixa de corrimento vaginal amarelado, de odor fétido e prurido vaginal. Referia ainda que o odor piorava após manter relações sexuais. O exame bacterioscópico do conteúdo vaginal revelou a presença de “clue cells”. Qual o provável agente etiológico desta vaginite?",
   alternativas:[{id:"A",texto:"Candida albicans."},{id:"B",texto:"Trichomonas vaginalis."},{id:"C",texto:"Gardnerella vaginalis."},{id:"D",texto:"HPV."},{id:"E",texto:"E. coli."}],
   gabarito:"C",
@@ -763,7 +763,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2025", [
 },
 {
   id:"q-iamspe2025-057", banca:"IAMSPE", real:true, ano:2025, numeroNaProva:57,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente de 23 anos, dá entrada no PS de Ginecologia com quadro de dor em baixo ventre de forte intensidade associada a um pico febril de 38,5˚ hoje. Última menstruação há 2 semanas, não utiliza método anticoncepcional no momento, vida sexual ativa. Sinais vitais normais na admissão, ao exame físico apresenta no toque bimanual dor à mobilização de colo uterino e ao especular cervicite mucopurulenta. USG transvaginal assim como exames laboratoriais realizados não mostraram alterações significativas, exceto leucocitúria de 30.000 na urina tipo 1. Qual a principal hipótese diagnóstica e a melhor conduta nesse caso?",
   alternativas:[{id:"A",texto:"Doença inflamatória aguda - internação para antibioticoterapia de amplo espectro e drenagem de abcesso tubo ovariano por videolaparoscopia."},{id:"B",texto:"Vaginose bacteriana - tratamento com creme vaginal (metronidazol) por 7 noites, abstinência sexual no período."},{id:"C",texto:"Endometrite aguda - antibiótico de amplo espectro (ceftriaxone 250mg IM dose única + doxiciclina 100mg via oral de 12/12 horas por 14 dias). Retorno se piora ou manutenção da febre por mais de 48- 72h para reavaliação."},{id:"D",texto:"Infecção do trato urinário inferior - nitrofurantoína 100mg via oral de 6/6h por 7 dias. Colher urocultura antes de iniciar tratamento."},{id:"E",texto:"Apendicite aguda - tomografia para confirmação diagnóstica. Caso confirmado indicado apendicectomia videolaparoscópica."}],
   gabarito:"C",
@@ -881,7 +881,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2025", [
 },
 {
   id:"q-iamspe2025-066", banca:"IAMSPE", real:true, ano:2025, numeroNaProva:66,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"O vírus sincicial respiratório (VSR) é uma causa frequente de infecções respiratórias em crianças, especialmente nos primeiros anos de vida. Considerando as características clínicas e epidemiológicas da infecção pelo VSR em pediatria, qual das seguintes afirmações está INCORRETA?",
   alternativas:[{id:"A",texto:"A infecção pelo VSR geralmente se manifesta com sintomas leves, como coriza, tosse e febre baixa, assemelhando-se a um resfriado comum."},{id:"B",texto:"Em lactentes, a infecção pelo VSR pode evoluir para quadros mais graves, como bronquiolite e pneumonia, com necessidade de hospitalização."},{id:"C",texto:"A transmissão do VSR ocorre principalmente por contato direto com secreções respiratórias infectadas, como saliva e muco."},{id:"D",texto:"A maioria das crianças é infectada pelo VSR pelo menos uma vez até os 2 anos de idade, sendo a primoinfecção geralmente mais grave."},{id:"E",texto:"A infecção pelo VSR confere imunidade permanente, sendo incomum a reinfecção em crianças mais velhas e adultos."}],
   gabarito:"E",

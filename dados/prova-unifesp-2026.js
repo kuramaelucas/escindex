@@ -1169,7 +1169,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-089", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:89,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Menino, 6 meses de idade, sem comorbidades, inicia com coriza e obstrução nasal, evoluindo após 2 dias com tosse e desconforto respiratório. Exame físico: bom estado geral, sibilos expiratórios, tempo expiratório prolongado, retração subcostal e de fúrcula com SpO2 = 93%. Exame complementar: teste rápido positivo para vírus sincicial respiratório. Qual das seguintes intervenções é recomendada pela Sociedade Brasileira de Pediatria?",
   alternativas:[{id:"A",texto:"Inalação salina hipertônica a 3%."},{id:"B",texto:"Broncodilatador inalatório."},{id:"C",texto:"Corticoide por via oral."},{id:"D",texto:"Oxigenoterapia inalatória."}],
   gabarito:"A",
@@ -1299,7 +1299,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-099", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:99,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-intolerancialactose",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-malabsorcao",
   enunciado:"Menino, 9 anos de idade, apresenta dor abdominal, distensão, diarreia sem sangue e flatulência que se inicia após a ingestão de leite de vaca integral. Não apresenta sintomas quando ingere iogurte. O quadro se iniciou há cerca de 2 anos. Exame físico: normal. Qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Intolerância à lactose congênita."},{id:"B",texto:"Intolerância à lactose secundária."},{id:"C",texto:"Hipolactasia do tipo adulto."},{id:"D",texto:"Alergia à lactose."}],
   gabarito:"C",

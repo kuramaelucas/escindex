@@ -284,7 +284,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 },
 {
   id:"q-amrigs2021-021", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:21,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"A cicatrização das feridas operatórias é um processo que consiste em diversas etapas. Em que tempo ocorre a epitelização completa, após o fechamento das incisões cirúrgicas?",
   alternativas:[{id:"A",texto:"30 dias."},{id:"B",texto:"5 dias."},{id:"C",texto:"3 dias."},{id:"D",texto:"1 dia."}],
   gabarito:"D",
@@ -401,7 +401,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 },
 {
   id:"q-amrigs2021-030", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:30,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Em uma lesão provocada por uma pedra, qual o tipo mais comum de ferimento?",
   alternativas:[{id:"A",texto:"Inciso."},{id:"B",texto:"Lacerante."},{id:"C",texto:"Cortocontuso."},{id:"D",texto:"Lacerocontuso."}],
   gabarito:"C",
@@ -909,7 +909,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 },
 {
   id:"q-amrigs2021-068", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:68,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Quais dos sinais e achados de exame físico a seguir caracterizam uma desidratação moderada?",
   alternativas:[{id:"A",texto:"Frequência cardíaca normal para faixa etária, choro sem lágrimas, olhos normais, pulsos periféricos finos e diurese preservada."},{id:"B",texto:"Frequência cardíaca aumentada para faixa etária, choro sem lágrimas, enoftalmia, pulsos periféricos finos, diurese diminuída com urina concentrada."},{id:"C",texto:"Frequência cardíaca normal para faixa etária, olhos secos, enoftalmia, pulsos periféricos normais e diurese normal."},{id:"D",texto:"Frequência cardíaca aumentada, lágrimas presentes, olhos normais, diurese diminuída normoconcentrada."}],
   gabarito:"",

@@ -862,3 +862,7 @@ button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
   .qcard{padding:var(--esp-2)}
   .qcard-alt{padding:.7rem .75rem;gap:.6rem}
 }
+/* No celular não há teclado: o número do atalho (1/2/3) só ocupa espaço */
+@media (hover:none), (max-width:640px){ .tecla-atalho{display:none} }
+.barra-questoes:not(.expandida) .barra-questoes-trilho{cursor:grab}
+.barra-questoes-trilho.arrastando-trilho{cursor:grabbing;user-select:none}

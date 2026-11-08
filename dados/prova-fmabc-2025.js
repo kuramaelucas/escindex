@@ -85,7 +85,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2025", [
 },
 {
   id:"q-fmabc2025-006", banca:"FMABC", real:true, ano:2025, numeroNaProva:6,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Em relação a pacientes sedentários e idosos, e considerando a caminhada na prevenção de doença arterial coronariana, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"É uma solução prática, e a frequência cardíaca (FC) deve ser avaliada antes e após o esforço."},{id:"B",texto:"Não representa uma solução prática, porém a FC deve ser avaliada antes e após o esforço."},{id:"C",texto:"Pode representar uma solução prática, e a FC deve ser avaliada antes, e não após o esforço."},{id:"D",texto:"Pode representar uma solução prática, e a FC nunca deve ser avaliada antes e após o esforço."}],
   gabarito:"A",
@@ -384,7 +384,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2025", [
 },
 {
   id:"q-fmabc2025-029", banca:"FMABC", real:true, ano:2025, numeroNaProva:29,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Devem ser características ideais de um curativo para auxiliar no processo de cicatrização, EXCETO",
   alternativas:[{id:"A",texto:"ser impermeável a micro-organismos."},{id:"B",texto:"ser isolante térmico."},{id:"C",texto:"não ser tóxico para células hospedeiras."},{id:"D",texto:"impedir trocas gasosas."}],
   gabarito:"D",
@@ -852,7 +852,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2025", [
 },
 {
   id:"q-fmabc2025-065", banca:"FMABC", real:true, ano:2025, numeroNaProva:65,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos, queixa-se de corrimento vaginal com odor fétido e dispareunia. Ao exame especular, notou-se o colo do útero hiperemiado, sangrando facilmente durante o exame, e com saída de secreção purulenta pelo orificio cervical externo. Qual é a melhor conduta?",
   alternativas:[{id:"A",texto:"Creme vaginal de miconazol."},{id:"B",texto:"Ceftriaxona + azitromicina."},{id:"C",texto:"Metronidazol."},{id:"D",texto:"Penicilina Benzatina."}],
   gabarito:"B",
@@ -943,7 +943,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2025", [
 },
 {
   id:"q-fmabc2025-072", banca:"FMABC", real:true, ano:2025, numeroNaProva:72,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Tercigesta, 11 semanas de idade gestacional, retorna à consulta de pré-natal sem queixas. Ao exame físico, apresenta úlcera indolor de bordos elevados e endurecidos na vulva. O VDRL é positivo na diluição de 1:32. A conduta, nesse caso, é",
   alternativas:[{id:"A",texto:"tratar com penicilína cristalina 5.000.000 UI, intramuscular, por 3 semanas."},{id:"B",texto:"tratar com penicilina benzatina 2.400.000 UI, intramuscular, por 3 semanas."},{id:"C",texto:"tratar com penicilina benzatina 2.400.000 UI, intramuscular, dose única."},{id:"D",texto:"tratar com doxiciclina 100 mg a cada 12 horas, durante 7 dias."}],
   gabarito:"C",
@@ -1307,7 +1307,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2025", [
 },
 {
   id:"q-fmabc2025-100", banca:"FMABC", real:true, ano:2025, numeroNaProva:100,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Em qual das condições o ácido acetilsalisílico é mais bem indicado para a profilaxia de doença cardiovascular, tendo por base protocolos de alto rigor metodológico?",
   alternativas:[{id:"A",texto:"Mulher, de 64 anos, com histórico de infarto agudo do miocárdio prévio."},{id:"B",texto:"Homem, 43 anos, tabagista 22 anos/maço."},{id:"C",texto:"Homem, 60 anos, em tratamento para hipertensão arterial sistêmica e diabetes mellitus."},{id:"D",texto:"Mulher, 32 anos, com obesidade."}],
   gabarito:"A",

@@ -266,7 +266,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-019", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:19,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-medula",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Homem, 32 anos, vítima de acidente de motocicleta, é admitido com perda de movimentação dos membros do lado direito. Exame físico: perda completa da sensibilidade ao toque, vibração e propriocepção no lado direito do corpo, perda da sensibilidade à dor e temperatura no lado esquerdo do corpo. A topografia da lesão é:",
   alternativas:[{id:"A",texto:"Hemisfério cerebral esquerdo"},{id:"B",texto:"Hemi medula espinhal"},{id:"C",texto:"Região central da medula espinhal"},{id:"D",texto:"Tronco encefálico"}],
   gabarito:"B",
@@ -345,7 +345,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-025", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:25,
-  areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-toc",
+  areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-ansiedade",
   enunciado:"Mulher, 17 anos, é trazida pela mãe ao ambulatório geral por “não querer sair de casa”. A paciente explica que precisa ficar em casa, pois lá corre menos o risco de entrar em contato com “germes” e “ficar com uma doença grave”. Sente que sair é bastante penoso, pois precisa levar lenços para cobrir maçanetas e assentos para poder tocá-los. Tem sensação subjetiva desagradável de estar suja sempre que sai de casa e tem dificuldade de pensar em qualquer outra coisa que não se limpar. Recusa-se a usar banheiros fora de sua casa, pois não são bem lavados. Em casa, tem o hábito de lavar as mãos sempre após tocar em objetos que podem ter sido usados por outros (telefone, talheres e interruptores) e se banha cerca de 3 vezes por dia. Reconhece que seus comportamentos impõem limites à sua rotina, porém entende que são preocupações lógicas com sua saúde e higiene. O dado mais relevante para se substanciar a hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"O conteúdo do pensamento voltado ao medo de contaminação."},{id:"B",texto:"A presença de pensamentos recorrentes intrusivos e comportamentos repetitivos."},{id:"C",texto:"O comportamento de esquiva que culmina com a recusa a sair de casa."},{id:"D",texto:"A crítica de estado mórbido (insight) comprometido."}],
   gabarito:"B",
@@ -858,7 +858,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-064", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:64,
-  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-teratogenese",
+  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
   enunciado:"Recém-nascido, pré-termo, apresenta hidrocefalia, anteriormente evidenciada pela presença de ventriculomegalia cerebral bilateral em exame de ultrassonografia, realizado no acompanhamento pré-natal, juntamente com microtia e fenda palatina. A mãe relata que fez uso de isotretinoína até a 5ª semana de gestação, quando descobriu a gravidez não planejada. O principal mecanismo envolvido na ocorrência das malformações congênitas descritas acima envolve:",
   alternativas:[{id:"A",texto:"Ativação dos processos de apoptose de células mesenquimais."},{id:"B",texto:"Indução na produção de espécies reativas de oxigênio e do estresse oxidativo."},{id:"C",texto:"Interferência na proliferação, migração e diferenciação de células da crista neural."},{id:"D",texto:"Interferência na proliferação e diferenciação de células neuroprogenitoras."}],
   gabarito:"C",
@@ -871,7 +871,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-065", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:65,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos, atendida em serviço de atenção secundária, relata quadros recorrentes de corrimento vaginal com odor fétido característico, especialmente após relações sexuais, e prurido leve. Ela informa ter sido diagnosticada e tratada para vaginose bacteriana três vezes nos últimos 12 meses, com melhora transitória após cada curso de metronidazol oral por sete dias. A abordagem terapêutica mais adequada é:",
   alternativas:[{id:"A",texto:"Creme vaginal de clindamicina e tratar o parceiro com metronidazol."},{id:"B",texto:"Metronidazol oral e metronidazol gel vaginal 0,75% por 4 a 6 meses."},{id:"C",texto:"Cultura e antibiograma do fluido vaginal."},{id:"D",texto:"Probióticos vaginais e suplementos de vitamina C."}],
   gabarito:"B",
@@ -989,7 +989,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-074", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:74,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Menino, 3 anos, é levado ao Pronto Atendimento com história de diarreia há cinco dias, com evacuações líquidas de sete a oito vezes ao dia. Nega vômitos e mantém ingesta de grande quantidade de líquidos açucarados, mas não está conseguindo se alimentar. Exame físico: letárgico, taquicárdico, com boa perfusão periférica, mucosas muito secas, olhos levemente encovados e turgor normal. Sódio sérico: 158mEq/L. A melhor abordagem terapêutica é a administração de:",
   alternativas:[{id:"A",texto:"Soro hipotônico"},{id:"B",texto:"Solução isotônica"},{id:"C",texto:"Solução glicosada"},{id:"D",texto:"Solução salina hipertônica"}],
   gabarito:"B",
@@ -1057,7 +1057,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-079", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:79,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   imagemUrl:"dados/imagens/q-tp20261-079.png",
   enunciado:"Mulher, 45 anos, caucasiana, com história de um ano de artralgia de articulações interfalangianas proximais em dedos das mãos e arroxeamento de dedos de mãos e pés, piores nos dias frios. Exames laboratoriais: proteína C reativa 3mg/dL (VR: < 5mg/dL), velocidade de hemossedimentação 22mm/h (VR: < 30mm/h), fator antinuclear positivo, padrão nuclear centromérico, título 1:160, dosagem de C3 e C4 normais e hemograma normal. A foto da mão da paciente está a seguir: A principal hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Síndrome de Raynaud primária"},{id:"B",texto:"Lúpus eritematoso sistêmico"},{id:"C",texto:"Artrite reumatoide"},{id:"D",texto:"Esclerose sistêmica"}],
@@ -1084,7 +1084,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-081", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:81,
-  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-caesofago",
+  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
   imagemUrl:"dados/imagens/q-tp20261-081.png",
   enunciado:"Homem, 66 anos, apresenta história de disfagia progressiva e perda ponderal de 10kg em três meses. Realizado radiograma com contraste via oral (abaixo): A conduta inicial é:",
   alternativas:[{id:"A",texto:"Tomografia computadorizada de tórax."},{id:"B",texto:"Cintilografia para pesquisa de corpo inteiro."},{id:"C",texto:"Biópsia para estudo histopatológico."},{id:"D",texto:"Ultrassonografia endoscópica para estadiamento."}],
@@ -1098,7 +1098,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-082", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:82,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 15 anos, procura atendimento médico na USF por apresentar, há alguns dias, lesões “ásperas” em região genital, com prurido discreto. Nega outros sintomas ou queixas. Ciclos menstruais regulares, faz uso de anticoncepcional hormonal oral regularmente. Nega vacinação nos últimos dez anos. Relata início de atividade sexual há seis meses, parceiro fixo, assintomático e sem lesões semelhantes. Exame físico: várias lesões verrucosas, de 2 a 3mm de diâmetro, agrupadas em região vulvar, sem sinais inflamatórios. Além do tratamento tópico e específico das lesões, há indicação de:",
   alternativas:[{id:"A",texto:"Tratamento do parceiro"},{id:"B",texto:"Antiviral sistêmico"},{id:"C",texto:"Antibiótico via oral"},{id:"D",texto:"Vacinação"}],
   gabarito:"D",
@@ -1204,7 +1204,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-090", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:90,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-tp20261-090.png",
   enunciado:"Mulher, 25 anos, apresenta queixa de dispareunia, disúria e leucorreia de coloração amarela esbranquiçada, bolhosa, com odor fétido e com leve prurido na região vulvar. Exame físico: mucosa vaginal edemaciada e hiperemiada, colo uterino com pequenos focos de hemorragia. Foi realizado exame a fresco da secreção vaginal (abaixo): O agente etiológico é:",
   alternativas:[{id:"A",texto:"Trichomonas vaginalis"},{id:"B",texto:"Candida sp."},{id:"C",texto:"Chlamydia trachomatis"},{id:"D",texto:"Neisseria gonorrhoeae"}],
@@ -1587,7 +1587,7 @@ window.EscDados.registrarQuestoes("prova-tp-2026-1", [
 },
 {
   id:"q-tp20261-119", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2026, semestre:1, numeroNaProva:119,
-  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-orbita",
+  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Mulher, 26 anos, chega à UPA referindo edema, vermelhidão, lacrimejamento e dor no olho esquerdo há dois dias. Procurou atendimento médico anteriormente, por dermatite de contato à maquiagem na mesma região. Exame físico: T 37,9ºC; FC 103bpm. Eritema, dor, calor e edema ao redor do olho, não bem delimitado, com discreta hiperemia conjuntival e redução na visão. O exame que ajudará a estabelecer o diagnóstico mais provável dessa condição é:",
   alternativas:[{id:"A",texto:"Ultrassom das órbitas e seios da face."},{id:"B",texto:"Radiografia dos seios da face e órbita."},{id:"C",texto:"Dosagem de IgE sérica."},{id:"D",texto:"Tomografia computadorizada da órbita e seios da face."}],
   gabarito:"D",

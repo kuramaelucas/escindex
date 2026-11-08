@@ -706,7 +706,7 @@ window.EscDados.registrarQuestoes("prova-famema-2021", [
 },
 {
   id:"q-famema2021-053", banca:"FAMEMA", real:true, ano:2021, numeroNaProva:53,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 20 anos de idade, G1P1A0, foi a atendimento com a equipe da saúde da família queixando-se de corrimento vaginal havia 10 dias. A abordagem da paciente foi realizada conforme o Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST) do Ministério da Saúde. Para o diagnóstico etiológico do corrimento vaginal da paciente do caso clínico 1A6-I, deve-se I fazer o teste de pH vaginal, colocando-se, por um minuto, a fita de papel indicador na parede vaginal lateral (evitando-se tocar o colo). II colher material de conteúdo vaginal para o teste de Whiff. III colher material de conteúdo vaginal para exame a fresco com soro fisiológico e hidróxido de potássio a 10%. IV colher colpocitologia cervival oncológica para o diagnóstico etiológico do corrimento. Estão corretos os itens",
   alternativas:[{id:"A",texto:"I, II e III."},{id:"B",texto:"I, III e IV."},{id:"C",texto:"I, II, IV."},{id:"D",texto:"II, III e IV."}],
   gabarito:"A",
@@ -719,7 +719,7 @@ window.EscDados.registrarQuestoes("prova-famema-2021", [
 },
 {
   id:"q-famema2021-054", banca:"FAMEMA", real:true, ano:2021, numeroNaProva:54,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 20 anos de idade, G1P1A0, foi a atendimento com a equipe da saúde da família queixando-se de corrimento vaginal havia 10 dias. A abordagem da paciente foi realizada conforme o Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST) do Ministério da Saúde. Considerando que tenha sido identificada a presença de clue cells e pH de conteúdo vaginal maior que 4,5 na paciente do caso clínico 1A6-I, assinale a opção que apresenta o diagnóstico e o procedimento a ser realizado, respectivamente.",
   alternativas:[{id:"A",texto:"tricomoníase vaginal — tratamento apenas da paciente"},{id:"B",texto:"tricomoníase vaginal — tratamento da paciente e do parceiro sexual"},{id:"C",texto:"vaginose bacteriana — tratamento apenas da paciente."},{id:"D",texto:"vaginose bacteriana — tratamento da paciente e do parceiro sexual"}],
   gabarito:"C",
@@ -1164,7 +1164,7 @@ window.EscDados.registrarQuestoes("prova-famema-2021", [
 },
 {
   id:"q-famema2021-088", banca:"FAMEMA", real:true, ano:2021, numeroNaProva:88,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Menino, 2 anos, com quadro diarreico havia 2 dias apresentou cerca de 8 evacuações por dia, com ausência de muco ou sangue, tendo sido levado à emergência devido a piora do quadro, pela presença também de vômitos — 3 episódios na última hora antes do atendimento emergencial. Sua mãe informou que ele não conseguia beber nenhum líquido. Ao exame físico, apresentava-se hipotônico, hipocorado, acianótico, anictérico, afebril, com olhos muito fundos e secos, pulsos ausentes e o sinal da prega desaparecia em 3 segundos. Considerando as recomendações do Ministério da Saúde, assinale a opção correta, referente ao caso clínico apresentado.",
   alternativas:[{id:"A",texto:"O quadro é de desidratação grave, estando indicado o plano C, para ser administrado na unidade hospitalar."},{id:"B",texto:"A criança apresenta desidratação moderada, estando indicado o plano A, na unidade hospitalar, por gastróclise."},{id:"C",texto:"Deve-se iniciar a hidratação venosa com glicose 5% associada ao soro fisiológico 0,9% para corrigir a desidratação, antes da indicação do plano a ser seguido."},{id:"D",texto:"Trata-se de desidratação leve, e o plano indicado é o B, que pode ser administrado em domicílio."}],
   gabarito:"A",

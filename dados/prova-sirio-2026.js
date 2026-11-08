@@ -60,7 +60,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
 },
 {
   id:"q-sirio2026-004", banca:"Sírio-Libanês (SP)", real:true, ano:2026, numeroNaProva:4,
-  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-hp",
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
   enunciado:"Mulher de 64 anos de idade refere dispneia aos moderados esforços há dois anos. Ela relata piora dos sintomas há duas semanas, estando atualmente com dispneia aos mínimos esforços, além de ortopneia e edema em membros inferiores. AP: HAS em uso de enalapril e furo-semida. Radiografia de tórax: cardiomegalia e derrame pleural à direita. Foi realizada toracocentese, que mostrou, em sua análise, relação entre proteína pleural e proteína sérica de 0,68, achado que pode representar falso-positivo em caso de",
   alternativas:[{id:"A",texto:"relação entre DHL do líquido pleural e DHL sérico de 0,68."},{id:"B",texto:"gradiente albumina sérico-líquido pleural de 0,9 g."},{id:"C",texto:"triglicérides de 200 mg/dL no líquido pleural."},{id:"D",texto:"colesterol do líquido pleural de 85 mg/dL."},{id:"E",texto:"NT-proBNP do líquido pleural de 3.000 pg/mL."}],
   gabarito:"E",
@@ -568,7 +568,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
 },
 {
   id:"q-sirio2026-043", banca:"Sírio-Libanês (SP)", real:true, ano:2026, numeroNaProva:43,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Um lactente de 8 meses de idade, previamente hígido, nascido a temo com peso adequado para a idade gestacional, é levado pelos pais ao pronto atendimento com história de tosse há 3 dias e febre de 38 °C há um dia, medicado com paracetamol com boa resposta. Está se alimentando normalmente, sem vômitos ou diarreia. A mãe refere que é a primeira vez que o filho adoece e que as vacinas estão atualizadas. Ao exame físico apresenta bom estado geral, corado, hidratado, com coriza hialina e obstrução nasal leve. A expiração está prolongada e sem uso de musculatura acessória, FR: 48 ipm e saturação ao oxímetro em ar ambiente: 95%. O murmúrio vesicular está presente com sibilos em ambos os hemitórax. As bulhas cardíacas estão rítmicas em 2 tempos e sem sopros, FC: 120 bpm. Abdome globoso, flácido, sem visceromegalias. Tempo de enchimento capilar de 2 segundos e pulsos periféricos de amplitudes normais. Demais dados do exame físico normais. Realizado teste rápido para Influenza e Covid-19, que resultaram negativos, e teste rápido para Vírus Sincicial respiratório que resultou positivo. Qual a conduta mais adequada para esse caso?",
   alternativas:[{id:"A",texto:"Inalação com salbutamol por 3 dias."},{id:"B",texto:"Inalação com budesonida por 5 dias."},{id:"C",texto:"Ozeltamivir oral por 5 dias."},{id:"D",texto:"Amoxicicilina oral por 10 dias."},{id:"E",texto:"Lavagem nasal e inalação com soro fisiológico."}],
   gabarito:"E",
@@ -946,7 +946,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
 },
 {
   id:"q-sirio2026-072", banca:"Sírio-Libanês (SP)", real:true, ano:2026, numeroNaProva:72,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Gestante comparece à segunda consulta de pré-natal, ainda no primeiro trimestre, trazendo resultado de VDRL 1/8. Nega tratamento anterior para sífilis. É alérgica à penicilina. A conduta correta para o caso é",
   alternativas:[{id:"A",texto:"realizar um teste treponêmico; se positivo, tratamento com eritromicina."},{id:"B",texto:"sem a necessidade de teste treponêmico, tratamento com eritromicina."},{id:"C",texto:"realizar um teste treponêmico; se positivo, dessensibilização para tratamento com penicilina benzatina."},{id:"D",texto:"sem a necessidade de teste treponêmico, tratamento com clindamicina."},{id:"E",texto:"realizar um teste treponêmico; se positivo, tratamento com clindamicina."}],
   gabarito:"C",
@@ -1245,7 +1245,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
 },
 {
   id:"q-sirio2026-095", banca:"Sírio-Libanês (SP)", real:true, ano:2026, numeroNaProva:95,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Um paciente de 23 anos, homossexual masculino, procura atendimento em uma UBS relatando corrimento uretral purulento e disúria há 3 dias. Relata múltiplos parceiros sexuais nos últimos meses, sem uso regular de preservativo. Nessa situação, a conduta mais adequada a ser tomada pela equipe de saúde é",
   alternativas:[{id:"A",texto:"prescrever antibióticos e orientar sobre o uso de preservativo, restringindo a abordagem apenas aos aspectos biomédicos, evitando discussões sobre estigma ou sexualidade para não gerar constrangimento ao paciente."},{id:"B",texto:"iniciar imediatamente a investigação sorológica para Infecções Sexualmente Transmissíveis (IST) e notificar os parceiros sexuais do paciente antes de iniciar o tratamento, priorizando o controle epidemiológico da doença."},{id:"C",texto:"garantir tratamento sindrômico imediato para uretrite, solicitar exames complementares quando indicados, reforçar medidas de prevenção, oferecer aconselhamento sobre IST, acolhendo o paciente sem discriminação e respeitando sua orientação sexual."},{id:"D",texto:"oferecer suporte clínico inicial e propor o envolvimento da família como principal estratégia de apoio emocional, visando reduzir o risco de abandono do tratamento."},{id:"E",texto:"realizar a conduta médica indicada para uretrite e encaminhar o paciente ao serviço social, entendendo que as demandas relacionadas à sexualidade e ao enfrentamento do estigma devem ser trabalhadas prioritariamente por esse setor."}],
   gabarito:"C",
@@ -1310,7 +1310,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
 },
 {
   id:"q-sirio2026-100", banca:"Sírio-Libanês (SP)", real:true, ano:2026, numeroNaProva:100,
-  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-incorporacao",
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
   enunciado:"Um médico residente em infectologia acompanha paciente com hepatite C crônica em hospital público. Ele discute com o preceptor o uso de antivirais de ação direta, drogas muito eficazes, mas de alto custo. O preceptor explica que esses medicamentos só passaram a ser fornecidos pelo SUS após um processo de análise de evidências e custos, e que seu uso está descrito em documento oficial que orienta diagnóstico, tratamento e acompanhamento. Nesse caso, é correto afirmar que",
   alternativas:[{id:"A",texto:"a decisão de fornecer o medicamento no SUS depende exclusivamente do julgamento clínico do médico assistente."},{id:"B",texto:"o registro do medicamento na Anvisa é condição necessária para sua comercialização, mas a oferta no SUS exige processo de avaliação e protocolos específicos."},{id:"C",texto:"o fornecimento de medicamentos de alto custo pelo SUS ocorre apenas quando há determinação judicial."},{id:"D",texto:"a incorporação dos antivirais no SUS resultou de Avaliação de Tecnologias em Saúde (ATS), e seu uso deve seguir o Protocolo Clínico e Diretriz Terapêutica (PCDT) da hepatite C."},{id:"E",texto:"o SUS pode adotar protocolos internacionais livremente, sem necessidade de documentos próprios, como os PCDT."}],
   gabarito:"D",

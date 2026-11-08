@@ -1073,7 +1073,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-080", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:80,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Gestante de 32 anos, G2P1, idade gestacional de 18 semanas e 2 dias. Na consulta pré-natal refere corrimento e queimação vulvar. Refere ser o segundo episódio nesta gestação. Ao exame especular conteúdo branco grumoso, pH 4,0, microscopia com hidróxido de potássio (KOH) 10% mostrando pseudohifas. Qual a conduta mais adequada para esta gestante?",
   alternativas:[{id:"A",texto:"Fluconazol 150mg via oral dose única."},{id:"B",texto:"Miconazol creme vaginal 10 noites."},{id:"C",texto:"Nistatina creme vaginal 10 noites."},{id:"D",texto:"Óvulos vaginais de bicarbonato de sódio a 10% por 10 dias."}],
   gabarito:"B",

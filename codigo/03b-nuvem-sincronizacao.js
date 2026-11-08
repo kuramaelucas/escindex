@@ -587,6 +587,8 @@ async function nuvemBaixarGlobais(){
       if(l.atualizado_em > maior) maior = l.atualizado_em;
     });
     if(maior !== desde) db.nuvem.marcas[tabela] = maior;
+    // o servidor ainda guarda linhas com o id de um assunto que foi fundido
+    aplicarFusoesDeAssuntos();
   }
 }
 async function nuvemEnviarGlobaisPendentes(){
@@ -726,6 +728,8 @@ async function nuvemReceberMudancas(){
     // a marca d'água usa o relógio DO SERVIDOR (o horário que veio na linha),
     // nunca o do computador — relógio adiantado no celular pularia registros
     if(maior !== desde) db.nuvem.marcas[tabela] = maior;
+    // o servidor ainda guarda linhas com o id de um assunto que foi fundido
+    aplicarFusoesDeAssuntos();
   }
 }
 

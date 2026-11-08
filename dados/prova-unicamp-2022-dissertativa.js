@@ -324,7 +324,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 },
 {
   id:"q-unicampdis2022-022", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:22,
-  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-caesofago",
+  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
   tipo:"dissertativa", respostaEsperada:"Fístula traqueoesofágica (esofagotraqueal), com broncoaspiração.",
   enunciado:"Homem, 57a, refere dificuldade em se alimentar com alimentos sólidos e depois a líquidos há três meses, associada a perda de peso de 5 Kg no período. Há uma semana apresenta tosse todas as vezes que tenta ingerir líquidos e com a própria saliva. Antecedente pessoal: alcoolista e tabagista há longo tempo. A endoscopia mostra uma lesão vegetante e estenosante de esôfago a 22 cm da arcada dentária superior. A COMPLICAÇÃO CLÍNICA DESCRITA HÁ UMA SEMANA ASSOCIADA A ESSE DIAGNÓSTICO É:",
   alternativas:[],

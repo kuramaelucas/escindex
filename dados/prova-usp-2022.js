@@ -1028,7 +1028,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 {
   id:"q-usp2022-076", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:76,
   imagemUrl:"dados/imagens/q-usp2022-076.jpg", imagemLegenda:"Radiografia contrastada de esôfago, estômago e duodeno",
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Mulher, 46 anos de idade, refere dor torácica e regurgitação após refeições há 2 anos, com piora progressiva. Quando tem dor, apresenta melhora após a ingestão de líquidos. A queixa é mais intensa após refeições sólidas, evitando alimentos com esta consistência. Associadamente tem regurgitação durante o sono. Perdeu 5 Kg (IMC atual: 20 kg/m2). Realizou endoscopia digestiva alta, com achado de esofagite erosiva distal leve (grau A de Los Angeles) e gastrite erosiva leve de antro. Iniciou uso pantoprazol sem melhora dos sintomas. Retornou à consulta, quando foi solicitada uma radiografia contrastada de esôfago, estômago e duodeno. Considerando a principal hipótese diagnóstica, qual é o tratamento?",
   alternativas:[{id:"A",texto:"Esofagectomia subtotal."},{id:"B",texto:"Hiatoplastia e fundoplicatura parcial."},{id:"C",texto:"Hiatoplastia e fundoplicadura total."},{id:"D",texto:"Cardiomiotomia e fundoplicatura parcial."}],
   gabarito:"D",
@@ -1082,7 +1082,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 {
   id:"q-usp2022-080", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:80,
   imagemUrl:"dados/imagens/q-usp2022-080.jpg", imagemLegenda:"Fotografia com a demarcação das margens da ressecção no couro cabeludo",
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 94 anos de idade, notou aparecimento de lesão crostosa e elevada na região parietal direita, de crescimento gradativo, há 6 meses. A biópsia prévia confirmou carcinoma espinocelular superficialmente invasivo, bem diferenciado. A imagem a seguir mostra a demarcação das margens oncológicas para carcinoma espinocelular, tendo como margem profunda a ressecção da gálea aponeurótica e o periósteo. Neste caso, qual é a melhor técnica para reconstrução e cobertura do defeito?",
   alternativas:[{id:"A",texto:"Retalho cutâneo microcirúrgico."},{id:"B",texto:"Retalho cutâneo de transposição."},{id:"C",texto:"Enxertia de pele espessura parcial."},{id:"D",texto:"Enxertia de pele espessura total."}],
   gabarito:"B",

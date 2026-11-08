@@ -517,7 +517,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 {
   id:"q-usp2026-038", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:38,
   imagemUrl:"dados/imagens/q-usp2026-038.jpg", imagemLegenda:"Fotografia da lesão no membro inferior",
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 28 anos de idade, vítima de atropelamento com trauma do membro inferior esquerdo. Após 7 dias de internação, observa-se lesão no membro acometido, sem solução de continuidade com meio externo. Ao exame físico, a escara cutânea está descolada da profundidade e apresenta grande hematoma subcutâneo, sem perfusão cutânea adequada, conforme imagem a seguir: Assinale a alternativa que apresenta o provável diagnóstico e a conduta cirúrgica mais adequada.",
   alternativas:[{id:"A",texto:"Fasceite necrotizante; Punção diagnóstica para colheita de material para cultura, curativo oclusivo simples."},{id:"B",texto:"Fasceite necrotizante; Incisão, drenagem de hematoma, colheita de material para cultura e instalação de curativo por pressão negativa."},{id:"C",texto:"Ferimento descolante oculto; Ressecção da pele desvitalizada, limpeza cirúrgica e realização de curativo por pressão negativa."},{id:"D",texto:"Ferimento descolante oculto; Ressecção e enxertamento da pele descolada, enxertia da pele emagrecida sobre o leito cruento."}],
   gabarito:"C",
@@ -734,7 +734,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 {
   id:"q-usp2026-054", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:54,
   imagemUrl:"dados/imagens/q-usp2026-054.jpg", imagemLegenda:"As quatro alternativas são traçados eletrocardiográficos (A, B, C e D)",
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Criança, sexo masculino, 4 anos de idade, foi admitido no pronto-socorro devido a quadro de diarreia e vômitos há 3 dias, em grande quantidade. Na admissão, apresentava sinais de instabilidade hemodinâmica, sendo iniciada expansão volêmica. O resultado da gasometria venosa coletada na admissão foi o seguinte: pH: 7,29 HCO3: 15 mmol/L Na+: 128 mEq/L K+: 3,9 mEq/L Ca2+: 4,92 mg/dL Frente aos dados clínicos e laboratoriais apresentados, qual é o traçado eletrocardiográfico esperado?",
   alternativas:[{id:"A",texto:"Traçado A (ver figura)."},{id:"B",texto:"Traçado B (ver figura)."},{id:"C",texto:"Traçado C (ver figura)."},{id:"D",texto:"Traçado D (ver figura)."}],
   gabarito:"",
@@ -1194,7 +1194,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-088", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:88,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Homem e sua companheira iniciaram tratamento para tuberculose pulmonar há 7 dias. A equipe da unidade básica de saúde realiza visita domiciliar a fim de avaliar os contactantes domiciliares do caso. Na casa, além do casal, mora a filha com 26 dias de vida, assintomática, com bom ganho de peso, em aleitamento materno exclusivo, vacinação de acordo com o calendário vacinal do Programa Nacional de Imunização. Assinale a alternativa que apresenta a conduta adequada para a criança.",
   alternativas:[{id:"A",texto:"Realizar prova tuberculínica."},{id:"B",texto:"Tratar para Infecção Latente de Tuberculose (ILTB)."},{id:"C",texto:"Realizar Ensaio de Liberação de Interferon-gama (IGRA)."},{id:"D",texto:"Solicitar radiografia de tórax."}],
   gabarito:"B",
@@ -1482,7 +1482,7 @@ window.EscDados.registrarQuestoes("prova-usp-2026", [
 },
 {
   id:"q-usp2026-110", banca:"USP-SP (FMUSP)", real:true, ano:2026, numeroNaProva:110,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 24 anos de idade, com queixa de corrimento vaginal amarelado e aumento da secreção nas últimas 48 horas, sem prurido vaginal. Refere dor leve no hipogástrio, sem febre. Ao exame especular, observa-se conteúdo mucopurulento na endocérvice e discreto sangramento. Ao toque, o colo é friável. O teste rápido de Amplificação de Ácido Nucleico (NAAT) é positivo para Neisseria gonorrhoeae e Chlamydia trachomatis. Assinale a alternativa que apresenta o tratamento mais adequado e eficaz atualmente.",
   alternativas:[{id:"A",texto:"Doxiciclina 100 mg VO por 7 dias em monoterapia."},{id:"B",texto:"Ceftriaxona 500 mg IM em dose única e doxiciclina 100 mg VO por 7 dias."},{id:"C",texto:"Ceftriaxona 500 mg IM em dose única e azitromicina 1 g VO em dose única."},{id:"D",texto:"Azitromicina 1 g VO em duas doses com 7 dias de intervalo."}],
   gabarito:"C",

@@ -55,7 +55,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-003", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:3,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Um paciente de 72 anos, hipertenso e diabético, é admitido no pronto-socorro com dor torácica opressiva há 40 minutos. O médico solicita um eletrocardiograma para avaliação inicial. Analise o traçado considerando os critérios de sobrecarga ventricular esquerda:",
   alternativas:[{id:"A",texto:"Onda R em aVL > 13 mm."},{id:"B",texto:"Critério de Cornell: SV3 + RaVL ≥ 28 mm (homem) ou ≥ 20 mm (mulher)."},{id:"C",texto:"Índice de Sokolow-Lyon: SV1 + RV5 ou RV6 ≥ 25 mm."},{id:"D",texto:"Duração do QRS > 120 ms."},{id:"E",texto:"Desvio do eixo elétrico para a esquerda < −30°."}],
   gabarito:"B",
@@ -81,7 +81,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-005", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:5,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Um homem de 50 anos, com histórico de doença pulmonar obstrutiva crônica (DPOC) há 15 anos, realiza um eletrocardiograma de rotina. O laudo menciona achados sugestivos de sobrecarga atrial direita. Identifique o achado eletrocardiográfico característico desta condição:",
   alternativas:[{id:"A",texto:"Onda P com duração > 120 ms e entalhe em DII (P mitrale)."},{id:"B",texto:"Onda P com amplitude > 0,25 mV em DII (P pulmonale)."},{id:"C",texto:"Porção final negativa da onda P em V1 com área > 40 ms x 0,1 mV (Índice de Morris)."},{id:"D",texto:"Desvio do eixo da onda P para a esquerda, entre –30° e –45°."},{id:"E",texto:"Onda P positiva e apiculada, seguida de segmento PR isoelétrico."}],
   gabarito:"B",
@@ -302,7 +302,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-022", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:22,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Durante consulta de seguimento habitual de Hipertensão Arterial na Unidade Básica de Saúde, seu paciente masculino de 67 anos pede sua avaliação sobre ferimento em sua perna. Ele teve um trauma leve há cerca de 7 dias com área de 3 cm de afastamento de bordos cutâneos, com exposição de tecido subcutâneo. No momento, a ferida apresenta-se seca, bordos ligeiramente elevados e róseos claros, com uma crosta sobre cicatrização da ferida. Aponte a alternativa correta:",
   alternativas:[{id:"A",texto:"Um curativo oclusivo sobre o ferimento proporciona um pH levemente ácido e com baixa tensão de oxigênio na superfície da ferida."},{id:"B",texto:"A taxa de epitelização de ferida sob um curativo oclusivo é semelhante à de uma ferida deixada descoberta."},{id:"C",texto:"Por manter a borda afastada mesmo após 7 dias, está indicado o fechamento primário para acelerar cicatrização."},{id:"D",texto:"A profilaxia antitetânica é importante, mas como o paciente não apresenta ferimento causado por objeto enferrujado ou animal, não há risco de tétano neste caso."},{id:"E",texto:"Neste caso, há indicação de antibioticoterapia oral neste momento."}],
   gabarito:"A",
@@ -589,7 +589,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-044", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:44,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente com queixa de corrimento vaginal de odor fétido, que piora durante a menstruação. Ao exame observado corrimento abundante, branco acinzentado e com pequenas bolhas. Após adição de KOH a 10% sobre uma gota do conteúdo vaginal notou-se odor semelhante a peixe cru. Qual o provável agente etiológico?",
   alternativas:[{id:"A",texto:"Trichomonas vaginalis"},{id:"B",texto:"Candida albicans"},{id:"C",texto:"Gardnerella vaginalis"},{id:"D",texto:"E. coli"},{id:"E",texto:"HPV"}],
   gabarito:"C",
@@ -641,7 +641,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-048", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:48,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente de 25 anos, previamente sem queixas ginecológicas, procura o PS de Ginecologia com quadro de dor em baixo-ventre de forte intensidade associada à febre nos últimos 3 dias. Vida sexual ativa, sem método contraceptivo no momento. Na admissão apresentava-se normotensa, temperatura axilar de 38,5 °C, frequência cardíaca de 100 bpm. No exame físico tinha descompressão brusca abdominal dolorosa, dor à mobilização de colo uterino ao toque bimanual e à palpação de fundo de saco de Douglas, além de cervicite mucopurulenta no exame especular. Presença de leucocitose com desvio à esquerda e aumento de 5 vezes o valor de referência laboratorial para PCR. USG transvaginal mostrava imagens anexiais bilaterais, 7 cm à direita e 9 cm à esquerda, com conteúdo heterogêneo e debris no seu interior, sem fluxo vascular ao doppler, com moderada quantidade de líquido livre na cavidade pélvica. Qual a principal hipótese diagnóstica e a melhor conduta nesse caso?",
   alternativas:[{id:"A",texto:"Doença inflamatória pélvica aguda grau III (abcesso tubo ovariano roto) - internação para antibioticoterapia de amplo espectro e drenagem de abcesso tubo ovariano por videolaparoscopia."},{id:"B",texto:"Tumor de ovário estadiamento IIIC (doença extra-pélvica). Indicado laparoscopia diagnóstica para drenagem de ascite e realização de biópsia de congelação. Confirmando malignidade na congelação, avaliar citorredução primária (debulking)."},{id:"C",texto:"Doença inflamatória pélvica aguda grau I/II - antibiótico de amplo espectro domiciliar. Retorno se piora ou manutenção da febre por mais 48-72 h para reavaliação."},{id:"D",texto:"Endometriose profunda com endometriomas ovarianos bilaterais. Medicar com analgésicos e AINEs, bloquear menstruação com anticoncepcionais orais combinados e referenciar à centro especializado em endometriose."},{id:"E",texto:"Torção anexial aguda. Indicado cirurgia de urgência para tentativa de distorção ovariana e preservação gonadal."}],
   gabarito:"A",
@@ -891,7 +891,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-067", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:67,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente de 3 meses, no 4º dia de sintomas respiratórios altos, evolui com taquipneia, tiragens subcostais e sibilância difusa; saturação em ar ambiente 90%. Sem comorbidades conhecidas. Indique a conduta imediata mais apropriada na admissão:",
   alternativas:[{id:"A",texto:"Solicitar radiografia de tórax e indicar alta após resultado."},{id:"B",texto:"Prescrever broncodilatador inalatório de rotina e liberar domicílio."},{id:"C",texto:"Solicitar PCR viral e manter observação domiciliar por 24 h."},{id:"D",texto:"Iniciar oxigenoterapia e indicar internação por hipoxemia."},{id:"E",texto:"Iniciar antibiótico empírico por via oral e reavaliar em 48 h."}],
   gabarito:"D",
@@ -904,7 +904,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-068", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:68,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-intolerancialactose",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-malabsorcao",
   enunciado:"Lactente de 8 meses inicia fezes líquidas e ácidas logo após reintrodução de fórmula com lactose após quadro viral recente; há dermatite perianal e melhora parcial com jejum curto, piora após mamadas. Sem sangue nas fezes, sem toxemia. Estabelecer o mecanismo fisiopatológico predominante para o quadro e sua base conceitual:",
   alternativas:[{id:"A",texto:"Promover hipersecreção de íons para a luz intestinal como evento primário."},{id:"B",texto:"Desencadear inflamação invasiva da mucosa com exsudação proteica."},{id:"C",texto:"Acelerar o trânsito intestinal por hiperatividade do reflexo gastrocólico como fator principal."},{id:"D",texto:"Ativar toxinas bacterianas enterotóxicas e manter perdas hídricas independentemente da ingesta."},{id:"E",texto:"Acumular solutos intraluminais não absorvidos e aumentar a osmolaridade intestinal, produzindo diarreia que melhora com jejum."}],
   gabarito:"E",
@@ -930,7 +930,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2026", [
 },
 {
   id:"q-iamspe2026-070", banca:"IAMSPE", real:true, ano:2026, numeroNaProva:70,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Um lactente de 4 meses é levado ao pronto- socorro com diarreia aquosa e vômitos há 24 horas. Ao exame, o médico nota que a criança está letárgica, hipotônica, com olhos muito fundos e secos, e não é capaz de beber a solução de reidratação oferecida. O enchimento capilar está muito prejudicado (acima de 5 segundos). Identifique a classificação do estado de hidratação e o plano terapêutico imediato:",
   alternativas:[{id:"A",texto:"Desidratação grave (Plano C), indicando terapia de reidratação parenteral."},{id:"B",texto:"Desidratação (Plano B), devendo iniciar SRO 50-100 mL/kg em 4-6 horas na unidade."},{id:"C",texto:"Ausência de desidratação (Plano A), indicando apenas suplementação de zinco e líquidos caseiros."},{id:"D",texto:"Desidratação (Plano B) com falha da via oral, indicando reidratação por sonda nasogástrica (gastróclise)."},{id:"E",texto:"Desidratação leve (Plano A), pois o sinal da prega cutânea não foi mencionado."}],
   gabarito:"A",

@@ -35,7 +35,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 },
 {
   id:"q-fmabc2026-002", banca:"FMABC", real:true, ano:2026, numeroNaProva:2,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente do sexo masculino, 21 anos, relata aparecimento de corrimento uretral mucoide associado a prurido em região genital. Relata ser sexualmente ativo e ter tido relações sexuais desprotegidas nos últimos meses. No momento da consulta, não é possível realizar exame bacterioscópico. Qual seria a conduta mais adequada nesse caso?",
   alternativas:[{id:"A",texto:"Ceftriaxone 500 mg, por via intramuscular, em dose única e azitromicina 1 g, por via oral, em dose única."},{id:"B",texto:"Doxiciclina 100 mg, por via oral, de 12 em 12 horas, por 7 dias."},{id:"C",texto:"Secnidazol 2 g, por via oral, em dose única."},{id:"D",texto:"Metronidazol 500 mg, por via oral, de 12 em 12 horas, por 7 dias, e doxiciclina 100 mg, por via oral, de 12 em 12 horas, por 7 dias."}],
   gabarito:"A",
@@ -321,7 +321,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 },
 {
   id:"q-fmabc2026-024", banca:"FMABC", real:true, ano:2026, numeroNaProva:24,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"A cicatrização das feridas, quando em desequilíbrio, pode gerar cicatrizes hipertróficas e queloide. Sobre a cicatrização anormal de feridas, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Fatores intrínsecos, como agentes quimioterápicos, aterosclerose, insuficiência cardíaca ou renal, não apresentam influência no processo de cicatrização."},{id:"B",texto:"As cicatrizes hipertróficas e queloideanas são causadas pela falta de deposição de colágeno, gerando uma cicatriz fibrótica e de grande volume."},{id:"C",texto:"São mais frequentes em indivíduos de pele clara e europeus."},{id:"D",texto:"As cicatrizes hipertróficas contêm principalmente colágeno tipo III bem organizado, enquanto os queloides apresentam colágeno tipos I e III dispostos de forma desorganizada."}],
   gabarito:"D",
@@ -622,7 +622,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 },
 {
   id:"q-fmabc2026-047", banca:"FMABC", real:true, ano:2026, numeroNaProva:47,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Menina de 10 anos é levada pela mãe à consulta de rotina. Mãe relata que paciente vem reduzindo a ingesta alimentar e tem se tornado mais seletiva para comer. Paciente queixa-se de que sente dor em região epigástrica durante as refeições e tem a sensação de que os alimentos ficam parados, sendo necessário ingerir líquidos para melhorar essa sensação. De antecedente, paciente com rinite. No exame físico, paciente com perda ponderal de 2 kg em 4 meses. Sem outras alterações. A respeito da principal hipótese diagnóstica e da conduta mais adequada para esse caso, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Acalasia. Solicitar seriografia contrastada do esôfago e manometria esofágica."},{id:"B",texto:"Esofagite eosinofílica. Solicitar endoscopia digestiva alta com biópsias seriadas do esôfago."},{id:"C",texto:"Esofagite erosiva. Solicitar endoscopia digestiva alta."},{id:"D",texto:"Distúrbio alimentar. Encaminhar paciente para avaliação com psicologia."}],
   gabarito:"B",
@@ -635,7 +635,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 },
 {
   id:"q-fmabc2026-048", banca:"FMABC", real:true, ano:2026, numeroNaProva:48,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente de 3 meses, nascido prematuro de 32 semanas, com história de displasia broncopulmonar, é admitido no pronto-socorro em abril com quadro de tosse seca, febre baixa e desconforto respiratório progressivo há 48h. Ao exame físico: FC = 170 bpm, FR = 78 ipm, SAT = 88% em aa, gemência audível sem esteto, MV+ com sibilos difusos e roncos e TSC importante. Diante desse quadro, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"O uso de antibióticos deve ser iniciado precocemente, pois a coinfecção bacteriana ocorre em mais de 50% dos casos de bronquiolite."},{id:"B",texto:"O suporte ventilatório não invasivo com CPAP nasal pode ser considerado em casos refratários ao O2 suplementar por cateter, reduzindo a necessidade de intubação orotraqueal."},{id:"C",texto:"Corticoterapia sistêmica está indicada em lactentes com bronquiolite grave, pois reduz a resposta inflamatória das vias aéreas e melhora a evolução clínica."},{id:"D",texto:"O uso de broncodilatadores inalados, mesmo sem resposta inicial, deve ser mantido, pois seu benefício pode surgir tardiamente no curso da doença."}],
   gabarito:"B",
@@ -986,7 +986,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 },
 {
   id:"q-fmabc2026-075", banca:"FMABC", real:true, ano:2026, numeroNaProva:75,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 23 anos, nuligesta, apresenta dor abdominal baixa e do tipo difusa há 4 dias, febre 38,2°C, leucorreia purulenta e dispareunia. Refere início recente de relações sexuais, sem uso de preservativos. Ao exame: dor à mobilização cervical, sensibilidade uterina e anexial bilateral. Laboratório: leucocitose 14.500 / mm³, PCR 35 mg/L. Diante desse caso, qual é o manejo mais adequado?",
   alternativas:[{id:"A",texto:"Prescrição de contraceptivo hormonal para reduzir os sintomas inflamatórios."},{id:"B",texto:"Alta ambulatorial com orientação de analgésicos."},{id:"C",texto:"Antibioticoterapia oral ou intravenoso, conforme gravidade."},{id:"D",texto:"Cirurgia imediata."}],
   gabarito:"C",
@@ -999,7 +999,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 },
 {
   id:"q-fmabc2026-076", banca:"FMABC", real:true, ano:2026, numeroNaProva:76,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 30 anos, G1P1, queixa-se de corrimento vaginal branco leitoso, prurido intenso e leve disúria; nega odor fétido. Relata história de infecções tratadas com antifúngicos, sem melhora do quadro. Qual é o exame indicado para diferenciar vaginose citolítica de candidíase recorrente?",
   alternativas:[{id:"A",texto:"Teste das aminas positivo (Whiff test)."},{id:"B",texto:"Colposcopia com teste de Schiller negativo."},{id:"C",texto:"Exame de microscopia com citólise epitelial e lactobacilos em excesso."},{id:"D",texto:"Exame especular."}],
   gabarito:"C",
@@ -1025,7 +1025,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 },
 {
   id:"q-fmabc2026-078", banca:"FMABC", real:true, ano:2026, numeroNaProva:78,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 20 anos, procura atendimento por corrimento mucopurulento genital, associado a sangramento pós-coito. Exame especular: colo hiperemiado, saída de secreção amarelada pelo orifício cervical externo. Não apresenta dor pélvica e nega febre. Assinale a alternativa que apresenta o provável diagnóstico e a conduta adequada nesse caso.",
   alternativas:[{id:"A",texto:"Endometrite bacteriana; tratar com amoxicilina VO por 7 dias."},{id:"B",texto:"Cervicite gonocócica; tratar com ceftriaxona IM e associar azitromicina VO."},{id:"C",texto:"Endometrite; indicar curetagem uterina diagnóstica."},{id:"D",texto:"Cervicite específica por tricomoníase; tratar com metronidazol gel vaginal."}],
   gabarito:"B",

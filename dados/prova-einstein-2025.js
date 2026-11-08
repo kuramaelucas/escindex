@@ -441,7 +441,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 },
 {
   id:"q-einstein2025-033", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:33,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Lactente de 9 meses com quadro de diarreia aguda há três dias, acompanhada de vômitos pontuais e febre baixa. Ao exame físico, a criança apresenta sinais de desidratação, com mucosas secas, olhos fundos, irritabilidade e diminuição da elasticidade da pele. Restante do exame: FC = 148 bpm, PA = 100 x 55 (74) mmHg, pulsos cheios, presença de lágrimas, fontanela anterior normotensa. Com base nas diretrizes do Ministério da Saúde para manejo da desidratação na criança com diarreia, qual é a conduta inicial mais apropriada para esse caso?",
   alternativas:[{id:"A",texto:"Iniciar terapia de reidratação oral e monitorar a resposta clínica."},{id:"B",texto:"Solicitar exames laboratoriais para avaliar eletrólitos e função renal antes de iniciar qualquer intervenção."},{id:"C",texto:"Iniciar reidratação intravenosa imediatamente com soro fisiológico ou ringer lactato."},{id:"D",texto:"Iniciar reidratação intravenosa com soro glicosado 5% e soro fisiológico em partes iguais."}],
   gabarito:"A",
@@ -676,7 +676,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 },
 {
   id:"q-einstein2025-051", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:51,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Homem transgênero de 25 anos, ainda não submetido à cirurgia de redesignação de gênero, comparece à consulta com queixa de corrimento e prurido genital intenso. Em amenorreia desde o início do uso de testosterona há 6 meses. Ao exame físico cuidadoso, presença de escoriações em vulva, conteúdo vaginal amarelo fluido abundante, hipotrofismo e presença de múltiplas diminutas erosões esparsas, orifício externo do colo puntiforme, pH alcalino. A hipótese diagnóstica mais provável é:",
   alternativas:[{id:"A",texto:"vaginose bacteriana."},{id:"B",texto:"tricomoníase."},{id:"C",texto:"vaginite aeróbia."},{id:"D",texto:"vaginose citolítica."}],
   gabarito:"C",
@@ -715,7 +715,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 },
 {
   id:"q-einstein2025-054", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:54,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Gestante com sorologias de sífilis não reagentes, no início do pré-natal, retorna na 28ª semana com teste treponêmico positivo. É correto afirmar que",
   alternativas:[{id:"A",texto:"se trata de caso de sífilis em gestante, em fase latente tardia."},{id:"B",texto:"pode ser um resultado falso positivo, especialmente se o título for menor ou igual a 1/4."},{id:"C",texto:"o tratamento consiste em benzilpenicilina benzatina na dose de 2,4 milhões UI, intramuscular, 1 x/semana por 3 semanas."},{id:"D",texto:"após o tratamento, o aumento do título do VDRL, em duas diluições, indica retratamento."}],
   gabarito:"D",
@@ -780,7 +780,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 },
 {
   id:"q-einstein2025-059", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:59,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 32 anos, sexualmente ativa, usuária de contraceptivo oral e sem método de barreira, apresenta- se ao pronto socorro hospitalar com quadro de dor pélvica progressiva de início espontâneo há 5 dias. Nega adinamia e alteração do apetite. Ao exame físico: bom estado geral, temperatura de 38,5 graus Celsius, secreção cervical purulenta, dor à mobilização do colo uterino e ao toque bimanual com palpação dos anexos. Apresenta hemograma com leucócitos de 13950/mm³ e PCR de 57 mg/L. BHCG negativo e ultrassonografia transvaginal evidenciando espessamento tubário direito e pequena quantidade de líquido livre na pelve. Diante da hipótese de doença inflamatória pélvica aguda, neste caso, recomenda-se",
   alternativas:[{id:"A",texto:"antibioticoterapia de amplo espectro via oral, por 14 dias, com reavaliação clínica em 3 dias."},{id:"B",texto:"internação para antibioticoterapia de amplo espectro endovenosa, esperando 48 horas por melhora, considerando-se cirurgia em caso negativo."},{id:"C",texto:"antibioticoterapia de amplo espectro via oral, por 14 dias, com reavaliação clínica em 7 dias."},{id:"D",texto:"internação para laparoscopia e drenagem de abscesso pélvico, seguida de antibioticoterapia de amplo espectro endovenosa."}],
   gabarito:"A",

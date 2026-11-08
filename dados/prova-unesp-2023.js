@@ -133,7 +133,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-009", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:9,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Sobre a bronquiolite viral aguda, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"É comum a ocorrência de diarreia ou vômito."},{id:"B",texto:"Geralmente é precedida por uma síndrome respiratória viral na semana anterior, apresentando, como desenvolvimento inicial, taquipneia leve, com pouca quantidade de secreção."},{id:"C",texto:"A oximetria de pulso contínua é indicada em pacientes internados com suportes ventilatórios como cateter, a fim de evitar-se a coleta desnecessária de gasometrias."},{id:"D",texto:"A taxa de letalidade é de 10%, com morte atribuível à apneia, parada cardiorrespiratória ou crises convulsivas."}],
   gabarito:"B",
@@ -515,7 +515,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-038", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:38,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Em relação ao abscesso tubo-ovariano, é correto afirmar que:",
   alternativas:[{id:"A",texto:"o tratamento cirúrgico é mandatório e emergencial para as pacientes sépticas, com abscessos rotos ou naqueles com diâmetros acima de 10 centímetros."},{id:"B",texto:"o tratamento ambulatorial pode ser considerado nas pacientes com boa compreensão do tratamento e que estejam em bom estado geral, desde que o maior diâmetro do abscesso seja inferior a 5 cm."},{id:"C",texto:"a ausência de melhora clínica após 48 horas de antibioticoterapia parenteral pode ser manejada com leucograma seriado, PCR e VHS diários, além de curva térmica."},{id:"D",texto:"o principal agente etiológico envolvido nesses quadros é o Actinomyces israelli."}],
   gabarito:"A",

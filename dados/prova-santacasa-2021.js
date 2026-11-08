@@ -291,7 +291,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-022", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:22,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Um paciente de trinta anos de idade, constipado, com história de dor anal há três meses, associada a sangramento durante as evacuações, procurou atendimento ambulatorial. Nega comorbidades, perda de peso e história de câncer na família. Ao exame proctológico, foram observados plicoma edemaciado e ulceração profunda medioposterior (6 h), associados à hipertonia esfincteriana, com muita dor ao toque retal. Com base nesse caso hipotético, assinale a alternativa que apresenta, correta e respectivamente, o diagnóstico e a conduta inicial.",
   alternativas:[{id:"A",texto:"Fissura anal crônica e aumento da ingesta de fibras e de líquidos e pomada de diltiazen a 2%, três vezes ao dia."},{id:"B",texto:"Doença de Crohn e colonoscopia e tratamento com terapia biológica."},{id:"C",texto:"Plicoma hemorroidário trombosado com ulceração e pré-operatório (hemograma e coagulograma)."},{id:"D",texto:"Fissura anal crônica e aumentar a ingesta de fibras e líquidos e solicitar colonoscopia, manometria anorretal e pré-operatório (hemograma, coagulograma e eletrocardiograma)."},{id:"E",texto:"Doença de Crohn e colonoscopia, exame sob narcose e tratamento com mesalazina e azatioprina."}],
   gabarito:"A",
@@ -395,7 +395,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-030", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:30,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Quanto aos retalhos de pele, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Os de pedículo ao acaso são mais viáveis que os axiais."},{id:"B",texto:"Os axiais apresentam inervação melhor que os de pedículo ao acaso."},{id:"C",texto:"Os axiais sofrem mais retração."},{id:"D",texto:"Os de pedículo ao acaso apresentam circulação pelo plexo subdérmico."},{id:"E",texto:"Os retalhos de vizinhança são os mais viáveis."}],
   gabarito:"D",
@@ -710,7 +710,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-054", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:54,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Um paciente de quatro anos de idade, que pesa 17 kg, tem quadro de doença diarreica aguda há três dias, com cerca de dois episódios de vômito por dia e de quatro a seis episódios de diarreia aquosa, sem sangue e sem muco, por dia. Foi levado ao pronto-socorro infantil com desidratação moderada e recebeu terapia de hidratação intravenosa. Após encontrar-se clinicamente hidratado e com diurese, decidiu-se pela internação, devido à persistência de perdas moderadas. Com base nessa situação hipotética, assinale a alternativa que apresenta o soro de manutenção que deverá ser prescrito para a criança.",
   alternativas:[{id:"A",texto:"SG 5% 450 mL / NaCl 20% 17 mL / KCl 19,1% 4,5 mL EV de oito em oito horas."},{id:"B",texto:"SG 5% 470 mL / NaCl 20% 6 mL / KCl 19,1% 4,5 mL EV de seis em seis horas."},{id:"C",texto:"SG 5% 500 mL / NaCl 20% 20 mL / KCl 19,1% 5 mL EV de doze em doze horas."},{id:"D",texto:"SG 5% 450 mL / NaCl 20% 6 mL / KCl 19,1% 5 mL EV de oito em oito horas."},{id:"E",texto:"SG 5% 470 mL / NaCl 20% 18 mL / KCl 19,1% mL EV de seis em seis horas."}],
   gabarito:"",
@@ -829,7 +829,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-063", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:63,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma paciente de 28 anos de idade, com queixa de dor pélvica há uma semana, associada à leucorreia e febre há dois dias, refere vida sexual ativa, em uso regular de anticoncepcional oral combinado. Ao exame físico, encontrava-se em bom estado geral, normotensa e normocárdica. Abdome inocente. Ao especular, presença de secreção endocervical purulenta e, ao toque vaginal, dor à mobilização do colo. Com base nesse caso hipotético, para estabelecimento do diagnóstico, constitui critério maior, segundo o Ministério da Saúde o(a)",
   alternativas:[{id:"A",texto:"Evidência histopatológica de endometrite."},{id:"B",texto:"Comprovação laboratorial de cervicite por gonococo, clamídia ou micoplasma."},{id:"C",texto:"Presença de abscesso tubo-ovariano à ultrassonografia."},{id:"D",texto:"Conteúdo vaginal ou a secreção endocervical anormal."},{id:"E",texto:"Dor à mobilização do colo uterino."}],
   gabarito:"E",
@@ -842,7 +842,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-064", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:64,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma paciente de 34 anos de idade, queixa-se de leucorreia amarelada de odor fétido. Ao exame físico, apresentou teste das aminas positivo. À microscopia a fresco, foram observadas células epiteliais recobertas por cocobacilos, com o apagamento de suas bordas conferindo aspecto rendilhado. Com base nessa situação hipotética, assinale a alternativa que apresenta, correta e respectivamente, o diagnóstico e o tratamento a ser indicado para a paciente.",
   alternativas:[{id:"A",texto:"Candidíase – fluconazol 150 mg, via oral, em dose única."},{id:"B",texto:"Vaginose bacteriana – metronidazol 100 mg/g, via vaginal, por cinco dias."},{id:"C",texto:"Tricomoníase – tinidazol 2 g, via oral, em dose única."},{id:"D",texto:"Vaginose bacteriana – bicarbonato de sódio 150 mg, via vaginal, por sete dias."},{id:"E",texto:"Tricomoníase – metronidazol 500 mg, via oral, de doze em doze horas, por sete dias."}],
   gabarito:"B",

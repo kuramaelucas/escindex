@@ -100,7 +100,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 },
 {
   id:"q-sirio2023-007", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:7,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-influenza",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
   enunciado:"A principal intervenção visando à profilaxia da infecção por Influenza consiste na administração de",
   alternativas:[{id:"A",texto:"vacina contra o vírus Influenza."},{id:"B",texto:"peramivir."},{id:"C",texto:"zanamivir."},{id:"D",texto:"baloxavir."},{id:"E",texto:"oseltamivir."}],
   gabarito:"A",
@@ -929,7 +929,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 },
 {
   id:"q-sirio2023-070", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:70,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente de 20 anos de idade, nuligesta, refere dor e sangramento ao coito há cerca de 2 meses. Não faz uso de métodos contraceptivos hormonais, mas refere coito interrompido. Sua última menstruação ocorreu há 15 dias. Ao exame ginecológico, observa-se conteúdo vaginal, amarelo, sem odor. O colo uterino apresenta aspecto inflamatório, facilmente sangrante, JEC −3 e muco endocervical com aspecto purulento. Nesse momento, indica-se",
   alternativas:[{id:"A",texto:"prescrever itraconazol."},{id:"B",texto:"realizar cirurgia de alta frequência com exérese de zona 1."},{id:"C",texto:"cauterizar o colo com ácido acético."},{id:"D",texto:"biopsiar a JEC e o canal endocervical."},{id:"E",texto:"prescrever doxaciclina."}],
   gabarito:"E",
@@ -981,7 +981,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 },
 {
   id:"q-sirio2023-074", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:74,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Recomenda-se realizar teste sorológico para a sífilis",
   alternativas:[{id:"A",texto:"a cada 6 meses em adolescentes."},{id:"B",texto:"a cada 3 meses em pessoas vivendo com HIV."},{id:"C",texto:"anualmente em usuários de drogas ou pessoas privadas de liberdade."},{id:"D",texto:"anualmente em jovens até 30 anos de idade com vida sexual ativa."},{id:"E",texto:"a cada 6 meses em pessoas em uso de PrEP."}],
   gabarito:"D",
@@ -1164,7 +1164,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 },
 {
   id:"q-sirio2023-088", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:88,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Na APS é frequente a queixa de corrimento vaginal nas mulheres durante a menacme. Entre as opções abaixo, a que correlaciona sintomas, o exame físico e o tratamento corretamente é:",
   alternativas:[{id:"A",texto:"Corrimento branco ou amarelado, com odor fétido e piora após relações sexuais. Exame especular mostra grande quantidade de secreção fluida branca, com bolhas. Metronidazol 100 mg/g em gel – aplicação intravaginal por 5 noites."},{id:"B",texto:"Corrimento amarelado em pequena quantidade, intermitente, fétido. Exame especular mostra secreção fluida amarelada, sem lesões mucosas. Miconazol 2% creme, via vaginal, por 7 noites."},{id:"C",texto:"Corrimento de aspecto mucoso, transparente ou esbranquiçado, piora no meio do ciclo menstrual. Exame especular mostra vulva, vagina e colo do útero sem alterações, pequena quantidade de muco claro. Nistatina 100.000 UI, via vaginal, por 14 noites."},{id:"D",texto:"Corrimento amarelo-esverdeado, em grande quantidade. Exame especular mostra eritema de mucosa vaginal e pericervical associado a secreção amarelada em grande quantidade com bolhas. Metronidazol 100 mg/g em gel – aplicação intravaginal por 14 noites."},{id:"E",texto:"Corrimento branco e prurido vaginal intenso. Especular mostra placas brancas recobrindo partes da parede vaginal e colo e secreção branca espessa. Fluconazol 150 mg, via oral, 1 × semana, por 6 meses."}],
   gabarito:"A",
