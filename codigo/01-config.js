@@ -97,6 +97,8 @@ const CONFIG = {
     pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra mais
     // fatia de revisão da sessão pelo tanto que a pessoa já respondeu: no começo, quase tudo é exploração
     revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
+    // com muita revisão vencida (quem faz ~200 questões/semana), a fatia sobe para a fila não crescer sem fim
+    filaQueAceleraRevisao: 120, revisaoComFilaGrande: 0.55,
   },
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por

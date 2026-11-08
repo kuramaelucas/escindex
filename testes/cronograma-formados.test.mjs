@@ -76,6 +76,28 @@ test("Formado(a): começa no fácil, sobe só o assunto em que acerta com certez
   } finally { await contexto.close(); }
 });
 
+test("Formado(a): revisão não puxa o nível do assunto para baixo e fila grande aumenta a fatia de revisão", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)";
+      const A = questoesParaEstudo(u.id)[0].assuntoId;
+      const resp = (correta, origem) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x-" + Math.random(), assuntoId: A, correta, confianca: "certeza", origem, data: hojeISO() });
+      for(let i = 0; i < 4; i++) resp(true, "nao_vista");
+      for(let i = 0; i < 4; i++) resp(false, "revisao_erro");       // erros de revisão não contam
+      const nivel = nivelDoAssuntoFormado(u.id, A).nivel;
+      for(let i = 0; i < 100; i++) resp(true, "nao_vista");          // passa dos degraus iniciais
+      const c = CONFIG.cronogramaFormado;
+      return { nivel, normal: fracaoRevisaoFormado(u.id, 0), cheia: fracaoRevisaoFormado(u.id, c.filaQueAceleraRevisao), revisaoComFilaGrande: c.revisaoComFilaGrande };
+    });
+    assert.equal(r.nivel, 1, "4 acertos seguros + 4 erros de revisão: o assunto sobe");
+    assert.equal(r.normal, 0.4);
+    assert.equal(r.cheia, r.revisaoComFilaGrande);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
 test("Setas do teclado passam questão e flashcard; as setas da barra também", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{

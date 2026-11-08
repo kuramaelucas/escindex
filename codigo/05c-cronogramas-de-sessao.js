@@ -19,7 +19,10 @@ function cronogramaDeFormado(usuario){
 const ROTULO_NIVEL_FORMADO = ["fácil", "médio", "difícil"];
 function nivelDoAssuntoFormado(usuarioId, assuntoId){
   const c = CONFIG.cronogramaFormado;
-  const rs = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId===assuntoId).slice(-c.janela);
+  /* Resposta de revisão não conta: ela vem de uma questão que a pessoa já
+     errou, então puxaria o nível do assunto para baixo por construção (e o
+     aluno que revisa muito nunca sairia do fácil). */
+  const rs = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId===assuntoId && !/^revisao_/.test(r.origem||"")).slice(-c.janela);
   const seguras = rs.filter(r=>r.correta && r.confianca==="certeza").length;
   const erros = rs.filter(r=>!r.correta).length;
   const base = { nivel: 0, n: rs.length, seguras, erros };
@@ -29,16 +32,21 @@ function nivelDoAssuntoFormado(usuarioId, assuntoId){
   if(seguras/rs.length >= c.taxaSeguraMedio) return { ...base, nivel: 1 };
   return base;
 }
-// fatia da sessão que é revisão: pouca no começo (quem acabou de chegar tem pouco a rever)
-function fracaoRevisaoFormado(usuarioId){
+/* Fatia da sessão que é revisão: pouca no começo (quem acabou de chegar tem
+   pouco a rever). Quem faz muitas questões por semana acumula revisões
+   vencidas mais rápido do que a fatia fixa as devolve; com a fila grande
+   (`filaVencida`) a fatia sobe, e a tela diz isso. */
+function fracaoRevisaoFormado(usuarioId, filaVencida){
+  const c = CONFIG.cronogramaFormado;
   const feitas = db.respostas.filter(r=>r.usuarioId===usuarioId).length;
-  const degrau = CONFIG.cronogramaFormado.revisaoPorRespostas.find(([ate]) => feitas < ate);
-  return degrau ? degrau[1] : CONFIG.revisaoSemCalendario;
+  const degrau = c.revisaoPorRespostas.find(([ate]) => feitas < ate);
+  if(degrau) return degrau[1];
+  return filaVencida >= c.filaQueAceleraRevisao ? c.revisaoComFilaGrande : CONFIG.revisaoSemCalendario;
 }
 function montarSessaoDeFormado(usuario, tamanho){
   const usuarioId = usuario.id, c = CONFIG.cronogramaFormado;
   const partes = partesDaRevisaoEspacada(usuarioId);
-  const nRevisao = Math.round(tamanho * fracaoRevisaoFormado(usuarioId));
+  const nRevisao = Math.round(tamanho * fracaoRevisaoFormado(usuarioId, partes.erros.length + partes.decaimentos.length));
   const itens = [...partes.erros, ...partes.decaimentos].slice(0, nRevisao).map(v=>({questaoId:v.questao.id,
     origem: v.motivo==="erro" ? "revisao_erro" : "revisao_decaimento",
     motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto"}));
@@ -82,12 +90,18 @@ function montarSessaoDeFormado(usuario, tamanho){
 /* O que a tela diz: a regra e em que ponto a pessoa está. */
 function explicacaoCronogramaFormado(usuario){
   const c = cronogramaDeFormado(usuario); if(!c) return "";
-  const todos = db.taxonomia.assuntos.filter(a=>questoesParaEstudo(usuario.id).some(q=>q.assuntoId===a.id));
+  // um conjunto só: chamar questoesParaEstudo por assunto custava ~300 ms a cada abertura do Estudar
+  const comQuestao = new Set(questoesParaEstudo(usuario.id).map(q=>q.assuntoId));
+  const todos = db.taxonomia.assuntos.filter(a=>comQuestao.has(a.id));
   const niveis = todos.map(a=>({a, ...nivelDoAssuntoFormado(usuario.id, a.id)}));
   const explorados = niveis.filter(x=>x.n > 0).length;
   const medio = niveis.filter(x=>x.nivel === 1).length, dificil = niveis.filter(x=>x.nivel === 2).length;
+  const partes = partesDaRevisaoEspacada(usuario.id);
+  const fila = partes.erros.length + partes.decaimentos.length;
+  const fracao = fracaoRevisaoFormado(usuario.id, fila);
+  const aviso = fracao > CONFIG.revisaoSemCalendario ? " Como há "+fila+" revisões vencidas, a fatia subiu para "+Math.round(fracao*100)+"% até a fila baixar." : "";
   return "Cronograma de formado(a): você começa explorando muitos assuntos com questões fáceis. Cada assunto sobe de nível sozinho (fácil, médio, difícil) quando você acerta com certeza com frequência, e fica no fácil se você erra muito nele — um assunto não muda o nível dos outros. "+
-    "Hoje: "+explorados+" de "+todos.length+" assuntos explorados · "+medio+" no nível médio · "+dificil+" no difícil. A fatia de revisão cresce com o que você já respondeu ("+Math.round(fracaoRevisaoFormado(usuario.id)*100)+"% agora).";
+    "Hoje: "+explorados+" de "+todos.length+" assuntos explorados · "+medio+" no nível médio · "+dificil+" no difícil. A fatia de revisão cresce com o que você já respondeu ("+Math.round(fracao*100)+"% agora)."+aviso+" Respostas de revisão não mudam o nível do assunto.";
 }
 function montarSessaoSemCalendario(usuario, tamanho){
   if(cronogramaDeFormado(usuario)) return montarSessaoDeFormado(usuario, tamanho);
