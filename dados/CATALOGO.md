@@ -3,7 +3,7 @@
 > Gerado por `npm run publicar` a partir do próprio conteúdo — **não edite**. A ordem é a de
 > carga (`dados/manifesto.js`). Para o detalhe de uma prova ou questão sem abrir arquivo: `npm run dados`.
 
-**Total:** 12063 questões (9230 reais, 2833 autorais), 943 cartões, 237 assuntos, 7 simulado(s), 165 arquivos.
+**Total:** 12138 questões (9305 reais, 2833 autorais), 943 cartões, 237 assuntos, 7 simulado(s), 166 arquivos.
 
 | Arquivo | O que é | Itens | Observações |
 | --- | --- | ---: | --- |
@@ -146,6 +146,7 @@
 | `prova-einstein-2024.js` | Einstein (HIAE) 2024 | 75 questões | 2 anulada(s) |
 | `prova-einstein-2025.js` | Einstein (HIAE) 2025 | 75 questões | 4 anulada(s) |
 | `prova-einstein-2026.js` | Einstein (HIAE) 2026 | 75 questões | 1 anulada(s) |
+| `prova-einstein-2027.js` | Einstein (HIAE) 2027 | 75 questões |  |
 | `banco-simulado-didatico-epm.js` | SIMULADO DIDÁTICO EPM — 100 questões autorais (base: UNIFESP-EPM 2022 a 2026) | 100 questões |  |
 | `banco-didatico-grad-malaria.js` | Esc — Banco Didático 2026 | 27 questões | 3 anulada(s) |
 | `banco-didatico-grad-tuberculose.js` | Esc — Banco Didático 2026 | 182 questões | 9 anulada(s); 6 esperando figura |

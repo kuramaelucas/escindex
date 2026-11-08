@@ -664,8 +664,8 @@ function renderSimuladoAtivo(){
     ${renderQuestionCard(q, emModoAprendizado ? {selecionada:jaRespondeuEssa ? respostaAtual : escolhaPendente, modoSimulado:true, respondida:jaRespondeuEssa} : {selecionada:respostaAtual, modoSimulado:true, respondida:false})}
   </div>
   ${emModoAprendizado && !jaRespondeuEssa ? `<div class="confidence-row">
-    ${Object.keys(ROTULOS_CONFIANCA).map((c,i)=>`<button class="confidence-btn" onclick="confirmarRespostaSimulado('${c}')" ${escolhaPendente?"":"disabled"}>${ROTULOS_CONFIANCA[c]} <span class="muted text-xs tecla-atalho">(${i+1})</span></button>`).join("")}
-  </div>
+    ${Object.keys(ROTULOS_CONFIANCA).map((c,i)=>`<button class="confidence-btn" onclick="confirmarRespostaSimulado('${c}')" ${escolhaPendente?"":"disabled"}>${ROTULOS_CONFIANCA[c]} <span class="muted text-xs tecla-atalho">(${i+1})</span>${htmlDicaDoControleConfianca(c)}</button>`).join("")}
+  </div>${escolhaPendente ? htmlDicaDoControleTrocar() : ""}
   <div class="text-xs muted mt-1">${escolhaPendente?"Escolha a confiança para confirmar. Depois não dá para trocar: a explicação aparece e a resposta fica registrada. <span class='tecla-atalho'>Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última.</span>":"Escolha uma alternativa e diga a confiança para ver a explicação."}</div>` : ""}
   <div class="dica-arrastar">${iconeSvg("swipe")}<span>arraste para o lado para trocar de questão</span></div>
   <div class="flex justify-between mt-2">
