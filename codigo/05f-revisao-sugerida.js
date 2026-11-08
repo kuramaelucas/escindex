@@ -6,7 +6,10 @@
    ==========================================================================
    A repetição espaçada cuida de cada QUESTÃO; esta cuida do ASSUNTO inteiro
    que esfriou: a pessoa já respondeu questões dele (ao menos `minimoRespostas`)
-   e a última foi há `diasSemVer` dias ou mais. Os assuntos entram na ordem
+   e a última foi há tempo demais: `diasSemVer` (mensal) para todos, `diasAssuntoPequeno`
+   (bimestral) se o assunto tem menos de `limitePequeno` questões na plataforma, e nada
+   por tempo se tem menos de `limiteSemRevisaoPorTempo` (com tão poucas questões, rever
+   por prazo seria repetir as mesmas; elas seguem a repetição espaçada de cada questão). Os assuntos entram na ordem
    pedida: primeiro os de maior taxa de erro, depois os há mais tempo sem ver.
    A pessoa diz quantas questões quer e o conjunto é preenchido nessa ordem,
    por rodadas de poucas questões por assunto (para um assunto não engolir
@@ -17,8 +20,15 @@
 const REVISAO_SUGERIDA_TAMANHOS = [10, 20, 30, 50];
 let _revisaoSugerida = { n: 20 };
 
+/* Quantos dias parado faz o assunto entrar; null = esse assunto não tem revisão por tempo. */
+function diasParaEsfriarAssunto(totalNaPlataforma){
+  const k = CONFIG.revisaoSugerida;
+  if(totalNaPlataforma < k.limiteSemRevisaoPorTempo) return null;
+  return totalNaPlataforma < k.limitePequeno ? k.diasAssuntoPequeno : k.diasSemVer;
+}
 function candidatosDaRevisaoSugerida(usuarioId){
   const k = CONFIG.revisaoSugerida, hoje = hojeISO();
+  const naPlataforma = {}; questoesAtivas().forEach(q => { if(q.assuntoId) naPlataforma[q.assuntoId] = (naPlataforma[q.assuntoId] || 0) + 1; });
   const ultimaPorQuestao = {}, porAssunto = {};
   db.respostas.forEach(r => {
     if(r.usuarioId !== usuarioId || !r.assuntoId || !r.questaoId) return;
@@ -36,8 +46,8 @@ function candidatosDaRevisaoSugerida(usuarioId){
   });
   Object.values(questoes).forEach(l => l.sort((a, b) => (b.errada - a.errada) || a.quando.localeCompare(b.quando)));
   const assuntos = Object.values(porAssunto)
-    .filter(a => a.total >= k.minimoRespostas && a.ultima && diasEntre(a.ultima, hoje) >= k.diasSemVer && questoes[a.assuntoId] && getAssunto(a.assuntoId))
-    .map(a => ({ ...a, taxaErro: a.erros / a.total, dias: diasEntre(a.ultima, hoje), cap: questoes[a.assuntoId].length }))
+    .map(a => ({ ...a, taxaErro: a.erros / a.total, dias: a.ultima ? diasEntre(a.ultima, hoje) : 0, limiteDias: diasParaEsfriarAssunto(naPlataforma[a.assuntoId] || 0), cap: (questoes[a.assuntoId] || []).length }))
+    .filter(a => a.total >= k.minimoRespostas && a.ultima && a.limiteDias !== null && a.dias >= a.limiteDias && a.cap && getAssunto(a.assuntoId))
     .sort((a, b) => b.taxaErro - a.taxaErro || b.dias - a.dias || b.erros - a.erros);
   return { assuntos, questoes };
 }
@@ -66,7 +76,7 @@ function montarRevisaoSugerida(usuarioId, n, cand){
 function abrirRevisaoSugerida(n){
   if(n) _revisaoSugerida.n = n;
   abrirModalTitulado("Revisão sugerida", `
-    <p class="text-sm muted">Assuntos em que você já respondeu questões e que não vê há ${CONFIG.revisaoSugerida.diasSemVer} dias ou mais. Entram primeiro os de <strong>maior taxa de erro</strong> e, empatando, os <strong>há mais tempo sem ver</strong>; dentro de cada assunto, as questões que você errou ou chutou vêm antes das acertadas.</p>
+    <p class="text-sm muted">Assuntos em que você já respondeu questões e que não vê há <strong>${CONFIG.revisaoSugerida.diasSemVer} dias ou mais</strong> (${CONFIG.revisaoSugerida.diasAssuntoPequeno} para assuntos com menos de ${CONFIG.revisaoSugerida.limitePequeno} questões na plataforma; os com menos de ${CONFIG.revisaoSugerida.limiteSemRevisaoPorTempo} não entram por tempo). Entram primeiro os de <strong>maior taxa de erro</strong> e, empatando, os <strong>há mais tempo sem ver</strong>; dentro de cada assunto, as questões que você errou ou chutou vêm antes das acertadas.</p>
     <div class="mt-2 text-sm peso-600">Quantas questões?</div>
     <div class="tempo-atalhos mt-1" id="atalhosRevisaoSugerida">
       ${REVISAO_SUGERIDA_TAMANHOS.map(t => `<button class="chip-tempo" data-n="${t}" onclick="definirTamanhoDaRevisaoSugerida(${t})">${t}</button>`).join("")}
@@ -91,7 +101,7 @@ function atualizarRevisaoSugerida(deDigitacao){
   botao.disabled = true; botao.textContent = "Iniciar revisão";
   if(_revisaoSugerida.n < 1){ previa.textContent = "Escolha quantas questões quer fazer."; return; }
   const r = montarRevisaoSugerida(usuarioAtual().id, _revisaoSugerida.n);
-  if(!r.itens.length){ previa.textContent = "Nenhum assunto esfriou ainda: não há assunto com respostas suas e " + CONFIG.revisaoSugerida.diasSemVer + " dias ou mais sem ver."; return; }
+  if(!r.itens.length){ previa.textContent = "Nenhum assunto esfriou ainda: nenhum assunto com respostas suas está parado há " + CONFIG.revisaoSugerida.diasSemVer + " dias ou mais (" + CONFIG.revisaoSugerida.diasAssuntoPequeno + " nos assuntos pequenos)."; return; }
   previa.innerHTML = `<div class="peso-600 mb-1">${r.itens.length} questões, nesta ordem de assuntos</div>` + r.resumo.map((a, i) =>
     `<div class="flex justify-between gap-2 quebra" style="padding:.15rem 0"><span>${i + 1}. ${escapeHtml(nomeAssunto(a.assuntoId))}</span>
       <span class="muted">erro de <strong>${Math.round(a.taxaErro * 100)}%</strong> · ${a.total} respostas · há ${a.dias} dias · <strong>${a.alocadas}</strong> questão(ões)</span></div>`).join("") +
@@ -112,7 +122,7 @@ function htmlCardRevisaoSugerida(u){
   const primeiros = cand.assuntos.slice(0, 3);
   return `<div class="card mt-2">
     <div class="card-title">${iconeSvg("clock")} Revisão sugerida: assuntos que esfriaram</div>
-    <p class="text-sm muted">${cand.assuntos.length} assunto(s) em que você já fez questões e não vê há ${CONFIG.revisaoSugerida.diasSemVer} dias ou mais. Começa por ${primeiros.map(a => `<strong>${escapeHtml(nomeAssunto(a.assuntoId))}</strong> (erro de ${Math.round(a.taxaErro * 100)}%, há ${a.dias} dias)`).join(" · ")}.</p>
+    <p class="text-sm muted">${cand.assuntos.length} assunto(s) em que você já fez questões e não vê há mais de um mês (dois, nos assuntos pequenos). Começa por ${primeiros.map(a => `<strong>${escapeHtml(nomeAssunto(a.assuntoId))}</strong> (erro de ${Math.round(a.taxaErro * 100)}%, há ${a.dias} dias)`).join(" · ")}.</p>
     <div class="flex gap-1 mt-2 quebra"><button class="btn btn-primary" onclick="abrirRevisaoSugerida()">${iconeSvg("play")} Montar revisão sugerida</button></div>
   </div>`;
 }

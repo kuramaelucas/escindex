@@ -258,14 +258,22 @@ test("Revisão sugerida: assuntos esfriados, mais erro primeiro e depois mais te
       fazerLoginDemo("aluno"); fecharModal();
       const u = usuarioAtual();
       const porAssunto = {}; questoesParaEstudo(u.id).forEach(q => { if(!ehDissertativa(q)) (porAssunto[q.assuntoId] = porAssunto[q.assuntoId] || []).push(q); });
-      const [A, B, C, D, E] = Object.keys(porAssunto).filter(a => porAssunto[a].length >= 12);
+      const total = {}; questoesAtivas().forEach(q => { total[q.assuntoId] = (total[q.assuntoId] || 0) + 1; });
+      const com = (min, max) => Object.keys(porAssunto).filter(a => porAssunto[a].length >= 10 && total[a] >= min && total[a] < max);
+      const [A, B, C, D, E] = com(20, 1e9);
+      const [F, G] = com(10, 20);                                 // pequenos: bimestral
+      const H = Object.keys(porAssunto).find(a => total[a] < 10 && porAssunto[a].length >= 4);   // sem revisão por tempo
       const R = (a, q, correta, dias) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: a, correta, confianca: "certeza", data: somarDias(hojeISO(), -dias), respondidaEm: somarDias(hojeISO(), -dias) + "T10:00:00Z" });
-      // A: erra 80%, parado há 20 dias · B: erra 80%, parado há 40 dias (empate no erro → B vem antes por tempo) · C: erra 40%, 30 dias · D: recente · E: poucas respostas
-      porAssunto[A].slice(0, 10).forEach((q, i) => R(A, q, i < 2, 20));
-      porAssunto[B].slice(0, 10).forEach((q, i) => R(B, q, i < 2, 40));
-      porAssunto[C].slice(0, 10).forEach((q, i) => R(C, q, i < 6, 30));
-      porAssunto[D].slice(0, 10).forEach((q, i) => R(D, q, false, 2));
+      // A: erra 80%, parado há 35 dias · B: erra 80%, 50 dias (empate no erro → B vem antes por tempo) · C: erra 40%, 31 dias · D: recente (20 dias, ainda dentro do mês) · E: poucas respostas
+      // F (pequeno): 45 dias, ainda não esfriou · G (pequeno): 70 dias, esfriou · H (menos de 10 questões): 300 dias, sem revisão por tempo
+      porAssunto[A].slice(0, 10).forEach((q, i) => R(A, q, i < 2, 35));
+      porAssunto[B].slice(0, 10).forEach((q, i) => R(B, q, i < 2, 50));
+      porAssunto[C].slice(0, 10).forEach((q, i) => R(C, q, i < 6, 31));
+      porAssunto[D].slice(0, 10).forEach((q, i) => R(D, q, false, 20));
       porAssunto[E].slice(0, 2).forEach((q) => R(E, q, false, 60));
+      porAssunto[F].slice(0, 10).forEach((q, i) => R(F, q, i < 3, 45));
+      porAssunto[G].slice(0, 10).forEach((q, i) => R(G, q, i < 9, 70));
+      porAssunto[H].slice(0, 4).forEach((q) => R(H, q, false, 300));
       const cand = candidatosDaRevisaoSugerida(u.id);
       const ordem = cand.assuntos.map(a => a.assuntoId);
       const m8 = montarRevisaoSugerida(u.id, 8), m3 = montarRevisaoSugerida(u.id, 3);
@@ -273,12 +281,12 @@ test("Revisão sugerida: assuntos esfriados, mais erro primeiro e depois mais te
       const primeiraB = getQuestao(m8.itens[0].questaoId);
       abrirRevisaoSugerida(8);
       const tela = document.querySelector(".modal").innerText;
-      return { A, B, C, D, E, ordem, a8: assuntosDe(m8), a3: assuntosDe(m3), motivo: m8.itens[0].motivo, origem: m8.itens[0].origem, tela, card: htmlCardRevisaoSugerida(u) };
+      return { A, B, C, D, E, F, G, H, ordem, a8: assuntosDe(m8), a3: assuntosDe(m3), motivo: m8.itens[0].motivo, origem: m8.itens[0].origem, tela, card: htmlCardRevisaoSugerida(u) };
     });
-    assert.deepEqual(r.ordem, [r.B, r.A, r.C], "mais erro primeiro; empate no erro, mais tempo parado primeiro; recente e pouca resposta ficam fora");
+    assert.deepEqual(r.ordem, [r.B, r.A, r.C, r.G], "taxa de erro primeiro; empate, mais tempo parado; recente, pequeno que ainda não esfriou, pouca resposta e menos de 10 questões ficam fora");
     assert.deepEqual(r.a8, [...Array(5).fill(r.B), ...Array(3).fill(r.A)], "5 por rodada, na ordem dos assuntos, até completar o pedido");
     assert.deepEqual(r.a3, Array(3).fill(r.B));
-    assert.match(r.motivo, /Revisão sugerida — .*erro de 80% e faz 40 dias/);
+    assert.match(r.motivo, /Revisão sugerida — .*erro de 80% e faz 50 dias/);
     assert.equal(r.origem, "revisao_sugerida");
     assert.match(r.tela, /8 questões, nesta ordem de assuntos/);
     assert.match(r.card, /Montar revisão sugerida/);

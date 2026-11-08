@@ -110,8 +110,10 @@ const CONFIG = {
   },
 
   /* Revisão sugerida (05f): assunto com ao menos `minimoRespostas` respostas e `diasSemVer` dias sem ver
-     entra; o conjunto é preenchido `porRodada` questões de cada assunto por vez, pela ordem de erro e de tempo parado. */
-  revisaoSugerida: { diasSemVer: 14, minimoRespostas: 3, porRodada: 5 },
+     entra (mensal; bimestral se o assunto tem menos de `limitePequeno` questões na plataforma; fora se tem menos de `limiteSemRevisaoPorTempo`); o conjunto é preenchido `porRodada` questões de cada assunto por vez, pela ordem de erro e de tempo parado. */
+  revisaoSugerida: { diasSemVer: 30, minimoRespostas: 3, porRodada: 5,
+    // assunto pequeno (poucas questões na plataforma) esfria mais devagar: bimestral; abaixo do último limite não há revisão por tempo
+    diasAssuntoPequeno: 60, limitePequeno: 20, limiteSemRevisaoPorTempo: 10 },
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
      acerto: voltar em 1 ou 2 dias é reler, não recuperar da memória. Vale
