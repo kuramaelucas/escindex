@@ -779,3 +779,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 **Consolidação das pendências de referência (08/11/2026).** Criado `docs/PENDENCIAS-DE-REFERENCIAS.md` com as pendências da USP e da UNIFESP num só arquivo (edições superadas por diretriz, diretrizes fora da tabela de edições, PDFs a enviar, letras a conferir); `REVISAO-USP.md` e `REVISAO-UNIFESP.md` passam a guardar só o histórico.
 
 **CI fixado em ubuntu-24.04 (08/11/2026).** O `ubuntu-latest` do GitHub passou a ser Ubuntu 26.04, onde o Playwright 1.56.1 não instala o Chromium (`Playwright does not support chromium on ubuntu26.04-x64`); os jobs de `.github/workflows/testes.yml` ficam em `ubuntu-24.04` até o Playwright acompanhar.
+
+**Esquema da nuvem rodado (08/11/2026).** As colunas `perfis.tamanho_sessao` e `perfis.regua_formado` (cronograma de Formados) foram criadas no projeto Esc do Supabase; `npm run testar-sql` passou antes. O restante do `esquema.sql` já estava aplicado.
