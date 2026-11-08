@@ -639,10 +639,14 @@ function pendenciaDoItemMenu(item, u, pendCadastros){
   if(item.id==="painel-turma") return pendCadastros;
   if(item.id==="meu-grupo") return quantosPedidosDeEntradaNoGrupo(u);
   if(item.id==="feedback-usuarios") return feedbacksNaoLidos();
+  // a sinalização de aluno mora numa aba de Controle de Qualidade, que o menu da equipe funde com a Fila de Dúvidas
+  // (item.familia): sem o selo ninguém sabia que havia sinalização esperando
+  if(u && u.papel!=="aluno" && (item.id==="revisao-dificeis" || (item.familia && item.familia.includes("revisao-dificeis")))) return questoesSinalizadas().length;
   return 0;
 }
 function htmlItemMenu(item, n){
-  const dica = item.id==="meu-grupo" && n>0 ? ' title="Pedidos para entrar no seu grupo"' : "";
+  const dica = item.id==="meu-grupo" && n>0 ? ' title="Pedidos para entrar no seu grupo"'
+    : (item.id==="revisao-dificeis" || (item.familia && item.familia.includes("revisao-dificeis"))) && n>0 ? ' title="Questões sinalizadas por alunos esperando revisão"' : "";
   const badge = n>0 ? ' <span class="badge badge-amber"'+dica+'>'+n+'</span>' : "";
   const ativo = state.route===item.id || (item.familia && item.familia.includes(state.route));
   return `<li class="nav-item ${ativo?"active":""}" onclick="navigate('${item.id}')">${iconeSvg(item.icon)}<span>${item.label}</span>${badge}</li>`;

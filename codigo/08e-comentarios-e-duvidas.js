@@ -121,7 +121,10 @@ function confirmarSinalizacao(qid){
   if(nuvemConectado() && eu.id === nuvemSessao.usuarioId){ sinal.naNuvem = true; q.sinalizacoes.push(sinal); nuvemMarcarSinalizacao(sinal.id); }
   else q.sinalizacoes.push(sinal);
   saveState(); fecharModal();
-  toast("Sinalização enviada. Obrigado — isso ajuda a manter o banco de questões confiável.");
+  // com a nuvem ligada, a sinalização que não subiu (conta só deste navegador, sem entrar) não chega à coordenação:
+  // dizer "enviada" nesse caso era enganoso
+  if(nuvemLigada() && !sinal.naNuvem) toast("Sinalização guardada só neste aparelho. Entre na sua conta para ela chegar à coordenação.", "err");
+  else toast("Sinalização enviada. Obrigado — isso ajuda a manter o banco de questões confiável.");
 }
 
 /* ---------- o padrão de justificativa: parâmetro objetivo em destaque ----------

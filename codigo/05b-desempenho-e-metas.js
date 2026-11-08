@@ -485,7 +485,8 @@ function gerarNotificacoes(usuario){
     const dif = questoesDificeis().length;
     if(dif) notifs.push({icon:"alert", texto:dif+" questão(ões) na fila de difíceis.", rota:"revisao-dificeis"});
     const sinalizadas = db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0).length;
-    if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" questão(ões) sinalizada(s) pelos alunos.", rota:"revisao-dificeis"});
+    // abre direto na aba das sinalizadas: sem isso o aviso levava à aba de Difíceis e a sinalização parecia não ter chegado
+    if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" questão(ões) sinalizada(s) pelos alunos.", rota:"revisao-dificeis", abaQualidade:"sinalizadas"});
   }
   if(usuario.papel==="residente" || usuario.papel==="admin" || usuario.papel==="professor"){
     // só some quando alguém responde (resposta oficial); ver a lista não apaga o aviso
