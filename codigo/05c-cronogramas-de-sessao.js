@@ -226,15 +226,16 @@ function explicacaoCronogramaFormado(usuario){
   const alvo = alvoDasAreasFormado([...areas]);
   const misturas = c.fases.map((m,i)=>"fase "+(i+1)+": "+m.map(pctFormado).join("/")).join(", ");
   return "Cronograma de formado(a): cada assunto passa por "+c.fases.length+" fases, com cada vez mais questão difícil ("+misturas+" de fácil/média/difícil). "+
-    "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+reguaDoFormado(usuario).map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+" — ritmo "+c.reguas[ritmoDoFormado(usuario)].nome+", que você muda em Ritmo das fases. "+
+    "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+reguaDoFormado(usuario).map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+" — ritmo "+c.reguas[ritmoDoFormado(usuario)].nome+" ("+c.reguas[ritmoDoFormado(usuario)].como+"), que você muda em Ritmo das fases. "+
     "Acerto no chute conta como erro e a revisão não muda a fase. Depois da última fase o assunto está concluído e sai das questões novas; o mesmo vale quando as questões novas dele acabam. "+
     "Para sobrar tempo para o banco inteiro, a revisão traz de volta só o que você errou, chutou ou acertou na dúvida: acerto com certeza não volta, e no assunto concluído nenhum acerto volta. "+
     "As questões novas se dividem entre as áreas na proporção das provas ("+[...areas].map(a=>nomeArea(a)+" "+pctFormado(alvo[a])).join(", ")+"). "+
     "Hoje: "+explorados+" de "+ids.length+" assuntos explorados · "+porFase.map((n,i)=>"fase "+(i+1)+": "+n).join(" · ")+" · concluídos: "+concluidos+(esgotados ? " · sem questão nova: "+esgotados : "")+". Por área: "+textoDasAreas+". "+
     "A fatia de revisão cresce com o que você já respondeu ("+pctFormado(fracao)+" agora)."+aviso;
 }
-/* RITMO DAS FASES. A janela mostra os três ritmos com a régua de cada um e
-   quantos assuntos mudariam de fase agora se o ritmo mudasse (a fase é
+/* RITMO DAS FASES. A janela explica, para o aluno, o que é uma fase, o que
+   vale em qualquer ritmo e, para cada ritmo, como funciona, quando escolher e
+   o cuidado — e quantas subidas de fase a troca causaria agora (a fase é
    refeita do histórico, então trocar o ritmo vale também para o passado). */
 function abrirRitmoDoFormado(){
   const u = usuarioAtual(), c = CONFIG.cronogramaFormado, atual = ritmoDoFormado(u);
@@ -242,12 +243,22 @@ function abrirRitmoDoFormado(){
     const m = fasesDosAssuntosFormado(u.id), n = Object.values(m).filter(e=>e.total).reduce((s,e)=>s + e.fase, 0);
     if(antes === undefined) delete u.reguaFormado; else u.reguaFormado = antes; return n; };
   const agora = contar(atual);
+  const nomes = ["fácil", "média", "difícil"];
+  const fases = c.fases.map((m,i)=>`<li><strong>Fase ${i+1}</strong>: ${m.map((x,l)=>pctFormado(x)+" "+nomes[l]).join(", ")}</li>`).join("");
   abrirModalTitulado("Ritmo das fases", `
-    <p class="text-sm muted">Quanto você precisa acertar nas questões novas de um assunto para ele subir de fase. Acertar as ${c.amostraRapida} primeiras da fase sobe em qualquer ritmo.</p>
+    <p class="text-sm">Cada assunto passa por ${c.fases.length} fases, e cada uma traz mais questão difícil que a anterior:</p>
+    <ul class="text-sm">${fases}</ul>
+    <p class="text-sm">O <strong>ritmo</strong> decide quanto você precisa acertar nas questões novas de um assunto para ele mudar de fase. Depois da última, o assunto está concluído e sai das questões novas.</p>
+    <p class="text-xs muted">Em qualquer ritmo: acertar as ${c.amostraRapida} primeiras da fase já sobe; fora isso, vale a taxa das últimas ${c.janela}, a partir de ${c.amostraMinima} respostas na fase; acerto no chute conta como erro; a revisão não muda a fase; um assunto não mexe nos outros; e a fase ${c.fases.length}, por ter mais difícil, pede 5 pontos a menos.</p>
     ${Object.entries(c.reguas).map(([id, r])=>{ const regua = c.ajusteDaReguaPorFase.map(a=>pctFormado(r.acerto+a)).join(", ");
       const dif = contar(id) - agora;
-      return `<label class="card-flat mt-1 flex gap-1 items-center"><input type="radio" name="ritmoFormado" value="${id}" ${id===atual?"checked":""}>
-        <span><strong>${escapeHtml(r.nome)}</strong> — ${regua} (fase 1, 2, 3): ${escapeHtml(r.descricao)}${dif ? ` <span class="muted">· ${dif>0?"+":""}${dif} subida(s) de fase com o que você já respondeu</span>` : ""}</span></label>`; }).join("")}
+      return `<label class="card-flat mt-1 flex gap-1" style="align-items:flex-start"><input type="radio" name="ritmoFormado" value="${id}" ${id===atual?"checked":""} style="margin-top:.3em">
+        <span class="text-sm"><strong>${escapeHtml(r.nome)}</strong> — ${regua} (fase 1, 2, 3)${id===atual ? ` <span class="badge badge-accent">seu ritmo</span>` : ""}<br>
+        <span><strong>Como funciona:</strong> ${escapeHtml(r.como)}.</span><br>
+        <span><strong>Quando escolher:</strong> ${escapeHtml(r.quando)}.</span><br>
+        <span class="muted"><strong>Cuidado:</strong> ${escapeHtml(r.cuidado)}.</span>
+        ${dif ? `<br><span class="text-xs muted">Com o que você já respondeu, ${Math.abs(dif)} ${dif>0?"subida(s)":"descida(s)"} de fase na hora.</span>` : ""}</span></label>`; }).join("")}
+    <p class="text-xs muted mt-2">Trocar recalcula as fases com o que você já respondeu, sem perder nada. A escolha fica guardada e vale nos outros aparelhos em que você entrar.</p>
     <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarRitmoDoFormado()">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
 function salvarRitmoDoFormado(){

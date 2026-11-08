@@ -93,9 +93,18 @@ const CONFIG = {
        cada um e ninguém "conclui" assunto com 30% de acerto. A fase 3 tem mais
        questão difícil, então a régua dela é 5 pontos menor. */
     reguas: {
-      firme:  { nome: "Firme",  acerto: 0.70, descricao: "só sobe com domínio claro; mais tempo em cada fase" },
-      padrao: { nome: "Padrão", acerto: 0.60, descricao: "equilíbrio entre firmar e avançar" },
-      rapida: { nome: "Rápido", acerto: 0.50, descricao: "avança cedo para chegar logo às difíceis; os erros voltam pela revisão" },
+      firme: { nome: "Firme", acerto: 0.70,
+        como: "o assunto só muda de fase quando você acerta 70% das últimas questões novas dele. Você passa mais tempo em cada fase, com mais fáceis e médias antes das difíceis",
+        quando: "se está retomando a matéria depois de um tempo parado(a), ou quer a base bem firme antes de encarar questão difícil",
+        cuidado: "avança devagar: muitos assuntos ficam semanas na fase 1, e as difíceis demoram a aparecer" },
+      padrao: { nome: "Padrão", acerto: 0.60,
+        como: "o assunto muda de fase com 60% de acerto nas últimas questões novas dele: uma régua intermediária, que exige mais acerto do que erro sem segurar o assunto até a perfeição",
+        quando: "para a maioria, que estuda com regularidade e quer equilibrar firmar a base e avançar",
+        cuidado: "é o ponto de partida; se sentir que está parado(a) ou correndo demais, troque" },
+      rapida: { nome: "Rápido", acerto: 0.50,
+        como: "o assunto muda de fase com 50% de acerto. Você chega mais cedo às fases com mais questão difícil, e o que errar volta pela revisão espaçada",
+        quando: "se já domina boa parte da matéria, ou se a prova está perto e você quer treinar no nível dela",
+        cuidado: "um assunto pode avançar sem estar firme: acompanhe a revisão, é lá que os erros voltam" },
     },
     ajusteDaReguaPorFase: [0, 0, -0.05],
     amostraRapida: 3,                           // acertou as 3 primeiras da fase (100%): sobe sem esperar

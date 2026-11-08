@@ -15,9 +15,6 @@ const NUVEM_TABELAS = {
       // sem isto o outro aparelho, ainda com o número antigo, o devolveria ao servidor
       if(!linha.meta_questoes_dia) delete u.metaQuestoesDia;
       if(!linha.meta_cartoes_dia) delete u.metaCartoesDia;
-      // só quem traz a coluna decide: um banco sem ela (esquema.sql não rodado) não apaga a escolha
-      if("tamanho_sessao" in linha && !linha.tamanho_sessao) delete u.tamanhoSessao;
-      if("regua_formado" in linha && !linha.regua_formado) delete u.reguaFormado;
     },
   },
   respostas: {

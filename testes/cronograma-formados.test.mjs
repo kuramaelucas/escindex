@@ -218,6 +218,47 @@ test("Formado(a): ritmo das fases — a régua muda por aluno, refaz as fases e 
   } finally { await contexto.close(); }
 });
 
+test("Formado(a): o ritmo e o tamanho escolhidos ficam guardados ao recarregar e um perfil antigo da nuvem não os apaga", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const id = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)"; u.grupoId = null;
+      abrirRitmoDoFormado();
+      document.querySelector('input[name="ritmoFormado"][value="firme"]').checked = true;
+      salvarRitmoDoFormado();
+      abrirModalMeta(); document.getElementById("tamanhoSessaoInput").value = "30"; salvarMeta();
+      return u.id;
+    });
+    await pagina.reload();
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+    const r = await pagina.evaluate(id => {
+      const u = db.usuarios.find(x => x.id === id);
+      const guardado = { ritmo: u.reguaFormado, tamanho: u.tamanhoSessao, botao: "" };
+      // o login de demonstração não sobrevive ao recarregar; entrar de novo não pode apagar a escolha
+      if(!usuarioAtual() || usuarioAtual().id !== id){ fazerLoginDemo("aluno"); fecharModal(); }
+      navigate("estudar");
+      const b = document.querySelector('button[onclick="abrirRitmoDoFormado()"]'); guardado.botao = b ? b.textContent : "(sem botão)";
+      guardado.ritmoDepoisDeEntrar = u.reguaFormado;
+      // perfil que desce ANTES da escolha subir: a deste aparelho vale
+      db.nuvem = db.nuvem || {};
+      db.nuvem.perfilEnviado = JSON.stringify({ ...linhaDoPerfil(u), regua_formado: null, tamanho_sessao: null });
+      NUVEM_TABELAS.perfis.aplicar({ id: u.id, nome: u.nome, papel: u.papel, status: "aprovado", regua_formado: null, tamanho_sessao: null });
+      const comPendencia = { ritmo: u.reguaFormado, tamanho: u.tamanhoSessao };
+      // já subiu: aí o perfil da nuvem decide (voltou ao padrão noutro aparelho)
+      db.nuvem.perfilEnviado = JSON.stringify(linhaDoPerfil(u));
+      NUVEM_TABELAS.perfis.aplicar({ id: u.id, nome: u.nome, papel: u.papel, status: "aprovado", regua_formado: "rapida", tamanho_sessao: null });
+      return { guardado, comPendencia, depois: { ritmo: u.reguaFormado, tamanho: u.tamanhoSessao ?? null } };
+    }, id);
+    assert.equal(r.guardado.ritmo, "firme"); assert.equal(r.guardado.tamanho, 30);
+    assert.equal(r.guardado.ritmoDepoisDeEntrar, "firme", "entrar de novo mantém a escolha");
+    assert.match(r.guardado.botao, /Ritmo das fases: Firme/, "o botão diz o ritmo escolhido");
+    assert.deepEqual(r.comPendencia, { ritmo: "firme", tamanho: 30 }, "perfil antigo não apaga a escolha que ainda não subiu");
+    assert.deepEqual(r.depois, { ritmo: "rapida", tamanho: null });
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
 test("Tamanho da sessão: a pessoa escolhe em Ajustar meta, a sessão respeita e o perfil leva para a nuvem", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
