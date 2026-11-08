@@ -101,3 +101,35 @@ test("Setas do teclado passam questão e flashcard; as setas da barra também", 
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("Formado(a): a trilha abre só os assuntos em estudo, trava o que depende de base não consolidada e libera ao consolidar", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)";
+      const t0 = trilhaDeFormado(u.id);
+      const exige = SEED_TRILHA_FORMADOS.exige;
+      const filho = Object.keys(exige).find(k => t0.itens.find(i => i.id === k && !i.sem) && exige[k].every(p => t0.itens.find(i => i.id === p && !i.sem)));
+      const base = exige[filho][0];
+      const antes = { filhoEmEstudo: t0.emEstudo.some(i => i.id === filho), baseEmEstudo: t0.emEstudo.some(i => i.id === base), n: t0.emEstudo.length };
+      const sessao = montarSessaoSemCalendario(u, 20);
+      const ids = new Set(sessao.map(it => getQuestao(it.questaoId).assuntoId));
+      const foraDaTrilha = [...ids].filter(a => !t0.emEstudo.some(i => i.id === a)).length;
+      // consolida a base e todos os pré-requisitos dela, acertando com certeza
+      const consolidar = id => { for(const p of (exige[id] || [])) consolidar(p); for(let i = 0; i < 6; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x" + Math.random(), assuntoId: id, correta: true, confianca: "certeza", data: hojeISO() }); };
+      (exige[filho] || []).forEach(consolidar);
+      const t1 = trilhaDeFormado(u.id);
+      abrirTrilhaDeFormado();
+      const tela = document.querySelector(".modal") ? document.querySelector(".modal").innerText : "";
+      return { antes, foraDaTrilha, depois: t1.emEstudo.some(i => i.id === filho), consolidados: t1.consolidados, tela };
+    });
+    assert.equal(r.antes.filhoEmEstudo, false, "assunto que exige base não consolidada não está em estudo");
+    assert.ok(r.antes.n <= 12);
+    assert.equal(r.foraDaTrilha, 0, "com a trilha cheia, a sessão fica nos assuntos em estudo");
+    assert.equal(r.depois, true, "consolidada a base, o assunto entra em estudo");
+    assert.match(r.tela, /Em estudo agora/);
+    assert.match(r.tela, /Libera depois de consolidar|Vêm a seguir/);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

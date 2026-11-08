@@ -97,6 +97,8 @@ const CONFIG = {
     pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra mais
     // fatia de revisão da sessão pelo tanto que a pessoa já respondeu: no começo, quase tudo é exploração
     revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
+    assuntosEmEstudo: 12,                       // trilha (05e): quantos assuntos da fila estão abertos de cada vez
+    minimoParaConsolidar: 5,                    // respostas no assunto para considerá-lo consolidado (e liberar os que dependem dele)
   },
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por

@@ -97,6 +97,7 @@ const SEED_USUARIOS = (window.EscDados && window.EscDados.usuarios) || [];
    parafraseada de cursinho ou site de questões. Questão real: `real: true`,
    banca, ano e numeroNaProva; autoral de demonstração: `real: false`. */
 const SEED_QUESTOES = (window.EscDados && window.EscDados.questoes) || [];
+const SEED_TRILHA_FORMADOS = (window.EscDados && window.EscDados.trilhaFormados) || null;   // fila de assuntos do cronograma de Formado(a) (ver 05e)
 const SEED_PROVAS_INATIVAS = (window.EscDados && window.EscDados.provasInativas) || [];   // provas que já chegam inativas (ver provaInativa, 05a)
 
 /* ---------------------------- SEED_LIVRO_OURO -----------------------------

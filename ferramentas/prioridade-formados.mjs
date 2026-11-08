@@ -65,6 +65,29 @@ while(ordem.length < Object.keys(A).length){
 const total = ativas.length; let acum = 0;
 ordem.forEach((a, i) => { acum += a.n; a.pos = i + 1; a.cobAcum = 100 * acum / total; });
 
+/* Conteúdo que a plataforma lê: a ordem e quem exige quem (dados/trilha-formados.js).
+   Sem demanda nem texto aqui: só a estrutura; o aluno vê a trilha montada pelo código (05e). */
+if(process.argv.includes("--dados")){
+  const exig = {}; ordem.forEach(a => { if(exige(a.id).length) exig[a.id] = exige(a.id); });
+  const linhas = ordem.map(a => "  \"ass-" + a.id + "\"").join(",\n");
+  const req = Object.entries(exig).map(([k, v]) => "  \"ass-" + k + "\": [" + v.map(x => "\"ass-" + x + "\"").join(", ") + "]").join(",\n");
+  fs.writeFileSync(path.join(RAIZ, "dados", "trilha-formados.js"),
+`/* dados/trilha-formados.js — a ordem dos assuntos do cronograma de Formado(a)
+   Gerado por \`npm run prioridade-formados -- --dados\` (não editar à mão): demanda das
+   provas reais + pré-requisitos de ferramentas/prerequisitos-formados.json.
+   \`ordem\` é a fila de estudo; \`exige\` diz o que precisa estar consolidado antes. */
+window.EscDados.registrarTrilhaFormados("trilha-formados", {
+  ordem: [
+${linhas}
+  ],
+  exige: {
+${req}
+  },
+});
+`);
+  console.log("dados/trilha-formados.js escrito — " + ordem.length + " assuntos.");
+  process.exit(0);
+}
 if(process.argv.includes("--json")){ console.log(JSON.stringify(ordem.map(a => ({ pos: a.pos, id: "ass-" + a.id, demanda: +a.w.toFixed(1), questoes: a.n, exige: exige(a.id).map(p => "ass-" + p) })), null, 1)); process.exit(0); }
 
 const NOMES_ONDA = ["Alicerces e alto retorno", "Núcleo clínico, cirúrgico, GO e pediátrico", "Aprofundamento e complicações", "Especialidades de apoio", "Cauda longa e refinamento", "Raridades e subespecialidades", "Cauda longa (pouca demanda)"];
