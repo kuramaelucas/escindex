@@ -28,7 +28,16 @@ Medição feita em 08/11/2026 nas 6 provas reais (585 questões ativas, anuladas
 - **DPOC (GOLD 2026 v1.3):** `q-unifesp2023-014`, `q-unifesp2026-040`, `q-udisc20262-004`.
 - **Asma (GINA 2026):** `q-unifesp2022-069`, `q-unifesp2022-086`, `q-unifesp2023-069`, `q-unifesp2026-095`.
 
+- **Hipertensão (Diretriz Brasileira 2025, abccardiol.org):** `q-unifesp2024-029`.
+- **Triagem neonatal da fibrose cística (relatório Conitec do PCDT, gov.br):** `q-unifesp2026-083`.
+- **Notificação compulsória (Portaria de Consolidação 4/2017, bvsms):** `q-unifesp2024-078`.
+
 ## Pendente
+
+- **Rastreamento do colo do útero** (`q-unifesp2024-048`, `q-unifesp2025-067`): o texto da Portaria Conjunta SAES/SECTICS nº 13/2025 não abre aqui (cfbm.gov.br, cofen.gov.br e inca recusam). As duas explicações citam as diretrizes de 2016 (citologia aos 25 anos, LSIL em < 25 anos repete em 3 anos; histerectomia com NIC 3 prévio) e podem estar superadas pelo HPV-DNA. Enviar o PDF da portaria.
+- `q-unifesp2024-078`: confirmar no texto oficial a alternativa B (estados e municípios acrescentam agravos) e o papel do Sinan; ler as Portarias 6.734/2025 e 11.211/2026.
+- `q-unifesp2026-083`: Manual de Normas Técnicas da Triagem Neonatal não aberto.
+- `q-unifesp2024-029`: valor de referência do descenso noturno na diretriz.
 
 - `q-unifesp2023-019`: o texto primário do Sepsis-3 (Singer, JAMA 2016) não abriu; a conferência usou a apresentação da ACEP que o reproduz. Reler no JAMA quando o domínio liberar.
 - `q-udisc20262-004`: diretrizes da SBPT para DPOC não relidas.
