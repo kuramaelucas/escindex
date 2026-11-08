@@ -59,6 +59,22 @@ function passouDaFaseFormado(lista, fase){
   const ultimas = lista.slice(-c.janela);
   return ultimas.filter(Boolean).length / ultimas.length >= c.acertoParaAvancar[fase];
 }
+/* MENOS RETORNO (Formado). Quem faz ~200 questões por semana acumula revisão
+   mais rápido do que consegue fazer: medido no simulador, a fila vencida era
+   toda de ACERTOS antigos voltando em 30 e 60 dias — os erros a sessão dava
+   conta — e era ela que empurrava a fatia de revisão para cima, tirando
+   questão nova. Para o formado, que precisa cobrir o banco: acerto COM
+   CERTEZA sai da revisão (é a melhor prova de que sabe); num assunto
+   concluído (passou das três fases), sai qualquer acerto. Erro e chute
+   sempre voltam; acerto na dúvida volta enquanto o assunto não está concluído. */
+function dispensadaDaRevisaoFormado(usuarioId, questaoId){
+  if(!cronogramaDeFormado(getUsuario(usuarioId))) return false;
+  const rs = respostasDaQuestao(usuarioId, questaoId), ultima = rs[rs.length-1];
+  if(!ultima || !acertoFirme(ultima)) return false;
+  if(ultima.confianca === "certeza") return true;
+  const q = getQuestao(questaoId);
+  return !!q && faseDoAssuntoFormado(usuarioId, q.assuntoId).concluido;
+}
 function faseDoAssuntoFormado(usuarioId, assuntoId){ return fasesDosAssuntosFormado(usuarioId)[assuntoId] || faseVaziaFormado(); }
 /* Qual dificuldade vem agora num assunto: sorteada com peso igual ao que
    falta para cada nível chegar à mistura da fase (fácil/média/difícil já
@@ -179,13 +195,20 @@ const pctFormado = x => Math.round(x*100)+"%";
 function explicacaoCronogramaFormado(usuario){
   const c = cronogramaDeFormado(usuario); if(!c) return "";
   // um conjunto só: chamar questoesParaEstudo por assunto custava ~300 ms a cada abertura do Estudar
-  const naoVistas = new Set(), comQuestao = new Set(), areas = new Set();
-  questoesParaEstudo(usuario.id).forEach(q=>{ comQuestao.add(q.assuntoId); areas.add(q.areaId); if(!jaFoiRespondida(usuario.id, q.id)) naoVistas.add(q.assuntoId); });
+  const naoVistas = new Set(), comQuestao = new Set(), areas = new Set(), areaDoAssunto = {};
+  questoesParaEstudo(usuario.id).forEach(q=>{ comQuestao.add(q.assuntoId); areas.add(q.areaId); areaDoAssunto[q.assuntoId] = q.areaId; if(!jaFoiRespondida(usuario.id, q.id)) naoVistas.add(q.assuntoId); });
   const fases = fasesDosAssuntosFormado(usuario.id);
   const ids = [...comQuestao], porFase = c.fases.map(()=>0);
   let explorados = 0, concluidos = 0, esgotados = 0;
-  ids.forEach(a=>{ const e = fases[a]; if(e && e.total) explorados++;
-    if(e && e.concluido) concluidos++; else if(!naoVistas.has(a)) esgotados++; else porFase[e ? e.fase : 0]++; });
+  // por área: onde cada matéria está ("CM: 12 na fase 2, 3 concluídos"), para a pessoa ver o que ficou para trás
+  const daArea = {};
+  ids.forEach(a=>{ const e = fases[a], d = daArea[areaDoAssunto[a]] = daArea[areaDoAssunto[a]] || { fases: c.fases.map(()=>0), concluidos: 0, novos: 0 };
+    if(e && e.total) explorados++; else d.novos++;
+    if(e && e.concluido){ concluidos++; d.concluidos++; }
+    else if(!naoVistas.has(a)) esgotados++;
+    else if(e && e.total){ porFase[e.fase]++; d.fases[e.fase]++; } });
+  const textoDasAreas = [...areas].map(k=>{ const d = daArea[k] || { fases:[], concluidos:0, novos:0 };
+    return nomeArea(k)+" — "+[...d.fases.map((n,i)=> n ? "fase "+(i+1)+": "+n : ""), d.concluidos ? "concluídos: "+d.concluidos : "", d.novos ? "ainda não vistos: "+d.novos : ""].filter(Boolean).join(", "); }).join("; ");
   const partes = partesDaRevisaoEspacada(usuario.id);
   const fila = partes.erros.length + partes.decaimentos.length;
   const fracao = fracaoRevisaoFormado(usuario.id, fila);
@@ -194,9 +217,10 @@ function explicacaoCronogramaFormado(usuario){
   const misturas = c.fases.map((m,i)=>"fase "+(i+1)+": "+m.map(pctFormado).join("/")).join(", ");
   return "Cronograma de formado(a): cada assunto passa por "+c.fases.length+" fases, com cada vez mais questão difícil ("+misturas+" de fácil/média/difícil). "+
     "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+c.acertoParaAvancar.map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+". "+
-    "Acerto no chute conta como erro e a revisão não muda a fase. Depois da última fase o assunto está concluído e sai das questões novas (os erros dele seguem na revisão espaçada); o mesmo vale quando as questões novas do assunto acabam. "+
+    "Acerto no chute conta como erro e a revisão não muda a fase. Depois da última fase o assunto está concluído e sai das questões novas; o mesmo vale quando as questões novas dele acabam. "+
+    "Para sobrar tempo para o banco inteiro, a revisão traz de volta só o que você errou, chutou ou acertou na dúvida: acerto com certeza não volta, e no assunto concluído nenhum acerto volta. "+
     "As questões novas se dividem entre as áreas na proporção das provas ("+[...areas].map(a=>nomeArea(a)+" "+pctFormado(alvo[a])).join(", ")+"). "+
-    "Hoje: "+explorados+" de "+ids.length+" assuntos explorados · "+porFase.map((n,i)=>"fase "+(i+1)+": "+n).join(" · ")+" · concluídos: "+concluidos+(esgotados ? " · sem questão nova: "+esgotados : "")+". "+
+    "Hoje: "+explorados+" de "+ids.length+" assuntos explorados · "+porFase.map((n,i)=>"fase "+(i+1)+": "+n).join(" · ")+" · concluídos: "+concluidos+(esgotados ? " · sem questão nova: "+esgotados : "")+". Por área: "+textoDasAreas+". "+
     "A fatia de revisão cresce com o que você já respondeu ("+pctFormado(fracao)+" agora)."+aviso;
 }
 function montarSessaoSemCalendario(usuario, tamanho){

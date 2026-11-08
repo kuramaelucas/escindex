@@ -146,6 +146,36 @@ test("Formado(a): as questões novas da sessão se dividem entre as áreas pela 
   } finally { await contexto.close(); }
 });
 
+test("Formado(a): menos retorno — acerto com certeza sai da revisão; no assunto concluído, qualquer acerto; erro e chute voltam", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    await pagina.evaluate(PREPARO_FORMADO);
+    const r = await pagina.evaluate(() => {
+      const { u, porAssunto, grandes: [A, D] } = window.__formado;
+      const hoje = CONFIG.hoje;
+      const q = porAssunto[A];
+      const responder = (questao, certa, confianca) => registrarResposta(u.id, questao.id, certa ? questao.gabarito : (questao.alternativas||[]).map(x=>x.letra||x.id).find(l=>l!==questao.gabarito), confianca, 60, "nao_vista");
+      responder(q[0], true, "certeza"); responder(q[1], true, "duvida"); responder(q[2], false, "certeza"); responder(q[3], true, "chute");
+      // D concluído (3 fases de 100%) e uma questão dele acertada na dúvida
+      const qd = porAssunto[D];
+      for(let i = 0; i < 9; i++) responder(qd[i], true, "certeza");
+      responder(qd[9], true, "duvida");
+      const daqui = dias => { const t = Date.now() + dias*86400000; CONFIG.hoje = () => new Date(t); };
+      daqui(70);
+      const vencida = x => revisaoVencida(u.id, x.id);
+      const formado = { certeza: vencida(q[0]), duvida: vencida(q[1]), erro: vencida(q[2]), chute: vencida(q[3]), duvidaConcluido: vencida(qd[9]) };
+      u.anoFaculdade = "6º ano";
+      const outroAno = vencida(q[0]);
+      CONFIG.hoje = hoje;
+      return { formado, concluido: faseDoAssuntoFormado(u.id, D).concluido, outroAno };
+    });
+    assert.equal(r.concluido, true);
+    assert.deepEqual(r.formado, { certeza: false, duvida: true, erro: true, chute: true, duvidaConcluido: false });
+    assert.equal(r.outroAno, true, "fora do cronograma de Formados, o acerto com certeza continua voltando");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
 test("Tamanho da sessão: a pessoa escolhe em Ajustar meta, a sessão respeita e o perfil leva para a nuvem", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{

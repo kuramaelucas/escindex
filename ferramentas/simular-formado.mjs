@@ -7,7 +7,8 @@
      · exploração: com semanas suficientes, quase todos os assuntos foram vistos;
      · mistura: dentro de cada fase, fácil/média/difícil batem com CONFIG;
      · assunto concluído não recebe questão nova;
-     · nenhuma questão repete na mesma sessão nem volta antes do intervalo mínimo.
+     · nenhuma questão repete na mesma sessão nem volta antes do intervalo mínimo;
+     · a fila de revisão vencida não cresce sem parar (com 8 semanas ou mais).
    Uso: npm run simular-formado -- [--semanas 8] [--por-semana 200] [--acerto 0.7] [--exigir] [--json]
    O teste testes/cronograma-formados.test.mjs usa simularFormado() direto. */
 import { pathToFileURL } from "node:url";
@@ -71,7 +72,9 @@ function simularNaPagina(op){
     sem.assuntos = comQuestao.length;
     sem.porFase = [0,1,2].map(f => comQuestao.filter(a => fases[a] && !fases[a].concluido && fases[a].fase === f && fases[a].total).length);
     sem.concluidos = comQuestao.filter(a => fases[a] && fases[a].concluido).length;
-    sem.vencidas = questoesRevisaoEspacadaVencidas(u.id).length;
+    const vencidas = questoesRevisaoEspacadaVencidas(u.id);
+    sem.vencidas = vencidas.length;
+    sem.vencidasErro = vencidas.filter(v => v.motivo === "erro").length;
     semanas.push(sem);
   }
   const totalNovas = Object.values(novasPorArea).reduce((a, b) => a + b, 0);
@@ -87,6 +90,9 @@ function simularNaPagina(op){
   const ultima = semanas[semanas.length-1];
   if(op.semanas >= op.semanasParaExploracao && ultima.explorados / ultima.assuntos < op.exploracaoMinima)
     falhas.push(`exploração: ${ultima.explorados} de ${ultima.assuntos} assuntos vistos em ${op.semanas} semanas`);
+  // fila de revisão: nas últimas 4 semanas não pode crescer mais de 30% (+30 de folga) — senão a revisão nunca alcança
+  if(semanas.length >= 8){ const antes = semanas[semanas.length-5].vencidas;
+    if(ultima.vencidas > antes*1.3 + 30) falhas.push(`fila de revisão crescendo: ${antes} → ${ultima.vencidas} revisões vencidas nas últimas 4 semanas`); }
   if(duplicadas) falhas.push(`${duplicadas} questão(ões) repetida(s) dentro da mesma sessão`);
   if(repeticoesCedo) falhas.push(`${repeticoesCedo} questão(ões) de volta antes de ${CONFIG.intervaloMinimoRevisao} dias`);
   if(novaEmConcluido) falhas.push(`${novaEmConcluido} questão(ões) nova(s) de assunto já concluído`);
@@ -125,10 +131,10 @@ async function principal(){
   else {
     const o = r.opcoes, pc = x => (x*100).toFixed(0).padStart(3) + "%";
     console.log(`Formado(a): ${o.porSemana} questões/semana em ${o.diasPorSemana} dias, acerto base ${pc(o.acerto)}, ${o.semanas} semanas\n`);
-    console.log("sem  feitas novas revisão compl. explorados    fase1 fase2 fase3 concluídos vencidas");
+    console.log("sem  feitas novas revisão compl. explorados    fase1 fase2 fase3 concluídos vencidas (erro/acerto antigo)");
     r.semanas.forEach(s => console.log(
       `${String(s.semana).padStart(3)} ${String(s.feitas).padStart(7)} ${String(s.novas).padStart(5)} ${String(s.revisao).padStart(7)} ${String(s.complemento).padStart(6)} ${(s.explorados+"/"+s.assuntos).padStart(11)} ` +
-      `${s.porFase.map(n => String(n).padStart(5)).join(" ")} ${String(s.concluidos).padStart(10)} ${String(s.vencidas).padStart(8)}`));
+      `${s.porFase.map(n => String(n).padStart(5)).join(" ")} ${String(s.concluidos).padStart(10)} ${String(s.vencidas).padStart(8)} (${s.vencidasErro}/${s.vencidas - s.vencidasErro})`));
     console.log("\nCobertura das áreas (questões novas):");
     r.cobertura.forEach(c => console.log(`  ${c.area.padEnd(32)} ${pc(c.real)}  (alvo ${pc(c.alvo)})`));
     console.log("\nMistura dentro de cada fase (fácil/média/difícil):");

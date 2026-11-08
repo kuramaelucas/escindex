@@ -624,7 +624,7 @@ function urgenciaDeRevisao(proxima, intervalo){
 function revisaoVencida(usuarioId, questaoId){
   const entry = db.revisoes[usuarioId] && db.revisoes[usuarioId][questaoId];
   const proxima = proximaRevisaoEfetiva(entry);
-  return !!proxima && proxima <= hojeISO() && !questaoDominada(usuarioId, questaoId);
+  return !!proxima && proxima <= hojeISO() && !questaoDominada(usuarioId, questaoId) && !dispensadaDaRevisaoFormado(usuarioId, questaoId);
 }
 
 /* ---------- FLASHCARDS: revisão rápida ------------------------------------
