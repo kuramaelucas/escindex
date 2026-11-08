@@ -246,20 +246,29 @@ function mapaPrevalenciasAssuntos(){
   _cachePrevalencias = { geracao:_geracaoDb, mapa, max };
   return _cachePrevalencias;
 }
-function calcularDificuldade(q){
+function partesDaDificuldade(q){
   const taxa = (q.estatisticas && q.estatisticas.respostas>0) ? (q.estatisticas.acertos/q.estatisticas.respostas) : 0.7;
   const espNivel = especificidadeNivel(q.dificuldadeManual);
-  const cache = mapaPrevalenciasAssuntos();
-  const prevNorm = (cache.mapa[q.assuntoId]||0)/cache.max;
   const pesos = (db.configGeral && db.configGeral.pesosDificuldade) || CONFIG.pesosDificuldade;
   // pouca resposta: a taxa de acerto vale menos e o peso que sobra vai para a dificuldade sugerida
   const respostas = (q.estatisticas && q.estatisticas.respostas) || 0;
   const confianca = Math.min(1, respostas / (CONFIG.respostasParaConfiarNaTaxa || 1));
   const pesoTaxa = pesos.taxaAcerto*confianca;
   const pesoEspecificidade = pesos.especificidade + pesos.taxaAcerto*(1-confianca);
-  const score = pesoTaxa*(1-taxa) + pesoEspecificidade*espNivel + pesos.prevalencia*(1-prevNorm);
-  return Math.round(score*100);
+  return { propria: pesoTaxa*(1-taxa) + pesoEspecificidade*espNivel, pesoProprio: pesoTaxa + pesoEspecificidade, pesoPrevalencia: pesos.prevalencia };
 }
+function calcularDificuldade(q){
+  const p = partesDaDificuldade(q);
+  const cache = mapaPrevalenciasAssuntos();
+  const prevNorm = (cache.mapa[q.assuntoId]||0)/cache.max;
+  return Math.round((p.propria + p.pesoPrevalencia*(1-prevNorm))*100);
+}
+/* Nível só da questão (acerto e nível sugerido), sem o termo de prevalência
+   do assunto, que é o mesmo para todas as questões dele. O cronograma de
+   Formados escolhe fácil/média/difícil DENTRO de um assunto; com a
+   prevalência, todo intermediário de assunto pouco cobrado virava difícil e
+   104 assuntos ficavam sem nenhuma questão média. */
+function nivelProprioDaQuestao(q){ const p = partesDaDificuldade(q); const s = p.pesoProprio ? 100*p.propria/p.pesoProprio : 50; return s<35 ? 0 : s<60 ? 1 : 2; }
 function rotuloDificuldade(score){ return score<35 ? "Fácil" : score<60 ? "Médio" : "Difícil"; }
 function nivelDaQuestao(q){ const s = calcularDificuldade(q); return s<35 ? 0 : s<60 ? 1 : 2; }
 

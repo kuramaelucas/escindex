@@ -702,7 +702,7 @@ function renderEstudar(){
       <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
       ${soNoEstatistico(`<p class="text-xs muted mt-1">${deHoje
         ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
-        : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."}</p>`)}
+        : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."} Cada sessão traz até ${tamanhoDaSessaoDoUsuario(u)} questões (muda em Ajustar meta).</p>`)}
     </div>
     <div class="card">
       <div class="card-title">Revisar erros e chutes antigos</div>

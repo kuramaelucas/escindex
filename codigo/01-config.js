@@ -80,26 +80,29 @@ const CONFIG = {
   // quem define a dificuldade enquanto a plataforma tem pouca gente.
   respostasParaConfiarNaTaxa: 30,
 
-  /* CRONOGRAMA DE FORMADOS. Quem é Formado(a) não segue calendário de blocos;
-     em vez do "tudo que ainda não viu", começa EXPLORANDO: muitos assuntos,
-     questões de dificuldade baixa. Cada assunto sobe de nível por conta
-     própria (0 fácil, 1 médio, 2 difícil) olhando as últimas `janela`
-     respostas DAQUELE assunto: acertar com certeza com frequência sobe; errar
-     com frequência (`taxaErroQueSegura`) mantém o assunto no fácil. Os outros
-     assuntos não são afetados — o nível é por assunto, nunca da pessoa toda. */
+  /* CRONOGRAMA DE FORMADOS (regra em 05c). Quem é Formado(a) não segue
+     calendário de blocos: cada assunto passa por fases com cada vez mais
+     questão difícil e sobe de fase pela taxa de acerto das questões novas
+     DAQUELE assunto — o nível é por assunto, nunca da pessoa toda. */
   cronogramaFormado: {
     anos: ["Formado(a)"],
-    janela: 10, amostraMinima: 3,
-    taxaSeguraMedio: 0.6,                       // acertos com certeza / respostas, para chegar ao médio
-    taxaSeguraDificil: 0.8, minimoParaDificil: 6,
-    taxaErroQueSegura: 0.4,
+    // mistura de fácil/média/difícil de cada fase: ninguém fica só no fácil
+    fases: [[0.50, 0.35, 0.15], [0.35, 0.50, 0.15], [0.15, 0.50, 0.35]],
+    acertoParaAvancar: [0.70, 0.65, 0.60],      // por fase: a última tem mais difícil, a régua é um pouco menor
+    amostraRapida: 3,                           // acertou as 3 primeiras da fase (100%): sobe sem esperar
+    amostraMinima: 6, janela: 8,                // senão: com 6 respostas na fase, olha a taxa das últimas 8
     maxPorAssunto: 2,                           // numa sessão, para não concentrar em poucos temas
-    pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra mais
+    pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra antes
+    esperaMaxima: 3,                            // assunto que não aparece há semanas sobe até 3× na fila da área
+    areaIgual: 0.5,                             // cota de cada grande área: metade igual, metade pela incidência nas provas
+    janelaDeCobertura: 150,                     // a cota olha as últimas 150 questões novas para compensar a área que ficou para trás
     // fatia de revisão da sessão pelo tanto que a pessoa já respondeu: no começo, quase tudo é exploração
     revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
     // com muita revisão vencida (quem faz ~200 questões/semana), a fatia sobe para a fila não crescer sem fim
     filaQueAceleraRevisao: 120, revisaoComFilaGrande: 0.55,
   },
+  // questões por sessão recomendada quando a pessoa não escolheu (Ajustar meta > Questões por sessão)
+  tamanhoSessaoPadrao: 20,
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
      acerto: voltar em 1 ou 2 dias é reler, não recuperar da memória. Vale

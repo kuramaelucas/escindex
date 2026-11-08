@@ -40,7 +40,7 @@ function montarSessaoRecomendadaDeHoje(minutos){
   const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
   const restante = Math.max(piso, metaDoUsuario(u) - feitas);
   // com tempo contado, o tamanho vem do ritmo da pessoa (ver abrirSessaoPorTempo)
-  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, 20);
+  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, tamanhoDaSessaoDoUsuario(u));
   iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
 }
 /* "Tempo contado?" — a pessoa diz quanto tempo tem e a sessão se monta para

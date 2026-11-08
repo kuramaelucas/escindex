@@ -195,6 +195,8 @@ alter table public.perfis add column if not exists prova_alvo_data date;
 -- ou 'estatistico'. Nulo = ainda não escolheu (vale o resumido e a pergunta
 -- aparece uma vez). Só muda a apresentação; nenhum dado de estudo depende dele.
 alter table public.perfis add column if not exists modo_plataforma text;
+-- questões por sessão recomendada escolhidas pela pessoa (Ajustar meta); nulo = padrão da plataforma
+alter table public.perfis add column if not exists tamanho_sessao integer;
 
 -- ---------------------------------------------------------------------------
 -- 2. RESPOSTAS — o log de cada questão respondida (REGISTRO: só se acumula)

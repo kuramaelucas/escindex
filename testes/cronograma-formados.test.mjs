@@ -1,8 +1,9 @@
-/* Cronograma de formados (nível por assunto), dificuldade com pouca resposta e setas do teclado. */
+/* Cronograma de formados (fases por assunto, cota por área, tamanho da sessão, simulação), dificuldade com pouca resposta e setas do teclado. */
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
 import { subirServidor } from "./servidor.mjs";
+import { simularFormado } from "../ferramentas/simular-formado.mjs";
 
 let navegador, servidor;
 before(async () => { navegador = await chromium.launch(); servidor = await subirServidor({ semNuvem: true }); });
@@ -39,61 +40,161 @@ test("Dificuldade: com poucas respostas vale a dificuldade sugerida; a taxa de a
   } finally { await contexto.close(); }
 });
 
-test("Formado(a): começa no fácil, sobe só o assunto em que acerta com certeza e segura o que erra", async () => {
+/* Responde questões REAIS de um assunto (a fase olha o nível de cada uma). */
+const PREPARO_FORMADO = () => {
+  fazerLoginDemo("aluno"); fecharModal();
+  const u = usuarioAtual(); u.anoFaculdade = "Formado(a)"; u.grupoId = null;
+  const porAssunto = {};
+  questoesParaEstudo(u.id).forEach(q => { (porAssunto[q.assuntoId] = porAssunto[q.assuntoId] || []).push(q); });
+  const grandes = Object.keys(porAssunto).filter(a => porAssunto[a].length >= 15);
+  window.__formado = { u, porAssunto, grandes, usadas: {} };
+  window.__responder = (a, acertos, confianca, origem) => {
+    const f = window.__formado, i = f.usadas[a] || 0;
+    acertos.forEach((ok, k) => { const q = f.porAssunto[a][i+k];
+      db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: a, areaId: q.areaId, correta: ok,
+        confianca: confianca || "certeza", origem: origem || "nao_vista", data: hojeISO() }); });
+    f.usadas[a] = i + acertos.length;
+  };
+};
+
+test("Formado(a): o assunto sobe de fase pela taxa de acerto, 100% sobe na hora, chute é erro e revisão não conta", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
+    await pagina.evaluate(PREPARO_FORMADO);
     const r = await pagina.evaluate(() => {
-      fazerLoginDemo("aluno"); fecharModal();
-      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)";
-      const ativas = questoesParaEstudo(u.id);
-      // dois assuntos com respostas fabricadas: A (acerta com certeza) e B (erra)
-      const assuntos = [...new Set(ativas.map(q => q.assuntoId))];
-      const [A, B] = assuntos;
-      const resp = (assuntoId, correta, confianca) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x-" + Math.random(), assuntoId, correta, confianca, data: hojeISO() });
-      const antes = { A: nivelDoAssuntoFormado(u.id, A).nivel, B: nivelDoAssuntoFormado(u.id, B).nivel };
-      for(let i = 0; i < 8; i++) resp(A, true, "certeza");
-      for(let i = 0; i < 6; i++) resp(B, i % 2 === 0 ? false : true, "certeza");   // 50% de erro
-      const depois = { A: nivelDoAssuntoFormado(u.id, A).nivel, B: nivelDoAssuntoFormado(u.id, B).nivel };
-      // assunto sem nenhuma resposta continua no fácil
-      const C = assuntos.find(a => a !== A && a !== B);
-      const novo = nivelDoAssuntoFormado(u.id, C);
-      const sessao = montarSessaoSemCalendario(u, 20);
-      const tamanho = sessao.length;
-      const motivos = sessao.map(it => it.motivo);
-      const porAssunto = {}; sessao.forEach(it => { const q = getQuestao(it.questaoId); porAssunto[q.assuntoId] = (porAssunto[q.assuntoId] || 0) + 1; });
-      return { antes, depois, novo: novo.nivel, tamanho, maxPorAssunto: Math.max(...Object.values(porAssunto)),
-        exploracao: motivos.some(m => /^Exploração/.test(m)), texto: explicacaoCronogramaFormado(u), cronoDe6: !!cronogramaDoUsuario(u) };
+      const { u, grandes: [A, B, C, D] } = window.__formado, fase = a => faseDoAssuntoFormado(u.id, a);
+      const novo = fase(A).fase;
+      __responder(A, [true, true, true]);                               // 100% nas 3 primeiras: fase 2
+      const depoisDe3 = fase(A).fase;
+      __responder(A, [true, false, true, false, true, true]);           // 4 de 6 = 67% ≥ 65%: fase 3
+      const depoisDe9 = fase(A).fase;
+      // revisão: a mesma questão de novo, errada, não mexe na fase
+      const q = window.__formado.porAssunto[A][0];
+      db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: A, correta: false, confianca: "certeza", origem: "revisao_erro", data: hojeISO() });
+      const comRevisao = fase(A).fase;
+      __responder(B, [true, false, true, false, true, false]);          // 50%: fica na fase 1
+      __responder(C, [true, true, true], "chute");                      // acerto no chute é erro
+      __responder(D, [true, true, true, true, true, true, true, true, true]);   // 3 fases de 100%: concluído
+      const sessao = montarSessaoSemCalendario(u, 40);
+      const novasDeD = sessao.filter(it => it.origem === "nao_vista" && getQuestao(it.questaoId).assuntoId === D).length;
+      return { novo, depoisDe3, depoisDe9, comRevisao, B: fase(B).fase, C: fase(C).fase, D: fase(D).concluido, novasDeD,
+        motivos: sessao.map(it => it.motivo), motivoDeFase: motivoFormado(fase(B), B, 1), texto: explicacaoCronogramaFormado(u), cronoDe6: !!cronogramaDoUsuario(u) };
     });
-    assert.deepEqual(r.antes, { A: 0, B: 0 });
-    assert.equal(r.depois.A, 2, "acerto com certeza frequente sobe o assunto A");
-    assert.equal(r.depois.B, 0, "erro frequente segura o assunto B no fácil");
     assert.equal(r.novo, 0);
-    assert.ok(r.tamanho >= 15 && r.maxPorAssunto <= 3, JSON.stringify(r));
-    assert.ok(r.exploracao);
-    assert.match(r.texto, /assuntos explorados/);
+    assert.equal(r.depoisDe3, 1, "100% nas três primeiras sobe de fase");
+    assert.equal(r.depoisDe9, 2, "67% com seis respostas passa a régua da fase 2 (65%)");
+    assert.equal(r.comRevisao, 2, "resposta de revisão não muda a fase");
+    assert.equal(r.B, 0, "50% de acerto segura na fase 1");
+    assert.equal(r.C, 0, "acerto no chute conta como erro");
+    assert.equal(r.D, true, "passou das três fases: concluído");
+    assert.equal(r.novasDeD, 0, "assunto concluído não recebe questão nova");
+    assert.ok(r.motivos.some(m => /^Exploração/.test(m)), JSON.stringify(r.motivos.slice(0, 5)));
+    assert.match(r.motivoDeFase, /^Fase 1 de 3 — .+: 3 acerto\(s\) em 6 nesta fase · questão média$/);
+    assert.match(r.texto, /concluídos: 1/);
+    assert.match(r.texto, /50%\/35%\/15%/);
     assert.equal(r.cronoDe6, false);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
 
-test("Formado(a): revisão não puxa o nível do assunto para baixo e fila grande aumenta a fatia de revisão", async () => {
+test("Formado(a): a dificuldade segue a mistura da fase e pula o nível que falta", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const c = CONFIG.cronogramaFormado;
+      // muitas fases começando do zero: a primeira questão sai na proporção da mistura
+      const primeiras = [0,0,0];
+      for(let i = 0; i < 3000; i++) primeiras[proximoNivelDaFase(0, [0,0,0], [9,9,9])]++;
+      // uma fase longa: depois de 20 questões a contagem fica colada na mistura
+      const longa = c.fases.map((m, f) => { const feitas = [0,0,0];
+        for(let i = 0; i < 20; i++) feitas[proximoNivelDaFase(f, feitas, [99,99,99])]++; return feitas; });
+      const semMedia = new Set(); for(let i = 0; i < 200; i++) semMedia.add(proximoNivelDaFase(1, [0,0,0], [5,0,5]));
+      return { primeiras: primeiras.map(x => x/3000), longa, fases: c.fases, semMedia: [...semMedia], nada: proximoNivelDaFase(0, [0,0,0], [0,0,0]) };
+    });
+    r.primeiras.forEach((x, l) => assert.ok(Math.abs(x - r.fases[0][l]) < 0.04, "primeira questão: " + JSON.stringify(r.primeiras)));
+    r.longa.forEach((feitas, f) => feitas.forEach((n, l) => assert.ok(Math.abs(n - 20*r.fases[f][l]) <= 1.5, `fase ${f+1}: ${feitas}`)));
+    assert.ok(!r.semMedia.includes(1), "sem questão média disponível, o nível é pulado");
+    assert.equal(r.nada, null);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Formado(a): as questões novas da sessão se dividem entre as áreas pela cota e a revisão cresce com a fila", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    await pagina.evaluate(PREPARO_FORMADO);
+    const r = await pagina.evaluate(() => {
+      const { u } = window.__formado;
+      const sessao = montarSessaoSemCalendario(u, 40), novas = sessao.filter(it => it.origem === "nao_vista");
+      const porArea = {}; novas.forEach(it => { const a = getQuestao(it.questaoId).areaId; porArea[a] = (porArea[a] || 0) + 1; });
+      const alvo = alvoDasAreasFormado(Object.keys(porArea));
+      const porAssunto = {}; novas.forEach(it => { const a = getQuestao(it.questaoId).assuntoId; porAssunto[a] = (porAssunto[a] || 0) + 1; });
+      // passa dos degraus iniciais da revisão
+      const q = questoesParaEstudo(u.id)[0];
+      for(let i = 0; i < 120; i++) db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x-" + i, assuntoId: q.assuntoId, correta: true, confianca: "certeza", data: hojeISO() });
+      const c = CONFIG.cronogramaFormado;
+      return { n: novas.length, porArea, alvo, somaAlvo: Object.values(alvo).reduce((a, b) => a + b, 0), maxPorAssunto: Math.max(...Object.values(porAssunto)),
+        normal: fracaoRevisaoFormado(u.id, 0), cheia: fracaoRevisaoFormado(u.id, c.filaQueAceleraRevisao), revisaoComFilaGrande: c.revisaoComFilaGrande };
+    });
+    assert.equal(Object.keys(r.porArea).length, 5, "as cinco grandes áreas entram: " + JSON.stringify(r.porArea));
+    Object.keys(r.porArea).forEach(a => assert.ok(Math.abs(r.porArea[a] - r.alvo[a]*r.n) <= 1.5, a + ": " + JSON.stringify(r)));
+    assert.ok(Math.abs(r.somaAlvo - 1) < 1e-9);
+    assert.ok(r.maxPorAssunto <= 2, "teto de duas novas por assunto");
+    assert.equal(r.normal, 0.4);
+    assert.equal(r.cheia, r.revisaoComFilaGrande);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Tamanho da sessão: a pessoa escolhe em Ajustar meta, a sessão respeita e o perfil leva para a nuvem", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     const r = await pagina.evaluate(() => {
       fazerLoginDemo("aluno"); fecharModal();
-      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)";
-      const A = questoesParaEstudo(u.id)[0].assuntoId;
-      const resp = (correta, origem) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "x-" + Math.random(), assuntoId: A, correta, confianca: "certeza", origem, data: hojeISO() });
-      for(let i = 0; i < 4; i++) resp(true, "nao_vista");
-      for(let i = 0; i < 4; i++) resp(false, "revisao_erro");       // erros de revisão não contam
-      const nivel = nivelDoAssuntoFormado(u.id, A).nivel;
-      for(let i = 0; i < 100; i++) resp(true, "nao_vista");          // passa dos degraus iniciais
-      const c = CONFIG.cronogramaFormado;
-      return { nivel, normal: fracaoRevisaoFormado(u.id, 0), cheia: fracaoRevisaoFormado(u.id, c.filaQueAceleraRevisao), revisaoComFilaGrande: c.revisaoComFilaGrande };
+      const u = usuarioAtual();
+      const padrao = tamanhoDaSessaoDoUsuario(u);
+      abrirModalMeta();
+      document.getElementById("metaInput").value = "50";
+      document.getElementById("tamanhoSessaoInput").value = "35";
+      salvarMeta();
+      const salvo = u.tamanhoSessao, linha = linhaDoPerfil(u).tamanho_sessao;
+      montarSessaoRecomendadaDeHoje();
+      const naSessao = state.sessaoAtual.itens.length;
+      abrirModalMeta();
+      document.getElementById("tamanhoSessaoInput").value = String(CONFIG.tamanhoSessaoPadrao);
+      salvarMeta();
+      const voltouAoPadrao = !("tamanhoSessao" in u);
+      abrirModalMeta(); document.getElementById("tamanhoSessaoInput").value = "2"; salvarMeta();
+      const recusou = !("tamanhoSessao" in u) && !!document.getElementById("tamanhoSessaoInput");
+      fecharModal();
+      const base = { id: u.id, nome: u.nome, papel: u.papel, status: "aprovado" };
+      nuvemAplicarPerfilLocal({ ...base, tamanho_sessao: 12 });
+      const daNuvem = u.tamanhoSessao;
+      NUVEM_TABELAS.perfis.aplicar({ ...base, tamanho_sessao: null });
+      const nuloApaga = !("tamanhoSessao" in u);
+      u.tamanhoSessao = 15; NUVEM_TABELAS.perfis.aplicar({ ...base });
+      return { padrao, salvo, linha, naSessao, voltouAoPadrao, recusou, daNuvem, nuloApaga, semColunaMantem: u.tamanhoSessao };
     });
-    assert.equal(r.nivel, 1, "4 acertos seguros + 4 erros de revisão: o assunto sobe");
-    assert.equal(r.normal, 0.4);
-    assert.equal(r.cheia, r.revisaoComFilaGrande);
+    assert.equal(r.padrao, 20);
+    assert.equal(r.salvo, 35); assert.equal(r.linha, 35);
+    assert.equal(r.naSessao, 35, "a sessão traz o tamanho escolhido (a meta de 50 ainda não foi batida)");
+    assert.equal(r.voltouAoPadrao, true, "escolher o padrão apaga a escolha");
+    assert.equal(r.recusou, true, "menos de 5 por sessão é recusado");
+    assert.equal(r.daNuvem, 12);
+    assert.equal(r.nuloApaga, true, "nulo na nuvem = voltou ao padrão no outro aparelho");
+    assert.equal(r.semColunaMantem, 15, "banco sem a coluna não apaga a escolha");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("Simulação: quatro semanas de 200 questões cobrem as áreas, seguem a mistura e não repetem cedo", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await simularFormado(pagina, { semanas: 4, porSemana: 200 });
+    assert.deepEqual(r.falhas, [], JSON.stringify(r.cobertura));
+    assert.ok(r.semanas.every(s => s.feitas >= 200), "o ritmo de 200 por semana coube nas sessões");
+    assert.ok(r.semanas[3].explorados / r.semanas[3].assuntos > 0.75, "em quatro semanas a maior parte dos assuntos foi vista");
+    assert.ok(r.semanas[3].porFase[1] > 0, "algum assunto já subiu de fase");
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

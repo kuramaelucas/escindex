@@ -8,29 +8,87 @@
    não viu, com os assuntos de maior prioridade (o que mais cai e ela mais
    erra) vindo antes. */
 /* CRONOGRAMA DE FORMADOS (CONFIG.cronogramaFormado). A sessão de quem é
-   Formado(a): explorar muitos assuntos com questões fáceis e deixar CADA
-   assunto subir de dificuldade sozinho. O nível de um assunto sai das últimas
-   respostas dele: acerto com certeza com frequência sobe; erro frequente
-   segura no fácil. Nada disso mexe nos outros assuntos. */
+   Formado(a): cada assunto anda sozinho por três FASES, cada uma com mais
+   questão difícil que a anterior (`fases`: 50/35/15, 35/50/15 e 15/50/35 de
+   fácil/média/difícil). Nenhuma fase é "só fácil": quem sabe o assunto vê
+   questão difícil desde o começo e sobe rápido; quem não sabe fica na
+   mistura mais leve até acertar. As questões novas se dividem entre as
+   grandes áreas numa cota fixa (metade igual, metade pela incidência nas
+   provas), para nenhuma matéria ficar para trás. */
 function cronogramaDeFormado(usuario){
   const c = CONFIG.cronogramaFormado;
   return c && usuario && c.anos.includes(usuario.anoFaculdade) ? c : null;
 }
-const ROTULO_NIVEL_FORMADO = ["fácil", "médio", "difícil"];
-function nivelDoAssuntoFormado(usuarioId, assuntoId){
-  const c = CONFIG.cronogramaFormado;
-  /* Resposta de revisão não conta: ela vem de uma questão que a pessoa já
-     errou, então puxaria o nível do assunto para baixo por construção (e o
-     aluno que revisa muito nunca sairia do fácil). */
-  const rs = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId===assuntoId && !/^revisao_/.test(r.origem||"")).slice(-c.janela);
-  const seguras = rs.filter(r=>r.correta && r.confianca==="certeza").length;
-  const erros = rs.filter(r=>!r.correta).length;
-  const base = { nivel: 0, n: rs.length, seguras, erros };
-  if(rs.length < c.amostraMinima) return base;                      // ainda explorando: fácil
-  if(erros/rs.length >= c.taxaErroQueSegura) return base;           // erra com frequência: não progride
-  if(seguras/rs.length >= c.taxaSeguraDificil && rs.length >= c.minimoParaDificil) return { ...base, nivel: 2 };
-  if(seguras/rs.length >= c.taxaSeguraMedio) return { ...base, nivel: 1 };
-  return base;
+const ROTULO_NIVEL_FORMADO = ["fácil", "média", "difícil"];
+let _cacheFasesFormado = null;
+/* FASE DE CADA ASSUNTO, refeita do histórico (nada a guardar, nada a
+   sincronizar). Só a PRIMEIRA resposta de cada questão conta: a revisão traz
+   de volta justamente o que a pessoa errou e puxaria a fase para baixo por
+   construção. Acerto no chute conta como erro (é lacuna, não domínio). Sobe
+   de fase quem acerta as `amostraRapida` primeiras daquela fase (100%) ou,
+   com `amostraMinima` respostas, quem acerta `acertoParaAvancar[fase]` das
+   últimas `janela`. Passou da última: assunto concluído, sai das questões
+   novas (os erros dele seguem na revisão espaçada). */
+function fasesDosAssuntosFormado(usuarioId){
+  const chave = usuarioId+"|"+_geracaoDb+"|"+db.respostas.length;
+  if(_cacheFasesFormado && _cacheFasesFormado.chave === chave) return _cacheFasesFormado.mapa;
+  const c = CONFIG.cronogramaFormado, mapa = {}, vistas = new Set();
+  const quando = r => r.respondidaEm || ((r.data || "")+"T12");
+  // a ordem do histórico decide a fase; a nuvem pode trazer respostas antigas depois das novas
+  const minhas = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId).sort((a,b)=>quando(a).localeCompare(quando(b)));
+  minhas.forEach(r=>{
+    if(vistas.has(r.questaoId)) return;
+    vistas.add(r.questaoId);
+    const e = mapa[r.assuntoId] || (mapa[r.assuntoId] = faseVaziaFormado());
+    e.total++; e.ultimaData = r.data || e.ultimaData;
+    if(e.fase >= c.fases.length) return;
+    const q = getQuestao(r.questaoId);
+    e.naFase.push(!!r.correta && r.confianca !== "chute");
+    if(q) e.porNivel[nivelProprioDaQuestao(q)]++;
+    if(passouDaFaseFormado(e.naFase, e.fase)){ e.fase++; e.naFase = []; e.porNivel = [0,0,0]; }
+  });
+  Object.values(mapa).forEach(e=>{ e.concluido = e.fase >= c.fases.length; e.acertosNaFase = e.naFase.filter(Boolean).length; });
+  _cacheFasesFormado = { chave, mapa };
+  return mapa;
+}
+function faseVaziaFormado(){ return { fase:0, total:0, naFase:[], porNivel:[0,0,0], acertosNaFase:0, concluido:false, ultimaData:"" }; }
+function passouDaFaseFormado(lista, fase){
+  const c = CONFIG.cronogramaFormado, n = lista.length;
+  if(n === c.amostraRapida && lista.every(Boolean)) return true;      // 100% de saída: não precisa esperar a amostra
+  if(n < c.amostraMinima) return false;
+  const ultimas = lista.slice(-c.janela);
+  return ultimas.filter(Boolean).length / ultimas.length >= c.acertoParaAvancar[fase];
+}
+function faseDoAssuntoFormado(usuarioId, assuntoId){ return fasesDosAssuntosFormado(usuarioId)[assuntoId] || faseVaziaFormado(); }
+/* Qual dificuldade vem agora num assunto: sorteada com peso igual ao que
+   falta para cada nível chegar à mistura da fase (fácil/média/difícil já
+   respondidas nesta fase + as já postas nesta sessão). A primeira questão da
+   fase sai na proporção exata da mistura e as seguintes corrigem o desvio —
+   se fosse sempre "a mais atrasada", toda fase começaria pelo mesmo nível e,
+   com poucas questões por assunto, a proporção nunca fecharia. Nível sem
+   questão nova disponível fica de fora. */
+function proximoNivelDaFase(fase, jaFeitas, disponiveis, sorteio){
+  const mistura = CONFIG.cronogramaFormado.fases[fase];
+  const n = jaFeitas.reduce((s,x)=>s+x, 0) + 1;
+  const pesos = [0,1,2].map(l => disponiveis[l] ? Math.max(0, mistura[l]*n - jaFeitas[l]) : 0);
+  let total = pesos.reduce((s,x)=>s+x, 0);
+  if(!total){   // só sobrou nível acima da cota: vai o de mistura maior entre os disponíveis
+    [0,1,2].forEach(l=>{ pesos[l] = disponiveis[l] ? mistura[l] : 0; });
+    total = pesos.reduce((s,x)=>s+x, 0);
+    if(!total) return null;
+  }
+  let r = (sorteio || Math.random)() * total;
+  for(const l of [0,1,2]){ if(pesos[l] > 0 && (r -= pesos[l]) < 0) return l; }
+  return [2,1,0].find(l => pesos[l] > 0);
+}
+/* Fatia de cada grande área nas questões novas: metade igual para todas,
+   metade pela incidência nas provas reais do banco (`areaIgual`). */
+function alvoDasAreasFormado(areaIds){
+  const c = CONFIG.cronogramaFormado, inc = incidenciaNaBanca(TODAS_AS_PROVAS);
+  const somaInc = areaIds.reduce((s,a)=>s+(inc.porArea[a]||0), 0);
+  const alvo = {};
+  areaIds.forEach(a=>{ alvo[a] = c.areaIgual/areaIds.length + (1-c.areaIgual)*(somaInc ? (inc.porArea[a]||0)/somaInc : 1/areaIds.length); });
+  return alvo;
 }
 /* Fatia da sessão que é revisão: pouca no começo (quem acabou de chegar tem
    pouco a rever). Quem faz muitas questões por semana acumula revisões
@@ -51,57 +109,95 @@ function montarSessaoDeFormado(usuario, tamanho){
     origem: v.motivo==="erro" ? "revisao_erro" : "revisao_decaimento",
     motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto"}));
   const usados = new Set(itens.map(it=>it.questaoId));
-  const naoVistas = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id)));
-  const niveis = {};
-  const nivelDe = q => niveis[q.assuntoId] || (niveis[q.assuntoId] = nivelDoAssuntoFormado(usuarioId, q.assuntoId));
-  const porAssunto = {};
-  const peso = q => { const nv = nivelDe(q); return (nv.n ? 1 : c.pesoAssuntoNovo) * (nivelDaQuestao(q) === nv.nivel ? 2 : 1); };
-  // 1) o que o nível do assunto permite (o mesmo nível ou abaixo), sorteado com peso e com teto por assunto
-  const permitidas = naoVistas.filter(q => nivelDaQuestao(q) <= nivelDe(q).nivel);
-  const motivoDe = q => {
-    const nv = nivelDe(q), rotulo = ROTULO_NIVEL_FORMADO[nivelDaQuestao(q)];
-    if(!nv.n) return "Exploração — "+nomeAssunto(q.assuntoId)+" é novo para você · questão "+rotulo;
-    if(nv.nivel === 0) return "Exploração — "+nomeAssunto(q.assuntoId)+": ainda no nível fácil ("+nv.seguras+" acerto(s) com certeza em "+nv.n+") · questão "+rotulo;
-    return "Progressão — "+nomeAssunto(q.assuntoId)+": você acerta com certeza ("+nv.seguras+" em "+nv.n+") · questão "+rotulo;
+  const fases = fasesDosAssuntosFormado(usuarioId);
+  const faseDe = a => fases[a] || faseVaziaFormado();
+  // questões novas, por assunto e dificuldade; assunto concluído não entra
+  const assuntos = {};
+  questoesParaEstudo(usuarioId).forEach(q=>{
+    if(usados.has(q.id) || jaFoiRespondida(usuarioId, q.id) || faseDe(q.assuntoId).concluido) return;
+    const a = assuntos[q.assuntoId] || (assuntos[q.assuntoId] = { id:q.assuntoId, areaId:q.areaId, niveis:[[],[],[]], naSessao:[0,0,0], postas:0 });
+    a.niveis[nivelProprioDaQuestao(q)].push(q);
+  });
+  Object.values(assuntos).forEach(a=>{ a.niveis = a.niveis.map(l=>embaralhar(l)); });
+  // ordem dos assuntos em cada área: o novo, o que mais cai e a pessoa erra, e o que ela não vê há tempo vêm antes
+  const pesoInc = pesosDeIncidencia(usuarioId), hoje = hojeISO();
+  const peso = a => { const e = faseDe(a.id);
+    const espera = e.ultimaData ? Math.min(c.esperaMaxima, 1 + diasEntre(e.ultimaData, hoje)/7) : 1;
+    return (e.total ? 1 : c.pesoAssuntoNovo) * (pesoInc[a.id] || 1) * espera; };
+  const porArea = {};
+  Object.values(assuntos).forEach(a=>{ (porArea[a.areaId] = porArea[a.areaId] || []).push(a); });
+  Object.keys(porArea).forEach(k=>{ porArea[k] = sortearComPeso(porArea[k], porArea[k].length, peso); });
+  const tirar = a => {
+    const e = faseDe(a.id), feitas = e.porNivel.map((n,l)=>n + a.naSessao[l]);
+    const nivel = proximoNivelDaFase(e.fase, feitas, a.niveis.map(l=>l.length));
+    if(nivel === null) return false;
+    const q = a.niveis[nivel].pop();
+    a.naSessao[nivel]++; a.postas++; usados.add(q.id);
+    itens.push({questaoId:q.id, origem:"nao_vista", motivo: motivoFormado(e, a.id, nivel)});
+    return true;
   };
-  const pegar = (pool, n, teto) => {
-    sortearComPeso(pool, pool.length, peso).forEach(q => {
-      if(n <= 0 || usados.has(q.id) || (porAssunto[q.assuntoId]||0) >= teto) return;
-      itens.push({questaoId:q.id, origem:"nao_vista", motivo:motivoDe(q)});
-      usados.add(q.id); porAssunto[q.assuntoId] = (porAssunto[q.assuntoId]||0)+1; n--;
-    });
+  const temQuestao = a => a.niveis.some(l=>l.length);
+  // cota por área pelo que falta: o alvo de cada uma contra as questões novas que a pessoa fez nela há pouco
+  const alvo = alvoDasAreasFormado(Object.keys(porArea));
+  const recentes = {};
+  const primeiras = new Set(), lista = [];
+  db.respostas.forEach(r=>{ if(r.usuarioId===usuarioId && !primeiras.has(r.questaoId)){ primeiras.add(r.questaoId); lista.push(r); } });
+  lista.slice(-c.janelaDeCobertura).forEach(r=>{ if(r.areaId in alvo) recentes[r.areaId] = (recentes[r.areaId]||0) + 1; });
+  let base = Object.values(recentes).reduce((s,x)=>s+x, 0);
+  const cursor = {};
+  const proximoDaArea = (k, teto) => {
+    const fila = porArea[k];
+    for(let volta = 0; volta < fila.length; volta++){
+      const i = ((cursor[k]||0) + volta) % fila.length, a = fila[i];
+      if(a.postas < teto && temQuestao(a) && tirar(a)){ cursor[k] = i + 1; return true; }
+    }
+    return false;
   };
-  pegar(permitidas, tamanho - itens.length, c.maxPorAssunto);
-  // 2) faltou: assuntos que só têm questão acima do nível entram pela mais fácil, e o teto sobe um pouco
-  if(itens.length < tamanho){
-    const acima = naoVistas.filter(q=>!usados.has(q.id)).sort((a,b)=>nivelDaQuestao(a)-nivelDaQuestao(b));
-    acima.forEach(q => {
-      if(itens.length >= tamanho || (porAssunto[q.assuntoId]||0) >= c.maxPorAssunto+1) return;
-      itens.push({questaoId:q.id, origem:"nao_vista", motivo:motivoDe(q)+" (o assunto não tem questão mais fácil sem resposta)"});
-      usados.add(q.id); porAssunto[q.assuntoId] = (porAssunto[q.assuntoId]||0)+1;
-    });
+  // teto por assunto: primeiro o de `maxPorAssunto`; banco quase todo respondido, o teto some
+  for(const teto of [c.maxPorAssunto, Infinity]){
+    let areasAbertas = Object.keys(porArea);
+    while(itens.length < tamanho && areasAbertas.length){
+      base++;
+      const k = areasAbertas.reduce((m,x)=> (alvo[x]*base - (recentes[x]||0)) > (alvo[m]*base - (recentes[m]||0)) ? x : m);
+      if(proximoDaArea(k, teto)) recentes[k] = (recentes[k]||0) + 1;
+      else { areasAbertas = areasAbertas.filter(x=>x!==k); base--; }
+    }
   }
   if(itens.length < tamanho){
     const sobra = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id));
-    embaralharSemRepetir(usuarioId, sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, origem:"complemento", motivo:"Complemento — você já respondeu quase tudo do banco"}));
+    embaralharSemRepetir(usuarioId, sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, origem:"complemento", motivo:"Complemento — os assuntos já foram concluídos ou não têm questão nova"}));
   }
   return embaralhar(itens);
 }
-/* O que a tela diz: a regra e em que ponto a pessoa está. */
+function motivoFormado(e, assuntoId, nivel){
+  const total = CONFIG.cronogramaFormado.fases.length, rotulo = " · questão "+ROTULO_NIVEL_FORMADO[nivel];
+  if(!e.total) return "Exploração — "+nomeAssunto(assuntoId)+" é novo para você · fase 1 de "+total+rotulo;
+  return "Fase "+(e.fase+1)+" de "+total+" — "+nomeAssunto(assuntoId)+": "+e.acertosNaFase+" acerto(s) em "+e.naFase.length+" nesta fase"+rotulo;
+}
+const pctFormado = x => Math.round(x*100)+"%";
+/* O que a tela diz: a regra (com os números do CONFIG) e em que ponto a pessoa está. */
 function explicacaoCronogramaFormado(usuario){
   const c = cronogramaDeFormado(usuario); if(!c) return "";
   // um conjunto só: chamar questoesParaEstudo por assunto custava ~300 ms a cada abertura do Estudar
-  const comQuestao = new Set(questoesParaEstudo(usuario.id).map(q=>q.assuntoId));
-  const todos = db.taxonomia.assuntos.filter(a=>comQuestao.has(a.id));
-  const niveis = todos.map(a=>({a, ...nivelDoAssuntoFormado(usuario.id, a.id)}));
-  const explorados = niveis.filter(x=>x.n > 0).length;
-  const medio = niveis.filter(x=>x.nivel === 1).length, dificil = niveis.filter(x=>x.nivel === 2).length;
+  const naoVistas = new Set(), comQuestao = new Set(), areas = new Set();
+  questoesParaEstudo(usuario.id).forEach(q=>{ comQuestao.add(q.assuntoId); areas.add(q.areaId); if(!jaFoiRespondida(usuario.id, q.id)) naoVistas.add(q.assuntoId); });
+  const fases = fasesDosAssuntosFormado(usuario.id);
+  const ids = [...comQuestao], porFase = c.fases.map(()=>0);
+  let explorados = 0, concluidos = 0, esgotados = 0;
+  ids.forEach(a=>{ const e = fases[a]; if(e && e.total) explorados++;
+    if(e && e.concluido) concluidos++; else if(!naoVistas.has(a)) esgotados++; else porFase[e ? e.fase : 0]++; });
   const partes = partesDaRevisaoEspacada(usuario.id);
   const fila = partes.erros.length + partes.decaimentos.length;
   const fracao = fracaoRevisaoFormado(usuario.id, fila);
-  const aviso = fracao > CONFIG.revisaoSemCalendario ? " Como há "+fila+" revisões vencidas, a fatia subiu para "+Math.round(fracao*100)+"% até a fila baixar." : "";
-  return "Cronograma de formado(a): você começa explorando muitos assuntos com questões fáceis. Cada assunto sobe de nível sozinho (fácil, médio, difícil) quando você acerta com certeza com frequência, e fica no fácil se você erra muito nele — um assunto não muda o nível dos outros. "+
-    "Hoje: "+explorados+" de "+todos.length+" assuntos explorados · "+medio+" no nível médio · "+dificil+" no difícil. A fatia de revisão cresce com o que você já respondeu ("+Math.round(fracao*100)+"% agora)."+aviso+" Respostas de revisão não mudam o nível do assunto.";
+  const aviso = fracao > CONFIG.revisaoSemCalendario ? " Como há "+fila+" revisões vencidas, a fatia subiu para "+pctFormado(fracao)+" até a fila baixar." : "";
+  const alvo = alvoDasAreasFormado([...areas]);
+  const misturas = c.fases.map((m,i)=>"fase "+(i+1)+": "+m.map(pctFormado).join("/")).join(", ");
+  return "Cronograma de formado(a): cada assunto passa por "+c.fases.length+" fases, com cada vez mais questão difícil ("+misturas+" de fácil/média/difícil). "+
+    "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+c.acertoParaAvancar.map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+". "+
+    "Acerto no chute conta como erro e a revisão não muda a fase. Depois da última fase o assunto está concluído e sai das questões novas (os erros dele seguem na revisão espaçada); o mesmo vale quando as questões novas do assunto acabam. "+
+    "As questões novas se dividem entre as áreas na proporção das provas ("+[...areas].map(a=>nomeArea(a)+" "+pctFormado(alvo[a])).join(", ")+"). "+
+    "Hoje: "+explorados+" de "+ids.length+" assuntos explorados · "+porFase.map((n,i)=>"fase "+(i+1)+": "+n).join(" · ")+" · concluídos: "+concluidos+(esgotados ? " · sem questão nova: "+esgotados : "")+". "+
+    "A fatia de revisão cresce com o que você já respondeu ("+pctFormado(fracao)+" agora)."+aviso;
 }
 function montarSessaoSemCalendario(usuario, tamanho){
   if(cronogramaDeFormado(usuario)) return montarSessaoDeFormado(usuario, tamanho);
