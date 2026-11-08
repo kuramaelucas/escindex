@@ -25,6 +25,13 @@ function abrirModalMeta(){
       <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaRecomendadaQuestoesDia}">ideal (${db.configGeral.metaRecomendadaQuestoesDia})</button>
     </div>
     <p class="text-xs muted">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia}/dia, ideal de ${db.configGeral.metaRecomendadaQuestoesDia}/dia. Hoje você já respondeu ${feitasHoje}.</p>
+    <div class="field mt-2"><label class="label" for="tamanhoSessaoInput">Questões por sessão</label><input class="input" type="number" id="tamanhoSessaoInput" value="${tamanhoDaSessaoDoUsuario(u)}" min="5" max="200"></div>
+    <div class="flex gap-1 mb-2 quebra">
+      <button class="pill" onclick="document.getElementById('tamanhoSessaoInput').value=10">curta (10)</button>
+      <button class="pill" onclick="document.getElementById('tamanhoSessaoInput').value=${CONFIG.tamanhoSessaoPadrao}">padrão (${CONFIG.tamanhoSessaoPadrao})</button>
+      <button class="pill" onclick="document.getElementById('tamanhoSessaoInput').value=document.getElementById('metaInput').value">a meta inteira de uma vez</button>
+    </div>
+    <p class="text-xs muted">Quantas questões vêm cada vez que você começa a sessão recomendada. Ela nunca passa do que falta para a meta do dia; batida a meta, vem uma sessão curta extra.</p>
     <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>${u.metaQuestoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('questoes')" title="Volta para a meta recomendada pela coordenação">Restaurar padrão (${db.configGeral.metaRecomendadaQuestoesDia})</button>`:""}</div>`);
 }
 /* "Resetar" a meta é APAGAR a escolha pessoal, e não gravar o número padrão:
@@ -41,7 +48,12 @@ function restaurarMetaPadrao(qual){
 function salvarMeta(){
   const valor = parseInt(document.getElementById("metaInput").value);
   if(!valor || valor<1){ toast("Informe um número válido.", "err"); return; }
-  usuarioAtual().metaQuestoesDia = valor;
+  const tamanho = parseInt(document.getElementById("tamanhoSessaoInput").value);
+  if(!tamanho || tamanho<5 || tamanho>200){ toast("Questões por sessão: de 5 a 200.", "err"); return; }
+  const u = usuarioAtual();
+  u.metaQuestoesDia = valor;
+  // o padrão não se grava: assim a sessão acompanha o padrão se ele mudar
+  if(tamanho === CONFIG.tamanhoSessaoPadrao) delete u.tamanhoSessao; else u.tamanhoSessao = tamanho;
   saveState();
   fecharModal();
   toast(valor < db.configGeral.metaMinimaQuestoesDia ? "Meta salva. Está abaixo da recomendação mínima da coordenação." : "Meta salva.");

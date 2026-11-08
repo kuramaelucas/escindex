@@ -24,6 +24,7 @@
     "referencias-a-conferir": "node ferramentas/referencias-a-conferir.mjs --excluir banco-simulado-epm-6",
     "texto-oficial": "node ferramentas/texto-oficial.mjs",
     "reposicoes": "node ferramentas/reposicoes.mjs",
+    "simular-formado": "node ferramentas/simular-formado.mjs",
     "prioridade-formados": "node ferramentas/prioridade-formados.mjs"
   },
   "devDependencies": {

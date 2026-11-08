@@ -8,106 +8,269 @@
    não viu, com os assuntos de maior prioridade (o que mais cai e ela mais
    erra) vindo antes. */
 /* CRONOGRAMA DE FORMADOS (CONFIG.cronogramaFormado). A sessão de quem é
-   Formado(a): explorar muitos assuntos com questões fáceis e deixar CADA
-   assunto subir de dificuldade sozinho. O nível de um assunto sai das últimas
-   respostas dele: acerto com certeza com frequência sobe; erro frequente
-   segura no fácil. Nada disso mexe nos outros assuntos. */
+   Formado(a): cada assunto anda sozinho por três FASES, cada uma com mais
+   questão difícil que a anterior (`fases`: 50/35/15, 35/50/15 e 15/50/35 de
+   fácil/média/difícil). Nenhuma fase é "só fácil": quem sabe o assunto vê
+   questão difícil desde o começo e sobe rápido; quem não sabe fica na
+   mistura mais leve até acertar. As questões novas se dividem entre as
+   grandes áreas numa cota fixa (metade igual, metade pela incidência nas
+   provas), para nenhuma matéria ficar para trás. */
 function cronogramaDeFormado(usuario){
   const c = CONFIG.cronogramaFormado;
   return c && usuario && c.anos.includes(usuario.anoFaculdade) ? c : null;
 }
-const ROTULO_NIVEL_FORMADO = ["fácil", "médio", "difícil"];
-function nivelDoAssuntoFormado(usuarioId, assuntoId){
-  const c = CONFIG.cronogramaFormado;
-  const rs = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId===assuntoId).slice(-c.janela);
-  const seguras = rs.filter(r=>r.correta && r.confianca==="certeza").length;
-  const erros = rs.filter(r=>!r.correta).length;
-  const base = { nivel: 0, n: rs.length, seguras, erros };
-  if(rs.length < c.amostraMinima) return base;                      // ainda explorando: fácil
-  if(erros/rs.length >= c.taxaErroQueSegura) return base;           // erra com frequência: não progride
-  if(seguras/rs.length >= c.taxaSeguraDificil && rs.length >= c.minimoParaDificil) return { ...base, nivel: 2 };
-  if(seguras/rs.length >= c.taxaSeguraMedio) return { ...base, nivel: 1 };
-  return base;
+const ROTULO_NIVEL_FORMADO = ["fácil", "média", "difícil"];
+let _cacheFasesFormado = null;
+/* FASE DE CADA ASSUNTO, refeita do histórico (nada a guardar, nada a
+   sincronizar). Só a PRIMEIRA resposta de cada questão conta: a revisão traz
+   de volta justamente o que a pessoa errou e puxaria a fase para baixo por
+   construção. Acerto no chute conta como erro (é lacuna, não domínio). Sobe
+   de fase quem acerta as `amostraRapida` primeiras daquela fase (100%) ou,
+   com `amostraMinima` respostas, quem acerta a régua do ritmo escolhido das
+   últimas `janela`. Passou da última: assunto concluído, sai das questões
+   novas e consolida na trilha, 05e (os erros dele seguem na revisão espaçada). */
+function fasesDosAssuntosFormado(usuarioId){
+  const regua = reguaDoFormado(getUsuario(usuarioId));
+  const chave = usuarioId+"|"+_geracaoDb+"|"+db.respostas.length+"|"+regua.join(",");
+  if(_cacheFasesFormado && _cacheFasesFormado.chave === chave) return _cacheFasesFormado.mapa;
+  const c = CONFIG.cronogramaFormado, mapa = {}, vistas = new Set();
+  const quando = r => r.respondidaEm || ((r.data || "")+"T12");
+  // a ordem do histórico decide a fase; a nuvem pode trazer respostas antigas depois das novas
+  const minhas = db.respostas.filter(r=>r.usuarioId===usuarioId && r.assuntoId).sort((a,b)=>quando(a).localeCompare(quando(b)));
+  minhas.forEach(r=>{
+    if(vistas.has(r.questaoId)) return;
+    vistas.add(r.questaoId);
+    const e = mapa[r.assuntoId] || (mapa[r.assuntoId] = faseVaziaFormado());
+    e.total++; e.ultimaData = r.data || e.ultimaData;
+    if(e.fase >= c.fases.length) return;
+    const q = getQuestao(r.questaoId);
+    e.naFase.push(!!r.correta && r.confianca !== "chute");
+    if(q) e.porNivel[nivelProprioDaQuestao(q)]++;
+    if(passouDaFaseFormado(e.naFase, e.fase, regua)){ e.fase++; e.naFase = []; e.porNivel = [0,0,0]; }
+  });
+  Object.values(mapa).forEach(e=>{ e.concluido = e.fase >= c.fases.length; e.acertosNaFase = e.naFase.filter(Boolean).length; });
+  _cacheFasesFormado = { chave, mapa };
+  return mapa;
 }
-// fatia da sessão que é revisão: pouca no começo (quem acabou de chegar tem pouco a rever)
-function fracaoRevisaoFormado(usuarioId){
+function faseVaziaFormado(){ return { fase:0, total:0, naFase:[], porNivel:[0,0,0], acertosNaFase:0, concluido:false, ultimaData:"" }; }
+/* Ritmo escolhido pelo aluno (Estudar > Ritmo das fases) e a régua de cada fase. */
+function ritmoDoFormado(usuario){
+  const r = usuario && usuario.reguaFormado;
+  return CONFIG.cronogramaFormado.reguas[r] ? r : "padrao";
+}
+function reguaDoFormado(usuario){
+  const c = CONFIG.cronogramaFormado, base = c.reguas[ritmoDoFormado(usuario)].acerto;
+  return c.ajusteDaReguaPorFase.map(a => Math.round((base + a)*100)/100);
+}
+function passouDaFaseFormado(lista, fase, regua){
+  const c = CONFIG.cronogramaFormado, n = lista.length;
+  if(n === c.amostraRapida && lista.every(Boolean)) return true;      // 100% de saída: não precisa esperar a amostra
+  if(n < c.amostraMinima) return false;
+  const ultimas = lista.slice(-c.janela);
+  return ultimas.filter(Boolean).length / ultimas.length >= regua[fase];
+}
+/* MENOS RETORNO (Formado). Quem faz ~200 questões por semana acumula revisão
+   mais rápido do que consegue fazer: medido no simulador, a fila vencida era
+   toda de ACERTOS antigos voltando em 30 e 60 dias — os erros a sessão dava
+   conta — e era ela que empurrava a fatia de revisão para cima, tirando
+   questão nova. Para o formado, que precisa cobrir o banco: acerto COM
+   CERTEZA sai da revisão (é a melhor prova de que sabe); num assunto
+   consolidado na trilha, sai qualquer acerto. Erro e chute sempre voltam;
+   acerto na dúvida volta enquanto o assunto não está consolidado. */
+function dispensadaDaRevisaoFormado(usuarioId, questaoId){
+  if(!cronogramaDeFormado(getUsuario(usuarioId))) return false;
+  const rs = respostasDaQuestao(usuarioId, questaoId), ultima = rs[rs.length-1];
+  if(!ultima || !acertoFirme(ultima)) return false;
+  if(ultima.confianca === "certeza") return true;
+  const q = getQuestao(questaoId); if(!q) return false;
+  // consolidado = o que a trilha diz (fases, regra da trilha, pulado; reaberto não conta); sem trilha, passou das fases
+  const t = trilhaDeFormado(usuarioId), it = t && t.itens.find(x => x.id === q.assuntoId);
+  return t ? !!(it && it.consolidado) : faseDoAssuntoFormado(usuarioId, q.assuntoId).concluido;
+}
+function faseDoAssuntoFormado(usuarioId, assuntoId){ return fasesDosAssuntosFormado(usuarioId)[assuntoId] || faseVaziaFormado(); }
+/* Qual dificuldade vem agora num assunto: sorteada com peso igual ao que
+   falta para cada nível chegar à mistura da fase (fácil/média/difícil já
+   respondidas nesta fase + as já postas nesta sessão). A primeira questão da
+   fase sai na proporção exata da mistura e as seguintes corrigem o desvio —
+   se fosse sempre "a mais atrasada", toda fase começaria pelo mesmo nível e,
+   com poucas questões por assunto, a proporção nunca fecharia. Nível sem
+   questão nova disponível fica de fora. */
+function proximoNivelDaFase(fase, jaFeitas, disponiveis, sorteio){
+  const mistura = CONFIG.cronogramaFormado.fases[fase];
+  const n = jaFeitas.reduce((s,x)=>s+x, 0) + 1;
+  const pesos = [0,1,2].map(l => disponiveis[l] ? Math.max(0, mistura[l]*n - jaFeitas[l]) : 0);
+  let total = pesos.reduce((s,x)=>s+x, 0);
+  if(!total){   // só sobrou nível acima da cota: vai o de mistura maior entre os disponíveis
+    [0,1,2].forEach(l=>{ pesos[l] = disponiveis[l] ? mistura[l] : 0; });
+    total = pesos.reduce((s,x)=>s+x, 0);
+    if(!total) return null;
+  }
+  let r = (sorteio || Math.random)() * total;
+  for(const l of [0,1,2]){ if(pesos[l] > 0 && (r -= pesos[l]) < 0) return l; }
+  return [2,1,0].find(l => pesos[l] > 0);
+}
+/* Fatia da sessão que é revisão: pouca no começo (quem acabou de chegar tem
+   pouco a rever). Quem faz muitas questões por semana acumula revisões
+   vencidas mais rápido do que a fatia fixa as devolve; com a fila grande
+   (`filaVencida`) a fatia sobe, e a tela diz isso. */
+function fracaoRevisaoFormado(usuarioId, filaVencida){
+  const c = CONFIG.cronogramaFormado;
   const feitas = db.respostas.filter(r=>r.usuarioId===usuarioId).length;
-  const degrau = CONFIG.cronogramaFormado.revisaoPorRespostas.find(([ate]) => feitas < ate);
-  return degrau ? degrau[1] : CONFIG.revisaoSemCalendario;
+  const degrau = c.revisaoPorRespostas.find(([ate]) => feitas < ate);
+  if(degrau) return degrau[1];
+  return filaVencida >= c.filaQueAceleraRevisao ? c.revisaoComFilaGrande : CONFIG.revisaoSemCalendario;
 }
 function montarSessaoDeFormado(usuario, tamanho){
   const usuarioId = usuario.id, c = CONFIG.cronogramaFormado;
   const partes = partesDaRevisaoEspacada(usuarioId);
-  const nRevisao = Math.round(tamanho * fracaoRevisaoFormado(usuarioId));
+  const nRevisao = Math.round(tamanho * fracaoRevisaoFormado(usuarioId, partes.erros.length + partes.decaimentos.length));
   const itens = [...partes.erros, ...partes.decaimentos].slice(0, nRevisao).map(v=>({questaoId:v.questao.id,
     origem: v.motivo==="erro" ? "revisao_erro" : "revisao_decaimento",
     motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto"}));
   const usados = new Set(itens.map(it=>it.questaoId));
-  const naoVistas = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id)));
-  // trilha (05e): a exploração fica nos assuntos "em estudo"; o resto só entra se estes não bastarem
+  const fases = fasesDosAssuntosFormado(usuarioId);
+  const faseDe = a => fases[a] || faseVaziaFormado();
+  /* QUAIS assuntos: a trilha (05e) — os "em estudo", na ordem da fila (o que
+     mais cai e o que é base vem antes); os outros só entram se esses não
+     bastarem, e o consolidado por último. Sem o arquivo da trilha, valem
+     todos os assuntos ainda não concluídos. QUAL dificuldade: a fase de cada
+     assunto (proximoNivelDaFase). */
   const trilha = trilhaDeFormado(usuarioId);
-  const lugarNaTrilha = {}; if(trilha) trilha.emEstudo.forEach((it, i) => { lugarNaTrilha[it.id] = i; });
-  const naTrilha = q => trilha ? q.assuntoId in lugarNaTrilha : true;
-  const niveis = {};
-  const nivelDe = q => niveis[q.assuntoId] || (niveis[q.assuntoId] = nivelDoAssuntoFormado(usuarioId, q.assuntoId));
-  const porAssunto = {};
-  // dentro da trilha, quanto mais acima na fila (cai mais / é base), mais questões
-  const folga = q => trilha && q.assuntoId in lugarNaTrilha ? 1 + 1.5 * (1 - lugarNaTrilha[q.assuntoId] / Math.max(1, trilha.emEstudo.length)) : 1;
-  const peso = q => { const nv = nivelDe(q); return (nv.n ? 1 : c.pesoAssuntoNovo) * (nivelDaQuestao(q) === nv.nivel ? 2 : 1) * folga(q); };
-  // 1) o que o nível do assunto permite (o mesmo nível ou abaixo), sorteado com peso e com teto por assunto
-  const permitidas = naoVistas.filter(q => naTrilha(q) && nivelDaQuestao(q) <= nivelDe(q).nivel);
-  const motivoDe = q => {
-    const nv = nivelDe(q), rotulo = ROTULO_NIVEL_FORMADO[nivelDaQuestao(q)];
-    const lugar = q.assuntoId in lugarNaTrilha ? " · na sua trilha (nº "+(trilha.itens.find(it=>it.id===q.assuntoId).pos)+" da fila)" : "";
-    if(!nv.n) return "Exploração — "+nomeAssunto(q.assuntoId)+" é novo para você · questão "+rotulo+lugar;
-    if(nv.nivel === 0) return "Exploração — "+nomeAssunto(q.assuntoId)+": ainda no nível fácil ("+nv.seguras+" acerto(s) com certeza em "+nv.n+") · questão "+rotulo+lugar;
-    return "Progressão — "+nomeAssunto(q.assuntoId)+": você acerta com certeza ("+nv.seguras+" em "+nv.n+") · questão "+rotulo+lugar;
+  const itemDaTrilha = {}; if(trilha) trilha.itens.forEach(it => { itemDaTrilha[it.id] = it; });
+  const consolidado = id => trilha ? !!(itemDaTrilha[id] && itemDaTrilha[id].consolidado && !itemDaTrilha[id].misc) : faseDe(id).concluido;
+  const raro = id => !!(trilha && itemDaTrilha[id] && itemDaTrilha[id].misc);
+  const assuntos = {};
+  questoesParaEstudo(usuarioId).forEach(q=>{
+    if(usados.has(q.id) || jaFoiRespondida(usuarioId, q.id)) return;
+    const a = assuntos[q.assuntoId] || (assuntos[q.assuntoId] = { id:q.assuntoId, niveis:[[],[],[]], naSessao:[0,0,0], postas:0 });
+    a.niveis[nivelProprioDaQuestao(q)].push(q);
+  });
+  Object.values(assuntos).forEach(a=>{ a.niveis = a.niveis.map(l=>embaralhar(l)); });
+  const tirar = (a, motivoExtra) => {
+    const e = faseDe(a.id), fase = Math.min(e.fase, c.fases.length - 1);   // reaberto depois de concluir: mistura da última fase
+    const feitas = e.porNivel.map((n,l)=>n + a.naSessao[l]);
+    const nivel = proximoNivelDaFase(fase, feitas, a.niveis.map(l=>l.length));
+    if(nivel === null) return false;
+    const q = a.niveis[nivel].pop();
+    a.naSessao[nivel]++; a.postas++; usados.add(q.id);
+    itens.push({questaoId:q.id, origem:"nao_vista", motivo: motivoFormado(e, a.id, nivel) + (motivoExtra || "")});
+    return true;
   };
-  const pegar = (pool, n, teto) => {
-    sortearComPeso(pool, pool.length, peso).forEach(q => {
-      if(n <= 0 || usados.has(q.id) || (porAssunto[q.assuntoId]||0) >= teto) return;
-      itens.push({questaoId:q.id, origem:"nao_vista", motivo:motivoDe(q)});
-      usados.add(q.id); porAssunto[q.assuntoId] = (porAssunto[q.assuntoId]||0)+1; n--;
-    });
-  };
-  // miscelânea (05e): questões de assuntos com poucas questões, sorteadas à parte e raramente — nunca vira grupo visível
+  // miscelânea (05e): assunto com pouquíssimas questões entra raramente, sorteado à parte — nunca vira grupo visível
   if(trilha){
-    const raros = new Set(trilha.miscelania.map(it => it.id)), pool = naoVistas.filter(q => raros.has(q.assuntoId) && !usados.has(q.id));
+    const pool = Object.values(assuntos).filter(a => raro(a.id));
     let vagas = 0; for(let i = itens.length; i < tamanho; i++) if(Math.random() < c.miscelania.chance) vagas++;
-    sortearComPeso(pool, pool.length, () => 1).slice(0, vagas).forEach(q => {
-      itens.push({questaoId:q.id, origem:"nao_vista", motivo:"Miscelânea — "+nomeAssunto(q.assuntoId)+" tem poucas questões no banco, então aparece só de vez em quando"});
-      usados.add(q.id);
+    sortearComPeso(pool, pool.length, () => 1).slice(0, vagas).forEach(a => {
+      const q = a.niveis.flat()[0]; if(!q) return;
+      a.niveis = a.niveis.map(l => l.filter(x => x.id !== q.id)); a.postas++; usados.add(q.id);
+      itens.push({questaoId:q.id, origem:"nao_vista", motivo:"Miscelânea — "+nomeAssunto(a.id)+" tem poucas questões no banco, então aparece só de vez em quando"});
     });
   }
-  pegar(permitidas, tamanho - itens.length, c.maxPorAssunto);
-  // 2) faltou: assuntos que só têm questão acima do nível entram pela mais fácil, e o teto sobe um pouco
-  if(itens.length < tamanho){
-    // assunto já consolidado (05e) fica por último: o aluno já domina, então a vaga vai para o que ainda falta
-    const consolidado = id => trilha && trilha.itens.some(it => it.id === id && it.consolidado && !it.sem);
-    const acima = naoVistas.filter(q=>!usados.has(q.id)).sort((a,b)=>(consolidado(a.assuntoId)-consolidado(b.assuntoId)) || nivelDaQuestao(a)-nivelDaQuestao(b));
-    acima.forEach(q => {
-      if(itens.length >= tamanho || (porAssunto[q.assuntoId]||0) >= c.maxPorAssunto+1) return;
-      itens.push({questaoId:q.id, origem:"nao_vista", motivo:motivoDe(q)+" (o assunto não tem questão mais fácil sem resposta)"});
-      usados.add(q.id); porAssunto[q.assuntoId] = (porAssunto[q.assuntoId]||0)+1;
-    });
-  }
+  // dentro de cada grupo: na trilha, quanto mais acima na fila, mais peso; fora dela, o novo, o que mais cai e a pessoa erra, e o que não aparece há semanas
+  const pesoInc = pesosDeIncidencia(usuarioId), hoje = hojeISO();
+  const emEstudo = trilha ? trilha.emEstudo.map(it => it.id) : [];
+  const lugar = {}; emEstudo.forEach((id, i) => { lugar[id] = i; });
+  const peso = a => {
+    if(a.id in lugar) return 1 + 1.5 * (1 - lugar[a.id] / Math.max(1, emEstudo.length));
+    const e = faseDe(a.id), espera = e.ultimaData ? Math.min(c.esperaMaxima, 1 + diasEntre(e.ultimaData, hoje)/7) : 1;
+    return (e.total ? 1 : c.pesoAssuntoNovo) * (pesoInc[a.id] || 1) * espera;
+  };
+  const todos = Object.values(assuntos).filter(a => !raro(a.id));
+  const grupos = trilha
+    ? [[todos.filter(a => a.id in lugar), " · na sua trilha"], [todos.filter(a => !(a.id in lugar) && !consolidado(a.id)), " · fora da trilha (os assuntos em estudo não bastaram)"], [todos.filter(a => consolidado(a.id)), " · assunto já consolidado (faltou questão nos outros)"]]
+    : [[todos.filter(a => !consolidado(a.id)), ""], [todos.filter(a => consolidado(a.id)), " · assunto já concluído (faltou questão nos outros)"]];
+  // rodadas: uma questão por assunto por vez, até o teto de `maxPorAssunto`; no último grupo, o teto some (banco quase todo respondido)
+  grupos.forEach(([lista, extra], g) => {
+    const fila = sortearComPeso(lista, lista.length, peso);
+    for(const teto of g === grupos.length - 1 ? [c.maxPorAssunto, Infinity] : [c.maxPorAssunto]){
+      let andou = true;
+      while(itens.length < tamanho && andou){
+        andou = false;
+        for(const a of fila){ if(itens.length >= tamanho) break; if(a.postas < teto && tirar(a, extra)) andou = true; }
+      }
+    }
+  });
   if(itens.length < tamanho){
     const sobra = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id));
     embaralharSemRepetir(usuarioId, sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, origem:"complemento", motivo:"Complemento — você já respondeu quase tudo do banco"}));
   }
   return embaralhar(itens);
 }
-/* O que a tela diz: a regra e em que ponto a pessoa está. */
+function motivoFormado(e, assuntoId, nivel){
+  const total = CONFIG.cronogramaFormado.fases.length, rotulo = " · questão "+ROTULO_NIVEL_FORMADO[nivel];
+  if(!e.total) return "Exploração — "+nomeAssunto(assuntoId)+" é novo para você · fase 1 de "+total+rotulo;
+  return "Fase "+(e.fase+1)+" de "+total+" — "+nomeAssunto(assuntoId)+": "+e.acertosNaFase+" acerto(s) em "+e.naFase.length+" nesta fase"+rotulo;
+}
+const pctFormado = x => Math.round(x*100)+"%";
+/* O que a tela diz: a regra (com os números do CONFIG) e em que ponto a pessoa está. */
 function explicacaoCronogramaFormado(usuario){
   const c = cronogramaDeFormado(usuario); if(!c) return "";
-  const todos = db.taxonomia.assuntos.filter(a=>questoesParaEstudo(usuario.id).some(q=>q.assuntoId===a.id));
-  const niveis = todos.map(a=>({a, ...nivelDoAssuntoFormado(usuario.id, a.id)}));
-  const explorados = niveis.filter(x=>x.n > 0).length;
-  const medio = niveis.filter(x=>x.nivel === 1).length, dificil = niveis.filter(x=>x.nivel === 2).length;
+  // um conjunto só: chamar questoesParaEstudo por assunto custava ~300 ms a cada abertura do Estudar
+  const naoVistas = new Set(), comQuestao = new Set(), areas = new Set(), areaDoAssunto = {};
+  questoesParaEstudo(usuario.id).forEach(q=>{ comQuestao.add(q.assuntoId); areas.add(q.areaId); areaDoAssunto[q.assuntoId] = q.areaId; if(!jaFoiRespondida(usuario.id, q.id)) naoVistas.add(q.assuntoId); });
+  const fases = fasesDosAssuntosFormado(usuario.id);
+  const ids = [...comQuestao], porFase = c.fases.map(()=>0);
+  let explorados = 0, concluidos = 0, esgotados = 0;
+  // por área: onde cada matéria está ("CM: 12 na fase 2, 3 concluídos"), para a pessoa ver o que ficou para trás
+  const daArea = {};
+  ids.forEach(a=>{ const e = fases[a], d = daArea[areaDoAssunto[a]] = daArea[areaDoAssunto[a]] || { fases: c.fases.map(()=>0), concluidos: 0, novos: 0 };
+    if(e && e.total) explorados++; else d.novos++;
+    if(e && e.concluido){ concluidos++; d.concluidos++; }
+    else if(!naoVistas.has(a)) esgotados++;
+    else if(e && e.total){ porFase[e.fase]++; d.fases[e.fase]++; } });
+  const textoDasAreas = [...areas].map(k=>{ const d = daArea[k] || { fases:[], concluidos:0, novos:0 };
+    return nomeArea(k)+" — "+[...d.fases.map((n,i)=> n ? "fase "+(i+1)+": "+n : ""), d.concluidos ? "passaram das fases: "+d.concluidos : "", d.novos ? "ainda não vistos: "+d.novos : ""].filter(Boolean).join(", "); }).join("; ");
+  const partes = partesDaRevisaoEspacada(usuario.id);
+  const fila = partes.erros.length + partes.decaimentos.length;
+  const fracao = fracaoRevisaoFormado(usuario.id, fila);
+  const aviso = fracao > CONFIG.revisaoSemCalendario ? " Como há "+fila+" revisões vencidas, a fatia subiu para "+pctFormado(fracao)+" até a fila baixar." : "";
   const t = trilhaDeFormado(usuario.id);
-  const trilhaTxt = t ? " Sua trilha: "+t.emEstudo.length+" assunto(s) em estudo agora, "+t.consolidados+" de "+t.total+" consolidados (os que mais caem nas provas e que servem de base para outros vêm primeiro)." : "";
-  return "Cronograma de formado(a): você começa explorando muitos assuntos com questões fáceis. Cada assunto sobe de nível sozinho (fácil, médio, difícil) quando você acerta com certeza com frequência, e fica no fácil se você erra muito nele — um assunto não muda o nível dos outros. "+
-    "Hoje: "+explorados+" de "+todos.length+" assuntos explorados · "+medio+" no nível médio · "+dificil+" no difícil. A fatia de revisão cresce com o que você já respondeu ("+Math.round(fracaoRevisaoFormado(usuario.id)*100)+"% agora)."+trilhaTxt;
+  const trilhaTxt = t ? "Quais assuntos: a sua trilha, com "+t.emEstudo.length+" assunto(s) em estudo agora e "+t.consolidados+" de "+t.total+" consolidados — os que mais caem nas provas e os que servem de base para outros vêm primeiro, e um assunto só abre depois que o que ele exige foi consolidado (Ver minha trilha). " : "";
+  const misturas = c.fases.map((m,i)=>"fase "+(i+1)+": "+m.map(pctFormado).join("/")).join(", ");
+  return "Cronograma de formado(a): cada assunto que você estuda passa por "+c.fases.length+" fases, com cada vez mais questão difícil ("+misturas+" de fácil/média/difícil). "+
+    "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+reguaDoFormado(usuario).map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+" — ritmo "+c.reguas[ritmoDoFormado(usuario)].nome+" ("+c.reguas[ritmoDoFormado(usuario)].como+"), que você muda em Ritmo das fases. "+
+    "Acerto no chute conta como erro e a revisão não muda a fase. Passar da última fase consolida o assunto na trilha: ele sai das questões novas e libera os que dependem dele (volta se esfriar). "+
+    "Para sobrar tempo para o banco inteiro, a revisão traz de volta só o que você errou, chutou ou acertou na dúvida: acerto com certeza não volta, e no assunto consolidado nenhum acerto volta. "+trilhaTxt+
+    "Hoje: "+explorados+" de "+ids.length+" assuntos explorados · "+porFase.map((n,i)=>"fase "+(i+1)+": "+n).join(" · ")+" · passaram das fases: "+concluidos+(esgotados ? " · sem questão nova: "+esgotados : "")+". Por área: "+textoDasAreas+". "+
+    "A fatia de revisão cresce com o que você já respondeu ("+pctFormado(fracao)+" agora)."+aviso;
+}
+/* RITMO DAS FASES. A janela explica, para o aluno, o que é uma fase, o que
+   vale em qualquer ritmo e, para cada ritmo, como funciona, quando escolher e
+   o cuidado — e quantas subidas de fase a troca causaria agora (a fase é
+   refeita do histórico, então trocar o ritmo vale também para o passado). */
+function abrirRitmoDoFormado(){
+  const u = usuarioAtual(), c = CONFIG.cronogramaFormado, atual = ritmoDoFormado(u);
+  const contar = ritmo => { const antes = u.reguaFormado; u.reguaFormado = ritmo;
+    const m = fasesDosAssuntosFormado(u.id), n = Object.values(m).filter(e=>e.total).reduce((s,e)=>s + e.fase, 0);
+    if(antes === undefined) delete u.reguaFormado; else u.reguaFormado = antes; return n; };
+  const agora = contar(atual);
+  const nomes = ["fácil", "média", "difícil"];
+  const fases = c.fases.map((m,i)=>`<li><strong>Fase ${i+1}</strong>: ${m.map((x,l)=>pctFormado(x)+" "+nomes[l]).join(", ")}</li>`).join("");
+  abrirModalTitulado("Ritmo das fases", `
+    <p class="text-sm">Cada assunto passa por ${c.fases.length} fases, e cada uma traz mais questão difícil que a anterior:</p>
+    <ul class="text-sm">${fases}</ul>
+    <p class="text-sm">O <strong>ritmo</strong> decide quanto você precisa acertar nas questões novas de um assunto para ele mudar de fase. Passar da última consolida o assunto na sua trilha: ele sai das questões novas e libera os assuntos que dependem dele.</p>
+    <p class="text-xs muted">Em qualquer ritmo: acertar as ${c.amostraRapida} primeiras da fase já sobe; fora isso, vale a taxa das últimas ${c.janela}, a partir de ${c.amostraMinima} respostas na fase; acerto no chute conta como erro; a revisão não muda a fase; um assunto não mexe nos outros; e a fase ${c.fases.length}, por ter mais difícil, pede 5 pontos a menos.</p>
+    ${Object.entries(c.reguas).map(([id, r])=>{ const regua = c.ajusteDaReguaPorFase.map(a=>pctFormado(r.acerto+a)).join(", ");
+      const dif = contar(id) - agora;
+      return `<label class="card-flat mt-1 flex gap-1" style="align-items:flex-start"><input type="radio" name="ritmoFormado" value="${id}" ${id===atual?"checked":""} style="margin-top:.3em">
+        <span class="text-sm"><strong>${escapeHtml(r.nome)}</strong> — ${regua} (fase 1, 2, 3)${id===atual ? ` <span class="badge badge-accent">seu ritmo</span>` : ""}<br>
+        <span><strong>Como funciona:</strong> ${escapeHtml(r.como)}.</span><br>
+        <span><strong>Quando escolher:</strong> ${escapeHtml(r.quando)}.</span><br>
+        <span class="muted"><strong>Cuidado:</strong> ${escapeHtml(r.cuidado)}.</span>
+        ${dif ? `<br><span class="text-xs muted">Com o que você já respondeu, ${Math.abs(dif)} ${dif>0?"subida(s)":"descida(s)"} de fase na hora.</span>` : ""}</span></label>`; }).join("")}
+    <p class="text-xs muted mt-2">Trocar recalcula as fases com o que você já respondeu, sem perder nada. A escolha fica guardada e vale nos outros aparelhos em que você entrar.</p>
+    <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarRitmoDoFormado()">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
+}
+function salvarRitmoDoFormado(){
+  const marcado = document.querySelector('input[name="ritmoFormado"]:checked');
+  if(!marcado) return;
+  const u = usuarioAtual();
+  // o padrão não se grava: acompanha o padrão se ele mudar
+  if(marcado.value === "padrao") delete u.reguaFormado; else u.reguaFormado = marcado.value;
+  saveState(); fecharModal();
+  toast("Ritmo das fases: "+CONFIG.cronogramaFormado.reguas[ritmoDoFormado(u)].nome+".");
+  render();
 }
 function montarSessaoSemCalendario(usuario, tamanho){
   if(cronogramaDeFormado(usuario)) return montarSessaoDeFormado(usuario, tamanho);
