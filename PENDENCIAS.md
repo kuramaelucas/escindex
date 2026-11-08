@@ -30,7 +30,7 @@ Entraram em 05/10/2026 as cinco provas da FAMERP (385 questões). Pendências:
 
 ### USP-SP (FMUSP) 2022 a 2026: revisão no padrão novo e diretrizes a atualizar
 
-Em andamento desde 08/11/2026 (`docs/REVISAO-USP.md`): a prova de 2022 está completa (mecanismo, epidemiologia e referência datada); faltam 2023, 2024, 2025 e 2026. A lista de **diretrizes a atualizar** (edição citada × vigente, com o obstáculo de cada domínio) e as letras a conferir (`q-usp2022-089` e `-100`) estão nesse documento.
+Em andamento desde 08/11/2026 (`docs/REVISAO-USP.md`): as provas de 2022 e 2023 estão completas (mecanismo, epidemiologia e referência datada); faltam 2024, 2025 e 2026. A lista de **diretrizes a atualizar** (edição citada × vigente, com o obstáculo de cada domínio) e as letras a conferir (`q-usp2022-089`, `-100` e `q-usp2023-052`) estão nesse documento.
 
 ### Teste de Progresso 2025/2 e 2026/1: questões de gabarito discutível e cartões dos assuntos novos
 

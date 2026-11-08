@@ -18,9 +18,11 @@ Mesmo método da `docs/REVISAO-UNIFESP.md`: cada explicação ganha **fisiopatol
 
 - **USP 2022 completa (100 questões):** as 100 receberam fisiopatologia, epidemiologia (qualitativa, sem número sem fonte) e nota datada nas referências. Em nenhuma o texto da diretriz foi reaberto nesta rodada (sem leitura de fonte primária), então todas continuam na fila de `npm run referencias-a-conferir`.
 
+- **USP 2023 completa (120 questões, 3 anuladas):** mesmo método; nas anuladas (`-023`, `-035`, `-092`) o parágrafo vai no fim, sem mexer na anulação. Nenhum texto de diretriz reaberto.
+
 ## Pendente
 
-- USP 2023 (120, 3 anuladas), 2024 (120, 3 anuladas), 2025 (120) e 2026 (120, 2 anuladas), nesta ordem, em blocos de 20.
+- USP 2024 (120, 3 anuladas), 2025 (120) e 2026 (120, 2 anuladas), nesta ordem, em blocos de 20.
 
 ## Diretrizes a atualizar (achadas em USP 2022)
 
@@ -49,7 +51,31 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 | Manual de dengue do MS 2024 | verificar | `q-usp2022-039` | gov.br abre |
 | ACR 1996, IDSA encefalite 2008, IDSA rinossinusite 2012, ESC pericárdio 2015 | edição posterior possível | `q-usp2022-014`, `-005`, `-017`, `-018` | verificar se há edição nova |
 
+## Diretrizes a atualizar (achadas em USP 2023)
+
+| Diretriz citada | Vigente | Questões |
+|---|---|---|
+| SSC 2021 | SSC 2026 | `q-usp2023-102` |
+| ESC AF 2020 | ESC 2024 | `q-usp2023-050` |
+| Diretriz Brasileira de Hipertensão 2020 | SBC 2025 | `q-usp2023-052` |
+| ADA 2023 | ADA 2026 | `q-usp2023-113`, `-114`, `-118` |
+| GINA 2022 | GINA 2026 | `q-usp2023-115` |
+| AHA PALS 2020 | AHA 2025 | `q-usp2023-083` |
+| ATLS 10ª ed. | ATLS 11ª (2025) | `q-usp2023-009`, `-119`, `-120` |
+| EAU 2024 | EAU 2026 | `q-usp2023-018` |
+| ACOG PB 107 (2009) | ACOG PB 205 (2019) ou posterior | `q-usp2023-108` |
+| PCDT-IST 2022 | verificar atualização do MS | `q-usp2023-110` |
+| Calendário Nacional 2023 | Calendário 2026 | `q-usp2023-094` (já desatualizada) |
+| Lei 7.802/1989 (agrotóxicos) | Lei 14.785/2023 | `q-usp2023-065` |
+| Decreto 7.646/2011 (Conitec) | Decreto 11.161/2022 | `q-usp2023-068` |
+| Norma técnica de violência sexual 2012 | nova edição 2024 | `q-usp2023-071` |
+| ESC pericárdio 2015 | ESC 2025 (a verificar) | `q-usp2023-047` |
+| NCCN 2022 | NCCN 2026 | `q-usp2023-011`, `-020` |
+| Goldfrank 11ª ed. | 12ª ed. (2023) | `q-usp2023-049` |
+
 ## Letras a conferir (não alteradas)
+
+- `q-usp2023-052`: o gabarito (só estilo de vida, com investigação secundária) é discutível para PA persistente de 156 x 98 mmHg; conferir o enunciado completo com a diretriz vigente.
 
 - `q-usp2022-089` (tríade da atleta): o gabarito é o contraceptivo hormonal combinado, mas o consenso de 2014 citado não recomenda o contraceptivo oral para recuperar massa óssea (prefere estrogênio transdérmico quando há indicação). Conferir a letra com a banca.
 - `q-usp2022-100` (parada de dilatação): o enunciado fala em 2 horas de parada com dinâmica adequada; o critério do consenso ACOG/SMFM é de 4 horas (6 com ocitocina). Gabarito (cesárea) mantido.
