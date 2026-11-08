@@ -992,7 +992,7 @@ const ORIGENS_DE_QUESTAO = {
   bloco_atual: "bloco atual", revisao_nova: "revisão: assunto anterior ainda não visto",
   revisao_erro: "revisão espaçada: erro ou chute anterior", revisao_decaimento: "revisão espaçada: acerto antigo",
   previa: "prévia do próximo bloco", extra_prova: "extra do cronograma do 6º ano: prova de residência", nao_vista: "questão ainda não vista (sem calendário)", complemento: "complemento da sessão",
-  erros: "refazer erros", trilha: "trilha de estudos por erro", lista: "lista montada pela pessoa", simulado: "simulado",
+  erros: "refazer erros", trilha: "trilha de estudos por erro", revisao_sugerida: "revisão sugerida: assunto que esfriou", lista: "lista montada pela pessoa", simulado: "simulado",
 };
 function origemDoItem(sessao, item){
   if(item && item.origem) return item.origem;

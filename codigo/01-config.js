@@ -109,6 +109,10 @@ const CONFIG = {
     consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, janelaPequeno: 10, acertoPequeno: 0.70, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
   },
 
+  /* Revisão sugerida (05f): assunto com ao menos `minimoRespostas` respostas e `diasSemVer` dias sem ver
+     entra; o conjunto é preenchido `porRodada` questões de cada assunto por vez, pela ordem de erro e de tempo parado. */
+  revisaoSugerida: { diasSemVer: 14, minimoRespostas: 3, porRodada: 5 },
+
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
      acerto: voltar em 1 ou 2 dias é reler, não recuperar da memória. Vale
      também para o prazo de assunto e para a lista "Revisar erros". */

@@ -250,3 +250,38 @@ test("Trilha: reabre assunto parado ou com acerto recente baixo, pular respeita 
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("Revisão sugerida: assuntos esfriados, mais erro primeiro e depois mais tempo parado, no tamanho pedido", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      const porAssunto = {}; questoesParaEstudo(u.id).forEach(q => { if(!ehDissertativa(q)) (porAssunto[q.assuntoId] = porAssunto[q.assuntoId] || []).push(q); });
+      const [A, B, C, D, E] = Object.keys(porAssunto).filter(a => porAssunto[a].length >= 12);
+      const R = (a, q, correta, dias) => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: a, correta, confianca: "certeza", data: somarDias(hojeISO(), -dias), respondidaEm: somarDias(hojeISO(), -dias) + "T10:00:00Z" });
+      // A: erra 80%, parado há 20 dias · B: erra 80%, parado há 40 dias (empate no erro → B vem antes por tempo) · C: erra 40%, 30 dias · D: recente · E: poucas respostas
+      porAssunto[A].slice(0, 10).forEach((q, i) => R(A, q, i < 2, 20));
+      porAssunto[B].slice(0, 10).forEach((q, i) => R(B, q, i < 2, 40));
+      porAssunto[C].slice(0, 10).forEach((q, i) => R(C, q, i < 6, 30));
+      porAssunto[D].slice(0, 10).forEach((q, i) => R(D, q, false, 2));
+      porAssunto[E].slice(0, 2).forEach((q) => R(E, q, false, 60));
+      const cand = candidatosDaRevisaoSugerida(u.id);
+      const ordem = cand.assuntos.map(a => a.assuntoId);
+      const m8 = montarRevisaoSugerida(u.id, 8), m3 = montarRevisaoSugerida(u.id, 3);
+      const assuntosDe = m => m.itens.map(it => getQuestao(it.questaoId).assuntoId);
+      const primeiraB = getQuestao(m8.itens[0].questaoId);
+      abrirRevisaoSugerida(8);
+      const tela = document.querySelector(".modal").innerText;
+      return { A, B, C, D, E, ordem, a8: assuntosDe(m8), a3: assuntosDe(m3), motivo: m8.itens[0].motivo, origem: m8.itens[0].origem, tela, card: htmlCardRevisaoSugerida(u) };
+    });
+    assert.deepEqual(r.ordem, [r.B, r.A, r.C], "mais erro primeiro; empate no erro, mais tempo parado primeiro; recente e pouca resposta ficam fora");
+    assert.deepEqual(r.a8, [...Array(5).fill(r.B), ...Array(3).fill(r.A)], "5 por rodada, na ordem dos assuntos, até completar o pedido");
+    assert.deepEqual(r.a3, Array(3).fill(r.B));
+    assert.match(r.motivo, /Revisão sugerida — .*erro de 80% e faz 40 dias/);
+    assert.equal(r.origem, "revisao_sugerida");
+    assert.match(r.tela, /8 questões, nesta ordem de assuntos/);
+    assert.match(r.card, /Montar revisão sugerida/);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

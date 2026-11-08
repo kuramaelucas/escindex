@@ -62,6 +62,7 @@ function renderRevisao(){
     </div>` : ""}
   </div>
   ${htmlCardTrilhaSugerida(u)}
+  ${htmlCardRevisaoSugerida(u)}
   <div class="card mt-2">
     <div class="card-title">Revisão rápida por flashcards (${resumoFlashcards(u.id).vencidos} vencido(s))</div>
     <p class="text-sm muted">Cartão de conceito em vez de questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>
