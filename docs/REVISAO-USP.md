@@ -20,9 +20,11 @@ Mesmo método da `docs/REVISAO-UNIFESP.md`: cada explicação ganha **fisiopatol
 
 - **USP 2023 completa (120 questões, 3 anuladas):** mesmo método; nas anuladas (`-023`, `-035`, `-092`) o parágrafo vai no fim, sem mexer na anulação. Nenhum texto de diretriz reaberto.
 
+- **USP 2024 completa (120 questões, 3 anuladas: `-055`, `-079`, `-110`):** mesmo método, nenhum texto de diretriz reaberto.
+
 ## Pendente
 
-- USP 2024 (120, 3 anuladas), 2025 (120) e 2026 (120, 2 anuladas), nesta ordem, em blocos de 20.
+- USP 2025 (120) e 2026 (120, 2 anuladas), nesta ordem, em blocos de 20.
 
 ## Diretrizes a atualizar (achadas em USP 2022)
 
@@ -73,7 +75,34 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 | NCCN 2022 | NCCN 2026 | `q-usp2023-011`, `-020` |
 | Goldfrank 11ª ed. | 12ª ed. (2023) | `q-usp2023-049` |
 
+## Diretrizes a atualizar (achadas em USP 2024)
+
+| Diretriz citada | Vigente | Questões |
+|---|---|---|
+| Rastreamento do colo do útero INCA 2016 | Portaria Conjunta SAES/SECTICS 13/2025 (DNA-HPV) | `q-usp2024-106` |
+| ATS/IDSA CAP 2019 | ATS/IDSA 2025 | `q-usp2024-063` |
+| BTS pleural 2010 | BTS 2023 | `q-usp2024-063` |
+| SSC 2021 | SSC 2026 | `q-usp2024-064`, `-019` |
+| ESC FA 2020 | ESC 2024 | `q-usp2024-055` |
+| ADA 2024 | ADA 2026 | `q-usp2024-050`, `-112` |
+| OMS MEC 5ª ed. 2015 | OMS MEC 6ª ed. 2025 | `q-usp2024-098`, `-101` |
+| AHA PALS 2020 | AHA 2025 | `q-usp2024-005`, `-018`, `-067` |
+| ATLS 10ª ed. | ATLS 11ª ed. 2025 | `q-usp2024-030`, `-034`, `-035` |
+| NCCN 2024 | NCCN 2026 | `q-usp2024-025`, `-027`, `-036`, `-045`, `-046` |
+| GINA 2024 | GINA 2026 | `q-usp2024-003`, `-004` |
+| Calendário da Gestante, Adolescente e Nacional 2024 | Calendário 2026 | `q-usp2024-024`, `-079`, `-115` |
+| PCDT de Transmissão Vertical 2022 | versão 2025 | `q-usp2024-015` |
+| PCDT-IST/PrEP 2022 | verificar atualização do MS | `q-usp2024-091`, `-114` |
+| Manual de TB do MS 2019 e OMS 2020 | OMS 2022-2025 | `q-usp2024-081`, `-082` |
+| IDSA cateter 2009 | IDSA 2024-2025 | `q-usp2024-037` |
+| ASMBS 2016 | ASMBS 2019 | `q-usp2024-041` |
+| Lista de Notificação Compulsória 2022 | 2026 | `q-usp2024-077` |
+| PCDT de Parkinson | versão 2025 | `q-usp2024-071` |
+
 ## Letras a conferir (não alteradas)
+
+- `q-usp2024-103`: o gabarito é clomifeno, mas a diretriz internacional de SOP de 2023 citada recomenda o letrozol como primeira linha de indução; conferir a letra.
+- `q-usp2024-089`: a explicação trata da lei 14.443/2022 (prazo de 60 dias); conferir o texto da lei sobre laqueadura no pós-parto imediato antes de manter a letra A.
 
 - `q-usp2023-052`: o gabarito (só estilo de vida, com investigação secundária) é discutível para PA persistente de 156 x 98 mmHg; conferir o enunciado completo com a diretriz vigente.
 
