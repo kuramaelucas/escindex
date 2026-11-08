@@ -28,6 +28,7 @@ test("respostas, cartões e blocos com o id antigo seguem o assunto que ficou", 
       db.taxonomia.assuntos.push({ id: "ass-teste-b", especialidadeId: outraEsp.id, nome: "Antigo B" });
       db.respostas.push({ id: "r-teste", usuarioId: "u-x", questaoId: "q-x", areaId: outraEsp.areaId, especialidadeId: outraEsp.id, assuntoId: "ass-teste-a" });
       db.flashcards.push({ id: "c-teste", usuarioId: "u-x", assuntoId: "ass-teste-b", frente: "f", verso: "v" });
+      db.usuarios[0].trilhaPulados = { "ass-teste-a": "2026-11-01", [destino.id]: "2026-10-01" };   // a trilha de Formado(a) guarda o id como CHAVE
       db.estruturaDeTeste = [{ id: "b-teste", assuntoIds: ["ass-teste-a", "ass-teste-b", destino.id] }];   // qualquer lista com assuntoIds
       aplicarFusoesDeAssuntos();
       const resp = db.respostas.find(x => x.id === "r-teste");
@@ -37,7 +38,7 @@ test("respostas, cartões e blocos com o id antigo seguem o assunto que ficou", 
         resp: { a: resp.assuntoId, e: resp.especialidadeId, ar: resp.areaId },
         cartao: db.flashcards.find(x => x.id === "c-teste").assuntoId,
         bloco: db.estruturaDeTeste[0].assuntoIds,
-        restam: db.taxonomia.assuntos.filter(a => a.id.startsWith("ass-teste-")).length,
+        pulados: db.usuarios[0].trilhaPulados, restam: db.taxonomia.assuntos.filter(a => a.id.startsWith("ass-teste-")).length,
         segunda: primeira,
       };
     });
@@ -46,6 +47,7 @@ test("respostas, cartões e blocos com o id antigo seguem o assunto que ficou", 
     assert.equal(r.resp.ar, r.areaId, "a área acompanha o assunto novo");
     assert.equal(r.cartao, r.destinoId);
     assert.deepEqual(r.bloco, [r.destinoId], "ids repetidos viram um só");
+    assert.deepEqual(r.pulados, { [r.destinoId]: "2026-11-01" }, "pulo com id antigo vira o id novo, ficando a data mais recente");
     assert.equal(r.restam, 0, "os assuntos antigos saem da árvore");
     assert.equal(r.segunda, 0, "rodar de novo é inofensivo");
   } finally { await contexto.close(); }

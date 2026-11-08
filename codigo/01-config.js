@@ -97,7 +97,23 @@ const CONFIG = {
     pesoAssuntoNovo: 3,                         // assunto que a pessoa nunca respondeu entra mais
     // fatia de revisão da sessão pelo tanto que a pessoa já respondeu: no começo, quase tudo é exploração
     revisaoPorRespostas: [[30, 0.10], [100, 0.25]],
+    assuntosEmEstudo: 12,                       // trilha (05e): quantos assuntos da fila estão abertos de cada vez
+    minimoParaConsolidar: 5,                    // piso de questões feitas num assunto pequeno (nunca consolida com 1 questão)
+    // assunto com menos de `minimoPorAssunto` questões não tem fila própria: suas questões formam, só na hora de montar a sessão, uma miscelânea que entra com `chance` por vaga (1 a cada 100)
+    miscelania: { minimoPorAssunto: 5, chance: 0.01 },
+    // assunto consolidado volta à fila (05e) se faz `diasSemRevisar` dias sem uma resposta nele ou se o acerto das últimas 10 cai abaixo de `acertoParaReabrir`
+    reabertura: { diasSemRevisar: 60, acertoParaReabrir: 0.60, minimoRespostas: 10 },
+    // projeção da data da prova (05e): ritmo = respostas por dia nas últimas `diasDeRitmo` dias; custo de um assunto = respostas que faltam para consolidá-lo
+    projecao: { diasDeRitmo: 28, respostasAssuntoGrande: 60, coberturaMeta: 0.80 },
+    // quando um assunto está consolidado e libera os que dependem dele (05e, assuntoConsolidadoFormado)
+    consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, janelaPequeno: 10, acertoPequeno: 0.70, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
   },
+
+  /* Revisão sugerida (05f): assunto com ao menos `minimoRespostas` respostas e `diasSemVer` dias sem ver
+     entra (mensal; bimestral se o assunto tem menos de `limitePequeno` questões na plataforma; fora se tem menos de `limiteSemRevisaoPorTempo`); o conjunto é preenchido `porRodada` questões de cada assunto por vez, pela ordem de erro e de tempo parado. */
+  revisaoSugerida: { diasSemVer: 30, minimoRespostas: 3, porRodada: 5,
+    // assunto pequeno (poucas questões na plataforma) esfria mais devagar: bimestral; abaixo do último limite não há revisão por tempo
+    diasAssuntoPequeno: 60, limitePequeno: 20, limiteSemRevisaoPorTempo: 10 },
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
      acerto: voltar em 1 ou 2 dias é reler, não recuperar da memória. Vale

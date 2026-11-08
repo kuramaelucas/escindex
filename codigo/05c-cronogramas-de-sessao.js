@@ -44,17 +44,24 @@ function montarSessaoDeFormado(usuario, tamanho){
     motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto"}));
   const usados = new Set(itens.map(it=>it.questaoId));
   const naoVistas = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id)));
+  // trilha (05e): a exploração fica nos assuntos "em estudo"; o resto só entra se estes não bastarem
+  const trilha = trilhaDeFormado(usuarioId);
+  const lugarNaTrilha = {}; if(trilha) trilha.emEstudo.forEach((it, i) => { lugarNaTrilha[it.id] = i; });
+  const naTrilha = q => trilha ? q.assuntoId in lugarNaTrilha : true;
   const niveis = {};
   const nivelDe = q => niveis[q.assuntoId] || (niveis[q.assuntoId] = nivelDoAssuntoFormado(usuarioId, q.assuntoId));
   const porAssunto = {};
-  const peso = q => { const nv = nivelDe(q); return (nv.n ? 1 : c.pesoAssuntoNovo) * (nivelDaQuestao(q) === nv.nivel ? 2 : 1); };
+  // dentro da trilha, quanto mais acima na fila (cai mais / é base), mais questões
+  const folga = q => trilha && q.assuntoId in lugarNaTrilha ? 1 + 1.5 * (1 - lugarNaTrilha[q.assuntoId] / Math.max(1, trilha.emEstudo.length)) : 1;
+  const peso = q => { const nv = nivelDe(q); return (nv.n ? 1 : c.pesoAssuntoNovo) * (nivelDaQuestao(q) === nv.nivel ? 2 : 1) * folga(q); };
   // 1) o que o nível do assunto permite (o mesmo nível ou abaixo), sorteado com peso e com teto por assunto
-  const permitidas = naoVistas.filter(q => nivelDaQuestao(q) <= nivelDe(q).nivel);
+  const permitidas = naoVistas.filter(q => naTrilha(q) && nivelDaQuestao(q) <= nivelDe(q).nivel);
   const motivoDe = q => {
     const nv = nivelDe(q), rotulo = ROTULO_NIVEL_FORMADO[nivelDaQuestao(q)];
-    if(!nv.n) return "Exploração — "+nomeAssunto(q.assuntoId)+" é novo para você · questão "+rotulo;
-    if(nv.nivel === 0) return "Exploração — "+nomeAssunto(q.assuntoId)+": ainda no nível fácil ("+nv.seguras+" acerto(s) com certeza em "+nv.n+") · questão "+rotulo;
-    return "Progressão — "+nomeAssunto(q.assuntoId)+": você acerta com certeza ("+nv.seguras+" em "+nv.n+") · questão "+rotulo;
+    const lugar = q.assuntoId in lugarNaTrilha ? " · na sua trilha (nº "+(trilha.itens.find(it=>it.id===q.assuntoId).pos)+" da fila)" : "";
+    if(!nv.n) return "Exploração — "+nomeAssunto(q.assuntoId)+" é novo para você · questão "+rotulo+lugar;
+    if(nv.nivel === 0) return "Exploração — "+nomeAssunto(q.assuntoId)+": ainda no nível fácil ("+nv.seguras+" acerto(s) com certeza em "+nv.n+") · questão "+rotulo+lugar;
+    return "Progressão — "+nomeAssunto(q.assuntoId)+": você acerta com certeza ("+nv.seguras+" em "+nv.n+") · questão "+rotulo+lugar;
   };
   const pegar = (pool, n, teto) => {
     sortearComPeso(pool, pool.length, peso).forEach(q => {
@@ -63,10 +70,21 @@ function montarSessaoDeFormado(usuario, tamanho){
       usados.add(q.id); porAssunto[q.assuntoId] = (porAssunto[q.assuntoId]||0)+1; n--;
     });
   };
+  // miscelânea (05e): questões de assuntos com poucas questões, sorteadas à parte e raramente — nunca vira grupo visível
+  if(trilha){
+    const raros = new Set(trilha.miscelania.map(it => it.id)), pool = naoVistas.filter(q => raros.has(q.assuntoId) && !usados.has(q.id));
+    let vagas = 0; for(let i = itens.length; i < tamanho; i++) if(Math.random() < c.miscelania.chance) vagas++;
+    sortearComPeso(pool, pool.length, () => 1).slice(0, vagas).forEach(q => {
+      itens.push({questaoId:q.id, origem:"nao_vista", motivo:"Miscelânea — "+nomeAssunto(q.assuntoId)+" tem poucas questões no banco, então aparece só de vez em quando"});
+      usados.add(q.id);
+    });
+  }
   pegar(permitidas, tamanho - itens.length, c.maxPorAssunto);
   // 2) faltou: assuntos que só têm questão acima do nível entram pela mais fácil, e o teto sobe um pouco
   if(itens.length < tamanho){
-    const acima = naoVistas.filter(q=>!usados.has(q.id)).sort((a,b)=>nivelDaQuestao(a)-nivelDaQuestao(b));
+    // assunto já consolidado (05e) fica por último: o aluno já domina, então a vaga vai para o que ainda falta
+    const consolidado = id => trilha && trilha.itens.some(it => it.id === id && it.consolidado && !it.sem);
+    const acima = naoVistas.filter(q=>!usados.has(q.id)).sort((a,b)=>(consolidado(a.assuntoId)-consolidado(b.assuntoId)) || nivelDaQuestao(a)-nivelDaQuestao(b));
     acima.forEach(q => {
       if(itens.length >= tamanho || (porAssunto[q.assuntoId]||0) >= c.maxPorAssunto+1) return;
       itens.push({questaoId:q.id, origem:"nao_vista", motivo:motivoDe(q)+" (o assunto não tem questão mais fácil sem resposta)"});
@@ -86,8 +104,10 @@ function explicacaoCronogramaFormado(usuario){
   const niveis = todos.map(a=>({a, ...nivelDoAssuntoFormado(usuario.id, a.id)}));
   const explorados = niveis.filter(x=>x.n > 0).length;
   const medio = niveis.filter(x=>x.nivel === 1).length, dificil = niveis.filter(x=>x.nivel === 2).length;
+  const t = trilhaDeFormado(usuario.id);
+  const trilhaTxt = t ? " Sua trilha: "+t.emEstudo.length+" assunto(s) em estudo agora, "+t.consolidados+" de "+t.total+" consolidados (os que mais caem nas provas e que servem de base para outros vêm primeiro)." : "";
   return "Cronograma de formado(a): você começa explorando muitos assuntos com questões fáceis. Cada assunto sobe de nível sozinho (fácil, médio, difícil) quando você acerta com certeza com frequência, e fica no fácil se você erra muito nele — um assunto não muda o nível dos outros. "+
-    "Hoje: "+explorados+" de "+todos.length+" assuntos explorados · "+medio+" no nível médio · "+dificil+" no difícil. A fatia de revisão cresce com o que você já respondeu ("+Math.round(fracaoRevisaoFormado(usuario.id)*100)+"% agora).";
+    "Hoje: "+explorados+" de "+todos.length+" assuntos explorados · "+medio+" no nível médio · "+dificil+" no difícil. A fatia de revisão cresce com o que você já respondeu ("+Math.round(fracaoRevisaoFormado(usuario.id)*100)+"% agora)."+trilhaTxt;
 }
 function montarSessaoSemCalendario(usuario, tamanho){
   if(cronogramaDeFormado(usuario)) return montarSessaoDeFormado(usuario, tamanho);
