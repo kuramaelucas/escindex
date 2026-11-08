@@ -130,6 +130,12 @@ Receita para prova nova (nada em `codigo/`, nada no `index.html`):
 
 Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/PADRAO-EXPLICACAO.md`) — a ferramenta já recusa o que sai dele. Observação de uma prova (origem do gabarito, pendências) vai no **cabeçalho do arquivo dela**, não em documento à parte. Conserto de uma questão já publicada: `npm run atualizar-dados`. Mudar a plataforma **nunca** exige tocar em `dados/` (e o hash dos dados não muda se `dados/` não mudar).
 
+## Avisos pendentes para a pessoa (Claude: diga logo na primeira resposta de cada conversa)
+
+Coisas que só a pessoa pode fazer e que ficaram esperando. **A partir da data de cada aviso, abra a conversa lembrando dele**, uma vez por conversa, em uma ou duas frases, sem esperar o pedido. Quando o aviso for resolvido, apague-o daqui (e a pendência correspondente no topo do `RESUMO-PROJETO-ESC.md`) no mesmo commit.
+
+- **A partir de 09/11/2026 — rodar o SQL da trilha de Formado(a) no Supabase.** A migração (coluna `perfis.trilha` + `painel_turma()` recriada, projeto "Esc Project", id `jznocvgmcgiovgcwhrvi`) foi tentada em 08/11/2026 pelo conector, mas expirou sem resposta à confirmação; **não se sabe se foi aplicada**. Antes de avisar, confira só lendo (nada de alterar): com a ferramenta `execute_sql` do conector Supabase, `select count(*) from information_schema.columns where table_schema='public' and table_name='perfis' and column_name='trilha'` e o retorno de `painel_turma()` (`pg_get_function_result`). Se a coluna existir e a função devolver `trilha`, está feito: apague este aviso. Se não, diga à pessoa que falta rodar e como: SQL Editor do Supabase > colar o `nuvem/esquema.sql` inteiro > Run (idempotente; só o trecho da trilha está em `nuvem/esquema.sql`, busque por `trilha`), ou aprovar a migração quando o conector perguntar. Sem isso, os assuntos pulados na trilha valem só no aparelho e a seção "Trilha dos Formados" não aparece no Painel da Turma.
+
 ## Documentos
 
 - `RESUMO-PROJETO-ESC.md` — o que a plataforma faz e o **porquê** de cada decisão (seções 4–5), pendências no topo. Para conversa fora do Claude Code, anexe-o junto com o arquivo de `codigo/` da tela.
