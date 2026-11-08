@@ -28,6 +28,10 @@ Entraram em 05/10/2026 as cinco provas da FAMERP (385 questões). Pendências:
 
 **AMRIGS 2020** (edital definitivo; anuladas 4, 19, 20, 31, 39, 49, 53, 55, 57, 75, 87 e 92): discutíveis a nº 13 (a aspirina como "único" antitrombótico), 14, 38 (o sinal de Dunphy também é de apendicite) e 61. Os motivos das anulações não constam do edital, e as explicações das anuladas dizem isso.
 
+### USP-SP (FMUSP) 2022 a 2026: revisão no padrão novo e diretrizes a atualizar
+
+Em andamento desde 08/11/2026 (`docs/REVISAO-USP.md`): a prova de 2022 está completa (mecanismo, epidemiologia e referência datada); faltam 2023, 2024, 2025 e 2026. A lista de **diretrizes a atualizar** (edição citada × vigente, com o obstáculo de cada domínio) e as letras a conferir (`q-usp2022-089` e `-100`) estão nesse documento.
+
 ### Teste de Progresso 2025/2 e 2026/1: questões de gabarito discutível e cartões dos assuntos novos
 
 O gabarito é o oficial do NIEPAEM. As explicações já avisam onde a letra da banca é discutível: 2025/2 nº 13 (contracepção aos 12 anos e comunicação aos responsáveis), 70 (pneumonia necrosante: C ou D) e 80 (tumor testicular: o seminoma puro também tem AFP normal); 2026/1 nº 22 (o enunciado não descreve o sorteio, mas a banca chama de ensaio clínico), 30 (a citologia inflamatória com metaplasia imatura é benigna, mas o gabarito a trata como ASC-US), 38 (Gleason 6 com PI-RADS 4: a vigilância ativa seria defensável), 87 (urodinâmica na incontinência mista), 97 (cirurgia primária em vez de quimioterapia neoadjuvante no câncer de ovário avançado) e 116 (isquemia aguda grau III: amputação primária). Os 12 assuntos abertos por essas provas (`ass-geriatria-perdapeso`, `ass-alergia-rinite`, `ass-psiq-personalidade`, `ass-infectoped-coqueluche`, `ass-derm-acne`, `ass-saudeplanetaria`, `ass-pneumo-hp`, `ass-neuro-medula`, `ass-psiq-toc`, `ass-genetica-teratogenese`, `ass-genetica-erros-inatos` e `ass-oft-orbita`) ainda não têm cartão da equipe. Quando o NIEPAEM publicar um gabarito definitivo diferente (anulações), conferir as letras.
