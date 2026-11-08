@@ -620,7 +620,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-3", [
 },
 {
   id:"q-uspsp3-046", banca:"Simulados USP SP — Simulado 3, 6º ano (03/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:46,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Criança de 8 meses dá entrada na emergência com quadro de vômitos e diarreia. Na avaliação inicial, está desidratada grave. Realizada coleta de exames laboratoriais e glicemia capilar (78 mg/dL), é prescrita expansão com soro fisiológico. Após a fase de expansão, a criança parece hidratada, com K = 3,0 mEq/L e glicemia capilar = 68 mg/dL. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Infusão de bicarbonato de sódio a 3%, KCl na diluição de 40 mEq/litro durante 1 hora, glicose a 25% 2 mL/kg."},{id:"B",texto:"Soro de manutenção basal com reposição de potássio, liberar a dieta e ondansetrona se necessário."},{id:"C",texto:"Soro de manutenção basal, manter jejum devido à acidose e solicitar novos exames após 2 horas."},{id:"D",texto:"Infusão de bicarbonato a 3%, soro de manutenção com reposição de potássio e liberar a dieta após ondansetrona."}],
   gabarito:"B",
@@ -986,7 +986,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-3", [
 },
 {
   id:"q-uspsp3-073", banca:"Simulados USP SP — Simulado 3, 6º ano (03/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:73,
-  areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-vertigem",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-vertigem",
   imagemUrl:"dados/imagens/q-uspsp3-073.png", imagemLegenda:"Quatro audiometrias (A–D); círculo vermelho = orelha direita, X azul = orelha esquerda.",
   enunciado:"Mulher de 40 anos comparece ao ambulatório com queixa de tontura rotatória recorrente com duração de minutos a horas, associada a plenitude auricular e zumbido pior à direita. As crises não são desencadeadas por movimentos da cabeça. Nega náuseas, vômitos, escurecimento visual ou perda de consciência. A paciente conta ainda que o quadro vem flutuando, com períodos de melhora e piora, e que nota hipoacusia pior no ouvido direito. Nega tontura na consulta atual. Exame clínico: bom estado geral, corada, hidratada, acianótica, eupneica. *Head-impulse test*: sem sacada corretiva. Pesquisa de nistagmo: sem nistagmo espontâneo ou evocado pelo olhar. Pesquisa de desvio *skew*: sem desvio. Teste de equilíbrio: Romberg sem quedas, Fukuda: marcha sem desvios. Realizadas as manobras de Dix-Hallpike e *Head Roll*, sem nistagmo. Qual a audiometria esperada para essa paciente (círculo vermelho: orelha direita; X azul: orelha esquerda)?",
   alternativas:[{id:"A",texto:"Audiometria da imagem A."},{id:"B",texto:"Audiometria da imagem B."},{id:"C",texto:"Audiometria da imagem C."},{id:"D",texto:"Audiometria da imagem D."}],
@@ -1215,7 +1215,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-3", [
 },
 {
   id:"q-uspsp3-090", banca:"Simulados USP SP — Simulado 3, 6º ano (03/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:90,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-desmielinizante",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Mulher de 21 anos procura o pronto-socorro por história de perda de visão no olho esquerdo há 3 dias. Paciente relata aparecimento de \"mancha\" no campo de visão, acompanhada de dor para movimentar o olho, de instalação progressiva ao longo desses dias. Refere que há 1 ano apresentou episódio de dor em face à direita, sendo diagnosticada com neuralgia do trigêmeo e receitada carbamazepina 200 mg 8/8 h. Ao exame neurológico: olho esquerdo com acuidade visual 20/50, escotoma cecocentral, dessaturação do vermelho e fundo de olho normal; sem outras alterações. TC de crânio e órbitas sem alterações. LCR: 15 células (90% linfócitos, 8% monócitos, 2% neutrófilos), proteína 35 mg/dL, glicose 60 mg/dL, presença de bandas oligoclonais. Qual é o diagnóstico e qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Esclerose múltipla / pulsoterapia com metilprednisolona."},{id:"B",texto:"Esclerose múltipla / plasmaférese."},{id:"C",texto:"Neuromielite óptica / pulsoterapia com metilprednisolona."},{id:"D",texto:"Neuromielite óptica / plasmaférese."}],
   gabarito:"A",

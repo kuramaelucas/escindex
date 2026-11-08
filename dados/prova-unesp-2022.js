@@ -426,7 +426,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 },
 {
   id:"q-unesp2022-032", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:32,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-unesp2022-032.jpg", imagemLegenda:"Colpite à inspeção do colo (figura 1) e microscopia do conteúdo vaginal (figuras 2 e 3)",
   enunciado:"Mulher de 32 anos apresenta corrimento vaginal e mau odor genital há 6 dias, após relação sexual desprotegida com parceiro eventual. Nega atraso menstrual e refere uso de contraceptivo injetável trimestral há 3 anos. Exames ginecológico e microscópico, conforme as imagens, com teste de aminas positivo e pH 5,8. A hipótese diagnóstica e a conduta mais adequada são:",
   alternativas:[{id:"A",texto:"tricomoníase vaginal; metronidazol 250 mg 2 cps VO 12/12h por 7 dias."},{id:"B",texto:"vaginite aeróbia; clindamicina creme vaginal a 2% por 14 dias."},{id:"C",texto:"candidíase vaginal; itraconazol 100 mg 2 cps VO 12/12h por 1 dia."},{id:"D",texto:"vaginose citolítica; óvulos vaginais de borato de sódio a 2% por 10 dias."}],
@@ -466,7 +466,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 },
 {
   id:"q-unesp2022-035", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:35,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Em relação à doença inflamatória pélvica (DIP), assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Pacientes com imagem ultrassonográfica sugestiva de abscesso tubo ovariano podem receber tratamento ambulatorial se estiverem em regular estado geral e mostrarem-se aderentes ao tratamento."},{id:"B",texto:"A síndrome de Fitz Hugs Curtis é uma complicação aguda da DIP, com grave envolvimento hepático, alteração de função do órgão e prognóstico sombrio."},{id:"C",texto:"O(s) parceiro(s) sexual(ais) deve(m) ser tratado(s), mesmo que assintomático(s), com dose única de ceftriaxona 500 mg por via intramuscular e de azitromicina 1 g por via oral."},{id:"D",texto:"Em esquema de tratamento hospitalar, a doxiciclina deve ser usada preferencialmente por via intravenosa, mantendo-se sua prescrição até 72 horas da melhora clínica."}],
   gabarito:"C",
@@ -505,7 +505,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 },
 {
   id:"q-unesp2022-038", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:38,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 30 anos, assintomática, retorna para buscar resultado do exame citopatológico do colo do útero, cujo resultado é “sugestivo de Chlamydia sp”. Assinale a alternativa correta",
   alternativas:[{id:"A",texto:"A infecção por clamidia está incluída como um resultado no Sistema de Bethesda."},{id:"B",texto:"O tratamento pode ser instituído, independentemente dos sintomas."},{id:"C",texto:"O papanicolaou é capaz de detectar infecção por clamídia somente em pacientes sintomáticas."},{id:"D",texto:"O diagnóstico de infecção por clamídia depende de teste molecular."}],
   gabarito:"B",
@@ -518,7 +518,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 },
 {
   id:"q-unesp2022-039", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:39,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-unesp2022-039.jpg", imagemLegenda:"Lesões papilomatosas e acetobrancas na vulva",
   enunciado:"Mulher de 58 anos apresenta lesões assintomáticas na vulva há seis meses, conforme a imagem. Antecedente pessoal: HAS e portadora do HIV, com carga viral indetectável e CD4+ 300 células/mm3, em uso regular de TARV e captopril. Refere prática sexual sem preservativo no último ano, porém, sem parceiro fixo. De acordo com seu diagnóstico, pode-se afirmar que as lesões vulvares",
   alternativas:[{id:"A",texto:"podem ser tratadas ambulatorialmente com ácido tricloroacético 90%."},{id:"B",texto:"são causadas por HPV de alto risco oncogênico."},{id:"C",texto:"são devido à sífilis maligna precoce no HIV, devendo ser tratadas com penicilina benzatina, 2400000 UI, intramuscular, dose única."},{id:"D",texto:"são de molusco contagioso em paciente imunossuprimido e devem ser tratadas com curetagem."}],
@@ -876,7 +876,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 },
 {
   id:"q-unesp2022-066", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:66,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Sobre o processo de cicatrização tecidual, é correto afirmar que",
   alternativas:[{id:"A",texto:"quanto mais derme presente, maior será a contração secundária."},{id:"B",texto:"na fase inflamatória, a resposta celular é inicialmente de linfócitos."},{id:"C",texto:"na fase proliferativa, a perda da inibição por contato impede a epitelização."},{id:"D",texto:"na fase de maturação, há substituição do colágeno tipo III pelo tipo I."}],
   gabarito:"D",

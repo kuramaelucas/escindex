@@ -162,7 +162,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 },
 {
   id:"q-sessp2022-011", banca:"SES-SP", real:true, ano:2022, numeroNaProva:11,
-  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-incorporacao",
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
   enunciado:"A Portaria n.o 40/2019 torna pública a decisão de incorporar sacubitril/valsartana para o tratamento de insuficiência cardíaca crônica, no âmbito do Sistema Único de Saúde (SUS),",
   alternativas:[{id:"A",texto:"a partir da classe funcional NYHA II e BNP > 150 (ou NT-ProBNP > 600), com fração de ejeção reduzida (FEVE < ou = 35%), idade menor ou igual a 75 anos e refratários ao melhor tratamento disponível."},{id:"B",texto:"a partir da classe funcional NYHA IV e BNP > 150 (ou NT-ProBNP > 600), com fração de ejeção reduzida (FEVE < ou = 35%), idade menor ou igual a 75 anos e refratários ao melhor tratamento disponível"},{id:"C",texto:"a partir da classe funcional NYHA II e com fração de ejeção reduzida (FEVE < ou = 35%)."},{id:"D",texto:"independentemente da classe funcional, porém com BNP > 150 (ou NT-ProBNP > 600), com fração de ejeção reduzida (FEVE < ou = 35%), idade menor ou igual a 75 anos e com mais de três comorbidades associadas (DM, DPOC e dislipidemia)."},{id:"E",texto:"independentemente da classe funcional, porém com BNP > 150 (ou NT-ProBNP > 600), com fração de ejeção reduzida (FEVE < ou = 35%), idade menor ou igual a 75 anos e refratários ao melhor tratamento disponível."}],
   gabarito:"A",
@@ -841,7 +841,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 },
 {
   id:"q-sessp2022-063", banca:"SES-SP", real:true, ano:2022, numeroNaProva:63,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Aproximadamente uma semana após ter sua primeira relação sexual, uma moça de dezoito anos de idade desenvolveu pápulas dolorosas na face interna dos grandes lábios, que rapidamente se tornaram úlceras rasas, dolorosas, com base purulenta, facilmente sangrante e com bordos irregulares e avermelhados. Foi coletado material para microscopia direta com coloração de Gram e pode-se notar a presença de pequenos bacilos gram-negativos dispostos em “cardume de peixe”. Também foi realizada uma microscopia de campo escuro, com ausência de espiroquetas, além de teste negativo para herpes-vírus na lesão. Com base nesse caso hipotético, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Como não se trata de doença de transmissão sexual, o parceiro não requer tratamento."},{id:"B",texto:"O agente etiológico dessa lesão é provavelmente a Klebsiella granulomatis."},{id:"C",texto:"O tratamento ideal é feito com doxiciclina 200 mg/dia por 21 dias."},{id:"D",texto:"Azitromicina 1 g, em dose única, é um dos tratamentos preconizados."},{id:"E",texto:"Como se trata de um caso de sífilis, o tratamento deve ser feito com penicilina."}],
   gabarito:"D",

@@ -120,7 +120,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 {
   id:"q-usp2023-008", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:8,
   imagemUrl:"dados/imagens/q-usp2023-008.jpg", imagemLegenda:"Fotografia intraoperatória da tela sobre a aponeurose",
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Homem, 57 anos de idade, foi submetido à correção de hérnia incisional de laparotomia mediana com colocação de tela sobre a aponeurose (imagem a seguir). Qual é o princípio de funcionamento do dreno indicado para esta situação?",
   alternativas:[{id:"A",texto:"Gradiente de pressão, passivo."},{id:"B",texto:"Gradiente de pressão, ativo."},{id:"C",texto:"Capilaridade, ativo."},{id:"D",texto:"Capilaridade, passivo."}],
   gabarito:"B",
@@ -799,7 +799,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-058", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:58,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-desmielinizante",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Paciente de 32 anos, sexo feminino, refere: há dez dias – formigamentos em pernas, que ascenderam, chegando ao nível do umbigo; há cinco dias – dificuldade para deambular por fraqueza em membros inferiores; há um dia – piora, com quedas. Associadamente, passou a ter dificuldade de urinar. No Pronto-Socorro foi constatado bexigoma, tendo sido necessária sondagem vesical de alívio. Ao exame clínico, observa-se paraparesia crural, com sinal de Babinski, reflexos exaltados em membros inferiores e presença de nível sensitivo denso na altura do umbigo. Qual o diagnóstico provável e qual exame complementar deve ser solicitado na emergência?",
   alternativas:[{id:"A",texto:"Neuroesquistossomose; ressonância magnética de coluna lombo-sacra."},{id:"B",texto:"Degeneração combinada subaguda da medula (mielinose funicular); dosagem sérica de vitamina B12."},{id:"C",texto:"Síndrome de Guillain-Barré; exame do líquor."},{id:"D",texto:"Mielite transversa; ressonância magnética de coluna torácica."}],
   gabarito:"D",
@@ -930,7 +930,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-068", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:68,
-  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-incorporacao",
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
   enunciado:"A Comissão Nacional de Incorporação de Tecnologias no Sistema Único de Saúde (CONITEC) tem por objetivo assessorar o Ministério da Saúde nas atribuições relativas à incorporação, exclusão ou alteração de tecnologias em saúde no Sistema Único de Saúde (SUS). Assinale a alternativa que melhor descreve o conteúdo exigido nos relatórios de recomendação sobre as tecnologias analisadas.",
   alternativas:[{id:"A",texto:"Evidências científicas sobre eficiência, implicações econômicas e aspectos organizacionais e ambientais."},{id:"B",texto:"Evidências científicas sobre eficácia, segurança e aspectos organizacionais e ambientais."},{id:"C",texto:"Evidências científicas sobre eficácia, acurácia, efetividade e segurança, bem como custo- efetividade."},{id:"D",texto:"Evidências científicas sobre eficácia, acurácia, efetividade e segurança, bem como custo- efetividade e impacto orçamentário."}],
   gabarito:"D",
@@ -943,7 +943,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 },
 {
   id:"q-usp2023-069", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:69,
-  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-incorporacao",
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
   enunciado:"O Zolgensma é uma terapia gênica indicada para o tratamento de atrofia muscular espinhal (AME), uma doença neurodegenerativa rara e sem cura que, sem tratamento, pode levar a criança à morte ou à dependência de respirador artificial antes dos 2 anos de idade. Para que o Zolgensma seja disponibilizado de forma gratuita e universal no Sistema Único de Saúde (SUS) é necessário que:",
   alternativas:[{id:"A",texto:"a Agência Nacional de Vigilância Sanitária (ANVISA) avalie a eficácia, a segurança e o custo- efetividade desta tecnologia e autorize sua comercialização no Brasil."},{id:"B",texto:"a Comissão Nacional de Incorporação de Tecnologias no SUS (CONITEC) avalie a efetividade, o custo-efetividade e os impactos orçamentários desta tecnologia, comparando- a aos tratamentos já incorporados ao SUS."},{id:"C",texto:"a Comissão Nacional de Incorporação de Tecnologias no SUS (CONITEC) avalie a eficácia e a segurança desta tecnologia e autorize sua comercialização no Brasil."},{id:"D",texto:"a Agência Nacional de Vigilância Sanitária (ANVISA) avalie a efetividade e os impactos orçamentários desta tecnologia, comparando-a aos tratamentos já incorporados ao SUS."}],
   gabarito:"B",
@@ -1429,7 +1429,7 @@ window.EscDados.registrarQuestoes("prova-usp-2023", [
 {
   id:"q-usp2023-105", banca:"USP-SP (FMUSP)", real:true, ano:2023, numeroNaProva:105,
   imagemUrl:"dados/imagens/q-usp2023-105.png", imagemPendente:"Imagens da ultrassonografia pélvica; as quatro alternativas são fotografias do exame especular (A, B, C e D)",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente, 27 anos, refere dor pélvica há 2 dias e piora progressiva. Nuligesta, ciclos menstruais regulares, faz uso de abstinência periódica como contracepção. Refere última menstruação há 10 dias. Nega comorbidades ou uso de medicamentos. Ao exame clínico, temperatura 37,6 °C, descorada +/4+, FC 96 bpm, FR 12 irpm, PA 110x70 mmHg. Ao toque vaginal, útero com volume habitual, doloroso à mobilização, regiões anexiais com avaliação limitada pela dor. Teste de gravidez negativo. As imagens ultrassonográficas representativas são apresentadas. Qual o achado de exame especular compatível com a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Foto A (ver figura)."},{id:"B",texto:"Foto B (ver figura)."},{id:"C",texto:"Foto C (ver figura)."},{id:"D",texto:"Foto D (ver figura)."}],
   gabarito:"B",

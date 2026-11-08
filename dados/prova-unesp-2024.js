@@ -547,7 +547,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 },
 {
   id:"q-unesp2024-041", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:41,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   imagemUrl:"dados/imagens/q-unesp2024-041.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações",
   enunciado:"Homem de 53 anos com queixa de dispneia aos esforços e edema de membros inferiores há um mês, com piora progressiva. Há dois dias dorme sentado e acorda de madrugada sufocado. Realizou ECG, conforme a figura a seguir. Os diagnósticos clínico e eletrocardiográfico, respectivamente, são:",
   alternativas:[{id:"A",texto:"Síndrome coronariana aguda sem supradesnivelamento do segmento ST; infradesnivelamento do segmento ST em parede anterior."},{id:"B",texto:"Síndrome coronariana aguda com supradesnivelamento do segmento ST; supradesnivelamento do segmento ST em parede anterior."},{id:"C",texto:"Edema agudo de pulmão; sobrecarga ventricular esquerda."},{id:"D",texto:"Insuficiência cardíaca; sobrecarga ventricular esquerda."}],
@@ -589,7 +589,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 },
 {
   id:"q-unesp2024-044", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:44,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem de 56 anos, com angina desencadeada por esforços intensos em evolução há 12 meses, sem piora funcional recente. AP: HAS, obesidade, em uso contínuo de atorvastatina 20 mg/dia, ramipril 5 mg/dia, carvedilol 6,25 mg 12/12h e AAS 100 mg/ dia. Ao exame físico: PA 142 x 94 mmHg; FC 82 bpm. Cateterismo cardíaco: obstruções de 80% em terço médio da artéria coronária direita e terço proximal da artéria circunflexa. Ecocardiograma: função sistólica do VE preservada, sem alterações da contratilidade segmentar em repouso. Cintilografia miocárdica: hipoperfusão transitória (isquêmica) no segmento médio apical da parede lateral do VE, com área de miocárdio em risco estimado em 7,5%. A conduta terapêutica mais adequada é",
   alternativas:[{id:"A",texto:"Cirurgia de revascularização miocárdica."},{id:"B",texto:"Otimizar o tratamento farmacológico."},{id:"C",texto:"Angioplastia de artéria circunflexa (Cx) com stent farmacológico."},{id:"D",texto:"Angioplastia de artérias Cx e coronária direita com stents farmacológicos."}],
   gabarito:"B",
@@ -891,7 +891,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 },
 {
   id:"q-unesp2024-067", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:67,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-drenos",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"O uso do dreno sentinela túbulo-laminar está indicado na:",
   alternativas:[{id:"A",texto:"Mastectomia radical."},{id:"B",texto:"Herniorrafia inguinal."},{id:"C",texto:"Retossigmoidectomia abdominal."},{id:"D",texto:"Dermolipectomia abdominal."}],
   gabarito:"C",

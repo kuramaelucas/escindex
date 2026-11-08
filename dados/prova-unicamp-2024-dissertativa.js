@@ -1018,7 +1018,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 },
 {
   id:"q-unicampdis2024-071", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:71,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-intolerancialactose",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-malabsorcao",
   tipo:"dissertativa", respostaEsperada:"Teste da dieta sem lactose (restrição de lactose ou dieta sem lactose).",
   enunciado:"Homem, 23a, procura a Unidade Básica de Saúde referindo evacuações líquidas há cinco meses, não sanguinolentas, acompanhadas de cólicas, além de aumento da eliminação de gases. Os sintomas melhoram com o jejum. Nega perda de peso, uso de antibióticos ou comorbidades. Exame físico sem alterações. Exames laboratoriais: hemoglobina=14,2g/dL; hematócrito=42,2%; leucócitos=7.800/mm3; coprocultura e parasitológico de fezes (três amostras) negativos. A CONDUTA INICIAL É:",
   alternativas:[],
@@ -1375,7 +1375,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 },
 {
   id:"q-unicampdis2024-096", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:96,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-coqueluche",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   tipo:"dissertativa", respostaEsperada:"Bordetella pertussis (ou Bordetella).",
   enunciado:"Menino, 5a, previamente hígido, é trazido à Unidade Básica de Saúde com história de tosse seca há 18 dias, em crises, acompanhada de vômitos após alguns episódios e, por vezes, parece ter dificuldade em retomar o fôlego. Carteira vacinal: últimas vacinas registradas com 12 meses de vida. Exame físico: bom estado geral; corado; T=36,4oC; FR=24irpm; durante inspeção de orofaringe apresentou tosse e ficou pletórico. Ausculta pulmonar: murmúrio vesicular presente, sem ruídos adventícios. O AGENTE ETIOLÓGICO É:",
   alternativas:[],
@@ -1403,7 +1403,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 },
 {
   id:"q-unicampdis2024-098", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:98,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-unicampdis2024-098.jpg",
   tipo:"dissertativa", respostaEsperada:"Tricomoníase (Trichomonas vaginalis).",
   enunciado:"Mulher, 35a, procura Unidade Básica de Saúde com queixa de leucorreia clara, prurido e irritação vulvovaginal, além de odor desagradável. Exame ginecológico: especular visualiza imagem (Q98), pH vaginal > 4,5 e teste de Whiff positivo. O DIAGNÓSTICO ETIOLÓGICO É:",

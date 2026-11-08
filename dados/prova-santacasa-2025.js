@@ -892,7 +892,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2025", [
 },
 {
   id:"q-scmsp2025-068", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2025, numeroNaProva:68,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 25 anos de idade refere ter tido relação sexual desprotegida há 5 dias. Há um dia, apareceram na vulva úlceras dolorosas. Refere ter passado cremes que tinha em casa, sem melhora. Ao exame, observam-se múltiplas úlceras dolorosas, de bordas irregulares e fundo sujo, facilmente sangrante, nos grandes lábios, associadas a linfonodos inguinais aumentados, dolorosos, com intensos sinais flogísticos. Diante do diagnóstico deve-se indicar:",
   alternativas:[{id:"A",texto:"Biopsiar as lesões."},{id:"B",texto:"Penicilina cristalina e aciclovir."},{id:"C",texto:"Azitromicina e penicilina benzatina."},{id:"D",texto:"Aciclovir e azitromicina."},{id:"E",texto:"Profilaxia pós-exposição (PEP)."}],
   gabarito:"C",
@@ -1022,7 +1022,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2025", [
 },
 {
   id:"q-scmsp2025-078", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2025, numeroNaProva:78,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 30 anos, refere que apresentou 3 episódios de candidíase no último ano causadas pela Candida albicans. É obesa e todos os episódios foram desencadeados após ter ido para a praia, referiu prurido intenso vulvo-vaginal e disúria com saída de corrimento tipo coalhada. O último episódio ocorreu há 5 dias. O diagnóstico mais provável é",
   alternativas:[{id:"A",texto:"episódios isolados de candidíase simples."},{id:"B",texto:"vaginose citolítica."},{id:"C",texto:"candidíase complicada."},{id:"D",texto:"candidíase de repetição."},{id:"E",texto:"infeção urinária de repetição."}],
   gabarito:"A",

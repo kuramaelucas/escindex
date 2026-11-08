@@ -647,7 +647,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-discente-2026-2", [
 },
 {
   id:"q-udisc20262-046", banca:"UNIFESP-EPM — Avaliação Discente", real:true, tipoProva:"graduacao", ano:2026, semestre:2, numeroNaProva:46,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente com diagnóstico de bronquiolite viral aguda apresenta esforço respiratório moderado, saturação de oxigênio 89% e presença de sibilos bilaterais e crepitações teleinspiratórias nas bases pulmonares. Qual das opções abaixo tem eficácia comprovada neste lactente?",
   alternativas:[{id:"A",texto:"Broncodilatadores por via inalatória."},{id:"B",texto:"Corticosteroide venoso."},{id:"C",texto:"Oxigenioterapia."},{id:"D",texto:"Ribavirina."}],
   gabarito:"C",
@@ -701,7 +701,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-discente-2026-2", [
 },
 {
   id:"q-udisc20262-050", banca:"UNIFESP-EPM — Avaliação Discente", real:true, tipoProva:"graduacao", ano:2026, semestre:2, numeroNaProva:50,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-intolerancialactose",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-malabsorcao",
   enunciado:"A intolerância à lactose é uma doença comum na infância. Na definição diagnóstica:",
   alternativas:[{id:"A",texto:"O teste do pH fecal é menos sensível que a pesquisa de substâncias redutoras nas fezes, sendo este último, o padrão ouro para o diagnóstico."},{id:"B",texto:"O teste de tolerância oral à lactose é o exame indicado."},{id:"C",texto:"O teste do hidrogênio expirado é mais útil que o teste de tolerância oral à lactose."},{id:"D",texto:"O recordatório alimentar é mais confiável que o teste do hidrogênio expirado."}],
   gabarito:"C",
@@ -900,7 +900,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-discente-2026-2", [
 },
 {
   id:"q-udisc20262-065", banca:"UNIFESP-EPM — Avaliação Discente", real:true, tipoProva:"graduacao", ano:2026, semestre:2, numeroNaProva:65,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"- Em relação à cicatrização de feridas, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A epitelização e a angiogênese ocorrem principalmente na fase inflamatória."},{id:"B",texto:"Idade avançada e quimioterapia proporcionam um efeito celular proliferativo, aumentando a força tênsil das feridas e diminuindo o tempo total de cicatrização."},{id:"C",texto:"A desnutrição proteica leve a moderada, paradoxalmente, aumenta a síntese e proliferação fibroblástica e a síntese de colágeno."},{id:"D",texto:"O macrófago presente na fase inflamatória tem papel fundamental no desbridamento, secreção de citocinas e fatores do crescimento."}],
   gabarito:"D",
@@ -1032,7 +1032,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-discente-2026-2", [
 },
 {
   id:"q-udisc20262-075", banca:"UNIFESP-EPM — Avaliação Discente", real:true, tipoProva:"graduacao", ano:2026, semestre:2, numeroNaProva:75,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Sobre transferências musculares livres no membro superior e o músculo grande dorsal, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Pode ser usado apenas como músculo funcional."},{id:"B",texto:"Deve ser usado apenas como cobertura."},{id:"C",texto:"Sua remoção causa grande perda funcional."},{id:"D",texto:"Pode ser usado como tecido de cobertura para grandes defeitos ou como músculo funcional."}],
   gabarito:"D",
@@ -1269,7 +1269,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-discente-2026-2", [
 },
 {
   id:"q-udisc20262-093", banca:"UNIFESP-EPM — Avaliação Discente", real:true, tipoProva:"graduacao", ano:2026, semestre:2, numeroNaProva:93,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 19 anos, solteira, sexualmente ativa, G1 P0 A1, não utiliza método contraceptivo frequente. Chega ao prontoatendimento ginecológico com queixa de dor abdominal pélvica, secreção vaginal amarelada e febre. Ao exame físico: FC 108 bpm, FR 22 mrpm, T 38,5 ºC, sudorese e palidez cutâneo-mucosa. Exame especular revela secreção purulenta via orifício cervical externo do colo uterino. Toque vaginal: dor à mobilização de colo uterino e região anexial à direita. Sobre a doença inflamatória pélvica, espera-se encontrar no ultrassom transvaginal o seguinte aspecto das tubas uterinas:",
   alternativas:[{id:"A",texto:"parede espessada e distendida de formato ovoide."},{id:"B",texto:"distendidas com pequena quantidade de líquido ecogênico."},{id:"C",texto:"sem alterações, mas com pouca quantidade de líquido ecogênico."},{id:"D",texto:"parede espessada e com pouca quantidade de líquido ecogênico."}],
   gabarito:"A",

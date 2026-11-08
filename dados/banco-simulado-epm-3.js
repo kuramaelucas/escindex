@@ -77,7 +77,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-3", [
 {
   id:"q-adap22-005", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem, 62 anos, diabético e hipertenso, com angina classe II da CCS há 8 meses apesar de metoprolol, anlodipino e isossorbida em doses adequadas. Ecocardiograma com fração de ejeção de 55%. Coronariografia: lesão de 70% no tronco da coronária esquerda e lesão de 80% na artéria descendente anterior proximal, com circunflexa e coronária direita sem lesões significativas. O escore SYNTAX calculado é de 35. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Cirurgia de revascularização do miocárdio, com maior benefício de sobrevida que a angioplastia nesse perfil anatômico."},{id:"B",texto:"Intervenção coronária percutânea com stent farmacológico, pois tem o mesmo resultado em qualquer valor do escore SYNTAX."},{id:"C",texto:"Manter o tratamento clínico e aumentar as doses, pois a angina é de classe funcional II e a função ventricular está preservada."},{id:"D",texto:"Intervenção coronária percutânea apenas da descendente anterior, deixando o tronco para depois do teste de isquemia."}],
   gabarito:"A",
@@ -167,7 +167,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-3", [
 {
   id:"q-adap22-011", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-ecn",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
   enunciado:"Recém-nascido de 30 semanas, 1.250 g, no 9º dia de vida, em dieta enteral plena com leite materno, apresenta vômitos biliosos, distensão abdominal progressiva, fezes com sangue, apneias e hipotensão. Exames: plaquetas 48.000/mm³, acidose metabólica (pH 7,18; excesso de bases -14 mEq/L) e proteína C reativa elevada. A radiografia de abdome com raios horizontais mostra pneumatose intestinal e ar livre sob o diafragma. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Manter jejum, sonda gástrica aberta e antibióticos, reavaliando em 48 horas, pois a perfuração pode fechar sozinha."},{id:"B",texto:"Iniciar alimentação trófica com leite materno ordenhado e antibiótico oral, mantendo vigilância clínica."},{id:"C",texto:"Drenagem peritoneal à beira do leito como tratamento definitivo, dispensando a laparotomia em qualquer peso."},{id:"D",texto:"Estabilização clínica e laparotomia, com ressecção do segmento necrótico e estomias, mantendo jejum e antibióticos."}],
   gabarito:"D",
@@ -542,7 +542,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-3", [
 {
   id:"q-adap22-036", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Gestante, 27 anos, 36 semanas, teve o primeiro episódio de herpes genital com 28 semanas, tratado com aciclovir por 7 dias, com cicatrização completa. Está assintomática, sem lesões ao exame, e quer saber como evitar a transmissão ao recém-nascido. Qual é a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Aciclovir supressivo desde 36 semanas; cesárea só se houver lesão ativa ou pródromos no parto."},{id:"B",texto:"Cesárea eletiva às 39 semanas para toda gestante com antecedente de herpes, haja ou não lesão ativa."},{id:"C",texto:"Aciclovir somente durante o trabalho de parto, e parto vaginal em qualquer caso, mesmo com lesões."},{id:"D",texto:"Nenhum tratamento, pois a infecção ocorreu há mais de 8 semanas e as lesões já cicatrizaram."}],
   gabarito:"A",

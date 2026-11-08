@@ -193,7 +193,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 },
 {
   id:"q-unesp2025-014", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:14,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-coqueluche",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   enunciado:"A conduta correta em relação ao aumento de casos de coqueluche no Brasil consiste em",
   alternativas:[{id:"A",texto:"administrar a pentavalente, esquema vacinal composto por três doses (aos 2, 4 e 6 meses de vida), seguidas de reforços com a vacina DTPw aos 15 meses e aos 4 anos de idade, além da vacinação de gestantes, puérperas e de profissionais da área da saúde, com a dTpa."},{id:"B",texto:"manter a vigilância sobre os casos suspeitos como a principal medida para prevenir o aumento da doença em todas as faixas etárias, visto que, em 2023, as vacinas apresentaram aumento da cobertura, em comparação com o ano de 2022."},{id:"C",texto:"realizar ações de alerta aos profissionais de saúde da área assistencial, investigar contatos de casos confirmados, ofertar tratamento oportuno em casos suspeitos."},{id:"D",texto:"manter a administração da pentavalente, esquema vacinal composto por três doses (aos 2, 4 e 6 meses de vida), seguidas de reforços com a vacina DTPw aos 15 meses e aos 4 anos de idade, a fim de prevenir óbitos em lactentes."}],
   gabarito:"A",
@@ -261,7 +261,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 },
 {
   id:"q-unesp2025-019", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:19,
-  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-orbita",
+  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Adolescente de 18 anos queixa-se de sentir, há uma semana, obstrução nasal à direita, secreção purulenta por essa fossa nasal e cefaleia. Exame fisico: febre alta, edema palpebral importante, perda visual, diminuição na motilidade ocular e sinais meníngeos. A suspeita diagnóstica correta é de",
   alternativas:[{id:"A",texto:"trombose de seio cavernoso."},{id:"B",texto:"celulite periorbital."},{id:"C",texto:"abscesso subperiosteal."},{id:"D",texto:"abscesso orbital."}],
   gabarito:"A",
@@ -432,7 +432,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 },
 {
   id:"q-unesp2025-032", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:32,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"A Síndrome de Fitz-Hugh-Curtis",
   alternativas:[{id:"A",texto:"acomete, em média, 30% das pacientes com DIP (doença inflamatória pélvica) e está muito associada ao Mycoplasma hominis."},{id:"B",texto:"apresenta envolvimento leve do parênquima hepático, mas, em casos graves, pode evoluir para insuficiência do órgão."},{id:"C",texto:"traduz-se clinicamente por quadro de dor aguda em hipocôndrio direito, o que leva à confusão diagnóstica com colecistite aguda."},{id:"D",texto:"apresenta provas de função hepática alteradas essenciais para o diagnóstico e que costumam predizer a gravidade do quadro."}],
   gabarito:"C",
@@ -536,7 +536,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 },
 {
   id:"q-unesp2025-040", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:40,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Com base na relação entre dispositivo intrauterino (DIU) e doença inflamatória pélvica, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"O DIU não precisa ser removido de rotina, mas a retirada deve ser considerada na ausência de melhora clínica após 48-72 h de antibioticoterapia."},{id:"B",texto:"O DIU deve ser removido imediatamente para diminuir o risco de disseminação bacteriana, especialmente em pacientes que desejam retirá-lo."},{id:"C",texto:"Há indicação de tratamento hospitalar para evitar abscesso tubo-ovariano e outras complicações dessa associação."},{id:"D",texto:"Estudos atuais mostram maior tempo de internação e maior taxa de abscesso tubo-ovariano em pacientes com DIU, especialmente DIU de cobre."}],
   gabarito:"A",
@@ -825,7 +825,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 },
 {
   id:"q-unesp2025-062", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:62,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Mulher de 62 anos queixa-se de disfagia progressiva nos últimos 4 anos associada à perda ponderal de 7 kg. AP: HAS e cirurgia colorretal prévia por obstrução intestinal, porém não se recorda o motivo. Refere aceitar dieta pastosa atualmente. EDA: candidíase esofágica, sem evidência de lesões sugestivas de neoplasia. A hipótese diagnóstica e o próximo exame para confirmá-lo são, correta e respectivamente,",
   alternativas:[{id:"A",texto:"esclerodermia; manometria esofágica convencional."},{id:"B",texto:"motilidade esofágica ineficaz; manometria esofágica de alta resolução."},{id:"C",texto:"acalasia; pHimpedanciometria."},{id:"D",texto:"acalasia; manometria esofágica de alta resolução."}],
   gabarito:"D",

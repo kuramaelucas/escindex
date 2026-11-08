@@ -34,7 +34,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 },
 {
   id:"q-unicamp2023-002", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:2,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sincope",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Mulher, 72a, foi avaliada por um episódio de síncope e alguns eventos de sensação de que ia desmaiar. Antecedentes pessoais: hipertensão arterial e dislipidemia, em uso de hidroclorotiazida 25mg/dia, enalapril 20mg/dia e atorvastatina 40mg/dia. Exame físico: PA=122x78mmHg em posição supina, FC=70bpm. Após três minutos em pé, PA=100x66mmHg, FC=92bpm. Restante do exame físico: normal. A CONDUTA É:",
   alternativas:[{id:"A",texto:"Administrar fludrocortisona."},{id:"B",texto:"Ajustar a dose dos anti-hipertensivos."},{id:"C",texto:"Prescrever meia elástica compressiva."},{id:"D",texto:"Solicitar teste de inclinação ortostática (tilt test table)."}],
   gabarito:"B",
@@ -60,7 +60,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 },
 {
   id:"q-unicamp2023-004", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:4,
-  areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-vertigem",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-vertigem",
   enunciado:"Mulher, 51a, procura Unidade Básica de Saúde para avaliação de tontura. Refere que há um ano teve episódio de perda auditiva esquerda, associado a zumbido. Nos últimos três meses, vem apresentado sensação de ambiente girando, com duração de 20 minutos a 5 horas, associada a náuseas e vômitos. Nega outras doenças ou uso de medicações. Traz exame de ressonância magnética de encéfalo, realizada há dois meses, sem anormalidades. Exame físico: T=36,50C; PA=124x88mmHg; FC=82bpm; FR=16irpm. A manobra de Dix Hallpike no lado esquerdo induziu tontura, sem nistagmo. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[{id:"A",texto:"Vertigem posicional paroxística benigna."},{id:"B",texto:"Neurite vestibular."},{id:"C",texto:"Acidente vascular vertebrobasilar."},{id:"D",texto:"Doença de Menière."}],
   gabarito:"D",
@@ -337,7 +337,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 },
 {
   id:"q-unicamp2023-025", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:25,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"NO PROCESSO DE CICATRIZAÇÃO DAS FERIDAS, AS FASES DOS EVENTOS ORGÂNICOS OCORREM NA SEGUINTE ORDEM DIDÁTICA:",
   alternativas:[{id:"A",texto:"Proliferativa (fibroplasia); reparativa (remodelação); exudativa (inflamatória)."},{id:"B",texto:"Reparativa (remodelação); exudativa (inflamatória); proliferativa (fibroplasia)."},{id:"C",texto:"Exsudativa (inflamatória); reparativa (remodelação) e proliferativa (fibroplasia)."},{id:"D",texto:"Exudativa (inflamatória); proliferativa (fibroplasia); reparativa (remodelação)."}],
   gabarito:"D",
@@ -483,7 +483,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 },
 {
   id:"q-unicamp2023-036", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:36,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Menino, 15 dias de vida, é trazido para consulta de puericultura em aleitamento materno exclusivo, assintomático. Antecedente pessoal: uma dose de vacina de hepatite B. Contactante domiciliar iniciou tratamento de tuberculose pulmonar há um dia. Exame físico sem alterações, com ganho ponderal de 30g/dia em relação à alta hospitalar. A CONDUTA É:",
   alternativas:[{id:"A",texto:"Prescrever rifampicina oral por 3 meses e, após, indicar teste tuberculínico."},{id:"B",texto:"Prescrever isoniazida oral por 3 meses e, após, indicar a vacina BCG."},{id:"C",texto:"Indicar a vacina BCG."},{id:"D",texto:"Indicar teste tuberculínico."}],
   gabarito:"A",
@@ -590,7 +590,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 },
 {
   id:"q-unicamp2023-044", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:44,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Recém-nascido a termo com 3.450g apresenta-se hipotônico e com sucção débil com 12 horas de vida. Realizada dosagem de glicemia plasmática=22mg/dL. Antecedente gestacional: mãe com crise asmática e uso de terbutalina próximo ao parto. O MECANISMO ASSOCIADO À OCORRÊNCIA DE HIPOGLICEMIA NESTE CASO É:",
   alternativas:[{id:"A",texto:"Hiperinsulinismo."},{id:"B",texto:"Nesidioblastose."},{id:"C",texto:"Inibição da glicólise."},{id:"D",texto:"Bloqueio da glicogenólise."}],
   gabarito:"A",

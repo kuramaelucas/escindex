@@ -88,7 +88,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-006", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:6,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-coqueluche",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   enunciado:"Lactente de 3 meses de idade é admitida com quadro de tosse seca há 10 dias e hoje apresentou cianose após vários acessos de tosse. Nega febre no período. Ao exame clínico: REG apresentando acessos de tosse seguido de vômitos e discreta cianose. Pulmões: murmúrio vesicular presente bilateralmente sem ruídos adventícios. Restante do exame físico sem alterações. Em relação a principal hipótese diagnóstica podemos afirmar:",
   alternativas:[{id:"A",texto:"tratamento de escolha é macrolídeo"},{id:"B",texto:"hemograma evidencia leucocitose e neutrofilia"},{id:"C",texto:"radiografia de tórax típico é a presença de condensação"},{id:"D",texto:"isolamento do agente é realizada pela hemocultura"}],
   gabarito:"A",
@@ -115,7 +115,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-008", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:8,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente de três meses de vida, sem antecedentes mórbidos, foi internada com história de coriza, tosse, febre de 37,8 °C há três dias e cansaço há um dia. Ao exame clínico, apresenta-se com taquidispneia, acianótica, desidratada de algum grau e saturação de oxigênio de 89% em ar ambiente. Apresenta tiragem subcostal e intercostal, além de sibilância à ausculta pulmonar. Assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"Não é necessária a realização de radiografia de tórax para estabelecer o diagnóstico."},{id:"B",texto:"O painel molecular da pesquisa de vírus respiratórios é necessário para determinar o tratamento."},{id:"C",texto:"A hidratação endovenosa pode ser realizada com soro hipotônico."},{id:"D",texto:"A oximetria de pulso contínua é recomendada neste caso."}],
   gabarito:"A",
@@ -245,7 +245,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-018", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:18,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Nasce RN de termo, filho de mãe com diabetes gestacional, com peso ao nascer de 4100g. Exame clínico com 6 horas de vida: neurológico normal; aparente capacidade de sucção preservada; realizada glicemia capilar de 38mg/dL. Qual é a primeira conduta nesse momento?",
   alternativas:[{id:"A",texto:"Colocar recém-nascido em aleitamento materno e repetir em 1 hora glicemia capilar."},{id:"B",texto:"Infusão rápida de glicose intravenosa a 10% e repetir a dosagem de glicose 1 hora após."},{id:"C",texto:"Massagear gel de dextrose 40% na mucosa bucal e repetir dextro em 1 hora para tomar uma conduta."},{id:"D",texto:"Administrar complemento de leite humano pasteurizado ou fórmula láctea por sonda gástrica e repetir glicemia capilar 1 hora após."}],
   gabarito:"A",
@@ -615,7 +615,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-046", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:46,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   imagemUrl:"dados/imagens/q-uspsp1-046.png", imagemLegenda:"Esofagograma baritado.",
   enunciado:"Homem de 35 anos de idade está com quadro de disfagia progressiva há 6 anos, atualmente se alimenta de pastosos, com perda de 5 kg nos últimos 6 meses. Realizou exame demonstrado a seguir. Qual é o diagnóstico?",
   alternativas:[{id:"A",texto:"Hérnia de hiato"},{id:"B",texto:"Acalásia"},{id:"C",texto:"Neoplasia de esôfago"},{id:"D",texto:"Esôfago em Quebra-nozes"}],
@@ -1004,7 +1004,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-075", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:75,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-uspsp1-075.png", imagemLegenda:"Lesões vulvares da paciente.",
   enunciado:"Adolescente, 14 anos de idade comparece ao PS com queixa de lesões vulvares dolorosas há 2 dias. Refere sensação de mal estar e calafrios associados. Antecedentes ginecológicos: menarca 12 anos, ciclos regulares, sexualmente ativa, MAC: uso de condom irregular, nuligesta. Ao exame físico, foram evidenciadas as seguintes lesões: Considerando a hipótese diagnóstica, qual é o tratamento proposto e qual é o exame confirmatório?",
   alternativas:[{id:"A",texto:"Doxiciclina 100 mg VO de 12/12h por 14 dias. Pesquisa do agente na lesão por PCR"},{id:"B",texto:"Azitromicina 1g VO em dose única. Cultura de secreção genital."},{id:"C",texto:"Aciclovir 400 mg VO de 8/8h por 7 dias. Pesquisa do agente na lesão por PCR."},{id:"D",texto:"Penicilina benzatina 1.200.000 UI em cada nádega, 1x por semana por 3 semanas. Microscopia em campo escuro."}],
@@ -1097,7 +1097,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-082", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:82,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Ginecologista no centro de saúde da periferia atendeu a três pacientes: X, Y e Z. Os achados, entre sinais e sintomas, dessas três pacientes estão relacionados a seguir: X - Corrimento grumoso e aderente às paredes, inodoro, pH < 4,5 e KOH negativo. Y - Colo hiperemiado ao exame especular, corrimento esverdeado, pH > 4,5, KOH positivo. Z - Corrimento fluido e homogêneo, acinzentado e bolhoso, com odor fétido, pH >4,5. KOH negativo. Diante do exposto, assinale a alternativa que apresenta os diagnósticos de X, Y e Z, respectivamente.",
   alternativas:[{id:"A",texto:"Candidíase, tricomoníase, vaginose bacteriana."},{id:"B",texto:"Infecção por gonococo, candidíase, vaginose bacteriana."},{id:"C",texto:"Vaginose bacteriana, tricomoníase, infecção por gonococo."},{id:"D",texto:"Tricomoníase, candidíase, vaginose bacteriana."}],
   gabarito:"A",
@@ -1110,7 +1110,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-083", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:83,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-uspsp1-083.png", imagemLegenda:"Ultrassonografia da região anexial esquerda.",
   enunciado:"Mulher de 21 anos de idade, solteira, estudante, procura atendimento em pronto-socorro por dor pélvica há 2 dias. Informa dor em quadrantes inferiores do abdome tipo cólica, de intensidade moderada a importante, pior à esquerda, associada a febre e náuseas. Relata sensação de febre, não aferiu temperatura, melhorou com dipirona. Nega vômitos ou diarreia. Nega disúria e polaciúria. Questionada, comenta sobre um corrimento genital amarelado com rajas de sangue. Associa que os sintomas começaram após algumas relações sexuais desprotegidas, quando tem feito ducha vaginal para “evitar pegar doenças”. AP: sem comorbidades. HV: refere tabagismo esporádico (“quando frequenta festas”). AGO: 1G1PN, parto há 4 anos. DUM: 25/02/2018, MAC: DIU de cobre. Refere vida sexual ativa, primeira relação aos 14 anos, não tem parceiro fixo, faz uso intermitente de condom. Exame clínico: Bom estado geral, corada, hidratada, acianótica, anictérica, febril (TAX = 38,6ºC), eupnéica. PA: 110x70 mmHg; FC: 96 bpm; IMC 22,3. Abdome sem abaulamentos ou cicatrizes, doloroso à palpação em quadrantes inferiores, ausência de dor à descompressão brusca. Ao toque vaginal: útero em AVF, normal em tamanho, consistência e mobilidade; colo uterino fibroelástico e doloroso à mobilização; anexo esquerdo doloroso à palpação, anexo direito não palpável. Ao exame especular: saída de secreção purulenta do OE do colo uterino, visualizados fios do DIU. A imagem ultrassonográfica da região anexial esquerda está representada abaixo: Considerando o caso exposto, qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Doença inflamatória pélvica aguda com abscesso tubo ovariano."},{id:"B",texto:"Hidrossalpinge."},{id:"C",texto:"Cisto hemorrágico roto."},{id:"D",texto:"Miomatose uterina com degeneração."}],
@@ -1534,7 +1534,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 },
 {
   id:"q-uspsp1-115", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:115,
-  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-incorporacao",
+  areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-farmacovigilancia",
   enunciado:"Para que uma nova tecnologia médica ou em saúde seja disponibilizada de forma gratuita e universal no Sistema Único de Saúde (SUS) é necessário que:",
   alternativas:[{id:"A",texto:"A Agência Nacional de Vigilância Sanitária (ANVISA) avalie a eficácia e segurança desta tecnologia e autorize sua comercialização no Brasil"},{id:"B",texto:"A Comissão Nacional de Incorporação de Tecnologias no SUS (CONITEC) avalie a eficácia e segurança desta tecnologia e autorize sua comercialização no Brasil"},{id:"C",texto:"A Agência Nacional de Vigilância Sanitária (ANVISA) avalie a efetividade, custo-efetividade e impactos orçamentários desta tecnologia, comparando-a aos tratamentos já incorporados no SUS"},{id:"D",texto:"A Comissão Nacional de Incorporação de Tecnologias no SUS (CONITEC) avalie a efetividade, custo-efetividade e impactos orçamentários desta tecnologia, comparando-a aos tratamentos já incorporados no SUS"}],
   gabarito:"D",

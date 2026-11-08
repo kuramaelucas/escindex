@@ -493,7 +493,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2021", [
 },
 {
   id:"q-iamspe2021-037", banca:"IAMSPE", real:true, ano:2021, numeroNaProva:37,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"A melhor opção de reposição volêmica na emergência pediátrica é o",
   alternativas:[{id:"A",texto:"soro glicosado 5% 20 mL/kg."},{id:"B",texto:"soro glicosado 50% 5 mL/kg."},{id:"C",texto:"soro fisiológico 20 mL/kg."},{id:"D",texto:"soro fisiológico 30 mL/kg."},{id:"E",texto:"ringer lactato 1 mL/kg."}],
   gabarito:"C",
@@ -662,7 +662,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2021", [
 },
 {
   id:"q-iamspe2021-050", banca:"IAMSPE", real:true, ano:2021, numeroNaProva:50,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Em relação à vaginose bacteriana, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A etiologia é sempre de Gardnerella vaginalis."},{id:"B",texto:"É comum a associação com fungos comensais."},{id:"C",texto:"O exame microscópico do conteúdo vaginal demonstra a presença de coilocitose."},{id:"D",texto:"O pH vaginal costuma ser maior que 4,5."},{id:"E",texto:"Como se trata de uma DST, o parceiro sempre deverá ser tratado."}],
   gabarito:"D",
@@ -766,7 +766,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2021", [
 },
 {
   id:"q-iamspe2021-058", banca:"IAMSPE", real:true, ano:2021, numeroNaProva:58,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma gestante com idade gestacional de 34 semanas compareceu ao pronto-atendimento, referindo a presença de úlceras genitais muito dolorosas, de aparecimento há dois dias, acompanhadas de disúria. Ao exame físico, observou-se a presença de úlceras em pequenos lábios e região periuretral e de algumas vesículas em grandes lábios. Negou a ocorrência de lesões semelhantes em outras ocasiões. Com base nessa situação hipotética e nas recentes diretrizes para a condução dos casos de herpes genital na gestação do ACOG (American College of Obstetricians and Gynecologists), assinale a alternativa que apresenta a conduta mais adequada.",
   alternativas:[{id:"A",texto:"tratamento antiviral da infecção atual, via oral, e parto cesáreo eletivo com 37 semanas de gestação, devido ao risco elevado de transmissão vertical do herpes-vírus 2 (HSV-2) nos casos de infecção materna primária"},{id:"B",texto:"tratamento antiviral da infecção atual, via oral, e, na ausência de lesões, indução do parto vaginal com 37 semanas completas de gestação"},{id:"C",texto:"tratamento antiviral da infecção atual, tópico, e manutenção do tratamento supressivo até o momento do parto que, na ausência de lesões, poderá ser vaginal"},{id:"D",texto:"tratamento antiviral da infecção atual, via oral, e manutenção do tratamento supressivo até o parto, cuja via poderá ser por indicação obstétrica, mesmo na presença de lesões herpéticas"},{id:"E",texto:"tratamento antiviral da infecção atual, via oral, e manutenção do tratamento supressivo até o momento do parto cesáreo, devido à possibilidade de contaminação viral prolongada"}],
   gabarito:"E",

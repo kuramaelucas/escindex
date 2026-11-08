@@ -307,7 +307,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2023", [
 },
 {
   id:"q-scmsp2023-023", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2023, numeroNaProva:23,
-  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ligamentos",
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Entre pacientes com lesão traumática de menisco dos joelhos, o paciente ideal para a realização de uma sutura meniscal será um paciente jovem com lesão",
   alternativas:[{id:"A",texto:"longitudinal na zona vermelha-vermelha, procedendo-se à reconstrução do ligamento cruzado anterior associada no mesmo ato cirúrgico."},{id:"B",texto:"longitudinal na zona branca-branca, sem reconstrução do ligamento cruzado anterior associada no mesmo ato cirúrgico."},{id:"C",texto:"radial na zona branca-branca, sem reconstrução do ligamento cruzado anterior associada no mesmo ato cirúrgico."},{id:"D",texto:"radial na zona branca-branca, procedendo-se à reconstrução do ligamento cruzado anterior associada no mesmo ato cirúrgico."},{id:"E",texto:"horizontal na zona vermelha-vermelha, sem reconstrução do ligamento cruzado anterior associada no mesmo ato cirúrgico."}],
   gabarito:"A",
@@ -333,7 +333,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2023", [
 },
 {
   id:"q-scmsp2023-025", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2023, numeroNaProva:25,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Assinale a alternativa que apresenta corretamente as características da fissura anal crônica típica (não relacionada à doença inflamatória intestinal).",
   alternativas:[{id:"A",texto:"mais de seis semanas com dor, sangramento, ulceração posterior, hipertonia esfincteriana, papila hipertrófica e plicoma sentinela"},{id:"B",texto:"menos de seis semanas com dor, abaulamento anal, ulceração anterior, hipertonia esfincteriana e papila hipertrófica"},{id:"C",texto:"mais de seis semanas com sangramento, plicoma sentinela, ulceração lateral, hipotonia esfincteriana e secreção purulenta"},{id:"D",texto:"mais de seis semanas com dor, secreção purulenta, ulceração posterior e anterior, hipotonia esfincteriana e papila hipertrófica"},{id:"E",texto:"menos de seis semanas com dor, sangramento, ulceração posterior, hipertonia esfincteriana, plicoma sentinela e secreção purulenta"}],
   gabarito:"A",
@@ -883,7 +883,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2023", [
 },
 {
   id:"q-scmsp2023-067", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2023, numeroNaProva:67,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma paciente de 25 anos de idade refere dor pélvica há quatro dias, associada a febre e saída de secreção amarelada pela via vaginal. Ela tem vida sexual ativa. No exame, constatou-se secreção amarelada fétida na via vaginal, dor à mobilização do colo uterino e temperatura de 39 °C. O exame de beta-HCG resultou negativo. Ultrassonografia transvaginal sem alterações. Assinale a alternativa que apresenta a correta hipótese diagnóstica para o caso clínico acima.",
   alternativas:[{id:"A",texto:"gestação ectópica"},{id:"B",texto:"doença inflamatória pélvica"},{id:"C",texto:"endometriose"},{id:"D",texto:"torção ovariana"},{id:"E",texto:"dor pélvica crônica"}],
   gabarito:"B",

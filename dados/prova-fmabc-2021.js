@@ -438,7 +438,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 },
 {
   id:"q-fmabc2021-033", banca:"FMABC", real:true, ano:2021, numeroNaProva:33,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   imagemUrl:"dados/imagens/q-fmabc2021-033.png", imagemLegenda:"Eletrocardiograma de 12 derivações (questões 33 e 34).",
   enunciado:"Atenção: utilize o caso a seguir para responder às questões 33 e 34. Mulher, 63 anos de idade, admitida na sala de emergência com quadro de confusão mental e letargia há duas horas. Relatou também episódio de tontura ao se levantar da cama. Previamente independente para atividades básicas e instrumentais da vida diária. Com diagnóstico de hipertensão arterial sistêmica há 10 anos, infarto agudo do miocárdio há 3 anos. Faz uso de amlodipina 10mg por dia, AAS 100mg por dia e atorvastatina 40mg por dia. Ao exame clínico: abertura ocular ao chamado, resposta verbal confusa e obediência aos comandos. Frequência cardíaca: 38 batimentos/minuto; pressão arterial: 92 x 66 mmHg; frequência respiratória: 20 incursões/minuto; Saturação de O2: 96% em ar ambiente. Sem outras alterações. Foi obtido um eletrocardiograma de 12 derivações, reproduzido a seguir. Quais são os diagnósticos eletrocardiográficos?",
   alternativas:[{id:"A",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo II, bloqueio de ramo direito e bloqueio da divisão ântero-superior."},{id:"B",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo I, bloqueio de ramo esquerdo e área elétrica inativa de parede inferior."},{id:"C",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo I, bloqueio de ramo direito e bloqueio da divisão ântero-superior."},{id:"D",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo II, bloqueio de ramo esquerdo e área elétrica inativa de parede inferior."}],
@@ -452,7 +452,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 },
 {
   id:"q-fmabc2021-034", banca:"FMABC", real:true, ano:2021, numeroNaProva:34,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   imagemUrl:"dados/imagens/q-fmabc2021-034.png", imagemLegenda:"Eletrocardiograma de 12 derivações (questões 33 e 34).",
   enunciado:"Mulher, 63 anos de idade, admitida na sala de emergência com quadro de confusão mental e letargia há duas horas. Relatou também episódio de tontura ao se levantar da cama. Previamente independente para atividades básicas e instrumentais da vida diária. Com diagnóstico de hipertensão arterial sistêmica há 10 anos, infarto agudo do miocárdio há 3 anos. Faz uso de amlodipina 10mg por dia, AAS 100mg por dia e atorvastatina 40mg por dia. Ao exame clínico: abertura ocular ao chamado, resposta verbal confusa e obediência aos comandos. Frequência cardíaca: 38 batimentos/minuto; pressão arterial: 92 x 66 mmHg; frequência respiratória: 20 incursões/minuto; Saturação de O2: 96% em ar ambiente. Sem outras alterações. Foi obtido um eletrocardiograma de 12 derivações, reproduzido a seguir. Qual é a primeira conduta terapêutica que deve ser adotada neste momento?",
   alternativas:[{id:"A",texto:"Noradrenalina 0,1 mcg/kg/min por via intravenosa em infusão contínua."},{id:"B",texto:"Dopamina 1 mcg/kg/min por via intravenosa em infusão contínua."},{id:"C",texto:"Adrenalina 1mg administrada por via intravenosa em bolus."},{id:"D",texto:"Atropina 1mg administrada por via intravenosa em bolus."}],
@@ -661,7 +661,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 },
 {
   id:"q-fmabc2021-050", banca:"FMABC", real:true, ano:2021, numeroNaProva:50,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente com queixa, há 4 dias, de leucorreia malcheirosa, acompanhada de prurido vaginal intenso. Ao exame ginecológico: presença de moderada quantidade de secreção em canal vaginal, bolhosa, branco-acinzentada, de odor fétido. Considerando o principal diagnóstico, deve-se, na presente consulta:",
   alternativas:[{id:"A",texto:"Iniciar esquema tríplice de antibioticoterapia."},{id:"B",texto:"Iniciar fluconazol como tratamento de escolha."},{id:"C",texto:"Tratar paciente, parceiro e solicitar sorologias."},{id:"D",texto:"Coletar, imediatamente, citologia oncótica de colo uterino."}],
   gabarito:"C",
@@ -1078,7 +1078,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 },
 {
   id:"q-fmabc2021-082", banca:"FMABC", real:true, ano:2021, numeroNaProva:82,
-  areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-rinite",
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"João, 10 anos de idade, em seguimento com pediatra geral, devido ao fato da escola ter encaminhado uma notificação relatando que o menino sofre de sonolência nas aulas. Paciente previamente hígido, com vacinação em dia, sem uso de medicações prévias. Além da queixa escolar, a mãe refere ter notado que, há um mês, o menino espirra pela manhã todos os dias e coça os olhos com frequência. O paciente relata coceira na garganta. Ao exame clínico: palidez de mucosa nasal, respiração aquosa, com rinorreia aquosa bilateral e pele xerótica. Considerando o caso, qual o tratamento?",
   alternativas:[{id:"A",texto:"Corticoide inalatório em baixas doses por 3 meses e reavaliação. Beta2agonista e corticoide oral nas crises."},{id:"B",texto:"Lavagem nasal, amoxicilina associada a inibidor de betalactamase por 10 a 14 dias e reavaliação."},{id:"C",texto:"Limpeza nasal com soro fisiológico, corticoide nasal por 2 a 4 semanas e reavaliação. Anti-histamínico H1 nas crises."},{id:"D",texto:"CPAP nasal noturno contínuo e melatonina por 2 semanas até estabilização do sono."}],
   gabarito:"C",

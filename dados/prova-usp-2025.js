@@ -77,7 +77,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-005", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:5,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 24 anos de idade, com queixa de prurido e dor vaginais e secreção abundante com aspecto grumoso branco-amarelado. Ao exame clínico, observa-se o conteúdo vaginal aumentado com aspecto em grumos aderente às paredes vaginais. O exame do material apresenta: pH de 4; bacterioscopia (Gram) com aumento excessivo de Lactobacillus sp.; raros leucócitos; restos celulares (lise das células epiteliais). Não são identificados hifas ou esporos. Qual é o tratamento vaginal mais adequado?",
   alternativas:[{id:"A",texto:"Ácido acético."},{id:"B",texto:"Clotrimazol."},{id:"C",texto:"Probiótico."},{id:"D",texto:"Bicarbonato de sódio."}],
   gabarito:"D",
@@ -762,7 +762,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 {
   id:"q-usp2025-056", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:56,
   imagemUrl:"dados/imagens/q-usp2025-056.jpg", imagemLegenda:"Traçado eletrocardiográfico; as quatro alternativas são prescrições (A, B, C e D)",
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Paciente, 3 anos de idade, do sexo masculino, previamente hígido, foi admitido no pronto- socorro com quadro de diarreia aguda há dois dias e baixa aceitação de líquidos. Chegou com desidratação grave, sendo obtido acesso venoso periférico e feita hidratação Endovenosa (EV). Após estabilização inicial, apresentou melhora da hidratação e das perdas, porém segue sem aceitar nada por via oral. O seu peso atual é de 14 kg. Os resultados dos exames laboratoriais atuais e o traçado eletrocardiográfico estão apresentados a seguir: • Exames laboratoriais: PH: 7.35 pO2: 100 mmHg pCO2: 35 mmHg HCO3: 21,0 mEq/L Sato2: 99% Potássio: 2,9 mEq/L Sódio: 132 mEq/L Em relação ao caso descrito, qual das prescrições é a mais adequada para o paciente?",
   alternativas:[{id:"A",texto:"Soro glicosado 10% 960 mL + NaCl 0,9% 240 mL + KCl 19,1% 28 mL, EV em 24 horas."},{id:"B",texto:"Soro glicosado 10% 1.000 mL + NaCl 20% 40 mL + KCl 19,1% 16 mL, EV a 50 mL/hora."},{id:"C",texto:"KCl 19,1% 5 mL EV em 20 minutos; depois soro glicosado 10% 1.000 mL + NaCl 20% 40 mL + KCl 19,1% 10 mL, EV a 50 mL/hora."},{id:"D",texto:"KCl 19,1% 5 mL EV em 20 minutos; depois soro glicosado 10% 960 mL + NaCl 0,9% 240 mL + KCl 19,1% 12 mL, EV em 24 horas."}],
   gabarito:"B",
@@ -1233,7 +1233,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 {
   id:"q-usp2025-091", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:91,
   imagemUrl:"dados/imagens/q-usp2025-091.jpg", imagemLegenda:"Eletrocardiograma",
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Homem, 64 anos de idade, internado na enfermaria. Ele tem hipertensão arterial sistêmica, diabetes melito tipo 2 e insuficiência cardíaca de fração de ejeção preservada. Ele foi admitido no pronto-socorro no dia anterior por conta de calafrios, febre e dor no flanco direito, sendo diagnosticado com cálculo ureteral e pielonefrite. Foi introduzida ceftriaxona e o paciente aguarda para passagem de duplo J pela equipe de urologia. A enfermagem aciona a equipe médica para reavaliá-lo e informa que já realizou um eletrocardiograma, apresentado a seguir: Neste momento, o paciente queixa-se de dor no flanco direito de moderada intensidade e palpitações. Exame físico: PA de 110x70 mmHg, FC de 115 bpm, temperatura axilar de 37,6 °C, FR de 18 ipm, saturação de oxigênio 95%; bulhas cardíacas hiperfonéticas e sem sopros, enchimento capilar de 3 segundos; dor à palpação do flanco direito. Assinale a alternativa com a conduta indicada, neste momento, para o paciente.",
   alternativas:[{id:"A",texto:"Manobra vagal."},{id:"B",texto:"Amiodarona."},{id:"C",texto:"Dipirona."},{id:"D",texto:"Metoprolol."}],
   gabarito:"C",

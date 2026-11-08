@@ -196,7 +196,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-014", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:14,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"A dupla antiagregação plaquetária deve ser mantida: I. Indefinidamente para pacientes com doença arterial periférica aterosclerótica. II. Por pelo menos 12 meses após episódio de infarto agudo do miocárdio com angioplastia percutânea primária. III. Indefinidamente em pacientes diabéticos que tiveram um episódio cerebrovascular isquêmico. Quais estão corretas?",
   alternativas:[{id:"A",texto:"Apenas I."},{id:"B",texto:"Apenas II."},{id:"C",texto:"Apenas I e II."},{id:"D",texto:"I, II e III."}],
   gabarito:"B",
@@ -612,7 +612,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-046", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:46,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 23 anos, vem à consulta porque notou, há 1 semana, uma lesão não pruriginosa na vulva. Ao exame físico, a lesão apresenta uma pápula única, rosada com uma depressão central semelhante a um umbigo, não dolorosa. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Molusco contagioso."},{id:"B",texto:"Pediculose."},{id:"C",texto:"Condiloma."},{id:"D",texto:"Cancro duro."}],
   gabarito:"A",

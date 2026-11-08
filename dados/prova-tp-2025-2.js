@@ -119,7 +119,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-008", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:8,
-  areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-perdapeso",
+  areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-quedas",
   enunciado:"Homem, 78 anos, apresenta perda de peso não intencional de 6% nos últimos seis meses. Nega outras queixas gastrointestinais, infecciosas, respiratórias ou neurológicas. Nega alteração do apetite. Foi realizada avaliação clínica completa, incluindo exame físico detalhado, rastreio de depressão e de demência, além de exames laboratoriais (hemograma, função renal, eletrólitos, função hepática, glicemia, TSH, proteína C reativa, calcemia e sorologia para HIV) e radiografia de tórax, todos sem alterações. Vem fazendo exames de rastreio oncológico apropriado para a faixa etária, incluindo pesquisa de sangue oculto nas fezes e PSA, também sem alterações. A conduta mais adequada é:",
   alternativas:[{id:"A",texto:"Prosseguir investigação com tomografia de tórax, abdome e pelve."},{id:"B",texto:"Iniciar terapia empírica com suplemento nutricional hipercalórico e programar reavaliação próxima."},{id:"C",texto:"Reavaliar clinicamente em três meses, reforçando orientação alimentar e vigilância dos sintomas."},{id:"D",texto:"Encaminhar para avaliação oncológica para pesquisa de neoplasia oculta."}],
   gabarito:"C",
@@ -238,7 +238,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-017", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:17,
-  areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-rinite",
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Menino, 6 anos, em consulta na UBS, apresenta há seis meses quadro de obstrução nasal, prurido ocular, espirros em salva e coriza hialina pelo menos quatro vezes por semana, toda semana. Nega sintomas associados. A mãe refere que, anteriormente, a criança apresentava estes episódios esporadicamente, e que a piora do quadro coincidiu com a mudança de casa e adoção de um novo gato pela família. Pelo menos três vezes na semana utiliza anti-histamínico, com melhora pontual dos sintomas. O pai e a irmã mais velha possuem diagnóstico de asma. Além da profilaxia ambiental, a conduta é:",
   alternativas:[{id:"A",texto:"Soro fisiológico e corticoide nasais, anti-histamínico durante as crises."},{id:"B",texto:"Antibiótico sistêmico, soro fisiológico e corticoide nasais."},{id:"C",texto:"Soro fisiológico nasal, anti-histamínico e corticoide sistêmicos."},{id:"D",texto:"Antibiótico, anti-histamínico e antagonista do receptor de leucotrieno durante as crises."}],
   gabarito:"A",
@@ -278,7 +278,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-020", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:20,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Menino, 3 anos, é levado ao Pronto Atendimento com história de diarreia há cinco dias, com evacuações líquidas de sete a oito vezes ao dia. Nega vômitos e mantém ingesta de grande quantidade de líquidos açucarados, mas não está conseguindo se alimentar. Exame físico: letárgico, taquicárdico, com boa perfusão periférica, mucosas muito secas, olhos levemente encovados e turgor normal. Sódio sérico: 158mEq/L. A melhor abordagem terapêutica é administração de:",
   alternativas:[{id:"A",texto:"Soro hipotônico"},{id:"B",texto:"Solução isotônica"},{id:"C",texto:"Solução glicosada"},{id:"D",texto:"Solução salina hipertônica"}],
   gabarito:"B",
@@ -346,7 +346,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-025", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:25,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Recém-nascido a termo de 12 horas de vida, em aleitamento materno, nascido de parto vaginal sem intercorrências, encontra-se em alojamento conjunto. Mãe está com dificuldade de amamentação. Exame físico: boa vitalidade, normotermia, sem alterações neurológicas ou respiratórias. Glicemia capilar 30mg/dL. A conduta mais apropriada neste momento é:",
   alternativas:[{id:"A",texto:"Suspender aleitamento e manter jejum até normalização da glicemia com suporte venoso."},{id:"B",texto:"Iniciar infusão venosa de glicose 10% imediatamente, à velocidade de 6-8mg/kg/min."},{id:"C",texto:"Observar clinicamente, pois o recém-nascido está assintomático."},{id:"D",texto:"Incentivar aleitamento materno, com nova reavaliação da glicemia em 1 hora."}],
   gabarito:"D",
@@ -359,7 +359,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-026", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:26,
-  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-caesofago",
+  areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
   imagemUrl:"dados/imagens/q-tp20252-026.png",
   enunciado:"Homem, 66 anos, apresenta história de disfagia progressiva e perda ponderal de10kg em três meses. Realizado radiograma com contraste via oral (abaixo): A conduta é:",
   alternativas:[{id:"A",texto:"Cintilografia para pesquisa de corpo inteiro."},{id:"B",texto:"Tomografia computadorizada de tórax."},{id:"C",texto:"Biópsia para estudo histopatológico."},{id:"D",texto:"Ultrassonografia endoscópica para estadiamento."}],
@@ -543,7 +543,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-040", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:40,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-tp20252-040.png",
   enunciado:"Mulher, 25 anos, apresenta queixa de dispareunia, disúria e leucorreia de coloração amarela esbranquiçada, bolhosa, com odor fétido e com leve prurido na região vulvar. Exame físico: mucosa vaginal edemaciada e hiperemiada, colo uterino com pequenos focos de hemorragia. Foi realizado exame a fresco da secreção vaginal (abaixo): O agente etiológico é:",
   alternativas:[{id:"A",texto:"Trichomonas vaginalis"},{id:"B",texto:"Candida sp."},{id:"C",texto:"Chlamydia trachomatis"},{id:"D",texto:"Neisseria gonorrhoeae"}],
@@ -822,7 +822,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-061", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:61,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 21 anos, solteira, comparece ao pronto atendimento com queixa de dor em baixo ventre há duas semanas, associada a um corrimento amarelado, com odor fétido. Refere piora da dor há um dia, com pequeno sangramento via vaginal. Última relação sexual há três semanas. Usuária de DIU de cobre há dois anos. Data da última menstruação há duas semanas. Exame físico: estável hemodinamicamente, dor à palpação profunda em fossa ilíaca esquerda, descompressão brusca negativa. Especular: presença de muco/pus no orifício do colo. Toque vaginal: dor à mobilização do útero. A conduta é:",
   alternativas:[{id:"A",texto:"Laparoscopia exploratória para lavagem da cavidade abdominal."},{id:"B",texto:"Retirada do DIU e antibioticoterapia, devido ao risco de sepse."},{id:"C",texto:"Analgésicos, anti-inflamatórios e reavaliação em uma semana."},{id:"D",texto:"Antibioticoterapia sistêmica, manter o DIU e reavaliação em 48 horas."}],
   gabarito:"D",
@@ -931,7 +931,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-069", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:69,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-coqueluche",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   enunciado:"Lactente, 1 mês e 15 dias, previamente hígido, é levado ao pronto atendimento referindo que há 5 dias tem episódios repetidos de tosse em crises, cada vez mais intensos, que terminam com cianose perioral, vômitos pós-tosse e pausas respiratórias breves. Mãe nega febre, coriza ou contato com pessoas doentes. Exame físico: alerta entre as crises, irritado durante a ausculta, FR 56irpm, FC 160bpm, SaO2 95% em ar ambiente, ausculta pulmonar: murmúrio vesicular presente bilateralmente, sem sibilos ou estertores; sem tiragem, sem batimento de asa nasal; abdome e SNC sem alterações; sem sinais meníngeos. Peso adequado para a idade com boa perfusão periférica. A conduta mais adequada é:",
   alternativas:[{id:"A",texto:"Solicitar pesquisa de vírus respiratórios e iniciar oseltamivir."},{id:"B",texto:"Solicitar radiografia de tórax e iniciar amoxicilina por via oral."},{id:"C",texto:"Iniciar azitromicina e notificar o caso às autoridades de saúde."},{id:"D",texto:"Prescrever broncodilatadores e acompanhamento ambulatorial."}],
   gabarito:"C",
@@ -984,7 +984,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-073", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:73,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mulher, 56 anos, com diagnóstico de síndrome de Sjögren primária há 10 anos, apresenta piora da xerostomia, perda de peso não intencional (4kg em três meses), sudorese noturna e aumento progressivo de parótidas nos últimos três meses. Exame físico: parótidas firmes, indolores e púrpura em membros inferiores. Ultrassonografia cervical: linfonodos aumentados. Biópsia de linfonodo: infiltrado linfoplasmocitário monoclonal. A hipótese diagnóstica mais provável é:",
   alternativas:[{id:"A",texto:"Reativação da síndrome de Sjögren."},{id:"B",texto:"Evolução para linfoma MALT."},{id:"C",texto:"Infecção viral crônica (CMV ou EBV)."},{id:"D",texto:"Abscesso parotídeo subclínico."}],
   gabarito:"B",
@@ -1275,7 +1275,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-095", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:95,
-  areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-acne",
+  areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
   enunciado:"Homem trans, 19 anos, branco, em terapia de afirmação de gênero com testosterona, compareceu à USF por sentir-se incomodado com o agravamento de sua acne nos últimos meses. Refere uso de sabonete antiacne, sem melhora. Observa-se acne na face e no dorso, com presença de comedões, pápulas, pústulas e eritema principalmente em bochechas e fronte. Não apresenta nódulos ou cicatrizes ao exame. Informa que estas lesões o incomodam e que gostaria de ser encaminhado para um dermatologista. A melhor conduta neste momento é:",
   alternativas:[{id:"A",texto:"Prescrever retinoide tópico, sabonete a base de ácido salicílico e contraceptivo oral combinado com estrógeno e progesterona."},{id:"B",texto:"Encaminhar para dermatologia, pois o uso de terapia hormonal e a presença de lesões inflamatórias indicam gravidade."},{id:"C",texto:"Iniciar tratamento combinado com doxiciclina oral e tretinoína tópico e avaliar risco de gestação para prescrição de contraceptivo."},{id:"D",texto:"Suspender a terapia com testosterona, iniciar tratamento com isotretinoína oral e reavaliar em dois meses."}],
   gabarito:"C",
@@ -1288,7 +1288,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-096", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:96,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Mulher, 79 anos, acamada há três anos por acidente vascular cerebral, apresenta lesão por pressão com as seguintes características: perda total da espessura da pele, exposição do tecido subcutâneo, sem sinais de infecção e com fundo com tecido de granulação abundante. O tipo de cobertura mais adequado para a lesão é:",
   alternativas:[{id:"A",texto:"Espuma de poliuretano"},{id:"B",texto:"Hidrogel com gaze oclusiva"},{id:"C",texto:"Alginato de cálcio com carvão ativado"},{id:"D",texto:"Gaze seca com solução salina"}],
   gabarito:"A",
@@ -1510,7 +1510,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 },
 {
   id:"q-tp20252-113", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:113,
-  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-hp",
+  areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
   imagemUrl:"dados/imagens/q-tp20252-113.png",
   enunciado:"Mulher, 50 anos, previamente hígida, refere dispneia progressiva há 18 meses para esforços moderados (NYHA 2), sem outros sintomas respiratórios. Nega tabagismo e doenças prévias. Exame físico: hiperfonese da segunda bulha no foco pulmonar. Radiografia e espirometria pré-broncodilatador abaixo: A conduta inicial é:",
   alternativas:[{id:"A",texto:"Cateterismo cardíaco direito para determinar as características hemodinâmicas da circulação pulmonar."},{id:"B",texto:"Angiotomografia computadorizada de tórax com contraste, protocolo para tromboembolismo pulmonar."},{id:"C",texto:"Ecocardiograma transtorácico com doppler e estimativa de pressão sistólica da artéria pulmonar."},{id:"D",texto:"Pletismografia para avaliação dos volumes estáticos pulmonares associada à difusão de monóxido de carbono."}],

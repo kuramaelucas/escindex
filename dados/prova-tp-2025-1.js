@@ -263,7 +263,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-018", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:18,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   imagemUrl:"dados/imagens/q-tp20251-018.png",
   imagemLegenda:"Mão da paciente",
   enunciado:"Mulher, 45 anos, caucasiana, com história de um ano de artralgia de articulações interfalangianas proximais em dedos das mãos e arroxeamento de dedos de mãos e pés, piores nos dias frios. Exames laboratoriais: proteína C reativa 3mg/dL (VR: < 5mg/dL), velocidade de hemossedimentação 22mm/h (VR: < 30mm/h), fator antinuclear positivo, padrão nuclear centromérico, título 1:160, dosagem de C3 e C4 normais e hemograma normal. A foto da mão da paciente está a seguir: A principal hipótese diagnóstica é:",
@@ -358,7 +358,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-025", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:25,
-  areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-toc",
+  areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-ansiedade",
   enunciado:"Mulher, 17 anos, é levada em consulta médica por sua mãe. Contam que ela vem apresentando comportamentos repetitivos de checagem e preocupação excessiva com limpeza e arrumação da casa. A paciente conta que, há seis meses, tem se sentido obrigada a arrumar sua cama e seu quarto repetidas vezes, mesmo já estando limpos. Ela descreve medo irracional de contaminação, que a deixa extremamente ansiosa, desgostosa e triste. Sente que se não limpar os objetos, algo de ruim pode acontecer com seus pais. Além disso, quando apresenta esses pensamentos negativos, pisca dez vezes e mostra a língua para se aliviar. A paciente tem consciência de que esses pensamentos são excessivos, mas é incapaz de controlá-los, causando-lhe grande sofrimento. O diagnóstico é:",
   alternativas:[{id:"A",texto:"Síndrome de Tourette"},{id:"B",texto:"Transtorno de Ansiedade Generalizada"},{id:"C",texto:"Transtorno Obsessivo-Compulsivo"},{id:"D",texto:"Transtorno de Personalidade Obsessivo-Compulsiva"}],
   gabarito:"C",
@@ -466,7 +466,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-033", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:33,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-malaria",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
   imagemUrl:"dados/imagens/q-tp20251-033.jpg",
   imagemLegenda:"Quatro imagens microscópicas (A a D)",
   enunciado:"Homem, 25 anos, residente em Porto Velho/RO, apresenta quadro de febre a cada dois dias, com prostração e sudorese intensa. O provável agente etiológico causador do quadro é apresentado na imagem:",
@@ -780,7 +780,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-057", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:57,
-  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-teratogenese",
+  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
   enunciado:"Recém-nascido a termo apresenta microtia, fenda palatina e macrocrania. Ultrassom transfontanelar: aumento de ventrículos laterais, caracterizando hidrocefalia. Mãe relata que fez uso de isotretinoína até o segundo mês da gestação. O mecanismo responsável pelas malformações é:",
   alternativas:[{id:"A",texto:"Interferência direta na atividade e na migração das células da crista neural cranial."},{id:"B",texto:"Diminuição da expressão de vários receptores de superfície ligados à adesão celular."},{id:"C",texto:"Efeito vasoconstritor e consequente disrupção do desenvolvimento cerebral."},{id:"D",texto:"Diminuição da saturação de oxiemoglobina fetal e do pH."}],
   gabarito:"A",
@@ -942,7 +942,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-069", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:69,
-  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-disfuncaoeretil",
+  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-escroto",
   enunciado:"Homem, 64 anos, branco, divorciado, procura atendimento referindo não conseguir manter relações sexuais. Apesar de ter interesse sexual, tem dificuldade em obter ereção e, quando consegue, perde no momento da penetração. Associa-se ejaculação muito rápida. Sempre foi sedentário, não faz dieta. Relata também diminuição do jato urinário. AP: hipertenso em uso de losartana, diabético em uso de metformina, 2 stents inseridos há 4 meses em uso de AAS e clopidogrel. Exames laboratoriais: PSA 1,50ng/dL, testosterona total 460ng/dL (280 - 880). A melhor orientação em relação ao uso do inibidor de fosfodiesterase-5 é:",
   alternativas:[{id:"A",texto:"O uso da droga está contraindicado neste momento."},{id:"B",texto:"A redução da dose pela metade é segura e pode ser prescrita."},{id:"C",texto:"Pode ser usado, desde que retiradas outras drogas hipotensoras."},{id:"D",texto:"Pode ser usado, desde que se substitua metformina por insulina."}],
   gabarito:"B",
@@ -983,7 +983,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-072", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:72,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Mulher, 37 anos, foi submetida a mastoplastia redutora por hipertrofia mamária. Apresentou boa evolução no pós-operatório imediato. Três meses após a cirurgia, notou que as cicatrizes das mamas permaneciam avermelhadas e ficaram elevadas, dentro dos limites da incisão original. O diagnóstico e a conduta são:",
   alternativas:[{id:"A",texto:"Cicatriz normal; seguimento clínico."},{id:"B",texto:"Cicatriz hipertrófica; terapia compressiva e infiltração de corticoide."},{id:"C",texto:"Cicatriz atrófica; revisão cirúrgica com exérese da cicatriz."},{id:"D",texto:"Cicatriz queloide; ressecção intralesional seguida de betaterapia."}],
   gabarito:"B",
@@ -1260,7 +1260,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-093", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:93,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Nuligesta, 21 anos, apresenta-se no pronto atendimento com queixa de dor abdominal baixa há 3 dias, acompanhada de febre baixa. Relata dor durante as relações sexuais. Exame físico: PA 110/70mmHg, FC 90bpm, T = 37,8ºC, dor à palpação abdominal inferior bilateralmente. Toque vaginal: dor à mobilização do colo do útero. Exame especular: corrimento vaginal fétido. Teste de gravidez negativo. O diagnóstico é:",
   alternativas:[{id:"A",texto:"Endometriose"},{id:"B",texto:"Infecção do trato urinário"},{id:"C",texto:"Gravidez ectópica"},{id:"D",texto:"Doença inflamatória pélvica"}],
   gabarito:"D",
@@ -1338,7 +1338,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-099", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:99,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher de 28 anos, G2P2, assintomática, em uso de contraceptivo oral combinado, retorna à UBS para o resultado de sua colpocitologia. O exame citológico não apresentou atipias, mas revelou a presença de Gardnerella vaginalis e Mobiluncus spp. A paciente nega queixas de corrimento ou outros sintomas vaginais. A conduta mais apropriada é:",
   alternativas:[{id:"A",texto:"Clindamicina vaginal por 7 dias."},{id:"B",texto:"Metronidazol oral por 7 dias."},{id:"C",texto:"Repetir o exame em 6 meses."},{id:"D",texto:"Não tratar."}],
   gabarito:"D",
@@ -1351,7 +1351,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-100", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:100,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-tp20251-100.jpg",
   imagemLegenda:"Exame a fresco da secreção vaginal",
   enunciado:"Mulher, 29 anos, apresenta prurido vaginal intenso, corrimento branco, espesso e disúria leve, há uma semana. Nega febre, dor abdominal ou sangramento. Relata parceiro sexual fixo e uso de preservativo de forma inconsistente. Exame físico: hiperemia vulvar e corrimento vaginal branco, aderente às paredes vaginais. Exame a fresco apresentado abaixo: O agente etiológico mais provável é:",
@@ -1537,7 +1537,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 },
 {
   id:"q-tp20251-114", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:114,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 15 anos, procura atendimento médico na USF por apresentar, há alguns dias, lesões “ásperas” em região genital, com prurido discreto. Nega outros sintomas ou queixas. Ciclos menstruais regulares, faz uso de anticoncepcional hormonal oral regularmente. Nega vacinação nos últimos dez anos. Relata início de atividade sexual há seis meses, parceiro fixo, assintomático e sem lesões semelhantes. Exame físico: várias lesões verrucosas, de 2 a 3mm de diâmetro, agrupadas em região vulvar, sem sinais inflamatórios. Além do tratamento tópico e específico das lesões, a conduta é:",
   alternativas:[{id:"A",texto:"Vacinação"},{id:"B",texto:"Antiviral sistêmico"},{id:"C",texto:"Antibiótico via oral"},{id:"D",texto:"Tratamento do parceiro"}],
   gabarito:"A",

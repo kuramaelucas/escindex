@@ -111,7 +111,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 },
 {
   id:"q-fmabc2024-008", banca:"FMABC", real:true, ano:2024, numeroNaProva:8,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem de 55 anos com hipertensão arterial e hiperlipidemia, mas sem usar qualquer medicação, é reavaliado por quadro de algumas semanas de desconforto torácico aos moderados esforços. No momento, a pressão arterial é 180 x 90 mmHg. Perfil lipídico recente mostra: colesterol total de 210 mg/dL; LDL: 150 mg/dL; HDL: 34 mg/ dL; triglicerídeos: 130 mg/dL. O teste ergométrico mostra: depressões do segmento ST descendentes de 2 mm nas derivações V5, V6 e aVL durante o pico do exercício, com resposta hipertensiva. A angiografia coronária evidencia lesão proximal de 70% em grande ramo marginal esquerdo; restante das artérias coronárias são angiograficamente normais. Constitui uma afirmação verdadeira:",
   alternativas:[{id:"A",texto:"A revascularização coronária percutânea com stent é superior ao tratamento médico nesse paciente."},{id:"B",texto:"A revascularização coronária percutânea com stent não costuma melhorar a sobrevida nessa circunstância, comparado com o tratamento clínico otimizado."},{id:"C",texto:"Este paciente deve iniciar tratamento médico com aspirina, rosuvastatina e terapia anti-hipertensiva seguido de revascularização para sua doença arterial coronariana."},{id:"D",texto:"O tratamento médico é superior à revascularização coronária percutânea com stent nesse paciente."},{id:"E",texto:"Se os sintomas persistirem apesar do tratamento médico, a revascularização coronária percutânea deve ser indicada e está associada à redução da mortalidade."}],
   gabarito:"B",
@@ -150,7 +150,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 },
 {
   id:"q-fmabc2024-011", banca:"FMABC", real:true, ano:2024, numeroNaProva:11,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-medula",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Mulher de 42 anos apresenta história de 6 meses de fraqueza progressiva nas pernas, evoluindo com retenção urinária. Ela é HIV negativa e não tem história prévia de disfunção neurológica. O histórico familiar não é digno de nota. Ao exame físico: há paraparesia espástica. A ressonância magnética do encéfalo e da medula espinhal não mostra nenhuma anormalidade significativa. A análise do líquido cefalorraquidiano revela pleocitose linfocítica leve (26 células/mm³) e 5 bandas oligoclonais únicas. Nessa paciente, o próximo passo diagnóstico mais adequado é:",
   alternativas:[{id:"A",texto:"pedir testes genéticos para paraplegia espástica hereditária."},{id:"B",texto:"pedir a adenosina deaminase no líquor."},{id:"C",texto:"solicitar sorologia para esquistossomose."},{id:"D",texto:"solicitar a pesquisa do HIV por PCR (carga viral)."},{id:"E",texto:"solicitar sorologia para vírus linfotrópico T humano."}],
   gabarito:"E",
@@ -241,7 +241,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 },
 {
   id:"q-fmabc2024-018", banca:"FMABC", real:true, ano:2024, numeroNaProva:18,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-desmielinizante",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Mulher de 56 anos é avaliada quanto a dificuldades recentes com tarefas no seu trabalho como assistente jurídico, especialmente aquelas que envolvem memória de curto prazo e multitarefa. Ela tem esclerose múltipla e já teve episódios depressivos maiores anteriores, que foram tratados, recorrentemente, com venlafaxina. Outros medicamentos em uso são: acetato de glatirâmer e suplemento de vitamina D. Os sinais vitais são normais. Exame neurológico: ela consegue lembrar apenas um dos três objetos em 3 minutos e recita “o-d-n-u-m” quando solicitado a soletrar “mundo” de trás para frente. A pontuação no PHQ-9 (Questionário de Saúde do Paciente – 9) para depressão é 4, devido a dificuldades de concentração e sono. Nesse momento, o manejo mais adequado é:",
   alternativas:[{id:"A",texto:"aumentar a dose de venlafaxina."},{id:"B",texto:"encaminhar para reabilitação cognitiva."},{id:"C",texto:"iniciar a memantina."},{id:"D",texto:"iniciar o metilfenidato."},{id:"E",texto:"trocar a venlafaxina por duloxetina."}],
   gabarito:"B",
@@ -345,7 +345,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 },
 {
   id:"q-fmabc2024-026", banca:"FMABC", real:true, ano:2024, numeroNaProva:26,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Com relação à cicatrização das feridas operatórias, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"O processo de cicatrização de feridas agudas se completa dentro de 1 a 2 semanas."},{id:"B",texto:"A maioria das feridas operatórias consiste em feridas crônicas, que cicatrizam completamente."},{id:"C",texto:"Na maioria das vezes, a interrupção da cicatrização ocorre na fase de proliferação."},{id:"D",texto:"Funcionalmente, uma ferida aguda deve passar pela fase de cicatrização para resultar em reparação completa e mantida."},{id:"E",texto:"Os macrófagos assumem um papel de menor importância na síntese de moléculas de cicatrização de feridas."}],
   gabarito:"D",
@@ -501,7 +501,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 },
 {
   id:"q-fmabc2024-038", banca:"FMABC", real:true, ano:2024, numeroNaProva:38,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Com relação ao tratamento do megaesôfago, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A cirurgia (miotomia de Heller + fundoplicatura) alivia efetivamente os sintomas em cerca de 90% dos pacientes."},{id:"B",texto:"A esofagectomia é reservada para pacientes com disfagia moderada, que não foram submetidos à dilatação nem cirurgias prévias."},{id:"C",texto:"A mucosectomia laparoscópica e a fundoplicatura total se tornaram os procedimentos de escolha."},{id:"D",texto:"A aplicação de toxina botulínica provoca uma reação no nível da junção gastresofágica, tornando uma miotomia subsequente mais fácil."},{id:"E",texto:"A taxa de perfuração após dilatação pneumática do esfíncter esofágico inferior (EEI) é de aproximadamente 20 a 50%, o que fez a técnica ser abandonada."}],
   gabarito:"A",
@@ -723,7 +723,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 },
 {
   id:"q-fmabc2024-055", banca:"FMABC", real:true, ano:2024, numeroNaProva:55,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-coqueluche",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   imagemUrl:"dados/imagens/q-fmabc2024-055.png", imagemLegenda:"Radiografia de tórax do lactente (questão 55).",
   enunciado:"Lactente, sexo feminino, 2 meses de idade, foi levada ao pronto atendimento por quadro de tosse seca, obstrução nasal e coriza hialina há 4 dias. Tem evoluído com piora progressiva da tosse, em alguns momentos com vômitos pós-tosse, e piora do cansaço há 1 dia. Sem febre, sem alterações intestinais ou urinárias. Ao exame, criança em regular estado geral, desidratada de algum grau, ausculta pulmonar com roncos esparsos, presença de tiragem subdiafragmática moderada, frequência respiratória de 58 irpm, saturação de 90% em ar ambiente, pele com algumas petéquias exclusivamente na face. Sem outras alterações relevantes ao exame clínico. Optado pela coleta de exames, com Hb 12,4 g/dL, Ht 38,2%, leucócitos: 26300 (12,2% neutrófilos, 0,5% basófilos, 82,6% linfócitos, 5% monócitos), plaquetas: 327000, proteína C reativa de 32,1 mg/dL, radiografia de tórax conforme imagem a seguir. Tendo em vista o diagnóstico mais provável, o tratamento de escolha deve ser realizado com:",
   alternativas:[{id:"A",texto:"Ampicilina."},{id:"B",texto:"Dexametasona."},{id:"C",texto:"Amicacina."},{id:"D",texto:"Azitromicina."},{id:"E",texto:"Apenas medidas de suporte."}],
@@ -802,7 +802,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 },
 {
   id:"q-fmabc2024-061", banca:"FMABC", real:true, ano:2024, numeroNaProva:61,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Jovem de 25 anos relata que apresenta leucorreia de repetição sem melhora com o uso de diferentes cremes vaginais. Ao exame físico, há leucorreia branco amarelada incaracterística e hiperemia das paredes vaginais. Sobre o diagnóstico dessa paciente,",
   alternativas:[{id:"A",texto:"se os critérios de Amsel forem positivos, teremos um quadro de candidíase."},{id:"B",texto:"a Gardnerella seria causa mais provável para o quadro de vaginite aguda."},{id:"C",texto:"o teste das aminas torna-se positivo na infecção pela Chlamydia."},{id:"D",texto:"se o pH vaginal estiver 5,5, o quadro de candidíase seria o mais provável."},{id:"E",texto:"em casos de difícil diagnóstico, devemos cogitar a possibilidade de tratar-se de vaginite aeróbica."}],
   gabarito:"E",

@@ -1020,7 +1020,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 },
 {
   id:"q-sirio2024-077", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:77,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Adolescente, 16 anos, refere variedade de parceiros sexuais nos últimos 6 meses, apresenta ao exame ginecológico de rotina corrimento branco-acinzentado, bolhoso, colo uterino avermelhado, canal endocervical sangrante facilmente. Está em uso de implante subcutâneo de etonogestrel há 1 ano e refere uso irregular de preservativo masculino. Foi atendida na Unidade Básica de Saúde, que não dispõe de exames para identificar o(os) agente(s) patógeno(s) envolvido(s). A conduta adequada é prescrever",
   alternativas:[{id:"A",texto:"Doxiciclina 500 mg 12/12 horas via oral por 5 dias."},{id:"B",texto:"Ciprofloxacino 500 mg via oral e azitromicina 1.000 mg via oral, ambos em dose única."},{id:"C",texto:"Eritromicina 500 mg 12/12 horas via oral por 5 dias."},{id:"D",texto:"Ceftriaxona 500 mg intramuscular e azitromicina 1.000 mg via oral, ambos em dose única."},{id:"E",texto:"Levofloxacino 500 mg via oral e azitromicina 500 mg via oral, ambos em dose única."}],
   gabarito:"D",

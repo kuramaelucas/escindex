@@ -77,7 +77,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-006", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:6,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"De acordo com o Guia de Vigilância em Saúde (2019), paciente com quadro febril (acima de 38°C), mialgia, cefaleia, sinais e sintomas de insuficiência respiratória aguda, de etiologia não determinada, na primeira semana da doença, ou paciente com enfermidade aguda, apresentando quadro de insuficiência respiratória aguda, com evolução para óbito na primeira semana da doença. Esses são critérios estabelecidos para a definição de caso suspeito de",
   alternativas:[{id:"A",texto:"síndrome cardiopulmonar por hantavírus."},{id:"B",texto:"síndrome gripal aguda."},{id:"C",texto:"endocardite infecciosa."},{id:"D",texto:"estafilococcia."}],
   gabarito:"A",
@@ -168,7 +168,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-013", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:13,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-lyme",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Um paciente do sexo masculino, jovem, procura atendimento médico após retornar de viagem com duração de 2 meses em uma região rural. Informa que, pouco tempo após chegar àquela região, verificou a presença de uma lesão vermelha na coxa esquerda, que, posteriormente, espalhou-se por outras partes do corpo, mas em menor tamanho e com discreto prurido. No início, ele relacionou a \"algum bicho\" que o mordeu durante uma cavalgada. As lesões duraram, aproximadamente, três semanas, e a cura foi espontânea. Durante esse período apresentou um quadro clínico de astenia, olhos vermelhos, sonolência, mialgia, febre e artralgia, semelhante a um quadro viral. Após seu retorno da viagem iniciou um quadro de dificuldade de concentração e de memória, perturbações no sono e, recentemente, dificuldade à deambulação. Observa-se, atualmente, durante o exame clínico neurológico, ataxia cerebelar e paralisia do nervo facial, além de dor interescapular intensa. Em relação ao quadro clínico descrito acima, assinale o diagnóstico mais provável:",
   alternativas:[{id:"A",texto:"Infecção pelo vírus varicela-zóster."},{id:"B",texto:"Doença de Lyme."},{id:"C",texto:"Neurossarcoidose."},{id:"D",texto:"Babesiose."}],
   gabarito:"B",
@@ -246,7 +246,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-019", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:19,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   imagemPendente:"Radiografia de tórax em PA da paciente (infiltrado pulmonar alveolar/intersticial difuso bilateral, sem aumento da área cardíaca)",
   enunciado:"Mulher, 32 anos, com febre, cefaleia, náuseas, mialgia e tosse seca há 5 dias. Há um dia houve piora da tosse e surgimento de dispneia intensa. Mora na zona rural e nega doenças prévias. Exame físico: MEG, corada e hidratada, acianótica e anictérica. Aparelho respiratório: murmúrio vesicular presente, diminuído em base direita e estertores em base esquerda. FR = 40 ipm, saturação 85 % com máscara de O₂ 10L/min. Aparelho cardiovascular: RCR 2 T, bulhas normofonéticas sem sopros. FC: 120 bpm. PA: 96x40 mmHg. Abdome sem alterações. Membros sem edemas. Exames laboratoriais: Hb = 17 G/dL; Ht = 51 %; GB = 10.800 /mm3 (Bastões 37%; segmentados 51%; eosinófilos 1%; linfócitos 11%); Plaquetas = 98.000/mm³. LDH = 520 U/L (VR: 100 a190); Creatinina = 1,2 mg/dL; AST = 70 U/L (VR<38); ALT = 67 U/L (VR<31); Bilirrubina Total = 0,6 mg/dL (VR: 0,8-1,2). Radiografia de tórax, ver figura abaixo:\n\nQual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Síndrome cardiopulmonar por Hantavírus"},{id:"B",texto:"Paracoccidioidomicose Aguda/Subaguda"},{id:"C",texto:"Pneumonia estafilocócica pós-influenza"},{id:"D",texto:"Pneumonia por influenza H1N1"}],
@@ -299,7 +299,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-023", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:23,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"A hantavirose manifesta-se sob diferentes formas, desde doença febril aguda inespecífica, até quadros pulmonares e cardiovasculares mais severos e característicos, podendo evoluir para a síndrome da angústia respiratória (SARA). Sendo INADEQUADO o seguinte:",
   alternativas:[{id:"A",texto:"na América do Sul, foi observado importante comprometimento cardíaco, passando a ser denominada de síndrome cardiopulmonar por hantavírus (SCPH)."},{id:"B",texto:"vírus do gênero Hantavírus, da família Bunyaviridae, sendo o único buniavírus que não é um arbovírus."},{id:"C",texto:"a infecção humana ocorre mais frequentemente pela inalação de aerossóis, formados a partir da urina, fezes e saliva de roedores infectados."},{id:"D",texto:"cardiopulmonar é caracterizada pelo início da tosse, que em geral é produtiva, acompanhada de bradicardia, taquidispneia e hipoxemia"}],
   gabarito:"D",
@@ -325,7 +325,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-025", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:25,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-lyme",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Escolar, do sexo feminino, com 10 anos de idade, proveniente de zona rural, com história de febre, cefaleia, artralgia e lesão eritematosa, indolor com expansão centrífuga e centro pálido em membro superior direito. Após algumas semanas, evoluiu com meningite linfomonocitária e paralisia facial. Qual é principal hipótese diagnóstica para o caso?",
   alternativas:[{id:"A",texto:"Estreptococcia."},{id:"B",texto:"Meningoencefalite por vírus da Caxumba."},{id:"C",texto:"Meningite por Streptococcus pneumoniae."},{id:"D",texto:"Doença de Lyme."},{id:"E",texto:"Meningoencefalite herpética."}],
   gabarito:"D",
@@ -338,7 +338,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-026", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:26,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"A definição de caso suspeito: “indivíduo procedente, nos últimos 21 dias, de Guiné ou Serra Leoa que apresente febre, podendo ser acompanhada de diarreia, vômitos ou sinais de hemorragia, como: diarreia sanguinolenta, gengivorragia, enterorragia, hemorragias internas, sinais purpúricos e hematúria”, se refere à seguinte doença:",
   alternativas:[{id:"A",texto:"Febre Zica."},{id:"B",texto:"Dengue hemorrágica."},{id:"C",texto:"Febre amarela."},{id:"D",texto:"Riquetsiose."},{id:"E",texto:"Ebola."}],
   gabarito:"E",
@@ -364,7 +364,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-028", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:28,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Um médico com trinta e dois anos de idade acabou de voltar da Guiné, país acometido por epidemia do vírus ebola, onde trabalhou para a Organização Médicos Sem Fronteiras, tendo chegado ao Brasil há dez dias. Na manhã de hoje, ele acordou com febre alta e resolveu procurar a emergência de um hospital, onde informou que, desde que voltou da África, teve contato com apenas quatro pessoas, entre elas, a sua noiva.\n\nA respeito desse caso clínico e de aspectos a ele relacionados, julgue o próximo item.\n\nO vírus ebola não se dissemina por meio de objetos contaminados, tais como roupas, agulhas, seringas e instrumentos cirúrgicos.",
   alternativas:[{id:"A",texto:"Certo."},{id:"B",texto:"Errado."}],
   gabarito:"B",
@@ -377,7 +377,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-029", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:29,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Um médico com trinta e dois anos de idade acabou de voltar da Guiné, país acometido por epidemia do vírus ebola, onde trabalhou para a Organização Médicos Sem Fronteiras, tendo chegado ao Brasil há dez dias. Na manhã de hoje, ele acordou com febre alta e resolveu procurar a emergência de um hospital, onde informou que, desde que voltou da África, teve contato com apenas quatro pessoas, entre elas, a sua noiva.\n\nA respeito desse caso clínico e de aspectos a ele relacionados, julgue o próximo item.\n\nCaso o médico seja portador de infecção pelo ebola, não somente os profissionais de saúde, mas todos os familiares e amigos que convivam com ele estarão expostos a risco de adoecer, devido ao possível contato com sangue e fluidos corporais dele.",
   alternativas:[{id:"A",texto:"Certo."},{id:"B",texto:"Errado."}],
   gabarito:"A",
@@ -390,7 +390,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-030", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:30,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Um médico com trinta e dois anos de idade acabou de voltar da Guiné, país acometido por epidemia do vírus ebola, onde trabalhou para a Organização Médicos Sem Fronteiras, tendo chegado ao Brasil há dez dias. Na manhã de hoje, ele acordou com febre alta e resolveu procurar a emergência de um hospital, onde informou que, desde que voltou da África, teve contato com apenas quatro pessoas, entre elas, a sua noiva.\n\nA respeito desse caso clínico e de aspectos a ele relacionados, julgue o próximo item.\n\nPara definição do diagnóstico, além da febre, deve-se pesquisar a existência de cefaleia, dor muscular, fraqueza, fadiga, diarreia, vômitos, dor abdominal e hemorragia.",
   alternativas:[{id:"A",texto:"Certo."},{id:"B",texto:"Errado."}],
   gabarito:"A",
@@ -403,7 +403,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-031", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:31,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Homem, 36 anos, comparece ao pronto atendimento relatando febre, cefaleia, fraqueza, diarreia, vômitos, dor abdominal, inapetência, odinofagia de 3 dias de evolução.\n\nSerá considerado caso suspeito de Ebola se o paciente retornou:",
   alternativas:[{id:"A",texto:"Da África há 10 dias e apresentar enterorragia."},{id:"B",texto:"Da África há 25 dias e apresentar hepatomegalia."},{id:"C",texto:"Da Nigéria há 8 dias e apresentar linfadenomegalia."},{id:"D",texto:"De Serra Leoa há 21 dias com ou sem gengivorragia."}],
   gabarito:"D",
@@ -416,7 +416,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-032", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:32,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-lyme",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Um estudante de 23 anos de férias é avaliado no pronto-socorro por quadro de tontura que teve início há 3 dias. Ele relata um rash na perna direita que parecia um alvo há dias atrás, sem outras comorbidades. O exame físico revela bradicardia com 40 bpm e pressão sanguínea de 88/42 mmHg; a saturação de oxigênio está normal. Não há outros comemorativos no exame, a não ser por uma lesão em alvo na sua coxa direita. O ECG apresenta um bloqueio AV de 3º grau. Qual dos exames abaixo tem maior chance de elucidar o diagnóstico?",
   alternativas:[{id:"A",texto:"ANA."},{id:"B",texto:"HL A B27."},{id:"C",texto:"ELISA Borrelia burgdorferi."},{id:"D",texto:"RPR."},{id:"E",texto:"SCL-70."}],
   gabarito:"C",
@@ -429,7 +429,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-033", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:33,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febrehemorragica",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Paciente masculino, 34 anos, dá entrada na emergência com história de 5 dias de febre alta, cefaleia intensa, mialgia e náuseas. Nega artrite, artralgia ou coriza. No exame físico, chama atenção a hiperemia conjuntival, faringite e um exantema maculopapular com descamação. Não há relato de caso semelhante em sua região. O paciente é missionário e refere viagem para a Guiné há 15 dias. Caso o paciente desenvolva choque associado a fenômenos hemorrágicos, sem quadro respiratório relevante, a etiologia mais provável será:",
   alternativas:[{id:"A",texto:"Ebola"},{id:"B",texto:"Influenza"},{id:"C",texto:"Hantavírus"},{id:"D",texto:"Chikungunya"}],
   gabarito:"A",
@@ -442,7 +442,7 @@ window.EscDados.registrarQuestoes("banco-didatico-grad-sfiha", [
 },
 {
   id:"q-gdsfiha-034", banca:"Esc — Banco Didático", real:false, tipoProva:"graduacao", ano:2026, numeroNaProva:34,
-  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-lyme",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
   enunciado:"Qual das seguintes afirmativas está associada à doença de Lyme?",
   alternativas:[{id:"A",texto:"A infecção é carregada pelas larvas do mosquito."},{id:"B",texto:"O agente infeccioso é Borrelia Burgdoferi."},{id:"C",texto:"Não há envolvimento do sistema nervoso."},{id:"D",texto:"Todos pacientes apresentam eritema migrans crônico."}],
   gabarito:"B",

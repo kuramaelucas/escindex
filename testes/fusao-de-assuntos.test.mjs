@@ -50,3 +50,31 @@ test("respostas, cartões e blocos com o id antigo seguem o assunto que ficou", 
     assert.equal(r.segunda, 0, "rodar de novo é inofensivo");
   } finally { await contexto.close(); }
 });
+
+test("banco salvo antes da fusão real (ECN → abdome agudo do RN) é consertado ao abrir", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block" });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  const pagina = await contexto.newPage();
+  try{
+    await pagina.goto(servidor.url + "index.html");
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof sincronizarConteudoNovo === "function");
+    const r = await pagina.evaluate(() => {
+      // volta a árvore ao que o navegador de um aluno antigo tinha
+      const destino = db.taxonomia.assuntos.find(a => a.id === "ass-neo-malformacoesdigestivas");
+      db.taxonomia.assuntos.push({ id: "ass-neo-ecn", especialidadeId: destino.especialidadeId, nome: "Enterocolite Necrosante" });
+      destino.nome = "Malformações Digestivas Congênitas";
+      db.respostas.push({ id: "r-ecn", usuarioId: "u-x", questaoId: "q-x", areaId: "area-ped", especialidadeId: destino.especialidadeId, assuntoId: "ass-neo-ecn" });
+      sincronizarConteudoNovo();
+      return {
+        existe: db.taxonomia.assuntos.some(a => a.id === "ass-neo-ecn"),
+        resp: db.respostas.find(x => x.id === "r-ecn").assuntoId,
+        nome: db.taxonomia.assuntos.find(a => a.id === "ass-neo-malformacoesdigestivas").nome,
+        orfaos: db.questoes.filter(q => !db.taxonomia.assuntos.some(a => a.id === q.assuntoId)).length,
+      };
+    });
+    assert.equal(r.existe, false);
+    assert.equal(r.resp, "ass-neo-malformacoesdigestivas");
+    assert.match(r.nome, /Abdome Agudo e Distensão Abdominal do RN/);
+    assert.equal(r.orfaos, 0, "nenhuma questão fica apontando para assunto que não existe");
+  } finally { await contexto.close(); }
+});

@@ -97,7 +97,7 @@ test("lote é tudo ou nada: um problema e nenhuma questão entra (o arquivo fica
 
 test("a consulta: taxonomia com palavra e busca de enunciado respondem sem abrir arquivo", () => {
   const taxo = execFileSync("node", [path.join(RAIZ, "ferramentas", "dados.mjs"), "taxonomia", "coronariana"], { encoding: "utf8" });
-  assert.match(taxo, /ass-sca\s+Síndrome Coronariana Aguda/);
+  assert.match(taxo, /ass-sca\s+Doença Coronariana \(Síndrome Coronariana Aguda/);
   const busca = execFileSync("node", [path.join(RAIZ, "ferramentas", "dados.mjs"), "buscar", "cetoacidose"], { encoding: "utf8" });
   assert.match(busca, /questões com "cetoacidose"/);
 });

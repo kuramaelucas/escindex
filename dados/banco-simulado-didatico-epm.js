@@ -174,7 +174,7 @@ window.EscDados.registrarQuestoes("banco-simulado-didatico-epm", [
 },
 {
   id:"q-didepm-013", banca:"Esc — Banco Didático", real:false, ano:2027, numeroNaProva:13,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 22 anos de idade, com dois parceiros sexuais nos últimos 6 meses, queixa-se de dor em baixo-ventre há 4 dias, febre de 38,2 °C e corrimento vaginal. Ao exame, há dor à mobilização do colo uterino e dor à palpação dos anexos, sem massa palpável nem sinais de peritonite. Está estável, tolera a via oral, o teste de gravidez é negativo e a ultrassonografia transvaginal não mostra abscesso. Qual é o tratamento ambulatorial mais adequado?",
   alternativas:[{id:"A",texto:"Ceftriaxona 500 mg por via intramuscular em dose única, associada a doxiciclina e a metronidazol por via oral, por 14 dias."},{id:"B",texto:"Azitromicina 1 g por via oral em dose única associada a fluconazol, com retorno em 7 dias, por se tratar de cervicite sem acometimento pélvico."},{id:"C",texto:"Penicilina benzatina 2,4 milhões de unidades por via intramuscular em dose única, mais metronidazol 2 g por via oral em dose única no consultório."},{id:"D",texto:"Apenas analgésico e anti-inflamatório, com repouso e reavaliação em 7 dias, por dor pélvica funcional."}],
   gabarito:"A",
@@ -252,7 +252,7 @@ window.EscDados.registrarQuestoes("banco-simulado-didatico-epm", [
 },
 {
   id:"q-didepm-019", banca:"Esc — Banco Didático", real:false, ano:2027, numeroNaProva:19,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-ecn",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
   enunciado:"Em uma unidade de terapia intensiva neonatal, a equipe revisa o protocolo de alimentação de recém-nascidos prematuros de 29 semanas, clinicamente estáveis, com o objetivo de reduzir a ocorrência de enterocolite necrosante. Qual estratégia tem a melhor evidência de prevenção?",
   alternativas:[{id:"A",texto:"Usar fórmula para prematuros desde o primeiro dia, com aumentos rápidos de volume de 50 mL/kg ao dia, para atingir a dieta plena em 48 horas."},{id:"B",texto:"Usar leite humano, materno ou de banco, com início precoce de dieta trófica e progressão lenta e cuidadosa."},{id:"C",texto:"Manter jejum de 7 a 10 dias em todos os prematuros e nutrição parenteral exclusiva, para poupar o intestino imaturo de qualquer agressão."},{id:"D",texto:"Prescrever antibiótico oral profilático e antiácido venoso em todos os prematuros, porque a acidez gástrica e a flora intestinal são as causas da doença."}],
   gabarito:"B",
@@ -668,7 +668,7 @@ window.EscDados.registrarQuestoes("banco-simulado-didatico-epm", [
 },
 {
   id:"q-didepm-051", banca:"Esc — Banco Didático", real:false, ano:2027, numeroNaProva:51,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-desmielinizante",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Mulher, 29 anos de idade, apresenta há 10 dias visão turva no olho esquerdo com dor à movimentação ocular, que melhorou parcialmente. Há 1 ano teve episódio de formigamento e fraqueza no membro inferior direito, de 3 semanas, com recuperação completa e sem investigação. A ressonância magnética de crânio mostra várias lesões ovais periventriculares e justacorticais de substância branca, e uma delas capta gadolínio, enquanto as outras não captam. O líquor mostra bandas oligoclonais. Qual é o diagnóstico e a conduta de longo prazo?",
   alternativas:[{id:"A",texto:"Neurite óptica isolada, de causa viral e benigna; apenas observação, sem terapia de longo prazo e sem acompanhamento da ressonância."},{id:"B",texto:"Esclerose múltipla remitente-recorrente, com disseminação no espaço e no tempo; iniciar precocemente terapia modificadora da doença."},{id:"C",texto:"Neuromielite óptica; interferon beta contínuo, por ser tratamento comprovado e seguro nesse transtorno do espectro."},{id:"D",texto:"Doença de Lyme com neurite; ceftriaxona venosa por 28 dias, sem imunomodulador, e nova ressonância depois do tratamento."}],
   gabarito:"B",
@@ -1006,7 +1006,7 @@ window.EscDados.registrarQuestoes("banco-simulado-didatico-epm", [
 },
 {
   id:"q-didepm-077", banca:"Esc — Banco Didático", real:false, ano:2027, numeroNaProva:77,
-  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ligamentos",
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Homem, 24 anos de idade, jogador de futebol amador, sofre entorse do joelho esquerdo ao receber um golpe na face lateral do joelho, com a perna fixa ao solo. Há dor e edema na face medial, sem derrame articular importante. Ao exame, o joelho abre em valgo com o joelho a 30 graus de flexão, com ponto final firme, e abre pouco em extensão completa. Os testes de Lachman e da gaveta anterior são negativos. Qual é o diagnóstico e o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Lesão completa do ligamento cruzado anterior; reconstrução cirúrgica com enxerto de tendão patelar em até 2 semanas, para evitar artrose."},{id:"B",texto:"Lesão de grau II do ligamento colateral medial; tratamento conservador com órtese articulada, fisioterapia e retorno ao esporte em 4 a 6 semanas."},{id:"C",texto:"Lesão do ligamento cruzado posterior; imobilização gessada em extensão por 8 semanas e artroscopia diagnóstica imediata."},{id:"D",texto:"Lesão do ligamento colateral medial de grau III; reparo cirúrgico urgente e imobilização em extensão total por 6 semanas."}],
   gabarito:"B",
@@ -1097,7 +1097,7 @@ window.EscDados.registrarQuestoes("banco-simulado-didatico-epm", [
 },
 {
   id:"q-didepm-084", banca:"Esc — Banco Didático", real:false, ano:2027, numeroNaProva:84,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente de 2 meses, nascido com 34 semanas, é levado ao pronto-socorro com coriza há 3 dias, tosse, febre baixa e dificuldade para mamar. Exame físico: frequência respiratória de 72 irpm, tiragem subcostal e intercostal, sibilos e crepitações difusos, saturação de oxigênio de 89% em ar ambiente. Recusou duas mamadas seguidas. Qual é o tratamento mais adequado?",
   alternativas:[{id:"A",texto:"Internação com oxigênio suplementar, hidratação e nutrição adequadas (inclusive por sonda, se necessário) e aspiração das vias aéreas superiores."},{id:"B",texto:"Salbutamol inalatório a cada 4 horas e prednisolona oral por 5 dias, como no manejo habitual da bronquiolite com sibilância, e reavaliação em 1 semana."},{id:"C",texto:"Alta com amoxicilina oral por 7 dias e retorno em caso de piora, pois a bronquiolite é bacteriana na maioria dos lactentes e responde ao antibiótico."},{id:"D",texto:"Azitromicina e ribavirina em nebulização, para o tratamento antiviral específico do vírus sincicial respiratório."}],
   gabarito:"A",
@@ -1253,7 +1253,7 @@ window.EscDados.registrarQuestoes("banco-simulado-didatico-epm", [
 },
 {
   id:"q-didepm-096", banca:"Esc — Banco Didático", real:false, ano:2027, numeroNaProva:96,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-intolerancialactose",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-malabsorcao",
   enunciado:"Mulher, 28 anos de idade, queixa-se há 2 anos de distensão abdominal, flatulência, cólicas e diarreia aquosa que surgem entre 30 minutos e 2 horas após tomar leite ou comer sorvete. Os sintomas desaparecem quando evita laticínios. Não há perda de peso, sangue nas fezes nem febre, e o exame físico é normal. Qual é o exame mais adequado para confirmar a hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Dosagem de imunoglobulina E específica para proteínas do leite de vaca, com teste de provocação oral em hospital."},{id:"B",texto:"Biópsia de duodeno com pesquisa de atrofia vilositária e dosagem de anticorpo antitransglutaminase."},{id:"C",texto:"Colonoscopia com biópsias seriadas e dosagem de calprotectina fecal para excluir doença inflamatória intestinal."},{id:"D",texto:"Teste respiratório do hidrogênio expirado após sobrecarga de 25 g de lactose, com elevação de 20 ppm ou mais."}],
   gabarito:"D",

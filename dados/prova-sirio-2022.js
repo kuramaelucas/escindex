@@ -52,7 +52,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 },
 {
   id:"q-sirio2022-003", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:3,
-  areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-perdapeso",
+  areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-quedas",
   enunciado:"NÃO é causa específica de perda de peso, na população de idosos:",
   alternativas:[{id:"A",texto:"Isolamento social e xerostomia."},{id:"B",texto:"uso de digoxina e topiramato."},{id:"C",texto:"uso de mirtazapina e megestrol."},{id:"D",texto:"alcoolismo e depressão."},{id:"E",texto:"demência e hipertireoidismo."}],
   gabarito:"C",
@@ -236,7 +236,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 },
 {
   id:"q-sirio2022-017", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:17,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ecgbasico",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"A hipertrofia de ventrículo esquerdo pode ser detectada no eletrocardiograma utilizando-se os critérios de Sokolov, que são definidos por:",
   alternativas:[{id:"A",texto:"R de V5 ou V6 + S de V1 > 35 mm."},{id:"B",texto:"R de V5 + V6 ou S de V1 ≥ 30 mm."},{id:"C",texto:"R de V5 + S de V1 ≥ 35 mm."},{id:"D",texto:"R de V5 e V6 + S de V1 > 45 mm."},{id:"E",texto:"R de V5 ou V6 + S de V1+V2 > 35 mm."}],
   gabarito:"A",
@@ -972,7 +972,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 },
 {
   id:"q-sirio2022-073", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:73,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"NÃO é comum observar nas infecções sexualmente transmissíveis a ocorrência de:",
   alternativas:[{id:"A",texto:"verrugas anogenitais."},{id:"B",texto:"úlceras genitais."},{id:"C",texto:"corrimento vaginal."},{id:"D",texto:"corrimento uretral."},{id:"E",texto:"infecção urinária."}],
   gabarito:"E",

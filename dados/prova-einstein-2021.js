@@ -400,7 +400,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 },
 {
   id:"q-einstein2021-030", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:30,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Recém-nascido, filho de mãe diabética com 38 semanas, parto cesárea por macrossomia fetal e cardiotocografia não tranquilizadora, apresenta Apgar 9/10 e peso 4.020 g. A complicação mais esperada para esse bebê no período neonatal, dentre as abaixo, é:",
   alternativas:[{id:"A",texto:"Cardiomiopatia hipertrófica."},{id:"B",texto:"Anemia hemolítica."},{id:"C",texto:"Hipotensão arterial."},{id:"D",texto:"Nefrocalcinose."},{id:"E",texto:"Hipermagnesemia."}],
   gabarito:"A",
@@ -439,7 +439,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 },
 {
   id:"q-einstein2021-033", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:33,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Em relação às vulvovaginites:",
   alternativas:[{id:"A",texto:"A vaginite aeróbica é diagnosticada pela coloração de Gram e dosagem de interleucina B diminuída."},{id:"B",texto:"A vaginite atrófica ocorre com frequência em mulheres que fazem antibioticoprofilaxia para infecção urinária."},{id:"C",texto:"O tratamento da vaginose bacteriana é realizado com ampicilina via oral e corticoide via vaginal por 7 dias."},{id:"D",texto:"A vaginite atrófica acomete puérperas e usuárias de contraceptivos hormonais e é tratada com progesterona natural por pelo menos 30 dias."},{id:"E",texto:"Os agentes etiológicos mais comuns da vaginite aeróbica são Escherichia coli, Staphilococcus aureus, Streptococcus agalactiae e Enterococcus faecalis."}],
   gabarito:"E",

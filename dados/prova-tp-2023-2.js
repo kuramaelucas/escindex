@@ -294,7 +294,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 },
 {
   id:"q-tp20232-021", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:21,
-  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-orbita",
+  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Mulher, 26 anos, chega à UPA referindo inchaço, vermelhidão, lacrimejamento e dor no olho esquerdo há dois dias. Procurou atendimento médico anteriormente, por dermatite de contato à maquilagem na mesma região. Exame físico: T = 37,9ºC; FC = 103bpm. Eritema, dor, calor e edema ao redor do olho, não bem delimitado, com discreta hiperemia conjuntival e redução na visão. O exame que ajudará a estabelecer o diagnóstico mais provável dessa condição é:",
   alternativas:[{id:"A",texto:"Radiografia dos seios da face e órbita."},{id:"B",texto:"Dosagem de IgE sérica."},{id:"C",texto:"Ultrassom das órbitas e seios da face."},{id:"D",texto:"Tomografia computadorizada da órbita e seios da face."}],
   gabarito:"D",
@@ -837,7 +837,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 },
 {
   id:"q-tp20232-062", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:62,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Homem, 68 anos, queixa-se de vômitos e dificuldade para engolir alimentos há dois dias. Refere emagrecimento de cerca de 5kg nos últimos 6 meses e que já vinha apresentado dificuldades para engolir alimentos sólidos há quase um ano. Na infância, morou em fazenda no interior de Goiás, em casa de tábua. É tabagista (40 anos.maço) e etilista social. Nega outras comorbidades. Nega dores ou febre. Exame físico: emagrecido, desnutrido e descorado. O primeiro exame diagnóstico para confirmar a hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Endoscopia digestiva alta"},{id:"B",texto:"Eletromanometria esofágica"},{id:"C",texto:"Tomografia computadorizada de tórax e abdome"},{id:"D",texto:"Radiografia contrastada do esôfago"}],
   gabarito:"A",
@@ -1328,7 +1328,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 },
 {
   id:"q-tp20232-099", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:99,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos, G3P3, usuária de implante de etonogestrel, apresenta corrimento vaginal em grande quantidade, prurido genital intenso e ardência vulvar. Exame a fresco do conteúdo vaginal: pseudo-hifas e blastoconídeos. Antecedente: três exames a fresco nos últimos nove meses com os mesmos achados. A conduta é:",
   alternativas:[{id:"A",texto:"Itraconazol por via oral dose única."},{id:"B",texto:"Fluconazol por via oral em três doses."},{id:"C",texto:"Miconazol creme vaginal por 7 dias."},{id:"D",texto:"Metronidazol creme vaginal por 14 dias."}],
   gabarito:"B",

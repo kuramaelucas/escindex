@@ -214,7 +214,7 @@ window.EscDados.registrarQuestoes("prova-tp-2024-1", [
 },
 {
   id:"q-tp20241-015", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2024, semestre:1, numeroNaProva:15,
-  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-orbita",
+  areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Adolescente, 16 anos, acompanhado da mãe, apresenta há quatro dias quadro de eritema e edema na pálpebra direita. História de dermatite de contato por cosméticos. Nega febre e alterações oculares até o momento. Exame físico: edema periorbital à direita, com rubor, calor, sem dor à palpação ou à mobilidade ocular. A conduta é:",
   alternativas:[{id:"A",texto:"Antibioticoterapia via oral e reavaliação clínica ambulatorial em 48 horas."},{id:"B",texto:"Tomografia computadorizada com contraste de órbita e seios paranasais e antibioticoterapia via oral."},{id:"C",texto:"Internação hospitalar, tomografia computadorizada com contraste de órbita e seios paranasais e antibioticoterapia endovenosa."},{id:"D",texto:"Internação hospitalar e antibioticoterapia via endovenosa."}],
   gabarito:"A",
@@ -319,7 +319,7 @@ window.EscDados.registrarQuestoes("prova-tp-2024-1", [
 },
 {
   id:"q-tp20241-023", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2024, semestre:1, numeroNaProva:23,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Homem, 58 anos, apresenta episódios recorrentes de pirose e regurgitação há um ano. Os sintomas ocorrem principalmente após as refeições e quando se deita. Apesar de ter feito alterações no estilo de vida, como evitar alimentos desencadeantes e elevar a cabeceira da cama durante o sono, não houve melhora dos sintomas. Há uma semana refere disfagia para sólidos. A conduta é:",
   alternativas:[{id:"A",texto:"Endoscopia digestiva alta"},{id:"B",texto:"Videodeglutograma"},{id:"C",texto:"Radiografia contrastada do esôfago"},{id:"D",texto:"Manometria esofágica"}],
   gabarito:"A",
@@ -834,7 +834,7 @@ window.EscDados.registrarQuestoes("prova-tp-2024-1", [
 },
 {
   id:"q-tp20241-062", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2024, semestre:1, numeroNaProva:62,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Homem, 68 anos, apresenta disfagia progressiva e odinofagia há três meses, acompanhadas de perda ponderal de 10kg no período. Antecedentes pessoais: hipertensão arterial, tabagismo e etilismo de longa data. O principal exame a ser realizado para elucidação diagnóstica é:",
   alternativas:[{id:"A",texto:"Manometria esofágica"},{id:"B",texto:"Tomografia computadorizada de tórax/abdome"},{id:"C",texto:"Radiografia contrastada"},{id:"D",texto:"Endoscopia digestiva alta"}],
   gabarito:"D",
@@ -1310,7 +1310,7 @@ window.EscDados.registrarQuestoes("prova-tp-2024-1", [
 },
 {
   id:"q-tp20241-098", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2024, semestre:1, numeroNaProva:98,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 28 anos, comparece em consulta na Unidade Básica de Saúde com queixa de prurido vaginal e vulvar, associado a corrimento de aspecto semelhante a nata, há três dias. Antecedentes: refere três casos semelhantes nos últimos 6 meses, que foram tratados com creme vaginal, do qual não se lembra o nome. Exame físico: vulva com algumas escoriações e especular mostrando hiperemia vaginal e conteúdo branco, grumoso e aderido às paredes. Teste de pH vaginal = 3,5. A conduta é:",
   alternativas:[{id:"A",texto:"Itraconazol via oral dose única e metronidazol via oral semanal por 6 meses."},{id:"B",texto:"Fluconazol via oral 3 doses, seguido de fluconazol via oral semanal por 6 meses."},{id:"C",texto:"Miconazol creme vaginal por 7 dias, associado a azitromicina via oral dose única."},{id:"D",texto:"Metronidazol creme vaginal por 14 dias e via oral semanal por 6 meses."}],
   gabarito:"B",

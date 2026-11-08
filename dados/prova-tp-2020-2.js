@@ -232,7 +232,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
 },
 {
   id:"q-tp20202-016", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:16,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-tp20202-016.jpg",
   enunciado:"Mulher, 28 anos, apresenta ocorrência de corrimento vaginal há 6 dias. A paciente é sexualmente ativa com um único parceiro que ela conheceu no mês anterior. Exame ginecológico: vulva e vagina congestas, edemaciadas e doloridas, e apresenta o clitóris e colo do útero inflamados. Foi feito swab do saco posterior, obtendo-se pequena secreção incolor e com mau cheiro, sendo feito teste de Gram que não mostrou bactérias. Realizada citologia vaginal com a coloração de Shorr em aumento de 20 e 100 vezes. O agente causador é:",
   alternativas:[{id:"A",texto:"Chlamydia trachomatis"},{id:"B",texto:"Neisseria gonorrhoeae"},{id:"C",texto:"Trichomonas vaginalis"},{id:"D",texto:"Candida albicans"}],
@@ -647,7 +647,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
 },
 {
   id:"q-tp20202-047", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:47,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente, 2 meses, nascido a termo, trazido pela mãe à urgência devido a quadro iniciado há três dias com coriza, lacrimejamento e tosse, evoluindo há 24 horas com irritabilidade, palidez e desconforto respiratório que dificulta a mamada. Exame físico: FR = 78 irpm, FC: 160 bpm. taquidispneico, com tiragem intercostal e subdiafragmática. Ausculta pulmonar: murmúrio vesicular presente, com roncos, sibilos e estertores bilateralmente. SatO2 : 90%. O plano terapêutico a ser elaborado deve incluir:",
   alternativas:[{id:"A",texto:"Máscara de Venturi a 50% e internação em Unidade de Terapia Intensiva."},{id:"B",texto:"Oxigenoterapia com cateter nasal 2 L/min, limpeza nasal com soro fisiológico."},{id:"C",texto:"Ventilação mecânica e internação em Unidade de Terapia Intensiva."},{id:"D",texto:"Oxigenoterapia, considerando o uso de cateter nasal de alto fluxo."}],
   gabarito:"D",
@@ -883,7 +883,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
 },
 {
   id:"q-tp20202-065", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:65,
-  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-gastro-esofago",
+  areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   imagemUrl:"dados/imagens/q-tp20202-065.jpg",
   enunciado:"Homem, 48 anos, natural e procedente da Bahia, trabalhador rural, queixa de disfagia para alimentos sólidos há 6 anos, com piora progressiva. Precisa tomar água para ajudar a ingerir os alimentos. Perda de 5kg neste período. Nega tabagismo ou pirose retroesternal. Ingere bebidas alcoólicas ocasionalmente nos finais de semana. Exame físico: bom estado geral, IMC = 19 kg/m² , sem outras anormalidades. Exame radiológico a seguir. A conduta é: (figura 1: 10 segundos) (figura 2: 5 minutos) (figura 3: 30 minutos)",
   alternativas:[{id:"A",texto:"Quimioterapia e radioterapia neoadjuvantes seguidas de esofagectomia."},{id:"B",texto:"Esofagocardiomiotomia com fundoplicatura."},{id:"C",texto:"Esofagectomia seguida de quimioterapia e radioterapia."},{id:"D",texto:"Tratamento clínico com inibidores de bomba de prótons e procinéticos."}],
@@ -1068,7 +1068,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
 },
 {
   id:"q-tp20202-079", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:79,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   imagemUrl:"dados/imagens/q-tp20202-079.jpg",
   enunciado:"Paciente retorna ao ambulatório após realização de ponte de safena com o seguinte achado de exame físico: área de deiscência total de pele com granulação no subcutâneo subjacente. Hiperemia leve ao redor da ferida e edema leve do membro. A enfermeira solicita avaliação médica. A conduta em relação à ferida cirúrgica é:",
   alternativas:[{id:"A",texto:"Deiscência recente de pele e subcutâneo com exposição muscular, sem sinais de infecção. Limpeza e desbridamento da ferida, reavivamento de bordas e ressutura da pele."},{id:"B",texto:"O ferimento está em fase retardada de cicatrização, com risco elevado de desenvolver infecção secundária de ferida cirúrgica. Introduzir antibioticoterapia de largo espectro por 10 dias."},{id:"C",texto:"O ferimento está com aspecto infeccioso, com hiperemia e exsudação do leito da ferida. Realizar desbridamento cirúrgico e introduzir antibioticoterapia para germes Gram positivos por 14 dias."},{id:"D",texto:"O ferimento está em fase avançada de granulação (cicatrização por segunda intenção), sem sinais de infecção local. Manter a aplicação de curativos oclusivos."}],
@@ -1200,7 +1200,7 @@ window.EscDados.registrarQuestoes("prova-tp-2020-2", [
 },
 {
   id:"q-tp20202-089", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2020, semestre:2, numeroNaProva:89,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   imagemUrl:"dados/imagens/q-tp20202-089.jpg",
   enunciado:"Mulher, 28 anos, em atendimento em Unidade Básica de Saúde, refere corrimento vaginal espesso, prurido vulvovaginal intenso e ardência miccional. Está no 24º dia do ciclo menstrual, nega uso de método contraceptivo e relata estar sem atividade sexual há 6 meses. Exame ginecológico: vulvite intensa, conteúdo vaginal aumentado, esbranquiçado, aderido à parede vaginal e pH = 4,4. Whiff teste negativo. Ao exame a fresco foi observada a imagem a seguir: O melhor tratamento disponibilizado pelo Sistema Único de Saúde para este caso, por via vaginal, é:",
   alternativas:[{id:"A",texto:"Clotrimazol"},{id:"B",texto:"Metronidazol"},{id:"C",texto:"Clindamicina"},{id:"D",texto:"Miconazol"}],

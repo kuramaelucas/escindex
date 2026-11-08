@@ -285,7 +285,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2023", [
 {
   id:"q-usprp2023-021", banca:"USP-RP (FMRP)", real:true, ano:2023, numeroNaProva:21,
   imagemUrl:"dados/imagens/q-usprp2023-021.jpg", imagemLegenda:"Inspeção vulvar com as lesões genitais",
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Primigesta, 21 anos, 26 semanas de gestação, procura o pronto atendimento referindo lesões genitais muito dolorosas. Informa que as lesões apareceram há três dias, mas não observou vesículas previamente ao aparecimento de lesões. Nega episódios semelhante no passado. Nega queixas em relação a gravidez. Ao exame observa-se a imagem a seguir: Além do alívio da dor e orientações de higiene, qual tratamento deve ser prescrito para esta gestante? Inspeção vulvar: lesões genitais",
   alternativas:[{id:"A",texto:"Aciclovir 400 mg 8/8 horas via oral."},{id:"B",texto:"Ceftriaxone 500 mg IM dose única."},{id:"C",texto:"Azitromicina 1 grama via oral dose única."},{id:"D",texto:"Penicilina benzatina 2400.000 UI por duas semanas."}],
   gabarito:"A",
@@ -629,7 +629,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2023", [
 },
 {
   id:"q-usprp2023-047", banca:"USP-RP (FMRP)", real:true, ano:2023, numeroNaProva:47,
-  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-disfuncaoeretil",
+  areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-escroto",
   enunciado:"Numa consulta de paciente na unidade de atenção primária do sexo masculino, 47 anos, casado, heteroafetivo, parceira única. O paciente questiona sobre o seu desempenho nas relações sexuais. O mesmo refere que sua ereção não é a mesma de antes e que isso tem ocorrido com mais frequência nesse ano. Paciente nega queixas urinárias como dor, incontinência, jato fraco, hesitação ou sensação de esvaziamento incompleto. Nega alterações ejaculatórias como ejaculação precoce ou diminuição do volume ejaculado. Refere que mantém desejo sexual e que relacionamento está bom, mas parceira tem notado a diferença na ereção. Refere que continua mantendo episódios de ereção reflexa. Nega sintomas de ansiedade ou de depressão, mas que está preocupado em relação a seu desempenho. Não faz uso de nenhuma medicação, não tem hábitos de tabagismo, etilismo ou de substâncias psicoativas. Refere sedentarismo. Ao Exame físico: IMC de 42 Kg/m². Ausculta cardíaca sem alterações. Pressão Arterial: 128 x 74 mmHg. Sem sinais clínicos de obstrução arterial periférica. Genitais sem lesões, deformidades, testículos normotróficos. Exames: Glicemia: 95 mg/dl Valor de referência 70-100 mg/dl Colesterol total: 270 mg/dl Valor de referência 140-200 mg/dl HDL Colesterol: 58 mg/dl Valor de referência > 45 mg/dl Triglicérides: 290 mg/dl Valor de referência < 150 mg/dl Testosterona total: 429 ng/dl Valor de referência 250-900 ng/dl Além de recomendar atividade física de maneira regular, orientação sobre resposta sexual e controle do peso, qual seria a melhor terapêutica medicamentosa para o paciente?",
   alternativas:[{id:"A",texto:"Clomipramina."},{id:"B",texto:"Finasterida."},{id:"C",texto:"Alprostadil."},{id:"D",texto:"Sildenafila."}],
   gabarito:"D",
@@ -1044,7 +1044,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2023", [
 },
 {
   id:"q-usprp2023-078", banca:"USP-RP (FMRP)", real:true, ano:2023, numeroNaProva:78,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mulher, 41 anos, refere dispneia progressiva há 1 ano, atualmente ao andar 50 metros. Há 8 meses notou edema de membros inferiores. Refere que as mãos ficam arroxeadas e em seguida esbranquiçadas, quando em contato com água gelada, e diz ter disfagia com engasgos há 3 anos. Exame físico: BEG, corada, hidratada, elasticidade da pele reduzida em membros e face. com diminuição da abertura oral. Murmúrio vesicular presente, simétrico, sem ruídos adventícios FR: 26 ipm. Sat 02: 87% em ar ambiente. Ritmo cardíaco regular com hiperfonese de B2. FC: 98 bpm. PA: 110 x 60 mmHg. Estase jugular a 45 graus. Qual sintoma adicional seria mais compatível?",
   alternativas:[{id:"A",texto:"Síncope."},{id:"B",texto:"Ortopneia."},{id:"C",texto:"Hemoptise."},{id:"D",texto:"Chiado."}],
   gabarito:"A",
@@ -1072,7 +1072,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2023", [
 {
   id:"q-usprp2023-080", banca:"USP-RP (FMRP)", real:true, ano:2023, numeroNaProva:80,
   imagemUrl:"dados/imagens/q-usprp2023-080.png", imagemLegenda:"Mãos após o teste de contato com gelo",
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mulher, 52 anos, há três anos apresenta arroxeamento, formigamento e queimação em dedos das mãos ao contato com superfícies ou ambientes frios. Refere disfagia para alimentos sólido, com frequente queimação retroesternal pós alimentar. Exame físico: bom estado geral; redução da elasticidade da pele em dorso das mãos; murmúrio vesicular bem distribuído, com estertores em velcro nas bases pulmonares. Teste de contato com gelo resultou na imagem abaixo: Qual medicação está indicada para a alteração mostrada na imagem?",
   alternativas:[{id:"A",texto:"Metotrexato."},{id:"B",texto:"Nifedipino."},{id:"C",texto:"Varfarina."},{id:"D",texto:"Prednisona."}],
   gabarito:"B",
@@ -1112,7 +1112,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2023", [
 },
 {
   id:"q-usprp2023-083", banca:"USP-RP (FMRP)", real:true, ano:2023, numeroNaProva:83,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dac-cronica",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem de 66 anos, diabético, portador de coronariopatia obstrutiva e doença arterial obstrutiva periférica, ambas ateroscleróticas, creatinina de 1,4 mg/dl, fração de ejeção do ventrículo esquerdo de 30%, com 22% de miocárdio isquêmico pela cintilografia, com lesão de 55% de tronco de artéria coronária esquerda e obstruções maiores que 70% em ramo marginal da circunflexa, descendente anterior proximal, segundo ramo diagonal e porção distal da coronária direita que é dominante. O Syntax Score I é de 38. Apresenta angina classe III segundo a Sociedade Canadense de Cardiologia. Qual alternativa aponta para a conduta que tem maior probabilidade de oferecer maior sobrevida em 4 anos?",
   alternativas:[{id:"A",texto:"Cirurgia de revascularização do miocárdio."},{id:"B",texto:"Tratamento paliativo."},{id:"C",texto:"Tratamento medicamentoso otimizado apenas."},{id:"D",texto:"Intervenção Coronária Percutânea."}],
   gabarito:"A",

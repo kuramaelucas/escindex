@@ -126,7 +126,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 },
 {
   id:"q-unicamp2022-009", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:9,
-  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sincope",
+  areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Mulher, 74a, veio ao Pronto Atendimento acompanhada pelo marido, que relatou que a paciente perdeu subitamente a consciência há três horas, quando ambos estavam assistindo televisão no sofá. O episódio durou dois minutos, e ela recobrou totalmente a consciência. No momento, a paciente está consciente, orientada, e relata apenas desconforto epigástrico leve. Antecedentes pessoais: hipertensão arterial, dislipidemia e diabetes mellitus. Medicações em uso: losartana 25mg 12/12h, AAS 100mg/dia, metformina 850mg 3 vezes ao dia. Exame físico: PA= 156x98 mmHg, FC= 102 bpm, FR= 22 irpm, T= 36,6˚C, glicemia capilar= 102mg/dL; descorada +/4+; ausculta cardíaca, pulmonar e exame do abdome sem alterações; membros inferiores: edema +/4+ simétrico. A CONDUTA INICIAL NO SETOR DE EMERGÊNCIA É:",
   alternativas:[{id:"A",texto:"Administrar captopril 25mg sublingual."},{id:"B",texto:"Realizar tomografia de crânio com contraste arterial e venoso."},{id:"C",texto:"Realizar eletrocardiograma."},{id:"D",texto:"Realizar tomografia de tórax com contraste."}],
   gabarito:"C",
@@ -338,7 +338,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 },
 {
   id:"q-unicamp2022-025", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:25,
-  areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-divertmeckel",
+  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
   enunciado:"Jovem, 23a, submetido a cirurgia com diagnóstico intra-operatório de apendicite grau III. No inventário da cavidade foi observado um divertículo no intestino delgado, a 30 cm da válvula ileocecal. O TIPO DE DIVERTÍCULO E A CONDUTA SÃO:",
   alternativas:[{id:"A",texto:"Verdadeiro; ressecção imediata."},{id:"B",texto:"Adquirido; invaginação cirúrgica."},{id:"C",texto:"Congênito; ressecção posterior se necessário."},{id:"D",texto:"Falso; ressecção imediata."}],
   gabarito:"C",

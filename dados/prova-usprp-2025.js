@@ -35,7 +35,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-002", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:2,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Menino de 8 anos, 25kg, está internado em serviço de urgência, pois sofreu fratura de úmero após queda de bicicleta. A chefe do plantão recomendou prescrever jejum com soro de manutenção 100% do Holliday, o proporcional para correr por 12 horas. A criança precisará de cirurgia amanhã pela manhã. Qual volume você deve prescrever para este período?",
   alternativas:[{id:"A",texto:"250 ml."},{id:"B",texto:"500 ml."},{id:"C",texto:"1600 ml."},{id:"D",texto:"800 ml."}],
   gabarito:"D",
@@ -1127,7 +1127,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-084", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:84,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem de 57 anos desenvolveu lesão por pressão sacral grau 4 após internação prolongada em unidade de terapia intensiva para tratamento de choque séptico. A lesão é bem delimitada, com presença de tecido desvitalizado no leito e dimensões de 18 x 12 cm. Quais as próximas condutas indicadas no tratamento deste paciente?",
   alternativas:[{id:"A",texto:"Treinamento de decúbito ventral, desbridamento cirúrgico, terapia por pressão negativa e rotação de retalhos locais."},{id:"B",texto:"Treinamento de decúbito lateral, desbridamento cirúrgico, matriz dérmica acelular e enxerto de pele."},{id:"C",texto:"Treinamento de decúbito ventral, sulfadiazina de prata 1%, matriz dérmica acelular e enxerto de pele."},{id:"D",texto:"Treinamento de decúbito lateral, sulfadiazina de prata 1%, terapia por pressão negativa e rotação de retalhos locais."}],
   gabarito:"A",

@@ -151,7 +151,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 },
 {
   id:"q-einstein2024-011", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:11,
-  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-medula",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
   enunciado:"Paciente masculino, 54 anos, procura pronto-socorro por dor lombar há 30 dias, com piora progressiva e irradiação para membros inferiores, principalmente MID. Relata melhora parcial com uso de analgésicos simples e anti- inflamatórios. Hoje não conseguiu urinar e teve perda espontânea de fezes. Nega febre. Nega comorbidades prévias. Os sinais vitais estão normais. No exame neurológico percebe-se força muscular grau IV em MID e grau V em MIE, sem alterações de marcha e sensibilidade. Entre as hipóteses diagnósticas abaixo, a mais provável para este paciente é síndrome",
   alternativas:[{id:"A",texto:"medular central."},{id:"B",texto:"de Brown-Sequard."},{id:"C",texto:"medular posterior."},{id:"D",texto:"da cauda equina."}],
   gabarito:"D",
@@ -501,7 +501,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 },
 {
   id:"q-einstein2024-037", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:37,
-  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-bronquiolite",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Lactente de 4 meses de idade é atendida com desconforto respiratório após dois dias de coriza hialina e redução da aceitação alimentar e febre não aferida. Mãe nega quadro semelhante anteriormente. Criança em regular estado geral, afebril, taquidispneica com uso de musculatura acessória, FR: 55 ipm, SatO2: 92% em a.a., ausculta pulmonar com sibilos e estertores finos bilate- ralmente. Restante do exame físico normal. Entre as propostas terapêuticas que seguem, a melhor para esta paciente é:",
   alternativas:[{id:"A",texto:"nebulização com soro fisiológico."},{id:"B",texto:"nebulização com adrenalina."},{id:"C",texto:"b2-adrenérgico via inalatória."},{id:"D",texto:"b2-adrenérgico via inalatória e prednisolona via oral."}],
   gabarito:"A",
@@ -855,7 +855,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 },
 {
   id:"q-einstein2024-064", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:64,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Marina, 25 anos, gestante de 20 semanas, realiza seu primeiro pré-natal na Unidade Básica de Saúde (UBS) onde é cadastrada. Relata que ainda não fez nenhum exame durante a gestação, confessa que tem medo de agulhas. Contou que se sente bem, sempre teve boa saúde, e está sem nenhum sintoma. Tem parceiro fixo, e conta que ele teve uma lesão genital no início do relacionamento, há mais de 1 ano, que desapareceu espontaneamente. Ela nunca teve lesão ou corrimento vaginal. A enfermeira da equipe de saúde da família solicita os exames de rotina do pré-natal, incluindo o teste rápido para sífilis, que tem resultado positivo. Segundo o Protocolo da Atenção Básica Saúde: da Mulher de 2016, do Ministério da Saúde, o melhor tratamento neste caso é:",
   alternativas:[{id:"A",texto:"Orientar o parceiro a procurar uma unidade de saúde para realizar o teste e o tratamento, se necessário."},{id:"B",texto:"Penicilina benzatina para Marina e seu parceiro na dose de 7.200.000 UI, divididos em três doses de 2.400.000 UI com intervalo de uma semana entre elas."},{id:"C",texto:"Doxiciclina 100 mg via oral de 12/12h por 30 dias, usando o princípio da decisão compartilhada, já que Marina tem medo de agulhas. Tratar parceiro com mesmo esquema."},{id:"D",texto:"Confirmar o diagnóstico com um teste não treponêmico (VDRL) e prescrever penicilina benzatina para Marina e seu parceiro na dose de 2.400.000 UI, em dose única."}],
   gabarito:"B",

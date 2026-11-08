@@ -304,7 +304,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-021", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:21,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Mulher, 25 anos, vem apresentando dificuldade para engravidar e sofreu um aborto na 14ª semana há um ano. Tem antecedente de embolia pulmonar aos 21 anos de idade. Exame físico: livedo reticular nas pernas. A hipótese diagnóstica mais provável é:",
   alternativas:[{id:"A",texto:"Síndrome antifosfolípide"},{id:"B",texto:"Doença de Von Willebrand"},{id:"C",texto:"Granulomatose com poliangiíte"},{id:"D",texto:"Lúpus eritematoso sistêmico"}],
   gabarito:"A",
@@ -530,7 +530,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-038", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:38,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-hipoglicemianeo",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Recém-nascida (RN) de parto cesáreo, cefálico, APGAR 9/10, peso 4.500g, estatura 53cm, é filha de mãe multípara e diabética. Exame físico: normal. Após os procedimentos iniciais de assistência em sala de parto, além da amamentação, a conduta adequada para o seguimento da recém-nascida é:",
   alternativas:[{id:"A",texto:"Instalar soro glicosado a 10% nas primeiras 24h."},{id:"B",texto:"Complementar dieta com fórmula e proceder aos cuidados de rotina."},{id:"C",texto:"Fazer push de glicose 10% e soro de manutenção com VIG de 5-8mg/kg/min."},{id:"D",texto:"Verificar glicemia por meio de fitas desde a 1ª hora até o segundo dia de vida."}],
   gabarito:"D",
@@ -582,7 +582,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-042", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:42,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Lactente, três meses de vida, deu entrada no Pronto- Socorro de um hospital terciário com história de diarreia há 4 dias, fezes líquidas e febre persistente. No dia do atendimento houve interrupção aguda da diarreia, com evacuação mucossanguinolenta. Exame físico: hipotenso, taquicárdico, sudoreico, gemente, com palidez cutânea, pulsos finos, extremidades frias e mucosas secas, distensão abdominal grave e sinais de peritonismo. Exames laboratoriais: gasometria arterial: pH = 7,05; PaO2 = 105mmHg; PaCO2 = 25mmHg, Bicarbonato = 5mEq/L; BE (base excess) = -8mmol/L; SatO2 = 95% em ar ambiente. Após estabilização inicial de vias aéreas e providenciar acesso venoso, a conduta é:",
   alternativas:[{id:"A",texto:"Reposição volêmica com infusão de ringer lactato e correção imediata de bicarbonato em dose inicial de 1mEq/kg."},{id:"B",texto:"Reposição volêmica com cristaloides em alíquotas de 20mL/kg em infusão rápida, com reavaliação clínica ao término, repetindo sucessivamente até melhora dos sinais de choque ou atingir 60-80mL/kg de reposição acumulada."},{id:"C",texto:"Reposição volêmica com soro glicofisiológico e instalação imediata de droga vasoativa, adrenalina, em infusão contínua."},{id:"D",texto:"Reposição volêmica com coloides em alíquotas de 20mL/kg em infusão rápida, com reavaliação clínica ao término, repetindo sucessivamente até melhora dos sinais de choque ou atingir 60-80mL/kg de reposição acumulada."}],
   gabarito:"B",
@@ -621,7 +621,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-045", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:45,
-  areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-desidratacao",
+  areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Adolescente, 12 anos, sexo feminino, dá entrada em Pronto- Socorro Infantil referindo emagrecimento e poliúria. Exame físico: desidratada, taquidispneica e torporosa. Exames laboratoriais: glicemia = 620mg/dL; gasometria: pH = 7,08; HCO3 = 4,0mEq/L; BE = -20mmol/L; Na = 135mEq/L; K = 3,5mEq/L; urina 1: cetonúria = 3+/4+. A conduta inicial é:",
   alternativas:[{id:"A",texto:"Hidratação com SF 0,9%."},{id:"B",texto:"Aplicação de insulina regular."},{id:"C",texto:"Infusão de manitol."},{id:"D",texto:"Administração de bicarbonato de sódio."}],
   gabarito:"A",
@@ -634,7 +634,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-046", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:46,
-  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-conectivopatias",
+  areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Menina, 4 anos, trazida à Unidade Básica de Saúde por dificuldade para deambular há 2 meses. Mãe refere que a criança acorda, desde então, com dificuldade de estender o joelho direito, e que melhora após 3-4 horas de atividade. Notou edema no joelho direito durante o mesmo período. Nega emagrecimento ou lesão cutânea. Exame físico: bom estado geral, com peso, altura e pressão arterial dentro do percentil 75% para a idade, artrite de joelho direito com contratura em flexão. Em relação à investigação complementar, podemos dizer que:",
   alternativas:[{id:"A",texto:"A presença de FAN confirma o diagnóstico."},{id:"B",texto:"Níveis elevados de ASLO confirmam o diagnóstico."},{id:"C",texto:"A ausência de fator reumatoide afasta o diagnóstico."},{id:"D",texto:"A presença de uveíte anterior corrobora o diagnóstico."}],
   gabarito:"D",
@@ -752,7 +752,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-055", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:55,
-  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-teratogenese",
+  areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
   enunciado:"Menina, 2 anos, apresenta um tufo de pelo na região lombar. Após exames, foi diagnosticada uma forma branda de Distúrbio do Tubo Neural (DTN), que dificilmente teria outros sintomas. O diagnóstico e a causa do DTN são:",
   alternativas:[{id:"A",texto:"Espinha bífida oculta, defeitos nos arcos vertebrais, com protrusão das meninges e do líquido cerebroespinhal."},{id:"B",texto:"Espinha bífida com meningocele, defeitos nos arcos vertebrais, com protrusão da medula ou das raízes nervosas."},{id:"C",texto:"Espinha bífida com meningocele, falhas na fusão das pregas neurais, resultando em medula espinal aberta e coberta por pelos."},{id:"D",texto:"Espinha bífida oculta, defeitos nos arcos vertebrais, com falha da fusão das metades de um ou mais arcos neurais no plano mediano."}],
   gabarito:"D",
@@ -1080,7 +1080,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-080", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:80,
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"O processo de cicatrização das feridas é dividido didaticamente em três fases: inflamatória, proliferativa e de remodelação. Sobre este processo, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Na fase proliferativa, fatores quimiotáticos induzem a migração de macrófagos que induzirão a neoformação vascular, além de remover tecido necrótico, debris e bactérias."},{id:"B",texto:"A duração de cada fase do processo de cicatrização pode variar dependendo de vários fatores, como infecções, desnutrição ou de outros fatores exógenos."},{id:"C",texto:"A fase de remodelação caracteriza-se pela intensa síntese de colágeno e pela substituição do colágeno tipo I pelo colágeno tipo III, que é o mais frequente na pele normal."},{id:"D",texto:"A presença de edema, mesmo prolongado, não prejudica o processo de cicatrização, já que facilita o processo de osmose por aumentar a difusão de nutrientes e aumenta a pO2 tecidual."}],
   gabarito:"B",
@@ -1329,7 +1329,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-099", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:99,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 22 anos, procura atendimento médico com queixa de febre e inchaço no joelho direito. Ela também tinha história recente de quadro de cervicite. O exame do líquido aspirado da articulação do joelho revela a presença de diplococos gram negativos. O agente mais provável dessa artrite séptica é:",
   alternativas:[{id:"A",texto:"Streptococcus pyogenes"},{id:"B",texto:"Staphylococcus aureus"},{id:"C",texto:"Pseudomonas aeruginosa"},{id:"D",texto:"Neisseria gonorrhoeae"}],
   gabarito:"D",
@@ -1527,7 +1527,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 },
 {
   id:"q-tp20231-114", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:114,
-  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exposicaotb",
+  areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Uma criança recém-nascida, cuja mãe tenha tuberculose bacilífera, deverá receber o mais precocemente possível:",
   alternativas:[{id:"A",texto:"Isoniazida"},{id:"B",texto:"Isoniazida, rifampicina e pirazinamida"},{id:"C",texto:"Vacina BCG oral"},{id:"D",texto:"Vacina BCG intradérmica"}],
   gabarito:"A",

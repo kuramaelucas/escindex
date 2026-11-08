@@ -960,7 +960,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2023", [
 },
 {
   id:"q-fmabc2023-073", banca:"FMABC", real:true, ano:2023, numeroNaProva:73,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"O corrimento vaginal é uma das queixas mais comuns nos consultórios e envolve vários aspectos. Frente a esse tipo de queixa, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Nos casos de vaginose bacteriana, pode existir alteração na resposta imune local, o que expõe a mulher a maior risco de contrair outras infecções, como por exemplo, o HPV."},{id:"B",texto:"A vaginose bacteriana apresenta maior prevalência em mulheres férteis do que nas inférteis e por isso se associam a maior risco de perda gestacional pós fertilização em vitro."},{id:"C",texto:"A candida albicans quando está presente na flora vaginal indica infecção e determina sintomas decorrente da resposta inflamatória."},{id:"D",texto:"O tricomonas, agente frequente de corrimento vaginal, tem como característica não aderir à parede vaginal, o que acaba acarretando grande fluxo vaginal"},{id:"E",texto:"A presença de lactobacillus é o fator que mantém a saúde vaginal, de forma que sua presença não deve determinar sintomas."}],
   gabarito:"A",

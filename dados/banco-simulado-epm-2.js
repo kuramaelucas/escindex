@@ -120,7 +120,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-2", [
 {
   id:"q-adap25-008", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-cicatrizacao",
+  areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 41 anos, vítima de acidente de moto há 9 dias, com fratura exposta de tíbia no terço médio tratada com fixação externa e desbridamentos seriados. O defeito de partes moles na face anteromedial da perna mede 7 x 5 cm, tem leito limpo e bordas bem vascularizadas, mas expõe 4 cm de superfície óssea sem periósteo. Qual é a melhor opção de cobertura?",
   alternativas:[{id:"A",texto:"Enxerto de pele total retirado da região inguinal, fixado com pontos de chuleio."},{id:"B",texto:"Enxerto de pele parcial aplicado diretamente sobre o osso, com curativo compressivo."},{id:"C",texto:"Retalho muscular local, com enxerto de pele parcial sobre o músculo."},{id:"D",texto:"Terapia por pressão negativa isolada, até o fechamento por segunda intenção."}],
   gabarito:"C",
@@ -281,7 +281,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-2", [
 // adaptada da estrutura da Q19 da UNIFESP 2025
 {
   id:"q-adap25-019", banca:"Esc — Banco Didático", real:false, ano:2027,
-  areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-vertigem",
+  areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-vertigem",
   enunciado:"Homem, 63 anos, hipertenso, diabético e tabagista, procura o pronto-socorro com vertigem intensa e contínua, de início súbito há 5 horas, com vômitos e incapacidade de ficar de pé sem apoio. Nega perda auditiva, zumbido ou cefaleia. Exame físico: PA 168/94 mmHg; nistagmo horizontal que muda de direção conforme o olhar (para a direita no olhar à direita e para a esquerda no olhar à esquerda); teste do impulso cefálico sem sacada corretiva dos dois lados; desvio vertical dos olhos ao teste de cobertura alternada. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Acidente vascular cerebral isquêmico da circulação posterior."},{id:"B",texto:"Neurite vestibular, com perda aguda e unilateral da função do labirinto."},{id:"C",texto:"Doença de Ménière, em crise, com hidropsia endolinfática do labirinto."},{id:"D",texto:"Vertigem posicional paroxística benigna, por canalitíase do canal posterior."}],
   gabarito:"A",
@@ -296,7 +296,7 @@ window.EscDados.registrarQuestoes("banco-simulado-epm-2", [
 {
   id:"q-adap25-020", banca:"Esc — Banco Didático", real:false, ano:2027,
   justificativaEm:"2026-10",
-  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ligamentos",
+  areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-ombro",
   enunciado:"Homem, 24 anos, jogador amador de futebol, sofreu torção do joelho direito ao mudar de direção, sem contato com outro jogador, com estalido audível e impossibilidade de continuar a partida. Evoluiu com edema importante do joelho em poucas horas. Atendido 5 dias depois, apresenta derrame articular moderado, flexão limitada a cerca de 70° pela dor e sensação de falseio. As radiografias não mostram fraturas. Qual manobra tem a maior sensibilidade para confirmar a principal hipótese diagnóstica nessa fase?",
   alternativas:[{id:"A",texto:"Teste da gaveta anterior, com o joelho fletido a 90° e a tíbia tracionada para a frente."},{id:"B",texto:"Teste de Lachman, com o joelho fletido a cerca de 20° a 30° e translação anterior da tíbia."},{id:"C",texto:"Teste do pivot shift, com rotação interna e valgo durante a flexão do joelho."},{id:"D",texto:"Teste de McMurray, com rotação da tíbia durante a flexão e a extensão do joelho."}],
   gabarito:"B",

@@ -318,7 +318,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 },
 {
   id:"q-famerp2026-023", banca:"FAMERP", real:true, ano:2026, numeroNaProva:23,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher adulta, de 28 anos de idade, procura atendimento na Unidade Básica de Saúde do seu município, referindo que não fez uso da vacina na adolescência, há seis meses notou o aparecimento de lesões verrucosas na vulva sendo diagnosticada como condiloma e passou por tratamento das mesmas. Ficou sabendo pelas amigas que tem clínicas particulares que fazem uma nova vacina contra HPV (Papiloma Vírus Humano). Qual a sua orientação para a paciente da imunização contra HPV na mulher adulta?",
   alternativas:[{id:"A",texto:"Desconsiderar o uso da vacina por já ter iniciado vida sexual"},{id:"B",texto:"Desconsiderar o uso da vacina por ter mais que 26 anos de idade"},{id:"C",texto:"Considerar a vacinação contra HPV2-valente, na rede pública com esquema de duas doses (0 - 2 meses)"},{id:"D",texto:"Considerar a vacinação contra HPV9-valente, em clínicas particulares, esquema de três doses (0-2-6 meses)"}],
   gabarito:"D",
@@ -331,7 +331,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 },
 {
   id:"q-famerp2026-024", banca:"FAMERP", real:true, ano:2026, numeroNaProva:24,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Uma adolescente de 16 anos de idade, acompanhada da sua mãe e da irmã de nove anos de idade, procura atendimento na Unidade Básica de Saúde do seu município. A jovem refere ter menstruado aos 12 anos de idade, apresenta ciclos regulares a cada 28 a 30 dias e com seis dias de fluxo menstrual sem cólicas, sendo a última menstruação há 15 dias atrás. Informa que começou a namorar faz três meses, não teve relação sexual ainda, porém acredita que vai ter. Na aula de ciências, a professora orientou sobre o uso de vacina contra HPV (Papiloma Vírus Humano) na adolescência, porém a mãe não deseja vacinar nenhuma das filhas. Qual argumento abaixo está correto sobre a orientação do uso de vacina em adolescentes?",
   alternativas:[{id:"A",texto:"A eficácia máxima da vacinação ocorre quando é aplicada antes do início sexual devido à produção de anticorpos que inativam o HPV intracelular."},{id:"B",texto:"A eficácia máxima da vacinação ocorre quando é aplicada após o início sexual devido à produção de anticorpos que inativam o HPV intracelular."},{id:"C",texto:"A eficácia máxima da vacinação ocorre quando é aplicada antes do início sexual devido à produção de anticorpos no líquido intercelular que inativam o HPV."},{id:"D",texto:"A eficácia máxima da vacinação ocorre quando é aplicada após o início sexual e com parceiro infectado levando à produção de anticorpos que inativam o HPV intracelular."}],
   gabarito:"C",
@@ -422,7 +422,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 },
 {
   id:"q-famerp2026-031", banca:"FAMERP", real:true, ano:2026, numeroNaProva:31,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Primigesta, 18 anos, gestação de 24 semanas, em consulta na UBS devido a lesões na região vulvar. Feito diagnóstico de herpes genital, sendo tratada com Aciclovir por via oral. A paciente deseja realizar parto por via vaginal. Para evitar a transmissão vertical, em qual fase da gestação deve ser realizada a terapia supressiva com aciclovir?",
   alternativas:[{id:"A",texto:"Da 20ª semana até a 36ª semana."},{id:"B",texto:"Da 28ª semana até a 36ª semana."},{id:"C",texto:"Da 28ª semana até o momento do parto."},{id:"D",texto:"Da 36ª semana até o momento do parto."}],
   gabarito:"D",

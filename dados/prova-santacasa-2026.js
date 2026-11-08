@@ -1016,7 +1016,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2026", [
 },
 {
   id:"q-scmsp2026-077", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2026, numeroNaProva:77,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 26 anos de idade, apresenta verrugas genitais acinzentadas, aveludadas, de aspecto em couve-flor na vulva, com extensão de 2 cm há 3 meses. A conduta inicial é",
   alternativas:[{id:"A",texto:"cauterizar as lesões."},{id:"B",texto:"ressecção cirúrgica das lesões."},{id:"C",texto:"prescrever imiquimode oral."},{id:"D",texto:"vacinar contra HPV."},{id:"E",texto:"realizar vulvoscopia com biópsia."}],
   gabarito:"A",
@@ -1042,7 +1042,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2026", [
 },
 {
   id:"q-scmsp2026-079", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2026, numeroNaProva:79,
-  areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ists",
+  areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Mulher, 25 anos de idade, procura o pronto-socorro com queixa de lesão dolorosa na vulva, que apareceu há 2 dias. Ao exame, encontram-se úlceras confluentes de bordas irregulares no grande lábio direito, dolorosas ao toque, com fundo purulento, medindo cerca de 2 cm. Os linfonodos inguinais direitos encontram-se aumentados e dolorosos. O agente etiológico mais provável é:",
   alternativas:[{id:"A",texto:"Clamídia trachomatis."},{id:"B",texto:"Herpes vírus 1."},{id:"C",texto:"Haemophilus ducreyi."},{id:"D",texto:"Treponema pallidum."},{id:"E",texto:"Klebsiella granulomatis."}],
   gabarito:"C",
