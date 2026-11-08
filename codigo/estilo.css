@@ -864,10 +864,25 @@ button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
 }
 /* No celular não há teclado: o número do atalho (1/2/3) só ocupa espaço */
 @media (hover:none), (max-width:640px){ .tecla-atalho{display:none} }
-/* controle de videogame: os rótulos de equivalência só existem com um controle conectado (body.com-controle, ver 06d) */
+/* controle de videogame: os rótulos de equivalência só existem com um controle conectado (body.com-controle, ver 06d);
+   o desenho é pela marca: △ □ ○ ✕ no PlayStation, Y X B A no Xbox, e a posição (▲ ◀ ▶ ▼) nos demais */
 .dica-controle,.dica-controle-linha{display:none}
 body.com-controle .dica-controle{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 .35rem;border-radius:var(--radius-sm);border:1.5px solid var(--accent);color:var(--accent-dark);background:var(--accent-soft);font-size:var(--fs-xs);font-weight:700;flex-shrink:0;margin-left:.35rem}
 body.com-controle .qcard-alt .dica-controle{margin-left:0}
 body.com-controle .dica-controle-linha{display:block}
+.dica-controle[data-pos="cima"]::before{content:"▲"}
+.dica-controle[data-pos="esquerda"]::before{content:"◀"}
+.dica-controle[data-pos="direita"]::before{content:"▶"}
+.dica-controle[data-pos="baixo"]::before{content:"▼"}
+.dica-controle[data-pos="r1"]::before{content:"R1"}
+body[data-marca-controle="ps"] .dica-controle[data-pos="cima"]::before{content:"△"}
+body[data-marca-controle="ps"] .dica-controle[data-pos="esquerda"]::before{content:"□"}
+body[data-marca-controle="ps"] .dica-controle[data-pos="direita"]::before{content:"○"}
+body[data-marca-controle="ps"] .dica-controle[data-pos="baixo"]::before{content:"✕"}
+body[data-marca-controle="xbox"] .dica-controle[data-pos="cima"]::before{content:"Y"}
+body[data-marca-controle="xbox"] .dica-controle[data-pos="esquerda"]::before{content:"X"}
+body[data-marca-controle="xbox"] .dica-controle[data-pos="direita"]::before{content:"B"}
+body[data-marca-controle="xbox"] .dica-controle[data-pos="baixo"]::before{content:"A"}
+body[data-marca-controle="xbox"] .dica-controle[data-pos="r1"]::before{content:"RB"}
 .barra-questoes:not(.expandida) .barra-questoes-trilho{cursor:grab}
 .barra-questoes-trilho.arrastando-trilho{cursor:grabbing;user-select:none}

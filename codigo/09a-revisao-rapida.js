@@ -421,13 +421,13 @@ function renderFlashcardEmSessao(s){
       ${s.virado
         ? `<div class="flash-verso" ${atributoDestacavel(alvoDeCartao(cartao.id,"verso"))}>${htmlComDestaques(cartao.verso, alvoDeCartao(cartao.id,"verso"))}</div>${cartao.fonte ? `<div class="text-xs muted mt-1">Fonte: ${escapeHtml(cartao.fonte)}${cartao.revisao==="pendente" && podeGerirConteudo() ? ' · <span class="badge badge-amber">revisão pendente</span>' : ""}</div>` : ""}`
         : `<div class="flash-frente" ${atributoDestacavel(alvoDeCartao(cartao.id,"frente"))}>${htmlComDestaques(cartao.frente, alvoDeCartao(cartao.id,"frente"))}</div>`}
-      <div class="flash-toque">${iconeSvg("refresh")} ${s.virado?"Clique no cartão para ver a pergunta de novo":"Clique no cartão para ver a resposta"}</div>
+      <div class="flash-toque">${iconeSvg("refresh")} ${s.virado?"Clique no cartão para ver a pergunta de novo":"Clique no cartão para ver a resposta"}${htmlDicaDoControle("direita")}</div>
     </div>
   </div>
   ${s.virado ? `<div class="flash-notas">
-    <button class="flash-nota ruim" onclick="responderFlashcard('naolembrei')">Não lembrei<small>volta em 1 semana</small></button>
-    <button class="flash-nota medio" onclick="responderFlashcard('quase')">Quase<small>volta em 1 semana</small></button>
-    <button class="flash-nota bom" onclick="responderFlashcard('sabia')">Sabia<small>vai para longe</small></button>
+    <button class="flash-nota ruim" onclick="responderFlashcard('naolembrei')">Não lembrei${htmlDicaDoControleNotaCartao("naolembrei")}<small>volta em 1 semana</small></button>
+    <button class="flash-nota medio" onclick="responderFlashcard('quase')">Quase${htmlDicaDoControleNotaCartao("quase")}<small>volta em 1 semana</small></button>
+    <button class="flash-nota bom" onclick="responderFlashcard('sabia')">Sabia${htmlDicaDoControleNotaCartao("sabia")}<small>vai para longe</small></button>
   </div>
   <p class="text-xs muted mt-1" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">Responda com honestidade: o intervalo do cartão depende disso, e enganar o algoritmo aqui só faz você revisar na véspera da prova o que devia ter fixado agora.</p>`
   : `<p class="text-xs muted mt-2" style="text-align:center">Tente lembrar antes de virar — é a tentativa, e não a leitura, que fixa.</p>`}
