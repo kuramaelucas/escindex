@@ -147,14 +147,19 @@ test("Formado(a): regra de consolidação (assunto pequeno × grande) e gráfico
       return {
         peqOk: assuntoConsolidadoFormado(mk(10, 8), 20),         // 10 de 20 feitas, 80%
         peqPoucas: assuntoConsolidadoFormado(mk(9, 9), 20),      // menos da metade
-        peqBaixo: assuntoConsolidadoFormado(mk(10, 7), 20),      // 70%
+        peqBaixo: assuntoConsolidadoFormado(mk(10, 7), 20),      // 70% não passa de 70%
+        peqRecente: assuntoConsolidadoFormado([...mk(10, 0).map((x, i) => ({ ...x, questaoId: "z" + i })), ...mk(10, 9)], 20),  // começou mal, últimas 10 = 90%
         grandeOk: assuntoConsolidadoFormado(antigoRuim, 120),    // 60 respostas; últimas 20 = 90%
         grandeCedo: assuntoConsolidadoFormado(mk(50, 50), 120),  // 50 não é "mais de 50"
         semQuestao: assuntoConsolidadoFormado([], 0),
+        simuladoConta: (() => { const a = q.assuntoId, antes = trilhaDeFormado(u.id).itens.find(i => i.id === a).n;
+          db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: "sim-x", assuntoId: a, correta: true, origem: "simulado", data: "2026-11-09", respondidaEm: "2026-11-09T10:00:00Z" });
+          return trilhaDeFormado(u.id).itens.find(i => i.id === a).n === antes + 1; })(),
         svg: graficoDesempenhoEmBlocos(db.respostas.filter(x => x.usuarioId === u.id), 12),
       };
     });
-    assert.deepEqual([r.peqOk, r.peqPoucas, r.peqBaixo, r.grandeOk, r.grandeCedo, r.semQuestao], [true, false, false, true, false, true]);
+    assert.deepEqual([r.peqOk, r.peqPoucas, r.peqBaixo, r.peqRecente, r.grandeOk, r.grandeCedo, r.semQuestao], [true, false, false, true, true, false, true]);
+    assert.equal(r.simuladoConta, true, 'resposta de simulado entra na trilha');
     assert.match(r.svg, /<svg/);
     assert.match(r.svg, /1–10/);
     assert.deepEqual(erros, []);

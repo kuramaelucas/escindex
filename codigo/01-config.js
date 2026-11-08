@@ -100,7 +100,7 @@ const CONFIG = {
     assuntosEmEstudo: 12,                       // trilha (05e): quantos assuntos da fila estão abertos de cada vez
     minimoParaConsolidar: 5,                    // piso de questões feitas num assunto pequeno (nunca consolida com 1 questão)
     // quando um assunto está consolidado e libera os que dependem dele (05e, assuntoConsolidadoFormado)
-    consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, acertoPequeno: 0.75, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
+    consolidacao: { limitePequeno: 50, fracaoFeitaPequeno: 0.5, janelaPequeno: 10, acertoPequeno: 0.70, minimoRespostasGrande: 50, janelaGrande: 20, acertoGrande: 0.75 },
   },
 
   /* Nenhuma questão volta antes disto (dias), seja por erro, por chute ou por
