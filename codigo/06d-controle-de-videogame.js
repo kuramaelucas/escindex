@@ -18,6 +18,7 @@
      botões da direita (questão)      A = cima · B = esquerda · C = direita · D = baixo · R1/RB = E
      com a alternativa marcada        cima = chute · esquerda = certeza · baixo = dúvida
                                       (C e E ficam sem função até desmarcar)
+     Start                            finaliza o conjunto/simulado, só com todas as questões respondidas
      L1 / LB                          desmarca, para voltar a escolher A, B ou D
      L2 / LT segurado + A–E           risca a alternativa (é o × do mouse) em vez de marcá-la; soltou, volta ao normal
      questão já respondida            baixo = próxima questão
@@ -40,7 +41,7 @@ const CONTROLE_BOTAO_NOTA_CARTAO = { 3:"naolembrei", 2:"sabia", 0:"quase" };
 const CONTROLE_POS_LETRA = { A:"cima", B:"esquerda", C:"direita", D:"baixo", E:"r1" };
 const CONTROLE_POS_CONFIANCA = { chute:"cima", certeza:"esquerda", duvida:"baixo" };
 const CONTROLE_POS_NOTA_CARTAO = { naolembrei:"cima", sabia:"esquerda", quase:"baixo" };
-const CONTROLE_BOTAO = { desmarcar:4, gatilhoRiscar:6, cima:12, baixo:13, esquerda:14, direita:15 };
+const CONTROLE_BOTAO = { desmarcar:4, gatilhoRiscar:6, start:9, cima:12, baixo:13, esquerda:14, direita:15 };
 const CONTROLE_VELOCIDADES = { lenta:{ nome:"Lenta", px:450 }, normal:{ nome:"Normal", px:900 }, rapida:{ nome:"Rápida", px:1600 } };
 const CONTROLE_ZONA_MORTA = 0.25;   // o analógico nunca volta exatamente a zero: sem folga a tela andaria sozinha
 const CONTROLE_CHAVE = "esc_controle_v1";
@@ -188,6 +189,8 @@ function controleAoApertar(botao, g){
   const alvo = document.activeElement;
   if(alvo && (alvo.tagName==="INPUT" || alvo.tagName==="TEXTAREA" || alvo.isContentEditable)) return;   // quem está escrevendo não responde sem querer
   if(controleJanelaAberta()) return;   // com uma janela aberta o controle só rola; responder por trás dela seria às cegas
+  // Start finaliza o conjunto, mas só com todas as questões respondidas (nunca fecha às cegas)
+  if(botao===CONTROLE_BOTAO.start){ controleFinalizar(); return; }
   if(botao===CONTROLE_BOTAO.esquerda){ voltarPorGesto(); return; }
   if(botao===CONTROLE_BOTAO.direita){ avancarPorGesto(); return; }
   if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){ controleNoCartao(botao, g); return; }
@@ -229,6 +232,13 @@ function controleNoCartao(botao, g){
   if(botao===1){ virarFlashcard(); return; }   // botão da direita: virar (e desvirar), como o clique no cartão
   const nota = CONTROLE_BOTAO_NOTA_CARTAO[botao];
   if(nota && s.virado){ responderFlashcard(nota); controleVibrar(g, 100, 0.4); return; }
+}
+function controleFinalizar(){
+  const s = state.sessaoAtual;
+  if(!s || s.somenteLeitura || !s.itens) return;
+  if(state.route==="sessao" && !s.finalizada && !indicesEmBranco(s).length){ finalizarSessaoPratica(); return; }
+  if(state.route==="simulado-ativo" && !s.finalizado && s.itens.every(it => s.respostasSimulado[it.questaoId] !== undefined)){ pedirFinalizarSimulado(); return; }
+  if(state.route==="sessao" || state.route==="simulado-ativo") toast("Responda todas as questões para finalizar com Start.");
 }
 function controleRespondida(){
   const s = state.sessaoAtual;

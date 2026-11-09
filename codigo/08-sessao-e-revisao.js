@@ -795,6 +795,7 @@ function renderSessao(){
   <div class="flex justify-between items-center mb-2">
     <div class="text-sm muted">Questão ${sessao.indiceAtual+1} de ${sessao.itens.length}${sessao.somenteLeitura?' · <span class="badge badge-muted">revisão do histórico</span>':""}</div>
     <div class="flex gap-1">
+      ${!soLeitura && !indicesEmBranco(sessao).length ? `<button class="btn btn-primary btn-sm" onclick="finalizarSessaoPratica()" title="Todas as questões já têm resposta. No controle: Start">${iconeSvg("check")} Finalizar</button>` : ""}
       ${soLeitura ? `<button class="btn btn-secondary btn-sm" onclick="voltarAoResumoDaSessao()">${iconeSvg("chart")} Voltar ao resumo</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="alternarModoFoco()" title="Esconde o menu e o topo para estudar sem distração">${state.modoFoco ? "Sair do foco" : "Modo foco"}</button>
       <button class="btn btn-ghost btn-sm" onclick="sairDaSessao()">Sair</button>
