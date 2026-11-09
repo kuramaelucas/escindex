@@ -172,9 +172,11 @@ function controleVibrar(g, ms, forte){
     if(motor && motor.playEffect) motor.playEffect("dual-rumble", { duration:ms, strongMagnitude:forte, weakMagnitude:forte/2 });
   } catch(e){ /* sem motor */ }
 }
+/* L2 / LT é um gatilho analógico: em vários controles o `pressed` só vira true no fim do curso, e quem aperta pela
+   metade segura "de verdade" sem o navegador avisar. O valor (0 a 1) pega a pegada leve. */
 function controleRiscando(g){
   const gatilho = g && g.buttons && g.buttons[CONTROLE_BOTAO.gatilhoRiscar];
-  return !!(gatilho && gatilho.pressed);
+  return !!(gatilho && (gatilho.pressed || gatilho.value > 0.3));
 }
 function controleAoApertar(botao, g){
   const alvo = document.activeElement;
@@ -191,11 +193,11 @@ function controleAoApertar(botao, g){
   }
   if(botao===CONTROLE_BOTAO.desmarcar){ if(ctx.marcada && ctx.desmarcar) ctx.desmarcar(); return; }
   if(botao===CONTROLE_BOTAO.gatilhoRiscar) return;
-  // L2 segurado: os mesmos botões que marcariam a alternativa a riscam (e a trazem de volta, como o ×). Vale só
-  // na prática, onde o × existe; no simulado o gatilho segurado não faz nada, para não marcar por engano.
+  // L2 segurado: os mesmos botões que marcariam a alternativa a riscam (e a trazem de volta, como o ×), na prática
+  // e no simulado, onde o × também existe. Com o gatilho segurado nada é marcado, para não marcar por engano.
   if(controleRiscando(g)){
     const alvoRisco = CONTROLE_BOTAO_LETRA[botao];
-    if(state.route==="sessao" && alvoRisco && ctx.q.alternativas.some(a => a.id===alvoRisco)){
+    if(alvoRisco && ctx.q.alternativas.some(a => a.id===alvoRisco)){
       if(ctx.marcada===alvoRisco && ctx.desmarcar) ctx.desmarcar();   // riscar o que está marcado desfaz a marca: as duas coisas juntas não fazem sentido
       alternarAlternativaEliminada(alvoRisco);
     }
@@ -252,8 +254,9 @@ function controleContextoDaQuestao(){
       return { q, pedeConfianca:true, marcada:(s.escolhaPendente||{})[qid] || null, selecionar:selecionarAlternativaSimulado, confirmar:confirmarRespostaSimulado,
         desmarcar(){ delete s.escolhaPendente[qid]; salvarSimuladoEmAndamento(); render(); } };
     }
-    // prova de verdade: marcar já é responder, e marcar outra letra troca; não há confiança nem desmarcar
-    return { q, pedeConfianca:false, marcada:s.respostasSimulado[qid] || null, selecionar:selecionarAlternativaSimulado, confirmar:null, desmarcar:null };
+    // prova de verdade: marcar já é responder, e marcar outra letra troca; não há confiança (L1 e riscar a marcada desfazem a resposta)
+    return { q, pedeConfianca:false, marcada:s.respostasSimulado[qid] || null, selecionar:selecionarAlternativaSimulado, confirmar:null,
+      desmarcar(){ delete s.respostasSimulado[qid]; salvarSimuladoEmAndamento(); render(); } };
   }
   return null;
 }

@@ -254,3 +254,33 @@ test("a opção do Perfil desliga o controle, e o analógico direito rola mais d
     assert.match(await pagina.evaluate(() => renderCardControle()), /Usar o controle quando conectado/);
   } finally { await contexto.close(); }
 });
+
+test("no simulado, L2 segurado + letra também risca (e não marca); gatilho só pela metade (valor) vale", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block", viewport: { width: 1200, height: 900 } });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await abrirPagina(contexto);
+    await pagina.evaluate(() => {
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      const qs = questoesAtivas().filter(q => !ehDissertativa(q) && !aguardaImagem(q) && q.alternativas.length >= 4).slice(0, 3);
+      state.sessaoAtual = { id: "s1", tipo: "simulado", simuladoId: "x", titulo: "T", itens: qs.map(q => ({ questaoId: q.id })), indiceAtual: 0, respostasSimulado: {}, duracaoMin: 60, finalizado: false, modoAprendizado: false, escolhaPendente: {}, ocultarTimer: false, pausadoDesde: null, inicioMs: Date.now() - 600000, tsQuestao: Date.now(), tempos: {} };
+      navigate("simulado-ativo");
+    });
+    await ligar(pagina);
+    const estado = () => pagina.evaluate(() => { const s = state.sessaoAtual; const id = s.itens[s.indiceAtual].questaoId; return { resp: s.respostasSimulado[id] || null, riscadas: (s.eliminadas || {})[id] || [] }; });
+    // sem L2: marca
+    await apertar(pagina, BOTAO.direita);
+    assert.deepEqual(await estado(), { resp: "C", riscadas: [] });
+    // gatilho analógico só pela metade: pressed false, value 0.6
+    await pagina.evaluate(() => { window.__pad.buttons[6].value = 0.6; });
+    await pagina.waitForTimeout(50);
+    await apertar(pagina, BOTAO.baixo);   // D riscada, e C continua marcada
+    assert.deepEqual(await estado(), { resp: "C", riscadas: ["D"] });
+    await apertar(pagina, BOTAO.direita);  // riscar a marcada desfaz a resposta
+    assert.deepEqual(await estado(), { resp: null, riscadas: ["D", "C"] });
+    await pagina.evaluate(() => { window.__pad.buttons[6].value = 0; });
+    await pagina.waitForTimeout(50);
+    await apertar(pagina, BOTAO.cima);     // solto: volta a marcar
+    assert.equal((await estado()).resp, "A");
+  } finally { await contexto.close(); }
+});
