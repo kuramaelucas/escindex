@@ -19,7 +19,7 @@
      com a alternativa marcada        cima = chute · esquerda = certeza · baixo = dúvida
                                       (C e E continuam trocando a alternativa)
      L1 / LB                          desmarca, para voltar a escolher A, B ou D
-     L3 (analógico apertado)          risca a alternativa marcada (é o × do mouse)
+     L2 / LT segurado + A–E           risca a alternativa (é o × do mouse) em vez de marcá-la; soltou, volta ao normal
      questão já respondida            baixo = próxima questão
      cartão (flashcard)               direita = virar · esquerda = sabia · baixo = quase · cima = não lembrei
                                       (a mesma régua da questão: certeza, dúvida, chute)
@@ -40,7 +40,7 @@ const CONTROLE_BOTAO_NOTA_CARTAO = { 3:"naolembrei", 2:"sabia", 0:"quase" };
 const CONTROLE_POS_LETRA = { A:"cima", B:"esquerda", C:"direita", D:"baixo", E:"r1" };
 const CONTROLE_POS_CONFIANCA = { chute:"cima", certeza:"esquerda", duvida:"baixo" };
 const CONTROLE_POS_NOTA_CARTAO = { naolembrei:"cima", sabia:"esquerda", quase:"baixo" };
-const CONTROLE_BOTAO = { desmarcar:4, riscar:10, cima:12, baixo:13, esquerda:14, direita:15 };
+const CONTROLE_BOTAO = { desmarcar:4, gatilhoRiscar:6, cima:12, baixo:13, esquerda:14, direita:15 };
 const CONTROLE_VELOCIDADES = { lenta:{ nome:"Lenta", px:450 }, normal:{ nome:"Normal", px:900 }, rapida:{ nome:"Rápida", px:1600 } };
 const CONTROLE_ZONA_MORTA = 0.25;   // o analógico nunca volta exatamente a zero: sem folga a tela andaria sozinha
 const CONTROLE_CHAVE = "esc_controle_v1";
@@ -87,7 +87,7 @@ function htmlDicaDoControleAlternativa(letra, emConfirmacao){
 function htmlDicaDoControleConfianca(confianca){ return htmlDicaDoControle(CONTROLE_POS_CONFIANCA[confianca]); }
 function htmlDicaDoControleNotaCartao(nota){ return htmlDicaDoControle(CONTROLE_POS_NOTA_CARTAO[nota]); }
 function htmlDicaDoControleTrocar(){
-  return `<div class="dica-controle-linha text-xs muted mt-1">Controle: L1 / LB desmarca para escolher outra alternativa; L3 (analógico apertado) risca a marcada.</div>`;
+  return `<div class="dica-controle-linha text-xs muted mt-1">Controle: L1 / LB desmarca para escolher outra alternativa; segure L2 / LT e aperte uma alternativa para riscá-la.</div>`;
 }
 
 /* ---------- conexão ---------- */
@@ -150,6 +150,7 @@ function controleQuadro(agora){
     }
     controleEstado.anterior[g.index] = atual;
   });
+  document.body.classList.toggle("controle-riscando", ativo && pads.some(controleRiscando));
   if(rolar) controleRolar(Math.max(-2.5, Math.min(2.5, rolar)) * CONTROLE_VELOCIDADES[controleConfig().velocidade].px * dt);
   requestAnimationFrame(controleQuadro);
 }
@@ -171,6 +172,10 @@ function controleVibrar(g, ms, forte){
     if(motor && motor.playEffect) motor.playEffect("dual-rumble", { duration:ms, strongMagnitude:forte, weakMagnitude:forte/2 });
   } catch(e){ /* sem motor */ }
 }
+function controleRiscando(g){
+  const gatilho = g && g.buttons && g.buttons[CONTROLE_BOTAO.gatilhoRiscar];
+  return !!(gatilho && gatilho.pressed);
+}
 function controleAoApertar(botao, g){
   const alvo = document.activeElement;
   if(alvo && (alvo.tagName==="INPUT" || alvo.tagName==="TEXTAREA" || alvo.isContentEditable)) return;   // quem está escrevendo não responde sem querer
@@ -185,9 +190,15 @@ function controleAoApertar(botao, g){
     return;
   }
   if(botao===CONTROLE_BOTAO.desmarcar){ if(ctx.marcada && ctx.desmarcar) ctx.desmarcar(); return; }
-  if(botao===CONTROLE_BOTAO.riscar){
-    // riscar o que acabou de marcar: desmarca e risca, como o × do mouse (só na prática, onde o × existe)
-    if(ctx.marcada && ctx.desmarcar && state.route==="sessao"){ const letra = ctx.marcada; ctx.desmarcar(); alternarAlternativaEliminada(letra); }
+  if(botao===CONTROLE_BOTAO.gatilhoRiscar) return;
+  // L2 segurado: os mesmos botões que marcariam a alternativa a riscam (e a trazem de volta, como o ×). Vale só
+  // na prática, onde o × existe; no simulado o gatilho segurado não faz nada, para não marcar por engano.
+  if(controleRiscando(g)){
+    const alvoRisco = CONTROLE_BOTAO_LETRA[botao];
+    if(state.route==="sessao" && alvoRisco && ctx.q.alternativas.some(a => a.id===alvoRisco)){
+      if(ctx.marcada===alvoRisco && ctx.desmarcar) ctx.desmarcar();   // riscar o que está marcado desfaz a marca: as duas coisas juntas não fazem sentido
+      alternarAlternativaEliminada(alvoRisco);
+    }
     return;
   }
   if(ctx.pedeConfianca && ctx.marcada && CONTROLE_BOTAO_CONFIANCA[botao]){

@@ -168,7 +168,7 @@ test("a marca do controle muda o desenho dos rótulos (PlayStation △ □ ○ �
   } finally { await contexto.close(); }
 });
 
-test("depois de responder, o botão de baixo vai para a próxima questão; L3 risca a marcada; vibra ao responder", async () => {
+test("depois de responder, o botão de baixo vai para a próxima questão; L2 segurado risca a alternativa; vibra ao responder", async () => {
   const contexto = await navegador.newContext({ serviceWorkers: "block", viewport: { width: 1200, height: 900 } });
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
@@ -180,9 +180,15 @@ test("depois de responder, o botão de baixo vai para a próxima questão; L3 ri
     });
     await ligar(pagina);
     const idx = () => pagina.evaluate(() => state.sessaoAtual.indiceAtual);
-    // marcar C e riscar com L3: some a marca e a alternativa fica eliminada
+    // marcar C e riscar com L2 segurado: some a marca e a alternativa fica eliminada
     await apertar(pagina, BOTAO.direita);
-    await apertar(pagina, 10);
+    await pagina.evaluate(() => { window.__pad.buttons[6].pressed = true; });
+    await pagina.waitForTimeout(100);
+    assert.equal(await pagina.evaluate(() => document.body.classList.contains("controle-riscando")), true);
+    await apertar(pagina, BOTAO.direita);   // L2 segurado: C é riscada (e a marca some), não marcada
+    await pagina.evaluate(() => { window.__pad.buttons[6].pressed = false; });
+    await pagina.waitForTimeout(100);
+    assert.equal(await pagina.evaluate(() => document.body.classList.contains("controle-riscando")), false);
     const riscou = await pagina.evaluate(() => { const s = state.sessaoAtual; const id = s.itens[s.indiceAtual].questaoId; return { marcada: marcadaDaQuestao(id), eliminadas: (s.eliminadas || {})[id] || [] }; });
     assert.equal(riscou.marcada, null);
     assert.deepEqual(riscou.eliminadas, ["C"]);
