@@ -17,7 +17,7 @@
      setas ← →                        questão ou cartão anterior / próximo
      botões da direita (questão)      A = cima · B = esquerda · C = direita · D = baixo · R1/RB = E
      com a alternativa marcada        cima = chute · esquerda = certeza · baixo = dúvida
-                                      (C e E continuam trocando a alternativa)
+                                      (C e E ficam sem função até desmarcar)
      L1 / LB                          desmarca, para voltar a escolher A, B ou D
      L2 / LT segurado + A–E           risca a alternativa (é o × do mouse) em vez de marcá-la; soltou, volta ao normal
      questão já respondida            baixo = próxima questão
@@ -74,20 +74,20 @@ function renderCardControle(){
 
 /* ---------- rótulos de equivalência (entram no HTML; o desenho é do CSS) ---------- */
 /* `emConfirmacao`: já há alternativa marcada esperando a confiança. Nesse
-   momento cima, esquerda e baixo passam a significar a confiança, então só C e E
-   mostram a letra (são os botões que ainda trocam a alternativa). Mostrar "A"
-   ali ensinaria um botão que não faz isso. */
+   momento os botões de letra não marcam mais: cima, esquerda e baixo viram a
+   confiança e C e E ficam sem função. O rótulo só reaparece com L2 segurado
+   (`dica-so-riscar`), quando os botões de letra servem para riscar. */
 function htmlDicaDoControle(posicao){
   return posicao ? `<span class="dica-controle" data-pos="${posicao}" aria-hidden="true"></span>` : "";
 }
 function htmlDicaDoControleAlternativa(letra, emConfirmacao){
-  if(emConfirmacao && letra!=="C" && letra!=="E") return "";
-  return htmlDicaDoControle(CONTROLE_POS_LETRA[letra]);
+  const dica = htmlDicaDoControle(CONTROLE_POS_LETRA[letra]);
+  return emConfirmacao ? dica.replace('class="dica-controle"', 'class="dica-controle dica-so-riscar"') : dica;
 }
 function htmlDicaDoControleConfianca(confianca){ return htmlDicaDoControle(CONTROLE_POS_CONFIANCA[confianca]); }
 function htmlDicaDoControleNotaCartao(nota){ return htmlDicaDoControle(CONTROLE_POS_NOTA_CARTAO[nota]); }
 function htmlDicaDoControleTrocar(){
-  return `<div class="dica-controle-linha text-xs muted mt-1">Controle: L1 / LB desmarca para escolher outra alternativa; segure L2 / LT e aperte uma alternativa para riscá-la.</div>`;
+  return `<div class="dica-controle-linha text-xs muted mt-1">Controle: com a alternativa marcada, só a confiança e L1 / LB (que desmarca para escolher outra) respondem; segure L2 / LT e aperte uma alternativa para riscá-la.</div>`;
 }
 
 /* ---------- conexão ---------- */
@@ -207,6 +207,9 @@ function controleAoApertar(botao, g){
     if(r && !r.correta) controleVibrar(g, 450, 0.9); else controleVibrar(g, 120, 0.5);
     return;
   }
+  // com a alternativa já marcada esperando a confiança, os botões de letra não fazem mais nada (C e E não têm função de
+  // confiança, mas trocar a marca por eles seria um aperto sem querer): para trocar, L1 desmarca e se escolhe de novo
+  if(ctx.pedeConfianca && ctx.marcada) return;
   const letra = CONTROLE_BOTAO_LETRA[botao];
   if(letra && ctx.q.alternativas.some(a => a.id===letra)) ctx.selecionar(letra);
 }

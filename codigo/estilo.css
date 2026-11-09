@@ -870,6 +870,7 @@ button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
 body.com-controle .dica-controle{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 .35rem;border-radius:var(--radius-sm);border:1.5px solid var(--accent);color:var(--accent-dark);background:var(--accent-soft);font-size:var(--fs-xs);font-weight:700;flex-shrink:0;margin-left:.35rem}
 body.com-controle .qcard-alt .dica-controle{margin-left:0}
 body.com-controle .dica-controle-linha{display:block}
+body.com-controle:not(.controle-riscando) .dica-so-riscar{display:none}
 body.controle-riscando .dica-controle{border-color:var(--danger);color:var(--danger);background:var(--surface)}
 .dica-controle[data-pos="cima"]::before{content:"▲"}
 .dica-controle[data-pos="esquerda"]::before{content:"◀"}
