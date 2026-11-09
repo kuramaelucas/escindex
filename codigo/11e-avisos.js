@@ -115,7 +115,7 @@ function renderEnviarAvisos(){
   const u = usuarioAtual();
   if(!podeEnviarAvisos(u)) return renderSemPermissao("avisos");
   const avisos = (db.avisos||[]).filter(a => !a.removido).sort((a,b) => (b.data||"").localeCompare(a.data||"") || b.id.localeCompare(a.id));
-  const pag = paginar(avisos, "avisos", { porPagina: 10 });
+  const pag = paginar(avisos, "avisos", { porPagina: 10, assinatura: "fixa" });
   const semTabela = nuvemConectado() && _nuvemTabelasAusentes.has("avisos");
   return `
   <div class="page-header"><h2>Enviar Avisos</h2><p>Escreva um recado e escolha para quem ele vai. Ele aparece no Início de cada pessoa, até ela dispensar.</p></div>

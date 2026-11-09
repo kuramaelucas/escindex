@@ -391,9 +391,13 @@ function atualizarCronometro(){
   if(!limite){ el.textContent = formatarDuracao(decorrido)+" decorridos"+pausa; return; }
   const restante = limite - decorrido;
   if(restante<=0){
-    el.textContent = "tempo esgotado";
-    toast("Tempo esgotado. O simulado foi finalizado automaticamente — suas respostas estão salvas.", "err");
-    finalizarSimulado();
+    // não finaliza sozinho: a pessoa pode terminar; o resultado registra que passou do limite e quanto usou
+    el.textContent = "tempo esgotado (+"+formatarDuracao(-restante)+")"+pausa;
+    el.className = "badge badge-danger";
+    if(!s.avisouTempoEsgotado){
+      s.avisouTempoEsgotado = true;
+      toast("Tempo esgotado. Você pode terminar, mas o resultado vai registrar que passou do limite.", "err");
+    }
     return;
   }
   el.textContent = formatarDuracao(restante)+" restantes"+pausa;
@@ -545,7 +549,7 @@ if(typeof window!=="undefined"){
 /* O botão "Finalizar simulado": com questão em branco ou, no modo aprendizado,
    alternativa marcada e não confirmada (não conta como resposta), pergunta
    antes — terminar sem perceber que ficaram questões para trás não tem volta.
-   O fim por tempo esgotado chama finalizarSimulado() direto, sem perguntar. */
+   O tempo esgotado não finaliza: só avisa, e o resultado registra tempo usado × limite. */
 function pedirFinalizarSimulado(){
   const s = state.sessaoAtual; if(!s || s.finalizado) return;
   const pendentes = [], emBranco = [];
@@ -582,6 +586,8 @@ function finalizarSimulado(){
   acumularTempoQuestaoSimulado();
   sessao.fimMs = Date.now();
   const tempoTotalSeg = sessao.inicioMs ? tempoDecorridoSimulado() : null;
+  const limiteSeg = sessao.duracaoMin ? sessao.duracaoMin*60 : null;
+  sessao.tempoTotalSeg = tempoTotalSeg;
   let acertos = 0, contaveis = 0;
   sessao.itens.forEach(it=>{
     const q = getQuestao(it.questaoId);
@@ -595,7 +601,7 @@ function finalizarSimulado(){
   const nota = pct(acertos, contaveis);
   const resultadoId = uid("res");
   sessao.resultadoId = resultadoId;   // a página de resultado acha, por ele, a tentativa de antes para comparar
-  db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:contaveis, semClassificacao:!!sessao.semClassificacao, versaoProva:sessao.versaoProva||"original", data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, tempos:{...(sessao.tempos||{})}, confiancas:{...(sessao.confiancas||{})}});
+  db.resultadosSimulados.push({id:resultadoId, usuarioId:u.id, simuladoId:sessao.simuladoId, titulo:sessao.titulo, nota, acertos, total:contaveis, semClassificacao:!!sessao.semClassificacao, versaoProva:sessao.versaoProva||"original", data:hojeISO(), itens:copiaProfunda(sessao.itens), respostas:{...sessao.respostasSimulado}, tempoTotalSeg, limiteSeg, tempos:{...(sessao.tempos||{})}, confiancas:{...(sessao.confiancas||{})}});
   nuvemRegistrar({resultadoSimulado: db.resultadosSimulados[db.resultadosSimulados.length-1]});
   saveState();
   pararCronometro();
@@ -604,7 +610,7 @@ function finalizarSimulado(){
 function verDetalheResultadoSimulado(resultadoId){
   const r = db.resultadosSimulados.find(x=>x.id===resultadoId);
   if(!r || !r.itens){ toast("Este resultado é de antes desta função existir e não tem detalhe salvo.", "err"); return; }
-  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, resultadoId:r.id, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, confiancas:{...(r.confiancas||{})}, tempoTotalSeg:r.tempoTotalSeg||null };
+  state.sessaoAtual = { id:uid("simsessao"), tipo:"simulado", simuladoId:r.simuladoId, resultadoId:r.id, titulo:r.titulo, itens:r.itens, indiceAtual:0, respostasSimulado:{...r.respostas}, finalizado:true, modoAprendizado:false, tempos:{...(r.tempos||{})}, confiancas:{...(r.confiancas||{})}, tempoTotalSeg:r.tempoTotalSeg||null, duracaoMin:r.limiteSeg ? r.limiteSeg/60 : undefined };
   navigate("simulado-ativo");
 }
 function renderSimuladoAtivo(){
@@ -947,6 +953,7 @@ function renderResultadoSimulado(){
     </div>
     <div class="text-sm peso-600 mt-2">Mapa de acertos <span class="muted peso-400">· verde acertou, vermelho errou, cinza em branco; clique para abrir a questão</span></div>
     <div class="mapa-acertos mt-1">${todasLinhas.map(l=> l.fora ? `<button class="pill pill-resultado" onclick="abrirQuestaoDoResultado(${l.i})" title="${l.q.status==="desatualizada"?"desatualizada":"anulada"}: aparece na prova, mas a resposta não conta">${l.q.numeroNaProva||l.i+1}</button>` : pillMapa(l)).join("")}</div>
+    ${sessao.duracaoMin && sessao.tempoTotalSeg > sessao.duracaoMin*60 ? `<div class="card-flat mt-2 text-sm borda-alerta">${iconeSvg("clock")} <strong>Fora do tempo.</strong> Você usou ${formatarDuracao(sessao.tempoTotalSeg)} de um limite de ${formatarDuracao(sessao.duracaoMin*60)}.</div>` : ""}
     ${foraLinhas.length ? `<div class="text-xs muted mt-1">${foraLinhas.length} questão(ões) anulada(s) ou desatualizada(s) apareceram na prova e não entram na nota (cinza, sem cor).</div>` : ""}
     ${sessao.semClassificacao ? `<div class="card-flat mt-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>Prova com correção por IA.</strong> Suas respostas contam no desempenho do dia e na taxa de acerto diária e mensal, mas esta nota <strong>não entra na classificação</strong> do simulado.</div>` : ""}
     ${htmlComparacaoComAnterior(comp, previa, linhas)}
