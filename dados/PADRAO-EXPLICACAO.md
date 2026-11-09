@@ -87,6 +87,14 @@ comentário oficial — tem de trazer a justificativa completa, e quem confere �
    mostra ONDE no caso está a resposta;
 4. **cada alternativa errada** com o seu motivo (cada letra errada aparece no
    texto). Questão anulada só fica dispensada deste item.
+   **Formato (obrigatório em questão criada desde 09/11/2026):** cada errada é uma
+   **frase própria que começa por `B) Errada:`** (letra, parêntese, "Errada" e
+   dois-pontos), em ordem alfabética, terminando em ponto — por exemplo
+   `B) Errada: a cefalexina oral é inadequada em criança toxêmica. C) Errada: pelo
+   mesmo motivo da B.` É esse marcador que faz a tela (`quebrasDeParagrafo`, 08b)
+   pôr cada alternativa em linha própria; "B (texto) está errada, pois…" ou "A e C
+   estão erradas" viram um bloco único de texto e o `conferir` recusa. Duas
+   alternativas com o mesmo motivo: duas frases, a segunda "pelo mesmo motivo da A".
 
 Abertura recomendada: `A alternativa C está correta. Dicas do enunciado: **…**: diagnóstico…`.
 Hoje **todas** as provas reais do banco cumprem o padrão: a lista

@@ -188,7 +188,7 @@ function modeloConstrucaoLote(carga, lote){
   "PERGUNTA: [enunciado completo da questão, incluindo o caso clínico se houver]\n"+
   "A: [texto da alternativa A]\nB: [texto da alternativa B]\nC: [texto da alternativa C]\nD: [texto da alternativa D]\nE: [texto da alternativa E — apague esta linha se a prova tiver só 4 alternativas]\n"+
   "GABARITO: [letra correta]\n"+
-  "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha]\n"+
+  "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma, cada errada numa frase que começa por \"B) Errada:\" (letra, parêntese, Errada e dois-pontos), tudo na mesma linha, sem quebra de linha]\n"+
   "REFERENCIAS: [as fontes que sustentam a explicação: diretriz/consenso de sociedade de especialidade, protocolo do Ministério da Saúde, PCDT, revisão sistemática ou artigo primário, com nome e ano]\n"+
   linhaImagemDoPrompt()+
   "LEGENDA: [legenda curta da imagem, se houver]\n"+

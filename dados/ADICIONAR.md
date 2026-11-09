@@ -24,7 +24,7 @@ JSON em que cada questão traz **só o que é dela** — a ferramenta completa
    "enunciado": "Homem, 58 anos, dor torácica…",
    "alt": ["texto da A", "texto da B", "texto da C", "texto da D"],
    "gabarito": "C",
-   "explicacao": "A alternativa C está correta. Dicas do enunciado: **…** …",
+   "explicacao": "A alternativa C está correta. Dicas do enunciado: **…** … B) Errada: motivo da B. D) Errada: motivo da D.",
    "referencias": "Diretriz X, 2025 (texto lido em 02/11/2026 em gov.br).",
    "dificuldade": "intermediario" }]
 ```
