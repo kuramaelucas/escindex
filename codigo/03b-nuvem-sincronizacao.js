@@ -590,6 +590,7 @@ async function nuvemBaixarGlobais(){
     // o servidor ainda guarda linhas com o id de um assunto que foi fundido
     aplicarFusoesDeAssuntos();
   }
+  nuvemReaplicarSinalizacoesSemQuestao();
 }
 async function nuvemEnviarGlobaisPendentes(){
   const fila = (db.nuvem.globaisPendentes || []).slice();

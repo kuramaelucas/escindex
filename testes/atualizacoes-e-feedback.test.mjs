@@ -302,3 +302,43 @@ test("a barra de questões é fina, de uma linha, e expande; o tutorial saiu do 
   assert.deepEqual(erros, []);
   await contexto.close(); await semNuvem.fechar();
 });
+
+test("sinalização de aluno aparece para o administrador: selo no menu, aviso que abre a aba certa e nada se perde se a questão ainda não existe", async () => {
+  const banco = nuvemQueGuarda();
+  const admin = await abrir(banco, { id: ADMIN, papel: "admin", nome: "Adm Coordenação", nivel: "coordenacao" });
+  await sincronizar(admin.pagina);                      // o admin já estava com a plataforma aberta
+  const aluna = await abrir(banco, { id: ALUNA, papel: "aluno", nome: "Ana Aluna" });
+  const QID = "q-sessp2026-049";
+  await aluna.pagina.evaluate(qid => {
+    abrirSinalizarDesatualizada(qid);
+    document.getElementById("motivoSinalizacao").value = "Gabarito parece errado.";
+    confirmarSinalizacao(qid);
+  }, QID);
+  await sincronizar(aluna.pagina);
+  await sincronizar(admin.pagina);
+  const r = await admin.pagina.evaluate(qid => {
+    const u = usuarioAtual();
+    const item = agruparItensDaFamilia(navItemsParaPapel("admin")).find(i => i.id === "revisao-dificeis" || (i.familia && i.familia.includes("revisao-dificeis")));
+    const aviso = gerarNotificacoes(u).find(n => /sinalizada/.test(n.texto));
+    return { selo: pendenciaDoItemMenu(item, u, 0), aviso: aviso && aviso.abaQualidade, rota: aviso && aviso.rota,
+      naQuestao: (getQuestao(qid).sinalizacoes || []).length };
+  }, QID);
+  assert.equal(r.naQuestao, 1, "a sinalização da aluna deveria descer para o administrador");
+  assert.equal(r.selo, 1, "o menu deveria mostrar 1 questão sinalizada");
+  assert.equal(r.rota, "revisao-dificeis");
+  assert.equal(r.aviso, "sinalizadas", "o aviso do Início deveria abrir a aba de sinalizadas");
+
+  // a linha chega antes de a questão existir neste aparelho: fica guardada e encaixa depois
+  const guardada = await admin.pagina.evaluate(() => {
+    const linha = { id: "sin-teste-1", questao_id: "q-ainda-nao-existe", usuario_id: "11111111-2222-3333-4444-555555555555", autor_nome: "Ana", comentario: "x", data: "2026-11-08", descartada: false };
+    NUVEM_GLOBAIS.sinalizacoes_questoes.aplicar(linha);
+    const noEstoque = !!db.nuvem.sinalizacoesSemQuestao["sin-teste-1"];
+    db.questoes.push({ id: "q-ainda-nao-existe", enunciado: "x", alternativas: [] });
+    _geracaoDb++;
+    nuvemReaplicarSinalizacoesSemQuestao();
+    return { noEstoque, aplicada: (getQuestao("q-ainda-nao-existe").sinalizacoes || []).length, sobrou: Object.keys(db.nuvem.sinalizacoesSemQuestao).length };
+  });
+  assert.deepEqual(guardada, { noEstoque: true, aplicada: 1, sobrou: 0 });
+  assert.deepEqual([...aluna.erros, ...admin.erros], []);
+  await aluna.contexto.close(); await admin.contexto.close();
+});

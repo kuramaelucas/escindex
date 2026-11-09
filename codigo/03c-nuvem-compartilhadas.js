@@ -162,7 +162,15 @@ NUVEM_GLOBAIS.sinalizacoes_questoes = {
   podeGravar: () => true,
   aplicar: l => {
     const q = getQuestao(l.questao_id);
-    if(!q) return;
+    if(!db.nuvem.sinalizacoesSemQuestao) db.nuvem.sinalizacoesSemQuestao = {};
+    if(!q){
+      // a questão ainda não existe neste aparelho (versão antiga da pasta dados/ em cache, questão da turma que
+      // ainda não desceu). A marca de download já passa por esta linha, então ela não volta sozinha: guarda
+      // e encaixa quando a questão aparecer (nuvemReaplicarSinalizacoesSemQuestao), em vez de perder em silêncio
+      if(!l.descartada) db.nuvem.sinalizacoesSemQuestao[l.id] = l; else delete db.nuvem.sinalizacoesSemQuestao[l.id];
+      return;
+    }
+    delete db.nuvem.sinalizacoesSemQuestao[l.id];
     const lista = (q.sinalizacoes || []).filter(s => s.id !== l.id);
     if(!l.descartada) lista.push({ id: l.id, usuarioId: l.usuario_id, autorNome: l.autor_nome || "",
       data: l.data || (l.atualizado_em || "").slice(0, 10), comentario: l.comentario || "", naNuvem: true });
@@ -179,6 +187,11 @@ NUVEM_GLOBAIS.sinalizacoes_questoes = {
     return null;
   },
 };
+/* Encaixa as sinalizações que chegaram antes da questão (ver `aplicar` acima). Roda a cada descida das tabelas de todos. */
+function nuvemReaplicarSinalizacoesSemQuestao(){
+  const guardadas = (db.nuvem && db.nuvem.sinalizacoesSemQuestao) || {};
+  Object.values(guardadas).forEach(l => { if(getQuestao(l.questao_id)) NUVEM_GLOBAIS.sinalizacoes_questoes.aplicar(l); });
+}
 /* Chamado ao sinalizar. Devolve o id que a sinalização leva (ou "" sem nuvem). */
 function nuvemMarcarSinalizacao(id){
   if(!nuvemConectado()) return false;
