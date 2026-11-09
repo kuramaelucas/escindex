@@ -13,7 +13,7 @@
 
    Mapa (mapeamento "standard" da Gamepad API; vale para Xbox, PlayStation e
    os genéricos que o navegador reconhece):
-     setas ↑ ↓ / analógico esquerdo   rolam a tela (ou a janela aberta); o analógico direito rola mais rápido
+     setas ↑ ↓ / analógico esquerdo   rolam a tela (ou a janela aberta); o analógico direito rola mais rápido (para cima/baixo) e, para os lados, anda pela barra de números das questões
      setas ← →                        questão ou cartão anterior / próximo
      botões da direita (questão)      A = cima · B = esquerda · C = direita · D = baixo · R1/RB = E
      com a alternativa marcada        cima = chute · esquerda = certeza · baixo = dúvida
@@ -150,6 +150,12 @@ function controleQuadro(agora){
     }
     controleEstado.anterior[g.index] = atual;
   });
+  // analógico direito para os lados: anda pela barra de números das questões, na velocidade da inclinação
+  if(ativo){
+    const lado = pads.reduce((soma, g) => { const v = g.axes && g.axes[2] || 0; return Math.abs(v) > CONTROLE_ZONA_MORTA ? soma + v : soma; }, 0);
+    const trilho = lado && !controleJanelaAberta() ? document.querySelector(".barra-questoes:not(.expandida) .barra-questoes-trilho") : null;
+    if(trilho) trilho.scrollLeft += lado * 900 * dt;
+  }
   document.body.classList.toggle("controle-riscando", ativo && pads.some(controleRiscando));
   if(rolar) controleRolar(Math.max(-2.5, Math.min(2.5, rolar)) * CONTROLE_VELOCIDADES[controleConfig().velocidade].px * dt);
   requestAnimationFrame(controleQuadro);

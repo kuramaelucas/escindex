@@ -538,7 +538,7 @@ function renderCardMeusEnvios(){
   if(!envios.length && !soAqui.length && !naFila) return "";
   const conta = st => envios.filter(e => e.status === st).length;
   const rotulo = { pendente: ["badge-amber", "aguardando a equipe"], aprovada: ["badge-accent", "aprovada — no banco de todos"], recusada: ["badge-danger", "recusada"], removida: ["badge-muted", "removida do banco"] };
-  const pag = paginar(envios, "meus-envios", { porPagina: 8 });
+  const pag = paginar(envios, "meus-envios", { porPagina: 8, assinatura: "fixa" });
   return `<div class="card mb-2">
     <div class="card-title">${iconeSvg("upload")} Suas questões enviadas</div>
     <p class="text-sm muted">Com a nuvem ligada, o que você envia sobe junto com as imagens e chega à equipe, que confere e aprova. Aprovada, a questão entra no banco de toda a turma.</p>

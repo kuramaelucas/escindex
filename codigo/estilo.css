@@ -454,6 +454,11 @@ ol.lista-passos li{margin:.25rem 0}
 .qcard-alt.selected{border-color:var(--accent);background:var(--accent-soft)}
 .qcard-alt.correct{border-color:var(--accent);background:var(--accent-soft)}
 .qcard-alt.incorrect{border-color:var(--danger);background:var(--danger-soft)}
+.qcard-alt.correct.acertou-depois{border-width:2px;border-color:var(--accent);background:color-mix(in srgb,var(--accent) 22%,var(--surface));box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+.qcard-alt.correct.acertou-depois .alt-letter{background:var(--accent);border-color:var(--accent);color:#fff}
+.qcard-alt.correct.acertou-depois .alt-text{font-weight:600}
+.confidence-row.so-controle{display:none}
+body.com-controle .confidence-row.so-controle{display:flex}
 .qcard-alt.disabled{cursor:default}
 /* depois de responder, as alternativas não respondem mais a clique — o hover
    não pode continuar sugerindo que dá pra clicar nelas */

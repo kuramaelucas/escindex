@@ -1025,7 +1025,7 @@ function renderQuestionCard(q, opts){
           if(riscada) classe += " eliminada";
           if(opts.respondida){
             classe += " disabled";
-            if(alt.id===q.gabarito) classe += " correct";
+            if(alt.id===q.gabarito) classe += (opts.selecionada && opts.selecionada!==q.gabarito) ? " correct acertou-depois" : " correct";   // errei: a certa ganha mais destaque
             else if(alt.id===opts.selecionada) classe += " incorrect";
           } else {
             if(alt.id===opts.selecionada) classe += " selected";
@@ -1058,7 +1058,12 @@ function renderQuestionCard(q, opts){
         <button class="confidence-btn" onclick="confirmarResposta('duvida')">Na dúvida <span class="muted text-xs tecla-atalho">(2)</span>${htmlDicaDoControleConfianca("duvida")}</button>
         <button class="confidence-btn" onclick="confirmarResposta('chute')">Chute <span class="muted text-xs tecla-atalho">(3)</span>${htmlDicaDoControleConfianca("chute")}</button>
       </div>${htmlDicaDoControleTrocar()}
-      <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última confiança.</div>` : "";
+      <div class="text-xs muted mt-1">Sua confiança ajuda a plataforma a saber quando esta questão deve voltar para revisão. Pelo teclado: 1, 2 ou 3; a barra de espaço repete a última confiança.</div>`
+      : `<div class="confidence-row so-controle" aria-hidden="true">
+        <button class="confidence-btn" disabled tabindex="-1">Certeza ${htmlDicaDoControleConfianca("certeza")}</button>
+        <button class="confidence-btn" disabled tabindex="-1">Na dúvida ${htmlDicaDoControleConfianca("duvida")}</button>
+        <button class="confidence-btn" disabled tabindex="-1">Chute ${htmlDicaDoControleConfianca("chute")}</button>
+      </div>`;   // cinza até marcar uma alternativa; só aparece com controle conectado, para o layout não pular quando a marca chega
     html += dicaRiscar(opts.selecionada ? "" : "Selecione uma alternativa para continuar. ");
     }
   } else {

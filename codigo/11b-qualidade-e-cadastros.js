@@ -219,7 +219,7 @@ function renderListaDificeis(lista){
   ${controlesPaginacao(pag, "questão(ões) difícil(eis)")}`;
 }
 function renderListaSinalizadas(lista){
-  const pag = paginar(lista, "qualidade-sinalizadas", {porPagina:10});
+  const pag = paginar(lista, "qualidade-sinalizadas", {porPagina:10, assinatura:"fixa"});
   return `<p class="text-sm muted mb-2">Questões que alunos marcaram como possivelmente desatualizadas ou incorretas, mais sinalizadas primeiro. Se houver muitas reclamações concordantes, considere excluir.</p>
   ${lista.length ? pag.itens.map(q=>`
     <div class="card mb-2">
@@ -392,7 +392,7 @@ function renderRevisaoFormatacao(){
   }
   const lote = lotes.find(l=>l.chave===selecionado);
   const visiveis = (lote ? lote.questoes : lista).slice().sort((a,b)=>(b.criadoEm||"").localeCompare(a.criadoEm||""));
-  const pagFormatacao = paginar(visiveis, "formatacao", {porPagina:15, assinatura:termo+"|"+verAprovadas+"|"+selecionado+"|"+visiveis.length});
+  const pagFormatacao = paginar(visiveis, "formatacao", {porPagina:15, assinatura:termo+"|"+verAprovadas});
   return `
   <div class="page-header"><h2>Revisar Formatação</h2><p>Leia as questões na íntegra pra pegar erro de digitação, alternativa fora de ordem ou mal formatada. "Editar" corrige na hora — pense nisso como uma revisão de forma, não necessariamente de conteúdo clínico. Quando a questão estiver boa, <strong>"Aprovar formatação"</strong> a tira da fila de todos os revisores, para ninguém reler o que já foi conferido.</p></div>
   <div class="flex gap-1 mb-2 quebra">
@@ -782,7 +782,7 @@ function renderFeedbackUsuarios(){
   const lista = (db.feedbacks||[]).slice().sort((a,b)=>(b.data||"").localeCompare(a.data||""));
   const naoLidos = lista.filter(f=>!f.lido).length;
   const rotulos = {comentario:["badge-muted","Comentário"], sugestao:["badge-accent","Sugestão"], reclamacao:["badge-danger","Reclamação"], contribuicao:["badge-amber","Quer contribuir"]};
-  const pag = paginar(lista, "feedbacks", { porPagina: 20 });
+  const pag = paginar(lista, "feedbacks", { porPagina: 20, assinatura: "fixa" });
   return `
   <div class="page-header"><h2>Feedback dos Usuários</h2><p>Comentários, sugestões e reclamações enviados por qualquer pessoa da plataforma${naoLidos ? ` — <strong>${naoLidos} não lido(s)</strong>` : ""}.</p></div>
   <div class="card-flat mb-2 text-sm">${nuvemConectado()
