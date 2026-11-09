@@ -72,7 +72,9 @@ test("botões da direita escolhem a alternativa, e esquerda / baixo / cima dão 
     await apertar(pagina, BOTAO.baixo);
     assert.equal(await marcada(), "D");
     await apertar(pagina, BOTAO.direita);
-    assert.equal(await marcada(), "C", "C ainda troca a alternativa com algo marcado");
+    assert.equal(await marcada(), "D", "com algo marcado, C não faz nada");
+    await apertar(pagina, BOTAO.r1);
+    assert.equal(await marcada(), "D", "nem E");
     await apertar(pagina, BOTAO.l1);
     assert.equal(await marcada(), null, "L1 desmarca");
     await apertar(pagina, BOTAO.cima);
