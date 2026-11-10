@@ -636,6 +636,7 @@ function renderSimuladoAtivo(){
       ${sessao.ocultarTimer ? "" : iconeSvg("clock")}<span class="badge badge-muted" id="cronometroSimulado"${sessao.ocultarTimer ? ' style="display:none"' : ""}>${sessao.duracaoMin?formatarDuracao(Math.max(0,sessao.duracaoMin*60 - tempoDecorridoSimulado()))+" restantes":formatarDuracao(tempoDecorridoSimulado())+" decorridos"}</span>
     </div>
     <div class="flex gap-1 quebra">
+      ${emBranco===0 ? `<button class="btn btn-primary btn-sm" onclick="pedirFinalizarSimulado()" title="Todas as questões já têm resposta. No controle: Start">${iconeSvg("check")} Finalizar</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="alternarOcultarTimerSimulado()" title="O tempo continua correndo e o simulado ainda termina no limite; só some da tela">${iconeSvg(sessao.ocultarTimer?"eye":"eye-off")} ${sessao.ocultarTimer?"Mostrar cronômetro":"Esconder cronômetro"}</button>
       <button class="btn ${emModoAprendizado?"btn-primary":"btn-secondary"} btn-sm" onclick="alternarModoAprendizadoSimulado()" title="Mostra a explicação assim que você responder, sem esperar o fim do simulado">${emModoAprendizado?iconeSvg("check")+" Modo aprendizado ativado":"Ativar modo aprendizado"}</button>
       <button class="btn btn-ghost btn-sm" onclick="alternarModoFoco()" title="Esconde o menu e o topo para fazer a prova sem distração">${state.modoFoco ? "Sair do foco" : "Modo foco"}</button>
