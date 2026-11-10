@@ -81,6 +81,12 @@ function atualizarPromptImportacao(){
    Central de Provas. Por isso moram numa função só: mudar a política aqui
    muda o prompt de todas as telas de uma vez, sem risco de uma ficar para
    trás com a regra antiga. */
+/* A explicação é gravada em uma linha; é o formato "B) Errada: …" que faz a tela (quebrasDeParagrafo, 08b) pôr cada
+   alternativa errada em linha própria. Escrita como "B (texto) está errada, pois…" ou "A e C estão erradas", a parte das
+   alternativas vira um bloco único de texto — foi o que aconteceu com as provas do Einstein antes desta regra. */
+function regraDeSeparacaoDasAlternativas(){
+  return "- FORMATO DAS ALTERNATIVAS ERRADAS (obrigatório; é ele que faz a tela mostrar cada uma em linha própria): depois do raciocínio da correta, escreva cada alternativa errada como uma FRASE PRÓPRIA que COMEÇA por \"B) Errada:\" — a letra, o parêntese, a palavra Errada e dois-pontos —, uma por alternativa, em ordem alfabética, cada uma terminando em ponto. Exemplo: \"B) Errada: a cefalexina oral é inadequada em criança toxêmica e com vômitos. C) Errada: o suporte clínico isolado atrasa o antibiótico. D) Errada: …\". NÃO escreva \"B (texto) está errada, pois…\" nem junte letras na mesma frase (\"A e C estão erradas\"): para duas alternativas com o mesmo motivo, escreva as duas frases, a segunda como \"C) Errada: pelo mesmo motivo da A.\".\n";
+}
 function regrasDeConteudoImportacao(){
   return "REGRA SOBRE O ENUNCIADO (pode copiar):\n"+
   "- O enunciado, as alternativas e o gabarito oficial de uma prova pública (ex.: USP-SP, USP-RP, UNIFESP, Santa Casa de São Paulo, IAMSPE, UNESP) são domínio público. Transcreva-os na íntegra, sem parafrasear.\n\n"+
@@ -95,7 +101,8 @@ function regrasDeConteudoImportacao(){
   "- Primeiro: por que a alternativa do gabarito está certa.\n"+
   "- Depois: por que CADA uma das outras está errada, uma por uma, na ordem (A, B, C...), começando pelo que o PRÓPRIO ENUNCIADO diz — o dado do caso que a descarta (idade, sexo, tempo de evolução, sinal ou sintoma presente ou ausente, achado do exame físico, resultado de exame, comorbidade, medicação em uso, contexto epidemiológico). Dizer apenas \"não é a conduta indicada\" não serve: o aluno precisa saber ONDE, no caso, a alternativa morre.\n"+
   "- Quando uma alternativa estiver errada por conhecimento que não vem do caso (dose errada, conduta inexistente, conceito trocado), diga isso explicitamente em vez de inventar uma pista no enunciado.\n"+
-  "- Escreva isso em texto corrido, numa linha só (o campo EXPLICACAO não aceita quebra de linha).\n\n"+
+  regraDeSeparacaoDasAlternativas()+
+  "- Escreva tudo numa linha só (o campo EXPLICACAO não aceita quebra de linha): quem separa os parágrafos na tela é o formato abaixo, não a quebra de linha.\n\n"+
   regraDeParametrosObjetivos()+"\n"+
   regraDeFisiopatologiaEEpidemiologia()+"\n";
 }
@@ -115,7 +122,7 @@ function gerarPromptImportacao(){
     "PERGUNTA: [enunciado completo da questão, incluindo o caso clínico se houver]\n"+
     "A: [texto da alternativa A]\nB: [texto da alternativa B]\nC: [texto da alternativa C]\nD: [texto da alternativa D]\nE: [texto da alternativa E]\n"+
     "GABARITO: [letra correta, de A a E]\n"+
-    "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma — tudo em texto corrido, sem quebra de linha. Quando a conduta depender de um parâmetro objetivo (valor de exame, sinal vital, escore), destaque-o entre ** ** e diga o valor normal e o ponto de corte, como nas regras abaixo]\n"+
+    "EXPLICACAO: [explicação clínica objetiva, escrita com suas próprias palavras: por que a alternativa do gabarito está certa e, em seguida, por que cada uma das outras está errada, apontando no enunciado o dado que descarta cada uma, cada errada numa frase que começa por \"B) Errada:\" (letra, parêntese, Errada e dois-pontos), tudo na mesma linha, sem quebra de linha. Quando a conduta depender de um parâmetro objetivo (valor de exame, sinal vital, escore), destaque-o entre ** ** e diga o valor normal e o ponto de corte, como nas regras abaixo]\n"+
     "REFERENCIAS: [as fontes que sustentam a explicação: diretriz/consenso de sociedade de especialidade, protocolo do Ministério da Saúde, PCDT, revisão sistemática ou artigo primário, com nome e ano]\n"+
     linhaImagemDoPrompt()+
     "LEGENDA: [legenda curta da imagem, se houver]\n"+

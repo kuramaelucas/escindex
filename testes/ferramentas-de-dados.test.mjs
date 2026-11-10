@@ -10,7 +10,7 @@ import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
 import { RAIZ } from "../ferramentas/mapa-do-codigo.mjs";
 
-const EXPLICACAO = "A alternativa C está correta. Dicas do enunciado: **dor torácica há 2 horas** com **supradesnivelamento de ST** em parede inferior (normal: ST isoelétrico): infarto com supra, que pede reperfusão imediata (ICP em até 90 minutos do primeiro contato). A está errada porque o anti-inflamatório não trata a causa. B está errada porque a observação atrasa a reperfusão. D está errada porque a alta hospitalar expõe o paciente ao risco de morte.";
+const EXPLICACAO = "A alternativa C está correta. Dicas do enunciado: **dor torácica há 2 horas** com **supradesnivelamento de ST** em parede inferior (normal: ST isoelétrico): infarto com supra, que pede reperfusão imediata (ICP em até 90 minutos do primeiro contato). A) Errada: o anti-inflamatório não trata a causa. B) Errada: a observação atrasa a reperfusão. D) Errada: a alta hospitalar expõe o paciente ao risco de morte.";
 const questao = (n, extra = {}) => ({
   n, assunto: "ass-sca", enunciado: `Enunciado da questão ${n}?`,
   alt: ["Anti-inflamatório.", "Observação.", "Cateterismo urgente.", "Alta."], gabarito: "C",

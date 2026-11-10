@@ -35,6 +35,14 @@ test("explicação curta, sem dicas, sem destaque ou que esquece uma errada é a
   assert.ok(curta.some(f => /300 caracteres/.test(f)) && curta.some(f => /em destaque/.test(f)) && curta.some(f => /Dicas do enunciado/.test(f)));
   const semMencao = faltasDeJustificativa({ ...base, explicacaoGeral: "A alternativa B está correta. Dicas do enunciado: **febre de 39 graus por 4 dias e leucocitose de 20.000/mm3 (normal: até 11.000)**: infecção bacteriana, que pede antibiótico por via venosa e hemoculturas antes da primeira dose, com reavaliação em 48 horas para decidir a troca para via oral conforme a resposta clínica e a cultura, e internação se houver instabilidade. As demais alternativas estão erradas por não tratarem a infecção de forma adequada nem no tempo certo." });
   assert.ok(semMencao.some(f => /alternativas A, C, D/.test(f)));
+  // questão criada desde o corte: cada errada precisa abrir a frase com "B) Errada:" (é o que a tela separa)
+  const longa = "A alternativa B está correta. Dicas do enunciado: **febre de 39 graus por 4 dias e leucocitose de 20.000/mm3 (normal: até 11.000)**: infecção bacteriana, que pede antibiótico por via venosa e hemoculturas antes da primeira dose, com reavaliação em 48 horas para decidir a troca para via oral conforme a resposta clínica e a cultura. ";
+  const nova = { ...base, criadoEm: "2026-11-09", gabarito: "B" };
+  const emBloco = faltasDeJustificativa({ ...nova, explicacaoGeral: longa + "A (suporte) está errada porque atrasa o antibiótico; C (via oral) está errada porque o doente vomita; D (observação) está errada porque há sinais de gravidade." });
+  assert.ok(emBloco.some(f => /sem a marca "A\) Errada:", "C\) Errada:", "D\) Errada:"/.test(f)), "a forma em bloco é recusada: " + emBloco);
+  const separada = faltasDeJustificativa({ ...nova, explicacaoGeral: longa + "A) Errada: suporte isolado atrasa o antibiótico. C) Errada: a via oral não serve a quem vomita. D) Errada: há sinais de gravidade, então observar não basta." });
+  assert.deepEqual(separada, [], "a forma separada passa");
+  assert.deepEqual(faltasDeJustificativa({ ...nova, criadoEm: "2026-11-02", explicacaoGeral: longa + "A (suporte) está errada porque atrasa o antibiótico; C (via oral) está errada porque vomita; D (observação) está errada porque há gravidade." }), [], "questão anterior ao corte não é cobrada");
   // anulada não tem alternativa certa: só vale o que não depende do gabarito
   const anulada = faltasDeJustificativa({ ...base, status: "anulada", gabarito: "", explicacaoGeral: "Questão anulada pela banca. Dicas do enunciado: **gestante de 12 semanas com Hb de 11,2 g/dL (anemia: < 11) e VCM de 88 fL (normal: 80–100)**: sem anemia; a suplementação de ferro no pré-natal é profilática e universal, de 40 mg de ferro elementar por dia desde a primeira consulta, e a dose de tratamento da anemia é bem maior, de 120 a 200 mg por dia de ferro elementar em duas ou três tomadas." });
   assert.deepEqual(anulada, []);
