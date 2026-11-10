@@ -99,6 +99,8 @@ const DICAS_DO_ENUNCIADO = /Dicas d[oa]s? (enunciado|imagem|figura|tabela|gráfi
 
 /* O que falta na explicação de uma questão para cumprir o padrão (lista vazia
    = cumpre). Anulada fica dispensada só do item 4: não tem alternativa certa. */
+/* Questão criada a partir desta data traz cada alternativa errada como frase própria "B) Errada: …". */
+export const CORTE_DA_SEPARACAO = "2026-11-09";
 export function faltasDeJustificativa(q){
   const t = String(q.explicacaoGeral || ""), faltas = [];
   if(t.length < 300) faltas.push("menos de 300 caracteres");
@@ -110,6 +112,13 @@ export function faltasDeJustificativa(q){
     const semMencao = (q.alternativas || []).map(a => a.id)
       .filter(L => L !== q.gabarito && !new RegExp("(^|[^A-Za-zÀ-ÿ])" + L + "([^A-Za-zÀ-ÿ]|$)").test(semAbertura));
     if(semMencao.length) faltas.push("não diz por que erram as alternativas " + semMencao.join(", "));
+    // formato que a tela separa em linha própria (quebrasDeParagrafo, 08b); só vale para questão criada desde o corte,
+    // porque as anteriores usam outras formas ("B está errada porque…") e continuam como estão
+    if(String(q.criadoEm || "") >= CORTE_DA_SEPARACAO){
+      const semMarca = (q.alternativas || []).map(a => a.id)
+        .filter(L => L !== q.gabarito && !new RegExp("(^|[.;:!?] )" + L + "\\) Errada:").test(t));
+      if(semMarca.length) faltas.push('alternativa errada sem a marca "' + semMarca.map(L => L + ") Errada:").join('", "') + '" no começo da frase (a tela só separa cada uma em linha própria assim)');
+    }
   }
   return faltas;
 }
