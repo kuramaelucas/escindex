@@ -46,7 +46,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      # Sem --with-deps de propósito: ele roda apt-get, e o mirror da Ubuntu do
+      # runner já deixou o CI inteiro vermelho por mais de meia hora (11/11/2026,
+      # "Temporary failure resolving azure.archive.ubuntu.com"). A imagem
+      # ubuntu-24.04 do runner já traz as bibliotecas do navegador; se alguma
+      # faltar, o erro do Chromium diz qual e ela entra aqui por apt-get.
+      - run: npx playwright install chromium
       - name: Testes (fragmento ${{ matrix.fragmento }} de 4)
         run: node --test --test-concurrency=1 --test-shard=${{ matrix.fragmento }}/4 testes/*.test.mjs
 
