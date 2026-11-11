@@ -542,12 +542,13 @@ function renderInicioAluno(u){
       </div>
     </div>
     ${totalRespostas === 0 && seq === 0 ? `<div class="card-flat text-sm mt-1">${iconeSvg("target")} <strong>Seu primeiro passo:</strong> responda as primeiras 10 questões. Conforme você estuda, a sequência de dias, o acerto e as revisões do dia passam a mostrar números de verdade.</div>` : ""}
-    <div class="indicadores">
+    ${/* quem nunca estudou via três zeros ("0 dias", "—", "0 assuntos") logo abaixo do "primeiro passo", que já diz o que fazer */""}
+    ${totalRespostas === 0 && seq === 0 ? "" : `<div class="indicadores">
       <span class="indicador"><span class="stat-value">${seq}</span><span class="stat-label">${flexionar(seq,"dia(s) seguido(s)")} estudando</span></span>
       <span class="indicador"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral${resumido ? "" : ` (${totalRespostas} questões)`}</span></span>
       <span class="indicador"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">${plural(revisarHoje.length,"assunto","assuntos")} para revisar hoje</span></span>
       ${resumido && flashVencidos ? `<span class="indicador"><span class="stat-value">${flashVencidos}</span><span class="stat-label">${plural(flashVencidos,"cartão","cartões")} ${flexionar(flashVencidos, "vencido(s)")}</span></span>` : ""}
-    </div>
+    </div>`}
     ${resumido ? `<div class="acoes-apoio">
       ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
       <button class="btn ${revisaoEmDestaque ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Flashcards${flashVencidos ? ` (${flashVencidos})` : ""}</button>

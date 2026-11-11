@@ -20,15 +20,21 @@ test("Início do aluno mantém meta, sequência, acerto, revisão, subdivisões 
     const r = await pagina.evaluate(() => {
       fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
       usuarioAtual().modoPlataforma = "estatistico";   // o Início completo é o do modo estatístico
+      // sem nenhuma resposta os indicadores ficam de fora (o "primeiro passo" diz o que fazer); com uma, voltam
+      navigate("inicio");
+      const semEstudo = document.getElementById("conteudoPagina").querySelectorAll(".indicadores").length;
+      const u = usuarioAtual(), q = questoesParaEstudo(u.id).find(q => !ehDissertativa(q));
+      registrarResposta(u.id, q.id, q.gabarito, "certeza", 60, "pratica"); saveState();
       navigate("inicio");
       const pg = document.getElementById("conteudoPagina");
       const bloco = getBlocoAtual();
       return { texto: pg.innerText, temDetalhes: !!pg.querySelector(".detalhes-bloco"), temSub: !!(bloco && subdivisoesDoBloco(bloco).length),
-        detalhesTexto: pg.querySelector(".detalhes-bloco")?.textContent || "", botao: !!pg.querySelector("button[onclick^='iniciarSessaoRecomendada']") };
+        detalhesTexto: pg.querySelector(".detalhes-bloco")?.textContent || "", botao: !!pg.querySelector("button[onclick^='iniciarSessaoRecomendada']"), semEstudo };
     });
     for(const trecho of [/Bloco atual:/, /\d+\/\d+\s*questões hoje/, /dias? seguidos? estudando/, /acerto geral/, /assuntos? para revisar hoje/,
       /Sugestões de assuntos para melhorar/, /Revisão pendente/, /Livro de Ouro/, /Enviar feedback/]) assert.match(r.texto, trecho);
     assert.ok(r.botao, "o botão Começar agora segue na tela");
+    assert.equal(r.semEstudo, 0, "sem estudo nenhum, os indicadores zerados não aparecem");
     if(r.temSub){ assert.ok(r.temDetalhes); assert.match(r.detalhesTexto, /tempo dividido igualmente/); }
   } finally { await contexto.close(); }
 });

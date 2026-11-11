@@ -19,6 +19,18 @@ function renderRevisao(){
   const acertosNoChute = questoesAcertoNoChute(u.id);
   const errosNaDuvida = questoesErroNaDuvida(u.id);
   const falsaSeguranca = assuntosComFalsaSeguranca(u.id);
+  /* quem ainda não respondeu nada via seis cartões zerados: um cartão só, com o
+     caminho para a primeira sessão; as filas aparecem quando passam a ter o que mostrar */
+  if(!db.respostas.some(r=>r.usuarioId===u.id)) return `
+  <div class="page-header"><h2>Revisão</h2><p>Assuntos e questões que, pelo seu histórico, estão no momento certo de voltar.</p></div>
+  <div class="empty-state">
+    <h3>Sua revisão começa depois das primeiras questões</h3>
+    <p class="mt-2">Cada questão que você responder ganha um prazo para voltar: erros e chutes em 1 semana, acertos seguros em 1 mês. Os flashcards já podem ser revisados.</p>
+    <div class="flex gap-1 mt-3 quebra" style="justify-content:center">
+      <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
+      <button class="btn btn-secondary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Flashcards</button>
+    </div>
+  </div>`;
   return `
   <div class="page-header"><h2>Revisão</h2><p>Assuntos e questões que, pelo seu histórico, estão no momento certo de voltar.</p></div>
   <div class="card">
@@ -38,17 +50,17 @@ function renderRevisao(){
     <div class="card-title">Filas por tipo de erro</div>
     <p class="text-sm muted mb-2">Nem todo erro é igual. Errar achando que sabia é o mais caro, porque você não voltaria a esse assunto por conta própria. Acertar no chute é o oposto do que parece: conta como não sabido.</p>
     <div class="grid grid-3">
-      <div class="card-flat">
+      <div class="card-flat fila-erro fila-certeza">
         <div class="peso-600">Errou com certeza <span class="badge badge-danger">${errosComCerteza.length}</span></div>
         <p class="text-xs muted mt-1">Conceito consolidado de forma errada. Prioridade máxima.</p>
         <button class="btn ${errosComCerteza.length ? "btn-primary" : "btn-secondary"} btn-sm mt-2" onclick="praticarFilaDeConfianca('certeza')" ${!errosComCerteza.length?"disabled":""}>Praticar</button>
       </div>
-      <div class="card-flat">
+      <div class="card-flat fila-erro fila-chute">
         <div class="peso-600">Acertou no chute <span class="badge badge-amber">${acertosNoChute.length}</span></div>
         <p class="text-xs muted mt-1">A estatística diz acerto, mas você não sabia. Volta como se tivesse errado.</p>
         <button class="btn btn-secondary btn-sm mt-2" onclick="praticarFilaDeConfianca('chute')" ${!acertosNoChute.length?"disabled":""}>Praticar</button>
       </div>
-      <div class="card-flat">
+      <div class="card-flat fila-erro fila-duvida">
         <div class="peso-600">Errou na dúvida <span class="badge badge-muted">${errosNaDuvida.length}</span></div>
         <p class="text-xs muted mt-1">Você já sabia que não sabia — aqui falta conteúdo, não calibração.</p>
         <button class="btn btn-secondary btn-sm mt-2" onclick="praticarFilaDeConfianca('duvida')" ${!errosNaDuvida.length?"disabled":""}>Praticar</button>
@@ -81,9 +93,9 @@ function renderRevisao(){
     <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${!erros.length?"disabled":""}>Revisar só erros</button>
   </div>
   ${htmlCurvaDeRetencao(u)}
-  <div class="card-flat mt-2 text-sm">
-    <strong>Como funciona:</strong> cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute), mas nunca abaixo de 1 semana. A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo, mas sem repetir o que você já domina: acerto seguro espera um mês e, depois de três, a questão sai da fila. Errar com certeza antecipa também até ${CONFIG.irmasAntecipadas} questões do mesmo assunto que estavam de molho (prazo de 1 semana), porque o erro com certeza costuma ser lacuna do assunto, não da questão. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.
-  </div>`;
+  <details class="card-flat mt-2 text-sm" ${secaoRecolhivelAberta("revisao-como-funciona", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('revisao-como-funciona', this.open)">
+    <summary class="peso-600">Como funciona a revisão?</summary><p class="mt-1">Cada questão tem seu próprio intervalo de revisão, que cresce quando você acerta com confiança e encolhe quando você erra ou chuta (mesmo acertando no chute), mas nunca abaixo de 1 semana. A revisão espaçada geral, acima, respeita isso pra TODAS as questões já respondidas — não só as erradas — porque até quem acerta esquece com o tempo, mas sem repetir o que você já domina: acerto seguro espera um mês e, depois de três, a questão sai da fila. Errar com certeza antecipa também até ${CONFIG.irmasAntecipadas} questões do mesmo assunto que estavam de molho (prazo de 1 semana), porque o erro com certeza costuma ser lacuna do assunto, não da questão. Assuntos inteiros também têm um intervalo próprio, baseado na taxa de acerto das suas últimas respostas naquele assunto.</p>
+  </details>`;
 }
 /* As questões que a pessoa já errou, com quantas vezes cada uma — a
    mais errada primeiro. É aqui que se esconde em lote ("já entendi essas,
