@@ -86,9 +86,9 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
         <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
         <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-accent":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span>${g.dissertativa ? ` <span class="badge badge-accent">Dissertativa</span>` : ""}</div>
         ${g.dissertativa ? `<div class="text-xs muted mb-1">Você escreve a resposta, diz a confiança e se avalia pela resposta esperada da banca. Não há simulado com relógio nem nota automática.</div>` : ""}
-        <div class="text-sm muted mb-1">${g.ids.length} ${plural(g.ids.length,"questão","questões")} · ${respondidas} já respondida(s) por você</div>
+        <div class="text-sm muted mb-1">${g.ids.length} ${plural(g.ids.length,"questão","questões")} · ${respondidas} já ${flexionar(respondidas,"respondida(s)")} por você</div>
         ${reposicoesDaProva(g).length ? `<div class="text-xs mb-1"><span class="badge badge-amber">${reposicoesDaProva(g).length} com reposição por IA</span> <span class="muted">ao começar, você escolhe a versão da prova</span></div>` : ""}
-        ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca aparecem na prova, mas a resposta não conta na nota">+ ${g.anuladas.length} anulada(s) pela banca, aparecem na prova e ficam fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
+        ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca aparecem na prova, mas a resposta não conta na nota">+ ${g.anuladas.length} ${flexionar(g.anuladas.length, "anulada(s)")} pela banca, aparecem na prova e ficam fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
         ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
         ${(()=>{ const em = simuladoEmAndamentoDe(u, "prova:Prova "+g.banca+" "+anoDaProva(g)+" (simulado)"); if(!em) return ""; const p = progressoDoSimuladoEmAndamento(em); return `<div class="qcard-meta mb-1"><span class="badge badge-amber">simulado em andamento · ${p.feitas} de ${p.total} respondidas</span></div>`; })()}
         ${previo ? `<div class="qcard-meta mb-1"><span class="badge ${classeBadgeNota(previo.ultima.nota)}">já fez como simulado · ${previo.ultima.nota}%</span> <button class="link-btn text-xs" onclick="abrirHistoricoDoSimulado(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")})">${previo.n>1 ? "ver as "+previo.n+" tentativas" : "ver a tentativa"}</button></div>` : ""}
@@ -119,7 +119,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
     /* Todas as provas da seção, 15 por vez ao descer a página (rolagem
        infinita); a busca ativa também mostra só o que combina. */
     const visiveis = rolagemLista(daSecao, "provas-antigas-"+tipo);
-    return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)} <span class="text-sm muted peso-400">· ${escapeHtml(info.descricao)} · ${daSecao.length} prova(s)</span></div>
+    return `<div class="card-title mt-2 mb-1">${escapeHtml(info.nomeLongo)} <span class="text-sm muted peso-400">· ${escapeHtml(info.descricao)} · ${daSecao.length} ${flexionar(daSecao.length, "prova(s)")}</span></div>
       ${prioritaria ? `<p class="text-xs muted mb-1">${iconeSvg("star")} No ${escapeHtml(u.anoFaculdade)}, estas vêm primeiro: são as que consolidam o conhecimento do ano. As de residência continuam logo abaixo.</p>` : ""}
       <div class="grid grid-3 mb-1">${visiveis.itens.map(x=>cartaoDaProva(x.g, x.i)).join("")}</div>${sentinelaRolagem(visiveis, "provas-antigas-"+tipo, "redesenharProvasConteudo")}<div class="mb-2"></div>`;
   }).join("");
@@ -160,7 +160,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
       </div>
     </div>
   </div>
-  <p class="text-sm muted mb-2">${grupos.length} prova(s) encontrada(s) · ${pool.length} ${plural(pool.length,"questão","questões")} no total com os filtros atuais.</p>
+  <p class="text-sm muted mb-2">${grupos.length} ${flexionar(grupos.length, "prova(s) encontrada(s)")} · ${pool.length} ${plural(pool.length,"questão","questões")} no total com os filtros atuais.</p>
   ${secoes || '<div class="empty-state">Nenhuma prova encontrada com esses filtros.</div>'}
   ${htmlProvasInativas()}
   ${buscaProvas().trim() && simuladosDaBusca.length ? `<div class="card-title mt-3 mb-1">Simulados que combinam com a busca <span class="text-sm muted peso-400">· ${simuladosDaBusca.length}</span></div>${simuladosDaBusca.map(renderSimuladoCard).join("")}` : ""}`;
@@ -196,7 +196,7 @@ function confirmarInativarProva(indice){
     <p class="text-sm"><strong>O que fazer com esta prova</strong> (${todas.length} questões)?</p>
     <div class="feedback-box ok mt-1"><strong>Inativar</strong> (recomendado): a prova deixa de aparecer para os alunos, no estudo, nas provas e nos simulados. <strong>Nada é apagado</strong>: questões, respostas e estatísticas ficam, e dá para reativar quando quiser.
       <div class="mt-1"><button class="btn btn-primary btn-sm" onclick="inativarProvaDoBanco(${indice})">Inativar a prova</button></div></div>
-    <div class="feedback-box mt-2" style="border-color:var(--danger,#b3372b)"><strong>Excluir</strong>: apaga as ${todas.length} questões do banco${respostas ? "; " + respostas + " resposta(s) de alunos perdem a questão de origem" : ""}. Não dá para desfazer.${daPasta ? " Como a prova vem da pasta dados/, ela volta na próxima carga a não ser que o arquivo dela seja apagado de dados/." : ""}
+    <div class="feedback-box mt-2" style="border-color:var(--danger,#b3372b)"><strong>Excluir</strong>: apaga as ${todas.length} questões do banco${respostas ? "; " + respostas+" "+flexionar(respostas, "resposta(s)")+" de alunos perdem a questão de origem" : ""}. Não dá para desfazer.${daPasta ? " Como a prova vem da pasta dados/, ela volta na próxima carga a não ser que o arquivo dela seja apagado de dados/." : ""}
       <div class="mt-1"><button class="btn btn-danger btn-sm" onclick="excluirProvaDoBanco(${indice})">Excluir a prova</button></div></div>
     <div class="mt-2"><button class="btn btn-ghost btn-sm" onclick="fecharModal()">Cancelar</button></div>
   </div>`);
@@ -255,7 +255,7 @@ function perguntarVersaoDaProva(indice, acao){
   const total = g.ids.length;
   const chamada = v => acao==="simulado" ? `fazerProvaComoSimulado(${indice}, true, '${v}')` : `praticarProva(${indice}, '${v}')`;
   abrirModalTitulado("Qual versão da prova você quer fazer?", `
-    <p class="text-sm">Esta prova teve ${fora} ${plural(fora,"questão","questões")} anulada(s) ou desatualizada(s) e ${n} delas ${n===1?"tem":"têm"} uma reposição corrigida por IA.</p>
+    <p class="text-sm">Esta prova teve ${fora} ${plural(fora,"questão","questões")} ${flexionar(fora, "anulada(s)")} ou desatualizada(s) e ${n} delas ${n===1?"tem":"têm"} uma reposição corrigida por IA.</p>
     <div class="grid gap-1 mt-2">
       <button class="card text-left" id="versaoOriginal" onclick="fecharModal();${chamada("original")}">
         <strong>Como foi realizada de fato</strong>

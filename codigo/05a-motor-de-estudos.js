@@ -958,7 +958,7 @@ function misturaEfetiva(usuario){
   }
   if(anteriores.length){
     return {...base, ajustada:false, temAnteriores:true, indiceBloco:indice,
-      explicacao:"A revisão está na proporção cheia desde o primeiro bloco porque há matéria de anos anteriores disponível ("+anteriores.length+" "+plural(anteriores.length,"assunto","assuntos")+" já estudado(s) antes deste ano) para alimentar a revisão espaçada."};
+      explicacao:"A revisão está na proporção cheia desde o primeiro bloco porque há matéria de anos anteriores disponível ("+anteriores.length+" "+flexionar(anteriores.length,"assunto(s) já estudado(s)")+" antes deste ano) para alimentar a revisão espaçada."};
   }
   if(indice >= rampa.length){
     return {...base, ajustada:false, temAnteriores:false, indiceBloco:indice, explicacao:""};

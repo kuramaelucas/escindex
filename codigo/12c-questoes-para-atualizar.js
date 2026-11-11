@@ -104,7 +104,7 @@ function motivosParaAtualizar(q){
   if(MARCA_TEXTO_INCOMPLETO.test(textos)) m.push({ tipo: "texto", rotulo: "Texto cortado", texto: "Um trecho não veio no material de origem." });
   if(q.status === "rascunho") m.push({ tipo: "rascunho", rotulo: "Rascunho", texto: q.motivoStatus || "Fora do estudo até ser completada." });
   if(q.status === "desatualizada") m.push({ tipo: "desatualizada", rotulo: "Desatualizada", texto: q.motivoStatus || "Marcada como desatualizada." });
-  if((q.sinalizacoes || []).length) m.push({ tipo: "sinalizada", rotulo: "Sinalizada", texto: q.sinalizacoes.length + " sinalização(ões) de aluno." });
+  if((q.sinalizacoes || []).length) m.push({ tipo: "sinalizada", rotulo: "Sinalizada", texto: q.sinalizacoes.length+" "+flexionar(q.sinalizacoes.length, "sinalização(ões)")+" de aluno." });
   return m;
 }
 const TIPOS_DE_ATUALIZACAO = [
@@ -161,7 +161,7 @@ function renderAtualizarQuestoes(){
       <div>
         <div class="card-title mb-02">${iconeSvg("alert")} Relatos dos alunos para o Claude</div>
         <div class="text-sm muted">${relatosParaClaude().length
-          ? `<strong>${relatosParaClaude().length}</strong> relato(s) em aberto (sinalizações e dúvidas sem resposta oficial), em ${new Set(relatosParaClaude().map(r => r.questaoId)).size} ${plural(new Set(relatosParaClaude().map(r => r.questaoId)).size,"questão","questões")}. O arquivo não leva o nome de ninguém.`
+          ? `<strong>${relatosParaClaude().length}</strong> ${flexionar(relatosParaClaude().length, "relato(s)")} em aberto (sinalizações e dúvidas sem resposta oficial), em ${new Set(relatosParaClaude().map(r => r.questaoId)).size} ${plural(new Set(relatosParaClaude().map(r => r.questaoId)).size,"questão","questões")}. O arquivo não leva o nome de ninguém.`
           : "Nenhuma sinalização ou dúvida em aberto."} Na pasta do projeto: <code>npm run relatos -- arquivo.json</code> abre cada questão relatada, e o que o Claude fizer fica em <code>docs/REGISTRO-DE-RELATOS.md</code> para alguém conferir.</div>
       </div>
       <button class="btn btn-secondary btn-sm" onclick="baixarRelatosParaClaude()" ${relatosParaClaude().length ? "" : "disabled"}>${iconeSvg("download")} Baixar os relatos</button>
@@ -175,7 +175,7 @@ function renderAtualizarQuestoes(){
       <div>
         <div class="card-title mb-02">${iconeSvg("download")} Atualizações para a pasta dados/</div>
         <div class="text-sm muted">${corrigidas.length
-          ? `<strong>${corrigidas.length}</strong> ${plural(corrigidas.length,"questão","questões")} consertada(s) ainda diferente(s) da pasta dados/${naFila ? ` · ${naFila} subindo agora…` : ""}.`
+          ? `<strong>${corrigidas.length}</strong> ${plural(corrigidas.length,"questão","questões")} ${flexionar(corrigidas.length, "consertada(s)")} ainda diferente(s) da pasta dados/${naFila ? ` · ${naFila} subindo agora…` : ""}.`
           : "Nenhuma questão consertada esperando para ir à pasta dados/."}</div>
         ${db.nuvem && db.nuvem.avisoImagens ? `<div class="text-xs mt-1 texto-alerta">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoImagens)}</div>` : ""}
       </div>
@@ -192,7 +192,7 @@ function renderAtualizarQuestoes(){
         <td class="flex gap-1"><button class="icon-btn" title="Ver" onclick="abrirQuestaoCompleta('${q.id}')">${iconeSvg("search")}</button><button class="icon-btn" title="Editar" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")}</button><button class="icon-btn" title="Desfazer ou encerrar o conserto (a questão volta ao que a pasta dados/ diz)" onclick="confirmarDesfazerCorrecao('${q.id}')">${iconeSvg("trash")}</button></td>
       </tr>`; }).join("")}
     </tbody></table></div>${corrigidas.length > 50 ? `<div class="text-xs muted mt-1">… e mais ${corrigidas.length - 50}. Todas vão no arquivo.</div>` : ""}` : ""}
-    ${incorporadas.length ? `<div class="card-flat mt-2 text-sm">${iconeSvg("check")} ${incorporadas.length} correção(ões) já estão na pasta dados/ publicada.
+    ${incorporadas.length ? `<div class="card-flat mt-2 text-sm">${iconeSvg("check")} ${incorporadas.length} ${flexionar(incorporadas.length, "correção(ões)")} já estão na pasta dados/ publicada.
       <button class="btn btn-ghost btn-sm" onclick="encerrarCorrecoesIncorporadas()">Encerrar na nuvem</button></div>` : ""}
   </div>
   <div class="card mb-2">
@@ -261,7 +261,7 @@ function encerrarCorrecoesIncorporadas(){
   const ids = Object.keys(db.correcoes || {}).filter(id => { const q = getQuestao(id); return q && !correcaoDaQuestao(q); });
   ids.forEach(id => registrarCorrecaoDaQuestao(id));
   saveState();
-  toast(ids.length + " correção(ões) encerrada(s)" + (nuvemConectado() ? " — saem da nuvem na próxima sincronização." : "."));
+  toast(ids.length+" "+flexionar(ids.length, "correção(ões) encerrada(s)")+"" + (nuvemConectado() ? " — saem da nuvem na próxima sincronização." : "."));
   render();
 }
 
@@ -312,7 +312,7 @@ async function baixarAtualizacoesParaDados(){
   const nome = "atualizacoes-questoes-" + hojeISO() + ".json";
   baixarArquivo(nome, JSON.stringify(conteudo, null, 1), "application/json");
   toast(conteudo.total+" "+plural(conteudo.total,"questão","questões")+" no arquivo " + nome + ". Na pasta do projeto: npm run atualizar-dados -- " + nome +
-    (semImagemEmbutida ? " (" + semImagemEmbutida + " figura(s) vão pelo endereço da nuvem; a ferramenta baixa)." : "."));
+    (semImagemEmbutida ? " (" + semImagemEmbutida+" "+flexionar(semImagemEmbutida, "figura(s)")+" vão pelo endereço da nuvem; a ferramenta baixa)." : "."));
 }
 
 /* ---------- os relatos para o Claude ----------
@@ -334,5 +334,5 @@ function baixarRelatosParaClaude(){
   const nome = "relatos-" + hojeISO() + ".json";
   baixarArquivo(nome, JSON.stringify({ formato: "esc-relatos-questoes", versao: 1, geradoEm: new Date().toISOString(),
     relatos: relatos.map(r => { const q = getQuestao(r.questaoId); return { ...r, banca: q.banca, ano: q.ano, numeroNaProva: q.numeroNaProva || null }; }) }, null, 1), "application/json");
-  toast(relatos.length + " relato(s) no arquivo " + nome + ". Na pasta do projeto: npm run relatos -- " + nome);
+  toast(relatos.length+" "+flexionar(relatos.length, "relato(s)")+" no arquivo " + nome + ". Na pasta do projeto: npm run relatos -- " + nome);
 }

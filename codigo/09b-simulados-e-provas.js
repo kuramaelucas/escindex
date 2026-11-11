@@ -147,7 +147,7 @@ function htmlHistoricoDeNotas(u){
     <select class="input" aria-label="Filtrar por nome do simulado" onchange="mudarNomeHistoricoNotas(this.value)"><option value="">Todos os nomes</option>${nomes.map(n=>`<option value="${escapeHtml(n)}"${f.nome===n?" selected":""}>${escapeHtml(n)}</option>`).join("")}</select>
   </div>
   ${lista.length ? `<div class="card">
-    <div class="card-title mb-1">Suas notas${media!==null ? ` <span class="text-sm muted peso-400">· ${lista.length} feita(s) · média ${media}%</span>` : ""}</div>
+    <div class="card-title mb-1">Suas notas${media!==null ? ` <span class="text-sm muted peso-400">· ${lista.length} ${flexionar(lista.length, "feita(s)")} · média ${media}%</span>` : ""}</div>
     <div class="table-wrap"><table><thead><tr><th>Prova</th><th>Tipo</th>${cabecalho("nota","Nota")}<th>Acertos</th>${cabecalho("data","Data")}</tr></thead><tbody>
       ${v.itens.map(r=>`<tr${r.itens?` class="linha-clicavel" onclick="verDetalheResultadoSimulado('${r.id}')" title="Abrir o resultado e o feedback desta prova"`:""}><td class="text-sm">${r.itens?`<button class="link-btn titulo-simulado" onclick="event.stopPropagation();verDetalheResultadoSimulado('${r.id}')">${escapeHtml(r.titulo||"—")}</button>`:escapeHtml(r.titulo||"—")}</td><td class="text-sm muted">${ehSimulado(r)?"Simulado":"Prova"}</td><td><span class="badge ${classeBadgeNota(r.nota)}">${r.nota}%</span></td><td class="text-sm">${r.acertos!=null && r.total ? r.acertos+"/"+r.total : "—"}</td><td class="text-sm">${formatDataBR(r.data)}</td></tr>`).join("")}
     </tbody></table></div>
@@ -240,14 +240,14 @@ function renderSimuladoCard(s){
   const andamento = simuladoEmAndamentoDe(usuarioAtual(), s.id);
   const prog = andamento ? progressoDoSimuladoEmAndamento(andamento) : null;
   return `<div class="card prova-card">
-    <div class="peso-700 prova-banca">${previo ? `<button class="link-btn titulo-simulado" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Ver as ${previo.n} vez(es) que você fez este simulado e como a nota mudou">${escapeHtml(s.titulo)}</button>` : escapeHtml(s.titulo)}</div>
+    <div class="peso-700 prova-banca">${previo ? `<button class="link-btn titulo-simulado" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Ver as ${previo.n} ${flexionar(previo.n, "vez(es)")} que você fez este simulado e como a nota mudou">${escapeHtml(s.titulo)}</button>` : escapeHtml(s.titulo)}</div>
     <div class="text-sm muted">${s.questoes.length} questões · ${s.duracaoMin} min${s.tipo==="simulado_professor" && !simuladoLiberadoParaEstudo(usuarioAtual().id, s.id) ? " · questões fora das suas trilhas de estudo" : ""}</div>
     ${htmlDatasDoSimulado(s)}
     ${prog ? `<div class="qcard-meta mt-1"><span class="badge badge-amber" title="Suas respostas ficam guardadas neste aparelho; o relógio só corre enquanto a prova está aberta">em andamento · ${prog.feitas} de ${prog.total} questões respondidas</span></div>` : ""}
     ${previo ? `<div class="qcard-meta mt-1">
         <span class="badge ${classeBadgeNota(previo.ultima.nota)}">última nota ${previo.ultima.nota}%</span>
         <span class="badge badge-muted">melhor: ${previo.melhor}%</span>
-        <span class="badge badge-muted">${previo.n} tentativa(s) · ${formatDataBR(previo.ultima.data)}</span>
+        <span class="badge badge-muted">${previo.n} ${flexionar(previo.n, "tentativa(s)")} · ${formatDataBR(previo.ultima.data)}</span>
         ${previo.variacao!==null ? `<span class="badge ${previo.variacao>=0?"badge-accent":"badge-danger"}">${previo.variacao>=0?"+":""}${previo.variacao} pts vs. anterior</span>` : ""}
       </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
     <div class="flex gap-1 prova-acoes quebra">
@@ -632,7 +632,7 @@ function renderSimuladoAtivo(){
   return `<div class="coluna-questao">
   <div class="flex justify-between items-center mb-2 quebra-gap">
     <div class="text-sm muted flex items-center gap-1 quebra">
-      <span>Questão ${sessao.indiceAtual+1} de ${sessao.itens.length} · ${respondidasCount} respondida(s) · ${emBranco} em branco</span>
+      <span>Questão ${sessao.indiceAtual+1} de ${sessao.itens.length} · ${respondidasCount} ${flexionar(respondidasCount, "respondida(s)")} · ${emBranco} em branco</span>
       ${sessao.ocultarTimer ? "" : iconeSvg("clock")}<span class="badge badge-muted" id="cronometroSimulado"${sessao.ocultarTimer ? ' style="display:none"' : ""}>${sessao.duracaoMin?formatarDuracao(Math.max(0,sessao.duracaoMin*60 - tempoDecorridoSimulado()))+" restantes":formatarDuracao(tempoDecorridoSimulado())+" decorridos"}</span>
     </div>
     <div class="flex gap-1 quebra">
@@ -644,7 +644,7 @@ function renderSimuladoAtivo(){
     </div>
   </div>
   ${htmlBarraDeQuestoes({ id: "mapaDoSimulado", feitas: respondidasCount, total: sessao.itens.length,
-    titulo: respondidasCount + " respondida(s) · " + emBranco + " em branco",
+    titulo: respondidasCount+" "+flexionar(respondidasCount, "respondida(s)")+" · " + emBranco + " em branco",
     pills: sessao.itens.map((it,i)=>{
       // o número da questão fica sempre visível: é por ele que a pessoa se
       // localiza na prova e no caderno de rascunho
@@ -720,8 +720,8 @@ function htmlConfiancaDoSimulado(resumo){
     <div class="grid grid-3 mt-1">
       ${Object.keys(ROTULOS_CONFIANCA).map(c=>{ const x = resumo.por[c]; return `<div class="stat-tile"><div class="stat-value">${x.n}</div><div class="stat-label">${ROTULOS_CONFIANCA[c].toLowerCase()}${x.n ? ` · acertou ${x.ok} (${pct(x.ok,x.n)}%)` : ""}</div></div>`; }).join("")}
     </div>
-    ${resumo.erroComCerteza ? `<p class="text-sm mt-1"><strong>${resumo.erroComCerteza}</strong> erro(s) com certeza: são os que mais merecem releitura, porque você não sabia que não sabia.</p>` : ""}
-    ${resumo.acertoNoChute ? `<p class="text-sm mt-1"><strong>${resumo.acertoNoChute}</strong> acerto(s) no chute: a plataforma conta como não sabido, e eles voltam na revisão.</p>` : ""}
+    ${resumo.erroComCerteza ? `<p class="text-sm mt-1"><strong>${resumo.erroComCerteza}</strong> ${flexionar(resumo.erroComCerteza, "erro(s)")} com certeza: são os que mais merecem releitura, porque você não sabia que não sabia.</p>` : ""}
+    ${resumo.acertoNoChute ? `<p class="text-sm mt-1"><strong>${resumo.acertoNoChute}</strong> ${flexionar(resumo.acertoNoChute, "acerto(s)")} no chute: a plataforma conta como não sabido, e eles voltam na revisão.</p>` : ""}
   </div>`;
 }
 /* Uma barra por questão, na ordem da prova: onde o tempo foi e se valeu a
@@ -945,7 +945,7 @@ function renderResultadoSimulado(){
     <div class="flex items-center gap-2 quebra mt-1">
       <div class="stat-tile"><div class="stat-value">${nota}%</div><div class="stat-label">${acertos} de ${total} corretas</div></div>
       ${previa ? `<div class="stat-tile anterior" title="Sua tentativa de ${formatDataBR(previa.data)}"><div class="stat-value">${previa.nota}%</div><div class="stat-label">antes · ${previa.acertos} de ${previa.total}${nota!==previa.nota ? ` · <strong>${nota>previa.nota?"+":""}${nota-previa.nota} pts</strong>` : ""}</div></div>` : ""}
-      <div class="text-sm muted">${erradas.length ? `${erradas.length} errada(s) ou em branco` : "Você acertou tudo."}</div>
+      <div class="text-sm muted">${erradas.length ? `${erradas.length} ${flexionar(erradas.length, "errada(s)")} ou em branco` : "Você acertou tudo."}</div>
     </div>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary btn-sm" onclick="state.sessaoAtual=null;navigate('simulados')">Voltar aos simulados</button>
@@ -956,7 +956,7 @@ function renderResultadoSimulado(){
     <div class="text-sm peso-600 mt-2">Mapa de acertos <span class="muted peso-400">· verde acertou, vermelho errou, cinza em branco; clique para abrir a questão</span></div>
     <div class="mapa-acertos mt-1">${todasLinhas.map(l=> l.fora ? `<button class="pill pill-resultado" onclick="abrirQuestaoDoResultado(${l.i})" title="${l.q.status==="desatualizada"?"desatualizada":"anulada"}: aparece na prova, mas a resposta não conta">${l.q.numeroNaProva||l.i+1}</button>` : pillMapa(l)).join("")}</div>
     ${sessao.duracaoMin && sessao.tempoTotalSeg > sessao.duracaoMin*60 ? `<div class="card-flat mt-2 text-sm borda-alerta">${iconeSvg("clock")} <strong>Fora do tempo.</strong> Você usou ${formatarDuracao(sessao.tempoTotalSeg)} de um limite de ${formatarDuracao(sessao.duracaoMin*60)}.</div>` : ""}
-    ${foraLinhas.length ? `<div class="text-xs muted mt-1">${foraLinhas.length} ${plural(foraLinhas.length,"questão","questões")} anulada(s) ou desatualizada(s) apareceram na prova e não entram na nota (cinza, sem cor).</div>` : ""}
+    ${foraLinhas.length ? `<div class="text-xs muted mt-1">${foraLinhas.length} ${plural(foraLinhas.length,"questão","questões")} ${flexionar(foraLinhas.length, "anulada(s)")} ou desatualizada(s) apareceram na prova e não entram na nota (cinza, sem cor).</div>` : ""}
     ${sessao.semClassificacao ? `<div class="card-flat mt-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>Prova com correção por IA.</strong> Suas respostas contam no desempenho do dia e na taxa de acerto diária e mensal, mas esta nota <strong>não entra na classificação</strong> do simulado.</div>` : ""}
     ${htmlComparacaoComAnterior(comp, previa, linhas)}
   </div>

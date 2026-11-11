@@ -141,14 +141,14 @@ function criarCargaProva(){
   saveState();
   ctxCentralProvas().cargaAberta = carga.id;
   ctxCentralProvas().loteAberto = null;
-  toast("Prova criada e dividida em "+carga.lotes.length+" lote(s). Cada lote já tem o próprio modelo pronto para copiar.");
+  toast("Prova criada e dividida em "+carga.lotes.length+" "+flexionar(carga.lotes.length, "lote(s)")+". Cada lote já tem o próprio modelo pronto para copiar.");
   render();
 }
 function confirmarExcluirCarga(cargaId){
   const carga = getCargaProva(cargaId); if(!carga) return;
   const r = resumoCarga(carga);
   abrirModal(`${cabecalhoJanela("Descartar o acompanhamento desta prova?")}
-    <p>Isso apaga o controle de lotes de <strong>${escapeHtml(nomeDaCarga(carga))}</strong>${r.prontas?" e o texto de "+r.prontas+" "+plural(r.prontas,"questão","questões")+" conferida(s) e ainda não publicada(s)":""}.</p>
+    <p>Isso apaga o controle de lotes de <strong>${escapeHtml(nomeDaCarga(carga))}</strong>${r.prontas?" e o texto de "+r.prontas+" "+plural(r.prontas,"questão","questões")+" "+flexionar(r.prontas, "conferida(s)")+" e ainda não publicada(s)":""}.</p>
     <p class="text-sm muted mt-1">As ${r.publicadas} ${plural(r.publicadas,"questão","questões")} já publicadas no banco <strong>continuam lá</strong> — quem apaga questão do banco é a tela Banco de Questões.</p>
     <div class="flex gap-1 mt-3"><button class="btn btn-danger" onclick="excluirCargaProva('${carga.id}')">Descartar acompanhamento</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
@@ -204,7 +204,7 @@ function modeloConstrucaoLote(carga, lote){
   "- Se a questão tiver sido anulada pela banca, acrescente a linha: STATUS: anulada\n"+
   "- Mantenha exatamente as alternativas originais: se a prova tem 4 (A a D), não invente uma quinta.\n"+
   "- Se você não tiver certeza do gabarito oficial, escreva GABARITO: ? e explique a dúvida no campo EXPLICACAO, em vez de inventar.\n\n"+
-  "Antes de me entregar, confira você mesmo: devem ser "+quantas+" bloco(s), com NUMERO indo de "+lote.inicio+" a "+lote.fim+", sem pular e sem repetir. Se faltar alguma, diga qual falta e por quê.\n\n"+
+  "Antes de me entregar, confira você mesmo: devem ser "+quantas+" "+flexionar(quantas, "bloco(s)")+", com NUMERO indo de "+lote.inicio+" a "+lote.fim+", sem pular e sem repetir. Se faltar alguma, diga qual falta e por quê.\n\n"+
   "Aqui está a prova (colo o texto abaixo ou anexo o PDF/imagem):\n[COLE AQUI O TEXTO DA PROVA OU ANEXE O ARQUIVO]";
 }
 function copiarModeloLote(cargaId, loteId){
@@ -334,7 +334,7 @@ function publicarLoteProva(cargaId, loteId, silencioso){
   if(ctx.loteAberto===loteId){ ctx.loteAberto = null; state.filtroRota.previewImportacao = null; }
   saveState();
   if(!silencioso){
-    toast(r.importadas+" "+plural(r.importadas,"questão","questões")+" publicada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" "+plural(r.novosAssuntos,"assunto","assuntos")+" novo(s)":"")+
+    toast(r.importadas+" "+plural(r.importadas,"questão","questões")+" "+flexionar(r.importadas, "publicada(s)")+""+(r.ignoradas?" · "+r.ignoradas+" "+flexionar(r.ignoradas, "duplicada(s) ignorada(s)")+"":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" "+plural(r.novosAssuntos,"assunto","assuntos")+" "+flexionar(r.novosAssuntos, "novo(s)")+"":"")+
       (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
       (carga.destino==="sugerir"?" — aguardando aprovação.":"."));
     render();
@@ -429,11 +429,11 @@ function cardCargaProva(c){
       <div class="peso-700">${escapeHtml(nomeDaCarga(c))}</div>
       <span class="badge ${r.concluida?"badge-accent":r.publicadas?"badge-amber":"badge-muted"}">${r.concluida?"concluída":r.publicadas?"em andamento":"não começada"}</span>
     </div>
-    <div class="text-sm muted mt-1">${r.publicadas} de ${r.total} ${plural(r.total,"questão","questões")} no banco${r.prontas?" · "+r.prontas+" conferida(s) esperando publicação":""}</div>
+    <div class="text-sm muted mt-1">${r.publicadas} de ${r.total} ${plural(r.total,"questão","questões")} no banco${r.prontas?" · "+r.prontas+" "+flexionar(r.prontas, "conferida(s)")+" esperando publicação":""}</div>
     <div class="progress-track mt-1"><div class="progress-fill" style="width:${r.pctPublicado}%"></div></div>
     <div class="qcard-meta mt-1">
       <span class="badge badge-muted">${r.publicados}/${r.lotes} lotes publicados</span>
-      ${r.conferidos?`<span class="badge badge-amber">${r.conferidos} conferido(s)</span>`:""}
+      ${r.conferidos?`<span class="badge badge-amber">${r.conferidos} ${flexionar(r.conferidos, "conferido(s)")}</span>`:""}
       ${r.pendentes?`<span class="badge badge-muted">${r.pendentes} a fazer</span>`:""}
     </div>
     <button class="btn btn-primary btn-sm mt-2" onclick="abrirCargaProva('${c.id}')">Abrir</button>
@@ -448,7 +448,7 @@ function renderCargaProva(carga){
   <div class="page-header">
     <button class="link-btn" onclick="voltarAoPainelProvas()">← todas as provas</button>
     <h2>${escapeHtml(nomeDaCarga(carga))}</h2>
-    <p>Tipo de prova: ${escapeHtml(infoTipoProva(tipoDaCarga(carga)).nome)} · ${carga.totalQuestoes} questões declaradas, divididas em ${(carga.lotes||[]).length} lote(s) de até ${carga.tamanhoLote}. Destino ao publicar: ${escapeHtml(rotuloDestino)}.</p>
+    <p>Tipo de prova: ${escapeHtml(infoTipoProva(tipoDaCarga(carga)).nome)} · ${carga.totalQuestoes} questões declaradas, divididas em ${(carga.lotes||[]).length} ${flexionar((carga.lotes||[]).length, "lote(s)")} de até ${carga.tamanhoLote}. Destino ao publicar: ${escapeHtml(rotuloDestino)}.</p>
   </div>
 
   <div class="card mb-2">
@@ -498,9 +498,9 @@ function renderLoteProva(carga, lote, aberto){
       <input class="input" value="${escapeHtml(lote.responsavel||"")}" placeholder="ex.: conversa 1, conversa 2, Ana" onchange="definirResponsavelLote('${carga.id}','${lote.id}',this.value)">
     </div>` : (lote.responsavel?`<div class="text-xs muted mt-1">feito por ${escapeHtml(lote.responsavel)}</div>`:"")}
     ${res ? `<div class="qcard-meta mt-2">
-      <span class="badge ${res.validas===res.esperado?"badge-accent":"badge-amber"}">${res.validas} pronta(s) de ${res.esperado}</span>
+      <span class="badge ${res.validas===res.esperado?"badge-accent":"badge-amber"}">${res.validas} ${flexionar(res.validas, "pronta(s)")} de ${res.esperado}</span>
       ${res.comProblema?`<span class="badge badge-danger">${res.comProblema} com problema</span>`:""}
-      ${res.duplicadas?`<span class="badge badge-amber">${res.duplicadas} duplicada(s)</span>`:""}
+      ${res.duplicadas?`<span class="badge badge-amber">${res.duplicadas} ${flexionar(res.duplicadas, "duplicada(s)")}</span>`:""}
       ${res.semNumero?`<span class="badge badge-muted">${res.semNumero} sem NUMERO</span>`:""}
       ${res.faltando && res.faltando.length?`<span class="badge badge-amber">faltam nº ${resumirNumeros(res.faltando,4)}</span>`:""}
       ${res.repetidos && res.repetidos.length?`<span class="badge badge-danger">repetidas nº ${resumirNumeros(res.repetidos,4)}</span>`:""}

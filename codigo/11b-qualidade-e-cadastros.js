@@ -77,7 +77,7 @@ function renderListaSuspeitas(){
   const pag = paginar(d.lista, "qualidade-suspeitas", {porPagina:10});
   return intro+(d.lista.length ? pag.itens.map(s=>`
     <div class="card mb-2">
-      <div class="qcard-meta"><span class="badge badge-danger">${s.taxa}% de acerto</span><span class="badge badge-muted">${s.alunos} alunos</span>${s.sinalizacoes ? `<span class="badge badge-amber">${s.sinalizacoes} sinalização(ões)</span>` : ""}<span class="badge badge-muted">${escapeHtml(nomeAssunto(s.q.assuntoId))}</span></div>
+      <div class="qcard-meta"><span class="badge badge-danger">${s.taxa}% de acerto</span><span class="badge badge-muted">${s.alunos} alunos</span>${s.sinalizacoes ? `<span class="badge badge-amber">${s.sinalizacoes} ${flexionar(s.sinalizacoes, "sinalização(ões)")}</span>` : ""}<span class="badge badge-muted">${escapeHtml(nomeAssunto(s.q.assuntoId))}</span></div>
       <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${s.q.id}')">${escapeHtml(s.q.enunciado.slice(0,180))}…</span></div>
       <ul class="text-sm mt-1">${s.sinais.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
       <div class="flex gap-1 mt-2 quebra">
@@ -122,7 +122,7 @@ function manterApenasUmaDuplicata(indiceGrupo){
   const g = grupos[indiceGrupo]; if(!g) return;
   const manter = g.slice().sort((a,b)=>(((b.estatisticas||{}).respostas||0)-((a.estatisticas||{}).respostas||0)))[0];
   const excluir = g.filter(q=>q.id!==manter.id);
-  abrirModal(`${cabecalhoJanela(`Excluir ${excluir.length} cópia(s)`)}
+  abrirModal(`${cabecalhoJanela(`Excluir ${excluir.length} ${flexionar(excluir.length, "cópia(s)")}`)}
     <p class="text-sm">Será mantida a cópia com mais respostas registradas (${(manter.estatisticas||{}).respostas||0} resposta(s), ${escapeHtml(manter.banca)} ${anoDaProva(manter)}). As demais serão excluídas definitivamente, junto com as estatísticas delas.</p>
     <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="confirmarManterApenasUma('${manter.id}','${excluir.map(q=>q.id).join(",")}')">Excluir as cópias</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
@@ -131,7 +131,7 @@ function confirmarManterApenasUma(manterId, idsExcluir){
   ids.forEach(id=>{ const q = getQuestao(id); if(q) nuvemMarcarQuestaoFora(q, q.status==="pendente" ? "recusada" : "removida", "Cópia duplicada de outra questão do banco."); });
   db.questoes = db.questoes.filter(q=>!ids.includes(q.id));
   saveState(); fecharModal();
-  toast(ids.length+" cópia(s) excluída(s).");
+  toast(ids.length+" "+flexionar(ids.length, "cópia(s) excluída(s)")+".");
   render();
 }
 function renderListaSugeridas(lista){
@@ -207,7 +207,7 @@ function renderListaDificeis(lista){
           return `<div class="flex items-center gap-1 mb-1"><span class="text-xs" style="width:34px">${alt.id}${alt.id===q.gabarito?" ✓":""}</span><div class="progress-track" style="flex:1"><div class="progress-fill ${alt.id===q.gabarito?"":"amber"}" style="width:${largura}%"></div></div><span class="text-xs muted" style="width:26px;text-align:right">${n}</span>${nElim?`<span class="text-xs muted" style="width:120px;text-align:right" title="Vezes que quem errou já tinha riscado esta alternativa">riscada por ${nElim}${alt.id===q.gabarito?" ⚠":""}</span>`:""}</div>`;
         }).join("")}
       </div>
-      ${gabaritoEliminado>0 ? `<div class="card-flat mt-2 text-xs borda-alerta">${iconeSvg("alert")} <strong>${gabaritoEliminado} de ${totalErros}</strong> aluno(s) que erraram esta questão tinham riscado justamente a alternativa correta (${escapeHtml(q.gabarito)}) antes de responder — sinal de que o gabarito está redigido de um jeito que soa errado. Vale revisar a redação da alternativa ${escapeHtml(q.gabarito)}.</div>` : ""}
+      ${gabaritoEliminado>0 ? `<div class="card-flat mt-2 text-xs borda-alerta">${iconeSvg("alert")} <strong>${gabaritoEliminado} de ${totalErros}</strong> ${flexionar(totalErros, "aluno(s)")} que erraram esta questão tinham riscado justamente a alternativa correta (${escapeHtml(q.gabarito)}) antes de responder — sinal de que o gabarito está redigido de um jeito que soa errado. Vale revisar a redação da alternativa ${escapeHtml(q.gabarito)}.</div>` : ""}
       <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(q.id, "Ver questão completa")}
         <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao('${q.id}')">${iconeSvg("edit")} Editar esta questão agora</button>
@@ -410,7 +410,7 @@ function renderRevisaoFormatacao(){
     ${lotes.length ? `<div class="lote-grid">
       <button class="lote-chip ${selecionado==="__todos__"?"active":""}" onclick="selecionarLoteFormatacao('__todos__')">
         <div class="lote-chip-data">Todas as questões</div>
-        <div class="lote-chip-origem">${lotes.length} bloco(s) de envio</div>
+        <div class="lote-chip-origem">${lotes.length} ${flexionar(lotes.length, "bloco(s)")} de envio</div>
         <div class="lote-chip-qtd">${lista.length} ${plural(lista.length,"questão","questões")}</div>
       </button>
       ${lotes.map(l=>`<button class="lote-chip ${selecionado===l.chave?"active":""}" onclick="selecionarLoteFormatacao(this.dataset.chave)" data-chave="${escapeHtml(l.chave)}">
@@ -524,7 +524,7 @@ function renderUsuariosDaNuvem(souMaster){
       <div class="card-title sem-mb">${iconeSvg("database")} Cadastros da nuvem (${nuvemUsuarios.length})</div>
       <div class="flex gap-1 quebra">${souMaster ? `<button class="btn btn-primary btn-sm" onclick="nuvemLembrarQuemNaoEntrou()">Lembrar quem ainda não entrou</button>` : ""}<button class="btn btn-secondary btn-sm" onclick="nuvemBuscarUsuarios()">${iconeSvg("refresh")} Atualizar</button></div>
     </div>
-    <p class="text-sm muted">${porStatus.aprovado.length} aprovado(s) · ${porStatus.pendente.length} pendente(s) · ${porStatus.inativo.length} inativo(s) · ${porStatus.rejeitado.length} recusado(s). <strong>Quem você aprova nos pedidos de acesso aparece aqui</strong> — a lista de pedidos mostra só quem ainda está pendente.</p>
+    <p class="text-sm muted">${porStatus.aprovado.length} ${flexionar(porStatus.aprovado.length, "aprovado(s)")} · ${porStatus.pendente.length} ${flexionar(porStatus.pendente.length, "pendente(s)")} · ${porStatus.inativo.length} ${flexionar(porStatus.inativo.length, "inativo(s)")} · ${porStatus.rejeitado.length} ${flexionar(porStatus.rejeitado.length, "recusado(s)")}. <strong>Quem você aprova nos pedidos de acesso aparece aqui</strong> — a lista de pedidos mostra só quem ainda está pendente.</p>
     ${nuvemUsuariosErro ? `<p class="text-sm mt-1 texto-alerta peso-600">${escapeHtml(nuvemUsuariosErro)}</p>` : ""}
     ${nuvemUsuarios.length ? `<div class="table-wrap mt-2"><table>
       <thead><tr>${[["nome","Nome"],["email","E-mail / Matrícula"],["ano","Ano"],["papel","Papel"],["nivel","Nível de admin"],["status","Status"]].map(([c,r]) => cabecalhoOrdenavel("usuarios-nuvem", c, r, "texto")).join("")}<th></th></tr></thead>
@@ -565,7 +565,7 @@ function renderUsuariosLocais(souMaster, eu){
     <div class="card-title">Contas deste navegador (${db.usuarios.length})</div>
     <p class="text-sm muted mb-2">${nuvemConectado()
       ? "As contas de teste e as de antes da nuvem. Elas funcionam só neste computador e não sincronizam — a turma de verdade é a lista acima."
-      : db.usuarios.length + " cadastro(s) no total · " + admins.length + " administrador(es)."}</p>
+      : db.usuarios.length+" "+flexionar(db.usuarios.length, "cadastro(s)")+" no total · " + admins.length+" "+flexionar(admins.length, "administrador(es)")+"."}</p>
     <div class="table-wrap"><table><thead><tr>${[["nome","Nome"],["email","E-mail / Matrícula"],["turma","Turma / Ano"],["papel","Papel"],["nivel","Nível de admin"],["status","Status"]].map(([c,r]) => cabecalhoOrdenavel("usuarios", c, r, "texto")).join("")}<th></th></tr></thead><tbody>
     ${pagUsuarios.itens.map(u=>`<tr>
       <td>${escapeHtml(u.nome)}${u.id===eu.id?' <span class="badge badge-muted">você</span>':""}${u.daNuvem?' <span class="badge badge-accent">da nuvem</span>':""}${htmlDatasDoCadastro(u.criadoEm, u.aprovadoEm)}</td>
@@ -703,16 +703,16 @@ function confirmarExcluirUsuario(id, onde){
   if(onde==="local" && ehMasterLocal && !podeDeixarDeSerMaster(id, "coordenacao", "local")) return;
   const d = contagemDosDadosDoUsuario(id);
   const vaiJunto = [
-    d.respostas ? d.respostas + " resposta(s)" : "",
-    d.favoritos ? d.favoritos + " favorito(s)" : "",
+    d.respostas ? d.respostas+" "+flexionar(d.respostas, "resposta(s)")+"" : "",
+    d.favoritos ? d.favoritos+" "+flexionar(d.favoritos, "favorito(s)")+"" : "",
     d.cartoes ? d.cartoes+" "+plural(d.cartoes,"cartão","cartões")+" pessoal(is)" : "",
-    d.sessoes ? d.sessoes + " sessão(ões)" : "",
-    d.simulados ? d.simulados + " nota(s) de simulado" : "",
+    d.sessoes ? d.sessoes+" "+flexionar(d.sessoes, "sessão(ões)")+"" : "",
+    d.simulados ? d.simulados+" "+flexionar(d.simulados, "nota(s)")+" de simulado" : "",
   ].filter(Boolean);
   const fica = [
     d.questoes ? d.questoes+" "+plural(d.questoes,"questão","questões")+" que enviou ao banco" : "",
-    d.comentarios ? d.comentarios + " comentário(s) em questões" : "",
-    d.turmas ? d.turmas + " turma(s) que criou" : "",
+    d.comentarios ? d.comentarios+" "+flexionar(d.comentarios, "comentário(s)")+" em questões" : "",
+    d.turmas ? d.turmas+" "+flexionar(d.turmas, "turma(s)")+" que criou" : "",
   ].filter(Boolean);
   abrirModal(`
     ${cabecalhoJanela(`Excluir o cadastro de ${escapeHtml(nome)}?`)}

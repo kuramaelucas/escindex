@@ -65,8 +65,17 @@ function renderPerfil(){
       : "Tudo o que você faz aqui fica salvo neste navegador. A cópia de segurança de toda a plataforma é responsabilidade do administrador máster — se precisar trocar de computador ou recuperar algo, fale com a coordenação antes de limpar os dados do navegador."}</p>
     <button class="btn btn-secondary btn-sm mt-1" onclick="baixarMeusDados()">${iconeSvg("download")} Baixar uma cópia do meu estudo</button>
     <p class="text-xs muted mt-1">Um arquivo com tudo o que é seu: respostas, revisões, favoritos e anotações, cartões pessoais, conjuntos e simulados. Nada de outras pessoas.</p>
+    ${htmlEspacoNoAparelho()}
   </div>`}
   </div>`;
+}
+/* Quanto o estudo ocupa no navegador. O limite (perto de 5.000 KB) só aparecia quando
+   a gravação já tinha falhado; aqui a pessoa vê antes, e o aviso diz o que fazer. */
+function htmlEspacoNoAparelho(){
+  const kb = tamanhoBancoKb();
+  if(!kb) return "";
+  const perto = kb > 3500;
+  return `<p class="text-xs ${perto ? "texto-alerta peso-600" : "muted"} mt-1">Espaço usado neste aparelho: ${kb.toLocaleString("pt-BR")} KB de cerca de 5.000.${perto ? (nuvemConectado() ? " Está perto do limite do navegador: seu estudo continua indo para a nuvem, mas avise a coordenação." : " Está perto do limite do navegador: baixe uma cópia do seu estudo e avise a coordenação.") : ""}</p>`;
 }
 /* "Baixar uma cópia do meu estudo": tudo o que é DA PESSOA, e só dela — o
    backup completo da plataforma é outra coisa (administrador máster, e o
@@ -174,7 +183,7 @@ function renderCardBackup(){
     <p class="text-xs muted mt-2">Importar substitui os dados atuais pelos do arquivo — inclusive respostas e cadastros de todos os usuários. Reiniciar apaga tudo e volta ao ponto de partida.</p>
     ${bancoDeResgateDisponivel() ? (() => { const r = resumoDoResgate(); return `<div class="card-flat mt-2 borda-alerta">
       <div class="text-sm" style="font-weight:600;color:var(--amber)">${iconeSvg("archive")} Existe uma cópia de resgate neste navegador</div>
-      <p class="text-sm muted mt-1">A plataforma encontrou um defeito nos dados salvos em algum momento e guardou o banco como ele estava antes de consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s), ${r.questoes} ${plural(r.questoes,"questão","questões")}`:""}. Se algo tiver se perdido, é daqui que se recupera.</p>
+      <p class="text-sm muted mt-1">A plataforma encontrou um defeito nos dados salvos em algum momento e guardou o banco como ele estava antes de consertá-lo${r?`: <strong>${r.usuarios} ${flexionar(r.usuarios, "cadastro(s)")}</strong>, ${r.respostas} ${flexionar(r.respostas, "resposta(s)")}, ${r.questoes} ${plural(r.questoes,"questão","questões")}`:""}. Se algo tiver se perdido, é daqui que se recupera.</p>
       <button class="btn btn-secondary btn-sm mt-1" onclick="restaurarBancoDeResgate()">Ver e restaurar a cópia de resgate</button>
     </div>`; })() : ""}
   </div>`;
@@ -232,6 +241,6 @@ async function guardarOfflineDoPerfil(){
     estado.textContent = "Guardando… " + feitos + " de " + total + " provas";
   });
   botao.disabled = false; wrap.hidden = true;
-  toast(r.falhas ? "Guardado, mas " + r.falhas + " prova(s) não chegaram. Tente de novo com internet." : "Pronto: as questões abrem sem internet neste aparelho.", r.falhas ? "err" : undefined);
+  toast(r.falhas ? "Guardado, mas " + r.falhas+" "+flexionar(r.falhas, "prova(s)")+" não chegaram. Tente de novo com internet." : "Pronto: as questões abrem sem internet neste aparelho.", r.falhas ? "err" : undefined);
   atualizarCardEstudoOffline();
 }

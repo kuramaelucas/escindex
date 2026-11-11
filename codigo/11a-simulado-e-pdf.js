@@ -37,7 +37,7 @@ function renderCriarSimulado(){
   </div>
   ${ctx.pool.length ? `
   <div class="card mt-2">
-    <div class="card-title">2. Selecionar questões (${ctx.selecionadas.length} selecionada(s) de ${ctx.pool.length})</div>
+    <div class="card-title">2. Selecionar questões (${ctx.selecionadas.length} ${flexionar(ctx.selecionadas.length, "selecionada(s)")} de ${ctx.pool.length})</div>
     <div class="flex gap-1 items-center quebra mt-1">
       <input class="input" type="number" id="csQuantidade" min="1" max="${ctx.pool.length}" value="${Math.min(ctx.pool.length, 30)}" style="max-width:90px" aria-label="Quantidade de questões">
       <button class="btn btn-secondary btn-sm" onclick="sugerirSelecaoSimulado()" title="Marca questões 1:1:1:1:1 entre as áreas, na mistura ${Math.round(CONFIG.misturaSimulado.facil*100)}% fáceis, ${Math.round(CONFIG.misturaSimulado.medio*100)}% médias e ${Math.round(CONFIG.misturaSimulado.dificil*100)}% difíceis">Sugerir seleção com mistura mais difícil</button>

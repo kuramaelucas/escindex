@@ -137,7 +137,7 @@ test("Simulado em treino: pergunta a confiança e mostra o resumo e o tempo por 
     assert.equal(r.comChute, "chute");
     assert.deepEqual(r.salvas, ["certeza", "chute", "duvida", "certeza"]);
     assert.match(r.html, /Sua confiança neste treino/);
-    assert.match(r.html, /erro\(s\) com certeza/);
+    assert.match(r.html, /erros? com certeza/);
     assert.match(r.html, /Ver o tempo de cada questão/);
     assert.equal(r.linhasDeTempo, 4);
     assert.equal(Object.keys(r.resultado.confiancas).length, 4);

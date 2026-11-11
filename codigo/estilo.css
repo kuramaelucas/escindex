@@ -823,6 +823,8 @@ button.cal-dia.cal-clicavel{font:inherit;color:inherit;cursor:pointer;padding:0}
 button.cal-dia.cal-meta{color:#fff}
 button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
 .cal-dia.cal-selecionado{box-shadow:0 0 0 2px var(--accent-dark)}
+/* no celular o quadrado tem ~40 px: com a quantidade centrada, ela ficava por cima do número do dia */
+@media (max-width:560px){.cal-dia,button.cal-dia.cal-clicavel{justify-content:flex-end;padding-bottom:3px}.cal-qtd{font-size:var(--fs-xs);line-height:1.1}}
 /* Lista de uma linha fina por item (Revisão: assuntos vencidos) */
 .linha-fina{display:flex;align-items:center;gap:.6rem;padding:.25rem 0;border-bottom:1px solid var(--border)}
 .linha-fina:last-child{border-bottom:0}

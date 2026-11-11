@@ -675,3 +675,104 @@ test("armazenamento: item igual à semente só entra na lista de ordem; edição
   assert.equal(depois.vazamento, false);
   await contexto.close();
 });
+
+test("armazenamento: respostas e revisões são gravadas em linhas (cabem milhares), voltam idênticas ao recarregar e o formato antigo continua abrindo", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const ordenado = `x => JSON.stringify(x, (k, v) => (v && typeof v === "object" && !Array.isArray(v)) ? Object.keys(v).sort().reduce((o, c) => (o[c] = v[c], o), {}) : v)`;
+    const antes = await pagina.evaluate(ordenadoTxt => {
+      const ordenado = eval(ordenadoTxt);
+      state.contaTeste = false;   // a conta de teste não grava
+      const u = usuarioAtual(), qs = questoesParaEstudo(u.id).filter(q => !ehDissertativa(q));
+      const outras = db.respostas.length;
+      for(let i = 0; i < 400; i++) registrarResposta(u.id, qs[i].id, i % 3 ? qs[i].gabarito : "A", ["certeza", "duvida", "chute"][i % 3], 30 + i % 60, "lista");
+      // resposta de antes de os campos novos existirem, e uma com campo a mais e valor fora do esperado
+      db.respostas.push({ id: "r-velha", usuarioId: u.id, questaoId: qs[0].id, alternativaEscolhida: "B", correta: true, confianca: "certeza", data: "2026-01-01" });
+      db.respostas.push({ id: "r-estranha", usuarioId: u.id, questaoId: qs[1].id, alternativaEscolhida: null, correta: "sim", confianca: null, data: "2026-01-02", textoResposta: "texto [com] {chaves}", extra: { a: [1, 2] } });
+      gravarEstadoAgora();
+      const bruto = localStorage.getItem(CHAVE_STORAGE), guardado = JSON.parse(bruto);
+      return {
+        respostas: ordenado(db.respostas), revisoes: ordenado(db.revisoes), total: db.respostas.length,
+        linhas: guardado._respostasEmLinhas.linhas.length, soltas: guardado.respostas.length,
+        revisoesEmLinhas: Object.keys(guardado._revisoesEmLinhas.de[u.id]).length, revisoesSoltas: Object.keys(guardado.revisoes).length,
+        porResposta: JSON.stringify(guardado._respostasEmLinhas).length / (outras + 402),
+      };
+    }, ordenado);
+    assert.equal(antes.linhas, antes.total, "toda resposta vira uma linha");
+    assert.equal(antes.soltas, 0);
+    assert.ok(antes.revisoesEmLinhas >= 400 && antes.revisoesSoltas === 0, "as revisões também");
+    assert.ok(antes.porResposta < 170, "cada resposta ocupa menos da metade do que ocupava como objeto (~360): " + Math.round(antes.porResposta));
+
+    await pagina.reload(); await pronto(pagina);
+    const depois = await pagina.evaluate(ordenadoTxt => {
+      const ordenado = eval(ordenadoTxt);
+      return { respostas: ordenado(db.respostas), revisoes: ordenado(db.revisoes), vazamento: "_respostasEmLinhas" in db || "_revisoesEmLinhas" in db };
+    }, ordenado);
+    assert.equal(depois.respostas, antes.respostas, "nenhum campo de nenhuma resposta muda na ida e volta");
+    assert.equal(depois.revisoes, antes.revisoes);
+    assert.equal(depois.vazamento, false);
+
+    // um código anterior a este formato não conhece as linhas: regrava a chave como veio e põe o que a
+    // pessoa responder na lista comum. Na abertura seguinte, as duas partes se juntam.
+    const misto = await pagina.evaluate(() => {
+      const g = JSON.parse(localStorage.getItem(CHAVE_STORAGE));
+      g.respostas.push({ id: "r-do-codigo-antigo", usuarioId: "u-aluno1", questaoId: "q-001", alternativaEscolhida: "A", correta: false, confianca: "chute", data: "2026-11-10" });
+      (g.revisoes["u-aluno1"] = g.revisoes["u-aluno1"] || {})["q-001"] = { repeticoes: 0, fator: 2.3, intervalo: 7, proximaRevisao: "2026-11-17", ultimaConfianca: "chute", ultimaCorreta: false, ultimaData: "2026-11-10" };
+      descartarGravacaoPendente(); state.contaTeste = true;   // nada desta página grava por cima
+      localStorage.setItem(CHAVE_STORAGE, JSON.stringify(g));
+      return g._respostasEmLinhas.linhas.length;
+    });
+    await pagina.reload(); await pronto(pagina);
+    const junto = await pagina.evaluate(() => ({ total: db.respostas.length, ultima: db.respostas[db.respostas.length - 1].id, revisao: db.revisoes["u-aluno1"]["q-001"].fator, revisoes: Object.keys(db.revisoes["u-aluno1"]).length }));
+    assert.equal(junto.total, misto + 1);
+    assert.equal(junto.ultima, "r-do-codigo-antigo", "a da lista comum entra depois das linhas");
+    assert.equal(junto.revisao, 2.3, "a revisão solta vale sobre a da linha");
+    assert.ok(junto.revisoes >= 400);
+
+    // e o banco gravado no formato antigo (lista de objetos, sem linhas) abre como sempre
+    await pagina.evaluate(() => {
+      const g = JSON.parse(localStorage.getItem(CHAVE_STORAGE));
+      const inteiro = Object.assign({}, g, { respostas: copiaProfunda(db.respostas), revisoes: copiaProfunda(db.revisoes) });
+      delete inteiro._respostasEmLinhas; delete inteiro._revisoesEmLinhas;
+      descartarGravacaoPendente(); state.contaTeste = true;
+      localStorage.setItem(CHAVE_STORAGE, JSON.stringify(inteiro));
+    });
+    await pagina.reload(); await pronto(pagina);
+    const antigo = await pagina.evaluate(() => ({ total: db.respostas.length, revisoes: Object.keys(db.revisoes["u-aluno1"]).length }));
+    assert.equal(antigo.total, junto.total);
+    assert.equal(antigo.revisoes, junto.revisoes);
+  } finally { await contexto.close(); }
+});
+
+test("texto: flexionar escolhe singular ou plural e as telas do aluno não mostram \"(s)\"; erro recente diz quando volta", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await pagina.evaluate(async () => {
+      const u = usuarioAtual(); u.boasVindasEm = hojeISO();
+      const frases = [flexionar(1, "cartão(ões) vencido(s)"), flexionar(2, "cartão(ões) vencido(s)"), flexionar(0, "item(ns)"), flexionar(1, "item(ns)"), flexionar(3, "vez(es)"), flexionar(1, "órfão(s)"), flexionar(2, "órfão(s)")];
+      // um erro de hoje: ainda não entra na fila de erros antigos, e a tela tem de dizer isso
+      const q = questoesParaEstudo(u.id).find(x => !ehDissertativa(x));
+      registrarResposta(u.id, q.id, q.alternativas.find(a => a.id !== q.gabarito).id, "certeza", 30, "lista");
+      saveState();
+      const comParenteses = {};
+      for(const rota of ["inicio", "estudar", "revisao", "flashcards", "historico", "favoritos", "desempenho", "provas-antigas"]){
+        navigate(rota);
+        await new Promise(ok => setTimeout(ok, 50));
+        const achados = document.getElementById("app").innerText.match(/[a-zãõç]\((s|ões|es|ns)\)/g);
+        if(achados) comParenteses[rota] = achados;
+      }
+      navigate("estudar");
+      const estudar = document.getElementById("app").innerText;
+      return { frases, comParenteses, espera: fraseErrosEChutesEmEspera(u.id), naTela: estudar.includes(fraseErrosEChutesEmEspera(u.id)), volta: formatDataBR(somarDias(hojeISO(), CONFIG.intervaloMinimoRevisao)) };
+    });
+    assert.deepEqual(r.frases, ["cartão vencido", "cartões vencidos", "itens", "item", "vezes", "órfão", "órfãos"]);
+    assert.deepEqual(r.comParenteses, {}, "nenhuma tela do aluno deveria mostrar plural entre parênteses");
+    assert.match(r.espera, /^1 erro ou chute recente espera/);
+    assert.ok(r.espera.includes(r.volta), "a frase diz o dia em que o erro volta: " + r.espera);
+    assert.ok(r.naTela, "a tela Estudar mostra a frase");
+  } finally { await contexto.close(); }
+});

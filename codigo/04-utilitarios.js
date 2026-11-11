@@ -9,6 +9,16 @@ function uid(prefixo){ return prefixo+"-"+Date.now().toString(36)+Math.random().
 /* Escolhe singular ou plural pelo número ("1 questão", "2 questões"): o texto não
    usa mais "questão(ões)". Só devolve a palavra; o número a tela escreve. */
 function plural(n, singular, plural){ return Number(n) === 1 ? singular : plural; }
+/* O mesmo para um trecho com várias palavras: flexionar(n, "cartão(ões) vencido(s)")
+   devolve "cartão vencido" ou "cartões vencidos". O texto continua escrito de um
+   jeito só no código, e a tela nunca mostra o parêntese ("1 acerto(s)"). */
+function flexionar(n, texto){
+  const um = Number(n) === 1;
+  return String(texto).replace(/(ão|m)?\((s|ões|es|ns)\)/g, (tudo, raiz, sufixo) => {
+    if(um) return raiz || "";
+    return (sufixo === "ões" || sufixo === "ns") ? sufixo : (raiz || "") + sufixo;
+  });
+}
 
 function escapeHtml(str){
   if(str===undefined || str===null) return "";
@@ -107,9 +117,10 @@ function irParaPagina(chave, numero){
 }
 /* Uma página só não precisa de controle nenhum: a barra some sozinha. */
 function controlesPaginacao(p, rotulo){
-  if(p.paginas<=1) return p.total ? `<div class="paginacao-resumo">${p.total} ${rotulo||"item(ns)"}</div>` : "";
+  rotulo = flexionar(p.total, rotulo||"item(ns)");
+  if(p.paginas<=1) return p.total ? `<div class="paginacao-resumo">${p.total} ${rotulo}</div>` : "";
   return `<div class="paginacao" data-pag="${p.chave}">
-    <div class="paginacao-resumo">Mostrando ${p.primeiro}–${p.ultimo} de ${p.total} ${rotulo||"item(ns)"}</div>
+    <div class="paginacao-resumo">Mostrando ${p.primeiro}–${p.ultimo} de ${p.total} ${rotulo}</div>
     <div class="flex gap-1 items-center">
       <button class="btn btn-secondary btn-sm" onclick="irParaPagina('${p.chave}',${p.pagina-1})" ${p.pagina<=1?"disabled":""}>Anterior</button>
       <span class="text-sm nowrap">Página ${p.pagina} de ${p.paginas}</span>
@@ -457,7 +468,11 @@ function graficoBarrasSvg(itens, opts){
   // itens: [{label, valor (0-100 ou null se sem dados), n}]
   // opts.fino: barras baixas para listas longas (os 14 dias do Histórico)
   const fino = !!(opts && opts.fino);
-  const w = fino ? 560 : 640, alturaBarra = fino ? 12 : 26, gap = fino ? 6 : 12, padEsq = fino ? 60 : 230, padDir = fino ? 80 : 90;
+  /* No celular o desenho é feito já na largura do cartão: com a largura fixa de 560 ele
+     encolhia para caber, as datas ficavam com letra de 6 px e sobrava uma faixa em branco
+     em cima e embaixo (a altura continuava a do desenho inteiro). */
+  const estreito = fino && typeof window !== "undefined" && window.innerWidth < 660;
+  const w = fino ? (estreito ? Math.max(260, window.innerWidth - 92) : 560) : 640, alturaBarra = fino ? 12 : 26, gap = fino ? 6 : 12, padEsq = fino ? (estreito ? 44 : 60) : 230, padDir = fino ? (estreito ? 76 : 80) : 90;
   const tamTexto = fino ? 11 : 13;
   const larguraUtil = w - padEsq - padDir;
   const h = itens.length*(alturaBarra+gap) + gap;
@@ -472,7 +487,7 @@ function graficoBarrasSvg(itens, opts){
       '<rect x="'+padEsq+'" y="'+y+'" width="'+largura+'" height="'+alturaBarra+'" rx="5" fill="'+cor+'"/>'+
       '<text x="'+(padEsq+larguraUtil+10)+'" y="'+(y+alturaBarra/2+4)+'" font-size="'+(fino?11:12)+'" fill="var(--ink-2)">'+rotulo+'</text>';
   }).join("");
-  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'">'+barras+'</svg>';
+  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" style="max-width:'+w+'px;height:auto;display:block">'+barras+'</svg>';
 }
 
 /* Gráfico de barras VERTICAIS empilhadas (SVG puro).
