@@ -11,12 +11,12 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 >
 > | # | O que fazer | Onde | Sem isso |
 > | --- | --- | --- | --- |
-> | 1 | **Rodar de novo o `nuvem/esquema.sql`** (colar tudo > Run; roda também em projeto novo, sem mexer no que existe). Veja a tabela abaixo | SQL Editor do Supabase | cada novidade da tabela vale só no aparelho onde foi feita |
+> | 1 | ~~Rodar de novo o `nuvem/esquema.sql`~~ **Conferido em 11/11/2026: o banco real (projeto Esc) já tem todas as colunas, funções e gatilhos da tabela abaixo**, inclusive `painel_turma()` com a trilha. Só rode o arquivo de novo num projeto novo ou quando o esquema ganhar algo | SQL Editor do Supabase | — |
 > | 2 | Pôr o endereço do site em *Site URL* e em *Redirect URLs* (com `**` no fim) | Authentication > URL Configuration (`nuvem/LEIA-ME.md`, passo 3) | o link de confirmação de e-mail e o de "esqueci a senha" não voltam para o Esc |
 > | 3 | Cadastrar os segredos `SUPABASE_DB_URL` e `BACKUP_SENHA` | GitHub > Settings > Secrets (`nuvem/LEIA-ME.md`, "Backup automático") | o fluxo de backup roda e só avisa que está desligado |
 > | 4 | Cadastro: desligar "Confirm email" (o e-mail passa a sair na aprovação, modelo *Magic Link*); opcional, para o aviso chegar com o app fechado: chave VAPID, função `avisar-pedido` e webhook em `perfis` (`nuvem/LEIA-ME.md`, passo 3-B) | Authentication > Providers > Email | o aviso de pedido de cadastro só aparece com o Esc aberto |
 >
-> **O que o `esquema.sql` ainda traz** (data do que entrou; a coluna da direita é o que acontece enquanto o arquivo não é rodado):
+> **O que o `esquema.sql` trouxe** (já aplicado no banco real; a coluna da direita é o que acontece num projeto novo enquanto o arquivo não é rodado):
 >
 > | Data | Novidade (tabela/coluna) | Sem rodar |
 > | --- | --- | --- |
