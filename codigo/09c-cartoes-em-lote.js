@@ -185,7 +185,7 @@ function exportarCartoesParaDados(){
    questões" — a plataforma monta o prompt, a IA escreve os cartões, a pessoa
    cola o resultado, CONFERE e só então adiciona. Conferir não adiciona nada.
 
-   Fica atrás de um único botão ("Adicionar baralho", em Revisão Rápida) para
+   Fica atrás de um único botão ("Adicionar baralho", em Flashcards) para
    não poluir a tela: a janela abre com o essencial (assunto, quantidade, tema)
    e o prompt só aparece se a pessoa quiser lê-lo.
 

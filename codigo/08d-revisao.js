@@ -41,7 +41,7 @@ function renderRevisao(){
       <div class="card-flat">
         <div class="peso-600">Errou com certeza <span class="badge badge-danger">${errosComCerteza.length}</span></div>
         <p class="text-xs muted mt-1">Conceito consolidado de forma errada. Prioridade máxima.</p>
-        <button class="btn btn-primary btn-sm mt-2" onclick="praticarFilaDeConfianca('certeza')" ${!errosComCerteza.length?"disabled":""}>Praticar</button>
+        <button class="btn ${errosComCerteza.length ? "btn-primary" : "btn-secondary"} btn-sm mt-2" onclick="praticarFilaDeConfianca('certeza')" ${!errosComCerteza.length?"disabled":""}>Praticar</button>
       </div>
       <div class="card-flat">
         <div class="peso-600">Acertou no chute <span class="badge badge-amber">${acertosNoChute.length}</span></div>
@@ -65,7 +65,7 @@ function renderRevisao(){
   ${htmlCardTrilhaSugerida(u)}
   ${htmlCardRevisaoSugerida(u)}
   <div class="card mt-2">
-    <div class="card-title">Revisão rápida por flashcards (${resumoFlashcards(u.id).vencidos} ${flexionar(resumoFlashcards(u.id).vencidos, "vencido(s)")})</div>
+    <div class="card-title">Flashcards (${resumoFlashcards(u.id).vencidos} ${flexionar(resumoFlashcards(u.id).vencidos, "vencido(s)")})</div>
     <p class="text-sm muted">Cartão de conceito em vez de questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisar cartões</button>

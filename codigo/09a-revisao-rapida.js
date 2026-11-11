@@ -1,4 +1,4 @@
-/* codigo/09a-revisao-rapida.js — Revisão Rápida: os flashcards (seção 12-B).
+/* codigo/09a-revisao-rapida.js — Flashcards: os flashcards (seção 12-B).
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
@@ -37,7 +37,7 @@ function renderFlashcardsInicio(u){
   const pagMeus = paginar(meus, "flash-meus", {porPagina:20});
   const pagEquipe = paginar(daEquipe, "flash-equipe", {porPagina:20});
   return `
-  <div class="page-header"><h2>Revisão Rápida</h2><p>Cartões de conceito: você tenta lembrar, vira o cartão e diz honestamente se sabia. Serve para fixar o que a questão longa não fixa — e para atacar o assunto em que você jura que sabe e erra.</p></div>
+  <div class="page-header"><h2>Flashcards</h2><p>Cartões de conceito: você tenta lembrar, vira o cartão e diz honestamente se sabia. Serve para fixar o que a questão longa não fixa — e para atacar o assunto em que você jura que sabe e erra.</p></div>
 
   <div class="grid grid-2 mb-2">
   <div class="card" ${vistosHoje>=metaCartoes?'style="border-color:var(--accent)"':""}>
@@ -481,7 +481,7 @@ function praticarQuestoesDoBaralho(){
   iniciarSessaoComLista(itens, "pratica");
 }
 /* Formulário de cartão, usado por três caminhos diferentes:
-     - equipe criando material oficial (Revisão Rápida > Novo cartão)
+     - equipe criando material oficial (Flashcards > Novo cartão)
      - aluno editando um cartão que ele mesmo escreveu
      - QUALQUER usuário transformando a questão que acabou de responder num
        cartão (opts.questaoId) — nesse caso o assunto já vem escolhido

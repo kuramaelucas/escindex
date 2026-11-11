@@ -128,7 +128,7 @@ function renderFavoritosCartoes(u, cartoes){
       </div>
       <div class="text-xs muted mt-1">Salvo em ${formatDataBR(reg.data||hojeISO())}</div>
     </div>`;
-  }).join("") : '<div class="empty-state">Nenhum cartão salvo ainda. Na Revisão Rápida, use a estrela no alto do cartão para guardar o que você quer rever de novo.</div>'}
+  }).join("") : '<div class="empty-state">Nenhum cartão salvo ainda. Nos Flashcards, use a estrela no alto do cartão para guardar o que você quer rever de novo.</div>'}
   ${controlesPaginacao(pag, "cartão(ões)")}
   `;
 }
@@ -433,7 +433,7 @@ function htmlDiaDoHistorico(d){
   });
   if(d.cartoes) linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
     <span>${iconeSvg("cards")} ${d.cartoes} ${flexionar(d.cartoes, "flashcard(s) revisado(s)")}${d.cartoesExatos?"":" (ao menos)"}</span>
-    <button class="link-btn text-xs" onclick="navigate('flashcards')">ir para a Revisão Rápida</button></div>`);
+    <button class="link-btn text-xs" onclick="navigate('flashcards')">ir para os Flashcards</button></div>`);
   d.simulados.forEach(sim=>{
     linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
       <span>${iconeSvg("clipboard")} simulado — ${escapeHtml(sim.titulo||"—")}</span>
@@ -538,7 +538,7 @@ function renderHistorico(){
         <button class="pill ${!visaoCal?"active":""}" role="tab" aria-selected="${!visaoCal}" onclick="mudarVisaoHistorico('lista')">${iconeSvg("book")} Lista</button>
       </div>
     </div>
-    ${visaoCal ? htmlCalendarioHistorico(u, diasAtivos) : (diasAtivos.length ? pagDias.itens.map(d=>htmlDiaDoHistorico(d)).join("") : '<p class="text-sm muted mt-1">Você ainda não estudou nenhum dia por aqui. Comece em "Estudar" ou na "Revisão Rápida".</p>')}
+    ${visaoCal ? htmlCalendarioHistorico(u, diasAtivos) : (diasAtivos.length ? pagDias.itens.map(d=>htmlDiaDoHistorico(d)).join("") : '<p class="text-sm muted mt-1">Você ainda não estudou nenhum dia por aqui. Comece em "Estudar" ou nos "Flashcards".</p>')}
     ${visaoCal ? "" : controlesPaginacao(pagDias, "dia(s)")}
   </div>
   <div class="card">
@@ -956,7 +956,7 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${cartoes.dias}</div><div class="stat-label">dias com cartão revisado${cartoes.sequencia?` · ${cartoes.sequencia} ${flexionar(cartoes.sequencia, "seguido(s)")}`:""}</div></div>
     </div>
     <div class="flex gap-1 mt-2 quebra">
-      <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
+      <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para os Flashcards</button>
       ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} ${plural(cartoes.vencidos,"cartão","cartões")} ${flexionar(cartoes.vencidos, "vencido(s)")} esperando</span>`:""}
     </div>
   `)}

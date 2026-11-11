@@ -185,12 +185,12 @@ function alterarPapelUsuario(id, papel){
 /* ==========================================================================
    6. ROTEADOR
    ========================================================================== */
-const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Revisão Rápida", historico:"Histórico de Atividade",
+const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Flashcards", historico:"Histórico de Atividade",
   simulados:"Provas e Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas e Simulados",
   favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil e configurações", "meu-grupo":"Meu Grupo",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", 
-  taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar / Importar Questões",
-  "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar", "pendencias-conteudo":"Pendências de conteúdo",
+  taxonomia:"Especialidades e Assuntos", "banco-questoes":"Banco de Questões", "importar-questoes":"Enviar Questões",
+  "central-provas":"Central de Provas", "atualizar-questoes":"Questões para Atualizar", "pendencias-conteudo":"Pendências de Conteúdo",
   blocos:"Blocos de Estudo", "config-geral":"Configurações", "feedback-usuarios":"Feedback dos Usuários",
   "enviar-avisos":"Enviar Avisos", "painel-turma":"Turma" };
 /* Na prova e no resultado, o título é o NOME do simulado/prova (não só "Simulado"). */
@@ -567,8 +567,8 @@ function itensDoMenuDoPapel(papel){
     {id:"estudar", label:"Estudar", icon:"book"},
     {id:"desempenho", label:"Meu Desempenho", icon:"chart"},
     {id:"meu-grupo", label:"Meu Grupo", icon:"users"},
-    {id:"revisao", label:"Revisão", icon:"refresh"},
-    {id:"flashcards", label:"Revisão Rápida", icon:"cards"},
+    {id:"revisao", label:"Revisão", icon:"target"},
+    {id:"flashcards", label:"Flashcards", icon:"cards"},
     {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
     {id:"historico", label:"Histórico de Atividade", icon:"clock"},
     {id:"favoritos", label:"Favoritos", icon:"star"},
@@ -578,23 +578,23 @@ function itensDoMenuDoPapel(papel){
   if(papel==="residente") return [
     {id:"inicio", label:"Início", icon:"home"},
     {id:"fila-duvidas", label:"Fila de Dúvidas", icon:"message"},
-    {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
-    {id:"importar-questoes", label:"Enviar Provas e Questões", icon:"upload"},
+    {id:"revisao-dificeis", label:"Questões Difíceis", icon:"flag"},
+    {id:"importar-questoes", label:"Enviar Questões", icon:"upload"},
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
     {id:"atualizar-questoes", label:"Questões para Atualizar", icon:"refresh"},
-    {id:"pendencias-conteudo", label:"Pendências de conteúdo", icon:"alert"},
+    {id:"pendencias-conteudo", label:"Pendências de Conteúdo", icon:"alert"},
     {id:"revisao-formatacao", label:"Revisar Formatação", icon:"edit"},
     {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
   ];
   const conteudo = [
     {id:"inicio", label:"Início", icon:"home"},
     {id:"banco-questoes", label:"Banco de Questões", icon:"database"},
-    {id:"importar-questoes", label:"Importar Questões", icon:"upload"},
+    {id:"importar-questoes", label:"Enviar Questões", icon:"upload"},
     {id:"central-provas", label:"Central de Provas", icon:"archive"},
     {id:"atualizar-questoes", label:"Questões para Atualizar", icon:"refresh"},
-    {id:"pendencias-conteudo", label:"Pendências de conteúdo", icon:"alert"},
+    {id:"pendencias-conteudo", label:"Pendências de Conteúdo", icon:"alert"},
     {id:"fila-duvidas", label:"Fila de Dúvidas", icon:"message"},
-    {id:"revisao-dificeis", label:"Questões Difíceis", icon:"alert"},
+    {id:"revisao-dificeis", label:"Questões Difíceis", icon:"flag"},
     {id:"criar-simulado", label:"Criar Simulado", icon:"plus"},
     {id:"material-pdf", label:"Material em PDF", icon:"printer"},
     {id:"flashcards", label:"Flashcards", icon:"cards"},
@@ -608,7 +608,7 @@ function itensDoMenuDoPapel(papel){
     const u = usuarioAtual();
     const itens = [conteudo[0], Object.assign({permissao:"turma"}, painel), ...conteudo.slice(1),
       {id:"blocos", label:"Blocos de Estudo", icon:"calendar", permissao:"blocos"},
-      {id:"feedback-usuarios", label:"Feedback dos Usuários", icon:"message", permissao:"cadastros"},
+      {id:"feedback-usuarios", label:"Feedback dos Usuários", icon:"inbox", permissao:"cadastros"},
       {id:"enviar-avisos", label:"Enviar Avisos", icon:"bell", permissao:"avisos"},
       {id:"config-geral", label:"Configurações", icon:"settings", permissao:"config"},
     ];

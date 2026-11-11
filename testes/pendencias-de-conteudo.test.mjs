@@ -1,4 +1,4 @@
-/* Pendências de conteúdo: a lista nasce do banco — resolver o problema tira o item,
+/* Pendências de Conteúdo: a lista nasce do banco — resolver o problema tira o item,
    e quem não é da equipe não entra. */
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
@@ -51,7 +51,7 @@ test("a lista sai do banco: liberar figura, preencher número e criar cartão ti
     assert.equal(r.faltaAntes, false);
     assert.deepEqual(r.faltaDepois, [50], "o número que sumiu aparece como faltando");
     assert.equal(r.semCartaoDepois, r.semCartaoAntes - 1, "cartão novo tira o assunto da lista");
-    assert.match(r.tela, /Pendências de conteúdo/);
+    assert.match(r.tela, /Pendências de Conteúdo/);
     assert.match(r.tela, /Provas com número faltando/);
     assert.ok(r.abas.includes("Pendências"), "a tela é uma aba da família Provas e importação");
     assert.deepEqual(erros, []);

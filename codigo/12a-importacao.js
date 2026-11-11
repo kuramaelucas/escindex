@@ -188,7 +188,7 @@ function renderImportarQuestoes(){
   const semDestinoDeGrupo = (u.papel==="aluno"||u.papel==="residente") && !destinos.some(([v])=>destinoEhGrupo(v));
   const destinoEscolhido = destinos.some(([v])=>v===ctx.destino) ? ctx.destino : destinos[0][0];
   return `
-  <div class="page-header"><h2>${u.papel==="aluno"||u.papel==="residente"?"Enviar Provas e Questões":"Importar Questões"}</h2>
+  <div class="page-header"><h2>Enviar Questões</h2>
   <p>Cole uma prova inteira ou questões avulsas — por exemplo, já formatadas por uma IA a partir do PDF da prova — para adicionar ao banco em lote.</p></div>
   ${renderCardMeusEnvios()}
 ${podeUsarCentralProvas(u) ? `<div class="card-flat mb-2 text-sm">
