@@ -296,7 +296,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
 {
   id:"q-famema2022-022", banca:"FAMEMA", real:true, ano:2022, numeroNaProva:22,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
-  imagemUrl:"dados/imagens/q-famema2022-022.png",
+  imagemUrl:"dados/imagens/q-famema2022-022.webp",
   enunciado:"Mulher, 47 anos, hipertensa e tabagista, chega à emergência com queixa de dor torácica ventilatório-dependente, acompanhada de sudorese fria e palidez cutânea. Refere que há 5 dias, apresenta a dor de maneira contínua e estabelece relação com um quadro gripal na semana anterior. Passou a apresentar cansaço intenso aos pequenos esforços. Foi realizado o eletrocardiograma ilustrado a seguir. Considerando os achados e com base no diagnóstico mais provável, a abordagem terapêutica correta é",
   alternativas:[{id:"A",texto:"tratamento de reperfusão coronária."},{id:"B",texto:"anti-inflamatório não hormonal."},{id:"C",texto:"anticoagulantes."},{id:"D",texto:"drenagem pleural."}],
   gabarito:"B",
@@ -427,7 +427,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
 {
   id:"q-famema2022-032", banca:"FAMEMA", real:true, ano:2022, numeroNaProva:32,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-iras",
-  imagemUrl:"dados/imagens/q-famema2022-032.png",
+  imagemUrl:"dados/imagens/q-famema2022-032.webp",
   enunciado:"Homem, 73 anos, encontra-se internado para tratamento cirúrgico de fratura de fêmur, após queda acidental da própria altura. Evolui com diarreia aquosa, cerca de 10 evacuações ao dia, sem sangue ou muco, com dor abdominal difusa na última semana. Não apresenta náuseas ou vômitos. Subfebril nos últimos 3 dias, com temperatura chegando a 37,5 o C. Exames laboratoriais: leucócitos = 16 800/mm 3 com 6% de bastões, PCR = 38 mg/L, função renal normal e exames de fezes em análise. Foi realizada retossigmoidoscopia flexível e a imagem está ilustrada a seguir. O tratamento deve ser feito com",
   alternativas:[{id:"A",texto:"vancomicina oral."},{id:"B",texto:"vancomicina venosa."},{id:"C",texto:"metronidazol oral."},{id:"D",texto:"meropenem venoso."}],
   gabarito:"A",
@@ -558,7 +558,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
 {
   id:"q-famema2022-042", banca:"FAMEMA", real:true, ano:2022, numeroNaProva:42,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-famema2022-042.png",
+  imagemUrl:"dados/imagens/q-famema2022-042.webp",
   enunciado:"P.M.N., 30 anos, GIII PII 2N A0, IG 39 semanas, deu entrada no PSGO em trabalho de parto franco, com TV: 6 cm, médio, medianizado, bolsa íntegra. Submetida à cardiotocografia, cujo resultado encontra-se ilustrado a seguir. Assinale a alternativa que contém a classificação correta da cardiotocografia e conduta adequada.",
   alternativas:[{id:"A",texto:"Padrão suspeito; manobras de ressuscitação intrauterina e repetir CTB."},{id:"B",texto:"Normal; condução do trabalho de parto."},{id:"C",texto:"Alterada; acionamento de código cesárea."},{id:"D",texto:"Normal; amniotomia artificial e introdução de ocitocina para condução do trabalho de parto."}],
   gabarito:"A",

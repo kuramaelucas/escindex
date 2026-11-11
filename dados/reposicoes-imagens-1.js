@@ -16,7 +16,7 @@ window.EscDados.registrarQuestoes("reposicoes-imagens-1", [
   "areaId": "area-cm",
   "especialidadeId": "esp-cardio",
   "assuntoId": "ass-has",
-  "imagemUrl": "dados/imagens/q-sessp2022-097.jpg",
+  "imagemUrl": "dados/imagens/q-sessp2022-097.webp",
   "enunciado": "Segundo a meta-análise publicada no Journal of the American Heart Association, em 2020, diversas são as intervenções não farmacológicas que podem reduzir a pressão arterial. Na figura acima, há um forest plot evidenciando os resultados encontrados para a redução da pressão arterial sistólica (PAS). A partir desses resultados, assinale a alternativa correta.",
   "alternativas": [
    {
@@ -62,7 +62,7 @@ window.EscDados.registrarQuestoes("reposicoes-imagens-1", [
   "areaId": "area-cm",
   "especialidadeId": "esp-gastro",
   "assuntoId": "ass-hepatites",
-  "imagemUrl": "dados/imagens/q-fmabc2021-027.png",
+  "imagemUrl": "dados/imagens/q-fmabc2021-027.webp",
   "imagemLegenda": "Exames laboratoriais do paciente (questão 27).",
   "enunciado": "Homem, 32 anos de idade, com histórico de uso de drogas injetáveis, contando que há 2 anos abandonou o uso. Atualmente, relata tabagismo (10 maços/ano), etilismo social. Em consulta prévia foram solicitados exames em comum acordo com o paciente, os quais seguem reproduzidos a seguir (o resultado \"anti-HBC não reagente\" refere-se ao anti-HBc IgM, e o HBsAg também estava reagente em exame de 8 meses antes, feito em outro serviço). Sobre o caso clínico, é correto afirmar que o paciente apresenta:",
   "alternativas": [

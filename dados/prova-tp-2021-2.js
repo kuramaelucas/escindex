@@ -36,7 +36,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-001", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-psicoses",
-  imagemUrl:"dados/imagens/q-tp20212-001.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-001.webp",
   enunciado:"A tabela abaixo mostra os valores de Kd de 4 antipsicóticos típicos denominados drogas A, B, C e D a vários receptores (nenhuma droga possui qualquer atividade intrínseca nestes receptores). Kd é a constante de dissociação cuja concentração em nM reflete a ocupância de 50% dos receptores, ou seja, menor Kd significa maior afinidade pelo receptor. Baseado nisso, qual é o antipsicótico que provavelmente produzirá a menor incidência de efeitos sedativos?",
   alternativas:[{id:"A",texto:"Droga A."},{id:"B",texto:"Droga B."},{id:"C",texto:"Droga C."},{id:"D",texto:"Droga D."}],
   gabarito:"C",
@@ -50,7 +50,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-002", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
-  imagemUrl:"dados/imagens/q-tp20212-002.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-002.webp",
   enunciado:"Homem, 40 anos, apresenta febre, lesão cutânea no braço esquerdo (imagem abaixo) e à radiografia simples de tórax presença de adenomegalia hilar bilateral. A biopsia da pele mostrou acúmulo de células epitelioides na derme, formando granulomas “nus” (sem coroa linfocitária), contendo células gigantes multinucleadas e ausência de necrose. A pesquisa de microrganismos pelas colorações especiais foi negativa. Diante do quadro clínico e morfológico, a principal hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Sarcoidose."},{id:"B",texto:"Tuberculose."},{id:"C",texto:"Sífilis terciária."},{id:"D",texto:"Granuloma tipo corpo estranho."}],
   gabarito:"A",
@@ -233,7 +233,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-016", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:16,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-tp20212-016.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-016.webp",
   enunciado:"Mulher de 60 anos foi internada com pneumonia lobar. Ela estava em uso de diurético tiazídico por 9 meses, após o diagnóstico de insuficiência cardíaca congestiva. Os resultados de gasometria arterial na admissão foram: Os exames laboratoriais revelam:",
   alternativas:[{id:"A",texto:"Distúrbio misto: alcalose respiratória e acidose metabólica"},{id:"B",texto:"Alcalose metabólica com tentativa de compensação respiratória"},{id:"C",texto:"Distúrbio misto: alcalose metabólica e alcalose respiratória"},{id:"D",texto:"Alcalose respiratória, com tentativa de compensação metabólica"}],
   gabarito:"C",
@@ -247,7 +247,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-017", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:17,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-tp20212-017.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-017.webp",
   enunciado:"Homem, 35 anos, vítima de um acidente de moto, chegou no pronto atendimento com hipotensão arterial. Foi sugerida a investigação pelo protocolo FAST ( focused assesment with sonography for trauma ) para posterior conduta clínica. Suspeita-se de um trauma abdominal fechado sem sinais de tamponamento cardíaco. As imagens obtidas no FAST evidenciaram um sangramento intra-abdominal no espaço de Morrison, região periesplênica e região posterior a bexiga e anterior ao reto. A alteração descrita é identificada na imagem obtida pelo FAST como uma região:",
   alternativas:[{id:"A",texto:"Anecoica."},{id:"B",texto:"Hiperecoica."},{id:"C",texto:"Isoecoica."},{id:"D",texto:"Hipoecoica."}],
   gabarito:"A",
@@ -261,7 +261,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-018", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:18,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
-  imagemUrl:"dados/imagens/q-tp20212-018.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-018.webp",
   enunciado:"As células principais da mucosa gástrica são células típicas secretoras de proteínas. São responsáveis pela síntese de pepsinogênio, que em meio ácido é convertido em pepsina. A quantidade abundante de retículo endoplasmático rugoso no citoplasma basal confere a essa parte da célula uma aparência basofílica, enquanto o citoplasma apical é eosinofílico, devido à existência das vesículas secretoras, também denominadas grânulos de zimogênio, uma vez que contêm precursores enzimáticos. Tomando como referência as informações do enunciado, a célula principal está identificada pela letra:",
   alternativas:[{id:"A",texto:"Célula identificada pela letra A."},{id:"B",texto:"Célula identificada pela letra B."},{id:"C",texto:"Célula identificada pela letra C."},{id:"D",texto:"Célula identificada pela letra D."}],
   gabarito:"B",
@@ -340,7 +340,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-024", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:24,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemoglobinopatias",
-  imagemUrl:"dados/imagens/q-tp20212-024.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-024.webp",
   enunciado:"Mulher, 18 anos, queixa-se de dor forte em membros superiores e mãos há 1 dia, sem fator desencadeante, com melhora parcial com dipirona. Refere que já sentiu dor semelhante várias vezes desde a infância. Nega edema, vermelhidão, trauma recente ou febre. Exame físico: bom estado geral, palidez cutâneo mucosa e icterícia (1+/4+). Murmúrio vesicular normal, simétrico e sem ruídos adventícios. Bulhas rítmicas taquicárdicas, com sopro holossistólico em focos tricúspide e mitral. Abdome e membros sem alteração. Hemograma: Hb = 8,3 g/dL; Ht = 26%; VCM = 91 fL, HCM = 29,6 pg; Leucócitos = 10,9 x 10⁶/μL (neutrófilos 72%, linfócitos 28%), Plaquetas = 480.000/mm³; Reticulócitos = 430.000/mm³. Esfregaço de sangue periférico (figura). O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Crise álgica por vaso-oclusão."},{id:"B",texto:"Isquemia arterial periférica por hemólise microangiopática."},{id:"C",texto:"Isquemia arterial periférica por plaquetose."},{id:"D",texto:"Trombose venosa por vaso-oclusão."}],
   gabarito:"A",
@@ -380,7 +380,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-027", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:27,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
-  imagemUrl:"dados/imagens/q-tp20212-027.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-027.webp",
   enunciado:"Adolescente, 15 anos, atendido em Unidade Básica de Saúde por lesão assintomática na face, que surgiu há 1 ano e não regrediu com medicamentos tópicos. Exame: lesão arredondada na região mandibular esquerda, medindo 4,5 cm no maior eixo, com borda de 0,5 cm de largura, levemente elevada, contínua na maior extensão, entremeada por alguns tubérculos e pequenos trechos descontínuos, de coloração eritematosa-ferruginosa e centro mais claro e discretamente atrófico (foto a seguir). O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Tinea corporis ."},{id:"B",texto:"Granuloma anular."},{id:"C",texto:"Sarcoidose."},{id:"D",texto:"Hanseníase Tuberculóide."}],
   gabarito:"D",
@@ -433,7 +433,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-031", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:31,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-tp20212-031.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-031.webp",
   enunciado:"Homem, 70 anos, hipertenso, sedentário, dislipidêmico, com sobrepeso, tabagista, diabético, com dor torácica retroesternal em peso iniciada em repouso, de forte intensidade, sem irradiação, acompanhada de sudorese, há 3 horas. Foi admitido na emergência com sinais de congestão pulmonar e o eletrocardiograma (ECG) a seguir. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Infarto agudo do miocárdio com supradesnivelamento do segmento ST."},{id:"B",texto:"Angina instável de alto risco."},{id:"C",texto:"Pericardite aguda."},{id:"D",texto:"Dor torácica de origem não cardíaca."}],
   gabarito:"B",
@@ -889,7 +889,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-066", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:66,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
-  imagemUrl:"dados/imagens/q-tp20212-066.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-066.webp",
   enunciado:"Paciente comparece ao ambulatório após realização de ponte de safena com o seguinte achado de exame físico: área de deiscência total de pele, com granulação no subcutâneo subjacente. Hiperemia leve ao redor da ferida e edema do membro. A enfermeira solicita avaliação em relação à ferida cirúrgica. Pode-se afirmar:",
   alternativas:[{id:"A",texto:"O ferimento está em fase retardada de cicatrização, com risco elevado de desenvolver infecção secundária de ferida cirúrgica. Introduzir antibioticoterapia de largo espectro por 10 dias."},{id:"B",texto:"O ferimento está em fase avançada de granulação (cicatrização por segunda intenção), sem sinais de infecção local. Manter a aplicação de curativos oclusivos."},{id:"C",texto:"O ferimento está com aspecto infeccioso, com hiperemia e exsudação do leito da ferida. Realizar desbridamento cirúrgico e introduzir antibioticoterapia para germes Gram positivos por 14 dias."},{id:"D",texto:"Deiscência recente de pele e subcutâneo com exposição muscular, sem sinais de infecção. Limpeza e desbridamento da ferida, reavivamento de bordas e ressutura da pele."}],
   gabarito:"B",
@@ -903,7 +903,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-067", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:67,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
-  imagemUrl:"dados/imagens/q-tp20212-067.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-067.webp",
   enunciado:"Homem, 57 anos, apresenta queixa de dor abdominal em hipocôndrio direito há cinco dias, associado a náuseas e vômitos. Comorbidades: hipertenso e diabético. Exame físico: mau estado geral, confuso, sudoreico, ictérico 2+/4+, T = 38 ºC, FC = 130 bpm, SaO2 ar ambiente = 95%, tempo de enchimento capilar > 2 segundos, PA = 70 x 45 mmHg. Abdome flácido, dolorido em hipocôndrio direito, ruídos hidroaéreos presentes. Exames laboratoriais e tomografia apresentados abaixo. O diagnóstico, a síndrome e a conduta são, respectivamente:",
   alternativas:[{id:"A",texto:"Colecistite; síndrome colestática; colecistectomia videolaparoscopica de urgência."},{id:"B",texto:"Colangite; pentalogia de Reynolds; estabilização hemodinâmica e colangiopancreatografia endoscópica retrógrada."},{id:"C",texto:"Colangite; tríade de Charcot; estabilização hemodinâmica e colangiopancreatografia endoscópica retrógrada."},{id:"D",texto:"Pancreatite; choque hipovolêmico; estabilização hemodinâmica e ressonância magnética de vias biliares."}],
   gabarito:"B",
@@ -956,7 +956,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-071", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:71,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-tp20212-071.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-071.webp",
   enunciado:"Homem, 20 anos, deu entrada na Emergência 2 horas após acidente motociclístico, em que houve breve perda de consciência. Seguindo-se à avaliação inicial do paciente politraumatizado, a equipe da neurocirurgia foi contactada. O exame neurológico foi normal, exceto por queixa de dor cervical, recebendo o escore de 15 na Escala de Coma de Glasgow, além de equimose periorbital esquerda. Paciente permaneceu internado para observação hospitalar. Após 3 horas, o paciente estava sonolento, com discreta dilatação pupilar esquerda e movimentação simétrica dos membros. A imagem tomográfica compatível com a provável lesão do paciente é:",
   alternativas:[{id:"A",texto:"Primeira imagem (tomografia de crânio)."},{id:"B",texto:"Segunda imagem (tomografia de crânio)."},{id:"C",texto:"Terceira imagem (tomografia de crânio)."},{id:"D",texto:"Quarta imagem (tomografia de crânio)."}],
   gabarito:"C",
@@ -970,7 +970,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-072", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:72,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-tp20212-072.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-072.webp",
   enunciado:"Mulher, 68 anos, procura atendimento por quadro de dor abdominal em cólica há 3 dias, acompanhada de distensão, náuseas, hiporexia e parada de eliminação de flatos e fezes. Antecedentes pessoais: há seis meses apresenta emagrecimento e episódios de dores abdominais, associados a constipação intestinal. Exame físico: abdome distendido, globoso, hipertimpânico em andar superior, levemente doloroso, com massa endurecida palpável em hipogástrio. Radiografia de abdome: imagem abaixo. O diagnóstico e o achado de imagem são:",
   alternativas:[{id:"A",texto:"Constipação intestinal crônica, distensão de cólon e intestino delgado e ar na ampola retal."},{id:"B",texto:"Obstrução intestinal, distensão de alças de intestino delgado e cólon."},{id:"C",texto:"Obstrução intestinal baixa, distensão colônica e válvula ileocecal competente."},{id:"D",texto:"Abdome agudo obstrutivo, pneumoperitônio e ausência de ar na ampola retal."}],
   gabarito:"C",
@@ -1322,7 +1322,7 @@ window.EscDados.registrarQuestoes("prova-tp-2021-2", [
 {
   id:"q-tp20212-099", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2021, semestre:2, numeroNaProva:99,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
-  imagemUrl:"dados/imagens/q-tp20212-099.jpg",
+  imagemUrl:"dados/imagens/q-tp20212-099.webp",
   enunciado:"Paciente 55 anos com queixa de “sensação de bola na vagina” e dificuldade para urinar. Relata atividade sexual regular. O exame ginecológico está ilustrado na figura: abaixo. Qual o tratamento cirúrgico mais indicado?",
   alternativas:[{id:"A",texto:"Histerectomia vaginal."},{id:"B",texto:"Histeropexia sacral."},{id:"C",texto:"Colporrafia anterior."},{id:"D",texto:"Colpocleise."}],
   gabarito:"B",

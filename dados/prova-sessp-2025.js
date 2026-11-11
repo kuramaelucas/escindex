@@ -27,7 +27,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 {
   id:"q-sessp2025-001", banca:"SES-SP", real:true, ano:2025, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-sessp2025-001.jpg",
+  imagemUrl:"dados/imagens/q-sessp2025-001.webp",
   enunciado:"Um homem de 52 anos de idade, tabagista com 30 anos/maço, diabético e dislipidêmico, dirigiu-se ao pronto-socorro com dor precordial, inespecífica, sem irradiação, que se iniciou há 10 minutos, ao levantar uma caixa, com sudorese a mal-estar associado. Foi realizado eletrocardiograma (apresentado a seguir) e troponina (dentro do valor de referência/normal). Com base nessa situação hipotética, e na imagem acima, assinale a alternativa que apresenta a conduta adequada para essa situação.",
   alternativas:[{id:"A",texto:"Trata-se de um caso de angina, porém sem infarto agudo do miocárdio. O paciente deverá realizar um teste ergométrico ambulatorialmente."},{id:"B",texto:"O paciente deverá ser submetido à angioplastia primária, por se tratar de um infarto com supra de seguimento ST de V2 a V4."},{id:"C",texto:"Deverá ser mantido no pronto-socorro para seriar eletrocardiograma e troponina."},{id:"D",texto:"Trata-se de um caso de angina, porém sem infarto agudo do miocárdio. O paciente deverá realizar angiotomografia de coronárias ambulatorialmente."},{id:"E",texto:"O paciente deverá ser submetido à trombólise química devido a infarto agudo do miocárdio sem critérios para angioplastia primária."}],
   gabarito:"C",
@@ -132,7 +132,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 {
   id:"q-sessp2025-009", banca:"SES-SP", real:true, ano:2025, numeroNaProva:9,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
-  imagemUrl:"dados/imagens/q-sessp2025-009.jpg",
+  imagemUrl:"dados/imagens/q-sessp2025-009.webp",
   enunciado:"Correlacione as imagens tomográficas (numeradas de 1 a 4 na figura anexa) com o quadro clínico: A) homem de meia-idade, tabagista, com dispneia progressiva aos esforços há meses, espirometria com VEF1/CVF > 70 e estertores predominando no final da inspiração; B) mulher de 67 anos, tabagista, com tosse crônica, dispneia aos esforços, policitemia, tempo expiratório prolongado e murmúrio vesicular reduzido globalmente; C) homem de 68 anos, hipertenso mal controlado e cardiopata, com piora da dispneia, edema de membros inferiores, ortopneia, ausculta abolida nas bases e estertores nos ápices; D) jovem de 27 anos, com antecedente de hepatopatia em investigação, com dispneia durante os esforços físicos e murmúrio vesicular diminuído nas bases pulmonares.",
   alternativas:[{id:"A",texto:"A-4, B-3, C-1, D-2"},{id:"B",texto:"A-3, B-2, C-1, D-4"},{id:"C",texto:"A-3, B-2, C-4, D-1"},{id:"D",texto:"A-3, B-1, C-2, D-4"},{id:"E",texto:"A-4, B-3, C-2, D-1"}],
   gabarito:"A",
@@ -146,7 +146,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 {
   id:"q-sessp2025-010", banca:"SES-SP", real:true, ano:2025, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-sessp2025-010.jpg",
+  imagemUrl:"dados/imagens/q-sessp2025-010.webp",
   enunciado:"Uma mulher de 32 anos de idade, com antecedentes de ansiedade e enxaqueca, compareceu ao pronto-socorro trazida por uma viatura do SAMU acompanhada por uma amiga, com relato de cefaleia holocraniana intensa, que teve início duas horas antes, além de vômitos intensos, mal-estar e rebaixamento do nível de consciência durante o transporte. A seguir, consta a tomografia computadorizada do crânio. Assinale a alternativa adequada.",
   alternativas:[{id:"A",texto:"hemorragia subaracnóidea Fischer IV"},{id:"B",texto:"hemorragia subaracnóidea Fischer III"},{id:"C",texto:"acidente vascular encefálico isquêmico com transformação hemorrágica intraparenquimatosa"},{id:"D",texto:"enxaqueca"},{id:"E",texto:"encefalite viral"}],
   gabarito:"A",
@@ -173,7 +173,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 {
   id:"q-sessp2025-012", banca:"SES-SP", real:true, ano:2025, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-sessp2025-012.jpg",
+  imagemUrl:"dados/imagens/q-sessp2025-012.webp",
   enunciado:"Uma mulher de 63 anos de idade, obesa, hipertensa, diabética e dislipidêmica, em uso irregular de anlodipino, metformina e sinvastatina, compareceu ao pronto-socorro com relato de tosse, febre aferida de 38,2 oC, coriza, mialgia e espirros há três dias, porém, nos últimos dois dias também percebeu edema de membros inferiores e dispneia importante que a fizeram procurar o pronto-socorro. Ela relatou que realizou um teste recente na farmácia, influenza A positivo. Na admissão, apresentou: temperatura de 37,7 oC; glasgow 15; PA 180 x 110; FC 118 irpm; e FR 26 irpm. A paciente segurava-se à grade do leito devido à ortopneia, havia presença de estase jugular, pulso com ritmo irregular e ausculta com estertores de base até terço ápice bilateralmente. O eletrocardiograma da paciente apresentou: ausência de onda P; RR irregular; QRS estreito; e FC 118 bpm. Assinale a alternativa que corresponde ao exame de imagem (radiografias de tórax A a E, na figura anexa) compatível com o caso clínico apresentado.",
   alternativas:[{id:"A",texto:"A"},{id:"B",texto:"B"},{id:"C",texto:"C"},{id:"D",texto:"D"},{id:"E",texto:"E"}],
   gabarito:"B",
@@ -239,7 +239,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 {
   id:"q-sessp2025-017", banca:"SES-SP", real:true, ano:2025, numeroNaProva:17,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-sessp2025-017.jpg",
+  imagemUrl:"dados/imagens/q-sessp2025-017.webp",
   enunciado:"Uma mulher de 54 anos de idade, diabética, hipertensa e dislipidêmica, em uso irregular de medicações, compareceu ao pronto-socorro com cefaleia intensa, vômitos, náusea, turvação visual e escotomas. O acompanhante relatou que o quadro evoluiu paulatinamente durante os últimos dias, com piora importante no dia atual. Na admissão, foram notados os seguintes sinais vitais: FC 117 bpm; PA 210 x 145 mmHg; FR 21 irpm; e dextro 120. Ainda com base na situação hipotética apresentada, e na imagem da ressonância magnética de crânio acima, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A principal hipótese diagnóstica é um AVCI com lesão sequelar em região occipital."},{id:"B",texto:"A principal hipótese diagnóstica é um AVC hemorrágico com hemorragia intraparenquimatosa em região occipital."},{id:"C",texto:"A principal hipótese diagnóstica é uma hemorragia subaracnóidea."},{id:"D",texto:"A principal hipótese diagnóstica é uma hemorragia subdural."},{id:"E",texto:"A principal hipótese diagnóstica é a síndrome da encefalopatia posterior reversível."}],
   gabarito:"E",
@@ -617,7 +617,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 {
   id:"q-sessp2025-046", banca:"SES-SP", real:true, ano:2025, numeroNaProva:46,
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-ambientais",
-  imagemUrl:"dados/imagens/q-sessp2025-046.jpg",
+  imagemUrl:"dados/imagens/q-sessp2025-046.webp",
   enunciado:"Um menino de 9 anos de idade foi levado ao pronto-socorro pelos pais devido à picada de uma cobra (conforme figura a seguir), no pé direito, há 30 minutos. A criança apresentou dor moderada, edema, eritema e rubor local. Com base nessa situação hipotética, a conduta adequada deverá ser",
   alternativas:[{id:"A",texto:"permanecer em repouso, em observação clínica por 6 a 12 horas e analgesia."},{id:"B",texto:"realizar torniquete, manter o segmento picado elevado e estendido e coletar tempo de coagulação."},{id:"C",texto:"manter em observação clínica e, caso evolua com sinais de choque, administrar soro antibotrópico."},{id:"D",texto:"internar e administrar soro antibotrópico intravenoso o mais precocemente possível."},{id:"E",texto:"encaminhar o paciente à unidade de terapia intensiva e administrar soro antibotrópico intradérmico, no local da lesão."}],
   gabarito:"D",
@@ -735,7 +735,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
 {
   id:"q-sessp2025-055", banca:"SES-SP", real:true, ano:2025, numeroNaProva:55,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-sessp2025-055.jpg",
+  imagemUrl:"dados/imagens/q-sessp2025-055.webp",
   enunciado:"A figura anexa é a caderneta de uma menina de 3 anos e 2 meses de idade que apresentou 18 kg de peso e IMC 18 (curvas de peso para idade, à esquerda, e de IMC, à direita). Com base nessa situação hipotética e nas medidas isoladas, plotadas em forma de círculo no gráfico dessa caderneta da criança, assinale a alternativa que apresenta a classificação dessa criança em relação ao peso para a idade e ao IMC.",
   alternativas:[{id:"A",texto:"peso elevado/IMC adequado"},{id:"B",texto:"peso adequado/IMC com risco de sobrepeso"},{id:"C",texto:"peso adequado/IMC adequado"},{id:"D",texto:"peso elevado/IMC com risco de sobrepeso"},{id:"E",texto:"peso elevado/IMC adequado"}],
   gabarito:"B",

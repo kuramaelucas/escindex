@@ -26,7 +26,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-001", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-sirio2021-001.png",
+  imagemUrl:"dados/imagens/q-sirio2021-001.webp",
   enunciado:"Paciente do sexo masculino, 56 anos, com antecedente de diabetes mellitus tipo 2, obesidade, tabagismo e gastrite deu entrada no pronto-socorro com queixa de dor epigástrica com início às 17h, associada a sudorese, náuseas e vômitos. Paciente relatou que comeu churrasco na hora do almoço por volta das 13h. Ao chegar no pronto-socorro às 19h, seus sinais vitais eram PA: 150 × 90 mmHg, FC: 75 bpm, FR: 16 ipm, SatO2: 98% em ar ambiente. Paciente realizou o eletrocardiograma (ECG) abaixo. Diante do caso clínico e ECG, o provável diagnóstico e a melhor conduta terapêutica:",
   alternativas:[{id:"A",texto:"Infarto agudo do miocárdio parede anterior. Medicar com ácido acetilsalicílico, ticagrelor e trombolítico."},{id:"B",texto:"Infarto agudo do miocárdio parede inferior. Medicar com ácido acetilsalicílico, ticagrelor e aguardar resultado de troponina para demais condutas."},{id:"C",texto:"Dispepsia. Medicar o paciente com inibidor de bomba de próton, analgésicos e antieméticos."},{id:"D",texto:"Doença ulcerosa péptica. Solicitar endoscopia digestiva alta na urgência e medicar com inibidor de bomba de próton."},{id:"E",texto:"Infarto agudo do miocárdio da parede inferior. Medicar com ácido acetilsalicílico, ticagrelor e encaminhar o paciente de imediato ao serviço de hemodinâmica para angioplastia primária."}],
   gabarito:"E",
@@ -40,7 +40,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-002", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-sirio2021-002.png",
+  imagemUrl:"dados/imagens/q-sirio2021-002.webp",
   enunciado:"Paciente do sexo masculino, 69 anos, com antecedente de hipertensão arterial, diabetes mellitus tipo 2, doença do refluxo gastroesofágico, depressão e demência procurou o pronto-socorro com quadro de fraqueza e tontura há 1 hora. Estava em uso de enalapril, atenolol, metformina, AAS, pantoprazol e amitriptilina. Na ocasião, seus sinais vitais eram PA: 140 × 80 mmHg, FC: 42 bpm, FR: 16 ipm, SatO2: 98%, dextro: 150 mg/dL. Realizou o ECG abaixo. Diante do caso clínico e ECG, o diagnóstico e sua causa mais provável:",
   alternativas:[{id:"A",texto:"Bloqueio atrioventricular do 2ᵒ grau Mobitiz 2 − Uso de metformina."},{id:"B",texto:"Bloqueio atrioventricular do 3ᵒ grau − Uso de enalapril."},{id:"C",texto:"Bloqueio atrioventricular do 1ᵒ grau − Uso de pantoprazol."},{id:"D",texto:"Bloqueio atrioventricular do 2ᵒ grau Mobitiz 1 − Uso de atenolol."},{id:"E",texto:"Bloqueio atrioventricular do 3ᵒ grau − Uso de amitriptilina."}],
   gabarito:"E",
@@ -184,7 +184,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-013", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:13,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-febremaculosa",
-  imagemUrl:"dados/imagens/q-sirio2021-013.png",
+  imagemUrl:"dados/imagens/q-sirio2021-013.webp",
   enunciado:"Paciente 23 anos, sexo masculino, morador de zona rural, deu entrada no pronto-socorro com relato de febre, fraqueza muscular, dores articulares e mancha vermelha na perna, conforme foto abaixo. Diante do quadro clínico e da alteração cutânea, o provável diagnóstico é de:",
   alternativas:[{id:"A",texto:"Erisipela."},{id:"B",texto:"Reação alérgica."},{id:"C",texto:"Dengue."},{id:"D",texto:"Febre reumática aguda."},{id:"E",texto:"Doença de Lyme."}],
   gabarito:"E",
@@ -198,7 +198,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-014", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:14,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-sirio2021-014.png",
+  imagemUrl:"dados/imagens/q-sirio2021-014.webp",
   enunciado:"Paciente sexo masculino, 58 anos, com antecedente de Hipertensão Arterial e Diabetes Mellitus tipo 2, deu entrada no pronto-socorro com relato de que acordou com desvio de rima para direita. Ao exame físico, tinha força grau V em todos os membros. Segue abaixo foto do exame da face e da tomografia de crânio realizada. Diante do quadro clínico, o provável diagnóstico e a sua provável fisiopatologia são:",
   alternativas:[{id:"A",texto:"Paralisia facial periférica − Acometimento do nervo facial."},{id:"B",texto:"Paralisia facial periférica − Acometimento do nervo glossofaríngeo."},{id:"C",texto:"Acidente vascular cerebral − Acometimento da cápsula interna à esquerda."},{id:"D",texto:"Acidente vascular cerebral − Acometimento do tronco cerebral."},{id:"E",texto:"Paralisia facial periférica − Acometimento do nervo trigêmeo."}],
   gabarito:"A",
@@ -368,7 +368,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-027", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:27,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-sirio2021-027.png",
+  imagemUrl:"dados/imagens/q-sirio2021-027.webp",
   enunciado:"Um paciente de 83 anos está internado há 1 mês por insuficiência respiratória grave por COVID-19. Traqueostomizado, atualmente está em programa de desmame, tanto das drogas vasoativas quanto da ventilação mecânica. Há 2 dias começou a apresentar dor e distensão abdominal. A PCR passou de 40 mg/L para 90 mg/L (normal: até 3 mg/L) e os leucócitos subiram de 14.500/mm³ para 17.000/mm³. Não tem sinais de peritonismo. Fez a radiografia ilustrada a seguir. Melhor conduta inicial, em condições ideais, além de manter em jejum com hidratação intravenosa:",
   alternativas:[{id:"A",texto:"Passagem de sonda nasogástrica e retal."},{id:"B",texto:"Lavagem intestinal."},{id:"C",texto:"Colonoscopia descompressiva."},{id:"D",texto:"Intervenção cirúrgica."},{id:"E",texto:"Neostigmina."}],
   gabarito:"C",
@@ -434,7 +434,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-032", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:32,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-sirio2021-032.png",
+  imagemUrl:"dados/imagens/q-sirio2021-032.webp",
   enunciado:"Um paciente de 39 anos é internado por suspeita de abdome agudo obstrutivo. Nega emagrecimento. Tem antecedente de laparotomia por trauma há 5 anos. Pulso: 100 bpm, PA: 110 × 80 mmHg, temperatura: 37 °C. O abdome está distendido, com ruídos hidroaéreos aumentados. A descompressão brusca é negativa. Fez a radiografia ilustrada a seguir. Hemoglobina: 12 g/dL, leucócitos: 14.500/mm³. A respeito do tratamento deste paciente, é correto afirmar:",
   alternativas:[{id:"A",texto:"A presença de febre baixa ainda permite condução não operatória, mas é necessário iniciar já antibioticoterapia de amplo espectro."},{id:"B",texto:"A opção mais segura é a videolaparoscopia diagnóstica, por causa do estado subfebril."},{id:"C",texto:"O tratamento ideal seria não operatório, mas deve ser feita intervenção cirúrgica por causa do padrão radiológico de obstrução (“empilhamento de moedas” e níveis hidroaéreos)."},{id:"D",texto:"Apesar de essa afecção dever ser tratada inicialmente de forma não operatória, a leucocitose acaba fortalecendo a indicação cirúrgica, por causa do diagnóstico diferencial."},{id:"E",texto:"Este doente deve ser tratado inicialmente com jejum, hidratação, sonda nasogástrica aberta e observação clínica."}],
   gabarito:"E",
@@ -552,7 +552,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-041", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:41,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
-  imagemUrl:"dados/imagens/q-sirio2021-041.png",
+  imagemUrl:"dados/imagens/q-sirio2021-041.webp",
   enunciado:"Um bebê do sexo masculino, 6 meses, está há dois dias com irritabilidade, choro inconsolável e inapetente. Hoje evacuou fezes pastosas misturadas a uma quantidade média de sangue. O USG realizado é demonstrado abaixo. Dentre as hipóteses diagnósticas abaixo, a mais provável para esse caso é:",
   alternativas:[{id:"A",texto:"Enterocolite necrosante."},{id:"B",texto:"Doença de Chron."},{id:"C",texto:"Retocolite ulcerativa."},{id:"D",texto:"Atresia duodenal."},{id:"E",texto:"Intussuscepção intestinal."}],
   gabarito:"E",
@@ -592,7 +592,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-044", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:44,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
-  imagemUrl:"dados/imagens/q-sirio2021-044.png",
+  imagemUrl:"dados/imagens/q-sirio2021-044.webp",
   enunciado:"Um jovem atleta de 15 anos tem uma síncope após término de uma corrida. Ele está sem pulso e recebe compressões torácicas de alta qualidade. A equipe de resgate monitora o adolescente imediatamente e o traçado do monitor mostra o seguinte padrão eletrocardiológico na derivação DII. Nesse momento, dentre as condutas terapêuticas abaixo, a melhor para esse caso é:",
   alternativas:[{id:"A",texto:"Administrar adenosina 0,1 mg/kg."},{id:"B",texto:"Massagear o seio carotídeo."},{id:"C",texto:"Administrar adrenalina 0,1 mg/kg."},{id:"D",texto:"Administrar amiodarona 5 mg/kg."},{id:"E",texto:"Desfibrilar com 200 J de carga."}],
   gabarito:"E",
@@ -645,7 +645,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-048", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:48,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-sirio2021-048.png",
+  imagemUrl:"dados/imagens/q-sirio2021-048.webp",
   enunciado:"Fernando, 6 anos de idade, foi levado à Unidade Básica de Saúde para avaliação do crescimento e desenvolvimento. Ao exame, apresentou peso de 25 kg, altura de 1,18 m e pressão arterial no membro superior direito de 120 × 70 mmHg, medida em condições adequadas e confirmada em outras duas ocasiões. Utilizando como referência a Tabela 1, adaptada de Flynn e colaboradores, a classificação da pressão arterial desse paciente é:",
   alternativas:[{id:"A",texto:"Pressão elevada."},{id:"B",texto:"Hipertensão estágio II."},{id:"C",texto:"Pressão normal."},{id:"D",texto:"Hipertensão estágio I."},{id:"E",texto:"Pressão baixa."}],
   gabarito:"D",
@@ -854,7 +854,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-064", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:64,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
-  imagemUrl:"dados/imagens/q-sirio2021-064.png",
+  imagemUrl:"dados/imagens/q-sirio2021-064.webp",
   enunciado:"A imagem abaixo mostra as substâncias envolvidas na fisiologia menstrual. As substâncias 1, 2, 3, 4 e 5 são:",
   alternativas:[{id:"A",texto:"1 - Estradiol; 2 - inibina; 3 - testosterona; 4 - FSH; 5 - LH."},{id:"B",texto:"1 - FSH; 2 - LH; 3 - estradiol; 4 - dopamina; 5 -GnRH."},{id:"C",texto:"1 - Inibina; 2 - estradiol; 3 - progesterona; 4 - FSH; 5 - GnRH."},{id:"D",texto:"1 - Estradiol; 2 - progesterona; 3 - testosterona; 4 - GnRH; 5 - ACTH."},{id:"E",texto:"1 - Testosterona; 2 - estradiol; 3 - progesterona; 4 - LH; 5 - dopamina."}],
   gabarito:"C",
@@ -1050,7 +1050,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-079", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:79,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-sirio2021-079.png",
+  imagemUrl:"dados/imagens/q-sirio2021-079.webp",
   enunciado:"Secundigesta de 11 semanas, sem comorbidades, em consulta pré-natal de rotina, traz os seguintes exames abaixo. Além de suplementação de ferro, indica-se para essa gestante:",
   alternativas:[{id:"A",texto:"Vacinar contra rubéola e hepatite B após 12 semanas de gestação."},{id:"B",texto:"Realizar curva glicêmica de 2 horas nesse momento."},{id:"C",texto:"Realizar dosagem de carga viral para hepatite B nesse momento."},{id:"D",texto:"Realizar teste de avidez para IgG de toxoplasmose no segundo trimestre."},{id:"E",texto:"Repetir os exames de sífilis e HIV no segundo e terceiro trimestres."}],
   gabarito:"E",
@@ -1064,7 +1064,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-080", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:80,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-sirio2021-080.png",
+  imagemUrl:"dados/imagens/q-sirio2021-080.webp",
   enunciado:"Considere o traçado de partograma mostrado na imagem abaixo. Nesse caso:",
   alternativas:[{id:"A",texto:"Os triângulos representam a dilatação cervical, que ocorreu de forma progressiva e fisiológica."},{id:"B",texto:"O partograma mostra contrações uterinas fracas e irregulares."},{id:"C",texto:"A linha de batimento cardíaco fetal mostra que o feto não está bem oxigenado."},{id:"D",texto:"A linha de alerta é a segunda linha oblíqua, que se encontra mais à direita."},{id:"E",texto:"Observa-se desproporção céfalo-pélvica com possível formação de bossa no recém-nascido."}],
   gabarito:"A",
@@ -1260,7 +1260,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
 {
   id:"q-sirio2021-095", banca:"Sírio-Libanês (SP)", real:true, ano:2021, numeroNaProva:95,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
-  imagemUrl:"dados/imagens/q-sirio2021-095.png",
+  imagemUrl:"dados/imagens/q-sirio2021-095.webp",
   enunciado:"Considere o quadro abaixo: O nível de evidência A significa dados obtidos",
   alternativas:[{id:"A",texto:"A partir de relatos de casos concordantes."},{id:"B",texto:"A partir de busca sistemática."},{id:"C",texto:"A partir de metanálise pouco robusta, a partir de um único estudo randomizado ou de estudos não randomizados."},{id:"D",texto:"A partir de múltiplos estudos randomizados de bom porte, concordantes e/ou de metanálise robusta de estudos clínicos randomizados."},{id:"E",texto:"De opiniões consensuais de especialistas."}],
   gabarito:"D",

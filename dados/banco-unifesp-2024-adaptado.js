@@ -21,7 +21,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "especialidadeId": "esp-anestesio",
   "assuntoId": "ass-anestesio-complicacoes",
   "enunciado": "Mulher, 27 anos, asmática em uso de broncodilatador, submetida à colecistectomia por via laparoscópica sob anestesia geral e ventilação mecânica controlada, com pneumoperitônio a 12 mmHg. Cerca de 30 minutos após a indução, o anestesiologista observa a alteração da curva de capnografia mostrada na figura. A pressão de pico nas vias aéreas subiu de 18 para 38 cmH2O, há sibilos difusos à ausculta, a pressão arterial está estável (110/70 mmHg) e a pressão do pneumoperitônio não foi alterada. Qual é o diagnóstico mais provável?",
-  "imagemUrl": "dados/imagens/q-adap24-001.png",
+  "imagemUrl": "dados/imagens/q-adap24-001.webp",
   "imagemLegenda": "Capnograma da paciente (ilustração esquemática).",
   "alternativas": [
     {
@@ -916,7 +916,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "especialidadeId": "esp-cardio",
   "assuntoId": "ass-has",
   "enunciado": "Homem, 46 anos, motorista de caminhão, tabagista, sedentário e obeso (IMC 33 kg/m2), sem doenças prévias e sem uso de medicações, comparece para consulta de rotina. Em duas consultas, as medidas da pressão arterial no consultório foram de 132/84 e 136/86 mmHg, com exame físico sem outras alterações. Realizou Monitorização Ambulatorial de Pressão Arterial (MAPA), cujo resultado está na figura. Qual é o diagnóstico mais adequado?",
-  "imagemUrl": "dados/imagens/q-adap24-020.png",
+  "imagemUrl": "dados/imagens/q-adap24-020.webp",
   "imagemLegenda": "MAPA de 24 horas (ilustração esquemática).",
   "alternativas": [
     {
@@ -965,7 +965,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "especialidadeId": "esp-cardio",
   "assuntoId": "ass-ic",
   "enunciado": "Homem, 56 anos, natural do interior de Minas Gerais, morou na infância em casa de pau a pique e tem sorologia positiva para doença de Chagas, apresenta dispneia aos pequenos esforços (classe funcional III) e edema de membros inferiores. Exame físico: PA = 100/68 mmHg, FC = 78 bpm; estase jugular, estertores bibasais e edema 2+/4+. Holter: o traçado da figura foi registrado durante um dos episódios sintomáticos. Exames: creatinina = 2,1 mg/dL (TFG ≈ 34 mL/min/1,73 m2); K = 5,8 mEq/L. Ecocardiograma: dilatação ventricular esquerda e fração de ejeção de 30%. Qual é o tratamento mais adequado neste momento, entre as opções?",
-  "imagemUrl": "dados/imagens/q-adap24-021.png",
+  "imagemUrl": "dados/imagens/q-adap24-021.webp",
   "imagemLegenda": "Registro do Holter durante o episódio sintomático (ilustração esquemática).",
   "alternativas": [
     {
@@ -2001,7 +2001,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "especialidadeId": "esp-neuro",
   "assuntoId": "ass-neuro-neuromuscular",
   "enunciado": "Mulher, 23 anos, previamente hígida, apresenta há 10 dias insônia, agitação psicomotora e delírios persecutórios, tratados em serviço psiquiátrico como surto psicótico. Há 3 dias evoluiu com crises convulsivas tônico-clônicas, movimentos involuntários orofaciais e dos membros, rebaixamento do nível de consciência e instabilidade autonômica, sem febre alta. Líquor: 45 células/mm3 (95% de linfócitos), proteína de 55 mg/dL e glicose normal; ressonância de crânio normal; eletroencefalograma conforme a figura. Considerando o diagnóstico mais provável, quais exames complementares devem ser solicitados?",
-  "imagemUrl": "dados/imagens/q-adap24-043.png",
+  "imagemUrl": "dados/imagens/q-adap24-043.webp",
   "imagemLegenda": "EEG da paciente (ilustração esquemática).",
   "alternativas": [
     {
@@ -3648,7 +3648,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "especialidadeId": "esp-epidemio",
   "assuntoId": "ass-desenhosestudo",
   "enunciado": "Considere os três estudos fictícios abaixo (I, II e III), realizados em adultos com o mesmo risco cardiovascular (os resultados de cada um estão na figura): I. Estudo transversal, em que o consumo de alimentos ricos em betacaroteno associou-se de forma inversa à ocorrência de evento cardiovascular. II. Estudo de coorte, com 20 mil pessoas acompanhadas por 15 anos, em que o consumo de alimentos ricos em betacaroteno teve associação inversa com a incidência de evento cardiovascular. III. Com base nesses estudos, realizou-se ensaio clínico randomizado em que os participantes receberam extrato de betacaroteno ou placebo, evidenciando maior incidência de eventos cardiovasculares no grupo que recebeu betacaroteno em comparação ao placebo. Com relação à recomendação do uso de betacaroteno como medida preventiva para evento cardiovascular, qual é a alternativa correta?",
-  "imagemUrl": "dados/imagens/q-adap24-078.png",
+  "imagemUrl": "dados/imagens/q-adap24-078.webp",
   "imagemLegenda": "Resultado dos três estudos (dados fictícios).",
   "alternativas": [
     {
@@ -3791,7 +3791,7 @@ window.EscDados.registrarQuestoes("banco-unifesp-2024-adaptado", [
   "especialidadeId": "esp-epidemio",
   "assuntoId": "ass-bioestatistica",
   "enunciado": "Para verificar a correlação entre a cobertura da vacina tríplice viral e a incidência de sarampo em 40 municípios de uma região, calculou-se o coeficiente de correlação de Pearson, que resultou em −0,72 (p-valor < 0,001). Com base nessas informações, qual é a afirmativa correta?",
-  "imagemUrl": "dados/imagens/q-adap24-081.png",
+  "imagemUrl": "dados/imagens/q-adap24-081.webp",
   "imagemLegenda": "Diagrama de dispersão com os 40 municípios (dados fictícios).",
   "alternativas": [
     {

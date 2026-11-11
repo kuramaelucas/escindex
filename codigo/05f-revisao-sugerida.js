@@ -104,7 +104,7 @@ function atualizarRevisaoSugerida(deDigitacao){
   if(!r.itens.length){ previa.textContent = "Nenhum assunto esfriou ainda: nenhum assunto com respostas suas está parado há " + CONFIG.revisaoSugerida.diasSemVer + " dias ou mais (" + CONFIG.revisaoSugerida.diasAssuntoPequeno + " nos assuntos pequenos)."; return; }
   previa.innerHTML = `<div class="peso-600 mb-1">${r.itens.length} questões, nesta ordem de assuntos</div>` + r.resumo.map((a, i) =>
     `<div class="flex justify-between gap-2 quebra" style="padding:.15rem 0"><span>${i + 1}. ${escapeHtml(nomeAssunto(a.assuntoId))}</span>
-      <span class="muted">erro de <strong>${Math.round(a.taxaErro * 100)}%</strong> · ${a.total} respostas · há ${a.dias} dias · <strong>${a.alocadas}</strong> questão(ões)</span></div>`).join("") +
+      <span class="muted">erro de <strong>${Math.round(a.taxaErro * 100)}%</strong> · ${a.total} respostas · há ${a.dias} dias · <strong>${a.alocadas}</strong> ${plural(a.alocadas,"questão","questões")}</span></div>`).join("") +
     (r.faltaram > 0 ? `<p class="text-xs muted mt-1">Você pediu ${_revisaoSugerida.n}, mas só há ${r.itens.length} questões de revisão disponíveis agora.</p>` : "");
   botao.disabled = false; botao.textContent = "Iniciar revisão com " + r.itens.length + " questões";
 }
@@ -122,7 +122,7 @@ function htmlCardRevisaoSugerida(u){
   const primeiros = cand.assuntos.slice(0, 3);
   return `<div class="card mt-2">
     <div class="card-title">${iconeSvg("clock")} Revisão sugerida: assuntos que esfriaram</div>
-    <p class="text-sm muted">${cand.assuntos.length} assunto(s) em que você já fez questões e não vê há mais de um mês (dois, nos assuntos pequenos). Começa por ${primeiros.map(a => `<strong>${escapeHtml(nomeAssunto(a.assuntoId))}</strong> (erro de ${Math.round(a.taxaErro * 100)}%, há ${a.dias} dias)`).join(" · ")}.</p>
+    <p class="text-sm muted">${cand.assuntos.length} ${plural(cand.assuntos.length,"assunto","assuntos")} em que você já fez questões e não vê há mais de um mês (dois, nos assuntos pequenos). Começa por ${primeiros.map(a => `<strong>${escapeHtml(nomeAssunto(a.assuntoId))}</strong> (erro de ${Math.round(a.taxaErro * 100)}%, há ${a.dias} dias)`).join(" · ")}.</p>
     <div class="flex gap-1 mt-2 quebra"><button class="btn btn-primary" onclick="abrirRevisaoSugerida()">${iconeSvg("play")} Montar revisão sugerida</button></div>
   </div>`;
 }

@@ -57,7 +57,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-003", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:3,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
-  imagemUrl:"dados/imagens/q-tp20251-003.png",
+  imagemUrl:"dados/imagens/q-tp20251-003.webp",
   imagemLegenda:"Fonocardiograma (B1, B2 e clique)",
   enunciado:"Mulher, 41 anos, refere dispneia aos grandes esforços há 1 ano. Nega hipertensão, diabetes, obesidade, dislipidemia ou tabagismo. A ausculta cardíaca está representada abaixo: (B1: primeira bulha; B2: segunda bulha; C: clique) O diagnóstico é:",
   alternativas:[{id:"A",texto:"Insuficiência mitral reumática"},{id:"B",texto:"Estenose mitral reumática"},{id:"C",texto:"Prolapso de valva mitral com insuficiência"},{id:"D",texto:"Prolapso de valva mitral competente"}],
@@ -111,7 +111,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-007", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
-  imagemUrl:"dados/imagens/q-tp20251-007.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-007.webp",
   imagemLegenda:"Lesão no punho esquerdo",
   enunciado:"Homem, 62 anos, relata surgimento de lesão no punho esquerdo há três meses, de crescimento rápido e progressivo (imagem abaixo). Trabalhador rural desde os 15 anos de idade, sem fotoproteção. Nega trauma local e antecedentes familiares de tumores cutâneos. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Carcinoma basocelular"},{id:"B",texto:"Melanoma"},{id:"C",texto:"Carcinoma espinocelular"},{id:"D",texto:"Leishmaniose tegumentar americana"}],
@@ -126,7 +126,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-008", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
-  imagemUrl:"dados/imagens/q-tp20251-008.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-008.webp",
   imagemLegenda:"Lesões em áreas fotoexpostas",
   enunciado:"Mulher, 76 anos, com diagnóstico de hipertensão arterial, dislipidemia e diabetes mellitus, em uso de hidroclorotiazida, propranolol, sinvastatina e metformina há seis anos. Relata surgimento de lesões nas áreas fotoexpostas da pele (imagem abaixo), dores articulares, mialgia e febre, há um mês. Exames laboratoriais: FAN 1:160 padrão pontilhado fino; demais exames sem alterações. A conduta, além da fotoproteção, é a suspensão de:",
   alternativas:[{id:"A",texto:"Sinvastatina"},{id:"B",texto:"Metformina"},{id:"C",texto:"Propranolol"},{id:"D",texto:"Hidroclorotiazida"}],
@@ -167,7 +167,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-011", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-tp20251-011.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-011.webp",
   imagemLegenda:"Lesão nasal e radiografia de tórax",
   enunciado:"Homem, 40 anos, natural da Venezuela, residente em São Paulo há 6 anos. Procurou a atenção primária relatando tosse seca persistente, iniciada há um ano, além de lesão cutânea na região nasal com crescimento progressivo. Lesão cutânea e radiografia de tórax nas imagens abaixo. Biópsia cutânea e exame anatomopatológico: na coloração por hematoxilina-eosina, processo granulomatoso composto por células epitelioides e células gigantes, presença de estruturas birrefringentes circulares pequenas aderidas a uma célula maior, de parede dupla, com disposição característica descrita como em “roda de leme” ou “cabeça do Mickey Mouse”. O diagnóstico é:",
   alternativas:[{id:"A",texto:"Paracoccidiomicose"},{id:"B",texto:"Leishmaniose"},{id:"C",texto:"Histoplasmose"},{id:"D",texto:"Tuberculose"}],
@@ -195,7 +195,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-013", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:13,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-adrenal",
-  imagemUrl:"dados/imagens/q-tp20251-013.png",
+  imagemUrl:"dados/imagens/q-tp20251-013.webp",
   imagemLegenda:"Tomografia de abdome",
   enunciado:"Homem, 59 anos, iniciou o quadro de Hipertensão Arterial Sistêmica há 6 meses e, mesmo com uso de cinco classes de anti- hipertensivos, a pressão arterial permanece 192/122mmHg. Potássio sérico: 2,3mEq/L. Tomografia de abdome abaixo: A principal abordagem diagnóstica é avaliar:",
   alternativas:[{id:"A",texto:"Cortisol urinário de 24 horas"},{id:"B",texto:"Relação Aldosterona/Atividade de Renina"},{id:"C",texto:"Catecolaminas urinárias"},{id:"D",texto:"Ultrassom de artérias renais"}],
@@ -249,7 +249,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-017", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:17,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
-  imagemUrl:"dados/imagens/q-tp20251-017.png",
+  imagemUrl:"dados/imagens/q-tp20251-017.webp",
   imagemLegenda:"Oroscopia",
   enunciado:"Mulher, 20 anos, relata fadiga, queda de cabelos e dor em articulações das mãos e nos punhos iniciadas há dois meses. Exame físico: corada, eupneica; edema, calor e dor à palpação de punhos e da segunda à quarta articulações metacarpofalangeanas de ambas as mãos; lesões numulares com bordas hipercrômicas e centro eritematoso e atrófico na fronte. Oroscopia: figura abaixo. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Artrite idiopática juvenil"},{id:"B",texto:"Lúpus eritematoso sistêmico"},{id:"C",texto:"Doença de Behçet"},{id:"D",texto:"Psoríase"}],
@@ -264,7 +264,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-018", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:18,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
-  imagemUrl:"dados/imagens/q-tp20251-018.png",
+  imagemUrl:"dados/imagens/q-tp20251-018.webp",
   imagemLegenda:"Mão da paciente",
   enunciado:"Mulher, 45 anos, caucasiana, com história de um ano de artralgia de articulações interfalangianas proximais em dedos das mãos e arroxeamento de dedos de mãos e pés, piores nos dias frios. Exames laboratoriais: proteína C reativa 3mg/dL (VR: < 5mg/dL), velocidade de hemossedimentação 22mm/h (VR: < 30mm/h), fator antinuclear positivo, padrão nuclear centromérico, título 1:160, dosagem de C3 e C4 normais e hemograma normal. A foto da mão da paciente está a seguir: A principal hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Lúpus eritematoso sistêmico"},{id:"B",texto:"Artrite reumatoide"},{id:"C",texto:"Síndrome de Raynaud primária"},{id:"D",texto:"Esclerose sistêmica"}],
@@ -344,7 +344,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-024", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:24,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-bronquiectasias",
-  imagemUrl:"dados/imagens/q-tp20251-024.png",
+  imagemUrl:"dados/imagens/q-tp20251-024.webp",
   imagemLegenda:"Tomografia de tórax",
   enunciado:"Mulher, 58 anos, após quadro de Covid-19 em 2021 vem apresentando pneumonias de repetição associadas a quadro supurativo. Tomografia de tórax abaixo: O diagnóstico é:",
   alternativas:[{id:"A",texto:"Atelectasia segmentar"},{id:"B",texto:"Consolidação pulmonar"},{id:"C",texto:"Bronquiectasia"},{id:"D",texto:"Paquipleuris"}],
@@ -398,7 +398,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-028", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:28,
   areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-demencia",
-  imagemUrl:"dados/imagens/q-tp20251-028.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-028.webp",
   imagemLegenda:"Quatro neuroimagens (A a D)",
   enunciado:"Homem, 80 anos, apresenta há um ano alterações cognitivas caracterizadas por esquecimento de palavras para compor frases, o que o prejudica no diálogo e também na dificuldade para reconhecer faces de parentes próximos. Apresenta também incontinência urinária e apraxia de marcha, caracterizada por passos curtos e instáveis e sensação de pernas pesadas. Essas alterações estão relacionadas à piora da funcionalidade do paciente. A neuroimagem que melhor explica a etiologia destes problemas é:",
   alternativas:[{id:"A",texto:"Imagem A (primeira, à esquerda)"},{id:"B",texto:"Imagem B (segunda)"},{id:"C",texto:"Imagem C (terceira)"},{id:"D",texto:"Imagem D (quarta, à direita)"}],
@@ -452,7 +452,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-032", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:32,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-nefro-glomerulopatias",
-  imagemUrl:"dados/imagens/q-tp20251-032.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-032.webp",
   imagemLegenda:"Biópsia renal (microscopia óptica)",
   enunciado:"Mulher, 25 anos, apresenta 4g de proteinúria em 24h, edema e hipertensão arterial. Foi realizada biópsia renal por agulha. A descrição microscópica refere alguns glomérulos com aspecto habitual e outros com depósito de material hialino e expansão da matriz mesangial de parte do glomérulo. O diagnóstico é:",
   alternativas:[{id:"A",texto:"Glomerulonefrite proliferativa difusa"},{id:"B",texto:"Glomerulonefrite segmentar e focal"},{id:"C",texto:"Glomeruloesclerose segmentar e focal"},{id:"D",texto:"Glomerulopatia membranosa"}],
@@ -467,7 +467,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-033", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:33,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
-  imagemUrl:"dados/imagens/q-tp20251-033.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-033.webp",
   imagemLegenda:"Quatro imagens microscópicas (A a D)",
   enunciado:"Homem, 25 anos, residente em Porto Velho/RO, apresenta quadro de febre a cada dois dias, com prostração e sudorese intensa. O provável agente etiológico causador do quadro é apresentado na imagem:",
   alternativas:[{id:"A",texto:"Imagem A (primeira, à esquerda)"},{id:"B",texto:"Imagem B (segunda)"},{id:"C",texto:"Imagem C (terceira)"},{id:"D",texto:"Imagem D (quarta, à direita)"}],
@@ -807,7 +807,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-059", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:59,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
-  imagemUrl:"dados/imagens/q-tp20251-059.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-059.webp",
   imagemLegenda:"Quatro instrumentais cirúrgicos (A a D)",
   enunciado:"Durante apendicectomia, os vasos que nutrem o apêndice serão clampeados e ligados por fios e nós para a remoção do órgão. O instrumento mais adequado para clampagem dos vasos é:",
   alternativas:[{id:"A",texto:"Imagem A (primeira, à esquerda)"},{id:"B",texto:"Imagem B (segunda)"},{id:"C",texto:"Imagem C (terceira)"},{id:"D",texto:"Imagem D (quarta, à direita)"}],
@@ -835,7 +835,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-061", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:61,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
-  imagemUrl:"dados/imagens/q-tp20251-061.png",
+  imagemUrl:"dados/imagens/q-tp20251-061.webp",
   imagemLegenda:"Radiografia de tórax",
   enunciado:"Mulher, 54 anos, refere dor abdominal de forte intensidade (9/10), de início súbito, há 6 horas, na região epigástrica, que posteriormente irradiou para todo o abdome. Antecedentes: uso de diclofenaco (100mg/dia) há 30 dias por dor no joelho. Exame físico: fácies de dor, regular estado geral, FC 120bpm, PA 160/90mmHg, FR 24irpm. Abdome tenso, muito doloroso à palpação superficial e profunda, descompressão brusca dolorosa difusamente e ausência de ruídos hidroaéreos. Radiografia de tórax abaixo: Esta paciente também deve apresentar o sinal de:",
   alternativas:[{id:"A",texto:"Jobert"},{id:"B",texto:"Murphy"},{id:"C",texto:"Grey-Turner"},{id:"D",texto:"Rovsing"}],
@@ -889,7 +889,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-065", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:65,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-venosa",
-  imagemUrl:"dados/imagens/q-tp20251-065.png",
+  imagemUrl:"dados/imagens/q-tp20251-065.webp",
   imagemLegenda:"Membros inferiores",
   enunciado:"Mulher, 54 anos, obesa, G3P3A0, refere quadro de dor e sensação de peso em membros inferiores com piora no final do dia, associado a edema local há cerca de um ano (imagem). A conduta é:",
   alternativas:[{id:"A",texto:"Iniciar anticoagulação com enoxaparina para tromboprofilaxia."},{id:"B",texto:"Solicitar doppler venoso para planejamento de cirurgia."},{id:"C",texto:"Cirurgia de varizes em caráter de urgência, devido ao risco de trombose venosa."},{id:"D",texto:"Solicitar flebografia para planejamento da cirurgia."}],
@@ -969,7 +969,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-071", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:71,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tumores",
-  imagemUrl:"dados/imagens/q-tp20251-071.png",
+  imagemUrl:"dados/imagens/q-tp20251-071.webp",
   imagemLegenda:"Ressonância magnética de crânio",
   enunciado:"Homem, 62 anos, apresenta cefaleia e perda de força muscular à esquerda progressiva há seis meses. Exame físico: bom estado geral, vigil, orientado, fluente. Hemiparesia incompleta desproporcionada de predomínio crural à esquerda (grau III). Realizada ressonância magnética, apresentada a seguir: O diagnóstico é:",
   alternativas:[{id:"A",texto:"Metástase cerebral"},{id:"B",texto:"Glioblastoma"},{id:"C",texto:"Meningioma"},{id:"D",texto:"Schwannoma"}],
@@ -1049,7 +1049,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-077", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:77,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-tp20251-077.png",
+  imagemUrl:"dados/imagens/q-tp20251-077.webp",
   imagemLegenda:"Tomografia de abdome com lesão esplênica",
   enunciado:"Homem, 20 anos, vítima de acidente de moto em alta velocidade, chega à emergência de hospital terciário queixando-se de dor abdominal em epigastro e hipocôndrio esquerdo. Exame físico: PA 130/85mmHg, FC 110bpm. Ausculta respiratória: simétrica e presente bilateralmente. Ausência de peritonite. Tomografia de abdome: lesão esplênica Grau IV, com “blush” arterial (figura). A conduta é:",
   alternativas:[{id:"A",texto:"Videolaparoscopia para aspirar o hemoperitônio."},{id:"B",texto:"Laparotomia exploradora e preservação esplênica."},{id:"C",texto:"Antibioticoterapia e tratamento não-operatório."},{id:"D",texto:"Arteriografia e angioembolização esplênica."}],
@@ -1129,7 +1129,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-083", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:83,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-tp20251-083.png",
+  imagemUrl:"dados/imagens/q-tp20251-083.webp",
   imagemLegenda:"Partograma",
   enunciado:"G2P1, IG 39+5, admitida em Centro Obstétrico após ruptura espontânea das membranas. Pré-natal sem intercorrências. A dinâmica do trabalho de parto está apresentada no partograma: A conduta neste momento é:",
   alternativas:[{id:"A",texto:"Encaminhar a paciente ao banho."},{id:"B",texto:"Iniciar infusão contínua de ocitocina."},{id:"C",texto:"Indicar a realização de cesariana."},{id:"D",texto:"Encaminhar a paciente à analgesia."}],
@@ -1352,7 +1352,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-100", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:100,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-tp20251-100.jpg",
+  imagemUrl:"dados/imagens/q-tp20251-100.webp",
   imagemLegenda:"Exame a fresco da secreção vaginal",
   enunciado:"Mulher, 29 anos, apresenta prurido vaginal intenso, corrimento branco, espesso e disúria leve, há uma semana. Nega febre, dor abdominal ou sangramento. Relata parceiro sexual fixo e uso de preservativo de forma inconsistente. Exame físico: hiperemia vulvar e corrimento vaginal branco, aderente às paredes vaginais. Exame a fresco apresentado abaixo: O agente etiológico mais provável é:",
   alternativas:[{id:"A",texto:"Gardnerella vaginalis"},{id:"B",texto:"Candida albicans"},{id:"C",texto:"Trichomonas vaginalis"},{id:"D",texto:"Chlamydia trachomatis"}],
@@ -1393,7 +1393,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-1", [
 {
   id:"q-tp20251-103", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:103,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-tp20251-103.png",
+  imagemUrl:"dados/imagens/q-tp20251-103.webp",
   imagemLegenda:"Cobertura vacinal e testes estatísticos",
   enunciado:"Foi realizado um estudo que analisou a cobertura vacinal contra a influenza no Brasil, nos grupos prioritários, no período de 2013 a 2023, com foco nas variações antes e após a pandemia de Covid-19. A pesquisa utilizou dados do DATASUS (figura 1) e uma revisão bibliográfica (figura 2), aplicando testes estatísticos para avaliar diferenças entre os períodos analisados. Figura 1 - Cobertura vacinal por grupos prioritários Figura 2 - Resultados dos testes estatísticos De acordo com esses dados, os grupos que apresentaram quedas significativas na cobertura vacinal no período pós-pandemia foram:",
   alternativas:[{id:"A",texto:"Trabalhadores da saúde, indígenas e idosos."},{id:"B",texto:"Crianças, gestantes e puérperas."},{id:"C",texto:"Todos os grupos."},{id:"D",texto:"Puérperas, indígenas e idosos."}],

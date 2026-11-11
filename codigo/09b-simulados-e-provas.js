@@ -561,7 +561,7 @@ function pedirFinalizarSimulado(){
   const lista = l => l.slice(0, 12).map(i => i+1).join(", ") + (l.length > 12 ? "…" : "");
   abrirModalTitulado("Finalizar o simulado?", `
     <p class="text-sm">Tem certeza? Depois de finalizar não dá para responder mais.</p>
-    ${emBranco.length ? `<p class="text-sm mt-1"><strong>${emBranco.length}</strong> questão(ões) sem resposta (nº ${lista(emBranco)}). Em branco, a questão conta como errada na nota.</p>` : ""}
+    ${emBranco.length ? `<p class="text-sm mt-1"><strong>${emBranco.length}</strong> ${plural(emBranco.length,"questão","questões")} sem resposta (nº ${lista(emBranco)}). Em branco, a questão conta como errada na nota.</p>` : ""}
     ${pendentes.length ? `<p class="text-sm mt-1"><strong>${pendentes.length}</strong> com alternativa marcada mas <strong>não confirmada</strong> (nº ${lista(pendentes)}). Sem confirmar, a marcação não vale como resposta.</p>` : ""}
     <div class="flex gap-1 mt-3 quebra">
       <button class="btn btn-primary" onclick="fecharModal(); irQuestaoSimuladoIndice(${(emBranco.concat(pendentes).sort((a,b)=>a-b))[0]})">Voltar e responder (nº ${(emBranco.concat(pendentes).sort((a,b)=>a-b))[0]+1})</button>
@@ -955,7 +955,7 @@ function renderResultadoSimulado(){
     <div class="text-sm peso-600 mt-2">Mapa de acertos <span class="muted peso-400">· verde acertou, vermelho errou, cinza em branco; clique para abrir a questão</span></div>
     <div class="mapa-acertos mt-1">${todasLinhas.map(l=> l.fora ? `<button class="pill pill-resultado" onclick="abrirQuestaoDoResultado(${l.i})" title="${l.q.status==="desatualizada"?"desatualizada":"anulada"}: aparece na prova, mas a resposta não conta">${l.q.numeroNaProva||l.i+1}</button>` : pillMapa(l)).join("")}</div>
     ${sessao.duracaoMin && sessao.tempoTotalSeg > sessao.duracaoMin*60 ? `<div class="card-flat mt-2 text-sm borda-alerta">${iconeSvg("clock")} <strong>Fora do tempo.</strong> Você usou ${formatarDuracao(sessao.tempoTotalSeg)} de um limite de ${formatarDuracao(sessao.duracaoMin*60)}.</div>` : ""}
-    ${foraLinhas.length ? `<div class="text-xs muted mt-1">${foraLinhas.length} questão(ões) anulada(s) ou desatualizada(s) apareceram na prova e não entram na nota (cinza, sem cor).</div>` : ""}
+    ${foraLinhas.length ? `<div class="text-xs muted mt-1">${foraLinhas.length} ${plural(foraLinhas.length,"questão","questões")} anulada(s) ou desatualizada(s) apareceram na prova e não entram na nota (cinza, sem cor).</div>` : ""}
     ${sessao.semClassificacao ? `<div class="card-flat mt-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>Prova com correção por IA.</strong> Suas respostas contam no desempenho do dia e na taxa de acerto diária e mensal, mas esta nota <strong>não entra na classificação</strong> do simulado.</div>` : ""}
     ${htmlComparacaoComAnterior(comp, previa, linhas)}
   </div>
@@ -1087,7 +1087,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
         <div class="text-sm prova-banca">${escapeHtml(g.banca)}</div>
         <div class="qcard-meta mb-1"><span class="badge ${g.tipo==="graduacao"?"badge-accent":"badge-muted"}">${escapeHtml(infoTipoProva(g.tipo).nome)}</span>${g.dissertativa ? ` <span class="badge badge-accent">Dissertativa</span>` : ""}</div>
         ${g.dissertativa ? `<div class="text-xs muted mb-1">Você escreve a resposta, diz a confiança e se avalia pela resposta esperada da banca. Não há simulado com relógio nem nota automática.</div>` : ""}
-        <div class="text-sm muted mb-1">${g.ids.length} questão(ões) · ${respondidas} já respondida(s) por você</div>
+        <div class="text-sm muted mb-1">${g.ids.length} ${plural(g.ids.length,"questão","questões")} · ${respondidas} já respondida(s) por você</div>
         ${reposicoesDaProva(g).length ? `<div class="text-xs mb-1"><span class="badge badge-amber">${reposicoesDaProva(g).length} com reposição por IA</span> <span class="muted">ao começar, você escolhe a versão da prova</span></div>` : ""}
         ${g.anuladas.length ? `<div class="text-xs muted mb-1" title="Questões anuladas pela banca aparecem na prova, mas a resposta não conta na nota">+ ${g.anuladas.length} anulada(s) pela banca, aparecem na prova e ficam fora da nota: ${g.anuladas.map(id=>{ const q = getQuestao(id); return `<button class="link-btn text-xs" onclick="abrirQuestaoCompleta('${id}')">${q && q.numeroNaProva ? "nº "+q.numeroNaProva : "ver"}</button>`; }).join(", ")}</div>` : ""}
         ${g.semImagem ? `<div class="text-xs muted mb-1" title="Estas questões dependem de uma figura da prova que ainda não foi anexada">+ ${g.semImagem} à espera da figura da prova, fora por enquanto</div>` : ""}
@@ -1161,7 +1161,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
       </div>
     </div>
   </div>
-  <p class="text-sm muted mb-2">${grupos.length} prova(s) encontrada(s) · ${pool.length} questão(ões) no total com os filtros atuais.</p>
+  <p class="text-sm muted mb-2">${grupos.length} prova(s) encontrada(s) · ${pool.length} ${plural(pool.length,"questão","questões")} no total com os filtros atuais.</p>
   ${secoes || '<div class="empty-state">Nenhuma prova encontrada com esses filtros.</div>'}
   ${htmlProvasInativas()}
   ${buscaProvas().trim() && simuladosDaBusca.length ? `<div class="card-title mt-3 mb-1">Simulados que combinam com a busca <span class="text-sm muted peso-400">· ${simuladosDaBusca.length}</span></div>${simuladosDaBusca.map(renderSimuladoCard).join("")}` : ""}`;
@@ -1175,7 +1175,7 @@ function htmlProvasInativas(){
   if(!lista.length) return "";
   const linhas = lista.map(p=>{
     const n = db.questoes.filter(q=>q.real && chaveDaProvaDe(q)===p.chave).length;
-    return `<div class="flex justify-between items-center gap-2 quebra mt-1"><span class="text-sm"><strong>${escapeHtml(p.rotulo)}</strong> · <span class="muted">${n} questão(ões) guardadas${p.data ? ", inativa desde " + escapeHtml(formatDataBR(p.data)) : ", já chegou inativa"}${p.por ? " (" + escapeHtml(p.por) + ")" : ""}</span></span>
+    return `<div class="flex justify-between items-center gap-2 quebra mt-1"><span class="text-sm"><strong>${escapeHtml(p.rotulo)}</strong> · <span class="muted">${n} ${plural(n,"questão","questões")} guardadas${p.data ? ", inativa desde " + escapeHtml(formatDataBR(p.data)) : ", já chegou inativa"}${p.por ? " (" + escapeHtml(p.por) + ")" : ""}</span></span>
       <button class="btn btn-secondary btn-sm" onclick="reativarProvaDoBanco(${JSON.stringify(p.chave).replace(/"/g,"&quot;")})">Reativar</button></div>`;
   }).join("");
   return `<div class="card mt-3"><div class="card-title">Provas inativas <span class="text-sm muted peso-400">· ${lista.length} · só você e a equipe veem esta lista</span></div>
@@ -1256,7 +1256,7 @@ function perguntarVersaoDaProva(indice, acao){
   const total = g.ids.length;
   const chamada = v => acao==="simulado" ? `fazerProvaComoSimulado(${indice}, true, '${v}')` : `praticarProva(${indice}, '${v}')`;
   abrirModalTitulado("Qual versão da prova você quer fazer?", `
-    <p class="text-sm">Esta prova teve ${fora} questão(ões) anulada(s) ou desatualizada(s) e ${n} delas ${n===1?"tem":"têm"} uma reposição corrigida por IA.</p>
+    <p class="text-sm">Esta prova teve ${fora} ${plural(fora,"questão","questões")} anulada(s) ou desatualizada(s) e ${n} delas ${n===1?"tem":"têm"} uma reposição corrigida por IA.</p>
     <div class="grid gap-1 mt-2">
       <button class="card text-left" id="versaoOriginal" onclick="fecharModal();${chamada("original")}">
         <strong>Como foi realizada de fato</strong>
@@ -1264,7 +1264,7 @@ function perguntarVersaoDaProva(indice, acao){
       </button>
       <button class="card text-left" id="versaoIA" onclick="fecharModal();${chamada("ia")}">
         <strong>Com a correção feita por IA</strong>
-        <div class="text-sm muted">${n} questão(ões) vêm no lugar da anulada, com o texto corrigido e o selo "Reposição por IA". Elas contam no seu desempenho diário e na taxa de acerto, mas <strong>esta prova não entra na classificação</strong> do simulado.</div>
+        <div class="text-sm muted">${n} ${plural(n,"questão","questões")} vêm no lugar da anulada, com o texto corrigido e o selo "Reposição por IA". Elas contam no seu desempenho diário e na taxa de acerto, mas <strong>esta prova não entra na classificação</strong> do simulado.</div>
       </button>
     </div>
     <div class="flex gap-1 mt-2"><button class="btn btn-ghost btn-sm" onclick="fecharModal()">Cancelar</button></div>`);

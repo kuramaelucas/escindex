@@ -359,7 +359,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-027", banca:"FMABC", real:true, ano:2021, numeroNaProva:27,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepatites",
-  imagemUrl:"dados/imagens/q-fmabc2021-027.png", imagemLegenda:"Exames laboratoriais do paciente (questão 27).",
+  imagemUrl:"dados/imagens/q-fmabc2021-027.webp", imagemLegenda:"Exames laboratoriais do paciente (questão 27).",
   enunciado:"Homem, 32 anos de idade, com histórico de uso de drogas injetáveis, contando que há 2 anos abandonou o uso. Atualmente, relata tabagismo (10 maços/ano), etilismo social. Em consulta prévia foram solicitados exames em comum acordo com o paciente, os quais seguem reproduzidos a seguir. Sobre o caso clínico, é correto afirmar que o paciente apresenta:",
   alternativas:[{id:"A",texto:"Cirrose hepática alcoólica."},{id:"B",texto:"Infecção aguda por hepatite B."},{id:"C",texto:"Vacinação prévia para hepatites A e B."},{id:"D",texto:"Infecção crônica por hepatite B."}],
   gabarito:"",
@@ -412,7 +412,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-031", banca:"FMABC", real:true, ano:2021, numeroNaProva:31,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-fmabc2021-031.png", imagemLegenda:"Eletrocardiograma da questão 31.",
+  imagemUrl:"dados/imagens/q-fmabc2021-031.webp", imagemLegenda:"Eletrocardiograma da questão 31.",
   enunciado:"Homem, 68 anos de idade, sem comorbidades, procura pronto-socorro com queixa, há 1 hora, de palpitações. Nega episódios prévios. Há 3 meses apresenta perda ponderal não intencional, agitação psicomotora e insônia. Ao exame: pressão arterial = 110 x 60 mmHg, tireoide aumentada de tamanho, sem alterações ao exame cardiopulmonar. Foi realizado o eletrocardiograma reproduzido a seguir. Considerando o quadro clínico e a principal hipótese diagnóstica, qual deve ser a abordagem inicial para esse senhor, neste momento, no pronto-socorro?",
   alternativas:[{id:"A",texto:"Cardioversão sincronizada."},{id:"B",texto:"Amiodarona 150mg em 10 minutos."},{id:"C",texto:"Adenosina 6mg em bolus."},{id:"D",texto:"Metoprolol 5mg em 2 minutos."}],
   gabarito:"D",
@@ -439,7 +439,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-033", banca:"FMABC", real:true, ano:2021, numeroNaProva:33,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-fmabc2021-033.png", imagemLegenda:"Eletrocardiograma de 12 derivações (questões 33 e 34).",
+  imagemUrl:"dados/imagens/q-fmabc2021-033.webp", imagemLegenda:"Eletrocardiograma de 12 derivações (questões 33 e 34).",
   enunciado:"Atenção: utilize o caso a seguir para responder às questões 33 e 34. Mulher, 63 anos de idade, admitida na sala de emergência com quadro de confusão mental e letargia há duas horas. Relatou também episódio de tontura ao se levantar da cama. Previamente independente para atividades básicas e instrumentais da vida diária. Com diagnóstico de hipertensão arterial sistêmica há 10 anos, infarto agudo do miocárdio há 3 anos. Faz uso de amlodipina 10mg por dia, AAS 100mg por dia e atorvastatina 40mg por dia. Ao exame clínico: abertura ocular ao chamado, resposta verbal confusa e obediência aos comandos. Frequência cardíaca: 38 batimentos/minuto; pressão arterial: 92 x 66 mmHg; frequência respiratória: 20 incursões/minuto; Saturação de O2: 96% em ar ambiente. Sem outras alterações. Foi obtido um eletrocardiograma de 12 derivações, reproduzido a seguir. Quais são os diagnósticos eletrocardiográficos?",
   alternativas:[{id:"A",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo II, bloqueio de ramo direito e bloqueio da divisão ântero-superior."},{id:"B",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo I, bloqueio de ramo esquerdo e área elétrica inativa de parede inferior."},{id:"C",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo I, bloqueio de ramo direito e bloqueio da divisão ântero-superior."},{id:"D",texto:"Bloqueio atrioventricular de 2º grau Mobitz tipo II, bloqueio de ramo esquerdo e área elétrica inativa de parede inferior."}],
   gabarito:"A",
@@ -453,7 +453,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-034", banca:"FMABC", real:true, ano:2021, numeroNaProva:34,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-fmabc2021-034.png", imagemLegenda:"Eletrocardiograma de 12 derivações (questões 33 e 34).",
+  imagemUrl:"dados/imagens/q-fmabc2021-034.webp", imagemLegenda:"Eletrocardiograma de 12 derivações (questões 33 e 34).",
   enunciado:"Mulher, 63 anos de idade, admitida na sala de emergência com quadro de confusão mental e letargia há duas horas. Relatou também episódio de tontura ao se levantar da cama. Previamente independente para atividades básicas e instrumentais da vida diária. Com diagnóstico de hipertensão arterial sistêmica há 10 anos, infarto agudo do miocárdio há 3 anos. Faz uso de amlodipina 10mg por dia, AAS 100mg por dia e atorvastatina 40mg por dia. Ao exame clínico: abertura ocular ao chamado, resposta verbal confusa e obediência aos comandos. Frequência cardíaca: 38 batimentos/minuto; pressão arterial: 92 x 66 mmHg; frequência respiratória: 20 incursões/minuto; Saturação de O2: 96% em ar ambiente. Sem outras alterações. Foi obtido um eletrocardiograma de 12 derivações, reproduzido a seguir. Qual é a primeira conduta terapêutica que deve ser adotada neste momento?",
   alternativas:[{id:"A",texto:"Noradrenalina 0,1 mcg/kg/min por via intravenosa em infusão contínua."},{id:"B",texto:"Dopamina 1 mcg/kg/min por via intravenosa em infusão contínua."},{id:"C",texto:"Adrenalina 1mg administrada por via intravenosa em bolus."},{id:"D",texto:"Atropina 1mg administrada por via intravenosa em bolus."}],
   gabarito:"D",
@@ -740,7 +740,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-056", banca:"FMABC", real:true, ano:2021, numeroNaProva:56,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-fmabc2021-056.png", imagemLegenda:"Partograma da questão 56 (▲ dilatação; círculos altura do feto).",
+  imagemUrl:"dados/imagens/q-fmabc2021-056.webp", imagemLegenda:"Partograma da questão 56 (▲ dilatação; círculos altura do feto).",
   enunciado:"Analise o partograma reproduzido a seguir e aponte o diagnóstico: (▲ = dilatação Ȯ = altura do feto)",
   alternativas:[{id:"A",texto:"Período pélvico prolongado."},{id:"B",texto:"Parada secundária da dilatação."},{id:"C",texto:"Parada secundária da descida."},{id:"D",texto:"Fase ativa prolongada."}],
   gabarito:"C",
@@ -1105,7 +1105,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-084", banca:"FMABC", real:true, ano:2021, numeroNaProva:84,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-fmabc2021-084.png", imagemLegenda:"Face da criança com lesão malar (questão 84).",
+  imagemUrl:"dados/imagens/q-fmabc2021-084.webp", imagemLegenda:"Face da criança com lesão malar (questão 84).",
   enunciado:"Paciente de 15 meses de idade, masculino em seguimento no ambulatório de pediatria geral com queixa de lesão de pele pruriginosa, prejudicando seu sono. Paciente com vacinação atualizada, com história prévia de 2 episódios de sibilância, sem necessidade de internação. Mãe com antecedente de asma e pai com rinite alérgica. Ao exame clínico, paciente com lesão eczematosa em face, em região malar, poupando maciço central, e em couro cabeludo e com dupla prega de Dennie-Morgan. Pele xerótica, com lesões eritematosas e pápulas eritematosas com algumas crostas pescoço, sem lesões em região de fralda. Sem outras alterações no exame clínico. Indique o diagnóstico e o tratamento:",
   alternativas:[{id:"A",texto:"Dermatite atópica. Orientar banho, hidratação da pele e antihistamínico para controle de prurido."},{id:"B",texto:"Dermatite seborreica. Orientar limpeza da pele com óleos para remoção das crostas e anti-histamínico para controle de prurido."},{id:"C",texto:"Estrófulo. Tratar com antibiótico oral por 7 dias e realizar descolonização tópica com mupirocina."},{id:"D",texto:"Impetigo crostoso. Internar paciente para antibiótico endovenoso e descolonização tópica com mupirocina."}],
   gabarito:"A",
@@ -1145,7 +1145,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-087", banca:"FMABC", real:true, ano:2021, numeroNaProva:87,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-fmabc2021-087.png", imagemLegenda:"Tabela de pressão arterial por idade e percentil de estatura (SBP, 2019) (questão 87).",
+  imagemUrl:"dados/imagens/q-fmabc2021-087.webp", imagemLegenda:"Tabela de pressão arterial por idade e percentil de estatura (SBP, 2019) (questão 87).",
   enunciado:"Menino, 5 anos de idade, em consulta de puericultura na Unidade Básica de Saúde em que você atua. A mãe e o menino não apresentam queixas. Você confere no prontuário que o paciente não apresenta antecedentes neonatais e patológicos importantes, porém encontra-se com diagnóstico nutricional de obesidade, e que não há relato de aferição da pressão arterial em consultas anteriores. Você verifica dados da antropometria e afere 3 vezes a pressão arterial do paciente. Restante do exame físico sem alterações. Utilizando a tabela a seguir (Sociedade Brasileira de Pediatria, 2019), classifique a pressão arterial do paciente em questão e aponte a conduta inicial:",
   alternativas:[{id:"A",texto:"Hipertensão estágio 2. Encaminhamento para especialista avaliar melhor conduta diagnóstica e tratamento medicamentoso."},{id:"B",texto:"Pressão arterial normal alta. Alimentação adequada, controle de peso, estímulo à redução de práticas sedentárias, realização de atividade física e reavaliações periódicas."},{id:"C",texto:"Hipertensão estágio 1. Alimentação adequada e controle de peso, prática de atividade física, iniciar inibidor da enzima conversora da angiotensina (IECA)."},{id:"D",texto:"Pressão arterial elevada. Alimentação adequada, controle de peso, estímulo à redução de práticas sedentárias, realização de atividade física e reavaliações periódicas."}],
   gabarito:"D",
@@ -1159,7 +1159,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-088", banca:"FMABC", real:true, ano:2021, numeroNaProva:88,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-fmabc2021-088.png", imagemLegenda:"Curva de IMC para idade da OMS (questões 88 e 89).",
+  imagemUrl:"dados/imagens/q-fmabc2021-088.webp", imagemLegenda:"Curva de IMC para idade da OMS (questões 88 e 89).",
   enunciado:"Atenção: utilize o caso a seguir para responder às questões 88 e 89. Mãe traz filha de 10 meses de idade à consulta e diz que está orgulhosa, pois ela come bem e todos a acham “fofinha”. Criança nascida a termo, em aleitamento materno exclusivo até os 6 meses, atualmente mantém aleitamento e alimentação complementar. Mãe nega oferta de alimentos adoçados ou industrializados e afirma que a criança “nunca está satisfeita”. Nega comorbidades conhecidas. Nega casos de obesidade ou doenças endocrinológicas na família. Ao exame: lactente sem dismorfismos faciais, ativa, normocorada, hidratada, eupneica. Ausculta cardiopulmonar e exame abdominal sem alterações. Estatura: 70cm; peso: 12kg; IMC = 23 kg/m2 . Analisando o caso e o gráfico abaixo, responda as questões a seguir. (Fonte: Organização Mundial de Saúde https://www.who.int/childgrowth/standards/bmi_for_age/en/) Conforme gráfico da OMS de índice de massa corporal versus idade, qual é a classificação nutricional desta paciente?",
   alternativas:[{id:"A",texto:"Sobrepeso."},{id:"B",texto:"Obesidade grave."},{id:"C",texto:"Obesidade."},{id:"D",texto:"Eutrófica para a idade."}],
   gabarito:"C",
@@ -1173,7 +1173,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-089", banca:"FMABC", real:true, ano:2021, numeroNaProva:89,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-fmabc2021-089.png", imagemLegenda:"Curva de IMC para idade da OMS (questões 88 e 89).",
+  imagemUrl:"dados/imagens/q-fmabc2021-089.webp", imagemLegenda:"Curva de IMC para idade da OMS (questões 88 e 89).",
   enunciado:"Mãe traz filha de 10 meses de idade à consulta e diz que está orgulhosa, pois ela come bem e todos a acham “fofinha”. Criança nascida a termo, em aleitamento materno exclusivo até os 6 meses, atualmente mantém aleitamento e alimentação complementar. Mãe nega oferta de alimentos adoçados ou industrializados e afirma que a criança “nunca está satisfeita”. Nega comorbidades conhecidas. Nega casos de obesidade ou doenças endocrinológicas na família. Ao exame: lactente sem dismorfismos faciais, ativa, normocorada, hidratada, eupneica. Ausculta cardiopulmonar e exame abdominal sem alterações. Estatura: 70cm; peso: 12kg; IMC = 23 kg/m2 . Analisando o caso e o gráfico abaixo, responda as questões a seguir (Fonte: Organização Mundial de Saúde (https://www.who.int/childgrowth/standards/bmi_for_age/en/). Sobre a avaliação clínica de crianças com algum grau de sobrepeso/obesidade, assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"Na obesidade exógena, a idade óssea geralmente é atrasada, o que contribui para que esses pacientes geralmente tenham uma estatura mais elevada na idade adulta."},{id:"B",texto:"É importante investigar sobre os hábitos alimentares da criança. Em casos de inadequação nesse aspecto, pode-se dar o diagnóstico de obesidade exógena."},{id:"C",texto:"Obesidade iniciada no primeiro ano de vida é um sinal de alerta para a necessidade de investigação adicional para a etiologia da obesidade."},{id:"D",texto:"A Síndrome de Prader-Willi é uma síndrome genética associada à obesidade caracterizada por hiperfagia, obesidade grave, dismorfismo facial, pés e mãos grandes e estatura elevada."}],
   gabarito:"C",
@@ -1239,7 +1239,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2021", [
 {
   id:"q-fmabc2021-094", banca:"FMABC", real:true, ano:2021, numeroNaProva:94,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemoglobinopatias",
-  imagemUrl:"dados/imagens/q-fmabc2021-094.png", imagemLegenda:"Exames laboratoriais da criança (questão 94).",
+  imagemUrl:"dados/imagens/q-fmabc2021-094.webp", imagemLegenda:"Exames laboratoriais da criança (questão 94).",
   enunciado:"Menino, 2 anos de idade, com diagnóstico de anemia falciforme, no pronto-socorro trazido por seu pai, com queixa há 1 dia de palidez, aumento do volume abdominal e diminuição de diurese. Ao exame clínico: regular estado geral, descorado 3+/4+, mucosas desidratadas, anictérico, afebril, sonolento, sem linfonodomegalias. Ausculta cardíaca com bulhas taquicárdicas, com sopro sistólico de 3+/6+. Tempo de enchimento capilar = 4 segundos. Ausculta respiratória sem alterações, com taquipneia, saturação de O2 = 93%, em ar ambiente. Abdome: baço palpável a 6cm do rebordo costal esquerdo (pai refere que normalmente baço fica há 2cm do rebordo costal). Sem edemas e sem lesão de pele. Solicitados exames reproduzidos a seguir. Qual é o diagnóstico que explica os dados clínicos observados nesta criança?",
   alternativas:[{id:"A",texto:"Síndrome hemofagocítica."},{id:"B",texto:"Aplasia medular."},{id:"C",texto:"Crise vaso oclusiva."},{id:"D",texto:"Sequestro esplênico."}],
   gabarito:"D",

@@ -29,7 +29,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-001", banca:"SES-SP", real:true, ano:2024, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
-  imagemUrl:"dados/imagens/q-sessp2024-001.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-001.webp",
   enunciado:"Uma mulher de 57 anos de idade, hipertensa, diabética e dislipidêmica foi internada na enfermaria de clínica médica devido a pielonefrite e, atualmente, está em D5 de ceftriaxone endovenoso. Exames realizados no momento: Hb 10,6; leucócitos 17.350, à custa de neutrófilos; ureia 78; CR 1,34 (CLCR 46); e PCR 32. TC de abdômen apenas com nefrograma estriado à direita, urina 1 da admissão com leucocitúria e nitrito positivo. Devido a desconforto torácico e leve dessaturação, foi solicitada uma angiotomografia arterial de tórax, que deu positivo para tromboembolismo pulmonar em ramo proximal de artéria pulmonar direita. Durante a noite, houve piora clínica: PA de 89x57 mmHg; FC de 118 bpm; temperatura de 38,7 oC; e TEC = 4,5 segundos. As imagens a seguir representam a ultrassonografia à beira leito. Subcostal Paraesternal eixo curto Além das imagens anteriores, não havia alterações pleuropulmonares significativas. Cava com variabilidade inspiratória > 50 %. Não foi observado sinal de McConnell ou D sign. Com base nessa situação hipotética, assinale a alternativa que apresenta a conduta inicial terapêutica que deverá ser adotada.",
   alternativas:[{id:"A",texto:"trombólise química, coleta de hemoculturas e urocultura e escalonamento de antibióticoterapia"},{id:"B",texto:"anticoagulação plena, coleta de hemoculturas e urocultura e escalonamento de antibióticoterapia"},{id:"C",texto:"trombólise química, coleta de urocultura e escalonamento de antibióticoterapia"},{id:"D",texto:"trombólise química, coleta de hemoculturas e urocultura e manutenção do ceftriaxone"},{id:"E",texto:"anticoagulação plena, coleta de hemoculturas e de urocultura e manutenção de ceftriaxone"}],
   gabarito:"B",
@@ -43,7 +43,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-002", banca:"SES-SP", real:true, ano:2024, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-sessp2024-002.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-002.webp",
   enunciado:"Uma mulher de 47 anos de idade compareceu ao pronto-socorro com queixa de palpitação, sudorese e dor no peito. Relatou percepção dos atuais sintomas há quinze minutos da admissão. No exame físico, encontra-se sudoreica, taquicárdica e eupneica. PA de 145x85 mmHg, FR de 23 irpm e enchimento capilar preservado. A seguir, o eletrocardiograma da referida paciente. Com base nessa situação hipotética, assinale a alternativa que apresenta a conduta mais adequada para a paciente.",
   alternativas:[{id:"A",texto:"cardioversão elétrica sincronizada"},{id:"B",texto:"adenosina"},{id:"C",texto:"manobra vagal"},{id:"D",texto:"propranolol"},{id:"E",texto:"amiodarona"}],
   gabarito:"A",
@@ -83,7 +83,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-005", banca:"SES-SP", real:true, ano:2024, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-sessp2024-005.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-005.webp",
   enunciado:"Um paciente de 57 anos de idade, diabético, em uso de insulina, e hipertenso, dirigiu-se ao pronto atendimento com queixa de febre e tosse produtiva há dois dias. No exame físico: PA de 140x90 mmHg; FC de 88 bpm; saturação de O2 de 96% em ar ambiente; FR de 22 irpm; e boa perfusão periférica. Exames: Hb 13,5; leucócitos 13.500; plaquetas 250.000; ureia 37; CR 1,1; sódio 137; e potássio 4,3. RX de tórax do paciente mostrado a seguir. Em conjunto com o paciente, optou-se por entregar receitas de antibiótico para tratamento domiciliar e por retorno em caso de ausência de melhora ou piora clínica. Com base nessa situação hipotética, assinale a alternativa que apresenta a conduta mais adequada para o paciente.",
   alternativas:[{id:"A",texto:"amoxilicina com clavulanato + azitromicina"},{id:"B",texto:"amoxicilina"},{id:"C",texto:"azitromicina"},{id:"D",texto:"ceftriaxone"},{id:"E",texto:"oxacilina"}],
   gabarito:"A",
@@ -97,7 +97,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-006", banca:"SES-SP", real:true, ano:2024, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-sessp2024-006.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-006.webp",
   enunciado:"Um paciente de 57 anos de idade é hipertenso, diabético, tabagista e dislipidêmico. Dirigiu-se ao pronto-socorro com náuseas, sudorese e dor precordial, que teve início há quinze minutos. O eletrocardiograma inicial evidenciou bloqueio de ramo esquerdo. O paciente desconhece exame eletrocardiográfico prévio. Sinais vitais: PA de 145x85 mmHg; e saturação de O2 de 98% em ar ambiente. No eletrocardiograma citado, não havia elevação concordante do seguimento ST, em mais de 1 mm, nas derivações com QRS positivo. Sem depressão do segmento ST > 1 mm em v1, v2 ou v3 e sem elevação do segmento ST ≥ a 5 mm, em derivação em que o QRS é negativo. Com base nessa situação hipotética, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Está descartado o infarto agudo do miocárdio, pelos critérios de Sgarbossa."},{id:"B",texto:"A estratégia mais adequada seria a angioplastia primária."},{id:"C",texto:"Não se pode descartar o infarto apenas com esses dados eletrocardiográficos, dada a anamnese apresentada. O paciente deve ser mantido em observação, com solicitação seriada de enzimas e eletrocardiograma."},{id:"D",texto:"Pelos critérios de Sgarbossa, está confirmado o diagnóstico de infarto agudo do miocárdio. O paciente deverá receber AAS, clopidogrel e provável angioplastia em até 24 horas."},{id:"E",texto:"Pelos critérios de Sgarbossa, está confirmado o diagnóstico de infarto agudo do miocárdio. O paciente deverá receber AAS, clopidogrel e provável angioplastia em até doze horas."}],
   gabarito:"C",
@@ -332,7 +332,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-024", banca:"SES-SP", real:true, ano:2024, numeroNaProva:24,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
-  imagemUrl:"dados/imagens/q-sessp2024-024.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-024.webp",
   enunciado:"Em relação ao esquema de conduta preconizado para o paciente com nódulo de tireoide (TSH – hormônio tireoestimulante, punção aspirativa por agulha fina – PAAF, ressonância magnética – RNM, tomografia – TC, T3 tri-iodotironina e T4 tiroxina) apresentado no fluxograma anexo, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"O esquema está correto."},{id:"B",texto:"O esquema está errado, pois a PAAF deve ser realizada em todos os nódulos da tireoide."},{id:"C",texto:"O esquema está errado, pois nódulos suspeitos devem ser avaliados por RNM ou TC cervical antes da PAAF."},{id:"D",texto:"O esquema está errado, pois, na avaliação inicial, deve ser solicitado, também, o exame de T3 e T4."},{id:"E",texto:"O esquema está errado, pois a PAAF não é um método seguro para distinguir nódulos benignos de malignos."}],
   gabarito:"",
@@ -1087,7 +1087,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-082", banca:"SES-SP", real:true, ano:2024, numeroNaProva:82,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
-  imagemUrl:"dados/imagens/q-sessp2024-082.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-082.webp",
   enunciado:"Assinale a alternativa que apresenta uma informação correta acerca da imagem acima.",
   alternativas:[{id:"A",texto:"A curva da HbA1c não permite diferenciar um valor de corte para diagnóstico de diabetes."},{id:"B",texto:"A HbA1c de 5,6% deve ser usada como parâmetro de diagnóstico de diabetes, por sua alta especificidade."},{id:"C",texto:"A HbA1c de 7 é o padrão para diagnóstico, pois garante uma alta sensibilidade e especificidade."},{id:"D",texto:"Comparando-se os valores de 5,6 e 6,3 de HbA1c, a razão de verossimilhança positiva de 6,3 é menor que a de 5,6."},{id:"E",texto:"A curva diagonal define o parâmetro discriminatório não diferente do acaso (50% de chance)."}],
   gabarito:"E",
@@ -1140,7 +1140,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-086", banca:"SES-SP", real:true, ano:2024, numeroNaProva:86,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-niveisatencao",
-  imagemUrl:"dados/imagens/q-sessp2024-086.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-086.webp",
   enunciado:"A imagem acima foi extraída de uma apresentação feita, em 2017, pelo Ministério da Saúde, a respeito das redes de atenção à saúde. Considerando essa informação, assinale a alternativa que apresenta a rede evidenciada nessa imagem.",
   alternativas:[{id:"A",texto:"rede de atenção às urgências e emergências"},{id:"B",texto:"rede de atenção à saúde materno-infantil"},{id:"C",texto:"rede de atenção à saúde das pessoas com doenças crônicas"},{id:"D",texto:"rede de atenção psicossocial"},{id:"E",texto:"rede de cuidado à pessoa com deficiência"}],
   gabarito:"D",
@@ -1154,7 +1154,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-087", banca:"SES-SP", real:true, ano:2024, numeroNaProva:87,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-infantil",
-  imagemUrl:"dados/imagens/q-sessp2024-087.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-087.webp",
   enunciado:"A imagem acima foi extraída de uma coorte. Considerando esse gráfico, assinale a alternativa que apresenta o principal motivo para o fenômeno demonstrado.",
   alternativas:[{id:"A",texto:"aumento da divulgação de informações sobre TEA para a população e novas descobertas de testes genéticos para diagnóstico"},{id:"B",texto:"treinamento de professores no diagnóstico de TEA e diagnóstico precoce (antes de seis meses de vida), com escalas validadas"},{id:"C",texto:"novas descobertas de testes genéticos para diagnóstico e treinamento de professores no diagnóstico de TEA"},{id:"D",texto:"aumento da divulgação de informações sobre TEA para a população e aumento da aplicação de escalas de rastreamento validadas"},{id:"E",texto:"diagnóstico precoce (antes de seis meses de vida), com escalas validadas, e flexibilização do DSM V para critérios diagnósticos"}],
   gabarito:"D",
@@ -1246,7 +1246,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2024", [
 {
   id:"q-sessp2024-094", banca:"SES-SP", real:true, ano:2024, numeroNaProva:94,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-sessp2024-094.jpg",
+  imagemUrl:"dados/imagens/q-sessp2024-094.webp",
   enunciado:"João, de 27 anos de idade, passou em uma consulta com seu médico de família e comunidade, recebendo um diagnóstico de transtorno depressivo maior. Ele nunca fez uso de antidepressivo, mas concordou em iniciar o tratamento hoje. Para tomar a melhor decisão clínica, o médico de João consultou um estudo científico que compara diferentes ensaios clínicos e analisa a qualidade das evidências desses estudos. Como resultado do estudo, foram geradas as imagens a seguir. Com base nessa situação hipotética e nas informações passadas, assinale a alternativa que apresenta o nome do tipo de estudo que foi consultado para a definição do tratamento correto para João.",
   alternativas:[{id:"A",texto:"coorte prospectiva"},{id:"B",texto:"coorte retrospectiva"},{id:"C",texto:"ensaio clínico fase 4"},{id:"D",texto:"meta-análise"},{id:"E",texto:"meta-análise de rede"}],
   gabarito:"E",

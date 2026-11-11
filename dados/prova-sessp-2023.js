@@ -132,7 +132,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 {
   id:"q-sessp2023-009", banca:"SES-SP", real:true, ano:2023, numeroNaProva:9,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-queimaduras",
-  imagemUrl:"dados/imagens/q-sessp2023-009.jpg",
+  imagemUrl:"dados/imagens/q-sessp2023-009.webp",
   enunciado:"Paciente, masculino, de 45 anos de idade, vítima de incêndio de grandes proporções em sua casa, tendo permanecido por mais de duas horas dentro do local, foi resgatado e levado ao pronto-socorro. Apresenta desconforto respiratório e queimaduras profundas, nas áreas indicadas na figura a seguir por meio de um círculo com um “X”. Assinale a alternativa que apresenta, respectivamente, o percentual de superfície corpórea queimada (SCQ), de acordo com o método de Wallace, e a melhor conduta inicial de tratamento, nesse caso hipotético.",
   alternativas:[{id:"A",texto:"40%; intubação orotraqueal, reposição volêmica de 2 mL de ringer lactato × peso corporal × SCQ"},{id:"B",texto:"45%; intubação orotraqueal, reposição volêmica de 2 mL de ringer lactato × peso corporal × SCQ, limpeza e curativo das áreas queimadas, analgesia, antibioticoterapia, transferência para centro especializado em tratamento de queimados"},{id:"C",texto:"45%; intubação orotraqueal, reposição volêmica de 5,2 mL de ringer lactato x peso corporal x SCQ, curativo das áreas queimadas, analgesia"},{id:"D",texto:"50%; cateter nasal com oxigênio úmido 5 L/min, curativo das áreas queimadas, transferência para centro especializado em tratamento de queimados"},{id:"E",texto:"50%; CEPAP ou máscara de O2 não reinalante 15 L/min, curativo simples das áreas queimadas, analgesia"}],
   gabarito:"",
@@ -445,7 +445,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 {
   id:"q-sessp2023-033", banca:"SES-SP", real:true, ano:2023, numeroNaProva:33,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-corpoestranho",
-  imagemUrl:"dados/imagens/q-sessp2023-033.jpg",
+  imagemUrl:"dados/imagens/q-sessp2023-033.webp",
   enunciado:"Paciente de 2 anos de idade é levada pela mãe ao hospital com relato de aumento de salivação subitamente, não conseguindo deglutir. A mãe relata que quadro iniciou há, aproximadamente, 1 hora após deixar a paciente sozinha na sala por alguns minutos, afirmando que antes a paciente estava bem. Foi realizada uma radiografia de tórax, obtendo-se a seguinte imagem. Com base nesse caso clínico, assinale a alternativa que apresenta o corpo estranho ingerido pela paciente e a conduta a ser adotada nessa situação.",
   alternativas:[{id:"A",texto:"bateria; realizar endoscopia o mais rápido possível"},{id:"B",texto:"moeda; realizar endoscopia o mais rápido possível"},{id:"C",texto:"bateria; realizar endoscopia eletivamente no próximo dia"},{id:"D",texto:"moeda; realizar endoscopia eletivamente no próximo dia"},{id:"E",texto:"moeda; não realizar endoscopia"}],
   gabarito:"",
@@ -745,7 +745,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 {
   id:"q-sessp2023-056", banca:"SES-SP", real:true, ano:2023, numeroNaProva:56,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-diagnosticoprenatal",
-  imagemUrl:"dados/imagens/q-sessp2023-056.jpg",
+  imagemUrl:"dados/imagens/q-sessp2023-056.webp",
   enunciado:"Considerando a imagem acima, assinale a alternativa que apresenta uma alteração ultrassonográfica que pode se associar aos teratomas cervicais.",
   alternativas:[{id:"A",texto:"É rara a associação com polidrâmnio."},{id:"B",texto:"A placentomegalia não está presente."},{id:"C",texto:"Há aumento de líquido na bexiga fetal."},{id:"D",texto:"Há redução ou ausência da bolha gástrica."},{id:"E",texto:"O líquido amniótico está reduzido."}],
   gabarito:"D",
@@ -902,7 +902,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 {
   id:"q-sessp2023-068", banca:"SES-SP", real:true, ano:2023, numeroNaProva:68,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-sessp2023-068.jpg",
+  imagemUrl:"dados/imagens/q-sessp2023-068.webp",
   enunciado:"Paciente MDH, homem, de 42 anos de idade, foi internado por dispneia aos esforços há cinco meses, com sensação de opressão no tórax há uma semana. Nega tosse, expectoração ou chiado. Nega tabagismo. Seu exame físico da entrada revelou o seguinte: PA de 110 mmHg × 76 mmHg; FC de 54 bpm; saturação de O2 (ar ambiente) de 91%. Ausculta cardíaca: hiperfonese e desdobramento de segunda bulha em foco pulmonar. Turgência jugular bilateral. Pulmões com estertores bibasais. Apresenta ecocardiograma transtorácico com FEVE de 34% e a radiografia inicial mostrada a seguir. O paciente é estabilizado no terceiro dia da internação e já está com a volemia estável. A partir desse caso hipotético, assinale a alternativa correta, a respeito do planejamento pós-alta desse paciente, de acordo com a Diretriz Brasileira de Insuficiência Cardíaca Crônica e Aguda.",
   alternativas:[{id:"A",texto:"Recomenda-se que pacientes que foram internados por insuficiência cardíaca (IC) descompensada sejam seguidos somente em casos de necessidade de terapia de suporte ventricular."},{id:"B",texto:"Recomenda-se visita clínica precoce após hospitalização, com avaliação médica/multidisciplinar, somente depois do terceiro mês após alta hospitalar."},{id:"C",texto:"É recomendada a vacinação anual contra influenza para todos os pacientes com IC."},{id:"D",texto:"Pacientes com sintomas avançados (classe IV da NYHA) são os únicos indicados a iniciar programas de exercício."},{id:"E",texto:"O retorno ao trabalho deve ser evitado, ainda que seja importante financeiramente, pois o trabalho não é benéfico para o estado emocional e a autoestima de pacientes com doenças crônicas."}],
   gabarito:"C",
@@ -968,7 +968,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 {
   id:"q-sessp2023-073", banca:"SES-SP", real:true, ano:2023, numeroNaProva:73,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-sessp2023-073.jpg",
+  imagemUrl:"dados/imagens/q-sessp2023-073.webp",
   enunciado:"Paciente do sexo feminino, de 39 anos de idade, natural e procedente de São Paulo – SP, sem comorbidades, procura atendimento no Centro de Saúde Escola por quadro de perda ponderal de 8 kg em 4 meses, tosse produtiva, febre baixa no início da noite, fadiga e nodulações cervicais. Ao exame, revela-se emagrecida, descorada 2+/4+, afebril, com nodulações endurecidas em cadeias cervicais anterior e posterior, com ausculta cardíaca sem alterações e estertores crepitantes em ápice direito. Realizou a radiografia de tórax apresentada a seguir. (radiografia de tórax anexa) Com base nesse caso clínico, assinale, entre as alternativas a seguir, aquela que apresenta a principal hipótese diagnóstica do quadro pulmonar e seu exame confirmatório, respectivamente.",
   alternativas:[{id:"A",texto:"cavitação pulmonar, tuberculose pulmonar; pesquisa do bacilo álcool-ácido resistente (pelo menos uma amostra)"},{id:"B",texto:"abscesso pulmonar, pneumonia por Staphilococcus aureus; três pares de hemoculturas"},{id:"C",texto:"massa pulmonar, neoplasia maligna de pulmão; biópsia guiada por tomografia"},{id:"D",texto:"cavitação pulmonar, tuberculose pulmonar; pesquisa do bacilo álcool-ácido resistente (pelo menos duas amostras)"},{id:"E",texto:"massa pulmonar, neoplasia maligna de pulmão; biópsia endobrônquica"}],
   gabarito:"D",
@@ -995,7 +995,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
 {
   id:"q-sessp2023-075", banca:"SES-SP", real:true, ano:2023, numeroNaProva:75,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-sessp2023-075.jpg",
+  imagemUrl:"dados/imagens/q-sessp2023-075.webp",
   enunciado:"Mulher de 52 anos de idade, hipertensa, diabética e tabagista procurou o pronto-socorro de um hospital terciário com quadro de dor precordial de início súbito há cerca de duas horas, de forte intensidade, associada a diaforese e dispneia. Ao exame físico, apresenta-se sudoreica, com palidez cutânea, PA = 80 mmHg × 60 mmHg, FC = 64 bpm, FR = 28 ipm, saturação de oxigênio = 98% em ar ambiente, turgência jugular a 45°, com bulhas rítmicas, normofonéticas, sem sopros. À ausculta pulmonar, observa-se murmúrio vesicular presente em cada hemitórax, com estertores crepitantes em terço inferior bilateralmente. Constatam-se extremidades frias, com tempo de enchimento capilar prolongado. Foi realizado o eletrocardiograma a seguir. Internet: <assinantes.medicinanet.com.br>. Assinale a alternativa que apresenta, respectivamente, o correto diagnóstico e a conduta adequada, nesse caso clínico.",
   alternativas:[{id:"A",texto:"infarto agudo do miocárdio sem supradesnivelamento do segmento ST; encaminhar ao laboratório de hemodinâmica de imediato"},{id:"B",texto:"infarto agudo do miocárdio com supradesnivelamento do segmento ST de parede anterior; encaminhar ao laboratório de hemodinâmica de imediato"},{id:"C",texto:"infarto agudo do miocárdio com supradesnivelamento do segmento ST de parede inferior; realizar trombólise de urgência, se ausência de contraindicações"},{id:"D",texto:"infarto agudo do miocárdio com supradesnivelamento do segmento ST de parede inferior; encaminhar ao laboratório de hemodinâmica de imediato"},{id:"E",texto:"infarto agudo do miocárdio sem supradesnivelamento do segmento ST; realizar trombólise de urgência, se ausência de contraindicações"}],
   gabarito:"D",

@@ -21,7 +21,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2022", [
 {
   id:"q-fmabc2022-001", banca:"FMABC", real:true, ano:2022, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-fmabc2022-001.png", imagemLegenda:"Eletrocardiograma da questão 1.",
+  imagemUrl:"dados/imagens/q-fmabc2022-001.webp", imagemLegenda:"Eletrocardiograma da questão 1.",
   enunciado:"Paciente de 65 anos de idade, hipertenso e diabético, faz uso diário de metformina, atenolol e anti-inflamatório não hormonal para osteoartose de coluna. Refere há 1 semana estar com quadro de dor torácica e cansaço. Hoje, iniciou quadro de falta de ar e vômitos. A pressão arterial encontra-se em 170 x 120 mmHg, a frequência respiratória em 24 ipm. Ele está afebril e a saturação em ar ambiente é de 94%. O ECG a seguir. Nesse momento, recomenda(m)-se",
   alternativas:[{id:"A",texto:"introduzir aspirina, clopidogrel e realizar trombólise com alteplase."},{id:"B",texto:"introduzir aspirina, clopidogrel, enoxaparina e realizar trombólise com alteplase."},{id:"C",texto:"introduzir aspirina, clopidogrel e realizar angioplastia primária."},{id:"D",texto:"introduzir gluconato de cálcio."},{id:"E",texto:"realizar angioplastia primária."}],
   gabarito:"D",
@@ -139,7 +139,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2022", [
 {
   id:"q-fmabc2022-010", banca:"FMABC", real:true, ano:2022, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
-  imagemUrl:"dados/imagens/q-fmabc2022-010.png", imagemLegenda:"Eletrocardiograma da questão 10.",
+  imagemUrl:"dados/imagens/q-fmabc2022-010.webp", imagemLegenda:"Eletrocardiograma da questão 10.",
   enunciado:"Paciente de 26 anos de idade, curada recentemente de covid-19, chega ao departamento de emergência após apresentar quadro de síncope. Saturação de entrada 84%, sem melhora com oxigênio suplementar. Durante o procedimento de intubação orotraqueal, evolui para parada cardiorrespiratória em atividade elétrica sem pulso. Após um ciclo de reanimação, 500 mL de soro fisiológico e uma ampola de adrenalina endovenosa, paciente apresenta ritmo sinusal, sem pressão arterial aferível, com pulso carotídeo cheio, pupilas foto reagentes e isocóricas. O ECG a seguir. Nesse momento, recomenda-se",
   alternativas:[{id:"A",texto:"introduzir clexane dose plena."},{id:"B",texto:"introduzir heparina não fracionada em dose plena."},{id:"C",texto:"introduzir rivaroxabana."},{id:"D",texto:"introduzir aspirina e clopidogrel."},{id:"E",texto:"iniciar trombólise com alteplase."}],
   gabarito:"E",
@@ -192,7 +192,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2022", [
 {
   id:"q-fmabc2022-014", banca:"FMABC", real:true, ano:2022, numeroNaProva:14,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-fmabc2022-014.png", imagemLegenda:"Traçado do ECG da questão 14.",
+  imagemUrl:"dados/imagens/q-fmabc2022-014.webp", imagemLegenda:"Traçado do ECG da questão 14.",
   enunciado:"Paciente de 68 anos apresenta quadro progressivo de dispneia. Hoje, apresentou quadro de tontura seguida de síncope. O traçado do ECG está a seguir: Nesse momento, com relação ao diagnóstico e à respectiva conduta, é correto afirmar:",
   alternativas:[{id:"A",texto:"bradicardia sinusal, dopamina em infusão contínua."},{id:"B",texto:"bloqueio atrioventricular de 1° grau, bolus de atropina."},{id:"C",texto:"bloqueio atrioventricular de 2° grau Mobitz I, bolus de atropina."},{id:"D",texto:"bloqueio atrioventricular de 2°grau Mobitz II, colocação de marca-passo externo."},{id:"E",texto:"bloqueio atrioventricular total, colocação de marca-passo externo."}],
   gabarito:"E",

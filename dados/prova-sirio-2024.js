@@ -322,7 +322,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-024", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:24,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-sirio2024-024.png",
+  imagemUrl:"dados/imagens/q-sirio2024-024.webp",
   enunciado:"Paciente de 22 anos é atendido no pronto-socorro, vitima de único ferimento por arma branca em flanco esquerdo de 3 cm de extensão. Estável hemodinamicamente, permanece em observação inicial. Após intensificação da dor, realiza-se a tomografia de abdome. Melhor conduta para esse caso, dentre as abaixo:",
   alternativas:[{id:"A",texto:"Laparoscopia."},{id:"B",texto:"Sutura da parede abdominal pelo ferimento."},{id:"C",texto:"Observação clínica."},{id:"D",texto:"Repetir tomografia com contraste via oral prolongada."},{id:"E",texto:"Limpeza do ferimento seguido de curativo a vácuo."}],
   gabarito:"A",
@@ -349,7 +349,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-026", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:26,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
-  imagemUrl:"dados/imagens/q-sirio2024-026.png",
+  imagemUrl:"dados/imagens/q-sirio2024-026.webp",
   enunciado:"Paciente de 51 anos, sem comorbidades, é atendido no ambulatório por diagnóstico de adenocarcinoma de sigmoide sem invasão de estruturas adjacentes ou linfonodomegalia. Em estadiamento, identifica-se a alteração mostrada na imagem. O primeiro passo oncológico, dentre os abaixo, deve ser:",
   alternativas:[{id:"A",texto:"Embolização hepática."},{id:"B",texto:"Radioterapia."},{id:"C",texto:"Quimiorradioterapia."},{id:"D",texto:"Colectomia esquerda."},{id:"E",texto:"Quimioterapia"}],
   gabarito:"E",
@@ -415,7 +415,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-031", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:31,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-capancreas",
-  imagemUrl:"dados/imagens/q-sirio2024-031.png",
+  imagemUrl:"dados/imagens/q-sirio2024-031.webp",
   enunciado:"Paciente de 61 anos faz seguimento no ambulatório por perda de peso, hiporexia, empachamento pós-prandial e dor epigástrica irradiando para dorso recorrente e progressiva. Ex-tabagista e etilista social (1 cerveja aos finais de semana). Nega comorbidades. Tomografia aponta duas lesões. O exame laboratorial que provavelmente está alterado e é condizente com a principal hipótese diagnóstica:",
   alternativas:[{id:"A",texto:"DHL."},{id:"B",texto:"CEA."},{id:"C",texto:"CA 125."},{id:"D",texto:"A fetoproteína."},{id:"E",texto:"CA 19.9."}],
   gabarito:"E",
@@ -429,7 +429,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-032", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:32,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
-  imagemUrl:"dados/imagens/q-sirio2024-032.png",
+  imagemUrl:"dados/imagens/q-sirio2024-032.webp",
   enunciado:"Paciente de 56 anos, obeso mórbido, tabagista e etilista social, é investigado por queixa de dispepsia refratária associada a perda de peso de 100 para 95 kg não intencional. Refere náuseas, mas nega vômitos. Endoscopia revela lesão ulcerada de bordos elevados infiltrativa. Diante do diagnóstico mais provável, o procedimento mais adequado para esse paciente deve ser:",
   alternativas:[{id:"A",texto:"Gastrectomia total sem linfadenectomia como proposta curativa."},{id:"B",texto:"Pesquisar a mutação do gene C-HER."},{id:"C",texto:"Gastrectomia total com linfadenectomia D1."},{id:"D",texto:"Radioterapia neoadjuvante."},{id:"E",texto:"Passar sonda nasoenteral para dieta imunomoduladora pré-operatória."}],
   gabarito:"B",
@@ -443,7 +443,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-033", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:33,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-oncologia",
-  imagemUrl:"dados/imagens/q-sirio2024-033.png",
+  imagemUrl:"dados/imagens/q-sirio2024-033.webp",
   enunciado:"Paciente de 23 anos, vítima de colisão moto x auto, apresenta dor à palpação pélvica e hematúria. Estável hemodinamicamente, acordado. FAST negativo com tomografia de crânio e cervical sem lesões. Segue uretrocistografia abaixo. O mecanismo do trauma e a conduta nesse caso são, respectivamente:",
   alternativas:[{id:"A",texto:"Fratura de pelve com lesão intraperitoneal de bexiga. Rafia aberta."},{id:"B",texto:"Fratura de pelve com lesão intraperitoneal de bexiga. Rafia por vídeo."},{id:"C",texto:"Fratura de pelve com lesão extraperitoneal de bexiga. Sondagem vesical."},{id:"D",texto:"Fratura de pelve com lesão extraperitoneal de bexiga. Rafia por vídeo."},{id:"E",texto:"Lesão de desaceleração em junção ureterovesical. Rafia aberta."}],
   gabarito:"C",
@@ -470,7 +470,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-035", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:35,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
-  imagemUrl:"dados/imagens/q-sirio2024-035.png",
+  imagemUrl:"dados/imagens/q-sirio2024-035.webp",
   enunciado:"Paciente masculino, 65 anos, com quadro de síndrome consumptiva há meses, refere perda de peso de 6 kg nos últimos 30 dias e piora da anorexia há 15 dias. Admitido no pronto-socorro por melena (Hb: 4,7g/dL), recebendo 4 concentrados de hemácias. No exame clínico apresentava-se descorado em REG, PA: 110 x 70 mmHg. FC: 90 bpm, abdome tenso, doloroso à palpação, com descompressão brusca positiva, toque retal sem sinais de sangramento. Laboratorial: Hb: 8,1 g/dL, leucograma: 15.660/mm3, PCR: 72, Cr: 1,03 mg/dL e lipase: 24 U/L. Foi submetido a uma tomografia, cujas imagens estão mostradas abaixo. Dentre os diagnósticos abaixo, o mais provável é:",
   alternativas:[{id:"A",texto:"Úlcera péptica perfurada em antro."},{id:"B",texto:"Tuberculose peritoneal."},{id:"C",texto:"Adenocarcinoma de corpo gástrico perfurado."},{id:"D",texto:"Neuroendócrino pancreático."},{id:"E",texto:"Linfoma gástrico."}],
   gabarito:"C",
@@ -497,7 +497,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-037", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:37,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
-  imagemUrl:"dados/imagens/q-sirio2024-037.png",
+  imagemUrl:"dados/imagens/q-sirio2024-037.webp",
   enunciado:"Criança de 1 ano, chorosa e com irritabilidade, e levada ao pronto-socorro. Mãe refere que tem dor no abdômen, não aceita alimentos e vomita há 1 dia. Teve febre baixa. Antecedentes: meningoencefalocele e bexiga neurogênica. Ao exame físico, estava desidratada, em regular estado geral, taquicárdica, eupneica, normotensa, abdômen flácido, RHA reduzidos, doloroso à palpação, massa palpável móvel em mesogástrio. Foi internada para observação e apresentou diarreia em framboesa. Exames: Hb: 11,7 d/dL; Leucócitos: 4.260/mm3 sem desvio; Lactato arterial: 7,0. Foi solicitado o exame cuja imagem é mostrada a seguir. O diagnóstico mais provável, dentre os abaixo, é:",
   alternativas:[{id:"A",texto:"Apendicite aguda."},{id:"B",texto:"Intussuscepção íleo-cólica."},{id:"C",texto:"Divertículo de Meckel."},{id:"D",texto:"Enterocolite necrotizante."},{id:"E",texto:"Pólipos retais."}],
   gabarito:"B",
@@ -524,7 +524,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-039", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:39,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-sirio2024-039.png",
+  imagemUrl:"dados/imagens/q-sirio2024-039.webp",
   enunciado:"Paciente de 19 anos, vítima de ferimento por arma branca em 7º espaço intercostal esquerdo na linha axilar anterior. Sem outras lesões. Refere dor limitada à topografia do ferimento. Acordado, eupneico, corado, P: 90 bpm, PA: 110 x 70 mmHg. Radiografia abaixo. A conduta mais apropriada, dentre as opções abaixo, deve ser",
   alternativas:[{id:"A",texto:"Drenagem de tórax tubular nº 28."},{id:"B",texto:"Toracoscopia com drenagem tubular nº 38."},{id:"C",texto:"Laparoscopia e drenagem de tórax com pigtail guiado por ultrassom."},{id:"D",texto:"Laparotomia e drenagem de tórax com pigtail."},{id:"E",texto:"Laparotomia e drenagem tubular de tórax nº 28."}],
   gabarito:"C",
@@ -642,7 +642,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-048", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:48,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
-  imagemUrl:"dados/imagens/q-sirio2024-048.png",
+  imagemUrl:"dados/imagens/q-sirio2024-048.webp",
   enunciado:"Crianca de 4 anos, sexo masculino, afrodescendente, com febre e dor de ouvido, com antecedente de aleitamento materno exclusivo até os 4 meses quando iniciou a creche. Após início da creche, mãe conta que criança sempre está com \"nariz gripado\" e já apresentou diversas infecções, necessitando de antibiótico. Pai com traço falciforme. Colhidos os seguintes exames laboratoriais: Entre as hipóteses diagnósticas, a mais provável para essa criança é anemia:",
   alternativas:[{id:"A",texto:"Por aplasia medular."},{id:"B",texto:"Por infecção."},{id:"C",texto:"Por hemoglobinopatia."},{id:"D",texto:"Ferropriva."},{id:"E",texto:"Hemolítica."}],
   gabarito:"D",
@@ -851,7 +851,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-064", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:64,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
-  imagemUrl:"dados/imagens/q-sirio2024-064.png",
+  imagemUrl:"dados/imagens/q-sirio2024-064.webp",
   enunciado:"Mulher de 79 anos de idade, 4G, 4P, partos normais e domiciliares, hipertensa controlada, procura atendimento ginecológico de rotina. Nega perda de urina, nega urgência miccional e refere que levanta uma vez à noite para urinar. É viúva há 10 anos e não esta sexualmente ativa desde então. Ao exame, mamas sem alterações, distopia genital descrita na classificação POP- q mostrada a seguir. Sem perda de urina ao esforço, porém a bexiga estava vazia. Vagina atrófica, colo apagado, útero normal e ovários não palpáveis. A conduta em relação à distopia genital deve ser:",
   alternativas:[{id:"A",texto:"Expectante."},{id:"B",texto:"Correção cirúrgica da cistocele e perineorrafia."},{id:"C",texto:"Pessário vaginal."},{id:"D",texto:"Colpocleise."},{id:"E",texto:"Correção cirúrgica da cistocele, retocele e perineorrafia."}],
   gabarito:"A",
@@ -1203,7 +1203,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-091", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:91,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
-  imagemUrl:"dados/imagens/q-sirio2024-091.png",
+  imagemUrl:"dados/imagens/q-sirio2024-091.webp",
   enunciado:"Considere as duas Figuras abaixo sobre distribuição do peso de parturientes em populações: rural e urbana (Figura I) e jovens e adultas (Figura II). Os dados das figuras I e II apresentam: obs: alternativas estão apresentadas em uma tabela, como imagem.",
   alternativas:[{id:"A",texto:"A."},{id:"B",texto:"B."},{id:"C",texto:"C."},{id:"D",texto:"D."},{id:"E",texto:"E."}],
   gabarito:"A",
@@ -1217,7 +1217,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-092", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:92,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-sirio2024-092.png",
+  imagemUrl:"dados/imagens/q-sirio2024-092.webp",
   enunciado:"Considere a figura abaixo sobre casos de gastroenterite, em população de uma creche, durante a primeira semana de fevereiro de 2023. Sobre a frequência da doença nessa semana, é certo que a",
   alternativas:[{id:"A",texto:"Prevalência no 3º dia foi de 1 caso e a incidência de 3 casos."},{id:"B",texto:"Prevalência no 7º dia foi de 19 casos e a incidência de 1 caso."},{id:"C",texto:"Incidência foi de 19 casos e a prevalência no 4° dia foi de 6 casos."},{id:"D",texto:"Incidência foi de 3 casos e a prevalência no 7º dia foi de 19 casos."},{id:"E",texto:"Prevalência e a incidência no 4\" dia foram idênticas e igual a zero."}],
   gabarito:"C",
@@ -1322,7 +1322,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
 {
   id:"q-sirio2024-100", banca:"Sírio-Libanês (SP)", real:true, ano:2024, numeroNaProva:100,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-sirio2024-100.png",
+  imagemUrl:"dados/imagens/q-sirio2024-100.webp",
   enunciado:"Considere a Tabela sobre Exposição Ocupacional a Produtos Tóxicos e Neoplasias, em seguimento de 10 anos, trabalhadores masculinos, 20-40 anos de idade: Quanto ao risco relativo de adoecer com neoplasia, os dados indicam que os trabalhadores expostos a",
   alternativas:[{id:"A",texto:"Solventes orgânicos têm risco menor do que os expostos a medicamentos."},{id:"B",texto:"Medicamentos têm 2 vezes o risco que os não expostos a medicamentos."},{id:"C",texto:"Agrotóxicos têm o mesmo risco que os expostos a solventes orgânicos."},{id:"D",texto:"Agrotóxicos tem risco maior do que os não expostos a medicamentos."},{id:"E",texto:"Solventes orgânicos têm 20 vezes o risco que os não expostos a solventes orgânicos."}],
   gabarito:"E",

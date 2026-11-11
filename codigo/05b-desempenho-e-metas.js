@@ -451,7 +451,7 @@ function gerarNotificacoes(usuario){
       notifs.push({icon:"users", texto:"Escolha a sua turma do rodízio em Meu Grupo — até lá você segue o calendário oficial.", rota:"meu-grupo"});
     }
     const vencidas = questoesRevisaoEspacadaVencidas(usuario.id).length;
-    if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" questão(ões) vencida(s) para revisão espaçada.", rota:"revisao"});
+    if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" "+plural(vencidas,"questão","questões")+" vencida(s) para revisão espaçada.", rota:"revisao"});
     const bloco = getBlocoAtual(usuario);
     const simsRecomendados = (bloco && !contaTesteAtiva()) ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id)) : [];
     if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" simulado(s) novo(s) recomendado(s) para o seu bloco.", rota:"simulados", aba:"simulados"});
@@ -483,10 +483,10 @@ function gerarNotificacoes(usuario){
     const sugeridas = questoesSugeridas().length;
     if(sugeridas) notifs.push({icon:"upload", texto:sugeridas+(sugeridas===1?" questão enviada aguardando":" questões enviadas aguardando")+" aprovação.", rota:"revisao-dificeis", abaQualidade:"sugeridas"});
     const dif = questoesDificeis().length;
-    if(dif) notifs.push({icon:"alert", texto:dif+" questão(ões) na fila de difíceis.", rota:"revisao-dificeis"});
+    if(dif) notifs.push({icon:"alert", texto:dif+" "+plural(dif,"questão","questões")+" na fila de difíceis.", rota:"revisao-dificeis"});
     const sinalizadas = db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0).length;
     // abre direto na aba das sinalizadas: sem isso o aviso levava à aba de Difíceis e a sinalização parecia não ter chegado
-    if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" questão(ões) sinalizada(s) pelos alunos.", rota:"revisao-dificeis", abaQualidade:"sinalizadas"});
+    if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" "+plural(sinalizadas,"questão","questões")+" sinalizada(s) pelos alunos.", rota:"revisao-dificeis", abaQualidade:"sinalizadas"});
   }
   if(usuario.papel==="residente" || usuario.papel==="admin" || usuario.papel==="professor"){
     // só some quando alguém responde (resposta oficial); ver a lista não apaga o aviso
@@ -688,8 +688,8 @@ function checarLembreteMetaDiaria(){
   saveState();
   if(faltamQ===0 && faltamC===0) return; // meta batida, nada para lembrar
   const partes = [];
-  if(faltamQ>0) partes.push(faltamQ+" questão(ões)");
-  if(faltamC>0) partes.push(faltamC+" cartão(ões)");
+  if(faltamQ>0) partes.push(faltamQ+" "+plural(faltamQ,"questão","questões")+"");
+  if(faltamC>0) partes.push(faltamC+" "+plural(faltamC,"cartão","cartões")+"");
   mostrarNotificacao(CONFIG.nomePlataforma+" — meta do dia", "Faltam "+partes.join(" e ")+" para bater sua meta de hoje.", "estudar");
   atualizarRecadoLembrete();
 }

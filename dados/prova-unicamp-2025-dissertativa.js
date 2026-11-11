@@ -118,7 +118,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-007", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
-  imagemUrl:"dados/imagens/q-unicampdis2025-007.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-007.webp",
   tipo:"dissertativa", respostaEsperada:"Choque obstrutivo por tamponamento cardíaco.",
   enunciado:"Mulher, 27a, procurou o Pronto Atendimento por dor torácica precordial iniciada há dois dias, pior à inspiração profunda, com enzimas cardíacas normais e eletrocardiograma mostrando taquicardia sinusal associada a supradesnivelamento difuso do segmento ST. Após três dias de internação, a paciente apresentou piora da precordialgia, associada a dispneia e mal-estar. Exame físico: sonolenta e orientada, extremidades frias. PA=86/46mmHg; FC=132bpm; FR=24irpm; saturação de oxigênio=94% em ar ambiente; tempo de enchimento capilar=5s. Ausculta pulmonar normal. Ausculta cardíaca: ritmo regular em dois tempos, bulhas hipofonéticas, sem sopros. Dímero-d=400ng/mL. Ultrassonografia pulmonar (Imagem Q7-A) e de veia cava inferior (Imagem Q7-B) variação no diâmetro < 50%. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -203,7 +203,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-013", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:13,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-vm",
-  imagemUrl:"dados/imagens/q-unicampdis2025-013.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-013.webp",
   tipo:"dissertativa", respostaEsperada:"Síndrome do desconforto respiratório agudo (SDRA).",
   enunciado:"Homem, 66a, internado há 24h na Unidade de Terapia Intensiva com diagnóstico de insuficiência respiratória aguda e pneumonia viral. Na admissão hospitalar, relatava febre e dispneia há 72h. Na última hora, foi submetido a entubação orotraqueal, iniciado sedoanalgesia contínua e ventilação mecânica invasiva. Parâmetros ventilatórios iniciais: ventilação controlada a pressão; volume corrente=6 ml/kg de peso predito; frequência respiratória=18irpm; PEEP=5cmH2O e fração inspirada de oxigênio=0,5. Após uma hora de ventilação nestes parâmetros: gasometria arterial: PaO2=100mmHg; radiograma do tórax (Imagem Q13). O DIAGNÓSTICO SINDRÔMICO É:",
   alternativas:[],
@@ -218,7 +218,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-014", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:14,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-neoplasia",
-  imagemUrl:"dados/imagens/q-unicampdis2025-014.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-014.webp",
   tipo:"dissertativa", respostaEsperada:"Linfoma.",
   enunciado:"Mulher, 42a, retorna para reavaliação do quadro de febre persistente, perda de peso e prurido cutâneo há três meses. Exames laboratoriais: alfa-feto proteína normal, beta hCG negativo, IGRA negativo. Tomografia computadorizada de tórax com contraste. (Imagem Q14). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -317,7 +317,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-021", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:21,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-unicampdis2025-021.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-021.webp",
   tipo:"dissertativa", respostaEsperada:"Abscesso pulmonar.",
   enunciado:"Menino, 5a, está internado há sete dias para tratamento de pneumonia complicada com derrame pleural por pneumococo sensível à penicilina, recebendo ampicilina endovenosa (200mg/kg/dia). Foi realizada drenagem de tórax há quatro dias com dreno flexível, e infusões diárias de alteplase até hoje, quando ocorreu retirada acidental do dreno de tórax. Mantém prostração, inapetência, picos febris diários e ausculta persistentemente reduzida na base pulmonar esquerda. Hoje foi realizado novo radiograma de tórax (Imagem Q21). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -360,7 +360,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-024", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:24,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unicampdis2025-024.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-024.webp",
   tipo:"dissertativa", respostaEsperada:"Fungos do gênero Malassezia (Pityrosporum ovale/orbiculare).",
   enunciado:"Menino, 10a, foi trazido à Unidade Básica de Saúde com história de lesões de pele há três meses. Refere uso tópico de neomicina e também ácido fusídico associado a valerato de betametasona por 10 dias, há um mês, sem melhora. Exame físico: bom estado geral; pele= Imagem Q24. O AGENTE ETIOLÓGICO É:",
   alternativas:[],
@@ -445,7 +445,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-030", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:30,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-unicampdis2025-030.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-030.webp",
   tipo:"dissertativa", respostaEsperada:"Vírus sincicial respiratório.",
   enunciado:"Menina, 2m, é trazida ao Pronto Socorro com história de coriza e tosse há cinco dias, com dois episódios de febre no primeiro dia. Mãe refere que há dois dias a criança apresenta dificuldade para mamar e falta de ar. Nega doenças e uso de medicamentos. Exame físico: regular estado geral, FR=71irpm; FC=165bpm; PA=82/50mmHg; oximetria de pulso=90% (cateter nasal com 2L O2/min); batimento de aletas nasais; retração de fúrcula; retração subcostal moderada; pulsos cheios; enchimento capilar=2 segundos; pulmões: murmúrio vesicular presente com sibilos expiratórios. Radiograma de tórax (imagem Q30) O DIAGNÓSTICO ETIOLÓGICO MAIS PROVÁVEL É:",
   alternativas:[],
@@ -488,7 +488,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-033", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:33,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-mamabenigna",
-  imagemUrl:"dados/imagens/q-unicampdis2025-033.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-033.webp",
   tipo:"dissertativa", respostaEsperada:"Papiloma intraductal.",
   enunciado:"Mulher, 39 a, procura Unidade Básica de Saúde com queixa de saída de secreção sanguinolenta espontânea pelo mamilo direito, há três meses. Os aspectos clínico (A) e ultrassonográfico (B) estão representados na imagem Q33. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -531,7 +531,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-036", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:36,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
-  imagemUrl:"dados/imagens/q-unicampdis2025-036.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-036.webp",
   tipo:"dissertativa", respostaEsperada:"Manobra de Taxe (correção da inversão uterina; também Johnson ou Huntington).",
   enunciado:"Mulher, 28a, G3P2A0, idade gestacional=39 semanas, procura Pronto Atendimento com contrações regulares e intensas, que começaram subitamente e rapidamente aumentaram em intensidade e frequência. Apresentou evolução do trabalho de parto, com dilatação cervical passando de 4cm para 10cm em aproximadamente duas horas. Parto vaginal, sob analgesia peridural contínua, com nascimento de um recém-nascido saudável (Apgar 9 no primeiro minuto e 10 no quinto minuto) e dequitação após 32 minutos. Após o parto apresentou sangramento intenso, com tontura e mal-estar. Exame físico: PA=88/62mmHg; FC=112bpm; T=35,7 °C; oximetria de pulso=97% (ar ambiente). Avaliação obstétrica=imagem Q36. APÓS ALERTAR A EQUIPE, OFERECER MEDIDAS BÁSICAS DE SUPORTE À VIDA E SOLICITAR EXAMES, O TRATAMENTO DESSA CONDIÇÃO É:",
   alternativas:[],
@@ -826,7 +826,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-057", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:57,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-unicampdis2025-057.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-057.webp",
   tipo:"dissertativa", respostaEsperada:"Drenagem do hematoma (craniotomia/trepanação, conduta cirúrgica).",
   enunciado:"Homem, 76a, mora sozinho, trazido pela filha à emergência por desorientação em tempo e espaço e agitação psicomotora há três dias. Tem história de perda de memória há cerca de dois anos, associado à dificuldade de reconhecer objetos pessoais. Possui episódios de quedas da própria altura não presenciadas há dois meses. Antecedentes pessoais: dois episódios de acidentes vasculares cerebrais isquêmicos há 10 anos e hipertensão arterial. Medicações em uso: AAS 100mg/dia, enalapril 10mg 12/12h, anlodipina 5mg 12/12h e propranolol 40mg 12/12h. Exame físico: hidratado, corado, agitado e desorientado em tempo e espaço. PA=90/60mmHg; FC=68bpm; FR=19irm; Temperatura axilar=36 °C. Exame neurológico: Kernig=negativo; sem rigidez de nuca; força motora grau 5 em membros superiores e inferiores. Tomografia de crânio (IMAGEM Q57) A CONDUTA TERAPÊUTICA IMEDIATA É:",
   alternativas:[],
@@ -841,7 +841,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-058", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:58,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
-  imagemUrl:"dados/imagens/q-unicampdis2025-058.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-058.webp",
   tipo:"dissertativa", respostaEsperada:"Sulfametoxazol-trimetoprim (cotrimoxazol).",
   enunciado:"Homem, 53a, comparece à unidade de emergência por tosse seca, febre e dispneia progressiva há 10 dias. Antecedente pessoal: artrite reumatoide há oito anos. Medicações em uso: prednisona 40mg ao dia há 60 dias. Nega tabagismo. Exame físico: regular estado geral, descorado +/4+, desidratado +/4+, consciente, orientado, sonolento. PA=100/70mmHg, temperatura axilar=39 °C, FC=110bpm, FR=32irpm, oximetria de pulso=85% (ar ambiente). Ausculta cardíaca sem alteração. Ausculta pulmonar com estertores crepitantes em base direita, em uso de musculatura respiratória acessória. Abdome sem visceromegalias. Sem edema ou empastamento de panturrilhas. Exames laboratoriais: hemoglobina=11g/dL, leucócitos=13.000/mm3 , plaquetas=200.000/mm3 , ureia=60mg/dL, creatinina=1,3mg/dL, sódio=138mEq/L, potássio=4,5mEq/L, glicemia=180 mg/dL, LDH=600mg/dL. Gasometria arterial: pH=7,4, paO2=60mmHg, paCO2=37mmHg, HCO3=23mmHg. Testes rápidos de Covid e influenza negativos. Tomografia computadorizada de tórax (Imagem Q58). O ANTIMICROBIANO DE ESCOLHA É:",
   alternativas:[],
@@ -898,7 +898,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-062", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:62,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-unicampdis2025-062.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-062.webp",
   tipo:"dissertativa", respostaEsperada:"Rotura (lesão) brônquica, com fístula broncopleural.",
   enunciado:"Adolescente, 13a, vítima de acidente automobilístico, foi ejetado no momento do acidente. Apresentava trauma torácico com pneumotórax volumoso à esquerda, submetido à drenagem tubular. No terceiro dia pós drenagem, mantinha fuga aérea. Realizada revisão do sistema de drenagem fechada em aspiração, que estava adequado. Solicitado radiograma de tórax. (Imagem Q62) A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -969,7 +969,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-067", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:67,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
-  imagemUrl:"dados/imagens/q-unicampdis2025-067.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-067.webp",
   tipo:"dissertativa", respostaEsperada:"Agulha traumática (ponta triangular, cortante).",
   enunciado:"Homem, 21a, teve um ferimento cortante na coxa direita por estilete, com aproximadamente 2cm, acometendo pele e subcutâneo. Foi indicada a sutura e escolhido um fio inabsorvível 4-0 com as seguintes descrições na figura (imagem): A CARACTERÍSTICA INFORMADA DA EXTREMIDADE DA AGULHA REPRESENTADA NA FIGURA É:",
   alternativas:[],
@@ -1054,7 +1054,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-073", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:73,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-unicampdis2025-073.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-073.webp",
   tipo:"dissertativa", respostaEsperada:"Mycoplasma pneumoniae.",
   enunciado:"Menina, 7a, previamente hígida, é trazida à Unidade Básica de Saúde com queixa de febre baixa (37,8 °C), tosse seca e persistente associada à cefaleia há cerca de uma semana. Mãe refere que dois dias antes do início da febre teve dor de garganta, dor de ouvido e olho lacrimejando. Nos últimos dois dias, refere dor torácica quando respira fundo e quando tosse. Na sala de aula há duas crianças com quadro semelhante, que foram afastadas há dois dias. Exame Físico: bom estado geral, corada, hidratada; FC=110bpm; FR=24irpm; T=38 °C; Pulmões=murmúrio vesicular presente com crepitações finas bilateralmente. Radiograma simples de tórax (Imagem Q73). O AGENTE ETIOLÓGICO BACTERIANO É:",
   alternativas:[],
@@ -1139,7 +1139,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-079", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:79,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-cardiopatiascongenitas",
-  imagemUrl:"dados/imagens/q-unicampdis2025-079.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-079.webp",
   tipo:"dissertativa", respostaEsperada:"Hiperfluxo pulmonar (fluxo pulmonar aumentado).",
   enunciado:"Menina, 2m, é trazida ao Pronto Socorro com história de piora do padrão respiratório há um dia. Nega febre ou outras queixas. Antecedentes pessoais: Síndrome de Down e cardiopatia congênita. Exame físico: FC=130bpm; FR=61irpm; oximetria de pulso=98% (ar ambiente); Coração: ritmo regular com sopro sistólico 4+/6+, mais audível em rebordo esternal esquerdo, e segunda bulha normal; Pulmões: murmúrio vesicular simétrico e sem ruídos adventícios; Abdome: fígado palpável a 3cm do rebordo costal direito; Pulsos periféricos palpáveis e simétricos. Radiograma: Imagem Q79 O ACHADO RADIOLÓGICO REFERENTE AOS CAMPOS PULMONARES É:",
   alternativas:[],
@@ -1238,7 +1238,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2025-dissertativa", [
 {
   id:"q-unicampdis2025-086", banca:"UNICAMP (dissertativa)", real:true, ano:2025, numeroNaProva:86,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-mamabenigna",
-  imagemUrl:"dados/imagens/q-unicampdis2025-086.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2025-086.webp",
   tipo:"dissertativa", respostaEsperada:"Orientar a cessação do tabagismo.",
   enunciado:"Mulher, 36a, G3P3, procura a Unidade Básica de Saúde para orientação por quadro de drenagem espontânea de secreção mucopurulenta periareolar, por três vezes nos últimos dois anos. No momento está assintomática. Em dois episódios anteriores utilizou ampicilina, no último apresentou drenagem espontânea e cura. Antecedentes pessoais: tabagismo=15anos/maço, uso de anticoncepcional oral combinado. Exame físico: mama acometida (Imagem Q86) e mama contralateral sem alterações. A CONDUTA PARA EVITAR NOVAS RECIDIVAS É:",
   alternativas:[],

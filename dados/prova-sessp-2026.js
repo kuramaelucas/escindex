@@ -93,7 +93,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2026", [
 {
   id:"q-sessp2026-006", banca:"SES-SP", real:true, ano:2026, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-sessp2026-006.jpg",
+  imagemUrl:"dados/imagens/q-sessp2026-006.webp",
   enunciado:"Homem, 73 anos de idade, hipertenso, em uso de losartana e anlodipino, diabético, em uso de dapaglifozina, e com doença renal crônica não dialítica, procura atendimento por dor torácica. Pressão arterial de 80 × 50 mmHg. Monitorização mostra taquicardia ventricular monomórfica. Após cardioversão elétrica sincronizada, é realizado o eletrocardiograma a seguir: A conduta imediata é",
   alternativas:[{id:"A",texto:"AAS, clopidogrel e enoxaparina."},{id:"B",texto:"AAS, clopidogrel e angioplastia primária."},{id:"C",texto:"nitroglicerina."},{id:"D",texto:"gluconato de cálcio."},{id:"E",texto:"estudo eletrofisiológico."}],
   gabarito:"D",
@@ -276,7 +276,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2026", [
 {
   id:"q-sessp2026-020", banca:"SES-SP", real:true, ano:2026, numeroNaProva:20,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
-  imagemUrl:"dados/imagens/q-sessp2026-020.jpg",
+  imagemUrl:"dados/imagens/q-sessp2026-020.webp",
   enunciado:"Homem, 35 anos de idade, apresenta queixa de dor torácica ventilatório dependente há 6 horas. Realiza o eletrocardiograma a seguir: A próxima conduta nesse momento é",
   alternativas:[{id:"A",texto:"colchicina."},{id:"B",texto:"prednisona."},{id:"C",texto:"imunossupressor, se biópsia miocárdica mostrar miocardite de células gigantes."},{id:"D",texto:"AAS, clopidogrel, metoprolol e enoxaparina."},{id:"E",texto:"AAS, clopidogrel, metoprolol e angioplastia primária."}],
   gabarito:"A",
@@ -1200,7 +1200,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2026", [
 {
   id:"q-sessp2026-091", banca:"SES-SP", real:true, ano:2026, numeroNaProva:91,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-sessp2026-091.jpg",
+  imagemUrl:"dados/imagens/q-sessp2026-091.webp",
   enunciado:"Foram realizados cinco estudos prospectivos de coorte para examinar a associação entre vaginose bacteriana e parto prematuro. Os resultados desses cinco estudos hipotéticos são ilustrados na figura a seguir e são expressos como riscos relativos (RR) com intervalos de confiança de 95%: Considerando o exposto, os estudos que provavelmente apresentam a menor amostra e a maior significância estatística, respectivamente, são:",
   alternativas:[{id:"A",texto:"A; D."},{id:"B",texto:"B; A."},{id:"C",texto:"C; E."},{id:"D",texto:"D; B."},{id:"E",texto:"E; C."}],
   gabarito:"B",

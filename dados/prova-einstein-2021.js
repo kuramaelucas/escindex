@@ -46,7 +46,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 {
   id:"q-einstein2021-003", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:3,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-dii",
-  imagemUrl:"dados/imagens/q-einstein2021-003.png",
+  imagemUrl:"dados/imagens/q-einstein2021-003.webp",
   enunciado:"Paciente de 20 anos, sexo masculino, admitido no pronto-socorro com quadro de diarreia líquida, mucossanguinolenta, associada a dor abdominal em fossa ilíaca direita, febre alta não aferida e perda de 8 kg nos últimos 4 meses. Nega náuseas ou vômitos. Tio com antecedente de doença intestinal. Ao exame físico se encontra em REG, descorado ++/IV+, desidratado +/IV. À palpação abdominal apresenta plastrão em fossa ilíaca direita, sem sinais de irritação peritoneal. Exames laboratoriais iniciais evidenciam Hb: 9,2 mg/dL, VCM: 75 fl, leucócitos: 14.900 mil/mm³, plaquetas: 670.000 µL, PCR: 140 mg/dL. TC de abdome demonstra espessamento colônico difuso, hipercaptação de contraste em mucosa colônica. Colonoscopia com os achados abaixo. Provável diagnóstico e tratamento adequado da doença relatada acima:",
   alternativas:[{id:"A",texto:"Amebíase, devido à alta prevalência de parasitoses no Brasil − metronidazol."},{id:"B",texto:"Doença de Crohn − pulsoterapia e sulfassalazina."},{id:"C",texto:"Retocolite ulcerativa − corticosteroide associado a derivados do ácido 5-aminossalicílico."},{id:"D",texto:"Doença de Crohn − combinação de imunossupressor com terapia biológica."},{id:"E",texto:"Linfoma − tratamento sistêmico com a combinação dos quimioterápicos FOLFOX."}],
   gabarito:"D",
@@ -86,7 +86,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 {
   id:"q-einstein2021-006", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-einstein2021-006.png",
+  imagemUrl:"dados/imagens/q-einstein2021-006.webp",
   enunciado:"Paciente sexo feminino, 72 anos, hipertensa e diabética, deu entrada no pronto-socorro com quadro de desvio de rima labial para direita e hemiparesia à esquerda, que começou há 2 horas da admissão. Os sinais vitais da entrada eram PA: 175 × 105 mmHg, FC: 82 bpm, FR: 14 ipm, SatO2: 95% em ar ambiente. Paciente realizou tomografia de crânio conforme imagem abaixo. O diagnóstico provável e a melhor conduta:",
   alternativas:[{id:"A",texto:"Acidente vascular cerebral hemorrágico. Trombólise química, se não houver contraindicações."},{id:"B",texto:"Acidente vascular cerebral hemorrágico. Craniectomia descompressiva."},{id:"C",texto:"Acidente vascular cerebral isquêmico. Trombólise química, se não houver contraindicações."},{id:"D",texto:"Acidente vascular cerebral isquêmico. Transferência para UTI e depois trombólise química."},{id:"E",texto:"Acidente vascular cerebral isquêmico. Craniectomia descompressiva."}],
   gabarito:"C",
@@ -100,7 +100,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 {
   id:"q-einstein2021-007", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-einstein2021-007.png",
+  imagemUrl:"dados/imagens/q-einstein2021-007.webp",
   enunciado:"Paciente sexo feminino, 36 anos, moradora de área livre, foi em consulta na UBS, referindo que está cursando com perda de peso importante, tosse e sensação de febre, mais ao final da tarde. Seus sintomas começaram há duas semanas. Foi, então, encaminhada para realização de radiografia de tórax, mostrada abaixo. O diagnóstico mais provável e seu tratamento:",
   alternativas:[{id:"A",texto:"Abscesso pulmonar. Amoxicilina com clavulanato por 14 dias."},{id:"B",texto:"Tuberculose pulmonar. Rifampicina + isoniazida + pirazinamida + etambutol por 2 meses, seguidos de pirazinamida e isoniazida por mais 4 meses."},{id:"C",texto:"Abscesso pulmonar. Amoxicilina por 7 dias."},{id:"D",texto:"Tuberculose pulmonar. Rifampicina + isoniazida + pirazinamida + etambutol por 2 meses, seguidos de rifampicina e isoniazida por mais 4 meses."},{id:"E",texto:"Tuberculose pulmonar. Rifampicina + isoniazida + pirazinamida + etambutol por 6 meses."}],
   gabarito:"D",
@@ -140,7 +140,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 {
   id:"q-einstein2021-010", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2021-010.png",
+  imagemUrl:"dados/imagens/q-einstein2021-010.webp",
   enunciado:"Paciente de 76 anos, sexo masculino, com antecedente de hipertensão e apneia do sono, deu entrada no pronto- socorro por quadro de palpitações taquicárdicas há 4 dias. Sinais vitais: PA: 140 × 90 mmHg, FC: 132 bpm, FR: 16 ipm e SatO2: 97% em ar ambiente. O paciente realizou ECG abaixo. Diante do quadro clínico do paciente e da análise do ECG, o diagnóstico mais provável e a melhor conduta:",
   alternativas:[{id:"A",texto:"Flutter atrial. Adenosina venosa e, se não responder, cardioversão."},{id:"B",texto:"Fibrilação atrial. Amiodarona EV e, se não responder, cardioversão elétrica."},{id:"C",texto:"Flutter atrial. Cardioversão elétrica e anticoagulação via oral."},{id:"D",texto:"Taquicardia supraventricular. Manobra de valsalva e, se não responder, adenosina venosa."},{id:"E",texto:"Fibrilação atrial. Ecocardiograma transesofágico e cardioversão, se ausência de trombos."}],
   gabarito:"E",
@@ -453,7 +453,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 {
   id:"q-einstein2021-034", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:34,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
-  imagemUrl:"dados/imagens/q-einstein2021-034.png",
+  imagemUrl:"dados/imagens/q-einstein2021-034.webp",
   enunciado:"Mulher, 43 anos de idade, refere dores pélvicas, dispareunia de profundidade e sangramentos menstruais volumosos. Realizou ressonância magnética que evidenciou vários nódulos uterinos, ilustrados e numerados de 0 a 8 na imagem abaixo, conforme a classificação dos miomas da Federação Internacional de Ginecologia e Obstetrícia. Nesse caso, o(s) nódulo(s)",
   alternativas:[{id:"A",texto:"2 a 5 são totalmente intramurais e não interferem no padrão de sangramento menstrual."},{id:"B",texto:"1 é subseroso com mais de 50% acometimento intramural e pode ser assintomático."},{id:"C",texto:"8 é conhecido como parasitário e pode ocasionar dispareunia de profundidade."},{id:"D",texto:"3 é intramural com mais de 50% de acometimento submucoso, porém não ocasiona sangramento irregular."},{id:"E",texto:"6 é submucoso com mais de 50% de acometimento intramural e pode ocasionar dores pélvicas."}],
   gabarito:"C",
@@ -467,7 +467,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2021", [
 {
   id:"q-einstein2021-035", banca:"Einstein (HIAE)", real:true, ano:2021, numeroNaProva:35,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-einstein2021-035.png",
+  imagemUrl:"dados/imagens/q-einstein2021-035.webp",
   enunciado:"Considere a imagem esquemática dos músculos do assoalho pélvico feminino, indicados pelos números de 1 a 4. O nome e o respectivo número dos músculos incisados quando se realiza episotomia mediolateral direita, durante a aplicação de fórcipe são:",
   alternativas:[{id:"A",texto:"Bulboesponjoso (3) e coccígeo (2)."},{id:"B",texto:"Levantador do ânus (1) e bulbocavernoso (4)."},{id:"C",texto:"Coccígeo (2) e transverso profundo do períneo (3)."},{id:"D",texto:"Feixe puborretal (1) e feixe isquiorretal (2) do levantador do ânus."},{id:"E",texto:"Bulbocavernoso (4) e transverso superficial do períneo (3)."}],
   gabarito:"E",

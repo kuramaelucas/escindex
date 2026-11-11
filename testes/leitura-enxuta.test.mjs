@@ -44,7 +44,7 @@ for(const modo of ["resumido", "estatistico"]){
       assert.equal(r.rodapes, 1, "Livro de Ouro e feedback dividem uma faixa");
       assert.equal(r.cinzas, 0, "sem os dois cartões cinza de antes");
       assert.ok(r.indicadores >= 3 && r.caixinhas === 0);
-      for(const t of [/Livro de Ouro/, /Quero contribuir/, /Enviar feedback/, /dia\(s\) seguidos estudando/, /acerto geral/, /assunto\(s\) para revisar hoje/]) assert.match(r.texto, t);
+      for(const t of [/Livro de Ouro/, /Quero contribuir/, /Enviar feedback/, /dias? seguidos estudando/, /acerto geral/, /assuntos? para revisar hoje/]) assert.match(r.texto, t);
       assert.ok(r.revisaoRapida, "o atalho da Revisão rápida continua no Início");
       assert.deepEqual(erros, []);
     } finally { await contexto.close(); }

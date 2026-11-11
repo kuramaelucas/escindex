@@ -175,7 +175,7 @@ function _linhaDaTrilha(it, comEspera, comPular){
   const reaberto = it.reabertura ? ` <span class="badge badge-amber">revisão: ${escapeHtml(it.reabertura)}</span>` : "";
   const porque = comEspera
     ? (it.esperaPor.length ? `Libera depois de consolidar: ${it.esperaPor.map(nomeAssunto).join("; ")}` : "Entra assim que abrir vaga em “Em estudo”")
-    : `${it.reais} questão(ões) real(is) já caíram em prova · nº ${it.pos} na fila`;
+    : `${it.reais} ${plural(it.reais,"questão","questões")} real(is) já caíram em prova · nº ${it.pos} na fila`;
   return `<div class="card-flat mt-1"><div class="text-sm"><strong>${escapeHtml(a.nome)}</strong> <span class="muted">· ${escapeHtml(esp ? esp.nome : "")}</span>${reaberto}</div>
     <div class="text-xs muted">${escapeHtml(porque)} · ${escapeHtml(andamento)}${it.n ? ` · <a href="#" onclick="abrirDesempenhoDoAssuntoFormado('${it.id}'); return false;">ver desempenho</a>` : ""}${acoes}</div></div>`;
 }

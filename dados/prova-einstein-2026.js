@@ -230,7 +230,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-017", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:17,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
-  imagemUrl:"dados/imagens/q-einstein2026-017.png",
+  imagemUrl:"dados/imagens/q-einstein2026-017.webp",
   enunciado:"Homem de 32 anos, previamente hígido, com história de dor abdominal em andar superior de forte intensidade há 2 dias, associada a dois episódios de vômito, nega sintomas prévios a esse período, mas refere episódio de ingestão de bebida alcóolica em grande quantidade há 3 dias. Apresenta dor constante, graduação 8 em 10, sem fatores de melhora ou piora, acometendo todo o andar superior. Ao exame físico, estava em regular estado geral e com fácies de dor, tendo apresentado vômito na admissão. A frequência cardíaca é de 125 bpm e a pressão arterial de 110 x 85 mmHg. Pouco colaborativo, não permite exame físico abdominal adequado por dor. Realizou o exame de imagem exibido a seguir e, após retornar do exame, evoluiu com rebaixamento do nível de consciência, hipotensão e má perfusão periférica. Diante do quadro, assinale a alternativa que apresenta a conduta terapêutica adequada nesse momento.",
   alternativas:[{id:"A",texto:"Laparotomia exploradora."},{id:"B",texto:"Laparoscopia diagnóstica."},{id:"C",texto:"Suporte intensivo, expansão volêmica com ringer lactato, seguida de manutenção com 1,5 mL/kg/h e jejum por enquanto."},{id:"D",texto:"Suporte intensivo, hidratação, ceftriaxone e metronidazol."}],
   gabarito:"A",
@@ -387,7 +387,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-029", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:29,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-dii",
-  imagemUrl:"dados/imagens/q-einstein2026-029.png",
+  imagemUrl:"dados/imagens/q-einstein2026-029.webp",
   enunciado:"Homem de 32 anos, portador de retocolite ulcerativa há 5 anos, em uso irregular de mesalazina, procura o pronto- socorro por dor abdominal difusa e intensa há 24 horas, acompanhada de distensão abdominal progressiva e febre (38,9 °C), além de diarreia sanguinolenta há 5 dias. Ao exame físico, apresenta abdome distendido, timpânico, difusamente doloroso e ruídos hidroaéreos diminuídos. A frequência cardíaca é de 124 bpm e a pressão arterial de 90 x 60 mmHg. Os exames laboratoriais relevantes para o caso são: leucócitos: 18.500/mm³; hemoglobina: 10,2 g/dL; PCR: 160 mg/L; e creatinina: 1,9 mg/dL. A radiografia simples do abdome é demonstrada na imagem a seguir: Foram iniciados jejum, hidratação, antibioticoterapia e corticoterapia, porém sem melhora dos parâmetros clínicos nas primeiras 24 horas. Dessa forma, a conduta indicada neste momento é:",
   alternativas:[{id:"A",texto:"colectomia subtotal com ileostomia terminal."},{id:"B",texto:"transversostomia em alça."},{id:"C",texto:"proctocolectomia total com bolsa ileal."},{id:"D",texto:"neostigme e colonoscopia descompressiva."}],
   gabarito:"A",
@@ -479,7 +479,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-036", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:36,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-vm",
-  imagemUrl:"dados/imagens/q-einstein2026-036.png",
+  imagemUrl:"dados/imagens/q-einstein2026-036.webp",
   enunciado:"Um paciente de 7 anos encontra-se internado em UTI pediátrica devido a queimaduras que acometem 40% da superfície corpórea. Está intubado e em ventilação mecânica, sem necessidade de drogas vasoativas. Nas últimas 24 horas, apresentou piora ventilatória importante (radiografia de tórax a seguir). Não apresenta disfunção hemodinâmica grave; ecocardiograma funcional sem alterações. No momento, encontra-se em modo assistido-controlado, pressão controlada, com os seguintes parâmetros: PEEP: 8 cmH2O; frequência respiratória: 30 irpm; pressão controlada (acima do PEEP): 18 cmH2O; tempo inspiratório: 0,8 s; FiO2: 100%; média de volume corrente: 7 mL/kg; pressão média das vias aéreas (Paw): 15 cmH2O. Gasometria arterial: pH: 7,24; pCO2: 60; pO2: 100; bic: 23; BE: –2; SatO2: 84%. Com base nos dados apresentados, assinale a alternativa que contenha o valor mais adequado do Índice de Oxigenação (IO) e a melhor conduta ventilatória a ser instituída nesse momento.",
   alternativas:[{id:"A",texto:"IO: 15 – Aumentar PEEP para 10, tentar baixar PC para 15, objetivando volume corrente de 4 a 6 mL/kg por ciclo ventilatório, diminuir FR para 25; tolerar hipercapnia até pH de 7,2."},{id:"B",texto:"IO: 18-Aumentar PEEP para 12, tentar baixar PC para 15, objetivando volume corrente de 4 a 6 mL/kg por ciclo ventilatório; tolerar hipercapnia até pH de 7,15."},{id:"C",texto:"IO = 15 – Aumentar PEEP para 10, aumentar PC para 20, objetivando melhora do volume corrente e da hipercapnia; diminuir FR para 22."},{id:"D",texto:"IO = 18 – Aumentar PEEP para 10, manter PC em 18, com alvo de volume corrente de 6 a 8 mL/kg por ciclo ventilatório; diminuir FR para 25."}],
   gabarito:"A",
@@ -519,7 +519,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-039", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:39,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
-  imagemUrl:"dados/imagens/q-einstein2026-039.png",
+  imagemUrl:"dados/imagens/q-einstein2026-039.webp",
   enunciado:"Durante uma consulta pediátrica de rotina, os pais de um menino de 8 anos relatam uso excessivo de telas e ausência de prática de atividade física, exceto pelas aulas de Educação Física realizadas duas vezes por semana na escola. O hábito alimentar é inadequado, com baixa ingestão de frutas e legumes, associado a preferência por alimentos ultraprocessados. O índice de massa corporal (IMC) está representado na curva a seguir: (Arquivo pessoal; imagem usada com autorização) Assinale a alternativa que apresenta a classificação do estado nutricional do paciente em questão e os exames complementares iniciais indicados de acordo com a Sociedade Brasileira de Pediatria.",
   alternativas:[{id:"A",texto:"Obesidade grave; insulina, LDL, TGP, hemograma."},{id:"B",texto:"Obesidade; glicemia jejum, perfil lipídico e TGP."},{id:"C",texto:"Obesidade grave; TSH, perfil lipídico e perfil de ferro."},{id:"D",texto:"Sobrepeso; glicemia jejum, LDL, insulina, hemograma."}],
   gabarito:"B",
@@ -611,7 +611,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-046", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:46,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
-  imagemUrl:"dados/imagens/q-einstein2026-046.png",
+  imagemUrl:"dados/imagens/q-einstein2026-046.webp",
   enunciado:"Paciente de 57 anos, assintomática, sem história familiar de câncer de mama, comparece ao serviço de ginecologia trazendo mamografia de rastreamento, reproduzida a seguir. O exame físico não evidencia nódulos palpáveis ou linfadenopatia axilar. Qual a conduta diagnóstica mais apropriada neste caso e a hipótese histopatológica mais provável, caso se confirme malignidade?",
   alternativas:[{id:"A",texto:"Core biopsy (agulha grossa), guiada por ultrassonografia; diagnóstico provável: carcinoma invasivo."},{id:"B",texto:"Core biopsy (agulha grossa), guiada por estereotaxia; diagnóstico provável: carcinoma ductal in situ."},{id:"C",texto:"Biópsia percutânea vácuo-assistida (mamotomia), guiada por estereotaxia; diagnóstico provável: carcinoma ductal in situ."},{id:"D",texto:"Biópsia percutânea vácuo-assistida (mamotomia), guiada por estereotaxia; diagnóstico provável: carcinoma invasivo."}],
   gabarito:"C",
@@ -859,7 +859,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-065", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:65,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-einstein2026-065.png",
+  imagemUrl:"dados/imagens/q-einstein2026-065.webp",
   enunciado:"Leia o caso e avalie a imagem a seguir: Diana tem 25 anos e fez tratamentos para acne desde o início da adolescência. Já utilizou diversos tratamentos tópicos e orais, mas de forma intermitente e curta (menos de trinta dias); logo que melhorava, parava o cuidado. Hoje ela foi à UBS pedindo para ser encaminhada para dermatologista porque quer dar fim ao problema. Atualmente trabalha e estuda, mora com os pais, está com vacinas em dia, não tem outras queixas, já tem prática sexual e faz uso de anticoncepcional oral (ACO), mas deseja passar para dispositivo intrauterino. Segue foto da paciente: (Imagem gerada por IA - ChatGPT5) Considerando todas as informações ofertadas, assinale a alternativa que apresenta corretamente a conduta adequada para o caso.",
   alternativas:[{id:"A",texto:"Encaminhar à dermatologia, pois é um caso de acne grave com história de falhas de tratamento, e orientar a não trocar ainda o ACO, pois ele ajuda no tratamento da acne."},{id:"B",texto:"Reiniciar o tratamento para acne moderada, com uso de tetraciclina oral e tratamento tópico com retinoide por sessenta dias, e solicitar Papanicolau para avaliar troca de método anticoncepcional."},{id:"C",texto:"Iniciar o tratamento com uso de doxiciclina oral por três meses, corticoide tópico e manutenção do método anticoncepcional no primeiro momento, com reavaliação em trinta dias."},{id:"D",texto:"Iniciar o tratamento para acne leve, com uso tópico de retinoide tópico e peróxido de benzoíla por sessenta dias; caso não haja melhora, a paciente deve ser encaminhada à dermatologia."}],
   gabarito:"B",
@@ -899,7 +899,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-068", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:68,
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-principiossus",
-  imagemUrl:"dados/imagens/q-einstein2026-068.png",
+  imagemUrl:"dados/imagens/q-einstein2026-068.webp",
   enunciado:"Analise o boletim a seguir, considerando o seu objetivo: Considerando os princípios filosóficos do SUS, com qual dos princípios a seguir o boletim se relaciona?",
   alternativas:[{id:"A",texto:"Universalidade."},{id:"B",texto:"Controle social."},{id:"C",texto:"Abordagem comunitária."},{id:"D",texto:"Equidade."}],
   gabarito:"D",
@@ -965,7 +965,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-073", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:73,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-einstein2026-073.png",
+  imagemUrl:"dados/imagens/q-einstein2026-073.webp",
   enunciado:"Young et al. (\"Glucose self-monitoring in non-insulin- treated patients with type 2 diabetes in primary care settings: a randomized trial\") estudaram o automonitoramento de glicemia capilar (AMGC) no controle da hemoglobina A1c de pacientes com diabetes tipo 2. Para isso, os autores utilizaram de três estratégias cujos resultados da publicação são demonstrados na figura a seguir. O grupo-controle (sem AMGC) foi orientado apenas a manter o uso habitual de seus medicamentos e a realizar exames laboratoriais trimestrais. Os demais participantes foram instruídos a realizar o AMGC: um grupo de forma periódica, sem suporte adicional (AMGC sem mensagens), e outro com o mesmo protocolo, mas recebendo lembretes por mensagens de texto (AMGC – com mensagens). Sobre a interpretação desses resultados, assinale a alternativa correta. (Young et al., \"Glucose self-monitoring in non- insulin-treated patients with type 2 diabetes in primary care settings: a randomized trial\")",
   alternativas:[{id:"A",texto:"A intervenção (AMGC) não se mostrou eficaz durante os quatro períodos da condução do estudo, o que é bem demonstrado pelos intervalos de confiança."},{id:"B",texto:"A não aderência à intervenção por parte dos pacientes pode ter sido um motivo para o resultado do estudo em doze meses."},{id:"C",texto:"O lembrete, por mensagens de texto, de realizar a AMGC melhorou o controle da A1c nos três primeiros períodos do estudo."},{id:"D",texto:"Apesar da diferença significativa notada ao final dos doze meses do estudo, os três grupos retornaram aos valores de A1c basais."}],
   gabarito:"B",
@@ -979,7 +979,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2026", [
 {
   id:"q-einstein2026-074", banca:"Einstein (HIAE)", real:true, ano:2026, numeroNaProva:74,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
-  imagemUrl:"dados/imagens/q-einstein2026-074.png",
+  imagemUrl:"dados/imagens/q-einstein2026-074.webp",
   enunciado:"Forde et al. publicaram recentemente (“Overall survival with neoadjuvant nivolumab plus chemotherapy in lung cancer\") os resultados de sobrevivência global do estudo CheckMate 816, no qual 358 pacientes com câncer de pulmão foram randomizados em dois grupos iguais para receberem nivolumab (imunoterapia) + quimioterapia neoadjuvante (grupo experimental) em comparação a quimioterapia isoladamente (tratamento convencional; grupo-controle). O desfecho primário do estudo, ou seja, para o qual o cálculo amostral foi realizado, foi sobrevivência livre de evento e resposta patológica completa. Os principais resultados são demonstrados na imagem a seguir, sendo NA um resultado não alcançado: Sobre a interpretação dos dados fornecidos na imagem, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"O baixo número de indivíduos válidos a partir dos 72 meses dificulta a validade externa do principal resultado demonstrado (sobrevivência acumulada de 73,7 meses no grupo que recebeu quimioterapia isoladamente)."},{id:"B",texto:"A maior parte das censuras de pacientes aconteceu nos primeiros cinco anos de acompanhamento, por isso a pouca quantidade de pacientes analisados tardiamente para o desfecho."},{id:"C",texto:"A sobrevivência global foi maior no grupo que recebeu nivolumab e quimioterapia quando comparado aos pacientes que receberam somente quimioterapia, porém a mediana de sobrevivência não foi alcançada em ambos os grupos em 48 ou 60 meses."},{id:"D",texto:"O largo intervalo de confiança (95%CI) demonstra uma diferença muito pequena da adição de nivolumab à quimioterapia neoadjuvante na sobrevivência global de pacientes com câncer de pulmão, fator esse que se reflete no valor de P limítrofe (P = 0,048) no cálculo de risco por regressão logística."}],
   gabarito:"C",

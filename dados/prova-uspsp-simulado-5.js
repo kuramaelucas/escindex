@@ -63,7 +63,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-004", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-uspsp5-004.png", imagemLegenda:"Lesões na região axilar da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-004.webp", imagemLegenda:"Lesões na região axilar da paciente.",
   enunciado:"Uma paciente do sexo feminino, 26 anos, tabagista, refere histórico de inúmeras idas ao pronto-socorro devido a episódios de furúnculos desde os 19 anos de idade, porém nunca melhora com a antibioticoterapia instituída. Afirma que os episódios ocorrem sempre nos mesmos locais, e que por vezes evoluem para cicatrizes retráteis, conforme imagem abaixo. Ao exame clínico, IMC = 35. Nega febre ou outros sintomas associados. Relata ter sofrido muito na adolescência com acne na face e no tronco, tendo usado isotretinoína durante 1 ano. Qual é a hipótese mais provável para o caso?",
   alternativas:[{id:"A",texto:"Furunculose de repetição."},{id:"B",texto:"Doença de Crohn metastática."},{id:"C",texto:"Hidradenite supurativa."},{id:"D",texto:"Tuberculose cutânea."}],
   gabarito:"C",
@@ -90,7 +90,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-006", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
-  imagemUrl:"dados/imagens/q-uspsp5-006.png", imagemLegenda:"Radiografia de tórax da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-006.webp", imagemLegenda:"Radiografia de tórax da paciente.",
   enunciado:"Uma mulher de 29 anos de idade é portadora de valvopatia mitral reumática, em acompanhamento ambulatorial em classe funcional II. Apresenta-se ao pronto-socorro com queixa de sensação de sufocamento há 1 semana, com dispneia paroxística noturna e piora importante hoje. Ao exame clínico, PA 130x80 mmHg, FC 98 bpm, SpO2 90%. Nota-se a presença de estertores finos em bases e sopro sistólico e diastólico mitral 3+. Ausência de estase jugular, visceromegalias ou edema de membros inferiores. Realizou radiografia de tórax abaixo. Assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Dada a ausência de sinais de congestão sistêmica, por ora não é possível firmar o diagnóstico de insuficiência cardíaca. Pode-se prosseguir a investigação com biomarcadores como o BNP para auxílio diagnóstico."},{id:"B",texto:"A paciente encontra-se em edema agudo de pulmão hipertensivo. Deve-se iniciar vasodilatação sistêmica, bem como ventilação não invasiva o mais precocemente possível."},{id:"C",texto:"A paciente encontra-se em descompensação de insuficiência cardíaca. No entanto, como não há sinais de congestão sistêmica, está contraindicado o uso de diureticoterapia."},{id:"D",texto:"Trata-se de edema agudo de pulmão valvar. Está indicada a vasodilatação, diureticoterapia e ventilação não invasiva, porém é necessário investigar complicações valvares que tenham provocado a atual descompensação."}],
   gabarito:"D",
@@ -104,7 +104,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-007", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-artrites",
-  imagemUrl:"dados/imagens/q-uspsp5-007.png", imagemLegenda:"Lesão cutânea pustulosa na palma da mão do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-007.webp", imagemLegenda:"Lesão cutânea pustulosa na palma da mão do paciente.",
   enunciado:"Um homem de 24 anos de idade, previamente hígido, procura o pronto-socorro com febre intermitente há 5 dias, artralgias migratórias e rigidez matinal de 1 hora. Relata atividade sexual sem preservativo há 2 meses. Ao exame: tenossinovite em dorso de mão esquerda, artrite em joelho direito e lesões cutâneas pustulosas em palma da mão (imagem abaixo). Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Hidroxicloroquina."},{id:"B",texto:"Prednisona."},{id:"C",texto:"Metotrexato."},{id:"D",texto:"Ceftriaxona."}],
   gabarito:"D",
@@ -170,7 +170,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-012", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-vertigem",
-  imagemUrl:"dados/imagens/q-uspsp5-012.png", imagemLegenda:"Audiometrias da orelha direita e da orelha esquerda.",
+  imagemUrl:"dados/imagens/q-uspsp5-012.webp", imagemLegenda:"Audiometrias da orelha direita e da orelha esquerda.",
   enunciado:"Um homem de 55 anos de idade apresenta hipoacusia e zumbido há 5 anos, associados a otorreia bilateral. Nega episódios de otalgia ou febre. Traz à consulta a audiometria abaixo. Qual é a classificação desse exame, segundo a OMS?",
   alternativas:[{id:"A",texto:"Perda auditiva condutiva."},{id:"B",texto:"Perda auditiva mista."},{id:"C",texto:"Perda auditiva neurossensorial."},{id:"D",texto:"Audição dentro da normalidade."}],
   gabarito:"B",
@@ -249,7 +249,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-018", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:18,
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-choque",
-  imagemUrl:"dados/imagens/q-uspsp5-018.png", imagemLegenda:"Imagens de ultrassom pulmonar à beira-leito (A a D).",
+  imagemUrl:"dados/imagens/q-uspsp5-018.webp", imagemLegenda:"Imagens de ultrassom pulmonar à beira-leito (A a D).",
   enunciado:"Um homem de 25 anos de idade é admitido na sala de emergência referindo quadro de tosse produtiva, febre e dor torácica ventilatório-dependente à esquerda há 3 dias, evoluindo nas últimas 12 horas com náuseas, muitos episódios de vômitos, dor abdominal e piora do esforço respiratório. Tem antecedente de diabetes tipo 1. Sinais vitais na triagem: FC 124 bpm, PA 94x62 mmHg, FR 36 ipm, SatO2 95%, T 38,5 °C. Ao exame clínico, apresenta-se desidratado 3+/4+, com TEC = 4 s, estertores à ausculta pulmonar em base esquerda e respiração rápida, profunda e ampla. Realizada glicemia capilar com valor de 380 mg/dL. Foi iniciada hidratação EV com 1 litro de soro fisiológico, iniciada antibioticoterapia, e coletados exames laboratoriais: Hb 13,5 g/dL, leucócitos 35.425/mm³ (neutrófilos 29.725 com 5% de bastonetes, linfócitos 4.320, monócitos 1.380), plaquetas 462.000/mm³, Cr 1,24 mg/dL, ureia 42 mg/dL, pH 7,09, pCO2 16, bicarbonato 8, Na 144 mEq/L, Cl 92 mEq/L, K 4,5 mEq/L, exame de urina com cetonúria 3+/4+. Qual imagem abaixo corresponde ao achado mais provável do ultrassom pulmonar à beira-leito deste paciente?",
   alternativas:[{id:"A",texto:"Imagem A (ultrassom pulmonar com linhas A horizontais e deslizamento pleural)."},{id:"B",texto:"Imagem B (modo M com sinal da estratosfera, código de barras)."},{id:"C",texto:"Imagem C (consolidação pulmonar com hepatização e broncograma aéreo)."},{id:"D",texto:"Imagem D (derrame pleural anecoico)."}],
   gabarito:"C",
@@ -341,7 +341,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-025", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:25,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-caendometrio",
-  imagemUrl:"dados/imagens/q-uspsp5-025.png", imagemLegenda:"Ultrassonografia endovaginal da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-025.webp", imagemLegenda:"Ultrassonografia endovaginal da paciente.",
   enunciado:"Uma mulher de 62 anos de idade, menopausada há 10 anos, relata desconforto abdominal e leve cólica no hipogástrio. Não faz uso de terapia hormonal e tem IMC 32 kg/m². Exame ginecológico com genitais externos atróficos, vagina atrófica de conteúdo habitual, colo uterino epitelizado. Ultrassonografia mostra a seguinte imagem (medida do eco endometrial de 2 cm). Qual é o próximo passo na gestão de saúde desta paciente?",
   alternativas:[{id:"A",texto:"Ultrassonografia em 6 meses."},{id:"B",texto:"Histeroscopia."},{id:"C",texto:"Laparoscopia."},{id:"D",texto:"Ressonância magnética."}],
   gabarito:"B",
@@ -407,7 +407,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-030", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:30,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
-  imagemUrl:"dados/imagens/q-uspsp5-030.png", imagemLegenda:"Curva de crescimento da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-030.webp", imagemLegenda:"Curva de crescimento da paciente.",
   enunciado:"Uma menina de 7 anos é levada ao médico ginecologista pois a mãe observou crescimento mamário nos últimos 6 meses. Ao exame clínico, a criança apresenta genitália pré-púbere e ausência de adrenarca. O exame mamário demonstra a presença de mamas de tamanho médio, simétricas, com desenvolvimento de mama e aréola, porém sem separação dos contornos. Paciente nega menarca, bem como nega doenças prévias e medicações de uso contínuo. Apresenta curva de crescimento abaixo (OMS 2007, com velocidade de crescimento adequada). Qual é a afirmação correta?",
   alternativas:[{id:"A",texto:"Paciente apresenta quadro de puberdade precoce verdadeira, devendo ser orientada a realizar tratamento adequado para evitar baixa estatura na idade adulta."},{id:"B",texto:"Caso seja realizada dosagem do LH, espera-se valores > 0,3."},{id:"C",texto:"O seguimento deverá ser expectante, com atenção ao surgimento de outros caracteres sexuais."},{id:"D",texto:"Paciente tem classificação de Tanner M4P1."}],
   gabarito:"C",
@@ -655,7 +655,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-049", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:49,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-uspsp5-049.png", imagemLegenda:"Tomografias de crânio (A a D).",
+  imagemUrl:"dados/imagens/q-uspsp5-049.webp", imagemLegenda:"Tomografias de crânio (A a D).",
   enunciado:"Um homem de 31 anos de idade, vítima de colisão carro x poste há aproximadamente 1 hora. Estava dirigindo sem cinto de segurança e bateu a cabeça contra o volante. Foi encontrado consciente na cena, orientado, com ferimento contuso frontal e queixando-se apenas de cefaleia. Durante o transporte, evoluiu com rebaixamento progressivo do nível de consciência, vômitos e agitação psicomotora. A: vias aéreas pérvias, fala incompreensível. B: FR 20 irpm, SatO2 96% em O2 a 10 L/min, murmúrio vesicular presente bilateralmente. C: PA 148/88 mmHg, FC 88 bpm, pulsos amplos, perfusão periférica lenta. D: ECG 8 (responde à dor com movimentos anormais, emite sons incompreensíveis, não abre os olhos), pupila direita em midríase fixa, esquerda fotorreagente. E: ferimento contuso em região frontal, sem outras lesões aparentes. Dextro 104 mg/dL, Temp 36,7 °C. O paciente foi submetido a intubação orotraqueal sem intercorrências e, em seguida, encaminhado à tomografia de corpo inteiro. Qual é a imagem do sistema nervoso esperada?",
   alternativas:[{id:"A",texto:"Imagem A (tomografia de crânio)."},{id:"B",texto:"Imagem B (tomografia de crânio)."},{id:"C",texto:"Imagem C (tomografia de crânio)."},{id:"D",texto:"Imagem D (tomografia de crânio)."}],
   gabarito:"C",
@@ -669,7 +669,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-050", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:50,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
-  imagemUrl:"dados/imagens/q-uspsp5-050.png", imagemLegenda:"Lesão cutânea periocular do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-050.webp", imagemLegenda:"Lesão cutânea periocular do paciente.",
   enunciado:"Um homem de 64 anos de idade, saudável, agricultor, apresenta-se ao consultório com a lesão cutânea a seguir, que notou há cerca de 8 meses. A lesão tem crescido lentamente. Medida do maior diâmetro = 1,2 cm. Qual das opções terapêuticas é a mais recomendada?",
   alternativas:[{id:"A",texto:"Curetagem e eletrocoagulação."},{id:"B",texto:"Criocirurgia."},{id:"C",texto:"Exérese com margens amplas."},{id:"D",texto:"Cirurgia micrográfica de Mohs."}],
   gabarito:"D",
@@ -683,7 +683,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-051", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:51,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-uspsp5-051.png", imagemLegenda:"Radiografia de tórax e tomografia do paciente 72 horas após a drenagem.",
+  imagemUrl:"dados/imagens/q-uspsp5-051.webp", imagemLegenda:"Radiografia de tórax e tomografia do paciente 72 horas após a drenagem.",
   enunciado:"Um homem de 42 anos de idade, após acidente de moto, chega à sala com a seguinte avaliação pelo suporte avançado aéreo: M: colisão moto x carro (moto em alta velocidade, colisão lateral) há cerca de 1 hora, sem uso de capacete, foi projetado ao solo com impacto torácico esquerdo contra o guidão. I: trauma torácico fechado. Sem outras lesões visíveis. S: PA 110x70 mmHg, FC 115 bpm, FR 24 irpm, SatO2 92% em ar ambiente, Temp 36,8 °C, glicemia capilar 121 mg/dL, ECG 15. T: O2 por máscara, acesso venoso periférico com reposição de 500 mL de cristaloide, imobilização em prancha rígida. Transferido ao hospital em 30 minutos. Na avaliação primária, murmúrio vesicular abolido no hemitórax esquerdo, macicez à percussão, sem turgência jugular, sem enfisema subcutâneo. A tomografia de corpo inteiro mostrou apenas hemotórax à esquerda. Foi realizada drenagem torácica em selo d'água, com débito imediato de 500 mL de sangue. O paciente foi encaminhado à enfermaria e, após 72 horas, foi submetido a novo exame de imagem por piora ventilatória (abaixo). Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Trocar o dreno de tórax."},{id:"B",texto:"Toracocentese diagnóstica."},{id:"C",texto:"Videotoracoscopia."},{id:"D",texto:"Antibioticoterapia."}],
   gabarito:"C",
@@ -697,7 +697,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-052", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:52,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-uspsp5-052.png", imagemLegenda:"Tomografia computadorizada e monitor do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-052.webp", imagemLegenda:"Tomografia computadorizada e monitor do paciente.",
   enunciado:"Um homem de 36 anos de idade, vítima de acidente de trabalho, foi prensado entre um caminhão e uma parede há aproximadamente 1 hora. Apresenta dor torácica e abdominal intensas, com dispneia progressiva. Encaminhado ao pronto-socorro pela equipe do SAMU, que realizou oxigenoterapia suplementar e acesso venoso periférico. Na admissão: A - vias aéreas pérvias, sem corpos estranhos visíveis; fala frases curtas. B - FR 30 irpm, SatO2 88% em ar ambiente, tiragem intercostal, murmúrio vesicular reduzido na base esquerda. C - PA 100x65 mmHg, FC 124 bpm, pele fria e pálida, pulsos periféricos filiformes. D - ECG 14, pupilas isocóricas e fotorreagentes. E - equimose extensa em flanco e hemitórax esquerdo, com dor à palpação em hipocôndrio esquerdo. Sem fraturas expostas. Glicemia capilar 112 mg/dL, Temp 36,5 °C. Após estabilização inicial, foi realizada tomografia de corpo inteiro, representada parcialmente abaixo. Ao retornar à sala de trauma, os parâmetros observados no monitor são: FC 108, SpO2 91%, PA 120x81 (94) mmHg. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Drenagem torácica à esquerda."},{id:"B",texto:"Laparoscopia."},{id:"C",texto:"Toracotomia anterolateral esquerda."},{id:"D",texto:"Laparotomia."}],
   gabarito:"B",
@@ -711,7 +711,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-053", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:53,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
-  imagemUrl:"dados/imagens/q-uspsp5-053.png", imagemLegenda:"Tomografia computadorizada com reconstrução tridimensional da face do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-053.webp", imagemLegenda:"Tomografia computadorizada com reconstrução tridimensional da face do paciente.",
   enunciado:"Um homem de 21 anos de idade foi trazido ao setor de emergência de um hospital referência em trauma após acidente moto x carreta de caminhão. Há relato de que o paciente foi encontrado em apneia, sem obstrução de via aérea, sem estigmas de trauma torácico, SatO2 = 72%, PA 82x37 mmHg, FC = 121 bpm, Glasgow 7 na cena, com otorragia, trauma maxilofacial, sem drive respiratório. A equipe optou pela sequência rápida de intubação com etomidato e succinilcolina, uma vez que a sequência atrasada de intubação não deve ser feita em casos de:",
   alternativas:[{id:"A",texto:"Trauma maxilofacial."},{id:"B",texto:"Ausência de drive respiratório."},{id:"C",texto:"Vômitos."},{id:"D",texto:"Hipotensão."}],
   gabarito:"B",
@@ -725,7 +725,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-054", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:54,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-uspsp5-054.png", imagemLegenda:"Quatro opções de incisão abdominal, numeradas de 1 a 4.",
+  imagemUrl:"dados/imagens/q-uspsp5-054.webp", imagemLegenda:"Quatro opções de incisão abdominal, numeradas de 1 a 4.",
   enunciado:"Um homem de 33 anos de idade é trazido pelo SAMU após acidente moto x anteparo fixo. Admitido conforme avaliação primária abaixo: A: intubado, acoplado à ventilação mecânica. B: FR 22 irpm, SatO2 92% em O2 com FiO2 = 100%, murmúrio vesicular globalmente reduzido, mas simétrico bilateralmente. C: PA 84x60 mmHg, FC 126 bpm, pulsos periféricos filiformes, pele fria e úmida, enchimento capilar > 4 segundos, pelve instável; FAST positivo no espaço hepatorrenal e no espaço esplenorrenal. D: ECG 3T. E: temperatura 35,9 °C, dextro 98 mg/dL, sem crepitações à palpação de coluna. Após fechamento da pelve com lençol, o paciente manteve-se hipotenso e foi encaminhado ao centro cirúrgico. A imagem que representa a(s) incisão(ões) cirúrgica(s) a ser(em) realizada(s) é representada em:",
   alternativas:[{id:"A",texto:"Incisão 1 (mediana infraumbilical, do umbigo ao púbis)."},{id:"B",texto:"Incisão 2 (mediana supraumbilical, do epigástrio ao umbigo)."},{id:"C",texto:"Incisão 3 (mediana xifopúbica, ampla)."},{id:"D",texto:"Incisão 4 (mediana infraumbilical curta)."}],
   gabarito:"C",
@@ -739,7 +739,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-055", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:55,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
-  imagemUrl:"dados/imagens/q-uspsp5-055.png", imagemLegenda:"Esquema dos nervos e das áreas de inervação da região inguinal.",
+  imagemUrl:"dados/imagens/q-uspsp5-055.webp", imagemLegenda:"Esquema dos nervos e das áreas de inervação da região inguinal.",
   enunciado:"Um homem de 32 anos de idade foi submetido a uma hernioplastia inguinal direita pela técnica de Lichtenstein. No 20º dia de pós-operatório, queixa-se de dor do tipo \"queimação\" que irradia para a região indicada pelo número 2. O nervo possivelmente acometido durante o procedimento e a melhor conduta no momento são:",
   alternativas:[{id:"A",texto:"Ílio-inguinal; eletroestimulação."},{id:"B",texto:"Ílio-hipogástrico; analgesia."},{id:"C",texto:"Ílio-inguinal; analgesia."},{id:"D",texto:"Ílio-hipogástrico; eletroestimulação."}],
   gabarito:"C",
@@ -753,7 +753,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-056", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:56,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
-  imagemUrl:"dados/imagens/q-uspsp5-056.png", imagemLegenda:"Campo operatório com a tela posicionada sobre a aponeurose.",
+  imagemUrl:"dados/imagens/q-uspsp5-056.webp", imagemLegenda:"Campo operatório com a tela posicionada sobre a aponeurose.",
   enunciado:"Um homem tabagista de 33 anos de idade foi submetido a laparotomia exploradora após ferimento por arma de fogo em epigástrio. Foram encontradas lesões na parede anterior do estômago e no cólon transverso, ambas corrigidas no mesmo tempo. Pela estabilidade hemodinâmica atingida durante o procedimento, optou-se por fechamento primário da cavidade abdominal e foi utilizada tela profilática (imagem abaixo). Qual é a posição em que a tela se encontra?",
   alternativas:[{id:"A",texto:"Inlay."},{id:"B",texto:"Onlay."},{id:"C",texto:"Sublay."},{id:"D",texto:"Underlay."}],
   gabarito:"B",
@@ -767,7 +767,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-057", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:57,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
-  imagemUrl:"dados/imagens/q-uspsp5-057.png", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-057.webp", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
   enunciado:"Uma mulher de 38 anos de idade, previamente hígida, deu entrada em pronto-atendimento por dor em fossa ilíaca esquerda há dois dias. Nega náuseas, vômitos, alterações urinárias, intestinais e menstruais. Encontra-se em bom estado geral, afebril, com abdome globoso, IMC 33 kg/m², flácido, doloroso à palpação de fossa ilíaca esquerda, sem sinais de irritação peritoneal. Realizada analgesia, com paciente apresentando bom controle álgico. Exames laboratoriais revelaram leucócitos em 12.000/mm³ e PCR 8 mg/L. Exame tomográfico de abdome com as alterações ilustradas a seguir. Qual deve ser o tratamento neste momento?",
   alternativas:[{id:"A",texto:"Analgésicos e seguimento ambulatorial."},{id:"B",texto:"Internação hospitalar e antibioticoterapia endovenosa."},{id:"C",texto:"Internação hospitalar e videolaparoscopia diagnóstica."},{id:"D",texto:"Biópsia percutânea guiada por método de imagem."}],
   gabarito:"A",
@@ -781,7 +781,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-058", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:58,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
-  imagemUrl:"dados/imagens/q-uspsp5-058.png", imagemLegenda:"Ultrassonografia de abdome superior da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-058.webp", imagemLegenda:"Ultrassonografia de abdome superior da paciente.",
   enunciado:"Uma mulher de 25 anos de idade, gestante de 13 semanas, deu entrada em pronto-atendimento com dor em hipocôndrio direito há 8 horas, associada a náuseas e vômitos. Encontra-se em bom estado geral, temperatura 37,9 °C, anictérica, abdome gravídico, flácido, doloroso à palpação de hipocôndrio direito, com pausa da inspiração durante a palpação profunda dessa região. Avaliação fetal não mostrou alterações. Exames laboratoriais revelaram leucócitos em 14.500/mm³ e PCR 26 mg/L, sem demais alterações. Realizado exame ultrassonográfico de abdome superior ilustrado a seguir. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Colecistectomia."},{id:"B",texto:"Colecistostomia percutânea."},{id:"C",texto:"Antibioticoterapia endovenosa exclusiva."},{id:"D",texto:"Antibioticoterapia via oral e seguimento ambulatorial."}],
   gabarito:"A",
@@ -795,7 +795,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-059", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:59,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
-  imagemUrl:"dados/imagens/q-uspsp5-059.png", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-059.webp", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
   enunciado:"Uma mulher de 38 anos de idade, internada há quatro dias devido a pancreatite aguda grave com disfunção renal. Apresenta bom controle álgico, sem náuseas ou vômitos, com eliminação de flatos e evacuação presentes. Encontra-se em bom estado geral, anictérica, afebril, estável hemodinamicamente, com abdome globoso, ruídos hidroaéreos presentes, flácido, com desconforto à palpação do epigástrio, sem sinais de irritação peritoneal. Os exames laboratoriais atuais apresentam leucócitos 13.600/mm³, PCR 15 mg/L, creatinina 2,3 mg/dL, ureia 50 mg/dL, sem demais alterações. Foi realizada tentativa de reintrodução da dieta oral, porém a paciente apresentou náuseas e vômitos. Realizado exame tomográfico de abdome mostrado abaixo. A conduta indicada nesse momento é:",
   alternativas:[{id:"A",texto:"Nutrição parenteral e anticoagulação plena."},{id:"B",texto:"Passagem de sonda nasoenteral para nutrição e antibioticoterapia."},{id:"C",texto:"Nutrição parenteral e antibioticoterapia."},{id:"D",texto:"Passagem de sonda nasoenteral para nutrição e anticoagulação plena."}],
   gabarito:"D",
@@ -822,7 +822,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-061", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:61,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
-  imagemUrl:"dados/imagens/q-uspsp5-061.png", imagemLegenda:"Imagem da endoscopia digestiva alta da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-061.webp", imagemLegenda:"Imagem da endoscopia digestiva alta da paciente.",
   enunciado:"Uma mulher de 28 anos de idade deu entrada em pronto-atendimento devido a fezes de coloração escurecida e de odor fétido há um dia. Apresenta antecedente pessoal de endometriose, em uso de contraceptivo oral combinado e trometamol cetorolaco em período menstrual. Encontra-se em bom estado geral, estável hemodinamicamente, descorada +/4+, com abdome plano, flácido e indolor. Toque retal com presença de fezes escurecidas de odor forte. Submetida a endoscopia digestiva alta, com única alteração mostrada abaixo. O diagnóstico provável e a conduta endoscópica são, respectivamente:",
   alternativas:[{id:"A",texto:"Úlcera péptica Forrest IIb, irrigação endoscópica para tentativa de remoção do coágulo e identificação vascular subjacente."},{id:"B",texto:"Úlcera péptica Forrest Ia, terapia isolada com injeção de adrenalina e realização de second-look em 24 h."},{id:"C",texto:"Úlcera péptica Forrest Ia, terapia combinada de injeção de adrenalina e hemoclipe."},{id:"D",texto:"Úlcera péptica Forrest Ib, sem necessidade de tratamento endoscópico."}],
   gabarito:"A",
@@ -836,7 +836,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-062", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:62,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-diverticulite",
-  imagemUrl:"dados/imagens/q-uspsp5-062.png", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-062.webp", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
   enunciado:"Um homem de 72 anos de idade procura o Serviço de Urgência devido a dor no flanco e na fossa ilíaca esquerda há 2 dias. Refere ser constipado e está sem evacuar há três dias. Nega febre e relata perda de apetite. Tem hipertensão arterial controlada. Ao exame clínico, está em bom estado geral; FC 80 bpm; PA 130x80 mmHg; abdome globoso, flácido, doloroso à palpação do flanco e da fossa ilíaca esquerdos, com sinal de irritação peritoneal neste local; e toque retal com fezes na ampola. Exames laboratoriais: Hb 13,1 g/dL; leucócitos 15.100/mm³; PCR 113 mg/L. Tomografia computadorizada de abdome apresentada abaixo. Qual deve ser a conduta neste momento?",
   alternativas:[{id:"A",texto:"Antibioticoterapia e dieta sem resíduos."},{id:"B",texto:"Retossigmoidectomia com anastomose colorretal primária."},{id:"C",texto:"Retossigmoidectomia à Hartmann."},{id:"D",texto:"Drenagem de abscesso por via percutânea."}],
   gabarito:"A",
@@ -863,7 +863,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-064", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:64,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepato-nodulos",
-  imagemUrl:"dados/imagens/q-uspsp5-064.png", imagemLegenda:"Tomografia computadorizada de abdome do paciente: fase arterial e fase de equilíbrio.",
+  imagemUrl:"dados/imagens/q-uspsp5-064.webp", imagemLegenda:"Tomografia computadorizada de abdome do paciente: fase arterial e fase de equilíbrio.",
   enunciado:"Um homem de 72 anos de idade, com diagnóstico de hepatite B em tratamento com entecavir, e hepatopatia crônica. Durante investigação de quadro de dor lombar por ureterolitíase, realizou tomografia de abdome e pelve com contraste endovenoso que revelou nódulo hepático entre os segmentos 2 e 3 hipervascular com lavagem do meio de contraste (wash-out), medindo 3,3 cm. Tal lesão tem contato com o ramo portal do segmento 2 e com a artéria hepática esquerda, conforme imagens abaixo (fase arterial e fase de equilíbrio). Qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Carcinoma hepatocelular."},{id:"B",texto:"Adenoma hepático."},{id:"C",texto:"Hiperplasia nodular focal."},{id:"D",texto:"Hemangioma hepático."}],
   gabarito:"A",
@@ -877,7 +877,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-065", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:65,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
-  imagemUrl:"dados/imagens/q-uspsp5-065.png", imagemLegenda:"Imagem da endoscopia digestiva alta do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-065.webp", imagemLegenda:"Imagem da endoscopia digestiva alta do paciente.",
   enunciado:"Um homem de 54 anos de idade, hipertenso e diabético com uso regular de medicações, realizou endoscopia digestiva alta de rotina, que observou abaulamento subepitelial em grande curvatura demonstrada em imagem a seguir. Solicita-se ecoendoscopia com biópsia por agulha fina que observa lesão de 6 cm em 4ª camada da parede gástrica, sem linfonodos perigástricos suspeitos para acometimento secundário. O anatomopatológico evidenciou neoplasia fusocelular e a imuno-histoquímica tem CD117+. A tomografia computadorizada observou a lesão e não notou linfonodos suspeitos. Qual é a hipótese diagnóstica e o próximo passo?",
   alternativas:[{id:"A",texto:"Leiomioma e, para confirmar, ampliar o painel imuno-histoquímico com desmina e S100."},{id:"B",texto:"Tumor neuroendócrino gástrico, dosagem de gastrina sérica e PET-CT com gálio-68."},{id:"C",texto:"Schwannoma e, para confirmar, ampliar painel imuno-histoquímico com citoqueratina e vimentina."},{id:"D",texto:"GIST (tumor do estroma gastrointestinal) e avaliação pré-operatória de risco cirúrgico."}],
   gabarito:"D",
@@ -891,7 +891,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-066", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:66,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
-  imagemUrl:"dados/imagens/q-uspsp5-066.png", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-066.webp", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
   enunciado:"Um homem de 64 anos de idade tem queixa de pirose e epigastralgia de longa data, sendo que há 4 meses houve piora da dor e emagrecimento de 4 kg. Tem diabetes bem controlado. Exames laboratoriais sem alterações e endoscopia digestiva alta com lesão vegetante e friável em corpo gástrico, distando 4 cm da transição esofagogástrica. O anatomopatológico mostrou adenocarcinoma tipo difuso de Lauren com células em anel de sinete. Realizou tomografia computadorizada de abdome com espessamento em corpo gástrico e 2 linfonodos arredondados, medindo 15 mm e 12 mm, suspeitos para acometimento secundário em ligamento hepatogástrico. Imagens apresentadas a seguir. Qual é a melhor opção para completar o estadiamento?",
   alternativas:[{id:"A",texto:"Videolaparoscopia diagnóstica."},{id:"B",texto:"Ecoendoscopia com punção aspirativa dos linfonodos."},{id:"C",texto:"PET-CT com 18F-FDG (fluordesoxiglicose)."},{id:"D",texto:"Cintilografia óssea."}],
   gabarito:"A",
@@ -905,7 +905,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-067", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:67,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-uspsp5-067.png", imagemLegenda:"Radiografia simples de abdome do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-067.webp", imagemLegenda:"Radiografia simples de abdome do paciente.",
   enunciado:"Um homem de 80 anos de idade, hipertenso e diabético, é internado com quadro de dor e distensão abdominal. O exame clínico não apresenta sinais de peritonite ou isquemia. A radiografia de abdome é mostrada abaixo. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Redução com enema de bário."},{id:"B",texto:"Sigmoidectomia à Hartmann de urgência."},{id:"C",texto:"Tratamento conservador com jejum, sonda nasogástrica e hidratação."},{id:"D",texto:"Descompressão por colonoscopia."}],
   gabarito:"D",
@@ -919,7 +919,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-068", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:68,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-cirbariatrica",
-  imagemUrl:"dados/imagens/q-uspsp5-068.png", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-068.webp", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
   enunciado:"Um homem de 45 anos de idade, submetido a bypass gástrico em Y de Roux há 2 anos, procura o pronto-socorro com dor abdominal periumbilical em cólica, de forte intensidade, associada a náuseas e vômitos. Tomografia apresentada abaixo. Qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Hérnia de Petersen."},{id:"B",texto:"Estenose da anastomose gastrojejunal."},{id:"C",texto:"Apendicite."},{id:"D",texto:"Úlcera marginal na anastomose gastrojejunal."}],
   gabarito:"A",
@@ -933,7 +933,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-069", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:69,
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
-  imagemUrl:"dados/imagens/q-uspsp5-069.png", imagemLegenda:"Prolapso hemorroidário do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-069.webp", imagemLegenda:"Prolapso hemorroidário do paciente.",
   enunciado:"Um homem de 50 anos de idade procura o coloproctologista devido à presença de hemorroidas (imagem abaixo) que exteriorizam durante a evacuação e só são corrigidas por meio da redução manual. Considerando a classificação de Goligher, qual é o grau e qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Hemorroida de 2º grau; ligadura elástica."},{id:"B",texto:"Hemorroida de 3º grau; hemorroidectomia."},{id:"C",texto:"Hemorroida de 4º grau; escleroterapia."},{id:"D",texto:"Hemorroida de 3º grau; esfincterotomia lateral interna."}],
   gabarito:"B",
@@ -986,7 +986,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-073", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:73,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-uspsp5-073.png", imagemLegenda:"Forest plot dos riscos relativos de morte segundo o nível de atividade física em ambientes com poluição atmosférica.",
+  imagemUrl:"dados/imagens/q-uspsp5-073.webp", imagemLegenda:"Forest plot dos riscos relativos de morte segundo o nível de atividade física em ambientes com poluição atmosférica.",
   enunciado:"A poluição atmosférica derivada de atividades humanas está associada a mudanças climáticas globais e é responsável por uma em seis mortes no mundo. Por outro lado, a atividade física pode ajudar a reduzir a mortalidade por todas as causas. Uma revisão sistemática e metanálise avaliou a associação entre atividade física e risco de morte em ambientes com altos níveis de poluição atmosférica. O estudo incluiu 7 estudos de coorte e mais de 1 milhão de pessoas. Os resultados do estudo se encontram na figura abaixo (forest plot, risco relativo para níveis baixo, moderado e alto de atividade física, com RR global de 0,74; IC 95%: 0,63-0,85). Considerando os dados acima, quais critérios de Hill podem estar envolvidos na avaliação sobre causalidade?",
   alternativas:[{id:"A",texto:"Evidência experimental, analogia."},{id:"B",texto:"Reversibilidade, causa necessária."},{id:"C",texto:"Temporalidade, consistência."},{id:"D",texto:"Dose-resposta, analogia."}],
   gabarito:"C",
@@ -1026,7 +1026,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-076", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:76,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-uspsp5-076.png", imagemLegenda:"Forest plot da associação entre depressão antenatal, baixo peso ao nascer e parto prematuro (Dadi et al., 2020).",
+  imagemUrl:"dados/imagens/q-uspsp5-076.webp", imagemLegenda:"Forest plot da associação entre depressão antenatal, baixo peso ao nascer e parto prematuro (Dadi et al., 2020).",
   enunciado:"Estudos observacionais têm sugerido que a depressão antenatal pode estar associada a desfechos obstétricos adversos, como parto prematuro e baixo peso ao nascer. A Figura 2 do estudo de Dadi et al. (2020) apresenta o resultado da metanálise combinando revisões sistemáticas sobre a associação entre depressão durante a gestação e esses desfechos. O gráfico de forest plot mostra, para cada estudo, o risco relativo (RR) e o intervalo de confiança (IC 95%), bem como a estimativa combinada (modelo de efeitos aleatórios). Para o desfecho baixo peso ao nascer, a estimativa combinada foi RR = 1,39 (IC 95%: 1,22-1,58; I² = 0%). Qual a interpretação mais adequada para o achado da metanálise referente à associação entre depressão antenatal e baixo peso ao nascer?",
   alternativas:[{id:"A",texto:"A depressão antenatal não está associada ao baixo peso ao nascer, pois o IC 95% inclui o valor nulo."},{id:"B",texto:"A depressão antenatal aumenta em aproximadamente 39% o risco de baixo peso ao nascer."},{id:"C",texto:"O valor de I² (I squared) = 0% indica forte heterogeneidade entre os estudos incluídos."},{id:"D",texto:"O RR = 1,39 indica que 39% dos recém-nascidos apresentarão baixo peso se a mãe tiver depressão antenatal."}],
   gabarito:"B",
@@ -1105,7 +1105,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-082", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:82,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-coluna",
-  imagemUrl:"dados/imagens/q-uspsp5-082.png", imagemLegenda:"Radiografias da coluna lombar do paciente (incidências anteroposterior e perfil).",
+  imagemUrl:"dados/imagens/q-uspsp5-082.webp", imagemLegenda:"Radiografias da coluna lombar do paciente (incidências anteroposterior e perfil).",
   enunciado:"Um homem de 45 anos de idade, motorista de aplicativo, procura atendimento com queixa de dor lombar há 3 dias, que iniciou após carregar uma mala pesada. A dor é em faixa, na região lombar baixa, piora com o movimento e melhora com o repouso. Nega irradiação para membros inferiores, febre ou perda de peso. Ao exame clínico, não há déficit de força, sensibilidade ou reflexos nos membros inferiores. O sinal de Lasègue é negativo. Ele traz uma radiografia que realizou no dia anterior no AMA, mas não sentiu confiança na conduta do médico de plantão e decidiu vir hoje à UBS. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Prescrever analgésico/anti-inflamatório, orientar calor local e manter-se ativo, com retorno se não houver melhora ou surgirem novos sintomas."},{id:"B",texto:"Encaminhar para avaliação com ortopedista em caráter de urgência."},{id:"C",texto:"Prescrever repouso absoluto por 7 dias e encaminhar para a fisioterapia."},{id:"D",texto:"Complementar a investigação da dor com tomografia de coluna lombossacra."}],
   gabarito:"A",
@@ -1262,7 +1262,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-094", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:94,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
-  imagemUrl:"dados/imagens/q-uspsp5-094.png", imagemLegenda:"Lesões de pele da criança.",
+  imagemUrl:"dados/imagens/q-uspsp5-094.webp", imagemLegenda:"Lesões de pele da criança.",
   enunciado:"A mãe de um lactente de 10 meses de idade e de uma criança de 3 anos de idade traz os filhos em consulta por conta de lesões de pele há 4 dias, que iniciaram como manchas vermelhas, que se transformam em vesículas e bolhas e agora têm algumas erosões e crostas (conforme figura abaixo), tem febre baixa neste período. A criança se coça muito e as lesões ocorreram primeiro principalmente em tronco e rosto e depois membros. O irmão mais novo não tem sintomas no momento, a mãe se preocupa e questiona transmissão. Ao checar o calendário vacinal do mais velho, baseado no PNI, você nota que ele não tomou as vacinas de 12 e 15 meses, pois a mãe viu notícias no celular e tem muito medo que essas vacinas causem autismo ou outra coisa pior, pensa que as vacinas até 9 meses devem ser suficientes para proteger sem fazer mal. Além das medidas de manejo de sintomas, quais as melhores condutas em relação à vacinação relacionada a essa infecção e quanto às preocupações da mãe?",
   alternativas:[{id:"A",texto:"Reforçar alto risco de contágio de doença, descartar as crenças da paciente como \"notícias falsas\" e impor a vacinação de filhos, citando a legislação sanitária."},{id:"B",texto:"Tranquilizar a mãe que o filho não precisa se vacinar mais para essa doença pois já teve contato, agendar outra consulta para conversar sobre importância de vacinação para as crianças."},{id:"C",texto:"Acolher preocupações, orientar fontes seguras de informação, discutir riscos e benefícios. Orientar que o bebê tem indicação de vacina agora pelo contato com doença do irmão e depois seguir calendário do PNI usual."},{id:"D",texto:"Acolher preocupações, orientar fontes seguras de informação, discutir riscos e benefícios. Reforçar com a mãe a importância de vacinar o bebê com tetraviral aos 15 meses, para que não tenha a mesma doença do irmão."}],
   gabarito:"C",
@@ -1510,7 +1510,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-5", [
 {
   id:"q-uspsp5-113", banca:"Simulados USP SP — Simulado 5 (05/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:113,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-oncopediatrica",
-  imagemUrl:"dados/imagens/q-uspsp5-113.png", imagemLegenda:"Eletrocardiograma do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp5-113.webp", imagemLegenda:"Eletrocardiograma do paciente.",
   enunciado:"Um menino de 11 anos de idade está em tratamento para linfoma de Burkitt. Iniciou ciclo de quimioterapia há 24 horas. Evoluiu com náuseas, vômitos, dor abdominal difusa e redução do débito urinário. A mãe percebeu também irritabilidade e episódios de \"fraqueza\" muscular. Exame clínico: estado geral regular, sonolento, descorado 2+, PA 135/90 mmHg, FC 118 bpm, FR 26 irpm, SatO2 96% em ar ambiente. Abdome doloroso difusamente, sem visceromegalias. Tônus muscular discretamente diminuído, reflexos hipoativos. Sem sinais de desidratação grave. Realizado ECG com resultado abaixo (ondas T apiculadas e alargamento do QRS). Qual deve ser a conduta imediata?",
   alternativas:[{id:"A",texto:"Hidratação EV 3 L/m²."},{id:"B",texto:"Rasburicase 0,2 mg/kg/dose."},{id:"C",texto:"Gluconato de cálcio 10% 100 mg/kg EV."},{id:"D",texto:"Sevelamer 800 mg 3x/dia."}],
   gabarito:"C",

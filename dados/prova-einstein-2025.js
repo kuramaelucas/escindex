@@ -230,7 +230,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 {
   id:"q-einstein2025-017", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:17,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
-  imagemUrl:"dados/imagens/q-einstein2025-017.png",
+  imagemUrl:"dados/imagens/q-einstein2025-017.webp",
   enunciado:"Paciente de 26 anos, sexo feminino, vem com queixa de mal-estar há dois dias, com piora progressiva e, há um dia, com dor abdominal em hipogastro associada a disúria e polaciúria. Nega febre, nega alterações de hábito intestinal, refere inapetência, mas nega vômitos. Sexualmente ativa, refere corrimento amarelo claro no período, faz uso de contraceptivo oral; data da última menstruação há 3 semanas. Ao exame físico, está em bom estado geral, FC 89 bpm, PAM 120 x 87 mmHg, dor à palpação de hipogastro, sem massas palpáveis ou sinal de irritação peritoneal. Urina I com 20000 leucócitos/mL (VR 0 – 10000). Realizou o exame a seguir. Assinale a alternativa que contém o diagnóstico correto para esse caso.",
   alternativas:[{id:"A",texto:"Abscesso túbulo ovariano."},{id:"B",texto:"Ureterolitíase."},{id:"C",texto:"Apendicite aguda não complicada."},{id:"D",texto:"Apendicite aguda perfurada."}],
   gabarito:"C",
@@ -244,7 +244,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 {
   id:"q-einstein2025-018", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:18,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-einstein2025-018.png",
+  imagemUrl:"dados/imagens/q-einstein2025-018.webp",
   enunciado:"Paciente vítima de trauma moto versus auto foi diagnosticado com pneumotórax direito, e esse paciente foi drenado pelo médico que o atendeu. Ao assumir o plantão, outro médico reavalia o paciente, que mantém queixa de dor em hemitórax direito, taquipneia e murmúrio diminuído à direita, com saturação de 93% com 2L de oxigênio. A radiografia realizada é a seguinte: Assinale a alternativa que apresenta a conduta correta a ser empregada nesse momento.",
   alternativas:[{id:"A",texto:"Retirar o dreno atual e realizar nova drenagem de hemitórax direito."},{id:"B",texto:"Manter dreno atual e realizar drenagem torácica esquerda."},{id:"C",texto:"Manter dreno, por enquanto, e realizar tomografia de tórax."},{id:"D",texto:"Manter dreno atual e iniciar fisioterapia respiratória."}],
   gabarito:"A",
@@ -271,7 +271,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 {
   id:"q-einstein2025-020", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:20,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
-  imagemUrl:"dados/imagens/q-einstein2025-020.png",
+  imagemUrl:"dados/imagens/q-einstein2025-020.webp",
   enunciado:"Mulher, 70 anos, DM tipo 2 e HAS, ambas com controle adequado. Hematoquezia há 3 meses. Refere emagrecimento não intencional de 10 kg, em 6 meses. Exames laboratoriais: Hb 10,9 g/dL, plaquetas 220 mil/uL, Cr 0,95mg/dL, INR 1,0, R 0,95, PCR 15,2 mg/dL, ferritina 40 ng/mL, saturação de transferrina 12%, albumina 3,5 g/dL. Exames de estadiamento negativo para metástases. Realizados os exames diagnósticos a seguir. Qual é o diagnóstico e como deve ser feita a condução dessa paciente no pré-operatório?",
   alternativas:[{id:"A",texto:"Neoplasia de cólon. Realizar suplementação de ferro por via endovenosa."},{id:"B",texto:"Neoplasia de cólon. Realizar eritropoetina por via subcutânea."},{id:"C",texto:"Neoplasia de canal anal. Realizar suplementação de ferro por via endovenosa."},{id:"D",texto:"Neoplasia de canal anal. Realizar eritropoetina por via subcutânea."}],
   gabarito:"A",
@@ -415,7 +415,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 {
   id:"q-einstein2025-031", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:31,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2025-031.png",
+  imagemUrl:"dados/imagens/q-einstein2025-031.webp",
   enunciado:"Escolar de 8 anos, sexo masculino, com episódios recorrentes de palpitações e desconforto no peito nas últimas horas. Os pais negam histórico prévio de problemas cardíacos ou episódios semelhantes. No momento da avaliação, o paciente está ansioso e relata sentir o coração \"batendo muito rápido\". Ele parece desconfortável e agitado, mas colabora com o atendimento quando solicitado. Ao exame físico, FC = 187 bpm, PA = 98 x 56 (70) mmHg, tempo de enchimento capilar de 2 segundos, pulsos periféricos cheios e simétricos, FR = 32 ipm, SatO2 = 98% em ar ambiente, sem desconforto respiratório. No monitor cardíaco, nota- se o seguinte ritmo: Com base no fluxograma de avaliação de taquicardias do PALS (Pediatric Advanced Life Support), qual é a conduta mais apropriada a ser realizada inicialmente para esse paciente?",
   alternativas:[{id:"A",texto:"Administrar adenosina endovenosa, imediatamente."},{id:"B",texto:"Administrar adenosina apenas se ausência de resposta com manobras vagais."},{id:"C",texto:"Realizar cardioversão elétrica sincronizada com 0,5 a 1 J/kg."},{id:"D",texto:"Administrar atropina endovenosa, imediatamente."}],
   gabarito:"",
@@ -585,7 +585,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2025", [
 {
   id:"q-einstein2025-044", banca:"Einstein (HIAE)", real:true, ano:2025, numeroNaProva:44,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
-  imagemUrl:"dados/imagens/q-einstein2025-044.png",
+  imagemUrl:"dados/imagens/q-einstein2025-044.webp",
   enunciado:"Adolescente de 12 anos, sexo feminino, comparece à consulta de rotina com pediatra. Apresenta desenvolvimento puberal em estágio M3P3 de Tanner e IMC representado no gráfico a seguir. Considerando a avaliação nutricional dessa paciente, a conduta adequada é:",
   alternativas:[{id:"A",texto:"solicitar dosagem de LDL para rastreio do diagnóstico de síndrome metabólica."},{id:"B",texto:"recomendar a prática de, no mínimo, 30 minutos de atividade física moderada diariamente."},{id:"C",texto:"recomendar orientação nutricional e manutenção do peso, e não a sua redução, em vista do desenvolvimento puberal ainda incompleto."},{id:"D",texto:"solicitar ultrassonografia abdominal para rastreio de doença gordurosa não alcoólica do fígado."}],
   gabarito:"",

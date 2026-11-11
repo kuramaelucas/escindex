@@ -110,7 +110,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-008", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2024-008.png",
+  imagemUrl:"dados/imagens/q-einstein2024-008.webp",
   enunciado:"Atenção: Considere o caso a seguir para responder às questões de números 8 e 9. Mulher, de 68 anos de idade, é admitida na unidade de emergência com queixa de mal-estar. Relata que há cerca de duas horas iniciou quadro de mal-estar inespecífico, tontura e falta de ar em repouso quando estava em casa assistindo televisão. Ao tentar se levantar para ir ao banheiro, apresentou episódio de sincope, presenciada por sua filha, sem pródomos ou outros sintomas associados, com retorno a consciência após cerca de 30 segundos. No momento, mantém as mesmas queixas, sem outros sintomas associa- dos. Tem história prévia de hipertensão arterial sistémica, diabetes mellitus tipo 2 e dislipidemia, estando em uso de enalapril 20 mg/dia, atenolol 50 mg/dia, metformina 2.000 mg/dia e atorvastatina 40 mg/dia. Ao exame físico, apresenta desorientação tempo-espacial leve. A frequência de pulso é de 44 bpm, com pulso filiforme e de ritmo irregular, a PA: 82 x 56 mmHg, FR: 22 ipm e SatO2: 88% em a.a. O exame cardiaco apresentou frequência cardíaca igual a de pulso, com arritmia de bulhas que estão globalmente hipofonéticas. Suas extremidades estão frias, com tempo de enchimento capilar de 3 segundos. Eletrocardiograma de 12 derivações mostrado na imagem a seguir. O diagnóstico eletrocardiográfico da paciente é:",
   alternativas:[{id:"A",texto:"Ritmo sinusal com bloqueio atrioventricular do segundo grau Mobitz II."},{id:"B",texto:"Ritmo juncional com bloqueio atrioventricular do primeiro grau."},{id:"C",texto:"Ritmo sinusal com bloqueio atrioventricular do terceiro grau Mobitz I."},{id:"D",texto:"Ritmo juncional com bloqueio atrioventricular do segundo grau."}],
   gabarito:"A",
@@ -124,7 +124,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-009", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:9,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2024-009.png",
+  imagemUrl:"dados/imagens/q-einstein2024-009.webp",
   enunciado:"Atenção: Considere o caso a seguir para responder às questões de números 8 e 9. Mulher, de 68 anos de idade, é admitida na unidade de emergência com queixa de mal-estar. Relata que há cerca de duas horas iniciou quadro de mal-estar inespecífico, tontura e falta de ar em repouso quando estava em casa assistindo televisão. Ao tentar se levantar para ir ao banheiro, apresentou episódio de sincope, presenciada por sua filha, sem pródomos ou outros sintomas associados, com retorno a consciência após cerca de 30 segundos. No momento, mantém as mesmas queixas, sem outros sintomas associa- dos. Tem história prévia de hipertensão arterial sistémica, diabetes mellitus tipo 2 e dislipidemia, estando em uso de enalapril 20 mg/dia, atenolol 50 mg/dia, metformina 2.000 mg/dia e atorvastatina 40 mg/dia. Ao exame físico, apresenta desorientação tempo-espacial leve. A frequência de pulso é de 44 bpm, com pulso filiforme e de ritmo irregular, a PA: 82 x 56 mmHg, FR: 22 ipm e SatO2: 88% em a.a. O exame cardíaco apresentou frequência cardíaca igual a de pulso, com arritmia de bulhas que estão globalmente hipofonéticas. Suas extremidades estão frias, com tempo de enchimento capilar de 3 segundos. Eletrocardiograma de 12 derivações mostrado na imagem a seguir. A paciente foi inicialmente tratada com atropina 1 mg, por via intravenosa, mas não apresentou resposta apropriada. Dentre os medicamentos a seguir, a melhor opção para esta paciente, neste momento, é:",
   alternativas:[{id:"A",texto:"Dobutamina 10 mcg/min."},{id:"B",texto:"Norepinefrina 2 mcg/min."},{id:"C",texto:"Fenilefrina 1 mcg/kg/min."},{id:"D",texto:"Dopamina 5 mcg/kg/min."}],
   gabarito:"D",
@@ -138,7 +138,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-010", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-paratireoide",
-  imagemUrl:"dados/imagens/q-einstein2024-010.png",
+  imagemUrl:"dados/imagens/q-einstein2024-010.webp",
   enunciado:"Paciente feminina, 56 anos, compareceu ao ambulatório para seguimento de hipertensão arterial sistêmica. Nesta consulta, estava assintomática, relatando boa aderência ao uso de enalapril 40 mg/dia e hidroclorotiazida 25 mg/dia. Ao exame físico, apresentava uma PA: 112 x 68 mmHg e restante normal. Trouxe o resultado de exames laboratoriais solicitados previamente, que podem ser vistos na tabela abaixo (Exame 1). Com base nestes resultados, foi indicada reposição de 50.000 UI de vitamina D uma vez por semana por oito semanas e suspensão da hidroclorotiazida. A paciente retorna após três meses para reavaliação e com novos exames laboratoriais (Exame 2). Entre as hipóteses diagnósticas abaixo, a mais provável para esta paciente no início de seu quadro (quando apresentou os resultados do Exame 1) é:",
   alternativas:[{id:"A",texto:"hiperparatireoidismo secundário."},{id:"B",texto:"hiperparatireoidismo primário."},{id:"C",texto:"hipercalcemia hipocalciúrica familiar."},{id:"D",texto:"hipercalcemia normocalcêmica por hipovitaminose D."}],
   gabarito:"B",
@@ -217,7 +217,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-016", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:16,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-litiase",
-  imagemUrl:"dados/imagens/q-einstein2024-016.png",
+  imagemUrl:"dados/imagens/q-einstein2024-016.webp",
   enunciado:"Mulher de 35 anos apresenta história de infecções urinárias de repetição há 5 anos. Iniciou dor lombar à esquerda há 6 meses. Nos exames complementares, foi identificada a bactéria Proteus mirabilis em urocultura. Realizou radiografia de abdome com a imagem abaixo. Entre as opções abaixo, a etiologia da doença dessa paciente está mais relacionada a:",
   alternativas:[{id:"A",texto:"Fosfato de Cálcio."},{id:"B",texto:"Oxalato de Cálcio."},{id:"C",texto:"Estruvita."},{id:"D",texto:"Cistina."}],
   gabarito:"C",
@@ -231,7 +231,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-017", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:17,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
-  imagemUrl:"dados/imagens/q-einstein2024-017.png",
+  imagemUrl:"dados/imagens/q-einstein2024-017.webp",
   enunciado:"Paciente feminino, 55 anos, dá entrada no pronto-socorro com dor torácica de forte intensidade há 1 hora. Antecedentes pessoais de hipertensão arterial sistêmica, e tabagismo. Ao exame físico: PA: 200 x 100 mmHg, pulso: 110 bpm, SatO2: 99% em ar ambiente. Pulsos em MMSS e MMII todos presentes. Radiografia e tomografia de tórax abaixo: Dentre os tratamentos abaixo, o melhor para este caso é:",
   alternativas:[{id:"A",texto:"Internação em UTI para controle de dor, pressão arterial e frequência cardíaca."},{id:"B",texto:"Internação em UTI e anticoagulação plena."},{id:"C",texto:"Correção cirúrgica de emergência com toracotomia exploradora."},{id:"D",texto:"Internação hospitalar para drenagem de tórax de emergência."}],
   gabarito:"A",
@@ -258,7 +258,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-019", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:19,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-einstein2024-019.png",
+  imagemUrl:"dados/imagens/q-einstein2024-019.webp",
   enunciado:"Paciente masculino, 32 anos vai ao pronto-socorro com história de 7 dias de epigastralgia com parada de eliminação de flatos e fezes. Não tem antecedentes cirúrgicos ou quadros pregressos semelhantes. Não havia alterações no exame físico. Foram colhidos exames laboratoriais: Hemoglobina: 10,6 g/dL, Leucograma: 9.850 mm3, Plaquetas: 554.000/mm3, Ureia: 24 mg/dL, Creatinina: 0,7 mg/dL, Bilirrubina direta: 0,13 mg/dL, TGO: 13 U/L, TGP: 11 U/L, FA: 67 U/L, GGT: 22 U/L, Amilase: 110 U/L, Lipase: 24 U/L. Foi solicitada tomografia de abdome cujo resultado e mostrado abaixo: Melhor conduta diante do quadro clínico e achado tomográfico, dentre as listadas abaixo:",
   alternativas:[{id:"A",texto:"Passagem de sonda nasogástrica e jejum."},{id:"B",texto:"Indicar laparoscopia ou laparotomia."},{id:"C",texto:"Observação clínica seriada, mantendo dieta."},{id:"D",texto:"Seguimento ambulatorial com ressonância."}],
   gabarito:"B",
@@ -272,7 +272,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-020", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:20,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-einstein2024-020.png",
+  imagemUrl:"dados/imagens/q-einstein2024-020.webp",
   enunciado:"Paciente masculino de 54 anos vai ao pronto-socorro por dor abdominal intensa e distensão abdominal. Conta que um colega de trabalho inseriu uma mangueira de ar comprimido no seu ânus \"por cima da calça\". Ao exame físico estava ansioso. FC: 110 bpm, eupneico, PA: 120 x 70 mmHg. Abdome distendido, timpânico e doloroso (nota 8 de 10). Toque retal sem alterações. Exames laboratoriais: Hemoglobina: 14,8 g/dL, Leucograma: 6.590/mm3, Plaquetas: 230.000/mm3, PCR: 12 mg/L, INR: 1,08. Foi solicitada tomografia de abdome abaixo mostrada. Nesse caso, a conduta adequada, dentre as abaixo, é:",
   alternativas:[{id:"A",texto:"Sonda de Fouchet para esvaziar o cólon."},{id:"B",texto:"Colonoscopia."},{id:"C",texto:"Enema opaco."},{id:"D",texto:"Laparotomia."}],
   gabarito:"D",
@@ -286,7 +286,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-021", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:21,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-diverticulite",
-  imagemUrl:"dados/imagens/q-einstein2024-021.png",
+  imagemUrl:"dados/imagens/q-einstein2024-021.webp",
   enunciado:"Paciente vai ao pronto-socorro com queixa de dor abdominal em andar superior direito, em cólica, há 3 dias, que piorava ao se alimentar, sem irradiação. Sem alteração urinária ou febre, mantendo evacuações. Antecedente de colecistopatia calculosa, diabetes mellitus, hipertensão e doença coronariana com colocação de stent há 10 anos. Faz uso de sinvastatina, anlodi- pino, metformina e omeprazol. Refere cirurgia prévia de esofagectomia parcial por ingestão de soda cáustica na infância. Exame clínico: corado, hidratado, acianótico, anictérico, afebril, eupneico; SatO2: 96% em ar ambiente; FC: 76 bpm; FR: 14 ipm; PA: 130 x 80 mmHg; ausculta cardíaca e pulmonar sem alterações. Abdome globoso, flácido, doloroso à palpação superficial e profunda difusamente, sinal de Murphy negativo, descompressão brusca positiva. Exames laboratoriais: Hemoglobina: 15,3 g/dL, Leucócitos: 20.400/mm3, Plaquetas: 204.000/mm3, INR: 1,19, PCR: 133 mg/L, Ureia: 35 mg/dL, Creatinina: 1,04 mg/dL, Bilirrubina total: 1 mg/dL, TGO: 10 U/L, TGP: 15 U/L, FA: 70 U/L, GGT: 50 U/L, Amilase: 80 U/L, Lipase: 27 U/L. Foi submetido a tomografia mostrada abaixo. O diagnóstico mais provável nesse caso, dentre os abaixo, é:",
   alternativas:[{id:"A",texto:"Colecistite aguda."},{id:"B",texto:"Tumor de cólon perfurado."},{id:"C",texto:"Diverticulite de delgado."},{id:"D",texto:"Isquemia mesentérica."}],
   gabarito:"C",
@@ -300,7 +300,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-022", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:22,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
-  imagemUrl:"dados/imagens/q-einstein2024-022.png",
+  imagemUrl:"dados/imagens/q-einstein2024-022.webp",
   enunciado:"Paciente com 62 anos vai ao pronto-socorro com dor em hipocôndrio direito, com irradiação para o dorso, associada a náuseas e vômitos, há 1 dia. Sem febre, hipertensão arterial controlada. Ao exame clínico a paciente estava em regular estado geral, anictérica, pulso de 110 bpm, PA: 150 x 90 mmHg, FR: 20 ipm. Exame cardiorrespiratório sem alterações e abdome globoso, distendido, tenso à palpação, sinal de Murphy positivo. Laboratório: Creatinina: 1,2 mg/dL, Hemglobina: 11,3 g/dL, Leucócitos: 12.670/mm3, Plaquetas: 118.000, FA: 72 U/L, GGT: 45 U/L, Amilase: 20 U/L, Lipase: 20 U/L, APACHE II = 7. Realizado um exame ultrassonográfico mostrado abaixo: A conduta preconizada nesse caso, é:",
   alternativas:[{id:"A",texto:"Colecistostomia."},{id:"B",texto:"Colecistectomia por vídeo."},{id:"C",texto:"Tratamento não operatório com antibioticoterapia."},{id:"D",texto:"Colecistectomia aberta."}],
   gabarito:"B",
@@ -327,7 +327,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-024", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:24,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-einstein2024-024.png",
+  imagemUrl:"dados/imagens/q-einstein2024-024.webp",
   enunciado:"Paciente masculino, 71 anos, vai ao pronto-socorro queixando-se dor abdominal, em cólica, difusa, associada a parada de eliminação de flatos e fezes há 5 dias. Apresentou vários episódios de vômitos. Refere \"hérnia abdominal\" há cerca de 10 anos. Hipertenso e diabético. Exame clinico geral sem alterações. Abdome globoso, distendido, doloroso à palpação de epigástrio associado a abaulamento local, endurado, de cerca de 5x5 cm, sem hiperemia. Conteúdo herniário irredutível. Toque retal com fecaloma. Exames laboratoriais. Creatinina: 2,46 mg/dL, ureia: 99 mg/dL, hemoglobina: 14,9 g/dL, leucócitos: 8.950/mm3, amilase: 48 U/L, INR: 1,12, lactato venoso: 15.1. Foi realizada tomografia , cujas imagens estão abaixo: Na tomografia verificam-se",
   alternativas:[{id:"A",texto:"sinais de sofrimento de alça de cólon."},{id:"B",texto:"sinais de pneumatose intestinal."},{id:"C",texto:"uma hernia de Richter."},{id:"D",texto:"sinais de obstrução intestinal."}],
   gabarito:"D",
@@ -341,7 +341,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-025", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:25,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-dii",
-  imagemUrl:"dados/imagens/q-einstein2024-025.png",
+  imagemUrl:"dados/imagens/q-einstein2024-025.webp",
   enunciado:"Paciente de 17 anos, IMC: 20 kg/m2, vai ao pronto-socorro com dor abdominal difusa há 6 meses, contínua, de leve a modera- da intensidade, associada a diarreia intermitente, náuseas e vômitos, inapetência, perda ponderal importante e edema de membros inferiores até raiz de coxa. Piora súbita da dor abdominal há 1 dia, localizada em epigástrio e mesogástrio, em cólica. Nega febre, nega demais queixas. Sem morbidades, internações ou cirurgias prévias. Ao exame físico: Regular estado geral, descorado, desidratado, afebril, anictérico, acianótico, eupneico, taquicardíaco e caquético. Abdome plano, tenso (em tábua), descompressão brusca positiva. Os membros mostram edema simétrico até joelho 2+/4+, compressível. Exames laboratoriais: Hemoglobina: 9,1 g/dL, Leucócitos: 21.650/mm3 (Neutrófilos: 94%, bastonetes: 10%; 84% segmentado), albumina: 3,9 g/dL. Foi submetido a tomografia, com imagens abaixo: Submetido a laparotomia mediana não houve instabilidade hemodinâmica durante a operação. Os achados foram os seguintes: moderada quantidade de líquido purulento em goteira parietocólica direita e pelve. Grande dilatação de alças jejunais a 1,80 m do ângulo de Treitz, evidenciado segmento de 60 cm de jejuno contendo sete áreas estenóticas, sendo a mais proximal perfurada e bloqueada na sua borda contra mesentérica, recoberta por fibrina. Cólon hipoplásico em toda sua extensão (desuso). Restante dos órgãos e estruturas de aspecto macroscópico normal. Melhor conduta, dentre as abaixo:",
   alternativas:[{id:"A",texto:"Enterectomia segmentar com jejunostomia proximal e distal."},{id:"B",texto:"Enterectomia segmentar com anastomose jejunoileal."},{id:"C",texto:"Sutura do segmento perfurado e plastias dos segmentos estenosados."},{id:"D",texto:"Ressecção do segmento perfurado, grampeamento dos cotos das alças e peritoniostomia."}],
   gabarito:"B",
@@ -355,7 +355,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-026", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:26,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
-  imagemUrl:"dados/imagens/q-einstein2024-026.png",
+  imagemUrl:"dados/imagens/q-einstein2024-026.webp",
   enunciado:"Paciente feminina de 62 anos com história de enterorragia e perda ponderal de 8 kg vai ao pronto- socorro com fadiga, dores no ânus e hipogástrio há aproximadamente 2 meses. Exame Físico: descorada, desidratada, anictérica e acianótica e eupneica. Sem alterações cardiopulmonares. Abdome: flácido, ruídos hidroaéreos presentes, timpânico à percussão e doloroso à palpação difusa. Massa palpável em quadrante inferior esquerdo. Descompressão brusca negativo. Toque Retal: fezes líquidas em dedo de luva, esfíncter hipertônico, sem outras alterações. Exames laboratoriais: Hemoglobina: 8,3 g/dL, Leucócitos: 9.320/mm3, Creatina: 0,71 mg/dL, Albumina: 2,1 g/dL. Foi submetida a tomografia com imagens abaixo. O exame evidenciou extensa lesão no sigmoide com ampla superfície de contato com o útero, com sinais de invasão locorregional. Foi realizada colonoscopia cujo resultado mostrou: lesão vegetante e ulcerada, com superfície friável, irregular e grande quantidade de muco e fibrina aderida, prejudicando a distensibilidade das paredes da alça neste segmento. A lesão acomete cerca de 70% da circunferência da estrutura, provocando estenose intransponível ao aparelho. O diagnóstico anatomopatológico mostrou uma lesão vilotubular com displasia intraepitelial de alto grau. Melhor conduta nesse caso, dentre as abaixo:",
   alternativas:[{id:"A",texto:"Retossigmoidectomia Hartmann com histerectomia subtotal."},{id:"B",texto:"Retossigmoidectomia com anastomose primária e pan-histerectomia."},{id:"C",texto:"Colostomia e quimioterapia."},{id:"D",texto:"Neoadjuvância com radioterapia e quimioterapia, para posterior retossigmoidectomia."}],
   gabarito:"A",
@@ -369,7 +369,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-027", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:27,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
-  imagemUrl:"dados/imagens/q-einstein2024-027.png",
+  imagemUrl:"dados/imagens/q-einstein2024-027.webp",
   enunciado:"Paciente de 35 anos, vítima de acidente com veículo automotor. No serviço de emergência está instável, com pressão arterial sistólica de 60 mmHg; FC: 140 bpm. FAST negativo. Realizada uma radiografia de pelve mostrada a seguir. Colocada uma cinta pélvica, sem melhora hemodinâmica. Iniciado protocolo de transfusão maciça. Próximo passo a ser dado, dentre as opções abaixo, deverá ser:",
   alternativas:[{id:"A",texto:"Fixação interna da pelve."},{id:"B",texto:"Laparotomia."},{id:"C",texto:"Arteriografia"},{id:"D",texto:"Tamponamento pré-peritoneal."}],
   gabarito:"D",
@@ -383,7 +383,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-028", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:28,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
-  imagemUrl:"dados/imagens/q-einstein2024-028.png",
+  imagemUrl:"dados/imagens/q-einstein2024-028.webp",
   enunciado:"Paciente do sexo masculino, 73 anos, foi internado para investigação de anemia e perda ponderal, além de dor e distensão abdominal. Ao exame físico apresenta descompressão brusca negativa, massa palpável em flanco direito, toque retal sem alterações. PA: 120 x 80 mmHg P: 90 bpm. Realizou tomografia de abdome com o achado mostrado na figura abaixo. Dentre os tratamentos abaixo, o melhor nesse caso é:",
   alternativas:[{id:"A",texto:"colonoscopia descompressiva."},{id:"B",texto:"ressecão cólon sigmoide."},{id:"C",texto:"neoadjuvância com quimioterapia para posterior abordagem cirúrgica."},{id:"D",texto:"colectomia direita."}],
   gabarito:"D",
@@ -488,7 +488,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-036", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:36,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
-  imagemUrl:"dados/imagens/q-einstein2024-036.png",
+  imagemUrl:"dados/imagens/q-einstein2024-036.webp",
   enunciado:"Recém-nascida apresentou a seguinte evolução: Com 20 dias de vida, retorna à unidade básica de saúde e a mãe refere que deseja continuar a amamentar, apesar das dificuldades dos primeiros dias. A criança apresenta boa pega, com sucção presente e continua ictérica, pesando 3.100 g. Entre as alternativas a seguir, a melhor conduta neste caso é:",
   alternativas:[{id:"A",texto:"Rever a técnica de amamentação e oferecer o seio a cada 1-2 horas."},{id:"B",texto:"Complementar a amamentação com fórmula láctea."},{id:"C",texto:"Iniciar investigação laboratorial, mantendo o aleitamento materno exclusivo."},{id:"D",texto:"Oferecer fórmula láctea e suspender o aleitamento materno."}],
   gabarito:"C",
@@ -528,7 +528,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-039", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:39,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2024-039.png",
+  imagemUrl:"dados/imagens/q-einstein2024-039.webp",
   enunciado:"Criança de 1 ano de idade, sem anormalidades cardíacas detectadas previamente, é levada ao pronto-socorro pelos pais por acharem que o \"coração está acelerado\". Referem quadro de coriza aquosa e febre há 1 dia. Utilizaram antitérmico uma vez. Ao exame físico, criança consciente, com temperatura de 38,5 °C, FR: 35; FC: 200 e SatO2: 97% em a.a. Realizado o seguinte eletrocardiograma com criança mais calma. Entre as opções abaixo, a melhor conduta inicial para esta criança é:",
   alternativas:[{id:"A",texto:"Manobra vagal."},{id:"B",texto:"Antitérmico."},{id:"C",texto:"Ecocardiograma com doppler."},{id:"D",texto:"Betabloqueador."}],
   gabarito:"B",
@@ -555,7 +555,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-041", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:41,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-einstein2024-041.png",
+  imagemUrl:"dados/imagens/q-einstein2024-041.webp",
   enunciado:"Fernando, 8 anos, é levado pelo pai ao pronto-socorro devido a quadro de febre até 39 C, taquicardia, dispneia e anorexia. Ao exame físico, febril, prostrado, regular estado geral com boa perfusão capilar e sem estase jugular. Ausculta cardíaca apresenta bulhas rítmicas normofonéticas. Ausculta pulmonar normal. Abdômen flácido, indolor, com fígado palpável a 4 cm do rebordo costal direito. Realizada a seguinte radiografia de tórax. Entre os agentes abaixo, o que mais frequentemente causa o quadro descrito é:",
   alternativas:[{id:"A",texto:"Coxsackie B."},{id:"B",texto:"Staphylococcus aureus."},{id:"C",texto:"Streptococcus viridans."},{id:"D",texto:"SARS-CoV-2."}],
   gabarito:"A",
@@ -608,7 +608,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2024", [
 {
   id:"q-einstein2024-045", banca:"Einstein (HIAE)", real:true, ano:2024, numeroNaProva:45,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
-  imagemUrl:"dados/imagens/q-einstein2024-045.png",
+  imagemUrl:"dados/imagens/q-einstein2024-045.webp",
   enunciado:"Recém-nascido, sexo feminino, nasceu de parto normal, a termo, com peso de nascimento de 3.015 g e com boa vitalidade. Encontra-se no alojamento conjunto, com 30 horas de vida, ictérica com progressão céfalo-caudal até raiz das coxas e restante do exame físico normal. A diurese é presente, apresentou três episódios de evacuação até o momento. Tipagem sanguínea materna: O Rh Positivo; tipagem sanguínea da criança: A Rh Positivo. Nível sérico de bilirrubina indireta: 15,2 mg/dL e de bilirrubina direta: 0,59 mg/dL. Segundo as diretrizes nacionais e o nomograma norte-americano de Bhutani, reproduzido acima, a melhor conduta a ser tomada neste momento, entre as opções abaixo, é:",
   alternativas:[{id:"A",texto:"colher hemograma, reticulócitos e G6PD."},{id:"B",texto:"iniciar fototerapia e reavaliar BTF em 4h."},{id:"C",texto:"reavaliar BTF em 4h para ver se há indicação de fototerapia."},{id:"D",texto:"solicitar Coombs direto e teste do eluato."}],
   gabarito:"B",

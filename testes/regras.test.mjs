@@ -642,3 +642,36 @@ test("consolidação e simulado criado dividem as vagas 1:1:1:1:1 entre as área
     assert.deepEqual(Object.values(r.sim), [8, 8, 8, 8, 8]);
   } finally { await contexto.close(); }
 });
+
+test("armazenamento: item igual à semente só entra na lista de ordem; edição, campo apagado e questão própria sobrevivem ao recarregar na mesma posição", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  await pagina.evaluate(() => fazerLoginDemo("aluno"));
+  // conta de teste não grava: usa a conta do administrador local, que grava no navegador
+  const antes = await pagina.evaluate(() => {
+    state.contaTeste = false;
+    const q = db.questoes, editada = q[5].id, semCampo = q[7].id;
+    q[5].marcaTeste = "x";
+    const campo = "dificuldadeManual";
+    delete q[7][campo];
+    q.splice(3, 0, { id: "q-propria-ordem", enunciado: "meu", alternativas: ["a", "b"], gabarito: "A", status: "ativa" });
+    gravarEstadoAgora();
+    const guardado = JSON.parse(localStorage.getItem(CHAVE_STORAGE));
+    return { campo, editada, semCampo, ordem: q.map(x => x.id).join(","), itensGuardados: guardado.questoes.length, bytes: localStorage.getItem(CHAVE_STORAGE).length, total: q.length };
+  });
+  assert.ok(antes.itensGuardados <= 5, "só o que difere da semente vira item guardado, não um por questão");
+  assert.ok(antes.bytes < antes.total * 30, "o banco intocado ocupa pouco (só a lista de ids)");
+  await pagina.reload(); await pronto(pagina);
+  const depois = await pagina.evaluate(ids => ({
+    ordem: db.questoes.map(x => x.id).join(","),
+    editada: getQuestao(ids.editada).marcaTeste,
+    banca: ids.campo in getQuestao(ids.semCampo),
+    total: db.questoes.length, vazamento: "_ordemDaSemente" in db,
+  }), antes);
+  assert.equal(depois.ordem, antes.ordem);
+  assert.equal(depois.editada, "x");
+  assert.equal(depois.banca, false, "campo apagado continua apagado");
+  assert.equal(depois.total, antes.total);
+  assert.equal(depois.vazamento, false);
+  await contexto.close();
+});

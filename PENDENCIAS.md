@@ -1,6 +1,8 @@
 # Pendências do banco de questões
 
-Situação em 04/10/2026: 5.455 questões, das quais 5.320 reais, de 51 provas, e 943 cartões da equipe (32 assuntos ainda sem cartão, seção 5).
+<!-- numeros:inicio -->
+> **Números do banco (gerados por `npm run publicar`):** 12.138 questões (9.305 reais, em 94 provas), 943 cartões da equipe e 237 assuntos (20 ainda sem cartão). Detalhe: `npm run dados` e `dados/CATALOGO.md`.
+<!-- numeros:fim -->
 Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.

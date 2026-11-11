@@ -29,7 +29,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-002", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:2,
-  imagemUrl:"dados/imagens/q-scmsp2021-002.png", imagemLegenda:"Tabela com os hemogramas A a D (Hb, VCM, HCM, reticulócitos, ferro, ferritina, saturação de transferrina e capacidade de ligação)",
+  imagemUrl:"dados/imagens/q-scmsp2021-002.webp", imagemLegenda:"Tabela com os hemogramas A a D (Hb, VCM, HCM, reticulócitos, ferro, ferritina, saturação de transferrina e capacidade de ligação)",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
   enunciado:"No ambulatório de hematologia, quatro pacientes estão sendo acompanhados: um homem de dezenove anos de idade, com antecedente de anemia falciforme, sem crises há dois anos (1); uma mulher de 68 anos de idade, com antecedente de neoplasia maligna de colón (2); um homem de 54 anos de idade, etilista de cerca de 0,5 L de destilado ao dia (3); e uma mulher de 56 anos de idade, com antecedente de artrite reumatoide bem controlada (4). Por um erro inaceitável do laboratório, os exames a seguir foram impressos sem os nomes dos pacientes. Com base nessa situação hipotética, assinale a alternativa que apresenta a correlação correta entre os hemogramas demonstrados e os pacientes, tendo em vista as comorbidades de cada indivíduo.",
   alternativas:[{id:"A",texto:"1C, 2D, 3A e 4B."},{id:"B",texto:"1C, 2B, 3A e 4D."},{id:"C",texto:"1B, 2A, 3D e 4C."},{id:"D",texto:"1A, 2D, 3C e 4B."},{id:"E",texto:"1D, 2B, 3C e 4A."}],
@@ -539,7 +539,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-041", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:41,
-  imagemUrl:"dados/imagens/q-scmsp2021-041.jpg", imagemLegenda:"Curvas da OMS de IMC para idade e estatura para idade com o ponto da criança",
+  imagemUrl:"dados/imagens/q-scmsp2021-041.webp", imagemLegenda:"Curvas da OMS de IMC para idade e estatura para idade com o ponto da criança",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Em uma consulta de puericultura de um menino de quatro anos e seis meses de idade, com 105 cm de estatura e 22 kg de peso, foi realizada uma avaliação ponderoestatural, cujos dados são mostrados a seguir. Com base nesse caso hipotético, assinale a alternativa que apresenta a classificação nutricional da criança de acordo com a Organização Mundial da Saúde.",
   alternativas:[{id:"A",texto:"Peso adequado para a idade e estatura adequada para a idade."},{id:"B",texto:"Risco de sobrepeso e estatura adequada para a idade."},{id:"C",texto:"Sobrepeso e estatura adequada para a idade."},{id:"D",texto:"Sobrepeso e risco de baixa estatura."},{id:"E",texto:"Obesidade e estatura adequada para a idade."}],
@@ -683,7 +683,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-052", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:52,
-  imagemUrl:"dados/imagens/q-scmsp2021-052.jpg", imagemLegenda:"Radiografia de tórax da criança",
+  imagemUrl:"dados/imagens/q-scmsp2021-052.webp", imagemLegenda:"Radiografia de tórax da criança",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemoglobinopatias",
   enunciado:"Uma paciente de sete anos de idade, com antecedente de anemia falciforme, em uso regular de ácido fólico, hidroxiureia e penicilina benzatina, tem quadro de dor torácica há três dias, com discreta melhora com o uso de anti-inflamatório, e febre de até 38,8 °C. Ao exame, regular estado geral, descorada, afebril, ictérica 1+/4, alerta, com MV presente bilateralmente, com crepitação, sopro tubário e broncofonia aumentada em todo o hemitórax direito, FR de 38 ipm, sat. de O2 de 91% em ar ambiente, BRNF em dois tempos, sem sopros, FC de 142 bpm, PA de 90 x 50 mmHg, abdome globoso, flácido e pouco dolorido à palpação de hipocôndrio direito, sem visceromegalias, e boa perfusão periférica. Hb 6 g/dL, Ht 19%, leucócitos 28.600/mm³ (7% bastonetes, 85% segmentados, 5% linfócitos e 3% monócitos), plaquetas 373.000/mm³, PCR 6,1 e reticulócitos 18%. Realizou a radiografia de tórax mostrada a seguir. Com base nessa situação hipotética, assinale a alternativa que apresenta, correta e respectivamente, o diagnóstico mais provável e a conduta a ser adotada para a paciente.",
   alternativas:[{id:"A",texto:"Pneumonia com derrame pleural; analgesia, oxacilina e ceftriaxone, sem transfusão de concentrado de hemácias."},{id:"B",texto:"Síndrome torácica aguda; analgesia, ceftriaxone, claritromicina e transfusão de concentrado de hemácias."},{id:"C",texto:"Pneumonia com atelectasia; ceftriaxone e ventilação não invasiva, sem transfusão de concentrado de hemácias."},{id:"D",texto:"Embolia gordurosa maciça; analgesia, anticoagulação e concentrado de hemácias."},{id:"E",texto:"Síndrome torácica aguda; analgesia, ceftriaxone e claritromicina, sem transfusão de concentrado de hemácias."}],
@@ -724,7 +724,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-055", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-scmsp2021-055.jpg", imagemLegenda:"Imagens da ressonância magnética de crânio",
+  imagemUrl:"dados/imagens/q-scmsp2021-055.webp", imagemLegenda:"Imagens da ressonância magnética de crânio",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-meningites",
   enunciado:"Uma paciente de um ano e oito meses de idade, previamente hígida, com história de dois picos febris de 38 °C há um dia, associados à coriza, à obstrução nasal e à letargia, apresentou, hoje pela manhã, crise convulsiva tônico-clônica generalizada e foi levada ao pronto-socorro infantil. Foi admitida, em sala de emergência, após trinta minutos de crise, que cessou após a administração de midazolam intravenoso. Ao exame, encontrava-se em regular estado geral, febril (38,2 °C), sonolenta, mas responsiva a estímulo verbal e reativa ao exame, e com pupilas isocóricas e fotorreagentes, sem sinais meníngeos. Ausculta pulmonar com raros roncos, FR de 24 ipm e sat. de O2 de 97% em ar ambiente. Ausculta cardíaca e exame abdominal sem alterações, com FC de 123 bpm e PA 85 x 45 mmHg, sem déficits motores. Realizou a ressonância magnética cujas imagens são mostradas a seguir. Com base nesse caso hipotético, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Deve-se realizar fundo de olho e radiografia de corpo inteiro, internar a paciente e notificar a vara da infância."},{id:"B",texto:"Deve-se solicitar coleta de liquor, administrar dexametasona e, após trinta minutos, iniciar ceftriaxone (100 mg/kg/dia)."},{id:"C",texto:"O quadro é compatível com esclerose múltipla e há indicação de pulsoterapia com metilprednisolona o mais precocemente possível."},{id:"D",texto:"Deve-se iniciar imediatamente aciclovir endovenoso, programar coleta de liquor e considerar restrição hídrica se a paciente evoluir com hiponatremia e oligúria."},{id:"E",texto:"O quadro é compatível com encefalomielite difusa aguda e requer início imediato de corticoterapia."}],
@@ -920,7 +920,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-070", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:70,
-  imagemUrl:"dados/imagens/q-scmsp2021-070.png", imagemLegenda:"Quadro do POP-Q com os pontos Aa, Ba, C, HG, CP, CTV, Ap, Bp e D",
+  imagemUrl:"dados/imagens/q-scmsp2021-070.webp", imagemLegenda:"Quadro do POP-Q com os pontos Aa, Ba, C, HG, CP, CTV, Ap, Bp e D",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
   enunciado:"Uma paciente de 45 anos de idade queixa-se de “bola na vagina”, associada à sensação de peso. Ao exame físico, segundo a classificação para a quantificação de prolapso de órgãos pélvicos (POP-Q), foram observados os achados a seguir. Com base nessa situação hipotética, assinale a alternativa que apresenta o tratamento mais adequado para a principal queixa da paciente.",
   alternativas:[{id:"A",texto:"Cirurgia de Burch."},{id:"B",texto:"Colporrafia anterior."},{id:"C",texto:"Colporrafia posterior."},{id:"D",texto:"Colpossacrofixação videolaparoscópica."},{id:"E",texto:"Fixação sacroespinhal, via vaginal."}],
@@ -947,7 +947,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-072", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:72,
-  imagemUrl:"dados/imagens/q-scmsp2021-072.jpg", imagemLegenda:"Fotografia do abdome da parturiente na mesa cirúrgica",
+  imagemUrl:"dados/imagens/q-scmsp2021-072.webp", imagemLegenda:"Fotografia do abdome da parturiente na mesa cirúrgica",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
   enunciado:"Uma parturiente (G3 PC1 A1), com idade gestacional de 39 semanas e três dias e gestação de risco habitual, na admissão, refere trabalho de parto de início espontâneo. Apresenta, ao exame físico, altura uterina de 41 cm, dinâmica uterina de quatro contrações de 35” em 10’ e batimentos cardíacos fetais de 148 bpm. O toque vaginal: colo posteriorizado; esvaecido 60%; dilatado 4 cm; bolsa íntegra; e apresentação cefálica. Durante a evolução do trabalho de parto, detectou-se taquissistolia (6 contrações de 50” em 10’), bradicardia fetal e intensa hemorragia vaginal. A paciente foi imediatamente encaminhada para a sala cirúrgica para cesariana de emergência. Após a anestesia geral e com a paciente em mesa cirúrgica aguardando a antissepsia abdominal, o que se viu foi a imagem mostrada a seguir. Com base nesse caso hipotético, é correto afirmar que o diagnóstico é o de:",
   alternativas:[{id:"A",texto:"Rotura de vasa prévia."},{id:"B",texto:"Rotura de seio marginal."},{id:"C",texto:"Descolamento prematuro de placenta."},{id:"D",texto:"Rotura uterina."},{id:"E",texto:"Placenta prévia."}],
@@ -1223,7 +1223,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2021", [
 },
 {
   id:"q-scmsp2021-093", banca:"Santa Casa de São Paulo (FCMSCSP)", real:true, ano:2021, numeroNaProva:93,
-  imagemUrl:"dados/imagens/q-scmsp2021-093.png", imagemLegenda:"Tabela de sensibilidade e especificidade das manobras A a E",
+  imagemUrl:"dados/imagens/q-scmsp2021-093.webp", imagemLegenda:"Tabela de sensibilidade e especificidade das manobras A a E",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"O exame físico é parte crucial do processo de investigação e diagnóstico de diversas patologias e, da mesma forma que os exames complementares, possui sensibilidade e especificidade. Considerando essa informação e a tabela abaixo, em que as manobras servem para avaliar a mesma patologia, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"As manobras C e E são as melhores para confirmar o diagnóstico e as manobras B e D não servem para isso."},{id:"B",texto:"As manobras B e D são as melhores para confirmar o diagnóstico e as manobras C e E não servem para isso."},{id:"C",texto:"As manobras C e D são as melhores para confirmar o diagnóstico e as manobras A e E não servem para isso."},{id:"D",texto:"As manobras A e B são as melhores para confirmar o diagnóstico e as manobras A e E não servem para isso."},{id:"E",texto:"As manobras A e B são as melhores para confirmar o diagnóstico e as manobras C e D não servem para isso."}],

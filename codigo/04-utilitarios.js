@@ -6,6 +6,10 @@
    ========================================================================== */
 function uid(prefixo){ return prefixo+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 
+/* Escolhe singular ou plural pelo número ("1 questão", "2 questões"): o texto não
+   usa mais "questão(ões)". Só devolve a palavra; o número a tela escreve. */
+function plural(n, singular, plural){ return Number(n) === 1 ? singular : plural; }
+
 function escapeHtml(str){
   if(str===undefined || str===null) return "";
   return String(str).replace(/[&<>"']/g, function(c){

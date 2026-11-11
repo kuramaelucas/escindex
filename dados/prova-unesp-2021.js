@@ -242,7 +242,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-018", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:18,
   areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-viasaereas",
-  imagemUrl:"dados/imagens/q-unesp2021-018.png", imagemLegenda:"Audiograma (orelhas direita e esquerda)",
+  imagemUrl:"dados/imagens/q-unesp2021-018.webp", imagemLegenda:"Audiograma (orelhas direita e esquerda)",
   enunciado:"Criança de quatro anos é desatenta na escola, está demorando para falar frases mais elaboradas, mantendo muitas trocas fonêmicas. Mãe e professora têm dúvida quanto à acuidade auditiva da criança. Nega antecedentes otológicos importantes como secreção ou dor. Audiograma apresenta: Trata-se de",
   alternativas:[{id:"A",texto:"Otite média serosa, e o exame de otoscopia estará provavelmente alterado."},{id:"B",texto:"Surdez neurossensorial bilateral, e a investigação diagnóstica deve incluir avaliação genética, exames sorológicos e de imagem."},{id:"C",texto:"Surdez do tipo neurossensorial, e a causa mais comum é a hipertrofia das adenoides culminando em obstrução da tuba auditiva."},{id:"D",texto:"Surdez do tipo condutiva, quadro reversível com o tratamento de desobstrução das tubas auditivas"}],
   gabarito:"B",
@@ -256,7 +256,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-019", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:19,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-hidrocefalia",
-  imagemUrl:"dados/imagens/q-unesp2021-019.jpg", imagemLegenda:"Curva de perímetro cefálico por idade (0 a 2 anos)",
+  imagemUrl:"dados/imagens/q-unesp2021-019.webp", imagemLegenda:"Curva de perímetro cefálico por idade (0 a 2 anos)",
   enunciado:"Menina de 3 meses não consegue firmar a cabeça e é muito irritada. AP: mãe não teve intercorrências durante a gestação. Na imagem, apresenta-se a curva de perímetro cefálico. A hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"Síndrome de Crouzon."},{id:"B",texto:"Craniossinostose."},{id:"C",texto:"Porencefalia."},{id:"D",texto:"Hidrocefalia."}],
   gabarito:"D",
@@ -296,7 +296,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-022", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:22,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unesp2021-022.png", imagemLegenda:"Resultados de sorologia para sífilis (gestante e parceiro)",
+  imagemUrl:"dados/imagens/q-unesp2021-022.webp", imagemLegenda:"Resultados de sorologia para sífilis (gestante e parceiro)",
   enunciado:"Gestante de 29 anos, G3P1A1, com 13 semanas de gestação, retorna à consulta de pré-natal com seu parceiro sexual. Os resultados da sorologia para sífilis estão apresentados a seguir. Em relação ao parceiro, a interpretação do resultado e a conduta são, respectivamente:",
   alternativas:[{id:"A",texto:"Não é um caso de sífilis; não tratar o parceiro e repetir a sorologia para sífilis em 15 dias."},{id:"B",texto:"Diagnóstico presumido de sífilis; tratá-lo com penicilina benzatina, por via intramuscular, em dose única totalizando 2400000 UI."},{id:"C",texto:"Sífílis latente recente; tratá-lo com penicilina benzatina, por via intramuscular, em duas doses com intervalo semanal, totalizando 4800000 UI."},{id:"D",texto:"Sífilis latente tardia; tratá-lo com penicilina benzatina, por via intramuscular, em três doses com intervalo semanal, totalizando 7200000 UI."}],
   gabarito:"B",
@@ -466,7 +466,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-035", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:35,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unesp2021-035.jpg", imagemLegenda:"Exame microscópico do conteúdo vaginal (coloração de Gram)",
+  imagemUrl:"dados/imagens/q-unesp2021-035.webp", imagemLegenda:"Exame microscópico do conteúdo vaginal (coloração de Gram)",
   enunciado:"Mulher de 21 anos queixa-se de dispareunia. Exame ginecológico: colo com intensa hiperemia e edema, JEC-3, recoberta por secreção amarelada espessa, teste de aminas negativo e pH vaginal 4,4. Exame microscópico do conteúdo vaginal a seguir. A hipótese diagnóstica e o melhor tratamento são, respectivamente:",
   alternativas:[{id:"A",texto:"Vaginite aeróbia; clindamicina creme vaginal a 2% por 14 dias."},{id:"B",texto:"Cervicite; azitromicina 1 g (VO) e ceftriaxone 500 mg (IM) em doses únicas."},{id:"C",texto:"Vaginose bacteriana; metronidazol 500 mg (VO) de 12/12 h por 7 dias."},{id:"D",texto:"Candidíase vulvovaginal; fluconazol 150 mg (VO) em dose única,"}],
   gabarito:"B",
@@ -558,7 +558,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-042", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:42,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
-  imagemUrl:"dados/imagens/q-unesp2021-042.png", imagemLegenda:"Glicose, insulina e peptídeo C em três datas",
+  imagemUrl:"dados/imagens/q-unesp2021-042.webp", imagemLegenda:"Glicose, insulina e peptídeo C em três datas",
   enunciado:"Mulher de 28 anos em investigação de hipoglicemia. Nega medicação de uso crônico. AF: mãe portadora de DM em uso de medicação oral e insulina. Considere os exames laboratoriais. Diante desses resultados, a hipótese diagnóstica é hipoglicemia:",
   alternativas:[{id:"A",texto:"Reacional reativa."},{id:"B",texto:"Por insulinoma."},{id:"C",texto:"Pelo uso de insulina."},{id:"D",texto:"Pelo uso de sulfonilureias."}],
   gabarito:"C",
@@ -676,7 +676,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-051", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:51,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
-  imagemUrl:"dados/imagens/q-unesp2021-051.jpg", imagemLegenda:"Lesão nodular eritemato-perolada na região zigomática",
+  imagemUrl:"dados/imagens/q-unesp2021-051.webp", imagemLegenda:"Lesão nodular eritemato-perolada na região zigomática",
   enunciado:"Homem de 69 anos, pescador, apresenta nódulo eritomato-perláceo com telangectasias na região zigomática com crescimento progressivo há 3 anos, conforme imagem: O diagnóstico provável é:",
   alternativas:[{id:"A",texto:"Leishmaniose tegumentar americana."},{id:"B",texto:"Carcinoma basocelular nodular."},{id:"C",texto:"Linfoma cutâneo."},{id:"D",texto:"Esporotricose."}],
   gabarito:"B",
@@ -703,7 +703,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-053", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:53,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
-  imagemUrl:"dados/imagens/q-unesp2021-053.jpg", imagemLegenda:"Espirometria (curva fluxo-volume e tabela pré e pós-broncodilatador)",
+  imagemUrl:"dados/imagens/q-unesp2021-053.webp", imagemLegenda:"Espirometria (curva fluxo-volume e tabela pré e pós-broncodilatador)",
   enunciado:"Mulher de 18 anos apresenta dispneia esporádica aos esforços, associada a tosse seca e sibilos, principalmente pela manhã, há 3 meses. Refere sintomas de rinite, atualmente controlados. Exame físico: BEG, acianótica, PA 110 x 80 mmHg, FC 80 bpm, FR 15 irpm, oximetria de pulso em ar ambiente 97%. Pico de fluxo expiratório 230 L/min (60% do predito). Espirometria apresenta-se a seguir. É correto afirmar que:",
   alternativas:[{id:"A",texto:"Se trata de distúrbio pulmonar ventilatório obstrutivo moderado com resposta ao broncodilatador."},{id:"B",texto:"Se trata de distúrbio pulmonar ventilatório restritivo leve com resposta ao broncodilatador."},{id:"C",texto:"O exame não preenche critérios técnicos para análise; curvas não aceitáveis."},{id:"D",texto:"Se trata de distúrbio pulmonar ventilatório restritivo moderado sem resposta ao broncodilatador."}],
   gabarito:"A",
@@ -717,7 +717,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-054", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:54,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-ira",
-  imagemUrl:"dados/imagens/q-unesp2021-054.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações com sinais de hipercalemia",
+  imagemUrl:"dados/imagens/q-unesp2021-054.webp", imagemLegenda:"Eletrocardiograma de 12 derivações com sinais de hipercalemia",
   enunciado:"Homem de 32 anos, vítima de politrauma há 3 dias com múltiplas escoriações em membros inferiores, TCE grave com hipertensão intracraniana e trauma esplênico grau II. Paciente manteve-se estável hemodinamicamente sem necessidade de droga vasoativa, sem complicações infecciosas, em suporte ventilatório com FiO2 50% e relação pO2/FiO2 300; peso 80 kg. Exames laboratoriais: Cr na admissão 0,9 mg/dL. Atuais: Cr 2,6 mg/dL, Ur 82 mg/dL, K 7,0 mEq/L, fósforo 6,0 mg/dL, DHL 2015 UI/L, pH 7,18, Bicarbonato 10 mEq/L, pCO2 24 mmHg, Na 133 mEq/L, Cl 105 mEq/L, albumina 3,9 g/dL. Mantém débito urinário de 0,2 mL/kg/hora nas últimas 24 horas. O ECG apresenta: A conduta é administrar:",
   alternativas:[{id:"A",texto:"Cálcio intravenoso; solução glicoinsulínica; solução de bicarbonato; furosemida, independentemente do estado volêmico do paciente, e resinas de troca."},{id:"B",texto:"Cálcio intravenoso; solução glicoinsulínica; solução de bicarbonato; furosemida, se estado volêmico permitir, e avaliar a indicação de suporte renal agudo."},{id:"C",texto:"Solução glicoinsulínica; furosemida, independentemente do estado volêmico do paciente, e avaliar a indicação de suporte renal agudo."},{id:"D",texto:"Cálcio intravenoso; solução glicoinsulínica e reposição de bicarbonato, e sempre indicar suporte renal agudo."}],
   gabarito:"B",
@@ -783,7 +783,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-059", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:59,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
-  imagemUrl:"dados/imagens/q-unesp2021-059.jpg", imagemLegenda:"Mácula pigmentada com melanoníquia estriada no primeiro quirodáctilo",
+  imagemUrl:"dados/imagens/q-unesp2021-059.webp", imagemLegenda:"Mácula pigmentada com melanoníquia estriada no primeiro quirodáctilo",
   enunciado:"Mulher de 45 anos, oriental, cozinheira, apresenta mácula hipercrômica assintomática no primeiro quirodáctilo direito, com crescimento progressivo há 2 anos, conforme imagem. O diagnóstico provável é:",
   alternativas:[{id:"A",texto:"Hematoma com hemossiderose por traumatismo crônico profissional."},{id:"B",texto:"Onicomicose por fungos demáceos."},{id:"C",texto:"Pigmentação exógena por shitake."},{id:"D",texto:"Melanoma lentiginoso acral."}],
   gabarito:"D",
@@ -836,7 +836,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-063", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:63,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
-  imagemUrl:"dados/imagens/q-unesp2021-063.jpg", imagemLegenda:"Tomografia de abdome no 3º dia (pâncreas e espaço peripancreático)",
+  imagemUrl:"dados/imagens/q-unesp2021-063.webp", imagemLegenda:"Tomografia de abdome no 3º dia (pâncreas e espaço peripancreático)",
   enunciado:"Homem de 26 anos refere dor em andar superior do abdome, acompanhada de náuseas e sensação de empachamento. Após três dias, apresenta piora da dor, com necessidade de morfina. Exame físico na admissão: BEG, abdome globoso, doloroso à palpação de epigástrio. Exames laboratoriais na admissão: Hb 14,2 g/dL; HT 40%; GB 19000/mm3 ; plaquetas 224000/ mm3 ; TGO 88 U/L; TGP 102 U/L; GGT 504 U/L; FA 199 U/L; BT 1,5 mg/dL, glicemia 150 mg/dL, DHL 250 U/L, amilase 2600 U/L. TC de abdome no terceiro dia apresenta. De acordo com a principal hipótese diagnóstica, é correto afirmar que:",
   alternativas:[{id:"A",texto:"O antibiótico deveria ter sido introduzido na admissão."},{id:"B",texto:"A TC de abdome deve ser realizada o mais precoce possível."},{id:"C",texto:"A hipocalcemia é um critério de gravidade."},{id:"D",texto:"A CPRE está indicada após estabilização clínica."}],
   gabarito:"C",
@@ -876,7 +876,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-066", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:66,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-anatomiacirurgica",
-  imagemUrl:"dados/imagens/q-unesp2021-066.png", imagemLegenda:"Ilustração esquemática da região inguinal direita, visão posterior",
+  imagemUrl:"dados/imagens/q-unesp2021-066.webp", imagemLegenda:"Ilustração esquemática da região inguinal direita, visão posterior",
   enunciado:"Assinale a alternativa que apresenta a correspondência correta entre números e estruturas anatômicas:",
   alternativas:[{id:"A",texto:"1 – vasos epigástricos superiores; 3 – vasos obturatórios; 5 – ducto deferente."},{id:"B",texto:"2 – ligamento inguinal; 4 – vasos ilíacos internos; 5 – ducto deferente."},{id:"C",texto:"1 – vasos epigástricos inferiores; 2 – ligamento inguinal; 3 – vasos espermáticos."},{id:"D",texto:"1 – vasos epigástricos inferiores; 2 – ligamento de Cooper; 4 – vasos ilíacos externos."}],
   gabarito:"C",
@@ -942,7 +942,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-071", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:71,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-anatomiacirurgica",
-  imagemUrl:"dados/imagens/q-unesp2021-071.png", imagemLegenda:"Radiografia de tórax em PA com estruturas numeradas",
+  imagemUrl:"dados/imagens/q-unesp2021-071.webp", imagemLegenda:"Radiografia de tórax em PA com estruturas numeradas",
   enunciado:"Considere a imagem. Assinale a alternativa que correlaciona corretamente os números às estruturas anatômicas correspondentes:",
   alternativas:[{id:"A",texto:"1 – porção posterior do arco costal; 2 – átrio direito; 3 – brônquio principal esquerdo; 4 – ventrículo esquerdo."},{id:"B",texto:"1 – porção anterior do arco costal; 2 – átrio direito; 3 – brônquio principal esquerdo; 4 – átrio esquerdo."},{id:"C",texto:"1 – porção posterior do arco costal; 2 – ventrículo direito; 3 – carina principal; 4 – átrio esquerdo."},{id:"D",texto:"1 – porção anterior do arco costal; 2 – ventrículo direito; 3 – carina principal; 4 – ventrículo esquerdo."}],
   gabarito:"A",
@@ -956,7 +956,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-072", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:72,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-unesp2021-072.png", imagemLegenda:"Líquor em três tubos sequenciais",
+  imagemUrl:"dados/imagens/q-unesp2021-072.webp", imagemLegenda:"Líquor em três tubos sequenciais",
   enunciado:"Mulher de 52 anos apresenta cefaleia de forte intensidade há 5 dias. É encaminhada ao Serviço de Referência com hipótese diagnóstica de hemorragia subaracnóidea (HSA). AP: hipertensa e tabagista. TC de crânio: normal. Líquor, conforme imagem. Pode-se afirmar que:",
   alternativas:[{id:"A",texto:"A ausência de sinais de sangramento na TC indica classificação de Fisher 1, porém a presença de sangue no líquor confirma HSA."},{id:"B",texto:"A prova dos 3 tubos sugere acidente de punção durante a coleta, não se podendo ainda afastar a hipótese de HSA."},{id:"C",texto:"A ausência de sinais de sangramento na TC (Fisher 1) e a prova dos 3 tubos positiva sugerem rotura de aneurisma da circulação posterior."},{id:"D",texto:"A prova dos 3 tubos sugere HSA, cuja etiologia deve ser investigada com angiografia digital cerebral ou angiotomografia."}],
   gabarito:"B",
@@ -983,7 +983,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-074", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:74,
   areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-viasaereas",
-  imagemUrl:"dados/imagens/q-unesp2021-074.jpg", imagemLegenda:"Endoscopia nasal (figura 1) e radiografia de seios paranasais (figura 2)",
+  imagemUrl:"dados/imagens/q-unesp2021-074.webp", imagemLegenda:"Endoscopia nasal (figura 1) e radiografia de seios paranasais (figura 2)",
   enunciado:"Mulher de 32 anos apresenta dor facial à direita e obstrução com eliminação de secreção nasal à direita há 15 dias. AP: extração do 2o molar superior à direita há 1 mês, cujo procedimento foi doloroso e traumático. Exame otorrinolaringológico: ausência de 2o molar superior à direita com mucosa friável ao toque e tecido de granulação; fossa nasal direita com saída de secreção amarelada pela concha nasal média e hiperemia de mucosa à direita (figura 1); fossa nasal esquerda normal. Rinoscopia posterior: secreção amarelada em rinofaringe; raio X de seios paranasais: figura 2. Assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"O diagnóstico é sinusite aguda maxilar bacteriana, e o quadro atual não deve ter relação com a extração dentária."},{id:"B",texto:"Não há relação entre os fatos, pois a drenagem do seio maxilar se dá pela concha nasal inferior e não pela concha média."},{id:"C",texto:"O raio X de seios da face mostra velamento de ambos os seios maxilares, portanto o quadro atual não tem relação com o procedimento odontológico."},{id:"D",texto:"Trata-se de um quadro de sinusite maxilar bacteriana de causa odontogênica."}],
   gabarito:"D",
@@ -1023,7 +1023,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-077", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:77,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-unesp2021-077.png", imagemLegenda:"Radiografia de tórax e abdome",
+  imagemUrl:"dados/imagens/q-unesp2021-077.webp", imagemLegenda:"Radiografia de tórax e abdome",
   enunciado:"Considere a radiografia a seguir. A principal conclusão diagnóstica da radiografia apresentada é:",
   alternativas:[{id:"A",texto:"Presença de nível hidroaéreo sugestivo de obstrução intestinal."},{id:"B",texto:"Opacidade abdominal sugestiva de ascite."},{id:"C",texto:"Elevação diafragmática sugestiva de hérnia diafragmática de Morgagni."},{id:"D",texto:"Pneumoperitôneo sugestivo de perfuração de víscera oca."}],
   gabarito:"D",
@@ -1050,7 +1050,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-079", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:79,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-arterial",
-  imagemUrl:"dados/imagens/q-unesp2021-079.png", imagemLegenda:"Pé esquerdo com cianose fixa e flictenas",
+  imagemUrl:"dados/imagens/q-unesp2021-079.webp", imagemLegenda:"Pé esquerdo com cianose fixa e flictenas",
   enunciado:"Mulher de 68 anos apresenta dor intensa no membro inferior esquerdo (MIE) há 36 horas, com perda de motricidade, restrição ao leito, frialdade e mudança da cor do pé, conforme imagem. Fez uso de analgésicos e anti-inflamatórios sem melhora. AP: fibrilação atrial crônica sem tratamento. Exame físico: MIE com cianose fixa, presença de flictenas, gradiente térmico em terço médio da perna, ausência de pulsos poplíteo e distais à esquerda e presença de todos os pulsos 4+/4 no membro inferior direito. O provável diagnóstico, a etiologia, a classificação clínica e o tratamento são, respectivamente:",
   alternativas:[{id:"A",texto:"Oclusão arterial aguda; embólica Rutherford IIB; amputação primária e antiagregação plaquetária."},{id:"B",texto:"Doença arterial obstrutiva periférica; trombótica; Rutherford IIB; tromboembolectomia à Fogarty e anticoagulação."},{id:"C",texto:"Doença arterial obstrutiva periférica; aterosclerótica; Rutherford I; angioplastia com stent e antiagregação plaquetária."},{id:"D",texto:"Oclusão arterial aguda; embólica; Rutherford III; amputação primária e anticoagulação."}],
   gabarito:"D",
@@ -1246,7 +1246,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-094", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:94,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2021-094.jpg", imagemLegenda:"Gráficos de óbitos diários por COVID-19 no Brasil (alternativas A a D)",
+  imagemUrl:"dados/imagens/q-unesp2021-094.webp", imagemLegenda:"Gráficos de óbitos diários por COVID-19 no Brasil (alternativas A a D)",
   enunciado:"Assinale a alternativa que representa graficamente a evolução de óbitos diários por COVID-19, ocorridos no Brasil, de fevereiro a novembro de 2020 (as barras representam o número de óbitos diários): A. B. C. D.",
   alternativas:[{id:"A",texto:"Gráfico A (ver figura)."},{id:"B",texto:"Gráfico B (ver figura)."},{id:"C",texto:"Gráfico C (ver figura)."},{id:"D",texto:"Gráfico D (ver figura)."}],
   gabarito:"A",
@@ -1273,7 +1273,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2021", [
 {
   id:"q-unesp2021-096", banca:"UNESP (FMB)", real:true, ano:2021, numeroNaProva:96,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2021-096.jpg", imagemLegenda:"Curvas de mortalidade proporcional por idade (Nelson de Moraes), alternativas A a D",
+  imagemUrl:"dados/imagens/q-unesp2021-096.webp", imagemLegenda:"Curvas de mortalidade proporcional por idade (Nelson de Moraes), alternativas A a D",
   enunciado:"Considerando os quatro tipos de curvas de mortalidade proporcional por idade propostos por Nelson de Moraes, assinale aquele que corresponde ao nível de saúde regular. A. B. C. D.",
   alternativas:[{id:"A",texto:"Curva A (ver figura)."},{id:"B",texto:"Curva B (ver figura)."},{id:"C",texto:"Curva C (ver figura)."},{id:"D",texto:"Curva D (ver figura)."}],
   gabarito:"A",

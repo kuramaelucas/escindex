@@ -98,7 +98,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-005", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
-  imagemUrl:"dados/imagens/q-tp20222-005.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-005.webp",
   enunciado:"Na figura abaixo, está demonstrada uma das etapas da gametogênese feminina na meiose I. Um evento anormal, causador de aberrações numéricas nos seres humanos, pode ocorrer na fase identificada por:",
   alternativas:[{id:"A",texto:"III"},{id:"B",texto:"II"},{id:"C",texto:"I"},{id:"D",texto:"IV"}],
   gabarito:"A",
@@ -112,7 +112,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-006", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
-  imagemUrl:"dados/imagens/q-tp20222-006.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-006.webp",
   enunciado:"Gestante, 24 anos, realizou ultrassonografia morfológica pré- natal (imagem abaixo): O período, a falha embriológica e a carência nutricional responsáveis pelo achado são, respectivamente:",
   alternativas:[{id:"A",texto:"3ª e 4ª semanas, falha na neurulação primária; vitamina B9."},{id:"B",texto:"2ª e 3ª semanas, falha na neurulação primária; vitamina B12."},{id:"C",texto:"3ª e 4ª semanas, falha na neurulação secundária; ácido fólico."},{id:"D",texto:"2ª e 3ª semanas, falha na neurulação secundária; vitamina B6."}],
   gabarito:"A",
@@ -126,7 +126,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-007", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:7,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-aneurisma",
-  imagemUrl:"dados/imagens/q-tp20222-007.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-007.webp",
   enunciado:"Mulher, 78 anos, óbito por infarto do miocárdio. À necropsia, foi visualizada alteração apresentada na Figura 1. A estrutura histológica apresentada na Figura 2 responsável pela alteração é:",
   alternativas:[{id:"A",texto:"Túnica íntima, representada pelo número 2."},{id:"B",texto:"Túnica média, representada pelo número 1."},{id:"C",texto:"Túnica íntima, representada pelo número 1."},{id:"D",texto:"Túnica média, representada pelo número 2."}],
   gabarito:"D",
@@ -192,7 +192,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-012", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
-  imagemUrl:"dados/imagens/q-tp20222-012.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-012.webp",
   enunciado:"Homem, 42 anos, tabagista crônico, apresenta pirose e dor retroesternal ao término das grandes refeições há cerca de dois anos. Há seis meses, refere uso irregular de medicamentos antiácidos, sem melhora. Foi realizada endoscopia digestiva alta, associada a biópsia da mucosa esofágica (figura abaixo): Indique a opção correspondente à alteração histopatológica encontrada:",
   alternativas:[{id:"A",texto:"Hipertrofia da lâmina própria"},{id:"B",texto:"Metaplasia escamosa"},{id:"C",texto:"Hipertrofia da camada mucosa"},{id:"D",texto:"Metaplasia epitelial colunar"}],
   gabarito:"D",
@@ -245,7 +245,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-016", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:16,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
-  imagemUrl:"dados/imagens/q-tp20222-016.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-016.webp",
   enunciado:"Homem, 30 anos, caminhoneiro, retornou de Rondônia há 10 dias. Há sete dias iniciou quadro de febre de 39,5ºC, precedida por calafrios intensos, com posterior sudorese e diminuição do quadro febril. O micro-organismo responsável pelo quadro está representado por:",
   alternativas:[{id:"A",texto:"Primeira imagem (de cima para baixo)."},{id:"B",texto:"Segunda imagem (de cima para baixo)."},{id:"C",texto:"Terceira imagem (de cima para baixo)."},{id:"D",texto:"Quarta imagem (de cima para baixo)."}],
   gabarito:"A",
@@ -259,7 +259,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-017", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:17,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-tp20222-017.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-017.webp",
   enunciado:"A tomografia computadorizada é o resultado de raios-X que sofrem atenuação pelos tecidos que atravessam, sendo esta atenuação diretamente proporcional à densidade do tecido. Os valores de atenuação são medidos em unidades de Hounsfield, numa escala de -1000 a +1000HU. Por convenção, a densidade do ar é fixada em -1000HU, a da água em 0HU e a do osso +1000. Na imagem abaixo, a associação correta entre a estrutura apontada e sua densidade aproximada, em unidade Hounsfield, é:",
   alternativas:[{id:"A",texto:"(1) Seio frontal (-1000HU)"},{id:"B",texto:"(2) Parênquima encefálico (+1000HU)"},{id:"C",texto:"(4) Meninge (+1000HU)"},{id:"D",texto:"(3) Ventrículo lateral (-1000HU)"}],
   gabarito:"A",
@@ -377,7 +377,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-026", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:26,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-tp20222-026.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-026.webp",
   enunciado:"Mulher, 25 anos, com histórico desde a infância de lesões nas dobras de membros, que evoluíram para pescoço e face, com prurido. Relata períodos de melhora e piora, e uso de medicações tópicas. Há 10 dias utilizou cefalosporina oral, com alguma melhora. Procurou atendimento, referindo piora do prurido e edema na face há um dia. Exame físico: afebril e face edemaciada com vesículas coalescentes e crostas sobre a pele liquenificada (ver figuras abaixo): O tratamento mais adequado é:",
   alternativas:[{id:"A",texto:"Aciclovir"},{id:"B",texto:"Corticoesteroide tópico"},{id:"C",texto:"Itraconazol"},{id:"D",texto:"Clindamicina tópica"}],
   gabarito:"A",
@@ -469,7 +469,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-033", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:33,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-artrose",
-  imagemUrl:"dados/imagens/q-tp20222-033.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-033.webp",
   enunciado:"Mulher, 72 anos, apresenta dor e aumento de volume em pequenas articulações das mãos há cerca de 20 anos, com aumento progressivo. Acomete todas as articulações interfalangeanas proximais (IFP) e distais (IFD), de forma simétrica. A dor piora com as atividades manuais, como lavar roupas e cozinhar. É comum acordar pela manhã com dor e sensação de rigidez, que dura cerca de 15 minutos e cede espontaneamente. Exames laboratoriais: hemograma e VHS normais, fator reumatoide negativo e ácido úrico 6,6mg/dL (VR: até 5,7mg/dL). Radiografia abaixo: O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Artrite psoriásica"},{id:"B",texto:"Gota"},{id:"C",texto:"Artrite reumatoide"},{id:"D",texto:"Osteoartrite de mãos"}],
   gabarito:"D",
@@ -483,7 +483,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-034", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:34,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-tp20222-034.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-034.webp",
   enunciado:"Mulher, 69 anos, hipertensa e diabética. Foi vista pela última vez bem há um dia, à noite, antes de se deitar. Acordou hoje com hemiplegia à esquerda e disartria. Exame físico: REG, sonolenta, hemiplegia à esquerda, disártrica, NIHSS (National Institute of Health Stroke Scale) = 17, PA = 160x100mmHg. Realizada tomografia de crânio abaixo: A conduta é:",
   alternativas:[{id:"A",texto:"Suporte clínico geral"},{id:"B",texto:"Anticoagulação plena"},{id:"C",texto:"Trombólise intravenosa"},{id:"D",texto:"Trombectomia mecânica"}],
   gabarito:"A",
@@ -497,7 +497,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-035", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:35,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-tp20222-035.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-035.webp",
   enunciado:"Homem, 79 anos, portador de doença pulmonar obstrutiva crônica (DPOC), procura UBS com queixa de febre, tosse com expectoração de secreção esverdeada e mal-estar geral há 2 dias. Hipertenso e diabético de base, com bom controle das doenças. FC = 110bpm, FR = 36ipm, T = 38,5ºC, SaO2 = 90% ao ar ambiente, PA = 90x60mmHg. Ausculta pulmonar: estertores crepitantes em base direita. Radiografia de tórax abaixo: O diagnóstico e a conduta são:",
   alternativas:[{id:"A",texto:"Pneumonia adquirida na comunidade; tratamento domiciliar com quinolona respiratória."},{id:"B",texto:"Pneumonia adquirida na comunidade; tratamento hospitalar com quinolona respiratória."},{id:"C",texto:"Pneumonia atípica; tratamento hospitalar com ceftriaxona."},{id:"D",texto:"Pneumonia atípica; tratamento domiciliar com claritromicina."}],
   gabarito:"B",
@@ -576,7 +576,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-041", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:41,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-tp20222-041.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-041.webp",
   enunciado:"Recém-nascido, 7 dias de vida, trazido à primeira consulta de puericultura, acompanhado de sua mãe, primigesta de 19 anos. Nasceu a termo, sem intercorrências, parto vaginal espontâneo recebendo alta de alojamento conjunto com a mãe no terceiro dia de vida, com orientação de amamentação exclusiva e cuidados. Há dois dias mãe refere intensa dor em mamilo de mama D, no início da mamada com episódios de sangramento. Está chorosa, não consegue dormir ou descansar e pretende oferecer fórmula infantil, pois acha que a criança está com fome. Além de prescrever analgesia para a mãe, deve-se:",
   alternativas:[{id:"A",texto:"Avaliar a mamada, orientar a técnica, mantendo amamentação em mama esquerda e tratamento tópico em mama direita."},{id:"B",texto:"Avaliar a mamada, orientar a técnica, incentivando a amamentação exclusiva e reavaliação em 7 dias."},{id:"C",texto:"Interromper a amamentação, prescrever fórmula infantil, tratamento tópico para a mãe e reavaliação em 7 dias."},{id:"D",texto:"Interromper a amamentação, prescrever fórmula infantil até total resolução da lesão em mama D e retorno em 7 dias."}],
   gabarito:"B",
@@ -629,7 +629,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-045", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:45,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-tp20222-045.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-045.webp",
   enunciado:"Criança, 2 anos, retorna em consulta na Unidade Básica de Saúde para resultado de exame. Manteve aleitamento materno exclusivo até o 4º mês quando houve substituição por leite de vaca. Desde os 7 meses vem fazendo uso de alimentos industrializados principalmente bolachas, iogurtes e achocolatados todos os dias. Está na creche desde os 18 meses, onde aceita a alimentação regularmente, porém em casa, só come guloseimas. Resultado de exame solicitado abaixo: A conduta é:",
   alternativas:[{id:"A",texto:"Ferro oral na dose de 3 a 6mg de ferro elementar/kg/dia."},{id:"B",texto:"Ferro quelado na dose de 1 a 2mg/dia."},{id:"C",texto:"Sulfato ferroso na dose de 3 a 6mg/dia."},{id:"D",texto:"Ferro oral na dose de 1 a 2mg de ferro elementar/kg/dia."}],
   gabarito:"A",
@@ -656,7 +656,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-047", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:47,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
-  imagemUrl:"dados/imagens/q-tp20222-047.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-047.webp",
   enunciado:"Menino, 6 anos, é trazido à UBS com tosse, coriza, diarreia duas vezes ao dia e febre (38ºC) há cinco dias. Há três dias notou manchas vermelhas pelo corpo. Frequenta escola e nega contactantes com sintomas semelhantes. Apresenta bom ganho pôndero-estatural e desenvolvimento neuropsicomotor adequado. Situação vacinal desconhecida. Exame físico: regular estado geral, corado, hidratado, acianótico, anictérico; T = 36,2ºC; FC = 104bpm; FR = 23rpm; PA = 100x70mmHg; enchimento capilar = 2s, pulsos cheios; sem sinais meníngeos; olhos: hiperemia conjuntival bilateral; otoscopia: membranas translúcidas e hiperemiadas, sem abaulamento; oroscopia (foto): linfonodos fibroelásticos 0,5cm em cadeias cervicais anteriores; respiratório: MV+ com roncos de transmissão; abdome: flácido, indolor e sem visceromegalias; pele: exantema macular em tronco e membros; ausência de edema. Prova do laço negativa e pesquisa de antígeno do coronavírus em swab de nasofaringe (teste rápido) não reagente. Considerando o diagnóstico mais provável, a principal causa de mortalidade associada é:",
   alternativas:[{id:"A",texto:"Aneurismas de artérias coronárias"},{id:"B",texto:"Encefalite"},{id:"C",texto:"Miocardite"},{id:"D",texto:"Pneumonia"}],
   gabarito:"D",
@@ -670,7 +670,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-048", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:48,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
-  imagemUrl:"dados/imagens/q-tp20222-048.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-048.webp",
   enunciado:"Menino, 2 anos, com quadro de febre alta e dor de garganta há 2 dias. Exame físico: enantema com vesículas na cavidade oral; lesões eritematosas pápulo-vesiculares em região perioral, mãos e pés. A conduta é:",
   alternativas:[{id:"A",texto:"Analgesia, hidratação oral e orientação alimentar."},{id:"B",texto:"Antibioticoterapia sistêmica, hidratação oral e orientação alimentar."},{id:"C",texto:"Antibioticoterapia tópica, hidratação oral e orientação alimentar."},{id:"D",texto:"Analgesia, antibioticoterapia sistêmica e hidratação oral."}],
   gabarito:"A",
@@ -697,7 +697,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-050", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:50,
   areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-anafilaxia",
-  imagemUrl:"dados/imagens/q-tp20222-050.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-050.webp",
   enunciado:"Menina, 8 anos, durante uma festa de aniversário onde comeu doces e salgados, sentiu coceira e umas manchas vermelhas no corpo. No pronto-socorro as lesões foram descritas como urticas, de tamanhos variados, em tronco (imagem a seguir): A conduta inicial é:",
   alternativas:[{id:"A",texto:"Antileucotrieno por via oral."},{id:"B",texto:"Adrenalina por via intramuscular."},{id:"C",texto:"Corticoide sistêmico por via intravenosa."},{id:"D",texto:"Anti-histamínico de segunda geração por via oral."}],
   gabarito:"D",
@@ -815,7 +815,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-059", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:59,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-tp20222-059.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-059.webp",
   enunciado:"Menino, 5 anos, trazido pelo SAMU, foi atendido em sala de emergência, vítima de acidente automobilístico. Exame físico: agitado, descorado +++/4+, sudoreico, pálido, hidratado, FC: 160bpm, FR = 40irpm, PA = 60x40mmHg, pulsos finos, com dor importante à palpação do abdome, defesa e descompressão brusca (DB) +, hematoma e escoriações transversais no abdome superior. Após atendimento médico inicial na emergência, houve melhora clínica e estabilização hemodinâmica. O paciente é levado para realização de tomografia de abdome (imagem abaixo). No retorno à sala de emergência após tomografia, apresenta-se novamente com exame físico semelhante à admissão. O diagnóstico e a conduta são:",
   alternativas:[{id:"A",texto:"Laceração hepática Grau III. Observação clínica em UTI e cirurgia abdominal, se deterioração hemodinâmica."},{id:"B",texto:"Laceração hepática Grau IV. Cirurgia abdominal imediata, independentemente da observação clínica em UTI."},{id:"C",texto:"Laceração hepática Grau III. Cirurgia abdominal imediata, independentemente da observação clínica em UTI."},{id:"D",texto:"Laceração hepática Grau IV. Observação clínica em UTI e cirurgia abdominal, se deterioração hemodinâmica."}],
   gabarito:"B",
@@ -894,7 +894,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-065", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:65,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-tp20222-065.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-065.webp",
   enunciado:"Homem, 70 anos, apresenta alteração do hábito intestinal e parada de eliminação de gases e fezes há dois dias, acompanhada de vômitos há um dia. Procurou Pronto-Socorro, onde foi realizado hemograma, que demonstrou anemia sem leucocitose. Raio-X de abdome abaixo: A conduta é:",
   alternativas:[{id:"A",texto:"Jejum, hidratação endovenosa, sonda nasogástrica e possível cirurgia de urgência."},{id:"B",texto:"Laparotomia exploradora de emergência."},{id:"C",texto:"Dieta líquida, antieméticos e possível cirurgia de urgência."},{id:"D",texto:"Laxantes líquidos, dieta com fibras e colonoscopia com preparo de cólon."}],
   gabarito:"A",
@@ -934,7 +934,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-068", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:68,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
-  imagemUrl:"dados/imagens/q-tp20222-068.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-068.webp",
   enunciado:"Recém-nascido em sala de parto apresenta malformação da parede abdominal, como mostrado abaixo: Após os cuidados iniciais de suporte ao recém-nascido, incluindo hidratação e cuidados com hipotermia, até a avaliação do especialista, deve-se:",
   alternativas:[{id:"A",texto:"Realizar curativo com colagenase e cobrir com gazes estéreis."},{id:"B",texto:"Cobrir o defeito com compressas estéreis umedecidas em soro fisiológico morno."},{id:"C",texto:"Reduzir o conteúdo eviscerado à cavidade abdominal com manobra manual."},{id:"D",texto:"Remover a membrana amniótica e sutura da parede abdominal."}],
   gabarito:"B",
@@ -1013,7 +1013,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-074", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:74,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-osteometabolicas",
-  imagemUrl:"dados/imagens/q-tp20222-074.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-074.webp",
   enunciado:"Homem, 54 anos, apresenta dor progressiva à movimentação do quadril direito, de início espontâneo, há aproximadamente 1 ano. Relata ser trabalhador braçal, hipertenso e fazer uso crônico de bebida alcoólica (100mL/dia de aguardente, por 30 anos). Exames laboratoriais normais. Realizada ressonância magnética (abaixo): O diagnóstico é:",
   alternativas:[{id:"A",texto:"Artrose primária de quadril"},{id:"B",texto:"Fratura impactada do colo do fêmur"},{id:"C",texto:"Osteonecrose de quadril"},{id:"D",texto:"Osteomielite crônica do quadril"}],
   gabarito:"C",
@@ -1027,7 +1027,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-075", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:75,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tumores",
-  imagemUrl:"dados/imagens/q-tp20222-075.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-075.webp",
   enunciado:"Homem, 67 anos, apresenta cefaleia moderada há duas semanas. Há três dias apresentou crise epiléptica tônico-clônica à direita, seguida de déficit motor à direita. Há um dia apresenta dificuldade de linguagem. Exame físico: hemiparesia incompleta desproporcionada de predomínio bráquio-crural à direita. Realizada ressonância magnética de encéfalo (abaixo): Até a avaliação do especialista, a conduta é:",
   alternativas:[{id:"A",texto:"Fenobarbital + Acetazolamida"},{id:"B",texto:"Fenitoína + Dexametasona"},{id:"C",texto:"Carbamazepina + Manitol"},{id:"D",texto:"Divalproato + Furosemida"}],
   gabarito:"B",
@@ -1093,7 +1093,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-080", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:80,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
-  imagemUrl:"dados/imagens/q-tp20222-080.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-080.webp",
   enunciado:"Paciente em pós-operatório de gastroplastia redutora em Y- de-Roux, evolui no 6º pós-operatório com dor na ferida operatória, febre, hiperemia, além das bordas da lesão e saída de secreção purulenta. A conduta é:",
   alternativas:[{id:"A",texto:"Exploração da ferida operatória, lavagem abundante, coleta da secreção e envio para cultura, antibioticoterapia endovenosa."},{id:"B",texto:"Retirar os pontos para permitir drenagem espontânea da coleção e aguardar cicatrização por segunda intenção da ferida."},{id:"C",texto:"Curativo diário, colagenase tópica e antibioticoterapia endovenosa de largo espectro."},{id:"D",texto:"Swab da secreção e encaminhar para cultura, para que a realização da exploração de ferida operatória ocorra sob antibioticoterapia guiada por cultura. GINECOLOGIA e OBSTETRÍCIA"}],
   gabarito:"A",
@@ -1120,7 +1120,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-082", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:82,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-tp20222-082.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-082.webp",
   enunciado:"Gestante, 33 anos, G1P0, com 38 semanas, retorna em consulta de pré-natal de risco habitual. Apresenta a seguinte evolução do ganho de peso durante a gravidez (figura abaixo): Em relação à curva de índice de massa corpórea (IMC), o ganho de peso materno foi:",
   alternativas:[{id:"A",texto:"Inadequado, pois apresentou inclinação maior do que a curva que delimita a parte inferior da faixa de estado nutricional adequado."},{id:"B",texto:"Adequado, pois apresentou inclinação maior do que a curva que delimita a parte inferior da faixa de estado nutricional adequado."},{id:"C",texto:"Adequado, pois apresentou a curva de IMC abaixo da parte inferior da faixa de estado nutricional adequado."},{id:"D",texto:"Inadequado, pois apresentou a curva de IMC abaixo da parte inferior da faixa de estado nutricional adequado."}],
   gabarito:"B",
@@ -1134,7 +1134,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-083", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:83,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-tp20222-083.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-083.webp",
   enunciado:"Parturiente, 26 anos, G1, início espontâneo do trabalho de parto com 40 semanas. Exame físico inicial: altura uterina de 35cm, 3 contrações fortes em 10 minutos, cardiotocografia categoria I. A paciente está em posição verticalizada e recebe analgesia peridural contínua. (I: bolsa amniótica íntegra; R: bolsa amniótica rota; Mec: líquido amniótico meconial; FCF: frequência cardíaca fetal) De acordo com a evolução do trabalho de parto registrado no partograma, a conduta é:",
   alternativas:[{id:"A",texto:"Ocitocina endovenosa"},{id:"B",texto:"Conduta expectante"},{id:"C",texto:"Cesárea"},{id:"D",texto:"Rotação manual do polo cefálico"}],
   gabarito:"C",
@@ -1395,7 +1395,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-103", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:103,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
-  imagemUrl:"dados/imagens/q-tp20222-103.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-103.webp",
   enunciado:"Mulher, 68 anos, portadora de hipertensão arterial, diabetes, dislipidemia e hipotireoidismo, faz seguimento na Unidade Básica de Saúde. Durante o atendimento clínico, percebeu-se que ela estava confusa quanto ao uso dos medicamentos prescritos e exames solicitados para o controle das suas comorbidades. O caso foi discutido pela equipe de saúde, para identificar a rede social de apoio a esta paciente, ilustrada pelo ecomapa a seguir: Pode-se concluir que existe uma:",
   alternativas:[{id:"A",texto:"Relação conflituosa com a diarista."},{id:"B",texto:"Ruptura na relação com genro."},{id:"C",texto:"Relação equilibrada com a vizinha."},{id:"D",texto:"Relação compensadora com a filha."}],
   gabarito:"C",
@@ -1474,7 +1474,7 @@ window.EscDados.registrarQuestoes("prova-tp-2022-2", [
 {
   id:"q-tp20222-109", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2022, semestre:2, numeroNaProva:109,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-tp20222-109.jpg",
+  imagemUrl:"dados/imagens/q-tp20222-109.webp",
   enunciado:"A tabela a seguir mostra taxas de mortes neonatais evitáveis, de acordo com grupo de causas, ocorridas no Brasil entre os anos 2000 e 2018: Considerando as causas evitáveis que implicaram na menor redução nos óbitos neonatais, as ações de saúde que devem ser intensificadas referem-se às melhorias:",
   alternativas:[{id:"A",texto:"Nas ações de imunoprevenção."},{id:"B",texto:"No acesso e na qualidade da atenção ao pré-natal."},{id:"C",texto:"Na atenção à mulher durante o parto."},{id:"D",texto:"Nos cuidados com o recém-nascido."}],
   gabarito:"B",

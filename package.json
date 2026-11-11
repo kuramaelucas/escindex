@@ -20,6 +20,7 @@
     "vigencia": "node ferramentas/vigencia.mjs",
     "pos-simulado": "node ferramentas/pos-simulado.mjs",
     "figuras": "node ferramentas/figuras.mjs",
+    "otimizar-imagens": "node ferramentas/otimizar-imagens.mjs",
     "anotar-conferencia": "node ferramentas/anotar-conferencia.mjs",
     "referencias-a-conferir": "node ferramentas/referencias-a-conferir.mjs --excluir banco-simulado-epm-6",
     "texto-oficial": "node ferramentas/texto-oficial.mjs",

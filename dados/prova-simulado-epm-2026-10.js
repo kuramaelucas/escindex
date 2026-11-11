@@ -1200,7 +1200,7 @@ window.EscDados.registrarQuestoes("prova-simulado-epm-2026-10", [
 {
   id:"q-simepm89-041", banca:"Simulado EPM/UNIFESP (Turma 89)", real:true, ano:2026, numeroNaProva:41,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-simepm89-041.jpg",
+  imagemUrl:"dados/imagens/q-simepm89-041.webp",
   enunciado:"Mulher de 28 anos, previamente hígida, procura o pronto-socorro por palpitações de início súbito há 1 hora. Não apresenta outros sintomas. PA 110/70 mmHg, FC 170 bpm e SpO2 99%. O eletrocardiograma de 12 derivações é demonstrado na figura e as manobras vagais foram realizadas sem sucesso. Qual é o tratamento indicado?",
   alternativas:[{id:"A",texto:"Amiodarona intravenosa."},{id:"B",texto:"Betabloqueador intravenoso."},{id:"C",texto:"Cardioversão elétrica."},{id:"D",texto:"Adenosina intravenosa."}],
   gabarito:"D",
@@ -1214,7 +1214,7 @@ window.EscDados.registrarQuestoes("prova-simulado-epm-2026-10", [
 {
   id:"q-simepm89-042", banca:"Simulado EPM/UNIFESP (Turma 89)", real:true, ano:2026, numeroNaProva:42,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-simepm89-042.jpg",
+  imagemUrl:"dados/imagens/q-simepm89-042.webp",
   enunciado:"Homem de 67 anos, hipertenso, assintomático em acompanhamento ambulatorial de rotina. Ao exame físico, encontra-se em bom estado geral, com pressão arterial de 138/82 mmHg e frequência cardíaca de 60 bpm. O eletrocardiograma realizado é apresentado. Qual é o principal achado eletrocardiográfico observado?",
   alternativas:[{id:"A",texto:"Bloqueio divisional anterossuperior esquerdo."},{id:"B",texto:"Bloqueio completo do ramo esquerdo."},{id:"C",texto:"Bloqueio divisional póstero-inferior esquerdo."},{id:"D",texto:"Sobrecarga ventricular direita."}],
   gabarito:"A",

@@ -127,7 +127,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-009", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:9,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-sirio2023-009.png",
+  imagemUrl:"dados/imagens/q-sirio2023-009.webp",
   enunciado:"Considere a frequência de alguns sintomas em três subtipos de acidente vascular cerebral: Hemorragia intraparenquimatosa, isquemia cerebral e hemorragia subaracnoide correspondem, respectivamente, aos subtipos",
   alternativas:[{id:"A",texto:"II, III e I."},{id:"B",texto:"II, I e III."},{id:"C",texto:"I, II e III."},{id:"D",texto:"III, II e I."},{id:"E",texto:"I,III e II."}],
   gabarito:"A",
@@ -206,7 +206,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-015", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:15,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-sirio2023-015.png",
+  imagemUrl:"dados/imagens/q-sirio2023-015.webp",
   enunciado:"Homem de 42 anos, com alcoolismo grave, vivendo em situação precária de higiene, procura o pronto-socorro com queixa de febre, sudorese noturna, cansaço, anorexia, emagrecimento e tosse produtiva há 1 semana. Está toxemiado, emagrecido, dentes em mau estado, taquipneico, PA: 108 × 68 mmHg, pulso fino: 98 bpm, saturando 94% em ar ambiente; tem estertores finos e grosseiros no 1/3 inferior do pulmão direito, sem outras alterações significativas. Imagens dos pulmões a seguir. O tratamento empírico deve incluir, necessariamente, cobertura contra",
   alternativas:[{id:"A",texto:"fungos."},{id:"B",texto:"S.aureus."},{id:"C",texto:"Pseudomonas aeruginosa."},{id:"D",texto:"anaeróbios."},{id:"E",texto:"bacilo de Koch."}],
   gabarito:"D",
@@ -233,7 +233,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-017", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:17,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
-  imagemUrl:"dados/imagens/q-sirio2023-017.png",
+  imagemUrl:"dados/imagens/q-sirio2023-017.webp",
   enunciado:"Mulher de 46 anos portadora de lúpus eritematoso sistêmico em remissão, atualmente no processo de retirada de prednisona, tomando 10 mg em dias alternados, é atendida no pronto-socorro com queixa de dor precordial de natureza progressiva há cerca de 6 horas. O exame físico não mostra alterações significativas. O eletrocardiograma realizado na sala de emergência é mostrado abaixo: O diagnóstico mais provavelmente é de",
   alternativas:[{id:"A",texto:"infarto agudo do miocárdio em área inferior."},{id:"B",texto:"infarto antigo do miocárdio em ventrículo direito."},{id:"C",texto:"infarto agudo do miocárdio em parede lateral."},{id:"D",texto:"distúrbio de condução no ramo direito."},{id:"E",texto:"pericardite aguda."}],
   gabarito:"E",
@@ -299,7 +299,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-022", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:22,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-aneurisma",
-  imagemUrl:"dados/imagens/q-sirio2023-022.png",
+  imagemUrl:"dados/imagens/q-sirio2023-022.webp",
   enunciado:"Uma senhora de 77 anos de idade, hipertensa, dislipidêmica e tabagista de 1 maço/dia há 60 anos, tem antecedente de infarto agudo do miocárdio há 2 anos. Apresentou dor abdominal súbita, de grande intensidade, seguida de síncope, há 1 hora. No momento, está estável e sem dor. Ao exame clínico, palpa-se massa abdominal pulsátil. Fez a angiotomografia ilustrada. A conduta ideal para esta senhora é:",
   alternativas:[{id:"A",texto:"Operação de urgência."},{id:"B",texto:"Controle das doenças de base e repetição do exame em 6 meses."},{id:"C",texto:"Tratamento com fluoroquinolona, por via oral, por 2 semanas."},{id:"D",texto:"Anticoagulação com heparina em dose plena."},{id:"E",texto:"Operação eletiva, após estratificação do risco clínico e cardiológico."}],
   gabarito:"A",
@@ -378,7 +378,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-028", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:28,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
-  imagemUrl:"dados/imagens/q-sirio2023-028.png",
+  imagemUrl:"dados/imagens/q-sirio2023-028.webp",
   enunciado:"Um senhor de 55 anos de idade, tabagista, com bom estado nutricional, foi submetido a cirurgia de Hartmann, por diverticulite aguda de sigmoide perfurada, com peritonite fecal. A cavidade abdominal foi lavada com soro fisiológico e fechada com pontos subtotais internos de poligalactina número 1, sutura contínua. No quinto dia de pós-operatório, estava taquicárdico, taquipneico, febril, prostrado e permanecia em íleo adinâmico, com náuseas, vômitos e distensão abdominal. Estava ainda recebendo ceftriaxona e metronidazol. Fez a tomografia de abdome ilustrada, pensando em deiscência do coto do reto. A melhor conduta neste momento é",
   alternativas:[{id:"A",texto:"punção das coleções, guiada por imagem."},{id:"B",texto:"cateter central e nutrição parenteral."},{id:"C",texto:"troca de antibiótico para meropenem e vancomicina."},{id:"D",texto:"observação e nova tomografia em 48 horas."},{id:"E",texto:"reoperação."}],
   gabarito:"E",
@@ -405,7 +405,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-030", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:30,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
-  imagemUrl:"dados/imagens/q-sirio2023-030.png",
+  imagemUrl:"dados/imagens/q-sirio2023-030.webp",
   enunciado:"Uma senhora de 33 anos de idade, no quinto pós- operatório de cesariana, vai ao pronto-socorro com queixa de dor abdominal de forte intensidade desde a alta, há 2 dias. Não teve melhora com uso de dipirona, tramadol e simeticona. Vem até piorando. Refere aumento do volume abdominal. Diz ter sido submetida a sondagem vesical de demora no pós-operatório da cesariana. Antecedentes cirúrgicos: apendicectomia e miomectomia. Está em bom estado geral, corada, hidratada, acianótica, anictérica e afebril, mas um pouco taquipneica. Pulso: 96 bpm, PA: 140 × 90 mmHg, FR: 20 irpm, SatO2: 96%. O abdome é globoso e distendido, sendo difusamente doloroso. Em quadrante inferior esquerdo parece até esboçar descompressão brusca positiva. O útero é palpável 2 cm abaixo da cicatriz umbilical. No exame especular, não se vê sangramento ativo. Toque vaginal: colo fechado, indolor à mobilização, anexos livres. Hemoglobina: 11,3 g/dL, hematócrito: 34,2%, leucócitos: 10.670/mm3, plaquetas: 399.000/mm3, PCR: 97 mg/L, ureia: 76 mg/dL, creatinina: 4,14 mg/dL, Na+: 135 mEq/L, K+: 4,6 mEq/L. Fez a tomografia ilustrada. A principal hipótese diagnóstica é",
   alternativas:[{id:"A",texto:"lesão de bexiga extraperitoneal."},{id:"B",texto:"infecção puerperal."},{id:"C",texto:"lesão iatrogênica de delgado."},{id:"D",texto:"corpo estranho retido (gossypiboma)."},{id:"E",texto:"lesão de bexiga intraperitoneal."}],
   gabarito:"E",
@@ -419,7 +419,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-031", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:31,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
-  imagemUrl:"dados/imagens/q-sirio2023-031.png",
+  imagemUrl:"dados/imagens/q-sirio2023-031.webp",
   enunciado:"Um senhor de 77 anos de idade vai ao pronto-socorro queixando-se de constipação intestinal há 12 dias. Refere ter dor abdominal em cólica, mas recusa-se a ser examinado completamente. Trouxe a tomografia que fez em outro serviço 1 dia antes de sua vinda ao pronto- socorro, ilustrada a seguir. A respeito do diagnóstico mais provável deste senhor, é correto afirmar:",
   alternativas:[{id:"A",texto:"A ausência de líquido no saco herniário exclui a possibilidade de sofrimento de alças."},{id:"B",texto:"Trata-se de hérnia femoral, que é mais frequente no sexo masculino."},{id:"C",texto:"Trata-se de hérnia inguinal esquerda, sendo a causa provável da obstrução intestinal."},{id:"D",texto:"A imagem ilustrada é um achado tomográfico muito frequente, sem relevância clínica."},{id:"E",texto:"É necessário fazer correlação com a ultrassonografia, para avaliar a viabilidade das alças intestinais."}],
   gabarito:"C",
@@ -446,7 +446,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-033", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:33,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-sirio2023-033.png",
+  imagemUrl:"dados/imagens/q-sirio2023-033.webp",
   enunciado:"Uma paciente 20 anos de idade vem ao pronto-socorro com quadro de distensão abdominal, empachamento, náuseas e dor abdominal difusa, sem fatores de melhora ou piora, em cólica, há 3 dias. Fez uso de cetoprofeno, sem melhora. Queixa-se de parada de eliminação de fezes e de flatos desde início do quadro. Nega febre ou calafrios. Antecedentes: correção de atresia de esôfago com 45 dias de vida; laparotomia exploradora com 13 anos de idade, por obstrução intestinal. Está em regular estado geral, descorada +/4, desidratada ++/4, acianótica, afebril e anictérica. O abdome está distendido e timpânico e doloroso à palpação. Não tem sinais de irritação peritoneal. Os ruídos hidroaéreos estão diminuídos. Exames laboratoriais: hemoglobina: 14,2 g/dL, hematócrito: 43,8%, leucócitos: 11.540/mm3, plaquetas: 275.000/mm3, INR: 1,08, R: 0,86, PCR: 53 mg/L, ureia: 23 mg/dL, creatinina: 0,73 mg/dL, Na+: 139 mEq/L, K+: 4,3 mEq/L, TGO: 20 U/L, TGP: 16 U/L, fosfatase alcalina: 55 U/L, Gama-GT: 22 U/L, amilase: 51 U/L, lipase: 20 U/L, glicemia: 123 mg/dL. Foi passada sonda gástrica e recebeu hidratação venosa. Fez a radiografia de abdome ilustrada a seguir, por indisponibilidade de tomografia no momento. Qual é a conduta que deve ser adotada?",
   alternativas:[{id:"A",texto:"Antibiótico intravenoso."},{id:"B",texto:"Transferência para hospital que tenha tomografia."},{id:"C",texto:"Tratamento clínico por 48 horas."},{id:"D",texto:"Tratamento cirúrgico imediato (laparotomia ou laparoscopia)."},{id:"E",texto:"Trânsito intestinal."}],
   gabarito:"D",
@@ -629,7 +629,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-047", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:47,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-sirio2023-047.png",
+  imagemUrl:"dados/imagens/q-sirio2023-047.webp",
   enunciado:"Menino de 5 anos de idade, peso de 20 kg, estatura de 112 cm, apresentou PA: 110 mmHg × 70 mmHg. A pressão foi aferida com técnica adequada e confirmada em três ocasiões diferentes. Tendo com referência a tabela a seguir, é correto classificar a pressão arterial desta criança em",
   alternativas:[{id:"A",texto:"pressão arterial normal."},{id:"B",texto:"pré-hipertensão."},{id:"C",texto:"hipertensão estágio II."},{id:"D",texto:"hipertensão estágio I."},{id:"E",texto:"pressão arterial elevada."}],
   gabarito:"D",
@@ -760,7 +760,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-057", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:57,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
-  imagemUrl:"dados/imagens/q-sirio2023-057.png",
+  imagemUrl:"dados/imagens/q-sirio2023-057.webp",
   enunciado:"Pré-escolar de três anos com otalgia há cinco dias, com saída de secreção amarelada pelo orelha. Atualmente em tratamento com antibiótico tópico, retorna à emergência com dor latejante e persistente no ouvido, piora da hipoacusia e febre alta. Ao exame físico está irritada, com secreção amarelada no ouvido e protuberância atrás da orelha, muito semelhante a um caroço (foto abaixo). Entre as seguintes hipóteses diagnósticas, a mais provável é:",
   alternativas:[{id:"A",texto:"abcesso retroauricular"},{id:"B",texto:"linfadenite retroauricular."},{id:"C",texto:"celulite do pavilhão auricular."},{id:"D",texto:"mastoidite aguda."},{id:"E",texto:"furúnculo retroauricular."}],
   gabarito:"D",
@@ -1060,7 +1060,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-080", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:80,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-diagnosticoprenatal",
-  imagemUrl:"dados/imagens/q-sirio2023-080.png",
+  imagemUrl:"dados/imagens/q-sirio2023-080.webp",
   enunciado:"Considere a imagem abaixo. Nessa imagem ultrassonográfica do final do primeiro trimestre de gestação observa-se feto com",
   alternativas:[{id:"A",texto:"osso nasal adequado e anencefalia."},{id:"B",texto:"ausência de osso nasal e aumento da transluscência nucal."},{id:"C",texto:"osso nasal e transluscência nucal adequados."},{id:"D",texto:"higroma cístico e edema da calota craniana."},{id:"E",texto:"ausência do osso nasal e pé torto congênito."}],
   gabarito:"C",
@@ -1204,7 +1204,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-091", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:91,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-sirio2023-091.png",
+  imagemUrl:"dados/imagens/q-sirio2023-091.webp",
   enunciado:"Para o número de fraturas, diagnosticadas por exames de imagem, na cidade de Ribeirão Preto, um médico traçou o seguinte Gráfico Polar. Os dados que estão representados no Gráfico, servem melhor para um estudo de",
   alternativas:[{id:"A",texto:"Especificidade"},{id:"B",texto:"Sensibilidade"},{id:"C",texto:"Incidência"},{id:"D",texto:"Prevalência"},{id:"E",texto:"Sazonalidade"}],
   gabarito:"E",
@@ -1270,7 +1270,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
 {
   id:"q-sirio2023-096", banca:"Sírio-Libanês (SP)", real:true, ano:2023, numeroNaProva:96,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-sirio2023-096.png",
+  imagemUrl:"dados/imagens/q-sirio2023-096.webp",
   enunciado:"Considere o seguinte desenho sobre um novo medicamento para alívio de cefaleia (efeito). O tipo de ensaio que melhor está representado no desenho é:",
   alternativas:[{id:"A",texto:"coorte prospectivo."},{id:"B",texto:"ensaio clínico randomizado."},{id:"C",texto:"ecológico."},{id:"D",texto:"observacional prospectivo."},{id:"E",texto:"caso-controle."}],
   gabarito:"B",

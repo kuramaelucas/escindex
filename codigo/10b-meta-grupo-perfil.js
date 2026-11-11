@@ -73,7 +73,7 @@ function abrirModalMetaCartoes(){
       <button class="pill" onclick="document.getElementById('metaCartoesInput').value=10">dia corrido (10)</button>
       <button class="pill" onclick="document.getElementById('metaCartoesInput').value=${recomendada}">recomendada (${recomendada})</button>
     </div>
-    <p class="text-xs muted">Hoje você já revisou ${feitosHoje} cartão(ões). A meta de cartões não substitui a de questões: elas convivem, e bater qualquer uma das duas já mantém sua sequência daquele tipo de estudo.</p>
+    <p class="text-xs muted">Hoje você já revisou ${feitosHoje} ${plural(feitosHoje,"cartão","cartões")}. A meta de cartões não substitui a de questões: elas convivem, e bater qualquer uma das duas já mantém sua sequência daquele tipo de estudo.</p>
     <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMetaCartoes()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>${u.metaCartoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('cartoes')" title="Volta para a meta recomendada">Restaurar padrão (${recomendada})</button>`:""}</div>`);
 }
 function salvarMetaCartoes(){
@@ -552,7 +552,7 @@ function excluirGrupo(grupoId, aoSair){
   const nQ = questoesDoGrupo(g).length;
   if(!confirm((aoSair ? "Você criou o grupo \""+g.nome+"\", então sair dele é excluí-lo. " : "")+"Excluir o grupo \""+g.nome+"\"?"
     + (outros ? " "+outros+" "+(outros>1?"pessoas perdem":"pessoa perde")+" o acesso" : " Ninguém mais está nele")
-    + (nQ ? ", e as "+nQ+" questão(ões) enviadas para ele deixam de aparecer" : "")
+    + (nQ ? ", e as "+nQ+" "+plural(nQ,"questão","questões")+" enviadas para ele deixam de aparecer" : "")
     + ". Isso não pode ser desfeito.")) return;
   if(grupoDeNuvem(g) && nuvemConectado()){
     if(!db.nuvem.gruposRemovidos) db.nuvem.gruposRemovidos = {};
@@ -722,7 +722,7 @@ function dividirQuestoesDoGrupo(grupoId){
   if(!questoes.length){ toast("O grupo ainda não tem questões para dividir.", "err"); return; }
   g.divisao = dividirEntreMembros(questoes, membros);
   saveState();
-  toast(questoes.length+" questão(ões) divididas entre "+membros.length+" membros.");
+  toast(questoes.length+" "+plural(questoes.length,"questão","questões")+" divididas entre "+membros.length+" membros.");
   render();
 }
 function desfazerDivisaoDoGrupo(grupoId){
@@ -764,7 +764,7 @@ function renderQuestoesDoGrupo(grupo){
     ${questoes.some(q=>q.status==="ativa" && !aguardaImagem(q)) ? `<button class="btn btn-primary btn-sm mt-1" onclick="praticarQuestoesDoGrupo('${grupo.id}')">${iconeSvg("book")} Praticar as questões do grupo (${questoes.filter(q=>q.status==="ativa" && !aguardaImagem(q)).length})</button>` : ""}
     <div class="card-flat mt-2 text-sm">
       <strong>Dividir as questões entre os membros:</strong> cada pessoa fica com uma parte do mesmo tamanho, misturando os assuntos, e pratica só a sua.
-      ${dividida ? `<div class="mt-1">${minhas.length ? `Você ficou com <strong>${minhas.length}</strong> questão(ões).` : "Você não ficou com nenhuma questão nesta divisão."}</div>` : `<div class="mt-1 muted">Ainda não foi dividido.</div>`}
+      ${dividida ? `<div class="mt-1">${minhas.length ? `Você ficou com <strong>${minhas.length}</strong> ${plural(minhas.length,"questão","questões")}.` : "Você não ficou com nenhuma questão nesta divisão."}</div>` : `<div class="mt-1 muted">Ainda não foi dividido.</div>`}
       <div class="flex gap-1 mt-2 quebra">
         ${minhas.length ? `<button class="btn btn-primary btn-sm" onclick="praticarMinhaParteDoGrupo('${grupo.id}')">${iconeSvg("book")} Praticar minha parte (${minhas.length})</button>` : ""}
         ${podeDividir ? `<button class="btn btn-secondary btn-sm" onclick="dividirQuestoesDoGrupo('${grupo.id}')" ${membros.length<2||!questoes.length?"disabled":""}>${iconeSvg("users")} ${dividida ? "Dividir de novo" : "Dividir entre os "+membros.length+" membros"}</button>` : ""}
@@ -780,7 +780,7 @@ function renderQuestoesDoGrupo(grupo){
       </div>
     </div>
     ${questoes.length ? `${provas.length ? `<div class="mt-2"><div class="label">Provas e listas enviadas ao grupo</div>
-      ${provas.map(pv=>`<div class="card-flat mt-1 flex justify-between items-center quebra-gap-p"><span class="text-sm"><strong>${escapeHtml(pv.banca)} ${escapeHtml(String(pv.ano||""))}</strong> · ${pv.qs.length} questão(ões) · enviada${pv.autores.length>1?"s":""} por ${escapeHtml(pv.autores.join(", "))}</span>
+      ${provas.map(pv=>`<div class="card-flat mt-1 flex justify-between items-center quebra-gap-p"><span class="text-sm"><strong>${escapeHtml(pv.banca)} ${escapeHtml(String(pv.ano||""))}</strong> · ${pv.qs.length} ${plural(pv.qs.length,"questão","questões")} · enviada${pv.autores.length>1?"s":""} por ${escapeHtml(pv.autores.join(", "))}</span>
         ${pv.qs.some(q=>podeExcluirQuestaoDoGrupo(q,u)) ? `<button class="btn btn-ghost btn-sm" onclick="confirmarExcluirProvaDoGrupo('${grupo.id}','${encodeURIComponent(pv.chave)}')">${iconeSvg("trash")} Excluir ${pv.qs.every(q=>podeExcluirQuestaoDoGrupo(q,u))?"esta prova":"as minhas"}</button>` : ""}</div>`).join("")}</div>` : ""}
     <div class="table-wrap mt-2"><table><thead><tr><th>Questão</th><th>Prova</th><th>Assunto</th><th>Enviada por</th>${dividida?"<th>Responsável</th>":""}<th></th></tr></thead><tbody>
       ${pagGrupo.itens.map(q=>{
@@ -826,8 +826,8 @@ function confirmarExcluirProvaDoGrupo(grupoId, chaveCodificada){
   const chave = decodeURIComponent(chaveCodificada);
   const minhas = provasDoGrupo(g, questoesDoGrupo(g)).filter(p=>p.chave===chave).flatMap(p=>p.qs).filter(q=>podeExcluirQuestaoDoGrupo(q, u));
   if(!minhas.length) return;
-  abrirModal(`${cabecalhoJanela("Excluir prova do grupo")}<p class="text-sm">${minhas.length} questão(ões) saem do grupo para todos os integrantes. Isso não pode ser desfeito.</p>
-    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirProvaDoGrupoConfirmado('${grupoId}','${chaveCodificada}')">Excluir ${minhas.length} questão(ões)</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela("Excluir prova do grupo")}<p class="text-sm">${minhas.length} ${plural(minhas.length,"questão","questões")} saem do grupo para todos os integrantes. Isso não pode ser desfeito.</p>
+    <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirProvaDoGrupoConfirmado('${grupoId}','${chaveCodificada}')">Excluir ${minhas.length} ${plural(minhas.length,"questão","questões")}</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirProvaDoGrupoConfirmado(grupoId, chaveCodificada){
   const g = getGrupo(grupoId), u = usuarioAtual(); if(!g) return;
@@ -835,7 +835,7 @@ function excluirProvaDoGrupoConfirmado(grupoId, chaveCodificada){
   const ids = provasDoGrupo(g, questoesDoGrupo(g)).filter(p=>p.chave===chave).flatMap(p=>p.qs).filter(q=>podeExcluirQuestaoDoGrupo(q, u)).map(q=>q.id);
   ids.forEach(id=>{ const q = getQuestao(id); if(q) nuvemMarcarQuestaoFora(q, "removida", ""); if(g.divisao) delete g.divisao[id]; });
   db.questoes = db.questoes.filter(q=>!ids.includes(q.id));
-  saveState(); fecharModal(); toast(ids.length+" questão(ões) excluída(s) do grupo."); render();
+  saveState(); fecharModal(); toast(ids.length+" "+plural(ids.length,"questão","questões")+" excluída(s) do grupo."); render();
 }
 
 /* ==========================================================================
@@ -946,7 +946,7 @@ function renderSubgruposDoGrupo(grupo){
       return `<div class="card-flat mt-2">
         <div class="flex justify-between items-center quebra-gap">
           <div><div class="peso-700">${escapeHtml(sg.nome)}</div>
-            <div class="text-xs muted">${questoes.length} questão(ões) · criado por ${escapeHtml(nomeDoMembro(grupo, sg.criadoPor))}</div></div>
+            <div class="text-xs muted">${questoes.length} ${plural(questoes.length,"questão","questões")} · criado por ${escapeHtml(nomeDoMembro(grupo, sg.criadoPor))}</div></div>
           <div class="flex gap-1 quebra">
             ${minhas.length ? `<button class="btn btn-primary btn-sm" onclick="praticarMinhaParteDoSubgrupo('${sg.id}')">${iconeSvg("book")} Praticar minha parte (${minhas.length})</button>` : ""}
             ${gerente ? `<button class="btn btn-secondary btn-sm" onclick="abrirFormularioSubgrupo('${sg.id}', '${grupo.id}')">${iconeSvg("edit")} Editar</button>` : ""}
@@ -1007,7 +1007,7 @@ function salvarSubgrupo(id, grupoId){
   sg.divisao = participantes.length ? dividirEntreMembros(questoesDoSubgrupo(sg).filter(q=>q.status==="ativa"), participantes) : {};
   saveState();
   fecharModal();
-  toast(participantes.length>1 ? "Grupo de estudo salvo: "+questaoIds.length+" questão(ões) divididas entre "+participantes.length+"." : "Grupo de estudo salvo. Com uma pessoa só não há o que dividir — fique com todas as questões.");
+  toast(participantes.length>1 ? "Grupo de estudo salvo: "+questaoIds.length+" "+plural(questaoIds.length,"questão","questões")+" divididas entre "+participantes.length+"." : "Grupo de estudo salvo. Com uma pessoa só não há o que dividir — fique com todas as questões.");
   render();
 }
 function sairDoSubgrupo(id){

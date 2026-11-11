@@ -108,7 +108,7 @@ test("finalizar simulado com questão em branco ou marcada sem confirmar pergunt
       return { texto, aindaAberto, semPergunta: state.sessaoAtual.finalizado === true };
     });
     assert.match(r.texto, /Tem certeza/);
-    assert.match(r.texto, /1 questão\(ões\) sem resposta/);
+    assert.match(r.texto, /1 questão sem resposta/);
     assert.match(r.texto, /não confirmada/);
     assert.ok(r.aindaAberto, "perguntar não finaliza");
     assert.ok(r.semPergunta, "tudo respondido finaliza direto");

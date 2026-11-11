@@ -100,7 +100,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-007", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-meningites",
-  imagemUrl:"dados/imagens/q-unicamp2023-007.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-007.webp",
   enunciado:"Homem, 29a, é trazido por familiares para o Pronto Atendimento após ter apresentado crise tônico-clônica generalizada. Há dois dias iniciou quadro de febre, cefaleia e mudança comportamental. Previamente hígido. Exame físico: T=38,1oC; FC=98bpm; PA=128x84mmHg; Escala de coma de Glasgow=14, restante do exame físico normal. Ressonância magnética de crânio (Figura 1, anexo) e coleta de líquor. OS ACHADOS ESPERADOS PARA ESTE LÍQUOR SÃO:",
   alternativas:[{id:"A",texto:"Pleocitose com predomínio de linfócitos, aumento discreto de proteínas, glicorraquia normal (superior a dois terços da glicemia), lactato normal, culturas e pesquisa de bactérias negativas. Pesquisa positiva para HSV-1 ou HSV-2."},{id:"B",texto:"Pleocitose com predomínio de linfócitos, aumento discreto de proteínas, glicorraquia reduzida (inferior a dois terços da glicemia), lactato aumentado, culturas e pesquisa de bactérias negativas. Pesquisa positiva para HSV-1 ou HSV."},{id:"C",texto:"Pleocitose com predomínio de linfócitos, aumento discreto de proteínas, glicorraquia normal (superior a dois terços da glicemia), lactato normal, culturas e pesquisa de bactérias negativas. Pesquisa positiva para Citomegalovírus."},{id:"D",texto:"Pleocitose com predomínio de linfócitos, aumento discreto de proteínas, glicorraquia reduzida (inferior a dois terços da glicemia), lactato aumentado, culturas e pesquisa de bactérias negativas. Pesquisa positiva para Citomegalovírus."}],
   gabarito:"A",
@@ -127,7 +127,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-009", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:9,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-unicamp2023-009.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-009.webp",
   enunciado:"Homem, 67a, no início da manhã apresentou fortes dores na região central do tórax, que irradiavam para o pescoço, mandíbula e braço esquerdo, e dificuldade para respirar. Foi imediatamente conduzido a uma Unidade de Emergência, chegando com sudorese acentuada e muito ansioso. Exame físico: PA=60x35mmHg; FC=120bpm; cianose de extremidades, pulsos fracos. Eletrocardiograma: sinais de extenso infarto do miocárdio anterolateral. Foram realizadas medidas iniciais de suporte de vida e indicado cateterismo cardíaco, mas antes disto evoluiu à óbito. Submetido à necropsia. A Figura 2 (anexo) mostra uma secção do coração. SOBRE A IMAGEM, É CORRETO AFIRMAR QUE:",
   alternativas:[{id:"A",texto:"Há uma área de infarto do miocárdio antigo e o novo infarto é muito recente para ser identificado à histologia convencional."},{id:"B",texto:"Há uma área de necrose coagulativa do miocárdio, compatível com o infarto recente."},{id:"C",texto:"Existe uma hipertrofia dos cardiomiócitos decorrente de hipertensão arterial crônica."},{id:"D",texto:"O infarto do miocárdio produziu redução súbita da pressão arterial, com trombose vascular e sinais de recanalização."}],
   gabarito:"A",
@@ -167,7 +167,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-012", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
-  imagemUrl:"dados/imagens/q-unicamp2023-012.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-012.webp",
   enunciado:"Homem, 32a, internado há três dias após fratura de tíbia por acidente automobilístico, apresentou quadro de dispneia súbita. Foi feito o diagnóstico de tromboembolismo pulmonar e iniciada a anticoagulação plena com heparina não fracionada. No dia seguinte, após apresentar fraqueza em dimídio direito, foi suspensa a heparina e realizada tomografia computadorizada de crânio. Figura 3 (anexo). A CONDUTA É:",
   alternativas:[{id:"A",texto:"Prescrever vitamina K."},{id:"B",texto:"Retomar a heparina não fracionada."},{id:"C",texto:"Prescrever plasma fresco congelado."},{id:"D",texto:"Prescrever protamina."}],
   gabarito:"D",
@@ -272,7 +272,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-020", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:20,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-pleura",
-  imagemUrl:"dados/imagens/q-unicamp2023-020.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-020.webp",
   enunciado:"As imagens abaixo representam um dreno radiopaco utilizado em drenagem torácica. Extremidade “A” conecta-se ao sistema em frasco com selo d’água. A Extremidade “B” é inserida e fixada no paciente. NA REALIZAÇÃO DE UMA DRENAGEM TORÁCICA SOB SELO D’ÁGUA EM UM PACIENTE, O POSICIONAMENTO CORRETO DO ÚLTIMO ORIFÍCIO DA EXTREMIDADE “B” É:",
   alternativas:[{id:"A",texto:"No espaço intercostal, distante do feixe vásculo-nervoso."},{id:"B",texto:"Entre as pleuras visceral e parietal."},{id:"C",texto:"No subcutâneo, sem exteriorização para o ambiente."},{id:"D",texto:"Entre a pleura visceral e o parênquima pulmonar."}],
   gabarito:"B",
@@ -364,7 +364,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-027", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:27,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-queimaduras",
-  imagemUrl:"dados/imagens/q-unicamp2023-027.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-027.webp",
   enunciado:"Homem, 26a, é trazido ao Pronto Socorro após queimadura na face anterior do corpo, por uso de álcool líquido em churrasqueira. Durante o atendimento inicial foi proposta reposição volêmica conforme o ATLS 10ª. edição. CONSIDERANDO A REGRA DOS 9 PARA SER UTILIZADA NA FÓRMULA DE PARKLAND, A SUPERFÍCIE CORPÓREA QUEIMADA, CONFORME A ILUSTRAÇÃO ABAIXO, É: (Figura 4- anexo; queimadura de segundo grau=coloração cinza sólida; queimadura de primeiro grau=listrado vertical)",
   alternativas:[{id:"A",texto:"22,5%."},{id:"B",texto:"20,5%."},{id:"C",texto:"43%."},{id:"D",texto:"45%."}],
   gabarito:"",
@@ -443,7 +443,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-033", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:33,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-parasitoses",
-  imagemUrl:"dados/imagens/q-unicamp2023-033.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-033.webp",
   enunciado:"Menino, 8a, é trazido para atendimento médico por apresentar lesão pruriginosa em dorso de pé há uma semana, com aumento progressivo, conforme imagem. (Figura 5 - anexo). O AGENTE ETIOLÓGICO DESTA LESÃO É:",
   alternativas:[{id:"A",texto:"Necator americanus."},{id:"B",texto:"Ancylostoma braziliensis."},{id:"C",texto:"Leishmania donovani."},{id:"D",texto:"Trypanosoma cruzi."}],
   gabarito:"B",
@@ -457,7 +457,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-034", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:34,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-pediatrica",
-  imagemUrl:"dados/imagens/q-unicamp2023-034.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-034.webp",
   enunciado:"Adolescente, 12a, é trazido ao Pronto Socorro referindo dor em cotovelo direito após ter caído de uma árvore, há uma hora. Exame físico: corado; consciente; orientado; hidratado; fácies de dor. FC=112bpm, FR=21irpm, PA=126x82mmHg. Deformidade em cotovelo direito, doloroso à palpação, e pulsos radiais presentes. Restante sem alterações. Radiograma de cotovelo direito (Figura 6-anexo). UMA COMPLICAÇÃO QUE PODE OCORRER NESTA SITUAÇÃO CLÍNICA É A SÍNDROME DE COMPARTIMENTO QUE, SE NÃO CONDUZIDA PRECOCEMENTE, PODE LEVAR À:",
   alternativas:[{id:"A",texto:"Choque neurogênico."},{id:"B",texto:"Lesão de Baumann."},{id:"C",texto:"Lesão dos nervos ulnar, mediano e braquial."},{id:"D",texto:"Contratura isquêmica de Volkmann."}],
   gabarito:"D",
@@ -510,7 +510,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-038", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:38,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-vasculites",
-  imagemUrl:"dados/imagens/q-unicamp2023-038.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-038.webp",
   enunciado:"Menino, 9a, previamente hígido, é trazido ao Pronto Atendimento com história de múltiplas lesões arroxeadas pelo corpo, sem prurido. Há dois dias iniciou quadro de dor abdominal intensa, difusa, com melhora parcial com uso de dipirona oral. Nega febre, vômitos, diarreia ou alterações urinárias. Exame físico: bom estado geral; corado; afebril; anictérico; hidratado; eupneico; pele: múltiplas lesões equimóticas indolores, sem hiperemia ou calor, em nádegas e membros inferiores (Figura 7, anexo); abdome indolor, sem visceromegalias ou massas; exame neurológico normal. O DIAGNÓSTICO É:",
   alternativas:[{id:"A",texto:"Púrpura trombocitopênica idiopática."},{id:"B",texto:"Meningococcemia."},{id:"C",texto:"Púrpura fulminans de etiologia viral."},{id:"D",texto:"Vasculite por IgA."}],
   gabarito:"D",
@@ -524,7 +524,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-039", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:39,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unicamp2023-039.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-039.webp",
   enunciado:"Menina, 2a, é trazida para consulta de rotina, com lesões de pele há dois meses. Situação vacinal atualizada. Exame físico: bom estado geral; corada; hidratada; afebril; anictérica; pele (Figura 8, anexo). Restante do exame sem alterações. O AGENTE ETIOLÓGICO É:",
   alternativas:[{id:"A",texto:"Herpes simplex."},{id:"B",texto:"Poxvírus."},{id:"C",texto:"Papiloma vírus humano."},{id:"D",texto:"Vírus Varicella-zoster."}],
   gabarito:"B",
@@ -538,7 +538,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-040", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:40,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
-  imagemUrl:"dados/imagens/q-unicamp2023-040.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-040.webp",
   enunciado:"Menina, 15m, é trazida para avaliação médica com história de coriza e dor no ouvido direito há oito dias. Refere febre há três dias, prostração, inapetência, dor e aumento de volume retroauricular. Exame físico: bom estado geral; T=38,2oC; FR=42irpm; FC=137bpm. Cabeça: (figura 9, anexo). O TRATAMENTO É PRESCREVER:",
   alternativas:[{id:"A",texto:"Cefazolina e amicacina intravenosa."},{id:"B",texto:"Ciprofloxacina tópica."},{id:"C",texto:"Azitromicina via oral."},{id:"D",texto:"Oxacilina e ceftriaxona intravenosa."}],
   gabarito:"D",
@@ -760,7 +760,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-057", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:57,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-unicamp2023-057.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-057.webp",
   enunciado:"Mulher, 37a, G4P3C0, sem comorbidades, com idade gestacional de 40 semanas e 4 dias, internada em Centro Obstétrico, em fase ativa de trabalho de parto (colo fino, 9cm, cefálico em plano -1 de De Lee, bolsa rota com líquido com mecônio fluido), apresenta a seguinte cardiotocografia: (Figura 10, anexo). A INTERPRETAÇÃO DA CARDIOTOCOGRAFIA E A CONDUTA OBSTÉTRICA NESTE MOMENTO SÃO:",
   alternativas:[{id:"A",texto:"Variabilidade normal com desacelerações precoces; manter assistência ao parto e cardiotocografia contínua."},{id:"B",texto:"Ausência de variabilidade com desacelerações tardias; indicar cesárea imediata."},{id:"C",texto:"Variabilidade diminuída com desacelerações variáveis; colocar em posição ginecológica e reduzir o colo uterino para parto vaginal imediato."},{id:"D",texto:"Variabilidade normal com desacelerações variáveis; corrigir taquissistolia e manter cardiotocografia contínua."}],
   gabarito:"D",
@@ -852,7 +852,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-064", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:64,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cavulva",
-  imagemUrl:"dados/imagens/q-unicamp2023-064.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-064.webp",
   enunciado:"Mulher, 58a, com quadro de prurido vulvar crônico há 10 anos, comparece em consulta de retorno para avaliação de resultado de biopsia de lesão vulvar, cujo diagnóstico foi neoplasia intraepitelial diferenciada. Exame ginecológico: (Figura 11, anexo. Área biopsiada destacada). O FATOR FREQUENTEMENTE ASSOCIADO A ESTE DIAGNÓSTICO É:",
   alternativas:[{id:"A",texto:"Líquen escleroso da vulva."},{id:"B",texto:"Papilomavírus humano tipos 6 e 11."},{id:"C",texto:"Papilomavírus humano tipos 16 e 18."},{id:"D",texto:"Doença de Paget invasiva."}],
   gabarito:"A",
@@ -905,7 +905,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-068", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:68,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
-  imagemUrl:"dados/imagens/q-unicamp2023-068.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-068.webp",
   enunciado:"A figura a seguir representa a curva ROC que compara o desempenho de dois métodos diagnósticos: A e B. AO ANALISAR ESSA FIGURA, PODE-SE AFIRMAR QUE:",
   alternativas:[{id:"A",texto:"O método B é o melhor, pois a ascensão da sua curva tem o término mais agudo."},{id:"B",texto:"O método A é o melhor, pois as suas medidas estão mais próximas entre si."},{id:"C",texto:"O método A é o melhor, pois apresenta a maior área sob a curva."},{id:"D",texto:"Os dois métodos têm valor prognóstico positivo semelhante."}],
   gabarito:"C",
@@ -945,7 +945,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023", [
 {
   id:"q-unicamp2023-071", banca:"UNICAMP", real:true, ano:2023, numeroNaProva:71,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unicamp2023-071.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2023-071.webp",
   enunciado:"Schuch et al. realizaram uma revisão sistemática de estudos que avaliaram a associação entre atividade física e incidência de depressão. Os resultados foram sumarizados em uma metanálise que utilizou como medida o Odds ratio=0,83, com intervalo de confiança de 95%=0,79 a 0,88, representados na figura abaixo: O RESULTADO APONTADO ACIMA PERMITE AFIRMAR QUE:",
   alternativas:[{id:"A",texto:"A probabilidade de uma pessoa que faz atividade física apresentar depressão é 0,83 vezes comparada à probabilidade de quem não pratica atividade física."},{id:"B",texto:"A chance de uma pessoa que faz atividade física apresentar depressão é 0,83 vezes comparada à chance de quem não pratica atividade física."},{id:"C",texto:"A chance de uma pessoa evoluir com depressão é de 0,83, sendo de 0,79 no grupo que faz atividade física e de 0,88 no grupo de não faz atividade física."},{id:"D",texto:"Realizar atividade física não apresentou redução significativa na associação com aumento na incidência de depressão."}],
   gabarito:"B",

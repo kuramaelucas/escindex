@@ -72,7 +72,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-005", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-sindromes",
-  imagemUrl:"dados/imagens/q-unesp2022-005.png", imagemLegenda:"Cariótipo com translocação envolvendo os cromossomos 14 e 21",
+  imagemUrl:"dados/imagens/q-unesp2022-005.webp", imagemLegenda:"Cariótipo com translocação envolvendo os cromossomos 14 e 21",
   enunciado:"Menino de 6 meses com suspeita de síndrome de Down (SD) comparece à consulta com seus pais. Cariótipo: 46,XYt(14,21)(14q;21q), como na imagem. Para a orientação de seus pais, é importante",
   alternativas:[{id:"A",texto:"realizar o cariótipo dos pais, pois trata-se de translocação Robertsoniana, a qual pode haver herança de um dos pais, evidenciando risco de recorrência da SD em outros filhos, maior do que na população em geral."},{id:"B",texto:"realizar o cariótipo dos pais, pois trata-se de translocação Robertsoniana, sempre decorrente de herança de um dos pais, evidenciando risco de recorrência da SD em outros filhos, de 50% a 100%."},{id:"C",texto:"esclarecer a eles de que não se trata da trissomia livre do cromossomo 21, mas sim de “mosaicismo”, com expressão da SD mais leve."},{id:"D",texto:"realizar novo cariótipo da criança, pois este não se configura com nenhuma das situações nas quais pode ocorrer a SD."}],
   gabarito:"A",
@@ -138,7 +138,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-010", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-unesp2022-010.png", imagemLegenda:"Eletrocardiograma em tira de ritmo",
+  imagemUrl:"dados/imagens/q-unesp2022-010.webp", imagemLegenda:"Eletrocardiograma em tira de ritmo",
   enunciado:"Lactente de 10 meses apresenta palidez cutânea, taquipneia e taquicardia há 4 horas. Exame físico: FC acima de 150 bpm, afebril, com pulsos finos, perfusão periférica diminuída e tempo de enchimento capilar de 4 segundos. Eletrocardiograma: FC 160 bpm, ausência de ondas P, complexos QRS com duração aumentada (0,16 seg) e monomórficos, conforme imagem. O diagnóstico é taquicardia",
   alternativas:[{id:"A",texto:"sinusal."},{id:"B",texto:"atrial não sinusal."},{id:"C",texto:"juncional."},{id:"D",texto:"ventricular."}],
   gabarito:"D",
@@ -230,7 +230,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-017", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:17,
   areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-anafilaxia",
-  imagemUrl:"dados/imagens/q-unesp2022-017.png", imagemLegenda:"Placas eritematosas e edematosas no tronco",
+  imagemUrl:"dados/imagens/q-unesp2022-017.webp", imagemLegenda:"Placas eritematosas e edematosas no tronco",
   enunciado:"Adolescente de 17 anos apresenta lesões cutâneas há dois dias, conforme a imagem, que aparecem e desaparecem em um período de 4 a 6 horas, sem outras alterações cutâneas ou sistêmicas. AP: em uso de amoxacilina há 10 dias devido à infecção de orofaringe prescrita para ser mantida por 14 dias. O diagnóstico e a conduta são, respectivamente,",
   alternativas:[{id:"A",texto:"urticária aguda com angioedema; corticoterapia via oral e manutenção da amoxacilina até completar 14 dias."},{id:"B",texto:"urticária aguda; anti-histamínico via oral e suspensão da amoxacilina."},{id:"C",texto:"urticária crônica; anti-histamínico via oral, corticoterapia via oral e manutenção da amoxacilina até completar 14 dias."},{id:"D",texto:"anafilaxia; adrenalina subcutânea, anti-histamínico via endovenosa, corticoterapia via endovenosa e suspensão da amoxacilina."}],
   gabarito:"B",
@@ -270,7 +270,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-020", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:20,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-hidrocefalia",
-  imagemUrl:"dados/imagens/q-unesp2022-020.png", imagemLegenda:"Transiluminação de massa cefálica no recém-nascido",
+  imagemUrl:"dados/imagens/q-unesp2022-020.webp", imagemLegenda:"Transiluminação de massa cefálica no recém-nascido",
   enunciado:"Recém-nascido de termo é avaliado na sala de parto apresentando deformidade craniana grande, com grande base de implantação fronto-parietal bilateral. Não apresenta outras anormalidades nos demais segmentos corporais. Foi realizada prova de transiluminação apresentada a seguir. Sobre o prognóstico neurológico dessa criança, pode-se afirmar que",
   alternativas:[{id:"A",texto:"é bom, pois a malformação se trata de meningocele, sem herniação de tecido cerebral."},{id:"B",texto:"é reservado, pois a malformação compromete a drenagem venosa cerebral."},{id:"C",texto:"depende da presença de outas malformações encefálicas intracranianas."},{id:"D",texto:"é reservado, pois há chance de 90% de evolução para hidrocefalia."}],
   gabarito:"C",
@@ -427,7 +427,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-032", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:32,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unesp2022-032.jpg", imagemLegenda:"Colpite à inspeção do colo (figura 1) e microscopia do conteúdo vaginal (figuras 2 e 3)",
+  imagemUrl:"dados/imagens/q-unesp2022-032.webp", imagemLegenda:"Colpite à inspeção do colo (figura 1) e microscopia do conteúdo vaginal (figuras 2 e 3)",
   enunciado:"Mulher de 32 anos apresenta corrimento vaginal e mau odor genital há 6 dias, após relação sexual desprotegida com parceiro eventual. Nega atraso menstrual e refere uso de contraceptivo injetável trimestral há 3 anos. Exames ginecológico e microscópico, conforme as imagens, com teste de aminas positivo e pH 5,8. A hipótese diagnóstica e a conduta mais adequada são:",
   alternativas:[{id:"A",texto:"tricomoníase vaginal; metronidazol 250 mg 2 cps VO 12/12h por 7 dias."},{id:"B",texto:"vaginite aeróbia; clindamicina creme vaginal a 2% por 14 dias."},{id:"C",texto:"candidíase vaginal; itraconazol 100 mg 2 cps VO 12/12h por 1 dia."},{id:"D",texto:"vaginose citolítica; óvulos vaginais de borato de sódio a 2% por 10 dias."}],
   gabarito:"A",
@@ -519,7 +519,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-039", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:39,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unesp2022-039.jpg", imagemLegenda:"Lesões papilomatosas e acetobrancas na vulva",
+  imagemUrl:"dados/imagens/q-unesp2022-039.webp", imagemLegenda:"Lesões papilomatosas e acetobrancas na vulva",
   enunciado:"Mulher de 58 anos apresenta lesões assintomáticas na vulva há seis meses, conforme a imagem. Antecedente pessoal: HAS e portadora do HIV, com carga viral indetectável e CD4+ 300 células/mm3, em uso regular de TARV e captopril. Refere prática sexual sem preservativo no último ano, porém, sem parceiro fixo. De acordo com seu diagnóstico, pode-se afirmar que as lesões vulvares",
   alternativas:[{id:"A",texto:"podem ser tratadas ambulatorialmente com ácido tricloroacético 90%."},{id:"B",texto:"são causadas por HPV de alto risco oncogênico."},{id:"C",texto:"são devido à sífilis maligna precoce no HIV, devendo ser tratadas com penicilina benzatina, 2400000 UI, intramuscular, dose única."},{id:"D",texto:"são de molusco contagioso em paciente imunossuprimido e devem ser tratadas com curetagem."}],
   gabarito:"A",
@@ -585,7 +585,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-044", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:44,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-paratireoide",
-  imagemUrl:"dados/imagens/q-unesp2022-044.jpg", imagemLegenda:"Lesões cutâneas nos membros (imagem 1) e radiografia de tórax (imagem 2)",
+  imagemUrl:"dados/imagens/q-unesp2022-044.webp", imagemLegenda:"Lesões cutâneas nos membros (imagem 1) e radiografia de tórax (imagem 2)",
   enunciado:"Mulher de 37 anos apresenta dispneia progressiva, tosse seca, calafrios, febre baixa diária há 6 meses, evoluiu com desorientação, fraqueza muscular e apatia. Exame físico: PA 100/60 mmHg, FC 105 bpm, SatO2 94%, desidratada 3+/4+; hiperemia, aumento de temperatura e dor em 2a e 3a articulações interfalangianas proximais da mão direita; lesões hiperpigmentadas nos membros (imagem 1). Exames laboratoriais: escarro negativo para BAAR; sorologias para HIV, histoplasmose, paracoccidioidomicose e aspergilose negativas; hemograma normal, PCR 7 mg/dL, Na 135 mEq/L, K 4.5 mEq/L, Cr 2.0 mg/dL, Ur 102 mg/dL, cálcio corrigido 11.8 mg/dL, 1,25 (OH)2 vitD3 = 200 pg/mL. Radiografia de tórax (imagem 2). A principal hipótese diagnóstica, mecanismo fisiopatológico e manejo inicial são, respectivamente.",
   alternativas:[{id:"A",texto:"neoplasia pulmonar; hipercalcemia relacionada com secreção ectópica de PTH; pamidronato 60 – 90 mg IV e furosemida IV."},{id:"B",texto:"neoplasia pulmonar; hipercalcemia por produção de proteína PTH-like; hidratação IV vigorosa."},{id:"C",texto:"sarcoidose; hipercalcemia por aumento da expressão de 1α-hidroxilase pelos macrófagos dos granulomas; hidratação IV vigorosa."},{id:"D",texto:"sarcoidose; hipercalcemia por secreção ectópica de PTH pelos granulomas; hidratação vigorosa, pamidronato 60 – 90 mg IV e furosemida IV."}],
   gabarito:"C",
@@ -625,7 +625,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-047", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:47,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
-  imagemUrl:"dados/imagens/q-unesp2022-047.png", imagemLegenda:"Mapa de glicemia capilar",
+  imagemUrl:"dados/imagens/q-unesp2022-047.webp", imagemLegenda:"Mapa de glicemia capilar",
   enunciado:"Homem de 39 anos é diabético e faz uso de insulina NPH 20 UI pela manhã e 10 UI à noite (bed time). Exames laboratoriais: glicemia de jejum 157 mg/dL; HbA1c 7,3%. Mapa de glicemia capilar (quadro): Considerando as metas preconizadas pela Sociedade Brasileira de Diabetes, a conduta é",
   alternativas:[{id:"A",texto:"aumentar a NPH da manhã e da noite."},{id:"B",texto:"aumentar a NPH da noite."},{id:"C",texto:"adicionar insulina regular antes do jantar."},{id:"D",texto:"trocar insulina NPH por insulina glargina."}],
   gabarito:"C",
@@ -691,7 +691,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-052", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:52,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
-  imagemUrl:"dados/imagens/q-unesp2022-052.png", imagemLegenda:"Valores normais fornecidos pela prova (VCM, HCM, CHCM, RDW e leucograma)",
+  imagemUrl:"dados/imagens/q-unesp2022-052.webp", imagemLegenda:"Valores normais fornecidos pela prova (VCM, HCM, CHCM, RDW e leucograma)",
   enunciado:"Considere os seguintes valores normais para esta questão. Homem de 68 anos, branco, lavrador, ex-tabagista (43 anos/maço), queixa-se de fraqueza há 5 semanas, mais intensa há 15 dias. Exame físico: FC 94 bpm, PA 110/70 mmHg, palidez 3+/4, icterícia conjuntival 1+/4, sopro holossistólico 1+ (suave), varizes sublinguais 3+/4, gengivite tartárica inferior, fígado palpável a 1 cm do rebordo costal na linha hemiclavicular direita, baço percutível. Exames laboratoriais: DHL 1389 U/mL, haptoglobina zero, BT 3,8 mg/dL (direta 0,5, indireta 2,3); glóbulos vermelhos 2.680.000/mm3, Hb 10,3 g/dL, Ht 33,2 %, VCM 124 fL, HCM 42, 2 pg, CHCM 34,1 g/dL, RDW 16,8%, plaquetas 82.000/mm3, leucócitos 6.050/mm3 (neutro 4.230/mm3, linfo 1.490/mm3, mono 270/mm3, eosi 60/mm3, baso 10/mm3). O diagnóstico é anemia macrocítica",
   alternativas:[{id:"A",texto:"por hemólise com consumo de plaquetas."},{id:"B",texto:"e plaquetopenia por megaloblastose."},{id:"C",texto:"com consumo de plaquetas por hemólise microangiopática."},{id:"D",texto:"e plaquetopenia por síndrome mielodisplásica."}],
   gabarito:"B",
@@ -783,7 +783,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-059", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:59,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
-  imagemUrl:"dados/imagens/q-unesp2022-059.png", imagemLegenda:"Úlcera arredondada de bordas infiltradas na perna",
+  imagemUrl:"dados/imagens/q-unesp2022-059.webp", imagemLegenda:"Úlcera arredondada de bordas infiltradas na perna",
   enunciado:"Homem de 35 anos, proprietário rural, apresenta lesão na face lateral da perna direita há 5 meses, que se iniciou como “pelo encravado” com evolução progressiva (imagem). Nega outras lesões cutâneas ou sintomas sistêmicos. Exame histopatológico da lesão: reação granulomatosa em arranjo tuberculoide constituída por macrófagos, células epitelioides e células gigantes, com presença de estruturas arredondadas dentro dos macrófagos, além de infiltrado histiolinfoplasmocitário. Exame parasitológico direto da lesão: negativo. O diagnóstico e tratamento são, respectivamente.",
   alternativas:[{id:"A",texto:"hanseníase dimorfa; rifampicina associada à clofazimina."},{id:"B",texto:"leishmaniose tegumentar; antimoniato de N-metilglucamina."},{id:"C",texto:"leishmaniose tegumentar; cetoconazol."},{id:"D",texto:"hanseníase tuberculoide; rifampicina associada à dapsona."}],
   gabarito:"B",
@@ -810,7 +810,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-061", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:61,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
-  imagemUrl:"dados/imagens/q-unesp2022-061.png", imagemLegenda:"Abaulamento inguinoescrotal à direita em lactente",
+  imagemUrl:"dados/imagens/q-unesp2022-061.webp", imagemLegenda:"Abaulamento inguinoescrotal à direita em lactente",
   enunciado:"Menino de 4 meses apresenta choro intenso há 2 horas. Mãe relata última mamada há 30 minutos. Nega vômitos e febre e refere que a última evacuação ocorreu há 3 horas. Exame físico: BEG, ativo, bastante irritado e choroso. Abdome: normotenso, RHA presentes, sem sinais de reação peritoneal. Presença de abaulamento fixo em FID (conforme a imagem). Testículos tópicos bilateralmente. O diagnóstico é hérnia inguinal direita",
   alternativas:[{id:"A",texto:"estrangulada, necessitando de herniorrafia imediatamente."},{id:"B",texto:"encarcerada, e deve-se realizar tentativa de redução manual"},{id:"C",texto:"devendo-se agendar consulta ambulatorial com especialista."},{id:"D",texto:"encarcerada, e deve-se realizar herniorrafia imediatamente."}],
   gabarito:"B",
@@ -824,7 +824,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-062", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:62,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
-  imagemUrl:"dados/imagens/q-unesp2022-062.png", imagemLegenda:"Radiografia de abdome",
+  imagemUrl:"dados/imagens/q-unesp2022-062.webp", imagemLegenda:"Radiografia de abdome",
   enunciado:"Menina de 3 anos tem dor abdominal há 3 dias, mais localizada em andar inferior. Há 2 dias apresenta episódios de vômitos esverdeados, inapetência e picos febris (38,5 oC). Há 1 dia apresenta episódios de diarreia líquida. Exame físico: REG, desidratada 2+/4, irritada. Abdome: RHA diminuídos, dor difusa à palpação profunda, com reação peritoneal em hipogástrio. Hemograma: 14.000 glóbulos brancos, sem desvio. Raio-X de abdome, conforme a imagem. O diagnóstico e a conduta são:",
   alternativas:[{id:"A",texto:"astroenterocolite aguda; hidratação e coleta de copro 00 02 grama e coprocultura."},{id:"B",texto:"apendicite aguda; apendicectomia."},{id:"C",texto:"pielonefrite aguda; TC de rins e vias urinárias"},{id:"D",texto:"abdome agudo obstrutivo por ingestão de corpo estranho; laparotomia exploradora."}],
   gabarito:"B",
@@ -903,7 +903,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-068", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:68,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-unesp2022-068.png", imagemLegenda:"Tomografia de tórax com lesão cavitada no pulmão direito",
+  imagemUrl:"dados/imagens/q-unesp2022-068.webp", imagemLegenda:"Tomografia de tórax com lesão cavitada no pulmão direito",
   enunciado:"Homem de 45 anos apresenta tosse com expectoração, astenia e febre há 10 dias. Refere que no início a secreção era amarelada, mas há 3 dias se tornou purulenta. AP: etilista e tabagista. Exames laboratoriais: leucocitose e PCR elevada. TC de tórax, conforme imagem. A conduta correta é:",
   alternativas:[{id:"A",texto:"drenagem torácica."},{id:"B",texto:"antibioticoterapia e fisioterapia respiratória."},{id:"C",texto:"videotoracoscopia para ressecção da lesão."},{id:"D",texto:"toracocentese diagnóstica."}],
   gabarito:"B",
@@ -943,7 +943,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-071", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:71,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-oncologia",
-  imagemUrl:"dados/imagens/q-unesp2022-071.png", imagemLegenda:"Ultrassonografia do rim esquerdo com cisto cortical",
+  imagemUrl:"dados/imagens/q-unesp2022-071.webp", imagemLegenda:"Ultrassonografia do rim esquerdo com cisto cortical",
   enunciado:"Mulher de 43 anos apresenta dor lombar crônica. AP: HAS e DM II. Exames laboratoriais: Hb 14 mg/dL, Cr 1,1 mg/dL, Ur 24 mg/dL, glicemia 220 mg/dL. US, conforme imagem: rim esquerdo em topografia habitual, 12,1cm em seu maior eixo, contornos definidos, distinção corticomedular preservada e ecogenicidade cortical preservada, cisto renal hipoecogênico exofítico no terço médio, medindo 1,5 x 1,6 cm; rim direito em topografia habitual, 11,7cm em seu maior eixo, contornos definidos, distinção corticomedular preservada e ecogenicidade cortical reservada; não há sinais de litíases ou hidronefrose. Assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Trata-se de lesão renal neoplásica, sendo indicada tomografia para classificação de Bosniack."},{id:"B",texto:"Trata-se de um cisto renal simples, não necessitando de exames complementares"},{id:"C",texto:"A lesão é de classificação Bosniack II, devendo ser confirmada por tomografia e reavaliada em 6 meses."},{id:"D",texto:"A lesão tem associação com neoplasia maligna e doença renal crônica."}],
   gabarito:"B",
@@ -970,7 +970,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-073", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:73,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
-  imagemUrl:"dados/imagens/q-unesp2022-073.png", imagemLegenda:"Tomografia de abdome com coleção cística junto ao estômago",
+  imagemUrl:"dados/imagens/q-unesp2022-073.webp", imagemLegenda:"Tomografia de abdome com coleção cística junto ao estômago",
   enunciado:"Homem de 55 anos apresenta desconforto epigástrico e plenitude gástrica. AP: etilista e internação prévia por pancreatite aguda há 2 semanas. TC de abdome: conforme imagem. A conduta correta é:",
   alternativas:[{id:"A",texto:"observação clínica e seguimento com exame de imagem."},{id:"B",texto:"laparotomia exploradora de urgência."},{id:"C",texto:"drenagem percutânea."},{id:"D",texto:"EDA para possível conduta terapêutica."}],
   gabarito:"A",
@@ -1010,7 +1010,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-076", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:76,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-anatomiacirurgica",
-  imagemUrl:"dados/imagens/q-unesp2022-076.png", imagemLegenda:"Região inguinal direita, visão posterior (estruturas A a F)",
+  imagemUrl:"dados/imagens/q-unesp2022-076.webp", imagemLegenda:"Região inguinal direita, visão posterior (estruturas A a F)",
   enunciado:"Com base na figura, que corresponde à visão posterior da região inguinal direita, pode-se afirmar que a letra",
   alternativas:[{id:"A",texto:"D corresponde à área do triângulo de Hasselbach."},{id:"B",texto:"E corresponde ao trato iliopúbico."},{id:"C",texto:"C corresponde aos vasos epigástricos superiores."},{id:"D",texto:"B corresponde à artéria ilíaca interna."}],
   gabarito:"B",
@@ -1024,7 +1024,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-077", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:77,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-artrose",
-  imagemUrl:"dados/imagens/q-unesp2022-077.jpg", imagemLegenda:"Ressonância magnética da bacia (cortes coronais dos quadris)",
+  imagemUrl:"dados/imagens/q-unesp2022-077.webp", imagemLegenda:"Ressonância magnética da bacia (cortes coronais dos quadris)",
   enunciado:"Homem de 40 anos apresenta dores espontâneas em ambos os quadris há um ano, com piora progressiva. AP: etilismo desde os 15 anos. RNM da bacia, conforme imagem. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"hematoma encapsulado intraósseo nas cabeças femorais."},{id:"B",texto:"osteocondroma nas cabeças femorais."},{id:"C",texto:"osteonecrose avascular das cabeças femorais."},{id:"D",texto:"osteomielite nas cabeças femorais."}],
   gabarito:"C",
@@ -1038,7 +1038,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-078", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:78,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepato-nodulos",
-  imagemUrl:"dados/imagens/q-unesp2022-078.jpg", imagemLegenda:"Fígado com múltiplos nódulos esbranquiçados (peça de necropsia)",
+  imagemUrl:"dados/imagens/q-unesp2022-078.webp", imagemLegenda:"Fígado com múltiplos nódulos esbranquiçados (peça de necropsia)",
   enunciado:"A lesão apresentada nesta imagem é um achado frequente nos exames pós-morte em nosso país. Sua etiopatogenia é:",
   alternativas:[{id:"A",texto:"hipóxica e hepática."},{id:"B",texto:"vascular e cardíaca."},{id:"C",texto:"neoplásica e hematogênica."},{id:"D",texto:"infecciosa e ascendente."}],
   gabarito:"C",
@@ -1052,7 +1052,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-079", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:79,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-unesp2022-079.png", imagemLegenda:"Tomografias de crânio (alternativas A a D)",
+  imagemUrl:"dados/imagens/q-unesp2022-079.webp", imagemLegenda:"Tomografias de crânio (alternativas A a D)",
   enunciado:"Mulher de 63 anos apresentou quadro súbito de cefaleia holocraniana, vômitos e rebaixamento do nível de consciência. Exame físico: MEG, pontuação da escala de Glasgow de 10, PA 160/100 mmHg, FC 90 bpm. A imagem tomográfica que corresponde ao quadro clínico é: A. B. C. D.",
   alternativas:[{id:"A",texto:"Tomografia A (ver figura)."},{id:"B",texto:"Tomografia B (ver figura)."},{id:"C",texto:"Tomografia C (ver figura)."},{id:"D",texto:"Tomografia D (ver figura)."}],
   gabarito:"A",
@@ -1079,7 +1079,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-081", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:81,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2022-081.png", imagemLegenda:"Casos e óbitos acumulados de covid-19 em Botucatu e no estado de São Paulo (até 31/12/2020 e até 31/08/2021)",
+  imagemUrl:"dados/imagens/q-unesp2022-081.webp", imagemLegenda:"Casos e óbitos acumulados de covid-19 em Botucatu e no estado de São Paulo (até 31/12/2020 e até 31/08/2021)",
   enunciado:"Leia o enunciado para responder às questões de números 81 e 82. De acordo com o Centro de Vigilância Epidemiológica do Estado de São Paulo, a situação da covid-19, no município de Botucatu e no estado de São Paulo, era a seguinte, nas datas a seguir indicadas. Obs: para fins de cálculos, se necessário, deve-se usar a população IBGE, estimada para 2021: Botucatu = 149.718 habitantes; estado de São Paulo = 46.649.432 habitantes. O coeficiente de letalidade por covid-19, no município de Botucatu, no ano de 2021 (até 31.08), foi de",
   alternativas:[{id:"A",texto:"2,64%."},{id:"B",texto:"203,7 por 100000 habitantes."},{id:"C",texto:"195,0 por 100000 habitantes."},{id:"D",texto:"1,71%."}],
   gabarito:"D",
@@ -1093,7 +1093,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-082", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:82,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2022-082.png", imagemLegenda:"Casos e óbitos acumulados de covid-19 em Botucatu e no estado de São Paulo (mesma tabela da questão 81)",
+  imagemUrl:"dados/imagens/q-unesp2022-082.webp", imagemLegenda:"Casos e óbitos acumulados de covid-19 em Botucatu e no estado de São Paulo (mesma tabela da questão 81)",
   enunciado:"Leia o enunciado para responder às questões de números 81 e 82. De acordo com o Centro de Vigilância Epidemiológica do Estado de São Paulo, a situação da covid-19, no município de Botucatu e no estado de São Paulo, era a seguinte, nas datas a seguir indicadas. Obs: para fins de cálculos, se necessário, deve-se usar a população IBGE, estimada para 2021: Botucatu = 149.718 habitantes; estado de São Paulo = 46.649.432 habitantes. Para se comparar o risco de ocorrência e o risco de óbito da covid-19 entre as populações de Botucatu e São Paulo, devem-se usar, respectivamente:",
   alternativas:[{id:"A",texto:"a prevalência instantânea e o coeficiente de letalidade, ambos no final do período."},{id:"B",texto:"o coeficiente de prevalência e o coeficiente de mortalidade."},{id:"C",texto:"o coeficiente de incidência e o coeficiente de mortalidade."},{id:"D",texto:"a taxa de transmissão (ou o número efetivo de reprodução “R”) e o coeficiente de letalidade."}],
   gabarito:"C",
@@ -1107,7 +1107,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-083", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:83,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2022-083.png", imagemLegenda:"Média móvel (14 dias) de casos novos por 100.000 habitantes, Botucatu e estado de São Paulo, 2020",
+  imagemUrl:"dados/imagens/q-unesp2022-083.webp", imagemLegenda:"Média móvel (14 dias) de casos novos por 100.000 habitantes, Botucatu e estado de São Paulo, 2020",
   enunciado:"O gráfico representado na imagem expressa a evolução de casos novos de covid-19 no município de Botucatu e no estado de São Paulo, de abril a dezembro de 2020. A medida de saúde que está expressa no gráfico é:",
   alternativas:[{id:"A",texto:"razão de morbidade média."},{id:"B",texto:"risco relativo médio."},{id:"C",texto:"coeficiente médio de prevalência."},{id:"D",texto:"coeficiente médio de incidência."}],
   gabarito:"D",
@@ -1316,7 +1316,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2022", [
 {
   id:"q-unesp2022-099", banca:"UNESP (FMB)", real:true, ano:2022, numeroNaProva:99,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
-  imagemUrl:"dados/imagens/q-unesp2022-099.jpg", imagemLegenda:"Úlceras plantares indolores em ambos os pés",
+  imagemUrl:"dados/imagens/q-unesp2022-099.webp", imagemLegenda:"Úlceras plantares indolores em ambos os pés",
   enunciado:"Homem de 48 anos apresenta há 1 ano úlceras espontâneas indolores em ambos os pés, conforme a imagem, que se iniciaram a partir de calosidades, além de deformidades dos pododáctilos. AP: “adormecimento” nas mãos e pés há mais de 5 anos, com perda progressiva de força de preensão. Exames laboratoriais: HIV e FTA-Abs não reagentes; hemograma, glicemia, hemoglobina glicada, TSH e enzimas canaliculares hepáticas normais. A hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"hanseníase."},{id:"B",texto:"siringomielia."},{id:"C",texto:"sífilis terciária."},{id:"D",texto:"esclerose múltipla."}],
   gabarito:"A",

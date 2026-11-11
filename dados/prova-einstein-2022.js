@@ -110,7 +110,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-008", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:8,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
-  imagemUrl:"dados/imagens/q-einstein2022-008.png",
+  imagemUrl:"dados/imagens/q-einstein2022-008.webp",
   enunciado:"Atenção: Considere o caso abaixo para responder as questões de números 8 e 9. Paciente sexo masculino, 54 anos, hipertenso, tabagista importante, deu entrada no pronto-socorro com quadro de dor torácica intensa, associada a sudorese que começou há cerca de 3 horas. À avaliação, a PA: 160 × 100 mmHg, FC: 80 bpm, SatO2: 98% em ar ambiente, FR: 16 ipm, pulsos assimétricos. Realizou eletrocardiograma e radiografia de tórax que seguem abaixo. O diagnóstico mais provável para esse paciente, dentre os abaixo, é:",
   alternativas:[{id:"A",texto:"dissecção de aorta torácica."},{id:"B",texto:"infarto agudo do miocárdio."},{id:"C",texto:"estenose de válvula aórtica."},{id:"D",texto:"tromboembolismo pulmonar agudo."}],
   gabarito:"A",
@@ -124,7 +124,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-009", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:9,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
-  imagemUrl:"dados/imagens/q-einstein2022-009.png",
+  imagemUrl:"dados/imagens/q-einstein2022-009.webp",
   enunciado:"Atenção: Considere o caso abaixo para responder as questões de números 8 e 9. Paciente sexo masculino, 54 anos, hipertenso, tabagista importante, deu entrada no pronto-socorro com quadro de dor torácica intensa, associada a sudorese que começou há cerca de 3 horas. À avaliação, a PA: 160 × 100 mmHg, FC: 80 bpm, SatO2: 98% em ar ambiente, FR: 16 ipm, pulsos assimétricos. Realizou eletrocardiograma e radiografia de tórax que seguem abaixo. Entre as condutas abaixo, a melhor para este paciente é:",
   alternativas:[{id:"A",texto:"heparina de baixo peso molecular."},{id:"B",texto:"a trombólise química."},{id:"C",texto:"controle da pressão e da frequência cardíaca."},{id:"D",texto:"a angioplastia."}],
   gabarito:"C",
@@ -151,7 +151,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-011", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2022-011.png",
+  imagemUrl:"dados/imagens/q-einstein2022-011.webp",
   enunciado:"Atenção: Considere o caso abaixo para responder as questões de números 11 e 12. Paciente sexo feminino, 27 anos, deu entrada no pronto-socorro referindo palpitações taquicárdicas associada a mal-estar. A avaliação apresentava PA: 126 × 74 mmHg, FC: 180 bpm, FR: 16 ipm, SatO2: 98%. Paciente realizou seguinte eletrocardiograma. O diagnóstico mais provável desse paciente, dentre os abaixo, é:",
   alternativas:[{id:"A",texto:"Taquicardia ventricular."},{id:"B",texto:"Taquicardia supraventricular."},{id:"C",texto:"Fibrilação atrial de alta resposta ventricular."},{id:"D",texto:"Flutter atrial."}],
   gabarito:"B",
@@ -165,7 +165,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-012", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2022-012.png",
+  imagemUrl:"dados/imagens/q-einstein2022-012.webp",
   enunciado:"Atenção: Considere o caso abaixo para responder as questões de números 11 e 12. Paciente sexo feminino, 27 anos, deu entrada no pronto-socorro referindo palpitações taquicárdicas associada a mal-estar. A avaliação apresentava PA: 126 × 74 mmHg, FC: 180 bpm, FR: 16 ipm, SatO2: 98%. Paciente realizou seguinte eletrocardiograma. O tratamento mais indicado para esse paciente, dentre os abaixo, é:",
   alternativas:[{id:"A",texto:"manobra de valsalva."},{id:"B",texto:"atropina endovenosa em flush."},{id:"C",texto:"amiodarona endovenoso."},{id:"D",texto:"cardioversão elétrica sincronizada."}],
   gabarito:"A",
@@ -231,7 +231,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-017", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:17,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-capancreas",
-  imagemUrl:"dados/imagens/q-einstein2022-017.png",
+  imagemUrl:"dados/imagens/q-einstein2022-017.webp",
   enunciado:"Uma senhora de 63 anos, com hipertensão controlada com losartana, tem história de icterícia, náuseas e vômitos pós-alimentares há 1 mês. Está ictérica 3+/4 e tem dor abdominal discreta em hipocôndrio direito, sem peritonismo. Hemoglobina: 12,5 g/dL, leucócitos: 6.620/mm3, ureia: 37 mg/dL, creatinina: 1,15 mg/dL, bilirrubina total: 23,69 mg/dL, bilirrubina direta: 21,03 mg/dL, fosfatase alcalina: 712 U/L (46 a 120), gamaglutamiltransferase: 1.310 U/L (7 a 32). Fez a tomografia ilustrada a seguir. Inicialmente, a paciente deve ser submetida a",
   alternativas:[{id:"A",texto:"drenagem das vias biliares."},{id:"B",texto:"neoadjuvância."},{id:"C",texto:"ecoendoscopia."},{id:"D",texto:"colangiorressonância."}],
   gabarito:"A",
@@ -258,7 +258,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-019", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:19,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-einstein2022-019.png",
+  imagemUrl:"dados/imagens/q-einstein2022-019.webp",
   enunciado:"Uma paciente de 33 anos queixa-se de dor abdominal difusa, que vem aumentando, e parada de eliminação de flatos e fezes há 2 dias. Tem náuseas e teve 2 episódios de vômitos. Nega febre ou sintomas urinários. Nega episódios prévios semelhantes. Antecedentes: histerectomia total abdominal. Está em bom estado geral, corada, anictérica, acianótica, afebril, mas desidratada 1+/4+. O abdômen está distendido e é doloroso difusamente à palpação. A descompressão brusca é negativa. Os ruídos hidroaéreos estão presentes, mas diminuídos. Toque retal: ausência de fezes em ampola; sem massas palpáveis. Hemoglobina: 14,2 mg/dL, proteína C reativa: 28 mg/L, Na+: 141 mEq/L, K+: 3,4 mEq/L. Foi submetida inicialmente a tratamento clínico, com jejum, sonda gástrica aberta e hidratação, iniciado há 12 horas. Fez a tomografia de abdômen ilustrada a seguir. Conduta de maior risco para esta paciente:",
   alternativas:[{id:"A",texto:"Laparoscopia."},{id:"B",texto:"Manter o tratamento clínico por mais 12 horas."},{id:"C",texto:"Laparotomia exploradora."},{id:"D",texto:"Fazer trânsito intestinal com contraste baritado pela sonda gástrica."}],
   gabarito:"D",
@@ -389,7 +389,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-029", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:29,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
-  imagemUrl:"dados/imagens/q-einstein2022-029.png",
+  imagemUrl:"dados/imagens/q-einstein2022-029.webp",
   enunciado:"Uma senhora de 68 anos procura o pronto-socorro por dores abdominais em cólica, mais localizadas em baixo- ventre, e dificuldade para evacuar, que foi piorando ao longo dos últimos 6 meses. Vinha evacuando a cada 4 dias, sendo que atualmente está há 1 semana sem evacuar. Queixa-se ainda de náuseas e vômitos. Não tem antecedentes relevantes, salvo hipertensão arterial, que trata com diurético. Refere tabagismo de 1 maço/dia, por “mais de 20 anos”. Nega febre. Refere emagrecimento de 10 kg (de 80 para 70 kg) nos últimos 6 meses. Está desidratada. Tem distensão abdominal, sem peritonismo. Fez a radiografia ilustrada a seguir. A conduta neste momento deve ser:",
   alternativas:[{id:"A",texto:"Tomografia de abdômen e pelve, com contraste por via retal."},{id:"B",texto:"Preparo anterógrado para colonoscopia."},{id:"C",texto:"Lavagem retal, inicialmente."},{id:"D",texto:"Laparotomia de urgência."}],
   gabarito:"C",
@@ -598,7 +598,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-045", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:45,
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-catarata",
-  imagemUrl:"dados/imagens/q-einstein2022-045.png",
+  imagemUrl:"dados/imagens/q-einstein2022-045.webp",
   enunciado:"Pais de pré-escolar, sexo feminino, 4 anos, em consulta de rotina com pediatra referem que as fotos de sua filha, quando tiradas com flash, apresentam a seguinte alteração: O exame ocular revelou: reflexo vermelho alterado no olho direito e normal no esquerdo. Fundo de olho normal à esquerda e à direita com múltiplas massas rosadas, vascularizadas, parcialmente calcificadas, preenchendo a cavidade vítrea. Entre as seguintes hipóteses diagnósticas, a mais provável para este caso é:",
   alternativas:[{id:"A",texto:"descolamento de retina."},{id:"B",texto:"retinoblastoma."},{id:"C",texto:"catarata congênita."},{id:"D",texto:"doença de Coats."}],
   gabarito:"B",
@@ -976,7 +976,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2022", [
 {
   id:"q-einstein2022-074", banca:"Einstein (HIAE)", real:true, ano:2022, numeroNaProva:74,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-einstein2022-074.png",
+  imagemUrl:"dados/imagens/q-einstein2022-074.webp",
   enunciado:"Considere a figura abaixo, referente a um estudo com lavradores de uma região agrícola e seu risco de desenvolver quadros de intoxicação ao longo do tempo. O tipo de estudo é.",
   alternativas:[{id:"A",texto:"Caso-controle."},{id:"B",texto:"Observacional transversal."},{id:"C",texto:"Ecológico."},{id:"D",texto:"Coorte."}],
   gabarito:"D",

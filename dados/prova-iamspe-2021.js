@@ -323,7 +323,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2021", [
 },
 {
   id:"q-iamspe2021-024", banca:"IAMSPE", real:true, ano:2021, numeroNaProva:24,
-  imagemUrl:"dados/imagens/q-iamspe2021-024.jpg", imagemLegenda:"Tomografia computadorizada de abdome com contraste (corte axial)",
+  imagemUrl:"dados/imagens/q-iamspe2021-024.webp", imagemLegenda:"Tomografia computadorizada de abdome com contraste (corte axial)",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
   enunciado:"Um paciente de 78 anos de idade queixa-se de dor abdominal aguda em epigástrio e flanco direito há vinte dias. Já procurou dois serviços anteriormente, sendo que, no primeiro, ficou internado por cinco dias e recebeu o diagnóstico de colecistite aguda e, no segundo, foi observado um problema no pâncreas (SIC). Não tem consigo nenhum documento oficial. Chegou ao pronto-socorro com dor em epigástrio (4/10), desidratado, descorado, anictérico e afebril. Apresentava massa palpável em epigástrio, sem sinais de irritação peritoneal. Exames laboratoriais revelaram: hemoglobina de 11 mg/dl; leucócitos de 14.000; glicemia de 108; amilase de 92; e lipase de 72. Realizou, também, a tomografia abdominal com contraste mostrada no corte abaixo. Com base nesse caso hipotético, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A ecoendoscopia com biópsia é a melhor orientação."},{id:"B",texto:"O tratamento deverá ser cirúrgico."},{id:"C",texto:"O tratamento deverá ser conservador, sem antibiótico e com suporte nutricional."},{id:"D",texto:"O tratamento deverá ser agressivo, com antibiótico e nutrição parenteral."},{id:"E",texto:"A biópsia percutânea deverá ser realizada antes da decisão terapêutica."}],

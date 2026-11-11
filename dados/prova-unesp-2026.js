@@ -218,7 +218,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-016", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:16,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-nefro-glomerulopatias",
-  imagemUrl:"dados/imagens/q-unesp2026-016.png", imagemLegenda:"Técnicas de percussão do abdome: (1) pesquisa de macicez móvel, (2) macicez em declive e (3) percussão em ascite com sinal de poça",
+  imagemUrl:"dados/imagens/q-unesp2026-016.webp", imagemLegenda:"Técnicas de percussão do abdome: (1) pesquisa de macicez móvel, (2) macicez em declive e (3) percussão em ascite com sinal de poça",
   enunciado:"Observe as imagens a seguir: As técnicas de percussão (imagens 1, 2 e 3) são positivas na avaliação de crianças com",
   alternativas:[{id:"A",texto:"hepatomegalia por hepatite viral aguda."},{id:"B",texto:"distensão abdominal por fecaloma."},{id:"C",texto:"anasarca por recidiva de síndrome nefrótica."},{id:"D",texto:"massa abdominal visível por bexigoma."}],
   gabarito:"C",
@@ -297,7 +297,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-022", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:22,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-unesp2026-022.png", imagemLegenda:"Exames do pré-natal (hematócrito, hemoglobina, glicemia de jejum, sífilis, HIV, toxoplasmose e HTLV 1 e 2)",
+  imagemUrl:"dados/imagens/q-unesp2026-022.webp", imagemLegenda:"Exames do pré-natal (hematócrito, hemoglobina, glicemia de jejum, sífilis, HIV, toxoplasmose e HTLV 1 e 2)",
   enunciado:"Gestante de 38 anos de idade inicia o pré-natal com 6 semanas. AP: G3P1A1; um aborto precoce e um parto vaginal no termo. Foram solicitados exames, cujos resultados estão no quadro a seguir: As condutas em relação a investigação de diabetes gestacional, toxoplasmose e HTLV são",
   alternativas:[{id:"A",texto:"fazer GTT 75g entre 24 – 28 semanas, considerar a gestante imune para toxoplasmose e liberar o aleitamento."},{id:"B",texto:"repetir a glicemia de jejum com 32 semanas, repetir a sorologia para toxoplasmose com 28 semanas e liberar o aleitamento."},{id:"C",texto:"fazer GTT 75g entre 24 – 28 semanas, repetir a sorologia para toxoplasmose com 28 semanas e contraindicar o aleitamento."},{id:"D",texto:"repetir a glicemia de jejum entre 24 – 28 semanas, considerar a gestante imune para toxoplasmose e contraindicar o aleitamento."}],
   gabarito:"A",
@@ -337,7 +337,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-025", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:25,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-unesp2026-025.jpg", imagemLegenda:"Cardiotocografia intraparto (traçado a 1 cm/minuto) com contrações frequentes e desacelerações",
+  imagemUrl:"dados/imagens/q-unesp2026-025.webp", imagemLegenda:"Cardiotocografia intraparto (traçado a 1 cm/minuto) com contrações frequentes e desacelerações",
   enunciado:"Você está de plantão em um hospital que possui obstetra na retaguarda. Esse obstetra está realizando uma cesariana de urgência e pediu que você assumisse o cuidado de uma gestante no pré-parto até que ele termine o procedimento. Ao deixar o pré-parto, o obstetra solicitou a realização de uma cardiotocografia. Trata-se de uma gestante G3P2A0C0, com 40 semanas e 3 dias de gestação, em trabalho de parto induzido devido à rotura prematura das membranas. Ela está em uso de ocitocina administrada por bomba de infusão. O último toque foi realizado há cerca de 15 minutos, e o colo uterino estava pérvio para 8 cm. O líquido amniótico está claro. A cardiotocografia foi realizada a uma velocidade de 1 cm/minuto, conforme mostrado no traçado a seguir: Com base no quadro clínico e no traçado da cardiotocografia, assinale a alternativa que corresponde à conduta mais adequada.",
   alternativas:[{id:"A",texto:"Suspender a ocitocina, manter a monitorização contínua e prescrever terbutalina subcutânea."},{id:"B",texto:"Solicitar que o centro cirúrgico prepare outra sala de cesariana para que a paciente seja encaminhada assim que o obstetra estiver disponível."},{id:"C",texto:"Aumentar a infusão de ocitocina e pedir que a paciente faça força para acelerar o nascimento."},{id:"D",texto:"Não há necessidade de condutas específicas, pois trata-se de uma cardiotocografia categoria I."}],
   gabarito:"A",
@@ -546,7 +546,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-041", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:41,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-unesp2026-041.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações: ritmo irregular com QRS estreito e sem ondas P",
+  imagemUrl:"dados/imagens/q-unesp2026-041.webp", imagemLegenda:"Eletrocardiograma de 12 derivações: ritmo irregular com QRS estreito e sem ondas P",
   enunciado:"Mulher de 85 anos de idade apresenta palpitações. Exame físico: PA: 80 × 50 mmHg; FC: 138 bpm; FR: 30 irpm; SatO2 92% em ar ambiente. ECG (imagem): O diagnóstico e a conduta, respectivamente, são",
   alternativas:[{id:"A",texto:"fibrilação atrial; cardioversão elétrica."},{id:"B",texto:"flutter atrial; controle da frequência com amiodarona."},{id:"C",texto:"taquicardia atrial; cardioversão química com propafenona."},{id:"D",texto:"fibrilação atrial; cardioversão química com amiodarona."}],
   gabarito:"A",
@@ -690,7 +690,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-052", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:52,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-unesp2026-052.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações com supradesnivelamento do segmento ST em D2, D3 e aVF",
+  imagemUrl:"dados/imagens/q-unesp2026-052.webp", imagemLegenda:"Eletrocardiograma de 12 derivações com supradesnivelamento do segmento ST em D2, D3 e aVF",
   enunciado:"Mulher de 61 anos de idade apresenta dor retroesternal em queimação com irradiação para MSE há uma hora. AP: HAS e tabagismo. ECG a seguir: A parede ventricular acometida e a conduta, além de 300 mg de AAS, são, respectivamente,",
   alternativas:[{id:"A",texto:"posterior; 300 mg de clopidogrel e encaminhamento para angioplastia primária."},{id:"B",texto:"inferior; 600 mg de clopidogrel e trombólise química."},{id:"C",texto:"posterior; 300 mg de clopidogrel e trombólise química."},{id:"D",texto:"inferior; 600 mg de clopidogrel e encaminhamento para angioplastia primária."}],
   gabarito:"D",
@@ -938,7 +938,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-071", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:71,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-pediatrica",
-  imagemUrl:"dados/imagens/q-unesp2026-071.png", imagemLegenda:"Lactente com inclinação cervical para a esquerda e queixo rodado para a direita",
+  imagemUrl:"dados/imagens/q-unesp2026-071.webp", imagemLegenda:"Lactente com inclinação cervical para a esquerda e queixo rodado para a direita",
   enunciado:"Lactente de três meses de idade apresenta pescoço inclinado em direção ao ombro esquerdo, com o queixo desviado e rodado para a direita, conforme imagem a seguir: Exame físico: encurtamento palpável do músculo esternoclei-domastoideo esquerdo. O diagnóstico e o tratamento são, respectivamente,",
   alternativas:[{id:"A",texto:"hemivértebra cervical; órtese para reposicionamento cervical."},{id:"B",texto:"lesão do plexo braquial por tocotrauma; neurotização precoce."},{id:"C",texto:"paralisia cerebral espástica; tenotomia do esternocleido-mastoideo esquerdo."},{id:"D",texto:"torcicolo congênito; fisioterapia e alongamento."}],
   gabarito:"D",
@@ -965,7 +965,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-073", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:73,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
-  imagemUrl:"dados/imagens/q-unesp2026-073.png", imagemLegenda:"Aumento de volume inguinoescrotal à direita em recém-nascido, com testículos tópicos",
+  imagemUrl:"dados/imagens/q-unesp2026-073.webp", imagemLegenda:"Aumento de volume inguinoescrotal à direita em recém-nascido, com testículos tópicos",
   enunciado:"RN apresenta, ao exame físico, testículos tópicos e alteração, evidenciada na imagem a seguir: A origem dessa alteração se deve a",
   alternativas:[{id:"A",texto:"persistência do conduto ônfalo-mesentérico."},{id:"B",texto:"fraqueza da parede abdominal."},{id:"C",texto:"persistência do conduto peritônio-vaginal."},{id:"D",texto:"hiperexcitabilidade do músculo cremaster."}],
   gabarito:"C",
@@ -979,7 +979,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-074", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:74,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
-  imagemUrl:"dados/imagens/q-unesp2026-074.png", imagemLegenda:"Defeito de parede abdominal em recém-nascido: massa recoberta por membrana, com o cordão umbilical no ápice",
+  imagemUrl:"dados/imagens/q-unesp2026-074.webp", imagemLegenda:"Defeito de parede abdominal em recém-nascido: massa recoberta por membrana, com o cordão umbilical no ápice",
   enunciado:"Observe a imagem a seguir: Sobre o defeito de parede abdominal evidenciado na imagem, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"É rara a ocorrência de malformações associadas."},{id:"B",texto:"O cordão umbilical sempre está no ápice do defeito."},{id:"C",texto:"O defeito pode estar à direita do cordão umbilical."},{id:"D",texto:"Há sofrimento de alças intestinais."}],
   gabarito:"B",
@@ -1045,7 +1045,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-079", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:79,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-unesp2026-079.png", imagemLegenda:"Tomografia de crânio: coleção hipodensa extra-axial hemisférica, com apagamento dos sulcos e desvio da linha média",
+  imagemUrl:"dados/imagens/q-unesp2026-079.webp", imagemLegenda:"Tomografia de crânio: coleção hipodensa extra-axial hemisférica, com apagamento dos sulcos e desvio da linha média",
   enunciado:"Homem de 77 anos de idade apresenta hemiparesia incompleta desproporcionada de predomínio braquiocrural à direita há dez dias. AP: etilista (0,5 litro de cachaça/dia), tabagista, hipertensão não controlada. TC de crânio: imagem a seguir: A conduta mais adequada é",
   alternativas:[{id:"A",texto:"embolização da artéria meníngea média."},{id:"B",texto:"trépano-punção."},{id:"C",texto:"craniotomia para drenagem."},{id:"D",texto:"atorvastatina via oral."}],
   gabarito:"B",
@@ -1150,7 +1150,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2026", [
 {
   id:"q-unesp2026-087", banca:"UNESP (FMB)", real:true, ano:2026, numeroNaProva:87,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-unesp2026-087.png", imagemLegenda:"Quatro modelos de preenchimento da Parte I e da Parte II da declaração de óbito (alternativas A a D)",
+  imagemUrl:"dados/imagens/q-unesp2026-087.webp", imagemLegenda:"Quatro modelos de preenchimento da Parte I e da Parte II da declaração de óbito (alternativas A a D)",
   enunciado:"Homem, recém-chegado ao pequeno município de Siriri, estava em seu domicílio quando, repentinamente, \"passou mal\". Foi levado por familiares à única unidade de saúde do município. O médico, prontamente, verificou que o homem já havia morrido, não havendo nenhum registro deste na unidade. A família relatou que, há algum tempo, o paciente disse que \"estava com diabetes\". Na ausência de sinais externos de violência e não dispondo a localidade de Serviço de Verificação de Óbito, o médico decidiu emitir a declaração de óbito. Com essas informações, é correto o seguinte preenchimento da declaração de óbito: A. B. C. D.",
   alternativas:[{id:"A",texto:"Preenchimento A (ver figura)."},{id:"B",texto:"Preenchimento B (ver figura)."},{id:"C",texto:"Preenchimento C (ver figura)."},{id:"D",texto:"Preenchimento D (ver figura)."}],
   gabarito:"A",

@@ -522,11 +522,12 @@ function renderInicioAluno(u){
        <button class="link-discreto" onclick="abrirSessaoPorTempo()" title="Diga quanto tempo você tem e a sessão se monta no seu ritmo">Tempo contado?</button>
       </div>
     </div>
+    ${totalRespostas === 0 && seq === 0 ? `<div class="card-flat text-sm mt-1">${iconeSvg("target")} <strong>Seu primeiro passo:</strong> responda as primeiras 10 questões. Conforme você estuda, a sequência de dias, o acerto e as revisões do dia passam a mostrar números de verdade.</div>` : ""}
     <div class="indicadores">
-      <span class="indicador"><span class="stat-value">${seq}</span><span class="stat-label">dia(s) seguidos estudando</span></span>
+      <span class="indicador"><span class="stat-value">${seq}</span><span class="stat-label">${plural(seq,"dia","dias")} seguidos estudando</span></span>
       <span class="indicador"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral${resumido ? "" : ` (${totalRespostas} questões)`}</span></span>
-      <span class="indicador"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">assunto(s) para revisar hoje</span></span>
-      ${resumido && flashVencidos ? `<span class="indicador"><span class="stat-value">${flashVencidos}</span><span class="stat-label">cartão(ões) vencido(s)</span></span>` : ""}
+      <span class="indicador"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">${plural(revisarHoje.length,"assunto","assuntos")} para revisar hoje</span></span>
+      ${resumido && flashVencidos ? `<span class="indicador"><span class="stat-value">${flashVencidos}</span><span class="stat-label">${plural(flashVencidos,"cartão","cartões")} vencido(s)</span></span>` : ""}
     </div>
     ${resumido ? `<div class="acoes-apoio">
       ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
@@ -544,8 +545,8 @@ function renderInicioAluno(u){
     </div>
     <div class="card">
       <div class="card-title">Revisão pendente</div>
-      ${revisarHoje.length ? `<p class="text-sm muted mt-1">${revisarHoje.length} assunto(s) já estudado(s) estão no momento certo de revisar, segundo seu histórico.</p>` : '<p class="text-sm muted mt-1">Nada vencido para revisar hoje. Continue estudando o bloco atual.</p>'}
-      ${flashVencidos ? `<p class="text-sm mt-1">${flashVencidos} cartão(ões) de revisão rápida também venceram — dá pra limpar essa fila em poucos minutos.</p>` : ""}
+      ${revisarHoje.length ? `<p class="text-sm muted mt-1">${revisarHoje.length} ${plural(revisarHoje.length,"assunto","assuntos")} já estudado(s) estão no momento certo de revisar, segundo seu histórico.</p>` : '<p class="text-sm muted mt-1">Nada vencido para revisar hoje. Continue estudando o bloco atual.</p>'}
+      ${flashVencidos ? `<p class="text-sm mt-1">${flashVencidos} ${plural(flashVencidos,"cartão","cartões")} de revisão rápida também venceram — dá pra limpar essa fila em poucos minutos.</p>` : ""}
       ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
         <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
         <div class="flex gap-1 mt-1 quebra">
@@ -660,7 +661,7 @@ function renderEstudar(){
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">
         <div class="card-title mb-02">${iconeSvg("refresh")} ${deHoje ? "Sessão de hoje" : "Sessão em andamento"}</div>
-        <div class="text-sm muted">${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} questão(ões) respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}. Continuar mantém a mesma fila, na mesma ordem, com as marcações e os riscos como você deixou — você não recomeça do zero.</div>
+        <div class="text-sm muted">${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} ${plural(emAndamento.itens.length,"questão","questões")} respondida(s)${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}. Continuar mantém a mesma fila, na mesma ordem, com as marcações e os riscos como você deixou — você não recomeça do zero.</div>
       </div>
       <div class="flex gap-1 quebra">
         <button class="btn btn-primary" onclick="retomarSessaoEmAndamento()">Continuar de onde parei</button>
@@ -675,12 +676,12 @@ function renderEstudar(){
         <div class="card-title mb-02">Meta de hoje</div>
         <div class="text-sm muted">${feitasHoje>=meta
           ? "Meta batida. O que vier agora é lucro — e se estiver cansado, parar aqui também é uma decisão boa."
-          : `Faltam <strong>${faltam}</strong> questão(ões) para fechar o dia.`}</div>
+          : `Faltam <strong>${faltam}</strong> ${plural(faltam,"questão","questões")} para fechar o dia.`}</div>
       </div>
       <div class="flex items-center gap-2 quebra">
         <div class="texto-dir">
           <div class="stat-value" style="font-size:var(--fs-xl)">${feitasHoje}/${meta}</div>
-          <div class="stat-label">questões hoje${seq?" · "+seq+" dia(s) seguidos":""}</div>
+          <div class="stat-label">questões hoje${seq?" · "+seq+" "+plural(seq,"dia","dias")+" seguidos":""}</div>
         </div>
         ${soNoEstatistico(`<button class="btn btn-secondary btn-sm" onclick="abrirModalMeta()">${iconeSvg("target")} Ajustar meta</button>`)}
       </div>
@@ -706,7 +707,7 @@ function renderEstudar(){
     </div>
     <div class="card">
       <div class="card-title">Revisar erros e chutes antigos</div>
-      <p class="text-sm muted">${errosPendentes} questão(ões) que você errou ou acertou no chute, começando pelas mais antigas.</p>
+      <p class="text-sm muted">${errosPendentes === 0 ? "Nenhum erro ou chute para revisar ainda: as questões que você errar ou acertar no chute aparecem aqui, das mais antigas para as mais novas." : `${errosPendentes} ${plural(errosPendentes,"questão","questões")} que você errou ou acertou no chute, começando pelas mais antigas.`}</p>
       <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${errosPendentes===0?"disabled":""}>Revisar agora</button>
     </div>
   </div>

@@ -39,7 +39,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-001", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
-  imagemUrl:"dados/imagens/q-tp20231-001.png",
+  imagemUrl:"dados/imagens/q-tp20231-001.webp",
   enunciado:"Homem, 58 anos, trabalhador rural, faz seguimento na Unidade Básica de Saúde por hipertensão arterial. Na última consulta, ao examinar o paciente, o médico notou lesão na região temporal direita, de 1,0cm, como mostra a imagem a seguir: O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Melanoma"},{id:"B",texto:"Carcinoma espinocelular"},{id:"C",texto:"Carcinoma basocelular"},{id:"D",texto:"Carcinoma sebáceo"}],
   gabarito:"C",
@@ -92,7 +92,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-005", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leptospirose",
-  imagemUrl:"dados/imagens/q-tp20231-005.png",
+  imagemUrl:"dados/imagens/q-tp20231-005.webp",
   enunciado:"Homem, 40 anos, do Rio Grande do Sul, trabalhador em lavoura de arroz, refere mialgia, cefaleia e febre (38,7ºC) há uma semana. Há 2 dias apresenta icterícia e urina escurecida, piora da mialgia e melhora da febre. Exame físico: regular estado geral, hipocorado (++/+4), ictérico (++++/+4), hidratado, com dispneia leve e rigidez de nuca. Ausculta cardíaca normal e pulmonar com estertores crepitantes em ambos os pulmões até terço médio. Abdome flácido, doloroso à palpação de hipocôndrio direito, fígado não palpável. Exames laboratoriais: Urina com 30 leucócitos por campo, urobilinogênio e cilindros granulosos. Líquor com 80 leucócitos e 90% de linfócitos. A hipótese diagnóstica mais provável é:",
   alternativas:[{id:"A",texto:"Malária"},{id:"B",texto:"Leptospirose"},{id:"C",texto:"Dengue"},{id:"D",texto:"Hepatite A"}],
   gabarito:"B",
@@ -119,7 +119,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-007", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-tp20231-007.png",
+  imagemUrl:"dados/imagens/q-tp20231-007.webp",
   enunciado:"Homem, 62 anos, refere dispneia aos esforços e edema de membros inferiores de caráter progressivo há 6 meses. Ao exame, apresenta ictus cordis globoso e desviado para a esquerda, estertores crepitantes em bases de ambos hemitórax, turgência jugular, hepatomegalia dolorosa e edema de membros inferiores (3+/4+) até raiz da coxa. Dosagens séricas: Diante destes resultados, a conduta indicada é:",
   alternativas:[{id:"A",texto:"Repor sódio, pois seu valor é decorrente da produção excessiva de vasopressina."},{id:"B",texto:"Repor sódio, pois seu valor é decorrente da hiperativação do sistema renina-angiotensina-aldosterona."},{id:"C",texto:"Não repor sódio, pois seu valor é decorrente da hiperativação do sistema renina-angiotensina-aldosterona."},{id:"D",texto:"Não repor sódio, pois seu valor é decorrente da produção excessiva de vasopressina."}],
   gabarito:"D",
@@ -133,7 +133,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-008", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-nefro-glomerulopatias",
-  imagemUrl:"dados/imagens/q-tp20231-008.png",
+  imagemUrl:"dados/imagens/q-tp20231-008.webp",
   enunciado:"Mulher, 16 anos, sem doenças anteriores, queixa-se de inchaço pelo corpo e urina avermelhada há 5 dias. Referiu febre e dor de garganta há 15 dias, que melhorou com analgésicos. Exame físico: PA = 168x104mmHg. Edema generalizado. Raros estertores crepitantes em bases pulmonares. O exame de urina revelou: Com base no quadro clínico-laboratorial, o diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Glomerulonefrite Rapidamente Progressiva"},{id:"B",texto:"Síndrome Nefrítica Aguda"},{id:"C",texto:"Glomerulonefrite Difusa Aguda pós-infecciosa"},{id:"D",texto:"Síndrome Nefrótica com componente nefrítico"}],
   gabarito:"B",
@@ -264,7 +264,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-018", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:18,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
-  imagemUrl:"dados/imagens/q-tp20231-018.png",
+  imagemUrl:"dados/imagens/q-tp20231-018.webp",
   enunciado:"Homem, 75 anos, sem antecedentes de sangramento, em uso de dicumarínicos por fibrilação atrial crônica, apresenta hematúria macroscópica intermitente e discretos hematomas pelo corpo, em diferentes fases de reabsorção. A última micção, há 1 hora, mostrou urina clara, sem evidência de hematúria. Hemodinamicamente estável. Principais resultados laboratoriais: A conduta imediata mais adequada é:",
   alternativas:[{id:"A",texto:"Complexo protrombínico; redução de dose do dicumarínico."},{id:"B",texto:"Interromper dicumarínico e prescrever 2,5 - 5mg de vitamina K."},{id:"C",texto:"Plasma fresco congelado; redução da dose do dicumarínico."},{id:"D",texto:"Interromper dicumarínico e prescrever heparina de baixo peso molecular."}],
   gabarito:"B",
@@ -278,7 +278,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-019", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:19,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
-  imagemUrl:"dados/imagens/q-tp20231-019.png",
+  imagemUrl:"dados/imagens/q-tp20231-019.webp",
   enunciado:"Homem, 35 anos, com fadiga há 1 ano e dispneia aos médios esforços. Exame físico: mucosas hipocoradas (+++/4+), levemente ictéricas, glossite e queilite angular. Hemoglobina = 7,0g/dL; volume globular médio = 132fL (valor de referência 80 a 100fL) e um esfregaço de sangue periférico, como segue abaixo: O tratamento é administrar:",
   alternativas:[{id:"A",texto:"Ferro oral"},{id:"B",texto:"Cianocobalamina"},{id:"C",texto:"Corticoide oral"},{id:"D",texto:"Ácido fólico"}],
   gabarito:"B",
@@ -383,7 +383,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-027", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:27,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-tp20231-027.png",
+  imagemUrl:"dados/imagens/q-tp20231-027.webp",
   enunciado:"Homem, 19 anos, sem comorbidades, procura atendimento médico com quadro de febre há três dias, dor torácica ventilatório- dependente em hemitórax direito e tosse com expectoração purulenta. Radiograma de tórax a seguir: As alterações que devem ser encontradas no exame físico respiratório em terço inferior do hemitórax direito, além da expansibilidade diminuída, são:",
   alternativas:[{id:"A",texto:"Percussão pulmonar maciça; frêmito toracovocal aumentado; presença de estertores crepitantes, com pectorilóquia fônica."},{id:"B",texto:"Percussão pulmonar maciça; frêmito toracovocal diminuído; presença de estertores bolhosos, com pectorilóquia fônica."},{id:"C",texto:"Percussão pulmonar submaciça; frêmito toracovocal aumentado; murmúrio vesicular presente e diminuído globalmente."},{id:"D",texto:"Percussão pulmonar submaciça; frêmito toracovocal diminuído; murmúrio vesicular não audível, com ausculta da voz diminuída."}],
   gabarito:"A",
@@ -397,7 +397,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-028", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:28,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
-  imagemUrl:"dados/imagens/q-tp20231-028.png",
+  imagemUrl:"dados/imagens/q-tp20231-028.webp",
   enunciado:"Mulher, 17 anos, refere crises de tosse e dispneia provocadas por mudança climática há mais de 10 anos, acompanhadas por dificuldade para realizar atividades físicas. Acorda à noite, duas a três vezes na semana, com crise de tosse e aperto no peito, necessitando usar medicamento inalatório. Tem rinite alérgica. A espirometria está ilustrada abaixo: O tipo do distúrbio ventilatório apresentado e o diagnóstico são, respectivamente:",
   alternativas:[{id:"A",texto:"Obstrutivo leve com resposta positiva ao broncodilatador; asma."},{id:"B",texto:"Obstrutivo moderado com resposta positiva ao broncodilatador; asma."},{id:"C",texto:"Obstrutivo moderado sem resposta positiva ao broncodilatador; DPOC."},{id:"D",texto:"Obstrutivo leve sem resposta positiva ao broncodilatador; DPOC."}],
   gabarito:"A",
@@ -411,7 +411,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-029", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:29,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-tp20231-029.png",
+  imagemUrl:"dados/imagens/q-tp20231-029.webp",
   enunciado:"Homem, 58 anos, tabagista, obeso, diabético e hiperlipidêmico, com episódios esporádicos de precordialgia há meses. Chega ao Pronto-Socorro dizendo que fez um cateterismo cardíaco há 4 dias. Há 1 dia sente fraqueza generalizada e tal sintoma piorou ainda mais hoje. Refere também que está apresentando diminuição importante da diurese desde o dia do cateterismo. Há horas vem sentindo náuseas e sua família acha que ele está respirando “muito forte”. Ao chegar ao PS, o paciente realizou eletrocardiograma, que pode ser visto abaixo: Baseado nas queixas e no eletrocardiograma, o esquema terapêutico a ser utilizado é:",
   alternativas:[{id:"A",texto:"Furosemida e albumina por via endovenosa."},{id:"B",texto:"Aspirina por via oral, nitroglicerina, betabloqueador e trombolíticos por via endovenosa."},{id:"C",texto:"Aspirina por via oral, nitroglicerina e betabloqueador por via endovenosa."},{id:"D",texto:"Gluconato de cálcio, solução de glicose com insulina por via endovenosa."}],
   gabarito:"D",
@@ -425,7 +425,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-030", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:30,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-tp20231-030.png",
+  imagemUrl:"dados/imagens/q-tp20231-030.webp",
   enunciado:"Homem, 18 anos, refere que nos últimos meses vem apresentando medidas elevadas de pressão arterial (PA), sem tratamento prévio para hipertensão arterial. Não faz atividade física regular e nunca fumou. Exame físico: BEG, corado, hidratado, afebril, eupneico, aparelho respiratório e aparelho cardiovascular sem alterações. Três medidas de PA na posição sentada: 138x98mmHg / 136x96mmHg / 130x98mmHg. Abdome normal e pulsos palpáveis. Fundoscopia normal. IMC = 26kg/m2. Dosagem sérica, exame de urina e ECG: As medidas da PA foram repetidas em 15 dias, na posição sentada: 130x96mmHg / 132x98mmHg / 134x98mmHg. Além de introduzir o tratamento não-medicamentoso, deve-se:",
   alternativas:[{id:"A",texto:"Reavaliar a cada 6 meses."},{id:"B",texto:"Avaliar hipertensão secundária."},{id:"C",texto:"Introduzir betabloqueador."},{id:"D",texto:"Introduzir inibidor da enzima de conversão da angiotensina."}],
   gabarito:"B",
@@ -452,7 +452,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-032", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:32,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-atb",
-  imagemUrl:"dados/imagens/q-tp20231-032.png",
+  imagemUrl:"dados/imagens/q-tp20231-032.webp",
   enunciado:"Parturiente desenvolveu infecção hospitalar na incisão cirúrgica da cesariana, da qual foi isolado Staphylococcus aureus, cujo antibiograma é representado pela figura abaixo: Em Staphylococcus aureus, a resistência à oxacilina é:",
   alternativas:[{id:"A",texto:"Determinada pelo gene mecA, localizado no cromossomo da bactéria, e geralmente é acompanhada por resistência aos demais antibióticos beta-lactâmicos."},{id:"B",texto:"Contornada pela utilização da associação de outras penicilinas com inibidores de beta-lactamases, do tipo sulbactam e clavulanato."},{id:"C",texto:"Observada em poucas amostras isoladas de pacientes hospitalizados, mas indutor de alta mortalidade pela frequente capacidade de causar sepsis."},{id:"D",texto:"Mediada essencialmente pela produção de beta- lactamases, enzimas que hidrolisam o anel beta-lactâmico e inativam a droga, codificadas por genes plasmidiais."}],
   gabarito:"A",
@@ -661,7 +661,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-048", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:48,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-tp20231-048.png",
+  imagemUrl:"dados/imagens/q-tp20231-048.webp",
   enunciado:"Lactente, 6 meses de idade, inicia quadro súbito de taquipneia, palidez e sudorese. Exame físico: afebril, FR = 50irpm, FC = 230bpm, pulsos periféricos finos e rápidos, perfusão periférica preservada, PA = 86x40mmHg. ECG abaixo: O diagnóstico e a conduta são:",
   alternativas:[{id:"A",texto:"Taquicardia supraventricular; cardioversão sincronizada."},{id:"B",texto:"Taquicardia supraventricular; adenosina IV."},{id:"C",texto:"Taquicardia ventricular; cardioversão sincronizada."},{id:"D",texto:"Taquicardia sinusal; expansão com solução cristaloide."}],
   gabarito:"B",
@@ -766,7 +766,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-056", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:56,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-tp20231-056.png",
+  imagemUrl:"dados/imagens/q-tp20231-056.webp",
   enunciado:"Jovem, 14 anos, foi hospitalizado em insuficiência respiratória. Gasometria apresentada abaixo: O distúrbio apresentado é:",
   alternativas:[{id:"A",texto:"Acidose metabólica descompensada."},{id:"B",texto:"Alteração do equilíbrio ácido-básico compensado por hiperventilação pulmonar."},{id:"C",texto:"Elevação de pCO2 como mecanismo de compensação de acidose."},{id:"D",texto:"Acidose respiratória parcialmente compensada."}],
   gabarito:"D",
@@ -819,7 +819,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-060", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:60,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
-  imagemUrl:"dados/imagens/q-tp20231-060.png",
+  imagemUrl:"dados/imagens/q-tp20231-060.webp",
   enunciado:"Menino, prematuro, 10 dias de vida, 920g, internado em Unidade de Terapia Intensiva Neonatal para suporte respiratório mecânico. Apresenta encarceramento de hérnia inguinal esquerda, semelhante à figura a seguir: A conduta é:",
   alternativas:[{id:"A",texto:"Operar imediatamente, pelo risco de piora do quadro respiratório e comprometimento intestinal."},{id:"B",texto:"Operar imediatamente, porque a criança já está intubada, facilitando a anestesia e a cirurgia."},{id:"C",texto:"Reduzir manualmente e operar assim que a criança estiver em boas condições clínicas."},{id:"D",texto:"Reduzir manualmente e operar após 1 ano de idade, quando a criança tiver menor risco cirúrgico."}],
   gabarito:"C",
@@ -950,7 +950,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-070", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:70,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-tp20231-070.png",
+  imagemUrl:"dados/imagens/q-tp20231-070.webp",
   enunciado:"Mulher, 68 anos, procura atendimento na Unidade Básica de Saúde por quadro de dor abdominal em cólica há três dias, acompanhada de distensão, náuseas, hiporexia e parada de eliminação de flatos e fezes. Antecedentes pessoais: há seis meses apresenta emagrecimento e episódios de dores abdominais, associados a constipação intestinal. Exame físico: abdome distendido, globoso, hipertimpânico em andar superior, levemente doloroso, com massa endurecida palpável em hipogástrio. Radiograma de abdome na imagem abaixo: O diagnóstico é:",
   alternativas:[{id:"A",texto:"Constipação intestinal crônica, com radiograma mostrando distensão de cólon e intestino delgado e ar na ampola retal."},{id:"B",texto:"Obstrução intestinal baixa, com radiograma evidenciando distensão de cólon e válvula ileocecal competente."},{id:"C",texto:"Abdome agudo perfurativo, com radiograma evidenciando pneumoperitônio."},{id:"D",texto:"Obstrução intestinal alta, com radiograma mostrando distensão de alças de intestino delgado."}],
   gabarito:"B",
@@ -1120,7 +1120,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-083", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:83,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-tp20231-083.png",
+  imagemUrl:"dados/imagens/q-tp20231-083.webp",
   enunciado:"Analisando o partograma abaixo, o diagnóstico e a conduta são:",
   alternativas:[{id:"A",texto:"Desproporção céfalo-pélvica. Fazer ocitocina."},{id:"B",texto:"Parada de dilatação. Realizar cesariana."},{id:"C",texto:"Partograma normal. Seguir com assistência ao parto."},{id:"D",texto:"Distócia de rotação. Fazer uso de fórceps."}],
   gabarito:"B",
@@ -1316,7 +1316,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-098", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:98,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-climaterio",
-  imagemUrl:"dados/imagens/q-tp20231-098.png",
+  imagemUrl:"dados/imagens/q-tp20231-098.webp",
   enunciado:"Mulher, 53 anos, G3P3, DUM há 13 meses, com fogachos intensos que atrapalham a sua qualidade de vida, além de insônia e alteração de humor. Comparece à UBS trazendo os exames solicitados em consulta anterior. Antecedentes pessoais: nega doenças prévias. Sem antecedente de câncer de mama na família. Exame físico: índice de massa corporal de 31kg/m2. Resultados dos exames: Assinale a alternativa correta para a paciente:",
   alternativas:[{id:"A",texto:"A TH é indicada devido à atrofia vaginal e osteoporose, esperadas pelo tempo de evolução."},{id:"B",texto:"A terapia de reposição hormonal (TH) combinada pode ser utilizada, desde que seja pela via transdérmica."},{id:"C",texto:"Com esse resultado da mamografia, não se pode prescrever TH até a elucidação do diagnóstico da enfermidade mamária da mulher."},{id:"D",texto:"Se a paciente não desejasse usar métodos hormonais para alívio dos fogachos, poderia ser prescrito antidepressivo tricíclico."}],
   gabarito:"B",
@@ -1408,7 +1408,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-105", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:105,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-tp20231-105.png",
+  imagemUrl:"dados/imagens/q-tp20231-105.webp",
   enunciado:"O gráfico a seguir representa o número de casos notificados de dengue em um município de médio porte, no ano de 2022: Considerando o plano de contingência para as emergências em saúde pública e o tipo de gráfico apresentado, os itens identificados como níveis 1, 2 e 3 representam, respectivamente, os cenários de:",
   alternativas:[{id:"A",texto:"Risco para acionar medidas de contenção em uma curva epidêmica."},{id:"B",texto:"Busca ativa e sorologia dos casos suspeitos em um diagrama de controle."},{id:"C",texto:"Monitoramento viral com dados laboratoriais em uma curva epidêmica."},{id:"D",texto:"Risco para ativação das medidas de contenção em um diagrama de controle."}],
   gabarito:"D",
@@ -1422,7 +1422,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-106", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:106,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-tp20231-106.png",
+  imagemUrl:"dados/imagens/q-tp20231-106.webp",
   enunciado:"A figura a seguir mostra uma série histórica do número de casos humanos confirmados de febre amarela silvestre e sua letalidade no Brasil, de 1980 a 2016: Pela análise dos dados apresentados, podemos concluir que a febre amarela, neste período, foi uma doença que apresentou:",
   alternativas:[{id:"A",texto:"Letalidade variável, segundo distribuição sazonal da doença."},{id:"B",texto:"Alta letalidade em anos epidêmicos."},{id:"C",texto:"Baixa letalidade em anos interepidêmicos."},{id:"D",texto:"Alta letalidade média, com elevado número de óbitos entre os casos."}],
   gabarito:"D",
@@ -1436,7 +1436,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
 {
   id:"q-tp20231-107", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:1, numeroNaProva:107,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-tp20231-107.png",
+  imagemUrl:"dados/imagens/q-tp20231-107.webp",
   enunciado:"Um estudo efetuado para se avaliar fatores de risco para quedas em idosos mostrou os seguintes resultados: Os fatores de risco identificados no estudo são:",
   alternativas:[{id:"A",texto:"Idosos com cardiopatia; glaucoma."},{id:"B",texto:"Dependentes em atividades cotidianas; doença mental."},{id:"C",texto:"Idosos com doença mental; cardiopatia."},{id:"D",texto:"Caminhar 2 ou mais horas/dia; glaucoma."}],
   gabarito:"B",

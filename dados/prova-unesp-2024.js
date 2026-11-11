@@ -111,7 +111,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-008", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-unesp2024-008.png", imagemLegenda:"Eletrocardiograma em duas derivações (DII e aVF), FC 221 bpm",
+  imagemUrl:"dados/imagens/q-unesp2024-008.webp", imagemLegenda:"Eletrocardiograma em duas derivações (DII e aVF), FC 221 bpm",
   enunciado:"Menino de 3 anos apresenta palidez cutânea, taquipneia e taquicardia há 4 horas. Ao exame físico: afebril, pulsos finos, perfusão periférica diminuída, tempo de enchimento capilar de 4 segundos, FC acima de 200 bpm, PA 60 X 20 mmHg. Colocado em monitorização contínua e registrado ECG (2 derivações) no cardioversor/desfibrilador (vide imagem). O diagnóstico e o tratamento correto são, respectivamente:",
   alternativas:[{id:"A",texto:"Taquicardia sinusal; metroprolol intravenoso;"},{id:"B",texto:"Taquicardia supraventricular; adenosina intravenosa;"},{id:"C",texto:"Taquicardia juncional; cardioversão;"},{id:"D",texto:"Taquicardia ventricular; cardioversão;"}],
   gabarito:"D",
@@ -203,7 +203,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-015", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:15,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-unesp2024-015.png", imagemLegenda:"Radiografia de tórax do lactente (hiperinsuflação e aumento da trama vasobrônquica)",
+  imagemUrl:"dados/imagens/q-unesp2024-015.webp", imagemLegenda:"Radiografia de tórax do lactente (hiperinsuflação e aumento da trama vasobrônquica)",
   enunciado:"Menina de 2 meses apresenta tosse em crises e falta de ar há 3 dias. AP: nascida a termo, parto normal, conjuntivite prévia. Ao exame físico: BEG, eutrófica, FR 71 irpm, FC 160 bpm, SatO2 95% (ar ambiente), afebril, acianótica. Tórax: presença de retrações intercostais, estertores crepitantes em bases. Raio X de tórax (vide imagem) – hiperinsulflação e aumento de trama vasobrônquica. Ao exame laboratorial: Hb 12g/dL, leucócitos 10 000/ mm3 (bastões 3%, segmentado 36%, eosinófilo 10%, linfócitos 48%, monócitos 3%). Paciente foi internada, colocada sob oxigenioterapia e hidratação IV. O agente etiológico da pneumonia e o tratamento são, respectivamente:",
   alternativas:[{id:"A",texto:"Vírus respiratório sincicial; prednisolona VO."},{id:"B",texto:"Chlamydia trachomatis; eritromicina VO."},{id:"C",texto:"Estreptococo do grupo B; amoxicilina + clavulanato IV."},{id:"D",texto:"Citomegalovírus; ganciclovir IV."}],
   gabarito:"B",
@@ -217,7 +217,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-016", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:16,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-unesp2024-016.png", imagemLegenda:"Radiografia de tórax em PA",
+  imagemUrl:"dados/imagens/q-unesp2024-016.webp", imagemLegenda:"Radiografia de tórax em PA",
   enunciado:"Menino de 4 anos apresentou tosse e coriza há 7 dias, evoluindo com febre há 2 dias. Apresentava-se em estado geral preservado, recebeu diagnóstico de pneumonia adquirida na comunidade e foi iniciada antibioticoterapia com amoxicilina 50 mg/kg/dia. Paciente foi avaliado no terceiro dia do tratamento e queixava-se de dor abdominal. Ao exame físico: FR 30 irpm, FC 120 bpm, T 38,5 °C, SatO2 92% (ar ambiente). Tórax: tiragem intercostal, murmúrio vesicular diminuído em base à esquerda, broncofonia diminuída, crepitações bilaterais e sibilos esparsos. Raio X de tórax (vide imagem). A conduta deve ser:",
   alternativas:[{id:"A",texto:"Tratamento ambulatorial, inalação com soro fisiológico 0,9%, amoxicilina + clavulanato VO."},{id:"B",texto:"Tratamento ambulatorial, inalação com beta 2 adrenérgico, amoxicilina VO associada à amicacina IM."},{id:"C",texto:"Internação, oxigenioterapia, ampicilina 200 mg/kg/dia IV."},{id:"D",texto:"Internação, inalação com beta 2 adrenérgico, vancomicina 40 mg/kg/dia IV."}],
   gabarito:"C",
@@ -322,7 +322,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-024", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:24,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-unesp2024-024.png", imagemLegenda:"Partograma (dilatação, apresentação, FCF e contrações)",
+  imagemUrl:"dados/imagens/q-unesp2024-024.webp", imagemLegenda:"Partograma (dilatação, apresentação, FCF e contrações)",
   enunciado:"Primigesta de 24 anos, com 39 semanas, está em trabalho de parto, conforme o partograma da imagem a seguir. As possíveis complicações decorrentes dessa evolução são:",
   alternativas:[{id:"A",texto:"Hipotonia uterina e infecção puerperal."},{id:"B",texto:"Infecção puerperal e laceração de trajeto."},{id:"C",texto:"Hipotonia uterina e laceração de trajeto."},{id:"D",texto:"Infecção puerperal e trombose venosa profunda."}],
   gabarito:"C",
@@ -336,7 +336,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-025", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:25,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-unesp2024-025.jpg", imagemLegenda:"Gráfico de ganho de peso por IMC e semanas de gestação (pontos na faixa de baixo peso)",
+  imagemUrl:"dados/imagens/q-unesp2024-025.webp", imagemLegenda:"Gráfico de ganho de peso por IMC e semanas de gestação (pontos na faixa de baixo peso)",
   enunciado:"Primigesta de 17 anos retorna com 12 semanas (DUM) à consulta de PN queixando-se de piora das náuseas e vômitos, apesar do uso correto de medicação antiemética. Ao exame físico: regular estado geral, PA 100 x 60 mmHg, FC 102 bpm, desidratada (+/4+) e com a curva de ganho de peso da imagem a seguir. Ultrassom: gestação única, tópica, com idade gestacional compatível com a DUM. Aos exames laboratoriais: cultura de urina negativa, TSH 0,03 (normal entre 0,4 a 4,5 μUI/mL) e T4L 1,1 (normal entre 0,7 a 1,8 ng/dL). O diagnóstico e a conduta são, correta e respectivamente:",
   alternativas:[{id:"A",texto:"Hiperêmese gravídica; internação e suporte clínico."},{id:"B",texto:"Êmese gravídica; internação e suporte clínico."},{id:"C",texto:"Hiperêmese gravídica; tratar hipertireoidismo."},{id:"D",texto:"Êmese gravídica; tratar tipertireoidismo."}],
   gabarito:"A",
@@ -376,7 +376,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-028", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:28,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-restricaocrescimento",
-  imagemUrl:"dados/imagens/q-unesp2024-028.png", imagemLegenda:"Curva de altura uterina por semana de gestação (percentis 10 e 90)",
+  imagemUrl:"dados/imagens/q-unesp2024-028.webp", imagemLegenda:"Curva de altura uterina por semana de gestação (percentis 10 e 90)",
   enunciado:"Secundigesta de 44 anos apresenta, com 34 semanas de idade gestacional, a seguinte curva de altura uterina (vide imagem). AP: tabagista (5 cigarros/dia). Ultrassom: peso fetal no percentil 42, índice de líquido amniótico no percentil 37 e resistência normal ao Doppler da artéria umbilical. O diagnóstico e a conduta são, correta e respectivamente:",
   alternativas:[{id:"A",texto:"Crescimento fetal adequado; manter seguimento pré-natal."},{id:"B",texto:"Feto pequeno para idade gestacional; manter seguimento pré-natal."},{id:"C",texto:"Crescimento fetal adequado; iniciar ciclo de corticoide."},{id:"D",texto:"Restrição de crescimento intra-útero; iniciar ciclo de corticoide."}],
   gabarito:"A",
@@ -390,7 +390,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-029", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:29,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
-  imagemUrl:"dados/imagens/q-unesp2024-029.png", imagemLegenda:"GTT 75 g durante a gestação e 6 semanas após o parto",
+  imagemUrl:"dados/imagens/q-unesp2024-029.webp", imagemLegenda:"GTT 75 g durante a gestação e 6 semanas após o parto",
   enunciado:"Puérpera de 38 anos, obesa, apresenta testes de tolerância oral à glicose com 75g (GTT), conforme a tabela a seguir. Neste momento, a interpretação do resultado e a conduta são, correta e respectivamente:",
   alternativas:[{id:"A",texto:"Exame normal; avaliação a cada 5 anos."},{id:"B",texto:"Intolerância a carboidratos; mudança do estilo de vida."},{id:"C",texto:"Diabetes; prescrever metformina."},{id:"D",texto:"Exame normal; mudança do estilo de vida e avaliação a cada 5 anos."}],
   gabarito:"B",
@@ -534,7 +534,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-040", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:40,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-caovario",
-  imagemUrl:"dados/imagens/q-unesp2024-040.png", imagemLegenda:"Peça cirúrgica com massas nodulares multilobuladas bilaterais",
+  imagemUrl:"dados/imagens/q-unesp2024-040.webp", imagemLegenda:"Peça cirúrgica com massas nodulares multilobuladas bilaterais",
   enunciado:"Mulher de 62 anos apresenta dor no baixo ventre e aumento progressivo do volume abdominal há vários meses. Após investigação foi submetida à histerectomia, cujas características macroscópicas, indicadas na imagem a seguir, favorecem o diagnóstico de",
   alternativas:[{id:"A",texto:"Endometriose bilateral com múltiplas lesões cicatriciais."},{id:"B",texto:"Doença inflamatória pélvica com comprometimento tubo-ovariano bilateral."},{id:"C",texto:"Tumor de Krukenberg."},{id:"D",texto:"Adenocarcinoma do ovário com comprometimento bilateral."}],
   gabarito:"D",
@@ -548,7 +548,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-041", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:41,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-unesp2024-041.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-unesp2024-041.webp", imagemLegenda:"Eletrocardiograma de 12 derivações",
   enunciado:"Homem de 53 anos com queixa de dispneia aos esforços e edema de membros inferiores há um mês, com piora progressiva. Há dois dias dorme sentado e acorda de madrugada sufocado. Realizou ECG, conforme a figura a seguir. Os diagnósticos clínico e eletrocardiográfico, respectivamente, são:",
   alternativas:[{id:"A",texto:"Síndrome coronariana aguda sem supradesnivelamento do segmento ST; infradesnivelamento do segmento ST em parede anterior."},{id:"B",texto:"Síndrome coronariana aguda com supradesnivelamento do segmento ST; supradesnivelamento do segmento ST em parede anterior."},{id:"C",texto:"Edema agudo de pulmão; sobrecarga ventricular esquerda."},{id:"D",texto:"Insuficiência cardíaca; sobrecarga ventricular esquerda."}],
   gabarito:"D",
@@ -562,7 +562,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-042", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:42,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-unesp2024-042.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações (mesmo traçado da questão 41)",
+  imagemUrl:"dados/imagens/q-unesp2024-042.webp", imagemLegenda:"Eletrocardiograma de 12 derivações (mesmo traçado da questão 41)",
   enunciado:"Homem de 53 anos com queixa de dispneia aos esforços e edema de membros inferiores há um mês, com piora progressiva. Há dois dias dorme sentado e acorda de madrugada sufocado. Realizou ECG, conforme a figura a seguir. Sobre o caso clínico, a melhor conduta é:",
   alternativas:[{id:"A",texto:"Iniciar AAS, clopidogrel, estatina de alta potência, nitrato e encaminhar ao serviço de emergência."},{id:"B",texto:"Iniciar diurético de alça (furosemida), vasodilatador oral (preferencialmente IECA), solicitar raio X de tórax e ecocardiograma."},{id:"C",texto:"Iniciar AAS, clopidogrel, estatina de alta potência, anticoagulação com heparina de baixo peso molecular e encaminhar ao serviço de emergência."},{id:"D",texto:"Iniciar diurético de alça (furosemida), vasodilatador oral (preferencialmente IECA), betabloqueador e bloqueador de receptor de aldosterona."}],
   gabarito:"B",
@@ -576,7 +576,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-043", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:43,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-unesp2024-043.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações com supradesnivelamento do segmento ST",
+  imagemUrl:"dados/imagens/q-unesp2024-043.webp", imagemLegenda:"Eletrocardiograma de 12 derivações com supradesnivelamento do segmento ST",
   enunciado:"Homem de 60 anos, admitido na sala de emergência com dor precordial intensa há uma hora. AP: HAS e tabagismo. Realizou eletrocardiograma, conforme a figura a seguir: A conduta mais adequada é administrar AAS e:",
   alternativas:[{id:"A",texto:"Clopidogrel, enoxaparina e aguardar os marcadores de necrose miocárdica para definir a necessidade de intervenção."},{id:"B",texto:"Clopidogrel e realizar trombólise com tenecteplase se não houver contraindicação."},{id:"C",texto:"Ticagrelor e encaminhar imediatamente para angioplastia primária."},{id:"D",texto:"Não realizar pré-tratamento com outro antitrombótico ou antiplaquetário e encaminhar para angioplastia primária."}],
   gabarito:"C",
@@ -772,7 +772,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-058", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:58,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-farmacodermias",
-  imagemUrl:"dados/imagens/q-unesp2024-058.png", imagemLegenda:"Eritrodermia com descamação em tronco e dorso",
+  imagemUrl:"dados/imagens/q-unesp2024-058.webp", imagemLegenda:"Eritrodermia com descamação em tronco e dorso",
   enunciado:"Homem de 63 anos iniciou quadro de exantema (vide imagem) há 18 dias, edema de face, febre entre 38-39,5 °C, linfadenopatia inguinal e sinal de Nikolsky negativo. AP: etilista, cirrose hepática alcoólica, varizes esofágicas, epilepsia pós-traumática e peritonite bacteriana espontânea tratada. Medicações em uso há 35 dias: fenitoína, norfloxacino, propranolol, ornitina, tiamina, omeprazol, lactulose e ácido fólico. Aos exames laboratoriais: Hb 14,5 g/dL, Ht 44,3%, leucócitos 8 100/mm3 , eosinófilos 1 500/mm3 , TGO 122 U/L, TGP 48 U/L, PCR 7,10 mg/dL. O diagnóstico e a conduta inicial são, respectivamente:",
   alternativas:[{id:"A",texto:"Síndrome DRESS; suspender fenitoína e norfloxacino e introduzir corticoterapia sistêmica."},{id:"B",texto:"Quadro cutâneo de origem infecciosa bacteriana; escalonar antibioticoterapia sistêmica."},{id:"C",texto:"Necrólise epidérmica tóxica; suspender todas as medicações em uso, exceto da fenitoína."},{id:"D",texto:"Síndrome de Steven-Johnson; alterar antibioticoterapia e prescrever corticoterapia sistêmica."}],
   gabarito:"A",
@@ -838,7 +838,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-063", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:63,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
-  imagemUrl:"dados/imagens/q-unesp2024-063.png", imagemLegenda:"Colangiopancreatografia retrógrada endoscópica (estruturas numeradas de I a VIII)",
+  imagemUrl:"dados/imagens/q-unesp2024-063.webp", imagemLegenda:"Colangiopancreatografia retrógrada endoscópica (estruturas numeradas de I a VIII)",
   enunciado:"Mulher de 34 anos foi submetida a uma colangiopancreatografia retrógrada endoscópica (vide imagem). A alternativa que contém a relação correta entre o numeral e a estrutura anatômica correspondente é:",
   alternativas:[{id:"A",texto:"I – ducto hepático esquerdo; III – ducto colédoco; IV – vesícula biliar."},{id:"B",texto:"II – ducto hepático direito; V – ducto cístico; VIII – extravasamento de ar e contraste para o retroperitônio."},{id:"C",texto:"IV – ducto aberrante; VI – ducto colédoco; VII – ducto de Wirsung."},{id:"D",texto:"III – ducto hepático comum; VI – ducto colédoco; VIII – duodeno."}],
   gabarito:"D",
@@ -865,7 +865,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-065", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:65,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
-  imagemUrl:"dados/imagens/q-unesp2024-065.png", imagemLegenda:"Divisão da mesa cirúrgica em quadrantes A a D e instrumentos I a IV",
+  imagemUrl:"dados/imagens/q-unesp2024-065.webp", imagemLegenda:"Divisão da mesa cirúrgica em quadrantes A a D e instrumentos I a IV",
   enunciado:"Um indivíduo será o instrumentador de uma herniorrafia inguinal direita. Considerando que o instrumentador está posicionado como na ilustração, a alternativa que correlaciona, respectivamente, o instrumento e a sua posição correta na mesa cirúrgica é:",
   alternativas:[{id:"A",texto:"I – C; II – A; III – D; IV – B."},{id:"B",texto:"I – D; II – B; III – C; IV – A."},{id:"C",texto:"I – C; II – A; III – B; IV – D."},{id:"D",texto:"I – D; II – B; III – A; IV – C."}],
   gabarito:"B",
@@ -983,7 +983,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-074", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:74,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-anatomiacirurgica",
-  imagemUrl:"dados/imagens/q-unesp2024-074.png", imagemLegenda:"Ilustração de duas pessoas em disputa de queda de braço",
+  imagemUrl:"dados/imagens/q-unesp2024-074.webp", imagemLegenda:"Ilustração de duas pessoas em disputa de queda de braço",
   enunciado:"A “queda de braço” é uma atividade esportiva que pode causar fratura do úmero por sua torção excessiva. O nervo que tem elevado risco de lesão devido à sua localização extremamente próxima ao úmero é o:",
   alternativas:[{id:"A",texto:"Mediano."},{id:"B",texto:"Ulnar."},{id:"C",texto:"Radial."},{id:"D",texto:"Axilar."}],
   gabarito:"C",
@@ -997,7 +997,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-075", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:75,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-neoplasia",
-  imagemUrl:"dados/imagens/q-unesp2024-075.jpg", imagemLegenda:"Tomografia de tórax com lesão cavitada de paredes espessas no pulmão direito",
+  imagemUrl:"dados/imagens/q-unesp2024-075.webp", imagemLegenda:"Tomografia de tórax com lesão cavitada de paredes espessas no pulmão direito",
   enunciado:"Homem de 75 anos apresenta febre e tosse com expectoração há cinco dias. Refere que nos últimos cinco meses tratou três pneumonias sempre na mesma localização, com uso de diversos antibióticos, e perdeu 7 Kg nesse período. AP: HAS e tabagista 80 anos-maço. TC de tórax: vide imagens. A melhor conduta deve ser:",
   alternativas:[{id:"A",texto:"Biópsia transtorácica."},{id:"B",texto:"Toracocentese diagnóstica."},{id:"C",texto:"Drenagem torácica."},{id:"D",texto:"Segmentectomia pulmonar."}],
   gabarito:"A",
@@ -1063,7 +1063,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-080", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:80,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tumores",
-  imagemUrl:"dados/imagens/q-unesp2024-080.jpg", imagemLegenda:"Tomografia de crânio com contraste: lesão com realce anelar e extenso edema vasogênico à esquerda",
+  imagemUrl:"dados/imagens/q-unesp2024-080.webp", imagemLegenda:"Tomografia de crânio com contraste: lesão com realce anelar e extenso edema vasogênico à esquerda",
   enunciado:"Mulher de 65 anos apresenta hemiparesia e afasia progressivas há duas semanas. Há três dias evoluiu com cefaleia de forte intensidade, vômitos e alteração do nível de consciência. Ao exame físico: sonolenta, Escala de coma de Glasgow 13, afásica, hemiparesia incompleta desproporcionada de predomínio braquial à direita. TC de crânio: vide imagem a seguir. Para melhora sintomática, deve-se prescrever:",
   alternativas:[{id:"A",texto:"Manitol."},{id:"B",texto:"Fenitoína."},{id:"C",texto:"Acetazolamida."},{id:"D",texto:"Bexametasona."}],
   gabarito:"D",
@@ -1155,7 +1155,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-087", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:87,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2024-087.png", imagemLegenda:"Quatro curvas de mortalidade proporcional por idade (Nelson de Moraes), A a D",
+  imagemUrl:"dados/imagens/q-unesp2024-087.webp", imagemLegenda:"Quatro curvas de mortalidade proporcional por idade (Nelson de Moraes), A a D",
   enunciado:"A Curva de Nelson de Moraes representa graficamente a mortalidade proporcional por idade e expressa o nível de saúde de uma população. Assinale a alternativa que apresenta a correlação correta de cada curva ao nível de saúde: muito baixo, baixo, regular e elevado, conforme as figuras.",
   alternativas:[{id:"A",texto:"D, C, A e B."},{id:"B",texto:"D, B, A e C."},{id:"C",texto:"A, D, B e C."},{id:"D",texto:"C, B, D e A."}],
   gabarito:"C",
@@ -1234,7 +1234,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-093", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:93,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-saudepopulacoes",
-  imagemUrl:"dados/imagens/q-unesp2024-093.png", imagemLegenda:"Mortalidade proporcional (%) de indígenas e da população geral brasileira por faixa etária (2000, 2010 e 2018)",
+  imagemUrl:"dados/imagens/q-unesp2024-093.webp", imagemLegenda:"Mortalidade proporcional (%) de indígenas e da população geral brasileira por faixa etária (2000, 2010 e 2018)",
   enunciado:"Observe a figura a seguir: Sobre a figura, é correto afirmar que:",
   alternativas:[{id:"A",texto:"O coeficiente de mortalidade por idade entre indígenas na faixa etária de 20 a 49 anos foi de 22,5% (2000), 18,6% (2010) e 19,6% (2018); e no restante da população brasileira de 21,1% (2000), 18,6% (2010) e 15,3% (2018), respectivamente."},{id:"B",texto:"Nos três anos analisados, a taxa de mortalidade infantil foi mais elevada entre povos indígenas, sendo 15,3% (2000), 17,7% (2010) e 16,2% (2018); enquanto a taxa de mortalidade infantil para o restante da população brasileira apresenta valores em queda com o passar dos anos, correspondendo a 7,2% (2000), 3,5% (2010) e 2,7% (2018), respectivamente."},{id:"C",texto:"Nos três anos estudados, na população indígena há piores indicadores de saúde em relação ao restante da população brasileira, tanto no que se refere à elevada proporção de mortalidade nos primeiros anos de vida quanto à expressiva proporção de mortes prematuras em adultos jovens, sendo que apenas a metade dos indígenas sobrevive aos 50 anos ou mais."},{id:"D",texto:"A ausência de melhora na avaliação dos indicadores das condições de vida da população indígena no período analisado indica a persistência de problemas inadmissíveis e evitáveis, como elevada mortalidade em menores de 1 ano, mortes prematuras em adultos jovens e baixa proporção de óbitos em idosos."}],
   gabarito:"C",
@@ -1300,7 +1300,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2024", [
 {
   id:"q-unesp2024-098", banca:"UNESP (FMB)", real:true, ano:2024, numeroNaProva:98,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unesp2024-098.png", imagemLegenda:"Lesão ulcerovegetante infiltrada no lábio superior",
+  imagemUrl:"dados/imagens/q-unesp2024-098.webp", imagemLegenda:"Lesão ulcerovegetante infiltrada no lábio superior",
   enunciado:"Homem de 42 anos apresenta lesão no lábio superior há seis meses, conforme a imagem. AP: morador de zona rural, agricultor, tabagista de 8 cigarros de palha por dia e etilista de meia garrafa de aguardente diária. Sobre a hipótese diagnóstica, é correto afirmar que:",
   alternativas:[{id:"A",texto:"No exame direto para a confirmação diagnóstica, visualiza-se estruturas arredondadas, de parede birrefringente e gemulação simples."},{id:"B",texto:"A principal porta de entrada é traumática, sendo o tabagismo de cigarros de palha uma das formas mais comuns."},{id:"C",texto:"É comum, na forma clínica, o comprometimento linfonodal, com aumento de volume local, calor, rubor e fistulização com secreção purulenta"},{id:"D",texto:"É imperativa a realização de raio-X de tórax para avaliação de comprometimento pulmonar"}],
   gabarito:"D",

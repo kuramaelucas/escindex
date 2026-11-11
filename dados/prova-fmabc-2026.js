@@ -452,7 +452,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 {
   id:"q-fmabc2026-034", banca:"FMABC", real:true, ano:2026, numeroNaProva:34,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
-  imagemUrl:"dados/imagens/q-fmabc2026-034.png", imagemLegenda:"Esquema de cinco tipos de atresia esofágica (questão 34).",
+  imagemUrl:"dados/imagens/q-fmabc2026-034.webp", imagemLegenda:"Esquema de cinco tipos de atresia esofágica (questão 34).",
   enunciado:"A imagem a seguir classifica em 5 estágios uma patologia esofágica. Qual é a patologia apresentada e qual é o seu subtipo mais comum?",
   alternativas:[{id:"A",texto:"Atresia esofágica; tipo C."},{id:"B",texto:"Acalásia esofágica; tipo C."},{id:"C",texto:"Atresia esofágica; tipo B."},{id:"D",texto:"Acalásia esofágica; tipo B."}],
   gabarito:"A",
@@ -518,7 +518,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2026", [
 {
   id:"q-fmabc2026-039", banca:"FMABC", real:true, ano:2026, numeroNaProva:39,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-fmabc2026-039.png", imagemLegenda:"Radiografia de abdome (questão 39).",
+  imagemUrl:"dados/imagens/q-fmabc2026-039.webp", imagemLegenda:"Radiografia de abdome (questão 39).",
   enunciado:"Qual é o sinal semiológico encontrado na imagem a seguir e qual patologia abdominal ele representa?",
   alternativas:[{id:"A",texto:"Sinal do grão de café; volvo de intestino delgado."},{id:"B",texto:"Sinal do bico de pássaro; obstrução duodenal."},{id:"C",texto:"Sinal da maçã mordida; neoplasia obstrutiva."},{id:"D",texto:"Sinal do grão de café; volvo de sigmoide."}],
   gabarito:"D",

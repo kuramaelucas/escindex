@@ -645,7 +645,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 {
   id:"q-fmabc2024-049", banca:"FMABC", real:true, ano:2024, numeroNaProva:49,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-descrresp",
-  imagemUrl:"dados/imagens/q-fmabc2024-049.png", imagemLegenda:"Radiografia de tórax do recém-nascido (questão 49).",
+  imagemUrl:"dados/imagens/q-fmabc2024-049.webp", imagemLegenda:"Radiografia de tórax do recém-nascido (questão 49).",
   enunciado:"Recém-nascido, sexo feminino, acaba de ser internado na Unidade de Cuidados Intermediários Neonatais, com 2 horas de vida. Mãe de 38 anos, hígida, primigesta, sem intercorrências durante a gestação, apresentou rotura prematura de membranas ovulares e perda de líquido amniótico sem trabalho de parto. Tentada indução de trabalho de parto, sem sucesso. Nascida de parto cesárea após 24 horas de bolsa rota, prematura (36 semanas e 1 dia), posição cefálica, peso de nascimento de 2210 g, adequada para a idade gestacional, Boletim de Apgar: 7/9. Nasceu vigorosa e com choro forte, mas evoluiu com desconforto respiratório, com Boletim de Silverman-Andersan de 4 (retração intercostal moderada, retração xifóide moderada, batimento de asa nasal moderado, gemido expiratório audível com estetoscópio), sendo colocada com suporte de oxigênio. Colhidos exames com Hb: 16,7 g/dL, Ht: 58%, leucócitos: 8480 (40,5% neutrófilos, 2,5% eosinófilos, 46% linfócitos, 11% monócitos), plaquetas: 226000/microL, Proteína C reativa < 0,5 mg/L. Radiografia de tórax conforme imagem a seguir. A hipótese diagnóstica mais provável é:",
   alternativas:[{id:"A",texto:"displasia broncopulmonar."},{id:"B",texto:"hipertensão pulmonar persistente do recém-nascido."},{id:"C",texto:"pneumonia afebril do lactente."},{id:"D",texto:"síndrome do desconforto respiratório (doença da membrana hialina)."},{id:"E",texto:"taquipneia transitória do recém-nascido (síndrome do pulmão úmido)."}],
   gabarito:"E",
@@ -724,7 +724,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 {
   id:"q-fmabc2024-055", banca:"FMABC", real:true, ano:2024, numeroNaProva:55,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
-  imagemUrl:"dados/imagens/q-fmabc2024-055.png", imagemLegenda:"Radiografia de tórax do lactente (questão 55).",
+  imagemUrl:"dados/imagens/q-fmabc2024-055.webp", imagemLegenda:"Radiografia de tórax do lactente (questão 55).",
   enunciado:"Lactente, sexo feminino, 2 meses de idade, foi levada ao pronto atendimento por quadro de tosse seca, obstrução nasal e coriza hialina há 4 dias. Tem evoluído com piora progressiva da tosse, em alguns momentos com vômitos pós-tosse, e piora do cansaço há 1 dia. Sem febre, sem alterações intestinais ou urinárias. Ao exame, criança em regular estado geral, desidratada de algum grau, ausculta pulmonar com roncos esparsos, presença de tiragem subdiafragmática moderada, frequência respiratória de 58 irpm, saturação de 90% em ar ambiente, pele com algumas petéquias exclusivamente na face. Sem outras alterações relevantes ao exame clínico. Optado pela coleta de exames, com Hb 12,4 g/dL, Ht 38,2%, leucócitos: 26300 (12,2% neutrófilos, 0,5% basófilos, 82,6% linfócitos, 5% monócitos), plaquetas: 327000, proteína C reativa de 32,1 mg/dL, radiografia de tórax conforme imagem a seguir. Tendo em vista o diagnóstico mais provável, o tratamento de escolha deve ser realizado com:",
   alternativas:[{id:"A",texto:"Ampicilina."},{id:"B",texto:"Dexametasona."},{id:"C",texto:"Amicacina."},{id:"D",texto:"Azitromicina."},{id:"E",texto:"Apenas medidas de suporte."}],
   gabarito:"D",
@@ -881,7 +881,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 {
   id:"q-fmabc2024-067", banca:"FMABC", real:true, ano:2024, numeroNaProva:67,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
-  imagemUrl:"dados/imagens/q-fmabc2024-067.png", imagemLegenda:"Esquema da pelve feminina com os pontos do POP-Q (questão 67).",
+  imagemUrl:"dados/imagens/q-fmabc2024-067.webp", imagemLegenda:"Esquema da pelve feminina com os pontos do POP-Q (questão 67).",
   enunciado:"A descrição e estadiamento do Prolapso de Órgãos Pélvicos (POP) se dá através de um teste objetivo chamado POP-Q e essa classificação propõe medidas e pontos pré-definidos em relação à estática pélvica feminina conforme a imagem a seguir. Após avaliação desses pontos, interprete os resultados de uma possível paciente: Aa -3; Ba -3; Ap +3; Bp +5; C -6; D -2.",
   alternativas:[{id:"A",texto:"Prolapso de parede vaginal anterior."},{id:"B",texto:"Prolapso de parede vaginal posterior."},{id:"C",texto:"Prolapso de cúpula vaginal."},{id:"D",texto:"Prolapso uterino."},{id:"E",texto:"Sem prolapso."}],
   gabarito:"B",
@@ -1038,7 +1038,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 {
   id:"q-fmabc2024-079", banca:"FMABC", real:true, ano:2024, numeroNaProva:79,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-fmabc2024-079.png", imagemLegenda:"Cardiotocografia da questão 79 (trecho da prova).",
+  imagemUrl:"dados/imagens/q-fmabc2024-079.webp", imagemLegenda:"Cardiotocografia da questão 79 (trecho da prova).",
   enunciado:"Primigesta com 41 semanas de idade gestacional vem referindo diminuição da movimentação fetal, tendo sido realizada a cardiotocografia a seguir. Após avaliação por toque vaginal, o colo uterino era impérvio, amolecido e anteriorizado. Qual o diagnóstico da cardiotocografia e a conduta inicial para esta paciente?",
   alternativas:[{id:"A",texto:"Categoria 1 – reavaliar em 3 dias."},{id:"B",texto:"Categoria 2 – reavaliar em algumas horas."},{id:"C",texto:"Categoria 3 – parto cesariana."},{id:"D",texto:"Categoria 1 – indução do parto com misoprostol."},{id:"E",texto:"Categoria 2 – romper bolsa."}],
   gabarito:"B",
@@ -1143,7 +1143,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 {
   id:"q-fmabc2024-087", banca:"FMABC", real:true, ano:2024, numeroNaProva:87,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-fmabc2024-087.png", imagemLegenda:"Radiografia de tórax da questão 87.",
+  imagemUrl:"dados/imagens/q-fmabc2024-087.webp", imagemLegenda:"Radiografia de tórax da questão 87.",
   enunciado:"Homem de 47 anos apresenta quadro de 2 meses com tosse seca, sudorese noturna, anorexia, adinamia e perda de peso (12% do peso). Não há diarreia ou vômitos. Refere tabagismo há 20 anos (15 cigarros/dia). Ao exame físico, temperatura: 37,6 °C; pressão arterial: 112 × 66 mmHg; frequência cardíaca: 108 bpm; frequência respiratória: 26 ipm; oximetria de pulso com saturação de 93% em ar ambiente. Exames de sangue, hemoglobina: 11,4 g/dL; leucócitos: 3400 (neutrófilos: 87%; bastões: 3%; linfócitos: 9%; eosinófilos: 1%). A radiografia realizada é mostrada a seguir. Considerando a principal hipótese diagnóstica, é correto afirmar:",
   alternativas:[{id:"A",texto:"a doença deve ser notificada em até 7 dias, mesmo antes da confirmação."},{id:"B",texto:"as opacidades retículo/micronodulares difusas de distribuição randômica decorrem da disseminação hematogênica do germe no parênquima pulmonar."},{id:"C",texto:"o tabagismo tem importância epidemiológica associada e aponta para câncer de pulmão com linfangite carcinomatosa."},{id:"D",texto:"o teste de HIV costuma ser positivo nessa condição e o paciente deve ser tratado com trimetoprima-sulfametoxazol."},{id:"E",texto:"se houver história ocupacional (agrotóxicos, gases tóxicos e metais pesados), a doença deve ser notificada em até 24 horas."}],
   gabarito:"B",
@@ -1222,7 +1222,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 {
   id:"q-fmabc2024-093", banca:"FMABC", real:true, ano:2024, numeroNaProva:93,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-maustratos",
-  imagemUrl:"dados/imagens/q-fmabc2024-093.png", imagemLegenda:"Radiografia da perna esquerda do lactente (questão 93).",
+  imagemUrl:"dados/imagens/q-fmabc2024-093.webp", imagemLegenda:"Radiografia da perna esquerda do lactente (questão 93).",
   enunciado:"Bebê de 3 meses de idade chega ao serviço de autópsia com história significativa de pneumonia e choque séptico. O levantamento radiológico completo do esqueleto é realizado e um dos filmes é retratado a seguir. Qual é a melhor interpretação dessa radiografia de extremidade inferior?",
   alternativas:[{id:"A",texto:"Fratura traumática."},{id:"B",texto:"Lesão ocasionada pelo parto."},{id:"C",texto:"Lesão iatrogênica."},{id:"D",texto:"Osteomielite."},{id:"E",texto:"Variante normal."}],
   gabarito:"C",
@@ -1314,7 +1314,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2024", [
 {
   id:"q-fmabc2024-100", banca:"FMABC", real:true, ano:2024, numeroNaProva:100,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-fmabc2024-100.png", imagemLegenda:"Riscos relativos (IC 95%) dos cinco estudos de coorte (questão 100).",
+  imagemUrl:"dados/imagens/q-fmabc2024-100.webp", imagemLegenda:"Riscos relativos (IC 95%) dos cinco estudos de coorte (questão 100).",
   enunciado:"Cinco estudos de coorte prospectivos foram realizados para examinar a associação entre vaginose bacteriana e parto prematuro. Os resultados destes cinco estudos estão ilustrados na figura seguinte e são expressos como riscos relativos com intervalos de confiança de 95%. Qual o estudo que, mais provavelmente, tem o maior tamanho da amostra?",
   alternativas:[{id:"A",texto:"A."},{id:"B",texto:"B."},{id:"C",texto:"C."},{id:"D",texto:"D."},{id:"E",texto:"E."}],
   gabarito:"A",

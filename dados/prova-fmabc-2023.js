@@ -60,7 +60,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2023", [
 {
   id:"q-fmabc2023-004", banca:"FMABC", real:true, ano:2023, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
-  imagemUrl:"dados/imagens/q-fmabc2023-004.png", imagemLegenda:"Tabela de metas glicêmicas individualizadas (questão 4).",
+  imagemUrl:"dados/imagens/q-fmabc2023-004.webp", imagemLegenda:"Tabela de metas glicêmicas individualizadas (questão 4).",
   enunciado:"Analise a tabela a seguir. Assinale a alternativa que apresenta a meta individualizada atual e correta considerando-se os casos de diabetes mellito.",
   alternativas:[{id:"A",texto:"Apenas I está correto."},{id:"B",texto:"Apenas II está correto."},{id:"C",texto:"Apenas I e III estão corretos."},{id:"D",texto:"Apenas I e II estão corretos."},{id:"E",texto:"I, II e III estão corretos."}],
   gabarito:"",
@@ -165,7 +165,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2023", [
 {
   id:"q-fmabc2023-012", banca:"FMABC", real:true, ano:2023, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-fmabc2023-012.png", imagemLegenda:"Traçado do monitor da questão 12.",
+  imagemUrl:"dados/imagens/q-fmabc2023-012.webp", imagemLegenda:"Traçado do monitor da questão 12.",
   enunciado:"Paciente de 65 anos apresenta quadro de dor torácica há 15 minutos, associado à sudorese. Ele refere ser tabagista. Neste momento, sua pressão arterial encontra-se em 90 x 60 mmHg, sua saturação de oxigênio em ar ambiente está em 90% e apresenta o traçado eletrocardiográfico a seguir. A conduta mais indicada a ser tomada é",
   alternativas:[{id:"A",texto:"desfibrilação com energia inicial de 200 J."},{id:"B",texto:"cardioversão com energia inicial de 100 J."},{id:"C",texto:"cardioversão em energia inicial de 120 J."},{id:"D",texto:"amiodarona 150 mg em bomba de infusão."},{id:"E",texto:"adenosina 6 mg como dose inicial."}],
   gabarito:"B",
@@ -179,7 +179,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2023", [
 {
   id:"q-fmabc2023-013", banca:"FMABC", real:true, ano:2023, numeroNaProva:13,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-fmabc2023-013.png", imagemLegenda:"Tomografia de crânio da questão 13.",
+  imagemUrl:"dados/imagens/q-fmabc2023-013.webp", imagemLegenda:"Tomografia de crânio da questão 13.",
   enunciado:"Paciente de 36 anos apresenta quadro súbito de hemiparesia e afasia. Ela esteve gestante até 40 dias atrás, sendo seu parto normal e a termo. Ele chega à unidade de saúde, uma hora após o início dos sintomas. Observe a imagem da tomografia a seguir. Com relação à terapêutica, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A hemicraniectomia descompressão está indicada neste momento."},{id:"B",texto:"O uso de manitol 0,25% está indicado neste momento."},{id:"C",texto:"Para infusão do trombolítico, a pressão arterial deve ser mantida < 185 x 110 mmHg."},{id:"D",texto:"O parto recente contraindica a realização da trombólise."},{id:"E",texto:"Para melhor evolução clínica, a glicemia capilar deve ser mantida entre 60 e 100 mg/dL."}],
   gabarito:"C",
@@ -908,7 +908,7 @@ window.EscDados.registrarQuestoes("prova-fmabc-2023", [
 {
   id:"q-fmabc2023-069", banca:"FMABC", real:true, ano:2023, numeroNaProva:69,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-fmabc2023-069.png", imagemLegenda:"Evoluções do trabalho de parto (questão 69).",
+  imagemUrl:"dados/imagens/q-fmabc2023-069.webp", imagemLegenda:"Evoluções do trabalho de parto (questão 69).",
   enunciado:"Uma parturiente II gesta I para está em trabalho de parto há 8 horas, tendo tido parto normal com RN pesando 3890 g na primeira gestação. Suas últimas evoluções estão referidas na tabela a seguir. Está em evolução natural, sem ocitocina e sem analgesia. Pelos dados apresentados, pode-se concluir que se trata de",
   alternativas:[{id:"A",texto:"distócia de rotação, podendo-se abreviar o expulsivo com fórcipe de Kielland"},{id:"B",texto:"distócia de rotação, devendo fazer cesárea"},{id:"C",texto:"desproporção céfalo pélvica devendo fazer cesárea"},{id:"D",texto:"distócia de dilatação, devendo fazer analgesia e ocitocina se necessário"},{id:"E",texto:"distócia funcional, devendo fazer cesárea"}],
   gabarito:"D",

@@ -225,7 +225,7 @@ function explicacaoCronogramaFormado(usuario){
   const fracao = fracaoRevisaoFormado(usuario.id, fila);
   const aviso = fracao > CONFIG.revisaoSemCalendario ? " Como há "+fila+" revisões vencidas, a fatia subiu para "+pctFormado(fracao)+" até a fila baixar." : "";
   const t = trilhaDeFormado(usuario.id);
-  const trilhaTxt = t ? "Quais assuntos: a sua trilha, com "+t.emEstudo.length+" assunto(s) em estudo agora e "+t.consolidados+" de "+t.total+" consolidados — os que mais caem nas provas e os que servem de base para outros vêm primeiro, e um assunto só abre depois que o que ele exige foi consolidado (Ver minha trilha). " : "";
+  const trilhaTxt = t ? "Quais assuntos: a sua trilha, com "+t.emEstudo.length+" "+plural(t.emEstudo.length,"assunto","assuntos")+" em estudo agora e "+t.consolidados+" de "+t.total+" consolidados — os que mais caem nas provas e os que servem de base para outros vêm primeiro, e um assunto só abre depois que o que ele exige foi consolidado (Ver minha trilha). " : "";
   const misturas = c.fases.map((m,i)=>"fase "+(i+1)+": "+m.map(pctFormado).join("/")).join(", ");
   return "Cronograma de formado(a): cada assunto que você estuda passa por "+c.fases.length+" fases, com cada vez mais questão difícil ("+misturas+" de fácil/média/difícil). "+
     "O assunto sobe de fase pela sua taxa de acerto nas questões novas dele: acertar as "+c.amostraRapida+" primeiras já sobe; senão, com "+c.amostraMinima+" respostas, sobe quem acerta "+reguaDoFormado(usuario).map(pctFormado).join(", ")+" (fase 1, 2, 3) das últimas "+c.janela+" — ritmo "+c.reguas[ritmoDoFormado(usuario)].nome+" ("+c.reguas[ritmoDoFormado(usuario)].como+"), que você muda em Ritmo das fases. "+
@@ -338,7 +338,7 @@ function montarSessaoDeProvaReal(usuarioId, n, excluidas){
   const reais = livres.filter(q=>!ehConsolidacao(q));
   const motivo = q => {
     const p = prior[q.assuntoId];
-    return "Extra do cronograma — prova de residência" + (p ? ": "+nomeAssunto(q.assuntoId)+" tem "+p.questoesNaProva+" questão(ões) nas provas do banco"+(p.taxa!==null ? " e você acerta "+p.taxa+"%" : " e você ainda não o respondeu") : "");
+    return "Extra do cronograma — prova de residência" + (p ? ": "+nomeAssunto(q.assuntoId)+" tem "+p.questoesNaProva+" "+plural(p.questoesNaProva,"questão","questões")+" nas provas do banco"+(p.taxa!==null ? " e você acerta "+p.taxa+"%" : " e você ainda não o respondeu") : "");
   };
   const itens = sortearComPeso(semRepeticaoPrematura(usuarioId, reais), n, q=>pesos[q.assuntoId] || 1)
     .map(q=>({questaoId:q.id, origem:"extra_prova", motivo:motivo(q)}));
@@ -401,7 +401,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   [...partesRevisao.erros, ...partesRevisao.decaimentos].slice(0, Math.max(0, nRevisao - itensRevisao.length)).forEach(v=>{
     const atraso = atrasoDe(v);
     const porErro = partesRevisao.erros.includes(v);
-    itensRevisao.push({questaoId:v.questao.id, origem: porErro ? "revisao_erro" : "revisao_decaimento", motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" dia(s)" : ", no prazo")});
+    itensRevisao.push({questaoId:v.questao.id, origem: porErro ? "revisao_erro" : "revisao_decaimento", motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" "+plural(atraso,"dia","dias")+"" : ", no prazo")});
   });
 
   const poolPrevia = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));

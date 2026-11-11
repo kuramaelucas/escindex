@@ -48,7 +48,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-003", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:3,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
-  imagemUrl:"dados/imagens/q-uspsp1-003.png", imagemLegenda:"Traçado do monitor cardíaco do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp1-003.webp", imagemLegenda:"Traçado do monitor cardíaco do paciente.",
   enunciado:"Menino de 5 anos é trazido à sala de emergência pelo pai após ser encontrado inconsciente em casa. O pai relata que o paciente estava brincando normalmente minutos antes e não possui histórico médico relevante. O paciente não responde a estímulos verbais ou dolorosos, não está respirando e não possui pulso detectável. No monitor, nota-se o seguinte traçado: Para realizar a ressuscitação cardiopulmonar (RCP), de acordo com as diretrizes da American Heart Association, neste paciente, deve-se iniciar C-A-B e:",
   alternativas:[{id:"A",texto:"Realizar cardioversão sincronizada."},{id:"B",texto:"Administrar sulfato de magnésio."},{id:"C",texto:"Realizar desfibrilação."},{id:"D",texto:"Administrar amiodarona."}],
   gabarito:"C",
@@ -62,7 +62,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-004", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:4,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
-  imagemUrl:"dados/imagens/q-uspsp1-004.png", imagemLegenda:"Exantema maculopapular em face e tronco do lactente.",
+  imagemUrl:"dados/imagens/q-uspsp1-004.webp", imagemLegenda:"Exantema maculopapular em face e tronco do lactente.",
   enunciado:"Menino de 7 meses de idade, previamente saudável, apresentou febre de 39 ºC durante 3 dias, sem qualquer outro sintoma e mantendo bom estado geral. Foi medicado apenas com dipirona. No 4º dia a febre cedeu e surgiram manchas pequenas no rosto e na face, que se estenderam para o tronco e as extremidades. A mãe refere que a vacinação está em dia. Ao exame clínico: bom estado geral, corado, hidratado, acianótico, eupneico, afebril. Presença de exantema discreto maculopapular em face, pescoço, tronco e raiz de membros. (Figura abaixo). Sem outras alterações ao exame. O diagnóstico deste caso é:",
   alternativas:[{id:"A",texto:"Sarampo"},{id:"B",texto:"Rubéola"},{id:"C",texto:"Roséola Infantum"},{id:"D",texto:"Eritema Infeccioso"}],
   gabarito:"C",
@@ -102,7 +102,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-007", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
-  imagemUrl:"dados/imagens/q-uspsp1-007.png", imagemLegenda:"Perna direita com eritema e edema.",
+  imagemUrl:"dados/imagens/q-uspsp1-007.webp", imagemLegenda:"Perna direita com eritema e edema.",
   enunciado:"Escolar de 8 anos de idade, refere ter machucado a perna direita com lesão corto contusa há 3 dias e há um dia evoluiu com febre, dor, edema (vide foto). Qual é a principal hipótese diagnóstica e o agente etiológico?",
   alternativas:[{id:"A",texto:"Celulite; Streptococcus pyogenes"},{id:"B",texto:"Erisipela; Streptococcus pyogenes"},{id:"C",texto:"Celulite; Staphylococcus aureus"},{id:"D",texto:"Erisipela; Staphylococcus aureus"}],
   gabarito:"B",
@@ -337,7 +337,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-025", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:25,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-uspsp1-025.png", imagemLegenda:"Tomografia de abdome e pelve do paciente (cortes axial e coronais).",
+  imagemUrl:"dados/imagens/q-uspsp1-025.webp", imagemLegenda:"Tomografia de abdome e pelve do paciente (cortes axial e coronais).",
   enunciado:"Homem, 65 anos de idade, obeso, tem queixa de hematoquezia há 3 semanas. Além disso, refere constipação e está sem evacuar há 3 dias. No momento, está estável hemodinamicamente, com abdome distendido, timpânico e doloroso à palpação. Realizou tomografia de abdome e pelve, apresentando as seguintes imagens: Assinale a conduta a ser tomada:",
   alternativas:[{id:"A",texto:"Colonoscopia"},{id:"B",texto:"Jejum, sondagem nasogástrica e observação clínica por 48h"},{id:"C",texto:"Enterectomia segmentar"},{id:"D",texto:"Colectomia esquerda"}],
   gabarito:"D",
@@ -364,7 +364,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-027", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:27,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
-  imagemUrl:"dados/imagens/q-uspsp1-027.png", imagemLegenda:"Ultrassonografia de abdome superior (vesícula biliar).",
+  imagemUrl:"dados/imagens/q-uspsp1-027.webp", imagemLegenda:"Ultrassonografia de abdome superior (vesícula biliar).",
   enunciado:"Homem, 75 anos de idade, corionariopata com IAM prévio, portador de HAS e DM, se apresenta no pronto socorro com quadro de dor abdominal em HCD, febre e confusão. Ao exame clínico encontra-se em mal estado geral, torporoso, hipotenso, taquicárdico e febril. Realizado USG (imagem abaixo). Além de abertura do protocolo sepse, no momento, a conduta deve ser:",
   alternativas:[{id:"A",texto:"Colecistectomia imediatamente"},{id:"B",texto:"CPRE"},{id:"C",texto:"Colecistostomia após melhora clínica"},{id:"D",texto:"Drenagem de vias biliares com dreno DTPH interno-externo"}],
   gabarito:"D",
@@ -469,7 +469,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-035", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:35,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
-  imagemUrl:"dados/imagens/q-uspsp1-035.png", imagemLegenda:"Achados operatórios em videolaparoscopia (apêndice).",
+  imagemUrl:"dados/imagens/q-uspsp1-035.webp", imagemLegenda:"Achados operatórios em videolaparoscopia (apêndice).",
   enunciado:"Homem, 19 anos de idade, procurou o Serviço de Emergência devido à dor abdominal há 1 dia. Não apresenta comorbidades. O paciente foi submetido a tratamento operatório com os achados apresentados. O procedimento evoluiu sem intercorrências. Qual deve ser a dieta no primeiro pós-operatório e quando deve receber alta hospitalar?",
   alternativas:[{id:"A",texto:"Dieta leve; Terceiro pós-operatório."},{id:"B",texto:"Dieta leve; Primeiro pós-operatório."},{id:"C",texto:"Jejum; Primeiro pós-operatório."},{id:"D",texto:"Jejum; Terceiro pós-operatório."}],
   gabarito:"B",
@@ -496,7 +496,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-037", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:37,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepato-nodulos",
-  imagemUrl:"dados/imagens/q-uspsp1-037.png", imagemLegenda:"Tomografia com contraste do fígado em fases sucessivas (nódulo hepático).",
+  imagemUrl:"dados/imagens/q-uspsp1-037.webp", imagemLegenda:"Tomografia com contraste do fígado em fases sucessivas (nódulo hepático).",
   enunciado:"Mulher de 33 anos de idade, em uso de anticoncepcional oral há 18 anos, realiza tomografia em investigação de dor abdominal, que evidenciou o nódulo hepático mostrado na imagem a seguir. O laudo descreve enchimento globuliforme da lesão. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Observação Clínica"},{id:"B",texto:"Nodulectomia"},{id:"C",texto:"Embolização por Arteriografia Seletiva"},{id:"D",texto:"Suspensão do Anticoncepcional"}],
   gabarito:"A",
@@ -549,7 +549,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-041", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:41,
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
-  imagemUrl:"dados/imagens/q-uspsp1-041.png", imagemLegenda:"Região perianal com fio (seton) passado no trajeto fistuloso.",
+  imagemUrl:"dados/imagens/q-uspsp1-041.webp", imagemLegenda:"Região perianal com fio (seton) passado no trajeto fistuloso.",
   enunciado:"Homem de 22 anos de idade, com diagnóstico de Doença de Crohn, queixa-se de dor intensa ao evacuar e saída de secreção purulenta pelo ânus. Ao exame coloproctológico, nota-se orifício externo anterior com saída de secreção purulenta e ao realizar anuscopia nota-se orifício interno anterior direito. Foi submetido ao seguinte procedimento cirúrgico demonstrado na figura abaixo. Qual é o diagnóstico do paciente?",
   alternativas:[{id:"A",texto:"Doença hemorroidária"},{id:"B",texto:"Fissura anal"},{id:"C",texto:"Fístula perianal"},{id:"D",texto:"Abscesso anal"}],
   gabarito:"C",
@@ -589,7 +589,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-044", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:44,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
-  imagemUrl:"dados/imagens/q-uspsp1-044.png", imagemLegenda:"Endoscopia digestiva: mucosa esofágica distal com erosões.",
+  imagemUrl:"dados/imagens/q-uspsp1-044.webp", imagemLegenda:"Endoscopia digestiva: mucosa esofágica distal com erosões.",
   enunciado:"Homem de 20 anos de idade apresenta queixa de pirose há 6 anos. No último ano realizou mudança do estilo de vida e cessou tabagismo com melhora dos sintomas. Nega disfagia e tem IMC de 22 kg/m2. Fez tratamento por 3 meses com omeprazol tendo remissão parcial dos sintomas. Realizou estudo radiológico contrastado do esôfago e estômago que evidenciou uma hérnia de hiato de 3 cm. Parou o uso da medicação após o período inicial e voltou a ter os mesmos sintomas, porém com maior intensidade e frequência. Podemos afirmar:",
   alternativas:[{id:"A",texto:"Paciente com achados típicos de esofagite eosinofílica, deve iniciar tratamento com inibidor de bomba de prótons e antileucotrieno"},{id:"B",texto:"Paciente com hérnia de hiato e esofagite erosiva importante sendo forte candidato ao tratamento cirúrgico com hiatoplastia e fundoplicatura"},{id:"C",texto:"Paciente com achado de esôfago de Barrett, deverá ser encaminhado para tratamento cirúrgico com ressecção de esôfago distal devido alto risco de malignização"},{id:"D",texto:"Paciente com achado de esôfago de Barrett, deverá realizar biópsias seriadas das lesões guiadas e ecoendoscopia para determinar tratamento"}],
   gabarito:"B",
@@ -616,7 +616,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-046", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:46,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
-  imagemUrl:"dados/imagens/q-uspsp1-046.png", imagemLegenda:"Esofagograma baritado.",
+  imagemUrl:"dados/imagens/q-uspsp1-046.webp", imagemLegenda:"Esofagograma baritado.",
   enunciado:"Homem de 35 anos de idade está com quadro de disfagia progressiva há 6 anos, atualmente se alimenta de pastosos, com perda de 5 kg nos últimos 6 meses. Realizou exame demonstrado a seguir. Qual é o diagnóstico?",
   alternativas:[{id:"A",texto:"Hérnia de hiato"},{id:"B",texto:"Acalásia"},{id:"C",texto:"Neoplasia de esôfago"},{id:"D",texto:"Esôfago em Quebra-nozes"}],
   gabarito:"B",
@@ -630,7 +630,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-047", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:47,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-cirbariatrica",
-  imagemUrl:"dados/imagens/q-uspsp1-047.png", imagemLegenda:"Peça cirúrgica.",
+  imagemUrl:"dados/imagens/q-uspsp1-047.webp", imagemLegenda:"Peça cirúrgica.",
   enunciado:"Homem de 44 anos de idade refere que desde a infância esteve acima do peso. Atualmente com IMC de 37 Kg/m2. É hipertenso, em uso de hidroclorotiazida e losartana. Nega diabetes mellitus. Hemoglobina glicada de 5,4%. Foi submetido a cirurgia bariátrica com obtenção da seguinte peça cirúrgica: Qual foi o procedimento cirúrgico realizado?",
   alternativas:[{id:"A",texto:"Gastrectomia total"},{id:"B",texto:"Duodenal Switch"},{id:"C",texto:"Gastrectomia vertical"},{id:"D",texto:"Cirurgia de Scopinaro"}],
   gabarito:"C",
@@ -644,7 +644,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-048", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:48,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
-  imagemUrl:"dados/imagens/q-uspsp1-048.png", imagemLegenda:"Colangiografia intraoperatória.",
+  imagemUrl:"dados/imagens/q-uspsp1-048.webp", imagemLegenda:"Colangiografia intraoperatória.",
   enunciado:"Homem com diagnóstico de Colelitíase foi submetida a colecistectomia laparoscópica, com colangiografia intraoperatória demonstrada abaixo: Qual é o diagnóstico obtido na colangiografia?",
   alternativas:[{id:"A",texto:"Lesão iatrogênica de via biliar"},{id:"B",texto:"Síndrome de Mirizzi"},{id:"C",texto:"Coledocolitíase"},{id:"D",texto:"Estenose de colédoco"}],
   gabarito:"C",
@@ -749,7 +749,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-056", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:56,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-uspsp1-056.png", imagemLegenda:"Eletrocardiograma de 12 derivações.",
+  imagemUrl:"dados/imagens/q-uspsp1-056.webp", imagemLegenda:"Eletrocardiograma de 12 derivações.",
   enunciado:"Homem de 60 anos de idade em acompanhamento ambulatorial por hipertensão arterial sistêmica. Em uso de enalapril 10 mg 2x/d e hidroclorotiazida 25 mg 1x/d como anti-hipertensivos, além de sinvastatina 40 mg 1x/d. Foram solicitados alguns exames, cujos resultados estão apresentados a seguir. Laboratoriais: Creatinina = 1,1 mg/dL Ureia= 46 mg/dL Potássio=3,7 mg/dL Colesterol total= 168 mg/dL LDL-colesterol= 110 mg/dL Eletrocardiograma: Pode-se afirmar:",
   alternativas:[{id:"A",texto:"Tendo vista os achados eletrocardiográficos do paciente, deve-se suspender a hidroclorotiazida por induzir aumento da reabsorção de cálcio."},{id:"B",texto:"O paciente tem alto risco cardiovascular e portanto está indicada a troca de classe de estatina objetivando redução mais intensa de LDL-colesterol."},{id:"C",texto:"Caso a hipertensão do paciente esteja descompensada, a espironolactona, um diurético poupador de potássio, é o anti hipertensivo de escolha para ser associado no momento."},{id:"D",texto:"O achado eletrocardiográfico sugere lesão de órgão-alvo pela hipertensão, o que agrega risco cardiovascular para o paciente e portanto está indicada a troca de sinvastatina por ezetimiba."}],
   gabarito:"B",
@@ -776,7 +776,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-058", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:58,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
-  imagemUrl:"dados/imagens/q-uspsp1-058.png", imagemLegenda:"Radiografias de tórax em PA e perfil.",
+  imagemUrl:"dados/imagens/q-uspsp1-058.webp", imagemLegenda:"Radiografias de tórax em PA e perfil.",
   enunciado:"Mulher de 69 anos de idade está em uma consulta no AGD com história de tosse produtiva com expectoração clara e dispnéia aos esforços, apresentando ambos os sintomas há alguns anos. Ela tem falta de ar quando anda rapidamente e quando sobe rampas ou escadas. Refere história de 45 anos de tabagismo, mas parou há 2 anos. Usa Salbutamol conforme necessário desde seu diagnóstico de DPOC, 3 meses atrás, mas continua sintomática. Nunca foi hospitalizada pela doença. No exame clínico, está emagrecida, sua saturação de oxigênio em ar ambiente é 95%, com FR de 18 ipm. Na ausculta pulmonar, há sibilos expiratórios difusos. O exame cardíaco é normal. Radiografia de tórax é mostrada abaixo: A espirometria no momento do diagnóstico mostrou redução da relação VEF1/CVF e mantida pós-broncodilatador (0,58) e VEF1 pós-broncodilatador foi de 69% do predito. Qual é a classificação GOLD desta paciente e qual a conduta farmacológica neste momento?",
   alternativas:[{id:"A",texto:"GOLD: GOLD 1B. Conduta farmacológica: Tiotrópio e Azitromicina"},{id:"B",texto:"GOLD: GOLD 2A. Conduta farmacológica: Tiotrópio"},{id:"C",texto:"GOLD: GOLD 2E. Conduta farmacológica: Azitromicina e Prednisona"},{id:"D",texto:"GOLD: GOLD 2B. Conduta farmacológica: Formoterol e Ipratrópio"}],
   gabarito:"B",
@@ -842,7 +842,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-063", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:63,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
-  imagemUrl:"dados/imagens/q-uspsp1-063.png", imagemLegenda:"Eletrocardiograma e tomografia de tórax do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp1-063.webp", imagemLegenda:"Eletrocardiograma e tomografia de tórax do paciente.",
   enunciado:"Homem de 72 anos de idade com histórico de perda de 12 kg em 6 meses (10% do peso) com alteração de hábito intestinal no período, estando mais constipado e com fezes afiladas. Realizou colonoscopia em que foi identificada lesão vegetante em reto que foi biopsiada, mas ainda sem anatomopatológico. Procura atendimento médico com quadro de dor torácica de forte intensidade, sem irradiação e sem fatores de piora ou melhora. Queixa-se de náuseas. É hipertenso e diabético em uso de insulina, tabagista com carga tabágica de 30 maços-ano, em uso de Metformina, Insulina NPH, Losartana, Anlodipino e Hidroclorotiazida em doses máxima. Ao exame clínico, PA 118x66 mmHg, FC 120 bpm, FR 20 ipm, SpO2 91%. Sem achados relevantes no exame dos demais aparelhos. O ECG e a tomografia de tórax realizados estão mostrados a seguir: O diagnóstico eletrocardiográfico e a conduta neste momento são:",
   alternativas:[{id:"A",texto:"Diagnóstico eletrocardiográfico: Ritmo sinusal e Alteração difusa da repolarização. Conduta: AAS e Clopidogrel."},{id:"B",texto:"Diagnóstico eletrocardiográfico: Ritmo sinusal com sobrecarga de câmaras direitas. Conduta: Enoxaparina."},{id:"C",texto:"Diagnóstico eletrocardiográfico: Ritmo sinusal e Alteração difusa da repolarização. Conduta: Alteplase."},{id:"D",texto:"Diagnóstico eletrocardiográfico: Ritmo sinusal com sobrecarga de câmaras direitas. Conduta: Analgesia."}],
   gabarito:"B",
@@ -882,7 +882,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-066", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:66,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-uspsp1-066.png", imagemLegenda:"Eletrocardiograma do infarto.",
+  imagemUrl:"dados/imagens/q-uspsp1-066.webp", imagemLegenda:"Eletrocardiograma do infarto.",
   enunciado:"Considerando o eletrocardiograma apresentado, a classificação do infarto, a parede acometida e a coronária do paciente, comprometida, são:",
   alternativas:[{id:"A",texto:"Classificação do IAM: IAM com supradesnivelamento do segmento ST. Parede acometida: Anterior. Artéria coronária comprometida: Descendente anterior"},{id:"B",texto:"Classificação do IAM: IAM com supradesnivelamento do segmento ST. Parede acometida: Inferior. Artéria coronária comprometida: Direita."},{id:"C",texto:"Classificação do IAM: IAM sem supradesnivelamento do segmento ST. Parede acometida: Anterior. Artéria coronária comprometida: Direita."},{id:"D",texto:"Classificação do IAM: IAM sem supradesnivelamento do segmento ST. Parede acometida: Inferior. Artéria coronária comprometida: Descendente anterior."}],
   gabarito:"B",
@@ -909,7 +909,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-068", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:68,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-artrose",
-  imagemUrl:"dados/imagens/q-uspsp1-068.png", imagemLegenda:"Radiografias das mãos: A, B, C e D (da esquerda para a direita).",
+  imagemUrl:"dados/imagens/q-uspsp1-068.webp", imagemLegenda:"Radiografias das mãos: A, B, C e D (da esquerda para a direita).",
   enunciado:"Assinale a alternativa que contém uma radiografia compatível com osteoartrite primária. As radiografias das mãos estão na figura: (A) primeira, (B) segunda, (C) terceira e (D) quarta, da esquerda para a direita.",
   alternativas:[{id:"A",texto:"Radiografia A"},{id:"B",texto:"Radiografia B"},{id:"C",texto:"Radiografia C"},{id:"D",texto:"Radiografia D"}],
   gabarito:"C",
@@ -924,7 +924,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-069", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:69,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
-  imagemUrl:"dados/imagens/q-uspsp1-069.png", imagemLegenda:"Lesões cutâneas da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp1-069.webp", imagemLegenda:"Lesões cutâneas da paciente.",
   enunciado:"Mulher de 23 anos de idade, primigesta de 10 semanas, com diagnóstico de Lúpus Eritematoso Sistêmico há 3 anos, em uso apenas de hidroxicloroquina, procura atendimento ambulatorial hoje após descoberta da gestação. Apresenta manifestações cutâneas (úlceras orais e nasais, além das lesões abaixo), articulares (poliartralgia e artropatia de Jaccoud) e serosas (derrame pericárdico pequeno). Exame clínico sem alterações além da pele e da artropatia. Considerando os anticorpos relacionados às manifestações clínicas apresentadas pela paciente, qual deve ser a principal conduta durante a gestação?",
   alternativas:[{id:"A",texto:"Enoxaparina subcutânea 1 mg/kg 12/12h"},{id:"B",texto:"Ecocardiografia fetal semanal entre a 16ª e a 26ª semanas de gestação"},{id:"C",texto:"Enoxaparina subcutânea 1 mg/kg diária"},{id:"D",texto:"Dosagem de fator de crescimento placentário e receptor de membrana 1 do VEGF"}],
   gabarito:"B",
@@ -977,7 +977,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-073", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:73,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
-  imagemUrl:"dados/imagens/q-uspsp1-073.png", imagemLegenda:"Ressonância magnética de pelve (corte sagital, T2).",
+  imagemUrl:"dados/imagens/q-uspsp1-073.webp", imagemLegenda:"Ressonância magnética de pelve (corte sagital, T2).",
   enunciado:"Mulher, 44 anos de idade refere aumento do fluxo menstrual, progressivo, há cerca de 4 anos. Recentemente, além da menstruação tem sentido dor. Os ciclos atuais tem intervalo de 30 dias e duração de 10 dias. Uso de preservativo como contraceptivo, sem queixas relacionadas à atividade sexual. Antecedentes 4G 4P, partos normais. Nega doenças ou uso de medicações. Nega antecedentes familiares. Exame clínico: bom estado geral, descorada +/4+; FC: 96bpm; FR: 12ipm; PA: 120/70 mmHg; abdome flácido, indolor. Especular: conteúdo vaginal habitual, colo sem lesões, sem sangramento ativo. Toque vaginal: útero aumentado de volume, retrovertido, pouco mobilizável, não doloroso, regiões anexiais normais. Foi realizado exame de imagem, conforme a imagem. Qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Leiomioma"},{id:"B",texto:"Adenomiose"},{id:"C",texto:"Endometriose"},{id:"D",texto:"Pólipo endometrial"}],
   gabarito:"A",
@@ -991,7 +991,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-074", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:74,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ddsmalformacoes",
-  imagemUrl:"dados/imagens/q-uspsp1-074.png", imagemLegenda:"Ultrassonografia pélvica tridimensional (dois corpos uterinos).",
+  imagemUrl:"dados/imagens/q-uspsp1-074.webp", imagemLegenda:"Ultrassonografia pélvica tridimensional (dois corpos uterinos).",
   enunciado:"Mulher de 22 anos de idade traz queixa de dificuldade para engravidar. Refere também dor durante a relação sexual e cólicas menstruais intensas. De antecedente ginecológico, apresentou menarca aos 13 anos de idade, desde então apresenta ciclos menstruais regulares com fluxo aumentado. De antecedentes pessoais, refere apresentar agenesia de rim esquerdo. Ao exame clínico revelou um útero aumentado e septo vaginal, mas sem outras alterações evidentes. O exame de ultrassonografia pélvica evidenciou dois corpos uterinos distintos (conforme imagem abaixo), cada um com seu próprio colo, e não evidenciou anormalidades nas trompas e ovários. Considerando as malformações mullerianas, a alteração uterina corresponde à ausência de:",
   alternativas:[{id:"A",texto:"Desenvolvimento do ducto paramesonéfrico"},{id:"B",texto:"Canalização do seio útero-genital"},{id:"C",texto:"Fusão dos ductos paramesonéfricos"},{id:"D",texto:"Fusão dos ductos de Wolf"}],
   gabarito:"C",
@@ -1005,7 +1005,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-075", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:75,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-uspsp1-075.png", imagemLegenda:"Lesões vulvares da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp1-075.webp", imagemLegenda:"Lesões vulvares da paciente.",
   enunciado:"Adolescente, 14 anos de idade comparece ao PS com queixa de lesões vulvares dolorosas há 2 dias. Refere sensação de mal estar e calafrios associados. Antecedentes ginecológicos: menarca 12 anos, ciclos regulares, sexualmente ativa, MAC: uso de condom irregular, nuligesta. Ao exame físico, foram evidenciadas as seguintes lesões: Considerando a hipótese diagnóstica, qual é o tratamento proposto e qual é o exame confirmatório?",
   alternativas:[{id:"A",texto:"Doxiciclina 100 mg VO de 12/12h por 14 dias. Pesquisa do agente na lesão por PCR"},{id:"B",texto:"Azitromicina 1g VO em dose única. Cultura de secreção genital."},{id:"C",texto:"Aciclovir 400 mg VO de 8/8h por 7 dias. Pesquisa do agente na lesão por PCR."},{id:"D",texto:"Penicilina benzatina 1.200.000 UI em cada nádega, 1x por semana por 3 semanas. Microscopia em campo escuro."}],
   gabarito:"C",
@@ -1045,7 +1045,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-078", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:78,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-mamabenigna",
-  imagemUrl:"dados/imagens/q-uspsp1-078.png", imagemLegenda:"Ultrassonografia mamária (nódulo).",
+  imagemUrl:"dados/imagens/q-uspsp1-078.webp", imagemLegenda:"Ultrassonografia mamária (nódulo).",
   enunciado:"Mulher de 26 anos de idade vem à consulta para avaliação pois apresenta nódulo palpável na mama esquerda há 3 anos e, embora não tenha crescido, apresenta mastalgia nos períodos menstruais. Realizou USG com imagem abaixo e foi indicada biópsia do nódulo por outro médico. Qual é o provável diagnóstico e a conduta a ser realizada?",
   alternativas:[{id:"A",texto:"Cisto mamário. Punção aspirativa."},{id:"B",texto:"Nódulo mamário benigno, provável fibroadenoma. Seguimento clínico."},{id:"C",texto:"Nódulo mamário maligno, provável carcinoma. Setorectomia + radioterapia."},{id:"D",texto:"Adensamento de tecido glandular mamário. Seguimento clínico"}],
   gabarito:"B",
@@ -1111,7 +1111,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-083", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:83,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-uspsp1-083.png", imagemLegenda:"Ultrassonografia da região anexial esquerda.",
+  imagemUrl:"dados/imagens/q-uspsp1-083.webp", imagemLegenda:"Ultrassonografia da região anexial esquerda.",
   enunciado:"Mulher de 21 anos de idade, solteira, estudante, procura atendimento em pronto-socorro por dor pélvica há 2 dias. Informa dor em quadrantes inferiores do abdome tipo cólica, de intensidade moderada a importante, pior à esquerda, associada a febre e náuseas. Relata sensação de febre, não aferiu temperatura, melhorou com dipirona. Nega vômitos ou diarreia. Nega disúria e polaciúria. Questionada, comenta sobre um corrimento genital amarelado com rajas de sangue. Associa que os sintomas começaram após algumas relações sexuais desprotegidas, quando tem feito ducha vaginal para “evitar pegar doenças”. AP: sem comorbidades. HV: refere tabagismo esporádico (“quando frequenta festas”). AGO: 1G1PN, parto há 4 anos. DUM: 25/02/2018, MAC: DIU de cobre. Refere vida sexual ativa, primeira relação aos 14 anos, não tem parceiro fixo, faz uso intermitente de condom. Exame clínico: Bom estado geral, corada, hidratada, acianótica, anictérica, febril (TAX = 38,6ºC), eupnéica. PA: 110x70 mmHg; FC: 96 bpm; IMC 22,3. Abdome sem abaulamentos ou cicatrizes, doloroso à palpação em quadrantes inferiores, ausência de dor à descompressão brusca. Ao toque vaginal: útero em AVF, normal em tamanho, consistência e mobilidade; colo uterino fibroelástico e doloroso à mobilização; anexo esquerdo doloroso à palpação, anexo direito não palpável. Ao exame especular: saída de secreção purulenta do OE do colo uterino, visualizados fios do DIU. A imagem ultrassonográfica da região anexial esquerda está representada abaixo: Considerando o caso exposto, qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Doença inflamatória pélvica aguda com abscesso tubo ovariano."},{id:"B",texto:"Hidrossalpinge."},{id:"C",texto:"Cisto hemorrágico roto."},{id:"D",texto:"Miomatose uterina com degeneração."}],
   gabarito:"A",
@@ -1151,7 +1151,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-086", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:86,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-abortamento",
-  imagemUrl:"dados/imagens/q-uspsp1-086.png", imagemLegenda:"Ultrassonografia transvaginal: saco gestacional sem embrião.",
+  imagemUrl:"dados/imagens/q-uspsp1-086.webp", imagemLegenda:"Ultrassonografia transvaginal: saco gestacional sem embrião.",
   enunciado:"Gestante de 30 anos, 5 semanas e 4 dias pela DUM. Sem comorbidades. Refere ter feito teste de farmácia positivo para gravidez há 2 semanas. Realizou o primeiro ultrassom hoje em uma clínica popular. Aguarda consulta de pré natal agendada na UBS. Vem ao PS, pois está ansiosa por não ter entendido o laudo do ultrassom. Qual o diagnóstico mais adequado de acordo com o diâmetro interno médio (DIM) do saco gestacional?",
   alternativas:[{id:"A",texto:"Se DIM de 28 mm, deve-se orientar paciente sobre o diagnóstico de aborto retido."},{id:"B",texto:"Se DIM de 18mm, deve-se orientar paciente sobre o diagnóstico de gestação anembrionada"},{id:"C",texto:"Se DIM de 28mm e queixa de sangramento, devese orientar paciente sobre o diagnóstico de ameaça de abortamento"},{id:"D",texto:"Se DIM de 18mm, deve-se orientar paciente sobre diagnóstico de gestação incipiente"}],
   gabarito:"D",
@@ -1178,7 +1178,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-088", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:88,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-uspsp1-088.png", imagemLegenda:"Partograma da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp1-088.webp", imagemLegenda:"Partograma da paciente.",
   enunciado:"Gestante, 2G1Pn (há 5 anos com peso 3459g), 39 semanas e 5 dias, sem comorbidades prévias à gestação está em uso de levotiroxina 75mcg por hipotireoidismo subclínico. Hoje, vem ao PS obstétrico com queixa de perda de líquido há 1 hora. Ao exame clínico: BEG; corada; hidratada; anictérica; afebril; acianótica; eupneica; PA: 128x74mmHg; FC: 86 bpm; tônus uterino normal; altura uterina 34cm; dinâmica uterina 3 contrações moderadas/10 minutos; BCF 154bpm. Ao exame especular saída ativa de líquido claro com grumos e ao toque vaginal 4cm, médio e medianizado, apresentação cefálica alta e móvel. Último USG com 37 semanas: cefálico, placenta anterior, ILA normal, PFE 3.180g. Interna no centro obstétrico para assistência ao trabalho de parto. De acordo com o partograma abaixo, qual seria a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Parto cesárea por desproporção cefalopélvica"},{id:"B",texto:"Aumentar dose de ocitocina para correção de distócia funcional"},{id:"C",texto:"Analgesia para correção de distócia de dilatação"},{id:"D",texto:"Deambulação para correção de distócia funcional"}],
   gabarito:"C",
@@ -1245,7 +1245,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-093", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:93,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-uspsp1-093.png", imagemLegenda:"Partogramas das alternativas A, B, C e D (da esquerda para a direita).",
+  imagemUrl:"dados/imagens/q-uspsp1-093.webp", imagemLegenda:"Partogramas das alternativas A, B, C e D (da esquerda para a direita).",
   enunciado:"Primigesta, 30 anos de idade evoluiu com parto normal sem intercorrências às 7h de 30/09/2023. Realiza reclamação na ouvidoria do hospital, referindo que sofreu violência obstétrica, pois ficou 21 horas em trabalho de parto. Ao checarem o prontuário, notam que a paciente foi internada às 10h de 29/09/2023 para indução de trabalho de parto, sendo necessários 3 comprimidos de misoprostol colocados com intervalos de 4h entre eles, atingindo dilatação de 4 cm. Às 22h foi avaliada e encontrava-se com 5 cm de dilatação e feto em -1 de delee , sendo aberto partograma. O partograma da paciente apresentava-se incompleto no prontuário, mas foi sendo recriado conforme relatos anotados . Qual partograma parece o adequado para a evolução? Os partogramas estão na figura: (A), (B), (C) e (D), da esquerda para a direita.",
   alternativas:[{id:"A",texto:"Partograma A"},{id:"B",texto:"Partograma B"},{id:"C",texto:"Partograma C"},{id:"D",texto:"Partograma D"}],
   gabarito:"A",
@@ -1273,7 +1273,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-095", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:95,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-uspsp1-095.png", imagemLegenda:"Cardiotocografia: padrão hipoativo e melhora da variabilidade após estímulo.",
+  imagemUrl:"dados/imagens/q-uspsp1-095.webp", imagemLegenda:"Cardiotocografia: padrão hipoativo e melhora da variabilidade após estímulo.",
   enunciado:"A cardiotocografia é um importante método de avaliação fetal. Assinale a alternativa que apresente contexto clínico mais compatível com o exame apresentado abaixo.",
   alternativas:[{id:"A",texto:"Gestante 38 semanas e 1 dia. Hipertensa crônica em uso de metildopa 1,5g/d. Está em trabalho de parto espontâneo com dinâmica uterina adequada, sem ocitocina EV. Apresentou CTR categoria 2 por redução de variabilidade, sendo revertida para categoria 1 após medidas de ressuscitação intraútero."},{id:"B",texto:"Gestante 35 semanas sem comorbidades. Vem ao PS por redução de movimentação fetal há 8h. Sem outras queixas. Perfil biofísico fetal 10/10, sendo liberada para casa."},{id:"C",texto:"Gestante 34 semanas, em seguimento alto risco por lúpus eritematoso sistêmico. Realiza vitalidade ambulatorial semanal. Apresenta indicação de internação hospitalar por CTR hipoativo."},{id:"D",texto:"Gestante 39 semanas e 4 dias em trabalho de parto espontâneo. Realizada analgesia de parto há 30 minutos com padrão hipoativo em melhora após estímulo sonoro."}],
   gabarito:"D",
@@ -1574,7 +1574,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-118", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:118,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-uspsp1-118.png", imagemLegenda:"Distribuição percentual dos casos de sarampo e coeficiente de incidência por faixa etária, Grande São Paulo, 1987 e 1997.",
+  imagemUrl:"dados/imagens/q-uspsp1-118.webp", imagemLegenda:"Distribuição percentual dos casos de sarampo e coeficiente de incidência por faixa etária, Grande São Paulo, 1987 e 1997.",
   enunciado:"Em 1986, O Brasil registrou uma grande epidemia de sarampo, quando foram notificados 129.942 casos da doença, correspondente a uma alta incidência de 97,7 por 100.000 habitantes. Na década seguinte, os Estados reforçaram a vacinação e a vigilância. O gráfico abaixo sintetiza uma análise da ocorrência de casos de sarampo na Grande São Paulo, em 1987 e 1997, com a distribuição percentual de casos e o coeficiente de incidência por faixa etária. Com base nas informações do gráfico, assinale a alternativa correta: CI= coeficiente de incidência",
   alternativas:[{id:"A",texto:"o grupo etário mais atingido pelo sarampo em 1987 e 1997 foi o de crianças menores de 1 ano"},{id:"B",texto:"o grupo etário mais atingido e aquele com maior risco de sarampo em 1997 foi respectivamente o de crianças maiores de 15 anos e o de menores de 1 ano."},{id:"C",texto:"o grupo etário mais atingido e aquele com maior risco de sarampo em 1987 foi em ambos os casos o de crianças entre 1-4 anos."},{id:"D",texto:"o grupo etário de maior risco de sarampo em 1987 e em 1997 foi o de crianças de 1-4 anos e de maiores de 15 anos respectivamente."}],
   gabarito:"B",
@@ -1588,7 +1588,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-1", [
 {
   id:"q-uspsp1-119", banca:"Simulados USP SP — 05/04/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:119,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-uspsp1-119.png", imagemLegenda:"Seguimento de 10 pacientes por 40 anos (X = câncer; O = morte por outra causa).",
+  imagemUrl:"dados/imagens/q-uspsp1-119.webp", imagemLegenda:"Seguimento de 10 pacientes por 40 anos (X = câncer; O = morte por outra causa).",
   enunciado:"A figura abaixo mostra a ocorrência de câncer em um estudo de seguimento de 10 pacientes mulheres durante 40 anos; sendo X = Ocorrência de câncer e O = Morte por outra causa Qual é a densidade de incidência de câncer?",
   alternativas:[{id:"A",texto:"50%"},{id:"B",texto:"240 pessoas-ano"},{id:"C",texto:"20,83/1000 pessoas - ano"},{id:"D",texto:"48,08/1000 pessoas-ano"}],
   gabarito:"C",

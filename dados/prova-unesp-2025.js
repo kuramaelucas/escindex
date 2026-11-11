@@ -207,7 +207,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-015", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:15,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-unesp2025-015.png", imagemLegenda:"Radiografias de tórax: A) consolidação do pulmão esquerdo; B) evolução em 15 dias, com cavernas de permeio e broncogramas aéreos",
+  imagemUrl:"dados/imagens/q-unesp2025-015.webp", imagemLegenda:"Radiografias de tórax: A) consolidação do pulmão esquerdo; B) evolução em 15 dias, com cavernas de permeio e broncogramas aéreos",
   enunciado:"Lactente de 5 meses, internada por quadro de dispneia e sibilância, sem febre, inapetência ou perda de peso. Fez uso de antibiótico, por sete dias, para tratar possível pneumonia. Após duas semanas da alta hospitalar, manteve os sintomas e apresentou febre ao entardecer e taquidispneia, então foi reinternada. Exame físico: desconforto respiratório com tiragem subcostal; à ausculta, MV reduzido em base esquerda e crepitações, principalmente em hemitórax esquerdo. Necessitou de oxigenoterapia com cateter nasal e de prescrição de antibióticos. Exames complementares: raio X (figura a seguir). AP: hígida, peso no percentil 50 e comprimento no percentil 50-10. Para elucidação diagnóstica, as próximas condutas devem ser:",
   alternativas:[{id:"A",texto:"solicitar TC de tórax e escarro com baciloscopia para BAAR, realizar IGRA (Interferon-Gamma Release Assay) e, se o resultado for positivo, suspender a antibioticoterapia e iniciar RIP (rifampicina, isoniazida e pirazinamida) nas doses adequadas para a idade; realizar a vacinação BCG; solicitar raio X de tórax e escarro materno."},{id:"B",texto:"solicitar TC de tórax, hemocultura e cultura de secreções, solicitar painel viral e avaliar o uso de novo antibiótico em conformidade com o antibiograma, se houver cultura positiva. Conferir teste de triagem neonatal e realizar dosagem de sódio e cloro no suor, realizar triagem para vírus da imunodeficiência humana (HIV) e investigar óbitos fetais pregressos ou outros filhos com doenças na família."},{id:"C",texto:"solicitar TC de tórax, coletar lavados gástricos consecutivos com baciloscopia para BAAR, realizar teste rápido molecular (TRM-TB) e, se o resultado for positivo, suspender a antibioticoterapia e iniciar esquema com RIP, nas doses adequadas para a idade; conferir vacinação BCG, realizar triagem para HIV, solicitar raio X de tórax e escarro materno e investigar vínculos epidemiológicos."},{id:"D",texto:"solicitar TC de tórax, coletar lavados gástricos consecutivos com baciloscopia para BAAR, realizar IGRA e, se resultado positivo, suspender a antibioticoterapia e iniciar esquema com rifampicina, isoniazida e etambutol, nas doses adequadas para a idade; coletar líquor e iniciar corticoide se necessário; investigar vínculos epidemiológicos."}],
   gabarito:"C",
@@ -221,7 +221,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-016", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:16,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unesp2025-016.jpg", imagemLegenda:"Figura A: máculas hipocrômicas no dorso; Figura B: exame direto (hifas curtas e esporos)",
+  imagemUrl:"dados/imagens/q-unesp2025-016.webp", imagemLegenda:"Figura A: máculas hipocrômicas no dorso; Figura B: exame direto (hifas curtas e esporos)",
   enunciado:"Adolescente de 13 anos apresenta lesões na região anterior e posterior do dorso (figura A) há um ano, assintomáticas. Exame direto: figura B. FIGURA A FIGURA B Com base nesse contexto, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"O tratamento de escolha é terbinafina oral."},{id:"B",texto:"Trata-se de micose superficial causada por fungos dermatófitos."},{id:"C",texto:"O sinal de Nikolsky é positivo nessa dermatose."},{id:"D",texto:"Ao exame micológico direto, evidenciam-se pseudo-hifas e esporos."}],
   gabarito:"D",
@@ -248,7 +248,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-018", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:18,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tumores",
-  imagemUrl:"dados/imagens/q-unesp2025-018.png", imagemLegenda:"Ressonância magnética de encéfalo (corte axial em T2) com lesão em fossa posterior",
+  imagemUrl:"dados/imagens/q-unesp2025-018.webp", imagemLegenda:"Ressonância magnética de encéfalo (corte axial em T2) com lesão em fossa posterior",
   enunciado:"Menino de 8 anos apresenta quadro progressivo de cefaleia, vômitos e dificuldade de marcha há duas semanas. Exame físico: BEG, escala de coma de Glasgow: 14, marcha atáxica, dismetria e decomposição de movimentos bilateralmente, reflexos patelares em pêndulo. Ressonância magnética de encéfalo conforme a imagem a seguir. A hipótese diagnóstica correta é",
   alternativas:[{id:"A",texto:"glioblastoma."},{id:"B",texto:"neuroblastoma."},{id:"C",texto:"astrocitoma pilocítico."},{id:"D",texto:"meningioma."}],
   gabarito:"C",
@@ -301,7 +301,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-022", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:22,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-unesp2025-022.png", imagemLegenda:"Carteira de vacinação da gestante (dT, dTpa, influenza, hepatite B, rubéola e covid-19)",
+  imagemUrl:"dados/imagens/q-unesp2025-022.webp", imagemLegenda:"Carteira de vacinação da gestante (dT, dTpa, influenza, hepatite B, rubéola e covid-19)",
   enunciado:"Primigesta de 18 anos está, em 20.06.24, com 12 semanas de gestação. Ela apresenta a carteira de vacinação a seguir. A recomendação sobre a imunização nessa gravidez é:",
   alternativas:[{id:"A",texto:"terceira dose da dT; influenza; covid-19; a partir da 20a semana, dTpa."},{id:"B",texto:"influenza; covid-19 (5a dose); terceira dose da hepatite B."},{id:"C",texto:"terceiras doses da dT e da hepatite B; influenza; covid-19 (5a dose)."},{id:"D",texto:"influenza e covid-19; 3a dose da hepatite B; a partir da 20a semana, a dTpa."}],
   gabarito:"D",
@@ -380,7 +380,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-028", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:28,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-unesp2025-028.png", imagemLegenda:"Antibiograma da cultura de urina (E. coli ESBL positivo)",
+  imagemUrl:"dados/imagens/q-unesp2025-028.webp", imagemLegenda:"Antibiograma da cultura de urina (E. coli ESBL positivo)",
   enunciado:"Primigesta de 22 anos, com 14 semanas de gestação de risco habitual, assintomática, apresenta cultura de urina positiva, com mais de 100000 UFC/mL, cujo agente identificado foi Escherichia coli, ESBL positivo (antibiograma a seguir). O tratamento correto é",
   alternativas:[{id:"A",texto:"intra-hospitalar, com carbapenêmicos."},{id:"B",texto:"intra-hospitalar, com amoxacilina/ácido clavulânico."},{id:"C",texto:"ambulatorial, com carbapenêmicos."},{id:"D",texto:"ambulatorial, com amoxacilina/ácido clavulânico."}],
   gabarito:"A",
@@ -615,7 +615,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-046", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:46,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-ira",
-  imagemUrl:"dados/imagens/q-unesp2025-046.png", imagemLegenda:"Creatinina sérica (mg/dL) de quatro pacientes ao longo de 90 dias",
+  imagemUrl:"dados/imagens/q-unesp2025-046.webp", imagemLegenda:"Creatinina sérica (mg/dL) de quatro pacientes ao longo de 90 dias",
   enunciado:"A seguir, são apresentados os valores de creatinina sérica de quatro pacientes com episódio de insulto renal agudo isquêmico tratado com medidas adequadas. Considerando IRA (injúria renal aguda), NTA (necrose tubular aguda), DRC (doença renal crônica) e DRA (doença renal aguda), a associação correta entre os pacientes (A, B, C e D) e seu diagnóstico nefrológico é:",
   alternativas:[{id:"A",texto:"A: IRA hemodinâmica; B: IRA intrínseca por NTA; C: DRC com IRA sobreposta; D: DRC."},{id:"B",texto:"A: DRC; B: IRA funcional; C: DRC com IRA sobreposta; D: DRA."},{id:"C",texto:"A: DRA; B: IRA hemodinâmica; C: DRC com IRA sobreposta; D: DRC com DRA sobreposta."},{id:"D",texto:"A: DRA; B: DRC com IRA sobreposta; C: IRA intrínseca por NTA; D: DRC com DRA sobreposta."}],
   gabarito:"C",
@@ -655,7 +655,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-049", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:49,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unesp2025-049.png", imagemLegenda:"Vesículas e placas eritematosas agrupadas em faixa unilateral no tórax",
+  imagemUrl:"dados/imagens/q-unesp2025-049.webp", imagemLegenda:"Vesículas e placas eritematosas agrupadas em faixa unilateral no tórax",
   enunciado:"Homem de 42 anos apresenta lesões cutâneas (conforme figura a seguir) que se iniciaram há dois dias, com muita dor na região torácica à esquerda. AP: transplantado renal há 6 anos em uso de drogas imunossupressoras. A conduta correta envolve",
   alternativas:[{id:"A",texto:"o uso de aciclovir endovenoso, na dose de 10 mg/kg a cada 8 horas, até melhora clínica."},{id:"B",texto:"apenas aguardar evolução do quadro, uma vez que se trata de doença autolimitada."},{id:"C",texto:"o uso de aciclovir tópico por 14 dias."},{id:"D",texto:"o uso de aciclovir oral na dose 200 mg cinco vezes ao dia por sete dias e analgesia."}],
   gabarito:"A",
@@ -669,7 +669,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-050", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:50,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pcr",
-  imagemUrl:"dados/imagens/q-unesp2025-050.png", imagemLegenda:"Eletrocardiograma em tira de ritmo: fibrilação ventricular",
+  imagemUrl:"dados/imagens/q-unesp2025-050.webp", imagemLegenda:"Eletrocardiograma em tira de ritmo: fibrilação ventricular",
   enunciado:"Mulher de 55 anos relata dor torácica intensa e dispneia súbita há 1 hora. Evolui com parada cardiorrespiratória em ritmo apresentado em ECG (conforme a imagem a seguir). Após chamar ajuda, a sequência de medidas no atendimento deve ser a seguinte:",
   alternativas:[{id:"A",texto:"compressões torácicas, administração de epinefrina, compressões torácicas e administração de epinefrina."},{id:"B",texto:"desfibrilação, compressões torácicas, desfibrilação e administração de epinefrina."},{id:"C",texto:"intubação orotraqueal, compressões torácicas, administração de epinefrina e compressões torácicas."},{id:"D",texto:"desfibrilação, administração de amiodarona, compressões torácicas e administração de epinefrina."}],
   gabarito:"B",
@@ -943,7 +943,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-071", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:71,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unesp2025-071.png", imagemLegenda:"Úlceras genitais agrupadas, rasas, sobre base eritematosa",
+  imagemUrl:"dados/imagens/q-unesp2025-071.webp", imagemLegenda:"Úlceras genitais agrupadas, rasas, sobre base eritematosa",
   enunciado:"Homem de 28 anos apresenta úlcera genital dolorosa há 5 dias. Relata febre e mal-estar geral antes do aparecimento da lesão. Exame físico: imagem. AP: múltiplas parcerias sexuais nos últimos meses sem uso de preservativos. Em face do exposto, a hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"sífilis."},{id:"B",texto:"herpes genital."},{id:"C",texto:"cancroide."},{id:"D",texto:"linfogranuloma venéreo."}],
   gabarito:"B",
@@ -1022,7 +1022,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-077", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:77,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-pediatrica",
-  imagemUrl:"dados/imagens/q-unesp2025-077.png", imagemLegenda:"Criança puxada pela mão por um adulto (mecanismo de tração do membro superior)",
+  imagemUrl:"dados/imagens/q-unesp2025-077.webp", imagemLegenda:"Criança puxada pela mão por um adulto (mecanismo de tração do membro superior)",
   enunciado:"Menino de 1 ano e oito meses estava passeando com sua avó e tentou se soltar fazendo força para se jogar no chão (imagem). A avó segurou firmemente, enquanto a criança puxava sua mão com força. De repente, o menino deu um grito agudo, começou a chorar e parou de mexer o cotovelo esquerdo, dando entrada com essa situação clínica no Pronto-Socorro. O diagnóstico provável é de",
   alternativas:[{id:"A",texto:"fratura por estresse do úmero distal."},{id:"B",texto:"pronação dolorosa."},{id:"C",texto:"epifisiólise da ulna."},{id:"D",texto:"ruptura da cápsula articular do cotovelo."}],
   gabarito:"B",
@@ -1231,7 +1231,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-093", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:93,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2025-093.png", imagemLegenda:"Casos novos de dengue por 100 mil habitantes, por semana epidemiológica, em São Manuel e Botucatu (jan–abr de 2024)",
+  imagemUrl:"dados/imagens/q-unesp2025-093.webp", imagemLegenda:"Casos novos de dengue por 100 mil habitantes, por semana epidemiológica, em São Manuel e Botucatu (jan–abr de 2024)",
   enunciado:"A figura a seguir representa graficamente a ocorrência de ca sos novos de dengue em dois municípios do estado de São Paulo, no ano de 2024. Os dados apresentados por semanas epidemiológicas ex pressam",
   alternativas:[{id:"A",texto:"coeficientes de prevalência."},{id:"B",texto:"a variação sazonal."},{id:"C",texto:"coeficientes de incidência."},{id:"D",texto:"o diagrama de controle."}],
   gabarito:"C",
@@ -1245,7 +1245,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2025", [
 {
   id:"q-unesp2025-094", banca:"UNESP (FMB)", real:true, ano:2025, numeroNaProva:94,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-unesp2025-094.png", imagemLegenda:"Casos e óbitos acumulados de covid-19 no estado de São Paulo (até 31/12/2021 e até 31/12/2022)",
+  imagemUrl:"dados/imagens/q-unesp2025-094.webp", imagemLegenda:"Casos e óbitos acumulados de covid-19 no estado de São Paulo (até 31/12/2021 e até 31/12/2022)",
   enunciado:"A população do estado de São Paulo em 2022 era de 44 411 238 habitantes (IBGE). O quadro a seguir expressa informações sobre a ocorrência de casos e óbitos (acumula dos) de Covid-19 no estado, nos anos de 2021 e 2022. Com base nessas informações, assinale a alternativa que expressa percentualmente o coeficiente de letalidade da Covid-19, no estado de São Paulo, durante o ano de 2022.",
   alternativas:[{id:"A",texto:"1,2"},{id:"B",texto:"2,8"},{id:"C",texto:"3,5"},{id:"D",texto:"349,5"}],
   gabarito:"A",
