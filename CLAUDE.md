@@ -15,6 +15,7 @@ Regra permanente (vale sem o usuário pedir): classifique o pedido numa zona, le
 | **A2. Cronograma de Formados** (trilha = quais assuntos, fases + ritmo = qual dificuldade, tamanho de sessão) | mudou a regra de montar a sessão de quem é Formado(a) | `npm run mapa -- formado` → `05c` (fases, sessão) e `05e` (trilha); `CONFIG.cronogramaFormado` (01); conferir com `npm run simular-formado` (`-- --semanas 12 --acerto 0.5 --exigir`) | `dados/` (a fila da trilha é gerada por `npm run prioridade-formados`) |
 | **C. Dados de estudo/nuvem** (modelo de dados, sync) | campo novo, tabela, migração | seção "Nuvem" abaixo + `02-persistencia.js`/`03*` pelo `mapa`; `nuvem/LEIA-ME.md` | conteúdo de `dados/` |
 | **A3. Carga inicial** (abrir leve, `dados/` sob demanda) | mexer em como `dados/`/`SEED_*` carregam ou em desempenho de abertura | `docs/PROJETO-CARGA-INICIAL.md`; `npm run medir-carga` antes e depois; `mapa -- persistencia` | `dados/prova-*.js` |
+| **E. Lançamento comercial** (preço, planos, divulgação, termos) | vender a plataforma, assinatura, bolsas, termos/privacidade | `docs/lancamento/PLANO-DE-LANCAMENTO.md` (seção 4 = adaptações da plataforma), `docs/lancamento/TERMOS-DE-USO.md` | `dados/`, `codigo/` (até implementar: aí vira zona A/C) |
 | **D. Documentação/histórico** | só se o pedido for sobre decisões passadas | `RESUMO-PROJETO-ESC.md` (seções 4–5), `docs/HISTORICO.md` por busca | tudo o mais |
 
 Pedido que cruza zonas (ex.: tela nova que lista questões): comece pela A e consulte B1 por comando, nunca por leitura de arquivo.
