@@ -89,7 +89,7 @@ test("Formado(a): o assunto sobe de fase pela taxa de acerto, 100% sobe na hora,
     assert.equal(r.D, true, "passou das três fases: concluído");
     assert.equal(r.novasDeD, 0, "assunto concluído não recebe questão nova");
     assert.ok(r.motivos.some(m => /^Exploração/.test(m)), JSON.stringify(r.motivos.slice(0, 5)));
-    assert.match(r.motivoDeFase, /^Fase 1 de 3 — .+: 3 acerto\(s\) em 6 nesta fase · questão média$/);
+    assert.match(r.motivoDeFase, /^Fase 1 de 3 — .+: 3 acertos em 6 nesta fase · questão média$/);
     assert.match(r.texto, /passaram das fases: 1/);
     assert.match(r.texto, /1 de \d+ consolidados/);
     assert.match(r.texto, /50%\/35%\/15%/);

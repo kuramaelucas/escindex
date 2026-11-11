@@ -407,7 +407,7 @@ function atualizarContagemDaLista(){
     if(f && v) prontos++; else if(f || v) pelaMetade++;
   });
   const el = document.getElementById("listaCartoesContagem"); if(!el) return;
-  el.innerHTML = "<strong>" + prontos + "</strong> cartão(ões) na lista" + (pelaMetade ? ' · <span class="texto-alerta">' + pelaMetade+" "+flexionar(pelaMetade, "linha(s)")+" pela metade</span>" : "") + ' <span class="muted">(' + linhas.length+" "+flexionar(linhas.length, "linha(s)")+")</span>";
+  el.innerHTML = "<strong>" + prontos + "</strong> "+flexionar(prontos, "cartão(ões)")+" na lista" + (pelaMetade ? ' · <span class="texto-alerta">' + pelaMetade+" "+flexionar(pelaMetade, "linha(s)")+" pela metade</span>" : "") + ' <span class="muted">(' + linhas.length+" "+flexionar(linhas.length, "linha(s)")+")</span>";
 }
 /* Tab saindo do verso da última linha abre uma linha nova e já cai na frente
    dela: dá para digitar a lista inteira sem tocar no mouse. */

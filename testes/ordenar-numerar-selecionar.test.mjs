@@ -72,7 +72,7 @@ test("Criar em lista: linhas numeradas, contador e Tab na última linha abre out
     await pagina.fill('#listaCartoesLinhas tr:nth-child(1) [data-lista="frente"]', "F1");
     await pagina.fill('#listaCartoesLinhas tr:nth-child(1) [data-lista="verso"]', "V1");
     await pagina.fill('#listaCartoesLinhas tr:nth-child(2) [data-lista="frente"]', "F2");
-    assert.match(await pagina.textContent("#listaCartoesContagem"), /1 cartão\(ões\) na lista.*1 linha\(s\) pela metade.*5 linha/);
+    assert.match(await pagina.textContent("#listaCartoesContagem"), /1 cartão na lista.*1 linha pela metade.*5 linhas/);
     await pagina.click('#listaCartoesLinhas tr:nth-child(2) [title="Tirar esta linha"]');
     assert.deepEqual(await numeros(), ["1", "2", "3", "4"]);
     // Tab no verso de uma linha do meio não cria nada; na última, cria e foca a frente nova
