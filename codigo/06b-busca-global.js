@@ -26,12 +26,34 @@ function buscaPoolDeQuestoes(u){
 /* Normalizar ~5 mil enunciados a cada tecla travaria o celular; por isso o
    texto de cada questão é normalizado uma vez e só refeito quando o banco
    muda (_geracaoDb sobe a cada saveState) ou a lista que a pessoa enxerga muda. */
+/* O texto das questões da semente só está na memória das provas já abertas. Para a busca achar
+   qualquer questão sem baixar tudo, dados/indice-busca.js traz o começo de cada enunciado; ele é pedido
+   na primeira vez que a busca abre. Quando o texto inteiro da questão já chegou, vale ele. */
+let _trechosDeBusca = null;   // id -> começo do enunciado
+function buscaTrechoIndexado(id){
+  if(!_trechosDeBusca){
+    const lista = listaDoIndiceDeBusca();
+    if(!lista) return "";
+    _trechosDeBusca = new Map(SEED_QUESTOES.map((q, i) => [q.id, lista[i]]));
+  }
+  return _trechosDeBusca.get(id) || "";
+}
+function buscaEnunciadoDe(q){ return campoJaDisponivel(q, "enunciado") || (ehFichaDaSemente(q) ? buscaTrechoIndexado(q.id) : "") || ""; }
+function carregarIndiceDeBusca(){
+  if(indiceDeBuscaCarregado() || !haIndiceDeQuestoes()) return Promise.resolve();
+  return new Promise(resolve => {
+    const s = document.createElement("script");
+    s.src = window.escEndereco("dados", "indice-busca");
+    s.onload = s.onerror = () => resolve();
+    document.head.appendChild(s);
+  });
+}
 function buscaIndiceDeQuestoes(u){
-  const chave = _geracaoDb + "|" + (u ? u.id : "") + "|" + (buscaComoAluno(u) ? "a" : "e");
+  const chave = _geracaoDb + "|" + (u ? u.id : "") + "|" + (buscaComoAluno(u) ? "a" : "e") + "|" + quantosArquivosDeProvaChegaram() + (indiceDeBuscaCarregado() ? "b" : "");
   if(_buscaIndice && _buscaIndice.chave === chave) return _buscaIndice.itens;
   const itens = buscaPoolDeQuestoes(u).map(q => ({
     q,
-    texto: buscaNormalizar([q.enunciado, nomeAssunto(q.assuntoId), q.banca, q.ano, (q.alternativas||[]).map(a=>a.texto).join(" ")].join(" ")),
+    texto: buscaNormalizar([buscaEnunciadoDe(q), nomeAssunto(q.assuntoId), q.banca, q.ano, (campoJaDisponivel(q, "alternativas")||[]).map(a=>a.texto).join(" ")].join(" ")),
   }));
   _buscaIndice = { chave, itens };
   return itens;
@@ -39,7 +61,7 @@ function buscaIndiceDeQuestoes(u){
 function buscaPalavras(termo){ return buscaNormalizar(termo).split(/\s+/).filter(Boolean); }
 // um trecho do enunciado em volta da primeira palavra achada, para a pessoa reconhecer a questão
 function buscaTrecho(q, palavras){
-  const txt = String(q.enunciado || "").replace(/\s+/g, " ");
+  const txt = String(buscaEnunciadoDe(q)).replace(/\s+/g, " ");
   const norm = buscaNormalizar(txt);
   const pos = palavras.map(p => norm.indexOf(p)).filter(i => i >= 0).sort((a,b)=>a-b)[0];
   if(pos === undefined) return txt.slice(0, 110) + (txt.length > 110 ? "…" : "");
@@ -138,6 +160,8 @@ function abrirBuscaGlobal(){
     </div>`);
   buscaDesenhar();
   document.getElementById("buscaGlobalCampo").focus();
+  // o começo dos enunciados chega e a busca refaz o que a pessoa já digitou
+  if(!indiceDeBuscaCarregado()) carregarIndiceDeBusca().then(() => { if(document.getElementById("buscaGlobalCampo")) buscaDesenhar(); });
 }
 function htmlBotaoBusca(){
   const atalho = /Mac|iPhone|iPad/.test(navigator.platform || "") ? "⌘ K" : "Ctrl K";

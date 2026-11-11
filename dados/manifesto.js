@@ -11,6 +11,8 @@ window.ESC_ARQUIVOS.dados = [
   "taxonomia",
   "calendario",
   "trilha-formados",
+  "indice-questoes",
+  "indice-busca",
   "banco-didatico",
   "banco-unifesp-2024-adaptado",
   "banco-simulado-epm-2",

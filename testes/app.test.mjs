@@ -50,7 +50,7 @@ test("código e dados com ?v=hash são servidos do cache na visita seguinte, sem
     await pagina.reload();   // já controlada pelo service worker: os arquivos entram no cache
     await pagina.waitForFunction(() => !!navigator.serviceWorker.controller && typeof db !== "undefined" && db);
     const guardados = await pagina.evaluate(async () => (await (await caches.open("esc-versionados")).keys()).map(r => new URL(r.url).pathname));
-    assert.ok(guardados.some(c => c.startsWith("/dados/prova-")), "as provas de dados/ deveriam estar no cache");
+    assert.ok(guardados.some(c => c.startsWith("/dados/prova-") || c.startsWith("/dados/indice-questoes")), "o conteúdo de dados/ deveria estar no cache");
     assert.ok(guardados.some(c => c.startsWith("/codigo/")), "o código deveria estar no cache");
     const antes = srv.pedidos.length;
     await pagina.reload();

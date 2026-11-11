@@ -868,6 +868,7 @@ function abrirQuestaoDoResultado(indice){
   const total = sessao.itens.length;
   const q = getQuestao(sessao.itens[indice].questaoId);
   if(!q) return;
+  if(depoisDosCorpos([q.id], () => abrirQuestaoDoResultado(indice))) return;
   const resp = sessao.respostasSimulado[q.id];
   const veredito = resp===undefined ? `<span class="badge badge-muted">em branco</span>` : resp===q.gabarito ? `<span class="badge badge-accent">acertou</span>` : `<span class="badge badge-danger">errou</span>`;
   abrirModal(`<div id="navResultadoSimulado" data-indice="${indice}">

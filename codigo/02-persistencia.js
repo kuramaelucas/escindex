@@ -216,7 +216,7 @@ function dbPadrao(){
     ],
     grupoOficialId,
     usuarios: copiaProfunda(SEED_USUARIOS),
-    questoes: copiaProfunda(SEED_QUESTOES),
+    questoes: SEED_QUESTOES.map(copiaDaSemente),
     comentarios: copiaProfunda(SEED_COMENTARIOS),
     flashcards: copiaProfunda(SEED_FLASHCARDS),   // cartões de conceito (frente/verso)
     revisoesFlashcards: {},  // revisoesFlashcards[usuarioId][cartaoId] = {repeticoes,fator,intervalo,proximaRevisao}
@@ -687,7 +687,7 @@ function sincronizarConteudoNovo(){
   // Set em vez de db.questoes.some(...) dentro do forEach: com ~10 mil questões
   // eram ~100 milhões de comparações a cada abertura do site.
   const idsDasQuestoes = new Set(db.questoes.map(x=>x.id));
-  SEED_QUESTOES.forEach(q=>{ if(!idsDasQuestoes.has(q.id)){ db.questoes.push(copiaProfunda(q)); idsDasQuestoes.add(q.id); novos++; } });
+  SEED_QUESTOES.forEach(q=>{ if(!idsDasQuestoes.has(q.id)){ db.questoes.push(copiaDaSemente(q)); idsDasQuestoes.add(q.id); novos++; } });
   // Campos que o conteúdo ganhou DEPOIS de a questão já estar salva no
   // navegador — o número dela na prova, a imagem que falta. Só se preenche o
   // que está vazio: uma questão que a equipe editou aqui fica como está.
@@ -710,7 +710,12 @@ function sincronizarConteudoNovo(){
       // a equipe liberou a questão depois que a figura chegou: o aviso de
       // imagem pendente não volta da semente (ver aguardaImagem)
       if(c==="imagemPendente" && salva.imagemLiberada) return;
-      if(q[c] !== undefined && q[c] !== "" && (salva[c] === undefined || salva[c] === null || salva[c] === "")){ salva[c] = copiaProfunda(q[c]); novos++; }
+      // campo do corpo: só do que já chegou (ler q[c] de uma ficha puxaria o arquivo de TODAS as provas
+      // na abertura), e questão que é ficha herda da semente, sem nada a completar (02b)
+      const doCorpo = CORPO_DE_CAMPO.has(c);
+      if(doCorpo && ehFichaDaSemente(salva)) return;
+      const valor = doCorpo ? valorDoCorpoCarregado(q.id, c) : q[c];
+      if(valor !== undefined && valor !== "" && (salva[c] === undefined || salva[c] === null || salva[c] === "")){ salva[c] = copiaProfunda(valor); novos++; }
     });
   });
   SEED_USUARIOS.forEach(u=>{ if(!db.usuarios.some(x=>x.id===u.id)){ db.usuarios.push(copiaProfunda(u)); novos++; } });
@@ -842,6 +847,13 @@ function jsonDoCampoDaSemente(semente, k){
   return cache[k];
 }
 function campoIgualASemente(valor, semente, k){
+  // campo do corpo de uma ficha: compara com o texto carregado, sem disparar a carga do arquivo;
+  // sem o texto da semente na memória não dá para provar que é igual, então vale como diferença
+  if(CORPO_DE_CAMPO.has(k) && ehFichaDaSemente(semente)){
+    const corpo = corpoCarregadoDe(semente.id);
+    if(!corpo) return false;
+    semente = corpo;
+  }
   const s = semente[k];
   if(valor === s) return true;                                   // mesmo primitivo (ou o mesmo objeto)
   if(valor === null || s === null || typeof valor !== "object" || typeof s !== "object") return false;
@@ -916,7 +928,7 @@ function expandirDoArmazenamento(banco){
       return true;
     }).map(item => {
       if(!item || !item._semente) return item;
-      const inteiro = { ...copiaProfunda(porId.get(item.id)), ...item };
+      const inteiro = Object.assign(copiaDaSemente(porId.get(item.id)), item);
       (item._semCampos || []).forEach(k => { delete inteiro[k]; });
       delete inteiro._semente; delete inteiro._semCampos;
       return inteiro;

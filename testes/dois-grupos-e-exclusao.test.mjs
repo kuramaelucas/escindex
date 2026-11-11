@@ -38,7 +38,7 @@ test("o grupo do rodízio e um grupo só de questões convivem; o calendário n�
       const depoisDeCriar = { turmaIgual: u.grupoId === turma, bloco: getBlocoAtual(u).id === blocoAntes, nome: g && g.nome, grupos: gruposDoUsuario(u).length,
         aindaMembroDaTurma: (getGrupo(turma).membrosAprovados || []).includes(u.id) };
       // a questão enviada ao segundo grupo é visível para quem está nele
-      const q = Object.assign({}, db.questoes.find(x => x.status === "ativa" && x.real), { id: "q-do-grupo-2", grupoId: g.id });
+      const q = Object.assign(questaoInteira(db.questoes.find(x => x.status === "ativa" && x.real)), { id: "q-do-grupo-2", grupoId: g.id });
       db.questoes.push(q);
       const vista = questoesParaEstudo(u.id, idsDosGruposDoUsuario(u)).some(x => x.id === q.id);
       const escondida = questoesParaEstudo(u.id).some(x => x.id === q.id);

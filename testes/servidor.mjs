@@ -6,7 +6,10 @@
    semNuvem: true troca o endereço do Supabase por "" em qualquer arquivo
    entregue. É assim que o teste enxerga a plataforma com a nuvem desligada
    (contas de demonstração, telas de administração) sem ninguém precisar
-   editar o CONFIG. */
+   editar o CONFIG.
+
+   corposSobDemanda: true deixa o site abrir como o aluno abre (o texto das questões só chega quando
+   preciso); sem isso o servidor pede o texto de todas já na carga. */
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
@@ -22,7 +25,7 @@ const TIPOS = {
   ".md": "text/markdown; charset=utf-8",
 };
 
-export function subirServidor({ semNuvem = false } = {}){
+export function subirServidor({ semNuvem = false, corposSobDemanda = !!process.env.ESC_SOB_DEMANDA } = {}){
   const pedidos = [];   // caminho de cada pedido que chegou (os testes conferem o que NÃO voltou à rede)
   const servidor = http.createServer((req, res) => {
     const url = new URL(req.url, "http://localhost");
@@ -37,6 +40,15 @@ export function subirServidor({ semNuvem = false } = {}){
     }
     const ext = path.extname(arquivo).toLowerCase();
     let corpo = fs.readFileSync(arquivo);
+    // por padrão os testes veem o banco inteiro já na carga (como era antes da carga sob demanda,
+    // fase 2 de docs/PROJETO-CARGA-INICIAL.md); só os testes de carga pedem corposSobDemanda
+    // ESC_SOB_DEMANDA=1 roda a suíte inteira como o aluno abre, com leitura estrita: acha leitura sem pré-carga
+    if(process.env.ESC_SOB_DEMANDA && ext === ".html"){
+      corpo = Buffer.from(corpo.toString("utf8").replace("window.ESC_DADOS_DA_FRENTE =", "window.ESC_CORPO_ESTRITO = true; window.ESC_DADOS_DA_FRENTE ="));
+    }
+    if(!corposSobDemanda && ext === ".html"){
+      corpo = Buffer.from(corpo.toString("utf8").replace("window.ESC_DADOS_DA_FRENTE =", "window.ESC_CORPOS_COMPLETOS = true; window.ESC_DADOS_DA_FRENTE ="));
+    }
     if(semNuvem && (ext === ".html" || ext === ".js")){
       corpo = Buffer.from(corpo.toString("utf8")
         .replace(/url:\s*"https:\/\/[a-z0-9]+\.supabase\.co"/g, 'url: ""'));

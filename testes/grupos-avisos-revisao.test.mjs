@@ -29,7 +29,7 @@ test("questão em aberto não mostra área, assunto nem dificuldade; a imagem ve
   try {
     const r = await pagina.evaluate(() => {
       fazerLoginDemo("aluno"); fecharModal();
-      const q = Object.assign({}, db.questoes.find(x => x.status === "ativa" && x.real),
+      const q = Object.assign(questaoInteira(db.questoes.find(x => x.status === "ativa" && x.real)),
         { imagemUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" });
       const assunto = nomeAssunto(q.assuntoId);
       const aberta = renderQuestionCard(q, {});
