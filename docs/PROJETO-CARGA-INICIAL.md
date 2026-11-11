@@ -110,12 +110,12 @@ Separar cada questão em **ficha** (sempre carregada) e **corpo** (carregado por
 
 Verificações a cada PR: `npm run publicar`, suíte inteira (`npm run testar-mudanca`), `npm run medir-carga`, e um teste de **uso offline** (primeira visita online, depois `context.setOffline(true)`, abrir uma sessão de uma prova já vista).
 
-## 7. Decisões que o dono do projeto precisa tomar antes da fase 2
+## 7. Decisões do dono do projeto (11/11/2026)
 
-1. **Offline**: aceitar "funciona offline só para o que já foi aberto (e para o que o aluno mandou guardar)"? Hoje funciona para tudo depois da 1ª visita. Proposta: sim, com o botão de guardar tudo.
-2. **Busca global no enunciado**: índice de 160 caracteres por questão (barato) ou busca completa só nas provas já carregadas, ou carregar tudo ao primeiro uso (lento)?
-3. **Primeira visita de um aluno logado em aparelho novo**: baixar só o Início + o que a sessão do dia pede (proposta) ou também as provas recentes em segundo plano?
-4. **Telas de administração**: tudo bem abrirem com 1–3 s de carga e progresso? (Proposta: sim.)
+1. **Offline: aceito.** Funciona offline para o que já foi aberto ou guardado (e para o que o aluno mandar guardar com o botão da fase 3). Deixa de valer "tudo offline depois da 1ª visita".
+2. **Busca global: índice de 160 caracteres** do enunciado por questão (`dados/indice-busca.js`, gerado pelo `publicar`, carregado só na primeira vez que a busca abre). Abrir um resultado chama `garantirCorpos`.
+3. **Aluno logado em aparelho novo: baixar 2× o necessário para a sessão do dia.** Regra: ao montar a sessão de hoje, carregar os corpos das provas das questões da sessão e **mais o equivalente a outra sessão** (a de amanhã, que o algoritmo já consegue prever pelo mesmo critério) — ou seja, o dobro do que a sessão usa, em segundo plano e sem travar a tela. Sem "baixar as provas recentes" por conta própria. A fase 3 ainda oferece o botão de guardar tudo.
+4. **Telas de administração — proposta, ainda sem resposta (o dono pediu explicação):** Banco de Questões, Central de Provas e Questões para Atualizar listam e filtram **todas** as questões, inclusive pelo texto. Com o corpo sob demanda, ao abrir uma dessas telas a plataforma precisa primeiro baixar o corpo de todas as provas (~25 MB, algumas segundos; só na primeira vez, depois fica guardado), com uma barra de progresso. Só a equipe usa essas telas; aluno nunca passa por elas. A proposta é aceitar essa espera. Alternativa mais cara: reconstruir essas telas para paginar e buscar só na ficha e no índice de busca, sem baixar tudo (mais trabalho, sem espera). Decidir antes da fase 2b.
 
 ## 8. O que não fazer
 
@@ -126,4 +126,4 @@ Verificações a cada PR: `npm run publicar`, suíte inteira (`npm run testar-mu
 
 ## 9. Como começar a conversa nova
 
-Diga: "Executar a fase 0 (ou 1) do `docs/PROJETO-CARGA-INICIAL.md`". Para a fase 2, traga as respostas da seção 7. Comandos úteis para se situar sem abrir arquivo grande: `npm run mapa -- persistencia`, `npm run mapa -- SEED`, `npm run mapa -- busca`, `npm run dados` (visão do conteúdo).
+Diga: "Executar a fase 0 (ou 1) do `docs/PROJETO-CARGA-INICIAL.md`". Para a fase 2, confirme a decisão 4 da seção 7 (as 1 a 3 já estão tomadas). Comandos úteis para se situar sem abrir arquivo grande: `npm run mapa -- persistencia`, `npm run mapa -- SEED`, `npm run mapa -- busca`, `npm run dados` (visão do conteúdo).
