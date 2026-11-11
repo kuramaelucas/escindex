@@ -52,7 +52,7 @@ Um **índice leve** com os campos de filtro e contagem tem ~3,3 MB em JSON simpl
 
 Para ser medido por `npm run medir-carga` (a criar na fase 0), no mesmo método dos números acima:
 
-| Meta | Hoje | Alvo |
+| Meta | Hoje (antes da fase 0) | Alvo |
 | --- | --- | --- |
 | Tela de entrada interativa, celular 4×, 1ª visita | 3,6 s | **≤ 1,0 s** |
 | Início do aluno logado, celular 4×, visita seguinte | ~3,5 s | **≤ 2,0 s** |
@@ -82,7 +82,9 @@ Objetivo: tela de entrada em ≤ 1 s sem mudar o modelo de dados.
 
 Risco principal: tudo que hoje assume "dados prontos na carga" (cuidado com caches como `sementesPorId`, `_idsDaSemente`, que têm de ser invalidados quando chega mais uma prova). Cobrir com um teste que carrega com atraso artificial em `dados/`.
 
-### Fase 2 — índice leve + corpo sob demanda (o ganho grande)
+### Fase 2 — índice leve + corpo sob demanda (o ganho grande) — FEITA em 11/11/2026
+
+> Feita, com estes desvios do desenho abaixo (todos para o código de leitura não mudar): a **ficha** é todo campo que não é corpo (inclui `estatisticas` e `questaoAlterada`, que aparecem em listas); `q.enunciado` & cia. continuam valendo porque a ficha herda de `PROTO_QUESTAO` (02b), cujos acessos leem do corpo carregado — em vez de `corpoDaQuestao(q)` espalhado pelos ~80 consumidores; escrever um campo do corpo cria propriedade própria (vence a semente; `compactarParaArmazenar` grava só ela); `JSON.stringify`/`copiaProfunda` de uma ficha levam o texto, `{...q}` e `Object.assign({}, q)` não (use `questaoInteira`). Pré-carga: o `render()` descobre pelo uso o que faltou (`coletarTextoDaTela`) e baixa só os arquivos necessários; a sessão e o simulado esperam o texto da fila; janelas (`abrirQuestaoCompleta`, resultado do simulado) e o PDF usam `depoisDosCorpos`; telas da equipe que leem o banco inteiro baixam tudo com barra de progresso. A **busca** e a **detecção de duplicatas** usam `dados/indice-busca.js` (começo do enunciado, o bastante para cobrir os 160 caracteres da assinatura), pedido na 1ª vez. A **sessão do dia** adianta em segundo plano o texto de uma 2ª sessão (`adiantarTextoDaProximaSessao`, decisão 3). Modo de teste: a suíte comum abre com todo o texto carregado (`ESC_CORPOS_COMPLETOS`, injetado por `testes/servidor.mjs`); `ESC_SOB_DEMANDA=1 npm test` abre como o aluno, com leitura sem texto lançando erro (alguns testes que esperam a tela de forma síncrona falham nele por causa do download, e os que leem o texto direto em `page.evaluate` também: é esperado). Medido (`npm run medir-carga`, celular 4×): entrada **0,5 s**, Início **1,5 s**, até a moldura **1,7 MB**, heap **35 MB**: dentro do orçamento da seção 4, e a seção 6 passa a pedir `npm run medir-carga -- --exigir` em cada mudança de carga. A cópia profunda da semente (`copiaProfunda(SEED_QUESTOES)`) caiu de 0,8 s para ~0,2 s.
 
 Separar cada questão em **ficha** (sempre carregada) e **corpo** (carregado por prova, quando preciso).
 

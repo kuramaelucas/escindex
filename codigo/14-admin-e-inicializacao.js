@@ -713,6 +713,7 @@ function pedirLembreteComAppFechado(){
 render();
 performance.mark("esc:moldura");   // medir-carga
 function iniciarBanco(){
+  montarFichasDaSemente();   // 02b: as questões da semente nascem como fichas
   loadState();
   performance.mark("esc:db-montado");
   // volta de um link de e-mail (confirmar cadastro, trocar senha): o

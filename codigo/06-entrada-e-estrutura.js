@@ -275,6 +275,39 @@ function desenharMoldura(){
   const publica = state.route === "landing" && !logado && (!hash || hash === "landing");
   desenharTelaPublica(publica ? renderLanding(numerosDaLandingEmCache() || false) : renderCarregando());
 }
+/* O texto das questões (corpo, 02b) chega por arquivo de prova. Três caminhos, do mais certo ao mais geral:
+   1. a sessão e o simulado em andamento sabem a lista antes de desenhar: esperam o texto dela;
+   2. as telas da equipe que listam e filtram o banco inteiro baixam tudo uma vez;
+   3. as demais montam o HTML e, se alguma leitura ficou sem texto (coletarTextoDaTela), baixam
+      só os arquivos que faltaram e montam de novo.
+   Enquanto baixa a tela mostra uma barra; render() volta a rodar quando o texto chega. */
+const ROTAS_QUE_LEEM_O_BANCO_INTEIRO = ["banco-questoes", "central-provas", "atualizar-questoes", "pendencias-conteudo"];
+function baixarTextoEDepois(rota, nomes, todas){
+  const barra = (feitos, total) => {
+    const el = document.getElementById("baixandoTextoBarra"), tx = document.getElementById("baixandoTextoNumero");
+    if(el) el.style.width = (total ? Math.round(100 * feitos / total) : 0) + "%";
+    if(tx) tx.textContent = feitos + " de " + total;
+  };
+  desenharTela(`<div class="card mt-3" style="max-width:520px"><div class="card-title">Baixando as questões…</div>
+    <div class="text-sm muted mt-1">${todas ? "Esta tela lê o banco inteiro: o texto das questões é baixado uma vez e fica guardado neste aparelho." : "O texto das questões desta tela está chegando."}</div>
+    <div class="progress-track mt-2" role="progressbar" aria-label="Progresso do download"><div class="progress-fill" id="baixandoTextoBarra" style="width:0%"></div></div>
+    <div class="text-xs muted mt-1" id="baixandoTextoNumero"></div></div>`);
+  (todas ? garantirTodosOsCorpos(barra) : garantirArquivosDeProva(nomes, barra)).then(() => { if(state.route === rota) render(); });
+}
+function esperarTextoDasQuestoesDaTela(){
+  const rota = state.route;
+  if(ROTAS_QUE_LEEM_O_BANCO_INTEIRO.includes(rota)){
+    if(!faltaCorpoDeAlgumaQuestao()) return false;
+    baixarTextoEDepois(rota, [], true); return true;
+  }
+  if(rota === "sessao" || rota === "simulado-ativo"){
+    if(rota === "sessao" && !state.sessaoAtual) carregarSessaoEmAndamento();
+    const faltam = arquivosQueFaltamParaAsQuestoes(((state.sessaoAtual && state.sessaoAtual.itens) || []).map(it => it.questaoId));
+    if(!faltam.length){ if(rota === "sessao") adiantarTextoDaProximaSessao(); return false; }
+    baixarTextoEDepois(rota, faltam, false); return true;
+  }
+  return false;
+}
 function render(){
   if(!db){ desenharMoldura(); return; }
   const app = document.getElementById("app");
@@ -307,6 +340,8 @@ function render(){
     return;
   }
 
+  if(esperarTextoDasQuestoesDaTela()) return;
+  const coleta = coletarTextoDaTela(() => {
   let conteudo = "";
   switch(state.route){
     case "inicio": conteudo = renderInicio(); break;
@@ -357,6 +392,10 @@ function render(){
     case "painel-turma": conteudo = renderPainelTurma(); break;
     default: conteudo = renderInicio();
   }
+  return conteudo;
+  });
+  if(coleta.faltam.length){ baixarTextoEDepois(state.route, coleta.faltam, false); return; }
+  const conteudo = coleta.html;
   desenharTela(htmlAbasDaFamilia(usuarioAtual()) + conteudo);
   // quem acabou de entrar e chegou ao Início vê o tutorial rápido (uma vez
   // por sessão, até pedir para não ver mais — codigo/13-tutorial.js)

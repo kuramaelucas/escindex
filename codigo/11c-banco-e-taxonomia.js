@@ -425,15 +425,21 @@ function assinaturaEnunciado(texto){ return chaveTextoQuestao(texto).slice(0,160
    segundos de travamento na pré-visualização da importação. */
 let _cacheIndiceAssinaturas = null;
 function indiceAssinaturasQuestoes(){
-  if(_cacheIndiceAssinaturas && _cacheIndiceAssinaturas.geracao===_geracaoDb) return _cacheIndiceAssinaturas.mapa;
+  // sem o texto das provas na memória, a assinatura de uma questão da semente sai do começo do enunciado
+  // do índice de busca (dados/indice-busca.js, que cobre os 160 caracteres da assinatura); o índice é
+  // pedido na primeira vez e o cache refeito quando ele ou mais texto chega
+  const pronto = !!window.EscDados.indiceBusca || !window.EscDados.indice;
+  if(!pronto) carregarIndiceDeBusca().then(() => { _cacheIndiceAssinaturas = null; });
+  const marca = _geracaoDb + "|" + pronto + "|" + Object.keys(window.EscDados.arquivosComCorpo).length;
+  if(_cacheIndiceAssinaturas && _cacheIndiceAssinaturas.marca===marca) return _cacheIndiceAssinaturas.mapa;
   const mapa = new Map();
   db.questoes.forEach(q=>{
-    const chave = assinaturaEnunciado(q.enunciado);
+    const chave = assinaturaEnunciado(buscaEnunciadoDe(q));
     if(chave.length < 25) return;
     if(!mapa.has(chave)) mapa.set(chave, []);
     mapa.get(chave).push(q);
   });
-  _cacheIndiceAssinaturas = { geracao:_geracaoDb, mapa };
+  _cacheIndiceAssinaturas = { marca, mapa };
   return mapa;
 }
 function questoesDuplicadasDe(enunciado, ignorarId){

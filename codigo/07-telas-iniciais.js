@@ -937,6 +937,7 @@ function abrirQuestaoCompleta(qid, opts){
   opts = opts || {};
   const q = getQuestao(qid);
   if(!q){ toast("Questão não encontrada.", "err"); return; }
+  if(depoisDosCorpos([qid], () => abrirQuestaoCompleta(qid, opts))) return;   // o texto vem do arquivo da prova (02b)
   const u = usuarioAtual();
   const ehStaff = u && (u.papel==="admin" || u.papel==="professor" || u.papel==="residente");
   const ehDoMeuGrupo = u && u.papel==="aluno" && q.grupoId && idsDosGruposDoUsuario(u).includes(q.grupoId);

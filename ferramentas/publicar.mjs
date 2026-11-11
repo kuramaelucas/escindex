@@ -24,6 +24,7 @@ import { fileURLToPath } from "node:url";
 import { RAIZ, carregar } from "./lib-dados.mjs";
 import { resumoDaProva } from "./dados.mjs";
 import { resumirNumeros, conferir } from "../testes/conferir-dados.mjs";
+import { gravarIndices, indicesEmDia } from "./lib-indice.mjs";
 
 const INDEX = path.join(RAIZ, "index.html");
 const CATALOGO = path.join(RAIZ, "dados", "CATALOGO.md");
@@ -121,20 +122,24 @@ function gravarNumeros(bloco){
 
 if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])){
   const soConferir = process.argv.includes("--conferir");
+  // os índices leves (ficha e busca) saem do conteúdo: antes de tudo, porque entram no hash dos dados
+  const indicesVelhos = soConferir ? !indicesEmDia() : gravarIndices();
   const versao = versaoEsperada(), cat = catalogo();
   const velhaVersao = versao !== versaoGravada() || hashesGravados() !== linhaDeHashes();
   const velhoCatalogo = !fs.existsSync(CATALOGO) || fs.readFileSync(CATALOGO, "utf8") !== cat;
   const bloco = blocoDeNumeros(), velhosDocs = docsVelhos(bloco);
   if(soConferir){
+    if(indicesVelhos) console.error("dados/indice-questoes.js e indice-busca.js estão velhos — o conteúdo mudou. Rode: npm run publicar");
     if(velhaVersao) console.error(`A versão do index.html (${versaoGravada()}) está velha — o código ou o conteúdo mudou. Rode: npm run publicar`);
     if(velhoCatalogo) console.error("dados/CATALOGO.md está velho — o conteúdo mudou. Rode: npm run publicar");
     if(velhosDocs.length) console.error("Números desatualizados em " + velhosDocs.map(f => path.basename(f)).join(", ") + ". Rode: npm run publicar");
-    process.exit(velhaVersao || velhoCatalogo || velhosDocs.length ? 1 : 0);
+    process.exit(indicesVelhos || velhaVersao || velhoCatalogo || velhosDocs.length ? 1 : 0);
   }
   if(velhaVersao) fs.writeFileSync(INDEX, fs.readFileSync(INDEX, "utf8").replace(LINHA_VERSAO, `$1${versao}$3`).replace(LINHA_HASHES, () => linhaDeHashes()));
   if(velhoCatalogo) fs.writeFileSync(CATALOGO, cat);
   gravarNumeros(bloco);
   const antes = versaoGravada();
+  console.log(indicesVelhos ? "Índices leves (dados/indice-*.js) atualizados." : "Índices leves já em dia.");
   console.log(velhaVersao ? `Versão: ${versao}` : `Versão já em dia: ${antes}`);
   console.log(velhoCatalogo ? "dados/CATALOGO.md atualizado." : "dados/CATALOGO.md já em dia.");
 }

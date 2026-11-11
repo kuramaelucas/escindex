@@ -133,6 +133,24 @@ function iniciarRevisaoEspacada(){
   if(!itens.length){ toast("Nada para a revisão espaçada no momento: nenhuma questão nova nos assuntos já estudados e nenhuma vencida."); return; }
   iniciarSessaoComLista(itens, "pratica");
 }
+/* Texto das questões é baixado por arquivo de prova (02b). Ao abrir a sessão do dia o aparelho baixa também,
+   em segundo plano e sem travar a tela, o texto de uma SEGUNDA sessão do mesmo tamanho, montada pelo mesmo
+   critério (o que o algoritmo daria na sequência): quem abre a plataforma sem internet no dia seguinte, ou
+   termina e pede mais, já tem o texto. O sorteio é ponderado, então é uma aposta que costuma acertar as provas. */
+let _textoAdiantadoDoDia = "";
+function adiantarTextoDaProximaSessao(){
+  const u = usuarioAtual();
+  if(!u || u.papel !== "aluno" || state.contaTeste) return;
+  const chave = u.id + "|" + hojeISO();
+  if(_textoAdiantadoDoDia === chave) return;
+  _textoAdiantadoDoDia = chave;
+  setTimeout(() => {
+    try{
+      const n = tamanhoDaSessaoDoUsuario(u);
+      garantirCorpos(montarSessaoDoDia(u.id, n, n).map(it => it.questaoId));
+    }catch(e){ console.warn("Não foi possível adiantar o texto da próxima sessão:", e); }
+  }, 1500);
+}
 function iniciarSessaoComLista(itens, tipo){
   // listas montadas à mão (favoritas, uma prova antiga) também não levam
   // questão à espera da figura — ver aguardaImagem()

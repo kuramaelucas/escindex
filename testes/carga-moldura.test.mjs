@@ -7,7 +7,7 @@ import { chromium } from "playwright";
 import { subirServidor } from "./servidor.mjs";
 
 let navegador, servidor;
-before(async () => { navegador = await chromium.launch(); servidor = await subirServidor({ semNuvem: true }); });
+before(async () => { navegador = await chromium.launch(); servidor = await subirServidor({ semNuvem: true, corposSobDemanda: false }); });
 after(async () => { await navegador?.close(); await servidor?.fechar(); });
 
 /* Segura os arquivos de conteúdo pesados até liberar() ser chamada. */

@@ -274,7 +274,7 @@ test("questão enviada por aluno diz quem enviou; a da equipe, a da pasta dados/
       const base = db.questoes.find(x => x.status === "ativa" && x.real);
       const aluno = db.usuarios.find(x => x.papel === "aluno");
       const prof = db.usuarios.find(x => x.papel === "professor");
-      const mk = (id, extra) => Object.assign({}, base, { id }, extra);
+      const mk = (id, extra) => Object.assign(questaoInteira(base), { id }, extra);
       const doAluno = mk("q-aut-1", { criadoPor: aluno.id });
       const doProf = mk("q-aut-2", { criadoPor: prof.id });
       const outroAparelho = mk("q-aut-3", { criadoPor: "00000000-0000-4000-8000-000000000001", autorNome: "Marina Souza", autorPapel: "aluno" });

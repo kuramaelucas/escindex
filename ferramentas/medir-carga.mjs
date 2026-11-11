@@ -36,7 +36,10 @@ async function medirUma(navegador, servidor, { cenario, cpu }){
   const ler = () => pagina.evaluate(() => {
     const m = n => { const e = performance.getEntriesByName(n)[0]; return e ? Math.round(e.startTime) : null; };
     const nav = performance.getEntriesByType("navigation")[0];
-    return { html: m("esc:html"), moldura: m("esc:moldura"), dados: m("esc:dados-prontos"), codigo: m("esc:codigo-prontos"), db: m("esc:db-montado"),
+    // bytes dos arquivos que já tinham chegado quando a moldura foi desenhada (a "transferência até a tela de entrada")
+    const ate = performance.getEntriesByName("esc:moldura")[0];
+    const ateMoldura = ate ? performance.getEntriesByType("resource").filter(r => r.responseEnd <= ate.startTime).reduce((t, r) => t + (r.encodedBodySize || 0), 0) : 0;
+    return { ateMolduraBytes: ateMoldura, html: m("esc:html"), moldura: m("esc:moldura"), dados: m("esc:dados-prontos"), codigo: m("esc:codigo-prontos"), db: m("esc:db-montado"),
       primeiraTela: m("esc:primeira-tela"), dcl: Math.round(nav.domContentLoadedEventEnd) };
   });
   try{
@@ -61,14 +64,14 @@ async function medirUma(navegador, servidor, { cenario, cpu }){
       const t = f => { const a = performance.now(); f(); return Math.round(performance.now() - a); };
       return { copiaDaSemente: t(() => copiaProfunda(SEED_QUESTOES)), gravarBanco: t(() => JSON.stringify(compactarParaArmazenar(db))), questoes: SEED_QUESTOES.length };
     });
-    return { ...marcas, heapMB: heap, transferenciaMB: bytes / 1048576, arquivos, deDados, deCodigo, ...custos };
+    return { ...marcas, heapMB: heap, transferenciaMB: bytes / 1048576, ateMolduraMB: marcas.ateMolduraBytes / 1048576, arquivos, deDados, deCodigo, ...custos };
   } finally { await contexto.close(); }
 }
 
 export async function medirCarga({ repeticoes = 3 } = {}){
   const { chromium } = await import("playwright");
   const { subirServidor } = await import("../testes/servidor.mjs");
-  const navegador = await chromium.launch(process.env.ESC_CHROMIUM ? { executablePath: process.env.ESC_CHROMIUM } : {}), servidor = await subirServidor({ semNuvem: true });
+  const navegador = await chromium.launch(process.env.ESC_CHROMIUM ? { executablePath: process.env.ESC_CHROMIUM } : {}), servidor = await subirServidor({ semNuvem: true, corposSobDemanda: true });
   const r = {};
   try{
     for(const cenario of ["entrada", "inicio"]) for(const [maquina, cpu] of [["desktop", 1], ["celular", 4]]){
@@ -87,7 +90,7 @@ export function conferirOrcamento(r){
   const e = r["entrada/celular"], i = r["inicio/celular"];
   if(e.primeiraTela > o.entradaCelularMs) falhas.push(`tela de entrada no celular: ${e.primeiraTela} ms (meta ≤ ${o.entradaCelularMs})`);
   if(i.primeiraTela > o.inicioCelularMs) falhas.push(`Início no celular: ${i.primeiraTela} ms (meta ≤ ${o.inicioCelularMs})`);
-  if(e.transferenciaMB > o.transferenciaEntradaMB) falhas.push(`transferência até a entrada: ${e.transferenciaMB.toFixed(1)} MB (meta ≤ ${o.transferenciaEntradaMB})`);
+  if(e.ateMolduraMB > o.transferenciaEntradaMB) falhas.push(`transferência até a tela de entrada: ${e.ateMolduraMB.toFixed(1)} MB (meta ≤ ${o.transferenciaEntradaMB})`);
   if(i.heapMB > o.heapInicioMB) falhas.push(`heap depois do Início: ${i.heapMB.toFixed(0)} MB (meta ≤ ${o.heapInicioMB})`);
   return falhas;
 }
@@ -105,7 +108,7 @@ async function principal(){
     L("dados/ executados", x => x.dados); L("codigo/ executado", x => x.codigo);
     L("moldura desenhada", x => x.moldura); L("db montado (loadState)", x => x.db); L("tela pronta (entrada=moldura)", x => x.primeiraTela);
     L("arquivos .js (dados+codigo)", x => `${x.arquivos} (${x.deDados}+${x.deCodigo})`);
-    L("transferência (MB)", x => x.transferenciaMB.toFixed(1)); L("heap JS (MB)", x => x.heapMB.toFixed(0));
+    L("até a moldura (MB)", x => x.ateMolduraMB.toFixed(1)); L("transferência total (MB)", x => x.transferenciaMB.toFixed(1)); L("heap JS (MB)", x => x.heapMB.toFixed(0));
     L("copiaProfunda(SEED) ms", x => x.copiaDaSemente); L("gravar o banco ms", x => x.gravarBanco);
     console.log(`\nQuestões na semente: ${r[cols[0]].questoes}`);
   }

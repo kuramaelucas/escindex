@@ -62,6 +62,8 @@ export function carregarConteudo(){
   vm.runInContext(ponte[0], ctx);
   const faltando = [];
   for(const rel of arquivosDeConteudo()){
+    // os índices gerados (ficha e busca) são da carga no navegador; aqui valem os arquivos de prova inteiros
+    if(/\/indice-(questoes|busca)\.js$/.test(rel)) continue;
     const arq = path.join(RAIZ, rel);
     if(!fs.existsSync(arq)){ faltando.push(rel); continue; }
     vm.runInContext(fs.readFileSync(arq, "utf8"), ctx, { filename: rel });

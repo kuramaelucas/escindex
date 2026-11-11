@@ -158,6 +158,8 @@ function atualizarCampoPDF(campo, valor, ehCheck){
 /* Conjunto de questões que vai para o papel, conforme a fonte escolhida. */
 function questoesDoMaterialPDF(){
   const ctx = ctxMaterialPDF();
+  // a amostra sorteada fica fixa enquanto o texto das questões é baixado (02b): sem isso o sorteio mudaria
+  if(ctx.amostraFixa) return ctx.amostraFixa.map(getQuestao).filter(Boolean);
   if(ctx.fonte==="simulado"){
     const sim = db.simulados.find(s=>s.id===ctx.simuladoId);
     if(!sim) return [];
@@ -298,11 +300,16 @@ function renderMaterialPDF(){
 /* Monta o HTML de impressão e entrega para o navegador. */
 function gerarMaterialPDF(){
   const ctx = ctxMaterialPDF();
+  if(ctx.tipo==="prova" || ctx.tipo==="lista"){
+    if(!ctx.amostraFixa) ctx.amostraFixa = questoesDoMaterialPDF().map(q => q.id);
+    if(depoisDosCorpos(ctx.amostraFixa, gerarMaterialPDF)) return;
+  }
   let corpo = "";
   if(ctx.tipo==="prova") corpo = htmlProvaPDF();
   else if(ctx.tipo==="lista") corpo = htmlListaComentadaPDF();
   else if(ctx.tipo==="flashcards") corpo = htmlFlashcardsPDF();
   else corpo = htmlDesempenhoPDF();
+  ctx.amostraFixa = null;
   if(!corpo){ toast("Não há conteúdo para imprimir com essas opções.", "err"); return; }
   imprimir(corpo);
 }
