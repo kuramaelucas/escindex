@@ -723,14 +723,15 @@ function renderEstudar(){
   <div class="grid grid-2">
     <div class="card">
       <div class="card-title">Sessão recomendada</div>
-      ${explicacaoRecolhida("Por que esta sessão?", `<p class="text-sm muted">${bloco
+      <button class="btn btn-primary mt-1" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
+      ${/* o botão vem antes da explicação: no celular o porquê (mistura, progressão, cronograma) ocupava a tela inteira antes de dar para começar; fica atrás de "Por que esta sessão?", lembrado por pessoa */""}
+      <details class="detalhes-bloco text-sm muted mt-2" ${secaoRecolhivelAberta("estudar-por-que-sessao", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('estudar-por-que-sessao', this.open)"><summary>Por que esta sessão?</summary>${(`<p class="text-sm muted">${bloco
         ? `Mistura automática: ${Math.round(mistura.atual*100)}% do bloco atual (${escapeHtml(bloco.nome)}), ${Math.round(mistura.revisaoPassados*100)}% revisão (blocos passados e matéria de anos anteriores), ${Math.round(mistura.previaFuturos*100)}% prévia do próximo bloco.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Dentro do bloco atual, os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`
         : `Mistura automática, sem calendário de blocos: ${Math.round(mistura.revisaoPassados*100)}% revisão espaçada e o resto de questões que você ainda não viu.${CONFIG.incidencia.pesoNaSessao && incidenciaNaBanca().total ? ` Os assuntos que mais caem na ${escapeHtml(bancaDeReferencia())} e em que você mais erra vêm primeiro.` : ""}`}</p>
       ${mistura.explicacao ? `<div class="card-flat mt-2 text-xs">${iconeSvg("alert")} ${escapeHtml(mistura.explicacao)}</div>` : ""}
       <div class="card-flat mt-2 text-xs">${iconeSvg("star")} ${escapeHtml(explicacaoProgressao(u))}</div>
       ${cronogramaDeFormado(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronogramaFormado(u))} <button class="btn btn-ghost btn-sm" onclick="abrirTrilhaDeFormado()">Ver minha trilha</button> <button class="btn btn-ghost btn-sm" onclick="abrirRitmoDoFormado()">Ritmo das fases: ${escapeHtml(CONFIG.cronogramaFormado.reguas[ritmoDoFormado(u)].nome)}</button></div>` : ""}
-      ${cronogramaDoUsuario(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronograma(u, feitasHoje))}</div>` : ""}`)}
-      <button class="btn btn-primary mt-2" onclick="iniciarSessaoRecomendada()">${deHoje ? `Continuar a sessão de hoje (${respostasFeitas(deHoje).length} de ${deHoje.itens.length})` : "Começar sessão recomendada"}</button>
+      ${cronogramaDoUsuario(u) ? `<div class="card-flat mt-2 text-xs">${iconeSvg("target")} ${escapeHtml(explicacaoCronograma(u, feitasHoje))}</div>` : ""}`)}</details>
       ${soNoEstatistico(`<p class="text-xs muted mt-1">${deHoje
         ? "O conjunto é o mesmo o dia inteiro: sair e voltar continua de onde você parou. Amanhã ele se renova sozinho, com a matéria e as revisões vencidas de amanhã."
         : "Uma vez começado, o conjunto vale o dia inteiro: sair e voltar continua de onde você parou, sem re-sortear as questões."} Cada sessão traz até ${tamanhoDaSessaoDoUsuario(u)} questões (muda em Ajustar meta).</p>`)}
