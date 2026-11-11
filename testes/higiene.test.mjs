@@ -133,3 +133,22 @@ test("campo que vem de pessoa não entra no HTML sem escapeHtml", () => {
   }
   assert.deepEqual(achados, [], "interpolação sem escapeHtml (texto de usuário no HTML). Use escapeHtml(...) ou, se o texto é do código, acrescente a PERMITIDOS com o motivo");
 });
+
+/* Fase 3 da carga inicial (docs/PROJETO-CARGA-INICIAL.md): o texto das questões (corpo) só se lê pela API de
+   02b-corpos-das-questoes.js. Quem pega window.EscDados.corpos / arquivosComCorpo / indice direto contorna a
+   pré-carga e a rede de segurança. */
+test("o corpo das questões só é lido pela API de 02b (nada de EscDados.corpos fora dela)", () => {
+  const achados = [];
+  for(const [arq, s] of Object.entries(fontes)){
+    if(arq === "codigo/02b-corpos-das-questoes.js") continue;
+    s.split("\n").forEach((linha, i) => { if(/EscDados\.(corpos|arquivosComCorpo|indice|indiceBusca)\b/.test(linha)) achados.push(`${arq}:${i + 1}`); });
+  }
+  assert.deepEqual(achados, [], "use corpoCarregadoDe / campoJaDisponivel / garantirCorpos (02b) em vez de EscDados.corpos");
+});
+
+test("a lista de campos do corpo é a mesma no navegador (02b) e no gerador do índice", async () => {
+  const { CAMPOS_DO_CORPO } = await import("../ferramentas/lib-indice.mjs");
+  const m = /const CAMPOS_DO_CORPO = (\[[^\]]*\])/.exec(fontes["codigo/02b-corpos-das-questoes.js"]);
+  assert.ok(m, "CAMPOS_DO_CORPO não achada em 02b");
+  assert.deepEqual(JSON.parse(m[1]), CAMPOS_DO_CORPO);
+});

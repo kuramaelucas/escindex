@@ -185,3 +185,52 @@ function coletarTextoDaTela(montar){
     return { html, faltam: [..._coletaDeCorpos] };
   } finally { _coletaDeCorpos = null; }
 }
+
+/* Perguntas que as outras telas fazem ao estado dos textos: ficam aqui para ninguém mais tocar em
+   window.EscDados.corpos / arquivosComCorpo / indice (testes/higiene.test.mjs confere). */
+function corpoCarregadoDe(id){ return window.EscDados.corpos[id] || null; }
+function quantosArquivosDeProvaChegaram(){ return Object.keys(window.EscDados.arquivosComCorpo).length; }
+function listaDoIndiceDeBusca(){ return window.EscDados.indiceBusca || null; }
+function indiceDeBuscaCarregado(){ return !!window.EscDados.indiceBusca; }
+function haIndiceDeQuestoes(){ return !!window.EscDados.indice; }
+
+/* ---------------------------- estudar sem internet ----------------------------
+   O service worker guarda cada arquivo de prova que foi pedido (sw.js, versionadoPrimeiro): o que já
+   foi aberto funciona offline. O botão do Perfil guarda TODOS de uma vez, em segundo plano, para quem
+   quer ter tudo antes de ficar sem rede. Só baixa (fetch): o texto entra na memória quando for preciso. */
+const CACHE_DOS_VERSIONADOS = "esc-versionados";   // o mesmo nome de sw.js
+async function estadoDoEstudoOffline(){
+  const ind = window.EscDados.indice || { arquivos: [], tamanhos: [] };
+  let noCache = new Set();
+  try{
+    if(window.caches){
+      const chaves = await (await caches.open(CACHE_DOS_VERSIONADOS)).keys();
+      noCache = new Set(chaves.map(r => new URL(r.url).pathname));
+    }
+  }catch(e){ /* sem armazenamento disponível: nada guardado */ }
+  const guardado = nome => noCache.has("/dados/" + nome + ".js") || noCache.has(new URL("dados/" + nome + ".js", location.href).pathname);
+  const arquivos = ind.arquivos.map((nome, i) => ({ nome, bytes: (ind.tamanhos || [])[i] || 0, guardado: guardado(nome) }));
+  return {
+    total: arquivos.length, guardados: arquivos.filter(a => a.guardado).length,
+    bytesTotal: arquivos.reduce((t, a) => t + a.bytes, 0), bytesGuardados: arquivos.filter(a => a.guardado).reduce((t, a) => t + a.bytes, 0),
+    faltam: arquivos.filter(a => !a.guardado), comServiceWorker: !!(navigator.serviceWorker && navigator.serviceWorker.controller),
+  };
+}
+async function guardarTudoParaEstudarSemInternet(aoProgresso){
+  const estado = await estadoDoEstudoOffline();
+  try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); }catch(e){ /* o navegador decide sozinho */ }
+  const fila = [...estado.faltam]; const total = fila.length; let feitos = 0, falhas = 0;
+  await new Promise(resolve => {
+    if(!total){ resolve(); return; }
+    let ativos = 0;
+    const andar = () => {
+      while(ativos < LIMITE_DE_ARQUIVOS_EM_PARALELO && fila.length){
+        const a = fila.shift(); ativos++;
+        fetch(window.escEndereco("dados", a.nome)).then(r => { if(!r.ok) falhas++; return r.arrayBuffer(); }).catch(() => { falhas++; })
+          .then(() => { ativos--; feitos++; if(aoProgresso) aoProgresso(feitos, total); if(!fila.length && !ativos) resolve(); else andar(); });
+      }
+    };
+    andar();
+  });
+  return { total, falhas };
+}

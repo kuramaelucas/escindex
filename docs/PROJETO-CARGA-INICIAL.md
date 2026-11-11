@@ -99,7 +99,9 @@ Separar cada questão em **ficha** (sempre carregada) e **corpo** (carregado por
 - **Busca global** (`06b`): decisão em aberto (seção 7). Proposta: indexar no `publicar` um arquivo `dados/indice-busca.js` com os primeiros ~160 caracteres do enunciado por questão (≈2 MB), carregado só quando a busca é aberta pela primeira vez; abrir o resultado chama `garantirCorpos`.
 - **Telas de administração** carregam o corpo de **todas** as provas ao abrir (com barra de progresso). Aluno nunca passa por aí.
 
-### Fase 3 — offline e limpeza
+### Fase 3 — offline e limpeza — FEITA em 11/11/2026
+
+> Feita: card **Estudar sem internet** no Perfil (`renderCardEstudoOffline`, 10c; lógica em 02b: `estadoDoEstudoOffline`, `guardarTudoParaEstudarSemInternet`). Mostra quantas provas já estão no cache do service worker e o tamanho (o índice leve traz `tamanhos` por arquivo), baixa as que faltam em segundo plano com barra de progresso e pede armazenamento persistente. O que já foi aberto continua guardado sozinho (sw.js). Sem baixar provas "recentes" por conta própria (decisão 3). Higiene: `testes/higiene.test.mjs` acusa `EscDados.corpos/arquivosComCorpo/indice` fora de 02b e confere que a lista de campos do corpo é a mesma no navegador e no gerador. Cota do `localStorage`: reavaliada — o banco só grava diferenças da semente e a ficha não é gravada, então não há o que mover; se voltar a pesar, o candidato é respostas/histórico (fora desta rodada). O orçamento da seção 4 continua cumprido (`npm run medir-carga -- --exigir`).
 
 - "Guardar para estudar sem internet" no Perfil: baixa todos os corpos em segundo plano (mostra o tamanho e o progresso). Padrão: baixar a prova assim que alguém abre uma questão dela, mais as 3 provas mais recentes quando o navegador está ocioso.
 - Cota do `localStorage` e IndexedDB: se a ficha + diferenças voltarem a pesar, avaliar mover respostas/histórico (fora do escopo desta fase).

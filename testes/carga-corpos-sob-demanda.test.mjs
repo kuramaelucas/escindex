@@ -170,3 +170,23 @@ test("uso offline: o que já foi aberto continua abrindo sem internet", async ()
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("Perfil: 'Guardar para estudar sem internet' baixa todas as provas e depois a plataforma abre uma prova nunca vista sem rede", async () => {
+  const { pagina, contexto, erros } = await abrir({ contextoOpcoes: { serviceWorkers: "allow" }, estrito: false });
+  try {
+    await pagina.evaluate(() => navigator.serviceWorker.ready);
+    await pagina.reload();
+    await pagina.waitForFunction(() => !!navigator.serviceWorker.controller && typeof db !== "undefined" && db);
+    await pagina.evaluate(() => { fazerLoginDemo("aluno"); fecharModal(); navigate("perfil"); });
+    await pagina.waitForSelector("#offlineBotao:not([hidden])", { timeout: 20000 });
+    assert.match(await pagina.locator("#offlineEstado").innerText(), /0 de \d+ provas guardadas/);
+    await pagina.click("#offlineBotao");
+    await pagina.waitForFunction(() => /Tudo guardado/.test(document.getElementById("offlineEstado").innerText), null, { timeout: 120000 });
+    await contexto.setOffline(true);
+    await pagina.reload();
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db, null, { timeout: 30000 });
+    const ok = await pagina.evaluate(async () => { const q = db.questoes[11000]; await garantirCorpos([q.id]); return q.enunciado.length > 20; });
+    assert.equal(ok, true, "uma prova que nunca foi aberta abre sem internet depois de guardar");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

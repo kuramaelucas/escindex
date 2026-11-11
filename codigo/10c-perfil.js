@@ -52,6 +52,7 @@ function renderPerfil(){
   </div>` : ""}
   ${renderCardModoPlataforma(u)}
   ${renderCardControle()}
+  ${renderCardEstudoOffline()}
   ${renderCardIaDuvidas(u)}
   ${renderCardAjuda()}
   ${renderCardInstalarApp()}
@@ -194,4 +195,43 @@ function abrirAjusteProvaAlvo(){
   </div>`);
   const campo = document.getElementById("ajusteProvaAlvo");
   if(campo){ campo.focus(); try{ campo.showPicker(); }catch(e){} }
+}
+
+/* "Estudar sem internet" (fase 3 de docs/PROJETO-CARGA-INICIAL.md): o texto das questões chega por arquivo de
+   prova e fica guardado pelo service worker; aqui a pessoa guarda todos de uma vez, vendo o tamanho e o progresso. */
+function renderCardEstudoOffline(){
+  setTimeout(atualizarCardEstudoOffline, 0);   // o estado vem do cache do navegador (assíncrono): preenche depois de desenhar
+  return `<div class="card mt-2" style="max-width:460px" id="cardEstudoOffline">
+    <div class="card-title">Estudar sem internet</div>
+    <p class="text-sm muted">O que você já abriu continua disponível sem internet. Para ter <strong>todas</strong> as questões antes de ficar sem rede, guarde-as neste aparelho.</p>
+    <div class="text-xs muted mt-1" id="offlineEstado" aria-live="polite">Conferindo o que já está guardado…</div>
+    <div class="progress-track mt-1" id="offlineBarraWrap" hidden role="progressbar" aria-label="Progresso"><div class="progress-fill" id="offlineBarra" style="width:0%"></div></div>
+    <button class="btn btn-secondary btn-sm mt-1" id="offlineBotao" onclick="guardarOfflineDoPerfil()" hidden>${iconeSvg("download")} Guardar para estudar sem internet</button>
+  </div>`;
+}
+const megabytes = bytes => (bytes / 1048576).toFixed(1).replace(".", ",") + " MB";
+async function atualizarCardEstudoOffline(){
+  const estado = document.getElementById("offlineEstado"), botao = document.getElementById("offlineBotao");
+  if(!estado || !botao) return;
+  const e = await estadoDoEstudoOffline();
+  if(!document.getElementById("offlineEstado")) return;
+  if(!e.total){ estado.textContent = "Nada a guardar: o conteúdo ainda não terminou de chegar."; return; }
+  const faltam = e.total - e.guardados;
+  estado.textContent = faltam
+    ? e.guardados + " de " + e.total + " provas guardadas (" + megabytes(e.bytesGuardados) + " de " + megabytes(e.bytesTotal) + "). Guardar o resto baixa cerca de " + megabytes(e.bytesTotal - e.bytesGuardados) + "."
+    : "Tudo guardado neste aparelho (" + megabytes(e.bytesTotal) + "): as questões abrem sem internet.";
+  if(!e.comServiceWorker) estado.textContent += " O modo sem internet só liga depois de recarregar a página uma vez (ou instalar o aplicativo).";
+  botao.hidden = !faltam || !e.comServiceWorker;
+}
+async function guardarOfflineDoPerfil(){
+  const botao = document.getElementById("offlineBotao"), barra = document.getElementById("offlineBarra"), wrap = document.getElementById("offlineBarraWrap"), estado = document.getElementById("offlineEstado");
+  if(!botao || botao.disabled) return;
+  botao.disabled = true; wrap.hidden = false;
+  const r = await guardarTudoParaEstudarSemInternet((feitos, total) => {
+    barra.style.width = Math.round(100 * feitos / total) + "%";
+    estado.textContent = "Guardando… " + feitos + " de " + total + " provas";
+  });
+  botao.disabled = false; wrap.hidden = true;
+  toast(r.falhas ? "Guardado, mas " + r.falhas + " prova(s) não chegaram. Tente de novo com internet." : "Pronto: as questões abrem sem internet neste aparelho.", r.falhas ? "err" : undefined);
+  atualizarCardEstudoOffline();
 }

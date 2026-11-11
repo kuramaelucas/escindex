@@ -71,7 +71,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 |---|---|---|
 | `01-config.js` | 1 | `CONFIG`, estado global, tema |
 | `02-persistencia.js` | 2 | apelidos `SEED_*`, conferência de `dados/`, `loadState`/`saveState`, migrações, compactação, rede de segurança |
-| `02b-corpos-das-questoes.js` | 2-B | questão em **ficha** (sempre na memória, de `dados/indice-questoes.js`) e **corpo** (o texto, no arquivo de prova, sob demanda): `PROTO_QUESTAO`, `montarFichasDaSemente`, `garantirCorpos(ids)`, `garantirTodosOsCorpos`, `questaoInteira` |
+| `02b-corpos-das-questoes.js` | 2-B | questão em **ficha** (sempre na memória, de `dados/indice-questoes.js`) e **corpo** (o texto, no arquivo de prova, sob demanda): `PROTO_QUESTAO`, `montarFichasDaSemente`, `garantirCorpos(ids)`, `garantirTodosOsCorpos`, `questaoInteira`, `estadoDoEstudoOffline` (botão do Perfil); só 02b toca em `EscDados.corpos` |
 | `03a-nuvem-conexao.js` | 2-C | ritmo da sincronização, `nuvemChamar`, sessão, entrar/cadastrar/sair, volta dos e-mails, perfil |
 | `03b-nuvem-sincronizacao.js` | 2-C | `NUVEM_TABELAS`, fila, sincronização, calendário compartilhado |
 | `03c-nuvem-compartilhadas.js` | 2-C | `NUVEM_GLOBAIS`: livro de ouro, formatação, comentários, feedback, questões enviadas, correções |
@@ -143,7 +143,7 @@ Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/PADR
 
 - `RESUMO-PROJETO-ESC.md` — o que a plataforma faz e o **porquê** de cada decisão (seções 4–5), pendências no topo. Para conversa fora do Claude Code, anexe-o junto com o arquivo de `codigo/` da tela.
 - `docs/HISTORICO.md` — o que mudou em cada rodada. Só quando precisar da história.
-- `docs/PROJETO-CARGA-INICIAL.md` — projeto para a plataforma abrir leve (fases 0, 1 e 2 feitas; falta a 3: offline e limpeza): medidas de hoje (30 MB de conteúdo antes da 1ª tela), metas, fases 0–3 (moldura primeiro, ficha leve + corpo sob demanda, offline) e as decisões que faltam. Leia antes de mexer em como `dados/` carrega ou em `SEED_*`.
+- `docs/PROJETO-CARGA-INICIAL.md` — projeto para a plataforma abrir leve (fases 0 a 3 feitas): medidas de hoje (30 MB de conteúdo antes da 1ª tela), metas, fases 0–3 (moldura primeiro, ficha leve + corpo sob demanda, offline) e as decisões que faltam. Leia antes de mexer em como `dados/` carrega ou em `SEED_*`.
 - `docs/REPOSICOES-DE-QUESTOES.md` — memória do trabalho de reposição de questões anuladas/desatualizadas: como a plataforma trata (duas versões da prova), como se escreve uma, fontes que abrem ou não, o que já foi lido (com edição) e o mapa do que falta. Leia antes de começar uma reposição.
 - `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md` — o que foi conferido nas referências das questões (PubMed, web e textos oficiais), com data e fonte; `docs/REFERENCIAS-A-CONFERIR.md` — a fila do que falta nos simulados autorais e `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md` — as questões de todas as provas que citam edição superada (ambas geradas por `npm run referencias-a-conferir`). Leia antes de repetir uma busca.
 - `docs/PENDENCIAS-DE-REFERENCIAS.md` — **pendências de referência da USP e da UNIFESP num só lugar**: questões que citam edição superada, diretrizes fora de `ferramentas/edicoes-vigentes.json`, PDFs que a rede não abre e letras de gabarito a conferir. Abra antes de conferir referências dessas provas; apague a linha ao resolver.

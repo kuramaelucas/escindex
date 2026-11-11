@@ -850,7 +850,7 @@ function campoIgualASemente(valor, semente, k){
   // campo do corpo de uma ficha: compara com o texto carregado, sem disparar a carga do arquivo;
   // sem o texto da semente na memória não dá para provar que é igual, então vale como diferença
   if(CORPO_DE_CAMPO.has(k) && ehFichaDaSemente(semente)){
-    const corpo = window.EscDados.corpos[semente.id];
+    const corpo = corpoCarregadoDe(semente.id);
     if(!corpo) return false;
     semente = corpo;
   }

@@ -32,7 +32,7 @@ function buscaPoolDeQuestoes(u){
 let _trechosDeBusca = null;   // id -> começo do enunciado
 function buscaTrechoIndexado(id){
   if(!_trechosDeBusca){
-    const lista = window.EscDados.indiceBusca;
+    const lista = listaDoIndiceDeBusca();
     if(!lista) return "";
     _trechosDeBusca = new Map(SEED_QUESTOES.map((q, i) => [q.id, lista[i]]));
   }
@@ -40,7 +40,7 @@ function buscaTrechoIndexado(id){
 }
 function buscaEnunciadoDe(q){ return campoJaDisponivel(q, "enunciado") || (ehFichaDaSemente(q) ? buscaTrechoIndexado(q.id) : "") || ""; }
 function carregarIndiceDeBusca(){
-  if(window.EscDados.indiceBusca || !window.EscDados.indice) return Promise.resolve();
+  if(indiceDeBuscaCarregado() || !haIndiceDeQuestoes()) return Promise.resolve();
   return new Promise(resolve => {
     const s = document.createElement("script");
     s.src = window.escEndereco("dados", "indice-busca");
@@ -49,7 +49,7 @@ function carregarIndiceDeBusca(){
   });
 }
 function buscaIndiceDeQuestoes(u){
-  const chave = _geracaoDb + "|" + (u ? u.id : "") + "|" + (buscaComoAluno(u) ? "a" : "e") + "|" + Object.keys(window.EscDados.arquivosComCorpo).length + (window.EscDados.indiceBusca ? "b" : "");
+  const chave = _geracaoDb + "|" + (u ? u.id : "") + "|" + (buscaComoAluno(u) ? "a" : "e") + "|" + quantosArquivosDeProvaChegaram() + (indiceDeBuscaCarregado() ? "b" : "");
   if(_buscaIndice && _buscaIndice.chave === chave) return _buscaIndice.itens;
   const itens = buscaPoolDeQuestoes(u).map(q => ({
     q,
@@ -161,7 +161,7 @@ function abrirBuscaGlobal(){
   buscaDesenhar();
   document.getElementById("buscaGlobalCampo").focus();
   // o começo dos enunciados chega e a busca refaz o que a pessoa já digitou
-  if(!window.EscDados.indiceBusca) carregarIndiceDeBusca().then(() => { if(document.getElementById("buscaGlobalCampo")) buscaDesenhar(); });
+  if(!indiceDeBuscaCarregado()) carregarIndiceDeBusca().then(() => { if(document.getElementById("buscaGlobalCampo")) buscaDesenhar(); });
 }
 function htmlBotaoBusca(){
   const atalho = /Mac|iPhone|iPad/.test(navigator.platform || "") ? "⌘ K" : "Ctrl K";

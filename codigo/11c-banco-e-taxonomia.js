@@ -428,9 +428,9 @@ function indiceAssinaturasQuestoes(){
   // sem o texto das provas na memória, a assinatura de uma questão da semente sai do começo do enunciado
   // do índice de busca (dados/indice-busca.js, que cobre os 160 caracteres da assinatura); o índice é
   // pedido na primeira vez e o cache refeito quando ele ou mais texto chega
-  const pronto = !!window.EscDados.indiceBusca || !window.EscDados.indice;
+  const pronto = indiceDeBuscaCarregado() || !haIndiceDeQuestoes();
   if(!pronto) carregarIndiceDeBusca().then(() => { _cacheIndiceAssinaturas = null; });
-  const marca = _geracaoDb + "|" + pronto + "|" + Object.keys(window.EscDados.arquivosComCorpo).length;
+  const marca = _geracaoDb + "|" + pronto + "|" + quantosArquivosDeProvaChegaram();
   if(_cacheIndiceAssinaturas && _cacheIndiceAssinaturas.marca===marca) return _cacheIndiceAssinaturas.mapa;
   const mapa = new Map();
   db.questoes.forEach(q=>{

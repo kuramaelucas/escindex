@@ -59,7 +59,9 @@ export function montarIndices(){
    explicações, referências, imagem) fica nos arquivos de prova e só chega quando preciso.
    Cada linha: os valores de \`campos\` na ordem (null = ausente) e, por último, o número do
    arquivo de origem em \`arquivos\`. */\n`;
-  const indice = cab + "window.EscDados.registrarIndice(" + JSON.stringify({ campos, arquivos: nomes, linhas }) + ");\n";
+  // o tamanho de cada arquivo de prova (bytes), para o Perfil dizer quanto o "guardar para estudar sem internet" baixa
+  const tamanhos = nomes.map(n => fs.statSync(path.join(RAIZ, "dados", n + ".js")).size);
+  const indice = cab + "window.EscDados.registrarIndice(" + JSON.stringify({ campos, arquivos: nomes, tamanhos, linhas }) + ");\n";
   const busca = `/* dados/indice-busca.js — começo do enunciado de cada questão (cobre os 160 primeiros caracteres da chave de duplicata), na ordem de
    indice-questoes.js, para a busca global achar questão sem baixar as provas. GERADO por \`npm run publicar\`. */\n` +
     "window.EscDados.registrarIndiceBusca(" + JSON.stringify(questoes.map(([q]) => trechoDeBusca(q.enunciado))) + ");\n";
