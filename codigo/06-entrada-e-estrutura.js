@@ -263,7 +263,20 @@ window.addEventListener("keydown", function(e){
    montar a estrutura inteira ou só trocar o miolo (ver o fim da função). */
 let _telaDesenhada = null;
 
+/* Antes de o conteúdo chegar não há `db`: desenha a moldura (landing leve, ou o
+   "carregando" nas outras rotas). Ações que precisam do banco entram na fila e
+   rodam em iniciarBanco (14). */
+const ESC_FILA_APOS_BANCO = [];
+function aposBancoPronto(fn){ if(db) fn(); else ESC_FILA_APOS_BANCO.push(fn); }
+function desenharMoldura(){
+  // quem já tem sessão guardada, ou abriu um endereço interno, não vê a landing piscar antes da tela dele
+  let logado = false; try{ logado = !!localStorage.getItem(CHAVE_SESSAO_NUVEM); }catch(e){}
+  const hash = (location.hash || "").replace("#/", "");
+  const publica = state.route === "landing" && !logado && (!hash || hash === "landing");
+  desenharTelaPublica(publica ? renderLanding(numerosDaLandingEmCache() || false) : renderCarregando());
+}
 function render(){
+  if(!db){ desenharMoldura(); return; }
   const app = document.getElementById("app");
   // o modo foco só existe dentro da sessão: qualquer outra tela o desliga
   if(state.modoFoco && state.route!=="sessao" && state.route!=="simulado-ativo") state.modoFoco = false;

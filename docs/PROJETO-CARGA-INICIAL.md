@@ -69,7 +69,9 @@ Para ser medido por `npm run medir-carga` (a criar na fase 0), no mesmo método 
 - Marcas `performance.mark` em: primeiro HTML pintado, `codigo` pronto, `dados` prontos, `db` montado, primeira tela do Início.
 - Linha no roteador do `CLAUDE.md` e no quadro de comandos.
 
-### Fase 1 — pintar antes de ter os dados ("moldura primeiro")
+### Fase 1 — pintar antes de ter os dados ("moldura primeiro") — FEITA em 11/11/2026
+
+> Feita: `index.html` carrega `taxonomia`/`calendario`/`trilha-formados` + `codigo/` e só então `escCarregarResto` injeta o resto de `dados/` (`async=false`, após a 1ª pintura); `render()` sem `db` desenha a moldura (`desenharMoldura`, 06: landing leve com os números da última visita, ou "carregando"); `iniciarBanco()` (14) monta o banco quando os dados terminam; cliques na moldura que precisam do banco entram em `aposBancoPronto`. Teste com atraso: `testes/carga-moldura.test.mjs`. Medido (`npm run medir-carga`): tela de entrada no celular 4× **~0,5 s** (era 2,3 s; meta ≤ 1 s). Início no celular continua ~3 s, transferência 31 MB e heap ~160–200 MB: são metas da fase 2. As caches `sementesPorId`/`_idsDaSemente` não precisaram de mudança porque o banco só é montado depois do último arquivo.
 
 Objetivo: tela de entrada em ≤ 1 s sem mudar o modelo de dados.
 

@@ -48,6 +48,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 
 ## Como o código roda (leia antes de mexer)
 
+- **Carga em duas etapas:** o `index.html` carrega `codigo/` e só `taxonomia`/`calendario`/`trilha-formados` de `dados/`; o resto de `dados/` entra depois da 1ª pintura e então roda `iniciarBanco()` (14: `loadState` + inicialização). Antes disso `db` é `null` e `render()` só desenha a moldura (`desenharMoldura`, 06) — **código que roda na carga não pode tocar em `db`**; ação que precisa dele usa `aposBancoPronto(fn)`.
 - `codigo/*.js` são **scripts comuns carregados em ordem** pela lista `ESC_ARQUIVOS.codigo` do `index.html`; todos dividem o mesmo escopo global. Função de um arquivo é chamada nos outros sem import. **Código que roda na carga** (fora de função) só pode usar o que arquivos anteriores já declararam.
 - A lista dos arquivos de `dados/` está em **`dados/manifesto.js`** (não no `index.html`); a de `codigo/` está no `ESC_ARQUIVOS.codigo` do `index.html`. Os arquivos de `dados/` rodam antes e chamam `window.EscDados.registrarQuestoes(nome, [...])` (e `registrarFlashcards`, `registrarTaxonomia`, `registrarCalendario`, `registrarSimulados`, `registrarDemonstracao`). `SEED_*` são só apelidos dessas listas.
 - `db` = o banco (localStorage `medbloco_db_v1`); `state` = estado temporário de tela. Padrão de toda ação: mudar `db` → `saveState()` → `render()` (ou redesenhar só a parte, ex. `redesenharQuestaoDaSessao()`). `saveState()` guarda de cada questão/cartão da semente **só a diferença** (`compactarParaArmazenar`) e incrementa `_geracaoDb`, que invalida os caches.
@@ -82,7 +83,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `05d-trilha-de-estudos.js` | 4 | trilha por taxa de erro: assuntos com mais erro recebem mais questões; janela de montagem e cartão de sugestão (`abrirTrilhaDeEstudos`) |
 | `05f-revisao-sugerida.js` | 4-D | revisão sugerida: assuntos já estudados que esfriaram (erro, depois tempo parado), conjunto no tamanho pedido, janela e cartão (`abrirRevisaoSugerida`) |
 | `05e-trilha-de-formados.js` | 4-C | trilha do cronograma de Formado(a): fila `dados/trilha-formados.js` (demanda × pré-requisitos), assuntos em estudo/consolidados/esperando, tela “Minha trilha” (`trilhaDeFormado`, `abrirTrilhaDeFormado`) |
-| `06-entrada-e-estrutura.js` | 5–7 | login local, roteador, gesto de arrastar, menu e topo |
+| `06-entrada-e-estrutura.js` | 5–7 | login local, roteador (moldura sem `db`: `desenharMoldura`, `aposBancoPronto`), gesto de arrastar, menu e topo |
 | `06b-busca-global.js` | 5-B | busca global (Ctrl/Cmd+K e botão do topo): telas, assuntos e questões pelo enunciado (`abrirBuscaGlobal`) |
 | `06c-modo-plataforma.js` | 5-C | modo resumido × estatístico do aluno: a escolha (`u.modoPlataforma`), a pergunta de primeira vez, o cartão do Perfil, `modoResumido()`, `soNoEstatistico()`, `explicacaoRecolhida()` |
 | `06d-controle-de-videogame.js` | 5-D | controle de videogame (Gamepad API): setas ↑↓ rolam, ←→ trocam de questão, botões da direita escolhem A–D (R1 = E) e, com a alternativa marcada, dão a confiança (cima chute · esquerda certeza · baixo dúvida; com a marcada, C e E sem função, L1 desmarca, L2 segurado + alternativa risca); flashcards (direita vira, esquerda sabia, baixo quase, cima não lembrei); vibração; rótulos por marca só com controle conectado (`body.com-controle`); opção e velocidade por aparelho (`renderCardControle`, Perfil) |
@@ -109,7 +110,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `12c-questoes-para-atualizar.js` | 26-D | Questões para Atualizar (correções, arquivo de atualizações) |
 | `12d-pendencias-de-conteudo.js` | 26-E | Pendências de conteúdo: figuras, desatualizadas, provas com número faltando, assuntos sem cartão — calculado do banco (`pendenciasDeConteudo`) |
 | `13-tutorial.js` | 26-C | tutorial rápido e guia completo |
-| `14-admin-e-inicializacao.js` | 27–28 | Blocos, Configurações, versão nova, PWA, **inicialização (sempre o último)** |
+| `14-admin-e-inicializacao.js` | 27–28 | Blocos, Configurações, versão nova, PWA, **inicialização: `iniciarBanco()`, chamada pelo `index.html` quando os dados chegam (sempre o último)** |
 | `estilo.css` | — | visual (tokens de cor nos dois temas) |
 
 ## Regras da casa
@@ -141,7 +142,7 @@ Regras: a explicação segue o padrão de justificativa (abaixo e em `dados/PADR
 
 - `RESUMO-PROJETO-ESC.md` — o que a plataforma faz e o **porquê** de cada decisão (seções 4–5), pendências no topo. Para conversa fora do Claude Code, anexe-o junto com o arquivo de `codigo/` da tela.
 - `docs/HISTORICO.md` — o que mudou em cada rodada. Só quando precisar da história.
-- `docs/PROJETO-CARGA-INICIAL.md` — projeto (ainda não executado) para a plataforma abrir leve: medidas de hoje (30 MB de conteúdo antes da 1ª tela), metas, fases 0–3 (moldura primeiro, ficha leve + corpo sob demanda, offline) e as decisões que faltam. Leia antes de mexer em como `dados/` carrega ou em `SEED_*`.
+- `docs/PROJETO-CARGA-INICIAL.md` — projeto para a plataforma abrir leve (fases 0 e 1 feitas): medidas de hoje (30 MB de conteúdo antes da 1ª tela), metas, fases 0–3 (moldura primeiro, ficha leve + corpo sob demanda, offline) e as decisões que faltam. Leia antes de mexer em como `dados/` carrega ou em `SEED_*`.
 - `docs/REPOSICOES-DE-QUESTOES.md` — memória do trabalho de reposição de questões anuladas/desatualizadas: como a plataforma trata (duas versões da prova), como se escreve uma, fontes que abrem ou não, o que já foi lido (com edição) e o mapa do que falta. Leia antes de começar uma reposição.
 - `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md` — o que foi conferido nas referências das questões (PubMed, web e textos oficiais), com data e fonte; `docs/REFERENCIAS-A-CONFERIR.md` — a fila do que falta nos simulados autorais e `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md` — as questões de todas as provas que citam edição superada (ambas geradas por `npm run referencias-a-conferir`). Leia antes de repetir uma busca.
 - `docs/PENDENCIAS-DE-REFERENCIAS.md` — **pendências de referência da USP e da UNIFESP num só lugar**: questões que citam edição superada, diretrizes fora de `ferramentas/edicoes-vigentes.json`, PDFs que a rede não abre e letras de gabarito a conferir. Abra antes de conferir referências dessas provas; apague a linha ao resolver.

@@ -705,11 +705,16 @@ function pedirLembreteComAppFechado(){
 /* ==========================================================================
    28. INICIALIZAÇÃO
    ==========================================================================
-   Carrega os dados salvos (ou os dados de demonstração, na primeira vez),
-   restaura a rota da URL (se houver) e desenha a tela pela primeira vez. */
-loadState();
-performance.mark("esc:db-montado");   // medir-carga (fase 0 de docs/PROJETO-CARGA-INICIAL.md)
-(function inicializar(){
+   Em duas etapas (docs/PROJETO-CARGA-INICIAL.md, fase 1): ao carregar o código
+   só se desenha a MOLDURA (render() sem db); quando o conteúdo de dados/ termina
+   de chegar, o index.html chama iniciarBanco(), que carrega os dados salvos (ou
+   os de demonstração, na primeira vez), restaura a rota da URL e desenha a tela
+   de verdade. */
+render();
+performance.mark("esc:moldura");   // medir-carga
+function iniciarBanco(){
+  loadState();
+  performance.mark("esc:db-montado");
   // volta de um link de e-mail (confirmar cadastro, trocar senha): o
   // endereço traz o resultado depois do # e precisa ser lido antes do
   // roteador — ver nuvemTratarRetornoDoEmail, seção 2-C
@@ -756,4 +761,7 @@ performance.mark("esc:db-montado");   // medir-carga (fase 0 de docs/PROJETO-CAR
   ativarDestaquesDeTexto();
   atualizarRecadoLembrete();
   { const eu = usuarioAtual(); if(eu && eu.lembreteMetaAtivo) pedirLembreteComAppFechado(); }
-})();
+  // cliques dados na moldura (ex.: "Ver como aluno") que esperavam o banco
+  const fila = ESC_FILA_APOS_BANCO.splice(0);
+  fila.forEach(fn => { try{ fn(); }catch(e){ console.error(e); } });
+}

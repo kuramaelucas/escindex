@@ -9,20 +9,39 @@
    para os alunos de lá — e só depois o que ele faz. Os números do resumo
    vêm do conteúdo carregado, não de texto fixo: acrescentar uma prova muda
    a página sozinho. */
-function renderLanding(){
+/* Os números do resumo ficam guardados no navegador (CHAVE_NUMEROS_LANDING): a
+   moldura, que aparece antes de o conteúdo chegar, mostra os da última visita;
+   na primeira, texto sem número. */
+const CHAVE_NUMEROS_LANDING = "esc_numeros_landing";
+function numerosDaLandingEmCache(){
+  try{ return JSON.parse(localStorage.getItem(CHAVE_NUMEROS_LANDING)) || null; }catch(e){ return null; }
+}
+function numerosDaLanding(){
   const ativas = questoesAtivas(true);
-  const reais = ativas.filter(q=>q.real).length;
-  const anosReais = [...new Set(ativas.filter(q=>q.real).map(q=>q.ano))].sort();
-  const cartoes = (db.flashcards||[]).filter(c=>!c.usuarioId && c.status!=="arquivado").length;
-  const especialidades = (db.taxonomia.especialidades||[]).length;
-  const numero = n => n.toLocaleString("pt-BR");
+  const reais = ativas.filter(q=>q.real);
+  const anos = [...new Set(reais.map(q=>q.ano))].sort();
+  const n = { questoes: ativas.length, reais: reais.length, anoDe: anos[0] || null, anoAte: anos[anos.length-1] || null,
+    cartoes: (db.flashcards||[]).filter(c=>!c.usuarioId && c.status!=="arquivado").length,
+    especialidades: (db.taxonomia.especialidades||[]).length };
+  try{ localStorage.setItem(CHAVE_NUMEROS_LANDING, JSON.stringify(n)); }catch(e){ /* sem armazenamento: a moldura fica sem números */ }
+  return n;
+}
+/* "Carregando": a moldura das rotas que não são a landing (entrar, cadastro, volta do e-mail). */
+function renderCarregando(){
+  return `<div class="container"><nav class="public-nav"><div class="brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div></nav>
+    <div class="card mt-3"><div class="card-title">Carregando o conteúdo…</div>
+    <div class="text-sm muted mt-1">Só um instante: as questões estão chegando ao seu aparelho.</div></div></div>`;
+}
+function renderLanding(n){
+  if(n === undefined) n = numerosDaLanding();   // false = moldura sem números
+  const numero = x => x.toLocaleString("pt-BR");
   const capacidades = [
-    ["book", numero(ativas.length)+" questões", reais ? numero(reais)+" delas das provas reais da "+CONFIG.bancaFoco+(anosReais.length?" ("+anosReais[0]+"–"+anosReais[anosReais.length-1]+")":"")+", com explicação escrita pela equipe." : "Organizadas por área, especialidade e assunto."],
+    ["book", n ? numero(n.questoes)+" questões" : "Milhares de questões", n && n.reais ? numero(n.reais)+" delas das provas reais da "+CONFIG.bancaFoco+(n.anoDe?" ("+n.anoDe+"–"+n.anoAte+")":"")+", com explicação escrita pela equipe." : "Organizadas por área, especialidade e assunto, com explicação escrita pela equipe."],
     ["calendar","No ritmo dos seus blocos","A sessão do dia segue o calendário da sua turma, do 3º ao 6º ano: o bloco atual, revisão do que já passou e uma prévia do próximo."],
     ["refresh","Revisão no momento certo","Cada questão volta quando você está para esquecê-la — e as que você errou voltam antes."],
-    ["cards", numero(cartoes)+" flashcards","Para fixar conceito em poucos segundos, com intervalo próprio de revisão."],
+    ["cards", n ? numero(n.cartoes)+" flashcards" : "Flashcards","Para fixar conceito em poucos segundos, com intervalo próprio de revisão."],
     ["clipboard","Provas e simulados","Provas antigas inteiras e simulados cronometrados, com a nota guardada para comparar."],
-    ["chart","Seu desempenho, sem mistério","Acerto por área e por "+numero(especialidades)+" especialidades, onde a sua confiança engana e o que revisar hoje."],
+    ["chart","Seu desempenho, sem mistério","Acerto por área e por "+(n ? numero(n.especialidades)+" " : "")+"especialidades, onde a sua confiança engana e o que revisar hoje."],
   ];
   return `
   <div class="container">
@@ -72,7 +91,7 @@ function renderLanding(){
     <div class="card-flat mt-3">
       <div class="text-sm" style="font-weight:600;margin-bottom:.5rem">Quer ver antes de se cadastrar?</div>
       <div class="flex gap-1 quebra">
-        <button class="pill" onclick="fazerLoginDemo('aluno')">${iconeSvg("user")} Ver como aluno</button>
+        <button class="pill" onclick="aposBancoPronto(() => fazerLoginDemo('aluno'))">${iconeSvg("user")} Ver como aluno</button>
       </div>
       <div class="text-xs muted mt-2">Uma conta de teste, sem memória: nada do que você fizer nela é guardado.</div>
     </div>
