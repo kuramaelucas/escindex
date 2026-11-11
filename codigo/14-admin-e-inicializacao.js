@@ -269,7 +269,7 @@ function atualizarPreviaVirada(ano){
   if(!linhas.length){ caixa.innerHTML = '<p class="text-sm muted">Escolha uma data para ver como fica.</p>'; return; }
   const delta = diasEntre(sequenciaDoAno(ano)[0].dataInicio, nova);
   caixa.innerHTML = `
-    <p class="text-sm mt-1">${delta===0 ? "Nenhum deslocamento — as datas ficam como estão." : (delta>0 ? "Tudo anda <strong>"+delta+" dia(s) para a frente</strong>." : "Tudo volta <strong>"+Math.abs(delta)+" dia(s)</strong>.")}</p>
+    <p class="text-sm mt-1">${delta===0 ? "Nenhum deslocamento — as datas ficam como estão." : (delta>0 ? "Tudo anda <strong>"+delta+" "+plural(delta,"dia","dias")+" para a frente</strong>." : "Tudo volta <strong>"+Math.abs(delta)+" "+plural(Math.abs(delta),"dia","dias")+"</strong>.")}</p>
     <div class="table-wrap mt-1"><table>
       <thead><tr><th>Bloco</th><th>Hoje</th><th>Fica</th></tr></thead>
       <tbody>${linhas.map(l=>`<tr>
@@ -679,8 +679,8 @@ function atualizarRecadoLembrete(){
     const faltamQ = Math.max(metaDoUsuario(u) - questoesRespondidasHoje(u.id), 0);
     const faltamC = Math.max(metaCartoesDoUsuario(u) - cartoesRevisadosHoje(u.id), 0);
     const partes = [];
-    if(faltamQ>0) partes.push(faltamQ+" questão(ões)");
-    if(faltamC>0) partes.push(faltamC+" cartão(ões)");
+    if(faltamQ>0) partes.push(faltamQ+" "+plural(faltamQ,"questão","questões")+"");
+    if(faltamC>0) partes.push(faltamC+" "+plural(faltamC,"cartão","cartões")+"");
     recado = { ativo: true, nome: CONFIG.nomePlataforma, horario: u.lembreteMetaHorario || "20:00", dia: hojeISO(),
       metaBatida: !partes.length, faltam: partes.join(" e "), meta: metaDoUsuario(u)+" questões",
       ultimoAviso: u.lembreteMetaUltimoEnvio || null };

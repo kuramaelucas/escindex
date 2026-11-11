@@ -584,7 +584,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-044", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:44,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-abortamento",
-  imagemUrl:"dados/imagens/q-amrigs2021-044.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-044.webp",
   imagemLegenda:"Ultrassonografia transvaginal",
   enunciado:"Uma paciente de 19 anos chega na emergência com queixa de dor e sangramento vaginal. A ultrassonografia transvaginal está representada abaixo: O diagnóstico mais provável e a conduta são, respectivamente:",
   alternativas:[{id:"A",texto:"Aborto em curso e esvaziamento uterino com curetagem."},{id:"B",texto:"Pólipo endocervical e polipectomia."},{id:"C",texto:"Ameaça de aborto e repouso."},{id:"D",texto:"Aborto completo e observação."}],
@@ -612,7 +612,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-046", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:46,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-amrigs2021-046.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-046.webp",
   imagemLegenda:"Cardiotocografia",
   enunciado:"Segundo o Colégio Americano de Obstetras e Ginecologistas, a monitorização fetal abaixo é classificada como categoria:",
   alternativas:[{id:"A",texto:"1."},{id:"B",texto:"2."},{id:"C",texto:"3."},{id:"D",texto:"4."}],
@@ -679,7 +679,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-051", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:51,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
-  imagemUrl:"dados/imagens/q-amrigs2021-051.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-051.webp",
   imagemLegenda:"Citologia do raspado cervical (meio líquido)",
   enunciado:"Paciente de 28 anos, sexualmente ativa, apresenta colo uterino com área acetobranca com pontilhado fino. A citologia do raspado cervical (em meio líquido) está representada abaixo. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Tricomoníase."},{id:"B",texto:"Gardnerella vaginalis."},{id:"C",texto:"Papilomavírus humano."},{id:"D",texto:"Candidíase."}],
@@ -694,7 +694,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-052", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:52,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
-  imagemUrl:"dados/imagens/q-amrigs2021-052.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-052.webp",
   imagemLegenda:"Material para coleta citológica",
   enunciado:"A coleta dupla é preconizada no sistema público de saúde do Brasil como forma de rastreamento do câncer de colo uterino. Correlacione os números da figura abaixo com a sequência correta da coleta dupla, a qual inicia com a colocação do espéculo de:",
   alternativas:[{id:"A",texto:"Cusco (2), seguida do raspado da ectocérvice em 360º com a espátula (7) com a parte redonda, dilatação do colo com (5), raspado do canal cervical, em movimentos de vai e vem e rotação com (8), pôr o material colhido em camada espessa em (1) e fixação com (3), limpeza da vagina com gaze montada em Cheron (4)."},{id:"B",texto:"Collins (2), seguida da remoção do excesso de secreção com algodão montado em pinça (4), raspado em 360º da ectocérvice com espátula (7), introdução da escova (8) a 1,5 cm do colo, em movimentos de vai e vem e rotação e colocação do material colhido em camada fina em (1) e fixação imediata com (3)."},{id:"C",texto:"Graeve (2), seguida da remoção do excesso de secreção com algodão com pinça (4), introdução da escova (8) a 1,5 cm do colo, em movimentos de vai e vem e rotação, raspado da ectocérvice em 360º com espátula (7), colocação do material colhido em duas camadas separadas em (1) e fixação imediata com éter (3)."},{id:"D",texto:"Pederson (2), seguida da coleta de material do fundo de saco vaginal com a parte redonda da espátula de Ayre (7), raspado da ectocérvice em 360º com a borda em rabo-de-peixe de (7), colocação do material colhido com a espátula de Ayre em camadas finas em lâminas separadas (1) e fixação imediata com álcool a 70% (3)."}],
@@ -722,7 +722,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-054", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:54,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
-  imagemUrl:"dados/imagens/q-amrigs2021-054.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-054.webp",
   imagemLegenda:"Quatro histerossalpingografias (I a IV)",
   enunciado:"Paciente de 30 anos vem com queixa de amenorreia secundária. Na sua história obstétrica, ela apresentava gesta 3, para 2, aborto 1. O pré-natal das duas gestações ocorreram sem intercorrências, e os partos foram a termo, um em 2005 e o outro em 2007. O abortamento ocorreu há 13 meses, sendo que o resultado da patologia identificou restos placentários com fragmentos de miométrio, em meio a vários coágulos. O médico solicitou uma histerossalpingografia. Com base na história, a imagem histerossalpingográfica mais provável de ser encontrada é:",
   alternativas:[{id:"A",texto:"I."},{id:"B",texto:"II."},{id:"C",texto:"III."},{id:"D",texto:"IV."}],
@@ -750,7 +750,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-056", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:56,
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
-  imagemUrl:"dados/imagens/q-amrigs2021-056.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-056.webp",
   imagemLegenda:"Ultrassonografia uterina em corte transversal",
   enunciado:"A figura abaixo representa um corte transversal de uma ultrassonografia uterina. Diante do caso representado na ultrassonografia acima, é correto afirmar que:",
   alternativas:[{id:"A",texto:"O uso de implantes subdérmicos está indicado, uma vez que a imagem ultrassonográfica não é uma contraindicação para o seu uso."},{id:"B",texto:"O dispositivo intrauterino de cobre pode ser utilizado, após a retirada dos pólipos endometriais."},{id:"C",texto:"O dispositivo intrauterino com levonorgestrel está indicado para reduzir o espessamento endometrial."},{id:"D",texto:"A paciente poderá utilizar anticoncepcionais orais combinados, mas deve ser avisada que poderá ter sangramentos de escape pela presença dos miomas intramurais."}],
@@ -778,7 +778,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-058", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:58,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-endometriose",
-  imagemUrl:"dados/imagens/q-amrigs2021-058.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-058.webp",
   imagemLegenda:"Gráfico de dor (LNG-IUS × GnRH-a)",
   enunciado:"Paciente de 30 anos com dismenorreia progressiva foi avaliada por seu médico. Com base no gráfico do estudo randomizado acima, e das propriedades das duas medicações estudadas, análogos do hormônio liberador de gonadotrofina (GnRH-a) e sistema intrauterino liberador de levonorgestrel (LNG-IUS), é correto afirmar que:",
   alternativas:[{id:"A",texto:"Mais pacientes preferem usar o GnRH-a (n=37), apesar de não haver diferença significativa, quando comparado com o uso do LNG-IUS (n=34)."},{id:"B",texto:"Não existe diferença significativa entre usar LNG-IUS e GnRH-a no que se refere à dor no final de 6 meses, portanto a paciente poderá receber qualquer um dos medicamentos para reduzir a sua dor, sendo que os efeitos colaterais das duas medicações são idênticos."},{id:"C",texto:"Seria preferível oferecer GnRH-a por não ter os efeitos colaterais do hipoestrogenismo causados pelo LNG-IUS."},{id:"D",texto:"Seria preferível oferecer LNG-IUS por não ter os efeitos colaterais do hipoestrogenismo causados pelo GnRH-a."}],
@@ -923,7 +923,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-069", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:69,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-febrereumatica",
-  imagemUrl:"dados/imagens/q-amrigs2021-069.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-069.webp",
   imagemLegenda:"Focos de ausculta cardíaca",
   enunciado:"Na febre reumática secundária ao estreptococo beta-hemolítico, as manifestações valvulares cardiológicas mais frequentes podem ser auscultadas nos sítios de ausculta identificados, na imagem abaixo, pelos números:",
   alternativas:[{id:"A",texto:"1 e 2."},{id:"B",texto:"1 e 4."},{id:"C",texto:"2 e 3."},{id:"D",texto:"3 e 4."}],
@@ -964,7 +964,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2021", [
 {
   id:"q-amrigs2021-072", banca:"AMRIGS", real:true, ano:2021, numeroNaProva:72,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
-  imagemUrl:"dados/imagens/q-amrigs2021-072.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2021-072.webp",
   imagemLegenda:"Cartão de vacinas em branco",
   enunciado:"Mãe de um bebê o levou para à primeira consulta de revisão de puericultura com cinco meses e dez dias. Apresentou a carteira de vacinação abaixo. Qual das seguintes vacinas NÃO seria indicada para regularização imediata das vacinas desse paciente?",
   alternativas:[{id:"A",texto:"Penta."},{id:"B",texto:"Rotavírus humano."},{id:"C",texto:"Pneumocócica 10 (conjugada)."},{id:"D",texto:"Meningocócica C (conjugada)."}],

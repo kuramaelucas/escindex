@@ -119,7 +119,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-008", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:8,
-  imagemUrl:"dados/imagens/q-unesp2023-008.jpg", imagemLegenda:"Lesões de pele no tronco, com o inseto",
+  imagemUrl:"dados/imagens/q-unesp2023-008.webp", imagemLegenda:"Lesões de pele no tronco, com o inseto",
   areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-alergia-anafilaxia",
   enunciado:"Menina de 8 anos, asmática, durante uma festa de aniversário, comeu doces e salgados, brincou muito na grama, quando passou a sentir tosse, cansaço e fez uso de beta 2 agonista de curta duração sem melhora. No pronto socorro, foram observadas placas e pápulas eritematosas com edema central, de tamanhos variados, em tronco, muito pruriginosas, além da presença de um inseto na pele (imagem). A conduta inicial é:",
   alternativas:[{id:"A",texto:"anti-histamínico via oral e corticoide intravenoso."},{id:"B",texto:"inalação com fenoterol e anti-histamínico intravenoso."},{id:"C",texto:"inalação com fenoterol e corticoide via oral."},{id:"D",texto:"adrenalina (1:10000) 0,3mg via intramuscular."}],
@@ -146,7 +146,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-010", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:10,
-  imagemUrl:"dados/imagens/q-unesp2023-010.jpg", imagemLegenda:"Exame A: uretrocistografia miccional; exame B: cintilografia renal estática com DMSA",
+  imagemUrl:"dados/imagens/q-unesp2023-010.webp", imagemLegenda:"Exame A: uretrocistografia miccional; exame B: cintilografia renal estática com DMSA",
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-malformacoes",
   enunciado:"Menina de 2 anos e 9 meses de idade, atualmente assintomática é trazida para acompanhamento ambulatorial. AP: infecções urinárias de repetição desde os 3 meses de idade, última há 7 meses e está em uso de nitrofurantoina 1mg/kg/dia, diagnóstico de refluxo vesicoureteral grau II bilateral aos 5 meses de idade. Trouxe exames realizados há 1 mês (imagens A e B). Assinale a alternativa correta em relação ao risco da evolução para doença renal crônica e conduta, respectivamente.",
   alternativas:[{id:"A",texto:"Não há risco; realizar consultas anuais em pediatria geral com aferição da PA, cultura de urina e dosagem da uréia sérica."},{id:"B",texto:"Não há risco; avaliar história de disfunção vesical, orientar medidas de mudanças no estilo de vida e realizar consultas em Pediatria Geral."},{id:"C",texto:"Há risco; avaliar história de disfunção vesical, aferir PA e seguimento com especialista com culturas de urina, dosagem creatinina sérica e albuminúria."},{id:"D",texto:"Há risco; seguimento com especialista e avaliar peso e estatura, aferir PA, cultura de urina, dosagem da uréia sérica e clearance de creatinina anual."}],
@@ -225,7 +225,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-016", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:16,
-  imagemUrl:"dados/imagens/q-unesp2023-016.jpg", imagemLegenda:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-unesp2023-016.webp", imagemLegenda:"Eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Menino de 1 ano, assintomático é encaminhado para avaliação cardiológica devido a alteração detectada na ausculta cardíaca. Eletrocardiograma (imagem). O paciente apresenta:",
   alternativas:[{id:"A",texto:"arritmia sinusal."},{id:"B",texto:"ritmo sinusal alternando com ritmo atrial ectópico."},{id:"C",texto:"extrassístoles supraventriculares."},{id:"D",texto:"extrassístoles ventriculares."}],
@@ -265,7 +265,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-019", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:19,
-  imagemUrl:"dados/imagens/q-unesp2023-019.jpg", imagemLegenda:"Exame pós-morte",
+  imagemUrl:"dados/imagens/q-unesp2023-019.webp", imagemLegenda:"Exame pós-morte",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-prematuridade",
   enunciado:"Recém-nascido, de 28 semanas, apresentou dificuldade respiratória grave e evoluiu para óbito após 6 dias. AP: parto normal, trabalho de parto prematuro. Exame pós-morte: imagem. O diagnóstico e o mecanismo envolvido no desenvolvimento dessa lesão são, respectivamente:",
   alternativas:[{id:"A",texto:"hemorragia intraparenquimatosa; tocotraumatismo."},{id:"B",texto:"hematoma ventricular; coagulação intravascular disseminada."},{id:"C",texto:"hematoma intraparenquimatoso; sepse."},{id:"D",texto:"hemorragia de matriz germinativa; fragilidade de vasos subependimários."}],
@@ -370,7 +370,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-027", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:27,
-  imagemUrl:"dados/imagens/q-unesp2023-027.jpg", imagemLegenda:"Sorologias para toxoplasmose com 11 e 30 semanas",
+  imagemUrl:"dados/imagens/q-unesp2023-027.webp", imagemLegenda:"Sorologias para toxoplasmose com 11 e 30 semanas",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Durante consulta de pré-natal na atenção primária, gestante apresenta os seguintes resultados de sorologia para toxoplasmose: com 11 semanas, IgG não reagente e IgM não reagente; com 30 semanas (atual), IgG reagente e IgM reagente. As condutas corretas são:",
   alternativas:[{id:"A",texto:"espiramicina; encaminhar para a referência para realizar amniocentese."},{id:"B",texto:"sulfadiazina, pirimetamina e ácido folínico; encaminhar para a referência para realizar amniocentese."},{id:"C",texto:"espiramicina; não há necessidade de realizar a amniocentese."},{id:"D",texto:"sulfadiazina, pirimetamina e ácido folínico; não há necessidade de realizar a amniocentese."}],
@@ -423,7 +423,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-031", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:31,
-  imagemUrl:"dados/imagens/q-unesp2023-031.jpg", imagemLegenda:"Exame macroscópico da peça cirúrgica",
+  imagemUrl:"dados/imagens/q-unesp2023-031.webp", imagemLegenda:"Exame macroscópico da peça cirúrgica",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
   enunciado:"Mulher de 49 anos foi submetida à histerectomia devido a dor no baixo ventre e identificação de massa pélvica. Exame macroscópico da peça cirúrgica: imagem. As características macroscópicas da imagem favorecem o diagnóstico de:",
   alternativas:[{id:"A",texto:"doença inflamatória pélvica com cicatrizes extensas."},{id:"B",texto:"teratoma adulto benigno com áreas de necrose."},{id:"C",texto:"cistos de Naboth com infecções recorrentes."},{id:"D",texto:"câncer avançado do colo do útero."}],
@@ -775,7 +775,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-058", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:58,
-  imagemUrl:"dados/imagens/q-unesp2023-058.jpg", imagemLegenda:"Lesões na região glútea direita",
+  imagemUrl:"dados/imagens/q-unesp2023-058.webp", imagemLegenda:"Lesões na região glútea direita",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Homem de 39 anos, motorista de táxi, solteiro, refere dor do tipo queimação há 3 dias no glúteo direito com surgimento local de lesões cutâneas há 1 dia. Nega febre, linfadenopatia ou prostração. EF: múltiplas vesículas de conteúdo hialino e base eritematosa agrupadas apenas na região glútea à direita (imagem). A principal hipótese diagnóstica e o exame para a sua confirmação são, respectivamente:",
   alternativas:[{id:"A",texto:"herpes simples; citodiagnóstico de Tzanck."},{id:"B",texto:"varíola do macaco; pesquisa viral pelo PCR da lesão."},{id:"C",texto:"sífilis primária; pesquisa do treponema em campo escuro."},{id:"D",texto:"molusco contagioso; exame histopatológico do material curetado."}],
@@ -789,7 +789,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-059", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:59,
-  imagemUrl:"dados/imagens/q-unesp2023-059.jpg", imagemLegenda:"História natural da infecção pelo HIV (adaptado de HIV Book 2015/2016)",
+  imagemUrl:"dados/imagens/q-unesp2023-059.webp", imagemLegenda:"História natural da infecção pelo HIV (adaptado de HIV Book 2015/2016)",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"O gráfico a seguir mostra a história natural da infecção pelo HIV: Fase 1: contágio (infecção); fase 2: infecção aguda; fase 3: latência clínica; fase 4: aids – doença avançada. O melhor momento para introdução do tratamento antirretroviral é na fase",
   alternativas:[{id:"A",texto:"1."},{id:"B",texto:"2."},{id:"C",texto:"3."},{id:"D",texto:"4."}],
@@ -842,7 +842,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-063", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:63,
-  imagemUrl:"dados/imagens/q-unesp2023-063.jpg", imagemLegenda:"Radiografia de tórax após a drenagem torácica",
+  imagemUrl:"dados/imagens/q-unesp2023-063.webp", imagemLegenda:"Radiografia de tórax após a drenagem torácica",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
   enunciado:"Homem de 37 anos colidiu seu automóvel contra um muro em alta velocidade. Durante o atendimento inicial foi diagnosticado um pneumotórax hipertensivo à direita, sendo realizada punção de alívio seguida por drenagem torácica. Dreno de tórax: pequeno débito hemático e grande escape aéreo. Após a drenagem torácica, o paciente evoluiu com enfisema de subcutâneo que foi aumentando progressivamente. Rx de tórax realizado no PS após drenagem torácica: imagem. Dentre as condutas a seguir, a mais adequada nesse momento é a:",
   alternativas:[{id:"A",texto:"colocação de segundo dreno torácico."},{id:"B",texto:"realização de toracotomia exploradora."},{id:"C",texto:"realocação do primeiro dreno torácico."},{id:"D",texto:"realização de fisioterapia respiratória."}],
@@ -856,7 +856,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-064", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:64,
-  imagemUrl:"dados/imagens/q-unesp2023-064.jpg", imagemLegenda:"Radiografia de tórax",
+  imagemUrl:"dados/imagens/q-unesp2023-064.webp", imagemLegenda:"Radiografia de tórax",
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-pleura",
   enunciado:"Mulher de 54 anos encontra-se no 4º dia de tratamento de pneumonia comunitária com antibiótico, mantendo febre, leucocitose e PCR elevada. AP: DM tipo II e ICC. Rx de tórax: imagem. Exames séricos: glicose: 120 mg/dL; DHL: 875 UI/L; proteína: 6,7 g/dL. Exames do líquido pleural de toracocentese diagnóstica: aspecto amarelado; pH: 7,21; glicose: 30 mg/dL; DHL: 1895 UI/L; proteína: 4,2 g/dL e cultura em andamento. A conduta mais adequada é:",
   alternativas:[{id:"A",texto:"aguardar cultura."},{id:"B",texto:"broncoscopia flexível para coleta de lavado."},{id:"C",texto:"drenagem torácica à esquerda."},{id:"D",texto:"decorticação pulmonar."}],
@@ -948,7 +948,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-071", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:71,
-  imagemUrl:"dados/imagens/q-unesp2023-071.jpg", imagemLegenda:"Manifestação ocular",
+  imagemUrl:"dados/imagens/q-unesp2023-071.webp", imagemLegenda:"Manifestação ocular",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-osteometabolicas",
   enunciado:"A manifestação ocular observada na imagem é característica de uma enfermidade osteometabólica com graves repercussões ortopédicas. A doença em questão é o(a):",
   alternativas:[{id:"A",texto:"raquitismo hipofosfatêmico."},{id:"B",texto:"síndrome de Morquio."},{id:"C",texto:"osteogênese imperfeita."},{id:"D",texto:"osteodristrofia renal."}],
@@ -975,7 +975,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-073", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:73,
-  imagemUrl:"dados/imagens/q-unesp2023-073.jpg", imagemLegenda:"Tomografia de crânio",
+  imagemUrl:"dados/imagens/q-unesp2023-073.webp", imagemLegenda:"Tomografia de crânio",
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
   enunciado:"Mulher de 70 anos, apresentou quadro súbito de cefaleia, vômitos e rebaixamento do nível de consciência há 4 horas. AP: tabagismo e hipertensão arterial descontrolada. Exame físico: mau estado geral, Glasgow 7, PA 170x100 mmHg, FC 80 bpm, FR 18 irpm. Realizada tomografia de crânio (a seguir). A conduta é:",
   alternativas:[{id:"A",texto:"craniectomia descompressiva."},{id:"B",texto:"terceiroventriculostomia endoscópica."},{id:"C",texto:"derivação ventricular externa."},{id:"D",texto:"manitol em bolus."}],
@@ -1041,7 +1041,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-078", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:78,
-  imagemUrl:"dados/imagens/q-unesp2023-078.jpg", imagemLegenda:"Exame físico do pênis",
+  imagemUrl:"dados/imagens/q-unesp2023-078.webp", imagemLegenda:"Exame físico do pênis",
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-escroto",
   enunciado:"Menino de 6 anos apresenta dor e edema no pênis há 4 horas, após mãe realizar “massagem para tratamento de fimose” (sic). Exame físico: imagens. O diagnóstico é:",
   alternativas:[{id:"A",texto:"fimose secundária."},{id:"B",texto:"parafimose."},{id:"C",texto:"balanopostite."},{id:"D",texto:"hipospadia glandar."}],
@@ -1081,7 +1081,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-081", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:81,
-  imagemUrl:"dados/imagens/q-unesp2023-081.jpg", imagemLegenda:"As quatro fórmulas das alternativas, como aparecem na prova",
+  imagemUrl:"dados/imagens/q-unesp2023-081.webp", imagemLegenda:"As quatro fórmulas das alternativas, como aparecem na prova",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"O coeficiente de fecundidade de uma população é calculado pela seguinte fórmula:",
   alternativas:[{id:"A",texto:"(Nascidos vivos em determinada área e período ÷ mulheres de 15 a 49 anos da mesma área, no meio do período) × 1000"},{id:"B",texto:"(Nascidos vivos em determinada área e período ÷ população da mesma área, no meio do período) × 1000"},{id:"C",texto:"(Total de nascimentos em determinada área e período ÷ população de mulheres da mesma área, no meio do período) × 1000"},{id:"D",texto:"(Número de mulheres com um ou mais filhos ÷ mulheres de 12 anos ou mais da mesma área, no meio do período) × 100"}],
@@ -1095,7 +1095,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-082", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:82,
-  imagemUrl:"dados/imagens/q-unesp2023-082.jpg", imagemLegenda:"Representação gráfica de casos de doença, durante o mês de maio de 2020, em uma comunidade",
+  imagemUrl:"dados/imagens/q-unesp2023-082.webp", imagemLegenda:"Representação gráfica de casos de doença, durante o mês de maio de 2020, em uma comunidade",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"A figura abaixo representa a ocorrência de casos de uma determinada doença em uma comunidade. Com base nessas informações, os coeficientes de incidência e prevalência dessa doença, durante o mês de maio de 2020, na referida comunidade, foram, respectivamente, de",
   alternativas:[{id:"A",texto:"10 e 14."},{id:"B",texto:"11 e 16."},{id:"C",texto:"11 e 14."},{id:"D",texto:"16 e 10."}],
@@ -1278,7 +1278,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-096", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:96,
-  imagemUrl:"dados/imagens/q-unesp2023-096.jpg", imagemLegenda:"Casos novos e óbitos por dia de covid-19 nos países 1 e 2 (dados de 12/1/2022)",
+  imagemUrl:"dados/imagens/q-unesp2023-096.webp", imagemLegenda:"Casos novos e óbitos por dia de covid-19 nos países 1 e 2 (dados de 12/1/2022)",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
   enunciado:"A figura a seguir apresenta a evolução (número de casos e óbitos) da covid-19 em dois países, desde o início da pandemia até 12 de janeiro de 2022, na vigência da variante Ômicron. Com relação à vacinação contra a covid-19 nos dois países e baseados nestes perfis de ocorrência de casos e óbitos, é possível inferir que",
   alternativas:[{id:"A",texto:"as coberturas vacinais dos países 1 e 2 são, respectivamente, alta e baixa."},{id:"B",texto:"as coberturas vacinais dos países 1 e 2 são, respectivamente, baixa e alta."},{id:"C",texto:"nos países 1 e 2 foram aplicadas, respectivamente, vacinas de RNA mensageiro e vacinas de vírus inativado."},{id:"D",texto:"não há elementos suficientes para se inferir a cobertura vacinal e tipo de vacina utilizada."}],
@@ -1292,7 +1292,7 @@ window.EscDados.registrarQuestoes("prova-unesp-2023", [
 },
 {
   id:"q-unesp2023-097", banca:"UNESP (FMB)", real:true, ano:2023, numeroNaProva:97,
-  imagemUrl:"dados/imagens/q-unesp2023-097.jpg", imagemLegenda:"Lesões no parênquima pulmonar, na autópsia",
+  imagemUrl:"dados/imagens/q-unesp2023-097.webp", imagemLegenda:"Lesões no parênquima pulmonar, na autópsia",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
   enunciado:"Homem de 50 anos, hipertenso, foi encontrado em óbito em sua residência. Na autópsia foram identificadas lesões brancacentas no parênquima pulmonar (imagem) e em linfonodo hilar. O processo patológico que é classicamente descrito na doença causadora das lesões pulmonares é a necrose",
   alternativas:[{id:"A",texto:"coagulativa."},{id:"B",texto:"liquefativa."},{id:"C",texto:"caseosa."},{id:"D",texto:"gangrenosa."}],

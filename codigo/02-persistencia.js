@@ -649,7 +649,7 @@ function restaurarBancoDeResgate(){
   if(!bruto){ toast("Não há cópia de resgate neste navegador.", "err"); return; }
   const r = resumoDoResgate();
   abrirModal(`${cabecalhoJanela("Restaurar a cópia de resgate")}
-    <p class="text-sm">Esta é a cópia do banco como ele estava antes de a plataforma precisar consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s) e ${r.questoes} questão(ões)`:""}. Restaurar substitui os dados atuais deste navegador por ela.</p>
+    <p class="text-sm">Esta é a cópia do banco como ele estava antes de a plataforma precisar consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s) e ${r.questoes} ${plural(r.questoes,"questão","questões")}`:""}. Restaurar substitui os dados atuais deste navegador por ela.</p>
     <p class="text-sm muted mt-1">Exporte um backup do estado atual antes, se ainda não exportou — a restauração não pode ser desfeita.</p>
     <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="restaurarResgateConfirmado()">Restaurar a cópia</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
@@ -852,27 +852,61 @@ function compactarParaArmazenar(banco){
   COLECOES_COM_SEMENTE.forEach(([colecao, sementes]) => {
     if(!Array.isArray(banco[colecao])) return;
     const porId = sementesPorId(colecao, sementes);
-    saida[colecao] = banco[colecao].map(item => {
+    const ids = [], itens = [];
+    banco[colecao].forEach(item => {
+      ids.push(item && item.id);
       const semente = item && porId.get(item.id);
-      if(!semente) return item;
+      if(!semente){ itens.push(item); return; }
       const dif = { id: item.id, _semente: 1 };
       Object.keys(item).forEach(k => {
         if(k !== "id" && !campoIgualASemente(item[k], semente, k)) dif[k] = item[k];
       });
       const apagados = Object.keys(semente).filter(k => !(k in item));
       if(apagados.length) dif._semCampos = apagados;
-      return dif;
-    }).concat((banco._orfaosDeSemente && banco._orfaosDeSemente[colecao]) || []);
+      // item igual à semente não ocupa linha própria: basta o id na lista de ordem
+      // (antes cada um gravava {id,_semente:1}: ~550 KB só com o banco intocado)
+      if(Object.keys(dif).length > 2 || apagados.length) itens.push(dif);
+    });
+    // a lista de ordem só vale com ids simples e sem repetição; senão grava como antes
+    const idsSimples = ids.every(i => typeof i === "string" && i && !i.includes(",")) && new Set(ids).size === ids.length;
+    if(idsSimples){
+      saida[colecao] = itens;
+      (saida._ordemDaSemente = saida._ordemDaSemente || {})[colecao] = ids.join(",");
+    }else{
+      saida[colecao] = banco[colecao].map(item => {
+        const semente = item && porId.get(item.id);
+        if(!semente) return item;
+        const dif = { id: item.id, _semente: 1 };
+        Object.keys(item).forEach(k => { if(k !== "id" && !campoIgualASemente(item[k], semente, k)) dif[k] = item[k]; });
+        const apagados = Object.keys(semente).filter(k => !(k in item));
+        if(apagados.length) dif._semCampos = apagados;
+        return dif;
+      });
+    }
+    saida[colecao] = saida[colecao].concat((banco._orfaosDeSemente && banco._orfaosDeSemente[colecao]) || []);
   });
   delete saida._orfaosDeSemente;
   return saida;
 }
 function expandirDoArmazenamento(banco){
   const orfaos = banco._orfaosDeSemente || {};
-  delete banco._orfaosDeSemente;
+  const ordens = banco._ordemDaSemente || {};
+  delete banco._orfaosDeSemente; delete banco._ordemDaSemente;
   COLECOES_COM_SEMENTE.forEach(([colecao, sementes]) => {
     if(!Array.isArray(banco[colecao])) return;
     const porId = sementesPorId(colecao, sementes), semSemente = [];
+    // formato novo: os itens iguais à semente só estão na lista de ordem; volta o
+    // item vazio (só id e marca) na posição certa, e o código abaixo o completa
+    if(ordens[colecao]){
+      const lista = Array.isArray(ordens[colecao]) ? ordens[colecao] : String(ordens[colecao]).split(",");
+      const guardados = new Map(banco[colecao].map(i => [i && i.id, i])), usados = new Set(), refeita = [];
+      lista.forEach(id => {
+        if(guardados.has(id)){ refeita.push(guardados.get(id)); usados.add(id); }
+        else if(porId.has(id)) refeita.push({ id, _semente: 1 });
+      });
+      banco[colecao].forEach(i => { if(!usados.has(i && i.id)) refeita.push(i); });
+      banco[colecao] = refeita;
+    }
     banco[colecao] = banco[colecao].concat(orfaos[colecao] || []).filter(item => {
       // um item guardado só como diferença cuja semente não está carregada
       // (um arquivo de "dados/" que não chegou, ou um item que saiu dele)

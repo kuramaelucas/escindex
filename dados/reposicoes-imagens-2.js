@@ -16,7 +16,7 @@ window.EscDados.registrarQuestoes("reposicoes-imagens-2", [
   "areaId": "area-ped",
   "especialidadeId": "esp-crescdesenv",
   "assuntoId": "ass-crescimentopuberdade",
-  "imagemUrl": "dados/imagens/q-einstein2025-044.png",
+  "imagemUrl": "dados/imagens/q-einstein2025-044.webp",
   "enunciado": "Adolescente de 12 anos, sexo feminino, comparece à consulta de rotina com pediatra. Apresenta desenvolvimento puberal em estágio M3P3 de Tanner e IMC representado no gráfico a seguir (IMC por idade, meninas, dos 5 aos 19 anos, em escores-z, do Ministério da Saúde). Considerando a avaliação nutricional dessa paciente, o estado nutricional é:",
   "alternativas": [
    {

@@ -23,7 +23,7 @@
 window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 {
   id:"q-amrigs2023-001", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:1,
-  imagemUrl:"dados/imagens/q-amrigs2023-001.png", imagemLegenda:"Gráfico da concentração sérica (vertical) pelo tempo (horizontal), com uma linha contínua e uma pontilhada",
+  imagemUrl:"dados/imagens/q-amrigs2023-001.webp", imagemLegenda:"Gráfico da concentração sérica (vertical) pelo tempo (horizontal), com uma linha contínua e uma pontilhada",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-atb",
   enunciado:"Analise o gráfico abaixo, considerando que a linha horizontal de base corresponda ao tempo de ação e a linha vertical do gráfico corresponda à concentração sérica. No caso de a função renal estar normal, pode-se afirmar que os antibióticos correspondentes ao representado pela linha contínua e ao representado pela linha pontilhada podem ser, respectivamente:",
   alternativas:[{id:"A",texto:"Amoxicilina e cefuroxima."},{id:"B",texto:"Ciprofloxacino e meropenem."},{id:"C",texto:"Oxacilina e amicacina."},{id:"D",texto:"Ampicilina e ciprofloxacino."}],
@@ -63,7 +63,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-004", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:4,
-  imagemUrl:"dados/imagens/q-amrigs2023-004.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-amrigs2023-004.webp", imagemLegenda:"Eletrocardiograma de 12 derivações",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
   enunciado:"Homem, 48 anos, procura emergência com desconforto torácico. Analise o seu eletrocardiograma abaixo: Considerando as informações apresentadas, o tratamento inicial para esse paciente é:",
   alternativas:[{id:"A",texto:"Anticoagulação a pleno."},{id:"B",texto:"Dupla antiagregação plaquetária."},{id:"C",texto:"Angioplastia coronária."},{id:"D",texto:"Trombólise."}],
@@ -77,7 +77,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-005", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:5,
-  imagemUrl:"dados/imagens/q-amrigs2023-005.png", imagemLegenda:"Esquema dos ambientes intracelular (à esquerda) e extracelular (à direita) com os itens A, B e C",
+  imagemUrl:"dados/imagens/q-amrigs2023-005.webp", imagemLegenda:"Esquema dos ambientes intracelular (à esquerda) e extracelular (à direita) com os itens A, B e C",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
   enunciado:"Analise a figura abaixo, na qual a imagem da esquerda representa o ambiente intracelular e a da direita representa o ambiente extracelular. Considerando que os itens “A” e “C” tenham maiores concentrações intracelulares e que o item “B” tenha maior concentração extracelular, as letras A, B e C correspondem, respectivamente, aos eletrólitos:",
   alternativas:[{id:"A",texto:"Cloro, potássio e sódio."},{id:"B",texto:"Potássio, sódio e magnésio."},{id:"C",texto:"Fosfato, cloro e sódio."},{id:"D",texto:"Potássio, sódio e cloro."}],
@@ -143,7 +143,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-010", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:10,
-  imagemUrl:"dados/imagens/q-amrigs2023-010.jpg", imagemLegenda:"Ondas de pulso venoso jugular normais (a, c, x, v e y)",
+  imagemUrl:"dados/imagens/q-amrigs2023-010.webp", imagemLegenda:"Ondas de pulso venoso jugular normais (a, c, x, v e y)",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
   enunciado:"As anormalidades no pulso venoso jugular são úteis para a detecção de insuficiência cardíaca e alterações na pressão arterial pulmonar. Sobre esse assunto, analise a imagem a seguir, que apresenta ondas de pulsos venosos normais. Relacione a Coluna 1 à Coluna 2, associando as alterações nas ondas do pulso venoso às suas respectivas correspondências clínicas. Coluna 1 1. Onda A aumentada. 2. Onda V gigante. 3. Descenso Y proeminente. 4. Descenso Y ausente. Coluna 2 ( ) Tamponamento cardíaco. ( ) Estenose tricúspide. ( ) Insuficiência tricúspide. ( ) Pericardite constritiva. A ordem correta de preenchimento dos parênteses, de cima para baixo, é:",
   alternativas:[{id:"A",texto:"3 – 2 – 1 – 4."},{id:"B",texto:"2 – 4 – 3 – 1."},{id:"C",texto:"4 – 2 – 3 – 1."},{id:"D",texto:"4 – 1 – 2 – 3."}],
@@ -638,7 +638,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-048", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:48,
-  imagemUrl:"dados/imagens/q-amrigs2023-048.png", imagemLegenda:"Gráfico de pontos (dotplot) da idade das pacientes por estádio da endometriose (rASRM I a IV)",
+  imagemUrl:"dados/imagens/q-amrigs2023-048.webp", imagemLegenda:"Gráfico de pontos (dotplot) da idade das pacientes por estádio da endometriose (rASRM I a IV)",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Em 2014, um grupo de pesquisadores investigou se a endometriose era uma doença progressiva. A sua hipótese era de que haveria uma correlação positiva entre idade e grau do estadiamento da endometriose. Após analisar uma coorte com 500 casos, eles encontraram o gráfico (dotplot) abaixo, com um teste de ANOVA, p = 0.9 e uma correlação com teste de Spearman (r) = -0,023 (IC95% = -0,12 a 0,08, n = 364). Com base nesses dados, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Os resultados confirmaram que a endometriose é uma doença progressiva. O estadiamento da endometriose aumenta com o avançar da idade."},{id:"B",texto:"O estadiamento da endometriose reduz com o aumento da idade, pois a paciente está mais próxima da menopausa."},{id:"C",texto:"Foi possível demonstrar a correlação positiva em 90% (p = 0,9), e confirmado no curto intervalo de confiança de r."},{id:"D",texto:"Não foi possível demonstrar a correlação positiva entre a idade e o estadiamento da endometriose."}],
@@ -678,7 +678,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-051", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:51,
-  imagemUrl:"dados/imagens/q-amrigs2023-051.png", imagemLegenda:"Gráfico do hCG pelos dias após o evento",
+  imagemUrl:"dados/imagens/q-amrigs2023-051.webp", imagemLegenda:"Gráfico do hCG pelos dias após o evento",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-abortamento",
   enunciado:"O gráfico abaixo representa os níveis de hormônio da gonadotrofina coriônica (hCG) após um evento em que um saco gestacional foi identificado dentro do útero. A linha do hCG representa, mais provavelmente, um caso de:",
   alternativas:[{id:"A",texto:"Aborto em curso."},{id:"B",texto:"Aborto incompleto."},{id:"C",texto:"Aborto completo."},{id:"D",texto:"Gravidez ectópica."}],
@@ -718,7 +718,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-054", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:54,
-  imagemUrl:"dados/imagens/q-amrigs2023-054.png", imagemLegenda:"Quatro ilustrações (A a D) de gestantes usando o cinto de segurança em posições diferentes, vistas de frente e de perfil",
+  imagemUrl:"dados/imagens/q-amrigs2023-054.webp", imagemLegenda:"Quatro ilustrações (A a D) de gestantes usando o cinto de segurança em posições diferentes, vistas de frente e de perfil",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"A maneira correta de utilizar o cinto de segurança durante a gestação para evitar traumas graves na mãe e no feto está representada em:",
   alternativas:[{id:"A",texto:"Ilustração A (ver figura)."},{id:"B",texto:"Ilustração B (ver figura)."},{id:"C",texto:"Ilustração C (ver figura)."},{id:"D",texto:"Ilustração D (ver figura)."}],
@@ -758,7 +758,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-057", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:57,
-  imagemUrl:"dados/imagens/q-amrigs2023-057.jpg", imagemLegenda:"Ilustração do exame pélvico bimanual em corte sagital",
+  imagemUrl:"dados/imagens/q-amrigs2023-057.webp", imagemLegenda:"Ilustração do exame pélvico bimanual em corte sagital",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
   enunciado:"No exame pélvico bimanual, a posição do útero é identificada conforme figura a seguir: A figura acima apresenta um:",
   alternativas:[{id:"A",texto:"Toque retal com o útero na posição anteversofletida."},{id:"B",texto:"Toque vaginal com o útero na posição antevertida."},{id:"C",texto:"Toque vaginal com o útero na posição retroversofletida."},{id:"D",texto:"Toque vaginal com o útero na posição antefletida."}],
@@ -902,7 +902,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2023", [
 },
 {
   id:"q-amrigs2023-068", banca:"AMRIGS", real:true, ano:2023, numeroNaProva:68,
-  imagemUrl:"dados/imagens/q-amrigs2023-068.png", imagemLegenda:"Resultado da calculadora INTERGROWTH-21st: comprimento, peso e perímetro cefálico com escore-z e percentil",
+  imagemUrl:"dados/imagens/q-amrigs2023-068.webp", imagemLegenda:"Resultado da calculadora INTERGROWTH-21st: comprimento, peso e perímetro cefálico com escore-z e percentil",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exame",
   enunciado:"Um recém-nascido do sexo masculino tem idade gestacional de 38 semanas e 2 dias e, ao nascer, apresenta as seguintes medidas: peso de 2350 g, comprimento de 46 cm e perímetro cefálico de 32 cm. Ao classificar o peso quanto à adaptação para a idade gestacional, você utiliza as tabelas do projeto INTERGROWTH-21, e os achados de escore-z e percentis estão demonstrados na figura abaixo: Com base nos resultados apresentados, qual a classificação que você daria a esse neonato?",
   alternativas:[{id:"A",texto:"Pré-termo."},{id:"B",texto:"Adequado para a idade gestacional."},{id:"C",texto:"Pequeno para idade gestacional, simétrico."},{id:"D",texto:"Pequeno para a idade gestacional, assimétrico."}],

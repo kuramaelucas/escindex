@@ -29,7 +29,7 @@ function renderRevisao(){
   <div class="card mt-2">
     <div class="card-title">Assuntos vencidos (${assuntos.length})</div>
     ${assuntos.length ? `<div class="mt-2">
-      ${vencidos.itens.map(a=>`<div class="linha-fina"><span class="linha-fina-nome">${escapeHtml(nomeAssunto(a.assuntoId))}</span><span class="text-xs muted nowrap">${Math.round(a.taxa*100)}% · ${a.atrasoDias} dia(s) de atraso</span><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${a.assuntoId}')">Praticar</button></div>`).join("")}
+      ${vencidos.itens.map(a=>`<div class="linha-fina"><span class="linha-fina-nome">${escapeHtml(nomeAssunto(a.assuntoId))}</span><span class="text-xs muted nowrap">${Math.round(a.taxa*100)}% · ${a.atrasoDias} ${plural(a.atrasoDias,"dia","dias")} de atraso</span><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${a.assuntoId}')">Praticar</button></div>`).join("")}
       ${botaoMostrarTudo(vencidos, "revisao-vencidos", "assuntos")}
     </div>` : '<p class="text-sm muted mt-1">Nenhum assunto vencido hoje — em dia com a revisão.</p>'}
   </div>

@@ -61,7 +61,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-004", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-unicamp2022-004.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-004.webp",
   enunciado:"Homem, 50a, é trazido a serviço médico com história de cefaleia há uma semana e confusão mental há dois dias. Nega vômitos ou diarreia. Exame físico: PA= 128x84 mmHg, FC= 56 bpm; neurológico: confuso, sonolento. Ureia= 20 mg/dL; creatinina= 0,8 mg/dL; sódio= 115 mEq/L; potássio= 3,6 mEq/L; Hb= 11 g/dL. Exame sumário de urina: sem alterações. Radiograma de tórax: ANEXO A. A CAUSA MAIS PROVÁVEL DA HIPONATREMIA É:",
   alternativas:[{id:"A",texto:"Insuficiência adrenal."},{id:"B",texto:"Diabetes insipidus central."},{id:"C",texto:"Nefrite intersticial crônica."},{id:"D",texto:"Secreção inapropriada de ADH."}],
   gabarito:"D",
@@ -153,7 +153,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-011", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-unicamp2022-011.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-011.webp",
   enunciado:"Homem, 62a, procura atendimento médico com queixa de tontura e dispneia de início agudo há 2 horas. Antecedentes: hipertensão arterial e diabetes mellitus tipo 2, em uso de losartana, besilato de anlodipino e metformina. Exame físico: FC= 152 bpm, FR= 28 irpm, PA= 96x62 mmHg, oximetria de pulso (ar ambiente) = 88%; consciente, orientado, sonolento; pulmões: murmúrio vesicular presente com estertores crepitantes finos bilaterais até campos médios pulmonares. ECG realizado na sala de emergência: (ver figura). O DIAGNÓSTICO E A CONDUTA SÃO:",
   alternativas:[{id:"A",texto:"Taquicardia por reentrada nodal; cardioversão elétrica sincronizada."},{id:"B",texto:"Flutter atrial 2:1; cardioversão elétrica sincronizada."},{id:"C",texto:"Taquicardia por reentrada nodal; manobra de Valsalva modificada."},{id:"D",texto:"Flutter atrial 2:1; betabloqueador e anticoagulação."}],
   gabarito:"B",
@@ -167,7 +167,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-012", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
-  imagemUrl:"dados/imagens/q-unicamp2022-012.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-012.webp",
   enunciado:"Mulher, 45a, queixa-se de dispneia há três dias, associada a tosse seca. Há uma semana com ageusia. Antecedentes: tabagista (20 anos/maço). Hipertensão arterial em uso de hidroclorotiazida. Exame físico: PA= 112x74 mmHg, FC= 134 bpm, FR= 29 irpm, T= 36,1oC, oximetria de pulso (ar ambiente)= 89%; consciente, alerta, fala normal. Pulmões: murmúrio vesicular presente simétrico; membros: extremidades frias, sem edema. Iniciado cateter nasal de O2 a 3L/min, sem melhora da hipoxemia; aumentado para 6L/min em cateter, mantida a mesma hipoxemia, mas sem aumento do desconforto respiratório. Ultrassonografia à beira do leito evidencia algumas linhas B em bases. Tomografia de tórax sem contraste (evidenciado o corte que apresenta as principais alterações do exame) e eletrocardiograma: (ver figura). ALÉM DE INICIAR DEXAMETASONA, A CONDUTA IMEDIATA É:",
   alternativas:[{id:"A",texto:"Iniciar ventilação não invasiva."},{id:"B",texto:"Iniciar ceftriaxone e azitromicina."},{id:"C",texto:"Manter tratamento e internar em UTI-COVID."},{id:"D",texto:"Solicitar angiotomografia de tórax."}],
   gabarito:"D",
@@ -272,7 +272,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-020", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:20,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-neoplasia",
-  imagemUrl:"dados/imagens/q-unicamp2022-020.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-020.webp",
   enunciado:"Homem, 58a, procura atendimento médico com queixa de tosse e emagrecimento de 5 Kg há dois meses. Broncoscopia: lesão endoscopicamente visível e obstrutiva à direita. Radiograma do tórax: (ver figura). A LESÃO ENCONTRA-SE NO BRÔNQUIO:",
   alternativas:[{id:"A",texto:"Principal."},{id:"B",texto:"Intermediário."},{id:"C",texto:"Lobo inferior."},{id:"D",texto:"Lobo médio."}],
   gabarito:"D",
@@ -286,7 +286,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-021", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:21,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-unicamp2022-021.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-021.webp",
   enunciado:"Homem 34a, motorista, sem uso do cinto de segurança quando houve colisão frontal com outro veículo de passeio a 60km/h. Estava preso nas ferragens, e a Unidade Pré Hospitalar demorou em torno de 30 minutos para retirá-lo e em seguida foi levado à Unidade de Pronto Atendimento com queixa de dor no tórax. Na sala de emergência apresentava-se: PA= 121x83 mmHg, FC= 111bpm, FR= 18 irpm, oximetria de pulso (com máscara não reinalante 12L/min de O2)= 97%; Tórax: murmúrio vesicular presente bilateralmente, diminuído posteriormente à esquerda; membros sem alterações. Radiograma de tórax simples na sala de emergência: (ver figura). O DIAGNÓSTICO RADIOLÓGICO É:",
   alternativas:[{id:"A",texto:"Hérnia diafragmática esquerda traumática."},{id:"B",texto:"Pneumotórax simples à esquerda."},{id:"C",texto:"Atelectasia esquerda por compressão."},{id:"D",texto:"Lesão traumática de aorta torácica."}],
   gabarito:"D",
@@ -638,7 +638,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-048", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:48,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-unicamp2022-048.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-048.webp",
   enunciado:"Menina, 10a, é trazida pela mãe a Unidade de Emergência, referindo que a filha está sonolenta e apresentou cinco episódios de vômitos após queda da beliche há quatro horas. Exame físico: FC= 56bmp, FR= 12irpm, PA= 144x92mmHg, Escala de Coma de Glasgow= 13. Tomografia de Crânio sem contraste: (ver figura).",
   alternativas:[{id:"A",texto:"Hematoma epidural; sem hipertensão intracraniana."},{id:"B",texto:"Hematoma epidural; com hipertensão intracraniana."},{id:"C",texto:"Hematoma subdural; com hipertensão intracraniana."},{id:"D",texto:"Hematoma subdural; sem hipertensão intracraniana."}],
   gabarito:"B",
@@ -665,7 +665,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-050", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:50,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-unicamp2022-050.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-050.webp",
   enunciado:"Mulher, 34a, G4P1C1A2, idade gestacional de 38 semanas e 6 dias, procura atendimento por início de contrações ontem e piora da dor hoje. Nega perdas vaginais e sangramento. Refere boa movimentação fetal. Sem comorbidades. Exame obstétrico: dinâmica uterina=2 contrações fracas de 30 segundos em 10 minutos, altura uterina= 38 cm, BCF= 146 bpm, cefálico. Toque vaginal= colo dilatado 1 polpa, grosso, posterior. Cardiotocografia: (ver figura). A CONDUTA É:",
   alternativas:[{id:"A",texto:"Internar para indução de parto."},{id:"B",texto:"Internar para cesárea."},{id:"C",texto:"Dar alta com orientações sobre o trabalho de parto."},{id:"D",texto:"Dar alta e indicar cardiotocografia a cada 3 dias."}],
   gabarito:"C",
@@ -796,7 +796,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022", [
 {
   id:"q-unicamp2022-060", banca:"UNICAMP", real:true, ano:2022, numeroNaProva:60,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unicamp2022-060.jpg",
+  imagemUrl:"dados/imagens/q-unicamp2022-060.webp",
   enunciado:"Mulher, 25a, comparece ao pronto atendimento com queixa de ferida vulvar indolor há 14 dias. Antecedentes ginecológicos: nuligesta, utiliza anticoncepcional oral combinado como contracepção, última menstruação há 21 dias. Exame físico: lesão única, 2cm de diâmetro, base endurada e fundo limpo em grande lábio à direita e linfadenopatia inguinal ipsilateral. (ver figura). O DIAGNÓSTICO E TRATAMENTO SÃO:",
   alternativas:[{id:"A",texto:"Cancro mole. Penicilina G benzatina - 2,4 milhões UI intramuscular em dose única."},{id:"B",texto:"Sífilis primária. Penicilina G benzatina - 2,4 milhões UI intramuscular em dose única."},{id:"C",texto:"Sífilis primária. Azitromicina - 1 g via oral em dose única."},{id:"D",texto:"Cancro mole. Azitromicina - 1 g via oral em dose única."}],
   gabarito:"B",

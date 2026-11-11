@@ -123,7 +123,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-discente-2026-2", [
 {
   id:"q-udisc20262-007", banca:"UNIFESP-EPM — Avaliação Discente", real:true, tipoProva:"graduacao", ano:2026, semestre:2, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-udisc20262-007.png", imagemLegenda:"Monitorização eletrocardiográfica do paciente (duas tiras contínuas).",
+  imagemUrl:"dados/imagens/q-udisc20262-007.webp", imagemLegenda:"Monitorização eletrocardiográfica do paciente (duas tiras contínuas).",
   enunciado:"Homem, 57 anos de idade, é admitido com história de palpitações taquicardíacas e intolerância ao esforço há 1 semana. Refere ser hipertenso sem controle adequado com o uso de olmesartana 40 mg/d. A monitorização eletrocardiográfica está demonstrada na figura. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Taquicardia por reentrada nodal"},{id:"B",texto:"Taquicardia sinusal com extrassístoles supraventriculares frequentes."},{id:"C",texto:"Fibrilação Atrial"},{id:"D",texto:"Flutter atrial"}],
   gabarito:"C",
@@ -1230,7 +1230,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-discente-2026-2", [
 {
   id:"q-udisc20262-090", banca:"UNIFESP-EPM — Avaliação Discente", real:true, tipoProva:"graduacao", ano:2026, semestre:2, numeroNaProva:90,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-udisc20262-090.png", imagemLegenda:"Cardiotocografia da parturiente (traçado da frequência cardíaca fetal e das contrações uterinas).",
+  imagemUrl:"dados/imagens/q-udisc20262-090.webp", imagemLegenda:"Cardiotocografia da parturiente (traçado da frequência cardíaca fetal e das contrações uterinas).",
   enunciado:"Parturiente de 40 semanas e 2 dias, primigesta, em período expulsivo, está em uso de ocitocina em BIC 24 ml/h. Ao exame: DU: 4 contrações de 50 segundos em 10 minutos, BCF + 120 bpm, bolsa rota espontânea, apresentação cefálica em OP no plano 0 de De Lee. Foi realizada a cardiotocografia a seguir.\n![](pm/media/image4.png){width=\"5.905555555555556in\" height=\"4.09375in\"}\nA conduta mais adequada é:",
   alternativas:[{id:"A",texto:"Ultimar o parto usando fórceps de Simpson-Braun"},{id:"B",texto:"Realizar parto cesariana de emergência"},{id:"C",texto:"Manter vigilância contínua e aumentar ocitocina para acelerar o parto"},{id:"D",texto:"Retirar ocitocina e manter vigilância contínua."}],
   gabarito:"D",

@@ -53,7 +53,7 @@ function renderFavoritos(){
   return `
   ${cabecalho}
   ${abas}
-  <p class="text-sm muted mb-2">${favs.length} questão(ões) marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p>
+  <p class="text-sm muted mb-2">${favs.length} ${plural(favs.length,"questão","questões")} marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p>
   ${favs.length ? `<div class="flex gap-1 mb-2 quebra"><button class="btn btn-primary" onclick="praticarFavoritas()">${iconeSvg("book")} Praticar todas as favoritas</button></div>` : ""}
   ${favs.length ? pag.itens.map(({reg,q})=>{
     const area = getArea(q.areaId);
@@ -83,7 +83,7 @@ function renderFavoritos(){
 function renderQuestoesRetiradas(u, retiradas){
   const pag = paginar(retiradas, "favoritos-retiradas", {porPagina:10});
   return `
-  <p class="text-sm muted mb-2">${retiradas.length} questão(ões) que você pediu para não ver mais. Elas continuam no banco, nas provas antigas e nos seus números — só não voltam nas suas sessões, revisões e listas.</p>
+  <p class="text-sm muted mb-2">${retiradas.length} ${plural(retiradas.length,"questão","questões")} que você pediu para não ver mais. Elas continuam no banco, nas provas antigas e nos seus números — só não voltam nas suas sessões, revisões e listas.</p>
   ${retiradas.length>1 ? `<div class="flex gap-1 mb-2"><button class="btn btn-secondary btn-sm" onclick="mostrarTodasAsEscondidas()">${iconeSvg("eye")} Voltar a mostrar todas</button></div>` : ""}
   ${retiradas.length ? pag.itens.map(({reg,q})=>{
     const n = errosNaQuestao(u.id, q.id);
@@ -107,7 +107,7 @@ function renderQuestoesRetiradas(u, retiradas){
 function renderFavoritosCartoes(u, cartoes){
   const pag = paginar(cartoes, "favoritos-cartoes");
   return `
-  <p class="text-sm muted mb-2">${cartoes.length} cartão(ões) salvo(s). Salvar não muda a repetição espaçada: o cartão continua voltando na data dele — isto aqui é a sua pilha de "quero rever este conceito".</p>
+  <p class="text-sm muted mb-2">${cartoes.length} ${plural(cartoes.length,"cartão","cartões")} salvo(s). Salvar não muda a repetição espaçada: o cartão continua voltando na data dele — isto aqui é a sua pilha de "quero rever este conceito".</p>
   ${cartoes.length ? `<div class="flex gap-1 mb-2 quebra"><button class="btn btn-primary" onclick="revisarCartoesFavoritos()">${iconeSvg("cards")} Revisar os cartões salvos</button></div>` : ""}
   ${cartoes.length ? pag.itens.map(({reg,cartao})=>{
     const rev = revisaoDoCartao(u.id, cartao.id);
@@ -426,7 +426,7 @@ function htmlDiaDoHistorico(d){
     const t = pct(sess.acertos, sess.total), rot = rotuloDoConjunto(sess);
     const motivo = (sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática").replace(/^Trilha por erro\s*—\s*/i, "");
     linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
-      <span>${iconeSvg(rot.trilha?"target":"book")} ${sess.naoTerminada ? `${rot.nome.toLowerCase()} <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} questão(ões) respondida(s) (parado há mais de 7 dias)` : `${rot.nome.toLowerCase()} de ${sess.total} questão(ões)`} — ${escapeHtml(motivo)}</span>
+      <span>${iconeSvg(rot.trilha?"target":"book")} ${sess.naoTerminada ? `${rot.nome.toLowerCase()} <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} ${plural(sess.planejadas?" de "+sess.planejadas:"","questão","questões")} respondida(s) (parado há mais de 7 dias)` : `${rot.nome.toLowerCase()} de ${sess.total} ${plural(sess.total,"questão","questões")}`} — ${escapeHtml(motivo)}</span>
       <span class="flex items-center gap-1"><span class="badge ${corTaxa(t)}">${t}%</span>
       <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir ${rot.trilha?"esta trilha":"este conjunto"}</button></span>
     </div>`);
@@ -445,7 +445,7 @@ function htmlDiaDoHistorico(d){
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">
         <div class="peso-600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
-        <div class="text-xs muted mt-1">${d.total ? `${d.total} questão(ões) · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}</div>
+        <div class="text-xs muted mt-1">${d.total ? `${d.total} ${plural(d.total,"questão","questões")} · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}</div>
       </div>
       <div class="flex items-center gap-1 quebra">
         ${taxa!==null ? `<span class="badge ${corTaxa(taxa)}">${taxa}% de acerto</span>` : ""}
@@ -473,8 +473,8 @@ function htmlCalendarioHistorico(u, diasAtivos){
   const celulas = dias.map(d=>{
     const ativo = porData.get(d.iso);
     const classe = d.metaBatida ? "cal-meta" : ativo ? "cal-estudou" : "";
-    const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes + " questão(ões)" : "sem questões")
-      + (d.cartoes ? ", " + d.cartoes + " cartão(ões)" : "") + (ativo && ativo.simulados.length ? ", " + ativo.simulados.length + " simulado(s)" : "") + (d.metaBatida ? " — meta batida" : "");
+    const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes+" "+plural(d.questoes,"questão","questões")+"" : "sem questões")
+      + (d.cartoes ? ", " + d.cartoes+" "+plural(d.cartoes,"cartão","cartões")+"" : "") + (ativo && ativo.simulados.length ? ", " + ativo.simulados.length + " simulado(s)" : "") + (d.metaBatida ? " — meta batida" : "");
     const conteudo = `<span class="cal-num">${d.dia}</span><span class="cal-qtd">${d.questoes||""}</span>`;
     const comum = `${classe} ${d.futuro?"cal-futuro":""} ${d.hoje?"cal-hoje":""} ${ctx.dia===d.iso?"cal-selecionado":""}`;
     return ativo ? `<button type="button" class="cal-dia cal-clicavel ${comum}" title="${escapeHtml(dica)}" aria-pressed="${ctx.dia===d.iso}" onclick="escolherDiaDoHistorico('${d.iso}')">${conteudo}</button>`
@@ -636,8 +636,8 @@ function htmlCalendarioEstudo(u){
   const vazios = Array.from({length:primeiroDiaSemana}, ()=>`<div class="cal-dia cal-fora"></div>`).join("");
   const celulas = dias.map(d=>{
     const classe = d.metaBatida ? "cal-meta" : d.questoes>0 ? "cal-estudou" : "";
-    const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes + " questão(ões)" : "sem questões")
-      + (d.cartoes ? ", " + d.cartoes + " cartão(ões)" : "") + (d.metaBatida ? " — meta batida" : "");
+    const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes+" "+plural(d.questoes,"questão","questões")+"" : "sem questões")
+      + (d.cartoes ? ", " + d.cartoes+" "+plural(d.cartoes,"cartão","cartões")+"" : "") + (d.metaBatida ? " — meta batida" : "");
     return `<div class="cal-dia ${classe} ${d.futuro?"cal-futuro":""} ${d.hoje?"cal-hoje":""}" title="${escapeHtml(dica)}"><span class="cal-num">${d.dia}</span><span class="cal-qtd">${d.questoes||""}</span></div>`;
   }).join("");
   return `
@@ -701,7 +701,7 @@ function htmlCardNotaEstimada(u){
     const faltam = CONFIG.incidencia.minRespostasParaNota - acertoGeralDoUsuario(u.id).total;
     return `<div class="card mb-2">
       <div class="card-title">${iconeSvg("target")} Se a prova fosse hoje</div>
-      <p class="text-sm muted">Com mais ${faltam} questão(ões) diferente(s) respondida(s) (refazer uma questão não conta), a plataforma estima a sua nota na prova da ${escapeHtml(inc.banca)}, área por área, pelo peso que cada grande área teve nas provas de ${faixaAnos}.</p>
+      <p class="text-sm muted">Com mais ${faltam} ${plural(faltam,"questão","questões")} diferente(s) respondida(s) (refazer uma questão não conta), a plataforma estima a sua nota na prova da ${escapeHtml(inc.banca)}, área por área, pelo peso que cada grande área teve nas provas de ${faixaAnos}.</p>
     </div>`;
   }
   const larga = est.maximo - est.minimo > 16;
@@ -740,7 +740,7 @@ function htmlCardOQueMaisCai(u, limite){
       <thead><tr><th>Assunto</th><th>Caiu na prova <span class="text-xs muted peso-400">(q. = questões)</span></th><th>Seu acerto</th><th>Prioridade</th><th></th></tr></thead>
       <tbody>${lista.map(p=>`<tr>
         <td class="text-sm"><strong>${escapeHtml(nomeAssunto(p.assuntoId))}</strong><div class="text-xs muted">${escapeHtml((getArea(p.areaId)||{}).nome||"")}</div></td>
-        <td class="text-sm nowrap" title="${p.questoesNaProva} questão(ões) em ${p.anosQueCaiu} de ${inc.anos.length} anos">${p.questoesNaProva} q. <span class="text-xs muted">· ${p.anosQueCaiu}/${inc.anos.length} anos</span></td>
+        <td class="text-sm nowrap" title="${p.questoesNaProva} ${plural(p.questoesNaProva,"questão","questões")} em ${p.anosQueCaiu} de ${inc.anos.length} anos">${p.questoesNaProva} q. <span class="text-xs muted">· ${p.anosQueCaiu}/${inc.anos.length} anos</span></td>
         <td class="text-sm nowrap">${p.taxa!==null ? `<span class="badge ${p.taxa<50?"badge-danger":p.taxa<70?"badge-amber":"badge-accent"}">${p.taxa}%</span> <span class="text-xs muted">em ${p.respondidas}</span>` : '<span class="text-xs muted">nunca respondeu</span>'}</td>
         <td><div class="barra-prioridade" title="prioridade relativa"><i style="width:${Math.max(4, Math.round(p.prioridadeRelativa*100))}%"></i></div></td>
         <td><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${p.assuntoId}')">Praticar</button></td>
@@ -779,7 +779,7 @@ function htmlEvolucaoPorAssunto(u){
   const grupos = evolucaoAgrupadaPorArea(ev);
   return `<div class="card mb-2" id="evolucaoAssuntos">
     <details ${secaoRecolhivelAberta("evolucao-assuntos", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('evolucao-assuntos', this.open)">
-      <summary class="card-title" style="cursor:pointer">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias <span class="text-xs muted peso-400">(${ev.assuntos.length} assunto(s) · ${ev.periodos.length} período(s))</span></summary>
+      <summary class="card-title" style="cursor:pointer">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias <span class="text-xs muted peso-400">(${ev.assuntos.length} ${plural(ev.assuntos.length,"assunto","assuntos")} · ${ev.periodos.length} período(s))</span></summary>
       <p class="text-sm muted mt-1">Cada coluna é um período de 15 dias; o último termina hoje. Em cada célula, o acerto no assunto naquele período e quantas você acertou (ex.: <strong>80%</strong> <span class="text-xs muted">8/10</span>). <strong>—</strong> quer dizer que você não fez questões daquele assunto no período — não é erro nem acerto, e a comparação só vale entre períodos em que você fez. Pouca questão engana: 100% em 2 não é melhor que 75% em 40.${ev.cortou ? " Mostramos os últimos "+ev.periodos.length+" períodos ("+ev.periodos.length*DIAS_DO_PERIODO+" dias)." : ""}</p>
       <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary btn-sm" onclick="alternarAreasDaEvolucao(true)">Abrir todas as áreas</button>
@@ -787,7 +787,7 @@ function htmlEvolucaoPorAssunto(u){
         <button class="btn btn-primary btn-sm" onclick="baixarEvolucaoPDF()">${iconeSvg("printer")} Salvar em PDF</button>
       </div>
       ${grupos.map(g=>`<details class="evolucao-area mt-2" ${secaoRecolhivelAberta("evolucao-area-"+g.area.id, false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('evolucao-area-${g.area.id}', this.open)">
-        <summary class="peso-600 text-sm">${escapeHtml(g.area.nome)} <span class="text-xs muted peso-400">· ${g.assuntos.length} assunto(s) · ${pct(g.acertos,g.total)}% de acerto em ${g.total} respostas</span></summary>
+        <summary class="peso-600 text-sm">${escapeHtml(g.area.nome)} <span class="text-xs muted peso-400">· ${g.assuntos.length} ${plural(g.assuntos.length,"assunto","assuntos")} · ${pct(g.acertos,g.total)}% de acerto em ${g.total} respostas</span></summary>
         <div class="table-wrap mt-1"><table class="evolucao-tabela">
           <thead><tr><th>Assunto</th>${ev.periodos.map(p=>`<th>${p.rotulo}</th>`).join("")}<th>Tendência</th></tr></thead>
           <tbody>${g.assuntos.map(a=>`<tr>
@@ -957,7 +957,7 @@ function renderDesempenho(){
     </div>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
-      ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} cartão(ões) vencido(s) esperando</span>`:""}
+      ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} ${plural(cartoes.vencidos,"cartão","cartões")} vencido(s) esperando</span>`:""}
     </div>
   `)}
 
@@ -1024,7 +1024,7 @@ function renderDesempenho(){
   </div>` : ""}
   `, calibracao.alertaExcessoConfianca || falsaSeguranca.length)}
   ${ritmo ? htmlSecaoRecolhivel("desempenho-ritmo", "Ritmo — quanto tempo você leva por questão", "mediana de "+formatarDuracao(ritmo.mediana)+" por questão", `
-    <p class="text-xs muted">Baseado em ${ritmo.n} questão(ões) cronometradas (prática e simulados).</p>
+    <p class="text-xs muted">Baseado em ${ritmo.n} ${plural(ritmo.n,"questão","questões")} cronometradas (prática e simulados).</p>
     <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(ritmo.mediana)}</div><div class="stat-label">tempo mediano por questão</div></div>
       <div class="stat-tile"><div class="stat-value">${formatarDuracao(ritmo.media)}</div><div class="stat-label">tempo médio</div></div>

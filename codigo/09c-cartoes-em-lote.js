@@ -35,7 +35,7 @@ function renderCartoesEmLote(){
   const semNenhum = cob.filter(c => c.cartoes === 0).length;
   const cabecalho = `<div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220"><div class="card-title">${iconeSvg("cards")} Cobrir os assuntos sem cartão — em lote</div>
-      <div class="text-sm muted">${semNenhum} assunto(s) sem nenhum cartão da equipe e ${faltando.length - semNenhum} com menos de ${CARTOES_POR_ASSUNTO_ALVO}. Os que mais caem na prova vêm primeiro.</div></div>
+      <div class="text-sm muted">${semNenhum} ${plural(semNenhum,"assunto","assuntos")} sem nenhum cartão da equipe e ${faltando.length - semNenhum} com menos de ${CARTOES_POR_ASSUNTO_ALVO}. Os que mais caem na prova vêm primeiro.</div></div>
       <button class="btn btn-secondary btn-sm" onclick="estadoLoteCartoes().aberto=!estadoLoteCartoes().aberto; render()">${st.aberto ? "Fechar" : "Abrir"}</button>
     </div>`;
   if(!st.aberto) return `<div class="card mt-2">${cabecalho}</div>`;
@@ -47,21 +47,21 @@ function renderCartoesEmLote(){
       <button class="link-btn text-sm" onclick="selecionarAssuntosDoLote(8)">marcar os 8 primeiros</button> ·
       <button class="link-btn text-sm" onclick="selecionarAssuntosDoLote(0)">desmarcar</button></div>
     <div class="lote-assuntos mt-1">${lista.map(c => `<label class="checkbox-row text-sm"><input type="checkbox" ${sel.has(c.assuntoId)?"checked":""} onchange="alternarAssuntoDoLote('${c.assuntoId}', this.checked)">
-      ${escapeHtml(c.nome)} <span class="text-xs muted">${escapeHtml(nomeEspecialidade(c.especialidadeId))} · ${c.cartoes} cartão(ões)${c.naProva?` · caiu ${c.naProva}× na prova`:""}</span></label>`).join("")}</div>
+      ${escapeHtml(c.nome)} <span class="text-xs muted">${escapeHtml(nomeEspecialidade(c.especialidadeId))} · ${c.cartoes} ${plural(c.cartoes,"cartão","cartões")}${c.naProva?` · caiu ${c.naProva}× na prova`:""}</span></label>`).join("")}</div>
     <div class="flex gap-1 items-center mt-2 quebra">
       <span class="text-sm">Cartões por assunto:</span>
       <input class="input" type="number" min="1" max="10" style="max-width:80px" value="${st.porAssunto}" onchange="estadoLoteCartoes().porAssunto=Math.max(1,Math.min(10,parseInt(this.value)||3)); render()">
-      <button class="btn btn-primary btn-sm" ${sel.size?"":"disabled"} onclick="copiarTexto(modeloLoteCartoes(), 'Modelo copiado. Cole numa conversa de IA e traga a resposta para o campo abaixo.')">${iconeSvg("clipboard")} 2. Copiar o modelo (${sel.size} assunto(s))</button>
+      <button class="btn btn-primary btn-sm" ${sel.size?"":"disabled"} onclick="copiarTexto(modeloLoteCartoes(), 'Modelo copiado. Cole numa conversa de IA e traga a resposta para o campo abaixo.')">${iconeSvg("clipboard")} 2. Copiar o modelo (${sel.size} ${plural(sel.size,"assunto","assuntos")})</button>
     </div>
     <div class="mt-2 text-sm"><strong>3. Cole a resposta e confira</strong></div>
     <textarea class="textarea textarea-mono mt-1" id="loteCartoesTexto" style="min-height:160px" placeholder="ASSUNTO: ass-...&#10;FRENTE: ...&#10;VERSO: ...&#10;FONTE: ...&#10;---">${escapeHtml(st.texto||"")}</textarea>
     <div class="flex gap-1 mt-1 quebra">
       <button class="btn btn-secondary btn-sm" onclick="conferirLoteCartoes()">Conferir</button>
-      ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="publicarLoteCartoes()">4. Publicar ${a.validos.length} cartão(ões)</button>` : ""}
+      ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="publicarLoteCartoes()">4. Publicar ${a.validos.length} ${plural(a.validos.length,"cartão","cartões")}</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="exportarCartoesParaDados()">${iconeSvg("download")} Exportar cartões publicados para a pasta dados/</button>
     </div>
     ${a ? `<div class="card-flat mt-2 text-sm">
-      <strong>${a.validos.length}</strong> cartão(ões) prontos para publicar${a.problemas.length?`, <strong class="texto-perigo">${a.problemas.length}</strong> com problema`:""}.
+      <strong>${a.validos.length}</strong> ${plural(a.validos.length,"cartão","cartões")} prontos para publicar${a.problemas.length?`, <strong class="texto-perigo">${a.problemas.length}</strong> com problema`:""}.
       ${a.problemas.length ? `<ul class="text-xs mt-1">${a.problemas.slice(0,15).map(p=>`<li>${escapeHtml(p)}</li>`).join("")}</ul>` : ""}
       ${a.validos.length ? `<div class="table-wrap mt-1"><table><thead><tr><th>Assunto</th><th>Frente</th><th>Verso</th></tr></thead><tbody>${a.validos.slice(0,12).map(c=>`<tr><td class="text-xs">${escapeHtml(nomeAssunto(c.assuntoId))}</td><td class="text-xs">${escapeHtml(c.frente)}</td><td class="text-xs">${escapeHtml(c.verso)}</td></tr>`).join("")}</tbody></table></div>${a.validos.length>12?`<div class="text-xs muted">… e mais ${a.validos.length-12}.</div>`:""}` : ""}
     </div>` : ""}
@@ -161,7 +161,7 @@ function publicarLoteCartoes(){
   const n = st.analise.validos.length;
   saveState();
   st.texto = ""; st.analise = null; st.selecionados = [];
-  toast(n + " cartão(ões) publicados neste navegador. Para irem para todos, exporte para a pasta dados/.");
+  toast(n+" "+plural(n,"cartão","cartões")+" publicados neste navegador. Para irem para todos, exporte para a pasta dados/.");
   render();
 }
 /* Os cartões da equipe criados pela plataforma (não os que vieram da pasta
@@ -260,11 +260,11 @@ function desenharAdicionarBaralho(){
     ${(!podeEquipe || st.pessoal) && !grupoPrincipalDeQuestoes(usuarioAtual()).oficial ? `<label class="checkbox-row mb-1 text-sm"><input type="checkbox" id="baralhoGrupo" ${st.compartilhar?"checked":""} onchange="guardarCamposBaralhoIA()"> Compartilhar com o meu grupo (${escapeHtml(grupoPrincipalDeQuestoes(usuarioAtual()).nome)}) — os colegas recebem estes cartões no baralho deles</label>` : ""}
     <div class="flex gap-1 mt-1 quebra">
       <button class="btn btn-secondary btn-sm" onclick="conferirBaralhoIA()">Conferir</button>
-      ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="adicionarBaralhoIA()">Adicionar ${a.validos.length} cartão(ões)</button>` : ""}
+      ${a && a.validos.length ? `<button class="btn btn-primary btn-sm" onclick="adicionarBaralhoIA()">Adicionar ${a.validos.length} ${plural(a.validos.length,"cartão","cartões")}</button>` : ""}
       <button class="btn btn-ghost btn-sm" onclick="mudarPassoBaralhoIA('escolha')">Voltar</button>
     </div>
     ${a ? `<div class="card-flat mt-2 text-sm">
-      <strong>${a.validos.length}</strong> cartão(ões) prontos${a.problemas.length?`, <strong class="texto-perigo">${a.problemas.length}</strong> com problema (ficam de fora)`:""}.
+      <strong>${a.validos.length}</strong> ${plural(a.validos.length,"cartão","cartões")} prontos${a.problemas.length?`, <strong class="texto-perigo">${a.problemas.length}</strong> com problema (ficam de fora)`:""}.
       ${a.problemas.length ? `<ul class="text-xs mt-1">${a.problemas.slice(0,10).map(p=>`<li>${escapeHtml(p)}</li>`).join("")}</ul>` : ""}
       ${a.validos.length ? `<div class="table-wrap mt-1" style="max-height:200px;overflow:auto"><table><thead><tr><th>Assunto</th><th>Frente</th><th>Verso</th></tr></thead><tbody>${a.validos.slice(0,8).map(c=>`<tr><td class="text-xs">${escapeHtml(nomeAssunto(c.assuntoId))}</td><td class="text-xs">${escapeHtml(c.frente)}</td><td class="text-xs">${escapeHtml(c.verso)}</td></tr>`).join("")}</tbody></table></div>${a.validos.length>8?`<div class="text-xs muted">… e mais ${a.validos.length-8}.</div>`:""}` : ""}
     </div>` : ""}`, "lg");
@@ -345,7 +345,7 @@ function adicionarBaralhoIA(){
   saveState();
   state.filtroRota.baralhoIA = null;
   fecharModal();
-  toast(a.validos.length + " cartão(ões) adicionados" + (equipe ? " ao baralho da equipe." : st.compartilhar ? " ao seu baralho e ao do seu grupo." : " ao seu baralho. Entram na sua próxima revisão rápida."));
+  toast(a.validos.length+" "+plural(a.validos.length,"cartão","cartões")+" adicionados" + (equipe ? " ao baralho da equipe." : st.compartilhar ? " ao seu baralho e ao do seu grupo." : " ao seu baralho. Entram na sua próxima revisão rápida."));
   render();
 }
 
@@ -467,6 +467,6 @@ function salvarCartoesEmLista(){
     nuvemRegistrar({cartaoPessoal: cartao});
   });
   saveState(); fecharModal();
-  toast(novos.length + " cartão(ões) criado(s)" + (repetidos ? " · " + repetidos + " já existia(m) e ficou(aram) de fora" : "") + ". Entram na sua próxima revisão rápida.");
+  toast(novos.length+" "+plural(novos.length,"cartão","cartões")+" criado(s)" + (repetidos ? " · " + repetidos + " já existia(m) e ficou(aram) de fora" : "") + ". Entram na sua próxima revisão rápida.");
   render();
 }

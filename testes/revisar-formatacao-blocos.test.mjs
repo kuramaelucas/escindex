@@ -82,7 +82,7 @@ test("blocos: importação nova sai carimbada e vira o bloco mais recente, com a
     assert.equal(r.qtd, 2);
     assert.match(r.quando, /\d{2}\/\d{2}\/\d{4} às \d{2}:\d{2}/);
     assert.equal(r.origem, "Prova de Teste Lote · 2033");
-    assert.match(r.telaAbreNoNovo, /Prova de Teste Lote · 2033, 2 questão/);
+    assert.match(r.telaAbreNoNovo, /Prova de Teste Lote · 2033, 2 questões/);
   } finally { await contexto.close(); }
 });
 

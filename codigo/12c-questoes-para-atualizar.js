@@ -161,7 +161,7 @@ function renderAtualizarQuestoes(){
       <div>
         <div class="card-title mb-02">${iconeSvg("alert")} Relatos dos alunos para o Claude</div>
         <div class="text-sm muted">${relatosParaClaude().length
-          ? `<strong>${relatosParaClaude().length}</strong> relato(s) em aberto (sinalizações e dúvidas sem resposta oficial), em ${new Set(relatosParaClaude().map(r => r.questaoId)).size} questão(ões). O arquivo não leva o nome de ninguém.`
+          ? `<strong>${relatosParaClaude().length}</strong> relato(s) em aberto (sinalizações e dúvidas sem resposta oficial), em ${new Set(relatosParaClaude().map(r => r.questaoId)).size} ${plural(new Set(relatosParaClaude().map(r => r.questaoId)).size,"questão","questões")}. O arquivo não leva o nome de ninguém.`
           : "Nenhuma sinalização ou dúvida em aberto."} Na pasta do projeto: <code>npm run relatos -- arquivo.json</code> abre cada questão relatada, e o que o Claude fizer fica em <code>docs/REGISTRO-DE-RELATOS.md</code> para alguém conferir.</div>
       </div>
       <button class="btn btn-secondary btn-sm" onclick="baixarRelatosParaClaude()" ${relatosParaClaude().length ? "" : "disabled"}>${iconeSvg("download")} Baixar os relatos</button>
@@ -175,7 +175,7 @@ function renderAtualizarQuestoes(){
       <div>
         <div class="card-title mb-02">${iconeSvg("download")} Atualizações para a pasta dados/</div>
         <div class="text-sm muted">${corrigidas.length
-          ? `<strong>${corrigidas.length}</strong> questão(ões) consertada(s) ainda diferente(s) da pasta dados/${naFila ? ` · ${naFila} subindo agora…` : ""}.`
+          ? `<strong>${corrigidas.length}</strong> ${plural(corrigidas.length,"questão","questões")} consertada(s) ainda diferente(s) da pasta dados/${naFila ? ` · ${naFila} subindo agora…` : ""}.`
           : "Nenhuma questão consertada esperando para ir à pasta dados/."}</div>
         ${db.nuvem && db.nuvem.avisoImagens ? `<div class="text-xs mt-1 texto-alerta">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoImagens)}</div>` : ""}
       </div>
@@ -205,7 +205,7 @@ function renderAtualizarQuestoes(){
         <option value="">Todas as instituições</option>
         ${bancas.map(b => `<option value="${escapeHtml(b)}" ${f.banca === b ? "selected" : ""}>${escapeHtml(b)}</option>`).join("")}
       </select>
-      <span class="text-sm muted">${lista.length} questão(ões)</span>
+      <span class="text-sm muted">${lista.length} ${plural(lista.length,"questão","questões")}</span>
     </div>
   </div>
   ${lista.length ? pag.itens.map(({ q, motivos }) => `<div class="card mb-1">
@@ -311,7 +311,7 @@ async function baixarAtualizacoesParaDados(){
   const { conteudo, semImagemEmbutida } = await montarArquivoDeAtualizacoes();
   const nome = "atualizacoes-questoes-" + hojeISO() + ".json";
   baixarArquivo(nome, JSON.stringify(conteudo, null, 1), "application/json");
-  toast(conteudo.total + " questão(ões) no arquivo " + nome + ". Na pasta do projeto: npm run atualizar-dados -- " + nome +
+  toast(conteudo.total+" "+plural(conteudo.total,"questão","questões")+" no arquivo " + nome + ". Na pasta do projeto: npm run atualizar-dados -- " + nome +
     (semImagemEmbutida ? " (" + semImagemEmbutida + " figura(s) vão pelo endereço da nuvem; a ferramenta baixa)." : "."));
 }
 

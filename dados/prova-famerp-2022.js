@@ -26,7 +26,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-001", banca:"FAMERP", real:true, ano:2022, numeroNaProva:1,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-famerp2022-001.jpg", imagemLegenda:"Quadros A, B, C e D de preenchimento da Declaração de Óbito.",
+  imagemUrl:"dados/imagens/q-famerp2022-001.webp", imagemLegenda:"Quadros A, B, C e D de preenchimento da Declaração de Óbito.",
   enunciado:"Paciente masculino, 65 anos, alcoólatra há mais de 30 anos. Segundo a acompanhante, toma em média três copos de pinga e cerveja quase diariamente. Foi internado no hospital psiquiátrico quatro vezes, apresentando síndrome de abstinência. Em acompanhamento no ambulatório de hepatologia há oito anos, com diagnóstico de Cirrose Hepática e Diabetes. Deu entrada no hospital apresentando confusão mental, ictérico +++/4+, eritema palmar e telangiectasia, distensão abdominal por ascite, hepatoesplenomegalia e ginecomastia. Ao terceiro dia de internação, apresentou episódios de hematêmese, choque hipovolêmico, parada cardiorrespiratória, vindo a falecer. Como deve ser preenchida a Declaração de Óbito? (As alternativas A a D são os quadros da Declaração de Óbito mostrados na figura.)",
   alternativas:[{id:"A",texto:"Quadro A da figura: Parte I (a) Alcoolismo; (b) Falência múltipla de órgãos; (c) Choque hemorrágico; (d) Cirrose hepática; Parte II: Diabetes."},{id:"B",texto:"Quadro B da figura: Parte I (a) Parada cardiorrespiratória; (b) Falência múltipla de órgãos; (c) Hemorragia digestiva alta; (d) Cirrose hepática; Parte II: Diabetes."},{id:"C",texto:"Quadro C da figura: Parte I (a) Choque hipovolêmico; (b) Hemorragia digestiva alta; (c) Cirrose hepática; (d) Alcoolismo; Parte II: Diabetes."},{id:"D",texto:"Quadro D da figura: Parte I (a) Cirrose hepática; (b) Hemorragia digestiva alta; (c) Falência múltipla de órgãos; (d) Parada cardiorrespiratória; Parte II: Diabetes."}],
   gabarito:"C",
@@ -79,7 +79,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-005", banca:"FAMERP", real:true, ano:2022, numeroNaProva:5,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-famerp2022-005.png", imagemLegenda:"Tabela: internações, óbitos e coeficiente de mortalidade por SRAG no município de São Paulo, 2021.",
+  imagemUrl:"dados/imagens/q-famerp2022-005.webp", imagemLegenda:"Tabela: internações, óbitos e coeficiente de mortalidade por SRAG no município de São Paulo, 2021.",
   enunciado:"Após analisar os dados de internações por SRAG, o Ministério da Saúde concluiu que 'pessoas com 80 anos ou mais que se internaram na rede pública da capital paulista com COVID-19 grave tiveram menos chance de sobreviver do que aquelas que buscaram atendimento privado'. Os dados estão apresentados na tabela abaixo (figura): rede privada 12.374 internações, 5.705 óbitos, coeficiente de mortalidade de 46 por 100 internações; rede pública 7.313 internações, 4.227 óbitos, coeficiente de 58 por 100 internações. Em relação às conclusões do estudo, técnicos da saúde fizeram os seguintes comentários: Pesquisador em saúde pública da Fiocruz e coordenador do projeto Infogripe, que monitora os índices nacionais de covid-19, Marcelo Gomes lembra 'que condições prévias desfavoráveis de pessoas em situação de vulnerabilidade socioeconômica ajudam um pouco a explicar a diferença dos números nas redes pública e privada. Mesmo se atendidos em rede privada, é possível que muitos desses casos tivessem o mesmo desfecho. Não se trata apenas de um debate sobre a capacidade do SUS de oferecer atendimento adequado'. Técnicos da Secretaria Municipal de Saúde informaram que 'não considera correto comparar serviços com perfis assistenciais diferentes, que consequentemente receberam pacientes com perfis distintos. Na fase pré-pandemia, os hospitais sob gestão estadual já respondiam por mais de 65% dos leitos clínicos e de UTI entre os serviços do plano de contingência de enfrentamento da COVID-19 de São Paulo, absorvendo os casos mais graves da doença desde o início da pandemia.' A partir dos dados da tabela e dos comentários dos técnicos e pesquisadores, responda: Qual o Risco Relativo de Morte por SRAG entre a Rede Pública e a Rede Privada e quais fatores podem estar interferindo na validade do estudo do Ministério da Saúde?",
   alternativas:[{id:"A",texto:"Risco Relativo = 8 e fatores de viés de seleção."},{id:"B",texto:"Risco Relativo = 1,3 e fatores de confundimento."},{id:"C",texto:"Risco Relativo = 8 e fatores de viés de informação."},{id:"D",texto:"Risco Relativo = 1,3 e fatores de viés de informação."}],
   gabarito:"B",
@@ -184,7 +184,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-013", banca:"FAMERP", real:true, ano:2022, numeroNaProva:13,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-famerp2022-013.png", imagemLegenda:"Casos notificados de aids, óbitos e pessoas vivendo com aids, Estado de São Paulo, 1992 a 2019.",
+  imagemUrl:"dados/imagens/q-famerp2022-013.webp", imagemLegenda:"Casos notificados de aids, óbitos e pessoas vivendo com aids, Estado de São Paulo, 1992 a 2019.",
   enunciado:"O gráfico abaixo (figura) mostra a tendência de casos notificados de AIDS, óbitos e número de pessoas vivendo com AIDS no estado de São Paulo no período de 1992 a 2019. Fonte: Base Integrada Paulista de Aids (BIP AIDS). A mortalidade pela infecção do HIV aumentou rapidamente de 1992 a 1995 diminuindo a partir de 1995 até 2003, com tendência a estabilização até 2015 e posteriormente volta a apresentar queda. Esta queda nos óbitos em grande parte pela introdução das novas e altamente ativas terapias antirretrovirais, bem como mudanças no estilo de vida resultantes de educação em saúde pública. Com a queda da mortalidade e o aumento na expectativa de vida de muitas pessoas vivendo com aids observa-se:",
   alternativas:[{id:"A",texto:"O aumento significativo da incidência de AIDS."},{id:"B",texto:"O aumento significativo da prevalência de AIDS."},{id:"C",texto:"A redução significativa da virulência da infecção pelo HIV."},{id:"D",texto:"A redução significativa do ataque secundário da infecção pelo HIV."}],
   gabarito:"B",
@@ -614,7 +614,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-046", banca:"FAMERP", real:true, ano:2022, numeroNaProva:46,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-famerp2022-046.png", imagemLegenda:"Partograma com fase ativa prolongada.",
+  imagemUrl:"dados/imagens/q-famerp2022-046.webp", imagemLegenda:"Partograma com fase ativa prolongada.",
   enunciado:"O partograma esquematizado (figura) mostra a evolução de um parto por via vaginal, no qual ocorreu uma distocia da dilatação (fase ativa prolongada). Uma das causas envolvidas para essa ocorrência é:",
   alternativas:[{id:"A",texto:"Contrações uterinas ineficazes."},{id:"B",texto:"Desproporção cefalopélvica absoluta."},{id:"C",texto:"Desproporção cefalopélvica relativa."},{id:"D",texto:"Distocia de trajeto mole."}],
   gabarito:"A",
@@ -654,7 +654,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-049", banca:"FAMERP", real:true, ano:2022, numeroNaProva:49,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-endocardite",
-  imagemUrl:"dados/imagens/q-famerp2022-049.png", imagemLegenda:"Antibiograma do Staphylococcus aureus isolado em hemocultura.",
+  imagemUrl:"dados/imagens/q-famerp2022-049.webp", imagemLegenda:"Antibiograma do Staphylococcus aureus isolado em hemocultura.",
   enunciado:"Homem de 42 anos de idade procura pronto atendimento com quadro de dor, edema e hiperemia progressivos no tornozelo direito há 14 dias. Há 3 dias com calafrios, tremores e astenia. Foi internado para investigação complementar, colhidas hemoculturas e iniciado vancomicina. Paciente evolui com melhora clínica, afebril e, após 5 dias, temos o seguinte antibiograma (figura): Staphylococcus aureus sensível a penicilina, oxacilina, vancomicina, teicoplanina e linezolida; resistente a ciprofloxacino. Assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"Manter Vancomicina e solicitar RNM de tornozelo."},{id:"B",texto:"Manter Vancomicina e solicitar ecotransesofágico."},{id:"C",texto:"Trocar antibiótico por Oxacilina e solicitar ecocardiograma transtorácico."},{id:"D",texto:"Trocar antibiótico por Linezolida e solicitar Ultrassonografia de articulação do tornozelo direito."}],
   gabarito:"C",
@@ -720,7 +720,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-054", banca:"FAMERP", real:true, ano:2022, numeroNaProva:54,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-famerp2022-054.png", imagemLegenda:"Exames do sangue e do líquido pleural.",
+  imagemUrl:"dados/imagens/q-famerp2022-054.webp", imagemLegenda:"Exames do sangue e do líquido pleural.",
   enunciado:"Mulher de 52 anos, com dor em região de hemitórax à direita, astenia e hiporexia há 4 semanas. Há 1 semana evoluiu com dispneia e procura do leito. Exame físico: REG, descorada +/4+, desidratada +/4+, anictérica. Ausculta pulmonar: murmúrio vesicular abolido em base de hemitórax à direita, macicez à percussão na mesma região. Foi realizada toracocentese com retirada de 400ml de líquido amarelo citrino. Os seguintes exames foram realizados (figura): Proteínas totais 6,0 (sérica) e 4,0 (líquido pleural); DHL 200 e 180; pH 7,35 e 7,33; leucócitos 11.000 (sérico) e 100 (líquido), com neutrófilos/linfócitos/monócitos/eosinófilos/macrófagos de 20/50/20/5/5%; plaquetas 155.000; hemoglobina 10,0; hematócrito 32%; glicose 100 (sérica) e 60 (líquido); ADA 50 (líquido). Qual a conduta correta?",
   alternativas:[{id:"A",texto:"Esquema RIPE."},{id:"B",texto:"Metilprednisolona."},{id:"C",texto:"Drenagem de tórax."},{id:"D",texto:"Ceftriaxona e azitromicina."}],
   gabarito:"A",
@@ -838,7 +838,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-063", banca:"FAMERP", real:true, ano:2022, numeroNaProva:63,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-famerp2022-063.png", imagemLegenda:"Eletrocardiograma, derivação D2.",
+  imagemUrl:"dados/imagens/q-famerp2022-063.webp", imagemLegenda:"Eletrocardiograma, derivação D2.",
   enunciado:"Paciente masculino de 67 anos admitido com hemiplegia à direita proporcionada associada a afasia com histórico de hipertensão arterial e diabetes. Sua pressão arterial é de 170/90 mmHg e com o seguinte eletrocardiograma (figura: derivação D2 com ritmo irregular, sem ondas P). Após a fase aguda do AVC isquêmico, o paciente recebe alta hospitalar. Qual a melhor prescrição ambulatorial para esse paciente, além do controle glicêmico?",
   alternativas:[{id:"A",texto:"Marevan, atorvastatina, enalapril, metoprolol."},{id:"B",texto:"Marevan, ácido acetilsalicílico, atorvastatina, metoprolol."},{id:"C",texto:"Clopidogrel, ácido acetilsalicílico, atorvastatina, metoprolol."},{id:"D",texto:"Rivaroxabana, ácido acetilsalicílico, rosuvastatina, amlodipina."}],
   gabarito:"A",
@@ -852,7 +852,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-064", banca:"FAMERP", real:true, ano:2022, numeroNaProva:64,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-famerp2022-064.png", imagemLegenda:"Eletrocardiograma de 12 derivações.",
+  imagemUrl:"dados/imagens/q-famerp2022-064.webp", imagemLegenda:"Eletrocardiograma de 12 derivações.",
   enunciado:"Paciente de 61 anos, feminina, admitida em hospital terciário com dor epigástrica tipo aperto de forte intensidade iniciada há quatro horas, acompanhada de sudorese, náuseas e irradiada para os membros superiores. Ao exame físico: PA: 150/80 mmHg; Frequência cardíaca: 98 bpm. Precórdio ritmo cardíaco irregular, bulhas normofonéticas, sem sopros. Pulmonar: murmúrio vesicular simétrico e mantido bilateralmente, sem ruídos adventícios. Foi traçado o seguinte eletrocardiograma (figura). Qual o melhor tratamento?",
   alternativas:[{id:"A",texto:"Ácido acetilsalicílico, prasugrel, alteplase, enoxaparina e atorvastatina."},{id:"B",texto:"Ácido acetilsalicílico, clopidogrel, alteplase, metoprolol e dapagliflozina."},{id:"C",texto:"Prasugrel, metoprolol, cineangiocoronariografia, enoxaparina e rosuvastatina."},{id:"D",texto:"Ácido acetilsalicílico, clopidogrel, cineangiocoronariografia, enoxaparina e rosuvastatina."}],
   gabarito:"D",
@@ -892,7 +892,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2022", [
 {
   id:"q-famerp2022-067", banca:"FAMERP", real:true, ano:2022, numeroNaProva:67,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
-  imagemUrl:"dados/imagens/q-famerp2022-067.png", imagemLegenda:"Traçado do ROTEM: o coágulo se forma e se desfaz abruptamente.",
+  imagemUrl:"dados/imagens/q-famerp2022-067.webp", imagemLegenda:"Traçado do ROTEM: o coágulo se forma e se desfaz abruptamente.",
   enunciado:"Paciente feminina, vítima de atropelamento em rodovia. Atendida pela equipe médica pré-hospitalar, chega à emergência com intubação orotraqueal, em ventilação mecânica. A Escala de Coma de Glasgow é de 7 (Ocular - 1; Verbal - 1; Motor - 5). Instável hemodinamicamente e com Ultrassom FAST SCAN positivo em todos os quadrantes abdominais, foi iniciado a reposição volêmica e droga vasoativa em veia periférica. O médico assistente resolve, neste momento, traçar o ROTEM (Tromboelastometria) que evidencia um fechamento abrupto da curva do coágulo (figura). A melhor maneira de corrigir este distúrbio seria com:",
   alternativas:[{id:"A",texto:"Plasma."},{id:"B",texto:"Plaqueta."},{id:"C",texto:"Crioprecipitado."},{id:"D",texto:"Ácido Tranexâmico."}],
   gabarito:"D",

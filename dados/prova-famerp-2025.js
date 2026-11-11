@@ -273,7 +273,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 {
   id:"q-famerp2025-020", banca:"FAMERP", real:true, ano:2025, numeroNaProva:20,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-famerp2025-020.jpg", imagemLegenda:"Cardiotocografia com legenda 'Padrão variável'.",
+  imagemUrl:"dados/imagens/q-famerp2025-020.webp", imagemLegenda:"Cardiotocografia com legenda 'Padrão variável'.",
   enunciado:"Gestante de 39 semanas é admitida com contrações uterinas. Durante a evolução do trabalho de parto, foi realizada a cardiotocografia representada na figura abaixo. De acordo com estes dados, assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"O padrão cardiotocográfico é compatível com insuficiência placentária decorrente de hipertensão arterial."},{id:"B",texto:"O padrão cardiotocográfico é compatível com DIPs precoces, decorrentes da compressão cefálica, no final do período expulsivo."},{id:"C",texto:"O padrão cardiotocográfico é compatível com a estase sanguínea no espaço interviloso que ocorre durante as contrações uterinas."},{id:"D",texto:"O padrão cardiotocográfico demonstra a ocorrência de compressão funicular e pode ser decorrente de prolapso de cordão."}],
   gabarito:"D",
@@ -469,7 +469,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 {
   id:"q-famerp2025-035", banca:"FAMERP", real:true, ano:2025, numeroNaProva:35,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-famerp2025-035.jpg", imagemLegenda:"Coeficiente de incidência (por 100 pacientes) de AVE ou evento isquêmico: novo medicamento 1,7; varfarina 2,2.",
+  imagemUrl:"dados/imagens/q-famerp2025-035.webp", imagemLegenda:"Coeficiente de incidência (por 100 pacientes) de AVE ou evento isquêmico: novo medicamento 1,7; varfarina 2,2.",
   enunciado:"Um estudo testou um novo medicamento, em comparação com a varfarina, na redução de acidente vascular encefálico ou evento isquêmico. Os dois grupos foram distribuídos de forma aleatória e randomizados, sendo acompanhados por 590 dias. Os resultados do estudo estão abaixo (figura): coeficiente de incidência (por 100 pacientes) de AVE ou evento isquêmico: novo medicamento 1,7; varfarina 2,2. Com base nas informações, que tipo de estudo é este? Calcule a Redução Absoluta do Risco (RAR) de AVE ou Evento Isquêmico e Estimativa do Tamanho do Efeito de Tratamento (Número Necessário para Tratar - NNT) para se evitar os desfechos considerados no estudo.",
   alternativas:[{id:"A",texto:"Ensaio Clínico Experimental Crossover; RAR= 0,79 e NNT= 2."},{id:"B",texto:"Ensaio Clínico Experimental Paralelo Randomizado; RAR= 0,5 e NNT=2"},{id:"C",texto:"Ensaio Clínico Experimental Paralelo Randomizado; RAR= 0,5% e NNT= 200"},{id:"D",texto:"Ensaio Clínico Quase-Experimental Fatorial Randomizado; RAR= 0,5% e NNT= 200."}],
   gabarito:"C",
@@ -496,7 +496,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 {
   id:"q-famerp2025-037", banca:"FAMERP", real:true, ano:2025, numeroNaProva:37,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-famerp2025-037.jpg", imagemLegenda:"Fonte de água consumida pelas gestantes e peso ao nascer (casos: baixo peso; controles: peso adequado).",
+  imagemUrl:"dados/imagens/q-famerp2025-037.webp", imagemLegenda:"Fonte de água consumida pelas gestantes e peso ao nascer (casos: baixo peso; controles: peso adequado).",
   enunciado:"Trata-se de um estudo realizado com nascidos vivos no Hospital Municipal de Governador Valadares, no período de maio de 2017 a julho de 2018. Um grupo foi composto por nascidos vivos a termo e baixo peso ao nascer e o outro grupo, por nascidos vivos a termo e com peso adequado, pareados por sexo e data de nascimento. A coleta de dados foi realizada por meio de entrevista com as puérperas e informações complementares foram obtidas pela análise do cartão de pré-natal e prontuários. Um dos fatores estudados, entre várias outras variáveis, foi a associação entre o consumo de água pelas gestantes, durante a gestação, do Serviço de Abastecimento de Água (SAA) dos municípios atingidos pelo Desastre Ambiental de Mariana/MG (2015), que contaminou com metais pesados o principal manancial de abastecimento destas cidades (Rio Doce) e a presença de crianças com Baixo Peso ao nascer. Em relação a esta variável, os dados encontram-se na tabela abaixo (figura): baixo peso ao nascer: 43 (66,2%) com água mineral/poço/cisterna ou SAA de municípios não atingidos e 22 (33,8%) com SAA de municípios atingidos; peso adequado: 108 (83,3%) e 22 (16,9%). Responda: Que tipo de estudo é este? E qual a Razão de Chance da presença de Baixo Peso entre mães que consumiram água contaminada durante a gestação e as que não consumiram?",
   alternativas:[{id:"A",texto:"Estudo de Coorte Retrospectivo; razão de chance de 1,75"},{id:"B",texto:"Estudo Seccional de Prevalência; razão de chance de 1,75"},{id:"C",texto:"Estudo Seccional de Prevalência; odds ratio de 2,5"},{id:"D",texto:"Estudo de Coorte Retrospectivo (Caso-Controle); odds ratio de 2,5"}],
   gabarito:"D",
@@ -731,7 +731,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 {
   id:"q-famerp2025-055", banca:"FAMERP", real:true, ano:2025, numeroNaProva:55,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-corpoestranho",
-  imagemUrl:"dados/imagens/q-famerp2025-055.jpg", imagemLegenda:"Radiografia: objeto circular radiopaco na altura do esôfago superior.",
+  imagemUrl:"dados/imagens/q-famerp2025-055.webp", imagemLegenda:"Radiografia: objeto circular radiopaco na altura do esôfago superior.",
   enunciado:"Criança de 2 anos de idade, admitida com relato de ter iniciado há cerca de 2 horas com sialorreia espessa, associado a irritabilidade. Ao exame físico, apresenta os seguintes sinais vitais: FC: 120 bpm FR: 30 ipm SatO2: 96% em ar ambiente com ausculta pulmonar normal; não foram visualizadas alterações à oroscopia. O pai tem dúvidas se a criança ingeriu algum objeto enquanto brincava. Realizada radiografia de tórax com a seguinte imagem (figura): Qual a melhor conduta para este paciente?",
   alternativas:[{id:"A",texto:"Pela suspeita de ingestão de bateria, realizar endoscopia de emergência e retirada do objeto."},{id:"B",texto:"Não há indicação de retirada endoscópica do objeto pois há a possibilidade que ele migre para o trato gastrointestinal baixo."},{id:"C",texto:"Está indicada ingestão de glicerina a fim de promover a proteção da mucosa esofágica e permitir a movimentação do corpo estranho."},{id:"D",texto:"Independente do objeto, há indicação de retirada de urgência do corpo estranho, respeitando jejum para sedação e disponibilidade de vaga no centro cirúrgico para o procedimento."}],
   gabarito:"A",
@@ -758,7 +758,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 {
   id:"q-famerp2025-057", banca:"FAMERP", real:true, ano:2025, numeroNaProva:57,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
-  imagemUrl:"dados/imagens/q-famerp2025-057.jpg", imagemLegenda:"Monitorização cardíaca durante a parada.",
+  imagemUrl:"dados/imagens/q-famerp2025-057.webp", imagemLegenda:"Monitorização cardíaca durante a parada.",
   enunciado:"Adolescente de 12 anos de idade vítima de acidente por submersão é admitido na sala de emergência inconsciente, em apneia e sem pulso central. É iniciada massagem cardíaca imediatamente, posicionada a via aérea pela colocação de coxim sob o occipício, feita aspiração de vias aéreas superiores e fornecidas ventilações com bolsa-valva e máscara. A monitorização cardíaca mostra o seguinte (figura): Assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"Administrar amiodarona 5 mg/kg EV"},{id:"B",texto:"Realizar desfibrilação com 2 J/kg"},{id:"C",texto:"Administrar sulfato de magnésio 50 mg/kg EV"},{id:"D",texto:"Realizar cardioversão sincronizada com 1 J/kg"}],
   gabarito:"B",
@@ -902,7 +902,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 {
   id:"q-famerp2025-068", banca:"FAMERP", real:true, ano:2025, numeroNaProva:68,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
-  imagemUrl:"dados/imagens/q-famerp2025-068.jpg", imagemLegenda:"Radiografia de tórax em PA.",
+  imagemUrl:"dados/imagens/q-famerp2025-068.webp", imagemLegenda:"Radiografia de tórax em PA.",
   enunciado:"Homem de 32 anos, usuário de cocaína e tabagista, dá entrada no pronto-atendimento devido à dor abdominal súbita, de forte intensidade, associado a vômitos com raias de sangue e palidez cutânea, de início há aproximadamente 4 horas. Refere fezes pastosas e escurecidas há 2 dias, após alimentação de origem duvidosa. Ao exame físico apresenta-se em REG, pálido (3+/4+), FC = 138bpm, PA = 70X40 mmHg, oximetria de pulso = 90%. Ausculta pulmonar com presença de sibilos esparsos e roncos em base direita. O abdome é escavado e com sinais de peritonite difusa. Toque retal positivo para melena. Realizou RX de tórax, cuja imagem encontra-se abaixo (figura). Assinale a alternativa que indique a melhor conduta:",
   alternativas:[{id:"A",texto:"Ressuscitação volêmica e laparotomia exploradora"},{id:"B",texto:"Ressuscitação volêmica e endoscopia digestiva alta"},{id:"C",texto:"Estabilização hemodinâmica e videolaparoscopia diagnóstica"},{id:"D",texto:"Estabilização hemodinâmica e tomografia computadorizada do abdome"}],
   gabarito:"A",
@@ -916,7 +916,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2025", [
 {
   id:"q-famerp2025-069", banca:"FAMERP", real:true, ano:2025, numeroNaProva:69,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
-  imagemUrl:"dados/imagens/q-famerp2025-069.jpg", imagemLegenda:"Lesão necrótica na região vulvar/perineal.",
+  imagemUrl:"dados/imagens/q-famerp2025-069.webp", imagemLegenda:"Lesão necrótica na região vulvar/perineal.",
   enunciado:"Mulher de 52 anos, obesa, diabética, comparece ao pronto-atendimento queixando-se de febre alta e aparecimento de grande ferida dolorosa em região da vulva há 3 dias. Ao exame físico, observa-se a lesão abaixo (figura): Sobre o diagnóstico e o tratamento desta condição, assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"A fasceíte necrotizante do períneo, também chamada de gangrena de Fournier, corresponde a uma infecção monomicrobiana das partes moles do períneo causada por cepas multirresistentes de Staphylococcus aureus."},{id:"B",texto:"Trata-se de uma infecção polimicrobiana causada por espécies anaeróbias (mais comumente Bacteroides e Clostridium) em combinação com enterobactérias (por exemplo, Escherichia coli, Klebsiella, Proteus)."},{id:"C",texto:"Diabetes, obesidade, hipertensão arterial sistêmica e neoplasias malignas são considerados os principais fatores de risco associados e o tratamento depende da compensação clínica destas condições."},{id:"D",texto:"O desbridamento cirúrgico deve ser realizado idealmente em até 72 horas do diagnóstico, associado a antibioticoterapia de amplo espectro e terapias de curativo a vácuo."}],
   gabarito:"B",

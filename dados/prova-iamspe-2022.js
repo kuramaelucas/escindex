@@ -80,7 +80,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-005", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:5,
-  imagemUrl:"dados/imagens/q-iamspe2022-005.jpg", imagemLegenda:"Tomografia computadorizada de tórax",
+  imagemUrl:"dados/imagens/q-iamspe2022-005.webp", imagemLegenda:"Tomografia computadorizada de tórax",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-endocardite",
   enunciado:"Um paciente de 58 anos de idade, com antecedente pessoal de hipertensão arterial sistêmica, diabetes melito e doença renal crônica estádio 4, pouco aderente ao tratamento medicamentoso, necessitou de internação recente devido a estado hiperglicêmico e hiperosmolar há três semanas. Nesta internação, permaneceu sob cuidados intensivos e, entre outras terapias, foi submetido a quatro sessões de hemodiálise. Desde a alta, melhorou sua adesão medicamentosa, no entanto, vem apresentando calafrios, sudorese e alguns episódios de febre, que o paciente tem atribuído aos medicamentos que agora passou a usar. Há um dia, iniciou quadro de tosse e dor ventilatório-dependente e, devido a isso, resolveu procurar o pronto-socorro. Na triagem, apresentava FC de 101, PA de 160 x 100, T 37,6 e sat. de O2 de 92%. O médico plantonista, sem examinar o doente, solicitou uma tomografia de tórax, que revelou a imagem seguinte. Com base nesse caso hipotético, assinale a alternativa que apresenta a melhor conduta.",
   alternativas:[{id:"A",texto:"iniciar antibioticoterapia de amplo espectro, devido à suspeita de pneumonia nosocomial"},{id:"B",texto:"realizar coleta de escarro (três amostras), colocar o paciente em isolamento e iniciar esquema RIPE"},{id:"C",texto:"realizar sorologia de HIV, pois trata-se de um caso sugestivo de pneumocistose"},{id:"D",texto:"solicitar pesquisa de galactomanana, devido à hipótese de aspergilose"},{id:"E",texto:"solicitar ecocardiograma, devido à possibilidade de endocardite infecciosa"}],
@@ -133,7 +133,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-009", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:9,
-  imagemUrl:"dados/imagens/q-iamspe2022-009.png", imagemLegenda:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-iamspe2022-009.webp", imagemLegenda:"Eletrocardiograma de 12 derivações",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
   enunciado:"Um paciente de 55 anos de idade relata que, recentemente, teve um quadro de síndrome gripal e realizou dois testes para covid-19, com resultado negativo. Relata, também, não ter nenhuma comorbidade diagnosticada. Procurou uma UBS de referência, próxima à sua casa, pois, há alguns dias, está com dor torácica à esquerda, que piora em algumas posições, e relata que nunca tinha sentido algo parecido antes. Foi realizado um eletrocardiograma (imagem abaixo) no local e, em seguida, solicitada a sua transferência para um serviço de emergência. Com base nesse caso hipotético, é correto afirmar que, ao chegar no serviço de emergência, a melhor conduta é",
   alternativas:[{id:"A",texto:"solicitar tomografia computadorizada, protocolo TEP."},{id:"B",texto:"encaminhar o paciente para a realização de cateterismo cardíaco com urgência."},{id:"C",texto:"internar o paciente, uma vez que a dor teve início há alguns dias, prescrever medidas para a síndrome coronariana aguda e realizar cateterismo após alguns exames, como, por exemplo, troponina e função renal."},{id:"D",texto:"prescrever anti-inflamatórios ou corticoides e observar a evolução clínica do doente nos próximos dias."},{id:"E",texto:"repetir eletrocardiograma, pois há uma troca de eletrodos que está atrapalhando a correta interpretação do exame."}],
@@ -251,7 +251,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-018", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:18,
-  imagemUrl:"dados/imagens/q-iamspe2022-018.jpg", imagemLegenda:"Exame de imagem das vias biliares do paciente ictérico",
+  imagemUrl:"dados/imagens/q-iamspe2022-018.webp", imagemLegenda:"Exame de imagem das vias biliares do paciente ictérico",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-capancreas",
   enunciado:"Quanto ao exame acima, realizado em paciente ictérico, é correto afirmar que o(a)",
   alternativas:[{id:"A",texto:"diagnóstico provável é o de tumor periampular."},{id:"B",texto:"injeção de contraste foi com bastante pressão."},{id:"C",texto:"gadolínio utilizado pode levar à colangite."},{id:"D",texto:"diagnóstico de coledocolitíase é o mais provável."},{id:"E",texto:"CA 19.9 nessa situação pode não ser decisivo na elucidação diagnóstica."}],
@@ -278,7 +278,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-020", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:20,
-  imagemUrl:"dados/imagens/q-iamspe2022-020.jpg", imagemLegenda:"Exame radiológico das vias biliares",
+  imagemUrl:"dados/imagens/q-iamspe2022-020.webp", imagemLegenda:"Exame radiológico das vias biliares",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
   enunciado:"A principal indicação do exame acima seria",
   alternativas:[{id:"A",texto:"avaliar a presença de obstrução biliar."},{id:"B",texto:"avaliar a presença de anomalia de via biliar intra-hepática."},{id:"C",texto:"prevenir lesão da via biliar."},{id:"D",texto:"prevenir fístula biliar."},{id:"E",texto:"excluir presença de pâncreas divisum."}],
@@ -292,7 +292,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-021", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:21,
-  imagemUrl:"dados/imagens/q-iamspe2022-021.jpg", imagemLegenda:"Abdome com as três incisões da cirurgia videolaparoscópica",
+  imagemUrl:"dados/imagens/q-iamspe2022-021.webp", imagemLegenda:"Abdome com as três incisões da cirurgia videolaparoscópica",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
   enunciado:"Um homem foi submetido à cirurgia videolaparoscópica somente com as três incisões clássicas mostradas na figura a seguir. Com base nesse caso hipotético, assinale a alternativa que apresenta a cirurgia mais provavelmente realizada.",
   alternativas:[{id:"A",texto:"colecistecistectomia"},{id:"B",texto:"bypass gástrico"},{id:"C",texto:"apendicectomia"},{id:"D",texto:"colectomia total"},{id:"E",texto:"hernioplastia inguinal"}],
@@ -306,7 +306,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-022", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:22,
-  imagemUrl:"dados/imagens/q-iamspe2022-022.png", imagemLegenda:"Desenho do exame proctológico (A: orifício anal; Anterior: região pubiana; Posterior: região sacral)",
+  imagemUrl:"dados/imagens/q-iamspe2022-022.webp", imagemLegenda:"Desenho do exame proctológico (A: orifício anal; Anterior: região pubiana; Posterior: região sacral)",
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
   enunciado:"Considerando o desenho de um exame proctológico mostrado acima, em que A corresponde ao orifício anal, Anterior corresponde à região pubiana e Posterior corresponde à região sacral, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Esse diagrama avalia a extensão do câncer de canal anal."},{id:"B",texto:"Esse diagrama ajuda na avaliação dos mamilos hemorroidários."},{id:"C",texto:"Esse diagrama ajuda na avalição das doenças sexualmente transmissíveis."},{id:"D",texto:"Esse diagrama ajuda na orientação das fístulas perianais."},{id:"E",texto:"Esse diagrama ajuda na avaliação da fissura anal."}],
@@ -320,7 +320,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-023", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:23,
-  imagemUrl:"dados/imagens/q-iamspe2022-023.jpg", imagemLegenda:"Exame contrastado",
+  imagemUrl:"dados/imagens/q-iamspe2022-023.webp", imagemLegenda:"Exame contrastado",
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Considerando o exame acima apresentado, assim como seus achados, é correto afirmar que o mais provável sintoma do paciente seria",
   alternativas:[{id:"A",texto:"dor abdominal."},{id:"B",texto:"pirose."},{id:"C",texto:"dispepsia."},{id:"D",texto:"odinofagia."},{id:"E",texto:"disfagia."}],
@@ -815,7 +815,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-061", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-iamspe2022-061.png", imagemLegenda:"Perfil glicêmico domiciliar (mg/dL)",
+  imagemUrl:"dados/imagens/q-iamspe2022-061.webp", imagemLegenda:"Perfil glicêmico domiciliar (mg/dL)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   enunciado:"Uma paciente de 37 anos de idade, primigesta, com idade gestacional de 29 semanas e diabetes mellitus gestacional diagnosticada por alterações no teste oral de tolerância à glicose (TOTG 75 g), retorna à consulta pré-natal com os seguintes valores diários de glicemia capilar (dextro) domiciliar. Perfil glicêmico domiciliar (mg/dL) — glicemia de jejum; pós-prandial duas horas após o café da manhã; duas horas após o almoço; duas horas após o jantar: 1.º/12: 92, 116, 114, 118; 2/12: 79, 120, 118, 116; 3/12: 90, 119, 100, 117; 4/12: 82, 98, 110, 100; 5/12: 80, 100, 98, 98; 6/12: 78, 118, 116, 113; 7/12: 88, 114, 99, 110. Realiza dieta orientada por nutricionista e faz exercícios regularmente há quinze dias. Com base nas diretrizes do artigo Tratamento do diabetes mellitus gestacional no Brasil, da Organização Pan-americana da Saúde, do Ministério da Saúde, da Federação Brasileira das Associações de Ginecologia e Obstetrícia e da Sociedade Brasileira de Diabetes (2019), é correto afirmar que a conduta adequada nesse caso hipotético é",
   alternativas:[{id:"A",texto:"prescrever hipoglicemiante oral (metformina), em associação com a dieta e a atividade física regular."},{id:"B",texto:"acrescentar suplementos dietéticos noturnos, pois as glicemias capilares de jejum sugerem ocorrência de hipoglicemias."},{id:"C",texto:"manter as orientações dietéticas e a atividade física regular."},{id:"D",texto:"a insulinoterapia, em associação com a dieta e a atividade física regular."},{id:"E",texto:"a insulinoterapia, em associação com o hipoglicemiante oral (metformina), a atividade física regular e a dieta."}],
@@ -894,7 +894,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-067", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:67,
-  imagemUrl:"dados/imagens/q-iamspe2022-067.png", imagemLegenda:"Taxa de mortalidade ajustada por idade no Brasil, 1996 a 2017 — curvas A, B, C e D",
+  imagemUrl:"dados/imagens/q-iamspe2022-067.webp", imagemLegenda:"Taxa de mortalidade ajustada por idade no Brasil, 1996 a 2017 — curvas A, B, C e D",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"O gráfico acima mostra as tendências nas taxas de mortalidade por doenças cardiovasculares (DCV), doenças isquêmicas do coração (DIC), doenças cerebrovasculares (DCbV) e câncer, no Brasil, entre 1996 e 2017. Sendo assim, assinale a alternativa que associa corretamente as quatro curvas (A, B, C e D) com as causas de morte.",
   alternativas:[{id:"A",texto:"A – câncer, B – DCV, C – DIC, D – DCbV"},{id:"B",texto:"A – DCbV, B – câncer, C – DCV, D – DIC"},{id:"C",texto:"A – DIC, B – câncer, C – DCV, D – DCbV"},{id:"D",texto:"A – DCV, B – câncer, C – DIC, D – DCbV"},{id:"E",texto:"A – DCV, B – DIC, C – câncer, D – DCbV"}],
@@ -921,7 +921,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-069", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:69,
-  imagemUrl:"dados/imagens/q-iamspe2022-069.png", imagemLegenda:"Comparação entre o NNT para prevenir um óbito",
+  imagemUrl:"dados/imagens/q-iamspe2022-069.webp", imagemLegenda:"Comparação entre o NNT para prevenir um óbito",
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-tabagismo",
   enunciado:"O artigo científico Treating tobacco dependence: guidance for primary care on life-saving interventions, publicado na revista Nature, de 2017, mostra a importância da abordagem terapêutica do tabagismo, em comparação com as práticas tradicionais dos serviços de saúde, e usa o conceito de NNT (número necessário para tratar). Medicações usadas na cessação do tabagismo são prescritas usualmente por três a seis meses, enquanto estatinas e anti-hipertensivos podem ser prescritos por toda a vida. As três medicações antitabagismo foram, nesse estudo, prescritas conjuntamente, com suporte de técnicas psicocomportamentais. Comparação entre o NNT para prevenir um óbito (intervenção — resultado — NNT): reposição de nicotina — abstinência prolongada/morte prematura — 23-46; bupropiona — abstinência prolongada/morte prematura — 18-36; vareneclina — abstinência prolongada/morte prematura — 10-20; estatinas* — prevenção de um óbito por cinco anos ou mais — 107; anti-hipertensivos** — prevenção de um óbito por AVC ou IAM por um ano ou mais — 700; rastreamento de câncer de colo uterino — prevenção de um óbito por dez anos ou mais — 1140. (* usadas na prevenção primária de eventos cardiovasculares; ** usados no tratamento da hipertensão de grau leve.) Considerando o quadro acima apresentado, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Para a cessação do tabagismo, a bupropiona é sempre mais efetiva, em todos os pacientes, que a reposição de nicotina."},{id:"B",texto:"Para prevenir um óbito por AVC ou IAM por um ano ou mais, é necessário tratar 107 indivíduos com medicação anti-hipertensiva."},{id:"C",texto:"O rastreamento de câncer de colo uterino é pouco efetivo, uma vez que é necessário se fazer 1.140 exames para ajudar apenas uma pessoa."},{id:"D",texto:"O tratamento com anti-hipertensivos ajuda, de maneira significativa, setecentas pessoas, enquanto a vareneclina ajuda apenas entre dez e vinte pessoas."},{id:"E",texto:"Deve-se deslocar parte dos esforços tradicionalmente empenhados no tratamento medicamentoso da hipertensão de grau leve para o apoio, inclusive medicamentoso, na cessação do tabagismo."}],
@@ -935,7 +935,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-070", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:70,
-  imagemUrl:"dados/imagens/q-iamspe2022-070.png", imagemLegenda:"Resultados do rastreamento com mamografia (Gøtzsche e Jørgensen, Cochrane 2013)",
+  imagemUrl:"dados/imagens/q-iamspe2022-070.webp", imagemLegenda:"Resultados do rastreamento com mamografia (Gøtzsche e Jørgensen, Cochrane 2013)",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
   enunciado:"Tabela (1.000 mulheres sem rastreamento × 1.000 mulheres com rastreamento): mortes por câncer de mama — 5 × 4; mortes por qualquer tipo de câncer — 22 × 22; exames adicionais (inclusive biópsias) desnecessários — - × 100; remoção parcial/total de mama desnecessária — - × 5. Fonte: Gøtzsche PC, Jørgensen KJ. Screening for breast cancer with mammography. Cochrane Database of Systematic Reviews 2013. DOI: 10.1002/14651858.CD001877.pub5. A tabela acima resume os resultados do estudo Screening for breast cancer with mammography, Cochrane Database of Systematic Reviews 2013. Esse rastreamento de câncer de mama foi realizado, com mamografia, em mulheres com cinquenta anos de idade ou mais. Acompanhadas por, aproximadamente, onze anos, mil mulheres fizeram mamografia e mil mulheres não fizeram o rastreamento. Com base nessas informações e na tabela, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A mamografia como rastreamento de câncer de mama não apresenta benefício, pois praticamente não mudou a mortalidade por câncer de mama."},{id:"B",texto:"Toda intervenção médica tem riscos. Mesmo as intervenções que pretendem amenizá-lo não reduzem o risco a zero."},{id:"C",texto:"Apesar do benefício na diminuição da mortalidade por câncer de mama ter sido pequeno, a mamografia tem a vantagem de ser um exame barato, rápido e sem efeitos colaterais indesejáveis."},{id:"D",texto:"A ressonância nuclear magnética deve ser o exame de escolha para o rastreio do câncer de mama."},{id:"E",texto:"Os dados apresentados não são confiáveis, pois as revisões Cochrane apresentam qualidade técnica apenas de grau moderado."}],
@@ -949,7 +949,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-071", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:71,
-  imagemUrl:"dados/imagens/q-iamspe2022-071.png", imagemLegenda:"Diagrama dos quatro quadrantes (com/sem doença × com/sem sintomas)",
+  imagemUrl:"dados/imagens/q-iamspe2022-071.webp", imagemLegenda:"Diagrama dos quatro quadrantes (com/sem doença × com/sem sintomas)",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
   enunciado:"O termo prevenção quaternária (P4) foi utilizado pela primeira vez em uma conferência da Organização Mundial de Médicos de Família (WONCA), em 1995, por Marc Jamoulle. Após quatro anos, essa definição foi adotada e publicada, no dicionário WONCA, da seguinte forma: “ação feita para identificar uma pessoa ou população em risco de supermedicalização, para protegê-los de uma intervenção médica invasiva e sugerir procedimentos científica e eticamente aceitáveis”. Comumente, utiliza-se o diagrama cartesiano que contrapõe o ponto de vista médico com o ponto de vista do paciente, ou seja, as dicotomias entre a existência ou não de doença e a presença ou não de sintomas desagradáveis (disease versus illness), obtendo-se, assim, quatro quadrantes, como mostra a figura abaixo. O quadrante que representa as situações com maior risco de excessos e problemas advindos de intervenções médicas, ou seja, quando a prevenção quaternária se faz mais importante, é o quadrante",
   alternativas:[{id:"A",texto:"A."},{id:"B",texto:"B."},{id:"C",texto:"C."},{id:"D",texto:"D."},{id:"E",texto:"que engloba tanto o A quanto o B."}],
@@ -963,7 +963,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-072", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:72,
-  imagemUrl:"dados/imagens/q-iamspe2022-072.png", imagemLegenda:"Variação de dois parâmetros da saúde suplementar, dez/2004 a mar/2015 (em milhões)",
+  imagemUrl:"dados/imagens/q-iamspe2022-072.webp", imagemLegenda:"Variação de dois parâmetros da saúde suplementar, dez/2004 a mar/2015 (em milhões)",
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-financiamento",
   enunciado:"A saúde suplementar no Brasil é a atividade que envolve a operação de planos e seguros privados de assistência médica à saúde, referidos simplesmente como planos ou seguros de saúde. Essa operação é regulada pelo poder público, representado pela Agência Nacional de Saúde Suplementar (ANS), e pelas operadoras, que compreendem seguradoras especializadas em saúde, medicinas de grupo, cooperativas, instituições filantrópicas e autogestões. O gráfico acima mostra a variação, entre 2004 e 2015, de dois importantes parâmetros relacionados à saúde suplementar no Brasil. Sendo assim, assinale a alternativa que apresenta esses parâmetros.",
   alternativas:[{id:"A",texto:"lucro do setor de saúde suplementar e crescimento da população brasileira"},{id:"B",texto:"lucro do setor de saúde suplementar e investimento no Sistema Único de Saúde"},{id:"C",texto:"variação de emprego formal e valorização do dólar"},{id:"D",texto:"variação de emprego formal e variação de beneficiários dos planos de saúde suplementar"},{id:"E",texto:"desemprego e número de usuários exclusivamente dependentes do Sistema Único de Saúde"}],
@@ -977,7 +977,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2022", [
 },
 {
   id:"q-iamspe2022-073", banca:"IAMSPE", real:true, ano:2022, numeroNaProva:73,
-  imagemUrl:"dados/imagens/q-iamspe2022-073.png", imagemLegenda:"Gráficos 1 e 2 — óbitos por covid-19 e vacinação no Brasil em 2021 (fonte: portal.fiocruz.br/observatorio-covid-19)",
+  imagemUrl:"dados/imagens/q-iamspe2022-073.webp", imagemLegenda:"Gráficos 1 e 2 — óbitos por covid-19 e vacinação no Brasil em 2021 (fonte: portal.fiocruz.br/observatorio-covid-19)",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
   enunciado:"O gráfico 1 mostra duas curvas, uma que corresponde ao número de óbitos por covid-19 no Brasil e outra que apresenta a evolução da vacinação em massa. Esse gráfico foi compartilhado mais de mil vezes nas redes sociais desde 3 de novembro de 2021. O gráfico 2 mostra o número de óbitos e a proporção da população vacinada, com esquema completo, ao longo de 2021. A partir dos gráficos acima, assinale a alternativa incorreta.",
   alternativas:[{id:"A",texto:"A imunidade natural não explicou a queda nos números em lugar algum do mundo até hoje, no caso da covid-19."},{id:"B",texto:"A queda do número de óbitos pode ocorrer antes da aplicação massiva dos imunizantes porque a epidemia naturalmente tem um comportamento em ondas."},{id:"C",texto:"Pelos gráficos, é possível notar que a queda na mortalidade inicia bem antes de uma cobertura vacinal relevante, provavelmente pelo enorme peso da imunidade natural dos curados."},{id:"D",texto:"Uma das evidências do efeito da vacinação na queda do número de óbitos, é justamente o fato de o Brasil não ter registrado uma nova explosão de mortes, mesmo diante da chegada da variante delta, detectada pela primeira vez no País em maio de 2021."},{id:"E",texto:"Desde o início da pandemia, o Brasil já tinha atravessado outros picos, nos quais também se observaram quedas no número de óbitos, seguidas por novas escaladas."}],

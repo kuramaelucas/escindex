@@ -882,7 +882,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2020", [
 {
   id:"q-amrigs2020-067", banca:"AMRIGS", real:true, ano:2020, numeroNaProva:67,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
-  imagemUrl:"dados/imagens/q-amrigs2020-067.jpg",
+  imagemUrl:"dados/imagens/q-amrigs2020-067.webp",
   imagemLegenda:"Curva de IMC por idade (2 a 5 anos), Caderneta da Criança",
   enunciado:"Menina de 3 anos e 4 meses de idade apresenta peso de 18 Kg e altura de 100 cm. Utilizando o gráfico abaixo, conforme as recomendações da Caderneta de Saúde da Criança do Ministério da Saúde, classificamos essa criança como apresentando:",
   alternativas:[{id:"A",texto:"Eutrofia."},{id:"B",texto:"Risco de sobrepeso."},{id:"C",texto:"Sobrepeso."},{id:"D",texto:"Obesidade."}],

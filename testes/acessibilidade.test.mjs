@@ -77,3 +77,27 @@ test("janelas abertas também ligam rótulo e campo", async () => {
     assert.equal(r.nomeado, "Escolha");
   } finally { await contexto.close(); }
 });
+
+test("janela: é um diálogo com título, o foco entra, Tab não escapa, Esc fecha e o foco volta", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.evaluate(() => {
+      document.body.insertAdjacentHTML("beforeend", '<button id="abridorDeTeste">abrir</button>');
+      document.getElementById("abridorDeTeste").focus();
+      abrirModal('<div class="modal-header"><h3>Título da janela</h3></div><input class="input" id="umCampo"><button class="btn" id="umBotao">ok</button>');
+    });
+    const r = await pagina.evaluate(() => {
+      const caixa = document.querySelector("#modalOverlayAtivo .modal");
+      return { papel: caixa.getAttribute("role"), modal: caixa.getAttribute("aria-modal"),
+               nome: document.getElementById(caixa.getAttribute("aria-labelledby")).textContent, dentro: caixa.contains(document.activeElement) };
+    });
+    assert.deepEqual(r, { papel: "dialog", modal: "true", nome: "Título da janela", dentro: true });
+    // do último campo, Tab volta ao primeiro (não vai para a tela por trás)
+    await pagina.focus("#umBotao"); await pagina.keyboard.press("Tab");
+    assert.equal(await pagina.evaluate(() => document.activeElement.id), "umCampo");
+    await pagina.keyboard.press("Escape");
+    assert.equal(await pagina.evaluate(() => !!document.getElementById("modalOverlayAtivo")), false);
+    assert.equal(await pagina.evaluate(() => document.activeElement.id), "abridorDeTeste");
+    assert.equal(await pagina.evaluate(() => document.getElementById("toastContainer").getAttribute("aria-live")), "polite");
+  } finally { await contexto.close(); }
+});

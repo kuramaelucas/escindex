@@ -608,7 +608,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-046", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:46,
-  imagemUrl:"dados/imagens/q-amrigs2024-046.jpg", imagemLegenda:"Quatro instrumentais cirúrgicos (A a D), fonte: Lasmar (2017)",
+  imagemUrl:"dados/imagens/q-amrigs2024-046.webp", imagemLegenda:"Quatro instrumentais cirúrgicos (A a D), fonte: Lasmar (2017)",
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Na colocação do dispositivo intrauterino de cobre, qual dos instrumentais abaixo é o mais utilizado para a apreensão do colo uterino de acordo com a técnica preconizada?",
   alternativas:[{id:"A",texto:"Instrumental A (ver figura)."},{id:"B",texto:"Instrumental B (ver figura)."},{id:"C",texto:"Instrumental C (ver figura)."},{id:"D",texto:"Instrumental D (ver figura)."}],
@@ -622,7 +622,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-047", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:47,
-  imagemUrl:"dados/imagens/q-amrigs2024-047.jpg", imagemLegenda:"Figura 1 — foto da vulva com as mãos do examinador afastando os lábios, e uma seta indicando uma estrutura",
+  imagemUrl:"dados/imagens/q-amrigs2024-047.webp", imagemLegenda:"Figura 1 — foto da vulva com as mãos do examinador afastando os lábios, e uma seta indicando uma estrutura",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Na Figura 1 abaixo, a seta indica o(s):",
   alternativas:[{id:"A",texto:"Prepúcio."},{id:"B",texto:"Grandes lábios."},{id:"C",texto:"Pequenos lábios."},{id:"D",texto:"Clitóris."}],
@@ -675,7 +675,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-051", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:51,
-  imagemUrl:"dados/imagens/q-amrigs2024-051.jpg", imagemLegenda:"Figura 2 — ilustração da vulva com os dedos do examinador afastando os lábios, fonte: Smith (2004)",
+  imagemUrl:"dados/imagens/q-amrigs2024-051.webp", imagemLegenda:"Figura 2 — ilustração da vulva com os dedos do examinador afastando os lábios, fonte: Smith (2004)",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
   enunciado:"Considerando a Figura 2 abaixo, o diagnóstico mais provável e a conduta mais adequada são, respectivamente:",
   alternativas:[{id:"A",texto:"Retocele – cirurgia de Burch."},{id:"B",texto:"Retocele – cirurgia de colpocleise (Le Fort)."},{id:"C",texto:"Cisto de Bartholin – marsupialização."},{id:"D",texto:"Cistocele – encaminhar para centro especializado, se a paciente for sintomática."}],
@@ -728,7 +728,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-055", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-amrigs2024-055.jpg", imagemLegenda:"Figura 3 — ilustração de um útero em corte com o embrião e sangramento, fonte: Smith (2004)",
+  imagemUrl:"dados/imagens/q-amrigs2024-055.webp", imagemLegenda:"Figura 3 — ilustração de um útero em corte com o embrião e sangramento, fonte: Smith (2004)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-abortamento",
   enunciado:"A Figura 3 abaixo mostra um embrião. Considerando a imagem apresentada, o diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Descolamento prematuro de placenta."},{id:"B",texto:"Placenta prévia."},{id:"C",texto:"Aborto incompleto."},{id:"D",texto:"Aborto inevitável."}],
@@ -768,7 +768,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-058", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:58,
-  imagemUrl:"dados/imagens/q-amrigs2024-058.jpg", imagemLegenda:"Figura 4 — ilustração do útero gravídico inicial com as decíduas, o córion e o embrião, e quatro estruturas indicadas por A, B, C e D, fonte: Zugaib (2023)",
+  imagemUrl:"dados/imagens/q-amrigs2024-058.webp", imagemLegenda:"Figura 4 — ilustração do útero gravídico inicial com as decíduas, o córion e o embrião, e quatro estruturas indicadas por A, B, C e D, fonte: Zugaib (2023)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"A Figura 4 abaixo representa as decíduas, os córions e o embrião. Assinale a alternativa que corresponde corretamente à estrutura indicada na imagem.",
   alternativas:[{id:"A",texto:"Cavidade coriônica."},{id:"B",texto:"Cavidade uterina."},{id:"C",texto:"Córion frondoso."},{id:"D",texto:"Cavidade amniótica."}],
@@ -795,7 +795,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-060", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-amrigs2024-060.png", imagemLegenda:"Quatro gráficos (A a D) do erro de datação (eixo vertical) em função da idade gestacional (eixo horizontal)",
+  imagemUrl:"dados/imagens/q-amrigs2024-060.webp", imagemLegenda:"Quatro gráficos (A a D) do erro de datação (eixo vertical) em função da idade gestacional (eixo horizontal)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"A idade gestacional do embrião e do feto pode ser verificada através da ultrassonografia. Sendo assim, assinale a alternativa que indica o gráfico que melhor representa o erro na avaliação da idade gestacional.",
   alternativas:[{id:"A",texto:"Gráfico A (ver figura)."},{id:"B",texto:"Gráfico B (ver figura)."},{id:"C",texto:"Gráfico C (ver figura)."},{id:"D",texto:"Gráfico D (ver figura)."}],
@@ -965,7 +965,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2024", [
 },
 {
   id:"q-amrigs2024-073", banca:"AMRIGS", real:true, ano:2024, numeroNaProva:73,
-  imagemUrl:"dados/imagens/q-amrigs2024-073.png", imagemLegenda:"Curva de IMC para a idade de meninas de 2 a 5 anos (OMS), com as linhas dos escores-z de −3 a +3",
+  imagemUrl:"dados/imagens/q-amrigs2024-073.webp", imagemLegenda:"Curva de IMC para a idade de meninas de 2 a 5 anos (OMS), com as linhas dos escores-z de −3 a +3",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Raquel e Teresa têm 3 anos e 6 meses. Raquel pesa 16 kg, e Tereza, 17,5 kg, sendo que ambas estão com 100 cm de altura (1 metro). Considerando o gráfico abaixo, recomendado pela Organização Mundial de Saúde (OMS), os estados nutricionais de Raquel e Teresa são classificados como apresentando ______________ e ________________, respectivamente. Assinale a alternativa que preenche, correta e respectivamente, as lacunas do trecho acima.",
   alternativas:[{id:"A",texto:"risco de sobrepeso – sobrepeso"},{id:"B",texto:"eutrofia – sobrepeso"},{id:"C",texto:"risco de sobrepeso – risco de sobrepeso"},{id:"D",texto:"eutrofia – risco de sobrepeso"}],

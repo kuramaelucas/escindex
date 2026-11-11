@@ -647,7 +647,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
 },
 {
   id:"q-unifesp2022-046", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:46,
-  imagemUrl:"dados/imagens/q-unifesp2022-046.png", imagemLegenda:"Tabela 2×2 com os dados observados do estudo de coorte (exposição × doença em 5 anos), com as caselas a, b, c e d e os totais.",
+  imagemUrl:"dados/imagens/q-unifesp2022-046.webp", imagemLegenda:"Tabela 2×2 com os dados observados do estudo de coorte (exposição × doença em 5 anos), com as caselas a, b, c e d e os totais.",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"A tabela do tipo 2 x 2 mostra os dados observados em um estudo de coortes que investigou a associação entre uma exposição e a incidência de uma doença em 5 anos. Os valores esperados para as caselas (a) e (c), respectivamente, em caso de não associação ou completa independência entre a exposição e a doença são:",
@@ -676,7 +676,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
 },
 {
   id:"q-unifesp2022-048", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:48,
-  imagemUrl:"dados/imagens/q-unifesp2022-048.png", imagemLegenda:"Tabela 2×2 do ensaio clínico (tratamento × controle, doença × sem doença), da qual se calcula o NNT.",
+  imagemUrl:"dados/imagens/q-unifesp2022-048.webp", imagemLegenda:"Tabela 2×2 do ensaio clínico (tratamento × controle, doença × sem doença), da qual se calcula o NNT.",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"A tabela do tipo 2 x 2 refere-se a ensaio clínico aleatorizado para tratamento de uma doença comparando dois grupos: tratamento e controle. Qual o valor do NNT e sua interpretação correta?",
@@ -1139,7 +1139,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2022", [
 },
 {
   id:"q-unifesp2022-081", banca:"UNIFESP-EPM", real:true, ano:2022, numeroNaProva:81,
-  imagemUrl:"dados/imagens/q-unifesp2022-081.jpg", imagemLegenda:"ECG de 12 derivações da admissão.",
+  imagemUrl:"dados/imagens/q-unifesp2022-081.webp", imagemLegenda:"ECG de 12 derivações da admissão.",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Mulher, 28 anos de idade, sem antecedentes patológicos, procurou PS com queixa de palpitações de início súbito, sem outros sintomas associados, há 1 hora. Ao exame físico, PA = 110 x 70 mmHg, FC = 170 bpm, SpO2 = 99%. ECG de admissão a seguir. Qual é o tratamento indicado?",

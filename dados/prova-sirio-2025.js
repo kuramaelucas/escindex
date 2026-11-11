@@ -28,7 +28,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-001", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-sirio2025-001.png",
+  imagemUrl:"dados/imagens/q-sirio2025-001.webp",
   enunciado:"Homem, de 68 anos de idade, comparece à unidade de emergência com queixa de palpitação de início súbito e sem pródromos, há 20 minutos. Nega dor torácica, dispneia, tontura, lipotimia, síncope ou quaisquer outros sintomas. Tem história prévia de hipertensão arterial sistêmica, dislipidemia e diabetes mellitus tipo 2, estando em uso de enalapril, metformina e sinvastatina. Ao exame, está em bom estado geral, lúcido e orientado no tempo e espaço e apresenta FC: 130 bpm; PA: 146 x 86 mmHg; tempo de enchimento capilar de 1 segundo; FR: 16 irpm e saturação periférica de oxigênio de 96% em ar ambiente. Sem outras alterações ao exame físico. O eletrocardiograma está mostrado abaixo. Após sua admissão na sala de emergência, foi instalada monitorização e obtido um acesso venoso periférico calibroso, com subsequente administração de 6 mg de adenosina. O diagnóstico eletrocardiográfico e a conduta que deve ser adotada neste momento, respectivamente, são:",
   alternativas:[{id:"A",texto:"Fibrilação atrial de alta resposta ventricular e metoprolol 5 mg."},{id:"B",texto:"Taquicardia ventricular monomórfica e amiodarona 150 mg."},{id:"C",texto:"Taquicardia supraventricular e adenosina 12 mg."},{id:"D",texto:"Taquicardia ventricular polimórfica e cardioversão sincronizada."},{id:"E",texto:"Flutter atrial com bloqueio de ramo direito e adenosina 6 mg."}],
   gabarito:"B",
@@ -42,7 +42,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-002", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-sirio2025-002.png",
+  imagemUrl:"dados/imagens/q-sirio2025-002.webp",
   enunciado:"Mulher, 58 anos de idade, está em investigação ambulatorial de dor torácica de padrão anginoso. No momento, apresenta dor precordial em aperto leve apenas aos esforços maiores, como subir vários lances de escadas ou uma ladeira ingreme, que cede rapidamente com o repouso. Adicionalmente, tem história de hipertensão arterial e dislipidemia, estando em uso de enalapril 40 mg/dia, atenolol 50 mg/dia e sinvastatina 20 mg/dia. Nunca fumou. Ao exame, apresenta FC: 72 bpm, PA: 128 x 80 mmHg e IMC: 28,2 kg/m². O eletrocardiograma e o ecocardiograma transtorácico em repouso não apresentaram alterações. A cintilografia de perfusão miocárdica apresentou hipoperfusão na porção apical do septo interventricular durante o estresse que reverteu com o repouso, sem disfunção ventricular (FEVE: 58%). Os exames laboratoriais estão mostrados abaixo. As mudanças que devem ser feitas na prescrição do paciente neste momento são:",
   alternativas:[{id:"A",texto:"Associar anlodipina ao atenolol e ezetimiba 10 mg/dia à sinvastatina, além de iniciar rivaroxabana 2,5 mg e dapagliflozina."},{id:"B",texto:"Associar verapamil ao atenolol e ezetimiba 10 mg/dia à sinvastatina, além de iniciar clopidogrel e dapaglifozina."},{id:"C",texto:"Associar ivabradina ao atenolol, aumentar a dose de sinvastatina para 40 mg/dia e iniciar AAS e semaglutida."},{id:"D",texto:"Trocar o atenolol por carvedilol, associar alirocumab à sinvastatina e iniciar clopidogrel e dapaglifozina."},{id:"E",texto:"Aumentar a dose do atenolol, trocar sinvastatina por atorvastatina 40 mg/dia e iniciar AAS e semaglutida."}],
   gabarito:"E",
@@ -69,7 +69,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-004", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-sirio2025-004.png",
+  imagemUrl:"dados/imagens/q-sirio2025-004.webp",
   enunciado:"Mulher, 63 anos de idade, comparece ao ambulatório para consulta de rotina. No momento, está assintomática e relata estar urinando normalmente. Não teve nenhuma intercorrência no período. Tem história de hipertensão arterial sistémica, diabetes mellitus tipo 2, e doença renal crónica estágio IIIb, estando em uso de enalapril 20 mg duas vezes por dia, anlodipino 10 mg/dia, hidroclorotiazida 25 mg/dia e espironolactona 25 mg/dia. Ao exame, apresenta FC: 66 bpm e PA: 138 x 86 mmHg. Tem crepitos discretos em bases de ambos os hemotóraces e discreto edema perimaleolar. Sem sinais de edema ou outras alterações ao exame dos demais aparelhos e sistemas. Os exames laboratoriais realizados há dois dias seguem abaixo. Foi solicitado um eletrocardiograma que pode ser visto na imagem a seguir. A conduta que deve ser adotada neste momento com relação à hipercalemia, além de orientar dieta hipocalêmica, é:",
   alternativas:[{id:"A",texto:"Suspender espironolactona e iniciar uso de furosemida e bicarbonato de sódio oral ambulatorialmente."},{id:"B",texto:"Encaminhar o paciente para a unidade de emergência para realização de solução de glicose e insulina (polarizante) e furosemida"},{id:"C",texto:"Suspender enalapril e espironolactona, além de iniciar uso de poliestirenossulfonato de cálcio (Sorcal) ambulatorialmente"},{id:"D",texto:"Encaminhar o paciente para a unidade de emergência com indicação de iniciar infusão de gluconato de cálcio."},{id:"E",texto:"Manter todas as medicações e iniciar uso de furosemida e bicarbonato de sódio oral ambulatorialmente."}],
   gabarito:"A",
@@ -83,7 +83,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-005", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-drc",
-  imagemUrl:"dados/imagens/q-sirio2025-005.png",
+  imagemUrl:"dados/imagens/q-sirio2025-005.webp",
   enunciado:"Mulher, 63 anos de idade, comparece ao ambulatório para consulta de rotina. No momento, está assintomática e relata estar urinando normalmente. Não teve nenhuma intercorrência no período. Tem história de hipertensão arterial sistémica, diabetes mellitus tipo 2, e doença renal crónica estágio IIIb, estando em uso de enalapril 20 mg duas vezes por dia, anlodipino 10 mg/dia, hidroclorotiazida 25 mg/dia e espironolactona 25 mg/dia. Ao exame, apresenta FC: 66 bpm e PA: 138 x 86 mmHg. Tem crepitos discretos em bases de ambos os hemotóraces e discreto edema perimaleolar. Sem sinais de edema ou outras alterações ao exame dos demais aparelhos e sistemas. Os exames laboratoriais realizados há dois dias seguem abaixo. Foi solicitado um eletrocardiograma que pode ser visto na imagem a seguir. Além de orientar restrição de fósforo, potássio e sódio na dieta, outra conduta a ser adotada para o manejo crônico das comorbidades apresentadas pelo paciente é iniciar",
   alternativas:[{id:"A",texto:"eritropoetina e sevelamer."},{id:"B",texto:"dapaglifozina e clonidina."},{id:"C",texto:"alopurinol e clonidina."},{id:"D",texto:"eritropoetina e dapaglifozina."},{id:"E",texto:"dapaglifozina e sevelamer."}],
   gabarito:"B",
@@ -97,7 +97,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-006", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-paratireoide",
-  imagemUrl:"dados/imagens/q-sirio2025-006.png",
+  imagemUrl:"dados/imagens/q-sirio2025-006.webp",
   enunciado:"Mulher, 42 anos de idade, foi encaminhada ao ambulatório de clínica médica para investigação de hipercalcemia. Está assintomática no momento e sem alterações ao exame físico. Apresenta os seguintes exames laboratoriais: A etiologia mais provável do quadro de hipercalcemia apresentado pela paciente é:",
   alternativas:[{id:"A",texto:"Hipercalcemia da malignidade."},{id:"B",texto:"Doença granulomatosa crônica."},{id:"C",texto:"Hiperparatireoidismo primário."},{id:"D",texto:"Hipercalcemia hipocalciúrica familiar."},{id:"E",texto:"Hiperparatireoidismo secundário."}],
   gabarito:"C",
@@ -111,7 +111,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-007", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
-  imagemUrl:"dados/imagens/q-sirio2025-007.png",
+  imagemUrl:"dados/imagens/q-sirio2025-007.webp",
   enunciado:"Mulher, de 28 anos de idade, comparece ao ambulatório de clinica médica se queixando de nervosismo, palpitação, dificuldade para dormir, sensação de calor e sudorese excessivas e perda de 6 kg nos últimos 2 meses, apesar de ter notado um aumento no seu apetite. Não tem nenhuma comorbidade prévia e faz uso apenas de anticoncepcional oral (levonorgestrel 0,15 mg + etinilestradiol 0,03 mg). Adicionalmente, pratica musculação e corrida todos os dias da semana, fazendo suplementação de proteína (whey), creatina e BCCA. Ao exame, apresenta FC: 98 bpm, PA: 146 ×88 mmHg e tireoide de dimensões levemente aumentadas, heterogênea, fibroelástica, indolor à palpação e sem sopros à ausculta. Sem outras alterações. A cintilografia de tireoide evidenciou aumento heterogêneo na captação do radiomarcador, com múltiplas áreas de hipercaptação alternadas com áreas de hipocaptação na tireoide. Os exames laboratoriais evidenciaram: O diagnóstico mais provável para o quadro apresentado pela paciente é:",
   alternativas:[{id:"A",texto:"Tireoidite de Hashimoto."},{id:"B",texto:"Doença de Graves."},{id:"C",texto:"Adenoma tóxico de tireoide."},{id:"D",texto:"Bócio multinodular tóxico."},{id:"E",texto:"Hipertireoidismo factício."}],
   gabarito:"D",
@@ -125,7 +125,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-008", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
-  imagemUrl:"dados/imagens/q-sirio2025-008.png",
+  imagemUrl:"dados/imagens/q-sirio2025-008.webp",
   enunciado:"Mulher, de 28 anos de idade, comparece ao ambulatório de clinica médica se queixando de nervosismo, palpitação, dificuldade para dormir, sensação de calor e sudorese excessivas e perda de 6 kg nos últimos 2 meses, apesar de ter notado um aumento no seu apetite. Não tem nenhuma comorbidade prévia e faz uso apenas de anticoncepcional oral (levonorgestrel 0,15 mg + etinilestradiol 0,03 mg). Adicionalmente, pratica musculação e corrida todos os dias da semana, fazendo suplementação de proteína (whey), creatina e BCCA. Ao exame, apresenta FC: 98 bpm, PA: 146 ×88 mmHg e tireoide de dimensões levemente aumentadas, heterogênea, fibroelástica, indolor à palpação e sem sopros à ausculta. Sem outras alterações. A cintilografia de tireoide evidenciou aumento heterogêneo na captação do radiomarcador, com múltiplas áreas de hipercaptação alternadas com áreas de hipocaptação na tireoide. Os exames laboratoriais evidenciaram: Optou-se por iniciar o tratamento com atenolol e metimazol. Os exames que devem ser solicitados antes do início do tratamento são:",
   alternativas:[{id:"A",texto:"Creatinina, ureia, hemoglobina e hematócrito."},{id:"B",texto:"Ultrassonografia de tireoide com doppler."},{id:"C",texto:"Anti-tireoglobulina, anti-tireoperoxidase e anti- TRAb."},{id:"D",texto:"Teste tuberculínico e radiografia de tórax."},{id:"E",texto:"Leucograma, transaminases e bilirrubina."}],
   gabarito:"E",
@@ -152,7 +152,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-010", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
-  imagemUrl:"dados/imagens/q-sirio2025-010.png",
+  imagemUrl:"dados/imagens/q-sirio2025-010.webp",
   enunciado:"Homem, 36 anos de idade, comparece à unidade de emergência com queixa de cefaleia holocraniana em peso há duas semanas. Relata que, no inicio, a dor era de leve intensidade (3/10), estando associada a astenia e febre (38,2°C). Nos últimos três dias, a intensidade da dor piorou, sendo de moderada intensidade no momento. Neste mesmo período, também passou a apresentar fotofobia, rigidez no pescoço, turvação visual e teve dois episódios de vômitos. Tem história de HIV há 10 anos, fazendo uso irregular da terapia antirretroviral. Ao exame, estava sonolento e desorientado, com temperatura de 38,6°C e redução de acuidade visual, predominantemente à direita. A tomografia de crânio obtida após a admissão pode ser vista na imagem a seguir: O resultado do exame do LCR pode ser visto na tabela e na imagem da microscopia a seguir. O diagnóstico é:",
   alternativas:[{id:"A",texto:"Criptococose."},{id:"B",texto:"Neurotoxoplasmose."},{id:"C",texto:"Criptosporidiase."},{id:"D",texto:"Neurotuberculose."},{id:"E",texto:"Neurossifilis."}],
   gabarito:"A",
@@ -166,7 +166,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-011", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
-  imagemUrl:"dados/imagens/q-sirio2025-011.png",
+  imagemUrl:"dados/imagens/q-sirio2025-011.webp",
   enunciado:"Homem, 36 anos de idade, comparece à unidade de emergência com queixa de cefaleia holocraniana em peso há duas semanas. Relata que, no inicio, a dor era de leve intensidade (3/10), estando associada a astenia e febre (38,2°C). Nos últimos três dias, a intensidade da dor piorou, sendo de moderada intensidade no momento. Neste mesmo período, também passou a apresentar fotofobia, rigidez no pescoço, turvação visual e teve dois episódios de vômitos. Tem história de HIV há 10 anos, fazendo uso irregular da terapia antirretroviral. Ao exame, estava sonolento e desorientado, com temperatura de 38,6°C e redução de acuidade visual, predominantemente à direita. A tomografia de crânio obtida após a admissão pode ser vista na imagem a seguir: O resultado do exame do LCR pode ser visto na tabela e na imagem da microscopia a seguir. A conduta terapêutica que deve ser adotada neste momento é:",
   alternativas:[{id:"A",texto:"Pirimetamina, sulfadiazina a ácido folínico."},{id:"B",texto:"Anfotericina B lipossomal."},{id:"C",texto:"Nitazoxanida e azitromicina."},{id:"D",texto:"Rifampicina, isoniazida, pirazinamida e etambutol."},{id:"E",texto:"Penicilina cristalina."}],
   gabarito:"B",
@@ -180,7 +180,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-012", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
-  imagemUrl:"dados/imagens/q-sirio2025-012.png",
+  imagemUrl:"dados/imagens/q-sirio2025-012.webp",
   enunciado:"Mulher, 55 anos de idade, comparece ao ambulatório com queixa de astenia e intolerância ao exercício há 6 meses. Não tem outras queixas. Tem história de obesidade grau 2, hipertensão arterial e diabetes mellitus, estando em uso de enalapril, hidroclorotiazida, metformina, dapagliflozina e insulina NPH 10UI à noite. Adicionalmente, é tabagista ativa, com carga tabágica estimada de 22 maços/ano e consome 1 a 2 taças de vinho nos finais de semana. Ao exame, foi visto descoramento ++/4+ e alteração que pode ser vista na imagem a seguir: O hemograma confirmou a presença de anemia com elevação de VCM e RDW normal, sem alterações de leucócitos ou plaquetas. O esfregaço de sangue periférico apresentou as seguintes alterações: O diagnóstico mais provável da anemia da paciente é:",
   alternativas:[{id:"A",texto:"Anemia sideroblástica."},{id:"B",texto:"Síndrome mielodisplásica."},{id:"C",texto:"Deficiência de vitamina B12."},{id:"D",texto:"Anemia associada ao álcool."},{id:"E",texto:"Deficiência de ácido fólico."}],
   gabarito:"C",
@@ -298,7 +298,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-021", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:21,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-sirio2025-021.png",
+  imagemUrl:"dados/imagens/q-sirio2025-021.webp",
   enunciado:"Paciente vitima de trauma moto x anteparo fixo, na cena apresentava FC: 120 bpm, PA: 140 x 90 mmHg e Glasgow 4, sendo intubado em sequência rápida e levado com colar e prancha rígida ao pronto-socorro. No atendimento inicial, após medidas de reanimação, feita radiografia com o seguinte achado. Sobre este caso clínico, é correto afirmar:",
   alternativas:[{id:"A",texto:"Pneumotórax à direita, sendo indicada drenagem torácica."},{id:"B",texto:"Atelectasia pulmonar, sendo o tratamento indicado ventilação com pressão positiva."},{id:"C",texto:"Hérnia diafragmática traumática e o tratamento cirúrgico estão indicados."},{id:"D",texto:"Hemotórax traumático, que deverá ser drenado."},{id:"E",texto:"Traumatismo esplênico e está indicada laparotomia para tratamento da lesão."}],
   gabarito:"C",
@@ -507,7 +507,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-037", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:37,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-sirio2025-037.png",
+  imagemUrl:"dados/imagens/q-sirio2025-037.webp",
   enunciado:"Homem, 65 anos, foi submetido a uma colectomia total por câncer de cólon. No pós-operatório, desenvolveu vômitos frequentes e foi identificado com uma grande quantidade de secreção gástrica por sonda nasogástrica. Exames laboratoriais: O distúrbio ácido-básico presente neste paciente é:",
   alternativas:[{id:"A",texto:"Alcalose respiratória compensada."},{id:"B",texto:"Acidose metabólica com ânion gap normal."},{id:"C",texto:"Alcalose respiratória."},{id:"D",texto:"Alcalose metabólica."},{id:"E",texto:"Acidose metabólica com ânion gap elevado."}],
   gabarito:"D",
@@ -534,7 +534,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-039", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:39,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
-  imagemUrl:"dados/imagens/q-sirio2025-039.png",
+  imagemUrl:"dados/imagens/q-sirio2025-039.webp",
   enunciado:"Mulher de 29 anos, sem antecedentes mórbidos, vai ao pronto-socorro com dor abdominal, icterícia e náuseas há 3 dias. Refere ter sido submetida, há sete dias, a uma colecistectomia VLP e desde então apresentou quadro progressivo de dor abdominal difusa, parada de eliminação de gases e fezes, distensão abdominal e icterícia, com dor em ombro direito, desde o 3º PO. Ao Exame Físico BEG, corada, hidratada, ictérica 2+/4, acianótica. Hemodinamicamente estável. Seu abdome estava distendido, doloroso à palpação profunda. DB negativos. Exames laboratoriais: Hemoglobina: 14 g/dL, Plaquetas: 350.000, Leucócitos: 12.800 mm³, sem desvio, U: 29,6 UI, Cr. 0,4 mg/dL, Na: 142 mEq/L, K: 4,5 mEq/L, AST: 138 UI, ALT: 511 UI, GGT: 218 UI, FA: 152 UI, BT: 7,3 mg/dL, BD: 5,6 mg/dL, BI: 1,7 mg/dL. Foi submetida a uma tomografia cujas imagens seguem: O diagnóstico mais provável e a melhor conduta a ser adotada nesse caso:",
   alternativas:[{id:"A",texto:"Hemoperitônio e punção guiada por ultrassom."},{id:"B",texto:"Abscesso peri-hepático e antibióticos EV"},{id:"C",texto:"Colangite e drenagem da via biliar por CPRE."},{id:"D",texto:"Coleperitônio e videolaparoscopia diagnóstica."},{id:"E",texto:"Úlcera péptica perfurada e laparotomia exploradora"}],
   gabarito:"D",
@@ -548,7 +548,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-040", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:40,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-sirio2025-040.png",
+  imagemUrl:"dados/imagens/q-sirio2025-040.webp",
   enunciado:"Homem vai ao pronto-socorro de um hospital terciário com queixa de dor abdominal em cólica, no epigástrio, que irradiava para o dorso acompanhada de vômitos alimentares, sem sangue, há 2 dias, após ingestão de alimentação gordurosa. Negava febre. Etilista crônico, tabagista de um maço por dia, fazendo uso de cocaína. Antecedentes de gastrectomia subtotal com reconstrução em Y de Roux por estenose péptica pilórica há 6 meses. Ao exame clínico está em regular estado geral, corado, hidratado, acianótico, afebril, abdome distendido, doloroso à palpação difusamente. Exames laboratoriais: Amilase: 191 UI. GGT: 37 UI, FA: 73 UI, TGO: 13 UI, TGP: 12 UI, BT: 0,7 mg/dL, Cr: 0,93 mg/dL; PCR: inferior a 3 mg/L. Inicialmente foi realizada a passagem de uma SNG e hidratação. Foi submetido à tomografia mostrada abaixo e tratamento clínico por 48h. O diagnóstico mais provável e a melhor conduta, dentre as apresentadas abaixo, é:",
   alternativas:[{id:"A",texto:"isquemia mesentérica - indicar cirurgia."},{id:"B",texto:"pancreatite aguda - introduzir alimentação enteral de suporte."},{id:"C",texto:"pancreatite aguda - introduzir nutrição parenteral de suporte."},{id:"D",texto:"obstrução intestinal - indicar cirurgia."},{id:"E",texto:"pancreatite aguda - tratamento clínico de suporte por mais 12h."}],
   gabarito:"D",
@@ -757,7 +757,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-056", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:56,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
-  imagemUrl:"dados/imagens/q-sirio2025-056.png",
+  imagemUrl:"dados/imagens/q-sirio2025-056.webp",
   enunciado:"Um bebê de 7 meses é admitido na emergência com palidez e esforço respiratório de início abrupto há 2 horas. À monitorização, a cardioscopia mostra FC: 244 bpm, SatO2: 89%, PA: 62 x 46 mmHg e Temperatura periférica: 36,4 °C. Ao exame físico apresenta-se instável, com baixa resposta aos estímulos, tempo de enchimento capilar de 4 segundos, ausculta respiratória normal e abdome globoso com fígado a 3 cm do RCD. O ECG revela complexos QRS estreitos, regulares, com intervalo RR constante, sem onda P. Diante dos dados fornecidos, o provável diagnóstico da criança é:",
   alternativas:[{id:"A",texto:"Taquicardia supraventricular."},{id:"B",texto:"Flutter atrial."},{id:"C",texto:"Taquicardia sinusal."},{id:"D",texto:"Taquicardia ventricular."},{id:"E",texto:"Fibrilação atrial."}],
   gabarito:"A",
@@ -914,7 +914,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-068", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:68,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-restricaocrescimento",
-  imagemUrl:"dados/imagens/q-sirio2025-068.png",
+  imagemUrl:"dados/imagens/q-sirio2025-068.webp",
   enunciado:"Considere o gráfico abaixo da curva de altura uterina. O quadro exibido nessa curva de altura uterina por idade gestacional pode ocorrer nos casos de",
   alternativas:[{id:"A",texto:"desproporção céfalo-pélvica."},{id:"B",texto:"diabetes gestacional."},{id:"C",texto:"insuficiência renal fetal."},{id:"D",texto:"infecção congênita por citomegalovírus."},{id:"E",texto:"infecção materna por Covid-19."}],
   gabarito:"B",
@@ -1058,7 +1058,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-079", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:79,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-sirio2025-079.png",
+  imagemUrl:"dados/imagens/q-sirio2025-079.webp",
   enunciado:"Gestante, 37 semanas, com doença hipertensiva específica da gestação, realizou essa cardiotocografia após alimentação. Houve a necessidade de realização de estímulo sonoro (ES). A condição cardiotocográfica desse feto é:",
   alternativas:[{id:"A",texto:"Feto hiporreativo."},{id:"B",texto:"Feto reativo."},{id:"C",texto:"Feto hipoativo."},{id:"D",texto:"Sofrimento fetal."},{id:"E",texto:"Feto hipoglicêmico."}],
   gabarito:"A",
@@ -1085,7 +1085,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-081", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:81,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-sirio2025-081.png",
+  imagemUrl:"dados/imagens/q-sirio2025-081.webp",
   enunciado:"Entre os anos de 2010 e 2021, foram notificados e analisados 122.211 casos novos de coinfecção de tuberculose e HIV (TB-HIV) na população brasileira com idade entre 18 e 59 anos. Os coeficientes anuais de incidência da coinfecção TB-HIV no período, para cada macrorregião nacional e o conjunto do pais, encontramse na figura abaixo. Considerando a interpretação das medidas de frequência fornecidas, constata-se que, entre 2010 e 2011, o comportamento dessa coinfecção:",
   alternativas:[{id:"A",texto:"Demonstrou notória tendência de queda sustentada e uniforme em todas as regiões brasileiras, conforme observado na linha referente aos dados do Brasil."},{id:"B",texto:"Apresentou na região Norte uma tendência de alta entre 2011 e 2019, seguida de tendência de queda entre 2019 e 2021."},{id:"C",texto:"Sustentou na região Centro-Oeste tendência à estabilidade em todo período estudado, contudo, um menor coeficiente de incidência inicial."},{id:"D",texto:"Evidenciou na região Sudeste a maior redução proporcional no coeficiente de incidência, sobretudo no período entre 2010 e 2019."},{id:"E",texto:"Mostrou na região Nordeste o cenário mais grave dentre os demais, com maior coeficiente de incidência de casos no inicio e no final do período analisado."}],
   gabarito:"",
@@ -1125,7 +1125,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-084", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:84,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-neuromuscular",
-  imagemUrl:"dados/imagens/q-sirio2025-084.png",
+  imagemUrl:"dados/imagens/q-sirio2025-084.webp",
   enunciado:"Homem, 24 anos de idade, dá entrada no pronto-socorro, conta que nos últimos 7 dias notou uma fraqueza progressiva nos membros inferiores, até que hoje conseguiu deambular apenas com apoio e veio ao hospital. Exame clínico: sinais vitais são normais; há fraqueza simétrica nos membros inferiores, que não vencem a resistência, e possuem hiporreflexia; há discreta e duvidosa hipoestesia até os joelhos; não existem outras anormalidades. O exame do líquor revelou líquido claro e transparente, 2 leucócitos/mm³, 1 hemácia/mm³, glicose: 69 mg/dL, proteínas: 171 mg/dL, pesquisa microbiológica direta negativa. Para a escolha do potencialmente melhor tratamento para este paciente, consulta-se uma revisão sistemática com meta-análise sobre o assunto. Nesta publicação, os autores comparam o uso de imunoglobulina (IVIg) e plasmaférese (PE). De acordo com os dados e gráficos apresentados, é possível concluir corretamente:",
   alternativas:[{id:"A",texto:"Não é possível afirmar que exista uma superioridade entre elas."},{id:"B",texto:"A imunoglobulina alcançou melhores desfechos e deve ser escolhida."},{id:"C",texto:"A plasmaférese alcançou melhores desfechos e deve ser escolhida."},{id:"D",texto:"A terapia combinada deve ser escolhida pela sua superioridade."},{id:"E",texto:"Não é possível estabelecer nenhuma conclusão com segurança."}],
   gabarito:"A",
@@ -1308,7 +1308,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
 {
   id:"q-sirio2025-098", banca:"Sírio-Libanês (SP)", real:true, ano:2025, numeroNaProva:98,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-sirio2025-098.png",
+  imagemUrl:"dados/imagens/q-sirio2025-098.webp",
   enunciado:"Uma pesquisa verificou a variação da incidência da tuberculose no Brasil entre 2001 e 2023 (Figura A). A seguir, por meio de modelagem matemática, projetou a tendência futura do comportamento desse coeficiente no Brasil (Figura B) O comportamento esperado, a partir desse modelo, para o ano de 2030 é:",
   alternativas:[{id:"A",texto:"A incidencia de tuberculose continuara a aumentar de forma acentuada, igualando ou ultrapassando os niveis observados no inicio da serie historica em 2001."},{id:"B",texto:"A tendência projetada indica uma estabilização dos níveis de incidência, sem aumentos ou reduções significativos, em torno dos valores observados em 2023."},{id:"C",texto:"O modelo projeta um declinio acentuado nos niveis de incidência de tuberculose a partir de 2023, retornando a niveis semelhantes aos registrados no inicio dos anos 2000."},{id:"D",texto:"A incidência de tuberculose apresentará uma leve redução até 2030, porém não atingirá os níveis mais baixos observados no período de 2001 a 2023."},{id:"E",texto:"O modelo sugere uma recuperação da tendência de aumento até 2030, sem atingir o pico de incidência de 2010, porém com uma elevação significativa em relação ao início da década de 2020."}],
   gabarito:"A",

@@ -75,7 +75,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2025", [
 },
 {
   id:"q-amrigs2025-005", banca:"AMRIGS", real:true, ano:2025, numeroNaProva:5,
-  imagemUrl:"dados/imagens/q-amrigs2025-005.png", imagemLegenda:"Gráfico da concentração plasmática pelo tempo (horas) de três insulinas (A, B e C), fonte: elaborado pelo autor (2025)",
+  imagemUrl:"dados/imagens/q-amrigs2025-005.webp", imagemLegenda:"Gráfico da concentração plasmática pelo tempo (horas) de três insulinas (A, B e C), fonte: elaborado pelo autor (2025)",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
   enunciado:"O gráfico abaixo apresenta o perfil farmacocinético de três diferentes tipos de insulina para o tratamento do diabetes. As insulinas correspondentes às letras A, B e C, respectivamente, são:",
   alternativas:[{id:"A",texto:"Glargina – NPH – regular."},{id:"B",texto:"Lispro – glargina – regular."},{id:"C",texto:"NPH – degludeca – lispro."},{id:"D",texto:"Lispro – NPH – glargina."}],
@@ -986,7 +986,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2025", [
 },
 {
   id:"q-amrigs2025-075", banca:"AMRIGS", real:true, ano:2025, numeroNaProva:75,
-  imagemUrl:"dados/imagens/q-amrigs2025-075.jpg", imagemLegenda:"Radiografia de tórax",
+  imagemUrl:"dados/imagens/q-amrigs2025-075.webp", imagemLegenda:"Radiografia de tórax",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"Escolar, 6 anos, chega ao plantão febril, taquipneico, prostrado e com estertoração difusa bibasal. O resultado do raio X de tórax é apresentado na figura abaixo. Ultrassonografia point of care à beira do leito evidencia volumoso derrame pleural direito, com presença de septações. De acordo com as informações apresentadas, no manejo inicial desse paciente, além da antibioticoterapia, deve-se considerar:",
   alternativas:[{id:"A",texto:"Punção pleural diagnóstica e de alívio, apenas."},{id:"B",texto:"Toracocentese para utilização de fibrinolítico intrapleural."},{id:"C",texto:"Videotoracoscopia assistida."},{id:"D",texto:"Toracocentese definitiva, mas apenas se a punção confirmar empiema pleural."}],

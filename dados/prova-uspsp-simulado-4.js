@@ -106,7 +106,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-007", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
-  imagemUrl:"dados/imagens/q-uspsp4-007.png", imagemLegenda:"Eletrocardiograma, radiografia de tórax e ecocardiograma à beira-leito do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-007.webp", imagemLegenda:"Eletrocardiograma, radiografia de tórax e ecocardiograma à beira-leito do paciente.",
   enunciado:"Um homem de 25 anos de idade procura o pronto atendimento do PS InCor com queixa de cefaleia, mialgia, odinofagia e dor precordial há cerca de 3 dias, com piora da dor hoje há 2 horas, associada a dispneia. Relata que a dor ocorre mesmo em repouso e melhora com posição genupeitoral, além de irradiar para as costas na região do trapézio. De antecedentes relata ser usuário crônico de cocaína e que seu pai faleceu de infarto aos 48 anos. Ao exame apresenta T: 37,5 °C, PA: 138x92 mmHg, FC: 102 bpm, FR: 22 irpm, Sat: 95% em ar ambiente, semiologia pulmonar e cardíaca normais, sem turgência jugular, tempo de enchimento capilar menor que 3 segundos, abdome inocente, sem edema de membros inferiores. Realizado na emergência o ECG, radiografia de tórax e POCUS, como demonstrado abaixo. Assinale a alternativa correta:",
   alternativas:[{id:"A",texto:"Trata-se de um infarto agudo do miocárdio com supra de ST em parede anterior extensa. Como dispomos de cateterismo devemos ministrar AAS 300 mg e clopidogrel 600 mg e encaminhar o paciente para o setor de hemodinâmica para angioplastia primária."},{id:"B",texto:"Trata-se de uma síndrome de Dressler, ou seja, uma pericardite secundária a um quadro de infarto agudo do miocárdio. Devemos instituir o tratamento ambulatorial visto que paciente se encontra estável, com AAS 750 mg 8/8 h por 7 dias e colchicina 0,5 mg 12/12 h por 3 meses."},{id:"C",texto:"Trata-se de uma pericardite aguda. Como paciente toxemiado e com derrame pericárdico, é necessário internação com solicitação de pericardiocentese para análise do líquido pericárdico e determinação da etiologia, antes de iniciarmos qualquer tratamento empírico."},{id:"D",texto:"Trata-se de uma pericardite aguda de provável etiologia viral. Não é necessário outros exames complementares, sendo possível iniciar tratamento empírico com ibuprofeno 600 mg 8/8 h por 14 dias e colchicina 0,5 mg 12/12 h por 3 meses."}],
   gabarito:"D",
@@ -159,7 +159,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-011", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-movimento",
-  imagemUrl:"dados/imagens/q-uspsp4-011.png", imagemLegenda:"Espirais de Arquimedes (A a D).",
+  imagemUrl:"dados/imagens/q-uspsp4-011.webp", imagemLegenda:"Espirais de Arquimedes (A a D).",
   enunciado:"Um homem de 52 anos de idade, previamente hígido, procura o ambulatório de neurologia com queixa de lentidão motora e rigidez no lado direito do corpo há cerca de 1 ano. Refere que os sintomas começaram de forma insidiosa, mas têm piorado progressivamente, com dificuldade crescente para realizar atividades manuais finas com a mão direita e para caminhar com agilidade. Nega quedas, alterações cognitivas ou autonômicas. Não faz uso de nenhuma medicação contínua. Ao exame, apresenta hipomimia, rigidez e bradicinesia em hemicorpo direito, com marcha com redução do balanço de braço direito. Reflexos preservados, sem sinais de instabilidade postural. Qual espiral abaixo você espera encontrar no exame deste paciente?",
   alternativas:[{id:"A",texto:"Espiral A."},{id:"B",texto:"Espiral B."},{id:"C",texto:"Espiral C."},{id:"D",texto:"Espiral D."}],
   gabarito:"B",
@@ -212,7 +212,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-015", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:15,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-uspsp4-015.png", imagemLegenda:"Eletrocardiograma e radiografia de tórax da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-015.webp", imagemLegenda:"Eletrocardiograma e radiografia de tórax da paciente.",
   enunciado:"Uma mulher de 64 anos de idade apresenta-se ao ambulatório de cardiologia queixando-se de edema de MMII e dispneia aos moderados esforços. Associado ao quadro refere também cefaleia holocraniana diária, pior no período da manhã, e sonolência durante o dia. Tem antecedente de hipertensão arterial sistêmica e diabetes mellitus, em uso de hidroclorotiazida 25 mg/dia e metformina 1.000 mg 12/12 h. Ao exame físico: peso 90 kg, altura 1,50 m (IMC 40); FR 14, SatO2 94% com ausculta pulmonar normal; FC 96, PA 172x104 (3 medidas), ritmo cardíaco irregular sem sopros; edema de MMII 2+/4+ até joelhos bilateralmente. Traz exames realizados em serviço externo: Hb 18 g/dL, Ht 55%, leucócitos 7.500/mm³, plaquetas 245.000/mm³, creatinina 1,15 (RFG 53 mL/min/1,73 m²), ureia 68, K 4,2, Na 143, BNP 700, TSH 7,6, T4L 1,5, HbA1c 8%, colesterol total 250, LDL 125, HDL 32, triglicérides 350. Ecocardiograma: FEVE 52%, hipertrofia concêntrica de VE, disfunção diastólica grau 2, AE aumentado, pressão sistólica de artéria pulmonar 52 (VR < 25). Eletrocardiograma e radiografia de tórax conforme imagens. O médico assistente optou pela prescrição de furosemida. Assinale a alternativa que contenha outras medicações que devem ser prescritas, e o exame adicional mais indicado a ser solicitado neste momento.",
   alternativas:[{id:"A",texto:"Empagliflozina, semaglutida, losartana e levotiroxina; cateterismo de câmaras direitas."},{id:"B",texto:"Rivaroxabana, dapagliflozina, enalapril, atorvastatina; polissonografia."},{id:"C",texto:"Carvedilol, dapagliflozina, ciprofibrato; cintilografia de perfusão miocárdica ao repouso e sob estresse."},{id:"D",texto:"Liraglutida, losartana, apixabana, rosuvastatina; angiotomografia de artérias coronárias."}],
   gabarito:"B",
@@ -239,7 +239,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-017", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:17,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
-  imagemUrl:"dados/imagens/q-uspsp4-017.png", imagemLegenda:"Radiografia de tórax e espirometria do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-017.webp", imagemLegenda:"Radiografia de tórax e espirometria do paciente.",
   enunciado:"Um homem de 70 anos de idade vai ao pronto-atendimento apresentando quadro de tosse secretiva, sibilância e dispneia leve. Tem antecedente de pré-diabetes, DRGE e tabagismo ativo de 40 maços-ano, não usa medicações de uso contínuo e diz nunca ter apresentado quadro similar. Realiza RX de tórax (imagem abaixo), é medicado com broncodilatadores e corticoterapia e recebe alta no mesmo dia com prescrição de prednisona 40 mg/dia e amoxicilina 500 mg 8/8 h por 7 dias. Após 1 mês passa em consulta ambulatorial, referindo dispneia apenas aos esforços intensos, como subir ladeiras muito íngremes ou mais de 3 ou 4 andares de escada, acompanhada de tosse seca que piora no período noturno. Não procurou novamente atendimento de emergência. Realizou a espirometria, com o resultado demonstrado abaixo (VEF1/CVF de 0,63 após broncodilatador, VEF1 de 69% do previsto, curva fluxo-volume com concavidade), e hemograma: Hb 15,9 g/dL, leucócitos 8.950/mm³ (eosinófilos 110), plaquetas 400.000/mm³. Tendo em vista o quadro clínico acima e o diagnóstico mais provável, além da cessação de tabagismo, qual é o tratamento medicamentoso indicado?",
   alternativas:[{id:"A",texto:"Tiotrópio + olodaterol de uso contínuo diário, e salbutamol de resgate."},{id:"B",texto:"Salbutamol de resgate."},{id:"C",texto:"Formoterol + budesonida de uso contínuo diário e resgate."},{id:"D",texto:"Lavagem nasal com soro fisiológico e omeprazol."}],
   gabarito:"B",
@@ -253,7 +253,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-018", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:18,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-uspsp4-018.png", imagemLegenda:"Ultrassonografia pulmonar à beira-leito da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-018.webp", imagemLegenda:"Ultrassonografia pulmonar à beira-leito da paciente.",
   enunciado:"Uma mulher de 45 anos de idade com antecedente de LES em uso de hidroxicloroquina e azatioprina dá entrada no Pronto Socorro com queixa de dispneia e tosse seca há 3 dias, com piora hoje. Sinais vitais na triagem: FC 112, T axilar 38 °C, PA 110x60, SatO2 94% em ar ambiente, FR 26. Ao exame físico: REG, vigil, murmúrios vesiculares presentes bilateralmente, reduzidos em hemitórax inferior à direita, ritmo cardíaco regular e sem sopros, TEC em flush, abdome flácido e indolor à palpação, MMII com edema 1+/4+, simétrico. POCUS pulmonar abaixo. Qual deve ser a conduta neste momento?",
   alternativas:[{id:"A",texto:"Coletar hemoculturas e iniciar antibiótico empírico de amplo espectro."},{id:"B",texto:"Iniciar corticoide em dose alta e realizar toracocentese diagnóstica."},{id:"C",texto:"Expansão volêmica com cristaloide e realizar toracocentese diagnóstica."},{id:"D",texto:"Coletar hemoculturas e iniciar corticoide em dose alta."}],
   gabarito:"A",
@@ -371,7 +371,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-027", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:27,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-uspsp4-027.png", imagemLegenda:"Exame especular da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-027.webp", imagemLegenda:"Exame especular da paciente.",
   enunciado:"Uma mulher de 22 anos de idade apresenta corrimento vaginal. O exame especular é apresentado (imagem). Qual afirmação é compatível com o achado vaginal?",
   alternativas:[{id:"A",texto:"pH > 4,5."},{id:"B",texto:"Teste de aminas negativo."},{id:"C",texto:"Identificação do agente por KOH."},{id:"D",texto:"Abundância de lactobacilos."}],
   gabarito:"A",
@@ -437,7 +437,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-032", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:32,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
-  imagemUrl:"dados/imagens/q-uspsp4-032.png", imagemLegenda:"Imagem da histeroscopia, com as lesões numeradas 1 e 2.",
+  imagemUrl:"dados/imagens/q-uspsp4-032.webp", imagemLegenda:"Imagem da histeroscopia, com as lesões numeradas 1 e 2.",
   enunciado:"Uma mulher de 45 anos de idade chega ao consultório com queixa de sangramento vaginal aumentado no período menstrual, nega dismenorreia associada. Refere já ter realizado exames. Traz a seguinte histeroscopia. De acordo com a Federação Internacional de Ginecologia e Obstetrícia (FIGO) para sangramento uterino anormal, qual é a classificação da alteração 1 e 2, respectivamente?",
   alternativas:[{id:"A",texto:"SUA-L e SUA-P."},{id:"B",texto:"SUA-P e SUA-M."},{id:"C",texto:"SUA-P e SUA-L."},{id:"D",texto:"SUA-L e SUA-M."}],
   gabarito:"C",
@@ -542,7 +542,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-040", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:40,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-uspsp4-040.png", imagemLegenda:"Cardiotocografia da gestante.",
+  imagemUrl:"dados/imagens/q-uspsp4-040.webp", imagemLegenda:"Cardiotocografia da gestante.",
   enunciado:"Uma gestante de 29 anos de idade, 39 semanas, em trabalho de parto. Realiza cardiotocografia com o traçado abaixo. Qual é a interpretação deste exame e qual é a conduta?",
   alternativas:[{id:"A",texto:"Cardiotocografia não reativa, indicar interrupção."},{id:"B",texto:"Categoria II, realizar medidas de ressuscitação intrauterina e repetir cardiotocografia."},{id:"C",texto:"Categoria II, medidas de ressuscitação e preparo da equipe para possível cesariana."},{id:"D",texto:"Exame indeterminado, complementar com dopplervelocimetria."}],
   gabarito:"C",
@@ -608,7 +608,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-045", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:45,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-uspsp4-045.png", imagemLegenda:"Cardiotocografia da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-045.webp", imagemLegenda:"Cardiotocografia da paciente.",
   enunciado:"Uma mulher de 20 anos de idade, secundigesta com um parto normal prévio, 40 semanas de gravidez, comparece em consulta pré-natal assintomática, referindo boa movimentação fetal e sem perdas vaginais. Ao exame clínico, PA: 100x80 mmHg, FC: 70 bpm, altura uterina: 35 cm, útero normotônico. Colo pérvio para 2 cm grosso, posterior, apresentação cefálica, plano -2 de DeLee. Realizado perfil biofísico fetal com movimentos fetais e respiratórios presentes e tônus preservado e índice de líquido amniótico de 4,3 cm. Cardiotocografia conforme imagem. Qual deve ser a conduta obstétrica?",
   alternativas:[{id:"A",texto:"Reavaliar vitalidade fetal em 48 horas."},{id:"B",texto:"Indicar parto cesárea de urgência."},{id:"C",texto:"Induzir parto com ocitocina endovenosa."},{id:"D",texto:"Maturar colo uterino com misoprostol."}],
   gabarito:"D",
@@ -661,7 +661,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-049", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:49,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-arterial",
-  imagemUrl:"dados/imagens/q-uspsp4-049.png", imagemLegenda:"Tomografias de abdome (A a D), em cortes axial e coronal.",
+  imagemUrl:"dados/imagens/q-uspsp4-049.webp", imagemLegenda:"Tomografias de abdome (A a D), em cortes axial e coronal.",
   enunciado:"Uma mulher de 70 anos de idade, tabagista crônica e diabética, procura o Serviço de Emergência devido a dor abdominal intensa súbita, com início há 4 horas. Relata náuseas, porém sem vômitos. Nega melhora com analgésicos. Ao exame clínico, encontra-se em posição antálgica, FC 122 bpm, abdome normodistendido, sem sinais de irritação peritoneal e com ruídos hidroaéreos diminuídos em frequência. Exames laboratoriais: Hb 11,2 g/dL; Ht 38%; leucograma 14.000/mm³; PCR 17 mg/L; ureia 90 mg/dL; creatinina 1,7 mg/dL; lactato 80 mg/dL. Quais imagens correspondem à principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Imagem A (tomografia de abdome)."},{id:"B",texto:"Imagem B (tomografia de abdome)."},{id:"C",texto:"Imagem C (tomografia de abdome)."},{id:"D",texto:"Imagem D (tomografia de abdome)."}],
   gabarito:"B",
@@ -688,7 +688,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-051", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:51,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-uspsp4-051.png", imagemLegenda:"Ferimento torácico penetrante do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-051.webp", imagemLegenda:"Ferimento torácico penetrante do paciente.",
   enunciado:"Um homem de 26 anos de idade, vítima de agressão por arma branca durante briga. Apresenta ferimento penetrante (imagem). Chega ao pronto-socorro consciente, queixando-se de dor torácica e dificuldade respiratória moderada. Na avaliação inicial, encontrava-se conforme avaliação primária abaixo: A: vias aéreas pérvias, fala clara. B: FR 24 irpm, SatO2 91% em O2 a 10 L/min, murmúrio vesicular diminuído à esquerda, ferida aberta de 2 cm com escape aéreo. C: PA 112x76 mmHg, FC 102 bpm, perfusão periférica preservada. D: ECG 15, pupilas isocóricas e fotorreagentes. E: sem outras lesões evidentes. Dextro 107 mg/dL, Temp 36,8 °C. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Videolaparoscopia."},{id:"B",texto:"Drenagem torácica em selo d'água."},{id:"C",texto:"Curativo de 3 pontas."},{id:"D",texto:"E-FAST."}],
   gabarito:"C",
@@ -702,7 +702,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-052", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:52,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
-  imagemUrl:"dados/imagens/q-uspsp4-052.png", imagemLegenda:"Tomografia computadorizada e radiografia de fêmur do paciente (achados positivos).",
+  imagemUrl:"dados/imagens/q-uspsp4-052.webp", imagemLegenda:"Tomografia computadorizada e radiografia de fêmur do paciente (achados positivos).",
   enunciado:"Um homem de 28 anos de idade foi vítima de colisão frontal carro x poste a 80 km/h. Retirado das ferragens pelo resgate. Chega ao pronto-socorro com medidas já iniciadas de oxigenoterapia, dois acessos periféricos calibrosos e colar cervical e prancha rígida. A: vias aéreas pérvias, escoriações na face. B: FR 28 irpm, SatO2 89% em O2 a 10 L/min, murmúrio vesicular diminuído à esquerda. C: PA 90x60 mmHg, FC 132 bpm, pulsos filiformes, perfusão periférica ruim. D: ECG 11, pupilas isocóricas, reativas. E: ferimento contuso em flanco direito, encurtamento e rotação externa de membro inferior direito (MID), com pulsos pediosos diminuídos bilateralmente. Após estabilização com intubação orotraqueal e infusão de 1.000 mL de cristaloide e 1 concentrado de hemácias, o paciente foi submetido a tomografia computadorizada de corpo inteiro e radiografias apresentadas (apenas achados positivos: pneumotórax à esquerda, laceração hepática e fratura de fêmur direito). Após a TC, o paciente apresentou PA 105/70 mmHg, FC 110 bpm, TEC 3 s, ECG 3T, SatO2 95% em ventilação mecânica. A conduta hospitalar deverá incluir:",
   alternativas:[{id:"A",texto:"Toracocentese de alívio."},{id:"B",texto:"Hepatectomia não regrada."},{id:"C",texto:"Revascularização do MID."},{id:"D",texto:"Tromboprofilaxia."}],
   gabarito:"D",
@@ -716,7 +716,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-053", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:53,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
-  imagemUrl:"dados/imagens/q-uspsp4-053.png", imagemLegenda:"Angiotomografia e radiografia de tórax da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-053.webp", imagemLegenda:"Angiotomografia e radiografia de tórax da paciente.",
   enunciado:"Uma mulher de 66 anos de idade, hipertensa em tratamento irregular, procura o pronto-socorro com queixa de dor torácica súbita de forte intensidade. Relata que a dor iniciou há aproximadamente 1 hora mas com piora progressiva, descrita como \"rasgando o peito\" e com irradiação para o dorso. Realizada angiotomografia, conforme imagem abaixo (dissecção da aorta descendente). Após minutos da realização da angiotomografia paciente evolui com PA = 78x49 mmHg, FC = 140 bpm, FR = 30 ipm e dispneia intensa. Realizada a radiografia de tórax demonstrada abaixo (opacificação do hemitórax esquerdo). Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"É necessário chamar a cirurgia vascular para abordagem de emergência devido a choque cardiogênico grave."},{id:"B",texto:"É necessário chamar a cirurgia vascular para abordagem de emergência devido a choque hemorrágico grave."},{id:"C",texto:"É necessário manter apenas tratamento clínico com controle de duplo produto (pressão e frequência cardíaca), em associação com noradrenalina."},{id:"D",texto:"Realizar drenagem de tórax e chamar a cirurgia vascular para abordagem de emergência devido a choque hemorrágico grave."}],
   gabarito:"B",
@@ -730,7 +730,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-054", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:54,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cabecapescoco",
-  imagemUrl:"dados/imagens/q-uspsp4-054.png", imagemLegenda:"Dissecção da região cervical anterior, com a estrutura apontada pela seta.",
+  imagemUrl:"dados/imagens/q-uspsp4-054.webp", imagemLegenda:"Dissecção da região cervical anterior, com a estrutura apontada pela seta.",
   enunciado:"Abaixo está representada a região cervical anterior, em posição anatômica (dissecção cirúrgica, com a seta indicando uma estrutura vascular calibrosa, anterior e inferior à traqueia). A estrutura apontada pela seta é:",
   alternativas:[{id:"A",texto:"Artéria tireóidea inferior."},{id:"B",texto:"Esôfago."},{id:"C",texto:"Tronco braquiocefálico."},{id:"D",texto:"Artéria carótida direita."}],
   gabarito:"C",
@@ -744,7 +744,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-055", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:55,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-uspsp4-055.png", imagemLegenda:"Tomografia computadorizada de abdome da paciente (achado hepático).",
+  imagemUrl:"dados/imagens/q-uspsp4-055.webp", imagemLegenda:"Tomografia computadorizada de abdome da paciente (achado hepático).",
   enunciado:"Uma mulher, 41 anos de idade, é trazida ao centro de trauma após queda de altura de 12 metros em tentativa de autoextermínio. Foi intubada pela equipe do SAMU devido a rebaixamento progressivo do nível de consciência, sendo removida com colar cervical, oxigenoterapia e acesso venoso periférico calibroso. Na avaliação primária: A: vias aéreas protegidas por IOT, tubo fixado a 22 cm. B: ventilada em FiO2 40%, FR controlada, SatO2 98%, murmúrio vesicular presente bilateralmente, simétrico. C: PA 82x56 mmHg, FC 132 bpm, pulsos periféricos filiformes, enchimento capilar lento, pelve instável à palpação; FAST positivo no espaço hepatorrenal e pelve. D: ECG 3T, pupilas anisocóricas e fotorreagentes. E: escoriações em tórax e membros, hematoma em flanco esquerdo, temperatura 35,8 °C, dextro 98 mg/dL, fratura desalinhada de membro inferior esquerdo. Foi acionado protocolo de transfusão maciça com resposta hemodinâmica, e a paciente foi submetida a tomografia de corpo inteiro, reproduzida parcialmente abaixo (laceração hepática com extravasamento ativo do contraste, \"blush\"). Qual deve ser a conduta em relação ao achado abdominal?",
   alternativas:[{id:"A",texto:"Tamponamento intraperitoneal."},{id:"B",texto:"Laparoscopia."},{id:"C",texto:"Embolização."},{id:"D",texto:"Controle hematimétrico."}],
   gabarito:"C",
@@ -784,7 +784,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-058", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:58,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
-  imagemUrl:"dados/imagens/q-uspsp4-058.png", imagemLegenda:"Imagens da colonoscopia (cólon ascendente).",
+  imagemUrl:"dados/imagens/q-uspsp4-058.webp", imagemLegenda:"Imagens da colonoscopia (cólon ascendente).",
   enunciado:"Uma mulher de 71 anos de idade deu entrada em pronto-atendimento referindo episódio de enterorragia há um dia. Apresenta antecedente pessoal de hipertensão arterial sistêmica e dislipidemia. Encontra-se em bom estado geral, estável hemodinamicamente, com abdome plano, flácido e indolor. Exame proctológico sem doenças orificiais, toque retal com pequena quantidade de sangue vivo. Submetida a colonoscopia, com única alteração identificada em cólon ascendente e mostrada abaixo. O diagnóstico provável e a conduta endoscópica são, respectivamente:",
   alternativas:[{id:"A",texto:"Angiectasia e coagulação com plasma de argônio."},{id:"B",texto:"Linfoma intestinal e biópsia com imuno-histoquímica."},{id:"C",texto:"Colopatia isquêmica e sem indicação de intervenção endoscópica."},{id:"D",texto:"Colite infecciosa e pesquisa de protozoários intestinais por biópsia."}],
   gabarito:"A",
@@ -798,7 +798,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-059", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:59,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
-  imagemUrl:"dados/imagens/q-uspsp4-059.png", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-059.webp", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
   enunciado:"Um homem de 35 anos de idade, internado em unidade de terapia intensiva devido a meningite bacteriana, encontra-se sob intubação orotraqueal e com necessidade de terapia de substituição renal em dias alternados. Há dois dias, passou a apresentar novos episódios febris, piora dos parâmetros infecciosos e instabilidade hemodinâmica com necessidade de introdução de drogas vasoativas. Realizada investigação de foco infeccioso, sendo a única alteração recente identificada em exame tomográfico a seguir (vesícula biliar distendida, de paredes espessadas, com densificação da gordura adjacente). Qual deve ser a conduta neste momento?",
   alternativas:[{id:"A",texto:"Colecistostomia percutânea."},{id:"B",texto:"Colecistectomia videolaparoscópica."},{id:"C",texto:"Colecistectomia convencional."},{id:"D",texto:"Colangiopancreatografia retrógrada endoscópica (CPRE)."}],
   gabarito:"A",
@@ -812,7 +812,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-060", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:60,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
-  imagemUrl:"dados/imagens/q-uspsp4-060.png", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-060.webp", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
   enunciado:"Uma mulher de 22 anos de idade, internada devido a icterícia obstrutiva por coledocolitíase. Submetida a colangiopancreatografia retrógrada endoscópica (CPRE), sendo procedimento de difícil realização devido a cálculos grandes, sendo necessária realização de papilotomia ampla e remoção dos cálculos com auxílio de balão extrator. Imediatamente após o procedimento a paciente acordou referindo dor em andar superior do abdome de forte intensidade, sem náuseas ou vômitos. Ao exame clínico: bom estado geral, estável hemodinamicamente, com dor epigástrica à palpação profunda, sem sinais de irritação peritoneal. Realizado exame tomográfico mostrado a seguir (janela abdominal e pulmonar, com ar no retroperitônio). Qual é a complicação mais provável apresentada?",
   alternativas:[{id:"A",texto:"Perfuração duodenal."},{id:"B",texto:"Pancreatite aguda."},{id:"C",texto:"Trombose de veia esplênica."},{id:"D",texto:"Colangite aguda."}],
   gabarito:"A",
@@ -839,7 +839,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-062", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:62,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
-  imagemUrl:"dados/imagens/q-uspsp4-062.png", imagemLegenda:"Tomografia computadorizada de abdome e pelve da paciente (cortes coronal e sagital).",
+  imagemUrl:"dados/imagens/q-uspsp4-062.webp", imagemLegenda:"Tomografia computadorizada de abdome e pelve da paciente (cortes coronal e sagital).",
   enunciado:"Uma mulher de 40 anos de idade, submetida a ressecção discoide em cólon sigmoide para tratamento de endometriose intestinal. Apresenta antecedente pessoal de obesidade grau II. Evoluiu com deiscência de sutura no quinto pós-operatório, apresentando-se séptica e sendo submetida a laparotomia exploradora durante a madrugada. No intraoperatório, identificada contaminação fecal difusa da cavidade abdominal, sendo realizada ressecção do segmento fistulizado, sutura manual do coto retal e exteriorização de colostomia terminal em flanco esquerdo. Durante a liberação do ângulo esplênico, houve lesão inadvertida do baço, acompanhada de sangramento importante com necessidade de realização de esplenectomia e introdução de drogas vasoativas. Durante internação em Unidade de Terapia Intensiva, paciente apresentou melhora hemodinâmica e infecciosa. No oitavo pós-operatório da reoperação, já em enfermaria, paciente evoluiu com distensão abdominal, náuseas e vômitos, com colostomia sem nunca ter apresentado débito. Encontra-se em bom estado geral, estável hemodinamicamente, com abdome distendido, ruídos hidroaéreos diminuídos, flácido, dor à palpação difusamente, mais intensa em hipogástrio, sem sinais de irritação peritoneal. Foi realizado exame tomográfico ilustrado a seguir. A conduta indicada é:",
   alternativas:[{id:"A",texto:"Reabordagem cirúrgica."},{id:"B",texto:"Passagem de sonda nasogástrica e tratamento não operatório."},{id:"C",texto:"Drenagem percutânea guiada por método de imagem."},{id:"D",texto:"Clister glicerinado pela colostomia."}],
   gabarito:"A",
@@ -866,7 +866,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-064", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:64,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
-  imagemUrl:"dados/imagens/q-uspsp4-064.png", imagemLegenda:"Esofagograma contrastado do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-064.webp", imagemLegenda:"Esofagograma contrastado do paciente.",
   enunciado:"Um homem, 50 anos de idade, natural de Feira de Santana (BA), queixa-se de disfagia progressiva há 5 anos, atualmente para líquidos. Tem regurgitação e necessidade de uso de coluna d'água associada. Vem à triagem com o exame contrastado ao lado (esofagograma). Considerando que a manometria esofágica confirmou o diagnóstico mais provável. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Tratamento clínico."},{id:"B",texto:"Dilatação endoscópica."},{id:"C",texto:"Fundoplicatura a Nissen VLP."},{id:"D",texto:"Cardiomiotomia + fundoplicatura VLP."}],
   gabarito:"D",
@@ -893,7 +893,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-066", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:66,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-capancreas",
-  imagemUrl:"dados/imagens/q-uspsp4-066.png", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-066.webp", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
   enunciado:"Uma mulher, 75 anos de idade, com história de icterícia há 2 meses, e perda ponderal de 10 kg no período. Procurou serviço de saúde, tendo realizado tomografia de tórax, abdome e pelve que revelou massa na cabeça do pâncreas, associada a dilatação das vias biliares, sem acometimento de estruturas vasculares e sem lesões à distância. Complementado estadiamento com CA 19-9 cujo valor era de 150 U/mL. A tomografia de abdome pode ser visualizada na imagem a seguir. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Drenagem biliar por CPRE."},{id:"B",texto:"Pancreatectomia corpo-caudal com esplenectomia."},{id:"C",texto:"Gastroduodenopancreatectomia."},{id:"D",texto:"Drenagem transparieto-hepática."}],
   gabarito:"C",
@@ -907,7 +907,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-067", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:67,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepato-nodulos",
-  imagemUrl:"dados/imagens/q-uspsp4-067.png", imagemLegenda:"Ressonância magnética de abdome superior da paciente (fases T1 arterial, T1 portal e hepatobiliar).",
+  imagemUrl:"dados/imagens/q-uspsp4-067.webp", imagemLegenda:"Ressonância magnética de abdome superior da paciente (fases T1 arterial, T1 portal e hepatobiliar).",
   enunciado:"Uma mulher de 28 anos de idade, com sintomas dispépticos esporádicos há 3 anos. Nega náuseas ou emagrecimento. Durante a investigação realizou ultrassonografia de abdome que mostrou o fígado sem sinais de hepatopatia porém com lesão heterogênea de aproximadamente 5,3 cm. Antecedentes pessoais: faz uso regular de contraceptivos orais há 5 anos. Nega antecedentes familiares. Ao exame físico, apresentou bom estado geral e anictérica, IMC de 21,6 kg/m², abdome globoso, flácido, sem visceromegalias, indolor à palpação. Exames laboratoriais dentro da normalidade. Sorologias negativas. Realizou ressonância magnética de abdome superior com contraste hepatoespecífico, cujas imagens são apresentadas a seguir (fases T1 arterial, T1 portal e hepatobiliar). Qual é a principal hipótese diagnóstica para o nódulo hepático e qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Hiperplasia nodular focal; biópsia do nódulo hepático guiada por ultrassom."},{id:"B",texto:"Adenoma hepatocelular; seguimento clínico sem demais intervenções."},{id:"C",texto:"Adenoma hepatocelular; suspensão do anticoncepcional e seguimento com imagem em 6 meses."},{id:"D",texto:"Carcinoma hepatocelular; ressecção laparoscópica da lesão com margens livres."}],
   gabarito:"C",
@@ -960,7 +960,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-071", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:71,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
-  imagemUrl:"dados/imagens/q-uspsp4-071.png", imagemLegenda:"Ultrassonografias abdominais (A a D).",
+  imagemUrl:"dados/imagens/q-uspsp4-071.webp", imagemLegenda:"Ultrassonografias abdominais (A a D).",
   enunciado:"Um lactente, 5 semanas, apresenta vômitos não biliosos em jato há 10 dias. O exame físico é difícil devido à agitação. O ultrassom abdominal foi solicitado para confirmar a suspeita de estenose hipertrófica do piloro. Qual achado ultrassonográfico corrobora a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Imagem A (ultrassonografia abdominal)."},{id:"B",texto:"Imagem B (ultrassonografia abdominal)."},{id:"C",texto:"Imagem C (ultrassonografia abdominal)."},{id:"D",texto:"Imagem D (ultrassonografia abdominal)."}],
   gabarito:"C",
@@ -1078,7 +1078,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-080", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:80,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-uspsp4-080.png", imagemLegenda:"Gráfico de peso por idade da Caderneta da Criança.",
+  imagemUrl:"dados/imagens/q-uspsp4-080.webp", imagemLegenda:"Gráfico de peso por idade da Caderneta da Criança.",
   enunciado:"Você está avaliando um menino de 30 meses de idade em uma consulta de puericultura. A mãe não tem queixas específicas. Ao plotar os dados no gráfico de crescimento da Caderneta da Criança, você observa os seguintes pontos no índice peso/idade (gráfico abaixo). Qual é o diagnóstico e qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Desaceleração do crescimento. Investigar a alimentação da criança e a dinâmica familiar e agendar um retorno breve."},{id:"B",texto:"Baixo peso para a idade. Solicitar exames para doenças consumptivas e encaminhar para o gastropediatra."},{id:"C",texto:"Peso adequado para a idade. Manter o acompanhamento de rotina sem necessidade de intervenções."},{id:"D",texto:"Risco de sobrepeso. Orientar o aumento da oferta de alimentos ultraprocessados para estimular o apetite."}],
   gabarito:"A",
@@ -1144,7 +1144,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-085", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:85,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
-  imagemUrl:"dados/imagens/q-uspsp4-085.png", imagemLegenda:"Forest plot do ganho de vida com testes de rastreamento de câncer (dias de vida ganhos ou perdidos).",
+  imagemUrl:"dados/imagens/q-uspsp4-085.webp", imagemLegenda:"Forest plot do ganho de vida com testes de rastreamento de câncer (dias de vida ganhos ou perdidos).",
   enunciado:"Você está no estágio de internato de Medicina de Família e Comunidade e, após atender na Unidade Básica de Saúde um paciente com demanda de exames de check-up, seu preceptor te encaminha um artigo publicado no JAMA em agosto de 2023. Trata-se de uma metanálise de ensaios clínicos randomizados que avaliou o ganho de sobrevida (dias de vida ganhos) relacionado a seis testes de rastreamento de câncer comumente utilizados. O estudo incluiu 2.111.958 indivíduos, com períodos de acompanhamento que variaram de 10 a 15 anos, dependendo do teste. Os testes analisados foram mamografia, pesquisa de sangue oculto fecal (FOBT) anual ou bienal, sigmoidoscopia flexível, colonoscopia, teste de PSA e tomografia computadorizada de pulmão (para fumantes e ex-fumantes). O forest plot (figura) mostra, para cada teste, a estimativa pontual de dias de vida ganhos ou perdidos e o intervalo de confiança de 95%. A partir da análise do forest plot do artigo, assinale a alternativa que apresenta uma conclusão CORRETA sobre o impacto desses rastreamentos na sobrevida:",
   alternativas:[{id:"A",texto:"Em geral, a evidência atual confirma que a maioria dos testes de rastreamento de câncer prolonga significativamente a vida."},{id:"B",texto:"O rastreamento de câncer colorretal com sigmoidoscopia não demonstrou um prolongamento significativo da vida dos pacientes."},{id:"C",texto:"O rastreamento de câncer de mama com mamografia demonstrou um ganho estatisticamente significativo na longevidade."},{id:"D",texto:"O rastreamento de câncer colorretal com colonoscopia não aumentou a sobrevida de forma estatisticamente significativa."}],
   gabarito:"D",
@@ -1276,7 +1276,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-095", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:95,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-uspsp4-095.png", imagemLegenda:"Tabela 2x2 com a ocorrência de hipertensão nos grupos com e sem filtro.",
+  imagemUrl:"dados/imagens/q-uspsp4-095.webp", imagemLegenda:"Tabela 2x2 com a ocorrência de hipertensão nos grupos com e sem filtro.",
   enunciado:"Veículos a combustão liberam gases de efeito estufa, principalmente CO2, intensificando o aquecimento global e afetando negativamente a saúde da população. Um ensaio clínico randomizado investigou a associação entre uso de filtros contra poluição relacionada a veículos e risco de hipertensão em 77 pacientes. Os pacientes foram randomizados em dois grupos: o grupo tratamento ficou em uma sala com filtro contra poluição e o grupo controle ficou em uma sala sem filtro contra poluição. Os dois grupos ficavam nas respectivas salas durante 2 horas por sessão, totalizando 24 sessões. Os resultados do estudo se encontram na tabela: com filtro, 20 com hipertensão e 20 sem hipertensão (total 40); sem filtro, 21 com hipertensão e 16 sem hipertensão (total 37); total de 41 com e 36 sem hipertensão. Considerando a tabela acima, selecione a alternativa correta.",
   alternativas:[{id:"A",texto:"Seria necessário tratar 98 pacientes com filtros contra poluição para evitar hipertensão em um deles."},{id:"B",texto:"Pacientes que receberam o tratamento com filtro contra poluição tiveram um risco de hipertensão 89% maior do que os controles."},{id:"C",texto:"Seria necessário tratar 3 pacientes com filtros contra poluição para evitar hipertensão em um deles."},{id:"D",texto:"Pacientes que receberam o tratamento com filtro contra poluição tiveram um risco de hipertensão 11% menor do que os controles."}],
   gabarito:"D",
@@ -1356,7 +1356,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-101", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:101,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
-  imagemUrl:"dados/imagens/q-uspsp4-101.png", imagemLegenda:"Exantema da criança.",
+  imagemUrl:"dados/imagens/q-uspsp4-101.webp", imagemLegenda:"Exantema da criança.",
   enunciado:"Uma criança de 5 meses de idade é levada ao pronto-socorro com febre, tosse, coriza e hiperemia ocular há 3 dias. A mãe relata que o bebê está mais irritado e inapetente e que notou o surgimento de manchas vermelhas no rosto que estão se espalhando para o tronco, conforme a figura abaixo. Qual é a principal hipótese diagnóstica e a conduta indicada?",
   alternativas:[{id:"A",texto:"Dengue classe B; solicitar hemograma e NS1 e prescrever hidratação via oral no serviço de saúde."},{id:"B",texto:"Sarampo; solicitar RT-PCR em secreção nasofaríngea e prescrever vitamina A."},{id:"C",texto:"Exantema súbito; prescrever sintomáticos e orientar sinais de alarme para retorno ao pronto atendimento."},{id:"D",texto:"Escarlatina; solicitar pesquisa de estreptococo do grupo A em orofaringe e prescrever penicilina benzatina intramuscular."}],
   gabarito:"B",
@@ -1422,7 +1422,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-106", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:106,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pcr",
-  imagemUrl:"dados/imagens/q-uspsp4-106.png", imagemLegenda:"Traçado do monitor cardíaco.",
+  imagemUrl:"dados/imagens/q-uspsp4-106.webp", imagemLegenda:"Traçado do monitor cardíaco.",
   enunciado:"Uma criança de 8 anos, 25 kg, em pós-operatório tardio de correção do septo atrioventricular, procurou o PS por queixa de palpitações. Estava aguardando atendimento quando subitamente ficou arresponsiva. Levada à sala de emergência, checam-se os pulsos centrais e estão ausentes. Iniciada a ressuscitação cardiopulmonar (RCP) e aguarda-se a monitoração, que é representada abaixo (taquicardia de complexos largos, FC de 163 bpm). A melhor conduta imediata, dentre as abaixo, é:",
   alternativas:[{id:"A",texto:"RCP e adrenalina na dose de 0,01 mg/kg."},{id:"B",texto:"Desfibrilação com 50 joules."},{id:"C",texto:"Amiodarona na dose de 5 mg/kg."},{id:"D",texto:"Cardioversão com 25-50 J de carga."}],
   gabarito:"B",
@@ -1541,7 +1541,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-115", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:115,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-uspsp4-115.png", imagemLegenda:"Imagens de ultrassonografia pulmonar (A a D).",
+  imagemUrl:"dados/imagens/q-uspsp4-115.webp", imagemLegenda:"Imagens de ultrassonografia pulmonar (A a D).",
   enunciado:"Uma lactente de 4 meses de idade, nascida a termo, é levada ao pronto-socorro com história de tosse e rinorreia hialina há 2 dias, evoluindo com piora do cansaço, febre baixa (37,8 °C) e dificuldade para mamar nas últimas 6 horas. Ao exame clínico, apresenta-se taquidispneica (FR: 60 irpm), com tiragem subcostal leve, sibilância expiratória difusa e roncos de transmissão. Saturação de oxigênio de 93% em ar ambiente. Considerando a principal hipótese diagnóstica, qual é o padrão de imagem no POCUS pulmonar esperado?",
   alternativas:[{id:"A",texto:"Imagem A (ultrassom pulmonar)."},{id:"B",texto:"Imagem B (ultrassom pulmonar, com modo M)."},{id:"C",texto:"Imagem C (ultrassom pulmonar)."},{id:"D",texto:"Imagem D (ultrassom pulmonar)."}],
   gabarito:"C",
@@ -1555,7 +1555,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-116", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:116,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-alimentar",
-  imagemUrl:"dados/imagens/q-uspsp4-116.png", imagemLegenda:"Mãos e eletrocardiograma da adolescente.",
+  imagemUrl:"dados/imagens/q-uspsp4-116.webp", imagemLegenda:"Mãos e eletrocardiograma da adolescente.",
   enunciado:"Uma adolescente de 15 anos de idade apresenta-se ao pronto-socorro trazida por familiares devido a episódios de fraqueza intensa, palpitações e humor deprimido nas últimas semanas. Na anamnese, refere preocupação excessiva com peso e imagem corporal. A mãe relata que a filha costuma se isolar no banheiro após as refeições. No exame clínico: PA = 95x60 mmHg, FC = 112 bpm, FR = 17 ipm. Apresenta seguintes achados no exame das mãos e eletrocardiograma (figuras). Diante da história clínica, qual deve ser a conduta imediata no pronto-socorro?",
   alternativas:[{id:"A",texto:"Administrar gluconato de cálcio intravenoso para estabilização da membrana cardíaca."},{id:"B",texto:"Administrar cloreto de potássio intravenoso, monitorando ritmo cardíaco continuamente."},{id:"C",texto:"Indicar benzodiazepínico de curta ação para manejo de ansiedade e prevenir arritmias."},{id:"D",texto:"Prescrever soro fisiológico isotônico isolado para correção da desidratação."}],
   gabarito:"B",
@@ -1595,7 +1595,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-4", [
 {
   id:"q-uspsp4-119", banca:"Simulados USP SP — Simulado 4 (04/2025)", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:119,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
-  imagemUrl:"dados/imagens/q-uspsp4-119.png", imagemLegenda:"Oroscopia e radiografia cervical lateral da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp4-119.webp", imagemLegenda:"Oroscopia e radiografia cervical lateral da paciente.",
   enunciado:"Uma menina de 8 anos de idade é admitida no pronto-socorro de otorrinolaringologia para avaliação de odinofagia há 10 dias. De acordo com os pais, a criança apresentou coriza, febre de até 38,5 °C e tosse, sendo que há 4 dias começou a apresentar prostração, febre, queda do estado geral, recusa alimentar por dor para deglutição, além de dor cervical ao tentar rotacionar o pescoço. Apresenta ainda, segundo os pais, \"cansaço\" para todas as atividades e nos momentos após algum esforço físico maior, apresenta um ruído inspiratório alto. Nega comorbidades, alergias ou medicações de uso contínuo. Ao exame clínico, REG, descorada 1+/4+, hidratada, acianótica, taquipneia leve, anictérica, TAX 38,7 °C (última dose de dipirona há 3 horas). FC 140 bpm, PA 90x50 mmHg, FR 30 irpm, SpO2 92% em ar ambiente, tempo de enchimento capilar de 3 seg. A oroscopia apresenta o achado mostrado. Paciente traz de hospital externo exame radiológico a seguir. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Deve ser realizada nebulização com adrenalina racêmica e corticoterapia endovenosa, associada a suporte respiratório."},{id:"B",texto:"Apesar do estridor inspiratório, é possível aguardar a realização de exames complementares para conduzir o caso, uma vez que a saturação de oxigênio está adequada."},{id:"C",texto:"Deve-se introduzir antibioticoterapia de amplo espectro endovenosa, solicitar internação hospitalar e solicitar tomografia computadorizada de pescoço e tórax com contraste."},{id:"D",texto:"Tendo em vista a ausência de abscesso periamigdaliano na oroscopia, deve-se iniciar antibioticoterapia com amoxicilina + clavulanato via oral, sintomáticos e reavaliação em 48 horas em pronto-socorro."}],
   gabarito:"C",

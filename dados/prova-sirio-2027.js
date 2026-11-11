@@ -40,7 +40,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
 {
   id:"q-sirio2027-002", banca:"Sírio-Libanês (SP)", real:true, ano:2027, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-sirio2027-002.png",
+  imagemUrl:"dados/imagens/q-sirio2027-002.webp",
   enunciado:"Homem de 67 anos de idade apresenta quadro progressivo de 5 dias consistindo de sudorese, náuseas, vômitos e fraqueza muscular. Não há febre, tosse, diarreia ou sintomas urinários. Há duas semanas, ele teve erisipela no membro inferior direito e tomou durante 7 dias cefalexina, dipirona e nimesulida. O antecedente também é relevante para diabetes tipo 2, hipertensão arterial e doença renal crônica (creatinina do mês anterior: 1,9 mg/dL). As medicações de uso contínuo são: enalapril, anlodipino, aspirina em baixa dose, atorvastatina, dapaglifozina e insulinas glargina e asparte. Ao exame físico: frequência cardíaca: 76 bpm; pressão arterial: 102 × 55 mmHg; pulmonar: crepitações inspiratórias em 1/3 inferior bilateralmente; extremidades inferiores com edema simétrico 2+/4, sem sinais infecciosos. Glicemia capilar: 312 mg/dL. O paciente está monitorado, dois acessos venosos foram canulados, e amostras de sangue foram enviadas ao laboratório. O ECG realizado apresenta-se a seguir: Constitui a próxima medida de maior relevância:",
   alternativas:[{id:"A",texto:"amiodarona intravenosa."},{id:"B",texto:"cardioversão elétrica sincronizada com 100 joules."},{id:"C",texto:"aspirina, clopidogrel, heparina e tenecteplase."},{id:"D",texto:"angioplastia coronariana percutânea primária (CATE)."},{id:"E",texto:"gluconato de cálcio a 10% intravenoso."}],
   gabarito:"E",
@@ -171,7 +171,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
 {
   id:"q-sirio2027-012", banca:"Sírio-Libanês (SP)", real:true, ano:2027, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-bronquiectasias",
-  imagemUrl:"dados/imagens/q-sirio2027-012.png",
+  imagemUrl:"dados/imagens/q-sirio2027-012.webp",
   enunciado:"Mulher de 61 anos, com asma brônquica, apresenta tosse progressiva com expectoração de tampões mucosos (plugs) acastanhados e dispneia intermitente, apesar da terapia regular com inalação de corticosteroide e agonista ẞ2 de longa ação. A paciente relata febre baixa, apesar de estar afebril no momento. Ausculta pulmonar: sibilância bilateral e roncos ocasionais. A espirometria revela (% do previsto): VEF1: 45%; CVF: 81%; VEF1/CVF: 56%. Valores após inalação de broncodilatador (% do previsto): VEF1: 55%; CVF: 81%; VEF1/ CVF: 58%. A concentração de óxido nítrico exalado é de 56 ppb (normal: < 25). Exames séricos: leucograma: 8.800/mm³ (64% de neutrófilos; 6% de eosinófilos; 12% de linfocitos); proteína C reativa: 2,3 mg/dL (normal: < 1,0). A radiografia e tomografia realizadas são apresentadas a seguir: Considerando o exposto e a principal hipótese diagnóstica, a conduta adequada é",
   alternativas:[{id:"A",texto:"iniciar omalizumabe."},{id:"B",texto:"indicar uma biópsia transbrônquica."},{id:"C",texto:"pedir uma broncoscopia com lavado broncoalveolar."},{id:"D",texto:"prescrever ceftriaxona e claritromicina."},{id:"E",texto:"solicitar exames adicionais de sangue e escarro."}],
   gabarito:"E",

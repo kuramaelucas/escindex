@@ -38,7 +38,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-002", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-unicampdis2023-002.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-002.webp",
   tipo:"dissertativa", respostaEsperada:"TSH (avaliação da função tireoidiana) ou anticorpos antitireoidianos (anti-TPO, antitireoglobulina).",
   enunciado:"Mulher, 37a, é avaliada por surgimento de placas brancas nos membros superiores e inferiores, progressivamente maiores nos últimos quatro meses. Nega dor ou prurido associado e não faz uso de medicações. Exame físico: T=36,8oC; PA=116x82mmHg; FC=76bpm; FR=14irpm. Pele: presença de máculas acrômicas circulares e coalescentes em pernas, antebraços e mãos (Figura Q2, anexo). Este quadro clínico pode estar associado a outras doenças. O EXAME COMPLEMENTAR INDICADO PARA INVESTIGAR A COMORBIDADE MAIS FREQUENTE NESTE CASO É:",
   alternativas:[],
@@ -53,7 +53,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-003", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:3,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-unicampdis2023-003.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-003.webp",
   tipo:"dissertativa", respostaEsperada:"Tuberculose (tuberculose pulmonar, tuberculose secundária ou pós-primária).",
   enunciado:"Homem, 37a, foi trazido ao Pronto Atendimento com insuficiência respiratória e evoluiu para óbito. Achados da necropsia: ápice do lobo superior pulmonar esquerdo apresentando cavidades, contendo material necrótico nas paredes e múltiplos pequenos nódulos no parênquima subjacente, denotando destruição pulmonar progressiva no sentido do ápice para base (Figura Q3, anexo). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -68,7 +68,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-004", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
-  imagemUrl:"dados/imagens/q-unicampdis2023-004.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-004.webp",
   tipo:"dissertativa", respostaEsperada:"Carcinoma basocelular (CBC, basalioma).",
   enunciado:"Homem, 62a, apresenta uma lesão pápulo nodular, perlácea, em região de asa nasal esquerda há dois anos, de crescimento lento. Foi realizada uma biópsia e o exame histopatológico está representado na figura anexa (Figura Q4- anexo). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -97,7 +97,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-006", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-vasculites",
-  imagemUrl:"dados/imagens/q-unicampdis2023-006.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-006.webp",
   tipo:"dissertativa", respostaEsperada:"Endocardite bacteriana (infecciosa). Aceitam-se também crioglobulinemia e vasculite crioglobulinêmica.",
   enunciado:"Mulher, 32a, previamente hígida, internada para investigação de lesões de pele em pernas que surgiram há duas semanas, falta de ar progressiva há uma semana, com escarros hemoptoicos e piora nas últimas 48 horas. Exame físico: T=38,1oC; PA=162x96mmHg; membros inferiores: edema 1+/4+ e lesões purpúricas em pele (Figura Q6, anexo). Hb=9,2mg/dL; leucócitos=3.320/mm3 (neutrófilos=2.600/mm3, linfócitos=600/mm3 e eosinófilos=120/mm3); plaquetas=102.000/mm3; ureia=88mg/dL; creatinina=3,2mg/dL; C3=42mg/dL; C4=4mg/dL; VHS=102mm/h; proteína C reativa=6,2mg/L; fator antinuclear=1/160, padrão nuclear homogêneo. Exame de urina: hemácias=60/campo, leucócitos=40/campo, proteína=3+/4+, presença de acantócitos e codócitos; proteinúria 24h=3,2g. A história clínica e exames laboratoriais sugerem a hipótese diagnóstica de lúpus eritematoso sistêmico. O DIAGNÓSTICO DIFERENCIAL A SER DESCARTADO É:",
   alternativas:[],
@@ -126,7 +126,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-008", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-unicampdis2023-008.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-008.webp",
   tipo:"dissertativa", respostaEsperada:"Hidradenite supurativa (aceitam-se hidrosadenite supurativa ou hidradenite crônica; não se aceitam celulite, abscesso, erisipela ou micose).",
   enunciado:"Mulher, 32a, procura a Unidade Básica de Saúde por apresentar lesões nas regiões axilares e inguinais há 10 anos, que se iniciam com nódulos e abscessos e drenam secreção purulenta, resolvendo espontaneamente ou com antibióticos em uma a duas semanas. Já teve várias crises de dor e secreção e hoje apresenta fístulas drenantes nas axilas (Figura Q8, anexo). Antecedentes: obesidade e tabagismo ativo. Cultura da secreção: Staphylococcus aureus multissensível; culturas para fungos e micobactérias: negativas. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -141,7 +141,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-009", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:9,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-unicampdis2023-009.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-009.webp",
   tipo:"dissertativa", respostaEsperada:"Desfibrilação (cardioversão elétrica não sincronizada), seguida de sulfato de magnésio. O sulfato de magnésio ou o oxigênio isolados não são aceitos.",
   enunciado:"Homem, 46a, admitido na Sala de Emergência após episódio de síncope, ocorrida em um bar há 30 minutos. Exame físico: desnutrido; PA=126x72mmHg; FC=78bpm; FR=18irpm; oximetria de pulso=96% (ar ambiente); parótidas aumentadas. Eletrocardiograma: alargamento do intervalo QT. Após 20 minutos da admissão, apresentou dispneia súbita, com PA=82x46mmHg, FR=30irpm, oximetria de pulso=96% (ar ambiente). Você observa, no monitor, o seguinte traçado eletrocardiográfico: (ver figura). A CONDUTA IMEDIATA É:",
   alternativas:[],
@@ -170,7 +170,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-011", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-unicampdis2023-011.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-011.webp",
   tipo:"dissertativa", respostaEsperada:"Cateterismo cardíaco com angioplastia primária (intervenção coronariana percutânea). A trombólise química não é aceita.",
   enunciado:"Homem, 51a, é trazido pelo Serviço de Atendimento Móvel de Urgência à Unidade de Emergência Referenciada com história de dispneia e dor torácica em aperto, iniciadas há duas horas, com irradiação para o membro superior direito. Antecedentes: tabagismo, hipertensão arterial e acidente vascular encefálico hemorrágico há duas semanas. Exame físico: T=36,8oC; PA membro superior direito=116x92mmHg e membro superior esquerdo=112x84mmHg; FC=84bpm; FR=24irpm e oximetria de pulso=96% (ar ambiente); ausculta pulmonar com crepitações em ambas as bases. Recebeu AAS e clopidogrel no atendimento móvel. Eletrocardiograma na admissão da emergência: (ver figura). A CONDUTA É:",
   alternativas:[],
@@ -227,7 +227,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-015", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:15,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-unicampdis2023-015.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-015.webp",
   tipo:"dissertativa", respostaEsperada:"Subdural (subdural agudo). Não se aceita subdural crônico.",
   enunciado:"Mulher, 31a, sofreu queda de motocicleta em rodovia. Foi socorrida pelo atendimento pré-hospitalar e trazida ao Pronto Socorro com colar cervical, em prancha longa rígida, com cânula de Guedel e máscara de oxigênio não reinalante com 15L/min. Exame físico: PA=143x75mmHg; FC=96bpm; FR=22irpm; oximetria de pulso=97%. Neurológico: Escala de coma de Glasgow=7, pupilas anisocóricas. Após intubação orotraqueal, foi realizado protocolo de exames de imagem. Tomografia computadorizada de crânio (Figura Q15, anexo). O TIPO DE HEMATOMA INTRACRANIANO É:",
   alternativas:[],
@@ -340,7 +340,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-023", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:23,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-unicampdis2023-023.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-023.webp",
   tipo:"dissertativa", respostaEsperada:"Pâncreas e/ou duodeno (aceita-se intestino delgado, já que o duodeno faz parte dele).",
   enunciado:"Menino, 9a, é trazido à Unidade de Emergência após ter sofrido queda da bicicleta há duas horas. Exame físico: fácies dolorosa; palidez cutânea; FC=104bpm; FR=22irpm; PA=109x82mmHg; pulsos cheios. Abdome: doloroso à palpação, sem irritação peritoneal. (Figura Q23, anexo). O MECANISMO DE TRAUMA E O EXAME FÍSICO ESTÃO RELACIONADOS À LESÃO DE QUAL ÓRGÃO?",
   alternativas:[],
@@ -369,7 +369,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-025", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:25,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-leishmaniose",
-  imagemUrl:"dados/imagens/q-unicampdis2023-025.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-025.webp",
   tipo:"dissertativa", respostaEsperada:"Leishmaniose cutânea (leishmaniose tegumentar americana, úlcera de Bauru).",
   enunciado:"Adolescente, 15a, procura Unidade Básica de Saúde para avaliação de uma lesão que não cicatriza há dois meses. Exame físico: lesão em face anterior de região tibial esquerda (Figura Q25, anexo), sem outras alterações. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -398,7 +398,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-027", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:27,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unicampdis2023-027.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-027.webp",
   tipo:"dissertativa", respostaEsperada:"Paracoccidioidomicose (blastomicose sul-americana; forma juvenil causada pelo Paracoccidioides brasiliensis).",
   enunciado:"Menina, 5a, é internada para investigação com história de febre (1 pico diário de até 38,2oC), hipoatividade, palidez progressiva, perda de 10% do peso e surgimento de massas cervicais e pápulas cutâneas não pruriginosas há seis meses. Exame físico: regular estado geral; descorada 3+/4+; hipoativa; emagrecida; T=38,2oC; FC=100bpm; FR=23irpm; linfonodos= aumentados em todas as cadeias, com drenagem de secreção de linfonodo cervical direito (figura Q27, anexo). Hb=7,2g/dL; plaquetas=256.000/mm3; leucócitos=34.000/mm3 (segmentados=35%, linfócitos típicos=15%, eosinófilos=40%, monócitos=10%); albumina=2,8g/dL, gamaglobulina=3,78g/dL. A HIPÓTESE DIAGNÓSTICA ETIOLÓGICA É:",
   alternativas:[],
@@ -427,7 +427,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-029", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:29,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-unicampdis2023-029.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-029.webp",
   tipo:"dissertativa", respostaEsperada:"Cardioversão elétrica sincronizada (ou adenosina).",
   enunciado:"Menino, 10m, previamente hígido, é trazido à Emergência com história de palidez e sudorese durante a amamentação, há uma hora. Exame físico: mau estado geral; pálido; com cianose de extremidades e perioral; T=35,8oC; FC=214bpm; FR=56irpm; pulsos periféricos finos; tempo de enchimento capilar=6segundos. Coração: bulhas taquicárdicas e normofonéticas; pulmões: murmúrio vesicular presente e simétrico, estertores em bases; abdome: fígado a 4cm do rebordo costal direito. Eletrocardiograma: (ver figura). A CONDUTA É:",
   alternativas:[],
@@ -540,7 +540,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-037", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:37,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
-  imagemUrl:"dados/imagens/q-unicampdis2023-037.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-037.webp",
   tipo:"dissertativa", respostaEsperada:"Placenta prévia (placenta prévia centro-total).",
   enunciado:"Mulher, 38a, G3P2C2A0, idade gestacional de 28 semanas e 5 dias (E8), refere sangramento vaginal vermelho vivo em pequena quantidade há dois dias. Nega contrações, relação sexual ou esforço físico. Refere boa movimentação fetal. Nega perda de líquido por via vaginal. Exame físico: altura=1,71m; peso=85,5Kg; PA=122x72mmHg; FC=88bpm; altura uterina=27cm; batimentos cardíacos fetais=148bpm; dinâmica uterina=ausente; movimentos fetais=presentes. Especular=presença de pequena quantidade de sangue coletada em fundo de saco vaginal, sem sangramento ativo, colo aparentemente impérvio e sem lesões. Toque vaginal=não realizado. Solicitada ultrassonografia obstétrica, que apresenta a seguinte imagem (Figura Q37, anexo). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -555,7 +555,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-038", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:38,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unicampdis2023-038.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-038.webp",
   tipo:"dissertativa", respostaEsperada:"Herpes genital (herpes simples, herpes tipo 2). Herpes-zóster e outras lesões ulceradas não pontuam.",
   enunciado:"Mulher, 28a, refere dor e prurido vulvar, além de disúria. Refere que já teve três episódios semelhantes. Ao exame ginecológico, observa-se (figura Q38, anexo). A PRINCIPAL HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -584,7 +584,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-040", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:40,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-unicampdis2023-040.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-040.webp",
   tipo:"dissertativa", respostaEsperada:"Parto cesárea (aceitam-se cesárea, cesariana e via de parto alta). Não se aceitam outras vias.",
   enunciado:"Mulher, 30a, G4P3C0A0, sem comorbidades e com último parto há três anos, apresenta trabalho de parto espontâneo às 39 semanas e 4 dias de gestação, representado pelo seguinte partograma: (ver figura). A CONDUTA OBSTÉTRICA APÓS EXAME DAS 19:00 É:",
   alternativas:[],
@@ -655,7 +655,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-045", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:45,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-infertilidade",
-  imagemUrl:"dados/imagens/q-unicampdis2023-045.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-045.webp",
   tipo:"dissertativa", respostaEsperada:"Fator tubário (obstrução tubária bilateral, hidrossalpinge, fator tuboperitoneal). Endometriose, tuberculose e outras etiologias não se aceitam.",
   enunciado:"Casal comparece ao ambulatório referindo que deseja gestação. Mulher tem 30 anos, é nuligesta, refere ciclos regulares com duração de quatro dias, intervalo de 30 dias e não apresenta comorbidades. FSH=6,7mUI/mL (3º dia do ciclo), TSH=2,0µUI/mL e prolactina=15ng/mL. Marido tem 33 anos, não apresenta comorbidades e não tem filhos. Espermograma: volume=4mL; concentração espermática=30milhões/mL; concentração total de espermatozoides=60milhões/mL; motilidade A+B=60%; vitalidade=70% vivos; morfologia >4% (critério estrito de Kruger); leucócitos=500/mL. O casal está sem métodos contraceptivos há dois anos. Mulher apresenta exame de imagem (figura Q45, anexo). A CAUSA DA ESTERILIDADE É:",
   alternativas:[],
@@ -670,7 +670,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-046", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:46,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-mamabenigna",
-  imagemUrl:"dados/imagens/q-unicampdis2023-046.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-046.webp",
   tipo:"dissertativa", respostaEsperada:"Alta ou seguimento ambulatorial (manter a rotina ginecológica, conduta expectante, orientação sobre benignidade). Não se aceitam punção do cisto, mamografia, repetição da ultrassonografia ou biópsia.",
   enunciado:"Mulher, 35a, procura atendimento por palpar nodulação indolor em mama esquerda há três meses. Nega outras queixas. Exame físico: mama sem abaulamentos ou retrações, ausência de descarga papilar; palpa-se área nodular de 1,5cm fibroelástica, móvel, não aderida a planos superficiais e profundos em quadrante superior lateral de mama esquerda, indolor à palpação; ausência de linfonodos axilares e em fossa supra clavicular. Ultrassonografia de mamas: imagem medindo 1,6cm em quadrante superior lateral de mama esquerda. (Figura Q46, anexo). CONSIDERANDO A IMAGEM ANEXA, A CONDUTA É:",
   alternativas:[],
@@ -797,7 +797,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2023-dissertativa", [
 {
   id:"q-unicampdis2023-055", banca:"UNICAMP (dissertativa)", real:true, ano:2023, numeroNaProva:55,
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-saudetrabalhador",
-  imagemUrl:"dados/imagens/q-unicampdis2023-055.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2023-055.webp",
   tipo:"dissertativa", respostaEsperada:"Elaioconiose (dermatite folicular); aceita-se dermatose associada à manipulação de graxas e óleos. 'Dermatose' sozinha não basta.",
   enunciado:"Homem, 46a, procura Unidade Básica de Saúde queixando-se de surgimento de pontos pretos pruriginosos nos membros superiores, há cerca de quatro meses. Nega quadro semelhante anterior. É mecânico há 12 anos e nunca usou equipamento de proteção individual. Exame físico: pele=presença de pápulas foliculares com pontos centrais enegrecidos localizados no dorso das mãos e na face extensora das falanges, antebraços e braços, poupando a região palmar (figura Q55, anexo). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],

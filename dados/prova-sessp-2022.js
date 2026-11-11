@@ -30,7 +30,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-001", banca:"SES-SP", real:true, ano:2022, numeroNaProva:1,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
-  imagemUrl:"dados/imagens/q-sessp2022-001.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-001.webp",
   enunciado:"Um homem idoso apresenta-se em serviço de emergência com relato de dor torácica retroesternal de forte intensidade (10 de 10 em escala numérica) há cerca de uma hora, em rasgante, com irradiação para o dorso. Previamente hipertenso, com uso irregular de medicações, ao exame físico da admissão, estava lúcido e orientado, com fácies de dor, sudoreico, com pressão arterial de MSD 168 x 96 mmHg e MSE 130 x 50 mmHg, frequência cardíaca de 124 bpm, frequência respiratória de 20 rpm, temperatura de 36,7 ⁰C e saturação de 98%. Foram realizadas medidas de estabilização e exames complementares (mostrados a seguir). Com base nesse caso hipotético, assinale a alternativa que apresenta a conduta a ser adotada após os resultados dos últimos exames realizados.",
   alternativas:[{id:"A",texto:"trombólise, seguida de cineangiocoronariografia de estratificação"},{id:"B",texto:"seriar marcadores de lesão miocárdica (troponina seriada)"},{id:"C",texto:"realizar dupla antigregação plaquetária e anticoagulação plena"},{id:"D",texto:"encaminhar com urgência para centro cirúrgico"},{id:"E",texto:"indicar angioplastia primária em centro de hemodinâmica"}],
   gabarito:"D",
@@ -70,7 +70,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-004", banca:"SES-SP", real:true, ano:2022, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-sessp2022-004.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-004.webp",
   enunciado:"Um homem de setenta anos de idade, previamente hipertenso e diabético, deu entrada em uma unidade de baixa complexidade, há duas horas, com dor torácica e dor em opressão retroesternal, irradiando para membro superior esquerdo, sem outros sintomas associados e sem fatores de melhora ou piora. Realizou um eletrocardiograma inicial em menos de 10 minutos da admissão, que evidenciou supradesnivelamento de segmento ST em derivações V1-V6 (abaixo). Feito o diagnóstico, observou-se que o tempo necessário para se transferir o paciente para o serviço especializado de hemodinâmica mais próximo era de 90 minutos. Com base nesse caso hipotético, a melhor conduta será",
   alternativas:[{id:"A",texto:"fibrinólise com tenecteplase em bólus e transferir o paciente se houver piora clínica."},{id:"B",texto:"fibrinólise com tenecteplase em bólus e, em caso de sucesso, realizar cateterismo no sétimo dia pós-IAM."},{id:"C",texto:"fibrinólise com tenecteplase em bólus e transferir o paciente para realizar cateterismo entre duas e 24 horas."},{id:"D",texto:"administrar AAS 200 mg, clopidogrel 300 mg, enoxaparina 30 mg, IV, e transferir o paciente imediatamente para realizar cateterismo."},{id:"E",texto:"administrar AAS 200 mg, clopidogrel 300 mg, enoxaparina 30 mg, SC, e aguardar resultado de enzimas cardíacas."}],
   gabarito:"D",
@@ -123,7 +123,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-008", banca:"SES-SP", real:true, ano:2022, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-sessp2022-008.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-008.webp",
   enunciado:"Uma mulher de sessenta anos de idade deu entrada em serviço de emergência com relato de dor torácica retroesternal leve, sem irradiações, com sensação subjetiva de dispneia associada. Previamente com relato de miocardite viral por covid e hipertensão arterial sistêmica, em uso irregular de medicações, ao exame físico da admissão, estava lúcida e orientada, com pressão arterial de 150 x 100 mmHg, bilateralmente, frequência cardíaca de 124 bpm, frequência respiratória de 28 irpm e saturação de 91% em ar ambiente, evoluindo, durante a avaliação, com piora da dispneia, progressivamente, assim como com a ausculta evidenciando estertores até o ápice pulmonar. Realizou, também, a radiografia seguinte. Com base nesse caso hipotético, assinale a alternativa que apresenta a conduta que deverá ser adotada no momento.",
   alternativas:[{id:"A",texto:"solicitar tomografia de tórax para complementar e iniciar antibioticoterapia empírica"},{id:"B",texto:"solicitar angiotomografia e iniciar anticoagulação plena"},{id:"C",texto:"solicitar teste rápido de covid e começar corticoide endovenoso conforme protocolo recovery"},{id:"D",texto:"realizar dose de ataque de furosemida e nitrato endovenoso e ventilação não invasiva"},{id:"E",texto:"realizar intubação orotraqueal e iniciar vasopressores"}],
   gabarito:"D",
@@ -280,7 +280,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-020", banca:"SES-SP", real:true, ano:2022, numeroNaProva:20,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-sessp2022-020.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-020.webp",
   enunciado:"Um homem de 62 anos de idade, previamente hipertenso, refere que estava compensado e assintomático quando começou, há cinco meses, com dispneia aos esforços, após uma sensação de opressão no tórax, que melhorava parcialmente com o repouso e que perdurou cerca de cinco dias. Ele não procurou o serviço médico na época. Nega tosse, expectoração ou chiado. Nega tabagismo. Exame físico: PA de 140 x 76 mmHg; FC de 86 bpm; e saturação de O2 (ar ambiente) de 91%. Ausculta cardíaca: hiperfonese e desdobramento de segunda bulha em foco pulmonar. Turgência jugular bilateral. Presença de estertores bibasais e de edema de membros inferiores. Exames laboratoriais: hemoglobina 12,2 g/dL; leucócitos 8.500/mm3; e plaquetas 152.000/mm3. Realizou, também, a radiografia de tórax reproduzida a seguir. Com base nesse caso hipotético, é correto afirmar que o exame indicado para se iniciar a investigação da dispneia do paciente é o(a)",
   alternativas:[{id:"A",texto:"tomografia computadorizada de tórax."},{id:"B",texto:"prova de função pulmonar."},{id:"C",texto:"ecocardiograma transtorácico."},{id:"D",texto:"cintilografia de ventilação-perfusão."},{id:"E",texto:"angiotomografia de coronária."}],
   gabarito:"C",
@@ -554,7 +554,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-041", banca:"SES-SP", real:true, ano:2022, numeroNaProva:41,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
-  imagemUrl:"dados/imagens/q-sessp2022-041.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-041.webp",
   enunciado:"Um recém-nascido de 35 semanas e 3/7, com peso de nascimento de 2.420 g, filho de mãe asiática, permanece com a mãe em alojamento conjunto após o nascimento, com dificuldade de amamentação, e apresenta icterícia zona 3 com 48 horas de vida. Realizou coleta de bilirrubina total sérica nesse momento: BT 12,1 mg/dL. Considerando esse caso hipotético e o nomograma acima, é correto afirmar que, além de se iniciar investigação da etiologia da hiperbilirrubinemia, deve-se indicar uma",
   alternativas:[{id:"A",texto:"fototerapia, com determinação da irradiância emitida."},{id:"B",texto:"fototerapia, associada à imunoglobulina endovenosa."},{id:"C",texto:"exsanguineotransfusão."},{id:"D",texto:"oferta de leite materno ordenhado por sonda nasogástrica e uma coleta de controle de bilirrubina em 8 horas."},{id:"E",texto:"transfusão sanguínea e uma portoenterostomia de Kasai."}],
   gabarito:"A",
@@ -737,7 +737,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-055", banca:"SES-SP", real:true, ano:2022, numeroNaProva:55,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-sessp2022-055.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-055.webp",
   enunciado:"Um menino de três anos de idade, previamente hígido, foi levado à consulta com o pediatra. Vacinação adequada pelo PNI, DNPM adequado, alimentação rica em açúcares e gordura, 16 kg de peso e 95 cm de estatura. De acordo com o IMC (curva de IMC por idade para meninos do Ministério da Saúde, imagem anexa), o diagnóstico nutricional do paciente, nesse caso hipotético, é de",
   alternativas:[{id:"A",texto:"eutrofia, por apresentar escore-Z de IMC entre –2 e +1."},{id:"B",texto:"eutrofia, por apresentar escore- Z de IMC entre –1 e +2."},{id:"C",texto:"risco de sobrepeso, por apresentar escore- Z de IMC entre +2 e +3."},{id:"D",texto:"risco de sobrepeso, por apresentar escore- Z de IMC entre +1 e +2."},{id:"E",texto:"sobrepeso, por apresentar escore- Z de IMC entre +1 e +2."}],
   gabarito:"D",
@@ -1284,7 +1284,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-097", banca:"SES-SP", real:true, ano:2022, numeroNaProva:97,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-sessp2022-097.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-097.webp",
   enunciado:"Segundo a meta-análise publicada no Journal of the American Heart Association, em 2020, diversas são as intervenções não farmacológicas que podem reduzir a pressão arterial. Na figura acima, há um forest plot evidenciando os resultados encontrados para a redução da pressão arterial sistólica (PAS). A partir desses resultados, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A meditação e o controle da respiração são intervenções com capacidade de reduzir a PAS."},{id:"B",texto:"O tai chi é a intervenção que comprovadamente tem a melhor capacidade de reduzir a PAS."},{id:"C",texto:"A restrição de sal e o yoga são intervenções com capacidade de reduzir a PAS."},{id:"D",texto:"A dieta de baixa caloria e a dieta DASH não têm a capacidade de reduzir a PAS."},{id:"E",texto:"O qijong e os exercícios de resistência têm a capacidade de reduzir a PAS."}],
   gabarito:"",
@@ -1298,7 +1298,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
 {
   id:"q-sessp2022-098", banca:"SES-SP", real:true, ano:2022, numeroNaProva:98,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
-  imagemUrl:"dados/imagens/q-sessp2022-098.jpg",
+  imagemUrl:"dados/imagens/q-sessp2022-098.webp",
   enunciado:"O estudo Hygia foi um ensaio clínico multicêntrico, prospectivo e aberto, que teve a intenção de avaliar o controle pressórico com o tratamento medicamentoso prescrito à noite versus o tratamento medicamentoso prescrito ao acordar. A imagem acima resume os resultados de um desfecho combinado de eventos cardiovasculares do ensaio clínico. Conforme esses dados, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Como a maioria dos pacientes faz uso de diurético para o controle pressórico, esse resultado tem sua aplicabilidade limitada."},{id:"B",texto:"Prescrever anti-hipertensivos à noite é definitivamente melhor que prescrevê-los pela manhã."},{id:"C",texto:"Prescrever anti-hipertensivos pela manhã é definitivamente melhor que prescrevê-los à noite."},{id:"D",texto:"Há uma tendência de redução de eventos cardiovasculares no grupo prescrito à noite, devido ao estudo ser aberto."},{id:"E",texto:"Há uma tendência de redução de eventos cardiovasculares no grupo prescrito pela manhã, devido ao estudo ser aberto."}],
   gabarito:"D",

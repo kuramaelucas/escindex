@@ -469,7 +469,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2024", [
 {
   id:"q-famerp2024-035", banca:"FAMERP", real:true, ano:2024, numeroNaProva:35,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-famerp2024-035.jpg", imagemLegenda:"Partograma da primigesta (dilatação, descida, FCF, contrações e bolsa).",
+  imagemUrl:"dados/imagens/q-famerp2024-035.webp", imagemLegenda:"Partograma da primigesta (dilatação, descida, FCF, contrações e bolsa).",
   enunciado:"Primigesta, 39 semanas de gestação, apresenta evolução do trabalho de parto demonstrado pelo partograma abaixo. De acordo com esses dados, o diagnóstico e a conduta, de acordo com o observado na 7ª e 8ª hora de registro são, respectivamente:",
   alternativas:[{id:"A",texto:"Variedade de posição occipito transversa esquerda e realizar rotação manual do polo cefálico."},{id:"B",texto:"Ocorrência de desproporção cefalopélvica absoluta com distocia funcional e realizar parto cesáreo."},{id:"C",texto:"Assinclitismo posterior com parada secundária da descida e resolução da gestação com fórceps de rotação."},{id:"D",texto:"Fase ativa prolongada por distocia funcional, realizar amniotomia e posterior infusão de ocitocina."}],
   gabarito:"A",
@@ -483,7 +483,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2024", [
 {
   id:"q-famerp2024-036", banca:"FAMERP", real:true, ano:2024, numeroNaProva:36,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-famerp2024-036.jpg", imagemLegenda:"Cardiotocografia da paciente; as setas marcam as desacelerações.",
+  imagemUrl:"dados/imagens/q-famerp2024-036.webp", imagemLegenda:"Cardiotocografia da paciente; as setas marcam as desacelerações.",
   enunciado:"Primigesta com 32 anos de idade, 40 semanas de gestação, internada com queixa de contrações uterinas fortes e perda de líquido há 30 minutos. O pré-natal foi sem intercorrências. Ao exame obstétrico, foi observada dilatação cervical de 4 cm. Considerando o quadro clínico e a cardiotocografia da paciente em anexo, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Cardiotocografia categoria I, com presença de DIPs tardios, indicando insuficiência placentária e resolução imediata da gestação."},{id:"B",texto:"Cardiotocografia Categoria I, com DIPs precoces, por compressão cefálica, de ocorrência no final do período expulsivo."},{id:"C",texto:"Cardiotocografia categoria III, com frequência cardíaca fetal dentro da normalidade, ocorrência de DIPs tardios, indicando compressão de cordão umbilical."},{id:"D",texto:"Cardiotocografia categoria III, com ausência de variabilidade basal, indicando hipóxia fetal grave e resolução imediata da gestação."}],
   gabarito:"D",

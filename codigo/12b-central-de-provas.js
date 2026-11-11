@@ -148,8 +148,8 @@ function confirmarExcluirCarga(cargaId){
   const carga = getCargaProva(cargaId); if(!carga) return;
   const r = resumoCarga(carga);
   abrirModal(`${cabecalhoJanela("Descartar o acompanhamento desta prova?")}
-    <p>Isso apaga o controle de lotes de <strong>${escapeHtml(nomeDaCarga(carga))}</strong>${r.prontas?" e o texto de "+r.prontas+" questão(ões) conferida(s) e ainda não publicada(s)":""}.</p>
-    <p class="text-sm muted mt-1">As ${r.publicadas} questão(ões) já publicadas no banco <strong>continuam lá</strong> — quem apaga questão do banco é a tela Banco de Questões.</p>
+    <p>Isso apaga o controle de lotes de <strong>${escapeHtml(nomeDaCarga(carga))}</strong>${r.prontas?" e o texto de "+r.prontas+" "+plural(r.prontas,"questão","questões")+" conferida(s) e ainda não publicada(s)":""}.</p>
+    <p class="text-sm muted mt-1">As ${r.publicadas} ${plural(r.publicadas,"questão","questões")} já publicadas no banco <strong>continuam lá</strong> — quem apaga questão do banco é a tela Banco de Questões.</p>
     <div class="flex gap-1 mt-3"><button class="btn btn-danger" onclick="excluirCargaProva('${carga.id}')">Descartar acompanhamento</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirCargaProva(cargaId){
@@ -176,7 +176,7 @@ function modeloConstrucaoLote(carga, lote){
   const faixa = lote.inicio===lote.fim ? ("a questão "+lote.inicio) : ("as questões "+lote.inicio+" a "+lote.fim);
   return "Você vai transcrever UM PEDAÇO de uma prova pública "+descricaoProvaNoPrompt(tipoDaCarga(carga))+" para um formato de texto que a plataforma Esc lê automaticamente.\n\n"+
   "PROVA: "+carga.instituicao+" · "+carga.ano+(carga.fase?" · "+carga.fase:"")+"\n"+
-  "PEDAÇO DESTE LOTE: "+faixa+" ("+quantas+" questão(ões), nem mais nem menos)\n\n"+
+  "PEDAÇO DESTE LOTE: "+faixa+" ("+quantas+" "+plural(quantas,"questão","questões")+", nem mais nem menos)\n\n"+
   "Transcreva SOMENTE "+faixa+". Não adiante questões de outros trechos, não volte às anteriores e não invente questão nenhuma para fechar a conta: se a prova terminar antes do número "+lote.fim+", escreva isso numa linha depois do último bloco, em vez de completar.\n\n"+
   "Comece a resposta exatamente assim, sem nada antes:\n\n"+
   "INSTITUICAO: "+carga.instituicao+"\n"+
@@ -299,7 +299,7 @@ function conferirLoteProva(cargaId, loteId){
   state.filtroRota.destinoImportacao = carga.destino;
   render();
   const r = lote.resumo;
-  toast(r.validas+" questão(ões) prontas de "+r.esperado+" esperadas"+(r.comProblema?" · "+r.comProblema+" com problema":"")+(r.faltando.length?" · faltam as nº "+resumirNumeros(r.faltando,4):"")+". Nada foi publicado ainda.", (r.comProblema||r.faltando.length)?"err":undefined);
+  toast(r.validas+" "+plural(r.validas,"questão","questões")+" prontas de "+r.esperado+" esperadas"+(r.comProblema?" · "+r.comProblema+" com problema":"")+(r.faltando.length?" · faltam as nº "+resumirNumeros(r.faltando,4):"")+". Nada foi publicado ainda.", (r.comProblema||r.faltando.length)?"err":undefined);
 }
 function limparLoteProva(cargaId, loteId){
   const carga = getCargaProva(cargaId); const lote = loteDaCarga(carga, loteId);
@@ -334,7 +334,7 @@ function publicarLoteProva(cargaId, loteId, silencioso){
   if(ctx.loteAberto===loteId){ ctx.loteAberto = null; state.filtroRota.previewImportacao = null; }
   saveState();
   if(!silencioso){
-    toast(r.importadas+" questão(ões) publicada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s)":"")+
+    toast(r.importadas+" "+plural(r.importadas,"questão","questões")+" publicada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" "+plural(r.novosAssuntos,"assunto","assuntos")+" novo(s)":"")+
       (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
       (carga.destino==="sugerir"?" — aguardando aprovação.":"."));
     render();
@@ -347,7 +347,7 @@ function confirmarPublicarConferidos(cargaId){
   if(!conferidos.length){ toast("Não há lote conferido esperando publicação.", "err"); return; }
   const questoes = conferidos.reduce((s,l)=>s+((l.resumo&&l.resumo.validas)||0),0);
   abrirModal(`${cabecalhoJanela(`Publicar ${conferidos.length===1?"o lote conferido":"os "+conferidos.length+" lotes conferidos"} no banco?`)}
-    <p>Vão para o banco cerca de <strong>${questoes} questão(ões)</strong> de ${escapeHtml(nomeDaCarga(carga))}${carga.destino==="sugerir"?", como pendentes de aprovação":""}.</p>
+    <p>Vão para o banco cerca de <strong>${questoes} ${plural(questoes,"questão","questões")}</strong> de ${escapeHtml(nomeDaCarga(carga))}${carga.destino==="sugerir"?", como pendentes de aprovação":""}.</p>
     <p class="text-sm muted mt-1">Faixas: ${conferidos.map(l=>l.inicio+"–"+l.fim).join(", ")}. Depois de publicadas, elas passam a ser editadas pelo Banco de Questões como qualquer outra.</p>
     <div class="flex gap-1 mt-3"><button class="btn btn-primary" onclick="publicarConferidosDaCarga('${carga.id}')">Publicar tudo</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
@@ -359,7 +359,7 @@ function publicarConferidosDaCarga(cargaId){
     const r = publicarLoteProva(cargaId, l.id, true);
     if(r){ total += r.importadas; lotesOk++; }
   });
-  toast(lotesOk ? ((lotesOk===1?"1 lote publicado":lotesOk+" lotes publicados")+" · "+total+" questão(ões) no banco.") : "Nenhum lote pôde ser publicado.", lotesOk?undefined:"err");
+  toast(lotesOk ? ((lotesOk===1?"1 lote publicado":lotesOk+" lotes publicados")+" · "+total+" "+plural(total,"questão","questões")+" no banco.") : "Nenhum lote pôde ser publicado.", lotesOk?undefined:"err");
   render();
 }
 
@@ -429,7 +429,7 @@ function cardCargaProva(c){
       <div class="peso-700">${escapeHtml(nomeDaCarga(c))}</div>
       <span class="badge ${r.concluida?"badge-accent":r.publicadas?"badge-amber":"badge-muted"}">${r.concluida?"concluída":r.publicadas?"em andamento":"não começada"}</span>
     </div>
-    <div class="text-sm muted mt-1">${r.publicadas} de ${r.total} questão(ões) no banco${r.prontas?" · "+r.prontas+" conferida(s) esperando publicação":""}</div>
+    <div class="text-sm muted mt-1">${r.publicadas} de ${r.total} ${plural(r.total,"questão","questões")} no banco${r.prontas?" · "+r.prontas+" conferida(s) esperando publicação":""}</div>
     <div class="progress-track mt-1"><div class="progress-fill" style="width:${r.pctPublicado}%"></div></div>
     <div class="qcard-meta mt-1">
       <span class="badge badge-muted">${r.publicados}/${r.lotes} lotes publicados</span>
@@ -468,7 +468,7 @@ function renderCargaProva(carga){
   </div>
 
   <div class="card-flat mb-2 text-sm">
-    <strong>Conferência contra o banco:</strong> ${conf.noBanco} questão(ões) de ${escapeHtml(carga.instituicao)} ${carga.ano} existem hoje no banco${conf.comNumero?" ("+conf.comNumero+" com o número da prova registrado)":""}.
+    <strong>Conferência contra o banco:</strong> ${conf.noBanco} ${plural(conf.noBanco,"questão","questões")} de ${escapeHtml(carga.instituicao)} ${carga.ano} existem hoje no banco${conf.comNumero?" ("+conf.comNumero+" com o número da prova registrado)":""}.
     ${conf.faltando.length ? `<div class="mt-1 texto-alerta">${iconeSvg("alert")} Faltam os números: ${resumirNumeros(conf.faltando)}</div>`
       : `<div class="mt-1" style="color:var(--accent-dark)">${iconeSvg("check")} Todos os ${carga.totalQuestoes} números da prova já estão no banco.</div>`}
     <div class="text-xs muted mt-1">A conferência olha o campo "número na prova" das questões publicadas. Questão importada antes desta tela existir não tem esse número e por isso não aparece aqui — o que não quer dizer que esteja faltando no banco.</div>
@@ -485,7 +485,7 @@ function renderLoteProva(carga, lote, aberto){
     <div class="flex justify-between items-center quebra-gap">
       <div>
         <div class="peso-700">Questões ${lote.inicio} a ${lote.fim} <span class="badge ${badge[0]}">${badge[1]}</span></div>
-        <div class="text-xs muted mt-1">${lote.fim-lote.inicio+1} questão(ões) esperadas${lote.recebidoEm?" · conferido em "+formatDataBR(lote.recebidoEm):""}${lote.publicadoEm?" · publicado em "+formatDataBR(lote.publicadoEm):""}</div>
+        <div class="text-xs muted mt-1">${lote.fim-lote.inicio+1} ${plural(lote.fim-lote.inicio+1,"questão","questões")} esperadas${lote.recebidoEm?" · conferido em "+formatDataBR(lote.recebidoEm):""}${lote.publicadoEm?" · publicado em "+formatDataBR(lote.publicadoEm):""}</div>
       </div>
       <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="copiarModeloLote('${carga.id}','${lote.id}')">${iconeSvg("search")} Copiar modelo</button>

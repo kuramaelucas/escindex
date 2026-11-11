@@ -26,7 +26,7 @@ test("Início do aluno mantém meta, sequência, acerto, revisão, subdivisões 
       return { texto: pg.innerText, temDetalhes: !!pg.querySelector(".detalhes-bloco"), temSub: !!(bloco && subdivisoesDoBloco(bloco).length),
         detalhesTexto: pg.querySelector(".detalhes-bloco")?.textContent || "", botao: !!pg.querySelector("button[onclick^='iniciarSessaoRecomendada']") };
     });
-    for(const trecho of [/Bloco atual:/, /\d+\/\d+\s*questões hoje/, /dia\(s\) seguidos estudando/, /acerto geral/, /assunto\(s\) para revisar hoje/,
+    for(const trecho of [/Bloco atual:/, /\d+\/\d+\s*questões hoje/, /dias? seguidos estudando/, /acerto geral/, /assuntos? para revisar hoje/,
       /Sugestões de assuntos para melhorar/, /Revisão pendente/, /Livro de Ouro/, /Enviar feedback/]) assert.match(r.texto, trecho);
     assert.ok(r.botao, "o botão Começar agora segue na tela");
     if(r.temSub){ assert.ok(r.temDetalhes); assert.match(r.detalhesTexto, /tempo dividido igualmente/); }

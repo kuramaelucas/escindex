@@ -830,7 +830,7 @@ function renderSessaoResumo(){
   const primeiraEmBranco = indicesEmBranco(sessao)[0];
   const linhaConfianca = (chave, rotulo) => {
     const c = porConfianca[chave];
-    return `<div class="stat-tile"><div class="stat-value" style="font-size:var(--fs-lg)">${c.n?pct(c.ok,c.n)+"%":"—"}</div><div class="stat-label">acerto quando ${rotulo} (${c.n} questão(ões))</div></div>`;
+    return `<div class="stat-tile"><div class="stat-value" style="font-size:var(--fs-lg)">${c.n?pct(c.ok,c.n)+"%":"—"}</div><div class="stat-label">acerto quando ${rotulo} (${c.n} ${plural(c.n,"questão","questões")})</div></div>`;
   };
   return `
   <div class="page-header"><h2>Conjunto de questões concluído</h2><p>${sessao.somenteLeitura?"Revisão do conjunto respondido em "+formatDataBR(sessao.dataOriginal||hojeISO())+".":"Veja abaixo, questão a questão, o que você acertou, errou, chutou ou respondeu na dúvida. Clique em qualquer uma para voltar a ela."}</p></div>
@@ -934,7 +934,7 @@ function imagemDaQuestaoFalhou(img, qid){
 function ampliarImagemQuestao(qid, src){
   const q = getQuestao(qid); if(!q || !q.imagemUrl) return;
   abrirModal(`${cabecalhoJanela(escapeHtml(q.imagemLegenda||"Imagem da questão"))}
-    <img src="${escapeHtml(src || q.imagemUrl)}" style="width:100%;border-radius:var(--radius-sm)" alt="">`, "lg");
+    <img loading="lazy" decoding="async" src="${escapeHtml(src || q.imagemUrl)}" style="width:100%;border-radius:var(--radius-sm)" alt="">`, "lg");
 }
 function renderReferenciasQuestao(q){
   if(!q.referencias) return "";
@@ -1139,7 +1139,7 @@ function renderAcoesQuestao(q){
     <button class="btn btn-secondary btn-sm" onclick="abrirPromptDuvida('${q.id}')">${iconeSvg("message")} Tirar dúvida com IA</button>
   </div>
   ${nota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(nota)}</div></div>` : ""}
-  ${cartoesDaQuestao(uidAtual, q.id).length ? `<div class="text-xs muted mt-1">${iconeSvg("cards")} Você já tem ${cartoesDaQuestao(uidAtual, q.id).length} cartão(ões) escrito(s) a partir desta questão.</div>` : ""}`;
+  ${cartoesDaQuestao(uidAtual, q.id).length ? `<div class="text-xs muted mt-1">${iconeSvg("cards")} Você já tem ${cartoesDaQuestao(uidAtual, q.id).length} ${plural(cartoesDaQuestao(uidAtual, q.id).length,"cartão","cartões")} escrito(s) a partir desta questão.</div>` : ""}`;
 }
 /* Cartões pessoais que o usuário criou a partir de uma questão específica. */
 function cartoesDaQuestao(usuarioId, questaoId){

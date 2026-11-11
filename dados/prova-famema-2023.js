@@ -509,7 +509,7 @@ window.EscDados.registrarQuestoes("prova-famema-2023", [
 {
   id:"q-famema2023-038", banca:"FAMEMA", real:true, ano:2023, numeroNaProva:38,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-vm",
-  imagemUrl:"dados/imagens/q-famema2023-038.png",
+  imagemUrl:"dados/imagens/q-famema2023-038.webp",
   enunciado:"Analise a curva capnográfica a seguir. A curva sugere",
   alternativas:[{id:"A",texto:"broncocostrição."},{id:"B",texto:"hipoventilação."},{id:"C",texto:"hiperventilação."},{id:"D",texto:"intubação seletiva."}],
   gabarito:"A",
@@ -523,7 +523,7 @@ window.EscDados.registrarQuestoes("prova-famema-2023", [
 {
   id:"q-famema2023-039", banca:"FAMEMA", real:true, ano:2023, numeroNaProva:39,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pcr",
-  imagemUrl:"dados/imagens/q-famema2023-039.png",
+  imagemUrl:"dados/imagens/q-famema2023-039.webp",
   enunciado:"Paciente de 65 anos apresenta parada cardiorrespiratória. O traçado está representado a seguir. Além de desfibrilação, pode-se utilizar a seguinte sequência de drogas, considerando a persistência do ritmo e o tempo preconizado de intervalo entre elas:",
   alternativas:[{id:"A",texto:"adrenalina 1 mg, lidocaína 1 mg/kg, adrenalina 1 mg, lidocaína 0,75 mg/kg, adrenalina 1 mg e, daí para frente, apenas adrenalina 1 mg a cada 3-5 minutos."},{id:"B",texto:"adrenalina 1 mg, amiodarona 300 mg, adrenalina 1 mg, amiodarona 150 mg, adrenalina 1 mg, lidocaína 1 mg/kg, adrenalina 1 mg, lidocaína 0,75 mg/kg, adrenalina 1 mg e, daí para frente, apenas adrenalina 1 mg a cada 3-5 minutos."},{id:"C",texto:"adrenalina 1 mg, amiodarona 300 mg, adrenalina 1 mg, amiodarona 150 mg, adrenalina 1 mg, lidocaína 1 mg/kg, adrenalina 1 mg, lidocaína 1 mg/kg, adrenalina 1 mg e, daí para frente, apenas adrenalina 1 mg a cada 3-5 minutos."},{id:"D",texto:"adrenalina 1 mg, amiodarona 450 mg, adrenalina 1 mg, lidocaína 1 mg/kg, adrenalina 1 mg, lidocaína 0,75 mg/kg, adrenalina 1 mg e, daí para frente, apenas adrenalina 1 mg a cada 3-5 minutos."}],
   gabarito:"B",

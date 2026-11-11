@@ -75,7 +75,7 @@ test("trilha: assunto com o dobro de erro recebe o dobro de questões, misturada
       return _trilha.assuntos.length;
     });
     assert.equal(depoisMarcar, 2, "marcar um assunto da fila o inclui");
-    assert.match(await pagina.textContent("#previaTrilha"), /questão\(ões\)/);
+    assert.match(await pagina.textContent("#previaTrilha"), /questões/);
     await pagina.evaluate(() => iniciarTrilhaDeEstudos());
     const sessao = await pagina.evaluate(() => ({ n: state.sessaoAtual.itens.length, origem: state.sessaoAtual.itens[0].origem }));
     assert.equal(sessao.origem, "trilha");

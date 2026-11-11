@@ -23,7 +23,7 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { RAIZ, carregar } from "./lib-dados.mjs";
 import { resumoDaProva } from "./dados.mjs";
-import { resumirNumeros } from "../testes/conferir-dados.mjs";
+import { resumirNumeros, conferir } from "../testes/conferir-dados.mjs";
 
 const INDEX = path.join(RAIZ, "index.html");
 const CATALOGO = path.join(RAIZ, "dados", "CATALOGO.md");
@@ -99,18 +99,41 @@ export function catalogo(){
   return linhas.join("\n") + "\n";
 }
 
+/* Os números do banco nos documentos (RESUMO-PROJETO-ESC.md e PENDENCIAS.md): o
+   texto entre <!-- numeros:inicio --> e <!-- numeros:fim --> é escrito daqui, para
+   "5.455 questões" nunca envelhecer num parágrafo. Só esse trecho é gerado. */
+const DOCS_COM_NUMEROS = ["RESUMO-PROJETO-ESC.md", "PENDENCIAS.md"];
+const MARCADOR = /(<!-- numeros:inicio -->)[\s\S]*?(<!-- numeros:fim -->)/;
+export function blocoDeNumeros(){
+  const t = conferir().totais, n = x => Number(x).toLocaleString("pt-BR");
+  return `> **Números do banco (gerados por \`npm run publicar\`):** ${n(t.questoes)} questões (${n(t.reais)} reais, em ${n(t.provas)} provas), ` +
+    `${n(t.cartoes)} cartões da equipe e ${n(t.assuntos)} assuntos (${n(t.assuntosSemCartao)} ainda sem cartão). Detalhe: \`npm run dados\` e \`dados/CATALOGO.md\`.`;
+}
+function docsVelhos(bloco){
+  return DOCS_COM_NUMEROS.map(f => path.join(RAIZ, f)).filter(f => fs.existsSync(f)).filter(f => {
+    const txt = fs.readFileSync(f, "utf8");
+    return MARCADOR.test(txt) && !txt.includes("\n" + bloco + "\n");
+  });
+}
+function gravarNumeros(bloco){
+  for(const f of docsVelhos(bloco)) fs.writeFileSync(f, fs.readFileSync(f, "utf8").replace(MARCADOR, (m, a, b) => a + "\n" + bloco + "\n" + b));
+}
+
 if(process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])){
   const soConferir = process.argv.includes("--conferir");
   const versao = versaoEsperada(), cat = catalogo();
   const velhaVersao = versao !== versaoGravada() || hashesGravados() !== linhaDeHashes();
   const velhoCatalogo = !fs.existsSync(CATALOGO) || fs.readFileSync(CATALOGO, "utf8") !== cat;
+  const bloco = blocoDeNumeros(), velhosDocs = docsVelhos(bloco);
   if(soConferir){
     if(velhaVersao) console.error(`A versão do index.html (${versaoGravada()}) está velha — o código ou o conteúdo mudou. Rode: npm run publicar`);
     if(velhoCatalogo) console.error("dados/CATALOGO.md está velho — o conteúdo mudou. Rode: npm run publicar");
-    process.exit(velhaVersao || velhoCatalogo ? 1 : 0);
+    if(velhosDocs.length) console.error("Números desatualizados em " + velhosDocs.map(f => path.basename(f)).join(", ") + ". Rode: npm run publicar");
+    process.exit(velhaVersao || velhoCatalogo || velhosDocs.length ? 1 : 0);
   }
   if(velhaVersao) fs.writeFileSync(INDEX, fs.readFileSync(INDEX, "utf8").replace(LINHA_VERSAO, `$1${versao}$3`).replace(LINHA_HASHES, () => linhaDeHashes()));
   if(velhoCatalogo) fs.writeFileSync(CATALOGO, cat);
+  gravarNumeros(bloco);
   const antes = versaoGravada();
   console.log(velhaVersao ? `Versão: ${versao}` : `Versão já em dia: ${antes}`);
   console.log(velhoCatalogo ? "dados/CATALOGO.md atualizado." : "dados/CATALOGO.md já em dia.");

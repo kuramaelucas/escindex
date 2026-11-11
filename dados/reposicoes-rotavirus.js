@@ -17,7 +17,7 @@ window.EscDados.registrarQuestoes("reposicoes-rotavirus", [
   "areaId": "area-ped",
   "especialidadeId": "esp-crescdesenv",
   "assuntoId": "ass-calendariovacinal",
-  "imagemUrl": "dados/imagens/q-amrigs2021-072.jpg",
+  "imagemUrl": "dados/imagens/q-amrigs2021-072.webp",
   "imagemLegenda": "Cartão de vacinas em branco",
   "enunciado": "Mãe de um bebê o levou para à primeira consulta de revisão de puericultura com cinco meses e dez dias. Apresentou a carteira de vacinação abaixo. Qual das seguintes vacinas NÃO seria indicada para regularização imediata das vacinas desse paciente?",
   "alternativas": [

@@ -21,7 +21,7 @@
 window.EscDados.registrarQuestoes("prova-usp-2024", [
 {
   id:"q-usp2024-001", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:1,
-  imagemUrl:"dados/imagens/q-usp2024-001.png", imagemLegenda:"Controles de enfermagem, radiografia de tórax e prescrição atual",
+  imagemUrl:"dados/imagens/q-usp2024-001.webp", imagemLegenda:"Controles de enfermagem, radiografia de tórax e prescrição atual",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"TEXTO PARA AS QUESTÕES 01 E 02 Paciente de 2 meses, sexo masculino, em uso de fórmula láctea de partida, foi internado em leito de enfermaria há 24 horas. Na admissão, apresentava história de tosse e coriza há dois dias e desconforto respiratório há um dia. Ao exame clínico, neste momento, paciente segue com desconforto respiratório, apresenta ausculta respiratória com sibilos e estertores em bases bilateralmente, tiragem subdiafragmática leve/ moderada, FR: 71 ipm, FC: 168 bpm, SpO2 94% em cateter nasal de oxigênio 2 L/min. Peso: 4 kg. As anotações nos controles de enfermagem, o exame de imagem realizado e a prescrição atual são demonstrados a seguir: Assinale a alternativa que apresenta a conduta indicada para esse paciente, neste momento.",
@@ -36,7 +36,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-002", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:2,
-  imagemUrl:"dados/imagens/q-usp2024-002.jpg", imagemLegenda:"As quatro alternativas são fotografias de dispositivos de oxigenoterapia com o fluxo indicado (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2024-002.webp", imagemLegenda:"As quatro alternativas são fotografias de dispositivos de oxigenoterapia com o fluxo indicado (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
   enunciado:"TEXTO PARA AS QUESTÕES 01 E 02 Paciente de 2 meses, sexo masculino, em uso de fórmula láctea de partida, foi internado em leito de enfermaria há 24 horas. Na admissão, apresentava história de tosse e coriza há dois dias e desconforto respiratório há um dia. Ao exame clínico, neste momento, paciente segue com desconforto respiratório, apresenta ausculta respiratória com sibilos e estertores em bases bilateralmente, tiragem subdiafragmática leve/ moderada, FR: 71 ipm, FC: 168 bpm, SpO2 94% em cateter nasal de oxigênio 2 L/min. Peso: 4 kg. O lactente evoluiu algumas horas depois com piora do cansaço, apresentando tiragens importantes e batimento de asa nasal, com SpO2 de 90% em cateter nasal 2 L/min. Foi optado por escalonar suporte respiratório. Assinale a alternativa que contem o dispositivo mais adequado neste momento e o respectivo fluxo a ser utilizado inicialmente.",
@@ -135,7 +135,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-009", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:9,
-  imagemUrl:"dados/imagens/q-usp2024-009.jpg", imagemLegenda:"Fotografia da face da criança (rubor)",
+  imagemUrl:"dados/imagens/q-usp2024-009.webp", imagemLegenda:"Fotografia da face da criança (rubor)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-intoxicacoes",
   enunciado:"Paciente de 5 anos, sexo masculino, sem antecedentes relevantes foi encontrado desacordado em casa pela avó e levado prontamente ao hospital. Ele estava aos cuidados do irmão de 16 anos, que aparentemente havia saído e deixado o menor assistindo à televisão. Até então, ele estava bem e assintomático. Ao exame em sala de emergência, o paciente apresentava via aérea pérvia, FR: 22 ipm, SpO2 96%, ausculta e expansibilidade pulmonar preservadas, FC: 140 bpm, PA: 130x80 mmHg, pulso e perfusão preservados, apresentando mucosas secas. Na avaliação neurológica alternava períodos de sonolência com agitação e pupilas midriáticas. Bexiga palpável próxima à região umbilical, temperatura de 37,9 C. Exposição sem hematomas, face conforme imagem a seguir: Assinale qual e o mecanismo responsável pelo quadro clínico apresentado.",
@@ -150,7 +150,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-010", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:10,
-  imagemUrl:"dados/imagens/q-usp2024-010.jpg", imagemLegenda:"Fotografias da paciente, radiografia do trajeto da derivação e tomografia de crânio",
+  imagemUrl:"dados/imagens/q-usp2024-010.webp", imagemLegenda:"Fotografias da paciente, radiografia do trajeto da derivação e tomografia de crânio",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-hidrocefalia",
   enunciado:"Paciente feminina de 7 meses, com antecedente de hidrocefalia diagnosticada após o nascimento e portadora de derivação ventrículo peritoneal (DVP), foi trazida ao pronto atendimento por apresentar irritabilidade há uma semana, sonolência há 3 dias e piora dos escapes convulsivos há um dia. Faz uso continuo de anticonvulsivantes e das vitaminas indicadas para a idade. Ao exame: FC: 85 bpm, FR: 20 ipm; PA: 116x70 mmHg. A seguir, imagens da paciente e dos exames realizados. Assinale a alternativa que descreve corretamente a interpretação clínica e dos exames de imagem apresentados pela paciente.",
@@ -165,7 +165,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-011", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:11,
-  imagemUrl:"dados/imagens/q-usp2024-011.jpg", imagemLegenda:"Fotografia das lesões residuais em membros inferiores",
+  imagemUrl:"dados/imagens/q-usp2024-011.webp", imagemLegenda:"Fotografia das lesões residuais em membros inferiores",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-vasculites",
   enunciado:"Paciente de 4 anos previamente hígido esta passando em consulta de rotina pediátrica. Mãe refere que, há cerca de 2 semanas, ele apresentou um quadro de dor nos punhos e tornozelos, dor abdominal e \"caroços elevados\" pelo corpo. Ela o medicou com amoxicilina por conta própria e refere que, após cerca de uma semana, as lesões começaram a melhorar. Ao exame, está em BEG, corado, hidratado, FC: 92 bpm, FR: 20 ipm, PA: 82x50 mmHg. Restante do exame clínico sem alterações, exceto por lesões residuais em membros inferiores, conforme imagem a seguir. Considerando a principal hipótese diagnóstica, assinale os exames que deverão ser realizados de forma seriada nos meses subsequentes.",
@@ -180,7 +180,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-012", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:12,
-  imagemUrl:"dados/imagens/q-usp2024-012.jpg", imagemLegenda:"As quatro alternativas são imagens de procedimentos de reanimação (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2024-012.webp", imagemLegenda:"As quatro alternativas são imagens de procedimentos de reanimação (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-reanimacao",
   enunciado:"Gestante, com 30 anos, primigesta, previamente hígida, realizou 06 consultas de pré-natal. No 3º trimestre foi observado polidrâmnio (ILA de 26 cm) em exame de ultrassonografia. Com 41 semanas de idade gestacional foi submetida a parto cesáreo, devido a falha de indução. Bolsa rota no ato, com líquido claro com grumos. Recém-nascido (RN) do sexo masculino, hipotônico e sem choro, imediatamente após a extração. Realizado o clampeamento imediato do cordão umbilical, foi levado ao berço aquecido, secado e estimulado, posicionado e foram aspiradas vias aéreas superiores. Apresentava-se, em seguida, com frequência cardíaca de 50 bpm e em apneia. Com base nas informações fornecidas, assinale o próximo procedimento a ser realizado.",
@@ -223,7 +223,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-015", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:15,
-  imagemUrl:"dados/imagens/q-usp2024-015.png", imagemLegenda:"Radiografia de ossos longos do recém-nascido",
+  imagemUrl:"dados/imagens/q-usp2024-015.webp", imagemLegenda:"Radiografia de ossos longos do recém-nascido",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Gestante com 20 anos, primigesta, realizou pré-natal com 8 consultas, sem comorbidades. No 1o trimestre apresentou teste rápido para sífilis reagente. Na Unidade Básica de Saúde (UBS) foi solicitado Veneral Disease Research Laboratory (VDRL) com título de 1/128, sendo prescrito tratamento com penicilina G benzatina 2.400.000 UI intramuscular, 3 doses, com intervalo de 1 semana, iniciadas em 22/04/23. Foram realizados controles de VDRL: - 20/05/23: VDRL 1/64 - 29/07/23: VDRL 1/16 - 05/10/23: VDRL 1/8 RN nasceu em 10/12/23 com idade gestacional de 39 semanas. Na maternidade foi realizada investigação: - VDRL materno: 1/32 - VDRL RN: 1/8 Foram solicitados exames complementares do RN, conforme imagens e informações a seguir: - RX de ossos longos - Hemograma completo: Hemoglobina 15 g/dL; hematocrito 40%; leucocitos 12.000/mm3; bastonetes 1%; segmentados 17%; linfocitos 65%; monocitos 15%; eosinófilos 2%; plaquetas 200.000/mm3. - Liquor: ligeiramente turvo e xantocrômico; células: 17/mm3; hemácias: 100/mm3; proteínas: 125 mg/dL; glicose: 45 mg/dL. - VDRL não reagente. Assinale a conduta correta a ser proposta para o RN, com base nos resultados de exames:",
@@ -280,7 +280,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-019", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:19,
-  imagemUrl:"dados/imagens/q-usp2024-019.png", imagemLegenda:"Monitorização: FC 158 bpm, SpO2 97%, PA 70/40 mmHg",
+  imagemUrl:"dados/imagens/q-usp2024-019.webp", imagemLegenda:"Monitorização: FC 158 bpm, SpO2 97%, PA 70/40 mmHg",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
   enunciado:"Paciente de 2 anos, sexo feminino, sem antecedentes relevantes, apresenta quadro de febre de até 39.8 °C, vômitos e prostração, há dois dias. Hoje estava sonolenta e apresentou episódio de crise convulsiva tônico-clônica generalizada com duração de cerca de 10 minutos, sendo levada ao pronto- Na triagem, paciente apresentou nova crise convulsiva, sendo levada à sala de emergência. Foi solicitado acesso venoso, cuja obtenção foi malsucedida. Após administração de duas doses da medicação obteve-se controle da crise convulsiva e foi possível obter um acesso venoso periférico. Na avaliação sistematizada em sala de emergência, a paciente apresentava os seguintes dados de exame físico e monitorização. A: Via aérea pérvia. B: Murmurio vesicular presente sem ruídos adventícios, boa expans ibilidade, FR 43 ipm. C: 2B RNF sem sopros, tempo de enchimento capilar 5 segundos, pulsos finos. D: Sem resposta verbal e ocular, retira o membro ao estímulo do lo roso. Pupilas isofotorreagentes. Glicemia capilar 73 mg/dL. E: Nada digno de nota. Assinale a alternativa que apresenta a conduta correta nesse momento.",
@@ -365,7 +365,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-025", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:25,
-  imagemUrl:"dados/imagens/q-usp2024-025.png", imagemLegenda:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2024-025.webp", imagemLegenda:"Tomografia de abdome",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
   enunciado:"Mulher, 61 anos, refere alteração do habito intestinal há 6 meses, com diarreia intercalada com constipação. Relata sangue nas fezes nesse período. Nega vômitos e perda de peso. Nega comorbidades. Ao exame físico, está em bom estado geral; IMC: 22kg/m2; ausculta torácica sem alterações; abdome flácido, indolor à palpação, sem massas palpáveis; toque retal sem alterações. Apresenta Hb de 10,3 g/dL. Foi submetida a colonoscopia, que evidenciou lesão ulcerada no sigmoide, envolvendo 50% da luz do órgão, sem outras lesões ate a válvula ileocecal. A biopsia do sigmoide revelou tratar-se de adenocarcinoma. Realizado estadiamento com a tomografia de abdome apresentada a seguir: Assinale a melhor conduta neste momento.",
@@ -380,7 +380,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-026", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:26,
-  imagemUrl:"dados/imagens/q-usp2024-026.jpg", imagemLegenda:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2024-026.webp", imagemLegenda:"Tomografia de abdome",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   enunciado:"Mulher, 69 anos, refere estar há 7 dias sem evacuar, dor em cólicas e aumento do volume abdominal. Nega vômitos. Refere ser constipada. O habito intestinal habitual era de evacuações a cada 4 dias com uso de laxativos. No último ano, passou a necessitar de lavagens intestinais esporádicas. Tem diagnóstico de doença de Chagas com miocardiopatia e arritmia controlada com medicamentos. Ao exame físico encontra-se em bom estado geral, desidratada, FC de 80 bpm, PA de 120x80 mmHg; abdome: distensão importante, doloroso à palpação profunda sem irritação peritoneal; toque retal sem fezes. Exames laboratoriais: Hb: 11,7 g/dL; Ht: 35%; leucócitos: 9.419/mm3 sem desvio; PCR: 17 mg/L; creatinina: 1,1 mg/dL; ureia: 39 mg/dL. Tomografia apresentada a seguir: Considerando-se a principal hipótese, assinale a melhor conduta neste momento.",
@@ -423,7 +423,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-029", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:29,
-  imagemUrl:"dados/imagens/q-usp2024-029.jpg", imagemLegenda:"Fotografias da lesão perineal na admissão e após o desbridamento",
+  imagemUrl:"dados/imagens/q-usp2024-029.webp", imagemLegenda:"Fotografias da lesão perineal na admissão e após o desbridamento",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
   enunciado:"Homem, 53 anos, é admitido no serviço de urgência com a lesão demonstrada na figura a seguir. Foi realizado desbridamento e antibioticoterapia conforme imagem apresentada a seguir. A partir da evolução apresentada, qual e a conduta mais adequada neste momento?",
@@ -452,7 +452,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-031", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:31,
-  imagemUrl:"dados/imagens/q-usp2024-031.jpg", imagemLegenda:"Fotografia do ferimento cervical",
+  imagemUrl:"dados/imagens/q-usp2024-031.webp", imagemLegenda:"Fotografia do ferimento cervical",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
   enunciado:"Homem, 30 anos, foi vítima de ferimento por projétil de arma de fogo no pescoço. Admissão no Centro de Trauma: A: Conversando. Hálito etílico. SpO2: 96% com máscara de oxigênio. B: MV presente bilateralmente. Ausência de enfisema de subcutâneo torácico. C: PA: 140x70 mmHg; FC: 105 bpm; tempo de enchimento capilar de 1 segundo. D: Escala de coma de Glasgow de 15 (agitado). E: Ferimento demonstrando na figura a seguir. Ausência de enfisema de subcutâneo. Realizada analgesia com melhorada dor e agitação. Assinale qual é a melhor conduta neste momento do atendimento.",
@@ -481,7 +481,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-033", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:33,
-  imagemUrl:"dados/imagens/q-usp2024-033.jpg", imagemLegenda:"Fotografia da fratura exposta da perna",
+  imagemUrl:"dados/imagens/q-usp2024-033.webp", imagemLegenda:"Fotografia da fratura exposta da perna",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
   enunciado:"TEXTO PARA AS QUESTOES 33 E 34 Homem, 23 anos, vitima de queda de motocicleta em alta velocidade. Avaliação na admissão no Serviço de Emergência: A: Intubado; SpO2: 93%. B: MV e ausculta diminuídos à esquerda. C: PA: 140x70 mmHg; FC: 90 bpm; FAST negativo. D: Escala de Coma de Glasgow de 3. Sedação. Pupilas anisocóricas, com midríase à esquerda. E: Fratura exposta de perna esquerda, conforme imagem a seguir. O paciente será submetido à analgesia, imunização antitetânica e antibiótico. Qual é a classificação de Gustillo-Anderson para a fratura exposta e qual a conduta na Sala de Trauma, respectivamente?",
@@ -496,7 +496,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-034", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:34,
-  imagemUrl:"dados/imagens/q-usp2024-034.jpg", imagemLegenda:"Fotografia da fratura exposta e cortes da tomografia de corpo inteiro",
+  imagemUrl:"dados/imagens/q-usp2024-034.webp", imagemLegenda:"Fotografia da fratura exposta e cortes da tomografia de corpo inteiro",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
   enunciado:"TEXTO PARA AS QUESTOES 33 E 34 Homem, 23 anos, vitima de queda de motocicleta em alta velocidade. Avaliação na admissão no Serviço de Emergência: A: Intubado; SpO2: 93%. B: MV e ausculta diminuídos à esquerda. C: PA: 140x70 mmHg; FC: 90 bpm; FAST negativo. D: Escala de Coma de Glasgow de 3. Sedação. Pupilas anisocóricas, com midríase à esquerda. E: Fratura exposta de perna esquerda, conforme imagem a seguir. O paciente será submetido à analgesia, imunização antitetânica e antibiótico. Após o atendimento inicial, foi encaminhado para exame de tomografia de corpo inteiro com as imagens apresentadas a seguir: Assinale qual é a sequencia de tratamento adequada para esse paciente, respectivamente.",
@@ -511,7 +511,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-035", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:35,
-  imagemUrl:"dados/imagens/q-usp2024-035.jpg", imagemLegenda:"Radiografia de bacia e ilustração com as posições 1 a 4 para o lençol",
+  imagemUrl:"dados/imagens/q-usp2024-035.webp", imagemLegenda:"Radiografia de bacia e ilustração com as posições 1 a 4 para o lençol",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
   enunciado:"Mulher, 23 anos, caiu de uma altura de 8 metros. Na admissão no serviço de emergência apresentava instabilidade hemodinâmica. No exame físico apresentou instabilidade da bacia. Foi realizado raio-X de bacia, conforme figura a seguir: Foi indicada a colocação de lençol para fechamento temporário do anel pélvico. Qual é o reparo anatômico correto para colocação do lençol, de acordo coma ilustração apresentada?",
@@ -526,7 +526,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-036", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:36,
-  imagemUrl:"dados/imagens/q-usp2024-036.jpg", imagemLegenda:"Fotografia da massa na coxa",
+  imagemUrl:"dados/imagens/q-usp2024-036.webp", imagemLegenda:"Fotografia da massa na coxa",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cironco-sarcomas",
   enunciado:"Homem, 37 anos, refere aumento do volume da coxa esquerda que associa com trauma local ocorrido há 6 meses. Nega dor local ou limitação de movimentação. Ao exame físico apresenta massa fibroelástica na face posterior da coxa esquerda de 15 x 10 cm, conforme imagem a seguir: Não apresenta restrição de movimentação e pulsos presentes e normais. Realizada ressonância magnética do membro, que evidenciou lesão profunda em compartimento posterior da coxa, em contato com o nervo ciático. Foi submetido à biópsia que revelou tratar-se de sarcoma de alto grau. Assinale qual deve ser a próxima conduta na condução do caso.",
@@ -541,7 +541,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-037", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:37,
-  imagemUrl:"dados/imagens/q-usp2024-037.jpg", imagemLegenda:"Fotografia do sítio de inserção do cateter",
+  imagemUrl:"dados/imagens/q-usp2024-037.webp", imagemLegenda:"Fotografia do sítio de inserção do cateter",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-iras",
   enunciado:"Homem, 43 anos, está internado há 35 dias devido à ressecção intestinal extensa em uso de nutrição parenteral exclusiva. Fez uso pós-operatório de ceftriaxone e metronidazol por 5 dias e, desde então, está sem antibiótico. Há 3 horas apresentou temperatura de 38,5 C. Ao exame físico, encontra-se em bom estado geral; FC: 80 bpm; PA: 130x80 mmHg; perfusão periférica normal; ausculta pulmonar sem alterações; abdome flácido, indolor e com a ferida operatória sem sinais infecciosos. A inspeção do sitio do cateter encontra-se na imagem a seguir: Exames laboratoriais: - Hb: 10,2 g/dL - Leucócitos: 11.330/mm3 - PCR: 20 mg/L Solicitada coleta de hemocultura. Com base nessas informações, assinale qual é a conduta mais adequada neste momento.",
@@ -556,7 +556,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-038", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:38,
-  imagemUrl:"dados/imagens/q-usp2024-038.jpg", imagemLegenda:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2024-038.webp", imagemLegenda:"Tomografia de abdome",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-arterial",
   enunciado:"Mulher, 64 anos, está internada na unidade coronariana há 20 dias após parada cardiorrespiratória secundária a infarto agudo do miocárdio. Evoluiu com disfunção cardíaca e desde então, esta tomando dobutamina e noradrenalina. Há 1 dia cursou com distensão abdominal e leve dor difusa. Ao exame físico encontra-se orientada, com SpO2 de 95% em ar ambiente; FC: 80 pbm; PA: 120x70 mmHg; ausculta pulmonar sem alterações; abdome distendido, doloroso à palpação profunda, sem irritação peritoneal, ruídos hidroaéreos diminuídos. Toque retal sem alterações. - Exames laboratoriais: Hb: 9,8 g/dL Leucócitos: 19.471/ mm3 PCR: 272 mg/L (de 3 dias atrás era de 30 mg/L) Cr: 1,7 mg/dL Ureia: 60 mg/dL Amilase: 232 U/L Lipase: 190 U/L K*: 4,1 mEq/L Na*: 143 mEq/L Realizada tomografia de abdome apresentada a seguir. Assinale qual é a principal hipótese diagnóstica.",
@@ -585,7 +585,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-040", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-usp2024-040.png", imagemLegenda:"Tomografia de abdome (corte coronal)",
+  imagemUrl:"dados/imagens/q-usp2024-040.webp", imagemLegenda:"Tomografia de abdome (corte coronal)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
   enunciado:"Mulher, 33 anos, internada em Unidade de Terapia Intensiva, há 7 dias, após realização de transplante pulmonar, intubada e sedada. Apresenta agudamente distensão abdominal, reação de dor à palpação abdominal em epigástrio, hipocôndrio direito. Realizada tomografia de abdome, corte coronal, que é apresentada a seguir: - Exames laboratoriais: Leucócitos 17.000/mm3 PCR: 210 mg/L TGO/AST: 120 U/L TGP/ALT: 160 U/L FA: 74 U/L GGT: 151 U/L Amilase: 170 U/L Lipase: 122 U/L Assinale a alternativa que apresenta o diagnóstico correto.",
@@ -614,7 +614,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-042", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:42,
-  imagemUrl:"dados/imagens/q-usp2024-042.jpg", imagemLegenda:"Fotografia da região sacrococcígea",
+  imagemUrl:"dados/imagens/q-usp2024-042.webp", imagemLegenda:"Fotografia da região sacrococcígea",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
   enunciado:"Mulher, 15 anos, procura o serviço de Emergência com queixa de febre (38,7 C) há 20 dias, dor e hiperemia em região sacrococcigea. Refere dois episódios semelhantes no último ano com melhora espontânea. Ao exame físico, apresenta hiperemia, aumento do volume da pele e dor à palpação na região sacrococcigea com sinal de flutuação, conforme imagem a seguir: Considerando a principal hipótese diagnóstica, assinale a melhor conduta.",
@@ -643,7 +643,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-044", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:44,
-  imagemUrl:"dados/imagens/q-usp2024-044.jpg", imagemLegenda:"As quatro alternativas são cortes de tomografia de abdome (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2024-044.webp", imagemLegenda:"As quatro alternativas são cortes de tomografia de abdome (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
   enunciado:"Homem, 35 anos, procura o Serviço de Emergência com queixa de dor abdominal de forte intensidade, em faixa, no andar superior do abdome. Tem relato de múltiplas passagens no hospital com quadro semelhante. Nega fatores de melhora ou piora. Refere uso contínuo de dipirona e tramadol com controle parcial dos sintomas. Relata perda de peso não quantificada no período e diarreia há 3 meses. Tem antecedente de etilismo de 1 garrafa de \"pinga\" por dia desde os 15 anos, tendo parado há 6 meses. Ao exame físico encontra-se em bom estado geral; IMC: 19 kg/m2, ausculta cardíaca e pulmonar sem alterações, abdome doloroso à palpação profunda sem irritação peritoneal. Considerando a principal hipótese diagnóstica, assinale a alternativa na qual é observada a imagem tomográfica esperada.",
@@ -658,7 +658,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-045", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:45,
-  imagemUrl:"dados/imagens/q-usp2024-045.jpg", imagemLegenda:"Fotografia da lesão malar",
+  imagemUrl:"dados/imagens/q-usp2024-045.webp", imagemLegenda:"Fotografia da lesão malar",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
   enunciado:"Homem, 80 anos, produtor rural, apresentou lesão de crescimento progressivo em região malar direita, há dois anos, conforme imagem a seguir: Biópsia realizada confirmou carcinoma epidermoide. O estadiamento com tomografia não identificou comprometimento ósseo ou de linfonodos parotídeos/cervicais. Com relação à lesão cutânea, assinale a conduta mais adequada.",
@@ -715,7 +715,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-049", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:49,
-  imagemUrl:"dados/imagens/q-usp2024-049.jpg", imagemLegenda:"Fotografias do líquido sinovial puncionado",
+  imagemUrl:"dados/imagens/q-usp2024-049.webp", imagemLegenda:"Fotografias do líquido sinovial puncionado",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente feminina, 48 anos, hipertensa e pré-diabética em controle com hidroclorotiazida e dieta. Procura o pronto-socorro com dor em joelho esquerdo há 2 dias. Relata que há 10 dias iniciou artralgia de punhos e mãos, de caráter migratório e que evoluiu para tornozelos e joelho esquerdo há 2 dias. Recebeu anti-inflamatório não hormonal há 10 dias por diagnóstico de tenossinovites em ultrassom de mãos. Nega traumas, infecções recentes e viagens. Relata abuso de álcool e cocaína nos últimos meses. Tem vida sexual ativa, sem uso regular de preservativos. Ao exame físico: bom estado geral, febril, estável hemodinamicamente. Joelho esquerdo: calor local, hiperemia da pele, sinal da tecla em recesso suprapatelar e dificuldade importante de flexo-extensão. Em pele de tornozelo, pé esquerdo e mãos há pequenas lesões pustulosas, com 0,7 mm em maior extensão, base eritematosa, que apareceram no dia do atendimento. Foi puncionado joelho com o líquido, conforme imagens a seguir: Assinale qual a hipótese mais provável e a conduta inicial adequada.",
@@ -786,7 +786,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-054", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:54,
-  imagemUrl:"dados/imagens/q-usp2024-054.png", imagemLegenda:"Tabela com os achados cardíacos, torácicos e da veia cava dos pacientes 1, 2 e 3 no protocolo RUSH",
+  imagemUrl:"dados/imagens/q-usp2024-054.webp", imagemLegenda:"Tabela com os achados cardíacos, torácicos e da veia cava dos pacientes 1, 2 e 3 no protocolo RUSH",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-choque",
   enunciado:"Três pacientes foram admitidos no PS com quadro de choque hemodinâmico, sendo submetidos ao protocolo RUSH (Rapid Ultrasound in Shock) para avaliar etiologia do choque. A tabela a seguir apresenta os achados na avaliação cardíaca, do tórax e da veia cava desses três pacientes, identificados pelos números 1, 2 e 3. Assinale qual é a alternativa que correlaciona o achado do protocolo RUSH com o diagnóstico etiológico mais provável do choque.",
@@ -801,7 +801,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-055", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-usp2024-055.jpg", imagemLegenda:"Eletrocardiograma de entrada",
+  imagemUrl:"dados/imagens/q-usp2024-055.webp", imagemLegenda:"Eletrocardiograma de entrada",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Homem, 55 anos, procura pronto-socorro por quadro de palpitações há 1 hora, após terminar treino habitual de corrida. Relata uso regular de creatina pré-treino e tratamento para HAS com enalapril e anlodipino. Nega dor no peito ou falta de ar. Nega tabagismo, uso de drogas ilícitas ou alcoolismo. Ao exame físico inicial: PA: 120x80 mmHg; FC: 116 bpm; FR: 12 ipm; SpO2: 94%; ritmo cardíaco irregular, murmúrios vesiculares normais, sem outras alterações. ECG da entrada apresentado a seguir: Com base nessas informações, assinale a conduta mais adequada.",
@@ -845,7 +845,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-058", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:58,
-  imagemUrl:"dados/imagens/q-usp2024-058.jpg", imagemLegenda:"Fotografia do rash facial",
+  imagemUrl:"dados/imagens/q-usp2024-058.webp", imagemLegenda:"Fotografia do rash facial",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-les",
   enunciado:"Paciente de 48 anos apresenta há 6 meses lesões na face (rash predominantemente em região periorbital e fronte, conforme imagem a seguir) e também em membros superiores. Relacionado ao quadro clinico, assinale qual dos sintomas e mais provável para essa paciente.",
@@ -860,7 +860,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-059", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:59,
-  imagemUrl:"dados/imagens/q-usp2024-059.jpg", imagemLegenda:"Fotografia da lesão no antebraço",
+  imagemUrl:"dados/imagens/q-usp2024-059.webp", imagemLegenda:"Fotografia da lesão no antebraço",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
   enunciado:"TEXTO PARA AS QUESTÕES 59 E 60 Mulher, 45 anos, apresenta há 2 anos lesão eritematosa, infiltrada, bem delimitada no antebraço esquerdo, conforme figura apresentada. Peso de 67 kg. Testes realizados demonstraram sensibilidades térmica, dolorosa e tátil diminuídas. Assinale qual o diagnóstico e qual achado laboratorial é esperado.",
@@ -875,7 +875,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-060", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-usp2024-060.jpg", imagemLegenda:"Fotografia da lesão no antebraço",
+  imagemUrl:"dados/imagens/q-usp2024-060.webp", imagemLegenda:"Fotografia da lesão no antebraço",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
   enunciado:"TEXTO PARA AS QUESTÕES 59 E 60 Mulher, 45 anos, apresenta há 2 anos lesão eritematosa, infiltrada, bem delimitada no antebraço esquerdo, conforme figura apresentada. Peso de 67 kg. Testes realizados demonstraram sensibilidades térmica, dolorosa e tátil diminuídas. Considerando o achado mais provável, assinale qual a orientação em relação aos contactantes da paciente.",
@@ -890,7 +890,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-061", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-usp2024-061.jpg", imagemLegenda:"Fotografias da lesão suprapúbica e da microscopia do raspado",
+  imagemUrl:"dados/imagens/q-usp2024-061.webp", imagemLegenda:"Fotografias da lesão suprapúbica e da microscopia do raspado",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"TEXTO PARA AS QUESTÕES 61 E 62. Paciente de 78 anos refere lesões localizadas na região suprapúbica há 3 meses. Fotos da lesão e da microscopia ótica do raspado da lesão são apresentadas a seguir. Assinale qual é o diagnóstico e o achado do raspado.",
@@ -905,7 +905,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-062", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:62,
-  imagemUrl:"dados/imagens/q-usp2024-062.jpg", imagemLegenda:"Fotografias da lesão suprapúbica e da microscopia do raspado",
+  imagemUrl:"dados/imagens/q-usp2024-062.webp", imagemLegenda:"Fotografias da lesão suprapúbica e da microscopia do raspado",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"TEXTO PARA AS QUESTÕES 61 E 62. Paciente de 78 anos refere lesões localizadas na região suprapúbica há 3 meses. Fotos da lesão e da microscopia ótica do raspado da lesão são apresentadas a seguir. Assinale quais são os principais diagnósticos diferenciais para a afecção dessa paciente.",
@@ -920,7 +920,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-063", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:63,
-  imagemUrl:"dados/imagens/q-usp2024-063.jpg", imagemLegenda:"Imagens do ultrassom pulmonar (POCUS)",
+  imagemUrl:"dados/imagens/q-usp2024-063.webp", imagemLegenda:"Imagens do ultrassom pulmonar (POCUS)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
   enunciado:"Paciente do sexo masculino, 59 anos, tabagista ativo (20 anos-maço), HAS e DM tipo II, em uso de hidroclorotiazida 25 mg/dia, losartana 50 mg/dia e metformina 850 mg 3x/dia. Procura pronto-socorro por dispneia progressiva há 7 dias com piora há 1 dia, além de dor torácica dependente da ventilação em hemitórax esquerdo e queda do estado geral. ECG normal. Realizado POCUS pulmonar com as imagens a seguir. Assinale qual é a melhor opção de tratamento para esse paciente.",
@@ -935,7 +935,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-064", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:64,
-  imagemUrl:"dados/imagens/q-usp2024-064.png", imagemLegenda:"Imagem da veia cava inferior ao ultrassom",
+  imagemUrl:"dados/imagens/q-usp2024-064.webp", imagemLegenda:"Imagem da veia cava inferior ao ultrassom",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
   enunciado:"Paciente do sexo feminino de 52 anos de idade, hipertensa, admitida na sala de emergências com hipótese diagnostica de sepse de foco pulmonar. Encontra-se confusa, hipotensa com PA 80x42 mmHg (PAM: 55 mmHg), extremidades frias e tempo de enchimento capilar de 6s. Iniciada antibioticoterapia empírica com ceftriaxone e claritromicina intravenosos. Realizada prova volêmica com 500 mL de Ringer Lactato, sem reversão do quadro. POCUS Pulmonar: Lung sliding preservado + Linhas B bilaterais, sem outras alterações. POCUS Cardíaco: VTI: 18 (VR > 17). Exame de imagem de veia cava inferior a seguir. Assinale qual e a melhor conduta terapêutica no momento atual.",
@@ -978,7 +978,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-067", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:67,
-  imagemUrl:"dados/imagens/q-usp2024-067.png", imagemLegenda:"As quatro alternativas são curvas de capnografia (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2024-067.webp", imagemLegenda:"As quatro alternativas são curvas de capnografia (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-vm",
   enunciado:"Mulher, 77 anos, com antecedente de hipertensão arterial, doença pulmonar obstrutiva crônica e hipotireoidismo. É admitida no PS trazida pelo SAMU com quadro de rebaixamento do nível de consciência nas últimas 48 horas. No momento da admissão: Glasgow 7 (AO 2, RV 1, RM4), sem proteção de vias aéreas, PA: 132x88 mmHg, FC: 43 bpm, FR: 9 ipm, temperatura 36 C. Ausculta pulmonar normal, ausculta cardíaca reduzida, abdome sem alterações. Antes de receber qualquer medicação, foi realizada intubação orotraqueal em primeira tentativa, devido ao rebaixamento de nível de consciência. Imediatamente após a intubação, e antes de a paciente receber qualquer medicação, assinale qual imagem dentre as apresentadas a seguir, melhor representa a curva de capnografia obtida dessa paciente.",
@@ -1119,7 +1119,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-077", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:77,
-  imagemUrl:"dados/imagens/q-usp2024-077.jpg", imagemLegenda:"Gráfico das notificações de violência contra a mulher no Brasil ao longo do tempo",
+  imagemUrl:"dados/imagens/q-usp2024-077.webp", imagemLegenda:"Gráfico das notificações de violência contra a mulher no Brasil ao longo do tempo",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"O gráfico a seguir mostra a evolução das notificações de violência contra a mulher no Brasil. Os casos de violência contra mulheres fazem parte da lista brasileira de doenças e agravos de notificação compulsória. Sua notificação a vigilância epidemiológica e obrigatória no Brasil. Com base nessas informações, assinale a alternativa correta.",
@@ -1134,7 +1134,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-078", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:78,
-  imagemUrl:"dados/imagens/q-usp2024-078.png", imagemLegenda:"Quadro com as seis dimensões de indicadores (Coluna 1) e os exemplos (Coluna 2)",
+  imagemUrl:"dados/imagens/q-usp2024-078.webp", imagemLegenda:"Quadro com as seis dimensões de indicadores (Coluna 1) e os exemplos (Coluna 2)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"A Coluna 1, a seguir, apresenta os indicadores destinados à análise da situação de saúde referentes ao estado de saúde da população e aos fatores determinantes da saúde, que podem ser classificados em 6 dimensões. A Coluna 2, por sua vez, corresponde a possíveis exemplos desses indicadores. Na mesma ordem das dimensões apresentadas, assinale a alternativa que relaciona corretamente o exemplo apresentado na Coluna 2 com a dimensão apresentada na Coluna 1.",
@@ -1206,7 +1206,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-083", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:83,
-  imagemUrl:"dados/imagens/q-usp2024-083.png", imagemLegenda:"Tabela 2×2 (violência por parceiro íntimo × depressão pós-parto)",
+  imagemUrl:"dados/imagens/q-usp2024-083.webp", imagemLegenda:"Tabela 2×2 (violência por parceiro íntimo × depressão pós-parto)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Depressão pós-parto é um grave problema de saúde pública que impacta negativamente a vida da mulher e da sua prole. Um estudo nacional procurou avaliar a associação entre violência por parceiro intimo (qualquer tipo de violência incluindo física, psicológica ou sexual) e depressão pós-parto. Questionários foram empregados para avaliar violência e depressão pós-parto ao redor de 12 meses após o parto, segundo tabela a seguir. Assinale a alternativa que indica como é calculada a razão de prevalência da associação entre violência e depressão pós- parto.",
@@ -1221,7 +1221,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-084", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:84,
-  imagemUrl:"dados/imagens/q-usp2024-084.png", imagemLegenda:"Tabela: consumo de álcool nos grupos ITCC + TU e TU, análises ITT e PP",
+  imagemUrl:"dados/imagens/q-usp2024-084.webp", imagemLegenda:"Tabela: consumo de álcool nos grupos ITCC + TU e TU, análises ITT e PP",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"A dependência de álcool é altamente prevalente no mundo, mas apenas 10% a 20% dos dependentes buscam ajuda. Um estudo recente investigou se um programa aberto de terapia cognitivo-comportamental baseado na internet (ITCC), adicionado ao tratamento usual (TU), é mais eficaz do que apenas o TU para pacientes dependentes de álcool na atenção primária. Tratou-se de um ensaio controlado randomizado (ECR) com 264 participantes que foram aleatoriamente designados para receber ITCC + TU ou TU apenas, acompanhados por 12 meses. O desfecho primário foi a media de consumo de álcool por semana em gramas avaliado aos 12 meses. Os dados foram analisados por intenção de tratar (ITT), complementado com análises por protocolo (PP). Os resultados são mostrados na tabela a seguir. O que significa fazer a análise por intenção de tratar e por protocolo num ECR?",
@@ -1236,7 +1236,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-085", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:85,
-  imagemUrl:"dados/imagens/q-usp2024-085.png", imagemLegenda:"Tabela com os resultados da metanálise por localização do câncer (RR e IC 95%)",
+  imagemUrl:"dados/imagens/q-usp2024-085.webp", imagemLegenda:"Tabela com os resultados da metanálise por localização do câncer (RR e IC 95%)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Uma crença frequente é de que a depressão estaria relacionada a um aumento do risco de câncer. No sentido de avaliar essa hipótese, foi realizada uma metanálise incluindo 18 estudos de coorte de incidência de câncer, com mais de 25 mil pacientes. Alguns dos resultados da metanálise foram resumidos na tabela a seguir: Assinale a alternativa correta quanto aos resultados da metanálise.",
@@ -1265,7 +1265,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-087", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:87,
-  imagemUrl:"dados/imagens/q-usp2024-087.png", imagemLegenda:"Fluxograma da assistência na UPA",
+  imagemUrl:"dados/imagens/q-usp2024-087.webp", imagemLegenda:"Fluxograma da assistência na UPA",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-niveisatencao",
   enunciado:"O fluxo a seguir refere-se a assistência em uma Unidade de Pronto Atendimento (UPA) e considera diretrizes para regulação da urgência e emergência: Na figura apresentada, o ponto do atendimento considerado \"Setor Estratégico\" da UPA refere-se a",
@@ -1336,7 +1336,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-092", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:92,
-  imagemUrl:"dados/imagens/q-usp2024-092.png", imagemLegenda:"Figura: quatro campos para o relacionamento pessoa-médico (prevenção primária a quaternária)",
+  imagemUrl:"dados/imagens/q-usp2024-092.webp", imagemLegenda:"Figura: quatro campos para o relacionamento pessoa-médico (prevenção primária a quaternária)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
   enunciado:"Pedro, 43 anos de idade, pardo, hipertenso, em uso de losartana na 50 mg/dia. Apresenta-se com cefaleia nucal há 2 h. Sintomas tem sido recorrentes há 1 ano, em aperto, de moderada intensidade, com duração de 2 horas a 4 dias, sem fatores de piora. Nega outros sintomas ou antecedentes pessoais. Pai faleceu de acidente vascular cerebral há 5 anos. Nega uso de álcool ou outras drogas. Não dormiu bem a noite, ansioso, pois está muito preocupado que esse sintoma seja causado por um derrame ou câncer. Gostaria que o médico solicitasse uma tomografia de crânio. Exame físico: Pressão arterial de 150x92 mmHg, IMC: 28 kg/m2. Exame neurológico sem alterações. Considerando o quadro de campos para o relacionamento pessoa-médico apresentado, assinale qual conduta exemplificaria a prevenção quaternária nesse caso.",
@@ -1351,7 +1351,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-093", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:93,
-  imagemUrl:"dados/imagens/q-usp2024-093.png", imagemLegenda:"Tabela com os resultados da metanálise (medida de associação e IC 95% por subgrupos)",
+  imagemUrl:"dados/imagens/q-usp2024-093.webp", imagemLegenda:"Tabela com os resultados da metanálise (medida de associação e IC 95% por subgrupos)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"A hipótese de associação entre a infecção pelo vírus varicela zoster (VZV) e demência foi testada, por intermédio de uma metanálise. Foram incluídos 9 estudos, com mais de 3 milhões de participantes. Os principais resultados encontram-se na tabela apresentada. Assinale a alternativa correta quanto aos resultados da metanálise.",
@@ -1534,7 +1534,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-106", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:106,
-  imagemUrl:"dados/imagens/q-usp2024-106.jpg", imagemLegenda:"Fotografia do exame especular do colo uterino",
+  imagemUrl:"dados/imagens/q-usp2024-106.webp", imagemLegenda:"Fotografia do exame especular do colo uterino",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
   enunciado:"Paciente, 23 anos, realiza colpocitologia oncótica com os seguintes resultados: - Interpretação diagnóstica: Lesão intraepitelial escamosa de alto grau associada a sinais sugestivos de infecção por HPV. - Microbiologia: Bacilos supracitoplasmaticos sugestivos de Gardnerella/ Mobiluncus sp. O exame especular desta paciente é apresentado a seguir: Assinale qual substância foi aplicada ao colo uterino.",
@@ -1563,7 +1563,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-108", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:108,
-  imagemUrl:"dados/imagens/q-usp2024-108.jpg", imagemLegenda:"Figura com estruturas anatômicas numeradas de I a IV",
+  imagemUrl:"dados/imagens/q-usp2024-108.webp", imagemLegenda:"Figura com estruturas anatômicas numeradas de I a IV",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Paciente de 30 anos, 2G1PN, com 32 semanas, com excesso de trabalho atual, com queixa de dor em baixo ventre há cerca de uma semana, com piora nos últimos dois dias. Relata não estar dormindo bem, com dor e aumento da movimentação fetal a noite, principalmente ao mudar de decúbito. Questionada ativamente, relata dor também junto a vagina, na projeção dos grandes lábios. Ao exame físico, BEG, descorada 1+/4+, hidratada, anictérica, acianótica, eupneica, afebril. PA: 120x80 mmHg; AU: 33 cm; DU ausente; Foco: 144 bpm. Abdome flácido, ruídos hidroaéreos presentes e normais. Ligamento inguinal e pube dolorosos à palpação. Toque: colo grosso, posterior, impérvio, indolor ao toque. Assinale qual e a estrutura anatômica que pode ser responsabilizada pela origem desta dor.",
@@ -1592,7 +1592,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-110", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:110,
-  imagemUrl:"dados/imagens/q-usp2024-110.jpg", imagemLegenda:"As quatro alternativas são figuras (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2024-110.webp", imagemLegenda:"As quatro alternativas são figuras (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"TEXTO PARA AS QUESTÕES 110 E 111 Paciente de 20 anos, primigesta, 40 semanas, admitida em trabalho de parto com contrações dolorosas rítmicas há 4 horas. Ao exame físico: AU: 38 cm. DU: 3 contrações/10 minutos. Foco: 148 bpm, com acelerações transitórias. Dorso à esquerda, escava completamente ocupada, sulco cervical bem nítido no polo inferior do dorso. Toque: colo médio, medianizado, pérvio para 3 cm, bolsa íntegra. Assinale qual das alternativas contraindicaria a tentativa de parto vaginal.",
@@ -1608,7 +1608,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-111", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:111,
-  imagemUrl:"dados/imagens/q-usp2024-111.jpg", imagemLegenda:"Fotografia do período expulsivo (retração do polo cefálico); as quatro alternativas são ilustrações de manobras (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2024-111.webp", imagemLegenda:"Fotografia do período expulsivo (retração do polo cefálico); as quatro alternativas são ilustrações de manobras (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"TEXTO PARA AS QUESTÕES 110 E 111 Paciente de 20 anos, primigesta, 40 semanas, admitida em trabalho de parto com contrações dolorosas rítmicas há 4 horas. Ao exame físico: AU: 38 cm. DU: 3 contrações/10 minutos. Foco: 148 bpm, com acelerações transitórias. Dorso à esquerda, escava completamente ocupada, sulco cervical bem nítido no polo inferior do dorso. Toque: colo médio, medianizado, pérvio para 3 cm, bolsa íntegra. A paciente entra em trabalho de parto alguns dias depois e observa-se, no período expulsivo, após a exteriorização do polo cefálico, a retração do mesmo contra o períneo materno entre as contrações, conforme fotografia a seguir: Assinale a alternativa correta que representa a melhor conduta neste momento.",
@@ -1623,7 +1623,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-112", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:112,
-  imagemUrl:"dados/imagens/q-usp2024-112.png", imagemLegenda:"Tabela dos exames do início do pré-natal",
+  imagemUrl:"dados/imagens/q-usp2024-112.webp", imagemLegenda:"Tabela dos exames do início do pré-natal",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
   enunciado:"Primigesta de 20 anos de idade, com 25 semanas de gravidez, com queixa de nauseas, vômitos, dor abdominal e mal-estar há cerca de 12 horas. Ao exame físico: REG, corada, desidratada 2+/4+, anictérica, acianótica, afebril. FR: 20 ipm, FC: 108 bpm, PA: 120x70 mmHg. Abdome flácido, descompressão brusca negativa. AU: 28 cm. BCF: 160 bpm. DU ausente. Traz os exames colhidos no início do pré-natal, conforme tabela a seguir: Assinale qual é a melhor hipótese diagnóstica neste momento.",
@@ -1652,7 +1652,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-114", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:114,
-  imagemUrl:"dados/imagens/q-usp2024-114.jpg", imagemLegenda:"Fotografia do exame especular; as quatro alternativas são imagens de bacterioscopia (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2024-114.webp", imagemLegenda:"Fotografia do exame especular; as quatro alternativas são imagens de bacterioscopia (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Paciente, 36 anos, queixa-se de corrimento vaginal e sensação de ardência vaginal há 10 dias, com odor desagradável e piora após relação sexual. Nega comorbidades ou uso de medicamentos. Nuligesta, refere uso de DIU de cobre ha 3 anos. Parceiro sexual único há 12 meses. Exame ginecológico: especular com conteúdo vaginal branco-acinzentado, em grande quantidade, bolhoso e com odor pronunciado, colo epitelizado, apresentado a seguir. Toque vaginal: útero em anteversoflexão, volume habitual, móvel, indolor à mobilização, ausência de massas anexiais. Realizou-se o exame bacterioscópico. Assinale qual o achado compatível com a principal hipótese diagnóstica.",
@@ -1667,7 +1667,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-115", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:115,
-  imagemUrl:"dados/imagens/q-usp2024-115.png", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
+  imagemUrl:"dados/imagens/q-usp2024-115.webp", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"TEXTO PARA AS QUESTÕES 115 A 120 Primigesta, 41 anos de idade, gestação após ciclo natural induzido. É hipertensa crônica em uso de metildopa 750 mg por dia. Teve data da última menstruação em 18/06/2023. Comparece em primeira consulta de pré-natal com os seguintes exames: A orientação deverá envolver quais vacinas ao longo do pré- natal, além da influenza já tomada durante campanha vacinal?",
@@ -1682,7 +1682,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-116", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:116,
-  imagemUrl:"dados/imagens/q-usp2024-116.png", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
+  imagemUrl:"dados/imagens/q-usp2024-116.webp", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dheg",
   enunciado:"TEXTO PARA AS QUESTÕES 115 A 120 Primigesta, 41 anos de idade, gestação após ciclo natural induzido. É hipertensa crônica em uso de metildopa 750 mg por dia. Teve data da última menstruação em 18/06/2023. Comparece em primeira consulta de pré-natal com os seguintes exames: O alvo de idade gestacional para o parto, caso a gravidez não tenha intercorrência, é de:",
@@ -1697,7 +1697,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-117", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:117,
-  imagemUrl:"dados/imagens/q-usp2024-117.png", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
+  imagemUrl:"dados/imagens/q-usp2024-117.webp", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dheg",
   enunciado:"TEXTO PARA AS QUESTÕES 115 A 120 Primigesta, 41 anos de idade, gestação após ciclo natural induzido. É hipertensa crônica em uso de metildopa 750 mg por dia. Teve data da última menstruação em 18/06/2023. Comparece em primeira consulta de pré-natal com os seguintes exames: Considerando os resultados fetais, qual seria a proposta para o controle ideal da pressão arterial ao longo da gravidez?",
@@ -1712,7 +1712,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-118", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:118,
-  imagemUrl:"dados/imagens/q-usp2024-118.png", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
+  imagemUrl:"dados/imagens/q-usp2024-118.webp", imagemLegenda:"Tabela com os exames da primeira consulta de pré-natal",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-diagnosticoprenatal",
   enunciado:"TEXTO PARA AS QUESTÕES 115 A 120 Primigesta, 41 anos de idade, gestação após ciclo natural induzido. É hipertensa crônica em uso de metildopa 750 mg por dia. Teve data da última menstruação em 18/06/2023. Comparece em primeira consulta de pré-natal com os seguintes exames: Considere que a paciente veio para consulta neste dia (10/12/2023). Toda a rotina pré-natal foi realizada adequadamente com resultados dentro dos parâmetros de normalidade. Assinale qual é o próximo exame para avaliação fetal que deve ser solicitado, de acordo com a idade gestacional.",
@@ -1727,7 +1727,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-119", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:119,
-  imagemUrl:"dados/imagens/q-usp2024-119.jpg", imagemLegenda:"Fotografia do exame especular (saída de líquido pelo orifício do colo)",
+  imagemUrl:"dados/imagens/q-usp2024-119.webp", imagemLegenda:"Fotografia do exame especular (saída de líquido pelo orifício do colo)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"TEXTO PARA AS QUESTÕES 115 A 120 Primigesta, 41 anos de idade, gestação após ciclo natural induzido. É hipertensa crônica em uso de metildopa 750 mg por dia. Teve data da última menstruação em 18/06/2023. Comparece em primeira consulta de pré-natal com os seguintes exames: A paciente retorna em consulta com 32 semanas de gravidez, com queixa de aumento de conteudo vaginal ha 1 dia. Refere que teve perda urinária espontânea há 4 horas e que, desde então, sente a vagina úmida. Em avaliação obstétrica, tem-se o seguinte achado: Considerando o diagnóstico observado, assinale qual é a conduta profilática imediata em relação ao uso de ampicilina.",
@@ -1742,7 +1742,7 @@ window.EscDados.registrarQuestoes("prova-usp-2024", [
 },
 {
   id:"q-usp2024-120", banca:"USP-SP (FMUSP)", real:true, ano:2024, numeroNaProva:120,
-  imagemUrl:"dados/imagens/q-usp2024-120.jpg", imagemLegenda:"Fotografia do exame especular (saída de líquido pelo orifício do colo)",
+  imagemUrl:"dados/imagens/q-usp2024-120.webp", imagemLegenda:"Fotografia do exame especular (saída de líquido pelo orifício do colo)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"TEXTO PARA AS QUESTÕES 115 A 120 Primigesta, 41 anos de idade, gestação após ciclo natural induzido. É hipertensa crônica em uso de metildopa 750 mg por dia. Teve data da última menstruação em 18/06/2023. Comparece em primeira consulta de pré-natal com os seguintes exames: (Continuação do caso clínico, conforme questão 119): A paciente retorna em consulta com 32 semanas de gravidez, com queixa de aumento de conteúdo vaginal há 1 dia. Refere que teve perda urinária espontânea há 4 horas e que, desde então, sente a vagina úmida. Em avaliação obstétrica, tem-se o seguinte achado: Uma hora após a admissão, a paciente apresenta queixa de dor em baixo ventre, com contrações irregulares. Os exames laboratoriais demonstram Hb: 11,8 g/dL; Ht: 32,2%; leucócitos: 15.000/mm3; PCR: 20. Considerando boa vitalidade fetal, assinale qual é a conduta obstétrica.",

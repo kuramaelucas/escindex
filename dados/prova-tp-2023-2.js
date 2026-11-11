@@ -44,7 +44,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-002", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-tp20232-002.png",
+  imagemUrl:"dados/imagens/q-tp20232-002.webp",
   enunciado:"Mulher, 50 anos, dá entrada no PS com queixa de palpitação há 30 minutos, de início súbito. Relata que, há 2 meses, vem apresentando palpitações esporádicas em crises que a deixam com desconforto inespecífico, com melhora espontânea em alguns minutos. É hipertensa. Nunca apresentou síncope, dor torácica ou dispneia súbita. Exame físico: PA = 166/96mmHg, FC = 110bpm, ritmo cardíaco irregular, duas bulhas normofonéticas e sopro sistólico 2+/6+ em foco mitral, sem irradiação. O ECG de repouso é apresentado: A provável causa da palpitação e o tratamento medicamentoso inicial são, respectivamente:",
   alternativas:[{id:"A",texto:"Fibrilação atrial; beta-bloqueador"},{id:"B",texto:"Taquicardia supraventricular; beta-bloqueador"},{id:"C",texto:"Fibrilação atrial; amiodarona"},{id:"D",texto:"Taquicardia supraventricular, provável reentrada nodal; amiodarona"}],
   gabarito:"A",
@@ -58,7 +58,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-003", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:3,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
-  imagemUrl:"dados/imagens/q-tp20232-003.png",
+  imagemUrl:"dados/imagens/q-tp20232-003.webp",
   enunciado:"Homem, 52 anos, diabético, hipertenso e com hipercolesterolemia. Deu entrada no pronto-socorro com dor precordial intensa em região retroesternal, em aperto, de início súbito e irradiação para membro superior esquerdo, associada a mal-estar geral e iniciada há 2 horas. Exame físico: FC = 60bpm, PA = 110/70mmHg, FR = 16irpm; sem outras alterações ao exame físico. ECG: O diagnóstico é:",
   alternativas:[{id:"A",texto:"Infarto agudo do miocárdio sem supradesnivelamento do segmento-ST em parede inferior."},{id:"B",texto:"Infarto agudo do miocárdio com supradesnivelamento do segmento-ST em parede anterior."},{id:"C",texto:"Infarto agudo do miocárdio sem supradesnivelamento do segmento-ST em parede anterior."},{id:"D",texto:"Infarto agudo do miocárdio com supradesnivelamento do segmento-ST em parede inferior."}],
   gabarito:"D",
@@ -85,7 +85,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-005", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
-  imagemUrl:"dados/imagens/q-tp20232-005.png",
+  imagemUrl:"dados/imagens/q-tp20232-005.webp",
   enunciado:"Mulher, 52 anos, portadora de doença do refluxo gastroesofágico, com queixa de tosse seca e dispneia há mais de 5 anos, pior no último ano e atualmente incapacitante para atividades domésticas. Precisa descansar entre um serviço e outro para “recuperar o fôlego”. Exame físico: FR = 26 irpm, cianose labial e de extremidades, estertores crepitantes em terço médio e bases pulmonares bilateralmente. Radiografia e tomografia de alta resolução do tórax: O diagnóstico é:",
   alternativas:[{id:"A",texto:"Bronquiectasia"},{id:"B",texto:"Fibrose pulmonar idiopática"},{id:"C",texto:"Pneumopatia intersticial"},{id:"D",texto:"Pneumonia viral"}],
   gabarito:"B",
@@ -216,7 +216,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-015", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:15,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-artrose",
-  imagemUrl:"dados/imagens/q-tp20232-015.png",
+  imagemUrl:"dados/imagens/q-tp20232-015.webp",
   enunciado:"Mulher, 55 anos, queixa-se de dores em ambos os joelhos há 3 anos, com piora progressiva. Acorda com os joelhos rígidos, que melhoram após deambular alguns metros. As dores são piores ao final do dia e após esforços físicos. Melhoram com repouso. Às vezes, nota aumento de volume em joelho direito. Exame físico: aumento de temperatura em joelho direito, sem hiperemia. Sinal da tecla negativo. Sem desvios. Musculatura trófica, com força preservada em membros superiores e inferiores. Crepitações finas à mobilização passiva de ambos os joelhos, sem diminuição de amplitude de movimentos. RX de joelhos abaixo: O melhor tratamento para o momento é:",
   alternativas:[{id:"A",texto:"Metotrexato e alongamento."},{id:"B",texto:"Anti-TNF e repouso relativo."},{id:"C",texto:"Meloxicam e fortalecimento muscular."},{id:"D",texto:"Colchicina e crioterapia."}],
   gabarito:"C",
@@ -321,7 +321,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-023", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:23,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-farmacodermias",
-  imagemUrl:"dados/imagens/q-tp20232-023.png",
+  imagemUrl:"dados/imagens/q-tp20232-023.webp",
   enunciado:"Homem, 27 anos, procura a UPA queixando-se, há quatro dias, de manchas na pele que iniciaram no tronco, membros e face, e erosões nos lábios. Relata uso de captopril há 40 dias, por hipertensão arterial. Nega uso de outros medicamentos. Exame físico: T = 37,6ºC e lesões mostradas nas imagens abaixo. Nikolsky negativo, Asboe Hansen negativo. O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Pênfigo vulgar"},{id:"B",texto:"Herpes simples"},{id:"C",texto:"Eritema polimorfo"},{id:"D",texto:"Síndrome de Stevens Johnson"}],
   gabarito:"C",
@@ -335,7 +335,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-024", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:24,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-meningites",
-  imagemUrl:"dados/imagens/q-tp20232-024.png",
+  imagemUrl:"dados/imagens/q-tp20232-024.webp",
   enunciado:"Mulher, 54 anos, vem encaminhada ao hospital terciário por queixa de febre de início há dois dias. Exame físico: taquicárdica, hipertensa, T = 38,8ºC, com rigidez de nuca presente, sem resposta verbal e hemiplégica à direita. Tomografia de crânio: sinusopatia e mastoidopatia bilateral, sem outras alterações. Foi realizada punção lombar para coleta de líquor, cuja análise foi a seguinte: A conduta é:",
   alternativas:[{id:"A",texto:"Ceftriaxona e vancomicina, isoladamente."},{id:"B",texto:"Penicilina cristalina associada a corticoide."},{id:"C",texto:"Ceftriaxona e vancomicina, associadas a corticoide."},{id:"D",texto:"Penicilina cristalina isoladamente."}],
   gabarito:"C",
@@ -427,7 +427,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-031", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:31,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-ira",
-  imagemUrl:"dados/imagens/q-tp20232-031.png",
+  imagemUrl:"dados/imagens/q-tp20232-031.webp",
   enunciado:"Homem, 62 anos, internado na UTI, apresentou choque séptico e aumento da concentração de creatinina sérica de 1,0mg/dL para 2,4mg/dL e anúria nas últimas 12 horas. A principal estrutura renal responsável por este quadro está presente na imagem histológica e corresponde a:",
   alternativas:[{id:"A",texto:"Glomérulo renal"},{id:"B",texto:"Túbulo renal"},{id:"C",texto:"Mácula densa"},{id:"D",texto:"Célula justaglomerular"}],
   gabarito:"B",
@@ -480,7 +480,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-035", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:35,
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-infantil",
-  imagemUrl:"dados/imagens/q-tp20232-035.png",
+  imagemUrl:"dados/imagens/q-tp20232-035.webp",
   enunciado:"Menina, 13 anos, é trazida em consulta pela mãe. É a primeira consulta no ambulatório de adolescentes. Relata que é uma boa filha, “não dá trabalho na escola”, é uma adolescente como outra qualquer, mas um pouco tímida e gosta de ficar no seu quarto com uso do celular e tablet, sem muita conversa, e que, como ela trabalha em período integral, não têm muito tempo juntas. Acha que a filha tem um pouco de vergonha do corpo, porque está sempre de blusa de moletom larga. No momento do exame físico, a mãe está distraída em uma ligação de trabalho e você observa essas lesões no antebraço da paciente: Na abordagem da primeira consulta, deve-se:",
   alternativas:[{id:"A",texto:"Realizar acolhimento com empatia e envolver a família no plano terapêutico."},{id:"B",texto:"Solicitar avaliação psiquiátrica para que seja medicada imediatamente."},{id:"C",texto:"Encaminhar para realização de atividade física e trabalhos em grupo."},{id:"D",texto:"Proibir uso de telas que possam colaborar para piora do quadro."}],
   gabarito:"A",
@@ -507,7 +507,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-037", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:37,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-tp20232-037.png",
+  imagemUrl:"dados/imagens/q-tp20232-037.webp",
   enunciado:"Menino, 10 anos, apresentou síncope enquando jogava futebol. Exame físico: FC = 48bpm, PA = 80/40mmHg (MSD), pulsos simétricos com boa amplitude. Sopro holossistólico de regurgitação (3+/6+) em ponta (foco mitral), com irradiação para axila. O diagnóstico e a interpretação do ECG são:",
   alternativas:[{id:"A",texto:"Comunicação interventricular e bradicardia sinusal."},{id:"B",texto:"Insuficiência mitral e bradicardia decorrente de bloqueio atrioventricular total."},{id:"C",texto:"Sopro inocente de Still e bradicardia sinusal, com síncope vaso-vagal."},{id:"D",texto:"Insuficiência mitral reumática e bradicardia por bloqueio atrioventricular de segundo grau Mobitz tipo 2."}],
   gabarito:"B",
@@ -638,7 +638,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-047", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:47,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-malformacoes",
-  imagemUrl:"dados/imagens/q-tp20232-047.png",
+  imagemUrl:"dados/imagens/q-tp20232-047.webp",
   enunciado:"Menina, 5 anos, apresentou 5 infecções urinárias (ITU) febris desde os 2 anos de idade, confirmadas por culturas de urina, logo após a retirada das fraldas, sendo o último episódio há 4 meses. Após o primeiro episódio, evoluiu com queixa recorrente de polaciúria associada a urge-incontinência e alguns episódios de retenção urinária. Hábito intestinal: constipado, pior após o desfralde. Exame físico: abdome globoso com fezes endurecidas palpáveis em fossa ilíaca esquerda; genitália feminina com hiperemia de grandes lábios. Ultrassonografia de rins e vias urinárias: bexiga de paredes espessadas, resíduo pós-miccional grande. Uretrocistografia miccional (UCM) abaixo: A conduta é iniciar:",
   alternativas:[{id:"A",texto:"Doxazosina, terapia laxativa e posterior abordagem cirúrgica."},{id:"B",texto:"Oxibutinina, terapia laxativa e abordagem cirúrgica."},{id:"C",texto:"Uroterapia, terapia laxativa e fisioterapia de assoalho pélvico."},{id:"D",texto:"Uroterapia, oxibutinina, fisioterapia de assoalho pélvico."}],
   gabarito:"C",
@@ -704,7 +704,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-052", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:52,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-tp20232-052.png",
+  imagemUrl:"dados/imagens/q-tp20232-052.webp",
   enunciado:"Menino, 7 anos, dá entrada na emergência pediátrica vítima de atropelamento. Após avaliação inicial, é levado para realizar tomografias. Retorna da tomografia com o seguinte exame físico: FC = 70bpm, FR = 22irpm, PA = 150/90mmHg, SaO2 = 96% em ar ambiente, escala de Coma de Glasgow = 8, hemiparesia em hemicorpo esquerdo, reflexos pupilares alterados à direita (anisocoria D > E, reflexos fotomotor e córneo palpebral ausentes à D). Tomografia de crânio abaixo: Até a drenagem cirúrgica, a conduta é:",
   alternativas:[{id:"A",texto:"Furosemida"},{id:"B",texto:"Dexametasona"},{id:"C",texto:"Manitol em bolus"},{id:"D",texto:"Acetazolamida"}],
   gabarito:"C",
@@ -757,7 +757,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-056", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:56,
   areaId:"area-cm", especialidadeId:"esp-genetica", assuntoId:"ass-genetica-heranca",
-  imagemUrl:"dados/imagens/q-tp20232-056.png",
+  imagemUrl:"dados/imagens/q-tp20232-056.webp",
   enunciado:"Menino, 12 anos, apresentou dificuldade escolar notada aos 7 anos e foi diagnosticado com déficit cognitivo moderado aos 8 anos. Não conseguiu ser alfabetizado. Tem duas irmãs do sexo feminino de 7 e 5 anos com inteligência normal, porém com história familiar de recorrência de déficit cognitivo, conforme demonstrado no heredograma da figura abaixo. Realizou triagem neonatal biológica (teste do pezinho), mas não voltou para pegar o resultado. Nega uso de medicamentos pregressos ou de tratamentos anteriores para condição clínica. Exame físico: mandíbula proeminente, ponte nasal ampla, orelhas grandes e protuberantes. Para confirmar a hipótese diagnóstica, deve ser solicitado inicialmente o seguinte exame:",
   alternativas:[{id:"A",texto:"Cariótipo para identificar o sítio frágil no cromossomo X."},{id:"B",texto:"Amplificação da região específica do gene onde está a mutação e análise dos tamanhos dos fragmentos amplificados."},{id:"C",texto:"Microarray cromossômico, para verificar alteração de número de cópias de trinucleotídeos CGG."},{id:"D",texto:"Sequenciamento de Sanger do gene FMR1 para identificação de mutações de ponto."}],
   gabarito:"B",
@@ -771,7 +771,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-057", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:57,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-parasitoses",
-  imagemUrl:"dados/imagens/q-tp20232-057.png",
+  imagemUrl:"dados/imagens/q-tp20232-057.webp",
   enunciado:"Menino, 4 anos, apresenta lesão eritematosa e serpiginosa com bordos elevados no pé esquerdo, como mostrado na imagem a seguir: A conduta é:",
   alternativas:[{id:"A",texto:"Dose única de ivermectina 200μg/kg."},{id:"B",texto:"Fexofenadina 15mg (2,5mL), duas vezes ao dia (12/12h)."},{id:"C",texto:"Griseofulvina 10 a 20mg/kg/dia, por 6-8 semanas."},{id:"D",texto:"Deltametrina tópica 0,2mg/mL, por 4 dias."}],
   gabarito:"A",
@@ -798,7 +798,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-059", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:59,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
-  imagemUrl:"dados/imagens/q-tp20232-059.png",
+  imagemUrl:"dados/imagens/q-tp20232-059.webp",
   enunciado:"Mulher, 62 anos, retorna à Unidade Básica de Saúde para retirada de pontos após cirurgia de revascularização de membro inferior. O ponto aplicado nesta sutura é:",
   alternativas:[{id:"A",texto:"Donati"},{id:"B",texto:"Simples"},{id:"C",texto:"Contínuo ancorado"},{id:"D",texto:"Em X"}],
   gabarito:"A",
@@ -877,7 +877,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-065", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:65,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
-  imagemUrl:"dados/imagens/q-tp20232-065.png",
+  imagemUrl:"dados/imagens/q-tp20232-065.webp",
   enunciado:"Recém-nascido, idade gestacional de 36 semanas, peso ao nascimento de 2.970g, sem nenhuma intercorrência no período pré-natal. Na sala de parto, apresentou desconforto respiratório, necessitando de ventilação e intubação orotraqueal. Realizou RX de tórax (abaixo): O diagnóstico é:",
   alternativas:[{id:"A",texto:"Hérnia de Bochdalek"},{id:"B",texto:"Pneumotórax"},{id:"C",texto:"Hérnia de Morgani"},{id:"D",texto:"Hérnia de Spiegel"}],
   gabarito:"A",
@@ -904,7 +904,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-067", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:67,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-neoplasia",
-  imagemUrl:"dados/imagens/q-tp20232-067.png",
+  imagemUrl:"dados/imagens/q-tp20232-067.webp",
   enunciado:"Homem, 48 anos, lavrador, queixava-se de dispneia, emagrecimento de 7kg e tosse com escarro hemóptico há 4 meses. Após investigação, foi diagnosticado com aspergilose pulmonar e iniciado tratamento com antifúngico. Antecedentes pessoais: diabético em uso irregular de hipoglicemiante oral, tabagista com carga tabágica de 66 anos.maço e etilista. Após 90 dias de tratamento, referiu melhora do escarro hemóptico. Em exame de imagem de controle, houve melhora da lesão em lobo superior direito, porém permaneceu com opacidade em lobo superior esquerdo praticamente inalterada (imagem): Deve-se considerar o diagnóstico diferencial de:",
   alternativas:[{id:"A",texto:"Abscesso pulmonar"},{id:"B",texto:"Neoplasia pulmonar"},{id:"C",texto:"Granulomatose eosinofílica com poliangiíte"},{id:"D",texto:"Pneumonia atípica"}],
   gabarito:"B",
@@ -957,7 +957,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-071", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:71,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
-  imagemUrl:"dados/imagens/q-tp20232-071.png",
+  imagemUrl:"dados/imagens/q-tp20232-071.webp",
   enunciado:"Mulher, 73 anos, previamente hígida e independente, é trazida por familiares com história de queda da própria altura há 48 horas. Relata dor incapacitante em quadril direito, com dificuldade para deambulação. É hipertensa e diabética, com controle medicamentoso satisfatório. Faz tratamento irregular para osteoporose. A radiografia de bacia é exibida abaixo: A conduta é:",
   alternativas:[{id:"A",texto:"Cirurgia com parafusos canulados."},{id:"B",texto:"Tração esquelética por 45 dias."},{id:"C",texto:"Tratamento incruento com redução de carga."},{id:"D",texto:"Cirurgia com prótese de quadril."}],
   gabarito:"D",
@@ -971,7 +971,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-072", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:72,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-hidrocefalia",
-  imagemUrl:"dados/imagens/q-tp20232-072.png",
+  imagemUrl:"dados/imagens/q-tp20232-072.webp",
   enunciado:"Menino, 6 anos, sem comorbidades prévias, apresenta cefaleia, vômitos e diplopia há duas semanas, com piora nos últimos dois dias. Exame físico: abertura ocular espontânea, com resposta verbal lentificada, pupilas isocóricas bradirreagentes, estrabismo convergente e papiledema bilaterais. Realizada tomografia computadorizada (abaixo): O diagnóstico é:",
   alternativas:[{id:"A",texto:"Hemorragia subaracnoide"},{id:"B",texto:"Neoplasia da fossa posterior"},{id:"C",texto:"Hidrocefalia comunicante"},{id:"D",texto:"Hidrocefalia obstrutiva"}],
   gabarito:"D",
@@ -998,7 +998,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-074", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:74,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-atls",
-  imagemUrl:"dados/imagens/q-tp20232-074.png",
+  imagemUrl:"dados/imagens/q-tp20232-074.webp",
   enunciado:"Homem, 50 anos, vítima de acidente de motocicleta em alta velocidade contra um anteparo fixo. Atendido pelo pré-hospitalar, com lesões nítidas em crânio e face. Realizada intubação orotraqueal no local e encaminhado ao hospital mais próximo. Realizada tomografia de crânio e face (imagens abaixo): O diagnóstico é:",
   alternativas:[{id:"A",texto:"Fratura de face Le Fort I, afundamento frontal e hemorragia intracraniana."},{id:"B",texto:"Fratura de face Le Fort II, afundamento frontal e hemorragia intracraniana."},{id:"C",texto:"Fratura de face Le Fort II, fratura de mandíbula e hemorragia intracraniana."},{id:"D",texto:"Fratura de face Le Fort III, afundamento frontal e fratura de mandíbula."}],
   gabarito:"D",
@@ -1051,7 +1051,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-078", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:78,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-tp20232-078.png",
+  imagemUrl:"dados/imagens/q-tp20232-078.webp",
   enunciado:"Homem, 25 anos, vítima de acidente de motocicleta com carro. Avaliação inicial: instável hemodinamicamente. Após Ringer Lactato 500mL: PA = 88/60mmHg; FC = 138bpm; SaO2 = 91% com máscara de oxigênio a 2L/min. Não há sangramento externo evidente. Ausculta respiratória normal. Não há abafamento de bulhas cardíacas. O quadril é estável. Realizado um ultrassom abdominal FAST (imagens abaixo): Neste momento, a conduta é:",
   alternativas:[{id:"A",texto:"Tomografia abdominal"},{id:"B",texto:"Laparotomia exploradora"},{id:"C",texto:"Repetir FAST em 15 minutos"},{id:"D",texto:"Videolaparoscopia diagnóstica"}],
   gabarito:"B",
@@ -1104,7 +1104,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-082", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:82,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-tp20232-082.png",
+  imagemUrl:"dados/imagens/q-tp20232-082.webp",
   enunciado:"Primigesta, 23 anos, iniciou acompanhamento pré-natal com 10 semanas de gestação e peso de 80kg. O índice de massa corporal (IMC) calculado nessa data era 31,3kg/m2. Recebeu orientações alimentares ao longo do pré-natal. Com 20 semanas apresentava IMC = 32kg/m2; com 30 semanas IMC = 33kg/m2 e, ao final da gestação, com 38 semanas, apresentava peso de 87kg, com IMC de 34kg/m2. Considerando o gráfico de acompanhamento do IMC da gestante (figura acima), é correto afirmar que o ganho de peso materno foi:",
   alternativas:[{id:"A",texto:"Adequado, com curva do IMC adequada, pois apresenta inclinação ascendente semelhante à curva que delimita a parte inferior da faixa de obesidade."},{id:"B",texto:"Excessivo, com curva do IMC inadequada, pois deveria ter inclinação descendente para atingir a faixa recomentada de sobrepeso."},{id:"C",texto:"Excessivo, com curva do IMC adequada, pois apresenta inclinação ascendente semelhante à curva que delimita a parte inferior da faixa de obesidade."},{id:"D",texto:"Adequado, com curva do IMC inadequada, pois deveria ter inclinação descendente para atingir a faixa recomentada de sobrepeso."}],
   gabarito:"A",
@@ -1118,7 +1118,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-083", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:83,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-tp20232-083.png",
+  imagemUrl:"dados/imagens/q-tp20232-083.webp",
   enunciado:"Primigesta, 31 anos, 39 semanas de gestação, sem complicações clínicas ou obstétricas, está em trabalho de parto, com evolução clínica apresentada no partograma abaixo: A distocia observada e a conduta são:",
   alternativas:[{id:"A",texto:"Parada secundária da dilatação; iniciar ocitocina endovenosa."},{id:"B",texto:"Parada secundária da descida; realizar analgesia peridural."},{id:"C",texto:"Parada secundária da dilatação; realizar amniotomia."},{id:"D",texto:"Parada secundária da descida; adotar posições verticalizadas."}],
   gabarito:"C",
@@ -1158,7 +1158,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-086", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:86,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
-  imagemUrl:"dados/imagens/q-tp20232-086.png",
+  imagemUrl:"dados/imagens/q-tp20232-086.webp",
   enunciado:"Secundigesta, 37 anos, realizou teste de tolerância oral à glicose às 24 semanas de gravidez, com diagnóstico de diabetes gestacional. Foi orientada dieta para diabetes (2.000kcal) e atividade física (30 minutos de caminhada, 5 vezes por semana). A gestante no retorno traz o controle glicêmico abaixo: A conduta é:",
   alternativas:[{id:"A",texto:"Insulina"},{id:"B",texto:"Metformina"},{id:"C",texto:"Vildagliptina"},{id:"D",texto:"Adequar a dieta"}],
   gabarito:"A",
@@ -1237,7 +1237,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-092", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:92,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-tp20232-092.png",
+  imagemUrl:"dados/imagens/q-tp20232-092.webp",
   enunciado:"Parturiente, 28 anos de idade, primigesta, idade gestacional de 39 semanas, em trabalho de parto, foi submetida a exame de cardiotocografia intraparto, cujo traçado está apresentado na imagem abaixo: A conduta é:",
   alternativas:[{id:"A",texto:"Medidas de reanimação intrauterina"},{id:"B",texto:"Cuidado habitual de assistência ao parto"},{id:"C",texto:"Perfil biofísico fetal"},{id:"D",texto:"Cesárea de emergência"}],
   gabarito:"A",
@@ -1342,7 +1342,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-100", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:100,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
-  imagemUrl:"dados/imagens/q-tp20232-100.png",
+  imagemUrl:"dados/imagens/q-tp20232-100.webp",
   enunciado:"Mulher, 62 anos, palpou nódulo na mama esquerda. Realizada ressecção segmentar da mama. A imagem mostra o exame anatomopatológico: O achado sugestivo de malignidade é:",
   alternativas:[{id:"A",texto:"Taxa de crescimento alta"},{id:"B",texto:"Elementos ductais proliferativos"},{id:"C",texto:"Tecido fibroso frouxo"},{id:"D",texto:"Ruptura da membrana basal"}],
   gabarito:"D",
@@ -1382,7 +1382,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-103", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:103,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-tp20232-103.png",
+  imagemUrl:"dados/imagens/q-tp20232-103.webp",
   enunciado:"As imagens abaixo, retiradas do boletim semanal InfoGripe - Semana 26 de 2023 - correspondem a uma série temporal dos casos de síndrome respiratória aguda grave (SRAG) no Brasil. Continuação da questão 103. Apenas com as informações apresentadas nas imagens, o indicador de saúde que pode ser calculado é:",
   alternativas:[{id:"A",texto:"Coeficiente de ataque secundário"},{id:"B",texto:"Coeficiente de mortalidade por causa"},{id:"C",texto:"Taxa de ataque"},{id:"D",texto:"Taxa de letalidade"}],
   gabarito:"D",
@@ -1552,7 +1552,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-2", [
 {
   id:"q-tp20232-116", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2023, semestre:2, numeroNaProva:116,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-venosa",
-  imagemUrl:"dados/imagens/q-tp20232-116.png",
+  imagemUrl:"dados/imagens/q-tp20232-116.webp",
   enunciado:"Mulher, 56 anos, apresenta uma lesão ulcerosa dolorosa em membro inferior esquerdo, como a apresentada na figura a seguir. As extremidades mantêm a temperatura corporal, sensibilidade ao toque e pulsos presentes. A etiologia da úlcera é:",
   alternativas:[{id:"A",texto:"Isquêmica"},{id:"B",texto:"Venosa"},{id:"C",texto:"Neuropática"},{id:"D",texto:"Infecciosa"}],
   gabarito:"B",

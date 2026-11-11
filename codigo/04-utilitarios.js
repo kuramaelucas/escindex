@@ -6,6 +6,10 @@
    ========================================================================== */
 function uid(prefixo){ return prefixo+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 
+/* Escolhe singular ou plural pelo número ("1 questão", "2 questões"): o texto não
+   usa mais "questão(ões)". Só devolve a palavra; o número a tela escreve. */
+function plural(n, singular, plural){ return Number(n) === 1 ? singular : plural; }
+
 function escapeHtml(str){
   if(str===undefined || str===null) return "";
   return String(str).replace(/[&<>"']/g, function(c){
@@ -259,6 +263,7 @@ function toast(msg, tipo){
   const el = document.createElement("div");
   el.className = "toast"+(tipo==="err" ? " err" : "");
   el.textContent = msg;
+  if(tipo==="err") el.setAttribute("role", "alert");   // erro interrompe o leitor de tela; o resto espera a vez (aria-live do contêiner)
   cont.appendChild(el);
   setTimeout(()=>{ el.style.opacity="0"; el.style.transition="opacity .25s"; setTimeout(()=>el.remove(),260); }, 3200);
 }
@@ -272,7 +277,36 @@ function abrirModal(innerHtml, tamanho){
   overlay.innerHTML = '<div class="modal '+(tamanho==="lg"?"modal-lg":"")+'">'+innerHtml+'</div>';
   document.body.appendChild(overlay);
   rotularCamposParaLeitorDeTela(overlay); // janela não passa pelo desenho de tela, precisa da ligação aqui
+  prepararJanelaParaTeclado(overlay);
 }
+/* Janela para quem usa teclado ou leitor de tela: é anunciada como diálogo com o
+   título, o foco entra nela (sem rolar a página), Tab não escapa para a tela por
+   trás, Esc fecha e, ao fechar, o foco volta ao botão que a abriu. */
+let _focoAntesDaJanela = null;
+function prepararJanelaParaTeclado(overlay){
+  const caixa = overlay.querySelector(".modal");
+  if(!caixa) return;
+  caixa.setAttribute("role", "dialog");
+  caixa.setAttribute("aria-modal", "true");
+  const titulo = caixa.querySelector("h3");
+  if(titulo){ titulo.id = titulo.id || "tituloJanelaAtiva"; caixa.setAttribute("aria-labelledby", titulo.id); }
+  caixa.setAttribute("tabindex", "-1");
+  if(!_focoAntesDaJanela || !document.body.contains(_focoAntesDaJanela)) _focoAntesDaJanela = document.activeElement;
+  if(!caixa.contains(document.activeElement)) caixa.focus({ preventScroll: true });
+}
+document.addEventListener("keydown", function(e){
+  const overlay = document.getElementById("modalOverlayAtivo");
+  if(!overlay || overlay.style.display === "none" || e.defaultPrevented) return;
+  if(e.key === "Escape"){ e.preventDefault(); fecharModalComConfirmacao(); return; }
+  if(e.key !== "Tab") return;
+  const foco = [...overlay.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')]
+    .filter(x => x.offsetParent !== null);
+  if(!foco.length) return;
+  const primeiro = foco[0], ultimo = foco[foco.length - 1], atual = document.activeElement;
+  if(e.shiftKey && (atual === primeiro || atual === overlay.querySelector(".modal"))){ e.preventDefault(); ultimo.focus(); }
+  else if(!e.shiftKey && atual === ultimo){ e.preventDefault(); primeiro.focus(); }
+  else if(!overlay.contains(atual)){ e.preventDefault(); primeiro.focus(); }
+});
 /* ---------- acessibilidade: ligar cada rótulo ao seu campo ----------------
    Quem enxerga liga a palavra "Senha" à caixinha logo abaixo pela posição na
    tela. Um leitor de tela só faz essa ligação se ela estiver marcada no HTML;
@@ -317,7 +351,11 @@ function rotuloVisivelDoCampo(campo){
 }
 function fecharModal(){
   const el = document.getElementById("modalOverlayAtivo");
-  if(el) el.remove();
+  if(el){
+    el.remove();
+    if(_focoAntesDaJanela && document.body.contains(_focoAntesDaJanela)) _focoAntesDaJanela.focus({ preventScroll: true });
+    _focoAntesDaJanela = null;
+  }
   const aba = document.getElementById("modalMinimizado");
   if(aba) aba.remove();
 }

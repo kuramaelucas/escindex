@@ -542,10 +542,10 @@ function renderCardMeusEnvios(){
   return `<div class="card mb-2">
     <div class="card-title">${iconeSvg("upload")} Suas questões enviadas</div>
     <p class="text-sm muted">Com a nuvem ligada, o que você envia sobe junto com as imagens e chega à equipe, que confere e aprova. Aprovada, a questão entra no banco de toda a turma.</p>
-    ${naFila ? `<p class="text-sm mt-1">${iconeSvg("refresh")} ${naFila} questão(ões) subindo agora…</p>` : ""}
+    ${naFila ? `<p class="text-sm mt-1">${iconeSvg("refresh")} ${naFila} ${plural(naFila,"questão","questões")} subindo agora…</p>` : ""}
     ${db.nuvem.avisoImagens ? `<p class="text-xs mt-1 texto-alerta">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoImagens)}</p>` : ""}
     ${db.nuvem.avisoGrupos ? `<p class="text-xs mt-1 texto-alerta">${iconeSvg("alert")} ${escapeHtml(db.nuvem.avisoGrupos)}</p>` : ""}
-    ${soAqui.length ? `<div class="card-flat mt-2 text-sm">${iconeSvg("alert")} <strong>${soAqui.length} questão(ões) estão só neste navegador</strong> — foram criadas antes de subirem para a nuvem.
+    ${soAqui.length ? `<div class="card-flat mt-2 text-sm">${iconeSvg("alert")} <strong>${soAqui.length} ${plural(soAqui.length,"questão","questões")} estão só neste navegador</strong> — foram criadas antes de subirem para a nuvem.
       <button class="btn btn-secondary btn-sm mt-1" onclick="nuvemEnviarQuestoesDesteNavegador()">${iconeSvg("upload")} Enviar para a nuvem</button></div>` : ""}
     ${envios.length ? `<div class="qcard-meta mt-2">
         <span class="badge badge-amber">${conta("pendente")} aguardando</span><span class="badge badge-accent">${conta("aprovada")} aprovada(s)</span>
@@ -566,5 +566,5 @@ function nuvemEnviarQuestoesDesteNavegador(){
   lista.forEach(q => nuvemMarcarGlobalPendente("questoes_enviadas", q.id));
   saveState();
   nuvemSincronizarAgora({ forcarRedesenho: true });
-  toast(lista.length + " questão(ões) a caminho da nuvem" + (lista.some(q => /^data:image\//.test(q.imagemUrl || "")) ? ", com as imagens" : "") + ".");
+  toast(lista.length+" "+plural(lista.length,"questão","questões")+" a caminho da nuvem" + (lista.some(q => /^data:image\//.test(q.imagemUrl || "")) ? ", com as imagens" : "") + ".");
 }

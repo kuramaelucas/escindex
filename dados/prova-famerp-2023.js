@@ -590,7 +590,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 {
   id:"q-famerp2023-044", banca:"FAMERP", real:true, ano:2023, numeroNaProva:44,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-famerp2023-044.png", imagemLegenda:"Partograma da primigesta (dilatação do colo, descida, contrações e bolsa).",
+  imagemUrl:"dados/imagens/q-famerp2023-044.webp", imagemLegenda:"Partograma da primigesta (dilatação do colo, descida, contrações e bolsa).",
   enunciado:"Primigesta, gestação de risco usual, com a evolução do trabalho de parto demonstrada no partograma abaixo. Assinale a alternativa que contém o tipo de distócia apresentada e a conduta obstétrica:",
   alternativas:[{id:"A",texto:"Parada secundária da descida e fórceps de rotação"},{id:"B",texto:"Parada secundária da descida e operação cesariana"},{id:"C",texto:"Fase ativa protraída e infusão intravenosa de ocitocina"},{id:"D",texto:"Desproporção cefalopélvica relativa e infusão intravenosa de ocitocina"}],
   gabarito:"D",
@@ -604,7 +604,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 {
   id:"q-famerp2023-045", banca:"FAMERP", real:true, ano:2023, numeroNaProva:45,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
-  imagemUrl:"dados/imagens/q-famerp2023-045.png", imagemLegenda:"Histerossonografia: imagem endometrial focal na cavidade uterina.",
+  imagemUrl:"dados/imagens/q-famerp2023-045.webp", imagemLegenda:"Histerossonografia: imagem endometrial focal na cavidade uterina.",
   enunciado:"Mulher, 32 anos de idade, G=0, referindo Sangramento Menstrual Excessivo (SME), com desejo de gestação. Seu ultrassom transvaginal demonstrou espessamento endometrial. Foi realizada uma histerossonografia com a imagem abaixo. Qual a melhor conduta para esta paciente?",
   alternativas:[{id:"A",texto:"Histeroscopia cirúrgica"},{id:"B",texto:"Progesterona em alta dose para conter o SME"},{id:"C",texto:"Acompanhamento com ultrassom semestral e uso de anti-inflamatório no período menstrual"},{id:"D",texto:"Utilizar um contraceptivo hormonal oral para regular sua menstruação"}],
   gabarito:"A",
@@ -735,7 +735,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 {
   id:"q-famerp2023-055", banca:"FAMERP", real:true, ano:2023, numeroNaProva:55,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
-  imagemUrl:"dados/imagens/q-famerp2023-055.png", imagemLegenda:"Achado intraoperatório após a redução da invaginação.",
+  imagemUrl:"dados/imagens/q-famerp2023-055.webp", imagemLegenda:"Achado intraoperatório após a redução da invaginação.",
   enunciado:"Um paciente com quadro de obstrução intestinal por intussuscepção é submetido a laparotomia exploradora e após a redução da invaginação é encontrado a afecção mostrada na foto abaixo. Sobre esta afecção podemos afirmar que se trata de:",
   alternativas:[{id:"A",texto:"Divertículo epifrênico"},{id:"B",texto:"Divertículo de Meckel"},{id:"C",texto:"Divertículo de Zenker"},{id:"D",texto:"Pseudo divertículo intestinal"}],
   gabarito:"B",
@@ -970,7 +970,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 {
   id:"q-famerp2023-073", banca:"FAMERP", real:true, ano:2023, numeroNaProva:73,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-famerp2023-073.png", imagemLegenda:"Eletrocardiograma (acima) e gráfico do risco relativo de tromboembolismo e hemorragia por faixa de INR (abaixo).",
+  imagemUrl:"dados/imagens/q-famerp2023-073.webp", imagemLegenda:"Eletrocardiograma (acima) e gráfico do risco relativo de tromboembolismo e hemorragia por faixa de INR (abaixo).",
   enunciado:"Paciente de 65 anos, parda, viúva. Hipertensa e diabética. Está internada na enfermaria de clínica médica de um hospital secundário após diagnóstico de acidente vascular encefálico isquêmico. Ao exame físico apresenta ritmo cardíaco irregular, bulhas normofonéticas, sem sopros. Restante do exame físico sem alterações. Você está decidindo sobre anticoagulação desta paciente e para te auxiliar o seguinte eletrocardiograma foi realizado: [ECG]. Após pesquisa na literatura você se deparou com a seguinte figura: [gráfico do risco relativo de tromboembolismo e de hemorragia por faixa de INR: < 2, 2-3, 3-5 e > 5]. Interprete o gráfico e marque a alternativa correta:",
   alternativas:[{id:"A",texto:"O menor risco de tromboembolismo se inicia com INR > 2"},{id:"B",texto:"O maior risco de tromboembolismo se inicia com INR < 3"},{id:"C",texto:"O maior risco de sangramento se inicia com INR > 5"},{id:"D",texto:"O menor risco de sangramento se encontra na faixa de INR de 3 a 5"}],
   gabarito:"A",
@@ -997,7 +997,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 {
   id:"q-famerp2023-075", banca:"FAMERP", real:true, ano:2023, numeroNaProva:75,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-famerp2023-075.png", imagemLegenda:"Radiografia de tórax do paciente internado por pneumonia.",
+  imagemUrl:"dados/imagens/q-famerp2023-075.webp", imagemLegenda:"Radiografia de tórax do paciente internado por pneumonia.",
   enunciado:"Homem, 36 anos, internado em hospital regional para tratamento de pneumonia comunitária grave, no sexto dia de ceftriaxona e azitromicina endovenosos. Apresentou 1 pico febril e queixa de mal-estar. Sinais vitais: pressão arterial de 130x80mmHg, frequência cardíaca de 90bpm, FR: 22ipm. Exame físico pulmonar: Murmúrio vesicular diminuído em base direita, frêmito diminuído e percussão com macicez em base de hemitórax direito. Foi solicitado o seguinte raio-X de tórax: [radiografia]. Qual a melhor conduta para esse paciente?",
   alternativas:[{id:"A",texto:"Intensificar fisioterapia respiratória"},{id:"B",texto:"Enoxaparina 1mg/kg SC de 12 em 12h"},{id:"C",texto:"Posição prona ativa intermitente"},{id:"D",texto:"Colher culturas e trocar antibiótico"}],
   gabarito:"A",
@@ -1050,7 +1050,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 {
   id:"q-famerp2023-079", banca:"FAMERP", real:true, ano:2023, numeroNaProva:79,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-famerp2023-079.png", imagemLegenda:"Eletrocardiograma de 12 derivações durante a taquicardia.",
+  imagemUrl:"dados/imagens/q-famerp2023-079.webp", imagemLegenda:"Eletrocardiograma de 12 derivações durante a taquicardia.",
   enunciado:"Paciente de 75 anos, gênero masculino, procura atendimento em unidade de emergência por queixa de palpitações e tonturas iniciadas há 45 minutos. Reporta ser hipertenso e dislipidêmico em uso regular de enalapril, hidroclorotiazida e atorvastatina. Relata episódio semelhante a este há 2 anos. Ao exame físico apresenta PA=135x82mmHg, FC=160bpm, FR=22ipm e ausculta pulmonar sem ruídos adventícios. Foi realizado eletrocardiograma demonstrado abaixo: [ECG]. Diante deste quadro qual deve ser sua conduta?",
   alternativas:[{id:"A",texto:"Adenosina 6mg EV"},{id:"B",texto:"Metoprolol 5mg EV"},{id:"C",texto:"Angioplastia primária"},{id:"D",texto:"Cardioversão elétrica sincronizada"}],
   gabarito:"A",
@@ -1064,7 +1064,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
 {
   id:"q-famerp2023-080", banca:"FAMERP", real:true, ano:2023, numeroNaProva:80,
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-litiase",
-  imagemUrl:"dados/imagens/q-famerp2023-080.png", imagemLegenda:"Ultrassonografia dos rins direito e esquerdo.",
+  imagemUrl:"dados/imagens/q-famerp2023-080.webp", imagemLegenda:"Ultrassonografia dos rins direito e esquerdo.",
   enunciado:"Paciente de 21 anos, sexo feminino, é admitida em unidade de pronto atendimento de um hospital escola com queixa de dor em flanco esquerdo irradiando para vulva, em uso de ciprofloxacino por conta própria há 1 dia. Ao exame físico se encontra febril e com sinal de Giordano positivo à esquerda. Após analisar a ultrassonografia abaixo, podemos afirmar que a melhor conduta é:",
   alternativas:[{id:"A",texto:"Analgesia com tramadol e dipirona endovenosos"},{id:"B",texto:"Solicitar urologia para passagem de cateter duplo J"},{id:"C",texto:"Confirmar achado ultrassonográfico com tomografia"},{id:"D",texto:"Ceftriaxone em até 6 horas após coleta de culturas"}],
   gabarito:"B",

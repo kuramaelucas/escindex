@@ -21,7 +21,7 @@
 window.EscDados.registrarQuestoes("prova-usp-2025", [
 {
   id:"q-usp2025-001", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:1,
-  imagemUrl:"dados/imagens/q-usp2025-001.jpg", imagemLegenda:"Fotografia da face; as quatro alternativas são imagens de ultrassonografia ovariana (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-001.webp", imagemLegenda:"Fotografia da face; as quatro alternativas são imagens de ultrassonografia ovariana (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
   enunciado:"Mulher, 24 anos de idade, queixa-se de irregularidade menstrual (ciclos com intervalo de 40 dias e duração de 3 dias), aumento de pelos faciais e acne persistente na face e no tronco há cerca de três anos. Refere dificuldade para perder peso. Ao exame clínico, apresentou bom estado geral, corada, hidratada, anictérica, acianótica e afebril; peso de 78 kg, altura 1,65 m e IMC de 27,5 kg/m²; PA de 120x80 mmHg; exame ginecológico com trofismo genital preservado, sem alterações. O exame da pele da face é apresentado na imagem a seguir: • Exames laboratoriais: Glicose: 88 mg/dL Hemoglobina glicada: 5,2% Insulina: 12 mU/L Cálculo do HOMA-IR: 2,6 TSH: 1,2 mUI/L Testosterona livre: 34 pmol/L Estradiol na fase folicular: 8,3 ng/ dL LH na fase folicular: 16,9 U/L FSH na fase folicular: 2,8 UI/L Prolactina: 33 μg/L Considerando a principal hipótese diagnóstica, qual é a imagem ultrassonográfica ovariana correspondente ao caso descrito?",
@@ -36,7 +36,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-002", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:2,
-  imagemUrl:"dados/imagens/q-usp2025-002.jpg", imagemLegenda:"Fotografia da face",
+  imagemUrl:"dados/imagens/q-usp2025-002.webp", imagemLegenda:"Fotografia da face",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
   enunciado:"Mulher, 24 anos de idade, queixa-se de irregularidade menstrual (ciclos com intervalo de 40 dias e duração de 3 dias), aumento de pelos faciais e acne persistente na face e no tronco há cerca de três anos. Refere dificuldade para perder peso. Ao exame clínico, apresentou bom estado geral, corada, hidratada, anictérica, acianótica e afebril; peso de 78 kg, altura 1,65 m e IMC de 27,5 kg/m²; PA de 120x80 mmHg; exame ginecológico com trofismo genital preservado, sem alterações. O exame da pele da face é apresentado na imagem a seguir: • Exames laboratoriais: Glicose: 88 mg/dL Hemoglobina glicada: 5,2% Insulina: 12 mU/L Cálculo do HOMA-IR: 2,6 TSH: 1,2 mUI/L Testosterona livre: 34 pmol/L Estradiol na fase folicular: 8,3 ng/ dL LH na fase folicular: 16,9 U/L FSH na fase folicular: 2,8 UI/L Prolactina: 33 μg/L Qual é o objetivo do tratamento desta condição com contraceptivo hormonal oral combinado?",
@@ -51,7 +51,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-003", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:3,
-  imagemUrl:"dados/imagens/q-usp2025-003.jpg", imagemLegenda:"Fotografia da face",
+  imagemUrl:"dados/imagens/q-usp2025-003.webp", imagemLegenda:"Fotografia da face",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
   enunciado:"Mulher, 24 anos de idade, queixa-se de irregularidade menstrual (ciclos com intervalo de 40 dias e duração de 3 dias), aumento de pelos faciais e acne persistente na face e no tronco há cerca de três anos. Refere dificuldade para perder peso. Ao exame clínico, apresentou bom estado geral, corada, hidratada, anictérica, acianótica e afebril; peso de 78 kg, altura 1,65 m e IMC de 27,5 kg/m²; PA de 120x80 mmHg; exame ginecológico com trofismo genital preservado, sem alterações. O exame da pele da face é apresentado na imagem a seguir: • Exames laboratoriais: Glicose: 88 mg/dL Hemoglobina glicada: 5,2% Insulina: 12 mU/L Cálculo do HOMA-IR: 2,6 TSH: 1,2 mUI/L Testosterona livre: 34 pmol/L Estradiol na fase folicular: 8,3 ng/ dL LH na fase folicular: 16,9 U/L FSH na fase folicular: 2,8 UI/L Prolactina: 33 μg/L A acne apresentada pela paciente poderá ser adequadamente tratada com qual dos seguintes medicamentos?",
@@ -66,7 +66,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-004", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:4,
-  imagemUrl:"dados/imagens/q-usp2025-004.png", imagemLegenda:"Ultrassonografia transvaginal (corte longitudinal do útero)",
+  imagemUrl:"dados/imagens/q-usp2025-004.webp", imagemLegenda:"Ultrassonografia transvaginal (corte longitudinal do útero)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-endometriose",
   enunciado:"Mulher, 34 anos de idade, 1G 1P, refere ciclos menstruais regulares com intervalo de 28 dias, porém com sangramento menstrual volumoso com perda de coágulos e cólica. Deseja engravidar. Ao exame ginecológico especular, sem alterações e toque vaginal com útero pouco aumentado difusamente. Foi realizada a ultrassonografia transvaginal apresentada (corte longitudinal) a seguir: Considerando o desejo da paciente e o controle da queixa, qual é o tratamento mais adequado?",
@@ -137,7 +137,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-009", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:9,
-  imagemUrl:"dados/imagens/q-usp2025-009.jpg", imagemLegenda:"As quatro alternativas são figuras de procedimentos no colo uterino (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-009.webp", imagemLegenda:"As quatro alternativas são figuras de procedimentos no colo uterino (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cacolo",
   enunciado:"Mulher, 26 anos de idade, apresenta diagnóstico de lesão epitelial de alto grau em colo uterino. Qual das figuras a seguir demonstra o procedimento mais adequado a ser realizado para esta paciente?",
@@ -152,7 +152,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-010", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:10,
-  imagemUrl:"dados/imagens/q-usp2025-010.jpg", imagemLegenda:"Imagem da ultrassonografia",
+  imagemUrl:"dados/imagens/q-usp2025-010.webp", imagemLegenda:"Imagem da ultrassonografia",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
   enunciado:"Mulher, 22 anos de idade, previamente hígida, comparece no pronto atendimento com dor abdominal em baixo ventre de início súbito há 1 hora, de forte intensidade. Vida sexual ativa, usa dispositivo intraútero de cobre há 2 anos. Não se lembra da data da última menstruação, refere ciclos irregulares desde a adolescência. Obstipada há 2 dias, no momento apresenta náusea intensa. Ao exame físico, apresentou regular estado geral, descorada, PA de 80x40 mmHg, FC de 120 bpm. Abdome rígido com defesa global e descompressão brusca positiva em hipogástrio. Toque vaginal intensamente doloroso. Exame de imagem apresentado a seguir A conduta correta a ser adotada diante dos achados é:",
@@ -167,7 +167,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-011", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:11,
-  imagemUrl:"dados/imagens/q-usp2025-011.jpg", imagemLegenda:"Partograma; as quatro alternativas são desenhos de tipos de pelve (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-011.webp", imagemLegenda:"Partograma; as quatro alternativas são desenhos de tipos de pelve (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Mulher, 32 anos de idade, primigesta com 38 semanas de gravidez, sem doenças, foi admitida na maternidade em trabalho de parto espontâneo. Apresentou amniorrexe espontânea no momento da admissão, com saída de líquido claro com grumos. Ao exame físico, apresentou bom estado geral, corada, normotensa e normocárdica. Abdome gravídico, altura uterina de 33 cm, dinâmica presente, batimento cardíaco fetal presente de 146 bpm. O acompanhamento do trabalho de parto está demonstrado no partograma a seguir: Ao avaliar a evolução do trabalho de parto representado, assinale o provável tipo de pelve da parturiente.",
@@ -182,7 +182,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-012", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:12,
-  imagemUrl:"dados/imagens/q-usp2025-012.jpg", imagemLegenda:"Partograma e traçado de cardiotocografia",
+  imagemUrl:"dados/imagens/q-usp2025-012.webp", imagemLegenda:"Partograma e traçado de cardiotocografia",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Mulher, 32 anos de idade, primigesta com 38 semanas de gravidez, sem doenças, foi admitida na maternidade em trabalho de parto espontâneo. Apresentou amniorrexe espontânea no momento da admissão, com saída de líquido claro com grumos. Ao exame físico, apresentou bom estado geral, corada, normotensa e normocárdica. Abdome gravídico, altura uterina de 33 cm, dinâmica presente, batimento cardíaco fetal presente de 146 bpm. O acompanhamento do trabalho de parto está demonstrado no partograma a seguir: Às 21h, a cardiotocografia apresenta o seguinte traçado: A cardiotocografia demonstra que, neste momento, há:",
@@ -197,7 +197,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-013", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:13,
-  imagemUrl:"dados/imagens/q-usp2025-013.jpg", imagemLegenda:"Tabela com o perfil glicêmico",
+  imagemUrl:"dados/imagens/q-usp2025-013.webp", imagemLegenda:"Tabela com o perfil glicêmico",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   enunciado:"Gestante, 26 anos de idade, está em seguimento pré-natal por diabetes gestacional com dieta nutricional fracionada orientada, diagnosticada por glicemia de jejum de 98 mg/dL no primeiro trimestre. Neste momento, com 26 semanas, retorna em bom estado geral, normotensa, abdome gravídico, AU de 25 cm, BCF+, IMC: 30 kg/m². Traz perfil glicêmico (em mg/dL): Com base nessas informações, a conduta indicada neste momento é:",
@@ -254,7 +254,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-017", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:17,
-  imagemUrl:"dados/imagens/q-usp2025-017.jpg", imagemLegenda:"Traçado de cardiotocografia",
+  imagemUrl:"dados/imagens/q-usp2025-017.webp", imagemLegenda:"Traçado de cardiotocografia",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
   enunciado:"Primigesta, 18 anos de idade, comparece ao pré-natal com 33 semanas de gravidez. Refere falta de ar para a rotina domiciliar, sente-se cansada o tempo todo. Ultimamente, com mais dificuldade para dormir. Boa movimentação fetal, mas tem contrações dolorosas há 3 horas. Ao exame físico, apresentou-se descorada 1+/4+, FR de 18 ipm, FC de 118 bpm, saturação de O2 de 94%, PA de 130x90 mmHg. Sopro diastólico mitral 3+/6+ com reforço pré-sistólico, sopro sistólico aórtico 2+/6+ sem irradiações. Ausculta pulmonar com estertores e sibilos esparsos. Edema membros inferiores 2+/4+. Abdome gravídico, AU 30 cm, BCF+, dinâmica 3 contrações fracas em 10 minutos. Colo médio posterior, 4 cm de dilatação, bolsa íntegra, cefálico. Após a conduta inicial e estabilização, a paciente apresenta a cardiotocografia a seguir: Neste momento, deve-se realizar:",
@@ -269,7 +269,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-018", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:18,
-  imagemUrl:"dados/imagens/q-usp2025-018.jpg", imagemLegenda:"Dopplervelocimetria da artéria umbilical e da artéria cerebral média",
+  imagemUrl:"dados/imagens/q-usp2025-018.webp", imagemLegenda:"Dopplervelocimetria da artéria umbilical e da artéria cerebral média",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Adolescente, 15 anos de idade, primigesta, comparece ao pré-natal com 34 semanas de gravidez. Está bem, sem queixas. Refere boa movimentação fetal. Ao exame clínico, bom estado geral, corada, normotensa, abdome gravídico, altura uterina 26 cm, BCF presente e rítmico. Em ultrassonografia realizada, o peso fetal estimado foi de 1.870 g, percentil 7, feto normotônico, movimentos corpóreos e respiratórios presentes, índice de líquido amniótico 9 cm. Dopplervelocimetria de artéria umbilical e de artéria cerebral média, conforme imagens a seguir: Na ausência de trabalho de parto, a programação obstétrica recomendada é: Valores de Referência (fornecidos pela banca no início do caderno de prova): Doppler de artéria: - Umbilical fetal, índice de pulsatilidade (PI) para 34 semanas = 0,5 a 0,99 - Cerebral média fetal, índice de pulsatilidade (PI) para 34 semanas = 1,35 a 2,43",
@@ -298,7 +298,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-020", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:20,
-  imagemUrl:"dados/imagens/q-usp2025-020.jpg", imagemLegenda:"Figura com o local de ausculta dos batimentos cardíacos fetais no abdome materno",
+  imagemUrl:"dados/imagens/q-usp2025-020.webp", imagemLegenda:"Figura com o local de ausculta dos batimentos cardíacos fetais no abdome materno",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Em um acompanhamento de trabalho de parto a ausculta de batimento fetal ocorreu conforme imagem a seguir: É correto afirmar que se trata de assistência a feto",
@@ -313,7 +313,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-021", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:21,
-  imagemUrl:"dados/imagens/q-usp2025-021.jpg", imagemLegenda:"Fotografias do exame físico (mamas e abdome)",
+  imagemUrl:"dados/imagens/q-usp2025-021.webp", imagemLegenda:"Fotografias do exame físico (mamas e abdome)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-puerperio",
   enunciado:"Puérpera retorna em consulta no 8º dia pós-parto cesárea com queixa de cansaço e mal- estar há 2 dias. Devido à dificuldade nas mamadas, iniciou complementação com fórmula láctea para o recém-nascido há 2 dias. Refere temperatura axilar 38,1 °C. Ao exame físico, regular estado geral, FC de 100 bpm, PA de 90x60 mmHg. Abdome flácido, doloroso à palpação de hipogástrio, útero palpável 2 cm abaixo da cicatriz umbilical. As imagens a seguir referem-se ao exame físico da paciente: Com base nos dados e nas imagens, assinale a conduta mais adequada neste momento.",
@@ -342,7 +342,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-023", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:23,
-  imagemUrl:"dados/imagens/q-usp2025-023.jpg", imagemLegenda:"Fotografias do material (fita/sling) e da técnica de inserção",
+  imagemUrl:"dados/imagens/q-usp2025-023.webp", imagemLegenda:"Fotografias do material (fita/sling) e da técnica de inserção",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
   enunciado:"Mulher, 54 anos de idade, apresenta queixa de perda de urina ao rir e tossir. Será submetida à correção da perda urinária com o material apresentado a seguir, que será introduzido conforme técnica, também apresentada a seguir: Qual é o mecanismo responsável pelo tratamento da incontinência urinária?",
@@ -385,7 +385,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-026", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:26,
-  imagemUrl:"dados/imagens/q-usp2025-026.jpg", imagemLegenda:"Fotografia da faca empalada na parede anterior do tórax",
+  imagemUrl:"dados/imagens/q-usp2025-026.webp", imagemLegenda:"Fotografia da faca empalada na parede anterior do tórax",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
   enunciado:"Homem, 64 anos de idade, tentou suicídio com ferimento por arma branca no tórax. No atendimento inicial, o paciente encontrava-se com a faca introduzida na parede anterior do tórax, bastante agitado e com PA de 140x90 mmHg e FC de 110 bpm. Devido à agitação, optou-se pela intubação para transporte. Na admissão no Centro de Trauma encontrava-se: A: Intubado. Saturação de oxigênio de 97%. B: MV presentes e sem alterações. Inspeção torácica demonstrada na figura a seguir. C: PA de 130x80 mmHg; FC de 110 bpm; e-FAST negativo. D: Sedado com pupilas mióticas. Escala de coma de Glasgow 3. E: Sem outros achados além da lesão torácica. Assinale a alternativa que indica o próximo passo a ser realizado na condução do caso.",
@@ -526,7 +526,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-036", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:36,
-  imagemUrl:"dados/imagens/q-usp2025-036.png", imagemLegenda:"Tomografia de abdome do 10º dia",
+  imagemUrl:"dados/imagens/q-usp2025-036.webp", imagemLegenda:"Tomografia de abdome do 10º dia",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
   enunciado:"Mulher, 33 anos de idade, está internada na enfermaria há 16 dias devido à pancreatite aguda biliar. No início do quadro, apresentou dor abdominal de difícil controle com piora após alimentação, além de empachamento. Em virtude da baixa aceitação alimentar, foi realizada a passagem de sonda nasoenteral para nutrição. Com 10 dias de evolução, optou-se por realizar a tomografia de abdome, conforme imagens a seguir: Atualmente, no 16º dia de internação, encontra-se sem dor, sem vômitos e aceitação plena da dieta. Ao exame físico, apresentou bom estado geral, afebril, ausculta torácica sem alteração, abdome flácido e doloroso à palpação profunda do epigástrio, sem sinais de irritação peritoneal. • Exames laboratoriais: Hb: 11,3 g/dL Leucograma: 11.715/mm³ PCR: 71 mg/L Creatinina: 1,1 mg/dL Ureia: 45 mg/dL Fosfatase alcalina: 79 U/I GGT: 110 U/L TGO/AST: 41 U/L TGP/ALT: 51 U/L Considerando as informações apresentadas, assinale a melhor conduta para o caso.",
@@ -583,7 +583,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-040", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-usp2025-040.jpg", imagemLegenda:"Fotografia do tornozelo e pé (edema e flictenas) e radiografia do tornozelo",
+  imagemUrl:"dados/imagens/q-usp2025-040.webp", imagemLegenda:"Fotografia do tornozelo e pé (edema e flictenas) e radiografia do tornozelo",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
   enunciado:"Homem, 42 anos de idade, teve queda de escada há 1 dia. Inicialmente, foi atendido na Unidade de Pronto Atendimento (UPA) e realizada a imobilização provisória. Após 24 horas, foi transferido para Serviço de Ortopedia. Ao exame físico do tornozelo e pé, apresentava dor e edema, conforme imagem a seguir: Na sequência foi realizada radiografia, que apresentou a seguinte imagem: Com base nessas informações, assinale a alternativa que apresenta a melhor conduta.",
@@ -598,7 +598,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-041", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:41,
-  imagemUrl:"dados/imagens/q-usp2025-041.jpg", imagemLegenda:"Cortes da tomografia de abdome; as quatro alternativas são esquemas do segmento a ressecar (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-041.webp", imagemLegenda:"Cortes da tomografia de abdome; as quatro alternativas são esquemas do segmento a ressecar (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
   enunciado:"Homem, 65 anos de idade, foi admitido no Serviço de Emergência com distensão abdominal e dor em cólica há 6 dias. Desde o início do quadro, está sem evacuar e há 2 dias, evoluiu com vômitos. Refere constipação há 3 meses com necessidade de uso de laxativos. Nega perda de peso. Ao exame físico, encontra-se em bom estado geral e desidratado; abdome distendido, ruídos hidroaéreos aumentados, doloroso à palpação profunda e sem sinais de irritação peritoneal; toque retal sem fezes na ampola e sem lesões; sem outras alterações. • Exames laboratoriais: Hb: 12,1 g/dL Ht: 37% Leucograma: 10.413/mm³ PCR: 15 mg/L Creatinina: 1,7 mg/dL Ureia: 71 mg/dL A tomografia de abdome pode ser visualizada nas imagens a seguir: Foi indicado tratamento operatório e, diante dos achados, optou-se por realizar ressecção intestinal. Assinale a alternativa que apresenta o segmento intestinal que deve ser ressecado.",
@@ -613,7 +613,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-042", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:42,
-  imagemUrl:"dados/imagens/q-usp2025-042.png", imagemLegenda:"Ressonância de abdome",
+  imagemUrl:"dados/imagens/q-usp2025-042.webp", imagemLegenda:"Ressonância de abdome",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-oncopediatrica",
   enunciado:"Criança, do sexo feminino, 5 anos de idade, apresenta dor e aumento do volume abdominal há 3 meses, acompanhados de febre intermitente e inapetência. Nascida de parto normal, sem intercorrências. Nega outras doenças. Ao exame físico, encontra-se em regular estado geral, descorada, eupneica, afebril, anictérica; PA de 100x60 mmHg, FC de 92 bpm, abdome com massa indolor palpável no flanco esquerdo. Genitais externos sem alterações. • Exames laboratoriais: Hb: 8,4 g/dL Leucocitos: 6.200/mm³ sem desvio Creatinina: 0,44 mg/dL Ureia: 0,28 mg/dL Urina tipo I: 1 milhão de hemácias/mL e 68.000 leucócitos/mL Ressonância de abdome apresentada a seguir: Em relação ao caso apresentado, assinale a hipótese diagnóstica mais provável:",
@@ -698,7 +698,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-048", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:48,
-  imagemUrl:"dados/imagens/q-usp2025-048.jpg", imagemLegenda:"Cortes da tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2025-048.webp", imagemLegenda:"Cortes da tomografia de abdome",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
   enunciado:"Homem, 41 anos de idade, refere dor no hipogástrio há 48 horas, com piora progressiva. Nega febre ou vômitos. Teve duas evacuações com fezes amolecidas. Nega queixas urinárias. Sem comorbidades. Tem antecedente de cólica renal. Ao exame físico, encontra-se em bom estado geral, apresenta abdome doloroso à palpação profunda do hipogástrio e fossa ilíaca direita sem sinais de irritação peritoneal; sem outras alterações. • Exames laboratoriais: Hb: 13,4 g/dL Leucograma: 12.332/mm³ PCR: 29 mg/L O resultado da tomografia de abdome pode ser visualizado nas imagens a seguir: Considerando a principal hipótese diagnóstica, qual é a conduta mais adequada?",
@@ -713,7 +713,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-049", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:49,
-  imagemUrl:"dados/imagens/q-usp2025-049.jpg", imagemLegenda:"Imagens da otoscopia e da oroscopia",
+  imagemUrl:"dados/imagens/q-usp2025-049.webp", imagemLegenda:"Imagens da otoscopia e da oroscopia",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
   enunciado:"Paciente de 10 meses de idade, previamente hígido, é levado ao pronto atendimento com história de febre de até 39 °C há dois dias. Responsável refere que não está aceitando nenhum alimento sólido desde o início do quadro febril, apenas seio materno. Apresenta cerca de 4 diureses por dia. Ao exame físico, encontra-se em bom estado geral, mantendo mucosas úmidas, sem alterações cardíaca, pulmonar e abdominal; otoscopia e oroscopia conforme imagens a seguir: Considerando as informações, pode-se afirmar que a conduta indicada para esse paciente é:",
@@ -728,7 +728,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-050", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:50,
-  imagemUrl:"dados/imagens/q-usp2025-050.jpg", imagemLegenda:"Imagem da ultrassonografia pulmonar (padrão observado em todos os campos)",
+  imagemUrl:"dados/imagens/q-usp2025-050.webp", imagemLegenda:"Imagem da ultrassonografia pulmonar (padrão observado em todos os campos)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   enunciado:"Paciente de 10 meses de idade, previamente hígido, é levado ao pronto atendimento com história de febre de até 39 °C há dois dias. Responsável refere que não está aceitando nenhum alimento sólido desde o início do quadro febril, apenas seio materno. Apresenta cerca de 4 diureses por dia. Ao exame físico, encontra-se em bom estado geral, mantendo mucosas úmidas, sem alterações cardíaca, pulmonar e abdominal; otoscopia e oroscopia conforme imagens a seguir: Após manejo adequado, o paciente ainda manteve febre por mais dois dias, com melhora após este período e sem recorrência. Nos dias subsequentes, evoluiu com inapetência, vômitos e hipoatividade, sintomas que foram piorando progressivamente. Foi levado ao pronto-socorro, novamente, após cerca de 10 dias do atendimento anterior. Na admissão, o paciente estava letárgico e pálido, sendo levado à sala de emergência. A seguir, encontra-se a descrição da avaliação sistematizada, os dados de monitorização e a imagem da ultrassonografia pulmonar, com o padrão observado em todos os campos pulmonares: A: pérvia B: murmúrio vesicular presente, com estertores bilateralmente, FR 55 ipm, saturação 93%, tiragem subdiafragmática C: bulhas rítmicas, 2 tempos, normofonéticas, sem sopros, tempo de enchimento capilar de 6 segundos, pulsos finos, fígado a 5 cm do rebordo costal direito D: abertura ocular e resposta verbal ao estímulo doloroso; localiza dor; glicemia capilar 75 mg/dL E: nada digno de nota, fontanela anterior normotensa Considerando a principal hipótese diagnóstica, qual é a conduta inicial indicada para estabilizar o paciente?",
@@ -743,7 +743,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-051", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:51,
-  imagemUrl:"dados/imagens/q-usp2025-051.jpg", imagemLegenda:"Resultados dos exames laboratoriais (hemograma)",
+  imagemUrl:"dados/imagens/q-usp2025-051.webp", imagemLegenda:"Resultados dos exames laboratoriais (hemograma)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
   enunciado:"Paciente de 6 anos de idade, previamente hígida, refere aparecimento de \"manchas vermelhas\" em membros inferiores há cerca de 4 dias, sendo levada ao pronto atendimento. Exame físico dentro da normalidade, exceto pela presença de petéquias em membros inferiores. Nega outros sintomas. Coletados exames laboratoriais com os resultados apresentados na imagem a seguir: Considerando a principal hipótese diagnóstica, a conduta para essa paciente é:",
@@ -786,7 +786,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-054", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:54,
-  imagemUrl:"dados/imagens/q-usp2025-054.png", imagemLegenda:"As quatro alternativas são resultados de exames (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-054.webp", imagemLegenda:"As quatro alternativas são resultados de exames (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
   enunciado:"Paciente, 12 anos de idade, do sexo feminino, previamente hígida, é admitida no pronto- socorro devido à sonolência importante há um dia. Responsável refere que ela vinha apresentando perda de peso há algumas semanas, vômitos há cerca de 10 dias e que há três dias, queixava-se de dor abdominal contínua. Ao exame clínico, encontra-se desidratada em algum grau, FC de 119 bpm, FR de 44 ipm, saturação de O2 de 99% em ar ambiente, PA de 100x60 mmHg, ausculta cardíaca e pulmonar dentro da normalidade, expansibilidade pulmonar aumentada, tempo de enchimento capilar de 3 segundos, responde e tem abertura ocular somente ao estímulo doloroso; abdome doloroso difusamente, descompressão brusca negativa, ruído hidroaéreo presente. Qual dos resultados de exame apresentados a seguir é compatível com a principal hipótese diagnóstica?",
@@ -801,7 +801,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-055", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-usp2025-055.jpg", imagemLegenda:"Fotografia do conteúdo da lavagem gástrica",
+  imagemUrl:"dados/imagens/q-usp2025-055.webp", imagemLegenda:"Fotografia do conteúdo da lavagem gástrica",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
   enunciado:"Gestante, 40 anos de idade, 36 semanas de gestação, com antecedente pessoal de epilepsia, em uso de fenitoína, apresentou escape convulsivo com queda da própria altura, entrou em trabalho de parto, sendo realizada cesárea por iteratividade. Recém-nascido pré-termo, nasceu com boa vitalidade, sem necessidade de manobras de reanimação neonatal. Boletim de Apgar 8 e 10. Mantido em contato pele a pele após o nascimento, ofertado seio materno na 1ª hora de vida e encaminhado ao alojamento conjunto. Com 13 horas de vida, recém- nascido evoluiu com episódios de vômitos com aspecto acastanhado com laivos de sangue vivo. Foi solicitado Apt-teste (teste de desnaturação alcalina da hemoglobina) e lavagem gástrica, com conteúdo apresentado na imagem a seguir: O resultado do Apt-teste foi positivo. Assinale a alternativa que justifica a origem do sangramento.",
@@ -816,7 +816,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-056", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:56,
-  imagemUrl:"dados/imagens/q-usp2025-056.jpg", imagemLegenda:"Traçado eletrocardiográfico; as quatro alternativas são prescrições (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-056.webp", imagemLegenda:"Traçado eletrocardiográfico; as quatro alternativas são prescrições (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-dda",
   enunciado:"Paciente, 3 anos de idade, do sexo masculino, previamente hígido, foi admitido no pronto- socorro com quadro de diarreia aguda há dois dias e baixa aceitação de líquidos. Chegou com desidratação grave, sendo obtido acesso venoso periférico e feita hidratação Endovenosa (EV). Após estabilização inicial, apresentou melhora da hidratação e das perdas, porém segue sem aceitar nada por via oral. O seu peso atual é de 14 kg. Os resultados dos exames laboratoriais atuais e o traçado eletrocardiográfico estão apresentados a seguir: • Exames laboratoriais: PH: 7.35 pO2: 100 mmHg pCO2: 35 mmHg HCO3: 21,0 mEq/L Sato2: 99% Potássio: 2,9 mEq/L Sódio: 132 mEq/L Em relação ao caso descrito, qual das prescrições é a mais adequada para o paciente?",
@@ -859,7 +859,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-059", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:59,
-  imagemUrl:"dados/imagens/q-usp2025-059.jpg", imagemLegenda:"Radiografias de tórax da admissão e do 3º dia de internação",
+  imagemUrl:"dados/imagens/q-usp2025-059.webp", imagemLegenda:"Radiografias de tórax da admissão e do 3º dia de internação",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
   enunciado:"Menina, 5 anos de idade, portadora de doença neuromuscular, foi admitida com história de tosse e cansaço há 2 dias, sendo feito o diagnóstico de crise asmática. A radiografia de tórax, realizada na admissão, é apresentada a seguir: No terceiro dia de internação em enfermaria, apresentou piora clínica com frequência respiratória de 44 ipm, frequência cardíaca de 138 bpm, PA de 88x68 mmHg, saturação de O2 de 88% em máscara de Venturi 50%, ausculta pulmonar diminuída em hemitórax direito, tiragens subcostal e intercostal, tempo de enchimento capilar de 2 segundos. Foi repetida a radiografia de tórax, conforme imagem a seguir: Baseada no diagnóstico principal, a conduta indicada é:",
@@ -874,7 +874,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-060", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-usp2025-060.jpg", imagemLegenda:"Fotografia das unhas dos háluxes",
+  imagemUrl:"dados/imagens/q-usp2025-060.webp", imagemLegenda:"Fotografia das unhas dos háluxes",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Adolescente, 14 anos de idade, diabética, procura atendimento médico na Unidade Básica de Saúde devido à alteração nas unhas dos hálux direito e esquerdo. Refere que, há 3 meses, ambas as unhas se tornaram espessadas, amareladas, com perda de brilho, conforme imagem apresentada a seguir: As alterações tiveram início pela porção distal da unha. Nega trauma local. Assinale a alternativa que apresenta a terapêutica mais adequada a ser instituída, considerando a principal hipótese diagnóstica.",
@@ -903,7 +903,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-062", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:62,
-  imagemUrl:"dados/imagens/q-usp2025-062.png", imagemLegenda:"Dados de monitorização (frequência cardíaca, saturação e traçado)",
+  imagemUrl:"dados/imagens/q-usp2025-062.webp", imagemLegenda:"Dados de monitorização (frequência cardíaca, saturação e traçado)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-respiratoria",
   enunciado:"Paciente, 2 anos de idade, do sexo feminino, portadora de erro inato do metabolismo, foi trazida ao departamento de emergência pelo responsável devido a quadro de sonolência e vômitos há um dia. Responsável refere que hoje não conseguiu acordá-la. Foi levada para a sala de emergência arresponsiva, apresentando respiração irregular, FR de 10 ipm, pulsos centrais finos, com FC de 45 bpm. Após terem sido iniciadas ventilações com pressão positiva na frequência de 25 ipm, a paciente mantinha pulso central fino e apresentava os dados de monitorização a seguir: Com base nos dados fornecidos, a conduta indicada nesse momento é:",
@@ -932,7 +932,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-064", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:64,
-  imagemUrl:"dados/imagens/q-usp2025-064.jpg", imagemLegenda:"As quatro alternativas são fotografias de lesões de pele (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-064.webp", imagemLegenda:"As quatro alternativas são fotografias de lesões de pele (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Menino, 5 anos de idade, é levado à UBS por quadro de lesão de pele há 2 meses. O médico fez o diagnóstico de molusco contagioso. Assinale a alternativa que apresenta a imagem compatível com o diagnóstico.",
@@ -947,7 +947,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-065", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:65,
-  imagemUrl:"dados/imagens/q-usp2025-065.jpg", imagemLegenda:"Quadro com as quatro prescrições",
+  imagemUrl:"dados/imagens/q-usp2025-065.webp", imagemLegenda:"Quadro com as quatro prescrições",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
   enunciado:"Paciente de um ano de idade, com antecedente de malformação anorretal com correção parcial, intestino curto e ileostomia, iniciou quadro de dor e distensão abdominal, com vômitos biliares há 1 dia, sendo diagnosticado com abdome agudo obstrutivo. Optou-se por tratamento conservador, mantendo paciente em jejum e reavaliação pela manhã. Faz uso de bicarbonato de sódio 3 mEq/kg/dia, mas não está aceitando as medicações via oral. Realizados os exames complementares a seguir: pH: 7,33 HCO3: 17 mEq/L Glicose: 96 mg/dL Sódio: 135 mEq/L Potássio: 3.8 mEq/L Cloro: 112 mEq/L Creatinina: 0,5 mg/dL Ureia: 47 mg/dL Peso 10 kg (Bicarbonato de Sódio 8,4% = 1mEq/mL; NaCl 20% = 3,4mEq/mL). Assinale a alternativa que apresenta a melhor prescrição de soro de manutenção isotônico para o paciente.",
@@ -976,7 +976,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-067", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:67,
-  imagemUrl:"dados/imagens/q-usp2025-067.jpg", imagemLegenda:"Fotografia das petéquias na fossa antecubital após o torniquete",
+  imagemUrl:"dados/imagens/q-usp2025-067.webp", imagemLegenda:"Fotografia das petéquias na fossa antecubital após o torniquete",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-arboviroses",
   enunciado:"Menino, 3 anos de idade, é levado ao pronto atendimento por febre de início há 5 dias, cefaleia e exantema, já resolvidos. Responsável refere que o menor está sem febre há cerca de 36 horas, mas que há um dia começou a se queixar de muita dor abdômen, sem períodos de melhora; apresentou 10 episódios de vômitos nas últimas 4 horas e teve um episódio de \"quase-desmaio\". Ao exame físico, a criança está irritada, afebril, frequência cardíaca de 138 de bpm, frequência respiratória de 36 ipm, desidratada de algum grau, PA de 82x60 mmHg, tempo de enchimento capilar de 2 segundos. Restante do exame clínico sem alterações. Após realização de torniquete para obtenção de um acesso venoso, foram notadas as seguintes lesões na fossa antecubital: Considerando a principal hipótese diagnóstica, assinale a alternativa que apresenta o exame mais compatível.",
@@ -1005,7 +1005,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-069", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:69,
-  imagemUrl:"dados/imagens/q-usp2025-069.jpg", imagemLegenda:"Imagens do teste do coraçãozinho; as quatro alternativas são esquemas de estruturas cardiovasculares (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-069.webp", imagemLegenda:"Imagens do teste do coraçãozinho; as quatro alternativas são esquemas de estruturas cardiovasculares (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-triagemneonatal",
   enunciado:"Recém-nascido (RN) termo, com idade gestacional de 40 semanas, nasceu de parto vaginal. Gestante não apresentou intercorrências durante o pré-natal. RN nasceu vigoroso, sem necessidade de medidas de reanimação neonatal, boletim de Apgar 9 e 9, no primeiro e quinto minuto de vida. Em alojamento conjunto, foi realizada avaliação propedêutica com sistema cardiorrespiratório normal e demais sistemas sem alterações identificadas. Paciente foi submetido ao teste de oximetria, com 30 horas de vida, conforme demonstrado nas imagens a seguir: Assinale a alternativa que apresenta a imagem com a estrutura anatômica que justifica a necessidade de se utilizar uma medida pré e outra pós-ductal no teste de oximetria neonatal.",
@@ -1020,7 +1020,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-070", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:70,
-  imagemUrl:"dados/imagens/q-usp2025-070.jpg", imagemLegenda:"Imagens do teste do coraçãozinho (saturação pré e pós-ductal)",
+  imagemUrl:"dados/imagens/q-usp2025-070.webp", imagemLegenda:"Imagens do teste do coraçãozinho (saturação pré e pós-ductal)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-triagemneonatal",
   enunciado:"Recém-nascido (RN) termo, com idade gestacional de 40 semanas, nasceu de parto vaginal. Gestante não apresentou intercorrências durante o pré-natal. RN nasceu vigoroso, sem necessidade de medidas de reanimação neonatal, boletim de Apgar 9 e 9, no primeiro e quinto minuto de vida. Em alojamento conjunto, foi realizada avaliação propedêutica com sistema cardiorrespiratório normal e demais sistemas sem alterações identificadas. Paciente foi submetido ao teste de oximetria, com 30 horas de vida, conforme demonstrado nas imagens a seguir: Assinale a alternativa que apresenta a interpretação adequada sobre o resultado do teste neste paciente e a respectiva conduta.",
@@ -1105,7 +1105,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-076", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:76,
-  imagemUrl:"dados/imagens/q-usp2025-076.jpg", imagemLegenda:"Tomografia de crânio sem contraste",
+  imagemUrl:"dados/imagens/q-usp2025-076.webp", imagemLegenda:"Tomografia de crânio sem contraste",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
   enunciado:"Mulher, 46 anos de idade, procura o pronto-socorro porque começou a ter cefaleia e náuseas quando estava no trabalho. Ela nega comorbidades ou uso de medicamentos. Refere cefaleia fronto-temporal, bilateral, de forte intensidade, iniciada há 1 hora, associada a náuseas e um episódio de vômito. Ao ser indagada, descreve que a cefaleia alcançou o pico de dor em, no máximo, 2 minutos. Exame clínico: PA de 158x94 mmHg, FC de 105 bpm, FR de 18 ipm, saturação de oxigênio de 98%, temperatura axilar de 36,8 °C, sem anormalidades no exame neurológico ou nos demais sistemas. Inicialmente, foi realizada uma tomografia de crânio sem contraste, exibida na imagem a seguir: Em seguida, uma angiotomografia de crânio identificou uma lesão sacular. Qual é o medicamento que deve ser indicado, neste momento, para reduzir a chance de complicações?",
@@ -1190,7 +1190,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-082", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:82,
-  imagemUrl:"dados/imagens/q-usp2025-082.jpg", imagemLegenda:"Fotografia das lesões na nádega e imagem do raspado (citodiagnóstico de Tzanck)",
+  imagemUrl:"dados/imagens/q-usp2025-082.webp", imagemLegenda:"Fotografia das lesões na nádega e imagem do raspado (citodiagnóstico de Tzanck)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Homem, 25 anos de idade, procura o ambulatório. Ele conta que há 4 dias começou a ter queimação na nádega direita e há 3 dias, evoluiu com lesões na mesma região. Nega sintomas sistêmicos. Refere que isso já ocorreu outras vezes na mesma região. Ao exame clínico, os sinais vitais são normais, tem bom estado geral e possui as lesões de pele apresentadas na imagem a seguir: Não há outras anormalidades. O raspado da lesão identificou as seguintes células: Em relação ao caso apresentado, assinale o tratamento indicado.",
@@ -1205,7 +1205,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-083", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:83,
-  imagemUrl:"dados/imagens/q-usp2025-083.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-usp2025-083.webp", imagemLegenda:"Eletrocardiograma de 12 derivações",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Paciente, do sexo feminino, 42 anos de idade, tem hipotireoidismo e diabetes melito do tipo 2. Faz uso de levotiroxina 100 µg/dia e metformina 850 mg duas vezes ao dia. Comparece no departamento de emergência por desmaio. A anamnese realizada com a paciente e sua esposa identificou que houve sudorese e sensação intensa de calor 5 minutos após o término de treino na academia, quando, em seguida, avisou que estava se sentindo mal e perdeu consciência com queda amparada pela esposa. Retornou à consciência após cerca de um minuto, dialogando normalmente e com sensação de cansaço. Ao exame físico, apresentou PA de 106x64 mmHg, FC de 58 bpm, FR de 19 ipm, saturação de oxigênio 97%; exame cardiopulmonar e abdome sem alterações; extremidades sem edema e com perfusão adequada. Foi realizado o seguinte eletrocardiograma: Com base nas informações apresentadas, assinale a alternativa que indica o diagnóstico correto.",
@@ -1248,7 +1248,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-086", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:86,
-  imagemUrl:"dados/imagens/q-usp2025-086.jpg", imagemLegenda:"Exames complementares apresentados (imagem)",
+  imagemUrl:"dados/imagens/q-usp2025-086.webp", imagemLegenda:"Exames complementares apresentados (imagem)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
   enunciado:"Paciente, sexo masculino, 49 anos de idade, tabagista 40 anos-maço, tem hipertensão arterial sistêmica. Faz uso contínuo de amlodipino 5 mg uma vez ao dia. Comparece no departamento de emergência com queixa de dor torácica de forte intensidade iniciada há cerca de 30 minutos. Ao exame: PA de 182x104 mmHg, FC de 114 bpm, FR de 23 ipm, saturação de oxigênio 95% em ar ambiente; sem alterações cardiopulmonares; extremidades frias e sudoreicas. Foram realizados os seguintes exames complementares. Considerando a principal hipótese diagnóstica, indique o primeiro medicamento a ser administrado.",
@@ -1263,7 +1263,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-087", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:87,
-  imagemUrl:"dados/imagens/q-usp2025-087.png", imagemLegenda:"As quatro alternativas são radiografias de tórax (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-087.webp", imagemLegenda:"As quatro alternativas são radiografias de tórax (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
   enunciado:"Paciente, sexo masculino, 57 anos de idade, possui antecedente de diabetes melito e gota. Comparece no pronto socorro com queixa de tosse produtiva com expectoração amarelada e febre aferida de 38,6 °C há 5 dias. Ao exame físico, apresentou PA de 132x84 mmHg, FC de 98 bpm, FR de 21 ipm, saturação de oxigênio 94% em ar ambiente; bom estado geral, corado, hidratado, eupneico; aparelho cardíaco sem alterações; murmúrios vesiculares presentes com estertores crepitantes na base esquerda; abdome e extremidades sem alterações relevantes. Assinale a alternativa que apresenta a radiografia compatível com o exame físico descrito e a principal hipótese diagnóstica.",
@@ -1278,7 +1278,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-088", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:88,
-  imagemUrl:"dados/imagens/q-usp2025-088.jpg", imagemLegenda:"As quatro alternativas são imagens de ultrassonografia torácica (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-088.webp", imagemLegenda:"As quatro alternativas são imagens de ultrassonografia torácica (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
   enunciado:"Paciente, sexo masculino, 57 anos de idade, possui antecedente de diabetes melito e gota. Comparece no pronto socorro com queixa de tosse produtiva com expectoração amarelada e febre aferida de 38,6 °C há 5 dias. Ao exame físico, apresentou PA de 132x84 mmHg, FC de 98 bpm, FR de 21 ipm, saturação de oxigênio 94% em ar ambiente; bom estado geral, corado, hidratado, eupneico; aparelho cardíaco sem alterações; murmúrios vesiculares presentes com estertores crepitantes na base esquerda; abdome e extremidades sem alterações relevantes. O paciente é medicado adequadamente, porém, após 3 dias do término do tratamento, retorna com febre persistente e o seguinte exame clínico: PA de 100x64 mmHg, FC de 121 bpm, FR de 25 ipm, saturação de oxigênio 93% em ar ambiente; regular estado geral, hipocorado, hidratado; aparelho cardíaco sem alterações; murmúrios vesiculares presentes com abolição da ausculta em base esquerda; abdome e extremidades sem alterações relevantes. Assinale a alternativa que apresenta o achado ultrassonográfico compatível com a complicação da paciente.",
@@ -1293,7 +1293,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-089", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:89,
-  imagemUrl:"dados/imagens/q-usp2025-089.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-usp2025-089.webp", imagemLegenda:"Eletrocardiograma de 12 derivações",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
   enunciado:"Paciente, sexo masculino, 62 anos de idade, com antecedente de hipertensão arterial sistêmica e doença renal crônica estágio IIIb. Procura o pronto-socorro com queixa de dor torácica aguda retroesternal há 3 horas. O paciente nega dispneia, tosse ou febre. Refere que apresenta melhora discreta da dor quando se senta inclinado para frente. Ao exame físico, apresentou sinais vitais normais, bom estado geral, ausculta cardíaca e pulmonar sem alterações. Radiografia de tórax normal. O eletrocardiograma é apresentado a seguir: Com base nessas informações, assinale a alternativa que apresenta a conduta farmacológica adequada.",
@@ -1322,7 +1322,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-091", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:91,
-  imagemUrl:"dados/imagens/q-usp2025-091.jpg", imagemLegenda:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usp2025-091.webp", imagemLegenda:"Eletrocardiograma",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Homem, 64 anos de idade, internado na enfermaria. Ele tem hipertensão arterial sistêmica, diabetes melito tipo 2 e insuficiência cardíaca de fração de ejeção preservada. Ele foi admitido no pronto-socorro no dia anterior por conta de calafrios, febre e dor no flanco direito, sendo diagnosticado com cálculo ureteral e pielonefrite. Foi introduzida ceftriaxona e o paciente aguarda para passagem de duplo J pela equipe de urologia. A enfermagem aciona a equipe médica para reavaliá-lo e informa que já realizou um eletrocardiograma, apresentado a seguir: Neste momento, o paciente queixa-se de dor no flanco direito de moderada intensidade e palpitações. Exame físico: PA de 110x70 mmHg, FC de 115 bpm, temperatura axilar de 37,6 °C, FR de 18 ipm, saturação de oxigênio 95%; bulhas cardíacas hiperfonéticas e sem sopros, enchimento capilar de 3 segundos; dor à palpação do flanco direito. Assinale a alternativa com a conduta indicada, neste momento, para o paciente.",
@@ -1351,7 +1351,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-093", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:93,
-  imagemUrl:"dados/imagens/q-usp2025-093.png", imagemLegenda:"Tabela com a prova de função pulmonar (espirometria pré e pós-broncodilatador)",
+  imagemUrl:"dados/imagens/q-usp2025-093.webp", imagemLegenda:"Tabela com a prova de função pulmonar (espirometria pré e pós-broncodilatador)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem, 63 anos de idade, procura atendimento ambulatorial por dispneia. Ele não tem antecedentes relevantes, mas conta que, há 8 meses, começou a apresentar dispneia aos grandes esforços, mas conseguia realizar atividades habituais. Há 2 meses, começou a interromper sua caminhada diária até a padaria por dispneia e tosse. Há 1 mês, teve crise de dispneia e tosse produtiva, quando ficou internado por 4 dias no pronto-socorro. Ele é tabagista com carga de 46 anos-maço. Ao exame clínico, apresentou sinais vitais normais e sibilos expiratórios difusos, sem sinais de desconforto respiratório e sem outras anormalidades. Os dados da prova de função pulmonar estão apresentados a seguir: O hemograma identificou 320 eosinófilos/mm³ , IgE 35 UI/mL (valor de referência < 100 UI/mL). Assinale a alternativa correta sobre o diagnóstico e o tratamento do paciente neste momento.",
@@ -1366,7 +1366,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-094", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:94,
-  imagemUrl:"dados/imagens/q-usp2025-094.jpg", imagemLegenda:"Tabela com a prova de função pulmonar; as quatro alternativas são quadros com parâmetros de ventilação (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2025-094.webp", imagemLegenda:"Tabela com a prova de função pulmonar; as quatro alternativas são quadros com parâmetros de ventilação (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem, 63 anos de idade, procura atendimento ambulatorial por dispneia. Ele não tem antecedentes relevantes, mas conta que, há 8 meses, começou a apresentar dispneia aos grandes esforços, mas conseguia realizar atividades habituais. Há 2 meses, começou a interromper sua caminhada diária até a padaria por dispneia e tosse. Há 1 mês, teve crise de dispneia e tosse produtiva, quando ficou internado por 4 dias no pronto-socorro. Ele é tabagista com carga de 46 anos-maço. Ao exame clínico, apresentou sinais vitais normais e sibilos expiratórios difusos, sem sinais de desconforto respiratório e sem outras anormalidades. Os dados da prova de função pulmonar estão apresentados a seguir: O hemograma identificou 320 eosinófilos/mm3 , IgE 35 UI/mL (valor de referência < 100 UI/mL). O paciente não teve acesso aos medicamentos e, no mês seguinte, procurou o pronto- socorro com queixa de tosse produtiva, expectoração amarelada e febre de 37,9 °C. Ao exame clínico, apresentou-se em regular estado geral, corado, hidratado, dispneia com aumento do tempo expiratório. FC de 102 bpm, PA de 134x78 mmHg, FR de 23 ipm, saturação de oxigênio 91%; ausculta torácica com murmúrios vesiculares reduzidos com roncos difusos, sem sinais de esforço respiratório ou fadiga; ausculta cardíaca e abdome sem alterações. Foi coletada uma gasometria arterial com OS seguintes resultados: pH: 7,26; HCO3: 27 mEq/L; pCO2: 61 mmHg; PaO2: 59,8 mmHg; Sat. O2: 91%. Optou-se por acoplar o paciente em um dispositivo ventilatório apropriado ao seu manejo clínico neste momento. Assinale a alternativa que contempla os parâmetros que devem ser utilizados para ventilação com este dispositivo.",
@@ -1437,7 +1437,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-099", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:99,
-  imagemUrl:"dados/imagens/q-usp2025-099.jpg", imagemLegenda:"Tabela com as taxas padronizadas de mortalidade por aids por estado",
+  imagemUrl:"dados/imagens/q-usp2025-099.webp", imagemLegenda:"Tabela com as taxas padronizadas de mortalidade por aids por estado",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Para permitir a comparação entre as taxas de mortalidade por aids entre os estados brasileiros, o sistema de vigilância epidemiológica do SUS calcula e divulga as taxas padronizadas de mortalidade, como exemplifica a tabela a seguir: Para comparar a mortalidade entre os estados diretamente, sem necessidade de padronizar, deve-se utilizar",
@@ -1480,7 +1480,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-102", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:102,
-  imagemUrl:"dados/imagens/q-usp2025-102.png", imagemLegenda:"Tabela com a ocorrência de depressão por sexo",
+  imagemUrl:"dados/imagens/q-usp2025-102.webp", imagemLegenda:"Tabela com a ocorrência de depressão por sexo",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Foi realizado um estudo transversal de base populacional na cidade de Pelotas, no sul do Brasil. Todos os indivíduos com idades entre 10 e 19 anos de idade que residiam nas moradias selecionadas foram convidados a participar do estudo. Para identificar depressão, foi aplicado o instrumento PHQ-9 (Patient Health Questionnaire – 9). Foram avaliados 359 adolescentes do sexo masculino e 384 do sexo feminino, dos quais 50 meninos e 76 meninas foram diagnosticados com depressão, conforme tabela a seguir: Que medida de ocorrência ou de associação está representada na última coluna da tabela?",
@@ -1495,7 +1495,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-103", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:103,
-  imagemUrl:"dados/imagens/q-usp2025-103.png", imagemLegenda:"Tabela com a ocorrência de depressão por sexo",
+  imagemUrl:"dados/imagens/q-usp2025-103.webp", imagemLegenda:"Tabela com a ocorrência de depressão por sexo",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Foi realizado um estudo transversal de base populacional na cidade de Pelotas, no sul do Brasil. Todos os indivíduos com idades entre 10 e 19 anos de idade que residiam nas moradias selecionadas foram convidados a participar do estudo. Para identificar depressão, foi aplicado o instrumento PHQ-9 (Patient Health Questionnaire – 9). Foram avaliados 359 adolescentes do sexo masculino e 384 do sexo feminino, dos quais 50 meninos e 76 meninas foram diagnosticados com depressão, conforme tabela a seguir: Suponha que, nesse estudo, a taxa de recusas para participar tenha sido de 50% entre os homens e 10% entre as mulheres. Nesse caso hipotético, que tipo de viés poderia ter afetado os resultados deste estudo?",
@@ -1594,7 +1594,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-110", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:110,
-  imagemUrl:"dados/imagens/q-usp2025-110.png", imagemLegenda:"Figura da cascata de cuidado contínuo do HIV",
+  imagemUrl:"dados/imagens/q-usp2025-110.webp", imagemLegenda:"Figura da cascata de cuidado contínuo do HIV",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"A cascata do cuidado contínuo do HIV (continuum of HIV care) é um parâmetro internacional do desempenho da atenção de saúde em HIV. Trata-se de uma representação gráfica, na qual as barras representam a proporção estimada de pessoas nas fases do cuidado, como exemplifica a figura a seguir: A utilidade da cascata para avaliar o desempenho da atenção em saúde fez com que o modelo passasse a ser utilizado para vários agravos, entre eles a sífilis congênita. Sabendo que o tratamento adequado e oportuno da sífilis na gestante tem alta efetividade, qual deve ser a estimativa da proporção da última barra da cascata da transmissão vertical de sífilis?",
@@ -1651,7 +1651,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-114", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:114,
-  imagemUrl:"dados/imagens/q-usp2025-114.jpg", imagemLegenda:"Tabela com os desfechos da gestação segundo o uso de Cannabis (medidas de associação e IC 95%)",
+  imagemUrl:"dados/imagens/q-usp2025-114.webp", imagemLegenda:"Tabela com os desfechos da gestação segundo o uso de Cannabis (medidas de associação e IC 95%)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"Após a legalização do seu uso em muitos países, vem aumentando na literatura o número de estudos sobre os efeitos e desfechos em saúde do uso da Cannabis sp. Em uma coorte retrospectiva, foram analisados os desfechos relacionados ao seu uso durante a gravidez. Foram incluídas no estudo 20.669 mulheres que referiram uso de Cannabis sp. durante a gestação e 296.669 que não referiram o seu uso. Os principais resultados estão resumidos na tabela a seguir: Neste estudo, o uso de Cannabis sp. foi um fator de",
@@ -1666,7 +1666,7 @@ window.EscDados.registrarQuestoes("prova-usp-2025", [
 },
 {
   id:"q-usp2025-115", banca:"USP-SP (FMUSP)", real:true, ano:2025, numeroNaProva:115,
-  imagemUrl:"dados/imagens/q-usp2025-115.jpg", imagemLegenda:"Tabela com os atendimentos das pessoas cadastradas (medidas de pressão arterial no ano)",
+  imagemUrl:"dados/imagens/q-usp2025-115.webp", imagemLegenda:"Tabela com os atendimentos das pessoas cadastradas (medidas de pressão arterial no ano)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"O gerente de sua UBS está propondo a elaboração de indicadores para acompanhar como está o cuidado das pessoas com Hipertensão Arterial Sistêmica (HAS) na sua comunidade. Você tem à disposição os seguintes dados: - Número total de pessoas cadastradas na UBS: 30 mil - Número de pessoas cadastradas com 40 anos de idade ou mais: 10 mil - Número de pessoas cadastradas com 40 anos de idade ou mais com HAS: 5 mil Os dados da tabela a seguir referem-se apenas aos atendimentos das pessoas cadastradas: Considerando a disponibilidade desses dados, qual é o melhor indicador a ser utilizado para acompanhar a captação de pessoas para o rastreamento e o seu respectivo valor?",

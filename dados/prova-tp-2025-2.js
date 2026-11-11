@@ -53,7 +53,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-003", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:3,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-hipofise",
-  imagemUrl:"dados/imagens/q-tp20252-003.png",
+  imagemUrl:"dados/imagens/q-tp20252-003.webp",
   enunciado:"Mulher, 57 anos, hipertensa e obesa, procura atendimento ambulatorial por queixa de baixa acuidade visual progressiva há 3 meses, associada a piora de cefaleia crônica nas últimas semanas. Nega outras queixas. Exames laboratoriais ambulatoriais, incluindo avaliação hormonal, estão dentro dos limites da normalidade. Ressonância magnética de encéfalo abaixo: O diagnóstico é:",
   alternativas:[{id:"A",texto:"Hipofisite linfocítica"},{id:"B",texto:"Macroadenoma hipofisário"},{id:"C",texto:"Meningioma de seio cavernoso"},{id:"D",texto:"Aneurisma de artéria carótida interna"}],
   gabarito:"B",
@@ -93,7 +93,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-006", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:6,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
-  imagemUrl:"dados/imagens/q-tp20252-006.png",
+  imagemUrl:"dados/imagens/q-tp20252-006.webp",
   enunciado:"Mulher, 65 anos, sofreu queda com a mão esquerda espalmada. Queixa-se de dor intensa, limitação funcional para mobilização do punho esquerdo e deformidade local. Exame físico: edema 2+/4+ no punho e mão esquerda, associado a deformidade em \"dorso de garfo\". Radiografia em perfil do punho esquerdo a seguir: O diagnóstico é de fratura de:",
   alternativas:[{id:"A",texto:"Smith"},{id:"B",texto:"Colles"},{id:"C",texto:"Barton"},{id:"D",texto:"Galeazzi"}],
   gabarito:"B",
@@ -159,7 +159,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-011", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:11,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-anatomiacirurgica",
-  imagemUrl:"dados/imagens/q-tp20252-011.png",
+  imagemUrl:"dados/imagens/q-tp20252-011.webp",
   enunciado:"Homem, 40 anos, vítima de acidente de motocicleta, refere intensa dor na perna direita. Exame físico: deformidade, frialdade na perna direita e pulso pedioso não palpável. Radiografia (Figura a) e angiotomografia (Figuras b e c) da perna direita apresentadas abaixo: A artéria lesionada foi:",
   alternativas:[{id:"A",texto:"Poplítea"},{id:"B",texto:"Tibial anterior"},{id:"C",texto:"Tibial posterior"},{id:"D",texto:"Perfurante"}],
   gabarito:"A",
@@ -199,7 +199,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-014", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:14,
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
-  imagemUrl:"dados/imagens/q-tp20252-014.png",
+  imagemUrl:"dados/imagens/q-tp20252-014.webp",
   enunciado:"Homem, 35 anos, será submetido a cirurgia de herniorrafia inguinal esquerda. A mesa cirúrgica ficará à direita do paciente, conforme ilustração abaixo: O instrumento cirúrgico que deverá estar no quadrante assinalado com um X é:",
   alternativas:[{id:"A",texto:"Pinças Allis"},{id:"B",texto:"Bisturis"},{id:"C",texto:"Pinças Kelly"},{id:"D",texto:"Porta agulhas"}],
   gabarito:"D",
@@ -265,7 +265,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-019", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:19,
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
-  imagemUrl:"dados/imagens/q-tp20252-019.png",
+  imagemUrl:"dados/imagens/q-tp20252-019.webp",
   enunciado:"Homem, 34 anos, com histórico de asma e rinite, procura atendimento por dor intensa no olho direito, vermelhidão, fotofobia e visão embaçada há dois dias. Relata uso de lentes de contato gelatinosas durante os três dias anteriores aos sintomas, tendo dormido com elas em uma dessas noites. Exame com lâmpada de fenda: hiperemia conjuntival difusa, infiltrado branco na córnea paracentral, com bordas pouco definidas e leve edema corneano adjacente. Coloração com fluoresceína abaixo: O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Ceratite bacteriana"},{id:"B",texto:"Conjuntivite bacteriana"},{id:"C",texto:"Episclerite aguda"},{id:"D",texto:"Conjuntivite alérgica"}],
   gabarito:"A",
@@ -292,7 +292,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-021", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:21,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
-  imagemUrl:"dados/imagens/q-tp20252-021.png",
+  imagemUrl:"dados/imagens/q-tp20252-021.webp",
   enunciado:"Homem, 17 anos, refere obstrução nasal, coriza hialina, prurido e espirros diários há dois anos. No último mês, relata dois episódios/semana de sibilância, tosse seca e dispneia induzidos por risada, exposição à poeira doméstica e mudança climática – resolvidos temporariamente com salbutamol inalatório. Usa vasoconstritor nasal (oximetazolina) três vezes/dia com alívio transitório há mais de um ano. Nos últimos seis meses, recebeu quatro cursos de antibiótico oral por “sinusite”. Nega asma na infância. Realizada espirometria abaixo: Além do controle ambiental, a conduta é:",
   alternativas:[{id:"A",texto:"Introduzir corticosteroide oral e montelucaste, corticosteroide inalatório e vasoconstritor sob demanda."},{id:"B",texto:"Suspender vasoconstritor nasal; iniciar corticoide intranasal + beta2 agonista de longa duração inalatório sob demanda."},{id:"C",texto:"Introduzir anti-histamínico e montelucaste orais; manter o vasoconstritor nasal conforme necessidade."},{id:"D",texto:"Suspender vasoconstritor nasal; iniciar corticoide intranasal + corticoide em baixa dose e beta2 agonista de longa duração inalatórios."}],
   gabarito:"D",
@@ -319,7 +319,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-023", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:23,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
-  imagemUrl:"dados/imagens/q-tp20252-023.png",
+  imagemUrl:"dados/imagens/q-tp20252-023.webp",
   enunciado:"Mulher, 44 anos, deu entrada na Emergência com quadro de agitação intensa e vômitos. A família referiu emagrecimento de 10kg nos últimos quatro meses, palpitações, insônia e tremor de extremidades superiores. Exame clínico: FC 160bpm, ritmo cardíaco irregular, temperatura axilar 40°C e icterícia discreta. Exames: T4 livre 7,2ng/dL e TSH 0,001mUI/L. Traçado eletrocardiográfico abaixo: A conduta é:",
   alternativas:[{id:"A",texto:"Iodo radioativo e inibidor de síntese de hormônios tireoidianos."},{id:"B",texto:"Cardioversão elétrica seguida de amiodarona oral."},{id:"C",texto:"Inibidor de síntese de hormônios tiroidianos e propranolol."},{id:"D",texto:"Inibidor de síntese de hormônios tireoidianos associado a lugol ou carbonato de lítio."}],
   gabarito:"C",
@@ -333,7 +333,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-024", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:24,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
-  imagemUrl:"dados/imagens/q-tp20252-024.png",
+  imagemUrl:"dados/imagens/q-tp20252-024.webp",
   enunciado:"Mulher, 54 anos, refere dispneia progressiva há três anos, pior aos esforços (mMRC 2). Nega tabagismo, exposições ocupacionais relevantes ou doença do tecido conjuntivo. Nega exposição a mofo, pássaros, travesseiro de penas. Exame físico: baqueteamento digital; FR 22irpm; estertores crepitantes finos bibasais; SaO2 93% em ar ambiente. Espirometria e tomografia de tórax abaixo: A conduta inicial é:",
   alternativas:[{id:"A",texto:"Corticoide sistêmico"},{id:"B",texto:"Terapia antifibrótica"},{id:"C",texto:"Broncodilatador inalatório de longa ação"},{id:"D",texto:"Azatioprina"}],
   gabarito:"B",
@@ -360,7 +360,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-026", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:26,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
-  imagemUrl:"dados/imagens/q-tp20252-026.png",
+  imagemUrl:"dados/imagens/q-tp20252-026.webp",
   enunciado:"Homem, 66 anos, apresenta história de disfagia progressiva e perda ponderal de10kg em três meses. Realizado radiograma com contraste via oral (abaixo): A conduta é:",
   alternativas:[{id:"A",texto:"Cintilografia para pesquisa de corpo inteiro."},{id:"B",texto:"Tomografia computadorizada de tórax."},{id:"C",texto:"Biópsia para estudo histopatológico."},{id:"D",texto:"Ultrassonografia endoscópica para estadiamento."}],
   gabarito:"C",
@@ -504,7 +504,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-037", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:37,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-vitalidadefetal",
-  imagemUrl:"dados/imagens/q-tp20252-037.png",
+  imagemUrl:"dados/imagens/q-tp20252-037.webp",
   enunciado:"Parturiente, 39 semanas de gestação, com 6cm de dilatação cervical, colo médio e medianizado, apresentação cefálica em -1 de DeLee, bolsa íntegra. Em uso de ocitocina em bomba de infusão contínua a 48mL/h. A cardiotocografia está demonstrada na imagem: A categoria da cardiotocografia e a conduta mais adequada são:",
   alternativas:[{id:"A",texto:"Categoria 1 – Administrar tocolítico e parto instrumental imediato."},{id:"B",texto:"Categoria 1 – Manter conduta de rotina no trabalho de parto."},{id:"C",texto:"Categoria 2 – Realizar cesariana de urgência."},{id:"D",texto:"Categoria 2 – Reduzir ou retirar a ocitocina, mantendo vigilância contínua."}],
   gabarito:"D",
@@ -544,7 +544,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-040", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:40,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-tp20252-040.png",
+  imagemUrl:"dados/imagens/q-tp20252-040.webp",
   enunciado:"Mulher, 25 anos, apresenta queixa de dispareunia, disúria e leucorreia de coloração amarela esbranquiçada, bolhosa, com odor fétido e com leve prurido na região vulvar. Exame físico: mucosa vaginal edemaciada e hiperemiada, colo uterino com pequenos focos de hemorragia. Foi realizado exame a fresco da secreção vaginal (abaixo): O agente etiológico é:",
   alternativas:[{id:"A",texto:"Trichomonas vaginalis"},{id:"B",texto:"Candida sp."},{id:"C",texto:"Chlamydia trachomatis"},{id:"D",texto:"Neisseria gonorrhoeae"}],
   gabarito:"A",
@@ -584,7 +584,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-043", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:43,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-tp20252-043.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-043.webp",
   enunciado:"Os dados apresentados na figura a seguir mostram um paralelo entre o coeficiente de incidência da coqueluche e a cobertura vacinal específica para esta doença de 1990 a 2024: (https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/c/coqueluche/situacao-epidemiologica) Pode-se concluir que:",
   alternativas:[{id:"A",texto:"A incidência registrada no período estudado não tem concordância com a cobertura vacinal."},{id:"B",texto:"O aumento da incidência em 2024 é consequência da baixa cobertura vacinal no período da pandemia de Covid-19."},{id:"C",texto:"A cobertura vacinal contra coqueluche se manteve constante e adequada nessa série histórica."},{id:"D",texto:"A baixa incidência nos anos da pandemia de Covid-19 corrobora com a baixa cobertura vacinal desse período."}],
   gabarito:"B",
@@ -637,7 +637,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-047", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:47,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-tp20252-047.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-047.webp",
   enunciado:"A redução da sífilis congênita no Brasil requer diagnóstico precoce, tratamento eficaz e políticas públicas integradas que garantam acesso universal e qualificado ao pré-natal, com foco na prevenção da transmissão vertical e na vigilância contínua dos casos. Sob essa premissa, de acordo com a figura a seguir, a região do país que apresenta a pior performance é: Distribuição percentual de gestantes segundo idade gestacional no momento do diagnóstico de sífilis, por região de residência e ano de diagnóstico. Brasil, 2019 a 2023.",
   alternativas:[{id:"A",texto:"Centro-Oeste"},{id:"B",texto:"Sul"},{id:"C",texto:"Nordeste"},{id:"D",texto:"Norte"}],
   gabarito:"C",
@@ -677,7 +677,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-050", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:50,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
-  imagemUrl:"dados/imagens/q-tp20252-050.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-050.webp",
   enunciado:"Lactente, sexo feminino, 1 ano, é trazido pela mãe para avaliação em UBS por aparecimento do broto mamário há 6 meses. Nega trauma local, dor, galactorreia, sinais flogísticos ou pubarca. Antecedentes: nascida de 38 semanas, peso 3kg, 50cm, sem intercorrências no período neonatal. Aleitamento materno exclusivo até seis meses. Atualmente, leite materno e fórmula 2 vezes ao dia e alimentação complementar. Exame físico: BEG, eupneica, hidratada e corada. Peso percentil 50 e estatura percentil 85. Tanner M2P1, ausência de odor axilar. Curva de crescimento na figura abaixo. Dosagem de LH < 0,1UI/L, estradiol < 5pg/mL. Radiografia para idade óssea: compatível com cronológica. A conduta é:",
   alternativas:[{id:"A",texto:"Dosagem de cortisol, ACTH, progesterona e testosterona total."},{id:"B",texto:"Dosagem de CA-125, alfafetoproteína e tomografia de pelve."},{id:"C",texto:"Ressonância magnética de sela túrcica."},{id:"D",texto:"Reavaliação clínica a cada 3 a 4 meses."}],
   gabarito:"D",
@@ -717,7 +717,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-053", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:53,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
-  imagemUrl:"dados/imagens/q-tp20252-053.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-053.webp",
   enunciado:"Primigesta, 29 anos, iniciou pré-natal com 12 semanas e atualmente está com 29 semanas de gestação. A curva de ganho de peso é mostrada no gráfico abaixo: Com base no padrão de ganho de peso na gestação apresentado pela gestante na curva, a orientação mais adequada é:",
   alternativas:[{id:"A",texto:"Manter a dieta atual e atividade física."},{id:"B",texto:"Dieta restritiva e atividade física leve."},{id:"C",texto:"Reorientação alimentar e atividade física."},{id:"D",texto:"Dieta restritiva e atividade física intensa."}],
   gabarito:"C",
@@ -796,7 +796,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-059", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:59,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-queimaduras",
-  imagemUrl:"dados/imagens/q-tp20252-059.png",
+  imagemUrl:"dados/imagens/q-tp20252-059.webp",
   enunciado:"Homem, 28 anos, é trazido ao Pronto-Socorro após sofrer lesão por queda de líquido aquecido sobre o corpo, no trabalho, há seis horas. Exame físico: consciente, orientado e eupneico. FC 90bpm; PA 132/84mmHg; peso 76kg. Pele: lesões demonstradas na imagem a seguir, homogeneamente dolorosas à palpação e com perfusão preservada, totalizando 18% de superfície corporal queimada. A conduta inicial é:",
   alternativas:[{id:"A",texto:"Desbridamento e enxertia de pele parcial."},{id:"B",texto:"Ringer com lactato (2.736mL nas próximas 2 horas)."},{id:"C",texto:"Analgesia e curativo não-aderente."},{id:"D",texto:"Escarotomias no tórax e membros."}],
   gabarito:"C",
@@ -836,7 +836,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-062", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:62,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-tp20252-062.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-062.webp",
   enunciado:"Homem, 38 anos, trabalhador da construção civil, apresenta lesões eritemato-descamativas e fissuras dolorosas nas mãos, de instalação insidiosa há 4 meses. Relata manipulação de areia, cimento, cal e outros produtos, sem uso de luvas porque elas “atrapalham”, porém faz uso dos outros itens de equipamento de proteção individual (EPI). Nega doenças dermatológicas prévias. Exame físico: imagem a seguir: O diagnóstico mais provável e a conduta inicial, além de orientações para uso correto de EPI, são:",
   alternativas:[{id:"A",texto:"Impetigo secundário; antibiótico oral."},{id:"B",texto:"Psoríase vulgar; encaminhar para imunossupressão tópica."},{id:"C",texto:"Dermatite de contato irritativa; corticosteroide sistêmico."},{id:"D",texto:"Dermatite de contato alérgica; corticosteroide tópico."}],
   gabarito:"D",
@@ -863,7 +863,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-064", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:64,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
-  imagemUrl:"dados/imagens/q-tp20252-064.png",
+  imagemUrl:"dados/imagens/q-tp20252-064.webp",
   enunciado:"Uma metanálise avaliou a eficácia de uma nova droga (Droga X) versus placebo na redução de mortalidade por infarto agudo do miocárdio. Abaixo está o Forest Plot dos resultados: Pode-se afirmar que:",
   alternativas:[{id:"A",texto:"Os resultados são inconclusivos, pois os estudos A e B têm ICs que incluem 1.0, sugerindo heterogeneidade."},{id:"B",texto:"A droga é ineficaz, pois o RR total (0.65) está abaixo de 1.0, mas os ICs dos estudos individuais cruzaram a linha de nulidade (1.0)."},{id:"C",texto:"A droga reduz significativamente a mortalidade, pois o RR total (0.65) com IC 95% (0.52 - 0.80) não inclui 1.0, indicando benefício consistente."},{id:"D",texto:"A droga aumenta o risco de mortalidade, pois o RR total está abaixo de 1.0, indicando efeito deletério."}],
   gabarito:"C",
@@ -877,7 +877,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-065", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:65,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-farmacodermias",
-  imagemUrl:"dados/imagens/q-tp20252-065.png",
+  imagemUrl:"dados/imagens/q-tp20252-065.webp",
   enunciado:"Mulher, 55 anos, procura a UPA com lesões cutâneas pruriginosas iniciadas há dois dias. Relata uso de hidroxicloroquina há três semanas para tratamento da síndrome de Sjögren. História de asma em tratamento com beta-2 agonista e beclometasona em aerossol. Estado geral preservado e sem febre. Exame físico: ver figura. Discreto edema facial; sem lesões em mucosas nem linfadenomegalia. O diagnóstico é:",
   alternativas:[{id:"A",texto:"Eritema multiforme"},{id:"B",texto:"Síndrome de Stevens-Johnson"},{id:"C",texto:"Síndrome DRESS"},{id:"D",texto:"Pustulose exantemática generalizada aguda"}],
   gabarito:"D",
@@ -891,7 +891,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-066", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:66,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-tp20252-066.png",
+  imagemUrl:"dados/imagens/q-tp20252-066.webp",
   enunciado:"Homem, 20 anos, comparece à unidade de pronto atendimento referindo o aparecimento de eritema e uma bolha com ardência no tronco após exposição solar prolongada (figura) e contato com cítricos para preparação de bebidas. Nega febre ou outros sintomas sistêmicos. A conduta é:",
   alternativas:[{id:"A",texto:"Terbinafina tópica"},{id:"B",texto:"Mometasona tópica"},{id:"C",texto:"Aciclovir oral"},{id:"D",texto:"Clindamicina oral"}],
   gabarito:"B",
@@ -918,7 +918,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-068", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:68,
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-avc",
-  imagemUrl:"dados/imagens/q-tp20252-068.png",
+  imagemUrl:"dados/imagens/q-tp20252-068.webp",
   enunciado:"Mulher, 56 anos, tabagista (35 anos.maço), hipertensa e diabética. Refere episódios súbitos de fraqueza no membro superior direito associados a dificuldade para articular palavras, com duração de 10-15 minutos e resolução completa dos sintomas. Os episódios se iniciaram há 3 meses, ocorrendo inicialmente de uma a duas vezes por mês, mas no último mês aumentaram para duas a três vezes por semana. Exame físico: PA 160/95mmHg e sopro sistólico audível em região cervical esquerda. Exame neurológico normal. Doppler de carótidas abaixo. Exames laboratoriais: glicemia de jejum 145mg/dL, HbA1c 8,2%, colesterol total 245mg/dL, LDL 165mg/dL, HDL 38mg/dL. Tomografia computadorizada de crânio: sem anormalidades. A conduta é:",
   alternativas:[{id:"A",texto:"Angioplastia carotídea com stent como primeira opção."},{id:"B",texto:"Tratamento clínico otimizado e reavaliação em 6 meses."},{id:"C",texto:"Endarterectomia carotídea urgente."},{id:"D",texto:"Anticoagulação oral e tratamento clínico otimizado."}],
   gabarito:"C",
@@ -945,7 +945,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-070", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:70,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-tp20252-070.png",
+  imagemUrl:"dados/imagens/q-tp20252-070.webp",
   enunciado:"Menino de 4 anos, previamente saudável, com vacinação em dia, é levado ao Pronto-Socorro por febre alta há 6 dias, tosse produtiva, prostração e dor abdominal. Fez uso de amoxicilina oral, sem melhora. Exame físico: febril, mau estado geral, taquidispneico, hipoativo e descorado. Tomografia de tórax abaixo: O diagnóstico e a conduta mais adequada são:",
   alternativas:[{id:"A",texto:"Pneumonia complicada com abscesso pulmonar, com antibioticoterapia para os principais agentes: Staphylococcus aureus e anaeróbios."},{id:"B",texto:"Pneumonia complicada com abscesso pulmonar, com antibioticoterapia para os principais agentes: Streptococcus pneumoniae e streptococcus do grupo A."},{id:"C",texto:"Pneumonia necrosante, com antibioticoterapia para os principais agentes: estreptococo do grupo A e Staphylococcus aureus."},{id:"D",texto:"Pneumonia necrosante, com antibioticoterapia para os principais agentes: Streptococcus pneumoniae e Staphylococcus aureus."}],
   gabarito:"D",
@@ -1128,7 +1128,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-084", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:84,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
-  imagemUrl:"dados/imagens/q-tp20252-084.png",
+  imagemUrl:"dados/imagens/q-tp20252-084.webp",
   enunciado:"Mulher, 78 anos, G6P6, DUM aos 50 anos, com Hipertensão Arterial Sistêmica e Diabetes Mellitus do tipo 2, sem vícios ou alergias, sem cirurgias prévias. Paciente apresenta “sensação de bola na vagina” há dois anos, com piora há seis meses. Nega relações sexuais há dez anos. Nega incontinência urinária. Relata hábito intestinal constipado de uma vez a cada cinco dias. Exame físico representado na figura abaixo: O diagnóstico do prolapso genital observado é:",
   alternativas:[{id:"A",texto:"Compartimento anterior e posterior grau 1"},{id:"B",texto:"Compartimento anterior grau 1"},{id:"C",texto:"Uterino grau 3"},{id:"D",texto:"Apical grau 4"}],
   gabarito:"C",
@@ -1142,7 +1142,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-085", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:85,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tumores",
-  imagemUrl:"dados/imagens/q-tp20252-085.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-085.webp",
   enunciado:"Homem, 58 anos, apresenta quadro de crises convulsivas e hemiparesia incompleta desproporcionada à esquerda. Realizada ressonância magnética de encéfalo, que mostrou lesão sólida de 3cm de diâmetro no lobo frontal direito. A lesão foi removida cirurgicamente e a análise histopatológica é demonstrada nas figuras abaixo: O sítio primário mais provável deste tumor é:",
   alternativas:[{id:"A",texto:"Adenocarcinoma de cólon"},{id:"B",texto:"Carcinoma de células escamosas"},{id:"C",texto:"Lipossarcoma"},{id:"D",texto:"Melanoma"}],
   gabarito:"A",
@@ -1208,7 +1208,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-090", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:90,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-meningites",
-  imagemUrl:"dados/imagens/q-tp20252-090.png",
+  imagemUrl:"dados/imagens/q-tp20252-090.webp",
   enunciado:"Criança, 7 anos, apresenta início súbito de febre, irritabilidade, fotofobia, rigidez de nuca e vômito em jato. Foi realizada coleta de líquor, com bacterioscopia com coloração de Gram apresentada abaixo: O agente etiológico é:",
   alternativas:[{id:"A",texto:"Neisseria"},{id:"B",texto:"Chlamydia"},{id:"C",texto:"Mycoplasma"},{id:"D",texto:"Rickettsia"}],
   gabarito:"A",
@@ -1248,7 +1248,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-093", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:93,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-cirrose",
-  imagemUrl:"dados/imagens/q-tp20252-093.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-093.webp",
   enunciado:"Homem, 50 anos, queixa-se de aumento do volume abdominal e icterícia. Exame físico: ginecomastia, telangiectasias em tórax e eritema palmar bilateralmente. Percussão abdominal: macicez móvel. Exames laboratoriais: aumento dos níveis de bilirrubinas, aminotransferases e fosfatase alcalina. Tempo de coagulação elevado. Sorologia positiva para o vírus da hepatite C. O exame histopatológico hepático (corado pelo Tricrômico de Masson) está apresentado abaixo: O diagnóstico mais provável é:",
   alternativas:[{id:"A",texto:"Colangiocarcinoma intra-hepático"},{id:"B",texto:"Hiperplasia nodular focal"},{id:"C",texto:"Carcinoma hepatocelular"},{id:"D",texto:"Cirrose hepática"}],
   gabarito:"D",
@@ -1262,7 +1262,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-094", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:94,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
-  imagemUrl:"dados/imagens/q-tp20252-094.png",
+  imagemUrl:"dados/imagens/q-tp20252-094.webp",
   enunciado:"Nuligesta, 40 anos, sem comorbidades, refere aumento de volume menstrual e presença ocasional de sangramento intermenstrual há seis meses. Ciclos menstruais a cada 36 dias. Método contraceptivo: preservativo. Exame físico sem anormalidades. Ultrassonografia realizada na fase proliferativa inicial evidenciou a imagem abaixo: O provável diagnóstico etiológico é:",
   alternativas:[{id:"A",texto:"Adenomiose"},{id:"B",texto:"Espessamento endometrial"},{id:"C",texto:"Leiomioma intramural"},{id:"D",texto:"Pólipo endometrial"}],
   gabarito:"D",
@@ -1419,7 +1419,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-106", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:106,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-tp20252-106.jpg",
+  imagemUrl:"dados/imagens/q-tp20252-106.webp",
   enunciado:"Mulher, 62 anos, é levada à UPA após episódio de síncope súbita enquanto caminhava. Relata quadro semelhante há cerca de um mês, com recuperação espontânea. É hipertensa controlada com enalapril 20mg/dia. Nega dor torácica, dispneia ou febre. Refere sensação de fraqueza nas últimas semanas. Exame físico: sem alterações. O eletrocardiograma de admissão está representado na imagem abaixo: A conduta imediata é:",
   alternativas:[{id:"A",texto:"Prescrever betabloqueador."},{id:"B",texto:"Realizar avaliação eletrofisiológica."},{id:"C",texto:"Implantar marcapasso definitivo."},{id:"D",texto:"Administrar atropina."}],
   gabarito:"C",
@@ -1511,7 +1511,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-113", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:113,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-tep",
-  imagemUrl:"dados/imagens/q-tp20252-113.png",
+  imagemUrl:"dados/imagens/q-tp20252-113.webp",
   enunciado:"Mulher, 50 anos, previamente hígida, refere dispneia progressiva há 18 meses para esforços moderados (NYHA 2), sem outros sintomas respiratórios. Nega tabagismo e doenças prévias. Exame físico: hiperfonese da segunda bulha no foco pulmonar. Radiografia e espirometria pré-broncodilatador abaixo: A conduta inicial é:",
   alternativas:[{id:"A",texto:"Cateterismo cardíaco direito para determinar as características hemodinâmicas da circulação pulmonar."},{id:"B",texto:"Angiotomografia computadorizada de tórax com contraste, protocolo para tromboembolismo pulmonar."},{id:"C",texto:"Ecocardiograma transtorácico com doppler e estimativa de pressão sistólica da artéria pulmonar."},{id:"D",texto:"Pletismografia para avaliação dos volumes estáticos pulmonares associada à difusão de monóxido de carbono."}],
   gabarito:"C",
@@ -1590,7 +1590,7 @@ window.EscDados.registrarQuestoes("prova-tp-2025-2", [
 {
   id:"q-tp20252-119", banca:"Teste de Progresso NIEPAEM", real:true, tipoProva:"graduacao", ano:2025, semestre:2, numeroNaProva:119,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-pleura",
-  imagemUrl:"dados/imagens/q-tp20252-119.png",
+  imagemUrl:"dados/imagens/q-tp20252-119.webp",
   enunciado:"Homem, 63 anos, previamente hígido, procura atendimento com febre, tosse produtiva e dor torácica pleurítica há sete dias. Exame físico: macicez à percussão e redução do murmúrio vesicular no hemitórax direito. Radiograma de tórax abaixo. Toracocentese diagnóstica: proteína pleural 3,9g/dL; proteína sérica 6,3g/dL; LDH pleural 360U/L; LDH sérico 500U/L; pH pleural 6,9; glicose pleural 35mg/dL. Cultura: pendente. A conduta inicial é:",
   alternativas:[{id:"A",texto:"Drenagem torácica tubular."},{id:"B",texto:"Tomografia computadorizada de tórax."},{id:"C",texto:"Repetir a toracocentese em 48 horas."},{id:"D",texto:"Antibioticoterapia de amplo espectro."}],
   gabarito:"A",

@@ -24,7 +24,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-001", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
-  imagemUrl:"dados/imagens/q-unicampdis2022-001.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-001.webp",
   tipo:"dissertativa", respostaEsperada:"Gluconato de cálcio endovenoso (não se consideram outras vias).",
   enunciado:"Homem, 52a, procura Unidade de Emergência por mal-estar geral e dor precordial. Antecedente pessoal: doença renal crônica em diálise, faltou na última sessão. ECG: (ver figura). A CONDUTA IMEDIATA É:",
   alternativas:[],
@@ -39,7 +39,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-002", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:2,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-parasitoses",
-  imagemUrl:"dados/imagens/q-unicampdis2022-002.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-002.webp",
   tipo:"dissertativa", respostaEsperada:"Neurocisticercose.",
   enunciado:"Homem, 37a, queixa-se de cefaleia persistente há seis meses. Há três meses passou a apresentar episódios de crises convulsivas. Exame físico: PA= 120x82 mmHg sem alterações. Tomografia computadorizada e Ressonância magnética de crânio: (ver figura). A HIPOTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -82,7 +82,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-005", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-ambientais",
-  imagemUrl:"dados/imagens/q-unicampdis2022-005.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-005.webp",
   tipo:"dissertativa", respostaEsperada:"Aranha-marrom (Loxosceles spp.).",
   enunciado:"Homem, 41a, previamente hígido, foi admitido na sala de emergência cerca de 36 horas após ter sentido uma picada pouco dolorosa na coxa direita após vestir o macacão de trabalho de marcenaria, que estava pendurado em um cabideiro de parede. Cerca de 8-12 horas após a picada relatou início de dor local em queimação e pontadas recorrentes, de moderada/forte intensidade (nota 6/7 na escala de notas de dor 0-10), acompanhada de vermelhidão e “inchaço duro” no local da picada. Queixou-se também de cefaleia, indisposição, dores no corpo e febre (38oC). Exame físico: lesão violácea (área de aproximadamente 5x2 cm) com vesículas de conteúdo hemorrágico no centro da lesão, edema endurado, e uma grande placa eritematosa (14x8 cm). (ver figura). TRATA-SE DE PROVÁVEL PICADA POR:",
   alternativas:[],
@@ -111,7 +111,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-007", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
-  imagemUrl:"dados/imagens/q-unicampdis2022-007.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-007.webp",
   tipo:"dissertativa", respostaEsperada:"Silicose (doença relacionada à sílica).",
   enunciado:"Homem, 60a, procura Unidade Básica de Saúde com queixa de edema progressivo de membros inferiores há três semanas. Refere falta de ar há dois anos com piora progressiva nos últimos quatro meses, associada a perda de peso (6 kg). Antecedentes pessoais: tratamento para tuberculose por duas vezes, sendo o último há quatro anos. Trabalhou por 30 anos em produção de cerâmica, parou há dois anos por “fadiga”. Exame físico: cianose de extremidades; PA=112x74 mmHg; FR= 24 irpm; FC=112 bpm; oximetria de pulso (ar ambiente)= 82% em ar ambiente. Pulmões: murmúrio vesicular presente, estertores crepitantes contínuos e grosseiros; Coração: Bulhas rítmicas normofonéticas, sem sopros, Abdome: fígado palpável a 4 cm do rebordo costal direito; Edema simétrico de membros inferiores 3+/4+. Radiograma e tomografia computadorizada de tórax: (ver figura). O DIAGNÓSTICO ETIOLÓGICO É:",
   alternativas:[],
@@ -126,7 +126,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-008", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unicampdis2022-008.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-008.webp",
   tipo:"dissertativa", respostaEsperada:"Herpes-zóster ou síndrome de Ramsay Hunt.",
   enunciado:"Homem, 68a, queixa-se de dor de ouvido esquerdo, de forte intensidade, irradiada para pavilhão auricular. Relata aparecimento de lesões pruriginosas em orelha, região periauricular, além de vesículas em cavidade oral esquerda, há um dia. Refere embaçamento visual ipisilateral. (ver figura). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -183,7 +183,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-012", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:12,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-arboviroses",
-  imagemUrl:"dados/imagens/q-unicampdis2022-012.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-012.webp",
   tipo:"dissertativa", respostaEsperada:"Dengue.",
   enunciado:"Mulher, 24a, procura Unidade de Pronto Atendimento com história de febre não aferida, cefaleia retro-orbitária, mialgia, náuseas, vômitos e prostração há quatro dias. Relata vermelhidão no corpo há 12 horas. Antecedente pessoal: vacinação adequada para a idade. Exame físico: Bom estado geral, T= 37,5oC, PA= 122x74 mmHg, FC= 96bpm, FR= 16 irpm, anictérica e acianótica. Exantema em face e tronco, sem adenomegalia: (ver figura). Exames laboratoriais: Hb= 12,0g/dL; Ht= 39%, leucócitos= 4.200/mm3, plaquetas 150.000/mm3. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -212,7 +212,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-014", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:14,
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
-  imagemUrl:"dados/imagens/q-unicampdis2022-014.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-014.webp",
   tipo:"dissertativa", respostaEsperada:"Bócio mergulhante (ou bócio).",
   enunciado:"Mulher, 50a, procura atendimento médico com queixa de dispneia aos esforços que se acentua com o decúbito. Nega disfagia. Tomografia computadorizada: tumor heterogêneo com calcificações em seu interior na transição cérvico torácica à esquerda com desvio contralateral da traqueia e esôfago. (ver figura). QUAL É A PRINCIPAL HIPÓTESE DIAGNÓSTICA?",
   alternativas:[],
@@ -493,7 +493,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-034", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:34,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-unicampdis2022-034.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-034.webp",
   tipo:"dissertativa", respostaEsperada:"Escabiose.",
   enunciado:"Menino, 45 dias, vem para puericultura com história de irritabilidade e lesões pelo corpo há 15 dias. Nega febre, vômitos, inapetência e uso de medicamentos. Hábito urinário e intestinal normais. Leite materno exclusivo. Vacinação em dia. Exame físico: bom estado geral, ganho ponderal de 35g/dia desde a última consulta, fontanela normotensa. Pele: (ver figura). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -508,7 +508,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-035", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:35,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
-  imagemUrl:"dados/imagens/q-unicampdis2022-035.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-035.webp",
   tipo:"dissertativa", respostaEsperada:"Obesidade.",
   enunciado:"Menino, 15m, vem para consulta de puericultura trazido por tia materna. Não apresenta queixas atuais. Vacina em dia. Desenvolvimento neuropsicomotor adequado para idade. Alimentação: não sabe referir adequadamente, pois não é a cuidadora da criança. A curva de Índice de Massa Corporal (OMS): (ver figura). O DIAGNÓSTICO NUTRICIONAL É:",
   alternativas:[],
@@ -537,7 +537,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-037", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:37,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dheg",
-  imagemUrl:"dados/imagens/q-unicampdis2022-037.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-037.webp",
   tipo:"dissertativa", respostaEsperada:"Sulfato de magnésio.",
   enunciado:"Gestante, 35a, G5P3A1, procura a maternidade com queixa de cefaleia de forte intensidade há um dia. Nega sintomas respiratórios. Refere boa movimentação fetal. Exame físico: PA= 153x102mmHg, altura uterina= 34cm, BCF= 134bpm. Edema em membros inferiores e superiores 3+/4+ e em abdome. Saturação O2= 98% (ar ambiente). Fita urinária: 2+/4+ de proteína. Cartão pré-natal: (ver figura). A CONDUTA MEDICAMENTOSA INICIAL É:",
   alternativas:[],
@@ -692,7 +692,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-048", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:48,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-unicampdis2022-048.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-048.webp",
   tipo:"dissertativa", respostaEsperada:"Trabalho de parto fisiológico (eutócico, normal).",
   enunciado:"Mulher, 27a, com gestação de 39 semanas, interna em trabalho de parto espontâneo. Antecedentes obstétricos: primigesta, com pré-natal realizado em Unidade Básica de Saúde e sem intercorrências gestacionais, em uso de sulfato ferroso em dose profilática. Antecedentes pessoais: sem comorbidades, alergias ou cirurgias prévias, nega tabagismo ou uso de outras substâncias. Partograma: (ver figura). O DIAGNÓSTICO DA EVOLUÇÃO DO TRABALHO DE PARTO É:",
   alternativas:[],
@@ -707,7 +707,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2022-dissertativa", [
 {
   id:"q-unicampdis2022-049", banca:"UNICAMP (dissertativa)", real:true, ano:2022, numeroNaProva:49,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
-  imagemUrl:"dados/imagens/q-unicampdis2022-049.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2022-049.webp",
   tipo:"dissertativa", respostaEsperada:"Câncer ativo (neoplasia).",
   enunciado:"De acordo com os dados da Figura abaixo: Forest plot para a associação de comorbidades (diabetes, hipertensão, doença renal crônica e câncer) com desfechos graves de covid-19. (ver figura). CONSIDERANDO O MODELO DE EFEITOS ALEATÓRIOS, CITE A CONDIÇÃO CRÔNICA ESTATISTICAMENTE ASSOCIADA COM DESFECHOS GRAVES DE COVID-19:",
   alternativas:[],

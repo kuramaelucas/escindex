@@ -97,7 +97,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-007", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:7,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
-  imagemUrl:"dados/imagens/q-einstein2023-007.png",
+  imagemUrl:"dados/imagens/q-einstein2023-007.webp",
   enunciado:"Paciente de 40 anos, com sobrepeso, inicia programa de atividade física por conta própria. Não tem nenhuma comorbidade. Um dia, após correr 5 km, apresentou quadro de lipotimia e dor torácica que melhoraram após descanso. O exame físico é normal. Solicitado ECG mostrado abaixo. Entre as hipóteses diagnósticas abaixo, a mais provável para esta paciente é:",
   alternativas:[{id:"A",texto:"cardiomiopatia hipertrófica."},{id:"B",texto:"disautonomia."},{id:"C",texto:"doença cardíaca isquêmica."},{id:"D",texto:"estenose aórtica."}],
   gabarito:"A",
@@ -215,7 +215,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-016", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:16,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-aneurisma",
-  imagemUrl:"dados/imagens/q-einstein2023-016.png",
+  imagemUrl:"dados/imagens/q-einstein2023-016.webp",
   enunciado:"Homem de 72 anos de idade, ativo, hipertenso com tratamento irregular, tabagista de 1 maço/dia há 50 anos, sem outras comorbidades, teve dor em região lombar esquerda há 3 semanas, após exercício físico. A dor persistiu por 2 dias. Desde então, está assintomático. Fez a angiotomografia ilustrada a seguir. O diâmetro mostrado na imagem apresentada mede 8,216 cm. A conduta ideal para este paciente, dentre as abaixo, é:",
   alternativas:[{id:"A",texto:"Controle da doença de base e repetição do exame em 6 meses."},{id:"B",texto:"Administração de fluoroquinolona por 2 semanas."},{id:"C",texto:"Operação eletiva, após estratificação do risco."},{id:"D",texto:"Operação de urgência."}],
   gabarito:"C",
@@ -320,7 +320,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-024", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:24,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-einstein2023-024.png",
+  imagemUrl:"dados/imagens/q-einstein2023-024.webp",
   enunciado:"Senhora de 78 anos de idade vai ao pronto-socorro com dor abdominal há 3 dias. Antecedentes: diabetes e revascularização do miocárdio. Tem história de crises de dor epigástrica em cólica e de febre. Está desidratada e taquicárdica. A pressão arterial é normal. O abdome está distendido, com ruídos hidroaéreos aumentados. Não tem nenhuma cicatriz de cirurgia abdominal. No toque retal, tem fezes na ampola. Fez a radiografia de abdome ilustrada a seguir. Entre as opções diagnósticas seguintes, a mais provável para este paciente é",
   alternativas:[{id:"A",texto:"inconclusiva, requer tomografia de abdome total."},{id:"B",texto:"íleo biliar."},{id:"C",texto:"apendicite aguda."},{id:"D",texto:"litíase intravesical."}],
   gabarito:"B",
@@ -334,7 +334,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-025", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:25,
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-hemostasia",
-  imagemUrl:"dados/imagens/q-einstein2023-025.png",
+  imagemUrl:"dados/imagens/q-einstein2023-025.webp",
   enunciado:"Senhora de 83 anos de idade, com fibrilação atrial crônica, vai ao pronto-socorro queixando-se de dor abdominal há 3 dias. Acha que a dor vem piorando. Diz fazer uso de warfarina, carvedilol e enalapril. Está descorada, normotensa e normocárdica. O exame cardiorrespiratório não revela alterações significativas. O abdome é doloroso à palpação no hipogástrico, onde se nota área endurecida. O toque retal é normal. Fez a tomografia de abdome ilustrada a seguir, sem contraste, por causa de função renal alterada. O exame que, se estiver claramente alterado, confirma a principal hipótese diagnóstica é:",
   alternativas:[{id:"A",texto:"DHL."},{id:"B",texto:"Amilase."},{id:"C",texto:"INR."},{id:"D",texto:"PCR."}],
   gabarito:"C",
@@ -361,7 +361,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-027", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:27,
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-tce",
-  imagemUrl:"dados/imagens/q-einstein2023-027.png",
+  imagemUrl:"dados/imagens/q-einstein2023-027.webp",
   enunciado:"Homem de 35 anos de idade, vítima de colisão moto × auto, chega ao pronto-socorro imobilizado em prancha rígida, com colar cervical. Dados no local: FC: 95 bpm, PA: 150 × 80 mmHg, Glasgow 14. Intervalo de tempo até ao hospital: cerca de uma hora. Na chegada, a via aérea está pérvia e o colar cervical bem ajustado. SatO2: 94%. A expansibilidade torácica é normal bilateralmente e o murmúrio vesicular presente e simétrico. Frequência cardíaca: 92 bpm, PA: 170 × 90 mmHg. O abdome é flácido e indolor. A pelve é estável. Toque retal: sem alterações. Glasgow: 8; pupilas: fotorreagentes, sendo a pupila direita maior que a esquerda. O paciente foi intubado e fez a tomografia de crânio ilustrada abaixo. No atendimento inicial deste paciente, deve-se",
   alternativas:[{id:"A",texto:"fazer trepanação, após tomografia de corpo inteiro."},{id:"B",texto:"manter em decúbito dorsal horizontal, para melhorar a perfusão cerebral."},{id:"C",texto:"tratar com hipotensão permissiva, para diminuir o risco de expansão do hematoma cerebral."},{id:"D",texto:"evitar hipercapnia, por seu efeito de vasodilatação cerebral."}],
   gabarito:"D",
@@ -518,7 +518,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-039", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:39,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
-  imagemUrl:"dados/imagens/q-einstein2023-039.png",
+  imagemUrl:"dados/imagens/q-einstein2023-039.webp",
   enunciado:"A mãe de um menino de 4 anos de idade, leva-o à consulta, porque acha que ele é muito baixo. O paciente nasceu a termo, com peso de 3.200 g e comprimento de 49 cm. Foi amamentado até os 9 meses de idade e sempre comeu pouco. A mãe refere que é uma criança hígida, sem patologias graves ou internações anteriores. É esperto, tem bom desenvolvimento neuropsicomotor para a idade e gosta de brincadeiras como pega-pega e esconde-esconde. A mãe refere que apresentou a menarca aos 12 anos de idade e mede 1,58 m; o pai entrou em puberdade na mesma época que os amigos, e mede 1,73 m. Recuperando as medidas anteriores, anotadas na caderneta da criança, observa-se que a criança mantém uma curva de IMC adequada para idade, enquanto o comprimento/estatura para a idade apresenta o seguinte gráfico. Entre as condutas apresentadas, a melhor neste caso é:",
   alternativas:[{id:"A",texto:"Aguardar até a puberdade, sendo a principal hipótese, o atraso constitucional do crescimento."},{id:"B",texto:"Tranquilizar a família, uma vez que o diagnóstico mais provável é atraso constitucional do crescimento."},{id:"C",texto:"Manter o paciente em observação, com retornos mensais para acompanhar o crescimento."},{id:"D",texto:"Iniciar a investigação para déficit de crescimento, com o cálculo da velocidade de crescimento e a idade óssea."}],
   gabarito:"D",
@@ -870,7 +870,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-066", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:66,
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
-  imagemUrl:"dados/imagens/q-einstein2023-066.png",
+  imagemUrl:"dados/imagens/q-einstein2023-066.webp",
   enunciado:"Menina de 3 anos e 6 meses de idade apresenta o índice de massa corpórea (IMC) para a idade de 19 kg/m2 IMC por Idade MENINAS Do nascimento aos 5 anos (percentis) De acordo com as informações fornecidas pelo gráfico, a indicação para manejo desse caso deve ser",
   alternativas:[{id:"A",texto:"dieta e atividade física."},{id:"B",texto:"lipidograma e ECG."},{id:"C",texto:"dieta e lipidograma."},{id:"D",texto:"atividade física e ECG."}],
   gabarito:"A",
@@ -949,7 +949,7 @@ window.EscDados.registrarQuestoes("prova-einstein-2023", [
 {
   id:"q-einstein2023-072", banca:"Einstein (HIAE)", real:true, ano:2023, numeroNaProva:72,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-einstein2023-072.png",
+  imagemUrl:"dados/imagens/q-einstein2023-072.webp",
   enunciado:"Foi realizado um estudo sobre a eficácia de uma vacina contra a Covid-19. Os resultados foram os seguintes: De acordo com os dados acima, a eficácia desta vacina contra Covid-19 a partir da segunda dose foi de:",
   alternativas:[{id:"A",texto:"45,5%"},{id:"B",texto:"37,8%"},{id:"C",texto:"62,5%"},{id:"D",texto:"70%"}],
   gabarito:"C",

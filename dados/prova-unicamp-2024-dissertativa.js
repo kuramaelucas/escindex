@@ -84,7 +84,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-005", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:5,
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-artrites",
-  imagemUrl:"dados/imagens/q-unicampdis2024-005.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-005.webp",
   tipo:"dissertativa", respostaEsperada:"Artrite psoriásica (artrite psoriática). Psoríase isoladamente não pontua.",
   enunciado:"Homem, 42a, procurou Unidade Básica de Saúde com queixa de dor e inchaço em articulações interfalangianas distais de ambas as mãos. Refere rigidez matinal com duração de quatro horas. Antecedentes: lesões de pele recorrentes e dores articulares há quatro anos. Exame físico: mão direita- imagem Q5. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -99,7 +99,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-006", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:6,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
-  imagemUrl:"dados/imagens/q-unicampdis2024-006.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-006.webp",
   tipo:"dissertativa", respostaEsperada:"Fibrose pulmonar (doença intersticial pulmonar) ou cor pulmonale.",
   enunciado:"Mulher, 68a, procura a Unidade Básica de Saúde por tosse seca há três anos e dispneia progressiva aos esforços há nove meses. Antecedentes pessoais: hipertensão arterial, dislipidemia e tabagismo 35 anos-maço. Exame físico: PA=148/88mmHg; FC=76bpm; FR=23irpm; oximetria de pulso=92% em ar ambiente. Estase venosa jugular a 45º; coração: hiperfonese da segunda bulha em foco pulmonar, sem sopros; pulmões: estertores tele inspiratórios em terço inferior e médio; extremidades: edema simétrico de membros inferiores +/4+. Radiograma de tórax: imagem Q6. A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -156,7 +156,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-010", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:10,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
-  imagemUrl:"dados/imagens/q-unicampdis2024-010.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-010.webp",
   tipo:"dissertativa", respostaEsperada:"Pericardite aguda (pericardite aguda pós-viral).",
   enunciado:"Homem, 22a, procura o Pronto Atendimento por dor precordial de forte intensidade, iniciada há quatro dias e que piora com a inspiração. Apresentou coriza, odinofagia, febre e tosse há uma semana, com melhora espontânea. Antecedentes pessoais: diabetes tipo 1 há 10 anos em tratamento com insulina NPH e regular. Exame físico: regular estado geral; ansioso; PA=122/68mmHg; FC=112bpm; FR=22irpm. Ausculta pulmonar normal. Ausculta cardíaca: ritmo regular, em dois tempos, sem sopros. Realizado ECG (ver figura). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -241,7 +241,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-016", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:16,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-malformacoesdigestivas",
-  imagemUrl:"dados/imagens/q-unicampdis2024-016.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-016.webp",
   tipo:"dissertativa", respostaEsperada:"Megacólon congênito (doença de Hirschsprung, aganglionose).",
   enunciado:"Recém-nascido a termo, sete dias de vida, é trazido ao Pronto-Socorro com história de vômitos e distensão abdominal há dois dias. Nega febre ou outras queixas. Em aleitamento materno exclusivo. Antecedentes: primeira evacuação no terceiro dia de vida e alguns episódios de evacuação após estímulo. Exame físico: abdome distendido, sem abaulamentos, ânus tópico e pérveo. Exames laboratoriais: eletrólitos, ureia, creatinina e gasometria normais. Radiograma simples de abdome: (imagem Q16). O DIAGNÓSTICO ETIOLÓGICO DO ABDOME AGUDO É:",
   alternativas:[],
@@ -284,7 +284,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-019", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:19,
   areaId:"area-cg", especialidadeId:"esp-cirvascular", assuntoId:"ass-cirvasc-disseccao",
-  imagemUrl:"dados/imagens/q-unicampdis2024-019.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-019.webp",
   tipo:"dissertativa", respostaEsperada:"Ecocardiograma transesofágico, angiotomografia de tórax, angiorressonância de tórax ou tomografia de tórax com contraste. Ecocardiograma isolado ou exames sem contraste são incorretos.",
   enunciado:"Homem, 44a, deu entrada no Pronto-Socorro com queixa de dor torácica em região precordial de forte intensidade com irradiação para o dorso há oito horas, acompanhada de sudorese fria. Antecedente pessoal: hipertensão arterial em uso de nifedipina 40mg/dia. Exame físico: PA=212/142mmHg; FC=111bpm; estase jugular; pulsos arteriais periféricos com amplitude diminuída no membro superior esquerdo; coração: bulhas hipofonéticas e sopro diastólico suave em foco aórtico acessório; pulmões: estertores crepitantes em bases; abdome: exame normal. As dosagens de CK-mb e troponina estavam normais. Eletrocardiograma: sobrecarga de câmaras esquerdas. Radiograma de tórax: imagem Q19. O EXAME COMPLEMENTAR QUE CONFIRMA A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -439,7 +439,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-030", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:30,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-intussuscepcao",
-  imagemUrl:"dados/imagens/q-unicampdis2024-030.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-030.webp",
   tipo:"dissertativa", respostaEsperada:"Intussuscepção intestinal (invaginação intestinal).",
   enunciado:"Menino, 7m, foi trazido ao Pronto-Socorro por choro inconsolável intercalado com períodos de melhora há 18 horas. Pais referem piora progressiva do quadro, com aumento dos episódios e evacuações com muco e laivos de sangue. Negam febre ou outros sintomas. Antecedentes pessoais: negam doenças e uso de medicamentos. Durante o exame mostra-se irritado, flexionando as pernas contra o abdome. Exame físico: regular estado geral; palidez cutânea; mucosas secas; abdome doloroso à palpação difusa, distendido, ruído hidroaéreo ausente com massa cilíndrica palpável no quadrante superior direito. Restante do exame sem alterações. Ultrassonografia de abdome (imagem Q30). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -524,7 +524,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-036", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:36,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
-  imagemUrl:"dados/imagens/q-unicampdis2024-036.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-036.webp",
   tipo:"dissertativa", respostaEsperada:"Pitiríase rósea (de Gibert).",
   enunciado:"Menino, 8a, é trazido para avaliação na Unidade Básica de Saúde com história de manchas vermelhas pelo corpo há três semanas. Mãe refere aparecimento de lesão eritematosa de formato ovalado com 3cm de diâmetro em transição tóraco-abdominal no início do quadro. Há duas semanas, refere aparecimento de erupção generalizada e simétrica em tronco e membros com lesões róseas ligeiramente elevadas, ovaladas, menores de 1cm, recobertas por uma fina escama. Algumas apresentam uma área central mais clara. Nega prurido ou outras queixas. Refere uso de loratadina por 10 dias, sem melhora. (imagem Q36). A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -581,7 +581,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-040", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:40,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
-  imagemUrl:"dados/imagens/q-unicampdis2024-040.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-040.webp",
   tipo:"dissertativa", respostaEsperada:"Miomectomia histeroscópica. Miomectomia isolada ou por laparotomia está incorreta.",
   enunciado:"Mulher, 31a, nuligesta, está tentando engravidar há dois anos. Refere sangramento menstrual regular com volume aumentado. Traz exames de dosagens hormonais normais; espermograma sem alterações. Ultrassonografia transvaginal=útero com volume de 125cm3 com mioma de 1cm (FIGO 0) e ovários sem anormalidades. Realizada histerossalpingografia: (imagem Q40). A CONDUTA TERAPÊUTICA É:",
   alternativas:[],
@@ -624,7 +624,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-043", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:43,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-cavulva",
-  imagemUrl:"dados/imagens/q-unicampdis2024-043.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-043.webp",
   tipo:"dissertativa", respostaEsperada:"Papilomavírus humano (HPV).",
   enunciado:"Mulher, 38a, apresenta lesão vulvar multicêntrica recidivante. (imagem Q43) Anatomopatológico: lesão intraepitelial escamosa de alto grau da vulva. O PRINCIPAL FATOR DE RISCO ASSOCIADO A ESTA LESÃO É:",
   alternativas:[],
@@ -681,7 +681,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-047", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:47,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
-  imagemUrl:"dados/imagens/q-unicampdis2024-047.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-047.webp",
   tipo:"dissertativa", respostaEsperada:"Metástase pleural de câncer de mama (câncer de mama metastático, metástase pleural ou pulmonar). A palavra metástase precisa constar.",
   enunciado:"Mulher, 68a, procura o Pronto-Socorro com quadro de dispneia aos esforços há 20 dias, com piora há dois dias. Nega febre e tosse. Tem antecedente de câncer de mama: carcinoma ductal invasivo, estadio clínico IIa, tratado com quadrantectomia e biópsia de linfonodo sentinela, quimioterapia e radioterapia há seis anos. Atualmente sem uso de medicação. Radiograma de tórax (imagem Q47) ESTE ACHADO RADIOLÓGICO OCORRE COMO CONSEQUÊNCIA DE:",
   alternativas:[],
@@ -934,7 +934,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-065", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:65,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-unicampdis2024-065.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-065.webp",
   tipo:"dissertativa", respostaEsperada:"Mycobacterium tuberculosis. 'Tuberculose' isoladamente não é aceita.",
   enunciado:"Homem, 31a, procura Pronto-Socorro com quadro de tosse produtiva há dez dias e episódios de febre não aferida com queda do estado geral. Refere inapetência e emagrecimento na última semana. Antecedentes pessoais: etilista há 10 anos. Exame físico: mau estado geral; sonolento; desidratado; descorado +/4; PA=95/63mmHg; FC=113bpm; FR=22irpm; T=36,1oC; oximetria de pulso=94% em ar ambiente. Coração: bulhas rítmicas taquicárdicas e hiperfonéticas, sem sopros. Pulmões: murmúrio vesicular diminuído em base direita. Abdome: plano, tenso à palpação, fígado palpável a cerca de 2cm do rebordo costal direito; baço não palpável. Membros: sem edemas. Radiograma de tórax (imagem Q65). Líquido pleural: eritrocrômico; hemácias=27.000/mm3; leucócitos=1.445/mm3 (96% linfomononucleares, 4% polimorfonucleares); raras células mesoteliais; proteínas totais=3,6g/dL; glicose=125mg/dL; desidrogenase láctica=388UI/L; adenosina deaminase=51UI/L. O PROVÁVEL AGENTE ETIOLÓGICO É:",
   alternativas:[],
@@ -1033,7 +1033,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-072", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:72,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-unicampdis2024-072.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-072.webp",
   tipo:"dissertativa", respostaEsperada:"Nitroprussiato de sódio, labetalol ou nicardipina. Medicação por via oral não é aceita.",
   enunciado:"Homem, 34a, procura Pronto Atendimento por cefaleia há duas semanas, que inicialmente melhorava com analgésicos simples, evoluindo com piora progressiva. Tem apresentado episódios de mal-estar, caracterizado como palpitações e tremores de extremidades e sudorese intensa, tratado como síndrome do pânico, aguardando consulta do psiquiatra. Nos últimos dois dias refere ter piorado da cefaleia. Nas últimas 24 horas está com náuseas, cansaço aos mínimos esforços e redução do volume urinário. Exame físico: paciente um pouco agitado; pulsação carotídea visível; PA=224/144mmHg; FC=128bpm; FR=26irpm; oximetria de pulso=92% em ar ambiente. Pulmões: crepitações finas em 2/3, bilateralmente; edema +/4 em membros inferiores. Fundo de olho (imagem Q72). CONSIDERANDO A HIPÓTESE DIAGNÓSTICA, O MEDICAMENTO DE ESCOLHA É:",
   alternativas:[],
@@ -1048,7 +1048,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-073", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:73,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
-  imagemUrl:"dados/imagens/q-unicampdis2024-073.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-073.webp",
   tipo:"dissertativa", respostaEsperada:"Mixoma (não se aceita 'tumor intracardíaco').",
   enunciado:"Homem, 57a, hospitalizado por quadro de icterícia, colúria, acolia fecal, inapetência e perda de peso de 6Kg no último mês, foi diagnosticado como tumor de cabeça de pâncreas. Exame físico: T=36,3ºC; PA=126/74mmHg; FC=82bpm. Ausência de lesões cutâneas; coração: bulhas rítmicas, sem sopros. Exames de estadiamento: tomografia de tórax: imagem de falha de enchimento em átrio esquerdo, com cerca de 3cm de diâmetro, móvel e pedunculada. Ecocardiograma transesofágico: presença de tumor aderido à parede anterior do átrio esquerdo, pedunculada, móvel, que se protrai para a válvula mitral na contração atrial, obstruindo parcialmente a mesma, sem causar alteração hemodinâmica. Ressonância do coração: imagem não compatível com trombo. (imagem Q73). A HIPÓTESE DIAGNÓSTICA DESTE TUMOR É:",
   alternativas:[],
@@ -1091,7 +1091,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-076", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:76,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumatorax",
-  imagemUrl:"dados/imagens/q-unicampdis2024-076.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-076.webp",
   tipo:"dissertativa", respostaEsperada:"Angiotomografia de tórax (tomografia de tórax com contraste). Tomografia sem contraste não é aceita.",
   enunciado:"Homem, 25a, vítima de colisão frontal entre dois veículos em alta velocidade. Refere acionamento do “air-bag”. Admitido em um Centro de Trauma, consciente e orientado, escala de coma de Glasgow=15, PA=106/58mmHg, FC=115bpm, FR=26irpm, oximetria de pulso=95% em aporte de O2 12L/min com máscara não reinalante. Radiograma de tórax: (imagem Q76). O EXAME QUE CONFIRMA A HIPÓTESE DIAGNÓSTICA É:",
   alternativas:[],
@@ -1162,7 +1162,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-081", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:81,
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-pleura",
-  imagemUrl:"dados/imagens/q-unicampdis2024-081.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-081.webp",
   tipo:"dissertativa", respostaEsperada:"Conexão inadequada do circuito ao frasco coletor (sistema coletor aberto, dreno inserido no 'respiro').",
   enunciado:"Homem, 48a, vem encaminhado para serviço de referência em cirurgia torácica para avaliação de derrame pleural complicado. Deu entrada consciente, orientado e dispneico, com drenagem torácica realizada previamente no serviço de origem, conforme esquema abaixo (ver figura: frasco coletor com selo d'água, duas hastes de vidro, uma submersa e outra em contato com o ar). QUAL O MOTIVO PARA O QUADRO CLÍNICO APRESENTADO?",
   alternativas:[],
@@ -1177,7 +1177,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-082", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:82,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
-  imagemUrl:"dados/imagens/q-unicampdis2024-082.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-082.webp",
   tipo:"dissertativa", respostaEsperada:"Abdome agudo perfurativo (por perfuração). 'Abdome agudo' isolado ou diagnósticos etiológicos (úlcera perfurada) não pontuam.",
   enunciado:"Mulher, 45a, admitida em Pronto-Socorro com queixa de dor abdominal súbita em epigastro, associada a náuseas, sem vômitos. Nega febre ou alterações de hábito intestinal e urinário. Está em tratamento de uma tendinite no membro superior direito com anti-inflamatório não esteroidal há cinco dias. Radiograma de abdome (imagem Q82). O DIAGNÓSTICO SINDRÔMICO É:",
   alternativas:[],
@@ -1332,7 +1332,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-093", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:93,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-imunizacao",
-  imagemUrl:"dados/imagens/q-unicampdis2024-093.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-093.webp",
   tipo:"dissertativa", respostaEsperada:"Imunoglobulina humana antivaricela-zóster (IGHVAZ).",
   enunciado:"Mulher, 19a, terceiro dia de puerpério, procura Unidade Básica de Saúde referindo aparecimento de lesões pruriginosas pelo corpo há dois dias, com piora progressiva. Exame físico: presença de pápulas, vesículas e raras crostas em tronco, face e membros (imagem Q93). Recém-nascido, 72h de vida, assintomático, em aleitamento materno exclusivo, exame físico sem alterações. Antecedentes perinatais: oito consultas de pré-natal; gravidez e parto vaginal sem intercorrências; peso ao nascimento=3.520g; Apgar=9-10; Capurro=39semanas. CONSIDERANDO A DOENÇA MATERNA, A CONDUTA PARA O RECÉM-NASCIDO É:",
   alternativas:[],
@@ -1347,7 +1347,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-094", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:94,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-pediatrica",
-  imagemUrl:"dados/imagens/q-unicampdis2024-094.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-094.webp",
   tipo:"dissertativa", respostaEsperada:"Epifisiólise (escorregamento) da cabeça do fêmur (epifisiólise femoral proximal).",
   enunciado:"Menina, 11a, é trazida ao Pronto-Socorro com queixa de dor em joelho direito há aproximadamente três meses, com aumento progressivo da intensidade da dor e claudicação há duas semanas. Nega febre, sinais inflamatórios ou trauma prévio. Relata que vai para escola e no restante do tempo fica no celular. Antecedentes pessoais: hipotireoidismo em tratamento. Sem antecedentes familiares relevantes. Há uma semana realizou radiograma de joelhos, que estava normal. Exame físico: IMC=35Kg/m2; membros inferiores: assume atitude de rotação externa do membro inferior direito com limitação da rotação interna do quadril correspondente. Radiograma de quadril (imagem Q94). A HIPÓTESE DIAGNÓSTICA PRINCIPAL É:",
   alternativas:[],
@@ -1404,7 +1404,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-098", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:98,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-unicampdis2024-098.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-098.webp",
   tipo:"dissertativa", respostaEsperada:"Tricomoníase (Trichomonas vaginalis).",
   enunciado:"Mulher, 35a, procura Unidade Básica de Saúde com queixa de leucorreia clara, prurido e irritação vulvovaginal, além de odor desagradável. Exame ginecológico: especular visualiza imagem (Q98), pH vaginal > 4,5 e teste de Whiff positivo. O DIAGNÓSTICO ETIOLÓGICO É:",
   alternativas:[],
@@ -1433,7 +1433,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-100", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:100,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
-  imagemUrl:"dados/imagens/q-unicampdis2024-100.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-100.webp",
   tipo:"dissertativa", respostaEsperada:"Repetir a mamografia em 2 anos (controle mamográfico de rotina).",
   enunciado:"Mulher, 58a, comparece à Unidade Básica de Saúde para resultado de mamografia (imagem Q100). Exame físico: mamas simétricas, sem nódulos ou retrações, axilas e fossas subclaviculares livres. EM RELAÇÃO AO RASTREAMENTO DO CÂNCER DE MAMA, A ORIENTAÇÃO PARA ESTA PACIENTE É:",
   alternativas:[],
@@ -1448,7 +1448,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-101", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:101,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-unicampdis2024-101.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-101.webp",
   tipo:"dissertativa", respostaEsperada:"Ocitocina (ocitocina endovenosa). Outra via de administração é considerada errada.",
   enunciado:"O ENUNCIADO ABAIXO REFERE-SE ÀS QUESTÕES 101 e 102: Mulher, 32a, G3P1C1A1, idade gestacional de 41 semanas, dá entrada em trabalho de parto espontâneo, com evolução conforme partograma abaixo (ver figura: exames às 8h, 9h, 10h, 11h, 12h, 13h e 14h, bolsa íntegra, cardiotocografia normal categoria 1). Está deambulando, com dieta geral e com métodos não farmacológicos no alívio da dor. Antecedentes pessoais: sem comorbidades, último parto há três anos, por apresentação pélvica. QUESTÃO 101: A CONDUTA OBSTÉTRICA É:",
   alternativas:[],
@@ -1463,7 +1463,7 @@ window.EscDados.registrarQuestoes("prova-unicamp-2024-dissertativa", [
 {
   id:"q-unicampdis2024-102", banca:"UNICAMP (dissertativa)", real:true, ano:2024, numeroNaProva:102,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-unicampdis2024-102.jpg",
+  imagemUrl:"dados/imagens/q-unicampdis2024-102.webp",
   tipo:"dissertativa", respostaEsperada:"Fórcipe de Kielland (fórcipe de rotação).",
   enunciado:"Questão 102 (mesma parturiente da questão 101, 32 anos, 41 semanas). Parturiente evoluiu para dilatação total, com feto cefálico, em plano zero de De Lee. Após duas horas de expulsivo sem progressão da apresentação, foi realizada analgesia peridural contínua e ruptura artificial de membranas, sendo constatado mecônio 2+/4+. Quinze minutos após, com feto em plano +2 de De Lee e variedade occípito direita transversa fixa, apresentou a seguinte cardiotocografia: (ver figura). A CONDUTA INDICADA É:",
   alternativas:[],

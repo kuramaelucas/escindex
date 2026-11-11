@@ -411,16 +411,16 @@ function renderRevisaoFormatacao(){
       <button class="lote-chip ${selecionado==="__todos__"?"active":""}" onclick="selecionarLoteFormatacao('__todos__')">
         <div class="lote-chip-data">Todas as questões</div>
         <div class="lote-chip-origem">${lotes.length} bloco(s) de envio</div>
-        <div class="lote-chip-qtd">${lista.length} questão(ões)</div>
+        <div class="lote-chip-qtd">${lista.length} ${plural(lista.length,"questão","questões")}</div>
       </button>
       ${lotes.map(l=>`<button class="lote-chip ${selecionado===l.chave?"active":""}" onclick="selecionarLoteFormatacao(this.dataset.chave)" data-chave="${escapeHtml(l.chave)}">
         <div class="lote-chip-data">${escapeHtml(quandoDoLote(l.quando))}</div>
         <div class="lote-chip-origem">${escapeHtml(origemDoLote(l))}<br>por ${escapeHtml(autorDoLote(l))}</div>
-        <div class="lote-chip-qtd">${l.questoes.length} questão(ões)</div>
+        <div class="lote-chip-qtd">${l.questoes.length} ${plural(l.questoes.length,"questão","questões")}</div>
       </button>`).join("")}
     </div>` : '<div class="empty-state">Nenhum bloco para mostrar.</div>'}
   </div>
-  ${lote ? `<div class="card-flat mb-2 text-sm">Revisando o bloco de <strong>${escapeHtml(quandoDoLote(lote.quando))}</strong> — ${escapeHtml(origemDoLote(lote))}, ${lote.questoes.length} questão(ões), enviado por ${escapeHtml(autorDoLote(lote))}.</div>` : ""}
+  ${lote ? `<div class="card-flat mb-2 text-sm">Revisando o bloco de <strong>${escapeHtml(quandoDoLote(lote.quando))}</strong> — ${escapeHtml(origemDoLote(lote))}, ${lote.questoes.length} ${plural(lote.questoes.length,"questão","questões")}, enviado por ${escapeHtml(autorDoLote(lote))}.</div>` : ""}
   ${nuvemLigada() && !nuvemConectado() ? `<p class="text-xs muted mb-2">Você está numa conta só deste navegador: a aprovação vale aqui, mas não chega aos outros revisores. Entre com a conta da nuvem para dividir a fila.</p>` : ""}
   ${pagFormatacao.itens.map(q=>{
     const ap = formatacaoAprovadaDe(q.id);
@@ -705,12 +705,12 @@ function confirmarExcluirUsuario(id, onde){
   const vaiJunto = [
     d.respostas ? d.respostas + " resposta(s)" : "",
     d.favoritos ? d.favoritos + " favorito(s)" : "",
-    d.cartoes ? d.cartoes + " cartão(ões) pessoal(is)" : "",
+    d.cartoes ? d.cartoes+" "+plural(d.cartoes,"cartão","cartões")+" pessoal(is)" : "",
     d.sessoes ? d.sessoes + " sessão(ões)" : "",
     d.simulados ? d.simulados + " nota(s) de simulado" : "",
   ].filter(Boolean);
   const fica = [
-    d.questoes ? d.questoes + " questão(ões) que enviou ao banco" : "",
+    d.questoes ? d.questoes+" "+plural(d.questoes,"questão","questões")+" que enviou ao banco" : "",
     d.comentarios ? d.comentarios + " comentário(s) em questões" : "",
     d.turmas ? d.turmas + " turma(s) que criou" : "",
   ].filter(Boolean);

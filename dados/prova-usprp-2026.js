@@ -21,7 +21,7 @@
 window.EscDados.registrarQuestoes("prova-usprp-2026", [
 {
   id:"q-usprp2026-001", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:1,
-  imagemUrl:"dados/imagens/q-usprp2026-001.png", imagemLegenda:"Exames do paciente (PSA total e livre, relação livre/total, densidade do PSA e urocultura)",
+  imagemUrl:"dados/imagens/q-usprp2026-001.webp", imagemLegenda:"Exames do paciente (PSA total e livre, relação livre/total, densidade do PSA e urocultura)",
   areaId:"area-cg", especialidadeId:"esp-urologia", assuntoId:"ass-uro-prostata",
   enunciado:"Paciente masculino, 55 anos, procurou atendimento para rastreamento de câncer de próstata com resultados de exames a seguir. Apresenta sintomas leves do trato urinário inferior com pontuação de 6/35 de acordo com o International Prostate Symptoms Score (I PSS). Refere antecedente de neoplasia de próstata na família. Exame digital demonstrou próstata com consistência fibroelástica, sem nódulos, indolor e peso estimado em 30g. Ressonância Magnética Multiparamétrica de próstata não demonstrou nódulos ou lesões suspeitas. Volume da próstata à ressonância de 21cm³. Exames do paciente Qual a conduta mais apropriada?",
   alternativas:[{id:"A",texto:"Retorno em um ano com novo PSA."},{id:"B",texto:"Fluxometria urinária."},{id:"C",texto:"Alfa bloqueador associado a inibidor da 5 alfa redutase."},{id:"D",texto:"Biópsia de próstata."}],
@@ -74,7 +74,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-005", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:5,
-  imagemUrl:"dados/imagens/q-usprp2026-005.jpg", imagemLegenda:"Tomografia de abdome com contraste (reconstrução coronal)",
+  imagemUrl:"dados/imagens/q-usprp2026-005.webp", imagemLegenda:"Tomografia de abdome com contraste (reconstrução coronal)",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   enunciado:"Menina de 12 anos é levada ao pronto-socorro com história de dor abdominal há cerca de 24 horas, associada a náuseas, vômitos, prostração progressiva e redução da diurese. Ao exame, apresenta-se hipotensa, com sinais de desidratação, abdome distendido e doloroso difusamente. Foi realizada tomografia de abdome com contraste, cuja reconstrução coronal é apresentada a seguir: Tomografia de abdome com contraste Qual é a hipótese diagnóstica mais provável?",
   alternativas:[{id:"A",texto:"Apendicite aguda complicada com peritonite generalizada."},{id:"B",texto:"Intussuscepção ileocólica com necrose colônica."},{id:"C",texto:"Torção intestinal com comprometimento vascular do delgado."},{id:"D",texto:"Obstrução intestinal por corpo estranho com sinais de isquemia."}],
@@ -101,7 +101,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-007", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:7,
-  imagemUrl:"dados/imagens/q-usprp2026-007.jpg", imagemLegenda:"Corte axial da tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usprp2026-007.webp", imagemLegenda:"Corte axial da tomografia de abdome",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
   enunciado:"Homem, 27 anos, vítima de colisão automobilística, dá entrada no pronto-socorro hemodinamicamente estável (PA 115x70 mmHg, FC 98 bpm). Refere dor abdominal epigástrica intensa. Ao exame físico, apresenta discreta defesa abdominal na região mesogástrica, sem sinais de irritação peritoneal. Foi submetido a tomografia, sendo um corte da tomografia de abdome demonstrado na figura: Figura Qual a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Laparotomia com pancreaticoduodenectomia."},{id:"B",texto:"Drenagem percutânea."},{id:"C",texto:"Tratamento não operatório."},{id:"D",texto:"Laparotomia com pancreatectomia distal."}],
@@ -128,7 +128,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-009", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:9,
-  imagemUrl:"dados/imagens/q-usprp2026-009.jpg", imagemLegenda:"Lesão de pele na região poplítea",
+  imagemUrl:"dados/imagens/q-usprp2026-009.webp", imagemLegenda:"Lesão de pele na região poplítea",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-tumores",
   enunciado:"Homem de 75 anos refere surgimento de tumoração cutânea na região poplítea direita há 8 meses, de crescimento rápido, sobre área de cicatriz de queimadura profunda aos 12 anos de idade, e que não recebera enxertia de pele. A fotografia representa a lesão ao exame físico atual. Lesão de pele Qual o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Úlcera de Marjolin."},{id:"B",texto:"Melanoma."},{id:"C",texto:"Ceratose seborreica."},{id:"D",texto:"Lesão por pressão."}],
@@ -142,7 +142,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-010", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:10,
-  imagemUrl:"dados/imagens/q-usprp2026-010.jpg", imagemLegenda:"Curvas de pressão e fluxo antes e depois da mudança dos parâmetros do ventilador",
+  imagemUrl:"dados/imagens/q-usprp2026-010.webp", imagemLegenda:"Curvas de pressão e fluxo antes e depois da mudança dos parâmetros do ventilador",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-vm",
   enunciado:"Homem de 30 anos, politrauma internado no CTI e em ventilação mecânica. Os parâmetros do ventilador foram modificados como segue na figura abaixo: Figura: Curva de pressão e fluxo Observando os gráficos responda:",
   alternativas:[{id:"A",texto:"Houve aumento da pressão nas vias aéreas."},{id:"B",texto:"A mudança gerou aprisionamento de ar no final da expiração."},{id:"C",texto:"A ciclagem passou a ser a fluxo."},{id:"D",texto:"O fluxo quadrado facilita o cálculo da resistência das vias aéreas."}],
@@ -247,7 +247,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-018", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:18,
-  imagemUrl:"dados/imagens/q-usprp2026-018.jpg", imagemLegenda:"Ferida do períneo após o desbridamento",
+  imagemUrl:"dados/imagens/q-usprp2026-018.webp", imagemLegenda:"Ferida do períneo após o desbridamento",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
   enunciado:"Homem, 52 anos, diabético, foi admitido em choque séptico por fasceíte necrosante perineal (gangrena de Fournier) e submetido a desbridamento cirúrgico inicial. No 3º dia pós-operatório, apresenta piora clínica e laboratorial: febre persistente, aumento da dor local, taquicardia e hipotensão com necessidade de vasopressores, leucocitose acentuada, PCR e lactato em ascensão. Ao exame, há ferida extensa no períneo (imagem), com celulite progressiva e focos de necrose residual. Períneo Qual deve ser a conduta a seguir?",
   alternativas:[{id:"A",texto:"Novo rastreamento infeccioso e escalonamento da antibioticoterapia."},{id:"B",texto:"Retorno ao centro cirúrgico para novo desbridamento e coleta de tecido para cultura."},{id:"C",texto:"Iniciar oxigenoterapia hiperbárica e ampliação do espectro antibacteriano guiado por culturas."},{id:"D",texto:"Fechamento da ferida com retalhos músculo cutâneos, para reduzir risco de infecção secundária."}],
@@ -261,7 +261,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-019", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:19,
-  imagemUrl:"dados/imagens/q-usprp2026-019.jpg", imagemLegenda:"Espécime cirúrgico (cólon e reto)",
+  imagemUrl:"dados/imagens/q-usprp2026-019.webp", imagemLegenda:"Espécime cirúrgico (cólon e reto)",
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-dii",
   enunciado:"Homem, 28 anos, trazido ao pronto atendimento por familiares com história de dor abdominal difusa e diarreia sanguinolenta intensa. O acompanhante desconhecia mais detalhes sobre o estado de saúde do paciente, porém referia que o mesmo estava em uso de corticoides de longa data. Ao exame encontrava-se torporoso e febril. Apresentava hipotensão e taquicardia. O abdome era difusamente doloroso, distendido e com sinais de peritonite difusa. Foi submetido a colectomia total com ileostomia terminal e fechamento do coto retal baixo. A análise macroscópica da peça cirúrgica mostrou cólons e reto com mucosa difusamente inflamada, hiperemiada e friável, com ulcerações contínuas e difusas (figura). Figura: Espécime cirúrgico Considerando o quadro clínico apresentado e a análise macroscópica da peça cirúrgica, qual seria o achado histopatológico mais característico da doença?",
   alternativas:[{id:"A",texto:"Exsudatos pseudomembranosos com placas de fibrina e necrose superficial da mucosa."},{id:"B",texto:"Inflamação transmural com granulomas não caseosos e áreas de mucosa normal intercalada."},{id:"C",texto:"Depósitos amiloides na mucosa colônica associados a vasculite transmural."},{id:"D",texto:"Inflamação difusa restrita à mucosa e submucosa, com abscessos de cripta e distorção arquitetural."}],
@@ -275,7 +275,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-020", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:20,
-  imagemUrl:"dados/imagens/q-usprp2026-020.jpg", imagemLegenda:"Inspeção anal",
+  imagemUrl:"dados/imagens/q-usprp2026-020.webp", imagemLegenda:"Inspeção anal",
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
   enunciado:"Homem, 58 anos, refere exteriorização volumosa e irredutível de tecido pelo ânus, com sangramentos esporádicos, prurido e sensação de “massa” que piora ao evacuar (figura). Já realizou dieta rica em fibras, hidratação, laxativos osmóticos e medidas comportamentais sem melhora. Exame proctológico mostra prolapso circunferencial persistente com volumoso componente cutâneo externo. Colonoscopia recente normal. Figura: Inspeção anal Qual é a melhor abordagem terapêutica neste cenário?",
   alternativas:[{id:"A",texto:"Realizar desarterialização hemorroidária guiada por Doppler com mucopexia."},{id:"B",texto:"Realizar hemorroidopexia grampeada."},{id:"C",texto:"Realizar hemorroidectomia excisional com ressecção dos pedículos principais."},{id:"D",texto:"Realizar esclerose dos mamilos hemorroidários com laser de diodo."}],
@@ -289,7 +289,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-021", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:21,
-  imagemUrl:"dados/imagens/q-usprp2026-021.jpg", imagemLegenda:"Representação do Método Clínico Centrado na Pessoa (a pessoa e os contextos próximo, amplo e macro)",
+  imagemUrl:"dados/imagens/q-usprp2026-021.webp", imagemLegenda:"Representação do Método Clínico Centrado na Pessoa (a pessoa e os contextos próximo, amplo e macro)",
   areaId:"area-mps", especialidadeId:"esp-bioetica", assuntoId:"ass-comunicacaoclinica",
   enunciado:"Considerando o Método Clínico Centrado na Pessoa (MCCP) ilustrado na Figura, responda: Figura: Representação do MCCP. Qual de seus componentes está aqui representado?",
   alternativas:[{id:"A",texto:"Entendendo a pessoa como um todo."},{id:"B",texto:"Intensificando a relação entre a pessoa e o médico."},{id:"C",texto:"Explorando a saúde, a doença e a experiência da pessoa com a doença."},{id:"D",texto:"Elaborando um plano conjunto de manejo de problemas."}],
@@ -316,7 +316,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-023", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:23,
-  imagemUrl:"dados/imagens/q-usprp2026-023.jpg", imagemLegenda:"Curva de crescimento (altura para a idade, meninos de 5 a 19 anos — OMS 2007)",
+  imagemUrl:"dados/imagens/q-usprp2026-023.webp", imagemLegenda:"Curva de crescimento (altura para a idade, meninos de 5 a 19 anos — OMS 2007)",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-crescimentopuberdade",
   enunciado:"Paciente do sexo masculino, 12 anos, veio para consulta de rotina de puericultura na Unidade de Saúde da Família. A mãe do paciente trouxe queixas de que a criança é bem mais baixa em estatura que as demais crianças de sua sala de aula. O pré-natal e o parto da criança ocorreram sem intercorrências, nasceu com peso e comprimento adequados para a idade gestacional e com 39 semanas de gestação. A criança apresentou bom desenvolvimento neuropsicomotor. Alimentava-se adequadamente segundo a avaliação da médica de família e comunidade (MFC). Os pais apresentavam boa saúde, sem história familiar de doenças. A MFC calculou a altura alvo do paciente a partir das alturas dos pais, encontrando o valor de 1,64 cm. Também solicitou exame para determinar a idade óssea do paciente, que resultou compatível com 13 anos de idade. A curva de crescimento do paciente está demonstrada a seguir. Ao exame físico não foi encontrado qualquer sinal de anormalidade. O estágio puberal de Tanner do paciente era G2P2. O peso estava adequado para a idade e altura. Gráfico: Curva de crescimento Qual a melhor conduta frente a este paciente?",
   alternativas:[{id:"A",texto:"Solicitar IGF1, TSH, FSH, LH para rastreamento de doenças endocrinológicas."},{id:"B",texto:"Solicitar hemograma, VHS, proteína C reativa para rastreamento de doenças reumatológicas."},{id:"C",texto:"Acompanhar a criança em consultas de puericultura de rotina semestrais."},{id:"D",texto:"Encaminhar para o pediatra endocrinologista para avaliação."}],
@@ -434,7 +434,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-032", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:32,
-  imagemUrl:"dados/imagens/q-usprp2026-032.jpg", imagemLegenda:"Figura 1 (lesões na boca) e figuras 2 e 3 (exantema)",
+  imagemUrl:"dados/imagens/q-usprp2026-032.webp", imagemLegenda:"Figura 1 (lesões na boca) e figuras 2 e 3 (exantema)",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
   enunciado:"Criança de 18 meses, sexo feminino, foi trazida pelos pais à Unidade de Saúde da Família (USF) para consulta eventual. Os pais relataram ao médico de família e comunidade (MFC) que a criança, nove dias antes, havia iniciado o quadro de febre baixa, mal-estar, perda de apetite, coriza, tosse seca leve e hiperemia ocular. Cinco dias antes da consulta, o quadro clínico se intensificou, com aumento dos níveis da febre, piora da inapetência e começou a apresentar adinamia. Quatro dias antes da consulta, os pais perceberam lesões na boca (figura 1). Dois dias antes da consulta, surgiu rash maculopapular na face, que evoluiu para o tronco e os membros (demonstrado nas figuras 2 e 3). A criança estava aceitando líquidos, leite, mas diminuiu bem a ingestão de alimentos sólidos. Pais negaram dispneia ou chiado no peito. A tosse era seca e leve. Não teve vômitos ou alterações do hábito intestinal e urinárias. A criança não tinha doenças prévias e não fazia uso de medicamentos. Morava com os pais em uma área de alta vulnerabilidade econômico social. Os pais relataram que nem sempre tinham alimentos variados em casa, principalmente vegetais. Ao exame físico, a criança estava um pouco apática, febril (temperatura de 38ºC), hidratada, eupneica, corada. Exame do aparelho respiratório, cardíaco, abdome e otoscopia sem alterações. As amigdalas estavam levemente hiperemiadas, mas sem edema ou placas de pus. Apresentava leve hiperemia conjuntival. O exame da boca demonstrou imagem descrita na figura 1 e rash cutâneo descrito nas figuras 2 e 3. Qual a melhor conduta, além da prescrição de medicamentos sintomáticos?",
   alternativas:[{id:"A",texto:"Penicilina benzatina."},{id:"B",texto:"Vitamina A."},{id:"C",texto:"Cefalexina."},{id:"D",texto:"Hidratação intensiva."}],
@@ -500,7 +500,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-037", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:37,
-  imagemUrl:"dados/imagens/q-usprp2026-037.jpg", imagemLegenda:"Curvas de risco relativo de óbito por temperatura diária, por faixa etária, em mulheres (C) e homens (D)",
+  imagemUrl:"dados/imagens/q-usprp2026-037.webp", imagemLegenda:"Curvas de risco relativo de óbito por temperatura diária, por faixa etária, em mulheres (C) e homens (D)",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Um estudo (Lancet Planetary Health 2025;9: e410 - 20) investigou a associação entre a temperatura média diária em 300 grandes cidades russas de 2000 - 2019 e o risco relativo de óbito por qualquer causa, exceto causas externas, estratificado por sexo e faixa etária, em relação à temperatura ideal (a de menor risco). Parte dos resultados desse estudo está ilustrada na figura a seguir: Figura: Pooled cumulative exposure response associations between daily temperature and non accidental mortality for the 300 largest Russian cities in 2000 19, stratified by age group for females (C) and males (D). Dashed vertical lines denote the 1st and 99th percentiles of the temperature distributions. Solid vertical lines denote minimum mortality temperature for the subgroups. Shaded areas denote 95% confidence intervals of relative risks. Considerando os resultados desse estudo, assinale a alternativa que melhor os interpretam.",
   alternativas:[{id:"A",texto:"O estudo evidencia a associação indireta entre o extremo calor e o risco de óbito, direta entre temperaturas frias e risco de óbito, que são distintas para os sexos e as faixas etárias estudadas."},{id:"B",texto:"O estudo evidencia a associação indireta entre os extremos de temperatura e o risco relativo de óbito, que é uniforme para ambos os sexos e as faixas etárias estudadas."},{id:"C",texto:"O estudo evidencia a associação direta entre os extremos de temperatura e o risco relativo de óbito, que é uniforme para ambos os sexos e as faixas etárias estudadas."},{id:"D",texto:"O estudo evidencia a associação direta entre extremo calor e risco de óbito, indireta entre temperaturas frias e risco de óbito, que são distintas para os sexos e as faixas etárias estudadas."}],
@@ -514,7 +514,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-038", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:38,
-  imagemUrl:"dados/imagens/q-usprp2026-038.png", imagemLegenda:"Tabela 1 — coberturas vacinais de 2013 a 2020",
+  imagemUrl:"dados/imagens/q-usprp2026-038.webp", imagemLegenda:"Tabela 1 — coberturas vacinais de 2013 a 2020",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Um grupo de pesquisadores brasileiros analisou dados do Programa Nacional de Imunizações (PNI) entre os anos de 2013 e 2020, com o objetivo de avaliar o impacto da pandemia de COVID 19 sobre a cobertura vacinal de crianças com até 12 meses de idade. Foram incluídas dez vacinas do calendário nacional infantil e os dados foram obtidos a partir de bancos públicos do DATASUS. Observou-se que, em 2020, nove vacinas atingiram seus menores índices históricos de cobertura e a média geral caiu de 84,44% em 2019 para 75,07% em 2020. O estudo não analisou indivíduos, mas sim tendências populacionais ao longo do tempo, utilizando dados agregados por ano em nível nacional. A Tabela 1 mostra as coberturas vacinais de 2013 a 2020. Tabela 1. Coberturas vacinais Qual é o tipo de delineamento deste estudo?",
   alternativas:[{id:"A",texto:"Caso controle."},{id:"B",texto:"Transversal."},{id:"C",texto:"Levantamento epidemiológico."},{id:"D",texto:"Coorte prospectivo."}],
@@ -541,7 +541,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-040", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-usprp2026-040.jpg", imagemLegenda:"Lesão na perna esquerda",
+  imagemUrl:"dados/imagens/q-usprp2026-040.webp", imagemLegenda:"Lesão na perna esquerda",
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-intoxicacoes",
   enunciado:"Paciente, sexo masculino, 32 anos, comparece à Unidade de Saúde da Família (USF) referindo um ferimento em região anterior de perna esquerda que surgiu dias após ajudar um amigo a cuidar de um jardim abandonado com vários tijolos, pela manhã. Refere que à noite do mesmo dia, sentiu apenas uma queimação e prurido na perna. No dia seguinte, apresentava lesão eritematosa com algumas vesículas, na perna esquerda. Após 3 dias, chega à USF com a seguinte lesão (Figura). Nega qualquer outro sintoma ou morbidade. Figura: Lesão por animal peçonhento Qual o animal peçonhento mais provável de ter provocado a lesão descrita?",
   alternativas:[{id:"A",texto:"Escorpião Titius bahiensis."},{id:"B",texto:"Escorpião Titius serrulatus."},{id:"C",texto:"Aranha Loxosceles spp."},{id:"D",texto:"Aranha Phoneutria spp."}],
@@ -568,7 +568,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-042", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:42,
-  imagemUrl:"dados/imagens/q-usprp2026-042.jpg", imagemLegenda:"Lesões cutâneas da paciente (púrpura com bolhas hemorrágicas)",
+  imagemUrl:"dados/imagens/q-usprp2026-042.webp", imagemLegenda:"Lesões cutâneas da paciente (púrpura com bolhas hemorrágicas)",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-vasculites",
   enunciado:"Menina, 7 anos. Refere que apresentou febre, coriza e tosse há uma semana. Há 2 dias, iniciou lesões purpúricas em membros inferiores, palpáveis com característica ascendente em grande quantidade, com bolhas hemáticas (figura). Associado ao quadro, apresenta dor abdominal importante e artralgia em joelhos e cotovelos. Ao exame físico, apresenta além das púrpuras, dor à palpação profunda de abdome e dor à movimentação de tornozelos, sem edemas. Hemograma normal e urina rotina com hemácias 10/campo sem outras alterações. Lesões cutâneas apresentadas pela paciente Qual o exame mais importante a ser solicitado, pensando nas possíveis complicações relacionadas ao quadro clínico atual desse paciente?",
   alternativas:[{id:"A",texto:"Doppler Ecocardiograma."},{id:"B",texto:"Biópsia de pele."},{id:"C",texto:"Ultrassonografia de abdome."},{id:"D",texto:"Biópsia renal."}],
@@ -673,7 +673,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-050", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:50,
-  imagemUrl:"dados/imagens/q-usprp2026-050.jpg", imagemLegenda:"Local da aplicação da BCG",
+  imagemUrl:"dados/imagens/q-usprp2026-050.webp", imagemLegenda:"Local da aplicação da BCG",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
   enunciado:"Menino de 2 meses, hígido, nascido a termo, recebeu vacina BCG com 1 mês de vida. Mãe nega saída de secreção local, mas procura atendimento devido à preocupação com o aspecto da cicatriz, conforme foto a seguir: Foto: Local da aplicação da BCG Qual é a conduta mais adequada nesse caso?",
   alternativas:[{id:"A",texto:"Iniciar Cefalexina."},{id:"B",texto:"Observar a evolução."},{id:"C",texto:"Drenagem da secreção."},{id:"D",texto:"Iniciar Isoniazida."}],
@@ -726,7 +726,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-054", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:54,
-  imagemUrl:"dados/imagens/q-usprp2026-054.jpg", imagemLegenda:"Eletrocardiograma da paciente (derivação II)",
+  imagemUrl:"dados/imagens/q-usprp2026-054.webp", imagemLegenda:"Eletrocardiograma da paciente (derivação II)",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
   enunciado:"Uma adolescente com 15 anos, do sexo feminino, é atendida no Setor de Emergência, relatando palpitações, sudorese e choro imotivado há 7 meses, com piora hoje. Refere também perda de 5 kg, além de crises de ansiedade e tremores de extremidades. Seu ciclo menstrual tornou-se irregular e passou a evacuar várias vezes ao dia nas últimas semanas. Informa que está passando por muita dificuldade no relacionamento com os familiares e com o namorado. Ao exame: comunicativa, orientada, porém com agitação psicomotora, FC: 138bpm, ausculta cardíaca com 2 bulhas rítmicas normofonéticas sem sopros, PA: 148x62 mmHg. A frequência respiratória de 16 ipm e não havia anormalidades à inspeção e na ausculta torácica. O exame do abdome não evidenciou alterações. Foi realizado ECG, demonstrado abaixo: Eletrocardiograma da paciente Qual a conduta mais adequada nesse momento?",
   alternativas:[{id:"A",texto:"Avaliar a função tireoidiana, hemograma e função hepática."},{id:"B",texto:"Prescrever inibidor seletivo de recaptação serotonina."},{id:"C",texto:"Prescrever antiarrítmico, anticoagulante e monitorização cardíaca."},{id:"D",texto:"Solicitar triagem toxicológica e avaliação psiquiátrica."}],
@@ -740,7 +740,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-055", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-usprp2026-055.png", imagemLegenda:"Resultados dos exames laboratoriais",
+  imagemUrl:"dados/imagens/q-usprp2026-055.webp", imagemLegenda:"Resultados dos exames laboratoriais",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-adrenal",
   enunciado:"Lactente, 5 meses de vida, foi admitida na UTI Pediátrica por quadro de bronquiolite com necessidade de intubação orotraqueal. Evoluiu com estenose subglótica pós-extubação, sendo necessário ser submetida a procedimento de laringossuspensão e dilatação. Fez uso de dexametasona 1mg de 12/12h por 45 dias, sendo suspensa no dia da alta hospitalar. Paciente retorna ao pronto-socorro, 5 dias após a alta, com quadro de sonolência e vômitos. Nega febre ou outros sintomas associados. Solicitado os exames laboratoriais abaixo: Resultados dos exames laboratoriais Pensando na principal hipótese diagnóstica, qual a conduta imediata?",
   alternativas:[{id:"A",texto:"Salina hipertônica 3%."},{id:"B",texto:"Corticoesteroide."},{id:"C",texto:"Restrição hídrica."},{id:"D",texto:"Antibiótico de amplo espectro."}],
@@ -780,7 +780,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-058", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:58,
-  imagemUrl:"dados/imagens/q-usprp2026-058.jpg", imagemLegenda:"Face lateral direita do tronco do recém-nascido",
+  imagemUrl:"dados/imagens/q-usprp2026-058.webp", imagemLegenda:"Face lateral direita do tronco do recém-nascido",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-infeccoescongenitas",
   enunciado:"Recém-nascido com 11 dias, sexo masculino, é levado à Unidade de Pronto Atendimento com história de 1 dia de febre e apatia, e há 1 hora ter iniciado com pausas respiratórias. Pais negam coriza, obstrução nasal e tosse. Nasceu com 39 semanas, parto normal, 3kg, Apgar 8/9, e recebeu alta hospitalar com 48 horas, em aleitamento materno exclusivo. Ao exame, RN está corado, acianótico, ictérico +/+4, hipoativo e reativo, apresentando pausas respiratórias de 15- 20 segundos. Fígado a 2 cm do rebordo costal direito. Olho direito com hiperemia conjuntival e secreção amarelada. A figura abaixo mostra os achados na pele. Restante do exame sem alterações. Figura: Face lateral direita do tronco do RN. Qual informação complementar fornecida pela mãe é mais relevante para definir a etiologia deste quadro?",
   alternativas:[{id:"A",texto:"Relato de exantema no primeiro trimestre."},{id:"B",texto:"Uso de penicilina benzatina na gestação."},{id:"C",texto:"Histórico vacinal materno incompleto."},{id:"D",texto:"História de lesões genitais na gestação."}],
@@ -794,7 +794,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-059", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:59,
-  imagemUrl:"dados/imagens/q-usprp2026-059.jpg", imagemLegenda:"Ressonância magnética da coluna lombossacra (corte sagital)",
+  imagemUrl:"dados/imagens/q-usprp2026-059.webp", imagemLegenda:"Ressonância magnética da coluna lombossacra (corte sagital)",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-infeccoes",
   enunciado:"Menino, 4 anos, comparece na emergência de hospital terciário para investigação diagnóstica e tratamento. Refere ter iniciado dificuldade progressiva para caminhar, querendo muito colo e muito irritado há 30 dias. Apresenta alguns picos febris esporádicos, não aferidos, segundo os pais. Foi algumas vezes em avaliação médica pelo quadro, sem diagnóstico específico e orientados analgésicos, anti-inflamatórios e observação. Como houve piora do quadro, criança com muita dor à manipulação, não conseguindo sair da cama, foi encaminhada. Feito ultrassonografia com doppler de articulações quadril, que foi normal, e a Ressonância Magnética de coluna lombo sacra abaixo. Ressonância magnética do paciente Qual a principal hipótese diagnostica?",
   alternativas:[{id:"A",texto:"Infiltração leucêmica."},{id:"B",texto:"Osteomielite."},{id:"C",texto:"Espondilodiscite."},{id:"D",texto:"Osteossarcoma."}],
@@ -808,7 +808,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-060", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-usprp2026-060.jpg", imagemLegenda:"Gráficos 1 a 4 da distribuição dos tipos histológicos por idade",
+  imagemUrl:"dados/imagens/q-usprp2026-060.webp", imagemLegenda:"Gráficos 1 a 4 da distribuição dos tipos histológicos por idade",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-nefro-glomerulopatias",
   enunciado:"Paciente do sexo masculino, 3 anos, previamente hígido, apresentou edema palpebral e ascite. Realizados exames, identificando-se proteinúria na faixa maciça, hipoalbuminemia e dislipidemia. Foi iniciado tratamento com prednisona, evoluindo com desaparecimento do edema e remissão completa da proteinúria, em três semanas. Distribuição dos tipos histológicos por idade Considerando o tipo histológico mais comumente encontrado na doença dessa criança, qual dos gráficos acima representa sua distribuição por idade?",
   alternativas:[{id:"A",texto:"Gráfico 1."},{id:"B",texto:"Gráfico 3."},{id:"C",texto:"Gráfico 2."},{id:"D",texto:"Gráfico 4."}],
@@ -822,7 +822,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-061", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-usprp2026-061.jpg", imagemLegenda:"Ultrassonografia transvaginal e imagem da histeroscopia",
+  imagemUrl:"dados/imagens/q-usprp2026-061.webp", imagemLegenda:"Ultrassonografia transvaginal e imagem da histeroscopia",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-caendometrio",
   enunciado:"Nuligesta de 70 anos, menopausa aos 50 anos sem uso de terapia hormonal. Tem Hipertensão Arterial em uso regular de medicação. Vem referindo sangramento vaginal com três episódios nos últimos 3 meses, em moderada quantidade. Exame físico: Corada, PA: 120x80 mmHg, IMC: 34 kg/m2. Exame ginecológico com hipotrofia, sem outras anormalidades. Exames complementares seguem imagens abaixo: Ultrassonografia Histeroscopia Qual a melhor conduta?",
   alternativas:[{id:"A",texto:"Histerectomia total."},{id:"B",texto:"Dispositivo intrauterino de levonorgestrel."},{id:"C",texto:"Ressecção da lesão."},{id:"D",texto:"Histerectomia com salpingectomia."}],
@@ -953,7 +953,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-071", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:71,
-  imagemUrl:"dados/imagens/q-usprp2026-071.jpg", imagemLegenda:"Cardiotocografia (ES = estímulo sonoro)",
+  imagemUrl:"dados/imagens/q-usprp2026-071.webp", imagemLegenda:"Cardiotocografia (ES = estímulo sonoro)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Primigesta, 29 anos, com 37 semanas de gestação, com lúpus eritematoso sistêmico, faz avaliação de vitalidade fetal em consulta pré-natal de rotina. Está com a doença sob controle e exames laboratoriais normais. A cardiotocografia realizada hoje está demonstrada abaixo (Figura). A ultrassonografia apresenta feto com peso no P35, com movimentos respiratórios, somáticos e tônus normais e índices de pulsatilidade das artérias umbilical e cerebral média nos percentis 70 e 15, respectivamente. O maior bolsão de líquido amniótico mede 1,5 cm. Figura: Cardiotocografia realizada na consulta de hoje, antes da ultrassonografia. ES=estímulo sonoro Levando-se em consideração o resultado do perfil biofísico fetal, qual a melhor conduta?",
   alternativas:[{id:"A",texto:"Retorno em uma semana com ultrassonografia."},{id:"B",texto:"Resolução da gestação por cesárea."},{id:"C",texto:"Reavaliação da vitalidade fetal em 24 horas."},{id:"D",texto:"Indução do trabalho de parto."}],
@@ -967,7 +967,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-072", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:72,
-  imagemUrl:"dados/imagens/q-usprp2026-072.jpg", imagemLegenda:"Ultrassonografia transvaginal com a medida do comprimento cervical",
+  imagemUrl:"dados/imagens/q-usprp2026-072.webp", imagemLegenda:"Ultrassonografia transvaginal com a medida do comprimento cervical",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Primigesta de 20 anos, fazendo pré-natal de risco habitual e sem intercorrências até o momento. Refere cólicas abdominais esporádicas e retorna em consulta pré-natal trazendo o resultado do exame morfológico de segundo trimestre realizado hoje. O feto apresenta crescimento e morfologia dentro da normalidade, com placenta anterior alta e volume de líquido amniótico normal. Figura: Imagem de Ultrassonografia De acordo com a imagem ultrassonográfica da aferição do comprimento cervical (Figura), qual a melhor conduta?",
   alternativas:[{id:"A",texto:"Introdução de pessário cervical."},{id:"B",texto:"Progesterona micronizada vaginal."},{id:"C",texto:"Seguimento pré-natal de risco habitual."},{id:"D",texto:"Realização de cerclagem cervical."}],
@@ -994,7 +994,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-074", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:74,
-  imagemUrl:"dados/imagens/q-usprp2026-074.png", imagemLegenda:"Monitorização glicêmica da última semana (média de glicose por horário e eventos de hipoglicemia)",
+  imagemUrl:"dados/imagens/q-usprp2026-074.webp", imagemLegenda:"Monitorização glicêmica da última semana (média de glicose por horário e eventos de hipoglicemia)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   enunciado:"Primigesta de 30 semanas de idade gestacional, em seguimento de pré-natal de alto risco devido ao diabetes mellitus tipo 2, retorna à consulta de pré-natal, sem queixas clínicas e obstétricas. Paciente em uso: Insulina Neutral Protamine Hagedorn (NPH): 16 UI às 7:00h, 14 UI às 12:00h, 14 UI às 22:00h Insulina Regular: 10 UI 30 minutos antes do café da manhã, 10 UI 30 minutos antes do almoço, 10 UI 30 minutos antes do jantar. Terapia nutricional: café da manhã às 7:00h, lanche da manhã às 10:00h, almoço às 12:00h, lanche da tarde às 16:00h, jantar às 18h30, lanche noturno às 22:00h. Exame físico geral e obstétrico dentro dos padrões de normalidade. Ganho de peso de 150 gramas em 7 dias. A avaliação da monitorização glicêmica da última semana está demonstrada na figura abaixo: Figura: Monitorização Glicêmica Qual a conduta mais adequada em relação ao controle glicêmico desta paciente, além do reforço de orientação sobre terapia nutricional e programa de atividade física?",
   alternativas:[{id:"A",texto:"Aumentar insulina NPH no café da manhã, almoço e noturna, reduzir regular no café da manhã e jantar e aumentar do almoço."},{id:"B",texto:"Manter as doses administradas atualmente de insulina NPH e de insulina regular."},{id:"C",texto:"Aumentar NPH noturna, reduzir no café da manhã e manter no almoço, aumentar regular no café da manhã e almoço e reduzir no jantar."},{id:"D",texto:"Manter doses de insulina NPH em todos os horários e aumentar doses de insulina regular no café da manhã, almoço e reduzir no jantar."}],
@@ -1086,7 +1086,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-081", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:81,
-  imagemUrl:"dados/imagens/q-usprp2026-081.jpg", imagemLegenda:"Lesões nos membros",
+  imagemUrl:"dados/imagens/q-usprp2026-081.webp", imagemLegenda:"Lesões nos membros",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
   enunciado:"Mulher, 46 anos, natural e procedente de Ribeirão Preto, apresentou há 10 dias quadro de sinusopatia (sic) e fez uso de amoxicilina e clavulanato. Há 4 dias notou aparecimento de pápulas e nódulos eritematosos nos membros superiores e inferiores e que hoje estão conforme figura abaixo. Está com febre de 39,8ºC, artralgia, mialgia e queda do estado geral. O teste de sensibilidade tátil está alterado nas mãos e pés. Figura Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Vasculite leucocitoclástica."},{id:"B",texto:"Histoplasmose."},{id:"C",texto:"Eritema nodoso hansênico."},{id:"D",texto:"Tuberculose cutânea."}],
@@ -1100,7 +1100,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-082", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:82,
-  imagemUrl:"dados/imagens/q-usprp2026-082.jpg", imagemLegenda:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usprp2026-082.webp", imagemLegenda:"Eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
   enunciado:"Homem, 60 anos, acompanhado por familiares, é admitido em pronto-socorro com história de rebaixamento progressivo do estado geral nos últimos 10 dias. Antecedente pessoal de paraplegia crural após acidente doméstico e uropatia obstrutiva bilateral, em uso de cateter duplo J. Faz uso regular de doxazosina e sulfametoxazol trimetoprim profilático há 1 ano. Exame físico: regular estado geral, taquipneico, confuso e desorientado no tempo e no espaço. ECG (abaixo). Gasometria venosa: pH: 7,12; PCO2: 21 mmHg; PO2: 55 mmHg; HCO3: 8 mmol/L. ECG Qual medicação endovenosa deve ser instituída de imediato?",
   alternativas:[{id:"A",texto:"Bicarbonato de sódio."},{id:"B",texto:"Ácido zoledrônico."},{id:"C",texto:"Sulfato de magnésio."},{id:"D",texto:"Gluconato de cálcio."}],
@@ -1127,7 +1127,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-084", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:84,
-  imagemUrl:"dados/imagens/q-usprp2026-084.jpg", imagemLegenda:"Lesão na região malar",
+  imagemUrl:"dados/imagens/q-usprp2026-084.webp", imagemLegenda:"Lesão na região malar",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
   enunciado:"Homem, 47 anos, sem comorbidades, apresenta lesão na região malar (Figura) muito pruriginosa com períodos de exacerbações e períodos de melhora, em especial quando usa cremes com corticoide. Relata que quando usa perfume as lesões ardem e ficam exsudativas. Figura Qual exame complementar é o mais indicado neste caso?",
   alternativas:[{id:"A",texto:"Dosagem de IgE total."},{id:"B",texto:"Testes de alergia a glúten."},{id:"C",texto:"Teste de Puntura (Prick Test)."},{id:"D",texto:"Teste de contato (Patch Test)."}],
@@ -1141,7 +1141,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-085", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:85,
-  imagemUrl:"dados/imagens/q-usprp2026-085.jpg", imagemLegenda:"Lesões na região inguinal",
+  imagemUrl:"dados/imagens/q-usprp2026-085.webp", imagemLegenda:"Lesões na região inguinal",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Mulher, 56 anos, diabética tipo 2 em tratamento irregular, procura atendimento por lesões recorrentes na região inguinal há cerca de 18 meses. Refere prurido intenso, sensação de ardor e desconforto local, especialmente em dias quentes. Relata uso frequente de Dexametasona creme, com melhora parcial e recidiva ao suspender. Figura Qual achado laboratorial é o mais provável de ser encontrado neste caso?",
   alternativas:[{id:"A",texto:"Pseudohifas à coloração com KOH."},{id:"B",texto:"Anatomopatológico com dermatite psoriasiforme."},{id:"C",texto:"Teste de contato positivo para propilenoglicol."},{id:"D",texto:"Coloração vermelho coral à luz de Wood."}],
@@ -1233,7 +1233,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-092", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:92,
-  imagemUrl:"dados/imagens/q-usprp2026-092.jpg", imagemLegenda:"Radiografia de tórax e lesões orais",
+  imagemUrl:"dados/imagens/q-usprp2026-092.webp", imagemLegenda:"Radiografia de tórax e lesões orais",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Homem, 65 anos, hipertenso, morador de Altinópolis, região nordeste do estado de São Paulo. Relata ter trabalhado por mais de 30 anos em lavouras de café. Refere lesões em mucosa oral e palato, acompanhadas de fraqueza e mal-estar há 4 meses. Há 1 mês notou surgimento de lesão no lábio. Queixa de tosse seca e dispneia progressiva há 2 meses. Nega febre. Perda ponderal de 5 kg no período. ELISA anti-HIV: negativo. Biópsia das lesões orais: presença de abundante infiltrado inflamatório misto, com visualização de estruturas leveduriformes na coloração de metenamina de prata de Grocott Gomori em meio ao infiltrado inflamatório. Imagens das lesões orais e da radiografia de tórax são disponibilizadas na figura a seguir: Figura: Radiografia de tórax e lesões orais Qual é a terapia indicada para o caso?",
   alternativas:[{id:"A",texto:"Rifampicina + Isoniazida + Etambutol + Pirazinamida."},{id:"B",texto:"Aciclovir."},{id:"C",texto:"Itraconazol."},{id:"D",texto:"Doxiciclina."}],
@@ -1286,7 +1286,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-096", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:96,
-  imagemUrl:"dados/imagens/q-usprp2026-096.png", imagemLegenda:"Espirometria (pré e pós-broncodilatador)",
+  imagemUrl:"dados/imagens/q-usprp2026-096.webp", imagemLegenda:"Espirometria (pré e pós-broncodilatador)",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Mulher, 25 anos, com asma desde a infância, relata estar grávida, com idade gestacional estimada de 7 semanas. Relata uso de budesonida 800 mcg + formoterol 12 mcg de 12/12 horas há 3 anos. Usou salbutamol 100 mcg por dispneia 1 vez por semana nas últimas 4 semanas. Nega sintomas noturnos, tabagismo e procura por serviço de médico de emergência. Exame físico normal. Espirometria realizada há 2 meses (tabela abaixo). Espirometria Qual é a melhor recomendação para esta paciente?",
   alternativas:[{id:"A",texto:"Reduzir dose de corticóide inalatório."},{id:"B",texto:"Manter medicamentos inalatórios."},{id:"C",texto:"Aumentar dose de broncodilatador."},{id:"D",texto:"Suspender corticóide inalatório."}],
@@ -1300,7 +1300,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-097", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:97,
-  imagemUrl:"dados/imagens/q-usprp2026-097.jpg", imagemLegenda:"Radiografia de tórax (no leito)",
+  imagemUrl:"dados/imagens/q-usprp2026-097.webp", imagemLegenda:"Radiografia de tórax (no leito)",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
   enunciado:"Homem, 75 anos, portador de hipertensão arterial, em uso de losartana 50 mg/dia, sem outras comorbidades. Há 5 dias teve início súbito de febre elevada (39ºC), acompanhada de tosse seca, mialgia intensa, coriza e mal-estar. Evoluiu com piora progressiva da tosse e do estado geral, persistência da febre e aparecimento de dispneia, procurando por atendimento em serviço de urgência. Hemograma da avaliação inicial mostrava leucocitose importante com desvio à esquerda. Radiografia de tórax abaixo: Radiografia de tórax Qual é o agente infeccioso provavelmente relacionado à piora clínica do paciente?",
   alternativas:[{id:"A",texto:"Proteus mirabilis."},{id:"B",texto:"Acinetobacter baumannii."},{id:"C",texto:"Aspergillus fumigatus."},{id:"D",texto:"Staphylococcus aureus."}],
@@ -1314,7 +1314,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-098", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:98,
-  imagemUrl:"dados/imagens/q-usprp2026-098.jpg", imagemLegenda:"Radiografia de tórax (posteroanterior e perfil)",
+  imagemUrl:"dados/imagens/q-usprp2026-098.webp", imagemLegenda:"Radiografia de tórax (posteroanterior e perfil)",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumo-intersticiais",
   enunciado:"Homem, 63 anos, metalúrgico, queixa-se de tosse seca diária e dispneia progressiva há 4 anos, atualmente aos mínimos esforços como tomar banho. Exame físico: bom estado geral, corado, cianótico, presença de baqueteamento digital. FR: 30 ipm. SatO2: 86% em ar ambiente. Radiografia de tórax abaixo: Radiografia de tórax Qual é o achado semiológico mais provável?",
   alternativas:[{id:"A",texto:"Expansibilidade reduzida."},{id:"B",texto:"Ausculta com roncos difusos."},{id:"C",texto:"Macicez a percussão."},{id:"D",texto:"Ressonância vocal abolida."}],
@@ -1328,7 +1328,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-099", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:99,
-  imagemUrl:"dados/imagens/q-usprp2026-099.jpg", imagemLegenda:"Radiografia da mão direita",
+  imagemUrl:"dados/imagens/q-usprp2026-099.webp", imagemLegenda:"Radiografia da mão direita",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-artrose",
   enunciado:"Homem, 68 anos, pedreiro. Refere que os dedos de suas mãos estão entortando, além de doerem quando realiza atividades manuais mais intensas, como carregar balde ou preparar concreto. Tabagista e etilista diário (aproximadamente 2 litros de cerveja por dia). Exame físico: bom estado geral; aumento de volume, de consistência óssea, em algumas interfalangeanas proximais e distais de ambas as mãos, com desvios articulares em 3º e 4º quirodáctilos à direita. A radiografia da mão direita é mostrada abaixo: Radiografia da mão Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Gota tofácea."},{id:"B",texto:"Artrite reumatoide."},{id:"C",texto:"Artrite psoriásica."},{id:"D",texto:"Osteoartrite."}],
@@ -1342,7 +1342,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2026", [
 },
 {
   id:"q-usprp2026-100", banca:"USP-RP (FMRP)", real:true, ano:2026, numeroNaProva:100,
-  imagemUrl:"dados/imagens/q-usprp2026-100.jpg", imagemLegenda:"Lesões na mucosa jugal e no lábio",
+  imagemUrl:"dados/imagens/q-usprp2026-100.webp", imagemLegenda:"Lesões na mucosa jugal e no lábio",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-atb",
   enunciado:"Homem, 18 anos, em tratamento adjuvante com metotrexato endovenoso, no segundo mês pós-operatório de ressecção de osteossarcoma tibial. Comparece ao pronto atendimento com história de febre (38°C) há 1 dia, acompanhada de lesões aftosas dolorosas em mucosa jugal e em lábio (figuras abaixo), que impedem a ingestão via oral. Encontra-se estável clinicamente. Hemograma: Hb 8,7 g/dL; Ht 26,1%; leucócitos 1.200/mm³; neutrófilos 240/mm³ (20%); linfócitos 600/mm³ (50%); plaquetas 58.000/mm³. Figura Qual é a conduta imediata indicada?",
   alternativas:[{id:"A",texto:"Cefepime endovenoso."},{id:"B",texto:"Ganciclovir endovenoso."},{id:"C",texto:"Aciclovir via oral."},{id:"D",texto:"Nistatina via oral."}],

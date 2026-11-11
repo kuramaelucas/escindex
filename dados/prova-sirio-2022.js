@@ -157,7 +157,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-011", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-sirio2022-011.png",
+  imagemUrl:"dados/imagens/q-sirio2022-011.webp",
   enunciado:"Um homem de 58 anos, obeso, sedentário, em tratamento de hipertensão com losartana 100 mg/dia e hidroclorotiazida 25 mg/dia com queixa de dispneia e desconforto retroesternal há 4 horas. Apresenta PA: 154 × 100 mmHg, pulso: 92 bpm rítmico, estertores nas bases pulmonares, sopro sistólico + em área mitral, sem irradiação e edema leve pré-tibial bilateral. O seu ECG, apresentado é característico de:",
   alternativas:[{id:"A",texto:"hipertrofia ventricular esquerda."},{id:"B",texto:"cor pulmonale."},{id:"C",texto:"embolia pulmonar aguda."},{id:"D",texto:"hiperpotassemia."},{id:"E",texto:"infarto agudo do miocárdio sem supradesnivelamento de ST."}],
   gabarito:"A",
@@ -197,7 +197,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-014", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:14,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-atb",
-  imagemUrl:"dados/imagens/q-sirio2022-014.png",
+  imagemUrl:"dados/imagens/q-sirio2022-014.webp",
   enunciado:"Considere os grupos de bactérias e as afecções: A associação correta entre as bactérias e as afecções a elas relacionadas é:",
   alternativas:[{id:"A",texto:"2-a − 4-b − 1-c − 3-d"},{id:"B",texto:"4-a − 1-b − 2-c − 3-d"},{id:"C",texto:"4-a − 3-b − 2-c − 1-d"},{id:"D",texto:"2-a − 1-b − 3-c − 4-d"},{id:"E",texto:"4-a − 2-b − 1-c − 3-d"}],
   gabarito:"B",
@@ -315,7 +315,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-023", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:23,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-sirio2022-023.png",
+  imagemUrl:"dados/imagens/q-sirio2022-023.webp",
   enunciado:"Um homem de 45 anos levou uma bolada no abdômen durante jogo de futebol. Chega ao hospital depois de 4 horas, com dor abdominal intensa. O abdômen é em tábua, com descompressão brusca positiva. Pulso: 120 bpm, PA: 80 × 60 mmHg. Após a administração de 1.000 mL de solução cristaloide, a pressão subiu para 110 × 60 mmHg, mas a taquicardia se manteve. O lactato é normal. Fez a tomografia de abdômen ilustrada a seguir, que evidenciou mínima quantidade de gás aparentemente fora de trajeto intestinal, contígua a segmento intestinal (jejuno), localizado na região supraumbilical, com discreta densificação dos planos mesentéricos adjacentes, e mínima quantidade de líquido livre na pelve. Não havia evidência tomográfica de lesões de vísceras parenquimatosas. A respeito do quadro abdominal deste paciente, é correto afirmar:",
   alternativas:[{id:"A",texto:"Estes casos podem ser tratados de modo não operatório."},{id:"B",texto:"A cirurgia poderia ter sido indicada sem a tomografia."},{id:"C",texto:"No trauma fechado, a tomografia não ajuda no planejamento do acesso cirúrgico."},{id:"D",texto:"A presença de líquido livre na ausência de lesão de víscera parenquimatosa, neste caso, não foi decisiva para a tomada de decisão."},{id:"E",texto:"Os dados clínicos iniciais na admissão eram muito sugestivos de lesão de parede abdominal."}],
   gabarito:"B",
@@ -368,7 +368,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-027", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:27,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-sirio2022-027.png",
+  imagemUrl:"dados/imagens/q-sirio2022-027.webp",
   enunciado:"Um rapaz de 23 anos foi vítima de colisão moto x auto, batendo a moto frontalmente na lateral do carro. Exame físico de entrada: A: Via aérea pérvia, imobilizado com colar cervical e prancha rígida; B: Expansibilidade pulmonar preservada, FR: 32 irpm, SatO2: 95%, com máscara; C: Pulso: 88 bpm, PA: 110 × 85 mmHg, pé direito frio, com pulso pedioso presente; D: Glasgow 15, pupilas isofotorreagentes, sem déficits; E: Fratura exposta de perna direita, hematoma em quadrante inferior direito do abdômen, múltiplas escoriações. Fez a tomografia ilustrada a seguir, que mostra densificação da gordura mesentérica junto ao ceco, sugerindo provável hematoma de mesentério. O paciente permaneceu estável hemodinamicamente e foi encaminhado ao centro cirúrgico, para tratamento da lesão ortopédica. O cirurgião que assiste o caso deve",
   alternativas:[{id:"A",texto:"Indicar laparotomia para inventário da cavidade;"},{id:"B",texto:"Manter observação do quadro abdominal;"},{id:"C",texto:"Indicar laparoscopia;"},{id:"D",texto:"Indicar arteriografia na sala de operação;"},{id:"E",texto:"Solicitar colonoscopia intraoperatória."}],
   gabarito:"C",
@@ -382,7 +382,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-028", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:28,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colangite",
-  imagemUrl:"dados/imagens/q-sirio2022-028.png",
+  imagemUrl:"dados/imagens/q-sirio2022-028.webp",
   enunciado:"Uma senhora de 56 anos teve pancreatite aguda biliar há 1 ano. Após a resolução do surto de pancreatite, a ultrassonografia de abdômen mostrou coledocolitíase. Foi submetida a CPRE (colangiopancreatografia retrógrada endoscópica) com retirada dos cálculos do colédoco. Na sequência, fez colangioressonância, que descartou coledocolitíase residual. Finalmente, 11 meses depois do quadro de pancreatite aguda, foi feita a colecistectomia videolaparoscópica, com exploração radiológica das vias biliares (ERVB), ilustrada a seguir. A análise da colangiografia intraoperatória permite afirmar corretamente que",
   alternativas:[{id:"A",texto:"deve ser deixado cateter transcístico, para estudar melhor a via biliar no pós-operatório."},{id:"B",texto:"o exame é normal."},{id:"C",texto:"existe alta possibilidade de a paciente evoluir com coledocolitíase primária."},{id:"D",texto:"há indicação de derivação bileodigestiva."},{id:"E",texto:"necessário revisar a papilotomia no intraoperatório, o que deve ser feita por endoscopia."}],
   gabarito:"B",
@@ -422,7 +422,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-031", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:31,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
-  imagemUrl:"dados/imagens/q-sirio2022-031.png",
+  imagemUrl:"dados/imagens/q-sirio2022-031.webp",
   enunciado:"Uma senhora de 45 anos está no 10o pós-operatório de laparotomia para lise de bridas, por abdômen agudo obstrutivo. Após apresentar, no dia anterior, crise de tosse, relatou que, na madrugada, saiu grande quantidade de secreção fluida, levemente sanguinolenta, pela ferida operatória. A imagem a seguir mostra o que se observou ao retirar o curativo, na manhã de hoje: saída de epíplon por deiscência de 2 cm na incisão mediana de 25 cm de extensão. A paciente está estável hemodinamicamente, desidratada e com pouca dor à palpação profunda do abdômen, que não tem distensão. Não teve febre. Leucócitos: 10.500/mm3. Qual é a intervenção mais apropriada neste momento?",
   alternativas:[{id:"A",texto:"Exploração local, com ressutura da parede abdominal, com tela restrita à área acometida."},{id:"B",texto:"Exploração local, com ressutura apenas da pele."},{id:"C",texto:"Exploração local restrita à área afetada, com ressutura da parede abdominal por planos."},{id:"D",texto:"Curativo a vácuo e fechamento por segunda intenção."},{id:"E",texto:"Laparotomia exploradora, com fechamento da parede abdominal com colocação de tela de polipropileno onlay em toda a incisão."}],
   gabarito:"E",
@@ -436,7 +436,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-032", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:32,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cagastrico",
-  imagemUrl:"dados/imagens/q-sirio2022-032.png",
+  imagemUrl:"dados/imagens/q-sirio2022-032.webp",
   enunciado:"Um senhor de 65 anos é internado de urgência por quadro de vômitos frequentes, queda do estado geral e dor epigástrica há 4 meses. Vem apresentando piora progressiva. Diz que perdeu 10 kg no período (passou de 70 kg para 60 kg). Está em regular estado geral, afebril e muito desidratado. Nota-se distensão abdominal, com massa visível e palpável no epigástrio e mesogástrio. Tem peristaltismo visível, mas sem peritonismo. Após compensação clínica, fez a tomografia ilustrada a seguir. Qual é o achado esperado na gasometria arterial?",
   alternativas:[{id:"A",texto:"Alcalose respiratória e hiperpotassemia."},{id:"B",texto:"Acidose metabólica e hipopotassemia."},{id:"C",texto:"Alcalose metabólica e hipopotassemia."},{id:"D",texto:"Acidose respiratória e hiperpotassemia."},{id:"E",texto:"Alcalose metabólica e hiperpotassemia."}],
   gabarito:"C",
@@ -450,7 +450,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-033", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:33,
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
-  imagemUrl:"dados/imagens/q-sirio2022-033.png",
+  imagemUrl:"dados/imagens/q-sirio2022-033.webp",
   enunciado:"Uma garota de 19 anos é atendida no pronto-socorro cirúrgico por colisão moto × auto. A: via aérea pérvia; B: murmúrio vesicular presente e normal bilateralmente; C: PA: 100 × 70 mmHg; pulso: 105 bpm, pelve estável, mas dolorosa à palpação, toque retal sem alterações, abdômen indolor, sonda vesical com hematúria discreta; D: Glasgow 15, pupilas isofotorreagentes; E: sinais de fratura fechada de tíbia esquerda, com pulso distal preservado. Realizada tomografia de corpo inteiro: achado trauma renal esquerdo, grau 2, e a alteração na pelve ilustrada a seguir (a primeira imagem é sem contraste, a segunda mostra a fase arterial). Qual é a intervenção mais apropriada neste contexto?",
   alternativas:[{id:"A",texto:"Fixação externa de bacia."},{id:"B",texto:"Tamponamento extraperitoneal pélvico."},{id:"C",texto:"Embolização arterial pélvica."},{id:"D",texto:"Tamponamento intraperitoneal pélvico."},{id:"E",texto:"Cistoscopia com eletrocoagulação."}],
   gabarito:"C",
@@ -555,7 +555,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-041", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:41,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-sirio2022-041.png",
+  imagemUrl:"dados/imagens/q-sirio2022-041.webp",
   enunciado:"Em consulta de rotina, uma paciente de 9 anos de idade, sexo feminino, sem queixas, apresentou peso de 30 kg, altura de 1,30 m e pressão arterial (PA) de 110 × 70 mmHg, aferida adequadamente e confirmada mais duas vezes. Com base na tabela, a classificação da pressão arterial desta paciente é",
   alternativas:[{id:"A",texto:"pressão arterial elevada."},{id:"B",texto:"pressão arterial baixa."},{id:"C",texto:"pressão arterial normal."},{id:"D",texto:"hipertensão estágio I."},{id:"E",texto:"hipertensão estágio II."}],
   gabarito:"A",
@@ -673,7 +673,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-050", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:50,
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exame",
-  imagemUrl:"dados/imagens/q-sirio2022-050.png",
+  imagemUrl:"dados/imagens/q-sirio2022-050.webp",
   enunciado:"Recém-nascido, sexo feminino, 39 semanas e 4 dias de idade gestacional, nasceu de parto normal com Apgar 9 (1’) e 10 (5’). Peso: 3.270 g sem risco infeccioso. No exame sumário da sala de parto, recém-nascido vigoroso, em bom estado geral, com presença de lesões vesicopustulosas superficiais (figura abaixo), sem outras anormalidades ao exame físico. Com 48 horas, já apresentava algumas lesões com crosta e manchas hiperpigmentadas. Entre as seguintes hipóteses diagnósticas, a mais provável para esse recém-nascido é",
   alternativas:[{id:"A",texto:"candidíase congênita."},{id:"B",texto:"impetigo neonatal."},{id:"C",texto:"eritema tóxico neonatal."},{id:"D",texto:"melanose pustular transitória neonatal."},{id:"E",texto:"foliculite pustular eosinofílica."}],
   gabarito:"D",
@@ -1090,7 +1090,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-082", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:82,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
-  imagemUrl:"dados/imagens/q-sirio2022-082.png",
+  imagemUrl:"dados/imagens/q-sirio2022-082.webp",
   enunciado:"Observe o gráfico abaixo. O aumento do número de mortes, durante uma pandemia, versus a média dos últimos anos antes da pandemia, pode ser definido como",
   alternativas:[{id:"A",texto:"média anual de mortes."},{id:"B",texto:"excesso de mortalidade."},{id:"C",texto:"diferença de letalidade."},{id:"D",texto:"taxa de mortalidade específica."},{id:"E",texto:"taxa de letalidade."}],
   gabarito:"B",
@@ -1130,7 +1130,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
 {
   id:"q-sirio2022-085", banca:"Sírio-Libanês (SP)", real:true, ano:2022, numeroNaProva:85,
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
-  imagemUrl:"dados/imagens/q-sirio2022-085.png",
+  imagemUrl:"dados/imagens/q-sirio2022-085.webp",
   enunciado:"Paciente trabalhador de construção civil sofreu queda de andaime, resultando em fratura de fêmur. Precisou ser submetido à cirurgia. Evoluía adequadamente, mas adquiriu infecção relacionada à assistência à saúde, vindo a falecer por broncopneumonia. Observe a seguinte declaração de óbito A melhor opção para o preenchimento do campo c é:",
   alternativas:[{id:"A",texto:"Ação contundente."},{id:"B",texto:"Cirurgia."},{id:"C",texto:"Fratura de fêmur."},{id:"D",texto:"Broncopneumonia."},{id:"E",texto:"Queda de escada."}],
   gabarito:"A",

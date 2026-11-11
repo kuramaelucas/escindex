@@ -74,7 +74,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-005", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:5,
-  imagemUrl:"dados/imagens/q-usprp2025-005.png", imagemLegenda:"Radiografia de tórax",
+  imagemUrl:"dados/imagens/q-usprp2025-005.webp", imagemLegenda:"Radiografia de tórax",
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-pleura",
   enunciado:"Menino de 4 anos está internado em enfermaria no 7º dia de pós-operatório de uma cirurgia cardíaca para correção de uma comunicação interventricular. Inicia sinais de desconforto respiratório súbito, com queda de saturação para 90%, mesmo em uso de cateter nasal de oxigênio 4 litros/minuto. Refere também dor torácica no lado esquerdo. A radiografia de tórax é apresentada a seguir. Qual a conduta?",
   alternativas:[{id:"A",texto:"Iniciar antibiótico de amplo espectro."},{id:"B",texto:"Ventilar com bolsa-válvula-máscara."},{id:"C",texto:"Aumentar o fluxo de oxigênio suplementar."},{id:"D",texto:"Drenagem torácica à direita."}],
@@ -114,7 +114,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-008", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:8,
-  imagemUrl:"dados/imagens/q-usprp2025-008.png", imagemLegenda:"Foto das lesões cutâneas do lactente",
+  imagemUrl:"dados/imagens/q-usprp2025-008.webp", imagemLegenda:"Foto das lesões cutâneas do lactente",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
   enunciado:"Lactente de 8 meses é encaminhado ao consultório pediátrico com quadro de lesões cutâneas pruriginosas e recidivantes desde os 6 meses de vida. Não notou fatores desencadeantes. Criança em aleitamento materno, iniciou complementação com fórmula infantil de seguimento aos 6 meses de vida, juntamente com introdução alimentar. Atualmente aceita todos os tipos de alimentos, inclusive trigo e ovo. Lesões são predominantemente em face, abdome e superfícies extensoras com características conforme foto a seguir: Qual a hipótese diagnóstica mais provável?",
   alternativas:[{id:"A",texto:"Dermatite atópica."},{id:"B",texto:"Eritema multiforme."},{id:"C",texto:"Urticária crônica."},{id:"D",texto:"Dermatite de contato."}],
@@ -167,7 +167,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-012", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:12,
-  imagemUrl:"dados/imagens/q-usprp2025-012.png", imagemLegenda:"Tabela com os exames da primeira avaliação e os atuais (perfil lipídico e outros)",
+  imagemUrl:"dados/imagens/q-usprp2025-012.webp", imagemLegenda:"Tabela com os exames da primeira avaliação e os atuais (perfil lipídico e outros)",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-dislipidemia",
   enunciado:"Uma menina com 9 anos foi avaliada há 4 meses em função do pai de 32 anos apresentar dislipidemia e estar em tratamento com estatina há 2 anos. Esta paciente apresenta peso e estatura no percentil 75, tem aprendizagem normal e não utiliza nenhum tipo de medicamento ou suplementação nutricional ou vitamínica. Seu exame físico não apresenta anormalidades. Os pais informam que seguiram a maior parte das recomendações nutricionais e de atividade física recomendada na avaliação anterior. Abaixo estão os resultados dos exames realizados na primeira avaliação e atualmente. Qual é a conduta mais adequada para esta paciente?",
   alternativas:[{id:"A",texto:"Iniciar tratamento com fibrato."},{id:"B",texto:"Iniciar tratamento com estatina."},{id:"C",texto:"Iniciar tratamento com levotiroxina."},{id:"D",texto:"Intensificar as mudanças no estilo de vida."}],
@@ -259,7 +259,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-019", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:19,
-  imagemUrl:"dados/imagens/q-usprp2025-019.jpg", imagemLegenda:"Curva de crescimento com os pesos do lactente nos primeiros 6 meses",
+  imagemUrl:"dados/imagens/q-usprp2025-019.webp", imagemLegenda:"Curva de crescimento com os pesos do lactente nos primeiros 6 meses",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Lactente de 6 meses é avaliado em consulta de puericultura. Nasceu com 30 semanas de idade gestacional, pesando 1250g, com boa evolução. A mãe relata aleitamento materno exclusivo desde a alta hospitalar e nega queixas. Peso atual: 6100g. Na avaliação clínica, o lactente apresenta sustentação da cabeça, emite sons, não rola, pega objetos e não leva à boca. Tem exame físico normal. Curva de crescimento trazida pela mãe. Os círculos pretos correspondem às medidas de peso do lactente nos primeiros 6 meses de vida. Observando os dados da curva de crescimento trazida pela mãe (figura), qual é a orientação alimentar mais adequada neste momento?",
   alternativas:[{id:"A",texto:"Iniciar a introdução alimentar."},{id:"B",texto:"Iniciar fórmula infantil de partida."},{id:"C",texto:"Manter amamentação exclusiva."},{id:"D",texto:"Iniciar fórmula infantil de seguimento."}],
@@ -312,7 +312,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-023", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:23,
-  imagemUrl:"dados/imagens/q-usprp2025-023.png", imagemLegenda:"Genograma da família",
+  imagemUrl:"dados/imagens/q-usprp2025-023.webp", imagemLegenda:"Genograma da família",
   areaId:"area-mps", especialidadeId:"esp-saudefamilia", assuntoId:"ass-esf",
   enunciado:"Na última reunião de equipe, na Unidade de Saúde da Família, a enfermeira informou que havia recebido um e-mail do Conselho Tutelar sobre a situação de uma adolescente de 13 anos que não tem comparecido às aulas. O agente comunitário de saúde (ACS) disse que esta família era bem complexa, residia na região da comunidade e que, no passado, já tinham abordado essa família, juntamente, com o Centro de Referência de Assistência Social (CRAS). A enfermeira se dispôs a realizar uma visita domiciliar (VD) com o ACS, no dia seguinte. O médico de família e comunidade se propôs a consultar sua agenda e verificar a data mais próxima para atender a adolescente. No início da reunião seguinte, o ACS apresentou o genograma atualizado da família para subsidiar as discussões. Fonte: Arquivo próprio do autor Na abordagem desta família, considerando o genograma apresentado, como pode ser classificada a relação da mãe do caso índice com a sua avó materna?",
   alternativas:[{id:"A",texto:"Conflituosa e de proximidade."},{id:"B",texto:"Abuso físico e conflituosa."},{id:"C",texto:"De proximidade e harmoniosa."},{id:"D",texto:"Conflituosa e separada."}],
@@ -365,7 +365,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-027", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:27,
-  imagemUrl:"dados/imagens/q-usprp2025-027.png", imagemLegenda:"Exames laboratoriais da paciente (hemograma e ferritina)",
+  imagemUrl:"dados/imagens/q-usprp2025-027.webp", imagemLegenda:"Exames laboratoriais da paciente (hemograma e ferritina)",
   areaId:"area-cm", especialidadeId:"esp-hemato", assuntoId:"ass-hemato-anemias",
   enunciado:"Paciente 47 anos, sexo feminino, comparece em consulta com queixa de há 3 meses apresentar fadiga, astenia e episódios de tontura. Paciente G1P1A0C0, com método contraceptivo e laqueadura tubária há 12 anos, sem atraso menstrual. Nega uso de medicações, doenças prévias e história familiar de doenças. Exame físico normal. Qual o questionamento mais adequado que o médico deve fazer para complementar a anamnese?",
   alternativas:[{id:"A",texto:"Perda ponderal não intencional."},{id:"B",texto:"Padrão de fluxo menstrual."},{id:"C",texto:"Ingesta de alimentos ricos em vit. B12."},{id:"D",texto:"Uso excessivo de álcool."}],
@@ -444,7 +444,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-033", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:33,
-  imagemUrl:"dados/imagens/q-usprp2025-033.png", imagemLegenda:"Foto da unha do hálux direito",
+  imagemUrl:"dados/imagens/q-usprp2025-033.webp", imagemLegenda:"Foto da unha do hálux direito",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-autoimunes",
   enunciado:"Mulher de 43 anos vem à Unidade de Saúde da Família (USF) para coleta de citologia oncótica de colo de útero e a enfermeira percebe que ela apresenta uma lesão na unha do hálux do pé direito. Solicita, então, uma avaliação da médica de família e comunidade que conversa com a paciente e a mesma conta que solicitou a sua manicure que cortasse a sua unha que estava oca, há 3 meses. Não procurou atendimento na USF para esta condição, pois achou que ao cortar esta unha, iria crescer uma nova. No entanto, percebeu há 15 dias, que cada vez mais a unha tem ficado oca. Qual o diagnóstico mais provável desta condição?",
   alternativas:[{id:"A",texto:"Onicólise."},{id:"B",texto:"Onicodistrofia."},{id:"C",texto:"Onicosquizia."},{id:"D",texto:"Onicocriptose."}],
@@ -471,7 +471,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-035", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:35,
-  imagemUrl:"dados/imagens/q-usprp2025-035.png", imagemLegenda:"Figura 1 do estudo — curvas de incidência do desfecho primário por presença ou ausência de micro e nanoplásticos",
+  imagemUrl:"dados/imagens/q-usprp2025-035.webp", imagemLegenda:"Figura 1 do estudo — curvas de incidência do desfecho primário por presença ou ausência de micro e nanoplásticos",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Um estudo clínico (N Engl J Med 390;10: 900 910, 2024) investigou a presença de micro e nanoplásticos (MNPs) em placas de ateroma da artéria carótida de pacientes submetidos à endarterectomia. Posteriormente, acompanhou por 34 meses a incidência de eventos cardiovasculares comparativamente entre os que tinham MNPs nas placas da carótida e os que não tinham. Os resultados do desfecho primário do estudo estão sintetizados na Figura 1. Considerando os resultados desse estudo, assinale a alternativa abaixo que melhor os interpretam.",
   alternativas:[{id:"A",texto:"Nesse estudo de caso controle, a incidência de AVC, infarto cardíaco ou morte por qualquer causa esteve inversamente associada a presença de micro e nanoplásticos na carótida."},{id:"B",texto:"Nesse estudo de coorte retrospectivo, a incidência de AVC, infarto cardíaco ou morte por qualquer causa esteve diretamente associada a presença de micro e nanoplásticos na carótida."},{id:"C",texto:"Nesse estudo experimental, a incidência de AVC, infarto cardíaco ou morte por qualquer causa esteve inversamente associada a presença de micro e nanoplásticos na carótida."},{id:"D",texto:"Nesse estudo de coorte prospectivo, a incidência de AVC, infarto cardíaco ou morte por qualquer causa esteve diretamente associada a presença de micro e nanoplásticos na carótida."}],
@@ -485,7 +485,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-036", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:36,
-  imagemUrl:"dados/imagens/q-usprp2025-036.png", imagemLegenda:"Figura do risco relativo de insuficiência renal aguda conforme a temperatura média diária",
+  imagemUrl:"dados/imagens/q-usprp2025-036.webp", imagemLegenda:"Figura do risco relativo de insuficiência renal aguda conforme a temperatura média diária",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Um estudo ecológico foi realizado no Reino Unido (Lancet Planet Health 2024; 8: e156-162) para investigar a possível associação entre a temperatura ambiente diária e o risco populacional de Insuficiência Renal Aguda (IRA) no mesmo dia e nos dias subsequentes. A figura abaixo ilustra os resultados principais desse estudo. Considerando os resultados apresentados, assinale a alternativa abaixo que melhor os interpretam.",
   alternativas:[{id:"A",texto:"O risco de insuficiência renal aguda eleva-se significativamente a partir do momento em que a temperatura média ultrapassa 25° C, o que provavelmente se deve à desidratação e consequente redução do fluxo plasmático renal."},{id:"B",texto:"O risco de insuficiência renal aguda decresce significativamente a partir do momento em que a temperatura média decresce a menos de 10° C, o que provavelmente se deve às pessoas saírem menos de casa no frio."},{id:"C",texto:"O risco de insuficiência renal aguda decresce significativamente a partir do momento em que a temperatura média decresce a menos de 15° C, o que provavelmente se deve à menor perda de água por transpiração."},{id:"D",texto:"O risco de insuficiência renal aguda eleva-se significativamente a partir do momento em que a temperatura média ultrapassa 25° C, o que provavelmente se deve à hipertermia e consequente nefrite intersticial."}],
@@ -499,7 +499,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-037", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:37,
-  imagemUrl:"dados/imagens/q-usprp2025-037.png", imagemLegenda:"Mapa do SEEG com as emissões de gases de efeito estufa por município e setor",
+  imagemUrl:"dados/imagens/q-usprp2025-037.webp", imagemLegenda:"Mapa do SEEG com as emissões de gases de efeito estufa por município e setor",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-vigilancia",
   enunciado:"A imagem abaixo foi publicada pelo Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG), ligado ao Observatório do Clima, e retrata as emissões desses gases por município e macrorregião brasileira, nos últimos 10 anos. A figura também discrimina os principais setores emissores desses mesmos gases, em cada município. Com base nas informações apresentadas, e nos seus conhecimentos sobre esse problema, assinale a alternativa que melhor as interpreta.",
   alternativas:[{id:"A",texto:"A região campeã na emissão de gases de efeito estufa é a região norte, devido às emissões ligadas à mineração, o processamento industrial e o transporte dos minérios."},{id:"B",texto:"Os estados campeões na emissão de gases de efeito estufa são Minas Gerais e São Paulo porque são os estados com maior malha de transporte rodoviário e mais industrializados."},{id:"C",texto:"No Brasil, grande parte das emissões de gases de efeito estufa advém das queimadas da região amazônica, voltadas para a criação de gado de corte e plantio de soja."},{id:"D",texto:"Globalmente, o Brasil equilibra a emissão anual de gases de efeito estufa com a remoção desses mesmos gases, por meio de suas florestas e plantações."}],
@@ -513,7 +513,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-038", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:38,
-  imagemUrl:"dados/imagens/q-usprp2025-038.png", imagemLegenda:"Figura do impacto acumulado do Programa Expandido de Imunizações por vacina",
+  imagemUrl:"dados/imagens/q-usprp2025-038.webp", imagemLegenda:"Figura do impacto acumulado do Programa Expandido de Imunizações por vacina",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-imunizacao",
   enunciado:"A Organização Mundial da Saúde (OMS) lançou em 1974 o Programa Expandido de Imunizações que acaba de completar 50 anos de existência. A figura abaixo, extraída de um artigo cientifico (Lancet 2024; 403: 2307 16) ilustra o impacto global acumulativo produzido por esse programa sobre desfechos de interesse em saúde pública. Considerando as informações apresentadas e seu conhecimento sobre imunização, assinale a alternativa que melhor as interpreta.",
   alternativas:[{id:"A",texto:"Comparativamente às demais vacinas, a vacinação contra poliomielite não impactou muito a sobrevida, mas promoveu ganho em anos de vida plenamente saudável ao prevenir sequelas."},{id:"B",texto:"A prevenção de mortes pela vacinação contra o tétano deve-se, principalmente, à redução na incidência e letalidade do tétano neonatal devido à vacinação das gestantes, mas não do tétano acidental."},{id:"C",texto:"A vacina tríplice viral não teve uma efetividade uniforme já que a proteção contra o sarampo foi muito superior à proteção observada contra caxumba e rubéola, sequer mencionadas na figura."},{id:"D",texto:"A vacinação contra a tuberculose (BCG) evitou muitas mortes, especialmente, de crianças na primeira infância, devido à elevada proteção conferida contra as formas meningoencefálica e pleural da doença."}],
@@ -579,7 +579,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-043", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:43,
-  imagemUrl:"dados/imagens/q-usprp2025-043.png", imagemLegenda:"Quadro do escore MEOWS (sinais vitais em negrito)",
+  imagemUrl:"dados/imagens/q-usprp2025-043.webp", imagemLegenda:"Quadro do escore MEOWS (sinais vitais em negrito)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-puerperio",
   enunciado:"Puérpera, 27 anos, G1P1, está no quarto dia após parto cesárea a termo por parada secundária de descida, internada em alojamento conjunto, evoluindo com quadro de febre. Tem obesidade grau 3 e sua avaliação de escore de alerta precoce (do inglês = MEOWS modified early obstetric warning score) está destacada em negrito no quadro apresentado a seguir. Abdômen normotenso, ruídos hidroaéreos presentes, ferida operatória sem sinais flogísticos, fundo uterino palpável a 2 cm abaixo da cicatriz umbilical e doloroso em hipogástrio. Especular = loquiação presente, avermelhada e com odor fétido. Toque vaginal = colo pérvio 3 cm, amolecido, doloroso a imobilização. Qual é o melhor esquema terapêutico?",
   alternativas:[{id:"A",texto:"Ceftriaxona e claritromicina."},{id:"B",texto:"Gentamicina e clindamicina."},{id:"C",texto:"Oxacilina e clindamicina."},{id:"D",texto:"Ceftriaxona e azitromicina."}],
@@ -593,7 +593,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-044", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:44,
-  imagemUrl:"dados/imagens/q-usprp2025-044.png", imagemLegenda:"Quadro do perfil glicêmico da última semana",
+  imagemUrl:"dados/imagens/q-usprp2025-044.webp", imagemLegenda:"Quadro do perfil glicêmico da última semana",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-dmg",
   enunciado:"Primigesta, 24 anos, com 36 semanas, portadora de Diabetes Mellitus tipo 1 desde os 10 anos de idade e nefropatia diabética há 5 anos. Paciente retorna à consulta de pré-natal referindo controle glicêmico satisfatório, porém com episódios de mal-estar geral, tonturas e sudorese, que melhoram com alimentação, há uma semana. Nega episódios de perda de consciência. Refere adequada adesão ao plano nutricional e à insulinoterapia prescritos. Em uso de análogos de insulinas NPH e Asparte desde o inicio da gestação. Exame físico geral e obstétrico normais. Ganho de peso semanal de 100 g. Hoje, a ultrassonografia evidenciou peso fetal estimado no percentil 9, índice de pulsatilidade da artéria umbilical no percentil 100 e da artéria cerebral média no percentil 2, maior bolsão de liquido amniótico de 4 cm, perfil biofisico fetal de 8 em 8. A análise do perfil glicêmico da última semana está demonstrada no quadro a seguir: Além do ajuste de insulinas e vigilância de bem-estar fetal, com que idade gestacional deve ser programada a resolução de sua gestação?",
   alternativas:[{id:"A",texto:"39 semanas."},{id:"B",texto:"37 semanas."},{id:"C",texto:"Imediatamente."},{id:"D",texto:"38 semanas."}],
@@ -607,7 +607,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-045", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:45,
-  imagemUrl:"dados/imagens/q-usprp2025-045.jpg", imagemLegenda:"Cardiotocografias antes (Figura 1) e após as medidas de reanimação intrauterina (Figura 2)",
+  imagemUrl:"dados/imagens/q-usprp2025-045.webp", imagemLegenda:"Cardiotocografias antes (Figura 1) e após as medidas de reanimação intrauterina (Figura 2)",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Primigesta, 30 anos, com 39 semanas, foi admitida para indução do trabalho de parto, por hipertensão controlada, assintomática. Exame físico geral normal. Altura uterina de 36cm, atividade uterina ausente, feto com boa vitalidade. A indução foi iniciada com misoprostol e, no segundo dia, com progressão do índice de Bishop de 2 para 6, foi continuada com infusão de ocitocina. Após 4 horas, se obteve a cardiotocografia exibida abaixo (Figura 1). Foram prescritos para a mãe decúbito lateral esquerdo, oxigenação em máscara, infusão rápida de soro fisiológico e interrupção da ocitocina. A cardiotocografia obtida após 30 minutos está demonstrada na Figura 2. O exame cervical nesse momento mostrava colo centrado, curto, 7 cm, feto ODT, 1, bolsa rota. Qual a melhor conduta?",
   alternativas:[{id:"A",texto:"Tocólise aguda com terbutalina subcutânea."},{id:"B",texto:"Conduta expectante com monitorização fetal contínua."},{id:"C",texto:"Retorno da infusão endovenosa de ocitocina."},{id:"D",texto:"Resolução da gestação por parto cesárea."}],
@@ -634,7 +634,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-047", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:47,
-  imagemUrl:"dados/imagens/q-usprp2025-047.png", imagemLegenda:"Partograma da evolução do trabalho de parto",
+  imagemUrl:"dados/imagens/q-usprp2025-047.webp", imagemLegenda:"Partograma da evolução do trabalho de parto",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Tercigesta (2 partos vaginais, com 34 e 35 semanas), 31 anos, com 38 semanas de gestação, internou em fase ativa do trabalho de parto, sem intercorrências no pré-natal. A parturiente está bem ativa, deambulando e fazendo exercícios na bola Bobath. Quer muito o parto vaginal. A evolução de seu trabalho de parto está demonstrada no partograma abaixo. Os sinais vitais maternos e vitalidade fetal são normais. Escolha a alternativa com a melhor conduta para essa parturiente, segundo as Diretrizes Nacionais e da Organização Mundial da Saúde (2020).",
   alternativas:[{id:"A",texto:"Realizar parto cesárea."},{id:"B",texto:"Conduta expectante."},{id:"C",texto:"Analgesia farmacológica de parto."},{id:"D",texto:"Ocitocina endovenosa contínua."}],
@@ -713,7 +713,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-053", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:53,
-  imagemUrl:"dados/imagens/q-usprp2025-053.png", imagemLegenda:"Foto da mama (inspeção estática)",
+  imagemUrl:"dados/imagens/q-usprp2025-053.webp", imagemLegenda:"Foto da mama (inspeção estática)",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-mamabenigna",
   enunciado:"Mulher de 47 anos de idade, G4P4A0, tabagista e sem outras comorbidades refere aparecimento de nódulo doloroso em região periareolar da mama direita há 4 dias. Refere que há algumas horas houve drenagem de secreção purulenta. Tem antecedente familiar positivo para câncer: tia paterna com câncer de ovário aos 67 anos de idade e mãe com câncer de mama aos 72 anos de idade. Inspeção estática representada na figura. Qual o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Doença de Paget do mamilo."},{id:"B",texto:"Mastite perductal."},{id:"C",texto:"Carcinoma inflamatório."},{id:"D",texto:"Mastite granulomatosa"}],
@@ -727,7 +727,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-054", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:54,
-  imagemUrl:"dados/imagens/q-usprp2025-054.jpg", imagemLegenda:"Exame físico e estudo urodinâmico",
+  imagemUrl:"dados/imagens/q-usprp2025-054.webp", imagemLegenda:"Exame físico e estudo urodinâmico",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
   enunciado:"Mulher de 52 anos, G2P2A0 (2PN), DUM há 3 anos, procura atendimento ginecológico com queixa de perda urinária há 8 meses que vem atrapalhando suas atividades habituais. Após orientações comportamentais e de fortalecimento do assoalho pélvico, que não melhoraram as queixas da paciente, foi realizado estudo urodinâmico. O exame físico e o estudo urodinâmico estão representados na figura. Considerando-se a hipótese diagnóstica mais provável, qual a conduta mais apropriada neste momento?",
   alternativas:[{id:"A",texto:"Colporrafia anterior e posterior."},{id:"B",texto:"Mirabegrona oral."},{id:"C",texto:"Imipramina oral."},{id:"D",texto:"Sling sintético de uretra média."}],
@@ -754,7 +754,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-056", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:56,
-  imagemUrl:"dados/imagens/q-usprp2025-056.jpg", imagemLegenda:"Ultrassonografia transvaginal",
+  imagemUrl:"dados/imagens/q-usprp2025-056.webp", imagemLegenda:"Ultrassonografia transvaginal",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-endometriose",
   enunciado:"Mulher de 42 anos, G3P2A1, método anticoncepcional: laqueadura tubária, DUM há 12 dias, procura atendimento ginecológico com queixa de sangramento uterino aumentado há 6 meses, com aumento do fluxo, permanecendo cerca de 6 a 7 dias com sangramento associado a dismenorreia moderada. Ao exame físico: PA: 120x70mmHg, FC: 78bpm, abdome plano, normotenso e indolor a palpação. Espécular: colo róseo, sem lesões ou conteúdo anormal; Toque: colo cartilaginoso, centrado, indolor a mobilização, útero centrado em anteversoflexão (AVF), globoso e aumentado de tamanho. Exames complementares: Hb: 11,2g/dl; Ht: 30%; USTV: útero AVF, centrado, volume de 195cm³. Ovário esquerdo: 4,2cm³, ovário direito: 5,7cm³, representado na figura. Qual a hipótese diagnóstica mais provável?",
   alternativas:[{id:"A",texto:"Adenomiose."},{id:"B",texto:"Endometriose."},{id:"C",texto:"Hiperplasia endometrial."},{id:"D",texto:"Leiomiomatose."}],
@@ -807,7 +807,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-060", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-usprp2025-060.jpg", imagemLegenda:"Figuras 1 a 4 com opções de orientação contraceptiva",
+  imagemUrl:"dados/imagens/q-usprp2025-060.webp", imagemLegenda:"Figuras 1 a 4 com opções de orientação contraceptiva",
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Na unidade básica de saúde, você atende uma mulher de 23 anos, G0, com diagnóstico de Diabetes Mellitus tipo 1 desde os 12 anos de idade. Deseja contracepção. IMC: 31 Kg/m². PA: 110x65 mmHg. Exame ginecológico sem alterações. Exames de rastreamento recomendados para a idade: normais, com exceção de HDL: 30 mg/dL (VN > 40 mg/dL). Exames de monitoramento da diabetes mellitus: sem alterações. Veja abaixo as figuras de 1 a 4, que apresentam opções de orientação contraceptiva: Considerando os critérios médicos de elegibilidade da Organização Mundial de Saúde (OMS), 2015, qual das figuras apresenta a orientação contraceptiva mais adequada?",
   alternativas:[{id:"A",texto:"Figura 1."},{id:"B",texto:"Figura 2."},{id:"C",texto:"Figura 3."},{id:"D",texto:"Figura 4."}],
@@ -821,7 +821,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-061", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-usprp2025-061.png", imagemLegenda:"Imagens A a D (achados de exame físico)",
+  imagemUrl:"dados/imagens/q-usprp2025-061.webp", imagemLegenda:"Imagens A a D (achados de exame físico)",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-endocardite",
   enunciado:"Homem, 45 anos, apresenta episódios de febre de até 38,3°C há 2 semanas. Sem outras queixas. Exame físico: PA: 138 x 80 mmHg. Ritmo cardíaco regular, com sopro diastólico em borda esternal esquerda 2+/4+, sem outros achados. Eletrocardiograma: normal. Ecocardiograma: valva aórtica bicúspide com filamento móvel em sua face ventricular e regurgitação leve. Hemoculturas: um par negativo no sétimo dia de leitura. Qual das imagens acima seria mais sugestiva para confirmar o diagnóstico deste paciente?",
   alternativas:[{id:"A",texto:"Imagem C."},{id:"B",texto:"Imagem B."},{id:"C",texto:"Imagem A."},{id:"D",texto:"Imagem D."}],
@@ -835,7 +835,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-062", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:62,
-  imagemUrl:"dados/imagens/q-usprp2025-062.png", imagemLegenda:"Eletrocardiograma",
+  imagemUrl:"dados/imagens/q-usprp2025-062.webp", imagemLegenda:"Eletrocardiograma",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Mulher, 75 anos, apresenta palpitações taquicárdicas e dispneia há 3 horas. Sem outras queixas. Exame físico: consciente, orientada, ritmo cardíaco irregular em 3 tempos, bulhas hipofonéticas, sem sopros. Tempo de enchimento capilar menor que 3 segundos. Murmúrio vesicular presente e simétrico, com estertores finos em terços inferiores dos campos pulmonares. FC = 142 bpm, PA = 110 x 70 mmHg. Eletrocardiograma na figura abaixo: Qual das condutas abaixo é a mais apropriada para o atendimento inicial dessa paciente?",
   alternativas:[{id:"A",texto:"Cardioversão elétrica."},{id:"B",texto:"Amiodarona."},{id:"C",texto:"Manobra vagal."},{id:"D",texto:"Betabloqueador."}],
@@ -862,7 +862,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-064", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:64,
-  imagemUrl:"dados/imagens/q-usprp2025-064.png", imagemLegenda:"Foto das lesões do abdome",
+  imagemUrl:"dados/imagens/q-usprp2025-064.webp", imagemLegenda:"Foto das lesões do abdome",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Menina 6 anos, histórico de dermatite de repetição, atualmente mais intenso nas dobras, além de rinite alérgica. Há 3 semanas notou exacerbação das lesões de dermatite, piora do prurido e aparecimento de lesões novas no abdome, onde refere também muito prurido. Ao exame apresenta placas de dermatite subaguda nas dobras, sinais de escoriações e no abdome as lesões da figura. Considerando o diagnóstico mais provável, qual microorganismo seria identificado nas lesões ativas do abdome?",
   alternativas:[{id:"A",texto:"Malassezia furfur."},{id:"B",texto:"Staphylococcus aureus."},{id:"C",texto:"Trichophyton rubrum."},{id:"D",texto:"Herpes simplex."}],
@@ -967,7 +967,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-072", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:72,
-  imagemUrl:"dados/imagens/q-usprp2025-072.jpg", imagemLegenda:"Fotos das lesões de pele",
+  imagemUrl:"dados/imagens/q-usprp2025-072.webp", imagemLegenda:"Fotos das lesões de pele",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Homem, 27 anos, auxiliar administrativo, morador de Ribeirão Preto. Há 6 dias com fadiga, mal-estar e odinofagia. Nega febre. Um dia após o início do quadro, notou lesões de pele (figuras abaixo). Refere início dos sintomas uma semana após relações sexuais com diferentes parceiros, com uso de preservativos nas relações sexuais genitais, porém não nas relações sexuais orais. Nega contato com áreas de mata ou com animais silvestres ou domésticos. Exame físico: lesões de pele pouco numerosas e com distribuição aleatória conforme fotos abaixo. Orofaringe: hiperemiada com pequena úlcera em palato mole. Linfonodos palpáveis em região cervical e axilar. Hemograma, dosagem de transaminases e avaliação da função renal sem alterações. Teste rápido para HIV, sífilis, hepatite C e B negativos. Qual agente infeccioso é a provável causa do quadro?",
   alternativas:[{id:"A",texto:"Treponema pallidum."},{id:"B",texto:"Monkeypox vírus."},{id:"C",texto:"Neisseria Gonorrhoeae."},{id:"D",texto:"Vírus Varicela Zoster."}],
@@ -994,7 +994,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-074", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:74,
-  imagemUrl:"dados/imagens/q-usprp2025-074.png", imagemLegenda:"Resultado da monitorização ambulatorial da pressão arterial (MAPA)",
+  imagemUrl:"dados/imagens/q-usprp2025-074.webp", imagemLegenda:"Resultado da monitorização ambulatorial da pressão arterial (MAPA)",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Homem, 38 anos, assintomático, procura atendimento por necessidade de relatório médico para a prática de atividade física. Nega uso de medicamentos. Nega tabagismo e etilismo. Exame físico: PA 140x90 mmHg. Eletrocardiograma normal. Solicitado monitorização ambulatorial da pressão arterial (MAPA), com resultado abaixo. Qual é o diagnóstico e a conduta apropriada?",
   alternativas:[{id:"A",texto:"Hipertensão arterial sistêmica; orientar dieta hipossódica e reavaliação dos níveis pressóricos em 3 meses."},{id:"B",texto:"Hipertensão mascarada; iniciar bloqueador de canal de cálcio e incentivar quanto à realização de atividade física."},{id:"C",texto:"Hipertensão do avental branco; apto a praticar atividade física."},{id:"D",texto:"Hipertensão do avental branco, apto a praticar atividade física e iniciar uso de medicamento anti-hipertensivo."}],
@@ -1060,7 +1060,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-079", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:79,
-  imagemUrl:"dados/imagens/q-usprp2025-079.png", imagemLegenda:"Foto dos joelhos",
+  imagemUrl:"dados/imagens/q-usprp2025-079.webp", imagemLegenda:"Foto dos joelhos",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-artrose",
   enunciado:"Mulher, 68 anos, refere dor em joelhos há 1 ano, com piora progressiva (atualmente intensidade 7/10). A dor é acentuada durante ortostase e atividades físicas, melhorando parcialmente após repouso prolongado. Faz uso de dipirona, com alívio parcial. É hipertensa, em tratamento com enalapril e hidroclorotiazida. Exame físico: BEG; IMC: 31,5 kg/m²; PA 130/80 mmHg; presença de calor e crepitação à movimentação em joelhos (figura abaixo). Qual é a alteração mais provável de ser encontrada em radiografia dos joelhos?",
   alternativas:[{id:"A",texto:"Esclerose óssea subcondral."},{id:"B",texto:"Calcificações ligamentares."},{id:"C",texto:"Erosões em saca bocado."},{id:"D",texto:"Osteopenia justa articular."}],
@@ -1074,7 +1074,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-080", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:80,
-  imagemUrl:"dados/imagens/q-usprp2025-080.png", imagemLegenda:"Foto da pele do paciente",
+  imagemUrl:"dados/imagens/q-usprp2025-080.webp", imagemLegenda:"Foto da pele do paciente",
   areaId:"area-cm", especialidadeId:"esp-reumato", assuntoId:"ass-reumato-artrites",
   enunciado:"Homem, 55 anos, refere dor em interfalangeanas distais de ambas as mãos há três anos, pior após períodos de repouso. Obtém melhora com o uso de anti-inflamatórios não esteroidais. Nega outros tratamentos. Exame físico: BEG , corado; edema e dor á palpação de 2º a 5º interfalangeanas distais de ambas as mãos; pele (ver figura). Levando em conta as alterações cutâneas e articulares, qual tratamento está indicado?",
   alternativas:[{id:"A",texto:"Hidroxicloroquina."},{id:"B",texto:"Metotrexato."},{id:"C",texto:"Azatioprina."},{id:"D",texto:"Sulfassalazina."}],
@@ -1296,7 +1296,7 @@ window.EscDados.registrarQuestoes("prova-usprp-2025", [
 },
 {
   id:"q-usprp2025-097", banca:"USP-RP (FMRP)", real:true, ano:2025, numeroNaProva:97,
-  imagemUrl:"dados/imagens/q-usprp2025-097.png", imagemLegenda:"Foto do nódulo cervical em nível II",
+  imagemUrl:"dados/imagens/q-usprp2025-097.webp", imagemLegenda:"Foto do nódulo cervical em nível II",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cabecapescoco",
   enunciado:"Um paciente de 60 anos, tabagista há mais de 30 anos e etilista crônico, apresenta uma lesão ulcerada indolor na cavidade oral, notada há aproximadamente 5 meses. Durante a avaliação clínica, observa-se que o paciente também apresenta um nódulo endurecido e fixo no pescoço localizado em nível II à direita (figura). Com base no quadro clínico e considerando que a lesão primária está na cavidade oral, qual é o sítio mais provável de origem do tumor?",
   alternativas:[{id:"A",texto:"Mucosa jugal."},{id:"B",texto:"Borda da língua."},{id:"C",texto:"Gengiva inferior."},{id:"D",texto:"Palato duro."}],

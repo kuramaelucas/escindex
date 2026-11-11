@@ -438,7 +438,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
 {
   id:"q-sirio2026-033", banca:"Sírio-Libanês (SP)", real:true, ano:2026, numeroNaProva:33,
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
-  imagemUrl:"dados/imagens/q-sirio2026-033.png",
+  imagemUrl:"dados/imagens/q-sirio2026-033.webp",
   enunciado:"Homem de 46 anos, operado há 5 dias em caráter de urgência (laparoscopia exploradora), sendo realizada ressecção intestinal de segmento de cólon esquerdo por obstrução tumoral, apresenta quadro de taquicardia, febre e dor abdominal difusa com descompressão brusca positiva ao exame abdominal. A imagem a seguir demonstra a radiografia de abdome em pé. Assinale a alternativa que apresenta, corretamente, a melhor definição fisiopatológica do quadro apresentado e a conduta imediata indicada.",
   alternativas:[{id:"A",texto:"Peritonite química por perfuração visceral com contaminação reexploração cirúrgica com controle da fonte e lavagem peritoneal."},{id:"B",texto:"Íleo adinâmico pós-operatório — manejo conservador com descompressão e observação."},{id:"C",texto:"Coleção subfrênica isolada tratável apenas com antibiótico oral."},{id:"D",texto:"Tromboembolismo mesentérico anticoagulação plena e observação."},{id:"E",texto:"Fístula enterocutânea controlada — cuidados locais e adiar cirurgia."}],
   gabarito:"A",
@@ -712,7 +712,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
 {
   id:"q-sirio2026-054", banca:"Sírio-Libanês (SP)", real:true, ano:2026, numeroNaProva:54,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
-  imagemUrl:"dados/imagens/q-sirio2026-054.png",
+  imagemUrl:"dados/imagens/q-sirio2026-054.webp",
   enunciado:"Menina de 8 anos de idade, foi para consulta de rotina na Unidade Básica de Saúde, um ano após última consulta. Ela não faz tratamento para nenhuma doença e não apresenta queixas. Ao exame físico, apresenta peso no P60, estatura no P25 e IMC p85. A média de três aferições de pressão arterial (PA) nessa consulta foi de 111 x 73 mmHg, e de 112 x 76 mmHg e 110 x 75 mmHg, em dois momentos diferentes subsequentes. Qual o diagnóstico dessa paciente quanto à pressão arterial?",
   alternativas:[{id:"A",texto:"Normotensão."},{id:"B",texto:"Pressão arterial elevada."},{id:"C",texto:"Hipertensão arterial estadio 1."},{id:"D",texto:"Hipertensão arterial estadio 2."},{id:"E",texto:"É necessário MAPA de PA para o diagnóstico."}],
   gabarito:"C",

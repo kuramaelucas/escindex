@@ -21,7 +21,7 @@
 window.EscDados.registrarQuestoes("prova-usp-2022", [
 {
   id:"q-usp2022-001", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:1,
-  imagemUrl:"dados/imagens/q-usp2022-001.jpg", imagemLegenda:"Retinografia (fotografia do fundo de olho)",
+  imagemUrl:"dados/imagens/q-usp2022-001.webp", imagemLegenda:"Retinografia (fotografia do fundo de olho)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-retina",
   enunciado:"Homem de 66 anos de idade chega à consulta referindo perda visual progressiva e indolor de olho há 06 meses. É hipertenso, diabético e dislipidêmico de longa data, com controle irregular das comorbidades. Realiza o seguinte exame. Selecione a alternativa com os achados deste exame:",
@@ -106,7 +106,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-007", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:7,
-  imagemUrl:"dados/imagens/q-usp2022-007.jpg", imagemLegenda:"Eletrocardiograma de repouso e traçado do Holter durante a crise",
+  imagemUrl:"dados/imagens/q-usp2022-007.webp", imagemLegenda:"Eletrocardiograma de repouso e traçado do Holter durante a crise",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-psiquiatria", assuntoId:"ass-psiq-ansiedade",
   enunciado:"Homem de 48 anos de idade, casado, comparece em retorno de consulta ambulatorial com queixa de episódios em que seu \"coração passa a bater para fora da boca, com batidas fora de hora e com a sensação que pode parar qualquer momento\". Já procurou serviços de urgência e emergência. Porém ao chegar ao Pronto-Socorro de cardiologia a crise já passou e os médicos não acham nada alterado nos exames complementares. Refere que quando faz atividade física o coração começa a bater mais rápido. Nesse processo por vezes lhe falta ar e sente medo muito grande de que possa infartar como seu pai, que faleceu aos 52 anos de idade. Está dormindo mal fica pensando no que fazer se tiver novas crises e como pode chegar rápido no hospital para poder descobrir o que é. É ex-fumante 1 maço/dia por 15 anos (parou há 12 anos) O exame clinico está normal. Os exames complementares solicitados na primeira consulta mostram glicemia de jejum e colesterol total e frações normais. O eletrocardiograma atual é apresentado abaixo. O registro de Holter durante uma das crises refendas está representado abaixo. Qual é o diagnóstico provável e a conduta inicial? Imagem 1: Traçado de eletrocardiograma de hoje. Imagem 2: Traçado de Holter.",
@@ -121,7 +121,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-008", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:8,
-  imagemUrl:"dados/imagens/q-usp2022-008.jpg", imagemLegenda:"Tomografia de crânio",
+  imagemUrl:"dados/imagens/q-usp2022-008.webp", imagemLegenda:"Tomografia de crânio",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-neurocirurgia", assuntoId:"ass-neurocir-hidrocefalia",
   enunciado:"Homem de 72 anos de idade, etilista, veio ao retorno de consulta do ambulatório de geriatria. Tinha queixa de lentidão para andar evoluindo progressivamente ao longo de vários meses com dificuldade em coordenar a marcha (inicialmente falta de jeito, às vezes esbarrando nas coisas ou pessoas). Este sintoma piorou gradativamente até não conseguir andar sem um andador ou encostado nas paredes. Começou também a apresentar urgência miccional e, após passar no urologista, não foi detectado nada de anormal em sua próstata ou bexiga. Nessa época sofreu um tombo no banheiro. Foi a partir desse incidente que ficaram mais evidentes as dificuldades para se lembrar de fatos recentes assim como de encontrar a palavra adequada para se expressar. Trouxe exames laboratoriais normais e a tomografia apresentada. Qual é a hipótese diagnóstica provável?",
@@ -136,7 +136,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-009", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:9,
-  imagemUrl:"dados/imagens/q-usp2022-009.jpg", imagemLegenda:"Fotografia da região inguinal",
+  imagemUrl:"dados/imagens/q-usp2022-009.webp", imagemLegenda:"Fotografia da região inguinal",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
   enunciado:"Homem de 28 anos de idade refere há 1 mês lesões pruriginosas nas virilhas. Ao exame clínico observa-se eritema e descamação nas regiões inguinais. O exame micológico direto foi positivo para hifas artrosporadas. Qual é o diagnóstico?",
@@ -165,7 +165,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-011", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:11,
-  imagemUrl:"dados/imagens/q-usp2022-011.jpg", imagemLegenda:"Ultrassom pulmonar (imagem repetida nos seis pontos do protocolo BLUE)",
+  imagemUrl:"dados/imagens/q-usp2022-011.webp", imagemLegenda:"Ultrassom pulmonar (imagem repetida nos seis pontos do protocolo BLUE)",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-infecto-covid",
   enunciado:"Homem de 46 anos de idade com obesidade grau 3 é admitido no Departamento de Emergência. Tem febre há 10 dias, associada a dispneia progressiva e tosse nos últimos 3 dias. Ao exame clínico, apresenta-se taquipneico, com saturação de oxigênio de 84% em ar ambiente. Ausculta pulmonar com raros sibilos e estertores em bases, principalmente à direita. O ultrassom pulmonar, protocolo BLUE, demonstra deslizamento pleural e a seguinte imagem nos seis pontos. Qual o diagnóstico mais provável para a insuficiência respiratória deste paciente?",
@@ -194,7 +194,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-013", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:13,
-  imagemUrl:"dados/imagens/q-usp2022-013.png", imagemLegenda:"Curva de capnografia após a intubação",
+  imagemUrl:"dados/imagens/q-usp2022-013.webp", imagemLegenda:"Curva de capnografia após a intubação",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-viaaerea",
   enunciado:"Homem de 65 anos de idade é admitido por insuficiência respiratória aguda no Pronto- Socorro. Durante o atendimento inicial, evolui com piora do padrão respiratório e da hipoxemia optando-se por intubação orotraqueal. Nesse momento, a frequência respiratória é de 40 irpm, saturação de oxigênio de 88% com máscara não reinalante a 15L/min, frequência cardíaca de 120bpm e pressão arterial de 60x30 mmHg. Após a intubação orotraqueal, a capnografia mostra a seguinte curva: Qual é o diagnóstico mais provável?",
@@ -251,7 +251,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-017", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:17,
-  imagemUrl:"dados/imagens/q-usp2022-017.jpg", imagemLegenda:"Tomografia computadorizada (seios da face / crânio)",
+  imagemUrl:"dados/imagens/q-usp2022-017.webp", imagemLegenda:"Tomografia computadorizada (seios da face / crânio)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-orl", assuntoId:"ass-orl-viasaereas",
   enunciado:"Mulher de 35 anos de idade deu entrada no Pronto-Socorro com cefaleia e febre não medida há 5 dias. Tentou utilizar vários analgésicos sem melhora. No exame clínico apresenta T 38°C, FC 100 bpm, sem outras alterações. Foi realizada a tomografia computadorizada mostrada a seguir. Qual é o diagnóstico?",
@@ -266,7 +266,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-018", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:18,
-  imagemUrl:"dados/imagens/q-usp2022-018.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-usp2022-018.webp", imagemLegenda:"Eletrocardiograma de 12 derivações",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
   enunciado:"Mulher de 55 anos de idade, procura o Pronto-Socorro com queixa de dor torácica precordial de moderada intensidade, contínua, há 1 dia. A dor iniciou durante atividade física. Não notou irradiação, fatores de melhora ou de piora. Ao exame clínico apresenta frequência cardíaca de 115 bpm, pressão arterial 130/80 mmHg em todos os membros, com pulsos simétricos. Frequência respiratória 18 irpm. Não há alterações na semiologia cardíaca ou pulmonar. O restante do exame clínico é normal. Solicitado o eletrocardiograma a seguir. Qual é a hipótese diagnóstica?",
@@ -281,7 +281,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-019", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:19,
-  imagemUrl:"dados/imagens/q-usp2022-019.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações",
+  imagemUrl:"dados/imagens/q-usp2022-019.webp", imagemLegenda:"Eletrocardiograma de 12 derivações",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-hidroeletrolitico",
   enunciado:"Mulher de 66 anos de idade, diabética e hipertensa, em uso de enalapril e metformina, comparece a consulta ambulatorial com queixa de astenia e turvação visual há 2 dias. É encaminhada ao Departamento de Emergência após realizar o seguinte eletrocardiograma. Qual deve ser a conduta imediata?",
@@ -296,7 +296,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-020", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:20,
-  imagemUrl:"dados/imagens/q-usp2022-020.png", imagemLegenda:"Radiografia de tórax",
+  imagemUrl:"dados/imagens/q-usp2022-020.webp", imagemLegenda:"Radiografia de tórax",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-asma",
   enunciado:"Mulher de 22 anos de idade trabalha como auxiliar de limpeza em um grande hospital há 2 anos. Hoje procura ambulatório de clínica médica pois há 6 meses apresenta episódios de tosse e, às vezes, falta de ar durante o dia, que costumam melhorar à noite. Estes episódios estão se tornando mais frequentes. Não costuma apresentar tais sintomas aos finais de semana. Não sabe referir se teve febre. Nega antecedentes mórbidos relevantes e nunca fumou. Ao exame clínico presença de discretos sibilos expiratórios à ausculta pulmonar, sem outras alterações relevantes. A radiografia de tórax realizada há 15 dias é apresentada. Qual é a conduta, considerando a principal hipótese diagnóstica?",
@@ -409,7 +409,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-028", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:28,
-  imagemUrl:"dados/imagens/q-usp2022-028.jpg", imagemLegenda:"Fotografia da lesão peniana",
+  imagemUrl:"dados/imagens/q-usp2022-028.webp", imagemLegenda:"Fotografia da lesão peniana",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
   enunciado:"Homem, 32 anos, trabalhador do sexo, procura atendimento com queixa de lesão discretamente dolorosa na região do pênis há 2 dias. Última relação sexual há 5 dias. Nega infecções sexualmente transmissíveis prévias. Sempre usa preservativo com clientes, mas não com sua esposa. Tem relação apenas com mulheres, com penetração insertiva (anal e vaginal) e sexo oral (faz e recebe). A lesão é apresentada. O teste rápido para HIV foi não reagente. Além das sorologias para infecções sexualmente transmissíveis, qual é o tratamento e a estratégia preventiva nesse momento?",
@@ -550,7 +550,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-038", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:38,
-  imagemUrl:"dados/imagens/q-usp2022-038.jpg", imagemLegenda:"Tabela com os riscos relativos (IC 95%) de demência segundo a vacinação contra influenza",
+  imagemUrl:"dados/imagens/q-usp2022-038.webp", imagemLegenda:"Tabela com os riscos relativos (IC 95%) de demência segundo a vacinação contra influenza",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"A vacinação anual contra influenza é indicada para idosos acima de 65 anos. Para analisar a possível associação entre a vacinação contra influenza e o risco de demência, foi realizado um estudo de coorte com 123.747 participantes. Com base nos resultados apresentados, assinale a alternativa correta. Tabela – Resultados (risco relativo e seu intervalo de 95% de confiança) das estimativas de associação entre vacinação contra influenza versus não vacinação e incidência de demência.",
@@ -579,7 +579,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-040", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-usp2022-040.jpg", imagemLegenda:"Mapas de São Paulo: renda, raça, mortalidade por COVID-19 e cobertura vacinal por distrito (maio de 2021)",
+  imagemUrl:"dados/imagens/q-usp2022-040.webp", imagemLegenda:"Mapas de São Paulo: renda, raça, mortalidade por COVID-19 e cobertura vacinal por distrito (maio de 2021)",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-prevencao",
   enunciado:"O município de São Paulo tem 12,4 milhões de pessoas e a seguinte distribuição de renda e raça entre seus vários distritos administrativos: No mês de maio de 2021, durante a pandemia da COVID-19 foram construídos os seguintes mapas de mortalidade por COVID-19 e da cobertura vacinal para SARS-Cov2 na cidade. Qual a afirmação possível com relação às estratégias de prevenção da COVID-19 no município de São Paulo?",
@@ -622,7 +622,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-043", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:43,
-  imagemUrl:"dados/imagens/q-usp2022-043.jpg", imagemLegenda:"Fotografia da criança com o membro inferior esquerdo em flexão, abdução e rotação externa",
+  imagemUrl:"dados/imagens/q-usp2022-043.webp", imagemLegenda:"Fotografia da criança com o membro inferior esquerdo em flexão, abdução e rotação externa",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-infeccoes",
   enunciado:"Escolar, sexo masculino, 5 anos de idade, sem comorbidades prévias, é levado ao Pronto- Socorro por febre de até 39,5ºC e claudicação dolorosa à esquerda há 2 dias. Nega trauma local. Mãe refere também que a criança apresentou quadro de tosse, coriza e odinofagia há 14 dias, já resolvido. Ao exame clínico, criança em regular estado geral, membro inferior esquerdo em flexão, abdução e rotação externa da articulação coxo-femoral (conforme imagem abaixo) com dor intensa à manipulação, membro inferior direito sem limitação funcional e sem dor à manipulação, ausência de outras alterações significativas ao exame clínico. Qual é a conduta indicada com base na hipótese diagnóstica mais provável?",
@@ -651,7 +651,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-045", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:45,
-  imagemUrl:"dados/imagens/q-usp2022-045.jpg", imagemLegenda:"Fotografias da região retroauricular esquerda (abaulamento e deslocamento do pavilhão)",
+  imagemUrl:"dados/imagens/q-usp2022-045.webp", imagemLegenda:"Fotografias da região retroauricular esquerda (abaulamento e deslocamento do pavilhão)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
   enunciado:"Pré-escolar, sexo masculino, 2 anos e 9 meses de idade, sem comorbidades prévias,está com tosse e coriza há 7 dias. Há 5 dias iniciou com febre de até 38,8ºC e otalgia à esquerda. Procurou um serviço médico há dois dias, sendo feito diagnóstico de otite média aguda à esquerda, com orientação de uso de azitromicina por 5 dias. Está no segundo dia de tratamento, mantendo febre. Ao exame clínico, destacam-se as imagens abaixo. Qual é a conduta indicada?",
@@ -680,7 +680,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-047", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:47,
-  imagemUrl:"dados/imagens/q-usp2022-047.jpg", imagemLegenda:"Fotografia das lesões de pele e traçado do ritmo cardíaco",
+  imagemUrl:"dados/imagens/q-usp2022-047.webp", imagemLegenda:"Fotografia das lesões de pele e traçado do ritmo cardíaco",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-nefro-glomerulopatias",
   enunciado:"Pré-escolar, sexo masculino, 4 anos de idade, há 4 semanas começou a apresentar pequenas lesões de pele em face, que posteriormente progrediram para outras regiões do corpo. Mãe notou que a criança respira com dificuldade e está com o rosto inchado há dois dias. Trazido hoje ao Pronto-Socorro, pois está mais sonolento e sem diurese há 24 horas. Na triagem, apresenta os seguintes dados vitais: FC: 65 bpm, FR: 45 irpm e PA: 140/90 mmHg, Sat O2: 94% em ar ambiente. Encaminhado à sala de emergência, onde se notou edema de face e ausculta pulmonar com estertores crepitantes em ambas as bases, sem outras alterações significativas. Seguem abaixo as imagens das lesões de pele do paciente e do ritmo cardíaco identificado. Qual das alternativas abaixo apresenta as medidas necessárias para estabilização inicial do paciente?",
@@ -709,7 +709,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-049", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:49,
-  imagemUrl:"dados/imagens/q-usp2022-049.jpg", imagemLegenda:"Fotografia das fezes eliminadas após o toque retal",
+  imagemUrl:"dados/imagens/q-usp2022-049.webp", imagemLegenda:"Fotografia das fezes eliminadas após o toque retal",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   enunciado:"Lactente, sexo feminino, 2 meses e 15 dias de idade, é trazida ao serviço de emergência devido a quadro de irritabilidade, vômitos e ausência de evacuação há um dia. Trata-se de criança nascida de termo, sem intercorrências perinatais, em aleitamento materno complementado com fórmula láctea de partida desde a alta da maternidade. Apresenta vacinação em dia de acordo com o calendário nacional. Ao exame clínico, está em regular estado geral, descorada 1+/4+, e apresenta episódios de choro inconsolável. Após exame de toque retal, a paciente eliminou evacuação conforme a imagem a seguir: Qual das opções abaixo confirmará a principal hipótese diagnóstica?",
@@ -752,7 +752,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-052", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:52,
-  imagemUrl:"dados/imagens/q-usp2022-052.jpg", imagemLegenda:"Figura A (local escolhido para a punção intraóssea) e Figura B (material que refluiu pela agulha)",
+  imagemUrl:"dados/imagens/q-usp2022-052.webp", imagemLegenda:"Figura A (local escolhido para a punção intraóssea) e Figura B (material que refluiu pela agulha)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-acessovenoso",
   enunciado:"Pré-escolar sexo feminino 4 anos de idade, vítima de atropelamento, foi admitida na sala de emergência em choque hemorrágico- Devido colapso circulatório, não foi possível obtenção de acesso vascular periférico, sendo indicado acesso vascular intraósseo. Na primeira tentativa de canulação óssea, realizada na tíbia proximal direita, houve transfixação. Como a paciente apresentava fratura na tíbia esquerda, optou-se por realizar segunda tentativa no local apontado pelo dedo indicador da mão direita na figura A. Após a canulação óssea. a agua está firme e houve retorno do fluido mostrado na Figura B. Qual é a afirmação correta com relação ao procedimento descrito?",
@@ -767,7 +767,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-053", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:53,
-  imagemUrl:"dados/imagens/q-usp2022-053.jpg", imagemLegenda:"Fotografia das lesões da cavidade oral",
+  imagemUrl:"dados/imagens/q-usp2022-053.webp", imagemLegenda:"Fotografia das lesões da cavidade oral",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
   enunciado:"Escolar, sexo masculino, 9 anos de idade, portador de osteossarcoma, realizou último ciclo de quimioterapia há 6 dias. É trazido ao Pronto-Socorro com queixa de picos febris de até 39ºC há um dia, vômitos, dor abdominal, dor anal e lesões em cavidade oral conforme imagem abaixo. Admitido na sala de emergência em mau estado geral, descorado 2+/4, FC: 180 bpm, FR: 50 irpm, PA: 70 x 40 mmHg, saturação de O2: 98% em ar ambiente, tempo de enchimento capilar 6 segundos, pulsos finos, cateter central de longa permanência sem sinais flogísticos. Exames coletados na véspera mostram Hb: 8,2 g/dL, leucócitos 150/mm3 (sem diferencial devido à baixa celularidade), plaquetas 50.000/µL. O paciente recebeu expansão volêmica adequada, antimicrobianos e, após 30 minutos do atendimento inicial, seguia sem melhora significativa dos sinais descritos. Qual é a alternativa que contém respectivamente o melhor esquema antimicrobiano inicial e a próxima medida a ser instituída, considerando que não houve melhora dos parâmetros clínicos após a expansão volêmica?",
@@ -796,7 +796,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-055", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:55,
-  imagemUrl:"dados/imagens/q-usp2022-055.png", imagemLegenda:"Tabela da evolução dos exames laboratoriais e balanço hídrico das últimas 24 horas",
+  imagemUrl:"dados/imagens/q-usp2022-055.webp", imagemLegenda:"Tabela da evolução dos exames laboratoriais e balanço hídrico das últimas 24 horas",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-nefro-glomerulopatias",
   enunciado:"Escolar, sexo feminino, 6 anos de idade, portadora de síndrome nefrótica córtico-dependente, está internada em enfermaria de pediatria há 4 dias. A paciente apresentou sintomas compatíveis com resfriado comum iniciados há 1 semana e, no dia da internação, mãe relatava redução importante da diurese e lipotimia. O peso aferido na chegada foi de 31 kg (ganho de 6 kg em relação à última consulta). Hoje, a paciente está no quarto dia de internação, recebendo dieta hipossódica, infusão endovenosa de albumina humana uma vez ao dia (última dose ontem pela manhã) e prednisona oral. Está sem novas queixas, em bom estado geral, afebril e normotensa. Seguem abaixo: a tabela com a evolução dos exames laboratoriais na internação e o balanço hídrico registrado pela enfermagem nas últimas 24 horas. Qual é a afirmação correta com relação à programação a ser estabelecida?",
@@ -825,7 +825,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-057", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:57,
-  imagemUrl:"dados/imagens/q-usp2022-057.jpg", imagemLegenda:"Radiografia de tórax da internação e curvas antropométricas",
+  imagemUrl:"dados/imagens/q-usp2022-057.webp", imagemLegenda:"Radiografia de tórax da internação e curvas antropométricas",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-alergiaimuno", assuntoId:"ass-imunodeficiencias",
   enunciado:"Pré-escolar, sexo masculino, 2 anos e 6 meses de idade, está em consulta ambulatorial de rotina em UBS. Mãe conta que, neste último ano, desde que a criança entrou na creche, ficou gripada praticamente todo mês. Nos últimos 6 meses, a mãe refere que a criança precisou usar antibiótico cinco vezes (uma internação em UTI por pneumonia, três otites médias agudas e uma celulite em membro inferior direito). A mãe trouxe a radiografia de tórax realizada durante a internação em UTI: Além dessa internação, ocorreram outras duas, ambas em enfermaria: diarreia com desidratação grave aos 7 meses; celulite periorbitária secundária à sinusite bacteriana aos 2 anos de idade. Apresenta vacinação em dia seguindo o programa nacional de imunizações. Aceita bem todos os tipos de alimento, exceto carne. Recebeu vitamina A e D profiláticas até os 2 anos de idade, mas nunca recebeu sulfato ferroso profilático, porque não gostava do gosto e sempre cuspia a medicação. O peso e a estatura atuais são idênticos aos de seis meses atrás, quando realizou a última consulta de puericultura. As curvas antropométricas estão representadas abaixo: Qual é a conduta prioritária na consulta atual com base no diagnóstico mais provável?",
@@ -854,7 +854,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-059", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:59,
-  imagemUrl:"dados/imagens/q-usp2022-059.jpg", imagemLegenda:"Figura A (abaulamento no crânio) e Figura B (esquema dos seus limites anatômicos)",
+  imagemUrl:"dados/imagens/q-usp2022-059.webp", imagemLegenda:"Figura A (abaulamento no crânio) e Figura B (esquema dos seus limites anatômicos)",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exame",
   enunciado:"Recém-nascido, sexo feminino, 24 horas de vida, está no alojamento conjunto. Nascida com idade gestacional de 40 semanas e 2 dias, parto fórcipe, Apgar 8/9, peso de 3.950 g, com período expulsivo prolongado. Criança recebeu vacina de hepatite B, nitrato de prata ocular e vitamina K intramuscular. Pré-natal sem anormalidades. Ao exame clínico, criança em bom estado geral, e a inspeção da cabeça mostrou a presença de um abaulamento (Figura A), cujos limites anatômicos estão esquematicamente representados abaixo (figura B). Sem outras alterações significativas. Qual e a conduta, considerando a principal hipótese diagnóstica?",
@@ -869,7 +869,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-060", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-usp2022-060.jpg", imagemLegenda:"Fotografias de achados do exame físico do recém-nascido",
+  imagemUrl:"dados/imagens/q-usp2022-060.webp", imagemLegenda:"Fotografias de achados do exame físico do recém-nascido",
   justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-neo-exame",
   enunciado:"Recém-nascido, 40 semanas de idade gestacional, sexo masculino, nasceu de parto cesárea por falha de indução, Apgar 9/10, peso de 2.950 g. Mãe primigesta, 20 anos, não fez pré-natal e relata ser usuária habitual de drogas ilícitas. O menor está sendo examinado no alojamento conjunto, com 72 horas de vida, e alguns dados do exame clínico estão apresentados nas imagens abaixo. Qual é a conduta indicada face aos dados clínicos apresentados?",
@@ -884,7 +884,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-061", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-usp2022-061.jpg", imagemLegenda:"As quatro alternativas são desenhos com linhas de incisão no antebraço (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2022-061.webp", imagemLegenda:"As quatro alternativas são desenhos com linhas de incisão no antebraço (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cironco-melanoma",
   enunciado:"Mulher, 63 anos de idade, com antecedente de ressecção de melanoma no dorso, operado há 3 anos, com Breslow de 0,76mm. Em seguimento dermatológico de rotina, foi realizada dermatoscopia que evidenciou lesão no antebraço direito. Foi indicada a ressecção da lesão para diagnóstico. Qual é a alternativa que apresenta a linha de incisão na pele que deve ser realizada?",
@@ -899,7 +899,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-062", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:62,
-  imagemUrl:"dados/imagens/q-usp2022-062.jpg", imagemLegenda:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2022-062.webp", imagemLegenda:"Tomografia de abdome",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
   enunciado:"Homem, 62 anos de idade, é admitido no serviço de emergência devido a dor abdominal em cólica, vômitos e distensão abdominal há 4 dias. Última evacuação há 5 dias e, desde então, não elimina gases. Refere cólica abdominal há 3 meses, com vômitos esporádicos que melhorava com jejum e medicamento antiespasmódico. Tem hipertensão arterial controlada e nega operações abdominais prévias. Ao exame físico: Bom estado, desidratado, eupneico. Abdome: distendido, ruídos hidroaéreos aumentados, doloroso à palpação profunda sem irritação peritoneal. Toque retal: sem fezes na ampola. Exames laboratoriais: Hb: 10,9 g/dL; Ht: 38%; Creatinina: 2,9 mg/dL; Ureia: 110 mg/dL. Demais exames sem alterações. Realizada a tomografia de abdome apresentada. Qual é a principal hipótese diagnóstica?",
@@ -956,7 +956,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-066", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:66,
-  imagemUrl:"dados/imagens/q-usp2022-066.jpg", imagemLegenda:"Fotografia da ferida operatória no 7º pós-operatório",
+  imagemUrl:"dados/imagens/q-usp2022-066.webp", imagemLegenda:"Fotografia da ferida operatória no 7º pós-operatório",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
   enunciado:"Mulher, 47 anos de idade, foi submetida a laparotomia exploradora devido a obstrução intestinal por tumor no cólon direito. Foi realizada colectomia direita com ileostomia terminal. Tem diabete melito, hipertensão arterial não controlada e é tabagista. No 4o pós- operatório apresentou saída de líquido serohemático pela ferida operatória. Hoje, encontra-se no 7o pósoperatório e a imagem da ferida está representada pela imagem a seguir. Nesta paciente, quais são os fatores de risco para esta complicação?",
@@ -971,7 +971,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-067", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:67,
-  imagemUrl:"dados/imagens/q-usp2022-067.jpg", imagemLegenda:"Fotografia intraoperatória do descolamento do subcutâneo e da tela onlay",
+  imagemUrl:"dados/imagens/q-usp2022-067.webp", imagemLegenda:"Fotografia intraoperatória do descolamento do subcutâneo e da tela onlay",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-hernias",
   enunciado:"Mulher, 64 anos de idade, diabética, foi submetida a correção de hérnia incisional através de laparotomia mediana. A técnica operatória empregada foi a colocação de tela de polipropileno sobre a aponeurose (onlay). Na figura a seguir é possível observar o descolamento do tecido subcutâneo da aponeurose e a fixação da tela. Foram colocados 2 drenos fechados devido ao descolamento. Além do seroma, qual é a complicação operatória mais frequente deste procedimento?",
@@ -986,7 +986,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-068", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:68,
-  imagemUrl:"dados/imagens/q-usp2022-068.jpg", imagemLegenda:"Fotografia do ferimento no dorso",
+  imagemUrl:"dados/imagens/q-usp2022-068.webp", imagemLegenda:"Fotografia do ferimento no dorso",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-trauma", assuntoId:"ass-traumaabd",
   enunciado:"Homem, 19 anos de idade, foi vítima de ferimento por arma branca no dorso. Na sala emergência encontrava-se: A: Via aérea pérvia. Saturação de oxigênio de 98% em ar ambiente. B: Ausculta pulmonar sem alteração. C: PA: 140 x 80 mmHg; FC: 90 bpm; Tempo de enchimento capilar normal. FAST abdominal negativo. D: Escala de Coma de Glasgow: 15. E: Ausência de dor abdominal; sondagem vesical com diurese clara. Toque retal sem alterações. Ferimento no dorso conforme imagem a seguir. Realizada radiografia de tórax na sala de emergência, que não evidenciou alterações. Realizada hemostasia local. Qual é a melhor conduta neste momento?",
@@ -1015,7 +1015,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-070", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:70,
-  imagemUrl:"dados/imagens/q-usp2022-070.jpg", imagemLegenda:"Tomografia de abdome",
+  imagemUrl:"dados/imagens/q-usp2022-070.webp", imagemLegenda:"Tomografia de abdome",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-anestesio", assuntoId:"ass-anestesio-viaaerea",
   enunciado:"Homem, 71 anos de idade, foi admitido no serviço de emergência com quadro de dor e distensão abdominal e vômitos. Ao exame físico encontrava-se eupneico, com saturação de oxigênio de 92% em ar ambiente e distensão abdominal. Realizada tomografia de abdome apresentada. Indicada laparotomia exploradora. Exames laboratoriais séricos revelam Hb: 9,7 g/dL; potássio: 2,9 mEq/L e sódio: 140 mEq/L; Cr: 1,9 mg/dL e U: 90 mg/dL. Qual é a melhor conduta no tratamento da via aérea para a anestesia geral?",
@@ -1030,7 +1030,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-071", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:71,
-  imagemUrl:"dados/imagens/q-usp2022-071.jpg", imagemLegenda:"Fotografias da região cervical ao chegar (A) e minutos depois (B)",
+  imagemUrl:"dados/imagens/q-usp2022-071.webp", imagemLegenda:"Fotografias da região cervical ao chegar (A) e minutos depois (B)",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-complicacoescir",
   enunciado:"Homem, 44 anos de idade, foi submetido a tireoidectomia total há 6 horas. A enfermagem relata que o paciente está sentindo dificuldade para “puxar o ar”, usando musculatura acessória e se encontra cada vez mais agitado e sentado no leito. As imagens apresentadas ilustram a inspeção cervical ao você chegar (A) e nos minutos que se seguiram à sua avaliação (B). Qual é a conduta neste momento?",
@@ -1073,7 +1073,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-074", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:74,
-  imagemUrl:"dados/imagens/q-usp2022-074.jpg", imagemLegenda:"Radiografia de tórax atual",
+  imagemUrl:"dados/imagens/q-usp2022-074.webp", imagemLegenda:"Radiografia de tórax atual",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirtoracica", assuntoId:"ass-cirtorax-pleura",
   enunciado:"Homem, 67 anos de idade, está em tratamento paliativo para neoplasia de reto estadio IV. Tem diabete melito e é ex-tabagista. Há 4 semanas, foi submetido a toracocentese de alívio, com retirada de 1100 mL. Houve melhora dos sintomas e expansão pulmonar completa em radiografia de controle. Retorna ao ambulatório com queixa de há 1 semana recidiva da dispneia e tosse seca. Nega dor torácica e febre. Apresenta KPS (performance status de Karnofsky) de 60. Abaixo a radiografia de tórax atual. Análise do líquido pleural confirmou etiologia neoplásica. Qual é a conduta nesta situação?",
@@ -1102,7 +1102,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-076", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:76,
-  imagemUrl:"dados/imagens/q-usp2022-076.jpg", imagemLegenda:"Radiografia contrastada de esôfago, estômago e duodeno",
+  imagemUrl:"dados/imagens/q-usp2022-076.webp", imagemLegenda:"Radiografia contrastada de esôfago, estômago e duodeno",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Mulher, 46 anos de idade, refere dor torácica e regurgitação após refeições há 2 anos, com piora progressiva. Quando tem dor, apresenta melhora após a ingestão de líquidos. A queixa é mais intensa após refeições sólidas, evitando alimentos com esta consistência. Associadamente tem regurgitação durante o sono. Perdeu 5 Kg (IMC atual: 20 kg/m2). Realizou endoscopia digestiva alta, com achado de esofagite erosiva distal leve (grau A de Los Angeles) e gastrite erosiva leve de antro. Iniciou uso pantoprazol sem melhora dos sintomas. Retornou à consulta, quando foi solicitada uma radiografia contrastada de esôfago, estômago e duodeno. Considerando a principal hipótese diagnóstica, qual é o tratamento?",
@@ -1145,7 +1145,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-079", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:79,
-  imagemUrl:"dados/imagens/q-usp2022-079.jpg", imagemLegenda:"Radiografia do cotovelo",
+  imagemUrl:"dados/imagens/q-usp2022-079.webp", imagemLegenda:"Radiografia do cotovelo",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-fraturas",
   enunciado:"Menino, 5 anos de idade, caiu de bicicleta. Ao exame físico tem dor e deformidade do cotovelo. No serviço de urgência, foi realizada a radiografia apresentada. Qual é o nervo mais acometido nesse tipo de fratura?",
@@ -1160,7 +1160,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-080", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:80,
-  imagemUrl:"dados/imagens/q-usp2022-080.jpg", imagemLegenda:"Fotografia com a demarcação das margens da ressecção no couro cabeludo",
+  imagemUrl:"dados/imagens/q-usp2022-080.webp", imagemLegenda:"Fotografia com a demarcação das margens da ressecção no couro cabeludo",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Homem, 94 anos de idade, notou aparecimento de lesão crostosa e elevada na região parietal direita, de crescimento gradativo, há 6 meses. A biópsia prévia confirmou carcinoma espinocelular superficialmente invasivo, bem diferenciado. A imagem a seguir mostra a demarcação das margens oncológicas para carcinoma espinocelular, tendo como margem profunda a ressecção da gálea aponeurótica e o periósteo. Neste caso, qual é a melhor técnica para reconstrução e cobertura do defeito?",
@@ -1189,7 +1189,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-082", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:82,
-  imagemUrl:"dados/imagens/q-usp2022-082.jpg", imagemLegenda:"As quatro alternativas são fotografias de instrumentais (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2022-082.webp", imagemLegenda:"As quatro alternativas são fotografias de instrumentais (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Mulher de 30 anos com antecedente de 2 partos vaginais será submetida a inserção de dispositivo intra uterino. Qual dos seguintes instrumentos é necessário para este procedimento?",
@@ -1232,7 +1232,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-085", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:85,
-  imagemUrl:"dados/imagens/q-usp2022-085.jpg", imagemLegenda:"Mamografia",
+  imagemUrl:"dados/imagens/q-usp2022-085.webp", imagemLegenda:"Mamografia",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
   enunciado:"Mulher, 60 anos, passa em consulta de rotina anual. Hipertensa em uso de anlodipino e diabetes controlado com metformina. Ao exame clínico das mamas observa-se linfonodos endurecidos, coalescidos, pouco móveis em palpação da axila direita e supraclavicular direita. A mamografia é apresentada. A principal hipótese diagnóstica é confirmada. Qual é a conduta adequada?",
@@ -1247,7 +1247,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-086", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:86,
-  imagemUrl:"dados/imagens/q-usp2022-086.jpg", imagemLegenda:"As quatro alternativas são imagens (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2022-086.webp", imagemLegenda:"As quatro alternativas são imagens (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-ciclomenstrual",
   enunciado:"Mulher, 28 anos refere ter sido submetida a curetagem uterina por abortamento de 3 meses de gestação, há 6 meses. Desde o procedimento não apresentou menstruações. Nega gestações anteriores, nega uso de medicamentos ou procedimentos cirúrgicos. Qual é a imagem compatível com a principal hipótese diagnóstica?",
@@ -1318,7 +1318,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-091", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:91,
-  imagemUrl:"dados/imagens/q-usp2022-091.png", imagemLegenda:"Eletrocardiograma da paciente",
+  imagemUrl:"dados/imagens/q-usp2022-091.webp", imagemLegenda:"Eletrocardiograma da paciente",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"ATENÇÃO: O caso seguinte se refere às questões 91 e 92. Mulher de 31 anos de idade, secundigesta, nulípara, chega ao pronto atendimento referindo náuseas e vômitos intensos (3 a 4 episódios por dia). Refere data da última menstruação em 23/09/2021. Portadora de distúrbio de ansiedade em uso de Sertralina 100 mg por dia, chegou bastante agitada. Ao exame clínico, paciente em regular estado geral, desidratada 2+/ 4+, PA 90x62 mmHg, FC 124 bpm, rítmico, Saturação 98%. Exame ginecológico mostrou conteúdo vaginal fisiológico, colo impérvio e útero compatível com a idade gestacional. Foram colhidos os seguintes exames: Hb 11,4 g/dl; Ht 34,2%, Leucócitos 10,66mil/mm3; Plaquetas 268 mil/mm3; TSH 0,02 UI/ml, T4 total 8,2 mcg/dl; TGO 19U/L; TGP 28U/L; Cr 0,51 mg/dl; U 15 mg/dl; Na 136 mEq/L; K 3,0 mEq/L; PCR 0,06 mg/L; gasometria venosa (pH 7,47; pO2 80,1 mmHg; pCO2 29,2 mmHg; HCO3 29,1 mmol/L; BE +10). Eletrocardiograma: Além da prescrição de antiemético e hidratação, qual é a prescrição mais adequada no pronto atendimento?",
@@ -1333,7 +1333,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-092", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:92,
-  imagemUrl:"dados/imagens/q-usp2022-092.png", imagemLegenda:"Eletrocardiograma da paciente",
+  imagemUrl:"dados/imagens/q-usp2022-092.webp", imagemLegenda:"Eletrocardiograma da paciente",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-tireoide",
   enunciado:"Mulher de 31 anos de idade, secundigesta, nulípara, chega ao pronto atendimento referindo náuseas e vômitos intensos (3 a 4 episódios por dia). Refere data da última menstruação em 23/09/2021 (data de aplicação da prova: 28 de novembro de 2021). Portadora de distúrbio de ansiedade em uso de Sertralina 100 mg por dia, chegou bastante agitada. Ao exame clínico, paciente em regular estado geral, desidratada 2+/ 4+, PA 90x62 mmHg, FC 124 bpm, rítmico, Saturação 98%. Exame ginecológico mostrou conteúdo vaginal fisiológico, colo impérvio e útero compatível com a idade gestacional. Foram colhidos os seguintes exames: Hb 11,4 g/dl; Ht 34,2%, Leucócitos 10,66mil/mm3; Plaquetas 268 mil/mm3; TSH 0,02 UI/ml, T4 total 8,2 mcg/ dl; TGO 19U/L; TGP 28U/L; Cr 0,51 mg/dl; U 15 mg/dl; Na 136 mEq/L; K 3,0 mEq/L; PCR 0,06 mg/ L; gasometria venosa (pH 7,47; pO2 80,1 mmHg; pCO2 29,2 mmHg; HCO3 29,1 mmol/L; BE +10). Eletrocardiograma: Após estabilização do quadro agudo, qual é a conduta mais adequada?",
@@ -1362,7 +1362,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-094", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:94,
-  imagemUrl:"dados/imagens/q-usp2022-094.jpg", imagemLegenda:"Fotografia do achado operatório (útero)",
+  imagemUrl:"dados/imagens/q-usp2022-094.webp", imagemLegenda:"Fotografia do achado operatório (útero)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
   enunciado:"Gestante de 30 anos de idade, primigesta, 33 semanas de gestação e portadora de hipertensão arterial crônica. Está em uso de metildopa 1,0g por dia e chega ao Pronto- Socorro com queixa de sangramento vaginal e dor abdominal há 1 hora. Ao exame físico: descorada ++, PA 148 x 90 mmHg, FC 118 bpm, altura uterina 37 cm; BCF 102 bpm. Na palpação não há distinção das partes fetais, tônus uterino aumentado. Ao exame especular colo sem lesões, com presença de sangue escurecido em fundo de saco. Ao toque vaginal, colo médio, medianizado, pérvio para 3 cm, bolsa íntegra e tensa. No puerpério imediato, paciente apresentou sangramento uterino importante havendo necessidade de hemotransfusão. Após administração de ácido tranexâmico e uterotônicos, sem resposta. Houve indicação de intervenção cirúrgica, com o seguinte achado operatório. Qual é a próxima conduta na sequência de atendimento cirúrgico?",
@@ -1377,7 +1377,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-095", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:95,
-  imagemUrl:"dados/imagens/q-usp2022-095.png", imagemLegenda:"Imagem da ultrassonografia",
+  imagemUrl:"dados/imagens/q-usp2022-095.webp", imagemLegenda:"Imagem da ultrassonografia",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-sangramentos",
   enunciado:"Mulher de 28 anos de idade, chega ao Pronto-Socorro com queixa de dor de forte intensidade em hipogástrio acompanhada de sangramento vaginal de pequena quantidade. Na anamnese relata um abortamento espontâneo há 18 meses. Refere data da última menstruação em 08/10/2021. Refere ser diabética tipo I há 15 anos. Ao exame clínico: descorada ++/4, PA 90 x 51 mmHg, FC 110 bpm, FR 23 rpm. Dor à palpação profunda com sinal de descompressão brusca presente em fossa ilíaca direita. No toque vaginal o colo do útero é posterior, levemente amolecido, impérvio e com dor à mobilização. Foram recebidos os seguintes resultados de exames: Hb 9,1g/dl, Ht 28,2%, leucócitos 12.83mil/mm3, plaquetas 175 mil/mm3 e betaHCG 1820 mUI/ml. A imagem do ultrassom é apresentada. Com base no quadro clínico e ultrassonográfico, qual é o diagnóstico?",
@@ -1392,7 +1392,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-096", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:96,
-  imagemUrl:"dados/imagens/q-usp2022-096.jpg", imagemLegenda:"Fotografia do momento do parto (desprendimento do polo cefálico)",
+  imagemUrl:"dados/imagens/q-usp2022-096.webp", imagemLegenda:"Fotografia do momento do parto (desprendimento do polo cefálico)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Parturiente de 38 anos de idade, secundigesta com um parto normal há 10 anos, 39 semanas e 2 dias de gestação encontrase em trabalho de parto há 5 horas, com analgesia de parto há uma hora. Refere pré-natal sem intercorrências, última ultrassonografia obstétrica foi com 35 semanas de gestação, com feto único em apresentação cefálica, dorso à esquerda, peso fetal estimado de 3180g (percentil 95 de Hadlock), placenta fúndica, e índice de líquido amniótico de 18. No momento do parto observase a seguinte situação: Qual é a primeira manobra obstétrica que deve ser realizada nesse momento?",
@@ -1407,7 +1407,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-097", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:97,
-  imagemUrl:"dados/imagens/q-usp2022-097.jpg", imagemLegenda:"Traçado de cardiotocografia",
+  imagemUrl:"dados/imagens/q-usp2022-097.webp", imagemLegenda:"Traçado de cardiotocografia",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-prenatal",
   enunciado:"Gestante de 25 anos de idade, 31 semanas e 2 dias de gestação, chega ao pronto atendimento com queixa de coriza, tosse e febre há 5 dias. Hoje amanheceu com falta de ar. Nega doenças prévias. Ao exame clínico, REG, descorada+/4, hidratada, FC= 122 bpm; T= 37,9°C, Saturação 89%, bulhas rítmicas em dois tempos sem sopros, murmúrios vesiculares presentes e diminuídos em hemitórax direito roncos e sibilos bilaterais, altura uterina de 30cm, BCF presente e rítmico, dinâmica uterina ausente, tônus uterino normal. Durante o atendimento inicial foi realizada a seguinte cardiotocografia: Além de ofertar oxigênio, qual é a conduta obstétrica?",
@@ -1422,7 +1422,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-098", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:98,
-  imagemUrl:"dados/imagens/q-usp2022-098.jpg", imagemLegenda:"Partograma; as quatro alternativas são esquemas da pelve com diâmetros marcados (A, B, C e D)",
+  imagemUrl:"dados/imagens/q-usp2022-098.webp", imagemLegenda:"Partograma; as quatro alternativas são esquemas da pelve com diâmetros marcados (A, B, C e D)",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Mulher de 22 anos de idade, secundigesta com um parto cesáreo anterior com recém- nascido de 2632g há 4 anos. Chega ao pronto atendimento com dor em hipogástrio. Hoje está com 38 semanas e 2 dias de gestação e o pré-natal transcorreu sem intercorrências. Ao exame: PA 110x72 mmHg, FC 88 bpm, dinâmica uterina presente de 3 contrações em 10 minutos, BCF 144 bpm, altura uterina de 35 cm, toque com colo fino pérvio para 6 cm, apresentação cefálica, alta e fixa, bolsa integra, amnioscopia líquido claro com grumos grossos. Após a análise do partograma, qual o diâmetro que estaria impedindo a descida da apresentação?",
@@ -1437,7 +1437,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-099", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:99,
-  imagemUrl:"dados/imagens/q-usp2022-099.jpg", imagemLegenda:"Traçado de cardiotocografia",
+  imagemUrl:"dados/imagens/q-usp2022-099.webp", imagemLegenda:"Traçado de cardiotocografia",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Gestante de 17 anos de idade, com 40 semanas e 3 dias de gestação comparece assintomática para controle de vitalidade. Ao exame clínico: PA 110x75 mmHg, FC 78 bpm, altura uterina 36 cm, toque com colo amolecido, grosso, posterior, pérvio para 2 cm, apresentação cefálica no plano -2 de DeLee. Na avaliação ultrassonográfica, feto com tônus preservado, índice de líquido amniótico de 4.6 cm, movimentos fetais e respiratórios presentes. Cardiotocografia apresentada. Qual é a conduta obstétrica?",
@@ -1452,7 +1452,7 @@ window.EscDados.registrarQuestoes("prova-usp-2022", [
 },
 {
   id:"q-usp2022-100", banca:"USP-SP (FMUSP)", real:true, ano:2022, numeroNaProva:100,
-  imagemUrl:"dados/imagens/q-usp2022-100.jpg", imagemLegenda:"Fotografia do abdome da parturiente à inspeção",
+  imagemUrl:"dados/imagens/q-usp2022-100.webp", imagemLegenda:"Fotografia do abdome da parturiente à inspeção",
   justificativaEm:"2026-11",
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
   enunciado:"Primigesta de 25 anos de idade, 39 semanas de gestação, está em trabalho de parto há 10 horas. A analgesia peridural foi instalada há 6 horas. No momento 8 cm de dilatação do colo uterino, inalterado há 2 horas. Dinâmica uterina com 5 contrações fortes em 10 minutos. Cardiotocografia com BCF de 140 bpm, variabilidade diminuída, sem acelerações transitórias, nem desacelerações. Na inspeção, observa-se a figura a seguir. Qual é a conduta obstétrica?",

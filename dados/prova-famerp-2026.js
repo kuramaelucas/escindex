@@ -279,7 +279,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 {
   id:"q-famerp2026-020", banca:"FAMERP", real:true, ano:2026, numeroNaProva:20,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-endometriose",
-  imagemUrl:"dados/imagens/q-famerp2026-020.jpg", imagemLegenda:"Ultrassonografia pélvica endovaginal.",
+  imagemUrl:"dados/imagens/q-famerp2026-020.webp", imagemLegenda:"Ultrassonografia pélvica endovaginal.",
   enunciado:"Mulher 26 anos de idade, atendida na Unidade Básica de Saúde, refere que desde que menstruou a primeira vez aos 13 anos apresenta dores tipo cólica menstrual de forte intensidade, aos 16 anos de idade iniciou vida sexual e passou a usar contraceptivo hormonal oral com melhoras das dores. Devido a diminuição da libido e cefaleia optou por parar com o uso do contraceptivo hormonal e está usando coito interrompido há oito meses. Porém as dores voltaram com aumento da intensidade, dificultando as atividades laborais, passando a sentir dor à profundidade durante a relação sexual. Ao exame físico ginecológico, no toque vaginal observa-se a presença de útero em retroversoflexão (RVF), com pouca mobilidade e doloroso com nodulações de consistência endurecida em região do fórnice vaginal posterior. Trouxe resultado de exame de ultrassom pélvico abdominal e endovaginal realizado há dois meses, porém esqueceu o laudo, tendo em mãos somente a imagem ao lado. Qual a sua hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Endometriose Peritoneal Profunda e Endometrioma Ovariano Bilateral."},{id:"B",texto:"Síndrome dos Ovários Policísticos com Microcistos Ovarianos Bilateral"},{id:"C",texto:"Doença Inflamatória Pélvica com Abscesso Tubo Ovariano Bilateral"},{id:"D",texto:"Dor Pélvica Aguda com Hidrossalpinge Bilateral."}],
   gabarito:"A",
@@ -436,7 +436,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 {
   id:"q-famerp2026-032", banca:"FAMERP", real:true, ano:2026, numeroNaProva:32,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-famerp2026-032.jpg", imagemLegenda:"Partograma da primigesta (dilatação, descida, FCF, contrações e bolsa).",
+  imagemUrl:"dados/imagens/q-famerp2026-032.webp", imagemLegenda:"Partograma da primigesta (dilatação, descida, FCF, contrações e bolsa).",
   enunciado:"Primigesta 28 anos, pré-natal de risco usual, internada em trabalho de parto com gestação de termo. A evolução do trabalho de parto está demonstrada no partograma ao lado. Após realizar diagnóstico de parada secundária da descida, qual a etiologia e a melhor conduta?",
   alternativas:[{id:"A",texto:"Distocia de rotação e fórceps de Kielland"},{id:"B",texto:"Desproporção cefalopélvica cesariana e operação"},{id:"C",texto:"Desproporção cefalopélvica e rotação manual da apresentação"},{id:"D",texto:"Distocia da variedade de posição e posição materna verticalizada"}],
   gabarito:"B",
@@ -619,7 +619,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 {
   id:"q-famerp2026-046", banca:"FAMERP", real:true, ano:2026, numeroNaProva:46,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-famerp2026-046.jpg", imagemLegenda:"Radiografia de tórax em PA da criança com pneumonia.",
+  imagemUrl:"dados/imagens/q-famerp2026-046.webp", imagemLegenda:"Radiografia de tórax em PA da criança com pneumonia.",
   enunciado:"Pré-escolar, 6 anos de idade internado na unidade de internação pediátrica do Hospital, com diagnóstico de pneumonia adquirida na comunidade. Encontra-se hemodinamicamente estável em cateter nasal de baixo fluxo 1L/min. O raio X encontra-se ao lado (figura). Qual o principal agente etiológico e o esquema preferencial de tratamento?",
   alternativas:[{id:"A",texto:"Staphylococcus aureus, Oxacilina"},{id:"B",texto:"Staphylococcus aureus, Vancomicina"},{id:"C",texto:"Streptococcus pneumoniae, Penicilina cristalina"},{id:"D",texto:"Streptococcus pneumoniae, Ceftriaxona associado a oxacilina"}],
   gabarito:"C",
@@ -815,7 +815,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 {
   id:"q-famerp2026-061", banca:"FAMERP", real:true, ano:2026, numeroNaProva:61,
   areaId:"area-cm", especialidadeId:"esp-emergencia", assuntoId:"ass-emerg-choque",
-  imagemUrl:"dados/imagens/q-famerp2026-061.jpg", imagemLegenda:"Tabela hemodinâmica (admissão, 2ª e 4ª hora): FC, PA, diurese, PVC, saturação venosa central e P(v-a)CO2.",
+  imagemUrl:"dados/imagens/q-famerp2026-061.webp", imagemLegenda:"Tabela hemodinâmica (admissão, 2ª e 4ª hora): FC, PA, diurese, PVC, saturação venosa central e P(v-a)CO2.",
   enunciado:"Paciente masculino, 63 anos, diabético e hipertenso, submetido à colectomia esquerda eletiva (neoplasia de cólon esquerdo). Devido à hemorragia acidental, a perda sanguínea estimada foi de 2300ml e o tempo cirúrgico se estendeu por 6 horas. Admitido em UTI para cuidados pós-operatórios sob analgossedação, ventilação mecânica invasiva e uso de noradrenalina 0,3 mcg/kg/min. Cateter venoso central em veia jugular interna direita, linha arterial em artéria radial direita, mantido com colostomia e dreno de vigilância abdominal. Os dados hemodinâmicos referentes às 4 primeiras horas em UTI estão representados abaixo (figura). Qual seria a conduta mais adequada?",
   alternativas:[{id:"A",texto:"Otimização de vasopressor, introdução de inotrópico, contactar cirurgião para avaliar reabordagem cirúrgica"},{id:"B",texto:"Expansão volêmica com solução cristaloide, iniciar furosemida endovenosa para estímulo diurético e controle de glicemia"},{id:"C",texto:"Expansão volêmica com solução cristaloide, avaliar necessidade de transfusão de hemocomponentes e otimização de vasopressor"},{id:"D",texto:"Expansão volêmica com solução coloide, avaliar necessidade transfusão de hemocomponentes e solicitar a presença do cirurgião"}],
   gabarito:"C",
@@ -855,7 +855,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2026", [
 {
   id:"q-famerp2026-064", banca:"FAMERP", real:true, ano:2026, numeroNaProva:64,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-endocardite",
-  imagemUrl:"dados/imagens/q-famerp2026-064.jpg", imagemLegenda:"Eletrocardiograma de 12 derivações do paciente com endocardite.",
+  imagemUrl:"dados/imagens/q-famerp2026-064.webp", imagemLegenda:"Eletrocardiograma de 12 derivações do paciente com endocardite.",
   enunciado:"Paciente 59 anos, portador de estenose mitral moderada, é internado na enfermaria de Clínica Médica com diagnóstico de endocardite infecciosa de valva mitral (vegetação confirmada em ecocardiograma), em uso de ceftriaxona e vancomicina (empiricamente, aguardando resultado de culturas). No 3º dia de internação evolui com palidez cutânea, hipotensão, bradicardia, com o seguinte eletrocardiograma (abaixo). Sobre o caso assinale o diagnóstico e a conduta mais adequados:",
   alternativas:[{id:"A",texto:"Trata-se de um bloqueio atrioventricular (BAV) 2:1, esperado nos quadros de endocardite e geralmente com resolução espontânea"},{id:"B",texto:"Trata-se de bloqueio atrioventricular total (BAVT), mas neste caso não é indicada a colocação de marcapasso temporário, pois há risco de embolização séptica."},{id:"C",texto:"Trata-se de bloqueio atrioventricular total (BAVT) por possível abscesso valvar, sendo indicado marcapasso temporário e cirurgia de troca valvar de urgência"},{id:"D",texto:"Trata-se de bloqueio atrioventricular (BAV) de 1º grau, sendo indicada observação em leito de terapia intensiva."}],
   gabarito:"C",

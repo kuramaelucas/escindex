@@ -62,7 +62,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-004", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:4,
-  imagemUrl:"dados/imagens/q-amrigs2022-004.jpg", imagemLegenda:"Figura 1 — radiografia de tórax (PA)",
+  imagemUrl:"dados/imagens/q-amrigs2022-004.webp", imagemLegenda:"Figura 1 — radiografia de tórax (PA)",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pericardio",
   enunciado:"Homem de 79 anos, com quadro progressivo de cansaço e mal-estar progressivos há algumas semanas, procura atendimento. Ao examiná-lo, a pressão arterial é 85/60 mmhg, a ausculta cardíaca apresenta bulhas hipofonéticas, há distensão das veias jugulares, e o Raio-X do tórax está apresentado pela Figura 1 abaixo. Os achados descritos são compatíveis com:",
   alternativas:[{id:"A",texto:"Pneumonia Viral."},{id:"B",texto:"Tamponamento cardíaco."},{id:"C",texto:"Embolia Pulmonar."},{id:"D",texto:"Infarto Agudo do Miocárdio."}],
@@ -115,7 +115,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-008", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:8,
-  imagemUrl:"dados/imagens/q-amrigs2022-008.jpg", imagemLegenda:"Figura 2 — olhos em ambiente iluminado",
+  imagemUrl:"dados/imagens/q-amrigs2022-008.webp", imagemLegenda:"Figura 2 — olhos em ambiente iluminado",
   areaId:"area-cm", especialidadeId:"esp-neuro", assuntoId:"ass-neuro-coma",
   enunciado:"Analise a Figura 2 abaixo vista em um ambiente iluminado. São situações clínicas em que podemos encontrar essa imagem pupilar: I. Herniação do lobo temporal por sangramento intracraniano. II. Enxaqueca. III. Compressão do nervo oculomotor por tumor cerebral. Quais estão corretas?",
   alternativas:[{id:"A",texto:"Apenas I e II."},{id:"B",texto:"Apenas I e III."},{id:"C",texto:"Apenas II e III."},{id:"D",texto:"I, II e III."}],
@@ -922,7 +922,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-070", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:70,
-  imagemUrl:"dados/imagens/q-amrigs2022-070.jpg", imagemLegenda:"Figura 3 — curvas de peso para a idade e de IMC para a idade da Caderneta da Criança, com os pontos da paciente em azul",
+  imagemUrl:"dados/imagens/q-amrigs2022-070.webp", imagemLegenda:"Figura 3 — curvas de peso para a idade e de IMC para a idade da Caderneta da Criança, com os pontos da paciente em azul",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-puericultura",
   enunciado:"Paciente do sexo feminino, de 1 ano e 10 meses, apresenta 13,5 Kg de peso e IMC de 17,6. Considerando essas medidas isoladas, colocadas nos gráficos da Caderneta da Criança na Figura 3 abaixo (pontos azuis), você a classifica como apresentando peso ________ para a idade e IMC _________. Assinale a alternativa que preenche, correta e respectivamente, as lacunas do trecho acima.",
   alternativas:[{id:"A",texto:"adequado – com risco de sobrepeso"},{id:"B",texto:"elevado – adequado"},{id:"C",texto:"adequado – adequado"},{id:"D",texto:"elevado – com risco de sobrepeso"}],
@@ -1079,7 +1079,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-082", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:82,
-  imagemUrl:"dados/imagens/q-amrigs2022-082.png", imagemLegenda:"Figura 4 — histograma da renda familiar da amostra, com as linhas verticais \"a\" e \"b\"",
+  imagemUrl:"dados/imagens/q-amrigs2022-082.webp", imagemLegenda:"Figura 4 — histograma da renda familiar da amostra, com as linhas verticais \"a\" e \"b\"",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-bioestatistica",
   enunciado:"A Figura 4 abaixo apresenta a distribuição da variável renda familiar de uma determinada amostra. As linhas indicadas “a” e “b” representam, respectivamente:",
   alternativas:[{id:"A",texto:"Variabilidade e mediana."},{id:"B",texto:"Média e mediana."},{id:"C",texto:"Média e variabilidade."},{id:"D",texto:"Mediana e média."}],
@@ -1119,7 +1119,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2022", [
 },
 {
   id:"q-amrigs2022-085", banca:"AMRIGS", real:true, ano:2022, numeroNaProva:85,
-  imagemUrl:"dados/imagens/q-amrigs2022-085.png", imagemLegenda:"Figura 5 — logotipo da Cochrane (gráfico em floresta estilizado)",
+  imagemUrl:"dados/imagens/q-amrigs2022-085.webp", imagemLegenda:"Figura 5 — logotipo da Cochrane (gráfico em floresta estilizado)",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"O logotipo da Cochrane (Figura 5) ilustra um “forest plot” (ou gráfico em floresta), que representa o potencial das revisões sistemáticas para melhorar os cuidados de saúde. Este gráfico mostra os resultados resumidos de uma revisão sistemática icônica cujo título é “Antenatal corticosteroids for accelerating fetal lung maturation for women at risk of preterm birth”. Considerando a leitura do gráfico do logotipo, pode-se inferir que:",
   alternativas:[{id:"A",texto:"A administração de corticosteroides a mulheres que estão prestes a dar à luz prematuramente é benéfica para o recém-nascido."},{id:"B",texto:"A administração de corticosteroides a mulheres que estão prestes a dar à luz prematuramente é um risco para o recém-nascido."},{id:"C",texto:"A administração de corticosteroides a mulheres que estão prestes a dar à luz prematuramente não tem impacto para o recém-nascido."},{id:"D",texto:"A análise do gráfico não permite que se chegue a alguma conclusão sobre o resultado do estudo."}],

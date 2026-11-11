@@ -325,7 +325,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2023", [
 },
 {
   id:"q-unifesp2023-023", banca:"UNIFESP-EPM", real:true, ano:2023, numeroNaProva:23,
-  imagemUrl:"dados/imagens/q-unifesp2023-023.png", imagemLegenda:"Gráfico da projeção do orçamento da União para Ações e Serviços Públicos de Saúde (ASPS), per capita e per capita para a população idosa.",
+  imagemUrl:"dados/imagens/q-unifesp2023-023.webp", imagemLegenda:"Gráfico da projeção do orçamento da União para Ações e Serviços Públicos de Saúde (ASPS), per capita e per capita para a população idosa.",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-sus", assuntoId:"ass-principiossus",
   enunciado:"A diminuição de recursos federais para o SUS nos próximos anos, indicada no gráfico abaixo, que apresenta a projeção do orçamento da União (em reais) destinado às Ações e Serviços Públicos de Saúde (ASPS), per capita e per capita para população idosa, deve-se a:",

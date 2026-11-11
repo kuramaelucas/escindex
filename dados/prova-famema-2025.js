@@ -339,7 +339,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
 {
   id:"q-famema2025-025", banca:"FAMEMA", real:true, ano:2025, numeroNaProva:25,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-doencapeptica",
-  imagemUrl:"dados/imagens/q-famema2025-025.png",
+  imagemUrl:"dados/imagens/q-famema2025-025.webp",
   enunciado:"Homem de 50 anos dá entrada na emergência com dor abdominal súbita e intensa em andar superior do abdome há 40 minutos, acompanhada de sudorese. Nega febre, alterações do hábito intestinal, vômitos ou sangramentos. Tomografia abdominal demonstrada a seguir. (www.rbcp.org.br) O diagnóstico provável do paciente é:",
   alternativas:[{id:"A",texto:"apendicite subaguda."},{id:"B",texto:"pancreatite necrosante."},{id:"C",texto:"perfuração de úlcera péptica."},{id:"D",texto:"isquemia intestinal."}],
   gabarito:"C",

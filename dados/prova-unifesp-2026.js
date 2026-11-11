@@ -465,7 +465,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-033", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:33,
-  imagemUrl:"dados/imagens/q-unifesp2026-033.png", imagemLegenda:"Resultado da cultura da coleção, com a espécie isolada e o antibiograma.",
+  imagemUrl:"dados/imagens/q-unifesp2026-033.webp", imagemLegenda:"Resultado da cultura da coleção, com a espécie isolada e o antibiograma.",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-atb",
   enunciado:"Homem, 56 anos de idade, foi admitido há 10 dias por abdome agudo causado por colecistite complicada, com sinais de perfuração intestinal e peritonite na propedeutica admissional. Foi iniciado ceftriaxona e metronidazol e o paciente foi submetido a cirurgia com laparotomia exploradora e colecistectomia, com dreno de Penrose posicionado em hipocôndrio direito desde então. A drenagem de secreção reduziu-se desde a admissão, com última mensuração em 24 horas de 50-60 mL de conteúdo hemático escurecido. Há 1 dia, vem apresentando febre, taquicardia, calafrios e dor à manipulação do dreno. Foi realizada TC de abdome com contraste que evidenciou coleção subfrênica de conteúdo denso, heterogêneo e trabeculado. Foi submetido a drenagem por radiointervenção com retirada de 50 mL de líquido hemático denso, enviado para cultura. O resultado da cultura está disponível (figura). Qual é a alternativa correta?",
@@ -508,7 +508,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-036", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:36,
-  imagemUrl:"dados/imagens/q-unifesp2026-036.jpg", imagemLegenda:"Radiografia de tórax da paciente.",
+  imagemUrl:"dados/imagens/q-unifesp2026-036.webp", imagemLegenda:"Radiografia de tórax da paciente.",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
   enunciado:"Mulher, 56 anos de idade, possui diagnóstico de artrite reumatoide há 10 anos, já tendo realizado diversos tipos de tratamento e, diante da refratariedade dos sintomas, irá iniciar uso de adalimumabe (anti-TNFα). Foi encaminhada para avaliação de profilaxia para tuberculose e não apresenta sintomas respiratórios. Radiografia de tórax representada na imagem. Qual é a conduta mais adequada neste caso?",
@@ -565,7 +565,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-040", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:40,
-  imagemUrl:"dados/imagens/q-unifesp2026-040.png", imagemLegenda:"Tabela com o resultado da espirometria.",
+  imagemUrl:"dados/imagens/q-unifesp2026-040.webp", imagemLegenda:"Tabela com o resultado da espirometria.",
   justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem, 68 anos de idade, fumante atual (45 anos-maço), tem diagnóstico de DPОС. Começou a apresentar dispneia progressiva aos esforços, piora da tosse e aumento do volume de escarro. Iniciou uso de formoterol 12 mcg associado a budesonida 400 mcg a cada 12 horas via inalatória, sem melhora do quadro após 3 meses. Exame físico: corado e hidratado, FR = 14 irpm, SpO2 92% em repouso; ausculta pulmonar com sons pulmonares reduzidos e sem ruídos adventícios; sem outras alterações. Solicitada espirometria, cujo resultado está representado na tabela. Qual é a conduta farmacológica mais adequada? (LABA = agonistas beta2-adrenérgicos de longa duração; LAMA = broncodilatadores antagonistas muscarínicos de longa duração)",
@@ -846,7 +846,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-060", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:60,
-  imagemUrl:"dados/imagens/q-unifesp2026-060.jpg", imagemLegenda:"Ultrassonografia abdominal com setas apontando o achado na vesícula biliar.",
+  imagemUrl:"dados/imagens/q-unifesp2026-060.webp", imagemLegenda:"Ultrassonografia abdominal com setas apontando o achado na vesícula biliar.",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
   enunciado:"Homem, 44 anos de idade, com dor abdominal aguda, realiza 0 exame de ultrassonografia abdominal anexo. Sobre os achados de imagem, assinale a alternativa correta.",
@@ -861,7 +861,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-061", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:61,
-  imagemUrl:"dados/imagens/q-unifesp2026-061.jpg", imagemLegenda:"Imagens do exame da coluna lombar do paciente.",
+  imagemUrl:"dados/imagens/q-unifesp2026-061.webp", imagemLegenda:"Imagens do exame da coluna lombar do paciente.",
   justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-coluna",
   enunciado:"Homem, 30 anos de idade, com lombalgia, disponibiliza na consulta as imagens do exame abaixo. Assinale a alternativa correta.",
@@ -1044,7 +1044,7 @@ window.EscDados.registrarQuestoes("prova-unifesp-2026", [
 },
 {
   id:"q-unifesp2026-074", banca:"UNIFESP-EPM", real:true, ano:2026, numeroNaProva:74,
-  imagemUrl:"dados/imagens/q-unifesp2026-074.png", imagemLegenda:"Quadro com os resultados do estudo de fratura de fêmur por sexo, separado por faixa de idade.",
+  imagemUrl:"dados/imagens/q-unifesp2026-074.webp", imagemLegenda:"Quadro com os resultados do estudo de fratura de fêmur por sexo, separado por faixa de idade.",
   justificativaEm:"2026-11",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"O quadro abaixo resume os resultados de um estudo epidemiológico sobre fratura de fêmur, considerando sexo e idade. Em relação à associação entre sexo e fratura de fêmur, a idade, com base nesses dados, é considerada uma variável:",

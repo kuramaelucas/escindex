@@ -110,3 +110,26 @@ test("estilo.css: cada comentário termina onde deveria e os tokens de espaçame
   const sem = [...usados].filter(v => !definidos.has(v));
   assert.deepEqual(sem, [], "variável CSS usada e nunca definida");
 });
+
+/* Rede contra XSS: o CSP não tem script-src (a plataforma usa onclick inline),
+   então a única barreira é escapeHtml(). Este teste acusa a interpolação direta
+   de um campo que costuma vir de gente (nome, texto, comentário, e-mail…) num
+   template, sem escapeHtml. É heurístico: um texto que é seu (do código) entra
+   em PERMITIDOS, com o motivo. */
+const CAMPOS_DE_GENTE = /\.(nome|texto|comentario|mensagem|email|autor|titulo|respostaEsperada|textoResposta|enunciado|explicacao)\s*$/;
+const PERMITIDOS = [
+  ["codigo/06d-controle-de-videogame.js", "v.nome"],      // nome fixo da velocidade, do próprio código
+  ["codigo/13-tutorial.js", "p.texto"],                   // texto do tutorial, escrito no código, com HTML de propósito
+];
+test("campo que vem de pessoa não entra no HTML sem escapeHtml", () => {
+  const achados = [];
+  for(const [arq, s] of Object.entries(fontes)){
+    for(const m of s.matchAll(/\$\{([^{}]*)\}/g)){
+      const expr = m[1].trim();
+      if(!CAMPOS_DE_GENTE.test(expr) || /escapeHtml|htmlComDestaques|\(/.test(expr)) continue;
+      if(PERMITIDOS.some(([a, e]) => a === arq && e === expr)) continue;
+      achados.push(`${arq}:${s.slice(0, m.index).split("\n").length}  \${${expr}}`);
+    }
+  }
+  assert.deepEqual(achados, [], "interpolação sem escapeHtml (texto de usuário no HTML). Use escapeHtml(...) ou, se o texto é do código, acrescente a PERMITIDOS com o motivo");
+});

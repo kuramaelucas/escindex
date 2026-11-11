@@ -396,7 +396,7 @@ async function carregarArquivoImportacao(input){
     document.getElementById("previewImportacao").innerHTML = renderAvisoArquivoForaDoFormato(arquivos.map(a=>a.name));
     return;
   }
-  toast(quantas+" questão(ões) encontrada(s) em "+partes.length+" arquivo(s). Confira a pré-visualização abaixo.");
+  toast(quantas+" "+plural(quantas,"questão","questões")+" encontrada(s) em "+partes.length+" arquivo(s). Confira a pré-visualização abaixo.");
   previsualizarImportacao();
 }
 function renderAvisoArquivoForaDoFormato(nomes){
@@ -665,7 +665,7 @@ function htmlImagemDaImportacao(r, i){
     ${falta ? `<div class="text-xs mb-1">${r.imagemIndicada
       ? "A transcrição diz que há uma imagem"+(r.imagemDescricao?" ("+escapeHtml(r.imagemDescricao)+")":"")+". Anexe o recorte da prova. Se importar sem ela, a questão entra como <em>aguardando imagem</em> e fica fora do estudo até a figura chegar."
       : "O enunciado fala de uma figura. Se ela existir, anexe o recorte da prova — sem ela a questão não se resolve."}</div>` : ""}
-    ${r.imagemUrl ? `<img class="imp-imagem-previa" src="${escapeHtml(r.imagemUrl)}" alt="${escapeHtml(r.imagemLegenda||"Imagem da questão")}">` : ""}
+    ${r.imagemUrl ? `<img loading="lazy" decoding="async" class="imp-imagem-previa" src="${escapeHtml(r.imagemUrl)}" alt="${escapeHtml(r.imagemLegenda||"Imagem da questão")}">` : ""}
     <div class="flex gap-1 mt-1 quebra">
       <label class="btn ${falta?"btn-primary":"btn-secondary"} btn-sm" style="cursor:pointer">${iconeSvg("upload")} ${r.imagemUrl?"Trocar imagem":"Enviar imagem"}<input type="file" accept="image/*" style="display:none" onchange="carregarImagemImportacao(${i}, this)"></label>
       <button class="btn btn-ghost btn-sm" onclick="definirImagemImportacaoPorUrl(${i})">Usar link</button>
@@ -688,12 +688,12 @@ function renderPreviewImportacaoHtml(resultado, opts){
   const noGrupo = !opts.rotulo && destinoEhGrupo(state.filtroRota.destinoImportacao);
   const semAssuntoNoGrupo = noGrupo ? resultado.filter(r=>r.valido && r.importar!==false && (r.especialidadeId==="__novo__" || r.assuntoId==="__novo__")).length : 0;
   return `<div class="card">
-    <div class="card-title">Pré-visualização: ${validas} de ${resultado.length} questão(ões) marcadas para importar</div>
+    <div class="card-title">Pré-visualização: ${validas} de ${resultado.length} ${plural(resultado.length,"questão","questões")} marcadas para importar</div>
     <p class="text-sm muted mb-2">Confira a classificação de cada questão. Onde a IA não acertou a especialidade ou o assunto, escolha um equivalente da lista ou crie um novo com o nome sugerido.</p>
     ${destinoDoLote ? `<div class="card-flat mb-2 text-sm">${iconeSvg("users")} <strong>Destino:</strong> ${escapeHtml(destinoDoLote)}</div>` : ""}
-    ${semAssuntoNoGrupo ? `<div class="card-flat mb-2 text-sm">${iconeSvg("alert")} ${semAssuntoNoGrupo} questão(ões) estão com especialidade ou assunto que não existe na plataforma. Em questões do grupo, assunto novo não é criado: elas entram em <strong>Outros › Assunto geral</strong>, a menos que você escolha um assunto da lista abaixo.</div>` : ""}
-    ${duplicadas ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${duplicadas} questão(ões) já existem</strong> no banco ou se repetem dentro deste mesmo lote. Elas vêm desmarcadas — marque manualmente se quiser importar assim mesmo.${noGrupo && resultado.some(r=>r.duplicadasBanco.some(id=>{ const q = getQuestao(id); return q && !q.grupoId; })) ? " <strong>As que já estão no banco geral você já estuda por lá;</strong> marque só se quiser uma cópia no conjunto do grupo (para dividir entre os colegas, por exemplo)." : ""}</div>` : ""}
-    ${semFigura ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${semFigura} questão(ões) parecem ter figura</strong> e ainda estão sem imagem. Anexe cada uma no campo "Imagem da questão", logo abaixo da classificação.</div>` : ""}
+    ${semAssuntoNoGrupo ? `<div class="card-flat mb-2 text-sm">${iconeSvg("alert")} ${semAssuntoNoGrupo} ${plural(semAssuntoNoGrupo,"questão","questões")} estão com especialidade ou assunto que não existe na plataforma. Em questões do grupo, assunto novo não é criado: elas entram em <strong>Outros › Assunto geral</strong>, a menos que você escolha um assunto da lista abaixo.</div>` : ""}
+    ${duplicadas ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${duplicadas} ${plural(duplicadas,"questão","questões")} já existem</strong> no banco ou se repetem dentro deste mesmo lote. Elas vêm desmarcadas — marque manualmente se quiser importar assim mesmo.${noGrupo && resultado.some(r=>r.duplicadasBanco.some(id=>{ const q = getQuestao(id); return q && !q.grupoId; })) ? " <strong>As que já estão no banco geral você já estuda por lá;</strong> marque só se quiser uma cópia no conjunto do grupo (para dividir entre os colegas, por exemplo)." : ""}</div>` : ""}
+    ${semFigura ? `<div class="card-flat mb-2 text-sm borda-alerta">${iconeSvg("alert")} <strong>${semFigura} ${plural(semFigura,"questão","questões")} parecem ter figura</strong> e ainda estão sem imagem. Anexe cada uma no campo "Imagem da questão", logo abaixo da classificação.</div>` : ""}
     ${resultado.map((r,i)=>`<div class="card-flat mb-1" ${r.valido?"":'style="border-color:var(--danger)"'}>
       <div class="flex justify-between items-center quebra-gap-p">
         <span class="peso-600">Questão ${r.indice} · ${escapeHtml(r.banca)} ${r.ano}${r.status==="anulada"?" · anulada":""}</span>
@@ -725,7 +725,7 @@ function renderPreviewImportacaoHtml(resultado, opts){
       </div>
       ${htmlImagemDaImportacao(r, i)}
     </div>`).join("")}
-    <button class="btn btn-primary mt-2" onclick="${opts.aoConfirmar||"confirmarImportacao()"}" ${validas===0?"disabled":""}>${escapeHtml(opts.rotulo||"Importar")} ${validas} questão(ões)${opts.rotulo ? "" : escapeHtml(rotuloCurtoDoDestino(state.filtroRota.destinoImportacao))}</button>
+    <button class="btn btn-primary mt-2" onclick="${opts.aoConfirmar||"confirmarImportacao()"}" ${validas===0?"disabled":""}>${escapeHtml(opts.rotulo||"Importar")} ${validas} ${plural(validas,"questão","questões")}${opts.rotulo ? "" : escapeHtml(rotuloCurtoDoDestino(state.filtroRota.destinoImportacao))}</button>
   </div>`;
 }
 /* cria especialidade/assunto novos quando a pessoa escolheu "+ criar".
@@ -845,7 +845,7 @@ function confirmarImportacao(){
   if(r.semGrupo){ toast("Você não tem um grupo para receber estas questões. Escolha outro destino.", "err"); return; }
   state.filtroRota.previewImportacao = null;
   const areaTexto = document.getElementById("textoImportacao"); if(areaTexto) areaTexto.value = "";   // já importado: sair não é perder
-  toast(r.importadas+" questão(ões) importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" assunto(s) novo(s) criado(s)":"")+
+  toast(r.importadas+" "+plural(r.importadas,"questão","questões")+" importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" "+plural(r.novosAssuntos,"assunto","assuntos")+" novo(s) criado(s)":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
     (destinoEhGrupo(destino) ? " — disponíveis para o grupo "+grupoDoDestino(u, destino).nome+". Para praticar, use \"Praticar as questões do grupo\" em Meu Grupo; lá também dá para dividir o conjunto entre quem quiser."
       : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")

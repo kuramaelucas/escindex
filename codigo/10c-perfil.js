@@ -173,7 +173,7 @@ function renderCardBackup(){
     <p class="text-xs muted mt-2">Importar substitui os dados atuais pelos do arquivo — inclusive respostas e cadastros de todos os usuários. Reiniciar apaga tudo e volta ao ponto de partida.</p>
     ${bancoDeResgateDisponivel() ? (() => { const r = resumoDoResgate(); return `<div class="card-flat mt-2 borda-alerta">
       <div class="text-sm" style="font-weight:600;color:var(--amber)">${iconeSvg("archive")} Existe uma cópia de resgate neste navegador</div>
-      <p class="text-sm muted mt-1">A plataforma encontrou um defeito nos dados salvos em algum momento e guardou o banco como ele estava antes de consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s), ${r.questoes} questão(ões)`:""}. Se algo tiver se perdido, é daqui que se recupera.</p>
+      <p class="text-sm muted mt-1">A plataforma encontrou um defeito nos dados salvos em algum momento e guardou o banco como ele estava antes de consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s), ${r.questoes} ${plural(r.questoes,"questão","questões")}`:""}. Se algo tiver se perdido, é daqui que se recupera.</p>
       <button class="btn btn-secondary btn-sm mt-1" onclick="restaurarBancoDeResgate()">Ver e restaurar a cópia de resgate</button>
     </div>`; })() : ""}
   </div>`;

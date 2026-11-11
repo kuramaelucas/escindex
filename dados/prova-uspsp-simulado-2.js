@@ -20,7 +20,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-001", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:1,
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
-  imagemUrl:"dados/imagens/q-uspsp2-001.png", imagemLegenda:"Eletrocardiograma da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-001.webp", imagemLegenda:"Eletrocardiograma da paciente.",
   enunciado:"Mulher, 72 anos de idade, com história de fibrilação atrial permanente, hipertensão arterial e disfunção renal crônica ( taxa de filtração glomerular 45 mL/min). Apresenta quadro de dispneia progressiva, ortopneia e edema de membros inferiores há 5 dias. Está em uso de carvedilol, sarcubitril/valsartana, furosemida e rivaroxabana em doses máximas. Ao exame clínico, encontra-se vigil, com PA 130x80 mmHg, FC 98 bpm (irregular), FR 22 ipm, SatO2 93% em ar ambiente. Presença de estertores finos até o terço médio bilateralmente, turgência jugular +++/4+, e edema ++/4+ em membros inferiores. ECG: Considerando o perfil da paciente, qual exame complementar possui a MAIOR LIMITAÇÃO para auxiliar no diagnóstico de descompensação aguda de insuficiência cardíaca neste momento?",
   alternativas:[{id:"A",texto:"Ecocardiograma transtorácico"},{id:"B",texto:"Dosagem sérica de peptídeo natriurético tipo B (BNP)"},{id:"C",texto:"Radiografía de tórax"},{id:"D",texto:"Dosagem sérica de troponina de alta sensibilidade"}],
   gabarito:"B",
@@ -60,7 +60,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-004", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:4,
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-pneumonia",
-  imagemUrl:"dados/imagens/q-uspsp2-004.png", imagemLegenda:"Radiografia de tórax em PA.",
+  imagemUrl:"dados/imagens/q-uspsp2-004.webp", imagemLegenda:"Radiografia de tórax em PA.",
   enunciado:"Mulher, 38 anos de idade, previamente hígida, inicia quadro de febre (38,5°C), tosse seca e dispneia leve há 3 dias. Ao exame clínico, encontra-se em bom estado geral, PA 110x70 mmHg, FC 85 bpm, FR 18 ipm, SatO2 96% em ar ambiente. Ausculta pulmonar com murmúrio vesicular reduzido em base direita, sem ruídos adventícios. Radiografia de tórax a seguir: Qual deve ser a conduta inicial para a investigação etiológica desta paciente?",
   alternativas:[{id:"A",texto:"Solicitar Gram, BAAR e cultura de escarro."},{id:"B",texto:"Solicitar pesquisa de antígeno urinário para Streptococcus pneumoniae e Legionella."},{id:"C",texto:"Solicitar broncoscopia com lavado broncoalveolar."},{id:"D",texto:"Não solicitar exames específicos, iniciar tratamento empírico."}],
   gabarito:"D",
@@ -113,7 +113,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-008", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:8,
   areaId:"area-cm", especialidadeId:"esp-dermato", assuntoId:"ass-derm-infeccoes",
-  imagemUrl:"dados/imagens/q-uspsp2-008.png", imagemLegenda:"Lesões cutâneas no tronco.",
+  imagemUrl:"dados/imagens/q-uspsp2-008.webp", imagemLegenda:"Lesões cutâneas no tronco.",
   enunciado:"Homem, 28 anos de idade, procura atendimento com início súbito há 3 dias de lesões cutâneas em tronco, membros e região genital, conforme imagem a seguir. Refere febre baixa associada e adenomegalia inguinal. Nega histórico de lesões semelhantes previamente. Qual é o método diagnóstico necessário para confirmar a principal hipótese etiológica?",
   alternativas:[{id:"A",texto:"Cultura das lesões"},{id:"B",texto:"Teste rápido para IgM anti-PGL-1"},{id:"C",texto:"PCR de amostra das lesões"},{id:"D",texto:"Biópsia da lesão com coloração de Ziehl-Neelsen"}],
   gabarito:"C",
@@ -153,7 +153,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-011", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:11,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
-  imagemUrl:"dados/imagens/q-uspsp2-011.png", imagemLegenda:"Radiografia de tórax em PA.",
+  imagemUrl:"dados/imagens/q-uspsp2-011.webp", imagemLegenda:"Radiografia de tórax em PA.",
   enunciado:"Homem, 55 anos de idade, com quadro de tosse produtiva, febre vespertina, sudorese noturna e perda ponderal há 6 semanas. Apresenta dentes em mau estado de conservação. Hemograma com Hb 10g/dL, Ht 28%, VCM e HCM normais. Radiografia de tórax: Qual é a conduta diagnóstica?",
   alternativas:[{id:"A",texto:"Baciloscopia e cultura de escarro para BK"},{id:"B",texto:"Gram e cultura de escarro para bactérias comuns e fungos"},{id:"C",texto:"Cultura de escarro para anaeróbios"},{id:"D",texto:"Iniciar tratamento empírico sem exames microbiológicos."}],
   gabarito:"A",
@@ -245,7 +245,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-018", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:18,
   areaId:"area-cg", especialidadeId:"esp-ortopedia", assuntoId:"ass-orto-artrose",
-  imagemUrl:"dados/imagens/q-uspsp2-018.png", imagemLegenda:"Radiografia das mãos.",
+  imagemUrl:"dados/imagens/q-uspsp2-018.webp", imagemLegenda:"Radiografia das mãos.",
   enunciado:"Homem, 60 anos de idade, apresenta quadro de dor e rigidez em articulações interfalângicas distais e proximais das mãos e nos joelhos, com piora ao final do dia e com o movimento, aliviando com repouso. No exame clínico, nota-se aumento de volume ósseo nas articulações interfalângicas distais. Radiografia das mãos apresentada na imagem a seguir. Qual é o diagnóstico?",
   alternativas:[{id:"A",texto:"Artrite reumatoide."},{id:"B",texto:"Gota."},{id:"C",texto:"Osteoartrite."},{id:"D",texto:"Artrite psoriásica."}],
   gabarito:"C",
@@ -272,7 +272,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-020", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:20,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hanseniase",
-  imagemUrl:"dados/imagens/q-uspsp2-020.png", imagemLegenda:"Mancha hipocrômica no tronco (teste de sensibilidade com agulha).",
+  imagemUrl:"dados/imagens/q-uspsp2-020.webp", imagemLegenda:"Mancha hipocrômica no tronco (teste de sensibilidade com agulha).",
   enunciado:"Uma mulher de 35 anos de idade, sem comorbidades prévias conhecidas, é atendida no ambulatório com queixa de manchas hipocrômicas indolores e discretamente descamativas em tronco e membros superiores, conforme imagem abaixo, notadas há cerca de 8 meses. As lesões apresentam sensibilidade térmica diminuída ao exame físico. Nega febre, perda de peso ou outros sintomas sistêmicos. Ao exame dermatoneurológico, não se palpam nervos periféricos espessados. Diante da suspeita diagnóstica principal e dos achados do exame, qual é o exame complementar é essencial para a confirmação etiológica?",
   alternativas:[{id:"A",texto:"Biópsia de pele da lesão com coloração para BAAR."},{id:"B",texto:"Baciloscopia de esfregaço intradérmico de lóbulos da orelha e cotovelos."},{id:"C",texto:"Teste rápido molecular para Mycobacterium leprae na lesão."},{id:"D",texto:"Teste de sensibilidade com monofilamentos de Semmes- Weinstein (2g) na lesão."}],
   gabarito:"B",
@@ -299,7 +299,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-022", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:22,
   areaId:"area-cm", especialidadeId:"esp-geriatria", assuntoId:"ass-geriatria-demencia",
-  imagemUrl:"dados/imagens/q-uspsp2-022.png", imagemLegenda:"Tomografia de crânio com ventrículos aumentados.",
+  imagemUrl:"dados/imagens/q-uspsp2-022.webp", imagemLegenda:"Tomografia de crânio com ventrículos aumentados.",
   enunciado:"Mulher de 72 anos de idade, previamente hígida, desenvolve progressivamente quadros de lentidão para andar, evoluindo para dificuldade de coordenar a marcha e necessidade de andador ao longo de vários meses. Recentemente, começou a apresentar urgência miccional e episódios de esquecimento de fatos recentes, além de dificuldade para encontrar a palavra adequada para se expressar. Exames laboratoriais gerais são normais. Tomografia Computadorizada de crânio é apresentada na descrição abaixo. Considerando o quadro clínico e o achado de imagem, qual é a principal hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Doença de Alzheimer avançada."},{id:"B",texto:"Hidrocefalia de pressão normal."},{id:"C",texto:"Hematoma subdural crônico bilateral."},{id:"D",texto:"Demência vascular."}],
   gabarito:"B",
@@ -352,7 +352,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-026", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:26,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-miomatose",
-  imagemUrl:"dados/imagens/q-uspsp2-026.png", imagemLegenda:"Ultrassonografia transvaginal com Doppler.",
+  imagemUrl:"dados/imagens/q-uspsp2-026.webp", imagemLegenda:"Ultrassonografia transvaginal com Doppler.",
   enunciado:"Mulher de 38 anos de idade, apresenta sangramento uterino anormal há 6 meses, com ciclos menstruais mais frequentes e irregulares, e aumento do fluxo. A ultrassonografia transvaginal está a seguir. Qual deve ser a conduta para esta paciente?",
   alternativas:[{id:"A",texto:"Histerectomia total."},{id:"B",texto:"Miomectomia abdominal (laparotomia)."},{id:"C",texto:"Miomectomia laparoscópica."},{id:"D",texto:"Miomectomia histeroscópica."}],
   gabarito:"D",
@@ -366,7 +366,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-027", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:27,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-uroginecologia",
-  imagemUrl:"dados/imagens/q-uspsp2-027.png", imagemLegenda:"Pontos de referência do sistema POP-Q.",
+  imagemUrl:"dados/imagens/q-uspsp2-027.webp", imagemLegenda:"Pontos de referência do sistema POP-Q.",
   enunciado:"Mulher de 58 anos de idade, menopausada, procura serviço por sensação de “bola na vagina” e dificuldade para evacuar há 6 meses, principalmente ao final do dia. Ao exame clínico, em posição ginecológica e sob esforço, observa-se protrusão da parede vaginal posterior (ponto Bp em +2 cm), e ponto C em +1 cm. A imagem relembra os pontos de referência do POP-Q. Em que estágio de doença está essa paciente?",
   alternativas:[{id:"A",texto:"Estágio I."},{id:"B",texto:"Estágio II."},{id:"C",texto:"Estágio III."},{id:"D",texto:"Estágio IV."}],
   gabarito:"C",
@@ -406,7 +406,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-030", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:30,
   areaId:"area-go", especialidadeId:"esp-oncogineco", assuntoId:"ass-camama",
-  imagemUrl:"dados/imagens/q-uspsp2-030.png", imagemLegenda:"Detalhe da mamografia com agrupamento de microcalcificações.",
+  imagemUrl:"dados/imagens/q-uspsp2-030.webp", imagemLegenda:"Detalhe da mamografia com agrupamento de microcalcificações.",
   enunciado:"Mulher de 53 anos de idade, assintomática, realiza mamografia de rastreio que apresenta a seguinte alteração. Qual deve ser o próximo passo no manejo desta paciente?",
   alternativas:[{id:"A",texto:"Recomendar mamografia de controle em 6 meses."},{id:"B",texto:"Realizar punção aspirativa por agulha fina (PAAF)."},{id:"C",texto:"Realizar mamotomia guiada por mamografia."},{id:"D",texto:"Realizar biópsia excisional cirúrgica."}],
   gabarito:"C",
@@ -420,7 +420,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-031", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:31,
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-ist",
-  imagemUrl:"dados/imagens/q-uspsp2-031.png", imagemLegenda:"Lesão genital da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-031.webp", imagemLegenda:"Lesão genital da paciente.",
   enunciado:"Mulher de 35 anos de idade, apresenta lesão genital dolorosa, conforme imagem a seguir, e linfadenopatia inguinal unilateral dolorosa. A paciente refere múltiplas parcerias sexuais recentes. Qual é o agente etiológico mais provável?",
   alternativas:[{id:"A",texto:"Treponema pallidum."},{id:"B",texto:"Herpes simplex vírus."},{id:"C",texto:"Haemophilus ducreyi."},{id:"D",texto:"Chlamydia trachomatis."}],
   gabarito:"C",
@@ -460,7 +460,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-034", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:34,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-infertilidade",
-  imagemUrl:"dados/imagens/q-uspsp2-034.png", imagemLegenda:"Ultrassonografia transvaginal da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-034.webp", imagemLegenda:"Ultrassonografia transvaginal da paciente.",
   enunciado:"Mulher de 30 anos de idade, G0P0A0, tenta engravidar há 18 meses. Tem ciclos menstruais irregulares (intervalos de 40-60 dias). Apresenta hirsutismo facial discreto e acne. O exame clínico revela IMC de 28 kg/m², pilificação aumentada em face e abdome, e ovários aumentados à palpação bimanual. Exames hormonais iniciais mostram testosterona total discretamente aumentada. Qual exame complementar deve ser solicitado?",
   alternativas:[{id:"A",texto:"Dosagem sérica de progesterona na segunda fase do ciclo."},{id:"B",texto:"Curva de temperatura basal diária."},{id:"C",texto:"Biópsia de endométrio na fase lútea."},{id:"D",texto:"Dosagem sérica de Hormônio Antimülleriano."}],
   gabarito:"A",
@@ -565,7 +565,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-042", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:42,
   areaId:"area-go", especialidadeId:"esp-ginecologia", assuntoId:"ass-dorpelvica",
-  imagemUrl:"dados/imagens/q-uspsp2-042.png", imagemLegenda:"Ultrassonografia transvaginal da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-042.webp", imagemLegenda:"Ultrassonografia transvaginal da paciente.",
   enunciado:"Mulher de 28 anos de idade, G0P0, relata atraso menstrual de 6 semanas e teste de gravidez positivo em urina há 1 semana. Procurou o pronto-socorro com queixa de dor abdominal em fossa ilíaca direita, iniciada há 12 horas, de caráter progressivo, associada a discreto sangramento vaginal escurecido. Ao exame clínico, apresenta dor à palpação em abdome inferior, mais intensa à direita, com descompressão brusca dolorosa. Toque vaginal doloroso em fundo de saco posterior e anexial direito. Exame especular revela pequena quantidade de sangue escuro no fundo de saco. O beta-hCG sérico qualitativo é positivo. Realizado ultrassonografia transvaginal com a imagem a seguir. Qual é a hipótese diagnóstica mais provável?",
   alternativas:[{id:"A",texto:"Abortamento incompleto"},{id:"B",texto:"Cisto ovariano hemorrágico"},{id:"C",texto:"Moléstia Inflamatória Pélvica (DIP)"},{id:"D",texto:"Gravidez ectópica rota"}],
   gabarito:"D",
@@ -605,7 +605,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-045", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:45,
   areaId:"area-go", especialidadeId:"esp-obstetricia", assuntoId:"ass-trabalhoparto",
-  imagemUrl:"dados/imagens/q-uspsp2-045.png", imagemLegenda:"Partograma da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-045.webp", imagemLegenda:"Partograma da paciente.",
   enunciado:"Mulher, 25 anos de idade, com 40 semanas e 3 dias de gestação, chega à maternidade com queixa de contrações uterinas rítmicas e dolorosas. Não possui pré-natal completo e não tem ultrassonografia de datação confiável. Ao exame clínico, PA 110x70 mmHg, afebril, altura uterina 39 cm, BCF presente e rítmico. Toque vaginal com colo fino, centralizado, pérvio para 4 cm, bolsa íntegra. Apresentação cefálica, em -2 de DeLee. A cardiotocografia inicial mostra feto ativo e reativo. O partograma é iniciado. Qual é a interpretação do partograma e a conduta inicial?",
   alternativas:[{id:"A",texto:"Fase ativa do trabalho de parto em evolução normal; manter observação."},{id:"B",texto:"Distocia funcional por parada secundária da dilatação; considerar amniotomia e ocitocina."},{id:"C",texto:"Parto precipitado; preparar para assistência rápida do parto."},{id:"D",texto:"Fase ativa com progressão lenta; reavaliar em 4 horas."}],
   gabarito:"A",
@@ -671,7 +671,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-050", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:50,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-exantematicas",
-  imagemUrl:"dados/imagens/q-uspsp2-050.png", imagemLegenda:"Exantema da criança.",
+  imagemUrl:"dados/imagens/q-uspsp2-050.webp", imagemLegenda:"Exantema da criança.",
   enunciado:"Uma criança de 6 anos de idade apresenta quadro de exantema eritematoso, conforme imagem abaixo. A mãe refere febre e dor de garganta nos últimos dias. Qual é a principal hipótese diagnóstica e qual é o método padrão-ouro para sua confirmação?",
   alternativas:[{id:"A",texto:"Sarampo; Isolamento viral por RT-PCR."},{id:"B",texto:"Escarlatina; Cultura de orofaringe."},{id:"C",texto:"Rubéola; Sorologia IgM e IgG."},{id:"D",texto:"Eritema infeccioso; Pesquisa de Parvovírus B19 por PCR."}],
   gabarito:"B",
@@ -711,7 +711,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-053", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:53,
   areaId:"area-ped", especialidadeId:"esp-emergped", assuntoId:"ass-emergped-corpoestranho",
-  imagemUrl:"dados/imagens/q-uspsp2-053.png", imagemLegenda:"Radiografias da criança.",
+  imagemUrl:"dados/imagens/q-uspsp2-053.webp", imagemLegenda:"Radiografias da criança.",
   enunciado:"Menina, 9 meses de idade, previamente hígida, apresenta tosse seca e rouquidão súbitas após episódio de engasgo brincando no chão. Evoluiu rouquidão e salivação intensa, sem febre. O quadro persiste por 12 horas. Sem sinais de toxemia ou desconforto respiratório importante. Foi solicitada radiografia de tórax. Qual é a conduta diagnóstica e terapêutica?",
   alternativas:[{id:"A",texto:"Observação hospitalar com fisioterapia respiratória intensiva."},{id:"B",texto:"Solicitar tomografia computadorizada de tórax para melhor localização do objeto."},{id:"C",texto:"Encaminhar para endoscopia diagnóstica e terapêutica urgente."},{id:"D",texto:"Iniciar sucralfato 10 mL até endoscopia."}],
   gabarito:"C",
@@ -790,7 +790,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-059", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:59,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-ivas",
-  imagemUrl:"dados/imagens/q-uspsp2-059.png", imagemLegenda:"Otoscopia do ouvido esquerdo.",
+  imagemUrl:"dados/imagens/q-uspsp2-059.webp", imagemLegenda:"Otoscopia do ouvido esquerdo.",
   enunciado:"Um lactente de 10 meses de idade é levado ao pronto-socorro com febre de 39,2°C e irritabilidade intensa há 24 horas. A mãe refere que ele tem levado frequentemente a mão ao ouvido esquerdo. Nega rinorreia ou tosse. Ao exame clínico, a oroscopia é normal. À otoscopia, observa-se no ouvido esquerdo: Ouvido direito sem alterações. Qual é a conduta terapêutica inicial e justificativa?",
   alternativas:[{id:"A",texto:"Prescrever analgésico e antitérmico, e reavaliar em 48-72 horas, sem iniciar antibiótico."},{id:"B",texto:"Iniciar amoxicilina com clavulanato, considerando que a otite média aguda não é grave e unilateral."},{id:"C",texto:"Iniciar Ceftriaxona, devido à idade e presença de febre alta."},{id:"D",texto:"Iniciar amoxicilina, pois a otite média aguda é unilateral com febre alta e irritabilidade em lactente menor de 2 anos."}],
   gabarito:"D",
@@ -804,7 +804,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-060", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:60,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-uspsp2-060.png", imagemLegenda:"Radiografia de tórax da adolescente.",
+  imagemUrl:"dados/imagens/q-uspsp2-060.webp", imagemLegenda:"Radiografia de tórax da adolescente.",
   enunciado:"Uma adolescente de 13 anos de idade procura atendimento médico com história de tosse seca e persistente há cerca de 10 dias, febre baixa (37,8-38,5°C) e mal-estar geral. Nega dor torácica ou dificuldade respiratória importante. Ao exame clínico, apresenta-se com bom estado geral, eupneica, com ausculta pulmonar revelando sibilos expiratórios esparsos, sem sinais de consolidação. A radiografia de tórax realizada. Qual é a principal etiologia a ser considerada e o tratamento de escolha?",
   alternativas:[{id:"A",texto:"Streptococcus pneumoniae; Amoxicilina."},{id:"B",texto:"Haemophilus influenzae; Cefuroxima."},{id:"C",texto:"Mycoplasma pneumoniae; Azitromicina."},{id:"D",texto:"Vírus influenza; Oseltamivir."}],
   gabarito:"C",
@@ -922,7 +922,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-069", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:69,
   areaId:"area-ped", especialidadeId:"esp-infectoped", assuntoId:"ass-infectoped-pneumonia",
-  imagemUrl:"dados/imagens/q-uspsp2-069.png", imagemLegenda:"Radiografia de tórax da criança.",
+  imagemUrl:"dados/imagens/q-uspsp2-069.webp", imagemLegenda:"Radiografia de tórax da criança.",
   enunciado:"Menino, 15 meses de idade, previamente hígido, é levado ao pronto atendimento com quadro de febre de 39,5°C há 2 dias, tosse produtiva e dificuldade respiratória progressiva. Ao exame clínico, apresenta-se irritado, taquidispneico (FR: 65 irpm), com batimento de aletas nasais, tiragem subcostal e intercostal e saturação de oxigênio de 88% em ar ambiente. Ausculta pulmonar revela murmúrio vesicular diminuído em base esquerda, com crepitações. O restante do exame clínico é compatível com toxemia. Foi solicitada radiografia de tórax. Qual deve ser a conduta inicial?",
   alternativas:[{id:"A",texto:"Considerar esteatose hepática devido à toxemia e solicitar ultrassonografia abdominal."},{id:"B",texto:"Encaminhar imediatamente para tomografia computadorizada de tórax de alta resolução para avaliar extensão da consolidação."},{id:"C",texto:"Realizar ultrassonografia de tórax à beira leito para avaliar presença de derrame pleural e guiar possível punção."},{id:"D",texto:"Não solicitar mais exames de imagem neste momento, focar na estabilização clínica e iniciar antibioticoterapia."}],
   gabarito:"D",
@@ -1014,7 +1014,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-076", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:76,
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
-  imagemUrl:"dados/imagens/q-uspsp2-076.png", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-076.webp", imagemLegenda:"Tomografia computadorizada de abdome do paciente.",
   enunciado:"Homem, 60 anos de idade, submetido a ressecção anterior de reto baixo com anastomose primária. No 5º dia de pósoperatório, apresenta febre (38.8ºC), dor abdominal difusa e distensão. A TC de abdome apresentada a seguir. O paciente está hemodinamicamente instável. Qual deve ser a conduta imediata?",
   alternativas:[{id:"A",texto:"Iniciar antibioticoterapia de largo espectro e aguardar estabilização antes da reabordagem cirúrgica."},{id:"B",texto:"Drenagem percutânea da coleção pélvica guiada por imagem."},{id:"C",texto:"Laparotomia exploradora de emergência para desvio do trânsito intestinal."},{id:"D",texto:"Realizar raio-X enema opaco."}],
   gabarito:"C",
@@ -1080,7 +1080,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-081", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:81,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
-  imagemUrl:"dados/imagens/q-uspsp2-081.png", imagemLegenda:"Ultrassonografia de abdome do paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-081.webp", imagemLegenda:"Ultrassonografia de abdome do paciente.",
   enunciado:"Homem de 78 anos de idade, internado em Unidade de Terapia Intensiva (UTI) por sepse pulmonar grave, desenvolve dor intensa em hipocôndrio direito, febre persistente e icterícia leve. História prévia de doença pulmonar obstrutiva crônica (DPOC) grave. Apresentando a ultrassonografia abdominal a seguir. O paciente está hemodinamicamente instável, necessitando de vasopressores. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Colecistectomia laparoscópica de urgência."},{id:"B",texto:"Colecistectomia aberta de urgência."},{id:"C",texto:"Colangiopancreatografia retrógrada endoscópica (CPRE)."},{id:"D",texto:"Drenagem percutânea transhepática da vesícula biliar."}],
   gabarito:"D",
@@ -1094,7 +1094,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-082", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:82,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
-  imagemUrl:"dados/imagens/q-uspsp2-082.png", imagemLegenda:"Tomografia computadorizada de abdome e pelve da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-082.webp", imagemLegenda:"Tomografia computadorizada de abdome e pelve da paciente.",
   enunciado:"Mulher de 24 anos de idade, com histórico de dor abdominal inespecífica há 5 dias, apresenta-se no pronto-socorro com piora súbita da dor, agora localizada na fossa ilíaca direita, acompanhada de febre (38,5°C), náuseas e vômitos. Ao exame clínico, nota-se uma massa palpável de 8 cm na fossa ilíaca direita, dolorosa à palpação, sem sinais francos de irritação peritoneal difusa. Exames laboratoriais revelam leucocitose com desvio à esquerda e PCR elevado. A tomografia computadorizada de abdome e pelve está demonstrada a seguir. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Laparotomia exploradora e apendicectomia de urgência."},{id:"B",texto:"Drenagem percutânea guiada por imagem da coleção e antibioticoterapia."},{id:"C",texto:"Tratamento conservador com antibioticoterapia e observação clínica."},{id:"D",texto:"Apendicectomia laparoscópica imediata"}],
   gabarito:"B",
@@ -1108,7 +1108,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-083", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:83,
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-obstrucao",
-  imagemUrl:"dados/imagens/q-uspsp2-083.png", imagemLegenda:"Radiografias simples de abdome (decúbito e ortostatismo) da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-083.webp", imagemLegenda:"Radiografias simples de abdome (decúbito e ortostatismo) da paciente.",
   enunciado:"Mulher de 65 anos de idade, submetida a uma histerectomia total abdominal há 6 dias, retorna ao pronto-socorro com queixa de dor abdominal intensa em cólica, distensão abdominal progressiva, náuseas e vômitos biliosos. Nega eliminação de gases ou fezes há 48 horas. Ao exame clínico, apresenta FC 110 bpm, PA 110x70, com abdome distendido, timpanismo difuso e ruídos hidroaéreos aumentados com borborigmos. Radiografias simples de abdome (em decúbito e ortostatismo) está a seguir. Qual deve ser a conduta imediata?",
   alternativas:[{id:"A",texto:"Manter jejum e passar sonda nasogástrica."},{id:"B",texto:"Indicação de laparotomia exploradora de urgência."},{id:"C",texto:"Realizar enema evacuador."},{id:"D",texto:"Iniciar antibioticoterapia e drenagem percutânea de possível coleção."}],
   gabarito:"A",
@@ -1148,7 +1148,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-086", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:86,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-hepato-nodulos",
-  imagemUrl:"dados/imagens/q-uspsp2-086.png", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-086.webp", imagemLegenda:"Tomografia computadorizada de abdome da paciente.",
   enunciado:"Mulher de 30 anos de idade, assintomática, realiza uma tomografia abdominal que revela lesão presente na imagem a seguir. A paciente nega qualquer sintoma relacionado à lesão. Qual deve ser a conduta?",
   alternativas:[{id:"A",texto:"Ressecção cirúrgica imediata, devido ao risco de ruptura espontânea."},{id:"B",texto:"Vigilância com ultrassonografias periódicas."},{id:"C",texto:"Embolização arterial da lesão, para reduzir seu tamanho."},{id:"D",texto:"Biópsia percutânea para confirmação diagnóstica antes de qualquer decisão."}],
   gabarito:"B",
@@ -1175,7 +1175,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-088", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:88,
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
-  imagemUrl:"dados/imagens/q-uspsp2-088.png", imagemLegenda:"Ressonância magnética da região perianal da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-088.webp", imagemLegenda:"Ressonância magnética da região perianal da paciente.",
   enunciado:"Mulher, 42 anos de idade, com histórico de doença de Crohn perianal previamente tratada, refere há 3 semanas drenagem purulenta fétida e intermitente pela região perianal esquerda, associada a dor local discreta e prurido. Não há relato de abscesso prévio drenado cirurgicamente. Ao exame proctológico, em posição genupeitoral, identifica-se orifício externo único a aproximadamente 4 cm da margem anal, na região posterior, sem sinais flogísticos agudos ou flutuação palpável. O toque retal revela discreto espessamento no plano interesfincteriano. Qual é a classificação anatômica da fístula e qual deve ser a conduta terapêutica cirúrgica inicial?",
   alternativas:[{id:"A",texto:"Fístula interesfincteriana; fistulotomia."},{id:"B",texto:"Fístula transesfincteriana; LIFT."},{id:"C",texto:"Fístula supraesfincteriana; uso de sedenho (seton)."},{id:"D",texto:"Fístula extraesfincteriana; avanço de retalho endorretal."}],
   gabarito:"B",
@@ -1189,7 +1189,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-089", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:89,
   areaId:"area-cg", especialidadeId:"esp-coloprocto", assuntoId:"ass-coloprocto-orificiais",
-  imagemUrl:"dados/imagens/q-uspsp2-089.png", imagemLegenda:"Exame proctológico da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-089.webp", imagemLegenda:"Exame proctológico da paciente.",
   enunciado:"Mulher de 38 anos de idade, grávida de 36 semanas, comparece ao pronto-socorro com queixa de dor anal aguda e intensa, iniciada há aproximadamente 24 horas, associada à percepção de um nódulo doloroso na região. A paciente nega sangramento ativo ou outras queixas sistêmicas. Exame proctológico,em imagem a seguir. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Hemorroida interna prolapsada e estrangulada."},{id:"B",texto:"Abscesso perianal."},{id:"C",texto:"Trombose de hemorroida externa."},{id:"D",texto:"Fissura anal aguda."}],
   gabarito:"C",
@@ -1229,7 +1229,7 @@ window.EscDados.registrarQuestoes("prova-uspsp-simulado-2", [
 {
   id:"q-uspsp2-092", banca:"Simulados USP SP — 07/06/2025", real:true, tipoProva:"graduacao", ano:2025, semestre:1, numeroNaProva:92,
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-dii",
-  imagemUrl:"dados/imagens/q-uspsp2-092.png", imagemLegenda:"Radiografia simples de abdome da paciente.",
+  imagemUrl:"dados/imagens/q-uspsp2-092.webp", imagemLegenda:"Radiografia simples de abdome da paciente.",
   enunciado:"Mulher de 42 anos de idade, com histórico de retocolite ulcerativa de longa data (15 anos), em tratamento clínico com imunossupressores, evolui com piora aguda da diarreia sanguinolenta (mais de 12 evacuações/dia), dor abdominal intensa e difusa, febre de 39,5°C, FC 125 bpm e distensão abdominal. Ao exame clínico, apresenta sensibilidade abdominal difusa com sinais de irritação peritoneal discreta. Os exames laboratoriais mostram leucocitose de 28.000 cels/ mm³ com desvio à esquerda, hipoalbuminemia importante e distúrbios hidroeletrolíticos. Radiografia simples de abdome está a seguir. Qual deve ser a conduta cirúrgica?",
   alternativas:[{id:"A",texto:"Colectomia subtotal com ileostomia terminal e fechamento do coto retal (procedimento de Hartmann)."},{id:"B",texto:"Colectomia segmentar com anastomose primária, devido à extensão da doença estar localizada no cólon transverso."},{id:"C",texto:"Ileostomia de proteção e manutenção do cólon in situ para possível colectomia em um segundo tempo, se houver falha de melhora."},{id:"D",texto:"Colectomia total abdominal com anastomose ileorretal em um único tempo cirúrgico."}],
   gabarito:"A",
