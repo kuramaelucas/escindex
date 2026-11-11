@@ -903,3 +903,8 @@ body[data-marca-controle="xbox"] .dica-controle[data-pos="r1"]::before{content:"
 .fila-chute{border-left-color:var(--amber)}
 /* no celular o aviso subia por cima dos botões do pé da tela: fica no alto, abaixo do topo */
 @media (max-width:600px){.toast-container{bottom:auto;top:4.5rem;left:1rem;right:1rem;align-items:center}}
+
+/* zoom de imagem (ampliarImagemQuestao) */
+.zoom-img{overflow:hidden;touch-action:none;border-radius:var(--radius-sm);cursor:zoom-in;user-select:none}
+.zoom-img.ampliada{cursor:grab}
+.zoom-img img{display:block;width:100%;transform-origin:0 0;will-change:transform}

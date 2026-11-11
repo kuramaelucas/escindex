@@ -428,6 +428,11 @@ function desenharTela(conteudoHtml){
   const topo = document.getElementById("topoBarra");
   const u = usuarioAtual();
   const chave = (u ? u.id : "") + "|" + (state.modoAluno ? "aluno" : "papel");
+  /* Redesenho na MESMA tela (a nuvem chegou, o estado mudou): trocar o HTML
+     encolhe a página por um instante e o navegador joga a rolagem para o topo.
+     Guarda a posição e devolve depois; só tela nova começa do alto. */
+  const mesmaTela = !!(_telaDesenhada && _telaDesenhada.rota === state.route && _telaDesenhada.chave === chave);
+  const rolagem = window.scrollY;
   if(pagina && menu && topo && _telaDesenhada && _telaDesenhada.chave === chave){
     const trocouDeTela = _telaDesenhada.rota !== state.route;
     menu.innerHTML = htmlMenuLateral(u);
@@ -438,6 +443,7 @@ function desenharTela(conteudoHtml){
     app.innerHTML = renderShell(conteudoHtml);
   }
   _telaDesenhada = { rota: state.route, chave };
+  if(mesmaTela && rolagem > 0 && Math.abs(window.scrollY - rolagem) > 1) window.scrollTo(0, rolagem);
   rotularCamposParaLeitorDeTela();
   document.body.classList.toggle("modo-foco", !!state.modoFoco && (state.route==="sessao" || state.route==="simulado-ativo"));
   ativarGestoDeArrastar();

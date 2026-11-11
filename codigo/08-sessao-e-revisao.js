@@ -952,7 +952,52 @@ function imagemDaQuestaoFalhou(img, qid){
 function ampliarImagemQuestao(qid, src){
   const q = getQuestao(qid); if(!q || !q.imagemUrl) return;
   abrirModal(`${cabecalhoJanela(escapeHtml(q.imagemLegenda||"Imagem da questão"))}
-    <img loading="lazy" decoding="async" src="${escapeHtml(src || q.imagemUrl)}" style="width:100%;border-radius:var(--radius-sm)" alt="">`, "lg");
+    <div class="zoom-img" title="Roda do mouse ou pinça para ampliar; arraste para mover; duplo toque restaura">
+      <img decoding="async" src="${escapeHtml(src || q.imagemUrl)}" alt="" draggable="false">
+    </div>`, "lg");
+  ativarZoomDeImagem(document.querySelector(".zoom-img"));
+}
+/* Zoom da imagem: roda do mouse (em torno do cursor) e pinça de dois dedos
+   (em torno do ponto médio). A imagem é movida por transform, e o gesto é
+   tratado aqui (touch-action:none no CSS) para a pinça não ampliar a página
+   inteira. Com zoom 1 ela volta centralizada; duplo clique/toque restaura. */
+function ativarZoomDeImagem(caixa){
+  const img = caixa && caixa.querySelector("img"); if(!img) return;
+  let k = 1, x = 0, y = 0;
+  const pts = new Map(); let d0 = 0, k0 = 1, ult = null;
+  const aplicar = () => {
+    const w = caixa.clientWidth, h = caixa.clientHeight;
+    // não deixa a imagem sair da caixa
+    x = Math.min(0, Math.max(w - w*k, x)); y = Math.min(0, Math.max(h - h*k, y));
+    img.style.transform = `translate(${x}px,${y}px) scale(${k})`;
+    caixa.classList.toggle("ampliada", k > 1.01);
+  };
+  const zoomEm = (nk, cx, cy) => {
+    nk = Math.min(8, Math.max(1, nk));
+    x = cx - (cx - x) * nk / k; y = cy - (cy - y) * nk / k; k = nk; aplicar();
+  };
+  const ponto = e => { const r = caixa.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  caixa.addEventListener("wheel", e => {
+    e.preventDefault();
+    const [cx, cy] = ponto(e);
+    zoomEm(k * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0025)), cx, cy);
+  }, { passive: false });
+  caixa.addEventListener("pointerdown", e => {
+    caixa.setPointerCapture(e.pointerId); pts.set(e.pointerId, ponto(e)); ult = ponto(e);
+    if(pts.size === 2){ const [a, b] = [...pts.values()]; d0 = Math.hypot(a[0]-b[0], a[1]-b[1]) || 1; k0 = k; }
+  });
+  caixa.addEventListener("pointermove", e => {
+    if(!pts.has(e.pointerId)) return;
+    const p = ponto(e); pts.set(e.pointerId, p);
+    if(pts.size >= 2){
+      const [a, b] = [...pts.values()];
+      zoomEm(k0 * Math.hypot(a[0]-b[0], a[1]-b[1]) / d0, (a[0]+b[0])/2, (a[1]+b[1])/2);
+    }else if(k > 1){ x += p[0] - ult[0]; y += p[1] - ult[1]; aplicar(); }
+    ult = p;
+  });
+  const soltar = e => { pts.delete(e.pointerId); ult = pts.size ? [...pts.values()][0] : null; };
+  caixa.addEventListener("pointerup", soltar); caixa.addEventListener("pointercancel", soltar);
+  caixa.addEventListener("dblclick", () => { k = 1; x = y = 0; aplicar(); });
 }
 function renderReferenciasQuestao(q){
   if(!q.referencias) return "";
