@@ -190,7 +190,7 @@ test("quem criou o grupo retira um integrante (volta ao calendário oficial) e a
   } finally { await contexto.close(); }
 });
 
-test("Estudar: 'Criar minha lista' abre a montagem; Revisão Rápida: 'Criar meu baralho' abre as opções e respeita a situação e o tamanho", async () => {
+test("Estudar: 'Criar minha lista' abre a montagem; Flashcards: 'Criar meu baralho' abre as opções e respeita a situação e o tamanho", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     const r = await pagina.evaluate(() => {
@@ -233,7 +233,7 @@ test("Estudar: 'Criar minha lista' abre a montagem; Revisão Rápida: 'Criar meu
   } finally { await contexto.close(); }
 });
 
-test("Revisão Rápida: 'Meu baralho recomendado' traz só os cartões do aluno; fim da sessão só oferece questões se houver assunto", async () => {
+test("Flashcards: 'Meu baralho recomendado' traz só os cartões do aluno; fim da sessão só oferece questões se houver assunto", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     const r = await pagina.evaluate(() => {

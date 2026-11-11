@@ -20,7 +20,7 @@
    esta questão / esta sessão" ficam recolhidas atrás de um "Por quê?"
    (explicacaoRecolhida), porque a plataforma explica o que faz. */
 const MODOS_PLATAFORMA = {
-  resumido: { nome: "Resumido", descricao: "Só o essencial: a meta do dia, o botão de começar e um menu enxuto (Início, Estudar, Revisão Rápida e Meu Desempenho; o resto em “Mais”). Sem os quadros de sugestões e os textos explicativos." },
+  resumido: { nome: "Resumido", descricao: "Só o essencial: a meta do dia, o botão de começar e um menu enxuto (Início, Estudar, Flashcards e Meu Desempenho; o resto em “Mais”). Sem os quadros de sugestões e os textos explicativos." },
   estatistico: { nome: "Estatístico", descricao: "Tudo à mostra: sugestões de assuntos, o que mais cai e você erra, explicações de por que cada questão e cada sessão aparecem, e o menu completo." },
 };
 const ITENS_DO_MENU_RESUMIDO = ["inicio", "estudar", "flashcards", "desempenho"];

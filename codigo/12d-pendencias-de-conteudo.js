@@ -1,4 +1,4 @@
-/* codigo/12d-pendencias-de-conteudo.js — Pendências de conteúdo (seção 26-E): o que falta no banco, calculado do próprio banco (figuras, desatualizadas, aguardando aprovação, provas com número faltando, assuntos sem cartão).
+/* codigo/12d-pendencias-de-conteudo.js — Pendências de Conteúdo (seção 26-E): o que falta no banco, calculado do próprio banco (figuras, desatualizadas, aguardando aprovação, provas com número faltando, assuntos sem cartão).
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
@@ -115,7 +115,7 @@ function renderPendenciasDeConteudo(){
     ["pend-cartoes", iconeSvg("cards") + " Assuntos sem cartão da equipe", p.semCartao.length, "assunto(s) sem nenhum cartão", htmlPendenciaSemCartao(p)],
   ];
   return `
-  <div class="page-header"><h2>Pendências de conteúdo</h2><p>${p.total ? `${p.total} ${flexionar(p.total, "item(ns)")} esperando a equipe.` : "Nada pendente no banco."} A lista é calculada do banco: o que for resolvido sai daqui sozinho. Gabaritos discutíveis e a história de cada prova continuam no PENDENCIAS.md.</p></div>
+  <div class="page-header"><h2>Pendências de Conteúdo</h2><p>${p.total ? `${p.total} ${flexionar(p.total, "item(ns)")} esperando a equipe.` : "Nada pendente no banco."} A lista é calculada do banco: o que for resolvido sai daqui sozinho. Gabaritos discutíveis e a história de cada prova continuam no PENDENCIAS.md.</p></div>
   <div class="stat-mini-row mb-2">
     ${secoes.map(s => `<div class="stat-mini"><span class="stat-value">${s[2]}</span><span class="stat-label">${s[3]}</span></div>`).join("")}
   </div>

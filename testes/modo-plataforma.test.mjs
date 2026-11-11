@@ -73,7 +73,7 @@ test("menu reduzido no resumido (quatro itens + Mais); completo no estatístico;
       const maisAbertoNaRota = !document.querySelector('#sidebarMenu .nav-grupo.fechado[data-grupo="Mais"]');
       return { resumido, aberto, completo, rotasDoMenu, rotaOk, maisAbertoNaRota };
     });
-    assert.deepEqual(r.resumido.visiveis.slice(0, 4), ["Início", "Estudar", "Revisão Rápida", "Meu Desempenho"]);
+    assert.deepEqual(r.resumido.visiveis.slice(0, 4), ["Início", "Estudar", "Flashcards", "Meu Desempenho"]);
     assert.ok(r.resumido.mais && r.resumido.fechado);
     assert.equal(r.resumido.visiveis.length, 4 + 0 + r.resumido.visiveis.filter(t => /Perfil|Tema|Sair|aluno/.test(t)).length);
     for(const nome of ["Revisão", "Meu Grupo", "Provas e Simulados", "Histórico de Atividade", "Favoritos", "Enviar Questões"]) assert.ok(r.aberto.includes(nome), "no Mais: " + nome);
@@ -83,7 +83,7 @@ test("menu reduzido no resumido (quatro itens + Mais); completo no estatístico;
   } finally { await contexto.close(); }
 });
 
-test("Início, Estudar e Revisão Rápida: o resumido reduz o texto, mas guarda o porquê atrás de 'Por quê?'", async () => {
+test("Início, Estudar e Flashcards: o resumido reduz o texto, mas guarda o porquê atrás de 'Por quê?'", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     const r = await pagina.evaluate(() => {

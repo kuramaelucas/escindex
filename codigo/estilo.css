@@ -845,6 +845,8 @@ button.cal-dia.cal-clicavel:hover{filter:brightness(.95)}
 .indicador{display:inline-flex;align-items:baseline;gap:.4rem;min-width:0}
 .indicador .stat-value{font-size:var(--fs-lg);line-height:1.1}
 .indicador .stat-label{margin-top:0}
+/* no celular os três indicadores empilhados ocupavam meia tela: em colunas, número em cima e rótulo embaixo, cabem numa faixa só */
+@media (max-width:600px){.indicadores{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:var(--esp-2)}.indicador{flex-direction:column;align-items:flex-start;gap:.1rem}.indicador .stat-label{font-size:var(--fs-xs,.75rem);line-height:1.25}}
 /* faixa recolhida (avisos, notificações): uma linha, sem o respiro de um cartão cheio */
 .card-compacto{padding:.65rem var(--esp-2)}
 /* ações de apoio dentro do cartão principal, sem competir com "Começar agora" */

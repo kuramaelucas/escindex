@@ -15,7 +15,7 @@
    Quem já leu (dispensou) fica em `usuario.avisosLidos` — no perfil, que
    sobe para a nuvem —, para o aviso não voltar em outro aparelho. */
 const ROTAS_DE_AVISO = [
-  ["", "Nenhuma — só o texto"], ["estudar", "Estudar"], ["revisao", "Revisão"], ["flashcards", "Revisão Rápida"],
+  ["", "Nenhuma — só o texto"], ["estudar", "Estudar"], ["revisao", "Revisão"], ["flashcards", "Flashcards"],
   ["simulados", "Provas e Simulados"], ["favoritos", "Favoritos"], ["meu-grupo", "Meu Grupo"],
   ["livro-ouro", "Livro de Ouro"], ["perfil", "Perfil e configurações"],
 ];

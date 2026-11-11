@@ -39,7 +39,7 @@ test("pesquisar cartões: 'todos da plataforma' acha os da equipe, 'só os meus'
     });
     assert.deepEqual(r.todos, ["fc-eq-1", "fc-meu-1"], "cartão pessoal de outra pessoa nunca aparece");
     assert.deepEqual(r.meus, ["fc-meu-1"]);
-    assert.ok(r.tela, "a tela de Revisão Rápida tem o campo de pesquisa");
+    assert.ok(r.tela, "a tela de Flashcards tem o campo de pesquisa");
   } finally { await contexto.close(); }
 });
 

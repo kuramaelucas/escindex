@@ -460,7 +460,7 @@ function gerarNotificacoes(usuario){
     if(hoje < meta) notifs.push({icon:"target", texto:"Faltam "+(meta-hoje)+" "+flexionar((meta-hoje), "questão(ões)")+" para bater sua meta de hoje.", rota:"estudar"});
     const metaCards = metaCartoesDoUsuario(usuario);
     const cardsHoje = cartoesRevisadosHoje(usuario.id);
-    if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" "+flexionar((metaCards-cardsHoje), "cartão(ões)")+" para bater sua meta de revisão rápida.", rota:"flashcards"});
+    if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" "+flexionar((metaCards-cardsHoje), "cartão(ões)")+" para bater sua meta de flashcards.", rota:"flashcards"});
     const pendente = sessaoEmAndamentoDe(usuario);
     if(pendente) notifs.push({icon:"refresh", texto:"Você tem uma sessão pela metade ("+respostasFeitas(pendente).length+" de "+pendente.itens.length+") esperando para continuar.", rota:"estudar"});
   }
