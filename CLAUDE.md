@@ -91,8 +91,9 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `08b-destaques-de-texto.js` | 11-B | selecionar um trecho da questão ou do cartão e destacá-lo (`htmlComDestaques`, `atributoDestacavel`), por pessoa |
 | `08c-questoes-dissertativas.js` | 11-C | questão dissertativa na sessão: escrever, confiança, resposta esperada, autoavaliação (`renderCartaoDissertativa`) |
 | `09a-revisao-rapida.js` | 12-B | flashcards |
-| `09b-simulados-e-provas.js` | 13–14 | simulados e provas antigas |
+| `09b-simulados-e-provas.js` | 13 | simulados: lista, execução cronometrada, resultado |
 | `09c-cartoes-em-lote.js` | 12-C, 12-D | cartões em lote; Adicionar baralho (trazer baralho inteiro de uma IA) |
+| `09d-provas-antigas.js` | 14 | aba Provas Antigas: provas reais por instituição e ano, filtros, as duas versões da prova |
 | `10a-favoritos-historico-desempenho.js` | 16–17 | Favoritos, Livro de Ouro, Histórico, Meu Desempenho |
 | `10b-meta-grupo-perfil.js` | 18 (+18-B, 18-C) | Meta, Meu Grupo, integrantes e grupos de estudo |
 | `10c-perfil.js` | 19 | Perfil e configurações, "Seus dados" |
