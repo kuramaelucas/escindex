@@ -708,6 +708,7 @@ function pedirLembreteComAppFechado(){
    Carrega os dados salvos (ou os dados de demonstração, na primeira vez),
    restaura a rota da URL (se houver) e desenha a tela pela primeira vez. */
 loadState();
+performance.mark("esc:db-montado");   // medir-carga (fase 0 de docs/PROJETO-CARGA-INICIAL.md)
 (function inicializar(){
   // volta de um link de e-mail (confirmar cadastro, trocar senha): o
   // endereço traz o resultado depois do # e precisa ser lido antes do
@@ -733,6 +734,7 @@ loadState();
     nuvemSincronizarAgora({forcarRedesenho:true});
   }
   render();
+  performance.mark("esc:primeira-tela");
   // lembrete de meta diária: checagem leve a cada minuto (ver função para
   // detalhes e limitação — só funciona com o navegador aberto).
   if(typeof setInterval==="function") setInterval(checarLembreteMetaDiaria, 60000);
