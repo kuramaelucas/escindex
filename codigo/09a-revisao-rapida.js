@@ -51,7 +51,7 @@ function renderFlashcardsInicio(u){
       <div class="flex items-center gap-2 quebra">
         <div class="texto-dir">
           <div class="stat-value" style="font-size:var(--fs-xl)">${vistosHoje}/${metaCartoes}</div>
-          <div class="stat-label">cartões hoje${seqCartoes?" · "+seqCartoes+" "+plural(seqCartoes,"dia","dias")+" seguidos":""}</div>
+          <div class="stat-label">cartões hoje${seqCartoes?" · "+seqCartoes+" "+flexionar(seqCartoes,"dia(s) seguido(s)"):""}</div>
         </div>
         <button class="btn btn-secondary btn-sm" onclick="abrirModalMetaCartoes()">${iconeSvg("target")} Ajustar meta</button>
       </div>
@@ -67,7 +67,7 @@ function renderFlashcardsInicio(u){
   </div>
 
   <div class="grid grid-4">
-    <div class="stat-tile"><div class="stat-value">${resumo.vencidos}</div><div class="stat-label">cartão(ões) vencido(s) hoje</div></div>
+    <div class="stat-tile"><div class="stat-value">${resumo.vencidos}</div><div class="stat-label">${flexionar(resumo.vencidos,"cartão(ões) vencido(s)")} hoje</div></div>
     <div class="stat-tile"><div class="stat-value">${resumo.novos}</div><div class="stat-label">ainda não vistos</div></div>
     <div class="stat-tile"><div class="stat-value">${resumo.deFalsaSeguranca}</div><div class="stat-label">em assuntos de falsa segurança</div></div>
     <div class="stat-tile"><div class="stat-value">${resumo.meus}</div><div class="stat-label">cartões escritos por você</div></div>
@@ -90,7 +90,7 @@ function renderFlashcardsInicio(u){
   <div class="card">
     <div class="card-title">Meu baralho recomendado</div>
     <div class="text-sm muted">${meus.length
-      ? `Só os ${meus.length} ${plural(meus.length,"cartão","cartões")} que você escreveu, na mesma ordem do recomendado${vencidosMeus ? ` — ${vencidosMeus} vencido(s) hoje` : ""}. Fica de fora o que a equipe escreveu e o que a plataforma gera das suas questões.`
+      ? `Só os ${meus.length} ${plural(meus.length,"cartão","cartões")} que você escreveu, na mesma ordem do recomendado${vencidosMeus ? ` — ${vencidosMeus} ${flexionar(vencidosMeus, "vencido(s)")} hoje` : ""}. Fica de fora o que a equipe escreveu e o que a plataforma gera das suas questões.`
       : "Você ainda não escreveu cartões. Quando tiver os seus, este baralho segue a mesma ordem do recomendado, só com eles."}</div>
     <button class="btn btn-primary mt-2" ${meus.length ? "" : "disabled"} onclick="iniciarSessaoFlashcards({situacao:'meus'})">${iconeSvg("cards")} Começar</button>
   </div>
@@ -277,7 +277,7 @@ function cartaoSelecionado(id){ return !!(state.filtroRota.cartoesSelecionados |
 function htmlBarraSelecaoCartoes(){
   const n = idsDeCartoesSelecionados().length;
   return n
-    ? `<span class="text-sm"><strong>${n}</strong> selecionado(s)</span>
+    ? `<span class="text-sm"><strong>${n}</strong> ${flexionar(n, "selecionado(s)")}</span>
        <button class="btn btn-secondary btn-sm" onclick="sugerirCartoesSelecionadosParaEquipe()">${iconeSvg("upload")} Sugerir à equipe</button>
        <button class="btn btn-danger btn-sm" onclick="arquivarCartoesSelecionados()">${iconeSvg("trash")} Arquivar selecionados</button>
        <button class="btn btn-ghost btn-sm" onclick="limparSelecaoDeCartoes()">Limpar seleção</button>`
@@ -311,7 +311,7 @@ function arquivarCartoesSelecionadosConfirmado(){
     nuvemRegistrar({cartaoPessoal:c});
   });
   state.filtroRota.cartoesSelecionados = {};
-  saveState(); fecharModal(); toast(ids.length+" "+plural(ids.length,"cartão","cartões")+" arquivado(s)."); render();
+  saveState(); fecharModal(); toast(ids.length+" "+plural(ids.length,"cartão","cartões")+" "+flexionar(ids.length, "arquivado(s)")+"."); render();
 }
 function sugerirCartoesSelecionadosParaEquipe(){
   const u = usuarioAtual();
@@ -322,7 +322,7 @@ function sugerirCartoesSelecionadosParaEquipe(){
   state.filtroRota.cartoesSelecionados = {};
   saveState();
   const jaEsperavam = cartoes.length - elegiveis.length;
-  toast(elegiveis.length+" "+plural(elegiveis.length,"cartão","cartões")+" enviado(s) para aprovação da coordenação/professor" + (jaEsperavam ? " · " + jaEsperavam + " já estava(m) esperando decisão" : "") + ". Continuam no seu baralho enquanto isso.");
+  toast(elegiveis.length+" "+plural(elegiveis.length,"cartão","cartões")+" "+flexionar(elegiveis.length, "enviado(s)")+" para aprovação da coordenação/professor" + (jaEsperavam ? " · " + jaEsperavam + " já estava(m) esperando decisão" : "") + ". Continuam no seu baralho enquanto isso.");
   render();
 }
 function atualizarFiltroFlash(){
@@ -445,7 +445,7 @@ function renderFlashcardsResumo(s){
   const assuntosPendentes = assuntosPendentesDaSessaoFlash(s);
   const soMiscelanea = aRever.length > 0 && !assuntosPendentes.length;
   return `
-  <div class="page-header"><h2>Fim da revisão rápida</h2><p>${total} ${plural(total,"cartão","cartões")} revisado(s). Cada um já tem nova data de retorno.</p></div>
+  <div class="page-header"><h2>Fim da revisão rápida</h2><p>${total} ${plural(total,"cartão","cartões")} ${flexionar(total, "revisado(s)")}. Cada um já tem nova data de retorno.</p></div>
   <div class="grid grid-3">
     <div class="stat-tile"><div class="stat-value">${cont.sabia}</div><div class="stat-label">sabia</div></div>
     <div class="stat-tile"><div class="stat-value">${cont.quase}</div><div class="stat-label">quase — voltam em poucos dias</div></div>

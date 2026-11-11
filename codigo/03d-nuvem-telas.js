@@ -586,7 +586,7 @@ async function nuvemLembrarQuemNaoEntrou(){
   const aprovados = new Set((nuvemUsuarios||[]).filter(p => p.status === "aprovado").map(p => p.id));
   const alvo = (contas||[]).filter(c => aprovados.has(c.id));
   if(!alvo.length){ toast("Todas as pessoas aprovadas já entraram pelo menos uma vez."); return; }
-  if(!confirm("Enviar e-mail a " + alvo.length + " pessoa(s) aprovada(s) que ainda não entraram?")) return;
+  if(!confirm("Enviar e-mail a " + alvo.length+" "+flexionar(alvo.length, "pessoa(s) aprovada(s)")+" que ainda não entraram?")) return;
   let enviados = 0, falhas = 0;
   for(const c of alvo){
     try{
@@ -596,7 +596,7 @@ async function nuvemLembrarQuemNaoEntrou(){
     await new Promise(r => setTimeout(r, 1500));
   }
   const restam = alvo.length - enviados - falhas;
-  toast(enviados + " e-mail(s) enviado(s)" + (falhas ? ", " + falhas + " falha(s)" : "") + (restam > 0 ? ". O limite de envios do Supabase foi atingido; tente de novo daqui a uma hora." : "."), falhas || restam > 0 ? "err" : undefined);
+  toast(enviados + " e-mail(s) enviado(s)" + (falhas ? ", " + falhas+" "+flexionar(falhas, "falha(s)")+"" : "") + (restam > 0 ? ". O limite de envios do Supabase foi atingido; tente de novo daqui a uma hora." : "."), falhas || restam > 0 ? "err" : undefined);
 }
 
 function renderCadastrosPendentesDaNuvem(){

@@ -241,7 +241,7 @@ function atualizarJanelaDaTrilha(deDigitacao){
       <span><input type="checkbox" ${marcados.has(a.id)?"checked":""} onchange="alternarAssuntoDaTrilha('${escapeHtml(a.id)}')"> ${escapeHtml(nomeAssunto(a.id))}</span>
       <span class="muted">${erroTxt(a)} · ${direita}</span></label>`;
   previa.innerHTML = `<div class="peso-600 mb-1">Na trilha (${t.itens.length} questões)</div>
-    ${doMarcado.length ? doMarcado.map(a => { const r = alocadas[a.id]; return linha(a, `<strong>${r ? r.alocadas : 0}</strong> ${plural(r ? r.alocadas : 0,"questão","questões")}${r && (r.novas||r.erradas||r.certas) ? " ("+[r.novas?r.novas+" nova(s)":"", r.erradas?r.erradas+" errada(s)":"", r.certas?r.certas+" acertada(s)":""].filter(Boolean).join(", ")+")" : ""}`); }).join("") : '<p class="text-xs muted">Nenhum assunto marcado.</p>'}
+    ${doMarcado.length ? doMarcado.map(a => { const r = alocadas[a.id]; return linha(a, `<strong>${r ? r.alocadas : 0}</strong> ${plural(r ? r.alocadas : 0,"questão","questões")}${r && (r.novas||r.erradas||r.certas) ? " ("+[r.novas?r.novas+" "+flexionar(r.novas, "nova(s)")+"":"", r.erradas?r.erradas+" "+flexionar(r.erradas, "errada(s)")+"":"", r.certas?r.certas+" "+flexionar(r.certas, "acertada(s)")+"":""].filter(Boolean).join(", ")+")" : ""}`); }).join("") : '<p class="text-xs muted">Nenhum assunto marcado.</p>'}
     ${fila.length ? `<div class="peso-600 mt-2 mb-1">Próximos da fila (marque para incluir)</div>
       ${visiveis.map(a => linha(a, `+${comMais(a)} se incluir`)).join("")}
       ${fila.length > visiveis.length ? `<button class="link-btn text-xs" onclick="mostrarTodosOsAssuntosDaTrilha()">ver mais ${fila.length - visiveis.length} ${plural(fila.length - visiveis.length,"assunto","assuntos")}</button>` : ""}` : ""}

@@ -22,7 +22,7 @@ function iniciarSessaoRecomendada(){
     if((guardada.salvaEm || hojeISO()) === hojeISO()){ retomarSessaoEmAndamento(); return; }
     const feitas = respostasFeitas(guardada).length;
     abrirModalTitulado("Você tem um conjunto de outro dia", `
-      <p class="text-sm">Começado em <strong>${formatDataBR(guardada.salvaEm)}</strong>, com <strong>${feitas}</strong> de ${guardada.itens.length} respondida(s). Continuar mantém aquela fila; começar de hoje monta um conjunto novo com a matéria e as revisões vencidas de agora — e a fila de ${formatDataBR(guardada.salvaEm)} se perde.</p>
+      <p class="text-sm">Começado em <strong>${formatDataBR(guardada.salvaEm)}</strong>, com <strong>${feitas}</strong> de ${guardada.itens.length} ${flexionar(guardada.itens.length, "respondida(s)")}. Continuar mantém aquela fila; começar de hoje monta um conjunto novo com a matéria e as revisões vencidas de agora — e a fila de ${formatDataBR(guardada.salvaEm)} se perde.</p>
       <div class="flex gap-1 mt-3 quebra">
         <button class="btn btn-primary" onclick="fecharModal(); retomarSessaoEmAndamento()">Continuar aquele conjunto</button>
         <button class="btn btn-secondary" onclick="fecharModal(); montarSessaoRecomendadaDeHoje()">Começar um conjunto de hoje</button>
@@ -638,7 +638,7 @@ function renderMapaSessao(sessao){
       <span class="so-largo"><i class="amostra"></i>em branco</span>
     </div>` : `<div class="text-xs muted mt-1">Cada quadradinho é uma questão da fila. Clique para ir a qualquer uma, respondida ou não; assim que você responder, ele mostra se acertou.</div>`}`;
   return htmlBarraDeQuestoes({ id: "mapaDaSessao", feitas, total, pills, detalhe,
-    titulo: `${feitas} de ${total} respondidas · ${acertos} acerto(s) · ${erros} erro(s)${emBranco ? " · " + emBranco + " em branco" : ""}` });
+    titulo: `${feitas} de ${total} respondidas · ${acertos} ${flexionar(acertos, "acerto(s)")} · ${erros} ${flexionar(erros, "erro(s)")}${emBranco ? " · " + emBranco + " em branco" : ""}` });
 }
 /* A barra fina, comum à prática e ao simulado. Quem chama entrega os botões
    (pills) e o que aparece só com a barra expandida (detalhe). */
@@ -854,8 +854,8 @@ function renderSessaoResumo(){
   <div class="page-header"><h2>Conjunto de questões concluído</h2><p>${sessao.somenteLeitura?"Revisão do conjunto respondido em "+formatDataBR(sessao.dataOriginal||hojeISO())+".":"Veja abaixo, questão a questão, o que você acertou, errou, chutou ou respondeu na dúvida. Clique em qualquer uma para voltar a ela."}</p></div>
   <div class="grid ${emBranco?"grid-3":"grid-2"} mb-2">
     <div class="stat-tile"><div class="stat-value">${total?pct(acertos,total):0}%</div><div class="stat-label">de acerto neste conjunto (${acertos}/${total})</div></div>
-    <div class="stat-tile"><div class="stat-value">${errosEChutes}</div><div class="stat-label">questão(ões) para revisar (erros e chutes)</div></div>
-    ${emBranco?`<div class="stat-tile"><div class="stat-value">${emBranco}</div><div class="stat-label">deixada(s) em branco — não contam como erro</div></div>`:""}
+    <div class="stat-tile"><div class="stat-value">${errosEChutes}</div><div class="stat-label">${flexionar(errosEChutes,"questão(ões)")} para revisar (erros e chutes)</div></div>
+    ${emBranco?`<div class="stat-tile"><div class="stat-value">${emBranco}</div><div class="stat-label">${flexionar(emBranco,"deixada(s)")} em branco — não ${plural(emBranco,"conta","contam")} como erro</div></div>`:""}
   </div>
   ${(emBranco && !sessao.somenteLeitura && primeiraEmBranco!==undefined) ? `<div class="card-flat mb-2 flex justify-between items-center gap-2 quebra">
     <div class="text-sm">Ainda dá para responder o que ficou em branco: a fila continua guardada com as suas marcações.</div>
@@ -1065,7 +1065,7 @@ function renderQuestionCard(q, opts){
     // só deixa de repetir em toda questão
     const dicaRiscar = comeco => opts.somenteLeitura ? "" :
       `<div class="text-xs muted mt-2">${comeco}<details class="dica-questao" ${dicasDaQuestaoAbertas() ? "open" : ""} ontoggle="lembrarDicasDaQuestao(this.open)"><summary>${iconeSvg("eye-off")} Como funciona</summary>Assunto, especialidade e dificuldade aparecem depois que você responder, para não entregar o diagnóstico. ${nRiscadas
-        ? `${nRiscadas} alternativa(s) eliminada(s) — clique no × de novo para trazer de volta.`
+        ? `${nRiscadas} ${flexionar(nRiscadas, "alternativa(s) eliminada(s)")} — clique no × de novo para trazer de volta.`
         : "Use o × ao lado de cada alternativa para eliminar o que você já descartou."}</details></div>`;
     if(opts.modoSimulado){
       // no simulado (fora do modo aprendizado): sem confiança e sem feedback imediato — só marca e segue
@@ -1107,7 +1107,7 @@ function renderFeedbackQuestao(q, opts){
   if(riscadas.length){
     html += riscadas.includes(q.gabarito)
       ? `<div class="card-flat mt-2 text-xs borda-alerta">${iconeSvg("alert")} Você tinha <strong>eliminado a alternativa ${escapeHtml(q.gabarito)}</strong>, que era a correta. Vale reler a explicação olhando para o motivo que fez você descartá-la — é ali que está a lacuna.</div>`
-      : `<div class="card-flat mt-2 text-xs muted">${iconeSvg("check")} Você eliminou ${riscadas.length} alternativa(s) e nenhuma delas era a correta.</div>`;
+      : `<div class="card-flat mt-2 text-xs muted">${iconeSvg("check")} Você eliminou ${riscadas.length} ${flexionar(riscadas.length, "alternativa(s)")} e nenhuma delas era a correta.</div>`;
   }
   return html + renderRodapeDaQuestaoRespondida(q);
 }
@@ -1157,7 +1157,7 @@ function renderAcoesQuestao(q){
     <button class="btn btn-secondary btn-sm" onclick="abrirPromptDuvida('${q.id}')">${iconeSvg("message")} Tirar dúvida com IA</button>
   </div>
   ${nota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(nota)}</div></div>` : ""}
-  ${cartoesDaQuestao(uidAtual, q.id).length ? `<div class="text-xs muted mt-1">${iconeSvg("cards")} Você já tem ${cartoesDaQuestao(uidAtual, q.id).length} ${plural(cartoesDaQuestao(uidAtual, q.id).length,"cartão","cartões")} escrito(s) a partir desta questão.</div>` : ""}`;
+  ${cartoesDaQuestao(uidAtual, q.id).length ? `<div class="text-xs muted mt-1">${iconeSvg("cards")} Você já tem ${cartoesDaQuestao(uidAtual, q.id).length} ${plural(cartoesDaQuestao(uidAtual, q.id).length,"cartão","cartões")} ${flexionar(cartoesDaQuestao(uidAtual, q.id).length, "escrito(s)")} a partir desta questão.</div>` : ""}`;
 }
 /* Cartões pessoais que o usuário criou a partir de uma questão específica. */
 function cartoesDaQuestao(usuarioId, questaoId){

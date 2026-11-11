@@ -309,7 +309,7 @@ function renderPainelDaTurma(){
     <div class="stat-tile"><div class="stat-value">${aprovados.length ? Math.round(soma(aprovados,"r30")/aprovados.length) : 0}</div><div class="stat-label">questões por pessoa nos últimos 30 dias (${soma(aprovados,"r30")} no total)</div></div>
     ${naEquipe
       ? `<div class="stat-tile"><div class="stat-value">${soma(aprovados,"cartoes30")}</div><div class="stat-label">cartões revisados nos últimos 30 dias</div></div>`
-      : `<div class="stat-tile"><div class="stat-value">${mediaDoRecorte && mediaDoRecorte.r30 ? pct(mediaDoRecorte.a30, mediaDoRecorte.r30)+"%" : "—"}</div><div class="stat-label">${mediaDoRecorte ? "acerto médio da turma nos últimos 30 dias" : "acerto médio da turma: "+escapeHtml(motivoSemMedia)}${parados?` · <strong>${parados} parado(s)</strong>`:""}</div></div>`}
+      : `<div class="stat-tile"><div class="stat-value">${mediaDoRecorte && mediaDoRecorte.r30 ? pct(mediaDoRecorte.a30, mediaDoRecorte.r30)+"%" : "—"}</div><div class="stat-label">${mediaDoRecorte ? "acerto médio da turma nos últimos 30 dias" : "acerto médio da turma: "+escapeHtml(motivoSemMedia)}${parados?` · <strong>${parados} ${flexionar(parados, "parado(s)")}</strong>`:""}</div></div>`}
   </div>
 
   ${f.ano==="todos" && linhasAnos.length > 1 ? `<div class="card mb-2">
@@ -327,7 +327,7 @@ function renderPainelDaTurma(){
   </div>` : ""}
 
   ${!naEquipe && linhasTurmas.length ? `<details class="secao-expansivel" ${secaoAbertaPainel("turmas")?"open":""} ontoggle="guardarSecaoPainel('turmas', this.open)">
-    <summary><span class="card-title sem-m">Por turma</span><span class="text-xs muted">${linhasTurmas.length} turma(s)</span></summary>
+    <summary><span class="card-title sem-m">Por turma</span><span class="text-xs muted">${linhasTurmas.length} ${flexionar(linhasTurmas.length, "turma(s)")}</span></summary>
     <div class="secao-corpo">
     <p class="text-xs muted">Cada turma do rodízio ("Grupo A", "Grupo B"…) e quem ainda não escolheu turma. O acerto médio só aparece com ${CONFIG.minAlunosParaMedia} alunos ou mais respondendo: com menos, seria o acerto de uma pessoa.</p>
     <div class="table-wrap mt-1"><table>
@@ -363,7 +363,7 @@ function renderPainelDaTurma(){
   </div>`}
 
   <details class="secao-expansivel" ${secaoAbertaPainel("pessoas")?"open":""} ontoggle="guardarSecaoPainel('pessoas', this.open)">
-    <summary><span class="card-title sem-m">${naEquipe ? "Equipe" : "Alunos "+(f.ano==="todos"?"":"do "+escapeHtml(f.ano))}</span><span class="text-xs muted">${lista.length} ${naEquipe ? "pessoa(s)" : "aluno(s)"}${parados?` · ${parados} parado(s)`:""}</span></summary>
+    <summary><span class="card-title sem-m">${naEquipe ? "Equipe" : "Alunos "+(f.ano==="todos"?"":"do "+escapeHtml(f.ano))}</span><span class="text-xs muted">${lista.length} ${naEquipe ? "pessoa(s)" : "aluno(s)"}${parados?` · ${parados} ${flexionar(parados, "parado(s)")}`:""}</span></summary>
     <div class="secao-corpo">
     <div class="flex justify-between items-center quebra-gap">
       <div class="flex gap-1 items-center quebra">
@@ -409,13 +409,13 @@ function htmlTrilhaDaTurma(alunos){
   const min = CONFIG.minAlunosParaMedia;
   if(com.length < min) return `<div class="card mb-2"><div class="card-title">Trilha dos Formados</div><p class="text-sm muted">Menos de ${min} formados usando a trilha neste recorte: os números só aparecem a partir de ${min}, para ninguém ser identificado.</p></div>`;
   const conta = campo => { const m = {}; com.forEach(a => (a.trilha[campo] || []).forEach(id => { m[id] = (m[id] || 0) + 1; })); return Object.entries(m).filter(([, n]) => n >= min).sort((x, y) => y[1] - x[1]).slice(0, 8); };
-  const lista = campo => { const l = conta(campo); return l.length ? `<ol class="text-sm">${l.map(([id, n]) => `<li>${escapeHtml(nomeAssunto(id))} <span class="text-xs muted">· ${n} formado(s)</span></li>`).join("")}</ol>` : `<p class="text-sm muted">Nenhum assunto com ${min} ou mais formados.</p>`; };
+  const lista = campo => { const l = conta(campo); return l.length ? `<ol class="text-sm">${l.map(([id, n]) => `<li>${escapeHtml(nomeAssunto(id))} <span class="text-xs muted">· ${n} ${flexionar(n, "formado(s)")}</span></li>`).join("")}</ol>` : `<p class="text-sm muted">Nenhum assunto com ${min} ou mais formados.</p>`; };
   const posicoes = com.map(a => a.trilha.posicao || 0).sort((x, y) => x - y), mediana = posicoes[Math.floor(posicoes.length / 2)];
   const consolidados = com.map(a => a.trilha.consolidados || 0).sort((x, y) => x - y);
   const total = Math.max(...com.map(a => a.trilha.total));
   const ondas = {}; com.forEach(a => { const o = Math.floor(((a.trilha.posicao || 1) - 1) / 30) + 1; ondas[o] = (ondas[o] || 0) + 1; });
   return `<details class="secao-expansivel" ${secaoAbertaPainel("trilha")?"open":""} ontoggle="guardarSecaoPainel('trilha', this.open)">
-    <summary><span class="card-title sem-m">Trilha dos Formados</span><span class="text-xs muted">${com.length} formado(s)</span></summary>
+    <summary><span class="card-title sem-m">Trilha dos Formados</span><span class="text-xs muted">${com.length} ${flexionar(com.length, "formado(s)")}</span></summary>
     <div class="secao-corpo">
     <p class="text-xs muted">Onde os formados estão na fila de assuntos (os que mais caem nas provas, na ordem em que um constrói o outro). Só somas: nenhum nome, nenhuma taxa de acerto. Quem vê: professores e administradores com acesso à Turma.</p>
     <div class="grid grid-3 compacto mt-1">

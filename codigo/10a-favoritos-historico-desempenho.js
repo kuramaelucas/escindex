@@ -53,7 +53,7 @@ function renderFavoritos(){
   return `
   ${cabecalho}
   ${abas}
-  <p class="text-sm muted mb-2">${favs.length} ${plural(favs.length,"questão","questões")} marcada(s)${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p>
+  <p class="text-sm muted mb-2">${favs.length} ${plural(favs.length,"questão","questões")} ${flexionar(favs.length, "marcada(s)")}${comNota?`, ${comNota} com anotação sua`:""}. Abra qualquer uma na íntegra, pratique só ela ou pratique todas em sequência.</p>
   ${favs.length ? `<div class="flex gap-1 mb-2 quebra"><button class="btn btn-primary" onclick="praticarFavoritas()">${iconeSvg("book")} Praticar todas as favoritas</button></div>` : ""}
   ${favs.length ? pag.itens.map(({reg,q})=>{
     const area = getArea(q.areaId);
@@ -107,7 +107,7 @@ function renderQuestoesRetiradas(u, retiradas){
 function renderFavoritosCartoes(u, cartoes){
   const pag = paginar(cartoes, "favoritos-cartoes");
   return `
-  <p class="text-sm muted mb-2">${cartoes.length} ${plural(cartoes.length,"cartão","cartões")} salvo(s). Salvar não muda a repetição espaçada: o cartão continua voltando na data dele — isto aqui é a sua pilha de "quero rever este conceito".</p>
+  <p class="text-sm muted mb-2">${cartoes.length} ${plural(cartoes.length,"cartão","cartões")} ${flexionar(cartoes.length, "salvo(s)")}. Salvar não muda a repetição espaçada: o cartão continua voltando na data dele — isto aqui é a sua pilha de "quero rever este conceito".</p>
   ${cartoes.length ? `<div class="flex gap-1 mb-2 quebra"><button class="btn btn-primary" onclick="revisarCartoesFavoritos()">${iconeSvg("cards")} Revisar os cartões salvos</button></div>` : ""}
   ${cartoes.length ? pag.itens.map(({reg,cartao})=>{
     const rev = revisaoDoCartao(u.id, cartao.id);
@@ -216,7 +216,7 @@ function renderLivroOuro(){
     <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="card-title">Obrigado</div>
-        <p class="text-sm muted">${registros.length} registro(s) de doação, colaboração e apoio. Se você contribuiu e não está aqui, avise a coordenação — a lista é mantida à mão, e esquecer alguém é o único erro que não queremos cometer.</p>
+        <p class="text-sm muted">${registros.length} ${flexionar(registros.length, "registro(s)")} de doação, colaboração e apoio. Se você contribuiu e não está aqui, avise a coordenação — a lista é mantida à mão, e esquecer alguém é o único erro que não queremos cometer.</p>
       </div>
       <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirModalContribuir()">${iconeSvg("message")} Quero contribuir</button>
@@ -322,7 +322,7 @@ function enviarLivroOuroParaNuvem(){
   (db.livroOuro||[]).forEach(r => nuvemMarcarGlobalPendente("livro_ouro", r.id));
   saveState();
   nuvemSincronizarAgora({forcarRedesenho:true});
-  toast((db.livroOuro||[]).length + " registro(s) do Livro de Ouro a caminho da nuvem.");
+  toast((db.livroOuro||[]).length+" "+flexionar((db.livroOuro||[]).length, "registro(s)")+" do Livro de Ouro a caminho da nuvem.");
 }
 
 /* ==========================================================================
@@ -426,13 +426,13 @@ function htmlDiaDoHistorico(d){
     const t = pct(sess.acertos, sess.total), rot = rotuloDoConjunto(sess);
     const motivo = (sess.itens[0] && sess.itens[0].motivo ? sess.itens[0].motivo : "sessão de prática").replace(/^Trilha por erro\s*—\s*/i, "");
     linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
-      <span>${iconeSvg(rot.trilha?"target":"book")} ${sess.naoTerminada ? `${rot.nome.toLowerCase()} <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} ${plural(sess.planejadas?" de "+sess.planejadas:"","questão","questões")} respondida(s) (parado há mais de 7 dias)` : `${rot.nome.toLowerCase()} de ${sess.total} ${plural(sess.total,"questão","questões")}`} — ${escapeHtml(motivo)}</span>
+      <span>${iconeSvg(rot.trilha?"target":"book")} ${sess.naoTerminada ? `${rot.nome.toLowerCase()} <strong>não terminado</strong>: ${sess.total}${sess.planejadas?" de "+sess.planejadas:""} ${plural(sess.planejadas||sess.total,"questão","questões")} ${flexionar(sess.total, "respondida(s)")} (parado há mais de 7 dias)` : `${rot.nome.toLowerCase()} de ${sess.total} ${plural(sess.total,"questão","questões")}`} — ${escapeHtml(motivo)}</span>
       <span class="flex items-center gap-1"><span class="badge ${corTaxa(t)}">${t}%</span>
       <button class="link-btn text-xs" onclick="abrirSessaoDoHistorico('${sess.id}')">abrir ${rot.trilha?"esta trilha":"este conjunto"}</button></span>
     </div>`);
   });
   if(d.cartoes) linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
-    <span>${iconeSvg("cards")} ${d.cartoes} flashcard(s) revisado(s)${d.cartoesExatos?"":" (ao menos)"}</span>
+    <span>${iconeSvg("cards")} ${d.cartoes} ${flexionar(d.cartoes, "flashcard(s) revisado(s)")}${d.cartoesExatos?"":" (ao menos)"}</span>
     <button class="link-btn text-xs" onclick="navigate('flashcards')">ir para a Revisão Rápida</button></div>`);
   d.simulados.forEach(sim=>{
     linhas.push(`<div class="flex justify-between items-center gap-2 text-xs muted mb-1 quebra">
@@ -445,7 +445,7 @@ function htmlDiaDoHistorico(d){
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">
         <div class="peso-600">${formatDataBR(d.data)}${d.data===hojeISO()?' · <span class="badge badge-accent">hoje</span>':""}</div>
-        <div class="text-xs muted mt-1">${d.total ? `${d.total} ${plural(d.total,"questão","questões")} · ${d.acertos} acerto(s) · ${d.chutes} chute(s) · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}</div>
+        <div class="text-xs muted mt-1">${d.total ? `${d.total} ${plural(d.total,"questão","questões")} · ${d.acertos} ${flexionar(d.acertos, "acerto(s)")} · ${d.chutes} ${flexionar(d.chutes, "chute(s)")} · ${d.duvidas} na dúvida` : "nenhuma questão neste dia"}</div>
       </div>
       <div class="flex items-center gap-1 quebra">
         ${taxa!==null ? `<span class="badge ${corTaxa(taxa)}">${taxa}% de acerto</span>` : ""}
@@ -474,7 +474,7 @@ function htmlCalendarioHistorico(u, diasAtivos){
     const ativo = porData.get(d.iso);
     const classe = d.metaBatida ? "cal-meta" : ativo ? "cal-estudou" : "";
     const dica = formatDataBR(d.iso) + ": " + (d.questoes ? d.questoes+" "+plural(d.questoes,"questão","questões")+"" : "sem questões")
-      + (d.cartoes ? ", " + d.cartoes+" "+plural(d.cartoes,"cartão","cartões")+"" : "") + (ativo && ativo.simulados.length ? ", " + ativo.simulados.length + " simulado(s)" : "") + (d.metaBatida ? " — meta batida" : "");
+      + (d.cartoes ? ", " + d.cartoes+" "+plural(d.cartoes,"cartão","cartões")+"" : "") + (ativo && ativo.simulados.length ? ", " + ativo.simulados.length+" "+flexionar(ativo.simulados.length, "simulado(s)")+"" : "") + (d.metaBatida ? " — meta batida" : "");
     const conteudo = `<span class="cal-num">${d.dia}</span><span class="cal-qtd">${d.questoes||""}</span>`;
     const comum = `${classe} ${d.futuro?"cal-futuro":""} ${d.hoje?"cal-hoje":""} ${ctx.dia===d.iso?"cal-selecionado":""}`;
     return ativo ? `<button type="button" class="cal-dia cal-clicavel ${comum}" title="${escapeHtml(dica)}" aria-pressed="${ctx.dia===d.iso}" onclick="escolherDiaDoHistorico('${d.iso}')">${conteudo}</button>`
@@ -517,8 +517,8 @@ function renderHistorico(){
   return `
   <div class="page-header"><h2>Histórico de Atividade</h2><p>Tudo o que você já estudou, dia a dia, do mais recente para o mais antigo — questões (dentro ou fora de um conjunto), flashcards e simulados.</p></div>
   <div class="grid grid-4 compacto mb-2">
-    <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">dia(s) com estudo registrado · ${fechadas} conjunto(s) fechado(s)${sessoes.length-fechadas?" · "+(sessoes.length-fechadas)+" não terminado(s)":""}</div></div>
-    <div class="stat-tile"><div class="stat-value">${totalRespostas}</div><div class="stat-label">questões respondidas no total${cartoesTotal?" · "+cartoesTotal+" flashcard(s)":""}</div></div>
+    <div class="stat-tile"><div class="stat-value">${diasAtivos.length}</div><div class="stat-label">${flexionar(diasAtivos.length,"dia(s)")} com estudo registrado · ${fechadas} ${flexionar(fechadas, "conjunto(s) fechado(s)")}${sessoes.length-fechadas?" · "+(sessoes.length-fechadas)+" não "+flexionar(sessoes.length-fechadas,"terminado(s)"):""}</div></div>
+    <div class="stat-tile"><div class="stat-value">${totalRespostas}</div><div class="stat-label">questões respondidas no total${cartoesTotal?" · "+cartoesTotal+" "+flexionar(cartoesTotal, "flashcard(s)")+"":""}</div></div>
     <div class="stat-tile"><div class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</div><div class="stat-label">taxa de acerto geral</div></div>
     <div class="stat-tile"><div class="stat-value">${ultimos7.length?pct(ultimos7.filter(r=>r.correta).length, ultimos7.length)+"%":"—"}</div><div class="stat-label">taxa de acerto nos últimos 7 dias (${ultimos7.length} questões)</div></div>
   </div>
@@ -701,7 +701,7 @@ function htmlCardNotaEstimada(u){
     const faltam = CONFIG.incidencia.minRespostasParaNota - acertoGeralDoUsuario(u.id).total;
     return `<div class="card mb-2">
       <div class="card-title">${iconeSvg("target")} Se a prova fosse hoje</div>
-      <p class="text-sm muted">Com mais ${faltam} ${plural(faltam,"questão","questões")} diferente(s) respondida(s) (refazer uma questão não conta), a plataforma estima a sua nota na prova da ${escapeHtml(inc.banca)}, área por área, pelo peso que cada grande área teve nas provas de ${faixaAnos}.</p>
+      <p class="text-sm muted">Com mais ${faltam} ${plural(faltam,"questão","questões")} ${flexionar(faltam, "diferente(s) respondida(s)")} (refazer uma questão não conta), a plataforma estima a sua nota na prova da ${escapeHtml(inc.banca)}, área por área, pelo peso que cada grande área teve nas provas de ${faixaAnos}.</p>
     </div>`;
   }
   const larga = est.maximo - est.minimo > 16;
@@ -779,7 +779,7 @@ function htmlEvolucaoPorAssunto(u){
   const grupos = evolucaoAgrupadaPorArea(ev);
   return `<div class="card mb-2" id="evolucaoAssuntos">
     <details ${secaoRecolhivelAberta("evolucao-assuntos", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('evolucao-assuntos', this.open)">
-      <summary class="card-title" style="cursor:pointer">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias <span class="text-xs muted peso-400">(${ev.assuntos.length} ${plural(ev.assuntos.length,"assunto","assuntos")} · ${ev.periodos.length} período(s))</span></summary>
+      <summary class="card-title" style="cursor:pointer">${iconeSvg("chart")} Evolução por assunto, de 15 em 15 dias <span class="text-xs muted peso-400">(${ev.assuntos.length} ${plural(ev.assuntos.length,"assunto","assuntos")} · ${ev.periodos.length} ${flexionar(ev.periodos.length, "período(s)")})</span></summary>
       <p class="text-sm muted mt-1">Cada coluna é um período de 15 dias; o último termina hoje. Em cada célula, o acerto no assunto naquele período e quantas você acertou (ex.: <strong>80%</strong> <span class="text-xs muted">8/10</span>). <strong>—</strong> quer dizer que você não fez questões daquele assunto no período — não é erro nem acerto, e a comparação só vale entre períodos em que você fez. Pouca questão engana: 100% em 2 não é melhor que 75% em 40.${ev.cortou ? " Mostramos os últimos "+ev.periodos.length+" períodos ("+ev.periodos.length*DIAS_DO_PERIODO+" dias)." : ""}</p>
       <div class="flex gap-1 mt-2 quebra">
         <button class="btn btn-secondary btn-sm" onclick="alternarAreasDaEvolucao(true)">Abrir todas as áreas</button>
@@ -947,17 +947,17 @@ function renderDesempenho(){
       <div class="stat-tile"><div class="stat-value">${totalGeral.naoRespondidas}</div><div class="stat-label">questões do banco que você ainda não viu</div></div>
     </div>`)}
 
-  ${htmlSecaoRecolhivel("desempenho-cartoes", iconeSvg("cards")+" Flashcards — contagem à parte", cartoes.revisoes+" revisões · "+cartoes.hoje+" hoje"+(cartoes.vencidos?" · "+cartoes.vencidos+" vencido(s)":""), `
+  ${htmlSecaoRecolhivel("desempenho-cartoes", iconeSvg("cards")+" Flashcards — contagem à parte", cartoes.revisoes+" revisões · "+cartoes.hoje+" hoje"+(cartoes.vencidos?" · "+cartoes.vencidos+" "+flexionar(cartoes.vencidos, "vencido(s)")+"":""), `
     <p class="text-sm muted">Cartão não tem acerto nem erro, só autoavaliação, e leva segundos onde uma questão de prova leva minutos. Por isso ele é contado aqui, separado das questões acima: é volume de revisão, não taxa de acerto.</p>
     <div class="grid grid-4 compacto mt-2">
       <div class="stat-tile"><div class="stat-value">${cartoes.revisoes}</div><div class="stat-label">cartões revisados no total (contando as repetições)</div></div>
       <div class="stat-tile"><div class="stat-value">${cartoes.cartoes}</div><div class="stat-label">cartões diferentes que já passaram pelo seu baralho</div></div>
       <div class="stat-tile"><div class="stat-value">${cartoes.hoje}</div><div class="stat-label">revisados hoje (meta de ${metaCartoesDoUsuario(u)} por dia)</div></div>
-      <div class="stat-tile"><div class="stat-value">${cartoes.dias}</div><div class="stat-label">dias com cartão revisado${cartoes.sequencia?` · ${cartoes.sequencia} seguido(s)`:""}</div></div>
+      <div class="stat-tile"><div class="stat-value">${cartoes.dias}</div><div class="stat-label">dias com cartão revisado${cartoes.sequencia?` · ${cartoes.sequencia} ${flexionar(cartoes.sequencia, "seguido(s)")}`:""}</div></div>
     </div>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="navigate('flashcards')">${iconeSvg("cards")} Ir para a Revisão Rápida</button>
-      ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} ${plural(cartoes.vencidos,"cartão","cartões")} vencido(s) esperando</span>`:""}
+      ${cartoes.vencidos?`<span class="badge badge-amber" style="align-self:center">${cartoes.vencidos} ${plural(cartoes.vencidos,"cartão","cartões")} ${flexionar(cartoes.vencidos, "vencido(s)")} esperando</span>`:""}
     </div>
   `)}
 

@@ -115,7 +115,7 @@ function renderPendenciasDeConteudo(){
     ["pend-cartoes", iconeSvg("cards") + " Assuntos sem cartão da equipe", p.semCartao.length, "assunto(s) sem nenhum cartão", htmlPendenciaSemCartao(p)],
   ];
   return `
-  <div class="page-header"><h2>Pendências de conteúdo</h2><p>${p.total ? `${p.total} item(ns) esperando a equipe.` : "Nada pendente no banco."} A lista é calculada do banco: o que for resolvido sai daqui sozinho. Gabaritos discutíveis e a história de cada prova continuam no PENDENCIAS.md.</p></div>
+  <div class="page-header"><h2>Pendências de conteúdo</h2><p>${p.total ? `${p.total} ${flexionar(p.total, "item(ns)")} esperando a equipe.` : "Nada pendente no banco."} A lista é calculada do banco: o que for resolvido sai daqui sozinho. Gabaritos discutíveis e a história de cada prova continuam no PENDENCIAS.md.</p></div>
   <div class="stat-mini-row mb-2">
     ${secoes.map(s => `<div class="stat-mini"><span class="stat-value">${s[2]}</span><span class="stat-label">${s[3]}</span></div>`).join("")}
   </div>

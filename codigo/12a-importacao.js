@@ -396,7 +396,7 @@ async function carregarArquivoImportacao(input){
     document.getElementById("previewImportacao").innerHTML = renderAvisoArquivoForaDoFormato(arquivos.map(a=>a.name));
     return;
   }
-  toast(quantas+" "+plural(quantas,"questão","questões")+" encontrada(s) em "+partes.length+" arquivo(s). Confira a pré-visualização abaixo.");
+  toast(quantas+" "+plural(quantas,"questão","questões")+" "+flexionar(quantas, "encontrada(s)")+" em "+partes.length+" "+flexionar(partes.length, "arquivo(s)")+". Confira a pré-visualização abaixo.");
   previsualizarImportacao();
 }
 function renderAvisoArquivoForaDoFormato(nomes){
@@ -764,7 +764,7 @@ function textoDoDestinoImportacao(destino){
   const u = usuarioAtual();
   if(destinoEhGrupo(destino)){
     const g = grupoDoDestino(u, destino);
-    return g ? "só o grupo "+g.nome+" ("+membrosDoGrupo(g).length+" integrante(s)) vai ver estas questões; elas ficam disponíveis na hora." : "";
+    return g ? "só o grupo "+g.nome+" ("+membrosDoGrupo(g).length+" "+flexionar(membrosDoGrupo(g).length, "integrante(s)")+") vai ver estas questões; elas ficam disponíveis na hora." : "";
   }
   if(destino==="sugerir") return "banco geral, depois da aprovação de um professor.";
   if(destino==="ativa") return "publicadas direto no banco geral, para toda a turma.";
@@ -845,7 +845,7 @@ function confirmarImportacao(){
   if(r.semGrupo){ toast("Você não tem um grupo para receber estas questões. Escolha outro destino.", "err"); return; }
   state.filtroRota.previewImportacao = null;
   const areaTexto = document.getElementById("textoImportacao"); if(areaTexto) areaTexto.value = "";   // já importado: sair não é perder
-  toast(r.importadas+" "+plural(r.importadas,"questão","questões")+" importada(s)"+(r.ignoradas?" · "+r.ignoradas+" duplicada(s) ignorada(s)":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" "+plural(r.novosAssuntos,"assunto","assuntos")+" novo(s) criado(s)":"")+
+  toast(r.importadas+" "+plural(r.importadas,"questão","questões")+" "+flexionar(r.importadas, "importada(s)")+""+(r.ignoradas?" · "+r.ignoradas+" "+flexionar(r.ignoradas, "duplicada(s) ignorada(s)")+"":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" "+plural(r.novosAssuntos,"assunto","assuntos")+" "+flexionar(r.novosAssuntos, "novo(s) criado(s)")+"":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
     (destinoEhGrupo(destino) ? " — disponíveis para o grupo "+grupoDoDestino(u, destino).nome+". Para praticar, use \"Praticar as questões do grupo\" em Meu Grupo; lá também dá para dividir o conjunto entre quem quiser."
       : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")

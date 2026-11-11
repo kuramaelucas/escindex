@@ -199,7 +199,7 @@ function montarSessaoDeFormado(usuario, tamanho){
 function motivoFormado(e, assuntoId, nivel){
   const total = CONFIG.cronogramaFormado.fases.length, rotulo = " · questão "+ROTULO_NIVEL_FORMADO[nivel];
   if(!e.total) return "Exploração — "+nomeAssunto(assuntoId)+" é novo para você · fase 1 de "+total+rotulo;
-  return "Fase "+(e.fase+1)+" de "+total+" — "+nomeAssunto(assuntoId)+": "+e.acertosNaFase+" acerto(s) em "+e.naFase.length+" nesta fase"+rotulo;
+  return "Fase "+(e.fase+1)+" de "+total+" — "+nomeAssunto(assuntoId)+": "+e.acertosNaFase+" "+flexionar(e.acertosNaFase, "acerto(s)")+" em "+e.naFase.length+" nesta fase"+rotulo;
 }
 const pctFormado = x => Math.round(x*100)+"%";
 /* O que a tela diz: a regra (com os números do CONFIG) e em que ponto a pessoa está. */
@@ -258,7 +258,7 @@ function abrirRitmoDoFormado(){
         <span><strong>Como funciona:</strong> ${escapeHtml(r.como)}.</span><br>
         <span><strong>Quando escolher:</strong> ${escapeHtml(r.quando)}.</span><br>
         <span class="muted"><strong>Cuidado:</strong> ${escapeHtml(r.cuidado)}.</span>
-        ${dif ? `<br><span class="text-xs muted">Com o que você já respondeu, ${Math.abs(dif)} ${dif>0?"subida(s)":"descida(s)"} de fase na hora.</span>` : ""}</span></label>`; }).join("")}
+        ${dif ? `<br><span class="text-xs muted">Com o que você já respondeu, ${Math.abs(dif)} ${flexionar(Math.abs(dif), dif>0?"subida(s)":"descida(s)")} de fase na hora.</span>` : ""}</span></label>`; }).join("")}
     <p class="text-xs muted mt-2">Trocar recalcula as fases com o que você já respondeu, sem perder nada. A escolha fica guardada e vale nos outros aparelhos em que você entrar.</p>
     <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarRitmoDoFormado()">Salvar</button><button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button></div>`);
 }
@@ -457,6 +457,28 @@ function questoesErroOrdenadasPorAntiguidade(usuarioId){
   });
   return pool.map(q=>({questao:q, ultima:ultimaResposta(usuarioId,q.id)}))
     .sort((a,b)=>a.ultima.data.localeCompare(b.ultima.data)); // mais antigas primeiro
+}
+/* Erro ou chute de menos de uma semana ainda não entra na fila acima (rever no dia
+   seguinte mede memória de curto prazo, não aprendizado). Sem dizer isso, quem
+   acabou de errar dez questões lia "nenhum erro para revisar" e achava que a
+   plataforma não tinha registrado: a tela conta quantos esperam e quando o
+   primeiro volta. */
+function errosEChutesEmEspera(usuarioId){
+  const hoje = hojeISO();
+  let quantos = 0, primeiraVolta = null;
+  questoesParaEstudo(usuarioId).forEach(q=>{
+    const u = ultimaResposta(usuarioId, q.id);
+    if(!u || (u.correta && u.confianca!=="chute") || diasEntre(u.data, hoje) >= CONFIG.intervaloMinimoRevisao) return;
+    quantos++;
+    const volta = somarDias(u.data, CONFIG.intervaloMinimoRevisao);
+    if(!primeiraVolta || volta < primeiraVolta) primeiraVolta = volta;
+  });
+  return { quantos, primeiraVolta };
+}
+function fraseErrosEChutesEmEspera(usuarioId){
+  const e = errosEChutesEmEspera(usuarioId);
+  if(!e.quantos) return "";
+  return `${e.quantos} ${plural(e.quantos,"erro ou chute recente espera","erros ou chutes recentes esperam")} o intervalo mínimo de ${CONFIG.intervaloMinimoRevisao} dias: ${plural(e.quantos,"volta","o primeiro volta")} em ${formatDataBR(e.primeiraVolta)}.`;
 }
 
 /* A revisão não pode se basear só em erro: mesmo quem acertou com certeza

@@ -170,7 +170,7 @@ function trilhaDeFormado(usuarioId){
 function _linhaDaTrilha(it, comEspera, comPular){
   const a = getAssunto(it.id), esp = getEspecialidade(a.especialidadeId);
   const fase = it.passouDasFases ? "passou das " + CONFIG.cronogramaFormado.fases.length + " fases" : "fase " + (it.fase + 1) + " de " + CONFIG.cronogramaFormado.fases.length;
-  const andamento = it.n ? `${it.n} resposta(s), ${it.erros} erro(s) · ${fase}` : "ainda não começou";
+  const andamento = it.n ? `${it.n} ${flexionar(it.n, "resposta(s)")}, ${it.erros} ${flexionar(it.erros, "erro(s)")} · ${fase}` : "ainda não começou";
   const acoes = (comPular && it.liberado && !it.consolidado ? ` · <a href="#" onclick="pularAssuntoDaTrilha('${it.id}'); return false;">já domino, pular</a>` : "") + (it.pulado ? ` · <a href="#" onclick="desfazerPuloDaTrilha('${it.id}'); return false;">desfazer o pulo</a>` : "");
   const reaberto = it.reabertura ? ` <span class="badge badge-amber">revisão: ${escapeHtml(it.reabertura)}</span>` : "";
   const porque = comEspera

@@ -103,8 +103,8 @@ function renderBancoQuestoes(){
   <div class="flex gap-1 items-center mb-2 quebra">
     <button class="btn btn-primary btn-sm" onclick="abrirFormularioQuestao(null)">${iconeSvg("plus")} Nova questão manual</button>
     <button class="btn btn-secondary btn-sm" onclick="navigate('importar-questoes')">${iconeSvg("upload")} Importar em lote</button>
-    ${questoesParaExportar().length ? `<button class="btn btn-ghost btn-sm" onclick="exportarQuestoesParaDados()" title="As questões aprovadas que entraram pela plataforma, num arquivo pronto para a pasta dados/">${iconeSvg("archive")} Exportar ${questoesParaExportar().length} enviada(s) para a pasta dados/</button>` : ""}
-    <span class="text-sm muted">${lista.length} resultado(s)</span>
+    ${questoesParaExportar().length ? `<button class="btn btn-ghost btn-sm" onclick="exportarQuestoesParaDados()" title="As questões aprovadas que entraram pela plataforma, num arquivo pronto para a pasta dados/">${iconeSvg("archive")} Exportar ${questoesParaExportar().length} ${flexionar(questoesParaExportar().length, "enviada(s)")} para a pasta dados/</button>` : ""}
+    <span class="text-sm muted">${lista.length} ${flexionar(lista.length, "resultado(s)")}</span>
   </div>
   ${podeGerirConteudo() ? barraExclusaoEmLote(lista) : ""}
   ${renderListaBancoQuestoesHtml(lista, paginar(lista, "banco", {assinatura: JSON.stringify(f)}))}`;
@@ -146,7 +146,7 @@ function exportarQuestoesParaDados(){
     (semNumero ? "\n   " + semNumero+" "+plural(semNumero,"questão","questões")+" não têm numeroNaProva (o número na prova original): o conferidor\n   exige esse campo em questão real — preencha antes de publicar." : "") + avisoTax + " */\n" +
     "window.EscDados.registrarQuestoes(\"" + nome + "\", [\n" + linhas.join("\n") + "\n]);\n";
   baixarArquivo(nome + ".js", arquivo, "text/javascript");
-  toast(lista.length+" "+plural(lista.length,"questão","questões")+" exportada(s)" + (semNumero ? " — " + semNumero + " sem o número na prova: preencha antes de publicar (o arquivo explica)." : ". Salve o arquivo na pasta dados/."));
+  toast(lista.length+" "+plural(lista.length,"questão","questões")+" "+flexionar(lista.length, "exportada(s)")+"" + (semNumero ? " — " + semNumero + " sem o número na prova: preencha antes de publicar (o arquivo explica)." : ". Salve o arquivo na pasta dados/."));
 }
 /* EXCLUSÃO EM LOTE. A seleção vive em `state` (não é dado do aluno). "Todas as
    do filtro" serve para tirar uma prova ou um simulado inteiro: filtre por
@@ -166,7 +166,7 @@ function barraExclusaoEmLote(lista){
   const n = selecaoBanco().size;
   return `<div class="flex gap-1 items-center mb-2 quebra">
     <button class="btn btn-secondary btn-sm" onclick="selecionarTodasDoFiltroBanco()" title="Marca as ${lista.length} questões do filtro atual, de todas as páginas">Selecionar as ${lista.length} do filtro</button>
-    ${n ? `<span class="text-sm">${n} selecionada(s)</span>
+    ${n ? `<span class="text-sm">${n} ${flexionar(n, "selecionada(s)")}</span>
     <button class="btn btn-danger btn-sm" onclick="confirmarExcluirSelecionadasBanco()">${iconeSvg("trash")} Excluir selecionadas</button>
     <button class="link-btn text-xs" onclick="limparSelecaoBanco()">limpar seleção</button>` : `<span class="text-sm muted">Marque questões na lista, ou filtre uma prova inteira e use "Selecionar as do filtro".</span>`}
   </div>`;
@@ -176,7 +176,7 @@ function confirmarExcluirSelecionadasBanco(){
   if(!ids.length){ limparSelecaoBanco(); return; }
   const set = new Set(ids);
   const respostas = (db.respostas||[]).filter(r=>set.has(r.questaoId)).length;
-  abrirModal(`${cabecalhoJanela("Excluir " + ids.length+" "+plural(ids.length,"questão","questões")+"")}<p>Esta ação não pode ser desfeita. As questões saem do banco e das sessões${respostas ? "; " + respostas + " resposta(s) de alunos perdem a questão de origem" : ""}. Para manter o histórico, prefira marcar como "anulada" ou "desatualizada".</p><p class="text-sm muted">Questões que vêm da pasta dados/ voltam na próxima carga; para tirá-las de vez, apague-as dos arquivos de dados.</p>${htmlOpcaoInativarProvas(ids)}<div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirSelecionadasBancoConfirmado()">Excluir ${ids.length} mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela("Excluir " + ids.length+" "+plural(ids.length,"questão","questões")+"")}<p>Esta ação não pode ser desfeita. As questões saem do banco e das sessões${respostas ? "; " + respostas+" "+flexionar(respostas, "resposta(s)")+" de alunos perdem a questão de origem" : ""}. Para manter o histórico, prefira marcar como "anulada" ou "desatualizada".</p><p class="text-sm muted">Questões que vêm da pasta dados/ voltam na próxima carga; para tirá-las de vez, apague-as dos arquivos de dados.</p>${htmlOpcaoInativarProvas(ids)}<div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirSelecionadasBancoConfirmado()">Excluir ${ids.length} mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 /* Inativar × excluir. Quem tira uma prova inteira quase sempre quer só que ela
    saia de vista: inativar esconde dos alunos (e das provas e do estudo) sem
@@ -202,7 +202,7 @@ function htmlOpcaoInativarProvas(ids){
 function inativarProvasSelecionadasBanco(){
   _provasParaInativar.forEach(p => inativarProva(p.chave, p.rotulo));
   selecaoBanco().clear(); fecharModal();
-  toast(_provasParaInativar.length + " prova(s) inativada(s) para todos. Reative em Provas e Simulados › Provas antigas.");
+  toast(_provasParaInativar.length+" "+flexionar(_provasParaInativar.length, "prova(s) inativada(s)")+" para todos. Reative em Provas e Simulados › Provas antigas.");
   render();
 }
 function excluirSelecionadasBancoConfirmado(){
@@ -210,7 +210,7 @@ function excluirSelecionadasBancoConfirmado(){
   const alvo = db.questoes.filter(q=>set.has(q.id));
   alvo.forEach(q=> nuvemMarcarQuestaoFora(q, q.status==="pendente" ? "recusada" : "removida", q.status==="pendente" ? "Excluída pela equipe." : ""));
   db.questoes = db.questoes.filter(q=>!set.has(q.id));
-  set.clear(); saveState(); fecharModal(); toast(alvo.length+" "+plural(alvo.length,"questão","questões")+" excluída(s)."); render();
+  set.clear(); saveState(); fecharModal(); toast(alvo.length+" "+plural(alvo.length,"questão","questões")+" "+flexionar(alvo.length, "excluída(s)")+"."); render();
 }
 function renderListaBancoQuestoesHtml(lista, paginaInfo){
   if(!lista.length) return '<div class="empty-state">Nenhuma questão encontrada com esses filtros.</div>';
@@ -695,7 +695,7 @@ function corrigirTaxonomiaAutomaticamente(){
 }
 function corrigirTaxonomiaUI(){
   const n = corrigirTaxonomiaAutomaticamente();
-  toast(n ? n+" inconsistência(s) corrigida(s)." : "Nada a corrigir — a taxonomia está consistente.");
+  toast(n ? n+" "+flexionar(n, "inconsistência(s) corrigida(s)")+"." : "Nada a corrigir — a taxonomia está consistente.");
   render();
 }
 
@@ -781,16 +781,16 @@ function renderTaxonomia(){
     <div class="flex justify-between items-center gap-2 quebra">
       <div>
         <div class="card-title">Verificação de consistência</div>
-        <p class="text-sm muted">${d.total ? d.total+" problema(s) encontrado(s)." : "Nenhum problema encontrado — árvore e questões estão coerentes."}</p>
+        <p class="text-sm muted">${d.total ? d.total+" "+flexionar(d.total, "problema(s) encontrado(s)")+"." : "Nenhum problema encontrado — árvore e questões estão coerentes."}</p>
       </div>
       ${podeEditar && d.total ? `<button class="btn btn-primary btn-sm" onclick="corrigirTaxonomiaUI()">${iconeSvg("check")} Corrigir automaticamente</button>` : ""}
     </div>
     ${d.total ? `<div class="mt-2">
       ${d.questoesIncoerentes.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.questoesIncoerentes.length} ${plural(d.questoesIncoerentes.length,"questão","questões")}</strong> com grande área ou especialidade diferente da do próprio assunto. A correção realinha pelo assunto — que é a classificação mais específica.</div>` : ""}
       ${d.questoesSemAssunto.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.questoesSemAssunto.length} ${plural(d.questoesSemAssunto.length,"questão","questões")}</strong> apontam para um assunto que não existe mais. Serão movidas para um assunto "A classificar" da especialidade.</div>` : ""}
-      ${d.duplicados.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.duplicados.length} ${plural(d.duplicados.length,"assunto","assuntos")} duplicado(s)</strong> (mesmo nome na mesma especialidade): ${escapeHtml(d.duplicados.map(x=>x.copia.nome).join(", "))}. Serão mesclados no primeiro.</div>` : ""}
-      ${d.assuntosOrfaos.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.assuntosOrfaos.length} ${plural(d.assuntosOrfaos.length,"assunto","assuntos")} órfão(s)</strong>, sem especialidade válida: ${escapeHtml(d.assuntosOrfaos.map(a=>a.nome).join(", "))}.</div>` : ""}
-      ${d.especialidadesOrfas.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.especialidadesOrfas.length} especialidade(s)</strong> sem grande área válida.</div>` : ""}
+      ${d.duplicados.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.duplicados.length} ${plural(d.duplicados.length,"assunto","assuntos")} ${flexionar(d.duplicados.length, "duplicado(s)")}</strong> (mesmo nome na mesma especialidade): ${escapeHtml(d.duplicados.map(x=>x.copia.nome).join(", "))}. Serão mesclados no primeiro.</div>` : ""}
+      ${d.assuntosOrfaos.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.assuntosOrfaos.length} ${plural(d.assuntosOrfaos.length,"assunto","assuntos")} ${flexionar(d.assuntosOrfaos.length, "órfão(s)")}</strong>, sem especialidade válida: ${escapeHtml(d.assuntosOrfaos.map(a=>a.nome).join(", "))}.</div>` : ""}
+      ${d.especialidadesOrfas.length ? `<div class="card-flat mb-1 text-sm"><strong>${d.especialidadesOrfas.length} ${flexionar(d.especialidadesOrfas.length, "especialidade(s)")}</strong> sem grande área válida.</div>` : ""}
     </div>` : ""}
     ${d.assuntosVazios.length ? `<p class="text-xs muted mt-2">${d.assuntosVazios.length} ${plural(d.assuntosVazios.length,"assunto","assuntos")} sem nenhuma questão — não é erro, mas eles aparecem vazios nos filtros dos alunos.</p>` : ""}
   </div>
@@ -800,7 +800,7 @@ function renderTaxonomia(){
     const totalArea = db.questoes.filter(q=>q.areaId===area.id).length;
     return `<div class="tree-area">
       <div class="tree-area-head" onclick="toggleTreeArea('tax-${area.id}')">
-        <span>${escapeHtml(area.nome)} <span class="text-xs muted peso-400">— ${esps.length} especialidade(s), ${totalArea} ${plural(totalArea,"questão","questões")}</span></span>
+        <span>${escapeHtml(area.nome)} <span class="text-xs muted peso-400">— ${esps.length} ${flexionar(esps.length, "especialidade(s)")}, ${totalArea} ${plural(totalArea,"questão","questões")}</span></span>
         ${iconeSvg("chevron-d")}
       </div>
       <div class="tree-body" id="treebody-tax-${area.id}">

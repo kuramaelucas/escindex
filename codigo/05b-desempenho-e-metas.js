@@ -451,16 +451,16 @@ function gerarNotificacoes(usuario){
       notifs.push({icon:"users", texto:"Escolha a sua turma do rodízio em Meu Grupo — até lá você segue o calendário oficial.", rota:"meu-grupo"});
     }
     const vencidas = questoesRevisaoEspacadaVencidas(usuario.id).length;
-    if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" "+plural(vencidas,"questão","questões")+" vencida(s) para revisão espaçada.", rota:"revisao"});
+    if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" "+plural(vencidas,"questão","questões")+" "+flexionar(vencidas, "vencida(s)")+" para revisão espaçada.", rota:"revisao"});
     const bloco = getBlocoAtual(usuario);
     const simsRecomendados = (bloco && !contaTesteAtiva()) ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id)) : [];
-    if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" simulado(s) novo(s) recomendado(s) para o seu bloco.", rota:"simulados", aba:"simulados"});
+    if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" "+flexionar(simsRecomendados.length, "simulado(s) novo(s) recomendado(s)")+" para o seu bloco.", rota:"simulados", aba:"simulados"});
     const meta = metaDoUsuario(usuario);
     const hoje = questoesRespondidasHoje(usuario.id);
-    if(hoje < meta) notifs.push({icon:"target", texto:"Faltam "+(meta-hoje)+" questão(ões) para bater sua meta de hoje.", rota:"estudar"});
+    if(hoje < meta) notifs.push({icon:"target", texto:"Faltam "+(meta-hoje)+" "+flexionar((meta-hoje), "questão(ões)")+" para bater sua meta de hoje.", rota:"estudar"});
     const metaCards = metaCartoesDoUsuario(usuario);
     const cardsHoje = cartoesRevisadosHoje(usuario.id);
-    if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" cartão(ões) para bater sua meta de revisão rápida.", rota:"flashcards"});
+    if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" "+flexionar((metaCards-cardsHoje), "cartão(ões)")+" para bater sua meta de revisão rápida.", rota:"flashcards"});
     const pendente = sessaoEmAndamentoDe(usuario);
     if(pendente) notifs.push({icon:"refresh", texto:"Você tem uma sessão pela metade ("+respostasFeitas(pendente).length+" de "+pendente.itens.length+") esperando para continuar.", rota:"estudar"});
   }
@@ -476,7 +476,7 @@ function gerarNotificacoes(usuario){
     const diasSemBackup = db.ultimoBackupEm ? diasEntre(db.ultimoBackupEm, hojeISO()) : 999;
     if(diasSemBackup>=7) notifs.push({icon:"archive", texto: db.ultimoBackupEm ? "Já se passaram "+diasSemBackup+" dias desde o último backup. Exporte um novo." : "Você ainda não fez nenhum backup dos dados. Exporte um agora.", rota:"perfil"});
     const feedbacksNaoLidos = db.feedbacks.filter(f=>!f.lido).length;
-    if(feedbacksNaoLidos) notifs.push({icon:"message", texto:feedbacksNaoLidos+" feedback(s) novo(s) de usuários.", rota:"feedback-usuarios"});
+    if(feedbacksNaoLidos) notifs.push({icon:"message", texto:feedbacksNaoLidos+" "+flexionar(feedbacksNaoLidos, "feedback(s) novo(s)")+" de usuários.", rota:"feedback-usuarios"});
   }
   if(usuario.papel==="admin" || usuario.papel==="professor"){
     // questões que a turma enviou (de qualquer aparelho, com a nuvem) esperando aprovação
@@ -486,12 +486,12 @@ function gerarNotificacoes(usuario){
     if(dif) notifs.push({icon:"alert", texto:dif+" "+plural(dif,"questão","questões")+" na fila de difíceis.", rota:"revisao-dificeis"});
     const sinalizadas = db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0).length;
     // abre direto na aba das sinalizadas: sem isso o aviso levava à aba de Difíceis e a sinalização parecia não ter chegado
-    if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" "+plural(sinalizadas,"questão","questões")+" sinalizada(s) pelos alunos.", rota:"revisao-dificeis", abaQualidade:"sinalizadas"});
+    if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" "+plural(sinalizadas,"questão","questões")+" "+flexionar(sinalizadas, "sinalizada(s)")+" pelos alunos.", rota:"revisao-dificeis", abaQualidade:"sinalizadas"});
   }
   if(usuario.papel==="residente" || usuario.papel==="admin" || usuario.papel==="professor"){
     // só some quando alguém responde (resposta oficial); ver a lista não apaga o aviso
     const pend = duvidasPendentes(usuario.papel==="residente" ? usuario : null).length;
-    if(pend) notifs.push({icon:"message", texto:pend+" dúvida(s) de alunos aguardando resposta.", rota:"fila-duvidas"});
+    if(pend) notifs.push({icon:"message", texto:pend+" "+flexionar(pend, "dúvida(s)")+" de alunos aguardando resposta.", rota:"fila-duvidas"});
   }
   return notifs;
 }

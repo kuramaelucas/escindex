@@ -303,7 +303,7 @@ function garantirEstruturaDb(alvo){
   // desreferenciam cada grupo
   const gruposAntes = alvo.grupos.length;
   alvo.grupos = alvo.grupos.filter(g => g && typeof g === "object" && g.id);
-  if(alvo.grupos.length !== gruposAntes) reparos.push("grupos (" + (gruposAntes - alvo.grupos.length) + " inválido(s))");
+  if(alvo.grupos.length !== gruposAntes) reparos.push("grupos (" + (gruposAntes - alvo.grupos.length)+" "+flexionar((gruposAntes - alvo.grupos.length), "inválido(s)")+")");
   // o grupo oficial é o calendário de quem não escolheu turma: sem ele, toda
   // tela de aluno fica sem bloco atual
   if(!alvo.grupoOficialId) alvo.grupoOficialId = "grupo-oficial";
@@ -638,7 +638,7 @@ function resumoDoResgate(){
     if(!d) return null;
     return {
       usuarios: (d.usuarios||[]).length,
-      respostas: (d.respostas||[]).length,
+      respostas: (d.respostas||[]).length + (((d._respostasEmLinhas||{}).linhas)||[]).length,
       questoes: (d.questoes||[]).length,
     };
   }catch(e){ return null; }
@@ -649,7 +649,7 @@ function restaurarBancoDeResgate(){
   if(!bruto){ toast("Não há cópia de resgate neste navegador.", "err"); return; }
   const r = resumoDoResgate();
   abrirModal(`${cabecalhoJanela("Restaurar a cópia de resgate")}
-    <p class="text-sm">Esta é a cópia do banco como ele estava antes de a plataforma precisar consertá-lo${r?`: <strong>${r.usuarios} cadastro(s)</strong>, ${r.respostas} resposta(s) e ${r.questoes} ${plural(r.questoes,"questão","questões")}`:""}. Restaurar substitui os dados atuais deste navegador por ela.</p>
+    <p class="text-sm">Esta é a cópia do banco como ele estava antes de a plataforma precisar consertá-lo${r?`: <strong>${r.usuarios} ${flexionar(r.usuarios, "cadastro(s)")}</strong>, ${r.respostas} ${flexionar(r.respostas, "resposta(s)")} e ${r.questoes} ${plural(r.questoes,"questão","questões")}`:""}. Restaurar substitui os dados atuais deste navegador por ela.</p>
     <p class="text-sm muted mt-1">Exporte um backup do estado atual antes, se ainda não exportou — a restauração não pode ser desfeita.</p>
     <div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="restaurarResgateConfirmado()">Restaurar a cópia</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
@@ -898,9 +898,11 @@ function compactarParaArmazenar(banco){
     saida[colecao] = saida[colecao].concat((banco._orfaosDeSemente && banco._orfaosDeSemente[colecao]) || []);
   });
   delete saida._orfaosDeSemente;
+  compactarHistoricoEmLinhas(banco, saida);
   return saida;
 }
 function expandirDoArmazenamento(banco){
+  expandirHistoricoEmLinhas(banco);
   const orfaos = banco._orfaosDeSemente || {};
   const ordens = banco._ordemDaSemente || {};
   delete banco._orfaosDeSemente; delete banco._ordemDaSemente;
@@ -934,10 +936,133 @@ function expandirDoArmazenamento(banco){
       return inteiro;
     });
     if(semSemente.length){
-      console.warn(semSemente.length + " item(ns) de " + colecao + " sem semente carregada; guardados à parte.");
+      console.warn(semSemente.length+" "+flexionar(semSemente.length, "item(ns)")+" de " + colecao + " sem semente carregada; guardados à parte.");
       (banco._orfaosDeSemente = banco._orfaosDeSemente || {})[colecao] = semSemente;
     }
   });
+}
+
+/* O histórico em LINHAS. Cada resposta gravada como objeto repete o nome de 16
+   campos (~360 caracteres), e é a única parte do banco que cresce sem teto: perto
+   de 8.500 respostas o localStorage (5 MB) enchia e nada mais era gravado neste
+   aparelho. No armazenamento, cada resposta (e cada revisão espaçada) vira uma
+   lista de valores na ordem de `campos`; texto que se repete muito (pessoa,
+   assunto, dia) vira o número dele na tabela `textos`. Fica em ~1/3 do tamanho.
+   É sem perda: campo ausente vai em `_sem`, campo fora da lista ou com valor
+   inesperado vai inteiro no objeto do fim da linha, e o que não for objeto
+   comum nem entra em linha (continua na lista de sempre).
+   Fica em chaves PRÓPRIAS (`_respostasEmLinhas`, `_revisoesEmLinhas`), com
+   `respostas`/`revisoes` vazias ao lado: se um código anterior a isto abrir este
+   banco (aba antiga, versão em cache), ele não vê o histórico mas também não o
+   apaga (chave que não conhece é regravada como veio), e o que a pessoa
+   responder ali se junta ao resto na próxima abertura. */
+const LINHAS_DE_RESPOSTA = {
+  campos: ["id","usuarioId","questaoId","areaId","especialidadeId","assuntoId","alternativaEscolhida","correta","confianca","data","tempoSeg","sessaoId","origem","tentativa","diasDesdeUltima","respondidaEm"],
+  repetidos: ["usuarioId","areaId","especialidadeId","assuntoId","alternativaEscolhida","confianca","data","sessaoId","origem"],
+  simNao: ["correta"],
+};
+const LINHAS_DE_REVISAO = {
+  campos: ["repeticoes","fator","intervalo","proximaRevisao","ultimaConfianca","ultimaCorreta","ultimaData"],
+  repetidos: ["proximaRevisao","ultimaConfianca","ultimaData"],
+  simNao: ["ultimaCorreta"],
+};
+function ehObjetoComum(x){ return !!x && typeof x === "object" && !Array.isArray(x); }
+/* Quem monta as linhas de um pacote: uma tabela de textos só para todas elas. */
+function montadorDeLinhas(molde){
+  const textos = [], numeroDoTexto = new Map();
+  const repetidos = new Set(molde.repetidos), simNao = new Set(molde.simNao), conhecidos = new Set(molde.campos);
+  function linha(obj){
+    const valores = [], extras = {}, ausentes = [];
+    molde.campos.forEach(k => {
+      const v = obj[k];
+      if(v === undefined){ valores.push(null); ausentes.push(k); return; }
+      if(v === null){ valores.push(null); return; }
+      if(repetidos.has(k)){
+        if(typeof v !== "string"){ valores.push(null); extras[k] = v; return; }
+        if(!numeroDoTexto.has(v)){ numeroDoTexto.set(v, textos.length); textos.push(v); }
+        valores.push(numeroDoTexto.get(v)); return;
+      }
+      if(simNao.has(k)){
+        if(typeof v !== "boolean"){ valores.push(null); extras[k] = v; return; }
+        valores.push(v ? 1 : 0); return;
+      }
+      valores.push(v);
+    });
+    Object.keys(obj).forEach(k => { if(!conhecidos.has(k) && obj[k] !== undefined) extras[k] = obj[k]; });
+    if(ausentes.length) extras._sem = ausentes;
+    if(Object.keys(extras).length) valores.push(extras);
+    return valores;
+  }
+  return { linha, pacote: conteudo => Object.assign({ campos: molde.campos, textos }, conteudo) };
+}
+/* O caminho de volta. Lê `campos` do próprio pacote (e não do molde de hoje): um
+   banco gravado antes de a lista de campos mudar continua abrindo certo. */
+function leitorDeLinhas(pacote, molde){
+  const campos = Array.isArray(pacote.campos) ? pacote.campos : molde.campos, textos = pacote.textos || [];
+  const repetidos = new Set(molde.repetidos), simNao = new Set(molde.simNao);
+  return function(valores){
+    if(!Array.isArray(valores)) return null;
+    const obj = {};
+    campos.forEach((k, i) => {
+      const v = valores[i];
+      if(v === null || v === undefined) obj[k] = null;
+      else if(repetidos.has(k)) obj[k] = textos[v];
+      else if(simNao.has(k)) obj[k] = v === 1;
+      else obj[k] = v;
+    });
+    const extras = valores.length > campos.length ? valores[campos.length] : null;
+    if(ehObjetoComum(extras)){
+      Object.keys(extras).forEach(k => { if(k !== "_sem") obj[k] = extras[k]; });
+      (extras._sem || []).forEach(k => { delete obj[k]; });
+    }
+    return obj;
+  };
+}
+function compactarHistoricoEmLinhas(banco, saida){
+  if(Array.isArray(banco.respostas) && banco.respostas.length){
+    const m = montadorDeLinhas(LINHAS_DE_RESPOSTA), linhas = [], resto = [];
+    banco.respostas.forEach(r => { if(ehObjetoComum(r)) linhas.push(m.linha(r)); else resto.push(r); });
+    saida._respostasEmLinhas = m.pacote({ linhas });
+    saida.respostas = resto;
+  }
+  if(ehObjetoComum(banco.revisoes) && Object.keys(banco.revisoes).length){
+    const m = montadorDeLinhas(LINHAS_DE_REVISAO), de = {}, resto = {};
+    Object.keys(banco.revisoes).forEach(usuarioId => {
+      const dela = banco.revisoes[usuarioId];
+      if(!ehObjetoComum(dela)){ resto[usuarioId] = dela; return; }
+      de[usuarioId] = {};
+      Object.keys(dela).forEach(questaoId => {
+        if(ehObjetoComum(dela[questaoId])) de[usuarioId][questaoId] = m.linha(dela[questaoId]);
+        else (resto[usuarioId] = resto[usuarioId] || {})[questaoId] = dela[questaoId];
+      });
+    });
+    saida._revisoesEmLinhas = m.pacote({ de });
+    saida.revisoes = resto;
+  }
+}
+function expandirHistoricoEmLinhas(banco){
+  const pr = banco._respostasEmLinhas, pv = banco._revisoesEmLinhas;
+  delete banco._respostasEmLinhas; delete banco._revisoesEmLinhas;
+  if(ehObjetoComum(pr) && Array.isArray(pr.linhas)){
+    const ler = leitorDeLinhas(pr, LINHAS_DE_RESPOSTA);
+    // as da lista comum vêm depois: num banco que passou por código antigo, são as mais novas
+    banco.respostas = pr.linhas.map(ler).filter(Boolean).concat(Array.isArray(banco.respostas) ? banco.respostas : []);
+  }
+  if(ehObjetoComum(pv) && ehObjetoComum(pv.de)){
+    const ler = leitorDeLinhas(pv, LINHAS_DE_REVISAO), soltas = ehObjetoComum(banco.revisoes) ? banco.revisoes : {}, juntas = {};
+    Object.keys(pv.de).forEach(usuarioId => {
+      juntas[usuarioId] = {};
+      Object.keys(pv.de[usuarioId] || {}).forEach(questaoId => {
+        const e = ler(pv.de[usuarioId][questaoId]);
+        if(e) juntas[usuarioId][questaoId] = e;
+      });
+    });
+    // pelo mesmo motivo, a revisão solta (gravada por código antigo) vale sobre a da linha
+    Object.keys(soltas).forEach(usuarioId => {
+      juntas[usuarioId] = ehObjetoComum(soltas[usuarioId]) ? Object.assign(juntas[usuarioId] || {}, soltas[usuarioId]) : soltas[usuarioId];
+    });
+    banco.revisoes = juntas;
+  }
 }
 
 /* Tamanho aproximado do banco no navegador. Passou a importar de verdade
@@ -975,7 +1100,7 @@ function gravarEstadoAgora(){
     if(typeof abrirModal === "function"){
       abrirModal(`<div class="modal-header"><h3>${iconeSvg("alert")} Não foi possível salvar</h3></div>
         <p class="text-sm">O armazenamento deste navegador está cheio ou bloqueado, e <strong>o que você acabou de fazer não foi gravado</strong>. Ao recarregar a página, isso se perde.</p>
-        <p class="text-sm muted mt-1">O banco ocupa ${tamanhoBancoKb()} KB. O que mais pesa são imagens embutidas em questões. Caminhos: exportar um backup agora (se você for administrador máster), liberar espaço do navegador, ou abrir a plataforma numa janela normal — janelas anônimas costumam bloquear o armazenamento.</p>
+        <p class="text-sm muted mt-1">O banco ocupa ${tamanhoBancoKb()} KB (o navegador costuma dar perto de 5.000). O que mais pesa são o histórico de respostas e as imagens embutidas em questões.${typeof nuvemConectado === "function" && nuvemConectado() ? " Com internet, o que você responde continua subindo para a sua conta na nuvem: é só este aparelho que não está guardando." : ""} Caminhos: exportar um backup agora (se você for administrador máster), liberar espaço do navegador, ou abrir a plataforma numa janela normal — janelas anônimas costumam bloquear o armazenamento.</p>
         <div class="flex gap-1 mt-2">${podeAdmin("backup") ? '<button class="btn btn-primary" onclick="exportarBackup()">Exportar backup agora</button>' : ""}<button class="btn btn-secondary" onclick="fecharModal()">Entendi</button></div>`);
     }else{
       toast("Não foi possível salvar os dados neste navegador (armazenamento cheio ou bloqueado).", "err");

@@ -9,6 +9,7 @@ function renderRevisao(){
   const assuntos = assuntosParaRevisarHoje(u.id);
   const vencidos = limitarLista(assuntos, "revisao-vencidos", 5);
   const erros = questoesErroOrdenadasPorAntiguidade(u.id);
+  const emEspera = fraseErrosEChutesEmEspera(u.id);
   const partesEspacada = partesDaRevisaoEspacada(u.id);
   const naoVistas = partesEspacada.novas.length;
   const porDecaimento = partesEspacada.decaimentos.length;
@@ -56,7 +57,7 @@ function renderRevisao(){
     ${falsaSeguranca.length ? `<div class="mt-2">
       <div class="text-sm peso-600">Assuntos em que sua confiança não bate com o acerto</div>
       ${falsaSeguranca.slice(0,5).map(f=>`<div class="flex justify-between items-center card-flat mb-1">
-        <span class="text-sm">${escapeHtml(nomeAssunto(f.assuntoId))} <span class="text-xs muted">— ${f.n} resposta(s) marcadas como "certeza"</span></span>
+        <span class="text-sm">${escapeHtml(nomeAssunto(f.assuntoId))} <span class="text-xs muted">— ${f.n} ${flexionar(f.n, "resposta(s)")} marcadas como "certeza"</span></span>
         <span class="flex items-center gap-1"><span class="badge badge-danger">${f.taxa}% de acerto</span><button class="btn btn-secondary btn-sm" onclick="praticarAssuntoFalsaSeguranca('${f.assuntoId}')">Praticar</button></span>
       </div>`).join("")}
     </div>` : ""}
@@ -64,7 +65,7 @@ function renderRevisao(){
   ${htmlCardTrilhaSugerida(u)}
   ${htmlCardRevisaoSugerida(u)}
   <div class="card mt-2">
-    <div class="card-title">Revisão rápida por flashcards (${resumoFlashcards(u.id).vencidos} vencido(s))</div>
+    <div class="card-title">Revisão rápida por flashcards (${resumoFlashcards(u.id).vencidos} ${flexionar(resumoFlashcards(u.id).vencidos, "vencido(s)")})</div>
     <p class="text-sm muted">Cartão de conceito em vez de questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisar cartões</button>
@@ -76,6 +77,7 @@ function renderRevisao(){
   <div class="card mt-2">
     <div class="card-title">Só erros e chutes pendentes (${erros.length})</div>
     <p class="text-sm muted">Se quiser focar especificamente no que errou ou chutou, sem misturar com revisão por decaimento, use esta lista — ordenada da mais antiga para a mais recente.</p>
+    ${emEspera ? `<p class="text-xs muted mt-1">${emEspera}</p>` : ""}
     <button class="btn btn-secondary mt-2" onclick="iniciarRevisaoErros()" ${!erros.length?"disabled":""}>Revisar só erros</button>
   </div>
   ${htmlCurvaDeRetencao(u)}

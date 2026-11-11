@@ -23,7 +23,7 @@ function renderEditorCalendario(grupo, opts){
   const rodizios = opcoesRodizioPorLetra(ano);
   return `
   <div class="card-flat mb-2 text-sm">
-    ${iconeSvg("calendar")} <strong>Sequência de ${escapeHtml(ano)}</strong> — ${sequencia.length} bloco(s).
+    ${iconeSvg("calendar")} <strong>Sequência de ${escapeHtml(ano)}</strong> — ${sequencia.length} ${flexionar(sequencia.length, "bloco(s)")}.
     ${grupo.oficial
       ? "Este é o calendário oficial: cada aluno vê a sequência do ano dele, começando pelo primeiro bloco" + (turmaDoDeslocamento(ano, 0).nomeado ? " (o " + escapeHtml(nomeRodizio(ano, 0)) + ")" : "") + ". Quem está em outra turma do rodízio precisa escolhê-la em Meu Grupo para ver o bloco certo."
       : `Esta turma ${turmaDoDeslocamento(ano, deslocamento).nomeado ? `é o <strong>${escapeHtml(nomeRodizio(ano, deslocamento))}</strong>: começa` : "começa"} em <strong>${escapeHtml(blocoDeInicio?blocoDeInicio.nome:"—")}</strong> e segue daí em diante, voltando ao começo quando chega ao fim.`}

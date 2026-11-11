@@ -548,8 +548,8 @@ function renderCardMeusEnvios(){
     ${soAqui.length ? `<div class="card-flat mt-2 text-sm">${iconeSvg("alert")} <strong>${soAqui.length} ${plural(soAqui.length,"questão","questões")} estão só neste navegador</strong> — foram criadas antes de subirem para a nuvem.
       <button class="btn btn-secondary btn-sm mt-1" onclick="nuvemEnviarQuestoesDesteNavegador()">${iconeSvg("upload")} Enviar para a nuvem</button></div>` : ""}
     ${envios.length ? `<div class="qcard-meta mt-2">
-        <span class="badge badge-amber">${conta("pendente")} aguardando</span><span class="badge badge-accent">${conta("aprovada")} aprovada(s)</span>
-        ${conta("recusada") ? `<span class="badge badge-danger">${conta("recusada")} recusada(s)</span>` : ""}</div>
+        <span class="badge badge-amber">${conta("pendente")} aguardando</span><span class="badge badge-accent">${conta("aprovada")} ${flexionar(conta("aprovada"), "aprovada(s)")}</span>
+        ${conta("recusada") ? `<span class="badge badge-danger">${conta("recusada")} ${flexionar(conta("recusada"), "recusada(s)")}</span>` : ""}</div>
       ${pag.itens.map(e => `<div class="card-flat mt-1">
         <div class="flex justify-between items-center quebra-gap-p"><span class="text-sm peso-600">${escapeHtml(e.banca)} ${escapeHtml(String(e.ano||""))}${e.numero ? " · nº " + e.numero : ""}</span>
           <span class="badge ${(rotulo[e.status] || rotulo.pendente)[0]}">${e.grupo && e.status === "aprovada" ? "no seu grupo — só os colegas veem" : (rotulo[e.status] || rotulo.pendente)[1]}</span></div>
