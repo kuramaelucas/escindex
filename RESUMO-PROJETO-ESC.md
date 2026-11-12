@@ -20,7 +20,7 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 >
 > | Data | Novidade (tabela/coluna) | Sem rodar |
 > | --- | --- | --- |
-> | 12/11 | Dúvida resolvida: `comentarios.resolvido` (**rodar o `esquema.sql` no banco real**) | a marca de "resolvida" vale só no aparelho; a dúvida volta à fila nos outros |
+> | 12/11 | Dúvida resolvida: `comentarios.resolvido` (**já criada no banco real em 12/11/2026**) | a marca de "resolvida" vale só no aparelho; a dúvida volta à fila nos outros |
 > | 08/11 | Trilha de Formado(a): `perfis.trilha`, `painel_turma()` recriada | assuntos pulados valem só no aparelho; a seção "Trilha dos Formados" do Painel não aparece na nuvem |
 > | 08/11 | `perfis.tamanho_sessao`, `perfis.regua_formado` (**já criadas no banco real**) | — (só um projeto novo precisa) |
 > | 30/10 | Administrador contando como aluno: `notas_do_simulado`, `acerto_por_turma`, `acerto_por_questao`, `atividade_por_semana` | o administrador fica fora dos números da nuvem |

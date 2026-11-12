@@ -3,10 +3,33 @@
 <!-- numeros:inicio -->
 > **Números do banco (gerados por `npm run publicar`):** 12.138 questões (9.305 reais, em 94 provas), 943 cartões da equipe e 237 assuntos (20 ainda sem cartão). Detalhe: `npm run dados` e `dados/CATALOGO.md`.
 <!-- numeros:fim -->
-Estão divididas em quatro grupos, do mais urgente ao que só completa o que já funciona.
+O painel da seção 0 resume tudo; as seções 1 a 5 trazem o detalhe, do mais urgente ao que só completa o que já funciona.
 
 A lista de figuras se atualiza sozinha com `npm run conferir`.
 Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
+
+---
+
+## 0. Painel geral (12/11/2026) — tudo o que está aberto, numa página
+
+Foto consolidada de **todas** as frentes. O detalhe de cada uma está nas seções abaixo e nos documentos citados; ao resolver um item, apague-o daqui e do detalhe.
+
+| # | Frente | Tamanho hoje | Quem resolve | Onde está o detalhe |
+|---|---|---|---|---|
+| 1 | **Figuras e tabelas de questões** (`imagemPendente`, fora do estudo dos alunos) | **139 questões**: 86 de provas reais com nome de arquivo definido (USP-SP 2023: 25 · USP-RP 2024: 25 · Santa Casa 2026: 12, 2023: 9, 2022: 6, 2025: 5 · USP-RP 2022: 3 · USP-SP 2026: 1); **51 do banco autoral de grupos** (`q-gd*`: meningites 6, micoses 8, piodermites 8, parasitoses 7, pneumonias 7, tuberculose 6, HIV 5, e 4 avulsas); **2 da FAMEMA 2025** (q. 49 e 50: falta o caso clínico comum, texto do caderno FMMA2403) | Quem tem os cadernos oficiais (recortar a figura) | seção 4; `npm run conferir`; `dados/imagens/LEIA-ME.md` |
+| 2 | **Reposição de questões anuladas/desatualizadas** | **124 sem reposição** (115 anuladas, 9 desatualizadas) de 192; **17 dependem de imagem**. Mais numerosas: AMRIGS 2020 (9), SES-SP 2023 (7), UNIFESP 2025 (6), Sírio 2025 (6), SES-SP 2024 / Santa Casa 2022 / IAMSPE 2023 / FMABC 2026 / AMRIGS 2021 (5 cada) | Equipe de conteúdo (método em `docs/REPOSICOES-DE-QUESTOES.md`, seção 0) | `npm run reposicoes -- pendentes` |
+| 3 | **Diretrizes: texto oficial não lido / edição superada — USP e UNIFESP** | USP: nenhuma questão com texto lido; UNIFESP: 14 de 582. **1.025 pares questão×diretriz** em todas as provas citam edição anterior à vigente (69 questões USP e 45 UNIFESP no recorte da tabela) | Quem lê as diretrizes e envia os PDFs que a rede não abre | `docs/PENDENCIAS-DE-REFERENCIAS.md`; `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md` |
+| 4 | **Diretrizes: referência sem conferência datada** (simulados autorais e outros) | **148 questões** em 5 bancos (livros-texto 31, MS/Conitec 28, pediatria 26, epidemiologia 23, GO 18, cirurgia 10, demais 12) | Skill `conferir-referencias` | `docs/REFERENCIAS-A-CONFERIR.md`; `npm run referencias-a-conferir` |
+| 5 | **PDFs e documentos que a rede da sessão não abre** (para enviar) | AHA/ASA 2026 (AVC); AHA 2025 (RCP/PALS); BTS 2023 (pleura); Portaria Conjunta SAES/SECTICS 13/2025 (colo do útero); NCCN 2026 (exige login); EAU 2026; ACOG; ESC/EACTS 2025 e ESC pericárdio 2025; ADA 2026; Sepsis-3 (JAMA 2016); ATLS 11ª ed. (paga) | Quem puder baixar e enviar | `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 4 |
+| 6 | **Gabaritos oficiais a conferir ou que faltam** | SES-SP 2026 (gabarito definitivo); FAMERP 2023 (definitivo) e lacunas de 2024/2026; UNESP 2023; FAMEMA 2023 e 2025 (definitivo); USP-RP 2021–2025 (folha oficial; 2022-100, 2023-36/59/95); Teste de Progresso 2022 (comentário oficial; 120 letras); TP 2025/2 e 2026/1 se houver gabarito definitivo diferente; UNIFESP 2023-30, 2024-1 e 2024-88 | Quem tem as folhas oficiais | seção 1 e 3 |
+| 7 | **Letras de gabarito discutíveis** (nada alterado) | ~13 questões USP e ~9 UNIFESP em `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 5; dezenas já avisadas na explicação (AMRIGS 2022–2025, IAMSPE, TP, FAMERP, FAMEMA) | A equipe decide: manter com aviso, marcar desatualizada ou anular | seções 1 e 3; `docs/PENDENCIAS-DE-REFERENCIAS.md` |
+| 8 | **Texto incompleto de questão** | USP-RP 2022: nº 19 e 75 (trechos cortados no caderno oficial), 8 e 23 (pergunta final completada pela equipe); FAMEMA 2025: 49 e 50 | Original da prova | seção 2 e item 1 |
+| 9 | **Questões sinalizadas por alunos, fora do estudo** | SES-SP 2026 q. 49 (vacinas aos 6 meses) e SES-SP 2023 q. 57 (cálcio): `desatualizada` até a equipe decidir; FAMEMA 2025 q. 49/50 | Equipe | seção 3 |
+| 10 | **Cartões da equipe** | **20 assuntos sem nenhum cartão** (`ass-psiq-alimentar`, `-psiq-personalidade`, `-saudeplanetaria`, `-orl-glandulas`, `-genetica-erros-inatos`, `-neuroendocrinos`, `-intussuscepcao`, `-febrelactente`, `-marcadorestumorais`, `-ddsmalformacoes`, `-toxinfeccao`, `-restricaocrescimento`, `-dorpelvica`, `-anatomiacirurgica`, `-emerg-ambientais`, `-politicasnacionais`, `-vitalidadefetal`, `-partopretermo`, `-neutropeniafebril`, `-micosesinvasivas`); **442 cartões gerados esperam conferência de professor** (`revisao: "pendente"`: 376 em `flashcards-assuntos-novos.js`, 57 em `-usp.js`, 9 em `-usprp.js`) | Equipe / professor | seção 5; *Revisão Rápida › Cobrir os assuntos sem cartão* |
+| 11 | **Tabela de edições vigentes** | Acrescentar à `ferramentas/edicoes-vigentes.json` as diretrizes achadas na revisão da USP (ATLS 11ª, ESC/EACTS 2025, ESC pericárdio 2025, KDIGO glomerulopatias, ESHRE 2024, RCOG, Lei 14.785/2023, Decreto 11.161/2022, nota técnica de violência sexual 2024, PCDT-IST/PrEP/PEP/TV, TB OMS, ASMBS, IDSA cateter, PCDT Parkinson) e rodar `npm run referencias-a-conferir` | Quem estiver na frente de referências | `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 3 |
+| 12 | **Infraestrutura (só a coordenação)** | Supabase: *Site URL* e *Redirect URLs* (com `**`); segredos `SUPABASE_DB_URL` e `BACKUP_SENHA` no GitHub; desligar "Confirm email"; opcional: VAPID/`avisar-pedido` para aviso com o app fechado (o `esquema.sql` já está em dia no banco real: `comentarios.resolvido` criada em 12/11/2026) | Coordenação | topo do `RESUMO-PROJETO-ESC.md`; `nuvem/LEIA-ME.md` |
+
+**Ordem sugerida:** (1) figuras das provas com mais questões (USP-SP 2023 e USP-RP 2024 resolvem 50 de uma vez; Santa Casa 32) · (6) folhas de gabarito oficiais · (5) PDFs das diretrizes · (2) reposições · (3, 4, 11) referências · (10) cartões.
 
 ---
 
@@ -161,7 +184,7 @@ O gabarito é o da banca e fica como está. A explicação diz onde ele diverge 
 | IAMSPE 2026-74 | Vacinas dos 4 meses: a alternativa inclui a meningocócica C, que é dos 3 e 5 meses |
 | IAMSPE 2026-91 | Psicopatologia: o quadro é de ideias de referência e delírio; a banca deu pseudoalucinação (C) |
 
-## 4. Figuras para anexar (86)
+## 4. Figuras para anexar (86 de provas reais; as outras 53 estão no painel, item 1)
 
 É só recortar do caderno oficial e salvar em `dados/imagens/` com o nome indicado.
 Depois, apague a linha `imagemPendente` da questão no arquivo `dados/prova-*.js`: enquanto ela existir, a questão fica fora do estudo dos alunos (`npm run conferir` avisa quando a figura já chegou e a linha ficou para trás).
@@ -195,6 +218,6 @@ Isso pesa principalmente nas questões cujas alternativas só fazem sentido com 
 - **Santa Casa 2022, 2023, 2025 e 2026**: 32 figuras.
 - **UNESP 2023**: o gabarito definitivo oficial.
 
-## 5. Assuntos sem cartão da equipe (32)
+## 5. Assuntos sem cartão da equipe (20)
 
-O banco tem 943 cartões em 238 dos 270 assuntos. Faltam cartões (três por assunto é o piso) para: `ass-politicasnacionais`, `ass-leishmaniose`, `ass-restricaocrescimento`, `ass-partopretermo`, `ass-vitalidadefetal`, `ass-ddsmalformacoes`, `ass-dorpelvica`, `ass-neuroendocrinos`, `ass-divertmeckel`, `ass-hipoglicemianeo`, `ass-intussuscepcao`, `ass-emerg-ambientais`, `ass-marcadorestumorais`, `ass-toxinfeccao`, `ass-anatomiacirurgica`, `ass-febrelactente`, `ass-orl-glandulas`, `ass-caesofago`, `ass-sincope`, `ass-psiq-alimentar` e os 12 do Teste de Progresso listados na seção 1. Em *Revisão Rápida › Cobrir os assuntos sem cartão — em lote* dá para gerar tudo numa tarde; os 376 cartões de `flashcards-assuntos-novos.js` ainda esperam a conferência de um professor (`revisao: "pendente"`).
+O banco tem 943 cartões em 217 dos 237 assuntos. Faltam cartões (três por assunto é o piso) para os 20 assuntos listados no painel (item 10). Em *Revisão Rápida › Cobrir os assuntos sem cartão — em lote* dá para gerar tudo numa tarde; os 442 cartões gerados (376 em `flashcards-assuntos-novos.js`, 57 em `-usp.js` e 9 em `-usprp.js`) ainda esperam a conferência de um professor (`revisao: "pendente"`).
