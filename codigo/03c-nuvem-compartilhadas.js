@@ -85,7 +85,7 @@ NUVEM_GLOBAIS.comentarios = {
     const reg = {
       id: l.id, questaoId: l.questao_id, usuarioId: l.usuario_id, autorNome: l.autor_nome || "",
       papelAutor: l.papel_autor || "aluno", texto: l.texto || "", data: l.data || (l.atualizado_em || "").slice(0,10),
-      respostaOficial: !!l.resposta_oficial, removido: !!l.removido,
+      respostaOficial: !!l.resposta_oficial, removido: !!l.removido, resolvido: !!l.resolvido,
     };
     if(i >= 0) db.comentarios[i] = Object.assign(db.comentarios[i], reg); else db.comentarios.push(reg);
   },
@@ -95,7 +95,7 @@ NUVEM_GLOBAIS.comentarios = {
     return {
       id: c.id, questao_id: c.questaoId, usuario_id: c.usuarioId, autor_nome: c.autorNome || "",
       papel_autor: c.papelAutor || null, texto: c.texto || "", data: c.data || null,
-      resposta_oficial: !!c.respostaOficial, removido: !!c.removido,
+      resposta_oficial: !!c.respostaOficial, removido: !!c.removido, resolvido: !!c.resolvido,
     };
   },
 };

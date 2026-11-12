@@ -425,6 +425,7 @@ const NUVEM_CAMPOS_NOVOS = {
   perfis: ["boas_vindas_em", "ordem_estagios", "avisos_lidos", "grupo_questoes_id", "prova_alvo_data", "modo_plataforma", "trilha", "tamanho_sessao", "regua_formado"],  // primeiro acesso; ordem própria dos estágios do 6º ano; avisos da coordenação já lidos; segundo grupo (só de questões); data exata da prova-alvo (6º ano)
   respostas: ["origem", "tentativa", "dias_desde_ultima", "respondida_em", "texto_resposta"],  // de onde veio a questão, que tentativa é, dias desde a anterior, a hora exata e o texto da resposta dissertativa
   resultados_simulados: ["confiancas"],  // certeza/dúvida/chute de cada questão do simulado feito em modo aprendizado
+  comentarios: ["resolvido"],     // dúvida marcada como resolvida (sai da fila e da notificação)
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],
   flashcards_pessoais: ["conjunto"],  // o nome do conjunto próprio a que o cartão pertence   // quantos cartões naquele dia

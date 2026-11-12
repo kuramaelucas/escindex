@@ -587,6 +587,8 @@ create table if not exists public.comentarios (
   atualizado_por   uuid        references auth.users(id) on delete set null,
   atualizado_em    timestamptz not null default now()
 );
+-- dúvida marcada como resolvida (sai da Fila de Dúvidas e da notificação)
+alter table public.comentarios add column if not exists resolvido boolean not null default false;
 create index if not exists comentarios_sync_idx on public.comentarios (atualizado_em);
 create index if not exists comentarios_questao_idx on public.comentarios (questao_id);
 

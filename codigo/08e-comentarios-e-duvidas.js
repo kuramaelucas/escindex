@@ -32,15 +32,29 @@ function removerComentario(id){
   nuvemMarcarGlobalPendente("comentarios", c.id);
   saveState(); toast("Comentário removido."); render();
 }
+/* Resolver uma dúvida: quem escreveu ou a equipe encerra o assunto sem precisar
+   de resposta oficial (o aluno entendeu sozinho, a dúvida era repetida…). Ela sai
+   da fila e da notificação, e pode ser reaberta. Fica guardada (`resolvido`),
+   não apaga: a conversa continua visível na questão. */
+function podeResolverComentario(c){
+  const u = usuarioAtual();
+  return !!u && !c.respostaOficial && (c.usuarioId === u.id || u.papel === "professor" || u.papel === "residente" || u.papel === "admin");
+}
+function alternarComentarioResolvido(id){
+  const c = (db.comentarios || []).find(x => x.id === id); if(!c || !podeResolverComentario(c)) return;
+  c.resolvido = !c.resolvido;
+  nuvemMarcarGlobalPendente("comentarios", c.id);
+  saveState(); toast(c.resolvido ? "Dúvida marcada como resolvida." : "Dúvida reaberta."); render();
+}
 function renderComentarios(questaoId){
   const comentarios = comentariosAtivos().filter(c=>c.questaoId===questaoId).sort((a,b)=>a.data.localeCompare(b.data));
   return `<div class="mt-3" style="border-top:1px solid var(--border);padding-top:1rem">
     <div style="font-weight:600;font-size:var(--fs-md);margin-bottom:.6rem">${iconeSvg("message")} Comentários e dúvidas (${comentarios.length})</div>
     ${comentarios.map(c=>{
       return `<div class="card-flat mb-1" ${c.respostaOficial?'style="border-color:var(--accent)"':""}>
-        <div class="flex items-center gap-1"><span class="text-sm peso-600">${escapeHtml(nomeAutorComentario(c))}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}</div>
+        <div class="flex items-center gap-1"><span class="text-sm peso-600">${escapeHtml(nomeAutorComentario(c))}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}${c.resolvido?'<span class="badge badge-muted">Resolvida</span>':""}</div>
         <div class="text-sm mt-1">${escapeHtml(c.texto)}</div>
-        <div class="text-xs muted mt-1">${formatDataBR(c.data)}${podeRemoverComentario(c) ? ` · <button class="link-btn text-xs" onclick="removerComentario('${c.id}')">remover</button>` : ""}</div>
+        <div class="text-xs muted mt-1">${formatDataBR(c.data)}${podeResolverComentario(c) ? ` · <button class="link-btn text-xs" onclick="alternarComentarioResolvido('${c.id}')">${c.resolvido ? "reabrir" : "marcar como resolvida"}</button>` : ""}${podeRemoverComentario(c) ? ` · <button class="link-btn text-xs" onclick="removerComentario('${c.id}')">${c.respostaOficial ? "excluir resposta" : "excluir"}</button>` : ""}</div>
       </div>`;
     }).join("") || '<div class="text-sm muted">Nenhum comentário ainda. Seja o primeiro a comentar.</div>'}
     <div class="mt-2">
@@ -94,9 +108,10 @@ function assuntosAjudaDentroDasAreas(assuntos, areas){
 }
 function duvidasPendentes(usuario){
   // uma dúvida é considerada "pendente" se, entre os comentários daquela questão
-  // feitos por um aluno, nenhum comentário oficial posterior a ela responde
+  // feitos por um aluno, nenhum comentário oficial posterior a ela responde —
+  // e ninguém a marcou como resolvida
   const todos = comentariosAtivos();
-  const deAlunos = todos.filter(c=>!c.respostaOficial);
+  const deAlunos = todos.filter(c=>!c.respostaOficial && !c.resolvido);
   let pendentes = deAlunos.filter(c=>{
     return !todos.some(r=>r.questaoId===c.questaoId && r.respostaOficial && r.data>=c.data);
   });

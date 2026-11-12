@@ -799,3 +799,24 @@ test("notificações da equipe dizem QUEM sinalizou, perguntou ou mandou feedbac
   assert.equal(r.nomes, "Ana, Bruno e mais 2");
   await contexto.close();
 });
+
+test("dúvida marcada como resolvida sai da fila e da notificação; reabrir traz de volta", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => { fazerLoginDemo("aluno"); usuarioAtual().papel = "professor"; state.modoAluno = false; });
+    const r = await pagina.evaluate(() => {
+      const q = questoesAtivas()[0];
+      db.comentarios = [{ id: "com-t1", questaoId: q.id, usuarioId: "alguem", autorNome: "Aluno", papelAutor: "aluno", texto: "Por que B?", data: hojeISO(), respostaOficial: false }];
+      const notif = () => gerarNotificacoes(usuarioAtual()).some(n => n.rota === "fila-duvidas");
+      const antes = [duvidasPendentes().length, notif()];
+      alternarComentarioResolvido("com-t1");
+      const resolvida = [duvidasPendentes().length, notif(), duvidasRespondidas().length];
+      alternarComentarioResolvido("com-t1");
+      return { antes, resolvida, reaberta: duvidasPendentes().length };
+    });
+    assert.deepEqual(r.antes, [1, true]);
+    assert.deepEqual(r.resolvida, [0, false, 1]);
+    assert.equal(r.reaberta, 1);
+  } finally { await contexto.close(); }
+});
