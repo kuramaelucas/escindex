@@ -820,3 +820,25 @@ test("dúvida marcada como resolvida sai da fila e da notificação; reabrir tra
     assert.equal(r.reaberta, 1);
   } finally { await contexto.close(); }
 });
+
+test("o autor exclui o próprio comentário (botão visível); outro aluno não vê o botão", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await pagina.evaluate(() => {
+      const q = questoesAtivas()[0], eu = usuarioAtual().id;
+      db.comentarios = [
+        { id: "com-meu", questaoId: q.id, usuarioId: eu, texto: "minha", data: hojeISO() },
+        { id: "com-outro", questaoId: q.id, usuarioId: "outro", texto: "dele", data: hojeISO() },
+      ];
+      const html = renderComentarios(q.id);
+      window.confirm = () => true;
+      removerComentario("com-outro");          // não pode: continua
+      const outroFicou = comentariosAtivos().some(c => c.id === "com-outro");
+      removerComentario("com-meu");
+      return { botoes: (html.match(/removerComentario\(/g) || []).length, outroFicou, meuSumiu: !comentariosAtivos().some(c => c.id === "com-meu") };
+    });
+    assert.deepEqual(r, { botoes: 1, outroFicou: true, meuSumiu: true });
+  } finally { await contexto.close(); }
+});

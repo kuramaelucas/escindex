@@ -54,7 +54,7 @@ function renderComentarios(questaoId){
       return `<div class="card-flat mb-1" ${c.respostaOficial?'style="border-color:var(--accent)"':""}>
         <div class="flex items-center gap-1"><span class="text-sm peso-600">${escapeHtml(nomeAutorComentario(c))}</span>${badgePapel(c.papelAutor)}${c.respostaOficial?'<span class="badge badge-accent">Resposta oficial</span>':""}${c.resolvido?'<span class="badge badge-muted">Resolvida</span>':""}</div>
         <div class="text-sm mt-1">${escapeHtml(c.texto)}</div>
-        <div class="text-xs muted mt-1">${formatDataBR(c.data)}${podeResolverComentario(c) ? ` · <button class="link-btn text-xs" onclick="alternarComentarioResolvido('${c.id}')">${c.resolvido ? "reabrir" : "marcar como resolvida"}</button>` : ""}${podeRemoverComentario(c) ? ` · <button class="link-btn text-xs" onclick="removerComentario('${c.id}')">${c.respostaOficial ? "excluir resposta" : "excluir"}</button>` : ""}</div>
+        <div class="text-xs muted mt-1">${formatDataBR(c.data)}${podeResolverComentario(c) ? ` · <button class="link-btn text-xs" onclick="alternarComentarioResolvido('${c.id}')">${c.resolvido ? "reabrir" : "marcar como resolvida"}</button>` : ""}${podeRemoverComentario(c) ? ` · <button class="link-btn text-xs" style="color:var(--danger)" onclick="removerComentario('${c.id}')">${iconeSvg("trash")} ${c.respostaOficial ? "excluir resposta" : (c.usuarioId === (usuarioAtual()||{}).id ? "excluir meu comentário" : "excluir")}</button>` : ""}</div>
       </div>`;
     }).join("") || '<div class="text-sm muted">Nenhum comentário ainda. Seja o primeiro a comentar.</div>'}
     <div class="mt-2">
