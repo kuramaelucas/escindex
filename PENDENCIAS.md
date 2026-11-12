@@ -81,8 +81,8 @@ O banco marca a letra A (teste t para duas populações independentes), mas o en
 ### Questões sinalizadas por alunos (conferidas em 12/11/2026)
 
 - **FAMEMA 2025, q. 49 e 50**: faltou transcrever o caso clínico comum (mulher de 47 anos); estão com `imagemPendente` e fora do estudo até alguém copiar o texto do caderno FMMA2403 (o PDF não abre na rede da sessão).
-- **SES-SP 2026, q. 49 (vacinas aos 6 meses)**: o gabarito C inclui pneumo-10, que no calendário nacional é dada aos 2 e 4 meses e aos 12, não aos 6. A explicação avisa; falta o gabarito definitivo da banca para decidir se anula.
-- **SES-SP 2023, q. 57 (cálcio)**: a Cochrane de dez/2025 (CD001059.pub6) não achou redução da pré-eclâmpsia, mas é contestada e OMS/FEBRASGO mantêm a recomendação. Gabarito mantido, explicação avisa; rever quando as diretrizes mudarem.
+- **SES-SP 2026, q. 49 (vacinas aos 6 meses)** — fora do estudo (`desatualizada`) até atualizar: o gabarito C inclui pneumo-10, que no calendário nacional é dada aos 2 e 4 meses e aos 12, não aos 6. A explicação avisa; falta o gabarito definitivo da banca para decidir se anula.
+- **SES-SP 2023, q. 57 (cálcio)** — fora do estudo (`desatualizada`) até atualizar: a Cochrane de dez/2025 (CD001059.pub6) não achou redução da pré-eclâmpsia, mas é contestada e OMS/FEBRASGO mantêm a recomendação. Gabarito mantido, explicação avisa; rever quando as diretrizes mudarem.
 - **TP 2024-1, q. 120**: tabela do enunciado reformatada (números e gabarito A conferidos). **Simulado 5 EPM, q. 67 (`q-adap23-067`)**: já reescrita em 27/10 (NT 193/2024).
 
 ### FAMEMA 2021, 2022, 2023 e 2025

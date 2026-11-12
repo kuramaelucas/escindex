@@ -765,7 +765,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
   explicacaoGeral:"A alternativa C está correta segundo a conduta vigente quando a prova foi aplicada (OMS e FEBRASGO, que seguem recomendando cálcio em população de baixa ingestão). Atenção: a revisão Cochrane de dezembro de 2025 (CD001059.pub6, 10 estudos) passou a apontar pouca ou nenhuma diferença na pré-eclâmpsia (RR 0,83; IC95% 0,67 a 1,04), conclusão que foi contestada por exclusão de estudos por confiabilidade (Torloni et al., Reprod Health, 2026); as diretrizes ainda não mudaram. O gabarito do banco não foi alterado; rever se OMS ou FEBRASGO revisarem a recomendação. Lido no PubMed em 12/11/2026. Dicas do enunciado: **prevenção da pré-eclâmpsia**: em área de **baixa ingestão de cálcio**, indica-se a **suplementação de 1,5 a 2 g/dia**. Em áreas de baixa ingestão de cálcio, a suplementação de **1,5 a 2 g/dia** reduz a pré-eclâmpsia. A está errada: o ácido acetilsalicílico (100–150 mg à noite) é iniciado entre 12 e 16 semanas, não depois, sempre antes de 16 semanas. B está errada: a dieta hipossódica não previne pré-eclâmpsia. D está errada: com pré-eclâmpsia, o parto ocorre em torno de 37 semanas (e não 40). E está errada: coagulograma não faz parte dos exames iniciais de gravidade (plaquetas, creatinina, transaminases, LDH e proteinúria).",
   explicacoesAlternativas:{},
   referencias:"Brasil. Ministério da Saúde. Gestação de Alto Risco: Manual Técnico, 5ª ed., 2012; FEBRASGO. Protocolo de hipertensão na gestação.",
-  dificuldadeManual:"intermediario", status:"ativa",
+  dificuldadeManual:"intermediario", status:"desatualizada",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"
 },

@@ -660,7 +660,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2026", [
   explicacaoGeral:"A alternativa C foi a indicada no gabarito usado, mas ele é discutível e a questão foi sinalizada por alunos: no calendário nacional a vacina pneumocócica 10-valente tem doses aos **2 e 4 meses** e reforço aos **12 meses**, sem dose aos 6 meses (a dose dos 6 meses saiu do esquema depois de 2016; a versão de 2014 do manual citada abaixo ainda a trazia), e em 2026 a 10-valente passou a ser substituída gradualmente pela 20-valente. Conferir com o gabarito definitivo da banca e com o calendário vigente antes de dar a questão como certa; o gabarito do banco não foi mudado. Dicas do enunciado: **lactente de 6 meses em novembro, com vacinação em dia**: no calendário do PNI, aos 6 meses, aplicam-se a **3ª dose da VIP (poliomielite inativada) e da pentavalente** e a vacina pneumocócica conjugada conforme o esquema do momento; as vacinas de influenza e Covid-19 são indicadas a partir dos 6 meses, mas a influenza segue a campanha sazonal e a Covid-19, o período anual de vacinação. A e B incluem vacinas fora de época. D e E usam VOP (retirada do esquema básico) e sarampo (aos 12 meses).",
   explicacoesAlternativas:{},
   referencias:"Brasil. Ministério da Saúde. Manual de Normas e Procedimentos para Vacinação, 2014.",
-  dificuldadeManual:"intermediario", status:"ativa",
+  dificuldadeManual:"intermediario", status:"desatualizada",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
