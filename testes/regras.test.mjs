@@ -799,3 +799,68 @@ test("notificações da equipe dizem QUEM sinalizou, perguntou ou mandou feedbac
   assert.equal(r.nomes, "Ana, Bruno e mais 2");
   await contexto.close();
 });
+
+test("dúvida marcada como resolvida sai da fila e da notificação; reabrir traz de volta", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => { fazerLoginDemo("aluno"); usuarioAtual().papel = "professor"; state.modoAluno = false; });
+    const r = await pagina.evaluate(() => {
+      const q = questoesAtivas()[0];
+      db.comentarios = [{ id: "com-t1", questaoId: q.id, usuarioId: "alguem", autorNome: "Aluno", papelAutor: "aluno", texto: "Por que B?", data: hojeISO(), respostaOficial: false }];
+      const notif = () => gerarNotificacoes(usuarioAtual()).some(n => n.rota === "fila-duvidas");
+      const antes = [duvidasPendentes().length, notif()];
+      alternarComentarioResolvido("com-t1");
+      const resolvida = [duvidasPendentes().length, notif(), duvidasRespondidas().length];
+      alternarComentarioResolvido("com-t1");
+      return { antes, resolvida, reaberta: duvidasPendentes().length };
+    });
+    assert.deepEqual(r.antes, [1, true]);
+    assert.deepEqual(r.resolvida, [0, false, 1]);
+    assert.equal(r.reaberta, 1);
+  } finally { await contexto.close(); }
+});
+
+test("o autor exclui o próprio comentário (botão visível); outro aluno não vê o botão", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await pagina.evaluate(() => {
+      const q = questoesAtivas()[0], eu = usuarioAtual().id;
+      db.comentarios = [
+        { id: "com-meu", questaoId: q.id, usuarioId: eu, texto: "minha", data: hojeISO() },
+        { id: "com-outro", questaoId: q.id, usuarioId: "outro", texto: "dele", data: hojeISO() },
+      ];
+      const html = renderComentarios(q.id);
+      window.confirm = () => true;
+      removerComentario("com-outro");          // não pode: continua
+      const outroFicou = comentariosAtivos().some(c => c.id === "com-outro");
+      removerComentario("com-meu");
+      return { botoes: (html.match(/removerComentario\(/g) || []).length, outroFicou, meuSumiu: !comentariosAtivos().some(c => c.id === "com-meu") };
+    });
+    assert.deepEqual(r, { botoes: 1, outroFicou: true, meuSumiu: true });
+  } finally { await contexto.close(); }
+});
+
+test("Fila de Dúvidas: 'Minhas respostas' lista e exclui a resposta oficial própria, mesmo sem a dúvida", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => { fazerLoginDemo("aluno"); usuarioAtual().papel = "residente"; state.modoAluno = false; });
+    const r = await pagina.evaluate(() => {
+      const q = questoesAtivas()[0], eu = usuarioAtual().id;
+      db.comentarios = [
+        { id: "r-minha", questaoId: q.id, usuarioId: eu, texto: "resposta minha", data: hojeISO(), respostaOficial: true },
+        { id: "r-outra", questaoId: q.id, usuarioId: "outro", texto: "de outro", data: hojeISO(), respostaOficial: true },
+      ];
+      state.filtroRota.abaDuvidas = "minhas";
+      const html = renderFilaDuvidas();
+      window.confirm = () => true;
+      removerComentario("r-outra");
+      removerComentario("r-minha");
+      return { tem: html.includes("resposta minha") && !html.includes("de outro"), sobrou: minhasRespostasOficiais(usuarioAtual()).length, outraFicou: comentariosAtivos().some(c => c.id === "r-outra") };
+    });
+    assert.deepEqual(r, { tem: true, sobrou: 0, outraFicou: true });
+  } finally { await contexto.close(); }
+});
