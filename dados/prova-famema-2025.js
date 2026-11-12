@@ -658,7 +658,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **47 anos**, alterações de humor, **sudorese noturna intensa**, ciclos atrasados (45 dias) com **hipermenorreia**: transição menopausal (climatério). O diagnóstico é clínico, e a ultrassonografia transvaginal é importante para avaliar o sangramento aumentado e o endométrio. A está errada: nada sugere hipotireoidismo primário. B está errada: não há sangramento intermenstrual ou pós-coito. C está errada: menopausa é definida após **12 meses de amenorreia**, e o FSH é dispensável em quem tem sintomas típicos.",
   explicacoesAlternativas:{},
   referencias:"FEBRASGO. Climatério; Brasil. Ministério da Saúde. Manual de Atenção à Mulher no Climatério/Menopausa, 2008.",
-  dificuldadeManual:"intermediario", status:"ativa",
+  dificuldadeManual:"intermediario", status:"ativa", imagemPendente:"Caso clínico comum às questões 49 e 50 (mulher de 47 anos com queixas de climatério), que não foi transcrito do caderno FMMA2403; sem ele o enunciado não se sustenta. Reportado por aluna em 29/10 e 05/11/2026.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"
 },
@@ -671,7 +671,7 @@ window.EscDados.registrarQuestoes("prova-famema-2025", [
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: mulher de 47 anos **com útero** (nuligesta), sintomas vasomotores intensos, **exames de rotina normais** (mamografia, USG de mama, USG transvaginal, citologia, lipídios e glicemia) e apenas uma tia com câncer de mama aos 65 anos: não há contraindicação, e a terapia estroprogestativa é a mais eficaz para sintomas vasomotores; o progestágeno protege o endométrio. A está errada: isoflavonas têm eficácia limitada. B está errada: progesterona isolada é insuficiente para o conjunto de sintomas. D está errada: testosterona é para desejo sexual hipoativo.",
   explicacoesAlternativas:{},
   referencias:"NAMS. Hormone Therapy Position Statement, 2022; FEBRASGO. Terapia hormonal da menopausa.",
-  dificuldadeManual:"intermediario", status:"ativa",
+  dificuldadeManual:"intermediario", status:"ativa", imagemPendente:"Caso clínico comum às questões 49 e 50 (mulher de 47 anos com queixas de climatério), que não foi transcrito do caderno FMMA2403; sem ele o enunciado não se sustenta. Reportado por aluna em 29/10 e 05/11/2026.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"
 },

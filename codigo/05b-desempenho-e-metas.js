@@ -436,6 +436,17 @@ function calibracaoConfianca(usuarioId){
   return {...resumo, alertaExcessoConfianca};
 }
 
+/* Quem notificou: a equipe precisa saber de quem veio a sinalização ou a dúvida
+   para responder à pessoa certa. O nome vem do perfil local e, na falta dele,
+   do `autorNome` que sobe junto na nuvem (ninguém enxerga o perfil dos outros). */
+function nomeDeQuemSinalizou(s){ const a = getUsuario(s.usuarioId); return (a && a.nome) || s.autorNome || "Usuário"; }
+/* "Ana", "Ana e Bruno", "Ana, Bruno e mais 2": nomes repetidos contam uma vez só. */
+function resumirNomes(nomes, maximo){
+  maximo = maximo || 2;
+  const unicos = [...new Set((nomes||[]).filter(Boolean))];
+  if(unicos.length <= maximo) return unicos.length>1 ? unicos.slice(0,-1).join(", ")+" e "+unicos[unicos.length-1] : (unicos[0]||"");
+  return unicos.slice(0,maximo).join(", ")+" e mais "+(unicos.length-maximo);
+}
 /* ---------- notificações da página inicial (calculadas na hora, sem precisar
    de um servidor de notificações — cada papel vê o que é relevante pra ele) ---------- */
 function gerarNotificacoes(usuario){
@@ -475,8 +486,9 @@ function gerarNotificacoes(usuario){
   if(usuario.papel==="admin"){
     const diasSemBackup = db.ultimoBackupEm ? diasEntre(db.ultimoBackupEm, hojeISO()) : 999;
     if(diasSemBackup>=7) notifs.push({icon:"archive", texto: db.ultimoBackupEm ? "Já se passaram "+diasSemBackup+" dias desde o último backup. Exporte um novo." : "Você ainda não fez nenhum backup dos dados. Exporte um agora.", rota:"perfil"});
-    const feedbacksNaoLidos = db.feedbacks.filter(f=>!f.lido).length;
-    if(feedbacksNaoLidos) notifs.push({icon:"message", texto:feedbacksNaoLidos+" "+flexionar(feedbacksNaoLidos, "feedback(s) novo(s)")+" de usuários.", rota:"feedback-usuarios"});
+    // a tela de feedback exige a permissão "cadastros" (PERMISSAO_DA_ROTA): avisar o moderador de algo que ele não abre só leva a uma rota bloqueada
+    const feedbacksNovos = podeAdmin("cadastros", usuario) ? db.feedbacks.filter(f=>!f.lido) : [];
+    if(feedbacksNovos.length) notifs.push({icon:"message", texto:feedbacksNovos.length+" "+flexionar(feedbacksNovos.length, "feedback(s) novo(s)")+" de "+resumirNomes(feedbacksNovos.map(f=>f.autorNome || (getUsuario(f.usuarioId)||{}).nome || "Usuário"))+".", rota:"feedback-usuarios"});
   }
   if(usuario.papel==="admin" || usuario.papel==="professor"){
     // questões que a turma enviou (de qualquer aparelho, com a nuvem) esperando aprovação
@@ -484,14 +496,17 @@ function gerarNotificacoes(usuario){
     if(sugeridas) notifs.push({icon:"upload", texto:sugeridas+(sugeridas===1?" questão enviada aguardando":" questões enviadas aguardando")+" aprovação.", rota:"revisao-dificeis", abaQualidade:"sugeridas"});
     const dif = questoesDificeis().length;
     if(dif) notifs.push({icon:"alert", texto:dif+" "+plural(dif,"questão","questões")+" na fila de difíceis.", rota:"revisao-dificeis"});
-    const sinalizadas = db.questoes.filter(q=>q.sinalizacoes && q.sinalizacoes.length>0).length;
+    const sinalizadas = questoesSinalizadas();
     // abre direto na aba das sinalizadas: sem isso o aviso levava à aba de Difíceis e a sinalização parecia não ter chegado
-    if(sinalizadas) notifs.push({icon:"flag", texto:sinalizadas+" "+plural(sinalizadas,"questão","questões")+" "+flexionar(sinalizadas, "sinalizada(s)")+" pelos alunos.", rota:"revisao-dificeis", abaQualidade:"sinalizadas"});
+    if(sinalizadas.length){
+      const quem = resumirNomes(sinalizadas.flatMap(q=>q.sinalizacoes.map(nomeDeQuemSinalizou)));
+      notifs.push({icon:"flag", texto:sinalizadas.length+" "+plural(sinalizadas.length,"questão","questões")+" "+flexionar(sinalizadas.length, "sinalizada(s)")+" por "+quem+".", rota:"revisao-dificeis", abaQualidade:"sinalizadas"});
+    }
   }
   if(usuario.papel==="residente" || usuario.papel==="admin" || usuario.papel==="professor"){
     // só some quando alguém responde (resposta oficial); ver a lista não apaga o aviso
-    const pend = duvidasPendentes(usuario.papel==="residente" ? usuario : null).length;
-    if(pend) notifs.push({icon:"message", texto:pend+" "+flexionar(pend, "dúvida(s)")+" de alunos aguardando resposta.", rota:"fila-duvidas"});
+    const pend = duvidasPendentes(usuario.papel==="residente" ? usuario : null);
+    if(pend.length) notifs.push({icon:"message", texto:pend.length+" "+flexionar(pend.length, "dúvida(s)")+" aguardando resposta, de "+resumirNomes(pend.map(nomeAutorComentario))+".", rota:"fila-duvidas"});
   }
   return notifs;
 }

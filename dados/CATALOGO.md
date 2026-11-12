@@ -89,7 +89,7 @@
 | `prova-famema-2021.js` | FAMEMA 2021 — Residência Médica, Áreas Básicas e Acesso Direto | 100 questões | 1 anulada(s) |
 | `prova-famema-2022.js` | FAMEMA 2022 — Residência Médica, Acesso Direto e Áreas Básicas | 100 questões |  |
 | `prova-famema-2023.js` | FAMEMA 2023 — Residência Médica, R1 (Acesso Direto e Áreas Básicas) | 100 questões |  |
-| `prova-famema-2025.js` | FAMEMA 2025 — Residência Médica, Áreas Básicas e Acesso Direto | 100 questões |  |
+| `prova-famema-2025.js` | FAMEMA 2025 — Residência Médica, Áreas Básicas e Acesso Direto | 100 questões | 2 esperando figura |
 | `prova-sessp-2022.js` | SES-SP 2022 — Residência Médica, Programas de Acesso Direto | 100 questões | 2 anulada(s) |
 | `prova-sessp-2023.js` | SES-SP 2023 — Residência Médica, Programas de Acesso Direto | 100 questões | 9 anulada(s) |
 | `prova-sessp-2024.js` | SES-SP 2024 — Residência Médica, Especialidades com Acesso Direto | 100 questões | 6 anulada(s) |

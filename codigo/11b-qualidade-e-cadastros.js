@@ -226,7 +226,7 @@ function renderListaSinalizadas(lista){
       <div class="qcard-meta"><span class="badge badge-danger">${q.sinalizacoes.length} sinalização${q.sinalizacoes.length===1?"":"ões"}</span><span class="badge badge-muted">${escapeHtml(nomeAssunto(q.assuntoId))}</span><span class="badge badge-muted">${anoDaProva(q)}</span>${badgeStatusQuestao(q.status)}</div>
       <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,180))}…</span></div>
       <div class="mt-2">
-        ${q.sinalizacoes.map(s=>`<div class="card-flat mb-1 text-sm"><span class="muted">${formatDataBR(s.data)}:</span> ${escapeHtml(s.comentario || "(sem comentário adicional)")}</div>`).join("")}
+        ${q.sinalizacoes.map(s=>`<div class="card-flat mb-1 text-sm"><span class="peso-600">${escapeHtml(nomeDeQuemSinalizou(s))}</span> <span class="muted">em ${formatDataBR(s.data)}:</span> ${escapeHtml(s.comentario || "(sem comentário adicional)")}</div>`).join("")}
       </div>
       <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(q.id, "Ver questão completa")}
