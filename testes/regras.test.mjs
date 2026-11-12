@@ -776,3 +776,26 @@ test("texto: flexionar escolhe singular ou plural e as telas do aluno não mostr
     assert.ok(r.naTela, "a tela Estudar mostra a frase");
   } finally { await contexto.close(); }
 });
+
+test("notificações da equipe dizem QUEM sinalizou, perguntou ou mandou feedback; moderador não recebe aviso de feedback que não abre", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    const q = db.questoes[0];
+    q.sinalizacoes = [{id:"s1", usuarioId:"x1", autorNome:"Ana", data:hojeISO(), comentario:""}, {id:"s2", usuarioId:"x2", autorNome:"Bruno", data:hojeISO(), comentario:""}];
+    db.comentarios.push({id:"c1", questaoId:q.id, usuarioId:"x3", autorNome:"Carla", papelAutor:"aluno", texto:"não entendi", data:hojeISO(), respostaOficial:false});
+    db.feedbacks.push({id:"f1", usuarioId:"x4", autorNome:"Diego", papel:"aluno", tipo:"sugestao", texto:"oi", data:hojeISO(), lido:false});
+    const texto = u => gerarNotificacoes(u).map(n => n.texto).join(" | ");
+    return {
+      coord: texto({id:"adm1", papel:"admin", nivelAdmin:"coordenacao"}),
+      moderador: texto({id:"adm2", papel:"admin", nivelAdmin:"moderador"}),
+      nomes: resumirNomes(["Ana","Bruno","Ana","Carla","Diego"]),
+    };
+  });
+  assert.match(r.coord, /sinalizadas? por Ana e Bruno/);
+  assert.match(r.coord, /aguardando resposta, de .*Carla/);
+  assert.match(r.coord, /feedbacks? novos? de Diego/);
+  assert.doesNotMatch(r.moderador, /feedback/);
+  assert.equal(r.nomes, "Ana, Bruno e mais 2");
+  await contexto.close();
+});
