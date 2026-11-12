@@ -281,6 +281,27 @@ function renderCardDuvida(c, respondida){
     <button class="btn btn-primary btn-sm mt-1" onclick="responderDuvida('${c.id}','${q.id}')">Enviar resposta</button>` : `<div class="mt-2"><button class="link-btn" onclick="responderDuvidaExtra('${c.id}','${q.id}')">Acrescentar outra resposta oficial</button></div>`}
   </div>`;
 }
+/* "Minhas respostas": toda resposta oficial que a pessoa escreveu, com a dúvida
+   a que respondeu. Existe porque a resposta só aparecia presa ao cartão da
+   dúvida — dúvida apagada, de outra área ou já resolvida deixava a resposta
+   sem lugar onde excluí-la. */
+function minhasRespostasOficiais(usuario){
+  return comentariosAtivos().filter(r=>r.respostaOficial && r.usuarioId===usuario.id).sort((a,b)=>b.data.localeCompare(a.data));
+}
+function renderMinhasRespostas(usuario){
+  const lista = minhasRespostasOficiais(usuario);
+  if(!lista.length) return '<div class="empty-state">Você ainda não escreveu nenhuma resposta oficial.</div>';
+  return lista.map(r=>{
+    const q = getQuestao(r.questaoId);
+    const duvida = comentariosAtivos().filter(c=>!c.respostaOficial && c.questaoId===r.questaoId && c.data<=r.data).sort((a,b)=>b.data.localeCompare(a.data))[0];
+    return `<div class="card mb-2">
+      ${q ? `<div class="text-sm" style="font-weight:600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${q.id}')">${escapeHtml(q.enunciado.slice(0,200))}${q.enunciado.length>200?"…":""}</span></div>` : '<div class="text-sm muted">Questão não encontrada.</div>'}
+      ${duvida ? `<div class="card-flat mt-1"><span class="peso-600">${escapeHtml(nomeAutorComentario(duvida))}</span> <span class="text-xs muted">perguntou:</span><div class="text-sm mt-1">${escapeHtml(duvida.texto)}</div></div>` : ""}
+      <div class="card-flat mt-1 borda-destaque"><span class="badge badge-accent">sua resposta</span> <span class="text-xs muted">${formatDataBR(r.data)}</span><div class="text-sm mt-1">${escapeHtml(r.texto)}</div>
+        <div class="mt-1"><button class="btn btn-danger btn-sm" onclick="removerComentario('${r.id}')">${iconeSvg("trash")} Excluir minha resposta</button></div></div>
+    </div>`;
+  }).join("");
+}
 function renderFilaDuvidas(){
   const u = usuarioAtual();
   const aba = state.filtroRota.abaDuvidas || "pendentes";
@@ -291,8 +312,9 @@ function renderFilaDuvidas(){
   <div class="tabs">
     <div class="tab ${aba==="pendentes"?"active":""}" onclick="mudarAbaDuvidas('pendentes')">Aguardando resposta (${pendentes.length})</div>
     <div class="tab ${aba==="respondidas"?"active":""}" onclick="mudarAbaDuvidas('respondidas')">Já respondidas (${respondidas.length})</div>
+    <div class="tab ${aba==="minhas"?"active":""}" onclick="mudarAbaDuvidas('minhas')">Minhas respostas (${minhasRespostasOficiais(u).length})</div>
   </div>
-  ${aba==="pendentes"
+  ${aba==="minhas" ? renderMinhasRespostas(u) : aba==="pendentes"
     ? (pendentes.length ? pendentes.map(c=>renderCardDuvida(c,false)).join("") : '<div class="empty-state">Nenhuma dúvida pendente no momento. 🎉</div>')
     : (respondidas.length ? respondidas.map(c=>renderCardDuvida(c,true)).join("") : '<div class="empty-state">Nenhuma dúvida respondida ainda.</div>')}
   `;

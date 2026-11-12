@@ -842,3 +842,25 @@ test("o autor exclui o próprio comentário (botão visível); outro aluno não 
     assert.deepEqual(r, { botoes: 1, outroFicou: true, meuSumiu: true });
   } finally { await contexto.close(); }
 });
+
+test("Fila de Dúvidas: 'Minhas respostas' lista e exclui a resposta oficial própria, mesmo sem a dúvida", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => { fazerLoginDemo("aluno"); usuarioAtual().papel = "residente"; state.modoAluno = false; });
+    const r = await pagina.evaluate(() => {
+      const q = questoesAtivas()[0], eu = usuarioAtual().id;
+      db.comentarios = [
+        { id: "r-minha", questaoId: q.id, usuarioId: eu, texto: "resposta minha", data: hojeISO(), respostaOficial: true },
+        { id: "r-outra", questaoId: q.id, usuarioId: "outro", texto: "de outro", data: hojeISO(), respostaOficial: true },
+      ];
+      state.filtroRota.abaDuvidas = "minhas";
+      const html = renderFilaDuvidas();
+      window.confirm = () => true;
+      removerComentario("r-outra");
+      removerComentario("r-minha");
+      return { tem: html.includes("resposta minha") && !html.includes("de outro"), sobrou: minhasRespostasOficiais(usuarioAtual()).length, outraFicou: comentariosAtivos().some(c => c.id === "r-outra") };
+    });
+    assert.deepEqual(r, { tem: true, sobrou: 0, outraFicou: true });
+  } finally { await contexto.close(); }
+});
