@@ -512,7 +512,8 @@ function salvarConfigGeral(){
   const somaPesos = t+e+pr;
   if(somaPesos>0) cg.pesosDificuldade = {taxaAcerto:t/somaPesos, especificidade:e/somaPesos, prevalencia:pr/somaPesos};
   saveState();
-  toast("Configurações salvas.");
+  // com a nuvem ligada, o ajuste vale para a turma toda; sem ela, só neste navegador
+  toast(nuvemMarcarConfigGeral() ? "Configurações salvas e enviadas à turma." : "Configurações salvas.");
   render();
 }
 /* ==========================================================================
@@ -746,7 +747,7 @@ function iniciarBanco(){
   if(typeof setInterval==="function") setInterval(checarLembreteMetaDiaria, 60000);
   // pedidos de acesso novos, para quem aprova cadastros (seção 2-C): confere
   // logo que a pessoa entra e depois a cada dois minutos
-  if(typeof setInterval==="function") setInterval(vigiarPedidosDeAcesso, 20000);
+  if(typeof setInterval==="function") setInterval(function(){ vigiarPedidosDeAcesso(); vigiarFilaDeQualidade(); }, 20000);
   vigiarPedidosDeAcesso();
   // pedidos para entrar num grupo que a pessoa criou: só olha o que já está no navegador
   if(typeof setInterval==="function") setInterval(checarPedidosDeEntradaNoGrupo, 20000);
@@ -754,7 +755,7 @@ function iniciarBanco(){
   // cópia antiga da página: confere agora e sempre que a aba voltar a ser vista
   verificarVersaoNova(true);
   document.addEventListener("visibilitychange", ()=>{
-    if(!document.hidden){ verificarVersaoNova(false); vigiarPedidosDeAcesso(); checarPedidosDeEntradaNoGrupo(); }
+    if(!document.hidden){ verificarVersaoNova(false); vigiarPedidosDeAcesso(); vigiarFilaDeQualidade(); checarPedidosDeEntradaNoGrupo(); }
     else atualizarRecadoLembrete();     // saiu do app: o recado do lembrete fica com o andamento de agora
   });
   // aplicativo instalável: abre sem internet e avisa a meta com o app fechado

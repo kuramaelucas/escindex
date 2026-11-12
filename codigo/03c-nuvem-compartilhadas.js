@@ -69,6 +69,30 @@ NUVEM_GLOBAIS.provas_inativas = {
     return { chave, rotulo:e ? e.rotulo : "", inativa:e ? e.inativa !== false : true, por_nome:e ? (e.por || "") : "" };
   },
 };
+/* CONFIGURAÇÕES GERAIS (tabela config_geral): as metas recomendadas, a mistura de blocos, a rampa de revisão e os pesos
+   da dificuldade que o administrador define valem para a turma toda. Uma linha só (id "geral"). Só o administrador
+   grava (e_admin no banco); todos aplicam o que desce. Lista fechada de campos: o resto de db.configGeral é do aparelho. */
+const CAMPOS_DA_CONFIG_GERAL = ["metaMinimaQuestoesDia", "metaRecomendadaQuestoesDia", "metaCartoesDia", "misturaBlocos", "rampaRevisaoInicio", "pesosDificuldade"];
+NUVEM_GLOBAIS.config_geral = {
+  chave: l => l.id,
+  podeGravar: () => { const eu = nuvemSessao && db.usuarios.find(x => x.id === nuvemSessao.usuarioId); return !!(eu && eu.status === "aprovado" && eu.papel === "admin"); },
+  aplicar: l => {
+    const d = l.dados || {};
+    CAMPOS_DA_CONFIG_GERAL.forEach(c => { if(d[c] !== undefined && d[c] !== null) db.configGeral[c] = d[c]; });
+  },
+  linha: () => {
+    const dados = {};
+    CAMPOS_DA_CONFIG_GERAL.forEach(c => { if(db.configGeral[c] !== undefined) dados[c] = db.configGeral[c]; });
+    const eu = nuvemSessao && db.usuarios.find(x => x.id === nuvemSessao.usuarioId);
+    return { id: "geral", dados, por_nome: (eu && eu.nome) || "" };
+  },
+};
+function nuvemMarcarConfigGeral(){
+  if(!nuvemConectado()) return false;
+  nuvemMarcarGlobalPendente("config_geral", "geral");
+  nuvemAgendarSync();
+  return true;
+}
 /* COMENTÁRIOS E DÚVIDAS nas questões. São de todos (a dúvida do aluno
    precisa chegar ao residente), mas cada linha tem dono: o banco só aceita
    o comentário de quem está escrevendo, e "resposta oficial" só de quem

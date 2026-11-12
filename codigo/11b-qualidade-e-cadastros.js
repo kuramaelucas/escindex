@@ -16,6 +16,7 @@ function renderRevisaoDificeis(){
   const nSuspeitas = suspeitas && suspeitas.lista ? suspeitas.lista.length : null;
   return `
   <div class="page-header"><h2>Controle de Qualidade</h2><p>Questões que merecem uma segunda olhada: baixa taxa de acerto, sinalizadas por alunos, ou sugeridas para o banco geral. Professores, residentes e administradores têm acesso — e podem editar a questão direto daqui.</p></div>
+  ${notificacaoDisponivel() && Notification.permission !== "granted" ? `<div class="card-flat mb-2 text-sm flex gap-1 quebra" style="align-items:center">${iconeSvg("bell")} <span>Quer ser avisado quando um aluno sinalizar uma questão?</span> <button class="btn btn-secondary btn-sm" onclick="ativarNotificacaoDeQualidade()">Receber notificação do sistema</button></div>` : ""}
   <div class="tabs">
     <div class="tab ${aba==="dificeis"?"active":""}" onclick="mudarAbaQualidade('dificeis')">Questões Difíceis (${lista.length})</div>
     <div class="tab ${aba==="suspeitas"?"active":""}" onclick="mudarAbaQualidade('suspeitas')">Suspeitas da turma (${nSuspeitas===null?"…":nSuspeitas})</div>
@@ -75,7 +76,7 @@ function renderListaSuspeitas(){
   if(d.carregando || !d.lista && !d.erro) return intro+'<div class="empty-state">Carregando o acerto da turma…</div>';
   if(d.erro) return intro+`<div class="empty-state">${escapeHtml(d.erro)}</div>`;
   const pag = paginar(d.lista, "qualidade-suspeitas", {porPagina:10});
-  return intro+(d.lista.length ? pag.itens.map(s=>`
+  return intro+(d.lista.length ? `<button class="btn btn-secondary btn-sm mb-2" onclick="tirarTodasDaFila('suspeitas')">Tirar todas as ${d.lista.length} da lista (dados de teste)</button>` : "")+(d.lista.length ? pag.itens.map(s=>`
     <div class="card mb-2">
       <div class="qcard-meta"><span class="badge badge-danger">${s.taxa}% de acerto</span><span class="badge badge-muted">${s.alunos} alunos</span>${s.sinalizacoes ? `<span class="badge badge-amber">${s.sinalizacoes} ${flexionar(s.sinalizacoes, "sinalização(ões)")}</span>` : ""}<span class="badge badge-muted">${escapeHtml(nomeAssunto(s.q.assuntoId))}</span></div>
       <div class="text-sm mt-1 peso-600"><span class="enunciado-clicavel" onclick="abrirQuestaoCompleta('${s.q.id}')">${escapeHtml(s.q.enunciado.slice(0,180))}…</span></div>
@@ -83,6 +84,7 @@ function renderListaSuspeitas(){
       <div class="flex gap-1 mt-2 quebra">
         ${botaoVerNaIntegra(s.q.id, "Ver questão completa")}
         <button class="btn btn-secondary btn-sm" onclick="abrirFormularioQuestao('${s.q.id}')">${iconeSvg("edit")} Editar</button>
+        <button class="btn btn-secondary btn-sm" onclick="marcarRevisadaProfessor('${s.q.id}')" title="Tira da lista: o padrão de erro é da turma, não da questão">Está certa — tirar da lista</button>
       </div>
     </div>`).join("") : `<div class="empty-state">Nenhuma questão com padrão de erro suspeito entre as ${d.questoes} que já têm alunos suficientes.</div>`)
     +controlesPaginacao(pag, "questão(ões) suspeita(s)");
@@ -113,9 +115,37 @@ function renderListaDuplicadas(grupos){
         </td>
       </tr>`).join("")}
     </tbody></table></div>
-    <button class="btn btn-danger btn-sm mt-2" onclick="manterApenasUmaDuplicata(${gi + (pag.pagina-1)*pag.tamanho})">Manter só a com mais respostas e excluir as outras</button>
+    <div class="flex gap-1 mt-2 quebra">
+    <button class="btn btn-secondary btn-sm" onclick="compararDuplicatas(${gi + (pag.pagina-1)*pag.tamanho})">${iconeSvg("search")} Comparar o texto inteiro</button>
+    <button class="btn btn-secondary btn-sm" onclick="dispensarGrupoDeDuplicatas(${gi + (pag.pagina-1)*pag.tamanho})">Não é duplicada (só o começo é igual)</button>
+    <button class="btn btn-danger btn-sm" onclick="manterApenasUmaDuplicata(${gi + (pag.pagina-1)*pag.tamanho})">Manter só a com mais respostas e excluir as outras</button>
+    </div>
   </div>`).join("") : '<div class="empty-state">Nenhuma questão duplicada encontrada no banco.</div>'}
   ${controlesPaginacao(pag, "grupo(s) de duplicatas")}`;
+}
+/* O agrupamento olha só o começo do enunciado. Aqui o texto inteiro (enunciado e alternativas) é posto lado a lado e a
+   conta diz se é cópia mesmo: enunciado e alternativas iguais depois de normalizados. */
+function compararDuplicatas(indiceGrupo){
+  const g = gruposDeDuplicatas()[indiceGrupo]; if(!g) return;
+  depoisDosCorpos(g.map(q=>q.id), () => {
+    const textoDe = q => (q.alternativas||[]).map(a=>a.id+") "+a.texto).join("\n");
+    const iguais = g.every(q => chaveTextoQuestao(q.enunciado)===chaveTextoQuestao(g[0].enunciado) && chaveTextoQuestao(textoDe(q))===chaveTextoQuestao(textoDe(g[0])));
+    const mesmoEnunciado = g.every(q => chaveTextoQuestao(q.enunciado)===chaveTextoQuestao(g[0].enunciado));
+    const veredito = iguais ? '<span class="badge badge-danger">Cópia: enunciado e alternativas iguais</span>'
+      : mesmoEnunciado ? '<span class="badge badge-amber">Mesmo enunciado, alternativas diferentes</span>'
+      : '<span class="badge badge-accent">Não é cópia: só o começo do enunciado é igual</span>';
+    abrirModal(`${cabecalhoJanela("Comparar questões")}
+      <p class="mb-2">${veredito}</p>
+      <div class="cartoes-colunas">${g.map(q=>`<div class="card-flat text-sm"><div class="muted text-xs mb-1">${escapeHtml(q.banca)} · ${anoDaProva(q)}</div>
+        <div>${escapeHtml(q.enunciado)}</div><div class="mt-1 muted" style="white-space:pre-line">${escapeHtml(textoDe(q))}</div></div>`).join("")}</div>
+      ${iguais ? "" : `<div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="fecharModal();dispensarGrupoDeDuplicatas(${indiceGrupo})">Não é duplicada</button></div>`}`, "lg");
+  });
+}
+function dispensarGrupoDeDuplicatas(indiceGrupo){
+  const g = gruposDeDuplicatas()[indiceGrupo]; if(!g) return;
+  if(!Array.isArray(db.duplicatasDispensadas)) db.duplicatasDispensadas = [];
+  db.duplicatasDispensadas.push(chaveDoGrupoDeDuplicatas(g));
+  saveState(); toast("Pronto: essas questões não aparecem mais como duplicadas."); render();
 }
 function manterApenasUmaDuplicata(indiceGrupo){
   const grupos = gruposDeDuplicatas();
@@ -190,6 +220,7 @@ function recusarQuestaoSugerida(qid){
 function renderListaDificeis(lista){
   const pag = paginar(lista, "qualidade-dificeis", {porPagina:10});
   return `<p class="text-sm muted mb-2">Taxa de acerto abaixo de ${Math.round(CONFIG.limiarTaxaAcertoDificil*100)}% (com pelo menos ${CONFIG.minRespostasParaAvaliarDificuldade} respostas). Avalie se são legitimamente difíceis ou se precisam de ajuste.</p>
+  ${lista.length ? `<button class="btn btn-secondary btn-sm mb-2" onclick="tirarTodasDaFila('dificeis')">Tirar todas as ${lista.length} da lista (dados de teste)</button>` : ""}
   ${lista.length ? pag.itens.map(q=>{
     const taxa = pct(q.estatisticas.acertos, q.estatisticas.respostas);
     const dist = q.estatisticas.distribuicaoAlternativas;
@@ -239,6 +270,15 @@ function renderListaSinalizadas(lista){
   ${controlesPaginacao(pag, "questão(ões) sinalizada(s)")}`;
 }
 function descartarSinalizacoes(qid){ const q = getQuestao(qid); nuvemMarcarSinalizacoesDescartadas(q); q.sinalizacoes = []; saveState(); toast("Sinalizações descartadas."); render(); }
+/* Respostas de teste (a equipe testando a plataforma) enchem as filas de difíceis e suspeitas. Marca todas as da fila
+   como revisadas: saem das duas listas e só voltam se a pessoa desfizer a marca na própria questão. */
+function tirarTodasDaFila(qual){
+  const lista = qual==="suspeitas" ? ((state.filtroRota.suspeitasDados||{}).lista||[]).map(s=>s.q) : questoesDificeis();
+  if(!lista.length) return;
+  if(!confirm("Tirar "+lista.length+" "+flexionar(lista.length, "questão(ões)")+" da fila? Nenhuma questão é alterada; só deixa de aparecer aqui.")) return;
+  lista.forEach(q=>{ q.revisadaProfessor = true; });
+  saveState(); toast(lista.length+" "+flexionar(lista.length, "questão(ões) tirada(s)")+" da fila."); render();
+}
 function marcarRevisadaProfessor(qid){ getQuestao(qid).revisadaProfessor = true; saveState(); toast("Marcada como revisada pelo professor."); render(); }
 
 /* ==========================================================================

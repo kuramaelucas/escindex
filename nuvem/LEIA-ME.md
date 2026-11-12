@@ -182,6 +182,13 @@ notificação no aparelho com o app instalado, mesmo com ele fechado:
    sistema** — uma vez por aparelho. Rode o `esquema.sql` de novo (cria
    `push_inscricoes`).
 
+6. **Sinalização de questão** usa a mesma função: crie um segundo webhook em
+   **Database > Webhooks**, tabela `sinalizacoes_questoes`, evento **Insert**, →
+   `avisar-pedido`, com o mesmo cabeçalho `x-esc-segredo`, e publique a função de
+   novo. Quem revisa (professor, administrador, residente) abre
+   **Controle de Qualidade** e toca em **Receber notificação do sistema**, uma
+   vez por aparelho.
+
 ### 4. Colar os dois valores em `codigo/01-config.js`
 
 Em **Project Settings > API**, copie:

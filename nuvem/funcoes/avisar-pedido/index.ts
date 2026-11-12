@@ -1,5 +1,5 @@
 // Função do Supabase (Edge Function): avisa por push quem aprova cadastros
-// assim que alguém pede acesso. Passo a passo em nuvem/LEIA-ME.md.
+// assim que alguém pede acesso — e avisa quem revisa quando um aluno sinaliza uma questão. Passo a passo em nuvem/LEIA-ME.md.
 //
 // Quem chama: um Database Webhook em INSERT na tabela `perfis`, com o
 // cabeçalho `x-esc-segredo` igual ao segredo AVISO_SEGREDO. Quem recebe:
@@ -15,11 +15,15 @@ Deno.serve(async (req) => {
   if (req.headers.get("x-esc-segredo") !== Deno.env.get("AVISO_SEGREDO")) {
     return new Response("não autorizado", { status: 401 });
   }
-  const { type, record } = await req.json().catch(() => ({}));
+  const { type, record, table } = await req.json().catch(() => ({}));
+  if (type !== "INSERT" || !record) return new Response("nada a avisar");
+
+  // Dois assuntos, a mesma função: pedido de acesso (tabela perfis → quem aprova cadastros) e sinalização de questão
+  // (tabela sinalizacoes_questoes → quem revisa: professor, administrador, residente).
+  const sinalizacao = table === "sinalizacoes_questoes";
   // só pedido novo e ainda pendente: o perfil criado por um admin já nasce decidido
-  if (type !== "INSERT" || !record || record.status !== "pendente") {
-    return new Response("nada a avisar");
-  }
+  if (!sinalizacao && record.status !== "pendente") return new Response("nada a avisar");
+  if (sinalizacao && record.descartada) return new Response("nada a avisar");
 
   const banco = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
   webpush.setVapidDetails(
@@ -28,14 +32,21 @@ Deno.serve(async (req) => {
     Deno.env.get("VAPID_PRIVADA")!,
   );
 
-  const { data: quem } = await banco.from("perfis").select("id")
-    .eq("papel", "admin").eq("status", "aprovado").in("nivel_admin", NIVEIS_QUE_APROVAM);
-  const ids = (quem || []).map((p: { id: string }) => p.id);
+  const consulta = banco.from("perfis").select("id").eq("status", "aprovado");
+  const { data: quem } = await (sinalizacao
+    ? consulta.in("papel", ["professor", "admin", "residente"])
+    : consulta.eq("papel", "admin").in("nivel_admin", NIVEIS_QUE_APROVAM));
+  const ids = (quem || []).map((p: { id: string }) => p.id).filter((id: string) => id !== record.usuario_id);
   if (!ids.length) return new Response("ninguém para avisar");
   const { data: inscricoes } = await banco.from("push_inscricoes").select("*").in("usuario_id", ids);
 
   const nome = record.nome || "Alguém";
-  const aviso = JSON.stringify({
+  const aviso = JSON.stringify(sinalizacao ? {
+    titulo: "Esc — questão sinalizada",
+    corpo: (record.autor_nome || "Um aluno") + " sinalizou uma questão" + (record.comentario ? ": " + String(record.comentario).slice(0, 90) : "."),
+    rota: "revisao-dificeis",
+    tag: "questao-sinalizada",
+  } : {
     titulo: "Esc — pedido de acesso",
     corpo: "Novo pedido de acesso: " + nome + (record.ano_faculdade ? " (" + record.ano_faculdade + ")" : "") + ".",
     rota: "painel-turma",
@@ -54,5 +65,5 @@ Deno.serve(async (req) => {
       }
     }
   }));
-  return new Response("avisos enviados: " + enviados);
+  return new Response("avisos enviados: " + enviados + " de " + (inscricoes || []).length);
 });

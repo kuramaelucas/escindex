@@ -447,8 +447,13 @@ function questoesDuplicadasDe(enunciado, ignorarId){
   if(alvo.length < 25) return [];
   return (indiceAssinaturasQuestoes().get(alvo) || []).filter(q=>q.id!==ignorarId);
 }
+/* "Não é duplicada": a assinatura são só os 160 primeiros caracteres, então duas questões que começam igual
+   (mesmo caso clínico, perguntas diferentes) caem no mesmo grupo sem serem cópia. A equipe confere e dispensa o grupo;
+   a dispensa vale para ESSE conjunto de ids — se uma terceira cópia aparecer, o grupo volta para ser olhado. */
+function chaveDoGrupoDeDuplicatas(g){ return g.map(q=>q.id).sort().join("|"); }
 function gruposDeDuplicatas(){
-  return [...indiceAssinaturasQuestoes().values()].filter(g=>g.length>1)
+  const dispensados = new Set((db.duplicatasDispensadas || []));
+  return [...indiceAssinaturasQuestoes().values()].filter(g=>g.length>1 && !dispensados.has(chaveDoGrupoDeDuplicatas(g)))
     .sort((a,b)=>b.length-a.length);
 }
 function popularSelectEspecialidade(areaId, especialidadeIdSelecionada){

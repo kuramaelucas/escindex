@@ -573,10 +573,17 @@ async function nuvemBaixarGlobais(){
         encodeURIComponent(desde) + "&order=atualizado_em.asc&limit=1000&select=*");
     }catch(e){
       // tabela que o esquema.sql desta versão cria e o banco ainda não tem
-      if(!nuvemTabelaNaoExiste(e)) throw e;
-      _nuvemTabelasAusentes.add(tabela);
+      if(nuvemTabelaNaoExiste(e)){ _nuvemTabelasAusentes.add(tabela); continue; }
+      // queda de rede/sessão: a sincronização inteira espera. Já uma tabela que o banco RECUSA (ex.: falta o GRANT
+      // dela) não pode derrubar as seguintes: antes, `provas_inativas` sem permissão impedia sinalizações, avisos,
+      // grupos e questões enviadas de descerem para sempre. Guarda o motivo (diagnóstico) e segue.
+      if(nuvemErroPassageiro(e)) throw e;
+      if(!nuvemEstado.tabelasComErro) nuvemEstado.tabelasComErro = {};
+      nuvemEstado.tabelasComErro[tabela] = e.message || "recusada pelo banco";
+      console.error("Tabela da nuvem recusada: " + tabela, e);
       continue;
     }
+    if(nuvemEstado.tabelasComErro) delete nuvemEstado.tabelasComErro[tabela];
     let maior = desde;
     (linhas || []).forEach(l => {
       const chave = desc.chave(l);

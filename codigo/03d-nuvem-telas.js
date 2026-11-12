@@ -380,6 +380,32 @@ async function checarPedidosDeAcesso(){
     mostrarNotificacao(CONFIG.nomePlataforma + " — pedido de acesso", texto, "painel-turma", "pedido-de-acesso");
   }
 }
+/* AVISO DE QUESTÃO SINALIZADA OU ENVIADA. Quem revisa (professor, administrador, residente) só via a fila ao abrir o
+   Controle de Qualidade; nada avisava que chegou sinalização nova. A cada ciclo compara o que há na fila com o que a
+   pessoa já tinha visto (u.filaQualidadeAvisada) e, se cresceu, avisa na tela e — com a aba em segundo plano e a
+   permissão dada — pelo sistema. As sinalizações descem junto da sincronização; este ciclo só olha o resultado. */
+function vigiarFilaDeQualidade(){
+  const u = usuarioAtual();
+  if(!u || !(u.papel === "admin" || u.papel === "professor" || u.papel === "residente") || !db) return;
+  const agora = { sinalizadas: questoesSinalizadas().reduce((n, q) => n + q.sinalizacoes.length, 0), enviadas: questoesSugeridas().length };
+  const antes = u.filaQualidadeAvisada;
+  u.filaQualidadeAvisada = agora;
+  if(!antes){ saveState(); return; }                   // primeira vez: só marca o ponto de partida
+  const novasS = agora.sinalizadas - antes.sinalizadas, novasE = agora.enviadas - antes.enviadas;
+  if(novasS === 0 && novasE === 0) return;
+  saveState();
+  atualizarMenuLateral();
+  const partes = [];
+  if(novasS > 0) partes.push(novasS === 1 ? "1 nova sinalização de questão" : novasS + " novas sinalizações de questão");
+  if(novasE > 0) partes.push(novasE === 1 ? "1 questão enviada pela turma" : novasE + " questões enviadas pela turma");
+  if(!partes.length) return;
+  const texto = partes.join(" e ") + ".";
+  toast(texto + " Veja no Controle de Qualidade.");
+  if(state.route === "revisao-dificeis" || state.route === "inicio") render();
+  if(document.hidden && notificacaoDisponivel() && Notification.permission === "granted"){
+    mostrarNotificacao(CONFIG.nomePlataforma + " — controle de qualidade", texto, "revisao-dificeis", "fila-qualidade");
+  }
+}
 /* Chamada a cada 20 s e quando a aba volta: checa na hora quando a conta
    mudou (acabou de entrar) e, fora isso, a cada PEDIDOS_DE_ACESSO_INTERVALO_MS. */
 function vigiarPedidosDeAcesso(){
@@ -444,6 +470,18 @@ function ativarNotificacaoPedidosDeAcesso(){
     }else{
       toast("O navegador não deu permissão para notificações. O aviso continua na tela e no menu.", "err");
     }
+    render();
+  });
+}
+/* O mesmo pedido de permissão e a mesma inscrição de push, para quem revisa questões (Controle de Qualidade). */
+function ativarNotificacaoDeQualidade(){
+  if(!notificacaoDisponivel()){ toast("Este navegador não mostra notificações do sistema. O aviso continua na tela e no menu.", "err"); return; }
+  Notification.requestPermission().then(async perm => {
+    if(perm === "granted"){
+      const comPush = await nuvemAssinarPush();
+      toast(comPush ? "Pronto: sinalização nova chega como notificação, mesmo com o app fechado."
+        : "Pronto: com o Esc aberto em outra aba, sinalização nova também aparece como notificação.");
+    }else toast("O navegador não deu permissão para notificações.", "err");
     render();
   });
 }

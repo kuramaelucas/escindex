@@ -67,6 +67,13 @@ select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a'
 select pg_temp.igual((select count(*) from provas_inativas), 1, 'aluno lê as provas inativas');
 select pg_temp.tem_de_falhar($$update provas_inativas set inativa=true where chave='Banca ||| 2026 |||  ||| residencia' returning case when inativa then 1/0 end$$, 'aluno reativando ou inativando prova existente');
 
+-- configurações gerais: todos leem, só o administrador grava (nem aluno nem professor)
+select pg_temp.tem_de_falhar($$insert into config_geral(id,dados) values ('geral','{"metaCartoesDia":99}')$$, 'aluno gravando as configurações gerais');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
+select pg_temp.tem_de_falhar($$insert into config_geral(id,dados) values ('geral','{"metaCartoesDia":99}')$$, 'professor gravando as configurações gerais');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+select pg_temp.igual((select count(*) from config_geral), 0, 'aluno lê as configurações gerais (vazio, sem erro de permissão)');
+
 -- o registro de cada avaliação de cartão e as colunas novas da resposta: só do dono
 insert into log_revisoes_cartoes(id,usuario_id,cartao_id,assunto_id,nota,intervalo_antes,intervalo_depois,dias_desde_ultima,vistas,data,respondida_em)
   values ('l1','00000000-0000-0000-0000-00000000000a','c1','ass-sca','sabia',7,14,8,2,current_date,now());

@@ -564,6 +564,22 @@ create table if not exists public.provas_inativas (
 create index if not exists provas_inativas_sync_idx on public.provas_inativas (atualizado_em);
 
 -- ---------------------------------------------------------------------------
+-- 11-C2. CONFIG_GERAL — Configurações Gerais (metas recomendadas, mistura de
+-- blocos, rampa de revisão, pesos da dificuldade) valendo para toda a turma
+-- ---------------------------------------------------------------------------
+-- Até aqui a tela Configurações Gerais gravava só no navegador do administrador:
+-- o ajuste nunca chegava aos alunos. Uma linha só (`id = 'geral'`) com os
+-- parâmetros em `dados`. Todo mundo que está numa conta lê; grava o administrador.
+create table if not exists public.config_geral (
+  id             text        primary key,
+  dados          jsonb       not null default '{}'::jsonb,
+  por_nome       text        not null default '',
+  atualizado_por uuid        references auth.users(id) on delete set null,
+  atualizado_em  timestamptz not null default now()
+);
+create index if not exists config_geral_sync_idx on public.config_geral (atualizado_em);
+
+-- ---------------------------------------------------------------------------
 -- 11-D. COMENTARIOS — comentários e dúvidas nas questões (GLOBAL)
 -- ---------------------------------------------------------------------------
 -- O que alguém escreve embaixo de uma questão ("não entendi por que não é a
@@ -846,7 +862,7 @@ begin
   foreach t in array array[
     'perfis', 'revisoes', 'revisoes_flashcards', 'favoritos',
     'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
-    'sessao_em_andamento', 'simulados_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada', 'provas_inativas',
+    'sessao_em_andamento', 'simulados_em_andamento', 'calendario', 'livro_ouro', 'formatacao_aprovada', 'provas_inativas', 'config_geral',
     'comentarios', 'questoes_enviadas', 'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados'
   ] loop
@@ -984,6 +1000,7 @@ alter table public.calendario           enable row level security;
 alter table public.livro_ouro           enable row level security;
 alter table public.formatacao_aprovada  enable row level security;
 alter table public.provas_inativas      enable row level security;
+alter table public.config_geral         enable row level security;
 alter table public.comentarios          enable row level security;
 alter table public.questoes_enviadas    enable row level security;
 alter table public.feedbacks            enable row level security;
@@ -1119,6 +1136,18 @@ create policy formatacao_aprovada_criar on public.formatacao_aprovada
 create policy formatacao_aprovada_alterar on public.formatacao_aprovada
   for update to authenticated
   using (public.e_revisor()) with check (public.e_revisor());
+
+-- CONFIG_GERAL: todos leem; grava o administrador.
+drop policy if exists config_geral_ler     on public.config_geral;
+drop policy if exists config_geral_criar   on public.config_geral;
+drop policy if exists config_geral_alterar on public.config_geral;
+create policy config_geral_ler on public.config_geral
+  for select to authenticated using (true);
+create policy config_geral_criar on public.config_geral
+  for insert to authenticated with check (public.e_admin());
+create policy config_geral_alterar on public.config_geral
+  for update to authenticated
+  using (public.e_admin()) with check (public.e_admin());
 
 -- PROVAS_INATIVAS: todos leem; grava a equipe.
 drop policy if exists provas_inativas_ler     on public.provas_inativas;
@@ -1453,6 +1482,9 @@ create policy push_inscricoes_excluir on public.push_inscricoes
 grant usage on schema public to authenticated;
 grant select, insert, update on all tables in schema public to authenticated;
 grant delete on public.push_inscricoes to authenticated;
+-- explícito para as tabelas de todos: sem ele, uma tabela criada depois do `grant … on all tables` ficava sem leitura
+-- e o download das tabelas de todos parava nela
+grant select, insert, update on public.provas_inativas, public.config_geral to authenticated;
 
 -- Visitante sem login (anon) não fala com estas tabelas de jeito nenhum. As
 -- políticas acima já só valem para "authenticated", mas o Supabase costuma
@@ -1465,7 +1497,7 @@ begin
     'perfis', 'respostas', 'revisoes', 'revisoes_flashcards', 'dias_cartoes', 'log_revisoes_cartoes',
     'favoritos', 'favoritos_cartoes', 'questoes_ocultas', 'destaques', 'flashcards_pessoais',
     'sessoes', 'resultados_simulados', 'sessao_em_andamento', 'simulados_em_andamento', 'calendario',
-    'livro_ouro', 'formatacao_aprovada', 'provas_inativas', 'comentarios', 'questoes_enviadas',
+    'livro_ouro', 'formatacao_aprovada', 'provas_inativas', 'config_geral', 'comentarios', 'questoes_enviadas',
     'feedbacks', 'correcoes_questoes', 'avisos', 'sinalizacoes_questoes',
     'grupos', 'grupo_membros', 'subgrupos', 'flashcards_enviados', 'push_inscricoes'
   ] loop

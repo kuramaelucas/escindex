@@ -35,16 +35,31 @@ function renderCarregando(){
 function renderLanding(n){
   if(n === undefined) n = numerosDaLanding();   // false = moldura sem números
   const numero = x => x.toLocaleString("pt-BR");
+  const bancaFoco = CONFIG.bancaFoco;
+  // faixa de números: só aparece com os números da última visita ou do conteúdo carregado
+  const faixa = n ? [
+    [numero(n.questoes), "questões"],
+    [n.reais ? numero(n.reais) : "—", "de provas reais" + (n.anoDe ? " ("+n.anoDe+"–"+n.anoAte+")" : "")],
+    [numero(n.cartoes), "flashcards"],
+    [numero(n.especialidades), "especialidades"],
+  ] : [];
   const capacidades = [
-    ["book", n ? numero(n.questoes)+" questões" : "Milhares de questões", n && n.reais ? numero(n.reais)+" delas das provas reais da "+CONFIG.bancaFoco+(n.anoDe?" ("+n.anoDe+"–"+n.anoAte+")":"")+", com explicação escrita pela equipe." : "Organizadas por área, especialidade e assunto, com explicação escrita pela equipe."],
-    ["calendar","No ritmo dos seus blocos","A sessão do dia segue o calendário da sua turma, do 3º ao 6º ano: o bloco atual, revisão do que já passou e uma prévia do próximo."],
-    ["refresh","Revisão no momento certo","Cada questão volta quando você está para esquecê-la — e as que você errou voltam antes."],
-    ["cards", n ? numero(n.cartoes)+" flashcards" : "Flashcards","Para fixar conceito em poucos segundos, com intervalo próprio de revisão."],
-    ["clipboard","Provas e simulados","Provas antigas inteiras e simulados cronometrados, com a nota guardada para comparar."],
-    ["chart","Seu desempenho, sem mistério","Acerto por área e por "+(n ? numero(n.especialidades)+" " : "")+"especialidades, onde a sua confiança engana e o que revisar hoje."],
+    ["calendar","No ritmo dos seus blocos","A sessão do dia segue o calendário da sua turma, do 3º ao 6º ano: o bloco atual, a revisão do que já passou e uma prévia do próximo. A plataforma sempre diz por que escolheu cada questão."],
+    ["refresh","Revisão no momento certo","Cada questão volta quando você está para esquecê-la; as que você errou ou chutou voltam antes, e o intervalo se ajusta ao seu acerto no assunto."],
+    ["target","Trilha para quem já se formou","Para Formado(a), os assuntos vêm na ordem do que mais cai nas provas reais e do que precisa de base antes, com a dificuldade subindo por fases conforme você acerta."],
+    ["clipboard","Provas antigas e simulados","Provas inteiras por instituição e ano (inclusive as anuladas, com a reposição corrigida) e simulados cronometrados, com a nota guardada para comparar."],
+    ["chart","Desempenho sem mistério","Acerto por área e assunto, onde a sua confiança engana, o que mais cai na prova e a nota estimada — tudo calculado das suas respostas."],
+    ["cards","Flashcards","Para fixar conceito em poucos segundos, com intervalo próprio de revisão, e o seu caderno de cartões ao lado do da equipe."],
+    ["download","Funciona no celular e sem internet","Instale como aplicativo, estude no ônibus com o que já foi aberto e receba o lembrete da meta do dia. Também aceita controle de videogame."],
+    ["eye","Do seu jeito","Modo resumido, para ir direto à questão, ou estatístico, com todos os números. Você troca quando quiser, sem perder nada do que estudou."],
+  ];
+  const passos = [
+    ["1", "Peça seu cadastro", "Alguém da equipe confere e libera o acesso."],
+    ["2", "Diga sua turma e sua meta", "Três perguntas rápidas e a sessão do dia já nasce certa."],
+    ["3", "Estude e acompanhe", "Questões, revisão e cartões no ritmo dos seus blocos."],
   ];
   return `
-  <div class="container">
+  <div class="container landing">
     <nav class="public-nav">
       <div class="brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
       <div class="flex gap-1">
@@ -55,31 +70,39 @@ function renderLanding(n){
     </nav>
     <div class="hero">
       <div>
-        <span class="badge badge-accent">Projeto sem fins lucrativos</span>
-        <h1 class="mt-2">Feito por quem passou pela EPM, para quem está passando.</h1>
-        <p class="mt-2" style="font-size:var(--fs-base);color:var(--ink-2);max-width:48ch;line-height:1.55">O ${CONFIG.nomePlataforma} é uma plataforma de estudos gratuita para os alunos de medicina da Escola Paulista de Medicina (UNIFESP), administrada por alunos e ex-alunos — do primeiro bloco do curso até a prova de residência.</p>
+        <span class="badge badge-accent">Gratuito · sem fins lucrativos</span>
+        <h1 class="mt-2">Estude para a residência com as provas da sua própria escola.</h1>
+        <p class="hero-sub mt-2">O ${CONFIG.nomePlataforma} é a plataforma de estudos dos alunos da Escola Paulista de Medicina (UNIFESP), feita e mantida por alunos e ex-alunos: questões de provas reais com explicação escrita pela equipe, revisão no momento certo e um plano de estudo que acompanha o seu bloco — do 3º ano à prova de residência.</p>
         <div class="flex gap-1 mt-3 quebra">
-          <button class="btn btn-primary" onclick="navigate('cadastro')">Solicitar cadastro</button>
-          <button class="btn btn-secondary" onclick="navigate('login')">Já tenho conta</button>
+          <button class="btn btn-primary btn-lg" onclick="navigate('cadastro')">Solicitar cadastro</button>
+          <button class="btn btn-secondary btn-lg" onclick="navigate('login')">Já tenho conta</button>
         </div>
         <p class="text-xs muted mt-2">O acesso é liberado depois que alguém da equipe confere o cadastro.</p>
       </div>
       <div class="hero-card">
         <div class="card-title" style="margin-bottom:.6rem">Seja bem-vindo(a)</div>
-        <p class="text-sm" style="line-height:1.65">Montamos o ${CONFIG.nomePlataforma} com o material que gostaríamos de ter tido: as provas da nossa escola, organizadas no ritmo dos nossos blocos, com explicação de verdade. <strong>Espero que isso os ajude.</strong></p>
-        <p class="text-sm mt-2" style="line-height:1.65">Isto aqui é uma <strong>comunidade</strong>, não um produto. Ninguém é pago e nada é vendido — e a sobrevivência do ${CONFIG.nomePlataforma} depende da ajuda de quem usa: enviar uma questão, corrigir um erro, responder a dúvida de um colega, contribuir com os custos do site.</p>
+        <p class="text-sm" style="line-height:1.65">Montamos o ${CONFIG.nomePlataforma} com o material que gostaríamos de ter tido: as provas da nossa escola e de outras bancas, organizadas no ritmo dos nossos blocos, com explicação de verdade. <strong>Espero que isso ajude você.</strong></p>
+        <p class="text-sm mt-2" style="line-height:1.65">Isto aqui é uma <strong>comunidade</strong>, não um produto. Ninguém é pago e nada é vendido — a plataforma depende de quem usa: enviar uma questão, corrigir um erro, responder a dúvida de um colega, ajudar com os custos do site.</p>
         <p class="text-xs muted mt-2">— Alunos e ex-alunos da EPM que mantêm o ${CONFIG.nomePlataforma}</p>
       </div>
     </div>
-    <div class="card-title">O que você encontra aqui</div>
-    <div class="grid grid-3 mt-1">
+    ${faixa.length ? `<div class="landing-numeros">${faixa.map(([v, r]) => `<div class="landing-numero">${escapeHtml(v)} <span class="landing-rotulo">${escapeHtml(r)}</span></div>`).join("")}</div>` : ""}
+    <h2 class="landing-titulo">O que você encontra aqui</h2>
+    <div class="grid grid-4 landing-grade">
       ${capacidades.map(([icon,titulo,desc])=>`
-        <div class="card-flat">
-          <div class="flex items-center gap-1 peso-700">${iconeSvg(icon)} ${escapeHtml(titulo)}</div>
+        <div class="card-flat landing-capacidade">
+          <span class="landing-icone">${iconeSvg(icon)}</span>
+          <div class="peso-700 mt-1">${escapeHtml(titulo)}</div>
           <div class="text-sm muted mt-1">${escapeHtml(desc)}</div>
         </div>`).join("")}
     </div>
-    <div class="card mt-3">
+    <h2 class="landing-titulo">Como começar</h2>
+    <div class="grid grid-3">
+      ${passos.map(([num, titulo, desc])=>`
+        <div class="landing-passo"><span class="landing-passo-num">${num}</span>
+          <div><div class="peso-700">${escapeHtml(titulo)}</div><div class="text-sm muted mt-1">${escapeHtml(desc)}</div></div></div>`).join("")}
+    </div>
+    <div class="card" style="margin-top:3rem">
       <div class="card-title">${iconeSvg("users")} Como ajudar a comunidade</div>
       <div class="grid grid-2 mt-1 text-sm">
         <div>${iconeSvg("upload")} <strong>Envie questões</strong> — de prova, de aula, de lista. Dentro da plataforma, em "Enviar Questões".</div>
@@ -88,12 +111,12 @@ function renderLanding(n){
         <div>${iconeSvg("star")} <strong>Apoie os custos</strong> — quem contribui entra no Livro de Ouro, na tela inicial de todo mundo.</div>
       </div>
     </div>
-    <div class="card-flat mt-3">
-      <div class="text-sm" style="font-weight:600;margin-bottom:.5rem">Quer ver antes de se cadastrar?</div>
-      <div class="flex gap-1 quebra">
-        <button class="pill" onclick="aposBancoPronto(() => fazerLoginDemo('aluno'))">${iconeSvg("user")} Ver como aluno</button>
+    <div class="card-flat mt-3 landing-demo">
+      <div>
+        <div class="peso-700">Quer ver antes de se cadastrar?</div>
+        <div class="text-xs muted mt-1">Uma conta de teste, sem memória: nada do que você fizer nela é guardado.</div>
       </div>
-      <div class="text-xs muted mt-2">Uma conta de teste, sem memória: nada do que você fizer nela é guardado.</div>
+      <button class="btn btn-secondary" onclick="aposBancoPronto(() => fazerLoginDemo('aluno'))">${iconeSvg("user")} Ver como aluno</button>
     </div>
     <footer class="site-footer">${CONFIG.nomePlataforma} — projeto sem fins lucrativos, mantido por alunos e ex-alunos da Escola Paulista de Medicina (UNIFESP).</footer>
   </div>`;
