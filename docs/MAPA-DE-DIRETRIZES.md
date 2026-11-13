@@ -51,11 +51,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | Família | Questões |
 |---|---:|
 | Livros-texto e outras fontes sem diretriz | 2607 |
-| Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 2554 |
+| Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 2558 |
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 1220 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) | 970 |
 | Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 603 |
-| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 568 |
+| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 570 |
 | AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) | 555 |
 | Epidemiologia e bioestatística (livros-texto) | 370 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 304 |
@@ -68,7 +68,7 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, dor) | 33 |
 | Anestesia (ASRA, ASA, DAS) | 12 |
 
-**Sem nenhuma referência:** 120 questões (`npm run auditoria-padrao -- sem-diretriz`).
+**Sem nenhuma referência:** 114 questões (`npm run auditoria-padrao -- sem-diretriz`).
 
 ## Questões por diretriz da tabela (só as superadas; as demais pelo JSON)
 

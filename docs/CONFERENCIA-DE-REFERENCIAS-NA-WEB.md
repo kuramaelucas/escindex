@@ -144,7 +144,7 @@ As 425 questões das provas `prova-einstein-*` entraram com `referencias` sem co
 
 ## `banco-didatico`: fase 3 do projeto de adequação (13/11/2026)
 
-As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Faltam 118 questões do arquivo.
+As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da segunda rodada faltam 112 questões do arquivo.
 
 | Fonte (site) | O que foi lido | Questões |
 |---|---|---|
@@ -159,9 +159,21 @@ As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada for
 | MS, Calendário Técnico Nacional de Vacinação do Adulto (gov.br/saude) | dT a cada 10 anos; antecipado para 5 anos em exposição a risco de tétano ou difteria | `q-inf-29` |
 | SBC/SBH/SBN, Diretriz Brasileira de Hipertensão Arterial 2025 (abccardiol.org) | Consultório ≥ 140/90; MAPA 24 h e média do MRPA ≥ 130/80 (vigília 135/85, sono 120/70); fenótipos; Quadro 7.1 de classes; crise hipertensiva (sem LOA: reavaliação em 1 a 7 dias; EH: UTI, 25% na 1ª hora; nifedipina rápida proscrita); HAR e aldosterona. Relação aldosterona/renina e hipocalemia espontânea não conferidas | `q-card-13` a `q-card-17` |
 
-**Texto alterado:** `q-card-13` (a explicação dizia 135/85 para a medida residencial; a diretriz brasileira de 2020 e a de 2025 usam 130/80 na média do MRPA). Nenhum gabarito foi alterado.
+**Segunda rodada (13/11/2026, mesmo dia):**
 
-**Não abriram nesta rodada:** `pmc.ncbi.nlm.nih.gov/articles/PMC4968574/` (Sepsis-3, a página raspada devolveu só uma linha), `planalto.gov.br` (Lei 8.080, 403), `bvsms.saude.gov.br` (403), `saude.curitiba.pr.gov.br` (403), `antigo-conitec.saude.gov.br` (não resolve), `ginasthma.org` (403), `kdigo.org` (406), `ahajournals.org` (não resolve). Os PDFs do `gov.br` às vezes devolvem reset de conexão: repetir resolve. Tentativas de adivinhar endereço do PCDT de IST e do PCDT de PEP devolveram 404; o endereço certo precisa vir de uma busca.
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| MS, Nota Técnica Conjunta nº 154/2024-DPNI/SVSA/MS (gov.br/saude) | Contato próximo (10 dias antes do início dos sintomas do caso até 24 h após o tratamento); quimioprofilaxia idealmente nas primeiras 24 h do início dos sintomas, valor limitado após 10 dias da exposição; rifampicina de primeira escolha, ceftriaxona e ciprofloxacino em dose única como alternativas, azitromicina 500 mg; gestante: ceftriaxona. Esquema de 2 dias da rifampicina (Guia de Vigilância) não conferido | `q-inf-12` (explicação corrigida) |
+| MS, PCDT de IST 2022 (gov.br/aids) | Cancro duro (única, indolor, base endurecida, fundo limpo, linfadenopatia regional); benzatina 2,4 milhões UI IM em dose única na sífilis recente (alternativa doxiciclina 15 dias); cancro mole (dolorosas, múltiplas); seção 5.7: queda de duas diluições em 6 meses (recente) ou 12 meses (tardia), retratamento por ausência de queda ou aumento de duas diluições; cicatriz sorológica | `q-inf-20`, `q-inf-21` |
+| MS, Guia de tratamento da malária, 3ª ed., 2026, e edição de 2021 (gov.br/saude) | Hipnozoítos e recaídas do P. vivax; cloroquina + primaquina 0,5 mg/kg/dia por 7 dias; tafenoquina em dose única com G6PD quantitativo; hemólise na deficiência de G6PD; gestantes e < 6 meses não usam primaquina nem tafenoquina | `q-inf-26` (explicação ganhou a tafenoquina) |
+| MS, Manejo do paciente com diarreia: avaliação da hidratação (gov.br/saude) | Quadro dos planos A, B e C (sinais por plano e regra de dois ou mais sinais); Plano A: mais líquidos após cada evacuação, manter a alimentação, zinco por 10 a 14 dias | `q-018` |
+| MS, Nota Técnica nº 16/2024-CGZV/DEDT/SVSA/MS, leptospirose (gov.br/saude) | Febre alta, mialgia de panturrilha e congestão conjuntival na fase precoce; síndrome de Weil com hemorragia pulmonar, insuficiência renal e icterícia rubínica; exposição a enchente nos 30 dias anteriores; IRA oligúrica e não oligúrica no fluxograma | `q-inf-25` |
 
-**Ainda sem leitura (priorizar):** sepse (Sepsis-3 e SSC 2026), colecistite (Tokyo), pré-eclâmpsia e diabetes gestacional, sífilis e PEP, doença meningocócica (quimioprofilaxia), leptospirose, malária, Zika, diarreia (planos A/B/C), notificação compulsória (Portaria GM/MS), Lei 8.080 e ESF (PNAB), erros inatos (colo do útero, climatério), técnicas cirúrgicas (TOCE) e oftalmologia.
+**Textos alterados na segunda rodada:** `q-inf-12` (janela de 24 h do início dos sintomas em vez de 24 a 48 h; ceftriaxona como primeira escolha na gestante) e `q-inf-26` (tafenoquina e contraindicação abaixo de 6 meses). Nenhum gabarito foi alterado.
+
+**Texto alterado na primeira rodada:** `q-card-13` (a explicação dizia 135/85 para a medida residencial; a diretriz brasileira de 2020 e a de 2025 usam 130/80 na média do MRPA). Nenhum gabarito foi alterado.
+
+**Não abriram nesta rodada:** `cfbm.gov.br` e `prefeitura.pbh.gov.br` (o proxy recusa; eram cópias da Portaria SAES/SECTICS nº 13/2025 e da Portaria GM/MS nº 10.175/2026), `atencaoprimaria.rs.gov.br` (403, PNAB), a página do Conitec da Portaria 13/2025 (só índice), `pmc.ncbi.nlm.nih.gov/articles/PMC4968574/` (Sepsis-3, a página raspada devolveu só uma linha), `planalto.gov.br` (Lei 8.080, 403), `bvsms.saude.gov.br` (403), `saude.curitiba.pr.gov.br` (403), `antigo-conitec.saude.gov.br` (não resolve), `ginasthma.org` (403), `kdigo.org` (406), `ahajournals.org` (não resolve). Os PDFs do `gov.br` às vezes devolvem reset de conexão: repetir resolve. Tentativas de adivinhar endereço do PCDT de IST e do PCDT de PEP devolveram 404; o endereço certo precisa vir de uma busca.
+
+**Ainda sem leitura (priorizar):** sepse (Sepsis-3 e SSC 2026), colecistite (Tokyo), pré-eclâmpsia e diabetes gestacional, profilaxia pós-exposição ao HIV (PCDT de PEP), Zika, notificação compulsória (Portaria GM/MS), Lei 8.080 e ESF (PNAB), rastreamento do colo do útero (Portaria 13/2025), climatério, técnicas cirúrgicas (TOCE) e oftalmologia.
 
