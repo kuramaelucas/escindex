@@ -3,12 +3,12 @@
 Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra `dados/PADRAO-EXPLICACAO.md`: justificativa (`faltasDeJustificativa`) e referência com data de leitura. "Completa" = forma da justificativa sem falta, **mecanismo e epidemiologia presentes (heurística por palavra-chave, não prova qualidade)** e referência datada. Não é erro: `npm run conferir` só cobra o padrão de conteúdo novo.
 
 ```
-12137 questões em 156 arquivos; 1033 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 3373 de 12137 mencionam mecanismo E epidemiologia (27.8%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 3466 de 12137 mencionam mecanismo E epidemiologia (28.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7742  sem mecanismo/fisiopatologia
-   6401  sem epidemiologia
+   7651  sem mecanismo/fisiopatologia
+   6322  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -43,7 +43,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | uspsp-simulado-5 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (83) |
 | uspsp-simulado-4 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (81) |
 | uspsp-simulado-3 | 120 | 0 | 98 | 120/0/0 | sem mecanismo/fisiopatologia (22); sem epidemiologia (12) |
-| tp-2026-1 | 120 | 2 | 27 | 117/0/0 | sem mecanismo/fisiopatologia (91); sem epidemiologia (79) |
+| tp-2026-1 | 120 | 3 | 120 | 117/0/0 | — |
 | unifesp-2024-adaptado | 100 | 0 | 1 | 79/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (61) |
 | simulado-epm-2 | 100 | 0 | 0 | 70/0/11 | sem mecanismo/fisiopatologia (95); sem epidemiologia (89); sem Dicas do enunciado (1) |
 | simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |
