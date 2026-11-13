@@ -144,7 +144,7 @@ As 425 questões das provas `prova-einstein-*` entraram com `referencias` sem co
 
 ## `banco-didatico`: fase 3 do projeto de adequação (13/11/2026)
 
-As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da quarta rodada faltam 39 questões do arquivo (ver `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 6-B).
+As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da quinta rodada faltam 34 questões do arquivo (ver `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 6-B).
 
 | Fonte (site) | O que foi lido | Questões |
 |---|---|---|
@@ -197,6 +197,18 @@ As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada for
 | SBC, Atualização da Diretriz de RCP 2019 | Desfibrilação em ritmo chocável priorizada (I, B); compressões 100 a 120/min e 5 a 6 cm; adrenalina a cada 3 a 5 min; atropina 0,5 mg a cada 3 a 5 min, máx. 3 mg | `q-card-21` a `-24` |
 | SBC, Análise e Emissão de Laudos Eletrocardiográficos 2022 (PMC9563889) | BAV de 1º grau com PR > 200 ms; Mobitz I (Wenckebach) e Mobitz II | `q-card-02`, `q-card-03` |
 | IDSA, Pele e partes moles 2014 (idsociety.org) | Fasciíte necrosante: consulta cirúrgica imediata, antibiótico amplo, penicilina + clindamicina no grupo A; erisipela e celulite tratadas juntas (5 dias) | `q-inf-09`, `q-inf-10` |
+
+**Quinta rodada (13/11/2026, o que ainda abria):**
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| ACG, Management of Acute Pancreatitis, 2024 (PMC) | 2 de 3 critérios (lipase > 3 vezes o limite); TC com contraste > 90% de sensibilidade, sem uso de rotina; TC ou RM se não melhora em 48 a 72 h (necrose); RM na alergia a contraste; CPRE precoce não sugerida sem colangite. A janela fixa de 72 a 96 h não consta | `q-010` (explicação ajustada) |
+| WSES, apendicite, atualização de Jerusalem 2020 (PMC7386163) | POCUS como exame inicial; apendicectomia laparoscópica preferida (forte, alta); antibiótico só em casos selecionados | `q-007` |
+| SBP, Manejo da febre aguda (sbp.com.br) | Antitérmico preventivo não recomendado para convulsão febril (evidência I, E). Definição, punção lombar e EEG não constam | `q-017` (parcial) |
+| SBP, Choosing Wisely Pediatric e Intoxicações agudas por medicamentos (sbp.com.br) | Não receitar medicação para tosse e resfriado em menores de 6 anos; descongestionantes como causa de intoxicação | `q-016` (explicação ajustada) |
+| ACG, GERD, 2022 (PMC8754510) | Teste empírico de IBP por 8 semanas sem sinais de alarme (forte, moderada); endoscopia primeiro na disfagia e em sintomas de alarme; endoscopia se falha ou recorrência; monitorização do refluxo se dúvida | `q-003` |
+
+**Não abriu na quinta rodada:** Tokyo 2018 e WSES via Wiley/BMC (403), NAMS 2022 (menopause.org, 403), diretriz da SBD (só fontes secundárias), diretriz de pericardiopatias da SBC (PDF não localizado), ASA 2023 de jejum (o PMC encontrado é uma revisão pediátrica, secundária, e não foi usado), páginas da IDSA de meningite e de ITU sem o conteúdo necessário.
 
 **Conflitos encontrados:** (1) `q-card-09`: a SBC 2026 define ICFEr como FEVE < 50% e eliminou a FEVE levemente reduzida; o gabarito (≤ 40%) segue a definição universal. Gabarito mantido, explicação com aviso, decisão da equipe. (2) `q-card-24`: a SBC 2019 preconiza atropina 0,5 mg e a explicação usava 1 mg (AHA); a explicação passou a citar as duas. **Não confirmado:** o corte de 120 minutos da reperfusão no IAMCSST nas diretrizes da SBC lidas; as páginas da IDSA de meningite bacteriana (só resumo) e de ITU complicada (não cobre a cistite) não sustentam `q-inf-11`, `q-inf-13` e `q-inf-07`.
 

@@ -800,3 +800,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 
 **Fase 3 com as diretrizes da SBC e da IDSA (13/11/2026).** 18 questões do `banco-didatico` ganharam `referencias` com leitura datada (IC 2026, valvopatias 2026, dor torácica 2025, SCASSST 2021, RCP 2019, laudos de ECG 2022; IDSA de pele 2014). Dois conflitos com a diretriz brasileira vigente ficaram sinalizados na explicação, com gabarito mantido: `q-card-09` (ICFEr < 50% na SBC 2026) e `q-card-24` (atropina 0,5 mg da SBC × 1 mg da AHA). Restam 39 questões sem referência; as listas de pendências foram atualizadas.
 
+**Fase 3, o que ainda abria (13/11/2026).** Mais 5 questões do `banco-didatico` com leitura datada (ACG 2024 de pancreatite e 2022 de DRGE, WSES 2020 de apendicite, SBP de febre e de medicação para resfriado); `q-010` e `q-016` tiveram a explicação ajustada pela fonte. Restam 34 sem referência, quase todas dependentes de PDF enviado (Tokyo, NAMS, SBD, KDIGO, Sepsis-3, SSC 2026, normas do Ministério da Saúde); as listas de pendências foram atualizadas.
+

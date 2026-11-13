@@ -201,13 +201,15 @@ Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calend
 - `q-udisc20262-004`: diretrizes da SBPT para DPOC não relidas.
 - `q-unifesp2023-069`: Box 11-4 do GINA (dispositivo na criança) não relido linha a linha.
 
-## 6-B. Banco didático: 39 questões sem `referencias`, 45 com livro-texto só indicado, 51 com texto oficial lido (fase 3 do projeto de adequação)
+## 6-B. Banco didático: 34 questões sem `referencias`, 45 com livro-texto só indicado, 56 com texto oficial lido (fase 3 do projeto de adequação)
 
 O `banco-didatico` (135 questões autorais) não tinha `referencias`. Situação em 13/11/2026:
 
-- **51 questões** com nota de **leitura datada** do texto oficial (lista em `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`);
+- **56 questões** com nota de **leitura datada** do texto oficial (lista em `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`);
 - **45 questões** com **livro-texto indicado sem leitura** (a equipe aceitou livro-texto como referência): técnica operatória `q-toce-01` a `-10` e `-14` a `-30` (27; Goffi e Sabiston 21ª ed.), oftalmologia `q-oft-01` a `-15` (Kanski 9ª ed.), `q-025` e `q-027` (Medronho, 2ª ed.) e `q-028` (Beauchamp e Childress). A nota registra a obra e a edição (conferidas em catálogo) e diz que capítulo, página e conteúdo **não** foram conferidos; `npm run auditoria-padrao` as conta como "indicadas sem leitura". **Pendência:** quem tiver os livros confere o capítulo e troca a nota por "lido em DD/MM/AAAA" (`atualizar-dados` com o campo `referencias`);
-- **39 questões ainda sem nenhuma referência** (lista abaixo; `npm run auditoria-padrao -- sem-diretriz` e `-- prova banco-didatico` regeram, e há mais 2 na `tp-2020-2`).
+- **34 questões ainda sem nenhuma referência** (lista abaixo; `npm run auditoria-padrao -- sem-diretriz` e `-- prova banco-didatico` regeram, e há mais 2 na `tp-2020-2`).
+
+**Parcial (nota diz o que falta):** `q-017` (o documento da SBP lido só cobre o antitérmico profilático; a definição de convulsão febril simples, a punção lombar e o EEG seguem sem leitura, e a SBP não tem documento próprio localizado).
 
 **Decisões da equipe (conflito com a fonte lida):**
 - `q-card-09` (ICFEr ≤ 40%): a Diretriz Brasileira de IC 2026 (SBC) define ICFEr como FEVE < 50% e eliminou a FEVE levemente reduzida. Gabarito mantido; a explicação já traz o aviso. Decidir entre marcar `desatualizada` e repor, ou manter com o aviso.
@@ -219,16 +221,16 @@ Estado da fonte: **abre** = aberta na rede, falta ler; **enviar** = a rede não 
 |---|---|---|---|
 | Síndrome coronariana com supra e angina estável | `q-001`, `q-card-05`, `q-card-08` | V Diretriz da SBC de IAMCSST (2015) ou atualização; ESC 2023/2024; a de dor torácica 2025 e a de SCASSST 2021 já lidas não trazem o corte de 120 min | abre a localizar |
 | ECG e arritmias | `q-card-01`, `q-card-20` | SBC (frequência no ECG; taquicardia supraventricular); a diretriz de laudos de 2022 já lida não traz a regra dos 300 | abre |
-| Pericárdio | `q-card-28`, `q-card-29` | Diretriz da SBC de pericardiopatias; ESC 2025 | abre a localizar |
+| Pericárdio | `q-card-28`, `q-card-29` | Diretriz da SBC de pericardiopatias (a busca só achou citações, o PDF não foi localizado); ESC 2015/2025 | abre a localizar |
 | Sepse | `q-005`, `q-inf-01` a `-03` | Sepsis-3 (JAMA 2016) e SSC 2026 | enviar |
 | Antibióticos | `q-inf-04` a `-06` | IDSA 2026 (idsociety.org) e livros de farmacologia | abre |
 | Meningites, endocardite, ITU | `q-inf-11`, `-13`, `-27`, `-07` | IDSA 2004 (a página da IDSA lida só traz o resumo); Guia de Vigilância; AHA/ESC (endocardite); IDSA 2025 de ITU complicada não cobre a cistite | enviar / abre |
 | HIV (PEP) e Zika | `q-inf-19`, `q-inf-24` | PCDT de PEP; guia de vigilância de arboviroses | enviar (endereço) |
-| Clínica e cirurgia | `q-003`, `-004`, `-006`, `-007`, `-008`, `-009`, `-010`, `-011`, `-012` | FBG/ACG, SBD, KDIGO, WSES, Tokyo, ACG 2024 (lido no PMC em 29/10), ESGE, ASA (jejum) | abre / enviar (KDIGO, Tokyo) |
-| Pediatria e obstetrícia | `q-016`, `-017`, `-019`, `-020`, `-021`, `-022`, `-023` | SBP (convulsão febril, resfriado); FEBRASGO, OMS; Portaria SAES/SECTICS 13/2025 | abre (SBP, OMS) / enviar (Portaria) |
+| Clínica e cirurgia | `q-004`, `-006`, `-008`, `-009`, `-011`, `-012` | SBD 2025 (diretriz.diabetes.org.br não abriu; só fontes secundárias), KDIGO (406), ATLS 11ª (livro), Tokyo 2018 (Wiley 403), ESGE/NCCN, ASA 2023 de jejum (só abriu revisão pediátrica secundária) | enviar |
+| Obstetrícia e ginecologia | `q-019`, `-020`, `-021`, `-022`, `-023` | FEBRASGO, OMS, IADPSG; NAMS 2022 (menopause.org 403); Portaria SAES/SECTICS 13/2025 | enviar |
 | Saúde coletiva (norma) | `q-026`, `q-029`, `q-030` | Lei 8.080; PNAB 2017; Portaria de notificação compulsória | enviar |
 
-**Texto já corrigido ou com aviso pela fonte nesta frente:** `q-card-13` (MRPA 130/80), `q-card-30` (metas de LDL < 50 e < 40 mg/dL), `q-inf-12` (quimioprofilaxia em 24 h; ceftriaxona na gestante), `q-inf-26` (tafenoquina), `q-toce-13` (janela de 120 min da OMS), `q-card-09` (aviso: ICFEr < 50% na SBC 2026) e `q-card-24` (dose da SBC). Pontos de explicação ainda a revisar por quem é da área: `q-016`, `q-013`, `q-015`, `q-023`, `q-011`, `q-inf-03` (ver `docs/PROJETO-ADEQUACAO.md`).
+**Texto já corrigido ou com aviso pela fonte nesta frente:** `q-010` (ACG 2024: TC/RM se não melhora em 48 a 72 h), `q-016` (SBP: não medicar tosse e resfriado em menores de 6 anos), `q-card-13` (MRPA 130/80), `q-card-30` (metas de LDL < 50 e < 40 mg/dL), `q-inf-12` (quimioprofilaxia em 24 h; ceftriaxona na gestante), `q-inf-26` (tafenoquina), `q-toce-13` (janela de 120 min da OMS), `q-card-09` (aviso: ICFEr < 50% na SBC 2026) e `q-card-24` (dose da SBC). Pontos de explicação ainda a revisar por quem é da área: `q-016`, `q-013`, `q-015`, `q-023`, `q-011`, `q-inf-03` (ver `docs/PROJETO-ADEQUACAO.md`).
 
 ## 7. Como encerrar uma pendência
 
