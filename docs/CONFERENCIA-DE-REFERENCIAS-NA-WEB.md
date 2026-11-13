@@ -144,7 +144,7 @@ As 425 questões das provas `prova-einstein-*` entraram com `referencias` sem co
 
 ## `banco-didatico`: fase 3 do projeto de adequação (13/11/2026)
 
-As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da segunda rodada faltam 112 questões do arquivo.
+As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da terceira rodada faltam 102 questões do arquivo (ver `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 6-B).
 
 | Fonte (site) | O que foi lido | Questões |
 |---|---|---|
@@ -168,6 +168,20 @@ As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada for
 | MS, Guia de tratamento da malária, 3ª ed., 2026, e edição de 2021 (gov.br/saude) | Hipnozoítos e recaídas do P. vivax; cloroquina + primaquina 0,5 mg/kg/dia por 7 dias; tafenoquina em dose única com G6PD quantitativo; hemólise na deficiência de G6PD; gestantes e < 6 meses não usam primaquina nem tafenoquina | `q-inf-26` (explicação ganhou a tafenoquina) |
 | MS, Manejo do paciente com diarreia: avaliação da hidratação (gov.br/saude) | Quadro dos planos A, B e C (sinais por plano e regra de dois ou mais sinais); Plano A: mais líquidos após cada evacuação, manter a alimentação, zinco por 10 a 14 dias | `q-018` |
 | MS, Nota Técnica nº 16/2024-CGZV/DEDT/SVSA/MS, leptospirose (gov.br/saude) | Febre alta, mialgia de panturrilha e congestão conjuntival na fase precoce; síndrome de Weil com hemorragia pulmonar, insuficiência renal e icterícia rubínica; exposição a enchente nos 30 dias anteriores; IRA oligúrica e não oligúrica no fluxograma | `q-inf-25` |
+
+**Terceira rodada (13/11/2026, mesmo dia):**
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| SBC, Diretriz Brasileira de Dislipidemias 2025 (abccardiol.org) | LDL-c < 50 mg/dL no muito alto risco e < 40 no risco extremo (múltiplos eventos ou 1 evento + ≥ 2 condições de alto risco); estatina de alta intensidade + ezetimiba como terapia inicial, anti-PCSK9 no extremo ou se a meta não for atingida. Meta de 55 mg/dL da ESC não conferida | `q-card-30` (explicação atualizada) |
+| SOBRAC/SBC, Diretriz Brasileira de Fibrilação Atrial 2025 (abccardiol.org) | RR irregulares, ausência de ondas P, ondas f; instabilidade hemodinâmica: cardioversão elétrica imediata | `q-card-18`, `q-card-19` |
+| SBP, reanimação do RN ≥ 34 semanas, maio/2022 e junho/2026 (sbp.com.br) | VPP com apneia, respiração irregular e/ou FC < 100; massagem se FC < 60 após 30 s de VPP com técnica adequada. Adrenalina não conferida | `q-014` |
+| OMS, Global guidelines for the prevention of SSI, 2018 (iris.who.int) | Álcool + clorexidina no preparo da pele; pelos não removidos ou só com clipper (barbear desencorajado); profilaxia em até 120 min antes da incisão, sem prolongar após a operação | `q-toce-11`, `q-toce-12`, `q-toce-13` (explicação ajustada) |
+| IDSA, Bacteriúria assintomática, 2019 (idsociety.org) | Tratar em gestantes e antes de procedimento urológico com trauma de mucosa (fortes, moderada) | `q-inf-08` |
+| MS, Manual dos CRIE, 6ª ed. (gov.br/saude) | Vacinas vivas não devem ser dadas na imunodepressão; inativadas se necessário; vacinar contatos; atualizar o esquema até 14 dias antes. Transplantados e lista de vacinas vivas não conferidos | `q-inf-28` |
+| OMS, Hand Hygiene Technical Reference Manual (guideline 2009, iris.who.int) | Os cinco momentos, com categorias IA/IB | `q-inf-30` |
+
+**Textos alterados na terceira rodada:** `q-card-30` (metas de LDL e terapia inicial combinada) e `q-toce-13` (janela de 120 minutos da OMS; a de 30 a 60 minutos passou a ser dita como prática de protocolos). Nenhum gabarito foi alterado.
 
 **Textos alterados na segunda rodada:** `q-inf-12` (janela de 24 h do início dos sintomas em vez de 24 a 48 h; ceftriaxona como primeira escolha na gestante) e `q-inf-26` (tafenoquina e contraindicação abaixo de 6 meses). Nenhum gabarito foi alterado.
 

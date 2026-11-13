@@ -1,6 +1,6 @@
 # Pendências de referências e diretrizes — USP e UNIFESP (consolidado)
 
-Atualizado em 08/11/2026. Este é o **único** documento de pendências de referência dessas provas; `docs/REVISAO-USP.md` e `docs/REVISAO-UNIFESP.md` guardam só o histórico do que foi feito.
+Atualizado em 13/11/2026 (seção 8 nova: `banco-didatico`). Este é o **único** documento de pendências de referência dessas provas e do `banco-didatico`; `docs/REVISAO-USP.md` e `docs/REVISAO-UNIFESP.md` guardam só o histórico do que foi feito.
 
 ## 1. Situação
 
@@ -157,9 +157,14 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 | NCCN 2026 (pulmão, ovário, colo, endométrio, melanoma, mama, testículo) — exige login | USP: melanoma, mama, cólon, pâncreas, testículo; UNIFESP: `q-unifesp2022-015`, `-024`, `-030`, `q-unifesp2023-043`, `-045`, `-086`, `q-unifesp2024-013`, `-014`, `q-unifesp2025-013`, `q-unifesp2026-006` |
 | EAU 2026 (CloudFront bloqueado) | `q-usp2022-073`, `q-usp2023-018` e urolitíase da UNIFESP |
 | ACOG (HTTP 402), ESC/EACTS 2025 e ESC de pericárdio 2025 (a verificar), ADA 2026 (diabetesjournals) | USP 2022–2026 e UNIFESP |
-| Sepsis-3 (Singer, JAMA 2016) | `q-unifesp2023-019` |
+| Sepsis-3 (Singer, JAMA 2016); a página do PMC (PMC4968574) devolveu vazio em 13/11/2026 | `q-unifesp2023-019`, `banco-didatico`: `q-005`, `q-inf-01`, `q-inf-02` |
+| Surviving Sepsis Campaign 2026 (só havia o PDF enviado em 08/11; não está nesta sessão) | `banco-didatico`: `q-inf-03`, `q-005` |
+| Portaria GM/MS de notificação compulsória (nº 11.211/2026 e 10.175/2026; só chegaram cópias em domínios bloqueados) | `banco-didatico`: `q-030` |
+| Lei 8.080/1990 (planalto.gov.br, 403) e PNAB, Portaria 2.436/2017 (bvsms e cópia estadual, 403) | `banco-didatico`: `q-026`, `q-029` |
+| PCDT de profilaxia pós-exposição ao HIV (endereço certo não localizado) e Zika (guia de vigilância; bvsms 403) | `banco-didatico`: `q-inf-19`, `q-inf-24` |
+| Tokyo Guidelines 2018 (colecistite), KDIGO 2024 de DRC (kdigo.org respondeu 406 em 13/11), WSES de apendicite | `banco-didatico`: `q-009`, `q-006`, `q-007` |
 
-Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calendário, notas técnicas), kdigo.org, goldcopd.org, ginasthma.org, idsociety.org, sbp.com.br, thyroid.org, cdc.gov, iris.who.int, pmc.ncbi.nlm.nih.gov.
+Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calendário, notas técnicas; o PDF às vezes dá *connection reset* e abre na segunda tentativa), abccardiol.org (diretrizes da SBC), goldcopd.org, idsociety.org, sbp.com.br, thyroid.org, iris.who.int, pmc.ncbi.nlm.nih.gov (HTML raspado às vezes vem vazio). **Em 13/11/2026 não abriram:** ginasthma.org (403), kdigo.org (406), cdc.gov (403), bvsms.saude.gov.br (403), planalto.gov.br (403), ahajournals.org (não resolve), cfbm.gov.br e prefeitura.pbh.gov.br (recusados pelo proxy). Endereço de PDF adivinhado devolve 404: ache-o por busca.
 
 ## 5. Letras de gabarito a conferir (nada foi alterado)
 
@@ -196,9 +201,31 @@ Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calend
 - `q-udisc20262-004`: diretrizes da SBPT para DPOC não relidas.
 - `q-unifesp2023-069`: Box 11-4 do GINA (dispositivo na criança) não relido linha a linha.
 
+## 6-B. Banco didático: 102 questões ainda sem `referencias` (fase 3 do projeto de adequação)
+
+O `banco-didatico` (135 questões autorais) não tinha `referencias`. Em 13/11/2026, 33 ganharam nota de leitura datada (lista em `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`); **restam 102**. A lista se regera com `npm run auditoria-padrao -- sem-diretriz` (inclui 2 questões da `tp-2020-2`) e `npm run auditoria-padrao -- prova banco-didatico`. Estado: **abre** = fonte aberta na rede, falta ler; **enviar** = a rede não abre, alguém envia o PDF; **livro** = não há diretriz que a busca confirme.
+
+| Tema | Questões | Fonte-alvo | Estado |
+|---|---|---|---|
+| Técnica operatória (instrumental, fios, incisões, vídeo) | `q-toce-01` a `-10`, `-16` a `-29` (28) | tratados de técnica cirúrgica; SAGES (pneumoperitônio) | livro |
+| Antissepsia e ferida (campo estéril, classe da ferida, posição) | `q-toce-14`, `-15`, `-30` | CDC/ANVISA (classificação da ferida); OMS SSI 2018 já lida para `-11` a `-13` | abre |
+| Síndromes coronarianas | `q-001`, `q-card-04` a `-08` | Diretriz SBC de SCA e ESC (abccardiol.org); AHA/ACC 2025 bloqueada | abre (SBC) |
+| ECG, arritmias e PCR | `q-card-01` a `-03`, `-20`, `-24`, `-21` a `-23` | SBC (arritmias, RCP 2024); AHA 2025 bloqueada | abre (SBC) / enviar (AHA) |
+| Insuficiência cardíaca, valvopatias, pericárdio | `q-card-09` a `-12`, `-25` a `-29` | Diretrizes da SBC de IC e de valvopatias; ESC de pericárdio | abre (SBC) |
+| Sepse | `q-005`, `q-inf-01` a `-03` | Sepsis-3 (JAMA 2016) e SSC 2026 | enviar |
+| Antibióticos | `q-inf-04` a `-06` | IDSA 2026 (idsociety.org) e livros de farmacologia | abre / livro |
+| Pele, meningites, endocardite, ITU | `q-inf-09`, `-10`, `-11`, `-13`, `-27`, `-07` | IDSA (pele, meningite 2004); Guia de Vigilância; AHA/ESC (endocardite) | abre (IDSA) / enviar (AHA) |
+| HIV (PEP) e Zika | `q-inf-19`, `q-inf-24` | PCDT de PEP; guia de vigilância de arboviroses | enviar (endereço) |
+| Oftalmologia | `q-oft-01` a `-15` (15) | CBO/SBO; AAO Preferred Practice Patterns; Portaria do teste do olhinho | abre a verificar |
+| Clínica e cirurgia | `q-003`, `-004`, `-006`, `-007`, `-008`, `-009`, `-010`, `-011`, `-012` | FBG/ACG, SBD, KDIGO, WSES, Tokyo, ACG 2024 (lido no PMC em 29/10), ESGE, ASA (jejum) | abre / enviar (KDIGO, Tokyo) |
+| Pediatria e obstetrícia | `q-016`, `-017`, `-019`, `-020`, `-021`, `-022`, `-023` | SBP (convulsão febril, resfriado); FEBRASGO, OMS; Portaria SAES/SECTICS 13/2025 | abre (SBP, OMS) / enviar (Portaria) |
+| Saúde coletiva e ética | `q-025`, `-026`, `-027`, `-028`, `-029`, `-030` | Medronho e Gordis (epidemiologia); Lei 8.080; Res. CFM 2.232/2019; PNAB 2017; Portaria de notificação | livro / enviar |
+
+**Texto já corrigido pela fonte nesta frente:** `q-card-13` (MRPA 130/80), `q-card-30` (metas de LDL < 50 e < 40 mg/dL), `q-inf-12` (quimioprofilaxia em 24 h; ceftriaxona na gestante), `q-inf-26` (tafenoquina), `q-toce-13` (janela de 120 min da OMS). Pontos de explicação ainda a revisar por quem é da área: `q-016`, `q-013`, `q-015`, `q-023`, `q-011`, `q-inf-03` (ver `docs/PROJETO-ADEQUACAO.md`).
+
 ## 7. Como encerrar uma pendência
 
 1. Ler o texto oficial (`npm run texto-oficial -- <url> --buscar "termo"`), conferir número, limiar, dose ou prazo afirmado.
-2. Registrar com `npm run anotar-conferencia -- q-id "nota"` (fonte, data, o que foi lido e o que não foi confirmado).
+2. Registrar com `npm run anotar-conferencia -- q-id "nota"` (fonte, data, o que foi lido e o que não foi confirmado). **No `banco-didatico` o campo `referencias` ainda não existe na maioria das questões e `anotar-conferencia` recusa:** grave por `npm run atualizar-dados` com um JSON `{formato:"esc-atualizacoes-questoes", questoes:[{id, campos:{referencias:"…"}}]}`.
 3. Só mudar a explicação com fonte primária; **nunca mudar gabarito por fonte secundária**; questão real: texto da prova não se altera.
 4. Apagar a linha daqui e atualizar `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`.
