@@ -4,11 +4,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 4440 de 12137 mencionam mecanismo E epidemiologia (36.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 4596 de 12137 mencionam mecanismo E epidemiologia (37.9%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   6700  sem mecanismo/fisiopatologia
-   5479  sem epidemiologia
+   6547  sem mecanismo/fisiopatologia
+   5348  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -107,8 +107,8 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | famerp-2023 | 80 | 0 | 0 | 80/0/0 | sem mecanismo/fisiopatologia (79); sem epidemiologia (76) |
 | famerp-2025 | 80 | 0 | 4 | 80/0/0 | sem mecanismo/fisiopatologia (75); sem epidemiologia (65) |
 | famerp-2022 | 80 | 0 | 1 | 80/0/0 | sem mecanismo/fisiopatologia (78); sem epidemiologia (68) |
-| unicamp-2022 | 80 | 0 | 3 | 80/0/0 | sem mecanismo/fisiopatologia (76); sem epidemiologia (63) |
-| unicamp-2023 | 80 | 0 | 1 | 80/0/0 | sem mecanismo/fisiopatologia (77); sem epidemiologia (68) |
+| unicamp-2022 | 80 | 0 | 80 | 80/0/0 | — |
+| unicamp-2023 | 80 | 0 | 80 | 80/0/0 | — |
 | didatico | 135 | 56 | 135 | 0/34/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | unifesp-2022 | 100 | 24 | 81 | 1/0/75 | sem epidemiologia (18); sem mecanismo/fisiopatologia (6) |
 | einstein-2022 | 75 | 0 | 24 | 0/0/72 | sem epidemiologia (51); sem mecanismo/fisiopatologia (1) |
