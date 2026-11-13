@@ -4,13 +4,13 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1031 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 2260 de 12137 mencionam mecanismo E epidemiologia (18.6%). Forma da justificativa (itens 1–4): 12134 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 3347 de 12137 mencionam mecanismo E epidemiologia (27.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7769  sem mecanismo/fisiopatologia
-   7508  sem epidemiologia
-      2  corpo curto
+   7767  sem mecanismo/fisiopatologia
+   6422  sem epidemiologia
       2  sem Dicas do enunciado
+      1  corpo curto
       1  sem destaque **
 Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 ```
@@ -19,14 +19,14 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 
 | Arquivo | Questões | Completas | Mecanismo + epidem. | Ref. sem data/vazia/fraca | Principais faltas |
 |---|---:|---:|---:|---|---|
-| didatico-grad-hiv | 218 | 0 | 30 | 218/0/0 | sem epidemiologia (188) |
-| didatico-grad-parasitoses | 198 | 0 | 23 | 198/0/0 | sem epidemiologia (175); corpo curto (1) |
-| didatico-grad-tuberculose | 182 | 0 | 35 | 182/0/0 | sem epidemiologia (146); sem mecanismo/fisiopatologia (2) |
-| didatico-grad-meningites | 180 | 0 | 26 | 180/0/0 | sem epidemiologia (154) |
-| didatico-grad-pneumonias | 142 | 0 | 42 | 142/0/0 | sem epidemiologia (100) |
-| didatico-grad-iras | 127 | 0 | 20 | 127/0/0 | sem epidemiologia (107) |
-| didatico-grad-antibioticos | 126 | 0 | 12 | 126/0/0 | sem epidemiologia (114) |
-| didatico-grad-arboviroses | 121 | 0 | 19 | 121/0/0 | sem epidemiologia (102) |
+| didatico-grad-hiv | 218 | 0 | 218 | 218/0/0 | — |
+| didatico-grad-parasitoses | 198 | 0 | 198 | 198/0/0 | — |
+| didatico-grad-tuberculose | 182 | 0 | 182 | 182/0/0 | — |
+| didatico-grad-meningites | 180 | 0 | 180 | 180/0/0 | — |
+| didatico-grad-pneumonias | 142 | 0 | 142 | 142/0/0 | — |
+| didatico-grad-iras | 127 | 0 | 127 | 127/0/0 | — |
+| didatico-grad-antibioticos | 126 | 0 | 126 | 126/0/0 | — |
+| didatico-grad-arboviroses | 121 | 0 | 121 | 121/0/0 | — |
 | simulado-epm-6 | 120 | 0 | 2 | 115/0/1 | sem mecanismo/fisiopatologia (112); sem epidemiologia (68) |
 | usprp-2021 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (116); sem epidemiologia (104) |
 | tp-2020-2 | 120 | 0 | 3 | 115/2/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (99) |
