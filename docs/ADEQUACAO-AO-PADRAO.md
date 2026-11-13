@@ -4,11 +4,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 4082 de 12137 mencionam mecanismo E epidemiologia (33.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 4162 de 12137 mencionam mecanismo E epidemiologia (34.3%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7046  sem mecanismo/fisiopatologia
-   5813  sem epidemiologia
+   6971  sem mecanismo/fisiopatologia
+   5725  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -38,7 +38,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | tp-2025-1 | 120 | 0 | 0 | 117/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (108) |
 | tp-2025-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (98) |
 | unicamp-2024-dissertativa | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (82) |
-| uspsp-simulado-1 | 120 | 0 | 0 | 120/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (88) |
+| uspsp-simulado-1 | 120 | 0 | 80 | 120/0/0 | sem mecanismo/fisiopatologia (40) |
 | uspsp-simulado-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (82) |
 | uspsp-simulado-5 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (83) |
 | uspsp-simulado-4 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (81) |
