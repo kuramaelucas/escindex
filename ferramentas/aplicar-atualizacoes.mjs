@@ -89,7 +89,7 @@ export function literal(v){
 
 /* Onde está a questão: o objeto que começa com id:"<id>". */
 export function localizarQuestao(txt, id){
-  const marca = new RegExp("\\bid\\s*:\\s*[\"']" + id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[\"']");
+  const marca = new RegExp("[\"']?\\bid[\"']?\\s*:\\s*[\"']" + id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[\"']");
   const m = marca.exec(txt);
   if(!m) return null;
   let abre = m.index - 1;
