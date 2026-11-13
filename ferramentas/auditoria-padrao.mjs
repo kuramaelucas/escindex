@@ -35,6 +35,19 @@ export function estadoDaReferencia(q){
   return "datada";
 }
 
+/* CONTEÚDO (itens 7 e 8 do padrão): o conferidor oficial não checa. Aqui é só heurística por palavra-chave —
+   serve para dimensionar o trabalho e achar candidatas, NÃO para aprovar: uma explicação pode ter o mecanismo sem a
+   palavra, ou a palavra sem o mecanismo. Anulada fica de fora (não tem resposta a explicar). */
+const MECANISMO = /fisiopatolog|mecanismo|patogên|patogene|por que (o|a|os|as) /i;
+const EPIDEMIOLOGIA = /epidemiolog|prevalên|incidên|frequên|mais comum|fator de risco|faixa etária|no Brasil/i;
+export function faltasDeConteudo(q){
+  if(q.status === "anulada") return [];
+  const t = String(q.explicacaoGeral || ""), f = [];
+  if(!MECANISMO.test(t)) f.push("sem mecanismo/fisiopatologia");
+  if(!EPIDEMIOLOGIA.test(t)) f.push("sem epidemiologia");
+  return f;
+}
+
 /* Cada item que falta, reduzido a uma etiqueta estável para contar. */
 function etiquetas(faltas){
   return faltas.map((f) => f.startsWith("menos de 300") ? "corpo curto"
@@ -55,12 +68,15 @@ export function auditar(){
   };
   for(const a of arquivos){
     if(!a.questoes) continue;
-    const p = { nome: a.nome, total: 0, completas: 0, faltas: {}, ref: { vazia: 0, "sem-data": 0, fraca: 0, datada: 0 }, questoes: [] };
+    const p = { nome: a.nome, total: 0, completas: 0, conteudoOk: 0, formaOk: 0, faltas: {}, ref: { vazia: 0, "sem-data": 0, fraca: 0, datada: 0 }, questoes: [] };
     for(const q of a.questoes){
       if(q.status === "rascunho") continue;
       p.total++;
-      const faltas = etiquetas(faltasDeJustificativa(q)), est = estadoDaReferencia(q);
+      const forma = etiquetas(faltasDeJustificativa(q)), conteudo = faltasDeConteudo(q), est = estadoDaReferencia(q);
+      const faltas = [...forma, ...conteudo];
       p.ref[est]++;
+      if(!conteudo.length) p.conteudoOk++;
+      if(!forma.length) p.formaOk++;
       if(!faltas.length && est === "datada") p.completas++;
       faltas.forEach((f) => { p.faltas[f] = (p.faltas[f] || 0) + 1; });
       p.questoes.push({ id: q.id, faltas, ref: est });
@@ -87,7 +103,9 @@ function resumo({ provas, porDiretriz, semDiretriz }){
   const soma = (f) => provas.reduce((n, p) => n + f(p), 0);
   const faltasTot = {};
   provas.forEach((p) => Object.entries(p.faltas).forEach(([k, v]) => { faltasTot[k] = (faltasTot[k] || 0) + v; }));
-  const linhas = [`${tot} questões em ${provas.length} arquivos; ${ok} já cumprem justificativa + referência datada (${(100 * ok / tot).toFixed(1)}%).`,
+  const cOk = soma((p) => p.conteudoOk), fOk = soma((p) => p.formaOk);
+  const linhas = [`${tot} questões em ${provas.length} arquivos; ${ok} já cumprem forma + mecanismo/epidemiologia + referência datada (${(100 * ok / tot).toFixed(1)}%).`,
+    `Conteúdo (heurística por palavra-chave, itens 7 e 8): ${cOk} de ${tot} mencionam mecanismo E epidemiologia (${(100 * cOk / tot).toFixed(1)}%). Forma da justificativa (itens 1–4): ${fOk} de ${tot} sem falta (${(100 * fOk / tot).toFixed(1)}%).`,
     `Referências: ${soma((p) => p.ref.datada)} datadas, ${soma((p) => p.ref["sem-data"])} sem data, ${soma((p) => p.ref.vazia)} vazias, ${soma((p) => p.ref.fraca)} fracas.`,
     "Justificativa — o que falta:"];
   Object.entries(faltasTot).sort((a, b) => b[1] - a[1]).forEach(([k, v]) => linhas.push(`  ${String(v).padStart(5)}  ${k}`));
@@ -111,12 +129,12 @@ function escreverDocumentos(r){
   const { provas, porDiretriz, semDiretriz } = r, d = hoje();
   // 1) adequação por prova
   const pior = [...provas].sort((a, b) => (b.total - b.completas) - (a.total - a.completas));
-  let md = `# Adequação das questões ao padrão da plataforma\n\nGerado por \`npm run auditoria-padrao\` em ${d}. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra \`dados/PADRAO-EXPLICACAO.md\`: justificativa (\`faltasDeJustificativa\`) e referência com data de leitura. "Completa" = justificativa sem falta **e** referência datada. Não é erro: \`npm run conferir\` só cobra o padrão de conteúdo novo.\n\n`
+  let md = `# Adequação das questões ao padrão da plataforma\n\nGerado por \`npm run auditoria-padrao\` em ${d}. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra \`dados/PADRAO-EXPLICACAO.md\`: justificativa (\`faltasDeJustificativa\`) e referência com data de leitura. "Completa" = forma da justificativa sem falta, **mecanismo e epidemiologia presentes (heurística por palavra-chave, não prova qualidade)** e referência datada. Não é erro: \`npm run conferir\` só cobra o padrão de conteúdo novo.\n\n`
     + "```\n" + resumo(r) + "\n```\n\n"
-    + `## Por arquivo (mais questões a adequar primeiro)\n\n| Arquivo | Questões | Completas | Ref. sem data/vazia/fraca | Principais faltas |\n|---|---:|---:|---|---|\n`;
+    + `## Por arquivo (mais questões a adequar primeiro)\n\n| Arquivo | Questões | Completas | Mecanismo + epidem. | Ref. sem data/vazia/fraca | Principais faltas |\n|---|---:|---:|---:|---|---|\n`;
   for(const p of pior){
     const fl = Object.entries(p.faltas).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k, v]) => `${k} (${v})`).join("; ") || "—";
-    md += `| ${nomeCurto(p.nome)} | ${p.total} | ${p.completas} | ${p.ref["sem-data"]}/${p.ref.vazia}/${p.ref.fraca} | ${fl} |\n`;
+    md += `| ${nomeCurto(p.nome)} | ${p.total} | ${p.completas} | ${p.conteudoOk} | ${p.ref["sem-data"]}/${p.ref.vazia}/${p.ref.fraca} | ${fl} |\n`;
   }
   md += `\nPara ver questão a questão: \`npm run auditoria-padrao -- prova <nome>\`.\n`;
   fs.writeFileSync(path.join(RAIZ, "docs", "ADEQUACAO-AO-PADRAO.md"), md);
