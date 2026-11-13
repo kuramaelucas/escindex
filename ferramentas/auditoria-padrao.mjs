@@ -38,11 +38,13 @@ export function estadoDaReferencia(q){
 /* CONTEÚDO (itens 7 e 8 do padrão): o conferidor oficial não checa. Aqui é só heurística por palavra-chave —
    serve para dimensionar o trabalho e achar candidatas, NÃO para aprovar: uma explicação pode ter o mecanismo sem a
    palavra, ou a palavra sem o mecanismo. Anulada fica de fora (não tem resposta a explicar). */
-const MECANISMO = /fisiopatolog|mecanismo|patogên|patogene|por que (o|a|os|as) /i;
-const EPIDEMIOLOGIA = /epidemiolog|prevalên|incidên|frequên|mais comum|fator de risco|faixa etária|no Brasil/i;
+/* Sem acento nos dois lados: "epidemiológico" não casava com /epidemiolog/. */
+const semAcento = (t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+const MECANISMO = /fisiopatolog|mecanismo|patogen|por que (o|a|os|as) /i;
+const EPIDEMIOLOGIA = /epidemiolog|prevalenc|incidenc|frequenc|mais comum|fator(es)? de risco|faixa etaria|no brasil/i;
 export function faltasDeConteudo(q){
   if(q.status === "anulada") return [];
-  const t = String(q.explicacaoGeral || ""), f = [];
+  const t = semAcento(q.explicacaoGeral || ""), f = [];
   if(!MECANISMO.test(t)) f.push("sem mecanismo/fisiopatologia");
   if(!EPIDEMIOLOGIA.test(t)) f.push("sem epidemiologia");
   return f;

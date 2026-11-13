@@ -18,6 +18,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 // ---------- CLÍNICA MÉDICA ----------
 {
   id:"q-001", banca:"Esc — Banco Didático", real:false, ano:2021,
+  justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Paciente de 62 anos, hipertenso e tabagista, chega ao pronto-socorro com dor precordial em aperto há 40 minutos, irradiando para o membro superior esquerdo, associada a sudorese fria. ECG mostra supradesnivelamento do segmento ST de 3mm em derivações V2-V4. Troponina ainda não disponível. Qual a conduta mais apropriada?",
   alternativas:[
@@ -27,7 +28,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Prescrever apenas analgesia e observar por 6 horas antes de nova avaliação"},
     {id:"E",texto:"Encaminhar para ressonância cardíaca antes de qualquer intervenção"}],
   gabarito:"B",
-  explicacaoGeral:"O quadro clínico associado a supradesnivelamento de ST em parede anterior (V2-V4) configura infarto agudo do miocárdio com supra de ST (IAMCSST). O diagnóstico e a decisão terapêutica são clínico-eletrocardiográficos: não se deve aguardar a troponina para iniciar a reperfusão, já que \"tempo é músculo\". A conduta é reperfusão imediata — angioplastia primária preferencialmente, ou fibrinólise se a angioplastia não estiver disponível em tempo hábil.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **dor precordial em aperto há 40 minutos**, com irradiação para o membro superior esquerdo e sudorese fria (quadro isquêmico agudo), e **supradesnivelamento de ST de 3 mm em V2–V4** (normal: segmento ST isoelétrico; supra em derivações contíguas indica oclusão coronariana aguda, aqui de parede anterior). A troponina 'ainda não disponível' é a armadilha: o diagnóstico de IAMCSST é clínico-eletrocardiográfico e a conduta não depende dela. Mecanismo: a ruptura de uma placa aterosclerótica com trombo oclusivo interrompe o fluxo na artéria responsável e a necrose transmural avança em horas, por isso o benefício da reperfusão cai a cada minuto ('tempo é músculo'); a troponina só se eleva depois que já existe necrose. Contexto epidemiológico: as doenças cardiovasculares são a principal causa de morte no Brasil, e hipertensão e tabagismo, presentes neste caso, são fatores de risco clássicos; a incidência do infarto cresce com a idade, e o paciente tem 62 anos. A conduta é angioplastia primária, de preferência, ou fibrinólise quando a angioplastia não é possível em tempo hábil. A) Errada: aguardar a troponina atrasa a reperfusão sem nenhum benefício, pois o ECG já firma o diagnóstico. C) Errada: o teste ergométrico é contraindicado na fase aguda do infarto, porque o esforço aumenta a isquemia e o risco de arritmia grave. D) Errada: só analgesia e observação por 6 horas deixa a artéria ocluída e perde a janela de reperfusão. E) Errada: a ressonância cardíaca não decide a conduta no IAMCSST e retardaria a intervenção.",
   explicacoesAlternativas:{A:"Aguardar a troponina atrasa a reperfusão sem nenhum benefício, pois o diagnóstico de IAMCSST já está firmado pelo ECG.", C:"Teste ergométrico é contraindicado na fase aguda de um infarto."},
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:88, acertos:59, distribuicaoAlternativas:{A:10,B:59,C:6,D:9,E:4}},
@@ -35,6 +36,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-002", banca:"Esc — Banco Didático", real:false, ano:2022,
+  justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem de 68 anos, ex-tabagista (40 anos-maço), com diagnóstico prévio de DPOC, procura atendimento por piora da dispneia habitual, aumento do volume de expectoração e mudança da coloração do escarro para amarelo-esverdeado nos últimos 2 dias, sem febre. Ausculta com sibilos difusos, sem estertores. Saturação de O2 92% em ar ambiente. Qual o diagnóstico mais provável e a conduta inicial?",
   alternativas:[
@@ -44,7 +46,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Insuficiência cardíaca descompensada; iniciar diurético venoso"},
     {id:"E",texto:"Asma de início tardio; iniciar corticoide inalatório em dose alta isoladamente"}],
   gabarito:"B",
-  explicacaoGeral:"A tríade de piora da dispneia, aumento do volume do escarro e mudança da purulência (2 dos 3 critérios de Anthonisen) em um paciente com DPOC define exacerbação aguda. O manejo padrão inclui broncodilatadores de curta ação, corticoide sistêmico por curto período, e antibiótico quando há purulência do escarro associada a pelo menos mais um critério.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **DPOC prévio com 40 anos-maço** e, em 2 dias, **piora da dispneia, aumento do volume do escarro e escarro amarelo-esverdeado** (os três critérios de Anthonisen: dispneia, volume e purulência, todos presentes); **sibilos difusos, sem estertores e sem febre** afastam consolidação e congestão; **SatO2 92% em ar ambiente** é aceitável em quem tem DPOC (com oxigênio suplementar, o alvo usual é 88–92%). Antibiótico é considerado quando há purulência associada a pelo menos mais um critério, situação deste caso. Mecanismo: infecção (viral ou bacteriana) ou irritantes aumentam a inflamação, o edema e a secreção brônquicos e o broncoespasmo agrava o aprisionamento aéreo, o que explica a piora da dispneia; o broncodilatador de curta ação alivia o broncoespasmo e o corticoide sistêmico por curto período reduz a inflamação e acelera a recuperação. Contexto epidemiológico: o tabagismo é o principal fator de risco da DPOC, as exacerbações são frequentes e causam muitas internações e piora do prognóstico, e a maior parte delas é desencadeada por infecções respiratórias. A) Errada: sem febre, sem estertores e sem consolidação descrita, o quadro não sustenta pneumonia nem internação por esse diagnóstico. C) Errada: nada no caso sugere embolia pulmonar (sem dor pleurítica, sem fator de risco tromboembólico, sem hipoxemia desproporcional), e anticoagular empiricamente expõe a sangramento sem indicação. D) Errada: a insuficiência cardíaca descompensada cursa com estertores, edema e ortopneia, ausentes aqui, e o escarro purulento aponta para causa infecciosa. E) Errada: o paciente tem DPOC conhecida e 40 anos-maço, o que explica o quadro melhor do que asma tardia, e corticoide inalatório isolado não trata a exacerbação.",
   explicacoesAlternativas:{A:"Não há febre nem descrição de sinais radiológicos de consolidação; o quadro é mais compatível com exacerbação de DPOC.", D:"A ausência de estertores ou outros sinais congestivos torna a insuficiência cardíaca descompensada uma hipótese menos provável aqui."},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:102, acertos:84, distribuicaoAlternativas:{A:9,B:84,C:3,D:4,E:2}},
@@ -52,6 +54,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-003", banca:"Esc — Banco Didático", real:false, ano:2023,
+  justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-gastro", assuntoId:"ass-drge",
   enunciado:"Mulher de 34 anos relata pirose retroesternal e regurgitação ácida há 8 meses, predominantemente após refeições copiosas e ao deitar-se, sem sinais de alarme (sem disfagia, emagrecimento, sangramento digestivo ou anemia). Qual a conduta inicial mais adequada?",
   alternativas:[
@@ -61,7 +64,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"pHmetria de 24 horas antes de iniciar qualquer tratamento medicamentoso"},
     {id:"E",texto:"Antiácidos isolados, sem necessidade de inibidor de bomba de prótons"}],
   gabarito:"B",
-  explicacaoGeral:"Em pacientes jovens com sintomas típicos de DRGE e sem sinais de alarme, a conduta inicial recomendada é a prova terapêutica empírica com IBP associada a mudanças de estilo de vida, sem necessidade de endoscopia de rotina. A endoscopia fica reservada para sinais de alarme, refratariedade ao tratamento ou fatores de risco adicionais.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **pirose e regurgitação ácida há 8 meses**, piores após **refeições copiosas e ao deitar** (sintomas típicos de DRGE) e **ausência de sinais de alarme** (sem disfagia, emagrecimento, sangramento digestivo ou anemia) em mulher de 34 anos: o diagnóstico é clínico e a conduta inicial é a prova terapêutica. Mecanismo: o relaxamento transitório do esfíncter esofagiano inferior permite o refluxo do conteúdo ácido; refeições volumosas aumentam a pressão gástrica e deitar-se tira a ajuda da gravidade; o inibidor de bomba de prótons bloqueia a bomba H+/K+ da célula parietal, eleva o pH do refluxo, cicatriza a mucosa e alivia o sintoma. Contexto epidemiológico: a pirose é queixa muito comum em adultos, inclusive no Brasil, e a maior parte dos casos é de doença não erosiva, sem complicações, razão pela qual a endoscopia não é rotina quando não há alarme. A conduta é IBP por 4–8 semanas com medidas comportamentais, e a endoscopia fica para sinais de alarme, falha terapêutica ou fatores de risco adicionais. A) Errada: a endoscopia não é obrigatória de rotina na ausência de sinais de alarme. C) Errada: a fundoplicatura é opção para casos selecionados, com refluxo comprovado e falha ou dependência do tratamento clínico, e não primeira linha. D) Errada: a pHmetria de 24 horas é reservada para dúvida diagnóstica, refratariedade ou avaliação pré-operatória, e não precede o tratamento. E) Errada: o antiácido alivia o sintoma por pouco tempo, mas não controla o refluxo nem cicatriza esofagite de forma sustentada, e o IBP é a classe de escolha.",
   explicacoesAlternativas:{A:"Endoscopia não é obrigatória de rotina na ausência de sinais de alarme.", D:"pHmetria é reservada para casos de dúvida diagnóstica ou refratariedade, não como primeira conduta."},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:95, acertos:79, distribuicaoAlternativas:{A:6,B:79,C:3,D:5,E:2}},
@@ -69,6 +72,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-004", banca:"Esc — Banco Didático", real:false, ano:2024,
+  justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-endocrino", assuntoId:"ass-dm",
   enunciado:"Paciente de 55 anos, obeso (IMC 33), assintomático, apresenta em exames de rotina glicemia de jejum de 118 mg/dL em duas ocasiões distintas. Hemoglobina glicada (HbA1c) de 6,0%. Qual a classificação mais adequada e a conduta inicial?",
   alternativas:[
@@ -78,7 +82,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Diabetes gestacional; solicitar teste oral de tolerância à glicose com 75g"},
     {id:"E",texto:"Síndrome metabólica; iniciar estatina de alta potência isoladamente"}],
   gabarito:"B",
-  explicacaoGeral:"Glicemia de jejum entre 100-125 mg/dL em duas medidas caracteriza glicemia de jejum alterada (pré-diabetes), reforçada por HbA1c entre 5,7-6,4%. A conduta inicial é intervenção no estilo de vida, e não uso de hipoglicemiante, pois os critérios diagnósticos de diabetes (glicemia de jejum ≥126 mg/dL, HbA1c ≥6,5% ou glicemia casual ≥200 mg/dL com sintomas) não foram atingidos.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **glicemia de jejum de 118 mg/dL em duas ocasiões** (normal: < 100 mg/dL; 100–125 = glicemia de jejum alterada; ≥ 126 = diabetes), **HbA1c de 6,0%** (normal: < 5,7%; 5,7–6,4% = pré-diabetes; ≥ 6,5% = diabetes) e **IMC 33** (obesidade) em paciente de 55 anos assintomático. Nenhum valor atinge o corte de diabetes; portanto trata-se de pré-diabetes e a conduta inicial é mudança de estilo de vida com reavaliação periódica. Mecanismo: a resistência periférica à insulina, favorecida pela gordura visceral, causa hiperinsulinemia compensatória e, com o tempo, falência da célula beta; no pré-diabetes a glicose já sobe, e a perda de peso e o exercício melhoram a sensibilidade à insulina e podem retardar a progressão. Contexto epidemiológico: obesidade e idade acima de 45 anos são fatores de risco clássicos, uma parcela importante das pessoas com pré-diabetes evolui para diabetes tipo 2 ao longo dos anos, e a condição é comum e muitas vezes não diagnosticada. A) Errada: os valores não atingem o critério de diabetes, e metformina com insulina basal expõe o paciente a hipoglicemia sem indicação. C) Errada: glicemia de jejum de 118 mg/dL está acima do normal e exige intervenção e seguimento. D) Errada: o enunciado não menciona gestação, que é a condição do diabetes gestacional e do teste de 75 g nesse contexto. E) Errada: síndrome metabólica exige outros componentes (circunferência abdominal, pressão, triglicerídeos, HDL) que o caso não traz, e estatina isolada não trata a hiperglicemia nem substitui a mudança de estilo de vida.",
   explicacoesAlternativas:{A:"Os valores não atingem o critério diagnóstico de diabetes mellitus.", D:"Diabetes gestacional pressupõe gestação, não mencionada no enunciado."},
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:77, acertos:48, distribuicaoAlternativas:{A:11,B:48,C:9,D:5,E:4}},
@@ -86,6 +90,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-005", banca:"Esc — Banco Didático", real:false, ano:2025,
+  justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-sepse",
   enunciado:"Paciente de 74 anos, admitido por pielonefrite obstrutiva, evolui em 6 horas com pressão arterial de 78x50 mmHg refratária a 30 mL/kg de cristaloide, lactato de 4,8 mmol/L e necessidade de vasopressor para manter pressão arterial média ≥65 mmHg. Qual a classificação mais adequada segundo o Sepsis-3 e a droga vasopressora de primeira escolha?",
   alternativas:[
@@ -95,7 +100,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Choque séptico; vasopressina isolada como primeira escolha, sem noradrenalina"},
     {id:"E",texto:"Síndrome da resposta inflamatória sistêmica; manejo apenas com antibioticoterapia, sem necessidade de vasopressor"}],
   gabarito:"B",
-  explicacaoGeral:"Pelo Sepsis-3, choque séptico é definido por hipotensão persistente que requer vasopressor para manter PAM ≥65 mmHg associada a lactato >2 mmol/L, mesmo após ressuscitação volêmica adequada — exatamente o cenário descrito. A noradrenalina é o vasopressor de primeira linha recomendado pelas diretrizes (Surviving Sepsis Campaign), reservando vasopressina e adrenalina como adjuvantes em casos refratários.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **PA 78×50 mmHg refratária a 30 mL/kg de cristaloide** (hipotensão que persiste após ressuscitação volêmica), **necessidade de vasopressor para manter PAM ≥ 65 mmHg** e **lactato 4,8 mmol/L** (normal: < 2 mmol/L) em foco urinário obstrutivo. Pelo Sepsis-3, vasopressor para PAM ≥ 65 mmHg com lactato > 2 mmol/L após volume adequado define choque séptico, e a primeira escolha de vasopressor é a noradrenalina. Mecanismo: na sepse, mediadores inflamatórios causam vasodilatação e extravasamento capilar, e o volume sozinho não corrige a vasoplegia; o lactato sobe por hipoperfusão tecidual e pelo estresse adrenérgico. A noradrenalina age em receptores alfa-1, restaura o tônus vascular e eleva pouco a frequência cardíaca. Contexto epidemiológico: o trato urinário é foco frequente de sepse em idosos, e pielonefrite obstrutiva é emergência que exige drenagem do foco além do antibiótico; sepse e choque séptico têm mortalidade elevada nas UTIs brasileiras. A) Errada: o caso cumpre critério de choque, não só de sepse, e a dopamina não é a primeira escolha por estar associada a mais arritmias. C) Errada: a hipotensão já é refratária a 30 mL/kg, e insistir só em volume, sem vasopressor, atrasa a correção da PAM. D) Errada: a vasopressina entra como adjuvante da noradrenalina, não isoladamente como primeira escolha. E) Errada: SRIS não descreve disfunção orgânica nem hipotensão com vasopressor, e antibiótico isolado não estabiliza um paciente em choque.",
   explicacoesAlternativas:{A:"Dopamina não é mais recomendada como primeira escolha por maior associação com arritmias.", D:"Vasopressina é usada como adjuvante à noradrenalina, não isoladamente como primeira escolha."},
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:46, acertos:18, distribuicaoAlternativas:{A:9,B:18,C:2,D:14,E:3}},
@@ -103,6 +108,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-006", banca:"Esc — Banco Didático", real:false, ano:2022,
+  justificativaEm:"2026-11",
   areaId:"area-cm", especialidadeId:"esp-nefro", assuntoId:"ass-drc",
   enunciado:"Paciente de 60 anos, diabético e hipertenso de longa data, apresenta taxa de filtração glomerular estimada (TFGe) de 38 mL/min/1,73m² em duas medidas com intervalo de 3 meses, associada a albuminúria de 250 mg/g de creatinina. Qual o estágio de doença renal crônica (KDIGO) e a principal medida para retardar a progressão?",
   alternativas:[
@@ -112,7 +118,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Estágio G1; apenas seguimento anual"},
     {id:"E",texto:"Estágio G4; suspensão de todo o tratamento anti-hipertensivo pelo risco renal"}],
   gabarito:"B",
-  explicacaoGeral:"TFGe entre 30-44 mL/min/1,73m² corresponde ao estágio G3b da classificação KDIGO. O controle pressórico com bloqueio do sistema renina-angiotensina (IECA ou BRA) é a principal intervenção com evidência de redução da progressão da doença renal, especialmente havendo albuminúria elevada, associado ao controle glicêmico adequado.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **TFGe de 38 mL/min/1,73 m² em duas medidas com 3 meses de intervalo** (normal: ≥ 90; < 60 por mais de 3 meses define DRC; G3b = 30–44) e **albuminúria de 250 mg/g** (normal: < 30 mg/g; 30–300 = categoria A2), em diabético e hipertenso de longa data, o que sugere lesão renal diabética e hipertensiva. Mecanismo: hiperglicemia e hipertensão levam à hiperfiltração e à lesão glomerular; a angiotensina II contrai a arteríola eferente e eleva a pressão intraglomerular, e IECA ou BRA reduzem essa pressão e a albuminúria, retardando a perda de néfrons, desde que associados ao controle da glicemia e da pressão arterial. Contexto epidemiológico: diabetes e hipertensão estão entre as principais causas de DRC e de entrada em diálise no Brasil, e a albuminúria aumentada eleva o risco de progressão e de eventos cardiovasculares. A) Errada: G2 corresponde a 60–89 mL/min/1,73 m², e este paciente tem indicação de nefroproteção. C) Errada: G5 é TFGe < 15, e com 38 não há indicação imediata de diálise. D) Errada: G1 é TFGe ≥ 90, e seguimento apenas anual subestima o risco. E) Errada: G4 é 15–29, e IECA e BRA não devem ser suspensos de rotina, pois são a base da nefroproteção, com monitorização de potássio e creatinina.",
   explicacoesAlternativas:{C:"TFGe de 38 corresponde a G3b, não a G5 (que é <15); diálise não está indicada neste momento.", E:"IECA/BRA não devem ser suspensos rotineiramente — são a base do tratamento nefroprotetor, com monitorização de potássio e função renal."},
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:68, acertos:41, distribuicaoAlternativas:{A:6,B:41,C:5,D:12,E:4}},
@@ -121,6 +127,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 // ---------- CIRURGIA GERAL ----------
 {
   id:"q-007", banca:"Esc — Banco Didático", real:false, ano:2021,
+  justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-apendicite",
   enunciado:"Paciente de 22 anos inicia quadro de dor abdominal periumbilical há 18 horas, que migrou para a fossa ilíaca direita, associada a náuseas, anorexia e febre baixa (37,8°C). Ao exame, dor à palpação em ponto de McBurney com sinal de Blumberg positivo. Leucograma com 13.500 leucócitos e desvio à esquerda. Qual a hipótese diagnóstica mais provável e a conduta?",
   alternativas:[
@@ -130,7 +137,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Cólica renal; analgesia e alta hospitalar"},
     {id:"E",texto:"Diverticulite aguda; antibioticoterapia ambulatorial isolada"}],
   gabarito:"B",
-  explicacaoGeral:"A migração clássica da dor periumbilical para a fossa ilíaca direita, associada a sinais de irritação peritoneal localizada (Blumberg positivo em McBurney), febre e leucocitose com desvio, é o quadro clássico de apendicite aguda. O tratamento definitivo é cirúrgico (apendicectomia), podendo ser videolaparoscópica ou aberta.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **dor periumbilical que migrou para a fossa ilíaca direita em 18 horas**, com **anorexia, náuseas e febre de 37,8 °C**, **Blumberg positivo em McBurney** (irritação peritoneal localizada) e **13.500 leucócitos com desvio à esquerda** (normal: cerca de 4.000–11.000/mm³). Mecanismo: a obstrução do lúmen apendicular (fecalito ou hiperplasia linfoide) eleva a pressão, favorece a proliferação bacteriana e causa isquemia da parede; a dor inicial é visceral, referida ao umbigo, e migra para a fossa ilíaca direita quando o peritônio parietal é inflamado. Contexto epidemiológico: a apendicite é a causa mais comum de abdome agudo cirúrgico, com pico entre a segunda e a terceira décadas de vida, como neste paciente de 22 anos. A conduta é apendicectomia, por via laparoscópica ou aberta. A) Errada: a gastroenterite cursa com dor difusa e diarreia, sem sinais de irritação peritoneal localizada. C) Errada: o cisto ovariano roto não explica dor migratória com febre, leucocitose e Blumberg em McBurney, e a conduta expectante deixaria a apendicite evoluir para perfuração. D) Errada: a cólica renal tem dor em flanco irradiada para a região genital, sem irritação peritoneal, e alta apenas com analgesia deixaria o diagnóstico passar. E) Errada: a diverticulite aguda é mais comum em idosos e, no nosso meio, costuma causar dor em fossa ilíaca esquerda; a idade e a localização aqui não combinam.",
   explicacoesAlternativas:{A:"Gastroenterite tipicamente cursa com dor difusa e diarreia, sem sinais de irritação peritoneal localizada.", E:"O quadro descrito — localização, migração típica e faixa etária — é característico de apendicite, não de diverticulite."},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:120, acertos:101, distribuicaoAlternativas:{A:5,B:101,C:8,D:4,E:2}},
@@ -156,6 +163,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-009", banca:"Esc — Banco Didático", real:false, ano:2023,
+  justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-colecistite",
   enunciado:"Mulher de 45 anos, obesa, com dor em hipocôndrio direito há 2 dias, associada a febre (38,3°C), náuseas e sinal de Murphy positivo à ultrassonografia. A USG mostra espessamento da parede vesicular (5mm), líquido perivesicular e cálculo impactado no infundíbulo. Qual a conduta preferencial?",
   alternativas:[
@@ -165,7 +173,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Colangiopancreatografia retrógrada endoscópica (CPRE) de urgência"},
     {id:"E",texto:"Conduta expectante por 6 semanas antes de considerar cirurgia"}],
   gabarito:"B",
-  explicacaoGeral:"O quadro é típico de colecistite aguda litiásica. As diretrizes atuais (Tokyo Guidelines) recomendam colecistectomia videolaparoscópica precoce, idealmente dentro das primeiras 72 horas do início dos sintomas, associada a antibioticoterapia, por reduzir o tempo de internação sem aumentar complicações em comparação à cirurgia tardia.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **dor em hipocôndrio direito há 2 dias com febre de 38,3 °C**, **Murphy positivo à ultrassonografia**, **parede vesicular de 5 mm** (normal: até cerca de 3 mm), **líquido perivesicular** e **cálculo impactado no infundíbulo**, em mulher de 45 anos e obesa. O conjunto define colecistite aguda litiásica. Mecanismo: o cálculo impactado no infundíbulo ou no ducto cístico impede a drenagem da vesícula, a pressão intraluminal aumenta, a parede sofre isquemia e inflamação e há infecção bacteriana secundária; sem desobstrução, o quadro tende a recidivar ou a complicar (empiema, gangrena, perfuração). Contexto epidemiológico: a litíase biliar é mais frequente em mulheres, com obesidade e na faixa dos 40 anos, e a colecistite aguda é uma das complicações mais comuns da litíase sintomática. A conduta é colecistectomia videolaparoscópica precoce, idealmente nas primeiras 72 horas do início dos sintomas, com antibiótico. A) Errada: o antibiótico isolado não remove a causa mecânica e a recidiva é alta. C) Errada: a colecistostomia percutânea é reservada a pacientes de alto risco cirúrgico e não é conduta definitiva de rotina. D) Errada: a CPRE é indicada para coledocolitíase ou colangite, e o caso não traz icterícia, dilatação de via biliar nem colangite. E) Errada: esperar 6 semanas expõe o paciente a recorrência e a complicações, e a cirurgia precoce não aumenta as complicações.",
   explicacoesAlternativas:{A:"Antibiótico isolado não trata a causa mecânica e tem alta taxa de recidiva.", C:"Colecistostomia percutânea é reservada para pacientes com alto risco cirúrgico, não como conduta definitiva de rotina."},
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:71, acertos:45, distribuicaoAlternativas:{A:5,B:45,C:14,D:4,E:3}},
@@ -173,6 +181,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-010", banca:"Esc — Banco Didático", real:false, ano:2024,
+  justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-abdagudo", assuntoId:"ass-pancreatite",
   enunciado:"Paciente de 50 anos, etilista, apresenta dor abdominal intensa em faixa há 12 horas, irradiando para o dorso, com náuseas e vômitos. Lipase de 850 U/L (valor de referência até 160). Qual exame de imagem e em qual momento está mais indicado para avaliar necrose pancreática, caso a evolução clínica seja desfavorável?",
   alternativas:[
@@ -182,7 +191,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Radiografia simples de abdome, suficiente para o diagnóstico de necrose"},
     {id:"E",texto:"CPRE de urgência nas primeiras 6 horas em todos os casos de pancreatite aguda"}],
   gabarito:"B",
-  explicacaoGeral:"O diagnóstico de pancreatite aguda é clínico-laboratorial (dor típica associada a lipase/amilase ≥3x o valor de referência), não exigindo tomografia de rotina. Quando há necessidade de avaliar necrose ou complicações por evolução desfavorável, a TC com contraste é mais acurada após 72-96h, já que a necrose pode não estar bem demarcada em fases mais precoces.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **dor intensa em faixa, irradiada para o dorso, com náuseas e vômitos** em etilista e **lipase de 850 U/L** (referência até 160; o diagnóstico laboratorial pede valor ≥ 3 vezes o limite superior, ou seja, > 480). O diagnóstico de pancreatite aguda é clínico-laboratorial; a pergunta é qual imagem avalia necrose se a evolução for desfavorável, e a resposta é a tomografia com contraste após **72–96 horas** do início dos sintomas. Mecanismo: a ativação prematura do tripsinogênio dentro do pâncreas (por álcool ou por cálculo biliar) autodigere o parênquima, e a necrose só se demarca depois de dias; antes disso a falta de realce ainda não aparece e a tomografia pode subestimar a lesão. Contexto epidemiológico: litíase biliar e álcool são as duas causas mais frequentes, e a maioria dos casos é leve e edematosa, sem necrose, de modo que a imagem tardia fica para quem piora clinicamente. A) Errada: a ultrassonografia tem baixa sensibilidade para necrose por causa da interposição gasosa e serve sobretudo para procurar litíase biliar. C) Errada: a ressonância não é obrigatória no primeiro atendimento e é alternativa quando a tomografia com contraste não pode ser feita. D) Errada: a radiografia simples de abdome não avalia o parênquima pancreático nem a necrose. E) Errada: a CPRE de urgência é reservada à pancreatite biliar com colangite ou obstrução persistente, e não a todos os casos.",
   explicacoesAlternativas:{A:"USG tem baixa sensibilidade para necrose pancreática devido à interposição gasosa.", E:"CPRE de urgência é reservada para pancreatite biliar com colangite ou obstrução persistente, não é rotina em todos os casos."},
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:58, acertos:31, distribuicaoAlternativas:{A:15,B:31,C:6,D:3,E:3}},
@@ -190,6 +199,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-011", banca:"Esc — Banco Didático", real:false, ano:2025,
+  justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-cirurgiaonco", assuntoId:"ass-cacolorretal",
   enunciado:"Paciente de 68 anos, assintomático, realiza colonoscopia de rastreamento que identifica lesão polipoide de 1,5 cm em cólon sigmoide. A biópsia confirma adenocarcinoma restrito à submucosa (pT1), sem invasão angiolinfática, com margens livres após polipectomia completa. Qual a conduta mais adequada?",
   alternativas:[
@@ -199,7 +209,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Radioterapia pélvica adjuvante obrigatória"},
     {id:"E",texto:"Repetir a polipectomia em 30 dias independentemente do resultado anterior"}],
   gabarito:"B",
-  explicacaoGeral:"Em pólipos malignizados pT1 (invasão restrita à submucosa) removidos endoscopicamente com margens livres, ausência de invasão angiolinfática, bem diferenciados e sem outros fatores de risco, a polipectomia completa é considerada tratamento curativo, sendo indicado apenas seguimento colonoscópico de vigilância — sem necessidade de colectomia complementar ou quimioterapia.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **adenocarcinoma pT1 (restrito à submucosa)** em lesão polipoide de 1,5 cm, **sem invasão angiolinfática**, **margens livres** e **polipectomia completa**, em paciente de 68 anos assintomático. O enunciado não descreve o grau de diferenciação nem o budding tumoral; a resposta assume ausência de outros fatores de alto risco, e se algum estivesse presente a conduta mudaria. Mecanismo: a submucosa tem vasos linfáticos, mas no pT1 de baixo risco a chance de metástase linfonodal é pequena, e a ressecção endoscópica completa remove a lesão; invasão angiolinfática, margem comprometida, pouca diferenciação e budding elevam o risco linfonodal e justificam colectomia complementar. Contexto epidemiológico: o câncer colorretal é um dos mais incidentes no Brasil, a maioria nasce de adenomas, e a incidência aumenta depois dos 50 anos, o que justifica o rastreamento por colonoscopia, como neste caso. A conduta é vigilância colonoscópica, sem colectomia ou quimioterapia. A) Errada: a colectomia com linfadenectomia é reservada aos pT1 com fatores de alto risco, e não a todos. C) Errada: a quimioterapia adjuvante não tem indicação num pT1 completamente ressecado, e o seguimento endoscópico continua necessário. D) Errada: a radioterapia pélvica não tem papel no câncer de cólon, ao contrário do câncer de reto. E) Errada: repetir a polipectomia em 30 dias não tem indicação, pois a ressecção completa já foi feita e o sítio é reavaliado na vigilância.",
   explicacoesAlternativas:{A:"Colectomia complementar é reservada para pT1 com fatores de alto risco (invasão angiolinfática, margem comprometida, pouca diferenciação), não para todos os casos.", D:"Radioterapia pélvica não tem papel em câncer de cólon (diferente do câncer de reto) e não está indicada aqui."},
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:52, acertos:21, distribuicaoAlternativas:{A:19,B:21,C:4,D:6,E:2}},
@@ -207,6 +217,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-012", banca:"Esc — Banco Didático", real:false, ano:2022,
+  justificativaEm:"2026-11",
   areaId:"area-cg", especialidadeId:"esp-perioperatorio", assuntoId:"ass-cuidadosperi",
   enunciado:"Paciente de 45 anos, hígido, será submetido a colecistectomia videolaparoscópica eletiva. Qual a orientação mais adequada quanto ao jejum pré-operatório, segundo os protocolos atuais de recuperação acelerada (ERAS)?",
   alternativas:[
@@ -216,7 +227,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Jejum de líquidos claros por 12 horas e sólidos podem ser ingeridos até 4 horas antes"},
     {id:"E",texto:"Jejum de 24 horas para qualquer procedimento cirúrgico eletivo"}],
   gabarito:"B",
-  explicacaoGeral:"Os protocolos ERAS (Enhanced Recovery After Surgery) recomendam jejum de sólidos por 6-8 horas, mas permitem líquidos claros sem resíduos até 2 horas antes da indução anestésica, reduzindo desconforto e resistência à insulina no pós-operatório sem aumentar o risco de aspiração.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **paciente hígido de 45 anos** em **colecistectomia videolaparoscópica eletiva** (baixo risco de aspiração, sem doença que retarde o esvaziamento gástrico) e pergunta sobre o **jejum segundo os protocolos ERAS**: sólidos por 6–8 horas e líquidos claros, sem resíduos, até 2 horas antes da indução. Mecanismo: o jejum prolongado esgota o glicogênio hepático, induz resistência à insulina e catabolismo no pós-operatório, e os líquidos claros deixam o estômago em poucos minutos, de modo que 2 horas bastam para o estômago estar vazio na indução. Contexto epidemiológico: a colecistectomia é um dos procedimentos eletivos mais frequentes e os protocolos de recuperação acelerada são aplicados em populações de baixo risco como esta; diabetes, gastroparesia, refluxo grave e obesidade importante exigem avaliação individual do jejum. A) Errada: o jejum absoluto de 12 horas aumenta desconforto, desidratação e resistência à insulina sem ganho de segurança. C) Errada: sem jejum de sólidos, o risco de aspiração na indução aumenta. D) Errada: a lógica está invertida, porque líquidos claros esvaziam mais rápido que sólidos, e permitir sólidos até 4 horas antes é insuficiente. E) Errada: jejum de 24 horas não é recomendado e causa catabolismo sem benefício.",
   explicacoesAlternativas:{A:"Jejum absoluto prolongado não é mais recomendado pelos protocolos ERAS, pois piora desfechos metabólicos sem ganho de segurança adicional."},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:90, acertos:72, distribuicaoAlternativas:{A:8,B:72,C:3,D:5,E:2}},
@@ -225,6 +236,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 // ---------- PEDIATRIA ----------
 {
   id:"q-013", banca:"Esc — Banco Didático", real:false, ano:2021,
+  justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
   enunciado:"Recém-nascido a termo, com 36 horas de vida, em aleitamento materno exclusivo, apresenta icterícia até região torácica (zona 2 de Kramer). Bilirrubina total de 14 mg/dL (predomínio indireto), sem outros sinais de alerta, Coombs direto negativo, sem incompatibilidade sanguínea. Qual a conduta mais adequada?",
   alternativas:[
@@ -234,7 +246,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Alta hospitalar sem qualquer reavaliação, pois icterícia é sempre fisiológica no recém-nascido"},
     {id:"E",texto:"Iniciar fenobarbital para redução da bilirrubina"}],
   gabarito:"B",
-  explicacaoGeral:"A conduta na icterícia neonatal é guiada pelo nomograma de Bhutani (nível de bilirrubina x idade em horas de vida), que estratifica risco e indica fototerapia. O aleitamento materno deve ser mantido, corrigindo a técnica de amamentação quando necessário.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **recém-nascido a termo com 36 horas de vida em aleitamento materno exclusivo**, **icterícia até a zona 2 de Kramer**, **bilirrubina total de 14 mg/dL com predomínio indireto**, **Coombs direto negativo** e sem incompatibilidade sanguínea: a icterícia é por bilirrubina indireta, sem hemólise imune, e a conduta depende de comparar o nível com o limiar de fototerapia para a idade em horas, e não de um número isolado. Mecanismo: o recém-nascido produz mais bilirrubina (hemácias fetais de vida curta e hematócrito alto), a glicuroniltransferase hepática ainda é imatura e a circulação êntero-hepática é intensa, de modo que a bilirrubina não conjugada se acumula; a fototerapia a converte em isômeros hidrossolúveis, excretados sem conjugação. Contexto epidemiológico: a icterícia é visível em grande parte dos recém-nascidos a termo e costuma ser fisiológica quando surge após 24 horas, mas é patológica se aparece antes disso ou se há hemólise; o aleitamento exclusivo pode se associar a icterícia por baixa ingestão, e deve ser mantido, com correção da técnica. As referências mais recentes (por exemplo, a atualização da AAP de 2022) usam limiares por idade gestacional e fatores de risco de neurotoxicidade, e vale conferir o nomograma adotado. A) Errada: suspender o aleitamento não é a conduta padrão, e a manutenção com boa técnica costuma bastar. C) Errada: a exsanguineotransfusão é reservada a níveis muito mais altos, sinais de encefalopatia ou falha da fototerapia. D) Errada: nem toda icterícia é fisiológica, e dar alta sem reavaliar ignora o risco de hiperbilirrubinemia significativa. E) Errada: o fenobarbital não é tratamento padrão da hiperbilirrubinemia neonatal.",
   explicacoesAlternativas:{A:"Suspender o aleitamento não é a conduta padrão; a manutenção com boa técnica costuma ser suficiente.", C:"Exsanguineotransfusão é reservada para casos graves/refratários com bilirrubina em níveis muito mais altos."},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:98, acertos:76, distribuicaoAlternativas:{A:6,B:76,C:5,D:8,E:3}},
@@ -242,6 +254,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-014", banca:"Esc — Banco Didático", real:false, ano:2022,
+  justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-reanimacao",
   enunciado:"Recém-nascido a termo, líquido amniótico claro, nasce e após os passos iniciais (aquecer, posicionar via aérea, secar, estimular) apresenta frequência cardíaca de 90 bpm e respiração irregular aos 30 segundos de vida. Qual a próxima conduta na sequência de reanimação neonatal?",
   alternativas:[
@@ -251,7 +264,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Apenas continuar a estimulação tátil e reavaliar em 5 minutos"},
     {id:"E",texto:"Realizar intubação orotraqueal imediata antes de qualquer outra medida"}],
   gabarito:"B",
-  explicacaoGeral:"Frequência cardíaca abaixo de 100 bpm e respiração inadequada após os passos iniciais indicam necessidade de ventilação com pressão positiva. Compressões torácicas só são indicadas se a FC permanecer abaixo de 60 bpm após 30 segundos de VPP efetiva.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **recém-nascido a termo com líquido claro**, depois dos passos iniciais (aquecer, posicionar a via aérea, secar, estimular), com **FC de 90 bpm** (normal no recém-nascido: > 100 bpm) e **respiração irregular aos 30 segundos**: bradicardia com respiração ineficaz é indicação de ventilação com pressão positiva, e as compressões só entram se a FC ficar < 60 bpm após 30 segundos de VPP efetiva. Mecanismo: no recém-nascido a bradicardia costuma ser consequência de hipóxia, e não de falha cardíaca primária; ventilar expande os pulmões, reduz a resistência vascular pulmonar e restaura a oxigenação, o que normaliza a FC na maioria dos casos, e por isso compressões e adrenalina vêm depois. Contexto epidemiológico: a maioria dos recém-nascidos a termo respira com os passos iniciais, uma minoria precisa de VPP e muito poucos precisam de compressões ou adrenalina, mas a asfixia perinatal segue como causa importante de morte neonatal. A) Errada: as compressões só são indicadas se a FC permanecer < 60 bpm apesar de VPP efetiva, e ainda não é o caso. C) Errada: a adrenalina só entra depois de VPP e compressões efetivas sem resposta. D) Errada: com FC < 100 e respiração irregular não se espera 5 minutos, pois a ventilação deve começar logo, dentro do primeiro minuto de vida. E) Errada: a VPP pode ser feita com máscara facial, e a intubação fica para quando a ventilação por máscara é ineficaz ou prolongada.",
   explicacoesAlternativas:{A:"Compressões só são indicadas com FC <60 bpm apesar de VPP efetiva — ainda não é o caso aqui.", E:"Intubação não é o primeiro passo; a VPP pode começar com máscara facial."},
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:73, acertos:47, distribuicaoAlternativas:{A:14,B:47,C:4,D:5,E:3}},
@@ -259,6 +272,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 },
 {
   id:"q-015", banca:"Esc — Banco Didático", real:false, ano:2023,
+  justificativaEm:"2026-11",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
   enunciado:"Lactente de 4 meses comparece à consulta de puericultura para atualização vacinal, já tendo recebido o esquema do 2º mês em dia. Segundo o calendário nacional de vacinação (PNI), qual vacina faz parte do esquema de rotina dos 4 meses?",
   alternativas:[
@@ -268,7 +282,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
     {id:"D",texto:"Reforço de DTP isolado, sem as demais vacinas do esquema"},
     {id:"E",texto:"Vacina HPV, primeira dose"}],
   gabarito:"A",
-  explicacaoGeral:"O calendário nacional de vacinação preconiza, aos 4 meses, a segunda dose de pentavalente, VIP, pneumocócica 10-valente e rotavírus, dando sequência ao esquema iniciado aos 2 meses.",
+  explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **lactente de 4 meses** com o **esquema do 2º mês em dia** e pergunta pelas vacinas de rotina aos 4 meses: a vacinação segue a primovacinação iniciada aos 2 meses, com a segunda dose das vacinas desse esquema (pentavalente, VIP, pneumocócica 10-valente e rotavírus). Mecanismo: nas vacinas inativadas e conjugadas, as doses de primovacinação em intervalo regular induzem memória imunológica e títulos protetores, e elas precisam ser dadas no primeiro ano de vida, quando a criança está mais exposta e mais vulnerável; esquemas atrasados deixam a criança desprotegida por mais tempo. Contexto epidemiológico: difteria, tétano, coqueluche, Haemophilus influenzae b, hepatite B, poliomielite, doença pneumocócica e rotavírus são mais graves no primeiro ano de vida, e a queda das coberturas vacinais no Brasil nos últimos anos aumenta o risco de reintrodução de doenças já controladas. O calendário muda com o tempo, e vale conferir a versão vigente do PNI antes de usar a questão. B) Errada: a tríplice viral é indicada a partir dos 12 meses, e não aos 4 meses. C) Errada: a febre amarela não faz parte do esquema dos 4 meses e é indicada em idade posterior. D) Errada: o reforço de DTP vem em idade posterior, e o esquema dos 4 meses inclui várias vacinas, não só a DTP. E) Errada: a vacina HPV é indicada a partir dos 9 anos, e não na primeira infância.",
   explicacoesAlternativas:{B:"A tríplice viral está indicada a partir dos 12 meses, não aos 4 meses.", E:"HPV está indicada a partir dos 9 anos, não na primeira infância."},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:84, acertos:65, distribuicaoAlternativas:{A:65,B:9,C:4,D:4,E:2}},
