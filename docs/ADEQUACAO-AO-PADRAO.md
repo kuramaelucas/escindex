@@ -4,11 +4,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 3883 de 12137 mencionam mecanismo E epidemiologia (32.0%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 3982 de 12137 mencionam mecanismo E epidemiologia (32.8%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7239  sem mecanismo/fisiopatologia
-   5971  sem epidemiologia
+   7144  sem mecanismo/fisiopatologia
+   5897  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -57,7 +57,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | usprp-2022 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2023 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2024 | 100 | 0 | 100 | 100/0/0 | — |
-| usprp-2025 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (95); sem epidemiologia (74) |
+| usprp-2025 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2026 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (84) |
 | amrigs-2022 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (94); sem epidemiologia (81) |
 | amrigs-2023 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (77) |
