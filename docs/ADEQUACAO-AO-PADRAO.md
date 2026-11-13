@@ -3,14 +3,14 @@
 Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra `dados/PADRAO-EXPLICACAO.md`: justificativa (`faltasDeJustificativa`) e referência com data de leitura. "Completa" = forma da justificativa sem falta, **mecanismo e epidemiologia presentes (heurística por palavra-chave, não prova qualidade)** e referência datada. Não é erro: `npm run conferir` só cobra o padrão de conteúdo novo.
 
 ```
-12137 questões em 156 arquivos; 1031 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 2260 de 12137 mencionam mecanismo E epidemiologia (18.6%). Forma da justificativa (itens 1–4): 12134 de 12137 sem falta (100.0%).
+12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 3982 de 12137 mencionam mecanismo E epidemiologia (32.8%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7769  sem mecanismo/fisiopatologia
-   7508  sem epidemiologia
-      2  corpo curto
+   7144  sem mecanismo/fisiopatologia
+   5897  sem epidemiologia
       2  sem Dicas do enunciado
+      1  corpo curto
       1  sem destaque **
 Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 ```
@@ -19,16 +19,16 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 
 | Arquivo | Questões | Completas | Mecanismo + epidem. | Ref. sem data/vazia/fraca | Principais faltas |
 |---|---:|---:|---:|---|---|
-| didatico-grad-hiv | 218 | 0 | 30 | 218/0/0 | sem epidemiologia (188) |
-| didatico-grad-parasitoses | 198 | 0 | 23 | 198/0/0 | sem epidemiologia (175); corpo curto (1) |
-| didatico-grad-tuberculose | 182 | 0 | 35 | 182/0/0 | sem epidemiologia (146); sem mecanismo/fisiopatologia (2) |
-| didatico-grad-meningites | 180 | 0 | 26 | 180/0/0 | sem epidemiologia (154) |
-| didatico-grad-pneumonias | 142 | 0 | 42 | 142/0/0 | sem epidemiologia (100) |
-| didatico-grad-iras | 127 | 0 | 20 | 127/0/0 | sem epidemiologia (107) |
-| didatico-grad-antibioticos | 126 | 0 | 12 | 126/0/0 | sem epidemiologia (114) |
-| didatico-grad-arboviroses | 121 | 0 | 19 | 121/0/0 | sem epidemiologia (102) |
+| didatico-grad-hiv | 218 | 0 | 218 | 218/0/0 | — |
+| didatico-grad-parasitoses | 198 | 0 | 198 | 198/0/0 | — |
+| didatico-grad-tuberculose | 182 | 0 | 182 | 182/0/0 | — |
+| didatico-grad-meningites | 180 | 0 | 180 | 180/0/0 | — |
+| didatico-grad-pneumonias | 142 | 0 | 142 | 142/0/0 | — |
+| didatico-grad-iras | 127 | 0 | 127 | 127/0/0 | — |
+| didatico-grad-antibioticos | 126 | 0 | 126 | 126/0/0 | — |
+| didatico-grad-arboviroses | 121 | 0 | 121 | 121/0/0 | — |
 | simulado-epm-6 | 120 | 0 | 2 | 115/0/1 | sem mecanismo/fisiopatologia (112); sem epidemiologia (68) |
-| usprp-2021 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (116); sem epidemiologia (104) |
+| usprp-2021 | 120 | 0 | 120 | 120/0/0 | — |
 | tp-2020-2 | 120 | 0 | 3 | 115/2/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (99) |
 | tp-2021-2 | 120 | 0 | 0 | 119/0/0 | sem mecanismo/fisiopatologia (119); sem epidemiologia (99) |
 | tp-2022-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (97) |
@@ -37,13 +37,13 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | tp-2024-1 | 120 | 0 | 0 | 118/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (105) |
 | tp-2025-1 | 120 | 0 | 0 | 117/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (108) |
 | tp-2025-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (98) |
-| tp-2026-1 | 120 | 0 | 1 | 117/0/0 | sem mecanismo/fisiopatologia (116); sem epidemiologia (100) |
 | unicamp-2024-dissertativa | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (82) |
 | uspsp-simulado-1 | 120 | 0 | 0 | 120/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (88) |
 | uspsp-simulado-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (82) |
 | uspsp-simulado-5 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (83) |
 | uspsp-simulado-4 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (81) |
 | uspsp-simulado-3 | 120 | 0 | 98 | 120/0/0 | sem mecanismo/fisiopatologia (22); sem epidemiologia (12) |
+| tp-2026-1 | 120 | 3 | 120 | 117/0/0 | — |
 | unifesp-2024-adaptado | 100 | 0 | 1 | 79/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (61) |
 | simulado-epm-2 | 100 | 0 | 0 | 70/0/11 | sem mecanismo/fisiopatologia (95); sem epidemiologia (89); sem Dicas do enunciado (1) |
 | simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |
@@ -54,10 +54,10 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | santacasa-2023 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (92); sem epidemiologia (79) |
 | santacasa-2025 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (87) |
 | santacasa-2026 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (87) |
-| usprp-2022 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (100); sem epidemiologia (85) |
-| usprp-2023 | 100 | 0 | 2 | 100/0/0 | sem mecanismo/fisiopatologia (97); sem epidemiologia (84) |
-| usprp-2024 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (99); sem epidemiologia (78) |
-| usprp-2025 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (95); sem epidemiologia (74) |
+| usprp-2022 | 100 | 0 | 100 | 100/0/0 | — |
+| usprp-2023 | 100 | 0 | 100 | 100/0/0 | — |
+| usprp-2024 | 100 | 0 | 100 | 100/0/0 | — |
+| usprp-2025 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2026 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (84) |
 | amrigs-2022 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (94); sem epidemiologia (81) |
 | amrigs-2023 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (77) |
