@@ -4,15 +4,14 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 975 já cumprem forma + mecanismo/epidemiologia + referência datada (8.0%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 2140 de 12137 mencionam mecanismo E epidemiologia (17.6%). Forma da justificativa (itens 1–4): 12014 de 12137 sem falta (99.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 2260 de 12137 mencionam mecanismo E epidemiologia (18.6%). Forma da justificativa (itens 1–4): 12134 de 12137 sem falta (100.0%).
 Referências: 1158 datadas, 9444 sem data, 137 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7886  sem mecanismo/fisiopatologia
-   7619  sem epidemiologia
-    122  sem Dicas do enunciado
-    121  sem destaque **
-    120  errada sem motivo
-     61  corpo curto
+   7769  sem mecanismo/fisiopatologia
+   7508  sem epidemiologia
+      2  corpo curto
+      2  sem Dicas do enunciado
+      1  sem destaque **
 Mapa: 39 diretrizes da tabela + 17 famílias; 137 questões sem referência.
 ```
 
@@ -25,7 +24,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 137 questões sem referência.
 | didatico-grad-tuberculose | 182 | 0 | 35 | 182/0/0 | sem epidemiologia (146); sem mecanismo/fisiopatologia (2) |
 | didatico-grad-meningites | 180 | 0 | 26 | 180/0/0 | sem epidemiologia (154) |
 | didatico-grad-pneumonias | 142 | 0 | 42 | 142/0/0 | sem epidemiologia (100) |
-| didatico | 135 | 0 | 15 | 0/135/0 | sem destaque ** (121); sem Dicas do enunciado (121); errada sem motivo (120) |
+| didatico | 135 | 0 | 135 | 0/135/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | didatico-grad-iras | 127 | 0 | 20 | 127/0/0 | sem epidemiologia (107) |
 | didatico-grad-antibioticos | 126 | 0 | 12 | 126/0/0 | sem epidemiologia (114) |
 | didatico-grad-arboviroses | 121 | 0 | 19 | 121/0/0 | sem epidemiologia (102) |
