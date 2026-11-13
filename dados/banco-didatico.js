@@ -37,6 +37,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-002", banca:"Esc — Banco Didático", real:false, ano:2022,
   justificativaEm:"2026-11",
+  referencias:"Fonte: GOLD 2026 (Global Strategy for the Diagnosis, Management and Prevention of COPD, relatório v1.3, goldcopd.org). Texto lido em 13/11/2026: antibiótico para quem tem pelo menos 2 entre aumento da dispneia, febre, volume do escarro e purulência, com a purulência entre eles, ou que precisa de ventilação mecânica; duração de 5 dias; corticoide sistêmico por até 5 dias na exacerbação moderada a grave. O GOLD 2026 não usa o nome Anthonisen (só nas citações) e inclui a febre entre os sintomas; a explicação segue a formulação clássica. A meta de saturação de 88–92% não foi localizada no texto.",
   areaId:"area-cm", especialidadeId:"esp-pneumo", assuntoId:"ass-dpoc",
   enunciado:"Homem de 68 anos, ex-tabagista (40 anos-maço), com diagnóstico prévio de DPOC, procura atendimento por piora da dispneia habitual, aumento do volume de expectoração e mudança da coloração do escarro para amarelo-esverdeado nos últimos 2 dias, sem febre. Ausculta com sibilos difusos, sem estertores. Saturação de O2 92% em ar ambiente. Qual o diagnóstico mais provável e a conduta inicial?",
   alternativas:[
@@ -237,6 +238,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-013", banca:"Esc — Banco Didático", real:false, ano:2021,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBP, Departamento Científico de Neonatologia, Manual de Orientação nº 10, 29/09/2021, hiperbilirrubinemia indireta no período neonatal (sbp.com.br). Texto lido em 13/11/2026: seguimento do recém-nascido com 35 semanas ou mais pelo nomograma de Bhutani (percentis 40, 75 e 95 da bilirrubina sérica total por horas de vida); otimizar o aleitamento materno como estratégia para evitar hiperbilirrubinemia significante; fototerapia e exsanguineotransfusão por tabelas de bilirrubina. Não conferidos: o limiar exato de fototerapia às 36 horas e a atualização da AAP de 2022 citada na explicação (não lida); o fenobarbital não aparece no manual.",
   areaId:"area-ped", especialidadeId:"esp-neonato", assuntoId:"ass-ictericia",
   enunciado:"Recém-nascido a termo, com 36 horas de vida, em aleitamento materno exclusivo, apresenta icterícia até região torácica (zona 2 de Kramer). Bilirrubina total de 14 mg/dL (predomínio indireto), sem outros sinais de alerta, Coombs direto negativo, sem incompatibilidade sanguínea. Qual a conduta mais adequada?",
   alternativas:[
@@ -273,6 +275,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-015", banca:"Esc — Banco Didático", real:false, ano:2023,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, Calendário Técnico Nacional de Vacinação da Criança (SVSA/PNI, gov.br). Texto lido em 13/11/2026: pentavalente aos 2, 4 e 6 meses; VIP aos 2, 4 e 6 meses com reforço aos 15 meses; pneumocócica 10-valente aos 2 e 4 meses com reforço aos 12 meses; rotavírus em 2 doses, aos 2 e 4 meses (1ª dose de 1 mês e 15 dias a 11 meses e 29 dias; 2ª de 3 meses e 15 dias a 23 meses e 29 dias); tríplice viral em 2 doses a partir dos 12 meses; HPV a partir dos 9 anos. A idade da dose de febre amarela não foi transcrita aqui. Confirma a alternativa A; a versão do calendário muda com o tempo e deve ser reconferida.",
   areaId:"area-ped", especialidadeId:"esp-crescdesenv", assuntoId:"ass-calendariovacinal",
   enunciado:"Lactente de 4 meses comparece à consulta de puericultura para atualização vacinal, já tendo recebido o esquema do 2º mês em dia. Segundo o calendário nacional de vacinação (PNI), qual vacina faz parte do esquema de rotina dos 4 meses?",
   alternativas:[
@@ -437,6 +440,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-024", banca:"Esc — Banco Didático", real:false, ano:2022,
   justificativaEm:"2026-11",
+  referencias:"Fonte: OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025) (iris.who.int). Texto lido em 13/11/2026: tabagismo com menos de 35 anos = categoria 2 para pílula, adesivo e anel combinados; com 35 anos ou mais, menos de 15 cigarros por dia = 3 e 15 ou mais = 4 (injetável combinado: 3 com 15 ou mais); métodos só de progestagênio, DIU e métodos de barreira = categoria 1. Confirma a explicação.",
   areaId:"area-go", especialidadeId:"esp-planfamiliar", assuntoId:"ass-contracepcao",
   enunciado:"Mulher de 28 anos, tabagista (15 cigarros/dia), solicita orientação sobre método contraceptivo. Segundo os critérios de elegibilidade da OMS, qual método deve ser evitado ou usado com cautela devido ao tabagismo, especialmente se associado à idade acima de 35 anos?",
   alternativas:[
@@ -1113,11 +1117,12 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-13", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, SBH e SBN, Diretriz Brasileira de Hipertensão Arterial – 2025 (Arq Bras Cardiol 2025;122(9):e20250624, abccardiol.org). Texto lido em 13/11/2026: hipertensão com pressão no consultório ≥ 140/90 mmHg; fora do consultório, MAPA de 24 horas e média do MRPA com limiar de 130/80 mmHg (MAPA: vigília 135/85 e sono 120/70); fenótipos pelo cruzamento consultório × MAPA ou MRPA (avental branco, mascarada, sustentada). A explicação foi corrigida: o limiar do MRPA é 130/80 (e não 135/85) nas diretrizes brasileiras.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Quais são os valores que definem hipertensão arterial em medida de consultório e em monitorização ambulatorial da pressão arterial (MAPA, média de 24 horas) em adultos?",
   alternativas:[{id:"A",texto:"Consultório maior ou igual a 130/80 mmHg; MAPA 24h maior ou igual a 140/90 mmHg"},{id:"B",texto:"Consultório maior ou igual a 140/90 mmHg; MAPA 24h maior ou igual a 130/80 mmHg"},{id:"C",texto:"Consultório maior ou igual a 150/95 mmHg; MAPA 24h maior ou igual a 140/90 mmHg"},{id:"D",texto:"Ambos maiores ou iguais a 140/90 mmHg"},{id:"E",texto:"Ambos maiores ou iguais a 120/80 mmHg"}],
   gabarito:"B",
-  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a pergunta pede os limiares de **consultório** e de **MAPA de 24 horas**: consultório **≥ 140/90 mmHg** (confirmado em duas ocasiões) e MAPA 24 h **≥ 130/80 mmHg** (normal: < 120/80). Na MAPA, vigília ≥ 135/85 e sono ≥ 120/70; o limiar domiciliar varia conforme a diretriz (130/80 na brasileira de 2020, 135/85 na europeia). Mecanismo: fora do consultório os limiares são mais baixos porque o ambiente é menos estressante e a pressão medida pela média de vários registros reflete melhor a carga pressórica e se correlaciona melhor com lesão de órgão-alvo. Contexto epidemiológico: a hipertensão atinge cerca de um terço dos adultos brasileiros e é o principal fator de risco modificável para AVC e doença coronariana. A) Errada: inverte os limiares, e 130/80 no consultório é o limiar de outras diretrizes (ACC/AHA). C) Errada: 150/95 não é limiar diagnóstico. D) Errada: os limiares fora do consultório são menores que 140/90. E) Errada: 120/80 é o limite superior do normal, e não o limiar de hipertensão.",
+  explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a pergunta pede os limiares de **consultório** e de **MAPA de 24 horas**: consultório **≥ 140/90 mmHg** (confirmado em duas ocasiões) e MAPA 24 h **≥ 130/80 mmHg** (normal: < 120/80). Na MAPA, vigília ≥ 135/85 e sono ≥ 120/70; o limiar domiciliar varia conforme a diretriz (130/80 na média do MRPA nas diretrizes brasileiras de 2020 e de 2025, 135/85 na europeia). Mecanismo: fora do consultório os limiares são mais baixos porque o ambiente é menos estressante e a pressão medida pela média de vários registros reflete melhor a carga pressórica e se correlaciona melhor com lesão de órgão-alvo. Contexto epidemiológico: a hipertensão atinge cerca de um terço dos adultos brasileiros e é o principal fator de risco modificável para AVC e doença coronariana. A) Errada: inverte os limiares, e 130/80 no consultório é o limiar de outras diretrizes (ACC/AHA). C) Errada: 150/95 não é limiar diagnóstico. D) Errada: os limiares fora do consultório são menores que 140/90. E) Errada: 120/80 é o limite superior do normal, e não o limiar de hipertensão.",
   explicacoesAlternativas:{},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
@@ -1126,6 +1131,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-14", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, SBH e SBN, Diretriz Brasileira de Hipertensão Arterial – 2025 (Arq Bras Cardiol 2025;122(9):e20250624, abccardiol.org). Texto lido em 13/11/2026: fluxograma dos fenótipos (consultório ≥ 140/90 com MAPA ou MRPA < 130/80 = hipertensão do avental branco; consultório < 140/90 com MAPA ou MRPA ≥ 130/80 = hipertensão mascarada). Não conferido em detalhe: a conduta de mudança de estilo de vida e seguimento no avental branco.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Paciente com pressão elevada nas medidas de consultório, porém com MAPA e medidas domiciliares normais, sem lesão de órgão-alvo. Como se classifica esse quadro e qual a conduta?",
   alternativas:[{id:"A",texto:"Hipertensão mascarada; iniciar dois anti-hipertensivos"},{id:"B",texto:"Emergência hipertensiva; internar para uso de nitroprussiato"},{id:"C",texto:"Hipertensão resistente; investigar causa secundária imediatamente"},{id:"D",texto:"Pré-hipertensão; iniciar betabloqueador"},{id:"E",texto:"Hipertensão do avental branco; recomendar mudanças de estilo de vida e seguimento com monitorização periódica"}],
@@ -1139,6 +1145,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-15", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, SBH e SBN, Diretriz Brasileira de Hipertensão Arterial – 2025 (Arq Bras Cardiol 2025;122(9):e20250624, abccardiol.org). Texto lido em 13/11/2026 (Quadro 7.1): principais classes anti-hipertensivas = diuréticos, bloqueadores dos canais de cálcio, IECA e BRA; betabloqueadores com indicações específicas. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Quais classes são consideradas de primeira linha no tratamento farmacológico inicial da hipertensão arterial não complicada?",
   alternativas:[{id:"A",texto:"Betabloqueadores, alfabloqueadores e vasodilatadores diretos"},{id:"B",texto:"Digital, diurético de alça e clonidina"},{id:"C",texto:"Diuréticos tiazídicos, bloqueadores dos canais de cálcio e inibidores da ECA ou bloqueadores do receptor de angiotensina"},{id:"D",texto:"Espironolactona e metildopa"},{id:"E",texto:"Nitratos e hidralazina"}],
@@ -1152,6 +1159,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-16", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, SBH e SBN, Diretriz Brasileira de Hipertensão Arterial – 2025 (Arq Bras Cardiol 2025;122(9):e20250624, abccardiol.org). Texto lido em 13/11/2026 (capítulo 11, crise hipertensiva): elevação importante da PA sem lesão aguda de órgão-alvo (antes chamada urgência hipertensiva) = reavaliação ambulatorial em 1 a 7 dias com alvo de PAS < 160 e PAD < 100 mmHg; emergência hipertensiva = UTI e anti-hipertensivo endovenoso com redução de 25% na primeira hora; nifedipina de liberação rápida é proscrita.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Paciente assintomático com pressão arterial de 200/120 mmHg aferida em consulta de rotina, sem sinais de lesão aguda de órgão-alvo. Qual é a conduta correta?",
   alternativas:[{id:"A",texto:"Urgência ou hipertensão não controlada; reduzir a pressão gradualmente com medicação oral e garantir seguimento ambulatorial próximo"},{id:"B",texto:"Emergência hipertensiva; internar em terapia intensiva para nitroprussiato endovenoso"},{id:"C",texto:"Administrar nifedipino sublingual para queda rápida da pressão"},{id:"D",texto:"Não intervir, pois só se trata hipertensão sintomática"},{id:"E",texto:"Realizar sangria terapêutica"}],
@@ -1165,6 +1173,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-17", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, SBH e SBN, Diretriz Brasileira de Hipertensão Arterial – 2025 (Arq Bras Cardiol 2025;122(9):e20250624, abccardiol.org). Texto lido em 13/11/2026 (capítulo 12): a hipertensão resistente se caracteriza pela hiperatividade do sistema renina-angiotensina-aldosterona, com retenção hidrossalina e hiperaldosteronismo (aldosterona elevada com renina suprimida). Não conferidos: a relação aldosterona/renina como triagem e a hipocalemia espontânea (o texto lido só cita hipocalemia como efeito adverso de fármacos).",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-has",
   enunciado:"Mulher de 35 anos, hipertensa de difícil controle mesmo com três fármacos, apresenta hipocalemia espontânea e alcalose metabólica. Qual causa secundária deve ser investigada prioritariamente?",
   alternativas:[{id:"A",texto:"Feocromocitoma"},{id:"B",texto:"Hipotireoidismo"},{id:"C",texto:"Coarctação da aorta"},{id:"D",texto:"Hiperaldosteronismo primário"},{id:"E",texto:"Síndrome da apneia obstrutiva do sono"}],
@@ -1517,6 +1526,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-14", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed. atualizada, 2019 (gov.br/aids). Texto lido em 13/11/2026: esquema básico para adultos e adolescentes de 10 anos ou mais = 2RHZE/4RH; tuberculose meningoencefálica e osteoarticular = 2RHZE/10RH. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
   enunciado:"Qual é a composição e a duração do esquema básico de tratamento da tuberculose pulmonar em adultos no Brasil?",
   alternativas:[{id:"A",texto:"Isoniazida isolada por 6 meses"},{id:"B",texto:"Rifampicina e isoniazida por 6 meses, sem fase intensiva"},{id:"C",texto:"Rifampicina, isoniazida e pirazinamida por 12 meses"},{id:"D",texto:"Estreptomicina e etambutol por 9 meses"},{id:"E",texto:"Rifampicina, isoniazida, pirazinamida e etambutol por 2 meses, seguidos de rifampicina e isoniazida por 4 meses"}],
@@ -1530,6 +1540,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-15", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed. atualizada, 2019 (gov.br/aids). Texto lido em 13/11/2026: neurite óptica atribuída ao etambutol, dose dependente e reversível quando detectada precocemente; conduta de suspender o etambutol e reiniciar esquema especial sem ele. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
   enunciado:"Paciente em tratamento de tuberculose queixa-se de piora progressiva da acuidade visual e dificuldade de distinguir cores. Qual fármaco é o mais provável responsável?",
   alternativas:[{id:"A",texto:"Rifampicina"},{id:"B",texto:"Isoniazida"},{id:"C",texto:"Etambutol"},{id:"D",texto:"Pirazinamida"},{id:"E",texto:"Estreptomicina"}],
@@ -1543,6 +1554,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-16", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed. atualizada, 2019 (gov.br/aids). Texto lido em 13/11/2026: prova tuberculínica de 5 mm ou mais (ou IGRA positivo) nos contatos é interpretada como infecção latente; no Brasil, para quem recebeu BCG até o primeiro ano de vida, PT de 5 mm ou mais vale como infecção latente de modo semelhante em adultos e crianças. Não conferidos neste texto: os esquemas preventivos (isoniazida, rifampicina, rifapentina com isoniazida) e a exigência de afastar doença ativa antes, que dependem do protocolo de vigilância da infecção latente, não lido.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-tuberculose",
   enunciado:"Sobre a infecção latente pela tuberculose em contato domiciliar adulto de um caso bacilífero, com radiografia de tórax normal e sem sintomas, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Prova tuberculínica igual ou maior que 5 mm ou IGRA positivo indicam infecção latente, com tratamento preventivo após afastar doença ativa"},{id:"B",texto:"Não há necessidade de investigação, já que está assintomático"},{id:"C",texto:"O tratamento é o esquema RIPE completo por 6 meses"},{id:"D",texto:"O rastreio só é indicado se houver tosse por mais de 3 semanas"},{id:"E",texto:"Deve-se iniciar isoniazida imediatamente, mesmo sem afastar doença ativa"}],
@@ -1556,6 +1568,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-17", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, PCDT para Manejo da Infecção pelo HIV em Adultos, Módulo 1, 2024 (gov.br/aids). Texto lido em 13/11/2026: TARV recomendada para todas as pessoas vivendo com HIV, independentemente do CD4; esquema preferencial tenofovir/lamivudina + dolutegravir; Indetectável = Intransmissível (I = I). Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"Qual é a recomendação atual quanto ao início da terapia antirretroviral em pessoas vivendo com HIV?",
   alternativas:[{id:"A",texto:"Iniciar apenas quando o CD4 estiver abaixo de 200 células/mm³"},{id:"B",texto:"Iniciar apenas na presença de infecção oportunista"},{id:"C",texto:"Iniciar somente após dois anos de acompanhamento clínico"},{id:"D",texto:"Iniciar para todas as pessoas diagnosticadas, independentemente da contagem de CD4, o mais precocemente possível"},{id:"E",texto:"Iniciar apenas em gestantes e crianças"}],
@@ -1569,6 +1582,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-18", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, PCDT para Manejo da Infecção pelo HIV em Adultos, Módulo 2 (coinfecções e infecções oportunistas), 2024 (gov.br/aids). Texto lido em 13/11/2026 (Quadro 29): profilaxia primária de Pneumocystis com CD4 abaixo de 200 células/mm3 (ou menor que 14%), candidíase oral ou febre indeterminada por mais de 2 semanas, com sulfametoxazol + trimetoprima; Toxoplasma com CD4 abaixo de 100; micobactérias não tuberculosas com CD4 abaixo de 50 e TARV ainda não iniciada (azitromicina semanal); sem profilaxia primária para criptococose, citomegalovírus e herpes simples; suspensão com CD4 acima de 200 por mais de 3 meses. O quadro não menciona IgG positiva para toxoplasma, que a explicação cita.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-hiv",
   enunciado:"Paciente vivendo com HIV, virgem de tratamento, com CD4 de 120 células/mm³. Além da terapia antirretroviral, qual profilaxia primária está indicada?",
   alternativas:[{id:"A",texto:"Fluconazol para candidíase esofágica"},{id:"B",texto:"Sulfametoxazol-trimetoprima para pneumocistose"},{id:"C",texto:"Azitromicina para complexo Mycobacterium avium com CD4 abaixo de 200"},{id:"D",texto:"Aciclovir para herpes-zóster"},{id:"E",texto:"Nenhuma profilaxia é necessária"}],
@@ -1621,6 +1635,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-22", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024 (gov.br/saude). Texto lido em 13/11/2026: Quadro 1 de sinais de alarme (dor abdominal intensa e contínua, vômitos persistentes, acúmulo de líquidos, hipotensão postural ou lipotimia, hepatomegalia maior que 2 cm do rebordo, sangramento de mucosa, letargia e/ou irritabilidade); aumento progressivo do hematócrito consta entre os sinais de alarme do fluxograma; fase crítica com início na defervescência, entre o 3º e o 7º dia. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-arboviroses",
   enunciado:"Quais são sinais de alarme na dengue, que indicam necessidade de observação e hidratação venosa?",
   alternativas:[{id:"A",texto:"Febre alta e cefaleia intensa isoladamente"},{id:"B",texto:"Dor retro-orbitária e prostração no primeiro dia de febre"},{id:"C",texto:"Mialgia e exantema pruriginoso"},{id:"D",texto:"Dor abdominal intensa e contínua, vômitos persistentes, sangramento de mucosas, letargia, hepatomegalia dolorosa e aumento do hematócrito com queda das plaquetas"},{id:"E",texto:"Apenas a presença de plaquetopenia isolada"}],
@@ -1634,6 +1649,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-23", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024 (gov.br/saude). Texto lido em 13/11/2026: prescrever paracetamol e/ou dipirona; não utilizar salicilatos nem anti-inflamatórios não esteroides; ácido acetilsalicílico e AINEs são citados como fatores de sangramento associados à trombocitopenia e à hemoconcentração. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-arboviroses",
   enunciado:"Qual analgésico/antitérmico é o recomendado na suspeita de dengue, e o que deve ser evitado?",
   alternativas:[{id:"A",texto:"Ácido acetilsalicílico é o preferido; evitar paracetamol"},{id:"B",texto:"Paracetamol ou dipirona são recomendados; evitar AAS e anti-inflamatórios não esteroidais pelo risco de sangramento"},{id:"C",texto:"Ibuprofeno é o preferido, por ação anti-inflamatória"},{id:"D",texto:"Corticoide oral em todos os casos"},{id:"E",texto:"Nenhum sintomático deve ser usado"}],
@@ -1712,6 +1728,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-29", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: Ministério da Saúde, Calendário Técnico Nacional de Vacinação do Adulto (SVSA/PNI, gov.br). Texto lido em 13/11/2026: dT a partir de 7 anos; com esquema básico completo, reforço a cada 10 anos após a última dose, antecipado para 5 anos em caso de exposição a risco de difteria ou tétano. Não conferidos neste arquivo: a imunoglobulina antitetânica e o dTpa a cada gestação, que constam do calendário da gestante.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-imunizacao",
   enunciado:"Adulto com esquema vacinal completo para difteria e tétano na infância deve receber reforço de dT com qual periodicidade?",
   alternativas:[{id:"A",texto:"A cada 2 anos"},{id:"B",texto:"A cada 5 anos"},{id:"C",texto:"Somente em caso de ferimento"},{id:"D",texto:"Apenas uma vez na vida"},{id:"E",texto:"A cada 10 anos"}],

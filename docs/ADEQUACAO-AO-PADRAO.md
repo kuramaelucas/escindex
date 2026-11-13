@@ -3,16 +3,16 @@
 Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra `dados/PADRAO-EXPLICACAO.md`: justificativa (`faltasDeJustificativa`) e referência com data de leitura. "Completa" = forma da justificativa sem falta, **mecanismo e epidemiologia presentes (heurística por palavra-chave, não prova qualidade)** e referência datada. Não é erro: `npm run conferir` só cobra o padrão de conteúdo novo.
 
 ```
-12137 questões em 156 arquivos; 975 já cumprem forma + mecanismo/epidemiologia + referência datada (8.0%).
+12137 questões em 156 arquivos; 992 já cumprem forma + mecanismo/epidemiologia + referência datada (8.2%).
 Conteúdo (heurística por palavra-chave, itens 7 e 8): 2260 de 12137 mencionam mecanismo E epidemiologia (18.6%). Forma da justificativa (itens 1–4): 12134 de 12137 sem falta (100.0%).
-Referências: 1158 datadas, 9444 sem data, 137 vazias, 1398 fracas.
+Referências: 1175 datadas, 9444 sem data, 120 vazias, 1398 fracas.
 Justificativa — o que falta:
    7769  sem mecanismo/fisiopatologia
    7508  sem epidemiologia
       2  corpo curto
       2  sem Dicas do enunciado
       1  sem destaque **
-Mapa: 39 diretrizes da tabela + 17 famílias; 137 questões sem referência.
+Mapa: 39 diretrizes da tabela + 17 famílias; 120 questões sem referência.
 ```
 
 ## Por arquivo (mais questões a adequar primeiro)
@@ -24,7 +24,6 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 137 questões sem referência.
 | didatico-grad-tuberculose | 182 | 0 | 35 | 182/0/0 | sem epidemiologia (146); sem mecanismo/fisiopatologia (2) |
 | didatico-grad-meningites | 180 | 0 | 26 | 180/0/0 | sem epidemiologia (154) |
 | didatico-grad-pneumonias | 142 | 0 | 42 | 142/0/0 | sem epidemiologia (100) |
-| didatico | 135 | 0 | 135 | 0/135/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | didatico-grad-iras | 127 | 0 | 20 | 127/0/0 | sem epidemiologia (107) |
 | didatico-grad-antibioticos | 126 | 0 | 12 | 126/0/0 | sem epidemiologia (114) |
 | didatico-grad-arboviroses | 121 | 0 | 19 | 121/0/0 | sem epidemiologia (102) |
@@ -45,6 +44,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 137 questões sem referência.
 | uspsp-simulado-5 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (83) |
 | uspsp-simulado-4 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (81) |
 | uspsp-simulado-3 | 120 | 0 | 98 | 120/0/0 | sem mecanismo/fisiopatologia (22); sem epidemiologia (12) |
+| didatico | 135 | 17 | 135 | 0/118/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | unifesp-2024-adaptado | 100 | 0 | 1 | 79/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (61) |
 | simulado-epm-2 | 100 | 0 | 0 | 70/0/11 | sem mecanismo/fisiopatologia (95); sem epidemiologia (89); sem Dicas do enunciado (1) |
 | simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |

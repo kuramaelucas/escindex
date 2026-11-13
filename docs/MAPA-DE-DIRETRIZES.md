@@ -12,11 +12,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | Surviving Sepsis Campaign | SSC 2026 (Intensive Care Med 2026;52:863-936) | 104 | 81 |
 | GINA, asma | GINA 2026 (Strategy Report, maio/2026) | 95 | 66 |
 | Rastreamento do câncer do colo do útero (MS) | Portaria Conjunta SAES/SECTICS nº 13/2025 (HPV-DNA) | 92 | 72 |
-| OMS, critérios de elegibilidade contraceptiva | OMS MEC 6ª edição (2025) | 72 | 54 |
+| OMS, critérios de elegibilidade contraceptiva | OMS MEC 6ª edição (2025) | 73 | 54 |
 | EAU (edições anuais) | EAU 2026 (urolitíase: revisão completa) | 66 | 61 |
 | SBC, hipertensão arterial | Diretriz Brasileira de Hipertensão 2025 (SBC, SBN, SBH) | 58 | 43 |
 | ADA, Standards of Care in Diabetes | ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1) | 56 | 41 |
-| GOLD, DPOC | GOLD 2026 (relatório v1.3) | 52 | 36 |
+| GOLD, DPOC | GOLD 2026 (relatório v1.3) | 53 | 36 |
 | HerniaSurge, hérnia inguinal | HerniaSurge 2023 (BJS Open) | 47 | 39 |
 | WSES, apendicite aguda | WSES Jerusalem 2025 (JAMA Surg 2026) | 43 | 35 |
 | OMS, hemorragia pós-parto | OMS/FIGO/ICM 2025 (51 recomendações) | 32 | 20 |
@@ -51,12 +51,12 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | Família | Questões |
 |---|---:|
 | Livros-texto e outras fontes sem diretriz | 2607 |
-| Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 2547 |
-| Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 1219 |
+| Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 2554 |
+| Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 1220 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) | 970 |
 | Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 603 |
-| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 566 |
-| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) | 550 |
+| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 568 |
+| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) | 555 |
 | Epidemiologia e bioestatística (livros-texto) | 370 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 304 |
 | Gastro/hepato (EASL, AASLD, ACG, Roma, Chicago) | 213 |
@@ -68,7 +68,7 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, dor) | 33 |
 | Anestesia (ASRA, ASA, DAS) | 12 |
 
-**Sem nenhuma referência:** 137 questões (`npm run auditoria-padrao -- sem-diretriz`).
+**Sem nenhuma referência:** 120 questões (`npm run auditoria-padrao -- sem-diretriz`).
 
 ## Questões por diretriz da tabela (só as superadas; as demais pelo JSON)
 

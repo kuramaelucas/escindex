@@ -141,3 +141,27 @@ Quando uma pendência for resolvida, escreva a conferência no campo `referencia
 ## Einstein 2021–2026 (02/11/2026)
 
 As 425 questões das provas `prova-einstein-*` entraram com `referencias` sem conferência. Nesta rodada só o GOLD 2026 foi lido (linha acima). GINA 2026 e OMS MEC 6ª edição constam lidos na rodada de 29/10 e foram citados, não relidos. Todas as demais citações (livros-texto, PCDT, SBC, SBP, FEBRASGO, NCCN, AHA/ASA, calendário, Portaria SAES/SECTICS 13/2025 do rastreamento do colo) foram registradas como **texto não aberto**, com data, e continuam na fila de `npm run referencias-a-conferir`. As 42 questões que citavam edição superada estão em `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md`.
+
+## `banco-didatico`: fase 3 do projeto de adequação (13/11/2026)
+
+As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Faltam 118 questões do arquivo.
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| GOLD 2026, relatório v1.3 (goldcopd.org) | Antibiótico com ≥ 2 de dispneia, febre, volume e purulência (com purulência entre eles) ou ventilação mecânica; 5 dias; corticoide sistêmico até 5 dias. Anthonisen não é nomeado. Meta de SpO2 88–92% não localizada | `q-002` |
+| OMS MEC 6ª edição, 2025 (iris.who.int) | Tabagismo: < 35 anos = 2 para combinados; ≥ 35 anos = 3 (< 15 cig/dia) ou 4 (≥ 15); progestagênio, DIU e barreira = 1 | `q-024` |
+| SBP, Manual de Orientação nº 10, 2021, hiperbilirrubinemia (sbp.com.br) | Seguimento de RN ≥ 35 semanas pelo nomograma de Bhutani; otimizar o aleitamento; tabelas de fototerapia e exsanguineotransfusão. Limiar às 36 h e AAP 2022 não conferidos; fenobarbital não aparece | `q-013` |
+| MS, Manual de Recomendações para o Controle da TB, 2ª ed. atualizada, 2019 (gov.br/aids) | 2RHZE/4RH; 2RHZE/10RH (meningoencefálica e osteoarticular); neurite óptica por etambutol, dose dependente; PT ≥ 5 mm como infecção latente. Esquemas preventivos (4R, 3HP) não constam do manual | `q-inf-14`, `q-inf-15`, `q-inf-16` |
+| MS, PCDT HIV em adultos, módulo 1, 2024 (gov.br/aids) | TARV para todos, independentemente do CD4; tenofovir/lamivudina + dolutegravir preferencial; I = I | `q-inf-17` |
+| MS, PCDT HIV em adultos, módulo 2, 2024 (gov.br/aids) | Quadro 29: PCP com CD4 < 200 (ou < 14%), candidíase oral ou febre; toxoplasmose < 100; MAC < 50 sem TARV; sem profilaxia primária para criptococose, CMV e herpes simples. IgG para toxoplasma não consta do quadro | `q-inf-18` |
+| MS, Dengue: diagnóstico e manejo clínico, 6ª ed., 2024 (gov.br/saude) | Quadro 1 de sinais de alarme (7 itens); aumento progressivo do hematócrito no fluxograma; início na defervescência (3º a 7º dia); paracetamol e/ou dipirona, sem salicilatos nem AINEs | `q-inf-22`, `q-inf-23` |
+| MS, Calendário Técnico Nacional de Vacinação da Criança (gov.br/saude) | Penta e VIP aos 2, 4 e 6 meses (VIP: reforço aos 15 m); pneumo 10 aos 2 e 4 m + reforço aos 12 m; rotavírus aos 2 e 4 m; SCR a partir de 12 m; HPV a partir de 9 anos | `q-015` |
+| MS, Calendário Técnico Nacional de Vacinação do Adulto (gov.br/saude) | dT a cada 10 anos; antecipado para 5 anos em exposição a risco de tétano ou difteria | `q-inf-29` |
+| SBC/SBH/SBN, Diretriz Brasileira de Hipertensão Arterial 2025 (abccardiol.org) | Consultório ≥ 140/90; MAPA 24 h e média do MRPA ≥ 130/80 (vigília 135/85, sono 120/70); fenótipos; Quadro 7.1 de classes; crise hipertensiva (sem LOA: reavaliação em 1 a 7 dias; EH: UTI, 25% na 1ª hora; nifedipina rápida proscrita); HAR e aldosterona. Relação aldosterona/renina e hipocalemia espontânea não conferidas | `q-card-13` a `q-card-17` |
+
+**Texto alterado:** `q-card-13` (a explicação dizia 135/85 para a medida residencial; a diretriz brasileira de 2020 e a de 2025 usam 130/80 na média do MRPA). Nenhum gabarito foi alterado.
+
+**Não abriram nesta rodada:** `pmc.ncbi.nlm.nih.gov/articles/PMC4968574/` (Sepsis-3, a página raspada devolveu só uma linha), `planalto.gov.br` (Lei 8.080, 403), `bvsms.saude.gov.br` (403), `saude.curitiba.pr.gov.br` (403), `antigo-conitec.saude.gov.br` (não resolve), `ginasthma.org` (403), `kdigo.org` (406), `ahajournals.org` (não resolve). Os PDFs do `gov.br` às vezes devolvem reset de conexão: repetir resolve. Tentativas de adivinhar endereço do PCDT de IST e do PCDT de PEP devolveram 404; o endereço certo precisa vir de uma busca.
+
+**Ainda sem leitura (priorizar):** sepse (Sepsis-3 e SSC 2026), colecistite (Tokyo), pré-eclâmpsia e diabetes gestacional, sífilis e PEP, doença meningocócica (quimioprofilaxia), leptospirose, malária, Zika, diarreia (planos A/B/C), notificação compulsória (Portaria GM/MS), Lei 8.080 e ESF (PNAB), erros inatos (colo do útero, climatério), técnicas cirúrgicas (TOCE) e oftalmologia.
+
