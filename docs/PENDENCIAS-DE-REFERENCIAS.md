@@ -201,25 +201,28 @@ Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calend
 - `q-udisc20262-004`: diretrizes da SBPT para DPOC não relidas.
 - `q-unifesp2023-069`: Box 11-4 do GINA (dispositivo na criança) não relido linha a linha.
 
-## 6-B. Banco didático: 102 questões ainda sem `referencias` (fase 3 do projeto de adequação)
+## 6-B. Banco didático: 57 questões sem `referencias` e 45 com livro-texto só indicado (fase 3 do projeto de adequação)
 
-O `banco-didatico` (135 questões autorais) não tinha `referencias`. Em 13/11/2026, 33 ganharam nota de leitura datada (lista em `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`); **restam 102**. A lista se regera com `npm run auditoria-padrao -- sem-diretriz` (inclui 2 questões da `tp-2020-2`) e `npm run auditoria-padrao -- prova banco-didatico`. Estado: **abre** = fonte aberta na rede, falta ler; **enviar** = a rede não abre, alguém envia o PDF; **livro** = não há diretriz que a busca confirme.
+O `banco-didatico` (135 questões autorais) não tinha `referencias`. Situação em 13/11/2026:
+
+- **33 questões** com nota de **leitura datada** do texto oficial (lista em `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`);
+- **45 questões** com **livro-texto indicado sem leitura** (a equipe aceitou livro-texto como referência em 13/11/2026): técnica operatória `q-toce-01` a `-10` e `-14` a `-30` (27; Goffi e Sabiston 21ª ed.), oftalmologia `q-oft-01` a `-15` (Kanski 9ª ed.), `q-025` e `q-027` (Medronho, Epidemiologia, 2ª ed.) e `q-028` (Beauchamp e Childress). A nota registra a obra e a edição (conferidas em catálogo) e diz que capítulo, página e conteúdo **não** foram conferidos contra o livro; `npm run auditoria-padrao` conta essas como "indicadas sem leitura", e não como lidas. **Pendência:** quem tiver os livros confere o capítulo e troca a nota por "lido em DD/MM/AAAA" (`atualizar-dados` com o campo `referencias`);
+- **57 questões ainda sem nenhuma referência** (lista abaixo; `npm run auditoria-padrao -- sem-diretriz` e `-- prova banco-didatico` regeram, e há mais 2 na `tp-2020-2`).
+
+Estado da fonte: **abre** = aberta na rede, falta ler; **enviar** = a rede não abre, alguém envia o PDF.
 
 | Tema | Questões | Fonte-alvo | Estado |
 |---|---|---|---|
-| Técnica operatória (instrumental, fios, incisões, vídeo) | `q-toce-01` a `-10`, `-16` a `-29` (28) | tratados de técnica cirúrgica; SAGES (pneumoperitônio) | livro |
-| Antissepsia e ferida (campo estéril, classe da ferida, posição) | `q-toce-14`, `-15`, `-30` | CDC/ANVISA (classificação da ferida); OMS SSI 2018 já lida para `-11` a `-13` | abre |
 | Síndromes coronarianas | `q-001`, `q-card-04` a `-08` | Diretriz SBC de SCA e ESC (abccardiol.org); AHA/ACC 2025 bloqueada | abre (SBC) |
 | ECG, arritmias e PCR | `q-card-01` a `-03`, `-20`, `-24`, `-21` a `-23` | SBC (arritmias, RCP 2024); AHA 2025 bloqueada | abre (SBC) / enviar (AHA) |
 | Insuficiência cardíaca, valvopatias, pericárdio | `q-card-09` a `-12`, `-25` a `-29` | Diretrizes da SBC de IC e de valvopatias; ESC de pericárdio | abre (SBC) |
 | Sepse | `q-005`, `q-inf-01` a `-03` | Sepsis-3 (JAMA 2016) e SSC 2026 | enviar |
-| Antibióticos | `q-inf-04` a `-06` | IDSA 2026 (idsociety.org) e livros de farmacologia | abre / livro |
+| Antibióticos | `q-inf-04` a `-06` | IDSA 2026 (idsociety.org); farmacologia | abre |
 | Pele, meningites, endocardite, ITU | `q-inf-09`, `-10`, `-11`, `-13`, `-27`, `-07` | IDSA (pele, meningite 2004); Guia de Vigilância; AHA/ESC (endocardite) | abre (IDSA) / enviar (AHA) |
 | HIV (PEP) e Zika | `q-inf-19`, `q-inf-24` | PCDT de PEP; guia de vigilância de arboviroses | enviar (endereço) |
-| Oftalmologia | `q-oft-01` a `-15` (15) | CBO/SBO; AAO Preferred Practice Patterns; Portaria do teste do olhinho | abre a verificar |
 | Clínica e cirurgia | `q-003`, `-004`, `-006`, `-007`, `-008`, `-009`, `-010`, `-011`, `-012` | FBG/ACG, SBD, KDIGO, WSES, Tokyo, ACG 2024 (lido no PMC em 29/10), ESGE, ASA (jejum) | abre / enviar (KDIGO, Tokyo) |
 | Pediatria e obstetrícia | `q-016`, `-017`, `-019`, `-020`, `-021`, `-022`, `-023` | SBP (convulsão febril, resfriado); FEBRASGO, OMS; Portaria SAES/SECTICS 13/2025 | abre (SBP, OMS) / enviar (Portaria) |
-| Saúde coletiva e ética | `q-025`, `-026`, `-027`, `-028`, `-029`, `-030` | Medronho e Gordis (epidemiologia); Lei 8.080; Res. CFM 2.232/2019; PNAB 2017; Portaria de notificação | livro / enviar |
+| Saúde coletiva (norma) | `q-026`, `q-029`, `q-030` | Lei 8.080; PNAB 2017; Portaria de notificação compulsória | enviar |
 
 **Texto já corrigido pela fonte nesta frente:** `q-card-13` (MRPA 130/80), `q-card-30` (metas de LDL < 50 e < 40 mg/dL), `q-inf-12` (quimioprofilaxia em 24 h; ceftriaxona na gestante), `q-inf-26` (tafenoquina), `q-toce-13` (janela de 120 min da OMS). Pontos de explicação ainda a revisar por quem é da área: `q-016`, `q-013`, `q-015`, `q-023`, `q-011`, `q-inf-03` (ver `docs/PROJETO-ADEQUACAO.md`).
 

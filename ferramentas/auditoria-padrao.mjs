@@ -31,6 +31,8 @@ export function estadoDaReferencia(q){
   const ref = String(q.referencias || "").trim();
   if(!ref) return "vazia";
   if(!COM_DATA.test(ref)) return "sem-data";
+  // livro-texto aceito pela equipe como referência, registrado SEM ler o texto: é uma indicação, não uma conferência
+  if(/registrada sem leitura/i.test(ref)) return "indicada";
   if(FRACA.test(ref) && !/lid[oa]|conferid[oa] em/i.test(ref)) return "fraca";
   return "datada";
 }
@@ -70,7 +72,7 @@ export function auditar(){
   };
   for(const a of arquivos){
     if(!a.questoes) continue;
-    const p = { nome: a.nome, total: 0, completas: 0, conteudoOk: 0, formaOk: 0, faltas: {}, ref: { vazia: 0, "sem-data": 0, fraca: 0, datada: 0 }, questoes: [] };
+    const p = { nome: a.nome, total: 0, completas: 0, conteudoOk: 0, formaOk: 0, faltas: {}, ref: { vazia: 0, "sem-data": 0, indicada: 0, fraca: 0, datada: 0 }, questoes: [] };
     for(const q of a.questoes){
       if(q.status === "rascunho") continue;
       p.total++;
@@ -108,7 +110,7 @@ function resumo({ provas, porDiretriz, semDiretriz }){
   const cOk = soma((p) => p.conteudoOk), fOk = soma((p) => p.formaOk);
   const linhas = [`${tot} questões em ${provas.length} arquivos; ${ok} já cumprem forma + mecanismo/epidemiologia + referência datada (${(100 * ok / tot).toFixed(1)}%).`,
     `Conteúdo (heurística por palavra-chave, itens 7 e 8): ${cOk} de ${tot} mencionam mecanismo E epidemiologia (${(100 * cOk / tot).toFixed(1)}%). Forma da justificativa (itens 1–4): ${fOk} de ${tot} sem falta (${(100 * fOk / tot).toFixed(1)}%).`,
-    `Referências: ${soma((p) => p.ref.datada)} datadas, ${soma((p) => p.ref["sem-data"])} sem data, ${soma((p) => p.ref.vazia)} vazias, ${soma((p) => p.ref.fraca)} fracas.`,
+    `Referências: ${soma((p) => p.ref.datada)} lidas e datadas, ${soma((p) => p.ref.indicada)} de livro-texto indicadas sem leitura, ${soma((p) => p.ref["sem-data"])} sem data, ${soma((p) => p.ref.vazia)} vazias, ${soma((p) => p.ref.fraca)} fracas.`,
     "Justificativa — o que falta:"];
   Object.entries(faltasTot).sort((a, b) => b[1] - a[1]).forEach(([k, v]) => linhas.push(`  ${String(v).padStart(5)}  ${k}`));
   const dt = [...porDiretriz.entries()].filter(([k]) => k.startsWith("tabela:"));

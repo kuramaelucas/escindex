@@ -5,14 +5,14 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 ```
 12137 questões em 156 arquivos; 1008 já cumprem forma + mecanismo/epidemiologia + referência datada (8.3%).
 Conteúdo (heurística por palavra-chave, itens 7 e 8): 2260 de 12137 mencionam mecanismo E epidemiologia (18.6%). Forma da justificativa (itens 1–4): 12134 de 12137 sem falta (100.0%).
-Referências: 1191 datadas, 9444 sem data, 104 vazias, 1398 fracas.
+Referências: 1191 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 59 vazias, 1398 fracas.
 Justificativa — o que falta:
    7769  sem mecanismo/fisiopatologia
    7508  sem epidemiologia
       2  corpo curto
       2  sem Dicas do enunciado
       1  sem destaque **
-Mapa: 39 diretrizes da tabela + 17 famílias; 104 questões sem referência.
+Mapa: 39 diretrizes da tabela + 17 famílias; 59 questões sem referência.
 ```
 
 ## Por arquivo (mais questões a adequar primeiro)
@@ -44,7 +44,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 104 questões sem referência.
 | uspsp-simulado-5 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (83) |
 | uspsp-simulado-4 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (81) |
 | uspsp-simulado-3 | 120 | 0 | 98 | 120/0/0 | sem mecanismo/fisiopatologia (22); sem epidemiologia (12) |
-| didatico | 135 | 33 | 135 | 0/102/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
+| didatico | 135 | 33 | 135 | 0/57/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | unifesp-2024-adaptado | 100 | 0 | 1 | 79/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (61) |
 | simulado-epm-2 | 100 | 0 | 0 | 70/0/11 | sem mecanismo/fisiopatologia (95); sem epidemiologia (89); sem Dicas do enunciado (1) |
 | simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |

@@ -462,6 +462,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-025", banca:"Esc — Banco Didático", real:false, ano:2021,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: medidas de frequência de doença (incidência e prevalência). Obra: Medronho RA, Bloch KV, Luiz RR, Werneck GL, Epidemiologia, 2ª ed. (São Paulo: Atheneu, 2009; há 3ª ed.). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-medidasepi",
   enunciado:"Em um município com população de 100.000 habitantes, foram notificados 40 casos novos de tuberculose em um ano, havendo 250 casos totais (novos e antigos) da doença na população no mesmo período. Qual medida epidemiológica corresponde a \"40 casos novos por 100.000 habitantes no ano\"?",
   alternativas:[
@@ -498,6 +499,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-027", banca:"Esc — Banco Didático", real:false, ano:2023,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: desenhos de estudo epidemiológico (caso-controle e coorte). Obra: Medronho RA, Bloch KV, Luiz RR, Werneck GL, Epidemiologia, 2ª ed. (São Paulo: Atheneu, 2009; há 3ª ed.). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-mps", especialidadeId:"esp-epidemio", assuntoId:"ass-desenhosestudo",
   enunciado:"Pesquisadores desejam investigar a associação entre exposição a um determinado agrotóxico e o desenvolvimento de uma doença rara (prevalência estimada de 1 em 50.000). Qual desenho de estudo é mais adequado e eficiente para essa investigação?",
   alternativas:[
@@ -516,6 +518,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-028", banca:"Esc — Banco Didático", real:false, ano:2024,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: princípio da autonomia, consentimento informado e recusa terapêutica. Obra: Beauchamp TL, Childress JF, Principles of Biomedical Ethics (Oxford University Press); a edição e os dados do catálogo não foram confirmados nesta sessão. Capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão). A Resolução CFM 2.232/2019 (recusa terapêutica) não foi lida.",
   areaId:"area-mps", especialidadeId:"esp-bioetica", assuntoId:"ass-principiosbioetica",
   enunciado:"Paciente adulto, lúcido e orientado, com capacidade de decisão preservada, recusa uma transfusão sanguínea recomendada pela equipe médica por convicção religiosa, mesmo após ser plenamente informado dos riscos de não realizá-la. Qual princípio bioético fundamenta o respeito a essa decisão, mesmo que a equipe discorde clinicamente?",
   alternativas:[
@@ -572,6 +575,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-01", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Durante uma cirurgia, o residente precisa pinçar um pequeno vaso sangrante do tecido subcutâneo, sem traumatizar as estruturas vizinhas. Qual instrumento é o mais apropriado para essa finalidade?",
   alternativas:[{id:"A",texto:"Pinça hemostática de Halsted (mosquito), delicada e de ponta fina"},{id:"B",texto:"Pinça de Kocher, por ter dente e garantir preensão firme"},{id:"C",texto:"Pinça de Allis, desenhada para apreender e tracionar tecidos"},{id:"D",texto:"Pinça de Backhaus, usada para fixar os campos cirúrgicos"},{id:"E",texto:"Pinça de Foerster, própria para montar gaze em compressas"}],
@@ -585,6 +589,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-02", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Um instrumento de preensão precisa ser escolhido para apreender delicadamente uma alça intestinal, sem risco de perfurá-la. Qual é a escolha correta e por quê?",
   alternativas:[{id:"A",texto:"Pinça de Allis, pois seus dentes finos garantem firmeza"},{id:"B",texto:"Pinça de Kocher, pois o dente evita que a alça escape"},{id:"C",texto:"Pinça de Backhaus, pois prende sem esmagar"},{id:"D",texto:"Pinça de Babcock, pois é atraumática e tem ponta fenestrada e arredondada"},{id:"E",texto:"Pinça anatômica com dente, por oferecer melhor controle"}],
@@ -598,6 +603,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-03", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Sobre as tesouras cirúrgicas de uso mais comum, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"A tesoura de Mayo é a preferida para dissecção de planos delicados, por ter hastes longas e ponta fina"},{id:"B",texto:"A tesoura de Metzenbaum é indicada para dissecção de tecidos delicados, enquanto a de Mayo é usada para cortar tecidos resistentes e fios"},{id:"C",texto:"Ambas são intercambiáveis, já que a diferença é apenas o comprimento do cabo"},{id:"D",texto:"A tesoura de Metzenbaum é a indicada para cortar fios de aço e telas"},{id:"E",texto:"A tesoura de Iris é a padrão para abrir a aponeurose na laparotomia"}],
@@ -611,6 +617,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-04", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Qual afastador é considerado autostático, isto é, mantém a exposição do campo sem necessidade de um auxiliar segurando-o?",
   alternativas:[{id:"A",texto:"Farabeuf"},{id:"B",texto:"Doyen"},{id:"C",texto:"Volkmann"},{id:"D",texto:"Deaver"},{id:"E",texto:"Gosset"}],
@@ -624,6 +631,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-05", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"O porta-agulhas de Mayo-Hegar é usado para conduzir a agulha durante a síntese. Qual é a forma tecnicamente correta de montá-lo?",
   alternativas:[{id:"A",texto:"Apreendendo a agulha pela ponta, para facilitar a penetração no tecido"},{id:"B",texto:"Apreendendo a agulha exatamente no ponto de inserção do fio, para não deixá-la girar"},{id:"C",texto:"Apreendendo a agulha na junção do terço médio com o terço posterior, próximo de onde o fio se insere"},{id:"D",texto:"Apreendendo a agulha em qualquer ponto, desde que a cremalheira esteja no último dente"},{id:"E",texto:"Apreendendo a agulha pela ponta e travando a cremalheira no primeiro dente"}],
@@ -637,6 +645,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-06", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Um fio cirúrgico monofilamentar, inabsorvível e de baixa reatividade tecidual é desejado para a síntese da pele em uma ferida limpa. Qual das opções atende a essas três características?",
   alternativas:[{id:"A",texto:"Náilon (poliamida)"},{id:"B",texto:"Poliglactina 910 (Vicryl)"},{id:"C",texto:"Seda"},{id:"D",texto:"Categute simples"},{id:"E",texto:"Polidioxanona (PDS)"}],
@@ -650,6 +659,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-07", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Por que fios multifilamentares (trançados) apresentam maior risco de infecção quando comparados aos monofilamentares?",
   alternativas:[{id:"A",texto:"Porque são sempre absorvíveis e liberam produtos tóxicos"},{id:"B",texto:"Porque têm menor força tênsil e arrebentam com facilidade"},{id:"C",texto:"Porque provocam reação alérgica sistêmica com frequência"},{id:"D",texto:"Porque os interstícios entre os filamentos abrigam bactérias e dificultam o acesso das defesas do hospedeiro e dos antibióticos"},{id:"E",texto:"Porque exigem menos nós, afrouxando a sutura"}],
@@ -663,6 +673,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-08", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Sobre a numeração dos fios cirúrgicos, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Quanto maior o número de zeros, maior o diâmetro do fio"},{id:"B",texto:"Quanto maior o número de zeros, menor o diâmetro do fio — 5-0 é mais fino que 2-0"},{id:"C",texto:"A numeração indica o tempo de absorção, e não o calibre"},{id:"D",texto:"Fios 0 e 1 são os mais finos disponíveis, próprios para microcirurgia"},{id:"E",texto:"A numeração é padronizada apenas para fios inabsorvíveis"}],
@@ -676,6 +687,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-09", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Ao fechar a aponeurose de uma laparotomia mediana, qual conduta técnica está associada a menor incidência de hérnia incisional?",
   alternativas:[{id:"A",texto:"Sutura contínua com fio absorvível de absorção rápida, como categute cromado"},{id:"B",texto:"Fechamento apenas do peritônio, deixando a aponeurose cicatrizar por segunda intenção"},{id:"C",texto:"Pontos separados com fio 5-0, com espaçamento de 3 cm entre eles"},{id:"D",texto:"Sutura em massa incluindo pele e subcutâneo, para reforçar a parede"},{id:"E",texto:"Sutura contínua com fio de absorção lenta ou inabsorvível, mantendo relação entre comprimento do fio e da ferida de aproximadamente 4:1"}],
@@ -689,6 +701,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-10", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"A poliglactina 910 (Vicryl) é um fio muito usado em planos profundos. Qual afirmação a descreve corretamente?",
   alternativas:[{id:"A",texto:"Inabsorvível, monofilamentar, de origem animal"},{id:"B",texto:"Absorvível de origem biológica, degradado por proteólise e muito reativo"},{id:"C",texto:"Absorvível sintético, multifilamentar, com perda importante de força tênsil em cerca de 3 a 4 semanas"},{id:"D",texto:"Inabsorvível, indicado para sutura de pele com retirada em 7 dias"},{id:"E",texto:"Absorvível sintético com absorção completa em cerca de 6 horas"}],
@@ -744,6 +757,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-14", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: antissepsia, paramentação, classificação da ferida operatória e posicionamento do paciente (a recomendação da OMS de 2018 sobre infecção de sítio cirúrgico foi lida à parte para q-toce-11 a 13). Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-antissepsia",
   enunciado:"Colecistectomia eletiva, sem intercorrências, com abertura da via biliar sem extravasamento significativo de conteúdo. Como se classifica essa ferida operatória?",
   alternativas:[{id:"A",texto:"Limpa"},{id:"B",texto:"Limpa-infectada por definição, pois houve uso de dreno"},{id:"C",texto:"Contaminada"},{id:"D",texto:"Infectada"},{id:"E",texto:"Potencialmente contaminada"}],
@@ -757,6 +771,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-15", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: antissepsia, paramentação, classificação da ferida operatória e posicionamento do paciente (a recomendação da OMS de 2018 sobre infecção de sítio cirúrgico foi lida à parte para q-toce-11 a 13). Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-antissepsia",
   enunciado:"Após a paramentação estéril, quais regiões do avental e do campo são consideradas estéreis?",
   alternativas:[{id:"A",texto:"Todo o avental, inclusive o dorso e a região abaixo da cintura"},{id:"B",texto:"Apenas as luvas, pois o avental nunca é estéril"},{id:"C",texto:"A frente do avental, entre a linha dos ombros e a cintura, e as mangas; o dorso e o que está abaixo da cintura são considerados não estéreis"},{id:"D",texto:"Todo o campo cirúrgico, mesmo as áreas que pendem abaixo do nível da mesa"},{id:"E",texto:"Somente a mesa de instrumentação, pois a equipe deve evitar contato com o campo"}],
@@ -770,6 +785,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-16", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: incisões da parede abdominal, laparotomias e drenagem. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Quais são as principais vantagens da laparotomia mediana em relação às incisões transversas?",
   alternativas:[{id:"A",texto:"Acesso rápido e ampliável a toda a cavidade, com secção de estrutura pouco vascularizada (linha alba) e sem secção muscular"},{id:"B",texto:"Menor risco de hérnia incisional e melhor resultado estético"},{id:"C",texto:"Menor dor pós-operatória e menor repercussão respiratória"},{id:"D",texto:"Preservação completa da inervação da parede, com cicatrização mais rápida"},{id:"E",texto:"Menor tempo de internação, por permitir fechamento sem sutura de aponeurose"}],
@@ -783,6 +799,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-17", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: incisões da parede abdominal, laparotomias e drenagem. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"A incisão de McBurney, classicamente usada na apendicectomia aberta, caracteriza-se por:",
   alternativas:[{id:"A",texto:"Secção transversal de todos os planos musculares do flanco direito"},{id:"B",texto:"Incisão subcostal direita, paralela ao rebordo costal"},{id:"C",texto:"Abertura da linha alba infraumbilical, com afastamento dos retos"},{id:"D",texto:"Divulsão dos músculos da parede no sentido de suas fibras, sem seccioná-los"},{id:"E",texto:"Incisão transversa suprapúbica com secção dos retos abdominais"}],
@@ -796,6 +813,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-18", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: incisões da parede abdominal, laparotomias e drenagem. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Paciente será submetida a cesariana. A incisão de Pfannenstiel é a mais utilizada nesse contexto porque:",
   alternativas:[{id:"A",texto:"Oferece a melhor exposição do andar superior do abdome"},{id:"B",texto:"Proporciona bom acesso à pelve, melhor resultado estético e menor incidência de hérnia, apesar de exposição limitada do abdome superior"},{id:"C",texto:"É a via mais rápida em situações de emergência extrema"},{id:"D",texto:"Dispensa a abertura da aponeurose dos retos"},{id:"E",texto:"Evita a necessidade de fechamento por planos"}],
@@ -809,6 +827,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-19", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: incisões da parede abdominal, laparotomias e drenagem. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Em uma cirurgia eletiva de pele, sempre que possível, a incisão deve ser planejada paralelamente às linhas de Langer. Qual é a justificativa técnica?",
   alternativas:[{id:"A",texto:"Reduz o sangramento, por evitar a secção de arteríolas"},{id:"B",texto:"Permite dispensar a sutura por planos"},{id:"C",texto:"Aumenta a velocidade de epitelização em cerca de 50%"},{id:"D",texto:"Impede a formação de queloide em pacientes predispostos"},{id:"E",texto:"Diminui a tensão sobre as bordas da ferida, favorecendo cicatriz mais estreita e esteticamente melhor"}],
@@ -822,6 +841,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-20", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"A manobra de Pringle, empregada em sangramentos hepáticos, consiste em:",
   alternativas:[{id:"A",texto:"Compressão direta do parênquima hepático com compressas por 10 minutos"},{id:"B",texto:"Ligadura definitiva da veia cava inferior infra-hepática"},{id:"C",texto:"Clampeamento temporário do pedículo hepático no ligamento hepatoduodenal, interrompendo o fluxo da artéria hepática e da veia porta"},{id:"D",texto:"Empacotamento definitivo do fígado com telas absorvíveis"},{id:"E",texto:"Clampeamento da aorta supracelíaca"}],
@@ -835,6 +855,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-21", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Sobre a eletrocirurgia, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Na modalidade monopolar, a corrente percorre o paciente da ponta ativa até a placa dispersiva, que deve ser ampla e bem aderida à pele"},{id:"B",texto:"Na modalidade bipolar, a corrente atravessa o corpo do paciente até a placa dispersiva"},{id:"C",texto:"A placa dispersiva pode ser colocada sobre proeminência óssea ou prótese metálica, sem prejuízo"},{id:"D",texto:"O modo 'coagulação' corta melhor os tecidos do que o modo 'corte'"},{id:"E",texto:"A eletrocirurgia bipolar é contraindicada em pacientes com marcapasso"}],
@@ -848,6 +869,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-22", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: instrumental cirúrgico, tempos fundamentais da operação (diérese, hemostasia, síntese) e eletrocirurgia. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-instrumental",
   enunciado:"Qual das opções abaixo é um método de hemostasia definitiva?",
   alternativas:[{id:"A",texto:"Compressão digital do vaso"},{id:"B",texto:"Torniquete pneumático em membro"},{id:"C",texto:"Clampeamento temporário com pinça vascular"},{id:"D",texto:"Ligadura do vaso com fio cirúrgico"},{id:"E",texto:"Manobra de Pringle"}],
@@ -861,6 +883,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-23", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: incisões da parede abdominal, laparotomias e drenagem. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"O dreno de Penrose é classificado como:",
   alternativas:[{id:"A",texto:"Dreno aspirativo fechado, que exige vácuo contínuo"},{id:"B",texto:"Dreno laminar passivo, que funciona por capilaridade e gravidade, em sistema aberto"},{id:"C",texto:"Dreno tubular rígido conectado a selo d'água"},{id:"D",texto:"Cateter de irrigação contínua da cavidade"},{id:"E",texto:"Dreno exclusivo de cavidade torácica"}],
@@ -874,6 +897,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-24", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: incisões da parede abdominal, laparotomias e drenagem. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-incisoes",
   enunciado:"Sobre o uso de drenos em cirurgia abdominal, qual afirmação está de acordo com a prática atual?",
   alternativas:[{id:"A",texto:"Todo procedimento abdominal deve ser drenado, para detectar sangramento precocemente"},{id:"B",texto:"O dreno previne a formação de coleções e reduz a taxa de infecção em qualquer cirurgia"},{id:"C",texto:"O dreno substitui a hemostasia cuidadosa durante o ato operatório"},{id:"D",texto:"Drenos devem ser mantidos até a alta hospitalar em todos os casos"},{id:"E",texto:"A drenagem de rotina não é recomendada em procedimentos como a colecistectomia eletiva não complicada, pois não reduz complicações e pode aumentar a morbidade"}],
@@ -887,6 +911,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-25", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Qual é a sequência correta das fases da cicatrização de uma ferida?",
   alternativas:[{id:"A",texto:"Proliferativa, inflamatória, remodelação"},{id:"B",texto:"Remodelação, inflamatória, proliferativa"},{id:"C",texto:"Inflamatória, proliferativa, remodelação (maturação)"},{id:"D",texto:"Hemostática, remodelação, inflamatória"},{id:"E",texto:"Proliferativa, remodelação, inflamatória"}],
@@ -900,6 +925,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-26", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Sobre a força tênsil da ferida cicatrizada, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Atinge cerca de 20% em 3 semanas e estabiliza em torno de 70 a 80% da pele original após meses de remodelação"},{id:"B",texto:"Atinge 100% da resistência da pele íntegra em 15 dias"},{id:"C",texto:"Não se altera após a retirada dos pontos"},{id:"D",texto:"É maior na ferida cicatrizada do que na pele íntegra, devido ao excesso de colágeno"},{id:"E",texto:"Depende exclusivamente do tipo de fio utilizado"}],
@@ -913,6 +939,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-27", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: fios de sutura, fechamento da parede, fases e tipos de cicatrização das feridas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-fios",
   enunciado:"Uma ferida contaminada foi deixada aberta e, após cinco dias, apresentando tecido de granulação limpo e sem sinais infecciosos, foi suturada. Esse tipo de fechamento é chamado de:",
   alternativas:[{id:"A",texto:"Cicatrização por primeira intenção"},{id:"B",texto:"Cicatrização por segunda intenção"},{id:"C",texto:"Cicatrização por quarta intenção"},{id:"D",texto:"Cicatrização por terceira intenção (fechamento primário tardio)"},{id:"E",texto:"Enxertia de pele parcial"}],
@@ -926,6 +953,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-28", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: videolaparoscopia, pneumoperitônio e suas repercussões fisiológicas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-video",
   enunciado:"Por que o dióxido de carbono é o gás de escolha para o pneumoperitônio em videolaparoscopia?",
   alternativas:[{id:"A",texto:"Por ser inflamável, o que facilita o uso do eletrocautério"},{id:"B",texto:"Por ser inerte, não combustível, altamente solúvel no sangue e rapidamente eliminado pelos pulmões"},{id:"C",texto:"Por não ser absorvido pelo peritônio, mantendo a pressão estável"},{id:"D",texto:"Por reduzir a pressão intra-abdominal durante o procedimento"},{id:"E",texto:"Por promover vasodilatação esplâncnica e melhorar a perfusão renal"}],
@@ -939,6 +967,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-29", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: videolaparoscopia, pneumoperitônio e suas repercussões fisiológicas. Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-video",
   enunciado:"Durante uma colecistectomia videolaparoscópica com pressão intra-abdominal de 14 mmHg, quais repercussões fisiológicas são esperadas?",
   alternativas:[{id:"A",texto:"Aumento do retorno venoso e queda da pressão arterial média"},{id:"B",texto:"Ausência de repercussão hemodinâmica, desde que a pressão seja inferior a 20 mmHg"},{id:"C",texto:"Alcalose respiratória por hiperventilação reflexa e aumento do débito urinário"},{id:"D",texto:"Bradicardia por hipocapnia e vasodilatação periférica"},{id:"E",texto:"Redução do retorno venoso, elevação da pressão intratorácica, redução da complacência pulmonar e hipercapnia com acidose respiratória"}],
@@ -952,6 +981,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-toce-30", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: antissepsia, paramentação, classificação da ferida operatória e posicionamento do paciente (a recomendação da OMS de 2018 sobre infecção de sítio cirúrgico foi lida à parte para q-toce-11 a 13). Obras: Goffi FS (org.), Técnica Cirúrgica: bases anatômicas, fisiopatológicas e técnicas da cirurgia (São Paulo: Atheneu; há edições de 1996 e 2004 no catálogo da USP, com capítulos como \"Operações fundamentais\" e \"Laparotomias\"); Townsend CM Jr (ed.), Sabiston Textbook of Surgery, 21ª ed. (Elsevier, 2021). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cg", especialidadeId:"esp-toce", assuntoId:"ass-toce-antissepsia",
   enunciado:"Paciente em posição de litotomia por período prolongado evolui com pé caído e perda da dorsiflexão no pós-operatório. Qual é a lesão mais provável e como preveni-la?",
   alternativas:[{id:"A",texto:"Lesão do nervo femoral, prevenida com flexão máxima do quadril"},{id:"B",texto:"Lesão do plexo braquial, prevenida limitando a abdução do braço a 90°"},{id:"C",texto:"Lesão do nervo fibular comum por compressão contra a perneira, prevenida com acolchoamento na cabeça da fíbula e cuidado no posicionamento"},{id:"D",texto:"Lesão do nervo ciático, prevenida com abdução máxima das coxas"},{id:"E",texto:"Lesão medular por hiperextensão, prevenida com coxim lombar"}],
@@ -1772,6 +1802,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-01", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: olho vermelho (conjuntivites e sinais de alarme). Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Paciente com olho vermelho bilateral, secreção aquosa abundante, sensação de areia, adenopatia pré-auricular e história de contato com familiar com quadro semelhante. Qual é o diagnóstico mais provável e a conduta?",
   alternativas:[{id:"A",texto:"Conjuntivite viral; medidas de higiene, compressas frias e lubrificante, com orientação sobre alta transmissibilidade"},{id:"B",texto:"Conjuntivite bacteriana; colírio antibiótico de amplo espectro"},{id:"C",texto:"Glaucoma agudo; iatrogenia por colírio midriático"},{id:"D",texto:"Uveíte anterior; corticoide tópico imediato"},{id:"E",texto:"Ceratite por lente de contato; oclusão ocular"}],
@@ -1785,6 +1816,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-02", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: olho vermelho (conjuntivites e sinais de alarme). Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Qual conjunto de achados sugere conjuntivite bacteriana em vez de viral?",
   alternativas:[{id:"A",texto:"Fotofobia intensa com pupila em miose"},{id:"B",texto:"Prurido intenso e história de rinite alérgica"},{id:"C",texto:"Dor ocular profunda com baixa acuidade visual"},{id:"D",texto:"Secreção mucopurulenta abundante, com pálpebras coladas ao despertar"},{id:"E",texto:"Halos coloridos ao redor das luzes"}],
@@ -1798,6 +1830,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-03", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: olho vermelho (conjuntivites e sinais de alarme). Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-olhovermelho",
   enunciado:"Quais achados, diante de um olho vermelho, indicam encaminhamento oftalmológico urgente?",
   alternativas:[{id:"A",texto:"Prurido e lacrimejamento leve"},{id:"B",texto:"Dor ocular intensa, redução da acuidade visual, fotofobia importante, hiperemia periceratica, hipópio ou alteração pupilar"},{id:"C",texto:"Secreção aquosa bilateral com adenopatia"},{id:"D",texto:"Sensação de corpo estranho leve, sem alteração visual"},{id:"E",texto:"Hiperemia difusa em paciente afebril"}],
@@ -1811,6 +1844,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-04", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: glaucoma agudo de ângulo fechado e glaucoma primário de ângulo aberto. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-glaucoma",
   enunciado:"Mulher de 65 anos chega ao pronto-socorro com dor ocular intensa unilateral, náuseas, vômitos, visão borrada com halos coloridos ao redor das luzes. Ao exame: olho vermelho, córnea embaçada, pupila em midríase média e não reativa, globo endurecido à palpação. Qual é o diagnóstico e uma conduta que deve ser evitada?",
   alternativas:[{id:"A",texto:"Conjuntivite aguda; evitar lubrificantes"},{id:"B",texto:"Cefaleia em salvas; evitar oxigênio"},{id:"C",texto:"Uveíte anterior; evitar corticoide tópico"},{id:"D",texto:"Neurite óptica; evitar corticoide sistêmico"},{id:"E",texto:"Glaucoma agudo de ângulo fechado; deve-se evitar colírios midriáticos, que agravam o bloqueio"}],
@@ -1824,6 +1858,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-05", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: glaucoma agudo de ângulo fechado e glaucoma primário de ângulo aberto. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-glaucoma",
   enunciado:"Sobre o glaucoma primário de ângulo aberto, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Cursa com dor intensa e olho vermelho desde o início"},{id:"B",texto:"Sempre cursa com pressão intraocular acima de 40 mmHg"},{id:"C",texto:"É tipicamente assintomático por anos, com perda progressiva do campo visual periférico e escavação do disco óptico"},{id:"D",texto:"A perda visual é reversível com o tratamento adequado"},{id:"E",texto:"É diagnosticado apenas pela medida isolada da pressão intraocular"}],
@@ -1837,6 +1872,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-06", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: catarata no adulto. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-catarata",
   enunciado:"Homem de 70 anos relata baixa progressiva e indolor da acuidade visual, com ofuscamento ao dirigir à noite e melhora paradoxal da visão para perto. Ao exame, reflexo vermelho diminuído. Qual é o diagnóstico e o tratamento?",
   alternativas:[{id:"A",texto:"Catarata; tratamento cirúrgico, geralmente por facoemulsificação com implante de lente intraocular"},{id:"B",texto:"Degeneração macular; injeção intravítrea de anti-VEGF"},{id:"C",texto:"Glaucoma agudo; iridotomia"},{id:"D",texto:"Descolamento de retina; vitrectomia de urgência"},{id:"E",texto:"Retinopatia diabética; fotocoagulação"}],
@@ -1850,6 +1886,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-07", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: leucocoria e catarata congênita. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão). A triagem do reflexo vermelho (teste do olhinho) é norma do Ministério da Saúde e não foi lida.",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-catarata",
   enunciado:"Recém-nascido apresenta ausência do reflexo vermelho em um dos olhos durante o teste do olhinho. Qual é a conduta e as principais hipóteses?",
   alternativas:[{id:"A",texto:"Repetir o exame apenas aos 2 anos de idade"},{id:"B",texto:"Prescrever colírio antibiótico e reavaliar em 30 dias"},{id:"C",texto:"Tranquilizar a família, pois é achado fisiológico no primeiro mês"},{id:"D",texto:"Encaminhamento oftalmológico imediato, pois leucocoria pode indicar retinoblastoma, catarata congênita, retinopatia da prematuridade ou toxoplasmose ocular"},{id:"E",texto:"Solicitar apenas sorologias maternas e aguardar"}],
@@ -1863,6 +1900,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-08", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: doenças da retina (retinopatia diabética, oclusão da artéria central, descolamento). Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão). O rastreamento da retinopatia diabética consta também de diretrizes da SBD e do CBO, não lidas.",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-retina",
   enunciado:"Qual é a recomendação de rastreamento de retinopatia diabética?",
   alternativas:[{id:"A",texto:"Fundoscopia apenas quando houver queixa visual"},{id:"B",texto:"No diabetes tipo 2, fundoscopia no momento do diagnóstico; no tipo 1, a partir de 5 anos do diagnóstico, com reavaliações anuais"},{id:"C",texto:"Fundoscopia a cada 5 anos em ambos os tipos"},{id:"D",texto:"Rastreamento apenas em pacientes em uso de insulina"},{id:"E",texto:"Rastreamento somente após os 60 anos de idade"}],
@@ -1876,6 +1914,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-09", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: doenças da retina (retinopatia diabética, oclusão da artéria central, descolamento). Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão). O rastreamento da retinopatia diabética consta também de diretrizes da SBD e do CBO, não lidas.",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-retina",
   enunciado:"Qual achado define a retinopatia diabética proliferativa e qual seu tratamento habitual?",
   alternativas:[{id:"A",texto:"Microaneurismas isolados; apenas controle glicêmico"},{id:"B",texto:"Descolamento seroso de retina; corticoide oral"},{id:"C",texto:"Exsudatos duros na periferia; colírio anti-inflamatório"},{id:"D",texto:"Hemorragias em chama de vela; anticoagulação sistêmica"},{id:"E",texto:"Neovascularização retiniana ou do disco óptico; fotocoagulação panretiniana a laser, com anti-VEGF em casos selecionados"}],
@@ -1889,6 +1928,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-10", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: doenças da retina (retinopatia diabética, oclusão da artéria central, descolamento). Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-retina",
   enunciado:"Paciente de 68 anos, hipertenso, com perda visual súbita, indolor e completa em um olho. À fundoscopia, retina pálida com mancha vermelho-cereja na mácula. Qual é o diagnóstico?",
   alternativas:[{id:"A",texto:"Descolamento de retina"},{id:"B",texto:"Neurite óptica"},{id:"C",texto:"Oclusão da artéria central da retina"},{id:"D",texto:"Hemorragia vítrea"},{id:"E",texto:"Catarata hipermadura"}],
@@ -1902,6 +1942,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-11", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: doenças da retina (retinopatia diabética, oclusão da artéria central, descolamento). Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-retina",
   enunciado:"Paciente relata surgimento de flashes luminosos, aumento de moscas volantes e, em seguida, sensação de cortina escura ascendente no campo visual. Qual é a hipótese e a conduta?",
   alternativas:[{id:"A",texto:"Descolamento de retina; encaminhamento oftalmológico de urgência"},{id:"B",texto:"Enxaqueca com aura; analgesia e observação"},{id:"C",texto:"Conjuntivite viral; higiene local"},{id:"D",texto:"Catarata em evolução; agendar cirurgia eletiva"},{id:"E",texto:"Presbiopia; prescrição de óculos para perto"}],
@@ -1915,6 +1956,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-12", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: trauma ocular químico e mecânico e celulite orbitária. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-trauma",
   enunciado:"Trabalhador sofre respingo de soda cáustica no olho. Qual é a primeira conduta?",
   alternativas:[{id:"A",texto:"Encaminhar imediatamente ao oftalmologista, sem manipular o olho"},{id:"B",texto:"Ocluir o olho e aplicar pomada de corticoide"},{id:"C",texto:"Neutralizar a base com solução ácida diluída"},{id:"D",texto:"Irrigar copiosamente o olho com água ou solução fisiológica por tempo prolongado, iniciando no local do acidente, e só então encaminhar"},{id:"E",texto:"Aplicar colírio anestésico e aguardar avaliação especializada"}],
@@ -1928,6 +1970,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-13", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: trauma ocular químico e mecânico e celulite orbitária. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-trauma",
   enunciado:"Paciente com sensação de corpo estranho após lixar metal sem proteção. A fluoresceína evidencia abrasão corneana sem corpo estranho retido. Qual conduta está incorreta?",
   alternativas:[{id:"A",texto:"Prescrever colírio antibiótico profilático"},{id:"B",texto:"Fornecer colírio anestésico para uso domiciliar contínuo, conforme a dor"},{id:"C",texto:"Orientar retorno em 24 a 48 horas para reavaliação"},{id:"D",texto:"Avaliar a necessidade de profilaxia antitetânica conforme o mecanismo"},{id:"E",texto:"Evitar o uso de lentes de contato até a cicatrização completa"}],
@@ -1941,6 +1984,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-14", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: trauma ocular químico e mecânico e celulite orbitária. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-trauma",
   enunciado:"Criança com edema e hiperemia palpebral, febre, proptose, dor à movimentação ocular e limitação da motilidade extrínseca. Qual é o diagnóstico e a conduta?",
   alternativas:[{id:"A",texto:"Celulite pré-septal; antibiótico oral ambulatorial"},{id:"B",texto:"Dacriocistite crônica; massagem do saco lacrimal"},{id:"C",texto:"Conjuntivite bacteriana grave; colírio antibiótico"},{id:"D",texto:"Hordéolo; compressas mornas"},{id:"E",texto:"Celulite orbitária (pós-septal); internação, antibioticoterapia endovenosa e tomografia de órbita e seios da face"}],
@@ -1954,6 +1998,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-oft-15", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Referência bibliográfica (livro-texto, aceito pela equipe em 13/11/2026), registrada sem leitura do texto: erros refrativos. Obra: Salmon JF, Kanski's Clinical Ophthalmology: a systematic approach, 9ª ed. (Elsevier, 2020; há 10ª ed. de 2024). Dados da obra conferidos em catálogo em 13/11/2026; capítulo, página e o conteúdo da explicação não foram conferidos contra o livro (indisponível na sessão).",
   areaId:"area-cm", especialidadeId:"esp-oftalmo", assuntoId:"ass-oft-refracao",
   enunciado:"Sobre os erros refrativos, assinale a alternativa correta.",
   alternativas:[{id:"A",texto:"Na miopia, os raios luminosos convergem atrás da retina e a correção é feita com lentes convergentes"},{id:"B",texto:"O astigmatismo é corrigido apenas com lentes esféricas"},{id:"C",texto:"Na miopia, os raios convergem antes da retina e a correção é feita com lentes divergentes (negativas); na hipermetropia ocorre o oposto"},{id:"D",texto:"A presbiopia decorre do aumento da elasticidade do cristalino em jovens"},{id:"E",texto:"A hipermetropia sempre causa baixa visão para longe em crianças"}],
