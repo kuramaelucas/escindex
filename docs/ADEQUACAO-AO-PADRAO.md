@@ -4,11 +4,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 4933 de 12137 mencionam mecanismo E epidemiologia (40.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 5027 de 12137 mencionam mecanismo E epidemiologia (41.4%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   6214  sem mecanismo/fisiopatologia
-   5097  sem epidemiologia
+   6122  sem mecanismo/fisiopatologia
+   5017  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -49,7 +49,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |
 | simulado-epm-4 | 100 | 0 | 1 | 45/0/42 | sem mecanismo/fisiopatologia (99); sem epidemiologia (84) |
 | simulado-epm-5 | 100 | 0 | 1 | 55/0/38 | sem mecanismo/fisiopatologia (94); sem epidemiologia (54) |
-| santacasa-2021 | 100 | 0 | 5 | 100/0/0 | sem mecanismo/fisiopatologia (93); sem epidemiologia (81) |
+| santacasa-2021 | 100 | 0 | 99 | 100/0/0 | sem mecanismo/fisiopatologia (1); sem epidemiologia (1) |
 | santacasa-2022 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (91); sem epidemiologia (85) |
 | santacasa-2023 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (92); sem epidemiologia (79) |
 | santacasa-2025 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (87) |
