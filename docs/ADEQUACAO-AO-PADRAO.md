@@ -4,11 +4,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 3466 de 12137 mencionam mecanismo E epidemiologia (28.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 3585 de 12137 mencionam mecanismo E epidemiologia (29.5%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7651  sem mecanismo/fisiopatologia
-   6322  sem epidemiologia
+   7535  sem mecanismo/fisiopatologia
+   6218  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -28,7 +28,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | didatico-grad-antibioticos | 126 | 0 | 126 | 126/0/0 | — |
 | didatico-grad-arboviroses | 121 | 0 | 121 | 121/0/0 | — |
 | simulado-epm-6 | 120 | 0 | 2 | 115/0/1 | sem mecanismo/fisiopatologia (112); sem epidemiologia (68) |
-| usprp-2021 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (116); sem epidemiologia (104) |
+| usprp-2021 | 120 | 0 | 120 | 120/0/0 | — |
 | tp-2020-2 | 120 | 0 | 3 | 115/2/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (99) |
 | tp-2021-2 | 120 | 0 | 0 | 119/0/0 | sem mecanismo/fisiopatologia (119); sem epidemiologia (99) |
 | tp-2022-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (97) |
