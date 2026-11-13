@@ -4,11 +4,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 4814 de 12137 mencionam mecanismo E epidemiologia (39.7%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 4873 de 12137 mencionam mecanismo E epidemiologia (40.1%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   6332  sem mecanismo/fisiopatologia
-   5185  sem epidemiologia
+   6273  sem mecanismo/fisiopatologia
+   5139  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -123,7 +123,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | unifesp-2023 | 100 | 29 | 86 | 4/0/65 | sem epidemiologia (13); sem mecanismo/fisiopatologia (10) |
 | famerp-2026 | 71 | 0 | 4 | 71/0/0 | sem mecanismo/fisiopatologia (66); sem epidemiologia (60) |
 | didatico-grad-endocardite | 63 | 0 | 9 | 63/0/0 | sem epidemiologia (54) |
-| unicamp-2022-dissertativa | 60 | 0 | 1 | 60/0/0 | sem mecanismo/fisiopatologia (59); sem epidemiologia (46) |
+| unicamp-2022-dissertativa | 60 | 0 | 60 | 60/0/0 | — |
 | unicamp-2023-dissertativa | 60 | 0 | 0 | 60/0/0 | sem mecanismo/fisiopatologia (59); sem epidemiologia (42) |
 | einstein-2021 | 50 | 0 | 16 | 0/0/47 | sem epidemiologia (32); sem mecanismo/fisiopatologia (2) |
 | usp-2022 | 100 | 59 | 100 | 0/0/41 | — |
