@@ -144,7 +144,7 @@ As 425 questões das provas `prova-einstein-*` entraram com `referencias` sem co
 
 ## `banco-didatico`: fase 3 do projeto de adequação (13/11/2026)
 
-As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da terceira rodada faltam 102 questões do arquivo (ver `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 6-B).
+As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da quarta rodada faltam 39 questões do arquivo (ver `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 6-B).
 
 | Fonte (site) | O que foi lido | Questões |
 |---|---|---|
@@ -186,6 +186,19 @@ As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada for
 **Textos alterados na segunda rodada:** `q-inf-12` (janela de 24 h do início dos sintomas em vez de 24 a 48 h; ceftriaxona como primeira escolha na gestante) e `q-inf-26` (tafenoquina e contraindicação abaixo de 6 meses). Nenhum gabarito foi alterado.
 
 **Texto alterado na primeira rodada:** `q-card-13` (a explicação dizia 135/85 para a medida residencial; a diretriz brasileira de 2020 e a de 2025 usam 130/80 na média do MRPA). Nenhum gabarito foi alterado.
+
+**Quarta rodada (13/11/2026, SBC e IDSA):**
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| SBC, Diretriz Brasileira de Insuficiência Cardíaca 2026 (abccardiol.org) | ICFEr < 50%, ICFEp ≥ 50%, FEVE melhorada; FEVE levemente reduzida eliminada; recomendação forte, evidência alta, para IECA/BRA/sacubitril-valsartana, betabloqueador, espironolactona e iSGLT2 na ICFEr; perfis A, B, C e L (B: vasodilatador e diurético); NT-proBNP < 300 ou BNP < 100 afastam IC descompensada | `q-card-09` (conflito: ver abaixo), `-10`, `-11`, `-12` |
+| SBC, Diretriz Brasileira de Valvopatias 2026 | Tríade da estenose aórtica (angina, síncope, dispneia); estalido de abertura e ruflar com reforço pré-sistólico na estenose mitral; sopro holossistólico com irradiação axilar na insuficiência mitral | `q-card-25`, `-26`, `-27` |
+| SBC, Dor Torácica na Emergência 2025 e SCASSST 2021 | Derivações V7-V9, V3R, V4R (ST ≥ 0,5 mm); AAS 150 a 300 mg; O2 se SatO2 < 90% | `q-card-04`, `-06`, `-07` |
+| SBC, Atualização da Diretriz de RCP 2019 | Desfibrilação em ritmo chocável priorizada (I, B); compressões 100 a 120/min e 5 a 6 cm; adrenalina a cada 3 a 5 min; atropina 0,5 mg a cada 3 a 5 min, máx. 3 mg | `q-card-21` a `-24` |
+| SBC, Análise e Emissão de Laudos Eletrocardiográficos 2022 (PMC9563889) | BAV de 1º grau com PR > 200 ms; Mobitz I (Wenckebach) e Mobitz II | `q-card-02`, `q-card-03` |
+| IDSA, Pele e partes moles 2014 (idsociety.org) | Fasciíte necrosante: consulta cirúrgica imediata, antibiótico amplo, penicilina + clindamicina no grupo A; erisipela e celulite tratadas juntas (5 dias) | `q-inf-09`, `q-inf-10` |
+
+**Conflitos encontrados:** (1) `q-card-09`: a SBC 2026 define ICFEr como FEVE < 50% e eliminou a FEVE levemente reduzida; o gabarito (≤ 40%) segue a definição universal. Gabarito mantido, explicação com aviso, decisão da equipe. (2) `q-card-24`: a SBC 2019 preconiza atropina 0,5 mg e a explicação usava 1 mg (AHA); a explicação passou a citar as duas. **Não confirmado:** o corte de 120 minutos da reperfusão no IAMCSST nas diretrizes da SBC lidas; as páginas da IDSA de meningite bacteriana (só resumo) e de ITU complicada (não cobre a cistite) não sustentam `q-inf-11`, `q-inf-13` e `q-inf-07`.
 
 **Livro-texto indicado, sem leitura (13/11/2026, a pedido da equipe):** 45 questões receberam nota com a obra e a edição, conferidas em catálogo, e a frase de que capítulo, página e conteúdo não foram conferidos contra o livro. Obras: Goffi FS (org.), *Técnica Cirúrgica* (Atheneu; edições de 1996 e 2004 no catálogo da USP) e Townsend CM Jr (ed.), *Sabiston Textbook of Surgery*, 21ª ed., Elsevier, 2021, para `q-toce-01` a `-10` e `-14` a `-30`; Salmon JF, *Kanski's Clinical Ophthalmology*, 9ª ed., Elsevier, 2020, para `q-oft-01` a `-15`; Medronho et al., *Epidemiologia*, 2ª ed., Atheneu, 2009, para `q-025` e `q-027`; Beauchamp e Childress, *Principles of Biomedical Ethics*, para `q-028` (edição não confirmada). Gordis (6ª ed.) e a edição de Schwartz não foram confirmadas em catálogo e não foram citadas. Essas questões **continuam na fila de leitura**.
 

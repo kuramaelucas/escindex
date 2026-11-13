@@ -3,16 +3,16 @@
 Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra `dados/PADRAO-EXPLICACAO.md`: justificativa (`faltasDeJustificativa`) e referência com data de leitura. "Completa" = forma da justificativa sem falta, **mecanismo e epidemiologia presentes (heurística por palavra-chave, não prova qualidade)** e referência datada. Não é erro: `npm run conferir` só cobra o padrão de conteúdo novo.
 
 ```
-12137 questões em 156 arquivos; 1008 já cumprem forma + mecanismo/epidemiologia + referência datada (8.3%).
+12137 questões em 156 arquivos; 1026 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
 Conteúdo (heurística por palavra-chave, itens 7 e 8): 2260 de 12137 mencionam mecanismo E epidemiologia (18.6%). Forma da justificativa (itens 1–4): 12134 de 12137 sem falta (100.0%).
-Referências: 1191 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 59 vazias, 1398 fracas.
+Referências: 1209 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 41 vazias, 1398 fracas.
 Justificativa — o que falta:
    7769  sem mecanismo/fisiopatologia
    7508  sem epidemiologia
       2  corpo curto
       2  sem Dicas do enunciado
       1  sem destaque **
-Mapa: 39 diretrizes da tabela + 17 famílias; 59 questões sem referência.
+Mapa: 39 diretrizes da tabela + 17 famílias; 41 questões sem referência.
 ```
 
 ## Por arquivo (mais questões a adequar primeiro)
@@ -44,7 +44,6 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 59 questões sem referência.
 | uspsp-simulado-5 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (83) |
 | uspsp-simulado-4 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (81) |
 | uspsp-simulado-3 | 120 | 0 | 98 | 120/0/0 | sem mecanismo/fisiopatologia (22); sem epidemiologia (12) |
-| didatico | 135 | 33 | 135 | 0/57/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | unifesp-2024-adaptado | 100 | 0 | 1 | 79/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (61) |
 | simulado-epm-2 | 100 | 0 | 0 | 70/0/11 | sem mecanismo/fisiopatologia (95); sem epidemiologia (89); sem Dicas do enunciado (1) |
 | simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |
@@ -102,6 +101,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 59 questões sem referência.
 | didatico-grad-piodermites | 98 | 0 | 12 | 98/0/0 | sem epidemiologia (86) |
 | fmabc-2026 | 100 | 7 | 91 | 0/0/93 | sem mecanismo/fisiopatologia (9) |
 | didatico-grad-hepatoesplenomegalias | 93 | 0 | 16 | 93/0/0 | sem epidemiologia (77) |
+| didatico | 135 | 51 | 135 | 0/39/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | iamspe-2021 | 80 | 0 | 5 | 80/0/0 | sem mecanismo/fisiopatologia (71); sem epidemiologia (58) |
 | iamspe-2022 | 80 | 0 | 4 | 80/0/0 | sem mecanismo/fisiopatologia (75); sem epidemiologia (65) |
 | iamspe-2023 | 80 | 0 | 6 | 80/0/0 | sem mecanismo/fisiopatologia (73); sem epidemiologia (54) |

@@ -21,10 +21,10 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | WSES, apendicite aguda | WSES Jerusalem 2025 (JAMA Surg 2026) | 43 | 35 |
 | OMS, hemorragia pós-parto | OMS/FIGO/ICM 2025 (51 recomendações) | 32 | 20 |
 | BTS, doença pleural | BTS 2023 (Thorax 2023;78 Suppl 3) | 32 | 16 |
+| AHA, RCP e atendimento cardiovascular de emergência | AHA/AAP 2025 (Partes 5, 6, 8 e 11) | 31 | 21 |
+| ESC/EACTS, valvopatias | ESC/EACTS 2025 (doi 10.1093/eurheartj/ehaf194) | 31 | 20 |
 | ACG, pancreatite aguda | ACG 2024 (Am J Gastroenterol 2024;119) | 30 | 8 |
 | Lista Nacional de Notificação Compulsória | Portarias GM/MS nº 6.734/2025, 10.175/2026 e 11.211/2026 | 28 | 17 |
-| ESC/EACTS, valvopatias | ESC/EACTS 2025 (doi 10.1093/eurheartj/ehaf194) | 28 | 20 |
-| AHA, RCP e atendimento cardiovascular de emergência | AHA/AAP 2025 (Partes 5, 6, 8 e 11) | 27 | 20 |
 | SBP, deficiência de ferro e anemia ferropriva | SBP, Diretriz nº 32, atualização 2026 | 24 | 22 |
 | AHA/ASA, AVC isquêmico agudo | AHA/ASA 2026 (Stroke, doi 10.1161/STR.0000000000000513) | 22 | 11 |
 | ACC/AHA, síndromes coronarianas agudas | ACC/AHA/ACEP/NAEMSP/SCAI 2025 (Circulation 2025;151) | 18 | 14 |
@@ -54,9 +54,9 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 2560 |
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 1220 |
 | Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) | 970 |
-| Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 603 |
+| Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 605 |
 | Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 570 |
-| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) | 558 |
+| AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) | 567 |
 | Epidemiologia e bioestatística (livros-texto) | 372 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 304 |
 | Gastro/hepato (EASL, AASLD, ACG, Roma, Chicago) | 214 |
@@ -68,7 +68,7 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 | Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, dor) | 33 |
 | Anestesia (ASRA, ASA, DAS) | 12 |
 
-**Sem nenhuma referência:** 59 questões (`npm run auditoria-padrao -- sem-diretriz`).
+**Sem nenhuma referência:** 41 questões (`npm run auditoria-padrao -- sem-diretriz`).
 
 ## Questões por diretriz da tabela (só as superadas; as demais pelo JSON)
 
@@ -132,6 +132,14 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 
 `q-scmsp2021`: 029; `q-usprp2023`: 073; `q-usprp2025`: 005; `q-unesp2023`: 064; `q-famema2023`: 026; `q-unesp2021`: 070; `q-unesp2024`: 076; `q-unesp2025`: 042, 075; `q-famerp2024`: 029; `q-famerp2025`: 005; `q-unicampdis2023`: 021; `q-unicampdis2024`: 021; `q-udisc20262`: 077, 078; `q-sirio2026`: 004
 
+### AHA, RCP e atendimento cardiovascular de emergência — vigente: AHA/AAP 2025 (Partes 5, 6, 8 e 11) (21)
+
+`q-card`: 24; `q-scmsp2021`: 050; `q-usprp2021`: 043; `q-usprp2025`: 062; `q-amrigs2022`: 011; `q-amrigs2023`: 073; `q-amrigs2021`: 001, 002, 071; `q-famema2023`: 039; `q-sessp2022`: 002; `q-unesp2025`: 050; `q-unesp2026`: 009; `q-uspsp1`: 003; `q-uspsp2`: 065; `q-uspsp5`: 103; `q-uspsp4`: 106, 109, 110; `q-simepm89`: 081; `q-sirio2024`: 052
+
+### ESC/EACTS, valvopatias — vigente: ESC/EACTS 2025 (doi 10.1093/eurheartj/ehaf194) (20)
+
+`q-adap24`: 092; `q-adap21`: 097; `q-scmsp2026`: 004; `q-usprp2021`: 097; `q-usprp2022`: 061; `q-usprp2024`: 042; `q-usprp2026`: 044, 087; `q-iamspe2023`: 010; `q-famema2022`: 021; `q-tp20222`: 011, 022; `q-unesp2021`: 041; `q-unesp2024`: 071; `q-unesp2025`: 072; `q-famerp2025`: 013; `q-unicamp2022`: 008; `q-unicampdis2023`: 019; `q-unicampdis2024`: 080; `q-uspsp5`: 006
+
 ### ACG, pancreatite aguda — vigente: ACG 2024 (Am J Gastroenterol 2024;119) (8)
 
 `q-usp2024`: 044; `q-usprp2026`: 088; `q-tp20222`: 066; `q-unicamp2022`: 027; `q-uspsp2`: 075, 095; `q-uspsp5`: 060; `q-gdantibioticos`: 066
@@ -139,14 +147,6 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Quando chegar edição nova
 ### Lista Nacional de Notificação Compulsória — vigente: Portarias GM/MS nº 6.734/2025, 10.175/2026 e 11.211/2026 (17)
 
 `q-adap24`: 066, 085; `q-adap25`: 044; `q-usp2026`: 089; `q-amrigs2022`: 095; `q-amrigs2023`: 084; `q-amrigs2024`: 088; `q-amrigs2025`: 089; `q-iamspe2021`: 067; `q-iamspe2025`: 094; `q-famema2021`: 078; `q-sessp2023`: 084; `q-sessp2024`: 100; `q-tp20222`: 115, 119; `q-uspsp2`: 098; `q-simepm89`: 075
-
-### ESC/EACTS, valvopatias — vigente: ESC/EACTS 2025 (doi 10.1093/eurheartj/ehaf194) (20)
-
-`q-adap24`: 092; `q-adap21`: 097; `q-scmsp2026`: 004; `q-usprp2021`: 097; `q-usprp2022`: 061; `q-usprp2024`: 042; `q-usprp2026`: 044, 087; `q-iamspe2023`: 010; `q-famema2022`: 021; `q-tp20222`: 011, 022; `q-unesp2021`: 041; `q-unesp2024`: 071; `q-unesp2025`: 072; `q-famerp2025`: 013; `q-unicamp2022`: 008; `q-unicampdis2023`: 019; `q-unicampdis2024`: 080; `q-uspsp5`: 006
-
-### AHA, RCP e atendimento cardiovascular de emergência — vigente: AHA/AAP 2025 (Partes 5, 6, 8 e 11) (20)
-
-`q-scmsp2021`: 050; `q-usprp2021`: 043; `q-usprp2025`: 062; `q-amrigs2022`: 011; `q-amrigs2023`: 073; `q-amrigs2021`: 001, 002, 071; `q-famema2023`: 039; `q-sessp2022`: 002; `q-unesp2025`: 050; `q-unesp2026`: 009; `q-uspsp1`: 003; `q-uspsp2`: 065; `q-uspsp5`: 103; `q-uspsp4`: 106, 109, 110; `q-simepm89`: 081; `q-sirio2024`: 052
 
 ### SBP, deficiência de ferro e anemia ferropriva — vigente: SBP, Diretriz nº 32, atualização 2026 (22)
 

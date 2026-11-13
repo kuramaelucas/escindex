@@ -1009,6 +1009,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-02", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz sobre a Análise e Emissão de Laudos Eletrocardiográficos – 2022 (Arq Bras Cardiol 2022;119(4):638-680, PMC9563889). Texto lido em 13/11/2026: BAV de 1º grau = intervalo PR superior a 200 ms em adultos, para FC entre 50 e 90 bpm, por atraso de condução em geral nodal, com QRS estreito e bom prognóstico, e com bloqueio AV de 1º grau sem lesão do nó em situações de predomínio parassimpático (sono, atletas); BAV de 2º grau com onda P bloqueada e BAV total com dissociação atrioventricular. O limite de 120 ms do PR normal aparece apenas indiretamente (PR < 120 ms define o padrão de pré-excitação). Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Qual é o valor normal do intervalo PR em adultos e o que caracteriza o bloqueio atrioventricular de primeiro grau?",
   alternativas:[{id:"A",texto:"PR de 80 a 100 ms; o bloqueio de 1º grau cursa com PR encurtado"},{id:"B",texto:"PR de 120 a 200 ms; no bloqueio de 1º grau há dissociação completa entre P e QRS"},{id:"C",texto:"PR de 200 a 300 ms; no bloqueio de 1º grau há ondas P bloqueadas intermitentes"},{id:"D",texto:"PR de 120 a 200 ms; no bloqueio de 1º grau o PR é maior que 200 ms, porém toda onda P é seguida de QRS"},{id:"E",texto:"O PR não tem valor de referência, variando apenas com a idade"}],
@@ -1022,6 +1023,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-03", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz sobre a Análise e Emissão de Laudos Eletrocardiográficos – 2022 (Arq Bras Cardiol 2022;119(4):638-680, PMC9563889). Texto lido em 13/11/2026: Mobitz I (Wenckebach) = aumento progressivo do intervalo PR, com acréscimos gradativamente menores e encurtamento dos intervalos RR, até uma onda P bloqueada; Mobitz II = condução 1:1 com PR fixo e, de repente, uma onda P bloqueada, com localização intra ou infra-His. A resposta à atropina, o prognóstico do Mobitz I e a indicação de marca-passo no Mobitz II não foram conferidos neste texto.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Traçado mostra alargamento progressivo do intervalo PR batimento a batimento até que uma onda P não é conduzida, reiniciando o ciclo. Trata-se de:",
   alternativas:[{id:"A",texto:"BAV de 1º grau"},{id:"B",texto:"BAV de 2º grau Mobitz I (fenômeno de Wenckebach)"},{id:"C",texto:"BAV de 2º grau Mobitz II"},{id:"D",texto:"BAV total (3º grau)"},{id:"E",texto:"Bloqueio sinoatrial"}],
@@ -1035,6 +1037,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-04", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Atendimento à Dor Torácica na Unidade de Emergência – 2025 (Arq Bras Cardiol 2025;122(9):e20250620, abccardiol.org) e Diretrizes da SBC sobre Angina Instável e IAMSSST – 2021 (Arq Bras Cardiol 2021;117(1):181-264). Texto lido em 13/11/2026: derivações complementares (V7, V8, V9, V3R, V4R) com critério de elevação do ST ≥ 0,5 mm em pelo menos 2 derivações contíguas, indicadas quando o ECG de 12 derivações não é diagnóstico e o paciente segue sintomático. A associação do infarto inferior com o ventrículo direito e a contraindicação de nitrato não foram conferidas.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Homem de 58 anos com dor precordial de início há 1 hora. O ECG mostra supradesnivelamento do segmento ST em DII, DIII e aVF. Qual é a parede acometida e qual derivação adicional deve ser obtida?",
   alternativas:[{id:"A",texto:"Parede anterior; registrar V7 e V8"},{id:"B",texto:"Parede lateral alta; registrar V5 e V6"},{id:"C",texto:"Parede posterior; registrar aVR"},{id:"D",texto:"Parede septal; repetir V1 e V2 em posição mais alta"},{id:"E",texto:"Parede inferior; registrar V3R e V4R para avaliar acometimento do ventrículo direito"}],
@@ -1061,6 +1064,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-06", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Atendimento à Dor Torácica na Unidade de Emergência – 2025 (Arq Bras Cardiol 2025;122(9):e20250620, abccardiol.org) e Diretrizes da SBC sobre Angina Instável e IAMSSST – 2021 (Arq Bras Cardiol 2021;117(1):181-264). Texto lido em 13/11/2026: a síndrome coronariana aguda sem supra de ST abrange a angina instável e o IAM sem supra; o papel da troponina para separá-los consta dos critérios diagnósticos. Confirmação parcial: o trecho exato que define a diferença pela troponina não foi transcrito.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"Qual é a diferença fundamental entre angina instável e infarto agudo do miocárdio sem supradesnivelamento de ST (IAMSSST)?",
   alternativas:[{id:"A",texto:"A elevação de marcadores de necrose miocárdica (troponina), presente no IAMSSST e ausente na angina instável"},{id:"B",texto:"A presença de dor em repouso, exclusiva do IAMSSST"},{id:"C",texto:"A presença de alteração do segmento ST, exclusiva da angina instável"},{id:"D",texto:"A resposta ao nitrato sublingual"},{id:"E",texto:"O número de vasos acometidos na coronariografia"}],
@@ -1074,6 +1078,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-07", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Atendimento à Dor Torácica na Unidade de Emergência – 2025 (Arq Bras Cardiol 2025;122(9):e20250620, abccardiol.org) e Diretrizes da SBC sobre Angina Instável e IAMSSST – 2021 (Arq Bras Cardiol 2021;117(1):181-264). Texto lido em 13/11/2026: dose de AAS de 150 a 300 mg na síndrome coronariana aguda; oxigenoterapia apenas se saturação < 90%. Confirma a explicação; a contraindicação do nifedipino de liberação rápida e o papel da morfina e do nitrato não foram conferidos neste texto.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-sca",
   enunciado:"No atendimento inicial de uma síndrome coronariana aguda, qual medida está associada à redução de mortalidade e deve ser administrada o quanto antes, salvo contraindicação?",
   alternativas:[{id:"A",texto:"Morfina endovenosa"},{id:"B",texto:"Oxigênio suplementar em todos os pacientes, mesmo com saturação normal"},{id:"C",texto:"Nitrato sublingual em todos os casos"},{id:"D",texto:"Ácido acetilsalicílico em dose de ataque, mastigado"},{id:"E",texto:"Nifedipino de liberação rápida"}],
@@ -1100,11 +1105,12 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-09", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Insuficiência Cardíaca – 2026 (Arq Bras Cardiol 2026;123(10):e20260830, abccardiol.org). Texto lido em 13/11/2026: classificação por FEVE: ICFEr < 50%, ICFEp ≥ 50% e IC com FEVE melhorada (basal < 40% com aumento ≥ 10 pontos e segunda medida ≥ 40%); a categoria de FEVE levemente reduzida (41 a 49%) foi excluída. Conflito com a questão: o gabarito (ICFEr ≤ 40%) segue a definição universal e diretrizes internacionais anteriores, não a diretriz brasileira vigente. Gabarito mantido; a explicação ganhou um aviso e a questão deve ser revista pela equipe.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   enunciado:"Qual é o ponto de corte de fração de ejeção que define insuficiência cardíaca com fração de ejeção reduzida (ICFEr)?",
   alternativas:[{id:"A",texto:"Menor que 60%"},{id:"B",texto:"Menor que 50%"},{id:"C",texto:"Menor que 20%"},{id:"D",texto:"Menor que 30%"},{id:"E",texto:"Menor ou igual a 40%"}],
   gabarito:"E",
-  explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: a pergunta é o **ponto de corte de fração de ejeção da ICFEr**: **menor ou igual a 40%** (levemente reduzida: 41 a 49%; preservada: a partir de 50%; normal do ventrículo esquerdo: cerca de 55 a 70%). Mecanismo: a fração de ejeção mede a função sistólica, e quando ela está reduzida há ativação neuro-hormonal (sistema renina-angiotensina-aldosterona e simpático) que remodela o ventrículo; é nessa população que os fármacos que bloqueiam esse eixo reduzem mortalidade. Contexto epidemiológico: a insuficiência cardíaca é causa frequente de internação no Brasil, e a fração de ejeção orienta o tratamento, porque o benefício em mortalidade está estabelecido sobretudo na ICFEr. A) Errada: menor que 60% inclui frações normais. B) Errada: menor que 50% inclui a faixa levemente reduzida, que é uma categoria à parte. C) Errada: menor que 20% é um ponto de corte muito grave e não define a ICFEr. D) Errada: menor que 30% indica disfunção muito grave, mas não é o ponto de corte da definição de ICFEr, que é 40%.",
+  explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: a pergunta é o **ponto de corte de fração de ejeção da ICFEr**: **menor ou igual a 40%** (levemente reduzida: 41 a 49%; preservada: a partir de 50%; normal do ventrículo esquerdo: cerca de 55 a 70%). Mecanismo: a fração de ejeção mede a função sistólica, e quando ela está reduzida há ativação neuro-hormonal (sistema renina-angiotensina-aldosterona e simpático) que remodela o ventrículo; é nessa população que os fármacos que bloqueiam esse eixo reduzem mortalidade. Contexto epidemiológico: a insuficiência cardíaca é causa frequente de internação no Brasil, e a fração de ejeção orienta o tratamento, porque o benefício em mortalidade está estabelecido sobretudo na ICFEr. A) Errada: menor que 60% inclui frações normais. B) Errada: menor que 50% inclui a faixa levemente reduzida, que é uma categoria à parte. C) Errada: menor que 20% é um ponto de corte muito grave e não define a ICFEr. D) Errada: menor que 30% indica disfunção muito grave, mas não é o ponto de corte da definição de ICFEr, que é 40%. Atenção: a Diretriz Brasileira de Insuficiência Cardíaca de 2026 (SBC) passou a definir ICFEr como FEVE < 50%, manteve a ICFEp em ≥ 50% e eliminou a categoria de FEVE levemente reduzida (41 a 49%); o corte de 40% desta questão é o da definição universal e de diretrizes internacionais anteriores, e a questão está sinalizada para revisão pela equipe.",
   explicacoesAlternativas:{},
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
@@ -1113,6 +1119,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-10", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Insuficiência Cardíaca – 2026 (Arq Bras Cardiol 2026;123(10):e20260830, abccardiol.org). Texto lido em 13/11/2026: recomendação forte, evidência alta, a favor de IECA/BRA (ou sacubitril-valsartana), betabloqueador, espironolactona (antagonista mineralocorticoide) e iSGLT2 (dapagliflozina ou empagliflozina) em ICFEr sintomática; os diuréticos de alça são tratados como sintomáticos. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   enunciado:"Quais classes de fármacos compõem o tratamento moderno da insuficiência cardíaca com fração de ejeção reduzida por reduzirem mortalidade?",
   alternativas:[{id:"A",texto:"Digital, diurético de alça, nitrato e hidralazina"},{id:"B",texto:"Bloqueador de canal de cálcio di-idropiridínico, diurético tiazídico e AAS"},{id:"C",texto:"Inibidor do sistema renina-angiotensina (IECA, BRA ou sacubitril-valsartana), betabloqueador, antagonista mineralocorticoide e inibidor de SGLT2"},{id:"D",texto:"Amiodarona, digoxina e furosemida"},{id:"E",texto:"Anticoagulante oral, estatina e nitrato"}],
@@ -1126,6 +1133,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-11", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Insuficiência Cardíaca – 2026 (Arq Bras Cardiol 2026;123(10):e20260830, abccardiol.org). Texto lido em 13/11/2026: perfis hemodinâmicos A (quente e seco), B (quente e úmido), C (frio e úmido) e L (frio e seco); o perfil B, com congestão sem hipoperfusão, é tratado com vasodilatadores e diuréticos; meta inicial de diurese ≥ 1,5 mL/kg/h nas primeiras 6 horas. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   enunciado:"Paciente com insuficiência cardíaca crônica chega ao pronto-socorro com dispneia, estertores bilaterais, edema de membros inferiores, extremidades quentes e pressão arterial de 130/80 mmHg. Qual é o perfil hemodinâmico e a conduta inicial?",
   alternativas:[{id:"A",texto:"Perfil B (quente e úmido); diurético de alça endovenoso, associado a vasodilatador se necessário"},{id:"B",texto:"Perfil A (quente e seco); apenas ajustar medicação domiciliar"},{id:"C",texto:"Perfil C (frio e úmido); iniciar inotrópico imediatamente"},{id:"D",texto:"Perfil L (frio e seco); expandir volume agressivamente"},{id:"E",texto:"Choque cardiogênico; indicar balão intra-aórtico"}],
@@ -1139,6 +1147,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-12", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Insuficiência Cardíaca – 2026 (Arq Bras Cardiol 2026;123(10):e20260830, abccardiol.org). Texto lido em 13/11/2026: NT-proBNP < 300 pg/mL ou BNP < 100 pg/mL afastam o diagnóstico de IC descompensada, independentemente dos outros exames (figura 7.1 do fluxo diagnóstico). Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-ic",
   enunciado:"Sobre o uso do BNP/NT-proBNP em paciente com dispneia aguda na emergência, é correto afirmar que:",
   alternativas:[{id:"A",texto:"Valores elevados confirmam o diagnóstico de insuficiência cardíaca, sem necessidade de outras avaliações"},{id:"B",texto:"Valores normais excluem tromboembolismo pulmonar"},{id:"C",texto:"O exame é específico para insuficiência cardíaca e não se eleva em outras condições"},{id:"D",texto:"Valores baixos têm alto valor preditivo negativo, tornando a insuficiência cardíaca improvável como causa da dispneia"},{id:"E",texto:"Não deve ser solicitado em pacientes com doença renal crônica, pois nunca se altera"}],
@@ -1263,6 +1272,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-21", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Atualização da Diretriz de Ressuscitação Cardiopulmonar e Cuidados Cardiovasculares de Emergência (Arq Bras Cardiol 2019;113(3):449-663, abccardiol.org). Texto lido em 13/11/2026: a desfibrilação em ritmos chocáveis deve ser priorizada e não retardada (classe I, nível B); desfibrilar assistolia piora o prognóstico. Confirma a explicação. Edição de 2019, anterior à AHA 2025.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pcr",
   enunciado:"Quais ritmos de parada cardiorrespiratória são considerados chocáveis?",
   alternativas:[{id:"A",texto:"Fibrilação ventricular e taquicardia ventricular sem pulso"},{id:"B",texto:"Assistolia e atividade elétrica sem pulso"},{id:"C",texto:"Bradicardia sinusal e bloqueio atrioventricular total"},{id:"D",texto:"Fibrilação atrial e flutter atrial"},{id:"E",texto:"Todos os ritmos de parada são chocáveis"}],
@@ -1276,6 +1286,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-22", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Atualização da Diretriz de Ressuscitação Cardiopulmonar e Cuidados Cardiovasculares de Emergência (Arq Bras Cardiol 2019;113(3):449-663, abccardiol.org). Texto lido em 13/11/2026: compressões a 100 a 120 por minuto (IIa, C), com profundidade mínima de 5 cm sem exceder 6 cm (I, C), mínimo de interrupções e retorno completo do tórax. Confirma a explicação; a relação 30:2 e a ventilação a cada 6 segundos com via aérea avançada não foram conferidas aqui. Edição de 2019, anterior à AHA 2025.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pcr",
   enunciado:"Quais são os parâmetros de compressão torácica de alta qualidade em adultos?",
   alternativas:[{id:"A",texto:"Frequência de 60 a 80 por minuto e profundidade de 2 cm"},{id:"B",texto:"Frequência livre, desde que se mantenha a relação 15:2 em adultos"},{id:"C",texto:"Frequência de 140 por minuto e profundidade de 8 cm"},{id:"D",texto:"Frequência de 100 a 120 por minuto, profundidade de 5 a 6 cm, permitindo o retorno completo do tórax e minimizando interrupções"},{id:"E",texto:"Frequência de 100 a 120 por minuto, sem permitir o retorno do tórax, para manter a pressão"}],
@@ -1289,6 +1300,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-23", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Atualização da Diretriz de Ressuscitação Cardiopulmonar e Cuidados Cardiovasculares de Emergência (Arq Bras Cardiol 2019;113(3):449-663, abccardiol.org). Texto lido em 13/11/2026: na assistolia e na atividade elétrica sem pulso, identificar e tratar as causas reversíveis; a adrenalina pode ser repetida a cada 3 a 5 minutos. A lista dos 5H e 5T e a posição sobre o bicarbonato de rotina não foram localizadas no texto. Edição de 2019, anterior à AHA 2025.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-pcr",
   enunciado:"Durante o atendimento de uma parada em atividade elétrica sem pulso, qual conduta é fundamental além das compressões e da adrenalina?",
   alternativas:[{id:"A",texto:"Aplicar choque a cada 2 minutos"},{id:"B",texto:"Buscar e tratar causas reversíveis, como hipovolemia, hipóxia, hipotermia, distúrbios do potássio, tamponamento, pneumotórax hipertensivo, trombose e intoxicações"},{id:"C",texto:"Administrar amiodarona em bolus"},{id:"D",texto:"Suspender as compressões para realizar ecocardiograma completo"},{id:"E",texto:"Administrar bicarbonato de sódio de rotina"}],
@@ -1302,11 +1314,12 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-24", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Atualização da Diretriz de Ressuscitação Cardiopulmonar e Cuidados Cardiovasculares de Emergência (Arq Bras Cardiol 2019;113(3):449-663, abccardiol.org). Texto lido em 13/11/2026: bradicardia sintomática com pulso: atropina 0,5 mg por via intravenosa a cada 3 a 5 minutos, máximo de 3 mg, enquanto se aguarda o marca-passo transcutâneo; se não eficaz, marca-passo, ou epinefrina (2 a 10 µg/min) ou dopamina (2 a 10 µg/kg/min); doses de atropina menores que 0,5 mg podem causar lentificação paradoxal. Diverge da questão em um ponto: a explicação usa 1 mg (dose da AHA, não lida aqui); a explicação passou a citar também a dose da SBC.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-arritmias",
   enunciado:"Paciente com bradicardia sinusal de 38 bpm, hipotenso, com sudorese e confusão mental. Qual é a primeira medida farmacológica indicada?",
   alternativas:[{id:"A",texto:"Adenosina 6 mg em bolus"},{id:"B",texto:"Verapamil endovenoso"},{id:"C",texto:"Amiodarona 300 mg"},{id:"D",texto:"Metoprolol endovenoso"},{id:"E",texto:"Atropina 1 mg endovenosa"}],
   gabarito:"E",
-  explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: **bradicardia sinusal de 38 bpm** (normal: 60–100) com **hipotensão, sudorese e confusão mental**: bradicardia sintomática com instabilidade. A primeira medida farmacológica é **atropina 1 mg endovenosa**, repetível a cada 3 a 5 minutos até 3 mg. Mecanismo: a atropina bloqueia o efeito vagal no nó sinusal e no nó atrioventricular e eleva a frequência; se não responde, seguem dopamina ou adrenalina em infusão e o marca-passo transcutâneo. Contexto epidemiológico: as causas mais frequentes são fármacos (betabloqueadores, bloqueadores de canal de cálcio, digoxina), infarto inferior e degeneração do sistema de condução em idosos. A) Errada: a adenosina é para taquicardia supraventricular e agravaria a bradicardia. B) Errada: o verapamil bloqueia o nó atrioventricular e agravaria o quadro. C) Errada: a amiodarona é antiarrítmico e pode piorar a bradicardia. D) Errada: o metoprolol é betabloqueador e reduziria ainda mais a frequência.",
+  explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: **bradicardia sinusal de 38 bpm** (normal: 60–100) com **hipotensão, sudorese e confusão mental**: bradicardia sintomática com instabilidade. A primeira medida farmacológica é **atropina 1 mg endovenosa**, repetível a cada 3 a 5 minutos até 3 mg (dose da AHA; a atualização da Diretriz de Ressuscitação Cardiopulmonar da SBC, de 2019, preconiza 0,5 mg a cada 3 a 5 minutos, com máximo de 3 mg). Mecanismo: a atropina bloqueia o efeito vagal no nó sinusal e no nó atrioventricular e eleva a frequência; se não responde, seguem dopamina ou adrenalina em infusão e o marca-passo transcutâneo. Contexto epidemiológico: as causas mais frequentes são fármacos (betabloqueadores, bloqueadores de canal de cálcio, digoxina), infarto inferior e degeneração do sistema de condução em idosos. A) Errada: a adenosina é para taquicardia supraventricular e agravaria a bradicardia. B) Errada: o verapamil bloqueia o nó atrioventricular e agravaria o quadro. C) Errada: a amiodarona é antiarrítmico e pode piorar a bradicardia. D) Errada: o metoprolol é betabloqueador e reduziria ainda mais a frequência.",
   explicacoesAlternativas:{},
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
@@ -1315,6 +1328,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-25", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Valvopatias – 2026 (Arq Bras Cardiol 2026;123(10):e20260796, abccardiol.org). Texto lido em 13/11/2026: a tríade clássica de sintomas da estenose aórtica é angina, síncope e dispneia; TAVI discutida a partir dos 70 anos. A irradiação do sopro para as carótidas e a segunda bulha diminuída não foram localizadas no texto.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
   enunciado:"Homem de 72 anos com dispneia aos esforços, episódio de síncope durante caminhada e sopro sistólico ejetivo em foco aórtico, irradiado para as carótidas, com segunda bulha hipofonética. Qual é a hipótese diagnóstica?",
   alternativas:[{id:"A",texto:"Insuficiência mitral grave"},{id:"B",texto:"Estenose mitral reumática"},{id:"C",texto:"Estenose aórtica grave"},{id:"D",texto:"Comunicação interatrial"},{id:"E",texto:"Insuficiência aórtica crônica"}],
@@ -1328,6 +1342,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-26", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Valvopatias – 2026 (Arq Bras Cardiol 2026;123(10):e20260796, abccardiol.org). Texto lido em 13/11/2026: na insuficiência mitral o sopro é holossistólico, de timbre suave, com irradiação para a linha axilar. Confirma a explicação.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
   enunciado:"Sopro holossistólico em foco mitral, com irradiação para a axila, é característico de qual valvopatia?",
   alternativas:[{id:"A",texto:"Insuficiência mitral"},{id:"B",texto:"Estenose aórtica"},{id:"C",texto:"Estenose mitral"},{id:"D",texto:"Insuficiência tricúspide"},{id:"E",texto:"Estenose pulmonar"}],
@@ -1341,6 +1356,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-card-27", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: SBC, Diretriz Brasileira de Valvopatias – 2026 (Arq Bras Cardiol 2026;123(10):e20260796, abccardiol.org). Texto lido em 13/11/2026: na estenose mitral, estalido de abertura e sopro diastólico em ruflar com reforço pré-sistólico se o paciente está em ritmo sinusal; valvoplastia mitral por cateter-balão na estenose mitral reumática importante com anatomia favorável. A hemoptise e a fibrilação atrial como complicações não foram conferidas neste texto.",
   areaId:"area-cm", especialidadeId:"esp-cardio", assuntoId:"ass-valvopatias",
   enunciado:"Mulher de 40 anos, com antecedente de febre reumática na infância, apresenta dispneia progressiva, hemoptise e fibrilação atrial. À ausculta, ruflar diastólico em ápice com estalido de abertura. Qual é o diagnóstico mais provável?",
   alternativas:[{id:"A",texto:"Insuficiência aórtica"},{id:"B",texto:"Miocardiopatia hipertrófica"},{id:"C",texto:"Prolapso de valva mitral"},{id:"D",texto:"Estenose mitral"},{id:"E",texto:"Pericardite constritiva"}],
@@ -1500,6 +1516,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-09", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: IDSA, Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections – 2014 Update (Stevens et al., Clin Infect Dis 2014;59(2):e10-52; página da IDSA em idsociety.org). Texto lido em 13/11/2026: erisipela e celulite são tratadas juntas, como infecção não purulenta: antimicrobiano ativo contra estreptococos nos casos típicos sem sinais sistêmicos, duração de 5 dias (prolongar se não houver melhora), elevação do membro e tratamento dos fatores predisponentes; internação diante de suspeita de infecção profunda ou necrosante. A distinção por profundidade e por bordas elevadas e nítidas, usada na explicação, não consta nas recomendações da IDSA lidas.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
   enunciado:"Qual característica clínica diferencia tipicamente a erisipela da celulite?",
   alternativas:[{id:"A",texto:"A erisipela acomete planos profundos, com bordas mal definidas"},{id:"B",texto:"A celulite acomete apenas a face"},{id:"C",texto:"A celulite é causada exclusivamente por fungos"},{id:"D",texto:"A erisipela nunca cursa com febre"},{id:"E",texto:"A erisipela atinge derme superficial e linfáticos, com bordas bem delimitadas e elevadas, enquanto a celulite é mais profunda, com limites imprecisos"}],
@@ -1513,6 +1530,7 @@ window.EscDados.registrarQuestoes("banco-didatico", [
 {
   id:"q-inf-10", banca:"Esc — Banco Didático", real:false, ano:2026,
   justificativaEm:"2026-11",
+  referencias:"Fonte: IDSA, Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections – 2014 Update (Stevens et al., Clin Infect Dis 2014;59(2):e10-52; página da IDSA em idsociety.org). Texto lido em 13/11/2026: suspeita de fasciíte necrosante ou de gangrena gasosa, em infecção agressiva com toxemia sistêmica = consulta cirúrgica imediata (forte, evidência baixa); antibiótico empírico amplo (vancomicina ou linezolida mais piperacilina-tazobactam ou carbapenêmico, ou com ceftriaxona e metronidazol), pois a etiologia pode ser polimicrobiana ou monomicrobiana; penicilina com clindamicina na fasciíte por estreptococo do grupo A documentada. O texto lido fala em consulta cirúrgica imediata e não detalha o desbridamento; dor desproporcional, bolhas hemorrágicas e crepitação não foram conferidos aqui.",
   areaId:"area-cm", especialidadeId:"esp-infecto", assuntoId:"ass-peleparte",
   enunciado:"Paciente diabético com dor desproporcional ao exame físico em membro inferior, toxemia, bolhas hemorrágicas e crepitação à palpação, com evolução em poucas horas. Qual é a conduta prioritária?",
   alternativas:[{id:"A",texto:"Antibiótico oral ambulatorial e retorno em 48 horas"},{id:"B",texto:"Aguardar resultado de ressonância magnética antes de qualquer intervenção"},{id:"C",texto:"Exploração e desbridamento cirúrgico de urgência, associados a antibioticoterapia de amplo espectro e suporte intensivo"},{id:"D",texto:"Corticoide sistêmico para reduzir a inflamação"},{id:"E",texto:"Apenas compressas mornas e elevação do membro"}],
