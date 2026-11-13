@@ -141,3 +141,80 @@ Quando uma pendência for resolvida, escreva a conferência no campo `referencia
 ## Einstein 2021–2026 (02/11/2026)
 
 As 425 questões das provas `prova-einstein-*` entraram com `referencias` sem conferência. Nesta rodada só o GOLD 2026 foi lido (linha acima). GINA 2026 e OMS MEC 6ª edição constam lidos na rodada de 29/10 e foram citados, não relidos. Todas as demais citações (livros-texto, PCDT, SBC, SBP, FEBRASGO, NCCN, AHA/ASA, calendário, Portaria SAES/SECTICS 13/2025 do rastreamento do colo) foram registradas como **texto não aberto**, com data, e continuam na fila de `npm run referencias-a-conferir`. As 42 questões que citavam edição superada estão em `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md`.
+
+## `banco-didatico`: fase 3 do projeto de adequação (13/11/2026)
+
+As 135 questões do `banco-didatico` não tinham `referencias`. Nesta rodada foram lidos os textos oficiais abaixo e gravada a nota datada (campo novo, via `atualizar-dados`, porque `anotar-conferencia` exige o campo já existente). **Cada nota diz o que foi confirmado e o que não foi.** Depois da quinta rodada faltam 34 questões do arquivo (ver `docs/PENDENCIAS-DE-REFERENCIAS.md`, seção 6-B).
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| GOLD 2026, relatório v1.3 (goldcopd.org) | Antibiótico com ≥ 2 de dispneia, febre, volume e purulência (com purulência entre eles) ou ventilação mecânica; 5 dias; corticoide sistêmico até 5 dias. Anthonisen não é nomeado. Meta de SpO2 88–92% não localizada | `q-002` |
+| OMS MEC 6ª edição, 2025 (iris.who.int) | Tabagismo: < 35 anos = 2 para combinados; ≥ 35 anos = 3 (< 15 cig/dia) ou 4 (≥ 15); progestagênio, DIU e barreira = 1 | `q-024` |
+| SBP, Manual de Orientação nº 10, 2021, hiperbilirrubinemia (sbp.com.br) | Seguimento de RN ≥ 35 semanas pelo nomograma de Bhutani; otimizar o aleitamento; tabelas de fototerapia e exsanguineotransfusão. Limiar às 36 h e AAP 2022 não conferidos; fenobarbital não aparece | `q-013` |
+| MS, Manual de Recomendações para o Controle da TB, 2ª ed. atualizada, 2019 (gov.br/aids) | 2RHZE/4RH; 2RHZE/10RH (meningoencefálica e osteoarticular); neurite óptica por etambutol, dose dependente; PT ≥ 5 mm como infecção latente. Esquemas preventivos (4R, 3HP) não constam do manual | `q-inf-14`, `q-inf-15`, `q-inf-16` |
+| MS, PCDT HIV em adultos, módulo 1, 2024 (gov.br/aids) | TARV para todos, independentemente do CD4; tenofovir/lamivudina + dolutegravir preferencial; I = I | `q-inf-17` |
+| MS, PCDT HIV em adultos, módulo 2, 2024 (gov.br/aids) | Quadro 29: PCP com CD4 < 200 (ou < 14%), candidíase oral ou febre; toxoplasmose < 100; MAC < 50 sem TARV; sem profilaxia primária para criptococose, CMV e herpes simples. IgG para toxoplasma não consta do quadro | `q-inf-18` |
+| MS, Dengue: diagnóstico e manejo clínico, 6ª ed., 2024 (gov.br/saude) | Quadro 1 de sinais de alarme (7 itens); aumento progressivo do hematócrito no fluxograma; início na defervescência (3º a 7º dia); paracetamol e/ou dipirona, sem salicilatos nem AINEs | `q-inf-22`, `q-inf-23` |
+| MS, Calendário Técnico Nacional de Vacinação da Criança (gov.br/saude) | Penta e VIP aos 2, 4 e 6 meses (VIP: reforço aos 15 m); pneumo 10 aos 2 e 4 m + reforço aos 12 m; rotavírus aos 2 e 4 m; SCR a partir de 12 m; HPV a partir de 9 anos | `q-015` |
+| MS, Calendário Técnico Nacional de Vacinação do Adulto (gov.br/saude) | dT a cada 10 anos; antecipado para 5 anos em exposição a risco de tétano ou difteria | `q-inf-29` |
+| SBC/SBH/SBN, Diretriz Brasileira de Hipertensão Arterial 2025 (abccardiol.org) | Consultório ≥ 140/90; MAPA 24 h e média do MRPA ≥ 130/80 (vigília 135/85, sono 120/70); fenótipos; Quadro 7.1 de classes; crise hipertensiva (sem LOA: reavaliação em 1 a 7 dias; EH: UTI, 25% na 1ª hora; nifedipina rápida proscrita); HAR e aldosterona. Relação aldosterona/renina e hipocalemia espontânea não conferidas | `q-card-13` a `q-card-17` |
+
+**Segunda rodada (13/11/2026, mesmo dia):**
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| MS, Nota Técnica Conjunta nº 154/2024-DPNI/SVSA/MS (gov.br/saude) | Contato próximo (10 dias antes do início dos sintomas do caso até 24 h após o tratamento); quimioprofilaxia idealmente nas primeiras 24 h do início dos sintomas, valor limitado após 10 dias da exposição; rifampicina de primeira escolha, ceftriaxona e ciprofloxacino em dose única como alternativas, azitromicina 500 mg; gestante: ceftriaxona. Esquema de 2 dias da rifampicina (Guia de Vigilância) não conferido | `q-inf-12` (explicação corrigida) |
+| MS, PCDT de IST 2022 (gov.br/aids) | Cancro duro (única, indolor, base endurecida, fundo limpo, linfadenopatia regional); benzatina 2,4 milhões UI IM em dose única na sífilis recente (alternativa doxiciclina 15 dias); cancro mole (dolorosas, múltiplas); seção 5.7: queda de duas diluições em 6 meses (recente) ou 12 meses (tardia), retratamento por ausência de queda ou aumento de duas diluições; cicatriz sorológica | `q-inf-20`, `q-inf-21` |
+| MS, Guia de tratamento da malária, 3ª ed., 2026, e edição de 2021 (gov.br/saude) | Hipnozoítos e recaídas do P. vivax; cloroquina + primaquina 0,5 mg/kg/dia por 7 dias; tafenoquina em dose única com G6PD quantitativo; hemólise na deficiência de G6PD; gestantes e < 6 meses não usam primaquina nem tafenoquina | `q-inf-26` (explicação ganhou a tafenoquina) |
+| MS, Manejo do paciente com diarreia: avaliação da hidratação (gov.br/saude) | Quadro dos planos A, B e C (sinais por plano e regra de dois ou mais sinais); Plano A: mais líquidos após cada evacuação, manter a alimentação, zinco por 10 a 14 dias | `q-018` |
+| MS, Nota Técnica nº 16/2024-CGZV/DEDT/SVSA/MS, leptospirose (gov.br/saude) | Febre alta, mialgia de panturrilha e congestão conjuntival na fase precoce; síndrome de Weil com hemorragia pulmonar, insuficiência renal e icterícia rubínica; exposição a enchente nos 30 dias anteriores; IRA oligúrica e não oligúrica no fluxograma | `q-inf-25` |
+
+**Terceira rodada (13/11/2026, mesmo dia):**
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| SBC, Diretriz Brasileira de Dislipidemias 2025 (abccardiol.org) | LDL-c < 50 mg/dL no muito alto risco e < 40 no risco extremo (múltiplos eventos ou 1 evento + ≥ 2 condições de alto risco); estatina de alta intensidade + ezetimiba como terapia inicial, anti-PCSK9 no extremo ou se a meta não for atingida. Meta de 55 mg/dL da ESC não conferida | `q-card-30` (explicação atualizada) |
+| SOBRAC/SBC, Diretriz Brasileira de Fibrilação Atrial 2025 (abccardiol.org) | RR irregulares, ausência de ondas P, ondas f; instabilidade hemodinâmica: cardioversão elétrica imediata | `q-card-18`, `q-card-19` |
+| SBP, reanimação do RN ≥ 34 semanas, maio/2022 e junho/2026 (sbp.com.br) | VPP com apneia, respiração irregular e/ou FC < 100; massagem se FC < 60 após 30 s de VPP com técnica adequada. Adrenalina não conferida | `q-014` |
+| OMS, Global guidelines for the prevention of SSI, 2018 (iris.who.int) | Álcool + clorexidina no preparo da pele; pelos não removidos ou só com clipper (barbear desencorajado); profilaxia em até 120 min antes da incisão, sem prolongar após a operação | `q-toce-11`, `q-toce-12`, `q-toce-13` (explicação ajustada) |
+| IDSA, Bacteriúria assintomática, 2019 (idsociety.org) | Tratar em gestantes e antes de procedimento urológico com trauma de mucosa (fortes, moderada) | `q-inf-08` |
+| MS, Manual dos CRIE, 6ª ed. (gov.br/saude) | Vacinas vivas não devem ser dadas na imunodepressão; inativadas se necessário; vacinar contatos; atualizar o esquema até 14 dias antes. Transplantados e lista de vacinas vivas não conferidos | `q-inf-28` |
+| OMS, Hand Hygiene Technical Reference Manual (guideline 2009, iris.who.int) | Os cinco momentos, com categorias IA/IB | `q-inf-30` |
+
+**Textos alterados na terceira rodada:** `q-card-30` (metas de LDL e terapia inicial combinada) e `q-toce-13` (janela de 120 minutos da OMS; a de 30 a 60 minutos passou a ser dita como prática de protocolos). Nenhum gabarito foi alterado.
+
+**Textos alterados na segunda rodada:** `q-inf-12` (janela de 24 h do início dos sintomas em vez de 24 a 48 h; ceftriaxona como primeira escolha na gestante) e `q-inf-26` (tafenoquina e contraindicação abaixo de 6 meses). Nenhum gabarito foi alterado.
+
+**Texto alterado na primeira rodada:** `q-card-13` (a explicação dizia 135/85 para a medida residencial; a diretriz brasileira de 2020 e a de 2025 usam 130/80 na média do MRPA). Nenhum gabarito foi alterado.
+
+**Quarta rodada (13/11/2026, SBC e IDSA):**
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| SBC, Diretriz Brasileira de Insuficiência Cardíaca 2026 (abccardiol.org) | ICFEr < 50%, ICFEp ≥ 50%, FEVE melhorada; FEVE levemente reduzida eliminada; recomendação forte, evidência alta, para IECA/BRA/sacubitril-valsartana, betabloqueador, espironolactona e iSGLT2 na ICFEr; perfis A, B, C e L (B: vasodilatador e diurético); NT-proBNP < 300 ou BNP < 100 afastam IC descompensada | `q-card-09` (conflito: ver abaixo), `-10`, `-11`, `-12` |
+| SBC, Diretriz Brasileira de Valvopatias 2026 | Tríade da estenose aórtica (angina, síncope, dispneia); estalido de abertura e ruflar com reforço pré-sistólico na estenose mitral; sopro holossistólico com irradiação axilar na insuficiência mitral | `q-card-25`, `-26`, `-27` |
+| SBC, Dor Torácica na Emergência 2025 e SCASSST 2021 | Derivações V7-V9, V3R, V4R (ST ≥ 0,5 mm); AAS 150 a 300 mg; O2 se SatO2 < 90% | `q-card-04`, `-06`, `-07` |
+| SBC, Atualização da Diretriz de RCP 2019 | Desfibrilação em ritmo chocável priorizada (I, B); compressões 100 a 120/min e 5 a 6 cm; adrenalina a cada 3 a 5 min; atropina 0,5 mg a cada 3 a 5 min, máx. 3 mg | `q-card-21` a `-24` |
+| SBC, Análise e Emissão de Laudos Eletrocardiográficos 2022 (PMC9563889) | BAV de 1º grau com PR > 200 ms; Mobitz I (Wenckebach) e Mobitz II | `q-card-02`, `q-card-03` |
+| IDSA, Pele e partes moles 2014 (idsociety.org) | Fasciíte necrosante: consulta cirúrgica imediata, antibiótico amplo, penicilina + clindamicina no grupo A; erisipela e celulite tratadas juntas (5 dias) | `q-inf-09`, `q-inf-10` |
+
+**Quinta rodada (13/11/2026, o que ainda abria):**
+
+| Fonte (site) | O que foi lido | Questões |
+|---|---|---|
+| ACG, Management of Acute Pancreatitis, 2024 (PMC) | 2 de 3 critérios (lipase > 3 vezes o limite); TC com contraste > 90% de sensibilidade, sem uso de rotina; TC ou RM se não melhora em 48 a 72 h (necrose); RM na alergia a contraste; CPRE precoce não sugerida sem colangite. A janela fixa de 72 a 96 h não consta | `q-010` (explicação ajustada) |
+| WSES, apendicite, atualização de Jerusalem 2020 (PMC7386163) | POCUS como exame inicial; apendicectomia laparoscópica preferida (forte, alta); antibiótico só em casos selecionados | `q-007` |
+| SBP, Manejo da febre aguda (sbp.com.br) | Antitérmico preventivo não recomendado para convulsão febril (evidência I, E). Definição, punção lombar e EEG não constam | `q-017` (parcial) |
+| SBP, Choosing Wisely Pediatric e Intoxicações agudas por medicamentos (sbp.com.br) | Não receitar medicação para tosse e resfriado em menores de 6 anos; descongestionantes como causa de intoxicação | `q-016` (explicação ajustada) |
+| ACG, GERD, 2022 (PMC8754510) | Teste empírico de IBP por 8 semanas sem sinais de alarme (forte, moderada); endoscopia primeiro na disfagia e em sintomas de alarme; endoscopia se falha ou recorrência; monitorização do refluxo se dúvida | `q-003` |
+
+**Não abriu na quinta rodada:** Tokyo 2018 e WSES via Wiley/BMC (403), NAMS 2022 (menopause.org, 403), diretriz da SBD (só fontes secundárias), diretriz de pericardiopatias da SBC (PDF não localizado), ASA 2023 de jejum (o PMC encontrado é uma revisão pediátrica, secundária, e não foi usado), páginas da IDSA de meningite e de ITU sem o conteúdo necessário.
+
+**Conflitos encontrados:** (1) `q-card-09`: a SBC 2026 define ICFEr como FEVE < 50% e eliminou a FEVE levemente reduzida; o gabarito (≤ 40%) segue a definição universal. Gabarito mantido, explicação com aviso, decisão da equipe. (2) `q-card-24`: a SBC 2019 preconiza atropina 0,5 mg e a explicação usava 1 mg (AHA); a explicação passou a citar as duas. **Não confirmado:** o corte de 120 minutos da reperfusão no IAMCSST nas diretrizes da SBC lidas; as páginas da IDSA de meningite bacteriana (só resumo) e de ITU complicada (não cobre a cistite) não sustentam `q-inf-11`, `q-inf-13` e `q-inf-07`.
+
+**Livro-texto indicado, sem leitura (13/11/2026, a pedido da equipe):** 45 questões receberam nota com a obra e a edição, conferidas em catálogo, e a frase de que capítulo, página e conteúdo não foram conferidos contra o livro. Obras: Goffi FS (org.), *Técnica Cirúrgica* (Atheneu; edições de 1996 e 2004 no catálogo da USP) e Townsend CM Jr (ed.), *Sabiston Textbook of Surgery*, 21ª ed., Elsevier, 2021, para `q-toce-01` a `-10` e `-14` a `-30`; Salmon JF, *Kanski's Clinical Ophthalmology*, 9ª ed., Elsevier, 2020, para `q-oft-01` a `-15`; Medronho et al., *Epidemiologia*, 2ª ed., Atheneu, 2009, para `q-025` e `q-027`; Beauchamp e Childress, *Principles of Biomedical Ethics*, para `q-028` (edição não confirmada). Gordis (6ª ed.) e a edição de Schwartz não foram confirmadas em catálogo e não foram citadas. Essas questões **continuam na fila de leitura**.
+
+**Não abriram nesta rodada:** `cfbm.gov.br` e `prefeitura.pbh.gov.br` (o proxy recusa; eram cópias da Portaria SAES/SECTICS nº 13/2025 e da Portaria GM/MS nº 10.175/2026), `atencaoprimaria.rs.gov.br` (403, PNAB), a página do Conitec da Portaria 13/2025 (só índice), `pmc.ncbi.nlm.nih.gov/articles/PMC4968574/` (Sepsis-3, a página raspada devolveu só uma linha), `planalto.gov.br` (Lei 8.080, 403), `bvsms.saude.gov.br` (403), `saude.curitiba.pr.gov.br` (403), `antigo-conitec.saude.gov.br` (não resolve), `ginasthma.org` (403), `kdigo.org` (406), `ahajournals.org` (não resolve). Os PDFs do `gov.br` às vezes devolvem reset de conexão: repetir resolve. Tentativas de adivinhar endereço do PCDT de IST e do PCDT de PEP devolveram 404; o endereço certo precisa vir de uma busca.
+
+**Ainda sem leitura (priorizar):** sepse (Sepsis-3 e SSC 2026), colecistite (Tokyo), pré-eclâmpsia e diabetes gestacional, profilaxia pós-exposição ao HIV (PCDT de PEP), Zika, notificação compulsória (Portaria GM/MS), Lei 8.080 e ESF (PNAB), rastreamento do colo do útero (Portaria 13/2025), climatério, técnicas cirúrgicas (TOCE) e oftalmologia.
+

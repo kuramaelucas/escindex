@@ -1,6 +1,6 @@
 # Pendências de referências e diretrizes — USP e UNIFESP (consolidado)
 
-Atualizado em 08/11/2026. Este é o **único** documento de pendências de referência dessas provas; `docs/REVISAO-USP.md` e `docs/REVISAO-UNIFESP.md` guardam só o histórico do que foi feito.
+Atualizado em 13/11/2026 (seção 8 nova: `banco-didatico`). Este é o **único** documento de pendências de referência dessas provas e do `banco-didatico`; `docs/REVISAO-USP.md` e `docs/REVISAO-UNIFESP.md` guardam só o histórico do que foi feito.
 
 ## 1. Situação
 
@@ -157,9 +157,14 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 | NCCN 2026 (pulmão, ovário, colo, endométrio, melanoma, mama, testículo) — exige login | USP: melanoma, mama, cólon, pâncreas, testículo; UNIFESP: `q-unifesp2022-015`, `-024`, `-030`, `q-unifesp2023-043`, `-045`, `-086`, `q-unifesp2024-013`, `-014`, `q-unifesp2025-013`, `q-unifesp2026-006` |
 | EAU 2026 (CloudFront bloqueado) | `q-usp2022-073`, `q-usp2023-018` e urolitíase da UNIFESP |
 | ACOG (HTTP 402), ESC/EACTS 2025 e ESC de pericárdio 2025 (a verificar), ADA 2026 (diabetesjournals) | USP 2022–2026 e UNIFESP |
-| Sepsis-3 (Singer, JAMA 2016) | `q-unifesp2023-019` |
+| Sepsis-3 (Singer, JAMA 2016); a página do PMC (PMC4968574) devolveu vazio em 13/11/2026 | `q-unifesp2023-019`, `banco-didatico`: `q-005`, `q-inf-01`, `q-inf-02` |
+| Surviving Sepsis Campaign 2026 (só havia o PDF enviado em 08/11; não está nesta sessão) | `banco-didatico`: `q-inf-03`, `q-005` |
+| Portaria GM/MS de notificação compulsória (nº 11.211/2026 e 10.175/2026; só chegaram cópias em domínios bloqueados) | `banco-didatico`: `q-030` |
+| Lei 8.080/1990 (planalto.gov.br, 403) e PNAB, Portaria 2.436/2017 (bvsms e cópia estadual, 403) | `banco-didatico`: `q-026`, `q-029` |
+| PCDT de profilaxia pós-exposição ao HIV (endereço certo não localizado) e Zika (guia de vigilância; bvsms 403) | `banco-didatico`: `q-inf-19`, `q-inf-24` |
+| Tokyo Guidelines 2018 (colecistite), KDIGO 2024 de DRC (kdigo.org respondeu 406 em 13/11), WSES de apendicite | `banco-didatico`: `q-009`, `q-006`, `q-007` |
 
-Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calendário, notas técnicas), kdigo.org, goldcopd.org, ginasthma.org, idsociety.org, sbp.com.br, thyroid.org, cdc.gov, iris.who.int, pmc.ncbi.nlm.nih.gov.
+Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calendário, notas técnicas; o PDF às vezes dá *connection reset* e abre na segunda tentativa), abccardiol.org (diretrizes da SBC), goldcopd.org, idsociety.org, sbp.com.br, thyroid.org, iris.who.int, pmc.ncbi.nlm.nih.gov (HTML raspado às vezes vem vazio). **Em 13/11/2026 não abriram:** ginasthma.org (403), kdigo.org (406), cdc.gov (403), bvsms.saude.gov.br (403), planalto.gov.br (403), ahajournals.org (não resolve), cfbm.gov.br e prefeitura.pbh.gov.br (recusados pelo proxy). Endereço de PDF adivinhado devolve 404: ache-o por busca.
 
 ## 5. Letras de gabarito a conferir (nada foi alterado)
 
@@ -196,9 +201,40 @@ Abrem sem problema (usar `npm run texto-oficial`): gov.br (PCDT, Conitec, calend
 - `q-udisc20262-004`: diretrizes da SBPT para DPOC não relidas.
 - `q-unifesp2023-069`: Box 11-4 do GINA (dispositivo na criança) não relido linha a linha.
 
+## 6-B. Banco didático: 34 questões sem `referencias`, 45 com livro-texto só indicado, 56 com texto oficial lido (fase 3 do projeto de adequação)
+
+O `banco-didatico` (135 questões autorais) não tinha `referencias`. Situação em 13/11/2026:
+
+- **56 questões** com nota de **leitura datada** do texto oficial (lista em `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`);
+- **45 questões** com **livro-texto indicado sem leitura** (a equipe aceitou livro-texto como referência): técnica operatória `q-toce-01` a `-10` e `-14` a `-30` (27; Goffi e Sabiston 21ª ed.), oftalmologia `q-oft-01` a `-15` (Kanski 9ª ed.), `q-025` e `q-027` (Medronho, 2ª ed.) e `q-028` (Beauchamp e Childress). A nota registra a obra e a edição (conferidas em catálogo) e diz que capítulo, página e conteúdo **não** foram conferidos; `npm run auditoria-padrao` as conta como "indicadas sem leitura". **Pendência:** quem tiver os livros confere o capítulo e troca a nota por "lido em DD/MM/AAAA" (`atualizar-dados` com o campo `referencias`);
+- **34 questões ainda sem nenhuma referência** (lista abaixo; `npm run auditoria-padrao -- sem-diretriz` e `-- prova banco-didatico` regeram, e há mais 2 na `tp-2020-2`).
+
+**Parcial (nota diz o que falta):** `q-017` (o documento da SBP lido só cobre o antitérmico profilático; a definição de convulsão febril simples, a punção lombar e o EEG seguem sem leitura, e a SBP não tem documento próprio localizado).
+
+**Decisões da equipe (conflito com a fonte lida):**
+- `q-card-09` (ICFEr ≤ 40%): a Diretriz Brasileira de IC 2026 (SBC) define ICFEr como FEVE < 50% e eliminou a FEVE levemente reduzida. Gabarito mantido; a explicação já traz o aviso. Decidir entre marcar `desatualizada` e repor, ou manter com o aviso.
+- `q-card-24` (atropina 1 mg): a explicação segue a AHA; a SBC (2019) preconiza 0,5 mg. A explicação cita as duas; decidir qual dose a plataforma adota.
+
+Estado da fonte: **abre** = aberta na rede, falta ler; **enviar** = a rede não abre, alguém envia o PDF.
+
+| Tema | Questões | Fonte-alvo | Estado |
+|---|---|---|---|
+| Síndrome coronariana com supra e angina estável | `q-001`, `q-card-05`, `q-card-08` | V Diretriz da SBC de IAMCSST (2015) ou atualização; ESC 2023/2024; a de dor torácica 2025 e a de SCASSST 2021 já lidas não trazem o corte de 120 min | abre a localizar |
+| ECG e arritmias | `q-card-01`, `q-card-20` | SBC (frequência no ECG; taquicardia supraventricular); a diretriz de laudos de 2022 já lida não traz a regra dos 300 | abre |
+| Pericárdio | `q-card-28`, `q-card-29` | Diretriz da SBC de pericardiopatias (a busca só achou citações, o PDF não foi localizado); ESC 2015/2025 | abre a localizar |
+| Sepse | `q-005`, `q-inf-01` a `-03` | Sepsis-3 (JAMA 2016) e SSC 2026 | enviar |
+| Antibióticos | `q-inf-04` a `-06` | IDSA 2026 (idsociety.org) e livros de farmacologia | abre |
+| Meningites, endocardite, ITU | `q-inf-11`, `-13`, `-27`, `-07` | IDSA 2004 (a página da IDSA lida só traz o resumo); Guia de Vigilância; AHA/ESC (endocardite); IDSA 2025 de ITU complicada não cobre a cistite | enviar / abre |
+| HIV (PEP) e Zika | `q-inf-19`, `q-inf-24` | PCDT de PEP; guia de vigilância de arboviroses | enviar (endereço) |
+| Clínica e cirurgia | `q-004`, `-006`, `-008`, `-009`, `-011`, `-012` | SBD 2025 (diretriz.diabetes.org.br não abriu; só fontes secundárias), KDIGO (406), ATLS 11ª (livro), Tokyo 2018 (Wiley 403), ESGE/NCCN, ASA 2023 de jejum (só abriu revisão pediátrica secundária) | enviar |
+| Obstetrícia e ginecologia | `q-019`, `-020`, `-021`, `-022`, `-023` | FEBRASGO, OMS, IADPSG; NAMS 2022 (menopause.org 403); Portaria SAES/SECTICS 13/2025 | enviar |
+| Saúde coletiva (norma) | `q-026`, `q-029`, `q-030` | Lei 8.080; PNAB 2017; Portaria de notificação compulsória | enviar |
+
+**Texto já corrigido ou com aviso pela fonte nesta frente:** `q-010` (ACG 2024: TC/RM se não melhora em 48 a 72 h), `q-016` (SBP: não medicar tosse e resfriado em menores de 6 anos), `q-card-13` (MRPA 130/80), `q-card-30` (metas de LDL < 50 e < 40 mg/dL), `q-inf-12` (quimioprofilaxia em 24 h; ceftriaxona na gestante), `q-inf-26` (tafenoquina), `q-toce-13` (janela de 120 min da OMS), `q-card-09` (aviso: ICFEr < 50% na SBC 2026) e `q-card-24` (dose da SBC). Pontos de explicação ainda a revisar por quem é da área: `q-016`, `q-013`, `q-015`, `q-023`, `q-011`, `q-inf-03` (ver `docs/PROJETO-ADEQUACAO.md`).
+
 ## 7. Como encerrar uma pendência
 
 1. Ler o texto oficial (`npm run texto-oficial -- <url> --buscar "termo"`), conferir número, limiar, dose ou prazo afirmado.
-2. Registrar com `npm run anotar-conferencia -- q-id "nota"` (fonte, data, o que foi lido e o que não foi confirmado).
+2. Registrar com `npm run anotar-conferencia -- q-id "nota"` (fonte, data, o que foi lido e o que não foi confirmado). **No `banco-didatico` o campo `referencias` ainda não existe na maioria das questões e `anotar-conferencia` recusa:** grave por `npm run atualizar-dados` com um JSON `{formato:"esc-atualizacoes-questoes", questoes:[{id, campos:{referencias:"…"}}]}`.
 3. Só mudar a explicação com fonte primária; **nunca mudar gabarito por fonte secundária**; questão real: texto da prova não se altera.
 4. Apagar a linha daqui e atualizar `docs/CONFERENCIA-DE-REFERENCIAS-NA-WEB.md`.
