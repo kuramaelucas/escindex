@@ -35,19 +35,40 @@ function renderCarregando(){
     <div class="card mt-3"><div class="card-title">Carregando o conteúdo…</div>
     <div class="text-sm muted mt-1">Só um instante: as questões estão chegando ao seu aparelho.</div></div></div>`;
 }
+/* Curva do esquecimento desenhada à mão (SVG, sem biblioteca): sem revisão a
+   lembrança cai e não volta; com revisões espaçadas cada queda é menor. É o
+   argumento da seção "Aprender para não esquecer" em uma imagem. Cores pelos
+   tokens do tema, para valer no claro e no escuro. */
+function svgCurvaDoEsquecimento(){
+  return `<svg class="lp-curva" viewBox="0 0 320 180" role="img" aria-label="Gráfico: sem revisão a lembrança cai até perto de 20%; com revisões espaçadas ela volta a subir a cada revisão e se mantém alta.">
+    <line x1="30" y1="150" x2="310" y2="150" class="lp-eixo"/><line x1="30" y1="20" x2="30" y2="150" class="lp-eixo"/>
+    <text x="34" y="168" class="lp-rotulo">5º ano</text><text x="262" y="168" class="lp-rotulo">6º ano</text>
+    <text x="26" y="28" text-anchor="end" class="lp-rotulo">100%</text>
+    <path d="M30 25 C 60 95, 110 125, 310 135" class="lp-sem"/>
+    <path d="M30 25 C 45 60, 55 68, 70 70 L70 25 C 90 52, 105 56, 125 57 L125 25 C 155 45, 175 48, 200 48 L200 25 C 240 38, 270 40, 310 41" class="lp-com"/>
+    <circle cx="70" cy="25" r="3.5" class="lp-ponto"/><circle cx="125" cy="25" r="3.5" class="lp-ponto"/><circle cx="200" cy="25" r="3.5" class="lp-ponto"/>
+    <text x="236" y="112" class="lp-rotulo lp-rotulo-sem">sem revisão</text>
+    <text x="214" y="60" class="lp-rotulo lp-rotulo-com">com revisões</text>
+  </svg>`;
+}
 function renderLanding(n){
   if(n === undefined) n = numerosDaLanding();   // false = moldura sem números
   const numero = x => x.toLocaleString("pt-BR");
   const ferramentas = [
-    ["book", n ? numero(n.questoes)+" questões comentadas" : "Questões comentadas", (n && n.reais ? numero(n.reais)+" de provas reais de residência"+(n.instituicoes?" de "+n.instituicoes+" instituições":"")+(n.anoDe?" ("+n.anoDe+"–"+n.anoAte+")":"")+". " : "")+"Cada uma explica o raciocínio, inclusive por que as outras alternativas estão erradas."],
+    ["book", n ? numero(n.questoes)+" questões comentadas" : "Questões comentadas", "Cada uma explica o raciocínio, inclusive por que as outras alternativas estão erradas."],
     ["clipboard","Provas antigas e simulados","Provas inteiras por instituição e ano e simulados cronometrados, com a nota guardada para comparar."],
     ["calendar","Cronograma para quem já se formou","Uma trilha de assuntos na ordem do que mais cai e do que precisa vir antes, com a dificuldade subindo no seu ritmo."],
     ["refresh","Revisão no momento certo","Cada questão volta quando você está para esquecê-la — e as que você errou voltam antes."],
     ["cards", n ? numero(n.cartoes)+" flashcards" : "Flashcards","Para fixar conceito em poucos segundos, com intervalo próprio de revisão."],
     ["chart","Seu desempenho, sem mistério","Acerto por área e por "+(n ? numero(n.especialidades)+" " : "")+"especialidades, onde a sua confiança engana, nota estimada e o que revisar hoje."],
   ];
+  const numeros = n && n.reais ? [
+    [numero(n.reais), "questões de provas reais"],
+    [String(n.instituicoes || ""), "instituições"],
+    [n.anoDe ? n.anoDe+"–"+n.anoAte : "", "anos de prova"],
+  ].filter(([v]) => v) : [];
   return `
-  <div class="container">
+  <div class="container lp">
     <nav class="public-nav">
       <div class="brand"><span class="mark">E</span>${CONFIG.nomePlataforma}</div>
       <div class="flex gap-1">
@@ -60,12 +81,13 @@ function renderLanding(n){
       <div>
         <span class="badge badge-accent">Estudo para residência médica</span>
         <h1 class="mt-2">Estudar bem não deveria depender de quanto você pode pagar.</h1>
-        <p class="mt-2" style="font-size:var(--fs-base);color:var(--ink-2);max-width:48ch;line-height:1.55">O ${CONFIG.nomePlataforma} reúne provas reais de residência, explicações cuidadosas e um método de revisão que se ajusta a você — do internato ao dia da prova.</p>
+        <p class="mt-2 lp-lead">O ${CONFIG.nomePlataforma} reúne provas reais de residência, explicações que ensinam o porquê e um método de revisão que se ajusta a você — do internato ao dia da prova.</p>
         <div class="flex gap-1 mt-3 quebra">
           <button class="btn btn-primary" onclick="navigate('cadastro')">Solicitar cadastro</button>
-          <button class="btn btn-secondary" onclick="navigate('login')">Já tenho conta</button>
+          <button class="btn btn-secondary" onclick="aposBancoPronto(() => fazerLoginDemo('aluno'))">Ver por dentro</button>
         </div>
-        <p class="text-xs muted mt-2">O acesso é liberado depois que alguém da equipe confere o cadastro.</p>
+        <p class="text-xs muted mt-2">O acesso é liberado depois que alguém da equipe confere o cadastro. Já tem conta? <a href="#" onclick="navigate('login');return false">Entrar</a>.</p>
+        ${numeros.length ? `<div class="lp-numeros">${numeros.map(([v,r])=>`<div><strong>${escapeHtml(v)}</strong><span>${escapeHtml(r)}</span></div>`).join("")}</div>` : ""}
       </div>
       <div class="hero-card">
         <div class="card-title" style="margin-bottom:.6rem">Por que o ${CONFIG.nomePlataforma} existe</div>
@@ -73,33 +95,53 @@ function renderLanding(n){
         <p class="text-sm mt-2" style="line-height:1.65">Aqui a ideia é outra: o essencial aberto a todos, um preço que caiba no bolso de estudante para o resto, e bolsa para quem precisa. <strong>Conhecimento médico rende mais quando circula.</strong></p>
       </div>
     </div>
-    <div class="card-title">As principais ferramentas</div>
-    <div class="grid grid-3 mt-1">
-      ${ferramentas.map(([icon,titulo,desc])=>`
-        <div class="card-flat">
-          <div class="flex items-center gap-1 peso-700">${iconeSvg(icon)} ${escapeHtml(titulo)}</div>
-          <div class="text-sm muted mt-1">${escapeHtml(desc)}</div>
-        </div>`).join("")}
-    </div>
-    <div class="card mt-3">
-      <div class="card-title">${iconeSvg("users")} Acesso para quem não pode pagar</div>
-      <div class="grid grid-2 mt-1 text-sm" style="line-height:1.6">
-        <div><strong>1 bolsa a cada 5 assinaturas.</strong> Para cada cinco cadastros pagos, uma bolsa de acesso completo é concedida a quem pedir e precisar, sujeita a avaliação.</div>
-        <div><strong>Bolsas desde o primeiro dia.</strong> No lançamento, todos os alunos que ingressaram por cota de renda em 10 faculdades públicas de medicina recebem acesso completo, sem custo.</div>
+
+    <section class="lp-secao lp-duas">
+      <div>
+        <div class="lp-sobre">Aprender para não esquecer</div>
+        <h2 class="lp-titulo">Ensinar medicina, não só treinar prova</h2>
+        <p class="lp-texto">Decorar a letra certa não forma médico. Cada explicação começa pelas pistas do enunciado e vai até o mecanismo da doença, para que você entenda <em>por que</em> a resposta é aquela — e consiga reconhecer o mesmo raciocínio numa questão que nunca viu.</p>
+        <p class="lp-texto">E entender não basta: <strong>a matéria do quinto ano pode estar esquecida no sexto.</strong> A memória cai rápido quando o assunto não volta. Por isso o ${CONFIG.nomePlataforma} traz de volta cada questão e cada cartão pouco antes de você esquecê-los — e o que você errou volta mais cedo. Revisar pouco e sempre vale mais do que reler tudo na véspera.</p>
       </div>
-    </div>
-    <div class="card mt-3">
-      <div class="card-title">${iconeSvg("check")} Como as explicações são feitas</div>
-      <p class="text-sm mt-1" style="line-height:1.65">As explicações são escritas <strong>com apoio de inteligência artificial</strong> e conferidas pela equipe contra a fonte primária — diretrizes, protocolos do Ministério da Saúde e artigos —, nunca copiadas de cursinho. Cada uma mostra a referência e o mês em que foi escrita, para você saber quando uma diretriz mudou depois.</p>
-      <p class="text-sm mt-2" style="line-height:1.65">Achou um erro? Sinalize na própria questão: ela entra na fila de revisão e a correção chega a todo mundo.</p>
-    </div>
-    <div class="card-flat mt-3">
-      <div class="text-sm" style="font-weight:600;margin-bottom:.5rem">Quer ver antes de se cadastrar?</div>
-      <div class="flex gap-1 quebra">
-        <button class="pill" onclick="aposBancoPronto(() => fazerLoginDemo('aluno'))">${iconeSvg("user")} Ver como aluno</button>
+      <div class="lp-figura">${svgCurvaDoEsquecimento()}<div class="text-xs muted mt-1">Cada revisão (ponto) devolve a lembrança e faz a próxima queda ser menor.</div></div>
+    </section>
+
+    <section class="lp-secao">
+      <div class="lp-sobre">O que tem dentro</div>
+      <h2 class="lp-titulo">As principais ferramentas</h2>
+      <div class="grid grid-3 mt-2">
+        ${ferramentas.map(([icon,titulo,desc])=>`
+          <div class="lp-ferramenta">
+            <span class="lp-icone">${iconeSvg(icon)}</span>
+            <div class="peso-700 mt-1">${escapeHtml(titulo)}</div>
+            <div class="text-sm muted mt-1">${escapeHtml(desc)}</div>
+          </div>`).join("")}
       </div>
-      <div class="text-xs muted mt-2">Uma conta de teste, sem memória: nada do que você fizer nela é guardado.</div>
-    </div>
+    </section>
+
+    <section class="lp-secao lp-faixa">
+      <div class="lp-sobre">Acesso para quem não pode pagar</div>
+      <h2 class="lp-titulo">Ninguém fica de fora por falta de dinheiro</h2>
+      <div class="grid grid-2 mt-2">
+        <div class="lp-bolsa"><strong>1 a cada 5</strong><p>Para cada cinco cadastros pagos, uma bolsa de acesso completo é concedida a quem pedir e precisar, sujeita a avaliação.</p></div>
+        <div class="lp-bolsa"><strong>10 faculdades</strong><p>No lançamento, todos os alunos que ingressaram por cota de renda em 10 faculdades públicas de medicina recebem acesso completo, sem custo.</p></div>
+      </div>
+    </section>
+
+    <section class="lp-secao">
+      <div class="lp-sobre">Transparência</div>
+      <h2 class="lp-titulo">Como as explicações são feitas</h2>
+      <p class="lp-texto">As explicações são escritas <strong>com apoio de inteligência artificial</strong> e conferidas pela equipe contra a fonte primária — diretrizes, protocolos do Ministério da Saúde e artigos —, nunca copiadas de cursinho. Cada uma mostra a referência e o mês em que foi escrita, para você saber quando uma diretriz mudou depois. Achou um erro? Sinalize na própria questão: ela entra na fila de revisão e a correção chega a todo mundo.</p>
+    </section>
+
+    <section class="lp-final">
+      <h2 class="lp-titulo">Comece hoje. O seu eu do sexto ano agradece.</h2>
+      <div class="flex gap-1 mt-2 quebra" style="justify-content:center">
+        <button class="btn btn-primary" onclick="navigate('cadastro')">Solicitar cadastro</button>
+        <button class="btn btn-secondary" onclick="aposBancoPronto(() => fazerLoginDemo('aluno'))">${iconeSvg("user")} Ver como aluno</button>
+      </div>
+      <div class="text-xs muted mt-2">A conta de teste não tem memória: nada do que você fizer nela é guardado.</div>
+    </section>
     <footer class="site-footer">${CONFIG.nomePlataforma} — estudo para residência médica, feito para circular.</footer>
   </div>`;
 }
