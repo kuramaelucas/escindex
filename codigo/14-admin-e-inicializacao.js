@@ -741,15 +741,21 @@ function iniciarBanco(){
   }
   render();
   performance.mark("esc:primeira-tela");
+  // As checagens periódicas pulam a rodada com a aba escondida (não gastam
+  // bateria nem rede em segundo plano); ao voltar, o visibilitychange abaixo
+  // confere na hora. O lembrete de meta continua rodando: ele existe justamente
+  // para avisar com a aba em segundo plano.
+  const aCadaComAbaVisivel = (fn, ms) => { if(typeof setInterval==="function") setInterval(()=>{ if(!document.hidden) fn(); }, ms); };
   // lembrete de meta diária: checagem leve a cada minuto (ver função para
   // detalhes e limitação — só funciona com o navegador aberto).
   if(typeof setInterval==="function") setInterval(checarLembreteMetaDiaria, 60000);
-  // pedidos de acesso novos, para quem aprova cadastros (seção 2-C): confere
-  // logo que a pessoa entra e depois a cada dois minutos
-  if(typeof setInterval==="function") setInterval(vigiarPedidosDeAcesso, 20000);
+  // pedidos de acesso novos, para quem aprova cadastros (seção 2-C): a função
+  // limita a ida à nuvem a PEDIDOS_DE_ACESSO_INTERVALO_MS (dois minutos); este
+  // tique de 20 s só serve para notar a entrada de quem aprova
+  aCadaComAbaVisivel(vigiarPedidosDeAcesso, 20000);
   vigiarPedidosDeAcesso();
   // pedidos para entrar num grupo que a pessoa criou: só olha o que já está no navegador
-  if(typeof setInterval==="function") setInterval(checarPedidosDeEntradaNoGrupo, 20000);
+  aCadaComAbaVisivel(checarPedidosDeEntradaNoGrupo, 20000);
   checarPedidosDeEntradaNoGrupo();
   // cópia antiga da página: confere agora e sempre que a aba voltar a ser vista
   verificarVersaoNova(true);

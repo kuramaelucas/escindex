@@ -152,3 +152,17 @@ test("a lista de campos do corpo é a mesma no navegador (02b) e no gerador do �
   assert.ok(m, "CAMPOS_DO_CORPO não achada em 02b");
   assert.deepEqual(JSON.parse(m[1]), CAMPOS_DO_CORPO);
 });
+
+/* Campo de texto livre (nome, título, e-mail…) dentro de um onclick="…${…}" sem
+   escapeHtml/JSON.stringify quebra o atributo e abre XSS: uma aspa no nome vira
+   código. Ids gerados pela plataforma (uid) são seguros; texto de gente não. */
+test("nenhum onclick interpola texto livre sem escape", () => {
+  const achados = [];
+  const risco = /onclick="[^"]*\$\{[^}]*\.(nome|titulo|texto|label|email|descricao|rotulo|matricula|enunciado|apelido)\b/;
+  for(const [arq, s] of Object.entries(fontes)){
+    s.split("\n").forEach((l, i) => {
+      if(risco.test(l) && !/escapeHtml|JSON\.stringify/.test(l)) achados.push(`${arq}:${i + 1}`);
+    });
+  }
+  assert.deepEqual(achados, [], "texto livre dentro de onclick sem escapeHtml/JSON.stringify");
+});
