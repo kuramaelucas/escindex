@@ -439,6 +439,16 @@ function questoesDoBancoParaMim(){
   const f = faculdadeDaVisao();
   return f ? db.questoes.filter(q => !questaoRestritaDeOutraFaculdade(q, f)) : db.questoes;
 }
+/* COMPARTILHAR COM A FACULDADE. É um "grupo" de id fixo por faculdade
+   (`faculdade:epm-unifesp`): tudo o que já anda por grupoId (cartões e, depois,
+   questões enviadas) sobe e desce sem código novo, e o banco decide quem lê
+   pelo `perfis.faculdade` (e_do_grupo, esquema.sql). "Outra" não tem id: reunir
+   escolas que não têm nada em comum num só grupo não faria sentido. */
+function idDaFaculdade(u){
+  const f = faculdadeDoUsuario(u);
+  if(!u || f === "Outra") return null;
+  return "faculdade:" + f.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 /* Faculdade que a conta tinha antes de o campo existir: a padrão, salvo as
    pessoas conferidas à mão (CONFIG.faculdadesPorNome). */
 function faculdadeInicialDe(nome){

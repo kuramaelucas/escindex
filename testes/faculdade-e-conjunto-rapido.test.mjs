@@ -101,3 +101,26 @@ test("conjunto rápido: sugestão de 15, filtra por instituição e ano e inicia
     assert.ok(s.length >= 1 && s.length <= 3); assert.ok(s.every(b => b === banca));
   } finally { await contexto.close(); }
 });
+
+test("cartão compartilhado com a faculdade: só quem é da mesma faculdade o recebe; 'Outra' não compartilha", async () => {
+  const { contexto, p } = await abrir();
+  try{
+    await p.evaluate(() => { fazerLoginDemo("aluno"); usuarioAtual().faculdade = "EPM/Unifesp"; });
+    const r = await p.evaluate(() => {
+      const u = usuarioAtual();
+      db.flashcards.push({ id:"fc-f1", assuntoId:"", frente:"De colega", verso:"v", origem:"aluno", usuarioId:"u-colega", grupoId:idDaFaculdade(u), status:"ativo" });
+      db.flashcards.push({ id:"fc-f2", assuntoId:"", frente:"Meu", verso:"v", origem:"aluno", usuarioId:u.id, status:"ativo", criadoPor:u.id });
+      const recebe = () => flashcardsAtivos(u.id).some(c => c.id === "fc-f1");
+      const antes = recebe();
+      u.faculdade = "UEL"; const outraFaculdade = recebe();
+      u.faculdade = "EPM/Unifesp";
+      compartilharCartaoComFaculdade("fc-f2");
+      const meu = db.flashcards.find(c => c.id === "fc-f2").grupoId;
+      compartilharCartaoComFaculdade("fc-f2");
+      const volta = db.flashcards.find(c => c.id === "fc-f2").grupoId;
+      u.faculdade = "Outra";
+      return { antes, outraFaculdade, meu, volta, outra: idDaFaculdade(u), uel: (u.faculdade = "UEL", idDaFaculdade(u)) };
+    });
+    assert.deepEqual(r, { antes: true, outraFaculdade: false, meu: "faculdade:epm-unifesp", volta: undefined, outra: null, uel: "faculdade:uel" });
+  } finally { await contexto.close(); }
+});

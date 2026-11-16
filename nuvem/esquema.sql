@@ -131,7 +131,15 @@ as $$
             where m.grupo_id = gid and m.usuario_id = auth.uid() and m.status = 'aprovado')
       or exists (
            select 1 from public.grupos g
-            where g.id = gid and g.criado_por = auth.uid());
+            where g.id = gid and g.criado_por = auth.uid())
+      -- grupo "da faculdade" (id faculdade:<nome em minúsculas, sem símbolos>):
+      -- vale para toda conta aprovada cuja faculdade do perfil gera esse id.
+      -- "Outra" não forma grupo.
+      or (gid like 'faculdade:%' and exists (
+           select 1 from public.perfis p
+            where p.id = auth.uid() and p.status = 'aprovado'
+              and p.faculdade is not null and p.faculdade <> 'Outra'
+              and gid = 'faculdade:' || trim(both '-' from lower(regexp_replace(p.faculdade, '[^A-Za-z0-9]+', '-', 'g')))));
 $$;
 
 -- "É a dona do grupo?" — quem aprova os pedidos de entrada.
