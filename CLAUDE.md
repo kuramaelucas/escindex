@@ -79,7 +79,8 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `03c-nuvem-compartilhadas.js` | 2-C | `NUVEM_GLOBAIS`: livro de ouro, formatação, comentários, feedback, questões enviadas, correções |
 | `03d-nuvem-telas.js` | 2-C | trazer estudo local, entrar/sair pela tela, percentil, painel, cadastros, usuários, diagnóstico, senha, cartão da nuvem, gatilhos |
 | `03e-nuvem-grupos.js` | 2-C | grupos, membros e grupos de estudo na nuvem (`nuvemConferirGrupos`); cartões enviados à equipe ou ao grupo (`flashcards_enviados`) |
-| `04-utilitarios.js` | 3 | datas, paginação, janelas, download, gráficos SVG, rodízio, consultas por id, permissões |
+| `04-utilitarios.js` | 3 | datas, paginação, janelas, download, gráficos SVG, senha das contas locais, seções recolhíveis |
+| `04b-consultas-rodizio-e-permissoes.js` | 3-B | consultas por id (`getQuestao`…), rodízio das turmas, calendário e grupos de questões, permissões de admin (`podeAdmin`, `usuarioAtual`) |
 | `05a-motor-de-estudos.js` | 4 | bloco atual, dificuldade, respostas, ocultas, repetição espaçada, flashcards, sessões |
 | `05c-cronogramas-de-sessao.js` | 4 | sessão sem calendário, cronograma de Formados (sessão pelos assuntos da trilha, fases e ritmo por assunto: `fasesDosAssuntosFormado`, `proximoNivelDaFase`, `abrirRitmoDoFormado`) e do 6º ano |
 | `05b-desempenho-e-metas.js` | 4 | desempenho, calibração, metas, lembrete, o que mais cai, nota estimada |
