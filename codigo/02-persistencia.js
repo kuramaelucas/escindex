@@ -1085,13 +1085,25 @@ let _geracaoDb = 0; // incrementado a cada saveState(); invalida caches derivado
    (modal) quando a gravação acontece. */
 const ATRASO_GRAVACAO_MS = 300;
 let _gravacaoPendente = null;   // id do timer; null = nada sujo
+/* O navegador dá perto de 5 MB ao localStorage e o histórico só cresce: avisar
+   uma vez por sessão ao passar de 80%, enquanto ainda dá tempo de exportar ou
+   de usar a nuvem, em vez de só avisar quando a gravação já falhou. */
+const LIMITE_AVISO_ARMAZENAMENTO_KB = 4000;
+let _avisouArmazenamentoCheio = false;
+function avisarSeArmazenamentoPertoDoLimite(caracteres){
+  if(_avisouArmazenamentoCheio || caracteres / 1024 < LIMITE_AVISO_ARMAZENAMENTO_KB) return;
+  _avisouArmazenamentoCheio = true;
+  if(typeof toast === "function") toast("O armazenamento deste navegador está acima de 80%. Veja Perfil › Seus dados e, se puder, entre na conta da nuvem ou baixe uma cópia.", "err");
+}
 function gravarEstadoAgora(){
   if(_gravacaoPendente!==null){ clearTimeout(_gravacaoPendente); _gravacaoPendente = null; }
   // conta de teste (ver entrarComoAlunoTeste, seção 5): sem memória
   if(state.contaTeste) return true;
   let gravou = true;
   try{
-    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(compactarParaArmazenar(db)));
+    const texto = JSON.stringify(compactarParaArmazenar(db));
+    localStorage.setItem(CHAVE_STORAGE, texto);
+    avisarSeArmazenamentoPertoDoLimite(texto.length);
   }catch(e){
     gravou = false;
     console.error("Falha ao salvar dados", e);

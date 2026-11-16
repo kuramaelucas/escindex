@@ -539,3 +539,7 @@ curl -s -o /dev/null -w "%{http_code}\n" \
   (sem login, ninguém lê nada).
 - `404` — o `esquema.sql` ainda não foi rodado.
 - sem resposta — projeto pausado, endereço errado, ou sem internet.
+
+## Validade da sessão (JWT)
+
+O token de sessão fica no `localStorage` do aparelho (padrão de site estático), então quem conseguir rodar script na página consegue lê-lo. Para limitar o estrago, no painel do Supabase (Authentication › Sessions/JWT) mantenha a **validade do JWT curta** (o padrão de 1 hora serve) e deixe a renovação por *refresh token* ligada; o site já pede nova entrada quando o token vence (veja "Sessão expirada" abaixo). Não aumente a validade só para evitar essa tela.
