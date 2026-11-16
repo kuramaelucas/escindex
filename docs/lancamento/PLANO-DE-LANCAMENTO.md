@@ -19,7 +19,7 @@ Escrito em 11/11/2026. Atualize as caixas conforme avançar.
 | Pro | explicações autorais, simulados autorais, cronograma de Formados/6º ano, trilha, repetição espaçada, desempenho e nota estimada, PDF | R$ 29–39/mês ou R$ 199–249/ano |
 | Bolsa | Pro gratuito | Prouni/FIES, renda, universidade pública do interior — justificativa simples |
 
-- Cota pública de bolsas (ex.: 1 bolsa a cada 5 assinantes) — divulgar o número.
+- **Decidido (16/11/2026):** 1 bolsa a cada 5 cadastros pagos, sujeita a avaliação; e, no lançamento, bolsa para todos os alunos cotistas de renda de 10 faculdades públicas de medicina (lista das 10 e forma de comprovação: a definir). Já anunciado na página inicial.
 - Pagamento: Mercado Pago ou Asaas (Pix + cartão recorrente, sem mensalidade fixa).
 - Preço de fundador para quem participou do beta (ex.: R$ 149/ano).
 

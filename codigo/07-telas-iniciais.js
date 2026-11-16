@@ -82,6 +82,13 @@ function renderLanding(n){
         </div>`).join("")}
     </div>
     <div class="card mt-3">
+      <div class="card-title">${iconeSvg("users")} Acesso para quem não pode pagar</div>
+      <div class="grid grid-2 mt-1 text-sm" style="line-height:1.6">
+        <div><strong>1 bolsa a cada 5 assinaturas.</strong> Para cada cinco cadastros pagos, uma bolsa de acesso completo é concedida a quem pedir e precisar, sujeita a avaliação.</div>
+        <div><strong>Bolsas desde o primeiro dia.</strong> No lançamento, todos os alunos que ingressaram por cota de renda em 10 faculdades públicas de medicina recebem acesso completo, sem custo.</div>
+      </div>
+    </div>
+    <div class="card mt-3">
       <div class="card-title">${iconeSvg("check")} Como as explicações são feitas</div>
       <p class="text-sm mt-1" style="line-height:1.65">As explicações são escritas <strong>com apoio de inteligência artificial</strong> e conferidas pela equipe contra a fonte primária — diretrizes, protocolos do Ministério da Saúde e artigos —, nunca copiadas de cursinho. Cada uma mostra a referência e o mês em que foi escrita, para você saber quando uma diretriz mudou depois.</p>
       <p class="text-sm mt-2" style="line-height:1.65">Achou um erro? Sinalize na própria questão: ela entra na fila de revisão e a correção chega a todo mundo.</p>
