@@ -51,6 +51,46 @@ function svgCurvaDoEsquecimento(){
     <text x="214" y="60" class="lp-rotulo lp-rotulo-com">com revisões</text>
   </svg>`;
 }
+/* Perguntas frequentes da landing. Texto fixo de propósito: muda junto com as
+   regras de preço e bolsa (docs/lancamento/PLANO-DE-LANCAMENTO.md). */
+const PERGUNTAS_DA_LANDING = [
+  ["Preciso pagar para usar?", "Não para o essencial: provas antigas, responder questões e ver o gabarito ficam abertos a todos. O plano completo — explicações, simulados, cronograma, revisão espaçada e desempenho — terá preço pensado para estudante, anunciado no lançamento."],
+  ["Como funciona a bolsa?", "Para cada cinco cadastros pagos, uma bolsa de acesso completo é concedida a quem pedir, sujeita a avaliação. No lançamento, os alunos que ingressaram por cota de renda em 10 faculdades públicas de medicina recebem a bolsa direto, sem precisar pedir."],
+  ["Para quem é o " + CONFIG.nomePlataforma + "?", "Para quem se prepara para a prova de residência médica: alunos do internato e médicos já formados. Há um cronograma próprio para quem já se formou e estuda por conta."],
+  ["As explicações são confiáveis?", "São escritas com apoio de inteligência artificial e conferidas contra a fonte primária, com a referência e a data à vista. Erros acontecem — por isso cada questão tem um botão para sinalizar, e a correção chega a todo mundo."],
+  ["Funciona no celular? E sem internet?", "Sim. Dá para instalar como aplicativo no celular, e as questões já baixadas continuam disponíveis sem internet; o progresso sincroniza quando a conexão volta."],
+  ["Meus dados ficam seguros?", "Guardamos só o necessário para o seu estudo funcionar (cadastro e respostas). Você pode baixar ou apagar seus dados a qualquer momento pelo Perfil."],
+];
+/* Questão de exemplo da landing: autoral e escrita aqui, não tirada de dados/,
+   porque a landing aparece antes de o conteúdo carregar. Escolher uma
+   alternativa revela o gabarito e a explicação sem sair da página. */
+const QUESTAO_DE_EXEMPLO = {
+  enunciado: "Homem de 68 anos, com doença renal crônica, chega ao pronto-socorro com fraqueza. Potássio sérico de 7,4 mEq/L; o eletrocardiograma mostra ondas T apiculadas e alargamento do QRS. Qual é a primeira medida?",
+  alternativas: ["Furosemida endovenosa", "Gluconato de cálcio endovenoso", "Resina de troca (poliestirenossulfonato)", "Hemodiálise de urgência"],
+  gabarito: 1,
+  explicacao: "Dicas do enunciado: potássio de **7,4 mEq/L** (normal 3,5–5,0) com **alteração no eletrocardiograma** (T apiculada, QRS largo) — hipercalemia grave, com risco iminente de arritmia. O cálcio não baixa o potássio: ele estabiliza a membrana do miócito, restaurando a diferença entre o potencial de repouso e o limiar, e age em minutos. Por isso vem primeiro; depois, insulina com glicose (e beta-agonista) desloca o potássio para dentro das células, e só então se trata de eliminá-lo. Furosemida e resina eliminam potássio, mas demoram horas. A hemodiálise é definitiva e pode ser necessária neste paciente renal crônico, mas leva tempo para ser iniciada — o coração precisa ser protegido antes.",
+};
+function htmlQuestaoDeExemplo(){
+  const q = QUESTAO_DE_EXEMPLO;
+  const negrito = t => escapeHtml(t).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  return `<div class="lp-figura lp-exemplo" id="lpExemplo">
+    <div class="text-xs muted">Clínica médica · Nefrologia</div>
+    <p class="mt-1" style="line-height:1.6">${escapeHtml(q.enunciado)}</p>
+    <div class="lp-alternativas mt-2">${q.alternativas.map((a,i)=>`<button type="button" class="lp-alt" onclick="responderQuestaoDeExemplo(${i})"><span>${"ABCD"[i]}</span>${escapeHtml(a)}</button>`).join("")}</div>
+    <div class="lp-explicacao text-sm mt-2" hidden><div class="peso-700 lp-resultado"></div><p class="mt-1">${negrito(q.explicacao)}</p></div>
+  </div>`;
+}
+function responderQuestaoDeExemplo(i){
+  const caixa = document.getElementById("lpExemplo"); if(!caixa) return;
+  const certa = QUESTAO_DE_EXEMPLO.gabarito;
+  caixa.querySelectorAll(".lp-alt").forEach((b,j)=>{
+    b.disabled = true;
+    b.classList.toggle("lp-alt-certa", j === certa);
+    b.classList.toggle("lp-alt-errada", j === i && i !== certa);
+  });
+  const exp = caixa.querySelector(".lp-explicacao"); exp.hidden = false;
+  exp.querySelector(".lp-resultado").textContent = i === certa ? "Você acertou." : "Não foi dessa vez — a resposta é a "+"ABCD"[certa]+".";
+}
 function renderLanding(n){
   if(n === undefined) n = numerosDaLanding();   // false = moldura sem números
   const numero = x => x.toLocaleString("pt-BR");
@@ -128,10 +168,28 @@ function renderLanding(n){
       </div>
     </section>
 
+    <section class="lp-secao lp-duas">
+      <div>
+        <div class="lp-sobre">Experimente</div>
+        <h2 class="lp-titulo">Uma questão de exemplo</h2>
+        <p class="lp-texto">É assim que cada questão funciona: você escolhe, vê se acertou e lê o porquê — inclusive o que torna as outras alternativas erradas.</p>
+      </div>
+      ${htmlQuestaoDeExemplo()}
+    </section>
+
     <section class="lp-secao">
       <div class="lp-sobre">Transparência</div>
-      <h2 class="lp-titulo">Como as explicações são feitas</h2>
-      <p class="lp-texto">As explicações são escritas <strong>com apoio de inteligência artificial</strong> e conferidas pela equipe contra a fonte primária — diretrizes, protocolos do Ministério da Saúde e artigos —, nunca copiadas de cursinho. Cada uma mostra a referência e o mês em que foi escrita, para você saber quando uma diretriz mudou depois. Achou um erro? Sinalize na própria questão: ela entra na fila de revisão e a correção chega a todo mundo.</p>
+      <h2 class="lp-titulo">Inteligência artificial a serviço do acesso</h2>
+      <p class="lp-texto">A inteligência artificial abriu um universo novo: ler uma diretriz de cem páginas, cruzar com os artigos que a sustentam e transformar tudo numa explicação clara deixou de ser trabalho de semanas. Isso muda quem pode ter acesso a material de qualidade — e é essa porta que o ${CONFIG.nomePlataforma} quer manter aberta.</p>
+      <p class="lp-texto">Por isso dizemos às claras: as explicações são escritas <strong>com apoio de inteligência artificial</strong> e conferidas pela equipe contra a fonte primária — diretrizes, protocolos do Ministério da Saúde e artigos. Cada uma mostra a referência e o mês em que foi escrita, para você saber quando uma diretriz mudou depois. Achou um erro? Sinalize na própria questão: ela entra na fila de revisão e a correção chega a todo mundo.</p>
+    </section>
+
+    <section class="lp-secao">
+      <div class="lp-sobre">Dúvidas</div>
+      <h2 class="lp-titulo">Perguntas frequentes</h2>
+      <div class="lp-perguntas mt-2">
+        ${PERGUNTAS_DA_LANDING.map(([pergunta,resposta])=>`<details><summary>${escapeHtml(pergunta)}</summary><p>${escapeHtml(resposta)}</p></details>`).join("")}
+      </div>
     </section>
 
     <section class="lp-final">
