@@ -124,3 +124,28 @@ test("cartão compartilhado com a faculdade: só quem é da mesma faculdade o re
     assert.deepEqual(r, { antes: true, outraFaculdade: false, meu: "faculdade:epm-unifesp", volta: undefined, outra: null, uel: "faculdade:uel" });
   } finally { await contexto.close(); }
 });
+
+test("questão compartilhada com a faculdade: destino no envio, visível só aos da faculdade, sobe para a nuvem", async () => {
+  const { contexto, p } = await abrir();
+  try{
+    await p.evaluate(() => { fazerLoginDemo("aluno"); usuarioAtual().faculdade = "EPM/Unifesp"; window.nuvemConectado = () => true; });
+    const r = await p.evaluate(() => {
+      const u = usuarioAtual();
+      const destinos = opcoesDestinoImportacao().map(d => d[0]);
+      const g = grupoDoDestino(u, "faculdade");
+      const base = questoesAtivas(true)[0];
+      const q = Object.assign(questaoInteira(base), { id: "q-fac-1", grupoId: idDaFaculdade(u), status: "ativa", real: false });
+      db.questoes.push(q);
+      const veEpm = questoesAtivas(idsDeGruposEFaculdade(u)).some(x => x.id === "q-fac-1");
+      const semOpcao = questoesAtivas(idsDosGruposDoUsuario(u)).some(x => x.id === "q-fac-1");
+      const sobe = questaoSobeParaNuvem(q);
+      u.faculdade = "UEL";
+      const veUel = questoesAtivas(idsDeGruposEFaculdade(u)).some(x => x.id === "q-fac-1");
+      u.faculdade = "Outra";
+      return { destinos, nome: g && g.nome, veEpm, semOpcao, sobe, veUel, outra: grupoDoDestino(u, "faculdade") };
+    });
+    assert.ok(r.destinos.includes("faculdade"));
+    assert.equal(r.nome, "toda a faculdade EPM/Unifesp");
+    assert.deepEqual([r.veEpm, r.semOpcao, r.sobe, r.veUel, r.outra], [true, false, true, false, null]);
+  } finally { await contexto.close(); }
+});

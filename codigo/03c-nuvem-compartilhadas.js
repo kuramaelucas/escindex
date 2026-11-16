@@ -279,7 +279,7 @@ function questaoDaSemente(id){
 // a questão da pasta dados/ já é de todos e não sobe. A de grupo sobe com o id do
 // grupo (só os membros a recebem) — se o grupo existe na nuvem (grupoDeNuvem, 03e):
 // o calendário oficial não é grupo de ninguém.
-function questaoSobeParaNuvem(q){ return !!q && !questaoDaSemente(q.id) && (!q.grupoId || grupoDeNuvem(getGrupo(q.grupoId))); }
+function questaoSobeParaNuvem(q){ return !!q && !questaoDaSemente(q.id) && (!q.grupoId || ehGrupoDaFaculdade(q.grupoId) || grupoDeNuvem(getGrupo(q.grupoId))); }
 function euNaNuvem(){ return nuvemSessao ? db.usuarios.find(x => x.id === nuvemSessao.usuarioId) || null : null; }
 function podeEnviarQuestoesNaNuvem(){ const eu = euNaNuvem(); return !!(eu && eu.status === "aprovado"); }
 function ehUuid(t){ return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(t || "")); }

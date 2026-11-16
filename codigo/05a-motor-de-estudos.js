@@ -674,7 +674,7 @@ function cartaoDeQuestao(q){
 function flashcardsAtivos(usuarioId){
   const uid = usuarioId!==undefined ? usuarioId : (usuarioAtual() ? usuarioAtual().id : null);
   const dono = uid ? getUsuario(uid) : null;
-  const gruposDele = dono ? idsDosGruposDoUsuario(dono).concat(idDaFaculdade(dono) || []) : [];   // o grupo da faculdade vale como um grupo seu
+  const gruposDele = dono ? idsDeGruposEFaculdade(dono) : [];   // o grupo da faculdade vale como um grupo seu
   return (db.flashcards||[]).filter(c=>{
     if(c.status==="arquivado") return false;
     if(!c.usuarioId) return true;        // cartão da equipe: visível a todos

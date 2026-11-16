@@ -20,7 +20,7 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 >
 > | Data | Novidade (tabela/coluna) | Sem rodar |
 > | --- | --- | --- |
-> | 16/11 | Compartilhar cartão com a faculdade: `e_do_grupo()` passou a aceitar o id `faculdade:<nome>` (vale para quem tem essa faculdade no perfil). **Rodar `nuvem/esquema.sql` de novo** (depois da linha da faculdade abaixo). | o cartão compartilhado só chega a colegas quando o banco aceitar o grupo; sem rodar, a linha é recusada e o cartão fica só com quem o escreveu |
+> | 16/11 | Compartilhar cartão **e questão** com a faculdade: `e_do_grupo()` passou a aceitar o id `faculdade:<nome>` (vale para quem tem essa faculdade no perfil). **Rodar `nuvem/esquema.sql` de novo** (depois da linha da faculdade abaixo). | o cartão compartilhado só chega a colegas quando o banco aceitar o grupo; sem rodar, a linha é recusada e o cartão fica só com quem o escreveu |
 > | 16/11 | Faculdade do aluno: `perfis.faculdade` + gatilhos (cadastro grava, só a equipe muda depois). **Rodar `nuvem/esquema.sql` de novo.** | a faculdade vale só no aparelho: o conteúdo restrito à EPM (Turma 89, simulados USP-SP) segue a escolha local do cadastro, e quem escolheu UEL em outro aparelho entra como EPM/Unifesp |
 > | 12/11 | Dúvida resolvida: `comentarios.resolvido` (**já criada no banco real em 12/11/2026**) | a marca de "resolvida" vale só no aparelho; a dúvida volta à fila nos outros |
 > | 08/11 | Trilha de Formado(a): `perfis.trilha`, `painel_turma()` recriada | assuntos pulados valem só no aparelho; a seção "Trilha dos Formados" do Painel não aparece na nuvem |

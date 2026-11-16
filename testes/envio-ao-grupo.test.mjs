@@ -147,7 +147,7 @@ test("sem grupo na nuvem não existe destino do grupo: o padrão é sugerir e na
       const out = importarItensAnalisados(res, "grupo");
       return { opcoes, dica, importadas: out.importadas, semGrupo: !!out.semGrupo, grupoNaQuestao: db.questoes.filter(q => q.grupoId).length };
     }, LOTE);
-    assert.deepEqual(r.opcoes, ["sugerir"]);
+    assert.deepEqual(r.opcoes, ["faculdade", "sugerir"]);   // "faculdade" é o destino de toda a faculdade, não de um grupo
     assert.equal(r.dica, true, "a tela explica como entrar num grupo");
     assert.equal(r.importadas, 0); assert.equal(r.semGrupo, true);
     assert.equal(r.grupoNaQuestao, 0, "nada é criado no calendário oficial");
@@ -173,7 +173,7 @@ test("Meu Grupo abre o envio já apontando para o grupo, o destino sobrevive à 
       const aviso = document.getElementById("previewImportacao").innerText;
       return { opcoes, sel, depoisDoModo, botao, aviso };
     }, [g1, g2, LOTE]);
-    assert.deepEqual(r.opcoes, ["grupo", "grupo2", "sugerir"]);
+    assert.deepEqual(r.opcoes, ["grupo", "grupo2", "faculdade", "sugerir"]);
     assert.equal(r.sel, "grupo2"); assert.equal(r.depoisDoModo, "grupo2");
     assert.match(r.botao, /para o grupo Grupo Dois/);
     assert.match(r.aviso, /Destino: só o grupo Grupo Dois/);

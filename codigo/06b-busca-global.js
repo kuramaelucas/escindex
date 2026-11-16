@@ -21,7 +21,7 @@ function buscaNormalizar(s){
 }
 function buscaComoAluno(u){ return !!u && (u.papel==="aluno" || state.modoAluno); }
 function buscaPoolDeQuestoes(u){
-  return buscaComoAluno(u) ? questoesParaEstudo(u.id, idsDosGruposDoUsuario(u)) : db.questoes;
+  return buscaComoAluno(u) ? questoesParaEstudo(u.id, idsDeGruposEFaculdade(u)) : db.questoes;
 }
 /* Normalizar ~5 mil enunciados a cada tecla travaria o celular; por isso o
    texto de cada questão é normalizado uma vez e só refeito quando o banco

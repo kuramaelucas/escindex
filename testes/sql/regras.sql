@@ -351,3 +351,10 @@ select pg_temp.igual((select count(*) from flashcards_enviados where id='ff1'), 
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a2',false);
 select pg_temp.igual((select count(*) from flashcards_enviados where id='ff1'), 0, 'aluno de outra faculdade não lê o cartão da faculdade');
 select pg_temp.tem_de_falhar($$insert into flashcards_enviados(id,autor_id,status,grupo_id) values ('ff2','00000000-0000-0000-0000-0000000000a2','aprovado','faculdade:epm-unifesp')$$, 'cartão para a faculdade de outra pessoa');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+insert into questoes_enviadas(id,autor_id,autor_nome,status,grupo_id,dados) values ('qf1','00000000-0000-0000-0000-00000000000a','Aluna A','aprovada','faculdade:epm-unifesp','{"enunciado":"da faculdade"}');
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status,grupo_id) values ('qf2','00000000-0000-0000-0000-00000000000a','aprovada','faculdade:uel')$$, 'questão para a faculdade de outra pessoa');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qf1'), 1, 'colega da mesma faculdade lê a questão da faculdade');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a2',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qf1'), 0, 'aluno de outra faculdade não lê a questão da faculdade');
