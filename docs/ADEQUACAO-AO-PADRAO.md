@@ -4,11 +4,11 @@ Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões
 
 ```
 12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 3982 de 12137 mencionam mecanismo E epidemiologia (32.8%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 5411 de 12137 mencionam mecanismo E epidemiologia (44.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
 Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
 Justificativa — o que falta:
-   7144  sem mecanismo/fisiopatologia
-   5897  sem epidemiologia
+   5743  sem mecanismo/fisiopatologia
+   4679  sem epidemiologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -37,11 +37,11 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | tp-2024-1 | 120 | 0 | 0 | 118/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (105) |
 | tp-2025-1 | 120 | 0 | 0 | 117/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (108) |
 | tp-2025-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (98) |
-| unicamp-2024-dissertativa | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (82) |
-| uspsp-simulado-1 | 120 | 0 | 0 | 120/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (88) |
-| uspsp-simulado-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (82) |
-| uspsp-simulado-5 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (83) |
-| uspsp-simulado-4 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (81) |
+| unicamp-2024-dissertativa | 120 | 0 | 120 | 120/0/0 | — |
+| uspsp-simulado-1 | 120 | 0 | 80 | 120/0/0 | sem mecanismo/fisiopatologia (40) |
+| uspsp-simulado-2 | 120 | 0 | 87 | 120/0/0 | sem mecanismo/fisiopatologia (33) |
+| uspsp-simulado-5 | 120 | 0 | 120 | 120/0/0 | — |
+| uspsp-simulado-4 | 120 | 0 | 74 | 120/0/0 | sem mecanismo/fisiopatologia (46) |
 | uspsp-simulado-3 | 120 | 0 | 98 | 120/0/0 | sem mecanismo/fisiopatologia (22); sem epidemiologia (12) |
 | tp-2026-1 | 120 | 3 | 120 | 117/0/0 | — |
 | unifesp-2024-adaptado | 100 | 0 | 1 | 79/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (61) |
@@ -49,16 +49,16 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |
 | simulado-epm-4 | 100 | 0 | 1 | 45/0/42 | sem mecanismo/fisiopatologia (99); sem epidemiologia (84) |
 | simulado-epm-5 | 100 | 0 | 1 | 55/0/38 | sem mecanismo/fisiopatologia (94); sem epidemiologia (54) |
-| santacasa-2021 | 100 | 0 | 5 | 100/0/0 | sem mecanismo/fisiopatologia (93); sem epidemiologia (81) |
-| santacasa-2022 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (91); sem epidemiologia (85) |
-| santacasa-2023 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (92); sem epidemiologia (79) |
-| santacasa-2025 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (87) |
-| santacasa-2026 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (87) |
+| santacasa-2021 | 100 | 0 | 99 | 100/0/0 | sem mecanismo/fisiopatologia (1); sem epidemiologia (1) |
+| santacasa-2022 | 100 | 0 | 100 | 100/0/0 | — |
+| santacasa-2023 | 100 | 0 | 100 | 100/0/0 | — |
+| santacasa-2025 | 100 | 0 | 100 | 100/0/0 | — |
+| santacasa-2026 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2022 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2023 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2024 | 100 | 0 | 100 | 100/0/0 | — |
 | usprp-2025 | 100 | 0 | 100 | 100/0/0 | — |
-| usprp-2026 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (84) |
+| usprp-2026 | 100 | 0 | 100 | 100/0/0 | — |
 | amrigs-2022 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (94); sem epidemiologia (81) |
 | amrigs-2023 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (77) |
 | amrigs-2024 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (96); sem epidemiologia (76) |
@@ -82,7 +82,7 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | unesp-2024 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (83) |
 | unesp-2025 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (83) |
 | unesp-2026 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (99); sem epidemiologia (75) |
-| unicamp-2025-dissertativa | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (81) |
+| unicamp-2025-dissertativa | 100 | 0 | 100 | 100/0/0 | — |
 | simulado-epm-2026-10 | 100 | 0 | 84 | 100/0/0 | sem epidemiologia (12); sem mecanismo/fisiopatologia (5) |
 | sirio-2023 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (93) |
 | sirio-2024 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (99) |
@@ -107,8 +107,8 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | famerp-2023 | 80 | 0 | 0 | 80/0/0 | sem mecanismo/fisiopatologia (79); sem epidemiologia (76) |
 | famerp-2025 | 80 | 0 | 4 | 80/0/0 | sem mecanismo/fisiopatologia (75); sem epidemiologia (65) |
 | famerp-2022 | 80 | 0 | 1 | 80/0/0 | sem mecanismo/fisiopatologia (78); sem epidemiologia (68) |
-| unicamp-2022 | 80 | 0 | 3 | 80/0/0 | sem mecanismo/fisiopatologia (76); sem epidemiologia (63) |
-| unicamp-2023 | 80 | 0 | 1 | 80/0/0 | sem mecanismo/fisiopatologia (77); sem epidemiologia (68) |
+| unicamp-2022 | 80 | 0 | 80 | 80/0/0 | — |
+| unicamp-2023 | 80 | 0 | 80 | 80/0/0 | — |
 | didatico | 135 | 56 | 135 | 0/34/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
 | unifesp-2022 | 100 | 24 | 81 | 1/0/75 | sem epidemiologia (18); sem mecanismo/fisiopatologia (6) |
 | einstein-2022 | 75 | 0 | 24 | 0/0/72 | sem epidemiologia (51); sem mecanismo/fisiopatologia (1) |
@@ -123,8 +123,8 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | unifesp-2023 | 100 | 29 | 86 | 4/0/65 | sem epidemiologia (13); sem mecanismo/fisiopatologia (10) |
 | famerp-2026 | 71 | 0 | 4 | 71/0/0 | sem mecanismo/fisiopatologia (66); sem epidemiologia (60) |
 | didatico-grad-endocardite | 63 | 0 | 9 | 63/0/0 | sem epidemiologia (54) |
-| unicamp-2022-dissertativa | 60 | 0 | 1 | 60/0/0 | sem mecanismo/fisiopatologia (59); sem epidemiologia (46) |
-| unicamp-2023-dissertativa | 60 | 0 | 0 | 60/0/0 | sem mecanismo/fisiopatologia (59); sem epidemiologia (42) |
+| unicamp-2022-dissertativa | 60 | 0 | 60 | 60/0/0 | — |
+| unicamp-2023-dissertativa | 60 | 0 | 60 | 60/0/0 | — |
 | einstein-2021 | 50 | 0 | 16 | 0/0/47 | sem epidemiologia (32); sem mecanismo/fisiopatologia (2) |
 | usp-2022 | 100 | 59 | 100 | 0/0/41 | — |
 | didatico-grad-sfiha | 35 | 0 | 9 | 35/0/0 | sem epidemiologia (26) |
