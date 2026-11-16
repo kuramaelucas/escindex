@@ -82,7 +82,7 @@ function buscaItensDeAssuntos(u, palavras){
   return db.taxonomia.assuntos
     .filter(a => comQuestao.has(a.id) && palavras.every(p => buscaNormalizar(a.nome).includes(p)))
     .slice(0, BUSCA_MAX_ASSUNTOS)
-    .map(a => ({ tipo:"Assunto", icone:"book", titulo:a.nome, detalhe:"Praticar até 15 questões deste assunto", acao:() => praticarAssunto(a.id) }));
+    .map(a => ({ tipo:"Assunto", icone:"book", titulo:a.nome, detalhe:"Escolher quantidade, instituições e anos (sugestão: 15 questões)", acao:() => abrirConjuntoRapido(a.id) }));
 }
 function buscaItensDeQuestoes(u, palavras){
   if(palavras.join("").length < BUSCA_MIN_LETRAS_QUESTAO) return [];

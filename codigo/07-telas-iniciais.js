@@ -361,6 +361,10 @@ function renderCadastro(){
         </select>
       </div>
       <div id="camposAluno">
+        <div class="field"><label class="label">Faculdade</label><select class="select" id="cadFaculdade">
+          ${CONFIG.faculdades.map(f=>`<option value="${escapeHtml(f)}" ${f===CONFIG.faculdadePadrao?"selected":""}>${escapeHtml(f)}</option>`).join("")}
+        </select>
+        <div class="hint mt-1">Define o que você enxerga: alguns simulados são só de alunos da EPM/Unifesp. Também é com quem você pode compartilhar questões e cartões.</div></div>
         <div class="field"><label class="label">Ano da faculdade</label><select class="select" id="cadAno">
           ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${a==="5º ano"?"selected":""}>${escapeHtml(a)}</option>`).join("")}
         </select>

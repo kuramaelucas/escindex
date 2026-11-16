@@ -421,3 +421,27 @@ function podeGerirConteudo(usuario){
   return podeAdmin("conteudo", usuario);
 }
 function usuarioAtual(){ return state.usuarioAtualId ? getUsuario(state.usuarioAtualId) : null; }
+/* FACULDADE. `faculdadeDoUsuario` nunca devolve vazio (conta antiga vale a
+   padrão). `faculdadeDaVisao` é a faculdade que RESTRINGE o que a tela atual
+   mostra: só aluno é restringido — a equipe confere e corrige tudo, então
+   para ela devolve "" (sem restrição). */
+function faculdadeDoUsuario(u){ return (u && u.faculdade) || CONFIG.faculdadePadrao; }
+function faculdadeDaVisao(){
+  const u = usuarioAtual();
+  return (u && u.papel === "aluno") ? faculdadeDoUsuario(u) : "";
+}
+function questaoRestritaDeOutraFaculdade(q, faculdade){
+  if(!q || !q.real || !faculdade) return false;
+  return CONFIG.conteudoRestritoAFaculdade.some(r => r.banca.test(q.banca || "") && !r.faculdades.includes(faculdade));
+}
+// o banco inteiro menos o que é restrito a outra faculdade (para listas de filtro: bancas, anos)
+function questoesDoBancoParaMim(){
+  const f = faculdadeDaVisao();
+  return f ? db.questoes.filter(q => !questaoRestritaDeOutraFaculdade(q, f)) : db.questoes;
+}
+/* Faculdade que a conta tinha antes de o campo existir: a padrão, salvo as
+   pessoas conferidas à mão (CONFIG.faculdadesPorNome). */
+function faculdadeInicialDe(nome){
+  const achada = CONFIG.faculdadesPorNome.find(r => r.nome.test(nome || ""));
+  return achada ? achada.faculdade : CONFIG.faculdadePadrao;
+}

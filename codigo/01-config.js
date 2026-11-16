@@ -197,6 +197,21 @@ const CONFIG = {
   // ano usado quando o aluno ainda não informou o dele (e para o calendário
   // oficial, que atende todos os anos)
   anoFaculdadePadrao: "6º ano",
+  /* FACULDADE DE ORIGEM do aluno (perguntada no cadastro). Ela decide o que a
+     pessoa enxerga: parte do conteúdo é da EPM/Unifesp (turma, caderno
+     aplicado lá) e não deve ir para quem estuda em outra escola. Quem
+     já tinha conta antes do campo existir vale EPM/Unifesp, exceto as
+     pessoas de `faculdadesPorNome` (conferidas à mão com a coordenação). */
+  faculdades: ["EPM/Unifesp", "UEL", "Outra"],
+  faculdadePadrao: "EPM/Unifesp",
+  faculdadesPorNome: [{ nome: /^\s*matheus\s+arabori\b/i, faculdade: "UEL" }],
+  /* Conteúdo que só alunos de certas faculdades enxergam: o Simulado da Turma
+     89 e os simulados reais da USP-SP. Casa pela banca da questão real. Equipe
+     (professor, residente, admin) enxerga tudo, porque confere e corrige. */
+  conteudoRestritoAFaculdade: [
+    { banca: /^Simulado EPM\/UNIFESP \(Turma 89\)/, faculdades: ["EPM/Unifesp"] },
+    { banca: /^Simulados USP SP/, faculdades: ["EPM/Unifesp"] },
+  ],
   /* PROVA-ALVO: a prova para a qual a pessoa estuda. Só existe para quem está
      no 6º ano e para Formado(a) (`anos`): do 3º ao 5º a data seria um palpite
      de anos, e a plataforma prefere não ter prova-alvo a ter uma que não é da

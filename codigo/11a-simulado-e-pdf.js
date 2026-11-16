@@ -23,14 +23,14 @@ function renderCriarSimulado(){
           <div class="label">Ano</div>
           <div class="flex gap-1"><button class="link-btn text-xs" onclick="marcarUltimos5Caixas('csAno')">últimos 5 anos</button><button class="link-btn text-xs" onclick="marcarTodasCaixas('csAno',false)">limpar</button></div>
         </div>
-        <div style="max-height:150px;overflow-y:auto">${[...new Set(db.questoes.map(q=>q.ano))].sort((a,b)=>b-a).map(ano=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csAno" value="${ano}"> ${ano}</label>`).join("")}</div>
+        <div style="max-height:150px;overflow-y:auto">${[...new Set(questoesDoBancoParaMim().map(q=>q.ano))].sort((a,b)=>b-a).map(ano=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csAno" value="${ano}"> ${ano}</label>`).join("")}</div>
       </div>
       <div>
         <div class="flex justify-between items-center mb-1">
           <div class="label">Instituição (uma ou mais)</div>
           <div class="flex gap-1"><button class="link-btn text-xs" onclick="marcarTodasCaixas('csBanca',false)">limpar</button></div>
         </div>
-        <div style="max-height:150px;overflow-y:auto">${[...new Set(db.questoes.map(q=>q.banca))].sort().map(b=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csBanca" value="${escapeHtml(b)}"> ${escapeHtml(b)}</label>`).join("")}</div>
+        <div style="max-height:150px;overflow-y:auto">${[...new Set(questoesDoBancoParaMim().map(q=>q.banca))].sort().map(b=>`<label class="checkbox-row mb-1"><input type="checkbox" class="csBanca" value="${escapeHtml(b)}"> ${escapeHtml(b)}</label>`).join("")}</div>
         <button class="btn btn-secondary mt-2" onclick="buscarCandidatasSimulado()">Buscar questões</button>
       </div>
     </div>
@@ -240,12 +240,12 @@ function renderMaterialPDF(){
       <div class="field"><label class="label">Instituição</label>
         <select class="select" onchange="atualizarCampoPDF('banca', this.value)">
           <option value="">Todas</option>
-          ${[...new Set(db.questoes.map(q=>q.banca))].sort().map(b=>`<option value="${escapeHtml(b)}" ${ctx.banca===b?"selected":""}>${escapeHtml(b)}</option>`).join("")}
+          ${[...new Set(questoesDoBancoParaMim().map(q=>q.banca))].sort().map(b=>`<option value="${escapeHtml(b)}" ${ctx.banca===b?"selected":""}>${escapeHtml(b)}</option>`).join("")}
         </select></div>
       <div class="field"><label class="label">Ano</label>
         <select class="select" onchange="atualizarCampoPDF('ano', this.value)">
           <option value="">Todos</option>
-          ${[...new Set(db.questoes.map(q=>q.ano))].sort((a,b)=>b-a).map(a=>`<option value="${a}" ${String(ctx.ano)===String(a)?"selected":""}>${a}</option>`).join("")}
+          ${[...new Set(questoesDoBancoParaMim().map(q=>q.ano))].sort((a,b)=>b-a).map(a=>`<option value="${a}" ${String(ctx.ano)===String(a)?"selected":""}>${a}</option>`).join("")}
         </select></div>
     </div>
     <div class="field" style="max-width:220px"><label class="label">Quantidade de questões</label>

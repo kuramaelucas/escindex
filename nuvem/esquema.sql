@@ -163,6 +163,7 @@ create table if not exists public.perfis (
                           check (status in ('pendente', 'aprovado', 'rejeitado', 'inativo')),
   nivel_admin           text        check (nivel_admin in ('master', 'coordenacao', 'moderador')),
   ano_faculdade         text,
+  faculdade             text,
   bloco_atual_id        text,
   grupo_id              text,
   meta_questoes_dia     integer,
@@ -839,6 +840,11 @@ create table if not exists public.flashcards_enviados (
 create index if not exists flashcards_enviados_sync_idx on public.flashcards_enviados (atualizado_em);
 create index if not exists flashcards_enviados_grupo_idx on public.flashcards_enviados (grupo_id);
 
+-- Faculdade de origem (perguntada no cadastro): decide quem enxerga o conteúdo
+-- restrito da EPM/Unifesp e com quem se compartilha por faculdade. O aluno
+-- escolhe no cadastro; depois só a equipe muda (gatilho da seção 13).
+alter table public.perfis add column if not exists faculdade text;
+
 -- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
@@ -874,13 +880,14 @@ security definer
 set search_path = public, pg_temp
 as $$
 begin
-  insert into public.perfis (id, nome, email, matricula, ano_faculdade, papel, status)
+  insert into public.perfis (id, nome, email, matricula, ano_faculdade, faculdade, papel, status)
   values (
     new.id,
     coalesce(new.raw_user_meta_data ->> 'nome', ''),
     new.email,
     coalesce(new.raw_user_meta_data ->> 'matricula', ''),
     nullif(new.raw_user_meta_data ->> 'ano_faculdade', ''),
+    nullif(new.raw_user_meta_data ->> 'faculdade', ''),
     'aluno',
     'pendente'
   )
@@ -925,6 +932,7 @@ begin
     new.status      := old.status;
     new.nivel_admin := old.nivel_admin;
     new.email       := old.email;   -- o e-mail é o de auth.users, não se edita aqui
+    new.faculdade   := coalesce(old.faculdade, new.faculdade);   -- preenche uma vez; depois só a equipe muda
   end if;
   return new;
 end;

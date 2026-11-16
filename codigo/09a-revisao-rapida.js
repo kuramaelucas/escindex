@@ -149,6 +149,8 @@ function renderFlashcardsInicio(u){
       </div>
       <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("plus")} Novo cartão</button>
+        <button class="btn btn-secondary btn-sm" onclick="baixarMeusCartoes()" title="Baixa seus cartões num arquivo, para levar a outra conta ou passar a um colega">Baixar meus cartões</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirImportarCartoes()" title="Traz cartões de um arquivo baixado por você ou por um colega">Importar cartões</button>
         <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("cards")} Adicionar baralho</button>
       </div>
     </div>

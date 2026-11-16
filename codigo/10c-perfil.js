@@ -18,6 +18,7 @@ function renderPerfil(){
     <div class="field"><label class="label">Nome</label><div>${escapeHtml(u.nome)}</div></div>
     <div class="field"><label class="label">E-mail</label><div>${escapeHtml(u.email)}</div></div>
     <div class="field"><label class="label">Matrícula</label><div>${escapeHtml(u.matricula)}</div></div>
+    ${u.papel==="aluno" ? `<div class="field"><label class="label">Faculdade</label><div>${escapeHtml(faculdadeDoUsuario(u))}</div><div class="hint mt-1">Escolhida no cadastro. Se estiver errada, peça à coordenação para corrigir.</div></div>` : ""}
     ${u.papel==="aluno" ? (() => { const g = getGrupoDoUsuario(u); return `<div class="field"><label class="label">Turma / Grupo</label><div>${escapeHtml(g.nome)}${g.oficial ? ' <span class="badge badge-muted">calendário oficial</span>' : ' <span class="badge badge-accent">'+escapeHtml(rotuloDoGrupo(g, u))+'</span>'} <button class="link-btn" onclick="navigate('meu-grupo')">gerenciar</button></div>${g.oficial?`<div class="hint mt-1">${temCalendarioProprio(u.anoFaculdade) ? "Você ainda não escolheu a sua turma do rodízio — em Meu Grupo." : "Você não segue um grupo — em Meu Grupo dá para entrar num ou criar o seu."}</div>`:""}</div>`; })() : ""}
     ${u.papel==="aluno" ? `<div class="field"><label class="label">Ano da faculdade</label>
       <select class="select" id="perfilAno" onchange="salvarAnoFaculdade()">
