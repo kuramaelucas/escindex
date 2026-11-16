@@ -185,7 +185,7 @@ function renderImportarQuestoes(){
   const ctx = contextoImportacao();
   const destinos = opcoesDestinoImportacao();
   const meusGrupos = u.papel==="aluno"||u.papel==="residente" ? gruposDoUsuario(u) : [];
-  const semDestinoDeGrupo = (u.papel==="aluno"||u.papel==="residente") && !destinos.some(([v])=>destinoEhGrupo(v));
+  const semDestinoDeGrupo = (u.papel==="aluno"||u.papel==="residente") && !destinos.some(([v])=>destinoEhGrupo(v) && v!=="faculdade");
   const destinoEscolhido = destinos.some(([v])=>v===ctx.destino) ? ctx.destino : destinos[0][0];
   return `
   <div class="page-header"><h2>Enviar Questões</h2>
@@ -764,6 +764,7 @@ function textoDoDestinoImportacao(destino){
   const u = usuarioAtual();
   if(destinoEhGrupo(destino)){
     const g = grupoDoDestino(u, destino);
+    if(g && g.faculdade) return "todos de "+faculdadeDoUsuario(u)+" vão ver estas questões; elas ficam disponíveis na hora (e sobem para a nuvem).";
     return g ? "só o grupo "+g.nome+" ("+membrosDoGrupo(g).length+" "+flexionar(membrosDoGrupo(g).length, "integrante(s)")+") vai ver estas questões; elas ficam disponíveis na hora." : "";
   }
   if(destino==="sugerir") return "banco geral, depois da aprovação de um professor.";
@@ -772,7 +773,7 @@ function textoDoDestinoImportacao(destino){
 }
 function rotuloCurtoDoDestino(destino){
   const g = destinoEhGrupo(destino) ? grupoDoDestino(usuarioAtual(), destino) : null;
-  return g ? " para o grupo "+g.nome : destino==="sugerir" ? " como sugestão" : "";
+  return g ? (g.faculdade ? " para " + g.nome : " para o grupo "+g.nome) : destino==="sugerir" ? " como sugestão" : "";
 }
 /* Abre o envio já apontando para o grupo que a pessoa estava vendo em Meu Grupo. */
 function abrirEnvioParaGrupo(grupoId){
@@ -847,8 +848,9 @@ function confirmarImportacao(){
   const areaTexto = document.getElementById("textoImportacao"); if(areaTexto) areaTexto.value = "";   // já importado: sair não é perder
   toast(r.importadas+" "+plural(r.importadas,"questão","questões")+" "+flexionar(r.importadas, "importada(s)")+""+(r.ignoradas?" · "+r.ignoradas+" "+flexionar(r.ignoradas, "duplicada(s) ignorada(s)")+"":"")+(r.novosAssuntos?" · "+r.novosAssuntos+" "+plural(r.novosAssuntos,"assunto","assuntos")+" "+flexionar(r.novosAssuntos, "novo(s) criado(s)")+"":"")+
     (r.aguardandoImagem?" · "+r.aguardandoImagem+" aguardando a imagem":"")+
-    (destinoEhGrupo(destino) ? " — disponíveis para o grupo "+grupoDoDestino(u, destino).nome+". Para praticar, use \"Praticar as questões do grupo\" em Meu Grupo; lá também dá para dividir o conjunto entre quem quiser."
+    (destino==="faculdade" ? " — disponíveis para todos de "+faculdadeDoUsuario(u)+", em Estudar (marque a opção de incluir as questões do grupo)."
+    : destinoEhGrupo(destino) ? " — disponíveis para o grupo "+grupoDoDestino(u, destino).nome+". Para praticar, use \"Praticar as questões do grupo\" em Meu Grupo; lá também dá para dividir o conjunto entre quem quiser."
       : nuvemConectado() ? (destino==="sugerir" ? " — subindo para a nuvem, onde esperam a aprovação da equipe." : " — subindo para a nuvem, para toda a turma.")
       : destino==="sugerir" ? " — aguardando aprovação de um professor." : "."));
-  navigate(destinoEhGrupo(destino) ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");
+  navigate(destinoEhGrupo(destino) && destino !== "faculdade" ? "meu-grupo" : (u.papel==="aluno"||u.papel==="residente") ? "inicio" : "banco-questoes");
 }

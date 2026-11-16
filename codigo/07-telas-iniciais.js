@@ -361,6 +361,10 @@ function renderCadastro(){
         </select>
       </div>
       <div id="camposAluno">
+        <div class="field"><label class="label">Faculdade</label><select class="select" id="cadFaculdade">
+          ${CONFIG.faculdades.map(f=>`<option value="${escapeHtml(f)}" ${f===CONFIG.faculdadePadrao?"selected":""}>${escapeHtml(f)}</option>`).join("")}
+        </select>
+        <div class="hint mt-1">Define o que você enxerga: alguns simulados são só de alunos da EPM/Unifesp. Também é com quem você pode compartilhar questões e cartões.</div></div>
         <div class="field"><label class="label">Ano da faculdade</label><select class="select" id="cadAno">
           ${CONFIG.anosFaculdade.map(a=>`<option value="${escapeHtml(a)}" ${a==="5º ano"?"selected":""}>${escapeHtml(a)}</option>`).join("")}
         </select>
@@ -672,9 +676,10 @@ function renderEstudar(){
   const mistura = misturaEfetiva(u);
   const errosPendentes = questoesErroOrdenadasPorAntiguidade(u.id).length;
   const emEspera = fraseErrosEChutesEmEspera(u.id);
-  const idsMeusGrupos = idsDosGruposDoUsuario(u);
+  const idsMeusGrupos = idsDeGruposEFaculdade(u);
+  const idFac = idDaFaculdade(u);
   const qtdQuestoesGrupo = db.questoes.filter(q=>idsMeusGrupos.includes(q.grupoId) && q.status==="ativa").length;
-  const todas = questoesAtivas(idsMeusGrupos);
+  const todas = questoesAtivas(idsDeGruposEFaculdade(u));
   const anos = [...new Set(todas.map(q=>q.ano))].sort((a,b)=>b-a);
   const bancas = [...new Set(todas.map(q=>q.banca))].sort();
   const meta = metaDoUsuario(u);
@@ -805,7 +810,7 @@ function renderEstudar(){
         <label class="checkbox-row mb-1"><input type="checkbox" id="filtroApenasErros"> Só erros/chutes</label>
         <label class="checkbox-row mb-1"><input type="checkbox" id="filtroApenasFavoritas"> Só favoritas</label>
         <label class="checkbox-row mb-1"><input type="checkbox" id="filtroApenasNaoRespondidas"> Ainda não respondidas</label>
-        ${idsMeusGrupos.length ? `<label class="checkbox-row mb-1"><input type="checkbox" id="filtroIncluirGrupo"> Incluir questões ${idsMeusGrupos.length>1?"dos meus grupos":"do meu grupo"} (${qtdQuestoesGrupo})</label>` : ""}
+        ${qtdQuestoesGrupo ? `<label class="checkbox-row mb-1"><input type="checkbox" id="filtroIncluirGrupo"> Incluir questões ${idFac && db.questoes.some(q=>q.grupoId===idFac) ? "do meu grupo e da minha faculdade" : idsMeusGrupos.length>1?"dos meus grupos":"do meu grupo"} (${qtdQuestoesGrupo})</label>` : ""}
       </div>
     </div>
     <div class="flex items-end gap-2 mt-2 quebra">
@@ -851,7 +856,7 @@ function lerFiltrosPersonalizados(){
     apenasErros: marcado("filtroApenasErros"),
     apenasFavoritas: marcado("filtroApenasFavoritas"),
     apenasNaoRespondidas: marcado("filtroApenasNaoRespondidas"),
-    incluirGrupoId: marcado("filtroIncluirGrupo") ? idsDosGruposDoUsuario(u) : undefined,
+    incluirGrupoId: marcado("filtroIncluirGrupo") ? idsDeGruposEFaculdade(u) : undefined,
     incluirRecentes: !!state.filtroRota.incluirRecentes,
   };
 }
@@ -953,7 +958,7 @@ function abrirQuestaoCompleta(qid, opts){
   if(depoisDosCorpos([qid], () => abrirQuestaoCompleta(qid, opts))) return;   // o texto vem do arquivo da prova (02b)
   const u = usuarioAtual();
   const ehStaff = u && (u.papel==="admin" || u.papel==="professor" || u.papel==="residente");
-  const ehDoMeuGrupo = u && u.papel==="aluno" && q.grupoId && idsDosGruposDoUsuario(u).includes(q.grupoId);
+  const ehDoMeuGrupo = u && u.papel==="aluno" && q.grupoId && idsDeGruposEFaculdade(u).includes(q.grupoId);
   const podeEditar = opts.permitirEdicao !== false && (ehStaff || ehDoMeuGrupo);
   const esp = getEspecialidade(q.especialidadeId), area = getArea(q.areaId);
   const ultima = u ? ultimaResposta(u.id, q.id) : null;

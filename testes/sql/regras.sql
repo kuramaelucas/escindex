@@ -10,6 +10,8 @@ insert into auth.users(id,email,raw_user_meta_data) values
  ('00000000-0000-0000-0000-0000000000a2','aluno2@x','{"nome":"Aluno G","ano_faculdade":"3º ano"}');
 update perfis set status='aprovado';
 update perfis set papel='professor' where email='prof@x';
+update perfis set faculdade='EPM/Unifesp' where email in ('aluna@x','aluno@x');
+update perfis set faculdade='UEL' where email='aluno2@x';
 update perfis set papel='residente' where email='res@x';
 -- a data de Brasília, como painel_turma() conta: com current_date (UTC), o
 -- teste falhava entre 0h e 3h UTC, quando os dois calendários divergem
@@ -338,3 +340,21 @@ select pg_temp.tem_de_falhar($$select * from contas_sem_primeiro_acesso()$$, 'vi
 select pg_temp.tem_de_falhar($$select excluir_conta('00000000-0000-0000-0000-00000000000b')$$, 'visitante excluindo conta');
 reset role;
 \echo 'Regras de segurança: tudo como esperado.'
+
+-- COMPARTILHAR COM A FACULDADE: o grupo "faculdade:epm-unifesp" vale para quem tem essa faculdade no perfil
+reset role;
+set role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+insert into flashcards_enviados(id,autor_id,autor_nome,grupo_id,status,dados) values ('ff1','00000000-0000-0000-0000-00000000000a','Aluna A','faculdade:epm-unifesp','aprovado','{"frente":"f","verso":"v"}');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from flashcards_enviados where id='ff1'), 1, 'colega da mesma faculdade lê o cartão da faculdade');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a2',false);
+select pg_temp.igual((select count(*) from flashcards_enviados where id='ff1'), 0, 'aluno de outra faculdade não lê o cartão da faculdade');
+select pg_temp.tem_de_falhar($$insert into flashcards_enviados(id,autor_id,status,grupo_id) values ('ff2','00000000-0000-0000-0000-0000000000a2','aprovado','faculdade:epm-unifesp')$$, 'cartão para a faculdade de outra pessoa');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000a',false);
+insert into questoes_enviadas(id,autor_id,autor_nome,status,grupo_id,dados) values ('qf1','00000000-0000-0000-0000-00000000000a','Aluna A','aprovada','faculdade:epm-unifesp','{"enunciado":"da faculdade"}');
+select pg_temp.tem_de_falhar($$insert into questoes_enviadas(id,autor_id,status,grupo_id) values ('qf2','00000000-0000-0000-0000-00000000000a','aprovada','faculdade:uel')$$, 'questão para a faculdade de outra pessoa');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000b',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qf1'), 1, 'colega da mesma faculdade lê a questão da faculdade');
+select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-0000000000a2',false);
+select pg_temp.igual((select count(*) from questoes_enviadas where id='qf1'), 0, 'aluno de outra faculdade não lê a questão da faculdade');

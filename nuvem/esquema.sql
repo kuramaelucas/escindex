@@ -131,7 +131,15 @@ as $$
             where m.grupo_id = gid and m.usuario_id = auth.uid() and m.status = 'aprovado')
       or exists (
            select 1 from public.grupos g
-            where g.id = gid and g.criado_por = auth.uid());
+            where g.id = gid and g.criado_por = auth.uid())
+      -- grupo "da faculdade" (id faculdade:<nome em minúsculas, sem símbolos>):
+      -- vale para toda conta aprovada cuja faculdade do perfil gera esse id.
+      -- "Outra" não forma grupo.
+      or (gid like 'faculdade:%' and exists (
+           select 1 from public.perfis p
+            where p.id = auth.uid() and p.status = 'aprovado'
+              and p.faculdade is not null and p.faculdade <> 'Outra'
+              and gid = 'faculdade:' || trim(both '-' from lower(regexp_replace(p.faculdade, '[^A-Za-z0-9]+', '-', 'g')))));
 $$;
 
 -- "É a dona do grupo?" — quem aprova os pedidos de entrada.
@@ -163,6 +171,7 @@ create table if not exists public.perfis (
                           check (status in ('pendente', 'aprovado', 'rejeitado', 'inativo')),
   nivel_admin           text        check (nivel_admin in ('master', 'coordenacao', 'moderador')),
   ano_faculdade         text,
+  faculdade             text,
   bloco_atual_id        text,
   grupo_id              text,
   meta_questoes_dia     integer,
@@ -839,6 +848,11 @@ create table if not exists public.flashcards_enviados (
 create index if not exists flashcards_enviados_sync_idx on public.flashcards_enviados (atualizado_em);
 create index if not exists flashcards_enviados_grupo_idx on public.flashcards_enviados (grupo_id);
 
+-- Faculdade de origem (perguntada no cadastro): decide quem enxerga o conteúdo
+-- restrito da EPM/Unifesp e com quem se compartilha por faculdade. O aluno
+-- escolhe no cadastro; depois só a equipe muda (gatilho da seção 13).
+alter table public.perfis add column if not exists faculdade text;
+
 -- ---------------------------------------------------------------------------
 -- 12. O CARIMBO DE HORA EM TODAS AS TABELAS DE ESTADO
 -- ---------------------------------------------------------------------------
@@ -874,13 +888,14 @@ security definer
 set search_path = public, pg_temp
 as $$
 begin
-  insert into public.perfis (id, nome, email, matricula, ano_faculdade, papel, status)
+  insert into public.perfis (id, nome, email, matricula, ano_faculdade, faculdade, papel, status)
   values (
     new.id,
     coalesce(new.raw_user_meta_data ->> 'nome', ''),
     new.email,
     coalesce(new.raw_user_meta_data ->> 'matricula', ''),
     nullif(new.raw_user_meta_data ->> 'ano_faculdade', ''),
+    nullif(new.raw_user_meta_data ->> 'faculdade', ''),
     'aluno',
     'pendente'
   )
@@ -925,6 +940,7 @@ begin
     new.status      := old.status;
     new.nivel_admin := old.nivel_admin;
     new.email       := old.email;   -- o e-mail é o de auth.users, não se edita aqui
+    new.faculdade   := coalesce(old.faculdade, new.faculdade);   -- preenche uma vez; depois só a equipe muda
   end if;
   return new;
 end;

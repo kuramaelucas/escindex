@@ -149,6 +149,8 @@ function renderFlashcardsInicio(u){
       </div>
       <div class="flex gap-1 quebra">
         <button class="btn btn-secondary btn-sm" onclick="abrirCartoesEmLista()">${iconeSvg("plus")} Novo cartão</button>
+        <button class="btn btn-secondary btn-sm" onclick="baixarMeusCartoes()" title="Baixa seus cartões num arquivo, para levar a outra conta ou passar a um colega">Baixar meus cartões</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirImportarCartoes()" title="Traz cartões de um arquivo baixado por você ou por um colega">Importar cartões</button>
         <button class="btn btn-primary btn-sm" onclick="abrirAdicionarBaralho()">${iconeSvg("cards")} Adicionar baralho</button>
       </div>
     </div>
@@ -156,14 +158,15 @@ function renderFlashcardsInicio(u){
     <div class="table-wrap mt-2"><table class="tabela-fina"><thead><tr><th style="width:2rem"><input type="checkbox" aria-label="Marcar todos os cartões desta página" ${pagMeus.itens.length && pagMeus.itens.every(c=>cartaoSelecionado(c.id))?"checked":""} onchange="marcarCartoesDaPagina(this.checked, ${escapeHtml(JSON.stringify(pagMeus.itens.map(c=>c.id)))})"></th><th>Frente</th><th>Assunto</th><th>Conjunto</th><th>Criado em</th><th></th></tr></thead><tbody>
       ${pagMeus.itens.map(c=>`<tr>
         <td><input type="checkbox" data-cartao-sel="${c.id}" aria-label="Marcar o cartão" ${cartaoSelecionado(c.id)?"checked":""} onchange="marcarCartao('${c.id}', this.checked)"></td>
-        <td class="text-sm celula-frente"><span class="enunciado-clicavel" title="${escapeHtml(c.frente.slice(0,300))}" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
+        <td class="text-sm celula-frente"><span class="enunciado-clicavel" title="${escapeHtml(c.frente.slice(0,300))}" onclick="abrirFormularioFlashcard('${c.id}')">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</span>${badgeSugestaoFlashcard(c)}${ehGrupoDaFaculdade(c.grupoId) ? ' <span class="badge badge-muted" title="Todos da sua faculdade recebem este cartão no baralho deles">na faculdade</span>' : c.grupoId ? ' <span class="badge badge-muted" title="Os colegas do seu grupo recebem este cartão no baralho deles">no grupo</span>' : ""}</td>
         <td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td>
         <td class="text-sm">${c.conjunto ? `<span class="badge badge-muted">${escapeHtml(c.conjunto)}</span>` : '<span class="muted">—</span>'}</td>
         <td class="text-xs muted">${c.criadoEm?formatDataBR(c.criadoEm):"—"}</td>
         <td class="acoes-fina">
           ${c.questaoOrigemId?`<button class="icon-btn" title="Ver a questão que originou o cartão" onclick="abrirQuestaoCompleta('${c.questaoOrigemId}')">${iconeSvg("search")}</button>`:""}
           <button class="icon-btn" title="Editar" onclick="abrirFormularioFlashcard('${c.id}')">${iconeSvg("edit")}</button>
-          ${(c.grupoId || !grupoAtualDoCartao(u).oficial) ? `<button class="icon-btn" title="${c.grupoId ? "Tirar do grupo (volta a ser só seu)" : "Compartilhar com o meu grupo"}" onclick="compartilharCartaoComGrupo('${c.id}')">${iconeSvg("users")}</button>` : ""}
+          ${idDaFaculdade(u) && (!c.grupoId || ehGrupoDaFaculdade(c.grupoId)) ? `<button class="icon-btn" title="${c.grupoId ? "Tirar da faculdade (volta a ser só seu)" : "Compartilhar com todos da minha faculdade"}" onclick="compartilharCartaoComFaculdade('${c.id}')">${iconeSvg("cards")}</button>` : ""}
+          ${((c.grupoId && !ehGrupoDaFaculdade(c.grupoId)) || !grupoAtualDoCartao(u).oficial) ? `<button class="icon-btn" title="${c.grupoId ? "Tirar do grupo (volta a ser só seu)" : "Compartilhar com o meu grupo"}" onclick="compartilharCartaoComGrupo('${c.id}')">${iconeSvg("users")}</button>` : ""}
           ${!c.sugeridoParaEquipe || c.decisaoEm ? `<button class="icon-btn" title="Sugerir para o baralho da equipe" onclick="sugerirFlashcardParaEquipe('${c.id}')">${iconeSvg("upload")}</button>` : ""}
           <button class="icon-btn" title="Arquivar" onclick="arquivarFlashcard('${c.id}')">${iconeSvg("trash")}</button>
         </td></tr>`).join("")}
@@ -180,6 +183,7 @@ function renderFlashcardsInicio(u){
   </div>`}
 
   ${renderCartoesDoGrupo(u)}
+  ${renderCartoesDaFaculdade(u)}
 
   ${podeEditar ? `<div class="card mt-2">
     <div class="flex justify-between items-center gap-2 quebra">
@@ -663,6 +667,40 @@ function compartilharCartaoComGrupo(id){
   }
   if(c.usuarioId) nuvemRegistrar({cartaoPessoal:c});
   saveState(); render();
+}
+function ehGrupoDaFaculdade(grupoId){ return typeof grupoId === "string" && grupoId.indexOf("faculdade:") === 0; }
+function compartilharCartaoComFaculdade(id){
+  const u = usuarioAtual();
+  const c = (db.flashcards||[]).find(x=>x.id===id);
+  if(!c || c.usuarioId!==u.id){ toast("Cartão não encontrado.", "err"); return; }
+  const alvo = idDaFaculdade(u);
+  if(!alvo){ toast("Só dá para compartilhar por faculdade quem escolheu uma faculdade no cadastro (não vale “Outra”).", "err"); return; }
+  if(ehGrupoDaFaculdade(c.grupoId)){
+    c.grupoAntigoId = c.grupoId; delete c.grupoId;
+    toast("O cartão voltou a ser só seu.");
+  }else{
+    if(c.grupoId){ toast("Este cartão está compartilhado com um grupo. Tire-o de lá antes (um destino por vez).", "err"); return; }
+    if(c.sugeridoParaEquipe && !c.decisaoEm){ toast("Este cartão está esperando a decisão da equipe. Depois dela, você pode compartilhá-lo.", "err"); return; }
+    c.grupoId = alvo; delete c.grupoAntigoId;
+    toast("Cartão compartilhado com todos de " + faculdadeDoUsuario(u) + (nuvemLigada() ? "." : ". Sem conta na nuvem, ele só chega aos outros quando você entrar com ela."));
+  }
+  nuvemRegistrar({cartaoPessoal:c});
+  saveState(); render();
+}
+/* Os cartões que colegas da mesma faculdade compartilharam: entram no baralho. */
+function renderCartoesDaFaculdade(u){
+  const alvo = idDaFaculdade(u); if(!alvo) return "";
+  const lista = (db.flashcards||[]).filter(c=>c.grupoId===alvo && c.usuarioId && c.usuarioId!==u.id && c.status!=="arquivado");
+  if(!lista.length) return "";
+  const pag = paginar(lista, "flash-faculdade", {porPagina:10});
+  return `<div class="card mt-2">
+    <div class="card-title">${iconeSvg("cards")} Cartões de colegas de ${escapeHtml(faculdadeDoUsuario(u))} (${lista.length})</div>
+    <div class="text-sm muted">Compartilhados com toda a faculdade. Entram no seu baralho; só quem escreveu edita.</div>
+    <div class="table-wrap mt-2"><table><thead><tr><th>Frente</th><th>Assunto</th><th>Autor</th></tr></thead><tbody>
+      ${pag.itens.map(c=>`<tr><td class="text-sm">${escapeHtml(c.frente.slice(0,110))}${c.frente.length>110?"…":""}</td><td class="text-sm">${escapeHtml(nomeAssuntoDoCartao(c))}</td><td class="text-sm">${escapeHtml(c.autorNome || (getUsuario(c.usuarioId)||{}).nome || "Colega")}</td></tr>`).join("")}
+    </tbody></table></div>
+    ${controlesPaginacao(pag, "cartão(ões) da faculdade")}
+  </div>`;
 }
 /* Os cartões que os colegas do grupo compartilharam: entram no baralho de
    todos e ficam à vista aqui, para ninguém estranhar cartão que não escreveu. */

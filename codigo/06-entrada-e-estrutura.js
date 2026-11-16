@@ -136,6 +136,7 @@ function solicitarCadastro(){
     nuvemCadastrarPelaTela({
       email, senha, nome, matricula,
       anoFaculdade: (tipoAcesso === "aluno" && anoCampo) ? anoCampo.value : "",
+      faculdade: (tipoAcesso === "aluno" && document.getElementById("cadFaculdade")) ? document.getElementById("cadFaculdade").value : "",
     });
     return;
   }
@@ -150,6 +151,7 @@ function solicitarCadastro(){
     // qual grupo é o dele antes de ver a lista, e cada tentativa no cadastro
     // criava uma turma solta que ninguém mais usava.
     novo.anoFaculdade = document.getElementById("cadAno").value;
+    novo.faculdade = document.getElementById("cadFaculdade").value || CONFIG.faculdadePadrao;
     novo.grupoId = db.grupoOficialId;
   } else {
     const areasAtuacao = [...document.querySelectorAll(".cadAreaAtuacao:checked")].map(el=>el.value);
