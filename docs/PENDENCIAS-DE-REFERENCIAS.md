@@ -245,7 +245,7 @@ Texto oficial que **não** foi lido por falta de acesso. Enquanto não for lido,
 | ATS 2025 de pneumonia comunitária (atualização; a IDSA não a endossou) | 127 | thoracic.org / atsjournals | thoracic.org recusa (000) | PDF; a página da IDSA abre mas traz só o resumo |
 | ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1) | 43 | diabetesjournals.org | `diabetesjournals.org` e `diabetes.org` recusados pelo proxy (000, testado em 17/11/2026) | PDF |
 | NCCN (melanoma, mama, testículo etc., versões 2026) | 119 | nccn.org | exige login | PDF autorizado pelo usuário |
-| EAU 2026 (urolitíase e outras) | 62 | uroweb.org (página abre; PDF no CloudFront) | CloudFront bloqueado | PDF |
+| EAU 2026 (urolitíase e outras) | 62 | página `uroweb.org/guidelines/urolithiasis` abre (200); PDFs: `d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2026.pdf` e `.../pocket-guidelines/EAU-Pocket-on-Urolithiasis-2026.pdf` | `d56bochluxqnz.cloudfront.net` não está na lista de hosts do ambiente: o proxy responde 403 no CONNECT (testado em 17/11/2026) | liberar esse host no ambiente (pedir ao usuário) ou enviar o PDF; depois `npm run auditoria-padrao -- diretriz EAU` |
 | ESC/EACTS valvopatias 2025 (doi 10.1093/eurheartj/ehaf194) | 19 | academic.oup.com | recusa | PDF |
 | ~~SBC Diretriz Brasileira de Hipertensão 2025~~ | 45 | **feita em 17/11/2026** (31 questões; PDF em `abccardiol.org`) | — | restam as questões com pouca relação com a diretriz |
 | ~~OMS MEC 6ª edição (2025)~~ | 59 | **feita em 17/11/2026** (38 questões anotadas; endereço: `iris.who.int/server/api/core/bitstreams/9f048e30-0d14-4187-b167-9c24b9102092/content`) | — | resta a web annex (GRADE) e a SPR 4ª edição, não lidas |
