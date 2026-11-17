@@ -232,6 +232,25 @@ Estado da fonte: **abre** = aberta na rede, falta ler; **enviar** = a rede não 
 
 **Texto já corrigido ou com aviso pela fonte nesta frente:** `q-010` (ACG 2024: TC/RM se não melhora em 48 a 72 h), `q-016` (SBP: não medicar tosse e resfriado em menores de 6 anos), `q-card-13` (MRPA 130/80), `q-card-30` (metas de LDL < 50 e < 40 mg/dL), `q-inf-12` (quimioprofilaxia em 24 h; ceftriaxona na gestante), `q-inf-26` (tafenoquina), `q-toce-13` (janela de 120 min da OMS), `q-card-09` (aviso: ICFEr < 50% na SBC 2026) e `q-card-24` (dose da SBC). Pontos de explicação ainda a revisar por quem é da área: `q-016`, `q-013`, `q-015`, `q-023`, `q-011`, `q-inf-03` (ver `docs/PROJETO-ADEQUACAO.md`).
 
+## 6-C. Pendências que dependem de PDF ou de acesso à rede (17/11/2026)
+
+Texto oficial que **não** foi lido por falta de acesso. Enquanto não for lido, as notas das questões ficam como “não conferido” (nunca como “lido”). Para cada linha: enviar o PDF (anexo no chat, fora do git) **ou** liberar o host na rede da sessão (ambiente → rede; `update_environment`/`request` do usuário) e rodar `npm run texto-oficial -- <url>`.
+
+| Diretriz | Questões (aprox.) | Onde está o texto | Obstáculo | Como resolver |
+|---|---|---|---|---|
+| Rastreamento do colo do útero: Portaria Conjunta SAES/SECTICS nº 13/2025, anexo “Parte I” (DNA-HPV; idade, intervalo, fluxo de conduta) | 72 | PDF `Diretrizes para o Rastreamento do câncer do colo do útero_2025_completo.pdf` em `ninho.inca.gov.br/jspui/bitstream/123456789/17858/3/` (handle 123456789/18038, linkado em `gov.br/inca/.../legislacao`); a portaria no `gov.br/conitec/.../@@display-file/file` traz só a capa e o DOU | `ninho.inca.gov.br` foi liberado no ambiente em 17/11/2026, mas o classificador de permissões **negou** o download; cópias (cfbm, cofen, saude.mt) são recusadas pelo proxy | Autorizar o download ou enviar o PDF; depois anotar as questões de `auditoria-padrao -- diretriz colo` (inclui USP-RP, TP, Unicamp, FEBRASGO…) |
+| AHA/ASA AVC isquêmico 2026 (doi 10.1161/STR.0000000000000513) | 14 | ahajournals.org | proxy recusa (000) mesmo com o host na lista | PDF |
+| AHA/AAP RCP e atendimento cardiovascular de emergência 2025 (Partes 5, 6, 8 e 11) e PALS | 23 | cpr.heart.org, ahajournals.org | cpr.heart.org dá 403; ahajournals recusa | PDF |
+| Surviving Sepsis Campaign 2026 (Intensive Care Med 2026;52:863-936) | 93 | Springer / sccm.org | Springer recusa; sccm.org recusa (000) | PDF (consta que houve um PDF em rodada anterior, não está no repositório) |
+| ATS 2025 de pneumonia comunitária (atualização; a IDSA não a endossou) | 127 | thoracic.org / atsjournals | thoracic.org recusa (000) | PDF; a página da IDSA abre mas traz só o resumo |
+| ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1) | 43 | diabetesjournals.org | bloqueado | PDF |
+| NCCN (melanoma, mama, testículo etc., versões 2026) | 119 | nccn.org | exige login | PDF autorizado pelo usuário |
+| EAU 2026 (urolitíase e outras) | 62 | uroweb.org (página abre; PDF no CloudFront) | CloudFront bloqueado | PDF |
+| ESC/EACTS valvopatias 2025 (doi 10.1093/eurheartj/ehaf194) | 19 | academic.oup.com | recusa | PDF |
+| SBC Diretriz Brasileira de Hipertensão 2025 | 45 | abccardiol.org | testar; pode abrir | tentar `texto-oficial` |
+| OMS MEC 6ª edição (2025) | 59 | iris.who.int | `iris.who.int` abre (200); falta o endereço do PDF | achar o bitstream e ler |
+| Manual dos CRIE (6ª ed.) e Instrução Normativa do Calendário 2026 | vacinas: contraindicações, prematuros, HPV em grupos prioritários | gov.br/saude | endereço não localizado | achar e ler |
+
 ## 7. Como encerrar uma pendência
 
 1. Ler o texto oficial (`npm run texto-oficial -- <url> --buscar "termo"`), conferir número, limiar, dose ou prazo afirmado.
