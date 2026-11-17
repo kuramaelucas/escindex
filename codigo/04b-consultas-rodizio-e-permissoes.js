@@ -318,8 +318,12 @@ function grupoPrincipalDeQuestoes(usuario){ return gruposDoUsuario(usuario)[0] |
 function gruposParaEnviarQuestoes(usuario){
   return gruposDoUsuario(usuario).filter(g => !nuvemConectado() || grupoDeNuvem(g));
 }
-function destinoEhGrupo(destino){ return destino === "grupo" || destino === "grupo2"; }
+/* "faculdade" é um destino de grupo como os outros (a questão leva grupoId =
+   id da faculdade), então telas e envio reaproveitam todo o caminho do grupo.
+   O "grupo" devolvido para ele é de mentira: só tem id, nome e `faculdade`. */
+function destinoEhGrupo(destino){ return destino === "grupo" || destino === "grupo2" || destino === "faculdade"; }
 function grupoDoDestino(usuario, destino){
+  if(destino === "faculdade") return destinoDeFaculdadeDisponivel(usuario) ? { id: idDaFaculdade(usuario), nome: "toda a faculdade " + faculdadeDoUsuario(usuario), faculdade: true } : null;
   const gs = gruposParaEnviarQuestoes(usuario);
   return (destino === "grupo2" ? gs[1] : gs[0]) || null;
 }
@@ -329,11 +333,20 @@ function valorDoDestinoDoGrupo(usuario, grupoId){
 }
 function opcoesDeDestinoDeGrupo(usuario, textoUnico, textoDoGrupo){
   const gs = gruposParaEnviarQuestoes(usuario);
-  if(!gs.length) return [];
-  if(gs.length < 2) return [["grupo", textoUnico]];
-  return gs.map((g, i) => [i ? "grupo2" : "grupo", textoDoGrupo(g)]);
+  const daFaculdade = destinoDeFaculdadeDisponivel(usuario)
+    ? [["faculdade", "Toda a minha faculdade (" + faculdadeDoUsuario(usuario) + "): fica disponível na hora para todos os colegas"]] : [];
+  if(!gs.length) return daFaculdade;
+  if(gs.length < 2) return [["grupo", textoUnico], ...daFaculdade];
+  return [...gs.map((g, i) => [i ? "grupo2" : "grupo", textoDoGrupo(g)]), ...daFaculdade];
 }
 function idsDosGruposDoUsuario(usuario){ return gruposDoUsuario(usuario).map(g => g.id); }
+/* Os grupos de questões que a pessoa enxerga: os dela mais o da faculdade
+   (questão compartilhada com toda a faculdade). Separado do anterior porque
+   "do meu grupo" não deve contar nem rotular o que veio da faculdade. */
+function idsDeGruposEFaculdade(usuario){ return idsDosGruposDoUsuario(usuario).concat(idDaFaculdade(usuario) || []); }
+/* Destino "toda a minha faculdade" do envio de questões (só com a nuvem
+   ligada: sem ela a questão não teria como chegar aos colegas). */
+function destinoDeFaculdadeDisponivel(usuario){ return !!idDaFaculdade(usuario) && nuvemConectado(); }
 /* Quem sai de um grupo (ou é retirado dele) perde o acesso às questões dele na
    nuvem, mas o aparelho nunca recebe esse aviso: a linha deixa de descer e a
    cópia local ficava para sempre. Só as que já subiram são soltas — a que
@@ -421,3 +434,37 @@ function podeGerirConteudo(usuario){
   return podeAdmin("conteudo", usuario);
 }
 function usuarioAtual(){ return state.usuarioAtualId ? getUsuario(state.usuarioAtualId) : null; }
+/* FACULDADE. `faculdadeDoUsuario` nunca devolve vazio (conta antiga vale a
+   padrão). `faculdadeDaVisao` é a faculdade que RESTRINGE o que a tela atual
+   mostra: só aluno é restringido — a equipe confere e corrige tudo, então
+   para ela devolve "" (sem restrição). */
+function faculdadeDoUsuario(u){ return (u && u.faculdade) || CONFIG.faculdadePadrao; }
+function faculdadeDaVisao(){
+  const u = usuarioAtual();
+  return (u && u.papel === "aluno") ? faculdadeDoUsuario(u) : "";
+}
+function questaoRestritaDeOutraFaculdade(q, faculdade){
+  if(!q || !q.real || !faculdade) return false;
+  return CONFIG.conteudoRestritoAFaculdade.some(r => r.banca.test(q.banca || "") && !r.faculdades.includes(faculdade));
+}
+// o banco inteiro menos o que é restrito a outra faculdade (para listas de filtro: bancas, anos)
+function questoesDoBancoParaMim(){
+  const f = faculdadeDaVisao();
+  return f ? db.questoes.filter(q => !questaoRestritaDeOutraFaculdade(q, f)) : db.questoes;
+}
+/* COMPARTILHAR COM A FACULDADE. É um "grupo" de id fixo por faculdade
+   (`faculdade:epm-unifesp`): tudo o que já anda por grupoId (cartões e, depois,
+   questões enviadas) sobe e desce sem código novo, e o banco decide quem lê
+   pelo `perfis.faculdade` (e_do_grupo, esquema.sql). "Outra" não tem id: reunir
+   escolas que não têm nada em comum num só grupo não faria sentido. */
+function idDaFaculdade(u){
+  const f = faculdadeDoUsuario(u);
+  if(!u || f === "Outra") return null;
+  return "faculdade:" + f.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+/* Faculdade que a conta tinha antes de o campo existir: a padrão, salvo as
+   pessoas conferidas à mão (CONFIG.faculdadesPorNome). */
+function faculdadeInicialDe(nome){
+  const achada = CONFIG.faculdadesPorNome.find(r => r.nome.test(nome || ""));
+  return achada ? achada.faculdade : CONFIG.faculdadePadrao;
+}

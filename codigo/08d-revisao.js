@@ -170,6 +170,54 @@ function praticarAssunto(assuntoId){
   iniciarSessaoComLista(itens, "pratica");
 }
 
+/* CONJUNTO RÁPIDO DE UM ASSUNTO (aberto pela busca global). A pessoa acha o
+   assunto, escolhe quantas questões, de quais instituições e de quais anos, e
+   começa. Sem nada marcado em instituição ou ano vale "todas" — a sugestão de
+   15 não olha a origem. As questões vêm de questoesParaEstudo, então o que
+   está escondido, em simulado reservado ou restrito a outra faculdade não
+   aparece nem é contado. */
+const CONJUNTO_RAPIDO_SUGESTAO = 15;
+function questoesDoConjuntoRapido(assuntoId, bancas, anos){
+  return questoesParaEstudo(usuarioAtual().id).filter(q => q.assuntoId === assuntoId
+    && (!bancas.length || bancas.includes(q.banca)) && (!anos.length || anos.includes(String(q.ano))));
+}
+function abrirConjuntoRapido(assuntoId){
+  const todas = questoesDoConjuntoRapido(assuntoId, [], []);
+  if(!todas.length){ toast("Não há questões ativas deste assunto.", "err"); return; }
+  const contar = chave => { const m = new Map(); todas.forEach(q => m.set(String(q[chave]), (m.get(String(q[chave])) || 0) + 1)); return m; };
+  const bancas = [...contar("banca")].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const anos = [...contar("ano")].sort((a, b) => b[0] - a[0]);
+  const caixa = (classe, [valor, n]) => `<label class="checkbox-row"><input type="checkbox" class="${classe}" value="${escapeHtml(valor)}" onchange="atualizarConjuntoRapido('${assuntoId}')"> ${escapeHtml(valor)} <span class="muted">(${n})</span></label>`;
+  abrirModalTitulado("Conjunto rápido: " + escapeHtml(nomeAssunto(assuntoId)), `
+    <div class="field"><label class="label" for="crQtd">Quantas questões</label>
+      <input class="input" type="number" id="crQtd" min="1" max="100" value="${Math.min(CONJUNTO_RAPIDO_SUGESTAO, todas.length)}" style="max-width:6rem" oninput="atualizarConjuntoRapido('${assuntoId}')">
+      <div class="hint mt-1">Sugestão: ${CONJUNTO_RAPIDO_SUGESTAO}, sorteadas entre todas as instituições e anos.</div></div>
+    <div class="field"><label class="label">Instituições <span class="muted text-xs">(nenhuma marcada = todas)</span></label>
+      <div style="max-height:150px;overflow-y:auto">${bancas.map(b => caixa("crBanca", b)).join("")}</div></div>
+    <div class="field"><label class="label">Anos <span class="muted text-xs">(nenhum marcado = todos)</span></label>
+      <div style="max-height:110px;overflow-y:auto">${anos.map(a => caixa("crAno", a)).join("")}</div></div>
+    <div class="text-sm mb-2" id="crResumo"></div>
+    <button class="btn btn-primary" onclick="iniciarConjuntoRapido('${assuntoId}')">Começar</button>`);
+  atualizarConjuntoRapido(assuntoId);
+}
+function lerConjuntoRapido(){
+  const marcados = classe => [...document.querySelectorAll("." + classe + ":checked")].map(e => e.value);
+  return { bancas: marcados("crBanca"), anos: marcados("crAno"), qtd: Math.max(1, Math.min(100, parseInt((document.getElementById("crQtd") || {}).value, 10) || CONJUNTO_RAPIDO_SUGESTAO)) };
+}
+function atualizarConjuntoRapido(assuntoId){
+  const r = lerConjuntoRapido(), disponiveis = questoesDoConjuntoRapido(assuntoId, r.bancas, r.anos).length;
+  const el = document.getElementById("crResumo"); if(!el) return;
+  el.textContent = disponiveis ? (disponiveis + " " + plural(disponiveis, "questão disponível", "questões disponíveis") + " com estes filtros" + (r.qtd > disponiveis ? "; o conjunto terá " + disponiveis + "." : ".")) : "Nenhuma questão com estes filtros.";
+}
+function iniciarConjuntoRapido(assuntoId){
+  const r = lerConjuntoRapido();
+  const pool = questoesDoConjuntoRapido(assuntoId, r.bancas, r.anos);
+  if(!pool.length){ toast("Nenhuma questão com estes filtros.", "err"); return; }
+  const itens = embaralharSemRepetir(usuarioAtual().id, pool).slice(0, r.qtd).map(q => ({ questaoId:q.id, motivo:"Conjunto rápido: " + nomeAssunto(assuntoId) }));
+  fecharModal();
+  iniciarSessaoComLista(itens, "pratica");
+}
+
 /* Curva de retenção: o que acontece quando uma questão que você acertou com segurança volta. */
 function htmlCurvaDeRetencao(u){
   const faixas = curvaDeRetencao(u.id);

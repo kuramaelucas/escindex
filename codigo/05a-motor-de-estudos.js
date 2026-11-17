@@ -134,10 +134,11 @@ function questoesAtivas(incluirGrupoId){
   // O cache vale por geração do db (saveState) e pelo tamanho da lista, e
   // devolve cópia para quem ordenar/embaralhar no lugar não corromper o cache.
   const chave = incluirGrupoId===true ? "tudo" : (incluirGrupoId===undefined ? "geral" : null);
-  if(chave && _cacheAtivas[chave] && _cacheAtivas.geracao===_geracaoDb && _cacheAtivas.total===db.questoes.length) return _cacheAtivas[chave].slice();
+  const visao = faculdadeDaVisao();
+  if(chave && _cacheAtivas[chave] && _cacheAtivas.geracao===_geracaoDb && _cacheAtivas.total===db.questoes.length && _cacheAtivas.visao===visao) return _cacheAtivas[chave].slice();
   const lista = _filtrarQuestoesAtivas(incluirGrupoId);
   if(chave){
-    if(_cacheAtivas.geracao!==_geracaoDb || _cacheAtivas.total!==db.questoes.length) _cacheAtivas = { geracao:_geracaoDb, total:db.questoes.length };
+    if(_cacheAtivas.geracao!==_geracaoDb || _cacheAtivas.total!==db.questoes.length || _cacheAtivas.visao!==visao) _cacheAtivas = { geracao:_geracaoDb, total:db.questoes.length, visao };
     _cacheAtivas[chave] = lista;
     return lista.slice();
   }
@@ -190,11 +191,13 @@ function reativarProva(chave){
   _registrarEstadoDaProva(chave, l ? l.rotulo : "", false);
 }
 function _filtrarQuestoesAtivas(incluirGrupoId){
+  const faculdade = faculdadeDaVisao();
   return db.questoes.filter(q=>{
     // desatualizada continua no estudo, com selo (a diretriz pode ter mudado; a explicação avisa)
     if(q.status!=="ativa" && q.status!=="desatualizada") return false;
     if(aguardaImagem(q)) return false;
     if(provaInativa(q)) return false;
+    if(faculdade && questaoRestritaDeOutraFaculdade(q, faculdade)) return false;
     if(q.grupoId && incluirGrupoId!==true && q.grupoId!==incluirGrupoId && !(Array.isArray(incluirGrupoId) && incluirGrupoId.includes(q.grupoId))) return false;
     return true;
   });
@@ -671,7 +674,7 @@ function cartaoDeQuestao(q){
 function flashcardsAtivos(usuarioId){
   const uid = usuarioId!==undefined ? usuarioId : (usuarioAtual() ? usuarioAtual().id : null);
   const dono = uid ? getUsuario(uid) : null;
-  const gruposDele = dono ? idsDosGruposDoUsuario(dono) : [];
+  const gruposDele = dono ? idsDeGruposEFaculdade(dono) : [];   // o grupo da faculdade vale como um grupo seu
   return (db.flashcards||[]).filter(c=>{
     if(c.status==="arquivado") return false;
     if(!c.usuarioId) return true;        // cartão da equipe: visível a todos

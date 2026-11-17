@@ -1,4 +1,4 @@
-/* codigo/09c-cartoes-em-lote.js — Cartões em lote, a exportação do baralho para dados/ (seção 12-C) o baralho inteiro trazido de uma IA (12-D) e os cartões em lista (12-E).
+/* codigo/09c-cartoes-em-lote.js — Cartões em lote, a exportação do baralho para dados/ (seção 12-C) o baralho inteiro trazido de uma IA (12-D) os cartões em lista (12-E) e levar cartões a outro login (12-F).
    Scripts comuns carregados em ordem pelo index.html (ESC_ARQUIVOS): o que se declara aqui vale nos outros arquivos. Guia: CLAUDE.md. */
 
 /* ==========================================================================
@@ -468,5 +468,104 @@ function salvarCartoesEmLista(){
   });
   saveState(); fecharModal();
   toast(novos.length+" "+plural(novos.length,"cartão","cartões")+" "+flexionar(novos.length, "criado(s)")+"" + (repetidos ? " · " + repetidos + " já existia(m) e ficou(aram) de fora" : "") + ". Entram na sua próxima revisão rápida.");
+  render();
+}
+
+/* ==========================================================================
+   12-F. LEVAR OS CARTÕES PARA OUTRO LOGIN E COMPARTILHAR
+   ==========================================================================
+   O aluno baixa os próprios cartões num arquivo e importa em outra conta (ou
+   passa o arquivo a um colega). O arquivo leva o TEXTO do cartão, nunca o
+   estudo (revisões, acertos): isso é de cada pessoa. O assunto vai com o id e
+   com o nome, porque a taxonomia pode mudar de id; quem importa casa pelo id
+   e, se não achar, pelo nome. Cartão com a mesma frente (no mesmo assunto) que
+   a pessoa já tem não é duplicado. */
+const FORMATO_ARQUIVO_CARTOES = "esc-cartoes";
+function cartoesParaLevar(u, apenasDoConjunto){
+  return (db.flashcards || []).filter(c => c.usuarioId === u.id && c.status !== "arquivado" && !c.grupoAntigoId
+    && (apenasDoConjunto === undefined || (c.conjunto || "") === apenasDoConjunto));
+}
+function arquivoDeCartoes(u, cartoes){
+  return {
+    formato: FORMATO_ARQUIVO_CARTOES, versao: 1, exportadoEm: hojeISO(),
+    faculdade: faculdadeDoUsuario(u),
+    cartoes: cartoes.map(c => {
+      const item = { assuntoId: c.assuntoId || "", assunto: c.assuntoId ? nomeAssunto(c.assuntoId) : "", frente: c.frente, verso: c.verso };
+      ["fonte", "imagemLegenda", "conjunto"].forEach(k => { if(c[k]) item[k] = c[k]; });
+      // a imagem só vai quando está dentro do cartão (data:); endereço de outra conta não abre em outro lugar
+      if(/^data:image\//.test(c.imagemUrl || "")) item.imagemUrl = c.imagemUrl;
+      return item;
+    }),
+  };
+}
+function baixarMeusCartoes(){
+  const u = usuarioAtual(); if(!u) return;
+  const lista = cartoesParaLevar(u);
+  if(!lista.length){ toast("Você ainda não tem cartões próprios para baixar.", "err"); return; }
+  baixarArquivo("meus-cartoes-esc-" + hojeISO() + ".json", JSON.stringify(arquivoDeCartoes(u, lista), null, 2), "application/json");
+  toast(lista.length + " " + plural(lista.length, "cartão baixado", "cartões baixados") + ". Importe o arquivo em outra conta ou envie a um colega.");
+}
+function assuntoDoCartaoImportado(item){
+  if(item.assuntoId && getAssunto(item.assuntoId)) return item.assuntoId;
+  const nome = buscaNormalizar(item.assunto || "");
+  const achado = nome && db.taxonomia.assuntos.find(a => buscaNormalizar(a.nome) === nome);
+  return achado ? achado.id : "";
+}
+/* Confere o arquivo SEM gravar: devolve o que entraria e por que o resto ficou de fora. */
+function analisarArquivoDeCartoes(texto, u){
+  let d;
+  try{ d = JSON.parse(texto); }catch(e){ return { erro: "O arquivo não é um JSON válido." }; }
+  if(!d || d.formato !== FORMATO_ARQUIVO_CARTOES || !Array.isArray(d.cartoes)) return { erro: "Este arquivo não é uma lista de cartões do Esc (baixada em “Baixar meus cartões”)." };
+  const jaTem = new Set((db.flashcards || []).filter(c => c.usuarioId === u.id).map(c => (c.assuntoId || "") + "|" + buscaNormalizar(c.frente)));
+  const novos = [], repetidos = [], invalidos = [];
+  d.cartoes.forEach(item => {
+    const frente = String((item && item.frente) || "").trim(), verso = String((item && item.verso) || "").trim();
+    if(!frente || !verso){ invalidos.push(item); return; }
+    const assuntoId = assuntoDoCartaoImportado(item);
+    const chave = assuntoId + "|" + buscaNormalizar(frente);
+    if(jaTem.has(chave)){ repetidos.push(item); return; }
+    jaTem.add(chave);   // repetido dentro do próprio arquivo também conta
+    novos.push({ assuntoId, frente, verso, fonte: String(item.fonte || ""), imagemLegenda: String(item.imagemLegenda || ""),
+      conjunto: String(item.conjunto || "").slice(0, 60), imagemUrl: /^data:image\//.test(item.imagemUrl || "") ? item.imagemUrl : "" });
+  });
+  return { novos, repetidos: repetidos.length, invalidos: invalidos.length, deFaculdade: d.faculdade || "" };
+}
+function abrirImportarCartoes(){
+  abrirModalTitulado("Importar cartões de um arquivo", `
+    <p class="text-sm">Escolha um arquivo baixado em <strong>Baixar meus cartões</strong> (da sua outra conta ou de um colega). Os cartões entram no <em>seu</em> caderno; o estudo de quem baixou (revisões e acertos) não vem junto.</p>
+    <input type="file" id="arquivoCartoes" accept="application/json,.json" class="mt-2" onchange="lerArquivoDeCartoes(this)">
+    <div id="previaCartoes" class="mt-2 text-sm"></div>`);
+}
+let _cartoesParaImportar = [];
+function lerArquivoDeCartoes(campo){
+  const arquivo = campo.files && campo.files[0]; if(!arquivo) return;
+  const leitor = new FileReader();
+  leitor.onload = () => {
+    const a = analisarArquivoDeCartoes(String(leitor.result || ""), usuarioAtual());
+    const previa = document.getElementById("previaCartoes"); if(!previa) return;
+    if(a.erro){ _cartoesParaImportar = []; previa.innerHTML = `<div class="borda-alerta card-flat">${escapeHtml(a.erro)}</div>`; return; }
+    _cartoesParaImportar = a.novos;
+    const semAssunto = a.novos.filter(c => !c.assuntoId).length;
+    previa.innerHTML = `<div class="card-flat"><strong>${a.novos.length}</strong> ${plural(a.novos.length, "cartão novo", "cartões novos")} para importar.
+      ${a.repetidos ? `<br>${a.repetidos} ${plural(a.repetidos, "já existe", "já existem")} no seu caderno e ${plural(a.repetidos, "fica de fora", "ficam de fora")}.` : ""}
+      ${a.invalidos ? `<br>${a.invalidos} sem frente ou verso, ignorados.` : ""}
+      ${semAssunto ? `<br>${semAssunto} ${plural(semAssunto, "não tem assunto conhecido aqui", "não têm assunto conhecido aqui")} e ${plural(semAssunto, "entra", "entram")} como anotação sem assunto.` : ""}</div>
+      ${a.novos.length ? `<button class="btn btn-primary btn-sm mt-2" onclick="importarCartoesDoArquivo()">Importar ${a.novos.length} ${plural(a.novos.length, "cartão", "cartões")}</button>` : ""}`;
+  };
+  leitor.onerror = () => toast("Não consegui ler o arquivo.", "err");
+  leitor.readAsText(arquivo);
+}
+function importarCartoesDoArquivo(){
+  const u = usuarioAtual(); if(!u || !_cartoesParaImportar.length) return;
+  if(!db.flashcards) db.flashcards = [];
+  _cartoesParaImportar.forEach(c => {
+    const novo = { id: uid("fc"), assuntoId: c.assuntoId, frente: c.frente, verso: c.verso, fonte: c.fonte, imagemUrl: c.imagemUrl, imagemLegenda: c.imagemLegenda,
+      conjunto: c.conjunto, origem: "aluno", usuarioId: u.id, status: "ativo", criadoPor: u.id, criadoEm: hojeISO() };
+    db.flashcards.push(novo);
+    nuvemRegistrar({ cartaoPessoal: novo });
+  });
+  const n = _cartoesParaImportar.length; _cartoesParaImportar = [];
+  saveState(); fecharModal();
+  toast(n + " " + plural(n, "cartão importado", "cartões importados") + ". Entram na sua próxima revisão rápida.");
   render();
 }

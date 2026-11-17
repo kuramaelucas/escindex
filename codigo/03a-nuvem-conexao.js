@@ -304,7 +304,7 @@ async function nuvemCriarConta(dados){
     method:"POST", semToken:true,
     body: JSON.stringify({
       email: dados.email, password: dados.senha,
-      data: { nome: dados.nome, matricula: dados.matricula || "", ano_faculdade: dados.anoFaculdade || "" },
+      data: { nome: dados.nome, matricula: dados.matricula || "", ano_faculdade: dados.anoFaculdade || "", faculdade: dados.faculdade || "" },
     }),
   });
   // Com a confirmação de e-mail desligada (o recomendado: o e-mail só sai
@@ -358,6 +358,7 @@ function nuvemAplicarPerfilLocal(p){
   delete u.senha; delete u.senhaHash; delete u.senhaSal;   // a senha vive no servidor, com hash — nunca aqui
   if(p.nivel_admin) u.nivelAdmin = p.nivel_admin; else delete u.nivelAdmin;
   if(p.ano_faculdade) u.anoFaculdade = p.ano_faculdade;
+  u.faculdade = p.faculdade || u.faculdade || faculdadeInicialDe(u.nome);   // perfil anterior ao campo: padrão (ou a conferida por nome)
   if(p.bloco_atual_id) u.blocoAtualId = p.bloco_atual_id;
   /* Os dois grupos (calendário e só de questões) são decididos aqui, e o
      perfil que desce pode ser ANTERIOR à escolha que ainda não subiu: passar o
@@ -414,6 +415,7 @@ function linhaDoPerfil(usuario){
     nome: usuario.nome || "",
     matricula: usuario.matricula || "",
     ano_faculdade: usuario.anoFaculdade || null,
+    faculdade: usuario.faculdade || null,
     bloco_atual_id: usuario.blocoAtualId || null,
     grupo_id: usuario.grupoId || null,
     grupo_questoes_id: usuario.grupoQuestoesId || null,
