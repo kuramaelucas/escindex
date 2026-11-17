@@ -209,6 +209,25 @@ function sairDaSessao(){
    usuário, e retomada de onde parou — mesma fila, mesma ordem, mesmas
    alternativas riscadas. Simulado tem a sua própria guarda (salvarSimuladoEmAndamento, 09b), porque leva o
    tempo gasto e a prova é guardada por simulado, não numa fila única. */
+/* Dois aparelhos, uma fila: o bloco da sessão em andamento sobe inteiro e quem
+   grava por último vence, então um aparelho com a fila velha (aberta em
+   memória ou guardada localmente) pedia de novo questões que o outro já tinha
+   respondido — e, ao salvar, apagava as respostas dele. As RESPOSTAS, porém,
+   são linhas próprias, com `sessaoId`, e nunca se perdem na sincronização.
+   Esta função preenche as posições vazias da fila com a resposta que já
+   existe para aquela questão naquela sessão. Devolve quantas preencheu. */
+function completarRespostasDaSessao(s){
+  if(!s || !s.id || !s.itens || !s.itens.length) return 0;
+  const u = usuarioAtual(); if(!u) return 0;
+  const vazias = s.itens.map((it, i) => respostaDoIndice(s, i) ? null : it.questaoId);
+  if(!vazias.some(Boolean)) return 0;
+  const feitas = {};
+  db.respostas.forEach(r => { if(r.sessaoId === s.id && r.usuarioId === u.id) feitas[r.questaoId] = r; });
+  if(!s.respostasSessao) s.respostasSessao = [];
+  let n = 0;
+  vazias.forEach((qid, i) => { if(qid && feitas[qid]){ s.respostasSessao[i] = feitas[qid]; n++; } });
+  return n;
+}
 function salvarSessaoEmAndamento(){
   const s = state.sessaoAtual;
   const u = usuarioAtual();
@@ -216,6 +235,7 @@ function salvarSessaoEmAndamento(){
   if(!db.sessoesEmAndamento) db.sessoesEmAndamento = {};
   const guardavel = s && !s.somenteLeitura && !s.finalizada && s.tipo!=="simulado" && s.itens && s.itens.length;
   if(!guardavel) return;
+  completarRespostasDaSessao(s);
   db.sessoesEmAndamento[u.id] = {
     id: s.id, tipo: s.tipo, itens: s.itens, indiceAtual: s.indiceAtual,
     respostasSessao: s.respostasSessao, eliminadas: s.eliminadas || {},
@@ -285,6 +305,9 @@ function sessaoEmAndamentoDe(usuario){
   const guardada = db.sessoesEmAndamento[usuario.id];
   if(!guardada || !guardada.itens || !guardada.itens.length) return null;
   if(sessaoVencida(guardada) || sessaoGuardadaCompleta(guardada)) return null;
+  // conjunto já concluído (em outro aparelho) que um aparelho atrasado
+  // devolveu à nuvem: não é "pela metade", não volta a ser oferecido
+  if((db.sessoes || []).some(x => x.id === guardada.id && !x.naoTerminada && x.usuarioId === usuario.id)) return null;
   // Questão excluída ou desativada desde então some da fila. As respostas
   // andam pela POSIÇÃO na fila, então elas precisam sair junto: tirar a
   // questão 2 e deixar as respostas como estavam faria a resposta da 3
@@ -298,7 +321,9 @@ function sessaoEmAndamentoDe(usuario){
     mantidas[itens.length-1] = respostas[i] || null;
   });
   if(!itens.length) return null;
-  return {...guardada, itens, respostasSessao: mantidas};
+  const sessao = {...guardada, itens, respostasSessao: mantidas};
+  completarRespostasDaSessao(sessao);
+  return sessao;
 }
 /* Põe a sessão guardada de volta em memória. Devolve true se conseguiu.
    Separado da navegação de propósito: o roteador chama esta parte durante o
@@ -404,6 +429,15 @@ function confirmarResposta(confianca){
   const sessao = state.sessaoAtual; if(!sessao || sessao.somenteLeitura) return;
   const item = sessao.itens[sessao.indiceAtual]; if(!item) return;
   if(respostaDoIndice(sessao, sessao.indiceAtual)) return;
+  // outro aparelho já respondeu esta questão nesta sessão: vale a resposta
+  // dele, não se grava uma segunda (tentativa 2 no mesmo dia)
+  completarRespostasDaSessao(sessao);
+  if(respostaDoIndice(sessao, sessao.indiceAtual)){
+    salvarSessaoEmAndamento();
+    toast("Você já respondeu esta questão em outro aparelho. Mostrei a resposta que ficou registrada.");
+    render();
+    return;
+  }
   const marcada = marcadaDaQuestao(item.questaoId);
   if(!marcada) return;
   const tempoSeg = sessao.tsQuestao ? (Date.now()-sessao.tsQuestao)/1000 : null;
