@@ -806,7 +806,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **criança de 6 anos com sintomas noturnos e aos esforços, internações e uso só de broncodilatador de resgate**: asma persistente não controlada, com indicação de **corticoide inalatório diário** (tratamento de manutenção para a inflamação crônica). A (antibiótico) e C (corticoide oral contínuo) não são o tratamento de manutenção. B (broncodilatador contínuo) não trata a inflamação. E (proibir atividade física) é incorreto: o exercício é estimulado. Mecanismo: a asma é inflamação crônica das vias aéreas com hiper-reatividade, e o broncodilatador de resgate só alivia o broncoespasmo sem tratar a inflamação; sintomas frequentes e internações mostram falta de controle, e o corticoide inalatório diário trata a inflamação de base. Epidemiologia: a asma é a doença crônica mais comum da infância, e o mau controle causa internações e faltas à escola.",
   explicacoesAlternativas:{},
-  referencias:"Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, edição vigente.",
+  referencias:"Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, edição vigente. Texto lido em 17/11/2026 na GINA 2026 (Strategy Report de maio/2026, ginasthma.org): criança de 6–11 anos com sintomas frequentes: controlador diário, preferencialmente ICS em dose baixa (degrau 2), mais SABA ou ICS-SABA conforme a necessidade. Concorda com o gabarito D (corticoide inalatório diário).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

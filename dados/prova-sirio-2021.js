@@ -217,7 +217,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: quatro afirmativas sobre asma, **todas corretas**. I) os **AINEs** e a **DRGE** são fatores que pioram o controle. II) **despertares noturnos e limitação de atividades** são critérios do controle. III) o tratamento de base é o **corticoide inalatório, com ou sem broncodilatador de longa ação**. IV) o asmático deve ser vacinado **anualmente contra influenza**. Mecanismo: a asma é inflamação crônica das vias aéreas com hiper-responsividade, e o corticoide inalatório a controla, enquanto o refluxo e os anti-inflamatórios podem desencadear broncoespasmo. Epidemiologia: a asma afeta cerca de 20 milhões de brasileiros. A) C) D) e E) excluem alguma afirmativa verdadeira.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2020; Diretrizes da SBPT para o Manejo da Asma, 2020.",
+  referencias:"GINA 2020; Diretrizes da SBPT para o Manejo da Asma, 2020. Texto lido em 17/11/2026 na GINA 2026 (Strategy Report de maio/2026, ginasthma.org): a vacinação anual contra influenza é aconselhada na asma moderada a grave; o texto lista comorbidades (DRGE entre elas) e o AINE como fatores que influenciam o controle, e o controle se avalia com os 4 itens (despertar noturno e limitação de atividade entre eles). Edição citada (GINA 2020) é anterior.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

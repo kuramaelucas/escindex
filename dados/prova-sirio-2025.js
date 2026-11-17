@@ -815,7 +815,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: escolar de 8 anos com **asma já tratada com corticoide inalatório em baixa dose**, **sintomas noturnos, uso de resgate de 3 a 4 vezes por semana** e **VEF1 de 65%**: **asma não controlada**. No GINA 2024 para crianças de 6 a 11 anos, o passo seguinte é o **degrau 3**, com **ICS-LABA em baixa dose** (ou ICS em dose média). Mecanismo: na asma não controlada a inflamação persiste apesar da dose baixa do corticoide, e o tratamento sobe de degrau para controlar a inflamação e reduzir os sintomas. Epidemiologia: a asma é a doença crônica mais comum na infância, e o mau controle é frequente por técnica inalatória e adesão ruins. A) manter o tratamento é inadequado com mau controle. B) aumentar o ICS para dose média também é opção do mesmo degrau, mas a questão adota a associação com LABA. C) o antileucotrieno é opção alternativa. D) o biológico anti-IL5 é para asma grave eosinofílica refratária.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2024: Global Strategy for Asthma Management and Prevention; Diretrizes da SBPT 2020.",
+  referencias:"GINA 2024: Global Strategy for Asthma Management and Prevention; Diretrizes da SBPT 2020. Texto lido em 17/11/2026 na GINA 2026 (Strategy Report de maio/2026, ginasthma.org), crianças de 6–11 anos: degrau 3 preferido é ICS em dose média ou ICS-LABA em dose baixa, ou MART com ICS-formoterol em dose baixa; concorda com o gabarito E.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

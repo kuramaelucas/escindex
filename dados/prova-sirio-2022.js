@@ -626,7 +626,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (a folha de respostas marca as alternativas A e B como corretas). Dicas do enunciado: escolar de 6 anos **asmático**, com **frases curtas, uso de musculatura acessória, sibilos intensos e SpO2 de 92%**: **crise moderada**. O tratamento inicial é **salbutamol inalatório a cada 20 minutos na primeira hora** e **corticoide oral precoce (prednisolona)**, que reduz a internação. A banca aceitou também a alternativa B (apenas salbutamol na 1ª hora), por reavaliar a resposta antes do corticoide. Epidemiologia: o corticoide sistêmico nas primeiras horas reduz em 50% as hospitalizações. C) e E) o salmeterol (LABA) não é de resgate. D) a metilprednisolona venosa não é necessária com via oral viável.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2023; Diretrizes da SBPT para o Manejo da Asma, 2020.",
+  referencias:"GINA 2023; Diretrizes da SBPT para o Manejo da Asma, 2020. Texto lido em 17/11/2026 na GINA 2026 (Strategy Report de maio/2026, ginasthma.org): SABA repetido na primeira hora (4–6 jatos, até 3 vezes, 20–30 min de intervalo) e corticoide oral precoce em criança; ipratrópio na crise moderada ou grave. Não conferida a nota da banca que aceitou A e B.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
