@@ -854,7 +854,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: adolescente de 15 anos, **ciclos irregulares (40 a 50 dias)**, **IMC 30**, sem antecedentes, que usa preservativo. Os **dispositivos intrauterinos (inclusive o hormonal) não são contraindicados** na adolescência (categoria 2 da OMS), são de **longa duração e altíssima eficácia**, e o hormonal ainda regulariza o sangramento. Mecanismo: o DIU não afeta o crescimento nem a fertilidade, e os ciclos irregulares nos primeiros anos após a menarca refletem o eixo imaturo, o que não contraindica o método. Epidemiologia: a gravidez na adolescência é problema relevante, e o LARC é a melhor estratégia de prevenção. A) o injetável combinado não é contraindicado só por obesidade grau 1. B) a obesidade não impõe progestagênio isolado. C) a idade não contraindica o DIU. E) os contraceptivos combinados orais não são contraindicados por baixa adesão.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): de menarca a 20 anos, DIU de cobre e de levonorgestrel são categoria 2; concorda com a explicação.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

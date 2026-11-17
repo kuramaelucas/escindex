@@ -1043,7 +1043,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: mulher de **38 anos**, **hipertensa crônica bem controlada**. Pelos Critérios de Elegibilidade da OMS, os **métodos combinados (com estrogênio)** têm categoria 3 na hipertensão controlada (riscos geralmente superam os benefícios), enquanto os **progestagênios isolados** (pílula, implante, DIU hormonal) têm categoria 1 ou 2, sem aumento significativo do risco cardiovascular. Mecanismo: o estrogênio dos métodos combinados pode elevar a pressão e o risco vascular, e na hipertensão controlada o risco geralmente supera o benefício, o que os coloca em categoria de restrição. Epidemiologia: a hipertensão atinge 1 em cada 4 mulheres adultas, e os estrogênios elevam a PA e o risco de AVC. B) e C) e D) e E) todos são métodos combinados (estrogênio mais progestagênio), sejam oral, injetável, transdérmico ou vaginal.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): hipertensão adequadamente controlada: combinados categoria 3 (oral, adesivo, anel, injetável mensal) e progestagênios isolados categoria 1 ou 2; concorda com o gabarito A.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

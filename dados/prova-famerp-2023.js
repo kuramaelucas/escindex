@@ -675,7 +675,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: **história de trombose venosa profunda**: os métodos com **estrogênio** (combinado oral, anel vaginal e adesivo) aumentam o risco tromboembólico e são **categoria 4 de elegibilidade da OMS (contraindicados)**. Os **progestogênios isolados** (minipílula, implante, DIU de levonorgestrel) podem ser usados (categoria 2). A) errada: o anel contém estrogênio, assim como o adesivo e o oral combinado. B) errada: o adesivo é combinado e eleva o risco de trombose. C) errada: o contraceptivo hormonal oral convencional é combinado (estrogênio + progestagênio). Mecanismo: o estrogênio aumenta a síntese de fatores de coagulação, o que eleva o risco de trombose, e por isso os métodos com estrogênio são contraindicados após trombose venosa profunda, ao contrário dos de progestagênio isolado. Epidemiologia: a trombose venosa é uma complicação grave dos contraceptivos combinados.",
   explicacoesAlternativas:{},
-  referencias:"OMS. Critérios médicos de elegibilidade para uso de métodos contraceptivos, 2015; FEBRASGO.",
+  referencias:"OMS. Critérios médicos de elegibilidade para uso de métodos contraceptivos, 2015; FEBRASGO. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): história de TVP/EP: combinados categoria 4 (oral, anel, adesivo) e progestagênios isolados categoria 2; concorda com o gabarito D.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-05"

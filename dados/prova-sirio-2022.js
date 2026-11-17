@@ -822,7 +822,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: indicações do **DIU de cobre** (não hormonal). Pelos Critérios da OMS, em **nuligestas de 18 a 20 anos** o DIU é categoria 2 (benefício supera o risco), tendo longa duração e alta eficácia. Mecanismo: o DIU de cobre libera íons que são tóxicos aos espermatozoides e causam reação inflamatória no endométrio, o que impede a fecundação, sem hormônios. Epidemiologia: o DIU é seguro na adolescência, com expulsão de 5 a 10%. A) a doença de von Willebrand aumenta o sangramento, e o DIU de cobre também. B) a adenomiose e a dismenorreia pioram com o cobre. C) o mioma com mais de 50% submucoso deforma a cavidade (categoria 4). D) o ciclo com fluxo prolongado (10 dias) piora com o cobre.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): da menarca aos 20 anos, DIU de cobre categoria 2; concorda com a explicação para nuligestas jovens.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

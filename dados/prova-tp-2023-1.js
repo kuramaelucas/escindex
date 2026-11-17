@@ -1282,7 +1282,7 @@ window.EscDados.registrarQuestoes("prova-tp-2023-1", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **enxaqueca com aura (escotomas que precedem a dor)**: pelos critérios de elegibilidade da OMS e do Ministério da Saúde, a **enxaqueca com aura é categoria 4 (risco inaceitável) para métodos com estrogênio**, pelo risco aumentado de AVC isquêmico. A opção é um método só de **progestagênio** (pílula de progestagênio, implante, DIU de levonorgestrel ou injetável trimestral) ou o DIU de cobre. C (pílula combinada), D (injetável combinado mensal) e B (adesivo transdérmico) contêm estrogênio e estão contraindicados. Mecanismo: o estrogênio aumenta o risco de AVC isquêmico em mulheres com enxaqueca com aura, e por isso os métodos combinados são contraindicados, e se prefere um método só com progestagênio ou não hormonal. Epidemiologia: a enxaqueca com aura é comum em mulheres jovens, e a escolha do contraceptivo deve considerar o risco cardiovascular.",
   explicacoesAlternativas:{},
-  referencias:"The WHO’s medical eligibility criteria for contraceptive use: 20 years of global guidance - World Health Organization; 2020.",
+  referencias:"The WHO’s medical eligibility criteria for contraceptive use: 20 years of global guidance - World Health Organization; 2020. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): enxaqueca com aura é categoria 4 para os combinados (qualquer idade) e categoria 2 para progestagênios; concorda com o gabarito A.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

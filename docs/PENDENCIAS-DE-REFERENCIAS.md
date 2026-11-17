@@ -248,7 +248,7 @@ Texto oficial que **não** foi lido por falta de acesso. Enquanto não for lido,
 | EAU 2026 (urolitíase e outras) | 62 | uroweb.org (página abre; PDF no CloudFront) | CloudFront bloqueado | PDF |
 | ESC/EACTS valvopatias 2025 (doi 10.1093/eurheartj/ehaf194) | 19 | academic.oup.com | recusa | PDF |
 | SBC Diretriz Brasileira de Hipertensão 2025 | 45 | abccardiol.org | testar; pode abrir | tentar `texto-oficial` |
-| OMS MEC 6ª edição (2025) | 59 | iris.who.int | `iris.who.int` abre (200); falta o endereço do PDF | achar o bitstream e ler |
+| ~~OMS MEC 6ª edição (2025)~~ | 59 | **feita em 17/11/2026** (38 questões anotadas; endereço: `iris.who.int/server/api/core/bitstreams/9f048e30-0d14-4187-b167-9c24b9102092/content`) | — | resta a web annex (GRADE) e a SPR 4ª edição, não lidas |
 | Manual dos CRIE (6ª ed.) e Instrução Normativa do Calendário 2026 | vacinas: contraindicações, prematuros, HPV em grupos prioritários | gov.br/saude | endereço não localizado | achar e ler |
 
 ## 7. Como encerrar uma pendência

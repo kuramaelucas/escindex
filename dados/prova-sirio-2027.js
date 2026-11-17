@@ -957,7 +957,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: puérpera de **15 dias**, **tabagista**, **36 anos**, **sem amamentar**, com recém-nascido pequeno para a idade. Pelos Critérios da OMS, nos primeiros 21 dias do pós-parto os **métodos combinados** (pílula, adesivo, anel, injetável mensal) têm **categoria 4** (risco tromboembólico alto), e os **progestagênios isolados** são **categoria 1 a 2**. A pílula de progesterona isolada é a opção entre as apresentadas. Mecanismo: no pós-parto o risco de trombose está aumentado e o estrogênio soma risco, por isso os métodos combinados são evitados nas primeiras semanas, sobretudo com tabagismo. Epidemiologia: o risco de TEV no puerpério é 20 vezes maior que fora da gestação. A) B) C) e D) todos os métodos são combinados, com estrogênio.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): o pós-parto precoce traz restrição aos combinados (esclarecimento até 6 semanas) e o tabagismo ≥ 15 cigarros em ≥ 35 anos é categoria 4; as categorias exatas do pós-parto sem amamentação não foram extraídas. Concorda em linhas gerais com o gabarito E (progestagênio isolado).",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
