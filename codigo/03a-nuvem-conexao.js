@@ -63,6 +63,9 @@ let _nuvemDentroDaSync = false;
    | entrou na conta                 | na hora                |
    | saiu da conta                   | na hora                |
    | a fila ficou grande             | na hora                |
+   | confirmou uma resposta          | 0,6 s (só respostas e a fila aberta) |
+   | minimizou / vai fechar a página | na hora, e termina mesmo com a página fechada (keepalive) |
+   | vai montar ou retomar um conjunto | baixa antes, até 2,5 s |
 
    AGRUPAR é o coração disso: cada gravação adia o envio em 2 s, para que
    responder três questões seguidas vire UM envio e não três. O teto existe
@@ -114,7 +117,7 @@ async function nuvemChamar(caminho, opcoes = {}){
   let resposta;
   try{
     resposta = await fetch(CONFIG.nuvem.url.replace(/\/+$/,"") + caminho,
-      { method: opcoes.method || "GET", headers: cabecalhos, body: opcoes.body });
+      { method: opcoes.method || "GET", headers: cabecalhos, body: opcoes.body, keepalive: !!opcoes.keepalive });
   }catch(e){
     const erro = new Error("Sem conexão com o servidor.");
     erro.semRede = true;

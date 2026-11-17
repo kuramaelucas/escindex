@@ -396,6 +396,8 @@ async function nuvemSincronizar(opcoes = {}){
   }finally{
     nuvemEstado.sincronizando = false;
     _nuvemDentroDaSync = false;
+    // a fila aberta na tela absorve o que outro aparelho respondeu (08)
+    try{ absorverRespostasDeOutroAparelho(); }catch(e){ console.warn("Fila aberta não atualizada:", e); }
     if(!opcoes.semRedesenhar && (opcoes.forcarRedesenho || erroAntes !== nuvemEstado.ultimoErro || nuvemPendentes() === 0)){
       if(typeof render === "function" && state.usuarioAtualId) render();
     }
@@ -460,23 +462,78 @@ function nuvemTabelaNaoExiste(e){
   // falta responde 400 e é tratada em NUVEM_CAMPOS_NOVOS, não aqui
   return e.status === 404 && !!e.tabela;
 }
-async function nuvemPostarLote(tabela, desc, registros){
+async function nuvemPostarLote(tabela, desc, registros, extra = {}){
   const juntar = (desc.tipo === "registro" && !desc.atualizavel) ? "resolution=ignore-duplicates" : "resolution=merge-duplicates";
   try{
     await nuvemChamar("/rest/v1/" + tabela, {
       method: "POST",
       headers: { "Prefer": juntar + ",return=minimal" },
       body: JSON.stringify(nuvemSemOsCamposQueFaltam(tabela, registros)),
+      keepalive: !!extra.keepalive,
     });
   }catch(e){
     const campo = nuvemCampoQueFalta(tabela, e);
     if(!campo) throw e;
     if(!_nuvemCamposAusentes[tabela]) _nuvemCamposAusentes[tabela] = [];
     _nuvemCamposAusentes[tabela].push(campo);
-    await nuvemPostarLote(tabela, desc, registros);   // de novo, agora sem a coluna
+    await nuvemPostarLote(tabela, desc, registros, extra);   // de novo, agora sem a coluna
   }
 }
 
+/* Envio urgente: só o que faz falta para outro aparelho não repetir o que
+   esta pessoa acabou de fazer — as respostas e a fila de questões aberta.
+   Sobe sem a descida de novidades (barato) e, quando o corpo cabe no limite
+   do navegador, com `keepalive`: a requisição termina mesmo que a página seja
+   fechada ou congelada logo depois (minimizar no celular). Falhou ou foi
+   cortado? O item continua na fila e a sincronização normal o envia depois;
+   o servidor junta duplicatas, então enviar duas vezes não faz mal. */
+const NUVEM_TABELAS_URGENTES = ["respostas", "sessao_em_andamento"];
+const NUVEM_LIMITE_KEEPALIVE_BYTES = 60000;   // o navegador aceita 64 KB por vez, somando as requisições em voo
+let _nuvemTimerUrgente = null;
+function nuvemEnviarUrgente(){
+  if(!nuvemConectado() || nuvemEstado.sessaoExpirada || !db.filaNuvem || !db.filaNuvem.length) return Promise.resolve(false);
+  if(typeof navigator !== "undefined" && navigator.onLine === false) return Promise.resolve(false);
+  let bytes = 0;
+  const envios = [];
+  NUVEM_TABELAS_URGENTES.forEach(tabela => {
+    const desc = NUVEM_TABELAS[tabela];
+    if(!desc || _nuvemTabelasAusentes.has(tabela)) return;
+    const ops = db.filaNuvem.filter(op => op.tabela === tabela).slice(0, 200);
+    if(!ops.length) return;
+    const registros = ops.map(op => op.registro);   // retrato do que está sendo enviado
+    const tamanho = new TextEncoder().encode(JSON.stringify(registros)).length;
+    const keepalive = bytes + tamanho <= NUVEM_LIMITE_KEEPALIVE_BYTES;
+    if(keepalive) bytes += tamanho;
+    envios.push(nuvemPostarLote(tabela, desc, registros, { keepalive }).then(() => {
+      // o estado se atualiza no lugar (a fila aberta muda a cada marca): só sai
+      // o que ainda é exatamente o que subiu
+      nuvemTirarDaFila(ops.filter((op, i) => op.registro === registros[i]));
+    }).catch(() => { /* fica na fila; a sincronização normal tenta de novo */ }));
+  });
+  return Promise.all(envios).then(() => envios.length > 0);
+}
+/* Logo depois de confirmar uma resposta: um instante para juntar as seguintes
+   e sobe só o urgente, sem esperar os 2 s do agrupamento geral. */
+function nuvemEnviarUrgenteLogo(){
+  if(!nuvemConectado()) return;
+  if(_nuvemTimerUrgente) clearTimeout(_nuvemTimerUrgente);
+  _nuvemTimerUrgente = setTimeout(() => { _nuvemTimerUrgente = null; nuvemEnviarUrgente(); }, 600);
+}
+/* Antes de montar ou retomar um conjunto: baixa o que o outro aparelho fez,
+   para a fila nascer já sabendo o que foi respondido. Espera no máximo
+   `limiteMs` (sem internet ou com a nuvem lenta, segue sem ela) e não espera
+   nada se uma sincronização terminou há poucos segundos. */
+const NUVEM_SINCRONIA_RECENTE_MS = 5000;
+let _nuvemUltimaPromessa = null;
+function nuvemSincronizarAntesDe(continuar, limiteMs = 2500){
+  const recente = nuvemEstado.ultimaSyncEm && (Date.now() - new Date(nuvemEstado.ultimaSyncEm).getTime()) < NUVEM_SINCRONIA_RECENTE_MS;
+  if(!nuvemConectado() || nuvemEstado.sessaoExpirada || recente || (typeof navigator !== "undefined" && navigator.onLine === false)){ continuar(); return; }
+  let seguiu = false;
+  const seguir = () => { if(seguiu) return; seguiu = true; clearTimeout(prazo); continuar(); };
+  const prazo = setTimeout(seguir, limiteMs);
+  const promessa = nuvemEstado.sincronizando && _nuvemUltimaPromessa ? _nuvemUltimaPromessa : nuvemSincronizarAgora({ semRedesenhar:true });
+  Promise.resolve(promessa).then(seguir, seguir);
+}
 function nuvemTirarDaFila(ops){
   const fora = new Set(ops);
   db.filaNuvem = db.filaNuvem.filter(op => !fora.has(op));
@@ -760,6 +817,7 @@ function nuvemSincronizarAgora(opcoes = {}){
   if(_nuvemTimerOcioso){ clearTimeout(_nuvemTimerOcioso); _nuvemTimerOcioso = null; }
   _nuvemEsperandoDesde = 0;
   const promessa = nuvemSincronizar(Object.assign({silencioso:true}, opcoes));
+  _nuvemUltimaPromessa = promessa;
   const depois = (subiu) => {
     // sobrou fila porque algo entrou nela durante o envio: novo lote, mesma
     // regra de agrupamento. Se a sincronização falhou, quem tenta de novo é o
