@@ -396,6 +396,8 @@ async function nuvemSincronizar(opcoes = {}){
   }finally{
     nuvemEstado.sincronizando = false;
     _nuvemDentroDaSync = false;
+    // a fila aberta na tela absorve o que outro aparelho respondeu (08)
+    try{ absorverRespostasDeOutroAparelho(); }catch(e){ console.warn("Fila aberta não atualizada:", e); }
     if(!opcoes.semRedesenhar && (opcoes.forcarRedesenho || erroAntes !== nuvemEstado.ultimoErro || nuvemPendentes() === 0)){
       if(typeof render === "function" && state.usuarioAtualId) render();
     }

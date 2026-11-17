@@ -228,6 +228,16 @@ function completarRespostasDaSessao(s){
   vazias.forEach((qid, i) => { if(qid && feitas[qid]){ s.respostasSessao[i] = feitas[qid]; n++; } });
   return n;
 }
+/* Depois de cada sincronização: a fila que está aberta na tela passa a mostrar
+   como respondida a questão que o outro aparelho respondeu, em vez de deixá-la
+   em branco até a pessoa tentar confirmar. Devolve true se mudou algo. */
+function absorverRespostasDeOutroAparelho(){
+  const s = state.sessaoAtual;
+  if(!s || s.somenteLeitura || s.finalizada || s.tipo === "simulado" || !s.itens) return false;
+  if(!completarRespostasDaSessao(s)) return false;
+  salvarSessaoEmAndamento();
+  return true;
+}
 function salvarSessaoEmAndamento(){
   const s = state.sessaoAtual;
   const u = usuarioAtual();

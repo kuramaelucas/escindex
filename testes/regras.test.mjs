@@ -884,16 +884,24 @@ test("dois aparelhos na mesma fila: resposta já feita em outro aparelho não é
     confirmarResposta("certeza");
     const depois = db.respostas.filter(x => x.questaoId === ids[0] && x.usuarioId === u.id).length;
     const adotou = state.sessaoAtual.respostasSessao[0] && state.sessaoAtual.respostasSessao[0].id === doOutro.id;
+    // depois de uma sincronização, a fila aberta já mostra a questão como respondida
+    iniciarSessaoComLista(ids.map(id => ({questaoId:id, motivo:"teste"})), "pratica");
+    const s2 = state.sessaoAtual;
+    db.respostas.push({ id:uid("r"), usuarioId:u.id, questaoId:ids[1], alternativaEscolhida:"A", correta:false,
+      confianca:"duvida", data:hojeISO(), sessaoId:s2.id, origem:"lista", tentativa:1 });
+    const absorveu = absorverRespostasDeOutroAparelho() && !!respostaDoIndice(state.sessaoAtual, 1) && !respostaDoIndice(state.sessaoAtual, 0);
+    state.sessaoAtual = s;
     // ao guardar, a fila não perde a resposta do outro aparelho
     salvarSessaoEmAndamento();
     const guardada = db.sessoesEmAndamento[u.id].respostasSessao[0];
     // conjunto concluído em outro aparelho não volta como "em andamento"
     const g = db.sessoesEmAndamento[u.id];
     db.sessoes.push({ id:g.id, usuarioId:u.id, tipo:"pratica", data:hojeISO(), total:3, acertos:1, itens:[] });
-    return { antes, depois, adotou, guardada: guardada && guardada.id === doOutro.id, volta: !!sessaoEmAndamentoDe(u) };
+    return { antes, depois, adotou, guardada: guardada && guardada.id === doOutro.id, volta: !!sessaoEmAndamentoDe(u), absorveu };
   });
   assert.equal(r.depois, r.antes, "não pode haver segunda resposta");
   assert.ok(r.adotou && r.guardada);
   assert.equal(r.volta, false);
+  assert.ok(r.absorveu, "a fila aberta deve absorver a resposta do outro aparelho");
   await contexto.close();
 });
