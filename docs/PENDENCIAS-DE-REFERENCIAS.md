@@ -250,6 +250,7 @@ Texto oficial que **não** foi lido por falta de acesso. Enquanto não for lido,
 | ~~SBC Diretriz Brasileira de Hipertensão 2025~~ | 45 | **feita em 17/11/2026** (31 questões; PDF em `abccardiol.org`) | — | restam as questões com pouca relação com a diretriz |
 | ~~OMS MEC 6ª edição (2025)~~ | 59 | **feita em 17/11/2026** (38 questões anotadas; endereço: `iris.who.int/server/api/core/bitstreams/9f048e30-0d14-4187-b167-9c24b9102092/content`) | — | resta a web annex (GRADE) e a SPR 4ª edição, não lidas |
 | ~~OMS/FIGO/ICM hemorragia pós-parto 2025~~ | 23 | **feita em 17/11/2026** (14 questões; `iris.who.int`, bitstream `88bf11a5-…`) | — | trocar as 5 referências espúrias (ver `docs/PROJETO-ADEQUACAO.md`) |
+| Fonte adequada para 5 questões de puerpério (`q-famema2021-041`, `q-sessp2023-059`, `-060`, `q-sessp2024-074`, `-075`) | 5 | Ministério da Saúde (aleitamento, HIV e lactação), FEBRASGO (puerpério) | citação espúria retirada em 17/11/2026; falta fonte lida | achar e ler a fonte, depois `npm run anotar-conferencia` |
 | Manual dos CRIE (6ª ed.) e Instrução Normativa do Calendário 2026 | vacinas: contraindicações, prematuros, HPV em grupos prioritários | gov.br/saude | endereço não localizado | achar e ler |
 
 ## 7. Como encerrar uma pendência

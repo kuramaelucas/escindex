@@ -625,7 +625,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **criança já intubada, em ventilação mecânica e com acesso central, com PCR em assistolia** (ritmo não chocável). A epinefrina deve ser dada o mais cedo possível. Com via aérea avançada, as compressões são contínuas, **100 a 120 por minuto**, com **uma ventilação a cada 2 a 3 segundos**, sem pausa para ventilar. A relação 15:2 (A, D) e 30:2 (B, E) é para via aérea sem proteção. Mecanismo: na parada em assistolia, a epinefrina causa vasoconstrição e aumenta a perfusão coronariana, e deve ser dada o mais cedo possível, com compressões contínuas e ventilações pela via aérea avançada. Epidemiologia: a parada cardíaca em crianças é geralmente de causa respiratória, e a assistolia é o ritmo mais comum.",
   explicacoesAlternativas:{},
-  referencias:"Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support — 2020 AHA Guidelines. Circulation, 2020; Global Initiative for Asthma (GINA), edição vigente.",
+  referencias:"Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support — 2020 AHA Guidelines. Circulation, 2020. Em 17/11/2026 foi retirada a citação da GINA (diretriz de asma), que não tem relação com a questão de ressuscitação pediátrica. A edição vigente é a AHA/AAP 2025 (Partes 5, 6, 8 e 11); o texto não foi lido (ahajournals.org e cpr.heart.org recusados pela rede), e a questão segue na fila de conferência.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"
@@ -664,7 +664,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2022", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta como a que não deve ser considerada. Dicas do enunciado: **TCE grave, Glasgow 8, bradicardia (66 bpm), hipertensão (170 × 100 mmHg), dilatação pupilar e postura flexora**: tríade de Cushing, com herniação iminente. Indicam-se medidas de redução da pressão intracraniana: A (hiperventilação breve), B (oxigênio), C (manitol) ou D (solução salina hipertônica a 3%). **Corticoide (metilprednisolona) não tem benefício e aumentou a mortalidade** no estudo CRASH. Mecanismo: na hipertensão intracraniana com herniação, a tríade de Cushing indica o risco de morte, e se usam medidas como a elevação da cabeça, o manitol ou a solução hipertônica e a hiperventilação breve, e se evita o que piora a pressão intracraniana; a questão pede o que não deve ser considerado. Epidemiologia: o trauma craniano grave é uma das principais causas de morte e de incapacidade em jovens.",
   explicacoesAlternativas:{},
-  referencias:"Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support — 2020 AHA Guidelines. Circulation, 2020; Global Initiative for Asthma (GINA), edição vigente.",
+  referencias:"Topjian AA et al. Part 4: Pediatric Basic and Advanced Life Support — 2020 AHA Guidelines. Circulation, 2020. Em 17/11/2026 foi retirada a citação da GINA (diretriz de asma), que não tem relação com a questão de ressuscitação pediátrica. A edição vigente é a AHA/AAP 2025 (Partes 5, 6, 8 e 11); o texto não foi lido (ahajournals.org e cpr.heart.org recusados pela rede), e a questão segue na fila de conferência.",
   dificuldadeManual:"avancado", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"
