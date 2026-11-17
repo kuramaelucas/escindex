@@ -905,3 +905,25 @@ test("dois aparelhos na mesma fila: resposta já feita em outro aparelho não é
   assert.ok(r.absorveu, "a fila aberta deve absorver a resposta do outro aparelho");
   await contexto.close();
 });
+
+test("ao minimizar a janela, o que está na fila da nuvem sobe na hora", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    // este servidor já sobe com a nuvem configurada: os gatilhos já estão ligados
+    let chamadas = 0, opcoes = null;
+    window.nuvemConectado = () => true;
+    window.nuvemPendentes = () => 2;
+    window.nuvemSincronizarAgora = o => { chamadas++; opcoes = o; return Promise.resolve(true); };
+    const esconder = h => { Object.defineProperty(document, "hidden", { configurable:true, get:() => h }); document.dispatchEvent(new Event("visibilitychange")); };
+    esconder(true);
+    const aoEsconder = chamadas;
+    window.nuvemPendentes = () => 0;
+    esconder(true);
+    return { aoEsconder, semFila: chamadas - aoEsconder, semRedesenhar: opcoes && opcoes.semRedesenhar };
+  });
+  assert.equal(r.aoEsconder, 1);
+  assert.equal(r.semFila, 0, "sem nada na fila não sincroniza");
+  assert.equal(r.semRedesenhar, true);
+  await contexto.close();
+});

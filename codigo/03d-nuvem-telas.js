@@ -923,6 +923,12 @@ function nuvemLigarGatilhos(){
     // outro aparelho. Saiu da aba: o ciclo de 45 s para até ela voltar.
     if(document.hidden){
       if(_nuvemTimerOcioso){ clearTimeout(_nuvemTimerOcioso); _nuvemTimerOcioso = null; }
+      // minimizou ou trocou de aplicativo: o que ainda espera na fila sobe já,
+      // sem o atraso de agrupamento. O navegador do celular pode congelar a
+      // página logo depois (e nada garante que a rede termine), mas o que
+      // não sobe agora fica guardado e sobe na volta — e quem abre a sessão
+      // no outro aparelho a tempo já a encontra atualizada.
+      if(nuvemConectado() && nuvemPendentes() > 0) nuvemSincronizarAgora({semRedesenhar:true});
     }else{
       nuvemSincronizarAgora();
     }
