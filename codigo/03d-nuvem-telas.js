@@ -928,10 +928,20 @@ function nuvemLigarGatilhos(){
       // página logo depois (e nada garante que a rede termine), mas o que
       // não sobe agora fica guardado e sobe na volta — e quem abre a sessão
       // no outro aparelho a tempo já a encontra atualizada.
-      if(nuvemConectado() && nuvemPendentes() > 0) nuvemSincronizarAgora({semRedesenhar:true});
+      if(nuvemConectado() && nuvemPendentes() > 0){
+        nuvemEnviarUrgente();                              // termina mesmo com a página congelada (keepalive)
+        nuvemSincronizarAgora({semRedesenhar:true});       // e o resto da fila, se a página ainda viver
+      }
     }else{
       nuvemSincronizarAgora();
     }
   });
+  // a página vai embora ou é congelada (no iOS o pagehide é mais confiável que
+  // o visibilitychange): só o urgente, que é o que cabe num envio keepalive
+  const urgente = () => { if(nuvemConectado() && nuvemPendentes() > 0) nuvemEnviarUrgente(); };
+  window.addEventListener("pagehide", urgente);
+  document.addEventListener("freeze", urgente);
+  // voltou de página guardada pelo navegador (bfcache): confere a nuvem na hora
+  window.addEventListener("pageshow", e => { if(e.persisted) nuvemSincronizarAgora(); });
   nuvemCicloOcioso();
 }

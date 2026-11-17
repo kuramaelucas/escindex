@@ -16,10 +16,14 @@
    plataforma pergunta, porque a fila de ontem foi montada com a matéria e os
    vencimentos de ontem, e pode não ser o que a pessoa quer hoje. */
 function iniciarSessaoRecomendada(){
+  // baixa antes o que o outro aparelho já respondeu: a fila nasce sabendo (03b)
+  nuvemSincronizarAntesDe(iniciarSessaoRecomendadaAgora);
+}
+function iniciarSessaoRecomendadaAgora(){
   const u = usuarioAtual();
   const guardada = sessaoEmAndamentoDe(u);
   if(guardada){
-    if((guardada.salvaEm || hojeISO()) === hojeISO()){ retomarSessaoEmAndamento(); return; }
+    if((guardada.salvaEm || hojeISO()) === hojeISO()){ retomarSessaoEmAndamentoAgora(); return; }
     const feitas = respostasFeitas(guardada).length;
     abrirModalTitulado("Você tem um conjunto de outro dia", `
       <p class="text-sm">Começado em <strong>${formatDataBR(guardada.salvaEm)}</strong>, com <strong>${feitas}</strong> de ${guardada.itens.length} ${flexionar(guardada.itens.length, "respondida(s)")}. Continuar mantém aquela fila; começar de hoje monta um conjunto novo com a matéria e as revisões vencidas de agora — e a fila de ${formatDataBR(guardada.salvaEm)} se perde.</p>
@@ -362,7 +366,8 @@ function carregarSessaoEmAndamento(){
   };
   return true;
 }
-function retomarSessaoEmAndamento(){
+function retomarSessaoEmAndamento(){ nuvemSincronizarAntesDe(retomarSessaoEmAndamentoAgora); }
+function retomarSessaoEmAndamentoAgora(){
   if(!carregarSessaoEmAndamento()){ toast("Não há sessão guardada para continuar.", "err"); return; }
   navigate("sessao");
 }
@@ -455,6 +460,7 @@ function confirmarResposta(confianca){
   sessao.respostasSessao[sessao.indiceAtual] = resp;
   sessao.ultimaConfianca = confianca;
   salvarSessaoEmAndamento();
+  nuvemEnviarUrgenteLogo();   // a resposta e a fila aberta sobem já, para o outro aparelho não repetir
   render();
 }
 /* Atalho de teclado para responder sem o mouse. No simulado em modo
