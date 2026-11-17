@@ -110,7 +110,7 @@ window.EscDados.registrarQuestoes("prova-iamspe-2025", [
   gabarito:"B",
   explicacaoGeral:"Dicas do enunciado: **candesartana**: **bloqueio competitivo dos receptores AT1 da angiotensina II (BRA)**; não causa tosse. A alternativa B é a do gabarito oficial. A candesartana é um bloqueador do receptor AT1 da angiotensina II (BRA): impede a vasoconstrição e a liberação de aldosterona mediadas pela angiotensina II. A inibição da ECA (A) é o mecanismo dos IECA, que também elevam a bradicinina (C), explicando a tosse que os BRA não causam. D e E não descrevem o mecanismo. Epidemiologia: a hipertensão é muito frequente no Brasil e a classe dos bloqueadores do receptor de angiotensina é uma opção comum de primeira linha, em particular para quem não tolera a tosse dos inibidores da enzima conversora.",
   explicacoesAlternativas:{},
-  referencias:"Barroso WKS et al. Diretrizes Brasileiras de Hipertensão Arterial — 2020. Arq Bras Cardiol, 2021.",
+  referencias:"Barroso WKS et al. Diretrizes Brasileiras de Hipertensão Arterial — 2020. Arq Bras Cardiol, 2021. Texto lido em 17/11/2026 na Diretriz Brasileira de Hipertensão Arterial – 2025 (Brandão AA et al., Arq Bras Cardiol 2025; PDF em abccardiol.org): BRA (como a candesartana) está entre as classes preferenciais, com IECA, tiazídicos e BCC; concorda com o gabarito B.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-09-29"

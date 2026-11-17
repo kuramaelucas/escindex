@@ -511,7 +511,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: uso de **quatro drogas em doses máximas** (diurético, BRA, bloqueador de canal de cálcio e betabloqueador) e **PA 160 x 105 mmHg** confirmada por MAPA: hipertensão resistente verdadeira. O quarto fármaco recomendado é a espironolactona. Mecanismo: na hipertensão resistente verdadeira, confirmada por MAPA com quatro fármacos em doses máximas, a espironolactona bloqueia a aldosterona e reduz a pressão na maioria dos casos, e se investigam causas secundárias, como o hiperaldosteronismo e a apneia do sono. Epidemiologia: a hipertensão resistente é frequente em obesos, idosos e com doença renal, e aumenta o risco cardiovascular. B está errada: diltiazem repete o bloqueio de canal de cálcio. C está errada: alisquireno não é recomendado em associação com BRA. D está errada: metildopa é opção para gestantes.",
   explicacoesAlternativas:{},
-  referencias:"Sociedade Brasileira de Cardiologia. Diretrizes Brasileiras de Hipertensão Arterial, 2020.",
+  referencias:"Sociedade Brasileira de Cardiologia. Diretrizes Brasileiras de Hipertensão Arterial, 2020. Texto lido em 17/11/2026 na Diretriz Brasileira de Hipertensão Arterial – 2025 (Brandão AA et al., Arq Bras Cardiol 2025; PDF em abccardiol.org): espironolactona como 4º fármaco na hipertensão resistente (3 classes iniciais), confirmando antes a resistência verdadeira (pseudorresistência excluída, de preferência por MAPA); concorda com o gabarito A.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

@@ -243,11 +243,11 @@ Texto oficial que **não** foi lido por falta de acesso. Enquanto não for lido,
 | AHA/AAP RCP e atendimento cardiovascular de emergência 2025 (Partes 5, 6, 8 e 11) e PALS | 23 | cpr.heart.org, ahajournals.org | cpr.heart.org dá 403; ahajournals recusa | PDF |
 | Surviving Sepsis Campaign 2026 (Intensive Care Med 2026;52:863-936) | 93 | Springer / sccm.org | Springer recusa; sccm.org recusa (000) | PDF (consta que houve um PDF em rodada anterior, não está no repositório) |
 | ATS 2025 de pneumonia comunitária (atualização; a IDSA não a endossou) | 127 | thoracic.org / atsjournals | thoracic.org recusa (000) | PDF; a página da IDSA abre mas traz só o resumo |
-| ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1) | 43 | diabetesjournals.org | bloqueado | PDF |
+| ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1) | 43 | diabetesjournals.org | `diabetesjournals.org` e `diabetes.org` recusados pelo proxy (000, testado em 17/11/2026) | PDF |
 | NCCN (melanoma, mama, testículo etc., versões 2026) | 119 | nccn.org | exige login | PDF autorizado pelo usuário |
 | EAU 2026 (urolitíase e outras) | 62 | uroweb.org (página abre; PDF no CloudFront) | CloudFront bloqueado | PDF |
 | ESC/EACTS valvopatias 2025 (doi 10.1093/eurheartj/ehaf194) | 19 | academic.oup.com | recusa | PDF |
-| SBC Diretriz Brasileira de Hipertensão 2025 | 45 | abccardiol.org | testar; pode abrir | tentar `texto-oficial` |
+| ~~SBC Diretriz Brasileira de Hipertensão 2025~~ | 45 | **feita em 17/11/2026** (31 questões; PDF em `abccardiol.org`) | — | restam as questões com pouca relação com a diretriz |
 | ~~OMS MEC 6ª edição (2025)~~ | 59 | **feita em 17/11/2026** (38 questões anotadas; endereço: `iris.who.int/server/api/core/bitstreams/9f048e30-0d14-4187-b167-9c24b9102092/content`) | — | resta a web annex (GRADE) e a SPR 4ª edição, não lidas |
 | Manual dos CRIE (6ª ed.) e Instrução Normativa do Calendário 2026 | vacinas: contraindicações, prematuros, HPV em grupos prioritários | gov.br/saude | endereço não localizado | achar e ler |
 
