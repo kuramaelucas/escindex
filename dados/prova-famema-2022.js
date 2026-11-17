@@ -41,7 +41,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **13 anos** e vacina HPV 6, 11, 16 e 18 (quadrivalente). O Calendário Nacional indica a vacina para meninas de **9 a 14 anos** (e meninos de 11 a 14), em esquema de 2 doses; a jovem está dentro da faixa. Mecanismo: a vacina contra o HPV induz anticorpos neutralizantes antes da exposição, por isso é indicada na idade em que a resposta é maior e a exposição é menor, em esquema de duas doses nos jovens. Epidemiologia: a infecção por HPV é muito comum e causa quase todo o câncer do colo do útero e verrugas, e a vacinação nas faixas indicadas reduz esse risco. A está errada: a vacinação de adolescentes não exige autorização expressa dos pais para \"qualquer vacina\". B está errada: a vacina é pré-exposição e não depende de ter iniciado a vida sexual (o ideal é vacinar antes). D está errada: a indicação começa aos 9 anos e vai até 14, portanto aos 13 ainda há indicação.",
   explicacoesAlternativas:{},
-  referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação (HPV quadrivalente).",
+  referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação (HPV quadrivalente). Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): HPV hoje é dose única de 9 a 14 anos para meninas e meninos; a explicação (2 doses, meninos de 11 a 14) é da época e está desatualizada. O gabarito C segue compatível.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"
@@ -785,7 +785,7 @@ window.EscDados.registrarQuestoes("prova-famema-2022", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: a pergunta é sobre a vacina anti-HPV oferecida desde 2014; o esquema do SUS é para meninas de **9 a 14 anos** e meninos de **11 a 14 anos**. Mecanismo: a vacina anti-HPV induz anticorpos neutralizantes antes da exposição, e a idade de nove a catorze anos nas meninas e onze a catorze nos meninos é a faixa em que a resposta é melhor e a exposição é menor, em duas doses. Epidemiologia: o HPV causa quase todo o câncer do colo do útero e verrugas, e a vacinação nas faixas indicadas reduz esse risco. A está errada: a bivalente protege contra 16 e 18; os tipos 6 e 11 estão na quadrivalente. C está errada: as vacinas são recombinantes, de partículas semelhantes ao vírus (VLP), sem vírus vivo. D está errada: a vacina previne e não trata infecção ou lesão já existente.",
   explicacoesAlternativas:{},
-  referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação; Nota Técnica sobre a vacina HPV quadrivalente.",
+  referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação; Nota Técnica sobre a vacina HPV quadrivalente. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): HPV de 9 a 14 anos em dose única para ambos os sexos; a explicação (meninos de 11 a 14) é da época e deve ser atualizada. Não conferidas as demais assertivas (OMS).",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

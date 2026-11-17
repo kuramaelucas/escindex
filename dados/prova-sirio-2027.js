@@ -658,7 +658,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: lactente de **2 meses** com BCG e hepatite B. No calendário do PNI, aos 2 meses se administra a **VIP (vacina inativada contra poliomielite), por via intramuscular, 1ª dose**, junto à pentavalente, pneumocócica e rotavírus; as três primeiras doses (2, 4 e 6 meses) são de VIP, e a VOP bivalente fica para os reforços. Mecanismo: a vacina inativada de poliomielite induz imunidade sem risco de poliomielite vacinal, por isso é a recomendada no esquema inicial, junto às demais vacinas dos dois meses. Epidemiologia: o Brasil está livre da poliomielite, mas a queda da cobertura vacinal reacendeu o risco. A) e E) a VOP é usada nos reforços aos 15 meses e 4 anos. C) a combinação VOP e VIP não é a rotina aos 2 meses. D) o esquema começa aos 2 meses.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação da Criança.",
+  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação da Criança. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): poliomielite aos 2, 4 e 6 meses com VIP (intramuscular), reforço com VIP aos 15 meses; concorda com o gabarito B.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -866,7 +866,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2027", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: gestante de 12 semanas com **rubéola IgG e IgM não reagentes** (suscetível), HBsAg não reagente e **anti-HBs reagente** (imune à hepatite B), **Rh negativo** e esposo Rh positivo. A vacina tríplice viral é de vírus vivo e **contraindicada na gestação**, e a gestante suscetível deve ser vacinada **no puerpério**, ainda na maternidade. Mecanismo: a vacina tríplice viral é de vírus vivo e contraindicada na gestação, e a suscetível é vacinada no pós-parto, enquanto a Rh negativa recebe imunoglobulina anti-D para evitar sensibilização. Epidemiologia: a síndrome da rubéola congênita foi eliminada do Brasil em 2015, mas exige manutenção de coberturas. A) a febre amarela é de vírus vivo e só em área de risco com avaliação. B) a dTpa deve ser feita **em cada gestação**, entre 20 e 36 semanas. C) a vacina de influenza é recomendada em qualquer idade gestacional. D) a imunoglobulina anti-D é dada com 28 semanas (e no pós-parto), não a partir do segundo trimestre.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação da Gestante; Manual dos CRIE.",
+  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação da Gestante; Manual dos CRIE. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): no quadro da gestante constam dTpa, hepatite B, influenza, covid-19 e VSR (a partir da 28ª semana); SCR e febre amarela não constam; a SCR no puerpério para gestante suscetível depende do CRIE, não lido.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

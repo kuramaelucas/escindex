@@ -1249,7 +1249,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2024", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: **vacina HPV quadrivalente (6, 11, 16 e 18)**. O Programa Nacional de Imunizações a oferece a **meninas e meninos de 9 a 14 anos** (esquema de dose única a partir de 2024; 2 doses antes), e a prova adota a faixa de adolescentes de 11 a 14 anos. Mecanismo: a vacina HPV induz anticorpos contra os tipos oncogênicos e é mais eficaz antes da exposição, por isso é oferecida na adolescência pelo programa de imunizações. Epidemiologia: o HPV causa praticamente todos os cânceres do colo do útero, e a vacinação antes do início da vida sexual é a mais eficaz. A) a vacina não é indicada a partir de 5 anos. C) não há reforço para quem recebeu dose aos 5 anos. D) não há reforço de 10 anos. E) não há reforço anual.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Informe técnico da vacinação contra HPV.",
+  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Informe técnico da vacinação contra HPV. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): o HPV é recomendado a meninas e meninos de 9 a 14 anos, em dose única; o gabarito B (11 a 14 anos) reflete a regra de época. Revisar a alternativa B e a explicação.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

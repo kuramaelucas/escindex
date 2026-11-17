@@ -841,7 +841,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **prevenção primária** evita a ocorrência da doença, antes de qualquer lesão. A **vacinação contra HPV** previne a infecção que causa o câncer de colo do útero. Epidemiologia: a vacina reduz em mais de 80% as lesões de alto grau quando aplicada antes da exposição. A) suspender terapia hormonal em mulheres com BRCA é medida de redução de risco, mas a questão classifica como prevenção secundária ou de risco. B) a ultrassonografia anual na pós-menopausa é rastreamento (secundária). D) tratar hiperplasia ductal com antiestrogênico é quimioprofilaxia em lesão já presente. E) a exérese da zona de transformação trata lesão, prevenção secundária.",
   explicacoesAlternativas:{},
-  referencias:"Leavell H, Clark EG; Ministério da Saúde. Calendário Nacional de Vacinação.",
+  referencias:"Leavell H, Clark EG; Ministério da Saúde. Calendário Nacional de Vacinação. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): o calendário lista a vacina HPV de 9 a 14 anos (dose única) como proteção contra o câncer de colo do útero; concorda com o gabarito C. O cálculo de redução de lesões de alto grau não consta do quadro e não foi conferido.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

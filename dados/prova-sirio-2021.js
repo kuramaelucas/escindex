@@ -1318,7 +1318,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **alteração do Calendário Nacional de Vacinação de 2020**. A **ampliação da faixa etária para a vacina tríplice viral em adultos não vacinados**, de 30 a 49 anos para **30 a 59 anos**, foi uma das mudanças, dentro da resposta ao surto de sarampo. Mecanismo: a vacinação de adultos suscetíveis amplia a imunidade coletiva e ajuda a conter surtos de sarampo, doença muito contagiosa. Epidemiologia: o Brasil perdeu o certificado de eliminação do sarampo em 2019. A) a meningocócica ACWY aos 3 meses não existiu como alteração. B) os meninos foram incluídos no HPV aos 9 anos já em 2017. D) a ampliação da influenza não incluiu todos os adultos acima de 50. E) a meningocócica ABCD não existe no calendário do PNI.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Instrução Normativa do Calendário Nacional de Vacinação, 2020.",
+  referencias:"Ministério da Saúde. Instrução Normativa do Calendário Nacional de Vacinação, 2020. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): SCR no adulto — de 30 a 59 anos sem histórico, 1 dose; de 5 a 29 anos, 2 doses; concorda com o gabarito C. A Instrução Normativa de 2020 citada é anterior; a alternativa sobre ACWY aos 3 meses não corresponde ao quadro.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

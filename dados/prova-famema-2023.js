@@ -1179,7 +1179,7 @@ window.EscDados.registrarQuestoes("prova-famema-2023", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta, conforme o gabarito. Dicas do enunciado: **6 anos**, vacinas em dia até os 15 meses. O reforço dos 4 anos inclui VOP, DTP, varicela (2ª dose) e febre amarela (reforço), que ficou pendente. Mecanismo: o reforço dos quatro anos inclui vacinas que mantêm a imunidade contra difteria, tétano e coqueluche, e a poliomielite, pois a imunidade cai com o tempo, e o calendário organiza as doses para manter a proteção. Epidemiologia: a cobertura vacinal em queda trouxe de volta doenças evitáveis, e o cumprimento do calendário previne casos. A está errada (VIP não é o reforço do calendário básico nessa faixa, SCR já completa aos 15 meses). C e D citam ACWY e HPV, que não são indicados nessa idade (HPV a partir de 9 anos).",
   explicacoesAlternativas:{},
-  referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação da Criança, 2022.",
+  referencias:"Brasil. Ministério da Saúde. Calendário Nacional de Vacinação da Criança, 2022. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): o quadro 2026 traz um único reforço de poliomielite (VIP, aos 15 meses), reforço da DTP aos 4 anos, varicela monovalente aos 4 anos e febre amarela aos 4 anos; as alternativas com VOP no reforço de 4 anos refletem a regra de 2023 e estão desatualizadas.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

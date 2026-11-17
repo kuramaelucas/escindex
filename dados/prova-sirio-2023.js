@@ -1183,7 +1183,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2023", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: crianças vacinadas **aos 6 meses** com tríplice viral, em campanha ou bloqueio. A dose aplicada antes dos 12 meses é a **'dose zero'**, que **não conta** no calendário, pois anticorpos maternos podem neutralizar o vírus vacinal. Portanto, **mantém-se a dose dos 12 meses e o reforço aos 15 meses** (tetraviral ou tríplice viral e varicela). Epidemiologia: o Brasil perdeu o certificado de eliminação do sarampo em 2019, após surtos importados. A) antecipar para 9 meses não é a regra. C) não vacinar aos 12 meses deixa a criança sem imunidade garantida. D) a sorologia não é indicada de rotina. E) antecipar o reforço comprometeria o esquema de duas doses válidas.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Informe técnico da campanha de vacinação contra sarampo, 2019.",
+  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Informe técnico da campanha de vacinação contra sarampo, 2019. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): a dose zero (6 a 11 meses, em bloqueio) não vale para a rotina; mantém-se a SCR aos 12 e 15 meses; concorda com o gabarito B. No quadro 2026 a varicela monovalente é aos 15 meses e a tetraviral só substitui a monovalente quando esta falta.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
