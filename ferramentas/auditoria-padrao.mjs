@@ -44,10 +44,21 @@ export function estadoDaReferencia(q){
 const semAcento = (t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 const MECANISMO = /fisiopatolog|mecanismo|patogen|por que (o|a|os|as) /i;
 const EPIDEMIOLOGIA = /epidemiolog|prevalenc|incidenc|frequenc|mais comum|fator(es)? de risco|faixa etaria|no brasil/i;
+/* Mecanismo em prosa, sem a palavra "mecanismo": o trecho clínico (antes dos motivos das alternativas erradas e da
+   "Epidemiologia:") traz ao menos DOIS marcadores causais distintos (receptor, enzima, libera, oclusão, atravessa,
+   porque, leva a…). Conferido por amostra em Sírio, FMABC e USP-SP (17/11/2026): com dois ou mais há explicação
+   causal de fato; com zero ou um, em geral só conduta ou dado (por isso continuam apontados). Ainda é heurística. */
+const MARCADOR_CAUSAL = /(quela|precipit|oclus|isquemi|fixa-se|atravess|inibe|inibem|bloquei|libera|liberam|receptor|enzima|adenilato|ampc|citocina|hidrolis|toxina|invade|invasao|infiltra|obstru|aderenc|imunocomplex|autoanticorp|desregul|compress|distens|reflux|vasodilat|vasoconstri|hipoperfus|hipoxi|extravas|permeabilidade|age em|agem em|atua em|atua sobre|leva a|levam a|resulta|decorre|devido a|por meio d|porque|pois |depende d|sintese|ativa |ativam|estimula|aumenta a produ|reduz a produ|destrui|lesa|lesao d|impede|impedem|provoca|provocam|acelera|edema|inflamacao|perda de|produz|produzem|causa |causam|causando|favorece|favorecem|facilita|facilitam|reduz o|reduz a|aumenta o|aumenta a|diminui|deprime|inativa|induz|induzem|dano|necrose|atrofia|fibrose|hiperplasia|proliferacao|disfuncao|alteracao d)/gi;
+export function temMecanismoEmProsa(t){
+  let e = semAcento(t).replace(/\*/g, "");
+  const k = e.search(/ [A-E]\) /); if(k > 0) e = e.slice(0, k);
+  e = e.replace(/Epidemiologia:.*$/, "").replace(/^A alternativa.*?Dicas (do enunciado|da imagem):/, "");
+  return new Set((e.match(MARCADOR_CAUSAL) || []).map((s) => s.toLowerCase())).size >= 2;
+}
 export function faltasDeConteudo(q){
   if(q.status === "anulada") return [];
   const t = semAcento(q.explicacaoGeral || ""), f = [];
-  if(!MECANISMO.test(t)) f.push("sem mecanismo/fisiopatologia");
+  if(!MECANISMO.test(t) && !temMecanismoEmProsa(q.explicacaoGeral || "")) f.push("sem mecanismo/fisiopatologia");
   if(!EPIDEMIOLOGIA.test(t)) f.push("sem epidemiologia");
   return f;
 }
