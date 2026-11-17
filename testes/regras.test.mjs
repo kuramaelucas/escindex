@@ -864,3 +864,36 @@ test("Fila de Dúvidas: 'Minhas respostas' lista e exclui a resposta oficial pr�
     assert.deepEqual(r, { tem: true, sobrou: 0, outraFicou: true });
   } finally { await contexto.close(); }
 });
+
+test("dois aparelhos na mesma fila: resposta já feita em outro aparelho não é gravada de novo nem apagada", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    fazerLoginDemo("aluno");
+    const u = usuarioAtual();
+    const ids = questoesParaEstudo(u.id).slice(0, 3).map(q => q.id);
+    iniciarSessaoComLista(ids.map(id => ({questaoId:id, motivo:"teste"})), "pratica");
+    const s = state.sessaoAtual;
+    // o outro aparelho respondeu a 1ª questão desta sessão; esta cópia da fila ainda não sabe
+    const q = getQuestao(ids[0]);
+    const doOutro = { id:uid("r"), usuarioId:u.id, questaoId:ids[0], alternativaEscolhida:q.gabarito, correta:true,
+      confianca:"certeza", data:hojeISO(), sessaoId:s.id, origem:"lista", tentativa:1 };
+    db.respostas.push(doOutro);
+    const antes = db.respostas.filter(x => x.questaoId === ids[0] && x.usuarioId === u.id).length;
+    s.marcadas[ids[0]] = q.alternativas.find(a => a.id !== q.gabarito).id;
+    confirmarResposta("certeza");
+    const depois = db.respostas.filter(x => x.questaoId === ids[0] && x.usuarioId === u.id).length;
+    const adotou = state.sessaoAtual.respostasSessao[0] && state.sessaoAtual.respostasSessao[0].id === doOutro.id;
+    // ao guardar, a fila não perde a resposta do outro aparelho
+    salvarSessaoEmAndamento();
+    const guardada = db.sessoesEmAndamento[u.id].respostasSessao[0];
+    // conjunto concluído em outro aparelho não volta como "em andamento"
+    const g = db.sessoesEmAndamento[u.id];
+    db.sessoes.push({ id:g.id, usuarioId:u.id, tipo:"pratica", data:hojeISO(), total:3, acertos:1, itens:[] });
+    return { antes, depois, adotou, guardada: guardada && guardada.id === doOutro.id, volta: !!sessaoEmAndamentoDe(u) };
+  });
+  assert.equal(r.depois, r.antes, "não pode haver segunda resposta");
+  assert.ok(r.adotou && r.guardada);
+  assert.equal(r.volta, false);
+  await contexto.close();
+});
