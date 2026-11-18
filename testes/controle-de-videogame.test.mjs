@@ -18,6 +18,17 @@ async function abrirPagina(contexto) {
     window.__pad = { index:0, id:"Controle de teste", connected:true, mapping:"standard", axes:[0,0,0,0],
       buttons:Array.from({length:17}, () => ({ pressed:false, value:0 })) };
     window.__padLigado = false;
+    /* Sessão de teste de múltipla escolha, sempre a mesma. A sessão recomendada sorteia: de vez em
+       quando a primeira questão era dissertativa (sem alternativas), o controle não tinha o que
+       marcar e o teste falhava sem relação nenhuma com o controle. */
+    window.iniciarSessaoDeTeste = () => {
+      const u = usuarioAtual();
+      const lista = questoesParaEstudo(u.id)
+        .filter(q => !ehDissertativa(q) && q.alternativas && q.alternativas.length >= 4)
+        .sort((a, b) => a.id < b.id ? -1 : 1).slice(0, 12)
+        .map(q => ({ questaoId: q.id, motivo: "teste do controle" }));
+      iniciarSessaoComLista(lista, "pratica");
+    };
     navigator.getGamepads = () => [window.__padLigado ? window.__pad : null, null, null, null];
   });
   const pagina = await contexto.newPage();
@@ -25,13 +36,26 @@ async function abrirPagina(contexto) {
   await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
   return pagina;
 }
-const ligar = pagina => pagina.evaluate(() => { window.__padLigado = true; window.dispatchEvent(new Event("gamepadconnected")); }).then(() => pagina.waitForTimeout(150));
-/* aperta e solta, dando um quadro de animação entre os dois para o laço enxergar a mudança */
+/* O laço do controle lê o estado a cada quadro de animação (requestAnimationFrame). Esperar um
+   tempo fixo (80 ms) para ele "enxergar" o aperto falhava quando a máquina estava ocupada e o
+   quadro demorava mais: o aperto passava sem ser lido. Por isso o teste conta QUADROS dentro da
+   página, que é exatamente a unidade em que o laço anda, em vez de milissegundos. */
+const quadros = (pagina, n = 3) => pagina.evaluate(n => new Promise(resolver => {
+  let falta = n;
+  const passo = () => { if(--falta <= 0) resolver(); else requestAnimationFrame(passo); };
+  requestAnimationFrame(passo);
+}), n);
+const ligar = async pagina => {
+  await pagina.evaluate(() => { window.__padLigado = true; window.dispatchEvent(new Event("gamepadconnected")); });
+  await pagina.waitForFunction(() => controleEstado.rodando);
+  await quadros(pagina, 3);
+};
+/* aperta e solta, com quadros inteiros entre os dois para o laço enxergar cada mudança */
 async function apertar(pagina, botao) {
   await pagina.evaluate(b => { window.__pad.buttons[b].pressed = true; }, botao);
-  await pagina.waitForTimeout(80);
+  await quadros(pagina, 3);
   await pagina.evaluate(b => { window.__pad.buttons[b].pressed = false; }, botao);
-  await pagina.waitForTimeout(80);
+  await quadros(pagina, 3);
 }
 
 test("os rótulos dos botões só aparecem com controle conectado, na questão e na confiança", async () => {
@@ -39,7 +63,7 @@ test("os rótulos dos botões só aparecem com controle conectado, na questão e
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
     const pagina = await abrirPagina(contexto);
-    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste(); });
     const visiveis = () => pagina.evaluate(() => [...document.querySelectorAll(".dica-controle")].filter(e => getComputedStyle(e).display !== "none").map(e => getComputedStyle(e, "::before").content.replace(/"/g, "")));
     assert.deepEqual(await visiveis(), [], "sem controle, nenhum rótulo");
     await ligar(pagina);
@@ -65,7 +89,7 @@ test("botões da direita escolhem a alternativa, e esquerda / baixo / cima dão 
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
     const pagina = await abrirPagina(contexto);
-    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste(); });
     await ligar(pagina);
     const marcada = () => pagina.evaluate(() => { const s = state.sessaoAtual; return marcadaDaQuestao(s.itens[s.indiceAtual].questaoId); });
     // botão de baixo = D; depois L1 desmarca e o de cima (A) volta a escolher
@@ -93,7 +117,7 @@ test("cima = chute e baixo = dúvida; R1 só vale se a questão tem alternativa 
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
     const pagina = await abrirPagina(contexto);
-    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste(); });
     await ligar(pagina);
     const confianca = () => pagina.evaluate(() => { const r = respostaDoIndice(state.sessaoAtual, state.sessaoAtual.indiceAtual); return r && r.confianca; });
     await apertar(pagina, BOTAO.direita);   // marca C
@@ -119,16 +143,16 @@ test("seta para baixo rola a tela, seta para cima volta, e esquerda / direita tr
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
     const pagina = await abrirPagina(contexto);
-    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste(); });
     await ligar(pagina);
     assert.ok(await pagina.evaluate(() => document.documentElement.scrollHeight > innerHeight + 200), "a questão é mais alta que a tela");
     await pagina.evaluate(() => { window.__pad.buttons[13].pressed = true; });
-    await pagina.waitForTimeout(400);
+    await quadros(pagina, 25);
     await pagina.evaluate(() => { window.__pad.buttons[13].pressed = false; });
     const desceu = await pagina.evaluate(() => scrollY);
     assert.ok(desceu > 100, "rolou para baixo (" + desceu + ")");
     await pagina.evaluate(() => { window.__pad.buttons[12].pressed = true; });
-    await pagina.waitForTimeout(400);
+    await quadros(pagina, 25);
     await pagina.evaluate(() => { window.__pad.buttons[12].pressed = false; });
     assert.ok(await pagina.evaluate(() => scrollY) < desceu, "voltou para cima");
     // direita avança e esquerda volta, como as setas do teclado
@@ -145,7 +169,7 @@ test("com uma janela aberta o controle só rola: não responde por trás dela", 
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
     const pagina = await abrirPagina(contexto);
-    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste(); });
     await ligar(pagina);
     await pagina.evaluate(() => abrirModalTitulado("Aviso", "<p>texto</p>"));
     await apertar(pagina, BOTAO.cima);
@@ -158,7 +182,7 @@ test("a marca do controle muda o desenho dos rótulos (PlayStation △ □ ○ �
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
     const pagina = await abrirPagina(contexto);
-    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste(); });
     const rotulos = () => pagina.evaluate(() => [...document.querySelectorAll(".qcard-alt .dica-controle")].slice(0, 4).map(e => getComputedStyle(e, "::before").content.replace(/"/g, "")));
     await pagina.evaluate(() => { window.__pad.id = "054c-0ce6-Wireless Controller"; });
     await ligar(pagina);
@@ -178,18 +202,18 @@ test("depois de responder, o botão de baixo vai para a próxima questão; L2 se
     await pagina.evaluate(() => {
       window.__vibrou = [];
       window.__pad.vibrationActuator = { playEffect: (t, o) => { window.__vibrou.push(o.duration); return Promise.resolve(); } };
-      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada();
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste();
     });
     await ligar(pagina);
     const idx = () => pagina.evaluate(() => state.sessaoAtual.indiceAtual);
     // marcar C e riscar com L2 segurado: some a marca e a alternativa fica eliminada
     await apertar(pagina, BOTAO.direita);
     await pagina.evaluate(() => { window.__pad.buttons[6].pressed = true; });
-    await pagina.waitForTimeout(100);
+    await quadros(pagina, 3);
     assert.equal(await pagina.evaluate(() => document.body.classList.contains("controle-riscando")), true);
     await apertar(pagina, BOTAO.direita);   // L2 segurado: C é riscada (e a marca some), não marcada
     await pagina.evaluate(() => { window.__pad.buttons[6].pressed = false; });
-    await pagina.waitForTimeout(100);
+    await quadros(pagina, 3);
     assert.equal(await pagina.evaluate(() => document.body.classList.contains("controle-riscando")), false);
     const riscou = await pagina.evaluate(() => { const s = state.sessaoAtual; const id = s.itens[s.indiceAtual].questaoId; return { marcada: marcadaDaQuestao(id), eliminadas: (s.eliminadas || {})[id] || [] }; });
     assert.equal(riscou.marcada, null);
@@ -232,11 +256,11 @@ test("a opção do Perfil desliga o controle, e o analógico direito rola mais d
   await contexto.route(/supabase\.co/, r => r.abort());
   try {
     const pagina = await abrirPagina(contexto);
-    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoDeTeste(); });
     await ligar(pagina);
     const rolar = async (aplicar, limpar) => {
       await pagina.evaluate(() => scrollTo(0, 0));
-      await pagina.evaluate(aplicar); await pagina.waitForTimeout(300); await pagina.evaluate(limpar);
+      await pagina.evaluate(aplicar); await quadros(pagina, 20); await pagina.evaluate(limpar);
       return pagina.evaluate(() => scrollY);
     };
     const seta = await rolar(() => { window.__pad.buttons[13].pressed = true; }, () => { window.__pad.buttons[13].pressed = false; });
@@ -273,13 +297,13 @@ test("no simulado, L2 segurado + letra também risca (e não marca); gatilho só
     assert.deepEqual(await estado(), { resp: "C", riscadas: [] });
     // gatilho analógico só pela metade: pressed false, value 0.6
     await pagina.evaluate(() => { window.__pad.buttons[6].value = 0.6; });
-    await pagina.waitForTimeout(50);
+    await quadros(pagina, 3);
     await apertar(pagina, BOTAO.baixo);   // D riscada, e C continua marcada
     assert.deepEqual(await estado(), { resp: "C", riscadas: ["D"] });
     await apertar(pagina, BOTAO.direita);  // riscar a marcada desfaz a resposta
     assert.deepEqual(await estado(), { resp: null, riscadas: ["D", "C"] });
     await pagina.evaluate(() => { window.__pad.buttons[6].value = 0; });
-    await pagina.waitForTimeout(50);
+    await quadros(pagina, 3);
     await apertar(pagina, BOTAO.cima);     // solto: volta a marcar
     assert.equal((await estado()).resp, "A");
   } finally { await contexto.close(); }
