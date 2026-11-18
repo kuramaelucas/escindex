@@ -99,4 +99,5 @@ Marcações dentro do texto:
 | `infeccoes-congenitas` | `ass-neo-infeccoescongenitas` | 62 | 1 (anulada) |
 | `reanimacao-neonatal` | `ass-reanimacao` | 57 | 1 (anulada) |
 | `vias-aereas-superiores` | `ass-ivas` | 47 | 1 (desatualizada sem reposição) |
+| `ictericia-neonatal` | `ass-ictericia` | 48 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
