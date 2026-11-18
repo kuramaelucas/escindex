@@ -484,7 +484,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2020", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **epididimite** em **adulto jovem hígido**: em homens com menos de 35 anos e sexualmente ativos, os agentes mais comuns são *Chlamydia trachomatis* e *Neisseria gonorrhoeae*. Mecanismo: a epididimite é em geral uma infecção ascendente a partir da uretra, e o agente depende da faixa etária e da atividade sexual. Epidemiologia: em adultos jovens sexualmente ativos predominam as infecções sexualmente transmissíveis, enquanto em idosos predominam enterobactérias. B está errada porque o *Treponema pallidum* causa sífilis e raramente envolve o epidídimo. C e D estão erradas porque *Pseudomonas* e *Proteus* (enterobactérias) predominam em idosos e em quem tem obstrução ou instrumentação urinária, não no jovem hígido.",
   explicacoesAlternativas:{},
-  referencias:"European Association of Urology. Guidelines on Urological Infections, 2020.",
+  referencias:"European Association of Urology. Guidelines on Urological Infections, 2020. Texto lido em 18/11/2026 em EAU Guidelines on Urological Infections 2026 (PDF completo em d56bochluxqnz.cloudfront.net, página uroweb.org): na epididimite de homem jovem sexualmente ativo, cobrir Chlamydia trachomatis e enterobactérias (com ceftriaxona se gonococo provável); no homem mais velho sem risco sexual, só enterobactérias (fortes). Confirmado.",
   dificuldadeManual:"fundamental", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-04"
