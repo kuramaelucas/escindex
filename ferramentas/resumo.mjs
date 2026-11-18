@@ -31,6 +31,9 @@ for(const d of r.doencas) for(const f of d.fragmentos){
     if(!cobertas.has(id)) cobertas.set(id, []);
     cobertas.get(id).push(f.id);
   }
+  // Frase marcada no texto corrido ligada a questão inexistente: o sublinhado nunca acenderia.
+  for(const m of `${d.introducao || ""}\n${f.prosa || ""}`.matchAll(/\[\[[^\]|]+\|([^\]]+)\]\]/g)) for(const id of m[1].split(","))
+    if(!porId.has(id.trim())) erros.push(`${d.id}/${f.id}: frase marcada cita ${id.trim()}, que não existe`);
   // Tópico ligado a questão que o trecho não lista: o erro dele não somaria no trecho.
   for(const m of f.texto.matchAll(/\{([^}]+)\}\s*$/gm)) for(const id of m[1].split(",").map(x => x.trim()))
     if(!f.questoes.includes(id)) erros.push(`${d.id}/${f.id}: tópico cita ${id}, que não está em questoes do trecho`);

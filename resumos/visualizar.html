@@ -18,16 +18,16 @@
    Dois tons apagados (tijolo e ocre) marcam onde revisar; o que o aluno domina não leva cor. */
 :root{
   --papel:#f6f7f9; --folha:#ffffff; --linha:#e3e6eb; --tinta:#22262e; --suave:#69707d; --azul:#2b5797;
-  --rev:#b7695c; --rev-f:#faf3f1; --aten:#bf9a55; --aten-f:#fbf7ee; --ok:#7aa386; --quadro:#f3f5f8;
+  --rev:#b7695c; --rev-f:#faf3f1; --aten:#bf9a55; --aten-f:#fbf7ee; --ok:#7aa386; --quadro:#f3f5f8; --aceso:#fff1b8;
   --serifa:"Source Serif 4",Georgia,"Times New Roman",serif;
   --rotulo:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --papel:#14161a; --folha:#1b1e23; --linha:#2b3038; --tinta:#e6e7eb; --suave:#9aa1ad; --azul:#93b4e6;
-  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; color-scheme:dark}}
+  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; --aceso:#4a4220; color-scheme:dark}}
 :root[data-theme="dark"]{
   --papel:#14161a; --folha:#1b1e23; --linha:#2b3038; --tinta:#e6e7eb; --suave:#9aa1ad; --azul:#93b4e6;
-  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; color-scheme:dark}
+  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; --aceso:#4a4220; color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
@@ -77,6 +77,12 @@ input[type=file]{font:.85rem var(--rotulo);max-width:100%;color:var(--suave)}
 .chave li{padding:4px 10px 4px 12px;border-left:3px solid transparent;border-radius:0 4px 4px 0;font-size:.97rem;line-height:1.6}
 .chave li.revisar{border-left-color:var(--rev);background:var(--rev-f)}
 .chave li.atencao{border-left-color:var(--aten);background:var(--aten-f)}
+.trecho{scroll-margin-top:30vh;border-radius:3px;transition:background-color .6s}
+.trecho.revisar{text-decoration:underline 2px var(--rev);text-underline-offset:4px;text-decoration-skip-ink:none}
+.trecho.atencao{text-decoration:underline 2px var(--aten);text-underline-offset:4px;text-decoration-skip-ink:none}
+.trecho.aceso{background:var(--aceso)}
+.ir{font:500 .78rem var(--rotulo);color:var(--suave);text-decoration:none;white-space:nowrap;margin-left:6px}
+.ir:hover{color:var(--azul)}
 .conferir{font:italic .8rem var(--serifa);color:var(--suave);margin-top:6px}
 .fim{margin-top:56px;border-top:1px solid var(--linha);padding-top:12px;font-size:.85rem;color:var(--suave)}
 </style>
@@ -100,7 +106,7 @@ input[type=file]{font:.85rem var(--rotulo);max-width:100%;color:var(--suave)}
       <span><i class="marca atencao"></i>Vale revisar</span>
       <span><i class="marca dominado"></i>Você já domina</span>
     </div>
-    <div id="regra" hidden>As cores vêm das questões de prova que você já fez. Os capítulos que você mais erra vêm primeiro, e nos pontos-chave o fundo colorido mostra o detalhe exato em que você erra.</div>
+    <div id="regra" hidden>As cores vêm das questões de prova que você já fez. Os capítulos que você mais erra vêm primeiro, e nos pontos-chave o fundo colorido mostra o detalhe exato em que você erra. No texto, a frase sublinhada é a que explica esse detalhe; o link “no texto ↑” leva até ela.</div>
   </section>
 
   <nav class="sumario" aria-label="Sumário">
@@ -117,7 +123,29 @@ let ultimas = null; // questaoId -> peso de erro da última resposta (0, 0.5 ou 
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const enfase = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\*(.+?)\*/g, "<em>$1</em>");
-const paragrafos = t => (t || "").split(/\n\s*\n/).filter(p => p.trim()).map(p => `<p>${enfase(p.trim())}</p>`).join("");
+/* [[frase|q-a,q-b]] = frase do texto corrido que justifica um ponto-chave. Ela é sublinhada
+   na cor do erro só quando o aluno erra aquelas questões; os pontos-chave apontam para ela. */
+let trechos = [];
+const paragrafos = (t, cap) => (t || "").split(/\n\s*\n/).filter(p => p.trim()).map(p => "<p>" +
+  p.trim().split(/(\[\[[^\]]+\]\])/).map(peca => {
+    const m = peca.match(/^\[\[([^|\]]+)\|([^\]]+)\]\]$/);
+    if(!m) return enfase(peca);
+    const ids = m[2].split(",").map(x => x.trim()), n = nivel(medir(ids)), id = "t-" + trechos.length;
+    trechos.push({ id, cap, ids });
+    return `<span class="trecho ${n === "dominado" ? "" : n}" id="${id}">${enfase(m[1])}</span>`;
+  }).join("") + "</p>").join("");
+// Ponto-chave → frase do mesmo capítulo que divide mais questões com ele.
+function fraseDoTopico(cap, ids){
+  let melhor = null, max = 0;
+  for(const t of trechos) if(t.cap === cap){ const n = ids.filter(id => t.ids.includes(id)).length; if(n > max){ max = n; melhor = t; } }
+  return melhor;
+}
+function irPara(id){
+  const el = document.getElementById(id); if(!el) return false;
+  el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  el.classList.add("aceso"); setTimeout(() => el.classList.remove("aceso"), 1800);
+  return false;
+}
 // Tópico = "- texto {q-a,q-b}": as chaves ligam o tópico às questões que ele responde.
 const topicos = f => f.texto.split("\n").filter(l => l.trim()).map(l => {
   const m = l.match(/\s*\{([^}]+)\}\s*$/);
@@ -141,23 +169,25 @@ function montar(){
     secoes: ordenar(d.fragmentos.map((f, j) => ({ f, i: j, t: medir(f.questoes) }))) })));
 }
 
-function htmlSecao(numero, { f, t }){
+function htmlSecao(numero, { f, t }, cap){
+  const prosa = paragrafos(f.prosa, cap);
   const tops = topicos(f).map(x => {
     // Tópico sem questão própria herda a cor da seção só se a seção pede revisão; no domínio, sem cor.
     const n = nivel(x.questoes ? medir(x.questoes) : null);
     const cls = n === "dominado" ? "" : n;
-    return `<li class="${cls}"${cls ? ` title="${NOME[cls]}"` : ""}>${enfase(x.texto)}</li>`;
+    const fr = (!ultimas || cls) ? fraseDoTopico(cap, x.questoes || f.questoes) : null; // só onde ajuda: no erro (ou sem dados)
+    return `<li class="${cls}"${cls ? ` title="${NOME[cls]}"` : ""}>${enfase(x.texto)}${fr ? `<a class="ir" href="#${fr.id}" onclick="return irPara('${fr.id}')" title="Ir à explicação no texto">no texto ↑</a>` : ""}</li>`;
   }).join("");
   return `<section class="secao" id="s-${f.id}">
     <div class="sec-cab"><span class="num">${numero}</span><h3>${esc(f.titulo)}</h3>${marca(t)}</div>
-    ${paragrafos(f.prosa)}
+    ${prosa}
     <div class="chave"><div class="rotulo">Pontos-chave</div><ul>${tops}</ul></div>
     ${f.conferir ? `<div class="conferir">Texto ainda a conferir na fonte primária.</div>` : ""}
   </section>`;
 }
 
 function desenhar(){
-  const caps = montar();
+  const caps = montar(); trechos = [];
   document.getElementById("titulo").textContent = R.titulo;
   document.getElementById("legenda").hidden = document.getElementById("regra").hidden = !ultimas;
   document.getElementById("sumario").innerHTML = caps.map(({ d, t, secoes }, c) => `
@@ -168,8 +198,8 @@ function desenhar(){
   document.getElementById("conteudo").innerHTML = caps.map(({ d, secoes }, c) => `
     <article class="capitulo" id="c-${d.id}">
       <div class="cap-cab"><div class="rotulo">Capítulo ${c + 1}</div><h2>${esc(d.titulo)}</h2></div>
-      ${d.introducao ? `<div class="introducao">${paragrafos(d.introducao)}</div>` : ""}
-      ${secoes.map((s, k) => htmlSecao(`${c + 1}.${k + 1}`, s)).join("")}
+      ${d.introducao ? `<div class="introducao">${paragrafos(d.introducao, d.id)}</div>` : ""}
+      ${secoes.map((s, k) => htmlSecao(`${c + 1}.${k + 1}`, s, d.id)).join("")}
     </article>`).join("");
   document.getElementById("fim").textContent = `Fontes a conferir: ${R.fontes.map(x => x.texto).join("; ")}. Fora deste caderno: ${R.foraDoEscopo.map(x => x.motivo).join("; ")}.`;
 }
