@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resumo adaptativo</title>
+<!-- Resumos adaptativos (resumos/LEIA-ME.md): o texto é dividido em fragmentos ligados
+     a questões; o destaque de cada fragmento vem do erro de quem lê, medido nas
+     respostas do backup da plataforma (Perfil › Seus dados). Nada sai do navegador. -->
+<script src="exantematicas/resumo.js"></script>
+<style>
+:root{--fundo:#f7f7f5;--cartao:#fff;--texto:#1d1d1f;--suave:#6b6b70;--linha:#e2e2e6;
+  --verm:#c62828;--verm-f:#fdecec;--ambar:#b26a00;--ambar-f:#fff4e0;--verde:#2e7d32;--azul:#1f5fbf}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--fundo:#141416;--cartao:#1e1e22;--texto:#ececf0;--suave:#a0a0a8;--linha:#33333a;
+  --verm:#ff6b6b;--verm-f:#3a1c1e;--ambar:#ffb547;--ambar-f:#3a2c14;--verde:#7bd17f;--azul:#7fb0ff}}
+:root[data-theme="dark"]{--fundo:#141416;--cartao:#1e1e22;--texto:#ececf0;--suave:#a0a0a8;--linha:#33333a;
+  --verm:#ff6b6b;--verm-f:#3a1c1e;--ambar:#ffb547;--ambar-f:#3a2c14;--verde:#7bd17f;--azul:#7fb0ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:820px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.6rem;margin:0 0 4px}
+h2{font-size:1.2rem;margin:0}
+.suave{color:var(--suave);font-size:.9rem}
+.painel{background:var(--cartao);border:1px solid var(--linha);border-radius:12px;padding:16px;margin:16px 0}
+.painel label{display:block;font-weight:600;margin-bottom:6px}
+button,select,input[type=file]{font:inherit}
+button{background:var(--azul);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+button.sec{background:transparent;color:var(--azul);border:1px solid var(--linha)}
+.linha-botoes{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.legenda{display:flex;flex-wrap:wrap;gap:12px;font-size:.85rem;margin-top:10px}
+.legenda span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;background:var(--c)}
+.doenca{margin-top:28px}
+.doenca-cab{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--linha);padding-bottom:6px}
+.frag{background:var(--cartao);border:1px solid var(--linha);border-left:5px solid var(--linha);border-radius:10px;margin:12px 0;padding:12px 16px}
+.frag.prioridade{border-left-color:var(--verm);background:var(--verm-f)}
+.frag.atencao{border-left-color:var(--ambar);background:var(--ambar-f)}
+.frag.dominado{opacity:.62}
+.frag.dominado:hover{opacity:1}
+.frag summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:baseline;list-style:none}
+.frag summary::-webkit-details-marker{display:none}
+.frag h3{font-size:1.02rem;margin:0}
+.selo{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:99px;white-space:nowrap;border:1px solid currentColor}
+.selo.prioridade{color:var(--verm)}.selo.atencao{color:var(--ambar)}.selo.dominado{color:var(--verde)}.selo.nada{color:var(--suave)}
+.frag ul{margin:8px 0 4px;padding-left:20px}
+.frag li{margin:3px 0}
+.porque{font-size:.85rem;color:var(--suave);margin-top:6px}
+.conferir{font-size:.75rem;color:var(--suave);font-style:italic}
+</style>
+</head>
+<body>
+<main>
+  <h1 id="titulo">Resumo adaptativo</h1>
+  <div class="suave" id="sub"></div>
+
+  <div class="painel">
+    <label for="arquivo">Seu backup da plataforma (Perfil › Seus dados › Baixar backup)</label>
+    <input type="file" id="arquivo" accept=".json,application/json">
+    <div class="linha-botoes">
+      <select id="usuario" hidden></select>
+      <button class="sec" id="demo" type="button">Ver com um aluno de exemplo</button>
+      <button class="sec" id="limpar" type="button">Sem destaque</button>
+    </div>
+    <div class="suave" id="estado" style="margin-top:8px">Sem backup: o resumo aparece inteiro, sem destaque.</div>
+    <div class="legenda">
+      <span style="--c:var(--verm)">Prioridade: errou 50% ou mais</span>
+      <span style="--c:var(--ambar)">Atenção: errou de 20% a 49%</span>
+      <span style="--c:var(--verde)">Dominado: errou menos de 20%</span>
+      <span style="--c:var(--linha)">Não medido</span>
+    </div>
+  </div>
+
+  <div id="conteudo"></div>
+</main>
+<script>
+const R = window.EscResumos.lista[0];
+let ultimas = null; // questaoId -> peso de erro (0, 0.5 ou 1) da última resposta
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const negrito = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+const textoEmHtml = t => "<ul>" + t.split("\n").filter(l => l.trim()).map(l => "<li>" + negrito(l.replace(/^\s*-\s*/, "")) + "</li>").join("") + "</ul>";
+
+/* Taxa de erro de um conjunto de questões: só conta as respondidas, pela última
+   resposta (a que diz onde o aluno está hoje). Acerto no chute = meio erro, porque
+   acertar sem saber não é domínio. */
+function medir(ids){
+  if(!ultimas) return null;
+  const feitas = ids.filter(id => id in ultimas);
+  if(!feitas.length) return { feitas: 0, total: ids.length, taxa: null };
+  const erro = feitas.reduce((s, id) => s + ultimas[id], 0);
+  return { feitas: feitas.length, total: ids.length, taxa: erro / feitas.length, erro };
+}
+const nivel = m => !m || m.taxa === null ? "nada" : m.taxa >= .5 ? "prioridade" : m.taxa >= .2 ? "atencao" : "dominado";
+const ROTULO = { prioridade: "Prioridade", atencao: "Atenção", dominado: "Dominado", nada: "Não medido" };
+const pct = x => Math.round(x * 100) + "%";
+function porque(m){
+  if(!ultimas) return "";
+  if(!m.feitas) return `Você ainda não fez nenhuma das ${m.total} questões ligadas a este trecho.`;
+  const n = Math.round(m.erro * 10) / 10;
+  return `Errou ${String(n).replace(".", ",")} de ${m.feitas} questão(ões) que este trecho responde (${pct(m.taxa)})` + (m.feitas < m.total ? `; faltam ${m.total - m.feitas} por fazer.` : ".");
+}
+
+function desenhar(){
+  document.getElementById("titulo").textContent = R.titulo;
+  document.getElementById("sub").textContent = `${R.doencas.reduce((s, d) => s + d.fragmentos.length, 0)} trechos, cada um ligado às questões reais que ele responde.`;
+  let doencas = R.doencas.map((d, i) => ({ d, i, m: medir([...new Set(d.fragmentos.flatMap(f => f.questoes))]) }));
+  // Pior primeiro: o tempo de leitura vai para onde o aluno erra. Sem medida, mantém a ordem do autor.
+  if(ultimas) doencas.sort((a, b) => ((b.m.taxa ?? -1) - (a.m.taxa ?? -1)) || a.i - b.i);
+  document.getElementById("conteudo").innerHTML = doencas.map(({ d, m }) => {
+    let frags = d.fragmentos.map((f, i) => ({ f, i, m: medir(f.questoes) }));
+    if(ultimas) frags.sort((a, b) => ((b.m.taxa ?? -1) - (a.m.taxa ?? -1)) || a.i - b.i);
+    const nd = nivel(m);
+    return `<section class="doenca">
+      <div class="doenca-cab"><h2>${esc(d.titulo)}</h2>${ultimas ? `<span class="selo ${nd}">${ROTULO[nd]}${m.taxa !== null ? " · erro " + pct(m.taxa) : ""}</span>` : ""}</div>
+      ${frags.map(({ f, m }) => {
+        const n = nivel(m);
+        return `<details class="frag ${n}" ${n === "dominado" ? "" : "open"}>
+          <summary><h3>${esc(f.titulo)}</h3>${ultimas ? `<span class="selo ${n}">${ROTULO[n]}</span>` : ""}</summary>
+          ${textoEmHtml(f.texto)}
+          ${ultimas ? `<div class="porque">${esc(porque(m))}</div>` : ""}
+          ${f.conferir ? `<div class="conferir">Texto ainda a conferir na fonte primária.</div>` : ""}
+        </details>`;
+      }).join("")}
+    </section>`;
+  }).join("");
+}
+
+/* O backup é o db inteiro (JSON.stringify(db)); respostas podem vir como lista de
+   objetos ou, em versões antigas, em colunas. Aceita os dois. */
+function respostasDoBackup(b){
+  const r = b.respostas || b.db?.respostas || [];
+  if(Array.isArray(r)) return r;
+  if(r && Array.isArray(r.questaoId)) return r.questaoId.map((_, i) => Object.fromEntries(Object.keys(r).map(k => [k, Array.isArray(r[k]) ? r[k][i] : r[k]])));
+  return [];
+}
+function aplicarRespostas(lista, usuarioId){
+  ultimas = {};
+  lista.filter(r => !usuarioId || r.usuarioId === usuarioId)
+    .sort((a, b) => String(a.respondidaEm || a.data || "").localeCompare(String(b.respondidaEm || b.data || "")))
+    .forEach(r => { ultimas[r.questaoId] = r.correta ? (r.confianca === "chute" ? .5 : 0) : 1; });
+  const ids = new Set(R.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes)));
+  const feitas = Object.keys(ultimas).filter(id => ids.has(id)).length;
+  document.getElementById("estado").textContent = `${feitas} de ${ids.size} questões deste resumo respondidas. O destaque usa a última resposta de cada uma.`;
+  desenhar();
+}
+
+document.getElementById("arquivo").addEventListener("change", e => {
+  const arq = e.target.files[0]; if(!arq) return;
+  arq.text().then(t => {
+    let b; try { b = JSON.parse(t); } catch { document.getElementById("estado").textContent = "Esse arquivo não é um backup em JSON."; return; }
+    const lista = respostasDoBackup(b);
+    const usuarios = [...new Set(lista.map(r => r.usuarioId))];
+    const sel = document.getElementById("usuario");
+    if(usuarios.length > 1){
+      const nome = id => (b.usuarios || []).find(u => u.id === id)?.nome || id;
+      sel.innerHTML = usuarios.map(id => `<option value="${esc(id)}">${esc(nome(id))}</option>`).join("");
+      sel.hidden = false; sel.onchange = () => aplicarRespostas(lista, sel.value);
+      aplicarRespostas(lista, usuarios[0]);
+    } else { sel.hidden = true; aplicarRespostas(lista); }
+  });
+});
+// Aluno de exemplo: acerta exantema súbito e eritema; erra o agente da escarlatina e quase tudo de sarampo.
+document.getElementById("demo").addEventListener("click", () => {
+  const certo = new Set(["subito","eritema","enterovirus"]), lista = [];
+  R.doencas.forEach(d => d.fragmentos.forEach(f => f.questoes.forEach((id, i) => {
+    const errou = f.id === "esc-agente" || (d.id === "sarampo" && f.id !== "sar-clinica") || (d.id === "sarampo" && i % 3 === 0) || (!certo.has(d.id) && i % 2 === 1);
+    lista.push({ questaoId: id, correta: !errou && !(certo.has(d.id) && i === 2 && d.id === "subito"), confianca: d.id === "eritema" && i === 1 ? "chute" : "certeza", data: "2026-11-01" });
+  })));
+  aplicarRespostas(lista);
+  document.getElementById("estado").textContent += " (aluno de exemplo)";
+});
+document.getElementById("limpar").addEventListener("click", () => {
+  ultimas = null; document.getElementById("estado").textContent = "Sem destaque."; desenhar();
+});
+desenhar();
+</script>
+</body>
+</html>
