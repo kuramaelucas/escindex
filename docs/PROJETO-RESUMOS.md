@@ -30,12 +30,12 @@ A ordem segue o número de questões reais. Os prontos ficam na lista para entra
 
 | # | Assunto | Questões reais | Tema (pasta) | Situação | Diretrizes de que depende (a conferir na escrita) |
 |---|---|---|---|---|---|
-| 1 | `ass-puericultura` | 146 | `puericultura` | pronto; falta marcar diretrizes | curvas da OMS, SBP (aleitamento, suplementação de ferro e vitaminas), Caderneta da Criança |
+| 1 | `ass-puericultura` | 146 | `puericultura` | pronto; diretrizes marcadas | curvas da OMS, SBP (aleitamento, suplementação de ferro e vitaminas), Caderneta da Criança |
 | 2 | `ass-calendariovacinal` | 93 | `calendario-vacinal` | **próximo** | Calendário Nacional do PNI (muda todo ano), SBP/SBIm |
 | 3 | `ass-infectoped-pneumonia` | 71 | `pneumonia-bronquiolite` | a fazer | SBP, OMS (AIDPI), AAP (bronquiolite), profilaxia do VSR (nirsevimabe/palivizumabe) |
 | 4 | `ass-crescimentopuberdade` | 66 | `crescimento-puberdade` | a fazer | estágios de Tanner (estável), SBEM/SBP (puberdade precoce) |
 | 5 | `ass-emergped-respiratoria` | 64 | `emergencias-respiratorias-pcr` | a fazer | AHA PALS (suporte avançado de vida pediátrico), GINA (crise de asma) |
-| 6 | `ass-exantematicas` | 60 | `exantematicas` | pronto; falta tabela comparativa e coqueluche | Guia de Vigilância do MS, AHA Kawasaki 2024, PNI |
+| 6 | `ass-exantematicas` | 60 | `exantematicas` | pronto, com tabela comparativa; falta coqueluche | Guia de Vigilância do MS, AHA Kawasaki 2024, PNI |
 | 7 | `ass-dda` | 59 | `diarreia-desidratacao` | a fazer | OMS/MS (planos A, B e C de hidratação, zinco) |
 | 8 | `ass-neo-infeccoescongenitas` | 56 | `infeccoes-congenitas` | a fazer | PCDT de transmissão vertical do MS (sífilis, HIV, hepatites), toxoplasmose congênita, RN exposto à tuberculose |
 | 9 | `ass-reanimacao` | 52 | `reanimacao-neonatal` | a fazer | SBP Reanimação Neonatal, ILCOR/AHA |
@@ -85,3 +85,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | Data | Feito |
 |---|---|
 | 18/11/2026 | projeto aberto; plano, previsão e ordem da pediatria |
+| 18/11/2026 | **fase 0 feita.** Fontes com `id` e seções de conduta com `diretrizes` nos 3 resumos (exantemáticas: 7 seções; puericultura: 12; IC: 8; ids de seção mantidos). `ferramentas/lib-resumos.mjs` lê os resumos; `npm run resumo` recusa fonte sem id, id repetido e diretriz fora de `fontes`, e lista as seções por diretriz; `npm run auditoria-padrao -- diretriz <x>` lista também as seções de resumos (casa pelo id da tabela, id ou texto da fonte) e o `MAPA-DE-DIRETRIZES.md` ganhou a tabela "Resumos". Tela (`09e`): parágrafo da prosa em Markdown de tabela vira `<table>` rolável, com cada célula destacável; seção com `diretrizes` mostra "Conduta conforme: …". Exantemáticas ganhou o capítulo final `comparativo` (9 doenças × 9 colunas, `conferir: true`). Teste em `testes/resumos.test.mjs`. Próximo: `calendario-vacinal`. |

@@ -85,6 +85,14 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     // (a imagem é lazy: fora da tela não carrega, então confere pelo endereço)
     const figura = await pagina.evaluate(async () => { const i = document.querySelector(".resumo-figura img"); const r = await fetch(i.src); return r.ok && (r.headers.get("content-type") || "").includes("svg"); });
     assert.ok(figura, "a ilustração própria do resumo existe e é SVG");
+    // capítulo comparativo: a tabela em Markdown vira <table> com células destacáveis, e a seção de conduta diz a diretriz
+    const tabela = await pagina.evaluate(() => {
+      const t = document.querySelector("#resumo-c-comparativo .resumo-tabela table");
+      return t && { linhas: t.querySelectorAll("tbody tr").length, colunas: t.querySelectorAll("thead th").length,
+        destacavel: !!t.querySelector("td[data-alvo]"), negrito: !!t.querySelector("td strong"),
+        diretriz: document.querySelector("#resumo-s-kaw-trat").textContent.includes("Conduta conforme: American Heart Association") };
+    });
+    assert.deepEqual(tabela, { linhas: 9, colunas: 9, destacavel: true, negrito: true, diretriz: true });
     // celular: o sumário é gaveta; tocar fora (no véu) fecha
     await pagina.setViewportSize({ width: 390, height: 800 });
     await pagina.waitForTimeout(400);   // o menu lateral do app leva 0,2 s para sair da tela

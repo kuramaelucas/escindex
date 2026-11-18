@@ -984,3 +984,8 @@ html[data-theme="dark"]{
 .resumo-figura img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:#fff}
 .resumo-figura figcaption{font-size:.85em;color:var(--muted);margin-top:.3rem}
 .resumo-credito{display:block;font-size:.85em;margin-top:.15rem}
+.resumo-tabela{overflow-x:auto;margin:.8rem 0}
+.resumo-tabela table{border-collapse:collapse;font-size:.85em;min-width:52rem}
+.resumo-tabela th,.resumo-tabela td{border:1px solid var(--border);padding:.35rem .5rem;text-align:left;vertical-align:top}
+.resumo-tabela th{background:var(--bg)}
+.resumo-tabela td:first-child{white-space:nowrap}

@@ -11,9 +11,9 @@
   assunto: "ass-exantematicas",
   criadoEm: "2026-11-18",
   fontes: [
-    { texto: "Ministério da Saúde — Guia de Vigilância em Saúde (sarampo, rubéola, varicela)", lidoEm: null },
-    { texto: "American Heart Association — Diagnosis and Management of Kawasaki Disease (2024)", lidoEm: null },
-    { texto: "SBP / Calendário Nacional de Vacinação (PNI)", lidoEm: null },
+    { id: "ms-guia-vigilancia", texto: "Ministério da Saúde — Guia de Vigilância em Saúde (sarampo, rubéola, varicela)", lidoEm: null },
+    { id: "aha-kawasaki", texto: "American Heart Association — Diagnosis and Management of Kawasaki Disease (2024)", lidoEm: null },
+    { id: "calendario-vacinal", texto: "SBP / Calendário Nacional de Vacinação (PNI)", lidoEm: null },
   ],
   foraDoEscopo: [
     { motivo: "Coqueluche: está no mesmo assunto da taxonomia, mas não é exantemática — terá resumo próprio",
@@ -57,7 +57,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 - **Exantema morbiliforme**, maculopapular e **confluente**, que começa **atrás das orelhas e na linha do cabelo** e desce em sentido **craniocaudal**. A **febre continua alta** quando o exantema surge. {q-famerp2023-027,q-famerp2022-014,q-famerp2026-009,q-sirio2022-053,q-fmabc2025-096}
 - O exantema evolui com **descamação furfurácea** (fina, "em farelo").
 - Exantema morbiliforme quer dizer **manchas**, não **equimoses**. {q-fmabc2026-089}` },
-        { id: "sar-diag", titulo: "Diagnóstico laboratorial", conferir: true,
+        { id: "sar-diag", diretrizes: ["ms-guia-vigilancia"], titulo: "Diagnóstico laboratorial", conferir: true,
           questoes: ["q-uspsp4-101","q-amrigs2025-014"],
           texto: `- **Sorologia IgM** (positiva a partir do exantema) e **RT-PCR** em **secreção nasofaríngea/orofaríngea e urina**. Colha as duas amostras na primeira consulta. {q-uspsp4-101}
 - A **IgM marca a infecção primária**: costuma **não aparecer na reexposição nem na revacinação**, quando sobe a IgG. {q-amrigs2025-014}` },
@@ -68,12 +68,12 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 - Outras: **otite média aguda**, **diarreia**, laringotraqueobronquite e **encefalite aguda**. {q-einstein2021-021}
 - No **imunodeprimido**: **pneumonia de células gigantes** (de Hecht), muitas vezes sem exantema. {q-sirio2022-053}
 - Complicação tardia, anos depois: **panencefalite esclerosante subaguda (PEES)**.` },
-        { id: "sar-trat", titulo: "Tratamento: suporte + vitamina A", conferir: true,
+        { id: "sar-trat", diretrizes: ["ms-guia-vigilancia"], titulo: "Tratamento: suporte + vitamina A", conferir: true,
           questoes: ["q-usprp2026-032","q-amrigs2025-014","q-uspsp4-101"],
           texto: `- O tratamento é **de suporte** (antitérmico, hidratação, nutrição). {q-amrigs2025-014}
 - Dê **vitamina A a todo caso suspeito**, em **2 doses** (dia 1 e dia 2), com dose conforme a idade. A vitamina A reduz complicações e mortalidade. {q-usprp2026-032,q-uspsp4-101,q-amrigs2025-014}
 - **Antibiótico não trata o sarampo.** Use só se houver **complicação bacteriana**, como pneumonia ou otite. {q-amrigs2025-014}` },
-        { id: "sar-vigil", titulo: "Notificação, bloqueio e vacina",
+        { id: "sar-vigil", diretrizes: ["ms-guia-vigilancia","calendario-vacinal"], titulo: "Notificação, bloqueio e vacina",
           prosa: `Toda a estratégia de controle parte de dois fatos: o sarampo é muito contagioso e a vacina é muito eficaz. A vacina de vírus vivo atenuado induz imunidade mais rápido que o vírus selvagem. [[Por isso, aplicada até 72 horas após a exposição, ela ainda pode impedir a doença.|q-famerp2026-009,q-famerp2022-014,q-famerp2023-027]] [[Quem não pode receber vírus vivo recebe anticorpos prontos (imunoglobulina) até o 6º dia.|q-famerp2023-027]] [[Por ser tão contagiosa, a doença só deixa de circular quando mais de 95% da população está imune.|q-famerp2023-027,q-iamspe2021-072]]`, conferir: true,
           questoes: ["q-einstein2025-043","q-famerp2026-009","q-famerp2022-014","q-famerp2023-027","q-iamspe2021-072","q-fmabc2026-089"],
           texto: `- **Notificação compulsória imediata, em até 24 h**, já na **suspeita**. Não espere a confirmação. {q-einstein2025-043,q-fmabc2026-089}
@@ -89,7 +89,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 
 **Por que é teratogênica.** Na gestante, o vírus atravessa a placenta e infecta tecidos embrionários em formação. Ali ele **inibe a divisão celular** e causa **dano vascular**. O risco e a gravidade dependem da idade gestacional: a infecção nas **primeiras 12 semanas** atinge a maioria dos fetos e é a que causa a síndrome completa. Depois de 20 semanas, os defeitos são raros. Os órgãos atingidos são os que estão em organogênese naquele momento: o cristalino (**catarata**), a cóclea (**surdez neurossensorial**, o achado mais frequente), o coração e o canal arterial (**persistência do canal arterial**, estenose pulmonar) e o sistema nervoso central (microcefalia, atraso).`,
       fragmentos: [
-        { id: "rub-tudo", titulo: "Agente, quadro e forma congênita", conferir: true,
+        { id: "rub-tudo", diretrizes: ["ms-guia-vigilancia"], titulo: "Agente, quadro e forma congênita", conferir: true,
           questoes: ["q-famema2025-042"],
           texto: `- Agente: **Rubivirus (vírus da rubéola)**, família Matonaviridae, antes classificada como Togaviridae.
 - Pródromo **leve**. A pista mais cobrada é a **linfadenopatia retroauricular, occipital e cervical posterior**.
@@ -186,7 +186,7 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
 
 A doença é mais grave em adolescentes, adultos, gestantes, recém-nascidos e imunodeprimidos, nos quais a pneumonia e a forma disseminada são mais comuns. Na criança, a complicação mais frequente é a **infecção bacteriana das lesões** coçadas. O **AAS é contraindicado**: o salicilato, junto com a infecção viral, causa a **síndrome de Reye**, com disfunção mitocondrial, insuficiência hepática e edema cerebral.`,
       fragmentos: [
-        { id: "var-tudo", figuras: [{ arquivo: "figuras/varicela-estagios.svg", legenda: "Esquema autoral: os quatro estágios da lesão, que coexistem no mesmo paciente." }], titulo: "Quadro e conduta com contatos", conferir: true,
+        { id: "var-tudo", diretrizes: ["ms-guia-vigilancia","calendario-vacinal"], figuras: [{ arquivo: "figuras/varicela-estagios.svg", legenda: "Esquema autoral: os quatro estágios da lesão, que coexistem no mesmo paciente." }], titulo: "Quadro e conduta com contatos", conferir: true,
           questoes: ["q-einstein2027-062"],
           texto: `- Agente: **vírus varicela-zóster**. As lesões são **pruriginosas** e aparecem **em diferentes estágios ao mesmo tempo** (mácula, pápula, vesícula e crosta). A distribuição é **centrípeta**, mais no tronco.
 - A complicação mais comum é a **infecção bacteriana da pele** (estreptococo ou estafilococo). **Não use AAS**, pelo risco de **síndrome de Reye**.
@@ -237,7 +237,7 @@ O exantema depois de **amoxicilina ou ampicilina** acontece na maioria dos pacie
 
 A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pandemia de covid-19. [[É uma resposta imune desregulada que aparece **2 a 6 semanas depois da infecção** pelo SARS-CoV-2, não durante ela.|q-sirio2024-043]] Lembra Kawasaki, mas atinge crianças maiores e escolares, com sintomas gastrintestinais marcantes e, com frequência, **choque** por disfunção miocárdica e vasodilatação.`,
       fragmentos: [
-        { id: "kaw-crit", figuras: [{ arquivo: "figuras/kawasaki-criterios.svg", legenda: "Esquema autoral: o critério obrigatório e os cinco critérios clínicos." }], titulo: "Critérios de Kawasaki",
+        { id: "kaw-crit", diretrizes: ["aha-kawasaki"], figuras: [{ arquivo: "figuras/kawasaki-criterios.svg", legenda: "Esquema autoral: o critério obrigatório e os cinco critérios clínicos." }], titulo: "Critérios de Kawasaki",
           prosa: `[[Como não existe exame que confirme Kawasaki, o diagnóstico é clínico e se apoia num conjunto de critérios.|q-scmsp2025-057,q-sirio2025-045,q-sirio2024-050]] Os sinais refletem inflamação vascular difusa: a hiperemia conjuntival sem secreção, o edema endurado das extremidades e a descamação periungueal tardia (2ª a 3ª semana). Na fase subaguda, a **plaquetose** é típica. VHS e PCR elevadas, piúria estéril e elevação de transaminases reforçam a suspeita.`, conferir: true,
           questoes: ["q-scmsp2025-057","q-sirio2025-045","q-sirio2024-050","q-scmsp2022-039","q-famema2025-042"],
           texto: `- Critério obrigatório: **febre por 5 dias ou mais**. Some **4 dos 5 critérios**: {q-scmsp2025-057,q-sirio2025-045}
@@ -247,7 +247,7 @@ A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pan
 - **Alterações de extremidades**: edema e eritema de mãos e pés, e depois **descamação periungueal**. {q-scmsp2025-057}
 - **Linfonodo cervical de 1,5 cm ou mais**, em geral unilateral. {q-sirio2025-045,q-scmsp2025-057}
 - **Miocardite não é critério**: é complicação. Febre que não cede com antibiótico é uma pista. {q-sirio2024-050,q-scmsp2022-039}` },
-        { id: "kaw-trat", titulo: "Tratamento e Kawasaki incompleta",
+        { id: "kaw-trat", diretrizes: ["aha-kawasaki"], titulo: "Tratamento e Kawasaki incompleta",
           prosa: `A imunoglobulina neutraliza o processo inflamatório e reduz drasticamente a formação de aneurismas. O AAS tem papel anti-inflamatório na fase aguda e antiagregante em dose baixa nas semanas seguintes. Crianças que seguem febris 36 horas após a imunoglobulina são consideradas resistentes e recebem nova dose ou outros imunomoduladores. O ecocardiograma no diagnóstico e em 1 a 2 e 4 a 6 semanas acompanha as coronárias.`, conferir: true,
           questoes: ["q-scmsp2021-056","q-scmsp2022-039","q-sirio2025-045"],
           texto: `- Tratamento: **imunoglobulina IV 2 g/kg** de imediato, idealmente **até o 10º dia**, junto com **AAS**. {q-scmsp2021-056}
@@ -271,6 +271,31 @@ A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pan
           texto: `- Toxina **esfoliativa do Staphylococcus aureus**, que **cliva a desmogleína-1**. É mais comum em menores de 5 anos.
 - Quadro: eritema doloroso **periorificial**, com **bolhas flácidas que se rompem** e crostas e **ragádias periorais**. **Nikolsky positivo** e **mucosas poupadas**, ao contrário da síndrome de Stevens-Johnson.
 - Tratamento: **oxacilina IV** (antiestafilocócico), hidratação e cuidados com a pele.` },
+      ],
+    },
+    {
+      // Último capítulo de propósito: só reúne o que os capítulos já explicaram, sem dado novo
+      // (docs/PROJETO-RESUMOS.md, seção 5). As questões são as de diferencial entre as doenças.
+      id: "comparativo", titulo: "Tabela comparativa",
+      introducao: `A banca raramente pergunta uma doença isolada: ela descreve um quadro e pede que você a separe das vizinhas. A tabela abaixo junta, lado a lado, o que os capítulos anteriores explicaram. Leia-a por coluna: cada coluna é uma das perguntas do capítulo 1.`,
+      fragmentos: [
+        { id: "cmp-tabela", titulo: "As exantemáticas lado a lado", conferir: true,
+          questoes: ["q-famema2025-042","q-tp20222-047","q-amrigs2021-070","q-uspsp1-004","q-tp20222-048","q-einstein2026-035"],
+          prosa: `| Doença | Agente | Idade típica | Pródromo | Exantema: início e progressão | Sinal característico | Complicação clássica | Notificação e isolamento | Prevenção |
+|---|---|---|---|---|---|---|---|---|
+| **Sarampo** | *Morbillivirus* | não vacinados, qualquer idade | 3 a 5 dias: febre alta, **tosse, coriza e conjuntivite** | maculopapular, começa na face e atrás das orelhas e **desce**; vem no **auge da febre** | **manchas de Koplik** | **pneumonia** (principal causa de morte) | **notificação imediata** na suspeita; isolamento respiratório | tríplice viral |
+| **Rubéola** | vírus da rubéola (*Rubivirus*) | criança e adulto jovem | pobre ou ausente | maculopapular rósea, face → corpo, some em poucos dias | **adenopatia retroauricular e occipital** | **rubéola congênita** (infecção na gestação) | notificação imediata | tríplice viral |
+| **Eritema infeccioso** | **parvovírus B19** | escolar | pobre | três fases: **face esbofeteada** → rendilhado em tronco e membros → reaparece com calor e sol | face esbofeteada | **crise aplásica** na anemia hemolítica crônica | não transmite mais quando o exantema aparece | sem vacina |
+| **Exantema súbito** | **HHV-6** (e HHV-7) | **6 meses a 2 anos** | 3 a 5 dias de **febre alta** com bom estado geral | surge **quando a febre cede**, no tronco | exantema depois da febre | **convulsão febril** | — | sem vacina |
+| **Varicela** | vírus varicela-zóster | pré-escolar e escolar | curto | vesículas **pruriginosas**, **centrípetas**, em **vários estágios ao mesmo tempo** | polimorfismo das lesões | **infecção bacteriana da pele**; Reye com AAS | isolamento até todas virarem crosta | vacina; contato: vacina pós-exposição ou VZIG |
+| **Escarlatina** | *Streptococcus pyogenes* (toxina) | pré-escolar e escolar | **faringite** e febre, **sem tosse nem coriza** | **áspero, em lixa**, mais forte nas dobras | **Pastia**, **Filatov**, língua em framboesa | febre reumática e glomerulonefrite | — | sem vacina; tratar a faringite |
+| **Mão-pé-boca** | **Coxsackie A16**, enterovírus 71 | menor de 5 anos, creche | febre **baixa e curta** | **úlceras na boca** + pápulo-vesículas em **mãos, pés** e nádegas | a distribuição das lesões | formas neurológicas (enterovírus 71) | — | higiene |
+| **Kawasaki** | desconhecido (imunomediado) | menor de 5 anos | **febre por 5 dias ou mais** | polimorfo, **sem vesículas**, com alterações de extremidades | conjuntivite sem secreção, lábios fissurados, linfonodo cervical | **aneurisma coronariano** | — | — (tratamento: IGIV + AAS) |
+| **Mononucleose** | **vírus Epstein-Barr** | **adolescente** | febre, **faringite exsudativa**, linfonodos | surge sobretudo **depois de amoxicilina** | **esplenomegalia**, linfócitos atípicos | — | — | sem vacina |`,
+          texto: `- Exantema que aparece **quando a febre cede**: exantema súbito; **no auge da febre**: sarampo. {q-uspsp1-004,q-famema2025-042}
+- Pródromo com **tosse, coriza e conjuntivite** separa o sarampo; **faringite sem tosse** aponta escarlatina ou mononucleose. {q-tp20222-047,q-einstein2026-035}
+- Febre por **5 dias ou mais** sem foco: pense em **Kawasaki** antes de uma virose. {q-amrigs2021-070}
+- Vesículas em **mãos, pés e boca** com febre baixa e criança bem: mão-pé-boca, conduta de suporte. {q-tp20222-048}` },
       ],
     },
   ],

@@ -6,10 +6,12 @@
   assunto: "ass-puericultura",
   criadoEm: "2026-11-18",
   fontes: [
-    { texto: "Ministério da Saúde — Caderneta da Criança (edição vigente) e Caderno de Atenção Básica nº 33 (Saúde da criança: crescimento e desenvolvimento)", lidoEm: null },
-    { texto: "Ministério da Saúde — Guia Alimentar para Crianças Brasileiras Menores de 2 Anos (2019)", lidoEm: null },
-    { texto: "Sociedade Brasileira de Pediatria — Consenso sobre anemia ferropriva (2021) e Manual de Alimentação (2024)", lidoEm: null },
-    { texto: "OMS — Padrões de crescimento infantil (2006/2007)", lidoEm: null },
+    { id: "ms-caderneta", texto: "Ministério da Saúde — Caderneta da Criança (edição vigente) e Caderno de Atenção Básica nº 33 (Saúde da criança: crescimento e desenvolvimento)", lidoEm: null },
+    { id: "ms-guia-alimentar", texto: "Ministério da Saúde — Guia Alimentar para Crianças Brasileiras Menores de 2 Anos (2019)", lidoEm: null },
+    { id: "sbp-ferro", texto: "Sociedade Brasileira de Pediatria — Consenso sobre anemia ferropriva (2021)", lidoEm: null },
+    { id: "sbp-alimentacao", texto: "Sociedade Brasileira de Pediatria — Manual de Alimentação (2024)", lidoEm: null },
+    { id: "oms-crescimento", texto: "OMS — Padrões de crescimento infantil (2006/2007)", lidoEm: null },
+    { id: "calendario-vacinal", texto: "Ministério da Saúde — Calendário Nacional de Vacinação (PNI)", lidoEm: null },
   ],
   foraDoEscopo: [],
   doencas: [
@@ -21,7 +23,7 @@ A frequência das consultas acompanha a velocidade das mudanças. [[No primeiro 
 
 O perfil de risco muda com a idade. [[Depois do primeiro ano, as **causas externas** (acidentes e violência) passam a ser a principal causa de morte de crianças no Brasil.|q-sirio2021-042,q-amrigs2023-070]] A criança pequena explora o mundo antes de entender o perigo, e por isso cada fase do desenvolvimento tem o seu acidente típico: queda no lactente que rola, aspiração e intoxicação no que engatinha e leva tudo à boca, afogamento e atropelamento na criança que anda.`,
       fragmentos: [
-        { id: "con-agenda", titulo: "Calendário de consultas e primeira semana", conferir: true,
+        { id: "con-agenda", diretrizes: ["ms-caderneta"], titulo: "Calendário de consultas e primeira semana", conferir: true,
           questoes: ["q-scmsp2023-094","q-uspsp1-111","q-scmsp2026-093","q-unesp2021-004","q-tp20222-042","q-fmabc2026-054","q-fmabc2023-050"],
           texto: `- Consultas no 1º ano: **1ª semana, 1, 2, 4, 6, 9 e 12 meses**. Depois, 18 e 24 meses e então **anuais**. {q-scmsp2023-094,q-tp20222-042,q-fmabc2026-054}
 - **Visita domiciliar na 1ª semana** de vida: binômio mãe-bebê e amamentação exclusiva. {q-uspsp1-111,q-scmsp2026-093}
@@ -35,7 +37,7 @@ O perfil de risco muda com a idade. [[Depois do primeiro ano, as **causas extern
 - **Causas externas** são a principal causa de morte a partir de 1 ano. Os acidentes mudam com a fase do desenvolvimento. {q-sirio2021-042,q-amrigs2023-070}
 - Queda é o acidente do lactente: **nunca deixá-lo sozinho em superfície elevada** (trocador, cama, sofá). {q-uspsp2-068}
 - **Andador é desaconselhado**: não acelera a marcha, pode atrasar o desenvolvimento motor e causa quedas. {q-adap21-044,q-amrigs2022-069}` },
-        { id: "con-triagens", titulo: "Triagens: olhos, pressão arterial e sinais vitais", conferir: true,
+        { id: "con-triagens", diretrizes: ["ms-caderneta"], titulo: "Triagens: olhos, pressão arterial e sinais vitais", conferir: true,
           prosa: `A visão se desenvolve com o uso: o córtex visual só amadurece se receber imagens nítidas e iguais dos dois olhos. [[Por isso uma catarata, um estrabismo constante ou uma diferença grande de grau, se não forem corrigidos cedo, levam à **ambliopia**, a perda de visão de um olho que não se recupera depois do período de plasticidade (até cerca de 6 a 7 anos).|q-unicampdis2025-097,q-unicamp2022-034]] [[Nos primeiros meses, o desvio ocular **intermitente** é comum e se deve à imaturidade da fixação binocular.|q-usp2025-053]] Na pressão arterial, a regra é parecida: [[a medida de rotina começa aos **3 anos**; antes disso só se mede quando há fator de risco, como prematuridade, internação em UTI neonatal, cardiopatia ou doença renal.|q-unesp2025-011]]`,
           questoes: ["q-unicamp2022-034","q-unicampdis2025-097","q-usp2025-053","q-unesp2025-011","q-sirio2023-047","q-usp2023-095","q-amrigs2021-067","q-amrigs2022-075"],
           texto: `- **Teste do reflexo vermelho**: antes da alta da maternidade e **2 a 3 vezes por ano até os 3 anos**. {q-unicamp2022-034}
@@ -52,7 +54,7 @@ O perfil de risco muda com a idade. [[Depois do primeiro ano, as **causas extern
 - Telas: **evitar antes dos 2 anos**; de 2 a 5 anos, até 1 hora por dia, com um adulto junto. {q-unifesp2024-093}
 - Dentes: **escovar com creme dental fluoretado desde o 1º dente**, 2 vezes por dia, com quantidade de um **grão de arroz** até 3 anos. {q-usprp2021-044,q-fmabc2024-044}
 - **Enurese noturna primária** tem forte **componente familiar**. Só é diagnóstico a partir dos 5 anos. {q-udisc20262-060}` },
-        { id: "con-vacina", titulo: "Vacina atrasada", conferir: true,
+        { id: "con-vacina", diretrizes: ["calendario-vacinal"], titulo: "Vacina atrasada", conferir: true,
           questoes: ["q-adap23-067"],
           texto: `- Esquema atrasado **não se reinicia**: aplica-se hoje a dose devida e respeita-se o **intervalo mínimo** (em geral 30 dias) e a **idade máxima** de cada vacina. {q-adap23-067}` },
       ],
@@ -80,7 +82,7 @@ O perímetro cefálico mede, na prática, o crescimento do cérebro. [[Ele aumen
 - **Mudança de canal para baixo** é desaceleração: investigar alimentação e família, retorno breve. {q-uspsp4-080}
 - **Baixa estatura familiar**: estatura baixa compatível com os pais e **velocidade de crescimento normal**. Só acompanhar, sem exames. {q-adap23-058}
 - Na transição deitado → em pé (cerca de 2 anos), medir das **duas formas**, descontar cerca de **0,7 cm** e comparar a velocidade sempre pelo mesmo método. {q-iamspe2026-077}` },
-        { id: "cre-zscore", figuras: [{ arquivo: "figuras/imc-escore-z.svg", legenda: "Esquema autoral: faixas de escore z do IMC para a idade (OMS, 0 a 5 anos)." }], casos: ["q-amrigs2022-070"], titulo: "Classificação nutricional pelo escore z (OMS)", conferir: true,
+        { id: "cre-zscore", diretrizes: ["oms-crescimento"], figuras: [{ arquivo: "figuras/imc-escore-z.svg", legenda: "Esquema autoral: faixas de escore z do IMC para a idade (OMS, 0 a 5 anos)." }], casos: ["q-amrigs2022-070"], titulo: "Classificação nutricional pelo escore z (OMS)", conferir: true,
           prosa: `[[A Caderneta usa os padrões da OMS. Cada índice responde a uma pergunta diferente: a **estatura para a idade** mostra a história nutricional (a desnutrição crônica achata a curva de estatura); o **peso para a estatura** e o **IMC para a idade** mostram o estado atual e são os que diagnosticam sobrepeso e obesidade.|q-sessp2026-041,q-simepm89-073]] Por isso o peso para a idade isolado engana: uma criança alta pode ter peso "alto" sem excesso de gordura. [[Uma criança pode ter estatura muito alta e IMC baixo ao mesmo tempo: é magreza com estatura adequada.|q-unifesp2023-061]]`,
           questoes: ["q-adap22-073","q-unifesp2022-073","q-unifesp2023-061","q-scmsp2021-041","q-amrigs2022-070","q-amrigs2024-073","q-famema2023-087","q-sessp2022-055","q-sessp2025-055","q-sessp2026-041","q-tp20202-045","q-tp20232-111","q-famerp2023-024","q-fmabc2022-041","q-simepm89-073","q-usp2026-059","q-usp2023-095","q-unicampdis2022-035","q-fmabc2021-088"],
           texto: `- **IMC/idade de 0 a 5 anos**: < −3 magreza acentuada; −3 a −2 magreza; −2 a +1 eutrofia; **+1 a +2 risco de sobrepeso**; **+2 a +3 sobrepeso**; **> +3 obesidade**. {q-unifesp2022-073,q-scmsp2021-041,q-amrigs2022-070,q-amrigs2024-073,q-sessp2022-055,q-sessp2025-055,q-tp20202-045,q-tp20232-111,q-famerp2023-024,q-unicampdis2022-035,q-fmabc2021-088}
@@ -120,7 +122,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - **30 meses**: **egocentrismo** com interesse em compartilhar; brinca ao lado de outras crianças. {q-famema2022-085}
 - **4 anos**: brincadeira de faz de conta, conta histórias, pula num pé só. {q-fmabc2024-043}
 - Desenvolvimento normal: estimular **brincar, ler, cantar, natureza**; sem celular. {q-unifesp2024-093}` },
-        { id: "des-alerta", titulo: "Quando é alerta e quando é atraso", conferir: true,
+        { id: "des-alerta", diretrizes: ["ms-caderneta"], titulo: "Quando é alerta e quando é atraso", conferir: true,
           prosa: `[[A Caderneta classifica assim: faltam marcos da **faixa etária anterior** = **provável atraso**; faltam marcos da **faixa atual** = **alerta para o desenvolvimento**; todos os marcos presentes, mas com fator de risco (prematuridade, infecção neonatal, baixo peso) = **adequado com fatores de risco**.|q-amrigs2020-065,q-tp20251-037,q-amrigs2024-067]] No alerta, a conduta é orientar estímulos e reavaliar em 30 dias. No provável atraso, encaminhar para avaliação. [[No atraso de linguagem, procurar também sinais de **transtorno do espectro autista**: pouco contato visual, não apontar, não atender pelo nome, interesse restrito.|q-adap24-094,q-tp20222-043]]`,
           questoes: ["q-amrigs2020-065","q-tp20251-037","q-amrigs2024-067","q-adap24-094","q-tp20222-043","q-unifesp2023-058","q-tp20261-057","q-einstein2024-034","q-usp2022-046"],
           texto: `- Faltam marcos da **faixa anterior**: provável atraso, encaminhar. Faltam marcos da **faixa atual**: alerta, estimular e reavaliar. {q-amrigs2020-065,q-amrigs2024-067}
@@ -164,7 +166,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
         { id: "ama-mastite", titulo: "Mastite", conferir: true,
           questoes: ["q-adap23-061"],
           texto: `- Febre, calafrio e área quente e dolorosa na mama: **manter o esvaziamento** (amamentar ou ordenhar), analgesia, repouso e **cefalexina por 10 a 14 dias**. Abscesso: drenar. {q-adap23-061}` },
-        { id: "ama-contra", titulo: "Quando não amamentar (e quando pode)", conferir: true,
+        { id: "ama-contra", diretrizes: ["ms-caderneta"], titulo: "Quando não amamentar (e quando pode)", conferir: true,
           prosa: `As contraindicações são poucas e têm motivo claro: um agente que passa pelo leite e causa doença grave, ou um bebê que não consegue metabolizar o leite. [[No Brasil, **HIV** e **HTLV-1/2** maternos contraindicam a amamentação; do lado do bebê, a **galactosemia** clássica, em que a lactose vira um tóxico.|q-udisc20262-056]] [[A hepatite C não contraindica: a transmissão pelo leite nunca foi documentada.|q-unesp2021-005]]`,
           questoes: ["q-udisc20262-056","q-unesp2021-005","q-scmsp2026-073","q-iamspe2022-036","q-einstein2022-037"],
           texto: `- **Contraindicam**: HIV e HTLV maternos; **galactosemia** no bebê; quimioterápicos e radiofármacos (temporariamente). {q-udisc20262-056}
@@ -172,7 +174,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - **Varfarina** é compatível com a amamentação. {q-scmsp2026-073}
 - Recomendação: **exclusivo até 6 meses** e continuado até 2 anos ou mais. {q-iamspe2022-036}
 - Lactente internado (ex.: bronquiolite) que pode se alimentar: **liberar o leite materno**. {q-einstein2022-037}` },
-        { id: "ama-trabalho", titulo: "Volta ao trabalho: ordenha e armazenamento", conferir: true,
+        { id: "ama-trabalho", diretrizes: ["ms-caderneta"], titulo: "Volta ao trabalho: ordenha e armazenamento", conferir: true,
           questoes: ["q-scmsp2021-044","q-usprp2026-043","q-amrigs2021-063","q-unicampdis2022-028","q-iamspe2025-070","q-fmabc2023-052"],
           texto: `- Leite ordenhado: **12 horas na geladeira** e **15 dias no congelador/freezer**. {q-scmsp2021-044,q-usprp2026-043,q-unicampdis2022-028,q-amrigs2021-063}
 - Descongelar em banho-maria, sem micro-ondas, e oferecer **em copinho**. {q-scmsp2021-044,q-amrigs2021-063}
@@ -188,7 +190,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 
 **Leite de vaca antes de 1 ano.** [[O leite de vaca integral tem pouco ferro, e o pouco que tem é mal absorvido; o excesso de proteína e cálcio atrapalha a absorção do ferro dos outros alimentos e pode causar micro-hemorragias intestinais. Daí a anemia ferropriva.|q-adap21-039,q-unesp2023-007]] [[O leite materno ou uma fórmula infantil são as opções no primeiro ano; o Guia Alimentar do Ministério da Saúde admite o leite de origem animal para a criança de 6 a 11 meses que não mama no peito quando a fórmula não é possível, com orientação.|q-fmabc2026-052,q-sessp2024-055]]`,
       fragmentos: [
-        { id: "ali-papa", titulo: "Como montar as refeições", conferir: true,
+        { id: "ali-papa", diretrizes: ["ms-guia-alimentar"], titulo: "Como montar as refeições", conferir: true,
           questoes: ["q-adap22-070","q-usprp2024-067","q-unesp2024-004","q-amrigs2020-068","q-famema2023-094","q-tp20231-039","q-fmabc2024-045","q-fmabc2025-045","q-scmsp2025-043"],
           texto: `- Início aos **6 meses**, com aleitamento mantido até **2 anos ou mais**. {q-adap22-070,q-usprp2024-067,q-unesp2024-004}
 - **Papa principal com todos os grupos**: cereal ou tubérculo, leguminosa (feijão), **carne ou ovo**, legumes e verduras. A carne entra desde o início. {q-famema2023-094,q-tp20231-039}
@@ -197,7 +199,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - Recusa inicial é normal: **várias exposições**. {q-amrigs2020-068}
 - Sem sal, açúcar, mel, sucos ou ultraprocessados até 2 anos. {q-unesp2024-004}
 - Distribuição de energia: **carboidratos cerca de metade**, gorduras cerca de 30 a 40% e **proteínas a menor parte** (cerca de 10%). {q-scmsp2025-043}` },
-        { id: "ali-formula", titulo: "Leite de vaca e fórmula infantil", conferir: true,
+        { id: "ali-formula", diretrizes: ["sbp-alimentacao"], titulo: "Leite de vaca e fórmula infantil", conferir: true,
           questoes: ["q-adap21-039","q-unesp2023-007","q-fmabc2026-052","q-sessp2024-055","q-usprp2021-039","q-usprp2025-020","q-unesp2022-008"],
           texto: `- **Não** oferecer leite de vaca integral antes de **12 meses** (SBP): risco de **anemia ferropriva**. {q-adap21-039,q-unesp2023-007}
 - O Guia do MS (2019) admite leite de origem animal de 6 a 11 meses para quem não mama, quando a fórmula não é possível. {q-fmabc2026-052}
@@ -218,17 +220,17 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 
 [[O **prematuro** e o **baixo peso** nascem com reserva menor (perderam parte do terceiro trimestre) e crescem mais rápido para recuperar: precisam de dose maior e começam mais cedo, já com **30 dias** de vida.|q-unesp2022-009,q-famerp2023-032]] [[A suplementação de ferro na prevenção usa **1 mg/kg/dia**; o tratamento da anemia já instalada usa **3 a 6 mg/kg/dia**, por cerca de 3 meses depois de normalizar a hemoglobina, para repor os estoques.|q-sessp2022-054,q-tp20222-045]]`,
       fragmentos: [
-        { id: "fer-dose", titulo: "Prevenção: quem, quanto e até quando (SBP 2021)", conferir: true,
+        { id: "fer-dose", diretrizes: ["sbp-ferro"], titulo: "Prevenção: quem, quanto e até quando (SBP 2021)", conferir: true,
           questoes: ["q-famema2023-100","q-sessp2023-021","q-sessp2025-056","q-tp20202-044","q-tp20212-053","q-unesp2025-005","q-unesp2022-009","q-famerp2023-032","q-usprp2025-019"],
           texto: `- **A termo, peso adequado, sem fator de risco**: **1 mg/kg/dia dos 6 aos 24 meses**. {q-famema2023-100,q-tp20202-044,q-tp20212-053,q-unesp2025-005}
 - **A termo com fator de risco** (ex.: mãe anêmica, clampeamento precoce): 1 mg/kg/dia **a partir dos 3 meses** até 24 meses. {q-sessp2023-021,q-sessp2025-056}
 - **Prematuro ou baixo peso (1.500 a 2.500 g)**: **2 mg/kg/dia a partir de 30 dias** por 1 ano, depois 1 mg/kg/dia por mais 1 ano. Abaixo de 1.500 g, 3 a 4 mg/kg/dia. {q-unesp2022-009,q-famerp2023-032}
 - Prematuro que vai bem com 6 meses em leite materno exclusivo: **manter a amamentação exclusiva** (até a introdução alimentar aos 6 meses de idade corrigida, conforme o caso). {q-usprp2025-019}
 - Dar o ferro **longe das mamadas**. {q-unesp2025-005}` },
-        { id: "fer-tratar", titulo: "Tratamento da anemia ferropriva", conferir: true,
+        { id: "fer-tratar", diretrizes: ["sbp-ferro"], titulo: "Tratamento da anemia ferropriva", conferir: true,
           questoes: ["q-sessp2022-054","q-tp20222-045"],
           texto: `- Hb baixa, ferritina baixa, RDW alto: **3 a 6 mg/kg/dia de ferro elementar**. {q-sessp2022-054,q-tp20222-045}` },
-        { id: "fer-vitd", titulo: "Vitamina D e vitamina A", conferir: true,
+        { id: "fer-vitd", diretrizes: ["sbp-alimentacao"], titulo: "Vitamina D e vitamina A", conferir: true,
           questoes: [],
           texto: `- Vitamina D (SBP): **400 UI/dia no 1º ano** e **600 UI/dia no 2º ano**, para todas as crianças.
 - Vitamina A em megadose: programa do MS para regiões de risco, dos 6 aos 59 meses.` },

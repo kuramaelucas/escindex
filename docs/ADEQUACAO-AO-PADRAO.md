@@ -1,14 +1,13 @@
 # Adequação das questões ao padrão da plataforma
 
-Gerado por `npm run auditoria-padrao` em 13/11/2026. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra `dados/PADRAO-EXPLICACAO.md`: justificativa (`faltasDeJustificativa`) e referência com data de leitura. "Completa" = forma da justificativa sem falta, **mecanismo e epidemiologia presentes (heurística por palavra-chave, não prova qualidade)** e referência datada. Não é erro: `npm run conferir` só cobra o padrão de conteúdo novo.
+Gerado por `npm run auditoria-padrao` em 18/11/2026. Mede **todas** as questões (também as anteriores aos cortes de data que o conferidor usa) contra `dados/PADRAO-EXPLICACAO.md`: justificativa (`faltasDeJustificativa`) e referência com data de leitura. "Completa" = forma da justificativa sem falta, **mecanismo e epidemiologia presentes (heurística por palavra-chave, não prova qualidade)** e referência datada. Não é erro: `npm run conferir` só cobra o padrão de conteúdo novo.
 
 ```
-12137 questões em 156 arquivos; 1034 já cumprem forma + mecanismo/epidemiologia + referência datada (8.5%).
-Conteúdo (heurística por palavra-chave, itens 7 e 8): 5411 de 12137 mencionam mecanismo E epidemiologia (44.6%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
-Referências: 1214 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9444 sem data, 36 vazias, 1398 fracas.
+12137 questões em 156 arquivos; 1572 já cumprem forma + mecanismo/epidemiologia + referência datada (13.0%).
+Conteúdo (heurística por palavra-chave, itens 7 e 8): 12057 de 12137 mencionam mecanismo E epidemiologia (99.3%). Forma da justificativa (itens 1–4): 12135 de 12137 sem falta (100.0%).
+Referências: 1578 lidas e datadas, 45 de livro-texto indicadas sem leitura, 9101 sem data, 36 vazias, 1377 fracas.
 Justificativa — o que falta:
-   5743  sem mecanismo/fisiopatologia
-   4679  sem epidemiologia
+     80  sem mecanismo/fisiopatologia
       2  sem Dicas do enunciado
       1  corpo curto
       1  sem destaque **
@@ -25,120 +24,120 @@ Mapa: 39 diretrizes da tabela + 17 famílias; 36 questões sem referência.
 | didatico-grad-meningites | 180 | 0 | 180 | 180/0/0 | — |
 | didatico-grad-pneumonias | 142 | 0 | 142 | 142/0/0 | — |
 | didatico-grad-iras | 127 | 0 | 127 | 127/0/0 | — |
-| didatico-grad-antibioticos | 126 | 0 | 126 | 126/0/0 | — |
+| didatico-grad-antibioticos | 126 | 4 | 126 | 122/0/0 | — |
 | didatico-grad-arboviroses | 121 | 0 | 121 | 121/0/0 | — |
-| simulado-epm-6 | 120 | 0 | 2 | 115/0/1 | sem mecanismo/fisiopatologia (112); sem epidemiologia (68) |
-| usprp-2021 | 120 | 0 | 120 | 120/0/0 | — |
-| tp-2020-2 | 120 | 0 | 3 | 115/2/0 | sem mecanismo/fisiopatologia (114); sem epidemiologia (99) |
-| tp-2021-2 | 120 | 0 | 0 | 119/0/0 | sem mecanismo/fisiopatologia (119); sem epidemiologia (99) |
-| tp-2022-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (97) |
-| tp-2023-1 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (99) |
-| tp-2023-2 | 120 | 0 | 0 | 117/0/0 | sem mecanismo/fisiopatologia (118); sem epidemiologia (104) |
-| tp-2024-1 | 120 | 0 | 0 | 118/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (105) |
-| tp-2025-1 | 120 | 0 | 0 | 117/0/0 | sem mecanismo/fisiopatologia (115); sem epidemiologia (108) |
-| tp-2025-2 | 120 | 0 | 1 | 120/0/0 | sem mecanismo/fisiopatologia (117); sem epidemiologia (98) |
 | unicamp-2024-dissertativa | 120 | 0 | 120 | 120/0/0 | — |
-| uspsp-simulado-1 | 120 | 0 | 80 | 120/0/0 | sem mecanismo/fisiopatologia (40) |
-| uspsp-simulado-2 | 120 | 0 | 87 | 120/0/0 | sem mecanismo/fisiopatologia (33) |
-| uspsp-simulado-5 | 120 | 0 | 120 | 120/0/0 | — |
-| uspsp-simulado-4 | 120 | 0 | 74 | 120/0/0 | sem mecanismo/fisiopatologia (46) |
-| uspsp-simulado-3 | 120 | 0 | 98 | 120/0/0 | sem mecanismo/fisiopatologia (22); sem epidemiologia (12) |
-| tp-2026-1 | 120 | 3 | 120 | 117/0/0 | — |
-| unifesp-2024-adaptado | 100 | 0 | 1 | 79/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (61) |
-| simulado-epm-2 | 100 | 0 | 0 | 70/0/11 | sem mecanismo/fisiopatologia (95); sem epidemiologia (89); sem Dicas do enunciado (1) |
-| simulado-epm-3 | 100 | 0 | 1 | 45/0/36 | sem mecanismo/fisiopatologia (97); sem epidemiologia (81) |
-| simulado-epm-4 | 100 | 0 | 1 | 45/0/42 | sem mecanismo/fisiopatologia (99); sem epidemiologia (84) |
-| simulado-epm-5 | 100 | 0 | 1 | 55/0/38 | sem mecanismo/fisiopatologia (94); sem epidemiologia (54) |
-| santacasa-2021 | 100 | 0 | 99 | 100/0/0 | sem mecanismo/fisiopatologia (1); sem epidemiologia (1) |
-| santacasa-2022 | 100 | 0 | 100 | 100/0/0 | — |
-| santacasa-2023 | 100 | 0 | 100 | 100/0/0 | — |
-| santacasa-2025 | 100 | 0 | 100 | 100/0/0 | — |
-| santacasa-2026 | 100 | 0 | 100 | 100/0/0 | — |
-| usprp-2022 | 100 | 0 | 100 | 100/0/0 | — |
-| usprp-2023 | 100 | 0 | 100 | 100/0/0 | — |
-| usprp-2024 | 100 | 0 | 100 | 100/0/0 | — |
-| usprp-2025 | 100 | 0 | 100 | 100/0/0 | — |
-| usprp-2026 | 100 | 0 | 100 | 100/0/0 | — |
-| amrigs-2022 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (94); sem epidemiologia (81) |
-| amrigs-2023 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (77) |
-| amrigs-2024 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (96); sem epidemiologia (76) |
-| amrigs-2025 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (94); sem epidemiologia (79) |
-| amrigs-2020 | 100 | 0 | 12 | 100/0/0 | sem mecanismo/fisiopatologia (88); sem epidemiologia (75) |
-| amrigs-2021 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (91); sem epidemiologia (84) |
-| iamspe-2025 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (90); sem epidemiologia (82) |
-| iamspe-2026 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (94); sem epidemiologia (82) |
-| unesp-2023 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (86) |
-| famema-2021 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (99); sem epidemiologia (94) |
-| famema-2022 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (99); sem epidemiologia (91) |
-| famema-2023 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (89) |
-| famema-2025 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (99); sem epidemiologia (90) |
-| sessp-2022 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (95); sem epidemiologia (85) |
-| sessp-2023 | 100 | 0 | 9 | 100/0/0 | sem mecanismo/fisiopatologia (88); sem epidemiologia (82) |
-| sessp-2024 | 100 | 0 | 8 | 100/0/0 | sem mecanismo/fisiopatologia (90); sem epidemiologia (83) |
-| sessp-2025 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (97); sem epidemiologia (91) |
-| sessp-2026 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (96); sem epidemiologia (87) |
-| unesp-2021 | 100 | 0 | 3 | 100/0/0 | sem mecanismo/fisiopatologia (95); sem epidemiologia (82) |
-| unesp-2022 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (87) |
-| unesp-2024 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (83) |
-| unesp-2025 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (98); sem epidemiologia (83) |
-| unesp-2026 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (99); sem epidemiologia (75) |
-| unicamp-2025-dissertativa | 100 | 0 | 100 | 100/0/0 | — |
-| simulado-epm-2026-10 | 100 | 0 | 84 | 100/0/0 | sem epidemiologia (12); sem mecanismo/fisiopatologia (5) |
-| sirio-2023 | 100 | 0 | 7 | 100/0/0 | sem mecanismo/fisiopatologia (93) |
-| sirio-2024 | 100 | 0 | 1 | 100/0/0 | sem mecanismo/fisiopatologia (99) |
-| sirio-2025 | 100 | 0 | 9 | 100/0/0 | sem mecanismo/fisiopatologia (91); sem epidemiologia (1) |
-| sirio-2026 | 100 | 0 | 4 | 100/0/0 | sem mecanismo/fisiopatologia (96) |
-| sirio-2027 | 100 | 0 | 9 | 100/0/0 | sem mecanismo/fisiopatologia (91) |
-| sirio-2021 | 100 | 0 | 0 | 100/0/0 | sem mecanismo/fisiopatologia (100) |
-| sirio-2022 | 100 | 0 | 2 | 100/0/0 | sem mecanismo/fisiopatologia (98) |
-| fmabc-2025 | 100 | 0 | 13 | 0/0/99 | sem mecanismo/fisiopatologia (87) |
-| fmabc-2024 | 100 | 0 | 9 | 0/0/99 | sem mecanismo/fisiopatologia (91); sem epidemiologia (1) |
-| fmabc-2021 | 100 | 0 | 8 | 0/0/99 | sem mecanismo/fisiopatologia (92) |
-| fmabc-2022 | 100 | 0 | 3 | 0/0/98 | sem mecanismo/fisiopatologia (97) |
-| fmabc-2023 | 100 | 0 | 5 | 0/0/98 | sem mecanismo/fisiopatologia (95) |
-| simulado-didatico-epm | 100 | 0 | 1 | 99/0/0 | sem mecanismo/fisiopatologia (96); sem epidemiologia (56) |
-| didatico-grad-sepse | 100 | 0 | 18 | 100/0/0 | sem epidemiologia (82); sem mecanismo/fisiopatologia (2) |
-| didatico-grad-piodermites | 98 | 0 | 12 | 98/0/0 | sem epidemiologia (86) |
-| fmabc-2026 | 100 | 7 | 91 | 0/0/93 | sem mecanismo/fisiopatologia (9) |
-| didatico-grad-hepatoesplenomegalias | 93 | 0 | 16 | 93/0/0 | sem epidemiologia (77) |
-| iamspe-2021 | 80 | 0 | 5 | 80/0/0 | sem mecanismo/fisiopatologia (71); sem epidemiologia (58) |
-| iamspe-2022 | 80 | 0 | 4 | 80/0/0 | sem mecanismo/fisiopatologia (75); sem epidemiologia (65) |
-| iamspe-2023 | 80 | 0 | 6 | 80/0/0 | sem mecanismo/fisiopatologia (73); sem epidemiologia (54) |
-| famerp-2023 | 80 | 0 | 0 | 80/0/0 | sem mecanismo/fisiopatologia (79); sem epidemiologia (76) |
-| famerp-2025 | 80 | 0 | 4 | 80/0/0 | sem mecanismo/fisiopatologia (75); sem epidemiologia (65) |
-| famerp-2022 | 80 | 0 | 1 | 80/0/0 | sem mecanismo/fisiopatologia (78); sem epidemiologia (68) |
-| unicamp-2022 | 80 | 0 | 80 | 80/0/0 | — |
-| unicamp-2023 | 80 | 0 | 80 | 80/0/0 | — |
+| uspsp-simulado-3 | 120 | 1 | 120 | 119/0/0 | — |
+| tp-2023-1 | 120 | 2 | 120 | 118/0/0 | — |
+| tp-2025-2 | 120 | 3 | 120 | 117/0/0 | — |
+| simulado-epm-6 | 120 | 4 | 120 | 115/0/1 | — |
+| tp-2021-2 | 120 | 4 | 120 | 116/0/0 | — |
+| tp-2026-1 | 120 | 4 | 120 | 116/0/0 | — |
+| usprp-2021 | 120 | 5 | 120 | 115/0/0 | — |
+| tp-2022-2 | 120 | 5 | 119 | 115/0/0 | sem mecanismo/fisiopatologia (1) |
+| tp-2024-1 | 120 | 5 | 120 | 115/0/0 | — |
+| tp-2023-2 | 120 | 6 | 120 | 114/0/0 | — |
+| tp-2025-1 | 120 | 6 | 120 | 114/0/0 | — |
+| uspsp-simulado-1 | 120 | 6 | 113 | 112/0/0 | sem mecanismo/fisiopatologia (7) |
+| uspsp-simulado-2 | 120 | 6 | 115 | 113/0/0 | sem mecanismo/fisiopatologia (5) |
+| uspsp-simulado-4 | 120 | 6 | 115 | 112/0/0 | sem mecanismo/fisiopatologia (5) |
+| tp-2020-2 | 120 | 7 | 120 | 111/2/0 | — |
+| uspsp-simulado-5 | 120 | 7 | 120 | 113/0/0 | — |
+| santacasa-2022 | 100 | 1 | 100 | 99/0/0 | — |
+| unicamp-2025-dissertativa | 100 | 1 | 100 | 99/0/0 | — |
+| fmabc-2024 | 100 | 1 | 96 | 0/0/99 | sem mecanismo/fisiopatologia (4) |
+| fmabc-2021 | 100 | 1 | 98 | 0/0/99 | sem mecanismo/fisiopatologia (2) |
+| didatico-grad-sepse | 100 | 1 | 100 | 99/0/0 | — |
+| santacasa-2026 | 100 | 2 | 100 | 98/0/0 | — |
+| famema-2023 | 100 | 2 | 100 | 98/0/0 | — |
+| famema-2025 | 100 | 2 | 100 | 98/0/0 | — |
+| sessp-2026 | 100 | 2 | 100 | 98/0/0 | — |
+| sirio-2023 | 100 | 2 | 86 | 98/0/0 | sem mecanismo/fisiopatologia (14) |
+| fmabc-2025 | 100 | 2 | 93 | 0/0/98 | sem mecanismo/fisiopatologia (7) |
+| fmabc-2022 | 100 | 2 | 100 | 0/0/98 | — |
+| fmabc-2023 | 100 | 2 | 95 | 0/0/98 | sem mecanismo/fisiopatologia (5) |
+| didatico-grad-piodermites | 98 | 0 | 98 | 98/0/0 | — |
+| sessp-2025 | 100 | 3 | 100 | 97/0/0 | — |
+| sirio-2025 | 100 | 3 | 95 | 97/0/0 | sem mecanismo/fisiopatologia (5) |
+| sirio-2026 | 100 | 3 | 100 | 97/0/0 | — |
+| sirio-2021 | 100 | 3 | 95 | 97/0/0 | sem mecanismo/fisiopatologia (5) |
+| sirio-2022 | 100 | 3 | 95 | 97/0/0 | sem mecanismo/fisiopatologia (5) |
+| amrigs-2022 | 100 | 4 | 100 | 96/0/0 | — |
+| amrigs-2023 | 100 | 4 | 100 | 96/0/0 | — |
+| amrigs-2020 | 100 | 4 | 100 | 96/0/0 | — |
+| famema-2022 | 100 | 4 | 100 | 96/0/0 | — |
+| sessp-2023 | 100 | 4 | 100 | 96/0/0 | — |
+| sirio-2024 | 100 | 4 | 93 | 96/0/0 | sem mecanismo/fisiopatologia (7) |
+| sirio-2027 | 100 | 4 | 96 | 96/0/0 | sem mecanismo/fisiopatologia (4) |
+| santacasa-2021 | 100 | 5 | 100 | 95/0/0 | — |
+| santacasa-2025 | 100 | 5 | 100 | 95/0/0 | — |
+| amrigs-2021 | 100 | 5 | 100 | 95/0/0 | — |
+| sessp-2022 | 100 | 5 | 100 | 95/0/0 | — |
+| unesp-2021 | 100 | 5 | 100 | 95/0/0 | — |
+| santacasa-2023 | 100 | 6 | 100 | 94/0/0 | — |
+| usprp-2022 | 100 | 6 | 100 | 94/0/0 | — |
+| amrigs-2024 | 100 | 6 | 100 | 94/0/0 | — |
+| iamspe-2025 | 100 | 6 | 100 | 94/0/0 | — |
+| unesp-2023 | 100 | 6 | 100 | 94/0/0 | — |
+| sessp-2024 | 100 | 6 | 100 | 94/0/0 | — |
+| simulado-epm-2026-10 | 100 | 6 | 99 | 94/0/0 | sem mecanismo/fisiopatologia (1) |
+| usprp-2023 | 100 | 7 | 100 | 93/0/0 | — |
+| usprp-2026 | 100 | 7 | 100 | 93/0/0 | — |
+| amrigs-2025 | 100 | 7 | 100 | 93/0/0 | — |
+| famema-2021 | 100 | 7 | 100 | 93/0/0 | — |
+| unesp-2022 | 100 | 7 | 100 | 93/0/0 | — |
+| unesp-2026 | 100 | 7 | 100 | 93/0/0 | — |
+| fmabc-2026 | 100 | 7 | 98 | 0/0/93 | sem mecanismo/fisiopatologia (2) |
+| didatico-grad-hepatoesplenomegalias | 93 | 0 | 93 | 93/0/0 | — |
+| usprp-2024 | 100 | 8 | 100 | 92/0/0 | — |
+| usprp-2025 | 100 | 8 | 100 | 92/0/0 | — |
+| unesp-2025 | 100 | 8 | 100 | 92/0/0 | — |
+| unesp-2024 | 100 | 9 | 100 | 91/0/0 | — |
+| simulado-didatico-epm | 100 | 9 | 100 | 91/0/0 | — |
+| iamspe-2026 | 100 | 14 | 100 | 86/0/0 | — |
+| simulado-epm-5 | 100 | 16 | 100 | 51/0/33 | — |
+| simulado-epm-4 | 100 | 20 | 100 | 43/0/37 | — |
 | didatico | 135 | 56 | 135 | 0/34/0 | corpo curto (1); sem destaque ** (1); sem Dicas do enunciado (1) |
-| unifesp-2022 | 100 | 24 | 81 | 1/0/75 | sem epidemiologia (18); sem mecanismo/fisiopatologia (6) |
-| einstein-2022 | 75 | 0 | 24 | 0/0/72 | sem epidemiologia (51); sem mecanismo/fisiopatologia (1) |
-| einstein-2024 | 75 | 0 | 19 | 0/0/70 | sem epidemiologia (56) |
-| einstein-2025 | 75 | 0 | 14 | 0/0/72 | sem epidemiologia (61) |
-| einstein-2026 | 75 | 0 | 7 | 0/0/72 | sem epidemiologia (68) |
-| einstein-2027 | 75 | 0 | 73 | 0/0/75 | sem mecanismo/fisiopatologia (2) |
-| didatico-grad-neutropenia | 75 | 0 | 8 | 75/0/0 | sem epidemiologia (67) |
-| famerp-2024 | 74 | 0 | 0 | 74/0/0 | sem mecanismo/fisiopatologia (74); sem epidemiologia (69) |
-| einstein-2023 | 75 | 1 | 20 | 0/0/72 | sem epidemiologia (55); sem mecanismo/fisiopatologia (1) |
-| didatico-grad-micoses | 73 | 0 | 18 | 73/0/0 | sem epidemiologia (55) |
-| unifesp-2023 | 100 | 29 | 86 | 4/0/65 | sem epidemiologia (13); sem mecanismo/fisiopatologia (10) |
-| famerp-2026 | 71 | 0 | 4 | 71/0/0 | sem mecanismo/fisiopatologia (66); sem epidemiologia (60) |
-| didatico-grad-endocardite | 63 | 0 | 9 | 63/0/0 | sem epidemiologia (54) |
-| unicamp-2022-dissertativa | 60 | 0 | 60 | 60/0/0 | — |
+| iamspe-2023 | 80 | 1 | 80 | 79/0/0 | — |
+| simulado-epm-2 | 100 | 23 | 100 | 68/0/8 | sem Dicas do enunciado (1) |
+| iamspe-2021 | 80 | 3 | 80 | 77/0/0 | — |
+| iamspe-2022 | 80 | 3 | 80 | 77/0/0 | — |
+| famerp-2022 | 80 | 3 | 80 | 77/0/0 | — |
+| unicamp-2022 | 80 | 3 | 80 | 77/0/0 | — |
+| simulado-epm-3 | 100 | 24 | 100 | 44/0/32 | — |
+| unicamp-2023 | 80 | 4 | 80 | 76/0/0 | — |
+| unifesp-2022 | 100 | 25 | 100 | 1/0/74 | — |
+| famerp-2025 | 80 | 5 | 80 | 75/0/0 | — |
+| einstein-2027 | 75 | 0 | 74 | 0/0/75 | sem mecanismo/fisiopatologia (1) |
+| didatico-grad-neutropenia | 75 | 0 | 75 | 75/0/0 | — |
+| famerp-2023 | 80 | 7 | 80 | 73/0/0 | — |
+| didatico-grad-micoses | 73 | 0 | 73 | 73/0/0 | — |
+| einstein-2022 | 75 | 3 | 75 | 0/0/72 | — |
+| einstein-2023 | 75 | 3 | 75 | 0/0/72 | — |
+| einstein-2025 | 75 | 3 | 75 | 0/0/72 | — |
+| einstein-2026 | 75 | 3 | 75 | 0/0/72 | — |
+| famerp-2024 | 74 | 3 | 74 | 71/0/0 | — |
+| einstein-2024 | 75 | 5 | 75 | 0/0/70 | — |
+| unifesp-2024-adaptado | 100 | 31 | 100 | 69/0/0 | — |
+| unifesp-2023 | 100 | 31 | 100 | 4/0/65 | — |
+| famerp-2026 | 71 | 4 | 71 | 67/0/0 | — |
+| didatico-grad-endocardite | 63 | 0 | 63 | 63/0/0 | — |
 | unicamp-2023-dissertativa | 60 | 0 | 60 | 60/0/0 | — |
-| einstein-2021 | 50 | 0 | 16 | 0/0/47 | sem epidemiologia (32); sem mecanismo/fisiopatologia (2) |
-| usp-2022 | 100 | 59 | 100 | 0/0/41 | — |
-| didatico-grad-sfiha | 35 | 0 | 9 | 35/0/0 | sem epidemiologia (26) |
-| didatico-grad-leptospirose | 32 | 0 | 7 | 32/0/0 | sem epidemiologia (25) |
-| unifesp-2025 | 100 | 70 | 82 | 7/0/5 | sem epidemiologia (17); sem mecanismo/fisiopatologia (12) |
-| didatico-grad-malaria | 27 | 0 | 10 | 27/0/0 | sem epidemiologia (17) |
-| unifesp-2024 | 100 | 79 | 84 | 3/0/2 | sem epidemiologia (15); sem mecanismo/fisiopatologia (4) |
-| didatico-grad-influenza | 20 | 0 | 4 | 20/0/0 | sem epidemiologia (16) |
-| unifesp-2026 | 100 | 81 | 87 | 3/0/3 | sem epidemiologia (12); sem mecanismo/fisiopatologia (7) |
-| unifesp-discente-2026-2 | 100 | 89 | 91 | 0/0/2 | sem epidemiologia (8); sem mecanismo/fisiopatologia (6) |
+| unicamp-2022-dissertativa | 60 | 1 | 60 | 59/0/0 | — |
+| einstein-2021 | 50 | 3 | 50 | 0/0/47 | — |
+| usp-2022 | 100 | 60 | 100 | 0/0/40 | — |
+| didatico-grad-sfiha | 35 | 0 | 35 | 35/0/0 | — |
+| didatico-grad-leptospirose | 32 | 0 | 32 | 32/0/0 | — |
+| didatico-grad-malaria | 27 | 0 | 27 | 27/0/0 | — |
+| didatico-grad-influenza | 20 | 0 | 20 | 20/0/0 | — |
+| unifesp-2025 | 100 | 88 | 100 | 7/0/5 | — |
+| unifesp-2026 | 100 | 94 | 100 | 3/0/3 | — |
+| unifesp-2024 | 100 | 95 | 100 | 3/0/2 | — |
 | usp-2023 | 120 | 115 | 120 | 0/0/5 | — |
 | usp-2025 | 120 | 117 | 120 | 0/0/3 | — |
 | usp-2024 | 120 | 118 | 120 | 0/0/2 | — |
 | usp-2026 | 120 | 119 | 120 | 0/0/1 | — |
+| unifesp-discente-2026-2 | 100 | 99 | 100 | 0/0/1 | — |
 | reposicoes-amrigs-2021 | 0 | 0 | 0 | 0/0/0 | — |
 | reposicoes-rotavirus | 4 | 4 | 4 | 0/0/0 | — |
 | reposicoes-colo-e-lei | 5 | 5 | 5 | 0/0/0 | — |

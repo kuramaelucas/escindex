@@ -10,21 +10,20 @@
    ========================================================================== */
 import fs from "node:fs";
 import path from "node:path";
-import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import { carregar } from "./lib-dados.mjs";
+import { carregarResumo, errosDeDiretrizes } from "./lib-resumos.mjs";
 
 const raiz = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const tema = process.argv[2];
 if(!tema){ console.log("uso: npm run resumo -- <tema>   (pastas em resumos/)"); process.exit(1); }
 
-const contexto = { window: {} };
-vm.runInNewContext(fs.readFileSync(path.join(raiz, "resumos", tema, "resumo.js"), "utf8"), contexto);
-const r = contexto.window.EscResumos.lista[0];
+const r = carregarResumo(tema);
 const { D } = await carregar();
 const porId = new Map(D.questoes.map(q => [q.id, q]));
 
-const cobertas = new Map(), erros = [];
+// diretriz citada por seção tem de ser uma fonte com id: é por ela que a edição nova acha a seção
+const cobertas = new Map(), erros = errosDeDiretrizes(r);
 for(const d of r.doencas) for(const f of d.fragmentos){
   for(const id of f.questoes){
     if(!porId.has(id)) erros.push(`${d.id}/${f.id}: questão ${id} não existe`);
@@ -62,6 +61,11 @@ for(const d of r.doencas){
 }
 const aConferir = r.doencas.flatMap(d => d.fragmentos).filter(f => f.conferir).length;
 if(aConferir) console.log(`  ${aConferir} fragmento(s) com fonte ainda a conferir (conferir: true)`);
+const porDiretriz = (r.fontes || []).map(fo => [fo, r.doencas.flatMap(d => d.fragmentos).filter(f => (f.diretrizes || []).includes(fo.id))]);
+if(porDiretriz.some(([, l]) => l.length)){
+  console.log("\nSeções por diretriz (reescrever estas quando sair edição nova):");
+  for(const [fo, l] of porDiretriz) console.log(`  ${(fo.id || "?").padEnd(20)} ${l.length ? l.map(f => f.id).join(", ") : "(nenhuma seção)"}  · lido em ${fo.lidoEm || "—"}`);
+}
 if(semFragmento.length){
   console.log("\nSem fragmento (escreva um ou ponha em foraDoEscopo com o motivo):");
   semFragmento.forEach(q => console.log(`  ${q.id}  ${String(q.enunciado || "").replace(/\s+/g, " ").slice(0, 90)}`));
