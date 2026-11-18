@@ -102,4 +102,5 @@ Marcações dentro do texto:
 | `ictericia-neonatal` | `ass-ictericia` | 48 | 1 (anulada) |
 | `triagem-neonatal` | `ass-neo-triagemneonatal` | 50 | — |
 | `abdome-agudo-rn` | `ass-neo-malformacoesdigestivas` | 49 | 1 (anulada) |
+| `maus-tratos` | `ass-emergped-maustratos` | 32 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |

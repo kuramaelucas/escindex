@@ -16,5 +16,6 @@
   { id: "ictericia-neonatal", titulo: "Icterícia neonatal", area: "Pediatria · Neonatologia", assunto: "ass-ictericia" },
   { id: "triagem-neonatal", titulo: "Triagem neonatal", area: "Pediatria · Neonatologia", assunto: "ass-neo-triagemneonatal" },
   { id: "abdome-agudo-rn", titulo: "Abdome agudo e malformações digestivas do recém-nascido", area: "Pediatria · Neonatologia", assunto: "ass-neo-malformacoesdigestivas" },
+  { id: "maus-tratos", titulo: "Maus-tratos na infância", area: "Pediatria · Emergências Pediátricas", assunto: "ass-emergped-maustratos" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

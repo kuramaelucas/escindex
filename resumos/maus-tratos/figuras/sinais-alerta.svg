@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="320" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Lesão que não combina com a história: os sinais de alerta</text>
+<g>
+<rect x="20" y="45" width="230" height="190" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="135" y="68" text-anchor="middle" font-weight="700">História</text>
+<text x="34" y="96">• versão vaga ou que muda</text><text x="34" y="116">• mecanismo impossível</text><text x="34" y="132" font-size="12" fill="#555">  para a idade (bebê que "rolou"</text><text x="34" y="148" font-size="12" fill="#555">  antes dos 4 meses)</text><text x="34" y="170">• demora em procurar ajuda</text><text x="34" y="190">• pressa em ir embora</text>
+</g>
+<g>
+<rect x="265" y="45" width="230" height="190" rx="8" fill="#fdf1e2" stroke="#c07a1c"/>
+<text x="380" y="68" text-anchor="middle" font-weight="700">Pele e ossos</text>
+<text x="279" y="96">• hematomas em nádegas,</text><text x="279" y="112">  costas, orelhas, pescoço</text><text x="279" y="134">• lesões em fases diferentes</text><text x="279" y="156">• queimadura de bordas nítidas</text><text x="279" y="178">• fratura de costela posterior,</text><text x="279" y="194">  metafisária, espiral no bebê</text>
+</g>
+<g>
+<rect x="510" y="45" width="230" height="190" rx="8" fill="#e8eef9" stroke="#4a6fb3"/>
+<text x="625" y="68" text-anchor="middle" font-weight="700">Bebê sacudido</text>
+<text x="524" y="96">• lactente sonolento,</text><text x="524" y="112">  convulsão, vômitos</text><text x="524" y="134">• hemorragia retiniana</text><text x="524" y="156">• hematoma subdural</text><text x="524" y="178">• pouca lesão externa</text>
+</g>
+<rect x="20" y="250" width="720" height="54" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="380" y="272" text-anchor="middle" font-weight="700">Suspeita basta: proteger (internar se preciso), investigar e notificar</text>
+<text x="380" y="292" text-anchor="middle">Conselho Tutelar + ficha do SINAN, sem esperar confirmação nem autorização da família</text>
+</svg>
