@@ -66,6 +66,17 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     assert.equal(r.verso, "Koplik é patognomônico");
     assert.equal(r.assunto, "ass-exantematicas");
     assert.equal(r.resumoId, "exantematicas");
+    // caso ilustrado: figura à vista; tentar a alternativa mostra o gabarito e NÃO grava resposta
+    const caso = await pagina.evaluate(() => {
+      const el = document.getElementById("resumo-caso-q-uspsp1-004");
+      const temFigura = !!el.querySelector("img.qcard-img");
+      const antes = db.respostas.length;
+      responderCasoDoResumo("q-uspsp1-004", "A");
+      const novo = document.getElementById("resumo-caso-q-uspsp1-004");
+      return { temFigura, gravou: db.respostas.length !== antes, certa: !!novo.querySelector(".qcard-alt.correct"), gabarito: novo.textContent.includes("Gabarito: C") };
+    });
+    assert.ok(caso.temFigura && caso.certa && caso.gabarito, "o caso ilustrado mostra figura e gabarito");
+    assert.ok(!caso.gravou, "tentar o caso no resumo não vira resposta");
     // todo resumo do catálogo abre e desenha capítulos (pega erro de sintaxe ou de ligação num resumo novo)
     const ids = await pagina.evaluate(() => catalogoDeResumos().map(r => r.id));
     for(const id of ids){

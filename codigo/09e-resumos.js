@@ -29,6 +29,7 @@ const _resumoCargas = {};       // caminho -> Promise da carga do script
 let _resumoTextos = {};         // alvo -> texto bruto do trecho (com ** e [[…]]), para repintar após um destaque
 let _resumoFrases = [];         // frases ligadas a questões, na ordem da tela: {chave, cap, ids}
 let _resumoUltimas = null;      // questaoId -> peso de erro da última resposta da pessoa
+let _resumoCasos = {};          // questaoId -> letra escolhida no caso ilustrado (só nesta tela, não vira resposta)
 
 /* ---------------------------- carga sob demanda ---------------------------- */
 // Sem ?v=: o service worker busca na rede primeiro, então um resumo corrigido chega sem mexer no código.
@@ -196,6 +197,37 @@ function cartaoDaSecaoDoResumo(fragId){
   if(f) abrirFormularioFlashcard(null, { frente: f.titulo, assuntoId: r.assunto });
 }
 
+/* ---------------------------- casos ilustrados ----------------------------
+   Seção com `casos: [ids]` mostra a questão com figura (foto clínica, radiografia,
+   curva) junto do texto: ver o achado ensina mais que descrevê-lo. Tentar a
+   alternativa aqui NÃO grava resposta — senão a marcação pelo erro passaria a medir
+   o que a pessoa acabou de ler, e não o que ela sabia. */
+function _htmlCasoDoResumo(id){
+  const q = getQuestao(id);
+  if(!q || !q.imagemUrl) return "";
+  const escolhida = _resumoCasos[id] || null;
+  const alts = q.alternativas.map(a => {
+    let cls = "qcard-alt";
+    if(escolhida) cls += " disabled" + (a.id === q.gabarito ? " correct" : a.id === escolhida ? " incorrect" : "");
+    return `<div class="${cls}"${escolhida ? "" : ` onclick="responderCasoDoResumo('${escapeHtml(id)}','${escapeHtml(a.id)}')"`}><span class="alt-letter">${escapeHtml(a.id)}</span><span class="alt-text">${escapeHtml(a.texto)}</span></div>`;
+  }).join("");
+  return `<div class="resumo-caso" id="resumo-caso-${escapeHtml(id)}">
+    <div class="resumo-rotulo">Caso ilustrado · ${escapeHtml(q.banca || "")} ${escapeHtml(String(q.ano || ""))}</div>
+    ${renderImagemQuestao(q)}
+    <details${escolhida ? " open" : ""}><summary>Ler o caso e tentar responder</summary>
+      <div class="resumo-caso-enunciado">${htmlComDestaques(q.enunciado, null, true)}</div>
+      <div class="qcard-alts">${alts}</div>
+      ${escolhida ? `<div class="feedback-box ${escolhida === q.gabarito ? "ok" : "no"}"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong> ${htmlComDestaques(q.explicacaoGeral, null, true)}</div>
+        <div class="text-xs muted mt-1">Aqui é só para estudar: esta tentativa não conta no seu desempenho. <button class="link-btn" onclick="responderCasoDoResumo('${escapeHtml(id)}', null)">Tentar de novo</button></div>` : ""}
+    </details>
+  </div>`;
+}
+function responderCasoDoResumo(id, letra){
+  if(letra) _resumoCasos[id] = letra; else delete _resumoCasos[id];
+  const el = document.getElementById("resumo-caso-" + id);
+  if(el) el.outerHTML = _htmlCasoDoResumo(id);
+}
+
 /* ---------------------------- telas ---------------------------- */
 function abrirResumo(id){ state.filtroRota.resumoAberto = id || null; render(); window.scrollTo(0, 0); }
 
@@ -223,6 +255,12 @@ function renderResumos(){
   const r = resumoCarregado(id);
   if(!r){
     _carregarScriptDeResumo(id + "/resumo").then(ok => { if(state.route === "resumos") render(); if(!ok) toast("Não foi possível abrir este resumo agora. Confira a internet e tente de novo.", "err"); });
+    return `<div class="empty-state">Abrindo o resumo…</div>`;
+  }
+  // o texto dos casos ilustrados vem do arquivo da prova (02b): pede antes de desenhar
+  const casos = r.doencas.flatMap(d => d.fragmentos.flatMap(f => f.casos || []));
+  if(arquivosQueFaltamParaAsQuestoes(casos).length){
+    garantirCorpos(casos).then(() => { if(state.route === "resumos") render(); });
     return `<div class="empty-state">Abrindo o resumo…</div>`;
   }
   return _renderCaderno(r);
@@ -313,6 +351,7 @@ function _htmlSecaoDoResumo(r, cap, numero, { f, t }){
     <div class="resumo-sec-cab"><span class="resumo-num">${numero}</span><h3>${escapeHtml(f.titulo)}</h3>${_marcaDoResumo(t)}
       <button class="resumo-ir" onclick="cartaoDaSecaoDoResumo('${escapeHtml(f.id)}')" title="Criar um flashcard desta seção">${iconeSvg("cards")} cartão</button></div>
     ${prosa}
+    ${(f.casos || []).map(_htmlCasoDoResumo).join("")}
     <div class="resumo-chave"><div class="resumo-rotulo">Pontos-chave</div><ul>${topicos}</ul></div>
     ${f.conferir ? `<div class="resumo-conferir">Texto ainda a conferir na fonte primária.</div>` : ""}
   </section>`;

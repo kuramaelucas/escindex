@@ -72,7 +72,7 @@ O perímetro cefálico mede, na prática, o crescimento do cérebro. [[Ele aumen
 - PC que **acelera e cruza canais**: imagem (US transfontanelar) e neurocirurgia. {q-adap22-071}
 - PC alto e **estável no canal**, com desenvolvimento normal: variante normal, seguir. {q-scmsp2026-060}
 - **Fontanela fechada precocemente** com PC baixo: **craniossinostose**, cirurgia. {q-einstein2024-035}` },
-        { id: "cre-ganho", titulo: "Peso e estatura: o esperado e o que preocupa", conferir: true,
+        { id: "cre-ganho", casos: ["q-uspsp4-080"], titulo: "Peso e estatura: o esperado e o que preocupa", conferir: true,
           questoes: ["q-famerp2023-025","q-fmabc2026-054","q-tp20231-035","q-uspsp4-080","q-adap23-058","q-iamspe2026-077","q-famerp2024-053"],
           texto: `- Perda fisiológica até **10%**, recuperada até **10 a 15 dias**. {q-famerp2024-053}
 - Com 1 ano: peso cerca de **3 vezes** o de nascimento e comprimento de cerca de **75 cm**. {q-famerp2023-025,q-fmabc2026-054}
@@ -144,7 +144,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - Leite maduro: proteína principal **alfa-lactoalbumina**; carboidrato principal **lactose**; gordura maior no fim da mamada. {q-sessp2025-048}
 - Composição semelhante entre as mulheres, mas **individualizada** para cada dupla mãe-bebê. {q-unesp2022-004}
 - Proteção por política pública: IHAC, bancos de leite, licença e a **regulação da propaganda** de fórmulas, mamadeiras e bicos (NBCAL). {q-unifesp2023-067}` },
-        { id: "ama-tecnica", titulo: "Pega, posição e as queixas dos primeiros dias", conferir: true,
+        { id: "ama-tecnica", casos: ["q-tp20222-041"], titulo: "Pega, posição e as queixas dos primeiros dias", conferir: true,
           prosa: `[[Quase toda dificuldade de amamentar nas primeiras semanas (dor, fissura, bebê que chora e larga o peito, baixo ganho) tem a mesma raiz: **pega ou posição inadequadas**. O bebê que abocanha só o mamilo machuca a mãe e não esvazia a mama, que então produz menos.|q-unifesp2022-070,q-tp20222-041,q-tp20212-118,q-tp20252-001,q-didepm-014,q-amrigs2025-063]] Por isso a primeira conduta é observar a mamada. [[Um bebê com bom ganho de peso e pega correta não precisa de nenhuma intervenção na técnica.|q-sirio2023-050]]`,
           questoes: ["q-unifesp2022-070","q-tp20222-041","q-tp20212-118","q-tp20252-001","q-didepm-014","q-amrigs2025-063","q-sirio2023-050","q-famerp2023-037","q-famerp2025-053","q-famema2025-038","q-sirio2025-051","q-udisc20262-057"],
           texto: `- Pega boa: **boca bem aberta**, **lábio inferior virado para fora**, **queixo tocando a mama**, mais aréola visível acima que abaixo. {q-unifesp2022-070,q-tp20222-041,q-tp20252-001}
