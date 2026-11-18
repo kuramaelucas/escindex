@@ -114,3 +114,4 @@ Marcações dentro do texto:
 | `tireoide` | `ass-tireoide` | 80 | 2 (anuladas) |
 | `anemias` | `ass-hemato-anemias` | 75 | — |
 | `glomerulopatias` | `ass-nefro-glomerulopatias` | 73 | 1 (litíase) |
+| `tuberculose` | `ass-tuberculose` | 251 (69 reais e 182 autorais) | 9 (autorais anuladas) |

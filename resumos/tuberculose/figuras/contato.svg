@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="260" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Contato de tuberculose pulmonar</text>
+<rect x="20" y="44" width="200" height="90" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="120" y="68" text-anchor="middle" font-weight="700">1. Excluir doença ativa</text>
+<text x="32" y="92">• sintomas</text>
+<text x="32" y="112">• radiografia de tórax</text>
+<path d="M220 89 L244 89" stroke="#555"/><path d="M238 84 L246 89 L238 94" stroke="#555" fill="none"/>
+<rect x="246" y="44" width="200" height="90" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="346" y="68" text-anchor="middle" font-weight="700">2. PT ou IGRA</text>
+<text x="258" y="92">• IGRA não sofre</text>
+<text x="258" y="112">  interferência da BCG</text>
+<path d="M446 70 L480 56" stroke="#555" fill="none"/><path d="M446 110 L480 166" stroke="#555" fill="none"/>
+<rect x="480" y="40" width="260" height="112" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="610" y="62" text-anchor="middle" font-weight="700">PT ≥ 5 mm ou IGRA positivo</text>
+<text x="492" y="86">• infecção latente: tratar</text>
+<text x="492" y="106">• isoniazida 6–9 meses, rifampicina</text>
+<text x="492" y="124">  4 meses, ou isoniazida +</text>
+<text x="492" y="142">  rifapentina por 3 meses</text>
+<rect x="480" y="166" width="260" height="70" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="610" y="190" text-anchor="middle" font-weight="700">PT negativa</text>
+<text x="492" y="214">• repetir em 8 semanas (conversão)</text>
+</svg>

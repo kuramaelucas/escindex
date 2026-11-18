@@ -27,5 +27,6 @@
   { id: "tireoide", titulo: "Tireoidopatias", area: "Clínica Médica · Endocrinologia", assunto: "ass-tireoide" },
   { id: "anemias", titulo: "Anemias", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-anemias" },
   { id: "glomerulopatias", titulo: "Síndromes glomerulares", area: "Clínica Médica · Nefrologia", assunto: "ass-nefro-glomerulopatias" },
+  { id: "tuberculose", titulo: "Tuberculose", area: "Clínica Médica · Infectologia", assunto: "ass-tuberculose" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];
