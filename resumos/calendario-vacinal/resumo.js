@@ -54,7 +54,7 @@ Depois do primeiro ano vêm a segunda metade das vacinas virais (tríplice viral
           questoes: ["q-iamspe2021-065","q-iamspe2026-089","q-fmabc2022-097"],
           texto: `- Na maternidade: **BCG (dose única)** e **hepatite B**. {q-iamspe2021-065,q-iamspe2026-089}
 - BCG é **dose única, ao nascer**; não há reforço. {q-fmabc2022-097}` },
-        { id: "cri-primeiro-ano", titulo: "Do 2º ao 9º mês", conferir: true, diretrizes: ["calendario-vacinal"],
+        { id: "cri-primeiro-ano", casos: ["q-scmsp2023-045"], titulo: "Do 2º ao 9º mês", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-015","q-iamspe2026-074","q-usp2022-044","q-sirio2027-049","q-usprp2023-043","q-fmabc2023-046","q-scmsp2023-045","q-amrigs2021-072-ia","q-unifesp2025-083-ia","q-einstein2021-025"],
           figuras: [{ arquivo: "figuras/primeiro-ano.svg", legenda: "Esquema autoral: as vacinas do primeiro ano, mês a mês." }],
           casos: ["q-usprp2023-043"],

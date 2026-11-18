@@ -72,7 +72,7 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
 
 [[Na criança, compressões são indicadas não só sem pulso: frequência abaixo de 60 com má perfusão, apesar de boa ventilação, já é parada iminente.|q-usp2025-062]] [[Os ritmos se dividem em chocáveis (fibrilação ventricular e taquicardia ventricular sem pulso), em que o choque reorganiza a atividade elétrica, e não chocáveis (assistolia e atividade elétrica sem pulso), em que só a adrenalina e a busca da causa ajudam.|q-sessp2024-052,q-famema2023-098,q-fmabc2025-046]]`,
       fragmentos: [
-        { id: "pcr-basico", titulo: "Suporte básico: sequência e compressões", conferir: true, diretrizes: ["aha-rcp"],
+        { id: "pcr-basico", casos: ["q-usp2025-062"], titulo: "Suporte básico: sequência e compressões", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-sessp2024-051","q-uspsp3-043","q-sirio2024-052","q-unicamp2022-037","q-sirio2023-042","q-unicamp2023-042","q-scmsp2021-050","q-unicampdis2024-028","q-usp2025-062","q-uspsp3-026"],
           texto: `- Sequência **C-A-B**. {q-sessp2024-051}
 - Sozinho, PCR não presenciada: **2 minutos de RCP, depois pedir ajuda**. {q-uspsp3-043}
@@ -81,7 +81,7 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
 - Com via aérea avançada: compressões **contínuas** e **1 ventilação a cada 2 a 3 s** (20 a 30/min). {q-scmsp2021-050,q-unicamp2023-042,q-unicampdis2024-028}
 - FC **< 60** com má perfusão apesar da ventilação: **compressões**. {q-usp2025-062}
 - DEA disponível: **usar logo**. {q-uspsp3-026}` },
-        { id: "pcr-chocavel", titulo: "Ritmos chocáveis", conferir: true, diretrizes: ["aha-rcp"],
+        { id: "pcr-chocavel", figuras: [{ arquivo: "figuras/pcr-ritmos.svg", legenda: "Esquema autoral: os dois caminhos da parada, chocável e não chocável." }], titulo: "Ritmos chocáveis", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-sessp2024-052","q-famema2023-098","q-famema2025-046","q-sessp2023-035","q-sessp2025-053","q-usprp2021-043","q-famerp2025-057","q-uspsp1-003","q-sirio2026-053","q-sirio2027-054","q-sirio2021-044","q-famerp2026-043"],
           casos: ["q-usprp2021-043","q-uspsp1-003"],
           texto: `- Chocáveis: **fibrilação ventricular** e **taquicardia ventricular sem pulso**. {q-sessp2024-052,q-famema2023-098}

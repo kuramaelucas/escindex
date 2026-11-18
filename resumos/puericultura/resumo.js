@@ -82,7 +82,7 @@ O perímetro cefálico mede, na prática, o crescimento do cérebro. [[Ele aumen
 - **Mudança de canal para baixo** é desaceleração: investigar alimentação e família, retorno breve. {q-uspsp4-080}
 - **Baixa estatura familiar**: estatura baixa compatível com os pais e **velocidade de crescimento normal**. Só acompanhar, sem exames. {q-adap23-058}
 - Na transição deitado → em pé (cerca de 2 anos), medir das **duas formas**, descontar cerca de **0,7 cm** e comparar a velocidade sempre pelo mesmo método. {q-iamspe2026-077}` },
-        { id: "cre-zscore", diretrizes: ["oms-crescimento"], figuras: [{ arquivo: "figuras/imc-escore-z.svg", legenda: "Esquema autoral: faixas de escore z do IMC para a idade (OMS, 0 a 5 anos)." }], casos: ["q-amrigs2022-070"], titulo: "Classificação nutricional pelo escore z (OMS)", conferir: true,
+        { id: "cre-zscore", diretrizes: ["oms-crescimento"], figuras: [{ arquivo: "figuras/imc-escore-z.svg", legenda: "Esquema autoral: faixas de escore z do IMC para a idade (OMS, 0 a 5 anos)." }], casos: ["q-amrigs2022-070","q-scmsp2021-041"], titulo: "Classificação nutricional pelo escore z (OMS)", conferir: true,
           prosa: `[[A Caderneta usa os padrões da OMS. Cada índice responde a uma pergunta diferente: a **estatura para a idade** mostra a história nutricional (a desnutrição crônica achata a curva de estatura); o **peso para a estatura** e o **IMC para a idade** mostram o estado atual e são os que diagnosticam sobrepeso e obesidade.|q-sessp2026-041,q-simepm89-073]] Por isso o peso para a idade isolado engana: uma criança alta pode ter peso "alto" sem excesso de gordura. [[Uma criança pode ter estatura muito alta e IMC baixo ao mesmo tempo: é magreza com estatura adequada.|q-unifesp2023-061]]`,
           questoes: ["q-adap22-073","q-unifesp2022-073","q-unifesp2023-061","q-scmsp2021-041","q-amrigs2022-070","q-amrigs2024-073","q-famema2023-087","q-sessp2022-055","q-sessp2025-055","q-sessp2026-041","q-tp20202-045","q-tp20232-111","q-famerp2023-024","q-fmabc2022-041","q-simepm89-073","q-usp2026-059","q-usp2023-095","q-unicampdis2022-035","q-fmabc2021-088"],
           texto: `- **IMC/idade de 0 a 5 anos**: < −3 magreza acentuada; −3 a −2 magreza; −2 a +1 eutrofia; **+1 a +2 risco de sobrepeso**; **+2 a +3 sobrepeso**; **> +3 obesidade**. {q-unifesp2022-073,q-scmsp2021-041,q-amrigs2022-070,q-amrigs2024-073,q-sessp2022-055,q-sessp2025-055,q-tp20202-045,q-tp20232-111,q-famerp2023-024,q-unicampdis2022-035,q-fmabc2021-088}
@@ -91,7 +91,7 @@ O perímetro cefálico mede, na prática, o crescimento do cérebro. [[Ele aumen
 - **Estatura/idade**: ≥ −2 adequada; −3 a −2 baixa; < −3 muito baixa. É o índice que mostra o **déficit crônico**. {q-sessp2026-041,q-famema2023-087}
 - IMC baixo com estatura alta: **magreza com estatura adequada**. {q-unifesp2023-061}
 - O **IMC para a idade** é o gráfico para avaliar sobrepeso e obesidade. {q-simepm89-073}` },
-        { id: "cre-obesidade", titulo: "Obesidade infantil", conferir: true,
+        { id: "cre-obesidade", casos: ["q-fmabc2021-089"], titulo: "Obesidade infantil", conferir: true,
           prosa: `A obesidade infantil cresce junto com o consumo de ultraprocessados e o sedentarismo. O excesso de gordura visceral libera ácidos graxos e citocinas que geram **resistência à insulina**. [[A pele mostra isso como **acantose nigricans** (manchas escuras e aveludadas em pescoço e axilas), e o fígado como **esteatose**, a complicação mais comum.|q-tp20232-041]] [[A obesidade que começa **no primeiro ano** de vida é um alerta para causas genéticas ou endócrinas e pede investigação.|q-fmabc2021-089]]`,
           questoes: ["q-sessp2023-040","q-tp20232-041","q-tp20222-046","q-fmabc2021-089","q-fmabc2021-088"],
           texto: `- **Circunferência abdominal/estatura ≤ 0,5** é adequada. Acima indica gordura visceral. {q-sessp2023-040}
@@ -220,7 +220,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 
 [[O **prematuro** e o **baixo peso** nascem com reserva menor (perderam parte do terceiro trimestre) e crescem mais rápido para recuperar: precisam de dose maior e começam mais cedo, já com **30 dias** de vida.|q-unesp2022-009,q-famerp2023-032]] [[A suplementação de ferro na prevenção usa **1 mg/kg/dia**; o tratamento da anemia já instalada usa **3 a 6 mg/kg/dia**, por cerca de 3 meses depois de normalizar a hemoglobina, para repor os estoques.|q-sessp2022-054,q-tp20222-045]]`,
       fragmentos: [
-        { id: "fer-dose", diretrizes: ["sbp-ferro"], titulo: "Prevenção: quem, quanto e até quando (SBP 2021)", conferir: true,
+        { id: "fer-dose", casos: ["q-usprp2025-019"], diretrizes: ["sbp-ferro"], titulo: "Prevenção: quem, quanto e até quando (SBP 2021)", conferir: true,
           questoes: ["q-famema2023-100","q-sessp2023-021","q-sessp2025-056","q-tp20202-044","q-tp20212-053","q-unesp2025-005","q-unesp2022-009","q-famerp2023-032","q-usprp2025-019"],
           texto: `- **A termo, peso adequado, sem fator de risco**: **1 mg/kg/dia dos 6 aos 24 meses**. {q-famema2023-100,q-tp20202-044,q-tp20212-053,q-unesp2025-005}
 - **A termo com fator de risco** (ex.: mãe anêmica, clampeamento precoce): 1 mg/kg/dia **a partir dos 3 meses** até 24 meses. {q-sessp2023-021,q-sessp2025-056}
@@ -249,7 +249,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
           texto: `- Regurgitação com **bom ganho de peso**: refluxo fisiológico. **Tranquilizar**, medidas posturais, manter o aleitamento. {q-fmabc2026-043,q-famema2023-091,q-tp20251-045}
 - Evitar **excesso de volume** e **tabagismo passivo**; trocar a fralda **antes** da mamada. {q-sessp2022-045}
 - Sem exames e sem medicação. Em fórmula: considerar **fórmula AR**. {q-unesp2022-008}` },
-        { id: "que-colica", titulo: "Cólica e dermatite de fraldas", conferir: true,
+        { id: "que-colica", casos: ["q-usprp2022-019"], titulo: "Cólica e dermatite de fraldas", conferir: true,
           questoes: ["q-famerp2022-031","q-usprp2022-019"],
           texto: `- Cólica (Wessel): choro por **3 h ou mais por dia**, em **3 dias ou mais por semana**, por **3 semanas ou mais**, em bebê saudável e bem alimentado. {q-famerp2022-031}
 - Dermatite de fraldas: trocas frequentes, ar livre e **creme de barreira** (óxido de zinco, **dexpantenol**). Lesões satélites sugerem *Candida*. {q-usprp2022-019}` },

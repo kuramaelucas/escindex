@@ -39,7 +39,7 @@
 
 A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a circulação preservada e intestino funcionando, e por isso se reidrata pela boca; a que está em choque ou não consegue beber precisa de volume na veia.|q-sessp2023-039,q-famerp2023-031,q-sessp2024-057]]`,
       fragmentos: [
-        { id: "ava-classificar", titulo: "Sem desidratação, desidratação, desidratação grave", conferir: true, diretrizes: ["ms-diarreia"],
+        { id: "ava-classificar", figuras: [{ arquivo: "figuras/planos-abc.svg", legenda: "Esquema autoral: os sinais que levam a cada plano e o que se faz em cada um." }], titulo: "Sem desidratação, desidratação, desidratação grave", conferir: true, diretrizes: ["ms-diarreia"],
           questoes: ["q-018","q-uspsp1-013","q-famerp2022-030","q-tp20212-043","q-sirio2021-049","q-famema2021-088","q-iamspe2026-070","q-famerp2023-031","q-unicampdis2023-033","q-sessp2024-057","q-einstein2027-040","q-fmabc2023-060"],
           texto: `- **Sem desidratação** (bem alerta, olhos normais, bebe normalmente, prega normal): **plano A**. {q-018}
 - **Desidratação** (irritado, **olhos fundos**, **sede**, sem lágrimas, **prega desaparece lentamente**, pulso cheio ou rápido): **plano B**. {q-uspsp1-013,q-famerp2022-030,q-tp20212-043,q-sirio2021-049,q-einstein2027-040}

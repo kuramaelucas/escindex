@@ -27,7 +27,7 @@
 
 [[A bronquiolite é um diagnóstico clínico: um lactente com alguns dias de coriza que evolui com taquipneia, tiragem, sibilos e crepitações não precisa de radiografia nem de exames para ser diagnosticado.|q-uspsp1-008,q-uspsp2-067,q-unesp2023-009]] A imunidade ao VSR não é duradoura: [[reinfecções ao longo da vida são a regra, mais leves a cada vez.|q-iamspe2025-066]]`,
       fragmentos: [
-        { id: "bva-quadro", titulo: "Quadro e diagnóstico", conferir: true,
+        { id: "bva-quadro", casos: ["q-uspsp4-115"], titulo: "Quadro e diagnóstico", conferir: true,
           questoes: ["q-unesp2023-009","q-iamspe2025-066","q-uspsp1-008","q-uspsp2-067","q-famerp2022-022","q-uspsp4-115","q-unicampdis2025-030","q-tp20222-049"],
           casos: ["q-unicampdis2025-030"],
           texto: `- Começa com **pródromo viral alto** (coriza, tosse) e, dias depois, **taquipneia, tiragem, sibilos e crepitações**. {q-unesp2023-009,q-uspsp2-067}
@@ -50,7 +50,7 @@
 - **Oximetria contínua não é recomendada** no lactente estável (AAP). {q-scmsp2022-033}
 - Internado com ingestão baixa: **soro de manutenção**. {q-usp2024-001}
 - **Para decorar: "O2, água e nariz"**: oxigênio se hipoxêmico, hidratação e nariz limpo; o resto não muda a evolução. {q-adap26-089,q-udisc20262-046}` },
-        { id: "bva-suporte", titulo: "Escalonar o suporte: alto fluxo e CPAP", conferir: true, diretrizes: ["sbp-bronquiolite"],
+        { id: "bva-suporte", casos: ["q-usp2024-002"], titulo: "Escalonar o suporte: alto fluxo e CPAP", conferir: true, diretrizes: ["sbp-bronquiolite"],
           questoes: ["q-tp20202-047","q-usp2024-002","q-sirio2027-046","q-fmabc2026-048"],
           texto: `- Falha do cateter nasal comum: **cateter nasal de alto fluxo (CNAF)**, iniciando com **2 L/kg/min**. {q-usp2024-002,q-tp20202-047}
 - O CNAF gera **pressão positiva (efeito CPAP)**, lava o espaço morto e reduz o trabalho respiratório. {q-sirio2027-046}
@@ -65,7 +65,7 @@
 
 [[A frequência respiratória é o melhor sinal isolado de pneumonia na criança: a OMS e o AIDPI usam os pontos de corte por idade para diagnosticar sem radiografia onde ela não existe.|q-famema2025-043,q-fmabc2021-097]]`,
       fragmentos: [
-        { id: "pac-diag", titulo: "Diagnóstico: clínica, oximetria e imagem", conferir: true, diretrizes: ["ms-aidpi","sbp-pac"],
+        { id: "pac-diag", casos: ["q-uspsp2-069"], titulo: "Diagnóstico: clínica, oximetria e imagem", conferir: true, diretrizes: ["ms-aidpi","sbp-pac"],
           questoes: ["q-unesp2021-007","q-fmabc2021-096","q-fmabc2021-097","q-famema2022-087","q-uspsp2-069","q-unifesp2024-087","q-adap24-057","q-unifesp2024-099","q-usp2023-116","q-famema2025-043"],
           casos: ["q-usp2023-116"],
           texto: `- Defesas que falham na pneumonia: **reflexo da tosse** e **transporte mucociliar**. {q-unesp2021-007}
@@ -77,7 +77,7 @@
 - Pneumonia bacteriana típica na radiografia: **opacidade densa, homogênea e localizada**. {q-unifesp2024-087}
 - **Gemido expiratório**: mantém pressão no fim da expiração e evita o colapso alveolar. {q-adap24-057,q-unifesp2024-099}
 - Ultrassom pulmonar: consolidação com **broncograma aéreo** na área da imagem radiológica. {q-usp2023-116}` },
-        { id: "pac-agentes", titulo: "Agentes por idade e por contexto", conferir: true,
+        { id: "pac-agentes", casos: ["q-famerp2026-046"], titulo: "Agentes por idade e por contexto", conferir: true,
           questoes: ["q-scmsp2026-052","q-famema2021-099","q-iamspe2021-048","q-sessp2022-057","q-sessp2023-028","q-adap24-052","q-famerp2026-046"],
           prosa: `[[O pneumococo é o agente bacteriano mais comum da pneumonia lobar em todas as idades depois do período neonatal, inclusive na criança com HIV.|q-scmsp2026-052,q-famema2021-099,q-iamspe2021-048]] [[A resistência dele à penicilina não vem de betalactamase: vem de proteínas ligadoras de penicilina alteradas, e por isso se vence com dose maior, não com inibidor de betalactamase.|q-sessp2022-057]]`,
           texto: `- Febre alta, toxemia, dor torácica e **consolidação lobar**: **Streptococcus pneumoniae**. {q-scmsp2026-052,q-famema2021-099,q-famerp2026-046}
@@ -128,7 +128,7 @@
 
 [[Nenhum dos dois tem parede celular de peptidoglicano acessível aos betalactâmicos, e por isso o tratamento é com macrolídeo.|q-iamspe2022-044,q-scmsp2026-046,q-uspsp2-060]]`,
       fragmentos: [
-        { id: "ati-mycoplasma", titulo: "Mycoplasma pneumoniae", conferir: true,
+        { id: "ati-mycoplasma", casos: ["q-unicampdis2025-073"], titulo: "Mycoplasma pneumoniae", conferir: true,
           questoes: ["q-scmsp2026-046","q-uspsp2-060","q-didepm-054","q-unicampdis2025-073"],
           casos: ["q-uspsp2-060"],
           texto: `- **Escolar ou adolescente**, febre baixa, tosse seca persistente, cefaleia, bom estado; surto na escola. {q-didepm-054,q-unicampdis2025-073}

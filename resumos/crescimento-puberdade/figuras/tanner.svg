@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="system-ui,sans-serif" font-size="11.5">
+<rect width="760" height="300" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Estágios de Tanner e onde cai o estirão</text>
+<g font-weight="700" text-anchor="middle" fill="#222"><text x="175" y="56">2</text><text x="330" y="56">3</text><text x="485" y="56">4</text><text x="640" y="56">5</text></g>
+<text x="20" y="56" font-weight="700">Estágio</text>
+<text x="20" y="92" font-weight="700">Mama (M)</text>
+<g text-anchor="middle"><text x="175" y="86">broto mamário</text><text x="175" y="102">(pode ser unilateral)</text>
+<text x="330" y="86">mama e aréola crescem,</text><text x="330" y="102">um só contorno</text>
+<text x="485" y="86">aréola e papila formam</text><text x="485" y="102">um segundo contorno</text>
+<text x="640" y="86">mama adulta,</text><text x="640" y="102">contorno único</text></g>
+<text x="20" y="152" font-weight="700">Genital (G)</text>
+<g text-anchor="middle"><text x="175" y="146">testículo ≥ 4 mL,</text><text x="175" y="162">escroto mais fino e escuro</text>
+<text x="330" y="146">pênis cresce</text><text x="330" y="162">em comprimento</text>
+<text x="485" y="146">pênis cresce</text><text x="485" y="162">em diâmetro</text>
+<text x="640" y="146">genitália adulta</text></g>
+<line x1="20" y1="185" x2="740" y2="185" stroke="#ddd"/>
+<rect x="240" y="200" width="180" height="30" rx="6" fill="#fdf1e2" stroke="#c07a1c"/><text x="330" y="220" text-anchor="middle">estirão da menina (M2–M3)</text>
+<rect x="410" y="240" width="150" height="30" rx="6" fill="#e8eef9" stroke="#4a6fb3"/><text x="485" y="260" text-anchor="middle">estirão do menino (G4)</text>
+<rect x="470" y="200" width="160" height="30" rx="6" fill="#f6e8f3" stroke="#9a3f86"/><text x="550" y="220" text-anchor="middle">menarca (perto de M4)</text>
+<text x="20" y="292" fill="#555">Estágio 1 = pré-púbere. Primeiro sinal: telarca (8–13 anos) e volume testicular ≥ 4 mL (9–14 anos).</text>
+</svg>

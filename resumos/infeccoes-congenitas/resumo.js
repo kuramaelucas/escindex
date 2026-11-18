@@ -22,7 +22,7 @@
 
 [[O raciocínio inteiro gira em torno de uma pergunta: a mãe foi adequadamente tratada? Tratamento adequado é penicilina benzatina completa para o estágio, iniciada pelo menos 30 dias antes do parto, com queda do título não treponêmico.|q-famema2023-095,q-amrigs2022-063,q-fmabc2025-048,q-fmabc2026-046]] [[O VDRL do recém-nascido pode vir de anticorpos maternos que atravessaram a placenta; só um título pelo menos 4 vezes maior que o da mãe aponta infecção do próprio bebê.|q-tp20212-041,q-famerp2026-036,q-unicampdis2024-034]]`,
       fragmentos: [
-        { id: "sif-mae", titulo: "Mãe adequadamente tratada e criança exposta", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "sif-mae", figuras: [{ arquivo: "figuras/sifilis-fluxo.svg", legenda: "Esquema autoral: a conduta no recém-nascido conforme o tratamento materno." }], titulo: "Mãe adequadamente tratada e criança exposta", conferir: true, diretrizes: ["pcdt-ist"],
           questoes: ["q-famema2023-095","q-amrigs2022-063","q-fmabc2025-048","q-adap24-088","q-famerp2026-036","q-unicampdis2024-034","q-einstein2023-034","q-einstein2024-043","q-famerp2025-050","q-usprp2021-028"],
           texto: `- Mãe adequadamente tratada: **benzatina completa**, iniciada **≥ 30 dias antes do parto**, com **queda do título**. {q-famema2023-095,q-amrigs2022-063,q-fmabc2025-048}
 - Mãe adequada, RN assintomático, VDRL **não reagente ou não maior que 4× o materno**: **criança exposta**, sem tratamento, **VDRL seriado**. {q-adap24-088,q-famerp2026-036,q-unicampdis2024-034}

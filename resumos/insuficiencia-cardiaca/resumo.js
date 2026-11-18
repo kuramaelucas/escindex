@@ -82,7 +82,7 @@ Os achados mais específicos são os que medem diretamente a pressão nas veias.
 - Diagnóstico: **2 maiores** ou **1 maior + 2 menores**. {q-iamspe2026-010,q-iamspe2026-017}
 - Achado mais **específico**: **refluxo hepatojugular**; sintoma que mais ajuda: **DPN**. {q-usp2026-013,q-famerp2023-070,q-usprp2026-090,q-uspsp4-021}
 - Congestão sistêmica pode imitar doença hepática ou renal (ascite, icterícia, proteinúria). {q-tp20241-026,q-unesp2021-048,q-scmsp2023-002,q-sessp2023-071}` },
-        { id: "dia-bnp", diretrizes: ["sbc-ic","esc-ic"], titulo: "Peptídeos natriuréticos", conferir: true,
+        { id: "dia-bnp", casos: ["q-uspsp2-001"], diretrizes: ["sbc-ic","esc-ic"], titulo: "Peptídeos natriuréticos", conferir: true,
           questoes: ["q-card-12","q-iamspe2025-005","q-amrigs2020-002","q-famema2021-031","q-uspsp2-001","q-uspsp5-024"],
           texto: `- Agudo: **BNP < 100 pg/mL** (NT-proBNP < 300) praticamente **exclui** IC. Crônico: BNP < 35, NT-proBNP < 125. {q-card-12,q-iamspe2025-005}
 - Ajuda no diagnóstico e mostra **gravidade e prognóstico**. {q-amrigs2020-002,q-uspsp5-024}
@@ -118,7 +118,7 @@ O **sacubitril-valsartana** soma ao bloqueio da angiotensina a inibição da nep
           questoes: ["q-uspsp5-024","q-famema2021-032","q-unesp2022-042","q-uspsp1-057","q-didepm-046","q-usp2024-051"],
           texto: `- Continua sintomático com IECA ou BRA: **trocar por sacubitril-valsartana**. {q-uspsp5-024,q-famema2021-032,q-unesp2022-042,q-uspsp1-057,q-usp2024-051}
 - Troca a partir do IECA: **suspender e esperar 36 h** (angioedema). Do BRA, não é preciso esperar. {q-didepm-046}` },
-        { id: "cro-ajustes", diretrizes: ["sbc-ic","esc-ic","aha-ic"], titulo: "Ajustes, efeitos adversos e dispositivos", conferir: true,
+        { id: "cro-ajustes", casos: ["q-sessp2023-068", "q-uspsp4-015"], diretrizes: ["sbc-ic","esc-ic","aha-ic"], titulo: "Ajustes, efeitos adversos e dispositivos", conferir: true,
           prosa: `[[Um aumento pequeno e estável da creatinina depois de iniciar os bloqueadores do SRAA é esperado (a pressão de filtração cai um pouco) e **não é motivo para suspender** os remédios, desde que o potássio esteja controlado.|q-usp2025-084]] [[A **espironolactona** bloqueia também o receptor de andrógeno e pode causar **ginecomastia** dolorosa; a troca é pela **eplerenona**.|q-fmabc2026-012]] [[No paciente que segue em classe funcional II a IV apesar do tratamento otimizado, com **FE ≤ 35%** e **bloqueio de ramo esquerdo com QRS ≥ 150 ms**, a **terapia de ressincronização** faz os dois ventrículos contraírem juntos de novo.|q-sessp2026-019]]`,
           questoes: ["q-usp2025-084","q-fmabc2026-012","q-sessp2026-019","q-udisc20262-006","q-uspsp1-107","q-sessp2023-068","q-uspsp3-096","q-uspsp4-015"],
           texto: `- Creatinina com leve aumento estável e K aceitável: **manter** as doses. {q-usp2025-084}

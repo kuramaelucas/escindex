@@ -41,7 +41,7 @@
 
 [[A causa patológica se denuncia pela velocidade baixa: hipotireoidismo, doença renal, doenças crônicas e déficit de GH freiam o crescimento e atrasam a idade óssea.|q-adap25-096,q-unicampdis2024-035,q-unifesp2025-096]] [[As síndromes genéticas e as displasias esqueléticas mostram desproporção corporal ou dismorfismos, e na menina baixa sem explicação é preciso pensar em Turner.|q-usprp2022-098,q-usprp2021-046]]`,
       fragmentos: [
-        { id: "bxe-variantes", titulo: "Familiar × constitucional", conferir: true,
+        { id: "bxe-variantes", casos: ["q-usprp2026-023"], titulo: "Familiar × constitucional", conferir: true,
           questoes: ["q-adap24-097","q-famerp2025-059","q-usprp2026-023","q-unifesp2024-098","q-usprp2023-059-ia","q-didepm-059","q-fmabc2024-047","q-simepm89-095"],
           prosa: `| | Baixa estatura familiar | Atraso constitucional |
 |---|---|---|
@@ -55,7 +55,7 @@
 - Exame que confirma o atraso constitucional: **radiografia de punho (idade óssea)**. {q-fmabc2024-047}
 - Atraso constitucional que sofre muito: **ciclo curto de testosterona** é opção. {q-didepm-059}
 - Estatura em z 0 e pais preocupados: **desenvolvimento normal**. {q-simepm89-095}` },
-        { id: "bxe-patologica", titulo: "Quando é doença", conferir: true,
+        { id: "bxe-patologica", casos: ["q-usprp2022-098"], titulo: "Quando é doença", conferir: true,
           questoes: ["q-adap25-096","q-unicampdis2024-035","q-unifesp2025-096","q-usprp2022-098","q-usprp2021-046","q-amrigs2023-077"],
           casos: ["q-usprp2021-046"],
           texto: `- Velocidade baixa com **idade óssea muito atrasada**: começar por **TSH e T4 livre**. {q-adap25-096}
@@ -72,7 +72,7 @@
 
 [[A sequência feminina é previsível: telarca, pico de velocidade de crescimento cedo (por volta de M2-M3), depois desaceleração e só então a menarca, em média 2 anos após a telarca.|q-famema2023-086,q-scmsp2025-045,q-usp2024-022]] [[No menino o estirão é tardio, em G4: por isso o menino que começou a puberdade ainda não acelerou o crescimento.|q-usp2024-023]] Os pelos (pubarca, axilar) e o odor dependem dos andrógenos da suprarrenal, um eixo à parte (adrenarca).`,
       fragmentos: [
-        { id: "pub-tanner", titulo: "Estágios de Tanner", conferir: true,
+        { id: "pub-tanner", figuras: [{ arquivo: "figuras/tanner.svg", legenda: "Esquema autoral: os estágios de mama e genital e o momento do estirão." }], titulo: "Estágios de Tanner", conferir: true,
           questoes: ["q-fmabc2025-054","q-amrigs2020-063","q-famerp2023-026","q-einstein2025-038","q-sirio2023-051","q-famema2025-047","q-usp2024-022","q-usp2024-023"],
           texto: `- Primeiro sinal: **telarca** na menina, **aumento do volume testicular** no menino. {q-fmabc2025-054}
 - Menino: **G2** aumento testicular e pele do escroto; **G3** pênis cresce em **comprimento**; **G4** em **diâmetro**. {q-amrigs2020-063}
@@ -135,14 +135,14 @@
       id: "nutricao", titulo: "Estado nutricional e obesidade",
       introducao: `Na criança, o peso só tem sentido em relação à idade e à estatura: por isso se classifica pelo **IMC para a idade**, em escores z das curvas da OMS. [[A criança obesa por excesso de comida cresce bem, muitas vezes acima do canal, porque a insulina e a leptina estimulam o crescimento; obesidade com estatura parando de crescer aponta causa endócrina, como hipotireoidismo ou excesso de cortisol.|q-usprp2022-094,q-udisc20262-042,q-sirio2025-058]]`,
       fragmentos: [
-        { id: "nut-classificacao", titulo: "Classificação pelo IMC (OMS)", conferir: true, diretrizes: ["oms-crescimento","ms-caderneta"],
+        { id: "nut-classificacao", casos: ["q-scmsp2022-023"], titulo: "Classificação pelo IMC (OMS)", conferir: true, diretrizes: ["oms-crescimento","ms-caderneta"],
           questoes: ["q-scmsp2022-023","q-amrigs2020-067","q-einstein2025-044-ia","q-einstein2021-024","q-sirio2026-042","q-fmabc2026-060","q-unicampdis2025-080"],
           casos: ["q-amrigs2020-067"],
           texto: `- **0 a 5 anos**: **+1 a +2 risco de sobrepeso**, **+2 a +3 sobrepeso**, **> +3 obesidade**. {q-amrigs2020-067,q-einstein2021-024}
 - **5 a 19 anos**: **+1 a +2 sobrepeso**, **+2 a +3 obesidade**, **> +3 obesidade grave**. {q-scmsp2022-023,q-einstein2025-044-ia,q-fmabc2026-060}
 - IMC entre **−2 e +1**: **eutrofia** (mesmo abaixo da média). {q-sirio2026-042}
 - IMC muito baixo em criança com paralisia cerebral: **desnutrição grave**, rever a dieta (calorias e consistência). {q-unicampdis2025-080}` },
-        { id: "nut-obesidade", titulo: "Obesidade: o que investigar", conferir: true, diretrizes: ["sbp-obesidade"],
+        { id: "nut-obesidade", casos: ["q-einstein2026-039", "q-einstein2023-066"], titulo: "Obesidade: o que investigar", conferir: true, diretrizes: ["sbp-obesidade"],
           questoes: ["q-einstein2026-039","q-einstein2023-066","q-udisc20262-042","q-usprp2022-094","q-sirio2025-058","q-iamspe2023-035","q-fmabc2026-060"],
           texto: `- Obesidade exógena: **glicemia de jejum, perfil lipídico e TGP** (SBP); com acantose, também **insulina**. {q-einstein2026-039,q-udisc20262-042}
 - Menor de 5 anos com excesso de peso: **dieta e atividade física**. {q-einstein2023-066}
