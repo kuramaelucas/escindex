@@ -695,7 +695,6 @@ function renderEstudar(){
   const listaAberta = !!state.filtroRota.listaAberta;
   return `
   <div class="page-header"><h2>Estudar</h2><p>Escolha como quer praticar agora.</p></div>
-  ${htmlCardResumosNoEstudar()}
 
   ${emAndamento ? `
   <div class="card mb-2 borda-destaque">

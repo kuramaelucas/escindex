@@ -267,19 +267,6 @@ function responderCasoDoResumo(id, letra){
 /* ---------------------------- telas ---------------------------- */
 function abrirResumo(id){ state.filtroRota.resumoAberto = id || null; render(); window.scrollTo(0, 0); }
 
-// O cartão de entrada, em Estudar
-function htmlCardResumosNoEstudar(){
-  return `<div class="card mb-2">
-    <div class="flex justify-between items-center gap-2 quebra">
-      <div class="cresce-220">
-        <div class="card-title mb-02">${iconeSvg("book")} Resumos <span class="badge badge-accent">Beta</span></div>
-        <div class="text-sm muted">Textos de estudo por tema, com fisiopatologia e epidemiologia. Onde você mais erra nas questões, o texto ganha uma cor para guiar a revisão.</div>
-      </div>
-      <button class="btn btn-secondary" onclick="navigate('resumos')">Abrir resumos</button>
-    </div>
-  </div>`;
-}
-
 function renderResumos(){
   const cat = catalogoDeResumos();
   if(!cat){

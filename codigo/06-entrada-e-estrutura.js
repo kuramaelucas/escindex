@@ -572,6 +572,7 @@ function itensDoMenuDoPapel(papel){
     {id:"meu-grupo", label:"Meu Grupo", icon:"users"},
     {id:"revisao", label:"Revisão", icon:"target"},
     {id:"flashcards", label:"Flashcards", icon:"cards"},
+    {id:"resumos", label:"Resumos (Beta)", icon:"book"},
     {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
     {id:"historico", label:"Histórico de Atividade", icon:"clock"},
     {id:"favoritos", label:"Favoritos", icon:"star"},
@@ -647,7 +648,7 @@ function renderSemPermissao(permissao){
    Duas tabelas porque o mesmo item cai em grupos diferentes conforme quem olha
    (Enviar Questões é "Contribuir" para o aluno e "Conteúdo" para a equipe). */
 const GRUPOS_MENU_ALUNO = ["Estudar","Acompanhar","Contribuir"];
-const GRUPO_DO_ITEM_ALUNO = {estudar:"Estudar", revisao:"Estudar", flashcards:"Estudar", simulados:"Estudar",
+const GRUPO_DO_ITEM_ALUNO = {estudar:"Estudar", revisao:"Estudar", flashcards:"Estudar", resumos:"Estudar", simulados:"Estudar",
   desempenho:"Acompanhar", "meu-grupo":"Acompanhar", historico:"Acompanhar", favoritos:"Acompanhar",
   "importar-questoes":"Contribuir"};
 const GRUPOS_MENU_EQUIPE = ["Conteúdo","Provas","Dúvidas e revisão","Gestão"];
