@@ -33,7 +33,7 @@ A IC é o caminho final de quase todas as doenças do coração e uma das princi
 - Estágios (ACC/AHA): **A** risco, sem doença estrutural; **B** doença estrutural sem sintomas; **C** sintomas; **D** refratária.
 - Classe funcional NYHA: **I** sem limitação; **II** grandes esforços; **III** pequenos esforços; **IV** em repouso.
 - Descompensação: a causa mais comum é a **má adesão**. {q-famema2025-014}` },
-        { id: "def-causas", titulo: "Causas que a prova cobra", conferir: true,
+        { id: "def-causas", casos: ["q-adap24-021"], titulo: "Causas que a prova cobra", conferir: true,
           prosa: `Algumas causas têm pistas específicas. [[A **cardiotoxicidade por quimioterapia** (antraciclinas, trastuzumabe) aparece semanas a meses depois do tratamento.|q-tp20212-030]] [[O **álcool** causa miocardiopatia dilatada no etilista de longa data, sem doença coronariana.|q-usp2026-004]] [[A **cardiomiopatia periparto** surge no fim da gestação ou nos meses após o parto.|q-unesp2022-042]] [[A **amiloidose** deposita proteína entre as fibras do miocárdio e o torna rígido e espesso. Pistas: **síndrome do túnel do carpo** bilateral, parede espessa com ECG de baixa voltagem e realce tardio difuso na ressonância. A forma **AL** (de cadeias leves) se investiga com **imunofixação e cadeias leves livres**; a forma por **transtirretina** é tratada com **tafamidis**, que estabiliza a proteína.|q-famerp2026-060,q-famema2021-038,q-famema2021-037,q-fmabc2024-019]]`,
           questoes: ["q-adap24-021","q-tp20212-030","q-usp2026-004","q-unesp2022-042","q-famerp2026-060","q-famema2021-037","q-famema2021-038","q-fmabc2024-019","q-tp20241-026","q-sessp2026-016","q-iamspe2022-003"],
           texto: `- **Chagas**: miocardiopatia dilatada com arritmias, bloqueios e aneurisma apical, em quem viveu em casa de pau a pique. {q-adap24-021}
@@ -88,7 +88,7 @@ Os achados mais específicos são os que medem diretamente a pressão nas veias.
 - Ajuda no diagnóstico e mostra **gravidade e prognóstico**. {q-amrigs2020-002,q-uspsp5-024}
 - IC descompensada com FE reduzida: BNP costuma ser **> 400**. {q-famema2021-031}
 - **Limitações**: idade, **FA**, **doença renal** (aumentam); obesidade (reduz). {q-uspsp2-001}` },
-        { id: "dia-imagem", casos: ["q-sessp2022-020"], titulo: "Ecocardiograma, imagem e exames da etiologia", conferir: true,
+        { id: "dia-imagem", casos: ["q-unesp2024-042","q-sessp2022-020"], titulo: "Ecocardiograma, imagem e exames da etiologia", conferir: true,
           prosa: `[[No ecocardiograma, a disfunção diastólica aparece como **relação E/e' elevada**, átrio esquerdo aumentado e pressão pulmonar alta: são esses achados que sustentam a IC quando a FE é normal.|q-sessp2025-013]] Na radiografia, a congestão se vê como redistribuição do fluxo para os ápices, linhas B de Kerley e derrame pleural. [[O **ultrassom pulmonar à beira do leito** mostra as mesmas linhas B e ajuda a decidir pelo diurético.|q-usp2026-001]]`,
           questoes: ["q-sessp2022-020","q-sessp2025-012","q-sessp2025-013","q-usp2026-001","q-usp2023-054","q-uspsp4-015"],
           texto: `- Primeiro exame para investigar: **ecocardiograma transtorácico**. {q-sessp2022-020}

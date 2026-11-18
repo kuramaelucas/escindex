@@ -61,7 +61,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
           questoes: ["q-uspsp4-101","q-amrigs2025-014"],
           texto: `- **Sorologia IgM** (positiva a partir do exantema) e **RT-PCR** em **secreção nasofaríngea/orofaríngea e urina**. Colha as duas amostras na primeira consulta. {q-uspsp4-101}
 - A **IgM marca a infecção primária**: costuma **não aparecer na reexposição nem na revacinação**, quando sobe a IgG. {q-amrigs2025-014}` },
-        { id: "sar-compl", titulo: "Complicações",
+        { id: "sar-compl", casos: ["q-tp20222-047"], titulo: "Complicações",
           prosa: `As complicações seguem a fisiopatologia. [[A lesão do epitélio respiratório e a "amnésia imune" abrem caminho para **pneumonia** viral ou bacteriana e **otite média**.|q-einstein2021-021,q-tp20222-047]] A lesão do epitélio intestinal causa diarreia, que agrava a desnutrição. No sistema nervoso há três quadros diferentes. A **encefalite aguda pós-infecciosa** é imunomediada e surge dias depois do exantema. A **encefalite por corpos de inclusão** ocorre em imunodeprimidos. A **PEES** é uma infecção persistente por vírus mutado, que se manifesta 7 a 10 anos depois e é mais comum quando o sarampo ocorreu antes dos 2 anos.`, conferir: true,
           questoes: ["q-einstein2021-021","q-tp20222-047","q-sirio2022-053"],
           texto: `- A **pneumonia** é a complicação mais frequente e a **principal causa de morte**. Pode ser viral ou bacteriana secundária. {q-einstein2021-021,q-tp20222-047}

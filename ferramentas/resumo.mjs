@@ -35,6 +35,8 @@ for(const d of r.doencas) for(const f of d.fragmentos){
   for(const id of f.casos || []){
     if(!porId.has(id)) erros.push(`${d.id}/${f.id}: caso ilustrado ${id} não existe`);
     else if(!porId.get(id).imagemUrl) erros.push(`${d.id}/${f.id}: caso ilustrado ${id} não tem figura`);
+    // anulada/desatualizada não tem gabarito a mostrar depois da tentativa
+    else if((porId.get(id).status || "ativa") !== "ativa") erros.push(`${d.id}/${f.id}: caso ilustrado ${id} está ${porId.get(id).status}`);
   }
   // Frase marcada no texto corrido ligada a questão inexistente: o sublinhado nunca acenderia.
   for(const m of `${d.introducao || ""}\n${f.prosa || ""}`.matchAll(/\[\[[^\]|]+\|([^\]]+)\]\]/g)) for(const id of m[1].split(","))
