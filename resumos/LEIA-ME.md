@@ -103,4 +103,5 @@ Marcações dentro do texto:
 | `triagem-neonatal` | `ass-neo-triagemneonatal` | 50 | — |
 | `abdome-agudo-rn` | `ass-neo-malformacoesdigestivas` | 49 | 1 (anulada) |
 | `maus-tratos` | `ass-emergped-maustratos` | 32 | 1 (anulada) |
+| `convulsao-febril` | `ass-convulsaofebril` | 28 | — |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
