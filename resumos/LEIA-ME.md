@@ -11,6 +11,7 @@ resumos/
   LEIA-ME.md          estas condições
   catalogo.js         a lista dos resumos (id = nome da pasta, título, área, assunto)
   <tema>/resumo.js    o resumo: window.EscResumos.registrar({...})
+  <tema>/figuras/     ilustrações do resumo (SVG autoral ou foto de licença livre)
   visualizar.html     prévia fora da plataforma (dois cliques): lê um backup ou usa um aluno de exemplo
 ```
 
@@ -31,7 +32,8 @@ registrar({
       questoes: [ids],                               // as questões que a seção responde (mede o erro)
       prosa: `texto corrido da seção`,               // opcional
       texto: `- ponto-chave {q-a,q-b}`,              // um tópico por linha; {…} = questões daquele tópico
-      figuras: [{ arquivo: "figuras/x.svg", legenda }], // opcional: ilustração própria (esquema autoral)
+      figuras: [{ arquivo: "figuras/x.svg", legenda,   // opcional: ilustração própria (esquema autoral)
+                  credito, fonte }],                 // obrigatórios em foto de terceiros: "Autor, licença" e página do arquivo
       casos: [ids],                                  // opcional: questões COM FIGURA mostradas como "caso ilustrado"
     }],
   }],
@@ -66,7 +68,13 @@ Marcações dentro do texto:
 9. **Texto autoral e verificável.** Nada copiado de cursinho ou de site de questões. As fontes primárias ficam em `fontes`, com a data em que foram lidas. Enquanto a seção não tiver a leitura conferida, ela leva `conferir: true` e a tela mostra "a conferir".
 10. **Pegadinhas viram seção própria** ("Armadilhas"). Ligue-as às questões em que a alternativa errada explora a confusão (ex.: exantema súbito × alergia à amoxicilina).
 11. **Casos ilustrados** (`casos`): quando o achado se aprende vendo (foto de exantema, radiografia, curva de crescimento, pega na amamentação), a seção mostra a questão real com figura logo após a prosa. A figura fica à vista; o caso abre em "Ler o caso e tentar responder", e a alternativa escolhida mostra gabarito e explicação **sem gravar resposta** (a marcação pelo erro mede o que a pessoa sabia, não o que acabou de ler). Prefira figura clínica a tabela; um ou dois por seção. `npm run resumo` recusa caso sem figura.
-12. **Ilustrações próprias** (`figuras`, arquivos em `<tema>/figuras/`): esquemas autorais em SVG (linha do tempo, critérios, ciclos, faixas) para o que nenhuma questão do banco mostra. O SVG traz fundo branco (vale nos dois temas), a legenda começa com "Esquema autoral" e o conteúdo não pode dizer nada que o texto da seção não diga. Foto clínica de terceiros só com licença conferida e citada na legenda. `npm run resumo` recusa arquivo que não existe.
+12. **Ilustrações próprias** (`figuras`, arquivos em `<tema>/figuras/`): esquemas autorais em SVG (linha do tempo, critérios, ciclos, faixas) para o que nenhuma questão do banco mostra. O SVG traz fundo branco (vale nos dois temas), a legenda começa com "Esquema autoral" e o conteúdo não pode dizer nada que o texto da seção não diga. `npm run resumo` recusa arquivo que não existe.
+    **Foto de terceiros** (ex.: Wikimedia Commons) segue este passo a passo:
+    1. Busque pela API do Commons (`commons.wikimedia.org/w/api.php`, `prop=imageinfo&iiprop=extmetadata`). Anote licença (`LicenseShortName`), autor (`Artist`) e a página do arquivo.
+    2. Só entra domínio público ou CC BY / CC BY-SA. Fica de fora NC, ND e "uso justo".
+    3. **Veja a foto antes de usar.** A descrição não basta: confirme que ela mostra o achado da seção e que não identifica o paciente (rosto sem tarja só em domínio público de fonte oficial, como o CDC).
+    4. Salve em `<tema>/figuras/` (WebP ou JPG, largura até 1.000 px). Preencha `credito: "Autor, CC BY 2.0"` e `fonte: "<página do arquivo>"`. A tela mostra o crédito com link, e `npm run resumo` recusa foto sem os dois.
+    5. Rede da nuvem: `upload.wikimedia.org` costuma devolver 429 (endereço de saída compartilhado). Nesse caso, peça as fotos a quem pode baixar e registre a pendência em `PENDENCIAS.md`, item 11, que já lista as escolhidas.
 13. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
 
 ## Ainda por fazer
