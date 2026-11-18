@@ -815,7 +815,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: escolar de 8 anos com **asma já tratada com corticoide inalatório em baixa dose**, **sintomas noturnos, uso de resgate de 3 a 4 vezes por semana** e **VEF1 de 65%**: **asma não controlada**. No GINA 2024 para crianças de 6 a 11 anos, o passo seguinte é o **degrau 3**, com **ICS-LABA em baixa dose** (ou ICS em dose média). Mecanismo: na asma não controlada a inflamação persiste apesar da dose baixa do corticoide, e o tratamento sobe de degrau para controlar a inflamação e reduzir os sintomas. Epidemiologia: a asma é a doença crônica mais comum na infância, e o mau controle é frequente por técnica inalatória e adesão ruins. A) manter o tratamento é inadequado com mau controle. B) aumentar o ICS para dose média também é opção do mesmo degrau, mas a questão adota a associação com LABA. C) o antileucotrieno é opção alternativa. D) o biológico anti-IL5 é para asma grave eosinofílica refratária.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2024: Global Strategy for Asthma Management and Prevention; Diretrizes da SBPT 2020.",
+  referencias:"GINA 2024: Global Strategy for Asthma Management and Prevention; Diretrizes da SBPT 2020. Texto lido em 17/11/2026 na GINA 2026 (Strategy Report de maio/2026, ginasthma.org), crianças de 6–11 anos: degrau 3 preferido é ICS em dose média ou ICS-LABA em dose baixa, ou MART com ICS-formoterol em dose baixa; concorda com o gabarito E.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -841,7 +841,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **prevenção primária** evita a ocorrência da doença, antes de qualquer lesão. A **vacinação contra HPV** previne a infecção que causa o câncer de colo do útero. Epidemiologia: a vacina reduz em mais de 80% as lesões de alto grau quando aplicada antes da exposição. A) suspender terapia hormonal em mulheres com BRCA é medida de redução de risco, mas a questão classifica como prevenção secundária ou de risco. B) a ultrassonografia anual na pós-menopausa é rastreamento (secundária). D) tratar hiperplasia ductal com antiestrogênico é quimioprofilaxia em lesão já presente. E) a exérese da zona de transformação trata lesão, prevenção secundária.",
   explicacoesAlternativas:{},
-  referencias:"Leavell H, Clark EG; Ministério da Saúde. Calendário Nacional de Vacinação.",
+  referencias:"Leavell H, Clark EG; Ministério da Saúde. Calendário Nacional de Vacinação. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): o calendário lista a vacina HPV de 9 a 14 anos (dose única) como proteção contra o câncer de colo do útero; concorda com o gabarito C. O cálculo de redução de lesões de alto grau não consta do quadro e não foi conferido.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -854,7 +854,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2025", [
   gabarito:"D",
   explicacaoGeral:"A alternativa D está correta. Dicas do enunciado: adolescente de 15 anos, **ciclos irregulares (40 a 50 dias)**, **IMC 30**, sem antecedentes, que usa preservativo. Os **dispositivos intrauterinos (inclusive o hormonal) não são contraindicados** na adolescência (categoria 2 da OMS), são de **longa duração e altíssima eficácia**, e o hormonal ainda regulariza o sangramento. Mecanismo: o DIU não afeta o crescimento nem a fertilidade, e os ciclos irregulares nos primeiros anos após a menarca refletem o eixo imaturo, o que não contraindica o método. Epidemiologia: a gravidez na adolescência é problema relevante, e o LARC é a melhor estratégia de prevenção. A) o injetável combinado não é contraindicado só por obesidade grau 1. B) a obesidade não impõe progestagênio isolado. C) a idade não contraindica o DIU. E) os contraceptivos combinados orais não são contraindicados por baixa adesão.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): de menarca a 20 anos, DIU de cobre e de levonorgestrel são categoria 2; concorda com a explicação.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

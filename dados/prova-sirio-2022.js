@@ -626,7 +626,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta (a folha de respostas marca as alternativas A e B como corretas). Dicas do enunciado: escolar de 6 anos **asmático**, com **frases curtas, uso de musculatura acessória, sibilos intensos e SpO2 de 92%**: **crise moderada**. O tratamento inicial é **salbutamol inalatório a cada 20 minutos na primeira hora** e **corticoide oral precoce (prednisolona)**, que reduz a internação. A banca aceitou também a alternativa B (apenas salbutamol na 1ª hora), por reavaliar a resposta antes do corticoide. Epidemiologia: o corticoide sistêmico nas primeiras horas reduz em 50% as hospitalizações. C) e E) o salmeterol (LABA) não é de resgate. D) a metilprednisolona venosa não é necessária com via oral viável.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2023; Diretrizes da SBPT para o Manejo da Asma, 2020.",
+  referencias:"GINA 2023; Diretrizes da SBPT para o Manejo da Asma, 2020. Texto lido em 17/11/2026 na GINA 2026 (Strategy Report de maio/2026, ginasthma.org): SABA repetido na primeira hora (4–6 jatos, até 3 vezes, 20–30 min de intervalo) e corticoide oral precoce em criança; ipratrópio na crise moderada ou grave. Não conferida a nota da banca que aceitou A e B.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -822,7 +822,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta. Dicas do enunciado: indicações do **DIU de cobre** (não hormonal). Pelos Critérios da OMS, em **nuligestas de 18 a 20 anos** o DIU é categoria 2 (benefício supera o risco), tendo longa duração e alta eficácia. Mecanismo: o DIU de cobre libera íons que são tóxicos aos espermatozoides e causam reação inflamatória no endométrio, o que impede a fecundação, sem hormônios. Epidemiologia: o DIU é seguro na adolescência, com expulsão de 5 a 10%. A) a doença de von Willebrand aumenta o sangramento, e o DIU de cobre também. B) a adenomiose e a dismenorreia pioram com o cobre. C) o mioma com mais de 50% submucoso deforma a cavidade (categoria 4). D) o ciclo com fluxo prolongado (10 dias) piora com o cobre.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): da menarca aos 20 anos, DIU de cobre categoria 2; concorda com a explicação para nuligestas jovens.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -1331,7 +1331,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2022", [
   gabarito:"E",
   explicacaoGeral:"A alternativa E está correta, segundo o gabarito. Dicas do enunciado: vacinação contra HPV no SUS. A vacina **bivalente** (HPV 16 e 18) é aprovada para prevenção de **lesões pré-cancerosas e do câncer do colo do útero** em mulheres. Observação: a banca marca a E, embora a D (meninas e meninos de 9 a 14 anos) também descreva a oferta atual do PNI. Mecanismo: a vacina contra o HPV induz anticorpos contra os tipos mais oncogênicos, o que previne as lesões do colo do útero, e é mais eficaz antes da exposição. Epidemiologia: os tipos 16 e 18 causam 70% dos cânceres do colo do útero. A) o HPV é de tipos 6, 11, 16 e 18, e não 3 e 8. B) o esquema tem 2 doses para a população geral e 3 para imunossuprimidos. C) o esquema para imunossuprimidos vai de 9 a 45 anos. D) a faixa de 9 a 14 anos para meninos e meninas é a do PNI, mas a banca adota a E.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Informe técnico da vacinação contra HPV.",
+  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Informe técnico da vacinação contra HPV. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): HPV de 9 a 14 anos em dose única para meninas e meninos (alternativa D descreve a oferta atual); a idade 9–45 para imunossuprimidos depende da Instrução Normativa 2026, não lida. A explicação já aponta a divergência com o gabarito E.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

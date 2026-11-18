@@ -639,7 +639,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: lactente de 10 meses sem nenhuma dose de vacina contra sarampo, em **município de risco epidemiológico**, que recebeu a **dose zero**. A dose zero **não substitui** as doses do calendário e não é contada: **mantêm-se as doses aos 12 e 15 meses** (tríplice viral aos 12 meses e tetraviral ou tríplice mais varicela aos 15). Mecanismo: a dose zero induz resposta imune precoce em lactente em risco, mas a imunidade materna pode interferir, por isso ela não substitui as doses do calendário. Epidemiologia: o Brasil voltou a ter surtos de sarampo em 2018-2019 e em 2025, por queda da cobertura. A) adiar as doses deixaria a criança desprotegida. C) e D) suspender qualquer dose reduz a proteção. E) suspender ambas é perigoso.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Nota Técnica sobre sarampo, 2025; Calendário Nacional de Vacinação.",
+  referencias:"Ministério da Saúde. Nota Técnica sobre sarampo, 2025; Calendário Nacional de Vacinação. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): a dose zero (6 a 11 meses, bloqueio) não vale para a rotina, e a SCR segue aos 12 e 15 meses (intervalo mínimo de 30 dias); concorda com o gabarito B.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -1043,7 +1043,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: mulher de **38 anos**, **hipertensa crônica bem controlada**. Pelos Critérios de Elegibilidade da OMS, os **métodos combinados (com estrogênio)** têm categoria 3 na hipertensão controlada (riscos geralmente superam os benefícios), enquanto os **progestagênios isolados** (pílula, implante, DIU hormonal) têm categoria 1 ou 2, sem aumento significativo do risco cardiovascular. Mecanismo: o estrogênio dos métodos combinados pode elevar a pressão e o risco vascular, e na hipertensão controlada o risco geralmente supera o benefício, o que os coloca em categoria de restrição. Epidemiologia: a hipertensão atinge 1 em cada 4 mulheres adultas, e os estrogênios elevam a PA e o risco de AVC. B) e C) e D) e E) todos são métodos combinados (estrogênio mais progestagênio), sejam oral, injetável, transdérmico ou vaginal.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): hipertensão adequadamente controlada: combinados categoria 3 (oral, adesivo, anel, injetável mensal) e progestagênios isolados categoria 1 ou 2; concorda com o gabarito A.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -1264,7 +1264,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: lactente de **4 meses** com **vacinação em dia**, convivendo com a avó com **herpes zóster**. O zóster não transmite zóster, e a transmissão do vírus varicela-zóster só ocorre por contato com as lesões de forma de **varicela** em suscetíveis; a **vacina varicela não é indicada antes dos 12 meses** (calendário aos 15 meses) e não há vacina adicional adequada. A criança está adequadamente protegida pelo calendário, e a orientação é evitar contato direto com as lesões. Mecanismo: o vírus varicela-zóster se transmite pelo contato com lesões ativas do zóster, que contêm vírus, e o lactente vacinado em dia tem proteção, pois o zóster não transmite zóster. Epidemiologia: a varicela grave em lactentes pequenos é rara. A) a vacina de varicela não se aplica aos 4 meses. B) o zóster não é complicação da influenza. D) a vacina meningocócica ACWY não protege contra herpes. E) postergar vacinas de rotina e substituir pela varicela aos 6 meses é incorreto.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Manual dos CRIE.",
+  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação; Manual dos CRIE. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): varicela monovalente aos 15 meses e aos 4 anos (a partir dos 12 meses); concorda com o gabarito C (não vacinar contra varicela aos 4 meses). A transmissão do zóster não é tema do quadro.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"

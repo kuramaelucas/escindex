@@ -24,6 +24,8 @@ Pedido que cruza zonas (ex.: tela nova que lista questões): comece pela A e con
 
 Ao terminar: zona A/C → `npm run publicar` + `npm run testar-mudanca`; zona B → `npm run conferir -- <prova>` + `publicar`. **Se uma pasta, ferramenta ou assunto novo surgir, acrescente uma linha neste roteador no mesmo commit** — é assim que a divisão continua valendo no futuro.
 
+**Antes de começar numa branch de trabalho:** `git fetch origin` e confira se ela tem commits fora do main (`git rev-list --count origin/main..origin/<branch>`). Se tiver, **não reinicie a branch a partir do main** (apagaria trabalho que ainda não entrou): traga o main para dentro dela (`git merge origin/main`; o conflito na versão do `index.html` ou em `dados/indice-*.js` se resolve com `npm run publicar`) e avise que esse trabalho ainda precisa de PR para chegar ao main.
+
 ## Comandos
 
 | Comando | Para quê |

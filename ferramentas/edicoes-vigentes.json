@@ -100,10 +100,11 @@
     {
       "id": "ata-dtc",
       "nome": "ATA, câncer diferenciado de tireoide",
-      "termo": "Differentiated Thyroid Cancer|Thyroid Nodules and Differentiated",
+      "termo": "(?<!Nodules and )Differentiated Thyroid Cancer",
       "vigente": 2025,
       "edicao": "ATA 2025 (Thyroid 2025, doi 10.1177/10507256251363120)",
-      "verificadoEm": "2026-11-02"
+      "nota": "A edição 2025 trata só do câncer diferenciado; a ATA 2015 de nódulos e câncer (título com \"Thyroid Nodules and Differentiated\") segue como referência de nódulo e não é marcada como superada (decisão de 18/11/2026).",
+      "verificadoEm": "2026-11-18"
     },
     {
       "id": "ats-pac",

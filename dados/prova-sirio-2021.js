@@ -217,7 +217,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: quatro afirmativas sobre asma, **todas corretas**. I) os **AINEs** e a **DRGE** são fatores que pioram o controle. II) **despertares noturnos e limitação de atividades** são critérios do controle. III) o tratamento de base é o **corticoide inalatório, com ou sem broncodilatador de longa ação**. IV) o asmático deve ser vacinado **anualmente contra influenza**. Mecanismo: a asma é inflamação crônica das vias aéreas com hiper-responsividade, e o corticoide inalatório a controla, enquanto o refluxo e os anti-inflamatórios podem desencadear broncoespasmo. Epidemiologia: a asma afeta cerca de 20 milhões de brasileiros. A) C) D) e E) excluem alguma afirmativa verdadeira.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2020; Diretrizes da SBPT para o Manejo da Asma, 2020.",
+  referencias:"GINA 2020; Diretrizes da SBPT para o Manejo da Asma, 2020. Texto lido em 17/11/2026 na GINA 2026 (Strategy Report de maio/2026, ginasthma.org): a vacinação anual contra influenza é aconselhada na asma moderada a grave; o texto lista comorbidades (DRGE entre elas) e o AINE como fatores que influenciam o controle, e o controle se avalia com os 4 itens (despertar noturno e limitação de atividade entre eles). Edição citada (GINA 2020) é anterior.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -886,7 +886,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
   gabarito:"B",
   explicacaoGeral:"A alternativa B está correta. Dicas do enunciado: mulher de **39 anos**, usuária de **contraceptivo combinado há 10 anos, bem adaptada**, preocupada por **trombose da irmã aos 50 anos após internação**. Pelos Critérios da OMS, a **idade de 39 anos** e o **antecedente familiar de TEV em parente de segundo grau (ou de primeiro grau, não precoce)** não contraindicam o método combinado (categoria 2 ou 1 em parente de segundo grau), então a conduta é **manter o método**. Mecanismo: o estrogênio do contraceptivo aumenta fatores de coagulação, mas a idade e o antecedente familiar remoto não elevam o risco o bastante para contraindicar o método. Epidemiologia: o risco de TEV com o contraceptivo combinado é de 3 a 9 por 10.000 mulheres-ano, mais baixo que na gestação. A) o progestagênio cíclico não é um método. C) D) e E) a suspensão e a investigação de trombofilia não são indicadas.",
   explicacoesAlternativas:{},
-  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção.",
+  referencias:"Critérios Médicos de Elegibilidade da OMS, 5ª edição, 2015; FEBRASGO, Manual de Anticoncepção. Texto lido em 17/11/2026 na OMS, Medical eligibility criteria for contraceptive use, 6ª edição (2025; iris.who.int, ISBN 978-92-4-011558-3): história familiar de TVP em parente de primeiro grau não foi extraída com categoria numérica; o texto lido registra que algumas condições que aumentam o risco de TVP/EP são hereditárias. Conferir a categoria antes de manter a explicação.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
@@ -1318,7 +1318,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2021", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: **alteração do Calendário Nacional de Vacinação de 2020**. A **ampliação da faixa etária para a vacina tríplice viral em adultos não vacinados**, de 30 a 49 anos para **30 a 59 anos**, foi uma das mudanças, dentro da resposta ao surto de sarampo. Mecanismo: a vacinação de adultos suscetíveis amplia a imunidade coletiva e ajuda a conter surtos de sarampo, doença muito contagiosa. Epidemiologia: o Brasil perdeu o certificado de eliminação do sarampo em 2019. A) a meningocócica ACWY aos 3 meses não existiu como alteração. B) os meninos foram incluídos no HPV aos 9 anos já em 2017. D) a ampliação da influenza não incluiu todos os adultos acima de 50. E) a meningocócica ABCD não existe no calendário do PNI.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Instrução Normativa do Calendário Nacional de Vacinação, 2020.",
+  referencias:"Ministério da Saúde. Instrução Normativa do Calendário Nacional de Vacinação, 2020. Texto lido em 17/11/2026 no Calendário Nacional de Vacinação 2026 – Ciclo de Vida (quadros de criança, adolescente e jovem, adulto, gestante e idoso; gov.br/saude): SCR no adulto — de 30 a 59 anos sem histórico, 1 dose; de 5 a 29 anos, 2 doses; concorda com o gabarito C. A Instrução Normativa de 2020 citada é anterior; a alternativa sobre ACWY aos 3 meses não corresponde ao quadro.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
