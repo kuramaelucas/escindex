@@ -89,7 +89,8 @@ Marcações dentro do texto:
 
 | Tema | Assunto | Questões no resumo | Fora do escopo |
 |---|---|---|---|
-| `exantematicas` | `ass-exantematicas` | 53 | 7 (coqueluche) |
+| `exantematicas` | `ass-exantematicas` | 53 | 7 (coqueluche, que está em `pneumonia-bronquiolite`) |
 | `puericultura` | `ass-puericultura` | 156 | — |
 | `calendario-vacinal` | `ass-calendariovacinal` | 95 | 13 (8 anuladas; 5 desatualizadas, que entram pelas reposições) |
+| `pneumonia-bronquiolite` | `ass-infectoped-pneumonia` | 75 (+7 de coqueluche, de `ass-exantematicas`) | 2 (1 escarlatina; 1 anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |

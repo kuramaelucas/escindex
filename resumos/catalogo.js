@@ -6,5 +6,6 @@
   { id: "exantematicas", titulo: "Doenças exantemáticas na infância", area: "Pediatria · Infectologia", assunto: "ass-exantematicas" },
   { id: "puericultura", titulo: "Puericultura", area: "Pediatria · Crescimento e Desenvolvimento", assunto: "ass-puericultura" },
   { id: "calendario-vacinal", titulo: "Calendário vacinal", area: "Pediatria · Crescimento e Desenvolvimento", assunto: "ass-calendariovacinal" },
+  { id: "pneumonia-bronquiolite", titulo: "Bronquiolite, pneumonia e coqueluche na criança", area: "Pediatria · Infectologia", assunto: "ass-infectoped-pneumonia" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

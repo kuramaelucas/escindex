@@ -16,7 +16,7 @@
     { id: "calendario-vacinal", texto: "SBP / Calendário Nacional de Vacinação (PNI)", lidoEm: null },
   ],
   foraDoEscopo: [
-    { motivo: "Coqueluche: está no mesmo assunto da taxonomia, mas não é exantemática — terá resumo próprio",
+    { motivo: "Coqueluche: está no mesmo assunto da taxonomia, mas não é exantemática — está no resumo pneumonia-bronquiolite",
       questoes: ["q-tp20252-069","q-unesp2025-014","q-unicampdis2023-030","q-unicampdis2024-096","q-uspsp1-006","q-fmabc2024-055","q-einstein2027-039"] },
   ],
   doencas: [
