@@ -5,124 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Caderno de Exantemáticas</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<!-- Resumos adaptativos (resumos/LEIA-ME.md) em forma de caderno: sumário, capítulos
-     (doenças) e seções (trechos). Onde o aluno erra, a seção se abre tópico a tópico,
-     cada um com a própria medida de erro; onde ele domina, vira um parágrafo curto.
+<!-- Resumos adaptativos (resumos/LEIA-ME.md) em forma de livro-texto: sumário, capítulos
+     (doenças) com introdução, seções com texto corrido e um quadro de pontos-chave.
+     O erro do aluno aparece SÓ como cor discreta (legenda no topo), sem números na
+     página: a leitura vem primeiro, o sinal só orienta onde parar mais.
      O erro vem do backup da plataforma (Perfil › Seus dados); nada sai do navegador. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
 <script src="exantematicas/resumo.js"></script>
 <style>
-/* Caderno pautado: página com margem vermelha à esquerda; texto em serifa de livro,
-   rótulos em sans condensada. Cor semântica (erro/atenção/domínio) separada do azul de tinta. */
+/* Livro-texto: folha clara, serifa de leitura longa, rótulos em sans condensada.
+   Dois tons apagados (tijolo e ocre) marcam onde revisar; o que o aluno domina não leva cor. */
 :root{
-  --papel:#fbfbf8; --folha:#ffffff; --pauta:#e6ebf2; --margem:#e8a3a3;
-  --tinta:#1f2430; --suave:#667085; --azul:#1e4f9c;
-  --erro:#b42318; --erro-f:#fdf0ef; --aten:#a15c07; --aten-f:#fdf5e7; --ok:#2b7a3d; --ok-f:#eef7f0;
+  --papel:#f6f7f9; --folha:#ffffff; --linha:#e3e6eb; --tinta:#22262e; --suave:#69707d; --azul:#2b5797;
+  --rev:#b7695c; --rev-f:#faf3f1; --aten:#bf9a55; --aten-f:#fbf7ee; --ok:#7aa386; --quadro:#f3f5f8;
   --serifa:"Source Serif 4",Georgia,"Times New Roman",serif;
   --rotulo:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --papel:#15171c; --folha:#1c1f26; --pauta:#262b35; --margem:#6b3434;
-  --tinta:#e8e9ee; --suave:#9aa3b2; --azul:#8fb4f0;
-  --erro:#ff8a80; --erro-f:#33201f; --aten:#f2b45a; --aten-f:#33291a; --ok:#86cf95; --ok-f:#1b2a20; color-scheme:dark}}
+  --papel:#14161a; --folha:#1b1e23; --linha:#2b3038; --tinta:#e6e7eb; --suave:#9aa1ad; --azul:#93b4e6;
+  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --papel:#15171c; --folha:#1c1f26; --pauta:#262b35; --margem:#6b3434;
-  --tinta:#e8e9ee; --suave:#9aa3b2; --azul:#8fb4f0;
-  --erro:#ff8a80; --erro-f:#33201f; --aten:#f2b45a; --aten-f:#33291a; --ok:#86cf95; --ok-f:#1b2a20; color-scheme:dark}
+  --papel:#14161a; --folha:#1b1e23; --linha:#2b3038; --tinta:#e6e7eb; --suave:#9aa1ad; --azul:#93b4e6;
+  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--papel);color:var(--tinta);font:17px/1.65 var(--serifa)}
-.folha{max-width:860px;margin:24px auto 64px;background:var(--folha);border:1px solid var(--pauta);border-radius:4px;
-  padding-block:40px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
-  background-image:linear-gradient(to right,transparent 0 calc(var(--m) - 1px),var(--margem) calc(var(--m) - 1px) var(--m),transparent var(--m));--m:0px}
-@media (min-width:700px){.folha{--m:56px;padding-left:84px;padding-right:48px}}
-@media (max-width:899px){.folha{margin:0;border:0;border-radius:0}}
-.rotulo{font-family:var(--rotulo);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem;color:var(--suave)}
-h1{font-size:2.1rem;line-height:1.15;margin:.2em 0 .3em;text-wrap:balance}
-h2{font-size:1.55rem;line-height:1.2;margin:0;text-wrap:balance}
-h3{font-size:1.12rem;margin:0;text-wrap:balance}
-p{margin:.4em 0}
+body{margin:0;background:var(--papel);color:var(--tinta);font:17.5px/1.7 var(--serifa)}
+.folha{max-width:780px;margin:24px auto 64px;background:var(--folha);border:1px solid var(--linha);border-radius:4px;
+  padding-block:44px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.folha{padding-left:72px;padding-right:72px}}
+@media (max-width:819px){.folha{margin:0;border:0;border-radius:0}}
+.rotulo{font-family:var(--rotulo);font-weight:600;letter-spacing:.07em;text-transform:uppercase;font-size:.72rem;color:var(--suave)}
+h1{font-size:2.2rem;line-height:1.15;margin:.2em 0 .3em;text-wrap:balance}
+h2{font-size:1.65rem;line-height:1.2;margin:0;text-wrap:balance}
+h3{font-size:1.15rem;margin:0;text-wrap:balance}
+p{margin:0 0 .9em}
 a{color:var(--azul)}
-a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
-.aluno{display:grid;gap:10px;border-top:1px solid var(--pauta);border-bottom:1px solid var(--pauta);padding:14px 0;margin:18px 0 8px;font-size:.95rem}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+.aluno{display:grid;gap:10px;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:14px 0;margin:20px 0 8px;font:.85rem/1.5 var(--rotulo);color:var(--suave)}
 .aluno .acoes{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-button,select{font:500 .85rem var(--rotulo);border-radius:6px;padding:7px 12px;cursor:pointer;border:1px solid var(--pauta);background:var(--folha);color:var(--azul)}
+button,select{font:500 .85rem var(--rotulo);border-radius:6px;padding:6px 12px;cursor:pointer;border:1px solid var(--linha);background:var(--folha);color:var(--azul)}
 input[type=file]{font:.85rem var(--rotulo);max-width:100%;color:var(--suave)}
-.legenda{display:flex;flex-wrap:wrap;gap:6px 16px;font:.8rem var(--rotulo);color:var(--suave)}
-.legenda i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 18px}
+.legenda span{display:inline-flex;align-items:center;gap:7px}
+.marca{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.marca.revisar{background:var(--rev)}.marca.atencao{background:var(--aten)}.marca.dominado{background:var(--ok)}
 /* Sumário */
-.sumario{margin:28px 0 8px}
+.sumario{margin:30px 0 0}
 .sumario ol{list-style:none;padding:0;margin:10px 0 0}
-.cap-item{border-bottom:1px dotted var(--pauta);padding:8px 0}
-.cap-linha{display:flex;gap:10px;align-items:baseline}
+.cap-item{padding:7px 0;border-bottom:1px solid var(--linha)}
+.cap-linha,.sub li{display:flex;gap:10px;align-items:baseline}
 .cap-linha a{font-weight:600;text-decoration:none;color:var(--tinta);flex:1;min-width:0}
-.cap-linha a:hover{color:var(--azul)}
-.num{font-family:var(--rotulo);font-variant-numeric:tabular-nums;color:var(--suave);min-width:2.2em}
-.sub{list-style:none;padding:0 0 0 2.2em;margin:2px 0 0;display:grid;gap:1px;font-size:.92rem}
-.sub li{display:flex;gap:8px;align-items:baseline}
+.sub{list-style:none;padding:0 0 0 2.2em;margin:2px 0 0;display:grid;gap:0;font-size:.92rem}
 .sub a{color:var(--suave);text-decoration:none;flex:1;min-width:0}
-.sub a:hover{color:var(--azul)}
-.sub li.prioridade a{color:var(--erro);font-weight:600}
-.sub li.atencao a{color:var(--aten)}
-.chip{font:600 .7rem var(--rotulo);letter-spacing:.04em;padding:1px 8px;border-radius:99px;white-space:nowrap;border:1px solid currentColor;font-variant-numeric:tabular-nums}
-.chip.prioridade{color:var(--erro);background:var(--erro-f)}.chip.atencao{color:var(--aten);background:var(--aten-f)}
-.chip.dominado{color:var(--ok);background:var(--ok-f)}.chip.nada{color:var(--suave)}
+.sumario a:hover{color:var(--azul)}
+.num{font-family:var(--rotulo);font-variant-numeric:tabular-nums;color:var(--suave);min-width:2.2em}
+.sumario .marca{width:8px;height:8px;align-self:center}
 /* Capítulos e seções */
-.capitulo{margin-top:56px;scroll-margin-top:16px}
-.cap-cab{border-bottom:2px solid var(--tinta);padding-bottom:8px;margin-bottom:6px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:end}
-.cap-resumo{font-size:.92rem;color:var(--suave);font-style:italic;margin:6px 0 0}
-.secao{margin-top:26px;scroll-margin-top:16px}
-.sec-cab{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.capitulo{margin-top:64px;scroll-margin-top:16px}
+.cap-cab{border-bottom:1px solid var(--tinta);padding-bottom:8px;margin-bottom:22px}
+.introducao p:first-child::first-letter{font-size:3.1em;float:left;line-height:.9;padding:6px 8px 0 0;font-weight:700}
+.secao{margin-top:34px;scroll-margin-top:16px;position:relative}
+.sec-cab{display:flex;gap:10px;align-items:baseline;margin-bottom:10px}
 .sec-cab h3{flex:1;min-width:0}
-.porque{font:.8rem var(--rotulo);color:var(--suave);margin:4px 0 0}
-.conferir{font:italic .8rem var(--serifa);color:var(--suave)}
-/* Seção que o aluno erra: um bloco por tópico */
-.topicos{display:grid;gap:8px;margin-top:10px}
-.topico{border-left:3px solid var(--pauta);padding:6px 12px 6px 14px;border-radius:0 6px 6px 0}
-.topico.prioridade{border-left-color:var(--erro);background:var(--erro-f)}
-.topico.atencao{border-left-color:var(--aten);background:var(--aten-f)}
-.topico.dominado{border-left-color:var(--ok)}
-.topico .marca{display:block;font:600 .72rem var(--rotulo);letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px}
-.topico.prioridade .marca{color:var(--erro)}.topico.atencao .marca{color:var(--aten)}.topico.dominado .marca{color:var(--ok)}
-/* Seção dominada ou sem medida: texto corrido, como num livro */
-.corrido ul{margin:8px 0 0;padding-left:1.1em}
-.corrido li{margin:3px 0}
-details.dominada>summary{cursor:pointer;list-style:none}
-details.dominada>summary::-webkit-details-marker{display:none}
-details.dominada>summary h3::after{content:" ▸";color:var(--suave);font-size:.8em}
-details.dominada[open]>summary h3::after{content:" ▾"}
-details.dominada .corrido{color:var(--suave)}
-.fim{margin-top:56px;border-top:1px solid var(--pauta);padding-top:12px;font-size:.85rem;color:var(--suave)}
+.sec-cab .marca{align-self:center}
+/* Pontos-chave: quadro de livro; o tópico em que o aluno erra ganha só um fundo leve. */
+.chave{background:var(--quadro);border-radius:6px;padding:14px 18px 10px;margin-top:6px}
+.chave .rotulo{margin-bottom:6px}
+.chave ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.chave li{padding:4px 10px 4px 12px;border-left:3px solid transparent;border-radius:0 4px 4px 0;font-size:.97rem;line-height:1.6}
+.chave li.revisar{border-left-color:var(--rev);background:var(--rev-f)}
+.chave li.atencao{border-left-color:var(--aten);background:var(--aten-f)}
+.conferir{font:italic .8rem var(--serifa);color:var(--suave);margin-top:6px}
+.fim{margin-top:56px;border-top:1px solid var(--linha);padding-top:12px;font-size:.85rem;color:var(--suave)}
 </style>
 </head>
 <body>
 <main class="folha">
   <div class="rotulo">Caderno de estudo · Pediatria · Infectologia</div>
   <h1 id="titulo">Caderno</h1>
-  <p id="sub" class="cap-resumo" style="font-style:normal"></p>
 
   <section class="aluno" aria-label="De quem é o caderno">
-    <div id="estado">Sem backup: o caderno aparece inteiro, sem destaque.</div>
+    <div id="estado">Sem backup: o caderno aparece sem marcações.</div>
     <div class="acoes">
-      <label class="rotulo" for="arquivo">Seu backup</label>
+      <label for="arquivo">Seu backup</label>
       <input type="file" id="arquivo" accept=".json,application/json">
       <select id="usuario" hidden aria-label="Aluno do backup"></select>
       <button id="demo" type="button">Aluno de exemplo</button>
-      <button id="limpar" type="button">Sem destaque</button>
+      <button id="limpar" type="button">Sem marcações</button>
     </div>
-    <div class="legenda">
-      <span><i style="background:var(--erro)"></i>Prioridade: errou 50% ou mais</span>
-      <span><i style="background:var(--aten)"></i>Atenção: 20–49%</span>
-      <span><i style="background:var(--ok)"></i>Dominado: menos de 20%</span>
-      <span><i style="background:var(--pauta)"></i>Não medido</span>
+    <div class="legenda" id="legenda" hidden>
+      <span><i class="marca revisar"></i>Revise com prioridade</span>
+      <span><i class="marca atencao"></i>Vale revisar</span>
+      <span><i class="marca dominado"></i>Você já domina</span>
     </div>
+    <div id="regra" hidden>As cores vêm das questões de prova que você já fez. Os capítulos que você mais erra vêm primeiro, e nos pontos-chave o fundo colorido mostra o detalhe exato em que você erra.</div>
   </section>
 
   <nav class="sumario" aria-label="Sumário">
     <div class="rotulo">Sumário</div>
-    <p class="porque" id="ordem"></p>
     <ol id="sumario"></ol>
   </nav>
 
@@ -134,78 +116,60 @@ const R = window.EscResumos.lista[0];
 let ultimas = null; // questaoId -> peso de erro da última resposta (0, 0.5 ou 1)
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const negrito = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-// Tópico = linha "- texto {q-a,q-b}": as chaves ligam o tópico às questões que ele responde.
+const enfase = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\*(.+?)\*/g, "<em>$1</em>");
+const paragrafos = t => (t || "").split(/\n\s*\n/).filter(p => p.trim()).map(p => `<p>${enfase(p.trim())}</p>`).join("");
+// Tópico = "- texto {q-a,q-b}": as chaves ligam o tópico às questões que ele responde.
 const topicos = f => f.texto.split("\n").filter(l => l.trim()).map(l => {
   const m = l.match(/\s*\{([^}]+)\}\s*$/);
   return { texto: l.replace(/^\s*-\s*/, "").replace(/\s*\{[^}]+\}\s*$/, ""), questoes: m ? m[1].split(",").map(x => x.trim()) : null };
 });
 
-/* Erro de um conjunto: última resposta de cada questão respondida; acerto no chute
-   conta meio erro (acertar sem saber não é domínio). */
+/* Erro de um conjunto: última resposta de cada questão feita; acerto no chute = meio erro.
+   Os limiares são os de resumos/LEIA-ME.md; a página mostra só a cor, nunca o número. */
 function medir(ids){
   if(!ultimas) return null;
   const feitas = ids.filter(id => id in ultimas);
-  if(!feitas.length) return { feitas: 0, total: ids.length, taxa: null, erro: 0 };
-  const erro = feitas.reduce((s, id) => s + ultimas[id], 0);
-  return { feitas: feitas.length, total: ids.length, taxa: erro / feitas.length, erro };
+  return feitas.length ? feitas.reduce((s, id) => s + ultimas[id], 0) / feitas.length : null;
 }
-const nivel = m => !m || m.taxa === null ? "nada" : m.taxa >= .5 ? "prioridade" : m.taxa >= .2 ? "atencao" : "dominado";
-const ROTULO = { prioridade: "Prioridade", atencao: "Atenção", dominado: "Dominado", nada: "Não medido" };
-const pct = x => Math.round(x * 100) + "%";
-const num = x => String(Math.round(x * 10) / 10).replace(".", ",");
-const chip = m => ultimas ? `<span class="chip ${nivel(m)}">${ROTULO[nivel(m)]}${m.taxa !== null ? " · " + pct(m.taxa) : ""}</span>` : "";
-function porque(m){
-  if(!m.feitas) return `Você ainda não fez nenhuma das ${m.total} questões ligadas a esta seção.`;
-  return `Você errou ${num(m.erro)} de ${m.feitas} questão(ões) que esta seção responde` + (m.feitas < m.total ? `; faltam ${m.total - m.feitas} por fazer.` : ".");
-}
-const ordenar = lista => ultimas ? lista.sort((a, b) => ((b.m.taxa ?? -1) - (a.m.taxa ?? -1)) || a.i - b.i) : lista;
+const nivel = t => t === null || t === undefined ? "" : t >= .5 ? "revisar" : t >= .2 ? "atencao" : "dominado";
+const NOME = { revisar: "Revise com prioridade", atencao: "Vale revisar", dominado: "Você já domina" };
+const marca = t => nivel(t) ? `<i class="marca ${nivel(t)}" title="${NOME[nivel(t)]}" aria-label="${NOME[nivel(t)]}"></i>` : "";
+const ordenar = lista => ultimas ? lista.sort((a, b) => ((b.t ?? -1) - (a.t ?? -1)) || a.i - b.i) : lista;
 
 function montar(){
-  return ordenar(R.doencas.map((d, i) => ({ d, i, m: medir([...new Set(d.fragmentos.flatMap(f => f.questoes))]),
-    secoes: ordenar(d.fragmentos.map((f, j) => ({ f, i: j, m: medir(f.questoes) }))) })));
+  return ordenar(R.doencas.map((d, i) => ({ d, i, t: medir([...new Set(d.fragmentos.flatMap(f => f.questoes))]),
+    secoes: ordenar(d.fragmentos.map((f, j) => ({ f, i: j, t: medir(f.questoes) }))) })));
 }
 
-function htmlSecao(cap, k, { f, m }){
-  const n = nivel(m), id = `s-${f.id}`, numero = `${cap}.${k}`;
-  const nota = f.conferir ? `<div class="conferir">Texto ainda a conferir na fonte primária.</div>` : "";
-  // Onde o aluno erra (prioridade/atenção), a seção se abre tópico a tópico, cada um
-  // com a sua medida: é ali que ele precisa saber QUAL detalhe está errando.
-  if(n === "prioridade" || n === "atencao"){
-    const blocos = topicos(f).map(t => {
-      const mt = t.questoes ? medir(t.questoes) : null, nt = mt ? nivel(mt) : "nada";
-      const marca = mt && mt.taxa !== null
-        ? `<span class="marca">${nt === "dominado" ? "Você acerta" : "Você erra aqui"} · ${num(mt.erro)} de ${mt.feitas}</span>`
-        : (mt && !mt.feitas ? `<span class="marca" style="color:var(--suave)">Ainda não testado</span>` : "");
-      return `<div class="topico ${nt}">${marca}${negrito(t.texto)}</div>`;
-    }).join("");
-    return `<section class="secao" id="${id}">
-      <div class="sec-cab"><span class="num">${numero}</span><h3>${esc(f.titulo)}</h3>${chip(m)}</div>
-      <p class="porque">${esc(porque(m))} Abaixo, cada tópico com o seu próprio erro.</p>
-      <div class="topicos">${blocos}</div>${nota}</section>`;
-  }
-  const corpo = `<div class="corrido"><ul>${topicos(f).map(t => `<li>${negrito(t.texto)}</li>`).join("")}</ul>${ultimas ? `<p class="porque">${esc(porque(m))}</p>` : ""}${nota}</div>`;
-  if(n === "dominado") return `<details class="secao dominada" id="${id}"><summary class="sec-cab"><span class="num">${numero}</span><h3>${esc(f.titulo)}</h3>${chip(m)}</summary>${corpo}</details>`;
-  return `<section class="secao" id="${id}"><div class="sec-cab"><span class="num">${numero}</span><h3>${esc(f.titulo)}</h3>${chip(m)}</div>${corpo}</section>`;
+function htmlSecao(numero, { f, t }){
+  const tops = topicos(f).map(x => {
+    // Tópico sem questão própria herda a cor da seção só se a seção pede revisão; no domínio, sem cor.
+    const n = nivel(x.questoes ? medir(x.questoes) : null);
+    const cls = n === "dominado" ? "" : n;
+    return `<li class="${cls}"${cls ? ` title="${NOME[cls]}"` : ""}>${enfase(x.texto)}</li>`;
+  }).join("");
+  return `<section class="secao" id="s-${f.id}">
+    <div class="sec-cab"><span class="num">${numero}</span><h3>${esc(f.titulo)}</h3>${marca(t)}</div>
+    ${paragrafos(f.prosa)}
+    <div class="chave"><div class="rotulo">Pontos-chave</div><ul>${tops}</ul></div>
+    ${f.conferir ? `<div class="conferir">Texto ainda a conferir na fonte primária.</div>` : ""}
+  </section>`;
 }
 
 function desenhar(){
   const caps = montar();
   document.getElementById("titulo").textContent = R.titulo;
-  document.getElementById("sub").textContent = `${caps.length} capítulos e ${R.doencas.reduce((s, d) => s + d.fragmentos.length, 0)} seções. Cada seção é ligada às questões reais de prova que ela responde.`;
-  document.getElementById("ordem").textContent = ultimas
-    ? "Os capítulos e as seções estão na ordem do que você mais erra. As seções em vermelho se abrem tópico a tópico; as dominadas ficam recolhidas."
-    : "Carregue um backup para o caderno se reordenar pelo seu erro.";
-  document.getElementById("sumario").innerHTML = caps.map(({ d, m, secoes }, c) => `
+  document.getElementById("legenda").hidden = document.getElementById("regra").hidden = !ultimas;
+  document.getElementById("sumario").innerHTML = caps.map(({ d, t, secoes }, c) => `
     <li class="cap-item">
-      <div class="cap-linha"><span class="num">${c + 1}</span><a href="#c-${d.id}">${esc(d.titulo)}</a>${chip(m)}</div>
-      <ol class="sub">${secoes.map(({ f, m }, k) => `<li class="${ultimas ? nivel(m) : ""}"><span class="num">${c + 1}.${k + 1}</span><a href="#s-${f.id}">${esc(f.titulo)}</a></li>`).join("")}</ol>
+      <div class="cap-linha"><span class="num">${c + 1}</span><a href="#c-${d.id}">${esc(d.titulo)}</a>${marca(t)}</div>
+      <ol class="sub">${secoes.map(({ f, t }, k) => `<li><span class="num">${c + 1}.${k + 1}</span><a href="#s-${f.id}">${esc(f.titulo)}</a>${marca(t)}</li>`).join("")}</ol>
     </li>`).join("");
-  document.getElementById("conteudo").innerHTML = caps.map(({ d, m, secoes }, c) => `
+  document.getElementById("conteudo").innerHTML = caps.map(({ d, secoes }, c) => `
     <article class="capitulo" id="c-${d.id}">
-      <div class="cap-cab"><div><div class="rotulo">Capítulo ${c + 1}</div><h2>${esc(d.titulo)}</h2></div>${chip(m)}</div>
-      ${ultimas && m.taxa !== null ? `<p class="cap-resumo">${esc(porque(m).replace("esta seção", "este capítulo"))}</p>` : ""}
-      ${secoes.map((s, k) => htmlSecao(c + 1, k + 1, s)).join("")}
+      <div class="cap-cab"><div class="rotulo">Capítulo ${c + 1}</div><h2>${esc(d.titulo)}</h2></div>
+      ${d.introducao ? `<div class="introducao">${paragrafos(d.introducao)}</div>` : ""}
+      ${secoes.map((s, k) => htmlSecao(`${c + 1}.${k + 1}`, s)).join("")}
     </article>`).join("");
   document.getElementById("fim").textContent = `Fontes a conferir: ${R.fontes.map(x => x.texto).join("; ")}. Fora deste caderno: ${R.foraDoEscopo.map(x => x.motivo).join("; ")}.`;
 }
@@ -224,7 +188,7 @@ function aplicarRespostas(lista, usuarioId, rotulo){
     .forEach(r => { ultimas[r.questaoId] = r.correta ? (r.confianca === "chute" ? .5 : 0) : 1; });
   const ids = new Set(R.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes)));
   const feitas = Object.keys(ultimas).filter(id => ids.has(id)).length;
-  document.getElementById("estado").innerHTML = `${rotulo ? `<strong>${esc(rotulo)}</strong>: ` : ""}${feitas} de ${ids.size} questões deste caderno respondidas. Vale a última resposta de cada uma.`;
+  document.getElementById("estado").innerHTML = `${rotulo ? `<strong>${esc(rotulo)}</strong> · ` : ""}${feitas} de ${ids.size} questões deste tema já feitas.`;
   desenhar();
 }
 
@@ -243,11 +207,9 @@ document.getElementById("arquivo").addEventListener("change", e => {
   });
 });
 
-/* Aluno de exemplo, montado tópico a tópico para mostrar a fragmentação:
-   - Sarampo: acerta o pródromo e o exantema, erra Koplik, vitamina A, bloqueio e cobertura.
-   - Escarlatina: acerta o quadro em lixa, erra o agente e o tratamento.
-   - Exantema súbito e eritema infeccioso: vai bem (um chute no eritema).
-   - Kawasaki: erra "miocardite não é critério". O resto, metade certo. */
+/* Aluno de exemplo: no sarampo acerta pródromo e exantema e erra Koplik, vitamina A,
+   bloqueio e cobertura; na escarlatina erra agente e tratamento; vai bem em exantema
+   súbito e eritema infeccioso; no Kawasaki erra "miocardite não é critério". */
 const ERRADAS = new Set(["q-iamspe2025-065","q-fmabc2026-089","q-famerp2023-027","q-sirio2022-053","q-usprp2026-032","q-uspsp4-101",
   "q-famerp2026-009","q-iamspe2021-072","q-amrigs2025-014","q-einstein2021-021","q-einstein2025-043",
   "q-unesp2025-009","q-uspsp2-050","q-sirio2024-050","q-scmsp2022-039","q-einstein2026-035","q-tp20222-047"]);
@@ -258,7 +220,7 @@ document.getElementById("demo").addEventListener("click", () => {
   aplicarRespostas(lista, null, "Aluno de exemplo");
 });
 document.getElementById("limpar").addEventListener("click", () => {
-  ultimas = null; document.getElementById("estado").textContent = "Sem destaque: o caderno na ordem do autor."; desenhar();
+  ultimas = null; document.getElementById("estado").textContent = "Sem marcações: o caderno na ordem do autor."; desenhar();
 });
 desenhar();
 </script>

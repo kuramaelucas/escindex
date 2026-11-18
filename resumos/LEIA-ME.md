@@ -24,13 +24,15 @@ Conferência: `npm run resumo -- <tema>`. O comando mostra quais questões do as
    - **≥ 50 %: Prioridade** (borda vermelha, aberto, sobe para o topo da doença).
    - **20–49 %: Atenção** (borda âmbar).
    - **< 20 %: Dominado** (esmaecido e recolhível; continua legível).
-   - **Fragmentação fina:** um tópico pode terminar com `{q-a,q-b}` (as questões que ele responde). Seção em Prioridade ou Atenção se abre tópico a tópico, cada um com o seu erro ("Você erra aqui · 2 de 3"); seção dominada vira texto corrido recolhido. O visualizador é um caderno: sumário no início, capítulos (doenças) e seções numeradas.
+   - **Fragmentação fina:** um tópico pode terminar com `{q-a,q-b}` (as questões que ele responde). Seção em Prioridade ou Atenção se abre tópico a tópico, cada um com o seu erro; o tópico em que ele erra ganha fundo leve. O visualizador é um caderno: sumário no início, capítulos (doenças) e seções numeradas.
    - **Sem resposta: Não medido** (neutro). Mostra quantas questões ligadas ainda faltam fazer.
    - As doenças são ordenadas pela taxa (pior primeiro), e a tela diz o porquê de cada destaque. A regra da casa é que "a plataforma explica o que faz".
-5. **Texto autoral, curto e verificável.** Use tópicos com o **dado que a banca cobra** em negrito (agente, ponto de corte, prazo, dose). Nada copiado de cursinho ou de site de questões. As fontes primárias ficam em `fontes`, com a data em que foram lidas. Enquanto um fragmento não tiver a leitura datada, ele leva `conferir: true` e a tela mostra "a conferir".
-6. **Pegadinhas viram fragmento próprio** ("Armadilhas"). Ligue-as às questões em que a alternativa errada explora a confusão (ex.: exantema súbito × alergia à amoxicilina).
-7. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
-8. **Integração futura com a plataforma** (zona A, ainda não feita). A ideia é uma tela que lê `db.respostas` do próprio aluno, em vez de pedir o backup. Também prevê um botão "fazer as questões deste fragmento". Quando entrar, o resumo passa a ser carregado como os outros `dados/` (`manifesto.js`) e ganha teste.
+5. **Livro-texto, não gabarito comentado.** Cada capítulo (doença) abre com `introducao`: epidemiologia, agente, **fisiopatologia** e o porquê dos sinais. Cada seção pode ter `prosa` (texto corrido) antes dos **pontos-chave** (`texto`), que trazem em negrito o dado que a banca cobra (agente, ponto de corte, prazo, dose). Quem entende o mecanismo deduz o quadro em vez de decorar.
+6. **Sinal discreto.** O erro aparece só como cor (tijolo = revise com prioridade, ocre = vale revisar, verde só no sumário = domina), explicada numa legenda no topo. Não há números, porcentagens nem frases do tipo "você erra aqui" no meio do texto.
+7. **Texto autoral e verificável.** Nada copiado de cursinho ou de site de questões. As fontes primárias ficam em `fontes`, com a data em que foram lidas. Enquanto um fragmento não tiver a leitura datada, ele leva `conferir: true` e a tela mostra "a conferir".
+8. **Pegadinhas viram fragmento próprio** ("Armadilhas"). Ligue-as às questões em que a alternativa errada explora a confusão (ex.: exantema súbito × alergia à amoxicilina).
+9. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
+10. **Integração futura com a plataforma** (zona A, ainda não feita). A ideia é uma tela que lê `db.respostas` do próprio aluno, em vez de pedir o backup. Também prevê um botão "fazer as questões deste fragmento". Quando entrar, o resumo passa a ser carregado como os outros `dados/` (`manifesto.js`) e ganha teste.
 
 ## Resumos
 
