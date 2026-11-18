@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="300" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Criança de 6 meses a 5 anos que convulsionou com febre</text>
+<rect x="190" y="40" width="380" height="48" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="380" y="60" text-anchor="middle" font-weight="700">Acordou bem, sem sinais meníngeos?</text>
+<text x="380" y="78" text-anchor="middle" font-size="12">crise generalizada, &lt; 15 min, única em 24 h</text>
+<path d="M260 88 L150 118" stroke="#555" fill="none"/><path d="M500 88 L610 118" stroke="#555" fill="none"/>
+<text x="180" y="108" fill="#2f8a57" font-weight="700">sim</text><text x="570" y="108" fill="#b03a2e" font-weight="700">não</text>
+<rect x="20" y="118" width="300" height="130" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="170" y="140" text-anchor="middle" font-weight="700">Crise febril simples</text>
+<text x="34" y="164">• procurar e tratar o foco da febre</text>
+<text x="34" y="184">• sem EEG, imagem ou anticonvulsivante</text>
+<text x="34" y="204">• orientar: benigna, pode repetir</text>
+<text x="34" y="224">• antitérmico não previne a próxima</text>
+<rect x="440" y="118" width="300" height="130" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="590" y="140" text-anchor="middle" font-weight="700">Pensar em infecção do SNC</text>
+<text x="454" y="164">• sonolência que não passa</text>
+<text x="454" y="184">• sinais meníngeos, crise focal</text>
+<text x="454" y="204">• crise prolongada no lactente</text>
+<text x="454" y="224">→ punção lombar</text>
+<text x="20" y="276" fill="#555" font-size="12">Entre 6 e 12 meses, mesmo na simples: considerar a punção se a vacina (Haemophilus, pneumococo) está incompleta,</text>
+<text x="20" y="292" fill="#555" font-size="12">desconhecida, ou se a criança já recebia antibiótico (pode mascarar meningite).</text>
+</svg>

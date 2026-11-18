@@ -22,15 +22,16 @@ resumos/
 ```js
 registrar({
   id, titulo, assunto, criadoEm,
-  fontes: [{ texto, lidoEm }],                       // lidoEm = data da leitura (AAAA-MM-DD) ou null
+  fontes: [{ id, texto, lidoEm }],                   // id = o de ferramentas/edicoes-vigentes.json quando existir; lidoEm = AAAA-MM-DD ou null
   foraDoEscopo: [{ motivo, questoes: [ids] }],
   doencas: [{                                        // capítulo
     id, titulo,
     introducao: `parágrafos de livro-texto`,         // separados por linha em branco
     fragmentos: [{                                   // seção
       id, titulo, conferir: true,
+      diretrizes: [ids de fontes],                   // só em seção de conduta/ponto de corte/dose/esquema
       questoes: [ids],                               // as questões que a seção responde (mede o erro)
-      prosa: `texto corrido da seção`,               // opcional
+      prosa: `texto corrido da seção`,               // opcional; um parágrafo em Markdown de tabela (| a | b |) vira tabela
       texto: `- ponto-chave {q-a,q-b}`,              // um tópico por linha; {…} = questões daquele tópico
       figuras: [{ arquivo: "figuras/x.svg", legenda,   // opcional: ilustração própria (esquema autoral)
                   credito, fonte }],                 // obrigatórios em foto de terceiros: "Autor, licença" e página do arquivo
@@ -75,7 +76,9 @@ Marcações dentro do texto:
     3. **Veja a foto antes de usar.** A descrição não basta: confirme que ela mostra o achado da seção e que não identifica o paciente (rosto sem tarja só em domínio público de fonte oficial, como o CDC).
     4. Salve em `<tema>/figuras/` (WebP ou JPG, largura até 1.000 px). Preencha `credito: "Autor, CC BY 2.0"` e `fonte: "<página do arquivo>"`. A tela mostra o crédito com link, e `npm run resumo` recusa foto sem os dois.
     5. Rede da nuvem: `upload.wikimedia.org` costuma devolver 429 (endereço de saída compartilhado). Nesse caso, peça as fotos a quem pode baixar e registre a pendência em `PENDENCIAS.md`, item 11, que já lista as escolhidas.
-13. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
+13. **Diretriz por seção.** Conduta, ponto de corte, dose e esquema ficam em seção própria, com `diretrizes` (ids de `fontes`); a tela mostra "Conduta conforme: …". Edição nova: `npm run auditoria-padrao -- diretriz <nome>` lista as seções a reescrever (`docs/PROJETO-RESUMOS.md`, seção 4).
+14. **Tabela comparativa no fim** dos temas de doenças que a banca faz diferenciar: capítulo `comparativo`, tabela na `prosa`, com as questões de diferencial em `questoes`. Só resume os capítulos, sem dado novo.
+15. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
 
 ## Ainda por fazer
 
@@ -86,6 +89,21 @@ Marcações dentro do texto:
 
 | Tema | Assunto | Questões no resumo | Fora do escopo |
 |---|---|---|---|
-| `exantematicas` | `ass-exantematicas` | 53 | 7 (coqueluche) |
+| `exantematicas` | `ass-exantematicas` | 53 | 7 (coqueluche, que está em `pneumonia-bronquiolite`) |
 | `puericultura` | `ass-puericultura` | 156 | — |
+| `calendario-vacinal` | `ass-calendariovacinal` | 95 | 13 (8 anuladas; 5 desatualizadas, que entram pelas reposições) |
+| `pneumonia-bronquiolite` | `ass-infectoped-pneumonia` | 75 (+7 de coqueluche, de `ass-exantematicas`) | 2 (1 escarlatina; 1 anulada) |
+| `crescimento-puberdade` | `ass-crescimentopuberdade` | 69 | 3 (anuladas) |
+| `emergencias-respiratorias-pcr` | `ass-emergped-respiratoria` | 66 | 1 (anulada) |
+| `diarreia-desidratacao` | `ass-dda` | 62 | 3 (anuladas) |
+| `infeccoes-congenitas` | `ass-neo-infeccoescongenitas` | 62 | 1 (anulada) |
+| `reanimacao-neonatal` | `ass-reanimacao` | 57 | 1 (anulada) |
+| `vias-aereas-superiores` | `ass-ivas` | 47 | 1 (desatualizada sem reposição) |
+| `ictericia-neonatal` | `ass-ictericia` | 48 | 1 (anulada) |
+| `triagem-neonatal` | `ass-neo-triagemneonatal` | 50 | — |
+| `abdome-agudo-rn` | `ass-neo-malformacoesdigestivas` | 49 | 1 (anulada) |
+| `maus-tratos` | `ass-emergped-maustratos` | 32 | 1 (anulada) |
+| `convulsao-febril` | `ass-convulsaofebril` | 28 | — |
+| `prematuridade` | `ass-neo-prematuridade` | 26 | 1 (anulada) |
+| `desconforto-respiratorio-rn` | `ass-neo-descrresp` | 27 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |

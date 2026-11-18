@@ -22,6 +22,7 @@ import { RAIZ, carregar } from "./lib-dados.mjs";
 import { faltasDeJustificativa } from "../testes/conferir-dados.mjs";
 import { FRACA, COM_DATA, alertasDeEdicao, edicoesVigentes } from "./lib-referencias.mjs";
 import { agrupar } from "./referencias-a-conferir.mjs";
+import { secoesPorDiretriz } from "./lib-resumos.mjs";
 
 const hoje = () => new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
 const nomeCurto = (n) => n.replace(/^(banco|prova)-/, "");
@@ -168,6 +169,9 @@ function escreverDocumentos(r){
     const sup = g.itens.filter((i) => i.desatualizada);
     if(sup.length) m2 += `### ${g.nome} — vigente: ${g.vigente} (${sup.length})\n\n${compactar(sup)}\n\n`;
   }
+  // seções de resumos adaptativos que dependem de cada diretriz (campo `diretrizes`, lib-resumos)
+  m2 += `## Resumos\n\nSeções de \`resumos/\` marcadas com a diretriz de que dependem: quando sair edição nova, reescreva só estas e renove o \`lidoEm\` da fonte.\n\n| Resumo | Fonte (id) | Lida em | Seções |\n|---|---|---|---|\n`;
+  for(const l of secoesPorDiretriz().filter((l) => l.secoes.length)) m2 += `| \`${l.tema}\` | ${l.fonte.texto} (\`${l.fonte.id}\`) | ${l.fonte.lidoEm || "—"} | ${l.secoes.map((s) => s.id).join(", ")} |\n`;
   fs.writeFileSync(path.join(RAIZ, "docs", "MAPA-DE-DIRETRIZES.md"), m2);
   const json = { geradoEm: new Date().toISOString().slice(0, 10), diretrizes: Object.fromEntries(lista.map(([k, g]) => [k, { nome: g.nome, vigente: g.vigente || null, questoes: g.itens.map((i) => i.id), superadas: g.itens.filter((i) => i.desatualizada).map((i) => i.id) }])), semReferencia: semDiretriz.map((s) => s.id) };
   fs.writeFileSync(path.join(RAIZ, "docs", "mapa-de-diretrizes.json"), JSON.stringify(json));
@@ -181,13 +185,17 @@ function principal(){
     if(!termo){ console.log("uso: -- diretriz <id|nome|trecho>"); return; }
     const re = new RegExp(termo.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
     const achadas = [...r.porDiretriz.entries()].filter(([k, g]) => re.test(k) || re.test(g.nome));
-    if(!achadas.length) console.log("nenhuma diretriz no mapa casa com isso; tente `-- diretriz` com outra palavra ou veja docs/MAPA-DE-DIRETRIZES.md");
+    // resumos: casa pelo id/texto da fonte e pelos ids das diretrizes da tabela que casaram
+    const ids = new Set(achadas.map(([k]) => k.replace(/^tabela:/, "")));
+    const resumos = secoesPorDiretriz().filter((l) => l.secoes.length && (ids.has(l.fonte.id) || re.test(l.fonte.id || "") || re.test(l.fonte.texto)));
+    if(!achadas.length && !resumos.length) console.log("nenhuma diretriz no mapa casa com isso; tente `-- diretriz` com outra palavra ou veja docs/MAPA-DE-DIRETRIZES.md");
     for(const [k, g] of achadas){
       console.log(`\n${g.nome} [${k}]${g.vigente ? " — vigente: " + g.vigente : ""}: ${g.itens.length} questão(ões)`);
       const sup = g.itens.filter((i) => i.desatualizada);
       if(sup.length) console.log(`  superadas (${sup.length}): ` + compactar(sup).replace(/`/g, ""));
       console.log("  todas: " + compactar(g.itens).replace(/`/g, ""));
     }
+    for(const l of resumos) console.log(`\nResumo ${l.tema} — ${l.fonte.texto} [${l.fonte.id}], lida em ${l.fonte.lidoEm || "—"}: ${l.secoes.length} seção(ões)\n  ` + l.secoes.map((s) => `${s.capitulo}/${s.id}`).join(", "));
     return;
   }
   if(cmd === "prova"){

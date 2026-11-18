@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="470" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Reanimação em sala de parto: o minuto de ouro</text>
+<rect x="190" y="40" width="380" height="50" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="380" y="61" text-anchor="middle" font-weight="700">Ao nascer: respira ou chora? tônus em flexão?</text>
+<text x="380" y="79" text-anchor="middle" font-size="12">(≥ 34 semanas)</text>
+<path d="M260 90 L150 118" stroke="#555" fill="none"/><path d="M500 90 L610 118" stroke="#555" fill="none"/>
+<text x="175" y="108" fill="#2f8a57" font-weight="700">sim</text><text x="560" y="108" fill="#b03a2e" font-weight="700">não</text>
+<rect x="20" y="118" width="270" height="62" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="155" y="140" text-anchor="middle">clampeamento após ≥ 60 s</text><text x="155" y="158" text-anchor="middle">pele a pele com a mãe</text><text x="155" y="174" text-anchor="middle" font-size="12">mesmo com mecônio</text>
+<rect x="420" y="118" width="320" height="62" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="580" y="140" text-anchor="middle">clampeamento imediato → berço aquecido</text><text x="580" y="158" text-anchor="middle">passos iniciais: calor, cabeça em leve extensão,</text><text x="580" y="174" text-anchor="middle">aspirar só se obstruído, secar</text>
+<path d="M580 180 v18" stroke="#555"/>
+<rect x="420" y="198" width="320" height="50" rx="8" fill="#fff" stroke="#b03a2e"/>
+<text x="580" y="219" text-anchor="middle" font-weight="700">apneia, respiração irregular ou FC &lt; 100</text>
+<text x="580" y="238" text-anchor="middle">VPP com máscara no 1º minuto + oxímetro</text>
+<text x="420" y="268" font-size="12" fill="#555">FiO2 inicial: 21% (≥ 34 sem) · 30% (&lt; 34 sem)</text>
+<path d="M580 276 v14" stroke="#555"/>
+<rect x="420" y="290" width="320" height="50" rx="8" fill="#fff" stroke="#b03a2e"/>
+<text x="580" y="311" text-anchor="middle">sem melhora: corrigir a técnica (escape, posição)</text>
+<text x="580" y="330" text-anchor="middle">depois: cânula traqueal ou máscara laríngea</text>
+<path d="M580 340 v14" stroke="#555"/>
+<rect x="420" y="354" width="320" height="50" rx="8" fill="#fff" stroke="#b03a2e"/>
+<text x="580" y="375" text-anchor="middle" font-weight="700">FC &lt; 60 após 30 s de VPP eficaz</text>
+<text x="580" y="394" text-anchor="middle">intubar · massagem 3:1 · FiO2 100%</text>
+<path d="M580 404 v14" stroke="#555"/>
+<rect x="420" y="418" width="320" height="40" rx="8" fill="#fff" stroke="#b03a2e"/>
+<text x="580" y="443" text-anchor="middle">FC &lt; 60 após 60 s: adrenalina na veia umbilical</text>
+<text x="20" y="230" fill="#555">Temperatura do RN: 36,5–37,5 °C</text><text x="20" y="248" fill="#555">Sala de parto: 23–26 °C</text>
+<text x="20" y="276" fill="#555">Prematuro &lt; 34 sem: saco plástico</text><text x="20" y="294" fill="#555">sem secar, e touca</text>
+</svg>

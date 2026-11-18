@@ -1010,3 +1010,12 @@ html[data-theme="dark"]{
 .montagem-barra{position:sticky;bottom:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem;margin-top:.8rem;padding:.7rem 0;background:var(--surface);border-top:1px solid var(--border)}
 .montagem-qtd{width:4.5rem}
 @media (max-width:560px){.arvore-total{display:none}.montagem-barra .btn{flex:1}}
+.resumo-tabela{overflow-x:auto;max-width:100%;margin:.8rem 0}
+/* margin:auto num item de grade encolhe ao conteúdo: sem width a tabela larga empurrava o texto para baixo do sumário */
+.resumo-caderno{width:100%}
+.resumo-tabela table{border-collapse:collapse;font-size:.85em;width:100%}
+/* largura mínima por célula, não pela tabela: a de 3 colunas cabe no texto e a de 9 rola para o lado */
+.resumo-tabela th,.resumo-tabela td{min-width:7rem}
+.resumo-tabela th,.resumo-tabela td{border:1px solid var(--border);padding:.35rem .5rem;text-align:left;vertical-align:top}
+.resumo-tabela th{background:var(--bg)}
+.resumo-tabela td:first-child{white-space:nowrap}
