@@ -66,6 +66,13 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     assert.equal(r.verso, "Koplik é patognomônico");
     assert.equal(r.assunto, "ass-exantematicas");
     assert.equal(r.resumoId, "exantematicas");
+    // todo resumo do catálogo abre e desenha capítulos (pega erro de sintaxe ou de ligação num resumo novo)
+    const ids = await pagina.evaluate(() => catalogoDeResumos().map(r => r.id));
+    for(const id of ids){
+      await pagina.evaluate(i => abrirResumo(i), id);
+      await pagina.waitForFunction(() => document.querySelectorAll(".resumo-capitulo").length > 0, null, { timeout: 10000 });
+    }
+    assert.ok(ids.length >= 3);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

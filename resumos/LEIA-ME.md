@@ -68,10 +68,12 @@ Marcações dentro do texto:
 ## Ainda por fazer
 
 - Botão "fazer as questões desta seção", que abriria uma sessão com as questões ligadas.
-- Conferir as fontes de `exantematicas` e tirar o `conferir: true` das seções conferidas.
+- Conferir as fontes dos três resumos e tirar o `conferir: true` das seções conferidas.
 
 ## Resumos
 
 | Tema | Assunto | Questões no resumo | Fora do escopo |
 |---|---|---|---|
 | `exantematicas` | `ass-exantematicas` | 53 | 7 (coqueluche) |
+| `puericultura` | `ass-puericultura` | 156 | — |
+| `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
