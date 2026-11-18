@@ -102,6 +102,33 @@ test("conjunto rápido: sugestão de 15, filtra por instituição e ano e inicia
   } finally { await contexto.close(); }
 });
 
+test("conjunto do assunto: inéditas, depois erradas para revisar, já dominadas só no fim; Praticar põe a revisão antes", async () => {
+  const { contexto, p } = await abrir();
+  try{
+    await p.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await p.evaluate(() => {
+      const u = usuarioAtual();
+      const por = {}; questoesParaEstudo(u.id).forEach(q => { (por[q.assuntoId] = por[q.assuntoId] || []).push(q); });
+      const pool = Object.values(por).sort((a,b)=>b.length-a.length)[0];
+      const [errada, dominada] = pool;
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      db.respostas.push({ id:"r-t1", usuarioId:u.id, questaoId:errada.id, correta:false, confianca:"certeza", data:"2020-01-01T10:00:00" });
+      (db.revisoes[u.id] = db.revisoes[u.id] || {})[errada.id] = { proximaRevisao:"2020-01-02", ultimaData:"2020-01-01", intervalo:1 };
+      db.respostas.push({ id:"r-t2", usuarioId:u.id, questaoId:dominada.id, correta:true, confianca:"certeza", data:hojeISO()+"T10:00:00" });
+      saveState();
+      const ids = l => l.map(i => i.questaoId);
+      const normal = montarConjuntoDoAssunto(u.id, pool, pool.length, "T");
+      const revisao = montarConjuntoDoAssunto(u.id, pool, pool.length, "T", true);
+      return { n: pool.length, normal: ids(normal), revisao: ids(revisao), errada: errada.id, dominada: dominada.id, motivo: normal.find(i => i.questaoId === errada.id).motivo };
+    });
+    assert.equal(r.normal.length, r.n);
+    assert.equal(r.normal.at(-1), r.dominada);
+    assert.equal(r.normal.at(-2), r.errada);
+    assert.equal(r.revisao[0], r.errada);
+    assert.match(r.motivo, /para revisar: você errou/);
+  } finally { await contexto.close(); }
+});
+
 test("cartão compartilhado com a faculdade: só quem é da mesma faculdade o recebe; 'Outra' não compartilha", async () => {
   const { contexto, p } = await abrir();
   try{

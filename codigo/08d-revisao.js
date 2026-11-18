@@ -164,9 +164,10 @@ function mostrarTodasAsEscondidasConfirmado(){
   toast(minhas.length+" questões voltaram para o seu estudo.");
   render();
 }
+/* "Praticar" vem de telas de revisão (assunto vencido, pior desempenho): aqui
+   o que está para revisar vem antes das inéditas. */
 function praticarAssunto(assuntoId){
-  const pool = questoesParaEstudo(usuarioAtual().id).filter(q=>q.assuntoId===assuntoId);
-  const itens = embaralharSemRepetir(usuarioAtual().id, pool).slice(0,15).map(q=>({questaoId:q.id, motivo:"Revisão do assunto: "+nomeAssunto(assuntoId)}));
+  const itens = montarConjuntoDoAssunto(usuarioAtual().id, questoesDoConjuntoRapido(assuntoId, [], []), CONJUNTO_RAPIDO_SUGESTAO, "Revisão do assunto", true);
   iniciarSessaoComLista(itens, "pratica");
 }
 
@@ -181,8 +182,47 @@ function questoesDoConjuntoRapido(assuntoId, bancas, anos){
   return questoesParaEstudo(usuarioAtual().id).filter(q => q.assuntoId === assuntoId
     && (!bancas.length || bancas.includes(q.banca)) && (!anos.length || anos.includes(String(q.ano))));
 }
+/* Montagem do conjunto de um assunto, em camadas, e não por sorteio puro: um
+   sorteio pode entregar 15 questões já dominadas e nunca mostrar as erradas.
+   Ordem: inéditas → para revisar (revisão vencida; erro e chute antes) → respondidas
+   com revisão ainda no prazo (só para completar; erros antes). Dentro
+   de cada camada, rodízio por instituição/ano, para não concentrar numa prova.
+   O motivo de cada item diz a camada — a plataforma explica o que fez. */
+function camadaNoConjunto(usuarioId, q){
+  const ult = ultimaResposta(usuarioId, q.id);
+  if(!ult) return 0;
+  return repeticaoPrematura(usuarioId, q.id) ? 2 : 1;
+}
+function _rodizioPorOrigem(lista){
+  const grupos = new Map();
+  embaralhar(lista).forEach(q => { const k = q.banca + "|" + q.ano; if(!grupos.has(k)) grupos.set(k, []); grupos.get(k).push(q); });
+  const filas = embaralhar([...grupos.values()]), saida = [];
+  while(filas.some(f => f.length)) filas.forEach(f => { if(f.length) saida.push(f.shift()); });
+  return saida;
+}
+function montarConjuntoDoAssunto(usuarioId, pool, qtd, rotulo, revisarPrimeiro){
+  const camadas = [[], [], []];
+  pool.forEach(q => camadas[camadaNoConjunto(usuarioId, q)].push(q));
+  const pesoRevisao = q => { const u = ultimaResposta(usuarioId, q.id); return !u.correta ? 0 : u.confianca === "chute" ? 1 : 2; };
+  const revisar = _rodizioPorOrigem(camadas[1]).sort((a, b) => pesoRevisao(a) - pesoRevisao(b));
+  const motivo = (q, c) => {
+    if(c === 0) return rotulo + " · inédita para você";
+    const u = ultimaResposta(usuarioId, q.id), quando = formatDataBR(String(u.data).slice(0, 10));
+    if(c === 1) return rotulo + " · para revisar: " + (!u.correta ? "você errou em " : u.confianca === "chute" ? "acertou no chute em " : "revisão vencida desde ") + quando;
+    return rotulo + " · já respondida em " + quando + " (revisão ainda no prazo), para completar";
+  };
+  const ineditas = [0, _rodizioPorOrigem(camadas[0])], paraRevisar = [1, revisar];
+  return [...(revisarPrimeiro ? [paraRevisar, ineditas] : [ineditas, paraRevisar]), [2, _rodizioPorOrigem(camadas[2]).sort((a, b) => pesoRevisao(a) - pesoRevisao(b))]]
+    .flatMap(([c, l]) => l.map(q => ({ questaoId:q.id, motivo:motivo(q, c) }))).slice(0, qtd);
+}
+function resumoDasCamadas(usuarioId, pool){
+  const n = [0, 0, 0]; pool.forEach(q => n[camadaNoConjunto(usuarioId, q)]++);
+  return n[0] + " " + plural(n[0], "inédita", "inéditas") + " · " + n[1] + " para revisar · " + n[2] + " com revisão no prazo";
+}
+let _poolConjuntoRapido = null; // o assunto filtrado uma vez ao abrir; filtros só reduzem esta lista
 function abrirConjuntoRapido(assuntoId){
   const todas = questoesDoConjuntoRapido(assuntoId, [], []);
+  _poolConjuntoRapido = { assuntoId, todas };
   if(!todas.length){ toast("Não há questões ativas deste assunto.", "err"); return; }
   const contar = chave => { const m = new Map(); todas.forEach(q => m.set(String(q[chave]), (m.get(String(q[chave])) || 0) + 1)); return m; };
   const bancas = [...contar("banca")].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
@@ -191,7 +231,7 @@ function abrirConjuntoRapido(assuntoId){
   abrirModalTitulado("Conjunto rápido: " + escapeHtml(nomeAssunto(assuntoId)), `
     <div class="field"><label class="label" for="crQtd">Quantas questões</label>
       <input class="input" type="number" id="crQtd" min="1" max="100" value="${Math.min(CONJUNTO_RAPIDO_SUGESTAO, todas.length)}" style="max-width:6rem" oninput="atualizarConjuntoRapido('${assuntoId}')">
-      <div class="hint mt-1">Sugestão: ${CONJUNTO_RAPIDO_SUGESTAO}, sorteadas entre todas as instituições e anos.</div></div>
+      <div class="hint mt-1">Sugestão: ${CONJUNTO_RAPIDO_SUGESTAO}. Vêm primeiro as inéditas, depois as que estão para revisar (erros e chutes antes) e, só para completar, as que você respondeu e ainda estão no prazo — alternando instituição e ano.</div></div>
     <div class="field"><label class="label">Instituições <span class="muted text-xs">(nenhuma marcada = todas)</span></label>
       <div style="max-height:150px;overflow-y:auto">${bancas.map(b => caixa("crBanca", b)).join("")}</div></div>
     <div class="field"><label class="label">Anos <span class="muted text-xs">(nenhum marcado = todos)</span></label>
@@ -204,16 +244,21 @@ function lerConjuntoRapido(){
   const marcados = classe => [...document.querySelectorAll("." + classe + ":checked")].map(e => e.value);
   return { bancas: marcados("crBanca"), anos: marcados("crAno"), qtd: Math.max(1, Math.min(100, parseInt((document.getElementById("crQtd") || {}).value, 10) || CONJUNTO_RAPIDO_SUGESTAO)) };
 }
+function _filtrarConjuntoRapido(assuntoId, r){
+  const todas = _poolConjuntoRapido && _poolConjuntoRapido.assuntoId === assuntoId ? _poolConjuntoRapido.todas : questoesDoConjuntoRapido(assuntoId, [], []);
+  return todas.filter(q => (!r.bancas.length || r.bancas.includes(q.banca)) && (!r.anos.length || r.anos.includes(String(q.ano))));
+}
 function atualizarConjuntoRapido(assuntoId){
-  const r = lerConjuntoRapido(), disponiveis = questoesDoConjuntoRapido(assuntoId, r.bancas, r.anos).length;
+  const r = lerConjuntoRapido(), pool = _filtrarConjuntoRapido(assuntoId, r), disponiveis = pool.length;
   const el = document.getElementById("crResumo"); if(!el) return;
-  el.textContent = disponiveis ? (disponiveis + " " + plural(disponiveis, "questão disponível", "questões disponíveis") + " com estes filtros" + (r.qtd > disponiveis ? "; o conjunto terá " + disponiveis + "." : ".")) : "Nenhuma questão com estes filtros.";
+  el.textContent = disponiveis ? (disponiveis + " " + plural(disponiveis, "questão disponível", "questões disponíveis") + " com estes filtros (" + resumoDasCamadas(usuarioAtual().id, pool) + ")" + (r.qtd > disponiveis ? "; o conjunto terá " + disponiveis + "." : ".")) : "Nenhuma questão com estes filtros.";
 }
 function iniciarConjuntoRapido(assuntoId){
   const r = lerConjuntoRapido();
-  const pool = questoesDoConjuntoRapido(assuntoId, r.bancas, r.anos);
+  const pool = _filtrarConjuntoRapido(assuntoId, r);
   if(!pool.length){ toast("Nenhuma questão com estes filtros.", "err"); return; }
-  const itens = embaralharSemRepetir(usuarioAtual().id, pool).slice(0, r.qtd).map(q => ({ questaoId:q.id, motivo:"Conjunto rápido: " + nomeAssunto(assuntoId) }));
+  const itens = montarConjuntoDoAssunto(usuarioAtual().id, pool, r.qtd, "Conjunto rápido: " + nomeAssunto(assuntoId));
+  _poolConjuntoRapido = null;
   fecharModal();
   iniciarSessaoComLista(itens, "pratica");
 }
