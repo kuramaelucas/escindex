@@ -300,8 +300,12 @@ function _renderListaDeResumos(cat){
       </div></div>`).join("")}`;
 }
 
+// Ordem: o que a pessoa erra (tijolo, depois ocre) → o que ela ainda não respondeu →
+// o que já domina (verde). Sem resposta vem antes do verde porque é matéria nunca
+// medida: estudar o que já se domina primeiro seria gastar tempo no que menos rende.
+function _faixaDoResumo(t){ return t === null ? 1 : t >= .2 ? 2 : 0; }
 function _ordenarPorErro(lista){
-  return lista.sort((a, b) => ((b.t === null ? -1 : b.t) - (a.t === null ? -1 : a.t)) || a.i - b.i);
+  return lista.sort((a, b) => (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || a.i - b.i);
 }
 
 function _renderCaderno(r){
@@ -350,7 +354,7 @@ function _renderCaderno(r){
       <h1 class="resumo-titulo">${escapeHtml(r.titulo)}</h1>
       <div class="resumo-aluno">
         ${_resumoUltimas
-          ? `<div>${feitas} de ${todas.length} questões deste tema já feitas. Os capítulos que você mais erra vêm primeiro; o ponto-chave em que você erra ganha fundo de cor, e a frase do texto que o explica fica sublinhada (clique nela para acender).</div>
+          ? `<div>${feitas} de ${todas.length} questões deste tema já feitas. Os capítulos que você mais erra vêm primeiro, depois os que você ainda não respondeu e por último os que já domina; o ponto-chave em que você erra ganha fundo de cor, e a frase do texto que o explica fica sublinhada (clique nela para acender).</div>
              <div class="resumo-legenda"><span><i class="resumo-marca revisar"></i>Revise com prioridade</span><span><i class="resumo-marca atencao"></i>Vale revisar</span><span><i class="resumo-marca dominado"></i>Você já domina</span></div>`
           : `<div>Você ainda não fez questões deste tema: o resumo aparece na ordem do autor. Ao responder as questões, o texto passa a marcar onde você mais erra.</div>`}
         <div class="text-xs muted">Selecione um trecho para <strong>destacar</strong> em azul ou virar <strong>flashcard</strong>.</div>
