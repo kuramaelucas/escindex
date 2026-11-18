@@ -72,7 +72,7 @@ O perímetro cefálico mede, na prática, o crescimento do cérebro. [[Ele aumen
 - PC que **acelera e cruza canais**: imagem (US transfontanelar) e neurocirurgia. {q-adap22-071}
 - PC alto e **estável no canal**, com desenvolvimento normal: variante normal, seguir. {q-scmsp2026-060}
 - **Fontanela fechada precocemente** com PC baixo: **craniossinostose**, cirurgia. {q-einstein2024-035}` },
-        { id: "cre-ganho", titulo: "Peso e estatura: o esperado e o que preocupa", conferir: true,
+        { id: "cre-ganho", casos: ["q-uspsp4-080"], titulo: "Peso e estatura: o esperado e o que preocupa", conferir: true,
           questoes: ["q-famerp2023-025","q-fmabc2026-054","q-tp20231-035","q-uspsp4-080","q-adap23-058","q-iamspe2026-077","q-famerp2024-053"],
           texto: `- Perda fisiológica até **10%**, recuperada até **10 a 15 dias**. {q-famerp2024-053}
 - Com 1 ano: peso cerca de **3 vezes** o de nascimento e comprimento de cerca de **75 cm**. {q-famerp2023-025,q-fmabc2026-054}
@@ -80,7 +80,7 @@ O perímetro cefálico mede, na prática, o crescimento do cérebro. [[Ele aumen
 - **Mudança de canal para baixo** é desaceleração: investigar alimentação e família, retorno breve. {q-uspsp4-080}
 - **Baixa estatura familiar**: estatura baixa compatível com os pais e **velocidade de crescimento normal**. Só acompanhar, sem exames. {q-adap23-058}
 - Na transição deitado → em pé (cerca de 2 anos), medir das **duas formas**, descontar cerca de **0,7 cm** e comparar a velocidade sempre pelo mesmo método. {q-iamspe2026-077}` },
-        { id: "cre-zscore", titulo: "Classificação nutricional pelo escore z (OMS)", conferir: true,
+        { id: "cre-zscore", figuras: [{ arquivo: "figuras/imc-escore-z.svg", legenda: "Esquema autoral: faixas de escore z do IMC para a idade (OMS, 0 a 5 anos)." }], casos: ["q-amrigs2022-070"], titulo: "Classificação nutricional pelo escore z (OMS)", conferir: true,
           prosa: `[[A Caderneta usa os padrões da OMS. Cada índice responde a uma pergunta diferente: a **estatura para a idade** mostra a história nutricional (a desnutrição crônica achata a curva de estatura); o **peso para a estatura** e o **IMC para a idade** mostram o estado atual e são os que diagnosticam sobrepeso e obesidade.|q-sessp2026-041,q-simepm89-073]] Por isso o peso para a idade isolado engana: uma criança alta pode ter peso "alto" sem excesso de gordura. [[Uma criança pode ter estatura muito alta e IMC baixo ao mesmo tempo: é magreza com estatura adequada.|q-unifesp2023-061]]`,
           questoes: ["q-adap22-073","q-unifesp2022-073","q-unifesp2023-061","q-scmsp2021-041","q-amrigs2022-070","q-amrigs2024-073","q-famema2023-087","q-sessp2022-055","q-sessp2025-055","q-sessp2026-041","q-tp20202-045","q-tp20232-111","q-famerp2023-024","q-fmabc2022-041","q-simepm89-073","q-usp2026-059","q-usp2023-095","q-unicampdis2022-035","q-fmabc2021-088"],
           texto: `- **IMC/idade de 0 a 5 anos**: < −3 magreza acentuada; −3 a −2 magreza; −2 a +1 eutrofia; **+1 a +2 risco de sobrepeso**; **+2 a +3 sobrepeso**; **> +3 obesidade**. {q-unifesp2022-073,q-scmsp2021-041,q-amrigs2022-070,q-amrigs2024-073,q-sessp2022-055,q-sessp2025-055,q-tp20202-045,q-tp20232-111,q-famerp2023-024,q-unicampdis2022-035,q-fmabc2021-088}
@@ -144,7 +144,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - Leite maduro: proteína principal **alfa-lactoalbumina**; carboidrato principal **lactose**; gordura maior no fim da mamada. {q-sessp2025-048}
 - Composição semelhante entre as mulheres, mas **individualizada** para cada dupla mãe-bebê. {q-unesp2022-004}
 - Proteção por política pública: IHAC, bancos de leite, licença e a **regulação da propaganda** de fórmulas, mamadeiras e bicos (NBCAL). {q-unifesp2023-067}` },
-        { id: "ama-tecnica", titulo: "Pega, posição e as queixas dos primeiros dias", conferir: true,
+        { id: "ama-tecnica", casos: ["q-tp20222-041"], titulo: "Pega, posição e as queixas dos primeiros dias", conferir: true,
           prosa: `[[Quase toda dificuldade de amamentar nas primeiras semanas (dor, fissura, bebê que chora e larga o peito, baixo ganho) tem a mesma raiz: **pega ou posição inadequadas**. O bebê que abocanha só o mamilo machuca a mãe e não esvazia a mama, que então produz menos.|q-unifesp2022-070,q-tp20222-041,q-tp20212-118,q-tp20252-001,q-didepm-014,q-amrigs2025-063]] Por isso a primeira conduta é observar a mamada. [[Um bebê com bom ganho de peso e pega correta não precisa de nenhuma intervenção na técnica.|q-sirio2023-050]]`,
           questoes: ["q-unifesp2022-070","q-tp20222-041","q-tp20212-118","q-tp20252-001","q-didepm-014","q-amrigs2025-063","q-sirio2023-050","q-famerp2023-037","q-famerp2025-053","q-famema2025-038","q-sirio2025-051","q-udisc20262-057"],
           texto: `- Pega boa: **boca bem aberta**, **lábio inferior virado para fora**, **queixo tocando a mama**, mais aréola visível acima que abaixo. {q-unifesp2022-070,q-tp20222-041,q-tp20252-001}

@@ -26,7 +26,7 @@
 
 Por isso o tempo importa tanto. Quando o exantema é imunomediado, ele aparece no momento em que o organismo já reage ao agente. Às vezes isso coincide com o fim da febre (exantema súbito), às vezes com o fim da transmissão (parvovírus). Saber o mecanismo de cada doença permite deduzir o quadro, em vez de decorar listas.`,
       fragmentos: [
-        { id: "rac-chaves", titulo: "As quatro perguntas que separam as doenças", conferir: true,
+        { id: "rac-chaves", figuras: [{ arquivo: "figuras/febre-exantema.svg", legenda: "Esquema autoral: a curva da febre e o momento do exantema em três doenças." }], titulo: "As quatro perguntas que separam as doenças", conferir: true,
           questoes: ["q-famema2025-042","q-tp20222-047","q-amrigs2021-070"],
           texto: `- **Qual a relação febre × exantema?** O exantema aparece quando a febre cede: **exantema súbito**. O exantema vem no auge da febre: **sarampo**. Febre há 5 dias ou mais sem foco: pense em **Kawasaki**. {q-amrigs2021-070,q-famema2025-042}
 - **Que pródromo veio antes?** Tosse, coriza e conjuntivite: **sarampo**. Dor de garganta: **escarlatina** ou **mononucleose**. Pródromo pobre ou ausente: **rubéola** ou **eritema infeccioso**. {q-tp20222-047,q-famema2025-042}
@@ -49,7 +49,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 - Transmissão **respiratória por aerossol**: é das doenças mais contagiosas que existem. Pense em sarampo em quem volta de **área com surto** sem vacina comprovada. {q-simepm89-061}
 - Transmite de **4 dias antes a 4 dias depois do início do exantema**.
 - Quem elimina o vírus e leva à recuperação é a **resposta imune celular** do hospedeiro. Não há antiviral específico. {q-amrigs2025-014}` },
-        { id: "sar-clinica", titulo: "Quadro clínico e Koplik",
+        { id: "sar-clinica", casos: ["q-usprp2026-032","q-uspsp4-101"], titulo: "Quadro clínico e Koplik",
           prosa: `Depois de 10 a 14 dias de incubação vem o **pródromo**. A febre sobe progressivamente e aparecem tosse seca, coriza e conjuntivite com fotofobia, que refletem a infecção dos epitélios respiratório e conjuntival. [[No fim do pródromo surgem as **manchas de Koplik** na mucosa jugal, que costumam desaparecer quando o exantema se estabelece.|q-iamspe2025-065,q-fmabc2026-089,q-famerp2023-027,q-sirio2022-053,q-unicampdis2025-026,q-famerp2026-009,q-famema2025-042]] O exantema começa na linha do cabelo e atrás das orelhas e desce ao longo de três dias. As lesões confluem nas áreas que apareceram primeiro. [[Ao contrário do exantema súbito, a febre atinge o pico **junto** com o exantema, porque é a fase de maior atividade imune contra o vírus.|q-famerp2023-027,q-famerp2022-014,q-famerp2026-009,q-sirio2022-053,q-fmabc2025-096]]`, conferir: true,
           questoes: ["q-famema2025-042","q-iamspe2025-065","q-fmabc2025-047","q-fmabc2025-096","q-unicampdis2025-026","q-simepm89-061","q-uspsp4-101","q-sirio2022-053","q-famerp2023-027","q-famerp2022-014","q-famerp2026-009","q-fmabc2026-089","q-einstein2025-043","q-tp20222-047"],
           texto: `- **Pródromo de 3 a 5 dias**: febre alta, com os **3 Cs**: **tosse, coriza e conjuntivite** (pode haver fotofobia). {q-famema2025-042,q-fmabc2025-047,q-fmabc2025-096,q-unicampdis2025-026,q-simepm89-061,q-uspsp4-101,q-famerp2022-014,q-famerp2026-009,q-einstein2025-043,q-tp20222-047}
@@ -61,7 +61,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
           questoes: ["q-uspsp4-101","q-amrigs2025-014"],
           texto: `- **Sorologia IgM** (positiva a partir do exantema) e **RT-PCR** em **secreção nasofaríngea/orofaríngea e urina**. Colha as duas amostras na primeira consulta. {q-uspsp4-101}
 - A **IgM marca a infecção primária**: costuma **não aparecer na reexposição nem na revacinação**, quando sobe a IgG. {q-amrigs2025-014}` },
-        { id: "sar-compl", titulo: "Complicações",
+        { id: "sar-compl", casos: ["q-tp20222-047"], titulo: "Complicações",
           prosa: `As complicações seguem a fisiopatologia. [[A lesão do epitélio respiratório e a "amnésia imune" abrem caminho para **pneumonia** viral ou bacteriana e **otite média**.|q-einstein2021-021,q-tp20222-047]] A lesão do epitélio intestinal causa diarreia, que agrava a desnutrição. No sistema nervoso há três quadros diferentes. A **encefalite aguda pós-infecciosa** é imunomediada e surge dias depois do exantema. A **encefalite por corpos de inclusão** ocorre em imunodeprimidos. A **PEES** é uma infecção persistente por vírus mutado, que se manifesta 7 a 10 anos depois e é mais comum quando o sarampo ocorreu antes dos 2 anos.`, conferir: true,
           questoes: ["q-einstein2021-021","q-tp20222-047","q-sirio2022-053"],
           texto: `- A **pneumonia** é a complicação mais frequente e a **principal causa de morte**. Pode ser viral ou bacteriana secundária. {q-einstein2021-021,q-tp20222-047}
@@ -107,7 +107,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
           questoes: ["q-famema2023-081","q-sirio2021-057","q-fmabc2021-098","q-einstein2022-038"],
           texto: `- Agente: **herpes-vírus humano 6 (HHV-6B)**. Menos vezes, o **HHV-7**. {q-famema2023-081,q-sirio2021-057,q-fmabc2021-098,q-einstein2022-038}
 - Idade típica: **6 meses a 2 anos**. Não é doença do escolar.` },
-        { id: "sub-clinica", titulo: "Febre alta que some → aí aparece o exantema",
+        { id: "sub-clinica", casos: ["q-uspsp1-004"], titulo: "Febre alta que some → aí aparece o exantema",
           prosa: `O exame físico normal, apesar da febre alta, é o que distingue o quadro. Pode haver pequenas pápulas no palato mole (manchas de Nagayama), edema palpebral discreto e abaulamento da fontanela. No hemograma, a leucopenia com linfocitose relativa é comum. Mas o diagnóstico é clínico e quase sempre retrospectivo: só se confirma quando o exantema aparece após a defervescência.`, conferir: true,
           questoes: ["q-scmsp2025-053","q-uspsp1-004","q-fmabc2021-098","q-einstein2022-038","q-sirio2021-057","q-famema2023-081","q-unicampdis2023-035","q-famema2025-042"],
           texto: `- **3 a 5 dias de febre alta** em lactente em **bom estado geral**. {q-scmsp2025-053,q-uspsp1-004,q-einstein2022-038,q-sirio2021-057,q-unicampdis2023-035}
@@ -131,7 +131,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 
 O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica** (doença falciforme, esferocitose), a hemácia vive poucos dias, e uma semana sem produção causa uma **crise aplásica** com reticulócitos zerados.|q-sessp2025-042]] No **feto**, a eritropoiese é intensa e a hemácia vive pouco, por isso a anemia grave leva a insuficiência cardíaca e **hidropisia**. O risco é maior antes de 20 semanas.`,
       fragmentos: [
-        { id: "eri-agente", titulo: "Agente: parvovírus B19", conferir: true,
+        { id: "eri-agente", casos: ["q-tp20202-046"], titulo: "Agente: parvovírus B19", conferir: true,
           questoes: ["q-scmsp2026-054","q-sessp2025-042","q-tp20202-046","q-fmabc2024-058","q-einstein2021-027"],
           texto: `- Agente: **parvovírus B19**, vírus de DNA com **tropismo pelo precursor eritroide**.
 - Contato com caso de "quinta doença" ou face esbofeteada aponta para **parvovírus B19**. {q-scmsp2026-054,q-sessp2025-042,q-tp20202-046,q-fmabc2024-058,q-einstein2021-027}` },
@@ -162,7 +162,7 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
           questoes: ["q-unesp2025-009","q-sirio2026-055","q-uspsp2-050","q-famema2025-042"],
           texto: `- Agente: **Streptococcus pyogenes (estreptococo β-hemolítico do grupo A)**, que produz **toxina pirogênica (eritrogênica)**. {q-unesp2025-009,q-sirio2026-055,q-uspsp2-050}
 - Faixa etária: **escolares (5 a 15 anos)**. É **rara antes dos 3 anos**. {q-famema2025-042}` },
-        { id: "esc-clinica", titulo: "Quadro: faringite + exantema em lixa",
+        { id: "esc-clinica", casos: ["q-uspsp2-050"], titulo: "Quadro: faringite + exantema em lixa",
           prosa: `O exantema surge 12 a 48 horas depois da febre. Começa no pescoço e nas dobras e se generaliza em um a dois dias, poupando a região ao redor da boca. A língua passa por duas fases: primeiro saburrosa, com papilas vermelhas salientes (framboesa branca); depois a capa se desprende e ela fica vermelha (framboesa vermelha). A descamação aparece na segunda semana e começa pelas pontas dos dedos.`, conferir: true,
           questoes: ["q-usprp2026-046","q-unesp2025-009","q-sirio2026-055","q-uspsp2-050"],
           texto: `- **Febre, odinofagia e faringite exsudativa**. Pode haver vômitos e cefaleia. **Sem tosse nem coriza**. {q-usprp2026-046,q-unesp2025-009,q-sirio2026-055}
@@ -186,7 +186,7 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
 
 A doença é mais grave em adolescentes, adultos, gestantes, recém-nascidos e imunodeprimidos, nos quais a pneumonia e a forma disseminada são mais comuns. Na criança, a complicação mais frequente é a **infecção bacteriana das lesões** coçadas. O **AAS é contraindicado**: o salicilato, junto com a infecção viral, causa a **síndrome de Reye**, com disfunção mitocondrial, insuficiência hepática e edema cerebral.`,
       fragmentos: [
-        { id: "var-tudo", titulo: "Quadro e conduta com contatos", conferir: true,
+        { id: "var-tudo", figuras: [{ arquivo: "figuras/varicela-estagios.svg", legenda: "Esquema autoral: os quatro estágios da lesão, que coexistem no mesmo paciente." }], titulo: "Quadro e conduta com contatos", conferir: true,
           questoes: ["q-einstein2027-062"],
           texto: `- Agente: **vírus varicela-zóster**. As lesões são **pruriginosas** e aparecem **em diferentes estágios ao mesmo tempo** (mácula, pápula, vesícula e crosta). A distribuição é **centrípeta**, mais no tronco.
 - A complicação mais comum é a **infecção bacteriana da pele** (estreptococo ou estafilococo). **Não use AAS**, pelo risco de **síndrome de Reye**.
@@ -204,7 +204,7 @@ A mesma família de vírus produz quadros que se distinguem pelo **lugar das les
           questoes: ["q-amrigs2021-090","q-sessp2022-052"],
           texto: `- Agente: **vírus Coxsackie A** (sobretudo **A16** na mão-pé-boca) e **enterovírus 71**, que se associa às formas neurológicas.
 - Transmissão **fecal-oral** e respiratória, mais comum em creches.` },
-        { id: "ent-clinica", titulo: "Mão-pé-boca × herpangina",
+        { id: "ent-clinica", casos: ["q-tp20222-048"], titulo: "Mão-pé-boca × herpangina",
           prosa: `O quadro é benigno e se resolve em 7 a 10 dias. [[O maior risco é a **desidratação**: a dor das úlceras orais faz a criança recusar líquidos.|q-tp20222-048,q-amrigs2020-078]] Por isso o tratamento se concentra em analgesia, líquidos frios e alimentos pastosos. Sinais neurológicos (mioclonias, ataxia, sonolência) ou cardiorrespiratórios, sobretudo com enterovírus 71, mudam o quadro e exigem internação.`, conferir: true,
           questoes: ["q-amrigs2021-090","q-sessp2022-052","q-iamspe2025-078","q-tp20222-048","q-amrigs2020-078"],
           texto: `- **Mão-pé-boca:** úlceras dolorosas na **boca** e lesões **pápulo-vesiculares em mãos, pés** (e nádegas). Febre **baixa e curta**. **Febre alta por mais de 7 dias não é típica.** {q-amrigs2021-090,q-iamspe2025-078,q-tp20222-048,q-amrigs2020-078}
@@ -237,7 +237,7 @@ O exantema depois de **amoxicilina ou ampicilina** acontece na maioria dos pacie
 
 A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pandemia de covid-19. [[É uma resposta imune desregulada que aparece **2 a 6 semanas depois da infecção** pelo SARS-CoV-2, não durante ela.|q-sirio2024-043]] Lembra Kawasaki, mas atinge crianças maiores e escolares, com sintomas gastrintestinais marcantes e, com frequência, **choque** por disfunção miocárdica e vasodilatação.`,
       fragmentos: [
-        { id: "kaw-crit", titulo: "Critérios de Kawasaki",
+        { id: "kaw-crit", figuras: [{ arquivo: "figuras/kawasaki-criterios.svg", legenda: "Esquema autoral: o critério obrigatório e os cinco critérios clínicos." }], titulo: "Critérios de Kawasaki",
           prosa: `[[Como não existe exame que confirme Kawasaki, o diagnóstico é clínico e se apoia num conjunto de critérios.|q-scmsp2025-057,q-sirio2025-045,q-sirio2024-050]] Os sinais refletem inflamação vascular difusa: a hiperemia conjuntival sem secreção, o edema endurado das extremidades e a descamação periungueal tardia (2ª a 3ª semana). Na fase subaguda, a **plaquetose** é típica. VHS e PCR elevadas, piúria estéril e elevação de transaminases reforçam a suspeita.`, conferir: true,
           questoes: ["q-scmsp2025-057","q-sirio2025-045","q-sirio2024-050","q-scmsp2022-039","q-famema2025-042"],
           texto: `- Critério obrigatório: **febre por 5 dias ou mais**. Some **4 dos 5 critérios**: {q-scmsp2025-057,q-sirio2025-045}
