@@ -439,7 +439,7 @@ window.EscDados.registrarQuestoes("prova-famerp-2023", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **pré-termo de 33 semanas**, **peso de nascimento 2.250 g (acima de 1.500 g)** e **aleitamento exclusivo**: o recém-nascido pré-termo com peso entre 1.500 e 2.500 g recebe **2 mg/kg/dia de ferro elementar a partir de 30 dias de vida até 12 meses**, e depois **1 mg/kg/dia até 24 meses** (SBP). B) errada: mantém 2 mg/kg até 24 meses sem reduzir. C) errada: começa tardiamente (3º mês) e mantém a dose alta até os 24 meses. D) errada: começa tardiamente, no 3º mês, quando o ferro deveria ser iniciado no 1º mês. Mecanismo: o recém-nascido pré-termo tem menores reservas de ferro e crescimento rápido, o que aumenta o risco de anemia ferropriva, por isso recebe suplementação em dose maior por mais tempo. Epidemiologia: a deficiência de ferro é a carência nutricional mais comum na infância.",
   explicacoesAlternativas:{},
-  referencias:"SBP. Manual de Orientação: Consenso sobre anemia ferropriva, 2018.",
+  referencias:"SBP. Manual de Orientação: Consenso sobre anemia ferropriva, 2018. Texto lido em 18/11/2026 em SBP, Diretrizes nº 32, 17/03/2026: Recomendações para o tratamento e prevenção da deficiência de ferro e anemia ferropriva em lactentes – Atualização 2026 (sbp.com.br; ISBN 978-85-88520-69-1): prematuro/baixo peso entre 1.500 e 2.500 g: 2 mg/kg/dia a partir dos 30 dias durante o primeiro ano e 1 mg/kg/dia de 12 a 24 meses; concorda com o gabarito A.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-05"
