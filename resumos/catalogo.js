@@ -14,5 +14,6 @@
   { id: "reanimacao-neonatal", titulo: "Reanimação neonatal", area: "Pediatria · Neonatologia", assunto: "ass-reanimacao" },
   { id: "vias-aereas-superiores", titulo: "Infecções de vias aéreas superiores", area: "Pediatria · Infectologia", assunto: "ass-ivas" },
   { id: "ictericia-neonatal", titulo: "Icterícia neonatal", area: "Pediatria · Neonatologia", assunto: "ass-ictericia" },
+  { id: "triagem-neonatal", titulo: "Triagem neonatal", area: "Pediatria · Neonatologia", assunto: "ass-neo-triagemneonatal" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];
