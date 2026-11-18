@@ -34,6 +34,8 @@ for(const d of r.doencas) for(const f of d.fragmentos){
   // Ilustração própria cujo arquivo não existe: a tela mostraria uma imagem quebrada.
   for(const fig of f.figuras || [])
     if(!fs.existsSync(path.join(raiz, "resumos", tema, fig.arquivo || ""))) erros.push(`${d.id}/${f.id}: figura ${fig.arquivo} não existe`);
+    // foto (não SVG autoral) sem crédito e página de origem descumpre a licença
+    else if(!/\.svg$/.test(fig.arquivo) && !(fig.credito && fig.fonte)) erros.push(`${d.id}/${f.id}: foto ${fig.arquivo} sem credito/fonte`);
   // Caso ilustrado sem figura não ilustra nada: a tela o pularia em silêncio.
   for(const id of f.casos || []){
     if(!porId.has(id)) erros.push(`${d.id}/${f.id}: caso ilustrado ${id} não existe`);

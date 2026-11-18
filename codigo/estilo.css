@@ -972,3 +972,4 @@ html[data-theme="dark"]{
 .resumo-figura{margin:.8rem 0;text-align:center}
 .resumo-figura img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:#fff}
 .resumo-figura figcaption{font-size:.85em;color:var(--muted);margin-top:.3rem}
+.resumo-credito{display:block;font-size:.85em;margin-top:.15rem}

@@ -222,13 +222,14 @@ function _htmlCasoDoResumo(id){
     </details>
   </div>`;
 }
-/* Ilustração própria (esquema autoral em resumos/<tema>/figuras/): para o que nenhuma questão
-   do banco mostra. Fundo branco no próprio arquivo, então serve aos dois temas sem trocar cor. */
+/* Ilustração própria (esquema autoral em resumos/<tema>/figuras/) ou foto de licença livre
+   (Wikimedia Commons), para o que nenhuma questão do banco mostra. Foto de terceiros traz
+   `credito` (autor e licença) e `fonte` (página do arquivo): a licença CC exige a atribuição. Fundo branco no próprio arquivo, então serve aos dois temas sem trocar cor. */
 function _htmlFiguraDoResumo(r, fig){
   const src = `resumos/${r.id}/${fig.arquivo}`;
   return `<figure class="resumo-figura">
     <img src="${escapeHtml(src)}" alt="${escapeHtml(fig.alt || fig.legenda || "")}" loading="lazy" onclick="ampliarFiguraDoResumo(this.src, this.alt)">
-    ${fig.legenda ? `<figcaption>${escapeHtml(fig.legenda)}</figcaption>` : ""}
+    ${fig.legenda || fig.credito ? `<figcaption>${escapeHtml(fig.legenda || "")}${fig.credito ? `<span class="resumo-credito">${fig.fonte ? `<a href="${escapeHtml(fig.fonte)}" target="_blank" rel="noopener">${escapeHtml(fig.credito)}</a>` : escapeHtml(fig.credito)}</span>` : ""}</figcaption>` : ""}
   </figure>`;
 }
 function ampliarFiguraDoResumo(src, alt){
