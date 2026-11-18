@@ -117,8 +117,8 @@ test("conjunto do assunto: inéditas, depois erradas para revisar, já dominadas
       db.respostas.push({ id:"r-t2", usuarioId:u.id, questaoId:dominada.id, correta:true, confianca:"certeza", data:hojeISO()+"T10:00:00" });
       saveState();
       const ids = l => l.map(i => i.questaoId);
-      const normal = montarConjuntoDoAssunto(u.id, pool, pool.length, "T");
-      const revisao = montarConjuntoDoAssunto(u.id, pool, pool.length, "T", true);
+      const normal = montarConjuntoEmCamadas(u.id, pool, pool.length, "T");
+      const revisao = montarConjuntoEmCamadas(u.id, pool, pool.length, "T", true);
       return { n: pool.length, normal: ids(normal), revisao: ids(revisao), errada: errada.id, dominada: dominada.id, motivo: normal.find(i => i.questaoId === errada.id).motivo };
     });
     assert.equal(r.normal.length, r.n);

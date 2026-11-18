@@ -984,3 +984,29 @@ html[data-theme="dark"]{
 .resumo-figura img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:#fff}
 .resumo-figura figcaption{font-size:.85em;color:var(--muted);margin-top:.3rem}
 .resumo-credito{display:block;font-size:.85em;margin-top:.15rem}
+
+/* Monte sua própria lista (07b): árvore Área › Especialidade › Assunto, etiquetas, filtros em pílulas e barra fixa */
+.montagem-busca{position:relative}
+.montagem-busca>.icon{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:1rem;height:1rem;color:var(--muted);pointer-events:none}
+.montagem-busca .input{padding-left:2.1rem}
+.montagem-etiquetas{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin:.6rem 0 .3rem;min-height:1.6rem}
+.montagem-arvore{max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;padding:.3rem}
+.arvore-no{display:flex;align-items:center;gap:.35rem;padding:.3rem .25rem;border-radius:8px}
+.arvore-no:hover{background:var(--surface-2)}
+.arvore-n1 .arvore-rotulo{font-weight:700}
+.arvore-seta{flex:none;width:1.6rem;height:1.6rem;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:none;color:var(--muted);cursor:pointer;padding:0}
+.arvore-seta .icon{width:.85rem;height:.85rem;transition:transform .15s}
+.arvore-seta.aberta .icon{transform:rotate(90deg)}
+.arvore-rotulo{flex:1;display:flex;align-items:center;gap:.45rem;cursor:pointer;font-size:var(--fs-sm);min-width:0}
+.arvore-rotulo input{width:1.05rem;height:1.05rem;accent-color:var(--accent);flex:none}
+.arvore-cont{font-size:var(--fs-xs);color:var(--muted);white-space:nowrap}
+.arvore-cont strong{color:var(--accent);font-weight:600}
+.arvore-filhos{margin-left:.8rem;padding-left:.45rem;border-left:1px solid var(--border)}
+.montagem-mais>summary{cursor:pointer;font-weight:700;padding:.4rem 0}
+.caixas-chip{display:flex;flex-wrap:wrap;gap:.35rem;max-height:150px;overflow-y:auto}
+.caixa-chip{display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .65rem;border:1px solid var(--border-strong);border-radius:100px;font-size:var(--fs-sm);cursor:pointer;background:var(--surface)}
+.caixa-chip input{accent-color:var(--accent);margin:0}
+.caixa-chip:has(input:checked){background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
+.montagem-barra{position:sticky;bottom:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem;margin-top:.8rem;padding:.7rem 0;background:var(--surface);border-top:1px solid var(--border)}
+.montagem-qtd{width:4.5rem}
+@media (max-width:560px){.arvore-total{display:none}.montagem-barra .btn{flex:1}}

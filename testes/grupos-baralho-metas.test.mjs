@@ -79,6 +79,34 @@ test("Monte sua lista aceita mais de uma instituição e mais de um tipo de prov
   } finally { await contexto.close(); }
 });
 
+test("Monte sua lista: a árvore marca a especialidade inteira, um assunto solto, busca sem acento e etiqueta agrupada", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno");
+      navigate("estudar");
+      const arv = arvoreDeAssuntos(usuarioAtual().id);
+      const esp = arv[0].filhos[0], outra = arv[0].filhos[1];
+      marcarNoDaMontagem(esp.id);
+      abrirNoDaMontagem(outra.id);
+      marcarNoDaMontagem(outra.filhos[0].id);
+      const f = lerFiltrosPersonalizados();
+      const etiquetas = [...document.querySelectorAll("#montagemEtiquetas .chip-filtro")].map(e => e.textContent.trim());
+      const area = document.querySelector(`.arvoreCaixa[data-no="${arv[0].id}"]`);
+      buscarNaMontagem("sepse".toUpperCase().replace("E", "É"));
+      const achados = [...document.querySelectorAll("#montagemArvore .arvore-rotulo span")].map(e => e.textContent);
+      limparMontagem();
+      return { n: f.assuntoIds.length, esperado: esp.filhos.length + 1, etiquetas, nomes: [esp.nome, outra.filhos[0].nome], meio: area.indeterminate, achados, vazio: lerFiltrosPersonalizados().assuntoIds.length };
+    });
+    assert.equal(r.n, r.esperado);
+    assert.deepEqual(r.etiquetas, r.nomes);
+    assert.equal(r.meio, true);
+    assert.ok(r.achados.some(t => /sepse/i.test(t)));
+    assert.equal(r.vazio, 0);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
 test("baralho inteiro de uma IA: confere, pula repetido, e entra só no baralho da pessoa", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{

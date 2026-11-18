@@ -167,7 +167,7 @@ function mostrarTodasAsEscondidasConfirmado(){
 /* "Praticar" vem de telas de revisão (assunto vencido, pior desempenho): aqui
    o que está para revisar vem antes das inéditas. */
 function praticarAssunto(assuntoId){
-  const itens = montarConjuntoDoAssunto(usuarioAtual().id, questoesDoConjuntoRapido(assuntoId, [], []), CONJUNTO_RAPIDO_SUGESTAO, "Revisão do assunto", true);
+  const itens = montarConjuntoEmCamadas(usuarioAtual().id, questoesDoConjuntoRapido(assuntoId, [], []), CONJUNTO_RAPIDO_SUGESTAO, "Revisão do assunto", true);
   iniciarSessaoComLista(itens, "pratica");
 }
 
@@ -200,7 +200,7 @@ function _rodizioPorOrigem(lista){
   while(filas.some(f => f.length)) filas.forEach(f => { if(f.length) saida.push(f.shift()); });
   return saida;
 }
-function montarConjuntoDoAssunto(usuarioId, pool, qtd, rotulo, revisarPrimeiro){
+function montarConjuntoEmCamadas(usuarioId, pool, qtd, rotulo, revisarPrimeiro){
   const camadas = [[], [], []];
   pool.forEach(q => camadas[camadaNoConjunto(usuarioId, q)].push(q));
   const pesoRevisao = q => { const u = ultimaResposta(usuarioId, q.id); return !u.correta ? 0 : u.confianca === "chute" ? 1 : 2; };
@@ -257,7 +257,7 @@ function iniciarConjuntoRapido(assuntoId){
   const r = lerConjuntoRapido();
   const pool = _filtrarConjuntoRapido(assuntoId, r);
   if(!pool.length){ toast("Nenhuma questão com estes filtros.", "err"); return; }
-  const itens = montarConjuntoDoAssunto(usuarioAtual().id, pool, r.qtd, "Conjunto rápido: " + nomeAssunto(assuntoId));
+  const itens = montarConjuntoEmCamadas(usuarioAtual().id, pool, r.qtd, "Conjunto rápido: " + nomeAssunto(assuntoId));
   _poolConjuntoRapido = null;
   fecharModal();
   iniciarSessaoComLista(itens, "pratica");
