@@ -61,6 +61,9 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
       return { primeiro, koplik, acesa, marcou, frasesFicaram, verso, assunto, resumoId: fb.resumoId };
     });
     assert.equal(r.primeiro, "Sarampo", "o capítulo com mais erro vem primeiro");
+    // o capítulo verde (exantema súbito, só acerto) vai para o fim, depois dos ainda sem resposta
+    const ordem = await pagina.evaluate(() => [...document.querySelectorAll(".resumo-capitulo h2")].map(h => h.textContent));
+    assert.equal(ordem[ordem.length - 1], "Exantema súbito (roséola infantum)", "o que já domina fica depois do que ainda não foi respondido");
     assert.ok(r.koplik, "o ponto-chave do Koplik fica marcado para revisar");
     assert.ok(r.acesa, "clicar na frase acende a cor");
     assert.ok(r.marcou && r.frasesFicaram, "o destaque aparece e as frases ligadas continuam");

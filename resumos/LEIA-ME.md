@@ -55,7 +55,7 @@ Marcações dentro do texto:
 6. **Marcação pelo erro de quem lê** (regra da tela, `09e`):
    - Por questão vale a **última** resposta da pessoa. Acerto com confiança "chute" conta como meio erro.
    - Taxa = (erros + ½ chutes) ÷ questões feitas. **≥ 50 %** = revise com prioridade (tijolo), **20–49 %** = vale revisar (ocre), **< 20 %** = você já domina (verde, só no sumário).
-   - Capítulos e seções ficam na ordem do que a pessoa mais erra. Sem nenhuma questão feita, ficam na ordem do autor e sem cor.
+   - Capítulos e seções ficam na ordem do que a pessoa mais erra, depois os ainda sem resposta e por último os verdes (já domina). Sem nenhuma questão feita, ficam na ordem do autor e sem cor.
 7. **Sinal discreto.** A tela não mostra números, porcentagens nem "você erra aqui": só a cor, explicada na legenda do topo.
    - A frase ligada fica com sublinhado **fraco** e acende (cor cheia) quando a pessoa clica nela.
    - O ponto-chave em que ela erra ganha fundo leve e o link "no texto ↑".
