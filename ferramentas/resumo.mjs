@@ -31,6 +31,9 @@ for(const d of r.doencas) for(const f of d.fragmentos){
     if(!cobertas.has(id)) cobertas.set(id, []);
     cobertas.get(id).push(f.id);
   }
+  // Tópico ligado a questão que o trecho não lista: o erro dele não somaria no trecho.
+  for(const m of f.texto.matchAll(/\{([^}]+)\}\s*$/gm)) for(const id of m[1].split(",").map(x => x.trim()))
+    if(!f.questoes.includes(id)) erros.push(`${d.id}/${f.id}: tópico cita ${id}, que não está em questoes do trecho`);
 }
 const fora = new Set((r.foraDoEscopo || []).flatMap(x => x.questoes));
 const doAssunto = D.questoes.filter(q => q.assuntoId === r.assunto && (q.status || "ativa") !== "rascunho");

@@ -24,6 +24,7 @@ Conferência: `npm run resumo -- <tema>`. O comando mostra quais questões do as
    - **≥ 50 %: Prioridade** (borda vermelha, aberto, sobe para o topo da doença).
    - **20–49 %: Atenção** (borda âmbar).
    - **< 20 %: Dominado** (esmaecido e recolhível; continua legível).
+   - **Fragmentação fina:** um tópico pode terminar com `{q-a,q-b}` (as questões que ele responde). Seção em Prioridade ou Atenção se abre tópico a tópico, cada um com o seu erro ("Você erra aqui · 2 de 3"); seção dominada vira texto corrido recolhido. O visualizador é um caderno: sumário no início, capítulos (doenças) e seções numeradas.
    - **Sem resposta: Não medido** (neutro). Mostra quantas questões ligadas ainda faltam fazer.
    - As doenças são ordenadas pela taxa (pior primeiro), e a tela diz o porquê de cada destaque. A regra da casa é que "a plataforma explica o que faz".
 5. **Texto autoral, curto e verificável.** Use tópicos com o **dado que a banca cobra** em negrito (agente, ponto de corte, prazo, dose). Nada copiado de cursinho ou de site de questões. As fontes primárias ficam em `fontes`, com a data em que foram lidas. Enquanto um fragmento não tiver a leitura datada, ele leva `conferir: true` e a tela mostra "a conferir".
