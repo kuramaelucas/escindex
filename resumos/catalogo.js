@@ -12,5 +12,6 @@
   { id: "diarreia-desidratacao", titulo: "Diarreia aguda e desidratação", area: "Pediatria · Infectologia", assunto: "ass-dda" },
   { id: "infeccoes-congenitas", titulo: "Infecções congênitas e perinatais", area: "Pediatria · Neonatologia", assunto: "ass-neo-infeccoescongenitas" },
   { id: "reanimacao-neonatal", titulo: "Reanimação neonatal", area: "Pediatria · Neonatologia", assunto: "ass-reanimacao" },
+  { id: "vias-aereas-superiores", titulo: "Infecções de vias aéreas superiores", area: "Pediatria · Infectologia", assunto: "ass-ivas" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

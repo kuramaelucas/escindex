@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="300" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Criança com estridor: onde está o estreitamento</text>
+<g>
+<rect x="20" y="45" width="230" height="230" rx="8" fill="#e8eef9" stroke="#4a6fb3"/>
+<text x="135" y="68" text-anchor="middle" font-weight="700">Crupe (viral)</text>
+<text x="135" y="88" text-anchor="middle" font-size="12">edema da região subglótica</text>
+<text x="34" y="116">• 6 meses a 3 anos</text><text x="34" y="136">• coriza antes, febre baixa</text><text x="34" y="156">• tosse ladrante, rouquidão</text><text x="34" y="176">• piora à noite</text>
+<rect x="34" y="200" width="202" height="60" rx="6" fill="#fff" stroke="#4a6fb3"/><text x="135" y="222" text-anchor="middle">dexametasona</text><text x="135" y="242" text-anchor="middle">+ adrenalina inalatória se</text><text x="135" y="256" text-anchor="middle" font-size="12">estridor em repouso</text>
+</g>
+<g>
+<rect x="265" y="45" width="230" height="230" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="380" y="68" text-anchor="middle" font-weight="700">Epiglotite (bacteriana)</text>
+<text x="380" y="88" text-anchor="middle" font-size="12">edema supraglótico</text>
+<text x="279" y="116">• início súbito, toxemia</text><text x="279" y="136">• salivação, voz abafada</text><text x="279" y="156">• sentada, inclinada à frente</text><text x="279" y="176">• sem tosse ladrante</text>
+<rect x="279" y="200" width="202" height="60" rx="6" fill="#fff" stroke="#b03a2e"/><text x="380" y="222" text-anchor="middle">não examinar a garganta</text><text x="380" y="242" text-anchor="middle">via aérea no centro</text><text x="380" y="256" text-anchor="middle" font-size="12">cirúrgico</text>
+</g>
+<g>
+<rect x="510" y="45" width="230" height="230" rx="8" fill="#fdf1e2" stroke="#c07a1c"/>
+<text x="625" y="68" text-anchor="middle" font-weight="700">Traqueíte bacteriana</text>
+<text x="625" y="88" text-anchor="middle" font-size="12">secreção purulenta na traqueia</text>
+<text x="524" y="116">• começa como crupe</text><text x="524" y="136">• piora com febre alta</text><text x="524" y="156">• não melhora com adrenalina</text><text x="524" y="176">• cânula menor que a prevista</text>
+<rect x="524" y="200" width="202" height="60" rx="6" fill="#fff" stroke="#c07a1c"/><text x="625" y="222" text-anchor="middle">Staphylococcus aureus</text><text x="625" y="242" text-anchor="middle">antibiótico IV e</text><text x="625" y="256" text-anchor="middle" font-size="12">via aérea garantida</text>
+</g>
+</svg>

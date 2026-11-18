@@ -20,7 +20,7 @@ Estado do banco em 18/11/2026 (`npm run dados -- resumo-assuntos`): 237 assuntos
 | 15–39 | 96 | resumo próprio ou agrupado com assunto vizinho (≈ 2 por resumo) |
 | < 15 | 49 | agrupados no resumo do assunto vizinho, ou `foraDoEscopo` até ter questões |
 
-**Previsão: cerca de 150 resumos** no banco inteiro (92 + ≈ 50 agrupados + ajustes). Prontos: 10 (`exantematicas`, `puericultura`, `calendario-vacinal`, `pneumonia-bronquiolite`, `crescimento-puberdade`, `emergencias-respiratorias-pcr`, `diarreia-desidratacao`, `infeccoes-congenitas`, `reanimacao-neonatal`, `insuficiencia-cardiaca`).
+**Previsão: cerca de 150 resumos** no banco inteiro (92 + ≈ 50 agrupados + ajustes). Prontos: 11 (`exantematicas`, `puericultura`, `calendario-vacinal`, `pneumonia-bronquiolite`, `crescimento-puberdade`, `emergencias-respiratorias-pcr`, `diarreia-desidratacao`, `infeccoes-congenitas`, `reanimacao-neonatal`, `vias-aereas-superiores`, `insuficiencia-cardiaca`).
 
 Na **pediatria** (25 assuntos de Neonatologia, Crescimento e Desenvolvimento, Infectologia Pediátrica e Emergências Pediátricas) a previsão é de **cerca de 20 resumos**.
 
@@ -39,7 +39,7 @@ A ordem segue o número de questões reais. Os prontos ficam na lista para entra
 | 7 | `ass-dda` | 59 | `diarreia-desidratacao` | pronto (fontes a ler) | OMS/MS (planos A, B e C de hidratação, zinco) |
 | 8 | `ass-neo-infeccoescongenitas` | 56 | `infeccoes-congenitas` | pronto (fontes a ler) | PCDT de transmissão vertical do MS (sífilis, HIV, hepatites), toxoplasmose congênita, RN exposto à tuberculose |
 | 9 | `ass-reanimacao` | 52 | `reanimacao-neonatal` | pronto (fontes a ler) | SBP Reanimação Neonatal, ILCOR/AHA |
-| 10 | `ass-ivas` | 46 | `vias-aereas-superiores` | **próximo** | SBP/AAP (otite média aguda), IDSA (faringite), SBORL (sinusite) |
+| 10 | `ass-ivas` | 46 | `vias-aereas-superiores` | pronto (fontes a ler) | SBP/AAP (otite média aguda), IDSA (faringite), SBORL (sinusite) |
 
 **Bloco seguinte da pediatria:** icterícia neonatal (45; AAP 2022), triagem neonatal (43; PNTN do MS), abdome agudo do RN (41), maus-tratos (27), convulsão febril (27), prematuridade (25), desconforto respiratório do RN (23), exame do RN (20), corpo estranho (18), transmissão vertical do HIV (16; se não entrar em infecções congênitas), sepse neonatal (15), intussuscepção e Meckel (11) e febre sem foco (11), estes dois agrupados com emergências.
 
@@ -94,3 +94,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 18/11/2026 | **`infeccoes-congenitas` escrito**: 5 capítulos, 9 seções, 62 de 63 questões (1 anulada fora). Sífilis (mãe adequadamente tratada, criança exposta, investigar e tratar), toxoplasmose (avidez, tratamento de 12 meses), CMV, rubéola, herpes, varicela, hepatite B, HTLV, RN exposto à tuberculose e tabela TORCHS no fim. Pendente: as provas divergem na profilaxia do RN exposto à TB (isoniazida 3 meses, Manual 2019 × rifampicina nas recentes): ler a nota técnica vigente. Próximo: `reanimacao-neonatal`. |
 | 18/11/2026 | **Rodada de imagens**: +19 casos ilustrados do banco nos resumos (só figuras clínicas, curvas, traçados e radiografias; tabelas de referência ficaram de fora) e 4 esquemas autorais em SVG (planos A/B/C, conduta no RN de mãe com sífilis, ritmos da PCR, Tanner e estirão). Wikimedia devolveu 429 de novo: fotos externas seguem em `PENDENCIAS.md`, item 11. Regra para os próximos: cada resumo novo já sai com seus esquemas. |
 | 18/11/2026 | **`reanimacao-neonatal` escrito**: 4 capítulos, 7 seções, 57 de 58 questões (1 anulada fora), com esquema autoral do fluxo do PRN e 2 casos. Transição e avaliação, clampeamento (tardio × imediato, mecônio, prematuro), passos iniciais, VPP (FiO2 21% × 30%), técnica e via aérea avançada, massagem 3:1 e adrenalina. Próximo: `vias-aereas-superiores`. |
+| 18/11/2026 | **`vias-aereas-superiores` escrito**: 4 capítulos, 8 seções, 47 de 48 questões (1 desatualizada sem reposição fora). Resfriado e sintomáticos, influenza (oseltamivir no menor de 5 anos), faringite estreptocócica, mononucleose, PFAPA e abscessos, OMA, mastoidite, celulite orbitária, crupe × epiglotite × traqueíte (tabela e esquema). **Os 10 assuntos de pediatria da seção 3 estão prontos**; segue o bloco seguinte (icterícia neonatal primeiro). |
