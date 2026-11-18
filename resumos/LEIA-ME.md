@@ -97,4 +97,5 @@ Marcações dentro do texto:
 | `emergencias-respiratorias-pcr` | `ass-emergped-respiratoria` | 66 | 1 (anulada) |
 | `diarreia-desidratacao` | `ass-dda` | 62 | 3 (anuladas) |
 | `infeccoes-congenitas` | `ass-neo-infeccoescongenitas` | 62 | 1 (anulada) |
+| `reanimacao-neonatal` | `ass-reanimacao` | 57 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
