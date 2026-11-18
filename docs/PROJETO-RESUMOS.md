@@ -20,7 +20,7 @@ Estado do banco em 18/11/2026 (`npm run dados -- resumo-assuntos`): 237 assuntos
 | 15–39 | 96 | resumo próprio ou agrupado com assunto vizinho (≈ 2 por resumo) |
 | < 15 | 49 | agrupados no resumo do assunto vizinho, ou `foraDoEscopo` até ter questões |
 
-**Previsão: cerca de 150 resumos** no banco inteiro (92 + ≈ 50 agrupados + ajustes). Prontos: 3 (`exantematicas`, `puericultura`, `insuficiencia-cardiaca`).
+**Previsão: cerca de 150 resumos** no banco inteiro (92 + ≈ 50 agrupados + ajustes). Prontos: 4 (`exantematicas`, `puericultura`, `calendario-vacinal`, `insuficiencia-cardiaca`).
 
 Na **pediatria** (25 assuntos de Neonatologia, Crescimento e Desenvolvimento, Infectologia Pediátrica e Emergências Pediátricas) a previsão é de **cerca de 20 resumos**.
 
@@ -31,8 +31,8 @@ A ordem segue o número de questões reais. Os prontos ficam na lista para entra
 | # | Assunto | Questões reais | Tema (pasta) | Situação | Diretrizes de que depende (a conferir na escrita) |
 |---|---|---|---|---|---|
 | 1 | `ass-puericultura` | 146 | `puericultura` | pronto; diretrizes marcadas | curvas da OMS, SBP (aleitamento, suplementação de ferro e vitaminas), Caderneta da Criança |
-| 2 | `ass-calendariovacinal` | 93 | `calendario-vacinal` | **próximo** | Calendário Nacional do PNI (muda todo ano), SBP/SBIm |
-| 3 | `ass-infectoped-pneumonia` | 71 | `pneumonia-bronquiolite` | a fazer | SBP, OMS (AIDPI), AAP (bronquiolite), profilaxia do VSR (nirsevimabe/palivizumabe) |
+| 2 | `ass-calendariovacinal` | 93 | `calendario-vacinal` | pronto (fontes a ler) | Calendário Nacional do PNI (muda todo ano), SBP/SBIm |
+| 3 | `ass-infectoped-pneumonia` | 71 | `pneumonia-bronquiolite` | **próximo** (com coqueluche) | SBP, OMS (AIDPI), AAP (bronquiolite), profilaxia do VSR (nirsevimabe/palivizumabe) |
 | 4 | `ass-crescimentopuberdade` | 66 | `crescimento-puberdade` | a fazer | estágios de Tanner (estável), SBEM/SBP (puberdade precoce) |
 | 5 | `ass-emergped-respiratoria` | 64 | `emergencias-respiratorias-pcr` | a fazer | AHA PALS (suporte avançado de vida pediátrico), GINA (crise de asma) |
 | 6 | `ass-exantematicas` | 60 | `exantematicas` | pronto, com tabela comparativa; falta coqueluche | Guia de Vigilância do MS, AHA Kawasaki 2024, PNI |
@@ -43,7 +43,7 @@ A ordem segue o número de questões reais. Os prontos ficam na lista para entra
 
 **Bloco seguinte da pediatria:** icterícia neonatal (45; AAP 2022), triagem neonatal (43; PNTN do MS), abdome agudo do RN (41), maus-tratos (27), convulsão febril (27), prematuridade (25), desconforto respiratório do RN (23), exame do RN (20), corpo estranho (18), transmissão vertical do HIV (16; se não entrar em infecções congênitas), sepse neonatal (15), intussuscepção e Meckel (11) e febre sem foco (11), estes dois agrupados com emergências.
 
-**Coqueluche** está hoje em `foraDoEscopo` de `exantematicas`. Entra como capítulo de `pneumonia-bronquiolite` (tosse do lactente) ou de `calendario-vacinal`: decidir na escrita deste último.
+**Coqueluche** está hoje em `foraDoEscopo` de `exantematicas`. Decidido na escrita de `calendario-vacinal`: entra como capítulo de `pneumonia-bronquiolite` (tosse do lactente); o calendário cobre só a dTpa da gestante.
 
 ## 4. Mapeamento: o que foi usado e o que muda com diretriz
 
@@ -86,3 +86,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 |---|---|
 | 18/11/2026 | projeto aberto; plano, previsão e ordem da pediatria |
 | 18/11/2026 | **fase 0 feita.** Fontes com `id` e seções de conduta com `diretrizes` nos 3 resumos (exantemáticas: 7 seções; puericultura: 12; IC: 8; ids de seção mantidos). `ferramentas/lib-resumos.mjs` lê os resumos; `npm run resumo` recusa fonte sem id, id repetido e diretriz fora de `fontes`, e lista as seções por diretriz; `npm run auditoria-padrao -- diretriz <x>` lista também as seções de resumos (casa pelo id da tabela, id ou texto da fonte) e o `MAPA-DE-DIRETRIZES.md` ganhou a tabela "Resumos". Tela (`09e`): parágrafo da prosa em Markdown de tabela vira `<table>` rolável, com cada célula destacável; seção com `diretrizes` mostra "Conduta conforme: …". Exantemáticas ganhou o capítulo final `comparativo` (9 doenças × 9 colunas, `conferir: true`). Teste em `testes/resumos.test.mjs`. Próximo: `calendario-vacinal`. |
+| 18/11/2026 | **`calendario-vacinal` escrito**: 6 capítulos, 17 seções, 95 de 108 questões (13 fora: anuladas e desatualizadas com reposição); todas as seções de calendário com `diretrizes`; seção "Para decorar" com mnemônicos autorais e figura do primeiro ano; 4 casos ilustrados. Pendências: ler a Instrução Normativa 2026 (reforço de pólio aos 4 anos diverge entre as leituras anotadas nas questões) e datar `lidoEm`. Coqueluche vai para `pneumonia-bronquiolite`, que é o próximo. |

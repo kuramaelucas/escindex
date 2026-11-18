@@ -5,5 +5,6 @@
 (window.EscResumos = window.EscResumos || { lista: [], registrar(r){ this.lista.push(r); } }).catalogo = [
   { id: "exantematicas", titulo: "Doenças exantemáticas na infância", area: "Pediatria · Infectologia", assunto: "ass-exantematicas" },
   { id: "puericultura", titulo: "Puericultura", area: "Pediatria · Crescimento e Desenvolvimento", assunto: "ass-puericultura" },
+  { id: "calendario-vacinal", titulo: "Calendário vacinal", area: "Pediatria · Crescimento e Desenvolvimento", assunto: "ass-calendariovacinal" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

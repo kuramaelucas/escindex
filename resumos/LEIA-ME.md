@@ -91,4 +91,5 @@ Marcações dentro do texto:
 |---|---|---|---|
 | `exantematicas` | `ass-exantematicas` | 53 | 7 (coqueluche) |
 | `puericultura` | `ass-puericultura` | 156 | — |
+| `calendario-vacinal` | `ass-calendariovacinal` | 95 | 13 (8 anuladas; 5 desatualizadas, que entram pelas reposições) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |

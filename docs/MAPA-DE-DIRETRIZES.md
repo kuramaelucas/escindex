@@ -206,6 +206,12 @@ Seções de `resumos/` marcadas com a diretriz de que dependem: quando sair edi�
 
 | Resumo | Fonte (id) | Lida em | Seções |
 |---|---|---|---|
+| `calendario-vacinal` | Ministério da Saúde — Calendário Nacional de Vacinação e Instrução Normativa do ano (PNI) (`calendario-vacinal`) | — | cri-nascer, cri-primeiro-ano, cri-12-15, cri-4-anos, cri-mnemonicos, ado-hpv, ado-meningo-dengue, ado-gestante, ado-sarampo-influenza, esp-bcg, esp-hepb-prematuro, esp-rota-polio |
+| `calendario-vacinal` | Ministério da Saúde — Manual de Normas e Procedimentos para Vacinação (2014) (`ms-normas-vacinacao`) | — | log-regras, esp-bcg, con-adiar |
+| `calendario-vacinal` | Ministério da Saúde — Manual dos Centros de Referência para Imunobiológicos Especiais (CRIE) (`ms-crie`) | — | esp-hepb-prematuro, con-vivos |
+| `calendario-vacinal` | Ministério da Saúde — Manual de Vigilância Epidemiológica de Eventos Supostamente Atribuíveis à Vacinação ou Imunização (ESAVI) (`ms-esavi`) | — | eve-pertussis |
+| `calendario-vacinal` | Ministério da Saúde — Nota Técnica nº 193/2024 (faixa etária da vacina rotavírus humano) (`nt-rotavirus`) | — | esp-rota-polio |
+| `calendario-vacinal` | Ministério da Saúde — Guia de Vigilância em Saúde (sarampo, tétano acidental) (`ms-guia-vigilancia`) | — | ado-sarampo-influenza, eve-tetano |
 | `exantematicas` | Ministério da Saúde — Guia de Vigilância em Saúde (sarampo, rubéola, varicela) (`ms-guia-vigilancia`) | — | sar-diag, sar-trat, sar-vigil, rub-tudo, var-tudo |
 | `exantematicas` | American Heart Association — Diagnosis and Management of Kawasaki Disease (2024) (`aha-kawasaki`) | — | kaw-crit, kaw-trat |
 | `exantematicas` | SBP / Calendário Nacional de Vacinação (PNI) (`calendario-vacinal`) | — | sar-vigil, var-tudo |
