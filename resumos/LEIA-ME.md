@@ -110,3 +110,4 @@ Marcações dentro do texto:
 | `ist` | `ass-ist` | 196 | 6 (3 anuladas e 1 desatualizada, com reposição no resumo; 1 de toxoplasmose; 1 de anatomia) |
 | `diabetes` | `ass-dm` | 140 | 4 (2 anuladas com reposição no resumo; 1 anulada e 1 desatualizada sem reposição) |
 | `hipertensao` | `ass-has` | 109 | 7 (4 anuladas com reposição no resumo; 1 anulada sem reposição; veia cava superior; vacina de covid) |
+| `cirrose` | `ass-cirrose` | 81 | 1 (anulada) |

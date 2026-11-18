@@ -23,5 +23,6 @@
   { id: "ist", titulo: "Infecções sexualmente transmissíveis", area: "Clínica Médica · Infectologia", assunto: "ass-ist" },
   { id: "diabetes", titulo: "Diabetes mellitus", area: "Clínica Médica · Endocrinologia", assunto: "ass-dm" },
   { id: "hipertensao", titulo: "Hipertensão arterial", area: "Clínica Médica · Cardiologia", assunto: "ass-has" },
+  { id: "cirrose", titulo: "Cirrose e complicações", area: "Clínica Médica · Gastroenterologia", assunto: "ass-cirrose" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];
