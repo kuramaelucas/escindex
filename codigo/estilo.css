@@ -919,7 +919,7 @@ html[data-theme="dark"]{
   --resumo-aten:#cdb07a; --resumo-aten-fraco:rgba(205,176,122,.4); --resumo-aten-fundo:rgba(205,176,122,.09);
   --resumo-ok:#8fb89b; --resumo-pisca:rgba(250,204,21,.25);
 }
-.resumo-caderno{--resumo-escala:1;max-width:46rem;margin:0 auto;font:calc(1.06rem * var(--resumo-escala))/1.72 "Source Serif 4",Georgia,"Times New Roman",serif;color:var(--ink)}
+.resumo-caderno{--resumo-escala:1;max-width:58rem;margin:0 auto;min-width:0;font:calc(1.06rem * var(--resumo-escala))/1.72 "Source Serif 4",Georgia,"Times New Roman",serif;color:var(--ink)}
 .resumo-caderno p{margin:0 0 .9em}
 .resumo-rotulo{font:600 .72rem/1.4 system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .resumo-titulo{font-size:2em;line-height:1.15;margin:.2em 0 .4em;text-wrap:balance}
@@ -928,8 +928,17 @@ html[data-theme="dark"]{
 .resumo-legenda span{display:inline-flex;align-items:center;gap:.4rem}
 .resumo-marca{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none;align-self:center}
 .resumo-marca.revisar{background:var(--resumo-rev)}.resumo-marca.atencao{background:var(--resumo-aten)}.resumo-marca.dominado{background:var(--resumo-ok)}
-.resumo-sumario{margin:1.8rem 0 0}
-.resumo-sumario ol{list-style:none;padding:0;margin:.5rem 0 0}
+/* sumário em coluna à direita, fixa ao rolar (o texto começa na margem de leitura habitual); recolhida, o texto ocupa a largura toda */
+.resumo-layout{display:grid;grid-template-columns:minmax(0,1fr) 17rem;gap:2rem;align-items:start}
+.resumo-layout.lateral-fechada{grid-template-columns:minmax(0,1fr)}
+.resumo-layout.lateral-fechada .resumo-lateral{display:none}
+.resumo-lateral{position:sticky;top:5rem;max-height:calc(100vh - 6rem);overflow-y:auto;font:.85rem/1.45 system-ui,sans-serif;padding-left:.8rem;border-left:1px solid var(--border);order:2}
+.resumo-lateral-cab{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
+.resumo-lateral ol{list-style:none;padding:0;margin:0}
+@media (max-width:899px){
+  .resumo-layout{grid-template-columns:minmax(0,1fr)}
+  .resumo-lateral{position:fixed;inset:0 0 0 auto;top:0;max-height:none;width:min(85vw,20rem);z-index:40;background:var(--surface);padding:1rem;box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+}
 .resumo-cap-item{padding:.4rem 0;border-bottom:1px solid var(--border)}
 .resumo-linha{display:flex;gap:.6rem;align-items:baseline}
 .resumo-sub{padding-left:2.2em !important;margin:0 !important;font-size:.92em}

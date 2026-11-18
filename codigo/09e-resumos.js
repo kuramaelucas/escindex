@@ -25,6 +25,7 @@
 
 const RESUMO_ESCALAS = [0.88, 1, 1.12, 1.25, 1.4];
 const RESUMO_CHAVE_FONTE = "esc_resumo_fonte";
+const RESUMO_CHAVE_LATERAL = "esc_resumo_sumario_fechado";   // sumário lateral recolhido, por aparelho
 const _resumoCargas = {};       // caminho -> Promise da carga do script
 let _resumoTextos = {};         // alvo -> texto bruto do trecho (com ** e [[…]]), para repintar após um destaque
 let _resumoFrases = [];         // frases ligadas a questões, na ordem da tela: {chave, cap, ids}
@@ -164,7 +165,24 @@ function irParaFraseDoResumo(chave){
 // o sumário rola até a seção sem mexer no endereço (o #/rota é do roteador)
 function irParaNoResumo(id){
   const el = document.getElementById(id);
+  // no celular o sumário cobre o texto: fecha ao escolher (sem gravar a preferência)
+  if(window.innerWidth < 900){ const l = document.querySelector(".resumo-layout"); if(l) l.classList.add("lateral-fechada"); }
   if(el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* ---------------------------- sumário lateral ----------------------------
+   O sumário fica numa coluna à direita do texto (fixa ao rolar) em vez de no topo:
+   quem está no meio da leitura navega sem voltar ao início. Recolher é escolha de
+   tela, como a letra: fica neste aparelho. No celular a coluna não cabe, então o
+   sumário vira uma gaveta que abre por cima e fecha ao escolher o capítulo. */
+function _sumarioDoResumoFechado(){
+  try { const v = localStorage.getItem(RESUMO_CHAVE_LATERAL); return v === null ? window.innerWidth < 900 : v === "1"; } catch(e){ return window.innerWidth < 900; }
+}
+function alternarSumarioDoResumo(){
+  const el = document.querySelector(".resumo-layout");
+  if(!el) return;
+  const fechado = el.classList.toggle("lateral-fechada");
+  try { localStorage.setItem(RESUMO_CHAVE_LATERAL, fechado ? "1" : "0"); } catch(e){ /* sem armazenamento: vale só agora */ }
 }
 
 /* ---------------------------- tamanho da letra ---------------------------- */
@@ -322,12 +340,18 @@ function _renderCaderno(r){
   return `<div class="flex justify-between items-center gap-1 quebra mb-2">
       <button class="link-btn" onclick="abrirResumo(null)">← Todos os resumos</button>
       <div class="flex gap-1 items-center quebra">
+        <button class="btn btn-ghost btn-sm" onclick="alternarSumarioDoResumo()" aria-label="Mostrar ou recolher o sumário">${iconeSvg("menu")} Sumário</button>
         <span class="text-xs muted">Letra</span>
         <button class="btn btn-ghost btn-sm" onclick="mudarFonteDoResumo(-1)" aria-label="Diminuir a letra">A−</button>
         <button class="btn btn-ghost btn-sm" onclick="mudarFonteDoResumo(1)" aria-label="Aumentar a letra">A+</button>
         <button class="btn btn-ghost btn-sm" onclick="abrirModalFeedback('${escapeHtml(r.id)}')">${iconeSvg("message")} Feedback</button>
       </div>
     </div>
+    <div class="resumo-layout${_sumarioDoResumoFechado() ? " lateral-fechada" : ""}">
+    <aside class="resumo-lateral" aria-label="Sumário">
+      <div class="resumo-lateral-cab"><span class="resumo-rotulo">Sumário</span><button class="resumo-ir" onclick="alternarSumarioDoResumo()" title="Recolher o sumário">recolher »</button></div>
+      <ol>${sumario}</ol>
+    </aside>
     <article class="resumo-caderno" style="--resumo-escala:${RESUMO_ESCALAS[_indiceDaFonteDoResumo()]}">
       <div class="resumo-rotulo">Resumo <span class="badge badge-accent">Beta</span></div>
       <h1 class="resumo-titulo">${escapeHtml(r.titulo)}</h1>
@@ -338,12 +362,12 @@ function _renderCaderno(r){
           : `<div>Você ainda não fez questões deste tema: o resumo aparece na ordem do autor. Ao responder as questões, o texto passa a marcar onde você mais erra.</div>`}
         <div class="text-xs muted">Selecione um trecho para <strong>destacar</strong> em azul ou virar <strong>flashcard</strong>.</div>
       </div>
-      <nav class="resumo-sumario" aria-label="Sumário"><div class="resumo-rotulo">Sumário</div><ol>${sumario}</ol></nav>
       ${corpo.map(({ d, c, intro, secs }) => `<section class="resumo-capitulo" id="resumo-c-${escapeHtml(d.id)}">
         <div class="resumo-cap-cab"><div class="resumo-rotulo">Capítulo ${c + 1}</div><h2>${escapeHtml(d.titulo)}</h2></div>
         <div class="resumo-introducao">${intro}</div>${secs.join("")}</section>`).join("")}
       <p class="resumo-fim">Fontes a conferir: ${escapeHtml((r.fontes || []).map(x => x.texto).join("; "))}.</p>
-    </article>`;
+    </article>
+    </div>`;
 }
 
 function _htmlSecaoDoResumo(r, cap, numero, { f, t }){
