@@ -528,7 +528,8 @@ function abrirFormularioFlashcard(id, opts){
   /* Criar cartão pessoal é uma tela só: a lista, que abre com UMA linha e
      cresce (um cartão ou vários). O formulário abaixo fica para editar, para
      virar flashcard uma questão (assunto e gabarito vêm dela) e para a equipe. */
-  if(!id && !opts.questaoId && !(podeGerirConteudo() && !state.modoAluno)){ abrirCartoesEmLista(); return; }
+  // opts.verso/opts.frente: cartão que já nasce de um trecho (resumo) vai direto ao formulário preenchido
+  if(!id && !opts.questaoId && !opts.verso && !opts.frente && !(podeGerirConteudo() && !state.modoAluno)){ abrirCartoesEmLista(); return; }
   const c = id ? (db.flashcards||[]).find(x=>x.id===id) : null;
   if(c && c.usuarioId && c.usuarioId!==u.id){ toast("Este cartão é de outro usuário.", "err"); return; }
   if(c && !c.usuarioId && !podeGerirConteudo()){ toast("Cartões da equipe só podem ser editados por professores e administradores de conteúdo.", "err"); return; }
@@ -536,7 +537,7 @@ function abrirFormularioFlashcard(id, opts){
   const daEquipe = podeGerirConteudo() && !state.modoAluno && !(c && c.usuarioId);
   const questao = opts.questaoId ? getQuestao(opts.questaoId) : null;
   // assunto pré-selecionado: o do cartão em edição, ou o da questão de origem
-  const assuntoEscolhido = c ? c.assuntoId : (questao ? questao.assuntoId : null);
+  const assuntoEscolhido = c ? c.assuntoId : (questao ? questao.assuntoId : (opts.assuntoId || null));
   // "sem assunto" vai no topo (e já marcado) ao editar uma anotação; nos outros
   // caminhos fica no fim, para o primeiro assunto continuar sendo o padrão
   const semAssuntoNoTopo = !!(c && !c.assuntoId);
@@ -562,8 +563,8 @@ function abrirFormularioFlashcard(id, opts){
       ${questao ? `<div class="hint mt-1">Já veio marcado com o assunto da questão (${escapeHtml(nomeAssunto(questao.assuntoId))}). Troque se o seu cartão for sobre outra coisa.</div>` : ""}
     </div>
     ${!daEquipe ? htmlCampoConjunto(u.id, c ? c.conjunto : "", "fcConjunto") : ""}
-    <div class="field"><label class="label">Frente (a pergunta)</label><textarea class="textarea" id="fcFrente" style="min-height:80px" placeholder="${questao?"Ex.: o conceito que faltou para você acertar esta questão, virado em pergunta curta.":"Ex.: Qual é o tempo-alvo para angioplastia primária no IAM com supra?"}">${escapeHtml(c?c.frente:"")}</textarea></div>
-    <div class="field"><label class="label">Verso (a resposta)</label><textarea class="textarea" id="fcVerso" style="min-height:120px" placeholder="Resposta direta, em uma ou duas frases, com a justificativa essencial.">${escapeHtml(c?c.verso:"")}</textarea></div>
+    <div class="field"><label class="label">Frente (a pergunta)</label><textarea class="textarea" id="fcFrente" style="min-height:80px" placeholder="${questao?"Ex.: o conceito que faltou para você acertar esta questão, virado em pergunta curta.":"Ex.: Qual é o tempo-alvo para angioplastia primária no IAM com supra?"}">${escapeHtml(c?c.frente:(opts.frente||""))}</textarea></div>
+    <div class="field"><label class="label">Verso (a resposta)</label><textarea class="textarea" id="fcVerso" style="min-height:120px" placeholder="Resposta direta, em uma ou duas frases, com a justificativa essencial.">${escapeHtml(c?c.verso:(opts.verso||""))}</textarea></div>
     ${questao && !c ? `<button class="link-btn mb-2" onclick="preencherCartaoComGabarito('${questao.id}')">Preencher o verso com o gabarito comentado</button>` : ""}
     <div class="field">
       <label class="label">Imagem (opcional — ECG, fundo de olho, lesão de pele...)</label>

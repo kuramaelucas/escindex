@@ -187,7 +187,7 @@ function alterarPapelUsuario(id, papel){
 /* ==========================================================================
    6. ROTEADOR
    ========================================================================== */
-const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Flashcards", historico:"Histórico de Atividade",
+const ROUTE_TITLES = { inicio:"Início", estudar:"Estudar", resumos:"Resumos (Beta)", sessao:"Sessão de estudo", revisao:"Revisão", flashcards:"Flashcards", historico:"Histórico de Atividade",
   simulados:"Provas e Simulados", "simulado-ativo":"Simulado", "provas-antigas":"Provas e Simulados",
   favoritos:"Favoritos", "livro-ouro":"Livro de Ouro", desempenho:"Meu Desempenho", metas:"Estudar", perfil:"Perfil e configurações", "meu-grupo":"Meu Grupo",
   "criar-simulado":"Criar Simulado", "material-pdf":"Material em PDF", "revisao-dificeis":"Questões Difíceis", "fila-duvidas":"Fila de Dúvidas", "revisao-formatacao":"Revisar Formatação", 
@@ -348,6 +348,7 @@ function render(){
   switch(state.route){
     case "inicio": conteudo = renderInicio(); break;
     case "estudar": conteudo = renderEstudar(); break;
+    case "resumos": conteudo = renderResumos(); break;
     case "historico": conteudo = renderHistorico(); break;
     case "livro-ouro": conteudo = renderLivroOuro(); break;
     // abrir /sessao sem sessão na memória (link salvo, F5, voltar do celular)

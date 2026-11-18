@@ -884,16 +884,138 @@ test("dois aparelhos na mesma fila: resposta já feita em outro aparelho não é
     confirmarResposta("certeza");
     const depois = db.respostas.filter(x => x.questaoId === ids[0] && x.usuarioId === u.id).length;
     const adotou = state.sessaoAtual.respostasSessao[0] && state.sessaoAtual.respostasSessao[0].id === doOutro.id;
+    // depois de uma sincronização, a fila aberta já mostra a questão como respondida
+    iniciarSessaoComLista(ids.map(id => ({questaoId:id, motivo:"teste"})), "pratica");
+    const s2 = state.sessaoAtual;
+    db.respostas.push({ id:uid("r"), usuarioId:u.id, questaoId:ids[1], alternativaEscolhida:"A", correta:false,
+      confianca:"duvida", data:hojeISO(), sessaoId:s2.id, origem:"lista", tentativa:1 });
+    const absorveu = absorverRespostasDeOutroAparelho() && !!respostaDoIndice(state.sessaoAtual, 1) && !respostaDoIndice(state.sessaoAtual, 0);
+    state.sessaoAtual = s;
     // ao guardar, a fila não perde a resposta do outro aparelho
     salvarSessaoEmAndamento();
     const guardada = db.sessoesEmAndamento[u.id].respostasSessao[0];
     // conjunto concluído em outro aparelho não volta como "em andamento"
     const g = db.sessoesEmAndamento[u.id];
     db.sessoes.push({ id:g.id, usuarioId:u.id, tipo:"pratica", data:hojeISO(), total:3, acertos:1, itens:[] });
-    return { antes, depois, adotou, guardada: guardada && guardada.id === doOutro.id, volta: !!sessaoEmAndamentoDe(u) };
+    return { antes, depois, adotou, guardada: guardada && guardada.id === doOutro.id, volta: !!sessaoEmAndamentoDe(u), absorveu };
   });
   assert.equal(r.depois, r.antes, "não pode haver segunda resposta");
   assert.ok(r.adotou && r.guardada);
   assert.equal(r.volta, false);
+  assert.ok(r.absorveu, "a fila aberta deve absorver a resposta do outro aparelho");
+  await contexto.close();
+});
+
+test("ao minimizar a janela, o que está na fila da nuvem sobe na hora", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(() => {
+    // este servidor já sobe com a nuvem configurada: os gatilhos já estão ligados
+    let chamadas = 0, opcoes = null;
+    window.nuvemConectado = () => true;
+    window.nuvemPendentes = () => 2;
+    window.nuvemSincronizarAgora = o => { chamadas++; opcoes = o; return Promise.resolve(true); };
+    const esconder = h => { Object.defineProperty(document, "hidden", { configurable:true, get:() => h }); document.dispatchEvent(new Event("visibilitychange")); };
+    esconder(true);
+    const aoEsconder = chamadas;
+    window.nuvemPendentes = () => 0;
+    esconder(true);
+    return { aoEsconder, semFila: chamadas - aoEsconder, semRedesenhar: opcoes && opcoes.semRedesenhar };
+  });
+  assert.equal(r.aoEsconder, 1);
+  assert.equal(r.semFila, 0, "sem nada na fila não sincroniza");
+  assert.equal(r.semRedesenhar, true);
+  await contexto.close();
+});
+
+test("envio urgente: sobe só respostas e a fila aberta, com keepalive quando cabe, e não perde o que mudou no caminho", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(async () => {
+    nuvemSessao = { usuarioId:"u1", token:"t", refresh:"r" };
+    db.filaNuvem = [];
+    const chamadas = [];
+    window.fetch = async (url, init) => { chamadas.push({ url:String(url), keepalive:init.keepalive }); return new Response("", { status:201 }); };
+    nuvemEnfileirar("respostas", { id:"r-1", usuario_id:"u1", questao_id:"q-x", data:"2026-11-17" });
+    nuvemEnfileirar("sessao_em_andamento", { usuario_id:"u1", dados:{ marcadas:{} } });
+    nuvemEnfileirar("favoritos", { usuario_id:"u1", questao_id:"q-x", data:"2026-11-17", removido:false });   // não é urgente
+    await nuvemEnviarUrgente();
+    const pequeno = { tabelas: chamadas.map(c => c.url.split("/").pop()), keepalive: chamadas.map(c => c.keepalive),
+                      restou: db.filaNuvem.map(o => o.tabela) };
+    // corpo grande demais para keepalive: sobe do mesmo jeito, sem a marca
+    chamadas.length = 0;
+    nuvemEnfileirar("sessao_em_andamento", { usuario_id:"u1", dados:{ lixo:"x".repeat(70000) } });
+    await nuvemEnviarUrgente();
+    const grande = chamadas.map(c => c.keepalive);
+    // a fila aberta mudou enquanto o envio estava em voo: a versão nova fica
+    nuvemEnfileirar("sessao_em_andamento", { usuario_id:"u1", dados:{ v:1 } });
+    window.fetch = async () => { nuvemEnfileirar("sessao_em_andamento", { usuario_id:"u1", dados:{ v:2 } }); return new Response("", { status:201 }); };
+    await nuvemEnviarUrgente();
+    const nova = db.filaNuvem.filter(o => o.tabela === "sessao_em_andamento").map(o => o.registro.dados.v);
+    return { pequeno, grande, nova };
+  });
+  assert.deepEqual(r.pequeno.tabelas.sort(), ["respostas", "sessao_em_andamento"]);
+  assert.deepEqual(r.pequeno.keepalive, [true, true]);
+  assert.deepEqual(r.pequeno.restou, ["favoritos"]);
+  assert.deepEqual(r.grande, [false]);
+  assert.deepEqual(r.nova, [2], "a versão mais nova da fila aberta não pode ser descartada");
+  await contexto.close();
+});
+
+test("antes de montar ou retomar um conjunto, baixa da nuvem — e segue depois do prazo se ela demorar", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(async () => {
+    nuvemSessao = { usuarioId:"u1", token:"t" };
+    nuvemEstado.ultimaSyncEm = null; nuvemEstado.sincronizando = false;
+    const ordem = [];
+    // 1) sincronização rápida: continua depois dela
+    window.nuvemSincronizarAgora = () => new Promise(res => setTimeout(() => { ordem.push("sync"); res(true); }, 80));
+    await new Promise(res => nuvemSincronizarAntesDe(() => { ordem.push("continuou"); res(); }, 1500));
+    // 2) nuvem travada: continua pelo prazo
+    window.nuvemSincronizarAgora = () => new Promise(() => {});
+    const t0 = Date.now();
+    await new Promise(res => nuvemSincronizarAntesDe(res, 200));
+    const esperou = Date.now() - t0;
+    // 3) sincronizou há instantes: nem espera
+    nuvemEstado.ultimaSyncEm = new Date().toISOString();
+    let direto = false; nuvemSincronizarAntesDe(() => { direto = true; });
+    // 4) sem nuvem conectada: continua na hora
+    nuvemSessao = null; nuvemEstado.ultimaSyncEm = null;
+    let semNuvem = false; nuvemSincronizarAntesDe(() => { semNuvem = true; });
+    return { ordem, esperou, direto, semNuvem };
+  });
+  assert.deepEqual(r.ordem, ["sync", "continuou"]);
+  assert.ok(r.esperou >= 180 && r.esperou < 1000, "esperou " + r.esperou);
+  assert.ok(r.direto && r.semNuvem);
+  await contexto.close();
+});
+
+test("ao confirmar uma resposta, o envio urgente é agendado; ao fechar a página, sai na hora", async () => {
+  const { pagina, contexto } = await abrir();
+  await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+  const r = await pagina.evaluate(async () => {
+    fazerLoginDemo("aluno");
+    let urgentes = 0;
+    nuvemSessao = { usuarioId: usuarioAtual().id, token:"t" };
+    window.nuvemConectado = () => true;
+    window.nuvemPendentes = () => 1;
+    window.nuvemEnviarUrgente = () => { urgentes++; return Promise.resolve(true); };
+    window.nuvemSincronizarAgora = () => Promise.resolve(true);
+    const u = usuarioAtual();
+    const id = questoesParaEstudo(u.id)[0].id;
+    iniciarSessaoComLista([{questaoId:id, motivo:"teste"}], "pratica");
+    state.sessaoAtual.marcadas[id] = "A";
+    confirmarResposta("certeza");
+    const logo = urgentes;
+    await new Promise(res => setTimeout(res, 900));
+    const depoisDoAtraso = urgentes;
+    window.dispatchEvent(new Event("pagehide"));
+    document.dispatchEvent(new Event("freeze"));
+    return { logo, depoisDoAtraso, aoFechar: urgentes - depoisDoAtraso };
+  });
+  assert.equal(r.logo, 0, "espera um instante para juntar respostas seguidas");
+  assert.equal(r.depoisDoAtraso, 1);
+  assert.equal(r.aoFechar, 2);
   await contexto.close();
 });

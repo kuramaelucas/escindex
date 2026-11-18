@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caderno de Exantemáticas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- Resumos adaptativos (resumos/LEIA-ME.md) em forma de livro-texto: sumário, capítulos
+     (doenças) com introdução, seções com texto corrido e um quadro de pontos-chave.
+     O erro do aluno aparece SÓ como cor discreta (legenda no topo), sem números na
+     página: a leitura vem primeiro, o sinal só orienta onde parar mais.
+     O erro vem do backup da plataforma (Perfil › Seus dados); nada sai do navegador. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<script src="exantematicas/resumo.js"></script>
+<style>
+/* Livro-texto: folha clara, serifa de leitura longa, rótulos em sans condensada.
+   Dois tons apagados (tijolo e ocre) marcam onde revisar; o que o aluno domina não leva cor. */
+:root{
+  --papel:#f6f7f9; --folha:#ffffff; --linha:#e3e6eb; --tinta:#22262e; --suave:#69707d; --azul:#2b5797;
+  --rev:#b7695c; --rev-f:#faf3f1; --aten:#bf9a55; --aten-f:#fbf7ee; --ok:#7aa386; --quadro:#f3f5f8; --aceso:#fff1b8;
+  --serifa:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --rotulo:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --papel:#14161a; --folha:#1b1e23; --linha:#2b3038; --tinta:#e6e7eb; --suave:#9aa1ad; --azul:#93b4e6;
+  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; --aceso:#4a4220; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --papel:#14161a; --folha:#1b1e23; --linha:#2b3038; --tinta:#e6e7eb; --suave:#9aa1ad; --azul:#93b4e6;
+  --rev:#c98a7f; --rev-f:#2a2120; --aten:#cdb07a; --aten-f:#29251c; --ok:#8fb89b; --quadro:#20242a; --aceso:#4a4220; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--papel);color:var(--tinta);font:17.5px/1.7 var(--serifa)}
+.folha{max-width:780px;margin:24px auto 64px;background:var(--folha);border:1px solid var(--linha);border-radius:4px;
+  padding-block:44px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.folha{padding-left:72px;padding-right:72px}}
+@media (max-width:819px){.folha{margin:0;border:0;border-radius:0}}
+.rotulo{font-family:var(--rotulo);font-weight:600;letter-spacing:.07em;text-transform:uppercase;font-size:.72rem;color:var(--suave)}
+h1{font-size:2.2rem;line-height:1.15;margin:.2em 0 .3em;text-wrap:balance}
+h2{font-size:1.65rem;line-height:1.2;margin:0;text-wrap:balance}
+h3{font-size:1.15rem;margin:0;text-wrap:balance}
+p{margin:0 0 .9em}
+a{color:var(--azul)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+.aluno{display:grid;gap:10px;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:14px 0;margin:20px 0 8px;font:.85rem/1.5 var(--rotulo);color:var(--suave)}
+.aluno .acoes{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button,select{font:500 .85rem var(--rotulo);border-radius:6px;padding:6px 12px;cursor:pointer;border:1px solid var(--linha);background:var(--folha);color:var(--azul)}
+input[type=file]{font:.85rem var(--rotulo);max-width:100%;color:var(--suave)}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 18px}
+.legenda span{display:inline-flex;align-items:center;gap:7px}
+.marca{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.marca.revisar{background:var(--rev)}.marca.atencao{background:var(--aten)}.marca.dominado{background:var(--ok)}
+/* Sumário */
+.sumario{margin:30px 0 0}
+.sumario ol{list-style:none;padding:0;margin:10px 0 0}
+.cap-item{padding:7px 0;border-bottom:1px solid var(--linha)}
+.cap-linha,.sub li{display:flex;gap:10px;align-items:baseline}
+.cap-linha a{font-weight:600;text-decoration:none;color:var(--tinta);flex:1;min-width:0}
+.sub{list-style:none;padding:0 0 0 2.2em;margin:2px 0 0;display:grid;gap:0;font-size:.92rem}
+.sub a{color:var(--suave);text-decoration:none;flex:1;min-width:0}
+.sumario a:hover{color:var(--azul)}
+.num{font-family:var(--rotulo);font-variant-numeric:tabular-nums;color:var(--suave);min-width:2.2em}
+.sumario .marca{width:8px;height:8px;align-self:center}
+/* Capítulos e seções */
+.capitulo{margin-top:64px;scroll-margin-top:16px}
+.cap-cab{border-bottom:1px solid var(--tinta);padding-bottom:8px;margin-bottom:22px}
+.introducao p:first-child::first-letter{font-size:3.1em;float:left;line-height:.9;padding:6px 8px 0 0;font-weight:700}
+.secao{margin-top:34px;scroll-margin-top:16px;position:relative}
+.sec-cab{display:flex;gap:10px;align-items:baseline;margin-bottom:10px}
+.sec-cab h3{flex:1;min-width:0}
+.sec-cab .marca{align-self:center}
+/* Pontos-chave: quadro de livro; o tópico em que o aluno erra ganha só um fundo leve. */
+.chave{background:var(--quadro);border-radius:6px;padding:14px 18px 10px;margin-top:6px}
+.chave .rotulo{margin-bottom:6px}
+.chave ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.chave li{padding:4px 10px 4px 12px;border-left:3px solid transparent;border-radius:0 4px 4px 0;font-size:.97rem;line-height:1.6}
+.chave li.revisar{border-left-color:var(--rev);background:var(--rev-f)}
+.chave li.atencao{border-left-color:var(--aten);background:var(--aten-f)}
+.trecho{scroll-margin-top:30vh;border-radius:3px;transition:background-color .6s}
+.trecho.revisar{text-decoration:underline 1px color-mix(in srgb,var(--rev) 40%,transparent);text-underline-offset:4px;cursor:pointer}
+.trecho.atencao{text-decoration:underline 1px color-mix(in srgb,var(--aten) 45%,transparent);text-underline-offset:4px;cursor:pointer}
+.trecho.revisar.acesa{text-decoration:underline 2px var(--rev);background:var(--rev-f)}
+.trecho.atencao.acesa{text-decoration:underline 2px var(--aten);background:var(--aten-f)}
+.trecho.aceso{background:var(--aceso)}
+.ir{font:500 .78rem var(--rotulo);color:var(--suave);text-decoration:none;white-space:nowrap;margin-left:6px}
+.ir:hover{color:var(--azul)}
+.conferir{font:italic .8rem var(--serifa);color:var(--suave);margin-top:6px}
+.fim{margin-top:56px;border-top:1px solid var(--linha);padding-top:12px;font-size:.85rem;color:var(--suave)}
+</style>
+</head>
+<body>
+<main class="folha">
+  <div class="rotulo">Caderno de estudo · Pediatria · Infectologia</div>
+  <h1 id="titulo">Caderno</h1>
+
+  <section class="aluno" aria-label="De quem é o caderno">
+    <div id="estado">Sem backup: o caderno aparece sem marcações.</div>
+    <div class="acoes">
+      <label for="arquivo">Seu backup</label>
+      <input type="file" id="arquivo" accept=".json,application/json">
+      <select id="usuario" hidden aria-label="Aluno do backup"></select>
+      <button id="demo" type="button">Aluno de exemplo</button>
+      <button id="limpar" type="button">Sem marcações</button>
+    </div>
+    <div class="legenda" id="legenda" hidden>
+      <span><i class="marca revisar"></i>Revise com prioridade</span>
+      <span><i class="marca atencao"></i>Vale revisar</span>
+      <span><i class="marca dominado"></i>Você já domina</span>
+    </div>
+    <div id="regra" hidden>As cores vêm das questões de prova que você já fez. Os capítulos que você mais erra vêm primeiro, e nos pontos-chave o fundo colorido mostra o detalhe exato em que você erra. No texto, a frase sublinhada (clique para acender) é a que explica esse detalhe; o link “no texto ↑” leva até ela.</div>
+  </section>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rotulo">Sumário</div>
+    <ol id="sumario"></ol>
+  </nav>
+
+  <div id="conteudo"></div>
+  <p class="fim" id="fim"></p>
+</main>
+<script>
+const R = window.EscResumos.lista[0];
+let ultimas = null; // questaoId -> peso de erro da última resposta (0, 0.5 ou 1)
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const enfase = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\*(.+?)\*/g, "<em>$1</em>");
+/* [[frase|q-a,q-b]] = frase do texto corrido que justifica um ponto-chave. Ela é sublinhada
+   na cor do erro só quando o aluno erra aquelas questões; os pontos-chave apontam para ela. */
+let trechos = [];
+const paragrafos = (t, cap) => (t || "").split(/\n\s*\n/).filter(p => p.trim()).map(p => "<p>" +
+  p.trim().split(/(\[\[[^\]]+\]\])/).map(peca => {
+    const m = peca.match(/^\[\[([^|\]]+)\|([^\]]+)\]\]$/);
+    if(!m) return enfase(peca);
+    const ids = m[2].split(",").map(x => x.trim()), n = nivel(medir(ids)), id = "t-" + trechos.length;
+    trechos.push({ id, cap, ids });
+    return `<span class="trecho ${n === "dominado" ? "" : n}" id="${id}" onclick="this.classList.toggle('acesa')">${enfase(m[1])}</span>`;
+  }).join("") + "</p>").join("");
+// Ponto-chave → frase do mesmo capítulo que divide mais questões com ele.
+function fraseDoTopico(cap, ids){
+  let melhor = null, max = 0;
+  for(const t of trechos) if(t.cap === cap){ const n = ids.filter(id => t.ids.includes(id)).length; if(n > max){ max = n; melhor = t; } }
+  return melhor;
+}
+function irPara(id){
+  const el = document.getElementById(id); if(!el) return false;
+  el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  el.classList.add("aceso", "acesa"); setTimeout(() => el.classList.remove("aceso"), 1800);
+  return false;
+}
+// Tópico = "- texto {q-a,q-b}": as chaves ligam o tópico às questões que ele responde.
+const topicos = f => f.texto.split("\n").filter(l => l.trim()).map(l => {
+  const m = l.match(/\s*\{([^}]+)\}\s*$/);
+  return { texto: l.replace(/^\s*-\s*/, "").replace(/\s*\{[^}]+\}\s*$/, ""), questoes: m ? m[1].split(",").map(x => x.trim()) : null };
+});
+
+/* Erro de um conjunto: última resposta de cada questão feita; acerto no chute = meio erro.
+   Os limiares são os de resumos/LEIA-ME.md; a página mostra só a cor, nunca o número. */
+function medir(ids){
+  if(!ultimas) return null;
+  const feitas = ids.filter(id => id in ultimas);
+  return feitas.length ? feitas.reduce((s, id) => s + ultimas[id], 0) / feitas.length : null;
+}
+const nivel = t => t === null || t === undefined ? "" : t >= .5 ? "revisar" : t >= .2 ? "atencao" : "dominado";
+const NOME = { revisar: "Revise com prioridade", atencao: "Vale revisar", dominado: "Você já domina" };
+const marca = t => nivel(t) ? `<i class="marca ${nivel(t)}" title="${NOME[nivel(t)]}" aria-label="${NOME[nivel(t)]}"></i>` : "";
+const ordenar = lista => ultimas ? lista.sort((a, b) => ((b.t ?? -1) - (a.t ?? -1)) || a.i - b.i) : lista;
+
+function montar(){
+  return ordenar(R.doencas.map((d, i) => ({ d, i, t: medir([...new Set(d.fragmentos.flatMap(f => f.questoes))]),
+    secoes: ordenar(d.fragmentos.map((f, j) => ({ f, i: j, t: medir(f.questoes) }))) })));
+}
+
+function htmlSecao(numero, { f, t }, cap){
+  const prosa = paragrafos(f.prosa, cap);
+  const tops = topicos(f).map(x => {
+    // Tópico sem questão própria herda a cor da seção só se a seção pede revisão; no domínio, sem cor.
+    const n = nivel(x.questoes ? medir(x.questoes) : null);
+    const cls = n === "dominado" ? "" : n;
+    const fr = (!ultimas || cls) ? fraseDoTopico(cap, x.questoes || f.questoes) : null; // só onde ajuda: no erro (ou sem dados)
+    return `<li class="${cls}"${cls ? ` title="${NOME[cls]}"` : ""}>${enfase(x.texto)}${fr ? `<a class="ir" href="#${fr.id}" onclick="return irPara('${fr.id}')" title="Ir à explicação no texto">no texto ↑</a>` : ""}</li>`;
+  }).join("");
+  return `<section class="secao" id="s-${f.id}">
+    <div class="sec-cab"><span class="num">${numero}</span><h3>${esc(f.titulo)}</h3>${marca(t)}</div>
+    ${prosa}
+    <div class="chave"><div class="rotulo">Pontos-chave</div><ul>${tops}</ul></div>
+    ${f.conferir ? `<div class="conferir">Texto ainda a conferir na fonte primária.</div>` : ""}
+  </section>`;
+}
+
+function desenhar(){
+  const caps = montar(); trechos = [];
+  document.getElementById("titulo").textContent = R.titulo;
+  document.getElementById("legenda").hidden = document.getElementById("regra").hidden = !ultimas;
+  document.getElementById("sumario").innerHTML = caps.map(({ d, t, secoes }, c) => `
+    <li class="cap-item">
+      <div class="cap-linha"><span class="num">${c + 1}</span><a href="#c-${d.id}">${esc(d.titulo)}</a>${marca(t)}</div>
+      <ol class="sub">${secoes.map(({ f, t }, k) => `<li><span class="num">${c + 1}.${k + 1}</span><a href="#s-${f.id}">${esc(f.titulo)}</a>${marca(t)}</li>`).join("")}</ol>
+    </li>`).join("");
+  document.getElementById("conteudo").innerHTML = caps.map(({ d, secoes }, c) => `
+    <article class="capitulo" id="c-${d.id}">
+      <div class="cap-cab"><div class="rotulo">Capítulo ${c + 1}</div><h2>${esc(d.titulo)}</h2></div>
+      ${d.introducao ? `<div class="introducao">${paragrafos(d.introducao, d.id)}</div>` : ""}
+      ${secoes.map((s, k) => htmlSecao(`${c + 1}.${k + 1}`, s, d.id)).join("")}
+    </article>`).join("");
+  document.getElementById("fim").textContent = `Fontes a conferir: ${R.fontes.map(x => x.texto).join("; ")}. Fora deste caderno: ${R.foraDoEscopo.map(x => x.motivo).join("; ")}.`;
+}
+
+/* O backup é o db inteiro; respostas vêm em lista de objetos ou, em versões antigas, em colunas. */
+function respostasDoBackup(b){
+  const r = b.respostas || b.db?.respostas || [];
+  if(Array.isArray(r)) return r;
+  if(r && Array.isArray(r.questaoId)) return r.questaoId.map((_, i) => Object.fromEntries(Object.keys(r).map(k => [k, Array.isArray(r[k]) ? r[k][i] : r[k]])));
+  return [];
+}
+function aplicarRespostas(lista, usuarioId, rotulo){
+  ultimas = {};
+  lista.filter(r => !usuarioId || r.usuarioId === usuarioId)
+    .sort((a, b) => String(a.respondidaEm || a.data || "").localeCompare(String(b.respondidaEm || b.data || "")))
+    .forEach(r => { ultimas[r.questaoId] = r.correta ? (r.confianca === "chute" ? .5 : 0) : 1; });
+  const ids = new Set(R.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes)));
+  const feitas = Object.keys(ultimas).filter(id => ids.has(id)).length;
+  document.getElementById("estado").innerHTML = `${rotulo ? `<strong>${esc(rotulo)}</strong> · ` : ""}${feitas} de ${ids.size} questões deste tema já feitas.`;
+  desenhar();
+}
+
+document.getElementById("arquivo").addEventListener("change", e => {
+  const arq = e.target.files[0]; if(!arq) return;
+  arq.text().then(t => {
+    let b; try { b = JSON.parse(t); } catch { document.getElementById("estado").textContent = "Esse arquivo não é um backup em JSON da plataforma."; return; }
+    const lista = respostasDoBackup(b), usuarios = [...new Set(lista.map(r => r.usuarioId))];
+    const nome = id => (b.usuarios || []).find(u => u.id === id)?.nome || id;
+    const sel = document.getElementById("usuario");
+    if(usuarios.length > 1){
+      sel.innerHTML = usuarios.map(id => `<option value="${esc(id)}">${esc(nome(id))}</option>`).join("");
+      sel.hidden = false; sel.onchange = () => aplicarRespostas(lista, sel.value, nome(sel.value));
+      aplicarRespostas(lista, usuarios[0], nome(usuarios[0]));
+    } else { sel.hidden = true; aplicarRespostas(lista, null, usuarios[0] ? nome(usuarios[0]) : ""); }
+  });
+});
+
+/* Aluno de exemplo: no sarampo acerta pródromo e exantema e erra Koplik, vitamina A,
+   bloqueio e cobertura; na escarlatina erra agente e tratamento; vai bem em exantema
+   súbito e eritema infeccioso; no Kawasaki erra "miocardite não é critério". */
+const ERRADAS = new Set(["q-iamspe2025-065","q-fmabc2026-089","q-famerp2023-027","q-sirio2022-053","q-usprp2026-032","q-uspsp4-101",
+  "q-famerp2026-009","q-iamspe2021-072","q-amrigs2025-014","q-einstein2021-021","q-einstein2025-043",
+  "q-unesp2025-009","q-uspsp2-050","q-sirio2024-050","q-scmsp2022-039","q-einstein2026-035","q-tp20222-047"]);
+const CHUTES = new Set(["q-tp20202-046","q-usprp2026-045"]);
+document.getElementById("demo").addEventListener("click", () => {
+  const ids = [...new Set(R.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes)))];
+  const lista = ids.filter(id => id !== "q-sessp2026-050").map(id => ({ questaoId: id, correta: !ERRADAS.has(id), confianca: CHUTES.has(id) ? "chute" : "certeza", data: "2026-11-01" }));
+  aplicarRespostas(lista, null, "Aluno de exemplo");
+});
+document.getElementById("limpar").addEventListener("click", () => {
+  ultimas = null; document.getElementById("estado").textContent = "Sem marcações: o caderno na ordem do autor."; desenhar();
+});
+desenhar();
+</script>
+</body>
+</html>

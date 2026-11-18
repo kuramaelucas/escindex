@@ -118,7 +118,7 @@ NUVEM_GLOBAIS.feedbacks = {
     const reg = {
       id: l.id, usuarioId: l.usuario_id, autorNome: l.autor_nome || "", papel: l.papel || "aluno",
       tipo: l.tipo || "comentario", texto: l.texto || "", data: l.data || (l.atualizado_em || "").slice(0, 10),
-      lido: !!l.lido, lidoPorNome: l.lido_por_nome || "", naNuvem: true,
+      lido: !!l.lido, lidoPorNome: l.lido_por_nome || "", naNuvem: true, resumoId: l.resumo_id || "",
     };
     if(i >= 0) db.feedbacks[i] = Object.assign(db.feedbacks[i], reg); else db.feedbacks.push(reg);
   },
@@ -129,7 +129,7 @@ NUVEM_GLOBAIS.feedbacks = {
     return {
       id: f.id, usuario_id: ehUuid(f.usuarioId) ? f.usuarioId : nuvemSessao.usuarioId,
       autor_nome: f.autorNome || (autor && autor.nome) || "", papel: f.papel || null, tipo: f.tipo || "comentario",
-      texto: f.texto || "", data: f.data || null, lido: !!f.lido, lido_por_nome: f.lidoPorNome || "",
+      texto: f.texto || "", data: f.data || null, lido: !!f.lido, lido_por_nome: f.lidoPorNome || "", resumo_id: f.resumoId || null,
     };
   },
 };

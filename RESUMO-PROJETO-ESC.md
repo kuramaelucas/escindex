@@ -20,6 +20,7 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 >
 > | Data | Novidade (tabela/coluna) | Sem rodar |
 > | --- | --- | --- |
+> | 18/11 | Feedback escrito dentro de um resumo (Estudar › Resumos): `feedbacks.resumo_id`. **Rodar `nuvem/esquema.sql` de novo.** | o feedback sobe sem dizer de que resumo veio (a coluna é pulada e avisada); no próprio aparelho o resumo continua anotado |
 > | 16/11 | Compartilhar cartão **e questão** com a faculdade: `e_do_grupo()` passou a aceitar o id `faculdade:<nome>` (vale para quem tem essa faculdade no perfil). **Rodar `nuvem/esquema.sql` de novo** (depois da linha da faculdade abaixo). | o cartão compartilhado só chega a colegas quando o banco aceitar o grupo; sem rodar, a linha é recusada e o cartão fica só com quem o escreveu |
 > | 16/11 | Faculdade do aluno: `perfis.faculdade` + gatilhos (cadastro grava, só a equipe muda depois). **Rodar `nuvem/esquema.sql` de novo.** | a faculdade vale só no aparelho: o conteúdo restrito à EPM (Turma 89, simulados USP-SP) segue a escolha local do cadastro, e quem escolheu UEL em outro aparelho entra como EPM/Unifesp |
 > | 12/11 | Dúvida resolvida: `comentarios.resolvido` (**já criada no banco real em 12/11/2026**) | a marca de "resolvida" vale só no aparelho; a dúvida volta à fila nos outros |

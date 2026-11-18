@@ -458,23 +458,27 @@ function renderRodapeInicio(){
     </div>
   </div>`;
 }
-function abrirModalFeedback(){
+/* resumoId: o feedback foi escrito dentro de um resumo (Estudar › Resumos). Ele entra
+   na mesma lista do feedback geral, mas guarda de que resumo veio (coluna resumo_id). */
+function abrirModalFeedback(resumoId){
+  const resumo = resumoId ? tituloDoResumo(resumoId) : "";
   abrirModal(`
-    ${cabecalhoJanela("Comentário, sugestão ou reclamação")}
+    ${cabecalhoJanela(resumo ? "Feedback sobre o resumo" : "Comentário, sugestão ou reclamação")}
+    ${resumo ? `<p class="text-sm"><strong>${escapeHtml(resumo)}</strong> · erro no texto, algo confuso, o que faltou, o que ajudou.</p>` : ""}
     <p class="text-sm muted">${nuvemConectado()
       ? "Sobe para a nuvem e chega aos administradores, em qualquer aparelho em que eles entrarem. Pode ser sobre qualquer coisa da plataforma."
       : "Pode ser sobre qualquer coisa da plataforma. Você não está numa conta da nuvem: a mensagem fica neste navegador, e a coordenação só a vê entrando aqui."}</p>
     <div class="field"><label class="label">Tipo</label><select class="select" id="fbTipo"><option value="comentario">Comentário</option><option value="sugestao">Sugestão</option><option value="reclamacao">Reclamação</option></select></div>
     <div class="field"><label class="label">Mensagem</label><textarea class="textarea" id="fbTexto" style="min-height:110px" placeholder="Escreva à vontade..."></textarea></div>
-    <button class="btn btn-primary" onclick="enviarFeedbackGeral()">Enviar</button>
+    <button class="btn btn-primary" onclick="enviarFeedbackGeral('${escapeHtml(resumoId || "")}')">Enviar</button>
   `);
 }
-function enviarFeedbackGeral(){
+function enviarFeedbackGeral(resumoId){
   const tipo = document.getElementById("fbTipo").value;
   const texto = document.getElementById("fbTexto").value.trim();
   if(!texto){ toast("Escreva algo antes de enviar.", "err"); return; }
   const u = usuarioAtual();
-  const fb = {id:uid("fb"), usuarioId:u.id, autorNome:u.nome, papel:u.papel, tipo, texto, data:hojeISO(), lido:false};
+  const fb = {id:uid("fb"), usuarioId:u.id, autorNome:u.nome, papel:u.papel, tipo, texto, data:hojeISO(), lido:false, resumoId: resumoId || ""};
   db.feedbacks.push(fb);
   const naNuvem = nuvemMarcarFeedback(fb.id);
   saveState();
@@ -691,6 +695,7 @@ function renderEstudar(){
   const listaAberta = !!state.filtroRota.listaAberta;
   return `
   <div class="page-header"><h2>Estudar</h2><p>Escolha como quer praticar agora.</p></div>
+  ${htmlCardResumosNoEstudar()}
 
   ${emAndamento ? `
   <div class="card mb-2 borda-destaque">
