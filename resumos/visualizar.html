@@ -78,8 +78,10 @@ input[type=file]{font:.85rem var(--rotulo);max-width:100%;color:var(--suave)}
 .chave li.revisar{border-left-color:var(--rev);background:var(--rev-f)}
 .chave li.atencao{border-left-color:var(--aten);background:var(--aten-f)}
 .trecho{scroll-margin-top:30vh;border-radius:3px;transition:background-color .6s}
-.trecho.revisar{text-decoration:underline 2px var(--rev);text-underline-offset:4px;text-decoration-skip-ink:none}
-.trecho.atencao{text-decoration:underline 2px var(--aten);text-underline-offset:4px;text-decoration-skip-ink:none}
+.trecho.revisar{text-decoration:underline 1px color-mix(in srgb,var(--rev) 40%,transparent);text-underline-offset:4px;cursor:pointer}
+.trecho.atencao{text-decoration:underline 1px color-mix(in srgb,var(--aten) 45%,transparent);text-underline-offset:4px;cursor:pointer}
+.trecho.revisar.acesa{text-decoration:underline 2px var(--rev);background:var(--rev-f)}
+.trecho.atencao.acesa{text-decoration:underline 2px var(--aten);background:var(--aten-f)}
 .trecho.aceso{background:var(--aceso)}
 .ir{font:500 .78rem var(--rotulo);color:var(--suave);text-decoration:none;white-space:nowrap;margin-left:6px}
 .ir:hover{color:var(--azul)}
@@ -106,7 +108,7 @@ input[type=file]{font:.85rem var(--rotulo);max-width:100%;color:var(--suave)}
       <span><i class="marca atencao"></i>Vale revisar</span>
       <span><i class="marca dominado"></i>Você já domina</span>
     </div>
-    <div id="regra" hidden>As cores vêm das questões de prova que você já fez. Os capítulos que você mais erra vêm primeiro, e nos pontos-chave o fundo colorido mostra o detalhe exato em que você erra. No texto, a frase sublinhada é a que explica esse detalhe; o link “no texto ↑” leva até ela.</div>
+    <div id="regra" hidden>As cores vêm das questões de prova que você já fez. Os capítulos que você mais erra vêm primeiro, e nos pontos-chave o fundo colorido mostra o detalhe exato em que você erra. No texto, a frase sublinhada (clique para acender) é a que explica esse detalhe; o link “no texto ↑” leva até ela.</div>
   </section>
 
   <nav class="sumario" aria-label="Sumário">
@@ -132,7 +134,7 @@ const paragrafos = (t, cap) => (t || "").split(/\n\s*\n/).filter(p => p.trim()).
     if(!m) return enfase(peca);
     const ids = m[2].split(",").map(x => x.trim()), n = nivel(medir(ids)), id = "t-" + trechos.length;
     trechos.push({ id, cap, ids });
-    return `<span class="trecho ${n === "dominado" ? "" : n}" id="${id}">${enfase(m[1])}</span>`;
+    return `<span class="trecho ${n === "dominado" ? "" : n}" id="${id}" onclick="this.classList.toggle('acesa')">${enfase(m[1])}</span>`;
   }).join("") + "</p>").join("");
 // Ponto-chave → frase do mesmo capítulo que divide mais questões com ele.
 function fraseDoTopico(cap, ids){
@@ -143,7 +145,7 @@ function fraseDoTopico(cap, ids){
 function irPara(id){
   const el = document.getElementById(id); if(!el) return false;
   el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-  el.classList.add("aceso"); setTimeout(() => el.classList.remove("aceso"), 1800);
+  el.classList.add("aceso", "acesa"); setTimeout(() => el.classList.remove("aceso"), 1800);
   return false;
 }
 // Tópico = "- texto {q-a,q-b}": as chaves ligam o tópico às questões que ele responde.

@@ -1,38 +1,74 @@
 # Resumos adaptativos — condições de criação
 
-Projeto iniciado em 18/11/2026. Os resumos são **conteúdo de estudo escrito a partir das questões reais** do banco. O destaque de cada trecho muda **conforme o erro de quem lê**.
+Projeto iniciado em 18/11/2026. Os resumos são **textos de estudo no formato de livro-texto**, escritos a partir das questões reais do banco. Cada parte do texto é ligada às questões que ela responde, e a marcação muda **conforme o erro de quem lê**.
 
-Para isso, cada resumo é dividido em **fragmentos**. Cada fragmento é um conceito que responde a um grupo de questões identificado (ids de `dados/`). Por enquanto a pasta é independente da plataforma: nada aqui entra em `codigo/` nem em `dados/manifesto.js`.
+Na plataforma, os resumos aparecem em **Estudar › Resumos (Beta)** (`codigo/09e-resumos.js`). Esta pasta guarda só o conteúdo e fica fora de `dados/`: a plataforma lê `catalogo.js` quando a pessoa abre a tela, e cada resumo só quando ele é aberto. Assim nada pesa na abertura do site. Mexer no texto de um resumo não exige tocar em `codigo/`.
 
 ## Estrutura
 
 ```
 resumos/
-  LEIA-ME.md                 estas condições
-  visualizar.html            abre com dois cliques: escolhe o resumo, lê o backup do aluno e destaca
-  <tema>/resumo.js           o resumo: window.EscResumos.registrar({...})
+  LEIA-ME.md          estas condições
+  catalogo.js         a lista dos resumos (id = nome da pasta, título, área, assunto)
+  <tema>/resumo.js    o resumo: window.EscResumos.registrar({...})
+  visualizar.html     prévia fora da plataforma (dois cliques): lê um backup ou usa um aluno de exemplo
 ```
 
-Conferência: `npm run resumo -- <tema>`. O comando mostra quais questões do assunto cada fragmento cobre e quais ainda **não** têm fragmento. Ele falha se um fragmento citar id inexistente.
+**Resumo novo:** crie `<tema>/resumo.js` (copie o molde de `exantematicas/`), acrescente a linha em `catalogo.js` e rode `npm run resumo -- <tema>`. O comando mostra a cobertura e falha se uma ligação citar questão inexistente. Depois, `npm run publicar` e `npm run testar-mudanca`.
+
+## Formato do `resumo.js`
+
+```js
+registrar({
+  id, titulo, assunto, criadoEm,
+  fontes: [{ texto, lidoEm }],                       // lidoEm = data da leitura (AAAA-MM-DD) ou null
+  foraDoEscopo: [{ motivo, questoes: [ids] }],
+  doencas: [{                                        // capítulo
+    id, titulo,
+    introducao: `parágrafos de livro-texto`,         // separados por linha em branco
+    fragmentos: [{                                   // seção
+      id, titulo, conferir: true,
+      questoes: [ids],                               // as questões que a seção responde (mede o erro)
+      prosa: `texto corrido da seção`,               // opcional
+      texto: `- ponto-chave {q-a,q-b}`,              // um tópico por linha; {…} = questões daquele tópico
+    }],
+  }],
+});
+```
+
+Marcações dentro do texto:
+- `**dado**`: negrito, para o dado objetivo que a banca cobra.
+- `*Streptococcus*`: itálico.
+- `[[frase|q-a,q-b]]`, só em `introducao` e `prosa`: a frase que **explica** um ponto-chave. É ela que se sublinha quando o aluno erra aquelas questões e para onde o ponto-chave leva ("no texto ↑"). O ponto-chave acha sozinho a frase do mesmo capítulo com mais questões em comum.
 
 ## Condições de criação (valem para todo resumo novo)
 
-1. **Começa pelas questões, não pelo livro.** Liste as questões do assunto (`npm run resumo -- <tema>` ou `npm run dados -- taxonomia <palavra>`). Escreva só o que é preciso para responder à maioria delas: os conceitos-base que se repetem entre as bancas.
+1. **Começa pelas questões, não pelo livro.** Liste as questões do assunto (`npm run resumo -- <tema>`, `npm run dados -- taxonomia <palavra>`). Veja os conceitos que se repetem entre as bancas: eles definem os capítulos e as seções.
 2. **Seleção explícita.** Questão do assunto da taxonomia que fica fora do resumo vai para `foraDoEscopo`, com o motivo. Exemplo: coqueluche está em `ass-exantematicas`, mas não é exantemática e terá resumo próprio.
-3. **Um fragmento = um conceito cobrável.** Separe, por exemplo, "agente etiológico", "quadro clínico", "diagnóstico", "complicações", "tratamento" e "vigilância/prevenção". Cada fragmento lista em `questoes` os ids que ele ajuda a responder. Sem questão ligada não há como medir o erro: o fragmento pode existir, mas fica sempre neutro.
-4. **Destaque pelo erro de quem lê.** Por questão vale a **última** resposta do aluno. Um acerto com confiança "chute" conta como meio erro. A taxa do fragmento é (erros + ½ chutes) ÷ questões respondidas. A doença recebe a mesma taxa calculada sobre todas as questões dos seus fragmentos.
-   - **≥ 50 %: Prioridade** (borda vermelha, aberto, sobe para o topo da doença).
-   - **20–49 %: Atenção** (borda âmbar).
-   - **< 20 %: Dominado** (esmaecido e recolhível; continua legível).
-   - **Fragmentação fina:** um tópico pode terminar com `{q-a,q-b}` (as questões que ele responde). Seção em Prioridade ou Atenção se abre tópico a tópico, cada um com o seu erro; o tópico em que ele erra ganha fundo leve. O visualizador é um caderno: sumário no início, capítulos (doenças) e seções numeradas.
-   - **Sem resposta: Não medido** (neutro). Mostra quantas questões ligadas ainda faltam fazer.
-   - As doenças são ordenadas pela taxa (pior primeiro), e a tela diz o porquê de cada destaque. A regra da casa é que "a plataforma explica o que faz".
-5. **Livro-texto, não gabarito comentado.** Cada capítulo (doença) abre com `introducao`: epidemiologia, agente, **fisiopatologia** e o porquê dos sinais. Cada seção pode ter `prosa` (texto corrido) antes dos **pontos-chave** (`texto`), que trazem em negrito o dado que a banca cobra (agente, ponto de corte, prazo, dose). Quem entende o mecanismo deduz o quadro em vez de decorar.
-6. **Sinal discreto.** Frases do texto corrido marcadas com `[[frase|q-ids]]` são as que justificam um ponto-chave: ficam sublinhadas na cor do erro e o ponto-chave em que o aluno erra leva até elas ("no texto ↑"). O erro aparece só como cor (tijolo = revise com prioridade, ocre = vale revisar, verde só no sumário = domina), explicada numa legenda no topo. Não há números, porcentagens nem frases do tipo "você erra aqui" no meio do texto.
-7. **Texto autoral e verificável.** Nada copiado de cursinho ou de site de questões. As fontes primárias ficam em `fontes`, com a data em que foram lidas. Enquanto um fragmento não tiver a leitura datada, ele leva `conferir: true` e a tela mostra "a conferir".
-8. **Pegadinhas viram fragmento próprio** ("Armadilhas"). Ligue-as às questões em que a alternativa errada explora a confusão (ex.: exantema súbito × alergia à amoxicilina).
-9. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
-10. **Integração futura com a plataforma** (zona A, ainda não feita). A ideia é uma tela que lê `db.respostas` do próprio aluno, em vez de pedir o backup. Também prevê um botão "fazer as questões deste fragmento". Quando entrar, o resumo passa a ser carregado como os outros `dados/` (`manifesto.js`) e ganha teste.
+3. **Livro-texto, não gabarito comentado.** Cada capítulo abre com `introducao`: epidemiologia, agente, **fisiopatologia** e o porquê dos sinais. Quem entende o mecanismo deduz o quadro em vez de decorar. As seções têm `prosa` (texto corrido) e fecham com **pontos-chave** (`texto`), curtos e com o dado em negrito (agente, ponto de corte, prazo, dose).
+4. **Uma seção = um conceito cobrável.** Separe agente, quadro clínico, diagnóstico, complicações, tratamento, vigilância e prevenção. Cada seção lista em `questoes` os ids que ela ajuda a responder. Sem questão ligada não há como medir o erro: a seção pode existir, mas fica sempre sem cor.
+5. **Ligue fino.** Cada ponto-chave termina com `{q-…}` quando dá para dizer qual questão ele responde. Cada ponto-chave importante deve ter no texto uma frase `[[…|q-…]]` que o justifique. Toda questão citada num tópico tem de estar no `questoes` da seção (`npm run resumo` recusa).
+6. **Marcação pelo erro de quem lê** (regra da tela, `09e`):
+   - Por questão vale a **última** resposta da pessoa. Acerto com confiança "chute" conta como meio erro.
+   - Taxa = (erros + ½ chutes) ÷ questões feitas. **≥ 50 %** = revise com prioridade (tijolo), **20–49 %** = vale revisar (ocre), **< 20 %** = você já domina (verde, só no sumário).
+   - Capítulos e seções ficam na ordem do que a pessoa mais erra. Sem nenhuma questão feita, ficam na ordem do autor e sem cor.
+7. **Sinal discreto.** A tela não mostra números, porcentagens nem "você erra aqui": só a cor, explicada na legenda do topo.
+   - A frase ligada fica com sublinhado **fraco** e acende (cor cheia) quando a pessoa clica nela.
+   - O ponto-chave em que ela erra ganha fundo leve e o link "no texto ↑".
+8. **O que é da pessoa** (já pronto na tela, não precisa de nada no resumo):
+   - Selecionar um trecho oferece **Destacar**, em azul-claro nos dois temas, e **Flashcard**, com o trecho no verso e o assunto do resumo. O destaque é o mesmo dos destaques de texto (08b), com alvo `r:<resumo>:<trecho>`, e sobe para a nuvem.
+   - Cada seção tem um botão pequeno **cartão**.
+   - **A− / A+** muda o tamanho da letra só neste aparelho (localStorage).
+   - **Feedback** entra no feedback geral, com `resumoId` (coluna `resumo_id`). Os administradores filtram por **Sobre resumos** em Feedback dos Usuários.
+   - Os alvos dos trechos usam os ids de capítulo e seção e a posição do parágrafo. Por isso, **não renomeie ids** de um resumo publicado: os destaques dos alunos se perderiam. Corrigir o texto não tem esse problema, porque o destaque procura o trecho no texto novo.
+9. **Texto autoral e verificável.** Nada copiado de cursinho ou de site de questões. As fontes primárias ficam em `fontes`, com a data em que foram lidas. Enquanto a seção não tiver a leitura conferida, ela leva `conferir: true` e a tela mostra "a conferir".
+10. **Pegadinhas viram seção própria** ("Armadilhas"). Ligue-as às questões em que a alternativa errada explora a confusão (ex.: exantema súbito × alergia à amoxicilina).
+11. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
+
+## Ainda por fazer
+
+- Botão "fazer as questões desta seção", que abriria uma sessão com as questões ligadas.
+- Conferir as fontes de `exantematicas` e tirar o `conferir: true` das seções conferidas.
 
 ## Resumos
 

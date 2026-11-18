@@ -801,7 +801,10 @@ function alterarNivelAdmin(id, nivel){
    qualquer pessoa enviou de qualquer aparelho chega aqui na sincronização,
    e "marcar como lido" também sobe, para os outros administradores. */
 function renderFeedbackUsuarios(){
-  const lista = (db.feedbacks||[]).slice().sort((a,b)=>(b.data||"").localeCompare(a.data||""));
+  // "Sobre resumos": o mesmo feedback, filtrado pelo que foi escrito dentro de um resumo
+  const soResumos = state.filtroRota.feedbackResumos === true;
+  const todos = db.feedbacks || [], deResumos = todos.filter(f => f.resumoId).length;
+  const lista = todos.filter(f => !soResumos || f.resumoId).slice().sort((a,b)=>(b.data||"").localeCompare(a.data||""));
   const naoLidos = lista.filter(f=>!f.lido).length;
   const rotulos = {comentario:["badge-muted","Comentário"], sugestao:["badge-accent","Sugestão"], reclamacao:["badge-danger","Reclamação"], contribuicao:["badge-amber","Quer contribuir"]};
   const pag = paginar(lista, "feedbacks", { porPagina: 20, assinatura: "fixa" });
@@ -810,11 +813,15 @@ function renderFeedbackUsuarios(){
   <div class="card-flat mb-2 text-sm">${nuvemConectado()
     ? `${iconeSvg("database")} Vindos da nuvem: aqui aparece o que qualquer pessoa enviou, de qualquer aparelho. <button class="link-btn" onclick="nuvemSincronizar({forcarRedesenho:true})">buscar agora</button>`
     : `${iconeSvg("alert")} Sem conta na nuvem, esta lista mostra só o que foi enviado <strong>neste navegador</strong>. Entre com a sua conta da nuvem para receber o feedback de toda a turma.`}</div>
+  <div class="flex gap-1 mb-2 quebra">
+    <button class="btn btn-sm ${soResumos?"btn-ghost":"btn-secondary"}" onclick="state.filtroRota.feedbackResumos=false;render()">Todos (${todos.length})</button>
+    <button class="btn btn-sm ${soResumos?"btn-secondary":"btn-ghost"}" onclick="state.filtroRota.feedbackResumos=true;render()">Sobre resumos (${deResumos})</button>
+  </div>
   ${lista.length ? pag.itens.map(f=>{
     const autor = getUsuario(f.usuarioId);
     const [cls,label] = rotulos[String(f.tipo||"").split(" ")[0]]||rotulos.comentario;
     return `<div class="card mb-1" style="${f.lido?"opacity:.6":""}">
-      <div class="flex justify-between items-center"><span class="badge ${cls}">${label}</span><span class="text-xs muted">${formatDataBR(f.data)}</span></div>
+      <div class="flex justify-between items-center"><span><span class="badge ${cls}">${label}</span>${f.resumoId ? ` <span class="badge badge-muted">${iconeSvg("book")} Resumo: ${escapeHtml(tituloDoResumo(f.resumoId))}</span>` : ""}</span><span class="text-xs muted">${formatDataBR(f.data)}</span></div>
       <div class="text-sm mt-1 quebra-linhas">${escapeHtml(f.texto)}</div>
       <div class="flex justify-between items-center mt-1">
         <span class="text-xs muted">${escapeHtml(f.autorNome || (autor?autor.nome:"—"))} (${badgePapel(f.papel)})</span>
