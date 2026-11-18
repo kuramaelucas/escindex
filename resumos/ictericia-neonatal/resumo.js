@@ -64,6 +64,7 @@
 - Coombs direto positivo e reticulócitos altos, sem encefalopatia: **fototerapia intensiva**, bilirrubina e hemoglobina seriadas. {q-didepm-024}
 - Hemácias fragmentadas e **G6PD baixa**: fototerapia e nova bilirrubina em 6 h. {q-uspsp1-024}
 - Hemólise ABO com letargia e sucção débil: sinais de **encefalopatia aguda**; monitorar a bilirrubina total sérica. {q-sirio2027-058}
+- Outras causas de excesso de produção: **esferocitose** e sangue reabsorvido de **céfalo-hematoma**.
 - Icterícia até palmas e plantas com 48 h em mãe O e RN B: **bilirrubinas já** e considerar **exsanguineotransfusão**. {q-tp20222-044}` },
       ],
     },
