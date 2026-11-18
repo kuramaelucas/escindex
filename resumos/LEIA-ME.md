@@ -95,4 +95,5 @@ Marcações dentro do texto:
 | `pneumonia-bronquiolite` | `ass-infectoped-pneumonia` | 75 (+7 de coqueluche, de `ass-exantematicas`) | 2 (1 escarlatina; 1 anulada) |
 | `crescimento-puberdade` | `ass-crescimentopuberdade` | 69 | 3 (anuladas) |
 | `emergencias-respiratorias-pcr` | `ass-emergped-respiratoria` | 66 | 1 (anulada) |
+| `diarreia-desidratacao` | `ass-dda` | 62 | 3 (anuladas) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |

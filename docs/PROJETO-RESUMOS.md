@@ -20,7 +20,7 @@ Estado do banco em 18/11/2026 (`npm run dados -- resumo-assuntos`): 237 assuntos
 | 15–39 | 96 | resumo próprio ou agrupado com assunto vizinho (≈ 2 por resumo) |
 | < 15 | 49 | agrupados no resumo do assunto vizinho, ou `foraDoEscopo` até ter questões |
 
-**Previsão: cerca de 150 resumos** no banco inteiro (92 + ≈ 50 agrupados + ajustes). Prontos: 7 (`exantematicas`, `puericultura`, `calendario-vacinal`, `pneumonia-bronquiolite`, `crescimento-puberdade`, `emergencias-respiratorias-pcr`, `insuficiencia-cardiaca`).
+**Previsão: cerca de 150 resumos** no banco inteiro (92 + ≈ 50 agrupados + ajustes). Prontos: 8 (`exantematicas`, `puericultura`, `calendario-vacinal`, `pneumonia-bronquiolite`, `crescimento-puberdade`, `emergencias-respiratorias-pcr`, `diarreia-desidratacao`, `insuficiencia-cardiaca`).
 
 Na **pediatria** (25 assuntos de Neonatologia, Crescimento e Desenvolvimento, Infectologia Pediátrica e Emergências Pediátricas) a previsão é de **cerca de 20 resumos**.
 
@@ -36,8 +36,8 @@ A ordem segue o número de questões reais. Os prontos ficam na lista para entra
 | 4 | `ass-crescimentopuberdade` | 66 | `crescimento-puberdade` | pronto (fontes a ler) | estágios de Tanner (estável), SBEM/SBP (puberdade precoce) |
 | 5 | `ass-emergped-respiratoria` | 64 | `emergencias-respiratorias-pcr` | pronto (fontes a ler) | AHA PALS (suporte avançado de vida pediátrico), GINA (crise de asma) |
 | 6 | `ass-exantematicas` | 60 | `exantematicas` | pronto, com tabela comparativa; falta coqueluche | Guia de Vigilância do MS, AHA Kawasaki 2024, PNI |
-| 7 | `ass-dda` | 59 | `diarreia-desidratacao` | **próximo** | OMS/MS (planos A, B e C de hidratação, zinco) |
-| 8 | `ass-neo-infeccoescongenitas` | 56 | `infeccoes-congenitas` | a fazer | PCDT de transmissão vertical do MS (sífilis, HIV, hepatites), toxoplasmose congênita, RN exposto à tuberculose |
+| 7 | `ass-dda` | 59 | `diarreia-desidratacao` | pronto (fontes a ler) | OMS/MS (planos A, B e C de hidratação, zinco) |
+| 8 | `ass-neo-infeccoescongenitas` | 56 | `infeccoes-congenitas` | **próximo** | PCDT de transmissão vertical do MS (sífilis, HIV, hepatites), toxoplasmose congênita, RN exposto à tuberculose |
 | 9 | `ass-reanimacao` | 52 | `reanimacao-neonatal` | a fazer | SBP Reanimação Neonatal, ILCOR/AHA |
 | 10 | `ass-ivas` | 46 | `vias-aereas-superiores` | a fazer | SBP/AAP (otite média aguda), IDSA (faringite), SBORL (sinusite) |
 
@@ -90,3 +90,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 18/11/2026 | **`pneumonia-bronquiolite` escrito**: 6 capítulos, 14 seções; 75 das 77 questões do assunto + as 7 de coqueluche que estavam fora de exantemáticas (fora: 1 escarlatina, 1 anulada). Bronquiolite, PAC (diagnóstico, agentes, ambulatorial, grave), derrame/empiema e necrosante, Mycoplasma e Chlamydia, coqueluche, Löffler/aspiração e tabela comparativa no fim; 11 casos ilustrados; mnemônicos ("O2, água e nariz", lactente "CAT", "Mycoplasma anda"). Pendente: ler as fontes e datar `lidoEm`. Próximo: `crescimento-puberdade`. |
 | 18/11/2026 | **`crescimento-puberdade` escrito**: 6 capítulos, 11 seções, 69 de 72 questões (3 anuladas fora). Avaliação do crescimento (velocidade, canal, alvo, idade óssea), baixa estatura (tabela familiar × constitucional; causas patológicas), Tanner e sequência puberal, variantes benignas, puberdade precoce central e periférica, IMC e obesidade; 5 casos ilustrados. Mnemônicos deixam de ser prioridade (pedido do usuário). Pendente: ler as fontes. Próximo: `emergencias-respiratorias-pcr`. |
 | 18/11/2026 | **`emergencias-respiratorias-pcr` escrito**: 4 capítulos, 9 seções, 66 de 67 questões (1 anulada fora). Reconhecer e ventilar, intubação e epiglotite, PARDS; crise de asma (GINA); PCR (básico, chocáveis, não chocáveis, drogas e vias); trauma (choque, pneumotórax, HIC) e TSV/crise hipoxêmica; 9 casos ilustrados. As questões seguem a AHA 2020; a vigente é a 2025 (`edicoes-vigentes.json`): conferir o que mudou ao ler a fonte. Próximo: `diarreia-desidratacao`. |
+| 18/11/2026 | **`diarreia-desidratacao` escrito**: 5 capítulos, 10 seções, 62 de 65 questões (3 anuladas fora). Mecanismos (secretora, osmótica, inflamatória), classificação da hidratação, planos A, B e C, zinco, antieméticos, disenteria e SHU, hipernatremia e potássio, Holliday e soro de manutenção. Pendente: as provas divergem na fase rápida do plano C (OMS 30 + 70 mL/kg × SF 30 mL/kg em 30 min): ler o cartaz vigente do MS. Próximo: `infeccoes-congenitas`. |
