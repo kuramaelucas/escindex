@@ -105,4 +105,5 @@ Marcações dentro do texto:
 | `maus-tratos` | `ass-emergped-maustratos` | 32 | 1 (anulada) |
 | `convulsao-febril` | `ass-convulsaofebril` | 28 | — |
 | `prematuridade` | `ass-neo-prematuridade` | 26 | 1 (anulada) |
+| `desconforto-respiratorio-rn` | `ass-neo-descrresp` | 27 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
