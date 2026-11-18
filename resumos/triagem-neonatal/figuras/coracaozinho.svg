@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="330" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Teste do coraçãozinho (24 a 48 h): mão direita × um dos pés</text>
+<text x="20" y="48" fill="#555" font-size="12">Mão direita = sangue antes do canal arterial; pé = depois dele. A diferença denuncia o sangue desviado pelo canal.</text>
+<g>
+<rect x="20" y="64" width="230" height="170" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="135" y="88" text-anchor="middle" font-weight="700">Normal</text>
+<text x="135" y="118" text-anchor="middle">as duas medidas ≥ 95%</text>
+<text x="135" y="138" text-anchor="middle">e diferença ≤ 3%</text>
+<rect x="34" y="176" width="202" height="42" rx="6" fill="#fff" stroke="#2f8a57"/><text x="135" y="202" text-anchor="middle">alta com a rotina</text>
+</g>
+<g>
+<rect x="265" y="64" width="230" height="170" rx="8" fill="#fdf1e2" stroke="#c07a1c"/>
+<text x="380" y="88" text-anchor="middle" font-weight="700">Duvidoso</text>
+<text x="380" y="118" text-anchor="middle">90% a 94% em alguma medida</text>
+<text x="380" y="138" text-anchor="middle">ou diferença ≥ 4%</text>
+<rect x="279" y="166" width="202" height="56" rx="6" fill="#fff" stroke="#c07a1c"/><text x="380" y="188" text-anchor="middle">repetir após 1 hora</text><text x="380" y="208" text-anchor="middle" font-size="11">(até 2 vezes; persistindo, positivo)</text>
+</g>
+<g>
+<rect x="510" y="64" width="230" height="170" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="625" y="88" text-anchor="middle" font-weight="700">Positivo</text>
+<text x="625" y="118" text-anchor="middle">qualquer medida &lt; 90%</text>
+<text x="625" y="138" text-anchor="middle">ou duvidoso que persiste</text>
+<rect x="524" y="166" width="202" height="56" rx="6" fill="#fff" stroke="#b03a2e"/><text x="625" y="188" text-anchor="middle">ecocardiograma</text><text x="625" y="208" text-anchor="middle" font-size="12">antes da alta (em até 24 h)</text>
+</g>
+<text x="20" y="262" fill="#222" font-weight="700">Regra antiga (Ministério da Saúde, cobrada em provas mais velhas):</text>
+<text x="20" y="282" fill="#222">alterado se alguma medida &lt; 95% ou diferença &gt; 3%; repetir em 1 hora e, mantido, ecocardiograma.</text>
+<text x="20" y="312" fill="#555" font-size="12">Os dois modelos concordam no essencial: ≥ 95% nas duas medidas e diferença pequena libera; o resto se repete ou se investiga.</text>
+</svg>

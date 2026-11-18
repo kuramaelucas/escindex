@@ -367,9 +367,27 @@ function _renderCaderno(r){
     </div>`;
 }
 
+/* Tabela (Markdown de tabela num parágrafo da prosa): usada no capítulo comparativo do fim
+   dos temas de doenças parecidas. Cada célula é um trecho destacável próprio (alvo …:pK:lIcJ),
+   para que destacar e virar flashcard funcionem também dentro da tabela. */
+function _ehTabelaDoResumo(p){ const l = p.trim().split("\n"); return l.length > 2 && l.every(x => x.trim().startsWith("|")) && /^\|[\s:|-]+\|$/.test(l[1].trim()); }
+function _htmlTabelaDoResumo(p, alvo, cap){
+  const linhas = p.trim().split("\n").filter((x, i) => i !== 1)
+    .map(x => x.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map(c => c.trim()));
+  const celulas = (cs, i, tag) => cs.map((c, j) => _trechoDestacavel(tag, c, `${alvo}:l${i}c${j}`, cap)).join("");
+  return `<div class="resumo-tabela"><table><thead><tr>${celulas(linhas[0], 0, "th")}</tr></thead>
+    <tbody>${linhas.slice(1).map((cs, i) => `<tr>${celulas(cs, i + 1, "td")}</tr>`).join("")}</tbody></table></div>`;
+}
+// Seção de conduta diz de que diretriz depende: é ela que muda quando sai edição nova.
+function _htmlDiretrizesDaSecao(r, f){
+  const nomes = (f.diretrizes || []).map(id => ((r.fontes || []).find(x => x.id === id) || {}).texto).filter(Boolean);
+  return nomes.length ? `<div class="resumo-conferir">Conduta conforme: ${escapeHtml(nomes.join("; "))}.</div>` : "";
+}
+
 function _htmlSecaoDoResumo(r, cap, numero, { f, t }){
   const prosa = (f.prosa || "").split(/\n\s*\n/).filter(p => p.trim())
-    .map((p, k) => _trechoDestacavel("p", p.trim(), `r:${r.id}:${f.id}:p${k}`, cap)).join("");
+    .map((p, k) => _ehTabelaDoResumo(p) ? _htmlTabelaDoResumo(p, `r:${r.id}:${f.id}:p${k}`, cap)
+      : _trechoDestacavel("p", p.trim(), `r:${r.id}:${f.id}:p${k}`, cap)).join("");
   const topicos = f.texto.split("\n").filter(l => l.trim()).map((l, k) => {
     const m = l.match(/\s*\{([^}]+)\}\s*$/);
     const ids = m ? m[1].split(",").map(x => x.trim()) : null;
@@ -388,6 +406,7 @@ function _htmlSecaoDoResumo(r, cap, numero, { f, t }){
     ${(f.figuras || []).map(fig => _htmlFiguraDoResumo(r, fig)).join("")}
     ${(f.casos || []).map(_htmlCasoDoResumo).join("")}
     <div class="resumo-chave"><div class="resumo-rotulo">Pontos-chave</div><ul>${topicos}</ul></div>
+    ${_htmlDiretrizesDaSecao(r, f)}
     ${f.conferir ? `<div class="resumo-conferir">Texto ainda a conferir na fonte primária.</div>` : ""}
   </section>`;
 }
