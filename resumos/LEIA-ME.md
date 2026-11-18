@@ -107,3 +107,4 @@ Marcações dentro do texto:
 | `prematuridade` | `ass-neo-prematuridade` | 26 | 1 (anulada) |
 | `desconforto-respiratorio-rn` | `ass-neo-descrresp` | 27 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
+| `ist` | `ass-ist` | 196 | 6 (3 anuladas e 1 desatualizada, com reposição no resumo; 1 de toxoplasmose; 1 de anatomia) |

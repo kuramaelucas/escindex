@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="300" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Úlcera genital: tratar na mesma consulta</text>
+<rect x="230" y="40" width="300" height="40" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="380" y="65" text-anchor="middle" font-weight="700">Vesículas ou história de herpes?</text>
+<path d="M300 80 L130 110" stroke="#555" fill="none"/><path d="M460 80 L600 110" stroke="#555" fill="none"/>
+<text x="190" y="100" fill="#2f8a57" font-weight="700">sim</text><text x="545" y="100" fill="#b03a2e" font-weight="700">não</text>
+<rect x="20" y="110" width="230" height="90" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="135" y="134" text-anchor="middle" font-weight="700">Herpes</text>
+<text x="34" y="158">• aciclovir</text>
+<text x="34" y="178">• testar sífilis e HIV</text>
+<rect x="290" y="110" width="450" height="40" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="515" y="135" text-anchor="middle" font-weight="700">Há quanto tempo?</text>
+<path d="M400 150 L400 175" stroke="#555" fill="none"/><path d="M630 150 L630 175" stroke="#555" fill="none"/>
+<rect x="290" y="175" width="215" height="95" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="397" y="198" text-anchor="middle" font-weight="700">menos de 4 semanas</text>
+<text x="302" y="222">• sífilis: benzatina</text>
+<text x="302" y="242">• cancro mole: azitromicina</text>
+<rect x="525" y="175" width="215" height="95" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="632" y="198" text-anchor="middle" font-weight="700">4 semanas ou mais</text>
+<text x="537" y="222">• + donovanose e</text>
+<text x="537" y="242">  linfogranuloma</text>
+<text x="537" y="262">• biópsia</text>
+<text x="20" y="292" fill="#555" font-size="12">Em toda úlcera: testes rápidos para HIV, sífilis e hepatites, e tratamento das parcerias.</text>
+</svg>

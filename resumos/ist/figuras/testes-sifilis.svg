@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="330" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Teste treponêmico × não treponêmico (VDRL)</text>
+<rect x="160" y="44" width="290" height="34" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="305" y="66" text-anchor="middle" font-weight="700">Não treponêmico reagente</text>
+<rect x="450" y="44" width="290" height="34" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="595" y="66" text-anchor="middle" font-weight="700">Não treponêmico não reagente</text>
+<rect x="20" y="78" width="140" height="110" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="90" y="128" text-anchor="middle" font-weight="700">Treponêmico</text>
+<text x="90" y="146" text-anchor="middle" font-weight="700">reagente</text>
+<rect x="20" y="188" width="140" height="110" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="90" y="238" text-anchor="middle" font-weight="700">Treponêmico</text>
+<text x="90" y="256" text-anchor="middle" font-weight="700">não reagente</text>
+<rect x="160" y="78" width="290" height="110" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="174" y="104" font-weight="700">Sífilis (ativa ou recente)</text>
+<text x="174" y="128">• sem tratamento prévio: tratar</text>
+<text x="174" y="148">• tratada antes: comparar o título</text>
+<text x="174" y="168">  (subida de 2 diluições = reinfecção)</text>
+<rect x="450" y="78" width="290" height="110" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="464" y="104" font-weight="700">Discordância</text>
+<text x="464" y="128">• sífilis muito recente, latente antiga</text>
+<text x="464" y="148">  ou já tratada (cicatriz)</text>
+<text x="464" y="168">• fazer 2º treponêmico de outro método</text>
+<rect x="160" y="188" width="290" height="110" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="174" y="214" font-weight="700">Provável falso-positivo</text>
+<text x="174" y="238">• gestação, autoimune, outras infecções</text>
+<text x="174" y="258">• o treponêmico decide</text>
+<rect x="450" y="188" width="290" height="110" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="464" y="214" font-weight="700">Sem sífilis</text>
+<text x="464" y="238">• repetir se a exposição foi há</text>
+<text x="464" y="258">  poucas semanas (janela)</text>
+<text x="20" y="320" fill="#555" font-size="12">O treponêmico fica positivo para sempre; o título do VDRL acompanha a atividade e serve para o seguimento.</text>
+</svg>

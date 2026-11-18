@@ -45,6 +45,28 @@ A ordem segue o número de questões reais. Os prontos ficam na lista para entra
 
 **Coqueluche** está hoje em `foraDoEscopo` de `exantematicas`. Decidido na escrita de `calendario-vacinal`: entra como capítulo de `pneumonia-bronquiolite` (tosse do lactente); o calendário cobre só a dTpa da gestante.
 
+## 3-B. Clínica médica: os 15 assuntos que mais caem
+
+Ordem pedida em 18/11/2026 (questões reais contadas por `npm run dados -- resumo-assuntos` no mesmo dia). As diretrizes ficam **a conferir na escrita**; quando a fonte está em `ferramentas/edicoes-vigentes.json`, o id é o mesmo.
+
+| # | Assunto | Questões reais | Tema (pasta) | Situação | Diretrizes de que depende (a conferir na escrita) |
+|---|---|---|---|---|---|
+| 1 | `ass-ist` | 188 | `ist` | pronto (fontes a ler) | PCDT de IST do MS (sífilis, corrimentos, úlceras), PCDT de PEP/PrEP, CDC STI 2021 |
+| 2 | `ass-dm` | 132 | `diabetes` | a escrever | `ada` (Standards of Care 2026), SBD |
+| 3 | `ass-has` | 101 | `hipertensao` | a escrever | `sbc-has` (Diretriz Brasileira 2025), ESC/ACC-AHA |
+| 4 | `ass-cirrose` | 78 | `cirrose` | a escrever | Baveno VII, AASLD/EASL (ascite, PBE, síndrome hepatorrenal, encefalopatia) |
+| 5 | `ass-tireoide` | 76 | `tireoide` | a escrever | `ata-dtc` (2025), ATA hipertireoidismo, SBEM, Bethesda |
+| 6 | `ass-hemato-anemias` | 70 | `anemias` | a escrever | `kdigo-anemia` (2026), BSH/ASH (ferropriva, B12, hemolíticas) |
+| 7 | `ass-nefro-glomerulopatias` | 70 | `glomerulopatias` | a escrever | KDIGO glomerulopatias 2021/2025, `kdigo-lupica` (2024) |
+| 8 | `ass-tuberculose` | 69 | `tuberculose` | a escrever | Manual de Recomendações para o Controle da TB do MS, OMS (esquemas curtos, ILTB) |
+| 9 | `ass-asma` | 76 | `asma` | a escrever | `gina` (2026), SBPT |
+| 10 | `ass-arritmias` | 70 | `arritmias` | a escrever | `aha-rcp` (2025), ESC fibrilação atrial 2024, ESC síncope |
+| 11 | `ass-hidroeletrolitico` | 69 | `hidroeletrolitico` | a escrever | consenso europeu de hiponatremia, KDIGO potássio |
+| 12 | `ass-sca` | 61 | `doenca-coronariana` | a escrever | `acc-sca` (2025), ESC SCA 2023, ESC síndrome coronariana crônica 2024 |
+| 13 | `ass-derm-infeccoes` | 60 | `infeccoes-de-pele` | a escrever | IDSA pele e partes moles, PCDT de hanseníase do MS, SBD |
+| 14 | `ass-hemato-neoplasias` | 59 | `neoplasias-hematologicas` | a escrever | `nccn`, classificação da OMS/ICC 2022, ELN (LMA) |
+| 15 | `ass-emerg-intoxicacoes` | 58 | `intoxicacoes` | a escrever | AHA toxicologia (parte de `aha-rcp`), manuais do MS/CIATox |
+
 ## 4. Mapeamento: o que foi usado e o que muda com diretriz
 
 Hoje o resumo guarda `fontes` só no nível do resumo. Para a atualização ser cirúrgica, cada seção precisa dizer de que diretriz depende.
@@ -102,3 +124,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 18/11/2026 | **`convulsao-febril` escrito**: 3 capítulos, 4 seções, 28 de 28 questões; tabela simples × complexa e esquema autoral de quando investigar. Definição, punção lombar (incluindo 6–12 meses com vacina incompleta), recorrência e orientação, benzodiazepínico na crise. Próximo: prematuridade. |
 | 18/11/2026 | **`prematuridade` escrito**: 2 capítulos, 4 seções, 26 de 27 questões (1 anulada fora); esquema autoral da hipoglicemia e 3 casos. Classificação, SDR, hemorragia peri-intraventricular, retinopatia, apneia e cafeína, seguimento (vacina, ferro, crescimento), hipoglicemia e filho de mãe diabética, hipocalcemia, doença hemorrágica. Próximo: desconforto respiratório do RN. |
 | 18/11/2026 | **`desconforto-respiratorio-rn` escrito**: 3 capítulos, 5 seções, 27 de 28 questões (1 anulada fora); tabela comparativa no fim (TTRN × membrana hialina × mecônio × HPPN) e 1 caso. Silverman-Andersen, atresia de coanas, CPAP, TTRN, SDR e corticoide antenatal, aspiração meconial, escape de ar, HPPN e óxido nítrico. Sem esquema SVG: a tabela comparativa cumpre o papel. Próximo: exame do RN. |
+| 18/11/2026 | **Clínica médica aberta** (tabela 3-B, 15 assuntos). **`ist` escrito**: 8 capítulos, 20 seções, 196 de 202 questões (fora: 3 anuladas e 1 desatualizada com reposição, 1 de toxoplasmose, 1 de anatomia). Abordagem sindrômica, sífilis (estágios, testes, tratamento, gestante, seguimento e neurossífilis, criança exposta), úlceras (herpes, cancro mole, LGV, donovanose, fluxograma, mpox, molusco), uretrite/cervicite e gonococcemia, DIP, corrimentos (vaginose, candidíase, tricomoníase, citolítica, aeróbia), HPV e duas tabelas comparativas no fim; 2 esquemas autorais (testes da sífilis, fluxograma da úlcera) e 10 casos. Divergências no texto: critério de queda do VDRL na gestante (1 × 2 diluições em 3 meses), azitromicina × doxiciclina na uretrite. Pendente: ler o PCDT-IST e o PCDT de transmissão vertical vigentes e datar `lidoEm`. Próximo: `diabetes`. |
