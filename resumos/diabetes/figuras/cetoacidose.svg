@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="300" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Cetoacidose no adulto: a ordem do tratamento</text>
+<rect x="20" y="44" width="220" height="110" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="130" y="68" text-anchor="middle" font-weight="700">1. Volume</text>
+<text x="34" y="92">• soro fisiológico 0,9%</text>
+<text x="34" y="112">• 15–20 mL/kg na 1ª hora</text>
+<text x="34" y="132">• colher K, gasometria</text>
+<path d="M240 99 L268 99" stroke="#555" fill="none"/><path d="M262 94 L270 99 L262 104" stroke="#555" fill="none"/>
+<rect x="270" y="44" width="220" height="110" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="380" y="68" text-anchor="middle" font-weight="700">2. Potássio</text>
+<text x="284" y="92">• K &lt; 3,3: repor KCl e</text>
+<text x="284" y="112">  adiar a insulina</text>
+<text x="284" y="132">• K normal: repor junto</text>
+<path d="M490 99 L518 99" stroke="#555" fill="none"/><path d="M512 94 L520 99 L512 104" stroke="#555" fill="none"/>
+<rect x="520" y="44" width="220" height="110" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="630" y="68" text-anchor="middle" font-weight="700">3. Insulina</text>
+<text x="534" y="92">• regular IV 0,1 U/kg/h</text>
+<text x="534" y="112">• glicemia 200–250:</text>
+<text x="534" y="132">  glicose no soro</text>
+<rect x="20" y="178" width="720" height="80" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="34" y="202" font-weight="700">Por que o potássio vem antes</text>
+<text x="34" y="226">• o K total do corpo está baixo pela diurese osmótica, mesmo com K sérico normal ou alto</text>
+<text x="34" y="246">• insulina e correção da acidose devolvem o K à célula e o sérico cai</text>
+<text x="20" y="286" fill="#555" font-size="12">A insulina só para quando a acidose fecha, não quando a glicemia normaliza.</text>
+</svg>

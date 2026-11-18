@@ -21,5 +21,6 @@
   { id: "prematuridade", titulo: "Prematuridade e distúrbios metabólicos do recém-nascido", area: "Pediatria · Neonatologia", assunto: "ass-neo-prematuridade" },
   { id: "desconforto-respiratorio-rn", titulo: "Desconforto respiratório do recém-nascido", area: "Pediatria · Neonatologia", assunto: "ass-neo-descrresp" },
   { id: "ist", titulo: "Infecções sexualmente transmissíveis", area: "Clínica Médica · Infectologia", assunto: "ass-ist" },
+  { id: "diabetes", titulo: "Diabetes mellitus", area: "Clínica Médica · Endocrinologia", assunto: "ass-dm" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];
