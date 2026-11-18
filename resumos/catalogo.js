@@ -25,5 +25,6 @@
   { id: "hipertensao", titulo: "Hipertensão arterial", area: "Clínica Médica · Cardiologia", assunto: "ass-has" },
   { id: "cirrose", titulo: "Cirrose e complicações", area: "Clínica Médica · Gastroenterologia", assunto: "ass-cirrose" },
   { id: "tireoide", titulo: "Tireoidopatias", area: "Clínica Médica · Endocrinologia", assunto: "ass-tireoide" },
+  { id: "anemias", titulo: "Anemias", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-anemias" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

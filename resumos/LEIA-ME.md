@@ -112,3 +112,4 @@ Marcações dentro do texto:
 | `hipertensao` | `ass-has` | 109 | 7 (4 anuladas com reposição no resumo; 1 anulada sem reposição; veia cava superior; vacina de covid) |
 | `cirrose` | `ass-cirrose` | 81 | 1 (anulada) |
 | `tireoide` | `ass-tireoide` | 80 | 2 (anuladas) |
+| `anemias` | `ass-hemato-anemias` | 75 | — |
