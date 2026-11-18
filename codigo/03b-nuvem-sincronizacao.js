@@ -430,6 +430,7 @@ const NUVEM_CAMPOS_NOVOS = {
   comentarios: ["resolvido"],     // dúvida marcada como resolvida (sai da fila e da notificação)
   favoritos: ["nota"],            // a anotação pessoal da questão salva
   dias_cartoes: ["quantidade"],
+  feedbacks: ["resumo_id"],          // o resumo adaptativo em que o feedback foi escrito
   flashcards_pessoais: ["conjunto"],  // o nome do conjunto próprio a que o cartão pertence   // quantos cartões naquele dia
 };
 const _nuvemCamposAusentes = {};  // tabela -> lista de colunas que este banco não tem

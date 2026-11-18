@@ -903,3 +903,63 @@ body[data-marca-controle="xbox"] .dica-controle[data-pos="r1"]::before{content:"
 .fila-chute{border-left-color:var(--amber)}
 /* no celular o aviso subia por cima dos botões do pé da tela: fica no alto, abaixo do topo */
 @media (max-width:600px){.toast-container{bottom:auto;top:4.5rem;left:1rem;right:1rem;align-items:center}}
+
+/* ---------- Resumos (Beta), 09e: caderno de leitura longa ----------
+   Serifa do sistema para o texto corrido; a cor do erro é fraca (só orienta) e acende
+   no clique. O destaque da pessoa no resumo é azul-claro nos dois temas, com texto
+   escuro por cima para continuar legível no modo escuro. */
+:root{
+  --resumo-rev:#b7695c; --resumo-rev-fraco:rgba(183,105,92,.35); --resumo-rev-fundo:rgba(183,105,92,.08);
+  --resumo-aten:#bf9a55; --resumo-aten-fraco:rgba(191,154,85,.4); --resumo-aten-fundo:rgba(191,154,85,.09);
+  --resumo-ok:#7aa386; --resumo-quadro:var(--surface-2); --resumo-pisca:rgba(250,204,21,.35);
+  --resumo-azul:#cfe6ff; --resumo-azul-texto:#10233d;
+}
+html[data-theme="dark"]{
+  --resumo-rev:#c98a7f; --resumo-rev-fraco:rgba(201,138,127,.4); --resumo-rev-fundo:rgba(201,138,127,.09);
+  --resumo-aten:#cdb07a; --resumo-aten-fraco:rgba(205,176,122,.4); --resumo-aten-fundo:rgba(205,176,122,.09);
+  --resumo-ok:#8fb89b; --resumo-pisca:rgba(250,204,21,.25);
+}
+.resumo-caderno{--resumo-escala:1;max-width:46rem;margin:0 auto;font:calc(1.06rem * var(--resumo-escala))/1.72 "Source Serif 4",Georgia,"Times New Roman",serif;color:var(--ink)}
+.resumo-caderno p{margin:0 0 .9em}
+.resumo-rotulo{font:600 .72rem/1.4 system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.resumo-titulo{font-size:2em;line-height:1.15;margin:.2em 0 .4em;text-wrap:balance}
+.resumo-aluno{display:grid;gap:.5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.8rem 0;font:.85rem/1.5 system-ui,sans-serif;color:var(--ink-2)}
+.resumo-legenda{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem}
+.resumo-legenda span{display:inline-flex;align-items:center;gap:.4rem}
+.resumo-marca{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none;align-self:center}
+.resumo-marca.revisar{background:var(--resumo-rev)}.resumo-marca.atencao{background:var(--resumo-aten)}.resumo-marca.dominado{background:var(--resumo-ok)}
+.resumo-sumario{margin:1.8rem 0 0}
+.resumo-sumario ol{list-style:none;padding:0;margin:.5rem 0 0}
+.resumo-cap-item{padding:.4rem 0;border-bottom:1px solid var(--border)}
+.resumo-linha{display:flex;gap:.6rem;align-items:baseline}
+.resumo-sub{padding-left:2.2em !important;margin:0 !important;font-size:.92em}
+.resumo-num{font:.85em system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--muted);min-width:2.2em}
+.resumo-link{background:none;border:0;padding:0;font:inherit;color:var(--ink-2);text-align:left;cursor:pointer;flex:1;min-width:0}
+.resumo-link.forte{color:var(--ink);font-weight:600}
+.resumo-link:hover{color:var(--accent-dark)}
+.resumo-capitulo{margin-top:3.6rem;scroll-margin-top:1rem}
+.resumo-cap-cab{border-bottom:1px solid var(--ink);padding-bottom:.4rem;margin-bottom:1.3rem}
+.resumo-cap-cab h2{font-size:1.6em;line-height:1.2;margin:0}
+.resumo-introducao p:first-child::first-letter{font-size:3em;float:left;line-height:.9;padding:.3rem .45rem 0 0;font-weight:700;color:var(--ink);background:var(--bg)}
+.resumo-secao{margin-top:2rem;scroll-margin-top:1rem}
+.resumo-sec-cab{display:flex;gap:.6rem;align-items:baseline;margin-bottom:.6rem}
+.resumo-sec-cab h3{flex:1;min-width:0;font-size:1.12em;margin:0}
+.resumo-chave{background:var(--resumo-quadro);border-radius:var(--radius-sm);padding:.8rem 1rem .6rem;margin-top:.4rem}
+.resumo-chave ul{list-style:none;margin:.3rem 0 0;padding:0;display:grid;gap:.25rem}
+.resumo-chave li{padding:.25rem .6rem .25rem .7rem;border-left:3px solid transparent;border-radius:0 4px 4px 0;font-size:.96em;line-height:1.6}
+.resumo-chave li.revisar{border-left-color:var(--resumo-rev-fraco);background:var(--resumo-rev-fundo)}
+.resumo-chave li.atencao{border-left-color:var(--resumo-aten-fraco);background:var(--resumo-aten-fundo)}
+.resumo-ir{background:none;border:0;padding:0 .2rem;font:500 .75rem system-ui,sans-serif;color:var(--muted);cursor:pointer;white-space:nowrap}
+.resumo-ir:hover{color:var(--accent-dark)}
+.resumo-ir .icon{width:.9em;height:.9em}
+.resumo-frase{scroll-margin-top:30vh;border-radius:3px;transition:background-color .5s}
+.resumo-frase.revisar{text-decoration:underline 1px var(--resumo-rev-fraco);text-underline-offset:4px;cursor:pointer}
+.resumo-frase.atencao{text-decoration:underline 1px var(--resumo-aten-fraco);text-underline-offset:4px;cursor:pointer}
+.resumo-frase.revisar.acesa{text-decoration:underline 2px var(--resumo-rev);background:var(--resumo-rev-fundo)}
+.resumo-frase.atencao.acesa{text-decoration:underline 2px var(--resumo-aten);background:var(--resumo-aten-fundo)}
+.resumo-frase.acesa:not(.revisar):not(.atencao){text-decoration:underline 2px var(--muted)}
+.resumo-frase.piscando{background:var(--resumo-pisca)}
+.resumo-caderno mark.destaque{background:var(--resumo-azul);color:var(--resumo-azul-texto);box-shadow:0 0 0 .08em var(--resumo-azul)}
+.resumo-conferir{font:italic .8rem Georgia,serif;color:var(--muted);margin-top:.4rem}
+.resumo-fim{margin-top:3rem;border-top:1px solid var(--border);padding-top:.6rem;font-size:.82rem;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.resumo-frase{transition:none}}

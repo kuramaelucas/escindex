@@ -203,13 +203,17 @@ function atualizarBarraDeDestaque(){
   _destaqueAberto = null;
   _destaquePendente = d;
   const faixa = window.getSelection().getRangeAt(0).getBoundingClientRect();
-  mostrarBarraDeDestaque(faixa, '<button type="button" class="btn btn-primary btn-sm" onclick="destacarSelecao()">' + iconeSvg("star") + ' Destacar</button>');
+  // no resumo, o trecho selecionado também pode virar um flashcard (verso = o trecho)
+  const cartao = d.alvo.startsWith("r:") ? ' <button type="button" class="btn btn-secondary btn-sm" onclick="cartaoDoTrechoSelecionado()">' + iconeSvg("cards") + ' Flashcard</button>' : "";
+  mostrarBarraDeDestaque(faixa, '<button type="button" class="btn btn-primary btn-sm" onclick="destacarSelecao()">' + iconeSvg("star") + ' Destacar</button>' + cartao);
 }
 // o texto puro do alvo, sem as marcas (é sobre ele que as posições valem)
 function textoDoAlvo(el){ return el.textContent; }
 function repintarAlvo(el){
   if(!el) return;
   const alvo = el.getAttribute("data-alvo");
+  // trecho de resumo ("r:…"): o texto tem frases ligadas a questões além da ênfase; quem pinta é 09e
+  if(alvo.startsWith("r:")){ repintarTrechoDeResumo(el); return; }
   // explicação: devolve os "**" do autor ao texto antes de repintar, senão o negrito
   // sublinhado e os parágrafos sumiriam assim que a pessoa marcasse um trecho
   const ehExplicacao = /:explicacao(-alt)?$/.test(alvo);

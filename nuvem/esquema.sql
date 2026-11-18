@@ -682,6 +682,8 @@ create table if not exists public.feedbacks (
   atualizado_em   timestamptz not null default now()
 );
 create index if not exists feedbacks_sync_idx on public.feedbacks (atualizado_em);
+-- resumo adaptativo em que o feedback foi escrito (Estudar › Resumos); vazio = feedback geral
+alter table public.feedbacks add column if not exists resumo_id text;
 
 -- ---------------------------------------------------------------------------
 -- 11-H. CORRECOES_QUESTOES — consertos nas questões da pasta dados/ (GLOBAL)
