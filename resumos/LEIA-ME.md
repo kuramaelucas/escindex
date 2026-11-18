@@ -101,4 +101,5 @@ Marcações dentro do texto:
 | `vias-aereas-superiores` | `ass-ivas` | 47 | 1 (desatualizada sem reposição) |
 | `ictericia-neonatal` | `ass-ictericia` | 48 | 1 (anulada) |
 | `triagem-neonatal` | `ass-neo-triagemneonatal` | 50 | — |
+| `abdome-agudo-rn` | `ass-neo-malformacoesdigestivas` | 49 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
