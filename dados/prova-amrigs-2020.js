@@ -1227,7 +1227,7 @@ window.EscDados.registrarQuestoes("prova-amrigs-2020", [
   gabarito:"A",
   explicacaoGeral:"A alternativa A está correta. Dicas do enunciado: **dor em flanco esquerdo que irradia para a pelve**, **urina mais escura**, **afebril**, **sem punho-percussão** e **dolorimento à compressão profunda do flanco**: cólica renal por **cálculo urinário em deslocamento**, com hematúria. Mecanismo: o cálculo em deslocamento obstrui o ureter, e a distensão da via e a peristalse ureteral causam dor em cólica, com lesão da mucosa e hematúria. Epidemiologia: a litíase urinária é comum em adultos e costuma recorrer. B está errada porque a pielonefrite cursa com febre e dor à punho-percussão (Giordano), ausentes aqui, apesar do antecedente de pielonefrite. C está errada porque a apendicite dá dor em fossa ilíaca direita e Blumberg positivo, e aqui é negativo. D está errada porque a hérnia discal tem dor lombar com irradiação ao membro e Lasègue positivo, e aqui é negativo; ela também não explica a hematúria.",
   explicacoesAlternativas:{},
-  referencias:"European Association of Urology. Guidelines on Urolithiasis, 2020.",
+  referencias:"European Association of Urology. Guidelines on Urolithiasis, 2020. Texto lido em 18/11/2026 em EAU Guidelines on Urolithiasis 2026 (atualização limitada de março de 2026; PDF completo em d56bochluxqnz.cloudfront.net, endereço da página uroweb.org/guidelines/urolithiasis): tomografia sem contraste para confirmar o cálculo depois do ultrassom inicial na dor lombar aguda (forte). Confirmado quanto à hipótese de cólica renal.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-04"
