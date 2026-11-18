@@ -10,5 +10,6 @@
   { id: "crescimento-puberdade", titulo: "Crescimento e puberdade", area: "Pediatria · Crescimento e Desenvolvimento", assunto: "ass-crescimentopuberdade" },
   { id: "emergencias-respiratorias-pcr", titulo: "Emergências pediátricas: insuficiência respiratória e parada", area: "Pediatria · Emergências Pediátricas", assunto: "ass-emergped-respiratoria" },
   { id: "diarreia-desidratacao", titulo: "Diarreia aguda e desidratação", area: "Pediatria · Infectologia", assunto: "ass-dda" },
+  { id: "infeccoes-congenitas", titulo: "Infecções congênitas e perinatais", area: "Pediatria · Neonatologia", assunto: "ass-neo-infeccoescongenitas" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];
