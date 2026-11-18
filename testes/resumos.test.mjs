@@ -81,6 +81,14 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     // (a imagem é lazy: fora da tela não carrega, então confere pelo endereço)
     const figura = await pagina.evaluate(async () => { const i = document.querySelector(".resumo-figura img"); const r = await fetch(i.src); return r.ok && (r.headers.get("content-type") || "").includes("svg"); });
     assert.ok(figura, "a ilustração própria do resumo existe e é SVG");
+    // celular: o sumário é gaveta; tocar fora (no véu) fecha
+    await pagina.setViewportSize({ width: 390, height: 800 });
+    await pagina.waitForTimeout(400);   // o menu lateral do app leva 0,2 s para sair da tela
+    await pagina.evaluate(() => document.querySelector(".resumo-layout").classList.remove("lateral-fechada"));
+    const gavetaAberta = await pagina.locator(".resumo-lateral").isVisible();
+    await pagina.mouse.click(10, 400);
+    assert.ok(gavetaAberta && !(await pagina.locator(".resumo-lateral").isVisible()), "tocar fora fecha a gaveta do sumário");
+    await pagina.setViewportSize({ width: 1280, height: 800 });
     // todo resumo do catálogo abre e desenha capítulos (pega erro de sintaxe ou de ligação num resumo novo)
     const ids = await pagina.evaluate(() => catalogoDeResumos().map(r => r.id));
     for(const id of ids){

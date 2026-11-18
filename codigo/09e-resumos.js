@@ -163,10 +163,15 @@ function irParaFraseDoResumo(chave){
   setTimeout(() => partes.forEach(p => p.classList.remove("piscando")), 1800);
 }
 // o sumário rola até a seção sem mexer no endereço (o #/rota é do roteador)
+// No celular o sumário é gaveta: fecha ao escolher um capítulo ou ao tocar fora (o véu),
+// sem gravar a preferência — fechar a gaveta não é "quero o sumário recolhido".
+function fecharGavetaDoResumo(){
+  const l = document.querySelector(".resumo-layout");
+  if(l) l.classList.add("lateral-fechada");
+}
 function irParaNoResumo(id){
   const el = document.getElementById(id);
-  // no celular o sumário cobre o texto: fecha ao escolher (sem gravar a preferência)
-  if(window.innerWidth < 900){ const l = document.querySelector(".resumo-layout"); if(l) l.classList.add("lateral-fechada"); }
+  if(window.innerWidth < 900) fecharGavetaDoResumo();
   if(el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -348,6 +353,7 @@ function _renderCaderno(r){
       </div>
     </div>
     <div class="resumo-layout${_sumarioDoResumoFechado() ? " lateral-fechada" : ""}">
+    <div class="resumo-veu" onclick="fecharGavetaDoResumo()" aria-hidden="true"></div>
     <aside class="resumo-lateral" aria-label="Sumário">
       <div class="resumo-lateral-cab"><span class="resumo-rotulo">Sumário</span><button class="resumo-ir" onclick="alternarSumarioDoResumo()" title="Recolher o sumário">recolher »</button></div>
       <ol>${sumario}</ol>
