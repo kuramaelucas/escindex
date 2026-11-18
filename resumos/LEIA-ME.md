@@ -111,3 +111,4 @@ Marcações dentro do texto:
 | `diabetes` | `ass-dm` | 140 | 4 (2 anuladas com reposição no resumo; 1 anulada e 1 desatualizada sem reposição) |
 | `hipertensao` | `ass-has` | 109 | 7 (4 anuladas com reposição no resumo; 1 anulada sem reposição; veia cava superior; vacina de covid) |
 | `cirrose` | `ass-cirrose` | 81 | 1 (anulada) |
+| `tireoide` | `ass-tireoide` | 80 | 2 (anuladas) |

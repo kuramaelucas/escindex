@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="270" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Nódulo tireoidiano: o primeiro exame é o TSH</text>
+<rect x="280" y="40" width="200" height="40" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="380" y="65" text-anchor="middle" font-weight="700">TSH</text>
+<path d="M320 80 L150 110" stroke="#555" fill="none"/><path d="M440 80 L560 110" stroke="#555" fill="none"/>
+<text x="210" y="100" font-weight="700" fill="#2f8a57">baixo</text><text x="500" y="100" font-weight="700" fill="#b03a2e">normal ou alto</text>
+<rect x="20" y="110" width="260" height="100" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="150" y="134" text-anchor="middle" font-weight="700">Cintilografia</text>
+<text x="34" y="158">• nódulo quente: quase nunca</text>
+<text x="34" y="176">  é câncer, não puncionar</text>
+<rect x="340" y="110" width="400" height="130" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="540" y="134" text-anchor="middle" font-weight="700">Ultrassom (TI-RADS)</text>
+<text x="354" y="158">• suspeitos: sólido, hipoecoico, mais alto que largo,</text>
+<text x="354" y="176">  margens irregulares, microcalcificações</text>
+<text x="354" y="200">• TR5: PAAF a partir de 1 cm; TR4: a partir de 1,5 cm</text>
+<text x="354" y="222">• abaixo disso: acompanhar com ultrassom</text>
+</svg>
