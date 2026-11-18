@@ -113,3 +113,4 @@ Marcações dentro do texto:
 | `cirrose` | `ass-cirrose` | 81 | 1 (anulada) |
 | `tireoide` | `ass-tireoide` | 80 | 2 (anuladas) |
 | `anemias` | `ass-hemato-anemias` | 75 | — |
+| `glomerulopatias` | `ass-nefro-glomerulopatias` | 73 | 1 (litíase) |
