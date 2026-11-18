@@ -26,7 +26,7 @@
 
 Por isso o tempo importa tanto. Quando o exantema é imunomediado, ele aparece no momento em que o organismo já reage ao agente. Às vezes isso coincide com o fim da febre (exantema súbito), às vezes com o fim da transmissão (parvovírus). Saber o mecanismo de cada doença permite deduzir o quadro, em vez de decorar listas.`,
       fragmentos: [
-        { id: "rac-chaves", titulo: "As quatro perguntas que separam as doenças", conferir: true,
+        { id: "rac-chaves", figuras: [{ arquivo: "figuras/febre-exantema.svg", legenda: "Esquema autoral: a curva da febre e o momento do exantema em três doenças." }], titulo: "As quatro perguntas que separam as doenças", conferir: true,
           questoes: ["q-famema2025-042","q-tp20222-047","q-amrigs2021-070"],
           texto: `- **Qual a relação febre × exantema?** O exantema aparece quando a febre cede: **exantema súbito**. O exantema vem no auge da febre: **sarampo**. Febre há 5 dias ou mais sem foco: pense em **Kawasaki**. {q-amrigs2021-070,q-famema2025-042}
 - **Que pródromo veio antes?** Tosse, coriza e conjuntivite: **sarampo**. Dor de garganta: **escarlatina** ou **mononucleose**. Pródromo pobre ou ausente: **rubéola** ou **eritema infeccioso**. {q-tp20222-047,q-famema2025-042}
@@ -186,7 +186,7 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
 
 A doença é mais grave em adolescentes, adultos, gestantes, recém-nascidos e imunodeprimidos, nos quais a pneumonia e a forma disseminada são mais comuns. Na criança, a complicação mais frequente é a **infecção bacteriana das lesões** coçadas. O **AAS é contraindicado**: o salicilato, junto com a infecção viral, causa a **síndrome de Reye**, com disfunção mitocondrial, insuficiência hepática e edema cerebral.`,
       fragmentos: [
-        { id: "var-tudo", titulo: "Quadro e conduta com contatos", conferir: true,
+        { id: "var-tudo", figuras: [{ arquivo: "figuras/varicela-estagios.svg", legenda: "Esquema autoral: os quatro estágios da lesão, que coexistem no mesmo paciente." }], titulo: "Quadro e conduta com contatos", conferir: true,
           questoes: ["q-einstein2027-062"],
           texto: `- Agente: **vírus varicela-zóster**. As lesões são **pruriginosas** e aparecem **em diferentes estágios ao mesmo tempo** (mácula, pápula, vesícula e crosta). A distribuição é **centrípeta**, mais no tronco.
 - A complicação mais comum é a **infecção bacteriana da pele** (estreptococo ou estafilococo). **Não use AAS**, pelo risco de **síndrome de Reye**.
@@ -237,7 +237,7 @@ O exantema depois de **amoxicilina ou ampicilina** acontece na maioria dos pacie
 
 A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pandemia de covid-19. [[É uma resposta imune desregulada que aparece **2 a 6 semanas depois da infecção** pelo SARS-CoV-2, não durante ela.|q-sirio2024-043]] Lembra Kawasaki, mas atinge crianças maiores e escolares, com sintomas gastrintestinais marcantes e, com frequência, **choque** por disfunção miocárdica e vasodilatação.`,
       fragmentos: [
-        { id: "kaw-crit", titulo: "Critérios de Kawasaki",
+        { id: "kaw-crit", figuras: [{ arquivo: "figuras/kawasaki-criterios.svg", legenda: "Esquema autoral: o critério obrigatório e os cinco critérios clínicos." }], titulo: "Critérios de Kawasaki",
           prosa: `[[Como não existe exame que confirme Kawasaki, o diagnóstico é clínico e se apoia num conjunto de critérios.|q-scmsp2025-057,q-sirio2025-045,q-sirio2024-050]] Os sinais refletem inflamação vascular difusa: a hiperemia conjuntival sem secreção, o edema endurado das extremidades e a descamação periungueal tardia (2ª a 3ª semana). Na fase subaguda, a **plaquetose** é típica. VHS e PCR elevadas, piúria estéril e elevação de transaminases reforçam a suspeita.`, conferir: true,
           questoes: ["q-scmsp2025-057","q-sirio2025-045","q-sirio2024-050","q-scmsp2022-039","q-famema2025-042"],
           texto: `- Critério obrigatório: **febre por 5 dias ou mais**. Some **4 dos 5 critérios**: {q-scmsp2025-057,q-sirio2025-045}

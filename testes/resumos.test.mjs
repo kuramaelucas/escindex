@@ -77,6 +77,10 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     });
     assert.ok(caso.temFigura && caso.certa && caso.gabarito, "o caso ilustrado mostra figura e gabarito");
     assert.ok(!caso.gravou, "tentar o caso no resumo não vira resposta");
+    // ilustração própria: o arquivo de resumos/<tema>/figuras carrega de fato
+    // (a imagem é lazy: fora da tela não carrega, então confere pelo endereço)
+    const figura = await pagina.evaluate(async () => { const i = document.querySelector(".resumo-figura img"); const r = await fetch(i.src); return r.ok && (r.headers.get("content-type") || "").includes("svg"); });
+    assert.ok(figura, "a ilustração própria do resumo existe e é SVG");
     // todo resumo do catálogo abre e desenha capítulos (pega erro de sintaxe ou de ligação num resumo novo)
     const ids = await pagina.evaluate(() => catalogoDeResumos().map(r => r.id));
     for(const id of ids){

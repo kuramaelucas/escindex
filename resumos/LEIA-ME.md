@@ -31,6 +31,7 @@ registrar({
       questoes: [ids],                               // as questões que a seção responde (mede o erro)
       prosa: `texto corrido da seção`,               // opcional
       texto: `- ponto-chave {q-a,q-b}`,              // um tópico por linha; {…} = questões daquele tópico
+      figuras: [{ arquivo: "figuras/x.svg", legenda }], // opcional: ilustração própria (esquema autoral)
       casos: [ids],                                  // opcional: questões COM FIGURA mostradas como "caso ilustrado"
     }],
   }],
@@ -65,7 +66,8 @@ Marcações dentro do texto:
 9. **Texto autoral e verificável.** Nada copiado de cursinho ou de site de questões. As fontes primárias ficam em `fontes`, com a data em que foram lidas. Enquanto a seção não tiver a leitura conferida, ela leva `conferir: true` e a tela mostra "a conferir".
 10. **Pegadinhas viram seção própria** ("Armadilhas"). Ligue-as às questões em que a alternativa errada explora a confusão (ex.: exantema súbito × alergia à amoxicilina).
 11. **Casos ilustrados** (`casos`): quando o achado se aprende vendo (foto de exantema, radiografia, curva de crescimento, pega na amamentação), a seção mostra a questão real com figura logo após a prosa. A figura fica à vista; o caso abre em "Ler o caso e tentar responder", e a alternativa escolhida mostra gabarito e explicação **sem gravar resposta** (a marcação pelo erro mede o que a pessoa sabia, não o que acabou de ler). Prefira figura clínica a tabela; um ou dois por seção. `npm run resumo` recusa caso sem figura.
-12. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
+12. **Ilustrações próprias** (`figuras`, arquivos em `<tema>/figuras/`): esquemas autorais em SVG (linha do tempo, critérios, ciclos, faixas) para o que nenhuma questão do banco mostra. O SVG traz fundo branco (vale nos dois temas), a legenda começa com "Esquema autoral" e o conteúdo não pode dizer nada que o texto da seção não diga. Foto clínica de terceiros só com licença conferida e citada na legenda. `npm run resumo` recusa arquivo que não existe.
+13. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
 
 ## Ainda por fazer
 

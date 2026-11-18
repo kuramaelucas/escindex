@@ -56,7 +56,7 @@ A IC é o caminho final de quase todas as doenças do coração e uma das princi
 
 **De onde vem a congestão.** O ventrículo esquerdo que não esvazia, ou que é rígido, enche sob pressão alta. [[A **pressão diastólica final do VE** sobe e se transmite para trás: átrio esquerdo, veias pulmonares e capilares. Quando a pressão capilar passa de cerca de 18 a 25 mmHg, o líquido sai para o interstício e para os alvéolos.|q-usprp2026-011]] [[Com o tempo, a pressão alta nas veias pulmonares eleva a **pressão na artéria pulmonar** e sobrecarrega o ventrículo direito, que então congestiona o fígado, as jugulares e as pernas.|q-usprp2024-055]] O coração dilatado também libera os **peptídeos natriuréticos** (BNP), em resposta ao estiramento da parede: são a tentativa do próprio coração de eliminar sal e água, e por isso servem como marcador da pressão de enchimento.`,
       fragmentos: [
-        { id: "fis-neuro", casos: ["q-tp20202-010"], titulo: "Neuro-hormônios e remodelamento", conferir: true,
+        { id: "fis-neuro", figuras: [{ arquivo: "figuras/ciclo-neuro-hormonal.svg", legenda: "Esquema autoral: o ciclo que piora a IC e os remédios que o interrompem." }], casos: ["q-tp20202-010"], titulo: "Neuro-hormônios e remodelamento", conferir: true,
           questoes: ["q-iamspe2023-004","q-tp20202-010","q-sirio2022-012"],
           texto: `- Simpático + SRAA + ADH: úteis no início, **tóxicos no longo prazo** (fibrose, hipertrofia, apoptose). {q-iamspe2023-004}
 - Histologia: **colágeno entre as fibras** (fibrose intersticial). {q-tp20202-010}
@@ -138,7 +138,7 @@ O **sacubitril-valsartana** soma ao bloqueio da angiotensina a inibição da nep
 
 [[No **edema agudo de pulmão hipertensivo**, o problema principal é a pós-carga: a pressão muito alta impede o VE de esvaziar e o líquido é redistribuído para o pulmão em minutos. O tratamento é **vasodilatador (nitrato) endovenoso**, **ventilação não invasiva** e furosemida.|q-unifesp2026-028,q-sessp2022-008,q-udisc20262-034]]`,
       fragmentos: [
-        { id: "agu-perfis", titulo: "Perfis hemodinâmicos e o que fazer em cada um", conferir: true,
+        { id: "agu-perfis", figuras: [{ arquivo: "figuras/perfis-hemodinamicos.svg", legenda: "Esquema autoral: os quatro perfis pela congestão e pela perfusão, com a conduta de cada um." }], titulo: "Perfis hemodinâmicos e o que fazer em cada um", conferir: true,
           questoes: ["q-card-11","q-fmabc2023-011","q-iamspe2023-002","q-sessp2025-011","q-adap26-028","q-unifesp2025-025-ia","q-iamspe2026-009","q-unifesp2025-032"],
           texto: `- **A (quente e seco)**: compensado, ajustar o tratamento oral.
 - **B (quente e úmido)**: **diurético EV** ± vasodilatador. {q-card-11,q-fmabc2023-011,q-sessp2025-011}

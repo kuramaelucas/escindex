@@ -968,3 +968,7 @@ html[data-theme="dark"]{
 .resumo-caso .qcard-img{max-height:340px}
 .resumo-caso summary{cursor:pointer;font-weight:600;margin:.4rem 0}
 .resumo-caso-enunciado{margin:.4rem 0 .6rem;line-height:1.6}
+/* ilustração própria do resumo: o SVG traz fundo branco, então só ganha moldura */
+.resumo-figura{margin:.8rem 0;text-align:center}
+.resumo-figura img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:zoom-in;background:#fff}
+.resumo-figura figcaption{font-size:.85em;color:var(--muted);margin-top:.3rem}

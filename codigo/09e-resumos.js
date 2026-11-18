@@ -222,6 +222,18 @@ function _htmlCasoDoResumo(id){
     </details>
   </div>`;
 }
+/* Ilustração própria (esquema autoral em resumos/<tema>/figuras/): para o que nenhuma questão
+   do banco mostra. Fundo branco no próprio arquivo, então serve aos dois temas sem trocar cor. */
+function _htmlFiguraDoResumo(r, fig){
+  const src = `resumos/${r.id}/${fig.arquivo}`;
+  return `<figure class="resumo-figura">
+    <img src="${escapeHtml(src)}" alt="${escapeHtml(fig.alt || fig.legenda || "")}" loading="lazy" onclick="ampliarFiguraDoResumo(this.src, this.alt)">
+    ${fig.legenda ? `<figcaption>${escapeHtml(fig.legenda)}</figcaption>` : ""}
+  </figure>`;
+}
+function ampliarFiguraDoResumo(src, alt){
+  abrirModal(`<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" style="width:100%;height:auto;background:#fff;border-radius:8px">`, "lg");
+}
 function responderCasoDoResumo(id, letra){
   if(letra) _resumoCasos[id] = letra; else delete _resumoCasos[id];
   const el = document.getElementById("resumo-caso-" + id);
@@ -351,6 +363,7 @@ function _htmlSecaoDoResumo(r, cap, numero, { f, t }){
     <div class="resumo-sec-cab"><span class="resumo-num">${numero}</span><h3>${escapeHtml(f.titulo)}</h3>${_marcaDoResumo(t)}
       <button class="resumo-ir" onclick="cartaoDaSecaoDoResumo('${escapeHtml(f.id)}')" title="Criar um flashcard desta seção">${iconeSvg("cards")} cartão</button></div>
     ${prosa}
+    ${(f.figuras || []).map(fig => _htmlFiguraDoResumo(r, fig)).join("")}
     ${(f.casos || []).map(_htmlCasoDoResumo).join("")}
     <div class="resumo-chave"><div class="resumo-rotulo">Pontos-chave</div><ul>${topicos}</ul></div>
     ${f.conferir ? `<div class="resumo-conferir">Texto ainda a conferir na fonte primária.</div>` : ""}

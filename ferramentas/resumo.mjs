@@ -31,6 +31,9 @@ for(const d of r.doencas) for(const f of d.fragmentos){
     if(!cobertas.has(id)) cobertas.set(id, []);
     cobertas.get(id).push(f.id);
   }
+  // Ilustração própria cujo arquivo não existe: a tela mostraria uma imagem quebrada.
+  for(const fig of f.figuras || [])
+    if(!fs.existsSync(path.join(raiz, "resumos", tema, fig.arquivo || ""))) erros.push(`${d.id}/${f.id}: figura ${fig.arquivo} não existe`);
   // Caso ilustrado sem figura não ilustra nada: a tela o pularia em silêncio.
   for(const id of f.casos || []){
     if(!porId.has(id)) erros.push(`${d.id}/${f.id}: caso ilustrado ${id} não existe`);
