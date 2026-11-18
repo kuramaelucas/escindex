@@ -104,4 +104,5 @@ Marcações dentro do texto:
 | `abdome-agudo-rn` | `ass-neo-malformacoesdigestivas` | 49 | 1 (anulada) |
 | `maus-tratos` | `ass-emergped-maustratos` | 32 | 1 (anulada) |
 | `convulsao-febril` | `ass-convulsaofebril` | 28 | — |
+| `prematuridade` | `ass-neo-prematuridade` | 26 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |

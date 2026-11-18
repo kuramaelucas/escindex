@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="290" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Recém-nascido de risco com glicemia baixa</text>
+<text x="20" y="46" fill="#555" font-size="12">De risco: filho de mãe diabética, grande ou pequeno para a idade, prematuro, mãe com terbutalina. Medir desde a 1ª hora.</text>
+<rect x="20" y="64" width="350" height="170" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="195" y="88" text-anchor="middle" font-weight="700">Assintomático</text>
+<text x="34" y="116">• amamentar (ou gel de dextrose)</text>
+<text x="34" y="138">• repetir a glicemia em 30 a 60 minutos</text>
+<text x="34" y="160">• segue baixa: glicose na veia</text>
+<rect x="390" y="64" width="350" height="170" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="565" y="88" text-anchor="middle" font-weight="700">Sintomático</text>
+<text x="404" y="116" font-size="12">tremores, palidez, cianose, hipotonia, convulsão</text>
+<text x="404" y="144">• bolus de soro glicosado 10%, 2 mL/kg</text>
+<text x="404" y="166">• soro de manutenção com glicose</text>
+<text x="404" y="188">• glicemias seriadas</text>
+<text x="20" y="262" fill="#555" font-size="12">Convulsão com glicemia normal no prematuro extremo: dosar o cálcio (hipocalcemia → gluconato de cálcio IV).</text>
+</svg>

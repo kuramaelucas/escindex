@@ -18,5 +18,6 @@
   { id: "abdome-agudo-rn", titulo: "Abdome agudo e malformações digestivas do recém-nascido", area: "Pediatria · Neonatologia", assunto: "ass-neo-malformacoesdigestivas" },
   { id: "maus-tratos", titulo: "Maus-tratos na infância", area: "Pediatria · Emergências Pediátricas", assunto: "ass-emergped-maustratos" },
   { id: "convulsao-febril", titulo: "Convulsão febril", area: "Pediatria · Emergências Pediátricas", assunto: "ass-convulsaofebril" },
+  { id: "prematuridade", titulo: "Prematuridade e distúrbios metabólicos do recém-nascido", area: "Pediatria · Neonatologia", assunto: "ass-neo-prematuridade" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];
