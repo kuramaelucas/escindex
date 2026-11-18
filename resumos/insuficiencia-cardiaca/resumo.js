@@ -33,7 +33,7 @@ A IC é o caminho final de quase todas as doenças do coração e uma das princi
 - Estágios (ACC/AHA): **A** risco, sem doença estrutural; **B** doença estrutural sem sintomas; **C** sintomas; **D** refratária.
 - Classe funcional NYHA: **I** sem limitação; **II** grandes esforços; **III** pequenos esforços; **IV** em repouso.
 - Descompensação: a causa mais comum é a **má adesão**. {q-famema2025-014}` },
-        { id: "def-causas", titulo: "Causas que a prova cobra", conferir: true,
+        { id: "def-causas", casos: ["q-adap24-021"], titulo: "Causas que a prova cobra", conferir: true,
           prosa: `Algumas causas têm pistas específicas. [[A **cardiotoxicidade por quimioterapia** (antraciclinas, trastuzumabe) aparece semanas a meses depois do tratamento.|q-tp20212-030]] [[O **álcool** causa miocardiopatia dilatada no etilista de longa data, sem doença coronariana.|q-usp2026-004]] [[A **cardiomiopatia periparto** surge no fim da gestação ou nos meses após o parto.|q-unesp2022-042]] [[A **amiloidose** deposita proteína entre as fibras do miocárdio e o torna rígido e espesso. Pistas: **síndrome do túnel do carpo** bilateral, parede espessa com ECG de baixa voltagem e realce tardio difuso na ressonância. A forma **AL** (de cadeias leves) se investiga com **imunofixação e cadeias leves livres**; a forma por **transtirretina** é tratada com **tafamidis**, que estabiliza a proteína.|q-famerp2026-060,q-famema2021-038,q-famema2021-037,q-fmabc2024-019]]`,
           questoes: ["q-adap24-021","q-tp20212-030","q-usp2026-004","q-unesp2022-042","q-famerp2026-060","q-famema2021-037","q-famema2021-038","q-fmabc2024-019","q-tp20241-026","q-sessp2026-016","q-iamspe2022-003"],
           texto: `- **Chagas**: miocardiopatia dilatada com arritmias, bloqueios e aneurisma apical, em quem viveu em casa de pau a pique. {q-adap24-021}
@@ -56,7 +56,7 @@ A IC é o caminho final de quase todas as doenças do coração e uma das princi
 
 **De onde vem a congestão.** O ventrículo esquerdo que não esvazia, ou que é rígido, enche sob pressão alta. [[A **pressão diastólica final do VE** sobe e se transmite para trás: átrio esquerdo, veias pulmonares e capilares. Quando a pressão capilar passa de cerca de 18 a 25 mmHg, o líquido sai para o interstício e para os alvéolos.|q-usprp2026-011]] [[Com o tempo, a pressão alta nas veias pulmonares eleva a **pressão na artéria pulmonar** e sobrecarrega o ventrículo direito, que então congestiona o fígado, as jugulares e as pernas.|q-usprp2024-055]] O coração dilatado também libera os **peptídeos natriuréticos** (BNP), em resposta ao estiramento da parede: são a tentativa do próprio coração de eliminar sal e água, e por isso servem como marcador da pressão de enchimento.`,
       fragmentos: [
-        { id: "fis-neuro", titulo: "Neuro-hormônios e remodelamento", conferir: true,
+        { id: "fis-neuro", figuras: [{ arquivo: "figuras/ciclo-neuro-hormonal.svg", legenda: "Esquema autoral: o ciclo que piora a IC e os remédios que o interrompem." }], casos: ["q-tp20202-010"], titulo: "Neuro-hormônios e remodelamento", conferir: true,
           questoes: ["q-iamspe2023-004","q-tp20202-010","q-sirio2022-012"],
           texto: `- Simpático + SRAA + ADH: úteis no início, **tóxicos no longo prazo** (fibrose, hipertrofia, apoptose). {q-iamspe2023-004}
 - Histologia: **colágeno entre as fibras** (fibrose intersticial). {q-tp20202-010}
@@ -88,7 +88,7 @@ Os achados mais específicos são os que medem diretamente a pressão nas veias.
 - Ajuda no diagnóstico e mostra **gravidade e prognóstico**. {q-amrigs2020-002,q-uspsp5-024}
 - IC descompensada com FE reduzida: BNP costuma ser **> 400**. {q-famema2021-031}
 - **Limitações**: idade, **FA**, **doença renal** (aumentam); obesidade (reduz). {q-uspsp2-001}` },
-        { id: "dia-imagem", titulo: "Ecocardiograma, imagem e exames da etiologia", conferir: true,
+        { id: "dia-imagem", casos: ["q-unesp2024-042","q-sessp2022-020"], titulo: "Ecocardiograma, imagem e exames da etiologia", conferir: true,
           prosa: `[[No ecocardiograma, a disfunção diastólica aparece como **relação E/e' elevada**, átrio esquerdo aumentado e pressão pulmonar alta: são esses achados que sustentam a IC quando a FE é normal.|q-sessp2025-013]] Na radiografia, a congestão se vê como redistribuição do fluxo para os ápices, linhas B de Kerley e derrame pleural. [[O **ultrassom pulmonar à beira do leito** mostra as mesmas linhas B e ajuda a decidir pelo diurético.|q-usp2026-001]]`,
           questoes: ["q-sessp2022-020","q-sessp2025-012","q-sessp2025-013","q-usp2026-001","q-usp2023-054","q-uspsp4-015"],
           texto: `- Primeiro exame para investigar: **ecocardiograma transtorácico**. {q-sessp2022-020}
@@ -138,7 +138,7 @@ O **sacubitril-valsartana** soma ao bloqueio da angiotensina a inibição da nep
 
 [[No **edema agudo de pulmão hipertensivo**, o problema principal é a pós-carga: a pressão muito alta impede o VE de esvaziar e o líquido é redistribuído para o pulmão em minutos. O tratamento é **vasodilatador (nitrato) endovenoso**, **ventilação não invasiva** e furosemida.|q-unifesp2026-028,q-sessp2022-008,q-udisc20262-034]]`,
       fragmentos: [
-        { id: "agu-perfis", titulo: "Perfis hemodinâmicos e o que fazer em cada um", conferir: true,
+        { id: "agu-perfis", figuras: [{ arquivo: "figuras/perfis-hemodinamicos.svg", legenda: "Esquema autoral: os quatro perfis pela congestão e pela perfusão, com a conduta de cada um." }], titulo: "Perfis hemodinâmicos e o que fazer em cada um", conferir: true,
           questoes: ["q-card-11","q-fmabc2023-011","q-iamspe2023-002","q-sessp2025-011","q-adap26-028","q-unifesp2025-025-ia","q-iamspe2026-009","q-unifesp2025-032"],
           texto: `- **A (quente e seco)**: compensado, ajustar o tratamento oral.
 - **B (quente e úmido)**: **diurético EV** ± vasodilatador. {q-card-11,q-fmabc2023-011,q-sessp2025-011}
@@ -150,7 +150,7 @@ O **sacubitril-valsartana** soma ao bloqueio da angiotensina a inibição da nep
           texto: `- Furosemida **EV em bolus**, dose **não inferior à oral** que já usava (1 a 2,5 vezes), **reavaliando em 2 horas** (diurese e sódio urinário). {q-adap25-032}
 - Internado: furosemida + **profilaxia de TEV (enoxaparina)**. {q-famerp2022-052}
 - Ambulatório congesto: aumentar o diurético; diagnóstico novo: diurético + IECA, Rx e eco. {q-unesp2024-042,q-uspsp1-057,q-iamspe2021-016}` },
-        { id: "agu-eap", titulo: "Edema agudo hipertensivo e choque cardiogênico", conferir: true,
+        { id: "agu-eap", casos: ["q-sessp2022-008"], titulo: "Edema agudo hipertensivo e choque cardiogênico", conferir: true,
           prosa: `[[No **choque cardiogênico do infarto**, com pressão muito baixa, a primeira droga é a **noradrenalina**, para restabelecer a pressão de perfusão; a dobutamina entra quando a pressão já permite.|q-unifesp2026-024]]`,
           questoes: ["q-unifesp2026-028","q-sessp2022-008","q-udisc20262-034","q-unifesp2026-024","q-unifesp2025-032"],
           texto: `- EAP hipertensivo: **VNI + nitrato EV + furosemida EV**. {q-unifesp2026-028,q-sessp2022-008,q-udisc20262-034}
