@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="270" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Anemia: a medula responde? E o tamanho da hemácia?</text>
+<rect x="20" y="44" width="230" height="200" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="135" y="68" text-anchor="middle" font-weight="700">Reticulócitos altos</text>
+<text x="34" y="94">• perda: sangramento agudo</text>
+<text x="34" y="114">• destruição: hemólise</text>
+<text x="34" y="138">  bilirrubina indireta e DHL</text>
+<text x="34" y="156">  altos, haptoglobina baixa</text>
+<rect x="270" y="44" width="470" height="40" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="505" y="69" text-anchor="middle" font-weight="700">Reticulócitos baixos: olhar o VCM</text>
+<rect x="270" y="96" width="150" height="148" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="345" y="120" text-anchor="middle" font-weight="700">Microcítica</text>
+<text x="282" y="144">• ferro</text>
+<text x="282" y="164">• talassemia</text>
+<text x="282" y="184">• doença crônica</text>
+<rect x="430" y="96" width="150" height="148" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="505" y="120" text-anchor="middle" font-weight="700">Normocítica</text>
+<text x="442" y="144">• doença crônica</text>
+<text x="442" y="164">• doença renal</text>
+<text x="442" y="184">• medula (plaquetas</text>
+<text x="442" y="202">  baixas: mielograma)</text>
+<rect x="590" y="96" width="150" height="148" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="665" y="120" text-anchor="middle" font-weight="700">Macrocítica</text>
+<text x="602" y="144">• B12, folato</text>
+<text x="602" y="164">• álcool, drogas</text>
+<text x="602" y="184">• hipotireoidismo</text>
+</svg>

@@ -20,11 +20,14 @@
       id: "avaliacao", titulo: "A criança grave e a insuficiência respiratória",
       introducao: `[[Na criança, a parada cardíaca quase nunca começa no coração: ela é o fim de uma hipóxia ou de um choque que não foi revertido.|q-iamspe2021-035,q-amrigs2023-073]] Por isso o atendimento pediátrico é organizado para **reconhecer cedo** o desconforto e a insuficiência respiratória, numa sequência que se repete: [[avaliar, identificar, intervir e reavaliar.|q-iamspe2021-036]]
 
-**Fisiopatologia.** No desconforto, a criança compensa com taquipneia, tiragem e taquicardia. [[Quando a compensação se esgota, a frequência respiratória cai, a consciência rebaixa e a hipoxemia leva à bradicardia: respiração lenta e superficial num paciente sonolento não é melhora, é insuficiência respiratória, e pede ventilação com bolsa-válvula-máscara.|q-unifesp2022-065,q-usprp2025-004,q-uspsp3-031,q-amrigs2022-067]] [[A bradicardia com pulso na criança é quase sempre hipóxica: corrige-se primeiro a ventilação.|q-scmsp2023-055,q-uspsp5-103]]`,
+**Fisiopatologia.** No desconforto, a criança compensa com taquipneia, tiragem e taquicardia. [[Quando a compensação se esgota, a frequência respiratória cai, a consciência rebaixa e a hipoxemia leva à bradicardia: respiração lenta e superficial num paciente sonolento não é melhora, é insuficiência respiratória, e pede ventilação com bolsa-válvula-máscara.|q-unifesp2022-065,q-usprp2025-004,q-uspsp3-031,q-amrigs2022-067]] [[A bradicardia com pulso na criança é quase sempre hipóxica: corrige-se primeiro a ventilação.|q-scmsp2023-055,q-uspsp5-103]]
+
+Veja também: **Asma e rinite alérgica** (manutenção e crise em todas as idades, completas lá) e **Infecções de vias aéreas superiores** (crupe, epiglotite e traqueíte).`,
       fragmentos: [
         { id: "ava-reconhecer", titulo: "Reconhecer e ventilar", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-iamspe2021-035","q-iamspe2021-036","q-unifesp2022-065","q-usprp2025-004","q-uspsp3-031","q-scmsp2023-055","q-uspsp5-103","q-einstein2027-038","q-usp2023-083","q-unesp2023-014","q-amrigs2025-076"],
           casos: ["q-usp2023-083"],
+          prosa: `Na criança, a parada quase nunca é cardíaca primária: ela é o fim de uma insuficiência respiratória ou de um choque que não foram corrigidos. Por isso o atendimento procura a criança que respira mal antes de parar, e a intervenção mais importante é **ventilar**: bradicardia com pulso, numa criança hipóxica, melhora com oxigênio e ventilação, não com drogas.`,
           texto: `- Causa principal de PCR na criança: **hipóxia**. {q-iamspe2021-035}
 - Sequência: **avaliar → identificar → intervir → reavaliar**. {q-iamspe2021-036}
 - Sonolência, **FR baixa**, respiração superficial e SpO2 baixa: **ventilação com bolsa-válvula-máscara**, não máscara de O2. {q-unifesp2022-065,q-usprp2025-004,q-uspsp3-031,q-einstein2027-038}
@@ -36,6 +39,7 @@
         { id: "ava-intubar", titulo: "Intubação e via aérea avançada", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-amrigs2022-067","q-tp20232-054","q-tp20241-053","q-usp2026-049","q-sirio2022-044","q-einstein2023-044","q-didepm-009"],
           casos: ["q-usp2026-049"],
+          prosa: `Intuba-se quando a criança não protege a via aérea, cansa (pCO2 subindo, respiração lenta, silêncio no tórax) ou está em choque. Depois de intubar, qualquer piora se investiga pela sequência DOPE, porque o problema costuma estar no tubo e não no pulmão.`,
           texto: `- Asmático **sem sibilos**, bradipneico, com acidose respiratória: **intubar** em sequência rápida, com **quetamina**. {q-amrigs2022-067}
 - Letargia com hipotensão e esforço intenso: **intubação orotraqueal**. {q-tp20232-054}
 - Glasgow ≤ 8 a 10 com hipoxemia: intubar, depois aquecer e transferir. {q-tp20241-053,q-usp2026-049}
@@ -45,6 +49,7 @@
         { id: "ava-pards", titulo: "PARDS e atelectasia", conferir: true, diretrizes: ["palicc"],
           questoes: ["q-einstein2027-044","q-usp2025-059"],
           casos: ["q-einstein2027-044","q-usp2025-059"],
+          prosa: `Na síndrome do desconforto respiratório agudo pediátrica, a gravidade se mede pela relação entre a pressão usada para oxigenar e a oxigenação obtida (índice de oxigenação); a atelectasia, ao contrário, melhora com reexpansão e higiene brônquica.`,
           texto: `- Gravidade da **PARDS** na criança intubada: pelo **índice de oxigenação**. {q-einstein2027-044}
 - Atelectasia pós-infecciosa com desconforto: **fisioterapia, VNI e higiene pulmonar**. {q-usp2025-059}` },
       ],
@@ -57,6 +62,7 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
       fragmentos: [
         { id: "asm-crise", titulo: "Tratamento da crise", conferir: true, diretrizes: ["gina"],
           questoes: ["q-tp20232-044","q-famema2021-081","q-sessp2022-043","q-adap22-065","q-famema2021-082","q-adap21-043","q-iamspe2025-073","q-einstein2026-033"],
+          prosa: `Na crise de asma o brônquio se fecha por contração do músculo liso, edema e muco. O salbutamol relaxa o músculo em minutos, o ipratrópio soma efeito na crise grave e o corticoide trata o edema e a inflamação, mas leva horas, por isso é dado cedo. O magnésio relaxa o músculo liso pelo bloqueio do cálcio. A manutenção completa está no resumo de asma.`,
           texto: `- Crise leve a moderada: **salbutamol a cada 20 minutos na 1ª hora** (spray com espaçador), oxigênio se necessário. {q-tp20232-044,q-famema2021-081}
 - Crise grave: **O2 para SpO2 94 a 98%**, salbutamol + **ipratrópio** + **corticoide sistêmico**. {q-sessp2022-043}
 - Sem resposta: **sulfato de magnésio IV 50 mg/kg (máx. 2 g)**, salbutamol contínuo, UTI. {q-adap22-065}
@@ -74,6 +80,7 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
       fragmentos: [
         { id: "pcr-basico", casos: ["q-usp2025-062"], titulo: "Suporte básico: sequência e compressões", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-sessp2024-051","q-uspsp3-043","q-sirio2024-052","q-unicamp2022-037","q-sirio2023-042","q-unicamp2023-042","q-scmsp2021-050","q-unicampdis2024-028","q-usp2025-062","q-uspsp3-026"],
+          prosa: `A compressão torácica gera o fluxo que mantém o cérebro e o coração enquanto a causa é tratada; cada pausa derruba a pressão de perfusão, e por isso a sequência começa pelas compressões e elas são contínuas quando há via aérea avançada.`,
           texto: `- Sequência **C-A-B**. {q-sessp2024-051}
 - Sozinho, PCR não presenciada: **2 minutos de RCP, depois pedir ajuda**. {q-uspsp3-043}
 - Lactente: verificar consciência, chamar ajuda, respiração e **pulso braquial**. {q-sirio2024-052,q-unicamp2022-037}
@@ -84,6 +91,7 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
         { id: "pcr-chocavel", figuras: [{ arquivo: "figuras/pcr-ritmos.svg", legenda: "Esquema autoral: os dois caminhos da parada, chocável e não chocável." }], titulo: "Ritmos chocáveis", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-sessp2024-052","q-famema2023-098","q-famema2025-046","q-sessp2023-035","q-sessp2025-053","q-usprp2021-043","q-famerp2025-057","q-uspsp1-003","q-sirio2026-053","q-sirio2027-054","q-sirio2021-044","q-famerp2026-043"],
           casos: ["q-usprp2021-043","q-uspsp1-003"],
+          prosa: `Fibrilação e taquicardia ventricular sem pulso são caos elétrico: só o choque despolariza todo o miocárdio de uma vez e permite que o nó sinusal retome o ritmo. Depois do choque, a RCP continua por 2 minutos, porque o coração recém-desfibrilado ainda não bombeia.`,
           texto: `- Chocáveis: **fibrilação ventricular** e **taquicardia ventricular sem pulso**. {q-sessp2024-052,q-famema2023-098}
 - QRS largo e bizarro sem pulso: **desfibrilação não sincronizada**. {q-famema2025-046,q-sirio2026-053}
 - 1º choque: **2 J/kg**, seguido **imediatamente de 2 minutos de RCP**; depois **4 J/kg**. {q-sessp2023-035,q-usprp2021-043,q-famerp2025-057,q-sirio2027-054,q-uspsp1-003}
@@ -93,10 +101,10 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
         { id: "pcr-nao-chocavel", titulo: "Ritmos não chocáveis, drogas e vias", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-fmabc2025-046","q-sessp2022-046","q-unesp2026-009","q-uspsp3-027","q-simepm89-081","q-scmsp2023-054","q-unicampdis2023-034","q-amrigs2023-073"],
           casos: ["q-uspsp3-027"],
+          prosa: `Assistolia e atividade elétrica sem pulso são os ritmos mais comuns da parada pediátrica: não há o que desfibrilar. O tratamento é RCP de boa qualidade, adrenalina precoce (vasoconstrição que sobe a pressão de perfusão coronária) e a busca das causas reversíveis (hipóxia, hipovolemia, pneumotórax, tamponamento e outras).`,
           texto: `- Assistolia e AESP: **adrenalina o quanto antes** + RCP de 2 minutos. {q-fmabc2025-046,q-sessp2022-046}
 - Adrenalina: **0,01 mg/kg IV/IO a cada 3 a 5 min**; investigar causas reversíveis (5 H e 5 T). {q-unesp2026-009,q-uspsp3-027}
 - Pela cânula traqueal, a adrenalina vai em **dose 10 vezes maior**. {q-simepm89-081}
-- Intraósseo: **tíbia proximal** é o local mais usado; a questão aceita também o **esterno**. {q-scmsp2023-054}
 - Acesso intraósseo é temporário: trocar em até **24 horas**. {q-unicampdis2023-034}
 - Pós-PCR: evitar **hipertermia e hipoxemia**; vias IV e IO; adrenalina é a droga padrão. {q-amrigs2023-073}` },
       ],
@@ -110,6 +118,7 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
         { id: "cir-trauma", titulo: "Trauma: choque, pneumotórax e hipertensão intracraniana", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-scmsp2021-049","q-iamspe2022-037","q-scmsp2022-025","q-fmabc2023-055","q-sessp2022-049"],
           casos: ["q-scmsp2022-025"],
+          prosa: `No trauma, a ordem do atendimento segue o que mata primeiro: via aérea, respiração, circulação. O pneumotórax hipertensivo desvia o mediastino, comprime as veias cavas e para o retorno venoso: por isso se descomprime antes de qualquer imagem. A tríade de Cushing é a resposta do tronco cerebral à hipertensão intracraniana, sinal de herniação iminente.`,
           texto: `- Choque hemorrágico no trauma: expandir com **concentrado de hemácias / hemoderivados** se disponíveis. {q-scmsp2021-049,q-iamspe2022-037}
 - Desvio do mediastino com hipotensão: **punção imediata** do hemitórax. {q-scmsp2022-025}
 - Via aérea e respiração estáveis: passar ao C, **monitorizar e corrigir a hipovolemia**. {q-fmabc2023-055}
@@ -117,9 +126,19 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
         { id: "cir-arritmias", titulo: "Taquicardia supraventricular e crise hipoxêmica", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-scmsp2026-057","q-sirio2025-056","q-scmsp2021-051"],
           casos: ["q-sirio2025-056"],
+          prosa: `A taquicardia supraventricular do lactente é um circuito de reentrada: frequência fixa e muito alta, sem variação. A manobra vagal e a adenosina bloqueiam o nó atrioventricular por um instante e interrompem o circuito; com instabilidade, a cardioversão sincronizada. Na tetralogia de Fallot, a crise hipoxêmica é o espasmo do infundíbulo, que desvia o sangue da direita para a esquerda: oxigênio, posição genupeitoral, morfina e volume aliviam.`,
           texto: `- QRS estreito, FC fixa > 220 (lactente), **sem onda P**: **taquicardia supraventricular**. {q-sirio2025-056,q-scmsp2026-057}
 - Perfusão preservada: **manobra vagal** (gelo na face no lactente) e, se refratária, **adenosina IV rápida**. {q-scmsp2026-057}
 - Crise hipoxêmica na tetralogia de Fallot: **oxigênio, morfina, expansão**; se não melhorar, transfusão e **betabloqueador**. {q-scmsp2021-051}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-scmsp2023-054"],
+          texto: `- Intraósseo na criança: **tíbia proximal** (também fêmur distal e úmero proximal no maior); o **esterno** é local do adulto, mas uma banca o deu como resposta. {q-scmsp2023-054}` },
       ],
     },
   ],

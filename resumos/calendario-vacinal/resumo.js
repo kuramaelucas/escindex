@@ -29,7 +29,9 @@
 
 [[As vacinas de vírus vivo injetáveis contra sarampo, caxumba e rubéola esperam os 12 meses porque os anticorpos maternos, passados pela placenta, neutralizariam o vírus vacinal antes que ele induzisse imunidade.|q-didepm-044,q-uspsp4-099]] Os **reforços** existem porque a resposta do lactente às primeiras doses é curta: a memória imunológica só se consolida com nova exposição ao antígeno.
 
-[[Atrasar não obriga a recomeçar: a imunidade das doses já dadas persiste, e o esquema continua de onde parou, respeitando intervalo mínimo e idade máxima de cada vacina.|q-einstein2021-025,q-famerp2025-043,q-adap25-083]]`,
+[[Atrasar não obriga a recomeçar: a imunidade das doses já dadas persiste, e o esquema continua de onde parou, respeitando intervalo mínimo e idade máxima de cada vacina.|q-einstein2021-025,q-famerp2025-043,q-adap25-083]]
+
+Veja também: **Doenças exantemáticas**, **Bronquiolite, pneumonia e coqueluche** e **Tuberculose** (BCG e recém-nascido de mãe bacilífera).`,
       fragmentos: [
         { id: "log-regras", titulo: "Regras gerais que a banca cobra", conferir: true, diretrizes: ["ms-normas-vacinacao"],
           questoes: ["q-einstein2021-025","q-famerp2025-043","q-adap25-083","q-tp20251-040","q-usp2024-021","q-scmsp2026-091","q-uspsp5-094"],
@@ -52,12 +54,14 @@ Depois do primeiro ano vêm a segunda metade das vacinas virais (tríplice viral
       fragmentos: [
         { id: "cri-nascer", titulo: "Ao nascer: BCG e hepatite B", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-iamspe2021-065","q-iamspe2026-089","q-fmabc2022-097"],
+          prosa: `Ao nascer entram as vacinas contra as infecções que pegam o bebê mais cedo e mais grave: a hepatite B, transmitida no parto, e a tuberculose grave da criança (meníngea e miliar), contra a qual a BCG protege.`,
           texto: `- Na maternidade: **BCG (dose única)** e **hepatite B**. {q-iamspe2021-065,q-iamspe2026-089}
 - BCG é **dose única, ao nascer**; não há reforço. {q-fmabc2022-097}` },
         { id: "cri-primeiro-ano", casos: ["q-scmsp2023-045"], titulo: "Do 2º ao 9º mês", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-015","q-iamspe2026-074","q-usp2022-044","q-sirio2027-049","q-usprp2023-043","q-fmabc2023-046","q-scmsp2023-045","q-amrigs2021-072-ia","q-unifesp2025-083-ia","q-einstein2021-025"],
           figuras: [{ arquivo: "figuras/primeiro-ano.svg", legenda: "Esquema autoral: as vacinas do primeiro ano, mês a mês." }],
           casos: ["q-usprp2023-043"],
+          prosa: `No primeiro ano as vacinas inativadas são dadas em várias doses, porque o sistema imune do lactente responde melhor à repetição; as doses começam aos 2 meses, quando os anticorpos da mãe começam a cair.`,
           texto: `- **2 e 4 meses**: pentavalente, **VIP**, **rotavírus** e **pneumocócica 10-valente**. {q-015,q-iamspe2026-074,q-usp2022-044,q-fmabc2023-046}
 - A pólio do esquema básico é a **VIP, intramuscular**, desde a primeira dose. {q-sirio2027-049}
 - **3 e 5 meses**: **meningocócica C**. {q-usprp2023-043,q-iamspe2026-074}
@@ -65,16 +69,18 @@ Depois do primeiro ano vêm a segunda metade das vacinas virais (tríplice viral
 - **9 meses**: **febre amarela**. {q-amrigs2021-072-ia,q-scmsp2023-045}` },
         { id: "cri-12-15", titulo: "12 e 15 meses", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-didepm-044","q-uspsp4-099","q-iamspe2026-076-ia","q-usprp2021-012","q-usprp2023-014","q-usprp2026-035","q-famema2023-089","q-scmsp2023-045"],
+          prosa: `Aos 12 meses entram as vacinas de vírus vivo (sarampo, caxumba, rubéola), porque antes disso os anticorpos maternos residuais neutralizam o vírus vacinal. Os reforços dos 12 e 15 meses consolidam a memória das vacinas do primeiro ano.`,
           texto: `- **12 meses**: **tríplice viral (SCR)**, **reforço da pneumocócica 10** e **reforço da meningocócica**, que desde 2025 é feito com a **ACWY** (antes, com a C). {q-didepm-044,q-uspsp4-099,q-iamspe2026-076-ia,q-scmsp2023-045}
 - **15 meses**: **1º reforço da DTP**, **reforço da pólio (VIP desde 2024; antes VOP)**, **hepatite A** e **tetraviral** (2ª dose de SCR + varicela). {q-usprp2026-035,q-usprp2023-014,q-usprp2021-012}
 - Questões antigas trazem **VOP** aos 15 meses e 4 anos: era o calendário da época. {q-usprp2021-012,q-famema2023-089}` },
         { id: "cri-4-anos", titulo: "4 anos", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-scmsp2026-058","q-fmabc2026-050","q-famema2025-070"],
           prosa: `Aos 4 anos fecham-se os reforços: [[o segundo reforço da DTP, o reforço da febre amarela e a segunda dose da varicela renovam a proteção que caiu desde as doses do primeiro e do segundo ano.|q-scmsp2026-058,q-fmabc2026-050]] O reforço de pólio nessa idade aparece nos gabaritos de 2026, mas a leitura do quadro de 2026 feita para estas questões não é unânime: confira na Instrução Normativa vigente.`,
-          texto: `- **4 anos**: **2º reforço da DTP**, **reforço da febre amarela**, **2ª dose da varicela**; os gabaritos de 2026 incluem o **reforço da pólio**. {q-scmsp2026-058,q-fmabc2026-050}
+          texto: `- **4 anos**: **2º reforço da DTP**, **reforço da febre amarela**, **2ª dose da varicela**; a Instrução Normativa de 2026, cobrada nas provas desse ano, inclui o **reforço da pólio** (a conferir na leitura da norma). {q-scmsp2026-058,q-fmabc2026-050}
 - Pneumocócica 23-valente aos 5 anos só no calendário dos **povos indígenas**. {q-famema2025-070}` },
         { id: "cri-mnemonicos", titulo: "Para decorar: o calendário em imagens", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-015","q-iamspe2026-074","q-usprp2023-043","q-didepm-044","q-usprp2026-035","q-scmsp2026-058","q-iamspe2021-065"],
+          prosa: `Estas frases são só apoio de memória para as idades das vacinas, a única parte do resumo em que se usa mnemônico; o porquê de cada idade está nas seções anteriores.`,
           texto: `- **"Nasceu? B e B."** **B**CG e hepatite **B**: as duas que começam com B saem da maternidade. {q-iamspe2021-065}
 - **Meses pares (2, 4, 6) = "PaVi"**: **Pa**ra a pentavalente, **Vi** para a VIP, nas três. {q-015,q-iamspe2026-074}
 - **"Roda e pneu só no 2 e no 4"**: **ro**tavírus e **pneu**mocócica andam juntos e param no 4º mês. {q-015}
@@ -93,6 +99,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
       fragmentos: [
         { id: "ado-hpv", titulo: "HPV", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-iamspe2025-048","q-famema2022-002","q-sirio2024-094","q-scmsp2025-099","q-amrigs2023-050","q-sessp2024-066","q-scmsp2026-091","q-sessp2023-025","q-iamspe2026-045","q-sirio2022-100","q-usp2024-024","q-usprp2024-074"],
+          prosa: `A vacina contra o HPV protege contra a infecção, não a trata: por isso é dada antes do início da vida sexual, quando a resposta imune também é maior.`,
           texto: `- Vacina **quadrivalente (6, 11, 16, 18)**, para **meninas e meninos de 9 a 14 anos**. {q-iamspe2025-048,q-famema2022-002,q-usp2024-024}
 - Desde 2024, **dose única** no PNI. {q-scmsp2025-099,q-iamspe2025-048}
 - Questões mais antigas (e algumas recentes) cobram o esquema anterior, de **2 doses com 6 meses** de intervalo: leia o ano da prova. {q-amrigs2023-050,q-sessp2024-066,q-scmsp2026-091}
@@ -103,6 +110,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
 - Adolescente: HPV e meningocócica ACWY são as que protegem contra **HPV e meningite**. {q-usprp2024-074}` },
         { id: "ado-meningo-dengue", titulo: "Meningocócica ACWY e dengue", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-iamspe2026-075","q-iamspe2022-080","q-unesp2022-012","q-usp2024-024","q-uspsp5-084","q-sessp2025-044","q-sirio2023-100-ia"],
+          prosa: `A meningocócica ACWY no adolescente protege o próprio jovem e reduz o portador na garganta, que é quem transmite para os outros.`,
           texto: `- **Meningocócica ACWY: dose única dos 11 aos 14 anos**. {q-iamspe2026-075,q-usp2024-024}
 - Adolescente de 12 anos que parou aos 4: **HPV + ACWY hoje**. {q-iamspe2022-080,q-unesp2022-012}
 - **Dengue (Qdenga)**: **tetravalente de vírus vivos atenuados**, **2 doses com 3 meses** de intervalo, de **10 a 14 anos**, nas regiões prioritárias. {q-uspsp5-084,q-sessp2025-044,q-sirio2023-100-ia}
@@ -110,12 +118,14 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
         { id: "ado-gestante", titulo: "Gestante", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-uspsp2-038","q-uspsp4-037","q-usp2026-056","q-scmsp2025-044"],
           casos: ["q-usp2026-056"],
+          prosa: `A gestante vacinada passa anticorpos pela placenta e protege o bebê nos primeiros meses, antes que ele possa se vacinar: é por isso que a dTpa se repete em toda gestação.`,
           texto: `- **dTpa em toda gestação, a partir da 20ª semana**, além de influenza (e hepatite B e covid-19 conforme a situação). {q-uspsp2-038,q-uspsp4-037}
 - Lactente com coqueluche cuja mãe não recebeu dTpa: a doença seria prevenida com **dTpa materna**. {q-usp2026-056}
 - A vacina tríplice bacteriana de células inteiras (DTP) é indicada **só até os 7 anos**. {q-scmsp2025-044}
 - **Para decorar: "vinte e toda vez"**: dTpa a partir da **20ª** semana, **em toda** gestação. {q-uspsp4-037}` },
         { id: "ado-sarampo-influenza", titulo: "Sarampo e influenza: campanhas e doses extras", conferir: true, diretrizes: ["calendario-vacinal","ms-guia-vigilancia"],
           questoes: ["q-scmsp2021-058","q-sirio2021-099","q-sirio2023-089","q-sirio2026-048","q-didepm-099","q-fmabc2026-050"],
+          prosa: `Doses fora do calendário (dose zero em surto, campanhas de adultos) existem para fechar bolsões de suscetíveis quando o vírus circula; a dose zero não conta para o esquema, porque a resposta antes de 1 ano é menor.`,
           texto: `- **Dose zero** de tríplice viral (6 a 11 meses, em surto) **não conta**: mantêm-se as doses dos **12 e 15 meses**. {q-sirio2023-089,q-sirio2026-048}
 - Adultos de **30 a 59 anos** não vacinados: **1 dose** de tríplice viral (ampliação de 2020). {q-scmsp2021-058,q-sirio2021-099}
 - **Influenza**: de 6 meses a menos de 9 anos, na **primeira vez, 2 doses com 30 dias**; depois, 1 dose por ano. {q-didepm-099,q-fmabc2026-050}` },
@@ -130,6 +140,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
         { id: "esp-bcg", titulo: "BCG", conferir: true, diretrizes: ["calendario-vacinal","ms-normas-vacinacao"],
           questoes: ["q-fmabc2025-044","q-uspsp5-107","q-famerp2024-051","q-amrigs2021-066","q-unesp2021-006","q-usp2023-096","q-usprp2026-050","q-famerp2026-048"],
           casos: ["q-usprp2026-050"],
+          prosa: `A BCG é uma bactéria viva atenuada aplicada na pele: a reação local (nódulo, pústula, cicatriz) faz parte da resposta, e só a reação exagerada é complicação.`,
           texto: `- Única vacina que depende do **peso: 2.000 g**. {q-fmabc2025-044,q-amrigs2021-066}
 - Prematuro com 2.000 g ou mais: **vacinar já**; abaixo disso, adiar até atingir o peso. {q-famerp2024-051,q-uspsp5-107}
 - Proteção leva **cerca de 12 semanas**; não há dose aos 6 meses. {q-amrigs2021-066}
@@ -139,11 +150,13 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
 - **Para decorar: "BCG pesa 2 quilos"**. {q-fmabc2025-044}` },
         { id: "esp-hepb-prematuro", titulo: "Hepatite B ao nascer e o prematuro", conferir: true, diretrizes: ["calendario-vacinal","ms-crie"],
           questoes: ["q-adap21-012","q-famerp2022-021","q-fmabc2025-051","q-uspsp2-063","q-iamspe2023-039"],
+          prosa: `No filho de mãe com hepatite B, a vacina estimula anticorpos próprios e a imunoglobulina dá proteção imediata enquanto eles não chegam. O prematuro se vacina pela idade cronológica porque o seu sistema imune já responde.`,
           texto: `- Mãe **HBsAg+**: **vacina + imunoglobulina (HBIG)** em locais diferentes, **de preferência nas primeiras 12 horas**. {q-adap21-012,q-famerp2022-021}
 - Prematuro: **idade cronológica**, exceto a BCG (peso). {q-fmabc2025-051,q-uspsp2-063}
 - A resposta imune do prematuro **pode ser menor** que a do bebê de termo. {q-iamspe2023-039}` },
         { id: "esp-rota-polio", titulo: "Rotavírus e poliomielite", conferir: true, diretrizes: ["calendario-vacinal","nt-rotavirus"],
           questoes: ["q-adap24-089","q-unifesp2024-084","q-iamspe2025-064","q-famerp2025-054-ia","q-scmsp2021-060-ia","q-adap25-083","q-scmsp2023-047","q-iamspe2023-070","q-iamspe2025-080","q-fmabc2024-041","q-usp2023-094-ia"],
+          prosa: `A vacina do rotavírus tem idade máxima porque a invaginação intestinal, efeito raro da vacina, é mais comum em crianças maiores. A VOP de vírus vivo podia, raramente, reverter e causar paralisia, por isso foi substituída pela VIP.`,
           texto: `- Rotavírus **contraindicada**: **invaginação intestinal prévia**, **imunodeficiência combinada grave** e alergia a componente. {q-adap24-089,q-unifesp2024-084,q-iamspe2025-064,q-famerp2025-054-ia}
 - Filho de mãe com HIV, assintomático, **pode** receber rotavírus. {q-scmsp2021-060-ia}
 - Faixa ampliada em 2024: **1ª dose até 11 meses e 29 dias**; passou disso, não se inicia. {q-adap25-083}
@@ -160,6 +173,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
       fragmentos: [
         { id: "con-vivos", titulo: "Vírus vivos e imunossupressão", conferir: true, diretrizes: ["ms-crie"],
           questoes: ["q-unicamp2022-042","q-adap26-096","q-unifesp2026-096","q-sirio2024-053","q-famema2025-048","q-tp20251-040","q-einstein2027-063","q-sessp2022-051","q-fmabc2022-054"],
+          prosa: `Vacina viva é infecção controlada: em quem não tem imunidade, o vírus vacinal pode causar doença. Por isso imunodeprimidos não recebem vivas, e as vacinas devem ser atualizadas antes de começar a imunossupressão.`,
           texto: `- Corticoide em dose imunossupressora + ciclosporina: **contraindicadas varicela e febre amarela** (vírus vivos). {q-unicamp2022-042}
 - Imunodeprimido: **adiar as vivas** e aplicar as inativadas, com orientação do **CRIE**. {q-adap26-096}
 - Transplantado: covid-19 **indicada, com doses adicionais**. {q-unifesp2026-096}
@@ -171,6 +185,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
 - **Para decorar: os vivos são "FAVORiTos" da BCG**: **F**ebre **A**marela, **V**aricela, **O**ral da pólio (VOP), **R**otavírus, **T**ríplice/tetraviral, mais dengue e a **BCG**. {q-unicamp2022-042,q-adap26-096}` },
         { id: "con-adiar", titulo: "Quando adiar", conferir: true, diretrizes: ["ms-normas-vacinacao"],
           questoes: ["q-unesp2026-092","q-famema2022-086"],
+          prosa: `Anticorpos recebidos (imunoglobulina, transfusão) neutralizam o vírus vivo da vacina e anulam a resposta; por isso essas vacinas esperam alguns meses depois deles.`,
           texto: `- Adiar: **doença febril grave**; **até 3 meses após imunoglobulina** para tríplice viral e varicela. {q-unesp2026-092}
 - Transfusão recente: **adiar a tríplice viral**, dar as demais. {q-famema2022-086}` },
       ],
@@ -183,6 +198,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
       fragmentos: [
         { id: "eve-pertussis", titulo: "O componente pertussis", conferir: true, diretrizes: ["ms-esavi"],
           questoes: ["q-usprp2024-016","q-sessp2024-053","q-fmabc2025-099-ia","q-sirio2024-060","q-usp2023-084"],
+          prosa: `O componente pertussis de células inteiras é o que mais causa reação, por conter a bactéria inteira; os eventos são assustadores, mas autolimitados, e quase nunca contraindicam as doses seguintes.`,
           texto: `- **Episódio hipotônico-hiporresponsivo**: causado pelo **componente pertussis** (pentavalente/DTP). {q-usprp2024-016,q-sirio2024-060}
 - **Choro persistente** após as vacinas dos 2 meses: **pentavalente**. {q-fmabc2025-099-ia}
 - O pertussis responde pelo **maior número de reações** (febre, irritabilidade, sonolência). {q-sessp2024-053}
@@ -190,6 +206,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
 - **Para decorar: "P de pertussis, P de problema"**: febre alta, choro, convulsão e hipotonia vêm do P. {q-usprp2024-016}` },
         { id: "eve-tetano", titulo: "Profilaxia do tétano acidental", conferir: true, diretrizes: ["ms-guia-vigilancia"],
           questoes: ["q-udisc20262-044","q-fmabc2023-049"],
+          prosa: `O tétano vem de esporos em feridas sujas e profundas, sem oxigênio. A profilaxia depende da ferida e do número de doses: a vacina protege no futuro, e a imunoglobulina neutraliza a toxina já presente.`,
           texto: `- Ferida **de alto risco** (perfurante, necrose) com vacinação **incerta**: **desbridamento + vacina + imunoglobulina antitetânica**. {q-udisc20262-044}
 - Ferida limpa e suturada, **vacinação em dia**: só cuidados locais. {q-fmabc2023-049}` },
       ],

@@ -80,6 +80,17 @@ Marcações dentro do texto:
 14. **Tabela comparativa no fim** dos temas de doenças que a banca faz diferenciar: capítulo `comparativo`, tabela na `prosa`, com as questões de diferencial em `questoes`. Só resume os capítulos, sem dado novo.
 15. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
 
+16. **Toda seção se explica.** Cada seção tem `prosa` com o mecanismo (o porquê da conduta), ou a introdução do capítulo traz uma frase `[[…]]` ligada às questões dela. Lista de "situação → conduta" sem explicação é gabarito comentado, não livro-texto. `npm run resumo` avisa.
+17. **A regra primeiro; a divergência à parte.** Ponto-chave ensina o que é certo pela diretriz atual. Quando uma banca cobrou outra coisa (gabarito antigo, dose diferente, gabarito marcado como duvidoso), o item vai para o capítulo `armadilhas` ("Armadilhas e divergências entre provas", antes da tabela comparativa), escrito como "regra; o que a prova cobrou". A palavra "gabarito" não aparece em tópico fora desse capítulo. `npm run resumo` avisa.
+18. **Sem mnemônicos**, exceto no calendário vacinal (seção `cri-mnemonicos`), onde a família pediu para manter. `npm run resumo` avisa.
+19. **Seção = um conceito, no máximo 30 questões.** Passou disso, divida por conceito (nova seção com id novo; a antiga mantém o id). Questão autoral também se lê antes de ligar: ligar por palavra-chave do enunciado põe questão no conceito errado e estraga a marcação.
+20. **Todo ponto-chave termina em `{q-…}`.** O que não responde a nenhuma questão vira frase da `prosa`, não tópico solto (exceção: seção sem questões, como a de vitaminas).
+21. **Veja também.** A introdução do primeiro capítulo termina com "Veja também:", nomeando os resumos vizinhos. Tema repetido em dois resumos tem um **dono** (a versão completa); o outro só resume e diz onde está o resto, para os dois não se contradizerem.
+22. **Esquema autoral conferido renderizado** (Playwright, captura de tela): nenhum texto encosta ou sai da caixa, e cada afirmação do esquema existe no texto da seção.
+23. **Fonte lida antes de publicar.** Leia o texto oficial (`npm run texto-oficial`) das diretrizes das seções de conduta e preencha `lidoEm`; só então tire o `conferir: true` daquelas seções. Sem a leitura, a seção continua "a conferir".
+
+Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 16 a 21 viram erro) e `node --test testes/resumos.test.mjs`.
+
 ## Ainda por fazer
 
 - Botão "fazer as questões desta seção", que abriria uma sessão com as questões ligadas.
@@ -107,3 +118,12 @@ Marcações dentro do texto:
 | `prematuridade` | `ass-neo-prematuridade` | 26 | 1 (anulada) |
 | `desconforto-respiratorio-rn` | `ass-neo-descrresp` | 27 | 1 (anulada) |
 | `insuficiencia-cardiaca` | `ass-ic` | 79 | 8 (6 de miocardite viral pediátrica; 2 anuladas) |
+| `ist` | `ass-ist` | 196 | 6 (3 anuladas e 1 desatualizada, com reposição no resumo; 1 de toxoplasmose; 1 de anatomia) |
+| `diabetes` | `ass-dm` | 140 | 4 (2 anuladas com reposição no resumo; 1 anulada e 1 desatualizada sem reposição) |
+| `hipertensao` | `ass-has` | 109 | 7 (4 anuladas com reposição no resumo; 1 anulada sem reposição; veia cava superior; vacina de covid) |
+| `cirrose` | `ass-cirrose` | 81 | 1 (anulada) |
+| `tireoide` | `ass-tireoide` | 80 | 2 (anuladas) |
+| `anemias` | `ass-hemato-anemias` | 75 | — |
+| `glomerulopatias` | `ass-nefro-glomerulopatias` | 73 | 1 (litíase) |
+| `tuberculose` | `ass-tuberculose` | 251 (69 reais e 182 autorais) | 9 (autorais anuladas) |
+| `asma` | `ass-asma` | 80 | 8 (6 anuladas com reposição no resumo; 1 anulada e 1 desatualizada sem reposição) |

@@ -25,7 +25,9 @@
 
 **Fisiopatologia.** O vírus infecta o epitélio dos bronquíolos e o destrói. [[O bronquíolo do lactente é tão fino que o edema da parede, a necrose do epitélio e os tampões de muco e restos celulares bastam para obstruí-lo: daí a sibilância, o aprisionamento de ar e as áreas de atelectasia.|q-unesp2023-009,q-famerp2022-022,q-uspsp2-067]] Não há broncoespasmo verdadeiro na maioria dos casos, e é por isso que broncodilatador e corticoide não mudam a evolução.
 
-[[A bronquiolite é um diagnóstico clínico: um lactente com alguns dias de coriza que evolui com taquipneia, tiragem, sibilos e crepitações não precisa de radiografia nem de exames para ser diagnosticado.|q-uspsp1-008,q-uspsp2-067,q-unesp2023-009]] A imunidade ao VSR não é duradoura: [[reinfecções ao longo da vida são a regra, mais leves a cada vez.|q-iamspe2025-066]]`,
+[[A bronquiolite é um diagnóstico clínico: um lactente com alguns dias de coriza que evolui com taquipneia, tiragem, sibilos e crepitações não precisa de radiografia nem de exames para ser diagnosticado.|q-uspsp1-008,q-uspsp2-067,q-unesp2023-009]] A imunidade ao VSR não é duradoura: [[reinfecções ao longo da vida são a regra, mais leves a cada vez.|q-iamspe2025-066]]
+
+Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da coqueluche), **Asma** e **Calendário vacinal** (dTpa da gestante).`,
       fragmentos: [
         { id: "bva-quadro", casos: ["q-uspsp4-115"], titulo: "Quadro e diagnóstico", conferir: true,
           questoes: ["q-unesp2023-009","q-iamspe2025-066","q-uspsp1-008","q-uspsp2-067","q-famerp2022-022","q-uspsp4-115","q-unicampdis2025-030","q-tp20222-049"],
@@ -48,10 +50,10 @@
 - SBP: **salina hipertônica 3%** pode ser usada no internado. {q-unifesp2026-089}
 - Broncodilatador: só como teste, e **mantido apenas se houver resposta** clínica. {q-sessp2023-037}
 - **Oximetria contínua não é recomendada** no lactente estável (AAP). {q-scmsp2022-033}
-- Internado com ingestão baixa: **soro de manutenção**. {q-usp2024-001}
-- **Para decorar: "O2, água e nariz"**: oxigênio se hipoxêmico, hidratação e nariz limpo; o resto não muda a evolução. {q-adap26-089,q-udisc20262-046}` },
+- Internado com ingestão baixa: **soro de manutenção**. {q-usp2024-001}` },
         { id: "bva-suporte", casos: ["q-usp2024-002"], titulo: "Escalonar o suporte: alto fluxo e CPAP", conferir: true, diretrizes: ["sbp-bronquiolite"],
           questoes: ["q-tp20202-047","q-usp2024-002","q-sirio2027-046","q-fmabc2026-048"],
+          prosa: `Quando o cateter comum não basta, o alto fluxo umidificado gera uma pressão positiva leve, lava o gás carbônico do espaço morto e poupa o esforço do lactente; o CPAP vai além e mantém os alvéolos abertos. Os dois evitam boa parte das intubações.`,
           texto: `- Falha do cateter nasal comum: **cateter nasal de alto fluxo (CNAF)**, iniciando com **2 L/kg/min**. {q-usp2024-002,q-tp20202-047}
 - O CNAF gera **pressão positiva (efeito CPAP)**, lava o espaço morto e reduz o trabalho respiratório. {q-sirio2027-046}
 - Refratário ao oxigênio: **CPAP nasal** pode evitar a intubação. {q-fmabc2026-048}` },
@@ -94,6 +96,7 @@
         { id: "pac-grave", titulo: "Quando internar e como tratar a grave", conferir: true, diretrizes: ["ms-aidpi","sbp-pac"],
           questoes: ["q-adap21-027","q-famema2021-084","q-unesp2024-016","q-fmabc2026-045","q-usp2025-072"],
           casos: ["q-unesp2024-016"],
+          prosa: `A pneumonia grave é a que já compromete a oxigenação ou o estado geral: hipoxemia, tiragem subcostal, gemência, incapacidade de beber, letargia. Ela pede antibiótico venoso e oxigênio; a gemência é o lactente fechando a glote para manter o alvéolo aberto, sinal de fadiga próxima.`,
           texto: `- Internar: **SpO2 < 90 a 92%**, tiragem subcostal, gemência, **vômitos que impedem a via oral**, toxemia, idade abaixo de 2 meses ou falha do tratamento oral. {q-adap21-027,q-famema2021-084,q-fmabc2026-045}
 - Pneumonia grave: **oxigênio + penicilina cristalina ou ampicilina IV** (ampicilina **200 mg/kg/dia**). {q-adap21-027,q-unesp2024-016}
 - Falha da amoxicilina com derrame provável: internação, oxigênio e ampicilina IV. {q-unesp2024-016}
@@ -118,6 +121,7 @@
         { id: "com-necrose", titulo: "Pneumonia necrosante e estafilocócica", conferir: true,
           questoes: ["q-tp20252-070","q-fmabc2022-059"],
           casos: ["q-tp20252-070"],
+          prosa: `Quando a criança não melhora com o antibiótico certo, procura-se complicação: derrame, empiema, abscesso ou necrose do parênquima. O *S. aureus* é o agente que mais necrosa e forma pneumatoceles, sobretudo depois de lesão de pele ou varicela.`,
           texto: `- Falha da amoxicilina, mau estado e cavitações na tomografia: **pneumonia necrosante**; cobrir **pneumococo e S. aureus**. {q-tp20252-070}
 - Lesão de pele recente (porta de entrada), focos em vários lobos e derrame: **S. aureus**, internar e dar **oxacilina**. {q-fmabc2022-059}` },
       ],
@@ -134,15 +138,13 @@
           texto: `- **Escolar ou adolescente**, febre baixa, tosse seca persistente, cefaleia, bom estado; surto na escola. {q-didepm-054,q-unicampdis2025-073}
 - Radiografia com **infiltrado intersticial** peribrônquico, mais exuberante que a ausculta. {q-didepm-054,q-uspsp2-060}
 - Manifestação extrapulmonar clássica: **eritema multiforme** (também anemia hemolítica). {q-scmsp2026-046}
-- Tratamento: **macrolídeo** (azitromicina por 5 dias), ambulatorial. {q-scmsp2026-046,q-uspsp2-060,q-didepm-054}
-- **Para decorar: "Mycoplasma anda"**: a pneumonia do escolar que vai à aula ("walking pneumonia"). {q-didepm-054}` },
+- Tratamento: **macrolídeo** (azitromicina por 5 dias), ambulatorial. {q-scmsp2026-046,q-uspsp2-060,q-didepm-054}` },
         { id: "ati-chlamydia", titulo: "Chlamydia trachomatis do lactente", conferir: true,
           questoes: ["q-iamspe2022-043","q-iamspe2022-044","q-unesp2024-015","q-unicamp2023-048"],
           casos: ["q-unesp2024-015"],
           texto: `- Lactente de **1 a 3 meses**, **afebril**, taquipneico, tosse em staccato, com **conjuntivite** prévia. {q-iamspe2022-043,q-unicamp2023-048}
 - **Eosinofilia** e radiografia com hiperinsuflação e infiltrado intersticial. {q-iamspe2022-043,q-unesp2024-015}
-- Tratamento: **macrolídeo** (eritromicina ou azitromicina). {q-iamspe2022-044,q-unesp2024-015}
-- **Para decorar: o lactente "CAT"**: **C**onjuntivite antes, **A**febril, **T**aquipneia, mais eosinofilia. {q-iamspe2022-043}` },
+- Tratamento: **macrolídeo** (eritromicina ou azitromicina). {q-iamspe2022-044,q-unesp2024-015}` },
       ],
     },
     {
@@ -159,8 +161,7 @@
 - **Leucocitose com linfocitose** no hemograma. {q-unicampdis2023-030,q-fmabc2024-055}
 - Caso suspeito no lactente: **tosse há 10 dias ou mais** com cianose, engasgo ou apneia (SBP). {q-einstein2027-039}
 - Tratamento: **macrolídeo (azitromicina)**; **notificar**. {q-uspsp1-006,q-tp20252-069,q-fmabc2024-055}
-- Prevenção: **pentavalente aos 2, 4 e 6 meses**, reforços de DTP e **dTpa na gestante**. {q-unesp2025-014}
-- **Para decorar: "tosse que guincha e vomita, criança que fica bem"**: entre os acessos, ausculta e estado geral normais. {q-unicampdis2024-096}` },
+- Prevenção: **pentavalente aos 2, 4 e 6 meses**, reforços de DTP e **dTpa na gestante**. {q-unesp2025-014}` },
       ],
     },
     {

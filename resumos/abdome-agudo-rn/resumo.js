@@ -20,12 +20,15 @@
       id: "alta", titulo: "Esôfago e estômago",
       introducao: `[[O feto engole o líquido amniótico; quando o esôfago é interrompido ele não consegue, e o líquido sobra: polidrâmnio na gestação e, ao nascer, saliva que escorre pela boca e uma sonda que não passa.|q-famerp2025-060,q-simepm89-094,q-usp2022-072]] [[O tipo mais comum é o C, com o coto superior em fundo cego e uma fístula do esôfago distal com a traqueia; o ar no estômago na radiografia mostra que a fístula existe.|q-fmabc2026-034,q-adap25-007,q-uspsp3-035]]
 
-[[Na estenose hipertrófica do piloro, o músculo pilórico engrossa nas primeiras semanas e fecha a saída do estômago: o vômito é em jato, sem bile, e a perda de suco gástrico leva embora ácido clorídrico, daí a alcalose metabólica hipoclorêmica.|q-usprp2025-093,q-fmabc2024-052,q-tp20202-068]]`,
+[[Na estenose hipertrófica do piloro, o músculo pilórico engrossa nas primeiras semanas e fecha a saída do estômago: o vômito é em jato, sem bile, e a perda de suco gástrico leva embora ácido clorídrico, daí a alcalose metabólica hipoclorêmica.|q-usprp2025-093,q-fmabc2024-052,q-tp20202-068]]
+
+Veja também: **Icterícia neonatal** (colestase e atresia biliar, completas lá).`,
       fragmentos: [
         { id: "alt-esofago", titulo: "Atresia de esôfago", conferir: true,
           figuras: [{ arquivo: "figuras/nivel-obstrucao.svg", legenda: "Esquema autoral: o nível da obstrução pelo vômito, pela idade e pela radiografia." }],
           questoes: ["q-famerp2025-060","q-simepm89-094","q-usp2022-072","q-usp2024-013","q-fmabc2026-034","q-adap25-007","q-uspsp3-035"],
           casos: ["q-uspsp3-035","q-fmabc2026-034"],
+          prosa: `Na atresia, o esôfago termina em fundo cego: o feto não engole o líquido amniótico (polidrâmnio) e o recém-nascido baba e engasga. A sonda que não passa e enrola no coto confirma. A fístula com a traqueia leva ácido ao pulmão, e por isso o coto é aspirado e a cabeceira elevada até a cirurgia.`,
           texto: `- **Polidrâmnio** e **salivação abundante** ao nascer: **atresia de esôfago**. {q-famerp2025-060,q-simepm89-094}
 - Conduta imediata: **passar sonda**; confirma com **radiografia de tórax e abdome com a sonda** (enrolada no coto). {q-simepm89-094,q-usp2022-072,q-usp2024-013,q-uspsp3-035}
 - Tipo mais comum: **C** (fístula traqueoesofágica distal). {q-fmabc2026-034}
@@ -33,6 +36,7 @@
         { id: "alt-piloro", titulo: "Estenose hipertrófica do piloro", conferir: true,
           questoes: ["q-scmsp2025-055","q-usprp2022-028","q-tp20202-068","q-fmabc2021-020","q-usprp2025-093","q-fmabc2024-052","q-unesp2023-013","q-uspsp4-071"],
           casos: ["q-uspsp4-071"],
+          prosa: `O músculo do piloro hipertrofia nas primeiras semanas e fecha a saída do estômago: o vômito é em jato e **não bilioso**, porque a obstrução é antes do duodeno. A perda de ácido clorídrico no vômito causa alcalose metabólica hipoclorêmica e hipocalêmica, que se corrige antes da cirurgia.`,
           texto: `- Lactente de **2 a 6 semanas** com **vômito em jato, não bilioso**, fome e perda de peso: **estenose hipertrófica do piloro**. {q-scmsp2025-055,q-usprp2022-028,q-tp20202-068}
 - Exame: **oliva palpável** no epigástrio e **ondas peristálticas** visíveis. {q-scmsp2025-055,q-fmabc2021-020,q-tp20202-068}
 - Gasometria: **alcalose metabólica hipoclorêmica**. {q-usprp2025-093,q-fmabc2024-052}
@@ -47,6 +51,7 @@
       fragmentos: [
         { id: "int-alta", titulo: "Atresias e volvo", conferir: true, diretrizes: ["cirurgia-pediatrica"],
           questoes: ["q-adap25-006","q-unifesp2025-006","q-adap24-064","q-unifesp2024-019","q-fmabc2024-032"],
+          prosa: `O nível da obstrução define o quadro: quanto mais alta, mais precoce o vômito e menor a distensão; quanto mais baixa, mais distensão e atraso do mecônio. Vômito **bilioso** no recém-nascido significa obstrução depois da papila e é emergência cirúrgica até prova em contrário, porque pode ser volvo, que mata o intestino em horas.`,
           texto: `- **Dupla bolha** sem gás distal: **atresia duodenal** (abaixo da papila de Vater). {q-adap25-006}
 - Vômitos biliosos, grande distensão, mecônio presente: **atresia jejunal**. {q-unifesp2025-006}
 - Vômito bilioso, choque e sangue nas fezes: **volvo por má rotação**; ressuscitar e **laparotomia (Ladd)** de urgência. {q-adap24-064,q-unifesp2024-019}
@@ -54,12 +59,14 @@
         { id: "int-hirschsprung", titulo: "Doença de Hirschsprung", conferir: true,
           questoes: ["q-tp20251-078","q-tp20261-096","q-tp20212-061","q-adap21-087","q-unesp2021-076","q-tp20252-074","q-unicampdis2024-016","q-usprp2025-089","q-unesp2024-072","q-usprp2021-095"],
           casos: ["q-unicampdis2024-016","q-usprp2021-095"],
+          prosa: `Sem células ganglionares, o segmento final do intestino não relaxa e funciona como obstrução: o mecônio atrasa, o abdome distende e, ao toque, sai o conteúdo em explosão. A estase favorece a enterocolite, a complicação que mata.`,
           texto: `- Defeito: **ausência de células ganglionares** (plexos mioentérico e submucoso) no segmento distal. {q-tp20251-078,q-tp20261-096}
 - **Mecônio após 48 h**, distensão e **saída explosiva** ao toque ou estímulo: **Hirschsprung**. {q-tp20212-061,q-tp20252-074,q-unicampdis2024-016}
 - Padrão-ouro: **biópsia retal por sucção**; lavagens até a cirurgia. {q-adap21-087,q-unesp2021-076}
 - Complicação temida: **enterocolite** (febre, distensão, diarreia), inclusive após a cirurgia; **lavagem intestinal** e antibiótico. {q-usprp2025-089,q-unesp2024-072,q-usprp2021-095}` },
         { id: "int-anorretal", titulo: "Malformação anorretal e VACTERL", conferir: true,
           questoes: ["q-uspsp5-104","q-usprp2021-087"],
+          prosa: `As malformações anorretais vêm junto com outros defeitos da mesma fase embrionária (vértebras, coração, traqueia, esôfago, rim e membros), e por isso a criança com uma delas é investigada para as outras.`,
           texto: `- Ânus ausente com anomalia vertebral, de membro ou cardíaca: **VACTERL**; conduta inicial, **sonda nasogástrica** (descompressão). {q-uspsp5-104}
 - Menina com orifício perineal único (cloaca) e massa abdominal: **hidronefrose** associada. {q-usprp2021-087}` },
       ],
@@ -70,6 +77,7 @@
       fragmentos: [
         { id: "ecn-tudo", titulo: "Quadro, tratamento e prevenção", conferir: true, diretrizes: ["sbp-ecn"],
           questoes: ["q-unifesp2022-011","q-unicampdis2025-065","q-adap22-011","q-didepm-019","q-unifesp2024-019"],
+          prosa: `Na enterocolite necrosante, o intestino imaturo do prematuro, com fluxo sanguíneo frágil e flora anormal, inflama e necrosa, sobretudo quando a dieta avança rápido ou com fórmula. O gás na parede (pneumatose) é o sinal radiológico; o ar livre significa perfuração.`,
           texto: `- Prematuro com distensão, sangue nas fezes, vômito bilioso, parede abdominal brilhante: **enterocolite necrosante**. {q-unifesp2022-011,q-unicampdis2025-065}
 - Tratamento clínico: **jejum, sonda gástrica aberta e antibióticos**. {q-unifesp2022-011,q-unicampdis2025-065}
 - **Pneumoperitônio** (ar livre): **laparotomia** com ressecção e estomias. {q-adap22-011}
@@ -99,6 +107,7 @@
         { id: "par-diafragma-umbigo", titulo: "Hérnia diafragmática e ducto onfalomesentérico", conferir: true,
           questoes: ["q-tp20232-065","q-tp20241-065","q-didepm-064","q-unifesp2026-002","q-fmabc2023-021","q-uspsp3-034"],
           casos: ["q-tp20241-065"],
+          prosa: `Na hérnia diafragmática, as alças no tórax impedem o pulmão de crescer, e o pulmão hipoplásico vem com hipertensão pulmonar. A ventilação com máscara enche de ar as alças intratorácicas e piora a compressão, por isso se intuba logo. O ducto onfalomesentérico, que ligava o intestino ao saco vitelino, pode persistir inteiro (fístula no umbigo) ou em parte (Meckel).`,
           texto: `- Desconforto ao nascer, alças no hemitórax esquerdo e coração à direita: **hérnia de Bochdalek**. {q-tp20232-065,q-tp20241-065}
 - Conduta: **intubar logo** (não ventilar com máscara), sonda orogástrica aberta, estabilizar e operar depois. {q-didepm-064}
 - Secreção fecaloide pelo umbigo: **persistência do ducto onfalomesentérico**. {q-unifesp2026-002}
