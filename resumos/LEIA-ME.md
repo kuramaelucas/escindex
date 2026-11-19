@@ -142,3 +142,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `hipertensao-na-gestacao` | `ass-dheg` | 82 | 3 (2 anuladas com reposição no resumo; 1 desatualizada sem reposição) |
 | `climaterio` | `ass-climaterio` | 80 | 4 (anuladas; 2 com reposição no resumo) |
 | `uroginecologia` | `ass-uroginecologia` | 80 | — |
+| `sangramentos-na-gestacao` | `ass-sangramentos` | 79 | — |
