@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="220" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Hipercalemia com alteração no ECG: três etapas</text>
+<rect x="20" y="50" width="230" height="140" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="135" y="76" text-anchor="middle" font-weight="700">1. Estabilizar</text>
+<text x="135" y="100" text-anchor="middle">gluconato de cálcio EV</text>
+<text x="135" y="124" text-anchor="middle">protege o miocárdio</text>
+<text x="135" y="144" text-anchor="middle">em minutos;</text>
+<text x="135" y="164" text-anchor="middle">não baixa o potássio</text>
+<rect x="265" y="50" width="230" height="140" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="380" y="76" text-anchor="middle" font-weight="700">2. Deslocar para a célula</text>
+<text x="380" y="100" text-anchor="middle">insulina regular + glicose</text>
+<text x="380" y="124" text-anchor="middle">(1 UI para 5 g)</text>
+<text x="380" y="144" text-anchor="middle">beta-2 inalatório</text>
+<text x="380" y="164" text-anchor="middle">bicarbonato se acidose</text>
+<rect x="510" y="50" width="230" height="140" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="625" y="76" text-anchor="middle" font-weight="700">3. Remover</text>
+<text x="625" y="100" text-anchor="middle">diurético de alça</text>
+<text x="625" y="124" text-anchor="middle">resinas ou ciclossilicato</text>
+<text x="625" y="144" text-anchor="middle">diálise</text>
+<text x="625" y="164" text-anchor="middle">rever IECA, BRA, espironolactona</text>
+</svg>

@@ -30,5 +30,6 @@
   { id: "tuberculose", titulo: "Tuberculose", area: "Clínica Médica · Infectologia", assunto: "ass-tuberculose" },
   { id: "asma", titulo: "Asma e rinite alérgica", area: "Clínica Médica · Pneumologia", assunto: "ass-asma" },
   { id: "arritmias", titulo: "ECG, arritmias e síncope", area: "Clínica Médica · Cardiologia", assunto: "ass-arritmias" },
+  { id: "hidroeletrolitico", titulo: "Distúrbios hidroeletrolíticos e ácido-base", area: "Clínica Médica · Nefrologia", assunto: "ass-hidroeletrolitico" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];
