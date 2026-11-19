@@ -28,6 +28,7 @@ Veja também: **Diabetes mellitus** (cetoacidose na criança, completa lá) e **
       fragmentos: [
         { id: "mec-tipos", titulo: "Secretora, osmótica e inflamatória", conferir: true,
           questoes: ["q-unesp2021-015","q-famerp2022-019","q-usprp2023-069","q-fmabc2026-051","q-tp20241-037"],
+          prosa: `O intestino absorve e secreta água seguindo o sódio. Na diarreia **secretora** (cólera, rotavírus, *E. coli* enterotoxigênica), toxinas abrem canais de cloro e a água sai junto, em grande volume, mesmo em jejum. Na **osmótica**, açúcar não absorvido (lactose) puxa água para a luz e fermenta: fezes ácidas, explosivas, que param com o jejum. Na **inflamatória**, a mucosa invadida sangra e perde muco, com pouco volume e febre. O soro oral funciona porque o **cotransporte sódio-glicose** do enterócito continua intacto na diarreia: a glicose arrasta o sódio, e a água segue.`,
           texto: `- **Inflamatória**: pouco volume, sangue e muco; **osmótica**: odor ácido, gases; **secretora**: muito volumosa. {q-unesp2021-015}
 - Fezes explosivas, flatulência e assadura após leite: **osmótica**. {q-famerp2022-019}
 - Febre, cólica, ruídos aumentados: **inflamatória**. {q-usprp2023-069}
@@ -43,6 +44,7 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
       fragmentos: [
         { id: "ava-classificar", figuras: [{ arquivo: "figuras/planos-abc.svg", legenda: "Esquema autoral: os sinais que levam a cada plano e o que se faz em cada um." }], titulo: "Sem desidratação, desidratação, desidratação grave", conferir: true, diretrizes: ["ms-diarreia"],
           questoes: ["q-018","q-uspsp1-013","q-famerp2022-030","q-tp20212-043","q-sirio2021-049","q-famema2021-088","q-iamspe2026-070","q-famerp2023-031","q-unicampdis2023-033","q-sessp2024-057","q-einstein2027-040","q-fmabc2023-060"],
+          prosa: `A classificação da OMS pergunta o que a perda de água já fez ao corpo: primeiro o comportamento e a sede (o cérebro percebe), depois os olhos, as lágrimas e a prega (o interstício esvaziou) e por último o pulso e o enchimento capilar (o volume circulante caiu). Por isso letargia, incapacidade de beber e pulso fraco definem a forma grave: já é choque.`,
           texto: `- **Sem desidratação** (bem alerta, olhos normais, bebe normalmente, prega normal): **plano A**. {q-018}
 - **Desidratação** (irritado, **olhos fundos**, **sede**, sem lágrimas, **prega desaparece lentamente**, pulso cheio ou rápido): **plano B**. {q-uspsp1-013,q-famerp2022-030,q-tp20212-043,q-sirio2021-049,q-einstein2027-040}
 - **Desidratação grave** (letárgico, **não consegue beber**, prega muito lenta, **pulso fraco ou ausente**, enchimento capilar > 5 s): **plano C**. {q-famema2021-088,q-iamspe2026-070,q-famerp2023-031}
@@ -56,12 +58,14 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
       fragmentos: [
         { id: "pla-a", titulo: "Plano A e zinco", conferir: true, diretrizes: ["ms-diarreia","oms-diarreia"],
           questoes: ["q-unifesp2024-095","q-unifesp2026-088","q-sirio2021-043","q-unifesp2022-066","q-sessp2024-041","q-famema2025-039","q-sirio2026-046","q-fmabc2024-057","q-udisc20262-049"],
+          prosa: `O plano A é para a criança sem desidratação: o objetivo é **repor o que sai** para que ela não desidrate, mantendo a alimentação, que encurta a doença. O zinco repara a mucosa e reduz a duração e a recorrência da diarreia nos meses seguintes.`,
           texto: `- Plano A: **soro após cada evacuação**, mais líquidos, **alimentação habitual sem alimentos novos**, sinais de alarme. {q-sirio2021-043,q-unifesp2024-095}
 - **Zinco** para todo menor de 5 anos com diarreia: **10 mg/dia abaixo de 6 meses** e **20 mg/dia a partir de 6 meses**, por **10 a 14 dias**. {q-unifesp2022-066,q-sessp2024-041,q-famema2025-039,q-sirio2026-046,q-unifesp2026-088}
 - Soro oral em excesso no menor de 10 anos pode causar **hipernatremia**. {q-fmabc2024-057}
 - Surto de diarreia aquosa na creche, criança hidratada: **reidratação oral**. {q-udisc20262-049}` },
         { id: "pla-b", titulo: "Plano B", conferir: true, diretrizes: ["ms-diarreia"],
           questoes: ["q-adap26-088","q-einstein2023-033","q-adap24-096","q-sessp2023-039","q-einstein2025-033","q-uspsp5-097","q-amrigs2025-070","q-tp20212-043","q-sirio2021-049","q-fmabc2023-060","q-einstein2027-040"],
+          prosa: `No plano B há desidratação sem choque: a reposição é **oral, supervisionada e rápida** na unidade, porque o intestino ainda absorve. A criança é reavaliada ao fim do período; se melhorou, volta ao plano A; se piorou, vai ao C.`,
           texto: `- **50 a 100 mL/kg de soro oral em 4 a 6 horas**, na unidade, com reavaliação. {q-adap26-088,q-einstein2023-033,q-adap24-096,q-einstein2027-040,q-fmabc2023-060}
 - Oferecer **em livre demanda** até desaparecerem os sinais de desidratação. {q-tp20212-043,q-sirio2021-049}
 - Se piorar ou não conseguir beber durante o plano B: passar ao **plano C**. {q-sessp2023-039}
@@ -69,6 +73,7 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
 - Lactente com vômitos: o soro oral é oferecido **na sala de observação/emergência**, em pequenos volumes. {q-amrigs2025-070}` },
         { id: "pla-c", titulo: "Plano C", conferir: true, diretrizes: ["ms-diarreia","oms-diarreia"],
           questoes: ["q-adap23-076","q-sirio2027-044","q-sirio2026-050","q-famerp2023-031","q-famema2021-088","q-iamspe2026-070","q-usp2024-016","q-iamspe2021-037"],
+          prosa: `No plano C a criança está em choque ou não consegue beber: a água tem de entrar pela veia, primeiro em bolus isotônico para restaurar o volume circulante, com reavaliação após cada etapa. A divergência entre as provas (fases da OMS × soro fisiológico 30 mL/kg em 30 minutos) está explicada nos tópicos.`,
           texto: `- OMS: **100 mL/kg** de solução isotônica; **menor de 1 ano: 30 mL/kg em 1 h + 70 mL/kg em 5 h**; **1 ano ou mais: 30 mL/kg em 30 min + 70 mL/kg em 2 h 30**. {q-adap23-076,q-sirio2027-044}
 - As provas recentes também cobram **SF 30 mL/kg em 30 minutos** como fase inicial: confira o cartaz vigente do Ministério. {q-sirio2026-050}
 - Plano C é hospitalar, com **hidratação venosa imediata**. {q-famerp2023-031,q-famema2021-088,q-iamspe2026-070}
@@ -82,10 +87,12 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
       fragmentos: [
         { id: "coa-antiemetico", titulo: "Antieméticos", conferir: true, diretrizes: ["espghan-gea"],
           questoes: ["q-iamspe2026-071","q-adap22-066","q-sessp2026-059"],
+          prosa: `O vômito costuma ceder quando a criança se hidrata, e por isso o antiemético não é rotina. Quando ele impede o soro oral, a ondansetrona é a opção mais segura; a metoclopramida e a bromoprida dão reação extrapiramidal na criança.`,
           texto: `- **Ondansetrona**: não é recomendada pela OMS, mas a ESPGHAN aceita dose única para vômitos que impedem a reidratação oral. {q-iamspe2026-071,q-adap22-066}
 - Liberação extrapiramidal após antiemético: **metoclopramida** (não usar em criança). {q-sessp2026-059}` },
         { id: "coa-disenteria", titulo: "Disenteria e antibiótico", conferir: true, diretrizes: ["ms-diarreia"],
           questoes: ["q-iamspe2026-073","q-fmabc2023-019","q-didepm-034","q-tp20212-060","q-unifesp2023-076","q-sirio2024-047","q-sirio2024-046","q-scmsp2026-048"],
+          prosa: `A maior parte das diarreias é viral e passa sozinha: antibiótico não encurta e pode prolongar a eliminação de alguns agentes. Ele entra na **disenteria** (sangue nas fezes), em que a *Shigella* é a causa mais provável, e em agentes comprovados. A *E. coli* êntero-hemorrágica é a exceção que se teme: sua toxina lesa o endotélio renal e causa a síndrome hemolítico-urêmica.`,
           texto: `- Antibiótico: **disenteria** ou infecção comprovada (ex.: Giardia). {q-iamspe2026-073}
 - Diarreia com sangue: mais provável **Shigella**; tratar com **azitromicina ou ciprofloxacino**, mais reidratação e zinco. {q-fmabc2023-019,q-didepm-034,q-tp20212-060}
 - Disenteria com desidratação: **reidratar na unidade e dar antibiótico**. {q-unifesp2023-076,q-sirio2024-047}
@@ -101,6 +108,7 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
       fragmentos: [
         { id: "ele-sodio", titulo: "Hipernatremia e hipopotassemia", conferir: true,
           questoes: ["q-tp20252-020","q-tp20261-074","q-usp2024-017","q-unicampdis2023-033","q-amrigs2022-066","q-usprp2023-002","q-scmsp2022-024"],
+          prosa: `Quando a criança perde mais água que sódio, o sódio sobe, a água sai das células e o turgor fica pastoso: a desidratação parece menor do que é. O sódio deve cair devagar, porque o cérebro já se adaptou à hiperosmolaridade e a correção rápida causa edema cerebral. O potássio se perde nas fezes, e a acidose se corrige com a própria reidratação.`,
           texto: `- Desidratação hipernatrêmica: expandir com **solução isotônica**. {q-tp20252-020,q-tp20261-074}
 - Turgor **pastoso** e sinais mais leves que a perda: pensar em **hipernatremia**. {q-unicampdis2023-033}
 - Após estabilizar: recolher o sódio, calcular o **déficit de água livre** e repor em **48 a 72 h**, de preferência **enteral**. {q-usp2024-017}
@@ -109,6 +117,7 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
         { id: "ele-manutencao", titulo: "Soro de manutenção e expansão em outras situações", conferir: true,
           questoes: ["q-sirio2021-047","q-usprp2025-002","q-usp2025-056","q-uspsp3-046","q-sessp2026-055","q-tp20231-042","q-tp20231-045"],
           casos: ["q-usp2025-056"],
+          prosa: `A regra de Holliday-Segar estima a água que a criança gasta por dia pelo metabolismo. O soro de manutenção é hoje **isotônico**, porque o soro hipotônico, somado ao ADH alto da criança doente, causava hiponatremia.`,
           texto: `- **Holliday-Segar**: 100 mL/kg até 10 kg; +50 mL/kg de 10 a 20 kg; +20 mL/kg acima de 20 kg (17 kg = **1.350 mL**). {q-sirio2021-047,q-usprp2025-002}
 - Manutenção hoje é **isotônica** (glicose com sódio próximo do plasma) e com potássio. {q-usp2025-056,q-uspsp3-046}
 - Hidratada após expansão, com K baixo: **manutenção com potássio**, liberar a dieta. {q-uspsp3-046}

@@ -26,6 +26,7 @@ Veja também: **Desconforto respiratório do recém-nascido** e **Prematuridade*
         { id: "tra-avaliar", titulo: "Avaliação, Apgar e temperatura", conferir: true, diretrizes: ["sbp-prn"],
           figuras: [{ arquivo: "figuras/fluxo-prn.svg", legenda: "Esquema autoral: a sequência da reanimação em sala de parto." }],
           questoes: ["q-unifesp2022-074","q-usprp2022-085","q-usprp2023-018","q-iamspe2025-079","q-unesp2022-002","q-didepm-079"],
+          prosa: `Ao nascer, o pulmão troca líquido por ar e a circulação fetal se desfaz: o choro abre os alvéolos e a resistência pulmonar cai. O bebê que não faz essa transição sozinho é reconhecido em segundos por três perguntas: termo, respira ou chora, tem bom tônus. O Apgar descreve o bebê depois, mas não guia a reanimação.`,
           texto: `- O choro **reabsorve o líquido pulmonar** e **reduz a resistência vascular pulmonar**. {q-unifesp2022-074}
 - **Hipotonia** (ou apneia, respiração irregular) leva o RN **ao berço de reanimação**. {q-usprp2022-085}
 - RN vigoroso no colo da mãe: seguir **avaliando FC, tônus e respiração**. {q-usprp2023-018}
@@ -40,6 +41,7 @@ Veja também: **Desconforto respiratório do recém-nascido** e **Prematuridade*
       fragmentos: [
         { id: "cor-quando", titulo: "Quando esperar e quando clampear já", conferir: true, diretrizes: ["sbp-prn"],
           questoes: ["q-amrigs2024-061","q-unesp2026-004","q-famerp2026-037","q-famema2023-083","q-sessp2022-044","q-einstein2023-038","q-sirio2027-056","q-iamspe2022-034","q-unesp2022-001","q-tp20251-038","q-scmsp2025-041","q-famerp2024-049","q-unesp2021-001","q-einstein2024-044"],
+          prosa: `O clampeamento tardio deixa passar sangue da placenta, o que aumenta o ferro e a estabilidade circulatória; mas só vale se o bebê respira. Se não respira, o prioritário é ventilar, e o cordão é clampeado já.`,
           texto: `- RN ≥ 34 semanas com boa vitalidade: **clampear após 60 segundos**, pele a pele, amamentar na 1ª hora. {q-amrigs2024-061,q-unesp2026-004,q-famerp2026-037}
 - **Mecônio** com bebê vigoroso: mesma conduta (clampeamento tardio, junto à mãe). {q-famema2023-083,q-sessp2022-044,q-einstein2023-038}
 - Prematuro < 34 semanas que nasce bem: clampear em **30 a 60 segundos**. {q-sirio2027-056}
@@ -56,12 +58,14 @@ Veja também: **Desconforto respiratório do recém-nascido** e **Prematuridade*
       fragmentos: [
         { id: "vpp-passos", titulo: "Passos iniciais", conferir: true, diretrizes: ["sbp-prn"],
           questoes: ["q-adap21-033","q-famerp2025-051","q-sirio2022-045","q-uspsp1-015"],
+          prosa: `Os passos iniciais existem para evitar o que piora a transição: o frio (que aumenta o consumo de oxigênio) e a via aérea mal posicionada. Duram segundos: se o bebê não respira depois deles, ventila-se ainda no primeiro minuto.`,
           texto: `- **Calor radiante, secar e retirar campos úmidos, cabeça em leve extensão, aspirar boca e narinas só se necessário**. {q-famerp2025-051,q-sirio2022-045}
 - Depois de aquecer: **secar e estimular**. {q-uspsp1-015}
 - Persistindo a apneia: **VPP com máscara ainda no 1º minuto**. {q-adap21-033}` },
         { id: "vpp-indicacao", titulo: "Ventilação com pressão positiva", conferir: true, diretrizes: ["sbp-prn"],
           questoes: ["q-014","q-adap22-074","q-usp2022-054","q-unesp2023-002","q-famema2022-081","q-tp20261-066","q-unesp2026-003","q-unicamp2023-046","q-sirio2024-056","q-sirio2025-054","q-sirio2026-057","q-fmabc2025-057","q-fmabc2024-048","q-unicampdis2024-031","q-famema2025-035","q-unicampdis2022-025","q-usp2024-012","q-unesp2025-001"],
           casos: ["q-usp2024-012"],
+          prosa: `A parada do recém-nascido é quase sempre respiratória: a frequência cardíaca cai porque falta oxigênio. Por isso a **ventilação** é a intervenção que salva, e a frequência cardíaca é o melhor sinal de que ela está funcionando. Começa-se com ar ambiente no bebê de 34 semanas ou mais, porque o excesso de oxigênio também lesa.`,
           texto: `- Apneia, respiração irregular ou **FC < 100**: **VPP com máscara**, guiada por oxímetro. {q-014,q-usp2022-054,q-famema2022-081,q-tp20261-066,q-sirio2024-056,q-unesp2023-002,q-usp2024-012}
 - FC inaudível ou 50 a 60 após os passos iniciais: **também VPP primeiro**, não massagem. {q-sirio2025-054,q-unicampdis2022-025,q-unesp2026-003,q-unicamp2023-046}
 - RN ≥ 34 semanas: **ar ambiente (21%)**, ainda no **1º minuto**. {q-adap22-074,q-sirio2026-057,q-fmabc2025-057,q-fmabc2024-048}
@@ -70,6 +74,7 @@ Veja também: **Desconforto respiratório do recém-nascido** e **Prematuridade*
         { id: "vpp-avancada", titulo: "Sem resposta: técnica e via aérea avançada", conferir: true, diretrizes: ["sbp-prn"],
           questoes: ["q-einstein2025-039","q-unifesp2025-089","q-uspsp4-100","q-usp2026-072"],
           casos: ["q-usp2026-072"],
+          prosa: `Quando a frequência não sobe, a falha quase sempre é da técnica (escape na máscara, cabeça mal posicionada, secreção, pressão baixa), e não do bebê; por isso se corrige a técnica antes de partir para intubação ou máscara laríngea.`,
           texto: `- FC não sobe após 30 s de VPP: **corrigir escape e posição** e repetir. {q-einstein2025-039}
 - Técnica corrigida e O2 aumentado sem melhora: **intubar** (ou **máscara laríngea**). {q-unifesp2025-089,q-uspsp4-100}
 - Material: **máscara laríngea**, **laringoscópio de lâmina reta** e **cânula sem balonete**. {q-usp2026-072}` },
@@ -83,12 +88,14 @@ Veja também: **Desconforto respiratório do recém-nascido** e **Prematuridade*
       fragmentos: [
         { id: "mas-tecnica", titulo: "Massagem: quando e como", conferir: true, diretrizes: ["sbp-prn"],
           questoes: ["q-uspsp2-065","q-uspsp5-106","q-adap25-089","q-usprp2021-033","q-scmsp2022-028","q-usp2025-071","q-unicampdis2024-088","q-unesp2021-002"],
+          prosa: `A massagem só entra depois de ventilação eficaz, porque um coração hipóxico não responde à compressão. A relação 3:1 mantém a ventilação, que continua sendo o principal tratamento.`,
           texto: `- **FC < 60 após 30 s de VPP eficaz**: **intubar, FiO2 100% e massagem**. {q-uspsp5-106,q-adap25-089,q-usprp2021-033}
 - Relação **3 compressões : 1 ventilação** (90 compressões e 30 ventilações por minuto). {q-scmsp2022-028,q-usp2025-071,q-unicampdis2024-088}
 - Massagem **intercalada com ventilação pela cânula, com O2 a 100%**. {q-unesp2021-002}
 - Reavaliar após **60 segundos**; revisar a técnica de ventilação. {q-uspsp2-065,q-usprp2021-033}` },
         { id: "mas-drogas", titulo: "Adrenalina e via de acesso", conferir: true, diretrizes: ["sbp-prn","ilcor-neonatal"],
           questoes: ["q-didepm-004","q-sirio2026-058","q-amrigs2021-073"],
+          prosa: `A adrenalina aumenta a pressão diastólica da aorta e, com ela, o fluxo nas coronárias; só funciona se a ventilação e a massagem já estão adequadas. A veia umbilical é o acesso mais rápido no recém-nascido.`,
           texto: `- FC < 60 após 60 s de massagem e ventilação eficazes: **adrenalina 1:10.000 na veia umbilical**, seguida de flush de soro. {q-didepm-004}
 - Via preferencial para adrenalina e expansor: **veia umbilical**. {q-sirio2026-058}
 - Enquanto não há acesso venoso: adrenalina **endotraqueal em dose maior (0,05 a 0,1 mg/kg)**. {q-amrigs2021-073}` },

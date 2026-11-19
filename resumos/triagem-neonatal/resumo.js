@@ -24,6 +24,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
       fragmentos: [
         { id: "pez-geral", titulo: "Coleta, doenças rastreadas e o que não se rastreia", conferir: true, diretrizes: ["ms-triagem"],
           questoes: ["q-scmsp2023-044","q-sessp2024-058","q-usp2023-091","q-scmsp2022-027","q-iamspe2023-047","q-unesp2025-006","q-sessp2025-049","q-fmabc2021-092","q-uspsp5-109","q-scmsp2021-046"],
+          prosa: `A triagem procura doenças que não dão sinal ao nascer, que lesam de forma irreversível nas primeiras semanas e que têm tratamento eficaz. A coleta espera 48 horas de alimentação porque a fenilalanina só sobe depois que o bebê ingere proteína, e o TSH do pico do parto já caiu.`,
           texto: `- Coleta **entre o 3º e o 5º dia** (após 48 h de alimentação). {q-usp2023-091,q-sessp2024-058,q-scmsp2022-027}
 - Doenças do SUS: **fenilcetonúria, hipotireoidismo, falciforme e hemoglobinopatias, fibrose cística, hiperplasia adrenal e biotinidase**. {q-sessp2024-058,q-unesp2025-006,q-scmsp2022-027}
 - Ampliação por lei: primeira inclusão, **toxoplasmose congênita**. {q-iamspe2023-047}
@@ -41,6 +42,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
       fragmentos: [
         { id: "doe-tireoide", titulo: "Hipotireoidismo congênito", conferir: true, diretrizes: ["pcdt-hipotireoidismo"],
           questoes: ["q-adap25-090","q-adap26-083","q-unicamp2023-047","q-simepm89-085","q-unesp2023-011","q-unifesp2025-091","q-scmsp2023-044"],
+          prosa: `Sem hormônio tireoidiano o cérebro não mieliniza nem forma sinapses nos primeiros meses, e o dano é permanente; o bebê, porém, nasce quase sem sinais, porque recebeu hormônio da mãe. Por isso o TSH alto no pezinho é urgência: confirmar no soro e começar a levotiroxina o quanto antes.`,
           texto: `- TSH alto no pezinho: **TSH e T4 livre séricos já**; confirmado, **levotiroxina** sem esperar sintomas. {q-adap25-090,q-adap26-083,q-unicamp2023-047}
 - É **emergência**: o dano neurológico começa nas primeiras semanas. {q-scmsp2023-044}
 - Rastreio pelo **TSH entre 2 e 5 dias**. {q-simepm89-085}
@@ -48,6 +50,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
 - Tireoide tópica normal, em tratamento: **manter a reposição até os 2 anos** e só então testar a suspensão. {q-unifesp2025-091}` },
         { id: "doe-pku-fc", titulo: "Fenilcetonúria e fibrose cística", conferir: true, diretrizes: ["ms-triagem"],
           questoes: ["q-usprp2026-057","q-adap24-091","q-tp20232-055","q-unifesp2024-088","q-adap25-091","q-uspsp2-066","q-unicampdis2022-030","q-famema2022-083","q-unifesp2026-083"],
+          prosa: `Na fenilcetonúria falta a enzima que transforma fenilalanina em tirosina; a fenilalanina se acumula e é tóxica ao cérebro em formação, e o tratamento é limitar sua ingestão. Na fibrose cística, o pâncreas obstruído deixa vazar tripsinogênio imunorreativo (IRT) para o sangue; o IRT alto duas vezes leva ao teste do suor, que confirma.`,
           texto: `- Fenilalanina muito alta: **fórmula isenta de fenilalanina**. {q-usprp2026-057}
 - Fenilcetonúria clássica no lactente: **aleitamento parcial** com fórmula sem fenilalanina e dosagens frequentes. {q-adap24-091}
 - Valor pouco acima do corte: **coletar nova amostra**. {q-tp20232-055}
@@ -57,6 +60,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
 - IRT alto na 1ª amostra e normal na 2ª: **rotina**. {q-unifesp2026-083}` },
         { id: "doe-hac-galacto", titulo: "Hiperplasia adrenal, galactosemia e G6PD", conferir: true, diretrizes: ["ms-triagem"],
           questoes: ["q-usp2026-061","q-einstein2024-042","q-sirio2025-050","q-unicampdis2024-087","q-scmsp2021-053","q-adap24-093","q-usprp2021-026","q-unifesp2024-092","q-unifesp2025-090","q-uspsp5-105"],
+          prosa: `Na hiperplasia adrenal congênita (deficiência de 21-hidroxilase) falta cortisol e aldosterona: a perda de sal aparece na 2ª semana com sódio baixo, potássio alto e choque, e a menina nasce com genitália ambígua pelo excesso de andrógenos. Na galactosemia o bebê não metaboliza a galactose do leite, que lesa fígado, rim e cristalino e predispõe à sepse por *E. coli*.`,
           texto: `- RN com vômitos, desidratação, **sódio baixo e potássio alto**: **hiperplasia adrenal** (deficiência de **21-hidroxilase**, **17-OH-progesterona** alta). {q-usp2026-061,q-einstein2024-042,q-sirio2025-050,q-unicampdis2024-087}
 - Na crise: hidrocortisona, soro e glicose; **não** repor bicarbonato. {q-scmsp2021-053}
 - Icterícia, colestase, sepse por **E. coli** e galactose alta: **galactosemia**; **suspender o leite** e dar fórmula sem lactose. {q-usprp2021-026,q-adap24-093}
@@ -74,6 +78,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
           figuras: [{ arquivo: "figuras/coracaozinho.svg", legenda: "Esquema autoral: como ler o teste do coraçãozinho, nas regras nova e antiga." }],
           questoes: ["q-usp2025-069","q-usp2025-070","q-adap21-026","q-amrigs2020-069","q-iamspe2022-035","q-iamspe2023-037","q-famerp2024-055","q-famerp2025-063","q-unicamp2022-038","q-uspsp4-104","q-sirio2023-046","q-famerp2023-034"],
           casos: ["q-usp2025-070"],
+          prosa: `As cardiopatias críticas dependem do canal arterial, que fecha nos primeiros dias; a oximetria procura a diferença entre o sangue que sai antes do canal (mão direita) e depois dele (pé), ou a saturação baixa em ambos, antes que o bebê vá para casa.`,
           texto: `- Mão direita é **pré-ductal**; pé é **pós-ductal**. {q-usp2025-069}
 - Abaixo de 95% em alguma medida, ou diferença maior que 3 pontos: **repetir após 1 hora**; mantido, **ecocardiograma antes da alta**. {q-adap21-026,q-amrigs2020-069,q-iamspe2023-037,q-famerp2024-055,q-unicamp2022-038,q-sirio2023-046}
 - 99% e 95% (diferença de 4): **impede a alta** até repetir. {q-iamspe2022-035}
@@ -81,6 +86,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
 - Teste positivo: **ecocardiograma transtorácico**. {q-usp2025-070}` },
         { id: "bei-orelha-olho", titulo: "Triagem auditiva e reflexo vermelho", conferir: true,
           questoes: ["q-usp2023-089","q-uspsp1-023","q-didepm-049"],
+          prosa: `A audição e a visão precisam de estímulo nos primeiros meses para o cérebro organizar as vias; a perda não detectada atrasa fala e aprendizagem. O reflexo vermelho alterado (leucocoria) pode ser catarata ou retinoblastoma, e por isso exige oftalmologista com urgência.`,
           texto: `- Sem indicador de risco: **emissões otoacústicas até 30 dias**. {q-usp2023-089,q-uspsp1-023}
 - Icterícia sem exsanguineotransfusão **não** é indicador de risco auditivo. {q-usp2023-089}
 - **Leucocoria** no teste do olhinho: **oftalmologista pediátrico com urgência**. {q-didepm-049}` },

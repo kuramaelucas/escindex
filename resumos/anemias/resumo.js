@@ -24,6 +24,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
         { id: "abo-classificar", titulo: "Classificar a anemia", conferir: true,
           figuras: [{ arquivo: "figuras/classificar.svg", legenda: "Esquema autoral: reticulócitos e VCM separam as causas de anemia." }],
           questoes: ["q-adap24-023","q-unifesp2024-033","q-usp2023-053","q-amrigs2025-009","q-usprp2026-095","q-scmsp2021-002","q-sirio2021-004","q-tp20252-089","q-fmabc2022-009","q-unesp2026-050"],
+          prosa: `Classificar a anemia é procurar o mecanismo antes da causa: a medula responde (reticulócitos) ou não? E as hemácias saem pequenas, normais ou grandes? Cada combinação reduz a lista de causas a poucas, e só então se pede o exame específico. Quando outras linhagens também caem, o problema está na medula, e o mielograma entra.`,
           texto: `- Sangramento há 7 dias com reticulócitos 10%: **normocítica, hiper-regenerativa**. {q-adap24-023}
 - Pós-quimioterapia: **normocítica, hiporregenerativa**. {q-unifesp2024-033}
 - **Reticulócitos altos** indicam hemólise. {q-usp2023-053}
@@ -44,6 +45,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
       fragmentos: [
         { id: "fer-adulto", titulo: "Diagnóstico e causa no adulto", conferir: true, diretrizes: ["bsg-ferro"],
           questoes: ["q-unifesp2022-088","q-usprp2024-050","q-tp20222-023","q-usprp2025-027","q-sessp2024-003","q-tp20231-015","q-usprp2025-071","q-einstein2023-073","q-sessp2025-014","q-usp2024-041","q-uspsp5-016","q-einstein2025-015"],
+          prosa: `O corpo recicla quase todo o ferro e perde pouco: no adulto, a ferropenia significa sangue saindo de algum lugar (menstruação, tubo digestivo) ou ferro que não entra (bariátrica, doença celíaca). Encontrar a anemia ferropriva é só metade do trabalho; a outra metade é achar o sangramento, que pode ser um câncer de cólon.`,
           texto: `- Multípara com saturação 6% e plaquetas altas: **ferropriva**. {q-unifesp2022-088}
 - Anemia com trombocitose no idoso: **ferritina**. {q-usprp2024-050}
 - Microcítica com anisocitose: **ferrodeficiência**. {q-tp20222-023}
@@ -73,6 +75,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
       fragmentos: [
         { id: "cro-diagnostico", titulo: "Hepcidina, ferritina e eritropoetina", conferir: true, diretrizes: ["kdigo-anemia"],
           questoes: ["q-famerp2026-052","q-udisc20262-036","q-fmabc2025-015","q-simepm89-053","q-einstein2021-004","q-sirio2027-043"],
+          prosa: `Na anemia da inflamação o ferro existe, mas está preso: a hepcidina bloqueia a ferroportina do macrófago e do enterócito, e o ferro não chega à medula. Por isso o ferro sérico cai, mas a ferritina (o ferro guardado) fica normal ou alta, e o ferro oral pouco ajuda. Na doença renal falta eritropoetina.`,
           texto: `- Mecanismo: **aumento da hepcidina**. {q-famerp2026-052}
 - Colite com ferritina 250: **inflamação**. {q-udisc20262-036}
 - DIP crônica sem resposta ao ferro: **doença crônica**. {q-fmabc2025-015}
@@ -90,6 +93,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
         { id: "meg-b12", titulo: "Causas, diagnóstico e tratamento", conferir: true, diretrizes: ["bsh-b12"],
           casos: ["q-tp20202-023","q-tp20231-019"],
           questoes: ["q-unesp2022-052","q-tp20261-095","q-unesp2024-048","q-famema2022-040","q-unicampdis2024-008","q-unifesp2024-067","q-adap22-088","q-famerp2022-056","q-usprp2022-066","q-tp20202-023","q-tp20231-019","q-sirio2025-012","q-famerp2023-071"],
+          prosa: `Sem B12 ou folato a célula não sintetiza DNA, mas o citoplasma continua crescendo: as células da medula ficam grandes e morrem antes de sair (eritropoese ineficaz), o que explica DHL e bilirrubina indireta altos. A B12 também participa da mielina, e por isso só a sua falta dá a lesão da medula espinhal e dos nervos; dar folato a quem falta B12 melhora o sangue e deixa o nervo piorar.`,
           texto: `- Macrocitose com plaquetopenia: **megaloblastose**. {q-unesp2022-052}
 - B12: **ácido metilmalônico alto**, DHL alto. {q-famema2022-040}
 - Neuropatia com macrocitose: **degeneração combinada**, B12. {q-unicampdis2024-008,q-usprp2022-066}
@@ -108,6 +112,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
       fragmentos: [
         { id: "hem-tipos", titulo: "Autoimune, G6PD, talassemia e microangiopática", conferir: true,
           questoes: ["q-amrigs2024-086","q-scmsp2025-006","q-usprp2024-049","q-unesp2023-049","q-tp20231-033","q-unicampdis2022-009","q-adap24-053","q-sessp2023-023","q-scmsp2026-049","q-adap21-025","q-unifesp2024-089","q-unifesp2026-087","q-usprp2024-002","q-usprp2021-025"],
+          prosa: `Hemólise é hemácia destruída antes do tempo: sai hemoglobina, que vira bilirrubina indireta e consome a haptoglobina, e a medula responde com reticulócitos. A causa pode estar na própria hemácia (enzima, membrana, hemoglobina) ou fora dela (anticorpo, microangiopatia), e o Coombs direto separa a autoimune das outras.`,
           texto: `- Mais indicativo de hemólise: **bilirrubina indireta alta**. {q-amrigs2024-086}
 - Hemólise: **VCM aumentado e haptoglobina reduzida**. {q-scmsp2025-006}
 - Jovem com hemólise: **Coombs direto**. {q-usprp2024-049,q-unesp2023-049}
@@ -126,6 +131,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
       fragmentos: [
         { id: "out-transfusao", titulo: "Reações transfusionais e porfiria", conferir: true,
           questoes: ["q-sessp2026-017","q-uspsp4-013","q-amrigs2022-005"],
+          prosa: `A transfusão é um transplante de tecido: tem reações imunes (febre, hemólise, enxerto contra hospedeiro) e não imunes (sobrecarga de volume, infecções). Quem tem coração ou rim frágil recebe devagar e é vigiado para sobrecarga.`,
           texto: `- IC e congestão após transfusão: **TACO**. {q-sessp2026-017}
 - Candidata a transplante de medula: bolsa **leucorreduzida e irradiada**. {q-uspsp4-013}
 - Dor abdominal recorrente sem peritonite, precisando de opioide: **porfiria aguda**. {q-amrigs2022-005}` },

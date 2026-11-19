@@ -27,6 +27,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
         { id: "fis-mecanismo", titulo: "Fisiológica e ligada ao aleitamento", conferir: true,
           figuras: [{ arquivo: "figuras/metabolismo.svg", legenda: "Esquema autoral: o caminho da bilirrubina e o ponto em que cada causa de icterícia atua." }],
           questoes: ["q-scmsp2026-050","q-usp2025-066","q-uspsp2-064","q-iamspe2026-065","q-uspsp1-016","q-unesp2025-002","q-adap23-073","q-unicampdis2025-077","q-famerp2026-033","q-tp20231-037"],
+          prosa: `O recém-nascido produz mais bilirrubina (mais hemácias, de vida mais curta) e a elimina pior (a enzima de conjugação ainda está imatura, e a circulação êntero-hepática reabsorve parte do que chega ao intestino). A icterícia do aleitamento ineficaz vem da pouca ingestão, que lentifica o trânsito; a do leite materno é tardia, em bebê que mama bem, e não pede interrupção do aleitamento.`,
           texto: `- Causas fisiológicas: **massa eritrocitária maior**, hemácias de **vida mais curta** e **glicuroniltransferase imatura**. {q-scmsp2026-050,q-usp2025-066,q-uspsp2-064}
 - Pouca mamada: **aumenta a circulação êntero-hepática** (icterícia do aleitamento ineficaz); corrigir a técnica e aumentar as mamadas. {q-iamspe2026-065,q-uspsp1-016,q-unesp2025-002}
 - **Icterícia do leite materno**: tardia e prolongada, bebê ganhando bem peso, só indireta; **manter a amamentação** e acompanhar. {q-adap23-073,q-unicampdis2025-077,q-famerp2026-033}
@@ -40,6 +41,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
         { id: "ava-kramer", titulo: "Kramer e quando dosar", conferir: true, diretrizes: ["aap-hiperbilirrubinemia","sbp-ictericia"],
           questoes: ["q-iamspe2021-045","q-unifesp2025-094","q-tp20241-036","q-einstein2024-036","q-013","q-usp2022-048","q-sirio2022-059"],
           casos: ["q-einstein2024-036"],
+          prosa: `A icterícia avança da cabeça para os pés à medida que a bilirrubina sobe, e por isso as zonas de Kramer estimam o nível; mas a avaliação visual erra, sobretudo em pele escura, e qualquer icterícia que preocupe se mede. O valor só tem sentido comparado à idade em horas, no nomograma.`,
           texto: `- Zona II de Kramer: bilirrubina em torno de **9 mg/dL**. {q-iamspe2021-045}
 - Icterícia visível que preocupa: **dosar a bilirrubina** (sérica ou transcutânea). {q-unifesp2025-094,q-tp20241-036}
 - Icterícia persistente após 2 semanas: **investigar** (frações, tireoide), mantendo o aleitamento. {q-einstein2024-036}
@@ -47,6 +49,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
 - Abaixo do limiar e bebê bem: **mamadas mais frequentes** e reavaliar em 48 a 72 h, ou alta com orientações. {q-usp2022-048,q-sirio2022-059}` },
         { id: "ava-risco", titulo: "Fatores de risco para hiperbilirrubinemia", conferir: true, diretrizes: ["aap-hiperbilirrubinemia"],
           questoes: ["q-amrigs2023-067","q-unesp2023-005","q-fmabc2025-059","q-iamspe2023-038"],
+          prosa: `Os fatores de risco apontam mais produção (hemólise, céfalo-hematoma), menos eliminação (prematuridade, pouca ingestão) ou precocidade, e por isso mudam o limiar da fototerapia.`,
           texto: `- **Irmão que precisou de fototerapia**. {q-amrigs2023-067,q-unesp2023-005,q-fmabc2025-059}
 - **Icterícia nas primeiras 24 horas** e **mãe diabética**. {q-fmabc2025-059}
 - **Perda de peso acima de 10%** na primeira semana. {q-iamspe2023-038}
@@ -59,6 +62,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
       fragmentos: [
         { id: "hem-abo-rh", titulo: "ABO, Rh e G6PD", conferir: true,
           questoes: ["q-unifesp2023-073","q-amrigs2021-074","q-usprp2022-087","q-famema2023-082","q-unesp2022-003","q-scmsp2026-041","q-famerp2024-052","q-unicampdis2022-027","q-didepm-024","q-uspsp1-024","q-sirio2027-058","q-tp20222-044"],
+          prosa: `Na doença hemolítica, anticorpos da mãe atravessam a placenta e destroem as hemácias do bebê: Rh na mãe sensibilizada, ABO quando a mãe é O. A hemólise faz a icterícia aparecer nas primeiras 24 horas, com reticulócitos altos e Coombs direto positivo. Na deficiência de G6PD a hemácia não resiste ao estresse oxidativo, e o Coombs é negativo.`,
           texto: `- Mãe **O**, RN **A ou B**, reticulócitos altos e **esferócitos**: **incompatibilidade ABO**. {q-unifesp2023-073,q-amrigs2021-074,q-usprp2022-087}
 - ABO com icterícia precoce: bilirrubinas, **eluato/Coombs** e **fototerapia**. {q-famema2023-082,q-unesp2022-003}
 - Icterícia **antes de 24 h**: hemólise até prova em contrário; coletar exames e iniciar fototerapia. {q-scmsp2026-041}
@@ -77,6 +81,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
         { id: "tra-foto", titulo: "Fototerapia", conferir: true, diretrizes: ["aap-hiperbilirrubinemia","sbp-ictericia"],
           questoes: ["q-scmsp2023-049","q-einstein2024-045","q-sessp2022-041","q-usprp2024-063","q-usp2026-071","q-einstein2022-044"],
           casos: ["q-scmsp2023-049","q-usprp2024-063"],
+          prosa: `A luz azul transforma a bilirrubina da pele em isômeros solúveis, eliminados sem conjugação pela bile e pela urina. A eficácia depende da irradiância e da área exposta, e por isso a fototerapia intensiva usa luz alta em cima e embaixo.`,
           texto: `- Bilirrubina acima da linha do nomograma: **iniciar fototerapia** e **reavaliar em 4 a 8 h**. {q-scmsp2023-049,q-einstein2024-045}
 - Fototerapia com **irradiância medida**. {q-sessp2022-041}
 - Em queda e abaixo do limiar intensivo: **manter** a fototerapia como está. {q-usprp2024-063}
@@ -84,6 +89,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
 - Nível alto: fototerapia **de alta irradiância (> 30 µW/cm²/nm), superior e inferior**. {q-einstein2022-044}` },
         { id: "tra-encefalopatia", titulo: "Encefalopatia bilirrubínica", conferir: true,
           questoes: ["q-sessp2024-056","q-unesp2024-001"],
+          prosa: `A bilirrubina indireta livre atravessa a barreira hematoencefálica e se deposita nos núcleos da base: começa com hipotonia e sucção débil e evolui para hipertonia e opistótono. É a lesão que a fototerapia e a exsanguineotransfusão existem para evitar.`,
           texto: `- Início: **hipotonia e sucção débil**, depois **hipertonia, opistótono** e febre. {q-sessp2024-056}
 - RN muito ictérico com hipertonia e movimentos de pedalar: **acesso, fenobarbital, hidratação** e transferência para centro terciário (exsanguineotransfusão). {q-unesp2024-001}` },
       ],
@@ -94,6 +100,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
       fragmentos: [
         { id: "col-atresia", titulo: "Reconhecer e encaminhar", conferir: true, diretrizes: ["sbp-colestase"],
           questoes: ["q-tp20232-039","q-simepm89-097","q-udisc20262-048","q-adap25-094","q-tp20231-044","q-fmabc2026-042","q-usprp2023-016"],
+          prosa: `Quando a bilirrubina que sobe é a **direta**, o problema é a saída da bile, e não o excesso de produção. A atresia de vias biliares é a causa que tem prazo: a cirurgia de Kasai funciona muito melhor antes de 60 dias, e por isso toda icterícia que passa de 2 semanas pede a fração direta.`,
           texto: `- Icterícia prolongada com **fezes acólicas** ou hepatomegalia: **bilirrubina total e frações com urgência**. {q-tp20232-039,q-simepm89-097}
 - Colestase confirmada: **encaminhar com urgência** ao gastroenterologista. {q-udisc20262-048,q-simepm89-097}
 - Direta alta, fígado firme: **atresia biliar**; operar **antes de 60 dias**. {q-adap25-094,q-tp20231-044}
