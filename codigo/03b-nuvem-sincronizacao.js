@@ -399,7 +399,7 @@ async function nuvemSincronizar(opcoes = {}){
     // a fila aberta na tela absorve o que outro aparelho respondeu (08)
     try{ absorverRespostasDeOutroAparelho(); }catch(e){ console.warn("Fila aberta não atualizada:", e); }
     if(!opcoes.semRedesenhar && (opcoes.forcarRedesenho || erroAntes !== nuvemEstado.ultimoErro || nuvemPendentes() === 0)){
-      if(typeof render === "function" && state.usuarioAtualId) render();
+      if(typeof render === "function" && state.usuarioAtualId) renderEmSegundoPlano();
     }
   }
 }

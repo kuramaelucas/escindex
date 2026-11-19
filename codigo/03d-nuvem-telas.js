@@ -237,7 +237,7 @@ function notasDaTurmaDoSimulado(chave){
   nuvemChamar("/rest/v1/rpc/notas_do_simulado", { method: "POST", body: JSON.stringify({ p_chave: chave }) })
     .then(linhas => {
       _notasDaTurma[chave] = { notas: (linhas || []).map(l => ({ id: l.id, nota: Number(l.nota) })), em: Date.now() };
-      if(state.route === "simulado-ativo" || state.route === "simulados") render();
+      if(state.route === "simulado-ativo" || state.route === "simulados") renderEmSegundoPlano();
     })
     .catch(e => {
       if(e && e.status === 404) _nuvemTabelasAusentes.add("notas_do_simulado()");   // o banco ainda não tem a função

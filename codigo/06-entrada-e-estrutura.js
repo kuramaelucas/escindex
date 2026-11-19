@@ -294,7 +294,7 @@ function baixarTextoEDepois(rota, nomes, todas){
     <div class="text-sm muted mt-1">${todas ? "Esta tela lê o banco inteiro: o texto das questões é baixado uma vez e fica guardado neste aparelho." : "O texto das questões desta tela está chegando."}</div>
     <div class="progress-track mt-2" role="progressbar" aria-label="Progresso do download"><div class="progress-fill" id="baixandoTextoBarra" style="width:0%"></div></div>
     <div class="text-xs muted mt-1" id="baixandoTextoNumero"></div></div>`);
-  (todas ? garantirTodosOsCorpos(barra) : garantirArquivosDeProva(nomes, barra)).then(() => { if(state.route === rota) render(); });
+  (todas ? garantirTodosOsCorpos(barra) : garantirArquivosDeProva(nomes, barra)).then(() => { if(state.route === rota) renderEmSegundoPlano(); });
 }
 function esperarTextoDasQuestoesDaTela(){
   const rota = state.route;
@@ -424,6 +424,45 @@ function desenharTelaPublica(html){
    lugar (são pequenos e precisam acompanhar: o selo de cadastros pendentes,
    o estado da nuvem, o nome do tema). A animação de entrada só toca quando
    a tela realmente troca — que é o que ela existe para sinalizar. */
+/* Redesenho que ninguém pediu (a sincronização da nuvem terminou, o texto das
+   questões chegou): refaz o miolo, mas devolve o que a pessoa já tinha marcado
+   ou digitado nos campos — filtros da montagem de lista, caixas de seleção das
+   filas de dúvidas e de sinalizadas. Sem isso, o redesenho apagava tudo isso
+   sem aviso. Só vale para esses redesenhos: num clique, a tela é quem manda. */
+let _renderEmSegundoPlano = false;
+function renderEmSegundoPlano(){
+  _renderEmSegundoPlano = true;
+  try{ render(); }finally{ _renderEmSegundoPlano = false; }
+}
+function _chaveDoCampo(el){
+  if(el.id) return "#" + el.id;
+  if(!el.name && !el.className) return null;
+  return (el.tagName + "|" + (el.name||"") + "|" + el.className + "|" + (el.type==="checkbox"||el.type==="radio" ? el.value : ""));
+}
+function guardarCamposDaPagina(raiz){
+  const campos = new Map();
+  raiz.querySelectorAll("input, select, textarea").forEach(el => {
+    if(el.type==="hidden" || el.type==="file" || el.type==="button") return;
+    const k = _chaveDoCampo(el); if(!k || campos.has(k)) return;
+    const ehMarca = el.type==="checkbox" || el.type==="radio";
+    // só o que a pessoa mexeu: o que está igual ao desenhado vem certo do HTML novo
+    const mexido = ehMarca ? el.checked !== el.defaultChecked : el.value !== el.defaultValue;
+    if(mexido) campos.set(k, ehMarca ? el.checked : el.value);
+  });
+  const abertos = new Set();
+  raiz.querySelectorAll("details[id]").forEach(d => { if(d.open) abertos.add(d.id); });
+  return { campos, abertos };
+}
+function devolverCamposDaPagina(raiz, guardado){
+  const feitos = new Set();
+  raiz.querySelectorAll("input, select, textarea").forEach(el => {
+    const k = _chaveDoCampo(el); if(!k || feitos.has(k) || !guardado.campos.has(k)) return;
+    feitos.add(k);
+    if(el.type==="checkbox" || el.type==="radio") el.checked = guardado.campos.get(k);
+    else el.value = guardado.campos.get(k);
+  });
+  guardado.abertos.forEach(id => { const d = document.getElementById(id); if(d) d.open = true; });
+}
 function desenharTela(conteudoHtml){
   const app = document.getElementById("app");
   const pagina = document.getElementById("conteudoPagina");
@@ -435,7 +474,9 @@ function desenharTela(conteudoHtml){
     const trocouDeTela = _telaDesenhada.rota !== state.route;
     menu.innerHTML = htmlMenuLateral(u);
     topo.innerHTML = htmlTopo(u);
+    const campos = (_renderEmSegundoPlano && !trocouDeTela) ? guardarCamposDaPagina(pagina) : null;
     pagina.innerHTML = conteudoHtml;
+    if(campos) devolverCamposDaPagina(pagina, campos);
     if(trocouDeTela) animarEntradaDaPagina(pagina);
   }else{
     app.innerHTML = renderShell(conteudoHtml);
