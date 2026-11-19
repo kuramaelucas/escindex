@@ -29,5 +29,6 @@
   { id: "glomerulopatias", titulo: "Síndromes glomerulares", area: "Clínica Médica · Nefrologia", assunto: "ass-nefro-glomerulopatias" },
   { id: "tuberculose", titulo: "Tuberculose", area: "Clínica Médica · Infectologia", assunto: "ass-tuberculose" },
   { id: "asma", titulo: "Asma e rinite alérgica", area: "Clínica Médica · Pneumologia", assunto: "ass-asma" },
+  { id: "arritmias", titulo: "ECG, arritmias e síncope", area: "Clínica Médica · Cardiologia", assunto: "ass-arritmias" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

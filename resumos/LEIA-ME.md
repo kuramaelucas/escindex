@@ -127,3 +127,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `glomerulopatias` | `ass-nefro-glomerulopatias` | 73 | 1 (litíase) |
 | `tuberculose` | `ass-tuberculose` | 251 (69 reais e 182 autorais) | 9 (autorais anuladas) |
 | `asma` | `ass-asma` | 80 | 8 (6 anuladas com reposição no resumo; 1 anulada e 1 desatualizada sem reposição) |
+| `arritmias` | `ass-arritmias` | 78 | 2 (1 anulada com reposição no resumo; 1 anulada sem reposição) |
