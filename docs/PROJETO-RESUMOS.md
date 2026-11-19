@@ -67,6 +67,28 @@ Ordem pedida em 18/11/2026 (questões reais contadas por `npm run dados -- resum
 | 14 | `ass-hemato-neoplasias` | 59 | `neoplasias-hematologicas` | pronto (fontes a ler) | `nccn`, classificação da OMS/ICC 2022, ELN (LMA) |
 | 15 | `ass-emerg-intoxicacoes` | 58 | `intoxicacoes` | pronto (fontes a ler) | AHA toxicologia (parte de `aha-rcp`), manuais do MS/CIATox |
 
+## 3-C. Ginecologia e obstetrícia: os 15 assuntos que mais caem
+
+Ordem pedida em 19/11/2026 (questões reais contadas no mesmo dia por assunto das especialidades de GO). Diretrizes **a conferir na escrita**; quando a fonte está em `ferramentas/edicoes-vigentes.json`, o id é o mesmo.
+
+| # | Assunto | Questões reais | Tema (pasta) | Situação | Diretrizes de que depende (a conferir na escrita) |
+|---|---|---|---|---|---|
+| 1 | `ass-trabalhoparto` | 180 | `trabalho-de-parto` | a escrever | OMS 2018 (cuidado intraparto), Diretriz Nacional de Assistência ao Parto Normal (MS/Conitec), `acog` |
+| 2 | `ass-prenatal` | 150 | `pre-natal` | a escrever | Caderno/Manual de Pré-natal do MS (2022), FEBRASGO |
+| 3 | `ass-ciclomenstrual` | 107 | `ciclo-menstrual` | a escrever | FIGO PALM-COEIN, FEBRASGO (SOP: Rotterdam/consenso internacional 2023) |
+| 4 | `ass-contracepcao` | 99 | `contracepcao` | a escrever | `oms-mec` (6ª ed.), CDC US MEC |
+| 5 | `ass-cacolo` | 98 | `cancer-de-colo` | a escrever | `rastreio-colo` (Portaria SAES/SECTICS 13/2025, DNA-HPV), FIGO 2018 |
+| 6 | `ass-camama` | 88 | `cancer-de-mama` | a escrever | INCA rastreio, `nccn`, BI-RADS |
+| 7 | `ass-dheg` | 77 | `hipertensao-na-gestacao` | a escrever | ISSHP 2021, FEBRASGO, MS (Manual de Gestação de Alto Risco 2022) |
+| 8 | `ass-climaterio` | 74 | `climaterio` | a escrever | NAMS/The Menopause Society 2022, FEBRASGO |
+| 9 | `ass-uroginecologia` | 73 | `uroginecologia` | a escrever | ICS/IUGA, POP-Q, NICE incontinência |
+| 10 | `ass-sangramentos` | 73 | `sangramentos-na-gestacao` | a escrever | MS Gestação de Alto Risco, RCOG (placenta prévia/acretismo), FEBRASGO |
+| 11 | `ass-dmg` | 73 | `diabetes-gestacional` | a escrever | `acog-dmg`, OPAS/MS/FEBRASGO/SBD 2017 (critério IADPSG) |
+| 12 | `ass-puerperio` | 56 | `puerperio` | a escrever | `oms-hpp` (hemorragia pós-parto), MS, FEBRASGO |
+| 13 | `ass-partopretermo` | 54 | `parto-pretermo-e-rotura` | a escrever | FEBRASGO, ACOG (RPMO), OMS 2022 (corticoide antenatal) |
+| 14 | `ass-caendometrio` | 49 | `cancer-de-endometrio` | a escrever | `esgo-endometrio`, FIGO 2023 |
+| 15 | `ass-endometriose` | 49 | `endometriose` | a escrever | ESHRE 2022, FEBRASGO |
+
 ## 4. Mapeamento: o que foi usado e o que muda com diretriz
 
 Hoje o resumo guarda `fontes` só no nível do resumo. Para a atualização ser cirúrgica, cada seção precisa dizer de que diretriz depende.
