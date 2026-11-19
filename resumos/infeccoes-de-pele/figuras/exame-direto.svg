@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 230" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="230" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Exame direto: a forma do fungo</text>
+<g stroke="#4a5a78" fill="none" stroke-width="2">
+<path d="M40 80 h120"/><path d="M70 74 v12 M100 74 v12 M130 74 v12"/>
+<path d="M240 80 q15 -10 30 0 q15 10 30 0"/><circle cx="315" cy="80" r="7"/><circle cx="325" cy="95" r="6"/>
+<path d="M440 75 l20 8 M450 92 l18 -6"/><circle cx="485" cy="72" r="6"/><circle cx="497" cy="86" r="6"/><circle cx="480" cy="96" r="6"/>
+<circle cx="650" cy="82" r="20"/><circle cx="650" cy="56" r="5"/><circle cx="676" cy="82" r="5"/><circle cx="650" cy="108" r="5"/><circle cx="624" cy="82" r="5"/>
+</g>
+<text x="100" y="150" text-anchor="middle" font-weight="700">Dermatófito</text>
+<text x="100" y="170" text-anchor="middle">hifas septadas</text>
+<text x="100" y="188" text-anchor="middle">artrosporadas</text>
+<text x="285" y="150" text-anchor="middle" font-weight="700">Candida</text>
+<text x="285" y="170" text-anchor="middle">pseudo-hifas</text>
+<text x="285" y="188" text-anchor="middle">e leveduras</text>
+<text x="470" y="150" text-anchor="middle" font-weight="700">Malassezia</text>
+<text x="470" y="170" text-anchor="middle">hifas curtas</text>
+<text x="470" y="188" text-anchor="middle">e esporos</text>
+<text x="650" y="150" text-anchor="middle" font-weight="700">Paracoccidioides</text>
+<text x="650" y="170" text-anchor="middle">levedura com</text>
+<text x="650" y="188" text-anchor="middle">brotamentos múltiplos</text>
+</svg>
