@@ -53,6 +53,7 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
 - Internado com ingestão baixa: **soro de manutenção**. {q-usp2024-001}` },
         { id: "bva-suporte", casos: ["q-usp2024-002"], titulo: "Escalonar o suporte: alto fluxo e CPAP", conferir: true, diretrizes: ["sbp-bronquiolite"],
           questoes: ["q-tp20202-047","q-usp2024-002","q-sirio2027-046","q-fmabc2026-048"],
+          prosa: `Quando o cateter comum não basta, o alto fluxo umidificado gera uma pressão positiva leve, lava o gás carbônico do espaço morto e poupa o esforço do lactente; o CPAP vai além e mantém os alvéolos abertos. Os dois evitam boa parte das intubações.`,
           texto: `- Falha do cateter nasal comum: **cateter nasal de alto fluxo (CNAF)**, iniciando com **2 L/kg/min**. {q-usp2024-002,q-tp20202-047}
 - O CNAF gera **pressão positiva (efeito CPAP)**, lava o espaço morto e reduz o trabalho respiratório. {q-sirio2027-046}
 - Refratário ao oxigênio: **CPAP nasal** pode evitar a intubação. {q-fmabc2026-048}` },
@@ -95,6 +96,7 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
         { id: "pac-grave", titulo: "Quando internar e como tratar a grave", conferir: true, diretrizes: ["ms-aidpi","sbp-pac"],
           questoes: ["q-adap21-027","q-famema2021-084","q-unesp2024-016","q-fmabc2026-045","q-usp2025-072"],
           casos: ["q-unesp2024-016"],
+          prosa: `A pneumonia grave é a que já compromete a oxigenação ou o estado geral: hipoxemia, tiragem subcostal, gemência, incapacidade de beber, letargia. Ela pede antibiótico venoso e oxigênio; a gemência é o lactente fechando a glote para manter o alvéolo aberto, sinal de fadiga próxima.`,
           texto: `- Internar: **SpO2 < 90 a 92%**, tiragem subcostal, gemência, **vômitos que impedem a via oral**, toxemia, idade abaixo de 2 meses ou falha do tratamento oral. {q-adap21-027,q-famema2021-084,q-fmabc2026-045}
 - Pneumonia grave: **oxigênio + penicilina cristalina ou ampicilina IV** (ampicilina **200 mg/kg/dia**). {q-adap21-027,q-unesp2024-016}
 - Falha da amoxicilina com derrame provável: internação, oxigênio e ampicilina IV. {q-unesp2024-016}
@@ -119,6 +121,7 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
         { id: "com-necrose", titulo: "Pneumonia necrosante e estafilocócica", conferir: true,
           questoes: ["q-tp20252-070","q-fmabc2022-059"],
           casos: ["q-tp20252-070"],
+          prosa: `Quando a criança não melhora com o antibiótico certo, procura-se complicação: derrame, empiema, abscesso ou necrose do parênquima. O *S. aureus* é o agente que mais necrosa e forma pneumatoceles, sobretudo depois de lesão de pele ou varicela.`,
           texto: `- Falha da amoxicilina, mau estado e cavitações na tomografia: **pneumonia necrosante**; cobrir **pneumococo e S. aureus**. {q-tp20252-070}
 - Lesão de pele recente (porta de entrada), focos em vários lobos e derrame: **S. aureus**, internar e dar **oxacilina**. {q-fmabc2022-059}` },
       ],

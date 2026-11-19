@@ -70,4 +70,21 @@ if(semFragmento.length){
   console.log("\nSem fragmento (escreva um ou ponha em foraDoEscopo com o motivo):");
   semFragmento.forEach(q => console.log(`  ${q.id}  ${String(q.enunciado || "").replace(/\s+/g, " ").slice(0, 90)}`));
 }
+// Avisos de didática (resumos/LEIA-ME.md, condições 16 a 21): não reprovam um resumo antigo,
+// mas um resumo novo sai sem nenhum (`--exigir` transforma os avisos em erro).
+const avisos = [];
+for(const d of r.doencas) for(const f of d.fragmentos){
+  const onde = `${d.id}/${f.id}`, topicos = (f.texto || "").split("\n").filter(l => l.trim().startsWith("-"));
+  // explicada = tem prosa, ou a introdução do capítulo traz uma frase [[…]] ligada às questões dela
+  const explicada = f.prosa || [...(d.introducao || "").matchAll(/\[\[[^\]|]+\|([^\]]+)\]\]/g)].some(m => m[1].split(",").some(id => f.questoes.includes(id.trim())));
+  if(!explicada && d.id !== "armadilhas" && d.id !== "comparativo") avisos.push(`${onde}: seção sem explicação (sem prosa e sem frase da introdução ligada a ela)`);
+  if(f.questoes.length > 30) avisos.push(`${onde}: ${f.questoes.length} questões numa seção só (divida por conceito)`);
+  const semLig = /mnemonicos/.test(f.id) || !f.questoes.length ? 0 : topicos.filter(l => !/\{[^}]+\}\s*$/.test(l)).length;
+  if(semLig) avisos.push(`${onde}: ${semLig} tópico(s) sem questão ligada`);
+  if(d.id !== "armadilhas" && topicos.some(l => /gabarito|questão aceita|as provas variam/i.test(l))) avisos.push(`${onde}: tópico que ensina o gabarito — leve para o capítulo "armadilhas"`);
+  if(tema !== "calendario-vacinal" && /para decorar|mnem[oô]nic/i.test(`${f.prosa || ""}${f.texto || ""}`)) avisos.push(`${onde}: mnemônico (só o calendário vacinal usa)`);
+}
+if(!/Veja também/.test(r.doencas[0]?.introducao || "")) avisos.push("primeiro capítulo sem \"Veja também\" (resumos vizinhos)");
+if(avisos.length){ console.log(`\nAVISOS DE DIDÁTICA (${avisos.length}):`); avisos.forEach(a => console.log("  " + a)); }
+if(process.argv.includes("--exigir")) erros.push(...avisos);
 if(erros.length){ console.log("\nERROS:"); erros.forEach(e => console.log("  " + e)); process.exit(1); }

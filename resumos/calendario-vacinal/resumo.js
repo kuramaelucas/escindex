@@ -76,10 +76,11 @@ Depois do primeiro ano vêm a segunda metade das vacinas virais (tríplice viral
         { id: "cri-4-anos", titulo: "4 anos", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-scmsp2026-058","q-fmabc2026-050","q-famema2025-070"],
           prosa: `Aos 4 anos fecham-se os reforços: [[o segundo reforço da DTP, o reforço da febre amarela e a segunda dose da varicela renovam a proteção que caiu desde as doses do primeiro e do segundo ano.|q-scmsp2026-058,q-fmabc2026-050]] O reforço de pólio nessa idade aparece nos gabaritos de 2026, mas a leitura do quadro de 2026 feita para estas questões não é unânime: confira na Instrução Normativa vigente.`,
-          texto: `- **4 anos**: **2º reforço da DTP**, **reforço da febre amarela**, **2ª dose da varicela**; os gabaritos de 2026 incluem o **reforço da pólio**. {q-scmsp2026-058,q-fmabc2026-050}
+          texto: `- **4 anos**: **2º reforço da DTP**, **reforço da febre amarela**, **2ª dose da varicela**; a Instrução Normativa de 2026, cobrada nas provas desse ano, inclui o **reforço da pólio** (a conferir na leitura da norma). {q-scmsp2026-058,q-fmabc2026-050}
 - Pneumocócica 23-valente aos 5 anos só no calendário dos **povos indígenas**. {q-famema2025-070}` },
         { id: "cri-mnemonicos", titulo: "Para decorar: o calendário em imagens", conferir: true, diretrizes: ["calendario-vacinal"],
           questoes: ["q-015","q-iamspe2026-074","q-usprp2023-043","q-didepm-044","q-usprp2026-035","q-scmsp2026-058","q-iamspe2021-065"],
+          prosa: `Estas frases são só apoio de memória para as idades das vacinas, a única parte do resumo em que se usa mnemônico; o porquê de cada idade está nas seções anteriores.`,
           texto: `- **"Nasceu? B e B."** **B**CG e hepatite **B**: as duas que começam com B saem da maternidade. {q-iamspe2021-065}
 - **Meses pares (2, 4, 6) = "PaVi"**: **Pa**ra a pentavalente, **Vi** para a VIP, nas três. {q-015,q-iamspe2026-074}
 - **"Roda e pneu só no 2 e no 4"**: **ro**tavírus e **pneu**mocócica andam juntos e param no 4º mês. {q-015}

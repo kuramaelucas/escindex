@@ -80,6 +80,17 @@ Marcações dentro do texto:
 14. **Tabela comparativa no fim** dos temas de doenças que a banca faz diferenciar: capítulo `comparativo`, tabela na `prosa`, com as questões de diferencial em `questoes`. Só resume os capítulos, sem dado novo.
 15. **Não muda gabarito.** Se o resumo discordar do gabarito de uma questão, a questão vai para revisão pelo caminho normal (zona B1/B3). O resumo não é alterado para "encaixar" no gabarito.
 
+16. **Toda seção se explica.** Cada seção tem `prosa` com o mecanismo (o porquê da conduta), ou a introdução do capítulo traz uma frase `[[…]]` ligada às questões dela. Lista de "situação → conduta" sem explicação é gabarito comentado, não livro-texto. `npm run resumo` avisa.
+17. **A regra primeiro; a divergência à parte.** Ponto-chave ensina o que é certo pela diretriz atual. Quando uma banca cobrou outra coisa (gabarito antigo, dose diferente, gabarito marcado como duvidoso), o item vai para o capítulo `armadilhas` ("Armadilhas e divergências entre provas", antes da tabela comparativa), escrito como "regra; o que a prova cobrou". A palavra "gabarito" não aparece em tópico fora desse capítulo. `npm run resumo` avisa.
+18. **Sem mnemônicos**, exceto no calendário vacinal (seção `cri-mnemonicos`), onde a família pediu para manter. `npm run resumo` avisa.
+19. **Seção = um conceito, no máximo 30 questões.** Passou disso, divida por conceito (nova seção com id novo; a antiga mantém o id). Questão autoral também se lê antes de ligar: ligar por palavra-chave do enunciado põe questão no conceito errado e estraga a marcação.
+20. **Todo ponto-chave termina em `{q-…}`.** O que não responde a nenhuma questão vira frase da `prosa`, não tópico solto (exceção: seção sem questões, como a de vitaminas).
+21. **Veja também.** A introdução do primeiro capítulo termina com "Veja também:", nomeando os resumos vizinhos. Tema repetido em dois resumos tem um **dono** (a versão completa); o outro só resume e diz onde está o resto, para os dois não se contradizerem.
+22. **Esquema autoral conferido renderizado** (Playwright, captura de tela): nenhum texto encosta ou sai da caixa, e cada afirmação do esquema existe no texto da seção.
+23. **Fonte lida antes de publicar.** Leia o texto oficial (`npm run texto-oficial`) das diretrizes das seções de conduta e preencha `lidoEm`; só então tire o `conferir: true` daquelas seções. Sem a leitura, a seção continua "a conferir".
+
+Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 16 a 21 viram erro) e `node --test testes/resumos.test.mjs`.
+
 ## Ainda por fazer
 
 - Botão "fazer as questões desta seção", que abriria uma sessão com as questões ligadas.

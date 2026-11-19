@@ -29,11 +29,10 @@ Veja também: **Hipertensão arterial** e **Diabetes mellitus** (as causas mais 
       fragmentos: [
         { id: "def-fe", diretrizes: ["esc-ic","aha-ic"], titulo: "Fração de ejeção, estágios e classe funcional", conferir: true,
           questoes: ["q-card-09","q-unesp2021-048","q-unesp2023-056","q-unesp2025-054","q-famema2025-014"],
+          prosa: `Estágios (ACC/AHA): **A** risco, sem doença estrutural; **B** doença estrutural sem sintomas; **C** sintomas; **D** refratária. Classe funcional NYHA: **I** sem limitação; **II** grandes esforços; **III** pequenos esforços; **IV** em repouso.`,
           texto: `- **ICFEr ≤ 40%**; levemente reduzida **41 a 49%**; preservada **≥ 50%**; **IC com FE melhorada**: era ≤ 40% e subiu acima de 40%. {q-card-09,q-unesp2021-048}
 - FE melhorada **não é cura**: **manter as medicações**, porque suspender faz a disfunção voltar. {q-unesp2023-056}
 - **ICFEp**: tratar as **comorbidades** (pressão, obesidade, diabetes, FA) e a congestão. {q-unesp2025-054}
-- Estágios (ACC/AHA): **A** risco, sem doença estrutural; **B** doença estrutural sem sintomas; **C** sintomas; **D** refratária.
-- Classe funcional NYHA: **I** sem limitação; **II** grandes esforços; **III** pequenos esforços; **IV** em repouso.
 - Descompensação: a causa mais comum é a **má adesão**. {q-famema2025-014}` },
         { id: "def-causas", casos: ["q-adap24-021"], titulo: "Causas que a prova cobra", conferir: true,
           prosa: `Algumas causas têm pistas específicas. [[A **cardiotoxicidade por quimioterapia** (antraciclinas, trastuzumabe) aparece semanas a meses depois do tratamento.|q-tp20212-030]] [[O **álcool** causa miocardiopatia dilatada no etilista de longa data, sem doença coronariana.|q-usp2026-004]] [[A **cardiomiopatia periparto** surge no fim da gestação ou nos meses após o parto.|q-unesp2022-042]] [[A **amiloidose** deposita proteína entre as fibras do miocárdio e o torna rígido e espesso. Pistas: **síndrome do túnel do carpo** bilateral, parede espessa com ECG de baixa voltagem e realce tardio difuso na ressonância. A forma **AL** (de cadeias leves) se investiga com **imunofixação e cadeias leves livres**; a forma por **transtirretina** é tratada com **tafamidis**, que estabiliza a proteína.|q-famerp2026-060,q-famema2021-038,q-famema2021-037,q-fmabc2024-019]]`,
@@ -142,13 +141,13 @@ O **sacubitril-valsartana** soma ao bloqueio da angiotensina a inibição da nep
       fragmentos: [
         { id: "agu-perfis", diretrizes: ["sbc-ic","esc-ic"], figuras: [{ arquivo: "figuras/perfis-hemodinamicos.svg", legenda: "Esquema autoral: os quatro perfis pela congestão e pela perfusão, com a conduta de cada um." }], titulo: "Perfis hemodinâmicos e o que fazer em cada um", conferir: true,
           questoes: ["q-card-11","q-fmabc2023-011","q-iamspe2023-002","q-sessp2025-011","q-adap26-028","q-unifesp2025-025-ia","q-iamspe2026-009","q-unifesp2025-032"],
-          texto: `- **A (quente e seco)**: compensado, ajustar o tratamento oral.
-- **B (quente e úmido)**: **diurético EV** ± vasodilatador. {q-card-11,q-fmabc2023-011,q-sessp2025-011}
+          prosa: `**A (quente e seco)**: compensado, ajustar o tratamento oral. **L (frio e seco)**: hipovolêmico, prova cautelosa de **volume**.`,
+          texto: `- **B (quente e úmido)**: **diurético EV** ± vasodilatador. {q-card-11,q-fmabc2023-011,q-sessp2025-011}
 - **C (frio e úmido)**: **dobutamina + diurético**, em terapia intensiva. {q-iamspe2023-002,q-adap26-028,q-unifesp2025-025-ia}
-- **L (frio e seco)**: hipovolêmico, prova cautelosa de **volume**.
 - Dobutamina: **inotrópico puro**, sem vasoconstrição significativa. {q-iamspe2026-009,q-unifesp2025-032}` },
         { id: "agu-diuretico", diretrizes: ["sbc-ic","esc-ic"], titulo: "Diurético na descompensação", conferir: true,
           questoes: ["q-adap25-032","q-famerp2022-052","q-unesp2024-042","q-uspsp1-057","q-iamspe2021-016"],
+          prosa: `Na IC descompensada o problema dominante é a congestão: o rim, sob ativação neuro-hormonal, retém sódio. A furosemida venosa age mais rápido e com mais previsibilidade que a oral, cuja absorção cai no intestino edemaciado; a dose deve ser ao menos a que o paciente já tomava.`,
           texto: `- Furosemida **EV em bolus**, dose **não inferior à oral** que já usava (1 a 2,5 vezes), **reavaliando em 2 horas** (diurese e sódio urinário). {q-adap25-032}
 - Internado: furosemida + **profilaxia de TEV (enoxaparina)**. {q-famerp2022-052}
 - Ambulatório congesto: aumentar o diurético; diagnóstico novo: diurético + IECA, Rx e eco. {q-unesp2024-042,q-uspsp1-057,q-iamspe2021-016}` },

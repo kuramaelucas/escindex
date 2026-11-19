@@ -62,7 +62,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
       fragmentos: [
         { id: "hem-abo-rh", titulo: "ABO, Rh e G6PD", conferir: true,
           questoes: ["q-unifesp2023-073","q-amrigs2021-074","q-usprp2022-087","q-famema2023-082","q-unesp2022-003","q-scmsp2026-041","q-famerp2024-052","q-unicampdis2022-027","q-didepm-024","q-uspsp1-024","q-sirio2027-058","q-tp20222-044"],
-          prosa: `Na doença hemolítica, anticorpos da mãe atravessam a placenta e destroem as hemácias do bebê: Rh na mãe sensibilizada, ABO quando a mãe é O. A hemólise faz a icterícia aparecer nas primeiras 24 horas, com reticulócitos altos e Coombs direto positivo. Na deficiência de G6PD a hemácia não resiste ao estresse oxidativo, e o Coombs é negativo.`,
+          prosa: `Na doença hemolítica, anticorpos da mãe atravessam a placenta e destroem as hemácias do bebê: Rh na mãe sensibilizada, ABO quando a mãe é O. A hemólise faz a icterícia aparecer nas primeiras 24 horas, com reticulócitos altos e Coombs direto positivo. Na deficiência de G6PD a hemácia não resiste ao estresse oxidativo, e o Coombs é negativo. Outras causas de excesso de produção: **esferocitose** e sangue reabsorvido de **céfalo-hematoma**.`,
           texto: `- Mãe **O**, RN **A ou B**, reticulócitos altos e **esferócitos**: **incompatibilidade ABO**. {q-unifesp2023-073,q-amrigs2021-074,q-usprp2022-087}
 - ABO com icterícia precoce: bilirrubinas, **eluato/Coombs** e **fototerapia**. {q-famema2023-082,q-unesp2022-003}
 - Icterícia **antes de 24 h**: hemólise até prova em contrário; coletar exames e iniciar fototerapia. {q-scmsp2026-041}
@@ -70,7 +70,6 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
 - Coombs direto positivo e reticulócitos altos, sem encefalopatia: **fototerapia intensiva**, bilirrubina e hemoglobina seriadas. {q-didepm-024}
 - Hemácias fragmentadas e **G6PD baixa**: fototerapia e nova bilirrubina em 6 h. {q-uspsp1-024}
 - Hemólise ABO com letargia e sucção débil: sinais de **encefalopatia aguda**; monitorar a bilirrubina total sérica. {q-sirio2027-058}
-- Outras causas de excesso de produção: **esferocitose** e sangue reabsorvido de **céfalo-hematoma**.
 - Icterícia até palmas e plantas com 48 h em mãe O e RN B: **bilirrubinas já** e considerar **exsanguineotransfusão**. {q-tp20222-044}` },
       ],
     },

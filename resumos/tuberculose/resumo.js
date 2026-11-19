@@ -55,13 +55,19 @@ Veja também: **Infecções congênitas** (recém-nascido exposto, com a diverg�
       fragmentos: [
         { id: "dia-pontos", titulo: "Diagn\u00f3stico da tuberculose pulmonar", conferir: true, diretrizes: ["ms-tb"],
           casos: ["q-uspsp2-011"],
-          questoes: ["q-adap24-018", "q-usprp2023-045", "q-iamspe2025-093", "q-sessp2023-073", "q-famerp2025-048", "q-uspsp2-011", "q-sirio2022-097", "q-amrigs2022-091", "q-famerp2024-069", "q-tp20202-112", "q-scmsp2025-100", "q-einstein2023-010", "q-usp2025-074", "q-unesp2024-097", "q-gdtuberculose-003", "q-gdtuberculose-012", "q-gdtuberculose-018", "q-gdtuberculose-025", "q-gdtuberculose-029", "q-gdtuberculose-037", "q-gdtuberculose-049", "q-gdtuberculose-060", "q-gdtuberculose-061", "q-gdtuberculose-070", "q-gdtuberculose-076", "q-gdtuberculose-078", "q-gdtuberculose-087", "q-gdtuberculose-092", "q-gdtuberculose-096", "q-gdtuberculose-107", "q-gdtuberculose-115", "q-gdtuberculose-136", "q-gdtuberculose-141", "q-gdtuberculose-143", "q-gdtuberculose-159", "q-gdtuberculose-161", "q-gdtuberculose-174", "q-gdtuberculose-178"],
+          questoes: ["q-adap24-018", "q-usprp2023-045", "q-iamspe2025-093", "q-sessp2023-073", "q-famerp2025-048", "q-uspsp2-011", "q-sirio2022-097", "q-famerp2024-069", "q-tp20202-112", "q-scmsp2025-100", "q-gdtuberculose-003", "q-gdtuberculose-018", "q-gdtuberculose-029", "q-gdtuberculose-087", "q-gdtuberculose-092", "q-gdtuberculose-096", "q-gdtuberculose-115", "q-gdtuberculose-159", "q-gdtuberculose-161"],
           texto: `- Sintomático respiratório: tosse **≥ 3 semanas**. {q-sirio2022-097,q-gdtuberculose-115}
 - Exame de escolha: **TRM-TB** (ou baciloscopia). {q-adap24-018,q-famerp2025-048,q-iamspe2025-093}
-- TRM-TB: casos novos de forma **pulmonar e laríngea**, em cerca de 2 horas. {q-gdtuberculose-012}
+- Cavitação: **BAAR no escarro**. {q-sessp2023-073,q-uspsp2-011}` },
+        { id: "dia-exames", titulo: "Teste molecular, cultura e imagem", conferir: true, diretrizes: ["ms-tb"],
+          questoes: ["q-amrigs2022-091", "q-einstein2023-010", "q-usp2025-074", "q-unesp2024-097", "q-gdtuberculose-012", "q-gdtuberculose-037", "q-gdtuberculose-049", "q-gdtuberculose-060", "q-gdtuberculose-061", "q-gdtuberculose-070", "q-gdtuberculose-076", "q-gdtuberculose-078", "q-gdtuberculose-107", "q-gdtuberculose-141", "q-gdtuberculose-143", "q-gdtuberculose-174", "q-gdtuberculose-178", "q-gdtuberculose-025", "q-gdtuberculose-136"],
+          prosa: `O teste rápido molecular amplifica o DNA do bacilo: é mais sensível que a baciloscopia e mostra a resistência à rifampicina em horas, mas detecta também bacilo morto, por isso não serve para controlar a cura (o controle é a baciloscopia mensal). A cultura é a mais sensível e permite o teste de sensibilidade, mas leva semanas; entra quando o escarro é negativo e a suspeita persiste. A radiografia sugere e localiza, mas nenhuma imagem confirma: até a pneumonia que não responde a antibiótico pode ser tuberculose.`,
+          texto: `- TRM-TB: casos novos de forma **pulmonar e laríngea**, em cerca de 2 horas. {q-gdtuberculose-012}
 - Confirmam doença ativa: **TRM e cultura**, não a PT. {q-amrigs2022-091}
-- Cavitação: **BAAR no escarro**. {q-sessp2023-073,q-uspsp2-011}
-- Nenhuma imagem é **patognomônica**. {q-gdtuberculose-078}` },
+- Nenhuma imagem é **patognomônica**. {q-gdtuberculose-078}
+- TRM **não** serve para acompanhar o tratamento (detecta bacilo morto). {q-gdtuberculose-061}
+- Escarro negativo com suspeita clínica e radiológica: **cultura** (e broncoscopia se preciso). {q-gdtuberculose-070,q-gdtuberculose-143}
+- Pneumonia que não melhora com antibiótico: pensar em **tuberculose**. {q-einstein2023-010,q-gdtuberculose-178}` },
         { id: "dia-resistencia", titulo: "Resist\u00eancia, retratamento e cultura", conferir: true, diretrizes: ["ms-tb"],
           questoes: ["q-usp2024-081", "q-gdantibioticos-115", "q-gdtuberculose-020", "q-gdtuberculose-039", "q-gdtuberculose-112", "q-gdtuberculose-121", "q-gdtuberculose-160", "q-gdtuberculose-168", "q-gdtuberculose-169", "q-gdtuberculose-170", "q-gdtuberculose-172"],
           prosa: `O bacilo fica resistente por mutação, selecionada quando recebe uma droga só ou tratamento irregular. O teste rápido molecular já mostra a resistência à rifampicina; a cultura com teste de sensibilidade define o esquema. Tuberculose multirresistente é a resistente a rifampicina e isoniazida ao mesmo tempo e se trata em unidade de referência, com esquemas que incluem quinolona.`,

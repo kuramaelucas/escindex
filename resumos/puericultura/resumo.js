@@ -51,6 +51,7 @@ Veja também: **Anemias** (anemia ferropriva na criança, completa lá), **Cresc
 - O ambiente (moradia, saneamento, poluição, vínculo) interfere no crescimento: é o que estuda a ecopediatria. {q-amrigs2022-075}` },
         { id: "con-habitos", titulo: "Sono, telas, dentes e controle esfincteriano", conferir: true,
           questoes: ["q-usprp2024-073","q-fmabc2025-052","q-usprp2021-044","q-fmabc2024-044","q-udisc20262-060","q-unifesp2024-093"],
+          prosa: `Os hábitos da primeira infância moldam o sono, os dentes e o comportamento: tela à noite atrasa a melatonina e encurta o sono; flúor desde o primeiro dente previne cárie; e o controle dos esfíncteres depende da maturação, por isso a enurese só é diagnóstico a partir dos 5 anos.`,
           texto: `- Escolar precisa de **9 a 12 horas de sono**. Sonolência na escola com 8 h de sono: antecipar a hora de dormir. {q-usprp2024-073}
 - A luz azul das telas atrasa a melatonina: **desligar telas 1 a 2 horas antes de dormir**. {q-fmabc2025-052}
 - Telas: **evitar antes dos 2 anos**; de 2 a 5 anos, até 1 hora por dia, com um adulto junto. {q-unifesp2024-093}
@@ -58,6 +59,7 @@ Veja também: **Anemias** (anemia ferropriva na criança, completa lá), **Cresc
 - **Enurese noturna primária** tem forte **componente familiar**. Só é diagnóstico a partir dos 5 anos. {q-udisc20262-060}` },
         { id: "con-vacina", diretrizes: ["calendario-vacinal"], titulo: "Vacina atrasada", conferir: true,
           questoes: ["q-adap23-067"],
+          prosa: `A memória imune das doses já dadas não se perde com o atraso: por isso o esquema continua de onde parou, sem recomeçar.`,
           texto: `- Esquema atrasado **não se reinicia**: aplica-se hoje a dose devida e respeita-se o **intervalo mínimo** (em geral 30 dias) e a **idade máxima** de cada vacina. {q-adap23-067}` },
       ],
     },
@@ -167,6 +169,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - Perda excessiva sem recuperação apesar da técnica: **suplementar**. {q-uspsp3-022}` },
         { id: "ama-mastite", titulo: "Mastite", conferir: true,
           questoes: ["q-adap23-061"],
+          prosa: `Na mastite o leite parado inflama a mama e pode infectar; esvaziar a mama é o tratamento, e por isso a amamentação continua, inclusive do lado afetado.`,
           texto: `- Febre, calafrio e área quente e dolorosa na mama: **manter o esvaziamento** (amamentar ou ordenhar), analgesia, repouso e **cefalexina por 10 a 14 dias**. Abscesso: drenar. {q-adap23-061}` },
         { id: "ama-contra", diretrizes: ["ms-caderneta"], titulo: "Quando não amamentar (e quando pode)", conferir: true,
           prosa: `As contraindicações são poucas e têm motivo claro: um agente que passa pelo leite e causa doença grave, ou um bebê que não consegue metabolizar o leite. [[No Brasil, **HIV** e **HTLV-1/2** maternos contraindicam a amamentação; do lado do bebê, a **galactosemia** clássica, em que a lactose vira um tóxico.|q-udisc20262-056]] [[A hepatite C não contraindica: a transmissão pelo leite nunca foi documentada.|q-unesp2021-005]]`,
@@ -178,6 +181,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - Lactente internado (ex.: bronquiolite) que pode se alimentar: **liberar o leite materno**. {q-einstein2022-037}` },
         { id: "ama-trabalho", diretrizes: ["ms-caderneta"], titulo: "Volta ao trabalho: ordenha e armazenamento", conferir: true,
           questoes: ["q-scmsp2021-044","q-usprp2026-043","q-amrigs2021-063","q-unicampdis2022-028","q-iamspe2025-070","q-fmabc2023-052"],
+          prosa: `A volta ao trabalho não precisa encerrar o aleitamento: o leite ordenhado mantém a produção e alimenta o bebê, e o copinho evita que ele desaprenda a pega.`,
           texto: `- Leite ordenhado: **12 horas na geladeira** e **15 dias no congelador/freezer**. {q-scmsp2021-044,q-usprp2026-043,q-unicampdis2022-028,q-amrigs2021-063}
 - Descongelar em banho-maria, sem micro-ondas, e oferecer **em copinho**. {q-scmsp2021-044,q-amrigs2021-063}
 - **Chupetas e mamadeiras são desaconselhadas**: confundem a sucção e reduzem a amamentação. {q-iamspe2025-070}
@@ -234,6 +238,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
           texto: `- Hb baixa, ferritina baixa, RDW alto: **3 a 6 mg/kg/dia de ferro elementar**. {q-sessp2022-054,q-tp20222-045}` },
         { id: "fer-vitd", diretrizes: ["sbp-alimentacao"], titulo: "Vitamina D e vitamina A", conferir: true,
           questoes: [],
+          prosa: `O leite materno tem pouca vitamina D, e a exposição ao sol do lactente é pequena e variável: por isso a suplementação é rotina no primeiro ano. A vitamina A só se suplementa em megadose nas regiões onde a carência é comum.`,
           texto: `- Vitamina D (SBP): **400 UI/dia no 1º ano** e **600 UI/dia no 2º ano**, para todas as crianças.
 - Vitamina A em megadose: programa do MS para regiões de risco, dos 6 aos 59 meses.` },
       ],
@@ -253,6 +258,7 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 - Sem exames e sem medicação. Em fórmula: considerar **fórmula AR**. {q-unesp2022-008}` },
         { id: "que-colica", casos: ["q-usprp2022-019"], titulo: "Cólica e dermatite de fraldas", conferir: true,
           questoes: ["q-famerp2022-031","q-usprp2022-019"],
+          prosa: `A cólica do lactente é choro intenso de bebê saudável, que cresce bem, com pico por volta de 6 semanas e fim por volta de 3 a 4 meses; o essencial é examinar para afastar doença e acolher a família.`,
           texto: `- Cólica (Wessel): choro por **3 h ou mais por dia**, em **3 dias ou mais por semana**, por **3 semanas ou mais**, em bebê saudável e bem alimentado. {q-famerp2022-031}
 - Dermatite de fraldas: trocas frequentes, ar livre e **creme de barreira** (óxido de zinco, **dexpantenol**). Lesões satélites sugerem *Candida*. {q-usprp2022-019}` },
       ],

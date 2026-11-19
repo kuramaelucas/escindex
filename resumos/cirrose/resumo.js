@@ -59,6 +59,7 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
       fragmentos: [
         { id: "asc-gasa", titulo: "Paracentese diagnóstica e GASA", conferir: true, diretrizes: ["aasld-ascite"],
           questoes: ["q-uspsp2-006","q-fmabc2023-023","q-uspsp3-095","q-einstein2025-004","q-fmabc2021-028","q-sirio2024-009"],
+          prosa: `O gradiente soro-ascite de albumina mede a pressão hidrostática que empurra o líquido: na hipertensão portal a pressão nos sinusoides é alta e o líquido sai pobre em albumina, e o gradiente passa de 1,1. Quando a causa é do peritônio (câncer, tuberculose) ou da albumina baixa (nefrótica), o gradiente é baixo. Toda ascite nova, que piora ou que dói pede paracentese, porque a infecção do líquido pode não ter sintoma.`,
           texto: `- GASA = albumina sérica − albumina da ascite; **≥ 1,1 g/dL = hipertensão portal**. {q-uspsp2-006}
 - GASA alto: **cirrose, cardíaca, Budd-Chiari**; baixo: carcinomatose, tuberculose, nefrótica. {q-fmabc2023-023}
 - Três causas possíveis (cirrose, IC, nefrótica): **ecocardiograma** e GASA. {q-uspsp3-095}
