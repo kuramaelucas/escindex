@@ -196,3 +196,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 19/11/2026 | **`glomerulopatias`**: KDIGO 2021 de doenças glomerulares lida (kdigo.org); corrigido o corte da IgA (> 0,5 g/dia para IECA/BRA); 3 seções sem `conferir` (IPNA e SBP seguem a ler). |
 | 19/11/2026 | **`cirrose`**: Baveno VII lido no PMC; vasoconstritor 2–5 dias e balão/prótese como ponte para TIPS; `var-aguda` sem `conferir` (AASLD/EASL seguem a ler). |
 | 19/11/2026 | **`intoxicacoes`**: Manual de acidentes por animais peçonhentos (gov.br, 2024) lido; `pec-condutas` sem `conferir`. AHA 2025 e AACT seguem sem acesso/leitura. |
+| 19/11/2026 | **`vias-aereas-superiores`**: Guia de influenza 2023 lido; `vir-influenza` sem `conferir`. SBP (faringite, OMA, crupe) e AAP 2013 seguem a ler. |
