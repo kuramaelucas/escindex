@@ -24,13 +24,16 @@
       id: "raciocinio", titulo: "Como raciocinar diante de febre + exantema",
       introducao: `Exantema é a erupção cutânea difusa que acompanha uma doença sistêmica. Ele não é uma doença em si: é a pele mostrando o que acontece no resto do corpo. Por trás de um exantema há quatro mecanismos. O primeiro é o **dano direto do vírus** ao endotélio e à epiderme, como nas vesículas da varicela e dos enterovírus. O segundo é a **resposta imune** contra as células infectadas, como no sarampo e no eritema infeccioso. O terceiro são as **toxinas bacterianas** que dilatam os capilares ou separam camadas da pele, como na escarlatina e na pele escaldada. O quarto é a **vasculite**, como na doença de Kawasaki.
 
-Por isso o tempo importa tanto. Quando o exantema é imunomediado, ele aparece no momento em que o organismo já reage ao agente. Às vezes isso coincide com o fim da febre (exantema súbito), às vezes com o fim da transmissão (parvovírus). Saber o mecanismo de cada doença permite deduzir o quadro, em vez de decorar listas.`,
+Por isso o tempo importa tanto. Quando o exantema é imunomediado, ele aparece no momento em que o organismo já reage ao agente. Às vezes isso coincide com o fim da febre (exantema súbito), às vezes com o fim da transmissão (parvovírus). Saber o mecanismo de cada doença permite deduzir o quadro, em vez de decorar listas.
+
+Veja também: **Infecções de vias aéreas superiores** (faringite e mononucleose), **Calendário vacinal** e **Infecções congênitas** (rubéola e varicela na gestação).`,
       fragmentos: [
         { id: "rac-chaves", figuras: [{ arquivo: "figuras/febre-exantema.svg", legenda: "Esquema autoral: a curva da febre e o momento do exantema em três doenças." }], titulo: "As quatro perguntas que separam as doenças", conferir: true,
           questoes: ["q-famema2025-042","q-tp20222-047","q-amrigs2021-070"],
+          prosa: `As exantemáticas se confundem porque a pele reage de poucos modos. O que as separa é a história contada na ordem: quanto tempo de febre antes, o que veio no pródromo, como a lesão é e evolui, e em que idade. Estas perguntas organizam os capítulos seguintes.`,
           texto: `- **Qual a relação febre × exantema?** O exantema aparece quando a febre cede: **exantema súbito**. O exantema vem no auge da febre: **sarampo**. Febre há 5 dias ou mais sem foco: pense em **Kawasaki**. {q-amrigs2021-070,q-famema2025-042}
 - **Que pródromo veio antes?** Tosse, coriza e conjuntivite: **sarampo**. Dor de garganta: **escarlatina** ou **mononucleose**. Pródromo pobre ou ausente: **rubéola** ou **eritema infeccioso**. {q-tp20222-047,q-famema2025-042}
-- **Que cara tem a lesão?** Lesão **áspera em lixa**: escarlatina. Lesões **em vários estágios e pruriginosas**: varicela. **Vesículas em mãos, pés e boca**: enterovírus. Face **esbofeteada** e **rendilhado**: parvovírus B19.
+- **Que cara tem a lesão?** Lesão **áspera em lixa**: escarlatina. Lesões **em vários estágios e pruriginosas**: varicela. **Vesículas em mãos, pés e boca**: enterovírus. Face **esbofeteada** e **rendilhado**: parvovírus B19. {q-famema2025-042,q-tp20222-047,q-amrigs2021-070}
 - **Há sinal patognomônico ou de localização?** **Koplik** (sarampo), **adenopatia retroauricular/occipital** (rubéola), **Pastia e Filatov** (escarlatina), **esplenomegalia** (mononucleose). {q-famema2025-042}
 - A **faixa etária** ajuda: o exantema súbito aparece **entre 6 meses e 2 anos**, e escarlatina e eritema infeccioso, em pré-escolares e escolares. {q-famema2025-042}` },
       ],
@@ -47,15 +50,14 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
           questoes: ["q-amrigs2025-014","q-simepm89-061"],
           texto: `- Vírus RNA do gênero **Morbillivirus** (família Paramyxoviridae). {q-amrigs2025-014}
 - Transmissão **respiratória por aerossol**: é das doenças mais contagiosas que existem. Pense em sarampo em quem volta de **área com surto** sem vacina comprovada. {q-simepm89-061}
-- Transmite de **4 dias antes a 4 dias depois do início do exantema**.
+- Transmite de **4 dias antes a 4 dias depois do início do exantema**. {q-amrigs2025-014,q-simepm89-061}
 - Quem elimina o vírus e leva à recuperação é a **resposta imune celular** do hospedeiro. Não há antiviral específico. {q-amrigs2025-014}` },
         { id: "sar-clinica", casos: ["q-usprp2026-032","q-uspsp4-101"], titulo: "Quadro clínico e Koplik",
-          prosa: `Depois de 10 a 14 dias de incubação vem o **pródromo**. A febre sobe progressivamente e aparecem tosse seca, coriza e conjuntivite com fotofobia, que refletem a infecção dos epitélios respiratório e conjuntival. [[No fim do pródromo surgem as **manchas de Koplik** na mucosa jugal, que costumam desaparecer quando o exantema se estabelece.|q-iamspe2025-065,q-fmabc2026-089,q-famerp2023-027,q-sirio2022-053,q-unicampdis2025-026,q-famerp2026-009,q-famema2025-042]] O exantema começa na linha do cabelo e atrás das orelhas e desce ao longo de três dias. As lesões confluem nas áreas que apareceram primeiro. [[Ao contrário do exantema súbito, a febre atinge o pico **junto** com o exantema, porque é a fase de maior atividade imune contra o vírus.|q-famerp2023-027,q-famerp2022-014,q-famerp2026-009,q-sirio2022-053,q-fmabc2025-096]]`, conferir: true,
+          prosa: `Depois de 10 a 14 dias de incubação vem o **pródromo**. A febre sobe progressivamente e aparecem tosse seca, coriza e conjuntivite com fotofobia, que refletem a infecção dos epitélios respiratório e conjuntival. [[No fim do pródromo surgem as **manchas de Koplik** na mucosa jugal, que costumam desaparecer quando o exantema se estabelece.|q-iamspe2025-065,q-fmabc2026-089,q-famerp2023-027,q-sirio2022-053,q-unicampdis2025-026,q-famerp2026-009,q-famema2025-042]] O exantema começa na linha do cabelo e atrás das orelhas e desce ao longo de três dias. As lesões confluem nas áreas que apareceram primeiro. [[Ao contrário do exantema súbito, a febre atinge o pico **junto** com o exantema, porque é a fase de maior atividade imune contra o vírus.|q-famerp2023-027,q-famerp2022-014,q-famerp2026-009,q-sirio2022-053,q-fmabc2025-096]] O exantema evolui com **descamação furfurácea** (fina, "em farelo").`, conferir: true,
           questoes: ["q-famema2025-042","q-iamspe2025-065","q-fmabc2025-047","q-fmabc2025-096","q-unicampdis2025-026","q-simepm89-061","q-uspsp4-101","q-sirio2022-053","q-famerp2023-027","q-famerp2022-014","q-famerp2026-009","q-fmabc2026-089","q-einstein2025-043","q-tp20222-047"],
           texto: `- **Pródromo de 3 a 5 dias**: febre alta, com os **3 Cs**: **tosse, coriza e conjuntivite** (pode haver fotofobia). {q-famema2025-042,q-fmabc2025-047,q-fmabc2025-096,q-unicampdis2025-026,q-simepm89-061,q-uspsp4-101,q-famerp2022-014,q-famerp2026-009,q-einstein2025-043,q-tp20222-047}
 - **Sinal de Koplik**: **pontos branco-azulados sobre halo vermelho na mucosa jugal, na altura dos (pré-)molares**. Aparece **antes do exantema** e é **patognomônico**. {q-iamspe2025-065,q-fmabc2026-089,q-famerp2023-027,q-sirio2022-053,q-unicampdis2025-026,q-famerp2026-009,q-famema2025-042}
 - **Exantema morbiliforme**, maculopapular e **confluente**, que começa **atrás das orelhas e na linha do cabelo** e desce em sentido **craniocaudal**. A **febre continua alta** quando o exantema surge. {q-famerp2023-027,q-famerp2022-014,q-famerp2026-009,q-sirio2022-053,q-fmabc2025-096}
-- O exantema evolui com **descamação furfurácea** (fina, "em farelo").
 - Exantema morbiliforme quer dizer **manchas**, não **equimoses**. {q-fmabc2026-089}` },
         { id: "sar-diag", diretrizes: ["ms-guia-vigilancia"], titulo: "Diagnóstico laboratorial", conferir: true,
           questoes: ["q-uspsp4-101","q-amrigs2025-014"],
@@ -67,7 +69,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
           texto: `- A **pneumonia** é a complicação mais frequente e a **principal causa de morte**. Pode ser viral ou bacteriana secundária. {q-einstein2021-021,q-tp20222-047}
 - Outras: **otite média aguda**, **diarreia**, laringotraqueobronquite e **encefalite aguda**. {q-einstein2021-021}
 - No **imunodeprimido**: **pneumonia de células gigantes** (de Hecht), muitas vezes sem exantema. {q-sirio2022-053}
-- Complicação tardia, anos depois: **panencefalite esclerosante subaguda (PEES)**.` },
+- Complicação tardia, anos depois: **panencefalite esclerosante subaguda (PEES)**. {q-einstein2021-021,q-tp20222-047,q-sirio2022-053}` },
         { id: "sar-trat", diretrizes: ["ms-guia-vigilancia"], titulo: "Tratamento: suporte + vitamina A", conferir: true,
           questoes: ["q-usprp2026-032","q-amrigs2025-014","q-uspsp4-101"],
           texto: `- O tratamento é **de suporte** (antitérmico, hidratação, nutrição). {q-amrigs2025-014}
@@ -91,10 +93,11 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
       fragmentos: [
         { id: "rub-tudo", diretrizes: ["ms-guia-vigilancia"], titulo: "Agente, quadro e forma congênita", conferir: true,
           questoes: ["q-famema2025-042"],
-          texto: `- Agente: **Rubivirus (vírus da rubéola)**, família Matonaviridae, antes classificada como Togaviridae.
-- Pródromo **leve**. A pista mais cobrada é a **linfadenopatia retroauricular, occipital e cervical posterior**.
-- Exantema **róseo, discreto**, craniocaudal, que dura cerca de **3 dias**. Pode haver **manchas de Forchheimer** no palato e **artralgia** em adolescentes e mulheres.
-- **Síndrome da rubéola congênita**: **catarata**, **surdez neurossensorial** e **cardiopatia (PCA)**. Por isso a vigilância é a mesma do sarampo: notificação imediata e bloqueio.` },
+          prosa: `A rubéola é branda na criança e grave no feto: o vírus atravessa a placenta no primeiro trimestre e interrompe a divisão celular nos órgãos em formação (olho, ouvido, coração). Por isso a vigilância e a vacina miram a mulher em idade fértil.`,
+          texto: `- Agente: **Rubivirus (vírus da rubéola)**, família Matonaviridae, antes classificada como Togaviridae. {q-famema2025-042}
+- Pródromo **leve**. A pista mais cobrada é a **linfadenopatia retroauricular, occipital e cervical posterior**. {q-famema2025-042}
+- Exantema **róseo, discreto**, craniocaudal, que dura cerca de **3 dias**. Pode haver **manchas de Forchheimer** no palato e **artralgia** em adolescentes e mulheres. {q-famema2025-042}
+- **Síndrome da rubéola congênita**: **catarata**, **surdez neurossensorial** e **cardiopatia (PCA)**. Por isso a vigilância é a mesma do sarampo: notificação imediata e bloqueio. {q-famema2025-042}` },
       ],
     },
     {
@@ -106,7 +109,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
         { id: "sub-agente", titulo: "Agente: herpes-vírus humano 6 (e 7)", conferir: true,
           questoes: ["q-famema2023-081","q-sirio2021-057","q-fmabc2021-098","q-einstein2022-038"],
           texto: `- Agente: **herpes-vírus humano 6 (HHV-6B)**. Menos vezes, o **HHV-7**. {q-famema2023-081,q-sirio2021-057,q-fmabc2021-098,q-einstein2022-038}
-- Idade típica: **6 meses a 2 anos**. Não é doença do escolar.` },
+- Idade típica: **6 meses a 2 anos**. Não é doença do escolar. {q-famema2023-081,q-sirio2021-057,q-fmabc2021-098,q-einstein2022-038}` },
         { id: "sub-clinica", casos: ["q-uspsp1-004"], titulo: "Febre alta que some → aí aparece o exantema",
           prosa: `O exame físico normal, apesar da febre alta, é o que distingue o quadro. Pode haver pequenas pápulas no palato mole (manchas de Nagayama), edema palpebral discreto e abaulamento da fontanela. No hemograma, a leucopenia com linfocitose relativa é comum. Mas o diagnóstico é clínico e quase sempre retrospectivo: só se confirma quando o exantema aparece após a defervescência.`, conferir: true,
           questoes: ["q-scmsp2025-053","q-uspsp1-004","q-fmabc2021-098","q-einstein2022-038","q-sirio2021-057","q-famema2023-081","q-unicampdis2023-035","q-famema2025-042"],
@@ -119,8 +122,9 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 - Conduta **expectante**: antitérmico, observação e retorno se a febre voltar ou surgir sinal de alarme. {q-amrigs2021-070}` },
         { id: "sub-armadilha", titulo: "Armadilha: \"alergia à amoxicilina\"", conferir: true,
           questoes: ["q-amrigs2021-070"],
-          texto: `- O lactente com febre recebe **amoxicilina**, a febre cede e aparecem manchas. A família atribui o quadro a **alergia ao antibiótico**, mas o mais provável é **exantema súbito**.
-- Como a febre era viral, **suspenda o antimicrobiano** sem indicação. **Não rotule** a criança como alérgica sem necessidade.` },
+          prosa: `No exantema súbito a febre alta cede e só depois a pele mancha. Se no meio houve antibiótico, a coincidência parece alergia; rotular a criança a priva de betalactâmicos para sempre.`,
+          texto: `- O lactente com febre recebe **amoxicilina**, a febre cede e aparecem manchas. A família atribui o quadro a **alergia ao antibiótico**, mas o mais provável é **exantema súbito**. {q-amrigs2021-070}
+- Como a febre era viral, **suspenda o antimicrobiano** sem indicação. **Não rotule** a criança como alérgica sem necessidade. {q-amrigs2021-070}` },
       ],
     },
     {
@@ -133,21 +137,20 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
       fragmentos: [
         { id: "eri-agente", casos: ["q-tp20202-046"], titulo: "Agente: parvovírus B19", conferir: true,
           questoes: ["q-scmsp2026-054","q-sessp2025-042","q-tp20202-046","q-fmabc2024-058","q-einstein2021-027"],
-          texto: `- Agente: **parvovírus B19**, vírus de DNA com **tropismo pelo precursor eritroide**.
-- Contato com caso de "quinta doença" ou face esbofeteada aponta para **parvovírus B19**. {q-scmsp2026-054,q-sessp2025-042,q-tp20202-046,q-fmabc2024-058,q-einstein2021-027}` },
+          prosa: `Agente: **parvovírus B19**, vírus de DNA com **tropismo pelo precursor eritroide**.`,
+          texto: `- Contato com caso de "quinta doença" ou face esbofeteada aponta para **parvovírus B19**. {q-scmsp2026-054,q-sessp2025-042,q-tp20202-046,q-fmabc2024-058,q-einstein2021-027}` },
         { id: "eri-clinica", titulo: "As três fases do exantema",
-          prosa: `[[A sequência de três fases é imunomediada, e o calor faz o exantema voltar porque dilata os capilares da derme, onde estão os imunocomplexos.|q-unicampdis2023-035]] No adulto, sobretudo na mulher, o exantema é discreto e predomina a **poliartralgia simétrica** de mãos, punhos e joelhos, que pode durar semanas e imitar artrite reumatoide.`, conferir: true,
+          prosa: `[[A sequência de três fases é imunomediada, e o calor faz o exantema voltar porque dilata os capilares da derme, onde estão os imunocomplexos.|q-unicampdis2023-035]] No adulto, sobretudo na mulher, o exantema é discreto e predomina a **poliartralgia simétrica** de mãos, punhos e joelhos, que pode durar semanas e imitar artrite reumatoide. Quando o exantema aparece, a criança **já não transmite** e pode ir à escola.`, conferir: true,
           questoes: ["q-scmsp2026-054","q-sessp2025-042","q-tp20202-046","q-fmabc2024-058","q-einstein2021-027","q-einstein2024-040","q-unicampdis2023-035"],
           texto: `- **1ª fase:** eritema intenso nas bochechas, a **face esbofeteada** ("asa de borboleta"), poupando a região perioral. {q-scmsp2026-054,q-sessp2025-042,q-tp20202-046,q-einstein2021-027}
 - **2ª fase:** exantema **rendilhado (reticulado)** em tronco e na **face extensora dos membros**. {q-einstein2024-040,q-fmabc2024-058,q-tp20202-046}
 - **3ª fase:** o exantema **reaparece com calor, sol, banho quente e exercício** por semanas. {q-unicampdis2023-035}
-- Febre baixa ou ausente e bom estado geral. **Artralgia** pode aparecer, sobretudo em adolescentes e adultos. {q-scmsp2026-054,q-einstein2024-040}
-- Quando o exantema aparece, a criança **já não transmite** e pode ir à escola.` },
+- Febre baixa ou ausente e bom estado geral. **Artralgia** pode aparecer, sobretudo em adolescentes e adultos. {q-scmsp2026-054,q-einstein2024-040}` },
         { id: "eri-risco", titulo: "Quando o B19 é grave", conferir: true,
           questoes: ["q-sessp2025-042"],
-          texto: `- **Crise aplásica transitória** em quem tem **anemia hemolítica crônica**, como a **doença falciforme** e a esferocitose.
-- **Anemia crônica** no **imunodeprimido**.
-- Na **gestante**: **hidropisia fetal** por anemia fetal.` },
+          texto: `- **Crise aplásica transitória** em quem tem **anemia hemolítica crônica**, como a **doença falciforme** e a esferocitose. {q-sessp2025-042}
+- **Anemia crônica** no **imunodeprimido**. {q-sessp2025-042}
+- Na **gestante**: **hidropisia fetal** por anemia fetal. {q-sessp2025-042}` },
       ],
     },
     {
@@ -170,7 +173,7 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
 - **Sinal de Pastia**: o exantema fica mais intenso nas dobras. {q-sirio2026-055}
 - **Sinal de Filatov**: rubor facial com **palidez perioral**. {q-sirio2026-055}
 - **Língua em framboesa**: primeiro saburrosa, depois vermelha. {q-unesp2025-009,q-sirio2026-055}
-- Evolui com **descamação lamelar** em mãos e pés.` },
+- Evolui com **descamação lamelar** em mãos e pés. {q-usprp2026-046,q-unesp2025-009,q-sirio2026-055,q-uspsp2-050}` },
         { id: "esc-diag-trat", titulo: "Diagnóstico e tratamento", conferir: true,
           questoes: ["q-uspsp2-050","q-usprp2026-046","q-unesp2025-009","q-famema2025-042"],
           texto: `- **Padrão-ouro: cultura de orofaringe.** O teste rápido de antígeno também serve. {q-uspsp2-050}
@@ -188,10 +191,10 @@ A doença é mais grave em adolescentes, adultos, gestantes, recém-nascidos e i
       fragmentos: [
         { id: "var-tudo", diretrizes: ["ms-guia-vigilancia","calendario-vacinal"], figuras: [{ arquivo: "figuras/varicela-estagios.svg", legenda: "Esquema autoral: os quatro estágios da lesão, que coexistem no mesmo paciente." }], titulo: "Quadro e conduta com contatos", conferir: true,
           questoes: ["q-einstein2027-062"],
-          texto: `- Agente: **vírus varicela-zóster**. As lesões são **pruriginosas** e aparecem **em diferentes estágios ao mesmo tempo** (mácula, pápula, vesícula e crosta). A distribuição é **centrípeta**, mais no tronco.
-- A complicação mais comum é a **infecção bacteriana da pele** (estreptococo ou estafilococo). **Não use AAS**, pelo risco de **síndrome de Reye**.
-- Contato suscetível e imunocompetente: **vacina contra varicela pós-exposição**, idealmente em **até 3 a 5 dias**.
-- **Imunoglobulina específica (VZIG)** para quem não pode receber vacina: imunodeprimidos, gestantes suscetíveis e alguns recém-nascidos.` },
+          texto: `- Agente: **vírus varicela-zóster**. As lesões são **pruriginosas** e aparecem **em diferentes estágios ao mesmo tempo** (mácula, pápula, vesícula e crosta). A distribuição é **centrípeta**, mais no tronco. {q-einstein2027-062}
+- A complicação mais comum é a **infecção bacteriana da pele** (estreptococo ou estafilococo). **Não use AAS**, pelo risco de **síndrome de Reye**. {q-einstein2027-062}
+- Contato suscetível e imunocompetente: **vacina contra varicela pós-exposição**, idealmente em **até 3 a 5 dias**. {q-einstein2027-062}
+- **Imunoglobulina específica (VZIG)** para quem não pode receber vacina: imunodeprimidos, gestantes suscetíveis e alguns recém-nascidos. {q-einstein2027-062}` },
       ],
     },
     {
@@ -202,8 +205,8 @@ A mesma família de vírus produz quadros que se distinguem pelo **lugar das les
       fragmentos: [
         { id: "ent-agente", titulo: "Agente: Coxsackie A (e enterovírus 71)", conferir: true,
           questoes: ["q-amrigs2021-090","q-sessp2022-052"],
-          texto: `- Agente: **vírus Coxsackie A** (sobretudo **A16** na mão-pé-boca) e **enterovírus 71**, que se associa às formas neurológicas.
-- Transmissão **fecal-oral** e respiratória, mais comum em creches.` },
+          texto: `- Agente: **vírus Coxsackie A** (sobretudo **A16** na mão-pé-boca) e **enterovírus 71**, que se associa às formas neurológicas. {q-amrigs2021-090,q-sessp2022-052}
+- Transmissão **fecal-oral** e respiratória, mais comum em creches. {q-amrigs2021-090,q-sessp2022-052}` },
         { id: "ent-clinica", casos: ["q-tp20222-048"], titulo: "Mão-pé-boca × herpangina",
           prosa: `O quadro é benigno e se resolve em 7 a 10 dias. [[O maior risco é a **desidratação**: a dor das úlceras orais faz a criança recusar líquidos.|q-tp20222-048,q-amrigs2020-078]] Por isso o tratamento se concentra em analgesia, líquidos frios e alimentos pastosos. Sinais neurológicos (mioclonias, ataxia, sonolência) ou cardiorrespiratórios, sobretudo com enterovírus 71, mudam o quadro e exigem internação.`, conferir: true,
           questoes: ["q-amrigs2021-090","q-sessp2022-052","q-iamspe2025-078","q-tp20222-048","q-amrigs2020-078"],
@@ -225,7 +228,7 @@ O exantema depois de **amoxicilina ou ampicilina** acontece na maioria dos pacie
           texto: `- Agente: **vírus Epstein-Barr (EBV)**. Quadro típico em **adolescentes**. {q-amrigs2020-073,q-einstein2026-035}
 - Tríade: **febre, faringite exsudativa e linfadenopatia generalizada**, sobretudo cervical posterior. Somam-se **esplenomegalia** e edema palpebral. {q-amrigs2020-073,q-einstein2026-035}
 - Hemograma: **linfocitose com linfócitos atípicos**. Confirme com **anticorpo heterófilo** ou **sorologia VCA-IgM**. {q-einstein2026-035}
-- O **exantema aparece sobretudo depois de amoxicilina ou ampicilina** e não indica alergia verdadeira.
+- O **exantema aparece sobretudo depois de amoxicilina ou ampicilina** e não indica alergia verdadeira. {q-amrigs2020-073,q-einstein2026-035,q-usprp2026-045}
 - Diante de **linfonodomegalia generalizada que persiste** após febre, investigue **EBV, toxoplasmose e HIV**. {q-usprp2026-045}` },
       ],
     },
@@ -255,9 +258,9 @@ A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pan
 - Nos casos de **alto risco de aneurisma coronariano**, a **AHA sugere associar corticoide** ao tratamento inicial. {q-scmsp2022-039}` },
         { id: "kaw-simp", titulo: "SIM-P (síndrome inflamatória multissistêmica pós-covid)", conferir: true,
           questoes: ["q-sirio2024-043"],
-          texto: `- Quadro: **febre, sintomas gastrintestinais, exantema e choque** (hipotensão, taquicardia), com **PCR, dímero-D e transaminases muito altos** e plaquetopenia. Há **contato com covid** de 2 a 6 semanas antes.
-- Tratamento: **IGIV 2 g/kg + metilprednisolona 2 mg/kg/dia**. Use **antibiótico empírico (ceftriaxona)** enquanto não se afasta sepse em criança chocada.
-- **Não dê AAS antiagregante** se as plaquetas estiverem baixas.` },
+          texto: `- Quadro: **febre, sintomas gastrintestinais, exantema e choque** (hipotensão, taquicardia), com **PCR, dímero-D e transaminases muito altos** e plaquetopenia. Há **contato com covid** de 2 a 6 semanas antes. {q-sirio2024-043}
+- Tratamento: **IGIV 2 g/kg + metilprednisolona 2 mg/kg/dia**. Use **antibiótico empírico (ceftriaxona)** enquanto não se afasta sepse em criança chocada. {q-sirio2024-043}
+- **Não dê AAS antiagregante** se as plaquetas estiverem baixas. {q-sirio2024-043}` },
       ],
     },
     {
@@ -268,9 +271,9 @@ A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pan
       fragmentos: [
         { id: "sse-tudo", titulo: "Toxina esfoliativa do S. aureus", conferir: true,
           questoes: ["q-sessp2026-050"],
-          texto: `- Toxina **esfoliativa do Staphylococcus aureus**, que **cliva a desmogleína-1**. É mais comum em menores de 5 anos.
-- Quadro: eritema doloroso **periorificial**, com **bolhas flácidas que se rompem** e crostas e **ragádias periorais**. **Nikolsky positivo** e **mucosas poupadas**, ao contrário da síndrome de Stevens-Johnson.
-- Tratamento: **oxacilina IV** (antiestafilocócico), hidratação e cuidados com a pele.` },
+          texto: `- Toxina **esfoliativa do Staphylococcus aureus**, que **cliva a desmogleína-1**. É mais comum em menores de 5 anos. {q-sessp2026-050}
+- Quadro: eritema doloroso **periorificial**, com **bolhas flácidas que se rompem** e crostas e **ragádias periorais**. **Nikolsky positivo** e **mucosas poupadas**, ao contrário da síndrome de Stevens-Johnson. {q-sessp2026-050}
+- Tratamento: **oxacilina IV** (antiestafilocócico), hidratação e cuidados com a pele. {q-sessp2026-050}` },
       ],
     },
     {

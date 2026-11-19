@@ -21,11 +21,14 @@
       id: "complicacoes", titulo: "O prematuro e suas complicações",
       introducao: `[[Pré-termo é o recém-nascido com menos de 37 semanas de gestação.|q-iamspe2021-047]] Quanto mais cedo nasce, mais órgãos ainda estão em formação, e cada complicação é a consequência de um órgão imaturo.
 
-[[Na hemorragia peri-intraventricular, os vasos da matriz germinativa, ao lado dos ventrículos, são frágeis e não regulam o próprio fluxo: variações de pressão os rompem, sobretudo nos primeiros dias. Corticoide antenatal, ventilação não invasiva e manuseio mínimo a previnem, e o ultrassom transfontanelar a procura.|q-unesp2023-019,q-unifesp2023-068,q-famema2021-094]] [[Na retinopatia, a retina vascularizada pela metade cresce vasos anormais quando o oxigênio oscila; a cegueira vem do descolamento da retina, e a triagem com fundo de olho começa com 4 semanas de vida.|q-fmabc2022-060,q-adap23-068]] [[A apneia da prematuridade vem do centro respiratório imaturo, pouco sensível ao gás carbônico; a cafeína aumenta essa sensibilidade e estimula o diafragma.|q-iamspe2026-063,q-didepm-029]]`,
+[[Na hemorragia peri-intraventricular, os vasos da matriz germinativa, ao lado dos ventrículos, são frágeis e não regulam o próprio fluxo: variações de pressão os rompem, sobretudo nos primeiros dias. Corticoide antenatal, ventilação não invasiva e manuseio mínimo a previnem, e o ultrassom transfontanelar a procura.|q-unesp2023-019,q-unifesp2023-068,q-famema2021-094]] [[Na retinopatia, a retina vascularizada pela metade cresce vasos anormais quando o oxigênio oscila; a cegueira vem do descolamento da retina, e a triagem com fundo de olho começa com 4 semanas de vida.|q-fmabc2022-060,q-adap23-068]] [[A apneia da prematuridade vem do centro respiratório imaturo, pouco sensível ao gás carbônico; a cafeína aumenta essa sensibilidade e estimula o diafragma.|q-iamspe2026-063,q-didepm-029]]
+
+Veja também: **Anemias** (profilaxia de ferro, completa lá), **Desconforto respiratório do recém-nascido** e **Reanimação neonatal**.`,
       fragmentos: [
         { id: "com-sistemas", titulo: "Pulmão, cérebro, olho e respiração", conferir: true, diretrizes: ["sbp-rop"],
           questoes: ["q-iamspe2021-047","q-uspsp1-021","q-uspsp1-022","q-unesp2023-019","q-unifesp2023-068","q-famema2021-094","q-fmabc2022-060","q-adap23-068","q-iamspe2026-063","q-didepm-029","q-unesp2025-003","q-tp20231-060"],
           casos: ["q-unesp2023-019","q-tp20231-060"],
+          prosa: `Cada órgão do prematuro falha conforme a etapa em que parou: o pulmão sem surfactante colapsa; a matriz germinativa, rede de vasos frágeis junto aos ventrículos, sangra com as variações de pressão; a retina, ainda sem vasos completos, cresce vasos anormais sob oxigênio; e o centro respiratório imaturo para de comandar a respiração (apneia). O corticoide antenatal amadurece pulmão e vasos ao mesmo tempo.`,
           texto: `- Pré-termo: **< 37 semanas** (OMS). {q-iamspe2021-047}
 - Prematuro extremo: **corticoide antenatal**, reanimação sem hipotermia, ventilação adequada e **surfactante precoce** previnem a **síndrome do desconforto respiratório**. {q-uspsp1-021,q-uspsp1-022}
 - **Hemorragia da matriz germinativa**: vasos subependimários frágeis; pesquisar com **ultrassom transfontanelar**. {q-unesp2023-019,q-unifesp2023-068}
@@ -37,6 +40,7 @@
         { id: "com-seguimento", titulo: "Seguimento: vacina, ferro e crescimento", conferir: true, diretrizes: ["sbp-seguimento-prematuro","sbp-ferro"],
           questoes: ["q-amrigs2024-063","q-fmabc2024-046","q-usp2026-052"],
           casos: ["q-usp2026-052"],
+          prosa: `O sistema imune responde à idade cronológica, e por isso as vacinas não esperam a idade corrigida; já o crescimento e o desenvolvimento se comparam pela idade corrigida até cerca de 2 anos. O prematuro nasce com pouco ferro, porque a maior parte é transferida no último trimestre.`,
           texto: `- Vacinas pela **idade cronológica** (não pela corrigida), exceto a BCG pelo peso. {q-amrigs2024-063}
 - Ferro (SBP) no prematuro acima de 1.500 g: **2 mg/kg/dia a partir de 30 dias** até 1 ano, depois 1 mg/kg/dia. {q-fmabc2024-046}
 - Crescimento avaliado em **curvas próprias** (idade corrigida); ganho adequado, manter aleitamento e seguimento mensal. {q-usp2026-052}` },
@@ -50,6 +54,7 @@
       fragmentos: [
         { id: "met-glicose", figuras: [{ arquivo: "figuras/hipoglicemia.svg", legenda: "Esquema autoral: o que fazer com a glicemia baixa no bebê assintomático e no sintomático." }], titulo: "Hipoglicemia neonatal", conferir: true, diretrizes: ["sbp-hipoglicemia"],
           questoes: ["q-unicamp2023-044","q-tp20231-038","q-uspsp4-105","q-iamspe2021-046","q-famema2022-082","q-unicampdis2025-028","q-uspsp1-018","q-tp20252-025","q-einstein2021-030"],
+          prosa: `O feto recebe glicose contínua da mãe; ao nascer, precisa produzir a sua. O filho de mãe diabética tem insulina alta (o pâncreas respondeu à glicose materna), e o prematuro e o pequeno para a idade têm pouco glicogênio: os três fazem hipoglicemia nas primeiras horas, muitas vezes sem sintomas, e por isso a glicemia é medida desde cedo.`,
           texto: `- Filho de mãe diabética ou mãe com terbutalina: **hiperinsulinismo**. {q-unicamp2023-044}
 - Bebê de risco (mãe diabética, grande ou pequeno para a idade, prematuro): **glicemia desde a 1ª hora** até o 2º dia. {q-tp20231-038}
 - Sinais: **tremores e convulsões** (também palidez, cianose, hipotonia). {q-iamspe2021-046}
@@ -58,6 +63,7 @@
 - Macrossomia de mãe diabética: complicação esperada, **cardiomiopatia hipertrófica** (septal). {q-einstein2021-030}` },
         { id: "met-calcio-k", titulo: "Hipocalcemia e doença hemorrágica do RN", conferir: true,
           questoes: ["q-usp2024-014","q-scmsp2025-052"],
+          prosa: `O cálcio vinha da placenta e cai depois do parto, mais no prematuro e no filho de mãe diabética. A vitamina K quase não passa pela placenta e o leite materno tem pouca: sem a dose ao nascer, os fatores dependentes dela caem e o bebê sangra.`,
           texto: `- Prematuro extremo que convulsiona com glicemia normal: **hipocalcemia**; **gluconato de cálcio 10% IV**, dose pelo peso (a questão usa 0,8 mL para 800 g). {q-usp2024-014}
 - Doença hemorrágica do RN (falta de **vitamina K**): a forma **clássica** ocorre em RN saudáveis, com sangramento de pele ou digestivo; previne-se com **vitamina K ao nascer**. {q-scmsp2025-052}` },
       ],

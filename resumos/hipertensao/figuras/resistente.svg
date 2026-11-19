@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="260" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Pressão que não controla com três classes (uma delas diurético)</text>
+<rect x="20" y="44" width="170" height="150" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="105" y="68" text-anchor="middle" font-weight="700">1. Excluir a falsa</text>
+<text x="32" y="92">• má adesão</text>
+<text x="32" y="112">• técnica de medida</text>
+<text x="32" y="132">• avental branco</text>
+<text x="32" y="152">  (fazer MAPA)</text>
+<path d="M190 119 L206 119" stroke="#555"/><path d="M200 114 L208 119 L200 124" stroke="#555" fill="none"/>
+<rect x="208" y="44" width="170" height="150" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="293" y="68" text-anchor="middle" font-weight="700">2. Resistente</text>
+<text x="220" y="92">• doses plenas</text>
+<text x="220" y="112">• 4ª droga:</text>
+<text x="220" y="132">  espironolactona</text>
+<text x="220" y="152">  25 mg</text>
+<path d="M378 119 L394 119" stroke="#555"/><path d="M388 114 L396 119 L388 124" stroke="#555" fill="none"/>
+<rect x="396" y="44" width="170" height="150" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="481" y="68" text-anchor="middle" font-weight="700">3. Refratária</text>
+<text x="408" y="92">• betabloqueador,</text>
+<text x="408" y="112">  clonidina ou</text>
+<text x="408" y="132">  vasodilatador</text>
+<path d="M566 119 L582 119" stroke="#555"/><path d="M576 114 L584 119 L576 124" stroke="#555" fill="none"/>
+<rect x="584" y="44" width="156" height="150" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="662" y="68" text-anchor="middle" font-weight="700">Causa secundária</text>
+<text x="596" y="92">• aldosterona/renina</text>
+<text x="596" y="112">• artérias renais</text>
+<text x="596" y="132">• apneia do sono</text>
+<text x="20" y="226" fill="#555" font-size="12">Investigar causa secundária também quando a hipertensão começa antes dos 30, piora de repente depois dos 55</text>
+<text x="20" y="244" fill="#555" font-size="12">ou vem com hipocalemia espontânea.</text>
+</svg>

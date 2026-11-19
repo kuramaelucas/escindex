@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="250" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Da hipertensão portal à ascite e ao rim</text>
+<rect x="20" y="44" width="160" height="80" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="100" y="72" text-anchor="middle" font-weight="700">Fibrose</text>
+<text x="100" y="92" text-anchor="middle">resistência ao</text>
+<text x="100" y="110" text-anchor="middle">fluxo portal</text>
+<path d="M180 84 L204 84" stroke="#555"/><path d="M198 79 L206 84 L198 89" stroke="#555" fill="none"/>
+<rect x="206" y="44" width="160" height="80" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="286" y="72" text-anchor="middle" font-weight="700">Óxido nítrico</text>
+<text x="286" y="92" text-anchor="middle">vasodilatação</text>
+<text x="286" y="110" text-anchor="middle">esplâncnica</text>
+<path d="M366 84 L390 84" stroke="#555"/><path d="M384 79 L392 84 L384 89" stroke="#555" fill="none"/>
+<rect x="392" y="44" width="160" height="80" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="472" y="72" text-anchor="middle" font-weight="700">Volume arterial</text>
+<text x="472" y="92" text-anchor="middle">efetivo cai</text>
+<path d="M552 84 L576 84" stroke="#555"/><path d="M570 79 L578 84 L570 89" stroke="#555" fill="none"/>
+<rect x="578" y="44" width="162" height="80" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="659" y="68" text-anchor="middle" font-weight="700">Rim ativa</text>
+<text x="659" y="88" text-anchor="middle">renina-aldosterona,</text>
+<text x="659" y="106" text-anchor="middle">simpático, ADH</text>
+<path d="M620 124 L520 160" stroke="#555" fill="none"/><path d="M700 124 L700 160" stroke="#555" fill="none"/>
+<rect x="330" y="160" width="250" height="64" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="455" y="186" text-anchor="middle" font-weight="700">Retém sódio e água</text>
+<text x="455" y="206" text-anchor="middle">→ ascite</text>
+<rect x="600" y="160" width="140" height="64" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="670" y="186" text-anchor="middle" font-weight="700">No extremo</text>
+<text x="670" y="206" text-anchor="middle">hepatorrenal</text>
+</svg>

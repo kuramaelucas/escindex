@@ -20,7 +20,9 @@
       id: "viroses", titulo: "Resfriado, influenza e o que não dar",
       introducao: `A criança tem de seis a oito resfriados por ano, mais quando começa a frequentar a creche. [[O resfriado comum é viral e autolimitado: congestão, coriza e febre baixa melhoram em uma semana, e o tratamento é lavar o nariz, hidratar e tratar a febre.|q-sessp2023-031,q-fmabc2022-048,q-fmabc2023-095]]
 
-[[A influenza se distingue pelo início abrupto, febre alta, mialgia e prostração; a criança menor de 5 anos é do grupo de risco para complicações, e por isso o Ministério indica oseltamivir mesmo sem sinal de gravidade.|q-tp20232-040,q-tp20241-044,q-tp20261-021,q-tp20251-041]] [[Infecções de repetição na criança que entrou na escola ou na creche costumam ser só exposição a vírus novos, não imunodeficiência.|q-usprp2021-009]]`,
+[[A influenza se distingue pelo início abrupto, febre alta, mialgia e prostração; a criança menor de 5 anos é do grupo de risco para complicações, e por isso o Ministério indica oseltamivir mesmo sem sinal de gravidade.|q-tp20232-040,q-tp20241-044,q-tp20261-021,q-tp20251-041]] [[Infecções de repetição na criança que entrou na escola ou na creche costumam ser só exposição a vírus novos, não imunodeficiência.|q-usprp2021-009]]
+
+Veja também: **Doenças exantemáticas** (mononucleose e escarlatina) e **Bronquiolite, pneumonia e coqueluche**.`,
       fragmentos: [
         { id: "vir-resfriado", titulo: "Resfriado e medicamentos sintomáticos", conferir: true,
           questoes: ["q-sessp2023-031","q-fmabc2022-048","q-fmabc2023-095","q-iamspe2025-062","q-iamspe2025-063","q-iamspe2025-076","q-amrigs2023-080","q-usprp2021-009"],
@@ -34,8 +36,7 @@
         { id: "vir-influenza", titulo: "Influenza", conferir: true, diretrizes: ["ms-influenza"],
           questoes: ["q-tp20232-040","q-tp20241-044","q-tp20261-021","q-tp20251-041","q-fmabc2026-049"],
           texto: `- Síndrome gripal em **menor de 5 anos**: **oseltamivir**, sintomáticos, afastar da escola e sinais de alerta. {q-tp20232-040,q-tp20241-044,q-tp20261-021}
-- Dose cobrada: **30 mg de 12/12 h por 5 dias** (faixa de peso da criança pequena). {q-tp20251-041}
-- Escolar saudável fora do grupo de risco, em bom estado: **sintomáticos** (as provas variam quanto ao antiviral). {q-fmabc2026-049}` },
+- Dose cobrada: **30 mg de 12/12 h por 5 dias** (faixa de peso da criança pequena). {q-tp20251-041}` },
       ],
     },
     {
@@ -109,6 +110,15 @@
           texto: `- Salivação, prostração e **pescoço em hiperextensão**: **epiglotite**. {q-sirio2021-056}
 - Secreção purulenta na traqueia e **cânula menor que a calculada**: **traqueíte bacteriana**. {q-famerp2023-023}
 - Agente mais frequente da traqueíte: ***Staphylococcus aureus***. {q-amrigs2020-077}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-fmabc2026-049"],
+          texto: `- Influenza em escolar saudável fora do grupo de risco: **sintomáticos**; oseltamivir é para grupo de risco ou quadro grave (algumas provas o dão a todos nas primeiras 48 h). {q-fmabc2026-049}` },
       ],
     },
   ],

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="250" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Síndrome nefrótica: o que sai pela urina e o que isso causa</text>
+<rect x="260" y="40" width="240" height="48" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="380" y="60" text-anchor="middle" font-weight="700">Barreira de filtração lesada</text>
+<text x="380" y="78" text-anchor="middle">(podócito e membrana basal)</text>
+<path d="M300 88 L110 120" stroke="#555" fill="none"/><path d="M360 88 L290 120" stroke="#555" fill="none"/><path d="M400 88 L470 120" stroke="#555" fill="none"/><path d="M460 88 L650 120" stroke="#555" fill="none"/>
+<rect x="20" y="120" width="170" height="100" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="105" y="144" text-anchor="middle" font-weight="700">Albumina</text>
+<text x="32" y="168">• albumina baixa</text>
+<text x="32" y="188">• edema, anasarca</text>
+<rect x="205" y="120" width="170" height="100" rx="8" fill="#eef1f6" stroke="#4a6fb3"/>
+<text x="290" y="144" text-anchor="middle" font-weight="700">Fígado compensa</text>
+<text x="217" y="168">• mais lipoproteína</text>
+<text x="217" y="188">• colesterol alto</text>
+<rect x="390" y="120" width="170" height="100" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="475" y="144" text-anchor="middle" font-weight="700">Antitrombina</text>
+<text x="402" y="168">• trombose (veia</text>
+<text x="402" y="186">  renal, seio, pulmão)</text>
+<rect x="575" y="120" width="165" height="100" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="657" y="144" text-anchor="middle" font-weight="700">Imunoglobulinas</text>
+<text x="587" y="168">• infecção por</text>
+<text x="587" y="186">  pneumococo</text>
+<text x="587" y="204">  (peritonite)</text>
+</svg>
