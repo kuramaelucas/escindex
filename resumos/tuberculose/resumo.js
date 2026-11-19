@@ -21,7 +21,7 @@
 
 [[O controle depende de achar e curar o bacilífero: busca do sintomático respiratório, tratamento diretamente observado, investigação de contatos e notificação; o abandono é o indicador de qualidade que mais pesa.|q-amrigs2023-090,q-usp2026-092,q-tp20222-119,q-tp20251-105]]
 
-Veja também: **Infecções congênitas** (recém-nascido exposto, com a divergência isoniazida × rifampicina) e **Infecções sexualmente transmissíveis** (rastreio de HIV).`,
+Veja também: **Infecções congênitas** (recém-nascido exposto: isoniazida ou rifampicina, pela Nota Informativa 4/2024) e **Infecções sexualmente transmissíveis** (rastreio de HIV).`,
       fragmentos: [
         { id: "fis-pontos", titulo: "Patogenia, formas primária e pós-primária e epidemiologia", conferir: false, diretrizes: ["ms-tb"],
           questoes: ["q-unesp2023-097", "q-unicampdis2023-003", "q-usp2026-092", "q-tp20222-119", "q-tp20251-105", "q-gdtuberculose-030", "q-gdtuberculose-084", "q-gdtuberculose-095", "q-gdtuberculose-123", "q-gdtuberculose-034", "q-gdtuberculose-068", "q-gdtuberculose-111", "q-gdtuberculose-130", "q-gdtuberculose-031", "q-gdtuberculose-032", "q-gdtuberculose-035", "q-gdtuberculose-036", "q-gdtuberculose-040", "q-gdtuberculose-054", "q-gdtuberculose-138", "q-gdtuberculose-140", "q-gdtuberculose-158", "q-gdtuberculose-173", "q-gdtuberculose-009"],
@@ -155,7 +155,7 @@ Veja também: **Infecções congênitas** (recém-nascido exposto, com a diverg�
           prosa: `O recém-nascido de mãe bacilífera não recebe BCG: o bacilo vacinal seria inútil diante da exposição, e ele faz isoniazida (quimioprofilaxia primária); se a prova depois for negativa, vacina-se. A criança contato faz radiografia e prova tuberculínica; com PT de 5 mm ou mais e sem doença, trata a infecção latente.`,
           texto: `- Contato: **PT e radiografia**; PT ≥ 5 mm sem doença: **tratar ILTB**. {q-einstein2022-033,q-einstein2023-042,q-adap21-103,q-famema2021-085,q-gdtuberculose-011,q-gdtuberculose-113,q-gdtuberculose-114}
 - PT < 5 mm: **repetir em 8 semanas**. {q-einstein2027-041,q-gdtuberculose-119}
-- RN de mãe bacilífera: **isoniazida 10 mg/kg por 3 meses**, sem BCG; amamenta com máscara. {q-gdtuberculose-045,q-gdtuberculose-065,q-gdtuberculose-091}
+- RN de mãe bacilífera: **isoniazida 10 mg/kg (ou rifampicina) por 3 meses**, sem BCG; amamenta com máscara (Nota Informativa 4/2024). {q-gdtuberculose-045,q-gdtuberculose-065,q-gdtuberculose-091}
 - PT do RN aos 3 meses ≥ 5 mm: **completar 6 meses** e vacinar depois. {q-gdtuberculose-066}
 - Mãe em tratamento com escarro negativo: **amamentação sem restrição**. {q-gdtuberculose-050}
 - BCG: a partir de **2 kg**; protege das formas graves. {q-gdtuberculose-072,q-gdtuberculose-108}

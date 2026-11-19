@@ -9,7 +9,7 @@
   criadoEm: "2026-11-18",
   fontes: [
     { id: "pcdt-ist", texto: "Ministério da Saúde — PCDT para Atenção Integral às Pessoas com IST (sífilis congênita e criança exposta) e PCDT de Prevenção da Transmissão Vertical", lidoEm: null },
-    { id: "ms-tuberculose", texto: "Ministério da Saúde — Manual de Recomendações para o Controle da Tuberculose no Brasil e notas técnicas sobre o tratamento da infecção latente", lidoEm: null },
+    { id: "ms-tuberculose", texto: "Ministério da Saúde — Manual de Recomendações para o Controle da Tuberculose no Brasil (2019) e Nota Informativa nº 4/2024-CGTM/DATHI/SVSA/MS (ILTB)", lidoEm: "2026-11-19" },
     { id: "ms-toxoplasmose", texto: "Ministério da Saúde — Protocolo de Notificação e Investigação: Toxoplasmose gestacional e congênita", lidoEm: null },
   ],
   foraDoEscopo: [
@@ -93,15 +93,15 @@ Veja também: **Infecções sexualmente transmissíveis** (sífilis da gestante,
 
 [[O recém-nascido exposto a um adulto bacilífero não tem como se defender do bacilo: recebe tratamento preventivo antes da BCG, porque a vacina não protege quem já se infectou.|q-tp20231-114,q-unifesp2024-094,q-adap24-095]]`,
       fragmentos: [
-        { id: "ver-hepb", titulo: "Hepatite B e HTLV", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "ver-hepb", titulo: "Hepatite B e HTLV", conferir: false, diretrizes: ["pcdt-ist"],
           questoes: ["q-fmabc2025-060","q-fmabc2024-097","q-amrigs2025-077"],
           texto: `- Mãe **HBsAg+**: **vacina + imunoglobulina** no RN, idealmente **em até 12 h**. {q-fmabc2025-060,q-fmabc2024-097}
 - HTLV materno: **contraindicar o aleitamento**. {q-amrigs2025-077}` },
-        { id: "ver-tb", titulo: "Recém-nascido exposto à tuberculose", conferir: true, diretrizes: ["ms-tuberculose"],
+        { id: "ver-tb", titulo: "Recém-nascido exposto à tuberculose", conferir: false, diretrizes: ["ms-tuberculose"],
           questoes: ["q-tp20231-114","q-unifesp2024-094","q-adap24-095","q-uspsp4-113","q-unesp2021-089","q-unicamp2023-036","q-unesp2026-093","q-usp2026-088"],
           texto: `- RN que convive com bacilífero: **não vacinar com BCG ainda**; tratar a infecção latente e depois fazer a **prova tuberculínica**. {q-tp20231-114,q-unifesp2024-094,q-adap24-095}
-- Esquema das provas até 2024 (Manual 2019): **isoniazida por 3 meses**; PPD < 5 mm → suspender e **vacinar**; ≥ 5 mm → completar o tratamento. {q-adap24-095,q-unifesp2024-094,q-uspsp4-113}
-- Provas recentes cobram **rifampicina** (3 a 4 meses) e depois BCG. {q-unicamp2023-036,q-unesp2026-093}
+- Nota Informativa 4/2024: quimioprofilaxia primária com **isoniazida ou rifampicina por 3 meses**; PPD < 5 mm → suspender e **vacinar**; ≥ 5 mm → completar (isoniazida **+3 meses**, rifampicina **+1 mês**). O Manual 2019 só previa a isoniazida. {q-adap24-095,q-unifesp2024-094,q-uspsp4-113}
+- Por isso as provas recentes aceitam **rifampicina** (3 meses, 4 se tratar a infecção) e depois BCG. {q-unicamp2023-036,q-unesp2026-093}
 - Já vacinado com BCG e exposto: **tratar a infecção latente** (as provas trazem isoniazida por 6 meses, sem PPD). {q-unesp2021-089,q-usp2026-088}` },
       ],
     },
