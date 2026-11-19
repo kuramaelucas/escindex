@@ -34,5 +34,6 @@
   { id: "doenca-coronariana", titulo: "Síndromes coronarianas aguda e crônica", area: "Clínica Médica · Cardiologia", assunto: "ass-sca" },
   { id: "infeccoes-de-pele", titulo: "Infecções e infestações da pele", area: "Clínica Médica · Dermatologia", assunto: "ass-derm-infeccoes" },
   { id: "neoplasias-hematologicas", titulo: "Neoplasias hematológicas", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-neoplasias" },
+  { id: "intoxicacoes", titulo: "Intoxicações exógenas e animais peçonhentos", area: "Clínica Médica · Emergência", assunto: "ass-emerg-intoxicacoes" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

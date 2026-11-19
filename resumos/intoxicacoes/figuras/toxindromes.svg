@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="250" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Pupila e pele separam as toxíndromes</text>
+<rect x="40" y="44" width="300" height="40" rx="8" fill="#eef1f6" stroke="#4a5a78"/>
+<text x="190" y="69" text-anchor="middle" font-weight="700">Pupila pequena (miose)</text>
+<rect x="420" y="44" width="300" height="40" rx="8" fill="#eef1f6" stroke="#4a5a78"/>
+<text x="570" y="69" text-anchor="middle" font-weight="700">Pupila grande (midríase)</text>
+<line x1="140" y1="84" x2="110" y2="116" stroke="#555"/><line x1="240" y1="84" x2="270" y2="116" stroke="#555"/>
+<line x1="520" y1="84" x2="490" y2="116" stroke="#555"/><line x1="620" y1="84" x2="650" y2="116" stroke="#555"/>
+<rect x="30" y="116" width="160" height="110" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="110" y="138" text-anchor="middle" font-weight="700">Colinérgica</text>
+<text x="110" y="160" text-anchor="middle">secreções,</text>
+<text x="110" y="178" text-anchor="middle">bradicardia</text>
+<text x="110" y="204" text-anchor="middle">atropina</text>
+<rect x="200" y="116" width="160" height="110" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="280" y="138" text-anchor="middle" font-weight="700">Opioide</text>
+<text x="280" y="160" text-anchor="middle">bradipneia,</text>
+<text x="280" y="178" text-anchor="middle">coma</text>
+<text x="280" y="204" text-anchor="middle">naloxona</text>
+<rect x="410" y="116" width="160" height="110" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="490" y="138" text-anchor="middle" font-weight="700">Anticolinérgica</text>
+<text x="490" y="160" text-anchor="middle">pele seca e quente,</text>
+<text x="490" y="178" text-anchor="middle">taquicardia</text>
+<text x="490" y="204" text-anchor="middle">suporte</text>
+<rect x="580" y="116" width="160" height="110" rx="8" fill="#eef1f6" stroke="#4a5a78"/>
+<text x="660" y="138" text-anchor="middle" font-weight="700">Simpatomimética</text>
+<text x="660" y="160" text-anchor="middle">pele úmida,</text>
+<text x="660" y="178" text-anchor="middle">taquicardia</text>
+<text x="660" y="204" text-anchor="middle">benzodiazepínico</text>
+</svg>
