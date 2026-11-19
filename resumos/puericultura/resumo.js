@@ -8,12 +8,14 @@
   fontes: [
     { id: "ms-caderneta", texto: "Ministério da Saúde — Caderneta da Criança (edição vigente) e Caderno de Atenção Básica nº 33 (Saúde da criança: crescimento e desenvolvimento)", lidoEm: null },
     { id: "ms-guia-alimentar", texto: "Ministério da Saúde — Guia Alimentar para Crianças Brasileiras Menores de 2 Anos (2019)", lidoEm: null },
-    { id: "sbp-ferro", texto: "Sociedade Brasileira de Pediatria — Consenso sobre anemia ferropriva (2021)", lidoEm: null },
+    { id: "sbp-ferro", texto: "Sociedade Brasileira de Pediatria — Diretriz nº 32: deficiência de ferro e anemia ferropriva, atualização 2026 (sbp.com.br)", lidoEm: "2026-11-18" },
     { id: "sbp-alimentacao", texto: "Sociedade Brasileira de Pediatria — Manual de Alimentação (2024)", lidoEm: null },
     { id: "oms-crescimento", texto: "OMS — Padrões de crescimento infantil (2006/2007)", lidoEm: null },
     { id: "calendario-vacinal", texto: "Ministério da Saúde — Calendário Nacional de Vacinação (PNI)", lidoEm: null },
   ],
-  foraDoEscopo: [],
+  foraDoEscopo: [
+    { motivo: "Desatualizadas pela SBP 2026 (dose de profilaxia do lactente a termo), sem reposição", questoes: ["q-tp20202-044","q-tp20212-053","q-unesp2025-005"] },
+  ],
   doencas: [
     {
       id: "consulta", titulo: "A consulta de puericultura e a prevenção",
@@ -224,15 +226,15 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
       id: "ferro", titulo: "Ferro e vitaminas",
       introducao: `A anemia ferropriva é a carência nutricional mais comum na infância e acontece numa janela previsível. O bebê a termo nasce com uma reserva de ferro, recebida da mãe no terceiro trimestre, que dura cerca de **4 a 6 meses**. Depois disso o crescimento rápido consome o ferro, e o leite materno, embora tenha ferro muito bem absorvido, tem pouco. A deficiência de ferro nessa fase prejudica o desenvolvimento cerebral de forma que pode não se recuperar, e por isso se previne com suplementação **antes** da anemia aparecer.
 
-[[O **prematuro** e o **baixo peso** nascem com reserva menor (perderam parte do terceiro trimestre) e crescem mais rápido para recuperar: precisam de dose maior e começam mais cedo, já com **30 dias** de vida.|q-unesp2022-009,q-famerp2023-032]] [[A suplementação de ferro na prevenção usa **1 mg/kg/dia**; o tratamento da anemia já instalada usa **3 a 6 mg/kg/dia**, por cerca de 3 meses depois de normalizar a hemoglobina, para repor os estoques.|q-sessp2022-054,q-tp20222-045]]`,
+[[O **prematuro** e o **baixo peso** nascem com reserva menor (perderam parte do terceiro trimestre) e crescem mais rápido para recuperar: precisam de dose maior e começam mais cedo, já com **30 dias** de vida.|q-unesp2022-009,q-famerp2023-032]] [[A prevenção usa dose baixa (**10 a 12,5 mg/dia** no termo; **1 a 4 mg/kg/dia** no prematuro e no de risco); o tratamento da anemia já instalada usa **3 a 6 mg/kg/dia**, por cerca de 3 meses depois de normalizar a hemoglobina, para repor os estoques.|q-sessp2022-054,q-tp20222-045]]`,
       fragmentos: [
-        { id: "fer-dose", casos: ["q-usprp2025-019"], diretrizes: ["sbp-ferro"], titulo: "Prevenção: quem, quanto e até quando (SBP 2021)", conferir: true,
-          questoes: ["q-famema2023-100","q-sessp2023-021","q-sessp2025-056","q-tp20202-044","q-tp20212-053","q-unesp2025-005","q-unesp2022-009","q-famerp2023-032","q-usprp2025-019"],
-          texto: `- **A termo, peso adequado, sem fator de risco**: **1 mg/kg/dia dos 6 aos 24 meses**. {q-famema2023-100,q-tp20202-044,q-tp20212-053,q-unesp2025-005}
-- **A termo com fator de risco** (ex.: mãe anêmica, clampeamento precoce): 1 mg/kg/dia **a partir dos 3 meses** até 24 meses. {q-sessp2023-021,q-sessp2025-056}
+        { id: "fer-dose", casos: ["q-usprp2025-019"], diretrizes: ["sbp-ferro"], titulo: "Prevenção: quem, quanto e até quando (SBP 2026)", conferir: true,
+          prosa: `[[A SBP de 2026 passou o lactente a termo, de peso adequado, à dose fixa de **10 a 12,5 mg/dia** de ferro elementar em dois ciclos de 3 meses (começando aos 6 e aos 12 meses), como no programa do Ministério; antes era 1 mg/kg/dia dos 6 aos 24 meses.|q-famema2023-100]] O ferro se dá longe das mamadas.`,
+          questoes: ["q-famema2023-100","q-sessp2023-021","q-sessp2025-056","q-unesp2022-009","q-famerp2023-032","q-usprp2025-019"],
+          texto: `- **A termo com fator de risco** (ex.: mãe anêmica, clampeamento precoce): 1 mg/kg/dia **a partir dos 3 meses** até 24 meses. {q-sessp2023-021,q-sessp2025-056}
 - **Prematuro ou baixo peso (1.500 a 2.500 g)**: **2 mg/kg/dia a partir de 30 dias** por 1 ano, depois 1 mg/kg/dia por mais 1 ano. Abaixo de 1.500 g, 3 a 4 mg/kg/dia. {q-unesp2022-009,q-famerp2023-032}
 - Prematuro que vai bem com 6 meses em leite materno exclusivo: **manter a amamentação exclusiva** (até a introdução alimentar aos 6 meses de idade corrigida, conforme o caso). {q-usprp2025-019}
-- Dar o ferro **longe das mamadas**. {q-unesp2025-005}` },
+` },
         { id: "fer-tratar", diretrizes: ["sbp-ferro"], titulo: "Tratamento da anemia ferropriva", conferir: true,
           questoes: ["q-sessp2022-054","q-tp20222-045"],
           texto: `- Hb baixa, ferritina baixa, RDW alto: **3 a 6 mg/kg/dia de ferro elementar**. {q-sessp2022-054,q-tp20222-045}` },
