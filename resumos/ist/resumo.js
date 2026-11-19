@@ -10,7 +10,7 @@
   criadoEm: "2026-11-18",
   fontes: [
     { id: "pcdt-ist", texto: "Ministério da Saúde — Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (PCDT-IST), 2022", lidoEm: "2026-11-19" },
-    { id: "pcdt-tv", texto: "Ministério da Saúde — PCDT para Prevenção da Transmissão Vertical de HIV, Sífilis e Hepatites Virais, 2022", lidoEm: null },
+    { id: "pcdt-tv", texto: "Ministério da Saúde — PCDT para Prevenção da Transmissão Vertical de HIV, Sífilis e Hepatites Virais (Portaria SCTIE/MS nº 55/2020; 2ª ed. revisada 2022), gov.br/saude", lidoEm: "2026-11-19" },
     { id: "cdc-ist", texto: "CDC — Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR 2021;70(RR-4))", lidoEm: null },
     { id: "acog-herpes", texto: "ACOG — Management of Genital Herpes in Pregnancy (Practice Bulletin 220, 2020)", lidoEm: null },
     { id: "calendario-vacinal", texto: "Ministério da Saúde — Calendário Nacional de Vacinação (HPV), Instrução Normativa 2026", lidoEm: null },
@@ -82,7 +82,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Neurossífilis: **penicilina cristalina**; doxiciclina só como alternativa fora da gestação. {q-scmsp2021-012-ia}
 - Febre e piora das lesões **horas após** a benzatina: **Jarisch-Herxheimer**, tratar com **antitérmico** (dipirona). {q-sirio2025-018}
 - Na gestante, Jarisch-Herxheimer pode dar **contrações e sofrimento fetal**. {q-iamspe2022-057}` },
-        { id: "sif-gestante", titulo: "Sífilis na gestação", conferir: true, diretrizes: ["pcdt-tv"],
+        { id: "sif-gestante", titulo: "Sífilis na gestação", conferir: false, diretrizes: ["pcdt-tv"],
           questoes: ["q-sirio2023-086","q-sirio2025-100","q-einstein2024-064","q-famema2021-064","q-scmsp2026-072","q-uspsp2-047","q-uspsp5-044","q-tp20202-100","q-fmabc2025-072","q-unicampdis2025-085","q-sirio2026-072","q-usprp2024-095","q-simepm89-024","q-adap24-041","q-tp20252-097","q-unifesp2024-060","q-tp20222-090","q-usp2023-110","q-einstein2025-054"],
           prosa: `[[Na gestante, o teste rápido reagente já autoriza a primeira dose de penicilina na mesma consulta, sem esperar o VDRL, porque cada semana de atraso aumenta o risco de sífilis congênita.|q-sirio2023-086,q-sirio2025-100,q-famema2021-064]] [[Só a penicilina atravessa a placenta e trata o feto: a gestante alérgica é dessensibilizada, nunca tratada com outra droga.|q-sirio2026-072,q-unicampdis2025-085]] [[O intervalo entre as doses semanais não pode passar de 7 dias na gestação (fora dela, tolera-se até 14); dose perdida significa reiniciar o esquema.|q-usprp2024-095,q-simepm89-024]]
 
@@ -93,7 +93,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Sorologia negativa no 1º trimestre e positiva agora: **recente**, dose única. {q-tp20202-100,q-unicampdis2025-085}
 - Alergia à penicilina: **dessensibilização**. {q-sirio2026-072,q-unicampdis2025-085}
 - Intervalo > 7 dias entre doses: **reiniciar** as 3 doses. {q-usprp2024-095,q-simepm89-024}` },
-        { id: "sif-gestante-retrat", titulo: "Gestante j\u00e1 tratada: seguimento e retratamento", conferir: true, diretrizes: ["pcdt-tv"],
+        { id: "sif-gestante-retrat", titulo: "Gestante j\u00e1 tratada: seguimento e retratamento", conferir: false, diretrizes: ["pcdt-tv"],
           questoes: ["q-tp20231-112", "q-uspsp1-098", "q-usprp2021-050", "q-unifesp2024-060", "q-tp20222-090", "q-usp2023-110", "q-einstein2025-054"],
           prosa: `Na gestante com sífilis no passado, a pergunta é se o tratamento foi documentado e adequado e se o título caiu. Tratamento sem registro conta como não feito; título baixo e estável após tratamento adequado é cicatriz e só se acompanha; título que sobe ou exposição nova é reinfecção e se retrata. A parceria é testada e tratada, mas não define mais se o tratamento da gestante foi adequado.`,
           texto: `- Sífilis prévia sem tratamento documentado, VDRL 1:2: **tratar** (7,2 milhões) e seguir com **VDRL mensal**. {q-tp20231-112}
@@ -101,7 +101,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Parceiro de gestante com sífilis, mesmo com sorologia negativa: **dose única presuntiva**. {q-usprp2021-050}
 - Tratada adequadamente há 6 meses com VDRL 1:2: **só pedir VDRL** (seguimento). {q-unifesp2024-060}
 - VDRL que **sobe duas diluições** ou novos parceiros: **retratar**; o parceiro atual recebe dose. {q-tp20222-090,q-usp2023-110,q-einstein2025-054}` },
-        { id: "sif-seguimento", titulo: "Seguimento, falha e neurossífilis", conferir: true, diretrizes: ["pcdt-ist","pcdt-tv"],
+        { id: "sif-seguimento", titulo: "Seguimento, falha e neurossífilis", conferir: false, diretrizes: ["pcdt-ist","pcdt-tv"],
           questoes: ["q-inf-21","q-uspsp2-033","q-unicampdis2025-006","q-scmsp2022-088","q-uspsp4-096","q-uspsp1-070","q-unicamp2023-015","q-unicampdis2024-068","q-uspsp5-005"],
           prosa: `[[Resposta adequada fora da gestação é a queda de pelo menos duas diluições (quatro vezes) do VDRL em até 6 meses na sífilis recente e em até 12 meses na tardia; depois o título pode estabilizar baixo (cicatriz sorológica).|q-inf-21,q-uspsp2-033,q-unicampdis2025-006]] [[Subida de duas diluições, ou ausência de queda no prazo, é falha ou reinfecção: retrata-se e, na falha sem nova exposição (sobretudo com HIV), investiga-se neurossífilis com líquor.|q-uspsp1-070,q-unicamp2023-015,q-unicampdis2024-068]] [[Sintoma ocular (uveíte) ou auditivo na sífilis é neurossífilis para fins de tratamento: penicilina cristalina venosa.|q-uspsp5-005]]
 
@@ -112,7 +112,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Sobe após tratamento e sem nova exposição: **reativação/falha**, retratar e **colher líquor**. {q-unicamp2023-015}
 - HIV com queda de só uma diluição em 8 meses: **líquor** e retratamento conforme o resultado. {q-unicampdis2024-068}
 - Uveíte com VDRL 1:64: **punção lombar** e **penicilina cristalina 4 milhões UI 4/4 h por 10–14 dias**, qualquer que seja o líquor. {q-uspsp5-005}` },
-        { id: "sif-congenita", titulo: "A criança exposta e a sífilis congênita", conferir: true, diretrizes: ["pcdt-tv"],
+        { id: "sif-congenita", titulo: "A criança exposta e a sífilis congênita", conferir: false, diretrizes: ["pcdt-tv"],
           questoes: ["q-adap23-070","q-unifesp2022-056","q-unifesp2023-070"],
           prosa: `[[O recém-nascido de mãe não tratada, assintomático e com exames normais, recebe penicilina benzatina em dose única e seguimento; o filho de mãe adequadamente tratada, com exames normais, é só criança exposta, seguida com VDRL até 18 meses.|q-adap23-070,q-unifesp2022-056]] [[As manifestações tardias da sífilis congênita (depois dos 2 anos) são as de cicatriz da inflamação crônica: surdez, ceratite intersticial, dentes de Hutchinson, tíbia em sabre.|q-unifesp2023-070]] O detalhe de cada cenário está no resumo de infecções congênitas.`,
           texto: `- Mãe não tratada, RN assintomático com líquor, raio X e VDRL normais: **benzatina 50.000 UI/kg dose única** e seguimento. {q-adap23-070}
