@@ -85,22 +85,25 @@ Veja também: **Hipertensão arterial**, **Síndromes glomerulares** (nefropatia
 - Internado com corticoide, sem diabetes conhecido: glicemia **antes do café e do jantar**. {q-sirio2026-001}
 - Hipoglicemia por **sulfonilureia na DRC**: glicose a 10% e **observar 24–48 h**. {q-adap23-036}` },
         { id: "dm2-orais", titulo: "Metformina, iSGLT2, aGLP-1 e outros", conferir: true, diretrizes: ["sbd","ada","pcdt-dm2"],
-          questoes: ["q-scmsp2022-071","q-usprp2022-002","q-tp20222-039","q-uspsp1-055","q-uspsp1-064","q-fmabc2025-010","q-adap24-069","q-unifesp2024-037","q-scmsp2021-006","q-usprp2024-005","q-usprp2026-025","q-uspsp2-021","q-uspsp5-017","q-uspsp4-009","q-scmsp2025-087","q-unifesp2025-056","q-adap25-056","q-sessp2024-083","q-sessp2026-002","q-famerp2025-009","q-einstein2025-001","q-tp20252-086","q-sirio2027-017","q-sirio2021-020","q-unicampdis2022-010","q-tp20231-026","q-adap24-070","q-unifesp2024-038"],
+          questoes: ["q-scmsp2022-071","q-usprp2022-002","q-tp20222-039","q-uspsp1-055","q-uspsp1-064","q-fmabc2025-010","q-adap24-069","q-unifesp2024-037","q-sirio2021-020","q-unicampdis2022-010","q-tp20231-026","q-adap24-070","q-unifesp2024-038"],
           texto: `- Metformina: efeito adverso inicial **gastrointestinal**; uso longo, **B12 baixa** (dosar). {q-scmsp2022-071,q-uspsp1-064,q-fmabc2025-010}
 - Obeso com DM2 recém-diagnosticado: **metformina**. {q-usprp2022-002,q-tp20222-039,q-unicampdis2022-010}
 - TFG **30–45**: reduzir metformina (acidose láctica); < 30, suspender. {q-uspsp1-055}
 - Efeitos: metformina → **B12**; iSGLT2 → **cetoacidose euglicêmica** e **candidíase genital**. {q-adap24-069,q-unifesp2024-037}
-- Balanopostite com dapagliflozina e **TFG 28**: trata-se a infecção e se mantém o iSGLT2; quem sai é a **metformina** (TFG < 30). {q-unifesp2025-056}
+- aGLP-1 e iDPP-4 são **drogas do diabetes**. {q-sirio2021-020}
+- Recém-diagnosticado com glicemia moderada: **orientação nutricional** e reavaliação. {q-tp20231-026}
+- **Pioglitazona contraindicada na IC** (retenção de líquido). {q-adap24-070,q-unifesp2024-038}` },
+        { id: "dm2-isglt2-glp1", titulo: "iSGLT2 e agonistas de GLP-1", conferir: true, diretrizes: ["sbd", "ada"],
+          questoes: ["q-unifesp2025-056", "q-adap25-056", "q-scmsp2021-006", "q-usprp2024-005", "q-usprp2026-025", "q-uspsp2-021", "q-uspsp4-009", "q-uspsp5-017", "q-scmsp2025-087", "q-sessp2024-083", "q-sessp2026-002", "q-famerp2025-009", "q-einstein2025-001", "q-tp20252-086", "q-sirio2027-017"],
+          prosa: `Os inibidores de SGLT2 fazem o rim perder glicose e sódio na urina: baixam a glicemia sem hipoglicemia, reduzem a pressão intraglomerular e a congestão, e por isso protegem rim e coração. Os agonistas de GLP-1 imitam o hormônio intestinal que aumenta a insulina conforme a glicose, freia o glucagon, retarda o esvaziamento do estômago e reduz o apetite: emagrecem e protegem contra eventos ateroscleróticos. A escolha entre eles depende do órgão a proteger, não só da HbA1c.`,
+          texto: `- Balanopostite com dapagliflozina e **TFG 28**: trata-se a infecção e se mantém o iSGLT2; quem sai é a **metformina** (TFG < 30). {q-unifesp2025-056}
 - iSGLT2 **suspenso 3 dias antes** de cirurgia (cetoacidose euglicêmica). {q-adap25-056}
 - DM2 com **IAM, DCV ou IC**: associar **iSGLT2**. {q-scmsp2021-006,q-usprp2024-005,q-usprp2026-025,q-uspsp2-021,q-uspsp4-009}
 - Tabagista hipertenso de alto risco: **metformina + iSGLT2** desde o início (SBD 2025). {q-uspsp5-017}
 - DM2 com albuminúria: **IECA/BRA em dose máxima + iSGLT2**. {q-scmsp2025-087}
 - Obeso: **metformina + aGLP-1** (semaglutida/liraglutida). {q-sessp2024-083,q-sessp2026-002,q-famerp2025-009}
 - aGLP-1: **reduz discretamente a PA sistólica**; efeitos por **retardo do esvaziamento gástrico** (náuseas, vômitos). {q-einstein2025-001,q-tp20252-086}
-- Queda rápida da glicemia com aGLP-1: pode **piorar a retinopatia** — rastrear. {q-sirio2027-017}
-- aGLP-1 e iDPP-4 são **drogas do diabetes**. {q-sirio2021-020}
-- Recém-diagnosticado com glicemia moderada: **orientação nutricional** e reavaliação. {q-tp20231-026}
-- **Pioglitazona contraindicada na IC** (retenção de líquido). {q-adap24-070,q-unifesp2024-038}` },
+- Queda rápida da glicemia com aGLP-1: pode **piorar a retinopatia** — rastrear. {q-sirio2027-017}` },
         { id: "dm2-insulina", titulo: "Quando e como começar insulina no DM2", conferir: true, diretrizes: ["sbd","pcdt-dm2"],
           questoes: ["q-scmsp2023-097","q-usprp2026-089","q-tp20222-031","q-tp20231-025","q-famerp2022-060","q-einstein2027-070","q-iamspe2022-002","q-usp2024-050","q-fmabc2021-039","q-famerp2023-076","q-einstein2025-067"],
           texto: `- HbA1c ≈ 10% com orais no teto: **NPH 10 U ao deitar**, glicemia capilar, retornos breves. {q-scmsp2023-097,q-tp20231-025,q-famerp2022-060,q-einstein2027-070,q-usp2024-050}

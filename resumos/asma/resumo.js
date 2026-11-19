@@ -60,12 +60,15 @@ Veja também: **Emergências pediátricas** (parada e insuficiência respiratór
 - Gestante asmática: **manter os inalatórios**. {q-usprp2026-096}` },
         { id: "man-degraus", titulo: "Degraus no adulto e na criança", conferir: true, diretrizes: ["gina"],
           figuras: [{ arquivo: "figuras/degraus.svg", legenda: "Esquema autoral: o caminho preferido da GINA (track 1) no adolescente e no adulto." }],
-          questoes: ["q-iamspe2023-043-ia","q-adap25-087","q-adap26-095","q-simepm89-058","q-unesp2024-051-ia","q-unesp2022-056","q-unesp2023-047","q-einstein2026-001","q-tp20241-046","q-adap22-086","q-usprp2025-032","q-amrigs2023-015","q-unicamp2023-013","q-uspsp2-024","q-unifesp2023-069","q-unifesp2022-069","q-sirio2022-043","q-sirio2025-060","q-einstein2025-042","q-unesp2026-017","q-usprp2023-004","q-sessp2025-060","q-usp2026-063","q-usp2024-004","q-sirio2027-053","q-famerp2025-061-ia"],
+          questoes: ["q-iamspe2023-043-ia","q-adap25-087","q-adap26-095","q-simepm89-058","q-unesp2024-051-ia","q-unesp2022-056","q-unesp2023-047","q-einstein2026-001","q-tp20241-046","q-adap22-086","q-usprp2025-032","q-amrigs2023-015","q-unicamp2023-013","q-uspsp2-024"],
           prosa: `**Atenção aos gabaritos antigos:** antes da GINA 2019, a asma leve tratava com salbutamol isolado e o segundo degrau era aumentar a dose do corticoide inalatório; algumas bancas ainda seguem essa lógica.`,
           texto: `- Adulto e adolescente: **nunca SABA isolado**. {q-iamspe2023-043-ia,q-unesp2024-051-ia}
 - Asma leve: **budesonida-formoterol se necessário** (track 1). {q-adap25-087,q-adap26-095,q-simepm89-058,q-unesp2022-056,q-unesp2023-047,q-tp20241-046,q-einstein2026-001}
-- Descontrole com CI: **budesonida-formoterol de manutenção e resgate** (ou CI + LABA). {q-adap22-086,q-usprp2025-032,q-amrigs2023-015,q-unicamp2023-013,q-uspsp2-024}
-- < 6 anos: **CI em dose baixa com espaçador e máscara**. {q-unifesp2023-069,q-unifesp2022-069,q-sirio2022-043,q-sessp2025-060}
+- Descontrole com CI: **budesonida-formoterol de manutenção e resgate** (ou CI + LABA). {q-adap22-086,q-usprp2025-032,q-amrigs2023-015,q-unicamp2023-013,q-uspsp2-024}` },
+        { id: "man-crianca", titulo: "Degraus na crian\u00e7a", conferir: true, diretrizes: ["gina"],
+          questoes: ["q-unifesp2023-069", "q-unifesp2022-069", "q-sirio2022-043", "q-sessp2025-060", "q-sirio2025-060", "q-einstein2025-042", "q-unesp2026-017", "q-usprp2023-004", "q-usp2026-063", "q-famerp2025-061-ia", "q-usp2024-004", "q-sirio2027-053"],
+          prosa: `Abaixo de 6 anos não há espirometria nem dados para budesonida-formoterol: a base é o corticoide inalatório diário em dose baixa, com espaçador e máscara, e o salbutamol só no resgate. De 6 a 11 anos, quando o corticoide em dose baixa não controla, sobe-se para a associação com LABA ou para a terapia de manutenção e resgate. Depois de uma crise que levou ao pronto-socorro, a alta já sai com corticoide inalatório de manutenção.`,
+          texto: `- < 6 anos: **CI em dose baixa com espaçador e máscara**. {q-unifesp2023-069,q-unifesp2022-069,q-sirio2022-043,q-sessp2025-060}
 - 6–11 anos não controlado com CI: **CI + LABA** ou MART. {q-sirio2025-060,q-einstein2025-042,q-unesp2026-017,q-usprp2023-004}
 - Descontrole na criança: ajustar a **dose do CI** (beclometasona 200 µg 12/12 h). {q-usp2026-063,q-famerp2025-061-ia}
 - Alta após crise: **CI de manutenção** (dose baixa) e plano escrito. {q-usp2024-004,q-sirio2027-053}` },

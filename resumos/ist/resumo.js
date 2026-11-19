@@ -83,7 +83,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Febre e piora das lesões **horas após** a benzatina: **Jarisch-Herxheimer**, tratar com **antitérmico** (dipirona). {q-sirio2025-018}
 - Na gestante, Jarisch-Herxheimer pode dar **contrações e sofrimento fetal**. {q-iamspe2022-057}` },
         { id: "sif-gestante", titulo: "Sífilis na gestação", conferir: true, diretrizes: ["pcdt-tv"],
-          questoes: ["q-sirio2023-086","q-sirio2025-100","q-einstein2024-064","q-famema2021-064","q-scmsp2026-072","q-uspsp2-047","q-uspsp5-044","q-tp20202-100","q-fmabc2025-072","q-unicampdis2025-085","q-sirio2026-072","q-usprp2024-095","q-simepm89-024","q-tp20231-112","q-uspsp1-098","q-usprp2021-050","q-adap24-041","q-tp20252-097","q-unifesp2024-060","q-tp20222-090","q-usp2023-110","q-einstein2025-054"],
+          questoes: ["q-sirio2023-086","q-sirio2025-100","q-einstein2024-064","q-famema2021-064","q-scmsp2026-072","q-uspsp2-047","q-uspsp5-044","q-tp20202-100","q-fmabc2025-072","q-unicampdis2025-085","q-sirio2026-072","q-usprp2024-095","q-simepm89-024","q-adap24-041","q-tp20252-097","q-unifesp2024-060","q-tp20222-090","q-usp2023-110","q-einstein2025-054"],
           prosa: `[[Na gestante, o teste rápido reagente já autoriza a primeira dose de penicilina na mesma consulta, sem esperar o VDRL, porque cada semana de atraso aumenta o risco de sífilis congênita.|q-sirio2023-086,q-sirio2025-100,q-famema2021-064]] [[Só a penicilina atravessa a placenta e trata o feto: a gestante alérgica é dessensibilizada, nunca tratada com outra droga.|q-sirio2026-072,q-unicampdis2025-085]] [[O intervalo entre as doses semanais não pode passar de 7 dias na gestação (fora dela, tolera-se até 14); dose perdida significa reiniciar o esquema.|q-usprp2024-095,q-simepm89-024]]
 
 [[Gestante tratada de forma adequada antes, com VDRL baixo e estável, não precisa de novo tratamento; mas subida de duas diluições, ou nova exposição sem proteção, é reinfecção e se trata de novo.|q-unifesp2024-060,q-tp20252-097,q-adap24-041,q-tp20222-090,q-usp2023-110,q-einstein2025-054]] A parceria sexual é testada e tratada, mas a adequação do tratamento da gestante **não depende** mais do tratamento do parceiro (PCDT 2022).`,
@@ -92,8 +92,11 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Gestante com cancro duro (sífilis primária): **dose única**. {q-fmabc2025-072}
 - Sorologia negativa no 1º trimestre e positiva agora: **recente**, dose única. {q-tp20202-100,q-unicampdis2025-085}
 - Alergia à penicilina: **dessensibilização**. {q-sirio2026-072,q-unicampdis2025-085}
-- Intervalo > 7 dias entre doses: **reiniciar** as 3 doses. {q-usprp2024-095,q-simepm89-024}
-- Sífilis prévia sem tratamento documentado, VDRL 1:2: **tratar** (7,2 milhões) e seguir com **VDRL mensal**. {q-tp20231-112}
+- Intervalo > 7 dias entre doses: **reiniciar** as 3 doses. {q-usprp2024-095,q-simepm89-024}` },
+        { id: "sif-gestante-retrat", titulo: "Gestante j\u00e1 tratada: seguimento e retratamento", conferir: true, diretrizes: ["pcdt-tv"],
+          questoes: ["q-tp20231-112", "q-uspsp1-098", "q-usprp2021-050", "q-unifesp2024-060", "q-tp20222-090", "q-usp2023-110", "q-einstein2025-054"],
+          prosa: `Na gestante com sífilis no passado, a pergunta é se o tratamento foi documentado e adequado e se o título caiu. Tratamento sem registro conta como não feito; título baixo e estável após tratamento adequado é cicatriz e só se acompanha; título que sobe ou exposição nova é reinfecção e se retrata. A parceria é testada e tratada, mas não define mais se o tratamento da gestante foi adequado.`,
+          texto: `- Sífilis prévia sem tratamento documentado, VDRL 1:2: **tratar** (7,2 milhões) e seguir com **VDRL mensal**. {q-tp20231-112}
 - Tratada com 7,2 milhões: **adequada independentemente do parceiro**. {q-uspsp1-098}
 - Parceiro de gestante com sífilis, mesmo com sorologia negativa: **dose única presuntiva**. {q-usprp2021-050}
 - Tratada adequadamente há 6 meses com VDRL 1:2: **só pedir VDRL** (seguimento). {q-unifesp2024-060}

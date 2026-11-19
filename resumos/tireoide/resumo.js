@@ -107,18 +107,21 @@ Veja também: **Triagem neonatal** (hipotireoidismo congênito) e **Crescimento 
       fragmentos: [
         { id: "nod-investigar", titulo: "TSH, ultrassom e punção", conferir: true, diretrizes: ["acr-tirads","ata-dtc"],
           figuras: [{ arquivo: "figuras/nodulo.svg", legenda: "Esquema autoral: do nódulo palpável ou incidental à punção." }],
-          questoes: ["q-amrigs2022-007","q-unesp2021-043","q-sirio2026-019","q-tp20202-076","q-unesp2024-073","q-sirio2023-006","q-unesp2025-074","q-einstein2025-019","q-sirio2027-007","q-unesp2026-066","q-einstein2027-020","q-simepm89-016","q-famerp2026-056","q-scmsp2025-039","q-usp2025-034","q-tp20212-080","q-tp20231-059","q-famerp2023-060","q-uspsp2-003","q-adap26-030","q-amrigs2024-032","q-scmsp2021-028","q-unifesp2023-096","q-unicampdis2022-014"],
+          questoes: ["q-amrigs2022-007","q-unesp2021-043","q-sirio2026-019","q-tp20202-076","q-unesp2024-073","q-scmsp2025-039","q-usp2025-034","q-tp20212-080","q-tp20231-059","q-famerp2023-060","q-uspsp2-003","q-adap26-030","q-amrigs2024-032","q-scmsp2021-028","q-unifesp2023-096","q-unicampdis2022-014"],
           prosa: `No ACR TI-RADS, **TR5** punciona a partir de 1 cm e **TR4** a partir de 1,5 cm; abaixo disso, acompanha-se com ultrassom. Gabaritos que mandam cintilografia em nódulo TI-RADS 4 supõem TSH baixo.`,
           texto: `- TSH baixo: **cintilografia** (nódulo quente). {q-amrigs2022-007,q-unesp2021-043,q-sirio2026-019}
 - Sequência: **TSH e T4, ultrassom, PAAF** se suspeito. {q-tp20202-076,q-unesp2024-073}
-- Suspeitos: **hipoecoico e mais alto que largo**; espongiforme não. {q-sirio2023-006,q-unesp2025-074,q-einstein2025-019,q-sirio2027-007}
-- TI-RADS 5 de 2 cm: **PAAF**. {q-unesp2026-066}
-- Suspeita intermediária ≥ 1 cm: **PAAF**; muito baixa: acompanhar. {q-einstein2027-020}
-- TI-RADS 4: **PAAF**. {q-simepm89-016}
-- TI-RADS 5 pequeno: **ultrassom anual**. {q-famerp2026-056}
 - Nódulo suspeito com TSH normal: **PAAF guiada por ultrassom**. {q-scmsp2025-039,q-usp2025-034,q-tp20212-080,q-tp20231-059,q-famerp2023-060,q-uspsp2-003,q-adap26-030,q-amrigs2024-032}
 - Jovem com nódulo único endurecido e linfonodo: **pensar em neoplasia maligna**. {q-scmsp2021-028}
 - Alargamento do mediastino anterior na idosa: **bócio intratorácico**. {q-unifesp2023-096,q-unicampdis2022-014}` },
+        { id: "nod-tirads", titulo: "Ultrassom: o que \u00e9 suspeito e quando puncionar", conferir: true, diretrizes: ["acr-tirads", "ata-dtc"],
+          questoes: ["q-sirio2023-006", "q-unesp2025-074", "q-einstein2025-019", "q-sirio2027-007", "q-unesp2026-066", "q-einstein2027-020", "q-simepm89-016", "q-famerp2026-056"],
+          prosa: `O ultrassom não diz se o nódulo é câncer: ele estima o risco pelos traços que o câncer costuma ter (sólido, hipoecoico, mais alto que largo, margens irregulares, microcalcificações). Quanto maior o risco, menor o tamanho a partir do qual vale puncionar; nódulo de risco baixo e pequeno só se acompanha, porque o câncer papilífero pequeno cresce devagar.`,
+          texto: `- Suspeitos: **hipoecoico e mais alto que largo**; espongiforme não. {q-sirio2023-006,q-unesp2025-074,q-einstein2025-019,q-sirio2027-007}
+- TI-RADS 5 de 2 cm: **PAAF**. {q-unesp2026-066}
+- Suspeita intermediária ≥ 1 cm: **PAAF**; muito baixa: acompanhar. {q-einstein2027-020}
+- TI-RADS 4: **PAAF**. {q-simepm89-016}
+- TI-RADS 5 pequeno: **ultrassom anual**. {q-famerp2026-056}` },
         { id: "nod-cancer", titulo: "Câncer: papilífero, medular e pós-operatório", conferir: true, diretrizes: ["ata-dtc"],
           questoes: ["q-adap22-084","q-usp2024-046","q-usprp2026-013","q-adap23-096","q-fmabc2026-032"],
           texto: `- Papilífero de 1,8 cm sem linfonodo: **tireoidectomia** (lobectomia ou total), **sem iodo** inicial. {q-adap22-084}
