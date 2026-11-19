@@ -16,9 +16,12 @@ test("modo foco esconde menu e topo só na sessão e se desliga ao sair; as dica
     const pagina = await contexto.newPage();
     await pagina.goto(semNuvem.url + "index.html");
     await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+    await pagina.evaluate(() => { fazerLogin("aluno@esc.demo", "aluno123"); fecharModal(); iniciarSessaoRecomendada(); });
+    /* A sessão nasce depois da sincronização (nuvemSincronizarAntesDe) e do
+       texto das questões (depoisDosCorpos): com a máquina carregada a questão
+       ainda não estava desenhada quando o teste lia a tela. Espera o cartão. */
+    await pagina.waitForFunction(() => state.route === "sessao" && /Selecione uma alternativa para continuar/.test((document.getElementById("conteudoPagina") || {}).innerText || ""));
     const r = await pagina.evaluate(() => {
-      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
-      iniciarSessaoRecomendada();
       const visivel = el => !!el && getComputedStyle(el).display !== "none";
       const pg = () => document.getElementById("conteudoPagina");
       const antes = { menu: visivel(document.getElementById("sidebarMenu")), topo: visivel(document.getElementById("topoBarra")) };
