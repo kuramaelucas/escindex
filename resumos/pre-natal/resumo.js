@@ -12,7 +12,7 @@
     { id: "calendario-vacinal", texto: "Ministério da Saúde — Calendário Nacional de Vacinação 2026, ciclo de vida: gestante (PNI, gov.br)", lidoEm: "2026-11-19" },
     { id: "ms-prenatal", texto: "Ministério da Saúde — Cadernos de Atenção Básica nº 32: Atenção ao Pré-natal de Baixo Risco (2012) e Caderneta da Gestante", lidoEm: null },
     { id: "ms-alto-risco", texto: "Ministério da Saúde — Manual de Gestação de Alto Risco (2022)", lidoEm: null },
-    { id: "pcdt-tv", texto: "Ministério da Saúde — PCDT para Prevenção da Transmissão Vertical de HIV, Sífilis e Hepatites Virais (2022)", lidoEm: null },
+    { id: "pcdt-tv", texto: "Ministério da Saúde — PCDT para Prevenção da Transmissão Vertical de HIV, Sífilis e Hepatites Virais (Portaria SCTIE/MS nº 55/2020; 2ª ed. revisada 2022), gov.br/saude", lidoEm: "2026-11-19" },
     { id: "ms-ferro", texto: "Ministério da Saúde — Programa Nacional de Suplementação de Ferro: manual de condutas gerais (2013)", lidoEm: null },
   ],
   foraDoEscopo: [
@@ -158,7 +158,7 @@ Veja também: **Trabalho de parto e parto**, **Diabetes gestacional**, **Hiperte
 - Soroconversão com 30 semanas: **sulfadiazina, pirimetamina e ácido folínico**, sem amniocentese. {q-unesp2023-027}
 - No esquema tríplice: ultrassom com Doppler da cerebral média (anemia fetal). {q-iamspe2023-058}
 - Transmissão **proporcional** à idade gestacional. {q-sessp2022-071,q-amrigs2021-049}` },
-        { id: "inf-sifilis", titulo: "Sífilis e hepatites", conferir: true, diretrizes: ["pcdt-tv"],
+        { id: "inf-sifilis", titulo: "Sífilis e hepatites", conferir: false, diretrizes: ["pcdt-tv"],
           questoes: ["q-iamspe2025-054","q-famerp2023-039","q-famerp2024-039","q-udisc20262-089","q-fmabc2024-078","q-fmabc2022-073","q-tp20252-047","q-unicamp2023-050","q-sirio2023-079"],
           casos: ["q-tp20252-047"],
           prosa: `[[Teste rápido treponêmico reagente na gestante já dispara a penicilina, sem esperar o confirmatório, porque cada semana conta para o feto; VDRL baixo isolado pede o treponêmico.|q-fmabc2022-073,q-fmabc2024-078]] [[O seguimento é com VDRL mensal na gestação; tratamento adequado é penicilina completa iniciada até 30 dias antes do parto, e a parceria não entra mais no critério.|q-famerp2024-039,q-udisc20262-089]] [[Hepatite B com HBeAg positivo ou carga viral alta recebe tenofovir no terceiro trimestre, e o recém-nascido, vacina e imunoglobulina; anti-HBs e anti-HBc positivos são infecção passada.|q-unicamp2023-050,q-sirio2023-079]] O detalhe da sífilis está em **IST**.`,
