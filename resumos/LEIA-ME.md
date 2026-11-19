@@ -144,3 +144,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `uroginecologia` | `ass-uroginecologia` | 80 | — |
 | `sangramentos-na-gestacao` | `ass-sangramentos` | 79 | — |
 | `diabetes-gestacional` | `ass-dmg` | 82 | 2 (anuladas, com reposição no resumo) |
+| `puerperio` | `ass-puerperio` | 58 (+2 de infecção puerperal de `ass-prenatal`) | — |
