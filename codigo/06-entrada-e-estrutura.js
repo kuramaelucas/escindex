@@ -572,7 +572,7 @@ function itensDoMenuDoPapel(papel){
     {id:"meu-grupo", label:"Meu Grupo", icon:"users"},
     {id:"revisao", label:"Revisão", icon:"target"},
     {id:"flashcards", label:"Flashcards", icon:"cards"},
-    {id:"resumos", label:"Resumos (Beta)", icon:"book"},
+    {id:"resumos", label:"Resumos (Beta)", icon:"book-open"},
     {id:"simulados", label:"Provas e Simulados", icon:"clipboard"},
     {id:"historico", label:"Histórico de Atividade", icon:"clock"},
     {id:"favoritos", label:"Favoritos", icon:"star"},
