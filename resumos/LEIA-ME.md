@@ -115,3 +115,4 @@ Marcações dentro do texto:
 | `anemias` | `ass-hemato-anemias` | 75 | — |
 | `glomerulopatias` | `ass-nefro-glomerulopatias` | 73 | 1 (litíase) |
 | `tuberculose` | `ass-tuberculose` | 251 (69 reais e 182 autorais) | 9 (autorais anuladas) |
+| `asma` | `ass-asma` | 80 | 8 (6 anuladas com reposição no resumo; 1 anulada e 1 desatualizada sem reposição) |
