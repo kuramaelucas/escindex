@@ -8,7 +8,7 @@
   assunto: "ass-hemato-anemias",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "sbp-ferro", texto: "SBP — Diretriz nº 32: Deficiência de ferro e anemia ferropriva, atualização 2026", lidoEm: null },
+    { id: "sbp-ferro", texto: "SBP — Diretriz nº 32: Deficiência de ferro e anemia ferropriva, atualização 2026 (sbp.com.br)", lidoEm: "2026-11-18" },
     { id: "kdigo-anemia", texto: "KDIGO 2026 — Anemia in chronic kidney disease (Kidney Int 2026;109)", lidoEm: null },
     { id: "bsg-ferro", texto: "British Society of Gastroenterology — Guidelines for the management of iron deficiency anaemia in adults (2021)", lidoEm: null },
     { id: "bsh-b12", texto: "BSH — Guidelines for the diagnosis and treatment of cobalamin and folate disorders (2014)", lidoEm: null },
@@ -41,7 +41,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
       id: "ferropriva", titulo: "Anemia ferropriva",
       introducao: `[[O ferro some primeiro dos depósitos (ferritina baixa, o melhor exame), depois do transporte (saturação da transferrina abaixo de 16–20%, capacidade de ligação alta) e só então a hemácia sai pequena, pálida e de tamanhos variados (VCM baixo, RDW alto), muitas vezes com plaquetas altas.|q-unifesp2022-088,q-usprp2024-050,q-iamspe2025-075,q-amrigs2022-071,q-famema2022-095,q-tp20222-023]] [[No adulto, ferropenia é sangramento até prova em contrário: na mulher fértil, o fluxo menstrual; no homem e na mulher após a menopausa, o tubo digestivo, que se investiga com endoscopia e colonoscopia.|q-usprp2025-027,q-sessp2024-003,q-tp20231-015,q-usprp2025-071,q-einstein2023-073]]
 
-[[Na criança, a falta de ferro vem da reserva pequena (prematuro, baixo peso), do crescimento rápido e da dieta (leite de vaca, pouca carne), e a profilaxia começa cedo; o tratamento é 3 a 5 mg/kg/dia de ferro elementar por 3 a 4 meses, e a resposta aparece em reticulócitos na primeira semana e em hemoglobina em 4 semanas.|q-tp20241-111,q-tp20251-039,q-tp20261-105,q-iamspe2026-080,q-scmsp2023-043,q-iamspe2026-079]]`,
+[[Na criança, a falta de ferro vem da reserva pequena (prematuro, baixo peso), do crescimento rápido e da dieta (leite de vaca, pouca carne), e a profilaxia começa cedo; o tratamento é 3 a 6 mg/kg/dia de ferro elementar (SBP 2026) por 3 a 4 meses, e a resposta aparece em reticulócitos na primeira semana e em hemoglobina em 4 semanas.|q-tp20241-111,q-tp20251-039,q-tp20261-105,q-iamspe2026-080,q-scmsp2023-043,q-iamspe2026-079]]`,
       fragmentos: [
         { id: "fer-adulto", titulo: "Diagnóstico e causa no adulto", conferir: true, diretrizes: ["bsg-ferro"],
           questoes: ["q-unifesp2022-088","q-usprp2024-050","q-tp20222-023","q-usprp2025-027","q-sessp2024-003","q-tp20231-015","q-usprp2025-071","q-einstein2023-073","q-sessp2025-014","q-usp2024-041","q-uspsp5-016","q-einstein2025-015"],
@@ -55,17 +55,17 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
 - Bariátrica: **ferro endovenoso** (não absorve oral). {q-usp2024-041}
 - Ferropenia com DRC: **EDA e colonoscopia** e ferro EV. {q-uspsp5-016}
 - Idosa hipertensa e diabética: **ferropriva**. {q-einstein2025-015}` },
-        { id: "fer-crianca", titulo: "Criança: profilaxia, diagnóstico e tratamento", conferir: true, diretrizes: ["sbp-ferro"],
+        { id: "fer-crianca", titulo: "Criança: profilaxia, diagnóstico e tratamento", conferir: false, diretrizes: ["sbp-ferro"],
           questoes: ["q-iamspe2025-075","q-amrigs2022-071","q-famema2022-095","q-unesp2021-008","q-adap26-087","q-tp20231-052","q-tp20241-111","q-tp20251-039","q-tp20261-105","q-iamspe2026-080","q-scmsp2023-043","q-iamspe2026-079","q-usp2024-007","q-unesp2024-005","q-famerp2024-062","q-famerp2025-052","q-sirio2024-048"],
-          prosa: `A SBP de 2026 recomenda triagem laboratorial aos 12 meses com **hemograma, ferritina e PCR** (a ferritina sobe na inflamação). [[A queda da hemoglobina por volta dos 2 meses é a anemia fisiológica do lactente e não se trata.|q-usp2024-007]]`,
+          prosa: `A SBP de 2026 não pede exames de rotina no lactente saudável; nos de risco, **hemograma, ferritina e PCR entre 9 e 12 meses** (a ferritina sobe na inflamação). A profilaxia do lactente a termo passou a dose fixa de **10 a 12,5 mg/dia** em dois ciclos de 3 meses (aos 6 e aos 12 meses), como no programa do Ministério. [[A queda da hemoglobina por volta dos 2 meses é a anemia fisiológica do lactente e não se trata.|q-usp2024-007]]`,
           texto: `- Esperado: **microcitose, hipocromia, RDW alto**, ferritina baixa. {q-iamspe2025-075,q-amrigs2022-071,q-famema2022-095,q-unesp2021-008}
-- Tratamento: **3 a 5 mg/kg/dia** de ferro elementar, **3–4 meses** ou até normalizar. {q-adap26-087,q-tp20231-052,q-tp20241-111,q-tp20251-039,q-tp20261-105}
+- Tratamento: **3 a 6 mg/kg/dia** de ferro elementar (antes 3 a 5), **3–4 meses** ou até normalizar. {q-adap26-087,q-tp20231-052,q-tp20241-111,q-tp20251-039,q-tp20261-105}
 - Resposta: **reticulócitos** e **+1 g/dL** de hemoglobina. {q-iamspe2026-080}
 - RN de 2.300 g: **2 mg/kg/dia a partir de 30 dias**. {q-scmsp2023-043}
 - RN < 1.000 g: **4 mg/kg/dia por 1 ano**, depois 1 mg/kg/dia. {q-iamspe2026-079}
 - Lactente de 2 meses com Hb baixa: **acompanhar** (fisiológica). {q-usp2024-007}
 - Investigar profilaxia e dieta; pedir **hemograma, ferro, ferritina**. {q-unesp2024-005}
-- Triagem aos 12 meses: **hemograma, PCR e ferritina**. {q-famerp2024-062,q-famerp2025-052}
+- Lactente de risco: **hemograma, PCR e ferritina** entre 9 e 12 meses (as provas falam em 12 meses). {q-famerp2024-062,q-famerp2025-052}
 - Criança com otite e microcitose: **ferropriva**. {q-sirio2024-048}` },
       ],
     },
