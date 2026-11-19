@@ -12,7 +12,7 @@
     { id: "aap-bronquiolite", texto: "American Academy of Pediatrics — Clinical Practice Guideline: Diagnosis, Management, and Prevention of Bronchiolitis (2014)", lidoEm: null },
     { id: "ms-aidpi", texto: "Ministério da Saúde — AIDPI (Atenção Integrada às Doenças Prevalentes na Infância) e manejo das infecções respiratórias", lidoEm: null },
     { id: "sbp-pac", texto: "Sociedade Brasileira de Pediatria — Pneumonia adquirida na comunidade na infância (documento científico)", lidoEm: null },
-    { id: "ms-guia-vigilancia", texto: "Ministério da Saúde — Guia de Vigilância em Saúde (coqueluche)", lidoEm: null },
+    { id: "ms-guia-vigilancia", texto: "Ministério da Saúde — Guia de Vigilância em Saúde, 6ª edição revisada, volume 1 (coqueluche), gov.br", lidoEm: "2026-11-19" },
   ],
   foraDoEscopo: [
     { motivo: "Escarlatina classificada neste assunto: está no resumo de exantemáticas", questoes: ["q-einstein2022-040"] },
@@ -153,13 +153,13 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
 
 [[A toxina pertussis faz os linfócitos não saírem do sangue para os tecidos, o que explica a leucocitose com linfocitose típica.|q-unicampdis2023-030,q-fmabc2024-055]] [[O lactente pequeno, ainda sem as três doses da pentavalente e sem anticorpos se a mãe não recebeu dTpa, é quem tem a forma grave: em vez dos acessos clássicos, faz apneia e cianose.|q-tp20252-069,q-unicampdis2023-030,q-einstein2027-039]]`,
       fragmentos: [
-        { id: "coq-quadro", titulo: "Quadro, diagnóstico e tratamento", conferir: true, diretrizes: ["ms-guia-vigilancia"],
+        { id: "coq-quadro", titulo: "Quadro, diagnóstico e tratamento", conferir: false, diretrizes: ["ms-guia-vigilancia"],
           questoes: ["q-tp20252-069","q-unicampdis2023-030","q-unicampdis2024-096","q-uspsp1-006","q-fmabc2024-055","q-einstein2027-039","q-unesp2025-014"],
           casos: ["q-fmabc2024-055"],
           texto: `- Três fases: **catarral** (1 a 2 semanas, como um resfriado), **paroxística** (acessos de tosse, guincho, vômito pós-tosse) e **convalescença**. {q-unicampdis2024-096,q-uspsp1-006}
 - Lactente pequeno: **apneia e cianose** após a tosse, afebril, ausculta normal. {q-tp20252-069,q-unicampdis2023-030}
 - **Leucocitose com linfocitose** no hemograma. {q-unicampdis2023-030,q-fmabc2024-055}
-- Caso suspeito no lactente: **tosse há 10 dias ou mais** com cianose, engasgo ou apneia (SBP). {q-einstein2027-039}
+- Caso suspeito no lactente: **tosse há 10 dias ou mais** com cianose, engasgo ou apneia (Guia de Vigilância; a partir de 6 meses, **14 dias** com paroxismos, guincho ou vômito). {q-einstein2027-039}
 - Tratamento: **macrolídeo (azitromicina)**; **notificar**. {q-uspsp1-006,q-tp20252-069,q-fmabc2024-055}
 - Prevenção: **pentavalente aos 2, 4 e 6 meses**, reforços de DTP e **dTpa na gestante**. {q-unesp2025-014}` },
       ],
