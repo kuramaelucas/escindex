@@ -35,14 +35,14 @@ function renderRevisao(){
   <div class="page-header"><h2>Revisão</h2><p>Assuntos e questões que, pelo seu histórico, estão no momento certo de voltar.</p></div>
   <div class="card">
     <div class="card-title">Revisão espaçada de questões (${totalEspacada})</div>
-    <p class="text-sm muted">Vem nesta ordem: primeiro as questões dos assuntos que você já estudou e <strong>ainda não viu</strong> (${naoVistas}); depois as que você <strong>errou ou acertou no chute</strong> (${porErro}); por último as que você acertou e já passou o prazo (${porDecaimento}).</p>
+    <p class="text-sm muted">Vem nesta ordem: primeiro as que você <strong>errou ou acertou no chute</strong> (${porErro}); depois as que você acertou e já passou o prazo (${porDecaimento}). Questões dos assuntos já estudados que você <strong>ainda não viu</strong> (${naoVistas}) só completam a sessão quando faltam vencidas: revisão é voltar ao que você já fez.</p>
     <p class="text-xs muted mt-1">Questão que você acertou com segurança só volta depois de <strong>1 mês</strong> — e de 2 meses no segundo acerto seguido; em assunto em que você vai bem, o prazo cresce ainda mais. Depois de <strong>3 acertos seguidos</strong> ela sai da revisão espaçada. Errar (ou acertar no chute) zera a conta e a questão volta em <strong>1 semana</strong> — nenhuma questão reaparece antes disso.</p>
     <button class="btn btn-primary mt-2" onclick="iniciarRevisaoEspacada()" ${!totalEspacada?"disabled":""}>Revisar agora</button>
   </div>
   <div class="card mt-2">
     <div class="card-title">Assuntos vencidos (${assuntos.length})</div>
     ${assuntos.length ? `<div class="mt-2">
-      ${vencidos.itens.map(a=>`<div class="linha-fina"><span class="linha-fina-nome">${escapeHtml(nomeAssunto(a.assuntoId))}</span><span class="text-xs muted nowrap">${Math.round(a.taxa*100)}% · ${a.atrasoDias} ${plural(a.atrasoDias,"dia","dias")} de atraso</span><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${a.assuntoId}')">Praticar</button></div>`).join("")}
+      ${vencidos.itens.map(a=>`<div class="linha-fina"><span class="linha-fina-nome">${escapeHtml(nomeAssunto(a.assuntoId))}</span><span class="text-xs muted nowrap">${Math.round(a.taxa*100)}% · ${a.atrasoDias} ${plural(a.atrasoDias,"dia","dias")} de atraso</span><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${a.assuntoId}')">Praticar</button>${botaoLerResumo(a.assuntoId)}</div>`).join("")}
       ${botaoMostrarTudo(vencidos, "revisao-vencidos", "assuntos")}
     </div>` : '<p class="text-sm muted mt-1">Nenhum assunto vencido hoje — em dia com a revisão.</p>'}
   </div>
@@ -70,7 +70,7 @@ function renderRevisao(){
       <div class="text-sm peso-600">Assuntos em que sua confiança não bate com o acerto</div>
       ${falsaSeguranca.slice(0,5).map(f=>`<div class="flex justify-between items-center card-flat mb-1">
         <span class="text-sm">${escapeHtml(nomeAssunto(f.assuntoId))} <span class="text-xs muted">— ${f.n} ${flexionar(f.n, "resposta(s)")} marcadas como "certeza"</span></span>
-        <span class="flex items-center gap-1"><span class="badge badge-danger">${f.taxa}% de acerto</span><button class="btn btn-secondary btn-sm" onclick="praticarAssuntoFalsaSeguranca('${f.assuntoId}')">Praticar</button></span>
+        <span class="flex items-center gap-1"><span class="badge badge-danger">${f.taxa}% de acerto</span><button class="btn btn-secondary btn-sm" onclick="praticarAssuntoFalsaSeguranca('${f.assuntoId}')">Praticar</button>${botaoLerResumo(f.assuntoId)}</span>
       </div>`).join("")}
     </div>` : ""}
   </div>

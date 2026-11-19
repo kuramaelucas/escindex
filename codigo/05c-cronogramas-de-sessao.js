@@ -391,18 +391,19 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const itensAtual = selecionarComProgressao(poolAtual, nAtual, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos)).map(q=>({questaoId:q.id, origem:"bloco_atual",
     motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "") + rotulo(q)}));
 
-  /* Ordem da revisão: primeiro o que a pessoa AINDA NÃO VIU, depois o que
-     ela ERROU (ou acertou no chute), e só por último o que acertou e já
-     passou o prazo — ver partesDaRevisaoEspacada. */
+  /* Ordem da revisão: primeiro o que a pessoa ERROU (ou acertou no chute),
+     depois o que acertou e já passou o prazo e, só se sobrar vaga, o que ela
+     ainda não viu dos assuntos anteriores — ver partesDaRevisaoEspacada. */
   const partesRevisao = partesDaRevisaoEspacada(usuarioId, assuntosPassados);
-  const itensRevisao = selecionarComProgressao(partesRevisao.novas, nRevisao, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
-    .map(q=>({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão — assunto de bloco anterior que você ainda não viu"+rotulo(q)}));
   const atrasoDe = v => diasEntre(proximaRevisaoEfetiva(v.entry), hojeISO());
-  [...partesRevisao.erros, ...partesRevisao.decaimentos].slice(0, Math.max(0, nRevisao - itensRevisao.length)).forEach(v=>{
+  const itensRevisao = [];
+  [...partesRevisao.erros, ...partesRevisao.decaimentos].slice(0, nRevisao).forEach(v=>{
     const atraso = atrasoDe(v);
     const porErro = partesRevisao.erros.includes(v);
     itensRevisao.push({questaoId:v.questao.id, origem: porErro ? "revisao_erro" : "revisao_decaimento", motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" "+plural(atraso,"dia","dias")+"" : ", no prazo")});
   });
+  selecionarComProgressao(partesRevisao.novas, Math.max(0, nRevisao - itensRevisao.length), usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
+    .forEach(q=>itensRevisao.push({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão — assunto de bloco anterior que você ainda não viu"+rotulo(q)}));
 
   const poolPrevia = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));
   const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, origem:"previa", motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));

@@ -111,3 +111,62 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("resumos: lista por grande área e por erro, voltar fecha o resumo, marcar como lido, Ler resumo no desempenho e meta semanal", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block" });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await contexto.newPage();
+    const erros = [];
+    pagina.on("pageerror", e => erros.push(e.message));
+    await pagina.goto(semNuvem.url + "index.html");
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+    await pagina.evaluate(() => {
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      const u = usuarioAtual();
+      // três questões diferentes do assunto (o erro conta a última resposta de cada questão)
+      questoesAtivas().filter(q => q.assuntoId === "ass-exantematicas").slice(0, 3)
+        .forEach((q, i) => db.respostas.push({ id: "r" + i, usuarioId: u.id, questaoId: q.id, correta: false, confianca: "certeza", data: hojeISO() }));
+      saveState();
+      navigate("resumos");
+    });
+    await pagina.waitForSelector("text=Doenças exantemáticas na infância");
+    const lista = await pagina.evaluate(() => ({
+      areas: [...document.querySelectorAll("#app h3")].map(h => h.textContent),
+      primeiro: document.querySelector("#app .card .card-title").textContent,
+    }));
+    assert.ok(lista.areas.length >= 1, "agrupado por grande área");
+    assert.match(lista.primeiro, /exantemáticas/, "o resumo do assunto em que a pessoa errou vem primeiro");
+    await pagina.evaluate(() => mudarOrdemDosResumos("alfabetica"));
+    await pagina.evaluate(() => abrirResumo("exantematicas"));
+    await pagina.waitForSelector(".resumo-caderno");
+    await pagina.goBack();
+    await pagina.waitForFunction(() => !document.querySelector(".resumo-caderno") && state.route === "resumos");
+    await pagina.evaluate(() => abrirResumo("exantematicas"));
+    await pagina.waitForSelector("text=Marcar como lido");
+    await pagina.click("text=Marcar como lido");
+    const lido = await pagina.evaluate(() => ({ n: quantosResumosLidos(usuarioAtual()), painel: painelTurmaLocal().pessoas.find(p => p.id === usuarioAtual().id).resumosLidos, linha: linhaDoPerfil(usuarioAtual()).resumos_lidos }));
+    assert.equal(lido.n, 1); assert.equal(lido.painel, 1); assert.ok(lido.linha.exantematicas);
+    await pagina.evaluate(() => navigate("desempenho"));
+    await pagina.waitForFunction(() => document.body.innerText.includes("Leitura para os seus pontos fracos"));
+    await pagina.click("text=Ler resumo");
+    await pagina.waitForSelector(".resumo-caderno");
+
+    const meta = await pagina.evaluate(() => {
+      const u = usuarioAtual();
+      CONFIG.hoje = () => new Date("2026-11-19T12:00:00");   // quinta-feira: 4º dia da semana
+      db.respostas = db.respostas.filter(r => r.usuarioId !== u.id);
+      for(let i = 0; i < 80; i++) db.respostas.push({ id: "m" + i, usuarioId: u.id, questaoId: "x", correta: true, data: "2026-11-17" });
+      u.metaQuestoesSemana = 140;
+      const emDia = progressoDaMeta(u);
+      u.metaQuestoesSemana = 210;
+      const atrasado = progressoDaMeta(u);
+      return { emDia, atrasado };
+    });
+    assert.equal(meta.emDia.batida, true, "80 de 140 na quinta: em dia, mesmo sem estudar hoje");
+    assert.equal(meta.emDia.faltamNaSemana, 60);
+    assert.equal(meta.atrasado.batida, false);
+    assert.equal(meta.atrasado.faltam, 40, "210 × 4/7 = 120 esperado");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

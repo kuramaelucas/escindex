@@ -42,7 +42,8 @@ function montarSessaoRecomendadaDeHoje(minutos){
   // meta batida e cronograma do 6º ano passado da cota: a sessão extra não
   // pode ser de 5 questões, que não dá para treinar prova
   const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
-  const restante = Math.max(piso, metaDoUsuario(u) - feitas);
+  // meta semanal: a sessão completa o que falta para ficar em dia (05b, progressoDaMeta)
+  const restante = Math.max(piso, progressoDaMeta(u).faltam);
   // com tempo contado, o tamanho vem do ritmo da pessoa (ver abrirSessaoPorTempo)
   const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, tamanhoDaSessaoDoUsuario(u));
   iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
@@ -121,16 +122,17 @@ function iniciarRevisaoErros(){
   const itens = pares.slice(0,20).map(p=>({questaoId:p.questao.id, origem:"erros", motivo:"Erro/chute anterior — respondido em "+formatDataBR(p.ultima.data)}));
   iniciarSessaoComLista(itens, "pratica");
 }
-/* A fila da revisão espaçada, na ordem de prioridade: o que a pessoa ainda não
-   viu nos assuntos já estudados, depois o que errou (ou acertou no chute) e,
-   por último, o que acertou e já passou o prazo. Cada item diz por que veio. */
+/* A fila da revisão espaçada, na ordem de prioridade: o que a pessoa errou (ou
+   acertou no chute), depois o que acertou e já passou o prazo e, só para
+   completar, o que ela ainda não viu nos assuntos já estudados. Cada item diz por que veio. */
 function itensDaRevisaoEspacada(usuarioId, limite){
   const partes = partesDaRevisaoEspacada(usuarioId);
-  const novas = selecionarComInterleaving(partes.novas, limite, pesosDeIncidencia(usuarioId))
-    .map(q=>({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão espaçada — você ainda não viu esta questão"}));
   const erros = partes.erros.map(v=>({questaoId:v.questao.id, origem:"revisao_erro", motivo:"Revisão espaçada — erro/chute anterior"}));
   const decaimentos = partes.decaimentos.map(v=>({questaoId:v.questao.id, origem:"revisao_decaimento", motivo:"Revisão espaçada — já faz tempo desde o último acerto"}));
-  return [...novas, ...erros, ...decaimentos].slice(0, limite);
+  const vencidas = [...erros, ...decaimentos].slice(0, limite);
+  const novas = selecionarComInterleaving(partes.novas, limite - vencidas.length, pesosDeIncidencia(usuarioId))
+    .map(q=>({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão espaçada — sem revisões vencidas suficientes, completa com questão que você ainda não viu"}));
+  return [...vencidas, ...novas];
 }
 function iniciarRevisaoEspacada(){
   const itens = itensDaRevisaoEspacada(usuarioAtual().id, 20);

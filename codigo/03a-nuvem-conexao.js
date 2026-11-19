@@ -388,6 +388,8 @@ function nuvemAplicarPerfilLocal(p){
   }
   if(p.meta_questoes_dia) u.metaQuestoesDia = p.meta_questoes_dia;
   if(p.meta_cartoes_dia) u.metaCartoesDia = p.meta_cartoes_dia;
+  // nula = meta diária (a pessoa voltou para o dia noutro aparelho); ausente = banco sem a coluna, não decide
+  if("meta_questoes_semana" in p){ if(p.meta_questoes_semana) u.metaQuestoesSemana = p.meta_questoes_semana; else delete u.metaQuestoesSemana; }
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
   // a escolha feita neste aparelho vale mais que a que desce: o perfil de lá pode ser anterior a ela
   if(p.modo_plataforma && !u.modoPlataforma && (p.modo_plataforma === "resumido" || p.modo_plataforma === "estatistico")) u.modoPlataforma = p.modo_plataforma;
@@ -399,6 +401,8 @@ function nuvemAplicarPerfilLocal(p){
   if(p.ordem_estagios && typeof p.ordem_estagios === "object") u.ordemEstagios = p.ordem_estagios;
   // avisos já lidos: a união dos dois lados, porque ler num aparelho nunca desfaz a leitura no outro
   if(Array.isArray(p.avisos_lidos)) u.avisosLidos = [...new Set([...(u.avisosLidos || []), ...p.avisos_lidos])];
+  // resumos lidos: a união, mas o que este aparelho já sabe de um resumo (lido ou desmarcado) vale mais
+  if(p.resumos_lidos && typeof p.resumos_lidos === "object" && !Array.isArray(p.resumos_lidos)) u.resumosLidos = Object.assign({}, p.resumos_lidos, u.resumosLidos || {});
   u.lembreteMetaAtivo = !!p.lembrete_meta_ativo;
   if(p.lembrete_meta_horario) u.lembreteMetaHorario = p.lembrete_meta_horario;
   if(!u.criadoEm) u.criadoEm = (p.criado_em || "").slice(0,10) || hojeISO();
@@ -424,6 +428,7 @@ function linhaDoPerfil(usuario){
     grupo_questoes_id: usuario.grupoQuestoesId || null,
     meta_questoes_dia: usuario.metaQuestoesDia || null,
     meta_cartoes_dia: usuario.metaCartoesDia || null,
+    meta_questoes_semana: usuario.metaQuestoesSemana || null,
     tamanho_sessao: usuario.tamanhoSessao || null,
     regua_formado: usuario.reguaFormado || null,
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
@@ -434,6 +439,7 @@ function linhaDoPerfil(usuario){
     trilha: linhaDaTrilhaDoPerfil(usuario),
     ordem_estagios: usuario.ordemEstagios || {},
     avisos_lidos: usuario.avisosLidos || [],
+    resumos_lidos: usuario.resumosLidos || {},
   };
 }
 function nuvemConferirPerfil(){

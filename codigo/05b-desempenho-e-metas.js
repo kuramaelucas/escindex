@@ -466,9 +466,8 @@ function gerarNotificacoes(usuario){
     const bloco = getBlocoAtual(usuario);
     const simsRecomendados = (bloco && !contaTesteAtiva()) ? db.simulados.filter(s=>s.recomendadoParaBlocos && s.recomendadoParaBlocos.includes(bloco.id) && !db.resultadosSimulados.some(r=>r.usuarioId===usuario.id && r.simuladoId===s.id)) : [];
     if(simsRecomendados.length) notifs.push({icon:"clipboard", texto:simsRecomendados.length+" "+flexionar(simsRecomendados.length, "simulado(s) novo(s) recomendado(s)")+" para o seu bloco.", rota:"simulados", aba:"simulados"});
-    const meta = metaDoUsuario(usuario);
-    const hoje = questoesRespondidasHoje(usuario.id);
-    if(hoje < meta) notifs.push({icon:"target", texto:"Faltam "+(meta-hoje)+" "+flexionar((meta-hoje), "questão(ões)")+" para bater sua meta de hoje.", rota:"estudar"});
+    const progMeta = progressoDaMeta(usuario);
+    if(!progMeta.batida) notifs.push({icon:"target", texto:textoDoProgressoDaMeta(progMeta), rota:"estudar"});
     const metaCards = metaCartoesDoUsuario(usuario);
     const cardsHoje = cartoesRevisadosHoje(usuario.id);
     if(cardsHoje < metaCards) notifs.push({icon:"cards", texto:"Faltam "+(metaCards-cardsHoje)+" "+flexionar((metaCards-cardsHoje), "cartão(ões)")+" para bater sua meta de flashcards.", rota:"flashcards"});
@@ -542,6 +541,41 @@ function questoesRespondidasHoje(usuarioId){ return db.respostas.filter(r=>r.usu
    dia costuma preferir duas sessões de 20 — e quem estuda de uma vez, a meta inteira. */
 function tamanhoDaSessaoDoUsuario(usuario){ return (usuario && usuario.tamanhoSessao) || CONFIG.tamanhoSessaoPadrao; }
 function metaDoUsuario(usuario){ return (usuario && usuario.metaQuestoesDia) || (db.configGeral && db.configGeral.metaRecomendadaQuestoesDia) || CONFIG.metaRecomendadaQuestoesDia; }
+/* META SEMANAL. Quem não estuda os 7 dias (plantão, fim de semana livre) não
+   pode aparecer "atrasado" num dia de folga. Com u.metaQuestoesSemana a meta
+   passa a ser da semana (segunda a domingo): a pessoa está EM DIA quando já fez
+   a parte proporcional aos dias que passaram — com 140 na semana, quinta-feira
+   (4º dia) pede 80. Um dia sem estudar só pesa se as outras não cobriram.
+   Sem o campo, vale a meta diária de sempre. */
+const DIAS_DE_ESTUDO_NA_META_SEMANAL = 5;   // sugestão inicial: a meta diária em 5 dias da semana
+function inicioDaSemanaISO(iso){
+  const d = new Date((iso || hojeISO()) + "T12:00:00");
+  return somarDias(iso || hojeISO(), -((d.getDay() + 6) % 7));
+}
+function metaSemanalSugerida(usuario){ return metaDoUsuario(usuario) * DIAS_DE_ESTUDO_NA_META_SEMANAL; }
+function questoesRespondidasNaSemana(usuarioId){
+  const ini = inicioDaSemanaISO(), hoje = hojeISO();
+  return db.respostas.filter(r => r.usuarioId===usuarioId && r.data >= ini && r.data <= hoje).length;
+}
+/* O retrato da meta do dia, diária ou semanal: o que as telas, o aviso e a sessão leem. */
+function progressoDaMeta(usuario){
+  const semanal = !!(usuario && usuario.metaQuestoesSemana);
+  if(!semanal){
+    const alvo = metaDoUsuario(usuario), feitas = questoesRespondidasHoje(usuario.id);
+    return { semanal, alvo, feitas, esperado: alvo, faltam: Math.max(0, alvo - feitas), batida: feitas >= alvo, faltamNaSemana: 0 };
+  }
+  const alvo = usuario.metaQuestoesSemana, feitas = questoesRespondidasNaSemana(usuario.id);
+  const dia = diasEntre(inicioDaSemanaISO(), hojeISO()) + 1;          // 1 = segunda … 7 = domingo
+  const esperado = Math.min(alvo, Math.ceil(alvo * dia / 7));
+  return { semanal, alvo, feitas, esperado, dia, faltam: Math.max(0, esperado - feitas), batida: feitas >= esperado, faltamNaSemana: Math.max(0, alvo - feitas) };
+}
+/* O texto curto do progresso, igual em todas as telas. */
+function textoDoProgressoDaMeta(m){
+  if(!m.semanal) return m.batida ? "Meta de hoje batida." : `Faltam ${m.faltam} ${plural(m.faltam,"questão","questões")} para a meta de hoje.`;
+  if(m.feitas >= m.alvo) return "Meta da semana batida.";
+  return m.batida ? `Você está em dia com a meta da semana (${m.feitas} de ${m.alvo}); faltam ${m.faltamNaSemana} até domingo.`
+                  : `Faltam ${m.faltam} ${plural(m.faltam,"questão","questões")} para ficar em dia com a meta da semana (${m.feitas} de ${m.alvo}).`;
+}
 
 /* ---------- sessão pelo tempo que a pessoa tem --------------------------------
    "Tenho 30 minutos": quantas questões cabem depende do ritmo DELA, não de um
@@ -697,7 +731,7 @@ function checarLembreteMetaDiaria(){
   const hhmm = String(agora.getHours()).padStart(2,"0")+":"+String(agora.getMinutes()).padStart(2,"0");
   if(hhmm < horario) return;
   if(u.lembreteMetaUltimoEnvio === hojeISO()) return; // já avisou (ou já bateu a meta) hoje
-  const faltamQ = Math.max(metaDoUsuario(u) - questoesRespondidasHoje(u.id), 0);
+  const faltamQ = progressoDaMeta(u).faltam;
   const faltamC = Math.max(metaCartoesDoUsuario(u) - cartoesRevisadosHoje(u.id), 0);
   u.lembreteMetaUltimoEnvio = hojeISO();
   saveState();
