@@ -48,4 +48,5 @@
   { id: "sangramentos-na-gestacao", titulo: "Sangramentos na gestação e hemorragia pós-parto", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-sangramentos" },
   { id: "diabetes-gestacional", titulo: "Diabetes na gestação", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-dmg" },
   { id: "puerperio", titulo: "Puerpério", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-puerperio" },
+  { id: "parto-pretermo-e-rotura", titulo: "Parto pré-termo e rotura prematura de membranas", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-partopretermo" },
 ];
