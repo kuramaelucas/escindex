@@ -10,7 +10,7 @@
   criadoEm: "2026-11-19",
   fontes: [
     { id: "idsa-pele", texto: "IDSA — Practice guidelines for the diagnosis and management of skin and soft tissue infections (2014)", lidoEm: null },
-    { id: "pcdt-hanseniase", texto: "Ministério da Saúde — PCDT de Hanseníase (2022) e Guia prático sobre a hanseníase", lidoEm: null },
+    { id: "pcdt-hanseniase", texto: "Ministério da Saúde — PCDT de Hanseníase (Portaria SCTIE/MS nº 67/2022, gov.br/conitec) e Guia prático sobre a hanseníase", lidoEm: "2026-11-19" },
     { id: "ms-leishmaniose", texto: "Ministério da Saúde — Manual de vigilância da leishmaniose tegumentar (2017)", lidoEm: null },
     { id: "consenso-pcm", texto: "II Consenso Brasileiro de Paracoccidioidomicose (2017)", lidoEm: null },
     { id: "ms-escabiose", texto: "Ministério da Saúde/SBD — orientações de tratamento da escabiose e da larva migrans", lidoEm: null },
@@ -137,7 +137,7 @@ Veja também: **Doenças exantemáticas na infância** (varicela, escarlatina), 
       id: "hanseniase", titulo: "Hanseníase",
       introducao: `[[O *Mycobacterium leprae* tem tropismo por nervo periférico e pele fria: lesões com perda de sensibilidade térmica, dolorosa e tátil e espessamento de nervos (ulnar, fibular). Mais de 5 lesões ou nervo acometido classificam como multibacilar.|q-adap23-018]] [[As reações são inflamação imune durante o tratamento: a tipo 1 (celular) inflama lesões e nervos antigos; a tipo 2 (eritema nodoso hansênico, imunocomplexos) é do multibacilar, com nódulos dolorosos, febre e mal-estar, e não é falha nem efeito colateral.|q-tp20231-002]]`,
       fragmentos: [
-        { id: "han-tratamento", titulo: "Classificação, tratamento e reações", conferir: true, diretrizes: ["pcdt-hanseniase"],
+        { id: "han-tratamento", titulo: "Classificação, tratamento e reações", conferir: false, diretrizes: ["pcdt-hanseniase"],
           questoes: ["q-adap23-018","q-tp20231-002"],
           prosa: `[[Desde 2021, o PCDT usa a poliquimioterapia única (rifampicina, dapsona e clofazimina) para todos: 6 doses no paucibacilar e 12 no multibacilar.|q-adap23-018]]`,
           texto: `- Multibacilar: **rifampicina, dapsona e clofazimina, 12 doses**. {q-adap23-018}
