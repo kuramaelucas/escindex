@@ -20,11 +20,12 @@
 <text x="464" y="104" font-weight="700">Discordância</text>
 <text x="464" y="128">• sífilis muito recente, latente antiga</text>
 <text x="464" y="148">  ou já tratada (cicatriz)</text>
-<text x="464" y="168">• fazer 2º treponêmico de outro método</text>
+<text x="464" y="168">• 3º teste: treponêmico de outro método</text>
 <rect x="160" y="188" width="290" height="110" fill="#fdf3e0" stroke="#b07a1e"/>
-<text x="174" y="214" font-weight="700">Provável falso-positivo</text>
-<text x="174" y="238">• gestação, autoimune, outras infecções</text>
-<text x="174" y="258">• o treponêmico decide</text>
+<text x="174" y="214" font-weight="700">Discordância</text>
+<text x="174" y="238">• 3º teste: treponêmico de outro método</text>
+<text x="174" y="258">• reagente: sífilis ou cicatriz</text>
+<text x="174" y="278">• não reagente: falso-reagente</text>
 <rect x="450" y="188" width="290" height="110" fill="#e6f4ec" stroke="#2f8a57"/>
 <text x="464" y="214" font-weight="700">Sem sífilis</text>
 <text x="464" y="238">• repetir se a exposição foi há</text>

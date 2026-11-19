@@ -9,7 +9,7 @@
   assunto: "ass-ist",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "pcdt-ist", texto: "Ministério da Saúde — Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (PCDT-IST), 2022", lidoEm: null },
+    { id: "pcdt-ist", texto: "Ministério da Saúde — Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (PCDT-IST), 2022", lidoEm: "2026-11-19" },
     { id: "pcdt-tv", texto: "Ministério da Saúde — PCDT para Prevenção da Transmissão Vertical de HIV, Sífilis e Hepatites Virais, 2022", lidoEm: null },
     { id: "cdc-ist", texto: "CDC — Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR 2021;70(RR-4))", lidoEm: null },
     { id: "acog-herpes", texto: "ACOG — Management of Genital Herpes in Pregnancy (Practice Bulletin 220, 2020)", lidoEm: null },
@@ -30,7 +30,7 @@
 
 Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis, completo lá) e **Maus-tratos** (violência sexual na criança).`,
       fragmentos: [
-        { id: "abo-sindromes", titulo: "Abordagem sindrômica e o que oferecer na consulta", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "abo-sindromes", titulo: "Abordagem sindrômica e o que oferecer na consulta", diretrizes: ["pcdt-ist"],
           questoes: ["q-unifesp2023-031","q-sirio2026-095","q-sirio2022-073","q-sirio2023-074"],
           texto: `- Úlcera, corrimento e verruga anogenital: **consulta imediata**, não agendada. {q-unifesp2023-031}
 - Corrimento uretral: **tratamento sindrômico na hora**, testagem para HIV, sífilis e hepatites, prevenção e convocação das parcerias. {q-sirio2026-095}
@@ -56,10 +56,10 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Secundária é **muito transmissível** (inclusive por sexo oral). {q-usp2025-120}
 - Confirmação na secundária: **teste rápido e VDRL reagentes**. {q-sirio2025-017}
 - Exantema com palmas e plantas semanas após uretrite tratada: **sífilis secundária**, benzatina dose única. {q-scmsp2025-014}` },
-        { id: "sif-testes", titulo: "Testes treponêmicos e não treponêmicos", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "sif-testes", titulo: "Testes treponêmicos e não treponêmicos", diretrizes: ["pcdt-ist"],
           figuras: [{ arquivo: "figuras/testes-sifilis.svg", legenda: "Esquema autoral: como ler a combinação de teste treponêmico e não treponêmico." }],
           questoes: ["q-scmsp2021-011","q-amrigs2022-013","q-fmabc2023-014","q-sirio2022-076","q-unesp2025-100","q-usprp2025-042","q-sirio2025-061","q-unicampdis2024-039","q-unesp2021-022","q-famema2021-021","q-scmsp2022-055"],
-          prosa: `[[Teste treponêmico positivo com não treponêmico negativo é discordância: pode ser sífilis muito recente, sífilis tratada (cicatriz) ou latente antiga com VDRL negativado, e se resolve com um segundo teste treponêmico de método diferente.|q-usprp2025-042,q-sirio2025-061,q-unicampdis2024-039]] [[Não treponêmico positivo com treponêmico negativo, ao contrário, sugere falso-positivo (gestação, doença autoimune, outras infecções), e o treponêmico decide.|q-scmsp2022-055,q-sirio2022-076]] Os dois negativos afastam sífilis, salvo exposição de poucas semanas (janela), quando se repete o teste. Atenção ao enunciado: algumas bancas chamam essa última combinação de "cicatriz", o que o protocolo atribui à discordância oposta.`,
+          prosa: `[[Teste treponêmico positivo com não treponêmico negativo é discordância: pode ser sífilis muito recente, sífilis tratada (cicatriz) ou latente antiga com VDRL negativado, e se resolve com um novo teste treponêmico de método diferente (o terceiro teste do fluxograma).|q-usprp2025-042,q-sirio2025-061,q-unicampdis2024-039]] [[Não treponêmico positivo com treponêmico negativo também é discordância: o PCDT pede um terceiro teste treponêmico de outro método; reagente, é sífilis ou cicatriz sorológica; não reagente, o primeiro era falso-reagente (gestação, doença autoimune, outras infecções).|q-scmsp2022-055,q-sirio2022-076]] Os dois negativos afastam sífilis, salvo exposição de poucas semanas (janela), quando se repete o teste. **Cicatriz sorológica**, pelo PCDT, é a persistência de teste reagente (treponêmico, ou não treponêmico em título baixo) depois de tratamento adequado documentado, com queda de pelo menos duas diluições.`,
           texto: `- Teste rápido é **treponêmico** (a afirmativa que o chama de não treponêmico é a incorreta). {q-scmsp2021-011}
 - VDRL em título baixo **não confirma** sozinho; treponêmico **não serve para seguimento**. {q-amrigs2022-013}
 - Sífilis latente: diagnóstico **só por testes imunológicos**. {q-fmabc2023-014}
@@ -67,7 +67,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Treponêmico + e VDRL −: **outro treponêmico** de método diferente; sem tratamento prévio, na gestante, **tratar como duração ignorada**. {q-usprp2025-042,q-sirio2025-061,q-unicampdis2024-039}
 - Parceiro com VDRL + e treponêmico +: **sífilis presumida**, tratar. {q-unesp2021-022}
 - VDRL + em gestante com lúpus: **teste treponêmico** antes de tratar; testar o parceiro. {q-scmsp2022-055}` },
-        { id: "sif-tratamento", titulo: "Tratamento por estágio e reação de Jarisch-Herxheimer", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "sif-tratamento", titulo: "Tratamento por estágio e reação de Jarisch-Herxheimer", diretrizes: ["pcdt-ist"],
           questoes: ["q-famema2023-037","q-tp20212-114","q-einstein2023-012","q-unifesp2022-036","q-usprp2026-036","q-famerp2023-019","q-unesp2025-029","q-scmsp2021-012-ia","q-scmsp2023-086-ia","q-sirio2025-018","q-iamspe2022-057"],
           prosa: `| Estágio | Penicilina benzatina | Seguimento |
 |---|---|---|
@@ -105,7 +105,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
           questoes: ["q-inf-21","q-uspsp2-033","q-unicampdis2025-006","q-scmsp2022-088","q-uspsp4-096","q-uspsp1-070","q-unicamp2023-015","q-unicampdis2024-068","q-uspsp5-005"],
           prosa: `[[Resposta adequada fora da gestação é a queda de pelo menos duas diluições (quatro vezes) do VDRL em até 6 meses na sífilis recente e em até 12 meses na tardia; depois o título pode estabilizar baixo (cicatriz sorológica).|q-inf-21,q-uspsp2-033,q-unicampdis2025-006]] [[Subida de duas diluições, ou ausência de queda no prazo, é falha ou reinfecção: retrata-se e, na falha sem nova exposição (sobretudo com HIV), investiga-se neurossífilis com líquor.|q-uspsp1-070,q-unicamp2023-015,q-unicampdis2024-068]] [[Sintoma ocular (uveíte) ou auditivo na sífilis é neurossífilis para fins de tratamento: penicilina cristalina venosa.|q-uspsp5-005]]
 
-**As provas divergem no critério da gestante.** Uma banca considera adequada a queda de uma diluição em 3 meses (1:32 → 1:16), dentro do prazo de 6 meses; outra, seguindo o PCDT de transmissão vertical, exige duas diluições em 3 meses e chama a mesma queda de inadequada. O resumo mantém os dois gabaritos; ler o PCDT vigente.`,
+**Por que as provas divergem.** O PCDT de IST (2022) registra o critério tradicional (queda de duas diluições em até 3 meses e de quatro em até 6) e adota o atual (duas diluições em até 6 meses na sífilis recente e em até 12 na tardia). Uma banca aplicou o atual e achou adequada a queda de uma diluição em 3 meses; outra, na gestante, aplicou o tradicional e a achou inadequada.`,
           texto: `- Resposta adequada: **queda de 2 diluições** em **6 meses (recente) ou 12 meses (tardia)**. {q-inf-21,q-uspsp2-033}
 - VDRL 1:128 → 1:8 em um ano, sem nova exposição: **cicatriz sorológica**, sem retratar. {q-unicampdis2025-006}
 - Título que **sobe** após tratamento adequado: **reinfecção**, retratar. {q-uspsp1-070}
@@ -163,7 +163,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
         { id: "ure-tratamento", titulo: "Tratamento da uretrite e da cervicite", conferir: true, diretrizes: ["pcdt-ist","cdc-ist"],
           casos: ["q-unesp2021-035"],
           questoes: ["q-adap22-056","q-usp2026-110","q-iamspe2025-013","q-tp20251-009","q-sirio2026-095","q-uspsp5-088","q-fmabc2026-002","q-einstein2022-003","q-sirio2021-065-ia","q-unesp2021-035","q-unesp2022-038","q-simepm89-036","q-sirio2023-070","q-sirio2024-077","q-fmabc2025-065","q-fmabc2026-078","q-einstein2022-049"],
-          prosa: `[[A ciprofloxacina saiu do tratamento do gonococo pela resistência; o esquema do protocolo brasileiro de 2022 é ceftriaxona 500 mg IM com azitromicina 1 g VO, ambas em dose única, e o tratamento da parceria.|q-adap22-056,q-usp2026-110,q-sirio2021-065-ia]] **As provas divergem no segundo antibiótico:** o CDC (2021) troca a azitromicina por doxiciclina 100 mg 12/12 h por 7 dias, que cura melhor a clamídia, e um gabarito recente já segue esse esquema.`,
+          prosa: `[[A ciprofloxacina saiu do tratamento do gonococo pela resistência; o esquema do protocolo brasileiro de 2022 é ceftriaxona 500 mg IM com azitromicina 1 g VO, ambas em dose única, e o tratamento da parceria.|q-adap22-056,q-usp2026-110,q-sirio2021-065-ia]] Na uretrite sem agente definido, o próprio PCDT dá como segunda opção a doxiciclina 100 mg 12/12 h por 7 dias no lugar da azitromicina; é o esquema preferido do CDC (2021), porque cura melhor a clamídia.`,
           texto: `- Diplococos **Gram-negativos intracelulares**: gonococo. {q-adap22-056,q-sirio2021-065-ia}
 - Uretrite ou cervicite sem exame: **ceftriaxona 500 mg IM + azitromicina 1 g VO**, dose única, e tratar a parceria. {q-adap22-056,q-usp2026-110,q-tp20251-009,q-fmabc2026-002,q-einstein2022-003,q-sirio2024-077,q-fmabc2025-065,q-einstein2022-049,q-sirio2021-065-ia}
 - Diagnóstico do gonococo e da clamídia: **PCR (NAAT)**; tratamento com **ceftriaxona**. {q-iamspe2025-013}
@@ -224,7 +224,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Não é IST, mas **aumenta o risco** de IST e HIV. {q-uspsp5-085,q-fmabc2023-073}
 - *Gardnerella* na citologia, sem sintoma: **não tratar**. {q-tp20251-099}
 - Recorrente: **metronidazol oral + gel vaginal por 4 a 6 meses**. {q-tp20261-065}` },
-        { id: "cor-candida", titulo: "Candidíase", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "cor-candida", titulo: "Candidíase", diretrizes: ["pcdt-ist"],
           casos: ["q-tp20202-089"],
           questoes: ["q-iamspe2022-056","q-tp20241-098","q-usprp2026-080","q-tp20202-089","q-tp20251-100","q-tp20232-099","q-scmsp2025-078"],
           texto: `- Fatores: **antibiótico, diabetes, gestação**. {q-iamspe2022-056}
@@ -276,14 +276,14 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
       fragmentos: [
         { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
           questoes: ["q-sirio2022-076", "q-famerp2023-019", "q-adap24-041", "q-tp20252-097", "q-scmsp2022-088", "q-uspsp4-096", "q-adap22-036", "q-iamspe2021-058", "q-usprp2021-065", "q-uspsp5-088", "q-simepm89-036", "q-sirio2023-070", "q-iamspe2025-057", "q-einstein2023-048", "q-tp20232-099"],
-          texto: `- **Cicatriz sorológica** é treponêmico **positivo** com VDRL negativo ou baixo e estável após tratamento; não treponêmico positivo com treponêmico negativo é **falso-positivo provável**. Uma banca inverteu e deu "cicatriz" como certo. {q-sirio2022-076}
+          texto: `- Não treponêmico + com treponêmico −: **terceiro treponêmico** de outro método; reagente = sífilis **ou cicatriz**, não reagente = falso-reagente. A banca que deu "pode ser cicatriz" segue esse fluxograma do PCDT 2022. {q-sirio2022-076}
 - Parceria assintomática com VDRL +: estágio depende do tempo de infecção; sem como datar, seriam **3 doses**; um gabarito dá **dose única** por considerar exposição recente. {q-famerp2023-019}
 - Gestante já tratada com nova exposição: subida de título ou parceria nova sem proteção é **reinfecção** e se retrata (dose única se recente); duas bancas aplicaram isso com VDRL 1:16 e com VDRL 1:1. {q-adap24-041,q-tp20252-097}
 - Queda de **uma** diluição em 3 meses: uma banca chama de **seguimento adequado** (prazo de 6 meses)… {q-scmsp2022-088}
 - …e outra, seguindo o PCDT de transmissão vertical, chama a mesma queda de **inadequada** (2 diluições em 3 meses). {q-uspsp4-096}
 - Herpes na gestação: **cesárea só com lesão ativa ou pródromo no parto**; com primoinfecção no 3º trimestre, uma banca (ACOG) já **programa a cesárea**. {q-adap22-036,q-iamspe2021-058}
 - Úlcera **> 4 semanas**: cobrir **donovanose e LGV** e biopsiar; o esquema do gabarito é doxiciclina + penicilina + ciprofloxacino. {q-usprp2021-065}
-- Uretrite: PCDT 2022 usa **ceftriaxona + azitromicina**; o CDC 2021 usa **ceftriaxona + doxiciclina 7 dias**, e um gabarito recente segue o CDC. {q-uspsp5-088}
+- Uretrite sem agente identificado (PCDT 2022): 1ª opção **ceftriaxona + azitromicina**; 2ª opção **ceftriaxona + doxiciclina 7 dias**, que é também o esquema do CDC 2021 cobrado num gabarito recente. {q-uspsp5-088}
 - Clamídia confirmada: **doxiciclina 100 mg 12/12 h por 7 dias**; o diagnóstico é por **biologia molecular** (um gabarito cita captura híbrida). {q-simepm89-036,q-sirio2023-070}
 - Dor pélvica e febre após a menstruação é **DIP** até prova em contrário (ceftriaxona 500 mg + doxiciclina + metronidazol); um gabarito chama de endometrite e usa ceftriaxona 250 mg (dose antiga). {q-iamspe2025-057}
 - Vaginose **assintomática** não se trata (exceto antes de procedimento ginecológico); uma banca deu tratar como certo. {q-einstein2023-048}
