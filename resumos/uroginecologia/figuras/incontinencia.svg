@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="250" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Esforço × urgência</text>
+<g stroke-width="1.5"><rect x="15" y="45" width="355" height="190" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/><rect x="390" y="45" width="355" height="190" rx="8" fill="#fdf6e3" stroke="#a87b00"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="192" y="72" font-weight="bold">Incontinência de esforço</text>
+<text x="192" y="100">perde ao tossir, espirrar, correr</text>
+<text x="192" y="125">mecanismo: suporte da uretra fraco</text><text x="192" y="143">ou esfíncter fraco</text>
+<text x="192" y="175">1º fisioterapia do assoalho (≥ 3 meses)</text><text x="192" y="198">2º sling de uretra média</text><text x="192" y="216">(apoio suburetral)</text>
+<text x="567" y="72" font-weight="bold">Bexiga hiperativa</text>
+<text x="567" y="100">urgência, frequência, noctúria</text>
+<text x="567" y="125">mecanismo: detrusor contrai</text><text x="567" y="143">fora de hora</text>
+<text x="567" y="175">1º treino vesical, menos cafeína</text><text x="567" y="198">2º antimuscarínico ou mirabegrona</text><text x="567" y="216">(na idosa, mirabegrona)</text>
+</g></svg>

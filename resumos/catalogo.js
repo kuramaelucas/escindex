@@ -44,4 +44,5 @@
   { id: "cancer-de-mama", titulo: "Câncer de mama", area: "Ginecologia e Obstetrícia · Mastologia", assunto: "ass-camama" },
   { id: "hipertensao-na-gestacao", titulo: "Síndromes hipertensivas da gestação", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-dheg" },
   { id: "climaterio", titulo: "Climatério e menopausa", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-climaterio" },
+  { id: "uroginecologia", titulo: "Incontinência urinária e prolapso genital", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-uroginecologia" },
 ];
