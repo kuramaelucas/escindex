@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="300" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Categorias da OMS para o contraceptivo combinado</text>
+<g stroke-width="1.5">
+<rect x="15" y="45" width="175" height="235" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<rect x="200" y="45" width="175" height="235" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="385" y="45" width="175" height="235" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="570" y="45" width="175" height="235" rx="8" fill="#fdf1ec" stroke="#b5533c"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="102" y="70" font-weight="bold">1 · sem restrição</text>
+<text x="287" y="70" font-weight="bold">2 · vantagem maior</text>
+<text x="472" y="70" font-weight="bold">3 · risco maior</text>
+<text x="657" y="70" font-weight="bold">4 · inaceitável</text>
+<text x="102" y="105">depressão</text><text x="102" y="127">hiperplasia</text><text x="102" y="145">nodular focal</text>
+<text x="287" y="105">história familiar</text><text x="287" y="123">de trombose</text><text x="287" y="150">continuar após</text><text x="287" y="168">hepatite aguda</text>
+<text x="472" y="105">hipertensão</text><text x="472" y="123">controlada</text><text x="472" y="150">tabaco ≥ 35 anos</text><text x="472" y="168">(&lt; 15 cigarros)</text><text x="472" y="195">anticonvulsivante</text><text x="472" y="213">indutor, lamotrigina</text>
+<text x="657" y="105">enxaqueca com aura</text><text x="657" y="130">trombose prévia</text><text x="657" y="155">lúpus com</text><text x="657" y="173">antifosfolípide</text><text x="657" y="198">tabaco ≥ 35 anos</text><text x="657" y="216">(≥ 15 cigarros)</text><text x="657" y="241">pós-parto &lt; 21 dias</text>
+</g></svg>

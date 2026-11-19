@@ -39,4 +39,5 @@
   { id: "trabalho-de-parto", titulo: "Trabalho de parto e parto", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-trabalhoparto" },
   { id: "pre-natal", titulo: "Pré-natal", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-prenatal" },
   { id: "ciclo-menstrual", titulo: "Ciclo menstrual, amenorreia, SOP e sangramento uterino anormal", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-ciclomenstrual" },
+  { id: "contracepcao", titulo: "Contracepção", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-contracepcao" },
 ];

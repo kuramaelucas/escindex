@@ -136,3 +136,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `trabalho-de-parto` | `ass-trabalhoparto` | 188 | 5 (anuladas sem reposição) |
 | `pre-natal` | `ass-prenatal` | 157 | 5 (3 anuladas, 2 com reposição no resumo; 2 de infecção puerperal, que vão para `puerperio`) |
 | `ciclo-menstrual` | `ass-ciclomenstrual` | 110 | 2 (anuladas sem reposição) |
+| `contracepcao` | `ass-contracepcao` | 107 | 4 (3 anuladas e 1 desatualizada; 2 com reposição no resumo) |
