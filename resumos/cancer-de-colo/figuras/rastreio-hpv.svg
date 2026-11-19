@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="320" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Rastreamento com DNA-HPV (25 a 64 anos)</text>
+<g stroke-width="1.5">
+<rect x="280" y="40" width="200" height="40" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="20" y="120" width="200" height="56" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<rect x="280" y="120" width="200" height="56" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="540" y="120" width="200" height="56" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="420" y="230" width="150" height="56" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="590" y="230" width="150" height="56" rx="8" fill="#eef6ee" stroke="#2e7d32"/></g>
+<g stroke="#666" stroke-width="1.5" fill="none"><path d="M380 80 V100 H120 V118"/><path d="M380 100 V118"/><path d="M380 100 H640 V118"/><path d="M640 176 V205 H495 V228"/><path d="M640 205 H665 V228"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="380" y="65" font-weight="bold">Teste de DNA-HPV</text>
+<text x="120" y="143" font-weight="bold">Negativo</text><text x="120" y="163">repetir em 5 anos</text>
+<text x="380" y="143" font-weight="bold">HPV 16 ou 18</text><text x="380" y="163">colposcopia</text>
+<text x="640" y="143" font-weight="bold">Outros oncogênicos</text><text x="640" y="163">citologia reflexa</text>
+<text x="495" y="253" font-weight="bold">Alterada</text><text x="495" y="273">colposcopia</text>
+<text x="665" y="253" font-weight="bold">Normal</text><text x="665" y="273">novo HPV em 1 ano</text>
+</g></svg>

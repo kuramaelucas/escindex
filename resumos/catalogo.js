@@ -40,4 +40,5 @@
   { id: "pre-natal", titulo: "Pré-natal", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-prenatal" },
   { id: "ciclo-menstrual", titulo: "Ciclo menstrual, amenorreia, SOP e sangramento uterino anormal", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-ciclomenstrual" },
   { id: "contracepcao", titulo: "Contracepção", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-contracepcao" },
+  { id: "cancer-de-colo", titulo: "Câncer do colo do útero e lesões precursoras", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-cacolo" },
 ];
