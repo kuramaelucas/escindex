@@ -29,5 +29,11 @@
   { id: "glomerulopatias", titulo: "Síndromes glomerulares", area: "Clínica Médica · Nefrologia", assunto: "ass-nefro-glomerulopatias" },
   { id: "tuberculose", titulo: "Tuberculose", area: "Clínica Médica · Infectologia", assunto: "ass-tuberculose" },
   { id: "asma", titulo: "Asma e rinite alérgica", area: "Clínica Médica · Pneumologia", assunto: "ass-asma" },
+  { id: "arritmias", titulo: "ECG, arritmias e síncope", area: "Clínica Médica · Cardiologia", assunto: "ass-arritmias" },
+  { id: "hidroeletrolitico", titulo: "Distúrbios hidroeletrolíticos e ácido-base", area: "Clínica Médica · Nefrologia", assunto: "ass-hidroeletrolitico" },
+  { id: "doenca-coronariana", titulo: "Síndromes coronarianas aguda e crônica", area: "Clínica Médica · Cardiologia", assunto: "ass-sca" },
+  { id: "infeccoes-de-pele", titulo: "Infecções e infestações da pele", area: "Clínica Médica · Dermatologia", assunto: "ass-derm-infeccoes" },
+  { id: "neoplasias-hematologicas", titulo: "Neoplasias hematológicas", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-neoplasias" },
+  { id: "intoxicacoes", titulo: "Intoxicações exógenas e animais peçonhentos", area: "Clínica Médica · Emergência", assunto: "ass-emerg-intoxicacoes" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

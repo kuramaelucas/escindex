@@ -11,9 +11,9 @@
   assunto: "ass-exantematicas",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "ms-guia-vigilancia", texto: "Ministério da Saúde — Guia de Vigilância em Saúde (sarampo, rubéola, varicela)", lidoEm: null },
+    { id: "ms-guia-vigilancia", texto: "Ministério da Saúde — Guia de Vigilância em Saúde, 6ª edição revisada (2024), volume 1: sarampo, rubéola, síndrome da rubéola congênita e varicela (gov.br)", lidoEm: "2026-11-19" },
     { id: "aha-kawasaki", texto: "American Heart Association — Diagnosis and Management of Kawasaki Disease (2024)", lidoEm: null },
-    { id: "calendario-vacinal", texto: "SBP / Calendário Nacional de Vacinação (PNI)", lidoEm: null },
+    { id: "calendario-vacinal", texto: "Ministério da Saúde — Instrução Normativa do Calendário Nacional de Vacinação 2026 (PNI, gov.br)", lidoEm: "2026-11-19" },
   ],
   foraDoEscopo: [
     { motivo: "Coqueluche: está no mesmo assunto da taxonomia, mas não é exantemática — está no resumo pneumonia-bronquiolite",
@@ -46,11 +46,11 @@ Veja também: **Infecções de vias aéreas superiores** (faringite e mononucleo
 
 Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**. Como o vírus infecta e destrói linfócitos de memória, a criança perde parte da proteção que já tinha contra outros agentes. [[Fica vulnerável por meses a pneumonias bacterianas, otites e diarreias.|q-einstein2021-021,q-tp20222-047]] A **deficiência de vitamina A**, comum em desnutridos e agravada pelo próprio sarampo, piora a integridade dos epitélios e a resposta imune. [[Isso explica por que a vitamina A reduz a mortalidade.|q-usprp2026-032,q-uspsp4-101,q-amrigs2025-014]]`,
       fragmentos: [
-        { id: "sar-agente", titulo: "Agente e transmissão", conferir: true,
+        { id: "sar-agente", titulo: "Agente e transmissão", diretrizes: ["ms-guia-vigilancia"],
           questoes: ["q-amrigs2025-014","q-simepm89-061"],
           texto: `- Vírus RNA do gênero **Morbillivirus** (família Paramyxoviridae). {q-amrigs2025-014}
 - Transmissão **respiratória por aerossol**: é das doenças mais contagiosas que existem. Pense em sarampo em quem volta de **área com surto** sem vacina comprovada. {q-simepm89-061}
-- Transmite de **4 dias antes a 4 dias depois do início do exantema**. {q-amrigs2025-014,q-simepm89-061}
+- Transmite de **6 dias antes até 4 dias depois do exantema**, com o pico entre **4 dias antes e 4 dias depois**. {q-amrigs2025-014,q-simepm89-061}
 - Quem elimina o vírus e leva à recuperação é a **resposta imune celular** do hospedeiro. Não há antiviral específico. {q-amrigs2025-014}` },
         { id: "sar-clinica", casos: ["q-usprp2026-032","q-uspsp4-101"], titulo: "Quadro clínico e Koplik",
           prosa: `Depois de 10 a 14 dias de incubação vem o **pródromo**. A febre sobe progressivamente e aparecem tosse seca, coriza e conjuntivite com fotofobia, que refletem a infecção dos epitélios respiratório e conjuntival. [[No fim do pródromo surgem as **manchas de Koplik** na mucosa jugal, que costumam desaparecer quando o exantema se estabelece.|q-iamspe2025-065,q-fmabc2026-089,q-famerp2023-027,q-sirio2022-053,q-unicampdis2025-026,q-famerp2026-009,q-famema2025-042]] O exantema começa na linha do cabelo e atrás das orelhas e desce ao longo de três dias. As lesões confluem nas áreas que apareceram primeiro. [[Ao contrário do exantema súbito, a febre atinge o pico **junto** com o exantema, porque é a fase de maior atividade imune contra o vírus.|q-famerp2023-027,q-famerp2022-014,q-famerp2026-009,q-sirio2022-053,q-fmabc2025-096]] O exantema evolui com **descamação furfurácea** (fina, "em farelo").`, conferir: true,
@@ -59,7 +59,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 - **Sinal de Koplik**: **pontos branco-azulados sobre halo vermelho na mucosa jugal, na altura dos (pré-)molares**. Aparece **antes do exantema** e é **patognomônico**. {q-iamspe2025-065,q-fmabc2026-089,q-famerp2023-027,q-sirio2022-053,q-unicampdis2025-026,q-famerp2026-009,q-famema2025-042}
 - **Exantema morbiliforme**, maculopapular e **confluente**, que começa **atrás das orelhas e na linha do cabelo** e desce em sentido **craniocaudal**. A **febre continua alta** quando o exantema surge. {q-famerp2023-027,q-famerp2022-014,q-famerp2026-009,q-sirio2022-053,q-fmabc2025-096}
 - Exantema morbiliforme quer dizer **manchas**, não **equimoses**. {q-fmabc2026-089}` },
-        { id: "sar-diag", diretrizes: ["ms-guia-vigilancia"], titulo: "Diagnóstico laboratorial", conferir: true,
+        { id: "sar-diag", diretrizes: ["ms-guia-vigilancia"], titulo: "Diagnóstico laboratorial",
           questoes: ["q-uspsp4-101","q-amrigs2025-014"],
           texto: `- **Sorologia IgM** (positiva a partir do exantema) e **RT-PCR** em **secreção nasofaríngea/orofaríngea e urina**. Colha as duas amostras na primeira consulta. {q-uspsp4-101}
 - A **IgM marca a infecção primária**: costuma **não aparecer na reexposição nem na revacinação**, quando sobe a IgG. {q-amrigs2025-014}` },
@@ -70,7 +70,7 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
 - Outras: **otite média aguda**, **diarreia**, laringotraqueobronquite e **encefalite aguda**. {q-einstein2021-021}
 - No **imunodeprimido**: **pneumonia de células gigantes** (de Hecht), muitas vezes sem exantema. {q-sirio2022-053}
 - Complicação tardia, anos depois: **panencefalite esclerosante subaguda (PEES)**. {q-einstein2021-021,q-tp20222-047,q-sirio2022-053}` },
-        { id: "sar-trat", diretrizes: ["ms-guia-vigilancia"], titulo: "Tratamento: suporte + vitamina A", conferir: true,
+        { id: "sar-trat", diretrizes: ["ms-guia-vigilancia"], titulo: "Tratamento: suporte + vitamina A",
           questoes: ["q-usprp2026-032","q-amrigs2025-014","q-uspsp4-101"],
           texto: `- O tratamento é **de suporte** (antitérmico, hidratação, nutrição). {q-amrigs2025-014}
 - Dê **vitamina A a todo caso suspeito**, em **2 doses** (dia 1 e dia 2), com dose conforme a idade. A vitamina A reduz complicações e mortalidade. {q-usprp2026-032,q-uspsp4-101,q-amrigs2025-014}
@@ -81,17 +81,17 @@ Há ainda um efeito que explica boa parte da mortalidade: a **"amnésia imune"**
           texto: `- **Notificação compulsória imediata, em até 24 h**, já na **suspeita**. Não espere a confirmação. {q-einstein2025-043,q-fmabc2026-089}
 - **Bloqueio vacinal seletivo** dos contatos suscetíveis em **até 72 h** da exposição. A vacina dada a tempo **pode prevenir** a doença. {q-famerp2026-009,q-famerp2022-014,q-famerp2023-027}
 - **Imunoglobulina humana em até 6 dias** para contatos que **não podem receber a vacina**: gestantes, menores de 6 meses e imunodeprimidos. {q-famerp2023-027}
-- Calendário: **tríplice viral aos 12 meses** e **segunda dose aos 15 meses** (tetra viral ou tríplice + varicela). São **duas doses**, não uma. {q-fmabc2026-089,q-famerp2023-027}
+- Calendário: **tríplice viral aos 12 meses** e **segunda dose aos 15 meses**, junto com a **varicela monovalente** (a tetraviral só quando falta a monovalente; IN 2026). São **duas doses**, não uma. {q-fmabc2026-089,q-famerp2023-027}
 - A **cobertura vacinal de 95% ou mais** garante a proteção da população. A queda da cobertura explica a volta dos casos depois da certificação de 2016. A medida que mais reduz a incidência é **aumentar a cobertura vacinal**. {q-famerp2023-027,q-iamspe2021-072}` },
       ],
     },
     {
       id: "rubeola", titulo: "Rubéola",
-      introducao: `A rubéola, na criança, é uma doença tão leve que muitas vezes passa despercebida. Sua importância vem quase toda da **gestação**. O vírus é transmitido por gotículas, incuba por 14 a 21 dias e é eliminado de 7 dias antes até 7 dias depois do exantema, inclusive por quem tem infecção subclínica. O Brasil eliminou a circulação endêmica e foi certificado em 2015. A vigilância é integrada à do sarampo, porque o exantema das duas doenças se confunde e a vacina é a mesma (tríplice viral).
+      introducao: `A rubéola, na criança, é uma doença tão leve que muitas vezes passa despercebida. Sua importância vem quase toda da **gestação**. O vírus é transmitido por gotículas, incuba por 12 a 23 dias e é eliminado de 7 dias antes até 7 dias depois do exantema, inclusive por quem tem infecção subclínica. O Brasil eliminou a circulação endêmica e foi certificado em 2015. A vigilância é integrada à do sarampo, porque o exantema das duas doenças se confunde e a vacina é a mesma (tríplice viral).
 
 **Por que é teratogênica.** Na gestante, o vírus atravessa a placenta e infecta tecidos embrionários em formação. Ali ele **inibe a divisão celular** e causa **dano vascular**. O risco e a gravidade dependem da idade gestacional: a infecção nas **primeiras 12 semanas** atinge a maioria dos fetos e é a que causa a síndrome completa. Depois de 20 semanas, os defeitos são raros. Os órgãos atingidos são os que estão em organogênese naquele momento: o cristalino (**catarata**), a cóclea (**surdez neurossensorial**, o achado mais frequente), o coração e o canal arterial (**persistência do canal arterial**, estenose pulmonar) e o sistema nervoso central (microcefalia, atraso).`,
       fragmentos: [
-        { id: "rub-tudo", diretrizes: ["ms-guia-vigilancia"], titulo: "Agente, quadro e forma congênita", conferir: true,
+        { id: "rub-tudo", diretrizes: ["ms-guia-vigilancia"], titulo: "Agente, quadro e forma congênita",
           questoes: ["q-famema2025-042"],
           prosa: `A rubéola é branda na criança e grave no feto: o vírus atravessa a placenta no primeiro trimestre e interrompe a divisão celular nos órgãos em formação (olho, ouvido, coração). Por isso a vigilância e a vacina miram a mulher em idade fértil.`,
           texto: `- Agente: **Rubivirus (vírus da rubéola)**, família Matonaviridae, antes classificada como Togaviridae. {q-famema2025-042}
@@ -189,12 +189,12 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
 
 A doença é mais grave em adolescentes, adultos, gestantes, recém-nascidos e imunodeprimidos, nos quais a pneumonia e a forma disseminada são mais comuns. Na criança, a complicação mais frequente é a **infecção bacteriana das lesões** coçadas. O **AAS é contraindicado**: o salicilato, junto com a infecção viral, causa a **síndrome de Reye**, com disfunção mitocondrial, insuficiência hepática e edema cerebral.`,
       fragmentos: [
-        { id: "var-tudo", diretrizes: ["ms-guia-vigilancia","calendario-vacinal"], figuras: [{ arquivo: "figuras/varicela-estagios.svg", legenda: "Esquema autoral: os quatro estágios da lesão, que coexistem no mesmo paciente." }], titulo: "Quadro e conduta com contatos", conferir: true,
+        { id: "var-tudo", diretrizes: ["ms-guia-vigilancia","calendario-vacinal"], figuras: [{ arquivo: "figuras/varicela-estagios.svg", legenda: "Esquema autoral: os quatro estágios da lesão, que coexistem no mesmo paciente." }], titulo: "Quadro e conduta com contatos",
           questoes: ["q-einstein2027-062"],
           texto: `- Agente: **vírus varicela-zóster**. As lesões são **pruriginosas** e aparecem **em diferentes estágios ao mesmo tempo** (mácula, pápula, vesícula e crosta). A distribuição é **centrípeta**, mais no tronco. {q-einstein2027-062}
 - A complicação mais comum é a **infecção bacteriana da pele** (estreptococo ou estafilococo). **Não use AAS**, pelo risco de **síndrome de Reye**. {q-einstein2027-062}
-- Contato suscetível e imunocompetente: **vacina contra varicela pós-exposição**, idealmente em **até 3 a 5 dias**. {q-einstein2027-062}
-- **Imunoglobulina específica (VZIG)** para quem não pode receber vacina: imunodeprimidos, gestantes suscetíveis e alguns recém-nascidos. {q-einstein2027-062}` },
+- Contato suscetível e imunocompetente a partir dos 9 meses: **vacina contra varicela pós-exposição** em **até 5 dias (120 horas)**. {q-einstein2027-062}
+- **Imunoglobulina específica (VZIG) em até 96 horas** para quem não pode receber vacina: imunodeprimidos, gestantes suscetíveis e alguns recém-nascidos. {q-einstein2027-062}` },
       ],
     },
     {
