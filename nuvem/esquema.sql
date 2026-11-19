@@ -1570,7 +1570,8 @@ returns table (
   cartoes_30d       bigint,
   ultimo_cartao     date,
   simulados         bigint,
-  trilha            jsonb
+  trilha            jsonb,
+  faculdade         text
 )
 language sql
 stable
@@ -1586,7 +1587,8 @@ as $$
     coalesce(r.dias_30d, 0), r.ultima,
     coalesce(c.total, 0), coalesce(c.total_30d, 0), c.ultimo,
     coalesce(s.n, 0),
-    p.trilha -> 'resumo'
+    p.trilha -> 'resumo',
+    p.faculdade
   from public.perfis p
   cross join hoje
   left join lateral (

@@ -62,7 +62,7 @@ const ANO_EQUIPE_PAINEL = "equipe"; // valor do filtro da aba "Equipe" (nenhum a
 function normalizarPessoaDaNuvem(l){
   return {
     id: l.usuario_id, nome: l.nome || "(sem nome)", email: l.email || "", papel: l.papel || "aluno",
-    ano: l.ano_faculdade || "(sem ano)", grupoId: l.grupo_id || null, status: l.status, criadoEm: (l.criado_em || "").slice(0,10),
+    ano: l.ano_faculdade || "(sem ano)", faculdade: l.faculdade || "", grupoId: l.grupo_id || null, status: l.status, criadoEm: (l.criado_em || "").slice(0,10),
     respostas: +l.respostas || 0, r7: +l.respostas_7d || 0, r30: +l.respostas_30d || 0,
     dias30: +l.dias_ativos_30d || 0, ultimaResposta: l.ultima_resposta || null,
     cartoes: +l.cartoes_total || 0, cartoes30: +l.cartoes_30d || 0, ultimoCartao: l.ultimo_cartao || null,
@@ -85,7 +85,7 @@ function painelTurmaLocal(){
     const rs = db.respostas.filter(r => r.usuarioId === u.id);
     const dias = (db.cartoesPorDia && db.cartoesPorDia[u.id]) || {};
     return {
-      id: u.id, nome: u.nome, email: u.email || "", papel: u.papel, ano: u.anoFaculdade || "(sem ano)", grupoId: u.grupoId || null,
+      id: u.id, nome: u.nome, email: u.email || "", papel: u.papel, ano: u.anoFaculdade || "(sem ano)", faculdade: u.faculdade || "", grupoId: u.grupoId || null,
       status: u.status, criadoEm: u.criadoEm || "",
       respostas: rs.length, r7: rs.filter(r => r.data > d7).length, r30: rs.filter(r => r.data > d30).length,
       dias30: new Set(rs.filter(r => r.data > d30).map(r => r.data)).size,
@@ -247,6 +247,7 @@ function renderPainelDaTurma(){
   const linhasTurmas = Object.values(chavesTurma).map(t => ({
     ano: t.ano, grupoId: t.grupoId, n: t.lista.length, ativos: t.lista.filter(a => a.r7 > 0).length, r30: soma(t.lista, "r30"),
     cartoes30: soma(t.lista, "cartoes30"), media: mediaDoPainel(dados.medias, t.ano, t.grupoId),
+    faculdades: [...new Set(t.lista.map(a => a.faculdade).filter(Boolean))].sort((x, y) => x.localeCompare(y, "pt-BR")),
   })).sort((x, y) => {
     const ia = CONFIG.anosFaculdade.indexOf(x.ano), ib = CONFIG.anosFaculdade.indexOf(y.ano);
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || (nomeDoGrupoPainel(x.grupoId) || "zzz").localeCompare(nomeDoGrupoPainel(y.grupoId) || "zzz", "pt-BR");
@@ -284,7 +285,7 @@ function renderPainelDaTurma(){
   lista.sort(ordens[f.ordem] || ordens.ultimo);
   // clicar no título de uma coluna vale por cima do seletor; o seletor fica de desempate
   lista = ordenarPorColuna(lista, "painel-turma", {
-    nome: a => a.nome, perfil: a => naEquipe ? rotuloPapelPainel(a.papel) : a.ano + " " + (nomeDoGrupoPainel(a.grupoId) || ""),
+    nome: a => a.nome, perfil: a => naEquipe ? rotuloPapelPainel(a.papel) : a.ano + " " + (a.faculdade || "") + " " + (nomeDoGrupoPainel(a.grupoId) || ""),
     ultimo: a => ultimoUso(a) || null, dias30: a => a.dias30, r30: a => a.r30, respostas: a => a.respostas,
     cartoes30: a => a.cartoes30, simulados: a => a.simulados || 0, condicao: a => a._al.condicao ? a._al.condicao.texto : "",
   });
@@ -333,7 +334,7 @@ function renderPainelDaTurma(){
     <div class="table-wrap mt-1"><table>
       <thead><tr><th>Turma</th><th>Alunos</th><th>Ativos (7 dias)</th><th>Questões/aluno (30 dias)</th><th>Acerto médio (30 dias)</th><th>Cartões (30 dias)</th></tr></thead>
       <tbody>${linhasTurmas.map(l => `<tr>
-        <td class="text-sm"><strong>${escapeHtml(nomeDoGrupoPainel(l.grupoId) || "Sem turma escolhida")}</strong>${f.ano==="todos" ? `<div class="text-xs muted">${escapeHtml(l.ano)}</div>` : ""}</td>
+        <td class="text-sm"><strong>${escapeHtml(nomeDoGrupoPainel(l.grupoId) || "Sem turma escolhida")}</strong>${f.ano==="todos" ? `<div class="text-xs muted">${escapeHtml(l.ano)}</div>` : ""}${l.faculdades.length ? `<div class="text-xs muted">${escapeHtml(l.faculdades.join(" · "))}</div>` : ""}</td>
         <td class="text-sm">${l.n}</td>
         <td class="text-sm">${l.ativos} <span class="text-xs muted">${l.n?pct(l.ativos,l.n)+"%":""}</span></td>
         <td class="text-sm">${l.n?Math.round(l.r30/l.n):0}</td>
@@ -383,7 +384,7 @@ function renderPainelDaTurma(){
         const al = a._al;
         return `<tr>
           <td class="text-sm"><strong>${escapeHtml(a.nome)}</strong><div class="text-xs muted">${escapeHtml(a.email)}${a.status && a.status!=="aprovado" ? " · "+escapeHtml(a.status) : ""}</div></td>
-          <td class="text-sm">${naEquipe ? escapeHtml(rotuloPapelPainel(a.papel)) : escapeHtml(a.ano)+(nomeDoGrupoPainel(a.grupoId)?`<div class="text-xs muted">${escapeHtml(nomeDoGrupoPainel(a.grupoId))}</div>`:"")}</td>
+          <td class="text-sm">${naEquipe ? escapeHtml(rotuloPapelPainel(a.papel)) : escapeHtml(a.ano)+(a.faculdade?`<div class="text-xs muted">${escapeHtml(a.faculdade)}</div>`:"")+(nomeDoGrupoPainel(a.grupoId)?`<div class="text-xs muted">${escapeHtml(nomeDoGrupoPainel(a.grupoId))}</div>`:"")}</td>
           <td class="text-sm">${al.ultima ? (al.parado===0 ? "hoje" : al.parado===1 ? "ontem" : "há "+al.parado+" dias") : '<span class="muted">nunca</span>'}</td>
           <td class="text-sm">${a.dias30}</td>
           <td class="text-sm">${a.r30}</td>
@@ -440,9 +441,9 @@ function exportarPainelTurmaCsv(){
   const lista = pd.dados.pessoas.filter(a => naEquipe ? !contaComoAluno(a) : (contaComoAluno(a) && (f.ano === "todos" || a.ano === f.ano)));
   const campo = v => { const t = v === null || v === undefined ? "" : String(v); return /[";\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
   // só uso: o acerto de cada pessoa não sai nem na planilha
-  const cab = ["nome","email","papel","ano","turma","status","ultima_atividade","dias_ativos_30d","questoes_30d","questoes_total","cartoes_30d","simulados","condicao"];
+  const cab = ["nome","email","papel","ano","faculdade","turma","status","ultima_atividade","dias_ativos_30d","questoes_30d","questoes_total","cartoes_30d","simulados","condicao"];
   const linhas = lista.map(a => { const al = contaComoAluno(a) ? alertasDoAluno(a) : { ultima: [a.ultimaResposta, a.ultimoCartao].filter(Boolean).sort().pop() || "", condicao: null };
-    return [a.nome, a.email, a.papel, a.ano, nomeDoGrupoPainel(a.grupoId), a.status, al.ultima || "", a.dias30, a.r30, a.respostas, a.cartoes30, a.simulados,
+    return [a.nome, a.email, a.papel, a.ano, a.faculdade, nomeDoGrupoPainel(a.grupoId), a.status, al.ultima || "", a.dias30, a.r30, a.respostas, a.cartoes30, a.simulados,
       al.condicao ? al.condicao.texto : ""].map(campo).join(";"); });
   // ";" e BOM: é o que o Excel em português abre sem assistente de importação
   baixarArquivo("painel-turma-" + (f.ano === "todos" ? "todos" : f.ano.replace(/[^0-9a-z]+/gi, "-")) + "-" + hojeISO() + ".csv",

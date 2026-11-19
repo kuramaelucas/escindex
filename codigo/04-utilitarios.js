@@ -116,6 +116,23 @@ function irParaPagina(chave, numero){
   if(topo < 70) window.scrollTo({top: Math.max(0, window.scrollY + topo - 70)});
 }
 /* Uma página só não precisa de controle nenhum: a barra some sozinha. */
+/* Números de página para ir direto a uma delas: primeira, última, a atual e
+   duas de cada lado, com "…" nos buracos. Em lista de centenas de alunos,
+   só "Anterior/Próxima" obrigava a clicar dezenas de vezes. */
+function numerosDePagina(p){
+  const mostrar = new Set([1, p.paginas]);
+  for(let i = p.pagina - 2; i <= p.pagina + 2; i++) if(i >= 1 && i <= p.paginas) mostrar.add(i);
+  const ordem = [...mostrar].sort((a, b) => a - b);
+  let html = "", antes = 0;
+  ordem.forEach(n => {
+    if(n - antes > 1) html += '<span class="muted" aria-hidden="true">…</span>';
+    html += n === p.pagina
+      ? `<button class="btn btn-primary btn-sm" aria-current="page" aria-label="Página ${n}, a atual" disabled>${n}</button>`
+      : `<button class="btn btn-secondary btn-sm" aria-label="Ir para a página ${n}" onclick="irParaPagina('${p.chave}',${n})">${n}</button>`;
+    antes = n;
+  });
+  return html;
+}
 function controlesPaginacao(p, rotulo){
   rotulo = flexionar(p.total, rotulo||"item(ns)");
   if(p.paginas<=1) return p.total ? `<div class="paginacao-resumo">${p.total} ${rotulo}</div>` : "";
@@ -123,7 +140,7 @@ function controlesPaginacao(p, rotulo){
     <div class="paginacao-resumo">Mostrando ${p.primeiro}–${p.ultimo} de ${p.total} ${rotulo}</div>
     <div class="flex gap-1 items-center">
       <button class="btn btn-secondary btn-sm" onclick="irParaPagina('${p.chave}',${p.pagina-1})" ${p.pagina<=1?"disabled":""}>Anterior</button>
-      <span class="text-sm nowrap">Página ${p.pagina} de ${p.paginas}</span>
+      <span class="flex gap-1 items-center quebra" role="group" aria-label="Páginas">${numerosDePagina(p)}</span>
       <button class="btn btn-secondary btn-sm" onclick="irParaPagina('${p.chave}',${p.pagina+1})" ${p.pagina>=p.paginas?"disabled":""}>Próxima</button>
     </div>
   </div>`;

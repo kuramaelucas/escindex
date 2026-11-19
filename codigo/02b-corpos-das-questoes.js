@@ -70,7 +70,7 @@ function corpoAindaNaoChegou(q, campo){
       const nomes = [..._pedidosPorLeitura]; _pedidosPorLeitura.clear();
       garantirArquivosDeProva(nomes).then(() => {
         // o texto chegou: redesenha, salvo se a pessoa está digitando (o redesenho apagaria o que ela escreveu)
-        if(typeof render === "function" && db && !(typeof haTrabalhoNaoSalvo === "function" && haTrabalhoNaoSalvo())) render();
+        if(typeof render === "function" && db && !(typeof haTrabalhoNaoSalvo === "function" && haTrabalhoNaoSalvo())) renderEmSegundoPlano();
       });
     }, 0);
   }
