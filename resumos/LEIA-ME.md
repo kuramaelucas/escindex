@@ -143,3 +143,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `climaterio` | `ass-climaterio` | 80 | 4 (anuladas; 2 com reposição no resumo) |
 | `uroginecologia` | `ass-uroginecologia` | 80 | — |
 | `sangramentos-na-gestacao` | `ass-sangramentos` | 79 | — |
+| `diabetes-gestacional` | `ass-dmg` | 82 | 2 (anuladas, com reposição no resumo) |

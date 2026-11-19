@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="290" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Hiperglicemia na gestação: duas etapas</text>
+<g stroke-width="1.5">
+<rect x="270" y="40" width="220" height="40" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="15" y="110" width="230" height="60" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<rect x="265" y="110" width="230" height="60" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="515" y="110" width="230" height="60" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="15" y="200" width="480" height="75" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/></g>
+<g stroke="#666" stroke-width="1.5" fill="none"><path d="M380 80 V95 H130 V108"/><path d="M380 95 V108"/><path d="M380 95 H630 V108"/><path d="M130 170 V198"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="380" y="65" font-weight="bold">Glicemia de jejum na 1ª consulta</text>
+<text x="130" y="135" font-weight="bold">&lt; 92</text><text x="130" y="155">TOTG 75 g com 24–28 sem</text>
+<text x="380" y="135" font-weight="bold">92 a 125</text><text x="380" y="155">diabetes gestacional</text>
+<text x="630" y="135" font-weight="bold">≥ 126</text><text x="630" y="155">diabetes prévio (overt)</text>
+<text x="255" y="225" font-weight="bold">TOTG 75 g: um valor basta</text>
+<text x="255" y="248">jejum ≥ 92 · 1 h ≥ 180 · 2 h ≥ 153 → diabetes gestacional</text>
+<text x="255" y="266">jejum ≥ 126 · 2 h ≥ 200 → diabetes diagnosticado na gestação</text>
+</g></svg>
