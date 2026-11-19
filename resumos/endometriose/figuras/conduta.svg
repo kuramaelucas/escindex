@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="250" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Suspeita de endometriose: o caminho</text>
+<g stroke-width="1.5">
+<rect x="15" y="45" width="175" height="185" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="205" y="45" width="175" height="185" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="395" y="45" width="175" height="185" rx="8" fill="#f5eef6" stroke="#7a4a8a"/>
+<rect x="585" y="45" width="160" height="185" rx="8" fill="#fdf1ec" stroke="#b5533c"/></g>
+<g fill="#666"><path d="M192 130 l11 7 -11 7z"/><path d="M382 130 l11 7 -11 7z"/><path d="M572 130 l11 7 -11 7z"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="102" y="72" font-weight="bold">Suspeitar</text><text x="102" y="100">dismenorreia</text><text x="102" y="118">progressiva,</text><text x="102" y="136">dispareunia,</text><text x="102" y="154">disquesia cíclica</text>
+<text x="292" y="72" font-weight="bold">Imagem</text><text x="292" y="100">ultrassom com</text><text x="292" y="118">preparo intestinal</text><text x="292" y="136">ou ressonância</text>
+<text x="482" y="72" font-weight="bold">Hormônio</text><text x="482" y="100">contraceptivo contínuo</text><text x="482" y="118">ou progestagênio</text><text x="482" y="136">(empírico)</text><text x="482" y="170">2ª linha: GnRH</text><text x="482" y="188">com add-back</text>
+<text x="665" y="72" font-weight="bold">Laparoscopia</text><text x="665" y="100">falha clínica,</text><text x="665" y="118">obstrução,</text><text x="665" y="136">imagem negativa</text><text x="665" y="170">diagnóstico e</text><text x="665" y="188">tratamento</text>
+</g></svg>
