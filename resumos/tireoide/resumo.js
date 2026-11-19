@@ -9,7 +9,7 @@
   assunto: "ass-tireoide",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "ata-dtc", texto: "ATA — Management Guidelines for Adult Patients with Differentiated Thyroid Cancer (2025)", lidoEm: null },
+    { id: "ata-dtc", texto: "ATA — Management Guidelines for Adult Patients with Differentiated Thyroid Cancer (2025), PMC13090833", lidoEm: "2026-11-18" },
     { id: "ata-hiper", texto: "ATA — Guidelines for the Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis (2016)", lidoEm: null },
     { id: "ata-hipo", texto: "ATA — Guidelines for the Treatment of Hypothyroidism (2014) e ATA tireoide na gestação (2017)", lidoEm: null },
     { id: "acr-tirads", texto: "ACR TI-RADS — White paper (2017)", lidoEm: null },

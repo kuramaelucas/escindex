@@ -9,7 +9,7 @@
   criadoEm: "2026-11-18",
   fontes: [
     { id: "sbp-ferro", texto: "SBP — Diretriz nº 32: Deficiência de ferro e anemia ferropriva, atualização 2026 (sbp.com.br)", lidoEm: "2026-11-18" },
-    { id: "kdigo-anemia", texto: "KDIGO 2026 — Anemia in chronic kidney disease (Kidney Int 2026;109)", lidoEm: null },
+    { id: "kdigo-anemia", texto: "KDIGO 2026 — Anemia in chronic kidney disease (Kidney Int 2026;109), resumo executivo em kdigo.org", lidoEm: "2026-11-18" },
     { id: "bsg-ferro", texto: "British Society of Gastroenterology — Guidelines for the management of iron deficiency anaemia in adults (2021)", lidoEm: null },
     { id: "bsh-b12", texto: "BSH — Guidelines for the diagnosis and treatment of cobalamin and folate disorders (2014)", lidoEm: null },
   ],
@@ -73,7 +73,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
       id: "cronica", titulo: "Doença crônica e doença renal",
       introducao: `[[Na inflamação, a IL-6 faz o fígado produzir hepcidina, que tranca o ferro nos macrófagos e no enterócito: o ferro sérico e a capacidade de ligação caem, mas a ferritina fica normal ou alta.|q-famerp2026-052,q-udisc20262-036,q-fmabc2025-015,q-simepm89-053]] [[Na doença renal, falta eritropoetina: anemia normocítica, hiporregenerativa, com ferritina alta.|q-einstein2021-004]] Na criança com inflamação, a ferritina tem corte mais alto para falar em falta de ferro.`,
       fragmentos: [
-        { id: "cro-diagnostico", titulo: "Hepcidina, ferritina e eritropoetina", conferir: true, diretrizes: ["kdigo-anemia"],
+        { id: "cro-diagnostico", titulo: "Hepcidina, ferritina e eritropoetina", conferir: false, diretrizes: ["kdigo-anemia"],
           questoes: ["q-famerp2026-052","q-udisc20262-036","q-fmabc2025-015","q-simepm89-053","q-einstein2021-004","q-sirio2027-043"],
           prosa: `Na anemia da inflamação o ferro existe, mas está preso: a hepcidina bloqueia a ferroportina do macrófago e do enterócito, e o ferro não chega à medula. Por isso o ferro sérico cai, mas a ferritina (o ferro guardado) fica normal ou alta, e o ferro oral pouco ajuda. Na doença renal falta eritropoetina.`,
           texto: `- Mecanismo: **aumento da hepcidina**. {q-famerp2026-052}
