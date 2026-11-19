@@ -676,13 +676,13 @@ function atualizarRecadoLembrete(){
   const ativo = !!(u && u.papel==="aluno" && u.lembreteMetaAtivo);
   let recado = { ativo: false };
   if(ativo){
-    const faltamQ = Math.max(metaDoUsuario(u) - questoesRespondidasHoje(u.id), 0);
+    const faltamQ = progressoDaMeta(u).faltam;
     const faltamC = Math.max(metaCartoesDoUsuario(u) - cartoesRevisadosHoje(u.id), 0);
     const partes = [];
     if(faltamQ>0) partes.push(faltamQ+" "+plural(faltamQ,"questão","questões")+"");
     if(faltamC>0) partes.push(faltamC+" "+plural(faltamC,"cartão","cartões")+"");
     recado = { ativo: true, nome: CONFIG.nomePlataforma, horario: u.lembreteMetaHorario || "20:00", dia: hojeISO(),
-      metaBatida: !partes.length, faltam: partes.join(" e "), meta: metaDoUsuario(u)+" questões",
+      metaBatida: !partes.length, faltam: partes.join(" e "), meta: u.metaQuestoesSemana ? u.metaQuestoesSemana+" questões na semana" : metaDoUsuario(u)+" questões",
       ultimoAviso: u.lembreteMetaUltimoEnvio || null };
   }
   caches.open("esc-lembrete").then(c => c.put("./recado-lembrete.json",

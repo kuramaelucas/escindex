@@ -66,7 +66,7 @@ function normalizarPessoaDaNuvem(l){
     respostas: +l.respostas || 0, r7: +l.respostas_7d || 0, r30: +l.respostas_30d || 0,
     dias30: +l.dias_ativos_30d || 0, ultimaResposta: l.ultima_resposta || null,
     cartoes: +l.cartoes_total || 0, cartoes30: +l.cartoes_30d || 0, ultimoCartao: l.ultimo_cartao || null,
-    simulados: +l.simulados || 0, trilha: l.trilha || null,
+    simulados: +l.simulados || 0, trilha: l.trilha || null, resumosLidos: +l.resumos_lidos || 0,
   };
 }
 /* Uma linha de acerto somado. `ano` nulo = todos os anos; `grupoId` nulo =
@@ -94,7 +94,7 @@ function painelTurmaLocal(){
       cartoes30: Object.entries(dias).filter(([d]) => d > d30).reduce((s, [, n]) => s + (+n || 0), 0),
       ultimoCartao: Object.keys(dias).sort().pop() || null,
       simulados: db.resultadosSimulados.filter(r => r.usuarioId === u.id).length,
-      trilha: resumoDaTrilha(u),
+      trilha: resumoDaTrilha(u), resumosLidos: quantosResumosLidos(u),
     };
   });
   // o acerto, só dos alunos aprovados e somado: (ano, turma), ano e todos os anos
@@ -287,7 +287,7 @@ function renderPainelDaTurma(){
   lista = ordenarPorColuna(lista, "painel-turma", {
     nome: a => a.nome, perfil: a => naEquipe ? rotuloPapelPainel(a.papel) : a.ano + " " + (a.faculdade || "") + " " + (nomeDoGrupoPainel(a.grupoId) || ""),
     ultimo: a => ultimoUso(a) || null, dias30: a => a.dias30, r30: a => a.r30, respostas: a => a.respostas,
-    cartoes30: a => a.cartoes30, simulados: a => a.simulados || 0, condicao: a => a._al.condicao ? a._al.condicao.texto : "",
+    cartoes30: a => a.cartoes30, simulados: a => a.simulados || 0, resumos: a => a.resumosLidos || 0, condicao: a => a._al.condicao ? a._al.condicao.texto : "",
   });
   const p = paginar(lista, "painel-turma", { assinatura: JSON.stringify(f) + assinaturaOrdemDaTabela("painel-turma") });
 
@@ -379,7 +379,7 @@ function renderPainelDaTurma(){
       </div>
     </div>
     <div class="table-wrap mt-2"><table>
-      <thead><tr>${[["nome", naEquipe ? "Pessoa" : "Aluno", "texto"], ["perfil", naEquipe ? "Papel" : "Ano / turma", "texto"], ["ultimo", "Último uso"], ["dias30", "Dias ativos (30)"], ["r30", "Questões (30 dias)"], ["respostas", "Questões (total)"], ["cartoes30", "Cartões (30 dias)"], ["simulados", "Simulados"]].concat(naEquipe ? [] : [["condicao", "Condição", "texto"]]).map(([c, r, t]) => cabecalhoOrdenavel("painel-turma", c, r, t)).join("")}</tr></thead>
+      <thead><tr>${[["nome", naEquipe ? "Pessoa" : "Aluno", "texto"], ["perfil", naEquipe ? "Papel" : "Ano / turma", "texto"], ["ultimo", "Último uso"], ["dias30", "Dias ativos (30)"], ["r30", "Questões (30 dias)"], ["respostas", "Questões (total)"], ["cartoes30", "Cartões (30 dias)"], ["simulados", "Simulados"], ["resumos", "Resumos lidos"]].concat(naEquipe ? [] : [["condicao", "Condição", "texto"]]).map(([c, r, t]) => cabecalhoOrdenavel("painel-turma", c, r, t)).join("")}</tr></thead>
       <tbody>${p.itens.map(a => {
         const al = a._al;
         return `<tr>
@@ -391,9 +391,10 @@ function renderPainelDaTurma(){
           <td class="text-sm">${a.respostas}</td>
           <td class="text-sm">${a.cartoes30}</td>
           <td class="text-sm">${a.simulados || "—"}</td>
+          <td class="text-sm">${a.resumosLidos || "—"}</td>
           ${naEquipe ? "" : `<td>${badgeCondicao(al.condicao)}</td>`}
         </tr>`;
-      }).join("") || `<tr><td colspan="9" class="text-sm muted">${naEquipe ? "Ninguém da equipe neste navegador." : "Nenhum aluno neste recorte."}</td></tr>`}</tbody>
+      }).join("") || `<tr><td colspan="10" class="text-sm muted">${naEquipe ? "Ninguém da equipe neste navegador." : "Nenhum aluno neste recorte."}</td></tr>`}</tbody>
     </table></div>
     ${controlesPaginacao(p, naEquipe ? "pessoa(s)" : "aluno(s)")}
     <p class="text-xs muted mt-2">"Condição": <em>em dia</em> (usou nos últimos 7 dias), <em>parado</em> (7 dias ou mais sem responder questão nem revisar cartão) ou <em>nunca estudou</em>. ${naEquipe ? "A equipe não tem condição: o painel só mostra o quanto usa." : ""} O painel mostra uso; a taxa de acerto de cada pessoa é só dela, em Meu Desempenho.</p>
@@ -441,9 +442,9 @@ function exportarPainelTurmaCsv(){
   const lista = pd.dados.pessoas.filter(a => naEquipe ? !contaComoAluno(a) : (contaComoAluno(a) && (f.ano === "todos" || a.ano === f.ano)));
   const campo = v => { const t = v === null || v === undefined ? "" : String(v); return /[";\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
   // só uso: o acerto de cada pessoa não sai nem na planilha
-  const cab = ["nome","email","papel","ano","faculdade","turma","status","ultima_atividade","dias_ativos_30d","questoes_30d","questoes_total","cartoes_30d","simulados","condicao"];
+  const cab = ["nome","email","papel","ano","faculdade","turma","status","ultima_atividade","dias_ativos_30d","questoes_30d","questoes_total","cartoes_30d","simulados","resumos_lidos","condicao"];
   const linhas = lista.map(a => { const al = contaComoAluno(a) ? alertasDoAluno(a) : { ultima: [a.ultimaResposta, a.ultimoCartao].filter(Boolean).sort().pop() || "", condicao: null };
-    return [a.nome, a.email, a.papel, a.ano, a.faculdade, nomeDoGrupoPainel(a.grupoId), a.status, al.ultima || "", a.dias30, a.r30, a.respostas, a.cartoes30, a.simulados,
+    return [a.nome, a.email, a.papel, a.ano, a.faculdade, nomeDoGrupoPainel(a.grupoId), a.status, al.ultima || "", a.dias30, a.r30, a.respostas, a.cartoes30, a.simulados, a.resumosLidos || 0,
       al.condicao ? al.condicao.texto : ""].map(campo).join(";"); });
   // ";" e BOM: é o que o Excel em português abre sem assistente de importação
   baixarArquivo("painel-turma-" + (f.ano === "todos" ? "todos" : f.ano.replace(/[^0-9a-z]+/gi, "-")) + "-" + hojeISO() + ".csv",

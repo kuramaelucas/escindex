@@ -743,7 +743,7 @@ function htmlCardOQueMaisCai(u, limite){
         <td class="text-sm nowrap" title="${p.questoesNaProva} ${plural(p.questoesNaProva,"questão","questões")} em ${p.anosQueCaiu} de ${inc.anos.length} anos">${p.questoesNaProva} q. <span class="text-xs muted">· ${p.anosQueCaiu}/${inc.anos.length} anos</span></td>
         <td class="text-sm nowrap">${p.taxa!==null ? `<span class="badge ${p.taxa<50?"badge-danger":p.taxa<70?"badge-amber":"badge-accent"}">${p.taxa}%</span> <span class="text-xs muted">em ${p.respondidas}</span>` : '<span class="text-xs muted">nunca respondeu</span>'}</td>
         <td><div class="barra-prioridade" title="prioridade relativa"><i style="width:${Math.max(4, Math.round(p.prioridadeRelativa*100))}%"></i></div></td>
-        <td><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${p.assuntoId}')">Praticar</button></td>
+        <td class="nowrap"><button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${p.assuntoId}')">Praticar</button> ${botaoLerResumo(p.assuntoId)}</td>
       </tr>`).join("")}</tbody>
     </table></div>
     <div class="flex gap-1 mt-2 quebra">
@@ -976,6 +976,8 @@ function renderDesempenho(){
     ${corpoComo}
   </div>`}
 
+  ${htmlResumosDosPontosFracos(u)}
+
   ${cartaoOuSecao("desempenho-areas", "Comparação entre as 5 grandes áreas", `
     <p class="text-sm muted">A primeira resposta de cada questão, agrupada nas cinco áreas cobradas na prova (refazer uma questão mede memória dela, não domínio da área, e fica de fora desta conta). É neste nível que se decide onde colocar as próximas horas de estudo.</p>
     <div class="areas-lado-a-lado mt-2">
@@ -991,7 +993,7 @@ function renderDesempenho(){
             <td class="text-sm">${a.total-a.acertos}</td>
             <td class="nowrap">${a.taxa!==null?`<span class="badge ${a.taxa<50?"badge-danger":a.taxa<70?"badge-amber":"badge-accent"}">${a.taxa}%</span>`:'<span class="text-xs muted">sem dados</span>'}</td>
             <td class="text-sm">${pior?escapeHtml(nomeAssunto(pior.assuntoId))+' <span class="muted" title="'+escapeHtml(textoDetalheDoAssunto(pior))+'">('+pior.taxa+'% em '+pior.total+' · faixa '+pior.minimo+'–'+pior.maximo+'%)</span>':"—"}</td>
-            <td>${pior?`<button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${pior.assuntoId}')">Praticar</button>`:""}</td>
+            <td class="nowrap">${pior?`<button class="btn btn-secondary btn-sm" onclick="praticarAssunto('${pior.assuntoId}')">Praticar</button> ${botaoLerResumo(pior.assuntoId)}`:""}</td>
           </tr>`;
         }).join("")}
       </tbody>
@@ -1015,7 +1017,7 @@ function renderDesempenho(){
     ${falsaSeguranca.length ? `<p class="text-sm muted mt-1">Assuntos em que você respondeu com certeza e errou mesmo assim — é para cá que vale direcionar o estudo antes de qualquer outra coisa:</p>
       ${falsaSeguranca.slice(0,5).map(f=>`<div class="flex justify-between items-center card-flat mb-1 mt-1">
         <span class="text-sm">${escapeHtml(nomeAssunto(f.assuntoId))} <span class="text-xs muted">(${f.n} respostas com "certeza")</span></span>
-        <span class="flex items-center gap-1"><span class="badge badge-danger">${f.taxa}%</span><button class="btn btn-secondary btn-sm" onclick="praticarAssuntoFalsaSeguranca('${f.assuntoId}')">Praticar</button></span>
+        <span class="flex items-center gap-1"><span class="badge badge-danger">${f.taxa}%</span><button class="btn btn-secondary btn-sm" onclick="praticarAssuntoFalsaSeguranca('${f.assuntoId}')">Praticar</button>${botaoLerResumo(f.assuntoId)}</span>
       </div>`).join("")}` : ""}
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ver as filas por tipo de erro</button>

@@ -980,11 +980,12 @@ function misturaEfetiva(usuario){
   };
 }
 
-/* REVISÃO ESPAÇADA EM TRÊS PARTES, na ordem de prioridade: 1) as questões que
-   a pessoa ainda NÃO VIU nos assuntos já estudados — o que nunca foi
-   testado é a maior lacuna possível; 2) as que ela ERROU ou acertou no
-   chute, que já provaram ser lacuna; 3) as que acertou e já passou o prazo
-   (um mês ou mais). `assuntos`, se vier, restringe as três a esses assuntos. */
+/* REVISÃO ESPAÇADA EM TRÊS PARTES, na ordem de prioridade: 1) as que a pessoa
+   ERROU ou acertou no chute, que já provaram ser lacuna; 2) as que acertou e
+   já passou o prazo (um mês ou mais); 3) só para completar, as que ela ainda
+   NÃO VIU nos assuntos já estudados — revisão é recuperar o que já foi visto,
+   então a questão inédita nunca passa na frente de uma vencida.
+   `assuntos`, se vier, restringe as três a esses assuntos. */
 function partesDaRevisaoEspacada(usuarioId, assuntos){
   const usuario = getUsuario(usuarioId);
   const dosAssuntos = new Set(assuntos || assuntosParaRevisao(usuario));

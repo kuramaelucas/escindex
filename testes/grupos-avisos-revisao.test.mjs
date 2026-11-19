@@ -110,9 +110,9 @@ test("revisão espaçada: não vistas, depois erros, depois acertos vencidos —
       const primeiro = { intervalo: e1.intervalo, prox: e1.proximaRevisao, intervaloErro: e2.intervalo };
       dia("2026-03-30"); const venceEm29 = revisaoVencida(u.id, certa.id);
       dia("2026-03-31"); const venceEm30 = revisaoVencida(u.id, certa.id);
-      // a fila, no dia 31: nova → erro → acerto que já venceu
+      // a fila, no dia 31: erro → acerto que já venceu → nova (só completa)
       const itens = itensDaRevisaoEspacada(u.id, 200);
-      const ordemMotivos = itens.map(i => /ainda não viu/.test(i.motivo) ? 0 : /erro/.test(i.motivo) ? 1 : 2);
+      const ordemMotivos = itens.map(i => /ainda não viu/.test(i.motivo) ? 2 : /erro/.test(i.motivo) ? 0 : 1);
       const ordenada = ordemMotivos.every((v, i) => i === 0 || ordemMotivos[i - 1] <= v);
       const posicoes = { nova: itens.findIndex(i => i.questaoId === nova.id), erro: itens.findIndex(i => i.questaoId === errada.id), certa: itens.findIndex(i => i.questaoId === certa.id) };
       // segundo acerto seguido: 60 dias; o terceiro aposenta a questão
@@ -137,8 +137,8 @@ test("revisão espaçada: não vistas, depois erros, depois acertos vencidos —
     assert.equal(r.primeiro.intervaloErro, 7, "errar volta em uma semana, nunca antes");
     assert.equal(r.venceEm29, false);
     assert.equal(r.venceEm30, true);
-    assert.ok(r.ordenada, "não vistas antes de erros, erros antes de acertos vencidos");
-    assert.ok(r.posicoes.nova >= 0 && r.posicoes.nova < r.posicoes.erro && r.posicoes.erro < r.posicoes.certa, JSON.stringify(r.posicoes));
+    assert.ok(r.ordenada, "erros antes de acertos vencidos, não vistas só no fim");
+    assert.ok(r.posicoes.erro >= 0 && r.posicoes.erro < r.posicoes.certa && r.posicoes.certa < r.posicoes.nova, JSON.stringify(r.posicoes));
     assert.equal(r.segundo, 60);
     assert.deepEqual(r.dominada, { dominada: true, vencida: false, naLista: false, naFila: false });
     assert.deepEqual(r.aposErro, { dominada: false, intervalo: 7 });

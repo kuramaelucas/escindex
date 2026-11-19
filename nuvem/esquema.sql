@@ -204,6 +204,10 @@ alter table public.perfis add column if not exists prova_alvo_data date;
 -- ou 'estatistico'. Nulo = ainda não escolheu (vale o resumido e a pergunta
 -- aparece uma vez). Só muda a apresentação; nenhum dado de estudo depende dele.
 alter table public.perfis add column if not exists modo_plataforma text;
+-- resumos marcados como lidos (Estudar › Resumos): { resumoId: 'AAAA-MM-DD' | false }
+alter table public.perfis add column if not exists resumos_lidos jsonb not null default '{}'::jsonb;
+-- meta semanal de questões (nula = meta diária)
+alter table public.perfis add column if not exists meta_questoes_semana integer;
 -- questões por sessão recomendada escolhidas pela pessoa (Ajustar meta); nulo = padrão da plataforma
 alter table public.perfis add column if not exists tamanho_sessao integer;
 -- ritmo das fases do cronograma de Formados ('firme' ou 'rapida'); nulo = padrão
@@ -1571,7 +1575,8 @@ returns table (
   ultimo_cartao     date,
   simulados         bigint,
   trilha            jsonb,
-  faculdade         text
+  faculdade         text,
+  resumos_lidos     bigint
 )
 language sql
 stable
@@ -1588,7 +1593,9 @@ as $$
     coalesce(c.total, 0), coalesce(c.total_30d, 0), c.ultimo,
     coalesce(s.n, 0),
     p.trilha -> 'resumo',
-    p.faculdade
+    p.faculdade,
+    (select count(*) from jsonb_each(case when jsonb_typeof(p.resumos_lidos) = 'object' then p.resumos_lidos else '{}'::jsonb end) e
+      where e.value not in ('false'::jsonb, 'null'::jsonb))
   from public.perfis p
   cross join hoje
   left join lateral (
