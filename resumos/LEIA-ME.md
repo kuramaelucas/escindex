@@ -139,3 +139,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `contracepcao` | `ass-contracepcao` | 107 | 4 (3 anuladas e 1 desatualizada; 2 com reposição no resumo) |
 | `cancer-de-colo` | `ass-cacolo` | 106 | 6 (2 anuladas; 4 desatualizadas pela Portaria 13/2025, com reposição no resumo) |
 | `cancer-de-mama` | `ass-camama` | 92 | 4 (2 anuladas e 1 desatualizada sem reposição; 1 sobre endométrio, que vai para `cancer-de-endometrio`) |
+| `hipertensao-na-gestacao` | `ass-dheg` | 82 | 3 (2 anuladas com reposição no resumo; 1 desatualizada sem reposição) |
