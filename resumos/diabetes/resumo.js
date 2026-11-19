@@ -78,7 +78,6 @@
           prosa: `**As provas divergem na meta de HbA1c:** uma banca cobra **< 6,5%** com jejum < 100 e pós-prandial < 140 (texto antigo da SBD); as diretrizes atuais usam **< 7%** como meta geral, com jejum de 80–130 e pós-prandial < 180.`,
           texto: `- Meta geral **HbA1c < 7%**; **7,5–8%** no idoso frágil ou com comorbidade. {q-unifesp2023-034-ia,q-amrigs2024-011}
 - HbA1c reflete **2 a 3 meses**. {q-amrigs2024-011}
-- Gabarito antigo: jejum < 100, pós < 140, HbA1c < 6,5%. {q-fmabc2022-005}
 - Idoso com DRC, emagrecendo, com hipoglicemias e HbA1c 6,1%: **suspender glibenclamida, reduzir NPH, meta ≈ 8%**. {q-adap24-046}
 - Idoso com HbA1c perto da meta individual: **manter** e reforçar estilo de vida. {q-einstein2024-075}
 - Internado com corticoide, sem diabetes conhecido: glicemia **antes do café e do jantar**. {q-sirio2026-001}
@@ -198,6 +197,15 @@
 - Gastroparesia: disfunção **autonômica vagal**. {q-sessp2026-028}
 - Tontura ao levantar com neuropatia: **hipotensão ortostática neurogênica**. {q-einstein2026-015}
 - Pé infectado grave: **internar, antibiótico IV, cirurgia, insulina**, suspender BRA na lesão renal. {q-iamspe2026-029}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-fmabc2022-005"],
+          texto: `- Meta atual: **HbA1c < 7%**, jejum 80–130, pós-prandial < 180; um gabarito usa a meta antiga da SBD (**< 6,5%**, jejum < 100, pós < 140). {q-fmabc2022-005}` },
       ],
     },
     {

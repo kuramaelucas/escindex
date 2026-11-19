@@ -48,8 +48,7 @@
 - SBP: **salina hipertônica 3%** pode ser usada no internado. {q-unifesp2026-089}
 - Broncodilatador: só como teste, e **mantido apenas se houver resposta** clínica. {q-sessp2023-037}
 - **Oximetria contínua não é recomendada** no lactente estável (AAP). {q-scmsp2022-033}
-- Internado com ingestão baixa: **soro de manutenção**. {q-usp2024-001}
-- **Para decorar: "O2, água e nariz"**: oxigênio se hipoxêmico, hidratação e nariz limpo; o resto não muda a evolução. {q-adap26-089,q-udisc20262-046}` },
+- Internado com ingestão baixa: **soro de manutenção**. {q-usp2024-001}` },
         { id: "bva-suporte", casos: ["q-usp2024-002"], titulo: "Escalonar o suporte: alto fluxo e CPAP", conferir: true, diretrizes: ["sbp-bronquiolite"],
           questoes: ["q-tp20202-047","q-usp2024-002","q-sirio2027-046","q-fmabc2026-048"],
           texto: `- Falha do cateter nasal comum: **cateter nasal de alto fluxo (CNAF)**, iniciando com **2 L/kg/min**. {q-usp2024-002,q-tp20202-047}
@@ -134,15 +133,13 @@
           texto: `- **Escolar ou adolescente**, febre baixa, tosse seca persistente, cefaleia, bom estado; surto na escola. {q-didepm-054,q-unicampdis2025-073}
 - Radiografia com **infiltrado intersticial** peribrônquico, mais exuberante que a ausculta. {q-didepm-054,q-uspsp2-060}
 - Manifestação extrapulmonar clássica: **eritema multiforme** (também anemia hemolítica). {q-scmsp2026-046}
-- Tratamento: **macrolídeo** (azitromicina por 5 dias), ambulatorial. {q-scmsp2026-046,q-uspsp2-060,q-didepm-054}
-- **Para decorar: "Mycoplasma anda"**: a pneumonia do escolar que vai à aula ("walking pneumonia"). {q-didepm-054}` },
+- Tratamento: **macrolídeo** (azitromicina por 5 dias), ambulatorial. {q-scmsp2026-046,q-uspsp2-060,q-didepm-054}` },
         { id: "ati-chlamydia", titulo: "Chlamydia trachomatis do lactente", conferir: true,
           questoes: ["q-iamspe2022-043","q-iamspe2022-044","q-unesp2024-015","q-unicamp2023-048"],
           casos: ["q-unesp2024-015"],
           texto: `- Lactente de **1 a 3 meses**, **afebril**, taquipneico, tosse em staccato, com **conjuntivite** prévia. {q-iamspe2022-043,q-unicamp2023-048}
 - **Eosinofilia** e radiografia com hiperinsuflação e infiltrado intersticial. {q-iamspe2022-043,q-unesp2024-015}
-- Tratamento: **macrolídeo** (eritromicina ou azitromicina). {q-iamspe2022-044,q-unesp2024-015}
-- **Para decorar: o lactente "CAT"**: **C**onjuntivite antes, **A**febril, **T**aquipneia, mais eosinofilia. {q-iamspe2022-043}` },
+- Tratamento: **macrolídeo** (eritromicina ou azitromicina). {q-iamspe2022-044,q-unesp2024-015}` },
       ],
     },
     {
@@ -159,8 +156,7 @@
 - **Leucocitose com linfocitose** no hemograma. {q-unicampdis2023-030,q-fmabc2024-055}
 - Caso suspeito no lactente: **tosse há 10 dias ou mais** com cianose, engasgo ou apneia (SBP). {q-einstein2027-039}
 - Tratamento: **macrolídeo (azitromicina)**; **notificar**. {q-uspsp1-006,q-tp20252-069,q-fmabc2024-055}
-- Prevenção: **pentavalente aos 2, 4 e 6 meses**, reforços de DTP e **dTpa na gestante**. {q-unesp2025-014}
-- **Para decorar: "tosse que guincha e vomita, criança que fica bem"**: entre os acessos, ausculta e estado geral normais. {q-unicampdis2024-096}` },
+- Prevenção: **pentavalente aos 2, 4 e 6 meses**, reforços de DTP e **dTpa na gestante**. {q-unesp2025-014}` },
       ],
     },
     {

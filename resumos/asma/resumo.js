@@ -48,7 +48,6 @@
           questoes: ["q-unesp2022-007","q-amrigs2021-014","q-tp20202-048","q-unifesp2022-086","q-adap22-069","q-amrigs2020-006","q-usprp2022-003","q-tp20241-117","q-tp20261-033","q-sirio2021-015","q-unicamp2022-046","q-einstein2025-008","q-adap21-032","q-usprp2026-096"],
           texto: `- Tosse 4 dias e resgate 3 vezes na semana: **parcialmente controlada**. {q-unesp2022-007}
 - Sintomas frequentes: **não controlada**, iniciar ou subir CI. {q-amrigs2021-014,q-tp20202-048}
-- ACT 18 em uso de budesonida: o gabarito **aumenta a budesonida**. {q-unifesp2022-086}
 - Antes de subir: **técnica, adesão, gatilhos, diagnóstico**. {q-adap22-069,q-usprp2022-003}
 - Causa mais comum de descontrole: **má adesão**. {q-amrigs2020-006}
 - Asmático com propranolol: **retirar o betabloqueador**. {q-tp20241-117,q-tp20261-033}
@@ -96,6 +95,15 @@
           questoes: ["q-tp20252-017","q-fmabc2021-082","q-tp20252-021"],
           texto: `- Criança com rinite: **soro e corticoide nasais**, anti-histamínico nas crises. {q-tp20252-017,q-fmabc2021-082}
 - Uso crônico de vasoconstritor: **suspender e iniciar corticoide intranasal**. {q-tp20252-021}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-unifesp2022-086"],
+          texto: `- Asma não controlada em uso de CI (ACT 18): a regra atual é **trocar para budesonida-formoterol (MART)**; uma banca, na lógica anterior à GINA 2019, dá como certo **aumentar a dose de budesonida**. {q-unifesp2022-086}` },
       ],
     },
     {

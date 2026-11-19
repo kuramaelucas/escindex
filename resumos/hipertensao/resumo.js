@@ -82,7 +82,6 @@
           questoes: ["q-card-15","q-adap23-005","q-tp20212-029","q-fmabc2022-016","q-iamspe2021-002","q-scmsp2023-098","q-einstein2027-066","q-amrigs2020-001","q-amrigs2021-017","q-iamspe2025-007","q-iamspe2026-018","q-usprp2022-014","q-sirio2025-009","q-usprp2023-046","q-einstein2026-006","q-sessp2023-061","q-unicamp2022-002"],
           texto: `- Primeira linha: **tiazídico, BCC e IECA/BRA**. {q-card-15}
 - Estágio 2 ou risco alto: **duas classes em comprimido único** (BRA + anlodipino ou clortalidona). {q-adap23-005,q-tp20212-029,q-iamspe2021-002}
-- Gabarito antigo: monoterapia em PA 130–139/85–89 de **risco alto**. {q-fmabc2022-016}
 - IECA + tiazídico sem controle: **associar BCC**. {q-scmsp2023-098}
 - Tiazídico sem controle: **associar IECA** e checar potássio em 15 dias. {q-einstein2027-066}
 - **BCC de ação curta** (nifedipino) não se usa. {q-amrigs2020-001}
@@ -101,7 +100,6 @@
 - Edema de tornozelo: **anlodipino**; trocar por tiazídico. {q-amrigs2024-085,q-fmabc2025-095,q-unesp2024-060}
 - Broncoespasmo no asmático: **propranolol**. {q-tp20212-014}
 - Idoso com tontura postural: **suspender hidroclorotiazida**. {q-famerp2026-054}
-- DRC G3aA3 com proteinúria: gabarito troca **losartana por valsartana** (dose plena). {q-famerp2025-008}
 - Lúpus com potássio 5,9: **trocar losartana por carvedilol**. {q-sessp2024-018}
 - Creatinina que dobra após IECA: **suspender** e pedir **Doppler das artérias renais**. {q-fmabc2021-037,q-unicampdis2023-010}
 - Gestante: metildopa; os exames de rotina seguem consenso de especialistas. {q-famema2021-076}` },
@@ -118,7 +116,6 @@
           questoes: ["q-unifesp2023-012","q-uspsp3-086","q-usp2024-057","q-famema2022-038","q-famerp2024-068","q-famerp2022-059","q-usprp2024-007","q-sirio2025-014","q-unesp2022-053","q-fmabc2025-003","q-einstein2025-007"],
           prosa: `A dose inicial de espironolactona é 25 mg; um gabarito usa 50 mg. Se a espironolactona não basta (hipertensão refratária), entram betabloqueador, clonidina ou vasodilatador, e investigam-se causas secundárias.`,
           texto: `- Três classes em dose plena sem controle: **associar espironolactona 25 mg**. {q-unifesp2023-012,q-uspsp3-086,q-usp2024-057,q-famema2022-038,q-famerp2022-059,q-usprp2024-007,q-sirio2025-014}
-- MAPA confirmando: resistente, **espironolactona** (o gabarito dá 50 mg). {q-famerp2024-068}
 - Piora após anos de controle, com quatro drogas: **resistente, investigar secundária**. {q-unesp2022-053,q-fmabc2025-003}
 - Refratária com cinco drogas: investigar secundária e **associar clonidina**. {q-einstein2025-007}` },
         { id: "res-secundaria", titulo: "Causas secundárias", conferir: true, diretrizes: ["sbc-has"],
@@ -165,6 +162,17 @@
 - Albuminúria e HVE: **IECA**. {q-tp20232-048}
 - Adolescente sexualmente ativa sem contracepção: **anlodipino** (IECA/BRA são teratogênicos). {q-tp20252-010,q-tp20261-084}
 - Síndrome metabólica (IDF) na criança: exige **cintura ≥ p90**. {q-sirio2026-047}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-fmabc2022-016", "q-famerp2025-008", "q-famerp2024-068"],
+          texto: `- Monoterapia hoje fica para hipertensão leve de baixo risco e idoso frágil; um gabarito (diretriz de 2020) a indica em PA 130–139/85–89 de **risco alto**. {q-fmabc2022-016}
+- DRC com proteinúria: o que importa é o bloqueio do sistema renina-angiotensina em **dose máxima tolerada** (e iSGLT2); um gabarito chegou a isso trocando **losartana por valsartana**. {q-famerp2025-008}
+- Espironolactona na hipertensão resistente começa com **25 mg**; um gabarito dá **50 mg**. {q-famerp2024-068}` },
       ],
     },
     {

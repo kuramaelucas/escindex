@@ -64,8 +64,7 @@
 - Teste rápido positivo sem lesão: pode ser **latente ou já tratada**; confirmar com VDRL. {q-unesp2025-100,q-famema2021-021}
 - Treponêmico + e VDRL −: **outro treponêmico** de método diferente; sem tratamento prévio, na gestante, **tratar como duração ignorada**. {q-usprp2025-042,q-sirio2025-061,q-unicampdis2024-039}
 - Parceiro com VDRL + e treponêmico +: **sífilis presumida**, tratar. {q-unesp2021-022}
-- VDRL + em gestante com lúpus: **teste treponêmico** antes de tratar; testar o parceiro. {q-scmsp2022-055}
-- Gabarito de banca: "não treponêmico + e treponêmico − pode ser cicatriz". {q-sirio2022-076}` },
+- VDRL + em gestante com lúpus: **teste treponêmico** antes de tratar; testar o parceiro. {q-scmsp2022-055}` },
         { id: "sif-tratamento", titulo: "Tratamento por estágio e reação de Jarisch-Herxheimer", conferir: true, diretrizes: ["pcdt-ist"],
           questoes: ["q-famema2023-037","q-tp20212-114","q-einstein2023-012","q-unifesp2022-036","q-usprp2026-036","q-famerp2023-019","q-unesp2025-029","q-scmsp2021-012-ia","q-scmsp2023-086-ia","q-sirio2025-018","q-iamspe2022-057"],
           prosa: `| Estágio | Penicilina benzatina | Seguimento |
@@ -77,7 +76,6 @@
 [[Sem saber quando a infecção começou, trata-se como tardia: três doses.|q-unifesp2022-036,q-usprp2026-036,q-einstein2023-012,q-scmsp2023-086-ia]] [[Horas depois da primeira dose pode vir a reação de Jarisch-Herxheimer — febre, mal-estar e piora das lesões pela liberação de antígenos dos treponemas mortos —, que se trata com sintomático e não é alergia à penicilina; na gestante pode desencadear contrações.|q-sirio2025-018,q-iamspe2022-057]]`,
           texto: `- Primária: **dose única** de benzatina; seguimento com **não treponêmico**. {q-famema2023-037}
 - Assintomático com VDRL + e TR + e duração ignorada: **7,2 milhões UI** (3 doses semanais). {q-tp20212-114,q-unifesp2022-036,q-usprp2026-036,q-einstein2023-012,q-scmsp2023-086-ia}
-- Parceiro assintomático de pessoa com sífilis, VDRL +: o gabarito trata com **dose única** (exposição recente). {q-famerp2023-019}
 - Lesões de secundária no passado e sem tratamento, hoje sem lesão: **latente de duração ignorada**, 7,2 milhões. {q-unesp2025-029}
 - Neurossífilis: **penicilina cristalina**; doxiciclina só como alternativa fora da gestação. {q-scmsp2021-012-ia}
 - Febre e piora das lesões **horas após** a benzatina: **Jarisch-Herxheimer**, tratar com **antitérmico** (dipirona). {q-sirio2025-018}
@@ -96,7 +94,6 @@
 - Sífilis prévia sem tratamento documentado, VDRL 1:2: **tratar** (7,2 milhões) e seguir com **VDRL mensal**. {q-tp20231-112}
 - Tratada com 7,2 milhões: **adequada independentemente do parceiro**. {q-uspsp1-098}
 - Parceiro de gestante com sífilis, mesmo com sorologia negativa: **dose única presuntiva**. {q-usprp2021-050}
-- Tratada antes com VDRL caindo e agora 1:16 após 14 meses: o gabarito **retrata** (2,4 milhões); outra banca, com VDRL 1:1 após tratamento adequado, também dá dose única por nova exposição. {q-adap24-041,q-tp20252-097}
 - Tratada adequadamente há 6 meses com VDRL 1:2: **só pedir VDRL** (seguimento). {q-unifesp2024-060}
 - VDRL que **sobe duas diluições** ou novos parceiros: **retratar**; o parceiro atual recebe dose. {q-tp20222-090,q-usp2023-110,q-einstein2025-054}` },
         { id: "sif-seguimento", titulo: "Seguimento, falha e neurossífilis", conferir: true, diretrizes: ["pcdt-ist","pcdt-tv"],
@@ -106,8 +103,6 @@
 **As provas divergem no critério da gestante.** Uma banca considera adequada a queda de uma diluição em 3 meses (1:32 → 1:16), dentro do prazo de 6 meses; outra, seguindo o PCDT de transmissão vertical, exige duas diluições em 3 meses e chama a mesma queda de inadequada. O resumo mantém os dois gabaritos; ler o PCDT vigente.`,
           texto: `- Resposta adequada: **queda de 2 diluições** em **6 meses (recente) ou 12 meses (tardia)**. {q-inf-21,q-uspsp2-033}
 - VDRL 1:128 → 1:8 em um ano, sem nova exposição: **cicatriz sorológica**, sem retratar. {q-unicampdis2025-006}
-- Puérpera com 1:32 → 1:16 → 1:16 em 3 meses: o gabarito diz **seguimento adequado**. {q-scmsp2022-088}
-- Gestante com 1:32 → 1:16 em 3 meses: outro gabarito diz **inadequada** (esperadas 2 diluições em 3 meses). {q-uspsp4-096}
 - Título que **sobe** após tratamento adequado: **reinfecção**, retratar. {q-uspsp1-070}
 - Sobe após tratamento e sem nova exposição: **reativação/falha**, retratar e **colher líquor**. {q-unicamp2023-015}
 - HIV com queda de só uma diluição em 8 meses: **líquor** e retratamento conforme o resultado. {q-unicampdis2024-068}
@@ -135,8 +130,7 @@
 - **Recorrente e incurável**; recidivas mais comuns com **HSV-2**. {q-sessp2025-070}
 - Tratamento: **aciclovir 400 mg VO 8/8 h por 7–10 dias** (primeiro episódio); confirmação por **PCR da lesão**. {q-adap21-050,q-uspsp1-075}
 - Gestante com lesões herpéticas: **aciclovir oral** (400 mg 8/8 h); testar sífilis. {q-usprp2023-021,q-einstein2026-072}
-- Supressão na gestação: **aciclovir a partir de 36 semanas** até o parto. {q-adap22-036,q-famerp2026-031}
-- **Cesárea só com lesão ativa ou pródromo** no parto; o gabarito da banca, com primoinfecção a 34 semanas, indica tratar, suprimir e programar cesárea. {q-adap22-036,q-iamspe2021-058}` },
+- Supressão na gestação: **aciclovir a partir de 36 semanas** até o parto. {q-adap22-036,q-famerp2026-031}` },
         { id: "ulc-bacterianas", titulo: "Cancro mole, linfogranuloma e donovanose", conferir: true, diretrizes: ["pcdt-ist"],
           casos: ["q-uspsp2-031"],
           questoes: ["q-scmsp2026-079","q-uspsp2-031","q-uspsp4-035","q-scmsp2025-068","q-sessp2022-063","q-uspsp4-077"],
@@ -148,7 +142,6 @@
           figuras: [{ arquivo: "figuras/fluxograma-ulcera.svg", legenda: "Esquema autoral: tratamento sindrômico da úlcera genital pelo Ministério da Saúde." }],
           questoes: ["q-famema2025-054","q-usprp2021-065","q-usp2022-028","q-famema2023-050","q-famema2021-021","q-scmsp2022-017","q-usprp2025-072","q-amrigs2023-046"],
           texto: `- Sem vesícula e **< 4 semanas**: tratar **sífilis e cancro mole** (benzatina + azitromicina). {q-famema2025-054,q-usp2022-028}
-- **> 4 semanas**: incluir **donovanose e LGV** — doxiciclina, penicilina e ciprofloxacino (gabarito) e biópsia. {q-usprp2021-065}
 - Úlcera genital: **sífilis, donovanose, herpes** (e cancro mole); diferencial com LGV. {q-famema2023-050,q-famema2021-021}
 - Úlcera e secreção anal no HSH: **sífilis, herpes, cancroide e donovanose**. {q-scmsp2022-017}
 - Trabalhador do sexo com úlcera: tratar na hora, **PrEP** e **vacinas de hepatite A e B** (PEP só até 72 h). {q-usp2022-028}
@@ -168,12 +161,10 @@
           prosa: `[[A ciprofloxacina saiu do tratamento do gonococo pela resistência; o esquema do protocolo brasileiro de 2022 é ceftriaxona 500 mg IM com azitromicina 1 g VO, ambas em dose única, e o tratamento da parceria.|q-adap22-056,q-usp2026-110,q-sirio2021-065-ia]] **As provas divergem no segundo antibiótico:** o CDC (2021) troca a azitromicina por doxiciclina 100 mg 12/12 h por 7 dias, que cura melhor a clamídia, e um gabarito recente já segue esse esquema.`,
           texto: `- Diplococos **Gram-negativos intracelulares**: gonococo. {q-adap22-056,q-sirio2021-065-ia}
 - Uretrite ou cervicite sem exame: **ceftriaxona 500 mg IM + azitromicina 1 g VO**, dose única, e tratar a parceria. {q-adap22-056,q-usp2026-110,q-tp20251-009,q-fmabc2026-002,q-einstein2022-003,q-sirio2024-077,q-fmabc2025-065,q-einstein2022-049,q-sirio2021-065-ia}
-- Gabarito com o esquema do CDC: **ceftriaxona + doxiciclina 7 dias**. {q-uspsp5-088}
 - Diagnóstico do gonococo e da clamídia: **PCR (NAAT)**; tratamento com **ceftriaxona**. {q-iamspe2025-013}
 - Tratamento sindrômico imediato e oferta de testes e prevenção. {q-sirio2026-095}
 - Colo **friável, muco purulento, sangramento ao coito**: cervicite; tratar. {q-unesp2021-035,q-sirio2023-070,q-fmabc2026-078}
-- Clamídia na citologia de assintomática: **tratar** mesmo sem sintoma. {q-unesp2022-038}
-- Clamídia confirmada: **doxiciclina 100 mg 12/12 h por 7 dias**; diagnóstico por biologia molecular (gabarito: captura híbrida). {q-simepm89-036,q-sirio2023-070}` },
+- Clamídia na citologia de assintomática: **tratar** mesmo sem sintoma. {q-unesp2022-038}` },
         { id: "ure-disseminada", titulo: "Gonococcemia disseminada e artrite gonocócica", conferir: true,
           casos: ["q-usp2024-049"],
           questoes: ["q-scmsp2026-002","q-famema2021-025","q-tp20252-041","q-tp20212-005","q-tp20231-099","q-usp2024-049"],
@@ -195,7 +186,6 @@
           questoes: ["q-scmsp2021-063","q-scmsp2023-067","q-tp20251-093","q-famema2025-053","q-iamspe2025-057","q-usp2023-105","q-udisc20262-093","q-uspsp1-083","q-unesp2025-032"],
           texto: `- Critério maior: **dor à mobilização do colo** (e dor anexial). {q-scmsp2021-063}
 - Dor pélvica, febre, corrimento e β-hCG negativo: **DIP**. {q-scmsp2023-067,q-tp20251-093,q-famema2025-053,q-usp2023-105}
-- Dor em baixo ventre com febre logo após a menstruação: o gabarito chama de **endometrite** e trata com ceftriaxona + doxiciclina (dose de ceftriaxona antiga). {q-iamspe2025-057}
 - Ultrassom: tubas de **parede espessada e distendidas** (piossalpinge). {q-udisc20262-093}
 - Massa anexial complexa com febre: **abscesso tubo-ovariano**. {q-uspsp1-083}
 - **Fitz-Hugh-Curtis**: dor no hipocôndrio direito que confunde com colecistite. {q-unesp2025-032}` },
@@ -228,7 +218,6 @@
 - Abordagem: anamnese, exame especular, **pH e KOH a 10%**; a citologia oncótica **não** é diagnóstico de corrimento. {q-famema2021-053}
 - Não é IST, mas **aumenta o risco** de IST e HIV. {q-uspsp5-085,q-fmabc2023-073}
 - *Gardnerella* na citologia, sem sintoma: **não tratar**. {q-tp20251-099}
-- Gabarito de banca: tratar mesmo assintomática. {q-einstein2023-048}
 - Recorrente: **metronidazol oral + gel vaginal por 4 a 6 meses**. {q-tp20261-065}` },
         { id: "cor-candida", titulo: "Candidíase", conferir: true, diretrizes: ["pcdt-ist"],
           casos: ["q-tp20202-089"],
@@ -238,7 +227,6 @@
 - Tratamento vaginal no SUS: **miconazol creme**. {q-tp20202-089}
 - Gestante: **só tópico** (miconazol 7–14 noites), sem azol oral. {q-usprp2026-080}
 - Recorrente (**≥ 4 episódios/ano**): **fluconazol 3 doses e depois semanal por 6 meses**. {q-tp20241-098}
-- Gabarito de banca: episódio com quadro "de repetição" tratado com **fluconazol oral 3 doses**. {q-tp20232-099}
 - Três episódios no ano com gatilho claro: **episódios isolados** de candidíase simples, não recorrente. {q-scmsp2025-078}` },
         { id: "cor-tricomonas", titulo: "Tricomoníase", conferir: true, diretrizes: ["pcdt-ist"],
           casos: ["q-tp20252-040"],
@@ -275,6 +263,26 @@
 - Adolescente com verrugas: tratar e **vacinar**. {q-tp20251-114,q-tp20261-082}
 - Vacina: eficácia máxima **antes do início sexual**. {q-famerp2026-024}
 - Adulta fora da faixa do SUS: **nonavalente na rede privada, 0-2-6 meses**. {q-famerp2026-023}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-sirio2022-076", "q-famerp2023-019", "q-adap24-041", "q-tp20252-097", "q-scmsp2022-088", "q-uspsp4-096", "q-adap22-036", "q-iamspe2021-058", "q-usprp2021-065", "q-uspsp5-088", "q-simepm89-036", "q-sirio2023-070", "q-iamspe2025-057", "q-einstein2023-048", "q-tp20232-099"],
+          texto: `- **Cicatriz sorológica** é treponêmico **positivo** com VDRL negativo ou baixo e estável após tratamento; não treponêmico positivo com treponêmico negativo é **falso-positivo provável**. Uma banca inverteu e deu "cicatriz" como certo. {q-sirio2022-076}
+- Parceria assintomática com VDRL +: estágio depende do tempo de infecção; sem como datar, seriam **3 doses**; um gabarito dá **dose única** por considerar exposição recente. {q-famerp2023-019}
+- Gestante já tratada com nova exposição: subida de título ou parceria nova sem proteção é **reinfecção** e se retrata (dose única se recente); duas bancas aplicaram isso com VDRL 1:16 e com VDRL 1:1. {q-adap24-041,q-tp20252-097}
+- Queda de **uma** diluição em 3 meses: uma banca chama de **seguimento adequado** (prazo de 6 meses)… {q-scmsp2022-088}
+- …e outra, seguindo o PCDT de transmissão vertical, chama a mesma queda de **inadequada** (2 diluições em 3 meses). {q-uspsp4-096}
+- Herpes na gestação: **cesárea só com lesão ativa ou pródromo no parto**; com primoinfecção no 3º trimestre, uma banca (ACOG) já **programa a cesárea**. {q-adap22-036,q-iamspe2021-058}
+- Úlcera **> 4 semanas**: cobrir **donovanose e LGV** e biopsiar; o esquema do gabarito é doxiciclina + penicilina + ciprofloxacino. {q-usprp2021-065}
+- Uretrite: PCDT 2022 usa **ceftriaxona + azitromicina**; o CDC 2021 usa **ceftriaxona + doxiciclina 7 dias**, e um gabarito recente segue o CDC. {q-uspsp5-088}
+- Clamídia confirmada: **doxiciclina 100 mg 12/12 h por 7 dias**; o diagnóstico é por **biologia molecular** (um gabarito cita captura híbrida). {q-simepm89-036,q-sirio2023-070}
+- Dor pélvica e febre após a menstruação é **DIP** até prova em contrário (ceftriaxona 500 mg + doxiciclina + metronidazol); um gabarito chama de endometrite e usa ceftriaxona 250 mg (dose antiga). {q-iamspe2025-057}
+- Vaginose **assintomática** não se trata (exceto antes de procedimento ginecológico); uma banca deu tratar como certo. {q-einstein2023-048}
+- Candidíase complicada (grave ou de repetição) usa **fluconazol 150 mg em 3 doses (a cada 72 h)**; a recorrente (≥ 4/ano) acrescenta supressão semanal por 6 meses. {q-tp20232-099}` },
       ],
     },
     {

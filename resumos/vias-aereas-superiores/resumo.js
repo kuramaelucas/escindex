@@ -34,8 +34,7 @@
         { id: "vir-influenza", titulo: "Influenza", conferir: true, diretrizes: ["ms-influenza"],
           questoes: ["q-tp20232-040","q-tp20241-044","q-tp20261-021","q-tp20251-041","q-fmabc2026-049"],
           texto: `- Síndrome gripal em **menor de 5 anos**: **oseltamivir**, sintomáticos, afastar da escola e sinais de alerta. {q-tp20232-040,q-tp20241-044,q-tp20261-021}
-- Dose cobrada: **30 mg de 12/12 h por 5 dias** (faixa de peso da criança pequena). {q-tp20251-041}
-- Escolar saudável fora do grupo de risco, em bom estado: **sintomáticos** (as provas variam quanto ao antiviral). {q-fmabc2026-049}` },
+- Dose cobrada: **30 mg de 12/12 h por 5 dias** (faixa de peso da criança pequena). {q-tp20251-041}` },
       ],
     },
     {
@@ -109,6 +108,15 @@
           texto: `- Salivação, prostração e **pescoço em hiperextensão**: **epiglotite**. {q-sirio2021-056}
 - Secreção purulenta na traqueia e **cânula menor que a calculada**: **traqueíte bacteriana**. {q-famerp2023-023}
 - Agente mais frequente da traqueíte: ***Staphylococcus aureus***. {q-amrigs2020-077}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-fmabc2026-049"],
+          texto: `- Influenza em escolar saudável fora do grupo de risco: **sintomáticos**; oseltamivir é para grupo de risco ou quadro grave (algumas provas o dão a todos nas primeiras 48 h). {q-fmabc2026-049}` },
       ],
     },
   ],

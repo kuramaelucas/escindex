@@ -76,13 +76,21 @@ O SUS rastreia hoje fenilcetonúria, hipotireoidismo congênito, doença falcifo
 - Abaixo de 95% em alguma medida, ou diferença maior que 3 pontos: **repetir após 1 hora**; mantido, **ecocardiograma antes da alta**. {q-adap21-026,q-amrigs2020-069,q-iamspe2023-037,q-famerp2024-055,q-unicamp2022-038,q-sirio2023-046}
 - 99% e 95% (diferença de 4): **impede a alta** até repetir. {q-iamspe2022-035}
 - SBP: **90 a 94%** é duvidoso, repete-se **até 2 vezes**; persistindo, positivo. {q-famerp2025-063,q-uspsp4-104}
-- Teste positivo: **ecocardiograma transtorácico**. {q-usp2025-070}
-- Alguma medida **abaixo de 90%** já é positivo; uma questão antiga dá como gabarito "teste negativo" num pé com 89%, e a equipe marcou o gabarito como duvidoso. {q-famerp2023-034}` },
+- Teste positivo: **ecocardiograma transtorácico**. {q-usp2025-070}` },
         { id: "bei-orelha-olho", titulo: "Triagem auditiva e reflexo vermelho", conferir: true,
           questoes: ["q-usp2023-089","q-uspsp1-023","q-didepm-049"],
           texto: `- Sem indicador de risco: **emissões otoacústicas até 30 dias**. {q-usp2023-089,q-uspsp1-023}
 - Icterícia sem exsanguineotransfusão **não** é indicador de risco auditivo. {q-usp2023-089}
 - **Leucocoria** no teste do olhinho: **oftalmologista pediátrico com urgência**. {q-didepm-049}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-famerp2023-034"],
+          texto: `- Qualquer medida **abaixo de 90%** já é teste positivo (ecocardiograma); uma questão dá "negativo" com um pé a 89%, e a equipe marcou esse gabarito como duvidoso. {q-famerp2023-034}` },
       ],
     },
   ],

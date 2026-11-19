@@ -96,7 +96,6 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
           texto: `- Assistolia e AESP: **adrenalina o quanto antes** + RCP de 2 minutos. {q-fmabc2025-046,q-sessp2022-046}
 - Adrenalina: **0,01 mg/kg IV/IO a cada 3 a 5 min**; investigar causas reversíveis (5 H e 5 T). {q-unesp2026-009,q-uspsp3-027}
 - Pela cânula traqueal, a adrenalina vai em **dose 10 vezes maior**. {q-simepm89-081}
-- Intraósseo: **tíbia proximal** é o local mais usado; a questão aceita também o **esterno**. {q-scmsp2023-054}
 - Acesso intraósseo é temporário: trocar em até **24 horas**. {q-unicampdis2023-034}
 - Pós-PCR: evitar **hipertermia e hipoxemia**; vias IV e IO; adrenalina é a droga padrão. {q-amrigs2023-073}` },
       ],
@@ -120,6 +119,15 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
           texto: `- QRS estreito, FC fixa > 220 (lactente), **sem onda P**: **taquicardia supraventricular**. {q-sirio2025-056,q-scmsp2026-057}
 - Perfusão preservada: **manobra vagal** (gelo na face no lactente) e, se refratária, **adenosina IV rápida**. {q-scmsp2026-057}
 - Crise hipoxêmica na tetralogia de Fallot: **oxigênio, morfina, expansão**; se não melhorar, transfusão e **betabloqueador**. {q-scmsp2021-051}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
+          questoes: ["q-scmsp2023-054"],
+          texto: `- Intraósseo na criança: **tíbia proximal** (também fêmur distal e úmero proximal no maior); o **esterno** é local do adulto, mas uma banca o deu como resposta. {q-scmsp2023-054}` },
       ],
     },
   ],
