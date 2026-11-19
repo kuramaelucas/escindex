@@ -134,3 +134,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `neoplasias-hematologicas` | `ass-hemato-neoplasias` | 60 | 1 (anulada sem reposição) |
 | `intoxicacoes` | `ass-emerg-intoxicacoes` | 58 | — |
 | `trabalho-de-parto` | `ass-trabalhoparto` | 188 | 5 (anuladas sem reposição) |
+| `pre-natal` | `ass-prenatal` | 157 | 5 (3 anuladas, 2 com reposição no resumo; 2 de infecção puerperal, que vão para `puerperio`) |

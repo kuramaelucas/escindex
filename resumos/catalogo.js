@@ -37,4 +37,5 @@
   { id: "intoxicacoes", titulo: "Intoxicações exógenas e animais peçonhentos", area: "Clínica Médica · Emergência", assunto: "ass-emerg-intoxicacoes" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
   { id: "trabalho-de-parto", titulo: "Trabalho de parto e parto", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-trabalhoparto" },
+  { id: "pre-natal", titulo: "Pré-natal", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-prenatal" },
 ];
