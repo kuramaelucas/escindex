@@ -129,3 +129,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `asma` | `ass-asma` | 80 | 8 (6 anuladas com reposição no resumo; 1 anulada e 1 desatualizada sem reposição) |
 | `arritmias` | `ass-arritmias` | 78 | 2 (1 anulada com reposição no resumo; 1 anulada sem reposição) |
 | `hidroeletrolitico` | `ass-hidroeletrolitico` | 70 | 2 (anuladas sem reposição) |
+| `doenca-coronariana` | `ass-sca` | 72 | 1 (acidose láctica pela metformina, fora do tema) |

@@ -31,5 +31,6 @@
   { id: "asma", titulo: "Asma e rinite alérgica", area: "Clínica Médica · Pneumologia", assunto: "ass-asma" },
   { id: "arritmias", titulo: "ECG, arritmias e síncope", area: "Clínica Médica · Cardiologia", assunto: "ass-arritmias" },
   { id: "hidroeletrolitico", titulo: "Distúrbios hidroeletrolíticos e ácido-base", area: "Clínica Médica · Nefrologia", assunto: "ass-hidroeletrolitico" },
+  { id: "doenca-coronariana", titulo: "Síndromes coronarianas aguda e crônica", area: "Clínica Médica · Cardiologia", assunto: "ass-sca" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

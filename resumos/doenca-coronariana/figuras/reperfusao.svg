@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="250" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">IAM com supra: qual reperfusão?</text>
+<rect x="250" y="44" width="260" height="44" rx="8" fill="#eef1f6" stroke="#4a5a78"/>
+<text x="380" y="64" text-anchor="middle" font-weight="700">Tempo até a angioplastia</text>
+<text x="380" y="80" text-anchor="middle">(diagnóstico → passagem do fio)</text>
+<line x1="320" y1="88" x2="190" y2="120" stroke="#555"/>
+<line x1="440" y1="88" x2="570" y2="120" stroke="#555"/>
+<rect x="40" y="120" width="300" height="100" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="190" y="146" text-anchor="middle" font-weight="700">≤ 120 minutos</text>
+<text x="190" y="170" text-anchor="middle">angioplastia primária</text>
+<text x="190" y="192" text-anchor="middle">(também no choque e se</text>
+<text x="190" y="210" text-anchor="middle">a fibrinólise é contraindicada)</text>
+<rect x="420" y="120" width="300" height="100" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="570" y="146" text-anchor="middle" font-weight="700">&gt; 120 minutos</text>
+<text x="570" y="170" text-anchor="middle">fibrinólise em até 10 min</text>
+<text x="570" y="192" text-anchor="middle">e cateterismo em 2–24 h</text>
+<text x="570" y="210" text-anchor="middle">(de resgate se não reperfundir)</text>
+</svg>
