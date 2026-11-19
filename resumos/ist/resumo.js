@@ -126,7 +126,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 
 [[O herpes nunca se cura: o vírus fica latente nos gânglios sensitivos sacrais e reativa, mais no HSV-2; por isso o primeiro episódio é o mais intenso e as recidivas são mais curtas.|q-sessp2025-070,q-unicampdis2023-038]] [[Como o exame clínico erra, o Ministério da Saúde trata a úlcera sem vesículas na mesma consulta como sífilis e cancro mole, e a que dura mais de 4 semanas também como donovanose e linfogranuloma.|q-famema2025-054,q-usprp2021-065,q-usp2022-028]]`,
       fragmentos: [
-        { id: "ulc-herpes", titulo: "Herpes genital, inclusive na gestação", conferir: true, diretrizes: ["pcdt-ist","acog-herpes"],
+        { id: "ulc-herpes", titulo: "Herpes genital, inclusive na gestação", conferir: false, diretrizes: ["pcdt-ist","acog-herpes"],
           casos: ["q-unesp2025-071","q-usprp2023-021"],
           questoes: ["q-scmsp2021-013","q-sessp2025-070","q-unicampdis2023-038","q-unesp2025-071","q-uspsp1-075","q-adap21-050","q-usprp2023-021","q-einstein2026-072","q-adap22-036","q-famerp2026-031","q-iamspe2021-058"],
           prosa: `[[Na gestante, o risco para o recém-nascido vem sobretudo da primoinfecção no fim da gestação, quando a mãe ainda não passou anticorpos ao feto; aciclovir supressivo a partir de 36 semanas reduz lesões no parto, e a cesárea só se indica com lesão ativa ou pródromos na hora do parto.|q-adap22-036,q-famerp2026-031,q-iamspe2021-058]]`,
@@ -136,7 +136,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Tratamento: **aciclovir 400 mg VO 8/8 h por 7–10 dias** (primeiro episódio); confirmação por **PCR da lesão**. {q-adap21-050,q-uspsp1-075}
 - Gestante com lesões herpéticas: **aciclovir oral** (400 mg 8/8 h); testar sífilis. {q-usprp2023-021,q-einstein2026-072}
 - Supressão na gestação: **aciclovir a partir de 36 semanas** até o parto. {q-adap22-036,q-famerp2026-031}` },
-        { id: "ulc-bacterianas", titulo: "Cancro mole, linfogranuloma e donovanose", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "ulc-bacterianas", titulo: "Cancro mole, linfogranuloma e donovanose", conferir: false, diretrizes: ["pcdt-ist"],
           casos: ["q-uspsp2-031"],
           questoes: ["q-scmsp2026-079","q-uspsp2-031","q-uspsp4-035","q-scmsp2025-068","q-sessp2022-063","q-uspsp4-077"],
           texto: `- Úlceras **múltiplas, dolorosas, fundo purulento, bordas irregulares**, bubão doloroso: ***Haemophilus ducreyi*** (cancro mole). {q-scmsp2026-079,q-uspsp2-031,q-uspsp4-035}
@@ -160,7 +160,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 
 [[O gonococo pode cair no sangue (gonococcemia disseminada), sobretudo em mulheres durante a menstruação e na gestação, e dá a tríade de tenossinovite, lesões pustulosas na pele e poliartralgia migratória, ou artrite séptica de um joelho.|q-scmsp2026-002,q-famema2021-025,q-tp20252-041]]`,
       fragmentos: [
-        { id: "ure-tratamento", titulo: "Tratamento da uretrite e da cervicite", conferir: true, diretrizes: ["pcdt-ist","cdc-ist"],
+        { id: "ure-tratamento", titulo: "Tratamento da uretrite e da cervicite", conferir: false, diretrizes: ["pcdt-ist","cdc-ist"],
           casos: ["q-unesp2021-035"],
           questoes: ["q-adap22-056","q-usp2026-110","q-iamspe2025-013","q-tp20251-009","q-sirio2026-095","q-uspsp5-088","q-fmabc2026-002","q-einstein2022-003","q-sirio2021-065-ia","q-unesp2021-035","q-unesp2022-038","q-simepm89-036","q-sirio2023-070","q-sirio2024-077","q-fmabc2025-065","q-fmabc2026-078","q-einstein2022-049"],
           prosa: `[[A ciprofloxacina saiu do tratamento do gonococo pela resistência; o esquema do protocolo brasileiro de 2022 é ceftriaxona 500 mg IM com azitromicina 1 g VO, ambas em dose única, e o tratamento da parceria.|q-adap22-056,q-usp2026-110,q-sirio2021-065-ia]] Na uretrite sem agente definido, o próprio PCDT dá como segunda opção a doxiciclina 100 mg 12/12 h por 7 dias no lugar da azitromicina; é o esquema preferido do CDC (2021), porque cura melhor a clamídia.`,
@@ -170,7 +170,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Tratamento sindrômico imediato e oferta de testes e prevenção. {q-sirio2026-095}
 - Colo **friável, muco purulento, sangramento ao coito**: cervicite; tratar. {q-unesp2021-035,q-sirio2023-070,q-fmabc2026-078}
 - Clamídia na citologia de assintomática: **tratar** mesmo sem sintoma. {q-unesp2022-038}` },
-        { id: "ure-disseminada", titulo: "Gonococcemia disseminada e artrite gonocócica", conferir: true,
+        { id: "ure-disseminada", titulo: "Gonococcemia disseminada e artrite gonocócica", conferir: false, diretrizes: ["pcdt-ist"],
           casos: ["q-usp2024-049"],
           questoes: ["q-scmsp2026-002","q-famema2021-025","q-tp20252-041","q-tp20212-005","q-tp20231-099","q-usp2024-049"],
           texto: `- Fatores de risco: **gestação e menstruação** (e deficiência de complemento). {q-scmsp2026-002}
@@ -186,7 +186,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 
 [[A inflamação pode formar abscesso tubo-ovariano, e a peri-hepatite (Fitz-Hugh-Curtis) dá dor no hipocôndrio direito que imita colecistite; a sequela é a obstrução tubária, com infertilidade, gravidez ectópica e dor crônica.|q-unesp2025-032,q-unesp2023-038,q-uspsp1-083]]`,
       fragmentos: [
-        { id: "dip-diagnostico", titulo: "Diagnóstico e complicações", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "dip-diagnostico", titulo: "Diagnóstico e complicações", conferir: false, diretrizes: ["pcdt-ist"],
           casos: ["q-uspsp1-083"],
           questoes: ["q-scmsp2021-063","q-scmsp2023-067","q-tp20251-093","q-famema2025-053","q-iamspe2025-057","q-usp2023-105","q-udisc20262-093","q-uspsp1-083","q-unesp2025-032"],
           texto: `- Critério maior: **dor à mobilização do colo** (e dor anexial). {q-scmsp2021-063}
@@ -212,18 +212,18 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 
 [[Quando os lactobacilos são demais (vaginose citolítica), o pH fica muito ácido e as células epiteliais se rompem, imitando candidíase sem fungo; na vaginite aeróbia, ao contrário, faltam lactobacilos e há inflamação por bactérias intestinais e estreptococos.|q-iamspe2023-054,q-usp2025-005,q-fmabc2026-076,q-einstein2021-033,q-fmabc2024-061]]`,
       fragmentos: [
-        { id: "cor-vaginose", titulo: "Vaginose bacteriana", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "cor-vaginose", titulo: "Vaginose bacteriana", conferir: false, diretrizes: ["pcdt-ist"],
           casos: ["q-usp2024-114"],
           questoes: ["q-adap21-065","q-scmsp2021-064","q-usp2024-114","q-usprp2022-001","q-amrigs2025-046","q-iamspe2021-050","q-iamspe2025-043","q-iamspe2026-044","q-sessp2025-062","q-tp20222-100","q-tp20251-099","q-tp20261-065","q-famema2021-053","q-famema2021-054","q-uspsp5-085","q-einstein2023-048","q-fmabc2023-073","q-unicampdis2024-098","q-uspsp4-027"],
           prosa: `[[O diagnóstico usa os critérios de Amsel — corrimento fino acinzentado, pH acima de 4,5, teste das aminas positivo e células-chave (clue cells) — e o tratamento é metronidazol 500 mg 12/12 h por 7 dias, sem tratar o parceiro.|q-adap21-065,q-uspsp5-085,q-tp20222-100,q-famema2021-054]] [[Achado de *Gardnerella* na citologia de mulher sem sintoma não se trata, e a recorrência (três ou mais episódios no ano) pede supressão com metronidazol gel por meses.|q-tp20251-099,q-tp20261-065]] Um gabarito manda tratar a assintomática; o protocolo trata só a sintomática e a gestante sintomática.`,
           texto: `- Corrimento acinzentado, **pH > 4,5**, **aminas +**, **clue cells**: vaginose. {q-adap21-065,q-iamspe2021-050,q-tp20222-100,q-uspsp4-027,q-unicampdis2024-098,q-usp2024-114}
 - Agente associado: ***Gardnerella vaginalis***. {q-iamspe2025-043,q-iamspe2026-044,q-sessp2025-062}
 - Tratamento: **metronidazol 500 mg 12/12 h por 7 dias**; **não tratar parceiro** de rotina. {q-adap21-065,q-usprp2022-001,q-uspsp5-085,q-famema2021-054}
-- Alternativas: **metronidazol gel vaginal 5 dias**, **secnidazol 2 g dose única**. {q-scmsp2021-064,q-amrigs2025-046}
+- Alternativas: **metronidazol gel vaginal por 5 noites** ou, em segunda opção, **clindamicina 300 mg 12/12 h por 7 dias**; o CDC aceita **secnidazol 2 g dose única**. {q-scmsp2021-064,q-amrigs2025-046}
 - Abordagem: anamnese, exame especular, **pH e KOH a 10%**; a citologia oncótica **não** é diagnóstico de corrimento. {q-famema2021-053}
 - Não é IST, mas **aumenta o risco** de IST e HIV. {q-uspsp5-085,q-fmabc2023-073}
 - *Gardnerella* na citologia, sem sintoma: **não tratar**. {q-tp20251-099}
-- Recorrente: **metronidazol oral + gel vaginal por 4 a 6 meses**. {q-tp20261-065}` },
+- Recorrente: **metronidazol por 10–14 dias** (ou gel por 10 dias), depois **ácido bórico vaginal por 21 dias** e **gel 2×/semana por 4 a 6 meses**. {q-tp20261-065}` },
         { id: "cor-candida", titulo: "Candidíase", diretrizes: ["pcdt-ist"],
           casos: ["q-tp20202-089"],
           questoes: ["q-iamspe2022-056","q-tp20241-098","q-usprp2026-080","q-tp20202-089","q-tp20251-100","q-tp20232-099","q-scmsp2025-078"],
@@ -233,7 +233,7 @@ Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis
 - Gestante: **só tópico** (miconazol 7–14 noites), sem azol oral. {q-usprp2026-080}
 - Recorrente (**≥ 4 episódios/ano**): **fluconazol 3 doses e depois semanal por 6 meses**. {q-tp20241-098}
 - Três episódios no ano com gatilho claro: **episódios isolados** de candidíase simples, não recorrente. {q-scmsp2025-078}` },
-        { id: "cor-tricomonas", titulo: "Tricomoníase", conferir: true, diretrizes: ["pcdt-ist"],
+        { id: "cor-tricomonas", titulo: "Tricomoníase", conferir: false, diretrizes: ["pcdt-ist"],
           casos: ["q-tp20252-040"],
           questoes: ["q-tp20212-089","q-sirio2027-077","q-fmabc2022-062","q-tp20202-016","q-tp20252-040","q-tp20261-090","q-unesp2022-032","q-simepm89-034","q-fmabc2021-050"],
           texto: `- Corrimento amarelo-esverdeado, **bolhoso**, **colo em framboesa**, pH > 5. {q-tp20212-089,q-sirio2027-077,q-simepm89-034}
