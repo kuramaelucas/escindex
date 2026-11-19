@@ -9,8 +9,8 @@
   criadoEm: "2026-11-18",
   fontes: [
     { id: "ms-triagem", texto: "Ministério da Saúde — Manual Técnico de Triagem Neonatal Biológica (2016) e Lei 14.154/2021 (ampliação do teste do pezinho)", lidoEm: null },
-    { id: "pcdt-hipotireoidismo", texto: "Ministério da Saúde — PCDT do Hipotireoidismo Congênito (2021)", lidoEm: null },
-    { id: "sbp-coracaozinho", texto: "Sociedade Brasileira de Pediatria — Triagem neonatal da cardiopatia congênita crítica (teste do coraçãozinho)", lidoEm: null },
+    { id: "pcdt-hipotireoidismo", texto: "Ministério da Saúde — PCDT do Hipotireoidismo Congênito (Portaria Conjunta nº 5/2021, gov.br/conitec)", lidoEm: "2026-11-19" },
+    { id: "sbp-coracaozinho", texto: "Sociedade Brasileira de Pediatria — Sistematização do atendimento ao RN com suspeita ou diagnóstico de cardiopatia congênita (manual de orientação, com o fluxo do teste do coraçãozinho), sbp.com.br", lidoEm: "2026-11-19" },
   ],
   foraDoEscopo: [],
   doencas: [
@@ -40,14 +40,14 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
 
 [[O tripsinogênio imunorreativo sobe porque, na fibrose cística, o pâncreas lesado deixa a enzima vazar para o sangue; dois resultados altos pedem o teste do suor.|q-adap25-091,q-uspsp2-066,q-famema2022-083]] [[Na hiperplasia adrenal congênita por deficiência de 21-hidroxilase, falta cortisol e aldosterona: a criança perde sal (sódio baixo, potássio alto) e a menina nasce virilizada.|q-usp2026-061,q-einstein2024-042,q-sirio2025-050]]`,
       fragmentos: [
-        { id: "doe-tireoide", titulo: "Hipotireoidismo congênito", conferir: true, diretrizes: ["pcdt-hipotireoidismo"],
+        { id: "doe-tireoide", titulo: "Hipotireoidismo congênito", conferir: false, diretrizes: ["pcdt-hipotireoidismo"],
           questoes: ["q-adap25-090","q-adap26-083","q-unicamp2023-047","q-simepm89-085","q-unesp2023-011","q-unifesp2025-091","q-scmsp2023-044"],
           prosa: `Sem hormônio tireoidiano o cérebro não mieliniza nem forma sinapses nos primeiros meses, e o dano é permanente; o bebê, porém, nasce quase sem sinais, porque recebeu hormônio da mãe. Por isso o TSH alto no pezinho é urgência: confirmar no soro e começar a levotiroxina o quanto antes.`,
           texto: `- TSH alto no pezinho: **TSH e T4 livre séricos já**; confirmado, **levotiroxina** sem esperar sintomas. {q-adap25-090,q-adap26-083,q-unicamp2023-047}
 - É **emergência**: o dano neurológico começa nas primeiras semanas. {q-scmsp2023-044}
 - Rastreio pelo **TSH entre 2 e 5 dias**. {q-simepm89-085}
 - Prematuro extremo ou muito baixo peso: **nova coleta com 1 mês** (TSH pode subir tarde). {q-unesp2023-011}
-- Tireoide tópica normal, em tratamento: **manter a reposição até os 2 anos** e só então testar a suspensão. {q-unifesp2025-091}` },
+- Tireoide tópica normal, sem etiologia definida: **manter a reposição**; o PCDT de 2021 só testa a suspensão **depois dos 3 anos**. {q-unifesp2025-091}` },
         { id: "doe-pku-fc", titulo: "Fenilcetonúria e fibrose cística", conferir: true, diretrizes: ["ms-triagem"],
           questoes: ["q-usprp2026-057","q-adap24-091","q-tp20232-055","q-unifesp2024-088","q-adap25-091","q-uspsp2-066","q-unicampdis2022-030","q-famema2022-083","q-unifesp2026-083"],
           prosa: `Na fenilcetonúria falta a enzima que transforma fenilalanina em tirosina; a fenilalanina se acumula e é tóxica ao cérebro em formação, e o tratamento é limitar sua ingestão. Na fibrose cística, o pâncreas obstruído deixa vazar tripsinogênio imunorreativo (IRT) para o sangue; o IRT alto duas vezes leva ao teste do suor, que confirma.`,
@@ -74,7 +74,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
 
 [[A triagem auditiva por emissões otoacústicas é para todos; o bebê com fator de risco faz o potencial evocado (BERA), porque a perda neural escapa ao primeiro exame.|q-usp2023-089,q-uspsp1-023]] [[O teste do olhinho procura o reflexo vermelho: pupila branca (leucocoria) pode ser catarata ou retinoblastoma e vai ao oftalmologista com urgência.|q-didepm-049]]`,
       fragmentos: [
-        { id: "bei-coracao", titulo: "Teste do coraçãozinho", conferir: true, diretrizes: ["sbp-coracaozinho"],
+        { id: "bei-coracao", titulo: "Teste do coraçãozinho", conferir: false, diretrizes: ["sbp-coracaozinho"],
           figuras: [{ arquivo: "figuras/coracaozinho.svg", legenda: "Esquema autoral: como ler o teste do coraçãozinho, nas regras nova e antiga." }],
           questoes: ["q-usp2025-069","q-usp2025-070","q-adap21-026","q-amrigs2020-069","q-iamspe2022-035","q-iamspe2023-037","q-famerp2024-055","q-famerp2025-063","q-unicamp2022-038","q-uspsp4-104","q-sirio2023-046","q-famerp2023-034"],
           casos: ["q-usp2025-070"],
@@ -97,8 +97,9 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
       introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [
         { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
-          questoes: ["q-famerp2023-034"],
-          texto: `- Qualquer medida **abaixo de 90%** já é teste positivo (ecocardiograma); uma questão dá "negativo" com um pé a 89%, e a equipe marcou esse gabarito como duvidoso. {q-famerp2023-034}` },
+          questoes: ["q-unifesp2025-091","q-famerp2023-034"],
+          texto: `- Teste de suspensão da levotiroxina: **após os 3 anos** (PCDT 2021); a prova, pelo manual de 2016, cobrou **manter até os 2 anos**. {q-unifesp2025-091}
+- Qualquer medida **abaixo de 90%** já é teste positivo (ecocardiograma); uma questão dá "negativo" com um pé a 89%, e a equipe marcou esse gabarito como duvidoso. {q-famerp2023-034}` },
       ],
     },
   ],
