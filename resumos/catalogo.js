@@ -33,5 +33,6 @@
   { id: "hidroeletrolitico", titulo: "Distúrbios hidroeletrolíticos e ácido-base", area: "Clínica Médica · Nefrologia", assunto: "ass-hidroeletrolitico" },
   { id: "doenca-coronariana", titulo: "Síndromes coronarianas aguda e crônica", area: "Clínica Médica · Cardiologia", assunto: "ass-sca" },
   { id: "infeccoes-de-pele", titulo: "Infecções e infestações da pele", area: "Clínica Médica · Dermatologia", assunto: "ass-derm-infeccoes" },
+  { id: "neoplasias-hematologicas", titulo: "Neoplasias hematológicas", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-neoplasias" },
   { id: "insuficiencia-cardiaca", titulo: "Insuficiência cardíaca do adulto", area: "Clínica Médica · Cardiologia", assunto: "ass-ic" },
 ];

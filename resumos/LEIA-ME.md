@@ -131,3 +131,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `hidroeletrolitico` | `ass-hidroeletrolitico` | 70 | 2 (anuladas sem reposição) |
 | `doenca-coronariana` | `ass-sca` | 72 | 1 (acidose láctica pela metformina, fora do tema) |
 | `infeccoes-de-pele` | `ass-derm-infeccoes` | 65 | — |
+| `neoplasias-hematologicas` | `ass-hemato-neoplasias` | 60 | 1 (anulada sem reposição) |

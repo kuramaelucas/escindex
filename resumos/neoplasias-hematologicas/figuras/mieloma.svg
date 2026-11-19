@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" font-family="system-ui,sans-serif" font-size="13">
+<rect width="760" height="260" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="700" fill="#222">Mieloma: um clone de plasmócitos, quatro lesões de órgão</text>
+<rect x="270" y="44" width="220" height="50" rx="8" fill="#eef1f6" stroke="#4a5a78"/>
+<text x="380" y="66" text-anchor="middle" font-weight="700">Plasmócito clonal</text>
+<text x="380" y="84" text-anchor="middle">na medula</text>
+<line x1="300" y1="94" x2="105" y2="140" stroke="#555"/><line x1="350" y1="94" x2="290" y2="140" stroke="#555"/>
+<line x1="410" y1="94" x2="475" y2="140" stroke="#555"/><line x1="460" y1="94" x2="660" y2="140" stroke="#555"/>
+<rect x="20" y="140" width="170" height="96" rx="8" fill="#fbe5e1" stroke="#b03a2e"/>
+<text x="105" y="162" text-anchor="middle" font-weight="700">Osso</text>
+<text x="105" y="184" text-anchor="middle">osteoclastos ativos:</text>
+<text x="105" y="202" text-anchor="middle">lesões líticas, dor</text>
+<text x="105" y="220" text-anchor="middle">e hipercalcemia</text>
+<rect x="205" y="140" width="170" height="96" rx="8" fill="#fdf3e0" stroke="#b07a1e"/>
+<text x="290" y="162" text-anchor="middle" font-weight="700">Rim</text>
+<text x="290" y="184" text-anchor="middle">cadeias leves</text>
+<text x="290" y="202" text-anchor="middle">entopem o túbulo</text>
+<rect x="390" y="140" width="170" height="96" rx="8" fill="#eef1f6" stroke="#4a5a78"/>
+<text x="475" y="162" text-anchor="middle" font-weight="700">Medula</text>
+<text x="475" y="184" text-anchor="middle">ocupada: anemia</text>
+<text x="475" y="202" text-anchor="middle">e rouleaux</text>
+<rect x="575" y="140" width="170" height="96" rx="8" fill="#e6f4ec" stroke="#2f8a57"/>
+<text x="660" y="162" text-anchor="middle" font-weight="700">Imunidade</text>
+<text x="660" y="184" text-anchor="middle">imunoglobulinas</text>
+<text x="660" y="202" text-anchor="middle">normais caem:</text>
+<text x="660" y="220" text-anchor="middle">infecções</text>
+</svg>
