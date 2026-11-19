@@ -24,7 +24,9 @@
       id: "diagnostico", titulo: "Medida da pressão e diagnóstico",
       introducao: `[[A hipertensão é a elevação persistente da pressão arterial — no consultório, ≥ 140/90 mmHg em duas ou mais consultas; na MAPA, média de 24 horas ≥ 130/80 —, e o risco de AVC, infarto, insuficiência cardíaca e doença renal sobe de forma contínua a partir de 115/75.|q-card-13,q-tp20251-002,q-fmabc2026-006-ia]] [[A medida erra por técnica: manguito pequeno superestima a pressão, o estetoscópio sob o manguito a altera, e a fala, a bexiga cheia e o fumo antes da medida também.|q-usp2026-017,q-amrigs2025-004,q-unesp2022-011]]
 
-[[A medida fora do consultório separa quatro situações: hipertensão verdadeira, avental branco (alta só no consultório, pelo alerta), mascarada (normal no consultório e alta fora dele, comum no fumante, estressado e obeso) e normotensão.|q-card-14,q-unifesp2024-029,q-adap24-020,q-unesp2024-056]]`,
+[[A medida fora do consultório separa quatro situações: hipertensão verdadeira, avental branco (alta só no consultório, pelo alerta), mascarada (normal no consultório e alta fora dele, comum no fumante, estressado e obeso) e normotensão.|q-card-14,q-unifesp2024-029,q-adap24-020,q-unesp2024-056]]
+
+Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiência cardíaca do adulto**: são o mesmo eixo de doença vascular e renal. A pressão da criança também aparece em **Puericultura**; a versão completa é a deste resumo.`,
       fragmentos: [
         { id: "dia-medida", titulo: "Técnica da medida e rastreio", conferir: true, diretrizes: ["sbc-has"],
           questoes: ["q-usp2026-017","q-amrigs2025-004","q-unesp2022-011","q-famema2023-011","q-amrigs2024-001","q-einstein2024-069"],

@@ -19,7 +19,9 @@
       id: "transicao", titulo: "O nascimento e a primeira avaliação",
       introducao: `No útero, o pulmão está cheio de líquido e quase não recebe sangue: a resistência vascular pulmonar é alta e o sangue desvia pelo forame oval e pelo canal arterial. [[Ao nascer, as primeiras respirações e o choro expandem os alvéolos, ajudam a reabsorver o líquido pulmonar e, com a entrada de oxigênio, fazem a resistência vascular pulmonar cair, levando sangue ao pulmão.|q-unifesp2022-074]]
 
-[[Por isso a ventilação é o centro da reanimação neonatal: quase todo recém-nascido que precisa de ajuda precisa só de ar nos pulmões, e a frequência cardíaca sobe quando os alvéolos se abrem.|q-014,q-adap22-074,q-usp2022-054]] [[A avaliação ao nascer faz três perguntas — a gestação é a termo? respira ou chora? tem tônus em flexão? — e uma resposta negativa já leva o bebê ao berço aquecido.|q-usprp2022-085,q-usprp2023-018,q-iamspe2022-034]]`,
+[[Por isso a ventilação é o centro da reanimação neonatal: quase todo recém-nascido que precisa de ajuda precisa só de ar nos pulmões, e a frequência cardíaca sobe quando os alvéolos se abrem.|q-014,q-adap22-074,q-usp2022-054]] [[A avaliação ao nascer faz três perguntas — a gestação é a termo? respira ou chora? tem tônus em flexão? — e uma resposta negativa já leva o bebê ao berço aquecido.|q-usprp2022-085,q-usprp2023-018,q-iamspe2022-034]]
+
+Veja também: **Desconforto respiratório do recém-nascido** e **Prematuridade**.`,
       fragmentos: [
         { id: "tra-avaliar", titulo: "Avaliação, Apgar e temperatura", conferir: true, diretrizes: ["sbp-prn"],
           figuras: [{ arquivo: "figuras/fluxo-prn.svg", legenda: "Esquema autoral: a sequência da reanimação em sala de parto." }],

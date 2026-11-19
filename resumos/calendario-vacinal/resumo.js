@@ -29,7 +29,9 @@
 
 [[As vacinas de vírus vivo injetáveis contra sarampo, caxumba e rubéola esperam os 12 meses porque os anticorpos maternos, passados pela placenta, neutralizariam o vírus vacinal antes que ele induzisse imunidade.|q-didepm-044,q-uspsp4-099]] Os **reforços** existem porque a resposta do lactente às primeiras doses é curta: a memória imunológica só se consolida com nova exposição ao antígeno.
 
-[[Atrasar não obriga a recomeçar: a imunidade das doses já dadas persiste, e o esquema continua de onde parou, respeitando intervalo mínimo e idade máxima de cada vacina.|q-einstein2021-025,q-famerp2025-043,q-adap25-083]]`,
+[[Atrasar não obriga a recomeçar: a imunidade das doses já dadas persiste, e o esquema continua de onde parou, respeitando intervalo mínimo e idade máxima de cada vacina.|q-einstein2021-025,q-famerp2025-043,q-adap25-083]]
+
+Veja também: **Doenças exantemáticas**, **Bronquiolite, pneumonia e coqueluche** e **Tuberculose** (BCG e recém-nascido de mãe bacilífera).`,
       fragmentos: [
         { id: "log-regras", titulo: "Regras gerais que a banca cobra", conferir: true, diretrizes: ["ms-normas-vacinacao"],
           questoes: ["q-einstein2021-025","q-famerp2025-043","q-adap25-083","q-tp20251-040","q-usp2024-021","q-scmsp2026-091","q-uspsp5-094"],

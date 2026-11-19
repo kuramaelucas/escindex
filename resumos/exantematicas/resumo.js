@@ -24,7 +24,9 @@
       id: "raciocinio", titulo: "Como raciocinar diante de febre + exantema",
       introducao: `Exantema é a erupção cutânea difusa que acompanha uma doença sistêmica. Ele não é uma doença em si: é a pele mostrando o que acontece no resto do corpo. Por trás de um exantema há quatro mecanismos. O primeiro é o **dano direto do vírus** ao endotélio e à epiderme, como nas vesículas da varicela e dos enterovírus. O segundo é a **resposta imune** contra as células infectadas, como no sarampo e no eritema infeccioso. O terceiro são as **toxinas bacterianas** que dilatam os capilares ou separam camadas da pele, como na escarlatina e na pele escaldada. O quarto é a **vasculite**, como na doença de Kawasaki.
 
-Por isso o tempo importa tanto. Quando o exantema é imunomediado, ele aparece no momento em que o organismo já reage ao agente. Às vezes isso coincide com o fim da febre (exantema súbito), às vezes com o fim da transmissão (parvovírus). Saber o mecanismo de cada doença permite deduzir o quadro, em vez de decorar listas.`,
+Por isso o tempo importa tanto. Quando o exantema é imunomediado, ele aparece no momento em que o organismo já reage ao agente. Às vezes isso coincide com o fim da febre (exantema súbito), às vezes com o fim da transmissão (parvovírus). Saber o mecanismo de cada doença permite deduzir o quadro, em vez de decorar listas.
+
+Veja também: **Infecções de vias aéreas superiores** (faringite e mononucleose), **Calendário vacinal** e **Infecções congênitas** (rubéola e varicela na gestação).`,
       fragmentos: [
         { id: "rac-chaves", figuras: [{ arquivo: "figuras/febre-exantema.svg", legenda: "Esquema autoral: a curva da febre e o momento do exantema em três doenças." }], titulo: "As quatro perguntas que separam as doenças", conferir: true,
           questoes: ["q-famema2025-042","q-tp20222-047","q-amrigs2021-070"],

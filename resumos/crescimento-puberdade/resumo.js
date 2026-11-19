@@ -21,7 +21,9 @@
       id: "crescimento", titulo: "Como avaliar o crescimento",
       introducao: `[[O crescimento é contínuo, mas não tem velocidade constante: é rápido no primeiro ano, desacelera até um ritmo estável de cerca de 5 a 6 cm por ano na infância e acelera de novo no estirão puberal.|q-amrigs2021-061]] Cada fase tem um motor diferente: a nutrição domina o primeiro ano, o eixo do hormônio de crescimento e a tireoide dominam a infância, e os esteroides sexuais somam-se ao GH na puberdade.
 
-[[Uma medida isolada diz pouco; o que separa o normal do doente é a velocidade de crescimento, porque a criança saudável segue o seu canal e a doença a faz cruzar canais para baixo.|q-sirio2021-055,q-unicamp2022-039,q-einstein2027-035]] Duas outras referências completam a leitura: a **altura-alvo**, que diz onde a genética dos pais coloca a criança, e a **idade óssea**, que mostra quanto crescimento ainda resta. [[Quanto mais atrasada a idade óssea em relação à cronológica, mais tempo de crescimento a criança ainda tem pela frente.|q-unicampdis2024-095,q-udisc20262-055]]`,
+[[Uma medida isolada diz pouco; o que separa o normal do doente é a velocidade de crescimento, porque a criança saudável segue o seu canal e a doença a faz cruzar canais para baixo.|q-sirio2021-055,q-unicamp2022-039,q-einstein2027-035]] Duas outras referências completam a leitura: a **altura-alvo**, que diz onde a genética dos pais coloca a criança, e a **idade óssea**, que mostra quanto crescimento ainda resta. [[Quanto mais atrasada a idade óssea em relação à cronológica, mais tempo de crescimento a criança ainda tem pela frente.|q-unicampdis2024-095,q-udisc20262-055]]
+
+Veja também: **Puericultura** (curvas e consulta) e **Tireoidopatias**.`,
       fragmentos: [
         { id: "cre-ferramentas", titulo: "Canal, velocidade, alvo e idade óssea", conferir: true, diretrizes: ["oms-crescimento","ms-caderneta"],
           questoes: ["q-amrigs2021-061","q-sirio2021-055","q-unicamp2022-039","q-einstein2027-035","q-iamspe2026-078","q-einstein2023-039","q-famema2022-084","q-sirio2025-049","q-unicampdis2024-095","q-udisc20262-055","q-sessp2025-054"],

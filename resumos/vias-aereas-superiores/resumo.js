@@ -20,7 +20,9 @@
       id: "viroses", titulo: "Resfriado, influenza e o que não dar",
       introducao: `A criança tem de seis a oito resfriados por ano, mais quando começa a frequentar a creche. [[O resfriado comum é viral e autolimitado: congestão, coriza e febre baixa melhoram em uma semana, e o tratamento é lavar o nariz, hidratar e tratar a febre.|q-sessp2023-031,q-fmabc2022-048,q-fmabc2023-095]]
 
-[[A influenza se distingue pelo início abrupto, febre alta, mialgia e prostração; a criança menor de 5 anos é do grupo de risco para complicações, e por isso o Ministério indica oseltamivir mesmo sem sinal de gravidade.|q-tp20232-040,q-tp20241-044,q-tp20261-021,q-tp20251-041]] [[Infecções de repetição na criança que entrou na escola ou na creche costumam ser só exposição a vírus novos, não imunodeficiência.|q-usprp2021-009]]`,
+[[A influenza se distingue pelo início abrupto, febre alta, mialgia e prostração; a criança menor de 5 anos é do grupo de risco para complicações, e por isso o Ministério indica oseltamivir mesmo sem sinal de gravidade.|q-tp20232-040,q-tp20241-044,q-tp20261-021,q-tp20251-041]] [[Infecções de repetição na criança que entrou na escola ou na creche costumam ser só exposição a vírus novos, não imunodeficiência.|q-usprp2021-009]]
+
+Veja também: **Doenças exantemáticas** (mononucleose e escarlatina) e **Bronquiolite, pneumonia e coqueluche**.`,
       fragmentos: [
         { id: "vir-resfriado", titulo: "Resfriado e medicamentos sintomáticos", conferir: true,
           questoes: ["q-sessp2023-031","q-fmabc2022-048","q-fmabc2023-095","q-iamspe2025-062","q-iamspe2025-063","q-iamspe2025-076","q-amrigs2023-080","q-usprp2021-009"],

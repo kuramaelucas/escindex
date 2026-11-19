@@ -20,7 +20,9 @@
       id: "fisiologia", titulo: "Por que o recém-nascido fica amarelo",
       introducao: `[[O recém-nascido produz mais bilirrubina porque tem mais hemácias e elas vivem menos; ao mesmo tempo, o fígado conjuga devagar, porque a glicuroniltransferase ainda é imatura.|q-scmsp2026-050,q-usp2025-066,q-uspsp2-064]] Por isso quase todo bebê fica ictérico, a partir das 24 horas, com pico entre o 3º e o 5º dia: é a **icterícia fisiológica**, de bilirrubina **indireta**.
 
-[[No intestino do recém-nascido, a β-glicuronidase desconjuga a bilirrubina e ela é reabsorvida: quanto menos o bebê mama e evacua, mais bilirrubina volta ao sangue por essa circulação êntero-hepática.|q-iamspe2026-065,q-uspsp1-016,q-unesp2025-002]] [[A icterícia que começa antes de 24 horas nunca é fisiológica: indica produção excessiva, quase sempre hemólise.|q-scmsp2026-041,q-famerp2024-052,q-unicampdis2022-027]]`,
+[[No intestino do recém-nascido, a β-glicuronidase desconjuga a bilirrubina e ela é reabsorvida: quanto menos o bebê mama e evacua, mais bilirrubina volta ao sangue por essa circulação êntero-hepática.|q-iamspe2026-065,q-uspsp1-016,q-unesp2025-002]] [[A icterícia que começa antes de 24 horas nunca é fisiológica: indica produção excessiva, quase sempre hemólise.|q-scmsp2026-041,q-famerp2024-052,q-unicampdis2022-027]]
+
+Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**, onde a atresia de vias biliares reaparece; a investigação da colestase está completa neste resumo.`,
       fragmentos: [
         { id: "fis-mecanismo", titulo: "Fisiológica e ligada ao aleitamento", conferir: true,
           figuras: [{ arquivo: "figuras/metabolismo.svg", legenda: "Esquema autoral: o caminho da bilirrubina e o ponto em que cada causa de icterícia atua." }],

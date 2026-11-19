@@ -26,7 +26,9 @@
       id: "abordagem", titulo: "Abordagem das IST e prevenção",
       introducao: `[[As IST se transmitem pelo contato de mucosas e se agrupam em poucas síndromes — úlcera genital, corrimento uretral, corrimento vaginal e cervicite, dor pélvica e verrugas —, e por isso o Ministério da Saúde organiza o atendimento por fluxogramas: a pessoa sai da primeira consulta tratada, sem esperar exame.|q-unifesp2023-031,q-sirio2026-095]] [[Uma IST aumenta o risco de outra: a úlcera e a inflamação abrem porta ao HIV, e a mesma exposição pode ter trazido várias infecções; por isso toda pessoa com IST recebe testes rápidos para HIV, sífilis e hepatites B e C.|q-sirio2022-073,q-sirio2026-095]]
 
-[[O rastreio não espera sintoma: sífilis, HIV e hepatites se testam periodicamente em quem tem vida sexual ativa e risco, e a vacina contra o HPV protege mais quando dada antes do início da vida sexual.|q-sirio2023-074,q-famerp2026-024]]`,
+[[O rastreio não espera sintoma: sífilis, HIV e hepatites se testam periodicamente em quem tem vida sexual ativa e risco, e a vacina contra o HPV protege mais quando dada antes do início da vida sexual.|q-sirio2023-074,q-famerp2026-024]]
+
+Veja também: **Infecções congênitas** (o recém-nascido de mãe com sífilis, completo lá) e **Maus-tratos** (violência sexual na criança).`,
       fragmentos: [
         { id: "abo-sindromes", titulo: "Abordagem sindrômica e o que oferecer na consulta", conferir: true, diretrizes: ["pcdt-ist"],
           questoes: ["q-unifesp2023-031","q-sirio2026-095","q-sirio2022-073","q-sirio2023-074"],

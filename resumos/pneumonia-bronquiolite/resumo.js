@@ -25,7 +25,9 @@
 
 **Fisiopatologia.** O vírus infecta o epitélio dos bronquíolos e o destrói. [[O bronquíolo do lactente é tão fino que o edema da parede, a necrose do epitélio e os tampões de muco e restos celulares bastam para obstruí-lo: daí a sibilância, o aprisionamento de ar e as áreas de atelectasia.|q-unesp2023-009,q-famerp2022-022,q-uspsp2-067]] Não há broncoespasmo verdadeiro na maioria dos casos, e é por isso que broncodilatador e corticoide não mudam a evolução.
 
-[[A bronquiolite é um diagnóstico clínico: um lactente com alguns dias de coriza que evolui com taquipneia, tiragem, sibilos e crepitações não precisa de radiografia nem de exames para ser diagnosticado.|q-uspsp1-008,q-uspsp2-067,q-unesp2023-009]] A imunidade ao VSR não é duradoura: [[reinfecções ao longo da vida são a regra, mais leves a cada vez.|q-iamspe2025-066]]`,
+[[A bronquiolite é um diagnóstico clínico: um lactente com alguns dias de coriza que evolui com taquipneia, tiragem, sibilos e crepitações não precisa de radiografia nem de exames para ser diagnosticado.|q-uspsp1-008,q-uspsp2-067,q-unesp2023-009]] A imunidade ao VSR não é duradoura: [[reinfecções ao longo da vida são a regra, mais leves a cada vez.|q-iamspe2025-066]]
+
+Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da coqueluche), **Asma** e **Calendário vacinal** (dTpa da gestante).`,
       fragmentos: [
         { id: "bva-quadro", casos: ["q-uspsp4-115"], titulo: "Quadro e diagnóstico", conferir: true,
           questoes: ["q-unesp2023-009","q-iamspe2025-066","q-uspsp1-008","q-uspsp2-067","q-famerp2022-022","q-uspsp4-115","q-unicampdis2025-030","q-tp20222-049"],

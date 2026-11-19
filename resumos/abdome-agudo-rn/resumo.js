@@ -20,7 +20,9 @@
       id: "alta", titulo: "Esôfago e estômago",
       introducao: `[[O feto engole o líquido amniótico; quando o esôfago é interrompido ele não consegue, e o líquido sobra: polidrâmnio na gestação e, ao nascer, saliva que escorre pela boca e uma sonda que não passa.|q-famerp2025-060,q-simepm89-094,q-usp2022-072]] [[O tipo mais comum é o C, com o coto superior em fundo cego e uma fístula do esôfago distal com a traqueia; o ar no estômago na radiografia mostra que a fístula existe.|q-fmabc2026-034,q-adap25-007,q-uspsp3-035]]
 
-[[Na estenose hipertrófica do piloro, o músculo pilórico engrossa nas primeiras semanas e fecha a saída do estômago: o vômito é em jato, sem bile, e a perda de suco gástrico leva embora ácido clorídrico, daí a alcalose metabólica hipoclorêmica.|q-usprp2025-093,q-fmabc2024-052,q-tp20202-068]]`,
+[[Na estenose hipertrófica do piloro, o músculo pilórico engrossa nas primeiras semanas e fecha a saída do estômago: o vômito é em jato, sem bile, e a perda de suco gástrico leva embora ácido clorídrico, daí a alcalose metabólica hipoclorêmica.|q-usprp2025-093,q-fmabc2024-052,q-tp20202-068]]
+
+Veja também: **Icterícia neonatal** (colestase e atresia biliar, completas lá).`,
       fragmentos: [
         { id: "alt-esofago", titulo: "Atresia de esôfago", conferir: true,
           figuras: [{ arquivo: "figuras/nivel-obstrucao.svg", legenda: "Esquema autoral: o nível da obstrução pelo vômito, pela idade e pela radiografia." }],

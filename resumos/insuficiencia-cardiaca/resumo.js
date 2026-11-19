@@ -23,7 +23,9 @@
 
 A IC é o caminho final de quase todas as doenças do coração e uma das principais causas de internação de idosos. No Brasil, as causas mais comuns são a **cardiopatia isquêmica** e a **hipertensiva**, e a **doença de Chagas** tem peso próprio nas regiões onde foi endêmica. [[A cada internação, a pergunta é por que o paciente descompensou: a causa mais comum é a **má adesão** ao tratamento e à dieta (cerca de 3 em cada 10 casos), seguida de infecção, arritmia (sobretudo fibrilação atrial), isquemia e hipertensão descontrolada.|q-famema2025-014]]
 
-[[A **fração de ejeção (FE)** do ventrículo esquerdo divide a IC em grupos que respondem de formas diferentes ao tratamento: **reduzida (≤ 40%)**, **levemente reduzida (41 a 49%)** e **preservada (≥ 50%)**.|q-card-09]] A divisão importa porque as drogas que reduzem mortalidade foram testadas, e funcionam, sobretudo na FE reduzida. Na FE preservada o problema é o enchimento: um ventrículo rígido e hipertrofiado, geralmente de idoso hipertenso, obeso e diabético.`,
+[[A **fração de ejeção (FE)** do ventrículo esquerdo divide a IC em grupos que respondem de formas diferentes ao tratamento: **reduzida (≤ 40%)**, **levemente reduzida (41 a 49%)** e **preservada (≥ 50%)**.|q-card-09]] A divisão importa porque as drogas que reduzem mortalidade foram testadas, e funcionam, sobretudo na FE reduzida. Na FE preservada o problema é o enchimento: um ventrículo rígido e hipertrofiado, geralmente de idoso hipertenso, obeso e diabético.
+
+Veja também: **Hipertensão arterial** e **Diabetes mellitus** (as causas mais comuns e o iSGLT2) e **Cirrose** (ascite de outra origem e GASA).`,
       fragmentos: [
         { id: "def-fe", diretrizes: ["esc-ic","aha-ic"], titulo: "Fração de ejeção, estágios e classe funcional", conferir: true,
           questoes: ["q-card-09","q-unesp2021-048","q-unesp2023-056","q-unesp2025-054","q-famema2025-014"],

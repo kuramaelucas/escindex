@@ -21,7 +21,9 @@
       id: "fisico", titulo: "Abuso físico: reconhecer e investigar",
       introducao: `[[O que denuncia o abuso físico é a lesão que não combina com a história: o mecanismo descrito é impossível para a idade, a versão muda, a família demora a procurar ajuda ou tem pressa em ir embora, ou a lesão fica onde quedas não batem.|q-usp2026-050,q-adap22-063,q-unifesp2022-063]] Quedas acidentais atingem saliências ósseas (testa, cotovelos, joelhos); nádegas, costas, orelhas e pescoço são protegidos e, machucados, levantam suspeita.
 
-[[Certas fraturas quase nunca são acidentais no lactente: costelas posteriores, que se quebram quando o tórax é apertado entre as mãos, lesões metafisárias por tração e torção, e fraturas em espiral em quem ainda não anda.|q-adap24-090,q-famerp2025-058,q-famema2022-100]] [[Na queimadura por imersão, a água quente forma bordas nítidas e simétricas, sem respingos, porque a criança foi segurada dentro dela.|q-unifesp2024-085]]`,
+[[Certas fraturas quase nunca são acidentais no lactente: costelas posteriores, que se quebram quando o tórax é apertado entre as mãos, lesões metafisárias por tração e torção, e fraturas em espiral em quem ainda não anda.|q-adap24-090,q-famerp2025-058,q-famema2022-100]] [[Na queimadura por imersão, a água quente forma bordas nítidas e simétricas, sem respingos, porque a criança foi segurada dentro dela.|q-unifesp2024-085]]
+
+Veja também: **Infecções sexualmente transmissíveis** (profilaxias após violência sexual).`,
       fragmentos: [
         { id: "fis-sinais", titulo: "Sinais de alerta", conferir: true, diretrizes: ["sbp-maus-tratos"],
           figuras: [{ arquivo: "figuras/sinais-alerta.svg", legenda: "Esquema autoral: os sinais de alerta na história, na pele e nos ossos, e o que fazer diante da suspeita." }],

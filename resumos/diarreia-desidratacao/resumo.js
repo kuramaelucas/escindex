@@ -22,7 +22,9 @@
 
 **Fisiopatologia.** [[Na diarreia secretora, toxinas ou vírus fazem o intestino secretar cloreto e água: as fezes são muito volumosas e aquosas e continuam mesmo em jejum.|q-unesp2021-015]] [[Na osmótica, um soluto que não é absorvido, como a lactose quando falta lactase, puxa água para a luz; as bactérias o fermentam e as fezes ficam ácidas, com gases e assaduras.|q-famerp2022-019,q-unesp2021-015]] [[Na inflamatória, o agente invade a mucosa: as fezes são pouco volumosas, com sangue, muco e pus, e há febre e cólica.|q-usprp2023-069,q-unesp2021-015,q-fmabc2023-019]]
 
-[[O soro de reidratação oral funciona mesmo na diarreia mais intensa porque o transportador intestinal que absorve sódio junto com glicose continua íntegro, e a água segue o sódio.|q-fmabc2026-051]]`,
+[[O soro de reidratação oral funciona mesmo na diarreia mais intensa porque o transportador intestinal que absorve sódio junto com glicose continua íntegro, e a água segue o sódio.|q-fmabc2026-051]]
+
+Veja também: **Diabetes mellitus** (cetoacidose na criança, completa lá) e **Distúrbios hidroeletrolíticos** quando o resumo existir.`,
       fragmentos: [
         { id: "mec-tipos", titulo: "Secretora, osmótica e inflamatória", conferir: true,
           questoes: ["q-unesp2021-015","q-famerp2022-019","q-usprp2023-069","q-fmabc2026-051","q-tp20241-037"],

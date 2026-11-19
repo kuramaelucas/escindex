@@ -18,7 +18,9 @@
       id: "pezinho", titulo: "O teste do pezinho",
       introducao: `[[A triagem procura doenças graves, tratáveis e silenciosas ao nascer: quando os sintomas aparecem, o dano (cerebral, no hipotireoidismo e na fenilcetonúria) já começou.|q-scmsp2023-044,q-sessp2024-058]] [[A coleta é feita entre o 3º e o 5º dia porque o bebê precisa ter mamado o suficiente para que a fenilalanina suba, e o pico fisiológico de TSH das primeiras horas já tenha passado.|q-usp2023-091,q-scmsp2022-027]]
 
-O SUS rastreia hoje fenilcetonúria, hipotireoidismo congênito, doença falciforme e outras hemoglobinopatias, fibrose cística, hiperplasia adrenal congênita e deficiência de biotinidase; [[a lei de 2021 amplia o teste em etapas, e a primeira doença acrescentada é a toxoplasmose congênita.|q-iamspe2023-047,q-scmsp2022-027]]`,
+O SUS rastreia hoje fenilcetonúria, hipotireoidismo congênito, doença falciforme e outras hemoglobinopatias, fibrose cística, hiperplasia adrenal congênita e deficiência de biotinidase; [[a lei de 2021 amplia o teste em etapas, e a primeira doença acrescentada é a toxoplasmose congênita.|q-iamspe2023-047,q-scmsp2022-027]]
+
+Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior).`,
       fragmentos: [
         { id: "pez-geral", titulo: "Coleta, doenças rastreadas e o que não se rastreia", conferir: true, diretrizes: ["ms-triagem"],
           questoes: ["q-scmsp2023-044","q-sessp2024-058","q-usp2023-091","q-scmsp2022-027","q-iamspe2023-047","q-unesp2025-006","q-sessp2025-049","q-fmabc2021-092","q-uspsp5-109","q-scmsp2021-046"],

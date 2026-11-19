@@ -23,7 +23,9 @@
       id: "diagnostico", titulo: "Cirrose: o que é, causas e gravidade",
       introducao: `[[A cirrose é o fim comum da agressão crônica ao fígado: a inflamação ativa as células estreladas, que depositam colágeno em septos (fibrose) ao redor de nódulos de regeneração, e a arquitetura se perde.|q-tp20252-093,q-sirio2021-008]] [[Daí vêm os dois grupos de sinais: insuficiência hepatocelular (icterícia, albumina baixa, TP alargado, aranhas vasculares, ginecomastia e atrofia testicular pelo estrogênio não metabolizado, flapping) e hipertensão portal (esplenomegalia com plaquetopenia, ascite, varizes).|q-sirio2021-008,q-tp20232-027]]
 
-[[A gravidade se mede pela função que sobra: Child-Pugh soma bilirrubina, albumina, tempo de protrombina, ascite e encefalopatia; o MELD usa bilirrubina, INR e creatinina (e sódio) e ordena a fila do transplante.|q-amrigs2022-029,q-iamspe2023-012,q-fmabc2026-030,q-unicamp2023-024]] [[O tempo de protrombina é a medida direta da síntese hepática, porque os fatores de coagulação têm meia-vida de horas.|q-iamspe2025-016]]`,
+[[A gravidade se mede pela função que sobra: Child-Pugh soma bilirrubina, albumina, tempo de protrombina, ascite e encefalopatia; o MELD usa bilirrubina, INR e creatinina (e sódio) e ordena a fila do transplante.|q-amrigs2022-029,q-iamspe2023-012,q-fmabc2026-030,q-unicamp2023-024]] [[O tempo de protrombina é a medida direta da síntese hepática, porque os fatores de coagulação têm meia-vida de horas.|q-iamspe2025-016]]
+
+Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Insuficiência cardíaca** (ascite cardíaca).`,
       fragmentos: [
         { id: "dia-clinica", titulo: "Quadro clínico, Child-Pugh e MELD", conferir: true,
           casos: ["q-tp20252-093"],

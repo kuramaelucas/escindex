@@ -21,7 +21,9 @@
   doencas: [
     {
       id: "fisiologia", titulo: "Fisiologia e exames",
-      introducao: `[[O T4 e o T3 se formam na tireoglobulina, guardada no coloide do folículo: a tireoperoxidase oxida o iodo e o liga à tirosina, e o T4 vira T3 (a forma ativa) nos tecidos.|q-fmabc2025-007]] [[O TSH responde em log ao hormônio livre: pequena mudança do T4 move muito o TSH, e por isso o TSH é o primeiro exame — alto no hipotireoidismo primário, suprimido na tireotoxicose primária.|q-usprp2022-013,q-unicamp2022-006,q-famema2022-037,q-tp20231-023]] [[Remédios mudam a função: a amiodarona, rica em iodo, causa hipo ou hipertireoidismo; anticonvulsivantes indutores (carbamazepina) aceleram o metabolismo da levotiroxina.|q-sirio2022-007,q-famema2022-030,q-fmabc2024-016]]`,
+      introducao: `[[O T4 e o T3 se formam na tireoglobulina, guardada no coloide do folículo: a tireoperoxidase oxida o iodo e o liga à tirosina, e o T4 vira T3 (a forma ativa) nos tecidos.|q-fmabc2025-007]] [[O TSH responde em log ao hormônio livre: pequena mudança do T4 move muito o TSH, e por isso o TSH é o primeiro exame — alto no hipotireoidismo primário, suprimido na tireotoxicose primária.|q-usprp2022-013,q-unicamp2022-006,q-famema2022-037,q-tp20231-023]] [[Remédios mudam a função: a amiodarona, rica em iodo, causa hipo ou hipertireoidismo; anticonvulsivantes indutores (carbamazepina) aceleram o metabolismo da levotiroxina.|q-sirio2022-007,q-famema2022-030,q-fmabc2024-016]]
+
+Veja também: **Triagem neonatal** (hipotireoidismo congênito) e **Crescimento e puberdade** (hipotireoidismo e baixa estatura).`,
       fragmentos: [
         { id: "fis-exames", titulo: "TSH primeiro e interferências", conferir: true,
           questoes: ["q-fmabc2025-007","q-usprp2022-013","q-unicamp2022-006","q-famema2022-037","q-usprp2026-054","q-sirio2022-007","q-famema2022-030","q-unifesp2022-084"],

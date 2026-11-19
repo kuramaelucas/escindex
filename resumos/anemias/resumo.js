@@ -17,7 +17,9 @@
   doencas: [
     {
       id: "abordagem", titulo: "Abordagem: reticulócitos e VCM",
-      introducao: `[[A primeira pergunta é se a medula está respondendo: reticulócitos altos indicam perda ou destruição (sangramento agudo, hemólise); baixos indicam produção falha (ferro, B12, inflamação, rim, quimioterapia).|q-adap24-023,q-unifesp2024-033,q-usp2023-053,q-amrigs2025-009,q-usprp2026-095]] [[A segunda é o tamanho da hemácia: microcítica (ferro, talassemia, às vezes doença crônica), normocítica (doença crônica, renal, hemorragia aguda, hemólise) e macrocítica (B12, folato, álcool, drogas, hipotireoidismo, reticulocitose).|q-scmsp2021-002,q-sirio2021-004,q-tp20252-089]]`,
+      introducao: `[[A primeira pergunta é se a medula está respondendo: reticulócitos altos indicam perda ou destruição (sangramento agudo, hemólise); baixos indicam produção falha (ferro, B12, inflamação, rim, quimioterapia).|q-adap24-023,q-unifesp2024-033,q-usp2023-053,q-amrigs2025-009,q-usprp2026-095]] [[A segunda é o tamanho da hemácia: microcítica (ferro, talassemia, às vezes doença crônica), normocítica (doença crônica, renal, hemorragia aguda, hemólise) e macrocítica (B12, folato, álcool, drogas, hipotireoidismo, reticulocitose).|q-scmsp2021-002,q-sirio2021-004,q-tp20252-089]]
+
+Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro aparece no contexto da consulta) e **Síndromes glomerulares** (anemia da doença renal).`,
       fragmentos: [
         { id: "abo-classificar", titulo: "Classificar a anemia", conferir: true,
           figuras: [{ arquivo: "figuras/classificar.svg", legenda: "Esquema autoral: reticulócitos e VCM separam as causas de anemia." }],

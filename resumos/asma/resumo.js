@@ -22,7 +22,9 @@
       id: "diagnostico", titulo: "Fisiopatologia e diagnóstico",
       introducao: `[[A asma é inflamação crônica das vias aéreas, quase sempre tipo 2: alérgenos ativam mastócitos sensibilizados por IgE, que liberam histamina e leucotrienos, e eosinófilos e linfócitos Th2 mantêm a inflamação; o resultado é hiper-responsividade brônquica e obstrução variável e reversível.|q-iamspe2025-020,q-usprp2025-077,q-tp20222-014]] [[O diagnóstico exige sintomas variáveis (tosse, chiado, dispneia, aperto no peito, piores à noite, no esforço e com gatilhos) e a prova da obstrução variável: espirometria com VEF1/CVF reduzida e resposta ao broncodilatador (aumento de 12% e 200 mL no VEF1), ou variação do pico de fluxo.|q-adap23-069,q-iamspe2025-001,q-iamspe2026-014,q-tp20231-028,q-unesp2021-053]]
 
-[[Na criança pequena, que não faz espirometria, pesa o padrão: chiado fora das viroses, com exercício, riso ou alérgenos, atopia pessoal ou familiar e resposta ao tratamento.|q-famerp2026-041-ia,q-fmabc2026-059-ia,q-usprp2025-014]] [[A asma ocupacional melhora longe do trabalho e se confirma com pico de fluxo seriado no trabalho e fora dele.|q-usp2022-020]]`,
+[[Na criança pequena, que não faz espirometria, pesa o padrão: chiado fora das viroses, com exercício, riso ou alérgenos, atopia pessoal ou familiar e resposta ao tratamento.|q-famerp2026-041-ia,q-fmabc2026-059-ia,q-usprp2025-014]] [[A asma ocupacional melhora longe do trabalho e se confirma com pico de fluxo seriado no trabalho e fora dele.|q-usp2022-020]]
+
+Veja também: **Emergências pediátricas** (parada e insuficiência respiratória) e **Bronquiolite, pneumonia e coqueluche** (o lactente que sibila com vírus).`,
       fragmentos: [
         { id: "dia-provas", titulo: "Espirometria, pico de fluxo e quadro", conferir: true, diretrizes: ["gina"],
           casos: ["q-tp20231-028"],

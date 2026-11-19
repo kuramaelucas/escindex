@@ -20,7 +20,9 @@
       id: "avaliar", titulo: "Avaliar o recém-nascido que respira mal",
       introducao: `O recém-nascido com desconforto respira rápido (mais de 60 por minuto), geme, abre as asas do nariz e puxa as costelas. [[O boletim de Silverman-Andersen soma cinco sinais de esforço — balanço toracoabdominal, tiragem intercostal, retração xifoide, batimento de asa de nariz e gemido expiratório — e quanto maior a nota, maior o esforço.|q-sirio2021-051,q-unifesp2024-091]]
 
-[[O recém-nascido respira obrigatoriamente pelo nariz: se as coanas estão fechadas, ele fica cianótico em repouso e rosado quando chora, porque o choro abre a boca.|q-famerp2022-024]] [[A conduta inicial comum a quase todas as causas é o CPAP nasal, que mantém os alvéolos abertos no fim da expiração.|q-sirio2023-043,q-unifesp2025-093,q-unesp2026-001]]`,
+[[O recém-nascido respira obrigatoriamente pelo nariz: se as coanas estão fechadas, ele fica cianótico em repouso e rosado quando chora, porque o choro abre a boca.|q-famerp2022-024]] [[A conduta inicial comum a quase todas as causas é o CPAP nasal, que mantém os alvéolos abertos no fim da expiração.|q-sirio2023-043,q-unifesp2025-093,q-unesp2026-001]]
+
+Veja também: **Reanimação neonatal** e **Prematuridade**.`,
       fragmentos: [
         { id: "ava-sinais", titulo: "Sinais, CPAP e causas obstrutivas", conferir: true, diretrizes: ["sbp-prn"],
           questoes: ["q-sirio2021-051","q-famerp2022-024","q-sirio2023-043","q-simepm89-091","q-unicampdis2025-025"],

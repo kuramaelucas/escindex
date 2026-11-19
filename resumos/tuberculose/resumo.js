@@ -19,7 +19,9 @@
       id: "fisiopatologia", titulo: "Transmiss\u00e3o, patogenia e controle",
       introducao: `[[O *Mycobacterium tuberculosis* se transmite por aerossol do doente com tuberculose pulmonar ou laríngea bacilífera; o bacilo chega ao alvéolo, é fagocitado e, quando o macrófago não o destrói, forma-se o granuloma com necrose caseosa.|q-unesp2023-097,q-unicampdis2023-003]] [[Na maioria das pessoas o granuloma contém o bacilo para sempre (infecção latente); a primária progressiva aparece na criança e no imunodeprimido, e a pós-primária, por reativação, escava os ápices pulmonares.|q-gdtuberculose-002,q-gdtuberculose-130,q-gdtuberculose-111]]
 
-[[O controle depende de achar e curar o bacilífero: busca do sintomático respiratório, tratamento diretamente observado, investigação de contatos e notificação; o abandono é o indicador de qualidade que mais pesa.|q-amrigs2023-090,q-usp2026-092,q-tp20222-119,q-tp20251-105]]`,
+[[O controle depende de achar e curar o bacilífero: busca do sintomático respiratório, tratamento diretamente observado, investigação de contatos e notificação; o abandono é o indicador de qualidade que mais pesa.|q-amrigs2023-090,q-usp2026-092,q-tp20222-119,q-tp20251-105]]
+
+Veja também: **Infecções congênitas** (recém-nascido exposto, com a divergência isoniazida × rifampicina) e **Infecções sexualmente transmissíveis** (rastreio de HIV).`,
       fragmentos: [
         { id: "fis-pontos", titulo: "Transmiss\u00e3o, patogenia e controle", conferir: true, diretrizes: ["ms-tb"],
           questoes: ["q-amrigs2023-090", "q-unicampdis2023-003", "q-gdtuberculose-025", "q-gdtuberculose-032", "q-gdtuberculose-035", "q-gdtuberculose-059", "q-gdtuberculose-068", "q-gdtuberculose-075", "q-gdtuberculose-107", "q-gdtuberculose-130", "q-gdtuberculose-002", "q-gdtuberculose-111", "q-tp20222-119", "q-tp20251-105", "q-unesp2023-097", "q-usp2026-092"],

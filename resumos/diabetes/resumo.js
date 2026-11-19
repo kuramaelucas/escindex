@@ -25,7 +25,9 @@
       id: "fisiopatologia", titulo: "Fisiopatologia e classificação",
       introducao: `[[O diabetes tipo 1 é a destruição autoimune das células beta: o peptídeo C cai e aparecem autoanticorpos (anti-GAD, anti-insulina, anti-IA2), às vezes com outras autoimunidades, como a doença celíaca.|q-iamspe2022-042,q-amrigs2020-027]] [[O tipo 2 começa pela resistência à insulina — a gordura visceral libera ácidos graxos e citocinas (TNF-α, IL-6) que, pela proteína quinase C, reduzem a atividade tirosina-quinase do receptor — e só vira diabetes quando a célula beta não consegue mais compensar; a acantose nigricans é o sinal da resistência.|q-iamspe2025-008,q-tp20252-044]] [[O componente genético do tipo 2 é forte (concordância em gêmeos idênticos acima de 70%), e o diabetes monogênico (MODY) aparece no jovem magro, com história familiar em várias gerações e autoanticorpos negativos.|q-amrigs2020-010,q-usprp2022-099]]
 
-[[O peptídeo C sai da pró-insulina em quantidade igual à insulina: insulina alta com peptídeo C baixo é insulina injetada; os dois altos, produção endógena (insulinoma, sulfonilureia).|q-amrigs2020-027,q-amrigs2022-012,q-unesp2021-042]]`,
+[[O peptídeo C sai da pró-insulina em quantidade igual à insulina: insulina alta com peptídeo C baixo é insulina injetada; os dois altos, produção endógena (insulinoma, sulfonilureia).|q-amrigs2020-027,q-amrigs2022-012,q-unesp2021-042]]
+
+Veja também: **Hipertensão arterial**, **Síndromes glomerulares** (nefropatia) e **Insuficiência cardíaca do adulto** (iSGLT2). A cetoacidose aparece também em **Diarreia aguda e desidratação**; a versão completa é a deste resumo.`,
       fragmentos: [
         { id: "fis-tipos", titulo: "Tipos de diabetes, peptídeo C e síndrome metabólica", conferir: true,
           questoes: ["q-iamspe2022-042","q-amrigs2020-027","q-iamspe2025-008","q-tp20252-044","q-amrigs2020-010","q-usprp2022-099","q-amrigs2022-012","q-unesp2021-042","q-fmabc2022-004","q-famerp2026-057","q-sessp2026-096"],

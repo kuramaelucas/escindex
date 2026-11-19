@@ -21,7 +21,9 @@
 
 A frequência das consultas acompanha a velocidade das mudanças. [[No primeiro ano, o Ministério da Saúde recomenda consultas na **primeira semana**, com **1, 2, 4, 6, 9 e 12 meses**; depois, aos 18 e 24 meses e então uma vez por ano.|q-scmsp2023-094,q-tp20222-042,q-fmabc2026-054]] [[A primeira semana tem atenção especial: é quando a amamentação se estabelece e quando aparecem icterícia, perda de peso excessiva e dificuldades da mãe, por isso a equipe da Saúde da Família faz **visita domiciliar** nesses dias.|q-uspsp1-111,q-scmsp2026-093]]
 
-O perfil de risco muda com a idade. [[Depois do primeiro ano, as **causas externas** (acidentes e violência) passam a ser a principal causa de morte de crianças no Brasil.|q-sirio2021-042,q-amrigs2023-070]] A criança pequena explora o mundo antes de entender o perigo, e por isso cada fase do desenvolvimento tem o seu acidente típico: queda no lactente que rola, aspiração e intoxicação no que engatinha e leva tudo à boca, afogamento e atropelamento na criança que anda.`,
+O perfil de risco muda com a idade. [[Depois do primeiro ano, as **causas externas** (acidentes e violência) passam a ser a principal causa de morte de crianças no Brasil.|q-sirio2021-042,q-amrigs2023-070]] A criança pequena explora o mundo antes de entender o perigo, e por isso cada fase do desenvolvimento tem o seu acidente típico: queda no lactente que rola, aspiração e intoxicação no que engatinha e leva tudo à boca, afogamento e atropelamento na criança que anda.
+
+Veja também: **Anemias** (anemia ferropriva na criança, completa lá), **Crescimento e puberdade** (baixa estatura e puberdade), **Hipertensão arterial** (pressão na criança, completa lá) e **Calendário vacinal**.`,
       fragmentos: [
         { id: "con-agenda", diretrizes: ["ms-caderneta"], titulo: "Calendário de consultas e primeira semana", conferir: true,
           questoes: ["q-scmsp2023-094","q-uspsp1-111","q-scmsp2026-093","q-unesp2021-004","q-tp20222-042","q-fmabc2026-054","q-fmabc2023-050"],

@@ -20,7 +20,9 @@
       id: "avaliacao", titulo: "A criança grave e a insuficiência respiratória",
       introducao: `[[Na criança, a parada cardíaca quase nunca começa no coração: ela é o fim de uma hipóxia ou de um choque que não foi revertido.|q-iamspe2021-035,q-amrigs2023-073]] Por isso o atendimento pediátrico é organizado para **reconhecer cedo** o desconforto e a insuficiência respiratória, numa sequência que se repete: [[avaliar, identificar, intervir e reavaliar.|q-iamspe2021-036]]
 
-**Fisiopatologia.** No desconforto, a criança compensa com taquipneia, tiragem e taquicardia. [[Quando a compensação se esgota, a frequência respiratória cai, a consciência rebaixa e a hipoxemia leva à bradicardia: respiração lenta e superficial num paciente sonolento não é melhora, é insuficiência respiratória, e pede ventilação com bolsa-válvula-máscara.|q-unifesp2022-065,q-usprp2025-004,q-uspsp3-031,q-amrigs2022-067]] [[A bradicardia com pulso na criança é quase sempre hipóxica: corrige-se primeiro a ventilação.|q-scmsp2023-055,q-uspsp5-103]]`,
+**Fisiopatologia.** No desconforto, a criança compensa com taquipneia, tiragem e taquicardia. [[Quando a compensação se esgota, a frequência respiratória cai, a consciência rebaixa e a hipoxemia leva à bradicardia: respiração lenta e superficial num paciente sonolento não é melhora, é insuficiência respiratória, e pede ventilação com bolsa-válvula-máscara.|q-unifesp2022-065,q-usprp2025-004,q-uspsp3-031,q-amrigs2022-067]] [[A bradicardia com pulso na criança é quase sempre hipóxica: corrige-se primeiro a ventilação.|q-scmsp2023-055,q-uspsp5-103]]
+
+Veja também: **Asma e rinite alérgica** (manutenção e crise em todas as idades, completas lá) e **Infecções de vias aéreas superiores** (crupe, epiglotite e traqueíte).`,
       fragmentos: [
         { id: "ava-reconhecer", titulo: "Reconhecer e ventilar", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-iamspe2021-035","q-iamspe2021-036","q-unifesp2022-065","q-usprp2025-004","q-uspsp3-031","q-scmsp2023-055","q-uspsp5-103","q-einstein2027-038","q-usp2023-083","q-unesp2023-014","q-amrigs2025-076"],
