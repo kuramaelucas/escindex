@@ -68,28 +68,75 @@ export function montarConjunto(r, porId, tamanho = TAMANHO_DO_CONJUNTO){
   };
 }
 
-/* { tema: {titulo, assunto, assuntos, ids, ...} } para todos os resumos. `assuntos` = assuntos das
-   questões do conjunto (um resumo pode cobrir assuntos vizinhos agrupados): é por eles que a
-   trilha de Formados acha o tema de um assunto. */
+/* ASSUNTO SEM RESUMO (o banco tem ≈ 237 assuntos e o projeto prevê ≈ 150 resumos; hoje há bem
+   menos). Sem fragmentos não há como saber qual conceito cada questão cobre, então a diversidade
+   sai do próprio texto: escolha gulosa da questão MAIS DIFERENTE das já escolhidas (Jaccard das
+   palavras do enunciado + alternativa correta — duas questões do mesmo conceito repetem vocabulário),
+   com a dificuldade que falta e a prova recente de desempate. É provisório: quando o resumo do
+   assunto sair, --gravar troca este conjunto pelo de fragmentos. */
+const PALAVRAS_VAZIAS = new Set("a o e de do da dos das em no na nos nas um uma para com por que se ao aos qual quais é foi são mais ou como seu sua ser".split(" "));
+function palavras(q){
+  const certa = (q.alternativas || []).find(a => a.id === q.gabarito);
+  const txt = `${q.enunciado || ""} ${certa ? certa.texto : ""}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return new Set(txt.split(/[^a-z0-9]+/).filter(w => w.length > 2 && !PALAVRAS_VAZIAS.has(w)));
+}
+function jaccard(a, b){ let i = 0; for(const w of a) if(b.has(w)) i++; return i / ((a.size + b.size - i) || 1); }
+
+export function montarConjuntoPorTexto(questoes, tamanho = TAMANHO_DO_CONJUNTO){
+  const anoMax = Math.max(0, ...questoes.map(q => +q.ano || 0));
+  const cand = questoes.map(q => ({ q, w: palavras(q), maisParecida: 0 }));
+  const escolhidas = [], contaNivel = { fundamental: 0, intermediario: 0, avancado: 0 };
+  const falta = n => MISTURA[n] * (escolhidas.length + 1) - contaNivel[n];
+  while(escolhidas.length < tamanho && cand.length){
+    // 1ª escolha: a mais recente (não há com quem comparar); depois, a menos parecida com as escolhidas
+    cand.sort((x, y) => (x.maisParecida - y.maisParecida) || falta(nivel(y.q)) - falta(nivel(x.q)) || (+y.q.ano || 0) - (+x.q.ano || 0) || x.q.id.localeCompare(y.q.id));
+    const c = cand.shift();
+    escolhidas.push(c.q); contaNivel[nivel(c.q)]++;
+    for(const o of cand) o.maisParecida = Math.max(o.maisParecida, jaccard(o.w, c.w));
+  }
+  return { ids: escolhidas.map(q => q.id), niveis: contaNivel, anoMax };
+}
+
+/* Assunto "tem resumo" se é o assunto do resumo ou se ao menos metade das suas questões que servem
+   está nos fragmentos de algum resumo (resumo que agrupa assunto vizinho pequeno). */
+function assuntosCobertosPorResumo(questoes, resumos){
+  const nosFragmentos = new Set(resumos.flatMap(r => r.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes))));
+  const cobertos = new Set(resumos.map(r => r.assunto)), tot = {}, dentro = {};
+  for(const q of questoes) if(questaoServe(q)){ tot[q.assuntoId] = (tot[q.assuntoId] || 0) + 1; if(nosFragmentos.has(q.id)) dentro[q.assuntoId] = (dentro[q.assuntoId] || 0) + 1; }
+  for(const a in tot) if((dentro[a] || 0) * 2 >= tot[a]) cobertos.add(a);
+  return cobertos;
+}
+
+/* { chave: {...} }: um por tema com resumo (chave = pasta do resumo) e um por assunto sem resumo
+   (chave = id do assunto, semResumo: true). `assuntos` = assuntos que o conjunto atende: é por eles
+   que o cronograma acha o conjunto de um assunto. */
 export function montarTodos(questoes){
   const porId = new Map(questoes.map(q => [q.id, q]));
-  const saida = {};
-  for(const tema of temasDeResumo()){
-    const r = carregarResumo(tema), c = montarConjunto(r, porId);
-    const assuntos = [...new Set([r.assunto, ...c.ids.map(id => porId.get(id).assuntoId)])];
+  const saida = {}, resumos = temasDeResumo().map(t => [t, carregarResumo(t)]);
+  const cobertos = assuntosCobertosPorResumo(questoes, resumos.map(([, r]) => r));
+  for(const [tema, r] of resumos){
+    const c = montarConjunto(r, porId);
+    const assuntos = [...new Set([r.assunto, ...c.ids.map(id => porId.get(id).assuntoId)])].filter(a => a === r.assunto || cobertos.has(a));
     saida[tema] = { titulo: r.titulo, assunto: r.assunto, assuntos, ...c };
+  }
+  const porAssunto = {};
+  for(const q of questoes) if(questaoServe(q) && q.real && q.assuntoId && !cobertos.has(q.assuntoId)) (porAssunto[q.assuntoId] ||= []).push(q);
+  for(const a of Object.keys(porAssunto).sort()){
+    const c = montarConjuntoPorTexto(porAssunto[a]);
+    saida[a] = { semResumo: true, assunto: a, assuntos: [a], ids: c.ids, niveis: c.niveis, fragmentos: 0, cobertos: 0, semQuestao: [] };
   }
   return saida;
 }
 
 export function textoDoArquivo(todos){
   const linhas = Object.entries(todos).map(([tema, c]) =>
-    `  ${JSON.stringify(tema)}: { assunto: ${JSON.stringify(c.assunto)}, assuntos: ${JSON.stringify(c.assuntos)}, ids: ${JSON.stringify(c.ids)} },`);
-  return `/* resumos/conjuntos-por-tema.js — o conjunto planejado de questões de cada tema com resumo
+    `  ${JSON.stringify(tema)}: { ${c.semResumo ? "semResumo: true, " : ""}assunto: ${JSON.stringify(c.assunto)}, assuntos: ${JSON.stringify(c.assuntos)}, ids: ${JSON.stringify(c.ids)} },`);
+  return `/* resumos/conjuntos-por-tema.js — o conjunto planejado de questões de cada tema (com e sem resumo)
    Gerado por \`npm run conjuntos-por-tema -- --gravar\` (não editar à mão; regra em
    ferramentas/lib-conjuntos.mjs e docs/PROJETO-INTEGRACAO-RESUMOS.md, seção 4).
    \`ids\` está em ordem: as primeiras cobrem os fragmentos de maior peso, então quem tem meta curta
-   faz as N primeiras. É a pós-leitura da construção do zero e a trilha por tema de reparar falhas. */
+   faz as N primeiras. Chave = pasta do resumo; \`semResumo: true\` = assunto ainda sem resumo
+   (chave = id do assunto, diversidade pelo texto, provisório até o resumo sair). É a pós-leitura da construção do zero e a trilha por tema de reparar falhas. */
 (window.EscResumos = window.EscResumos || { lista: [], registrar(r){ this.lista.push(r); } }).conjuntos = {
 ${linhas.join("\n")}
 };
@@ -110,7 +157,7 @@ export function conferirConjuntos(questoes){
   if(!gravados){ avisos.push("resumos/conjuntos-por-tema.js não existe: rode npm run conjuntos-por-tema -- --gravar"); return { erros, avisos }; }
   const porId = new Map(questoes.map(q => [q.id, q])), temas = new Set(temasDeResumo());
   for(const [tema, c] of Object.entries(gravados)){
-    if(!temas.has(tema)) erros.push(`conjuntos-por-tema: o tema ${tema} não tem resumo`);
+    if(!c.semResumo && !temas.has(tema)) erros.push(`conjuntos-por-tema: o tema ${tema} não tem resumo`);
     if(new Set(c.ids).size !== c.ids.length) erros.push(`conjuntos-por-tema: ${tema} tem questão repetida`);
     for(const id of c.ids){
       if(!porId.has(id)) erros.push(`conjuntos-por-tema: ${tema} cita ${id}, que não existe`);

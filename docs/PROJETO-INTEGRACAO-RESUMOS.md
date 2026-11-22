@@ -20,13 +20,13 @@ Unidade = **tema com resumo** (hoje 78 prontos; previsão ≈ 150). Cada tema é
 2. **Pós-leitura:** o conjunto planejado de 20 questões do tema (seção 4).
 3. Acerto < 75% **no tema** → sugestão de **releitura opcional** do resumo, que abre já marcado pelos erros (o 09e faz isso); o tema volta na revisão espaçada mais cedo. A releitura nunca trava o avanço: o aluno pode seguir para o próximo tema.
 
-Ordem dos temas: a mesma fila da trilha de Formados (`dados/trilha-formados.js`, demanda × pré-requisitos), agrupando os assuntos pelo resumo que os cobre. Tema sem resumo ainda continua no cronograma atual de Formados (só questões) até o resumo existir — o projeto funciona desde já e melhora a cada resumo novo.
+Ordem dos temas: a mesma fila da trilha de Formados (`dados/trilha-formados.js`, demanda × pré-requisitos), agrupando os assuntos pelo resumo que os cobre. Assunto sem resumo entra só com o conjunto provisório de questões (seção 4-B) — o projeto funciona desde já e melhora a cada resumo novo.
 
 ## 2-B. Graduando antes do 6º ano: leitura obrigatória, mais de uma passagem
 
 O calendário da turma passa por um tema (pediatria, por exemplo) **mais de uma vez** ao longo da graduação. Regra:
 
-- **1ª passagem pelo tema:** leitura do resumo obrigatória; as questões do tema só abrem depois de marcar "li".
+- **1ª passagem pelo tema:** leitura do resumo obrigatória (se o tema tiver resumo; sem resumo, seção 4-B); as questões do tema só abrem depois de marcar "li".
 - **Passagens seguintes:** a leitura vira opcional (cartão "Você leu este resumo em DD/MM; reler?"), e as questões continuam o conjunto planejado **de onde parou** — não repete as 20 da primeira passagem enquanto houver questões novas do tema; esgotado o conjunto, segue a prática extra (seção 4). Se o acerto da passagem anterior ficou < 75%, a releitura aparece em destaque, ainda opcional.
 - Guarda-se por tema: `leituras: [datas]`, posição no conjunto, acerto por passagem. O calendário diz qual tema é da semana; o resumo é o mesmo do Formado.
 
@@ -51,6 +51,15 @@ Não é sorteio. Os resumos já ligam cada questão a um fragmento/seção (`npm
 O conjunto é **gerado por ferramenta e congelado** em `resumos/conjuntos-por-tema.js` (fica junto dos resumos, que a plataforma já carrega sob demanda, e não pesa na abertura): é auditável, igual para todos os alunos e muda só quando se roda a ferramenta de novo. `npm run conjuntos-por-tema` (visão geral) · `-- <tema>` (cada questão e o fragmento que cobre) · `-- --gravar` (escreve o arquivo; rode depois de resumo novo ou lote de questões). `npm run conferir` dá **erro** se o arquivo citar questão inexistente ou que deixou de servir, e **aviso** se ficou atrás do banco. Regra em `ferramentas/lib-conjuntos.mjs`. Na prática a unidade é o **fragmento** do resumo (cada um lista as questões daquele conceito).
 
 **Depois das 20:** o que passar disso no tema vem do banco geral (aleatório ponderado por erro, como a trilha 05d), e a tela diz que é "prática extra".
+
+## 4-B. Assunto ainda sem resumo
+
+Hoje 77 temas têm resumo e **160 assuntos com questões não têm** (o projeto prevê ≈ 150 resumos, e parte dos assuntos pequenos nunca terá resumo próprio). O cronograma não espera por eles:
+
+- **Conjunto provisório:** sem fragmentos, a diversidade sai do texto — escolha gulosa da questão **menos parecida** com as já escolhidas (Jaccard das palavras do enunciado + alternativa correta), com a dificuldade que falta e a prova recente de desempate. Fica no mesmo arquivo, com chave = id do assunto e `semResumo: true`. Quando o resumo do assunto sai, `--gravar` troca pelo conjunto de fragmentos. Assunto agrupado num resumo vizinho (≥ metade das suas questões nos fragmentos) conta como coberto.
+- **Ciclo sem leitura:** o tema entra só com as questões; a leitura obrigatória (graduando) e a recomendação de leitura < 75% **não aparecem** — no lugar, a tela diz "Este assunto ainda não tem resumo" e, < 75%, sugere a revisão dos erros e os cartões do assunto. Quando o resumo sair, o aluno que já fez o assunto recebe o aviso "saiu o resumo de *X*" (leitura opcional).
+- **Conjunto curto:** 89 desses assuntos têm menos de 20 questões que servem; usam todas, e a meta reparte o que sobra para os outros temas (seção 5).
+- **Ordem:** a trilha de Formados já ordena por assunto, então os sem resumo entram na fila no lugar deles, sem tratamento à parte.
 
 ## 5. Meta e prazo (reta final em meados de setembro)
 
@@ -101,3 +110,4 @@ Fases 0 e 1 são independentes e podem andar juntas; a 2 depende das duas.
 |---|---|
 | 22/11/2026 | projeto aberto: perfis e caminhos, conjunto planejado por cobertura de seções, cálculo da meta até setembro, fases |
 | 22/11/2026 | decisões da seção 7. **Fase 0 feita**: 77 temas, 1.540 questões; todos com 20; só `trabalho-de-parto` tem mais fragmentos (22) que 20 questões (21 cobertos). Ex. convulsão febril: 5/5 fragmentos nas 5 primeiras. Próximo: fase 1 (pergunta do primeiro acesso). |
+| 22/11/2026 | **assuntos sem resumo** (seção 4-B): 160 assuntos ganharam conjunto provisório por diversidade de texto (2.462 questões; 89 com menos de 20). |
