@@ -149,3 +149,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `cancer-de-endometrio` | `ass-caendometrio` | 52 (+1 de `ass-camama` sobre endométrio) | 1 (anulada) |
 | `endometriose` | `ass-endometriose` | 51 | — |
 | `estrategia-saude-familia` | `ass-esf` | 173 | 2 (anuladas) |
+| `desenhos-de-estudo` | `ass-desenhosestudo` | 168 | 3 (anuladas) |

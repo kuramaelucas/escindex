@@ -52,4 +52,5 @@
   { id: "cancer-de-endometrio", titulo: "Câncer de endométrio e sangramento pós-menopausa", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-caendometrio" },
   { id: "endometriose", titulo: "Endometriose e adenomiose", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-endometriose" },
   { id: "estrategia-saude-familia", titulo: "Estratégia Saúde da Família e atenção primária", area: "Medicina Preventiva · Atenção Primária", assunto: "ass-esf" },
+  { id: "desenhos-de-estudo", titulo: "Desenhos de estudo epidemiológico", area: "Medicina Preventiva · Epidemiologia", assunto: "ass-desenhosestudo" },
 ];
