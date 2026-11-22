@@ -464,7 +464,7 @@ window.EscDados.registrarQuestoes("prova-sessp-2023", [
   gabarito:"",
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **GINA 2022** e a alternativa **incorreta** sobre a **exacerbação de asma**. A questão pede a alternativa **incorreta** segundo a GINA 2022 no tratamento da exacerbação de asma. A afirmação E (manter brometo de ipratrópio de horário em pacientes internados) é a incorreta: o ipratrópio é usado nas primeiras horas, no pronto atendimento, e não é mantido de rotina durante a internação. A (preferir corticoide oral), B (beta-2 de curta duração), C (adrenalina na anafilaxia) e D (oral tão eficaz quanto venoso) estão certas. A redação com erro (\"cura duração\") em B pode ter pesado na anulação.",
   explicacoesAlternativas:{},
-  referencias:"Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, edição vigente.",
+  referencias:"Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, edição vigente. Conferido em 22/11/2026 no GINA 2026 (Global Strategy for Asthma Management and Prevention, Strategy Report de maio/2026; PDF enviado pela equipe): na exacerbação, ipratrópio com SABA no pronto-socorro reduz internações (moderada a grave), mas na criança internada não traz benefício; corticoide oral é tão eficaz quanto o venoso e é preferido. Questão anulada.",
   dificuldadeManual:"avancado", status:"anulada", motivoStatus:"Questão anulada pela banca no gabarito oficial definitivo.",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-10-03"

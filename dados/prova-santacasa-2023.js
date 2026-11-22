@@ -967,7 +967,7 @@ window.EscDados.registrarQuestoes("prova-santacasa-2023", [
   gabarito:"",
   explicacaoGeral:"Questão anulada pela banca. Dicas do enunciado: **gestante de 21 semanas com uma dose prévia de vacina com componente tetânico**: completa-se o esquema com **dT e dTpa**, com a dTpa a partir da 20ª semana, e a banca anulou. Pelo Calendário Nacional, a gestante com esquema incompleto para tétano deve completar as três doses, sendo uma delas de dTpa, aplicada a partir da 20ª semana de gestação (a recomendação mudou de 27–36 semanas para a partir de 20 semanas), com intervalo mínimo de 30 dias entre as doses. Como as alternativas usavam a regra antiga (28 semanas) e combinações diferentes, nenhuma ficou inteiramente correta.",
   explicacoesAlternativas:{},
-  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação da Gestante, 2022; Manual de Normas e Procedimentos para Vacinação.",
+  referencias:"Ministério da Saúde. Calendário Nacional de Vacinação da Gestante, 2022; Manual de Normas e Procedimentos para Vacinação. Conferido em 22/11/2026 na Instrução Normativa do Calendário Nacional de Vacinação 2026 (Ministério da Saúde, DPNI; PDF enviado pela equipe): gestante sem esquema completo faz 3 doses com componente tetânico (dT e 1 dose de dTpa a partir da 20ª semana), intervalo de 60 dias (mínimo de 30); o que faltar se completa no puerpério até 45 dias. Questão anulada.",
   dificuldadeManual:"fundamental", status:"anulada",
   motivoStatus:"Questão anulada pela banca (sem gabarito oficial).",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},

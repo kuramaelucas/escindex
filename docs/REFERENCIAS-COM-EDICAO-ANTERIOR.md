@@ -4,7 +4,7 @@ Gerado por `npm run referencias-a-conferir` em 22/11/2026 para **todas** as prov
 
 | Diretriz (edição vigente) | Questões |
 |---|---|
-| ATS/IDSA, pneumonia comunitária do adulto: Atualização ATS 2025 (Am J Respir Crit Care Med, doi 10.1164/rccm.202507-1692ST; a IDSA não a endossou) | 126 |
+| ATS/IDSA, pneumonia comunitária do adulto: Atualização ATS 2025 (Am J Respir Crit Care Med, doi 10.1164/rccm.202507-1692ST; a IDSA não a endossou) | 125 |
 | NCCN (versões frequentes): Versões 2026 em nccn.org (exigem login) | 108 |
 | Surviving Sepsis Campaign: SSC 2026 (Intensive Care Med 2026;52:863-936; pediátrica: 2026;52:937-983) | 79 |
 | Rastreamento do câncer do colo do útero (MS): Portaria Conjunta SAES/SECTICS nº 13/2025 (HPV-DNA) | 71 |
@@ -13,18 +13,17 @@ Gerado por `npm run referencias-a-conferir` em 22/11/2026 para **todas** as prov
 | GOLD, DPOC: GOLD 2026 (relatório v1.3) | 34 |
 | AHA, RCP e atendimento cardiovascular de emergência: AHA/AAP 2025 (Partes 5, 6, 8 e 11) | 21 |
 | ESC/EACTS, valvopatias: ESC/EACTS 2025 (doi 10.1093/eurheartj/ehaf194) | 19 |
-| GINA, asma: GINA 2026 (Strategy Report, maio/2026) | 19 |
 | Lista Nacional de Notificação Compulsória: Portarias GM/MS nº 6.734/2025, 10.175/2026 e 11.211/2026 | 17 |
 | BTS, doença pleural: BTS 2023 (Thorax 2023;78 Suppl 3) | 16 |
 | ADA, Standards of Care in Diabetes: ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1) | 16 |
 | OMS, critérios de elegibilidade contraceptiva: OMS MEC 6ª edição (2025) | 15 |
 | ACC/AHA, síndromes coronarianas agudas: ACC/AHA/ACEP/NAEMSP/SCAI 2025 (Circulation 2025;151) | 14 |
 | AHA/ASA, AVC isquêmico agudo: AHA/ASA 2026 (Stroke, doi 10.1161/STR.0000000000000513) | 11 |
-| Calendário Nacional de Vacinação: Instrução Normativa do Calendário 2026 | 10 |
 | SBC, hipertensão arterial: Diretriz Brasileira de Hipertensão 2025 (SBC, SBN, SBH) | 10 |
 | Critérios de Roma: Roma V (Gastroenterology 2026;170(6)) | 8 |
 | ESGO/ESTRO/ESP, carcinoma endometrial: ESGO/ESTRO/ESP 2025 (Lancet Oncol 2025;26) | 8 |
 | OMS, hemorragia pós-parto: OMS/FIGO/ICM 2025 (51 recomendações) | 6 |
+| GINA, asma: GINA 2026 (Strategy Report, maio/2026) | 6 |
 | ACOG, diabetes na gestação: Atualização clínica ACOG, julho/2024 | 4 |
 | Difficult Airway Society: DAS 2025 (Br J Anaesth) | 4 |
 | EAU (edições anuais): EAU 2026 (urolitíase: revisão completa) | 4 |
@@ -37,9 +36,9 @@ Gerado por `npm run referencias-a-conferir` em 22/11/2026 para **todas** as prov
 | ESVS, aneurisma de aorta abdominal: ESVS 2024 (Eur J Vasc Endovasc Surg 2024;67) | 1 |
 | ERS, bronquiectasias do adulto: ERS 2025 (Eur Respir J 2025) | 1 |
 
-## ATS/IDSA, pneumonia comunitária do adulto — vigente: Atualização ATS 2025 (Am J Respir Crit Care Med, doi 10.1164/rccm.202507-1692ST; a IDSA não a endossou) (126)
+## ATS/IDSA, pneumonia comunitária do adulto — vigente: Atualização ATS 2025 (Am J Respir Crit Care Med, doi 10.1164/rccm.202507-1692ST; a IDSA não a endossou) (125)
 
-`q-usprp2021-099` (usprp-2021), `q-usprp2026-097` (usprp-2026), `q-iamspe2026-008` (iamspe-2026), `q-famema2023-025` (famema-2023), `q-famema2025-015` (famema-2025), `q-tp20222-035` (tp-2022-2), `q-unesp2026-059` (unesp-2026), `q-uspsp2-004` (uspsp-simulado-2), `q-sirio2023-019` (sirio-2023), `q-gdpneumonias-002` (didatico-grad-pneumonias), `q-gdpneumonias-004` (didatico-grad-pneumonias), `q-gdpneumonias-005` (didatico-grad-pneumonias), `q-gdpneumonias-006` (didatico-grad-pneumonias), `q-gdpneumonias-007` (didatico-grad-pneumonias), `q-gdpneumonias-008` (didatico-grad-pneumonias), `q-gdpneumonias-009` (didatico-grad-pneumonias), `q-gdpneumonias-012` (didatico-grad-pneumonias), `q-gdpneumonias-014` (didatico-grad-pneumonias), `q-gdpneumonias-016` (didatico-grad-pneumonias), `q-gdpneumonias-018` (didatico-grad-pneumonias), `q-gdpneumonias-019` (didatico-grad-pneumonias), `q-gdpneumonias-020` (didatico-grad-pneumonias), `q-gdpneumonias-021` (didatico-grad-pneumonias), `q-gdpneumonias-022` (didatico-grad-pneumonias), `q-gdpneumonias-023` (didatico-grad-pneumonias), `q-gdpneumonias-025` (didatico-grad-pneumonias), `q-gdpneumonias-027` (didatico-grad-pneumonias), `q-gdpneumonias-028` (didatico-grad-pneumonias), `q-gdpneumonias-030` (didatico-grad-pneumonias), `q-gdpneumonias-031` (didatico-grad-pneumonias), `q-gdpneumonias-033` (didatico-grad-pneumonias), `q-gdpneumonias-034` (didatico-grad-pneumonias), `q-gdpneumonias-037` (didatico-grad-pneumonias), `q-gdpneumonias-038` (didatico-grad-pneumonias), `q-gdpneumonias-040` (didatico-grad-pneumonias), `q-gdpneumonias-042` (didatico-grad-pneumonias), `q-gdpneumonias-043` (didatico-grad-pneumonias), `q-gdpneumonias-044` (didatico-grad-pneumonias), `q-gdpneumonias-045` (didatico-grad-pneumonias), `q-gdpneumonias-046` (didatico-grad-pneumonias), `q-gdpneumonias-049` (didatico-grad-pneumonias), `q-gdpneumonias-050` (didatico-grad-pneumonias), `q-gdpneumonias-051` (didatico-grad-pneumonias), `q-gdpneumonias-054` (didatico-grad-pneumonias), `q-gdpneumonias-055` (didatico-grad-pneumonias), `q-gdpneumonias-057` (didatico-grad-pneumonias), `q-gdpneumonias-058` (didatico-grad-pneumonias), `q-gdpneumonias-059` (didatico-grad-pneumonias), `q-gdpneumonias-061` (didatico-grad-pneumonias), `q-gdpneumonias-062` (didatico-grad-pneumonias), `q-gdpneumonias-063` (didatico-grad-pneumonias), `q-gdpneumonias-064` (didatico-grad-pneumonias), `q-gdpneumonias-065` (didatico-grad-pneumonias), `q-gdpneumonias-066` (didatico-grad-pneumonias), `q-gdpneumonias-067` (didatico-grad-pneumonias), `q-gdpneumonias-068` (didatico-grad-pneumonias), `q-gdpneumonias-071` (didatico-grad-pneumonias), `q-gdpneumonias-073` (didatico-grad-pneumonias), `q-gdpneumonias-074` (didatico-grad-pneumonias), `q-gdpneumonias-075` (didatico-grad-pneumonias), … e mais 66
+`q-usprp2021-099` (usprp-2021), `q-usprp2026-097` (usprp-2026), `q-iamspe2026-008` (iamspe-2026), `q-famema2023-025` (famema-2023), `q-famema2025-015` (famema-2025), `q-tp20222-035` (tp-2022-2), `q-unesp2026-059` (unesp-2026), `q-uspsp2-004` (uspsp-simulado-2), `q-sirio2023-019` (sirio-2023), `q-gdpneumonias-002` (didatico-grad-pneumonias), `q-gdpneumonias-004` (didatico-grad-pneumonias), `q-gdpneumonias-005` (didatico-grad-pneumonias), `q-gdpneumonias-006` (didatico-grad-pneumonias), `q-gdpneumonias-007` (didatico-grad-pneumonias), `q-gdpneumonias-008` (didatico-grad-pneumonias), `q-gdpneumonias-009` (didatico-grad-pneumonias), `q-gdpneumonias-012` (didatico-grad-pneumonias), `q-gdpneumonias-014` (didatico-grad-pneumonias), `q-gdpneumonias-016` (didatico-grad-pneumonias), `q-gdpneumonias-018` (didatico-grad-pneumonias), `q-gdpneumonias-019` (didatico-grad-pneumonias), `q-gdpneumonias-020` (didatico-grad-pneumonias), `q-gdpneumonias-021` (didatico-grad-pneumonias), `q-gdpneumonias-022` (didatico-grad-pneumonias), `q-gdpneumonias-023` (didatico-grad-pneumonias), `q-gdpneumonias-025` (didatico-grad-pneumonias), `q-gdpneumonias-027` (didatico-grad-pneumonias), `q-gdpneumonias-028` (didatico-grad-pneumonias), `q-gdpneumonias-030` (didatico-grad-pneumonias), `q-gdpneumonias-031` (didatico-grad-pneumonias), `q-gdpneumonias-033` (didatico-grad-pneumonias), `q-gdpneumonias-034` (didatico-grad-pneumonias), `q-gdpneumonias-037` (didatico-grad-pneumonias), `q-gdpneumonias-038` (didatico-grad-pneumonias), `q-gdpneumonias-040` (didatico-grad-pneumonias), `q-gdpneumonias-042` (didatico-grad-pneumonias), `q-gdpneumonias-043` (didatico-grad-pneumonias), `q-gdpneumonias-044` (didatico-grad-pneumonias), `q-gdpneumonias-045` (didatico-grad-pneumonias), `q-gdpneumonias-046` (didatico-grad-pneumonias), `q-gdpneumonias-049` (didatico-grad-pneumonias), `q-gdpneumonias-050` (didatico-grad-pneumonias), `q-gdpneumonias-051` (didatico-grad-pneumonias), `q-gdpneumonias-054` (didatico-grad-pneumonias), `q-gdpneumonias-055` (didatico-grad-pneumonias), `q-gdpneumonias-057` (didatico-grad-pneumonias), `q-gdpneumonias-058` (didatico-grad-pneumonias), `q-gdpneumonias-059` (didatico-grad-pneumonias), `q-gdpneumonias-061` (didatico-grad-pneumonias), `q-gdpneumonias-062` (didatico-grad-pneumonias), `q-gdpneumonias-063` (didatico-grad-pneumonias), `q-gdpneumonias-064` (didatico-grad-pneumonias), `q-gdpneumonias-065` (didatico-grad-pneumonias), `q-gdpneumonias-066` (didatico-grad-pneumonias), `q-gdpneumonias-067` (didatico-grad-pneumonias), `q-gdpneumonias-068` (didatico-grad-pneumonias), `q-gdpneumonias-071` (didatico-grad-pneumonias), `q-gdpneumonias-073` (didatico-grad-pneumonias), `q-gdpneumonias-074` (didatico-grad-pneumonias), `q-gdpneumonias-075` (didatico-grad-pneumonias), … e mais 65
 
 ## NCCN (versões frequentes) — vigente: Versões 2026 em nccn.org (exigem login) (108)
 
@@ -73,10 +72,6 @@ Gerado por `npm run referencias-a-conferir` em 22/11/2026 para **todas** as prov
 
 `q-adap24-092` (unifesp-2024-adaptado), `q-scmsp2026-004` (santacasa-2026), `q-usprp2021-097` (usprp-2021), `q-usprp2022-061` (usprp-2022), `q-usprp2024-042` (usprp-2024), `q-usprp2026-044` (usprp-2026), `q-usprp2026-087` (usprp-2026), `q-iamspe2023-010` (iamspe-2023), `q-famema2022-021` (famema-2022), `q-tp20222-011` (tp-2022-2), `q-tp20222-022` (tp-2022-2), `q-unesp2021-041` (unesp-2021), `q-unesp2024-071` (unesp-2024), `q-unesp2025-072` (unesp-2025), `q-famerp2025-013` (famerp-2025), `q-unicamp2022-008` (unicamp-2022), `q-unicampdis2023-019` (unicamp-2023-dissertativa), `q-unicampdis2024-080` (unicamp-2024-dissertativa), `q-uspsp5-006` (uspsp-simulado-5)
 
-## GINA, asma — vigente: GINA 2026 (Strategy Report, maio/2026) (19)
-
-`q-iamspe2023-043` (iamspe-2023), `q-iamspe2025-020` (iamspe-2025), `q-iamspe2025-073` (iamspe-2025), `q-sessp2022-046` (sessp-2022), `q-sessp2022-049` (sessp-2022), `q-sessp2023-034` (sessp-2023), `q-sessp2023-035` (sessp-2023), `q-sessp2024-051` (sessp-2024), `q-sessp2024-052` (sessp-2024), `q-sessp2025-053` (sessp-2025), `q-tp20252-017` (tp-2025-2), `q-tp20252-021` (tp-2025-2), `q-unesp2024-051` (unesp-2024), `q-famerp2025-061` (famerp-2025), `q-famerp2026-041` (famerp-2026), `q-uspsp2-024` (uspsp-simulado-2), `q-sirio2026-045` (sirio-2026), `q-sirio2022-043` (sirio-2022), `q-gdantibioticos-039` (didatico-grad-antibioticos)
-
 ## Lista Nacional de Notificação Compulsória — vigente: Portarias GM/MS nº 6.734/2025, 10.175/2026 e 11.211/2026 (17)
 
 `q-adap24-066` (unifesp-2024-adaptado), `q-adap24-085` (unifesp-2024-adaptado), `q-adap25-044` (simulado-epm-2), `q-usp2026-089` (usp-2026), `q-amrigs2022-095` (amrigs-2022), `q-amrigs2023-084` (amrigs-2023), `q-amrigs2024-088` (amrigs-2024), `q-amrigs2025-089` (amrigs-2025), `q-iamspe2021-067` (iamspe-2021), `q-iamspe2025-094` (iamspe-2025), `q-famema2021-078` (famema-2021), `q-sessp2023-084` (sessp-2023), `q-sessp2024-100` (sessp-2024), `q-tp20222-115` (tp-2022-2), `q-tp20222-119` (tp-2022-2), `q-uspsp2-098` (uspsp-simulado-2), `q-simepm89-075` (simulado-epm-2026-10)
@@ -101,10 +96,6 @@ Gerado por `npm run referencias-a-conferir` em 22/11/2026 para **todas** as prov
 
 `q-usprp2024-038` (usprp-2024), `q-usprp2026-094` (usprp-2026), `q-amrigs2025-016` (amrigs-2025), `q-amrigs2020-013` (amrigs-2020), `q-sessp2022-005` (sessp-2022), `q-sessp2024-007` (sessp-2024), `q-sessp2025-010` (sessp-2025), `q-sessp2025-017` (sessp-2025), `q-tp20212-021` (tp-2021-2), `q-tp20222-034` (tp-2022-2), `q-uspsp5-011` (uspsp-simulado-5)
 
-## Calendário Nacional de Vacinação — vigente: Instrução Normativa do Calendário 2026 (10)
-
-`q-scmsp2023-073` (santacasa-2023), `q-iamspe2026-076` (iamspe-2026), `q-tp20251-114` (tp-2025-1), `q-tp20252-078` (tp-2025-2), `q-tp20261-082` (tp-2026-1), `q-unesp2021-099` (unesp-2021), `q-famerp2025-054` (famerp-2025), `q-unicamp2022-045` (unicamp-2022), `q-unicampdis2024-097` (unicamp-2024-dissertativa), `q-sirio2023-100` (sirio-2023)
-
 ## SBC, hipertensão arterial — vigente: Diretriz Brasileira de Hipertensão 2025 (SBC, SBN, SBH) (10)
 
 `q-usprp2021-006` (usprp-2021), `q-usprp2024-003` (usprp-2024), `q-amrigs2020-092` (amrigs-2020), `q-amrigs2021-017` (amrigs-2021), `q-iamspe2021-003` (iamspe-2021), `q-famema2021-076` (famema-2021), `q-sessp2022-015` (sessp-2022), `q-sessp2022-097` (sessp-2022), `q-sessp2026-095` (sessp-2026), `q-uspsp1-056` (uspsp-simulado-1)
@@ -120,6 +111,10 @@ Gerado por `npm run referencias-a-conferir` em 22/11/2026 para **todas** as prov
 ## OMS, hemorragia pós-parto — vigente: OMS/FIGO/ICM 2025 (51 recomendações) (6)
 
 `q-famema2021-041` (famema-2021), `q-sessp2023-059` (sessp-2023), `q-sessp2023-060` (sessp-2023), `q-sessp2024-074` (sessp-2024), `q-sessp2024-075` (sessp-2024), `q-uspsp4-042` (uspsp-simulado-4)
+
+## GINA, asma — vigente: GINA 2026 (Strategy Report, maio/2026) (6)
+
+`q-sessp2022-046` (sessp-2022), `q-sessp2022-049` (sessp-2022), `q-sessp2023-035` (sessp-2023), `q-sessp2024-051` (sessp-2024), `q-sessp2024-052` (sessp-2024), `q-sessp2025-053` (sessp-2025)
 
 ## ACOG, diabetes na gestação — vigente: Atualização clínica ACOG, julho/2024 (4)
 

@@ -12,7 +12,7 @@ Atualizado em 13/11/2026 (seção 8 nova: `banco-didatico`). Este é o **único*
 
 Gerado de `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md` (tabela `ferramentas/edicoes-vigentes.json`), só USP e UNIFESP: 69 questões da USP e 45 da UNIFESP (uma questão pode aparecer em mais de uma diretriz; as da UNIFESP já lidas, seção 1, podem constar aqui porque a referência ainda cita a edição antiga ao lado da nota, e vale conferir antes de reler). Número = nº da questão na prova.
 
-**Rodada de 22/11/2026 (PDFs enviados pela equipe: GINA 2026, IN do Calendário 2026, SSC 2026 adulto e pediátrica, ATS 2025 de PAC):** saíram desta tabela as linhas de ATS, SSC, Calendário e GINA: as 28 questões estão conferidas (12 nesta rodada; as demais já tinham nota de 08/11 ou 17/11). Ficou um ponto de texto: `q-usp2022-044` (explicação fala em VPC 10 e limite de 14 semanas do rotavírus; a IN 2026 traz VPC 20 em transição e 1ª dose de rotavírus até 11 meses e 29 dias). As demais bancas que citam SSC e ATS (93 e 127 citações) ainda estão em `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md`; os PDFs ficam na pasta temporária da sessão, fora do git.
+**Rodada de 22/11/2026 (PDFs enviados pela equipe: GINA 2026, IN do Calendário 2026, SSC 2026 adulto e pediátrica, ATS 2025 de PAC):** saíram desta tabela as linhas de ATS, SSC, Calendário e GINA: as 28 questões estão conferidas (12 nesta rodada; as demais já tinham nota de 08/11 ou 17/11). A explicação da `q-usp2022-044` foi reescrita com a IN 2026 (VPC 20 em transição; limites novos do rotavírus). As demais bancas que citam SSC e ATS (93 e 127 citações) ainda estão em `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md`; os PDFs ficam na pasta temporária da sessão, fora do git.
 
 | Diretriz | Edição vigente | Questões | Quais |
 |---|---|---|---|

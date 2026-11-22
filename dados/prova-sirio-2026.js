@@ -600,7 +600,7 @@ window.EscDados.registrarQuestoes("prova-sirio-2026", [
   gabarito:"C",
   explicacaoGeral:"A alternativa C está correta. Dicas do enunciado: menina de 10 anos com **dor no peito e cansaço aos esforços**, **internações prévias por dispneia e tosse com resposta a salbutamol e prednisolona**, **crises de tosse recorrentes**, **atopia familiar (rinite e dermatite atópica)**, rinite alérgica ao exame e **sibilos bilaterais com expiração prolongada**: **crise asmática**. A dor torácica é por esforço muscular respiratório. Mecanismo: na asma a inflamação crônica das vias aéreas causa broncoespasmo recorrente, em criança com atopia, e a dor torácica e o cansaço refletem o esforço respiratório. Epidemiologia: a asma é a doença crônica mais comum da infância, e a atopia familiar aumenta o risco. A) a insuficiência cardíaca teria sopro, hepatomegalia e edema. B) a bronquiolite é de lactentes. D) a pneumonia atípica teria febre. E) o edema agudo de pulmão não se apresenta assim.",
   explicacoesAlternativas:{},
-  referencias:"GINA 2023; Diretrizes da SBPT para o Manejo da Asma 2020.",
+  referencias:"GINA 2023; Diretrizes da SBPT para o Manejo da Asma 2020. Conferido em 22/11/2026 no GINA 2026 (Global Strategy for Asthma Management and Prevention, Strategy Report de maio/2026; PDF enviado pela equipe): diagnóstico de asma por sintomas respiratórios variáveis (sibilância, dispneia, aperto no peito, tosse) com piora por gatilhos e resposta ao broncodilatador, mais atopia pessoal ou familiar. Gabarito mantido. SBPT 2020 não relida.",
   dificuldadeManual:"intermediario", status:"ativa",
   estatisticas:{respostas:0, acertos:0, distribuicaoAlternativas:{}},
   criadoPor:"seed", criadoEm:"2026-11-01", justificativaEm:"2026-11"
