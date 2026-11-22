@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Medicações antes de cirurgia eletiva: manter ou suspender</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Manter</text>
+    <text x="127" y="94">Betabloqueador</text>
+    <text x="127" y="114">Aspirina em prevenção</text>
+    <text x="127" y="132">secundária</text>
+    <text x="127" y="156">Linagliptina</text>
+    <text x="127" y="176">Metformina até a véspera</text>
+    <text x="127" y="194">(na prova, 24 horas antes)</text>
+    <text x="127" y="218">Levotiroxina, inibidor de</text>
+    <text x="127" y="236">bomba, benzodiazepínico</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Suspender</text>
+    <text x="360" y="94">Clopidogrel: 5 dias antes</text>
+    <text x="360" y="118">Inibidor de SGLT2: 3 a 4 dias</text>
+    <text x="360" y="136">antes (cetoacidose euglicêmica)</text>
+    <text x="360" y="160">Estrogênio: cerca de 4 semanas</text>
+    <text x="360" y="184">Varfarina: cerca de 5 dias,</text>
+    <text x="360" y="202">até INR abaixo de 1,25 a 1,5</text>
+    <text x="360" y="226">Semaglutida semanal: uma</text>
+    <text x="360" y="244">semana antes (aspiração)</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Ponte e proteção</text>
+    <text x="592" y="94">Risco trombótico alto (TEP</text>
+    <text x="592" y="112">há menos de 3 meses): ponte</text>
+    <text x="592" y="130">com heparina de baixo peso</text>
+    <text x="592" y="154">Stent farmacológico há</text>
+    <text x="592" y="172">6 meses: aspirina mantida,</text>
+    <text x="592" y="190">clopidogrel suspenso 5 dias</text>
+    <text x="592" y="214">Doença renal dialítica:</text>
+    <text x="592" y="232">heparina não fracionada</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">A decisão pesa o risco de sangramento contra o de trombose</text>
+</svg>
