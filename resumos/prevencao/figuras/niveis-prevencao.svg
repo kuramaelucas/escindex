@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="340" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">História natural da doença e níveis de prevenção</text>
+  <g stroke="#1f2d3d" stroke-width="2">
+    <line x1="30" y1="130" x2="690" y2="130"/>
+  </g>
+  <path d="M684 124 L696 130 L684 136 Z" fill="#1f2d3d"/>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <text x="130" y="116" font-weight="bold">Pré-patogênico</text>
+    <text x="130" y="152">fatores de risco,</text><text x="130" y="170">sem doença</text>
+    <text x="330" y="116" font-weight="bold">Doença sem sintomas</text>
+    <text x="330" y="152">fase pré-clínica</text><text x="330" y="170">(detectável)</text>
+    <text x="520" y="116" font-weight="bold">Doença clínica</text>
+    <text x="520" y="152">sintomas,</text><text x="520" y="170">complicações</text>
+    <text x="640" y="116" font-weight="bold">Sequelas</text>
+  </g>
+  <g stroke-width="2" font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="30" y="200" width="200" height="70" rx="8" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="130" y="224" font-weight="bold">Primária</text><text x="130" y="244">promoção da saúde e</text><text x="130" y="260">proteção específica (vacina)</text>
+    <rect x="240" y="200" width="200" height="70" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="340" y="224" font-weight="bold">Secundária</text><text x="340" y="244">rastreamento e diagnóstico</text><text x="340" y="260">precoce, tratamento oportuno</text>
+    <rect x="450" y="200" width="240" height="70" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+    <text x="570" y="224" font-weight="bold">Terciária</text><text x="570" y="244">limitar a incapacidade e</text><text x="570" y="260">reabilitar</text>
+  </g>
+  <rect x="30" y="284" width="660" height="40" rx="8" fill="#f3e8f6" stroke="#6b3a7a" stroke-width="2"/>
+  <text x="360" y="308" text-anchor="middle" font-size="13" fill="#1f2d3d"><tspan font-weight="bold">Quaternária:</tspan> proteger do excesso de intervenção, em qualquer ponto da linha</text>
+</svg>

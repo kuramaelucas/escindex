@@ -57,4 +57,5 @@
   { id: "vigilancia-em-saude", titulo: "Vigilância em saúde, notificação e declaração de óbito", area: "Medicina Preventiva · Vigilância em Saúde", assunto: "ass-vigilancia" },
   { id: "bioestatistica", titulo: "Bioestatística e testes diagnósticos", area: "Medicina Preventiva · Epidemiologia", assunto: "ass-bioestatistica" },
   { id: "principios-do-sus", titulo: "Princípios e organização do SUS", area: "Medicina Preventiva · Saúde Coletiva", assunto: "ass-principiossus" },
+  { id: "prevencao", titulo: "Prevenção, rastreamento e prevenção quaternária", area: "Medicina Preventiva · Prevenção", assunto: "ass-prevencao" },
 ];
