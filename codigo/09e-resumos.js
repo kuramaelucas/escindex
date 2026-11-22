@@ -265,7 +265,67 @@ function responderCasoDoResumo(id, letra){
 }
 
 /* ---------------------------- telas ---------------------------- */
-function abrirResumo(id){ state.filtroRota.resumoAberto = id || null; render(); window.scrollTo(0, 0); }
+/* Abrir um resumo empilha uma entrada no histórico do navegador (mesmo endereço,
+   #/resumos): assim o botão voltar do celular ou do navegador fecha o resumo e
+   volta à lista dos resumos, em vez de sair da tela de Resumos. */
+function abrirResumo(id){
+  if(!id && history.state && history.state.resumoAberto){ history.back(); return; }  // o popstate abaixo fecha
+  if(id && state.route === "resumos"){ try { history.pushState({ resumoAberto: id }, "", "#/resumos"); } catch(e){ /* abrir por arquivo pode recusar: só não empilha */ } }
+  state.filtroRota.resumoAberto = id || null; render(); window.scrollTo(0, 0);
+}
+window.addEventListener("popstate", function(ev){
+  if(state.route !== "resumos" || !state.filtroRota || !state.filtroRota.resumoAberto) return;
+  const noHistorico = ev.state && ev.state.resumoAberto;
+  if(noHistorico === state.filtroRota.resumoAberto) return;
+  state.filtroRota.resumoAberto = noHistorico || null; render(); window.scrollTo(0, 0);
+});
+
+/* ---------------------------- lidos ----------------------------
+   u.resumosLidos = { resumoId: "AAAA-MM-DD" } (false = desmarcado: a marca de
+   "desfiz" precisa viajar para o outro aparelho, senão a união da nuvem a traria
+   de volta). Sobe no perfil (perfis.resumos_lidos) e o Painel da Turma conta. */
+function resumoLidoEm(u, id){ const v = u && u.resumosLidos && u.resumosLidos[id]; return v || null; }
+function quantosResumosLidos(u){ return Object.values((u && u.resumosLidos) || {}).filter(Boolean).length; }
+function marcarResumoComoLido(id, lido){
+  const u = usuarioAtual();
+  if(!u) return;
+  u.resumosLidos = Object.assign({}, u.resumosLidos || {}, { [id]: lido ? hojeISO() : false });
+  saveState();
+  toast(lido ? "Resumo marcado como lido." : "Marca de lido desfeita.");
+  render();
+}
+
+/* ---------------------------- ligação com o desempenho ----------------------------
+   Meu Desempenho e os assuntos fracos levam direto ao resumo do assunto, quando há.
+   O catálogo chega sob demanda: na primeira vez o botão não aparece, o catálogo é
+   pedido e a tela se redesenha com ele. */
+function resumoDoAssunto(assuntoId){
+  const cat = catalogoDeResumos();
+  if(!cat){ _carregarScriptDeResumo("catalogo").then(ok => { if(ok && state.route !== "resumos") render(); }); return null; }
+  return cat.find(r => r.assunto === assuntoId || (Array.isArray(r.assuntos) && r.assuntos.includes(assuntoId))) || null;
+}
+function botaoLerResumo(assuntoId){
+  const r = resumoDoAssunto(assuntoId);
+  return r ? `<button class="btn btn-ghost btn-sm" onclick="lerResumoDoAssunto('${escapeHtml(r.id)}')" title="Abrir o resumo: ${escapeHtml(r.titulo)}">${iconeSvg("book")} Ler resumo</button>` : "";
+}
+/* Cartão de Meu Desempenho (nos dois modos): os resumos dos assuntos em que a
+   pessoa mais erra, com pelo menos 3 questões feitas — leitura dirigida pelo erro. */
+function htmlResumosDosPontosFracos(u){
+  const cat = catalogoDeResumos();
+  if(!cat){ resumoDoAssunto(null); return ""; }
+  const erros = _erroPorAssunto(u.id);
+  const fracos = cat.map(r => ({ r, e: erros[r.assunto] })).filter(x => x.e && x.e.n >= 3 && x.e.e / x.e.n >= .2)
+    .sort((a, b) => b.e.e / b.e.n - a.e.e / a.e.n).slice(0, 3);
+  if(!fracos.length) return "";
+  return `<div class="card mb-2"><div class="card-title">${iconeSvg("book")} Leitura para os seus pontos fracos</div>
+    <p class="text-sm muted">Os resumos dos assuntos em que você mais erra (com pelo menos 3 questões feitas). Dentro do resumo, a cor mostra o trecho exato.</p>
+    ${fracos.map(x => `<div class="flex justify-between items-center gap-1 card-flat mb-1"><span class="text-sm">${escapeHtml(x.r.titulo)} <span class="text-xs muted">(erro em ${Math.round(x.e.e / x.e.n * 100)}% de ${x.e.n})${resumoLidoEm(u, x.r.id) ? " · lido em " + formatDataBR(resumoLidoEm(u, x.r.id)) : ""}</span></span>
+      <button class="btn btn-secondary btn-sm" onclick="lerResumoDoAssunto('${escapeHtml(x.r.id)}')">${iconeSvg("book")} Ler resumo</button></div>`).join("")}</div>`;
+}
+function lerResumoDoAssunto(id){
+  navigate("resumos");
+  abrirResumo(id);
+}
 
 function renderResumos(){
   const cat = catalogoDeResumos();
@@ -289,15 +349,61 @@ function renderResumos(){
   return _renderCaderno(r);
 }
 
+/* A lista: agrupada pelas grandes áreas (a área do assunto do resumo na taxonomia),
+   na ordem padrão de MAIOR ERRO da pessoa nas questões do assunto — o que mais
+   rende vem primeiro. A pessoa pode trocar para ordem alfabética ou para os
+   nunca lidos primeiro; a escolha fica em state.filtroRota.resumoOrdem. */
+const RESUMO_ORDENS = { erro: "Onde você mais erra", alfabetica: "Ordem alfabética", "nao-lidos": "Nunca lidos primeiro" };
+function mudarOrdemDosResumos(v){ state.filtroRota.resumoOrdem = RESUMO_ORDENS[v] ? v : "erro"; render(); }
+function _erroPorAssunto(usuarioId){
+  const ult = _ultimasRespostasDe(usuarioId), soma = {};
+  Object.keys(ult).forEach(qid => {
+    const q = getQuestao(qid);
+    if(!q) return;
+    const s = soma[q.assuntoId] || (soma[q.assuntoId] = { e: 0, n: 0 });
+    s.e += ult[qid]; s.n++;
+  });
+  return soma;
+}
 function _renderListaDeResumos(cat){
+  const u = usuarioAtual();
+  const ordem = RESUMO_ORDENS[state.filtroRota.resumoOrdem] ? state.filtroRota.resumoOrdem : "erro";
+  const erros = _erroPorAssunto(u.id);
+  const itens = cat.map(r => {
+    const e = erros[r.assunto];
+    const area = areaDeAssunto(r.assunto);
+    return { r, t: e && e.n ? e.e / e.n : null, n: e ? e.n : 0, lido: resumoLidoEm(u, r.id), area };
+  });
+  const porNome = (a, b) => a.r.titulo.localeCompare(b.r.titulo, "pt-BR");
+  const ordens = {
+    // sem resposta fica depois de quem erra e antes de quem domina (mesma regra do caderno, _faixaDoResumo)
+    erro: (a, b) => (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || porNome(a, b),
+    alfabetica: porNome,
+    "nao-lidos": (a, b) => (!!a.lido - !!b.lido) || (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || porNome(a, b),
+  };
+  itens.sort(ordens[ordem]);
+  const ordemDasAreas = (db.areas || []).map(a => a.id);
+  const grupos = {};
+  itens.forEach(it => { const k = it.area ? it.area.id : ""; (grupos[k] = grupos[k] || []).push(it); });
+  const chaves = Object.keys(grupos).sort((a, b) => (a === "") - (b === "") || ordemDasAreas.indexOf(a) - ordemDasAreas.indexOf(b));
+  const lidos = itens.filter(it => it.lido).length;
+  const cartao = it => `<div class="card mb-1">
+      <div class="flex justify-between items-center gap-2 quebra">
+        <div class="cresce-220"><div class="text-xs muted">${escapeHtml(it.r.area || "")}</div>
+          <div class="card-title">${escapeHtml(it.r.titulo)} ${_marcaDoResumo(it.t)}</div>
+          <div class="text-xs muted">${it.t === null ? "Você ainda não respondeu questões deste assunto" : RESUMO_NOMES[_nivelDoResumo(it.t)] + " — erro em " + Math.round(it.t * 100) + "% das " + it.n + " " + plural(it.n, "questão", "questões") + " que você fez"}${it.lido ? " · <strong>lido em " + formatDataBR(it.lido) + "</strong>" : " · nunca lido"}</div></div>
+        <button class="btn ${it.lido ? "btn-secondary" : "btn-primary"} btn-sm" onclick="abrirResumo('${escapeHtml(it.r.id)}')">${it.lido ? "Reler" : "Ler"}</button>
+      </div></div>`;
   return `<div class="page-header"><h2>Resumos <span class="badge badge-accent">Beta</span></h2>
     <p>Textos de estudo escritos a partir das questões de prova. Cada parte do texto é ligada às questões que ela responde, e a cor mostra onde você mais erra.</p></div>
     <div class="card-flat mb-2 text-sm">${iconeSvg("alert")} Em teste: o texto ainda está sendo conferido nas fontes primárias. Achou erro ou tem sugestão? Dentro do resumo há um botão de feedback.</div>
-    ${cat.map(r => `<div class="card mb-1">
-      <div class="flex justify-between items-center gap-2 quebra">
-        <div class="cresce-220"><div class="text-xs muted">${escapeHtml(r.area || "")}</div><div class="card-title">${escapeHtml(r.titulo)}</div></div>
-        <button class="btn btn-primary btn-sm" onclick="abrirResumo('${escapeHtml(r.id)}')">Ler</button>
-      </div></div>`).join("")}`;
+    <div class="flex justify-between items-center gap-1 quebra mb-2">
+      <span class="text-sm muted">${lidos} de ${itens.length} ${plural(itens.length, "resumo lido", "resumos lidos")}</span>
+      <label class="text-sm flex items-center gap-1">Ordem
+        <select class="select" aria-label="Ordem dos resumos" onchange="mudarOrdemDosResumos(this.value)">${Object.entries(RESUMO_ORDENS).map(([k, v]) => `<option value="${k}" ${k === ordem ? "selected" : ""}>${v}</option>`).join("")}</select></label>
+    </div>
+    ${ordem === "erro" ? `<p class="text-xs muted mb-2">Dentro de cada grande área, primeiro os resumos dos assuntos em que você mais erra, depois os que você ainda não respondeu e por último os que já domina.</p>` : ""}
+    ${chaves.map(k => `<h3 class="mt-2 mb-1">${escapeHtml(k ? grupos[k][0].area.nome : "Outros")} <span class="text-xs muted peso-400">(${grupos[k].length})</span></h3>${grupos[k].map(cartao).join("")}`).join("")}`;
 }
 
 // Ordem: o que a pessoa erra (tijolo, depois ocre) → o que ela ainda não respondeu →
@@ -363,6 +469,9 @@ function _renderCaderno(r){
         <div class="resumo-cap-cab"><div class="resumo-rotulo">Capítulo ${c + 1}</div><h2>${escapeHtml(d.titulo)}</h2></div>
         <div class="resumo-introducao">${intro}</div>${secs.join("")}</section>`).join("")}
       <p class="resumo-fim">Fontes a conferir: ${escapeHtml((r.fontes || []).map(x => x.texto).join("; "))}.</p>
+      <div class="resumo-lido card-flat mt-2 flex justify-between items-center gap-1 quebra">${resumoLidoEm(u, r.id)
+        ? `<span class="text-sm">${iconeSvg("check")} Você marcou este resumo como lido em ${formatDataBR(resumoLidoEm(u, r.id))}.</span><button class="btn btn-ghost btn-sm" onclick="marcarResumoComoLido('${escapeHtml(r.id)}', false)">Desmarcar</button>`
+        : `<span class="text-sm">Terminou a leitura?</span><button class="btn btn-primary btn-sm" onclick="marcarResumoComoLido('${escapeHtml(r.id)}', true)">${iconeSvg("check")} Marcar como lido</button>`}</div>
     </article>
     </div>`;
 }

@@ -17,9 +17,17 @@ function abrirModalMeta(){
   const meta = metaDoUsuario(u);
   const feitasHoje = questoesRespondidasHoje(u.id);
   abrirModal(`
-    ${cabecalhoJanela("Meta diária de questões")}
-    <p class="text-sm muted">Quantas questões você quer responder por dia. Vale mais uma meta modesta que você cumpre todo dia do que uma ambiciosa que você abandona na terceira semana.</p>
-    <div class="field mt-2"><label class="label">Questões por dia</label><input class="input" type="number" id="metaInput" value="${meta}" min="1" max="500"></div>
+    ${cabecalhoJanela("Meta de questões")}
+    <p class="text-sm muted">Quantas questões você quer responder. Vale mais uma meta modesta que você cumpre do que uma ambiciosa que você abandona na terceira semana.</p>
+    <div class="field mt-2"><label class="label">Contar a meta por</label>
+      <div class="flex gap-1 quebra">
+        <label class="pill"><input type="radio" name="metaPeriodo" value="dia" ${u.metaQuestoesSemana ? "" : "checked"} onchange="alternarPeriodoDaMeta()"> dia</label>
+        <label class="pill"><input type="radio" name="metaPeriodo" value="semana" ${u.metaQuestoesSemana ? "checked" : ""} onchange="alternarPeriodoDaMeta()"> semana</label>
+      </div>
+      <p class="text-xs muted mt-1">Na meta <strong>semanal</strong> (segunda a domingo) você não precisa estudar todo dia: fica em dia quem já fez a parte proporcional aos dias que passaram, e um dia de folga não atrasa se os outros cobrirem.</p></div>
+    <div class="field mt-2" id="campoMetaDia" ${u.metaQuestoesSemana ? 'hidden' : ""}><label class="label">Questões por dia</label><input class="input" type="number" id="metaInput" value="${meta}" min="1" max="500"></div>
+    <div class="field mt-2" id="campoMetaSemana" ${u.metaQuestoesSemana ? "" : 'hidden'}><label class="label" for="metaSemanaInput">Questões por semana</label><input class="input" type="number" id="metaSemanaInput" value="${u.metaQuestoesSemana || metaSemanalSugerida(u)}" min="1" max="3500">
+      <p class="text-xs muted mt-1">Sugestão: a meta diária (${meta}) em ${DIAS_DE_ESTUDO_NA_META_SEMANAL} dias = ${metaSemanalSugerida(u)}. Nesta semana você já respondeu ${questoesRespondidasNaSemana(u.id)}.</p></div>
     <div class="flex gap-1 mb-2 quebra">
       <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaMinimaQuestoesDia}">mínimo (${db.configGeral.metaMinimaQuestoesDia})</button>
       <button class="pill" onclick="document.getElementById('metaInput').value=${db.configGeral.metaRecomendadaQuestoesDia}">ideal (${db.configGeral.metaRecomendadaQuestoesDia})</button>
@@ -39,24 +47,34 @@ function abrirModalMeta(){
    quando ela mudar. */
 function restaurarMetaPadrao(qual){
   const u = usuarioAtual();
-  if(qual === "cartoes") delete u.metaCartoesDia; else delete u.metaQuestoesDia;
+  if(qual === "cartoes") delete u.metaCartoesDia; else { delete u.metaQuestoesDia; delete u.metaQuestoesSemana; }
   saveState();
   fecharModal();
   toast(qual === "cartoes" ? "Meta de cartões restaurada para o padrão." : "Meta de questões restaurada para o padrão.");
   render();
 }
+function alternarPeriodoDaMeta(){
+  const semanal = (document.querySelector('input[name="metaPeriodo"]:checked') || {}).value === "semana";
+  document.getElementById("campoMetaDia").hidden = semanal;
+  document.getElementById("campoMetaSemana").hidden = !semanal;
+}
 function salvarMeta(){
+  const semanal = (document.querySelector('input[name="metaPeriodo"]:checked') || {}).value === "semana";
   const valor = parseInt(document.getElementById("metaInput").value);
-  if(!valor || valor<1){ toast("Informe um número válido.", "err"); return; }
+  if(!semanal && (!valor || valor<1)){ toast("Informe um número válido.", "err"); return; }
+  const semana = parseInt((document.getElementById("metaSemanaInput") || {}).value);
+  if(semanal && (!semana || semana<1)){ toast("Informe quantas questões por semana.", "err"); return; }
   const tamanho = parseInt(document.getElementById("tamanhoSessaoInput").value);
   if(!tamanho || tamanho<5 || tamanho>200){ toast("Questões por sessão: de 5 a 200.", "err"); return; }
   const u = usuarioAtual();
-  u.metaQuestoesDia = valor;
+  // a meta diária fica guardada mesmo na semanal: é a base da sugestão e volta se a pessoa desfizer
+  if(!semanal) u.metaQuestoesDia = valor;
+  if(semanal) u.metaQuestoesSemana = semana; else delete u.metaQuestoesSemana;
   // o padrão não se grava: assim a sessão acompanha o padrão se ele mudar
   if(tamanho === CONFIG.tamanhoSessaoPadrao) delete u.tamanhoSessao; else u.tamanhoSessao = tamanho;
   saveState();
   fecharModal();
-  toast(valor < db.configGeral.metaMinimaQuestoesDia ? "Meta salva. Está abaixo da recomendação mínima da coordenação." : "Meta salva.");
+  toast(semanal ? "Meta semanal salva: "+semana+" questões de segunda a domingo." : valor < db.configGeral.metaMinimaQuestoesDia ? "Meta salva. Está abaixo da recomendação mínima da coordenação." : "Meta salva.");
   render();
 }
 /* Meta diária de cartões: mesma janela, mesma lógica, outra unidade. */

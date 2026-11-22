@@ -528,7 +528,8 @@ function renderInicioAluno(u){
   const {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento} = dadosDoInicioAluno(u);
   const resumido = modoResumido();
   // no resumido o botão de destaque segue o dia: meta batida e cartões vencidos → a revisão rápida passa à frente
-  const metaBatida = respondidasHoje >= meta;
+  const progMeta = progressoDaMeta(u);
+  const metaBatida = progMeta.batida;
   const revisaoEmDestaque = resumido && metaBatida && flashVencidos > 0;
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p>
@@ -537,10 +538,10 @@ function renderInicioAluno(u){
     <div class="cresce-240">
         <div class="card-title">Pronto para estudar?</div>
         ${soNoEstatistico(`<div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>`)}
-        <div class="text-sm mt-1"><strong>${respondidasHoje}/${meta}</strong> questões hoje${resumido && metaBatida ? " · meta batida" : ""}${htmlParaHoje(respondidasHoje, meta, revisarHoje.length, flashVencidos)}</div>
+        <div class="text-sm mt-1">${progMeta.semanal ? `<strong>${progMeta.feitas}/${progMeta.alvo}</strong> questões na semana${metaBatida ? " · em dia" : ""}` : `<strong>${respondidasHoje}/${meta}</strong> questões hoje${resumido && metaBatida ? " · meta batida" : ""}`}${htmlParaHoje(progMeta.feitas, progMeta.esperado, revisarHoje.length, flashVencidos)}</div>
     </div>
     <div class="linha-progresso mt-1">
-      <div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,pct(respondidasHoje,meta))}%"></div></div>
+      <div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,pct(progMeta.feitas,progMeta.alvo))}%"></div></div>
       <div class="acoes-inicio">
        <div class="flex gap-1 quebra">
         ${emAndamento ? `<button class="btn btn-primary" onclick="retomarSessaoEmAndamento()" title="${respostasFeitas(emAndamento).length} de ${emAndamento.itens.length} ${flexionar(emAndamento.itens.length, "respondida(s)")}${emAndamento.salvaEm && emAndamento.salvaEm!==hojeISO() ? ", começada em "+formatDataBR(emAndamento.salvaEm) : ""}">${iconeSvg("refresh")} Continuar última sessão</button>` : ""}
@@ -686,10 +687,9 @@ function renderEstudar(){
   const todas = questoesAtivas(idsDeGruposEFaculdade(u));
   const anos = [...new Set(todas.map(q=>q.ano))].sort((a,b)=>b-a);
   const bancas = [...new Set(todas.map(q=>q.banca))].sort();
-  const meta = metaDoUsuario(u);
   const feitasHoje = questoesRespondidasHoje(u.id);
   const seq = sequenciaDiasEstudo(u.id);
-  const faltam = Math.max(0, meta - feitasHoje);
+  const progMeta = progressoDaMeta(u);
   const emAndamento = sessaoEmAndamentoDe(u);
   const deHoje = sessaoDeHoje(u);
   const listaAberta = !!state.filtroRota.listaAberta;
@@ -710,23 +710,25 @@ function renderEstudar(){
     </div>
   </div>` : ""}
 
-  <div class="card mb-2" ${feitasHoje>=meta?'style="border-color:var(--accent)"':""}>
+  <div class="card mb-2" ${progMeta.batida?'style="border-color:var(--accent)"':""}>
     <div class="flex justify-between items-center gap-2 quebra">
       <div class="cresce-220">
-        <div class="card-title mb-02">Meta de hoje</div>
-        <div class="text-sm muted">${feitasHoje>=meta
+        <div class="card-title mb-02">${progMeta.semanal ? "Meta da semana" : "Meta de hoje"}</div>
+        <div class="text-sm muted">${progMeta.semanal
+          ? escapeHtml(textoDoProgressoDaMeta(progMeta)) + " A semana vai de segunda a domingo: um dia sem estudar não atrasa se os outros cobrirem."
+          : progMeta.batida
           ? "Meta batida. O que vier agora é lucro — e se estiver cansado, parar aqui também é uma decisão boa."
-          : `Faltam <strong>${faltam}</strong> ${plural(faltam,"questão","questões")} para fechar o dia.`}</div>
+          : `Faltam <strong>${progMeta.faltam}</strong> ${plural(progMeta.faltam,"questão","questões")} para fechar o dia.`}</div>
       </div>
       <div class="flex items-center gap-2 quebra">
         <div class="texto-dir">
-          <div class="stat-value" style="font-size:var(--fs-xl)">${feitasHoje}/${meta}</div>
-          <div class="stat-label">questões hoje${seq?" · "+seq+" "+flexionar(seq,"dia(s) seguido(s)"):""}</div>
+          <div class="stat-value" style="font-size:var(--fs-xl)">${progMeta.feitas}/${progMeta.alvo}</div>
+          <div class="stat-label">${progMeta.semanal ? "questões na semana · "+feitasHoje+" hoje" : "questões hoje"}${seq?" · "+seq+" "+flexionar(seq,"dia(s) seguido(s)"):""}</div>
         </div>
         ${soNoEstatistico(`<button class="btn btn-secondary btn-sm" onclick="abrirModalMeta()">${iconeSvg("target")} Ajustar meta</button>`)}
       </div>
     </div>
-    <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(feitasHoje,meta))}%"></div></div>
+    <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(progMeta.feitas,progMeta.alvo))}%"></div></div>
     ${soNoEstatistico(`<p class="text-xs muted mt-1">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia} e ideal de ${db.configGeral.metaRecomendadaQuestoesDia} questões por dia. A meta é sua e pode ser mudada a qualquer momento.</p>`)}
   </div>
 
