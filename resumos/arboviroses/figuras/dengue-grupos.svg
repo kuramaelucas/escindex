@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Dengue: grupos de risco e conduta</text>
+  <g font-size="12.5" fill="#1f2d3d" text-anchor="middle">
+    <rect x="12" y="40" width="165" height="290" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="95" y="62" font-weight="bold">Grupo A</text>
+    <text x="95" y="84">Sem sinais de alarme,</text>
+    <text x="95" y="101">sem sangramento,</text>
+    <text x="95" y="118">sem condição especial</text>
+    <text x="95" y="148">Hidratação oral em casa</text>
+    <text x="95" y="178">Sem hemograma na</text>
+    <text x="95" y="195">primeira avaliação</text>
+    <text x="95" y="225">Retorno em 24 a 48 h</text>
+    <text x="95" y="242">depois da febre</text>
+    <rect x="189" y="40" width="165" height="290" rx="8" fill="#fdf3d8" stroke="#8a6b12" stroke-width="2"/>
+    <text x="271" y="62" font-weight="bold">Grupo B</text>
+    <text x="271" y="84">Sangramento de pele</text>
+    <text x="271" y="101">ou prova do laço positiva</text>
+    <text x="271" y="118">ou condição especial</text>
+    <text x="271" y="135">(menor de 2 anos, gestante,</text>
+    <text x="271" y="152">idoso, comorbidade)</text>
+    <text x="271" y="182">Hemograma e hidratação</text>
+    <text x="271" y="199">oral supervisionada</text>
+    <text x="271" y="229">Hematócrito normal:</text>
+    <text x="271" y="246">acompanhamento em casa</text>
+    <rect x="366" y="40" width="165" height="290" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="448" y="62" font-weight="bold">Grupo C</text>
+    <text x="448" y="84">Sinais de alarme</text>
+    <text x="448" y="101">(dor abdominal intensa,</text>
+    <text x="448" y="118">vômitos persistentes,</text>
+    <text x="448" y="135">sangramento de mucosa,</text>
+    <text x="448" y="152">letargia, hepatomegalia,</text>
+    <text x="448" y="169">hematócrito subindo)</text>
+    <text x="448" y="199">Internação; soro</text>
+    <text x="448" y="216">fisiológico 10 mL/kg</text>
+    <text x="448" y="233">na primeira hora</text>
+    <text x="448" y="258">Reavaliar com hematócrito</text>
+    <rect x="543" y="40" width="165" height="290" rx="8" fill="#f6dede" stroke="#9b1c1c" stroke-width="2"/>
+    <text x="625" y="62" font-weight="bold">Grupo D</text>
+    <text x="625" y="84">Choque por</text>
+    <text x="625" y="101">extravasamento de plasma</text>
+    <text x="625" y="131">Cristaloide 20 mL/kg</text>
+    <text x="625" y="148">em até 20 minutos,</text>
+    <text x="625" y="165">repetindo se persistir</text>
+    <text x="625" y="195">Terapia intensiva</text>
+  </g>
+  <text x="360" y="358" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Paracetamol ou dipirona; evitar AAS e anti-inflamatórios (risco de sangramento)</text>
+  <text x="360" y="380" text-anchor="middle" font-size="13" fill="#1f2d3d">A fase crítica começa com a queda da febre, entre o 3º e o 7º dia</text>
+</svg>

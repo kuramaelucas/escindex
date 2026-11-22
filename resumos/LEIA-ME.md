@@ -172,3 +172,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `hiv` | `ass-hiv` | 248 | — |
 | `meningites` | `ass-meningites` | 220 | — |
 | `pneumonia-comunitaria` | `ass-pneumonia` | 198 | — |
+| `arboviroses` | `ass-arboviroses` | 195 | — |
