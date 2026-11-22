@@ -175,3 +175,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `arboviroses` | `ass-arboviroses` | 195 | — |
 | `parasitoses` | `ass-parasitoses` | 163 | — |
 | `sepse` | `ass-sepse` | 132 | — |
+| `iras` | `ass-iras` | 147 | — |
