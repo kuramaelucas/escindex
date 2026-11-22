@@ -165,7 +165,11 @@ function irParaFraseDoResumo(chave){
 // o sumário rola até a seção sem mexer no endereço (o #/rota é do roteador)
 // No celular o sumário é gaveta: fecha ao escolher um capítulo ou ao tocar fora (o véu),
 // sem gravar a preferência — fechar a gaveta não é "quero o sumário recolhido".
+// Guardado em memória (não no aparelho): o redesenho da sincronização refaz o caderno e,
+// sem isto, a gaveta que a pessoa acabou de fechar reabria sozinha por cima do texto.
+let _resumoLateralAgora = null;
 function fecharGavetaDoResumo(){
+  _resumoLateralAgora = true;
   const l = document.querySelector(".resumo-layout");
   if(l) l.classList.add("lateral-fechada");
 }
@@ -181,12 +185,14 @@ function irParaNoResumo(id){
    tela, como a letra: fica neste aparelho. No celular a coluna não cabe, então o
    sumário vira uma gaveta que abre por cima e fecha ao escolher o capítulo. */
 function _sumarioDoResumoFechado(){
+  if(_resumoLateralAgora !== null) return _resumoLateralAgora;
   try { const v = localStorage.getItem(RESUMO_CHAVE_LATERAL); return v === null ? window.innerWidth < 900 : v === "1"; } catch(e){ return window.innerWidth < 900; }
 }
 function alternarSumarioDoResumo(){
   const el = document.querySelector(".resumo-layout");
   if(!el) return;
   const fechado = el.classList.toggle("lateral-fechada");
+  _resumoLateralAgora = fechado;
   try { localStorage.setItem(RESUMO_CHAVE_LATERAL, fechado ? "1" : "0"); } catch(e){ /* sem armazenamento: vale só agora */ }
 }
 
@@ -365,6 +371,33 @@ function _erroPorAssunto(usuarioId){
   });
   return soma;
 }
+/* Cada grande área é um bloco expansível. Fechado por padrão e, aberto, mostra só os
+   RESUMO_POR_AREA de pior desempenho (os mesmos que a ordem "erro" põe primeiro): a lista
+   inteira numa tela só dificultava achar o que estudar. "Mostrar todos" abre o resto. */
+const RESUMO_POR_AREA = 5;
+function _htmlAreaDeResumos(k, lista, cartao){
+  const f = state.filtroRota;
+  const aberta = !!(f.resumoAreasAbertas && f.resumoAreasAbertas[k]);
+  const todos = !!(f.resumoAreasTodas && f.resumoAreasTodas[k]);
+  const piores = new Set([...lista].sort((a, b) => (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || a.r.titulo.localeCompare(b.r.titulo, "pt-BR")).slice(0, RESUMO_POR_AREA));
+  const vistos = todos ? lista : lista.filter(it => piores.has(it));
+  const nome = k ? lista[0].area.nome : "Outros";
+  const resto = lista.length - vistos.length;
+  return `<details class="resumo-area mt-2" id="resumo-area-${escapeHtml(k || "outros")}"${aberta ? " open" : ""} ontoggle="alternarAreaDeResumos('${escapeHtml(k)}', this.open)">
+    <summary><h3 class="mb-1" style="display:inline">${escapeHtml(nome)} <span class="text-xs muted peso-400">(${lista.length})</span></h3></summary>
+    ${vistos.map(cartao).join("")}
+    ${resto > 0 ? `<p class="text-xs muted mb-1">Mostrando os ${vistos.length} de pior desempenho. <button class="link-btn" onclick="mostrarTodosOsResumosDaArea('${escapeHtml(k)}', true)">Mostrar todos (${lista.length})</button></p>` : (todos && lista.length > RESUMO_POR_AREA ? `<p class="text-xs muted mb-1"><button class="link-btn" onclick="mostrarTodosOsResumosDaArea('${escapeHtml(k)}', false)">Mostrar só os ${RESUMO_POR_AREA} de pior desempenho</button></p>` : "")}
+  </details>`;
+}
+function alternarAreaDeResumos(k, aberta){
+  const f = state.filtroRota;
+  f.resumoAreasAbertas = Object.assign({}, f.resumoAreasAbertas, { [k]: aberta });
+}
+function mostrarTodosOsResumosDaArea(k, todos){
+  const f = state.filtroRota;
+  f.resumoAreasTodas = Object.assign({}, f.resumoAreasTodas, { [k]: todos });
+  render();
+}
 function _renderListaDeResumos(cat){
   const u = usuarioAtual();
   const ordem = RESUMO_ORDENS[state.filtroRota.resumoOrdem] ? state.filtroRota.resumoOrdem : "erro";
@@ -403,7 +436,7 @@ function _renderListaDeResumos(cat){
         <select class="select" aria-label="Ordem dos resumos" onchange="mudarOrdemDosResumos(this.value)">${Object.entries(RESUMO_ORDENS).map(([k, v]) => `<option value="${k}" ${k === ordem ? "selected" : ""}>${v}</option>`).join("")}</select></label>
     </div>
     ${ordem === "erro" ? `<p class="text-xs muted mb-2">Dentro de cada grande área, primeiro os resumos dos assuntos em que você mais erra, depois os que você ainda não respondeu e por último os que já domina.</p>` : ""}
-    ${chaves.map(k => `<h3 class="mt-2 mb-1">${escapeHtml(k ? grupos[k][0].area.nome : "Outros")} <span class="text-xs muted peso-400">(${grupos[k].length})</span></h3>${grupos[k].map(cartao).join("")}`).join("")}`;
+    ${chaves.map(k => _htmlAreaDeResumos(k, grupos[k], cartao)).join("")}`;
 }
 
 // Ordem: o que a pessoa erra (tijolo, depois ocre) → o que ela ainda não respondeu →
