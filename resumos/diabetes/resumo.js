@@ -12,7 +12,7 @@
     { id: "ada", texto: "American Diabetes Association — Standards of Care in Diabetes 2026 (Diabetes Care 2026;49 Suppl 1)", lidoEm: null },
     { id: "sbd", texto: "Sociedade Brasileira de Diabetes — Diretriz Oficial 2025", lidoEm: null },
     { id: "pcdt-dm2", texto: "Ministério da Saúde — PCDT do Diabete Melito tipo 2", lidoEm: null },
-    { id: "ada-crises", texto: "ADA/EASD/JBDS/AACE/DTS — Hyperglycemic crises in adults with diabetes: a consensus report (2024)", lidoEm: null },
+    { id: "ada-crises", texto: "ADA/EASD/JBDS/AACE/DTS — Hyperglycemic crises in adults with diabetes: a consensus report (2024; Diabetologia 2024;67:1455-1479, doi 10.1007/s00125-024-06183-8, PMC11343900)", lidoEm: "2026-11-19" },
     { id: "ispad-cad", texto: "ISPAD Clinical Practice Consensus Guidelines 2022 — Diabetic ketoacidosis and hyperglycemic hyperosmolar state", lidoEm: null },
   ],
   foraDoEscopo: [
@@ -144,28 +144,28 @@ Veja também: **Hipertensão arterial**, **Síndromes glomerulares** (nefropatia
 
 [[O potássio total do corpo está baixo pela diurese osmótica, mesmo quando o sérico vem normal ou alto (a acidose e a falta de insulina o tiram da célula); a insulina e a correção da acidose o devolvem à célula, e por isso o potássio baixo adia a insulina.|q-famerp2022-018,q-usp2022-003,q-adap23-034,q-sessp2022-006,q-usp2026-012]] [[A ordem é: volume primeiro (soro fisiológico), depois potássio conforme o nível, depois insulina regular venosa 0,1 U/kg/h; quando a glicemia chega a 200–250, entra glicose no soro, e a insulina só para quando a acidose fecha.|q-usprp2025-066,q-iamspe2022-010,q-simepm89-043,q-sirio2023-055]]`,
       fragmentos: [
-        { id: "cri-diagnostico", titulo: "Diagnóstico da cetoacidose", conferir: true, diretrizes: ["ada-crises"],
+        { id: "cri-diagnostico", titulo: "Diagnóstico da cetoacidose", conferir: false, diretrizes: ["ada-crises"],
           casos: ["q-usp2026-012"],
           questoes: ["q-scmsp2025-054","q-sirio2022-008","q-famerp2026-045","q-einstein2027-007","q-fmabc2026-014","q-sessp2023-078","q-usprp2024-045","q-usp2024-112","q-usp2026-012"],
           texto: `- Mecanismo: **hipoinsulinemia → lipólise descontrolada**. {q-scmsp2025-054}
 - Na chegada: **ânion gap e potássio** elevados. {q-sirio2022-008}
 - Acidose metabólica de **ânion gap aumentado** (Na − Cl − HCO3). {q-famerp2026-045}
 - Cetona a dosar: **beta-hidroxibutirato sérico**. {q-einstein2027-007}
-- Critérios: **glicemia > 200, pH < 7,3 ou HCO3 < 15, cetose**. {q-fmabc2026-014}
+- Critérios (consenso de 2024): **glicemia ≥ 200** (ou diabetes conhecido), **cetonemia ≥ 3 mmol/L** (ou cetonúria ≥ 2+) e **pH < 7,3 ou HCO3 < 18**. {q-fmabc2026-014}
 - Exames: **glicemia, gasometria e cetonas**. {q-sessp2023-078}
 - Euglicêmica com iSGLT2: beta-hidroxibutirato sobe **precocemente**. {q-usprp2024-045}
 - Gestante com vômitos e dor abdominal: **cetoacidose** (vem com glicemia menor). {q-usp2024-112}
 - ECG com **onda U**: hipocalemia → **cloreto de potássio** antes da insulina. {q-usp2026-012}` },
-        { id: "cri-tratamento", titulo: "Tratamento: volume, potássio e insulina", conferir: true, diretrizes: ["ada-crises"],
+        { id: "cri-tratamento", titulo: "Tratamento: volume, potássio e insulina", conferir: false, diretrizes: ["ada-crises"],
           figuras: [{ arquivo: "figuras/cetoacidose.svg", legenda: "Esquema autoral: a ordem do tratamento da cetoacidose no adulto e o papel do potássio." }],
           questoes: ["q-usprp2025-066","q-iamspe2022-010","q-simepm89-043","q-famerp2022-018","q-usp2022-003","q-adap23-034","q-sessp2022-006","q-famerp2025-007","q-sessp2026-012","q-tp20212-036","q-unicampdis2024-062"],
-          prosa: `**As fontes divergem no corte de potássio:** o consenso do adulto adia a insulina com K < **3,3** (ou 3,5 no consenso de 2024); o pediátrico, com K < **3,5**. Fosfato só se repõe quando está muito baixo (< 1 mg/dL) ou há fraqueza ou insuficiência cardíaca.`,
+          prosa: `O consenso do adulto de 2024 adia a insulina com K < **3,5** (repondo 10 mmol/h até subir), como o pediátrico; o corte antigo de **3,3** vem do consenso de 2009 e ainda aparece em provas (ver armadilhas). O bicarbonato só entra com **pH < 7,0**. Fosfato só se repõe quando está muito baixo (< 1 mg/dL) ou há fraqueza ou insuficiência cardíaca.`,
           texto: `- Primeiro passo: **soro fisiológico 0,9%** (15–20 mL/kg na 1ª hora) e exames. {q-usprp2025-066,q-iamspe2022-010,q-simepm89-043}
 - Corrigir a acidose **baixa o potássio**. {q-famerp2022-018}
-- K **< 3,3**: **não dar insulina** ainda; repor KCl venoso. {q-usp2022-003,q-adap23-034,q-sessp2022-006,q-tp20212-036}
+- K **< 3,5** (antigo: < 3,3): **não dar insulina** ainda; repor KCl venoso. {q-usp2022-003,q-adap23-034,q-sessp2022-006,q-tp20212-036}
 - Após a expansão, com K normal ou baixo: **repor potássio**. {q-famerp2025-007,q-unicampdis2024-062}
 - K normal e fosfato pouco baixo: **SF, insulina IV e potássio** — sem fosfato nem bicarbonato. {q-sessp2026-012}` },
-        { id: "cri-ehh", titulo: "Estado hiperglicêmico hiperosmolar", conferir: true, diretrizes: ["ada-crises"],
+        { id: "cri-ehh", titulo: "Estado hiperglicêmico hiperosmolar", conferir: false, diretrizes: ["ada-crises"],
           questoes: ["q-iamspe2026-100","q-unesp2026-053","q-unesp2023-053","q-tp20232-053"],
           prosa: `[[No estado hiperosmolar sobra insulina para frear a lipólise, mas não para segurar a glicose: a hiperglicemia passa de 600, a osmolalidade sobe, e o rebaixamento de consciência e a desidratação dominam, sem acidose importante.|q-iamspe2026-100,q-unesp2026-053]] A hiperviscosidade favorece trombose, e o tratamento começa com volume.`,
           texto: `- EHH: **glicemia > 600 (até > 1.000)**, sem Kussmaul, cetose leve ou ausente, **sinais neurológicos**. {q-iamspe2026-100}

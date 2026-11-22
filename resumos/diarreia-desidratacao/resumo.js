@@ -8,7 +8,7 @@
   assunto: "ass-dda",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "ms-diarreia", texto: "Ministério da Saúde — Manejo do paciente com diarreia (cartaz e manual dos planos A, B e C)", lidoEm: null },
+    { id: "ms-diarreia", texto: "Ministério da Saúde — Manejo do paciente com diarreia (cartaz dos planos A, B e C, versão de 10/10/2025, gov.br)", lidoEm: "2026-11-19" },
     { id: "oms-diarreia", texto: "OMS — The treatment of diarrhoea: a manual for physicians and other senior health workers", lidoEm: null },
     { id: "espghan-gea", texto: "ESPGHAN/ESPID — Guidelines for the management of acute gastroenteritis in children in Europe", lidoEm: null },
   ],
@@ -56,14 +56,14 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
       id: "planos", titulo: "Planos A, B e C",
       introducao: `[[O plano A trata em casa: mais líquidos e soro oral após cada evacuação, alimentação mantida, zinco e sinais de alarme.|q-unifesp2024-095,q-unifesp2026-088,q-sirio2021-043]] [[O plano B reidrata pela boca, na unidade, com 50 a 100 mL/kg em 4 a 6 horas, reavaliando ao fim.|q-adap26-088,q-einstein2023-033,q-adap24-096]] [[O plano C dá volume na veia, porque a criança em choque não absorve o soro oral a tempo.|q-adap23-076,q-sirio2027-044,q-famerp2023-031]]`,
       fragmentos: [
-        { id: "pla-a", titulo: "Plano A e zinco", conferir: true, diretrizes: ["ms-diarreia","oms-diarreia"],
+        { id: "pla-a", titulo: "Plano A e zinco", conferir: false, diretrizes: ["ms-diarreia","oms-diarreia"],
           questoes: ["q-unifesp2024-095","q-unifesp2026-088","q-sirio2021-043","q-unifesp2022-066","q-sessp2024-041","q-famema2025-039","q-sirio2026-046","q-fmabc2024-057","q-udisc20262-049"],
           prosa: `O plano A é para a criança sem desidratação: o objetivo é **repor o que sai** para que ela não desidrate, mantendo a alimentação, que encurta a doença. O zinco repara a mucosa e reduz a duração e a recorrência da diarreia nos meses seguintes.`,
           texto: `- Plano A: **soro após cada evacuação**, mais líquidos, **alimentação habitual sem alimentos novos**, sinais de alarme. {q-sirio2021-043,q-unifesp2024-095}
 - **Zinco** para todo menor de 5 anos com diarreia: **10 mg/dia abaixo de 6 meses** e **20 mg/dia a partir de 6 meses**, por **10 a 14 dias**. {q-unifesp2022-066,q-sessp2024-041,q-famema2025-039,q-sirio2026-046,q-unifesp2026-088}
 - Soro oral em excesso no menor de 10 anos pode causar **hipernatremia**. {q-fmabc2024-057}
 - Surto de diarreia aquosa na creche, criança hidratada: **reidratação oral**. {q-udisc20262-049}` },
-        { id: "pla-b", titulo: "Plano B", conferir: true, diretrizes: ["ms-diarreia"],
+        { id: "pla-b", titulo: "Plano B", conferir: false, diretrizes: ["ms-diarreia"],
           questoes: ["q-adap26-088","q-einstein2023-033","q-adap24-096","q-sessp2023-039","q-einstein2025-033","q-uspsp5-097","q-amrigs2025-070","q-tp20212-043","q-sirio2021-049","q-fmabc2023-060","q-einstein2027-040"],
           prosa: `No plano B há desidratação sem choque: a reposição é **oral, supervisionada e rápida** na unidade, porque o intestino ainda absorve. A criança é reavaliada ao fim do período; se melhorou, volta ao plano A; se piorou, vai ao C.`,
           texto: `- **50 a 100 mL/kg de soro oral em 4 a 6 horas**, na unidade, com reavaliação. {q-adap26-088,q-einstein2023-033,q-adap24-096,q-einstein2027-040,q-fmabc2023-060}
@@ -71,11 +71,11 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
 - Se piorar ou não conseguir beber durante o plano B: passar ao **plano C**. {q-sessp2023-039}
 - Desidratação com pulsos cheios: **começar pela via oral** e monitorar. {q-einstein2025-033,q-uspsp5-097}
 - Lactente com vômitos: o soro oral é oferecido **na sala de observação/emergência**, em pequenos volumes. {q-amrigs2025-070}` },
-        { id: "pla-c", titulo: "Plano C", conferir: true, diretrizes: ["ms-diarreia","oms-diarreia"],
+        { id: "pla-c", titulo: "Plano C", conferir: false, diretrizes: ["ms-diarreia","oms-diarreia"],
           questoes: ["q-adap23-076","q-sirio2027-044","q-sirio2026-050","q-famerp2023-031","q-famema2021-088","q-iamspe2026-070","q-usp2024-016","q-iamspe2021-037"],
-          prosa: `No plano C a criança está em choque ou não consegue beber: a água tem de entrar pela veia, primeiro em bolus isotônico para restaurar o volume circulante, com reavaliação após cada etapa. A divergência entre as provas (fases da OMS × soro fisiológico 30 mL/kg em 30 minutos) está explicada nos tópicos.`,
+          prosa: `No plano C a criança está em choque ou não consegue beber: a água tem de entrar pela veia, primeiro em bolus isotônico para restaurar o volume circulante, com reavaliação após cada etapa. O cartaz do Ministério (2025) adota as fases da OMS com soro fisiológico ou Ringer: a "fase rápida de 30 mL/kg em 30 minutos" cobrada nas provas é a primeira etapa a partir de 1 ano; recém-nascidos e cardiopatas graves começam com 10 mL/kg.`,
           texto: `- OMS: **100 mL/kg** de solução isotônica; **menor de 1 ano: 30 mL/kg em 1 h + 70 mL/kg em 5 h**; **1 ano ou mais: 30 mL/kg em 30 min + 70 mL/kg em 2 h 30**. {q-adap23-076,q-sirio2027-044}
-- As provas recentes também cobram **SF 30 mL/kg em 30 minutos** como fase inicial: confira o cartaz vigente do Ministério. {q-sirio2026-050}
+- Cartaz do Ministério (2025): a partir de 1 ano, a primeira etapa é **SF ou Ringer 30 mL/kg em 30 min**; RN e cardiopata grave começam com **10 mL/kg**. {q-sirio2026-050}
 - Plano C é hospitalar, com **hidratação venosa imediata**. {q-famerp2023-031,q-famema2021-088,q-iamspe2026-070}
 - Persistem sinais de choque após a expansão: **seguir expandindo com isotônico**. {q-usp2024-016}
 - Expansão de emergência: **soro fisiológico 20 mL/kg**. {q-iamspe2021-037}` },

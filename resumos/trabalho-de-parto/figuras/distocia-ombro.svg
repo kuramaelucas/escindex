@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 210" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="210" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Distocia de ombro: a sequência</text>
+<g fill="#f3f6fa" stroke="#4a6fa5" stroke-width="1.5"><rect x="15" y="45" width="170" height="140" rx="8" fill="#fdf1ec" stroke="#b5533c"/><rect x="205" y="45" width="170" height="140" rx="8"/><rect x="395" y="45" width="170" height="140" rx="8"/><rect x="585" y="45" width="160" height="140" rx="8"/></g>
+<g fill="#4a6fa5"><path d="M188 108 l12 7 -12 7z"/><path d="M378 108 l12 7 -12 7z"/><path d="M568 108 l12 7 -12 7z"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="100" y="70" font-weight="bold">Reconhecer</text><text x="100" y="95">cabeça sai e retrai</text><text x="100" y="113">(sinal da tartaruga)</text><text x="100" y="140">chamar ajuda,</text><text x="100" y="158">sem tração forte</text><text x="100" y="176">nem Kristeller</text>
+<text x="290" y="70" font-weight="bold">1º McRoberts</text><text x="290" y="95">hiperflexão das coxas</text><text x="290" y="113">+ pressão</text><text x="290" y="131">suprapúbica</text>
+<text x="480" y="70" font-weight="bold">2º Manobras internas</text><text x="480" y="95">braço posterior</text><text x="480" y="113">Rubin, Woods</text><text x="480" y="131">(rotação do ombro)</text>
+<text x="665" y="70" font-weight="bold">Alternativa</text><text x="665" y="95">quatro apoios</text><text x="665" y="113">(Gaskin)</text>
+</g></svg>

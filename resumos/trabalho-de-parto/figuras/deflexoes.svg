@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="Arial, sans-serif" font-size="14">
+<rect width="760" height="300" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">Quanto mais a cabeça deflete, maior o diâmetro</text>
+<g fill="#f3f6fa" stroke="#4a6fa5" stroke-width="1.5">
+<rect x="15" y="50" width="172" height="230" rx="8"/><rect x="200" y="50" width="172" height="230" rx="8"/><rect x="385" y="50" width="172" height="230" rx="8" fill="#fdf1ec" stroke="#b5533c"/><rect x="570" y="50" width="172" height="230" rx="8"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="101" y="78" font-weight="bold">Fletida</text><text x="286" y="78" font-weight="bold">Defletida 1º grau</text><text x="471" y="78" font-weight="bold">Defletida 2º grau</text><text x="656" y="78" font-weight="bold">Defletida 3º grau</text>
+<text x="101" y="98">(occipício)</text><text x="286" y="98">(bregmática)</text><text x="471" y="98">(fronte)</text><text x="656" y="98">(face)</text>
+<text x="101" y="140">Referência:</text><text x="101" y="160" font-weight="bold">lambda</text>
+<text x="286" y="140">Referência:</text><text x="286" y="160" font-weight="bold">bregma</text>
+<text x="471" y="140">Referência:</text><text x="471" y="160" font-weight="bold">glabela / nariz</text>
+<text x="656" y="140">Referência:</text><text x="656" y="160" font-weight="bold">mento</text>
+<text x="101" y="200">suboccipitobregmático</text><text x="101" y="220" font-weight="bold">9,5 cm</text>
+<text x="286" y="200">sutura</text><text x="286" y="220">sagitometópica</text>
+<text x="471" y="200">occipitomentoniano</text><text x="471" y="220" font-weight="bold">~13,5 cm</text>
+<text x="656" y="200">desprende se o</text><text x="656" y="220">mento for anterior</text>
+<text x="101" y="258" fill="#2e7d32">parto vaginal</text><text x="286" y="258" fill="#8a6d00">flexão + deflexão</text><text x="471" y="258" fill="#b5533c" font-weight="bold">a termo: cesárea</text><text x="656" y="258" fill="#8a6d00">mento posterior: cesárea</text>
+</g></svg>

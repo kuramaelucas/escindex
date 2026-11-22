@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="300" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Toxoplasmose no 1º trimestre: ler a sorologia</text>
+<g stroke-width="1.5">
+<rect x="15" y="45" width="175" height="110" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<rect x="200" y="45" width="175" height="110" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="385" y="45" width="175" height="110" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="570" y="45" width="175" height="110" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="385" y="185" width="175" height="95" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<rect x="570" y="185" width="175" height="95" rx="8" fill="#fdf1ec" stroke="#b5533c"/></g>
+<g stroke="#a87b00" stroke-width="1.5" fill="none"><path d="M472 155 V168 H657 V176"/><path d="M472 168 V176"/></g><g fill="#a87b00"><path d="M466 175 l6 10 6 -10z"/><path d="M651 175 l6 10 6 -10z"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="102" y="70" font-weight="bold">IgG + · IgM −</text><text x="102" y="98">imune</text><text x="102" y="120">sem conduta</text>
+<text x="287" y="70" font-weight="bold">IgG − · IgM −</text><text x="287" y="98">suscetível</text><text x="287" y="120">prevenção e</text><text x="287" y="138">repetir sorologia</text>
+<text x="472" y="70" font-weight="bold">IgG + · IgM +</text><text x="472" y="98">pedir avidez</text><text x="472" y="120">e iniciar</text><text x="472" y="138">espiramicina</text>
+<text x="657" y="70" font-weight="bold">IgG − · IgM +</text><text x="657" y="98">pode ser inicial:</text><text x="657" y="120">repetir em</text><text x="657" y="138">2 semanas</text>
+<text x="472" y="210" font-weight="bold">Avidez alta</text><text x="472" y="232">antes de 16 semanas:</text><text x="472" y="254">infecção prévia,</text><text x="472" y="272">não tratar</text>
+<text x="657" y="210" font-weight="bold">Avidez baixa</text><text x="657" y="232">(ou após 16 semanas):</text><text x="657" y="254">espiramicina;</text><text x="657" y="272">feto: amniocentese</text>
+</g></svg>

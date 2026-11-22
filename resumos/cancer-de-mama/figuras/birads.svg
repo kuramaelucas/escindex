@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 230" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="230" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">BI-RADS: o que cada categoria pede</text>
+<g stroke-width="1.5">
+<rect x="15" y="45" width="140" height="165" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="165" y="45" width="140" height="165" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<rect x="315" y="45" width="140" height="165" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="465" y="45" width="140" height="165" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="615" y="45" width="130" height="165" rx="8" fill="#f5eef6" stroke="#7a4a8a"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="85" y="70" font-weight="bold">0</text><text x="85" y="95">inconclusivo</text><text x="85" y="130">imagem adicional:</text><text x="85" y="150">compressão,</text><text x="85" y="170">ampliação,</text><text x="85" y="190">ultrassom</text>
+<text x="235" y="70" font-weight="bold">1 e 2</text><text x="235" y="95">negativo / benigno</text><text x="235" y="130">rastreio</text><text x="235" y="150">de rotina</text>
+<text x="385" y="70" font-weight="bold">3</text><text x="385" y="95">provavelmente</text><text x="385" y="113">benigno (&lt; 2%)</text><text x="385" y="150">controle em</text><text x="385" y="170">6 meses</text>
+<text x="535" y="70" font-weight="bold">4 e 5</text><text x="535" y="95">suspeito /</text><text x="535" y="113">altamente (≥ 95%)</text><text x="535" y="150">biópsia</text>
+<text x="680" y="70" font-weight="bold">6</text><text x="680" y="95">câncer</text><text x="680" y="113">comprovado</text><text x="680" y="150">tratar</text>
+</g></svg>

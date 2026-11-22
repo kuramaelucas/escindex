@@ -9,7 +9,7 @@
   criadoEm: "2026-11-18",
   fontes: [
     { id: "aap-hiperbilirrubinemia", texto: "American Academy of Pediatrics — Clinical Practice Guideline Revision: Management of Hyperbilirubinemia in the Newborn Infant ≥ 35 Weeks (2022)", lidoEm: null },
-    { id: "sbp-ictericia", texto: "Sociedade Brasileira de Pediatria — Hiperbilirrubinemia indireta no período neonatal (documento científico)", lidoEm: null },
+    { id: "sbp-ictericia", texto: "Sociedade Brasileira de Pediatria — Hiperbilirrubinemia indireta no período neonatal (Documento científico nº 10, Departamento de Neonatologia, 2021), sbp.com.br", lidoEm: "2026-11-19" },
     { id: "sbp-colestase", texto: "Sociedade Brasileira de Pediatria — Colestase neonatal e alerta amarelo (documento científico)", lidoEm: null },
   ],
   foraDoEscopo: [
@@ -38,7 +38,7 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
       id: "avaliar", titulo: "Avaliar: zonas de Kramer, dosagem e fatores de risco",
       introducao: `[[A icterícia avança da cabeça para os pés à medida que a bilirrubina sobe, e as zonas de Kramer estimam o nível; mas a estimativa visual erra, e por isso, havendo dúvida, dosa-se a bilirrubina.|q-iamspe2021-045,q-unifesp2025-094,q-tp20241-036]] [[O valor só se interpreta pela idade em horas: o mesmo número é normal com 4 dias e alto com 30 horas, e é o nomograma que diz o risco.|q-013,q-usp2022-048,q-sirio2022-059]]`,
       fragmentos: [
-        { id: "ava-kramer", titulo: "Kramer e quando dosar", conferir: true, diretrizes: ["aap-hiperbilirrubinemia","sbp-ictericia"],
+        { id: "ava-kramer", titulo: "Kramer e quando dosar", conferir: false, diretrizes: ["aap-hiperbilirrubinemia","sbp-ictericia"],
           questoes: ["q-iamspe2021-045","q-unifesp2025-094","q-tp20241-036","q-einstein2024-036","q-013","q-usp2022-048","q-sirio2022-059"],
           casos: ["q-einstein2024-036"],
           prosa: `A icterícia avança da cabeça para os pés à medida que a bilirrubina sobe, e por isso as zonas de Kramer estimam o nível; mas a avaliação visual erra, sobretudo em pele escura, e qualquer icterícia que preocupe se mede. O valor só tem sentido comparado à idade em horas, no nomograma.`,
@@ -47,12 +47,12 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
 - Icterícia persistente após 2 semanas: **investigar** (frações, tireoide), mantendo o aleitamento. {q-einstein2024-036}
 - Interpretar pelo **nomograma por horas de vida**; fototerapia só acima do limiar. {q-013}
 - Abaixo do limiar e bebê bem: **mamadas mais frequentes** e reavaliar em 48 a 72 h, ou alta com orientações. {q-usp2022-048,q-sirio2022-059}` },
-        { id: "ava-risco", titulo: "Fatores de risco para hiperbilirrubinemia", conferir: true, diretrizes: ["aap-hiperbilirrubinemia"],
+        { id: "ava-risco", titulo: "Fatores de risco para hiperbilirrubinemia", conferir: false, diretrizes: ["aap-hiperbilirrubinemia"],
           questoes: ["q-amrigs2023-067","q-unesp2023-005","q-fmabc2025-059","q-iamspe2023-038"],
           prosa: `Os fatores de risco apontam mais produção (hemólise, céfalo-hematoma), menos eliminação (prematuridade, pouca ingestão) ou precocidade, e por isso mudam o limiar da fototerapia.`,
           texto: `- **Irmão que precisou de fototerapia**. {q-amrigs2023-067,q-unesp2023-005,q-fmabc2025-059}
 - **Icterícia nas primeiras 24 horas** e **mãe diabética**. {q-fmabc2025-059}
-- **Perda de peso acima de 10%** na primeira semana. {q-iamspe2023-038}
+- **Perda de peso acima de 7%** (SBP; a prova citou 10%) ou aleitamento ineficaz na primeira semana. {q-iamspe2023-038}
 - Sexo **masculino**. {q-unesp2023-005}` },
       ],
     },

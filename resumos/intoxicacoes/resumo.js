@@ -9,7 +9,7 @@
   criadoEm: "2026-11-19",
   fontes: [
     { id: "aha-rcp", texto: "AHA — Guidelines for CPR and ECC 2025 e AHA 2023 Focused Update on the management of patients with cardiac arrest or life-threatening toxicity due to poisoning", lidoEm: null },
-    { id: "ms-peconhentos", texto: "Ministério da Saúde — Guia de animais peçonhentos do Brasil (2024) e Manual de diagnóstico e tratamento de acidentes por animais peçonhentos", lidoEm: null },
+    { id: "ms-peconhentos", texto: "Ministério da Saúde — Guia de animais peçonhentos do Brasil (2024) e Manual de diagnóstico e tratamento de acidentes por animais peçonhentos (versão de 2024 no gov.br)", lidoEm: "2026-11-19" },
     { id: "aact-descontaminacao", texto: "AACT/EAPCCT — Position papers sobre carvão ativado, lavagem gástrica e descontaminação (atualizações 2005–2013)", lidoEm: null },
   ],
   foraDoEscopo: [],
@@ -112,7 +112,7 @@ Veja também: **Distúrbios hidroeletrolíticos e ácido-base** (ânion gap e ga
       id: "peconhentos", titulo: "Animais peçonhentos",
       introducao: `[[O veneno do escorpião (*Tityus serrulatus*) abre canais de sódio e descarrega catecolaminas e acetilcolina: dor local intensa e, na criança, vômitos, sudorese, agitação, taquicardia e, no grave, miocardite com choque cardiogênico e edema pulmonar.|q-usprp2022-086,q-usprp2024-072,q-usprp2025-003,q-usprp2026-027]] [[Na jararaca (botrópico, o acidente mais comum) o veneno é proteolítico e coagulante: dor, edema e sangramento; na cascavel (crotálico) é neurotóxico e miotóxico, com pouca dor local, ptose e diplopia (fácies miastênica) e urina escura por rabdomiólise.|q-amrigs2024-072,q-usprp2022-069]] [[A picada da aranha-marrom (*Loxosceles*), comum dentro de casa e entre tijolos, é pouco dolorosa no início e vira placa marmórea que necrosa.|q-usprp2026-040]]`,
       fragmentos: [
-        { id: "pec-condutas", titulo: "Escorpião, serpentes e aranhas", conferir: true, diretrizes: ["ms-peconhentos"],
+        { id: "pec-condutas", titulo: "Escorpião, serpentes e aranhas", conferir: false, diretrizes: ["ms-peconhentos"],
           casos: ["q-usprp2022-069","q-usprp2026-040"],
           questoes: ["q-usprp2022-069","q-usprp2022-086","q-usprp2024-072","q-usprp2025-003","q-usprp2026-027","q-usprp2026-040","q-amrigs2024-072"],
           prosa: `[[O escorpionismo moderado (vômitos, sudorese, taquicardia) e o grave recebem soro antiescorpiônico o quanto antes, ainda na unidade, antes de transferir; no choque cardiogênico usa-se dobutamina.|q-usprp2026-027,q-usprp2022-086,q-usprp2024-072]] [[Na criança com choque, a pressão medida pode parecer normal enquanto o pulso periférico some, porque sistólica e diastólica convergem.|q-usprp2025-003]]`,

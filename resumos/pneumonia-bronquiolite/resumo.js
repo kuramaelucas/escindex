@@ -8,11 +8,11 @@
   assunto: "ass-infectoped-pneumonia",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "sbp-bronquiolite", texto: "Sociedade Brasileira de Pediatria — Diretrizes para o manejo da infecção causada pelo vírus sincicial respiratório (VSR) e bronquiolite viral aguda", lidoEm: null },
+    { id: "sbp-bronquiolite", texto: "Sociedade Brasileira de Pediatria — Diretrizes para o manejo da infecção causada pelo vírus sincicial respiratório (VSR) e bronquiolite viral aguda (2017), sbp.com.br", lidoEm: "2026-11-19" },
     { id: "aap-bronquiolite", texto: "American Academy of Pediatrics — Clinical Practice Guideline: Diagnosis, Management, and Prevention of Bronchiolitis (2014)", lidoEm: null },
     { id: "ms-aidpi", texto: "Ministério da Saúde — AIDPI (Atenção Integrada às Doenças Prevalentes na Infância) e manejo das infecções respiratórias", lidoEm: null },
-    { id: "sbp-pac", texto: "Sociedade Brasileira de Pediatria — Pneumonia adquirida na comunidade na infância (documento científico)", lidoEm: null },
-    { id: "ms-guia-vigilancia", texto: "Ministério da Saúde — Guia de Vigilância em Saúde (coqueluche)", lidoEm: null },
+    { id: "sbp-pac", texto: "Sociedade Brasileira de Pediatria — Pneumonia adquirida na comunidade na infância (documento científico, Departamento de Pneumologia), sbp.com.br", lidoEm: "2026-11-19" },
+    { id: "ms-guia-vigilancia", texto: "Ministério da Saúde — Guia de Vigilância em Saúde, 6ª edição revisada, volume 1 (coqueluche), gov.br", lidoEm: "2026-11-19" },
   ],
   foraDoEscopo: [
     { motivo: "Escarlatina classificada neste assunto: está no resumo de exantemáticas", questoes: ["q-einstein2022-040"] },
@@ -39,7 +39,7 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
 - **Acidose respiratória** (pCO2 alta) com fadiga: risco de **insuficiência respiratória**. {q-famerp2022-022}
 - O VSR **não** confere imunidade permanente: reinfecção é comum. {q-iamspe2025-066}
 - Piora depois do 5º a 7º dia, quando deveria melhorar: investigar **atelectasia ou coinfecção bacteriana**. {q-tp20222-049}` },
-        { id: "bva-trat", titulo: "Tratamento: o que funciona e o que não", conferir: true, diretrizes: ["sbp-bronquiolite","aap-bronquiolite"],
+        { id: "bva-trat", titulo: "Tratamento: o que funciona e o que não", conferir: false, diretrizes: ["sbp-bronquiolite","aap-bronquiolite"],
           questoes: ["q-adap26-089","q-unifesp2026-089","q-sessp2023-037","q-amrigs2025-069","q-sirio2026-043","q-einstein2022-036","q-einstein2024-037","q-udisc20262-046","q-scmsp2022-033","q-iamspe2026-067","q-didepm-084","q-usp2024-001"],
           casos: ["q-usp2024-001"],
           prosa: `[[O tratamento é de suporte porque não há o que reverter: a obstrução é mecânica e se resolve com a regeneração do epitélio, em uma a duas semanas.|q-adap26-089,q-udisc20262-046]] O que muda o desfecho é manter a oxigenação, a hidratação e o nariz desobstruído, já que o lactente respira pelo nariz.`,
@@ -51,7 +51,7 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
 - Broncodilatador: só como teste, e **mantido apenas se houver resposta** clínica. {q-sessp2023-037}
 - **Oximetria contínua não é recomendada** no lactente estável (AAP). {q-scmsp2022-033}
 - Internado com ingestão baixa: **soro de manutenção**. {q-usp2024-001}` },
-        { id: "bva-suporte", casos: ["q-usp2024-002"], titulo: "Escalonar o suporte: alto fluxo e CPAP", conferir: true, diretrizes: ["sbp-bronquiolite"],
+        { id: "bva-suporte", casos: ["q-usp2024-002"], titulo: "Escalonar o suporte: alto fluxo e CPAP", conferir: false, diretrizes: ["sbp-bronquiolite"],
           questoes: ["q-tp20202-047","q-usp2024-002","q-sirio2027-046","q-fmabc2026-048"],
           prosa: `Quando o cateter comum não basta, o alto fluxo umidificado gera uma pressão positiva leve, lava o gás carbônico do espaço morto e poupa o esforço do lactente; o CPAP vai além e mantém os alvéolos abertos. Os dois evitam boa parte das intubações.`,
           texto: `- Falha do cateter nasal comum: **cateter nasal de alto fluxo (CNAF)**, iniciando com **2 L/kg/min**. {q-usp2024-002,q-tp20202-047}
@@ -67,7 +67,7 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
 
 [[A frequência respiratória é o melhor sinal isolado de pneumonia na criança: a OMS e o AIDPI usam os pontos de corte por idade para diagnosticar sem radiografia onde ela não existe.|q-famema2025-043,q-fmabc2021-097]]`,
       fragmentos: [
-        { id: "pac-diag", casos: ["q-uspsp2-069"], titulo: "Diagnóstico: clínica, oximetria e imagem", conferir: true, diretrizes: ["ms-aidpi","sbp-pac"],
+        { id: "pac-diag", casos: ["q-uspsp2-069"], titulo: "Diagnóstico: clínica, oximetria e imagem", conferir: false, diretrizes: ["ms-aidpi","sbp-pac"],
           questoes: ["q-unesp2021-007","q-fmabc2021-096","q-fmabc2021-097","q-famema2022-087","q-uspsp2-069","q-unifesp2024-087","q-adap24-057","q-unifesp2024-099","q-usp2023-116","q-famema2025-043"],
           casos: ["q-usp2023-116"],
           texto: `- Defesas que falham na pneumonia: **reflexo da tosse** e **transporte mucociliar**. {q-unesp2021-007}
@@ -87,13 +87,13 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
 - Resistência do pneumococo: **proteínas ligadoras de penicilina alteradas**. {q-sessp2022-057}
 - Contexto aponta o agente: **varicela → S. aureus/estreptococo**; **fibrose cística → Pseudomonas**; **HIV sem tratamento → Pneumocystis**; tosse prolongada e emagrecimento → **tuberculose**. {q-sessp2023-028}
 - Lactente com HIV, hipoxemia desproporcional à ausculta e LDH alta (Pneumocystis): **opacidade em vidro fosco**, que deixa ver os vasos. {q-adap24-052}` },
-        { id: "pac-amb", titulo: "Tratamento ambulatorial", conferir: true, diretrizes: ["ms-aidpi","sbp-pac"],
+        { id: "pac-amb", titulo: "Tratamento ambulatorial", conferir: false, diretrizes: ["ms-aidpi","sbp-pac"],
           questoes: ["q-usprp2023-013","q-iamspe2026-069","q-famema2023-099","q-famema2025-043","q-fmabc2023-053","q-fmabc2025-041","q-sirio2026-044","q-usprp2021-027"],
           casos: ["q-usprp2021-027"],
           texto: `- Sem sinal de gravidade: **amoxicilina oral 50 mg/kg/dia** (de 8/8 h ou 12/12 h). {q-iamspe2026-069,q-usprp2021-027,q-sirio2026-044}
 - Duração cobrada: **7 dias** nas provas recentes; questões antigas trazem **10 dias**. {q-fmabc2025-041,q-usprp2021-027}
 - **Reavaliar em 48 horas** (algumas provas pedem 24 h); sem melhora, pensar em complicação. {q-usprp2023-013,q-famema2025-043,q-famema2023-099,q-fmabc2023-053}` },
-        { id: "pac-grave", titulo: "Quando internar e como tratar a grave", conferir: true, diretrizes: ["ms-aidpi","sbp-pac"],
+        { id: "pac-grave", titulo: "Quando internar e como tratar a grave", conferir: false, diretrizes: ["ms-aidpi","sbp-pac"],
           questoes: ["q-adap21-027","q-famema2021-084","q-unesp2024-016","q-fmabc2026-045","q-usp2025-072"],
           casos: ["q-unesp2024-016"],
           prosa: `A pneumonia grave é a que já compromete a oxigenação ou o estado geral: hipoxemia, tiragem subcostal, gemência, incapacidade de beber, letargia. Ela pede antibiótico venoso e oxigênio; a gemência é o lactente fechando a glote para manter o alvéolo aberto, sinal de fadiga próxima.`,
@@ -153,13 +153,13 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
 
 [[A toxina pertussis faz os linfócitos não saírem do sangue para os tecidos, o que explica a leucocitose com linfocitose típica.|q-unicampdis2023-030,q-fmabc2024-055]] [[O lactente pequeno, ainda sem as três doses da pentavalente e sem anticorpos se a mãe não recebeu dTpa, é quem tem a forma grave: em vez dos acessos clássicos, faz apneia e cianose.|q-tp20252-069,q-unicampdis2023-030,q-einstein2027-039]]`,
       fragmentos: [
-        { id: "coq-quadro", titulo: "Quadro, diagnóstico e tratamento", conferir: true, diretrizes: ["ms-guia-vigilancia"],
+        { id: "coq-quadro", titulo: "Quadro, diagnóstico e tratamento", conferir: false, diretrizes: ["ms-guia-vigilancia"],
           questoes: ["q-tp20252-069","q-unicampdis2023-030","q-unicampdis2024-096","q-uspsp1-006","q-fmabc2024-055","q-einstein2027-039","q-unesp2025-014"],
           casos: ["q-fmabc2024-055"],
           texto: `- Três fases: **catarral** (1 a 2 semanas, como um resfriado), **paroxística** (acessos de tosse, guincho, vômito pós-tosse) e **convalescença**. {q-unicampdis2024-096,q-uspsp1-006}
 - Lactente pequeno: **apneia e cianose** após a tosse, afebril, ausculta normal. {q-tp20252-069,q-unicampdis2023-030}
 - **Leucocitose com linfocitose** no hemograma. {q-unicampdis2023-030,q-fmabc2024-055}
-- Caso suspeito no lactente: **tosse há 10 dias ou mais** com cianose, engasgo ou apneia (SBP). {q-einstein2027-039}
+- Caso suspeito no lactente: **tosse há 10 dias ou mais** com cianose, engasgo ou apneia (Guia de Vigilância; a partir de 6 meses, **14 dias** com paroxismos, guincho ou vômito). {q-einstein2027-039}
 - Tratamento: **macrolídeo (azitromicina)**; **notificar**. {q-uspsp1-006,q-tp20252-069,q-fmabc2024-055}
 - Prevenção: **pentavalente aos 2, 4 e 6 meses**, reforços de DTP e **dTpa na gestante**. {q-unesp2025-014}` },
       ],

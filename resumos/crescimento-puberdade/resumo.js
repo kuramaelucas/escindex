@@ -10,7 +10,7 @@
     { id: "oms-crescimento", texto: "OMS — Padrões de crescimento (2006) e referências de 5 a 19 anos (2007)", lidoEm: null },
     { id: "ms-caderneta", texto: "Ministério da Saúde — Caderneta da Criança e Caderneta do Adolescente", lidoEm: null },
     { id: "sbp-obesidade", texto: "Sociedade Brasileira de Pediatria — Manual de Orientação: Obesidade na infância e adolescência", lidoEm: null },
-    { id: "sbp-puberdade", texto: "Sociedade Brasileira de Pediatria / SBEM — Puberdade precoce (documento científico)", lidoEm: null },
+    { id: "sbp-puberdade", texto: "Sociedade Brasileira de Pediatria — Puberdade precoce e Adrenarca precoce e telarca precoce (documentos científicos do Departamento de Endocrinologia) e Avaliação do crescimento: o que o pediatra precisa saber, sbp.com.br", lidoEm: "2026-11-22" },
   ],
   foraDoEscopo: [
     { motivo: "Anuladas: sem gabarito para medir o erro (as reposições -ia estão nas seções)",
@@ -25,7 +25,7 @@
 
 Veja também: **Puericultura** (curvas e consulta) e **Tireoidopatias**.`,
       fragmentos: [
-        { id: "cre-ferramentas", titulo: "Canal, velocidade, alvo e idade óssea", conferir: true, diretrizes: ["oms-crescimento","ms-caderneta"],
+        { id: "cre-ferramentas", titulo: "Canal, velocidade, alvo e idade óssea", conferir: false, diretrizes: ["oms-crescimento","ms-caderneta"],
           questoes: ["q-amrigs2021-061","q-sirio2021-055","q-unicamp2022-039","q-einstein2027-035","q-iamspe2026-078","q-einstein2023-039","q-famema2022-084","q-sirio2025-049","q-unicampdis2024-095","q-udisc20262-055","q-sessp2025-054"],
           casos: ["q-einstein2023-039"],
           prosa: `Uma medida isolada diz onde a criança está; duas medidas separadas por meses dizem para onde ela vai. Por isso a **velocidade** é o dado mais importante: a criança baixa que cresce na velocidade normal segue seu canal genético; a que desacelera e cruza canais tem algo freando o crescimento. A idade óssea diz quanto crescimento ainda resta, porque o fim é o fechamento das cartilagens.`,
@@ -101,7 +101,7 @@ Veja também: **Puericultura** (curvas e consulta) e **Tireoidopatias**.`,
 
 [[Na adrenarca prematura, a suprarrenal amadurece cedo e produz andrógenos fracos: surgem pelos pubianos e odor axilar, sem mama, sem aumento testicular e sem aceleração importante do crescimento.|q-scmsp2026-044,q-usprp2025-026,q-tp20241-039]] [[A ginecomastia do menino púbere vem do desequilíbrio transitório entre estrogênio e testosterona e regride sozinha na maioria.|q-tp20252-076]]`,
       fragmentos: [
-        { id: "var-telarca", titulo: "Telarca precoce isolada e lipomastia", conferir: true,
+        { id: "var-telarca", titulo: "Telarca precoce isolada e lipomastia", conferir: false,
           questoes: ["q-tp20232-038","q-tp20252-050","q-tp20261-014","q-uspsp5-030","q-usprp2022-051","q-tp20241-035","q-usprp2026-023"],
           casos: ["q-tp20252-050"],
           prosa: `Na telarca precoce isolada, o ovário produz um pouco de estrogênio de forma transitória, sem ativar o eixo inteiro: só a mama cresce, sem estirão nem avanço da idade óssea. A gordura da criança obesa imita a mama (lipomastia).`,
@@ -122,7 +122,7 @@ Veja também: **Puericultura** (curvas e consulta) e **Tireoidopatias**.`,
 
 [[Na forma periférica, os esteroides sexuais vêm de fora do eixo (gônada, suprarrenal ou hormônio externo) e o LH fica suprimido.|q-sirio2022-072,q-usprp2024-080,q-simepm89-089]] Por isso o exame que separa as duas é o LH: alto na central, baixo na periférica.`,
       fragmentos: [
-        { id: "pre-central", titulo: "Central: diagnóstico e tratamento", conferir: true, diretrizes: ["sbp-puberdade"],
+        { id: "pre-central", titulo: "Central: diagnóstico e tratamento", conferir: false, diretrizes: ["sbp-puberdade"],
           questoes: ["q-adap21-046","q-tp20202-042","q-tp20251-048","q-usp2026-108","q-unicampdis2024-090"],
           prosa: `Na puberdade precoce central o eixo hipotálamo-hipófise-gônada acordou cedo: tudo acontece na ordem normal, só que antes da hora, com LH puberal e idade óssea avançada. No menino a causa costuma ser uma lesão do sistema nervoso, e por isso a ressonância é obrigatória. O análogo do GnRH dessensibiliza a hipófise e desliga o eixo.`,
           texto: `- Mama e pelos antes dos 8 anos, **LH basal puberal** (acima de 0,3 UI/L), idade óssea avançada: **puberdade precoce central**. {q-adap21-046,q-unicampdis2024-090}

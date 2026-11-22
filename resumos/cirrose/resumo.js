@@ -9,7 +9,7 @@
   assunto: "ass-cirrose",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "baveno", texto: "Baveno VII — Renewing consensus in portal hypertension (J Hepatol 2022)", lidoEm: null },
+    { id: "baveno", texto: "Baveno VII — Renewing consensus in portal hypertension (J Hepatol 2022;76:959-974, PMC11090185)", lidoEm: "2026-11-19" },
     { id: "aasld-ascite", texto: "AASLD Practice Guidance — Diagnosis, evaluation, and management of ascites, SBP and hepatorenal syndrome (2021)", lidoEm: null },
     { id: "easl-cirrose", texto: "EASL Clinical Practice Guidelines for the management of patients with decompensated cirrhosis (2018)", lidoEm: null },
     { id: "aasld-ee", texto: "AASLD/EASL — Hepatic encephalopathy in chronic liver disease (2014)", lidoEm: null },
@@ -118,7 +118,7 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
       id: "varizes", titulo: "Varizes e hemorragia digestiva",
       introducao: `[[A pressão portal acima de 10–12 mmHg abre colaterais para a circulação sistêmica, e as do esôfago distal, sob a mucosa fina, crescem e rompem; o álcool continuado é o maior preditor de crescimento.|q-fmabc2024-001,q-tp20231-069,q-tp20241-024]] [[Na hemorragia varicosa, a ordem é: via aérea e volume com alvo de hemoglobina em torno de 7, vasoconstritor esplâncnico (terlipressina, octreotida ou somatostatina) já na chegada, antibiótico profilático (ceftriaxona), e endoscopia com ligadura em até 12 horas.|q-amrigs2020-015,q-unesp2023-046,q-unesp2024-045,q-unesp2025-041]] [[Se a endoscopia falha ou não existe, o balão de Sengstaken-Blakemore segura o sangramento por até 24 horas como ponte para TIPS, com o paciente intubado.|q-tp20252-115,q-sirio2024-027,q-sessp2026-035]]`,
       fragmentos: [
-        { id: "var-aguda", titulo: "Hemorragia varicosa aguda e profilaxia", conferir: true, diretrizes: ["baveno"],
+        { id: "var-aguda", titulo: "Hemorragia varicosa aguda e profilaxia", conferir: false, diretrizes: ["baveno"],
           questoes: ["q-fmabc2024-001","q-tp20231-069","q-tp20241-024","q-amrigs2020-015","q-unesp2023-046","q-unesp2024-045","q-unesp2025-041","q-unicamp2022-007","q-unicampdis2023-020","q-tp20252-115","q-sirio2024-027","q-sessp2026-035","q-fmabc2023-035","q-einstein2025-023"],
           prosa: `[[Passado o sangramento, o vasoconstritor fica por 3 a 5 dias e depois a profilaxia secundária é betabloqueador não seletivo (propranolol, carvedilol) com ligadura seriada.|q-unesp2025-041,q-unicamp2022-007,q-unicampdis2023-020]]`,
           texto: `- Maior preditor de progressão das varizes: **etiologia alcoólica**. {q-fmabc2024-001}
@@ -126,8 +126,8 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
 - Primeiro: **via aérea e volume**. {q-amrigs2020-015}
 - Choque: **cristaloide, vasoconstritor e antibiótico**. {q-unesp2023-046}
 - Já com SF, antibiótico e octreotida: **manter** até a endoscopia. {q-unesp2024-045}
-- Após ligadura: **vasoconstritor 3–5 dias**, depois **betabloqueador não seletivo**. {q-unesp2025-041,q-unicamp2022-007,q-unicampdis2023-020}
-- Sem endoscopia terapêutica: **balão de Sengstaken-Blakemore**. {q-tp20252-115}
+- Após ligadura: **vasoconstritor por 2–5 dias** (Baveno VII), depois **betabloqueador não seletivo**. {q-unesp2025-041,q-unicamp2022-007,q-unicampdis2023-020}
+- Sem endoscopia terapêutica ou sangramento refratário: **balão de Sengstaken-Blakemore** (ou prótese metálica) como ponte para o TIPS. {q-tp20252-115}
 - Balão: **intubar**, gástrico com cerca de 200 mL, esofágico a 40 mmHg; controla > 85%. {q-sirio2024-027,q-sessp2026-035}
 - Complicações do balão: **necrose de asa nasal, isquemia e perfuração esofágica**. {q-fmabc2023-035,q-einstein2025-023}` },
       ],
