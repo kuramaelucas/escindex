@@ -150,6 +150,7 @@ window.ESC_ARQUIVOS.dados = [
   "prova-einstein-2025",
   "prova-einstein-2026",
   "prova-einstein-2027",
+  "prova-usprp-2027",
   "banco-simulado-didatico-epm",
   "banco-didatico-grad-malaria",
   "banco-didatico-grad-tuberculose",

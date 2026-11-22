@@ -1,7 +1,7 @@
 # Pendências do banco de questões
 
 <!-- numeros:inicio -->
-> **Números do banco (gerados por `npm run publicar`):** 12.138 questões (9.305 reais, em 94 provas), 943 cartões da equipe e 237 assuntos (20 ainda sem cartão). Detalhe: `npm run dados` e `dados/CATALOGO.md`.
+> **Números do banco (gerados por `npm run publicar`):** 12.238 questões (9.405 reais, em 95 provas), 943 cartões da equipe e 237 assuntos (20 ainda sem cartão). Detalhe: `npm run dados` e `dados/CATALOGO.md`.
 <!-- numeros:fim -->
 O painel da seção 0 resume tudo; as seções 1 a 5 trazem o detalhe, do mais urgente ao que só completa o que já funciona.
 
