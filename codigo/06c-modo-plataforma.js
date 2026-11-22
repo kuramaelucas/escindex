@@ -47,7 +47,8 @@ function definirModoPlataforma(modo){
   fecharModal();
   render();
   toast("Modo " + MODOS_PLATAFORMA[modo].nome.toLowerCase() + " ativado. Seus dados continuam todos guardados.");
-  mostrarTutorialAoEntrar();   // se a pergunta adiou o tutorial, ele vem agora (no-op quando já visto)
+  // a pergunta seguinte de primeira vez (06e) e, depois, o tutorial que elas adiaram (no-op quando já visto)
+  if(!perguntarModoDeInicio()) mostrarTutorialAoEntrar();
 }
 
 /* A pergunta de primeira vez: só ao chegar no Início, só para aluno que ainda

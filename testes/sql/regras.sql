@@ -78,6 +78,8 @@ update perfis set prova_alvo_data = current_date + 30 where id='00000000-0000-00
 select pg_temp.igual((select count(*) from perfis where prova_alvo_data is not null), 1, 'a pessoa grava a própria data de prova-alvo');
 update perfis set modo_plataforma = 'estatistico' where id='00000000-0000-0000-0000-00000000000a';
 select pg_temp.igual((select count(*) from perfis where modo_plataforma = 'estatistico'), 1, 'a pessoa grava o próprio modo da plataforma');
+update perfis set modo_inicio = 'reparar-tema' where id='00000000-0000-0000-0000-00000000000a';
+select pg_temp.igual((select count(*) from perfis where modo_inicio = 'reparar-tema'), 1, 'a pessoa grava o próprio modo de início');
 update perfis set tamanho_sessao = 35 where id='00000000-0000-0000-0000-00000000000a';
 select pg_temp.igual((select count(*) from perfis where tamanho_sessao = 35), 1, 'a pessoa grava o próprio tamanho de sessão');
 update perfis set regua_formado = 'rapida' where id='00000000-0000-0000-0000-00000000000a';

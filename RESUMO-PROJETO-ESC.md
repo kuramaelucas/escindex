@@ -20,6 +20,7 @@ Este documento existe para que uma nova conversa com o Claude comece sabendo tud
 >
 > | Data | Novidade (tabela/coluna) | Sem rodar |
 > | --- | --- | --- |
+> | 22/11 | Como o aluno quer começar (do zero × reparar falhas, 6º ano e Formado): `perfis.modo_inicio`. **Rodar `nuvem/esquema.sql` de novo.** | a escolha vale só no aparelho onde foi feita |
 > | 19/11 | Resumos lidos e meta semanal: `perfis.resumos_lidos`, `perfis.meta_questoes_semana`; `painel_turma()` devolve `resumos_lidos` (função recriada). **Rodar `nuvem/esquema.sql` de novo.** | "lido" e a meta semanal valem só no aparelho; a coluna Resumos lidos do Painel fica em branco para quem vem da nuvem |
 > | 19/11 | Faculdade de origem no Painel da Turma: `painel_turma()` devolve `faculdade` (função recriada). **Rodar `nuvem/esquema.sql` de novo.** | o painel não mostra a faculdade de quem vem da nuvem (no aparelho local aparece) |
 > | 18/11 | Feedback escrito dentro de um resumo (Estudar › Resumos): `feedbacks.resumo_id`. **Rodar `nuvem/esquema.sql` de novo.** | o feedback sobe sem dizer de que resumo veio (a coluna é pulada e avisada); no próprio aparelho o resumo continua anotado |

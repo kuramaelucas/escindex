@@ -88,7 +88,7 @@ Depois de 15/09 o cronograma entra em **modo revisão**: sem tema novo, só revi
 | Fase | Entrega | Onde |
 |---|---|---|
 | 0 ✓ | ferramenta `conjuntos-por-tema` + `resumos/conjuntos-por-tema.js`; conferência no `npm run conferir` | `ferramentas/`, `resumos/` |
-| 1 | pergunta do primeiro acesso + `u.modoDeInicio` (migração em `loadState`, sync) + cartão no Perfil | 07, 06c/10c, 02 |
+| 1 ✓ | pergunta do primeiro acesso + `u.modoDeInicio` (migração em `loadState`, sync) + cartão no Perfil | 07, 06c/10c, 02 |
 | 2 | ciclo do tema (ler → 20 → resultado → releitura opcional com botão; passagens do graduando, seção 2-B) | arquivo novo `05g-ciclo-por-tema.js` (05c já está perto do limite de linhas) + 09e |
 | 3 | cálculo da meta sugerida e repartição por tema; data-alvo no Perfil; modo revisão após a data | 05b, 10b |
 | 4 | `simular-formado` passa a simular o "do zero" e o "reparar" (`--exigir`: 20 por tema sem repetir seção antes de cobrir todas; prazo cumprido com a meta sugerida) | `ferramentas/` |
@@ -111,3 +111,4 @@ Fases 0 e 1 são independentes e podem andar juntas; a 2 depende das duas.
 | 22/11/2026 | projeto aberto: perfis e caminhos, conjunto planejado por cobertura de seções, cálculo da meta até setembro, fases |
 | 22/11/2026 | decisões da seção 7. **Fase 0 feita**: 77 temas, 1.540 questões; todos com 20; só `trabalho-de-parto` tem mais fragmentos (22) que 20 questões (21 cobertos). Ex. convulsão febril: 5/5 fragmentos nas 5 primeiras. Próximo: fase 1 (pergunta do primeiro acesso). |
 | 22/11/2026 | **assuntos sem resumo** (seção 4-B): 160 assuntos ganharam conjunto provisório por diversidade de texto (2.462 questões; 89 com menos de 20). |
+| 22/11/2026 | **Fase 1 feita** (`codigo/06e-modo-de-inicio.js`): `u.modoDeInicio` = `zero` · `reparar-tema` · `reparar` (este só Formado); pergunta uma vez no Início logo depois da do modo da plataforma, sem fechar por clique fora; cartão "Como você estuda" no Perfil (antes do 6º ano explica por que não há escolha); escolha fora do ano vale `zero` sem ser apagada; nuvem `perfis.modo_inicio` (rodar `esquema.sql` de novo). Por enquanto só grava e explica: o cronograma passa a obedecer na fase 2. Teste: `testes/modo-de-inicio.test.mjs`. |

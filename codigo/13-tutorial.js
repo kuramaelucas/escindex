@@ -101,6 +101,7 @@ const TUTORIAL_RAPIDO = {
 const GUIA_ALUNO = [
   { titulo:"Início e sessão do dia", itens:[
     "<strong>Modo resumido e modo estatístico.</strong> Você começa no <strong>resumido</strong>: Início enxuto, menu com Início, Estudar, Flashcards e Meu Desempenho (o resto fica em <strong>Mais</strong>) e os porquês das sessões recolhidos atrás de “Por quê?”. No <strong>estatístico</strong> aparece tudo: sugestões de assuntos, o que mais cai, explicações e o menu completo. A plataforma pergunta uma vez; a escolha fica guardada e muda em <strong>Perfil e configurações</strong>. Nos dois modos os seus dados são gravados do mesmo jeito — trocar nunca apaga nada.",
+    "<strong>Como começar (6º ano e Formado).</strong> Na primeira entrada a plataforma pergunta se você quer <strong>construir do zero</strong> (resumo do tema antes das questões) ou <strong>reparar falhas</strong> (direto a 20 questões por tema, com o resumo sugerido se ficar abaixo de 75%; o Formado também pode continuar como está). Antes do 6º ano não há escolha: você constrói do zero pelo calendário da turma. Muda em <strong>Perfil e configurações</strong>, sem perder nada.",
     "A <strong>sessão recomendada</strong> junta questões do seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo. Cada sessão traz o que falta para a sua meta diária, até o número de questões por sessão que você escolhe em Ajustar meta (20, se não escolher).",
     "A sessão recomendada muda com o seu ano, do <strong>consolidar</strong> ao <strong>treinar a prova</strong>: <strong>3º ano 70% consolidação e 30% provas de residência; 4º ano 60/40; 5º ano 25/75; 6º ano 100% provas reais de residência</strong>. Consolidação são as questões didáticas do Esc e as provas da graduação. Cada questão da sessão diz de qual tipo é, e a tela Estudar explica a regra do seu ano.",
     "<strong>No 6º ano há um cronograma por dia:</strong> as primeiras 30 questões seguem a sessão recomendada; da 31ª em diante só entram questões de prova real de residência, nos assuntos que mais caem no banco e em que você mais erra. Cada questão extra diz o porquê.",
@@ -328,7 +329,7 @@ function mostrarTutorialAoEntrar(opts){
 function agendarTutorialAoEntrar(){
   // espera a tela do Início terminar de desenhar
   // a pergunta do modo (resumido × estatístico) vem primeiro; o tutorial entra logo depois da escolha
-  setTimeout(() => { if(state.route === "inicio" && !perguntarModoDaPlataforma()) mostrarTutorialAoEntrar(); }, 300);
+  setTimeout(() => { if(state.route === "inicio" && !perguntarModoDaPlataforma() && !perguntarModoDeInicio()) mostrarTutorialAoEntrar(); }, 300);
 }
 
 /* ---------- o cartão do Perfil ---------- */
