@@ -108,7 +108,7 @@ Veja também: **Puericultura** (curvas e consulta) e **Tireoidopatias**.`,
           texto: `- Só mama (M2P1), velocidade normal, **idade óssea = cronológica**, LH e estradiol pré-puberais: **telarca precoce isolada**, reavaliar a cada **3 a 4 meses**. {q-tp20232-038,q-tp20252-050,q-tp20261-014,q-uspsp5-030,q-usprp2022-051}
 - "Mama" em criança obesa M1: **lipomastia** (obesidade), não telarca. {q-tp20241-035}
 - Menino baixo crescendo no canal, G2P2, idade óssea próxima: puericultura de rotina. {q-usprp2026-023}` },
-        { id: "var-adrenarca", titulo: "Adrenarca e ginecomastia", conferir: false,
+        { id: "var-adrenarca", titulo: "Adrenarca e ginecomastia", conferir: true,
           questoes: ["q-scmsp2026-044","q-usprp2025-026","q-tp20241-039","q-tp20252-076"],
           prosa: `Na adrenarca, a suprarrenal amadurece e produz andrógenos fracos: pelos e odor, sem mama nem aumento testicular. A ginecomastia do púbere vem do predomínio transitório do estrogênio sobre a testosterona e regride sozinha.`,
           texto: `- Pelos pubianos e odor, **sem** mama e sem aumento testicular: **adrenarca (pubarca) precoce**. {q-usprp2025-026,q-tp20241-039}
