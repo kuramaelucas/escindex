@@ -202,3 +202,25 @@ test("questão aberta na íntegra (busca) vem sem resposta e mostra o que a pess
     assert.equal(await pagina.locator(".qcard-alt.incorrect .qic-marcada").count(), 1, "a alternativa marcada da última vez fica sinalizada");
   } finally { await contexto.close(); }
 });
+
+test("redesenho em segundo plano devolve aberto o <details> sem id (ex.: 'detalhes' da questão)", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block" });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await contexto.newPage();
+    await pagina.goto(semNuvem.url + "index.html");
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+    const r = await pagina.evaluate(() => {
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      const raiz = document.createElement("div");
+      const html = '<details><summary>detalhes</summary>x</details><details><summary>outro</summary>y</details>';
+      raiz.innerHTML = html;
+      raiz.querySelector("details").open = true;
+      const guardado = guardarCamposDaPagina(raiz);
+      raiz.innerHTML = html;                       // o redesenho recria tudo fechado
+      devolverCamposDaPagina(raiz, guardado);
+      return [...raiz.querySelectorAll("details")].map(d => d.open);
+    });
+    assert.deepEqual(r, [true, false]);
+  } finally { await contexto.close(); }
+});
