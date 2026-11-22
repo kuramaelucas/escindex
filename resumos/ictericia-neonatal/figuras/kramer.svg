@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 330" role="img" aria-label="Zonas de Kramer, de I a V, da cabeça às mãos e aos pés">
-<rect width="420" height="330" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 330" role="img" aria-label="Zonas de Kramer, de I a V, da cabeça às mãos e aos pés">
+<rect width="520" height="330" fill="#fff"/>
 <g stroke="#555" stroke-width="1.5">
 <ellipse cx="110" cy="40" rx="30" ry="32" fill="#fde68a"/>
 <rect x="75" y="72" width="70" height="60" rx="10" fill="#fcd34d"/>
@@ -18,9 +18,9 @@
 <text x="102" y="222">IV</text><text x="104" y="282">V</text>
 <text x="196" y="42">I · cabeça e pescoço · ~6 mg/dL</text>
 <text x="196" y="106">II · até o umbigo · ~9 mg/dL</text>
-<text x="196" y="160">III · até os joelhos · ~12 mg/dL</text>
-<text x="196" y="222">IV · até tornozelos e punhos · ~15 mg/dL</text>
-<text x="196" y="282">V · palmas e plantas · acima de ~15 mg/dL</text>
+<text x="196" y="160">III · abdome inferior e coxas · ~12 mg/dL</text>
+<text x="196" y="222">IV · braços e pernas, abaixo de cotovelos e joelhos · ~15</text>
+<text x="196" y="282">V · mãos e pés, palmas e plantas · acima de ~15</text>
 </g>
-<text x="12" y="322" font-family="sans-serif" font-size="11" fill="#555">Valores aproximados: a avaliação visual erra, sobretudo em pele escura.</text>
+<text x="12" y="322" font-family="sans-serif" font-size="11" fill="#555">Valores só aproximados (Kramer 1969: II &lt; 12 e III &lt; 15 mg/dL); a faixa em cada zona é ampla.</text>
 </svg>
