@@ -12,13 +12,11 @@ Atualizado em 13/11/2026 (seção 8 nova: `banco-didatico`). Este é o **único*
 
 Gerado de `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md` (tabela `ferramentas/edicoes-vigentes.json`), só USP e UNIFESP: 69 questões da USP e 45 da UNIFESP (uma questão pode aparecer em mais de uma diretriz; as da UNIFESP já lidas, seção 1, podem constar aqui porque a referência ainda cita a edição antiga ao lado da nota, e vale conferir antes de reler). Número = nº da questão na prova.
 
+**Rodada de 22/11/2026 (PDFs enviados pela equipe: GINA 2026, IN do Calendário 2026, SSC 2026 adulto e pediátrica, ATS 2025 de PAC):** saíram desta tabela as linhas de ATS, SSC, Calendário e GINA: as 28 questões estão conferidas (12 nesta rodada; as demais já tinham nota de 08/11 ou 17/11). Ficou um ponto de texto: `q-usp2022-044` (explicação fala em VPC 10 e limite de 14 semanas do rotavírus; a IN 2026 traz VPC 20 em transição e 1ª dose de rotavírus até 11 meses e 29 dias). As demais bancas que citam SSC e ATS (93 e 127 citações) ainda estão em `docs/REFERENCIAS-COM-EDICAO-ANTERIOR.md`; os PDFs ficam na pasta temporária da sessão, fora do git.
+
 | Diretriz | Edição vigente | Questões | Quais |
 |---|---|---|---|
-| ATS/IDSA, pneumonia comunitária do adulto | Atualização ATS 2025 (a IDSA não a endossou) | 1 | `q-usp2025`: 087 |
 | NCCN (versões frequentes) | Versões 2026 em nccn.org (exigem login) | 23 | `q-unifesp2022`: 015, 024, 030; `q-unifesp2023`: 043, 045, 086; `q-unifesp2024`: 013, 014; `q-unifesp2025`: 013; `q-unifesp2026`: 006; `q-usp2022`: 061, 073, 085; `q-usp2023`: 011, 013, 020, 025; `q-usp2024`: 025, 027, 036, 045, 046; `q-usp2026`: 031 |
-| Surviving Sepsis Campaign | SSC 2026 (Intensive Care Med 2026;52:863-936) | 13 | `q-unifesp2022`: 098; `q-unifesp2023`: 008, 015; `q-unifesp2025`: 030, 037; `q-usp2022`: 012, 053; `q-usp2023`: 102; `q-usp2024`: 016, 019, 064; `q-usp2026`: 053; `q-udisc20262`: 001 |
-| Calendário Nacional de Vacinação | Instrução Normativa do Calendário 2026 | 4 | `q-usp2022`: 044; `q-usp2024`: 024, 079; `q-usp2026`: 056 |
-| GINA, asma | GINA 2026 (Strategy Report, maio/2026) | 10 | `q-unifesp2022`: 069, 086; `q-unifesp2023`: 069; `q-unifesp2026`: 095; `q-usp2022`: 020; `q-usp2023`: 115; `q-usp2024`: 003, 004; `q-usp2026`: 063, 070 |
 | Rastreamento do câncer do colo do útero (MS) | Portaria Conjunta SAES/SECTICS nº 13/2025 (HPV-DNA) | 7 | `q-unifesp2024`: 048; `q-unifesp2025`: 067; `q-unifesp2026`: 053; `q-usp2024`: 106; `q-usp2025`: 009; `q-usp2026`: 085, 114 |
 | EAU (edições anuais) | EAU 2026 (urolitíase: revisão completa) | 1 | `q-usp2025`: 061 |
 | OMS, critérios de elegibilidade contraceptiva | OMS MEC 6ª edição (2025) | 7 | `q-unifesp2022`: 025; `q-usp2024`: 098, 101; `q-usp2026`: 018, 116; `q-udisc20262`: 087, 099 |
@@ -53,17 +51,14 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 |---|---|---|---|
 | AHA/ASA AVC isquêmico 2019 | AHA/ASA 2026 | `q-usp2022-004` | ahajournals bloqueado; enviar PDF |
 | AHA RCP/ECC 2020 | AHA 2025 | `q-usp2022-013`, `-047`, `-052` | ahajournals/cpr.heart.org bloqueados; enviar PDF |
-| SSC 2021 | SSC 2026 (Intensive Care Med 2026;52:863-936) | `q-usp2022-012`, `-053` (pediátrica) | Springer recusa; há PDF da SSC 2026 fornecido em rodada anterior |
 | ADA Standards 2022 | ADA 2026 | `q-usp2022-003` | diabetesjournals bloqueado |
 | Diretriz Brasileira de Hipertensão 2020 | SBC 2025 | `q-usp2022-025` | abccardiol.org abre |
-| GINA 2022 | GINA 2026 | `q-usp2022-020` | ginasthma.org abre |
 | KDIGO glomerulopatias 2012 | KDIGO 2021/2024 | `q-usp2022-047` | kdigo.org abre |
 | ACG pancreatite 2013 | ACG 2024 | `q-usp2022-064` | — |
 | ESVS aneurisma 2019 | ESVS 2024 | `q-usp2022-077` | — |
 | EAU testículo 2024 | EAU 2026 | `q-usp2022-073` | CloudFront da EAU bloqueado |
 | BTS doença pleural 2010 | BTS 2023 (Thorax 2023;78 Suppl 3) | `q-usp2022-074` | enviar PDF |
 | ATLS 10ª ed. 2018 | ATLS 11ª ed. 2025 | `q-usp2022-069` | material pago |
-| Calendário Nacional de Vacinação da Criança 2022 | Calendário 2026 | `q-usp2022-044` | gov.br abre |
 | PCDT-IST e PrEP 2022 | verificar atualização do MS | `q-usp2022-028` | gov.br abre |
 | NCCN 2022 (melanoma, mama, testículo) | NCCN 2026 | `q-usp2022-061`, `-073`, `-085` | exige login |
 | ACOG (ectópica 2018, indução 2021, dismenorreia 2018) | ACOG vigente | `q-usp2022-088`, `-095`, `-099` | HTTP 402 |
@@ -76,11 +71,9 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 
 | Diretriz citada | Vigente | Questões |
 |---|---|---|
-| SSC 2021 | SSC 2026 | `q-usp2023-102` |
 | ESC AF 2020 | ESC 2024 | `q-usp2023-050` |
 | Diretriz Brasileira de Hipertensão 2020 | SBC 2025 | `q-usp2023-052` |
 | ADA 2023 | ADA 2026 | `q-usp2023-113`, `-114`, `-118` |
-| GINA 2022 | GINA 2026 | `q-usp2023-115` |
 | AHA PALS 2020 | AHA 2025 | `q-usp2023-083` |
 | ATLS 10ª ed. | ATLS 11ª (2025) | `q-usp2023-009`, `-119`, `-120` |
 | EAU 2024 | EAU 2026 | `q-usp2023-018` |
@@ -101,15 +94,13 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 | Rastreamento do colo do útero INCA 2016 | Portaria Conjunta SAES/SECTICS 13/2025 (DNA-HPV) | `q-usp2024-106` |
 | ATS/IDSA CAP 2019 | ATS/IDSA 2025 | `q-usp2024-063` |
 | BTS pleural 2010 | BTS 2023 | `q-usp2024-063` |
-| SSC 2021 | SSC 2026 | `q-usp2024-064`, `-019` |
 | ESC FA 2020 | ESC 2024 | `q-usp2024-055` |
 | ADA 2024 | ADA 2026 | `q-usp2024-050`, `-112` |
 | OMS MEC 5ª ed. 2015 | OMS MEC 6ª ed. 2025 | `q-usp2024-098`, `-101` |
 | AHA PALS 2020 | AHA 2025 | `q-usp2024-005`, `-018`, `-067` |
 | ATLS 10ª ed. | ATLS 11ª ed. 2025 | `q-usp2024-030`, `-034`, `-035` |
 | NCCN 2024 | NCCN 2026 | `q-usp2024-025`, `-027`, `-036`, `-045`, `-046` |
-| GINA 2024 | GINA 2026 | `q-usp2024-003`, `-004` |
-| Calendário da Gestante, Adolescente e Nacional 2024 | Calendário 2026 | `q-usp2024-024`, `-079`, `-115` |
+| Calendário da Gestante, Adolescente e Nacional 2024 | Calendário 2026 | `q-usp2024-115` |
 | PCDT de Transmissão Vertical 2022 | versão 2025 | `q-usp2024-015` |
 | PCDT-IST/PrEP 2022 | verificar atualização do MS | `q-usp2024-091`, `-114` |
 | Manual de TB do MS 2019 e OMS 2020 | OMS 2022-2025 | `q-usp2024-081`, `-082` |
@@ -128,17 +119,13 @@ Cada linha: a edição citada na questão × a edição vigente da tabela `ferra
 | ESC pericárdio 2015 | ESC 2025 | `q-usp2025-089` |
 | AHA PALS 2020 | AHA 2025 | `q-usp2025-062`, `-072`, `q-usp2026-049`, `-070` |
 | GOLD 2024 | GOLD 2026 | `q-usp2025-093`, `-094` |
-| GINA 2025 | GINA 2026 | `q-usp2026-063`, `-070` |
 | ADA 2025 | ADA 2026 | `q-usp2025-079` |
-| ATS/IDSA CAP 2019 | ATS/IDSA 2025 | `q-usp2025-087` |
 | ESC FA 2020/ESC 2024 | ESC 2024 | `q-usp2025-083` |
 | ATLS 10ª ed. | ATLS 11ª ed. 2025 | `q-usp2025-026`, `-037`, `q-usp2026-027`, `-044`, `-045` |
 | NCCN 2024 | NCCN 2026 | `q-usp2026-031` |
 | OMS MEC 5ª ed. 2015 | OMS MEC 6ª ed. 2025 | `q-usp2026-116`, `q-usp2026-018` |
-| SSC pediátrica 2020 | SSC 2026 / pediátrica nova | `q-usp2026-053` |
 | ACOG CO 797 / BTS 2010 | BTS 2023 | `q-usp2026-044` |
 | IDSA cateter 2009 | IDSA 2024-2025 | `q-usp2026-055` |
-| Calendário da Gestante/Nacional 2024 | Calendário 2026 | `q-usp2026-056` |
 | PCDT-IST 2022 e PCDT de Transmissão Vertical | versões do MS posteriores | `q-usp2025-120`, `q-usp2026-032`, `-084`, `-110` |
 | PCDT-PEP 2024 | verificar | `q-usp2026-109` |
 | Norma técnica de violência sexual 2012 | nova edição 2024 | `q-usp2026-103` |
@@ -241,8 +228,8 @@ Texto oficial que **não** foi lido por falta de acesso. Enquanto não for lido,
 | Rastreamento do colo do útero: Portaria Conjunta SAES/SECTICS nº 13/2025, anexo “Parte I” (DNA-HPV; idade, intervalo, fluxo de conduta) | 72 | PDF `Diretrizes para o Rastreamento do câncer do colo do útero_2025_completo.pdf` em `ninho.inca.gov.br/jspui/bitstream/123456789/17858/3/` (handle 123456789/18038, linkado em `gov.br/inca/.../legislacao`); a portaria no `gov.br/conitec/.../@@display-file/file` traz só a capa e o DOU | `ninho.inca.gov.br` foi liberado no ambiente em 17/11/2026, mas o classificador de permissões **negou** o download; cópias (cfbm, cofen, saude.mt) são recusadas pelo proxy | Autorizar o download ou enviar o PDF; depois anotar as questões de `auditoria-padrao -- diretriz colo` (inclui USP-RP, TP, Unicamp, FEBRASGO…) |
 | AHA/ASA AVC isquêmico 2026 (doi 10.1161/STR.0000000000000513) | 14 | ahajournals.org | proxy recusa (000) mesmo com o host na lista | PDF |
 | AHA/AAP RCP e atendimento cardiovascular de emergência 2025 (Partes 5, 6, 8 e 11) e PALS | 23 | cpr.heart.org, ahajournals.org | cpr.heart.org dá 403; ahajournals recusa | PDF |
-| Surviving Sepsis Campaign 2026 (Intensive Care Med 2026;52:863-936) | 93 | Springer / sccm.org | Springer recusa; sccm.org recusa (000) | PDF (consta que houve um PDF em rodada anterior, não está no repositório) |
-| ATS 2025 de pneumonia comunitária (Jones BE, Ramirez JA, Oren E et al., An official ATS Clinical Practice Guideline, Am J Respir Crit Care Med, publicada em 18/07/2025; atualização; a IDSA não a endossou) | 127 (126 superadas pela tabela) | `atsjournals.org` e `thoracic.org` | `atsjournals.org` e `thoracic.org` recusados pelo proxy (000); o artigo não foi achado no PMC (a busca do PMC devolveu resumos de congressos; a página PMC13360760 caiu em reCAPTCHA e não foi contornada); eutils e a busca do PubMed bloqueados (403 e reCAPTCHA); fontes secundárias (guidelinecentral, eurekalert, CCJM) dizem que a edição recomenda contra corticoide sistêmico na PAC não grave e condicionalmente a favor na grave (exceto influenza), mas **não foram usadas para anotar**; `www.atsjournals.org` foi liberado no ambiente em 18/11/2026, mas o site devolve 403 ("Request forbidden by administrative rules") | enviar o PDF do artigo (e a ‘Summary for Clinicians’); depois `npm run auditoria-padrao -- diretriz ATS/IDSA` |
+| Surviving Sepsis Campaign 2026 (Intensive Care Med 2026;52:863-936) | 93 | Springer / sccm.org | Springer recusa; sccm.org recusa (000) | **PDF recebido em 22/11/2026** (pasta temporária da sessão, fora do git): reenviar numa sessão nova para conferir as citações das demais bancas |
+| ATS 2025 de pneumonia comunitária (Jones BE, Ramirez JA, Oren E et al., An official ATS Clinical Practice Guideline, Am J Respir Crit Care Med, publicada em 18/07/2025; atualização; a IDSA não a endossou) | 127 (126 superadas pela tabela) | `atsjournals.org` e `thoracic.org` | `atsjournals.org` e `thoracic.org` recusados pelo proxy (000); o artigo não foi achado no PMC (a busca do PMC devolveu resumos de congressos; a página PMC13360760 caiu em reCAPTCHA e não foi contornada); eutils e a busca do PubMed bloqueados (403 e reCAPTCHA); fontes secundárias (guidelinecentral, eurekalert, CCJM) dizem que a edição recomenda contra corticoide sistêmico na PAC não grave e condicionalmente a favor na grave (exceto influenza), mas **não foram usadas para anotar**; `www.atsjournals.org` foi liberado no ambiente em 18/11/2026, mas o site devolve 403 ("Request forbidden by administrative rules") | **PDF recebido em 22/11/2026** (pasta temporária da sessão, fora do git): reenviar numa sessão nova para conferir as citações das demais bancas |
 | ADA Standards of Care 2026 (Diabetes Care 2026;49 Suppl 1) | 43 (17 superadas restantes) | **no PMC**: cada seção tem PMCID (conversor de DOI do PMC com `10.2337/dc26-S0NN`; ex.: seção 9 = PMC12690185, 2 = PMC12690183, 6 = PMC12690178, 13 = PMC12690186, 16 = PMC12690180) | `diabetesjournals.org` recusado; a página do PMC alterna com reCAPTCHA (abriram 3, 5, 8, 10–16 menos 9 em 18/11/2026; 34 questões anotadas; 2, 6 e 9 caíram sempre em reCAPTCHA, inclusive no `/pdf/`, e o OAI do PMC não entrega o texto) | repetir `npm run texto-oficial -- https://pmc.ncbi.nlm.nih.gov/articles/<PMCID>/` até abrir as seções 2, 6 e 9, ou enviar o PDF delas |
 | NCCN (melanoma, mama, testículo etc., versões 2026) | 119 | nccn.org | exige login | PDF autorizado pelo usuário |
 | EAU 2026 (urolitíase e outras) | 62 | página `uroweb.org/guidelines/urolithiasis` abre (200); PDFs: `d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2026.pdf` e `.../pocket-guidelines/EAU-Pocket-on-Urolithiasis-2026.pdf` | `d56bochluxqnz.cloudfront.net` não está na lista de hosts do ambiente: o proxy responde 403 no CONNECT (testado em 17/11/2026) | liberar esse host no ambiente (pedir ao usuário) ou enviar o PDF; depois `npm run auditoria-padrao -- diretriz EAU` |
@@ -257,12 +244,12 @@ Texto oficial que **não** foi lido por falta de acesso. Enquanto não for lido,
 | ATA, diretriz de nódulos tireoidianos (a de 2025 trata só do câncer diferenciado) | 9 | ATA 2015 (Haugen, Thyroid 2016;26:1-133) e ACR TI-RADS 2017 | a edição 2025 não cobre nódulo; as 9 questões de nódulo ficaram com nota de escopo; falta ler a ATA 2015 e o TI-RADS | achar texto aberto (PMC) e ler |
 | ~~KDIGO anemia na DRC 2026~~ | 3 | **feita em 18/11/2026** (PDF `kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf`) | — | — |
 | ACOG, Clinical Practice Update ‘Screening for Gestational and Pregestational Diabetes in Pregnancy and Postpartum’ (jul/2024; atualiza os Practice Bulletins 190 e 201; Obstet Gynecol, doi 10.1097/AOG.0000000000005612) | 5 (4 superadas) | `acog.org/clinical/clinical-guidance/clinical-practice-update` (só a lista, com o link do DOI); texto na revista (`journals.lww.com`) | o ACOG só aponta para o DOI; `journals.lww.com` é recusado pelo proxy e o artigo não está no PMC (conversor de DOI: ‘não encontrado’); as 5 questões ficam sem nota de leitura (`q-adap25-072`, `-077`, `q-unifesp2025-077`, `q-unifesp2026-057`, `q-unicampdis2024-038`) | enviar o PDF do Clinical Practice Update |
-| Manual dos CRIE (6ª ed.) e Instrução Normativa do Calendário 2026 | vacinas: contraindicações, prematuros, HPV em grupos prioritários | gov.br/saude | endereço não localizado | achar e ler |
+| Manual dos CRIE (6ª ed.) (a Instrução Normativa do Calendário 2026 foi lida em 22/11/2026, PDF enviado pela equipe) | vacinas: contraindicações, prematuros, HPV em grupos prioritários | gov.br/saude | endereço não localizado | achar e ler |
 
 ### Situação em 18/11/2026 (fim da rodada)
 
 - **Feitas nesta rodada:** EAU 2026 (62 questões; todas as diretrizes citadas), ADA 2026 seções 3, 10–13, 15 e 16 (34 questões), termo `ata-dtc` restrito ao câncer diferenciado.
-- **Só com PDF:** ATS 2025 de pneumonia (127), NCCN (119, login), Surviving Sepsis 2026 (93), ADA 2026 seções 2, 6 e 9 (17 superadas; PMC em reCAPTCHA), AHA 2025 e AHA/ASA 2026, ESC/EACTS 2025 (19), ESGO 2025 (9), ACOG diabetes na gestação (5), manuais de puerpério do MS (4), rastreamento do colo 2025 (72, `ninho.inca.gov.br`).
+- **Só com PDF:** NCCN (119, login), ADA 2026 seções 2, 6 e 9 (17 superadas; PMC em reCAPTCHA), AHA 2025 e AHA/ASA 2026, ESC/EACTS 2025 (19), ESGO 2025 (9), ACOG diabetes na gestação (5), manuais de puerpério do MS (4), rastreamento do colo 2025 (72, `ninho.inca.gov.br`).
 - **Host liberado mas sem acesso:** `www.atsjournals.org` (403 do site) e `www.in.gov.br` (conexão recusada).
 - **Gabarito divergente da diretriz (não alterado, conferir pela equipe):** `q-amrigs2025-065` (EAU pediatria), `q-tp20222-071` (EAU urolitíase); três de dose de ferro marcadas `desatualizada` (SBP 2026), à espera de reposição.
 

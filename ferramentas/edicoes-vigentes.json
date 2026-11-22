@@ -6,8 +6,8 @@
       "nome": "Surviving Sepsis Campaign",
       "termo": "Surviving Sepsis|Campanha Sobrevivendo",
       "vigente": 2026,
-      "edicao": "SSC 2026 (Intensive Care Med 2026;52:863-936)",
-      "verificadoEm": "2026-11-02"
+      "edicao": "SSC 2026 (Intensive Care Med 2026;52:863-936; pediátrica: 2026;52:937-983)",
+      "verificadoEm": "2026-11-22"
     },
     {
       "id": "aha-avc",
@@ -87,7 +87,7 @@
       "termo": "\\bGINA\\b|Global Initiative for Asthma|Iniciativa Global para a Asma",
       "vigente": 2026,
       "edicao": "GINA 2026 (Strategy Report, maio/2026)",
-      "verificadoEm": "2026-11-02"
+      "verificadoEm": "2026-11-22"
     },
     {
       "id": "ada",
@@ -111,8 +111,8 @@
       "nome": "ATS/IDSA, pneumonia comunitária do adulto",
       "termo": "Adults with Community-acquired Pneumonia|Metlay|pneumonia (adquirida na )?comunit[aá]ria.{0,60}adult|adult.{0,60}pneumonia (adquirida na )?comunit",
       "vigente": 2025,
-      "edicao": "Atualização ATS 2025 (a IDSA não a endossou)",
-      "verificadoEm": "2026-11-02"
+      "edicao": "Atualização ATS 2025 (Am J Respir Crit Care Med, doi 10.1164/rccm.202507-1692ST; a IDSA não a endossou)",
+      "verificadoEm": "2026-11-22"
     },
     {
       "id": "idsa-amr",
@@ -280,7 +280,7 @@
       "termo": "Calendário Nacional de Vacinação",
       "vigente": 2026,
       "edicao": "Instrução Normativa do Calendário 2026",
-      "verificadoEm": "2026-11-02"
+      "verificadoEm": "2026-11-22"
     },
     {
       "id": "sbp-ferro",
