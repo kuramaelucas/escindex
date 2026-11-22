@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Trauma abdominal: o que decide a conduta</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="230" y="42" width="260" height="46" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="70" font-weight="bold">Estável ou instável? Fechado ou penetrante?</text>
+    <rect x="20" y="130" width="205" height="190" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="122" y="154" font-weight="bold">Instável (fechado)</text>
+    <text x="122" y="178">FAST positivo:</text><text x="122" y="196">laparotomia imediata,</text><text x="122" y="214">sem tomografia;</text><text x="122" y="238">transfusão e tipagem</text><text x="122" y="256">em paralelo</text>
+    <rect x="257" y="130" width="205" height="190" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="360" y="154" font-weight="bold">Estável (fechado)</text>
+    <text x="360" y="178">Tomografia com contraste;</text><text x="360" y="196">tratamento não operatório</text><text x="360" y="214">de baço, fígado e rim;</text><text x="360" y="238">víscera oca e mesentério:</text><text x="360" y="256">laparotomia</text>
+    <rect x="495" y="130" width="205" height="190" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="597" y="154" font-weight="bold">Penetrante</text>
+    <text x="597" y="178">Arma de fogo, peritonite,</text><text x="597" y="196">evisceração ou choque:</text><text x="597" y="214">laparotomia;</text><text x="597" y="238">arma branca estável:</text><text x="597" y="256">exploração ou observação</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="#1f2d3d">
+    <path d="M300 90 L150 126" fill="none"/><path d="M146 118 L140 130 L154 128 Z"/>
+    <path d="M360 90 L360 126" fill="none"/><path d="M354 118 L360 130 L366 118 Z"/>
+    <path d="M420 90 L570 126" fill="none"/><path d="M574 118 L580 130 L566 128 Z"/>
+  </g>
+  <text x="360" y="344" text-anchor="middle" font-size="13" fill="#8a3b12" font-weight="bold">O grau da lesão não decide sozinho: o que decide é a estabilidade hemodinâmica</text>
+</svg>

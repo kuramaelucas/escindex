@@ -148,3 +148,15 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `parto-pretermo-e-rotura` | `ass-partopretermo` | 54 | 2 (desatualizadas, com reposição no resumo) |
 | `cancer-de-endometrio` | `ass-caendometrio` | 52 (+1 de `ass-camama` sobre endométrio) | 1 (anulada) |
 | `endometriose` | `ass-endometriose` | 51 | — |
+| `estrategia-saude-familia` | `ass-esf` | 173 | 2 (anuladas) |
+| `desenhos-de-estudo` | `ass-desenhosestudo` | 168 | 3 (anuladas) |
+| `medidas-epidemiologicas` | `ass-medidasepi` | 156 | 3 (anuladas com reposição no resumo) |
+| `vigilancia-em-saude` | `ass-vigilancia` | 138 | 1 (anulada) |
+| `bioestatistica` | `ass-bioestatistica` | 124 (4 são reposições) | 10 (6 anuladas ou desatualizadas sem reposição; 4 com reposição no resumo) |
+| `principios-do-sus` | `ass-principiossus` | 113 | 1 (anulada) |
+| `prevencao` | `ass-prevencao` | 88 | 2 (anuladas) |
+| `saude-do-trabalhador` | `ass-saudetrabalhador` | 79 (2 são reposições) | 4 (2 anuladas com reposição no resumo; 2 anuladas sem reposição) |
+| `imunizacao` | `ass-imunizacao` | 59 | 1 (anulada) |
+| `comunicacao-clinica` | `ass-comunicacaoclinica` | 54 | 1 (anulada) |
+| `atls` | `ass-atls` | 109 | 1 (anulada) |
+| `trauma-abdominal` | `ass-traumaabd` | 86 | — |

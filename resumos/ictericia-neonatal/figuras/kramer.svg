@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 330" role="img" aria-label="Zonas de Kramer, de I a V, da cabeça às mãos e aos pés">
+<rect width="520" height="330" fill="#fff"/>
+<g stroke="#555" stroke-width="1.5">
+<ellipse cx="110" cy="40" rx="30" ry="32" fill="#fde68a"/>
+<rect x="75" y="72" width="70" height="60" rx="10" fill="#fcd34d"/>
+<rect x="75" y="132" width="70" height="50" rx="6" fill="#fbbf24"/>
+<rect x="78" y="182" width="28" height="70" fill="#f59e0b"/>
+<rect x="114" y="182" width="28" height="70" fill="#f59e0b"/>
+<rect x="78" y="252" width="28" height="48" fill="#d97706"/>
+<rect x="114" y="252" width="28" height="48" fill="#d97706"/>
+<rect x="40" y="76" width="30" height="86" rx="8" fill="#f59e0b"/>
+<rect x="150" y="76" width="30" height="86" rx="8" fill="#f59e0b"/>
+<rect x="40" y="162" width="30" height="34" rx="8" fill="#d97706"/>
+<rect x="150" y="162" width="30" height="34" rx="8" fill="#d97706"/>
+</g>
+<g font-family="sans-serif" font-size="13" fill="#222">
+<text x="94" y="44">I</text><text x="106" y="106">II</text><text x="104" y="160">III</text>
+<text x="102" y="222">IV</text><text x="104" y="282">V</text>
+<text x="196" y="42">I · cabeça e pescoço · ~6 mg/dL</text>
+<text x="196" y="106">II · até o umbigo · ~9 mg/dL</text>
+<text x="196" y="160">III · abdome inferior e coxas · ~12 mg/dL</text>
+<text x="196" y="222">IV · braços e pernas, abaixo de cotovelos e joelhos · ~15</text>
+<text x="196" y="282">V · mãos e pés, palmas e plantas · acima de ~15</text>
+</g>
+<text x="12" y="322" font-family="sans-serif" font-size="11" fill="#555">Valores só aproximados (Kramer 1969: II &lt; 12 e III &lt; 15 mg/dL); a faixa em cada zona é ampla.</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="320" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Imunidade coletiva: quanto precisa estar imune</text>
+  <g font-size="14" fill="#1f2d3d">
+    <rect x="20" y="46" width="680" height="54" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="36" y="70" font-weight="bold">Limiar = 1 − 1/R0</text>
+    <text x="36" y="90">R0 é o número de casos gerados por um caso em população totalmente suscetível</text>
+    <rect x="20" y="116" width="330" height="80" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="36" y="140" font-weight="bold">R0 = 4, vacina com 100% de soroconversão</text>
+    <text x="36" y="162">1 − 1/4 = 75% da população imune</text>
+    <text x="36" y="182">(a cobertura necessária é de 75%)</text>
+    <rect x="370" y="116" width="330" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="386" y="140" font-weight="bold">R0 = 3, vacina com eficácia de 90%</text>
+    <text x="386" y="162">1 − 1/3 ≈ 67% imunes; 67% ÷ 0,90 ≈ 74%</text>
+    <text x="386" y="182">(a cobertura precisa ser maior que o limiar)</text>
+    <rect x="20" y="212" width="680" height="84" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="36" y="238" font-weight="bold">Quanto maior o R0, maior a cobertura necessária.</text>
+    <text x="36" y="260">Vacina com eficácia menor que 100% exige cobertura maior do que o limiar.</text>
+    <text x="36" y="282">A queda das coberturas ameaça também quem não se vacinou.</text>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Investigação de um surto: do alerta ao controle</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="50" width="200" height="70" rx="8" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="120" y="76" font-weight="bold">1. Alerta e confirmação</text>
+    <text x="120" y="96">comparar com a série</text><text x="120" y="112">histórica; confirmar diagnóstico</text>
+    <rect x="260" y="50" width="200" height="70" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="360" y="76" font-weight="bold">2. Definir e buscar casos</text>
+    <text x="360" y="96">definição de caso; busca ativa;</text><text x="360" y="112">casos e não casos</text>
+    <rect x="500" y="50" width="200" height="70" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+    <text x="600" y="76" font-weight="bold">3. Descrever</text>
+    <text x="600" y="96">casos por tempo,</text><text x="600" y="112">lugar e pessoa</text>
+    <rect x="20" y="180" width="200" height="70" rx="8" fill="#f3e8f6" stroke="#6b3a7a"/>
+    <text x="120" y="206" font-weight="bold">4. Hipóteses</text>
+    <text x="120" y="226">fonte, veículo, mecanismo</text><text x="120" y="242">de transmissão</text>
+    <rect x="260" y="180" width="200" height="70" rx="8" fill="#fdf6d9" stroke="#8a7412"/>
+    <text x="360" y="206" font-weight="bold">5. Amostras e análise</text>
+    <text x="360" y="226">agente, fonte e veículo</text><text x="360" y="242">(casos, não casos, alimentos)</text>
+    <rect x="500" y="180" width="200" height="70" rx="8" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="600" y="206" font-weight="bold">6. Controle e divulgação</text>
+    <text x="600" y="226">bloqueio, vacina e</text><text x="600" y="242">divulgação</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="#1f2d3d">
+    <path d="M222 85 L256 85"/><path d="M250 79 L260 85 L250 91 Z"/>
+    <path d="M462 85 L496 85"/><path d="M490 79 L500 85 L490 91 Z"/>
+    <path d="M600 122 L600 150 L120 150 L120 176" fill="none"/><path d="M114 168 L120 178 L126 168 Z"/>
+    <path d="M222 215 L256 215"/><path d="M250 209 L260 215 L250 221 Z"/>
+    <path d="M462 215 L496 215"/><path d="M490 209 L500 215 L490 221 Z"/>
+  </g>
+  <text x="360" y="300" text-anchor="middle" font-size="13" fill="#8a3b12" font-weight="bold">O período de exposição se calcula voltando da data dos sintomas:</text>
+  <text x="360" y="320" text-anchor="middle" font-size="13" fill="#1f2d3d">1º caso menos a incubação máxima; último caso menos a incubação mínima</text>
+</svg>

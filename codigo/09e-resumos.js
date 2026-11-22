@@ -237,7 +237,7 @@ function _htmlCasoDoResumo(id){
   return `<div class="resumo-caso" id="resumo-caso-${escapeHtml(id)}">
     <div class="resumo-rotulo">Caso ilustrado · ${escapeHtml(q.banca || "")} ${escapeHtml(String(q.ano || ""))}</div>
     ${renderImagemQuestao(q)}
-    <details${escolhida ? " open" : ""}><summary>Ler o caso e tentar responder</summary>
+    <details id="resumo-caso-det-${escapeHtml(id)}"${escolhida ? " open" : ""}><summary>Ler o caso e tentar responder</summary>
       <div class="resumo-caso-enunciado">${htmlComDestaques(q.enunciado, null, true)}</div>
       <div class="qcard-alts">${alts}</div>
       ${escolhida ? `<div class="feedback-box ${escolhida === q.gabarito ? "ok" : "no"}"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong> ${htmlComDestaques(q.explicacaoGeral, null, true)}</div>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="170" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Genograma</text>
+  <text x="555" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Ecomapa</text>
+  <g stroke="#1f2d3d" stroke-width="2" fill="#ffffff">
+    <rect x="70" y="50" width="40" height="40"/>
+    <circle cx="190" cy="70" r="20"/>
+    <rect x="125" y="200" width="40" height="40"/>
+    <circle cx="225" cy="220" r="20"/>
+  </g>
+  <path d="M110 70 L170 70" stroke="#1f2d3d" stroke-width="2"/>
+  <path d="M140 70 L140 145 M140 145 L145 145 M145 145 L145 200" stroke="#1f2d3d" stroke-width="2" fill="none"/>
+  <path d="M140 145 L225 145 L225 200" stroke="#1f2d3d" stroke-width="2" fill="none"/>
+  <text x="90" y="110" text-anchor="middle" font-size="12" fill="#1f2d3d">homem</text>
+  <text x="190" y="108" text-anchor="middle" font-size="12" fill="#1f2d3d">mulher</text>
+  <text x="125" y="262" text-anchor="middle" font-size="12" fill="#1f2d3d">filho (mais velho)</text>
+  <text x="240" y="262" text-anchor="middle" font-size="12" fill="#1f2d3d">filha (mais nova)</text>
+  <text x="170" y="285" text-anchor="middle" font-size="12" fill="#1f2d3d">Casal: homem à esquerda; filhos do mais velho ao mais novo</text>
+  <g stroke="#1f2d3d" stroke-width="2" fill="none">
+    <path d="M30 314 L90 314 M30 322 L90 322"/>
+    <path d="M100 312 L108 324 L116 312 L124 324 L132 312 L140 324"/>
+    <path d="M150 318 L168 318 M174 318 L192 318 M198 318 L216 318"/>
+  </g>
+  <text x="60" y="340" text-anchor="middle" font-size="11" fill="#1f2d3d">proximidade</text>
+  <text x="120" y="340" text-anchor="middle" font-size="11" fill="#1f2d3d">conflito</text>
+  <text x="185" y="340" text-anchor="middle" font-size="11" fill="#1f2d3d">distante</text>
+  <circle cx="555" cy="180" r="50" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+  <text x="555" y="176" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2d3d">Família</text>
+  <text x="555" y="194" text-anchor="middle" font-size="12" fill="#1f2d3d">(moradores)</text>
+  <g stroke="#1f2d3d" stroke-width="1.8" fill="#ffffff">
+    <circle cx="450" cy="75" r="32"/>
+    <circle cx="660" cy="75" r="32"/>
+    <circle cx="450" cy="285" r="32"/>
+    <circle cx="660" cy="285" r="32"/>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="none">
+    <path d="M478 91 L518 150"/>
+    <path d="M632 91 L592 150" stroke-dasharray="6 5"/>
+    <path d="M478 269 L518 210"/>
+    <path d="M632 269 L592 210"/>
+  </g>
+  <g font-size="12" fill="#1f2d3d" text-anchor="middle">
+    <text x="450" y="79">Escola</text>
+    <text x="660" y="79">Trabalho</text>
+    <text x="450" y="289">Unidade</text>
+    <text x="660" y="289">Igreja</text>
+    <text x="555" y="330">Linha cheia: vínculo; tracejada: frágil</text>
+  </g>
+</svg>
