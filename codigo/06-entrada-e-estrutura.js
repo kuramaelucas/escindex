@@ -449,8 +449,10 @@ function guardarCamposDaPagina(raiz){
     const mexido = ehMarca ? el.checked !== el.defaultChecked : el.value !== el.defaultValue;
     if(mexido) campos.set(k, ehMarca ? el.checked : el.value);
   });
+  // <details> sem id também voltam abertos: a chave é a posição + o título (summary), que
+  // não muda no redesenho; sem isto "detalhes", dicas e comentários fechavam a cada sincronização
   const abertos = new Set();
-  raiz.querySelectorAll("details[id]").forEach(d => { if(d.open) abertos.add(d.id); });
+  raiz.querySelectorAll("details").forEach((d, i) => { if(d.open) abertos.add(_chaveDoDetails(d, i)); });
   return { campos, abertos };
 }
 function devolverCamposDaPagina(raiz, guardado){
@@ -461,7 +463,12 @@ function devolverCamposDaPagina(raiz, guardado){
     if(el.type==="checkbox" || el.type==="radio") el.checked = guardado.campos.get(k);
     else el.value = guardado.campos.get(k);
   });
-  guardado.abertos.forEach(id => { const d = document.getElementById(id); if(d) d.open = true; });
+  raiz.querySelectorAll("details").forEach((d, i) => { if(guardado.abertos.has(_chaveDoDetails(d, i))) d.open = true; });
+}
+function _chaveDoDetails(d, i){
+  if(d.id) return "#" + d.id;
+  const s = d.querySelector(":scope > summary");
+  return "i" + i + "|" + (s ? s.textContent.trim().slice(0, 60) : "");
 }
 function desenharTela(conteudoHtml){
   const app = document.getElementById("app");
