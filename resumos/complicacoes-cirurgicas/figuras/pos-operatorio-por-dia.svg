@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">O que pensar em cada fase do pós-operatório</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">1º ao 2º dia</text>
+    <text x="127" y="92">Febre baixa: resposta</text>
+    <text x="127" y="110">inflamatória, só sintomáticos</text>
+    <text x="127" y="136">Atelectasia: opacidade com</text>
+    <text x="127" y="154">perda de volume do mesmo lado</text>
+    <text x="127" y="180">Choque nas primeiras 24 horas:</text>
+    <text x="127" y="198">hemorragia</text>
+    <text x="127" y="224">Hematoma cervical após</text>
+    <text x="127" y="242">tireoidectomia: abrir no leito</text>
+    <text x="127" y="268">Íleo adinâmico: esperado</text>
+    <text x="127" y="286">se o resto está normal</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">5º ao 7º dia</text>
+    <text x="360" y="92">Ferida com secreção purulenta,</text>
+    <text x="360" y="110">paciente estável: retirar pontos,</text>
+    <text x="360" y="128">drenar e curativo diário</text>
+    <text x="360" y="154">Febre e dor com íleo persistente:</text>
+    <text x="360" y="172">deiscência de anastomose</text>
+    <text x="360" y="190">ou do coto, abscesso</text>
+    <text x="360" y="216">Peritonite ou sepse:</text>
+    <text x="360" y="234">reoperar; coleção contida</text>
+    <text x="360" y="252">em paciente estável: drenar</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">6º ao 10º dia</text>
+    <text x="592" y="92">Saída de líquido em água de</text>
+    <text x="592" y="110">carne pela ferida, após esforço:</text>
+    <text x="592" y="128">deiscência da aponeurose</text>
+    <text x="592" y="154">Palpar, explorar e ressuturar</text>
+    <text x="592" y="172">a parede; evisceração: operar</text>
+    <text x="592" y="198">Febre e dor tardias, íleo,</text>
+    <text x="592" y="216">após apendicite perfurada:</text>
+    <text x="592" y="234">abscesso de cavidade</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">O dia do pós-operatório e o aspecto do paciente indicam a complicação mais provável</text>
+</svg>

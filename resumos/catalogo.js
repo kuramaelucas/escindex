@@ -65,4 +65,5 @@
   { id: "trauma-abdominal", titulo: "Trauma abdominal", area: "Cirurgia · Trauma", assunto: "ass-traumaabd" },
   { id: "hernias", titulo: "Hérnias da parede abdominal", area: "Cirurgia · Parede abdominal", assunto: "ass-hernias" },
   { id: "obstrucao-intestinal", titulo: "Obstrução intestinal e abdome agudo obstrutivo", area: "Cirurgia · Abdome agudo", assunto: "ass-obstrucao" },
+  { id: "complicacoes-cirurgicas", titulo: "Complicações cirúrgicas", area: "Cirurgia · Pós-operatório", assunto: "ass-complicacoescir" },
 ];

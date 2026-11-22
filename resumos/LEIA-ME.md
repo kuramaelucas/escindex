@@ -162,3 +162,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `trauma-abdominal` | `ass-traumaabd` | 86 | — |
 | `hernias` | `ass-hernias` | 85 | 1 (anulada) |
 | `obstrucao-intestinal` | `ass-obstrucao` | 75 | 1 (anulada) |
+| `complicacoes-cirurgicas` | `ass-complicacoescir` | 68 | 1 (anulada) |
