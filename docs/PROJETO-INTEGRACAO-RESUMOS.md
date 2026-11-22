@@ -6,7 +6,7 @@ Aberto em 22/11/2026. Liga os resumos adaptativos (`resumos/`, ver `docs/PROJETO
 
 | Perfil (já existe no cadastro) | Pergunta | Caminho |
 |---|---|---|
-| Graduando (não 6º ano) | nenhuma | **do zero**, sempre pelo calendário da turma (como hoje) |
+| Graduando (não 6º ano) | nenhuma | **do zero**, sempre pelo calendário da turma, com **leitura do resumo obrigatória** antes das questões de cada tema (seção 2-B) |
 | 6º ano | "Construir do zero" ou "Reparar falhas" | do zero = calendário do 6º ano; reparar = trilha por tema (seção 3) |
 | Formado(a) | "Construir do zero" ou "Reparar falhas" | do zero = **projeto de construção** (seção 2); reparar = continuar como está **ou** trilha por tema (seção 3) |
 
@@ -18,16 +18,24 @@ Unidade = **tema com resumo** (hoje 78 prontos; previsão ≈ 150). Cada tema é
 
 1. **Ler o resumo** (botão abre `abrirResumo`, 09e; marca "lido" ao chegar ao fim ou por botão).
 2. **Pós-leitura:** o conjunto planejado de 20 questões do tema (seção 4).
-3. Acerto < 75% → o resumo é reaberto já marcado pelos erros (o 09e faz isso) e o tema volta na revisão espaçada mais cedo.
+3. Acerto < 75% **no tema** → sugestão de **releitura opcional** do resumo, que abre já marcado pelos erros (o 09e faz isso); o tema volta na revisão espaçada mais cedo. A releitura nunca trava o avanço: o aluno pode seguir para o próximo tema.
 
 Ordem dos temas: a mesma fila da trilha de Formados (`dados/trilha-formados.js`, demanda × pré-requisitos), agrupando os assuntos pelo resumo que os cobre. Tema sem resumo ainda continua no cronograma atual de Formados (só questões) até o resumo existir — o projeto funciona desde já e melhora a cada resumo novo.
+
+## 2-B. Graduando antes do 6º ano: leitura obrigatória, mais de uma passagem
+
+O calendário da turma passa por um tema (pediatria, por exemplo) **mais de uma vez** ao longo da graduação. Regra:
+
+- **1ª passagem pelo tema:** leitura do resumo obrigatória; as questões do tema só abrem depois de marcar "li".
+- **Passagens seguintes:** a leitura vira opcional (cartão "Você leu este resumo em DD/MM; reler?"), e as questões continuam o conjunto planejado **de onde parou** — não repete as 20 da primeira passagem enquanto houver questões novas do tema; esgotado o conjunto, segue a prática extra (seção 4). Se o acerto da passagem anterior ficou < 75%, a releitura aparece em destaque, ainda opcional.
+- Guarda-se por tema: `leituras: [datas]`, posição no conjunto, acerto por passagem. O calendário diz qual tema é da semana; o resumo é o mesmo do Formado.
 
 ## 3. Reparar falhas
 
 Duas opções, a pessoa escolhe:
 
 - **Continuar como está** (cronograma atual: trilha por erro, revisão sugerida).
-- **Trilha por tema:** os mesmos 20 questões planejados de cada tema, sem leitura antes. Ao fechar o tema, acerto < 75% → cartão "Recomendamos ler o resumo de *X*" com botão que leva direto ao resumo (já marcado pelos erros). ≥ 75% → tema consolidado, entra só na revisão espaçada.
+- **Trilha por tema:** os mesmos 20 questões planejados de cada tema, sem leitura antes. Ao fechar o tema, acerto < 75% **no tema** → cartão "Recomendamos ler o resumo de *X*" com botão que leva direto ao resumo (já marcado pelos erros). ≥ 75% → tema consolidado, entra só na revisão espaçada.
 
 Os dois caminhos usam **o mesmo conjunto de 20**: quem construiu do zero e quem reparou falhas são medidos pela mesma régua, e o painel da turma compara.
 
@@ -40,13 +48,13 @@ Não é sorteio. Os resumos já ligam cada questão a um fragmento/seção (`npm
 3. Duas questões do mesmo fragmento só entram depois que todas as seções tiveram uma.
 4. Tema com menos de 20 candidatas usa todas.
 
-O conjunto é **gerado por ferramenta e congelado** em `dados/conjuntos-por-tema.js` (como `trilha-formados.js`): é auditável, igual para todos os alunos e muda só quando se roda a ferramenta de novo (resumo novo, questões novas). Proposta: `npm run conjuntos-por-tema` (`-- <tema>` mostra quais seções cada questão cobre e quais ficaram sem questão).
+O conjunto é **gerado por ferramenta e congelado** em `resumos/conjuntos-por-tema.js` (fica junto dos resumos, que a plataforma já carrega sob demanda, e não pesa na abertura): é auditável, igual para todos os alunos e muda só quando se roda a ferramenta de novo. `npm run conjuntos-por-tema` (visão geral) · `-- <tema>` (cada questão e o fragmento que cobre) · `-- --gravar` (escreve o arquivo; rode depois de resumo novo ou lote de questões). `npm run conferir` dá **erro** se o arquivo citar questão inexistente ou que deixou de servir, e **aviso** se ficou atrás do banco. Regra em `ferramentas/lib-conjuntos.mjs`. Na prática a unidade é o **fragmento** do resumo (cada um lista as questões daquele conceito).
 
 **Depois das 20:** o que passar disso no tema vem do banco geral (aleatório ponderado por erro, como a trilha 05d), e a tela diz que é "prática extra".
 
 ## 5. Meta e prazo (reta final em meados de setembro)
 
-A meta diária/semanal continua (`progressoDaMeta`, 05b). O cronograma só **calcula e sugere**:
+A meta diária/semanal continua (`progressoDaMeta`, 05b). O cronograma só **calcula e sugere**. A **data-alvo não é fixa**: o padrão recomendado é 15/09 do ano da prova (justificativa na tela: "reta final: depois disso, só revisão e simulados"), e o aluno pode mudá-la no Perfil.
 
 ```
 semanas  = semanas até a data-alvo (padrão 15/09 do ano da prova; ajustável)
@@ -70,23 +78,26 @@ Depois de 15/09 o cronograma entra em **modo revisão**: sem tema novo, só revi
 
 | Fase | Entrega | Onde |
 |---|---|---|
-| 0 | ferramenta `conjuntos-por-tema` + `dados/conjuntos-por-tema.js`; conferência (cobertura de seções, nenhum id inválido) no `npm run conferir` | `ferramentas/`, `dados/` (zona B) |
+| 0 ✓ | ferramenta `conjuntos-por-tema` + `resumos/conjuntos-por-tema.js`; conferência no `npm run conferir` | `ferramentas/`, `resumos/` |
 | 1 | pergunta do primeiro acesso + `u.modoDeInicio` (migração em `loadState`, sync) + cartão no Perfil | 07, 06c/10c, 02 |
-| 2 | ciclo do tema (ler → 20 → resultado → recomendação de resumo com botão) | arquivo novo `05g-ciclo-por-tema.js` (05c já está perto do limite de linhas) + 09e |
+| 2 | ciclo do tema (ler → 20 → resultado → releitura opcional com botão; passagens do graduando, seção 2-B) | arquivo novo `05g-ciclo-por-tema.js` (05c já está perto do limite de linhas) + 09e |
 | 3 | cálculo da meta sugerida e repartição por tema; data-alvo no Perfil; modo revisão após a data | 05b, 10b |
 | 4 | `simular-formado` passa a simular o "do zero" e o "reparar" (`--exigir`: 20 por tema sem repetir seção antes de cobrir todas; prazo cumprido com a meta sugerida) | `ferramentas/` |
 | 5 | Painel da Turma: temas concluídos, % ≥ 75%, quem está atrasado para setembro | 11d |
 
 Fases 0 e 1 são independentes e podem andar juntas; a 2 depende das duas.
 
-## 7. Decisões em aberto
+## 7. Decisões (22/11/2026)
 
-- Data-alvo padrão: 15/09 fixo ou por banca escolhida no cadastro?
-- 75% é por tema inteiro ou também por seção (recomendar só a seção do resumo onde errou)? Proposta: tema decide, e o resumo já abre marcado nas seções erradas.
-- Graduando de anos anteriores ao 6º: aparece o resumo como leitura opcional ligada ao calendário da turma?
+- Releitura do resumo depois da pós-leitura: **opcional**, sempre.
+- Data-alvo: **não fixa**; 15/09 recomendado, ajustável.
+- Corte de 75%: **por tema**.
+- Graduando antes do 6º ano: **leitura obrigatória** na 1ª passagem pelo tema; nas seguintes, opcional e continuando o conjunto (seção 2-B).
+- Recomendações da seção 4–6 aprovadas.
 
 ## 8. Andamento
 
 | Data | Feito |
 |---|---|
 | 22/11/2026 | projeto aberto: perfis e caminhos, conjunto planejado por cobertura de seções, cálculo da meta até setembro, fases |
+| 22/11/2026 | decisões da seção 7. **Fase 0 feita**: 77 temas, 1.540 questões; todos com 20; só `trabalho-de-parto` tem mais fragmentos (22) que 20 questões (21 cobertos). Ex. convulsão febril: 5/5 fragmentos nas 5 primeiras. Próximo: fase 1 (pergunta do primeiro acesso). |
