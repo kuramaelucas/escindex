@@ -158,3 +158,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `saude-do-trabalhador` | `ass-saudetrabalhador` | 79 (2 são reposições) | 4 (2 anuladas com reposição no resumo; 2 anuladas sem reposição) |
 | `imunizacao` | `ass-imunizacao` | 59 | 1 (anulada) |
 | `comunicacao-clinica` | `ass-comunicacaoclinica` | 54 | 1 (anulada) |
+| `atls` | `ass-atls` | 109 | 1 (anulada) |
