@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Hérnia irredutível e dolorosa (encarcerada): o que decide a conduta</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="190" y="40" width="340" height="52" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="62" font-weight="bold">Há sinais de estrangulamento?</text>
+    <text x="360" y="80">pele com hiperemia, febre, leucocitose, lactato</text>
+    <rect x="20" y="140" width="320" height="170" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="180" y="164" font-weight="bold">Sim, ou suspeita</text>
+    <text x="180" y="186">Cirurgia de urgência</text>
+    <text x="180" y="206">pela via inguinal (inguinotomia)</text>
+    <text x="180" y="230">Não reduzir: a alça pode estar</text>
+    <text x="180" y="248">isquêmica</text>
+    <text x="180" y="272">Avaliar a alça, ressecar se</text>
+    <text x="180" y="290">houver necrose, e reparar</text>
+    <rect x="380" y="140" width="320" height="170" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="540" y="164" font-weight="bold">Não, sem sofrimento da alça</text>
+    <text x="540" y="186">Redução gentil sob analgesia</text>
+    <text x="540" y="206">é admitida; se reduzir, operar</text>
+    <text x="540" y="224">na mesma internação</text>
+    <text x="540" y="248">Se não reduzir: cirurgia imediata</text>
+    <text x="540" y="272">Criança: reduzir e operar em</text>
+    <text x="540" y="290">24 a 48 horas</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="#1f2d3d">
+    <path d="M300 92 L190 136" fill="none"/><path d="M186 128 L180 140 L194 138 Z"/>
+    <path d="M420 92 L530 136" fill="none"/><path d="M534 128 L540 140 L526 138 Z"/>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Encarcerar é ficar irredutível; estrangular é isquemia da alça</text>
+  <text x="360" y="366" text-anchor="middle" font-size="12" fill="#1f2d3d">As provas reais costumam cobrir a cirurgia de urgência direta (ver Armadilhas)</text>
+</svg>

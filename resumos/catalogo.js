@@ -63,4 +63,5 @@
   { id: "comunicacao-clinica", titulo: "Comunicação clínica e relação médico-paciente", area: "Medicina Preventiva · Comunicação Clínica", assunto: "ass-comunicacaoclinica" },
   { id: "atls", titulo: "Atendimento inicial ao politraumatizado (ATLS)", area: "Cirurgia · Trauma", assunto: "ass-atls" },
   { id: "trauma-abdominal", titulo: "Trauma abdominal", area: "Cirurgia · Trauma", assunto: "ass-traumaabd" },
+  { id: "hernias", titulo: "Hérnias da parede abdominal", area: "Cirurgia · Parede abdominal", assunto: "ass-hernias" },
 ];

@@ -160,3 +160,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `comunicacao-clinica` | `ass-comunicacaoclinica` | 54 | 1 (anulada) |
 | `atls` | `ass-atls` | 109 | 1 (anulada) |
 | `trauma-abdominal` | `ass-traumaabd` | 86 | — |
+| `hernias` | `ass-hernias` | 85 | 1 (anulada) |
