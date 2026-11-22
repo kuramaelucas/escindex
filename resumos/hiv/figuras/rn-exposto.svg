@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Recém-nascido exposto ao HIV: o que fazer</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Na sala de parto</text>
+    <text x="127" y="94">Limpar sangue e secreções</text>
+    <text x="127" y="112">com compressas e dar banho</text>
+    <text x="127" y="130">com água corrente</text>
+    <text x="127" y="156">Zidovudina oral nas primeiras</text>
+    <text x="127" y="174">2 horas (4 mg/kg a cada 12 h)</text>
+    <text x="127" y="200">Fórmula infantil; não</text>
+    <text x="127" y="218">amamentar</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Risco alto</text>
+    <text x="360" y="94">Mãe sem terapia na gestação</text>
+    <text x="360" y="112">ou com carga viral alta</text>
+    <text x="360" y="138">Zidovudina mais nevirapina</text>
+    <text x="360" y="156">em 3 doses (nascimento,</text>
+    <text x="360" y="174">48 horas e 96 horas depois)</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Seguimento</text>
+    <text x="592" y="94">Sulfametoxazol-trimetoprima</text>
+    <text x="592" y="112">a partir de 4 a 6 semanas</text>
+    <text x="592" y="136">Carga viral, não o teste</text>
+    <text x="592" y="154">rápido, abaixo de 18 meses</text>
+    <text x="592" y="178">Duas cargas virais</text>
+    <text x="592" y="196">detectáveis: infecção</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Anticorpo materno positiviza o teste rápido do lactente sem significar infecção</text>
+</svg>

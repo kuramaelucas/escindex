@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">O CD4 diz qual oportunista pensar e qual profilaxia dar</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">CD4 acima de 200</text>
+    <text x="127" y="94">Pneumonia bacteriana comum,</text>
+    <text x="127" y="112">tuberculose</text>
+    <text x="127" y="138">Sem profilaxia primária</text>
+    <text x="127" y="156">das oportunistas</text>
+    <text x="127" y="182">Vacina pneumocócica para</text>
+    <text x="127" y="200">todos os que vivem com HIV</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">CD4 abaixo de 200</text>
+    <text x="360" y="94">Pneumocistose: tosse seca,</text>
+    <text x="360" y="112">hipoxemia, ausculta normal,</text>
+    <text x="360" y="130">LDH alta, vidro fosco</text>
+    <text x="360" y="156">Candidíase oral e esofágica,</text>
+    <text x="360" y="174">LEMP</text>
+    <text x="360" y="200" font-weight="bold">Profilaxia primária:</text>
+    <text x="360" y="218">sulfametoxazol-trimetoprima</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">CD4 abaixo de 100</text>
+    <text x="592" y="94">Neurotoxoplasmose: lesões</text>
+    <text x="592" y="112">com realce em anel e déficit</text>
+    <text x="592" y="130">focal; criptococose</text>
+    <text x="592" y="156">Abaixo de 50: CMV</text>
+    <text x="592" y="174">e Mycobacterium avium</text>
+    <text x="592" y="200" font-weight="bold">Isoniazida se contato</text>
+    <text x="592" y="218">ou prova tuberculínica</text>
+    <text x="592" y="236">de 5 mm ou mais</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">A terapia antirretroviral vale para todos, qualquer que seja o CD4</text>
+</svg>

@@ -72,4 +72,5 @@
   { id: "tce", titulo: "Traumatismo cranioencefálico", area: "Cirurgia · Neurocirurgia", assunto: "ass-neurocir-tce" },
   { id: "apendicite-aguda", titulo: "Apendicite aguda", area: "Cirurgia · Abdome agudo", assunto: "ass-apendicite" },
   { id: "trauma-de-torax", titulo: "Trauma de tórax", area: "Cirurgia · Trauma", assunto: "ass-traumatorax" },
+  { id: "hiv", titulo: "HIV/aids", area: "Clínica Médica · Infectologia", assunto: "ass-hiv" },
 ];
