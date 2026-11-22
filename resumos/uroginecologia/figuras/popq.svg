@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="250" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">POP-Q: o estádio pelo ponto mais baixo (hímen = 0)</text>
+<line x1="40" y1="130" x2="690" y2="130" stroke="#b5533c" stroke-width="2.5"/>
+<text x="696" y="134" fill="#b5533c" font-weight="bold">hímen</text>
+<g text-anchor="middle" fill="#222">
+<rect x="70" y="55" width="140" height="55" rx="8" fill="#eef6ee" stroke="#2e7d32"/><text x="140" y="78" font-weight="bold">Estádio I</text><text x="140" y="98">mais de 1 cm acima</text>
+<rect x="225" y="100" width="150" height="60" rx="8" fill="#fdf6e3" stroke="#a87b00"/><text x="300" y="123" font-weight="bold">Estádio II</text><text x="300" y="143">de −1 a +1 cm</text>
+<rect x="390" y="150" width="150" height="60" rx="8" fill="#fdf1ec" stroke="#b5533c"/><text x="465" y="173" font-weight="bold">Estádio III</text><text x="465" y="193">mais de 1 cm abaixo</text>
+<rect x="545" y="150" width="140" height="80" rx="8" fill="#f5eef6" stroke="#7a4a8a"/><text x="615" y="173" font-weight="bold">Estádio IV</text><text x="615" y="193">eversão completa</text><text x="615" y="211">da vagina</text>
+</g></svg>

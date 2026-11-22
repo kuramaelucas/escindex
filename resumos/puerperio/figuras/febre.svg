@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 230" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="230" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Febre no puerpério: onde procurar</text>
+<g stroke-width="1.5">
+<rect x="15" y="45" width="235" height="170" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="262" y="45" width="235" height="170" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="509" y="45" width="235" height="170" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="132" y="72" font-weight="bold">Útero (endometrite)</text>
+<text x="132" y="100">útero mole, doloroso,</text><text x="132" y="118">subinvoluído</text><text x="132" y="136">lóquios fétidos</text>
+<text x="132" y="170">clindamicina +</text><text x="132" y="188">gentamicina EV</text>
+<text x="379" y="72" font-weight="bold">Mama (mastite)</text>
+<text x="379" y="100">mama vermelha, dolorosa</text><text x="379" y="118">fissura como porta</text><text x="379" y="136">S. aureus</text>
+<text x="379" y="170">esvaziar e manter a</text><text x="379" y="188">amamentação; abscesso: drenar</text>
+<text x="626" y="72" font-weight="bold">Perna e pulmão</text>
+<text x="626" y="100">panturrilha edemaciada</text><text x="626" y="118">e dolorosa, dispneia</text>
+<text x="626" y="170">trombose venosa</text><text x="626" y="188">e embolia pulmonar</text>
+</g></svg>

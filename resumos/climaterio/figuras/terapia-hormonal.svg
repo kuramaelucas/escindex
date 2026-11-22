@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="300" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Terapia hormonal: três perguntas</text>
+<g stroke-width="1.5">
+<rect x="15" y="45" width="235" height="235" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="262" y="45" width="235" height="235" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="509" y="45" width="235" height="235" rx="8" fill="#eef6ee" stroke="#2e7d32"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="132" y="72" font-weight="bold">1. Pode?</text>
+<text x="132" y="102">antes de 60 anos ou</text><text x="132" y="120">até 10 anos da menopausa</text>
+<text x="132" y="155">contraindicam:</text><text x="132" y="175">câncer de mama ou endométrio,</text><text x="132" y="193">sangramento sem causa,</text><text x="132" y="211">trombose prévia,</text><text x="132" y="229">doença hepática grave</text>
+<text x="379" y="72" font-weight="bold">2. Tem útero?</text>
+<text x="379" y="110">sim: estrogênio</text><text x="379" y="128">+ progestagênio</text><text x="379" y="146">(protege o endométrio)</text>
+<text x="379" y="190">não: estrogênio isolado</text>
+<text x="626" y="72" font-weight="bold">3. Qual via?</text>
+<text x="626" y="110">transdérmica se obesidade,</text><text x="626" y="128">hipertensão, tabagismo,</text><text x="626" y="146">triglicérides altos, diabetes</text><text x="626" y="190">não passa pelo fígado:</text><text x="626" y="208">menos trombose</text>
+</g></svg>

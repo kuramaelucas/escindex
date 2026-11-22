@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="330" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Ciclo de 28 dias: hormônios, ovário e endométrio</text>
+<line x1="60" y1="200" x2="720" y2="200" stroke="#666"/>
+<line x1="390" y1="40" x2="390" y2="200" stroke="#999" stroke-dasharray="4 4"/>
+<text x="390" y="218" text-anchor="middle" fill="#555">dia 14</text><text x="60" y="218" fill="#555">dia 1</text><text x="700" y="218" fill="#555">dia 28</text>
+<polyline points="60,170 200,160 330,110 380,70 410,160 560,145 720,175" fill="none" stroke="#4a6fa5" stroke-width="2.5"/>
+<polyline points="60,185 340,180 370,140 390,50 410,140 440,185 720,190" fill="none" stroke="#b5533c" stroke-width="2.5"/>
+<polyline points="60,195 380,194 450,150 550,110 650,150 720,194" fill="none" stroke="#2e7d32" stroke-width="2.5"/>
+<text x="250" y="150" fill="#4a6fa5" font-weight="bold">estradiol</text>
+<text x="398" y="58" fill="#b5533c" font-weight="bold">pico de LH</text>
+<text x="560" y="102" fill="#2e7d32" font-weight="bold">progesterona</text>
+<g text-anchor="middle" fill="#222">
+<rect x="60" y="235" width="325" height="80" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<text x="222" y="256" font-weight="bold">Fase folicular · proliferativa</text>
+<text x="222" y="276">FSH: seleção e dominância</text><text x="222" y="296">estradiol faz o endométrio crescer</text>
+<rect x="395" y="235" width="325" height="80" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<text x="557" y="256" font-weight="bold">Fase lútea · secretora</text>
+<text x="557" y="276">corpo lúteo produz progesterona</text><text x="557" y="296">endométrio para de proliferar e secreta</text>
+</g>
+<text x="440" y="88" fill="#555" font-size="12">ovulação 10–12 h depois</text>
+</svg>

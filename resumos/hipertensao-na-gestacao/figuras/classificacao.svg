@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="290" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Hipertensão na gestação: quando apareceu e o que veio junto</text>
+<line x1="40" y1="60" x2="720" y2="60" stroke="#666" stroke-width="2"/>
+<line x1="280" y1="50" x2="280" y2="70" stroke="#b5533c" stroke-width="3"/>
+<text x="280" y="44" text-anchor="middle" fill="#b5533c" font-weight="bold">20 semanas</text>
+<text x="40" y="82" fill="#555">concepção</text><text x="720" y="82" text-anchor="end" fill="#555">parto</text>
+<g stroke-width="1.5">
+<rect x="20" y="100" width="240" height="80" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="290" y="100" width="215" height="80" rx="8" fill="#fdf6e3" stroke="#a87b00"/>
+<rect x="515" y="100" width="225" height="80" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="20" y="195" width="720" height="75" rx="8" fill="#f5eef6" stroke="#7a4a8a"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="140" y="125" font-weight="bold">Hipertensão crônica</text><text x="140" y="147">antes de 20 semanas</text><text x="140" y="167">(ou antes da gestação)</text>
+<text x="397" y="125" font-weight="bold">Gestacional</text><text x="397" y="147">após 20 semanas, sem</text><text x="397" y="167">proteinúria nem lesão</text>
+<text x="627" y="125" font-weight="bold">Pré-eclâmpsia</text><text x="627" y="147">após 20 sem + proteinúria</text><text x="627" y="167">ou lesão de órgão</text>
+<text x="380" y="220" font-weight="bold">Pré-eclâmpsia sobreposta: crônica que ganha proteinúria ou lesão de órgão</text>
+<text x="380" y="248">Gravidade: ≥ 160/110, cefaleia ou escotomas, epigastralgia, plaquetas &lt; 100 mil, transaminases 2×, creatinina &gt; 1,1</text>
+</g></svg>

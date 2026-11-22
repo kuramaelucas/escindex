@@ -9,7 +9,7 @@
   assunto: "ass-has",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "sbc-has", texto: "Diretriz Brasileira de Hipertensão Arterial 2025 (SBC, SBN, SBH)", lidoEm: null },
+    { id: "sbc-has", texto: "Diretriz Brasileira de Hipertensão Arterial 2025 (SBC, SBN, SBH)", lidoEm: "2026-11-17" },
     { id: "esc-has", texto: "ESC — Guidelines for the management of elevated blood pressure and hypertension, 2024", lidoEm: null },
     { id: "aap-pa-ped", texto: "AAP — Clinical Practice Guideline for Screening and Management of High Blood Pressure in Children and Adolescents (Flynn et al., 2017)", lidoEm: null },
     { id: "sbd", texto: "Sociedade Brasileira de Diabetes — Diretriz Oficial (hipertensão no diabetes)", lidoEm: null },
@@ -28,7 +28,7 @@
 
 Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiência cardíaca do adulto**: são o mesmo eixo de doença vascular e renal. A pressão da criança também aparece em **Puericultura**; a versão completa é a deste resumo.`,
       fragmentos: [
-        { id: "dia-medida", titulo: "Técnica da medida e rastreio", conferir: true, diretrizes: ["sbc-has"],
+        { id: "dia-medida", titulo: "Técnica da medida e rastreio", conferir: false, diretrizes: ["sbc-has"],
           questoes: ["q-usp2026-017","q-amrigs2025-004","q-unesp2022-011","q-famema2023-011","q-amrigs2024-001","q-einstein2024-069"],
           texto: `- PA alta na triagem do obeso: primeiro **checar o tamanho do manguito**. {q-usp2026-017}
 - Manguito pequeno **superestima**; nas artérias distais, a sistólica sobe e a diastólica cai. {q-amrigs2025-004}
@@ -36,7 +36,7 @@ Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiên
 - Todo adulto sem registro recente: **medir a PA** em qualquer ida à UBS. {q-famema2023-011}
 - PA normal: medir **anualmente**; pré-eclâmpsia prévia é **fator de risco** de hipertensão. {q-amrigs2024-001}
 - Diagnóstico: confirmar com **medidas repetidas** ou fora do consultório, não por sintoma. {q-einstein2024-069}` },
-        { id: "dia-mapa", titulo: "Diagnóstico, MAPA, avental branco e mascarada", conferir: true, diretrizes: ["sbc-has"],
+        { id: "dia-mapa", titulo: "Diagnóstico, MAPA, avental branco e mascarada", conferir: false, diretrizes: ["sbc-has"],
           casos: ["q-adap24-020"],
           questoes: ["q-card-13","q-card-14","q-unifesp2024-029","q-usprp2025-074","q-adap24-020","q-unesp2024-056","q-tp20251-002","q-fmabc2026-006-ia","q-famema2021-028","q-uspsp1-103","q-uspsp3-017","q-usp2022-025","q-famerp2024-070"],
           prosa: `[[A MAPA também mostra o descenso noturno, que normalmente é de 10 a 20%; a ausência dele indica mais risco.|q-unifesp2024-029]] **A diretriz de 2025 mudou a nomenclatura:** valores de 120–139/80–89 passam a ser **pré-hipertensão**, e o tratamento pode começar com ≥ 130/80 em quem tem risco alto. Gabaritos anteriores seguem a diretriz de 2020.`,
@@ -75,12 +75,12 @@ Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiên
 
 [[Cada classe tem efeito adverso previsível pelo mecanismo: IECA acumula bradicinina (tosse) e, como o BRA, sobe o potássio; o anlodipino dilata a arteríola e dá edema maleolar; o tiazídico baixa potássio e sobe ácido úrico e glicose; o betabloqueador não seletivo causa broncoespasmo.|q-adap21-006,q-amrigs2021-007,q-amrigs2024-085,q-tp20212-014,q-fmabc2026-011]]`,
       fragmentos: [
-        { id: "tra-estilo", titulo: "Mudança de estilo de vida", conferir: true, diretrizes: ["sbc-has"],
+        { id: "tra-estilo", titulo: "Mudança de estilo de vida", conferir: false, diretrizes: ["sbc-has"],
           questoes: ["q-einstein2021-042","q-unesp2025-058","q-famerp2023-077","q-sessp2022-097-ia"],
           texto: `- **Dieta DASH**: reduz cerca de 6,7/3,5 mmHg. {q-einstein2021-042}
 - Trocar cloreto de sódio por **cloreto de potássio** reduz PA e risco cardiovascular. {q-unesp2025-058,q-famerp2023-077}
 - **Meditação e controle da respiração** reduzem a PAS. {q-sessp2022-097-ia}` },
-        { id: "tra-classes", titulo: "Classes, início e escolha", conferir: true, diretrizes: ["sbc-has"],
+        { id: "tra-classes", titulo: "Classes, início e escolha", conferir: false, diretrizes: ["sbc-has"],
           questoes: ["q-card-15","q-adap23-005","q-tp20212-029","q-fmabc2022-016","q-iamspe2021-002","q-scmsp2023-098","q-einstein2027-066","q-amrigs2020-001","q-amrigs2021-017","q-iamspe2025-007","q-iamspe2026-018","q-usprp2022-014","q-sirio2025-009","q-usprp2023-046","q-einstein2026-006","q-sessp2023-061","q-unicamp2022-002"],
           texto: `- Primeira linha: **tiazídico, BCC e IECA/BRA**. {q-card-15}
 - Estágio 2 ou risco alto: **duas classes em comprimido único** (BRA + anlodipino ou clortalidona). {q-adap23-005,q-tp20212-029,q-iamspe2021-002}
@@ -95,7 +95,7 @@ Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiên
 - DM com albuminúria: **IECA + BCC**. {q-einstein2026-006}
 - Atenolol no diabético obeso: trocar por **enalapril**. {q-sessp2023-061}
 - Idosa com ICFEp: **IECA + tiazídico**. {q-unicamp2022-002}` },
-        { id: "tra-adversos", titulo: "Efeitos adversos e ajustes", conferir: true, diretrizes: ["sbc-has"],
+        { id: "tra-adversos", titulo: "Efeitos adversos e ajustes", conferir: false, diretrizes: ["sbc-has"],
           questoes: ["q-adap21-006","q-amrigs2021-007","q-amrigs2024-085","q-fmabc2025-095","q-unesp2024-060","q-tp20212-014","q-fmabc2026-011","q-famerp2026-054","q-famerp2025-008","q-sessp2024-018","q-fmabc2021-037","q-unicampdis2023-010","q-famema2021-076"],
           texto: `- Tosse com enalapril: **trocar por BRA**. {q-adap21-006,q-fmabc2026-011}
 - Ramipril → **hipercalemia**; anlodipino → **edema**; atenolol → **broncoespasmo**; tiazídico → distúrbio metabólico. {q-amrigs2021-007}
@@ -113,14 +113,14 @@ Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiên
 
 [[O hiperaldosteronismo primário é a causa endócrina mais comum: a aldosterona retém sódio e perde potássio, e o rastreio é a relação aldosterona/renina; a estenose de artéria renal (aterosclerótica no idoso, displasia fibromuscular na mulher jovem) piora a função renal com IECA; a apneia do sono tira o descenso noturno.|q-card-17,q-unifesp2023-005,q-tp20261-094,q-adap21-007,q-einstein2024-003,q-usprp2021-007]]`,
       fragmentos: [
-        { id: "res-resistente", titulo: "Hipertensão resistente", conferir: true, diretrizes: ["sbc-has"],
+        { id: "res-resistente", titulo: "Hipertensão resistente", conferir: false, diretrizes: ["sbc-has"],
           figuras: [{ arquivo: "figuras/resistente.svg", legenda: "Esquema autoral: os passos diante da pressão que não controla com três drogas." }],
           questoes: ["q-unifesp2023-012","q-uspsp3-086","q-usp2024-057","q-famema2022-038","q-famerp2024-068","q-famerp2022-059","q-usprp2024-007","q-sirio2025-014","q-unesp2022-053","q-fmabc2025-003","q-einstein2025-007"],
           prosa: `A dose inicial de espironolactona é 25 mg; um gabarito usa 50 mg. Se a espironolactona não basta (hipertensão refratária), entram betabloqueador, clonidina ou vasodilatador, e investigam-se causas secundárias.`,
           texto: `- Três classes em dose plena sem controle: **associar espironolactona 25 mg**. {q-unifesp2023-012,q-uspsp3-086,q-usp2024-057,q-famema2022-038,q-famerp2022-059,q-usprp2024-007,q-sirio2025-014}
 - Piora após anos de controle, com quatro drogas: **resistente, investigar secundária**. {q-unesp2022-053,q-fmabc2025-003}
 - Refratária com cinco drogas: investigar secundária e **associar clonidina**. {q-einstein2025-007}` },
-        { id: "res-secundaria", titulo: "Causas secundárias", conferir: true, diretrizes: ["sbc-has"],
+        { id: "res-secundaria", titulo: "Causas secundárias", conferir: false, diretrizes: ["sbc-has"],
           casos: ["q-usprp2021-007"],
           questoes: ["q-card-17","q-scmsp2023-006","q-tp20231-030","q-usp2023-052","q-unifesp2023-005","q-usprp2021-006","q-tp20261-094","q-adap21-007","q-einstein2024-003","q-usprp2021-007","q-adap23-012"],
           texto: `- Indícios: **estágio 3 antes dos 30 ou após os 55**, resistente. {q-scmsp2023-006,q-tp20231-030}
@@ -138,12 +138,12 @@ Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiên
 
 [[A hipertensão maligna lesa as arteríolas por necrose fibrinoide: edema de papila, hemorragias e exsudatos na retina, lesão renal e, no cérebro, encefalopatia com cefaleia, vômitos e confusão.|q-tp20202-022,q-unesp2025-047,q-unicampdis2024-072]]`,
       fragmentos: [
-        { id: "cri-conduta", titulo: "Emergência × urgência e drogas", conferir: true, diretrizes: ["sbc-has"],
+        { id: "cri-conduta", titulo: "Emergência × urgência e drogas", conferir: false, diretrizes: ["sbc-has"],
           questoes: ["q-unesp2023-041","q-sirio2021-005","q-card-16","q-iamspe2026-096","q-sirio2024-051","q-sessp2025-016","q-adap22-090","q-usprp2026-047","q-unifesp2022-090","q-tp20202-022","q-unesp2025-047","q-unicampdis2024-072"],
           prosa: `A diretriz de 2025 passou a evitar o termo "urgência": PA muito alta sem lesão aguda é **hipertensão grave não controlada**, tratada com oral e seguimento próximo. A cocaína pede **benzodiazepínico** primeiro, porque a hipertensão vem da descarga simpática.`,
           texto: `- Emergências: **IVE aguda, hemorragia cerebral, feocromocitoma, drogas, eclâmpsia**. {q-unesp2023-041}
 - Sem lesão aguda: **medicação oral**, redução gradual, seguimento. {q-sirio2021-005,q-card-16}
-- Cefaleia com PA alta sem lesão: **urgência, captopril oral** (pico em 60–90 min). {q-iamspe2026-096}
+- Cefaleia com PA alta sem lesão (a antiga "urgência"; hoje **hipertensão grave não controlada**): **oral** (captopril, pico em 60–90 min) e reavaliar em **1 a 7 dias**. {q-iamspe2026-096}
 - Emergência: **nitroprussiato IV**, queda de **até 25%** inicialmente. {q-sirio2024-051,q-sessp2025-016,q-usprp2026-047}
 - Edema agudo de pulmão hipertensivo: **nitroglicerina IV + furosemida**, O2 ou VNI. {q-adap22-090}
 - Cocaína: **diazepam**. {q-unifesp2022-090}

@@ -10,7 +10,7 @@
   fontes: [
     { id: "sbp-ivas", texto: "Sociedade Brasileira de Pediatria — documentos científicos sobre otite média aguda, faringotonsilite e rinossinusite", lidoEm: null },
     { id: "aap-oma", texto: "American Academy of Pediatrics — The Diagnosis and Management of Acute Otitis Media (2013)", lidoEm: null },
-    { id: "ms-influenza", texto: "Ministério da Saúde — Guia de manejo e tratamento de influenza", lidoEm: null },
+    { id: "ms-influenza", texto: "Ministério da Saúde — Guia de manejo e tratamento de influenza 2023 (gov.br)", lidoEm: "2026-11-19" },
   ],
   foraDoEscopo: [
     { motivo: "Desatualizada, sem reposição", questoes: ["q-016"] },
@@ -33,7 +33,7 @@ Veja também: **Doenças exantemáticas** (mononucleose e escarlatina) e **Bronq
 - **Ambroxol**: só faz sentido para reduzir a viscosidade do muco; não trata a infecção. {q-iamspe2025-062}
 - Febre sem foco em criança vacinada e bem: **antitérmico** e sinais de alerta. {q-amrigs2023-080}
 - Infecções de repetição ao entrar na escola: **exposição**, não imunodeficiência. {q-usprp2021-009}` },
-        { id: "vir-influenza", titulo: "Influenza", conferir: true, diretrizes: ["ms-influenza"],
+        { id: "vir-influenza", titulo: "Influenza", conferir: false, diretrizes: ["ms-influenza"],
           questoes: ["q-tp20232-040","q-tp20241-044","q-tp20261-021","q-tp20251-041","q-fmabc2026-049"],
           texto: `- Síndrome gripal em **menor de 5 anos**: **oseltamivir**, sintomáticos, afastar da escola e sinais de alerta. {q-tp20232-040,q-tp20241-044,q-tp20261-021}
 - Dose cobrada: **30 mg de 12/12 h por 5 dias** (faixa de peso da criança pequena). {q-tp20251-041}` },

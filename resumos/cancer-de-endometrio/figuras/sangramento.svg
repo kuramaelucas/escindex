@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="260" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Sangramento pós-menopausa: ultrassom primeiro</text>
+<g stroke-width="1.5">
+<rect x="270" y="40" width="220" height="40" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="15" y="110" width="235" height="130" rx="8" fill="#eef6ee" stroke="#2e7d32"/>
+<rect x="262" y="110" width="235" height="130" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="509" y="110" width="235" height="130" rx="8" fill="#fdf6e3" stroke="#a87b00"/></g>
+<g stroke="#666" stroke-width="1.5" fill="none"><path d="M380 80 V95 H132 V108"/><path d="M380 95 V108"/><path d="M380 95 H626 V108"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="380" y="65" font-weight="bold">Ultrassom transvaginal</text>
+<text x="132" y="135" font-weight="bold">Eco ≤ 4 mm, homogêneo</text><text x="132" y="160">primeiro episódio:</text><text x="132" y="178">observar</text><text x="132" y="208">persiste: biópsia</text>
+<text x="379" y="135" font-weight="bold">Eco &gt; 4 mm ou heterogêneo</text><text x="379" y="160">biópsia ambulatorial</text><text x="379" y="178">ou histeroscopia</text><text x="379" y="196">com biópsia dirigida</text>
+<text x="626" y="135" font-weight="bold">Tamoxifeno</text><text x="626" y="160">eco espesso por edema</text><text x="626" y="178">do estroma</text><text x="626" y="208">investigar só se sangra</text>
+</g></svg>

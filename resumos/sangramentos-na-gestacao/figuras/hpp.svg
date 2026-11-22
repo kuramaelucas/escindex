@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" font-family="Arial, sans-serif" font-size="13">
+<rect width="760" height="290" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#222">Hemorragia pós-parto (OMS 2025)</text>
+<g stroke-width="1.5">
+<rect x="15" y="45" width="230" height="225" rx="8" fill="#fdf1ec" stroke="#b5533c"/>
+<rect x="265" y="45" width="230" height="225" rx="8" fill="#f3f6fa" stroke="#4a6fa5"/>
+<rect x="515" y="45" width="230" height="225" rx="8" fill="#fdf6e3" stroke="#a87b00"/></g>
+<g fill="#666"><path d="M248 150 l12 7 -12 7z"/><path d="M498 150 l12 7 -12 7z"/></g>
+<g text-anchor="middle" fill="#222">
+<text x="130" y="72" font-weight="bold">Acionar</text>
+<text x="130" y="102">≥ 300 mL + instabilidade</text><text x="130" y="122">(pulso &gt; 100, índice de choque</text><text x="130" y="140">&gt; 1, sistólica &lt; 100)</text>
+<text x="130" y="172">ou ≥ 500 mL</text><text x="130" y="205">vigiar as 2 primeiras horas</text>
+<text x="380" y="72" font-weight="bold">Pacote inicial</text>
+<text x="380" y="102">massagem uterina</text><text x="380" y="122">ocitocina venosa</text><text x="380" y="142">tranexâmico 1 g (até 3 h)</text><text x="380" y="162">cristaloide</text><text x="380" y="182">examinar o canal de parto</text><text x="380" y="202">pedir ajuda</text>
+<text x="630" y="72" font-weight="bold">Sem resposta</text>
+<text x="630" y="102">misoprostol 800 µg</text><text x="630" y="122">ou ergometrina</text><text x="630" y="152">balão intrauterino</text><text x="630" y="182">cirurgia: suturas</text><text x="630" y="200">compressivas, histerectomia</text><text x="630" y="230">transfusão maciça no choque</text>
+</g></svg>

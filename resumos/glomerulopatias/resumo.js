@@ -9,7 +9,7 @@
   assunto: "ass-nefro-glomerulopatias",
   criadoEm: "2026-11-18",
   fontes: [
-    { id: "kdigo-glomerulo", texto: "KDIGO 2021 Clinical Practice Guideline for the Management of Glomerular Diseases (e atualizações de nefropatia por IgA e membranosa, 2025)", lidoEm: null },
+    { id: "kdigo-glomerulo", texto: "KDIGO 2021 Clinical Practice Guideline for the Management of Glomerular Diseases (e atualizações de nefropatia por IgA e membranosa, 2025)", lidoEm: "2026-11-19" },
     { id: "ipna-nefrotica", texto: "IPNA — Clinical practice recommendations for the diagnosis and management of children with steroid-sensitive nephrotic syndrome (2022)", lidoEm: null },
     { id: "sbp-nefrotica", texto: "SBP — Síndrome nefrótica e glomerulonefrite difusa aguda na criança (documentos científicos)", lidoEm: null },
   ],
@@ -66,7 +66,7 @@ Veja também: **Hipertensão arterial** e **Diabetes mellitus** (proteinúria e 
 - Prognóstico: **resposta ao corticoide e recidivas**. {q-simepm89-099}
 - Corticodependente que melhorou: **alta e seguimento**. {q-usp2022-055}
 - Achado atípico nos exames: **investigar secundária**. {q-usp2023-087}` },
-        { id: "nef-adulto", titulo: "Adulto: membranosa, GESF e causas secundárias", conferir: true, diretrizes: ["kdigo-glomerulo"],
+        { id: "nef-adulto", titulo: "Adulto: membranosa, GESF e causas secundárias", conferir: false, diretrizes: ["kdigo-glomerulo"],
           casos: ["q-tp20261-017"],
           questoes: ["q-adap22-093","q-fmabc2024-010","q-famerp2024-072","q-sirio2023-011","q-sirio2022-010","q-tp20251-032","q-tp20261-017","q-usprp2023-074","q-iamspe2022-012","q-amrigs2020-012","q-tp20241-034","q-usprp2023-075"],
           texto: `- **Anti-PLA2R** alto: membranosa primária, muitas vezes sem biópsia. {q-adap22-093}
@@ -98,11 +98,11 @@ Veja também: **Hipertensão arterial** e **Diabetes mellitus** (proteinúria e 
 - Hipercalemia e congestão: **gluconato de cálcio, furosemida, restrição hídrica**. {q-usp2022-047}
 - Imunofluorescência: **granular, IgG e C3** ("céu estrelado"). {q-famema2021-040}
 - Hematúria microscópica **até 18 meses** sem mau prognóstico. {q-einstein2026-041}` },
-        { id: "nefr-iga", titulo: "Nefropatia por IgA", conferir: true, diretrizes: ["kdigo-glomerulo"],
+        { id: "nefr-iga", titulo: "Nefropatia por IgA", conferir: false, diretrizes: ["kdigo-glomerulo"],
           questoes: ["q-adap21-117","q-unifesp2022-093","q-usprp2024-070","q-simepm89-057","q-fmabc2023-016"],
           texto: `- Hematúria com complemento normal após IVAS: **IgA** (depósitos mesangiais). {q-adap21-117,q-unifesp2022-093}
 - Episódios recorrentes de hematúria: **proteinúria** reforça. {q-usprp2024-070}
-- Proteinúria **≥ 300 mg/dia** persistente: tratar (pior prognóstico). {q-simepm89-057}
+- Proteinúria persistente pesa no prognóstico: a KDIGO 2021 dá **IECA/BRA na dose máxima tolerada acima de 0,5 g/dia** e considera alto risco acima de **0,75–1 g/dia** (as provas citam 300 mg). {q-simepm89-057}
 - **IECA/BRA** na IgA com proteinúria. {q-fmabc2023-016}` },
       ],
     },
@@ -110,7 +110,7 @@ Veja também: **Hipertensão arterial** e **Diabetes mellitus** (proteinúria e 
       id: "gnrp", titulo: "Glomerulonefrite rapidamente progressiva",
       introducao: `[[A glomerulonefrite rapidamente progressiva perde a função em dias a semanas e mostra crescentes em mais de metade dos glomérulos; é urgência de biópsia e imunossupressão.|q-tp20212-032,q-usprp2021-117]] [[Quando o pulmão sangra junto (síndrome pulmão-rim), pensa-se em anti-membrana basal (Goodpasture), vasculites ANCA e lúpus — não em membranosa.|q-udisc20262-029]] A síndrome hemolítica-urêmica, após diarreia com sangue, também derruba a função renal, por microangiopatia.`,
       fragmentos: [
-        { id: "gnrp-diag", titulo: "Crescentes e pulmão-rim", conferir: true, diretrizes: ["kdigo-glomerulo"],
+        { id: "gnrp-diag", titulo: "Crescentes e pulmão-rim", conferir: false, diretrizes: ["kdigo-glomerulo"],
           questoes: ["q-tp20212-032","q-usprp2021-117","q-udisc20262-029","q-sessp2026-058"],
           texto: `- Crescentes em 60%: **GNRP**. {q-tp20212-032}
 - Oligúria rápida com hematúria em jovem: **biópsia renal**. {q-usprp2021-117}

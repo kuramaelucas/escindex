@@ -133,3 +133,18 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `infeccoes-de-pele` | `ass-derm-infeccoes` | 65 | — |
 | `neoplasias-hematologicas` | `ass-hemato-neoplasias` | 60 | 1 (anulada sem reposição) |
 | `intoxicacoes` | `ass-emerg-intoxicacoes` | 58 | — |
+| `trabalho-de-parto` | `ass-trabalhoparto` | 188 | 5 (anuladas sem reposição) |
+| `pre-natal` | `ass-prenatal` | 157 | 5 (3 anuladas, 2 com reposição no resumo; 2 de infecção puerperal, que vão para `puerperio`) |
+| `ciclo-menstrual` | `ass-ciclomenstrual` | 110 | 2 (anuladas sem reposição) |
+| `contracepcao` | `ass-contracepcao` | 107 | 4 (3 anuladas e 1 desatualizada; 2 com reposição no resumo) |
+| `cancer-de-colo` | `ass-cacolo` | 106 | 6 (2 anuladas; 4 desatualizadas pela Portaria 13/2025, com reposição no resumo) |
+| `cancer-de-mama` | `ass-camama` | 92 | 4 (2 anuladas e 1 desatualizada sem reposição; 1 sobre endométrio, que vai para `cancer-de-endometrio`) |
+| `hipertensao-na-gestacao` | `ass-dheg` | 82 | 3 (2 anuladas com reposição no resumo; 1 desatualizada sem reposição) |
+| `climaterio` | `ass-climaterio` | 80 | 4 (anuladas; 2 com reposição no resumo) |
+| `uroginecologia` | `ass-uroginecologia` | 80 | — |
+| `sangramentos-na-gestacao` | `ass-sangramentos` | 79 | — |
+| `diabetes-gestacional` | `ass-dmg` | 82 | 2 (anuladas, com reposição no resumo) |
+| `puerperio` | `ass-puerperio` | 58 (+2 de infecção puerperal de `ass-prenatal`) | — |
+| `parto-pretermo-e-rotura` | `ass-partopretermo` | 54 | 2 (desatualizadas, com reposição no resumo) |
+| `cancer-de-endometrio` | `ass-caendometrio` | 52 (+1 de `ass-camama` sobre endométrio) | 1 (anulada) |
+| `endometriose` | `ass-endometriose` | 51 | — |
