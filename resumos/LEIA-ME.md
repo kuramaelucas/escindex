@@ -151,3 +151,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `estrategia-saude-familia` | `ass-esf` | 173 | 2 (anuladas) |
 | `desenhos-de-estudo` | `ass-desenhosestudo` | 168 | 3 (anuladas) |
 | `medidas-epidemiologicas` | `ass-medidasepi` | 156 | 3 (anuladas com reposição no resumo) |
+| `vigilancia-em-saude` | `ass-vigilancia` | 138 | 1 (anulada) |
