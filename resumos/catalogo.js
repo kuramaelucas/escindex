@@ -69,4 +69,5 @@
   { id: "cuidados-perioperatorios", titulo: "Cuidados perioperatórios", area: "Cirurgia · Perioperatório", assunto: "ass-cuidadosperi" },
   { id: "pancreatite-aguda", titulo: "Pancreatite aguda e crônica", area: "Cirurgia · Pâncreas", assunto: "ass-pancreatite" },
   { id: "colecistite-e-coledocolitiase", titulo: "Colelitíase, colecistite e via biliar", area: "Cirurgia · Via biliar", assunto: "ass-colecistite" },
+  { id: "tce", titulo: "Traumatismo cranioencefálico", area: "Cirurgia · Neurocirurgia", assunto: "ass-neurocir-tce" },
 ];
